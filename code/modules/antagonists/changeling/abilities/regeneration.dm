@@ -163,7 +163,7 @@
 			return 1
 
 		if (!src.cooldowncheck())
-			boutput(holder.owner, "<span style=\"color:red\">That ability is on cooldown for [round((src.last_cast - world.time) / 10)] seconds.</span>")
+			boutput(holder.owner, "<span style=\"color:red\">That ability is on cooldown for [round((src.last_cast - TIME) / 10)] seconds.</span>")
 			return 1
 
 		var/mob/living/carbon/human/C = holder.owner

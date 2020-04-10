@@ -295,7 +295,7 @@ var/const/effectTypeFood = 4
 	doCooldown()
 		if (ishuman(owner))
 			var/mob/living/carbon/human/H = owner
-			last_cast = world.time + linked_power.cooldown
+			last_cast = TIME + linked_power.cooldown
 			if (linked_power.cooldown > 0)
 				SPAWN_DBG(linked_power.cooldown)
 					if (src && H && H.hud)
@@ -304,8 +304,8 @@ var/const/effectTypeFood = 4
 	tryCast(atom/target)
 		if (can_act_check && !can_act(owner, needs_hands))
 			return 999
-		if (last_cast > world.time)
-			boutput(holder.owner, "<span style=\"color:red\">That ability is on cooldown for [round((last_cast - world.time) / 10)] seconds.</span>")
+		if (last_cast > TIME)
+			boutput(holder.owner, "<span style=\"color:red\">That ability is on cooldown for [round((last_cast - TIME) / 10)] seconds.</span>")
 			return 999
 
 		if (has_misfire)

@@ -49,8 +49,8 @@
 		if (disabled)
 			object.name = "[src.name] (unavailable)"
 			object.icon_state = src.icon_state + "_cd"
-		else if (src.last_cast > world.time)
-			object.name = "[src.name] ([round((src.last_cast-world.time)/10)])"
+		else if (src.last_cast > TIME)
+			object.name = "[src.name] ([round((src.last_cast - TIME)/10)])"
 			object.icon_state = src.icon_state + "_cd"
 		else if (toggled)
 			if (is_on)

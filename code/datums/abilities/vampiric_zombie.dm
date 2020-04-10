@@ -97,11 +97,11 @@
 			src.object = new /obj/screen/ability/topBar/vampiric_zombie()
 			object.icon = src.icon
 			object.owner = src
-		if (src.last_cast > world.time)
+		if (src.last_cast > TIME)
 			var/pttxt = ""
 			if (pointCost)
 				pttxt = " \[[pointCost]\]"
-			object.name = "[src.name][pttxt] ([round((src.last_cast-world.time)/10)])"
+			object.name = "[src.name][pttxt] ([round((src.last_cast - TIME)/10)])"
 			object.icon_state = src.icon_state + "_cd"
 		else
 			var/pttxt = ""

@@ -8,7 +8,7 @@
 		if (!isturf(usr.loc))
 			return
 		if (spell.targeted)
-			if (world.time < spell.last_cast)
+			if (spell.last_cast > TIME)
 				return
 			usr.targeting_ability = owner
 			usr.update_cursor()
@@ -76,7 +76,7 @@
 	doCooldown()
 		if (!holder)
 			return
-		last_cast = world.time + cooldown
+		last_cast = TIME + cooldown
 		holder.updateButtons()
 		SPAWN_DBG(cooldown + 5)
 			holder.updateButtons()
