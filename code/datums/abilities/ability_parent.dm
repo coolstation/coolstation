@@ -1176,28 +1176,3 @@
 	set_loc_callback(var/newloc)
 		for (var/datum/abilityHolder/H in holders)
 			H.set_loc_callback(newloc)
-
-
-
-/datum/targetable/geneticsAbility/test
-	icon_state = "healingtouch"
-	name = "Test"
-	desc = "Turns an item into a snake."
-	targeted = 1
-	check_range = 0
-	targeting_flags = TARGETS_ATOMS | TARGETS_IN_INVENTORY | TARGETS_ABILITIES
-
-	cast(atom/target)
-		target.color = "#ff0000"
-		message_admins(target)
-
-/datum/bioEffect/power/test
-	name = "test"
-	desc = "Allows the subject to heal the wounds of others with a touch."
-	id = "test"
-	msgGain = "Your hands radiate a comforting aura."
-	msgLose = "The aura around your hands dissipates."
-	cooldown = 900
-	occur_in_genepools = 0
-	stability_loss = 10
-	ability_path = /datum/targetable/geneticsAbility/test
