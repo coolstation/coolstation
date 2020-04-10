@@ -633,9 +633,7 @@
 				return
 
 			var/datum/targetable/S = user.targeting_ability
-			message_admins("spell: [S]")
 			if (istype(S) && (S.targeting_flags & TARGETS_ABILITIES))
-				message_admins("yes")
 				user.targeting_ability = null
 				user.update_cursor()
 				SPAWN_DBG(0)
