@@ -1174,3 +1174,23 @@
 	set_loc_callback(var/newloc)
 		for (var/datum/abilityHolder/H in holders)
 			H.set_loc_callback(newloc)
+
+/mob/proc/makeAbilityHolder(type)
+	if(!src.abilityHolder)
+		src.abilityHolder = new /datum/abilityHolder/composite(src)
+	if(istype(src.abilityHolder, type))
+		return src.abilityHolder
+	if(istype(src.abilityHolder, /datum/abilityHolder/composite))
+		var/datum/abilityHolder/composite/C = src.abilityHolder
+		if (!C.getHolder(type))
+			C.addHolder(type)
+		return C.getHolder(type)
+
+/mob/proc/addAbilityWithHolder(ability_type)
+	var/datum/targetable/ability = ability_type
+	var/type = initial(ability.preferred_holder_type)
+	if(type == /datum/abilityHolder)
+		type = /datum/abilityHolder/generic
+	var/datum/abilityHolder/holder = src.makeAbilityHolder(type)
+	if(holder)
+		return holder.addAbility(ability_type)

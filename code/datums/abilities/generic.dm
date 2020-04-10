@@ -1,19 +1,14 @@
 /mob/var/datum/targetable/chairflip/chair_flip_ability = null
 
 /mob/proc/start_chair_flip_targeting(var/extrarange = 0)
-	if (src.abilityHolder)
-		if (istype(src.abilityHolder,/datum/abilityHolder/composite))
-			var/datum/abilityHolder/composite/C = src.abilityHolder
-			if (!C.getHolder(/datum/abilityHolder/generic))
-				C.addHolder(/datum/abilityHolder/generic)
-		if (!chair_flip_ability)
-			chair_flip_ability = src.abilityHolder.addAbility(/datum/targetable/chairflip)
+	if(!chair_flip_ability)
+		chair_flip_ability = src.addAbilityWithHolder(/datum/targetable/chairflip)
 
-		chair_flip_ability.extrarange = extrarange
-		src.targeting_ability = chair_flip_ability
-		src.update_cursor()
+	chair_flip_ability.extrarange = extrarange
+	src.targeting_ability = chair_flip_ability
+	src.update_cursor()
 
-		playsound(src.loc, "sound/effects/chair_step.ogg", 50, 1)
+	playsound(src.loc, "sound/effects/chair_step.ogg", 50, 1)
 
 /mob/proc/end_chair_flip_targeting()
 	src.targeting_ability = null

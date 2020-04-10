@@ -44,14 +44,8 @@
 		return
 
 	proc/check_ability_owner()
-		if (ispath(ability_path))
-			var/datum/targetable/geneticsAbility/AB
-			if (src.owner.abilityHolder)
-				if (istype(src.owner.abilityHolder,/datum/abilityHolder/composite))
-					var/datum/abilityHolder/composite/C = src.owner.abilityHolder
-					if (!C.getHolder(/datum/abilityHolder/genetic))
-						C.addHolder(/datum/abilityHolder/genetic)
-				AB = src.owner.abilityHolder.addAbility(ability_path)
+		if (ispath(ability_path) && src.owner)
+			var/datum/targetable/geneticsAbility/AB = src.owner.addAbilityWithHolder(ability_path)
 			if(!AB)
 				AB = new ability_path(src)
 			ability = AB
