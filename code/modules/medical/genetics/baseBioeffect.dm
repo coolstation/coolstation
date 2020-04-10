@@ -382,3 +382,9 @@ var/const/effectTypeFood = 4
 			if (H && H.hud)
 				H.hud.update_ability_hotbar()
 		return 0
+
+/datum/abilityHolder/genetic
+	usesPoints = 0
+	regenRate = 0
+	topBarRendered = 0
+	rendered = 0
