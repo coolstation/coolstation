@@ -20,7 +20,7 @@
 	cooldown = 40
 	last_cast = 0
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	preferred_holder_type = /datum/abilityHolder/flockmind
 	theme = "flock"
 

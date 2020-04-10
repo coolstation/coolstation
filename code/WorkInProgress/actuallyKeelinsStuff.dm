@@ -798,7 +798,7 @@ var/list/electiles = list()
 	M.update_cursor()
 
 /datum/targetable/cincam
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	targeted = 1
 	max_range = 3000
 
@@ -1613,7 +1613,7 @@ var/list/electiles = list()
 	pixelmagic()
 
 /datum/targetable/pixelpicker
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	targeted = 1
 	max_range = 3000
 
@@ -2951,7 +2951,7 @@ var/list/electiles = list()
 				A.alpha = a
 
 /datum/targetable/portalpickerOrigin
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	targeted = 1
 	max_range = 3000
 	var/obj/fancyportal/P = null
@@ -2983,7 +2983,7 @@ var/list/electiles = list()
 			return
 
 /datum/targetable/portalpickerTarget
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	targeted = 1
 	max_range = 3000
 

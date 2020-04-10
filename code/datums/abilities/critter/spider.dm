@@ -6,7 +6,7 @@
 	desc = "Bite a mob, doing a little damage and injecting them with your venom. (You do have venom, don't you?)"
 	cooldown = 200
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 
 	var/datum/projectile/slam/proj = new
 
@@ -50,7 +50,7 @@
 	desc = "Spaz out on a mob, stunning them and injecting them with your venom. (You do have venom, don't you?)"
 	cooldown = 300
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 
 	var/datum/projectile/slam/proj = new
 
@@ -129,7 +129,7 @@
 	desc = "Drain a dead human."
 	cooldown = 300
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 
 	var/datum/projectile/slam/proj = new
 
@@ -226,7 +226,7 @@
 	desc = "Kick a mob, doing a little damage and possibly causing a short stun."
 	cooldown = 100
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	var/sound/sound_kick = 'sound/musical_instruments/Bikehorn_1.ogg'
 
 	var/datum/projectile/slam/proj = new
@@ -268,7 +268,7 @@
 	desc = "Kick the SHIT out of a mob with all eight legs."
 	cooldown = 300
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	var/sound/sound_kick = "clownstep"
 
 	var/datum/projectile/slam/proj = new
@@ -345,7 +345,7 @@
 	desc = "Lay Egg is True. Horribly, horribly true."
 	cooldown = 150
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 
 	cast(atom/T)
 		var/obj/item/reagent_containers/food/snacks/ingredient/egg/critter/clown/ammo = new(holder.owner.loc)

@@ -6,7 +6,7 @@
 	desc = "Sink your teeth into a mob in an attempt to rob them of some DNA."
 	cooldown = 200
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	icon_state = "gnaw"
 
 	var/datum/projectile/slam/proj = new

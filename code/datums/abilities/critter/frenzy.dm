@@ -6,7 +6,7 @@
 	desc = "Go into a bloody frenzy on a weakened target and rip them to shreds."
 	cooldown = 350
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	icon_state = "frenzy"
 
 	var/datum/projectile/slam/proj = new

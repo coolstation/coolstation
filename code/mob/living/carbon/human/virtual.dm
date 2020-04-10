@@ -117,7 +117,7 @@
 	desc = "Exit virtual reality."
 	cooldown = 0
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	interrupt_action_bars = 0
 	dont_lock_holder = 1
 

@@ -62,7 +62,7 @@
 	abomination_only = 1
 	cooldown = 0
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	restricted_area_check = 2
 
 	cast(atom/target)
@@ -176,7 +176,7 @@
 	human_only = 1
 	cooldown = 0
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	restricted_area_check = 2
 
 	cast(atom/target)

@@ -9,7 +9,7 @@
 	var/inject_amount = 25
 	cooldown = 600
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 
 	cast(atom/target)
 		if (..())

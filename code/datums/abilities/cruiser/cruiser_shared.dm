@@ -4,7 +4,7 @@
 	icon_state = "cancelcam"
 	cooldown = 0
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	dont_lock_holder = 1
 	ignore_holder_lock = 1
 
@@ -23,7 +23,7 @@
 	icon_state = "cancelcam"
 	cooldown = 0
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	dont_lock_holder = 1
 	ignore_holder_lock = 1
 
@@ -43,7 +43,7 @@
 	icon_state = "cruiser_exit"
 	cooldown = 0
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	dont_lock_holder = 1 // Dunno about your WIP stuff. Adjust as needed.
 	ignore_holder_lock = 1
 
@@ -64,7 +64,7 @@
 	icon_state = "warp"
 	cooldown = 10
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	dont_lock_holder = 1
 	ignore_holder_lock = 1
 
@@ -85,7 +85,7 @@
 	icon_state = "cruiser_shoot"
 	cooldown = 10
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	sticky = 1
 	dont_lock_holder = 1
 	ignore_holder_lock = 1
@@ -105,7 +105,7 @@
 	icon_state = "shieldboost"
 	cooldown = 200
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	dont_lock_holder = 1
 	ignore_holder_lock = 1
 
@@ -124,7 +124,7 @@
 	icon_state = "weaponboost"
 	cooldown = 250
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	dont_lock_holder = 1
 	ignore_holder_lock = 1
 
@@ -143,7 +143,7 @@
 	icon_state = "shieldmod"
 	cooldown = 10
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	dont_lock_holder = 1
 	ignore_holder_lock = 1
 
@@ -162,7 +162,7 @@
 	icon_state = "firemode"
 	cooldown = 0
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	dont_lock_holder = 1
 	ignore_holder_lock = 1
 
@@ -181,7 +181,7 @@
 	icon_state = "ram"
 	cooldown = 100
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	dont_lock_holder = 1
 	ignore_holder_lock = 1
 

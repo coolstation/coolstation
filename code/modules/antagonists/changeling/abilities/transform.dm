@@ -4,7 +4,7 @@
 	icon_state = "lesser"
 	cooldown = 50
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	can_use_in_container = 1
 	var/last_used_name = null
 
@@ -69,7 +69,7 @@
 	icon_state = "transform"
 	cooldown = 0
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	human_only = 1
 	can_use_in_container = 1
 	dont_lock_holder = 1

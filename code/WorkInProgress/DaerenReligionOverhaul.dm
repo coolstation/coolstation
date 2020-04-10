@@ -44,7 +44,7 @@
 	cooldown = 0
 	last_cast = 0
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	var/disabled = 0
 
 	New()
@@ -113,7 +113,7 @@
 	desc = "What flavor of crazy street preacher do you feel like being today?"
 	cooldown = 0
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	icon_state = "absorbcorpse"
 	var/static/list/domains = list("Atheism" = 1, "Order" = 2, "Chaos" = 3, "Light" = 4, "Darkness" = 5, "Life" = 6, "Death" = 7, "Machinery" = 8, "Nature" = 9, "Surprise me!" = 10)
 	//var/static/list/domainsForNerds = list("Atheism" = 1, "Order" = 2, "Chaos" = 3, "Light" = 4, "Darkness" = 5, "Life" = 6, "Death" = 7, "Machinery" = 8, "Nature" = 9, "Sol Invictus" = 10, "the Void" = 11, "Surprise me!" = 12)

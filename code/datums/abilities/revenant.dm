@@ -273,7 +273,7 @@
 	icon_state = "masscomm"
 	special_screen_loc = "NORTH-1,WEST"
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	pointCost = 500
 	cooldown = 300
 
@@ -411,7 +411,7 @@
 	desc = "Pushes a target object or mob away from the revenant."
 	icon_state = "push"
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	pointCost = 50
 	cooldown = 150
 	special_screen_loc = "NORTH-1,WEST+3"

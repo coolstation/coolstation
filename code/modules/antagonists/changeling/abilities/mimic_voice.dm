@@ -4,7 +4,7 @@
 	icon_state = "mimicvoice"
 	cooldown = 0
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	human_only = 1
 	can_use_in_container = 1
 	interrupt_action_bars = 0

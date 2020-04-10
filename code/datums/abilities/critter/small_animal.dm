@@ -23,7 +23,7 @@
 	icon_state = "blind"
 	cooldown = 100
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	var/take_eyes = 0
 
 	var/datum/projectile/slam/proj = new
@@ -95,7 +95,7 @@
 	desc = "Pounce on a mob, causing a short stun."
 	cooldown = 200
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 
 	var/datum/projectile/slam/proj = new
 
@@ -133,7 +133,7 @@
 	desc = "Weave around the legs of a mob, causing them to trip."
 	cooldown = 250
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 
 	var/datum/projectile/slam/proj = new
 
@@ -168,7 +168,7 @@
 	desc = "Sting a mob, injecting them with venom."
 	cooldown = 50
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	var/venom1 = "histamine"
 	var/amt1 = 12
 	var/venom2 = "toxin"

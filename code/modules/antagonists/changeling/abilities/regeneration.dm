@@ -5,7 +5,7 @@
 	human_only = 1
 	cooldown = 450
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	can_use_in_container = 1
 
 	incapacitationCheck()
@@ -151,7 +151,7 @@
 	cooldown = 900
 	pointCost = 10
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	can_use_in_container = 1
 	dont_lock_holder = 1
 	ignore_holder_lock = 1

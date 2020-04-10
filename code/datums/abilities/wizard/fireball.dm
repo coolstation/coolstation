@@ -19,7 +19,7 @@
 	desc = "Launches an explosive fireball at the target."
 	icon_state = "fireball"
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	cooldown = 350
 	requires_robes = 1
 	offensive = 1

@@ -6,8 +6,7 @@
 	cooldown = 150 // TODO
 	requires_robes = 1
 	offensive = 1
-	target_anything = 1
-	target_in_inventory = 1
+	targeting_flags = TARGETS_ATOMS | TARGETS_IN_INVENTORY
 	/*
 	voice_grim = "sound/voice/wizard/weneed.ogg"
 	voice_fem = "sound/voice/wizard/someoneto.ogg"
@@ -17,7 +16,7 @@
 	cast(atom/target)
 		if(!holder)
 			return
-		
+
 		var/has_spellpower = holder.owner.wizard_spellpower() // we track spellpower *before* we turn our staff into a snake
 
 		var/atom/movable/stick = null
@@ -68,7 +67,7 @@
 
 		if (!has_spellpower)
 			snake.aggressive = 0
-		
+
 		snake.start_expiration(2 MINUTES)
 
 		holder.owner.visible_message("<span style=\"color:red\">[holder.owner] turns [stick] into [snake]!</span>")

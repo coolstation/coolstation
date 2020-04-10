@@ -729,7 +729,7 @@
 	var/last_use_time = 0
 
 	var/targeted = 0 //does clicking this let you click on something to target it?
-	var/target_anything = 0 //can you target any atom, not just people
+	var/target_anything //can you target any atom, not just people
 
 	var/obj/item/the_item = null
 	var/mob/the_mob = null

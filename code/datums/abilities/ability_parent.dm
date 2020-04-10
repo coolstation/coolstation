@@ -629,6 +629,20 @@
 				user.update_cursor()
 				return
 
+			var/datum/targetable/S = user.targeting_ability
+			message_admins("spell: [S]")
+			if (istype(S) && (S.targeting_flags & TARGETS_ABILITIES))
+				message_admins("yes")
+				user.targeting_ability = null
+				SPAWN_DBG(0)
+					S.handleCast(src)
+					if(S)
+						if((S.ignore_sticky_cooldown && !S.cooldowncheck()) || (S.sticky && S.cooldowncheck()))
+							if(user)
+								user.targeting_ability = S
+								user.update_cursor()
+				return
+
 			if (parameters["ctrl"])
 				if (owner == holder.altPower || owner == holder.shiftPower)
 					boutput(user, "<span style=\"color:red\">That ability is already bound to another key.</span>")
@@ -718,8 +732,7 @@
 
 		max_range = 10
 		targeted = 0
-		target_anything = 0
-		target_in_inventory = 0
+		targeting_flags = TARGETS_MOBS // see _stdlib/code/_abilities.dm
 		last_cast = 0
 		cooldown = 100
 		start_on_cooldown = 0
@@ -735,7 +748,6 @@
 		dont_lock_holder = 0 // Bypass holder lock when we cast this spell.
 		ignore_holder_lock = 0 // Can we cast this spell when the holder is locked?
 		restricted_area_check = 0 // Are we prohibited from casting this spell in 1 (all of Z2) or 2 (only the VR)?
-		can_target_ghosts = 0 // Can we target observers if we see them (ectogoggles)?
 		check_range = 1 //Does this check for range at all?
 		sticky = 0 //Targeting stays active after using spell if this is 1. click button again to disable the active spell.
 		ignore_sticky_cooldown = 0 //if 1, Ability will stick to cursor even if ability goes on cooldown after first cast.
@@ -1145,3 +1157,28 @@
 	set_loc_callback(var/newloc)
 		for (var/datum/abilityHolder/H in holders)
 			H.set_loc_callback(newloc)
+
+
+
+/datum/targetable/geneticsAbility/test
+	icon_state = "healingtouch"
+	name = "Test"
+	desc = "Turns an item into a snake."
+	targeted = 1
+	check_range = 0
+	targeting_flags = TARGETS_ATOMS | TARGETS_IN_INVENTORY | TARGETS_ABILITIES
+
+	cast(atom/target)
+		target.color = "#ff0000"
+		message_admins(target)
+
+/datum/bioEffect/power/test
+	name = "test"
+	desc = "Allows the subject to heal the wounds of others with a touch."
+	id = "test"
+	msgGain = "Your hands radiate a comforting aura."
+	msgLose = "The aura around your hands dissipates."
+	cooldown = 900
+	occur_in_genepools = 0
+	stability_loss = 10
+	ability_path = /datum/targetable/geneticsAbility/test

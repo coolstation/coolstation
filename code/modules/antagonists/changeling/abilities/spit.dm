@@ -4,7 +4,7 @@
 	icon_state = "acid"
 	cooldown = 900
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	sticky = 1
 
 	cast(atom/target)

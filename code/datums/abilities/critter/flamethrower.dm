@@ -6,7 +6,7 @@
 	desc = "Throw flames towards a target location up to three squares away."
 	cooldown = 150
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 
 	cast(atom/target)
 		if (..())

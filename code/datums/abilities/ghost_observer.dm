@@ -127,7 +127,7 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 		// src.addAbility(/datum/targetable/ghost_observer/afterlife_Bar)
 		// src.addAbility(/datum/targetable/ghost_observer/respawn_animal)	//moved to respawn_options menu
 		src.addAbility(/datum/targetable/ghost_observer/respawn_options)
-		
+
 #if ASS_JAM
 		src.addAbility(/datum/targetable/ghost_observer/ass_day_arena)
 #endif
@@ -363,7 +363,7 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 	desc = "Levitate an object."
 	icon_state = "levitate-object"
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	max_range = 10
 	cooldown = 30 SECONDS // MINUTES
 	special_screen_loc = "SOUTH,CENTER-2"
@@ -396,7 +396,7 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 	icon_state = "spooky-sound"
 	targeted = 0
 	cooldown = 30 SECONDS // MINUTES
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	max_range = 0
 	cooldown = 1 MINUTES
 	pointCost = 30
@@ -420,7 +420,7 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 	targeted = 1
 	cooldown = 2 MINUTES
 	start_on_cooldown = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	special_screen_loc = "SOUTH,CENTER"
 	pointCost = 200
 	var/static/list/effects = list("ectoplasm"=1, "Cobweb"=2, "candle"=3, "pumpkin"=4, "skellington"=5, "spider vomit puddles"=6, "Random"=7)
@@ -461,7 +461,7 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 	targeted = 1
 	cooldown = 3 MINUTES
 	start_on_cooldown = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	var/in_use = 0
 	special_screen_loc = "SOUTH,CENTER+1"
 	pointCost = 300
@@ -512,7 +512,7 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 	desc = "Summons a single, harmless, friendly bat for the living to enjoy."
 	icon_state = "summon-bat"
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	max_range = 0
 	cooldown = 10 MINUTES
 	start_on_cooldown = 1

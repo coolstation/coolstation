@@ -416,7 +416,7 @@
 	desc = "Sting a mob, injecting them with venom."
 	cooldown = 50
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	var/venom1 = "histamine"
 	var/amt1 = 5
 	var/venom2 = "toxin"
@@ -492,7 +492,7 @@
 	desc = "Swallow a mob, trapping them in honey."
 	cooldown = 300
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 
 	var/datum/projectile/slam/proj = new
 
@@ -538,7 +538,7 @@
 	desc = "Stare at a mob, teleporting them away after a short time."
 	cooldown = 300
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 
 	var/datum/projectile/slam/proj = new
 

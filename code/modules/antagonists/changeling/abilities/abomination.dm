@@ -4,7 +4,7 @@
 	icon_state = "horror"
 	cooldown = 0
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	can_use_in_container = 1
 
 	incapacitationCheck()
@@ -70,7 +70,7 @@
 	icon_state = "scream"
 	cooldown = 100
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	pointCost = 0
 	abomination_only = 1
 

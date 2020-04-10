@@ -1073,18 +1073,24 @@
 			src.targeting_ability = null
 			update_cursor()
 
-			if (!S.target_anything && !ismob(target))
-				src.show_text("You have to target a person.", "red")
+			if (ismob(target) && !(S.targeting_flags & TARGETS_MOBS) || \
+					isturf(target) && !(S.targeting_flags & TARGETS_TURFS) || \
+					isobj(target) && !(S.targeting_flags & TARGETS_OBJS))
+				var/list/allowed_targets = list()
+				if(S.targeting_flags & TARGETS_MOBS) allowed_targets += "a mob"
+				if(S.targeting_flags & TARGETS_TURFS) allowed_targets += "a turf"
+				if(S.targeting_flags & TARGETS_OBJS) allowed_targets += "an object"
+				src.show_text("You have to target [allowed_targets.Join(" or ")].", "red")
 				if(S.sticky)
 					src.targeting_ability = S
 					update_cursor()
 				return 100
-			if (!S.target_in_inventory && !isturf(target.loc) && !isturf(target))
+			if (!(S.targeting_flags & TARGETS_IN_INVENTORY) && !isturf(target.loc) && !isturf(target))
 				if(S.sticky)
 					src.targeting_ability = S
 					update_cursor()
 				return 100
-			if (S.target_in_inventory && ( get_dist(src, target) > 1 && !isturf(target) && !isturf(target.loc)))
+			if ((S.targeting_flags & TARGETS_IN_INVENTORY) && ( get_dist(src, target) > 1 && !isturf(target) && !isturf(target.loc)))
 				if(S.sticky)
 					src.targeting_ability = S
 					update_cursor()
@@ -1095,7 +1101,7 @@
 					src.targeting_ability = S
 					update_cursor()
 				return 100
-			if (!S.can_target_ghosts && ismob(target) && (!isliving(target) || iswraith(target) || isintangible(target)))
+			if (!(S.targeting_flags & TARGETS_GHOSTS) && ismob(target) && (!isliving(target) || iswraith(target) || isintangible(target)))
 				src.show_text("It would have no effect on this target.", "red")
 				if(S.sticky)
 					src.targeting_ability = S

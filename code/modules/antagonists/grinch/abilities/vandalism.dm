@@ -2,7 +2,7 @@
 	name = "Vandalize"
 	desc = "Drop Spacemas cheer via graffiti and acts of destruction."
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	target_nodamage_check = 0
 	max_range = 0
 	cooldown = 100

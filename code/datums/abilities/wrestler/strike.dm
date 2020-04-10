@@ -3,7 +3,7 @@
 	desc = "Hit a neaby opponent with a quick attack."
 	icon_state = "Strike"
 	targeted = 1
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	target_nodamage_check = 1
 	target_selection_check = 1
 	max_range = 1

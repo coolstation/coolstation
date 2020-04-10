@@ -38,7 +38,7 @@
 	desc = "Click to launch yourself off of a chair."
 	//icon_state = "fireball"
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	cooldown = 1
 	preferred_holder_type = /datum/abilityHolder/generic
 	icon = null

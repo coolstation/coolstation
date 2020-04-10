@@ -54,7 +54,7 @@
 	cooldown = 0
 	var/actual_cooldown = 600
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 
 	proc/actionFinishCooldown()
 		cooldown = actual_cooldown

@@ -4,7 +4,7 @@
 	icon_state = "handspider"
 	cooldown = 600
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	human_only = 0
 	pointCost = 4
 	can_use_in_container = 1
@@ -106,7 +106,7 @@
 	icon_state = "eyespider"
 	cooldown = 600
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	human_only = 0
 	pointCost = 0 // free for now, given you have to lose a fuckin' EYE
 	can_use_in_container = 1
@@ -199,7 +199,7 @@
 	icon_state = "legworm"
 	cooldown = 1200
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	human_only = 0
 	pointCost = 6
 	can_use_in_container = 1
@@ -291,7 +291,7 @@
 	icon_state = "buttcrab"
 	cooldown = 600
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	human_only = 0
 	pointCost = 1
 	can_use_in_container = 1
@@ -375,7 +375,7 @@
 	icon_state = "hivesay"
 	cooldown = 0
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	human_only = 0
 	can_use_in_container = 1
 	interrupt_action_bars = 0
@@ -402,7 +402,7 @@
 	icon_state = "silence"
 	cooldown = 0
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	human_only = 0
 	pointCost = 0
 	can_use_in_container = 1
@@ -454,7 +454,7 @@
 	icon_state = "hivesay"
 	cooldown = 0
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	human_only = 0
 	pointCost = 0
 	can_use_in_container = 1

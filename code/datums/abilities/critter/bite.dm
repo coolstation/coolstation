@@ -6,7 +6,7 @@
 	desc = "Chomp down on a mob, causing damage and a short stun."
 	cooldown = 150
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	var/sound_bite = 'sound/voice/animal/werewolf_attack1.ogg'
 	var/brute_damage = 16
 

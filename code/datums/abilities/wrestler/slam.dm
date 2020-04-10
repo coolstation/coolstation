@@ -3,7 +3,7 @@
 	desc = "Slam a grappled opponent into the floor."
 	icon_state = "Slam"
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	target_nodamage_check = 0
 	target_selection_check = 0
 	max_range = 0

@@ -4,7 +4,7 @@
 	icon_state = "pounce"
 	targeted = 0
 	target_nodamage_check = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	max_range = 10
 	cooldown = 100
 	pointCost = 0

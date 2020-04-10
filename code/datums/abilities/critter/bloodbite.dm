@@ -6,7 +6,7 @@
 	desc = "Bite someone and take a tiny amount of blood."
 	cooldown = 10 SECONDS
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	icon_state = "bloodbite"
 
 	cast(atom/target)

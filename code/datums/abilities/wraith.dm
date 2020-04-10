@@ -28,7 +28,7 @@
 	cooldown = 0
 	last_cast = 0
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	preferred_holder_type = /datum/abilityHolder/wraith
 	theme = "wraith"
 
@@ -87,7 +87,7 @@
 	icon_state = "absorbcorpse"
 	desc = "Steal life essence from a corpse. You cannot use this on a skeleton!"
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	pointCost = 20
 	cooldown = 450 //Starts at 45 seconds and scales upward exponentially
 
@@ -170,7 +170,7 @@
 	icon_state = "possessobject"
 	desc = "Possess and control an everyday object. Freakout level: high."
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	pointCost = 300
 	cooldown = 1500 //Tweaked this down from 3 minutes to 2 1/2, let's see if that ruins anything
 
@@ -205,7 +205,7 @@
 	icon_state = "revenant"
 	desc = "Take control of an intact corpse as a powerful Revenant! You will not be able to absorb this corpse later. As a revenant, you gain increased point generation, but your revenant abilities cost much more points than normal."
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	pointCost = 1000
 	cooldown = 5000 //5 minutes
 
@@ -237,7 +237,7 @@
 	icon_state = "decay"
 	desc = "Cause a human to lose stamina, or an object to malfunction."
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	pointCost = 30
 	cooldown = 600 //1 minute
 
@@ -292,7 +292,7 @@
 	icon_state = "command"
 	desc = "Command a few objects to hurl themselves at the target location."
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	pointCost = 50
 	cooldown = 200 // 20 seconds
 
@@ -327,7 +327,7 @@
 	icon_state = "skeleton"
 	desc = "Raise a skeletonized dead body as an indurable skeletal servant."
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	pointCost = 150
 	cooldown = 600 // 1 minute
 
@@ -362,7 +362,7 @@
 	icon_state = "animobject"
 	desc = "Animate an inanimate object to attack nearby humans."
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	pointCost = 100
 	cooldown = 300 //30 seconds
 
@@ -558,7 +558,7 @@
 	icon_state = "whisper"
 	desc = "Send an ethereal message to a living being."
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	pointCost = 1
 	cooldown = 2 SECONDS
 
@@ -590,7 +590,7 @@
 	desc = "Write a spooky character on the ground."
 	icon_state = "bloodwriting"
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	pointCost = 10
 	cooldown = 5 SECONDS
 	var/in_use = 0

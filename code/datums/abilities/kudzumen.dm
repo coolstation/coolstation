@@ -165,7 +165,7 @@
 	desc = "Guide the growth of kudzu by preventing them from growing in area."
 	icon_state = "guide"
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	cooldown = 1 SECOND
 	pointCost = 2
 	max_range = 2
@@ -292,7 +292,7 @@
 	cooldown = 0
 	pointCost = 0
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	interrupt_action_bars = 0
 	dont_lock_holder = 1
 	can_cast_anytime = 1

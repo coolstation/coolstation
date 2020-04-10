@@ -106,7 +106,7 @@
 	icon_state = "slam"
 	cooldown = 100
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 
 	var/datum/projectile/slam/proj = new
 

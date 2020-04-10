@@ -4,7 +4,7 @@
 	icon_state = "morph_arm"
 	cooldown = 1800
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	pointCost = 0
 	can_use_in_container = 1
 	var/list/potential_r_arms = list("/obj/item/parts/human_parts/arm/right/claw", "/obj/item/parts/human_parts/arm/right/abomination")

@@ -6,7 +6,7 @@
 	desc = "Phase yourself to a nearby visible spot."
 	cooldown = 300
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	restricted_area_check = 1
 
 	cast(atom/target)

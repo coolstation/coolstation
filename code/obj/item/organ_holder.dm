@@ -1305,7 +1305,7 @@
 	desc = "Shoot a laser from your eye."
 	icon_state = "eye-laser"
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	cooldown = 40
 	var/datum/projectile/eye_proj = /datum/projectile/laser/eyebeams
 

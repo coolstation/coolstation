@@ -176,7 +176,7 @@
 	var/inject_amount = 10
 	cooldown = 600
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 
 	cast(atom/target)
 		if (..())
@@ -301,7 +301,7 @@
 	var/actual_cooldown = 200
 	icon_state = "pet"
 	targeted = 1
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 
 	proc/actionFinishCooldown()
 		cooldown = actual_cooldown

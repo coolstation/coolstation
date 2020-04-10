@@ -6,8 +6,7 @@
 	var/inject_amount = 50
 	cooldown = 900
 	targeted = 1
-	target_anything = 1
-	target_in_inventory = 1
+	targeting_flags = TARGETS_ATOMS | TARGETS_IN_INVENTORY
 	sticky = 1
 
 	cast(atom/target)
@@ -31,7 +30,7 @@
 			target.reagents.add_reagent(venom_id, inject_amount)
 			holder.owner.show_message(__blue("We stealthily sting [target]."))
 			return 0
-		
+
 
 		if (isobj(target))
 			target = get_turf(target)
@@ -126,7 +125,7 @@
 	icon_state = "stingdna"
 	cooldown = 0
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	copiable = 0
 	dont_lock_holder = 1
 	ignore_holder_lock = 1

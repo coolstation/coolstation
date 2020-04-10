@@ -398,7 +398,7 @@
 
 /datum/targetable/addtolistrefpicker
 	var/list/target = null
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	targeted = 1
 	max_range = 3000
 
@@ -413,7 +413,7 @@
 /datum/targetable/listrefpicker
 	var/list/target = null
 	var/varname = null
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	targeted = 1
 	max_range = 3000
 
@@ -428,7 +428,7 @@
 /datum/targetable/refpicker
 	var/datum/target = null
 	var/varname = null
-	target_anything = 1
+	targeting_flags = TARGETS_ATOMS
 	targeted = 1
 	max_range = 3000
 

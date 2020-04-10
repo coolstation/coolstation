@@ -3,7 +3,7 @@
 	desc = "Spin a grabbed opponent around and throw them."
 	icon_state = "Throw"
 	targeted = 0
-	target_anything = 0
+	targeting_flags = TARGETS_MOBS
 	target_nodamage_check = 0
 	target_selection_check = 0
 	max_range = 0
