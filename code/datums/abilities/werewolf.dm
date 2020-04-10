@@ -321,7 +321,7 @@
 //////////////////////////////////////////// Ability holder /////////////////////////////////////////
 
 /obj/screen/ability/topBar/werewolf
-	clicked(params)
+	cast_ability()
 		var/datum/targetable/werewolf/spell = owner
 		if (!istype(spell))
 			return
@@ -330,19 +330,7 @@
 		if (!isturf(owner.holder.owner.loc))
 			boutput(owner.holder.owner, "<span style=\"color:red\">You can't use this ability here.</span>")
 			return
-		if (spell.targeted && usr.targeting_ability == owner)
-			usr.targeting_ability = null
-			usr.update_cursor()
-			return
-		if (spell.targeted)
-			if (world.time < spell.last_cast)
-				return
-			usr.targeting_ability = owner
-			usr.update_cursor()
-		else
-			SPAWN_DBG(0)
-				spell.handleCast()
-		return
+		..()
 
 /datum/abilityHolder/werewolf
 	usesPoints = 0

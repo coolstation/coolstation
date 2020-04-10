@@ -469,6 +469,8 @@
 	var/obj/screen/pseudo_overlay/point_overlay
 	var/obj/screen/pseudo_overlay/cooldown_overlay
 
+	var/use_target_selection_check = 0
+
 
 	//mbc : used for updates called without positioning - just use last poistion
 	var/last_x = 0
@@ -617,11 +619,12 @@
 		last_y = pos_y
 
 	clicked(parameters)
-		if (!owner.holder || !owner.holder.owner || usr != owner.holder.owner)
+		var/datum/abilityHolder/holder = owner?.holder
+		if(!holder) return // maybe add support for holder-less abilities later
+		var/mob/user = holder?.owner
+		if (usr != user)
 			boutput(usr, "<span style=\"color:red\">You do not own this ability.</span>")
 			return
-		var/datum/abilityHolder/holder = owner.holder
-		var/mob/user = holder.owner
 
 		if(parameters["left"])
 			if (owner.targeted && user.targeting_ability == owner)
@@ -692,16 +695,7 @@
 					if (owner.cooldown)
 						boutput(user, "<span style=\"color:blue\">Cooldown: <strong>[owner.cooldown / 10] seconds</strong></span>")
 				else
-					if (!owner.cooldowncheck())
-						boutput(holder.owner, "<span style=\"color:red\">That ability is on cooldown for [round((owner.last_cast - world.time) / 10)] seconds.</span>")
-						return
-
-					if (!owner.targeted)
-						owner.handleCast()
-						return
-					else
-						user.targeting_ability = owner
-						user.update_cursor()
+					src.cast_ability()
 		else if(parameters["middle"])
 			if(owner.waiting_for_hotkey)
 				holder.cancel_action_binding()
@@ -710,6 +704,30 @@
 				boutput(usr, "<span style=\"color:blue\">Please press a number to bind this ability to...</span>")
 
 		owner.holder.updateButtons()
+
+	proc/cast_ability()
+		if(!istype(owner) || !istype(owner.holder))
+			return
+		var/datum/abilityHolder/holder = owner.holder
+		var/mob/user = holder.owner
+
+		if (!owner.cooldowncheck())
+			boutput(user, "<span style=\"color:red\">That ability is on cooldown for [round((owner.last_cast - world.time) / 10)] seconds.</span>")
+			return
+
+		var/is_targeted = owner.targeted
+		if(use_target_selection_check)
+			var/use_targeted = src.do_target_selection_check()
+			if (use_targeted == 2)
+				return
+			is_targeted |= use_targeted
+
+		if (!is_targeted)
+			owner.handleCast()
+			return
+		else
+			user.targeting_ability = owner
+			user.update_cursor()
 
 	MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
 		if (!owner || !owner.holder || !owner.holder.topBarRendered)

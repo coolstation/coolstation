@@ -1206,7 +1206,7 @@
 	tabName = "Body"
 
 /obj/screen/ability/topBar/organ
-	clicked(params)
+	cast_ability()
 		var/datum/targetable/organAbility/spell = owner
 		if (!istype(spell))
 			return
@@ -1214,18 +1214,7 @@
 			return
 		if (!isturf(usr.loc))
 			return
-		if (spell.targeted && usr.targeting_ability == owner)
-			usr:targeting_ability = null
-			usr.update_cursor()
-			return
-		if (spell.targeted)
-			if (world.time < spell.last_cast)
-				return
-			usr.targeting_ability = owner
-			usr.update_cursor()
-		else
-			SPAWN_DBG(0)
-				spell.handleCast()
+		..()
 
 /datum/targetable/organAbility
 	icon = 'icons/mob/organ_abilities.dmi'

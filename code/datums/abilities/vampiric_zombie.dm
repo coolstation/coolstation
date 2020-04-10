@@ -26,41 +26,19 @@
 ////////////////////////////////////////////////// Ability holder /////////////////////////////////////////////
 
 /obj/screen/ability/topBar/vampiric_zombie
-	clicked(params)
+	cast_ability()
 		var/datum/targetable/vampiric_zombie/spell = owner
-		var/datum/abilityHolder/holder = owner.holder
 
 		if (!istype(spell))
 			return
 		if (!spell.holder)
 			return
 
-		if(params["shift"] && params["ctrl"])
-			if(owner.waiting_for_hotkey)
-				holder.cancel_action_binding()
-				return
-			else
-				owner.waiting_for_hotkey = 1
-				src.updateIcon()
-				boutput(usr, "<span style=\"color:blue\">Please press a number to bind this ability to...</span>")
-				return
-
 		if (!isturf(owner.holder.owner.loc))
 			boutput(owner.holder.owner, "<span style=\"color:red\">You can't use this spell here.</span>")
 			return
-		if (spell.targeted && usr.targeting_ability == owner)
-			usr.targeting_ability = null
-			usr.update_cursor()
-			return
-		if (spell.targeted)
-			if (world.time < spell.last_cast)
-				return
-			usr.targeting_ability = owner
-			usr.update_cursor()
-		else
-			SPAWN_DBG(0)
-				spell.handleCast()
-		return
+
+		..()
 
 /datum/abilityHolder/vampiric_zombie
 	usesPoints = 0

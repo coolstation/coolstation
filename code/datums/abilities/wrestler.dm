@@ -81,7 +81,9 @@
 //////////////////////////////////////////// Ability holder /////////////////////////////////////////
 
 /obj/screen/ability/topBar/wrestler
-	clicked(params)
+	use_target_selection_check = 1
+
+	cast_ability()
 		var/datum/targetable/wrestler/spell = owner
 		if (!istype(spell))
 			return
@@ -91,23 +93,7 @@
 			if (!isturf(owner.holder.owner.loc))
 				boutput(owner.holder.owner, "<span style=\"color:red\">You can't use this ability here.</span>")
 				return
-		if (spell.targeted && usr.targeting_ability == owner)
-			usr.targeting_ability = null
-			usr.update_cursor()
-			return
-
-		var/use_targeted = src.do_target_selection_check()
-		if (use_targeted == 2)
-			return
-		if (spell.targeted || use_targeted == 1)
-			if (world.time < spell.last_cast)
-				return
-			owner.holder.owner.targeting_ability = owner
-			owner.holder.owner.update_cursor()
-		else
-			SPAWN_DBG(0)
-				spell.handleCast()
-		return
+		..()
 
 /datum/abilityHolder/wrestler
 	usesPoints = 0

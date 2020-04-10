@@ -92,41 +92,13 @@
 	see_face = 0
 
 /obj/screen/ability/topBar/cyalume_knight
-	clicked(params)
+	cast_ability(params)
 		var/datum/targetable/cyalume_knight/spell = owner
-		var/datum/abilityHolder/holder = owner.holder
-
 		if(!istype(spell))
 			return
 		if(!spell.holder)
 			return
-
-		if(params["shift"] && params["ctrl"])
-			if(owner.waiting_for_hotkey)
-				holder.cancel_action_binding()
-				return
-			else
-				owner.waiting_for_hotkey = 1
-				src.updateIcon()
-				boutput(usr, "<span style=\"color:blue\">Please press a number to bind this ability to...</span>")
-				return
-
-		if (!isturf(owner.holder.owner.loc))
-			boutput(owner.holder.owner, "<span style=\"color:red\">You can't use this spell here.</span>")
-			return
-		if (spell.targeted && usr.targeting_ability == owner)
-			usr.targeting_ability = null
-			usr.update_cursor()
-			return
-		if (spell.targeted)
-			if (world.time < spell.last_cast)
-				return
-			owner.holder.owner.targeting_ability = owner
-			owner.holder.owner.update_cursor()
-		else
-			SPAWN_DBG(0)
-				spell.handleCast()
-		return
+		..()
 
 ////////////////////////////////////////////////// Ability holder /////////////////////////////////////////////
 

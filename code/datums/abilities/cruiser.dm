@@ -1,35 +1,10 @@
 /obj/screen/ability/topBar/cruiser
-	clicked(params)
+	cast_ability(params)
 		var/datum/targetable/cruiser/spell = owner
-		var/datum/abilityHolder/holder = owner.holder
-
-
-		if(params["left"] && params["ctrl"])
-			if(owner.waiting_for_hotkey)
-				holder.cancel_action_binding()
-			else
-				owner.waiting_for_hotkey = 1
-				boutput(usr, "<span style=\"color:blue\">Please press a number to bind this ability to...</span>")
-		else if(params["left"])
-			if (!istype(spell))
-				return
-			if (!spell.holder)
-				return
-			if (spell.targeted && usr.targeting_ability == owner)
-				usr.targeting_ability = null
-				usr.update_cursor()
-				return
-			if (spell.targeted)
-				if (world.time < spell.last_cast)
-					return
-				usr.targeting_ability = owner
-				usr.update_cursor()
-			else
-				SPAWN_DBG(0)
-					spell.handleCast()
+		if (!istype(spell))
 			return
-
-		owner.holder.updateButtons()
+		..()
+		return
 
 /datum/abilityHolder/cruiser
 	topBarRendered = 1

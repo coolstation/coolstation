@@ -256,24 +256,6 @@ var/const/effectTypeFood = 4
 	secs_offset_x = 23
 	secs_offset_y = 7
 
-	clicked(parameters)
-		var/mob/living/user = usr
-
-		if (!istype(user) || !istype(owner))
-			boutput(user, "<span style=\"color:red\">Oh christ something's gone completely batshit. Report this to a coder.</span>")
-			return
-
-		if (!owner.cooldowncheck())
-			boutput(user, "<span style=\"color:red\">That ability is on cooldown for [round((owner.last_cast - world.time) / 10)] seconds.</span>")
-			return
-
-		if (!owner.targeted)
-			owner.handleCast()
-			return
-		else
-			user.targeting_ability = owner
-			user.update_cursor()
-
 	get_controlling_mob()
 		if (!istype(owner,/datum/targetable/geneticsAbility/))
 			return null

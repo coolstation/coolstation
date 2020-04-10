@@ -135,29 +135,6 @@
 
 
 /obj/screen/ability/topBar/virtual
-	clicked(params)
+	cast_ability()
 		var/datum/targetable/virtual/spell = owner
-		//var/datum/abilityHolder/holder = owner.holder
-
-		spell.handleCast()
-		/*
-
-		if (!istype(spell))
-			return
-		if (!spell.holder)
-			return
-
-		if (spell.targeted && usr.targeting_ability == owner)
-			usr.targeting_ability = null
-			usr.update_cursor()
-			return
-		if (spell.targeted)
-			if (world.time < spell.last_cast)
-				return
-			owner.holder.owner.targeting_ability = owner
-			owner.holder.owner.update_cursor()
-		else
-			SPAWN_DBG(0)
-				spell.handleCast()
-		return
-		*/
+		spell.handleCast() // I don't even know and I'm scared to touch this

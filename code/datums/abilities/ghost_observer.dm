@@ -51,16 +51,6 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 
 #endif
 
-/obj/screen/ability/topBar/ghost_observer
-	clicked(params)
-		var/datum/targetable/ghost_observer/abil = owner
-		if (!istype(abil))
-			return
-		if (!abil.holder)
-			return
-		SPAWN_DBG(0)
-			abil.handleCast()
-
 /datum/abilityHolder/ghost_observer
 	usesPoints = 0
 	regenRate = 0
