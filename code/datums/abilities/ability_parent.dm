@@ -634,6 +634,7 @@
 			if (istype(S) && (S.targeting_flags & TARGETS_ABILITIES))
 				message_admins("yes")
 				user.targeting_ability = null
+				user.update_cursor()
 				SPAWN_DBG(0)
 					S.handleCast(src)
 					if(S)
