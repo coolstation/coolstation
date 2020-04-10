@@ -271,6 +271,7 @@ var/const/effectTypeFood = 4
 	cooldown_ends = 0
 	targeted = 1
 	targeting_flags = TARGETS_ATOMS
+	preferred_holder_type = /datum/abilityHolder/genetic
 	var/has_misfire = 1
 	var/success_prob_min_cap = 30
 	var/can_act_check = 1
