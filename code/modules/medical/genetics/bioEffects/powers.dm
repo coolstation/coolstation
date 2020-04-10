@@ -1171,7 +1171,7 @@
 		linked_power.using = 1
 		var/obj/the_item = input("Which item do you want to transmute?","Midas Touch") as null|obj in items
 		if (!the_item)
-			last_cast = 0
+			cooldown_ends = 0
 			linked_power.using = 0
 			return 1
 
@@ -1206,7 +1206,7 @@
 		linked_power.using = 1
 		var/obj/the_item = input("Which item do you want to transmute?","Midas Touch") as null|obj in items
 		if (!the_item)
-			last_cast = 0
+			cooldown_ends = 0
 			linked_power.using = 0
 			return 1
 
@@ -1985,7 +1985,7 @@
 
 		var/obj/the_item = input("Which item do you want to color?","Ink Glands") as null|obj in items
 		if (!the_item)
-			last_cast = 0
+			cooldown_ends = 0
 			return 1
 
 		var/datum/bioEffect/power/ink/I = linked_power

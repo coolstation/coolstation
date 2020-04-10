@@ -25,7 +25,7 @@
 	icon = 'icons/mob/critter_ui.dmi'
 	icon_state = "template"  // TODO.
 	cooldown = 0
-	last_cast = 0
+	cooldown_ends = 0
 	var/disabled = 0
 	var/toggled = 0
 	var/is_on = 0   // used if a toggle ability
@@ -49,8 +49,8 @@
 		if (disabled)
 			object.name = "[src.name] (unavailable)"
 			object.icon_state = src.icon_state + "_cd"
-		else if (src.last_cast > TIME)
-			object.name = "[src.name] ([round((src.last_cast - TIME)/10)])"
+		else if (src.cooldown_ends > TIME)
+			object.name = "[src.name] ([round((src.cooldown_ends - TIME)/10)])"
 			object.icon_state = src.icon_state + "_cd"
 		else if (toggled)
 			if (is_on)

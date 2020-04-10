@@ -115,7 +115,7 @@
 
 
 	// Wholesale stolen from ability_parent
-	// last_cast -> last_used
+	// cooldown_ends -> last_used
 	proc/update_cooldown_cost()
 		if (!button)
 			return

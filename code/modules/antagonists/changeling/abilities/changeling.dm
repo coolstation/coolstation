@@ -264,7 +264,7 @@
 	icon = 'icons/mob/spell_buttons.dmi'
 	icon_state = "template" // No longer ToDo thanks to Sundance420.
 	cooldown = 0
-	last_cast = 0
+	cooldown_ends = 0
 	var/abomination_only = 0
 	var/human_only = 0
 	var/can_use_in_container = 0
@@ -285,11 +285,11 @@
 			src.object = new /obj/screen/ability/topBar/changeling()
 			object.icon = src.icon
 			object.owner = src
-		if (src.last_cast > TIME)
+		if (src.cooldown_ends > TIME)
 			var/pttxt = ""
 			if (pointCost)
 				pttxt = " \[[pointCost]\]"
-			object.name = "[src.name][pttxt] ([round((src.last_cast - TIME)/10)])"
+			object.name = "[src.name][pttxt] ([round((src.cooldown_ends - TIME)/10)])"
 			object.icon_state = src.icon_state + "_cd"
 		else
 			var/pttxt = ""

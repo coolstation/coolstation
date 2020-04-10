@@ -63,7 +63,7 @@
 	icon = 'icons/misc/kudzu_plus.dmi'
 	icon_state = "kudzu-template"
 	cooldown = 0
-	last_cast = 0
+	cooldown_ends = 0
 	pointCost = 0
 	preferred_holder_type = /datum/abilityHolder/kudzu
 	var/when_stunned = 0 // 0: Never | 1: Ignore mob.stunned and mob.weakened | 2: Ignore all incapacitation vars
@@ -93,11 +93,11 @@
 			src.object = new /obj/screen/ability/topBar/vampire()
 			object.icon = src.icon
 			object.owner = src
-		if (src.last_cast > TIME)
+		if (src.cooldown_ends > TIME)
 			var/pttxt = ""
 			if (pointCost)
 				pttxt = " \[[pointCost]\]"
-			object.name = "[src.name][pttxt] ([round((src.last_cast - TIME)/10)])"
+			object.name = "[src.name][pttxt] ([round((src.cooldown_ends - TIME)/10)])"
 			object.icon_state = src.icon_state + "_cd"
 		else
 			var/pttxt = ""

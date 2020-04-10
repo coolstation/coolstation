@@ -194,7 +194,7 @@
 			qdel(object)
 
 	doCooldown()
-		src.last_cast = TIME + calculate_cooldown()
+		src.cooldown_ends = TIME + calculate_cooldown()
 		SPAWN_DBG(calculate_cooldown() + 5)
 			holder.updateButtons()
 
@@ -206,7 +206,7 @@
 		if (H.locked && src.ignore_holder_lock != 1)
 			boutput(holder.owner, "<span style=\"color:red\">You're already casting an ability.</span>")
 			return 1 // ASSHOLES
-		if (src.last_cast > TIME)
+		if (src.cooldown_ends > TIME)
 			return 1
 		if (isunconscious(holder.owner))
 			boutput(holder.owner, "<span style=\"color:red\">You cannot cast this ability while you are unconscious.</span>")
@@ -253,8 +253,8 @@
 		if (!src.object)
 			src.object = new /obj/screen/ability/topBar/spell()
 		object.icon = src.icon
-		if (src.last_cast > TIME)
-			object.name = "[src.name] ([round((src.last_cast - TIME)/10)])"
+		if (src.cooldown_ends > TIME)
+			object.name = "[src.name] ([round((src.cooldown_ends - TIME)/10)])"
 			object.icon_state = src.icon_state + "_cd"
 		else
 			object.name = src.name

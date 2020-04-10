@@ -268,7 +268,7 @@ var/const/effectTypeFood = 4
 /datum/targetable/geneticsAbility
 	icon = 'icons/mob/genetics_powers.dmi'
 	icon_state = "template"
-	last_cast = 0
+	cooldown_ends = 0
 	targeted = 1
 	targeting_flags = TARGETS_ATOMS
 	var/has_misfire = 1
@@ -295,7 +295,7 @@ var/const/effectTypeFood = 4
 	doCooldown()
 		if (ishuman(owner))
 			var/mob/living/carbon/human/H = owner
-			last_cast = TIME + linked_power.cooldown
+			cooldown_ends = TIME + linked_power.cooldown
 			if (linked_power.cooldown > 0)
 				SPAWN_DBG(linked_power.cooldown)
 					if (src && H && H.hud)
@@ -304,8 +304,8 @@ var/const/effectTypeFood = 4
 	tryCast(atom/target)
 		if (can_act_check && !can_act(owner, needs_hands))
 			return 999
-		if (last_cast > TIME)
-			boutput(holder.owner, "<span style=\"color:red\">That ability is on cooldown for [round((last_cast - TIME) / 10)] seconds.</span>")
+		if (cooldown_ends > TIME)
+			boutput(holder.owner, "<span style=\"color:red\">That ability is on cooldown for [round((cooldown_ends - TIME) / 10)] seconds.</span>")
 			return 999
 
 		if (has_misfire)
@@ -327,7 +327,7 @@ var/const/effectTypeFood = 4
 	handleCast(atom/target)
 		var/result = tryCast(target)
 		if (result && result != 999)
-			last_cast = 0 // reset cooldown
+			cooldown_ends = 0 // reset cooldown
 		else if (result != 999)
 			doCooldown()
 		afterCast()

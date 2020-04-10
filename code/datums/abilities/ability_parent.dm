@@ -272,7 +272,7 @@
 		if (params["alt"])
 			if (altPower)
 				if(!altPower.cooldowncheck())
-					boutput(owner, "<span style=\"color:red\">That ability is on cooldown for [round((altPower.last_cast - TIME) / 10)] seconds.</span>")
+					boutput(owner, "<span style=\"color:red\">That ability is on cooldown for [round((altPower.cooldown_ends - TIME) / 10)] seconds.</span>")
 					return 0
 				altPower.handleCast(target, params)
 				return 1
@@ -282,7 +282,7 @@
 		else if (params["ctrl"])
 			if (ctrlPower)
 				if(!ctrlPower.cooldowncheck())
-					boutput(owner, "<span style=\"color:red\">That ability is on cooldown for [round((ctrlPower.last_cast - TIME) / 10)] seconds.</span>")
+					boutput(owner, "<span style=\"color:red\">That ability is on cooldown for [round((ctrlPower.cooldown_ends - TIME) / 10)] seconds.</span>")
 					return 0
 				ctrlPower.handleCast(target, params)
 				return 1
@@ -292,7 +292,7 @@
 		else if (params["shift"])
 			if (shiftPower)
 				if(!shiftPower.cooldowncheck())
-					boutput(owner, "<span style=\"color:red\">That ability is on cooldown for [round((shiftPower.last_cast - TIME) / 10)] seconds.</span>")
+					boutput(owner, "<span style=\"color:red\">That ability is on cooldown for [round((shiftPower.cooldown_ends - TIME) / 10)] seconds.</span>")
 					return 0
 				shiftPower.handleCast(target, params)
 				return 1
@@ -330,7 +330,7 @@
 					T.holder.updateButtons()
 					return 1
 				else
-					boutput(owner, "<span style=\"color:red\">That ability is on cooldown for [round((T.last_cast - TIME) / 10)] seconds!</span>")
+					boutput(owner, "<span style=\"color:red\">That ability is on cooldown for [round((T.cooldown_ends - TIME) / 10)] seconds!</span>")
 					return 1
 		return 0
 
@@ -543,7 +543,7 @@
 
 		var/newcolor = null
 
-		var/on_cooldown = round((owner.last_cast - TIME) / 10)
+		var/on_cooldown = round((owner.cooldown_ends - TIME) / 10)
 
 		if (owner.pointCost)
 			if (owner.pointCost > owner.holder.points)
@@ -602,7 +602,7 @@
 		abilityHud.remove_object(src.cd_tens)
 		abilityHud.remove_object(src.cd_secs)
 
-		var/on_cooldown = round((owner.last_cast - TIME) / 10)
+		var/on_cooldown = round((owner.cooldown_ends - TIME) / 10)
 		if (on_cooldown > 0)
 			on_cooldown = min(on_cooldown,99)
 			src.overlays += src.darkener
@@ -710,7 +710,7 @@
 		var/mob/user = holder.owner
 
 		if (!owner.cooldowncheck())
-			boutput(user, "<span style=\"color:red\">That ability is on cooldown for [round((owner.last_cast - TIME) / 10)] seconds.</span>")
+			boutput(user, "<span style=\"color:red\">That ability is on cooldown for [round((owner.cooldown_ends - TIME) / 10)] seconds.</span>")
 			return
 
 		var/is_targeted = owner.targeted
@@ -750,7 +750,7 @@
 		max_range = 10
 		targeted = 0
 		targeting_flags = TARGETS_MOBS // see _stdlib/code/_abilities.dm
-		last_cast = 0
+		cooldown_ends = 0
 		cooldown = 100
 		start_on_cooldown = 0
 		datum/abilityHolder/holder
@@ -805,7 +805,7 @@
 		handleCast(atom/target, params)
 			var/result = tryCast(target, params)
 			if (result && result != 999)
-				last_cast = 0 // reset cooldown
+				cooldown_ends = 0 // reset cooldown
 			else if (result != 999)
 				doCooldown()
 			afterCast()
@@ -838,8 +838,8 @@
 				boutput(holder.owner, "<span style=\"color:red\">You cannot cast this ability while you are dead.</span>")
 				src.holder.locked = 0
 				return 999
-			if (last_cast > TIME)
-				boutput(holder.owner, "<span style=\"color:red\">That ability is on cooldown for [round((last_cast - TIME) / 10)] seconds.</span>")
+			if (cooldown_ends > TIME)
+				boutput(holder.owner, "<span style=\"color:red\">That ability is on cooldown for [round((cooldown_ends - TIME) / 10)] seconds.</span>")
 				src.holder.locked = 0
 				return 999
 			if (src.restricted_area_check)
@@ -876,13 +876,13 @@
 			return
 
 		doCooldown()
-			src.last_cast = TIME + src.cooldown
+			src.cooldown_ends = TIME + src.cooldown
 
 		castcheck()
 			return 1
 
 		cooldowncheck()
-			if (src.last_cast > TIME)
+			if (src.cooldown_ends > TIME)
 				return 0
 			return 1
 

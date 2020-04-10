@@ -261,7 +261,7 @@
 	doCooldown()
 		if (!holder)
 			return
-		last_cast = TIME + cooldown
+		cooldown_ends = TIME + cooldown
 		holder.updateButtons()
 		SPAWN_DBG(cooldown + 5)
 			holder.updateButtons()

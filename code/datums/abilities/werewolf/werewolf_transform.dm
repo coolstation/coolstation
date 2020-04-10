@@ -66,4 +66,4 @@
 
 		var/mob/living/M = owner
 		boutput(M, __red("Your transformation was interrupted!"))
-		transform.last_cast = 0 //reset cooldown
+		transform.cooldown_ends = 0 //reset cooldown

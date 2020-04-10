@@ -549,7 +549,7 @@ var/global/datum/critterDataAccess/intruderCritterDefinitions = new()
 	icon = 'icons/mob/wraith_ui.dmi'
 	icon_state = "template"
 	cooldown = 0
-	last_cast = 0
+	cooldown_ends = 0
 	targeted = 1
 	targeting_flags = TARGETS_ATOMS
 	preferred_holder_type = /datum/abilityHolder/intruder
@@ -571,7 +571,7 @@ var/global/datum/critterDataAccess/intruderCritterDefinitions = new()
 	doCooldown()
 		if (!holder)
 			return
-		last_cast = TIME + cooldown
+		cooldown_ends = TIME + cooldown
 		holder.updateButtons()
 		SPAWN_DBG(cooldown + 5)
 			holder.updateButtons()

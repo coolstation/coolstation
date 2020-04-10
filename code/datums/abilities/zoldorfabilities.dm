@@ -16,7 +16,7 @@
 	icon = 'icons/obj/zoldorf.dmi'
 	icon_state = "background"
 	cooldown = 0
-	last_cast = 0
+	cooldown_ends = 0
 	targeted = 1
 	targeting_flags = TARGETS_ATOMS
 	preferred_holder_type = /datum/abilityHolder/zoldorf

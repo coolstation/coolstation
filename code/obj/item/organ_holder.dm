@@ -1220,7 +1220,7 @@
 	icon = 'icons/mob/organ_abilities.dmi'
 	icon_state = "template"
 	cooldown = 0
-	last_cast = 0
+	cooldown_ends = 0
 	preferred_holder_type = /datum/abilityHolder/organ
 	var/disabled = 0
 	var/toggled = 0
@@ -1245,8 +1245,8 @@
 		if (disabled)
 			object.name = "[src.name] (unavailable)"
 			object.icon_state = src.icon_state + "_cd"
-		else if (src.last_cast > TIME)
-			object.name = "[src.name] ([round((src.last_cast - TIME)/10)])"
+		else if (src.cooldown_ends > TIME)
+			object.name = "[src.name] ([round((src.cooldown_ends - TIME)/10)])"
 			object.icon_state = src.icon_state + "_cd"
 		else if (toggled)
 			if (is_on)

@@ -122,7 +122,7 @@
 	icon = 'icons/misc/GerhazoStuff.dmi'
 	icon_state = "cknight_base"
 	cooldown = 0
-	last_cast = 0
+	cooldown_ends = 0
 	pointCost = 0
 	preferred_holder_type = /datum/abilityHolder/cyalume_knight
 

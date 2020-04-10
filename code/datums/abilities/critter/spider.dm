@@ -55,7 +55,7 @@
 	var/datum/projectile/slam/proj = new
 
 	cast(atom/target)
-		if (disabled && TIME > last_cast)
+		if (disabled && TIME > cooldown_ends)
 			disabled = 0 // break the deadlock
 		if (disabled)
 			return 1
@@ -134,7 +134,7 @@
 	var/datum/projectile/slam/proj = new
 
 	cast(atom/target)
-		if (disabled && TIME > last_cast)
+		if (disabled && TIME > cooldown_ends)
 			disabled = 0 // break the deadlock
 		if (disabled)
 			return 1
@@ -274,7 +274,7 @@
 	var/datum/projectile/slam/proj = new
 
 	cast(atom/target)
-		if (disabled && TIME > last_cast)
+		if (disabled && TIME > cooldown_ends)
 			disabled = 0 // break the deadlock
 		if (disabled)
 			return 1

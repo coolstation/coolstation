@@ -8,7 +8,7 @@
 		if (!isturf(usr.loc))
 			return
 		if (spell.targeted)
-			if (spell.last_cast > TIME)
+			if (spell.cooldown_ends > TIME)
 				return
 			usr.targeting_ability = owner
 			usr.update_cursor()
@@ -42,7 +42,7 @@
 	icon = 'icons/mob/wraith_ui.dmi'
 	icon_state = "template"
 	cooldown = 0
-	last_cast = 0
+	cooldown_ends = 0
 	targeted = 1
 	targeting_flags = TARGETS_ATOMS
 	var/disabled = 0
@@ -76,7 +76,7 @@
 	doCooldown()
 		if (!holder)
 			return
-		last_cast = TIME + cooldown
+		cooldown_ends = TIME + cooldown
 		holder.updateButtons()
 		SPAWN_DBG(cooldown + 5)
 			holder.updateButtons()

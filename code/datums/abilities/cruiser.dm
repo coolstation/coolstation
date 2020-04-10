@@ -20,7 +20,7 @@
 	icon = 'icons/mob/cruiser_ui.dmi'
 	icon_state = ""
 	cooldown = 0
-	last_cast = 0
+	cooldown_ends = 0
 	check_range = 0
 	var/disabled = 0
 	var/toggled = 0
@@ -46,8 +46,8 @@
 		if (disabled)
 			object.name = "[src.name] (unavailable)"
 			object.icon_state = src.icon_state + "_cd"
-		else if (src.last_cast > TIME)
-			object.name = "[src.name] ([round((src.last_cast - TIME)/10)])"
+		else if (src.cooldown_ends > TIME)
+			object.name = "[src.name] ([round((src.cooldown_ends - TIME)/10)])"
 			object.icon_state = src.icon_state + "_cd"
 		else if (toggled)
 			if (is_on)
@@ -76,7 +76,7 @@
 	doCooldown()
 		if (!holder)
 			return
-		last_cast = TIME + cooldown
+		cooldown_ends = TIME + cooldown
 		holder.updateButtons()
 		SPAWN_DBG(cooldown + 5)
 			holder.updateButtons()
