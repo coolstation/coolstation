@@ -551,9 +551,9 @@ datum
 				M.make_jittery(2 )
 				M.drowsyness = max(M.drowsyness-(5), 0)
 				if(prob(4))
-					M.reagents.add_reagent("epinephrine", 1.2 * mult) // let's not metabolize into meth anymore
+					M.reagents.add_reagent_sametemp("epinephrine", 1.2 * mult) // let's not metabolize into meth anymore
 				//if(prob(2))
-					//M.reagents.add_reagent("cholesterol", rand(1,3))
+					//M.reagents.add_reagent_sametemp("cholesterol", rand(1,3))
 				..()
 				return
 

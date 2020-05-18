@@ -1284,7 +1284,7 @@ datum
 
 				if(exposed_temperature > T0C + 50) //Turns into omnizine. Derp.
 					volume = 0
-					holder.add_reagent("omnizine", myvol, null)
+					holder.add_reagent_sametemp("omnizine", myvol, null)
 
 				return*/
 

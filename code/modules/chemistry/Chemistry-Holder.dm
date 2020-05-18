@@ -464,7 +464,7 @@ datum
 									if (FG)
 										FG.skip_next_update = 1
 									src.remove_reagent(B, C.required_reagents[B] * created_volume / (C.result_amount ? C.result_amount : 1))
-							src.add_reagent(C.result, created_volume)
+							src.add_reagent_sametemp(C.result, created_volume)
 							if(created_volume <= 0) //MBC : If a fluid reacted but didn't create anything, we require an update_total call to do drain/evaporate checks.
 								src.update_total()
 								if (FG && FG.my_group && src.total_volume <= 0) //also evaporate safety here
@@ -711,6 +711,12 @@ datum
 			if (can_spawn_fluid && fluid_turf && temp_fluid_reagents)
 				temp_fluid_reagents.update_total()
 				fluid_turf.fluid_react(temp_fluid_reagents, temp_fluid_reagents.total_volume)
+
+		// like add_reagent but default behaviour is to use the current temperature
+		proc/add_reagent_sametemp(var/reagent, var/amount, var/sdata, var/temp_new=-1, var/donotreact = 0, var/donotupdate = 0)
+			if(temp_new == -1)
+				temp_new = src.total_temperature
+			src.add_reagent(reagent, amount, sdata, temp_new, donotreact, donotupdate)
 
 		proc/add_reagent(var/reagent, var/amount, var/sdata, var/temp_new=T20C, var/donotreact = 0, var/donotupdate = 0)
 			if(!isnum(amount) || amount <= 0)

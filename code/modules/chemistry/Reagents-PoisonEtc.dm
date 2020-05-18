@@ -342,7 +342,7 @@ datum
 				M.take_toxin_damage(1 * mult)
 				M.updatehealth()
 				if (prob(10))
-					M.reagents.add_reagent("histamine", rand(5,15) * mult)
+					M.reagents.add_reagent_sametemp("histamine", rand(5,15) * mult)
 				..()
 				return
 
@@ -768,7 +768,7 @@ datum
 					boutput(M, "<span class='alert'><b>So itchy!</b></span>")
 					random_brute_damage(M, 2 * mult)
 				if (prob(6))
-					M.reagents.add_reagent("histamine", rand(1,3) * mult)
+					M.reagents.add_reagent_sametemp("histamine", rand(1,3) * mult)
 				if (prob(2))
 					boutput(M, "<span class='alert'><b><font size='[rand(2,5)]'>AHHHHHH!</font></b></span>")
 					random_brute_damage(M,5 * mult)
@@ -1156,7 +1156,7 @@ datum
 
 				var/our_amt = holder.get_reagent_amount(src.id)
 				if (prob(25))
-					M.reagents.add_reagent("histamine", rand(5,10) * mult)
+					M.reagents.add_reagent_sametemp("histamine", rand(5,10) * mult)
 				if (our_amt < 20)
 					M.take_toxin_damage(1 * mult)
 					random_brute_damage(M, 1 * mult)
@@ -1413,13 +1413,13 @@ datum
 
 				// Hyperallergic
 				if(M.traitHolder.hasTrait("allergic"))
-					holder.add_reagent(src.id, src.depletion_rate * 10 + src.volume/10)
+					holder.add_reagent_sametemp(src.id, src.depletion_rate * 10 + src.volume/10)
 				..()
 				return
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				if (method == TOUCH)
-					M.reagents.add_reagent("histamine", min(10,volume * 2))
+					M.reagents.add_reagent_sametemp("histamine", min(10,volume * 2))
 					M.make_jittery(10)
 				else
 					boutput(M, "<span class='alert'><b>You feel a burning sensation in your throat...</span>")

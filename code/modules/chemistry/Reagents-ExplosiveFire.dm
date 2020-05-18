@@ -111,7 +111,7 @@ datum
 			reaction_turf(var/turf/T, var/volume)
 				src = null
 				if(!T.reagents) T.create_reagents(volume)
-				T.reagents.add_reagent("napalm_goo", volume, null)
+				T.reagents.add_reagent_sametemp("napalm_goo", volume, null)
 				return
 			*/
 
@@ -217,7 +217,7 @@ datum
 				src = null
 				if(istype(T, /turf/simulated))
 					if(!T.reagents) T.create_reagents(volume)
-					T.reagents.add_reagent("thermite", volume, null)
+					T.reagents.add_reagent_sametemp("thermite", volume, null)
 					T.overlays = null
 					T.overlays = image('icons/effects/effects.dmi',icon_state = "thermite")
 					if (T.active_hotspot)
@@ -439,7 +439,7 @@ datum
 
 				src = null
 				//if(!T.reagents) T.create_reagents(50)
-				//T.reagents.add_reagent("infernite", 5, null)
+				//T.reagents.add_reagent_sametemp("infernite", 5, null)
 				if (volume < 3)
 					return
 
@@ -492,7 +492,7 @@ datum
 			reaction_turf(var/turf/T, var/volume)
 				src = null
 				//if(!T.reagents) T.create_reagents(50)
-				//T.reagents.add_reagent("infernite", 5, null)
+				//T.reagents.add_reagent_sametemp("infernite", 5, null)
 				tfireflash(T, min(max(0,volume/10),8), 7000)
 				if(!istype(T, /turf/space))
 					SPAWN_DBG(max(10, rand(20))) // let's burn right the fuck through the floor
@@ -546,7 +546,7 @@ datum
 				if (O)
 					if(!O.reagents)
 						O.create_reagents(50)
-					O.reagents.add_reagent("thalmerite", 5, null)
+					O.reagents.add_reagent_sametemp("thalmerite", 5, null)
 				return
 
 			reaction_turf(var/turf/T, var/volume)
@@ -554,7 +554,7 @@ datum
 				if (T)
 					if(!T.reagents)
 						T.create_reagents(50)
-					T.reagents.add_reagent("thalmerite", 5, null)
+					T.reagents.add_reagent_sametemp("thalmerite", 5, null)
 				return
 
 		combustible/argine
@@ -649,7 +649,7 @@ datum
 				var/datum/reagent/us = src
 				src = null
 				if(!T.reagents) T.create_reagents(50)
-				T.reagents.add_reagent(us.id, 5, null)
+				T.reagents.add_reagent_sametemp(us.id, 5, null)
 				return
 			*/
 
@@ -855,7 +855,7 @@ datum
 						D.name = "black powder"
 						D.desc = "Uh oh. Someone better clean this up!"
 						if(!D.reagents) D.create_reagents(10)
-						D.reagents.add_reagent("blackpowder", 5, null)
+						D.reagents.add_reagent_sametemp("blackpowder", 5, null)
 				return
 
 		combustible/nitrogentriiodide
@@ -919,7 +919,7 @@ datum
 
 				src = null
 				H.del_reagent(reagent="nitrotri_wet")
-				H.add_reagent(reagent="nitrotri_dry", amount=vol, donotreact=1)
+				H.add_reagent_sametemp(reagent="nitrotri_dry", amount=vol, donotreact=1)
 
 
 			reaction_turf(var/turf/T, var/volume)

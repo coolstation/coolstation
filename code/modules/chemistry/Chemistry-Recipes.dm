@@ -1725,7 +1725,7 @@ datum
 			mix_phrase = "The mixture settles into a white powder."
 			result_amount = 1
 			on_reaction(var/datum/reagents/holder, var/created_volume)
-				holder.add_reagent("hydrogen", created_volume * 2)
+				holder.add_reagent_sametemp("hydrogen", created_volume * 2)
 
 		mg_nh3_cl
 			name = "Magnesium-Ammonium Chloride"
@@ -1744,7 +1744,7 @@ datum
 			result_amount = 1
 			required_temperature = T0C + 150
 			on_reaction(var/datum/reagents/holder, var/created_volume)
-				holder.add_reagent("ammonia", created_volume * 6)
+				holder.add_reagent_sametemp("ammonia", created_volume * 6)
 			mix_phrase = "The mixture bubbles aggressively."
 
 		silicate
@@ -1814,7 +1814,7 @@ datum
 				for(var/mob/living/carbon/human/H in range(location, 1))
 					if(ishuman(H))
 						if(!H.wear_mask)
-							H.reagents.add_reagent("cyanide",7) // BAHAHAHAHA
+							H.reagents.add_reagent_sametemp("cyanide",7) // BAHAHAHAHA
 				return
 
 		sarin // oh god why am i adding this
@@ -1833,14 +1833,14 @@ datum
 
 				// A slightly less stupid way of smoking contents. Maybe.
 				var/datum/reagents/smokeContents = new/datum/reagents/
-				smokeContents.add_reagent("sarin", holder.reagent_list["sarin"].volume / 6)
+				smokeContents.add_reagent_sametemp("sarin", holder.reagent_list["sarin"].volume / 6)
 				//particleMaster.SpawnSystem(new /datum/particleSystem/chemSmoke(location, smokeContents, 10, 2))
 				smoke_reaction(smokeContents, 2, location)
 				/*
 				for(var/mob/living/carbon/human/H in range(location, 2)) // nurfed.
 					if(ishuman(H))
 						if(!H.wear_mask)
-							H.reagents.add_reagent("sarin",4) // griff
+							H.reagents.add_reagent_sametemp("sarin",4) // griff
 				*/
 				return
 
@@ -1915,14 +1915,14 @@ datum
 				var/temp = 0
 
 				temp = min(safrole,nitrogen,created_volume)
-				holder.add_reagent("space_drugs",temp)
+				holder.add_reagent_sametemp("space_drugs",temp)
 				safrole -= temp
 				holder.remove_reagent("safrole", temp)
 				nitrogen -= temp
 				holder.remove_reagent("nitrogen", temp)
 
-				holder.add_reagent("salbutamol",created_volume)
-				holder.add_reagent("water",created_volume)
+				holder.add_reagent_sametemp("salbutamol",created_volume)
+				holder.add_reagent_sametemp("water",created_volume)
 				return
 
 		lube
@@ -2213,8 +2213,8 @@ datum
 						if(!H.wear_mask)
 							H.emote("gasp")
 							H.losebreath++
-							H.reagents.add_reagent("toxin",10)
-							H.reagents.add_reagent("neurotoxin",20) // ~HEH~
+							H.reagents.add_reagent_sametemp("toxin",10)
+							H.reagents.add_reagent_sametemp("neurotoxin",20) // ~HEH~
 				return
 
 		mutadone // // COGWERKS CHEM REVISION PROJECT: magic bullshit drug, make it involve mutagen
@@ -2531,7 +2531,7 @@ datum
 							M:add_stam_mod_max("anima_drain", -25)
 					if(gathered >= 80)
 						reaction_loc.visible_message("<span class='alert'>[bicon(my_atom)] As the alchemy circle rips the life out of everyone close to it, energies escape it and settle in the [my_atom].</span>")
-						holder.add_reagent("anima",50)
+						holder.add_reagent_sametemp("anima",50)
 						if (!particleMaster.CheckSystemExists(/datum/particleSystem/swoosh, my_atom))
 							particleMaster.SpawnSystem(new /datum/particleSystem/swoosh(my_atom))
 					else
@@ -2738,7 +2738,7 @@ datum
 				for(var/mob/living/carbon/human/H in range(location, 1))
 					if(ishuman(H))
 						if(!H.wear_mask)
-							H.reagents.add_reagent("jenkem",25) // this is going to make people so, so angry
+							H.reagents.add_reagent_sametemp("jenkem",25) // this is going to make people so, so angry
 				return
 
 		/*plant_nutrients_mutagenic
@@ -2811,7 +2811,7 @@ datum
 			result_amount = 2
 			mix_phrase = "The mixture gives off a biting odor."
 			on_reaction(var/datum/reagents/holder, created_volume)
-				holder.add_reagent("oxygen", created_volume,, holder.total_temperature)
+				holder.add_reagent_sametemp("oxygen", created_volume,, holder.total_temperature)
 
 		nitric_acid
 			name = "Nitric Acid"
@@ -2840,8 +2840,8 @@ datum
 			result_amount = 1
 			mix_phrase = "The mixture bubbles and white crystals form."
 			on_reaction(var/datum/reagents/holder, var/created_volume)
-				holder.add_reagent("nitrogen_dioxide", created_volume, , holder.total_temperature)
-				holder.add_reagent("water", created_volume, , holder.total_temperature)
+				holder.add_reagent_sametemp("nitrogen_dioxide", created_volume)
+				holder.add_reagent_sametemp("water", created_volume)
 
 		silver_fulminate
 			name = "Silver Fulminate"
@@ -2866,8 +2866,8 @@ datum
 			result_amount = 1
 			mix_phrase = "Silver hairlike strands of silver form in the mixture, and the mixture becomes more blue."
 			on_reaction(var/datum/reagents/holder, var/created_volume)
-				holder.add_reagent("silver", created_volume*2, , holder.total_temperature)
-				holder.add_reagent("water", created_volume, , holder.total_temperature)
+				holder.add_reagent_sametemp("silver", created_volume*2)
+				holder.add_reagent_sametemp("water", created_volume)
 
 		// 2 AgNO3 + Cu + (ethanol solvent) -> Cu(NO3)2 + 2 Ag
 		silver_nitrate_copper_nitrate_2
@@ -2878,8 +2878,8 @@ datum
 			result_amount = 1
 			mix_phrase = "Silver hairlike strands of silver form in the mixture, and the mixture becomes more blue."
 			on_reaction(var/datum/reagents/holder, var/created_volume)
-				holder.add_reagent("silver", created_volume*2, , holder.total_temperature)
-				holder.add_reagent("ethanol", created_volume, , holder.total_temperature)
+				holder.add_reagent_sametemp("silver", created_volume*2)
+				holder.add_reagent_sametemp("ethanol", created_volume)
 
 		// 2 AgNO3 + (heat) -> 2 Ag + O2 + 2 NO2
 		silver_nitrate_decomposition
@@ -2891,8 +2891,8 @@ datum
 			result_amount = 1
 			mix_phrase = "Silver specks form in the mixture as it decomposes."
 			on_reaction(var/datum/reagents/holder, var/created_volume)
-				holder.add_reagent("nitrogen_dioxide", created_volume, , holder.total_temperature)
-				holder.add_reagent("oxygen", created_volume/2, , holder.total_temperature)
+				holder.add_reagent_sametemp("nitrogen_dioxide", created_volume)
+				holder.add_reagent_sametemp("oxygen", created_volume/2)
 
 		allyl_chloride
 			name = "Allyl chloride"
@@ -2903,7 +2903,7 @@ datum
 			result_amount = 1
 			mix_phrase = "The mixture becomes colorless."
 			on_reaction(var/datum/reagents/holder, created_volume)
-				holder.add_reagent("clacid", created_volume,,holder.total_temperature)
+				holder.add_reagent_sametemp("clacid", created_volume,,holder.total_temperature)
 
 		epichlorohydrin
 			name = "Epichlorohydrin"
@@ -2913,7 +2913,7 @@ datum
 			result_amount = 1
 			mix_phrase = "The mixture gives of a garlic-like odor."
 			on_reaction(var/datum/reagents/holder, created_volume)
-				holder.add_reagent("salt", created_volume,,holder.total_temperature)
+				holder.add_reagent_sametemp("salt", created_volume,,holder.total_temperature)
 
 		glycerol
 			name = "Glycerol"
@@ -2923,7 +2923,7 @@ datum
 			result_amount = 1
 			mix_phrase = "The mixture bubbles."
 			on_reaction(var/datum/reagents/holder, created_volume)
-				holder.add_reagent("clacid", created_volume,,holder.total_temperature)
+				holder.add_reagent_sametemp("clacid", created_volume,,holder.total_temperature)
 
 		nitroglycerin
 			name = "Nitroglycerin"
@@ -3878,7 +3878,7 @@ datum
 			mix_sound = 'sound/misc/fuse.ogg'
 
 			on_reaction(var/datum/reagents/holder, created_volume)
-				holder.add_reagent("salt", created_volume * 2,,holder.total_temperature)
+				holder.add_reagent_sametemp("salt", created_volume * 2,,holder.total_temperature)
 
 		gypsum //H2SO4 + CaCO3 -> CaSO4 + H2O + CO2
 			name = "calcium sulfate"
@@ -3889,7 +3889,7 @@ datum
 			mix_phrase = "The mixture bubbles fervently."
 
 			on_reaction(var/datum/reagents/holder, created_volume)
-				holder.add_reagent("water", created_volume,,holder.total_temperature)
+				holder.add_reagent_sametemp("water", created_volume,,holder.total_temperature)
 
 		chalk //"pastels also contain clays and oils for binding, and strong pigments" some website i found
 			name = "chalk"
@@ -3941,8 +3941,8 @@ datum
 			result_amount = 3
 			mix_phrase = "The white flakes turn into a white powder."
 			on_reaction(var/datum/reagents/holder, created_volume)
-				holder.add_reagent("water", created_volume / 3,,holder.total_temperature)
-				holder.add_reagent("sodium_sulfate", created_volume / 3,,holder.total_temperature)
+				holder.add_reagent_sametemp("water", created_volume / 3,,holder.total_temperature)
+				holder.add_reagent_sametemp("sodium_sulfate", created_volume / 3,,holder.total_temperature)
 
 		perfect_cement //lime, alumina, magnesia, iron (iii) oxide, calcium sulfate, sulfur trioxide
 			name = "perfect cement"

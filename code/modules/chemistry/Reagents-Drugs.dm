@@ -66,7 +66,7 @@ datum
 
 
 					if(check < 8)
-						M.reagents.add_reagent(pick("methamphetamine", "crank", "neurotoxin"), rand(1,5))
+						M.reagents.add_reagent_sametemp(pick("methamphetamine", "crank", "neurotoxin"), rand(1,5))
 						M.visible_message("<span class='alert'><b>[M.name]</b> scratches at something under their skin!</span>")
 						random_brute_damage(M, 5 * mult)
 					else if (check < 16)
@@ -137,7 +137,7 @@ datum
 						M.change_misstep_chance(25 * mult)
 						M.make_jittery(10)
 						M.emote("scream")
-						M.reagents.add_reagent("salts1", 5 * mult)
+						M.reagents.add_reagent_sametemp("salts1", 5 * mult)
 					else if (effect <= 4)
 						M.visible_message("<span class='alert'><b>[M.name]'s</b> eyes dilate!</span>")
 						M.emote("twitch_s")
@@ -146,10 +146,10 @@ datum
 						M.updatehealth()
 						M.setStatus("stunned", max(M.getStatusDuration("stunned"), 40))
 						M.change_eye_blurry(7, 7)
-						M.reagents.add_reagent("salts1", 5 * mult)
+						M.reagents.add_reagent_sametemp("salts1", 5 * mult)
 					else if (effect <= 7)
 						M.emote("faint")
-						M.reagents.add_reagent("salts1", 5 * mult)
+						M.reagents.add_reagent_sametemp("salts1", 5 * mult)
 				else if (severity == 2)
 					if (effect <= 2)
 						M.visible_message("<span class='alert'><b>[M.name]'s</b> eyes dilate!</span>")
@@ -158,7 +158,7 @@ datum
 						M.updatehealth()
 						M.setStatus("stunned", max(M.getStatusDuration("stunned"), 40))
 						M.change_eye_blurry(7, 7)
-						M.reagents.add_reagent("salts1", 5 * mult)
+						M.reagents.add_reagent_sametemp("salts1", 5 * mult)
 					else if (effect <= 4)
 						M.visible_message("<span class='alert'><b>[M.name]</b> convulses violently and falls to the floor!</span>")
 						M.make_jittery(50)
@@ -167,12 +167,12 @@ datum
 						M.updatehealth()
 						M.setStatus("weakened", max(M.getStatusDuration("weakened"), 90))
 						M.emote("gasp")
-						M.reagents.add_reagent("salts1", 5 * mult)
+						M.reagents.add_reagent_sametemp("salts1", 5 * mult)
 					else if (effect <= 7)
 						M.emote("scream")
 						M.visible_message("<span class='alert'><b>[M.name]</b> tears at their own skin!</span>")
 						random_brute_damage(M, 5 * mult)
-						M.reagents.add_reagent("salts1", 5 * mult)
+						M.reagents.add_reagent_sametemp("salts1", 5 * mult)
 						M.emote("twitch")
 
 
@@ -231,7 +231,7 @@ datum
 					if(prob(15)) M.emote(pick("twitch", "twitch_s", "grumble", "laugh"))
 					if(prob(8))
 						boutput(M, "<span class='notice'><b>You feel great!</b></span>")
-						M.reagents.add_reagent("methamphetamine", rand(1,2) * mult)
+						M.reagents.add_reagent_sametemp("methamphetamine", rand(1,2) * mult)
 						M.emote(pick("laugh", "giggle"))
 					if(prob(6))
 						boutput(M, "<span class='notice'><b>You feel warm.</b></span>")
@@ -279,7 +279,7 @@ datum
 						M.setStatus("weakened", max(M.getStatusDuration("weakened"), 40))
 						M.change_misstep_chance(25 * mult)
 						M.emote("scream")
-						M.reagents.add_reagent("salts1", 5 * mult)
+						M.reagents.add_reagent_sametemp("salts1", 5 * mult)
 					else if (effect <= 7)
 						M.emote("scream")
 						M.visible_message("<span class='alert'><b>[M.name]</b> nervously scratches at their skin!</span>")
@@ -366,7 +366,7 @@ datum
 			reaction_temperature(exposed_temperature, exposed_volume)
 				var/myvol = volume
 				holder.del_reagent(id)
-				holder.add_reagent("neurotoxin", myvol, null)
+				holder.add_reagent_sametemp("neurotoxin", myvol, null)
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -972,7 +972,7 @@ datum
 				else if (severity == 2)
 
 					if(!holder.has_reagent("triplemeth", 10 * mult))
-						holder.add_reagent("triplemeth", 10 * mult, null)
+						holder.add_reagent_sametemp("triplemeth", 10 * mult, null)
 
 					if (effect <= 2)
 						M.visible_message("<span class='alert'><b>[M.name]'s</b> hands flip out and flail everywhere!</span>")

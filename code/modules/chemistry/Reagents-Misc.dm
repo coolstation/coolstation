@@ -935,7 +935,7 @@ datum
 					var/ranchance = rand(1,10)
 					if (ranchance == 1)
 						boutput(M, "<span class='alert'>You feel very sick.</span>")
-						M.reagents.add_reagent("toxin", rand(1,5))
+						M.reagents.add_reagent_sametemp("toxin", rand(1,5))
 					else if (ranchance <= 5 && ranchance != 1)
 						boutput(M, "<span class='alert'>That tasted absolutely FOUL.</span>")
 						M.contract_disease(/datum/ailment/disease/food_poisoning, null, null, 1) // path, name, strain, bypass resist
@@ -1046,7 +1046,7 @@ datum
 				for (var/i = 1, i <= booster_enzyme_reagents_to_check.len, i++)
 					var/check_amount = holder.get_reagent_amount(booster_enzyme_reagents_to_check[i])
 					if (check_amount && check_amount < 18)
-						holder.add_reagent("[booster_enzyme_reagents_to_check[i]]", 2 * mult)
+						holder.add_reagent_sametemp("[booster_enzyme_reagents_to_check[i]]", 2 * mult)
 				..()
 				return
 
@@ -1131,7 +1131,7 @@ datum
 								smoke.set_up(1, 0, location)
 								smoke.start()
 					if (holder)
-						holder.add_reagent("ash", round(src.volume/2), null)
+						holder.add_reagent_sametemp("ash", round(src.volume/2), null)
 						holder.del_reagent(id)
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
@@ -1169,7 +1169,7 @@ datum
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				//if (prob(4)) // it's motor oil, you goof
-					//M.reagents.add_reagent("cholesterol", rand(1,3))
+					//M.reagents.add_reagent_sametemp("cholesterol", rand(1,3))
 				return
 
 		capulettium
@@ -1375,7 +1375,7 @@ datum
 
 				var/our_amt = holder.get_reagent_amount(src.id)
 				if (prob(25))
-					M.reagents.add_reagent("histamine", rand(5,10) * mult)
+					M.reagents.add_reagent_sametemp("histamine", rand(5,10) * mult)
 				if (our_amt < 5)
 					M.take_toxin_damage(1 * mult)
 					random_brute_damage(M, 1 * mult)
@@ -1417,7 +1417,7 @@ datum
 					M = holder.my_atom
 				var/our_amt = holder.get_reagent_amount(src.id)
 				if (prob(25))
-					M.reagents.add_reagent("histamine", rand(5,10) * mult)
+					M.reagents.add_reagent_sametemp("histamine", rand(5,10) * mult)
 				if (our_amt < 5)
 					M.take_toxin_damage(1 * mult)
 					random_brute_damage(M, 1 * mult)
@@ -1992,7 +1992,7 @@ datum
 					for(var/reagent_id in holder.reagent_list)
 						if(reagent_id != id)
 							holder.remove_reagent(reagent_id, conversion_rate)
-							holder.add_reagent(id, conversion_rate)
+							holder.add_reagent_sametemp(id, conversion_rate)
 							otherReagents = TRUE
 					if(!otherReagents)
 						// we ate them all, time to die
@@ -2009,7 +2009,7 @@ datum
 					var/amt = conversion_rate * mult
 					if(H.blood_volume >= amt)
 						H.blood_volume -= amt
-					H.reagents.add_reagent(id, amt)
+					H.reagents.add_reagent_sametemp(id, amt)
 					if(holder.get_reagent_amount(src.id) > 300)
 						// oh no
 						if(prob(1)) // i hate you all, players
@@ -2635,7 +2635,7 @@ datum
 					boutput(M, "<span class='alert'><b>So itchy!</b></span>")
 					random_brute_damage(M, 2 * mult)
 				if (prob(1))
-					M.reagents.add_reagent("histamine", 1 * mult)
+					M.reagents.add_reagent_sametemp("histamine", 1 * mult)
 				..()
 				return
 
@@ -3345,7 +3345,7 @@ datum
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
-				M.reagents.add_reagent("cholesterol", 1 * mult)
+				M.reagents.add_reagent_sametemp("cholesterol", 1 * mult)
 				..()
 				return
 
@@ -3553,7 +3553,7 @@ datum
 
 						var/transfer_amt = current_reagent.volume*transfer_ratio
 
-						contents.add_reagent(reagent_id, transfer_amt, current_reagent.data, holder.total_temperature)
+						contents.add_reagent_sametemp(reagent_id, transfer_amt, current_reagent.data, holder.total_temperature)
 						holder.remove_reagent(reagent_id, transfer_amt)
 
 				//Do all the holder updates
@@ -3699,7 +3699,7 @@ datum
 				if (M && M.reagents)
 					if (prob(25))
 						boutput(M, "<span class='alert'>Oh god! The <i>smell</i>!!!</span>")
-					M.reagents.add_reagent("jenkem",0.1 * volume_passed)
+					M.reagents.add_reagent_sametemp("jenkem",0.1 * volume_passed)
 
 			//on_mob_life(var/mob/M, var/mult = 1)
 			//	if(!M) M = holder.my_atom
