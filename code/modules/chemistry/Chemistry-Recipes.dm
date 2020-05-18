@@ -1733,7 +1733,7 @@ datum
 			required_reagents = list("magnesium_chloride" = 1, "ammonia" = 6)
 			result = "mg_nh3_cl"
 			result_amount = 1
-			required_temperature = T20C + 10
+			required_temperature = -(T0C + 40)
 			mix_phrase = "The mixture seems to combine."
 
 		mg_nh3_cl_decomposition
