@@ -2811,7 +2811,7 @@ datum
 			result_amount = 2
 			mix_phrase = "The mixture gives off a biting odor."
 			on_reaction(var/datum/reagents/holder, created_volume)
-				holder.add_reagent_sametemp("oxygen", created_volume,, holder.total_temperature)
+				holder.add_reagent_sametemp("oxygen", created_volume)
 
 		nitric_acid
 			name = "Nitric Acid"
@@ -2903,7 +2903,7 @@ datum
 			result_amount = 1
 			mix_phrase = "The mixture becomes colorless."
 			on_reaction(var/datum/reagents/holder, created_volume)
-				holder.add_reagent_sametemp("clacid", created_volume,,holder.total_temperature)
+				holder.add_reagent_sametemp("clacid", created_volume)
 
 		epichlorohydrin
 			name = "Epichlorohydrin"
@@ -2913,7 +2913,7 @@ datum
 			result_amount = 1
 			mix_phrase = "The mixture gives of a garlic-like odor."
 			on_reaction(var/datum/reagents/holder, created_volume)
-				holder.add_reagent_sametemp("salt", created_volume,,holder.total_temperature)
+				holder.add_reagent_sametemp("salt", created_volume)
 
 		glycerol
 			name = "Glycerol"
@@ -2923,7 +2923,7 @@ datum
 			result_amount = 1
 			mix_phrase = "The mixture bubbles."
 			on_reaction(var/datum/reagents/holder, created_volume)
-				holder.add_reagent_sametemp("clacid", created_volume,,holder.total_temperature)
+				holder.add_reagent_sametemp("clacid", created_volume)
 
 		nitroglycerin
 			name = "Nitroglycerin"
@@ -3878,7 +3878,7 @@ datum
 			mix_sound = 'sound/misc/fuse.ogg'
 
 			on_reaction(var/datum/reagents/holder, created_volume)
-				holder.add_reagent_sametemp("salt", created_volume * 2,,holder.total_temperature)
+				holder.add_reagent_sametemp("salt", created_volume * 2)
 
 		gypsum //H2SO4 + CaCO3 -> CaSO4 + H2O + CO2
 			name = "calcium sulfate"
@@ -3889,7 +3889,7 @@ datum
 			mix_phrase = "The mixture bubbles fervently."
 
 			on_reaction(var/datum/reagents/holder, created_volume)
-				holder.add_reagent_sametemp("water", created_volume,,holder.total_temperature)
+				holder.add_reagent_sametemp("water", created_volume)
 
 		chalk //"pastels also contain clays and oils for binding, and strong pigments" some website i found
 			name = "chalk"
@@ -3941,8 +3941,8 @@ datum
 			result_amount = 3
 			mix_phrase = "The white flakes turn into a white powder."
 			on_reaction(var/datum/reagents/holder, created_volume)
-				holder.add_reagent_sametemp("water", created_volume / 3,,holder.total_temperature)
-				holder.add_reagent_sametemp("sodium_sulfate", created_volume / 3,,holder.total_temperature)
+				holder.add_reagent_sametemp("water", created_volume / 3)
+				holder.add_reagent_sametemp("sodium_sulfate", created_volume / 3)
 
 		perfect_cement //lime, alumina, magnesia, iron (iii) oxide, calcium sulfate, sulfur trioxide
 			name = "perfect cement"
