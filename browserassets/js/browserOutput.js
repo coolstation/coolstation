@@ -435,7 +435,10 @@ function handleClientData(ckey, ip, compid) {
 
     //Update the cookie with current details
     opts.clientData.push(currentData);
-    setCookie('connData', JSON.stringify(opts.clientData), 365);
+
+		var jsonData = JSON.stringify(opts.clientData)
+    setCookie('connData', jsonData, 365);
+		localStorage.setItem('connData', jsonData);
 }
 
 //Server calls this on ehjax response
@@ -694,6 +697,19 @@ $(function() {
             }
             opts.clientData = dataJ;
         }
+				else {
+					var dataStorage = localStorage.getItem('connData');
+					if (dataStorage) {
+						var dataJ;
+						try {
+								dataJ = $.parseJSON(dataStorage);
+						} catch (e) {
+								triggerError('(localStorage connData) JSON parse error for: ' + dataStorage + '. ' + e);
+								return;
+						}
+						opts.clientData = dataJ;
+					}
+				}
     })();
 
 
