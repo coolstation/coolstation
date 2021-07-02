@@ -43,12 +43,15 @@ var/global/datum/api/api
 	 * Log an API application error
 	 *
 	 * Arguments:
+	 * * request - An API request of type [/datum/api_request]
 	 * * response - An API response of type [/datum/api_response]
 	 */
-	proc/log_error(datum/api_response/response)
-		// TODO: parse response for error data
-		// TODO: logTheThing
-		world << "API handler log_error: [json_encode(response.body)]"
+	proc/log_error(datum/api_request/request, datum/api_response/response)
+		var/url = replacetext(request.url, src.api_token, "redacted")
+		var/description = response.body?.error?.message || "Unknown error"
+		var/err = "Error returned for query ([request.method]) [url]: [description]"
+		logTheThing("debug", null, null, "<b>API Error</b>: [err]")
+		logTheThing("diary", null, null, "API Error: [err]", "debug")
 
 	/**
 	 * Build and send an API request
@@ -158,7 +161,7 @@ var/global/datum/api/api
 		if (api_response.status_code != 200)
 			#if API_LOG_ERRORS
 			// Interceptor to globally log API application level errors
-			api.log_error(api_response)
+			api.log_error(src, api_response)
 			#endif
 			if (throw_app_errors)
 				throw EXCEPTION("Failed to query API")
