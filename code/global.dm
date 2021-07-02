@@ -22,6 +22,7 @@ var/list/extra_resources = list('code/pressstart2p.ttf', 'ibmvga9.ttf', 'xfont.t
 var/global
 
 	serverKey = 0
+	round_id = 0
 
 	lagcheck_enabled = 0
 
