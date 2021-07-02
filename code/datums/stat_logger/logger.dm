@@ -3,7 +3,7 @@
 /* '~'-._.-'~'-._.-'~'-._.-'~'-._.-'~'-._.-'~' */
 
 /// Holder datum for [/datum/stats]
-/var/global/datum/stats/stats
+var/global/datum/stats/stats
 
 /**
  * # Stats
@@ -31,8 +31,7 @@
 	New()
 		..()
 		// Build out all the foreign relationship definitions ahead of time
-		for (var/type in typesof(/datum/stats_foreign))
-			if (type == /datum/stats_foreign) continue
+		for (var/type in concrete_typesof(/datum/stats_foreign))
 			src.foreign_relations[type] = new type
 
 	/**
@@ -110,6 +109,7 @@
  * Foreign relationships are used when the backend API service holds additional
  * information that we want attached to our stat event that isn't present ingame.
  */
+ABSTRACT_TYPE(/datum/stats_foreign)
 /datum/stats_foreign
 	/// The key name in our 'data' object that we want to lookup with
 	var/source_key

@@ -6,7 +6,7 @@
 #define API_LOG_ERRORS TRUE
 
 /// Holder for [/datum/api]
-/var/global/datum/api/api
+var/global/datum/api/api
 
 /**
  * # API Handler
