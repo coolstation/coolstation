@@ -4,6 +4,8 @@
 
 /// Whether or not to log every API application error
 #define API_LOG_ERRORS TRUE
+/// Whether or not debug logging is enabled
+#define API_LOG_DEBUG TRUE
 
 /// Holder for [/datum/api]
 var/global/datum/api/api
@@ -32,12 +34,12 @@ var/global/datum/api/api
 	/// The base API URL
 	var/base_url
 	/// API authentication token
-	var/api_token
+	var/auth_token
 
 	New()
 		..()
 		src.base_url = config.api_base_url
-		src.api_token = config.api_token
+		src.auth_token = config.api_auth_token
 
 	/**
 	 * Log an API application error
@@ -47,11 +49,27 @@ var/global/datum/api/api
 	 * * response - An API response of type [/datum/api_response]
 	 */
 	proc/log_error(datum/api_request/request, datum/api_response/response)
-		var/url = replacetext(request.url, src.api_token, "redacted")
-		var/description = response.body?.error?.message || "Unknown error"
+		var/url = replacetext(request.url, src.auth_token, "redacted")
+		var/description = "Unknown error"
+		if (response.body["error"] && response.body["error"]["message"])
+			description = response.body["error"]["message"]
 		var/err = "Error returned for query ([request.method]) [url]: [description]"
 		logTheThing("debug", null, null, "<b>API Error</b>: [err]")
 		logTheThing("diary", null, null, "API Error: [err]", "debug")
+
+	/**
+	 * Debug logging. Only does anything if the [API_LOG_DEBUG] define is truthy
+	 *
+	 * Arguments:
+	 * * message - A string describing the event
+	 * * data - Data of any type that will be appended to the log as a json encoded string
+	 */
+	proc/log_debug(message = "", data)
+		#if API_LOG_DEBUG
+		message = replacetext(message, src.auth_token, "redacted")
+		data = replacetext(json_encode(data), src.auth_token, "redacted")
+		logTheThing("debug", null, null, "<b>API Debug</b>: [message]. Data: [data]")
+		#endif
 
 	/**
 	 * Build and send an API request
@@ -64,11 +82,13 @@ var/global/datum/api/api
 	 * * retry_attempts - How many times should we retry this request if it fails
 	 */
 	proc/request(method, route = "", list/data = list(), list/headers = list(), retry_attempts = 0)
-		if (!src.base_url || !src.api_token || !method)
+		RETURN_TYPE(/datum/api_response)
+		if (!src.base_url || !src.auth_token || !method)
+			src.log_debug("Invalid request", list("base_url" = src.base_url, "auth_token" = src.auth_token, "method" = method))
 			throw EXCEPTION("Invalid request")
 
 		if (route && copytext(route, 1, 2) != "/") route = "/[route]"
-		var/url = "[src.base_url][route]?api_token=[src.api_token]"
+		var/url = "[src.base_url][route]?api_token=[src.auth_token]"
 		if (round_id) data["round_id"] = round_id
 
 		// Transform data depending on method
@@ -85,30 +105,17 @@ var/global/datum/api/api
 		var/current_attempt = 1
 		while(!response)
 			try
+				src.log_debug("Performing API request (attempt: [current_attempt]) to ([method]) [url]", list("body" = data, "headers" = headers))
 				response = api_request.send(throw_app_errors = !!retry_attempts)
 			catch (var/exception/e)
 				// If we're retrying this query, we'll suppress any exceptions to let the loop
 				// continue. Otherwise we're done here, so re-throw the exception
 				if (!retry_attempts || (retry_attempts && current_attempt >= retry_attempts))
-					throw EXCEPTION(e.name)
+					throw EXCEPTION(replacetext(e.name, src.auth_token, "redacted"))
 			current_attempt++
 
+		src.log_debug("Received response", response.body)
 		return response
-
-	// I'm not sure I love writing these shortcut methods because I sure do
-	// have to keep all the arguments in sync, which is a pain
-
-	/**
-	 * Shortcut method for sending a GET request
-	 */
-	proc/get(route = "", list/data = list(), list/headers = list(), retry_attempts = 0)
-		return src.request(RUSTG_HTTP_METHOD_GET, route, data, headers, retry_attempts)
-
-	/**
-	 * Shortcut method for sending a POST request
-	 */
-	proc/post(route = "", list/data = list(), list/headers = list(), retry_attempts = 0)
-		return src.request(RUSTG_HTTP_METHOD_POST, route, data, headers, retry_attempts)
 
 
 /**

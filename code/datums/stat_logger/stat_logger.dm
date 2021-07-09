@@ -2,7 +2,10 @@
 /*-=-=-=-=-=-=-=STAT LOGGER BY WIRE-=-=-=-=-=-=*/
 /* '~'-._.-'~'-._.-'~'-._.-'~'-._.-'~'-._.-'~' */
 
-/// Holder datum for [/datum/stats]
+/// Whether or not debug logging is enabled
+#define STATS_LOG_DEBUG TRUE
+
+/// Holder for [/datum/stats]
 var/global/datum/stats/stats
 
 /**
@@ -35,6 +38,18 @@ var/global/datum/stats/stats
 			src.foreign_relations[type] = new type
 
 	/**
+	 * Debug logging. Only does anything if the [STATS_LOG_DEBUG] define is truthy
+	 *
+	 * Arguments:
+	 * * message - A string describing the event
+	 * * data - Data of any type that will be appended to the log as a json encoded string
+	 */
+	proc/log_debug(message = "", data)
+		#if STATS_LOG_DEBUG
+		logTheThing("debug", null, null, "<b>Stats Debug</b>: [message]. Data: [json_encode(data)]")
+		#endif
+
+	/**
 	 * Create a file pointer for this round that will be used for storing stats
 	 */
 	proc/setup_file()
@@ -58,6 +73,7 @@ var/global/datum/stats/stats
 	 */
 	proc/flush_queue()
 		if (!round_id) return
+		src.log_debug("Flushing queue of length: [length(src.queue)]")
 		for (var/list/item in src.queue)
 			if (!item["round_id"]) item["round_id"] = round_id
 			src.send_to_file(item)
@@ -83,13 +99,16 @@ var/global/datum/stats/stats
 		if (foreign_path)
 			var/datum/stats_foreign/foreign = src.foreign_relations[foreign_path]
 			if (!item["data"][foreign.source_key])
+				src.log_debug("Bad foreign usage for [foreign_path], source_key '[foreign.source_key]' doesn't exist", item)
 				throw EXCEPTION("Attempt to relate foreign config of type [foreign_path] from non-existent data property [foreign.source_key]")
 			item["foreign"] = foreign.to_list()
 
 		if (!src.log_file)
+			src.log_debug("Queueing item", item)
 			src.queue += list(item)
 			return
 
+		src.log_debug("Recording item", item)
 		src.send_to_file(item)
 
 	/**
@@ -109,7 +128,6 @@ var/global/datum/stats/stats
  * Foreign relationships are used when the backend API service holds additional
  * information that we want attached to our stat event that isn't present ingame.
  */
-ABSTRACT_TYPE(/datum/stats_foreign)
 /datum/stats_foreign
 	/// The key name in our 'data' object that we want to lookup with
 	var/source_key
@@ -145,3 +163,5 @@ ABSTRACT_TYPE(/datum/stats_foreign)
 		foreign_table = "players"
 		foreign_column = "ckey"
 		return_column = "id"
+
+ABSTRACT_TYPE(/datum/stats_foreign)

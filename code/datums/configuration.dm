@@ -77,7 +77,7 @@
 	var/goonhub_api_web_token = null
 
 	var/api_base_url = null
-	var/api_token = null
+	var/api_auth_token = null
 
 	//Goonhub2 server
 	var/goonhub2_hostname = null
@@ -325,8 +325,8 @@
 
 			if ("api_base_url")
 				config.api_base_url = trim(value)
-			if ("api_token")
-				config.api_base_url = trim(value)
+			if ("api_auth_token")
+				config.api_auth_token = trim(value)
 
 			if ("goonhub2_hostname")
 				config.goonhub2_hostname = trim(value)

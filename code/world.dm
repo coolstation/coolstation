@@ -413,13 +413,28 @@ var/f_color_selector_handler/F_Color_Selector
 	diary_name = "data/logs/[time2text(world.realtime, "YYYY/MM-Month/DD-Day")].log"
 	logDiary("\n----------------------\nStarting up. [time2text(world.timeofday, "hh:mm.ss")]\n----------------------\n")
 
-	//This is used by bans for checking, so we want it very available
-	apiHandler = new()
+	// API Handler and Stat Logging initialization
+	// Additionally fetches a new round ID, which is required for stat logging to function
+	apiHandler = new() // @TODO: remove when refactor complete
+	api = new()
+	stats = new()
+	try
+		var/list/response = api.request(RUSTG_HTTP_METHOD_POST, "/rounds/start", list(
+			"server_id" = config.server_id,
+			"map" = map_setting
+		), retry_attempts = 5).body
+		round_id = text2num(response["data"])
+		stats.on_round_id_available()
+	catch (var/exception/e)
+		// @TODO: Consider how to handle this specific failure case, as stat logging and some API calls cannot function without a round ID
+		var/err = "Failed to retrieve a round ID: [e.name]"
+		logTheThing("debug", null, null, "<b>API Error</b>: [err]")
+		logTheThing("diary", null, null, "API Error: [err]", "debug")
+		message_admins("<span class='alert'><b>Fatal API Error:</b> [err]</span>")
 
 	//This is also used pretty early
 	Z_LOG_DEBUG("World/New", "Setting up powernets...")
 	makepowernets()
-
 
 	Z_LOG_DEBUG("World/New", "Setting up changelogs...")
 	changelog = new /datum/changelog()
@@ -745,6 +760,10 @@ var/f_color_selector_handler/F_Color_Selector
 		game_stats.SetValue("admins", admincount)
 		//game_stats.WriteToFile("data/game_stats.txt")
 #endif
+
+	try
+		api.request(RUSTG_HTTP_METHOD_POST, "/rounds/end")
+	catch
 
 	sleep(5 SECONDS) // wait for sound to play
 	if(config.update_check_enabled)

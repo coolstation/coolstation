@@ -239,13 +239,9 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		boutput(world, "<FONT class='notice'><B>Enjoy the game!</B></FONT>")
 		boutput(world, "<span class='notice'><b>Tip:</b> [pick(dd_file2list("strings/roundstart_hints.txt"))]</span>")
 
-		//Setup the hub site logging
-		var hublog_filename = "data/stats/data.txt"
-		if (fexists(hublog_filename))
-			fdel(hublog_filename)
-
-		hublog = file(hublog_filename)
-		hublog << ""
+		try
+			api.request(RUSTG_HTTP_METHOD_POST, "/rounds/set-game-type", list("game_type" = src.mode.config_tag))
+		catch
 
 		//Tell the participation recorder that we're done FAFFING ABOUT
 		participationRecorder.releaseHold()
