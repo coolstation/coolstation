@@ -203,6 +203,8 @@ var/f_color_selector_handler/F_Color_Selector
 //Called BEFORE the map loads. Useful for objects that require certain things be set during init
 /datum/preMapLoad
 	New()
+		world.log = file("data/errors.log")
+
 		enable_auxtools_debugger()
 #ifdef REFERENCE_TRACKING
 		enable_reference_tracking()
