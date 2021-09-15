@@ -207,12 +207,6 @@ var/obj/manta_speed_lever/mantaLever = null
 		STOP_TRACKING
 		return ..()
 
-	Bumped(atom/AM) //This is stolen straight from the crusher, just making sure that the propellers are actually on.
-		if (mantaMoving == 1)
-			if (repairstate == 0)
-				actions.start(new /datum/action/bar/crusher(AM), src)
-
-
 //REPAIRING:  wrench > screwdriver > crowbar > wires > welder > wrench > screwdriver > sheet > welder
 
 	attackby(var/obj/item/I as obj, var/mob/user as mob)
