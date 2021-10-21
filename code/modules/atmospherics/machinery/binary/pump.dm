@@ -12,7 +12,7 @@ Thus, the two variables affect pump operation are set in New():
 			but overall network volume is also increased as this increases...
 */
 
-obj/machinery/atmospherics/binary/pump
+/obj/machinery/atmospherics/binary/pump
 	icon = 'icons/obj/atmospherics/pump.dmi'
 	icon_state = "intact_off"
 	generic_decon_module = /obj/item/atmospherics/module/pump
@@ -26,6 +26,10 @@ obj/machinery/atmospherics/binary/pump
 	var/target_pressure = ONE_ATMOSPHERE
 
 	var/datum/pump_ui/ui
+
+	New()
+		..()
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
 
 	attack_hand(mob/user)
 		//on = !on
@@ -73,45 +77,27 @@ obj/machinery/atmospherics/binary/pump
 
 		return 1
 
-	//Radio remote control
+	proc/broadcast_status()
+		var/datum/signal/signal = get_free_signal()
+		signal.transmission_method = 1 //radio signal
+		signal.source = src
 
-	proc
-		set_frequency(new_frequency)
-			radio_controller.remove_object(src, "[frequency]")
-			frequency = new_frequency
-			if(frequency)
-				radio_connection = radio_controller.add_object(src, "[frequency]")
+		signal.data["tag"] = id
+		signal.data["device"] = "AGP"
+		signal.data["power"] = on ? "on" : "off"
+		signal.data["target_output"] = target_pressure
 
-		broadcast_status()
-			if(!radio_connection)
-				return 0
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal)
 
-			var/datum/signal/signal = get_free_signal()
-			signal.transmission_method = 1 //radio signal
-			signal.source = src
-
-			signal.data["tag"] = id
-			signal.data["device"] = "AGP"
-			signal.data["power"] = on ? "on" : "off"
-			signal.data["target_output"] = target_pressure
-
-			radio_connection.post_signal(src, signal)
-
-			return 1
+		return 1
 
 	var/frequency = 0
 	var/id = null
-	var/datum/radio_frequency/radio_connection
 
 	initialize()
 		..()
-		if(frequency)
-			set_frequency(frequency)
 		ui = new/datum/pump_ui/basic_pump_ui(src)
 
-	disposing()
-		radio_controller.remove_object(src, "[frequency]")
-		..()
 
 	receive_signal(datum/signal/signal)
 		if(signal.data["tag"] && (signal.data["tag"] != id))
@@ -141,12 +127,16 @@ obj/machinery/atmospherics/binary/pump
 
 		update_icon()
 
-obj/machinery/atmospherics/binary/pump/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/atmospherics/binary/pump/attackby(obj/item/W as obj, mob/user as mob)
 	if(ispulsingtool(W) || iswrenchingtool(W))
 		ui.show_ui(user)
 	else ..() //Fucking half the atmospherics machinery doesn't call parents
 
-datum/pump_ui/basic_pump_ui
+/obj/machinery/atmospherics/binary/pump/proc/set_frequency(new_frequency)
+	get_radio_connection_by_id(src, frequency).update_frequency(new_frequency)
+	frequency = new_frequency
+
+/datum/pump_ui/basic_pump_ui
 	value_name = "Target Pressure"
 	value_units = "kPa"
 	min_value = 0
@@ -155,24 +145,24 @@ datum/pump_ui/basic_pump_ui
 	incr_lg = 100
 	var/obj/machinery/atmospherics/binary/pump/our_pump
 
-datum/pump_ui/basic_pump_ui/New(obj/machinery/atmospherics/binary/pump/our_pump)
+/datum/pump_ui/basic_pump_ui/New(obj/machinery/atmospherics/binary/pump/our_pump)
 	..()
 	src.our_pump = our_pump
 	pump_name = our_pump.name
 
-datum/pump_ui/basic_pump_ui/set_value(val_to_set)
+/datum/pump_ui/basic_pump_ui/set_value(val_to_set)
 	our_pump.target_pressure = val_to_set
 	our_pump.update_icon()
 
-datum/pump_ui/basic_pump_ui/toggle_power()
+/datum/pump_ui/basic_pump_ui/toggle_power()
 	our_pump.on = !our_pump.on
 	our_pump.update_icon()
 
-datum/pump_ui/basic_pump_ui/is_on()
+/datum/pump_ui/basic_pump_ui/is_on()
 	return our_pump.on
 
-datum/pump_ui/basic_pump_ui/get_value()
+/datum/pump_ui/basic_pump_ui/get_value()
 	return our_pump.target_pressure
 
-datum/pump_ui/basic_pump_ui/get_atom()
+/datum/pump_ui/basic_pump_ui/get_atom()
 	return our_pump

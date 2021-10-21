@@ -134,14 +134,8 @@
 				if(device != src)
 					device.receive_signal(signal, TRANSMISSION_WIRE)
 
-			if (signal)
-				if (!reusable_signals || reusable_signals.len > 10)
-					signal.dispose()
-				else
-					signal.wipe()
-					if (!(signal in reusable_signals))
-						reusable_signals += signal
-			return
+			if(signal)
+				qdel(signal)
 
 	hide(var/i)
 		invisibility = i ? 101 : 0

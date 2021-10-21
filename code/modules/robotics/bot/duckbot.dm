@@ -260,8 +260,7 @@
 	signal.data["sender_name"] = src
 	signal.data["message"] = "BUMP N GO TO [src.duck_migration_target]."
 	signal.data["target"] = src.duck_migration_target
-	signal.transmission_method = TRANSMISSION_RADIO
-	frequency.post_signal(src, signal)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal)
 	return TRUE
 */
 /*
