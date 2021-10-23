@@ -94,15 +94,37 @@
 	var/target_tag = signal.data["address_tag"] // unused for now
 	var/target_address = signal.data["address_1"]
 	var/is_broadcast = target_address == "ping" || (isnull(target_tag) && isnull(target_address))
-	if(src.can_receive_necessary(source, signal, params))
-		POST_PACKET_INTERNAL( \
-			if(src.can_receive(target, source, signal, params)) \
+	var/use_can_receive = src.can_receive_necessary(source, signal, params)
+	var/draw_packet = length(global.client_image_groups?[CLIENT_IMAGE_GROUP_PACKETVISION]?.subscribed_mobs_with_subcount)
+	if(!draw_packet)
+		if(use_can_receive)
+			POST_PACKET_INTERNAL( \
+				if(src.can_receive(target, source, signal, params)) \
+					target.receive_packet(signal, src.transmission_method, params); \
+			)
+		else
+			POST_PACKET_INTERNAL( \
 				target.receive_packet(signal, src.transmission_method, params); \
-		)
+			)
 	else
-		POST_PACKET_INTERNAL( \
-			target.receive_packet(signal, src.transmission_method, params); \
-		)
+		var/list/image/images = list()
+		if(use_can_receive)
+			#define RECEIVE_PACKET \
+				if(src.can_receive(target, source, signal, params)) { \
+					target.receive_packet(signal, src.transmission_method, params); \
+					images += src.draw_packet(target, source, signal, params); \
+				} // don't ask, it has to be like this
+			POST_PACKET_INTERNAL(RECEIVE_PACKET)
+			#undef RECEIVE_PACKET
+		else
+			POST_PACKET_INTERNAL( \
+				target.receive_packet(signal, src.transmission_method, params); \
+				images += src.draw_packet(target, source, signal, params); \
+			)
+		SPAWN_DBG(2 SECONDS)
+			for(var/image/img in images)
+				get_image_group(CLIENT_IMAGE_GROUP_PACKETVISION).remove_image(img)
+				qdel(img)
 	qdel(signal)
 
 #undef POST_PACKET_INTERNAL
