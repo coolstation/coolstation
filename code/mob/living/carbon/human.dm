@@ -13,6 +13,7 @@
 	mob_flags = IGNORE_SHIFT_CLICK_MODIFIER
 
 	var/dump_contents_chance = 20
+	var/datacore_id = null
 
 	var/image/health_mon = null
 	var/image/health_implant = null

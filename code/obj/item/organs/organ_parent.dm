@@ -90,7 +90,7 @@
 			if(HA.organ_scan)
 				animate_scanning(src, "#0AEFEF")
 				boutput(user, "<span style='color:purple'><b>[src]</b> - [src.get_damage()]</span>")
-				var/datum/data/record/MR = FindRecordByFieldValue(data_core.general, "dna", src.donor_DNA)
+				var/datum/db_record/MR = data_core.general.find_record("dna", src.donor_DNA)
 				if(MR)
 					boutput(user, "<span style='color:purple'><b>DNA on file</b> -  [MR.fields["name"]] ([MR.fields["dna"]])</span>")
 				else

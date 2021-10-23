@@ -920,16 +920,11 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			dab_id.dab_count++
 			dab_id.tooltip_rebuild = 1
 		user.add_karma(-4)
-		if(!dab_id && locate(/obj/machinery/bot/secbot/beepsky) in view(7, get_turf(user)))
-			for(var/datum/data/record/R in data_core.general) //copy paste from public urination, hope it works
-				if(R.fields["name"] == user.name)
-					for (var/datum/data/record/S in data_core.security)
-						if (S.fields["id"] == R.fields["id"])
-							// now add to rap sheet
-
-							S.fields["criminal"] = "*Arrest*"
-							S.fields["mi_crim"] = "Public dabbing."
-							break
+		if(!dab_id && locate(/obj/machinery/bot/secbot/beepsky) in view(7, get_turf(src)))
+			var/datum/db_record/sec_record = data_core.security.find_record("name", user.name)
+			if(sec_record && sec_record["criminal"] != "*Arrest*")
+				sec_record["criminal"] = "*Arrest*"
+				sec_record["mi_crim"] = "Public dabbing."
 
 		if(user.reagents) user.reagents.add_reagent("dabs",5)
 

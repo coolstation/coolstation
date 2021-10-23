@@ -134,13 +134,10 @@
 			if (owner:wear_id && owner:wear_id:registered)
 				perpname = owner:wear_id:registered
 
-			for(var/datum/data/record/R in data_core.general)
-				if(R.fields["name"] == perpname)
-					for (var/datum/data/record/S in data_core.security)
-						if (S.fields["id"] == R.fields["id"])
-							if(S.fields["criminal"] != "*Arrest*")
-								S.fields["criminal"] = "*Arrest*"
-								S.fields["mi_crim"] = "Mail fraud."
+			var/datum/db_record/sec_record = data_core.security.find_record("name", perpname)
+			if(sec_record && sec_record["criminal"] != "*Arrest*")
+				sec_record["criminal"] = "*Arrest*"
+				sec_record["mi_crim"] = "Mail fraud."
 
 
 // Creates a bunch of random mail for crewmembers
@@ -160,18 +157,18 @@
 		var/mob/living/carbon/human/M = C.mob
 		if (!istype(M)) continue	// this shouldn't be possible given ishuman, but lol
 
-		var/datum/data/record/manifest_record
-		for(var/datum/data/record/R in data_core.general)
-			if(R.fields["name"] == M.name)
+		var/datum/db_record/manifest_record
+		for(var/datum/db_record/R in data_core.general.records)
+			if(R["name"] == M.name)
 				manifest_record = R
 				break
 		if (!manifest_record) continue	// must be on the manifest to get mail, sorry
 
 		// these are all things we will want later
 		crew[M] = list(
-			name = manifest_record.fields["name"],
-			job = manifest_record.fields["rank"],
-			dna = manifest_record.fields["dna"],
+			name = manifest_record["name"],
+			job = manifest_record["rank"],
+			dna = manifest_record["dna"],
 			)
 
 	// nobody here

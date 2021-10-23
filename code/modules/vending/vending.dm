@@ -133,7 +133,7 @@
 	var/receipt_serv_chg_total   // How much has been racked up in service charges?
 	var/min_serv_chg = 2 // 2 bux just to use your damn machine? Rasm frasm grumble!
 	var/serv_chg_pct = 0.02
-	var/datum/data/record/servicechgaccount = null // TODO: add a way to set/reset this for miscreants to do an embeezle
+	var/datum/db_record/servicechgaccount = null // TODO: add a way to set/reset this for miscreants to do an embeezle
 
 	var/HTML = null // guh
 	var/vending_HTML = null // buh
@@ -453,8 +453,8 @@
 	if (!card || !user || !src.acceptcard)
 		return
 	boutput(user, "<span class='notice'>You swipe [card].</span>")
-	var/datum/data/record/account = null
-	account = FindBankAccountById(card.registered_id)
+	var/datum/db_record/account = null
+	account = FindBankAccountByName(card.registered)
 	if (account)
 		var/enterpin = input(user, "Please enter your PIN number.", "Enter PIN", 0) as null|num
 		if (enterpin == card.pin)
@@ -505,10 +505,10 @@
 				html_parts += "<B>You have selected the following item for purchase:</b><br>"
 				html_parts += "&emsp;[src.paying_for.product_name]<br>"
 				html_parts += "<B>Please swipe your card to authorize payment.</b><br>"
-			var/datum/data/record/account = null
-			account = FindBankAccountById(src.scan.registered_id)
+			var/datum/db_record/account = null
+			account = FindBankAccountByName(src.scan.registered)
 			html_parts += "<B>Current ID:</B> <a href='byond://?src=\ref[src];logout=1'><u>([src.scan])</u></A><BR>"
-			html_parts += "<B>Credits on Account: [account.fields["current_money"]] Credits</B> <BR>"
+			html_parts += "<B>Credits on Account: [account["current_money"]] Credits</B> <BR>"
 		else
 			html_parts += "<B>Current ID:</B> None<BR>"
 
@@ -765,12 +765,12 @@
 				trigger_anti_cheat(usr, "tried to href exploit [src] to spawn an invalid item.")
 				return
 
-			var/datum/data/record/account = null
-			var/service_charge
+			var/datum/db_record/account = null
+			var/service_charge = 0
 			if (src.pay)
 				if (src.acceptcard && src.scan)
 					service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost* serv_chg_pct)
-					account = FindBankAccountById(src.scan.registered_id)
+					account = FindBankAccountByName(src.scan.registered)
 					if (!account)
 						boutput(usr, "<span class='alert'>No bank account associated with ID found.</span>")
 						flick(src.icon_deny,src)
@@ -778,7 +778,7 @@
 						src.paying_for = R
 						src.generate_HTML(1)
 						return
-					if (account.fields["current_money"] < (R.product_cost+service_charge))
+					if (account["current_money"] < R.product_cost)
 						boutput(usr, "<span class='alert'>Insufficient funds in account. To use machine credit, log out.</span>")
 						account.fields["current_money"] -= min_serv_chg
 						servicechgaccount.fields["current_money"] += min_serv_chg
@@ -811,9 +811,7 @@
 
 			if (src.pay)
 				if (src.acceptcard && account)
-					account.fields["current_money"] -= R.product_cost
-					account.fields["current_money"] -= service_charge
-					servicechgaccount.fields["current_money"] += service_charge
+					account["current_money"] -= R.product_cost
 				else
 					src.credit -= R.product_cost
 				if (!isplayer)
@@ -821,7 +819,7 @@
 				else
 					//Players get 90% of profit from player vending machines QMs get 10%
 					var/obj/machinery/vending/player/T = src
-					T.owneraccount.fields["current_money"] += round(R.product_cost * profit)
+					T.owneraccount["current_money"] += round(R.product_cost * profit)
 					wagesystem.shipping_budget += round(R.product_cost * (1 - profit))
 				if(R.product_amount <= 0 && !isplayer == 0)
 					src.player_list -= R
@@ -2421,7 +2419,7 @@
 	//card display name
 	var/cardname
 	//Bank account
-	var/datum/data/record/owneraccount = null
+	var/datum/db_record/owneraccount = null
 	var/image/crtoverlay = null
 	var/image/promoimage = null
 	player_list = list()
@@ -2599,7 +2597,7 @@
 				src.generate_HTML(0, 1)
 		else if (href_list["unlock"] && src.panel_open)
 			if (!owner && src.scan?.registered)
-				owneraccount = FindBankAccountById(src.scan.registered_id)
+				owneraccount = FindBankAccountByName(src.scan.registered)
 				owner = src.scan.registered
 				cardname = src.scan.name
 				unlocked = TRUE
@@ -3357,10 +3355,10 @@
 		html += "<TT><b>Welcome!</b><br>"
 		html += "<b>Current balance: <a href='byond://?src=\ref[src];return_credits=1'>[src.credit] credits</a></b><br>"
 		if (src.scan)
-			var/datum/data/record/account = null
-			account = FindBankAccountById(src.scan.registered_id)
-			html += "<b>Current ID:</b> <a href='byond://?src=\ref[src];logout=1'>[src.scan]</a><br />"
-			html += "<b>Credits on Account: [account.fields["current_money"]] Credits</b> <br>"
+			var/datum/db_record/account = null
+			account = FindBankAccountByName(src.scan.registered)
+			html += "<b>Current ID:</b> <a href='?src=\ref[src];logout=1'>[src.scan]</a><br />"
+			html += "<b>Credits on Account: [account["current_money"]] Credits</b> <br>"
 		else
 			html += "<b>Current ID:</b> None<br>"
 		if(src.holding)
@@ -3401,9 +3399,9 @@
 					src.updateUsrDialog()
 					return
 				else if(scan)
-					var/datum/data/record/account = FindBankAccountById(src.scan.registered_id)
-					if (account && account.fields["current_money"] >= cost)
-						account.fields["current_money"] -= cost
+					var/datum/db_record/account = FindBankAccountByName(src.scan.registered)
+					if (account && account["current_money"] >= cost)
+						account["current_money"] -= cost
 						src.fill()
 						boutput(usr, "<span class='notice'>You fill up the [src.holding].</span>")
 						src.updateUsrDialog()
@@ -3471,8 +3469,8 @@
 		html += "<b>Current balance: <a href='byond://?src=\ref[src];return_credits=1'>[src.credit] credits</a></b><br>"
 		//bank balance
 		if (src.scan)
-			var/datum/data/record/account = null
-			account = FindBankAccountById(src.scan.registered_id)
+			var/datum/db_record/account = null
+			account = FindBankAccountByName(src.scan.registered)
 			html += "<b>Current ID:</b> <a href='byond://?src=\ref[src];logout=1'>[src.scan]</a><br />"
 			html += "<b>Credits on Account: [account.fields["current_money"]] Credits</b> <br>"
 		else
@@ -3506,9 +3504,9 @@
 				src.updateUsrDialog()
 				return
 			else if(scan)
-				var/datum/data/record/account = FindBankAccountById(src.scan.registered_id)
-				if (account && account.fields["current_money"] >= cost)
-					account.fields["current_money"] -= cost
+				var/datum/db_record/account = FindBankAccountByName(src.scan.registered)
+				if (account && account["current_money"] >= cost)
+					account["current_money"] -= cost
 					src.fill()
 					boutput(usr, "<span class='notice'>Thank you for your purchase.</span>")
 					src.updateUsrDialog()

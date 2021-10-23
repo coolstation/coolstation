@@ -911,8 +911,8 @@ as it may become compromised.
 
 		if(!initialized)
 			initialized = TRUE
-			for(var/datum/data/record/t in data_core.general)
-				who += "[t.fields["name"]]"
+			for(var/datum/db_record/t as anything in data_core.general.records)
+				who += "[t["name"]]"
 
 		switch(randme)
 			if(1)

@@ -300,7 +300,7 @@
 
 	proc/sell_crate(obj/storage/crate/sell_crate, var/list/commodities_list, notify_PDAs = TRUE)
 		var/obj/item/card/id/scan = sell_crate.scan
-		var/datum/data/record/account = sell_crate.account
+		var/datum/db_record/account = sell_crate.account
 
 		var/duckets = src.appraise_value(sell_crate, commodities_list, 1) + src.points_per_crate
 		var/list/proceeds
@@ -310,7 +310,7 @@
 		if(scan && account)
 			//No more giving folks half a credit. What are we, complicatedmathsotrasen?
 			wagesystem.shipping_budget += ceil(duckets / 2)
-			account.fields["current_money"] += round(duckets / 2)
+			account["current_money"] += round(duckets / 2)
 			proceeds = list(ceil(duckets / 2), round(duckets / 2))
 		else
 			wagesystem.shipping_budget += duckets
@@ -445,8 +445,8 @@
 
 	var/payroll = 0
 	var/totalfunds = wagesystem.station_budget + wagesystem.research_budget + wagesystem.shipping_budget
-	for(var/datum/data/record/R in data_core.bank)
-		payroll += R.fields["wage"]
+	for(var/datum/db_record/R as anything in data_core.bank.records)
+		payroll += R["wage"]
 
 	var/dat = {"<B>Budget Variables:</B>
 	<BR><BR><u><b>Total Station Funds:</b> $[num2text(totalfunds,50)]</u>

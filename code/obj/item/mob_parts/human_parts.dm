@@ -18,7 +18,7 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/device/analyzer/healthanalyzer))
 			animate_scanning(src, "#0AEFEF")
-			var/datum/data/record/MR = FindRecordByFieldValue(data_core.general, "dna", src.original_DNA)
+			var/datum/db_record/MR = data_core.general.find_record("dna", src.original_DNA)
 			if(MR)
 				boutput(user, "<span style='color:purple'><b>DNA on file</b> -  [MR.fields["name"]] ([MR.fields["dna"]] ])</span>")
 			else

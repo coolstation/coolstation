@@ -51,9 +51,9 @@ proc/scrapperPayout(var/list/preWork,var/list/postWork) //TODO: ignore space til
 			payout += scrappedBonus
 		step += 1
 
-	for(var/datum/data/record/record in data_core.bank)
-		if(record.fields["job"] == "Scrapper")
-			record.fields["current_money"] += payout
+	for(var/datum/db_record/record in data_core.bank.records)
+		if(record["job"] == "Scrapper")
+			record["current_money"] += payout
 
 	var/datum/signal/pdaSignal = get_free_signal()
 	pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="SHIPYARD-MAILBOT",  "group"=list(MGD_CARGO, MGA_SHIPPING, MGO_MINING), "sender"="00000000", "message"="Notification: Payment of: [payout] recieved from client ship.")
