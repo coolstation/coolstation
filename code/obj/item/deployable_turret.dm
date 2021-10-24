@@ -217,7 +217,7 @@
 				src.health = min(src.max_health, (src.health + 10))
 				src.check_health()
 
-		else if (istype(W, /obj/item/wrench))
+		else if  (iswrenchingtool(W))
 
 			if(src.anchored)
 
@@ -249,7 +249,7 @@
 			return
 		*/
 
-		else if (istype(W, /obj/item/screwdriver))
+		else if (isscrewingtool(W))
 
 			if(!src.anchored)
 				user.show_message("<span class='notice'>The turret is too unstable to fire! Secure it to the ground with a welding tool first!</span>")
