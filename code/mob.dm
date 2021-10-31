@@ -3039,3 +3039,27 @@
 // to check if someone is abusing cameras with stuff like artifacts, power gloves, etc
 /mob/proc/in_real_view_range(var/turf/T)
 	return src.client && IN_RANGE(T, src, WIDE_TILE_WIDTH)
+
+
+/mob/MouseEntered(location, control, params)
+	if(usr.client.check_key(KEY_EXAMINE))
+		src.name_tag?.show_hover(usr.client)
+
+/mob/MouseExited(location, control, params)
+	src.name_tag?.hide_hover(usr.client)
+
+/mob/proc/get_pronouns()
+	RETURN_TYPE(/datum/pronouns)
+	if(isabomination(src))
+		return get_singleton(/datum/pronouns/abomination)
+	. = src?.bioHolder?.mobAppearance?.pronouns
+	if(isnull(.))
+		switch(src.gender)
+			if("male")
+				. = get_singleton(/datum/pronouns/heHim)
+			if("female")
+				. = get_singleton(/datum/pronouns/sheHer)
+			if("neuter")
+				. = get_singleton(/datum/pronouns/itIts)
+			else
+				. = get_singleton(/datum/pronouns/theyThem)
