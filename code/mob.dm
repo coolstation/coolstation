@@ -33,6 +33,7 @@
 
 	//var/atom/movable/screen/zone_sel/zone_sel = null
 	var/datum/hud/zone_sel/zone_sel = null
+	var/atom/movable/name_tag/outer/name_tag
 
 	var/obj/item/device/energy_shield/energy_shield = null
 
@@ -251,6 +252,10 @@
 	render_target = "\ref[src]"
 	mob_properties = list()
 	src.chat_text = new
+
+	src.name_tag = new
+	src.update_name_tag()
+	src.vis_contents += src.name_tag
 	START_TRACKING
 	. = ..()
 
@@ -514,6 +519,7 @@
 /mob/Logout()
 
 	//logTheThing("diary", src, null, "logged out", "access") <- sometimes shits itself and has been known to out traitors. Disabling for now.
+	src.last_client?.get_plane(PLANE_EXAMINE).alpha = 0
 
 	SEND_SIGNAL(src, COMSIG_MOB_LOGOUT)
 
@@ -2601,6 +2607,18 @@
 		src.name = "[name_prefix(null, 1)][src.real_name][name_suffix(null, 1)]"
 	else
 		src.name = "[name_prefix(null, 1)][initial(src.name)][name_suffix(null, 1)]"
+	src.update_name_tag()
+
+/mob/proc/update_name_tag(name=null)
+	if(isnull(name))
+		name = src.name
+	if(name == "Unknown")
+		name = ""
+	var/the_pos = findtext(name, " the")
+	if(the_pos)
+		name = copytext(name, 1, the_pos)
+	src.name_tag.set_extra(src.bioHolder?.mobAppearance?.pronouns?.subjective)
+	src.name_tag.set_name(name, strip_parentheses=TRUE)
 
 /mob/proc/protected_from_space()
 	return 0
@@ -2718,7 +2736,7 @@
 								ID.registered = newname
 								ID.update_name()
 					src.real_name = newname
-					src.name = newname
+					src.UpdateName()
 					return 1
 				else
 					continue
@@ -2729,7 +2747,7 @@
 			src.real_name = src.client.preferences.real_name
 		else
 			src.real_name = random_name(src.gender)
-		src.name = src.real_name
+		src.UpdateName()
 
 /mob/proc/set_mutantrace(var/mutantrace_type)
 	return

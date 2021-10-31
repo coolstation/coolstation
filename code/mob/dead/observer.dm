@@ -223,6 +223,7 @@
 /mob/dead/observer/New(mob/corpse)
 	. = ..()
 	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, ghost_invisibility)
+	APPLY_MOB_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
 	src.sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 	src.see_invisible = 16
 	src.see_in_dark = SEE_DARK_FULL
@@ -235,6 +236,8 @@
 			src.real_name = corpse.real_name
 		else
 			src.real_name = corpse.acid_name
+
+		src.UpdateName()
 		src.verbs += /mob/dead/observer/proc/reenter_corpse
 
 	hud = new(src)
