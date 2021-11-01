@@ -54,6 +54,7 @@ var/list/headset_channel_lookup
 	MAKE_DEFAULT_RADIO_PACKET_COMPONENT("main", frequency)
 
 	set_frequency(frequency)
+
 	if(src.secure_frequencies)
 		set_secure_frequencies()
 
@@ -772,7 +773,7 @@ Code:
 	item_state = "signaler"
 	var/code = 30.0
 	w_class = W_CLASS_TINY
-	frequency = FREQ_DEFAULT
+	frequency = FREQ_WLNET
 	var/delay = 0
 	var/airlock_wire = null
 	desc = "A device used to send a coded signal over a specified frequency, with the effect depending on the device that recieves the signal."

@@ -12,7 +12,7 @@
 
 	var/control_freq = FREQ_BOT_CONTROL //Just for sending, adjust what the actual pda hooks to for receive
 
-	proc/post_status(var/freq, var/key, var/value, var/key2, var/value2, var/key3, var/value3)
+	proc/post_status(var/conn_id, var/key, var/value, var/key2, var/value2, var/key3, var/value3)
 		if(!src.master)
 			return
 
@@ -25,7 +25,7 @@
 		if(key3)
 			signal.data[key3] = value3
 
-		src.post_signal(signal, freq)
+		src.post_signal(signal, conn_id)
 
 	on_activated(obj/item/device/pda2/pda)
 		pda.AddComponent(
@@ -34,7 +34,9 @@
 			pda.beacon_freq, \
 			pda.net_id, \
 			null, \
-			null \
+			FALSE, \
+			null, \
+			FALSE \
 		)
 		pda.AddComponent(
 			/datum/component/packet_connected/radio, \
@@ -42,7 +44,9 @@
 			control_freq, \
 			pda.net_id, \
 			null, \
-			null \
+			FALSE, \
+			null, \
+			FALSE \
 		)
 		RegisterSignal(pda, COMSIG_MOVABLE_RECEIVE_PACKET, .proc/receive_signal)
 
@@ -126,7 +130,7 @@
 			if("scanbots") // find all bots
 				botlist = null
 				self_text("Scanning for security robots...")
-				post_status(control_freq, "command", "bot_status")
+				post_status("bot_control", "command", "bot_status")
 
 			if("guardhere", "allguardhere", "lockdown", "alllockdown") // not spoofable because god no
 				var/list/stationAreas = get_accessible_station_areas()
@@ -319,49 +323,49 @@
 
 			if("control")
 				active = locate(href_list["bot"])
-				post_status(control_freq, cmd, "bot_status")
+				post_status("bot_control", cmd, "bot_status")
 
 			if("scanbots")		// find all bots
 				botlist = null
-				post_status(control_freq, "command", "bot_status")
+				post_status("bot_control", "command", "bot_status")
 
 			if("scanbeacons")
 				beacons = null
-				src.post_status(src.master.beacon_freq, "findbeacon", "any")
+				src.post_status("bot_beacon", "findbeacon", "delivery", "address_tag", "any")
 
 			if("botlist")
 				active = null
 				PDA.updateSelfDialog()
 
 			if("unload")
-				post_status(control_freq, cmd, "unload")
-				post_status(control_freq, cmd, "bot_status")
+				post_status("bot_control", cmd, "unload")
+				post_status("bot_control", cmd, "bot_status")
 			if("setdest")
 				if(beacons)
 					var/dest = input("Select Bot Destination", "Mulebot [active.suffix] Interlink", active:destination) as null|anything in beacons
 					if(dest)
-						post_status(control_freq, cmd, "target", "destination", dest)
-						post_status(control_freq, cmd, "bot_status")
+						post_status("bot_control", cmd, "target", "destination", dest)
+						post_status("bot_control", cmd, "bot_status")
 			if("setpdadest")
 				if(href_list["deliver"])
-					post_status(control_freq, cmd, "pda_target", "destination", href_list["deliver"])
+					post_status("bot_control", cmd, "pda_target", "destination", href_list["deliver"])
 			if("retoff")
-				post_status(control_freq, cmd, "autoret", "value", 0)
-				post_status(control_freq, cmd, "bot_status")
+				post_status("bot_control", cmd, "autoret", "value", 0)
+				post_status("bot_control", cmd, "bot_status")
 			if("reton")
-				post_status(control_freq, cmd, "autoret", "value", 1)
-				post_status(control_freq, cmd, "bot_status")
+				post_status("bot_control", cmd, "autoret", "value", 1)
+				post_status("bot_control", cmd, "bot_status")
 
 			if("pickoff")
-				post_status(control_freq, cmd, "autopick", "value", 0)
-				post_status(control_freq, cmd, "bot_status")
+				post_status("bot_control", cmd, "autopick", "value", 0)
+				post_status("bot_control", cmd, "bot_status")
 			if("pickon")
-				post_status(control_freq, cmd, "autopick", "value", 1)
-				post_status(control_freq, cmd, "bot_status")
+				post_status("bot_control", cmd, "autopick", "value", 1)
+				post_status("bot_control", cmd, "bot_status")
 
 			if("stop", "go", "home")
-				post_status(control_freq, cmd, href_list["op"])
-				post_status(control_freq, cmd, "bot_status")
+				post_status("bot_control", cmd, href_list["op"])
+				post_status("bot_control", cmd, "bot_status")
 		return
 
 	receive_signal(obj/item/device/pda2/pda, datum/signal/signal, transmission_method, range, connection_id)

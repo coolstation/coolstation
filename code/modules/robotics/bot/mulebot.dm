@@ -574,7 +574,7 @@
 		SPAWN_DBG(0)
 			KillPathAndGiveUp()
 			new_destination = new_dest
-			post_signal(beacon_freq, "findbeacon", new_dest)
+			post_signal_multiple("beacon", list("findbeacon" = "delivery", "address_tag" = "delivery"))
 			updateDialog()
 
 	proc/set_destination_pda(var/net_id)
@@ -810,7 +810,6 @@
 
 		var/datum/signal/signal = get_free_signal()
 		signal.source = src
-		signal.transmission_method = 1
 		signal.data["sender"] = src.botnet_id
 		for(var/key in keyval)
 			signal.data[key] = keyval[key]

@@ -153,13 +153,27 @@
 			if("alert")
 				status_signal.data["picture_state"] = data1
 
-		src.post_signal(status_signal,FREQ_STATUS)
+		src.post_signal(status_signal, "status_display")
+
+	on_activated(obj/item/device/pda2/pda)
+		pda.AddComponent(/datum/component/packet_connected/radio, \
+			"status_display",\
+			FREQ_STATUS, \
+			pda.net_id, \
+			null, \
+			TRUE, \
+			null, \
+			FALSE \
+		)
+
+	on_deactivated(obj/item/device/pda2/pda)
+		qdel(get_radio_connection_by_id(pda, "status_display"))
 
 //Signaler
 /datum/computer/file/pda_program/signaler
 	name = "Signalix 5"
 	size = 8
-	var/send_freq = FREQ_DEFAULT //Frequency signal is sent at, should be kept within normal radio ranges.
+	var/send_freq = FREQ_WLNET //Frequency signal is sent at, should be kept within normal radio ranges.
 	var/send_code = 30
 	var/last_transmission = 0 //No signal spamming etc
 
@@ -206,11 +220,12 @@ Code:
 				signal.data["message"] = "ACTIVATE"
 				signal.data["code"] = send_code
 
-				src.post_signal(signal,"[send_freq]")
+				src.post_signal(signal, "signaller")
 				return
 
 		else if (href_list["adj_freq"])
 			src.send_freq = sanitize_frequency(src.send_freq + text2num(href_list["adj_freq"]))
+			get_radio_connection_by_id(master, "signaller").update_frequency(src.send_freq)
 
 		else if (href_list["adj_code"])
 			src.send_code += text2num(href_list["adj_code"])
@@ -221,6 +236,20 @@ Code:
 		src.master.add_fingerprint(usr)
 		src.master.updateSelfDialog()
 		return
+
+	on_activated(obj/item/device/pda2/pda)
+		pda.AddComponent(/datum/component/packet_connected/radio, \
+			"signaller",\
+			send_freq, \
+			pda.net_id, \
+			null, \
+			TRUE, \
+			null, \
+			FALSE \
+		)
+
+	on_deactivated(obj/item/device/pda2/pda)
+		qdel(get_radio_connection_by_id(pda, "signaller"))
 
 //Supply record monitor
 /datum/computer/file/pda_program/qm_records
@@ -491,10 +520,12 @@ Code:
 	on_activated(obj/item/device/pda2/pda)
 		pda.AddComponent(/datum/component/packet_connected/radio, \
 			"report",\
-			1149, \
+			FREQ_PDA, \
 			pda.net_id, \
 			null, \
-			null \
+			FALSE, \
+			null, \
+			FALSE \
 		)
 		RegisterSignal(pda, COMSIG_MOVABLE_RECEIVE_PACKET, .proc/receive_signal)
 
@@ -633,7 +664,7 @@ Code:
 
 	var/temp = null
 	var/last_scan = 0
-	var/report_freq = 1447
+	var/report_freq = FREQ_HYDRO
 	var/list/status_reports = list()
 
 	proc/post_status(var/key, var/value, var/key2, var/value2, var/key3, var/value3)
@@ -659,7 +690,9 @@ Code:
 			report_freq, \
 			pda.net_id, \
 			null, \
-			null \
+			FALSE, \
+			null, \
+			FALSE \
 		)
 
 	on_deactivated(obj/item/device/pda2/pda)

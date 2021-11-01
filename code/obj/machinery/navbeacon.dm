@@ -36,15 +36,13 @@
 		navlight.blend_mode = BLEND_ADD
 		UpdateOverlays(navlight, "navlight", 0, 1)
 
-		set_codes()
-
 		var/turf/T = loc
 		hide(T.intact)
 
 		if(!net_id)
 			net_id = generate_net_id(src)
 
-		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("navbeacon", FREQ_BOT_NAV)
+		set_codes()
 
 		SPAWN_DBG(3 SECONDS)
 			src.post_distance_request()
@@ -80,6 +78,17 @@
 			else
 				codes[e] = "1"
 
+		src.AddComponent( \
+			/datum/component/packet_connected/radio, \
+			"navbeacon", \
+			src.freq, \
+			src.net_id, \
+			"receive_signal", \
+			FALSE, \
+			codes + list(beacon_id, "any"), \
+			FALSE \
+		)
+
 
 	// called when turf state changes
 	// hide the object if turf is intact
@@ -101,7 +110,7 @@
 		if (!signal || signal.encryption || !signal.data["sender"])
 			return
 
-		var/beaconrequest = signal.data["findbeacon"]
+		var/beaconrequest = signal.data["findbeacon"] || signal.data["address_tag"]
 		if(beaconrequest && ((beaconrequest in codes) || beaconrequest == "any" || beaconrequest == beacon_id))
 			SPAWN_DBG(1 DECI SECOND)
 				post_status(signal.data["sender"] || signal.data["netid"])
@@ -406,10 +415,8 @@ Transponder Codes:<UL>"}
 					updateDialog()
 
 	proc/set_frequency(var/new_freq)
-		for(var/datum/component/packet_connected/radio/comp in GetComponents(/datum/component/packet_connected/radio))
-			if(comp.get_frequency() == freq)
-				comp.update_frequency(new_freq)
 		freq = new_freq
+		get_radio_connection_by_id(src, "navbeacon").update_frequency(freq)
 
 //Wired nav device
 /obj/machinery/wirenav

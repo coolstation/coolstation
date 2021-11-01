@@ -401,7 +401,7 @@
 
 			MAKE_DEFAULT_RADIO_PACKET_COMPONENT("control", control_freq)
 			MAKE_DEFAULT_RADIO_PACKET_COMPONENT("beacon", beacon_freq)
-			MAKE_DEFAULT_RADIO_PACKET_COMPONENT("pda", FREQ_PDA)
+			MAKE_SENDER_RADIO_PACKET_COMPONENT("pda", FREQ_PDA)
 
 			var/obj/machinery/guardbot_dock/dock = null
 			if(setup_spawn_dock)
@@ -1440,6 +1440,16 @@
 			else
 				SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, GUARDBOT_RADIO_RANGE, "control")
 
+		post_find_beacon(var/type)
+			var/datum/signal/signal = get_free_signal()
+			signal.source = src
+			signal.data["findbeacon"] = type
+			signal.data["address_tag"] = type
+			signal.data["sender"] = src.net_id
+
+			src.last_comm = world.time
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, GUARDBOT_RADIO_RANGE, "beacon")
+
 		add_task(var/datum/computer/file/guardbot_task/newtask, var/high_priority = 0, var/clear_others = 0)
 			if(clear_others)
 				src.tasks.len = 0
@@ -2313,7 +2323,7 @@
 					else
 						if(!master.last_comm || (world.time >= master.last_comm + 100) )
 							src.awaiting_beacon = 10
-							master.post_status("!BEACON!", "findbeacon", "patrol")
+							master.post_find_beacon("patrol")
 							master.reply_wait = 2
 
 				if (2)	//Seeking a seat.
@@ -2865,7 +2875,7 @@
 			find_nearest_beacon()
 				nearest_beacon = null
 				new_destination = "__nearest__"
-				master.post_status("!BEACON!", "findbeacon", "patrol")
+				master.post_find_beacon("patrol")
 				awaiting_beacon = 5
 				SPAWN_DBG(1 SECOND)
 					if(!master || !master.on || master.stunned || master.idle) return
@@ -2880,7 +2890,7 @@
 
 			set_destination(var/new_dest)
 				new_destination = new_dest
-				master.post_status("!BEACON!", "findbeacon", "patrol")
+				master.post_find_beacon(new_dest || "patrol")
 				awaiting_beacon = 5
 
 			assess_perp(mob/living/carbon/human/perp as mob)
@@ -3344,7 +3354,7 @@
 					if (src.distracted)
 						awaiting_beacon += 2
 
-					master.post_status("!BEACON!", "findbeacon", "tour")
+					master.post_find_beacon("[next_beacon_id]" || "tour")
 					return
 
 				if (STATE_PATHING_TO_BEACON)

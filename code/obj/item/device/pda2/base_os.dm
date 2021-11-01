@@ -407,7 +407,7 @@
 
 			else if(href_list["scanner"])
 				if(src.master.scan_program)
-					src.master.scan_program = null
+					src.master.set_scan_program(null)
 
 			else if(href_list["trenchmap"])
 				if (usr.client && hotspot_controller)
@@ -742,7 +742,9 @@
 				pda.frequency, \
 				pda.net_id, \
 				null, \
-				null \
+				FALSE, \
+				null, \
+				FALSE \
 			)
 			RegisterSignal(pda, COMSIG_MOVABLE_RECEIVE_PACKET, .proc/receive_signal)
 
@@ -751,7 +753,7 @@
 			UnregisterSignal(pda, COMSIG_MOVABLE_RECEIVE_PACKET)
 
 		proc/receive_signal(obj/item/device/pda2/pda, datum/signal/signal, transmission_method, range, connection_id)
-			if((!istype(holder)) || (!istype(master)))
+			if(!istype(holder) || !istype(master) || !src.master.owner)
 				return
 			if(!(holder in src.master.contents))
 				if(master.active_program == src)

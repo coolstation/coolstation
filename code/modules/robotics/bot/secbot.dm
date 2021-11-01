@@ -252,7 +252,7 @@
 
 		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("control", control_freq)
 		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("beacon", beacon_freq)
-		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("pda", FREQ_PDA)
+		MAKE_SENDER_RADIO_PACKET_COMPONENT("pda", FREQ_PDA)
 
 	speak(var/message, var/sing, var/just_float)
 		if (src.emagged >= 2)
@@ -1022,7 +1022,7 @@
 	proc/find_nearest_beacon()
 		nearest_beacon = null
 		new_destination = "__nearest__"
-		post_signal(beacon_freq, "findbeacon", "patrol")
+		post_signal_multiple("beacon", list("findbeacon" = "patrol", "address_tag" = "patrol"))
 		awaiting_beacon = 1
 		SPAWN_DBG(1 SECOND)
 			awaiting_beacon = 0
@@ -1044,7 +1044,7 @@
 	// beacons will return a signal giving their locations
 	proc/set_destination(var/new_dest)
 		new_destination = new_dest
-		post_signal(beacon_freq, "findbeacon", "patrol")
+		post_signal_multiple("beacon", list("findbeacon" = new_dest || "patrol", "address_tag" = new_dest || "patrol"))
 		awaiting_beacon = 1
 
 	// receive a radio signal
@@ -1297,7 +1297,7 @@
 				signal.data["group"] = list(MGD_SECURITY, MGA_ARREST)
 				signal.data["address_1"] = "00000000"
 				signal.data["message"] = message2send
-				SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, "pda")
+				SEND_SIGNAL(src.master, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, "pda")
 
 			switch(master.mode)
 				if(SECBOT_AGGRO)

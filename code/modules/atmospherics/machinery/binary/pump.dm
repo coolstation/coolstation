@@ -27,10 +27,6 @@ Thus, the two variables affect pump operation are set in New():
 
 	var/datum/pump_ui/ui
 
-	New()
-		..()
-		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
-
 	attack_hand(mob/user)
 		//on = !on
 		update_icon()
@@ -86,6 +82,7 @@ Thus, the two variables affect pump operation are set in New():
 		signal.data["device"] = "AGP"
 		signal.data["power"] = on ? "on" : "off"
 		signal.data["target_output"] = target_pressure
+		signal.data["address_tag"] = "pumpcontrol"
 
 		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal)
 
@@ -97,7 +94,7 @@ Thus, the two variables affect pump operation are set in New():
 	initialize()
 		..()
 		ui = new/datum/pump_ui/basic_pump_ui(src)
-
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
 
 	receive_signal(datum/signal/signal)
 		if(signal.data["tag"] && (signal.data["tag"] != id))
