@@ -270,7 +270,7 @@
 			if(checkTurfPassable(T))
 				return T
 
-/obj/machinery/bot/proc/navigate_to(atom/the_target, var/move_delay = 10, var/adjacent = 0, max_dist=600, turf/exclude = null)
+/obj/machinery/bot/proc/navigate_to(atom/the_target, var/move_delay = 10, var/adjacent = 0, max_dist=120, turf/exclude = null)
 	var/target_turf = get_pathable_turf(the_target)
 	if(!target_turf)
 		return 0
@@ -281,6 +281,8 @@
 
 /obj/machinery/bot/proc/navigate_with_navbeacons(atom/the_target, var/move_delay = 10, var/adjacent = 0, max_dist=150, max_stop_dist = 150, turf/exclude = null)
 	var/target_turf = get_pathable_turf(the_target)
+	if(src.bot_mover?.the_target == target_turf)
+		return
 	if(!target_turf)
 		return 0
 
@@ -378,6 +380,11 @@
 		else
 			master.path = AStar(get_turf(master), src.the_target, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, src.max_dist, master.botcard, src.exclude)
 
+		var/compare_movepath = src.current_movepath
+		if(length(stops))
+			master.path = get_path_to(src.master, src.master.get_pathable_turf(stops[1]), id=master.botcard, skip_first=FALSE, simulated_only=FALSE, cardinal_only=TRUE)
+		else
+			master.path = get_path_to(src.master, src.the_target, max_distance=src.max_dist, id=master.botcard, skip_first=FALSE, simulated_only=FALSE, cardinal_only=TRUE)
 		if(!length(master.path))
 			qdel(src)
 			return
