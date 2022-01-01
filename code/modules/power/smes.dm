@@ -148,7 +148,7 @@
 				// benefits to charged value so that minimal loss occurs.
 				charge += load * mult	// increase the charge
 				add_load(load)		// add the load to the terminal side network
-				if(load > SMESMAXCHARGELEVEL && prob(50))
+				if(tampered && load > SMESMAXCHARGELEVEL && prob(50))
 					var/overcharge = round(load / SMESMAXCHARGELEVEL)
 					if(prob(overcharge))
 						logTheThing("diary", src, null, "overloaded and went bang at [log_loc(src)]!")
