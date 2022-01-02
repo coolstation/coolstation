@@ -40,6 +40,35 @@
 	get_desc()
 		. = {"It's [online ? "on" : "off"]line. [charging ? "It's charging, and it" : "It"] looks about [round(charge / capacity * 100, 20)]% full."}
 
+/obj/machinery/power/smes/attackby(obj/item/W, mob/user)
+	src.add_fingerprint(user)
+
+	if(isscrewingtool(W))
+		boutput(user, "<span class='alert'>You open the panel on the [src]!</span>")
+		if(src.opened)
+			src.opened = FALSE
+		else
+			src.opened = TRUE
+		updateicon()
+		return
+
+	if(ispulsingtool(W))
+		if(src.opened)
+			if(src.tampered)
+				src.tampered = FALSE
+				boutput(user, "<span class='alert'>You reset the safeties!</span>")
+				src.maxinput = SMESMAXCHARGELEVEL
+				src.maxoutput = SMESMAXOUTPUT
+			else
+				src.tampered = TRUE
+				boutput(user, "<span class='alert'>You short out the safeties!</span>")
+				src.maxinput = INFINITY
+				src.maxoutput = INFINITY
+		updateicon()
+		return
+	..()
+
+
 /obj/machinery/power/smes/construction
 	New(var/turf/iloc, var/idir = 2)
 		if (!isturf(iloc))
@@ -100,6 +129,8 @@
 		else
 			icon_state = "smes-open"
 		return
+	else
+		icon_state = "smes"
 
 	var/image/I = SafeGetOverlayImage("operating", 'icons/obj/power.dmi', "smes-op[online]")
 	UpdateOverlays(I, "operating")
@@ -307,28 +338,6 @@
 	var/rate = "[href]=-[Max]'>-</A>[href]=-[Min]'>-</A> [(C?C : 0)] [href]=[Min]'>+</A>[href]=[Max]'>+</A>"
 	if (Limit) return "[href]=-[Limit]'>-</A>"+rate+"[href]=[Limit]'>+</A>"
 	return rate
-
-/obj/machinery/power/smes/attackby(obj/item/W, mob/user)
-	src.add_fingerprint(user)
-
-	if(isscrewingtool(W))
-		if(opened)
-			opened = FALSE
-		else
-			opened = TRUE
-
-	if(ispulsingtool(W))
-		if(opened)
-			if(tampered)
-				tampered = FALSE
-				boutput(user, "<span class='alert'>You reset the safeties!</span>")
-				src.maxinput = SMESMAXCHARGELEVEL
-				src.maxoutput = SMESMAXOUTPUT
-			else
-				tampered = TRUE
-				boutput(user, "<span class='alert'>You short out the safeties!</span>")
-				src.maxinput = INFINITY
-				src.maxoutput = INFINITY
 
 #undef SMESMAXCHARGELEVEL
 #undef SMESMAXOUTPUT
