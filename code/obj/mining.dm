@@ -1073,7 +1073,7 @@
 	flags = ALWAYS_SOLID_FLUID | IS_PERSPECTIVE_FLUID
 	connect_overlay = 0
 	connect_diagonal = 1
-	connects_to = list(/turf/simulated/wall/auto/asteroid, /turf/simulated/wall/false_wall)
+	connects_to = list(/turf/simulated/wall/auto/asteroid, /turf/simulated/wall/false_wall, /obj/structure/woodwall)
 #ifdef UNDERWATER_MAP
 	name = "cavern wall"
 	desc = "A cavern wall, possibly flowing with mineral deposits."
@@ -1103,6 +1103,8 @@
 	var/mining_health = 120
 	var/mining_max_health = 120
 	var/mining_toughness = 1 //Incoming damage divided by this unless tool has power enough to overcome.
+	var/topnumber = 1
+	var/orenumber = 1
 
 #ifdef UNDERWATER_MAP
 	fullbright = 0
@@ -1212,7 +1214,8 @@
 
 
 	New(var/loc)
-		src.icon_state = pick("ast1","ast2","ast3")
+		src.topnumber = pick(1,2,3)
+		src.orenumber = pick(1,2,3)
 		..()
 		worldgenCandidates += src
 		if(current_state <= GAME_STATE_PREGAME)
@@ -1220,7 +1223,8 @@
 
 	generate_worldgen()
 		. = ..()
-		//src.space_overlays()
+		src.space_overlays()
+		src.top_overlays()
 
 	ex_act(severity)
 		switch(severity)
@@ -1349,9 +1353,13 @@
 		*/
 		src.color = src.stone_color
 
+	proc/top_overlays() // replaced what was here with cool stuff for autowalls
+		var/image/top_overlay = image('icons/turf/walls_asteroid.dmi',"top[src.topnumber]")
+		top_overlay.filters += filter(type="alpha", icon=icon('icons/turf/walls_asteroid.dmi',"mask2[src.icon_state]"))
+		src.overlays += top_overlay
 	proc/space_overlays()
 		for (var/turf/space/A in orange(src,1))
-			var/image/edge_overlay = image('icons/turf/asteroid.dmi', "edge[get_dir(A,src)]")
+			var/image/edge_overlay = image('icons/turf/walls_asteroid.dmi', "edge[get_dir(A,src)]")
 			edge_overlay.appearance_flags = PIXEL_SCALE | TILE_BOUND | RESET_COLOR | RESET_ALPHA
 			edge_overlay.layer = src.layer + 1
 			edge_overlay.plane = PLANE_FLOOR
@@ -1482,6 +1490,17 @@
 		src.opacity = 0
 		src.levelupdate()
 
+		for (var/turf/simulated/wall/auto/asteroid/A in range(src,1))
+			A.UpdateIcon()
+			A.ClearAllOverlays() // i know theres probably a better way to handle this
+			var/image/top_overlay = image('icons/turf/walls_asteroid.dmi',"top[A.topnumber]")
+			top_overlay.filters += filter(type="alpha", icon=icon('icons/turf/walls_asteroid.dmi',"mask2[A.icon_state]"))
+			A.overlays += top_overlay
+			if(A?.ore) // make sure ores dont turn invisible
+				var/image/ore_overlay = image('icons/turf/walls_asteroid.dmi',"[A.ore.name][pick(1,2,3)]")
+				ore_overlay.filters += filter(type="alpha", icon=icon('icons/turf/walls_asteroid.dmi',"mask[A.icon_state]"))
+				A.overlays += ore_overlay
+
 		for (var/turf/simulated/floor/A in range(src,1))
 			if(istype(A, temp_floor_turf))
 				A.update_icon()
@@ -1557,8 +1576,6 @@
 	noborders
 		update_icon()
 			return
-		apply_edge_overlay()
-			return
 		space_overlays()
 			return
 
@@ -1574,7 +1591,7 @@
 
 	generate_worldgen()
 		. = ..()
-		//src.space_overlays()
+		src.space_overlays()
 
 	ex_act(severity)
 		return
@@ -1605,23 +1622,10 @@
 		if (fullbright)
 			src.overlays += /image/fullbright //Fixes perma-darkness
 		#endif
-		SPAWN_DBG(0)
-			if (istype(src)) //Wire note: just roll with this ok
-				for (var/turf/simulated/wall/auto/asteroid/A in orange(src,1))
-					src.apply_edge_overlay(get_dir(src, A))
-				for (var/turf/space/A in orange(src,1))
-					src.apply_edge_overlay(get_dir(src, A))
-
-	proc/apply_edge_overlay(var/thedir) //For overlays ON THE FLOOR TILE
-		var/image/dig_overlay = image('icons/turf/asteroid.dmi', "edge[thedir]")
-		dig_overlay.color = src.stone_color
-		dig_overlay.appearance_flags = PIXEL_SCALE | TILE_BOUND | RESET_COLOR | RESET_ALPHA
-		//dig_overlay.layer = src.layer + 1
-		//src.overlays += dig_overlay
 
 	proc/space_overlays() //For overlays ON THE SPACE TILE
 		for (var/turf/space/A in orange(src,1))
-			var/image/edge_overlay = image('icons/turf/asteroid.dmi', "edge[get_dir(A,src)]")
+			var/image/edge_overlay = image('icons/turf/walls_asteroid.dmi', "edge[get_dir(A,src)]")
 			edge_overlay.appearance_flags = PIXEL_SCALE | TILE_BOUND | RESET_COLOR | RESET_ALPHA
 			edge_overlay.plane = PLANE_FLOOR
 			edge_overlay.layer = TURF_EFFECTS_LAYER
