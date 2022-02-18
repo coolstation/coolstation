@@ -1004,7 +1004,8 @@ datum
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "triplemeth")
-					M.remove_stun_resist_mod("triplemeth")
+					REMOVE_MOB_PROPERTY(M, PROP_STUN_RESIST, "triplemeth")
+					REMOVE_MOB_PROPERTY(M, PROP_STUN_RESIST_MAX, "triplemeth")
 
 				if(hascall(holder.my_atom,"removeOverlayComposition"))
 					holder.my_atom:removeOverlayComposition(/datum/overlayComposition/triplemeth)
@@ -1015,7 +1016,8 @@ datum
 				if(!M) M = holder.my_atom
 
 				if(holder.has_reagent("methamphetamine")) return ..() //Since is created by a meth overdose, dont react while meth is in their system.
-				M.add_stun_resist_mod("triplemeth", 98)
+				APPLY_MOB_PROPERTY(M, PROP_STUN_RESIST, "triplemeth", 98)
+				APPLY_MOB_PROPERTY(M, PROP_STUN_RESIST_MAX, "triplemeth", 98)
 				APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "triplemeth", 100)
 
 				if(hascall(holder.my_atom,"addOverlayComposition"))
@@ -1089,6 +1091,10 @@ datum
 				if (ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/energydrink, src.type)
+					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "triplemeth")
+					REMOVE_MOB_PROPERTY(M, PROP_STUN_RESIST, "triplemeth")
+					REMOVE_MOB_PROPERTY(M, PROP_STUN_RESIST_MAX, "triplemeth")
+
 				..()
 
 			on_remove()
