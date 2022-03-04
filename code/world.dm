@@ -790,14 +790,14 @@ var/f_color_selector_handler/F_Color_Selector
 	Z_LOG_DEBUG("World/Status", "Updating status")
 
 	//we start off with an animated bee gif because, well, this is who we are.
-	var/s = "<img src=\"http://goonhub.com/bee.gif\"/>"
+	var/s = "<img src=\"https://coolstation.space/cool_assets/meatvendor.gif\"/>"
 
 	if (config?.server_name)
-		s += "<b><a href=\"https://goonhub.com\">[config.server_name]</a></b> &#8212; "
+		s += "<b><a href=\"https://coolstation.space\">[config.server_name]</a></b> &#8212; "
 	else
 		s += "<b>SERVER NAME HERE</b> &#8212; "
 
-	s += "The classic SS13 experience. &#8212; (<a href=\"http://bit.ly/gndscd\">Discord</a>)<br>"
+	s += "The hotdog SS13 experience. Demo Server. &#8212; (<a href=\"https://discord.gg/k2KhuWKB\">Discord</a>)<br>"
 
 	if (map_settings)
 		var/map_name = istext(map_settings.display_name) ? "[map_settings.display_name]" : "[map_settings.name]"
