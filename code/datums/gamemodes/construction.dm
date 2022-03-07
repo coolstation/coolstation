@@ -251,7 +251,7 @@
 			AST.hardness += ORE.hardness_mod
 			AST.amount = rand(ORE.amount_per_tile_min,ORE.amount_per_tile_max)
 			AST.ClearAllOverlays() // i know theres probably a better way to handle this
-			AST.UpdateIcon()
+			AST.update_icon()
 			var/image/ore_overlay = image('icons/turf/walls_asteroid.dmi',"[ORE.name][AST.orenumber]")
 			ore_overlay.filters += filter(type="alpha", icon=icon('icons/turf/walls_asteroid.dmi',"mask[AST.icon_state]"))
 			ore_overlay.layer = AST.layer + 0.01 // so meson goggle nerds can still nerd away

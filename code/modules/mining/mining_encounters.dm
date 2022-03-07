@@ -893,7 +893,7 @@
 			AST.hardness += O.hardness_mod
 			AST.amount = rand(O.amount_per_tile_min,O.amount_per_tile_max)
 			AST.ClearAllOverlays() // i know theres probably a better way to handle this
-			AST.UpdateIcon()
+			AST.update_icon()
 			AST.overlays += /image/fullbright
 			AST.top_overlays()
 			var/image/ore_overlay = image('icons/turf/walls_asteroid.dmi',"[O.name][AST.orenumber]")
@@ -950,7 +950,7 @@
 			AST.hardness += O.hardness_mod
 			AST.amount = rand(O.amount_per_tile_min,O.amount_per_tile_max)
 			AST.ClearAllOverlays() // i know theres probably a better way to handle this
-			AST.UpdateIcon()
+			AST.update_icon()
 			AST.overlays += /image/fullbright
 			AST.top_overlays()
 			var/image/ore_overlay = image('icons/turf/walls_asteroid.dmi',"[O.name][AST.orenumber]")

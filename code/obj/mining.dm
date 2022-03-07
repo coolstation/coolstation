@@ -1491,7 +1491,7 @@
 		src.levelupdate()
 
 		for (var/turf/simulated/wall/auto/asteroid/A in range(src,1))
-			A.UpdateIcon()
+			A.update_icon()
 			A.ClearAllOverlays() // i know theres probably a better way to handle this
 			var/image/top_overlay = image('icons/turf/walls_asteroid.dmi',"top[A.topnumber]")
 			top_overlay.filters += filter(type="alpha", icon=icon('icons/turf/walls_asteroid.dmi',"mask2[A.icon_state]"))
