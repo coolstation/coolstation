@@ -339,20 +339,20 @@
 		src.setMaterial(getMaterial("cotton"), appearance = 0, setname = 0)
 		..()
 
-/obj/item/material_piece/cloth/greslourshide
-	name = "greslours hide"
-	desc = "The hide of a greslours."
-	icon_state = "greslourshide"
+/obj/item/material_piece/cloth/brullbarhide
+	name = "brullbar hide"
+	desc = "The hide of a brüllbär"
+	icon_state = "brullbarhide"
 	setup_material()
-		src.setMaterial(getMaterial("greslourshide"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("brullbarhide"), appearance = 0, setname = 0)
 		..()
 
-/obj/item/material_piece/cloth/kinggreslourshide
-	name = "king greslours hide"
-	desc = "The hide of a king greslours."
-	icon_state = "greslourshide"
+/obj/item/material_piece/cloth/kingbrullbarhide
+	name = "king brüllbär hide"
+	desc = "The hide of a king brüllbär"
+	icon_state = "brullbarhide"
 	setup_material()
-		src.setMaterial(getMaterial("kinggreslourshide"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("kingbrullbarhide"), appearance = 0, setname = 0)
 		..()
 
 /obj/item/material_piece/cloth/carbon

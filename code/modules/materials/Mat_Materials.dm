@@ -1237,10 +1237,10 @@
 		setProperty("electrical", 32)
 		return ..()
 
-/datum/material/fabric/cloth/greslourshide
-	mat_id = "greslourshide"
-	name = "greslours hide"
-	desc = "The hide of a fearsome greslours!"
+/datum/material/fabric/cloth/brullbarhide
+	mat_id = "brullbarhide"
+	name = "brullbar hide"
+	desc = "The hide of a fearsome brüllbär!"
 	color = "#CCCCCC"
 	material_flags = MATERIAL_CLOTH
 
@@ -1251,10 +1251,10 @@
 		setProperty("electrical", 45)
 		return ..()
 
-/datum/material/fabric/cloth/greslourshide/king
-	mat_id = "kinggreslourshide"
-	name = "king greslours hide"
-	desc = "The hide of a terrifying greslours king!!!"
+/datum/material/fabric/cloth/brullbarhide/king
+	mat_id = "kingbrullbarhide"
+	name = "king brüllbär hide"
+	desc = "The hide of a terrifying brüllbär king!!!"
 	color = "#EFEEEE"
 	material_flags = MATERIAL_CLOTH
 
