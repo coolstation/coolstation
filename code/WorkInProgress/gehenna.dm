@@ -13,11 +13,11 @@
 	desc = "looks loosely packed"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock"
-	floor_turf = "/turf/gehenna/desert/path"
+//	floor_turf = "/turf/gehenna/desert/path"  // Sorry, Warc! - Tam
 	New()
 		..()
 		src.icon_state = initial(src.icon_state)
-	space_overlays()
+//	space_overlays() // Sorry again, Warc! - Tam
 		return
 
 /turf/simulated/wall/asteroid/gehenna/tough
