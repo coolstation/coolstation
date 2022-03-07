@@ -32,11 +32,11 @@ You’ll need to create a file named `__secret.dme` in the +secret subdirectory.
 
 #### Q: this is just goonstation
 
-For NOW it's just Goonstation. It's a fork. There's Plan's afoot's.
+It's goonstation with a twist. 
 
-#### Q: Hey nerd, you got any horse deworming paste?
+#### Q: Hey nerd, you got any cool secrets?
 
-yeah friendo i got you hooked up
+watch your tone paisan.
 
 ## LICENSE
 [![license-badge](https://forthebadge.com/images/badges/cc-nc-sa.svg)](https://creativecommons.org/licenses/by-nc-sa/3.0/)
