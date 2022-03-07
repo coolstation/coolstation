@@ -32,9 +32,42 @@
 	var/online = 1
 	var/n_tag = null
 	var/obj/machinery/power/terminal/terminal = null
+	var/opened = FALSE
+	var/tampered = FALSE
+	var/maxinput = SMESMAXCHARGELEVEL
+	var/maxoutput = SMESMAXOUTPUT
 
 	get_desc()
 		. = {"It's [online ? "on" : "off"]line. [charging ? "It's charging, and it" : "It"] looks about [round(charge / capacity * 100, 20)]% full."}
+
+/obj/machinery/power/smes/attackby(obj/item/W, mob/user)
+	src.add_fingerprint(user)
+
+	if(isscrewingtool(W))
+		boutput(user, "<span class='alert'>You open the panel on the [src]!</span>")
+		if(src.opened)
+			src.opened = FALSE
+		else
+			src.opened = TRUE
+		updateicon()
+		return
+
+	if(ispulsingtool(W))
+		if(src.opened)
+			if(src.tampered)
+				src.tampered = FALSE
+				boutput(user, "<span class='alert'>You reset the safeties!</span>")
+				src.maxinput = SMESMAXCHARGELEVEL
+				src.maxoutput = SMESMAXOUTPUT
+			else
+				src.tampered = TRUE
+				boutput(user, "<span class='alert'>You short out the safeties!</span>")
+				src.maxinput = INFINITY
+				src.maxoutput = INFINITY
+		updateicon()
+		return
+	..()
+
 
 /obj/machinery/power/smes/construction
 	New(var/turf/iloc, var/idir = 2)
@@ -89,6 +122,16 @@
 		ClearAllOverlays()
 		return
 
+	if(opened)
+		ClearAllOverlays()
+		if(tampered)
+			icon_state = "smes-open-tamp"
+		else
+			icon_state = "smes-open"
+		return
+	else
+		icon_state = "smes"
+
 	var/image/I = SafeGetOverlayImage("operating", 'icons/obj/power.dmi', "smes-op[online]")
 	UpdateOverlays(I, "operating")
 
@@ -136,6 +179,13 @@
 				// benefits to charged value so that minimal loss occurs.
 				charge += load * mult	// increase the charge
 				add_load(load)		// add the load to the terminal side network
+				if(tampered && load > SMESMAXCHARGELEVEL && prob(50))
+					var/overcharge = round(load / SMESMAXCHARGELEVEL)
+					if(prob(overcharge))
+						logTheThing("diary", src, null, "overloaded and went bang at [log_loc(src)]!")
+						explosion(src, src, (overcharge/2), (overcharge/2),\
+							overcharge, (overcharge * 1.5))
+
 
 			else					// if not enough capcity
 				charging = 0		// stop charging
@@ -218,8 +268,8 @@
 
 /obj/machinery/power/smes/ui_static_data(mob/user)
 	. = list(
-		"inputLevelMax" = SMESMAXCHARGELEVEL,
-		"outputLevelMax" = SMESMAXOUTPUT,
+		"inputLevelMax" = src.maxinput,
+		"outputLevelMax" = src.maxoutput,
 	)
 
 /obj/machinery/power/smes/ui_data(mob/user)
@@ -259,13 +309,13 @@
 				src.chargelevel = 0
 				. = TRUE
 			else if(target == "max")
-				src.chargelevel = SMESMAXCHARGELEVEL
+				src.chargelevel = src.maxinput
 				. = TRUE
 			else if(adjust)
-				src.chargelevel = clamp((src.chargelevel + adjust), 0 , SMESMAXCHARGELEVEL)
+				src.chargelevel = clamp((src.chargelevel + adjust), 0 , src.maxinput)
 				. = TRUE
 			else if(text2num(target) != null) //set by drag
-				src.chargelevel = clamp(text2num(target), 0 , SMESMAXCHARGELEVEL)
+				src.chargelevel = clamp(text2num(target), 0 , src.maxinput)
 				. = TRUE
 		if("set-output")
 			var/target = params["target"]
@@ -274,13 +324,13 @@
 				src.output = 0
 				. = TRUE
 			else if(target == "max")
-				src.output = SMESMAXOUTPUT
+				src.output = src.maxoutput
 				. = TRUE
 			else if(adjust)
-				src.output = clamp((src.output + adjust), 0 , SMESMAXOUTPUT)
+				src.output = clamp((src.output + adjust), 0 , src.maxoutput)
 				. = TRUE
 			else if(text2num(target) != null) //set by drag
-				src.output = clamp(text2num(target), 0 , SMESMAXOUTPUT)
+				src.output = clamp(text2num(target), 0 , src.maxoutput)
 				. = TRUE
 
 /proc/rate_control(var/S, var/V, var/C, var/Min=1, var/Max=5, var/Limit=null)
