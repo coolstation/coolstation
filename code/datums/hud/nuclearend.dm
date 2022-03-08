@@ -8,7 +8,7 @@ datum/hud/nuclear
 		countdown.maptext = ""
 		countdown.maptext_width = 480
 		countdown.maptext_x = -(480 / 2) + 16
-		countdown.maptext_y = -920
+		countdown.maptext_y = -320
 		countdown.maptext_height = 320
 		countdown.plane = 100
 		..()
@@ -18,3 +18,4 @@ datum/hud/nuclear
 
 	proc/you_lose()
 		countdown.maptext = "<span class='c ol vga vt' style='background: #00000080;'><span style='font-size: 24px;'>Employment Terminated.</span></span>"
+		countdown.maptext_y = -420
