@@ -571,6 +571,14 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	jam_frequency_reload = 10
 	name_addition = "reckless"
 
+/obj/item/gun_parts/stock/foss/longer
+	name = "\improper FOSS laser punt gun stock"
+	spread_angle = -1 // poor stabilisation
+	stock_two_handed = 1
+	can_dual_wield = 0
+	max_crank_level = 4 // for syndicate ops
+	jam_frequency_reload = 5 // a little more jammy
+	name_addition = "disastrous"
 
 /obj/item/gun_parts/stock/italian
 	name = "impugnatura a pistola"

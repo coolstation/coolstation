@@ -11,7 +11,7 @@
 ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░▌      ▐░░▌▐░░░░░░░░░░░▌
  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀        ▀▀  ▀▀▀▀▀▀▀▀▀▀▀
 
-a new modular gunning system
+a new modular gun system
 every /obj/item/gun/modular/ has some basic stats and some basic shooting behavior. Nothing super complex.
 by default all children of /obj/item/gun/modular/ should populate their own barrel/stock/magazine/accessory as appropriate
 with some ordinary basic parts. barrel and mag are necessary, the other two whatever.
@@ -21,7 +21,7 @@ additional custom parts can be created with stat bonuses, and other effects in t
 in order to balance this, barrels should be balanced around ~ -15 spread, and stocks around -5 (so -13 is a rough barrel, -17 is a good one, etc.)
 giving an "average" spread for stock guns around 5-10
 */
-
+//modular guns - guns systen - gun's systen - tags for Search Optimisation™
 
 ABSTRACT_TYPE(/obj/item/gun/modular)
 /obj/item/gun/modular/ // PARENT TYPE TO ALL MODULER GUN'S
@@ -485,6 +485,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		barrel = new /obj/item/gun_parts/barrel/foss/long(src)
 		stock = new /obj/item/gun_parts/stock/foss/long(src)
 
+/obj/item/gun/modular/foss/punt
+	desc = "An open-sourced and freely modifiable FOSS Inductive Flash Arc, Model 2k/420"
+	color = "#CC55FF"
+
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/soviet/long(src)
+		stock = new /obj/item/gun_parts/stock/foss/longer(src)
+		magazine = new /obj/item/gun_parts/magazine/juicer/small(src)
 
 
 
@@ -530,6 +538,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	shoot()
 		..()
 		process_ammo()
+
+/obj/item/gun/modular/soviet/scatter
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/soviet/scatter(src)
+		stock = new /obj/item/gun_parts/stock/italian/bigger(src)
+		magazine = new /obj/item/gun_parts/magazine/juicer(src)
 
 /obj/item/gun/modular/italian
 	name = "\improper Italiano"
