@@ -1307,6 +1307,10 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 	if(!user.mind || !iscluwne(user))
 		boutput(user, "<span class='alert'>You think it's a REALLY bad idea to use the [src].</span>")
+		if (ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(alert(user, "Are you sure you want to get in?",,"Yes","No") == "Yes")
+				H.cluwnify()
 		return
 
 	if(target == user && !user.stat)	// if drop self, then climbed in

@@ -45,29 +45,13 @@
 				H.visible_message("<span class='alert'>[H] seems to be warded from the effects!</span>")
 				return 1
 
-			if (H.job != "Cluwne")
-				boutput(H, "<span class='alert'><B>You HONK painfully!</B></span>")
-				H.take_brain_damage(50)
-				H.stuttering = 120
-				H.job = "Cluwne"
-				H.contract_disease(/datum/ailment/disability/clumsy/cluwne,null,null,1)
-				H.contract_disease(/datum/ailment/disease/cluwneing_around/cluwne,null,null,1)
-				playsound(H, pick("sound/voice/cluwnelaugh1.ogg","sound/voice/cluwnelaugh2.ogg","sound/voice/cluwnelaugh3.ogg"), 35, 0, 0, max(0.7, min(1.4, 1.0 + (30 - H.bioHolder.age)/50)))
-				H.change_misstep_chance(60)
+			if(H.job == "Clown")
+				H.visible_message("<span class='alert'>The spell has no effect on [H]!</span>")
+				return
 
-				animate_clownspell(H)
-				//H.unequip_all()
-				H.drop_from_slot(H.w_uniform)
-				H.drop_from_slot(H.shoes)
-				H.drop_from_slot(H.wear_mask)
-				H.drop_from_slot(H.gloves)
-				H.equip_if_possible(new /obj/item/clothing/under/gimmick/cursedclown(H), H.slot_w_uniform)
-				H.equip_if_possible(new /obj/item/clothing/shoes/cursedclown_shoes(H), H.slot_shoes)
-				H.equip_if_possible(new /obj/item/clothing/mask/cursedclown_hat(H), H.slot_wear_mask)
-				H.equip_if_possible(new /obj/item/clothing/gloves/cursedclown_gloves(H), H.slot_gloves)
-				H.real_name = "cluwne"
-				SPAWN_DBG(2.5 SECONDS) // Don't remove.
-					if (H) H.assign_gimmick_skull() // The mask IS your new face, my friend (Convair880).
+			if (H.job != "Cluwne")
+				H.cluwnify()
+
 			else
 				boutput(H, "<span class='alert'><b>You don't feel very funny.</b></span>")
 				H.take_brain_damage(-120)
