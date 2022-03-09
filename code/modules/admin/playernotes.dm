@@ -9,19 +9,19 @@
 		alert("You need to be an actual admin to view player notes.")
 		return
 
-	if (!config.player_notes_baseurl || !config.player_notes_auth)
+	if (!config.opengoon_api_endpoint || !config.opengoon_api_token)
 		alert("Missing configuration for player notes")
 		return
 
 	var/list/data = list(
-		"auth" = config.player_notes_auth,
+		"auth" = md5(config.opengoon_api_token),
 		"action" = "get",
 		"ckey" = player
 	)
 
 	// Fetch notes via HTTP
 	var/datum/http_request/request = new()
-	request.prepare(RUSTG_HTTP_METHOD_GET, "[config.player_notes_baseurl]/?[list2params(data)]", "", "")
+	request.prepare(RUSTG_HTTP_METHOD_GET, "[config.opengoon_api_endpoint]/notes/?[list2params(data)]", "", "")
 	request.begin_async()
 	UNTIL(request.is_complete())
 	var/datum/http_response/response = request.into_response()
@@ -47,12 +47,12 @@
 	if (!player || !admin || !note)
 		return
 
-	if (!config.player_notes_baseurl || !config.player_notes_auth)
+	if (!config.opengoon_api_endpoint || !config.opengoon_api_token)
 		alert("Missing configuration for player notes")
 		return
 
 	var/list/data = list(
-		"auth" = config.player_notes_auth,
+		"auth" = md5(config.opengoon_api_token),
 		"action" = "add",
 		"server" = serverKey,
 		"server_id" = config.server_id,
@@ -63,7 +63,7 @@
 
 	// Send data
 	var/datum/http_request/request = new()
-	request.prepare(RUSTG_HTTP_METHOD_GET, "[config.player_notes_baseurl]/?[list2params(data)]", "", "")
+	request.prepare(RUSTG_HTTP_METHOD_GET, "[config.opengoon_api_endpoint]/notes/?[list2params(data)]", "", "")
 	request.begin_async()
 
 
@@ -72,17 +72,17 @@
 	if (!id)
 		return
 
-	if (!config.player_notes_baseurl || !config.player_notes_auth)
+	if (!config.opengoon_api_endpoint || !config.opengoon_api_token)
 		alert("Missing configuration for player notes")
 		return
 
 	var/list/data = list(
-		"auth" = config.player_notes_auth,
+		"auth" = md5(config.opengoon_api_token),
 		"action" = "delete",
 		"id" = id
 	)
 
 	// Send data
 	var/datum/http_request/request = new()
-	request.prepare(RUSTG_HTTP_METHOD_GET, "[config.player_notes_baseurl]/?[list2params(data)]", "", "")
+	request.prepare(RUSTG_HTTP_METHOD_GET, "[config.opengoon_api_endpoint]/notes/?[list2params(data)]", "", "")
 	request.begin_async()

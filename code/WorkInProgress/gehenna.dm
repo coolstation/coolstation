@@ -1,4 +1,4 @@
-#define GEHENNA_TIME 185
+#define GEHENNA_TIME 250
 #define WASTELAND_MIN_TEMP 250
 #define WASTELAND_MAX_TEMP 350
 
@@ -13,6 +13,7 @@
 	desc = "looks loosely packed"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock"
+	floor_turf = "/turf/gehenna/desert/path"
 	New()
 		..()
 		src.icon_state = initial(src.icon_state)
@@ -44,10 +45,11 @@
 	var/datum/light/point/light = null
 	var/light_r = 0.5*(sin(GEHENNA_TIME)+1)
 	var/light_g = 0.3*(sin(GEHENNA_TIME )+1)
-	var/light_b = 0.3*(sin(GEHENNA_TIME + 45 )+1)
+	var/light_b = 0.4*(sin(GEHENNA_TIME - 45 )+1)
 	var/light_brightness = 0.6*(sin(GEHENNA_TIME)+0.8) + 0.3
 	var/light_height = 3
 	var/generateLight = 1
+	var/stone_color
 
 	New()
 		..()

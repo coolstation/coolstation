@@ -39,9 +39,9 @@ var/global/list/bible_contents = list()
 			if( istype(H) )
 				if( prob(25) )
 					H.delStatus("bloodcurse")
-					H.cure_disease_by_path(/datum/ailment/disease/cluwneing_around/cluwne)
-				if(prob(25))
-					H.cure_disease_by_path(/datum/ailment/disability/clumsy/cluwne)
+					//H.cure_disease_by_path(/datum/ailment/disease/cluwneing_around/cluwne) // No Respite for Cluwnes - warc
+				//if(prob(25))
+					//H.cure_disease_by_path(/datum/ailment/disability/clumsy/cluwne)  // No Respite for Cluwnes - warc
 			M.HealDamage("All", heal_amt, heal_amt)
 			if(prob(40))
 				JOB_XP(user, "Chaplain", 1)

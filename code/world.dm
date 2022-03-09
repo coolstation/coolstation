@@ -790,14 +790,14 @@ var/f_color_selector_handler/F_Color_Selector
 	Z_LOG_DEBUG("World/Status", "Updating status")
 
 	//we start off with an animated bee gif because, well, this is who we are.
-	var/s = "<img src=\"http://goonhub.com/bee.gif\"/>"
+	var/s = "<img src=\"https://coolstation.space/cool_assets/meatvendor.gif\"/>"
 
 	if (config?.server_name)
-		s += "<b><a href=\"https://goonhub.com\">[config.server_name]</a></b> &#8212; "
+		s += "<b><a href=\"https://coolstation.space\">[config.server_name]</a></b> &#8212; "
 	else
 		s += "<b>SERVER NAME HERE</b> &#8212; "
 
-	s += "The classic SS13 experience. &#8212; (<a href=\"http://bit.ly/gndscd\">Discord</a>)<br>"
+	s += "The hotdog SS13 experience. Demo Server. &#8212; (<a href=\"https://discord.gg/Xh3yfs8KGn\">Discord</a>)<br>"
 
 	if (map_settings)
 		var/map_name = istext(map_settings.display_name) ? "[map_settings.display_name]" : "[map_settings.name]"
@@ -1208,7 +1208,7 @@ var/f_color_selector_handler/F_Color_Selector
 							return 1
 #endif
 
-		if (addr != config.ircbot_ip && addr != config.goonhub_api_ip && addr != config.goonhub2_hostname)
+		if (addr != config.ircbot_ip && addr != config.opengoon_api_ip && addr != config.opengoon2_hostname)
 			return 0 //ip filtering
 
 		var/list/plist = params2list(T)
@@ -1480,9 +1480,9 @@ var/f_color_selector_handler/F_Color_Selector
 					logTheThing("debug", null, null, "<b>API Error (Temp):</b> Didnt get proc.")
 					return 0
 
-				if (addr != config.goonhub_api_ip) return 0 //ip filtering
+				if (addr != config.opengoon_api_ip) return 0 //ip filtering
 				var/auth = plist["auth"]
-				if (auth != md5(config.goonhub_api_token)) return 0 //really bad md5 token security
+				if (auth != md5(config.opengoon_api_token)) return 0 //really bad md5 token security
 				var/theDatum = plist["datum"] ? plist["datum"] : null
 				var/theProc = "/proc/[plist["proc"]]"
 
@@ -1563,9 +1563,9 @@ var/f_color_selector_handler/F_Color_Selector
 
 			if ("version")
 				var/ircmsg[] = new()
-				ircmsg["major"] = world.byond_version
-				ircmsg["minor"] = world.byond_build
-				ircmsg["goonhub_api"] = config.goonhub_api_version ? config.goonhub_api_version : 0
+				ircmsg["major"] = ci_dm_version_major
+				ircmsg["minor"] = ci_dm_version_minor
+				ircmsg["opengoon_api"] = config.opengoon_api_version ? config.opengoon_api_version : 0
 				return ircbot.response(ircmsg)
 
 			if ("youtube")

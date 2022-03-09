@@ -319,6 +319,21 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	min_health = 20
 	color = "#CCFFFF"
 
+/obj/item/storage/box/foss_flashbulbs
+	spawn_contents = list(/obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb)
+
+/obj/item/storage/box/foss_flashbulbs/better
+	spawn_contents = list(/obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb)
+	make_my_stuff()
+		..()
+		if(prob(30))
+			new /obj/item/gun_parts/magazine/juicer(src)
+		else
+			if (prob(70))
+				new /obj/item/gun_parts/magazine/juicer/small(src)
+			else
+				new /obj/item/gun_parts/accessory/horn(src)
+
 // NEW PROJECTILE TYPES TEMPORARY STORAGE
 
 /datum/projectile/energy_bolt/three

@@ -1415,8 +1415,8 @@
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/dispatchcomp, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/gunholder/recharging, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/filecomp, 30)
-		product_list += new/datum/data/vending_product(/obj/item/mechanics/flushcomp, 30)
-		product_list += new/datum/data/vending_product(/obj/item/mechanics/accelerator, 30)
+		product_list += new/datum/data/vending_product(/obj/item/mechanics/flushcomp, 3) // reduced from 30
+		product_list += new/datum/data/vending_product(/obj/item/mechanics/accelerator, 3) // reduced from 30
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/gunholder, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/hscan, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/instrumentPlayer, 10)
@@ -1437,7 +1437,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/sigbuilder, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/sigcheckcomp, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/synthcomp, 30)
-		product_list += new/datum/data/vending_product(/obj/item/mechanics/telecomp, 30)
+		//product_list += new/datum/data/vending_product(/obj/item/mechanics/telecomp, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/zapper, 10)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/thprint, 10)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/togglecomp, 30)

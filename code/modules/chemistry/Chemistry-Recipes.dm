@@ -2290,6 +2290,15 @@ datum
 			mix_phrase = "A light layer of frost forms on top of the mixture."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 
+		not_a_cryo_pill
+			name = "Cryofailane"
+			id = "cryofailane"
+			result = "CBD" // not totally useless but very limited use.
+			required_reagents = list("cryostylane" = 1, "cryoxadone" = 1) // there ya go bye
+			result_amount = 2
+			mix_phrase = "The deep blue hues fade to an impotent green."
+			mix_sound = 'sound/misc/drinkfizz.ogg'
+
 		spaceacillin
 			name = "spaceacillin"
 			id = "spaceacillin"

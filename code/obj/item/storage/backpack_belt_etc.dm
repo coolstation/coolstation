@@ -54,7 +54,7 @@
 	desc = "A stylish red, evil, thick, wearable container made of synthetic fibers, able to carry a number of objects comfortably on an operative's back."
 	icon_state = "Syndiebackpack"
 	item_state = "Syndiebackpack"
-	spawn_contents = list(/obj/item/storage/box/starter/withO2)
+	spawn_contents = list(/obj/item/storage/box/starter/withO2, /obj/item/gun/modular/foss, /obj/item/storage/box/foss_flashbulbs)
 
 /obj/item/storage/backpack/captain
 	name = "Captain's Backpack"
@@ -76,7 +76,7 @@
 	name = "tactical assault rucksack"
 	desc = "A military backpack made of high density fabric, designed to fit a wide array of tools for comprehensive storage support."
 	icon_state = "tactical_backpack"
-	spawn_contents = list(/obj/item/storage/box/starter/withO2)
+	spawn_contents = list(/obj/item/storage/box/starter/withO2, /obj/item/gun/modular/foss/long, /obj/item/storage/box/foss_flashbulbs/better)
 	slots = 10
 
 /obj/item/storage/backpack/medic

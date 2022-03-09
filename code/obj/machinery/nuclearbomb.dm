@@ -16,6 +16,7 @@
 	var/done = 0
 	var/debugmode = 0
 	var/datum/hud/nukewires/wirepanel
+	var/datum/hud/nuclear/nuclear_countdown
 	var/obj/item/disk/data/floppy/read_only/authentication/disk = null
 	var/isitspacemas = 0
 
@@ -76,9 +77,11 @@
 		if (det_time && ticker.round_elapsed_ticks >= det_time)
 			SPAWN_DBG(0)
 				explode()
+				nuclear_countdown.you_lose()
 			src.maptext = "<span style=\"color: red; font-family: Fixedsys, monospace; text-align: center; vertical-align: top; -dm-text-outline: 1 black;\">--:--</span>"
 		else
 			src.maptext = "<span style=\"color: red; font-family: Fixedsys, monospace; text-align: center; vertical-align: top; -dm-text-outline: 1 black;\">[get_countdown_timer()]</span>"
+			nuclear_countdown.update_time(get_countdown_timer())
 		return
 
 	examine(mob/user)
@@ -152,6 +155,9 @@
 								src.add_simple_light("nuke", list(255, 127, 127, 127))
 								command_alert("\A [src] has been armed in [A]. It will detonate in [src.get_countdown_timer()] minutes. All personnel must report to [A] to disarm the bomb immediately.", "Nuclear Weapon Detected")
 								world << sound('sound/machines/bomb_planted.ogg')
+								nuclear_countdown = new()
+								for (var/client/C in clients)
+									nuclear_countdown.add_client(C)	// New Hud
 								logTheThing("bombing", user, null, "armed [src] at [log_loc(src)].")
 
 					else
