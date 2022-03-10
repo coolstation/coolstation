@@ -18,9 +18,11 @@
 	var/has_storage = 0
 	var/obj/item/storage/desk_drawer/desk_drawer = null
 	var/slaps = 0
+	var/colorcache = null
 
 
 	New(loc, obj/a_drawer)
+		colorcache = src.color
 		..()
 		if (src.has_storage)
 			if (a_drawer)
@@ -60,6 +62,8 @@
 			if (locate(src.auto_type) in T)
 				dirs |= direction
 		icon_state = num2text(dirs)
+		src.color = colorcache
+
 
 		//christ this is ugly
 		//seconded, its also broken for tables in diagonal directions // maybe not any more?
@@ -123,6 +127,8 @@
 				src.UpdateOverlays(null, "NWcorner")
 		else
 			src.UpdateOverlays(null, "NWcorner")
+
+
 
 	proc/deconstruct() //feel free to burn me alive because im stupid and couldnt figure out how to properly do it- Ze // im helping - haine
 		var/obj/item/furniture_parts/P
@@ -633,6 +639,7 @@
 			var/datum/material/M
 			M = getMaterial(default_material)
 			src.setMaterial(M)
+		src.color = colorcache
 
 	UpdateName()
 		if (src.glass_broken)
