@@ -177,7 +177,7 @@ ATTENTION: The changelog has moved into its own file: strings/changelog.txt
 								html += "<span class='tooltiptext'>[emoji_parts[2]]</span>"
 							html += "</span>"
 						if(pr_num)
-							html += "<a target='_blank' href='https://github.com/goonstation/goonstation/pull/[pr_num]' class='pr_link'><span class='pr_number'>#[pr_num]</span>&gt;</a>"
+							html += "<a target='_blank' href='https://github.com/coolstation/coolstation/pull/[pr_num]' class='pr_link'><span class='pr_number'>#[pr_num]</span>&gt;</a>"
 						html += "</li>"
 						added_author = 1
 					html += "<li>[copytext(line, 4, 0)]</li>"
@@ -191,7 +191,7 @@ ATTENTION: The changelog has moved into its own file: strings/changelog.txt
 								collapsible_html += "<span class='tooltiptext'>[emoji_parts[2]]</span>"
 							collapsible_html += "</span>"
 						if(pr_num)
-							collapsible_html += "<a target='_blank' href='https://github.com/goonstation/goonstation/pull/[pr_num]' class='pr_link'><span class='pr_number'>#[pr_num]</span>&gt;</a>"
+							collapsible_html += "<a target='_blank' href='https://github.com/coolstation/coolstation/pull/[pr_num]' class='pr_link'><span class='pr_number'>#[pr_num]</span>&gt;</a>"
 						collapsible_html += "</li>"
 						added_collapsible_author = 1
 					collapsible_html += "<li>[copytext(line, 4, 0)]</li>"
@@ -204,14 +204,14 @@ ATTENTION: The changelog has moved into its own file: strings/changelog.txt
 
 /datum/changelog/New()
 	..()
-//<img alt="Goonstation 13" src="[resource("images/changelog/postcardsmall.jpg")]" class="postcard" />
+//<img alt="Coolstation 13" src="[resource("images/changelog/postcardsmall.jpg")]" class="postcard" />
 
 	html = {"
-<h1>Goonstation 13 <a href="#license"><img alt="Creative Commons CC-BY-NC-SA License" src="[resource("images/changelog/88x31.png")]" /></a></h1>
+<h1>Coolstation 13</h1>
 
 <ul class="links cf">
-    <li>Official Wiki<br><strong><a target="_blank" href="http://wiki.ss13.co/">https://wiki.ss13.co</a></strong><span></span></li>
-    <li>Official Forums<br><strong><a target="_blank" href="https://forum.ss13.co/">https://forum.ss13.co</a></strong></li>
+    <li>Official Wiki<br><strong><a target="_blank" href="http://wiki.coolstation.space/">https://wiki.coolstation.space</a></strong><span></span></li>
+    <li>Official Forums<br><strong><a target="_blank" href="https://forum.coolstation.space">https://forum.coolstation.space</a></strong></li>
 </ul>"}
 
 #if ASS_JAM
@@ -221,7 +221,12 @@ ATTENTION: The changelog has moved into its own file: strings/changelog.txt
 #endif
 	html += changelog_parse(file2text("strings/changelog.txt"), "Changelog")
 	html += {"
-<h3>GoonStation 13 Development Team</h3>
+<h3>Coolstation 13 Development Team</h3>
+<p class="team">
+    buncha nerds
+</p>
+
+<h3>GoonStation 13 Development Team (Our Fork Source)</h3>
 <p class="team">
     <strong>Host:</strong> Wire (#1, #2, Wiki, Forums, & more)<br>
 
@@ -235,5 +240,6 @@ ATTENTION: The changelog has moved into its own file: strings/changelog.txt
 
     <em>
     	Except where otherwise noted, Goonstation 13 is licensed under a <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-Noncommercial-Share Alike 3.0 License</a>.
+		I forgot what the Coolstation license is but I'm sure I'll find it and update it here
     </em>
 </p>"}
