@@ -76,6 +76,9 @@
 				pool(src)
 				return
 
+	/* For potential festivities! */
+	proc/seasonal_check(obj/item/W as obj, mob/user as mob)
+	return
 
 /obj/item/reagent_containers/food/snacks/plant/bamboo/
 	name = "bamboo shoot"
@@ -263,8 +266,7 @@
 	var/sprimkl = new/list()
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if(SECRETS_ENABLED)
-			seasonal_check(W, user)
+		seasonal_check(W, user)
 		if (istype(W, /obj/item/reagent_containers/food/snacks/ingredient/meat/synthmeat))
 			boutput(user, "<span class='notice'>You combine the [src] and [W] to create a Synthorange!</span>")
 			var/obj/item/reagent_containers/food/snacks/plant/orange/synth/P = new(W.loc)
