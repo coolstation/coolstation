@@ -78,7 +78,7 @@
 
 	/* For potential festivities! */
 	proc/seasonal_check(obj/item/W as obj, mob/user as mob)
-	return
+		return
 
 /obj/item/reagent_containers/food/snacks/plant/bamboo/
 	name = "bamboo shoot"
