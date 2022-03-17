@@ -1390,6 +1390,12 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 			src.visible_message("<span class='alert'><b>[user] is trying to shove [W:affecting] [icon_state == "ladder"?"down":"up"] [src]!</b></span>")
 			return attack_hand(W:affecting)
 
+	MouseDrop_T(atom/movable/O as mob, mob/user as mob) // lets let ghosts use ladders, please.
+		if(istype(O, /mob/dead/observer) && (O == user))
+			climb(user)
+		else
+			..()
+
 	proc/climb(mob/user as mob)
 		var/obj/ladder/otherLadder = locate("ladder_[id][src.icon_state == "ladder"]")
 		if (!istype(otherLadder))
