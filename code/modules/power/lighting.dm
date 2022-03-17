@@ -515,6 +515,10 @@
 		desc = "A small lighting fixture."
 		light_type = /obj/item/light/bulb
 
+	red
+		name = "red fluorescent light fixture"
+		light_type = /obj/item/light/tube/red
+
 
 // create a new lighting fixture
 /obj/machinery/light/New()

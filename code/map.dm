@@ -24,6 +24,7 @@ var/global/list/mapNames = list(
 	"Donut 2" = 		list("id" = "DONUT2", 		"settings" = "donut2",			"playerPickable" = ASS_JAM),
 	"Donut 3" = 		list("id" = "DONUT3", 		"settings" = "donut3",			"playerPickable" = 1, 		"MinPlayersAllowed" = 40),
 	"Horizon" = 		list("id" = "HORIZON", 		"settings" = "horizon", 		"playerPickable" = 0),
+	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 0),
 	//"Mushroom" =		list("id" = "MUSHROOM", 	"settings" = "mushroom",		"playerPickable" = ASS_JAM),
 	//"Trunkmap" = 		list("id" = "TRUNKMAP", 	"settings" = "trunkmap",		"playerPickable" = ASS_JAM),
 	"Oshan Laboratory"= list("id" = "OSHAN", 		"settings" = "oshan", 			"playerPickable" = 1),
@@ -1002,6 +1003,49 @@ var/global/list/mapNames = list(
 	merchant_right_station = null
 
 	valid_nuke_targets = list()
+
+
+/datum/map_settings/gehenna
+	name = "GEHENNA"
+	goonhub_map = "https://coolstation.space/adults.html"
+	walls = /turf/simulated/wall/auto/supernorn
+	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	auto_walls = 1
+
+	windows = /obj/window/auto
+	windows_thin = /obj/window/pyro
+	rwindows = /obj/window/auto/reinforced
+	rwindows_thin = /obj/window/reinforced/pyro
+	windows_crystal = /obj/window/auto/crystal
+	windows_rcrystal = /obj/window/auto/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER
+	window_layer_north = GRILLE_LAYER+0.1
+	window_layer_south = FLY_LAYER+1
+	auto_windows = 1
+
+	ext_airlocks = /obj/machinery/door/airlock/pyro/external
+	airlock_style = "pyro"
+
+	//escape_centcom = /area/shuttle/escape/centcom/cogmap
+	//escape_outpost = /area/shuttle/escape/outpost/cogmap
+	//escape_transit = /area/shuttle/escape/transit/cogmap
+	//escape_station = /area/shuttle/escape/station/cogmap
+	escape_def = SHUTTLE_SOUTH
+	escape_dir = SOUTH
+
+	//merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
+	//merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
+	//merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
+	//merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
+
+	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
+		"the cargo office (QM)" = list(/area/station/quartermaster/office),
+		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
+		"the hospital" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/lobby),
+		"the station's cafeteria" = list(/area/station/crew_quarters/cafeteria),
+		"the bridge" = list(/area/station/bridge),
+		"the chapel" = list(/area/station/chapel/sanctuary))
+
 
 /area/shuttle/escape/centcom
 	icon_state = "shuttle_escape"
