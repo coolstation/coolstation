@@ -42,6 +42,7 @@
 
 #elif defined(MAP_OVERRIDE_ATLAS)
 
+#elif defined(MAP_OVERRIDE_BOBMAP)
 
 #elif defined(MAP_OVERRIDE_MANTA)
 
