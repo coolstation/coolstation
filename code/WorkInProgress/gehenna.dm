@@ -9,6 +9,9 @@
 	desc = "errrr"
 
 /turf/simulated/wall/asteroid/gehenna
+	fullbright = 0
+	luminosity = 0.5*(sin(GEHENNA_TIME)+ 1)
+
 	name = "sulferous rock"
 	desc = "looks loosely packed"
 	icon = 'icons/turf/floors.dmi'
@@ -20,12 +23,16 @@
 	space_overlays()
 		return
 
+
+
 /turf/simulated/wall/asteroid/gehenna/tough
 	name = "dense sulferous rock"
 	desc = "looks densely packed"
 	icon_state = "gehenna_rock2"
 
 /turf/unsimulated/wall/gehenna/
+	fullbright = 0
+	luminosity = 1
 	name = "monolithic sulferous rock"
 	desc = "looks conveniently impenetrable"
 	icon = 'icons/turf/floors.dmi'
