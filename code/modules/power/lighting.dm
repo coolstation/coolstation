@@ -565,6 +565,10 @@
 		name = "red fluorescent light fixture"
 		light_type = /obj/item/light/tube/red
 
+	yellow
+		name = "yellow fluorescent light fixture"
+		light_type = /obj/item/light/tube/yellow
+
 
 // create a new lighting fixture
 /obj/machinery/light/New()
