@@ -1,4 +1,3 @@
-
 /atom/proc/electrocute(mob/user, prb, netnum, var/ignore_gloves)
 
 	if(!prob(prb))
@@ -76,7 +75,8 @@
 	text = ""
 
 	var/insulator_default = "synthrubber"
-	var/condcutor_default = "copper"
+	var/conductor_default = "pharosium"
+	var/cuttable = "1"
 
 	var/datum/material/insulator = null
 	var/datum/material/conductor = null
@@ -229,7 +229,7 @@
 	iconmod = "-thick"
 	color = "#075C90"
 
-	condcutor_default = "pharosium"
+	conductor_default = "pharosium"
 	insulator_default = "synthblubber"
 
 	//same as normal cables but you have to click them multiple cuts heheheh
@@ -280,7 +280,7 @@
 	if (istype(source))
 		applyCableMaterials(src, source.insulator, source.conductor)
 	else
-		applyCableMaterials(src, getMaterial(insulator_default), getMaterial(condcutor_default))
+		applyCableMaterials(src, getMaterial(insulator_default), getMaterial(conductor_default))
 
 	START_TRACKING
 
@@ -349,6 +349,17 @@
 	qdel(src)
 	return
 
+/obj/cable/proc/weld(mob/user,turf/T) //set up the welder proc for conduit
+	src.visible_message("<span class='alert'>[user] melts the cable's insulation for some reason.</span>")
+	//todo: set cable is melted
+	//new proc: do the glass shard thing and see if someone stepping on it doesn't have shoes and if not, zap them
+	//probably don't want to do powernet shit
+
+	shock(user, 50)
+
+	return
+
+
 
 /obj/cable/attackby(obj/item/W, mob/user)
 
@@ -357,13 +368,15 @@
 		return
 
 	if (issnippingtool(W))
-		src.cut(user,T)
-		return	// not needed, but for clarity
+		src.cut(user,T) //for normal cables
 
 	else if (istype(W, /obj/item/cable_coil))
 		var/obj/item/cable_coil/coil = W
 		coil.cable_join(src, user)
 		//note do shock in cable_join
+
+	else if (istype(W, /obj/item/weldingtool))
+		src.weld(user,T) //for conduit
 
 	else if (istype(W, /obj/item/device/t_scanner) || ispulsingtool(W) || (istype(W, /obj/item/device/pda2) && istype(W:module, /obj/item/device/pda_module/tray)))
 
