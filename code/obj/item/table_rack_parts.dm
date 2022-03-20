@@ -299,6 +299,16 @@ RACK PARTS
 	furniture_type = /obj/stool/bar
 	furniture_name = "bar stool"
 
+/obj/item/furniture_parts/stepstool
+	name = "stepstool parts"
+	desc = "A collection of parts that can be used to make a stepladder."
+	icon = 'icons/obj/furniture/chairs.dmi'
+	icon_state = "stool_parts"
+	stamina_damage = 15
+	stamina_cost = 15
+	furniture_type = /obj/stool/stepstool
+	furniture_name = "stepstool"
+
 /* ---------- Bench Parts ---------- */
 /obj/item/furniture_parts/bench
 	name = "bench parts"
