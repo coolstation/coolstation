@@ -775,7 +775,7 @@
 	sight_modifier()
 		mob.sight |= SEE_MOBS
 		mob.see_in_dark = SEE_DARK_FULL
-		mob.see_invisible = 3
+		mob.see_invisible = INVIS_CLOAK + 1
 
 	emote(var/act)
 		var/message = null
@@ -837,7 +837,7 @@
 
 	sight_modifier()
 		mob.see_in_dark = SEE_DARK_HUMAN + 1
-		mob.see_invisible = 1
+		mob.see_invisible = INVIS_INFRA
 
 	say_filter(var/message)
 		return replacetext(message, "s", stutter("ss"))
@@ -940,7 +940,7 @@
 	sight_modifier()
 		mob.sight |= SEE_MOBS
 		mob.see_in_dark = SEE_DARK_FULL
-		mob.see_invisible = 0
+		mob.see_invisible = INVIS_NONE
 
 	say_filter(var/message)
 		return pick("Urgh...", "Brains...", "Hungry...", "Kill...")
@@ -1315,7 +1315,7 @@
 		if (ishuman(mob))
 			mob.sight |= SEE_MOBS
 			mob.see_in_dark = SEE_DARK_FULL
-			mob.see_invisible = 2
+			mob.see_invisible = INVIS_CLOAK
 		return
 
 	// Werewolves (being a melee-focused role) are quite buff.
@@ -1710,7 +1710,7 @@
 
 	sight_modifier()
 		mob.see_in_dark = SEE_DARK_HUMAN + 1
-		mob.see_invisible = 1
+		mob.see_invisible = INVIS_INFRA
 
 	disposing()
 		if(ishuman(mob))
@@ -1746,7 +1746,7 @@
 
 	sight_modifier()
 		mob.see_in_dark = SEE_DARK_HUMAN + 1
-		mob.see_invisible = 1
+		mob.see_invisible = INVIS_INFRA
 
 	disposing()
 		if(ishuman(mob))

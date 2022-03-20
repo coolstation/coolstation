@@ -946,7 +946,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 		M.traitHolder.addTrait("training_chaplain")
 		OTHER_START_TRACKING_CAT(M, TR_CAT_CHAPLAINS)
 		if (prob(15))
-			M.see_invisible = 15
+			M.see_invisible = INVIS_GHOSTVISION
 
 /datum/job/civilian/staff_assistant
 	name = "Staff Assistant"

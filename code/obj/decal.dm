@@ -403,7 +403,7 @@ obj/decal/fakeobjects/teleport_pad
 	desc = "Oh my!!"
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "lum"
-	invisibility = 101
+	invisibility = INVIS_ALWAYS
 	blood_DNA = null
 	blood_type = null
 

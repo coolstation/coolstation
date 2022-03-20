@@ -5145,12 +5145,12 @@ var/global/noir = 0
 
 		usr.overlays += image("icon" = 'icons/mob/mob.dmi', "icon_state" = "shield")
 
-		usr.invisibility = 100
+		usr.invisibility = INVIS_ALWAYS_ISH
 	else
 		boutput(usr, "You are no longer cloaked")
 
 		usr.set_clothing_icon_dirty()
-		usr.invisibility = 0
+		usr.invisibility = INVIS_NONE
 */
 //
 //

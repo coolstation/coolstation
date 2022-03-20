@@ -1423,7 +1423,7 @@
 			//qdel(src.mover)
 			src.mover = null
 		if((allow_big_explosion && cell && (cell.charge / cell.maxcharge > 0.85) && prob(25)) || istype(src.cell, /obj/item/cell/erebite))
-			src.invisibility = 100
+			src.invisibility = INVIS_ALWAYS_ISH
 			var/obj/overlay/Ov = new/obj/overlay(T)
 			Ov.anchored = 1
 			Ov.name = "Explosion"
@@ -4895,7 +4895,7 @@
 			src.mover.master = null
 			qdel(src.mover)
 
-		src.invisibility = 100
+		src.invisibility = INVIS_ALWAYS_ISH
 		var/obj/overlay/Ov = new/obj/overlay(T)
 		Ov.anchored = 1
 		Ov.name = "Explosion"

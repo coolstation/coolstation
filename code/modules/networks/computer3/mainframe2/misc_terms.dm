@@ -2787,7 +2787,7 @@
 	desc = "A beam of infrared light."
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "ibeam"
-	invisibility = 2
+	invisibility = INVIS_INFRA
 	dir = 2
 	//var/obj/beam/ir_beam/next = null
 	var/obj/machinery/networked/secdetector/master = null

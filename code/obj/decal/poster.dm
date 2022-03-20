@@ -762,7 +762,7 @@
 			icon = 'icons/effects/96x32.dmi'
 			icon_state = "fuq3"
 			bound_width  = 96
-			plane = -99
+			plane = PLANE_NOSHADOW_ABOVE
 
 		/* Be gay, do crime */
 		pride

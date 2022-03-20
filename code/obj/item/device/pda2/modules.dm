@@ -277,7 +277,7 @@
 					continue
 
 				if(O.invisibility == 101)
-					O.invisibility = 0
+					O.invisibility = INVIS_NONE
 					O.alpha = 128
 					SPAWN_DBG(1 SECOND)
 						if(O)
@@ -285,15 +285,15 @@
 							if(!istype(U))
 								return
 							if(U.intact)
-								O.invisibility = 101
+								O.invisibility = INVIS_ALWAYS
 								O.alpha = 255
 
 			var/mob/living/M = locate() in T
 			if(M?.invisibility == 2)
-				M.invisibility = 0
+				M.invisibility = INVIS_NONE
 				SPAWN_DBG(0.2 SECONDS)
 					if(M)
-						M.invisibility = 2
+						M.invisibility = INVIS_CLOAK
 
 /obj/ability_button/pda_tray_toggle
 	name = "Toggle PDA T-Scanner"

@@ -15,7 +15,7 @@
 // this allows the gas flushed to be tracked
 
 /obj/disposalholder
-	invisibility = 101
+	invisibility = INVIS_ALWAYS
 	var/datum/gas_mixture/gas = null	// gas used to flush, will appear at exit point
 	var/active = 0	// true if the holder is moving, otherwise inactive
 	dir = 0
@@ -344,7 +344,7 @@
 					var/obj/disposalpipe/broken/P = new(src.loc)
 					P.set_dir(D)
 
-		src.invisibility = 101	// make invisible (since we won't delete the pipe immediately)
+		src.invisibility = INVIS_ALWAYS	// make invisible (since we won't delete the pipe immediately)
 		var/obj/disposalholder/H = locate() in src
 		if(H)
 			// holder was present

@@ -15,7 +15,7 @@
 				human_owner.mutantrace.sight_modifier()
 			else
 				owner.see_in_dark = SEE_DARK_HUMAN
-				owner.see_invisible = 0
+				owner.see_invisible = INVIS_NONE
 
 			if (owner.client)
 				if((owner.traitHolder && owner.traitHolder.hasTrait("cateyes")) || (owner.getStatusDuration("food_cateyes")))
@@ -26,7 +26,7 @@
 			if (human_owner && isvampire(human_owner))
 				if (human_owner.check_vampire_power(1) == 1 && !isrestrictedz(human_owner.z))
 					human_owner.sight |= SEE_MOBS
-					human_owner.see_invisible = 2
+					human_owner.see_invisible = INVIS_CLOAK
 
 ////Dead sight
 		var/turf/T = owner.eye ? get_turf(owner.eye) : get_turf(owner) //They might be in a closet or something idk
@@ -36,9 +36,9 @@
 			owner.sight |= SEE_OBJS
 			owner.see_in_dark = SEE_DARK_FULL
 			if (owner.client?.adventure_view)
-				owner.see_invisible = 21
+				owner.see_invisible = INVIS_ADVENTURE + 1
 			else
-				owner.see_invisible = 2
+				owner.see_invisible = INVIS_CLOAK
 		else
 			if (robot_owner)
 				//var/sight_therm = 0 //todo fix this
@@ -71,7 +71,7 @@
 				if (sight_constr)
 					robot_owner.see_invisible = 9
 				else
-					robot_owner.see_invisible = 2
+					robot_owner.see_invisible = INVIS_CLOAK
 
 				robot_owner.sight &= ~SEE_OBJS
 				robot_owner.see_in_dark = SEE_DARK_FULL
@@ -84,7 +84,7 @@
 					owner.sight &= ~ship.sensors.antisight
 					owner.see_in_dark = ship.sensors.see_in_dark
 					if (owner.client?.adventure_view)
-						owner.see_invisible = 21
+						owner.see_invisible = INVIS_ADVENTURE + 1
 					else
 						owner.see_invisible = ship.sensors.see_invisible
 					if(ship.sensors.centerlight)
@@ -98,19 +98,19 @@
 		if (HAS_MOB_PROPERTY(owner, PROP_GHOSTVISION) && (T && !isrestrictedz(T.z)))
 			if (owner.see_in_dark != 1)
 				owner.see_in_dark = 1
-			if (owner.see_invisible < 15)
-				owner.see_invisible = 15
+			if (owner.see_invisible < INVIS_GHOSTVISION)
+				owner.see_invisible = INVIS_GHOSTVISION
 
 		if (owner.client?.adventure_view)
-			owner.see_invisible = 21
+			owner.see_invisible = INVIS_ADVENTURE + 1
 
 		if (HAS_MOB_PROPERTY(owner, PROP_THERMALVISION_MK2))
 			owner.sight |= SEE_MOBS //traitor item can see through walls
 			owner.sight &= ~SEE_BLACKNESS
 			if (owner.see_in_dark < SEE_DARK_FULL)
 				owner.see_in_dark = SEE_DARK_FULL
-			if (owner.see_invisible < 2)
-				owner.see_invisible = 2
+			if (owner.see_invisible < INVIS_CLOAK)
+				owner.see_invisible = INVIS_CLOAK
 			if (owner.see_infrared < 1)
 				owner.see_infrared = 1
 			owner.render_special.set_centerlight_icon("thermal", rgb(0.5 * 255, 0.5 * 255, 0.5 * 255))
@@ -122,8 +122,8 @@
 			//src.sight |= SEE_MOBS
 			if (owner.see_in_dark < initial(owner.see_in_dark) + 4)
 				owner.see_in_dark += 4
-			if (owner.see_invisible < 2)
-				owner.see_invisible = 2
+			if (owner.see_invisible < INVIS_CLOAK)
+				owner.see_invisible = INVIS_CLOAK
 			if (owner.see_infrared < 1)
 				owner.see_infrared = 1
 			owner.render_special.set_centerlight_icon("thermal", rgb(0.5 * 255, 0.5 * 255, 0.5 * 255))
@@ -142,6 +142,6 @@
 			if (istype(human_owner.glasses, /obj/item/clothing/glasses/construction) && (T && !isrestrictedz(T.z)))
 				if (human_owner.see_in_dark < initial(human_owner.see_in_dark) + 1)
 					human_owner.see_in_dark++
-				if (human_owner.see_invisible < 8)
-					human_owner.see_invisible = 8
+				if (human_owner.see_invisible < INVIS_CONSTRUCTION)
+					human_owner.see_invisible = INVIS_CONSTRUCTION
 		..()

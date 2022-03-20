@@ -13,7 +13,7 @@ var/HasturPresent = 0
 	can_grab = 1
 	can_disarm = 1
 	can_help = 1
-	see_invisible = 21
+	see_invisible = INVIS_ADVENTURE + 1
 	stat = 2
 	stepsound = "sound/misc/hastur/tentacle_walk.ogg"
 	speechverb_say = "states"
@@ -238,7 +238,7 @@ var/HasturPresent = 0
 			APPLY_MOB_PROPERTY(H, PROP_INVISIBILITY, src, INVIS_GHOST)
 			H.alpha = 160
 			H.stepsound = null
-			H.see_invisible = 16
+			H.see_invisible = INVIS_WRAITH
 			stage = 1
 
 //TENTACLE LONG RANGE WHIP//

@@ -134,7 +134,7 @@ WET FLOOR SIGN
 	proc/vanish()
 		animate(src, alpha = 0, time = 5)
 		SPAWN_DBG(0.5 SECONDS)
-			src.invisibility = 101
+			src.invisibility = INVIS_ALWAYS
 			src.set_loc(null)
 			qdel(src)
 		return
@@ -814,7 +814,7 @@ WET FLOOR SIGN
 
 	disposing()
 		if(holoparticles)
-			holoparticles.invisibility = 101
+			holoparticles.invisibility = INVIS_ALWAYS
 			qdel(holoparticles)
 			holoparticles = null
 		..()

@@ -1231,7 +1231,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 					playsound(src.loc, "explosion", 75, 1)
 					sleep(2.5 SECONDS)
 					//qdel(rotors)
-					src.invisibility = 100
+					src.invisibility = INVIS_ALWAYS_ISH
 
 					var/obj/decal/exitMarker = locate("IOMOON_BOSSDEATH_EXIT")
 					if (istype(exitMarker))
@@ -1528,7 +1528,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 
 		SPAWN_DBG(1 SECOND)
 			if (src.opened)
-				src.invisibility = 100
+				src.invisibility = INVIS_ALWAYS_ISH
 				src.set_density(0)
 				light.enable()
 			else
@@ -1552,7 +1552,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 		playsound(src.loc, "sound/effects/mag_iceburstimpact.ogg", 25, 1)
 
 		set_density(0)
-		invisibility = 100
+		invisibility = INVIS_ALWAYS_ISH
 		light.disable()
 		SPAWN_DBG(1.3 SECONDS)
 			changing_state = 0
@@ -1576,7 +1576,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 			L.gib()
 
 		set_density(1)
-		invisibility = 0
+		invisibility = INVIS_NONE
 
 		light.enable()
 		if (next && next != src)

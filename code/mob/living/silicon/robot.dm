@@ -261,9 +261,9 @@
 
 		src.see_in_dark = SEE_DARK_FULL
 		if (client?.adventure_view)
-			src.see_invisible = 21
+			src.see_invisible = INVIS_ADVENTURE + 1
 		else
-			src.see_invisible = 2
+			src.see_invisible = INVIS_CLOAK
 
 		logTheThing("combat", src, null, "was destroyed [log_health(src)] at [log_loc(src)].") // Only called for instakill critters and the like, I believe (Convair880).
 

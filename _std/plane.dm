@@ -4,7 +4,7 @@
 #define PLANE_WALL -105
 #define PLANE_NOSHADOW_BELOW -101
 #define PLANE_DEFAULT -100
-#define PLANE_NOSHADOW_ABOVE -99
+#define PLANE_NOSHADOW_ABOVE -99 // sure we can call this a ceiling, whatever
 #define PLANE_HIDDENGAME -98
 #define PLANE_LIGHTING -90
 #define PLANE_SELFILLUM -80

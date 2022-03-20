@@ -63,21 +63,21 @@ Contains:
 					continue
 
 				if(O.invisibility == 101)
-					O.invisibility = 0
+					O.invisibility = INVIS_NONE
 					O.alpha = 128
 					SPAWN_DBG(1 SECOND)
 						if(O && isturf(O.loc))
 							var/turf/U = O.loc
 							if(U.intact)
-								O.invisibility = 101
+								O.invisibility = INVIS_ALWAYS
 								O.alpha = 255
 
 			var/mob/living/M = locate() in T
-			if(M?.invisibility == 2)
-				M.invisibility = 0
+			if(M?.invisibility == INVIS_CLOAK)
+				M.invisibility = INVIS_NONE
 				SPAWN_DBG(0.6 SECONDS)
 					if(M)
-						M.invisibility = 2
+						M.invisibility = INVIS_CLOAK
 
 
 
@@ -108,10 +108,10 @@ Contains:
 
 			var/mob/living/M = locate() in T
 			if(M?.invisibility == 2)
-				M.invisibility = 0
+				M.invisibility = INVIS_NONE
 				SPAWN_DBG(0.6 SECONDS)
 					if(M)
-						M.invisibility = 2
+						M.invisibility = INVIS_CLOAK
 
 		for(var/obj/O in range(2, loc_to_check) )
 			if(O.interesting)
