@@ -101,6 +101,13 @@
 	amount = 6
 	heal_amt = 1
 
+/obj/item/reagent_containers/food/snacks/yoghurt/hoghurt
+	name = "hoghurt"
+	desc = "A plain hoghurt."
+	heal_amt = -2
+	initial_volume = 30
+	initial_reagents = list("beff"=30)
+
 /obj/item/reagent_containers/food/snacks/yoghurt/frozen
 	name = "frozen yoghurt"
 	desc = "A delightful tub of frozen yoghurt."

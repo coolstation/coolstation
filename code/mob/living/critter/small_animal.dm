@@ -1654,6 +1654,15 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	name = "Morty"
 	real_name = "Morty"
 
+/* ------------------ Donglord ------------------- */
+
+/mob/living/critter/small_animal/opossum/donglord
+	name = "stinky weird dog"
+	real_name = "Donglord"
+	desc = "its donglord in disguise"
+	icon_state = "possdong"
+	icon_state_dead = "possdong-dead"
+
 /* ====================================================== */
 /* -------------------- Floating Eye -------------------- */
 /* ====================================================== */
