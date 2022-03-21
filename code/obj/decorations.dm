@@ -596,6 +596,35 @@
 			light.disable()
 			particleMaster.RemoveSystem(/datum/particleSystem/sparkles_disco, src)
 
+/obj/billiard_lamp
+	name = "billiards lamp"
+	icon = 'icons/obj/decoration.dmi'
+	icon_state = "billiardlamp"
+	desc = "One of those old timey stained glass pool table lamps."
+	anchored = 1
+	density = 0
+	layer = 6
+	var/on = 0
+	var/datum/light/point/light
+
+	New()
+		..()
+		light = new
+		light.set_brightness(1)
+		light.set_color(2,2,2)
+		light.set_height(2.4)
+		light.attach(src)
+
+	attack_hand(mob/user as mob)
+		src.toggle_on()
+
+	proc/toggle_on()
+		src.on = !src.on
+		if (src.on)
+			light.enable()
+		else
+			light.disable()
+
 /obj/admin_plaque
 	name = "Admin's Office"
 	desc = "A nameplate signifying who this office belongs to."
