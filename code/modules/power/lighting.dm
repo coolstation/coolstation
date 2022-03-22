@@ -55,7 +55,7 @@
 	#define LIGHTING_POWER_FACTOR 40
 	name = "Area Lighting"
 	event_handler_flags = IMMUNE_SINGULARITY | USE_FLUID_ENTER
-	invisibility = 100
+	invisibility = INVIS_ALWAYS_ISH
 	var/area/my_area = null
 	var/list/lights = list()
 	var/brightness_placeholder = 1	//hey, maybe later use this in a way that is more optimized than iterating through each individual light
@@ -321,6 +321,55 @@
 			name = "very cool incandescent light fixture"
 			light_type = /obj/item/light/bulb/cool/very
 
+	harsh
+		name = "harsh incandescent light fixture"
+		light_type = /obj/item/light/bulb/harsh
+		very
+			name = "very harsh incandescent light fixture"
+			light_type = /obj/item/light/bulb/harsh/very
+//ceiling lights!!
+/obj/machinery/light/small/ceiling
+	icon_state = "floor1"
+	base_state = "floor"
+	desc = "A small round lighting fixture, embedded in the ceiling."
+	plane = PLANE_NOSHADOW_ABOVE
+	allowed_type = /obj/item/light/bulb
+	level = 2
+	//invisibility = INVIS_ALWAYS off for now since we need to be able to see and interact before ceilingmode is in
+	invisibility = INVIS_NONE
+	alpha = 100
+	var/onceiling = 1
+
+	New()
+		..()
+
+	neutral
+		name = "incandescent light fixture"
+		light_type = /obj/item/light/bulb/neutral
+	greenish
+		name = "greenish incandescent light fixture"
+		light_type = /obj/item/light/bulb/greenish
+	blueish
+		name = "blueish fluorescent light fixture"
+		light_type = /obj/item/light/bulb/blueish
+	purpleish
+		name = "purpleish fluorescent light fixture"
+		light_type = /obj/item/light/bulb/purpleish
+	frostedred
+		name = "frosted red fluorescent light fixture"
+		light_type = /obj/item/light/bulb/emergency
+	warm
+		name = "fluorescent light fixture"
+		light_type = /obj/item/light/bulb/warm
+		very
+			name = "warm fluorescent light fixture"
+			light_type = /obj/item/light/bulb/warm/very
+	cool
+		name = "cool incandescent light fixture"
+		light_type = /obj/item/light/bulb/cool
+		very
+			name = "very cool incandescent light fixture"
+			light_type = /obj/item/light/bulb/cool/very
 	harsh
 		name = "harsh incandescent light fixture"
 		light_type = /obj/item/light/bulb/harsh
