@@ -24,6 +24,10 @@
 	else
 		if (get_dist(src, target) > 0)
 			src.set_dir(get_dir(src, target))
+		if (istype(target, /obj/ladder))
+			var/obj/ladder/L = target
+			L.climb(src)
+			return
 		src.examine_verb(target)
 
 /mob/dead/process_move(keys)
