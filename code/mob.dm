@@ -71,6 +71,7 @@
 	var/lying_old = 0
 	var/can_lie = 0
 	var/canmove = 1.0
+	var/ceilingreach = 0
 	var/incrit = 0
 	var/timeofdeath = 0.0
 	var/fakeloss = 0

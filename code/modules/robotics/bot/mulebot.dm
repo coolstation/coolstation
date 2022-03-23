@@ -444,7 +444,9 @@
 		C.set_loc(src)
 		load = C
 		if(ismob(C))
-			C.pixel_y = 9
+			var/mob/rider = C
+			rider.pixel_y = 9
+			rider.ceilingreach = 1 //you may touch the ceiling junk, but when riding on a MULE you currently cannot
 		else
 			C.pixel_y += 9
 		if(C.layer < layer)
@@ -468,7 +470,9 @@
 		load.pixel_y -= 9
 		load.layer = initial(load.layer)
 		if(ismob(load))
-			load.pixel_y = 0
+			var/mob/rider = load
+			rider.pixel_y = 0
+			rider.ceilingreach = 0
 
 		reset_anchored(load)
 

@@ -94,6 +94,7 @@
 
 	var/fitting = "tube"
 	var/wallmounted = 1
+	var/ceilingmounted = 0 //not sure if this is how i'm going to handle it
 	var/nostick = 1 //If set to true, overrides the autopositioning.
 	var/candismantle = 1
 
@@ -338,7 +339,7 @@
 	//invisibility = INVIS_ALWAYS off for now since we need to be able to see and interact before ceilingmode is in
 	invisibility = INVIS_NONE
 	alpha = 100
-	var/onceiling = 1
+	ceilingmounted = 1 //not sure if this is how i'm going to handle it
 
 	New()
 		..()
@@ -676,9 +677,17 @@
 	on = has_power()
 	update()
 
-// attack with item - insert light (if right type), otherwise try to break the light
+// attack with item - insert light (if right type and right level), otherwise try to break the light
 
 /obj/machinery/light/attackby(obj/item/W, mob/user)
+
+	if((ceilingmounted) && (!user.ceilingreach))
+		boutput(user, "You can't seem to reach that high.")
+		return
+
+	if((!ceilingmounted) && (user.ceilingreach))
+		boutput(user, "You'll need to get back down on the ground for that.")
+		return
 
 	if (istype(W, /obj/item/lamp_manufacturer)) //deliberately placed above the borg check
 		var/obj/item/lamp_manufacturer/M = W
@@ -814,6 +823,14 @@
 		var/obj/item/magtractor/mag = user.equipped()
 		if (!istype(mag) || mag.holding) // they aren't holding a magtractor or the magtractor already has something in it
 			return // so there's no room for a bulb
+
+	if((ceilingmounted) && (!user.ceilingreach))
+		boutput(user, "You can't seem to reach that high.")
+		return
+
+	if((!ceilingmounted) && (user.ceilingreach))
+		boutput(user, "You'll need to get back down on the ground for that.")
+		return
 
 	interact_particle(user,src)
 

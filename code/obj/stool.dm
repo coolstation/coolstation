@@ -185,6 +185,8 @@
 				if (istype(B, src.auto_path))
 					B.set_up()
 
+	//todo: add buckle/stand climb up proc without any of the buckling
+
 	deconstruct()
 		if (!src.deconstructable)
 			return
@@ -632,6 +634,7 @@
 					chump.visible_message("<span class='alert'><b>[chump.name] falls off of [src]!</b></span>")
 					chump.on_chair = 0
 					chump.pixel_y = 0
+					chump.ceilingreach = 0
 					chump.changeStatus("weakened", 1 SECOND)
 					chump.changeStatus("stunned", 2 SECONDS)
 					random_brute_damage(chump, 15)
@@ -706,6 +709,7 @@
 				var/mob/living/carbon/human/H = to_buckle
 				to_buckle.set_loc(src.loc)
 				to_buckle.pixel_y = 10
+				H.ceilingreach = 1
 				if (src.anchored)
 					to_buckle.anchored = 1
 				H.on_chair = src
@@ -751,6 +755,7 @@
 
 		if (istype(H) && H.on_chair)// == 1)
 			M.pixel_y = 0
+			H.ceilingreach = 0
 			reset_anchored(M)
 			M.buckled = null
 			buckled_guy.force_laydown_standup()
@@ -1516,17 +1521,16 @@
 		return
 
 /* steplader */
-/obj/stool/stepstool
+/obj/stool/stepstool //this can be cleaned up from some lingering buckle stuffs and other checks
 	name = "stepladder"
 	desc = "A small freestanding ladder that lets you peek your head up at the ceiling. Mostly for changing lightbulbs. Maybe for wrestling."
-	icon = 'icons/misc/worlds.dmi'
+	icon = 'icons/obj/fluid.dmi'
 	icon_state = "ladder"
 	var/buckledIn = 0
 	var/status = 0
 	var/rotatable = 1
 	var/foldable = 1
-	var/climbable = 1
-	var/buckle_move_delay = 6 // this should have been a var somepotato WHY WASN'T IT A VAR
+	var/buckle_move_delay = 6
 	securable = 1
 	anchored = 0
 	density = 0
@@ -1539,7 +1543,7 @@
 
 	New()
 		if (!src.anchored && src.securable) // we're able to toggle between being secured to the floor or not, and we started unsecured
-			src.p_class = 2.5 // no wheels, only scrapes
+			src.p_class = 3 // no wheels, only scrapes
 		..()
 
 	ex_act(severity)
@@ -1592,7 +1596,7 @@
 		var/mob/living/carbon/human/chump = null
 		for (var/mob/M in src.loc)
 
-			if (ishuman(M))
+			if (ishuman(M)) //right now only humans can be on chairs/stepladder, will investigate later
 				chump = M
 			if (!chump || !chump.on_chair)// == 1)
 				chump = null
@@ -1608,17 +1612,18 @@
 					chump.visible_message("<span class='alert'><b>[chump.name] falls off of [src]!</b></span>")
 					chump.on_chair = 0
 					chump.pixel_y = 0
+					chump.ceilingreach = 0
 					chump.changeStatus("weakened", 1 SECOND)
 					chump.changeStatus("stunned", 2 SECONDS)
 					random_brute_damage(chump, 15)
 					playsound(chump.loc, "swing_hit", 50, 1)
 
-				var/obj/item/chair/folded/C = new/obj/item/chair/folded(src.loc)
+				var/obj/item/stepstool/folded/C = new/obj/item/stepstool/folded(src.loc)
 				if (src.material)
 					C.setMaterial(src.material)
 				if (src.icon_state)
 					C.c_color = src.icon_state
-					C.icon_state = "folded_[src.icon_state]"
+					C.icon_state = src.icon_state
 					C.item_state = C.icon_state
 
 				qdel(src)
@@ -1626,10 +1631,7 @@
 	MouseDrop_T(mob/M as mob, mob/user as mob)
 		..()
 		if (M == user) //don't care intents, only mousedrop
-			if(climbable)
-				buckle_in(M, user)
-			else
-				boutput(user, "<span class='alert'>You can't get up on [src].</span>")
+			buckle_in(M, user)
 		else
 			return
 
@@ -1637,7 +1639,7 @@
 		if (M.buckled)
 			boutput(user, "They're already otherwise occupied!", "red")
 			return 0
-		if (!( iscarbon(M) ) || get_dist(src, user) > 1 || M.loc != src.loc || user.restrained() || !isalive(user))
+		if (!( iscarbon(M) ) || get_dist(src, user) > 2 || M.loc != src.loc || user.restrained() || !isalive(user))
 			return 0
 		if(src.buckled_guy && src.buckled_guy.buckled == src && src.buckled_guy != M)
 			user.show_text("There's already someone up on the [src]!", "red")
@@ -1662,6 +1664,7 @@
 			var/mob/living/carbon/human/H = to_buckle
 			to_buckle.set_loc(src.loc)
 			to_buckle.pixel_y = 10
+			to_buckle.ceilingreach = 1
 			if (src.anchored)
 				to_buckle.anchored = 1
 			H.on_chair = src
@@ -1669,7 +1672,6 @@
 			src.buckled_guy = to_buckle
 			src.buckledIn = 1
 			to_buckle.setStatus("buckled", duration = INFINITE_STATUS)
-			H.start_chair_flip_targeting()
 
 			if (src.anchored)
 				to_buckle.anchored = 1
@@ -1694,10 +1696,9 @@
 		var/mob/living/M = src.buckled_guy
 		var/mob/living/carbon/human/H = src.buckled_guy
 
-		M.end_chair_flip_targeting()
-
 		if (istype(H) && H.on_chair)// == 1)
 			M.pixel_y = 0
+			M.ceilingreach = 0
 			reset_anchored(M)
 			M.buckled = null
 			src.buckled_guy = null
@@ -1744,8 +1745,8 @@
 /obj/item/stepstool/folded
 	name = "stepladder"
 	desc = "A folded stepladder. Definitely beats dragging it."
-	icon = 'icons/obj/furniture/chairs.dmi'
-	icon_state = "folded_chair"
+	icon = 'icons/obj/fluid.dmi'
+	icon_state = "ladder"
 	item_state = "folded_chair"
 	w_class = W_CLASS_BULKY
 	throwforce = 10
@@ -1766,7 +1767,7 @@
 		boutput(user, "You can't unfold the [src] when its attached to your arm!")
 		return
 	else
-		var/obj/stool/chair/C = new/obj/stool/chair(user.loc)
+		var/obj/stool/stepstool/C = new/obj/stool/stepstool(user.loc)
 		if (src.material)
 			C.setMaterial(src.material)
 		if (src.c_color)
