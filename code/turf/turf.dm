@@ -593,6 +593,11 @@ proc/generate_space_color()
 	*/
 	if (map_currently_underwater && what == "Space")
 		what = "Ocean"
+		keep_old_material = 0
+
+	if (map_currently_very_dusty && what == "Space")
+		what = "Desert"
+		keep_old_material = 0
 
 	var/rlapplygen = RL_ApplyGeneration
 	var/rlupdategen = RL_UpdateGeneration
@@ -627,6 +632,8 @@ proc/generate_space_color()
 			new_turf = new /turf/space(src)
 
 	else switch(what)
+		if ("Desert")
+			new_turf = new /turf/gehenna/desert(src)
 		if ("Ocean")
 			new_turf = new /turf/space/fluid(src)
 		if ("Floor")

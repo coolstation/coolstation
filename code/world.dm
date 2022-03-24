@@ -34,10 +34,18 @@
 //The map_currently_underwater global var is a variable to change how fluids and other objects interact with the current map.
 //This allows you to put ANY map 'underwater'. However, since underwater-specific maps are always underwater I set that here.
 
+//The DESERT_MAP one does the same ok:)
+
 #ifdef UNDERWATER_MAP
 var/global/map_currently_underwater = 1
 #else
 var/global/map_currently_underwater = 0
+#endif
+
+#ifdef DESERT_MAP
+var/global/map_currently_very_dusty = 1
+#else
+var/global/map_currently_very_dusty = 0
 #endif
 
 #ifdef TWITCH_BOT_ALLOWED

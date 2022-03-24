@@ -1,4 +1,4 @@
-#define GEHENNA_TIME 280
+#define GEHENNA_TIME 300
 #define WASTELAND_MIN_TEMP 250
 #define WASTELAND_MAX_TEMP 350
 
@@ -16,7 +16,7 @@
 	desc = "looks loosely packed"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock"
-	floor_turf = "/turf/gehenna/desert/path"
+	floor_turf = "/turf/gehenna/desert"
 	New()
 		..()
 		src.icon_state = initial(src.icon_state)
