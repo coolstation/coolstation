@@ -568,6 +568,16 @@
 	base_icon_state = icon_state
 	src.update()
 
+//just a funey little guy who applies a mail label to your guy!
+/obj/disposalpipe/labeller
+	name = "mail labeller"
+	desc = "an electronic disposal pipe that applies a small mail tag to passing detritus"
+	icon_state = "pipe-mechsense"
+	transfer(var/obj/disposalholder/H)
+		H.mail_tag = src.mail_tag
+		flick("pipe-mechsense-detect", src)
+		..()
+
 //a three-way junction with dir being the dominant direction
 /obj/disposalpipe/junction
 	icon_state = "pipe-j1"
