@@ -313,6 +313,11 @@
 /mob/living/carbon/human/TakeDamage(zone, brute, burn, tox, damage_type, disallow_limb_loss, var/bypass_reversal = FALSE)
 	if (src.nodamage) return
 
+	if (src.traitHolder && src.traitHolder.hasTrait("scienceteam"))
+		if (prob(20))
+			var/mob/living/carbon/human/H = src
+			playsound(src.loc, pick(H.sound_list_pain), 80, 0, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+
 	hit_twitch(src)
 
 	if (src.traitHolder && src.traitHolder.hasTrait("reversal") && !bypass_reversal)

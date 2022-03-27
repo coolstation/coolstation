@@ -661,6 +661,21 @@
 	desc = "Sometimes you drink on the job, sometimes drinking is the job."
 	id = "training_drinker"
 
+// scientist scream gimmick, unrelated to training but putting it here anyway
+/obj/trait/job/scienceteam
+	name = "Member of the Science Team"
+	cleanName = "Science Teammate"
+	desc = "You don't know who ate all the donuts."
+	id = "scienceteam"
+
+	onAdd(var/mob/owner)
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			H.sound_list_scream = list('sound/voice/scientist/scream01.ogg','sound/voice/scientist/scream02.ogg','sound/voice/scientist/scream03.ogg','sound/voice/scientist/scream04.ogg','sound/voice/scientist/scream05.ogg','sound/voice/scientist/scream06.ogg','sound/voice/scientist/scream07.ogg','sound/voice/scientist/scream08.ogg','sound/voice/scientist/scream09.ogg','sound/voice/scientist/scream10.ogg','sound/voice/scientist/scream11.ogg','sound/voice/scientist/scream12.ogg','sound/voice/scientist/scream14.ogg','sound/voice/scientist/scream15.ogg','sound/voice/scientist/scream16.ogg','sound/voice/scientist/scream17.ogg','sound/voice/scientist/scream20.ogg','sound/voice/scientist/scream22.ogg','sound/voice/scientist/scream23.ogg','sound/voice/scientist/scream24.ogg','sound/voice/scientist/scream25.ogg') // live
+			H.sound_list_laugh = list('sound/voice/scientist/sci_fear1.ogg','sound/voice/scientist/sci_fear2.ogg','sound/voice/scientist/sci_fear3.ogg','sound/voice/scientist/sci_fear4.ogg','sound/voice/scientist/sci_fear5.ogg','sound/voice/scientist/sci_fear6.ogg','sound/voice/scientist/sci_fear7.ogg','sound/voice/scientist/sci_fear8.ogg','sound/voice/scientist/sci_fear9.ogg','sound/voice/scientist/sci_fear10.ogg','sound/voice/scientist/sci_fear11.ogg','sound/voice/scientist/sci_fear12.ogg','sound/voice/scientist/sci_fear13.ogg','sound/voice/scientist/sci_fear14.ogg','sound/voice/scientist/sci_fear15.ogg') // laugh
+			H.sound_list_pain =  list('sound/voice/scientist/sci_pain1.ogg','sound/voice/scientist/sci_pain2.ogg','sound/voice/scientist/sci_pain3.ogg','sound/voice/scientist/sci_pain4.ogg','sound/voice/scientist/sci_pain5.ogg') // love
+		return
+
 // Phobias - Undetermined Border
 
 /obj/trait/phobia
