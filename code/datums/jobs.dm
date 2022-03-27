@@ -660,6 +660,13 @@ ABSTRACT_TYPE(/datum/job/research)
 		src.access = get_access("Scientist")
 		return
 
+	special_setup(var/mob/living/carbon/human/M)
+		..()
+		if (!M)
+			return
+		if(prob(20))
+			M.traitHolder.addTrait("scienceteam")
+
 /datum/job/research/medical_doctor
 	name = "Medical Doctor"
 	limit = 5

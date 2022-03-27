@@ -144,6 +144,7 @@
 	var/list/sound_list_scream = null
 	var/list/sound_list_laugh = null
 	var/list/sound_list_flap = null
+	var/list/sound_list_pain = null
 
 	var/list/pathogens = list()
 	var/list/immunities = list()

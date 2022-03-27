@@ -63,6 +63,8 @@
 						m_type = 2
 						if (narrator_mode)
 							playsound(src.loc, 'sound/vox/scream.ogg', 80, 0, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+						else if (src.traitHolder && src.traitHolder.hasTrait("scienceteam"))
+							playsound(src.loc, pick(src.sound_list_scream), 80, 0, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 						else if (src.sound_list_scream && length(src.sound_list_scream))
 							playsound(src.loc, pick(src.sound_list_scream), 80, 0, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 						else
@@ -837,8 +839,12 @@
 
 			if ("laugh","chuckle","giggle","chortle","guffaw","cackle")
 				if (!muzzled)
-					message = "<B>[src]</B> [act]s."
-					maptext_out = "<I>[act]s</I>"
+					if (src.traitHolder && src.traitHolder.hasTrait("scienceteam"))
+						message = "<B>[src]</B> [act]s nervously."
+						maptext_out = "<I>[act]s worriedly</I>"
+					else
+						message = "<B>[src]</B> [act]s."
+						maptext_out = "<I>[act]s</I>"
 					if (src.sound_list_laugh && length(src.sound_list_laugh))
 						playsound(src.loc, pick(src.sound_list_laugh), 80, 0, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 				else
@@ -857,6 +863,8 @@
 				message = "<B>[src]</B> flinches."
 				maptext_out = "<I>flinches</I>"
 				m_type = 1
+				if (src.traitHolder && src.traitHolder.hasTrait("scienceteam") && !muzzled)
+					playsound(src.loc, pick(src.sound_list_laugh), 80, 0, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 
 			if ("blink_r")
 				message = "<B>[src]</B> blinks rapidly."
@@ -1091,6 +1099,8 @@
 					message = "<B>[src]</B> starts writhing around in manic terror!"
 					maptext_out = "<I>starts writhing around in manic terror!</I>"
 				m_type = 1
+				if (src.traitHolder && src.traitHolder.hasTrait("scienceteam") && !muzzled)
+					playsound(src.loc, pick(src.sound_list_laugh), 80, 0, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 
 			// targeted emotes
 
@@ -1414,7 +1424,10 @@
 							src.deathConfetti()
 
 						message = "<span class='regular'><B>[src]</B> seizes up and falls limp, [his_or_her(src)] eyes dead and lifeless...</span>"
-						playsound(src, "sound/voice/death_[pick(1,2)].ogg", 40, 0, 0, src.get_age_pitch())
+						if (src.traitHolder && src.traitHolder.hasTrait("scienceteam"))
+							playsound(src, "sound/voice/scientist/sci_die[pick(1,2,3)].ogg", 80, 0, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+						else
+							playsound(src, "sound/voice/death_[pick(1,2)].ogg", 40, 0, 0, src.get_age_pitch())
 					m_type = 1
 
 			if ("johnny")
