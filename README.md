@@ -22,7 +22,10 @@ Coolhub doesn't exiust yet but it probably will have like, maps and round info a
 
 ## CONTRIBUTING
 
-Try not to!
+Easy! 
+Fork da repo, follow the guide, open a PR, make sure it works, the usual. 
+Just go for it. Really go for it. 
+Just whole hog. 
 
 ## FAQ (Frequently Asked Question)
 
