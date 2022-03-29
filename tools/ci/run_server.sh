@@ -2,7 +2,7 @@
 set -euo pipefail
 
 touch errors.log
-DreamDaemon goonstation.dmb -once -quiet -close -trusted -verbose -invisible
+DreamDaemon coolstation.dmb -once -quiet -close -trusted -verbose -invisible
 if [ -s "errors.log" ]
 then
 	echo "Errors detected!"
