@@ -1029,9 +1029,6 @@
 /obj/machinery/light/small/floor,
 /turf/unsimulated/floor/shuttle,
 /area/space)
-"da" = (
-/turf/space,
-/area/diner/tug)
 "db" = (
 /obj/indestructible/shuttle_corner{
 	dir = 1;
@@ -1417,18 +1414,6 @@
 	icon_state = "diagonalWall3"
 	},
 /area/space)
-"eb" = (
-/turf/simulated/shuttle/wall{
-	dir = 4;
-	icon_state = "wall3dir"
-	},
-/area/diner/tug)
-"ec" = (
-/turf/simulated/shuttle/wall{
-	dir = 8;
-	icon_state = "wall3dir"
-	},
-/area/diner/tug)
 "ed" = (
 /obj/decal/cleanable/dirt,
 /turf/simulated/floor/shuttle{
@@ -1503,13 +1488,6 @@
 	icon_state = "Stairs_wide"
 	},
 /area/space)
-"eo" = (
-/turf/space,
-/turf/simulated/shuttle/wall{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
-/area/noGenerate)
 "ep" = (
 /obj/item/storage/wall/emergency,
 /turf/simulated/wall/auto/shuttle{
@@ -1529,7 +1507,7 @@
 /turf/simulated/floor{
 	icon_state = "hive"
 	},
-/area/diner/tug)
+/area/space)
 "er" = (
 /obj/stool/chair/comfy/shuttle/brown,
 /turf/unsimulated/floor/shuttle{
@@ -1562,10 +1540,7 @@
 /turf/simulated/floor{
 	icon_state = "hive"
 	},
-/area/diner/tug)
-"ev" = (
-/turf/space,
-/area/noGenerate)
+/area/space)
 "ew" = (
 /obj/table/wood/auto,
 /obj/item/paper/bombininote/postgame,
@@ -1576,39 +1551,13 @@
 /turf/simulated/floor{
 	icon_state = "hive"
 	},
-/area/diner/tug)
-"ex" = (
-/obj/decal/fakeobjects/shuttleengine{
-	dir = 4;
-	icon_state = "alt_heater"
-	},
-/turf/space,
-/area/diner/tug)
-"ey" = (
-/turf/simulated/shuttle/wall{
-	dir = 5;
-	icon_state = "wall3dir"
-	},
-/area/diner/tug)
-"ez" = (
-/turf/space,
-/turf/simulated/shuttle/wall{
-	dir = 6;
-	icon_state = "diagonalWall3"
-	},
-/area/diner/tug)
+/area/space)
 "eA" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 6
 	},
 /turf/space,
 /area/space)
-"eB" = (
-/turf/simulated/shuttle/wall{
-	dir = 4;
-	icon_state = "wall3dir"
-	},
-/area/noGenerate)
 "eD" = (
 /obj/stool/chair/comfy/shuttle/brown,
 /turf/simulated/floor/shuttle{
@@ -1625,12 +1574,6 @@
 	icon_state = "hive"
 	},
 /area/space)
-"eF" = (
-/turf/simulated/shuttle/wall{
-	dir = 5;
-	icon_state = "wall3dir"
-	},
-/area/noGenerate)
 "eG" = (
 /obj/indestructible/shuttle_corner{
 	dir = 4;
@@ -1640,7 +1583,7 @@
 /turf/simulated/floor{
 	icon_state = "hive"
 	},
-/area/diner/tug)
+/area/space)
 "eH" = (
 /obj/decal/fakeobjects/shuttlethruster{
 	dir = 4;
@@ -1661,7 +1604,7 @@
 /turf/simulated/floor{
 	icon_state = "hive"
 	},
-/area/diner/tug)
+/area/space)
 "eJ" = (
 /obj/grille/steel,
 /obj/window/reinforced/east,
@@ -1669,25 +1612,25 @@
 /obj/window/reinforced/west,
 /obj/window/reinforced/south,
 /turf/simulated/floor/shuttlebay,
-/area/diner/tug)
+/area/space)
 "eK" = (
 /obj/reagent_dispensers/beerkeg,
 /turf/simulated/floor/shuttlebay,
-/area/diner/tug)
+/area/space)
 "eL" = (
 /obj/submachine/ATM{
 	pixel_y = 30
 	},
 /obj/map/light/screen,
 /turf/simulated/floor/shuttlebay,
-/area/diner/tug)
+/area/space)
 "eM" = (
 /turf/simulated/floor/shuttlebay,
 /turf/simulated/shuttle/wall{
 	dir = 2;
 	icon_state = "diagonalWall3"
 	},
-/area/diner/tug)
+/area/space)
 "eN" = (
 /obj/grille/catwalk{
 	dir = 4
@@ -1697,14 +1640,14 @@
 	icon_state = "wall3_trans"
 	},
 /turf/space,
-/area/diner/tug)
+/area/space)
 "eO" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/marker/supplymarker,
 /turf/simulated/floor{
 	icon_state = "hive"
 	},
-/area/diner/tug)
+/area/space)
 "eP" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 10
@@ -2296,7 +2239,7 @@
 /turf/simulated/floor{
 	icon_state = "hive"
 	},
-/area/diner/tug)
+/area/space)
 "gu" = (
 /obj/indestructible/shuttle_corner{
 	dir = 1;
@@ -2388,7 +2331,7 @@
 /turf/simulated/floor{
 	icon_state = "hive"
 	},
-/area/diner/tug)
+/area/space)
 "gE" = (
 /obj/lattice{
 	icon_state = "lattice-dir-b"
@@ -2444,7 +2387,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/shuttlebay,
-/area/diner/tug)
+/area/space)
 "gK" = (
 /obj/juggleplaque{
 	desc = "NSV Renanin, Nanotrasen Communications Buoy, Leave the high Nest to tempt the liquid Air.";
@@ -2863,9 +2806,6 @@
 /obj/machinery/vending/cola/blue,
 /turf/simulated/floor/bot,
 /area/space)
-"hW" = (
-/turf/simulated/floor/shuttlebay,
-/area/diner/tug)
 "hX" = (
 /obj/gravity_well_generator,
 /turf/unsimulated/floor,
@@ -3504,7 +3444,6 @@
 	},
 /area/space)
 "jF" = (
-/obj/structure/puttframe,
 /obj/item/shipcomponent/life_support,
 /obj/decal/cleanable/oil/streak,
 /obj/machinery/light_switch/north{
@@ -4030,13 +3969,13 @@
 	dir = 4
 	},
 /turf/simulated/floor/shuttlebay,
-/area/diner/tug)
+/area/space)
 "kW" = (
 /obj/machinery/door/airlock/external{
 	name = "Compartment Hatch"
 	},
 /turf/simulated/floor/shuttlebay,
-/area/diner/tug)
+/area/space)
 "kX" = (
 /obj/grille/catwalk{
 	dir = 4
@@ -4132,22 +4071,14 @@
 "lk" = (
 /obj/decal/fakeobjects/cargopad,
 /turf/simulated/floor/shuttlebay,
-/area/diner/tug)
+/area/space)
 "ll" = (
 /obj/grille/catwalk{
 	dir = 4
 	},
 /obj/machinery/door/airlock/external,
 /turf/space,
-/area/diner/tug)
-"lm" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 1
-	},
-/turf/simulated/floor{
-	icon_state = "hive"
-	},
-/area/noGenerate)
+/area/space)
 "ln" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
@@ -4155,7 +4086,7 @@
 /turf/simulated/floor{
 	icon_state = "hive"
 	},
-/area/diner/tug)
+/area/space)
 "lo" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -4174,11 +4105,11 @@
 /obj/decal/cleanable/blood,
 /obj/item/c_tube,
 /turf/simulated/floor/shuttlebay,
-/area/diner/tug)
+/area/space)
 "lq" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/shuttlebay,
-/area/diner/tug)
+/area/space)
 "lr" = (
 /obj/decal/fakeobjects/shuttleengine{
 	dir = 4;
@@ -4425,14 +4356,14 @@
 "mb" = (
 /obj/critter/roach,
 /turf/simulated/floor/shuttlebay,
-/area/diner/tug)
+/area/space)
 "mc" = (
 /turf/simulated/floor/shuttlebay,
 /turf/simulated/shuttle/wall{
 	dir = 9;
 	icon_state = "wall3"
 	},
-/area/diner/tug)
+/area/space)
 "md" = (
 /obj/grille/catwalk{
 	dir = 4
@@ -4442,7 +4373,7 @@
 	icon_state = "wall3_trans"
 	},
 /turf/space,
-/area/noGenerate)
+/area/space)
 "me" = (
 /obj/table/wood/auto,
 /obj/indestructible/shuttle_corner{
@@ -4452,7 +4383,7 @@
 /turf/simulated/floor{
 	icon_state = "hive"
 	},
-/area/noGenerate)
+/area/space)
 "mf" = (
 /obj/machinery/power/smes/magical{
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit with an integral radiothermal generating core.";
@@ -4567,7 +4498,7 @@
 /turf/simulated/floor{
 	icon_state = "hive"
 	},
-/area/noGenerate)
+/area/space)
 "ms" = (
 /obj/decal/fakeobjects/shuttlethruster{
 	dir = 4;
@@ -7351,7 +7282,7 @@
 /turf/simulated/floor{
 	icon_state = "hive"
 	},
-/area/noGenerate)
+/area/space)
 "sZ" = (
 /obj/table/wood/auto,
 /obj/item/paper/postcard/owlery,
@@ -7362,13 +7293,7 @@
 /turf/simulated/floor{
 	icon_state = "hive"
 	},
-/area/noGenerate)
-"ta" = (
-/turf/simulated/shuttle/wall{
-	dir = 8;
-	icon_state = "wall3dir"
-	},
-/area/noGenerate)
+/area/space)
 "tb" = (
 /obj/indestructible/shuttle_corner{
 	dir = 2;
@@ -7415,7 +7340,7 @@
 	icon_state = "alt_heater"
 	},
 /turf/space,
-/area/noGenerate)
+/area/space)
 "th" = (
 /obj/wingrille_spawn/auto/crystal,
 /turf/unsimulated/floor/plating/random,
@@ -13040,12 +12965,12 @@ aa
 aa
 aa
 aa
-ev
-eo
+aa
+ea
 eG
 eI
 gJ
-lm
+ln
 me
 lx
 aa
@@ -13192,12 +13117,12 @@ aa
 aa
 aa
 aa
-ev
-eB
+aa
+ap
 eq
 eO
-hW
-lm
+jv
+ln
 mr
 ap
 aa
@@ -13344,12 +13269,12 @@ aa
 aa
 aa
 aa
-ev
-eF
+aa
+aW
 eu
 gt
-hW
-lm
+jv
+ln
 sY
 aW
 aa
@@ -13496,8 +13421,8 @@ aa
 aa
 aa
 aa
-ev
-ec
+aa
+aq
 ew
 gD
 kV
@@ -13648,13 +13573,13 @@ aa
 aa
 aa
 aa
-ev
-ez
-eb
+aa
+of
+ap
 eJ
 kW
 lp
-eB
+ap
 mC
 aa
 aa
@@ -13800,13 +13725,13 @@ aa
 aa
 aa
 aa
-ev
-da
-ey
+aa
+aa
+aW
 eK
-hW
+jv
 lq
-eF
+aW
 aa
 aa
 aa
@@ -13952,13 +13877,13 @@ aa
 aa
 aa
 aa
-ev
-da
-ey
+aa
+aa
+aW
 eL
 lk
 mb
-eF
+aW
 aa
 aa
 aa
@@ -14104,13 +14029,13 @@ aa
 aa
 aa
 aa
-ev
-da
-ec
+aa
+aa
+aq
 eM
-hW
+jv
 mc
-ta
+aq
 aa
 aa
 aa
@@ -14256,9 +14181,9 @@ aa
 aa
 aa
 aa
-ev
-ev
-ex
+aa
+aa
+tg
 eN
 ll
 md
