@@ -481,3 +481,115 @@
 		usr.visible_message("<span class='notice'>[usr] sticks a [src.name] on [target].</span>")
 		target.delivery_destination = destination
 		src.stick_to(target, src.pixel_x, src.pixel_y)
+
+/obj/machinery/packing_machine
+	name = "packing machine"
+	icon = 'icons/obj/recycling.dmi'
+#ifndef IN_MAP_EDITOR
+	icon_state = "packing"
+#else
+	icon_state = "packing-map"
+#endif
+	desc = "A machine that scoops up items and packages them into cardboard boxes."
+	anchored = 1
+	density = 1
+	var/maxitems = 50 // don't go over 100, the max for crates
+	var/destination_tag = null // tag of crates created by this
+	var/operating = FALSE
+
+	disposals
+		destination_tag = "Disposals"
+		maxitems = 25
+
+	get_desc()
+		if(src.destination_tag)
+			. += " This one labels boxes with the code for [src.destination_tag]."
+
+	attackby(var/obj/item/I, var/mob/user)
+		if(status & BROKEN)
+			return
+		if (istype(I,/obj/item/electronics/scanner) || istype(I,/obj/item/deconstructor))
+			user.visible_message("<span class='alert'><B>[user] hits [src] with [I]!</B></span>")
+			return
+		if (istype(I,/obj/item/satchel/) && I.contents.len)
+			var/obj/item/satchel/S = I
+
+			for(var/obj/item/O in S.contents)
+				if (src.is_acceptable_content(O))
+					O.set_loc(src)
+			S.satchel_updateicon()
+			user.visible_message("<b>[user.name]</b> dumps out [S] into [src].")
+			update()
+			if (src.contents.len >= src.maxitems)
+				src.pack_contents()
+			return
+		if (istype(I,/obj/item/storage/) && I.contents.len)
+			var/obj/item/storage/S = I
+			for(var/obj/item/O in S.contents)
+				if (src.is_acceptable_content(O))
+					O.set_loc(src)
+			user.visible_message("<b>[user.name]</b> dumps out [S] into [src].")
+			update()
+			if (src.contents.len >= src.maxitems)
+				src.pack_contents()
+			return
+
+	proc/update()
+		var/perc
+		if (src.contents.len > 0 && src.maxitems > 0)
+			perc = (src.contents.len / src.maxitems) * 100
+		else
+			perc = 0
+		src.overlays = null
+		switch(perc)
+			if (-INFINITY to 0)
+				src.overlays = null
+			if (1 to 33)
+				src.overlays += image('icons/obj/recycling.dmi', "packing_1")
+			if (34 to 66)
+				src.overlays += image('icons/obj/recycling.dmi', "packing_2")
+			if (67 to INFINITY)
+				src.overlays += image('icons/obj/recycling.dmi', "packing_3")
+
+	proc/pack_contents()
+		operating = TRUE
+		src.overlays = null
+		flick("packing-active", src)
+		src.icon_state = "packing"
+		playsound(src.loc, "sound/machines/printer_cargo.ogg", 75, 0)
+		var/turf/T = get_step(src, src.dir)
+		var/obj/storage/crate/packing/C = new /obj/storage/crate/packing(T)
+		if(src.destination_tag)
+			C.delivery_destination = destination_tag
+		for(var/atom/movable/A as mob|obj in src)
+			A.set_loc(C)
+		update()
+		sleep(2 SECONDS)
+		operating = FALSE
+
+	proc/is_acceptable_content(var/atom/A) // copied from large_storage_parent
+		. = TRUE
+		if (!A || !(isobj(A) || ismob(A)))
+			return 0
+		if (istype(A, /obj/decal/skeleton))
+			return 1
+		if (isobj(A) && ((A.density && !istype(A, /obj/critter)) || A:anchored || A == src || istype(A, /obj/decal) || istype(A, /atom/movable/screen) || istype(A, /obj/storage)))
+			return 0
+
+/obj/machinery/packing_machine/Bumped(atom/AM)
+	if(status & BROKEN)
+		return
+	if (isobj(AM))
+		if (AM:anchored) return
+		if (operating == TRUE) return // wait until machine is ready
+		if (src.contents.len >= src.maxitems) return
+		var/obj/O = AM
+		if (src.is_acceptable_content(O))
+			O.set_loc(src)
+		update()
+		if (src.contents.len >= src.maxitems)
+			src.pack_contents()
+
+/obj/machinery/packing_machine/attack_hand(mob/user as mob) // manually send crate early
+	if(src.contents.len > 0 && operating == FALSE)
+		src.pack_contents()
