@@ -1,9 +1,9 @@
 /datum/configuration
-	var/server_key = null				// unique numeric identifier (e.g. 1, 2, 3) used by some backend services. NOT REQUIRED.
+	var/server_key = 1				// unique numeric identifier (e.g. 1, 2, 3) used by some backend services. NOT REQUIRED.
 										//	if set, the global serverKey will be set to this, if not, it will be based on the world.port number
 
-	var/server_id = "local"				// unique server identifier (e.g. main, rp, dev) used primarily by backend services
-	var/server_name = null				// server name (for world name / status)
+	var/server_id = "fusilli"				// unique server identifier (e.g. main, rp, dev) used primarily by backend services
+	var/server_name = Fusilli			// server name (for world name / status)
 	var/server_suffix = 0				// generate numeric suffix based on server port
 	var/server_region = null
 
@@ -101,8 +101,8 @@
 	var/opengoon2_hostname = null
 
 	//Environment
-	var/env = "dev"
-	var/cdn = ""
+	var/env = "prud"
+	var/cdn = "http://cdn.coolstation.space"
 	var/disableResourceCache = 0
 
 	//Map switching stuff
