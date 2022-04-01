@@ -6,7 +6,7 @@ on:
 jobs:
   triage:
     runs-on: ubuntu-latest
-    if: github.repository == 'goonstation/goonstation'
+    if: github.repository == 'coolstation/coolstation'
     steps:
       - uses: zewaka/auto-label-merge-conflicts@master
         with:
