@@ -162,6 +162,13 @@
 		else
 			actions.start(new /datum/action/bar/icon/railing_jump(user, src, use_owner_dir), user)
 
+	boxing
+		name = "Ring entrance"
+		desc = "Do not exit the ring."
+		is_reinforced = 1
+		icon = 'icons/obj/decoration.dmi'
+		icon_state = "ringrope"
+
 	reinforced
 		is_reinforced = 1
 		icon_state = "railing-reinforced"
