@@ -73,6 +73,8 @@
 #define COMSIG_ATOM_EXAMINE "atom_examine"
 /// when something happens that should trigger an icon update. Or something.
 #define COMSIG_UPDATE_ICON "atom_update_icon"
+/// When something enters the contents of this atom (i.e. Entered())
+#define COMSIG_ATOM_ENTERED "atom_entered"
 
 // ---- atom/movable signals ----
 
