@@ -2027,3 +2027,40 @@ proc/HYPmutationcheck_sub(var/lowerbound,var/upperbound,var/checkedvariable)
 
 	is_open_container()
 		return 1 // :I
+
+//What does space hydroponics need a rake for?
+//Well the answer is crime and shenanigans!
+/obj/rake
+	name = "rake"
+	desc = "Better be careful."
+	event_handler_flags = USE_HASENTERED
+	icon = 'icons/obj/hydroponics/machines_hydroponics.dmi'
+	icon_state = "rake"
+
+	//Important note for whoever looks at this later: the rake head is opposite the direction that the rake is internally facing
+	//so a "south-facing" rake will bonk people coming in from the north! I did that so people dragging one don't bonk if they have to back up onto the thing.
+
+	//Auto-directing a new rake is handled by the buylist's run_on_spawn
+
+	///Bonk people like they're in a classic cartoon
+	HasEntered(mob/living/carbon/human/poor_sod, atom/OldLoc) //NB poor_sod is cast as a human here but it can be anything /atom/movable!
+		if (!ishuman(poor_sod)) //Sift out the
+			return
+		//A few cases where a mob might move onto a rake that aren't exactly walking
+		if (poor_sod.lying || poor_sod.throwing)
+			return
+		//Have mercy on grabbed/pulled sods (but not the people holding them)
+		if (length(poor_sod.grabbed_by))
+			return
+		if (get_dir(OldLoc, get_turf(src)) == dir) //>:3
+			boutput(poor_sod, "<span class='alert'><B>The rake handle slams into your head! [pick("AAAAAAAGH!","Fuck shit damn!", "God fucking shit!!", "Gosh heck darnit!!")]</B></span>")
+			playsound(src.loc, pick(sounds_punch), 40, 1)
+			flick("rake-flick", src)
+			poor_sod.setStatus("stunned", 4 SECONDS) //IDK if this is correct the status system confuses me
+			poor_sod.TakeDamage("head", brute = 14)
+
+	///Let people orient rakes
+	MouseDrop(over_object, src_location, over_location)
+		var/to_face = get_dir(over_location, get_turf(src)) //Arguments reversed because the rake head faces back
+		if (to_face in cardinal) //rakes can't go diagonal
+			src.set_dir(to_face)
