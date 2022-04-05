@@ -1212,16 +1212,13 @@
 
 		if (selection == "pee in it")
 			bladder = H.sims?.getValue("Bladder")
-			if ((!isnull(bladder) && (bladder <= 65)) || (isnull(bladder) && (H.urine >= 2)))
-				H.visible_message("<span class='alert'><B>[H] pees in [src]!</B></span>")
-				playsound(H, "sound/misc/pourdrink.ogg", 50, 1)
-				if (!H.sims)
-					H.urine -= 2
-				else
-					H.sims.affectMotive("Bladder", 100)
-				src.reagents.add_reagent("urine", 8)
+			H.visible_message("<span class='alert'><B>[H] pees in [src]!</B></span>")
+			playsound(H, "sound/misc/pourdrink.ogg", 50, 1)
+			if (!H.sims)
+				H.urine -= 2
 			else
-				boutput(H, "<span class='alert'>You don't feel like you need to go.</span>")
+				H.sims.affectMotive("Bladder", 100)
+			src.reagents.add_reagent("urine", 8)
 			return
 
 		else if (selection == "remove [src.in_glass]")
