@@ -610,6 +610,17 @@ This is basically useless for anyone but miners.
 	job = list("Botanist", "Apiculturist")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
+/datum/syndicate_buylist/traitor/rake
+	name = "Rake"
+	item = /obj/rake
+	desc = "Years of deprivation from mother nature have lead people to lose all cultural memory of the danger of rakes. Those gullible fools will step on the head of this baby each and every time."
+	cost = 1
+	job = list("Botanist", "Apiculturist")
+
+	run_on_spawn(obj/item, mob/living/owner, in_surplus_crate=FALSE)
+		if (!in_surplus_crate)
+			item.set_dir(owner.dir) //Orients the business end of the rake towards the buyer's back, in case you manage to buy a rake mid-chase I guess?
+
 /datum/syndicate_buylist/traitor/fakegrenade
 	name = "Fake Cleaner Grenades"
 	item = /obj/item/storage/box/f_grenade_kit
