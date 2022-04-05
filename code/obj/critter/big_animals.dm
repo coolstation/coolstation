@@ -62,7 +62,7 @@
 	on_pet(mob/user)
 		if (..())
 			return 1
-		user.unlock_medal("Bear Hug", 1) //new method to get since obesity is removed
+		user.unlock_medal("Bear Hug", 1)
 
 	attackby(obj/item/W as obj, mob/living/user as mob)
 		if (!src.alive)

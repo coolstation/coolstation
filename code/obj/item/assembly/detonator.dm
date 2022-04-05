@@ -283,9 +283,9 @@
 	message_admins("A canister bomb detonates at [epicenter.loc.name] ([showCoords(epicenter.x, epicenter.y, epicenter.z)])")
 	src.attachedTo.visible_message("<b><span class='alert'>The ruptured canister shatters from the pressure, and the hot gas ignites.</span></b>")
 
-	var/power = min(850 * (MIXTURE_PRESSURE(attachedTo.air_contents) + attachedTo.air_contents.temperature - 107000) / 233196469.0 + 200, 7000) //the second arg is the max explosion power
-	//if (power == 150000) //they reached the cap SOMEHOW? well dang they deserve a medal
-		//src.builtBy.unlock_medal("", 1) //WIRE TODO: make new medal for this
+	var/power = min(850 * (MIXTURE_PRESSURE(attachedTo.air_contents) + attachedTo.air_contents.temperature - 107000) / 233196469.0 + 200, 150000) //the second arg is the max explosion power
+	if (power == 150000) //they reached the cap SOMEHOW? well dang they deserve a medal
+		src.builtBy.unlock_medal("bang.", 1)
 	explosion_new(attachedTo, epicenter, power)
 
 /obj/item/assembly/detonator/proc/setDescription()

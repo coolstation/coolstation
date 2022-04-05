@@ -74,8 +74,8 @@
 		..()
 		if (ishuman(user))
 			var/mob/living/carbon/human/H = user
-			if (H.w_uniform && istype(H.w_uniform, /obj/item/clothing/under/gimmick/owl))
-				user.unlock_medal("Wonk", 1)
+			//if (H.w_uniform && istype(H.w_uniform, /obj/item/clothing/under/gimmick/owl))
+			//	user.unlock_medal("Wonk", 1)
 
 	custom_suicide = 1
 	suicide_in_hand = 0
@@ -109,8 +109,8 @@
 			var/mob/living/carbon/human/H = user
 			if (H.w_uniform != src)
 				return 0
-			if (H.wear_mask && istype(H.wear_mask, /obj/item/clothing/mask/owl_mask))
-				user.unlock_medal("Wonk", 1)
+		//	if (H.wear_mask && istype(H.wear_mask, /obj/item/clothing/mask/owl_mask))
+		//		user.unlock_medal("Wonk", 1)
 
 	custom_suicide = 1
 	suicide_in_hand = 0

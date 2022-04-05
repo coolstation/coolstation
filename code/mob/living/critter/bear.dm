@@ -16,7 +16,7 @@
 	on_pet(mob/user)
 		if (..())
 			return 1
-		user.unlock_medal("Bear Hug", 1) //new method to get since obesity is removed
+		user.unlock_medal("Bear Hug", 1)
 
 	specific_emotes(var/act, var/param = null, var/voluntary = 0)
 		switch (act)

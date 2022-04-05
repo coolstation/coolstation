@@ -280,8 +280,8 @@
 		if ((src.mode != 1) || !src.tape)
 			return
 
-		if (speaker.mind && speaker.mind.assigned_role == "Captain")
-			speaker.unlock_medal("Captain's Log", 1)
+		//if (speaker.mind && speaker.mind.assigned_role == "Captain")
+			//speaker.unlock_medal("Captain's Log", 1)
 
 		var/speaker_name = speaker.real_name
 		if (real_name)

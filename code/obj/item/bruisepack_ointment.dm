@@ -84,10 +84,7 @@
 			if (affecting.heal_damage(src.heal_brute, src.heal_burn))
 				H.UpdateDamageIcon()
 
-				if (M != user && ishuman(M) && ishuman(user))
-					if (M.gender != user.gender)
-						M.unlock_medal("Oh, Doctor!", 1)
-						user.unlock_medal("Oh, Doctor!", 1)
+
 			else
 				health_update_queue |= H
 		else
