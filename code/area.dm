@@ -213,11 +213,11 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 							if (!src.active)
 								src.active = 1
 								SEND_SIGNAL(src, COMSIG_AREA_ACTIVATED)
-
+/*
 						//Dumb fucking medal fuck
 						if (src.name == "Space" && istype(A, /obj/vehicle/segway))
 							enteringM.unlock_medal("Jimi Heselden", 1)
-
+*/
 		else if(oldloc && !ismob(A) && !CanEnter( A ))
 			A.loc = oldloc
 		..()
