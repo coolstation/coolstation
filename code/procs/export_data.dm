@@ -2,6 +2,8 @@
 
 // Called in world.dm at new()
 /proc/round_start_data()
+	if (!config || config.env == "dev")
+		return
 
 	var/message[] = new()
 	message["token"] = sha256_string(config.opengoon_parser_key)
@@ -17,6 +19,8 @@
 
 // Called in gameticker.dm at the end of the round.
 /proc/round_end_data(var/reason)
+	if (!config || config.env == "dev")
+		return
 
 	var/message[] = new()
 	message["token"] = sha256_string(config.opengoon_parser_key)
