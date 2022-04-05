@@ -129,7 +129,7 @@
 			if (!src.jiggled)
 				src.jiggled = 1
 				user.show_text("You kick at [src], but it doesn't budge!", "red")
-				user.unlock_medal("IT'S A TRAP", 1)
+				//user.unlock_medal("IT'S A TRAP", 1)
 				for (var/mob/M in hearers(src, null))
 					M.show_text("<font size=[max(0, 5 - get_dist(src, M))]>THUD, thud!</font>")
 				playsound(src, "sound/impact_sounds/Wood_Hit_1.ogg", 15, 1, -3)

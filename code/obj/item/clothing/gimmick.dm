@@ -70,12 +70,6 @@
 	item_state = "owl_mask"
 	see_face = 0.0
 
-	equipped(var/mob/user)
-		..()
-		if (ishuman(user))
-			var/mob/living/carbon/human/H = user
-			//if (H.w_uniform && istype(H.w_uniform, /obj/item/clothing/under/gimmick/owl))
-			//	user.unlock_medal("Wonk", 1)
 
 	custom_suicide = 1
 	suicide_in_hand = 0
