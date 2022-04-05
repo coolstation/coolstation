@@ -2029,7 +2029,7 @@ proc/HYPmutationcheck_sub(var/lowerbound,var/upperbound,var/checkedvariable)
 		return 1 // :I
 
 //What does space hydroponics need a rake for?
-//Well the answer is criminal shenanigans!
+//Well the answer is crime and shenanigans!
 /obj/rake
 	name = "rake"
 	desc = "Better be careful."
@@ -2053,16 +2053,14 @@ proc/HYPmutationcheck_sub(var/lowerbound,var/upperbound,var/checkedvariable)
 		if (length(poor_sod.grabbed_by))
 			return
 		if (get_dir(OldLoc, get_turf(src)) == dir) //>:3
-			boutput(poor_sod, "<span class='alert'><B>Bonk!</B></span>")
+			boutput(poor_sod, "<span class='alert'><B>The rake handle slams into your head! [pick("AAAAAAAGH!","Fuck shit damn!", "God fucking shit!!", "Gosh heck darnit!!")]</B></span>")
+			playsound(src.loc, pick(sounds_punch), 40, 1)
+			flick("rake-flick", src)
 			poor_sod.setStatus("stunned", 4 SECONDS) //IDK if this is correct the status system confuses me
 			poor_sod.TakeDamage("head", brute = 14)
 
-	///Let people turn rakes
+	///Let people orient rakes
 	MouseDrop(over_object, src_location, over_location)
 		var/to_face = get_dir(over_location, get_turf(src)) //Arguments reversed because the rake head faces back
 		if (to_face in cardinal) //rakes can't go diagonal
 			src.set_dir(to_face)
-	/*TODO
-	-better sprots
-	-better bonk effect
-	*/
