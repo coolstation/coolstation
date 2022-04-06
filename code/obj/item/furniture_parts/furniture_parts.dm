@@ -152,7 +152,17 @@ ABSTRACT_TYPE(/obj/item/furniture_parts)
 
 	onStart()
 		..()
-		owner.visible_message("<span class='notice'>[owner] begins constructing \a [furniture_name]!</span>")
+		var/mob/living/blocker
+		for (var/mob/living/L in target_turf)
+			if (!(L.flags & TABLEPASS))
+				blocker = L
+				break
+
+		if (blocker)
+			boutput(user, "<span class='alert'>You try to build \a [furniture_name], but [blocker] is in the way!</span>")
+			interrupt(INTERRUPT_ALWAYS)
+		else
+			owner.visible_message("<span class='notice'>[owner] begins constructing \a [furniture_name]!</span>")
 
 	onResume(datum/action/bar/icon/furniture_build/attempted) //guaranteed since we only resume with the same type
 		..()
