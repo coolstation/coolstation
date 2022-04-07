@@ -246,55 +246,7 @@ obj/item/cable_coil/dropped(mob/user)
 	for (var/obj/item/cable_coil/C in view(1, user))
 		C.updateicon()
 
-// called when cable_coil is clicked on a turf/simulated/floor
-/*obj/item/cable_coil/proc/turf_place_between(turf/A, turf/B)
-	if (!(istype(A,/turf/simulated/floor) || istype(A,/turf/space/fluid)))
-		return
-	if (!isturf(B) || !(istype(B,/turf/simulated/floor) || istype(B,/turf/space/fluid)))
-		return
-	if (get_dist(A, B) > 1)
-		return
-	if (A.intact)
-		return
 
-	var/dirn = get_dir(A, B)
-	for (var/obj/cable/C in A)
-		if (C.d1 == dirn || C.d2 == dirn)
-			return
-	plop_a_cable(A, usr, 0, dirn)
-	return*/
-
-/*obj/item/cable_coil/proc/cable_join_between(var/obj/cable/C, var/turf/B)
-	if (!isturf(B) || !(istype(B,/turf/simulated/floor) || istype(B,/turf/space/fluid)))
-		return
-
-	var/turf/T = C.loc
-
-	if (!isturf(T) || T.intact)		// sanity checks, also stop use interacting with T-scanner revealed cable
-		return
-
-	if (get_dist(C, B) > 1)		// make sure it's close enough
-		return
-
-	if (B == T)		// do nothing if we clicked a cable we're standing on
-		return		// may change later if can think of something logical to do
-
-	var/dirn = get_dir(C, B)
-
-	if (C.d1 == 0)			// exisiting cable doesn't point at our position, so see if it's a stub
-							// if so, make it a full cable pointing from it's old direction to our dirn
-
-		var/nd1 = min(C.d2, dirn)	// these will be the new directions
-		var/nd2 = max(C.d2, dirn)
-
-		for (var/obj/cable/LC in T)		// check to make sure there's no matching cable
-			if (LC == C)			// skip the cable we're interacting with
-				continue
-			if ((LC.d1 == nd1 && LC.d2 == nd2) || (LC.d1 == nd2 && LC.d2 == nd1) )	// make sure no cable matches either direction
-				return
-		qdel(C)
-		plop_a_cable(T, usr, nd1, nd2)
-	return*/
 // Placing a cable on a turf
 /obj/item/cable_coil/proc/turf_place(turf/target, turf/source, mob/user)
 	//if (!isturf(user.loc))
@@ -317,7 +269,6 @@ obj/item/cable_coil/dropped(mob/user)
 
 	for (var/obj/cable/LC in target)
 		if (LC.d1 == dirn || LC.d2 == dirn)
-			boutput(user, "There's already a cable at that position.")
 			return
 
 	plop_a_cable(target, user, 0, dirn)
@@ -325,10 +276,6 @@ obj/item/cable_coil/dropped(mob/user)
 
 // called when cable_coil is clicked on an installed obj/cable or auto-laying found a stub to connect to
 /obj/item/cable_coil/proc/cable_join(obj/cable/C, turf/source, mob/user, attempt_at_source)
-	/*var/turf/U = user.loc
-	if (!isturf(U))
-		return*/
-
 	var/turf/target = C.loc
 	if (!isturf(target) || target.intact)		// sanity checks, also stop use interacting with T-scanner revealed cable
 		return
@@ -377,7 +324,7 @@ obj/item/cable_coil/dropped(mob/user)
 		plop_a_cable(target, user, nd1, nd2)
 		return
 
-///This was copy-pasted some 5 times across the 4 cable laying procs that exist(ed) FSR?
+///This was copy-pasted some 5 times across the 4 cable laying procs that existed) FSR?
 obj/item/cable_coil/proc/plop_a_cable(turf/overthere, mob/user, dir1, dir2)
 	var/obj/cable/NC = new cable_obj_type(overthere, src)
 	applyCableMaterials(NC, src.insulator, src.conductor)
