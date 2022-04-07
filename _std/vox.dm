@@ -54,7 +54,48 @@
 	proc/play(var/client/listener)
 		if (src.soundFile)
 			listener << src.soundFile
+/datum/hlVOXsound
+	var/id
+	var/ogg
+	var/sound/soundFile
+	var/flags
 
+	New(var/id, var/file, var/flags)
+		..()
+		src.id = id
+		src.ogg = file
+		src.flags = flags
+
+	disposing()
+		ogg = null
+		soundFile = null
+		hlvoxsounds -= src
+		for(var/token in hlvoxtokens)
+			var/list/sounds = hlvoxsounds_flag_sorted[token]
+			sounds -= src
+		..()
+
+	proc/matches_id(var/t)
+		. = id == lowertext(t)
+
+	proc/matches_flag(var/f)
+		. = 0
+		if (istext(f))
+			f = text2num(f)
+		if (isnum(f))
+			. = (f & flags)
+
+	proc/load(var/freq = 1)
+		if (src.ogg)
+			src.soundFile = sound(src.ogg, wait = 1, channel = 5)
+			src.soundFile.frequency = freq
+			src.soundFile.volume = 50 //fuck vox man you are SO LOUD!!!!!!
+
+	proc/play(var/client/listener)
+		if (src.soundFile)
+			listener << src.soundFile
+
+//debug shit
 /datum/voxdbg
 	var
 		list/voxtokens = list()
@@ -62,6 +103,16 @@
 		list/voxsounds = list()
 
 var/global/datum/voxdbg/VoxDebug = new
+
+/datum/hlvoxdbg
+	var
+		list/hlvoxtokens = list()
+		list/hlvoxsounds_flag_sorted = list()
+		list/hlvoxsounds = list()
+
+var/global/datum/hlvoxdbg/hlVoxDebug = new
+
+//commands and building - regular
 
 /client/proc/cmd_debug_vox()
 	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
@@ -279,7 +330,225 @@ proc/vox_playerfilter(var/input as text)
 
 	return output
 
-// global init proc called from world.New
+//commands and building - hl
+
+/client/proc/cmd_debug_hlvox()
+	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
+	set name = "Debug HLVOX"
+	set desc = "Fuck me."
+
+	hlVoxDebug.hlvoxtokens = hlvoxtokens
+	hlVoxDebug.hlvoxsounds_flag_sorted = hlvoxsounds_flag_sorted
+	hlVoxDebug.hlvoxsounds = hlvoxsounds
+
+	debug_variables(hlVoxDebug)
+
+// VOX procs
+/client/proc/cmd_admin_hlvox_help()
+	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	set name = "HLVOX Help"
+	set desc = "WOOP WOOP ASS DAY"
+
+	if(!isadmin(src))
+		boutput(src, "Only administrators may use this command.")
+		return
+
+	hlvox_help(usr)
+
+proc/hlvox_help(var/mob/user)
+	if (!hlvoxhelp_cache)
+		init_hlvox()
+
+		var/list/sorted = list()
+		var/initial
+		hlvoxhelp_cache = "<html><head><title=\"HLVOX Help\"></head><body><b>Valid HLVOX sounds:</b><hr>"
+
+		sorted["pauses"] = list(". for long or , for short")
+		for(var/t in hlvoxsounds)
+			initial = copytext(t, 1, 2)
+			if (initial == "." || initial == ",")
+				continue
+			if (!sorted[initial])
+				sorted[initial] = list()
+			sorted[initial] += t
+
+		var/buf = null
+		for(initial in sorted)
+			var/list/sounds = sorted[initial]
+			hlvoxhelp_cache += "<font size=+1>[initial]:</font> "
+			for(var/sound in sounds)
+				if (buf)
+					buf = "[buf], [sound]"
+				else
+					buf = "[sound]"
+			voxhelp_cache += "[buf]<br><br>"
+			buf = null
+
+		hlvoxhelp_cache += "<hr>"
+
+		for(initial in hlvoxtokens)
+			var/list/sounds = hlvoxsounds_flag_sorted[initial]
+			voxhelp_cache += "<font size=+1>[initial]:</font> "
+			for(var/datum/hlVOXsound/vx in sounds)
+				if (buf)
+					buf = "[buf], [vx.id]"
+				else
+					buf = "[vx.id]"
+			hlvoxhelp_cache += "[buf]<br><br>"
+			buf = null
+
+		hlvoxhelp_cache += "</body></html>"
+
+	user.Browse(hlvoxhelp_cache, "window=voxhelp;size=300x600")
+
+/client/proc/cmd_admin_hlvox_announce()
+	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	set name = "HLVOX Announcement"
+	set desc = "ABOUT THAT BEER I OWED YA, GORDON"
+	if(!isadmin(src))
+		boutput(src, "Only administrators may use this command.")
+		return
+
+	vox_reinit_check()
+
+	var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as text
+	if(!input)
+		return
+
+	var/output = hlvox_play(input, src)
+	if(output)
+		logTheThing("admin", src, null, "has created an intercom announcement: [output]")
+		logTheThing("diary", src, null, "has created an intercom announcement: [output]", "admin")
+		message_admins("[key_name(src)] has created an intercom announcement: [output]")
+
+/client/proc/cmd_admin_hlvox_announce_freq()
+	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	set name = "HLVOX Announcement (Pitch Shifted)"
+	set desc = "ABOUT that BEER I owed YA, NODROG"
+	if(!isadmin(src))
+		boutput(src, "Only administrators may use this command.")
+		return
+
+
+
+	hlvox_reinit_check()
+
+	var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as text
+	if(!input)
+		return
+
+	var/freq_input = input(usr, "Please enter a frequency. Default : 1. Use negatives to play in reverse.", "Pitch?", "") as num
+	if (!freq_input)
+		freq_input = 1
+	if (freq_input > 99)
+		freq_input = 99
+	if (freq_input < -99)
+		freq_input = 99
+	var/output = hlvox_play(input, src, freq_input)
+	if(output)
+		logTheThing("admin", src, null, "has created an hlvox announcement: [output] : With frequency [freq_input]")
+		logTheThing("diary", src, null, "has created an hlvox announcement: [output] : With frequency [freq_input]", "admin")
+		message_admins("[key_name(src)] has created an hlvox announcement: [output] : With frequency [freq_input]")
+
+proc/hlvox_play(var/input, var/user, var/pitch = 1)
+	if(!input)
+		return
+
+	var/list/tokens = splittext(input, " ")
+	var/list/missingwords = list()
+	for(var/t in tokens)
+		t = lowertext(t)
+		if(!hlvoxsounds[t] && !(findtext(t, "<") == 1 || findtext(t, ">") == 1))
+			if (t in hlvoxtokens)
+				continue
+			missingwords += t
+			continue
+
+	if(missingwords.len)
+		boutput(user, "<b>Input: </b>")
+		boutput(user, "[input]")
+		boutput(user, "<b><span class='alert'>Missing HLVOX words: </span></b>")
+		for(var/word in missingwords)
+			boutput(user, "[word]")
+		var/play = alert("Words missing. Play anyway?","HLVox Announcement","Yes","No")
+		if(play != "Yes")
+			return
+
+	//loop through all words, determine pitch, and build the soundfile in memory
+	var/list/soundQueue = list()
+	var/datum/hlVOXsound/vx
+	var/output = null
+	for(var/t in tokens)
+		t = lowertext(t)
+		if(!hlvoxsounds[t])
+			if (findtext(t, "<") == 1 || findtext(t, ">") == 1)
+				var/down = (findtext(t, "<") == 1)
+				pitch += (down ? -0.05 : 0.05) * length(t)
+				if (pitch == 0)
+					pitch += down ? -0.05 : 0.05
+				pitch = min(pitch,98)
+				pitch = max(pitch,-98)
+			else if (t in hlvoxtokens)
+				var/list/l = hlvoxsounds_flag_sorted[t]
+				if (length(l))
+					vx = pick(l)
+		else
+			vx = hlvoxsounds[t]
+		if (vx)
+			vx.load(pitch)
+			soundQueue += vx
+			if (output)
+				output = "[output] [vx.id]"
+			else
+				output = "[vx.id]"
+		vx = null
+
+	//now we loop through all clients, who in turn loop through each built soundfile in order
+	for (var/client/C in clients)
+		if (C.ignore_sound_flags & (SOUND_VOX | SOUND_ALL))
+			continue
+		SPAWN_DBG(0)
+			for (var/datum/hlVOXsound/vxx in soundQueue)
+				vxx.play(C)
+				sleep(0.1 SECONDS)
+
+	return output
+
+proc/hlvox_reinit_check()
+	var/need_init = 0
+	if (!hlvoxsounds_flag_sorted)
+		need_init = 1
+	else if (!hlvoxsounds_flag_sorted.len)
+		need_init = 1
+	else
+		need_init = 1
+		for (var/id in hlvoxsounds_flag_sorted)
+			var/list/L = hlvoxsounds_flag_sorted[id]
+			if (L.len)
+				need_init = 0
+				break
+	if (need_init)
+		init_hlvox()
+
+
+proc/hlvox_playerfilter(var/input as text)
+	if(!hlvox_banned_words)
+		var/list/badwords = dd_file2list("strings/player_vox_banned_words.txt")
+		hlvox_banned_words = list()
+		for(var/W in badwords)
+			var/expr = "/(\\b)[W](\\b)/$1doop$2/g"
+			vox_banned_words += new /regex (expr)
+	if(!istext(input))
+		return
+	var/output = lowertext(input)
+	for(var/regex/R in hlvox_banned_words)
+		var/repl = R.Replace(output) //Returns null if match is not made like some turbohitler
+		if(repl)
+			output = repl
+
+	return output
+
+// global init proc called from world.New - regular vox
 proc/init_vox()
 	// I moved this shit in here because tobba and somepotato said it would fix things, WILL IT? I DON'T KNOW I HATE WORKING ON VOX ANYTHING NOW PLEASE LET ME DIE
 	voxsounds = list(
@@ -410,7 +679,6 @@ proc/init_vox()
 "australia" = new/datum/VOXsound("australia", "sound/vox/australia.ogg", NOUN),
 "authorize" = new/datum/VOXsound("authorize", "sound/vox/authorize.ogg", VERB),
 "authorized" = new/datum/VOXsound("authorized", "sound/vox/authorized.ogg", VERB | ADJECTIVE),
-
 "automate" = new/datum/VOXsound("automate", "sound/vox/automate.ogg", VERB),
 "automated" = new/datum/VOXsound("automated", "sound/vox/automated.ogg", ADJECTIVE),
 "automatic" = new/datum/VOXsound("automatic", "sound/vox/automatic.ogg", ADJECTIVE),
@@ -2600,6 +2868,646 @@ proc/init_vox()
 		voxsounds_flag_sorted[i] = l
 // global vars
 
+// and here's the above but for hlvox
+proc/init_hlvox()
+	hlvoxsounds = list(
+"," = new/datum/hlVOXsound(",", "sound/hlvox/_comma.ogg", FLAG),
+"." = new/datum/hlVOXsound(".", "sound/hlvox/_period.ogg", FLAG),
+"a" = new/datum/hlVOXsound("a", "sound/hlvox/a.ogg", NOUN),
+"accelerating" = new/datum/hlVOXsound("accelerating", "sound/hlvox/accelerating.ogg", VERB),
+"accelerator" = new/datum/hlVOXsound("accelerator", "sound/hlvox/accelerator.ogg", NOUN),
+"accepted" = new/datum/hlVOXsound("accepted", "sound/hlvox/accepted.ogg", VERB | ADJECTIVE),
+"access" = new/datum/hlVOXsound("access", "sound/hlvox/access.ogg", NOUN | VERB),
+"acknowledge" = new/datum/hlVOXsound("acknowledge", "sound/hlvox/acknowledge.ogg", VERB),
+"acknowledged" = new/datum/hlVOXsound("acknowledged", "sound/hlvox/acknowledged.ogg", VERB | ADJECTIVE),
+"acquired" = new/datum/hlVOXsound("acquired", "sound/hlvox/acquired.ogg", VERB | ADJECTIVE),
+"acquisition" = new/datum/hlVOXsound("acquisition", "sound/hlvox/acquisition.ogg", NOUN),
+"across" = new/datum/hlVOXsound("across", "sound/hlvox/across.ogg", PREPOSITION),
+"activate" = new/datum/hlVOXsound("activate", "sound/hlvox/activate.ogg", NOUN),
+"activated" = new/datum/hlVOXsound("activated", "sound/hlvox/activated.ogg", VERB),
+"activity" = new/datum/hlVOXsound("activity", "sound/hlvox/activity.ogg", NOUN),
+"adios" = new/datum/hlVOXsound("adios", "sound/hlvox/adios.ogg", INTERJECTION),
+"administration" = new/datum/hlVOXsound("administration", "sound/hlvox/administration.ogg", NOUN),
+"advanced" = new/datum/hlVOXsound("advanced", "sound/hlvox/advanced.ogg", ADJECTIVE),
+"after" = new/datum/hlVOXsound("after", "sound/hlvox/after.ogg", ADVERB | PREPOSITION),
+"agent" = new/datum/hlVOXsound("agent", "sound/hlvox/agent.ogg", NOUN),
+"alarm" = new/datum/hlVOXsound("alarm", "sound/hlvox/alarm.ogg", NOUN),
+"alert" = new/datum/hlVOXsound("alert", "sound/hlvox/alert.ogg", NOUN | VERB | INTERJECTION),
+"alien" = new/datum/hlVOXsound("alien", "sound/hlvox/alien.ogg", NOUN | ADJECTIVE),
+"aligned" = new/datum/hlVOXsound("aligned", "sound/hlvox/aligned.ogg", ADVERB),
+"all" = new/datum/hlVOXsound("all", "sound/hlvox/all.ogg", ADJECTIVE | NOUN),
+"alpha" = new/datum/hlVOXsound("alpha", "sound/hlvox/alpha.ogg", NOUN | LETTER),
+"am" = new/datum/hlVOXsound("am", "sound/hlvox/am.ogg", VERB),
+"amigo" = new/datum/hlVOXsound("amigo", "sound/hlvox/amigo.ogg", NOUN),
+"ammunition" = new/datum/hlVOXsound("ammunition", "sound/hlvox/ammunition.ogg", NOUN),
+"an" = new/datum/hlVOXsound("an", "sound/hlvox/an.ogg", CONJUNCTION | NOUN | PREPOSITION),
+"and" = new/datum/hlVOXsound("and", "sound/hlvox/and.ogg", CONJUNCTION | NOUN),
+"announcement" = new/datum/hlVOXsound("announcement", "sound/hlvox/announcement.ogg", NOUN),
+"anomalous" = new/datum/hlVOXsound("anomalous", "sound/hlvox/anomalous.ogg", ADJECTIVE),
+"antenna" = new/datum/hlVOXsound("antenna", "sound/hlvox/antenna.ogg", NOUN),
+"any" = new/datum/hlVOXsound("any", "sound/hlvox/any.ogg", FLAG),
+"apprehend" = new/datum/hlVOXsound("apprehend", "sound/hlvox/apprehend.ogg", VERB),
+"approach" = new/datum/hlVOXsound("approach", "sound/hlvox/approach.ogg", VERB | NOUN),
+"are" = new/datum/hlVOXsound("are", "sound/hlvox/are.ogg", VERB),
+"area" = new/datum/hlVOXsound("area", "sound/hlvox/area.ogg", NOUN),
+"arm" = new/datum/hlVOXsound("arm", "sound/hlvox/arm.ogg", NOUN | VERB),
+"armed" = new/datum/hlVOXsound("armed", "sound/hlvox/armed.ogg", ADJECTIVE),
+"armor" = new/datum/hlVOXsound("armor", "sound/hlvox/armor.ogg", NOUN | VERB),
+"armory" = new/datum/hlVOXsound("armory", "sound/hlvox/armory.ogg", NOUN),
+"arrest" = new/datum/hlVOXsound("arrest", "sound/hlvox/arrest.ogg", VERB | NOUN),
+"ass" = new/datum/hlVOXsound("ass", "sound/hlvox/ass.ogg", NOUN),
+"at" = new/datum/hlVOXsound("at", "sound/hlvox/at.ogg", PREPOSITION),
+"atomic" = new/datum/hlVOXsound("atomic", "sound/hlvox/atomic.ogg", ADJECTIVE),
+"attention" = new/datum/hlVOXsound("attention", "sound/hlvox/attention.ogg", INTERJECTION | NOUN),
+"authorize" = new/datum/hlVOXsound("authorize", "sound/hlvox/authorize.ogg", VERB),
+"authorized" = new/datum/hlVOXsound("authorized", "sound/hlvox/authorized.ogg", VERB | ADJECTIVE),
+"automatic" = new/datum/hlVOXsound("automatic", "sound/hlvox/automatic.ogg", ADJECTIVE),
+"away" = new/datum/hlVOXsound("away", "sound/hlvox/away.ogg", ADVERB | ADJECTIVE),
+"b" = new/datum/hlVOXsound("b", "sound/hlvox/b.ogg", LETTER | NOUN),
+"back" = new/datum/hlVOXsound("back", "sound/hlvox/back.ogg", ADJECTIVE | NOUN),
+"backman" = new/datum/hlVOXsound("backman", "sound/hlvox/backman.ogg", NOUN),
+"bad" = new/datum/hlVOXsound("bad", "sound/hlvox/bad.ogg", ADJECTIVE),
+"bag" = new/datum/hlVOXsound("bag", "sound/hlvox/bag.ogg", NOUN),
+"bailey" = new/datum/hlVOXsound("bailey", "sound/hlvox/bailey.ogg", NOUN),
+"barracks" = new/datum/hlVOXsound("barracks", "sound/hlvox/barracks.ogg", NOUN),
+"base" = new/datum/hlVOXsound("base", "sound/hlvox/base.ogg", NOUN),
+"bay" = new/datum/hlVOXsound("bay", "sound/hlvox/bay.ogg", NOUN),
+"be" = new/datum/hlVOXsound("be", "sound/hlvox/be.ogg", VERB),
+"been" = new/datum/hlVOXsound("been", "sound/hlvox/been.ogg", VERB),
+"before" = new/datum/hlVOXsound("before", "sound/hlvox/before.ogg", PREPOSITION),
+"beyond" = new/datum/hlVOXsound("beyond", "sound/hlvox/beyond.ogg", PREPOSITION),
+"biohazard" = new/datum/hlVOXsound("biohazard", "sound/hlvox/biohazard.ogg", NOUN),
+"biological" = new/datum/hlVOXsound("biological", "sound/hlvox/biological.ogg", ADJECTIVE),
+"birdwell" = new/datum/hlVOXsound("birdwell", "sound/hlvox/birdwell.ogg", NOUN | FLAG),
+"bizwarn" = new/datum/hlVOXsound("bizwarn", "sound/hlvox/bizwarn.ogg", FX),
+"black" = new/datum/hlVOXsound("black", "sound/hlvox/black.ogg", ADJECTIVE),
+"blast" = new/datum/hlVOXsound("blast", "sound/hlvox/blast.ogg", VERB | NOUN),
+"blocked" = new/datum/hlVOXsound("blocked", "sound/hlvox/blocked.ogg", VERB | ADJECTIVE),
+"bloop" = new/datum/hlVOXsound("bloop", "sound/hlvox/bloop.ogg", FX),
+"blue" = new/datum/hlVOXsound("blue", "sound/hlvox/blue.ogg", NOUN | ADJECTIVE),
+"bottom" = new/datum/hlVOXsound("bottom", "sound/hlvox/bottom.ogg", NOUN),
+"bravo" = new/datum/hlVOXsound("bravo", "sound/hlvox/bravo.ogg", NOUN | INTERJECTION | LETTER),
+"breach" = new/datum/hlVOXsound("breach", "sound/hlvox/breach.ogg", NOUN | VERB),
+"breached" = new/datum/hlVOXsound("breached", "sound/hlvox/breached.ogg", VERB),
+"break" = new/datum/hlVOXsound("break", "sound/hlvox/break.ogg", NOUN | VERB),
+"bridge" = new/datum/hlVOXsound("bridge", "sound/hlvox/bridge.ogg", NOUN | VERB),
+"bust" = new/datum/hlVOXsound("bust", "sound/hlvox/bust.ogg", NOUN | VERB | ADJECTIVE),
+"but" = new/datum/hlVOXsound("but", "sound/hlvox/but.ogg", PREPOSITION),
+"button" = new/datum/hlVOXsound("button", "sound/hlvox/button.ogg", NOUN | VERB),
+"buzwarn" = new/datum/hlVOXsound("buzwarn", "sound/hlvox/buzwarn.ogg", FX | FLAG),
+"bypass" = new/datum/hlVOXsound("bypass", "sound/hlvox/bypass.ogg", VERB, NOUN),
+"c" = new/datum/hlVOXsound("c", "sound/hlvox/c.ogg", LETTER),
+"cable" = new/datum/hlVOXsound("cable", "sound/hlvox/cable.ogg", NOUN),
+"call" = new/datum/hlVOXsound("call", "sound/hlvox/call.ogg", NOUN|VERB),
+"called" = new/datum/hlVOXsound("called", "sound/hlvox/called.ogg", VERB),
+"canal" = new/datum/hlVOXsound("canal", "sound/hlvox/canal.ogg", NOUN),
+"cap" = new/datum/hlVOXsound("cap", "sound/hlvox/cap.ogg", NOUN | VERB),
+"captain" = new/datum/hlVOXsound("captain", "sound/hlvox/captain.ogg", NOUN),
+"capture" = new/datum/hlVOXsound("capture", "sound/hlvox/capture.ogg", VERB | NOUN),
+"ceiling" = new/datum/hlVOXsound("ceiling", "sound/hlvox/ceiling.ogg", NOUN),
+"center" = new/datum/hlVOXsound("center", "sound/hlvox/center.ogg", VERB | ADJECTIVE | NOUN),
+"centi" = new/datum/hlVOXsound("centi", "sound/hlvox/centi.ogg", NUMBER | FLAG),
+"central" = new/datum/hlVOXsound("central", "sound/hlvox/central.ogg", ADJECTIVE),
+"chamber" = new/datum/hlVOXsound("chamber", "sound/hlvox/chamber.ogg", NOUN),
+"charlie" = new/datum/hlVOXsound("charlie", "sound/hlvox/charlie.ogg", NOUN | LETTER),
+"check" = new/datum/hlVOXsound("check", "sound/hlvox/check.ogg", VERB),
+"checkpoint" = new/datum/hlVOXsound("checkpoint", "sound/hlvox/checkpoint.ogg", NOUN),
+"chemical" = new/datum/hlVOXsound("chemical", "sound/hlvox/chemical.ogg", ADJECTIVE),
+"cleanup" = new/datum/hlVOXsound("cleanup", "sound/hlvox/cleanup.ogg", NOUN | VERB),
+"clear" = new/datum/hlVOXsound("clear", "sound/hlvox/clear.ogg", VERB | ADJECTIVE),
+"clearance" = new/datum/hlVOXsound("clearance", "sound/hlvox/clearance.ogg", NOUN),
+"close" = new/datum/hlVOXsound("close", "sound/hlvox/close.ogg", ADJECTIVE | VERB),
+"code" = new/datum/hlVOXsound("code", "sound/hlvox/code.ogg", NOUN | VERB),
+"coded" = new/datum/hlVOXsound("coded", "sound/hlvox/coded.ogg", VERB | ADJECTIVE),
+"collider" = new/datum/hlVOXsound("collider", "sound/hlvox/collider.ogg", NOUN),
+"command" = new/datum/hlVOXsound("command", "sound/hlvox/command.ogg", NOUN | VERB),
+"communication" = new/datum/hlVOXsound("communication", "sound/hlvox/communication.ogg", NOUN),
+"complex" = new/datum/hlVOXsound("complex", "sound/hlvox/complex.ogg", NOUN | ADJECTIVE),
+"computer" = new/datum/hlVOXsound("computer", "sound/hlvox/computer.ogg", NOUN),
+"condition" = new/datum/hlVOXsound("condition", "sound/hlvox/condition.ogg", NOUN),
+"containment" = new/datum/hlVOXsound("containment", "sound/hlvox/containment.ogg", NOUN),
+"contamination" = new/datum/hlVOXsound("contamination", "sound/hlvox/contamination.ogg", NOUN),
+"control" = new/datum/hlVOXsound("control", "sound/hlvox/control.ogg", VERB | NOUN),
+"coolant" = new/datum/hlVOXsound("coolant", "sound/hlvox/coolant.ogg", NOUN),
+"coomer" = new/datum/hlVOXsound("coomer", "sound/hlvox/coomer.ogg", FLAG),
+"core" = new/datum/hlVOXsound("core", "sound/hlvox/core.ogg", NOUN),
+"correct" = new/datum/hlVOXsound("correct", "sound/hlvox/correct.ogg", VERB | ADJECTIVE),
+"corridor" = new/datum/hlVOXsound("corridor", "sound/hlvox/corridor.ogg", NOUN),
+"crew" = new/datum/hlVOXsound("crew", "sound/hlvox/crew.ogg", NOUN),
+"cross" = new/datum/hlVOXsound("cross", "sound/hlvox/cross.ogg", VERB | NOUN),
+"cryogenic" = new/datum/hlVOXsound("cryogenic", "sound/hlvox/cryogenic.ogg", ADJECTIVE),
+"d" = new/datum/hlVOXsound("d", "sound/hlvox/d.ogg", LETTER),
+"dadeda" = new/datum/hlVOXsound("dadeda", "sound/hlvox/dadeda.ogg", FX),
+"damage" = new/datum/hlVOXsound("damage", "sound/hlvox/damage.ogg", NOUN),
+"damaged" = new/datum/hlVOXsound("damaged", "sound/hlvox/damaged.ogg", VERB | ADJECTIVE),
+"danger" = new/datum/hlVOXsound("danger", "sound/hlvox/danger.ogg", NOUN),
+"day" = new/datum/hlVOXsound("day", "sound/hlvox/day.ogg", NOUN),
+"deactivated" = new/datum/hlVOXsound("deactivated", "sound/hlvox/deactivated.ogg", VERB | ADJECTIVE),
+"decompression" = new/datum/hlVOXsound("decompression", "sound/hlvox/decompression.ogg", NOUN),
+"decontamination" = new/datum/hlVOXsound("decontamination", "sound/hlvox/decontamination.ogg", NOUN),
+"deeoo" = new/datum/hlVOXsound("deeoo", "sound/hlvox/deeoo.ogg", FX),
+"defense" = new/datum/hlVOXsound("defense", "sound/hlvox/defense.ogg", NOUN),
+"degrees" = new/datum/hlVOXsound("degrees", "sound/hlvox/degrees.ogg", NOUN),
+"delta" = new/datum/hlVOXsound("delta", "sound/hlvox/delta.ogg", LETTER | NOUN),
+"denied" = new/datum/hlVOXsound("denied", "sound/hlvox/denied.ogg", VERB | ADJECTIVE),
+"deploy" = new/datum/hlVOXsound("deploy", "sound/hlvox/deploy.ogg", VERB | ADJECTIVE),
+"deployed" = new/datum/hlVOXsound("deployed", "sound/hlvox/deployed.ogg", VERB),
+"destroy" = new/datum/hlVOXsound("destroy", "sound/hlvox/destroy.ogg", VERB),
+"destroyed" = new/datum/hlVOXsound("destroyed", "sound/hlvox/destroyed.ogg", VERB | ADJECTIVE),
+"detain" = new/datum/hlVOXsound("detain", "sound/hlvox/detain.ogg", VERB),
+"detected" = new/datum/hlVOXsound("detected", "sound/hlvox/detected.ogg", VERB | ADJECTIVE),
+"detonation" = new/datum/hlVOXsound("detonation", "sound/hlvox/detonation.ogg", NOUN),
+"device" = new/datum/hlVOXsound("device", "sound/hlvox/device.ogg", NOUN),
+"did" = new/datum/hlVOXsound("did", "sound/hlvox/did.ogg", VERB),
+"die" = new/datum/hlVOXsound("die", "sound/hlvox/die.ogg", VERB),
+"dimensional" = new/datum/hlVOXsound("dimensional", "sound/hlvox/dimensional.ogg", ADJECTIVE),
+"dirt" = new/datum/hlVOXsound("dirt", "sound/hlvox/dirt.ogg", NOUN | VERB),
+"disengaged" = new/datum/hlVOXsound("disengaged", "sound/hlvox/disengaged.ogg", ADJECTIVE | VERB),
+"dish" = new/datum/hlVOXsound("dish", "sound/hlvox/dish.ogg", NOUN),
+"disposal" = new/datum/hlVOXsound("disposal", "sound/hlvox/disposal.ogg", NOUN),
+"distance" = new/datum/hlVOXsound("distance", "sound/hlvox/distance.ogg", NOUN),
+"distortion" = new/datum/hlVOXsound("distortion", "sound/hlvox/distortion.ogg", NOUN),
+"do" = new/datum/hlVOXsound("do", "sound/hlvox/do.ogg", VERB),
+"doctor" = new/datum/hlVOXsound("doctor", "sound/hlvox/doctor.ogg", NOUN),
+"doop" = new/datum/hlVOXsound("doop", "sound/hlvox/doop.ogg", FX | FLAG),
+"door" = new/datum/hlVOXsound("door", "sound/hlvox/door.ogg", NOUN),
+"down" = new/datum/hlVOXsound("down", "sound/hlvox/down.ogg", PREPOSITION),
+"dual" = new/datum/hlVOXsound("dual", "sound/hlvox/dual.ogg", ADJECTIVE),
+"duct" = new/datum/hlVOXsound("duct", "sound/hlvox/duct.ogg", NOUN),
+"e" = new/datum/hlVOXsound("e", "sound/hlvox/e.ogg", LETTER),
+"east" = new/datum/hlVOXsound("east", "sound/hlvox/east.ogg", NOUN | ADJECTIVE),
+"echo" = new/datum/hlVOXsound("echo", "sound/hlvox/echo.ogg", NOUN | LETTER | VERB),
+"ed" = new/datum/hlVOXsound("ed", "sound/hlvox/ed.ogg", NOUN),
+"effect" = new/datum/hlVOXsound("effect", "sound/hlvox/effect.ogg", NOUN | VERB),
+"egress" = new/datum/hlVOXsound("egress", "sound/hlvox/egress.ogg", VERB),
+"eight" = new/datum/hlVOXsound("eight", "sound/hlvox/eight.ogg", NUMBER | NOUN | ADJECTIVE),
+"eighteen" = new/datum/hlVOXsound("eighteen", "sound/hlvox/eighteen.ogg", NUMBER | NOUN | ADJECTIVE),
+"eighty" = new/datum/hlVOXsound("eighty", "sound/hlvox/eighty.ogg", NUMBER | NOUN | ADJECTIVE),
+"electric" = new/datum/hlVOXsound("electric", "sound/hlvox/electric.ogg", ADJECTIVE),
+"electromagnetic" = new/datum/hlVOXsound("electromagnetic", "sound/hlvox/electromagnetic.ogg", ADJECTIVE),
+"elevator" = new/datum/hlVOXsound("elevator", "sound/hlvox/elevator.ogg", NOUN),
+"eleven" = new/datum/hlVOXsound("eleven", "sound/hlvox/eleven.ogg", NUMBER | NOUN | ADJECTIVE),
+"eliminate" = new/datum/hlVOXsound("eliminate", "sound/hlvox/eliminate.ogg", VERB),
+"emergency" = new/datum/hlVOXsound("emergency", "sound/hlvox/emergency.ogg", NOUN | ADJECTIVE),
+"energy" = new/datum/hlVOXsound("energy", "sound/hlvox/energy.ogg", NOUN),
+"engage" = new/datum/hlVOXsound("engage", "sound/hlvox/engage.ogg", VERB),
+"engaged" = new/datum/hlVOXsound("engaged", "sound/hlvox/engaged.ogg", VERB),
+"engine" = new/datum/hlVOXsound("engine", "sound/hlvox/engine.ogg", NOUN),
+"enter" = new/datum/hlVOXsound("enter", "sound/hlvox/enter.ogg", VERB),
+"entry" = new/datum/hlVOXsound("entry", "sound/hlvox/entry.ogg", NOUN),
+"environment" = new/datum/hlVOXsound("environment", "sound/hlvox/environment.ogg", NOUN),
+"error" = new/datum/hlVOXsound("error", "sound/hlvox/error.ogg", NOUN),
+"escape" = new/datum/hlVOXsound("escape", "sound/hlvox/escape.ogg", VERB | NOUN | ADJECTIVE),
+"evacuate" = new/datum/hlVOXsound("evacuate", "sound/hlvox/evacuate.ogg", VERB),
+"exchange" = new/datum/hlVOXsound("exchange", "sound/hlvox/exchange.ogg", VERB),
+"exit" = new/datum/hlVOXsound("exit", "sound/hlvox/exit.ogg", NOUN | VERB),
+"expect" = new/datum/hlVOXsound("expect", "sound/hlvox/expect.ogg", VERB),
+"experiment" = new/datum/hlVOXsound("experiment", "sound/hlvox/experiment.ogg", NOUN | VERB),
+"experimental" = new/datum/hlVOXsound("experimental", "sound/hlvox/experimental.ogg", ADJECTIVE),
+"explode" = new/datum/hlVOXsound("explode", "sound/hlvox/explode.ogg", VERB),
+"explosion" = new/datum/hlVOXsound("explosion", "sound/hlvox/explosion.ogg", NOUN),
+"exposure" = new/datum/hlVOXsound("exposure", "sound/hlvox/exposure.ogg", NOUN),
+"exterminate" = new/datum/hlVOXsound("exterminate", "sound/hlvox/exterminate.ogg", VERB),
+"extinguish" = new/datum/hlVOXsound("extinguish", "sound/hlvox/extinguish.ogg", VERB),
+"extinguisher" = new/datum/hlVOXsound("extinguisher", "sound/hlvox/extinguisher.ogg", NOUN),
+"extreme" = new/datum/hlVOXsound("extreme", "sound/hlvox/extreme.ogg", NOUN),
+"f" = new/datum/hlVOXsound("f", "sound/hlvox/f.ogg", LETTER),
+"facility" = new/datum/hlVOXsound("facility", "sound/hlvox/facility.ogg", NOUN),
+"fahrenheit" = new/datum/hlVOXsound("fahrenheit", "sound/hlvox/fahrenheit.ogg", NOUN),
+"failed" = new/datum/hlVOXsound("failed", "sound/hlvox/failed.ogg", ADJECTIVE | VERB),
+"failure" = new/datum/hlVOXsound("failure", "sound/hlvox/failure.ogg", NOUN),
+"farthest" = new/datum/hlVOXsound("farthest", "sound/hlvox/farthest.ogg", ADJECTIVE | ADVERB),
+"fast" = new/datum/hlVOXsound("fast", "sound/hlvox/fast.ogg", ADJECTIVE),
+"feet" = new/datum/hlVOXsound("feet", "sound/hlvox/feet.ogg", NOUN),
+"field" = new/datum/hlVOXsound("field", "sound/hlvox/field.ogg", NOUN | VERB),
+"fifteen" = new/datum/hlVOXsound("fifteen", "sound/hlvox/fifteen.ogg", NOUN | ADJECTIVE | NUMBER),
+"fifth" = new/datum/hlVOXsound("fifth", "sound/hlvox/fifth.ogg", NOUN | ADJECTIVE | NUMBER),
+"fifty" = new/datum/hlVOXsound("fifty", "sound/hlvox/fifty.ogg", NOUN | ADJECTIVE | NUMBER),
+"final" = new/datum/hlVOXsound("final", "sound/hlvox/final.ogg", ADJECTIVE),
+"fine" = new/datum/hlVOXsound("fine", "sound/hlvox/fine.ogg", NOUN | VERB | ADJECTIVE),
+"fire" = new/datum/hlVOXsound("fire", "sound/hlvox/fire.ogg", NOUN | VERB),
+"first" = new/datum/hlVOXsound("first", "sound/hlvox/first.ogg", NOUN | NUMBER),
+"five" = new/datum/hlVOXsound("five", "sound/hlvox/five.ogg", NOUN | ADJECTIVE | NUMBER),
+"flooding" = new/datum/hlVOXsound("flooding", "sound/hlvox/flooding.ogg", VERB),
+"floor" = new/datum/hlVOXsound("floor", "sound/hlvox/floor.ogg", NOUN | VERB),
+"fool" = new/datum/hlVOXsound("fool", "sound/hlvox/fool.ogg", NOUN | VERB),
+"for" = new/datum/hlVOXsound("for", "sound/hlvox/for.ogg", PREPOSITION),
+"forbidden" = new/datum/hlVOXsound("forbidden", "sound/hlvox/forbidden.ogg", ADJECTIVE),
+"force" = new/datum/hlVOXsound("force", "sound/hlvox/force.ogg", NOUN | VERB),
+"forms" = new/datum/hlVOXsound("forms", "sound/hlvox/forms.ogg", NOUN),
+"found" = new/datum/hlVOXsound("found", "sound/hlvox/found.ogg", ADJECTIVE | VERB),
+"four" = new/datum/hlVOXsound("four", "sound/hlvox/four.ogg", NUMBER | ADJECTIVE),
+"fourteen" = new/datum/hlVOXsound("fourteen", "sound/hlvox/fourteen.ogg", NUMBER | ADJECTIVE),
+"fourth" = new/datum/hlVOXsound("fourth", "sound/hlvox/fourth.ogg", NUMBER | ADJECTIVE),
+"fourty" = new/datum/hlVOXsound("fourty", "sound/hlvox/fourty.ogg", NUMBER | ADJECTIVE),
+"foxtrot" = new/datum/hlVOXsound("foxtrot", "sound/hlvox/foxtrot.ogg", NOUN | LETTER),
+"freeman" = new/datum/hlVOXsound("freeman", "sound/hlvox/freeman.ogg", NOUN),
+"freezer" = new/datum/hlVOXsound("freezer", "sound/hlvox/freezer.ogg", NOUN),
+"from" = new/datum/hlVOXsound("from", "sound/hlvox/from.ogg", PREPOSITION),
+"front" = new/datum/hlVOXsound("front", "sound/hlvox/front.ogg", NOUN),
+"fuel" = new/datum/hlVOXsound("fuel", "sound/hlvox/fuel.ogg", NOUN | VERB),
+"g" = new/datum/hlVOXsound("g", "sound/hlvox/g.ogg", LETTER),
+"get" = new/datum/hlVOXsound("get", "sound/hlvox/get.ogg", VERB),
+"go" = new/datum/hlVOXsound("go", "sound/hlvox/go.ogg", VERB),
+"going" = new/datum/hlVOXsound("going", "sound/hlvox/going.ogg", VERB),
+"good" = new/datum/hlVOXsound("good", "sound/hlvox/good.ogg", ADJECTIVE),
+"goodbye" = new/datum/hlVOXsound("goodbye", "sound/hlvox/goodbye.ogg", NOUN | INTERJECTION),
+"gordon" = new/datum/hlVOXsound("gordon", "sound/hlvox/gordon.ogg", NOUN),
+"got" = new/datum/hlVOXsound("got", "sound/hlvox/got.ogg", VERB),
+"government" = new/datum/hlVOXsound("government", "sound/hlvox/government.ogg", NOUN),
+"granted" = new/datum/hlVOXsound("granted", "sound/hlvox/granted.ogg", VERB | ADJECTIVE),
+"great" = new/datum/hlVOXsound("great", "sound/hlvox/great.ogg", ADJECTIVE),
+"green" = new/datum/hlVOXsound("green", "sound/hlvox/green.ogg", ADJECTIVE),
+"grenade" = new/datum/hlVOXsound("grenade", "sound/hlvox/grenade.ogg", NOUN),
+"guard" = new/datum/hlVOXsound("guard", "sound/hlvox/guard.ogg", NOUN | VERB),
+"gulf" = new/datum/hlVOXsound("gulf", "sound/hlvox/gulf.ogg", NOUN),
+"gun" = new/datum/hlVOXsound("gun", "sound/hlvox/gun.ogg", NOUN),
+"guthrie" = new/datum/hlVOXsound("guthrie", "sound/hlvox/guthrie.ogg", NOUN),
+"handling" = new/datum/hlVOXsound("handling", "sound/hlvox/handling.ogg", VERB | NOUN | ADJECTIVE),
+"hangar" = new/datum/hlVOXsound("hangar", "sound/hlvox/hangar.ogg", NOUN),
+"has" = new/datum/hlVOXsound("has", "sound/hlvox/has.ogg", VERB),
+"have" = new/datum/hlVOXsound("have", "sound/hlvox/have.ogg", VERB),
+"hazard" = new/datum/hlVOXsound("hazard", "sound/hlvox/hazard.ogg", NOUN),
+"head" = new/datum/hlVOXsound("head", "sound/hlvox/head.ogg", NOUN | VERB),
+"health" = new/datum/hlVOXsound("health", "sound/hlvox/health.ogg", NOUN),
+"heat" = new/datum/hlVOXsound("heat", "sound/hlvox/heat.ogg", NOUN | VERB),
+"helicopter" = new/datum/hlVOXsound("helicopter", "sound/hlvox/helicopter.ogg", NOUN),
+"helium" = new/datum/hlVOXsound("helium", "sound/hlvox/helium.ogg", NOUN),
+"hello" = new/datum/hlVOXsound("hello", "sound/hlvox/hello.ogg", INTERJECTION),
+"help" = new/datum/hlVOXsound("help", "sound/hlvox/help.ogg", VERB | INTERJECTION | NOUN),
+"here" = new/datum/hlVOXsound("here", "sound/hlvox/here.ogg", PREPOSITION),
+"hide" = new/datum/hlVOXsound("hide", "sound/hlvox/hide.ogg", VERB),
+"high" = new/datum/hlVOXsound("high", "sound/hlvox/high.ogg", ADJECTIVE| ADVERB),
+"highest" = new/datum/hlVOXsound("highest", "sound/hlvox/highest.ogg", ADJECTIVE| ADVERB),
+"hit" = new/datum/hlVOXsound("hit", "sound/hlvox/hit.ogg", VERB | NOUN),
+"hole" = new/datum/hlVOXsound("hole", "sound/hlvox/hole.ogg", NOUN ),
+"hostile" = new/datum/hlVOXsound("hostile", "sound/hlvox/hostile.ogg", ADJECTIVE | NOUN),
+"hot" = new/datum/hlVOXsound("hot", "sound/hlvox/hot.ogg", ADJECTIVE | ADVERB),
+"hotel" = new/datum/hlVOXsound("hotel", "sound/hlvox/hotel.ogg", NOUN | LETTER),
+"hour" = new/datum/hlVOXsound("hour", "sound/hlvox/hour.ogg", NOUN),
+"hours" = new/datum/hlVOXsound("hours", "sound/hlvox/hours.ogg", NOUN),
+"hundred" = new/datum/hlVOXsound("hundred", "sound/hlvox/hundred.ogg", NUMBER | NOUN | ADJECTIVE),
+"hydro" = new/datum/hlVOXsound("hydro", "sound/hlvox/hydro.ogg", NOUN),
+"i" = new/datum/hlVOXsound("i", "sound/hlvox/i.ogg", NOUN | LETTER),
+"idiot" = new/datum/hlVOXsound("idiot", "sound/hlvox/idiot.ogg", NOUN),
+"illegal" = new/datum/hlVOXsound("illegal", "sound/hlvox/illegal.ogg", ADJECTIVE),
+"immediate" = new/datum/hlVOXsound("immediate", "sound/hlvox/immediate.ogg", ADJECTIVE),
+"immediately" = new/datum/hlVOXsound("immediately", "sound/hlvox/immediately.ogg", ADVERB),
+"in" = new/datum/hlVOXsound("in", "sound/hlvox/in.ogg", PREPOSITION | VERB | ADVERB),
+"inches" = new/datum/hlVOXsound("inches", "sound/hlvox/inches.ogg", NOUN | VERB),
+"india" = new/datum/hlVOXsound("india", "sound/hlvox/india.ogg", NOUN | LETTER),
+"ing" = new/datum/hlVOXsound("ing", "sound/hlvox/ing.ogg", FLAG),
+"inoperative" = new/datum/hlVOXsound("inoperative", "sound/hlvox/inoperative.ogg", ADJECTIVE),
+"inside" = new/datum/hlVOXsound("inside", "sound/hlvox/inside.ogg", NOUN | PREPOSITION | ADVERB | ADJECTIVE),
+"inspection" = new/datum/hlVOXsound("inspection", "sound/hlvox/inspection.ogg", NOUN),
+"inspector" = new/datum/hlVOXsound("inspector", "sound/hlvox/inspector.ogg", NOUN),
+"interchange" = new/datum/hlVOXsound("interchange", "sound/hlvox/interchange.ogg", VERB),
+"intruder" = new/datum/hlVOXsound("intruder", "sound/hlvox/intruder.ogg", NOUN),
+"invalid" = new/datum/hlVOXsound("invalid", "sound/hlvox/invalid.ogg", ADJECTIVE | NOUN),
+"invasion" = new/datum/hlVOXsound("invasion", "sound/hlvox/invasion.ogg", NOUN),
+"is" = new/datum/hlVOXsound("is", "sound/hlvox/is.ogg", VERB),
+"it" = new/datum/hlVOXsound("it", "sound/hlvox/it.ogg", NOUN),
+"johnson" = new/datum/hlVOXsound("johnson", "sound/hlvox/johnson.ogg", NOUN | LETTER),
+"juliet" = new/datum/hlVOXsound("juliet", "sound/hlvox/juliet.ogg", NOUN | LETTER),
+"key" = new/datum/hlVOXsound("key", "sound/hlvox/key.ogg", NOUN),
+"kill" = new/datum/hlVOXsound("kill", "sound/hlvox/kill.ogg", VERB | NOUN),
+"kilo" = new/datum/hlVOXsound("kilo", "sound/hlvox/kilo.ogg", NOUN | LETTER),
+"kit" = new/datum/hlVOXsound("kit", "sound/hlvox/kit.ogg", NOUN | VERB),
+"lab" = new/datum/hlVOXsound("lab", "sound/hlvox/lab.ogg", NOUN),
+"lambda" = new/datum/hlVOXsound("lambda", "sound/hlvox/lambda.ogg", LETTER),
+"laser" = new/datum/hlVOXsound("laser", "sound/hlvox/laser.ogg", NOUN | VERB),
+"last" = new/datum/hlVOXsound("last", "sound/hlvox/last.ogg", ADJECTIVE | ADVERB | VERB | NOUN),
+"launch" = new/datum/hlVOXsound("launch", "sound/hlvox/launch.ogg", VERB | NOUN),
+"leak" = new/datum/hlVOXsound("leak", "sound/hlvox/leak.ogg", VERB | NOUN),
+"leave" = new/datum/hlVOXsound("leave", "sound/hlvox/leave.ogg", VERB | NOUN),
+"left" = new/datum/hlVOXsound("left", "sound/hlvox/left.ogg", ADJECTIVE | ADVERB | NOUN | VERB),
+"legal" = new/datum/hlVOXsound("legal", "sound/hlvox/legal.ogg", ADJECTIVE | NOUN),
+"level" = new/datum/hlVOXsound("level", "sound/hlvox/level.ogg", ADJECTIVE | NOUN | VERB),
+"lever" = new/datum/hlVOXsound("lever", "sound/hlvox/lever.ogg", NOUN | VERB),
+"lie" = new/datum/hlVOXsound("lie", "sound/hlvox/lie.ogg", VERB | NOUN),
+"lieutenant" = new/datum/hlVOXsound("lieutenant", "sound/hlvox/lieutenant.ogg",NOUN | ADJECTIVE),
+"life" = new/datum/hlVOXsound("life", "sound/hlvox/life.ogg", NOUN),
+"light" = new/datum/hlVOXsound("light", "sound/hlvox/light.ogg", NOUN | VERB | ADJECTIVE | ADVERB | VERB),
+"lima" = new/datum/hlVOXsound("lima", "sound/hlvox/lima.ogg", LETTER | FLAG),
+"liquid" = new/datum/hlVOXsound("liquid", "sound/hlvox/liquid.ogg", NOUN | ADJECTIVE),
+"loading" = new/datum/hlVOXsound("loading", "sound/hlvox/loading.ogg", NOUN | VERB),
+"locate" = new/datum/hlVOXsound("locate", "sound/hlvox/locate.ogg", VERB),
+"located" = new/datum/hlVOXsound("located", "sound/hlvox/located.ogg", VERB),
+"location" = new/datum/hlVOXsound("location", "sound/hlvox/location.ogg", NOUN),
+"lock" = new/datum/hlVOXsound("lock", "sound/hlvox/lock.ogg", VERB | NOUN),
+"locked" = new/datum/hlVOXsound("locked", "sound/hlvox/locked.ogg", VERB | ADJECTIVE),
+"locker" = new/datum/hlVOXsound("locker", "sound/hlvox/locker.ogg", NOUN),
+"lockout" = new/datum/hlVOXsound("lockout", "sound/hlvox/lockout.ogg", NOUN),
+"lower" = new/datum/hlVOXsound("lower", "sound/hlvox/lower.ogg", ADJECTIVE | ADVERB | VERB),
+"lowest" = new/datum/hlVOXsound("lowest", "sound/hlvox/lowest.ogg", ADJECTIVE | ADVERB),
+"magnetic" = new/datum/hlVOXsound("magnetic", "sound/hlvox/magnetic.ogg", ADJECTIVE),
+"main" = new/datum/hlVOXsound("main", "sound/hlvox/main.ogg", ADJECTIVE | ADVERB | NOUN),
+"maintenance" = new/datum/hlVOXsound("maintenance", "sound/hlvox/maintenance.ogg", NOUN),
+"malfunction" = new/datum/hlVOXsound("malfunction", "sound/hlvox/malfunction.ogg", NOUN | VERB),
+"man" = new/datum/hlVOXsound("man", "sound/hlvox/man.ogg", NOUN | INTERJECTION | VERB),
+"mass" = new/datum/hlVOXsound("mass", "sound/hlvox/mass.ogg", NOUN | VERB | ADJECTIVE),
+"materials" = new/datum/hlVOXsound("materials", "sound/hlvox/materials.ogg", NOUN),
+"maximum" = new/datum/hlVOXsound("maximum", "sound/hlvox/maximum.ogg", NOUN | ADJECTIVE),
+"may" = new/datum/hlVOXsound("may", "sound/hlvox/may.ogg", VERB | NOUN),
+"medical" = new/datum/hlVOXsound("medical", "sound/hlvox/medical.ogg", ADJECTIVE | NOUN),
+"men" = new/datum/hlVOXsound("men", "sound/hlvox/men.ogg", NOUN),
+"mercy" = new/datum/hlVOXsound("mercy", "sound/hlvox/mercy.ogg", NOUN),
+"mesa" = new/datum/hlVOXsound("mesa", "sound/hlvox/mesa.ogg", NOUN),
+"message" = new/datum/hlVOXsound("message", "sound/hlvox/message.ogg", NOUN | VERB),
+"meter" = new/datum/hlVOXsound("meter", "sound/hlvox/meter.ogg", NOUN | VERB),
+"micro" = new/datum/hlVOXsound("micro", "sound/hlvox/micro.ogg", NOUN),
+"middle" = new/datum/hlVOXsound("middle", "sound/hlvox/middle.ogg", NOUN | ADJECTIVE),
+"mike" = new/datum/hlVOXsound("mike", "sound/hlvox/mike.ogg", NOUN | LETTER),
+"miles" = new/datum/hlVOXsound("miles", "sound/hlvox/miles.ogg", NOUN),
+"military" = new/datum/hlVOXsound("military", "sound/hlvox/military.ogg", NOUN | ADJECTIVE),
+"milli" = new/datum/hlVOXsound("milli", "sound/hlvox/milli.ogg", NOUN),
+"million" = new/datum/hlVOXsound("million", "sound/hlvox/million.ogg", NUMBER | NOUN | ADJECTIVE),
+"minefield" = new/datum/hlVOXsound("minefield", "sound/hlvox/minefield.ogg", NOUN),
+"minimum" = new/datum/hlVOXsound("minimum", "sound/hlvox/minimum.ogg", NOUN | ADJECTIVE),
+"minutes" = new/datum/hlVOXsound("minutes", "sound/hlvox/minutes.ogg", NOUN),
+"mister" = new/datum/hlVOXsound("mister", "sound/hlvox/mister.ogg", NOUN | VERB),
+"mode" = new/datum/hlVOXsound("mode", "sound/hlvox/mode.ogg", NOUN),
+"motor" = new/datum/hlVOXsound("motor", "sound/hlvox/motor.ogg", NOUN | ADJECTIVE | VERB),
+"motorpool" = new/datum/hlVOXsound("motorpool", "sound/hlvox/motorpool.ogg", NOUN),
+"move" = new/datum/hlVOXsound("move", "sound/hlvox/move.ogg", VERB | NOUN),
+"must" = new/datum/hlVOXsound("must", "sound/hlvox/must.ogg", VERB | NOUN),
+"nearest" = new/datum/hlVOXsound("nearest", "sound/hlvox/nearest.ogg", ADJECTIVE | PREPOSITION),
+"nice" = new/datum/hlVOXsound("nice", "sound/hlvox/nice.ogg", ADJECTIVE | ADVERB | INTERJECTION),
+"nine" = new/datum/hlVOXsound("nine", "sound/hlvox/nine.ogg", NUMBER | NOUN | ADJECTIVE),
+"nineteen" = new/datum/hlVOXsound("nineteen", "sound/hlvox/nineteen.ogg", NUMBER | NOUN | ADJECTIVE),
+"ninety" = new/datum/hlVOXsound("ninety", "sound/hlvox/ninety.ogg", NUMBER | NOUN | ADJECTIVE),
+"no" = new/datum/hlVOXsound("no", "sound/hlvox/no.ogg", ADVERB | NOUN),
+"nominal" = new/datum/hlVOXsound("nominal", "sound/hlvox/nominal.ogg", ADJECTIVE | NOUN),
+"north" = new/datum/hlVOXsound("north", "sound/hlvox/north.ogg", NOUN | ADJECTIVE | ADVERB),
+"not" = new/datum/hlVOXsound("not", "sound/hlvox/not.ogg", ADVERB | CONJUNCTION | INTERJECTION | NOUN),
+"november" = new/datum/hlVOXsound("november", "sound/hlvox/november.ogg", NOUN | LETTER),
+"now" = new/datum/hlVOXsound("now", "sound/hlvox/now.ogg", ADJECTIVE | ADVERB | CONJUNCTION | INTERJECTION | NOUN),
+"number" = new/datum/hlVOXsound("number", "sound/hlvox/number.ogg", NOUN | VERB),
+"objective" = new/datum/hlVOXsound("objective", "sound/hlvox/objective.ogg", ADJECTIVE | NOUN),
+"observation" = new/datum/hlVOXsound("observation", "sound/hlvox/observation.ogg", NOUN),
+"of" = new/datum/hlVOXsound("of", "sound/hlvox/of.ogg", PREPOSITION),
+"officer" = new/datum/hlVOXsound("officer", "sound/hlvox/officer.ogg", NOUN),
+"ok" = new/datum/hlVOXsound("ok", "sound/hlvox/ok.ogg", ADJECTIVE | NOUN | VERB | ADVERB | INTERJECTION),
+"on" = new/datum/hlVOXsound("on", "sound/hlvox/on.ogg", PREPOSITION),
+"one" = new/datum/hlVOXsound("one", "sound/hlvox/one.ogg", NUMBER | NOUN | ADJECTIVE),
+"open" = new/datum/hlVOXsound("open", "sound/hlvox/open.ogg", VERB),
+"operating" = new/datum/hlVOXsound("operating", "sound/hlvox/operating.ogg", ADJECTIVE),
+"operations" = new/datum/hlVOXsound("operations", "sound/hlvox/operations.ogg", NOUN),
+"operative" = new/datum/hlVOXsound("operative", "sound/hlvox/operative.ogg", NOUN | ADJECTIVE),
+"option" = new/datum/hlVOXsound("option", "sound/hlvox/option.ogg", NOUN | VERB),
+"order" = new/datum/hlVOXsound("order", "sound/hlvox/order.ogg", VERB),
+"organic" = new/datum/hlVOXsound("organic", "sound/hlvox/organic.ogg", ADJECTIVE),
+"oscar" = new/datum/hlVOXsound("oscar", "sound/hlvox/oscar.ogg", NOUN | LETTER),
+"out" = new/datum/hlVOXsound("out", "sound/hlvox/out.ogg", PREPOSITION),
+"outside" = new/datum/hlVOXsound("outside", "sound/hlvox/outside.ogg", PREPOSITION),
+"over" = new/datum/hlVOXsound("over", "sound/hlvox/over.ogg", ADJECTIVE | PREPOSITION),
+"overload" = new/datum/hlVOXsound("overload", "sound/hlvox/overload.ogg", VERB),
+"override" = new/datum/hlVOXsound("override", "sound/hlvox/override.ogg", VERB),
+"pacify" = new/datum/hlVOXsound("pacify", "sound/hlvox/pacify.ogg", VERB),
+"pain" = new/datum/hlVOXsound("pain", "sound/hlvox/pain.ogg", NOUN | VERB),
+"pal" = new/datum/hlVOXsound("pal", "sound/hlvox/pal.ogg", NOUN | VERB),
+"panel" = new/datum/hlVOXsound("panel", "sound/hlvox/panel.ogg", NOUN | VERB),
+"percent" = new/datum/hlVOXsound("percent", "sound/hlvox/percent.ogg", NOUN | ADJECTIVE),
+"perimeter" = new/datum/hlVOXsound("perimeter", "sound/hlvox/perimeter.ogg", NOUN),
+"permitted" = new/datum/hlVOXsound("permitted", "sound/hlvox/permitted.ogg", VERB),
+"personnel" = new/datum/hlVOXsound("personnel", "sound/hlvox/personnel.ogg", NOUN),
+"pipe" = new/datum/hlVOXsound("pipe", "sound/hlvox/pipe.ogg", NOUN | VERB),
+"plant" = new/datum/hlVOXsound("plant", "sound/hlvox/plant.ogg", NOUN | VERB),
+"platform" = new/datum/hlVOXsound("platform", "sound/hlvox/platform.ogg", NOUN | VERB),
+"please" = new/datum/hlVOXsound("please", "sound/hlvox/please.ogg", VERB | ADJECTIVE | FLAG),
+"point" = new/datum/hlVOXsound("point", "sound/hlvox/point.ogg", NOUN | VERB),
+"portal" = new/datum/hlVOXsound("portal", "sound/hlvox/portal.ogg", NOUN | ADJECTIVE),
+"power" = new/datum/hlVOXsound("power", "sound/hlvox/power.ogg", NOUN | VERB),
+"presence" = new/datum/hlVOXsound("presence", "sound/hlvox/presence.ogg", NOUN | VERB),
+"press" = new/datum/hlVOXsound("press", "sound/hlvox/press.ogg", NOUN | VERB),
+"primary" = new/datum/hlVOXsound("primary", "sound/hlvox/primary.ogg", NOUN | ADJECTIVE | VERB),
+"proceed" = new/datum/hlVOXsound("proceed", "sound/hlvox/proceed.ogg", VERB),
+"processing" = new/datum/hlVOXsound("processing", "sound/hlvox/processing.ogg", NOUN | VERB),
+"progress" = new/datum/hlVOXsound("progress", "sound/hlvox/progress.ogg", NOUN | VERB),
+"proper" = new/datum/hlVOXsound("proper", "sound/hlvox/proper.ogg", ADJECTIVE | ADVERB),
+"propulsion" = new/datum/hlVOXsound("propulsion", "sound/hlvox/propulsion.ogg", NOUN),
+"prosecute" = new/datum/hlVOXsound("prosecute", "sound/hlvox/prosecute.ogg", VERB),
+"protective" = new/datum/hlVOXsound("protective", "sound/hlvox/protective.ogg", ADJECTIVE | NOUN),
+"push" = new/datum/hlVOXsound("push", "sound/hlvox/push.ogg", VERB | NOUN),
+"quantum" = new/datum/hlVOXsound("quantum", "sound/hlvox/quantum.ogg", NOUN | ADJECTIVE),
+"quebec" = new/datum/hlVOXsound("quebec", "sound/hlvox/quebec.ogg", NOUN | LETTER),
+"question" = new/datum/hlVOXsound("question", "sound/hlvox/question.ogg", NOUN | VERB),
+"questioning" = new/datum/hlVOXsound("questioning", "sound/hlvox/questioning.ogg", NOUN | ADJECTIVE | VERB),
+"quick" = new/datum/hlVOXsound("quick", "sound/hlvox/quick.ogg", ADJECTIVE | ADVERB),
+"quit" = new/datum/hlVOXsound("quit", "sound/hlvox/quit.ogg", VERB | NOUN),
+"radiation" = new/datum/hlVOXsound("radiation", "sound/hlvox/radiation.ogg", NOUN),
+"radioactive" = new/datum/hlVOXsound("radioactive", "sound/hlvox/radioactive.ogg", ADJECTIVE),
+"rads" = new/datum/hlVOXsound("rads", "sound/hlvox/rads.ogg", NOUN),
+"rapid" = new/datum/hlVOXsound("rapid", "sound/hlvox/rapid.ogg", ADJECTIVE | NOUN),
+"reach" = new/datum/hlVOXsound("reach", "sound/hlvox/reach.ogg", VERB | NOUN),
+"reached" = new/datum/hlVOXsound("reached", "sound/hlvox/reached.ogg", VERB),
+"reactor" = new/datum/hlVOXsound("reactor", "sound/hlvox/reactor.ogg", NOUN),
+"red" = new/datum/hlVOXsound("red", "sound/hlvox/red.ogg", ADJECTIVE | NOUN),
+"relay" = new/datum/hlVOXsound("relay", "sound/hlvox/relay.ogg", NOUN | VERB),
+"released" = new/datum/hlVOXsound("released", "sound/hlvox/released.ogg", VERB),
+"remaining" = new/datum/hlVOXsound("remaining", "sound/hlvox/remaining.ogg", VERB | NOUN | ADJECTIVE),
+"renegade" = new/datum/hlVOXsound("renegade", "sound/hlvox/renegade.ogg", NOUN),
+"repair" = new/datum/hlVOXsound("repair", "sound/hlvox/repair.ogg", NOUN | VERB),
+"report" = new/datum/hlVOXsound("report", "sound/hlvox/report.ogg", NOUN | VERB),
+"reports" = new/datum/hlVOXsound("reports", "sound/hlvox/reports.ogg", NOUN | VERB),
+"required" = new/datum/hlVOXsound("required", "sound/hlvox/required.ogg", VERB),
+"research" = new/datum/hlVOXsound("research", "sound/hlvox/research.ogg", NOUN | VERB),
+"resevoir" = new/datum/hlVOXsound("resevoir", "sound/hlvox/resevoir.ogg", NOUN),
+"resistance" = new/datum/hlVOXsound("resistance", "sound/hlvox/resistance.ogg", NOUN),
+"right" = new/datum/hlVOXsound("right", "sound/hlvox/right.ogg", ADJECTIVE),
+"rocket" = new/datum/hlVOXsound("rocket", "sound/hlvox/rocket.ogg", NOUN | VERB),
+"roger" = new/datum/hlVOXsound("roger", "sound/hlvox/roger.ogg", VERB | INTERJECTION | FLAG),
+"romeo" = new/datum/hlVOXsound("romeo", "sound/hlvox/romeo.ogg", NOUN | LETTER),
+"room" = new/datum/hlVOXsound("room", "sound/hlvox/room.ogg", NOUN),
+"round" = new/datum/hlVOXsound("round", "sound/hlvox/round.ogg", PREPOSITION),
+"run" = new/datum/hlVOXsound("run", "sound/hlvox/run.ogg", VERB),
+"safe" = new/datum/hlVOXsound("safe", "sound/hlvox/safe.ogg", ADJECTIVE | NOUN),
+"safety" = new/datum/hlVOXsound("safety", "sound/hlvox/safety.ogg", ADJECTIVE),
+"sargeant" = new/datum/hlVOXsound("sargeant", "sound/hlvox/sargeant.ogg", NOUN),
+"satellite" = new/datum/hlVOXsound("satellite", "sound/hlvox/satellite.ogg", NOUN),
+"save" = new/datum/hlVOXsound("save", "sound/hlvox/save.ogg", PREPOSITION),
+"science" = new/datum/hlVOXsound("science", "sound/hlvox/science.ogg", NOUN),
+"scream" = new/datum/hlVOXsound("scream", "sound/hlvox/scream.ogg", NOUN | VERB),
+"screen" = new/datum/hlVOXsound("screen", "sound/hlvox/screen.ogg", NOUN | VERB),
+"search" = new/datum/hlVOXsound("search", "sound/hlvox/search.ogg", VERB),
+"second" = new/datum/hlVOXsound("second", "sound/hlvox/second.ogg", ADJECTIVE | NUMBER),
+"secondary" = new/datum/hlVOXsound("secondary", "sound/hlvox/secondary.ogg", ADJECTIVE | NUMBER),
+"seconds" = new/datum/hlVOXsound("seconds", "sound/hlvox/seconds.ogg", NOUN),
+"sector" = new/datum/hlVOXsound("sector", "sound/hlvox/sector.ogg", NOUN),
+"secure" = new/datum/hlVOXsound("secure", "sound/hlvox/secure.ogg", VERB),
+"secured" = new/datum/hlVOXsound("secured", "sound/hlvox/secured.ogg", VERB),
+"security" = new/datum/hlVOXsound("security", "sound/hlvox/security.ogg", NOUN),
+"select" = new/datum/hlVOXsound("select", "sound/hlvox/select.ogg", VERB),
+"selected" = new/datum/hlVOXsound("selected", "sound/hlvox/selected.ogg", ADJECTIVE),
+"service" = new/datum/hlVOXsound("service", "sound/hlvox/service.ogg", VERB),
+"seven" = new/datum/hlVOXsound("seven", "sound/hlvox/seven.ogg", NUMBER | NOUN | ADJECTIVE),
+"seventeen" = new/datum/hlVOXsound("seventeen", "sound/hlvox/seventeen.ogg", NUMBER | NOUN | ADJECTIVE),
+"seventy" = new/datum/hlVOXsound("seventy", "sound/hlvox/seventy.ogg", NUMBER | NOUN | ADJECTIVE),
+"severe" = new/datum/hlVOXsound("severe", "sound/hlvox/severe.ogg", ADJECTIVE),
+"sewage" = new/datum/hlVOXsound("sewage", "sound/hlvox/sewage.ogg", NOUN),
+"sewer" = new/datum/hlVOXsound("sewer", "sound/hlvox/sewer.ogg", NOUN),
+"shield" = new/datum/hlVOXsound("shield", "sound/hlvox/shield.ogg", NOUN | VERB),
+"shipment" = new/datum/hlVOXsound("shipment", "sound/hlvox/shipment.ogg", NOUN),
+"shock" = new/datum/hlVOXsound("shock", "sound/hlvox/shock.ogg", VERB),
+"shoot" = new/datum/hlVOXsound("shoot", "sound/hlvox/shoot.ogg", VERB),
+"shower" = new/datum/hlVOXsound("shower", "sound/hlvox/shower.ogg", NOUN | VERB),
+"shut" = new/datum/hlVOXsound("shut", "sound/hlvox/shut.ogg", VERB | NOUN),
+"side" = new/datum/hlVOXsound("side", "sound/hlvox/side.ogg", ADJECTIVE | ADVERB | NOUN | VERB),
+"sierra" = new/datum/hlVOXsound("sierra", "sound/hlvox/sierra.ogg", NOUN | LETTER),
+"sight" = new/datum/hlVOXsound("sight", "sound/hlvox/sight.ogg", NOUN | VERB),
+"silo" = new/datum/hlVOXsound("silo", "sound/hlvox/silo.ogg", NOUN | VERB),
+"six" = new/datum/hlVOXsound("six", "sound/hlvox/six.ogg", NUMBER | NOUN | ADJECTIVE),
+"sixteen" = new/datum/hlVOXsound("sixteen", "sound/hlvox/sixteen.ogg", NUMBER | NOUN | ADJECTIVE),
+"sixty" = new/datum/hlVOXsound("sixty", "sound/hlvox/sixty.ogg", NUMBER | NOUN | ADJECTIVE),
+"slime" = new/datum/hlVOXsound("slime", "sound/hlvox/slime.ogg", NOUN | VERB),
+"slow" = new/datum/hlVOXsound("slow", "sound/hlvox/slow.ogg", ADJECTIVE | VERB),
+"soldier" = new/datum/hlVOXsound("soldier", "sound/hlvox/soldier.ogg", NOUN | VERB),
+"some" = new/datum/hlVOXsound("some", "sound/hlvox/some.ogg", NOUN | ADJECTIVE),
+"someone" = new/datum/hlVOXsound("someone", "sound/hlvox/someone.ogg", NOUN),
+"something" = new/datum/hlVOXsound("something", "sound/hlvox/something.ogg", NOUN | ADJECTIVE | ADVERB),
+"son" = new/datum/hlVOXsound("son", "sound/hlvox/son.ogg", NOUN),
+"sorry" = new/datum/hlVOXsound("sorry", "sound/hlvox/sorry.ogg", ADJECTIVE | INTERJECTION | NOUN),
+"south" = new/datum/hlVOXsound("south", "sound/hlvox/south.ogg", NOUN | ADJECTIVE | ADVERB | VERB),
+"squad" = new/datum/hlVOXsound("squad", "sound/hlvox/squad.ogg", NOUN),
+"square" = new/datum/hlVOXsound("square", "sound/hlvox/square.ogg", NOUN | ADJECTIVE | VERB | ADVERB),
+"stairway" = new/datum/hlVOXsound("stairway", "sound/hlvox/stairway.ogg", NOUN),
+"status" = new/datum/hlVOXsound("status", "sound/hlvox/status.ogg", NOUN),
+"sterile" = new/datum/hlVOXsound("sterile", "sound/hlvox/sterile.ogg", ADJECTIVE),
+"sterilization" = new/datum/hlVOXsound("sterilization", "sound/hlvox/sterilization.ogg", NOUN),
+"storage" = new/datum/hlVOXsound("storage", "sound/hlvox/storage.ogg", NOUN),
+"sub" = new/datum/hlVOXsound("sub", "sound/hlvox/sub.ogg", NOUN | VERB | PREPOSITION),
+"subsurface" = new/datum/hlVOXsound("subsurface", "sound/hlvox/subsurface.ogg", NOUN | ADJECTIVE),
+"sudden" = new/datum/hlVOXsound("sudden", "sound/hlvox/sudden.ogg", ADJECTIVE | ADVERB),
+"suit" = new/datum/hlVOXsound("suit", "sound/hlvox/suit.ogg", NOUN | VERB),
+"superconducting" = new/datum/hlVOXsound("superconducting", "sound/hlvox/superconducting.ogg", ADJECTIVE),
+"supercooled" = new/datum/hlVOXsound("supercooled", "sound/hlvox/supercooled.ogg", ADJECTIVE),
+"supply" = new/datum/hlVOXsound("supply", "sound/hlvox/supply.ogg", VERB | NOUN),
+"surface" = new/datum/hlVOXsound("surface", "sound/hlvox/surface.ogg", NOUN | VERB),
+"surrender" = new/datum/hlVOXsound("surrender", "sound/hlvox/surrender.ogg", NOUN | VERB),
+"surround" = new/datum/hlVOXsound("surround", "sound/hlvox/surround.ogg", VERB | FLAG),
+"surrounded" = new/datum/hlVOXsound("surrounded", "sound/hlvox/surrounded.ogg", VERB),
+"switch" = new/datum/hlVOXsound("switch", "sound/hlvox/switch.ogg", NOUN | VERB),
+"system" = new/datum/hlVOXsound("system", "sound/hlvox/system.ogg", NOUN | ADVERB | FLAG),
+"systems" = new/datum/hlVOXsound("systems", "sound/hlvox/systems.ogg", NOUN | ADVERB | FLAG),
+"tactical" = new/datum/hlVOXsound("tactical", "sound/hlvox/tactical.ogg", ADJECTIVE),
+"take" = new/datum/hlVOXsound("take", "sound/hlvox/take.ogg", NOUN | VERB),
+"talk" = new/datum/hlVOXsound("talk", "sound/hlvox/talk.ogg", VERB | NOUN),
+"tango" = new/datum/hlVOXsound("tango", "sound/hlvox/tango.ogg", LETTER | NOUN),
+"tank" = new/datum/hlVOXsound("tank", "sound/hlvox/tank.ogg", NOUN),
+"target" = new/datum/hlVOXsound("target", "sound/hlvox/target.ogg", NOUN | VERB),
+"team" = new/datum/hlVOXsound("team", "sound/hlvox/team.ogg", NOUN | VERB),
+"temperature" = new/datum/hlVOXsound("temperature", "sound/hlvox/temperature.ogg", NOUN),
+"temporal" = new/datum/hlVOXsound("temporal", "sound/hlvox/temporal.ogg", ADJECTIVE),
+"ten" = new/datum/hlVOXsound("ten", "sound/hlvox/ten.ogg", NUMBER | ADJECTIVE),
+"terminal" = new/datum/hlVOXsound("terminal", "sound/hlvox/terminal.ogg", NOUN | ADJECTIVE),
+"terminated" = new/datum/hlVOXsound("terminated", "sound/hlvox/terminated.ogg", VERB),
+"termination" = new/datum/hlVOXsound("termination", "sound/hlvox/termination.ogg", NOUN),
+"test" = new/datum/hlVOXsound("test", "sound/hlvox/test.ogg", NOUN | VERB),
+"that" = new/datum/hlVOXsound("that", "sound/hlvox/that.ogg", CONJUNCTION | PREPOSITION | ADVERB | NOUN | FLAG),
+"the" = new/datum/hlVOXsound("the", "sound/hlvox/the.ogg", ADVERB | FLAG),
+"then" = new/datum/hlVOXsound("then", "sound/hlvox/then.ogg", ADVERB | ADJECTIVE | NOUN),
+"there" = new/datum/hlVOXsound("there", "sound/hlvox/there.ogg", ADVERB | INTERJECTION | NOUN),
+"third" = new/datum/hlVOXsound("third", "sound/hlvox/third.ogg", NUMBER | NOUN | ADJECTIVE),
+"thirteen" = new/datum/hlVOXsound("thirteen", "sound/hlvox/thirteen.ogg", NUMBER | NOUN | ADJECTIVE),
+"thirty" = new/datum/hlVOXsound("thirty", "sound/hlvox/thirty.ogg", NUMBER | NOUN | ADJECTIVE),
+"this" = new/datum/hlVOXsound("this", "sound/hlvox/this.ogg", NOUN | ADVERB | INTERJECTION),
+"those" = new/datum/hlVOXsound("those", "sound/hlvox/those.ogg", FLAG),
+"thousand" = new/datum/hlVOXsound("thousand", "sound/hlvox/thousand.ogg", NUMBER | NOUN | ADJECTIVE),
+"threat" = new/datum/hlVOXsound("threat", "sound/hlvox/threat.ogg", NOUN),
+"three" = new/datum/hlVOXsound("three", "sound/hlvox/three.ogg", NUMBER | NOUN | ADJECTIVE),
+"through" = new/datum/hlVOXsound("through", "sound/hlvox/through.ogg", ADVERB | PREPOSITION),
+"time" = new/datum/hlVOXsound("time", "sound/hlvox/time.ogg", NOUN | VERB | INTERJECTION),
+"to" = new/datum/hlVOXsound("to", "sound/hlvox/to.ogg", PREPOSITION),
+"top" = new/datum/hlVOXsound("top", "sound/hlvox/top.ogg", NOUN | ADVERB),
+"topside" = new/datum/hlVOXsound("topside", "sound/hlvox/topside.ogg", NOUN | ADJECTIVE),
+"touch" = new/datum/hlVOXsound("touch", "sound/hlvox/touch.ogg", NOUN | ADJECTIVE),
+"towards" = new/datum/hlVOXsound("towards", "sound/hlvox/towards.ogg", ADVERB),
+"track" = new/datum/hlVOXsound("track", "sound/hlvox/track.ogg", NOUN | VERB),
+"train" = new/datum/hlVOXsound("train", "sound/hlvox/train.ogg", NOUN | VERB),
+"transportation" = new/datum/hlVOXsound("transportation", "sound/hlvox/transportation.ogg", NOUN),
+"truck" = new/datum/hlVOXsound("truck", "sound/hlvox/truck.ogg", VERB | NOUN),
+"tunnel" = new/datum/hlVOXsound("tunnel", "sound/hlvox/tunnel.ogg", NOUN | VERB),
+"turn" = new/datum/hlVOXsound("turn", "sound/hlvox/turn.ogg", NOUN | VERB),
+"turret" = new/datum/hlVOXsound("turret", "sound/hlvox/turret.ogg", NOUN | VERB),
+"twelve" = new/datum/hlVOXsound("twelve", "sound/hlvox/twelve.ogg", NUMBER | NOUN | ADJECTIVE),
+"twenty" = new/datum/hlVOXsound("twenty", "sound/hlvox/twenty.ogg", NUMBER | NOUN | ADJECTIVE),
+"two" = new/datum/hlVOXsound("two", "sound/hlvox/two.ogg", NUMBER | NOUN | ADJECTIVE),
+"unauthorized" = new/datum/hlVOXsound("unauthorized", "sound/hlvox/unauthorized.ogg", ADJECTIVE),
+"under" = new/datum/hlVOXsound("under", "sound/hlvox/under.ogg", PREPOSITION),
+"uniform" = new/datum/hlVOXsound("uniform", "sound/hlvox/uniform.ogg", NOUN | ADJECTIVE | LETTER),
+"unlocked" = new/datum/hlVOXsound("unlocked", "sound/hlvox/unlocked.ogg", ADJECTIVE | VERB),
+"until" = new/datum/hlVOXsound("until", "sound/hlvox/until.ogg", PREPOSITION),
+"up" = new/datum/hlVOXsound("up", "sound/hlvox/up.ogg", ADJECTIVE | PREPOSITION),
+"upper" = new/datum/hlVOXsound("upper", "sound/hlvox/upper.ogg", ADJECTIVE),
+"uranium" = new/datum/hlVOXsound("uranium", "sound/hlvox/uranium.ogg", NOUN),
+"us" = new/datum/hlVOXsound("us", "sound/hlvox/us.ogg", NOUN),
+"usa" = new/datum/hlVOXsound("usa", "sound/hlvox/usa.ogg", NOUN),
+"use" = new/datum/hlVOXsound("use", "sound/hlvox/use.ogg", VERB),
+"used" = new/datum/hlVOXsound("used", "sound/hlvox/used.ogg", VERB),
+"user" = new/datum/hlVOXsound("user", "sound/hlvox/user.ogg", NOUN),
+"vacate" = new/datum/hlVOXsound("vacate", "sound/hlvox/vacate.ogg", VERB),
+"valid" = new/datum/hlVOXsound("valid", "sound/hlvox/valid.ogg", NOUN),
+"vapor" = new/datum/hlVOXsound("vapor", "sound/hlvox/vapor.ogg", NOUN),
+"vent" = new/datum/hlVOXsound("vent", "sound/hlvox/vent.ogg", NOUN | VERB),
+"ventillation" = new/datum/hlVOXsound("ventillation", "sound/hlvox/ventillation.ogg", NOUN),
+"victor" = new/datum/hlVOXsound("victor", "sound/hlvox/victor.ogg", LETTER | NOUN),
+"violated" = new/datum/hlVOXsound("violated", "sound/hlvox/violated.ogg", VERB),
+"violation" = new/datum/hlVOXsound("violation", "sound/hlvox/violation.ogg", NOUN),
+"voltage" = new/datum/hlVOXsound("voltage", "sound/hlvox/voltage.ogg", NOUN),
+"vox_login" = new/datum/hlVOXsound("vox_login", "sound/hlvox/vox_login.ogg", FLAG),
+"walk" = new/datum/hlVOXsound("walk", "sound/hlvox/walk.ogg", VERB),
+"wall" = new/datum/hlVOXsound("wall", "sound/hlvox/wall.ogg", NOUN | VERB),
+"want" = new/datum/hlVOXsound("want", "sound/hlvox/want.ogg", VERB),
+"wanted" = new/datum/hlVOXsound("wanted", "sound/hlvox/wanted.ogg", VERB),
+"warm" = new/datum/hlVOXsound("warm", "sound/hlvox/warm.ogg", ADJECTIVE | VERB),
+"warn" = new/datum/hlVOXsound("warn", "sound/hlvox/warn.ogg", VERB),
+"warning" = new/datum/hlVOXsound("warning", "sound/hlvox/warning.ogg", VERB),
+"waste" = new/datum/hlVOXsound("waste", "sound/hlvox/waste.ogg", VERB | NOUN),
+"water" = new/datum/hlVOXsound("water", "sound/hlvox/water.ogg", NOUN | VERB),
+"we" = new/datum/hlVOXsound("we", "sound/hlvox/we.ogg", NOUN),
+"weapon" = new/datum/hlVOXsound("weapon", "sound/hlvox/weapon.ogg", NOUN),
+"west" = new/datum/hlVOXsound("west", "sound/hlvox/west.ogg", NOUN),
+"whiskey" = new/datum/hlVOXsound("whiskey", "sound/hlvox/whiskey.ogg", NOUN | LETTER),
+"white" = new/datum/hlVOXsound("white", "sound/hlvox/white.ogg", NOUN | ADJECTIVE),
+"wilco" = new/datum/hlVOXsound("wilco", "sound/hlvox/wilco.ogg", LETTER),
+"will" = new/datum/hlVOXsound("will", "sound/hlvox/will.ogg", NOUN),
+"with" = new/datum/hlVOXsound("with", "sound/hlvox/with.ogg", PREPOSITION),
+"without" = new/datum/hlVOXsound("without", "sound/hlvox/without.ogg", PREPOSITION),
+"woop" = new/datum/hlVOXsound("woop", "sound/hlvox/woop.ogg", FX),
+"xeno" = new/datum/hlVOXsound("xeno", "sound/hlvox/xeno.ogg", ADJECTIVE | NOUN),
+"yankee" = new/datum/hlVOXsound("yankee", "sound/hlvox/yankee.ogg", NOUN | LETTER),
+"yards" = new/datum/hlVOXsound("yards", "sound/hlvox/yards.ogg", NOUN),
+"year" = new/datum/hlVOXsound("year", "sound/hlvox/year.ogg", NOUN),
+"yellow" = new/datum/hlVOXsound("yellow", "sound/hlvox/yellow.ogg", NOUN | ADJECTIVE | VERB),
+"yes" = new/datum/hlVOXsound("yes", "sound/hlvox/yes.ogg", INTERJECTION | NOUN | VERB),
+"you" = new/datum/hlVOXsound("you", "sound/hlvox/you.ogg", NOUN),
+"your" = new/datum/hlVOXsound("your", "sound/hlvox/your.ogg", NOUN),
+"yours" = new/datum/hlVOXsound("yours", "sound/hlvox/yours.ogg", FLAG),
+"yourself" = new/datum/hlVOXsound("yourself", "sound/hlvox/yourself.ogg", NOUN),
+"zero" = new/datum/hlVOXsound("zero", "sound/hlvox/zero.ogg", NUMBER | ADJECTIVE),
+"zone" = new/datum/hlVOXsound("zone", "sound/hlvox/zone.ogg", NOUN | VERB),
+"zulu" = new/datum/hlVOXsound("zulu", "sound/hlvox/zulu.ogg", LETTER | NOUN)
+)
+
+	SPAWN_DBG(0.1 SECONDS)
+		for(var/id in hlvoxsounds)
+			var/datum/hlVOXsound/vox = hlvoxsounds[id]
+			vox.ogg = file(vox.ogg)
+
+		var/list/l
+		var/f
+		var/datum/hlVOXsound/vx
+		hlvoxsounds_flag_sorted = list()
+		for(var/i in hlvoxtokens)
+			l = list()
+			f = hlvoxtokens[i]
+			for(var/id in hlvoxsounds)
+				vx = hlvoxsounds[id]
+				if (vx.flags & f)
+					l += vx
+			hlvoxsounds_flag_sorted[i] = l
+	// global vars
+
 var/global/
 	voxhelp_cache = null
 	list/regex/vox_banned_words = null
@@ -2619,6 +3527,26 @@ var/global/
 	list/voxsounds_flag_sorted = list()
 
 	list/voxsounds = list()
+
+var/global/ //mirroring above for hl
+	hlvoxhelp_cache = null
+	list/regex/hlvox_banned_words = null
+	list/hlvoxtokens = list(
+"$fx" = FX,
+"$noun" = NOUN,
+"$adj" = ADJECTIVE,
+"$verb" = VERB,
+"$adv" = ADVERB,
+"$prep" = PREPOSITION,
+"$conj" = CONJUNCTION,
+"$int" = INTERJECTION,
+"$num" = NUMBER,
+"$letter" = LETTER,
+"$word" = WORD)
+
+	list/hlvoxsounds_flag_sorted = list()
+
+	list/hlvoxsounds = list()
 
 #undef FX
 #undef NOUN

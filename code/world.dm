@@ -475,6 +475,7 @@ var/f_color_selector_handler/F_Color_Selector
 
 	Z_LOG_DEBUG("World/Init", "Vox init")
 	init_vox()
+	init_hlvox()
 	if (load_intra_round_value("solarium_complete") == 1)
 		derelict_mode = 1
 		was_eaten = world.load_intra_round_value("somebody_ate_the_fucking_thing")
