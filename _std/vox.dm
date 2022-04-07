@@ -530,24 +530,6 @@ proc/hlvox_reinit_check()
 	if (need_init)
 		init_hlvox()
 
-
-proc/hlvox_playerfilter(var/input as text)
-	if(!hlvox_banned_words)
-		var/list/badwords = dd_file2list("strings/player_vox_banned_words.txt")
-		hlvox_banned_words = list()
-		for(var/W in badwords)
-			var/expr = "/(\\b)[W](\\b)/$1doop$2/g"
-			vox_banned_words += new /regex (expr)
-	if(!istext(input))
-		return
-	var/output = lowertext(input)
-	for(var/regex/R in hlvox_banned_words)
-		var/repl = R.Replace(output) //Returns null if match is not made like some turbohitler
-		if(repl)
-			output = repl
-
-	return output
-
 // global init proc called from world.New - regular vox
 proc/init_vox()
 	// I moved this shit in here because tobba and somepotato said it would fix things, WILL IT? I DON'T KNOW I HATE WORKING ON VOX ANYTHING NOW PLEASE LET ME DIE

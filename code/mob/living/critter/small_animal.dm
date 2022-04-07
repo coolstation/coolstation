@@ -2322,7 +2322,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 					return "<span class='emote'><b>[src]</b> [msg]!</span>"
 			if ("birdwell", "burp")
 				if (src.emote_check(voluntary, 50))
-					playsound(src, 'sound/vox/birdwell.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+					playsound(src, 'sound/hlvox/birdwell.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 					return "<span class='emote'><b>[src]</b> birdwells.</span>"
 			if ("flip")
 				var/mode = pick("honk", "fart", "burp", "squeak", "cat", "harmonica", "vuvuzela", "bang", "buzz", "gunshot", "siren", "coo", "rimshot", "trombone")
