@@ -113,6 +113,8 @@
 				puffrate = src.reagents.total_volume / numpuffs //40 active cycles (200 total, about 10 minutes)
 			processing_items |= src
 
+			src.rng_stun_rate = 20 //%
+
 			hit_type = DAMAGE_BURN
 
 	proc/put_out(var/mob/user as mob, var/message as text)
@@ -133,6 +135,8 @@
 			processing_items.Remove(src)
 
 			hit_type = DAMAGE_BLUNT
+
+			src.rng_stun_rate = 0
 
 			playsound(src, "sound/impact_sounds/burn_sizzle.ogg", 50, 1)
 

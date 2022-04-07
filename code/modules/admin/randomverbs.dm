@@ -2053,6 +2053,8 @@ var/global/night_mode_enabled = 0
 				AI.cancel_camera()
 				AI.verbs += /mob/living/silicon/ai/proc/ai_vox_announcement
 				AI.verbs += /mob/living/silicon/ai/proc/ai_vox_help
+				AI.verbs += /mob/living/silicon/ai/proc/ai_hlvox_announcement
+				AI.verbs += /mob/living/silicon/ai/proc/ai_hlvox_help
 				AI.show_text("<B>You may now make intercom announcements!</B><BR>You'll find two new verbs under AI commands: \"AI Intercom Announcement\" and \"AI Intercom Help\"")
 
 
@@ -2065,6 +2067,8 @@ var/global/night_mode_enabled = 0
 				AI.cancel_camera()
 				AI.verbs -= /mob/living/silicon/ai/proc/ai_vox_announcement
 				AI.verbs -= /mob/living/silicon/ai/proc/ai_vox_help
+				AI.verbs -= /mob/living/silicon/ai/proc/ai_hlvox_announcement
+				AI.verbs -= /mob/living/silicon/ai/proc/ai_hlvox_help
 				AI.show_text("<B>You may no longer make intercom announcements!</B>")
 
 		if("Cancel")
