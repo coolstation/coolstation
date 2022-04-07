@@ -428,7 +428,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	desc = "A cylindrical array of lenses to focus laser blasts."
 	spread_angle = -16
 	lensing = 0.9
-	part_DRM = GUN_FOSS | GUN_SOVIET
+	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_JUICE
 	color = "#5555FF"
 	name_addition = "lenser"
 	icon_state = "barrel-zauber"
@@ -440,7 +440,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	desc = "A cylindrical array of lenses to focus laser blasts."
 	spread_angle = -17
 	lensing = 1
-	part_DRM = GUN_FOSS | GUN_SOVIET
 	color = "#7755FF"
 	name_addition = "focuser"
 	icon_state = "barrel-zauber"
@@ -452,7 +451,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	spread_angle = -3
 	scatter = 1
 	jam_frequency_fire = 5 //but very poorly built
-	part_DRM = GUN_JUICE | GUN_ITALIAN
+	part_DRM = GUN_JUICE | GUN_NANO | GUN_FOSS
 	color = "#99FF99"
 	name_addition = "MASHER"
 	icon_state = "barrel-shotgun"
@@ -472,7 +471,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	desc = "стопка линз для фокусировки вашего пистолета"
 	spread_angle = -14
 	lensing = 1.2
-	part_DRM = GUN_FOSS | GUN_SOVIET
+	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	color = "#FF9999"
 	name_addition = "comrade"
 	icon_state = "barrel-zauber"
@@ -483,7 +482,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	desc = "стопка линз для фокусировки вашего пистолета"
 	spread_angle = -14
 	lensing = 1.4
-	part_DRM = GUN_FOSS | GUN_SOVIET
 	color = "#FF99BB"
 	name_addition = "tovarisch"
 	icon_state = "barrel-zauber"
@@ -495,7 +493,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	scatter = 1
 	spread_angle = -10
 	lensing = 1.2
-	part_DRM = GUN_SOVIET | GUN_JUICE
 	color = "#FF99DD"
 	name_addition = "soyuz"
 	icon_state = "barrel-zauber"
@@ -505,7 +502,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	name = "canna di fucile"
 	desc = "una canna di fucile di base e di alta qualità"
 	spread_angle = -11 // "alta qualità"
-	part_DRM = GUN_JUICE | GUN_ITALIAN
+	part_DRM = GUN_NANO | GUN_ITALIAN | GUN_SOVIET
 	color = "#FFFF99"
 	name_addition = "paisan"
 	length = 13
@@ -527,7 +524,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	can_dual_wield = 0
 	max_ammo_capacity = 1 // additional shot in the butt
 	jam_frequency_reload = 2 // a little more jammy
-	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN
 	name_addition = "sturdy"
 	icon_state = "stock-standard"
 
@@ -539,7 +535,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	can_dual_wield = 0
 	max_ammo_capacity = 1 // additional shot in the butt
 	jam_frequency_reload = 3 // a little more jammy
-	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN
 	name_addition = "capable"
 	icon_state = "stock-standard"
 
@@ -547,7 +542,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	name = "\improper FOSS laser stock"
 	desc = "An open-sourced laser dynamo, with a multiple-position winding spring."
 	spread_angle = -3 // basic stabilisation
-	part_DRM = GUN_FOSS | GUN_SOVIET
+	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_JUICE
 	flashbulb_only = 1
 	max_crank_level = 2
 	color = "#5555FF"
@@ -567,7 +562,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	desc = "An open-sourced laser dynamo, with a multiple-position winding spring. This one's kind of hard to hold."
 	spread_angle = 1 // A POSITIVE SPREAD? O NO
 	max_ammo_capacity = 2 // two more bulbs in the pocket
-	part_DRM = GUN_FOSS | GUN_JUICE
 	jam_frequency_reload = 10
 	name_addition = "reckless"
 
@@ -586,7 +580,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	spread_angle = -1
 	max_ammo_capacity = 1 // to make that revolver revolve!
 	jam_frequency_reload = 5 // a lot  more jammy!!
-	part_DRM = GUN_ITALIAN | GUN_JUICE | GUN_SOVIET
+	part_DRM = GUN_NANO | GUN_ITALIAN | GUN_SOVIET
 	color = "#FFFF99"
 	name_addition = "quality"
 
@@ -596,7 +590,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	spread_angle = -3
 	max_ammo_capacity = 3 // to make that revolver revolve!
 	jam_frequency_reload = 9 // a lot  more jammy!!
-	part_DRM = GUN_ITALIAN | GUN_JUICE | GUN_SOVIET
 	color = "#FFFF99"
 	name_addition = "jovial"
 
