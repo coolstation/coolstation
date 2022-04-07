@@ -1047,7 +1047,7 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 		if ("birdwell", "burp")
 			if (src.emote_check(voluntary, 50))
 				message = "<B>[src]</B> birdwells."
-				playsound(src.loc, 'sound/vox/birdwell.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+				playsound(src.loc, 'sound/hlvox/birdwell.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 
 		if ("johnny")
 			var/M
@@ -2125,6 +2125,41 @@ proc/get_mobs_trackable_by_AI()
 		logTheThing("diary", src, null, "has created an intercom announcement: [output]", "say")
 		message_admins("[key_name(src)] has created an AI intercom announcement: \"[output]\"")
 
+/mob/living/silicon/ai/proc/ai_hlvox_announcement()
+	set name = "AI HLVOX Announcement"
+	set desc = "Makes HLVOX announcement."
+	set category = "AI Commands"
+
+	if(src.stat || !canvox)
+		return
+
+	if(last_vox + vox_cooldown > world.time)
+		src.show_text("This ability is still on cooldown for [round((vox_cooldown + last_vox - world.time) / 10)] seconds!", "red")
+		return
+
+	vox_reinit_check()
+
+	canvox = 0
+	var/message_in = html_encode(input(usr, "Please enter a message (140 characters)", "HLVOX Announcement?", ""))
+	canvox = 1
+
+	if(!message_in)
+		return
+	var/message_len = length(message_in)
+	var/message = copytext(message_in, 1, 140)
+
+	if(message_len != length(message))
+		if(alert("Your message was shortened to: \"[message]\", continue anyway?", "Too wordy!", "Yes", "No") != "Yes")
+			return
+
+	message = vox_playerfilter(message)
+
+	var/output = hlvox_play(message, src)
+	if(output)
+		last_vox = world.time
+		logTheThing("say", src, null, "has created an hlvox announcement: \"[output]\", input: \"[message_in]\"")
+		logTheThing("diary", src, null, "has created an hlvox announcement: [output]", "say")
+		message_admins("[key_name(src)] has created an AI hlvox announcement: \"[output]\"")
 
 /mob/living/silicon/ai/proc/ai_station_announcement()
 	set name = "AI Station Announcement"
@@ -2168,6 +2203,13 @@ proc/get_mobs_trackable_by_AI()
 	set category = "AI Commands"
 
 	vox_help(src)
+
+/mob/living/silicon/ai/proc/ai_hlvox_help()
+	set name = "AI HLVOX Help"
+	set desc = "A big list of words. Some of them are even off-limits! Wow!"
+	set category = "AI Commands"
+
+	hlvox_help(src)
 
 /mob/living/silicon/ai/choose_name(var/retries = 3, var/what_you_are = null, var/default_name = null, var/force_instead = 0)
 	var/obj/item/organ/brain/brain_owner = src.brain.owner

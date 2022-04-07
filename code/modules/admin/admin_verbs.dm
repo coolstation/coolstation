@@ -117,6 +117,9 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_admin_intercom_announce,
 		/client/proc/cmd_admin_intercom_announce_freq,
 		/client/proc/cmd_admin_intercom_help,
+		/client/proc/cmd_admin_hlvox_announce,
+		/client/proc/cmd_admin_hlvox_announce_freq,
+		/client/proc/cmd_admin_hlvox_help,
 		/client/proc/cmd_dectalk,
 		/client/proc/cmd_admin_remove_plasma,
 		/client/proc/toggle_death_confetti,
@@ -394,6 +397,7 @@ var/list/admin_verbs = list(
 
 		/client/proc/ticklag,
 		/client/proc/cmd_debug_vox,
+		/client/proc/cmd_debug_hlvox,
 		/client/proc/check_gang_scores,
 		/client/proc/mapWorld,
 		/client/proc/haine_blood_debug,

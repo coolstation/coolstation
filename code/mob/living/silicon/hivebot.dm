@@ -284,7 +284,7 @@
 		if ("birdwell", "burp")
 			if (src.emote_check(voluntary, 50))
 				message = "<B>[src]</B> birdwells."
-				playsound(src.loc, 'sound/vox/birdwell.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+				playsound(src.loc, 'sound/hlvox/birdwell.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 
 		if ("scream")
 			if (src.emote_check(voluntary, 50))

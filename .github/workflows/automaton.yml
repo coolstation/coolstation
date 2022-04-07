@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        map: ["COGMAP", "COGMAP2", "CLARION", "DESTINY", "OSHAN", "SPACE_PREFAB", "UNDERWATER_PREFAB", "FULL"]
+        map: ["COGMAP", "DESTINY", "OSHAN", "GEHENNA", "SPACE_PREFAB", "UNDERWATER_PREFAB", "FULL"]
         compiletype: ["default"]
     steps:
       - uses: actions/checkout@v2
