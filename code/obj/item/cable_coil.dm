@@ -296,15 +296,7 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 	for (var/obj/cable/C in A)
 		if (C.d1 == dirn || C.d2 == dirn)
 			return
-	var/obj/cable/NC = new cable_obj_type(A, src)
-
-	applyCableMaterials(NC, src.insulator, src.conductor)
-	NC.d1 = 0
-	NC.d2 = dirn
-	NC.updateicon()
-	NC.update_network()
-	NC.log_wirelaying(usr)
-	src.use(1)
+	plop_a_cable(A, usr, 0, dirn)
 	return
 
 /obj/item/cable_coil/proc/cable_join_between(var/obj/cable/C, var/turf/B)
@@ -341,14 +333,7 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 			if ((LC.d1 == nd1 && LC.d2 == nd2) || (LC.d1 == nd2 && LC.d2 == nd1) )	// make sure no cable matches either direction
 				return
 		qdel(C)
-		var/obj/cable/NC = new cable_obj_type(T, src)
-		applyCableMaterials(NC, src.insulator, src.conductor)
-		NC.d1 = nd1
-		NC.d2 = nd2
-		NC.updateicon()
-		NC.update_network()
-		NC.log_wirelaying(usr)
-		src.use(1)
+		plop_a_cable(T, usr, nd1, nd2)
 	return
 
 /obj/item/cable_coil/proc/turf_place(turf/F, mob/user)
@@ -379,15 +364,7 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 				boutput(user, "There's already a cable at that position.")
 				return
 
-		var/obj/cable/C = new cable_obj_type(F, src)
-		C.d1 = 0
-		C.d2 = dirn
-		C.add_fingerprint(user)
-		C.updateicon()
-		C.update_network()
-		applyCableMaterials(C, src.insulator, src.conductor)
-		C.log_wirelaying(user)
-		src.use(1)
+		plop_a_cable(F, user, 0, dirn)
 	return
 
 // called when cable_coil is click on an installed obj/cable
@@ -425,15 +402,7 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 					boutput(user, "There's already a cable at that position.")
 					return
 
-			var/obj/cable/NC = new cable_obj_type(U, src)
-			applyCableMaterials(NC, src.insulator, src.conductor)
-			NC.d1 = 0
-			NC.d2 = fdirn
-			NC.add_fingerprint()
-			NC.updateicon()
-			NC.update_network()
-			NC.log_wirelaying(user)
-			src.use(1)
+			plop_a_cable(U, user, 0, fdirn)
 			C.shock(user, 25)
 			return
 
@@ -456,13 +425,17 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 				return
 		C.shock(user, 25)
 		qdel(C)
-		var/obj/cable/NC = new cable_obj_type(T, src)
-		applyCableMaterials(NC, src.insulator, src.conductor)
-		NC.d1 = nd1
-		NC.d2 = nd2
-		NC.add_fingerprint()
-		NC.updateicon()
-		NC.update_network()
-		NC.log_wirelaying(user)
-		src.use(1)
+		plop_a_cable(T, user, nd1, nd2)
 		return
+
+///This was copy-pasted some 5 times across the 4 cable laying procs that exist(ed) FSR?
+obj/item/cable_coil/proc/plop_a_cable(turf/overthere, mob/user, dir1, dir2)
+	var/obj/cable/NC = new cable_obj_type(overthere, src)
+	applyCableMaterials(NC, src.insulator, src.conductor)
+	NC.d1 = dir1
+	NC.d2 = dir2
+	NC.add_fingerprint()
+	NC.updateicon()
+	NC.update_network()
+	NC.log_wirelaying(user)
+	src.use(1)
