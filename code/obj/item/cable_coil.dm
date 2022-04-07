@@ -1,5 +1,7 @@
 // the cable coil object, used for laying cable
 
+// Contains reinforced and red (default) cables, the other colours of cable are generated through weird-but-cool #define bullshit in cablecolors.dm
+
 obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 
 #define MAXCOIL 120
@@ -34,6 +36,7 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 	var/datum/material/conductor = null
 
 	var/cable_obj_type = /obj/cable
+	var/currently_laying = FALSE
 
 	// will use getMaterial() to apply these at spawn
 	var/spawn_insulator_name = "synthrubber"
@@ -97,21 +100,8 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 			updateicon()
 			return 1
 
-	proc/take(var/amt, var/newloc)
-		if (amt > amount)
-			amt = amount
-		if (amt == amount)
-			if (ismob(loc))
-				var/mob/owner = loc
-				owner.u_equip(src)
-			set_loc(newloc)
-			return src
-		src.use(amt)
-		var/obj/item/cable_coil/C = new /obj/item/cable_coil(newloc)
-		C.amount = amt
-		C.updateicon()
-		C.setInsulator(insulator)
-		C.setConductor(conductor)
+	update_stack_appearance()
+		updateicon()
 
 	proc/updateicon()
 		if (amount <= 0)
@@ -177,13 +167,18 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 /////////////////////////////////////////////////REINFORCED CABLE
 
 /obj/item/cable_coil/attack_self(var/mob/living/M)
-	if (istype(M))
-		if (M.move_laying)
-			M.move_laying = null
-			boutput(M, "<span class='notice'>No longer laying the cable while moving.</span>")
-		else
-			M.move_laying = src
-			boutput(M, "<span class='notice'>Now laying cable while moving.</span>")
+	if (currently_laying)
+		UnregisterSignal(M, COMSIG_MOVABLE_MOVED)
+		boutput(M, "<span class='notice'>No longer laying the cable while moving.</span>")
+	else
+		RegisterSignal(M, COMSIG_MOVABLE_MOVED, .proc/move_callback)
+		boutput(M, "<span class='notice'>Now laying cable while moving.</span>")
+	currently_laying = !currently_laying
+
+obj/item/cable_coil/dropped(mob/user)
+	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+	currently_laying = FALSE
+	..()
 
 /obj/proc/move_callback(var/mob/M, var/turf/source, var/turf/target)
 	return
@@ -193,11 +188,14 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 		if (!C.d1 && C.d2 != ignore_dir)
 			return C
 
-/obj/item/cable_coil/move_callback(var/mob/living/M, var/turf/source, var/turf/target)
+/obj/item/cable_coil/move_callback(var/mob/living/M, var/turf/target, var/direct)
 	if (!istype(M))
 		return
+	if (!isturf(M.loc))
+		return
+	var/turf/source = M.loc //the signal doesn't give the source location but it gets sent before the mob actually transfers so it's fine
 	if (!src.amount)
-		M.move_laying = null
+		UnregisterSignal(M, COMSIG_MOVABLE_MOVED)
 		boutput(M, "<span class='alert'>Your cable coil runs out!</span>")
 		return
 	var/obj/cable/C
@@ -209,7 +207,7 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 		turf_place_between(source, target)
 
 	if (!src.amount)
-		M.move_laying = null
+		UnregisterSignal(M, COMSIG_MOVABLE_MOVED)
 		boutput(M, "<span class='alert'>Your cable coil runs out!</span>")
 		return
 
@@ -221,7 +219,7 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 		turf_place_between(target, source)
 
 	if (!src.amount)
-		M.move_laying = null
+		UnregisterSignal(M, COMSIG_MOVABLE_MOVED)
 		boutput(M, "<span class='alert'>Your cable coil runs out!</span>")
 		return
 
@@ -238,43 +236,16 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 
 /obj/item/cable_coil/attackby(obj/item/W, mob/user)
 	if (issnippingtool(W) && src.amount > 1)
-		src.amount--
-		take(1, usr.loc)
+		var/obj/item/cable_coil/A = split_stack(round(input("How long of a wire do you wish to cut?","Length of [src.amount]",1) as num))
+		A.set_loc(user.loc) //Hey, split_stack, Why is the default location for the new item src.loc which is *very likely* to be a damn mob?
 		boutput(user, "You cut a piece off the [base_name].")
-		src.updateicon()
 		return
 
-	else if (istype(W, /obj/item/cable_coil))
-		var/obj/item/cable_coil/C = W
-		if(!isSameMaterial(C.conductor, src.conductor) || !isSameMaterial(C.insulator, src.insulator))
-			boutput(user, "You cannot link together cables made from different materials. That would be silly.")
-			return
-
-		if (C.amount >= MAXCOIL)
-			boutput(user, "The coil is too long, you cannot add any more cable to it.")
-			return
-
-		if ((C.amount + src.amount <= MAXCOIL))
-			C.amount += src.amount
-			boutput(user, "You join the cable coils together.")
-			C.updateicon()
-			if(istype(src.loc, /obj/item/storage))
-				var/obj/item/storage/storage = src.loc
-				storage.hud.remove_object(src)
-			else if(istype(src.loc, /mob))
-				var/mob/M = src.loc
-				M.u_equip(src)
-				M.drop_item(src)
-			qdel(src)
-			return
-
-		else
-			boutput(user, "You transfer [MAXCOIL - src.amount ] length\s of cable from one coil to the other.")
-			src.amount -= (MAXCOIL-C.amount)
-			src.updateicon()
-			C.amount = MAXCOIL
-			C.updateicon()
-			return
+	if (check_valid_stack(W))
+		stack_item(W)
+		if(!user.is_in_hands(src))
+			user.put_in_hand(src)
+		boutput(user, "You join the cable coils together.")
 
 /obj/item/cable_coil/MouseDrop_T(atom/movable/O as obj, mob/user as mob)
 	..(O, user)
