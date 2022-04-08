@@ -372,7 +372,7 @@
 
 	else if (istype(W, /obj/item/cable_coil))
 		var/obj/item/cable_coil/coil = W
-		coil.cable_join(src, user)
+		coil.cable_join(src, get_turf(user), user, TRUE)
 		//note do shock in cable_join
 
 	else if (istype(W, /obj/item/weldingtool))
