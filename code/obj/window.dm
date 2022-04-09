@@ -912,6 +912,14 @@
 			icon_state = "r-wingrille_f"
 			full_win = 1
 
+			classic
+				name = "old style reinforced window grille spawner"
+				grille_path = "/obj/grille"
+
+		classic
+			name = "old style reinforced window grille spawner"
+			grille_path = "/obj/grille"
+
 	crystal
 		name = "crystal window grille spawner"
 		icon_state = "p-wingrille"
@@ -968,6 +976,10 @@
 		tuff
 			name = "tuff stuff reinforced autowindow grille spawner"
 			win_path = "/obj/window/auto/reinforced/the_tuff_stuff"
+
+	classic
+		name = "old style window grille spawner"
+		grille_path = "/obj/grille"
 
 //Cubicle walls! Also for the crunch. - from halloween.dm
 /obj/window/cubicle
