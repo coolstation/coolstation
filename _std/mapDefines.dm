@@ -47,6 +47,9 @@
 #elif defined(MAP_OVERRIDE_GEHENNA)
 #define DESERT_MAP
 
+#elif defined(MAP_OVERRIDE_SPIRIT)
+
+
 #elif defined(MAP_OVERRIDE_MANTA)
 
 #define UNDERWATER_MAP 1
