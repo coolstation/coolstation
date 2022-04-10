@@ -81,6 +81,22 @@
 	icon_state = "empty"
 	casecolor = "empty"
 
+/obj/machinery/portable_atmospherics/canister/farts
+	name = "Industrial Fardts"
+	desc = "One \"standard-issue\" Nanotrasen cylinder, filled to the brim with a dadly gas"
+	icon_state = "green"
+	casecolor = "green"
+
+/obj/machinery/portable_atmospherics/canister/farts/filled
+	filled = 1.069
+
+	New()
+		..()
+		src.air_contents.farts = (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
+
+		src.update_icon()
+		return 1
+
 /obj/machinery/portable_atmospherics/canister/New()
 	..()
 	atmos_dmi = image('icons/obj/atmospherics/atmos.dmi')

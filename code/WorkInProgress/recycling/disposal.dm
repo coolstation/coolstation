@@ -26,6 +26,9 @@
 
 	var/mail_tag = null //Switching junctions with the same tag will pass it out the secondary instead of primary
 
+	var/autoconfig = 0 //Is this a configuration packet? great! glad to hear it!
+	var/list/routers = null // a list of the places we have been so far.
+
 	unpooled()
 		..()
 		gas = null
@@ -34,8 +37,12 @@
 		count = initial(count)
 		last_sound = 0
 		mail_tag = null
+		autoconfig = 0
+		routers = list()
 
 	pooled()
+		routers = null
+		autoconfig = 0
 		gas = null
 		active = 0
 		set_dir(0)
@@ -98,6 +105,8 @@
 
 				if(!(count--))
 					active = 0
+					if(autoconfig)//we dont want dead config packets to stay put, we want them to evaporate.
+						pool(src)
 		return
 
 	// find the turf which should contain the next pipe
@@ -173,6 +182,21 @@
 		location.assume_air(gas)  // vent all gas to turf
 		gas = null
 		return
+
+	proc/dupe() // returns another disposalholder like this one
+		var/obj/disposalholder/autoconfig/dupe = unpool(/obj/disposalholder/autoconfig)
+		dupe.count = src.count
+		dupe.autoconfig = src.autoconfig
+		dupe.routers = src.routers.Copy()
+		dupe.mail_tag = src.mail_tag
+		dupe.active = src.active
+		dupe.dir = src.dir
+		return dupe
+
+/obj/disposalholder/autoconfig
+	// warc sez: \\
+	// this is a special guy created specifically to help automatically configure the mail system.
+	autoconfig = 1
 
 // Disposal pipes
 
@@ -576,7 +600,54 @@
 	transfer(var/obj/disposalholder/H)
 		H.mail_tag = src.mail_tag
 		flick("pipe-mechsense-detect", src)
+		return ..()
+
+/obj/disposalpipe/configurator // place this inside the main router, after all the collector junctions, and before all of the main group routers.
+	name = "mail chute configurator"
+	desc = "an electronic disposal pipe that dispenses little electronic tracking devices, permitting automatic mail router configuration"
+	icon_state = "pipe-s-dir"
+
+	New()
 		..()
+		processing_items |= src
+
+	proc/process()
+		send_out_dat_fucken_packet()
+		processing_items -= src
+
+	transfer(var/obj/disposalholder/H)
+		if(H.autoconfig == 1)// its one of our own little packets that made it all the way around. So we kill him.
+			logTheThing("debug", src, null, "got a little guy back")
+			pool(H)
+			return null
+		if(H.autoconfig == 2)
+			logTheThing("debug", src, null, "the journey begin's")
+			H.autoconfig = 1 // the journey begin's
+			SPAWN_DBG(60 SECONDS)
+				call_mail_chute_configs()
+		return ..()
+
+
+	proc/send_out_dat_fucken_packet() // gonna make a fresh tracker holder and send it out to make trouble.
+		logTheThing("debug", src, null, "sent out a little guy")
+		for (var/obj/disposalpipe/switch_junction/SJ in world)
+			logTheThing("debug", SJ, null, "deleting mail tags")
+			SJ.mail_tag = list()
+
+		var/obj/disposalholder/packet = unpool(/obj/disposalholder)
+		packet.contents += new /obj/item/gnomechompski(packet)
+		packet.autoconfig = 2
+		packet.active = 1
+		packet.set_dir(dir)
+		packet.set_loc(src)
+		SPAWN_DBG(0.1 SECONDS)
+			packet.process()
+
+	proc/call_mail_chute_configs()
+		logTheThing("debug", src, null, "asking if anyone has seen my little guy")
+		for (var/obj/machinery/disposal/mail/MB in world)
+			MB.self_register()
+
 
 //a three-way junction with dir being the dominant direction
 /obj/disposalpipe/junction
@@ -731,6 +802,23 @@
 
 	transfer(var/obj/disposalholder/H)
 		var/same_group = 0
+
+		if(H.autoconfig == 1) // this is a configuration packet, let's make it get wierd.
+			logTheThing("debug", src, null, "relayed a little guy")
+			var/obj/disposalholder/dupe = H.dupe()
+			if(!dupe.routers)
+				dupe.routers = list()
+			dupe.routers[src] = dupe.count  // we add ourselves to it's travel log so it can find its way home
+			dupe.autoconfig = 2
+			dupe.set_loc(src)
+			SPAWN_DBG(2 SECONDS) // send a copy of this packet to this same router, but this time take the branch.
+				dupe.process()
+
+		if(H.autoconfig == 2) // that's it.
+			H.autoconfig = 1
+			same_group = 1 // one in, one out.
+
+
 		if(src.mail_tag && (H.mail_tag in src.mail_tag))
 			same_group = 1
 
