@@ -19,6 +19,9 @@
 	var/net_id = null
 	var/pdafrequency = 1149
 	var/datum/radio_frequency/pda_connection
+	var/router_distance = 0 // tracks the highest-yet Count on configuration packets recieved to date.
+	var/list/routerlist = list() // routerlists we got from those packets.
+
 
 	New()
 		..()
@@ -131,7 +134,34 @@
 		return
 
 
-	expel()
+
+	proc/self_register()
+		if(!src.router_distance)
+			return // if the distance is 0, we never got an autoconfig packet.mail_tag
+		if(!src.routerlist.len)
+			return // ditto if we don't have a list of lists of routers to check out.
+
+		for(var/a in routerlist)
+			var/obj/disposalpipe/switch_junction/router = a
+			var/distance_left = routerlist[router]
+			if(distance_left >= router_distance) // check if this router was visited in fewer steps than the minimum it took to get here.
+				if(!router.mail_tag)
+					router.mail_tag = list("")
+				router.mail_tag += src.mail_tag // and register ourselves
+
+
+	expel(var/obj/disposalholder/H)
+		if(H.autoconfig == 1)
+			logTheThing("debug", src, null, "recieved a little guy")
+			if(!src.mail_tag)
+				return // no point doing anything if we dont have a tag.
+			if(H.count >= src.router_distance)//this packet got here quicker than the last one, must be the better path.
+				router_distance = H.count
+				if(H.routers.len)
+					routerlist += H.routers.Copy()
+			pool(H)
+			return
+
 
 		if (message)
 			var/myarea = get_area(src)
