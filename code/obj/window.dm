@@ -914,11 +914,11 @@
 
 			classic
 				name = "old style reinforced window grille spawner"
-				grille_path = "/obj/grille"
+				grille_path = "/obj/grille/classic"
 
 		classic
 			name = "old style reinforced window grille spawner"
-			grille_path = "/obj/grille"
+			grille_path = "/obj/grille/classic"
 
 	crystal
 		name = "crystal window grille spawner"
@@ -979,7 +979,7 @@
 
 	classic
 		name = "old style window grille spawner"
-		grille_path = "/obj/grille"
+		grille_path = "/obj/grille/classic"
 
 //Cubicle walls! Also for the crunch. - from halloween.dm
 /obj/window/cubicle

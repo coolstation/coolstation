@@ -63,6 +63,12 @@
 		melted
 			icon_state = "grille-melted"
 
+	classic
+		auto = FALSE
+		icon = 'icons/obj/grille.dmi'
+		icon_state = "grille"
+		color = "#808080"
+
 	catwalk
 		name = "catwalk surface"
 		icon = 'icons/obj/grille.dmi'
