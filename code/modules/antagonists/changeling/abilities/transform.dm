@@ -47,6 +47,7 @@
 				H.update_body()
 				H.update_clothing()
 				H.real_name = last_used_name
+				H.acid_name = null
 				H.abilityHolder.updateButtons()
 				logTheThing("combat", H, null, "leaves lesser form as a changeling, [log_loc(H)].")
 				return 0
@@ -102,6 +103,7 @@
 		var/datum/bioHolder/D = H.absorbed_dna[target_name]
 		C.bioHolder.CopyOther(D)
 		C.real_name = target_name
+		C.acid_name = null
 		C.bioHolder.RemoveEffect("husk")
 		C.organHolder.head.update_icon()
 		if (C.bioHolder?.mobAppearance?.mutant_race)

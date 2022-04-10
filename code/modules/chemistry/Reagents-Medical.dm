@@ -405,7 +405,10 @@ datum
 							silent = 1
 					if (!silent)
 						boutput(M, "<span class='notice'>The synthetic flesh integrates itself into your wounds, healing you.</span>")
-
+					if (M.acid_name != null)
+						boutput(M, "<span class='notice'>Your face begins to reconstruct itself!</span>")
+						M.real_name = M.acid_name
+						M.acid_name = null //You're welcome! -Hybridstation
 					M.UpdateDamageIcon()
 
 			reaction_turf(var/turf/T, var/volume)
