@@ -1487,22 +1487,32 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 			if (prob(10))
 				src.visible_message("[src] [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles")]!")
 
+			if (prob(10) && src.farten == 1)
+				playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
+				src.visible_message("[src] farts!")
+
 			if (src.freakout-- < 1)
 				src.visible_message("[src] calms down.")
 
-			if (src.farten == 1)
-				if (prob(15))
-					playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
-					src.visible_message("[src] farts!")
+		if (prob(10) && src.farten == 1)
+			playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
+			src.visible_message("[src] farts!")
 
 		else if (!src.client && prob(2))
 			src.freakout = rand(30,40)
 		..()
 
+	pine_marten
+		name = "pine marten"
+		real_name = "pine marten"
+		desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front."
+		icon_state = "farten"
+		icon_state_dead = "farten-dead"
+
 	pine_farten
 		name = "pine farten"
-		real_name = "pine marten"
-		desc = "Looks like a bigger ferret with brown fur and an tawny patch on its front."
+		real_name = "pine farten"
+		desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front. This one stinks more than usual."
 		icon_state = "farten"
 		icon_state_dead = "farten-dead"
 		farten = 1
