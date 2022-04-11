@@ -1434,6 +1434,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	flags = TABLEPASS
 	fits_under_table = 1
 	var/freakout = 0
+	var/marten = 0
 	var/farten = 0
 	add_abilities = list(/datum/targetable/critter/trip)
 
@@ -1441,7 +1442,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 		..()
 
 		//50% chance to be a dark-colored ferret
-		if (farten == 0)
+		if (marten == 0 && farten == 0)
 			if (prob(50))
 				src.icon_state = "ferret-dark"
 				src.icon_state_dead = "ferret-dark-dead"
@@ -1502,20 +1503,21 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 			src.freakout = rand(30,40)
 		..()
 
-	pine_marten
-		name = "pine marten"
-		real_name = "pine marten"
-		desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front."
-		icon_state = "farten"
-		icon_state_dead = "farten-dead"
+/mob/living/critter/small_animal/meatslinky/pine_marten
+	name = "pine marten"
+	real_name = "pine marten"
+	desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front."
+	icon_state = "farten"
+	icon_state_dead = "farten-dead"
+	marten = 1
 
-	pine_farten
-		name = "pine farten"
-		real_name = "pine farten"
-		desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front. This one stinks more than usual."
-		icon_state = "farten"
-		icon_state_dead = "farten-dead"
-		farten = 1
+/mob/living/critter/small_animal/meatslinky/pine_farten
+	name = "pine farten"
+	real_name = "pine farten"
+	desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front. This one stinks more than usual."
+	icon_state = "farten"
+	icon_state_dead = "farten-dead"
+	farten = 1
 
 /* ================================================ */
 /* -------------------- Frog ---------------------- */

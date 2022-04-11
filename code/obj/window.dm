@@ -705,8 +705,7 @@
 	New()
 		..()
 
-		if (map_setting && ticker)
-			src.update_neighbors()
+		src.update_neighbors()
 
 		SPAWN_DBG(0)
 			src.update_icon()
@@ -714,12 +713,12 @@
 	disposing()
 		..()
 
-		if (map_setting)
-			src.update_neighbors()
+		//add some destruction vs. deconstruct logic- update on decon, don't on destruct
+		src.update_neighbors()
 
 	proc/update_icon()
 		if (!src.anchored)
-			icon_state = "[mod]0"
+			icon_state = "[mod]15" //4 corners when unanchored
 			return
 
 		var/builtdir = 0
@@ -750,15 +749,6 @@
 			O.update_icon()
 		for (var/obj/grille/G in orange(1,src))
 			G.update_icon()
-	thindow
-		icon = 'icons/obj/window.dmi'
-		icon_state = "0"
-
-		update_neighbors()
-			for (var/obj/window/auto/thindow/O in orange(1,src))
-				O.update_icon()
-			for (var/obj/window/auto/reinforced/thindow/O in orange(1,src))
-				O.update_icon()
 
 /obj/window/auto/reinforced
 	icon_state = "mapwin_r"
@@ -770,19 +760,6 @@
 		explosion_resistance = 5
 	//deconstruct_time = 30
 
-	thindow
-		icon = 'icons/obj/window.dmi'
-		icon_state = "R0"
-		mod = "R"
-		default_reinforcement = "steel"
-		health = 50
-		health_max = 50
-
-		update_neighbors()
-			for (var/obj/window/auto/thindow/O in orange(1,src))
-				O.update_icon()
-			for (var/obj/window/auto/reinforced/thindow/O in orange(1,src))
-				O.update_icon()
 /obj/window/auto/reinforced/indestructible
 	desc = "A window. A particularly robust one at that."
 
@@ -878,6 +855,82 @@
 	the_tuff_stuff
 		explosion_resistance = 5
 
+
+/obj/window/thindow/auto/
+	icon = 'icons/obj/window.dmi'
+	icon_state = "0"
+	//deconstruct_time = 20
+	object_flags = 0 // so they don't inherit the HAS_DIRECTIONAL_BLOCKING flag from thindows
+	flags = FPRINT | USEDELAY | ON_BORDER | ALWAYS_SOLID_FLUID | IS_PERSPECTIVE_FLUID
+
+	var/list/connects_to = list(/obj/window/thindow/auto, /obj/window/thindow/auto/reinforced)
+	var/mod = null
+	alpha = 160
+
+	New()
+		..()
+
+		if (map_setting && ticker)
+			src.update_neighbors()
+
+		SPAWN_DBG(0)
+			src.update_icon()
+
+	disposing()
+		..()
+
+		if (map_setting)
+			src.update_neighbors()
+
+	proc/update_icon()
+		if (!src.anchored)
+			icon_state = "[mod]15"
+			return
+
+		var/builtdir = 0
+		for (var/dir in cardinal)
+			var/turf/T = get_step(src, dir)
+			if (T && (T.type in connects_to))
+				builtdir |= dir
+			else if (islist(connects_to) && length(connects_to))
+				for (var/i=1, i <= connects_to.len, i++)
+					var/atom/A = locate(connects_to[i]) in T
+					if (!isnull(A))
+						if (istype(A, /atom/movable))
+							var/atom/movable/M = A
+							if (!M.anchored)
+								continue
+						builtdir |= dir
+						break
+		src.icon_state = "[mod][builtdir]"
+
+	proc/update_neighbors()
+		for (var/obj/window/thindow/auto/O in orange(1,src))
+			O.update_icon()
+		for (var/obj/window/thindow/auto/reinforced/O in orange(1,src))
+			O.update_icon()
+
+	disposing()
+		..()
+
+		if (map_setting)
+			src.update_neighbors()
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (isscrewingtool(W))
+			src.anchored = !( src.anchored )
+			src.stops_space_move = !(src.stops_space_move)
+			playsound(src.loc, "sound/items/Screwdriver.ogg", 75, 1)
+			user << (src.anchored ? "You have fastened [src] to the floor." : "You have unfastened [src].")
+			src.update_icon()
+			return
+		if (..(W, user))
+			src.update_icon()
+/obj/window/thindow/auto/reinforced
+	icon = 'icons/obj/window.dmi'
+	icon_state = "R0"
+	mod = "R"
+
 /obj/wingrille_spawn
 	name = "window grille spawner"
 	icon = 'icons/obj/window.dmi'
@@ -927,8 +980,22 @@
 
 	fakethindow
 		name = "reinforced thindow grille spawner"
-		win_path = "/obj/window/auto/thindow"
+		win_path = "/obj/window/thindow/auto"
 		grille_path = "/obj/grille/classic"
+
+		set_up() //incredibly basic, pop in a grille and an autothindow and don't do redundant window placement
+			if (!locate(text2path(src.grille_path)) in get_turf(src))
+				var/obj/grille/new_grille = text2path(src.grille_path)
+				new new_grille(src.loc)
+			if (!locate(text2path(src.win_path)) in get_turf(src))
+				var/obj/window/new_win = text2path("[src.win_path]")
+				new new_win(src.loc)
+
+		reinforced
+			name = "reinforced thindow grille spawner"
+			icon_state = "r-wingrille"
+			win_path = "/obj/window/thindow/auto/reinforced"
+			grille_path = "/obj/grille/classic"
 
 	reinforced
 		name = "reinforced window grille spawner"
@@ -942,11 +1009,6 @@
 			classic
 				name = "old style reinforced window grille spawner"
 				grille_path = "/obj/grille/classic"
-
-		fakethindow
-			name = "reinforced thindow grille spawner"
-			win_path = "/obj/window/auto/reinforced/thindow"
-			grille_path = "/obj/grille/classic"
 
 		classic
 			name = "old style reinforced window grille spawner"
