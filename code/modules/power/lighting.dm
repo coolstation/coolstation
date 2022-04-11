@@ -30,7 +30,7 @@
 
 /obj/item/light_parts/floor
 	icon_state = "floor-fixture"
-	fixture_type = /obj/machinery/light/small/floor/netural
+	fixture_type = /obj/machinery/light/small/floor/neutral
 	installed_icon_state = "floor1"
 	installed_base_state = "floor"
 	fitting = "floor"
@@ -96,7 +96,9 @@
 	var/wallmounted = 1
 	var/ceilingmounted = 0 //not sure if this is how i'm going to handle it
 	var/nostick = 1 //If set to true, overrides the autopositioning.
+	var/noperspective = 1 //If set to true, any autopositioning will do direction, no pixel shift.
 	var/candismantle = 1
+	var/onceiling = 0
 
 	power_usage = 0
 	power_channel = LIGHT
@@ -132,6 +134,7 @@
 
 	proc/autoposition(setdir = null)
 		//auto position these lights so i don't have to mess with dirs in the map editor that's annoying!!!
+		//carving out some exceptions for nonautowalls and thindows because not everything is perspective!!!!!
 		if (nostick == 0) // unless nostick is set to true in which case... dont
 			SPAWN_DBG(1 DECI SECOND) //wait for the wingrille spawners to complete when map is loading (ugly i am sorry)
 				var/turf/T = null
@@ -142,11 +145,16 @@
 					directions = cardinal
 				for (var/dir in directions)
 					T = get_step(src,dir)
-					if (istype(T,/turf/simulated/wall) || istype(T,/turf/unsimulated/wall) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window) in T))
+					if (istype(T,/turf/simulated/wall/auto) || istype(T,/turf/unsimulated/wall/auto) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window/auto) in T))
 						var/is_jen_wall = 0 // jen walls' ceilings are narrower, so let's move the lights a bit further inward!
 						if (istype(T, /turf/simulated/wall/auto/jen) || istype(T, /turf/simulated/wall/auto/reinforced/jen))
 							is_jen_wall = 1
+						var/is_autothindow = 0 // wingrill spawn with thindow is NOT perspective, stop this nonsense
+						if (istype(T, /obj/wingrille_spawn/fakethindow) || istype(T, /obj/wingrille_spawn/fakethindow/reinforced))
+							is_autothindow = 1
 						src.set_dir(dir)
+						if (is_autothindow || noperspective) //don't even bother with pixel offset
+							return
 						if (dir == EAST)
 							if (is_jen_wall)
 								src.pixel_x = 12
@@ -165,6 +173,26 @@
 						break
 				T = null
 
+/obj/machinery/light/fluorescent/sticky
+	name = "fluorescent light fixture"
+	desc = "A lighting fixture. There's some weird gunk on it."
+	nostick = 0
+
+/obj/machinery/light/ceiling
+	name = "ceiling light fixture"
+	icon_state = "overtube1"
+	base_state = "overtube"
+	desc = "A lighting fixture on the ceiling."
+	anchored = 1
+	wallmounted = 0
+	plane = PLANE_NOSHADOW_ABOVE
+	level = 2
+	brightness = 1.6
+	var/state
+	alpha = 100
+	//invisibility = INVIS_ALWAYS off for now since we need to be able to see and interact before ceilingmode is in
+	invisibility = INVIS_NONE
+	onceiling = 1
 
 
 //big standing lamps
@@ -192,27 +220,27 @@
 	light_type = /obj/item/light/bulb
 	allowed_type = /obj/item/light/bulb
 
-	netural
+	neutral
 		name = "incandescent light bulb"
 		light_type = /obj/item/light/bulb/neutral
 	greenish
 		name = "greenish incandescent light bulb"
 		light_type = /obj/item/light/bulb/greenish
 	blueish
-		name = "blueish fluorescent light bulb"
+		name = "blueish incandescent light bulb"
 		light_type = /obj/item/light/bulb/blueish
 	purpleish
-		name = "purpleish fluorescent light bulb"
+		name = "purpleish incandescent light bulb"
 		light_type = /obj/item/light/bulb/purpleish
 	frostedred
-		name = "frosted red fluorescent light bulb"
+		name = "frosted red incandescent light bulb"
 		light_type = /obj/item/light/bulb/emergency
 
 	warm
-		name = "fluorescent light bulb"
+		name = "incandescent light bulb"
 		light_type = /obj/item/light/bulb/warm
 		very
-			name = "warm fluorescent light bulb"
+			name = "warm incandescent light bulb"
 			light_type = /obj/item/light/bulb/warm/very
 
 	cool
@@ -239,6 +267,7 @@
 	//The only difference between these small lights and others are that these automatically stick to walls! Wow!!
 	sticky
 		nostick = 0
+		desc = "A small lighting fixture. There's some kind of weird goop on it."
 
 		New()
 			..()
@@ -248,20 +277,20 @@
 			name = "greenish incandescent light bulb"
 			light_type = /obj/item/light/bulb/greenish
 		blueish
-			name = "blueish fluorescent light bulb"
+			name = "blueish incandescent light bulb"
 			light_type = /obj/item/light/bulb/blueish
 		purpleish
-			name = "purpleish fluorescent light bulb"
+			name = "purpleish incandescent light bulb"
 			light_type = /obj/item/light/bulb/purpleish
 		frostedred
-			name = "frosted red fluorescent light bulb"
+			name = "frosted red incandescent light bulb"
 			light_type = /obj/item/light/bulb/emergency
 
 		warm
-			name = "fluorescent light bulb"
+			name = "incandescent light bulb"
 			light_type = /obj/item/light/bulb/warm
 			very
-				name = "warm fluorescent light bulb"
+				name = "warm incandescent light bulb"
 				light_type = /obj/item/light/bulb/warm/very
 
 		cool
@@ -291,28 +320,31 @@
 	New()
 		..()
 
-	netural
+	neutral
 		name = "incandescent light fixture"
+		light_type = /obj/item/light/bulb/neutral
+	netural //scaffolding for the change
+		name = "incandescent light fixture FIXME"
 		light_type = /obj/item/light/bulb/neutral
 	greenish
 		name = "greenish incandescent light fixture"
 		light_type = /obj/item/light/bulb/greenish
 	blueish
-		name = "blueish fluorescent light fixture"
+		name = "blueish incandescent light fixture"
 		light_type = /obj/item/light/bulb/blueish
 	purpleish
-		name = "purpleish fluorescent light fixture"
+		name = "purpleish incandescent light fixture"
 		light_type = /obj/item/light/bulb/purpleish
 	frostedred
-		name = "frosted red fluorescent light fixture"
+		name = "frosted red incandescent light fixture"
 		light_type = /obj/item/light/bulb/emergency
 
 
 	warm
-		name = "fluorescent light fixture"
+		name = "incandescent light fixture"
 		light_type = /obj/item/light/bulb/warm
 		very
-			name = "warm fluorescent light fixture"
+			name = "warm incandescent light fixture"
 			light_type = /obj/item/light/bulb/warm/very
 
 	cool
@@ -330,6 +362,7 @@
 			light_type = /obj/item/light/bulb/harsh/very
 //ceiling lights!!
 /obj/machinery/light/small/ceiling
+	name = "incandescent ceiling light fixture"
 	icon_state = "floor1"
 	base_state = "floor"
 	desc = "A small round lighting fixture, embedded in the ceiling."
@@ -340,42 +373,45 @@
 	invisibility = INVIS_NONE
 	alpha = 100
 	ceilingmounted = 1 //not sure if this is how i'm going to handle it
+	onceiling = 1
 
 	New()
 		..()
 
 	neutral
-		name = "incandescent light fixture"
+		light_type = /obj/item/light/bulb/neutral
+
+	netural
+		name = "incandescent ceiling light fixture FIXME"
 		light_type = /obj/item/light/bulb/neutral
 	greenish
-		name = "greenish incandescent light fixture"
+		name = "greenish incandescent ceiling light fixture"
 		light_type = /obj/item/light/bulb/greenish
 	blueish
-		name = "blueish fluorescent light fixture"
+		name = "blueish incandescent ceiling light fixture"
 		light_type = /obj/item/light/bulb/blueish
 	purpleish
-		name = "purpleish fluorescent light fixture"
+		name = "purpleish incandescent ceiling light fixture"
 		light_type = /obj/item/light/bulb/purpleish
 	frostedred
-		name = "frosted red fluorescent light fixture"
+		name = "frosted red incandescent ceiling light fixture"
 		light_type = /obj/item/light/bulb/emergency
 	warm
-		name = "fluorescent light fixture"
 		light_type = /obj/item/light/bulb/warm
 		very
-			name = "warm fluorescent light fixture"
+			name = "warm incandescent ceiling light fixture"
 			light_type = /obj/item/light/bulb/warm/very
 	cool
-		name = "cool incandescent light fixture"
+		name = "cool incandescent ceiling light fixture"
 		light_type = /obj/item/light/bulb/cool
 		very
-			name = "very cool incandescent light fixture"
+			name = "very cool incandescent ceiling light fixture"
 			light_type = /obj/item/light/bulb/cool/very
 	harsh
-		name = "harsh incandescent light fixture"
+		name = "harsh incandescent ceiling light fixture"
 		light_type = /obj/item/light/bulb/harsh
 		very
-			name = "very harsh incandescent light fixture"
+			name = "very harsh incandescent ceiling light fixture"
 			light_type = /obj/item/light/bulb/harsh/very
 
 /obj/machinery/light/emergency
@@ -520,14 +556,18 @@
 		..()
 		autoposition()
 
-	name = "incandescent light fixture"
+	name = "fluorescent light fixture"
 	light_type = /obj/item/light/tube/neutral
 
-	netural
-		name = "incandescent light fixture"
+	neutral
+		name = "fluorescent light fixture"
+		light_type = /obj/item/light/tube/neutral
+
+	netural //scaffolding for old name
+		name = "fluorescent light fixture FIXME"
 		light_type = /obj/item/light/tube/neutral
 	greenish
-		name = "greenish incandescent light fixture"
+		name = "greenish fluorescent light fixture"
 		light_type = /obj/item/light/tube/greenish
 	blueish
 		name = "blueish fluorescent light fixture"
@@ -544,17 +584,17 @@
 			light_type = /obj/item/light/tube/warm/very
 
 	cool
-		name = "cool incandescent light fixture"
+		name = "cool fluorescent light fixture"
 		light_type = /obj/item/light/tube/cool
 		very
-			name = "very cool incandescent light fixture"
+			name = "very cool fluorescent light fixture"
 			light_type = /obj/item/light/tube/cool/very
 
 	harsh
-		name = "harsh incandescent light fixture"
+		name = "harsh fluorescent light fixture"
 		light_type = /obj/item/light/tube/harsh
 		very
-			name = "very harsh incandescent light fixture"
+			name = "very harsh fluorescent light fixture"
 			light_type = /obj/item/light/tube/harsh/very
 
 	small

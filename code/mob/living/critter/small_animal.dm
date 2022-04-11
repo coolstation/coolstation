@@ -1442,10 +1442,9 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 		..()
 
 		//50% chance to be a dark-colored ferret
-		if (marten == 0 && farten == 0)
-			if (prob(50))
-				src.icon_state = "ferret-dark"
-				src.icon_state_dead = "ferret-dark-dead"
+		if (prob(50))
+			src.icon_state = "ferret-dark"
+			src.icon_state_dead = "ferret-dark-dead"
 
 	setup_hands()
 		..()
@@ -1488,7 +1487,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 			if (prob(10))
 				src.visible_message("[src] [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles")]!")
 
-			if (prob(10) && src.farten == 1)
+			if (prob(25) && src.farten == 1) //2.5x as excited during freakout
 				playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
 				src.visible_message("[src] farts!")
 
@@ -1511,13 +1510,22 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	icon_state_dead = "farten-dead"
 	marten = 1
 
-/mob/living/critter/small_animal/meatslinky/pine_farten
-	name = "pine farten"
-	real_name = "pine farten"
-	desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front. This one stinks more than usual."
-	icon_state = "farten"
-	icon_state_dead = "farten-dead"
-	farten = 1
+	New()
+		..()
+
+		//10% chance for a mart to fart
+		if (farten == 0) //only bother to do this with the regular one
+			if (prob(10))
+				src.farten = 1
+				src.name = "pine farten"
+				src.real_name = "pine farten"
+				src.desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front. This one stinks more than usual."
+
+	farten //stink guaranteed!!!!
+		name = "pine farten"
+		real_name = "pine farten"
+		desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front. This one stinks more than usual."
+		farten = 1
 
 /* ================================================ */
 /* -------------------- Frog ---------------------- */
@@ -1662,7 +1670,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 		switch (act)
 			if ("scream")
 				if (src.emote_check(voluntary, 50))
-					return "<span class='emote'><b>[src]</b> shrieks!</span>"
+					return "<span class='emote'><b>[src]</b> aaaaaaaaaaaaas!</span>" //good place for a maptext (maybe donglord exclusive)
 			if ("snap","hiss")
 				if (src.emote_check(voluntary, 50))
 					playsound(src, "sound/voice/animal/cat_hiss.ogg", 80, 1, channel=VOLUME_CHANNEL_EMOTE)
