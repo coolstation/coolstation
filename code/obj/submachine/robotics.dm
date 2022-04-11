@@ -148,7 +148,7 @@
 /// Procs for the action bars
 /obj/item/lamp_manufacturer/proc/add_wall_light(atom/A, turf/B, mob/user)
 	var/obj/machinery/light/newfitting = new dispensing_fitting(B)
-	newfitting.nostick = 0 //regular tube lights don't do autoposition for some reason.
+	newfitting.noauto = 0 //regular tube lights don't do autoposition for some reason.
 	newfitting.autoposition(get_dir(B,A))
 	newfitting.Attackby(src, user) //plop in an appropriate colour lamp
 	if (!isghostdrone(user))

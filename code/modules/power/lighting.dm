@@ -95,7 +95,8 @@
 	var/fitting = "tube"
 	var/wallmounted = 1
 	var/ceilingmounted = 0 //not sure if this is how i'm going to handle it
-	var/nostick = 1 //If set to true, overrides the autopositioning.
+	var/noauto = 1 //If set to true, overrides the autopositioning.
+	var/nostick = null //oh no
 	var/noperspective = 1 //If set to true, any autopositioning will do direction, no pixel shift.
 	var/candismantle = 1
 	var/onceiling = 0
@@ -107,6 +108,11 @@
 
 	New()
 		..()
+		if(src.nostick == 0)	//augh this is defined in several maps on several z-levels
+			src.noauto = 0		//i am 100% going to fix this, but for now...
+		if(src.nostick == 1)	//enjoy this gross workaround
+			src.noauto = 1		//or don't
+
 		inserted_lamp = new light_type()
 		current_lamp = inserted_lamp
 		if (src.loc.z == 1)
@@ -135,7 +141,7 @@
 	proc/autoposition(setdir = null)
 		//auto position these lights so i don't have to mess with dirs in the map editor that's annoying!!!
 		//carving out some exceptions for nonautowalls and thindows because not everything is perspective!!!!!
-		if (nostick == 0) // unless nostick is set to true in which case... dont (rename to noauto maybe?)
+		if (noauto == 0) // unless noauto is set to true in which case... dont (rename to noauto maybe?)
 			SPAWN_DBG(1 DECI SECOND) //wait for the wingrille spawners to complete when map is loading (ugly i am sorry)
 				var/turf/T = null
 				var/list/directions = null
@@ -145,35 +151,36 @@
 					directions = cardinal
 				for (var/dir in directions)
 					T = get_step(src,dir)
-					var/is_perspective = 1
-					if (istype(T,/turf/simulated/wall/auto/supernorn) || istype(T,/turf/simulated/wall/auto/marsoutpost) || istype(T,/turf/simulated/wall/auto/supernorn/wood) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window/auto) in T))
-						is_perspective = 1 //basically if it's a perspective autowall?? let's go
-					var/is_jen_wall = 0 // jen walls' ceilings are narrower, so let's move the lights a bit further inward!
-					if (istype(T, /turf/simulated/wall/auto/jen) || istype(T, /turf/simulated/wall/auto/reinforced/jen))
-						is_jen_wall = 1
-						is_perspective = 1 //separate handling but still perspective
-					if (istype(T, /obj/wingrille_spawn/fakethindow) || istype(T, /obj/wingrille_spawn/fakethindow/reinforced))
-						is_perspective = 0 // wingrille spawn with thindow is not perspective even if it was previously set by wingrille
-					src.set_dir(dir) //allow direction to set for auto
-					if (!is_perspective || noperspective) //don't even bother with pixel offset if we don't care
-						return //we got the direction, that's all we need
-					if (dir == EAST) //offset time
-						if (is_jen_wall)
-							src.pixel_x = 12
-						else
-							src.pixel_x = 10
-					else if (dir == WEST)
-						if (is_jen_wall)
-							src.pixel_x = -12
-						else
-							src.pixel_x = -10
-					else if (dir == NORTH)
-						if (is_jen_wall)
-							src.pixel_y = 24
-						else
-							src.pixel_y = 21
-					break
-				T = null
+					if (istype(T,/turf/simulated/wall) || istype(T,/turf/unsimulated/wall) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window) in T))
+						var/is_perspective = 1
+						if (istype(T,/turf/simulated/wall/auto/supernorn) || istype(T,/turf/simulated/wall/auto/marsoutpost) || istype(T,/turf/simulated/wall/auto/supernorn/wood) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window/auto) in T))
+							is_perspective = 1 //basically if it's a perspective autowall?? let's go
+						var/is_jen_wall = 0 // jen walls' ceilings are narrower, so let's move the lights a bit further inward!
+						if (istype(T, /turf/simulated/wall/auto/jen) || istype(T, /turf/simulated/wall/auto/reinforced/jen))
+							is_jen_wall = 1
+							is_perspective = 1 //separate handling but still perspective
+						if (istype(T, /obj/wingrille_spawn/fakethindow) || istype(T, /obj/wingrille_spawn/fakethindow/reinforced))
+							is_perspective = 0 // wingrille spawn with thindow is not perspective even if it was previously set by wingrille
+						src.set_dir(dir) //allow direction to set for auto
+						if (!is_perspective || noperspective) //don't even bother with pixel offset if we don't care
+							return //we got the direction, that's all we need
+						if (dir == EAST) //offset time
+							if (is_jen_wall)
+								src.pixel_x = 12
+							else
+								src.pixel_x = 10
+						else if (dir == WEST)
+							if (is_jen_wall)
+								src.pixel_x = -12
+							else
+								src.pixel_x = -10
+						else if (dir == NORTH)
+							if (is_jen_wall)
+								src.pixel_y = 24
+							else
+								src.pixel_y = 21
+						break
+					T = null
 
 //the newly redefined large fluorescent tube fixture root
 /obj/machinery/light/large //formerly incandescent
@@ -231,7 +238,7 @@
 /obj/machinery/light/large/auto //root for auto tubes
 	name = "fluorescent light fixture"
 	desc = "A lighting fixture."
-	nostick = 0
+	noauto = 0
 
 	New()
 		..()
@@ -244,7 +251,7 @@
 	name = "fluorescent light fixture"
 	desc = "A lighting fixture. There's some weird gunk on it."
 	noperspective = 0
-	nostick = 0
+	noauto = 0
 
 	New()
 		..()
@@ -336,7 +343,7 @@
 //directional and perspective handling
 //AUTO: do directions, without pixel shift for perspective
 /obj/machinery/light/small/auto //auto small root
-	nostick = 0
+	noauto = 0
 	desc = "A small lighting fixture."
 
 	New()
@@ -345,7 +352,7 @@
 
 //STICKY: do directions, with pixel shift for perspective
 /obj/machinery/light/small/sticky //sticky small root
-	nostick = 0
+	noauto = 0
 	noperspective = 0
 	desc = "A small lighting fixture. There's some kind of weird goop on it."
 
@@ -625,7 +632,7 @@
 /obj/machinery/light/incandescent //old name, deprecated in favor of large
 	light_type = /obj/item/light/tube
 	allowed_type = /obj/item/light/tube
-	nostick = 0
+	noauto = 0
 	noperspective = 0
 
 	New()
