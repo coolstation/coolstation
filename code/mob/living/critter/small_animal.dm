@@ -1498,7 +1498,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 
 			if (prob(25) && src.farten == 1) //2.5x as excited during freakout
 				playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
-				src.visible_message("[src] farts!")
+				src.visible_message("[src] farts wildly!")
 
 			if (src.freakout-- < 1)
 				src.visible_message("[src] calms down.")
