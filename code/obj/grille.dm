@@ -66,7 +66,7 @@
 	classic
 		auto = FALSE
 		icon = 'icons/obj/grille.dmi'
-		icon_state = "grille"
+		icon_state = "grille-0"
 		color = "#808080"
 
 	catwalk

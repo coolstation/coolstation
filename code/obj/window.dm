@@ -750,6 +750,15 @@
 			O.update_icon()
 		for (var/obj/grille/G in orange(1,src))
 			G.update_icon()
+	thindow
+		icon = 'icons/obj/window.dmi'
+		icon_state = "0"
+
+		update_neighbors()
+			for (var/obj/window/auto/thindow/O in orange(1,src))
+				O.update_icon()
+			for (var/obj/window/auto/reinforced/thindow/O in orange(1,src))
+				O.update_icon()
 
 /obj/window/auto/reinforced
 	icon_state = "mapwin_r"
@@ -761,6 +770,19 @@
 		explosion_resistance = 5
 	//deconstruct_time = 30
 
+	thindow
+		icon = 'icons/obj/window.dmi'
+		icon_state = "R0"
+		mod = "R"
+		default_reinforcement = "steel"
+		health = 50
+		health_max = 50
+
+		update_neighbors()
+			for (var/obj/window/auto/thindow/O in orange(1,src))
+				O.update_icon()
+			for (var/obj/window/auto/reinforced/thindow/O in orange(1,src))
+				O.update_icon()
 /obj/window/auto/reinforced/indestructible
 	desc = "A window. A particularly robust one at that."
 
@@ -903,6 +925,11 @@
 		icon_state = "wingrille_f"
 		full_win = 1
 
+	fakethindow
+		name = "reinforced thindow grille spawner"
+		win_path = "/obj/window/auto/thindow"
+		grille_path = "/obj/grille/classic"
+
 	reinforced
 		name = "reinforced window grille spawner"
 		icon_state = "r-wingrille"
@@ -915,6 +942,11 @@
 			classic
 				name = "old style reinforced window grille spawner"
 				grille_path = "/obj/grille/classic"
+
+		fakethindow
+			name = "reinforced thindow grille spawner"
+			win_path = "/obj/window/auto/reinforced/thindow"
+			grille_path = "/obj/grille/classic"
 
 		classic
 			name = "old style reinforced window grille spawner"
