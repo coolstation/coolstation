@@ -922,14 +922,12 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (isscrewingtool(W))
 			src.anchored = !( src.anchored )
-			if (src.anchored)
-				density = 1
-			else
-				density = 0
+			src.density = src.anchored
 			src.stops_space_move = !(src.stops_space_move)
 			playsound(src.loc, "sound/items/Screwdriver.ogg", 75, 1)
 			user << (src.anchored ? "You have fastened [src] to the floor." : "You have unfastened [src].")
 			src.update_icon()
+			src.update_neighbors()
 			return
 		if (..(W, user))
 			src.update_icon()

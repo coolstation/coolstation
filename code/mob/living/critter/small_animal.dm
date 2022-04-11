@@ -1442,9 +1442,18 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 		..()
 
 		//50% chance to be a dark-colored ferret
-		if (prob(50))
-			src.icon_state = "ferret-dark"
-			src.icon_state_dead = "ferret-dark-dead"
+		if (marten == 0) //only for regular ferts
+			if (prob(50))
+				src.icon_state = "ferret-dark"
+				src.icon_state_dead = "ferret-dark-dead"
+
+		//10% chance for a mart to fart
+		if (farten == 0) //only bother to do this with the regular one
+			if (prob(10))
+				src.farten = 1
+				src.name = "pine farten"
+				src.real_name = "pine farten"
+				src.desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front. This one stinks more than usual."
 
 	setup_hands()
 		..()
@@ -1513,13 +1522,17 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	New()
 		..()
 
-		//10% chance for a mart to fart
-		if (farten == 0) //only bother to do this with the regular one
-			if (prob(10))
-				src.farten = 1
-				src.name = "pine farten"
-				src.real_name = "pine farten"
-				src.desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front. This one stinks more than usual."
+	proc/fart_along() //it's here because sometimes all fartens are martens but some martens are fartens too
+		if (src.farten == 1) //only farters here buster
+			if (src.freakout) //boost it if they're currently wigging out
+				if (prob(50))
+					playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
+					src.visible_message("[src] farts along excitedly!")
+				else
+					return //no double dipping
+			else if (prob(15))
+				playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
+				src.visible_message("[src] farts along!")
 
 	farten //stink guaranteed!!!!
 		name = "pine farten"

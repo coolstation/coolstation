@@ -226,6 +226,10 @@
 								if (40) message = "<B>[src]</B> laughs! [his_or_her(src)] breath smells like a fart."
 								if (41) message = "<B>[src]</B> farts, and as such, blob cannot evoulate."
 								if (42) message = "<b>[src]</B> farts. It might have been the Citizen Kane of farts."
+							for_by_tcl(P, /mob/living/critter/small_animal/meatslinky/pine_marten) // i don't like it either but hey
+								if(!IN_RANGE(P, src, 4)) //someone else has to look at this i can't get it to work
+									continue
+								P.fart_along() // sure why not
 
 						// If there is a chest item, see if it can be activated on fart (attack_self)
 						if (src && src.chest_item != null) //Gotta do that pre-emptive runtime protection!
