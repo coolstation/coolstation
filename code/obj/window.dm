@@ -861,7 +861,8 @@
 	icon_state = "0"
 	//deconstruct_time = 20
 	object_flags = 0 // so they don't inherit the HAS_DIRECTIONAL_BLOCKING flag from thindows
-	flags = FPRINT | USEDELAY | ON_BORDER | ALWAYS_SOLID_FLUID | IS_PERSPECTIVE_FLUID
+	// but let's see what happens if directional blocking IS on? ANSWER: YOU GAS FALL OUT
+	flags = FPRINT | USEDELAY | ON_BORDER | ALWAYS_SOLID_FLUID
 
 	var/list/connects_to = list(/obj/window/thindow/auto, /obj/window/thindow/auto/reinforced)
 	var/mod = null
@@ -885,6 +886,7 @@
 	proc/update_icon()
 		if (!src.anchored)
 			icon_state = "[mod]15"
+			density = 0
 			return
 
 		var/builtdir = 0
@@ -903,6 +905,7 @@
 						builtdir |= dir
 						break
 		src.icon_state = "[mod][builtdir]"
+		// src.dir = builtdir //this might be incredibly fucked up to do
 
 	proc/update_neighbors()
 		for (var/obj/window/thindow/auto/O in orange(1,src))
@@ -919,6 +922,10 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (isscrewingtool(W))
 			src.anchored = !( src.anchored )
+			if (src.anchored)
+				density = 1
+			else
+				density = 0
 			src.stops_space_move = !(src.stops_space_move)
 			playsound(src.loc, "sound/items/Screwdriver.ogg", 75, 1)
 			user << (src.anchored ? "You have fastened [src] to the floor." : "You have unfastened [src].")
