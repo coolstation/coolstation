@@ -626,6 +626,7 @@
 	light_type = /obj/item/light/tube
 	allowed_type = /obj/item/light/tube
 	nostick = 0
+	noperspective = 0
 
 	New()
 		..()
