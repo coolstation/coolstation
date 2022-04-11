@@ -905,7 +905,7 @@
 						builtdir |= dir
 						break
 		src.icon_state = "[mod][builtdir]"
-		// src.dir = builtdir //this might be incredibly fucked up to do
+		src.dir = 10 //this SEEMS to block passage so this is a stopgap for now, maybe someone smarter can look and do a canpass deal
 
 	proc/update_neighbors()
 		for (var/obj/window/thindow/auto/O in orange(1,src))
