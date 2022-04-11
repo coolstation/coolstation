@@ -1054,9 +1054,9 @@ var/global/list/mapNames = list(
 	rwalls = /turf/simulated/wall/r_wall
 	auto_walls = 1
 
-	windows = /obj/window
+	windows = /obj/window/thindow
 	windows_thin = /obj/window
-	rwindows = /obj/window/reinforced
+	rwindows = /obj/window/thindow/reinforced
 	rwindows_thin = /obj/window/reinforced
 	windows_crystal = /obj/window/crystal
 	windows_rcrystal = /obj/window/crystal/reinforced
