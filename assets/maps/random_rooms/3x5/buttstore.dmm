@@ -10,9 +10,12 @@
 /turf/simulated/floor,
 /area/dmm_suite/clear_area)
 "e" = (
-/obj/table/auto,
-/obj/machinery/door/window{
-	tag = "buttstorewindow"
+/obj/machinery/door/window/brigdoor/genpop_s/southleft{
+	id = "buttstorewindow";
+	name = "Butt Store Security Window"
+	},
+/obj/table/reinforced{
+	icon_state = "12"
 	},
 /turf/simulated/floor,
 /area/dmm_suite/clear_area)
@@ -35,10 +38,13 @@
 /turf/simulated/floor,
 /area/dmm_suite/clear_area)
 "m" = (
-/obj/table/auto,
 /obj/machinery/cashreg,
-/obj/machinery/door/window/southright{
-	tag = "buttstorewindow"
+/obj/machinery/door/window/brigdoor/genpop_s/southright{
+	id = "buttstorewindow";
+	name = "Butt Store Security Window"
+	},
+/obj/table/reinforced{
+	icon_state = "12"
 	},
 /turf/simulated/floor,
 /area/dmm_suite/clear_area)
@@ -57,6 +63,9 @@
 /obj/item/clothing/head/butt{
 	pixel_x = 10;
 	pixel_y = -5
+	},
+/obj/machinery/light/small{
+	dir = 1
 	},
 /turf/simulated/floor,
 /area/dmm_suite/clear_area)
@@ -79,7 +88,7 @@
 /turf/simulated/floor,
 /area/dmm_suite/clear_area)
 "A" = (
-/obj/machinery/light/small/floor/warm,
+/obj/machinery/light/small/floor,
 /turf/simulated/floor/damaged2,
 /area/dmm_suite/clear_area)
 "J" = (
@@ -91,26 +100,24 @@
 /area/dmm_suite/clear_area)
 "R" = (
 /obj/machinery/door_control{
+	id = "buttstorewindow";
 	name = "Butt Store Window Controls";
 	pixel_x = 21;
 	pixel_y = -11;
-	tag = "buttstorewindow"
+	tag = null
 	},
 /obj/machinery/door_control{
+	id = "buttstore";
 	name = "Butt Store Blast Door";
 	pixel_x = 21;
 	pixel_y = 11;
-	tag = "buttstore"
+	tag = null
 	},
 /turf/simulated/floor/airless/plating/damaged3,
 /area/dmm_suite/clear_area)
 "S" = (
 /obj/machinery/bot/buttbot,
 /turf/simulated/floor/airless/plating/damaged1,
-/area/dmm_suite/clear_area)
-"V" = (
-/obj/machinery/light/small/floor/warm,
-/turf/simulated/floor,
 /area/dmm_suite/clear_area)
 
 (1,1,1) = {"
@@ -122,7 +129,7 @@ S
 "}
 (2,1,1) = {"
 q
-V
+t
 e
 A
 t
