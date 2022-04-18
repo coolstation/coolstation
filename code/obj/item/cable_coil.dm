@@ -230,8 +230,9 @@ obj/item/cable_coil/dropped(mob/user)
 /obj/item/cable_coil/attackby(obj/item/W, mob/user)
 	if (issnippingtool(W) && src.amount > 1)
 		var/obj/item/cable_coil/A = split_stack(round(input("How long of a wire do you wish to cut?","Length of [src.amount]",1) as num))
-		A.set_loc(user.loc) //Hey, split_stack, Why is the default location for the new item src.loc which is *very likely* to be a damn mob?
-		boutput(user, "You cut a piece off the [base_name].")
+		if (istype(A))
+			A.set_loc(get_turf(user)) //Hey, split_stack, Why is the default location for the new item src.loc which is *very likely* to be a damn mob?
+			boutput(user, "You cut a piece off the [base_name].")
 		return
 
 	if (check_valid_stack(W))
