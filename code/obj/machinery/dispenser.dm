@@ -155,5 +155,5 @@
 			. = TRUE
 	update_icon()
 
-#undef TOTAL_OX_TANKS
+#undef TOTAL_O2_TANKS
 #undef TOTAL_PL_TANKS
