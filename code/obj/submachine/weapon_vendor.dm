@@ -103,7 +103,8 @@
 	token_accepted = /obj/item/requisition_token/security
 	New()
 		..()
-		materiel_stock += new/datum/materiel/loadout/standard
+		qdel(src)
+		/*materiel_stock += new/datum/materiel/loadout/standard
 		materiel_stock += new/datum/materiel/loadout/offense
 		materiel_stock += new/datum/materiel/loadout/control
 		materiel_stock += new/datum/materiel/loadout/suppression
@@ -116,7 +117,7 @@
 		materiel_stock += new/datum/materiel/utility/nightvisiongoggles
 		materiel_stock += new/datum/materiel/utility/markerrounds
 		materiel_stock += new/datum/materiel/utility/prisonerscanner
-		materiel_stock += new/datum/materiel/assistant/basic
+		materiel_stock += new/datum/materiel/assistant/basic*/
 
 	vended(var/atom/A)
 		..()
@@ -207,7 +208,7 @@
 	category = WEAPON_VENDOR_CATEGORY_ASSISTANT
 
 //SECURITY
-
+/*
 /datum/materiel/sidearm/barrier
 	name = "Security Barrier"
 	path = /obj/item/barrier
@@ -297,7 +298,7 @@
 	name = "Assistant"
 	path = /obj/item/storage/belt/security/assistant
 	description = "One belt containing a security barrier, a forensic scanner, and a security ticket writer."
-
+*/
 //SYNDIE
 
 /datum/materiel/sidearm/smartgun
