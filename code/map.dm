@@ -1009,8 +1009,8 @@ var/global/list/mapNames = list(
 /datum/map_settings/gehenna
 	name = "GEHENNA"
 	goonhub_map = "https://coolstation.space/adults.html"
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/simulated/wall/auto
+	rwalls = /turf/simulated/wall/auto/reinforced
 	auto_walls = 1
 
 	windows = /obj/window/auto
