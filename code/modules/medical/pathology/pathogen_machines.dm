@@ -1729,6 +1729,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/glass/beaker/biocides, 20)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/glass/beaker/inhibitor, 20)
 		product_list += new/datum/data/vending_product(/obj/item/device/analyzer/healthanalyzer, 4)
+		product_list += new/datum/data/vending_product(/obj/item/item_box/starwipes, 1)
 
 /obj/machinery/incubator
 	name = "Incubator"
