@@ -644,6 +644,34 @@ WET FLOOR SIGN
 	icon_state = "sponge-cheese"
 	item_state = "sponge"
 
+/obj/item/sponge/starwipe //I woke up this morning with an immature pun in my head and I'm making it everybody's problem.
+	name = "\improper Star Wipe" //branding
+	desc = "A single-use wet wipe."
+	icon_state = "starwipe"
+
+	New()
+		..()
+		reagents.add_reagent("water", 10)
+
+
+	afterattack(atom/target, mob/user)
+		..()
+		if (reagents.total_volume != 10) // This is probably a shitty method
+			qdel(src)
+
+/obj/item/item_box/starwipes
+	name = "\improper Star Wipes"
+	desc = "A packet of wet wipes, originally promoting some video editor's new feature." //...is what we tell the press
+	icon = 'icons/obj/items/storage.dmi'
+	icon_state = "starwipes"
+	contained_item = /obj/item/sponge/starwipe
+	item_amount = 15 // Gonna need a decent amount to get any use out of them
+	max_item_amount = 15
+	open = 1
+	//This has no closed icons
+	icon_open = "starwipes"
+	icon_empty = "starwipes-empty"
+	reusable = 0
 
 /obj/item/caution
 	desc = "Caution! Wet Floor!"
