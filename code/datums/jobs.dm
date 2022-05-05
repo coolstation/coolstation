@@ -247,8 +247,6 @@ ABSTRACT_TYPE(/datum/job/command)
 	cant_spawn_as_con = 1
 	cant_spawn_as_rev = 1
 	announce_on_join = 1
-	receives_disk = 1
-	receives_security_disk = 1
 	receives_badge = 1
 	recieves_implant = /obj/item/implant/health/security/anti_mindslave
 	items_in_backpack = list(/obj/item/device/flash)
@@ -258,8 +256,8 @@ ABSTRACT_TYPE(/datum/job/command)
 	slot_jump = list(/obj/item/clothing/under/rank/head_of_securityold/fancy_alt)
 	slot_suit = list(/obj/item/clothing/suit/armor/vest)
 	slot_back = list(/obj/item/storage/backpack/withO2)
-	slot_belt = list(/obj/item/device/pda2/hos)
-	slot_poc1 = list(/obj/item/requisition_token/security)
+	slot_belt = list(/obj/item/storage/belt/security/standard)
+	slot_poc1 = list(/obj/item/device/pda2/hos)
 	slot_poc2 = list(/obj/item/storage/security_pouch) //replaces sec starter kit
 	slot_foot = list(/obj/item/clothing/shoes/swat)
 	slot_head = list(/obj/item/clothing/head/hos_hat)
@@ -269,8 +267,8 @@ ABSTRACT_TYPE(/datum/job/command)
 
 #else
 	slot_back = list(/obj/item/storage/backpack/withO2)
-	slot_belt = list(/obj/item/device/pda2/hos)
-	slot_poc1 = list(/obj/item/requisition_token/security)
+	slot_belt = list(/obj/item/storage/belt/security/standard)
+	slot_poc1 = list(/obj/item/device/pda2/hos)
 	slot_poc2 = list(/obj/item/storage/security_pouch) //replaces sec starter kit
 	slot_jump = list(/obj/item/clothing/under/rank/head_of_securityold)
 	slot_suit = list(/obj/item/clothing/suit/armor/vest)
@@ -292,6 +290,17 @@ ABSTRACT_TYPE(/datum/job/command)
 		M.traitHolder.addTrait("training_drinker")
 		M.traitHolder.addTrait("training_security")
 		JOB_XP(M, "Head of Security", 1)
+		//I took this stuff from the sec equipment vendor we're axing- Bat
+		var/obj/item/storage/belt/A = M.belt
+		SPAWN_DBG(2 DECI SECONDS) //ugh belts do this on spawn and we need to wait
+			var/list/tracklist = list()
+			for(var/atom/C in A.contents)
+				if (istype(C,/obj/item/gun/energy/taser_gun) || istype(C,/obj/item/baton))
+					tracklist += C
+
+			if (length(tracklist))
+				var/obj/item/pinpointer/secweapons/P = new(A)
+				P.track(tracklist)
 
 	derelict
 		name = null//"NT-SO Special Operative"
@@ -468,19 +477,16 @@ ABSTRACT_TYPE(/datum/job/security)
 	cant_spawn_as_con = 1
 	cant_spawn_as_rev = 1
 	recieves_implant = /obj/item/implant/health/security
-	receives_disk = 1
-	receives_security_disk = 1
 	receives_badge = 1
 	slot_back = list(/obj/item/storage/backpack/withO2)
-	slot_belt = list(/obj/item/device/pda2/security)
+	slot_belt = list(/obj/item/storage/belt/security/standard)
 	slot_jump = list(/obj/item/clothing/under/rank/security)
 	slot_suit = list(/obj/item/clothing/suit/armor/vest)
-	slot_head = list(/obj/item/clothing/head/helmet/hardhat/security)
 	slot_foot = list(/obj/item/clothing/shoes/swat)
 	slot_ears = list(/obj/item/device/radio/headset/security)
 	slot_eyes = list(/obj/item/clothing/glasses/sunglasses/sechud)
 	slot_poc1 = list(/obj/item/storage/security_pouch) //replaces sec starter kit
-	slot_poc2 = list(/obj/item/requisition_token/security)
+	slot_poc2 = list(/obj/item/device/pda2/security)
 	rounds_needed_to_play = 30 //higher barrier of entry than before but now with a trainee job to get into the rythym of things to compensate
 
 	New()
@@ -493,6 +499,18 @@ ABSTRACT_TYPE(/datum/job/security)
 		if (!M)
 			return
 		M.traitHolder.addTrait("training_security")
+		//I took this stuff from the sec equipment vendor we're axing- Bat
+		var/obj/item/storage/belt/A = M.belt
+		if (istype(A,/obj/item/storage/belt/security/standard)) //This kinda stinks but it weeds out assistants who are a secoff subtype fsr????
+			SPAWN_DBG(2 DECI SECONDS) //ugh belts do this on spawn and we need to wait
+				var/list/tracklist = list()
+				for(var/atom/C in A.contents)
+					if (istype(C,/obj/item/gun/energy/taser_gun) || istype(C,/obj/item/baton))
+						tracklist += C
+
+				if (length(tracklist))
+					var/obj/item/pinpointer/secweapons/P = new(A)
+					P.track(tracklist)
 
 	assistant
 		name = "Security Assistant"
@@ -500,12 +518,13 @@ ABSTRACT_TYPE(/datum/job/security)
 		cant_spawn_as_con = 1
 		wages = PAY_UNTRAINED
 		slot_jump = list(/obj/item/clothing/under/rank/security/assistant)
+		slot_belt = list(/obj/item/storage/belt/security/assistant)
 		slot_suit = list()
 		slot_glov = list(/obj/item/clothing/gloves/fingerless)
 		slot_head = list(/obj/item/clothing/head/red)
 		slot_foot = list(/obj/item/clothing/shoes/brown)
 		slot_poc1 = list(/obj/item/storage/security_pouch/assistant)
-		slot_poc2 = list(/obj/item/requisition_token/security/assistant)
+		slot_poc2 = list(/obj/item/device/pda2/security)
 		items_in_backpack = list(/obj/item/paper/book/from_file/space_law)
 		rounds_needed_to_play = 5
 
