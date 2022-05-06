@@ -11,10 +11,7 @@
 #define TRANSMISSION_RADIO	1
 
 //lighting stuff
-#define LIGHT_OK 0
-#define LIGHT_EMPTY 1
-#define LIGHT_BROKEN 2
-#define LIGHT_BURNED 3
+//moved to defines\lighting_colors.dm
 
 //apc stuff
 #define EQUIP 1 	//! Power Channel: Equipment
