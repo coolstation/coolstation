@@ -231,7 +231,7 @@ var/global/list/mapNames = list(
 	goonhub_map = "https://goonhub.com/maps/cogmap"
 	walls = /turf/simulated/wall/auto/supernorn
 	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
-	auto_walls = 1
+	auto_walls = 0
 
 	windows = /obj/window/auto
 	windows_thin = /obj/window/pyro
