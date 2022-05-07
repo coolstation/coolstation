@@ -21,7 +21,7 @@ export const GeneralTab = (_props, context) => {
             <Button onClick={() => act('update-nameMiddle')}>{data.nameMiddle}</Button>
             <Button onClick={() => act('update-nameLast')}>{data.nameLast}</Button>
           </LabeledList.Item>
-          <LabeledList.Item label="Gender">
+          <LabeledList.Item label="Bodytype">
             <Button onClick={() => act('update-gender')}>{data.gender}</Button>
           </LabeledList.Item>
           <LabeledList.Item label="Pronouns">
