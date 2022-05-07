@@ -854,6 +854,8 @@ var/list/update_body_limbs = list("r_arm" = "stump_arm_right", "l_arm" = "stump_
 			var/gender_t = null
 			if (AHOLD.mob_appearance_flags & NOT_DIMORPHIC) // Most mutants arent dimorphic
 				gender_t = "m" // and i doubt they ever will be
+			else if (src.gender == NEUTER)
+				gender_t = "n"
 			else
 				gender_t = src.gender == FEMALE ? "f" : "m"
 
