@@ -70,6 +70,8 @@
 		use_power(thepower * lights.len, LIGHT)
 
 
+
+
 // the standard tube light fixture
 
 /var/global/stationLights = new/list()
@@ -1017,6 +1019,14 @@
 		color_r = 0.95
 		color_g = 0.2
 		color_b = 0.2
+	reddish
+		name = "reddish light bulb"
+		desc = "Fancy."
+		icon_state = "tube-red"
+		base_state = "tube-red"
+		color_r = 0.98
+		color_g = 0.75
+		color_b = 0.5
 	yellow
 		name = "yellow light bulb"
 		desc = "Fancy."
