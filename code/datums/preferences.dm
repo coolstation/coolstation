@@ -12,7 +12,7 @@ datum/preferences
 	var/name_first
 	var/name_middle
 	var/name_last
-	var/gender = MALE
+	var/gender = NEUTER
 	var/age = 30
 	var/pin = null
 	var/blType = "A+"
@@ -135,6 +135,14 @@ datum/preferences
 				"name" = src.savefile_get_profile_name(client, i),
 			)
 
+		var/bodytype = "null"
+		if(src.gender == MALE)
+			bodytype = "Masc"
+		else if (src.gender == FEMALE)
+			bodytype = "Femme"
+		else if (src.gender == NEUTER)
+			bodytype = "Smooth"
+
 		var/list/cloud_saves = null
 
 		if (client.cloud_available())
@@ -143,6 +151,7 @@ datum/preferences
 				cloud_saves += name
 
 		sanitize_null_values()
+		update_preview_icon()
 		user << browse_rsc(icon(cursors_selection[target_cursor]), "tcursor_[src.target_cursor].png")
 		user << browse_rsc(icon(hud_style_selection[hud_style], "preview"), "hud_preview_[src.hud_style].png")
 
@@ -161,7 +170,8 @@ datum/preferences
 			"nameMiddle" = src.name_middle,
 			"nameLast" = src.name_last,
 			"randomName" = src.be_random_name,
-			"gender" = (src.gender == MALE ? "Male" : "Female") + " " + (!AH.pronouns ? (src.gender == MALE ? "(he/him)" : "(she/her)") : "(they/them)"),
+			"gender" = bodytype, // see above - warc
+			"pronouns" = AH.pronouns.name,
 			"age" = src.age,
 			"bloodRandom" = src.random_blood,
 			"bloodType" = src.blType,
@@ -421,24 +431,29 @@ datum/preferences
 					src.profile_modified = TRUE
 					return TRUE
 
-			if ("update-gender")
-				if (!AH.pronouns)
-					if (src.gender == MALE)
-						src.gender = FEMALE
-						AH.gender = FEMALE
-					else if (src.gender == FEMALE)
-						src.gender = MALE
-						AH.gender = MALE
-						AH.pronouns = 1
-				else
-					if (src.gender == MALE)
-						src.gender = FEMALE
-						AH.gender = FEMALE
-					else if (src.gender == FEMALE)
-						src.gender = MALE
-						AH.gender = MALE
-						AH.pronouns = 0
+			if ("update-gender") // warc make binary ternary, it's progress!
+				if (src.gender == NEUTER)
+					src.gender = FEMALE
+					AH.gender = FEMALE
+				else if(src.gender == FEMALE)
+					src.gender = MALE
+					AH.gender = MALE
+				else if(src.gender == MALE)
+					src.gender = NEUTER
+					AH.gender = NEUTER
 				update_preview_icon()
+				src.profile_modified = TRUE
+				return TRUE
+
+			if ("update-pronouns")
+				var/list/types = filtered_concrete_typesof(/datum/pronouns, /proc/pronouns_filter_is_choosable)
+				var/selected
+				for (var/i = 1, i <= length(types), i++)
+					var/datum/pronouns/pronouns = get_singleton(types[i])
+					if (AH.pronouns == pronouns)
+						selected = i
+						break
+				AH.pronouns = get_singleton(types[selected < length(types) ? selected + 1 : 1])
 				src.profile_modified = TRUE
 				return TRUE
 
@@ -1631,7 +1646,7 @@ datum/preferences
 
 	proc/sanitize_null_values()
 		if (!src.gender || !(src.gender == MALE || src.gender == FEMALE))
-			src.gender = MALE
+			src.gender = NEUTER
 		if (!AH)
 			AH = new
 		if (AH.gender != src.gender)
@@ -1808,7 +1823,7 @@ var/global/list/female_screams = list("female", "femalescream1", "femalescream2"
 		H.bioHolder.BuildEffectPool()
 
 	if (change_gender)
-		AH.gender = pick(MALE, FEMALE)
+		AH.gender = pick(MALE, FEMALE, NEUTER)
 	if (H && AH.gender)
 		H.sound_scream = AH.screamsounds[pick(AH.gender == MALE ? male_screams : female_screams)]
 	if (H && change_name)

@@ -40,8 +40,9 @@
 
 	if (H.gender == FEMALE)
 		G.fields["sex"] = "Female"
-	else
+	else if (H.gender == MALE)
 		G.fields["sex"] = "Male"
+	else G.fields["sex"] = "N/A"
 
 	G.fields["age"] ="[H.bioHolder.age]"
 	G.fields["fingerprint"] = "[H.bioHolder.uid_hash]"
