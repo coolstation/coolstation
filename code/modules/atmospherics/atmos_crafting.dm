@@ -85,12 +85,14 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 			if (!sheet.change_stack_amount(-1))
 				return
 			//Make a pipebomb frame and advance it to stage 2
+			change_stack_amount(-1)
 			var/obj/item/pipebomb/frame/newbomb = new
 			newbomb.icon_state = "Pipe_Sheet"
 			newbomb.state = 2
 			newbomb.flags |= NOSPLASH
 			newbomb.desc = "Two small pipes joined together. The pipes are empty."
 
+			user.put_in_hand_or_drop(newbomb)
 			if (sheet.material)
 				newbomb.setMaterial(sheet.material)
 				newbomb.name = "hollow [newbomb.material.name] pipe frame"
