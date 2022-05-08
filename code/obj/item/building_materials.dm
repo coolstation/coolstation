@@ -265,7 +265,7 @@ MATERIAL
 				L["bed"] = "Bed (2 Sheets)"
 				L["closet"] = "Closet (2 Sheets)"
 				L["construct"] = "Wall Girders (2 Sheets)"
-				L["pipef"] = "Pipe Frame (3 Sheets)"
+				L["pipef"] = "Pipe Frame (2 Sheets)"
 				L["tcomputer"] = "Computer Terminal Frame (3 Sheets)"
 				L["computer"] = "Console Frame (5 Sheets)"
 				L["hcomputer"] = "Computer Frame (5 Sheets)"
@@ -446,10 +446,10 @@ MATERIAL
 					a_name = "a cardboard box"
 
 				if("pipef")
-					if (!amount_check(3,usr)) return
-					a_type = /obj/item/pipebomb/frame
+					if (!amount_check(2,usr)) return
+					a_type = /obj/item/atmospherics/pipeframe
 					a_amount = 1
-					a_cost = 3
+					a_cost = 2
 					a_icon = 'icons/obj/items/assemblies.dmi'
 					a_icon_state = "Pipe_Frame"
 					a_name = "a pipe frame"

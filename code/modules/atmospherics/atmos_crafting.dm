@@ -55,7 +55,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 	var/obj/item/atmospherics/module/gizmo =  null
 	///What's this assembly going to turn into when deployed?
 	var/assembly_makes = /obj/machinery/atmospherics/pipe/simple/insulated
-	var/welded
+	var/welded = FALSE
 
 	get_desc(dist, mob/user)
 		..()
@@ -63,21 +63,47 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 			. += " Add a metal sheet to make a pipebomb frame."
 
 	///We might have differing modules attached, or we might be trying to mix welded and unwelded
-	check_valid_stack(/obj/item/atmospherics/assembly/O)
+	check_valid_stack(obj/item/atmospherics/pipeframe/O)
+		if (O.welded != welded)
+			return 0
+		if ((gizmo && (!O.gizmo || !(O.gizmo.type == gizmo.type))) || (!gizmo && O.gizmo)) //mismatch of gizmo types
+			return 0
 		. = ..()
 
-attackby(obj/item/W as obj, mob/user as mob, params, is_special = 0)
-	if (istype(W, /obj/item/sheet))
-		var/obj/item/sheet/sheet = W
-		if (!(S.material?.material_flags & MATERIAL_METAL))
+	attackby(obj/item/W as obj, mob/user as mob, params, is_special = 0)
+		if (istool(W, TOOL_WELDING) && !welded)
+			if (W:try_weld(user,1))
+				welded = TRUE
+				icon_state = "Pipe_Hollow"
+
+		if (istype(W, /obj/item/sheet))
+			var/obj/item/sheet/sheet = W
+			if (!(sheet.material?.material_flags & MATERIAL_METAL))
+				return
+			if (!welded || gizmo)
+				return
+			if (!sheet.change_stack_amount(-1))
+				return
+			//Make a pipebomb frame and advance it to stage 2
+			var/obj/item/pipebomb/frame/newbomb = new
+			newbomb.icon_state = "Pipe_Sheet"
+			newbomb.state = 2
+			newbomb.flags |= NOSPLASH
+			newbomb.desc = "Two small pipes joined together. The pipes are empty."
+
+			if (sheet.material)
+				newbomb.setMaterial(sheet.material)
+				newbomb.name = "hollow [newbomb.material.name] pipe frame"
+			else
+				newbomb.name = "hollow pipe frame"
 			return
-		if (!welded || gizmo)
-			return
-		//Make a pipebomb frame
-		return
-	if (istype(W, /obj/item/atmospherics/module/))
-		if (gizmo) //already got something
-			return
+		#ifdef ENABLE_ATMOS_BUILDY
+		if (istype(W, /obj/item/atmospherics/module/))
+			if (gizmo) //already got something
+				return
+			gizmo = W
+			assembly_makes = gizmo.machine_path
+		#endif
 
 
 
@@ -85,8 +111,13 @@ attackby(obj/item/W as obj, mob/user as mob, params, is_special = 0)
 /obj/item/atmospherics/module/
 	name = "atmos thingy"
 	desc = "combine with a pipe frame to make something neat!"
+
+	icon = 'icons/obj/atmospherics/digital_valve.dmi' //temp
+	icon_state = "hvalve0" //temp
 	w_class = W_CLASS_TINY
 	force = 0
+	///Gets combined into the pipeframe's name
+	var/assembly_prefix = ""
 	///The typepath of thing that this module should produce
 	var/machine_path = /obj/machinery/atmospherics/valve
 	///How many pipe connections come out of this thing, used for making sure that the player has a sensible configuration.
@@ -125,29 +156,44 @@ attackby(obj/item/W as obj, mob/user as mob, params, is_special = 0)
 
 /obj/item/atmospherics/module/valve
 	name = "valve module"
+	assembly_prefix = "valve"
 	machine_path = /obj/machinery/atmospherics/valve
 
 /obj/item/atmospherics/module/digital_valve
 	name = "digital valve module"
+	assembly_prefix = "digital valve"
 	machine_path = /obj/machinery/atmospherics/valve/digital
 
-/obj/item/atmospherics/module/minifold_valve
+/obj/item/atmospherics/module/manifold_valve
 	name = "manifold valve module"
+	assembly_prefix = "manifold valve"
 	machine_path = /obj/machinery/atmospherics/manifold_valve
 	expected_connections = 3
 
+//	determine_machine_dir(orientation, direction) //Manifold valve sprites point in the one direction they DON'T have a connection to
+		//Possible TODO: the valves only ever switch between two pairs when there's 3 possible pairs of pipes, but also they can't be flipped like mixers
+
 /obj/item/atmospherics/module/filter //retrofilter is probably unnecessary
 	name = "gas filter module"
+	assembly_prefix = "gas filter"
 	machine_path = /obj/machinery/atmospherics/filter
 	expected_connections = 3
 
+//	determine_machine_dir(orientation, direction)
+
 /obj/item/atmospherics/module/mixer
 	name = "gas mixer module"
+	assembly_prefix = "gas mixer"
 	machine_path = /obj/machinery/atmospherics/mixer
 	expected_connections = 3
 
+//	determine_machine_dir(orientation, direction)
+		//switch(orientation)
+			//if(NORTH + SOUTH + EAST)
+
 /obj/item/atmospherics/module/connector
 	name = "connector port module"
+	assembly_prefix = "connector port"
 	machine_path = /obj/machinery/atmospherics/portables_connector
 	expected_connections = 1
 
@@ -155,53 +201,59 @@ attackby(obj/item/W as obj, mob/user as mob, params, is_special = 0)
 
 /obj/item/atmospherics/module/pump
 	name = "pump module"
+	assembly_prefix = "pump"
 	machine_path = /obj/machinery/atmospherics/binary/pump
 
 /obj/item/atmospherics/module/volume_pump
 	name = "volume pump module"
-	machine_path = /obj/machinery/atmospherics/binary/volume_pump
-
-/obj/item/atmospherics/module/volume_pump
-	name = "volume pump module"
+	assembly_prefix = "volume pump"
 	machine_path = /obj/machinery/atmospherics/binary/volume_pump
 
 /obj/item/atmospherics/module/dp_vent
 	name = "dual port vent module"
+	assembly_prefix = "dual port vent"
 	machine_path = /obj/machinery/atmospherics/binary/dp_vent_pump
 
 /obj/item/atmospherics/module/passive_gate
 	name = "passive gate module"
+	assembly_prefix = "passive gate"
 	machine_path = /obj/machinery/atmospherics/binary/passive_gate
 
 //Binary machinery not included above: circulator (old and deprecated?) and circulatorTemp (TEG gas circulators)
 
 /obj/item/atmospherics/module/cold_sink
 	name = "cold sink module"
+	assembly_prefix = "cold sink"
 	machine_path = /obj/machinery/atmospherics/unary/cold_sink
 	expected_connections = 1
 
 /obj/item/atmospherics/module/heat_reservoir
 	name = "heat reservoir module"
+	assembly_prefix = "heat reservoir"
 	machine_path = /obj/machinery/atmospherics/unary/heat_reservoir
 	expected_connections = 1
 
 /obj/item/atmospherics/module/furnace_connector //you know I thought furnaces plugged into atmos on their own accord.
 	name = "furnace connector module"
+	assembly_prefix = "furnace connector"
 	machine_path = /obj/machinery/atmospherics/unary/furnace_connector
 	expected_connections = 1
 
 /obj/item/atmospherics/module/outlet_injector
 	name = "outlet injector module"
+	assembly_prefix = "outlet injector"
 	machine_path = /obj/machinery/atmospherics/unary/outlet_injector
 	expected_connections = 1
 
 /obj/item/atmospherics/module/vent_pump
 	name = "vent pump module"
+	assembly_prefix = "vent pump"
 	machine_path = /obj/machinery/atmospherics/unary/heat_reservoir
 	expected_connections = 1
 
 /obj/item/atmospherics/module/vent_scrubber
 	name = "vent scrubber module"
+	assembly_prefix = "vent scrubber"
 	machine_path = /obj/machinery/atmospherics/unary/heat_reservoir
 	expected_connections = 1
 
@@ -221,7 +273,27 @@ attackby(obj/item/W as obj, mob/user as mob, params, is_special = 0)
 	light_g = 0.88
 	light_b = 0.3
 
-	create_products()
+	#ifndef ENABLE_ATMOS_BUILDY
+	New()
+		..()
+		qdel(src)
+	#endif
+
+	create_products() //IDK what half the machines these fuckers build into actually *do* so not all of this may be appropriate stock
 		..()
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/valve, 15)
-		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/, 15)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/digital_valve, 15)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/manifold_valve, 15)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/filter, 5)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/mixer, 5)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/connector, 8)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/pump, 15)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/volume_pump, 15)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/dp_vent, 10)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/passive_gate, 10)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/cold_sink, 5)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/heat_reservoir, 5)
+		//obj/item/atmospherics/module/furnace_connector
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/outlet_injector, 15)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/vent_pump, 10)
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/vent_scrubber, 10)
