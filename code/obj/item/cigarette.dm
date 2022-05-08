@@ -233,7 +233,7 @@
 		if (target)
 			var/message_append = ""
 			switch(rand(1, 13))
-				if (1) message_append = " Ouch!"
+				if (1) message_append = " Ouch!" //sWiTcH bRaNcHeS oN rAnD() wItH RaNgE 1 tO 13 bUt- thats how stupid you sound, linter. Shut up. Shut UP.
 				if (2) message_append = " Are they just going to take that?"
 				if (3) message_append = " Whoa!"
 				if (4) message_append = " What a jerk!"
@@ -249,7 +249,7 @@
 				SPAWN_DBG(0) target.emote("cough")
 		else
 			var/message
-			switch(rand(1, 8))
+			switch(rand(1, 9))
 				if (1) message = "<B>[user]</B> takes a drag and blows a cloud of smoke!"
 				if (2) message = "<B>[user]</B> puffs out a smoke cloud!"
 				if (3) message = "<B>[user]</B> exhales a huge cloud of smoke!"
@@ -259,7 +259,7 @@
 				if (7) message = "<B>[user]</B> blows some smoke rings!"
 				if (8) message = "<B>[user]</B> takes a drag of [his_or_her(user)] [src.name]."
 				if (9) message = "<B>[user]</B> pulls on [his_or_her(user)] [src.name]."
-				if (10) message = "<B>[user]</B> blows out some smoke in the shape of a [pick("butt","bee","shelterfrog","heart","burger","gun","cube","face","dog","star")]!"
+				//if (10) message = "<B>[user]</B> blows out some smoke in the shape of a [pick("butt","bee","shelterfrog","heart","burger","gun","cube","face","dog","star")]!"
 			user.visible_message("<span class='alert'>[message]</span>", group = "blow_smoke")
 		src.cycle = 0 //do the transfer on the next cycle. Also means we get the lung damage etc rolls
 
