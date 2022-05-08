@@ -1649,6 +1649,46 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/breakfast, rand(2, 4), hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/snack_cake, rand(1, 3), hidden=1)
 
+
+/obj/machinery/vending/gunse
+	name = "NanoGunse"
+	desc = "Gunse storage unit."
+	icon_state = "sauce"
+	icon_panel = "standard-panel"
+	icon_off = "food-off"
+	icon_broken = "food-broken"
+	icon_fallen = "food-fallen"
+	req_access_txt = ""
+	acceptcard = 0
+
+	light_r =1
+	light_g = 0.88
+	light_b = 0.3
+
+	create_products()
+		..()
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/scatter, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss/long, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss/punt, 2)
+		product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs/better, 2)
+		//above this line is for debug and testing only, they'll go in the bin later.
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer/small, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian/bigger, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/arm_brace, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet/long, 2)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/zaubertube/ten, 10)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/ten, 10)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/ten, 10)
+
+
 //The burden of these machinations weighs on my shoulders
 //And thus you will be burdened
 /datum/data/vending_product/player_product

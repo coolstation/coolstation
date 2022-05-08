@@ -729,8 +729,8 @@
 		else
 			msgs.base_attack_message = "<span class='alert'><B>[src] [src.punchMessage] [target][msgs.stamina_crit ? " and lands a devastating hit!" : "!"]</B></span>"
 
-		if (!(src.traitHolder && src.traitHolder.hasTrait("glasscannon")))
-			msgs.stamina_self -= STAMINA_HTH_COST
+		//if (!(src.traitHolder && src.traitHolder.hasTrait("glasscannon")))
+		//	msgs.stamina_self -= STAMINA_HTH_COST
 
 	var/attack_resistance = target.check_attack_resistance()
 	if (attack_resistance)

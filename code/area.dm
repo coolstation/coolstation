@@ -1150,7 +1150,7 @@ ABSTRACT_TYPE(/area/diner)
 	icon_state = "orange"
 
 /area/diner/arcade
-	name = "Bill E Bheezes"
+	name = "Temporary Gun Range"
 	icon_state = "red"
 
 /area/tech_outpost
