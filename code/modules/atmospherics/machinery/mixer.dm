@@ -62,8 +62,10 @@ obj/machinery/atmospherics/mixer
 		if (network_out == reference)
 			network_out = null
 
-	New()
+	New(direction = null, is_flipped = null)
 		..()
+		if(!isnull(is_flipped)) //Lets built mixers set if they're flipped before initialising
+			flipped = is_flipped
 		switch(dir)
 			if(NORTH)
 				if(flipped)
