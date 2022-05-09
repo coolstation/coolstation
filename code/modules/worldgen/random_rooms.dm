@@ -63,3 +63,6 @@ proc/buildRandomRooms()
 
 	size5x3
 		size = "5x3"
+
+	market5x4
+		size = "5x4"
