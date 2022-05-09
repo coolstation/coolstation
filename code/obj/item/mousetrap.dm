@@ -144,8 +144,8 @@
 			message_admins("[key_name(user)] rigs [src] with [S] at [log_loc(user)].")
 			logTheThing("bombing", user, null, "rigs [src] with [S] at [log_loc(user)].")
 
-		else if (istype(C, /obj/item/atmospherics/pipeframe))
-			var/obj/item/atmospherics/pipeframe/PF = C
+		else if (istype(C, /obj/item/atmospherics/pipeframe/regular))
+			var/obj/item/atmospherics/pipeframe/regular/PF = C
 			if (src.loc != user)
 				user.show_text("You need to actually be holding [src] to do this.", "red")
 				return
@@ -377,10 +377,10 @@
 	w_class = W_CLASS_TINY
 	var/armed = 0
 	var/obj/item/mousetrap/mousetrap = null
-	var/obj/item/atmospherics/pipeframe/frame = null
+	var/obj/item/atmospherics/pipeframe/regular/frame = null
 	var/payload = ""
 
-	New(ourLoc, var/obj/item/mousetrap/newtrap, obj/item/atmospherics/pipeframe/newframe)
+	New(ourLoc, var/obj/item/mousetrap/newtrap, obj/item/atmospherics/pipeframe/regular/newframe)
 		..()
 
 		if (newtrap)
@@ -413,7 +413,7 @@
 			newframe.set_loc(src)
 			src.frame = newframe
 		else
-			src.frame = new /obj/item/atmospherics/pipeframe(src)
+			src.frame = new /obj/item/atmospherics/pipeframe/regular(src)
 
 		return
 

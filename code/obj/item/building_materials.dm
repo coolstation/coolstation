@@ -266,6 +266,8 @@ MATERIAL
 				L["closet"] = "Closet (2 Sheets)"
 				L["construct"] = "Wall Girders (2 Sheets)"
 				L["pipef"] = "Pipe Frame (2 Sheets)"
+				L["pipef_ex"] = "Exchanger Pipe Frame (2 Sheets)"
+				L["pipef_junc"] = "Exchanger Junction Frame (4 Sheets)"
 				L["tcomputer"] = "Computer Terminal Frame (3 Sheets)"
 				L["computer"] = "Console Frame (5 Sheets)"
 				L["hcomputer"] = "Computer Frame (5 Sheets)"
@@ -447,12 +449,30 @@ MATERIAL
 
 				if("pipef")
 					if (!amount_check(2,usr)) return
-					a_type = /obj/item/atmospherics/pipeframe
+					a_type = /obj/item/atmospherics/pipeframe/regular
 					a_amount = 1
 					a_cost = 2
 					a_icon = 'icons/obj/items/assemblies.dmi'
 					a_icon_state = "Pipe_Frame"
 					a_name = "a pipe frame"
+
+				if("pipef_ex")
+					if (!amount_check(2,usr)) return
+					a_type = /obj/item/atmospherics/pipeframe/
+					a_amount = 1
+					a_cost = 2
+					a_icon = 'icons/obj/atmospherics/atmos_parts.dmi'
+					a_icon_state = "conduit_to-weld"
+					a_name = "a pipe conduit frame"
+
+				if("pipef_junc")
+					if (!amount_check(4,usr)) return
+					a_type = /obj/item/atmospherics/pipeframe/exchanger_regular_junction
+					a_amount = 1
+					a_cost = 4
+					a_icon = 'icons/obj/atmospherics/atmos_parts.dmi'
+					a_icon_state = "junction_to-weld"
+					a_name = "a conduit junction frame"
 
 				if("bed")
 					if (!amount_check(2,usr)) return
