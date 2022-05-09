@@ -94,7 +94,7 @@
 	var/datum/reagents/fluid_group/reagents = null
 	var/contained_amt = 0 //total reagent amt including all members
 	var/amt_per_tile = 0 //Don't pull from this value for group calculations without updating it first
-	var/required_to_spread = 30
+	var/required_to_spread = 51 // warc : increased from 30
 
 	var/last_add_time = 0
 	var/last_temp_change = 0

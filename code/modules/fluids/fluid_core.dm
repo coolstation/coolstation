@@ -24,7 +24,7 @@ var/list/ban_stacking_into_fluid = list( //ban these from producing fluid from a
 
 var/global/waterflow_enabled = 1
 
-var/list/depth_levels = list(2,50,100,200)
+var/list/depth_levels = list(4,100,200,400) // warc : was list(2,50,100,200), im trying to just double them and see how it feels okay
 
 var/mutable_appearance/fluid_ma
 
