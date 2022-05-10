@@ -114,3 +114,35 @@
 	heal_amt = 2
 	initial_volume = 30
 	initial_reagents = list("cryostylane"=30)
+
+/obj/item/reagent_containers/food/snacks/italian_ice_cup
+	name = "italian ice cup"
+	desc = "A paper cup designed to hold italian ice. Mysteriously edible."
+	icon = 'icons/obj/foodNdrink/drinks.dmi'
+	icon_state = "paper_cup"
+	amount = 1
+
+/obj/item/reagent_containers/food/snacks/italian_ice
+	name = "italian ice"
+	desc = "A paper cup full of Rito's Italian Ice. Somehow still appears empty."
+	icon = 'icons/obj/foodNdrink/drinks.dmi'
+	icon_state = "paper_cup"
+	real_name = "italian ice"
+	amount = 4
+	heal_amt = 4
+	food_color = null
+	var/flavor_name = null
+	initial_volume = 40
+	food_effects = list("food_cold")
+	use_bite_mask = 0
+
+	on_reagent_change()
+		src.UpdateName()
+
+	UpdateName()
+		src.name = "[name_prefix(null, 1)][src.flavor_name ? "[src.flavor_name]-flavored " : null][src.real_name][name_suffix(null, 1)]"
+
+	heal(var/mob/M)
+		..()
+		M.bodytemperature = min(M.base_body_temp, M.bodytemperature-20)
+		return
