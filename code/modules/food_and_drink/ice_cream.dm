@@ -140,6 +140,7 @@
 		src.UpdateName()
 
 	UpdateName()
+		src.flavor_name = src.reagents.get_master_reagent_name()
 		src.name = "[name_prefix(null, 1)][src.flavor_name ? "[src.flavor_name]-flavored " : null][src.real_name][name_suffix(null, 1)]"
 
 	heal(var/mob/M)

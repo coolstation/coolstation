@@ -350,7 +350,7 @@
 			boutput(user, "<span class='alert'>You can't put that in \the [src] when it's attached to you!</span>")
 			return
 
-		if (istype(W, /obj/item/reagent_containers/food/snacks/ice_cream_cone))
+		if (istype(W, /obj/item/reagent_containers/food/snacks/italian_ice_cup/))
 			if(src.cup)
 				boutput(user, "There is already a cup loaded.")
 				return
