@@ -321,6 +321,9 @@
 						src.updateUsrDialog()
 						return
 
+					if(beaker.reagents.total_volume < 40)
+						beaker.reagents.add_reagent("water", (40 - beaker.reagents.total_volume))
+
 					doing_a_thing = 1
 					qdel(src.cup)
 					src.cup = null

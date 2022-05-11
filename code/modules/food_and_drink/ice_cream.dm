@@ -118,15 +118,15 @@
 /obj/item/reagent_containers/food/snacks/italian_ice_cup
 	name = "italian ice cup"
 	desc = "A paper cup designed to hold italian ice. Mysteriously edible."
-	icon = 'icons/obj/foodNdrink/drinks.dmi'
-	icon_state = "paper_cup"
+	icon = 'icons/obj/foodNdrink/food_snacks.dmi'
+	icon_state = "italianice"
 	amount = 1
 
 /obj/item/reagent_containers/food/snacks/italian_ice
 	name = "italian ice"
 	desc = "A paper cup full of Rito's Italian Ice. Somehow still appears empty."
-	icon = 'icons/obj/foodNdrink/drinks.dmi'
-	icon_state = "paper_cup"
+	icon = 'icons/obj/foodNdrink/food_snacks.dmi'
+	icon_state = "italianice"
 	real_name = "italian ice"
 	amount = 4
 	heal_amt = 4
@@ -140,7 +140,11 @@
 		src.UpdateName()
 
 	UpdateName()
-		src.flavor_name = src.reagents.get_master_reagent_name()
+		src.flavor_name = src.reagents.get_master_reagent_name_except("water")
+		if(!src.flavor_name)
+			src.flavor_name = "bland"
+		else if(src.reagents.get_master_reagent_name() == "water")
+			src.flavor_name = "bland " + src.flavor_name
 		src.name = "[name_prefix(null, 1)][src.flavor_name ? "[src.flavor_name]-flavored " : null][src.real_name][name_suffix(null, 1)]"
 
 	heal(var/mob/M)
