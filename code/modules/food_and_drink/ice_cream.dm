@@ -132,20 +132,33 @@
 	heal_amt = 4
 	food_color = null
 	var/flavor_name = null
+	var/image/ice_image = null
 	initial_volume = 40
 	food_effects = list("food_cold")
 	use_bite_mask = 0
 
 	on_reagent_change()
+		src.update_cone()
 		src.UpdateName()
 
 	UpdateName()
 		src.flavor_name = src.reagents.get_master_reagent_name_except("water")
-		if(!src.flavor_name)
+		if(!src.flavor_name && src.reagents.get_master_reagent_name() == "water")
 			src.flavor_name = "bland"
 		else if(src.reagents.get_master_reagent_name() == "water")
 			src.flavor_name = "bland " + src.flavor_name
 		src.name = "[name_prefix(null, 1)][src.flavor_name ? "[src.flavor_name]-flavored " : null][src.real_name][name_suffix(null, 1)]"
+
+	proc/update_cone()
+		src.food_color = src.reagents.get_master_color()
+		if (!src.ice_image)
+			src.ice_image = image(src.icon)
+		var/ice_level = (100 * round(amount/initial(amount),0.25))
+		if (!src.food_color)
+			src.food_color = src.reagents.get_master_color()
+		src.ice_image.icon_state = "itaice[ice_level]"
+		src.ice_image.color = src.food_color
+		src.UpdateOverlays(src.ice_image, "cream")
 
 	heal(var/mob/M)
 		..()

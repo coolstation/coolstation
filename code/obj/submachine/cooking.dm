@@ -253,7 +253,7 @@
 		src.add_dialog(user)
 		var/dat = "<b>Rito's Italian Ice Maker</b><br>"
 		if(src.cup)
-			dat += "<a href='?src=\ref[src];eject=cup'>Eject Cup</a><br>"
+			dat += "<a href='?src=\ref[src];eject=cone'>Eject Cup</a><br>"
 			dat += "<b>Select a Flavor:</b><br><ul>"
 			for(var/flavor in flavors)
 				dat += "<li><a href='?src=\ref[src];flavor=[flavor]'>[capitalize(flavor)]</a></li>"
