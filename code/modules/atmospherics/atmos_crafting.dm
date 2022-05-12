@@ -52,6 +52,8 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 	///What's this going to turn into when deployed (sans gizmo)?
 	var/frame_makes = /obj/machinery/atmospherics/pipe/simple/heat_exchanging
 	var/welded = FALSE
+	//The amount of connections this frame/assembly needs, gets overridden when a module is added
+	var/expected_connections = 2
 	w_class = W_CLASS_SMALL //pipebombs are normal size but I don't wanna have these be bulky.
 
 
@@ -66,6 +68,27 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 		..()
 		if (!welded)
 			. += " You'll have to weld the seams first though."
+
+	afterattack(atom/target, mob/user, reach, params)
+		if (!istype(user)) //Gonna need those sweet, sweet component vars
+			return
+
+		if(istype(target, /obj/window))
+			target = get_turf(target)
+
+		if(isturf(target))
+			var/datum/component/atmos_crafty/pipe_settings = user.GetComponent(/datum/component/atmos_crafty)
+			if (isnull(pipe_settings)) //This basically amounts to using the default settings on the new component
+				pipe_settings = user.AddComponent(/datum/component/atmos_crafty)
+			if (!(expected_connections == 1)) //Direction is all we need it's fine
+				if (pipe_settings.no_of_connections != expected_connections)
+					return
+				if ((pipe_settings.orientation ^ pipe_settings.direction) > pipe_settings.orientation) //Direction isn't included in orientation (AKA settings are nonsense)
+					boutput(user, "<span class='alert'>Your chosen direction isn't one of the sides the component connect to!</span>")
+					return //Would every single machine type necessarily care? No, but I'm relying on a sensible direction for shorthand in build_a_pipe
+			build_a_pipe(target, pipe_settings.orientation, pipe_settings.direction)
+			return
+		..()
 
 	attackby(obj/item/W as obj, mob/user as mob, params, is_special = 0)
 		if (istool(W, TOOL_WELDING) && !welded)
@@ -93,15 +116,17 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 			blepperdy_bloop.showPanel()
 		. = ..()
 
-
-
-///For regular pipe frames, this is what's called when there's no module
-/obj/item/atmospherics/pipeframe/proc/build_a_pipe(orientation, direction)
+///Try to put up a
+/obj/item/atmospherics/pipeframe/proc/build_a_pipe(turf/destination, orientation, direction)
 	switch (orientation)
 		if ((EAST + WEST), (NORTH + SOUTH))
-			return direction
+			new frame_makes(destination, specify_direction = direction)
+			qdel(src)
 		if (NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST) //pipes are one of those fucked up things where corner sprites are assigned to the diagonals
-			return orientation
+			new frame_makes(destination, specify_direction = orientation)
+			qdel(src)
+
+
 
 //The bit that going between normal piping and heat exchangers. Build direction points to the exchanger side
 /obj/item/atmospherics/pipeframe/exchanger_regular_junction
@@ -115,10 +140,12 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 		welded = TRUE
 		icon_state = "frame_junction"
 
-	build_a_pipe(orientation, direction) //these don't do corners
+	build_a_pipe(turf/destination, orientation, direction) //these don't do corners
 		switch (orientation)
 			if ((EAST + WEST), (NORTH + SOUTH))
-				return direction
+				new frame_makes(destination, direction)//return direction
+				qdel(src)
+
 
 ///Normal pipe frames
 /obj/item/atmospherics/pipeframe/regular
@@ -131,6 +158,13 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 	var/list/gizmoes = list() //keep a list of modules if we have a stack of assemblies (rather than just pipes)
 	//IDK what all these fucking pipe variants are but this is what I found used on atlas
 	frame_makes = /obj/machinery/atmospherics/pipe/simple/insulated
+
+	disposing()
+		gizmo = null
+		for (var/a_gizmo as anything in gizmoes)
+			qdel(a_gizmo)
+		gizmoes = null
+		..()
 
 
 	get_desc(dist, mob/user)
@@ -200,12 +234,22 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 			W.set_loc(src)
 			gizmo = W
 			gizmoes += W
+			expected_connections = gizmo.expected_connections
 			name = "[gizmo.assembly_prefix] pipe assembly"
 			var/image/scrumpy = image(gizmo.icon, gizmo.icon_state)
 			UpdateOverlays(scrumpy, "added_gizmo")
 			return
 		#endif
 		..()
+
+	build_a_pipe(turf/destination, orientation, direction)
+		if (!gizmo)
+			..()
+		else
+			gizmo.determine_and_place_machine(destination, orientation, direction)
+			qdel(src)
+
+
 
 ///Here be the bits and bobs you slap onto a pipe frame
 /obj/item/atmospherics/module/
@@ -238,16 +282,11 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 			W.attackby(src, user, params, is_special) //fuck crafting recipes that demand you slap A on B but not B on A
 		..()
 
-
-///Here's where you sort out the direction your specific thing should get placed at. Return that direction.
-/obj/item/atmospherics/module/proc/determine_and_place_machine(orientation, direction)
+///Here's where you sort out the direction your specific thing should get placed at.
+/obj/item/atmospherics/module/proc/determine_and_place_machine(turf/destination, orientation, direction)
 	//The default behaviour is gonna be for 2-connection things that can't turn corners, which is simple as can be anyway
-	return direction //Should set up directional pumps and stuff correctly too
-
-///Given the orientation and direction, should the machine be in its flipped state or no? Return 0 if no or if it's not applicable
-/obj/item/atmospherics/module/proc/determine_machine_flip(orientation, direction)
-	return 0 //Should set up directional pumps and stuff correctly to
-
+	if (orientation == (NORTH + SOUTH) || orientation == (EAST + WEST))
+		new machine_path(destination, specify_direction = direction) //Should set up directional pumps and stuff correctly too
 
 //---------------------------Modules!-----------------------------
 
@@ -443,7 +482,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 	//For things that output in a specific direction (like pumps), specifies the output direction.
 	var/direction = SOUTH
 	//Amount of connections of the current selection (so we don't have to fuck around with orientation to get the number)
-	var/no_of_connections = 0
+	var/no_of_connections = 2
 
 	//From here on out I copy-pasted the admin antag popups debug and started editing GLHF (that's also why the style is called antagType)
 	var/html
@@ -460,30 +499,28 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 	.antagType .title {display:block; color:white; background:black; padding: 2px 5px; margin: -5px -5px 2px -5px}
 </style>
 <head>
-	Please select the orientation you want to build in.
-
-	The direction corresponds to the outputting side of the component, if applicable.
-
+	Please select the orientation you want to build in.<br>
+	The direction corresponds to the outputting side of the component, if applicable.<br>
 	For components with a single connection, the selected direction is used for the orientation instead.
 </head>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>2 Connections</b>
-	<a href='?src=\ref[src];action=straight_NS'>|</a> |
-	<a href='?src=\ref[src];action=straight_EW'>─</a> |
-	<a href='?src=\ref[src];action=corner_SE'>┌</a> |
-	<a href='?src=\ref[src];action=corner_SW'>┐</a> |
-	<a href='?src=\ref[src];action=corner_NE'>└</a> |
+	<a href='?src=\ref[src];action=straight_NS'>|</a> ‧
+	<a href='?src=\ref[src];action=straight_EW'>─</a> ‧
+	<a href='?src=\ref[src];action=corner_SE'>┌</a> ‧
+	<a href='?src=\ref[src];action=corner_SW'>┐</a> ‧
+	<a href='?src=\ref[src];action=corner_NE'>└</a> ‧
 	<a href='?src=\ref[src];action=corner_NW'>┘</a>
 </div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>3 Connections</b>
-	<a href='?src=\ref[src];action=junc_N'>┴</a> |
-	<a href='?src=\ref[src];action=junc_S'┬</a> |
-	<a href='?src=\ref[src];action=junc_W'>┤</a> |
+	<a href='?src=\ref[src];action=junc_N'>┴</a> ‧
+	<a href='?src=\ref[src];action=junc_S'┬</a> ‧
+	<a href='?src=\ref[src];action=junc_W'>┤</a> ‧
 	<a href='?src=\ref[src];action=junc_E'>├</a>
 </div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Orientation & Single Connection</b>
-	<a href='?src=\ref[src];action=north'>↑</a> |
-	<a href='?src=\ref[src];action=south'>↓</a> |
-	<a href='?src=\ref[src];action=west'>←</a> |
+	<a href='?src=\ref[src];action=north'>↑</a> ‧
+	<a href='?src=\ref[src];action=south'>↓</a> ‧
+	<a href='?src=\ref[src];action=west'>←</a> ‧
 	<a href='?src=\ref[src];action=east'>→</a>
 </div>
 "}
@@ -499,7 +536,6 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 		usr.Browse(html, "window=atmospipecrafting;size=300x375")
 
 	Topic(href, href_list)
-		var/mob/M
 		if (!ismob(usr))
 			alert("How the hell are you not a mob?! I can't show the panel to you, you don't exist!")
 			return

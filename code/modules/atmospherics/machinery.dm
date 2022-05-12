@@ -16,10 +16,10 @@ obj/machinery/atmospherics
 	var/initialize_directions = 0
 
 	//This lets built atmos equipment set the thing's direction before it initialises
-	New(var/direction = null)
+	New(loc, specify_direction = null)
 		..()
-		if (!isnull(direction))
-			dir = direction
+		if (!isnull(specify_direction))
+			dir = specify_direction
 
 	process()
 		build_network()
