@@ -57,9 +57,10 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 
 	//we might be trying to mix welded and unwelded
 	check_valid_stack(obj/item/atmospherics/pipeframe/O)
-		if (O.welded != welded)
-			return 0
-		..()
+		if (..())
+			if (O.welded != welded)
+				return 0
+		return 1
 
 	get_desc(dist, mob/user)
 		..()
@@ -71,6 +72,28 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 			if (W:try_weld(user,1))
 				welded = TRUE
 				icon_state = icon_welded
+				return
+		if (istype(W, /obj/item/atmospherics/pipeframe/))
+			stack_item(W)
+		..()
+
+	attack_hand(mob/user)
+		..()
+		//Gonna have to set up/assign
+
+	///Bring up the orientation panel
+	attack_self(mob/user)
+		if (!welded)
+			return ..()
+		var/datum/component/atmos_crafty/blepperdy_bloop = user.GetComponent(/datum/component/atmos_crafty)
+		if (!isnull(blepperdy_bloop))
+			blepperdy_bloop.showPanel()
+		else //Set em up with one of these if they're so gosh dang interested
+			blepperdy_bloop = user.AddComponent(/datum/component/atmos_crafty)
+			blepperdy_bloop.showPanel()
+		. = ..()
+
+
 
 ///For regular pipe frames, this is what's called when there's no module
 /obj/item/atmospherics/pipeframe/proc/build_a_pipe(orientation, direction)
@@ -117,9 +140,10 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 
 	///We might have differing modules attached
 	check_valid_stack(obj/item/atmospherics/pipeframe/regular/O)
-		if ((gizmo && (!O.gizmo || !(O.gizmo.type == gizmo.type))) || (!gizmo && O.gizmo)) //mismatch of gizmo types
-			return 0
-		. = ..() //Includes welded check
+		if (..()) //Includes welded check
+			if ((gizmo && (!O.gizmo || !(O.gizmo.type == gizmo.type))) || (!gizmo && O.gizmo)) //mismatch of gizmo types
+				return 0
+		return 1
 
 	///We're gonna have to give the new stack the appropriate amount of gizmoes
 	split_stack(toRemove)
@@ -169,7 +193,10 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 				return
 			if (gizmo) //already got something
 				return
-			user.u_equip(W)
+			if (W.amount > 1)
+				W = W.split_stack(1)
+			else
+				user.u_equip(W)
 			W.set_loc(src)
 			gizmo = W
 			gizmoes += W
@@ -198,6 +225,20 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 	///I think all in-line atmos machinery only goes straight but if yours can make the corner, set this (room to expand?)
 	var/can_do_corners = FALSE
 
+	attack_hand(mob/user)
+		if (amount > 1 && user.find_in_hand(src))
+			user.put_in_hand_or_drop(split_stack(1)) //Could upgrade this to allow players to specify a number I doubt it's necessary ATM
+			return
+		..()
+	//Fuck it lets make these stackable too
+	attackby(obj/item/W as obj, mob/user as mob, params, is_special = 0)
+		if (istype(W, /obj/item/atmospherics/module/))
+			stack_item(W)
+		else if (istype(W, /obj/item/atmospherics/pipeframe))
+			W.attackby(src, user, params, is_special) //fuck crafting recipes that demand you slap A on B but not B on A
+		..()
+
+
 ///Here's where you sort out the direction your specific thing should get placed at. Return that direction.
 /obj/item/atmospherics/module/proc/determine_and_place_machine(orientation, direction)
 	//The default behaviour is gonna be for 2-connection things that can't turn corners, which is simple as can be anyway
@@ -206,20 +247,6 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 ///Given the orientation and direction, should the machine be in its flipped state or no? Return 0 if no or if it's not applicable
 /obj/item/atmospherics/module/proc/determine_machine_flip(orientation, direction)
 	return 0 //Should set up directional pumps and stuff correctly to
-
-
-//Look I need to put some shit somewhere on the mob so when you install different atmos items it remembers the orientation you picked
-//Pretty sure that if we ask people to specify the orientation on every one individually they'll just go mad
-
-//Done as a component because I think adding an AnotherGarbageHolder var on /mob is kinda silly when 2 people in a round are gonna use it
-/datum/component/atmos_crafty
-	//The sum of every direction we're connecting in
-	var/orientation = null
-	//For things that output in a specific direction (like pumps), specifies the output direction.
-	var/direction = SOUTH
-	//Amount of connections of the current selection (so we don't have to fuck around with orientation to get the number)
-	var/no_of_connections = 0
-
 
 
 //---------------------------Modules!-----------------------------
@@ -403,3 +430,127 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/vent_pump, 10)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/vent_scrubber, 10)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/pipeframe/exchanger_regular_junction/pre_welded, 10)
+
+//------------------------------Atmos crafting menu component?------------------------
+
+//Look I need to put some shit somewhere on the mob so when you install different atmos items it remembers the orientation you picked
+//Pretty sure that if we ask people to specify the orientation on every one individually they'll just go mad
+
+//Done as a component because I think adding an /datum/AnotherFuckingGarbageHolder var on /mob is kinda silly when 2 people in a round are gonna use it
+/datum/component/atmos_crafty
+	//The sum of every direction we're connecting in
+	var/orientation = NORTH + SOUTH
+	//For things that output in a specific direction (like pumps), specifies the output direction.
+	var/direction = SOUTH
+	//Amount of connections of the current selection (so we don't have to fuck around with orientation to get the number)
+	var/no_of_connections = 0
+
+	//From here on out I copy-pasted the admin antag popups debug and started editing GLHF (that's also why the style is called antagType)
+	var/html
+
+	proc/generateHTML()
+		if (html)
+			html = ""
+
+		html += {"
+<title>Pipe orientation</title>
+<style>
+	a {text-decoration:none}
+	.antagType {padding:5px; margin-bottom:8px; border:1px solid black}
+	.antagType .title {display:block; color:white; background:black; padding: 2px 5px; margin: -5px -5px 2px -5px}
+</style>
+<head>
+	Please select the orientation you want to build in.
+
+	The direction corresponds to the outputting side of the component, if applicable.
+
+	For components with a single connection, the selected direction is used for the orientation instead.
+</head>
+<div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>2 Connections</b>
+	<a href='?src=\ref[src];action=straight_NS'>|</a> |
+	<a href='?src=\ref[src];action=straight_EW'>─</a> |
+	<a href='?src=\ref[src];action=corner_SE'>┌</a> |
+	<a href='?src=\ref[src];action=corner_SW'>┐</a> |
+	<a href='?src=\ref[src];action=corner_NE'>└</a> |
+	<a href='?src=\ref[src];action=corner_NW'>┘</a>
+</div>
+<div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>3 Connections</b>
+	<a href='?src=\ref[src];action=junc_N'>┴</a> |
+	<a href='?src=\ref[src];action=junc_S'┬</a> |
+	<a href='?src=\ref[src];action=junc_W'>┤</a> |
+	<a href='?src=\ref[src];action=junc_E'>├</a>
+</div>
+<div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Orientation & Single Connection</b>
+	<a href='?src=\ref[src];action=north'>↑</a> |
+	<a href='?src=\ref[src];action=south'>↓</a> |
+	<a href='?src=\ref[src];action=west'>←</a> |
+	<a href='?src=\ref[src];action=east'>→</a>
+</div>
+"}
+
+		return 1
+
+	proc/showPanel()
+		if (!html)
+			if (!generateHTML())
+				alert("Unable to generate pipe orientation panel panel! Something's gone wacky!")
+				return
+
+		usr.Browse(html, "window=atmospipecrafting;size=300x375")
+
+	Topic(href, href_list)
+		var/mob/M
+		if (ismob(usr))
+			M = usr
+			if (M.client.holder.level < 0)
+				alert("UM, EXCUSE ME??  YOU AREN'T AN ADMIN, GET DOWN FROM THERE!")
+				M << csound("sound/voice/farts/poo2.ogg")
+				return
+		else
+			alert("How the hell are you not a mob?! I can't show the panel to you, you don't exist!")
+			return
+
+		switch(href_list["action"])
+			// 2 connections
+			if ("straight_NS")
+				orientation = NORTH + SOUTH
+				no_of_connections = 2
+			if ("straight_EW")
+				orientation = EAST + WEST
+				no_of_connections = 2
+			if ("corner_SW")
+				orientation = SOUTH + WEST
+				no_of_connections = 2
+			if ("corner_SE")
+				orientation = SOUTH + EAST
+				no_of_connections = 2
+			if ("corner_NW")
+				orientation = NORTH + WEST
+				no_of_connections = 2
+			if ("corner_NE")
+				orientation = NORTH + EAST
+				no_of_connections = 2
+
+			// 3 connections
+			if ("junc_N")
+				orientation = NORTH + EAST + WEST
+				no_of_connections = 3
+			if ("junc_S")
+				orientation = SOUTH + EAST + WEST
+				no_of_connections = 3
+			if ("junc_W")
+				orientation = NORTH + SOUTH + WEST
+				no_of_connections = 3
+			if ("junc_E")
+				orientation = NORTH + SOUTH + EAST
+				no_of_connections = 3
+
+			// direction/single connection (these don't set no_of_connections because the placing code for 1-connection machines will just use direction)
+			if ("north")
+				direction = NORTH
+			if ("south")
+				direction = SOUTH
+			if ("east")
+				direction = EAST
+			if ("west")
+				direction = WEST
