@@ -500,13 +500,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 
 	Topic(href, href_list)
 		var/mob/M
-		if (ismob(usr))
-			M = usr
-			if (M.client.holder.level < 0)
-				alert("UM, EXCUSE ME??  YOU AREN'T AN ADMIN, GET DOWN FROM THERE!")
-				M << csound("sound/voice/farts/poo2.ogg")
-				return
-		else
+		if (!ismob(usr))
 			alert("How the hell are you not a mob?! I can't show the panel to you, you don't exist!")
 			return
 
