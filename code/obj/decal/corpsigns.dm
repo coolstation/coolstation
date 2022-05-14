@@ -32,3 +32,7 @@
 	name = "Strange fast-food franchise sign"
 	icon_state = "warcys"
 	desc = "Something about this sign seems very out of place"
+
+	New()
+		..()
+		src.glow.set_color(0.88, 0.12, 0.12)
