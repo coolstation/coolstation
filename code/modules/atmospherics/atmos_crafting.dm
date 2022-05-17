@@ -55,6 +55,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 	//The amount of connections this frame/assembly needs, gets overridden when a module is added
 	var/expected_connections = 2
 	w_class = W_CLASS_SMALL //pipebombs are normal size but I don't wanna have these be bulky.
+	max_stack = 30
 
 
 	//we might be trying to mix welded and unwelded
@@ -81,12 +82,12 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 			if (isnull(pipe_settings)) //This basically amounts to using the default settings on the new component
 				pipe_settings = user.AddComponent(/datum/component/atmos_crafty)
 			if (!(expected_connections == 1)) //Direction is all we need it's fine
-				if (pipe_settings.no_of_connections != expected_connections)
+				if (!validate_settings(pipe_settings.orientation, pipe_settings.direction, pipe_settings.no_of_connections, user))
 					return
-				if ((pipe_settings.orientation ^ pipe_settings.direction) > pipe_settings.orientation) //Direction isn't included in orientation (AKA settings are nonsense)
-					boutput(user, "<span class='alert'>Your chosen direction isn't one of the sides the component connect to!</span>")
-					return //Would every single machine type necessarily care? No, but I'm relying on a sensible direction for shorthand in build_a_pipe
-			build_a_pipe(target, pipe_settings.orientation, pipe_settings.direction)
+			var/obj/machinery/atmospherics/newthing = build_a_pipe(target, pipe_settings.orientation, pipe_settings.direction, user)
+			if (istype(newthing))
+				change_stack_amount(-1)
+				newthing.initialize() //Apparently this is where they stuck the fucking node finding code
 			return
 		..()
 
@@ -100,9 +101,20 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 			stack_item(W)
 		..()
 
-	attack_hand(mob/user)
-		..()
-		//Gonna have to set up/assign
+	attack_hand(mob/user) //Copied from material sheets
+		if((user.r_hand == src || user.l_hand == src) && src.amount > 1)
+			var/splitnum = round(input("How many frames do you want to take from the pile?","Pile of [src.amount]",1) as num)
+			if(src.loc != user) //Dropped between opening and closing the box
+				return
+			splitnum = round(clamp(splitnum, 0, src.amount))
+			if(amount == 0)
+				return
+			var/obj/item/atmospherics/pipeframe/new_stack = split_stack(splitnum)
+			if (!istype(new_stack))
+				return
+			user.put_in_hand_or_drop(new_stack)
+			//new_stack.add_fingerprint(user) //IDK I haven't bothered with fingerprints anywhere else in this file
+		else ..()
 
 	///Bring up the orientation panel
 	attack_self(mob/user)
@@ -116,15 +128,22 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 			blepperdy_bloop.showPanel()
 		. = ..()
 
-///Try to put up a
-/obj/item/atmospherics/pipeframe/proc/build_a_pipe(turf/destination, orientation, direction)
+///This may seem useless but for the regular frames I need to do some weird stuff to work junctions in
+/obj/item/atmospherics/pipeframe/proc/validate_settings(orientation, direction, no_of_connections, mob/user)
+	if (no_of_connections != expected_connections)
+		return 0
+	if (!(orientation & direction)) //Direction isn't included in orientation (AKA settings are nonsense)
+		boutput(user, "<span class='alert'>Your chosen direction isn't one of the sides the component connect to!</span>")
+		return 0 //Would every single machine type necessarily care? No, but the buildy procs assume direction is good
+	return 1
+
+///Try to put up a pipe
+/obj/item/atmospherics/pipeframe/proc/build_a_pipe(turf/destination, orientation, direction, mob/user)
 	switch (orientation)
 		if ((EAST + WEST), (NORTH + SOUTH))
-			new frame_makes(destination, specify_direction = direction)
-			qdel(src)
+			return new frame_makes(destination, direction)
 		if (NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST) //pipes are one of those fucked up things where corner sprites are assigned to the diagonals
-			new frame_makes(destination, specify_direction = orientation)
-			qdel(src)
+			return new frame_makes(destination, orientation)
 
 
 
@@ -140,11 +159,10 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 		welded = TRUE
 		icon_state = "frame_junction"
 
-	build_a_pipe(turf/destination, orientation, direction) //these don't do corners
+	build_a_pipe(turf/destination, orientation, direction, mob/user) //these don't do corners
 		switch (orientation)
 			if ((EAST + WEST), (NORTH + SOUTH))
-				new frame_makes(destination, direction)//return direction
-				qdel(src)
+				return new frame_makes(destination, direction)//return direction
 
 
 ///Normal pipe frames
@@ -155,15 +173,16 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 	icon_state = "Pipe_Frame"
 	icon_welded = "Pipe_Hollow"
 	var/obj/item/atmospherics/module/gizmo =  null
-	var/list/gizmoes = list() //keep a list of modules if we have a stack of assemblies (rather than just pipes)
 	//IDK what all these fucking pipe variants are but this is what I found used on atlas
 	frame_makes = /obj/machinery/atmospherics/pipe/simple/insulated
 
 	disposing()
+		if (gizmo?.loc == src) //This is the bullshit that will let us split off of stack of gizmoed frames without spawning a gizmo every time
+			qdel(gizmo) //Basically until we're
 		gizmo = null
-		for (var/a_gizmo as anything in gizmoes)
-			qdel(a_gizmo)
-		gizmoes = null
+		//for (var/a_gizmo as anything in gizmoes)
+		//	qdel(a_gizmo)
+		//gizmoes = null
 		..()
 
 
@@ -179,22 +198,24 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 				return 0
 		return 1
 
-	///We're gonna have to give the new stack the appropriate amount of gizmoes
-	split_stack(toRemove)
+	///Spawn a gizmo
+	split_stack(toRemove, spawn_gizmo = TRUE) //
 		var/obj/item/atmospherics/pipeframe/regular/newstack = ..()
-		if (!istype(newstack))	//parent call may have failed & returned 0
+		if (!istype(newstack)) //parent call may have failed
 			return 0
-		if (length(gizmoes))
-			newstack.gizmoes.Add(src.gizmoes.Cut(1, toRemove))
-			newstack.gizmo = newstack.gizmoes[1]
+		if (gizmo)
+			var/obj/item/thingy = new src.gizmo.type
+			newstack.Attackby(thingy)
 
 	///Steal gizmoes
-	stack_item(obj/item/atmospherics/pipeframe/regular/other)
+	/*stack_item(obj/item/atmospherics/pipeframe/regular/other)
 		var/added = ..()
 		//for (var/i = 1, i <= added, i += 1)
-		if (length(other.gizmoes))
+		if (length(other.gizmo))
 			src.gizmoes.Add(other.gizmoes.Cut(1, added)) //NB this doesn't account for borgs yet! (where the transfer between src and other is reversed)
 		return added //Pass parent return value
+	*/
+
 
 	attackby(obj/item/W as obj, mob/user as mob, params, is_special = 0)
 		if (istype(W, /obj/item/sheet))
@@ -233,7 +254,6 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 				user.u_equip(W)
 			W.set_loc(src)
 			gizmo = W
-			gizmoes += W
 			expected_connections = gizmo.expected_connections
 			name = "[gizmo.assembly_prefix] pipe assembly"
 			var/image/scrumpy = image(gizmo.icon, gizmo.icon_state)
@@ -242,14 +262,32 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 		#endif
 		..()
 
-	build_a_pipe(turf/destination, orientation, direction)
+	build_a_pipe(turf/destination, orientation, direction, mob/user)
+
 		if (!gizmo)
-			..()
+			switch(orientation) //Like manifold valves, manifolds point in the direction they don't have a connection to
+				if(NORTH + EAST + WEST)
+					return new /obj/machinery/atmospherics/pipe/manifold(destination, SOUTH)
+				if(SOUTH + EAST + WEST)
+					return new /obj/machinery/atmospherics/pipe/manifold(destination, NORTH)
+				if(NORTH + SOUTH + WEST)
+					return new /obj/machinery/atmospherics/pipe/manifold(destination, EAST)
+				if(NORTH + SOUTH + EAST)
+					return new /obj/machinery/atmospherics/pipe/manifold(destination, WEST)
+				else
+					return ..() //2-connection pipes
 		else
-			gizmo.determine_and_place_machine(destination, orientation, direction)
-			qdel(src)
+			return gizmo.determine_and_place_machine(destination, orientation, direction)
+			/*if (gizmo.determine_and_place_machine(destination, orientation, direction))
+				change_stack_amount(-1)
+			else
+				boutput(user, "<span class='alert'>Hmm, something about your pipe settings isn't right. Probably the direction?</span>")*/
 
-
+	validate_settings(orientation, direction, no_of_connections, mob/user)
+		if (!gizmo) //Direction isn't included in orientation (AKA settings are nonsense)
+			if (no_of_connections == 3) //manifold time
+				return 1
+		return ..()
 
 ///Here be the bits and bobs you slap onto a pipe frame
 /obj/item/atmospherics/module/
@@ -259,6 +297,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 	icon = 'icons/obj/atmospherics/atmos_parts.dmi'
 	icon_state = ""
 	w_class = W_CLASS_TINY
+	max_stack = 10
 	force = 0
 	///Gets combined into the pipeframe's name
 	var/assembly_prefix = ""
@@ -286,7 +325,9 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 /obj/item/atmospherics/module/proc/determine_and_place_machine(turf/destination, orientation, direction)
 	//The default behaviour is gonna be for 2-connection things that can't turn corners, which is simple as can be anyway
 	if (orientation == (NORTH + SOUTH) || orientation == (EAST + WEST))
-		new machine_path(destination, specify_direction = direction) //Should set up directional pumps and stuff correctly too
+		return new machine_path(destination, direction) //Should set up directional pumps and stuff correctly too
+		//return 1
+	return 0
 
 //---------------------------Modules!-----------------------------
 
@@ -309,17 +350,18 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 	machine_path = /obj/machinery/atmospherics/manifold_valve
 	expected_connections = 3
 
-	determine_and_place_machine(orientation, direction) //Manifold valve sprites point in the one direction they DON'T have a connection to
+	determine_and_place_machine(turf/destination, orientation, direction) //Manifold valve sprites point in the one direction they DON'T have a connection to
 		//Possible TODO: the valves only ever switch between two pairs when there's 3 possible pairs of pipes, but also they can't be flipped like mixers
 		switch (orientation)
 			if (NORTH + SOUTH + EAST)
-				return WEST
+				return new machine_path(destination, WEST)
 			if (SOUTH + EAST + WEST)
-				return NORTH
+				return new machine_path(destination, NORTH)
 			if (EAST + WEST + NORTH)
-				return SOUTH
+				return new machine_path(destination, SOUTH)
 			if (WEST + NORTH + SOUTH)
-				return EAST
+				return new machine_path(destination, EAST)
+		return 0
 
 /obj/item/atmospherics/module/filter //retrofilter is probably unnecessary
 	name = "gas filter module"
@@ -328,7 +370,17 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 	machine_path = /obj/machinery/atmospherics/filter
 	expected_connections = 3
 
-//	determine_and_place_machine(orientation, direction)
+	determine_and_place_machine(turf/destination, orientation, direction)
+		switch (orientation)
+			if (NORTH + SOUTH + EAST)
+				return new machine_path(destination, NORTH)
+			if (SOUTH + EAST + WEST)
+				return new machine_path(destination, EAST)
+			if (EAST + WEST + NORTH)
+				return new machine_path(destination, WEST)
+			if (WEST + NORTH + SOUTH)
+				return new machine_path(destination, SOUTH)
+		return 0
 
 /obj/item/atmospherics/module/mixer
 	name = "gas mixer module"
@@ -337,10 +389,17 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 	machine_path = /obj/machinery/atmospherics/mixer
 	expected_connections = 3
 
-	determine_and_place_machine(orientation, direction)
+	determine_and_place_machine(turf/destination, orientation, direction)
 		switch (orientation)
 			if (NORTH + SOUTH + EAST)
-				return "fuck" //asda
+				return new machine_path(destination, (direction == SOUTH ? SOUTH : NORTH), (direction == SOUTH ? TRUE : FALSE)) //Third argument is for flipping the mixer
+			if (SOUTH + EAST + WEST)
+				return new machine_path(destination, (direction == SOUTH ? SOUTH : NORTH), (direction == SOUTH ? FALSE : TRUE))
+			if (EAST + WEST + NORTH)
+				return new machine_path(destination, (direction == WEST ? WEST : EAST), (direction == WEST ? TRUE : FALSE))
+			if (WEST + NORTH + SOUTH)
+				return new machine_path(destination, (direction == WEST ? WEST : EAST), (direction == WEST ? FALSE : TRUE))
+		return 0
 
 
 /obj/item/atmospherics/module/connector
@@ -513,7 +572,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 </div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>3 Connections</b>
 	<a href='?src=\ref[src];action=junc_N'>┴</a> ‧
-	<a href='?src=\ref[src];action=junc_S'┬</a> ‧
+	<a href='?src=\ref[src];action=junc_S'>┬</a> ‧
 	<a href='?src=\ref[src];action=junc_W'>┤</a> ‧
 	<a href='?src=\ref[src];action=junc_E'>├</a>
 </div>
@@ -584,3 +643,16 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 				direction = EAST
 			if ("west")
 				direction = WEST
+
+/obj/item/debug_atmos_bapper // I haven't made *deconstructable* atmos a thing yet so here you go for testing
+	name = "debug atmos bapper"
+	desc = "The bane of atmospheric machinery"
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "rubber_hammer"
+	color = "#EF00EF"
+	w_class = W_CLASS_TINY
+
+	afterattack(atom/target, mob/user, reach, params)
+		if (istype(target, /obj/machinery/atmospherics))
+			qdel(target)
+		..()
