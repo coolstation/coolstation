@@ -88,6 +88,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 			if (istype(newthing))
 				change_stack_amount(-1)
 				newthing.initialize() //Apparently this is where they stuck the fucking node finding code
+				newthing.sync_node_connections()
 			return
 		..()
 
@@ -173,7 +174,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 	icon_state = "Pipe_Frame"
 	icon_welded = "Pipe_Hollow"
 	var/obj/item/atmospherics/module/gizmo =  null
-	//IDK what all these fucking pipe variants are but this is what I found used on atlas
+	//IDK what all these variants are but this is what I found used on atlas
 	frame_makes = /obj/machinery/atmospherics/pipe/simple/insulated
 
 	disposing()

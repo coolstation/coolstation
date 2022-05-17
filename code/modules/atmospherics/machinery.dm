@@ -67,5 +67,22 @@ obj/machinery/atmospherics
 
 		disconnect(obj/machinery/atmospherics/reference)
 
+		sync_node_connections()
+			// For each node you have that isn't null, call sync_connect()
+			// I needed this to sync up node vars for constructable atmos
+
+		sync_connect(obj/machinery/atmospherics/reference)
+			// Check if reference isn't already a node, connect if not etc.
+
+		connect(dir)
+			if (!(initialize_directions & dir)) //Not gonna connect to shit we shouldn't
+				return null
+			for(var/obj/machinery/atmospherics/target in get_step(src,dir))
+				if(target.initialize_directions & get_dir(target,src))
+					return target
+			return null
+			// Find a suitable atmos machine to connect to
+			// Replaces the many identical for loops across atmos machine code + needed for constructable atmos
+
 		update_icon()
 			return null
