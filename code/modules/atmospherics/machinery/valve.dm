@@ -261,22 +261,14 @@ obj/machinery/atmospherics/valve
 
 		for(var/direction in cardinal)
 			if(direction&connect_directions)
-				for(var/obj/machinery/atmospherics/target in get_step(src,direction))
-					if(target.initialize_directions & get_dir(target,src))
-						connect_directions &= ~direction
-
-						node1 = target
+				if (!node1)
+					node1 = connect(direction)
+				else if (!node2)
+					node2 = connect(direction)
+					if (node2) //both satisfied
 						break
-				break
-
-		for(var/direction in cardinal)
-			if(direction&connect_directions)
-				for(var/obj/machinery/atmospherics/target in get_step(src,direction))
-					if(target.initialize_directions & get_dir(target,src))
-
-						node2 = target
-						break
-				break
+				else //IDK how this would happen but
+					break
 
 	build_network()
 		if(!network_node1 && node1)
@@ -326,6 +318,23 @@ obj/machinery/atmospherics/valve
 			node2 = null
 
 		return null
+
+	sync_node_connections()
+		if (node1)
+			node1.sync_connect(src)
+		if (node2)
+			node2.sync_connect(src)
+
+	sync_connect(obj/machinery/atmospherics/reference)
+		if (reference in list(node1, node2))
+			return
+		var/refdir = get_dir(src, reference)
+		if (!node1 && initialize_directions & refdir)
+			node1 = reference
+		else if (!node2 && initialize_directions & refdir)
+			node2 = reference
+		update_icon()
+
 
 obj/machinery/atmospherics/manifold_valve
 	icon = 'icons/obj/atmospherics/manifold_valve.dmi'
@@ -529,25 +538,9 @@ obj/machinery/atmospherics/manifold_valve
 	initialize()
 		if(node1 && node2 && node3) return
 
-		var/node1_connect = turn(dir, 90)
-		var/node2_connect = turn(dir, -90)
-		var/node3_connect = turn(dir, 180)
-
-
-		for(var/obj/machinery/atmospherics/target in get_step(src,node1_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node1 = target
-				break
-
-		for(var/obj/machinery/atmospherics/target in get_step(src,node2_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node2 = target
-				break
-
-		for(var/obj/machinery/atmospherics/target in get_step(src,node3_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node3 = target
-				break
+		node1 = connect(turn(dir, 90))
+		node2 = connect(turn(dir, -90))
+		node3 = connect(turn(dir, 180))
 
 		if(frequency)
 			set_frequency(frequency)
@@ -631,3 +624,23 @@ obj/machinery/atmospherics/manifold_valve
 					undivert()
 				else
 					divert()
+
+	sync_node_connections()
+		if (node1)
+			node1.sync_connect(src)
+		if (node2)
+			node2.sync_connect(src)
+		if (node3)
+			node3.sync_connect(src)
+
+	sync_connect(obj/machinery/atmospherics/reference)
+		if (reference in list(node1, node2, node3))
+			return
+		var/refdir = get_dir(src, reference)
+		if (!node1 && refdir == turn(dir, 90))
+			node1 = reference
+		else if (!node2 && refdir == turn(dir, -90))
+			node2 = reference
+		else if (!node3 && refdir == turn(dir, 180))
+			node3 = reference
+		update_icon()

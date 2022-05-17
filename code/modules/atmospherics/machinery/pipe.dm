@@ -478,24 +478,14 @@ obj/machinery/atmospherics/pipe
 
 			for(var/direction in cardinal)
 				if(direction&connect_directions)
-					for(var/obj/machinery/atmospherics/target in get_step(src,direction))
-						if(target.initialize_directions & get_dir(target,src))
-							node1 = target
+					if (!node1)
+						node1 = connect(direction)
+					else if (!node2)
+						node2 = connect(direction)
+						if (node2) //both satisfied
 							break
-
-					connect_directions &= ~direction
-					break
-
-
-			for(var/direction in cardinal)
-				if(direction&connect_directions)
-					for(var/obj/machinery/atmospherics/target in get_step(src,direction))
-						if(target.initialize_directions & get_dir(target,src))
-							node2 = target
-							break
-
-					connect_directions &= ~direction
-					break
+					else //IDK how this would happen but
+						break
 
 			var/turf/T = src.loc			// hide if turf is not intact
 			hide(T.intact)
@@ -519,6 +509,22 @@ obj/machinery/atmospherics/pipe
 			update_icon()
 
 			return null
+
+		sync_node_connections()
+			if (node1)
+				node1.sync_connect(src)
+			if (node2)
+				node2.sync_connect(src)
+
+		sync_connect(obj/machinery/atmospherics/reference)
+			if (reference in list(node1, node2))
+				return
+			var/refdir = get_dir(src, reference)
+			if (!node1 && initialize_directions & refdir)
+				node1 = reference
+			else if (!node2 && initialize_directions & refdir)
+				node2 = reference
+			update_icon()
 
 	simple/insulated
 		//icon = 'icons/obj/atmospherics/pipes/red_pipe.dmi'
@@ -925,8 +931,8 @@ obj/machinery/atmospherics/pipe
 			dir = WEST
 
 		New()
-			initialize_directions = dir
 			..()
+			initialize_directions = dir
 
 		process()
 			..()
@@ -951,12 +957,7 @@ obj/machinery/atmospherics/pipe
 				icon_state = "exposed"
 
 		initialize()
-			var/connect_direction = dir
-
-			for(var/obj/machinery/atmospherics/target in get_step(src,connect_direction))
-				if(target.initialize_directions & get_dir(target,src))
-					node1 = target
-					break
+			node1 = connect(dir)
 
 			update_icon()
 
@@ -971,6 +972,16 @@ obj/machinery/atmospherics/pipe
 			update_icon()
 
 			return null
+
+		sync_node_connections()
+			if (node1)
+				node1.sync_connect(src)
+
+		sync_connect(obj/machinery/atmospherics/reference)
+			var/refdir = get_dir(src, reference)
+			if (!node1 && refdir == dir)
+				node1 = reference
+			update_icon()
 
 		hide(var/i) //to make the little pipe section invisible, the icon changes.
 			if(node1)

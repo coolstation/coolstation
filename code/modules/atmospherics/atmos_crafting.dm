@@ -181,9 +181,6 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 		if (gizmo?.loc == src) //This is the bullshit that will let us split off of stack of gizmoed frames without spawning a gizmo every time
 			qdel(gizmo) //Basically until we're
 		gizmo = null
-		//for (var/a_gizmo as anything in gizmoes)
-		//	qdel(a_gizmo)
-		//gizmoes = null
 		..()
 
 
@@ -207,16 +204,6 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 		if (gizmo)
 			var/obj/item/thingy = new src.gizmo.type
 			newstack.Attackby(thingy)
-
-	///Steal gizmoes
-	/*stack_item(obj/item/atmospherics/pipeframe/regular/other)
-		var/added = ..()
-		//for (var/i = 1, i <= added, i += 1)
-		if (length(other.gizmo))
-			src.gizmoes.Add(other.gizmoes.Cut(1, added)) //NB this doesn't account for borgs yet! (where the transfer between src and other is reversed)
-		return added //Pass parent return value
-	*/
-
 
 	attackby(obj/item/W as obj, mob/user as mob, params, is_special = 0)
 		if (istype(W, /obj/item/sheet))
@@ -285,7 +272,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 				boutput(user, "<span class='alert'>Hmm, something about your pipe settings isn't right. Probably the direction?</span>")*/
 
 	validate_settings(orientation, direction, no_of_connections, mob/user)
-		if (!gizmo) //Direction isn't included in orientation (AKA settings are nonsense)
+		if (!gizmo)
 			if (no_of_connections == 3) //manifold time
 				return 1
 		return ..()
@@ -324,10 +311,9 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 
 ///Here's where you sort out the direction your specific thing should get placed at.
 /obj/item/atmospherics/module/proc/determine_and_place_machine(turf/destination, orientation, direction)
-	//The default behaviour is gonna be for 2-connection things that can't turn corners, which is simple as can be anyway
-	if (orientation == (NORTH + SOUTH) || orientation == (EAST + WEST))
+	//This handles 1-connection and 2-connection straight-only parts, which is about everything save for 3 or so machines
+	if (expected_connections == 1 || orientation == (NORTH + SOUTH) || orientation == (EAST + WEST))
 		return new machine_path(destination, direction) //Should set up directional pumps and stuff correctly too
-		//return 1
 	return 0
 
 //---------------------------Modules!-----------------------------
