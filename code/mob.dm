@@ -233,6 +233,8 @@
 	var/last_move_dir = null
 
 	var/datum/aiHolder/ai = null
+	/// used for load balancing mob_ai ticks
+	var/ai_tick_schedule = null
 
 	var/last_pulled_time = 0
 
@@ -265,6 +267,7 @@
 	src.update_name_tag()
 	src.vis_contents += src.name_tag
 	START_TRACKING
+	src.ai_tick_schedule = rand(0,30)
 	. = ..()
 
 /// do you want your mob to have custom hairstyles and stuff? don't use spawns but set all of those properties here
@@ -3029,9 +3032,6 @@
 	return
 
 /mob/proc/get_random_equipped_thing_name() //FOR FLAVOR USE ONLY
-	.= 0
-
-/mob/proc/handle_stamina_updates()
 	.= 0
 
 /mob/proc/update_canmove()
