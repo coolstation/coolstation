@@ -232,25 +232,9 @@ Filter types:
 	initialize()
 		if(node_out1 && node_in) return
 
-		var/node_in_connect = turn(dir, -180)
-		var/node_out1_connect = turn(dir, -90)
-		var/node_out2_connect = dir
-
-
-		for(var/obj/machinery/atmospherics/target in get_step(src,node_out1_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node_out1 = target
-				break
-
-		for(var/obj/machinery/atmospherics/target in get_step(src,node_out2_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node_out2 = target
-				break
-
-		for(var/obj/machinery/atmospherics/target in get_step(src,node_in_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node_in = target
-				break
+		node_out1 = connect(turn(dir, -90))
+		node_out2 = connect(dir)
+		node_in = connect(turn(dir, -180))
 
 		update_icon()
 
@@ -333,3 +317,23 @@ Filter types:
 			node_in = null
 
 		return null
+
+	sync_node_connections()
+		if (node_in)
+			node_in.sync_connect(src)
+		if (node_out1)
+			node_out1.sync_connect(src)
+		if (node_out2)
+			node_out2.sync_connect(src)
+
+	sync_connect(obj/machinery/atmospherics/reference)
+		if (reference in list(node_in, node_out1, node_out2))
+			return
+		var/refdir = get_dir(src, reference)
+		if (!node_in && refdir == turn(dir, -180))
+			node_in = reference
+		else if (!node_out1 && refdir == turn(dir, -90))
+			node_out1 = reference
+		else if (!node_out2 && refdir == dir)
+			node_out2 = reference
+		update_icon()
