@@ -404,7 +404,7 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 
 		if(agent_b && temp > 500 && air.toxins > MINIMUM_REACT_QUANTITY )
 			var/datum/gas/oxygen_agent_b/trace_gas = payload.get_or_add_trace_gas_by_type(/datum/gas/oxygen_agent_b)
-			payload.temperature = T0C // Greatly reduce temperature to simulate an endothermic reaction
+			payload.temperature = air.temperature / 1.25 //Warc: you make rock hot? you make gas hot. Easy as.
 			// Itr: .18 Agent B, 20 oxy, 1.3 minutes per iteration, realisticly around 7-8 minutes per crystal.
 
 			animate_flash_color_fill_inherit(location,"#ff0000",4, 2 SECONDS)
