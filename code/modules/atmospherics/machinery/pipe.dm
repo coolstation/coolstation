@@ -566,6 +566,20 @@ obj/machinery/atmospherics/pipe
 				dir = SOUTHWEST
 			northwest
 				dir = NORTHWEST
+		fuel
+			color = "#EFE151"
+			vertical
+				dir = NORTH
+			northeast
+				dir = NORTHEAST
+			horizontal
+				dir = EAST
+			southeast
+				dir = SOUTHEAST
+			southwest
+				dir = SOUTHWEST
+			northwest
+				dir = NORTHWEST
 
 	simple/junction
 		icon = 'icons/obj/atmospherics/pipes/junction_pipe.dmi'

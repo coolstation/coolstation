@@ -4,22 +4,6 @@
 
 *******************************************************************************/
 
-// Yellow insulated pipe for fuel feeds.
-/obj/machinery/atmospherics/pipe/simple/insulated/fuel
-	color = "#EFE151"
-	vertical
-		dir = NORTH
-	northeast
-		dir = NORTHEAST
-	horizontal
-		dir = EAST
-	southeast
-		dir = SOUTHEAST
-	southwest
-		dir = SOUTHWEST
-	northwest
-		dir = NORTHWEST
-
 /*******************************************************************************
 			 Random Room Subtypes
 *******************************************************************************/
