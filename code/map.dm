@@ -26,6 +26,7 @@ var/global/list/mapNames = list(
 	"Horizon" = 		list("id" = "HORIZON", 		"settings" = "horizon", 		"playerPickable" = 0),
 	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 0),
 	"Bobmap" = 	list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 1),
+	"Spirit" =	list("id" = "SPIRIT",		"settings" = "spirit",				"playerPickable" = 0),
 	//"Mushroom" =		list("id" = "MUSHROOM", 	"settings" = "mushroom",		"playerPickable" = ASS_JAM),
 	//"Trunkmap" = 		list("id" = "TRUNKMAP", 	"settings" = "trunkmap",		"playerPickable" = ASS_JAM),
 	"Oshan Laboratory"= list("id" = "OSHAN", 		"settings" = "oshan", 			"playerPickable" = 1),
@@ -1094,6 +1095,36 @@ var/global/list/mapNames = list(
 		"the escape arm" = list(/area/station/hallway/secondary/exit),
 		"the central room of the crew lounge" = list(/area/station/crew_quarters/quarters),
 		"the chapel" = list(/area/station/chapel/sanctuary))
+
+/datum/map_settings/spirit
+	name = "SPIRIT"
+	goonhub_map = "https://goonhub.com/maps/cogmap"
+	walls = /turf/simulated/wall/auto/jen/dark2
+	rwalls = /turf/simulated/wall/auto/reinforced/jen/dark2
+	auto_walls = 1
+
+	windows = /obj/window/auto
+	windows_thin = /obj/window/pyro
+	rwindows = /obj/window/auto/reinforced
+	rwindows_thin = /obj/window/reinforced/pyro
+	windows_crystal = /obj/window/auto/crystal
+	windows_rcrystal = /obj/window/auto/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER
+	window_layer_north = GRILLE_LAYER+0.1
+	window_layer_south = FLY_LAYER+1
+	auto_windows = 1
+
+	ext_airlocks = /obj/machinery/door/airlock/pyro/external
+	airlock_style = "pyro"
+
+	escape_centcom = /area/shuttle/escape/centcom/cogmap
+	escape_outpost = /area/shuttle/escape/outpost/cogmap
+	escape_transit = /area/shuttle/escape/transit/cogmap
+	escape_station = /area/shuttle/escape/station/cogmap
+	escape_def = SHUTTLE_SOUTH
+	escape_dir = SOUTH
+
+
 
 /area/shuttle/escape/centcom
 	icon_state = "shuttle_escape"

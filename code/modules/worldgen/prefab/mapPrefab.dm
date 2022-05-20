@@ -106,7 +106,7 @@ proc/get_map_prefabs(prefab_type)
 			var/datum/mapPrefab/prefab = new prefabType
 			prefab_cache[prefab_type][prefab.name] = prefab
 	else
-		for(var/base_path in list("assets/maps/[typeinfo.folder]/", "+secret/assets/[typeinfo.folder]/"))
+		for(var/base_path in list("assets/maps/[typeinfo.folder]/", "+secret/assets/[typeinfo.folder]/", "maps/[typeinfo.folder]/"))
 			for(var/filepath in recursive_flist(base_path, list_folders=FALSE))
 				var/datum/mapPrefab/prefab = typeinfo.prefab_from_path(filepath, splittext(filepath, base_path)[2])
 				if(isnull(prefab))
