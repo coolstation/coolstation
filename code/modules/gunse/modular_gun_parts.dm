@@ -431,7 +431,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	spread_angle = -16
 	lensing = 0.9
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_JUICE
-	color = "#5555FF"
 	name_addition = "lenser"
 	icon = 'icons/obj/items/cet_guns/fossgun.dmi'
 	icon_state = "barrel_short"
@@ -443,7 +442,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	desc = "A cylindrical array of lenses to focus laser blasts."
 	spread_angle = -17
 	lensing = 1
-	color = "#7755FF"
 	name_addition = "focuser"
 	icon_state = "barrel_long"
 	length = 39
@@ -455,7 +453,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	scatter = 1
 	jam_frequency_fire = 5 //but very poorly built
 	part_DRM = GUN_JUICE | GUN_NANO | GUN_FOSS
-	color = "#99FF99"
 	name_addition = "BLUNDER"
 	icon_state = "juicer_blunderbuss"
 	length = 12
@@ -577,6 +574,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	max_ammo_capacity = 1 // to make that revolver revolve!
 	jam_frequency_reload = 5 // a lot  more jammy!!
 	part_DRM = GUN_NANO | GUN_ITALIAN | GUN_SOVIET
+	icon = 'icons/obj/items/cet_guns/grips.dmi'
 	icon_state = "it_plain"
 	name_addition = "quality"
 

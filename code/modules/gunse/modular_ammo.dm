@@ -239,8 +239,6 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	real_name = "\improper Hot Pocketz"
 	desc = "Ecologically and economically hand-packed by local Juicer children."
 	projectile_type = /datum/projectile/bullet/a12
-	ammo_DRM = GUN_JUICE
-	color = "#33BB30"
 
 	three
 		default_min_amount = 3
@@ -296,7 +294,6 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 /obj/item/stackable_ammo/flashbulb/better
 	max_health = 25
 	min_health = 20
-	color = "#CCFFFF"
 	icon_state = "bulb_good"
 
 /obj/item/storage/box/foss_flashbulbs
