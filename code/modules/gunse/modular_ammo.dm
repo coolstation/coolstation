@@ -4,8 +4,12 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	name = "1 round"
 	real_name = "round"
 	desc = "You gotta have bullets."
-	icon = 'icons/obj/items/ammo.dmi'
-	icon_state = "custom-8"
+	icon = 'icons/obj/items/cet_guns/ammo.dmi'
+	icon_state = "white"
+	var/icon_empty = "empty"
+	var/icon_one   = "bullet_white"
+	var/icon_full  = "white"
+	var/icon_shell = "white_case"
 	//uses_multiple_icon_states = 1
 	opacity = 0
 	density = 0
@@ -63,21 +67,15 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	update_stack_appearance()
 		src.UpdateName()
 		src.inventory_counter.update_number(src.amount)
-		/*
 		switch (src.amount)
-			if (-INFINITY to 9)
-				src.icon_state = "cashgreen"
-			if (10 to 49)
-				src.icon_state = "cashblue"
-			if (50 to 499)
-				src.icon_state = "cashindi"
-			if (500 to 999)
-				src.icon_state = "cashpurp"
-			if (1000 to 999999)
-				src.icon_state = "cashred"
-			else // 1mil bby
-				src.icon_state = "cashrbow"
-*/
+			if (-INFINITY to 1)
+				src.icon_state = icon_one
+			if (2 to (default_max_amount-1))
+				src.icon_state = icon_empty
+			else
+				src.icon_state = icon_full
+
+
 	UpdateName()
 		src.name = "[src.amount] [name_prefix(null, 1)][src.real_name][s_es(src.amount)][name_suffix(null, 1)]"
 
@@ -150,10 +148,14 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 /obj/item/stackable_ammo/pistol/
 	name = "standardised pistol round"
 	real_name = "standardised pistol round"
-	desc = "pee pee, poo poo"
+	desc = "The ubiquitous pistol round, finally standardized."
 	projectile_type = /datum/projectile/bullet/bullet_22
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
-	color = "#30FFFF"
+	icon_state = "nt_brass"
+	icon_full  = "nt_brass"
+	icon_empty = "nt_brass_empty"
+	icon_one   = "bullet_brass"
+	icon_shell = "brass_case"
 
 	three
 		default_min_amount = 3
@@ -168,12 +170,16 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		default_max_amount = 10
 
 /obj/item/stackable_ammo/capacitive/
-	name = "\improper NT Stunner Fuckers"
-	real_name = "\improper NT Stunner Fuckers"
-	desc = "pee pee, poo poo"
+	name = "\improper NT In-Capacit-8-or"
+	real_name = "\improper NT In-Capacit-8-or"
+	desc = "A less-than-lethal solution to declining asset values."
 	projectile_type = /datum/projectile/energy_bolt
-	ammo_DRM = GUN_NANO | GUN_FOSS
-	color = "#FFFF30"
+	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
+	icon_state = "nt_stun"
+	icon_full  = "nt_stun"
+	icon_empty = "nt_stun_empty"
+	icon_one   = "bullet_nerf"
+	icon_shell = "nerf_case"
 
 	three
 		default_min_amount = 3
@@ -193,7 +199,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	desc = "A small glass bulb filled with hypergolic incandescent chemicals."
 	projectile_type = /datum/projectile/laser
 	ammo_DRM = GUN_SOVIET | GUN_FOSS
-	color = "#c89"
+	icon_state = "zaubertubes"
+	icon_full  = "zaubertubes"
+	icon_empty = "xaubertubes_empty"
+	icon_one   = "zauber_tube"
+	icon_shell = "zauber_spent"
 
 	three
 		default_min_amount = 3
@@ -211,7 +221,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	name = "generic scatter ammo"
 	real_name = "generic scatter ammo"
 	desc = "debug"
-	icon_state = "12"
+	icon_state = "shells"
+	icon_full  = "shells"
+	icon_empty = "empty"
+	icon_one   = "shell_blue"
+	icon_shell = "shell_case"
 
 	reload(var/obj/item/gun/modular/M, mob/user as mob)
 		if(!M.scatter)
@@ -219,37 +233,6 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 			return
 		..()
 
-/obj/item/stackable_ammo/scatter/zaubertube/
-	name = "\improper Elektrograd ULTRA лазерный Zaubertube"
-	real_name = "Elektrograd ULTRA лазерный Zaubertube"
-	desc = "A large glass bulb filled with hypergolic incandescent chemicals."
-	projectile_type = /datum/projectile/laser/three
-	ammo_DRM = GUN_SOVIET | GUN_FOSS
-	color = "#c8F"
-
-	three
-		default_min_amount = 3
-		default_max_amount = 3
-
-	five
-		default_min_amount = 5
-		default_max_amount = 5
-
-/obj/item/stackable_ammo/scatter/capacitive
-	name = "\improper NT Stunner Scatters"
-	real_name = "\improper NT Stunner Scatters"
-	desc = "pee pee, poo poo"
-	projectile_type = /datum/projectile/energy_bolt/three
-	ammo_DRM = GUN_NANO | GUN_JUICE
-	color = "#FFBB30"
-
-	three
-		default_min_amount = 3
-		default_max_amount = 3
-
-	five
-		default_min_amount = 5
-		default_max_amount = 5
 
 /obj/item/stackable_ammo/scatter/buckshot
 	name = "\improper Hot Pocketz"
@@ -267,26 +250,22 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		default_min_amount = 5
 		default_max_amount = 5
 
-/obj/item/stackable_ammo/scatter/capacitive/xl
-	name = "\improper NT Stunner Scatters XL"
-	real_name = "\improper NT Stunner Scatters XL"
-	projectile_type = /datum/projectile/energy_bolt/five
-
-	three
-		default_min_amount = 3
-		default_max_amount = 3
-
 /obj/item/stackable_ammo/flashbulb/
 	name = "\improper FOSSYN. CATHODIC FLASH BULBS"
 	real_name = "FOSSYN. CATHODIC FLASH BULB"
 	desc = "A hefty glass tube filled with ionic gas, and two opposing electrodes."
-	icon = 'icons/obj/lighting.dmi'
-	icon_state = "tbulb"
+	icon = 'icons/obj/items/cet_guns/fossgun.dmi'
+	icon_state = "bulb"
+	icon_shell = "bulb_burnt"
 	projectile_type = null
 	max_stack = 1 // not stackable! scandalous!
 	ammo_DRM = GUN_FOSS
 	var/max_health = 20
 	var/min_health = 15
+
+	update_stack_appearance()
+		src.UpdateName()
+		src.inventory_counter.update_number(src.amount)
 
 
 	reload(var/obj/item/gun/modular/M, mob/user as mob)
@@ -318,6 +297,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	max_health = 25
 	min_health = 20
 	color = "#CCFFFF"
+	icon_state = "bulb_good"
 
 /obj/item/storage/box/foss_flashbulbs
 	spawn_contents = list(/obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb)
@@ -330,7 +310,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 			new /obj/item/gun_parts/magazine/juicer(src)
 		else
 			if (prob(70))
-				new /obj/item/gun_parts/magazine/juicer/small(src)
+				new /obj/item/gun_parts/magazine/juicer(src)
 			else
 				new /obj/item/gun_parts/accessory/horn(src)
 

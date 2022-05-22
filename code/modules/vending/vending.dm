@@ -1669,7 +1669,7 @@
 		..()
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/scatter, 2)
+
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss, 2)
@@ -1680,7 +1680,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer/small, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian/bigger, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/arm_brace, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet/long, 2)

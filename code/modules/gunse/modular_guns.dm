@@ -492,7 +492,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/soviet/long(src)
 		stock = new /obj/item/gun_parts/stock/foss/longer(src)
-		magazine = new /obj/item/gun_parts/magazine/juicer/small(src)
+		magazine = new /obj/item/gun_parts/magazine/juicer(src)
 
 
 
@@ -509,7 +509,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/juicer(src)
 		stock = new /obj/item/gun_parts/stock/NT(src)
-		magazine = new /obj/item/gun_parts/magazine/juicer/small(src)
+		magazine = new /obj/item/gun_parts/magazine/juicer(src)
 
 /obj/item/gun/modular/juicer/long
 	desc = "A juicer-built, juicer-'designed', and most importantly juicer-marketed gun."
@@ -539,11 +539,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		..()
 		process_ammo()
 
-/obj/item/gun/modular/soviet/scatter
-	make_parts()
-		barrel = new /obj/item/gun_parts/barrel/soviet/scatter(src)
-		stock = new /obj/item/gun_parts/stock/italian/bigger(src)
-		magazine = new /obj/item/gun_parts/magazine/juicer(src)
+
 
 /obj/item/gun/modular/italian
 	name = "\improper Italiano"
