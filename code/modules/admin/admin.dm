@@ -3650,6 +3650,13 @@ var/global/noir = 0
 				usr.client.show_rules_to_player(M)
 			else
 				alert ("You must be at least a Secondary Admin to show rules to a player.")
+		if ("warngimmick")
+			if (src.level >= LEVEL_SA)
+				var/mob/M = locate(href_list["target"])
+				if (!M) return
+				usr.client.berate_player_gimmick(M)
+			else
+				alert ("You must be at least a Secondary Admin to tell off this player.")
 		if ("warn")
 			if (src.level >= LEVEL_SA)
 				var/mob/M = locate(href_list["target"])
