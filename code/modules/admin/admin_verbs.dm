@@ -905,6 +905,33 @@ var/list/fun_images = list()
 
 	M << browse(rules, "window=rules;size=800x1000")
 
+//"gonna add a specific button that shows a player a boilerplate "Your gimmick sucks ass and if you don't think so so do you" popup" - Warc 2022
+/client/proc/berate_player_gimmick(mob/M as mob in world) //(But it's actually Bat who did this)
+	set name = "Berate Player Gimmick"
+	set popup_menu = 0
+	SET_ADMIN_CAT(ADMIN_CAT_NONE)
+
+	var/crossness = input("What's wrong with this person's gimmick?", "Enter Crossness", "It's overplayed") as anything in list("It's overplayed", "It's just fucking horseshit", "Cancel")
+	if (!crossness || crossness == "Cancel")
+		return
+
+	if(!M.client)
+		alert("[M] is logged out, so you should probably ban them!")
+		return
+	logTheThing("admin", src, M, "told off [constructTarget(M,"admin")] for their gimmick.")
+	logTheThing("diary", src, M, "told off [constructTarget(M,"diary")] for their gimmick.", "admin")
+	message_admins("[key_name(src)] told off [key_name(M)] for their gimmick.")
+	switch(crossness)
+		if ("It's overplayed")
+			M.playsound_local(M, "sound/misc/newsting.ogg", 40, flags = SOUND_IGNORE_SPACE, channel = VOLUME_CHANNEL_MENTORPM)
+			boutput(M, "<span class='alert'><B>An admin disapproves of your tired gimmick. Maybe do something else instead?</B></span>")
+			M.Browse(grabResource("html/admin/berate_light.html"), "window=shitgimmick;size=700x225;title=Gimmick Tips")
+		if ("It's just fucking horseshit")
+			M.playsound_local(M, "sound/misc/klaxon.ogg", 40, flags = SOUND_IGNORE_SPACE, channel = VOLUME_CHANNEL_MENTORPM)
+			boutput(M, "<span class='alert'><B>WARNING: The garbage ass shit you're pulling is drawing the ire of an admin! You should cut that shit out right now!</B></span>")
+			M.Browse(grabResource("html/admin/berate_heavy.html"), "window=shitgimmick;size=700x225;title=Gimmick Tips")
+
+
 /client/proc/view_fingerprints(obj/O as obj in world)
 	set name = "View Object Fingerprints"
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
