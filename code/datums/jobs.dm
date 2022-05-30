@@ -476,12 +476,11 @@ ABSTRACT_TYPE(/datum/job/security)
 	allow_spy_theft = 0
 	cant_spawn_as_con = 1
 	cant_spawn_as_rev = 1
-	recieves_implant = /obj/item/implant/health/security
 	receives_badge = 1
 	slot_back = list(/obj/item/storage/backpack/withO2)
 	slot_belt = list(/obj/item/storage/belt/security/standard)
 	slot_jump = list(/obj/item/clothing/under/rank/security)
-	slot_suit = list(/obj/item/clothing/suit/armor/vest)
+	//slot_suit = list(/obj/item/clothing/suit/armor/vest)
 	slot_foot = list(/obj/item/clothing/shoes/swat)
 	slot_ears = list(/obj/item/device/radio/headset/security)
 	slot_eyes = list(/obj/item/clothing/glasses/sunglasses/sechud)
@@ -897,6 +896,10 @@ ABSTRACT_TYPE(/datum/job/civilian)
 		if (!M)
 			return
 		M.traitHolder.addTrait("training_drinker")
+		//Gonna give bartenders a black flavour of vest to respect their two-tone colour scheme
+		var/obj/item/clothing/suit/armor/vest/A = M.wear_suit
+		if (istype(A))
+			A.icon_state = "armorvest-light"
 
 /datum/job/civilian/botanist
 	name = "Botanist"
@@ -1158,7 +1161,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	slot_foot = list(/obj/item/clothing/shoes/brown)
 	slot_ears = list( /obj/item/device/radio/headset/security)
 	slot_poc1 = list(/obj/item/storage/security_pouch) //replaces sec starter kit
-	slot_poc2 = list(/obj/item/requisition_token/security)
+	slot_belt = list(/obj/item/storage/belt/security/assistant)
 
 	New()
 		..()
@@ -2666,7 +2669,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	slot_foot = list(/obj/item/clothing/shoes/brown)
 	slot_ears = list(/obj/item/device/radio/headset/security)
 	slot_poc1 = list(/obj/item/storage/security_pouch) //replaces sec starter kit
-	slot_poc2 = list(/obj/item/requisition_token/security/assistant)
+	slot_belt = list(/obj/item/storage/belt/security/assistant)
 
 	New()
 		..()
