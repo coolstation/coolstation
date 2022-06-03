@@ -719,10 +719,11 @@ ABSTRACT_TYPE(/area/shuttle_transit_space)
 		..()
 		if (ismob(Obj))
 			var/mob/M = Obj
-			if (src.throw_dir == NORTH || src.throw_dir == SOUTH)
-				M.addOverlayComposition(/datum/overlayComposition/shuttle_warp)
-			else
-				M.addOverlayComposition(/datum/overlayComposition/shuttle_warp/ew)
+			if(channel_open)
+				if (src.throw_dir == NORTH || src.throw_dir == SOUTH)
+					M.addOverlayComposition(/datum/overlayComposition/shuttle_warp)
+				else
+					M.addOverlayComposition(/datum/overlayComposition/shuttle_warp/ew)
 		if (!isobserver(Obj) && !isintangible(Obj) && !iswraith(Obj) && !istype(Obj,/obj/machinery/vehicle/escape_pod) && !istype(Obj, /obj/machinery/vehicle/tank/minisub/escape_sub))
 			var/atom/target = get_edge_target_turf(src, src.throw_dir)
 			if (OldLoc && isturf(OldLoc))
