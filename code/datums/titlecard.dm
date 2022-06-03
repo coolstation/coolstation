@@ -4,10 +4,8 @@
 
 	#if defined(MAP_OVERRIDE_OSHAN)
 	var/image_url = "images/oshan_titlecard.png"
-	#elif defined(MAP_OVERRIDE_MANTA)
-	var/image_url = "images/manta_titlecard.png"
 	#else
-	var/image_url = "images/main_titlecard.gif"
+	var/image_url = "images/coolstation_title_dev_alt.gif"
 	#endif
 	var/is_game_mode = FALSE
 	var/add_html = ""
@@ -100,10 +98,6 @@
 		icon_state = "title_oshan"
 		name = "Oshan Laboratory"
 		desc = "An underwater laboratory on the planet Abzu."
-	#elif defined(MAP_OVERRIDE_MANTA)
-		icon_state = "title_manta"
-		name = "The NSS Manta"
-		desc = "Some fancy comic about the NSS Manta and its travels on the planet Abzu."
 	#endif
 	#if defined(REVERSED_MAP)
 		transform = list(-1, 0, 0, 0, 1, 0)

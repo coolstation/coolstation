@@ -692,12 +692,13 @@ ABSTRACT_TYPE(/area/shuttle/merchant_shuttle)
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		..()
-		if (ismob(Obj))
-			var/mob/M = Obj
-			if (src.warp_dir & NORTH || src.warp_dir & SOUTH)
-				M.addOverlayComposition(/datum/overlayComposition/shuttle_warp)
-			else
-				M.addOverlayComposition(/datum/overlayComposition/shuttle_warp/ew)
+		if(channel_open)
+			if (ismob(Obj))
+				var/mob/M = Obj
+				if (src.warp_dir & NORTH || src.warp_dir & SOUTH)
+					M.addOverlayComposition(/datum/overlayComposition/shuttle_warp)
+				else
+					M.addOverlayComposition(/datum/overlayComposition/shuttle_warp/ew)
 
 	Exited(atom/movable/Obj)
 		..()
