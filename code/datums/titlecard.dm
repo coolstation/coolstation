@@ -4,8 +4,10 @@
 
 	#if defined(MAP_OVERRIDE_OSHAN)
 	var/image_url = "images/oshan_titlecard.png"
-	#else
+	#elif defined(SECRETS_ENABLED)
 	var/image_url = "images/coolstation_title_dev_alt.gif"
+	#else
+	var/image_url = "images/coolstation_title.gif"
 	#endif
 	var/is_game_mode = FALSE
 	var/add_html = ""
