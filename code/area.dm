@@ -1232,6 +1232,15 @@ ABSTRACT_TYPE(/area/prefab)
 	name = "Cargo Elevator Shaft"
 /area/shuttle/sea_elevator/upper/QM
 	name = "Cargo Elevator Shaft"
+/area/shuttle/sea_elevator/lower/NTFC
+	name = "Cargo Elevator Shaft"
+/area/shuttle/sea_elevator/upper/NTFC
+	name = "Cargo Elevator Shaft"
+/area/shuttle/sea_elevator/lower/command
+	name = "Command Elevator Shaft"
+/area/shuttle/sea_elevator/upper/command
+	name = "Command Elevator Shaft"
+
 
 // Sealab trench areas //
 
@@ -5501,6 +5510,11 @@ MAJOR_AST(30)
 	name = "Nanotrasen Temporary Frontier Command"
 	icon_state = "yellow"
 
+/area/centcom/outpost/lower
+	filler_turf = null
+	name = "Nanotrasen Temporary Frontier Command Subdeck"
+	icon_state = "orange"
+
 /area/centcom/outpost/docks
 	name = "NTFC Docks"
 	icon_state = "green"
@@ -5516,3 +5530,7 @@ MAJOR_AST(30)
 /area/centcom/outpost/lounge
 	name = "Employee Lounge"
 	icon_state = "red"
+
+/area/centcom/outpost/maintenance/lower
+	name = "Lower Maintenance Tunnel"
+	icon_state = "dk_yellow"

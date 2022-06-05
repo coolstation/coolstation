@@ -128,3 +128,11 @@
 /obj/machinery/computer/sea_elevator/QM
 	upper = /area/shuttle/sea_elevator/upper/QM
 	lower = /area/shuttle/sea_elevator/lower/QM
+
+/obj/machinery/computer/sea_elevator/command
+	upper = /area/shuttle/sea_elevator/upper/command
+	lower = /area/shuttle/sea_elevator/lower/command
+
+/obj/machinery/computer/sea_elevator/NTFC
+	upper = /area/shuttle/sea_elevator/upper/NTFC
+	lower = /area/shuttle/sea_elevator/lower/NTFC
