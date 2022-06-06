@@ -91,7 +91,6 @@ var/global/list/datum/keybind_style/keybind_styles = null
 	"R" = "flip",
 	"CTRL+A" = "salute",
 	"CTRL+B" = "burp",
-
 	"CTRL+D" = "dance",
 	"CTRL+E" = "eyebrow",
 	"CTRL+F" = "fart",
