@@ -692,12 +692,13 @@ ABSTRACT_TYPE(/area/shuttle/merchant_shuttle)
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		..()
-		if (ismob(Obj))
-			var/mob/M = Obj
-			if (src.warp_dir & NORTH || src.warp_dir & SOUTH)
-				M.addOverlayComposition(/datum/overlayComposition/shuttle_warp)
-			else
-				M.addOverlayComposition(/datum/overlayComposition/shuttle_warp/ew)
+		if(channel_open)
+			if (ismob(Obj))
+				var/mob/M = Obj
+				if (src.warp_dir & NORTH || src.warp_dir & SOUTH)
+					M.addOverlayComposition(/datum/overlayComposition/shuttle_warp)
+				else
+					M.addOverlayComposition(/datum/overlayComposition/shuttle_warp/ew)
 
 	Exited(atom/movable/Obj)
 		..()
@@ -719,10 +720,11 @@ ABSTRACT_TYPE(/area/shuttle_transit_space)
 		..()
 		if (ismob(Obj))
 			var/mob/M = Obj
-			if (src.throw_dir == NORTH || src.throw_dir == SOUTH)
-				M.addOverlayComposition(/datum/overlayComposition/shuttle_warp)
-			else
-				M.addOverlayComposition(/datum/overlayComposition/shuttle_warp/ew)
+			if(channel_open)
+				if (src.throw_dir == NORTH || src.throw_dir == SOUTH)
+					M.addOverlayComposition(/datum/overlayComposition/shuttle_warp)
+				else
+					M.addOverlayComposition(/datum/overlayComposition/shuttle_warp/ew)
 		if (!isobserver(Obj) && !isintangible(Obj) && !iswraith(Obj) && !istype(Obj,/obj/machinery/vehicle/escape_pod) && !istype(Obj, /obj/machinery/vehicle/tank/minisub/escape_sub))
 			var/atom/target = get_edge_target_turf(src, src.throw_dir)
 			if (OldLoc && isturf(OldLoc))
@@ -1230,6 +1232,15 @@ ABSTRACT_TYPE(/area/prefab)
 	name = "Cargo Elevator Shaft"
 /area/shuttle/sea_elevator/upper/QM
 	name = "Cargo Elevator Shaft"
+/area/shuttle/sea_elevator/lower/NTFC
+	name = "Cargo Elevator Shaft"
+/area/shuttle/sea_elevator/upper/NTFC
+	name = "Cargo Elevator Shaft"
+/area/shuttle/sea_elevator/lower/command
+	name = "Command Elevator Shaft"
+/area/shuttle/sea_elevator/upper/command
+	name = "Command Elevator Shaft"
+
 
 // Sealab trench areas //
 
@@ -5499,6 +5510,11 @@ MAJOR_AST(30)
 	name = "Nanotrasen Temporary Frontier Command"
 	icon_state = "yellow"
 
+/area/centcom/outpost/lower
+	filler_turf = null
+	name = "Nanotrasen Temporary Frontier Command Subdeck"
+	icon_state = "orange"
+
 /area/centcom/outpost/docks
 	name = "NTFC Docks"
 	icon_state = "green"
@@ -5514,3 +5530,7 @@ MAJOR_AST(30)
 /area/centcom/outpost/lounge
 	name = "Employee Lounge"
 	icon_state = "red"
+
+/area/centcom/outpost/maintenance/lower
+	name = "Lower Maintenance Tunnel"
+	icon_state = "dk_yellow"

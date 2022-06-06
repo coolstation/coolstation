@@ -505,7 +505,7 @@ var/fartcount = 0
 
 obj/decal/fakeobjects/thrust
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "shieldsparkles"
+	icon_state = "sparkle_ions"
 	name = "ionized exhaust"
 	desc = "Thankfully harmless, to registered employees anyway."
 

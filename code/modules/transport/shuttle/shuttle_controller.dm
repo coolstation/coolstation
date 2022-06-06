@@ -211,14 +211,15 @@ datum/shuttle_controller
 						location = SHUTTLE_LOC_TRANSIT
 						var/area/start_location = locate(map_settings ? map_settings.escape_station : /area/shuttle/escape/station)
 						var/area/end_location = locate(map_settings ? map_settings.escape_transit : /area/shuttle/escape/transit)
-
+						/*
 						var/door_type = map_settings ? map_settings.ext_airlocks : /obj/machinery/door/airlock/external
+						// Warc disagrees wholeheartedly.
 						for (var/obj/machinery/door/D in start_location)
 							if (istype(D, door_type))
 								D.set_density(1)
 								D.locked = 1
 								D.update_icon()
-
+						*/
 						for (var/atom/A in start_location)
 							if(istype( A, /obj/stool ))
 								var/obj/stool/O = A
@@ -232,7 +233,8 @@ datum/shuttle_controller
 							else if(istype( A, /mob ))
 								var/mob/M = A
 								shake_camera(M, 32, 32)
-								M.addOverlayComposition(/datum/overlayComposition/shuttle_warp)
+								if(channel_open)
+									M.addOverlayComposition(/datum/overlayComposition/shuttle_warp)
 								if (!isturf(M.loc) || !isliving(M) || isintangible(M))
 									continue
 								SPAWN_DBG(1 DECI SECOND)
