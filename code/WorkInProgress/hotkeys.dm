@@ -48,7 +48,6 @@ client/verb/hotkeys()
 		<h3>Emotes</h3>
 			<li><b>Ctrl+A:</b> Salute</li>
 			<li><b>Ctrl+B:</b> Burp</li>
-			<li><b>Ctrl+C:</b> Poo</li>
 			<li><b>Ctrl+D:</b> Dance</li>
 			<li><b>Ctrl+E:</b> Eyebrow</li>
 			<li><b>Ctrl+F:</b> Fart</li>
@@ -59,10 +58,11 @@ client/verb/hotkeys()
 			<li><b>Ctrl+Q:</b> Wave</li>
 			<li><b>Ctrl+R:</b> Flip</li>
 			<li><b>Ctrl+S:</b> Scream</li>
-			<li><b>Ctrl+U:</b> Piss</li>
 			<li><b>Ctrl+W:</b> Wink</li>
 			<li><b>Ctrl+Y:</b> Yawn</li>
 			<li><b>Ctrl+Z:</b> Snap</li>
+			<li><b>Ctrl+1:</b> Piss</li>
+			<li><b>Ctrl+2:</b> Poo</li>
 		<h3>Admin</h3>
 			<li><b>~:</b> Open common admin atom verbs</li>
 	</ul>"}, "window=hotkeys;title=Hotkeys" )
