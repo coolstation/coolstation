@@ -14,6 +14,10 @@ macro "base_macro"
 		name = "CTRL+B"
 		command = "say \"*burp\""
 		is-disabled = true
+	elem "poo"
+		name = "CTRL+C"
+		command = "say \"*poo\""
+		is-disabled = true
 	elem "ooc"
 		name = "ALT+C"
 		command = ".force_keyup ALT+C\nooc"
@@ -73,6 +77,10 @@ macro "base_macro"
 	elem
 		name = "CTRL+T"
 		command = ".force_keyup CTRL+T\nasay"
+		is-disabled = true
+	elem "piss"
+		name = "CTRL+U"
+		command = "say \"*piss\""
 		is-disabled = true
 	elem
 		name = "ALT+W"

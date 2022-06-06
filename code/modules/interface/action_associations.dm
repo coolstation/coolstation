@@ -24,6 +24,8 @@ var/list/action_names = list(
 	"scream" = "Scream",
 	"salute" = "Salute",
 	"burp" = "Burp",
+	"poo" = "Poo",
+	"piss" = "Piss",
 
 	"help" = "Help Intent",
 	"disarm" = "Disarm Intent",
@@ -113,6 +115,8 @@ var/list/action_verbs = list(
 	"flex" = "me_hotkey flex",
 	"yawn" = "me_hotkey yawn",
 	"snap" = "me_hotkey snap",
+	"poo" = "me_hotkey poo",
+	"piss" = "me_hotkey piss",
 	"pickup" = "pick-up",
 	"ooc" = "ooc",
 	"looc" = "looc",
