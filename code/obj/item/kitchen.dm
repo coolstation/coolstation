@@ -732,9 +732,9 @@ TRAYS
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(istype(H.head, /obj/item/clothing/head/helmet))
-					M.do_disorient(stamina_damage = 150, weakened = 0.1 SECONDS, disorient = 1 SECOND)
+					M.do_disorient(stamina_damage = 150, weakened = 0.1 SECONDS, disorient = 3 SECOND)
 				else
-					M.changeStatus("weakened", 1 SECONDS)
+					M.changeStatus("weakened", 2 SECONDS)
 					M.force_laydown_standup()
 			else if(ismobcritter(M))
 				var/mob/living/critter/L = M
@@ -744,9 +744,9 @@ TRAYS
 						has_helmet = TRUE
 						break
 				if(has_helmet)
-					M.do_disorient(stamina_damage = 150, weakened = 0.1 SECONDS, disorient = 1 SECOND)
+					M.do_disorient(stamina_damage = 150, weakened = 0.1 SECONDS, disorient = 3 SECOND)
 				else
-					M.changeStatus("weakened", 1 SECONDS)
+					M.changeStatus("weakened", 2 SECONDS)
 					M.force_laydown_standup()
 			else //borgs, ghosts, whatever
 				M.do_disorient(stamina_damage = 150, weakened = 0.1 SECONDS, disorient = 1 SECOND)

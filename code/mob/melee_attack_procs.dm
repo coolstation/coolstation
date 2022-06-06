@@ -363,9 +363,10 @@
 		msgs.disarm_RNG_result |= "handle_item_arm"
 		return msgs
 
-	var/damage = rand(base_damage_low, base_damage_high) * extra_damage
+	//var/damage = rand(base_damage_low, base_damage_high) * extra_damage
 	var/mult = 1
-	var/target_stamina = STAMINA_MAX //uses stamina?
+	/*
+	var/target_stamina = STAMINA_MAX //uses stamina? - bleh
 	if (isliving(target))
 		var/mob/living/L = target
 		target_stamina = L.stamina
@@ -390,14 +391,15 @@
 		if(target_stamina >= 0)
 			msgs.stamina_target -= max(STAMINA_DISARM_DMG - (armor_mod*0.5), 0) //armor vs barehanded disarm gives flat reduction
 			msgs.force_stamina_target = 1
-
+*/
 
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if (H.sims)
 			mult *= H.sims.getMoodActionMultiplier()
 
-	var/stampart = round( ((STAMINA_MAX - target_stamina) / 3) )
+	//var/stampart = round(((STAMINA_MAX - target_stamina) / 3) )
+	var/stampart = round(abs((src.health - target.health)/3)) // the more disparity between the oponents, the more likely *either* will land a shove-down!
 	if (is_shove)
 		msgs.base_attack_message = "<span class='alert'><B>[src] shoves [target][DISARM_WITH_ITEM_TEXT]!</B></span>"
 		msgs.played_sound = 'sound/impact_sounds/Generic_Shove_1.ogg'
@@ -423,7 +425,7 @@
 		return msgs
 
 	if (is_shove) return msgs
-	var/disarm_success = prob(40 * lerp(clamp(200 - target_stamina, 0, 100)/100, 1, 0.5) * mult)
+	var/disarm_success = prob(40 * lerp(clamp(100 - target.health, 0, 100)/100, 1, 0.5) * mult)
 	if (disarm_success && target.check_block() && !(HAS_MOB_PROPERTY(target, PROP_CANTMOVE)))
 		disarm_success = 0
 		msgs.stamina_target -= STAMINA_DEFAULT_BLOCK_COST * 2
