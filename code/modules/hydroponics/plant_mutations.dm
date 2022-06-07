@@ -14,11 +14,17 @@
 	var/name_suffix = ""	// Append to plant name
 	var/dont_rename_crop = false	// If the crop should not be renamed based on the plant's mutation
 
-	// Ranges various genes have to be in to get the mutation to appear - lower and upper bound
-	var/list/GTrange = list(null,null) // null means there is no limit so an upper bound of 25
-	var/list/HTrange = list(null,null) // and no lower bound means the mutation will occur when
-	var/list/HVrange = list(null,null) // the plant is below 25 in that gene, but can be as low
-	var/list/CZrange = list(null,null) // as it wants otherwise with no consideration
+	// Ranges various genes have to be in to get the mutation to appear
+	// the two fields are the lower and upper bound
+	// when one is set to null, that means that the bound is open
+	// ergo
+	// "25, null" means that it can be anything above 25
+	// "null, 25" means that it can be anything below 25
+	// "15,25" means that it can be anything above 15 and below 25
+	var/list/GTrange = list(null,null) 
+	var/list/HTrange = list(null,null) 
+	var/list/HVrange = list(null,null) 
+	var/list/CZrange = list(null,null) 
 	var/list/PTrange = list(null,null)
 	var/list/ENrange = list(null,null)
 	var/commut = null // is a paticular common mutation required for this? (keeping it to 1 for now)
