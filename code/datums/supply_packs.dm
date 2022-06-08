@@ -446,16 +446,15 @@ ABSTRACT_TYPE(/datum/supply_packs)
 
 // Added security resupply crate (Convair880).
 /datum/supply_packs/security_resupply
-	name = "Weapons Crate - Security Equipment (Cardlocked \[Security Equipment])"
-	desc = "x1 Security Requisition Token, 1x Armoured Vest, 1x Helmet, x1 Handcuff Kit"
+	name = "Armour Crate - Security Equipment (Cardlocked \[Security Equipment])"
+	desc = "1x Armoured Vest, 1x Helmet, x1 Handcuff Kit"
 	category = "Security Department"
 	contains = list(/obj/item/clothing/suit/armor/vest,
 					/obj/item/clothing/head/helmet/hardhat/security,
-					/obj/item/requisition_token/security,
 					/obj/item/storage/box/handcuff_kit)
-	cost = 10000
+	cost = 6000
 	containertype = /obj/storage/secure/crate/weapon
-	containername = "Weapons Crate - Security Equipment (Cardlocked \[Security Equipment])"
+	containername = "Armour Crate - Security Equipment (Cardlocked \[Security Equipment])"
 	access = access_securitylockers
 
 /datum/supply_packs/security_upgrade

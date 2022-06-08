@@ -22,7 +22,7 @@
 /obj/item/clothing/suit/armor/vest
 	name = "armor vest"
 	desc = "An armored vest that protects against some damage. Contains carbon fibres."
-	icon_state = "armorvest"
+	icon_state = "armorvest-old" //Vintage security
 	uses_multiple_icon_states = 1
 	item_state = "armorvest"
 	body_parts_covered = TORSO
