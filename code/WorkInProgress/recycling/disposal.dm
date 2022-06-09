@@ -17,6 +17,7 @@
 /obj/disposalholder
 	invisibility = 101
 	var/datum/gas_mixture/gas = null	// gas used to flush, will appear at exit point
+	var/datum/reagents/reagent_holder
 	var/active = 0	// true if the holder is moving, otherwise inactive
 	dir = 0
 	var/count = 1000	//*** can travel 1000 steps before going inactive (in case of loops)
@@ -39,6 +40,7 @@
 		mail_tag = null
 		autoconfig = 0
 		routers = list()
+		reagent_holder = new()
 
 	pooled()
 		routers = null
