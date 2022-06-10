@@ -30,6 +30,7 @@ TOILET
 			if(trunk)
 				trunk.linked = src	// link the pipe trunk to self
 				plumbed = 1
+			reagents = new(500)
 
 
 /obj/item/storage/toilet/disposing()
