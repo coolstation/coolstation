@@ -42987,13 +42987,13 @@
 	},
 /area/afterlife/arena)
 "cwf" = (
-/turf/unsimulated/floor/specialroom/gym,
+/obj/decal/poster/wallsign/poster_nt,
+/turf/unsimulated/wall/other,
 /area/afterlife/bar)
 "cwi" = (
-/obj/decal/boxingrope{
-	dir = 4
-	},
-/turf/unsimulated/floor/specialroom/gym,
+/obj/disposalpipe/segment/horizontal,
+/obj/decal/poster/wallsign/poster_clown,
+/turf/unsimulated/wall/other,
 /area/afterlife/bar)
 "cwj" = (
 /turf/unsimulated/floor/carpet{
@@ -43002,12 +43002,6 @@
 	tag = "icon-fred2 (EAST)"
 	},
 /area/afterlife/hell)
-"cwl" = (
-/obj/decal/boxingrope{
-	dir = 8
-	},
-/turf/unsimulated/floor/specialroom/gym,
-/area/afterlife/bar)
 "cwm" = (
 /obj/shrub{
 	dir = 8;
@@ -48225,10 +48219,20 @@
 	},
 /area/owlery/owleryhall)
 "cJa" = (
-/obj/decal/boxingropeenter{
-	dir = 4
+/obj/decal/cleanable/paper,
+/obj/item/storage/toilet/random,
+/obj/decal/cleanable/writing{
+	desc = "Someone's scratched something here.";
+	name = "scratchy writing";
+	pixel_y = 26;
+	words = "Sooner or later, i'm getting off Gehenna. Dead or alive. Sooner or later. Dead or alive."
 	},
-/turf/unsimulated/floor/specialroom/gym,
+/obj/decal/cleanable/vomit{
+	desc = "Someone lost their lunch.  A long time ago.";
+	name = "dried vomit"
+	},
+/obj/item/spacecash/buttcoin,
+/turf/unsimulated/floor/plating,
 /area/afterlife/bar)
 "cJb" = (
 /obj/stool/chair/wooden{
@@ -56078,10 +56082,13 @@
 /turf/unsimulated/floor,
 /area/drone/office)
 "dan" = (
-/obj/decal/boxingropeenter{
-	name = "Boxing ropes"
+/obj/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 8;
+	icon_state = "bulb1";
+	pixel_x = -12
 	},
-/turf/unsimulated/floor/specialroom/gym,
+/turf/unsimulated/floor/plating,
 /area/afterlife/bar)
 "dao" = (
 /obj/decal/lightshaft,
@@ -56156,103 +56163,59 @@
 	},
 /area/titlescreen)
 "daA" = (
-/obj/submachine/ATM/afterlife,
-/obj/map/light/white,
-/turf/unsimulated/wall/other,
-/area/afterlife/bar/sanctuary)
-"daB" = (
-/obj/stool/chair/couch{
-	dir = 8
-	},
+/obj/storage/closet/wardrobe/white,
+/obj/item/plant/herb/cannabis/mega/spawnable,
 /turf/unsimulated/floor/wood,
-/area/afterlife/bar/barspawn)
-"daC" = (
-/turf/unsimulated/wall/trench/side{
-	fullbright = 1
-	},
-/area/afterlife/bar/sanctuary)
-"daD" = (
-/obj/map/light/brighterwhite,
-/turf/unsimulated/wall/other,
-/area/afterlife/bar/sanctuary)
-"daE" = (
-/turf/unsimulated/wall/trench{
-	fullbright = 1
-	},
-/area/afterlife/bar/sanctuary)
-"daF" = (
-/obj/stool/chair/couch{
-	dir = 4
-	},
-/turf/unsimulated/floor/wood,
-/area/afterlife/bar/barspawn)
-"daG" = (
-/obj/stool/chair/comfy/barber_chair,
-/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
-"daH" = (
-/obj/table/reinforced/bar/auto{
-	name = "table"
-	},
-/obj/item/storage/box/glassbox,
-/turf/unsimulated/floor/carpet{
+"daG" = (
+/obj/machinery/light{
 	dir = 8;
-	icon_state = "fblue2"
+	icon_state = "tube1";
+	layer = 9.1;
+	pixel_x = -10
 	},
-/area/afterlife/bar/sanctuary)
-"daI" = (
-/obj/grille/steel,
-/obj/window/auto/reinforced,
-/obj/map/light/white,
 /turf/unsimulated/floor/wood,
-/area/afterlife/bar/sanctuary)
+/area/afterlife/bar)
 "daJ" = (
-/obj/map/light/brightwhite,
+/obj/decal/boxingrope{
+	dir = 8;
+	icon_state = "ringrope"
+	},
+/turf/unsimulated/floor/specialroom/gym,
+/area/afterlife/bar)
+"daM" = (
+/obj/decal/poster/wallsign/hazard_caution,
 /turf/unsimulated/wall/other,
-/area/afterlife/bar/sanctuary)
-"daK" = (
+/area/afterlife/bar)
+"daN" = (
+/obj/stool/bar,
+/turf/unsimulated/floor/wood,
+/area/afterlife/bar)
+"daO" = (
+/obj/machinery/vending/book,
 /turf/unsimulated/floor/black,
 /area/afterlife/bar)
-"daL" = (
-/obj/item/plant/herb/cannabis/white/spawnable,
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar/sanctuary)
-"daM" = (
-/turf/unsimulated/wall/other,
-/area/afterlife/bar/sanctuary)
-"daN" = (
-/obj/decal/poster/wallsign/escape_left,
-/turf/unsimulated/wall/other,
-/area/afterlife/bar/sanctuary)
-"daO" = (
-/obj/table/auto,
-/obj/submachine/mixer,
-/obj/decal/cleanable/dirt,
-/turf/unsimulated/floor/grey,
-/area/afterlife/bar)
-"daP" = (
-/mob/living/critter/aquatic/fish/angel,
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar/sanctuary)
 "daQ" = (
-/obj/disposalpipe/segment/vertical,
-/turf/unsimulated/wall/other,
-/area/afterlife/bar)
-"daR" = (
-/turf/unsimulated/floor/carpet{
-	dir = 9;
-	icon_state = "fblue2";
-	tag = "icon-fblue2 (NORTHWEST)"
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	layer = 9.1;
+	pixel_x = 10
 	},
-/area/afterlife/bar/sanctuary)
+/turf/unsimulated/floor/wood,
+/area/afterlife/bar)
 "daS" = (
-/obj/map/light/brightwhite,
-/turf/unsimulated/wall/other,
-/area/area_that_kills_you_if_you_enter_it)
+/obj/machinery/light/small{
+	dir = 8;
+	icon_state = "bulb1";
+	pixel_x = -12
+	},
+/turf/space/fluid/noexplosion,
+/area/afterlife/bar)
 "daT" = (
-/obj/map/light/brightwhite,
-/turf/unsimulated/floor/grass/random,
-/area/afterlife/bar/sanctuary)
+/obj/decal/skeleton,
+/turf/space/fluid/noexplosion,
+/area/afterlife/bar)
 "daV" = (
 /obj/map/light/lava,
 /turf/unsimulated/iomoon/floor{
@@ -56275,13 +56238,12 @@
 	},
 /area/iomoon/caves)
 "daX" = (
-/obj/decal/tile_edge/line/blue{
-	dir = 4;
-	icon_state = "line1"
+/obj/decal/boxingrope{
+	dir = 10;
+	icon_state = "ringrope"
 	},
-/obj/map/light/brightwhite,
-/turf/unsimulated/floor/grass/random,
-/area/afterlife/bar/barspawn)
+/turf/unsimulated/floor/wood,
+/area/afterlife/bar)
 "daY" = (
 /obj/map/light/lava,
 /obj/lattice{
@@ -56291,27 +56253,25 @@
 /turf/unsimulated/floor/lava,
 /area/iomoon)
 "daZ" = (
+/obj/table/reinforced/bar/auto{
+	name = "table"
+	},
 /turf/unsimulated/floor/wood,
-/area/afterlife/bar/sanctuary)
+/area/afterlife/bar)
 "dba" = (
-/obj/stool/chair/comfy{
-	dir = 4
+/obj/table/wood/round/auto,
+/obj/decal/cleanable/dirt,
+/obj/decal/tile_edge/line/black{
+	dir = 2;
+	icon_state = "tile1"
 	},
-/turf/unsimulated/floor/wood,
-/area/afterlife/bar/sanctuary)
-"dbb" = (
-/obj/map/light/white,
-/turf/unsimulated/wall/other,
-/area/afterlife/bar/sanctuary)
-"dbc" = (
-/obj/stool/chair/comfy{
-	dir = 8
+/obj/decal/tile_edge/line/blue{
+	icon_state = "line3"
 	},
-/turf/unsimulated/floor/wood,
-/area/afterlife/bar/sanctuary)
-"dbd" = (
-/obj/machinery/bot/chefbot,
-/turf/unsimulated/floor/grey,
+/obj/item/clothing/under/shorts/random,
+/obj/item/clothing/under/shorts/random,
+/obj/item/clothing/under/shorts/random,
+/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dbe" = (
 /obj/observable/gauntlet,
@@ -56352,7 +56312,11 @@
 	},
 /area/iomoon/caves)
 "dbi" = (
-/turf/simulated/wall/r_wall/afterbar,
+/obj/table/reinforced/bar/auto{
+	name = "fight table"
+	},
+/obj/decal/boxingrope,
+/turf/unsimulated/floor/wood,
 /area/afterlife/bar)
 "dbk" = (
 /obj/map/light/lava,
@@ -56561,9 +56525,9 @@
 	},
 /area/iomoon/caves)
 "dbC" = (
-/obj/stool/chair/couch,
+/obj/machinery/computer/tetris,
 /turf/unsimulated/floor/wood,
-/area/afterlife/bar/barspawn)
+/area/afterlife/bar)
 "dbD" = (
 /obj/item/device/gps{
 	distress = 1
@@ -56733,36 +56697,20 @@
 	},
 /area/iomoon/caves)
 "dbS" = (
-/obj/stool/bar{
-	name = "stool"
+/obj/decal/poster/wallsign/poster_cool{
+	icon_state = "gangtag6";
+	pixel_y = 28
 	},
-/turf/unsimulated/floor/carpet{
-	dir = 1;
-	icon_state = "fblue2";
-	tag = "icon-fblue2 (NORTH)"
-	},
-/area/afterlife/bar/sanctuary)
+/turf/unsimulated/floor/wood,
+/area/afterlife/bar)
 "dbT" = (
-/obj/machinery/door/airlock/pyro/glass{
-	desc = "I bet this goes somewhere exciting!!!!!!!!!!!!!";
-	dir = 1;
-	name = "door to...";
-	req_access_txt = null
+/obj/table/reinforced/bar/auto{
+	name = "fight table"
 	},
-/obj/map/light/brightwhite,
+/obj/decal/boxingrope,
+/obj/item/wrestlingbell,
 /turf/unsimulated/floor/wood,
-/area/afterlife/bar/sanctuary)
-"dbU" = (
-/obj/table/wood/round/auto,
-/obj/item/cigarbox{
-	pixel_y = 16
-	},
-/obj/item/matchbook{
-	pixel_y = 12
-	},
-/obj/item/decoration/ashtray,
-/turf/unsimulated/floor/wood,
-/area/afterlife/bar/sanctuary)
+/area/afterlife/bar)
 "dbV" = (
 /obj/map/light/lava,
 /obj/grille/catwalk{
@@ -56788,15 +56736,16 @@
 /turf/unsimulated/iomoon/plating,
 /area/iomoon)
 "dbX" = (
+/obj/item/plant/herb/cannabis/omega/spawnable,
 /turf/space/fluid/noexplosion,
-/area/afterlife/bar/sanctuary)
+/area/afterlife/bar)
 "dbY" = (
-/obj/critter/domestic_bee/zombee,
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar/sanctuary)
+/turf/unsimulated/wall/trench/side,
+/area/afterlife/bar)
 "dbZ" = (
-/obj/disposalpipe/segment/horizontal,
-/turf/unsimulated/floor/black,
+/obj/disposalpipe/segment/vertical,
+/obj/decal/fakeobjects/pipe/heat,
+/turf/space/fluid/noexplosion,
 /area/afterlife/bar)
 "dca" = (
 /obj/lattice{
@@ -56829,31 +56778,16 @@
 	},
 /area/hospital/underground)
 "dcf" = (
-/turf/unsimulated/floor/carpet{
-	dir = 5;
-	icon_state = "fblue2"
-	},
-/area/afterlife/bar/sanctuary)
-"dcg" = (
-/mob/living/critter/aquatic/fish/clown,
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar/sanctuary)
+/obj/storage/closet/wardrobe/mixed,
+/turf/unsimulated/floor/wood,
+/area/afterlife/bar)
 "dch" = (
-/obj/machinery/door/airlock/pyro/glass{
-	dir = 8;
-	name = "door to heaven"
+/obj/decal/boxingrope{
+	dir = 6;
+	icon_state = "ringrope"
 	},
 /turf/unsimulated/floor/wood,
-/area/afterlife/bar/sanctuary)
-"dci" = (
-/obj/roulette_table_w,
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/carpet{
-	dir = 8;
-	icon_state = "fblue1";
-	tag = "icon-fblue2 (NORTHWEST)"
-	},
-/area/afterlife/bar/sanctuary)
+/area/afterlife/bar)
 "dcj" = (
 /obj/machinery/door/airlock/external{
 	icon_state = "door_locked";
@@ -56871,142 +56805,61 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/john/owlery)
-"dcl" = (
-/obj/stool/chair/comfy/green{
-	dir = 1
-	},
-/turf/unsimulated/floor/wood/two,
-/area/afterlife/bar)
-"dcm" = (
-/obj/stool/chair/comfy/blue{
-	dir = 1
-	},
-/turf/unsimulated/floor/wood/two,
-/area/afterlife/bar)
-"dcn" = (
-/obj/table/reinforced/roulette,
-/turf/unsimulated/floor/carpet{
-	dir = 4;
-	icon_state = "fblue2";
-	tag = "icon-fblue2 (EAST)"
-	},
-/area/afterlife/bar/sanctuary)
-"dco" = (
-/obj/disposalpipe/segment/vertical,
-/turf/unsimulated/floor/wood/two,
-/area/afterlife/bar)
-"dcp" = (
-/obj/decal/skeleton,
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar/sanctuary)
 "dcq" = (
-/obj/table/reinforced/bar/auto{
-	name = "table"
-	},
-/obj/item/card_box/plain,
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/carpet{
-	dir = 8;
-	icon_state = "fblue1";
-	tag = "icon-fblue2 (NORTHWEST)"
-	},
-/area/afterlife/bar/sanctuary)
-"dcr" = (
-/obj/table/reinforced/bar/auto{
-	name = "table"
-	},
-/turf/unsimulated/floor/carpet{
-	dir = 4;
-	icon_state = "fblue2";
-	tag = "icon-fblue2 (EAST)"
-	},
-/area/afterlife/bar/sanctuary)
-"dcs" = (
-/obj/stove,
-/obj/item/soup_pot,
-/obj/item/ladle,
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/grey,
-/area/afterlife/bar)
-"dct" = (
-/turf/unsimulated/floor/grey,
-/area/afterlife/bar)
-"dcu" = (
-/obj/machinery/disposal,
-/obj/disposalpipe/trunk/south,
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/grey,
-/area/afterlife/bar)
-"dcv" = (
-/turf/unsimulated/floor/stairs/dark{
-	dir = 8
-	},
-/area/afterlife/bar)
-"dcw" = (
-/obj/decal/poster/wallsign/escape_left,
-/turf/unsimulated/wall/other,
-/area/afterlife/bar)
-"dcx" = (
-/mob/living/critter/aquatic/fish/butterfly,
 /turf/space/fluid/noexplosion,
-/area/afterlife/bar/sanctuary)
-"dcy" = (
-/obj/table/auto,
-/obj/item/storage/box/cutlery,
-/obj/item/storage/box/plates,
-/obj/item/storage/box/fruit_wedges,
-/obj/item/storage/box/glassbox,
+/area/afterlife/bar)
+"dcr" = (
+/obj/map/light/secretblue,
+/turf/space/fluid/noexplosion,
+/area/afterlife/bar)
+"dcs" = (
+/obj/machinery/vending/capsule,
+/obj/map/light/brightwhite,
 /turf/unsimulated/floor/black,
 /area/afterlife/bar)
-"dcz" = (
-/obj/table/reinforced/bar/auto{
-	name = "table"
-	},
-/obj/machinery/chem_dispenser/alcohol{
-	pixel_y = 4
-	},
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/wood,
-/area/afterlife/bar/sanctuary)
-"dcA" = (
-/obj/table/wood/round/auto,
-/obj/item/reagent_containers/food/snacks/spaghetti/pizzaghetti,
-/obj/item/kitchen/utensil/fork{
-	pixel_x = 10
-	},
-/obj/item/kitchen/utensil/fork{
-	pixel_x = -10
-	},
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/wood,
-/area/afterlife/bar/sanctuary)
-"dcB" = (
-/obj/submachine/chef_sink/chem_sink{
-	dir = 4;
-	pixel_x = -4
-	},
-/turf/unsimulated/floor/grey,
-/area/afterlife/bar)
-"dcC" = (
-/obj/storage/secure/closet/fridge/kitchen{
-	locked = 0
-	},
-/obj/item/plant/herb/cannabis/spawnable,
-/turf/unsimulated/floor/grey,
-/area/afterlife/bar)
-"dcD" = (
-/obj/machinery/door/airlock/pyro,
+"dcu" = (
+/obj/machinery/vending/cards,
 /obj/map/light/brightwhite,
-/turf/unsimulated/floor/wood,
-/area/afterlife/bar/sanctuary)
+/turf/unsimulated/floor/black,
+/area/afterlife/bar)
+"dcv" = (
+/obj/grille/steel,
+/obj/window/auto/reinforced,
+/obj/decal/poster/wallsign/hazard_bio,
+/turf/unsimulated/floor/plating,
+/area/afterlife/bar)
+"dcw" = (
+/obj/decal/boxingrope{
+	dir = 4;
+	icon_state = "ringrope"
+	},
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/specialroom/gym,
+/area/afterlife/bar)
+"dcy" = (
+/obj/disposalpipe/segment/vertical,
+/obj/decal/fakeobjects/pipe/heat{
+	dir = 10;
+	icon_state = "intact"
+	},
+/obj/map/light/secretblue,
+/turf/space/fluid/noexplosion,
+/area/afterlife/bar)
+"dcA" = (
+/obj/decal/tile_edge/line/black{
+	dir = 10;
+	icon_state = "tile1"
+	},
+/obj/decal/tile_edge/line/blue{
+	dir = 5;
+	icon_state = "line4"
+	},
+/turf/unsimulated/floor/wood/two,
+/area/afterlife/bar)
 "dcE" = (
 /obj/decal/fakeobjects/azarakrocks/rock3,
 /turf/space/fluid/cenote,
 /area/crater)
-"dcF" = (
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/grey,
-/area/afterlife/bar)
 "dcG" = (
 /obj/decal/stalagmite{
 	desc = "It's very warm.";
@@ -57018,40 +56871,22 @@
 /turf/unsimulated/iomoon/floor/arena,
 /area/afterlife/arena)
 "dcH" = (
-/obj/submachine/ice_cream_dispenser,
-/turf/unsimulated/floor/black,
+/obj/critter/domestic_bee/zombee,
+/turf/space/fluid/noexplosion,
 /area/afterlife/bar)
 "dcI" = (
-/obj/map/light/white,
-/obj/disposalpipe/segment/horizontal,
-/obj/stool/bench/blue,
-/turf/unsimulated/floor/carpet{
-	dir = 8;
-	icon_state = "red2"
-	},
-/area/afterlife/bar)
-"dcJ" = (
-/obj/disposalpipe/segment/vertical,
-/turf/unsimulated/floor/grey,
+/obj/machinery/vending/alcohol,
+/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dcK" = (
+/obj/stool/bar,
 /obj/map/light/brightwhite,
 /turf/unsimulated/floor/wood,
-/area/afterlife/bar/sanctuary)
+/area/afterlife/bar)
 "dcL" = (
-/obj/stool/bench/yellow,
-/turf/unsimulated/floor/carpet{
-	icon_state = "red2"
-	},
-/area/afterlife/bar)
-"dcM" = (
-/obj/machinery/disposal,
-/obj/disposalpipe/trunk/north,
-/turf/unsimulated/floor/black,
-/area/afterlife/bar)
-"dcN" = (
+/obj/table/auto,
+/obj/submachine/mixer,
 /obj/decal/cleanable/dirt,
-/obj/machinery/gibber/output_east,
 /turf/unsimulated/floor/grey,
 /area/afterlife/bar)
 "dcO" = (
@@ -57063,269 +56898,117 @@
 "dcR" = (
 /obj/grille/steel,
 /obj/window/auto/reinforced,
-/obj/map/light/white,
-/obj/disposalpipe/switch_junction/biofilter/left/east,
-/turf/unsimulated/floor/wood,
-/area/afterlife/bar/sanctuary)
-"dcS" = (
-/obj/disposalpipe/loafer/horizontal{
-	dir = 1
-	},
-/turf/unsimulated/floor/grey,
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/plating,
 /area/afterlife/bar)
 "dcT" = (
-/obj/decal/tile_edge/line/green{
-	icon_state = "line1"
+/obj/stool/bench/green,
+/turf/unsimulated/floor/carpet{
+	dir = 8;
+	icon_state = "red2"
 	},
-/turf/unsimulated/floor/wood/two,
-/area/afterlife/bar)
-"dcU" = (
-/obj/submachine/foodprocessor{
-	dir = 8
-	},
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/grey,
 /area/afterlife/bar)
 "dcV" = (
-/obj/disposalpipe/segment/horizontal,
-/obj/map/light/brighterwhite,
-/obj/cup_rack{
-	pixel_y = 32
-	},
-/turf/unsimulated/floor/black,
-/area/afterlife/bar)
-"dcW" = (
-/turf/unsimulated/floor/plating,
-/area/afterlife/bar/sanctuary)
-"dcX" = (
-/obj/machinery/clothingbooth,
-/turf/unsimulated/floor/carpet/grime,
-/area/afterlife/bar)
-"dcY" = (
-/obj/item/matchbook,
-/turf/unsimulated/floor/plating,
-/area/afterlife/bar)
-"dcZ" = (
-/obj/decal/cleanable/dirt,
-/turf/unsimulated/floor/plating,
-/area/afterlife/bar)
-"dda" = (
-/obj/disposaloutlet/north,
-/obj/disposalpipe/trunk/west,
+/obj/decal/fakeobjects/pipe/heat,
 /turf/space/fluid/noexplosion,
-/area/afterlife/bar/sanctuary)
-"ddb" = (
-/obj/machinery/door/airlock/pyro/maintenance{
-	dir = 8
-	},
-/obj/decal/cleanable/oil,
-/turf/unsimulated/floor/plating,
+/area/afterlife/bar)
+"dcX" = (
+/turf/unsimulated/floor/specialroom/gym,
 /area/afterlife/bar)
 "ddc" = (
-/obj/decal/tile_edge/line/green{
-	dir = 4;
-	icon_state = "line1"
-	},
+/obj/disposalpipe/segment/bent/east,
 /turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "ddd" = (
-/obj/decal/poster/wallsign/fuck2,
-/turf/simulated/wall/r_wall/afterbar,
+/obj/decal/stage_edge,
+/obj/item/paper_bin,
+/obj/table/wood/round/auto,
+/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dde" = (
-/obj/storage/closet/wardrobe/wizard,
-/obj/map/light/brightwhite,
-/turf/unsimulated/floor/carpet/grime,
+/obj/decal/boxingrope{
+	dir = 4;
+	icon_state = "ringrope"
+	},
+/turf/unsimulated/floor/specialroom/gym,
 /area/afterlife/bar)
-"ddf" = (
-/obj/decal/tile_edge/line/green{
+"ddh" = (
+/obj/decal/boxingropeenter{
+	name = "Boxing ropes"
+	},
+/turf/unsimulated/floor/specialroom/gym,
+/area/afterlife/bar)
+"ddm" = (
+/obj/item/plant/herb/cannabis/white/spawnable,
+/turf/space/fluid/noexplosion,
+/area/afterlife/bar)
+"ddo" = (
+/obj/machinery/vending/coffee,
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/black,
+/area/afterlife/bar)
+"ddp" = (
+/turf/unsimulated/floor/stairs/wood2,
+/area/afterlife/bar)
+"ddv" = (
+/obj/decal/stage_edge,
+/obj/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal,
+/turf/unsimulated/floor/wood/two,
+/area/afterlife/bar)
+"ddw" = (
+/obj/machinery/bot/duckbot,
+/turf/unsimulated/floor/blackwhite/whitegrime,
+/area/afterlife/bar)
+"ddy" = (
+/obj/stool/chair/couch{
 	dir = 8;
-	icon_state = "line1"
+	icon_state = "chair_couch-brown"
+	},
+/obj/disposalpipe/segment/horizontal,
+/obj/decal/cleanable/dirt,
+/obj/item/storage/wall/office{
+	pixel_y = 30
 	},
 /turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
-"ddg" = (
-/obj/table/wood/round/auto,
-/obj/decal/cleanable/dirt,
-/obj/item/plate,
-/obj/item/reagent_containers/food/snacks/pancake,
-/obj/item/reagent_containers/food/snacks/condiment/syrup{
-	pixel_x = 4
-	},
-/obj/item/kitchen/utensil/fork{
-	pixel_x = -4
-	},
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/carpet{
-	dir = 9;
-	icon_state = "fgreen2"
-	},
-/area/afterlife/bar)
-"ddh" = (
-/turf/unsimulated/floor/carpet/grime,
-/area/afterlife/bar)
-"ddi" = (
-/obj/disposalpipe/segment/bent/north,
-/turf/unsimulated/wall/other,
-/area/afterlife/bar)
-"ddj" = (
-/obj/decal/cleanable/dirt,
-/obj/machinery/light/small{
-	dir = 8;
-	pixel_x = -12
-	},
-/obj/item/reagent_containers/bath_bomb,
-/obj/item/reagent_containers/bath_bomb,
-/obj/item/reagent_containers/bath_bomb,
-/obj/item/reagent_containers/bath_bomb,
-/turf/unsimulated/floor/plating,
-/area/afterlife/bar)
-"ddk" = (
-/obj/machinery/drainage,
-/turf/unsimulated/floor/plating,
-/area/afterlife/bar)
-"ddm" = (
-/obj/machinery/chem_dispenser/soda,
-/obj/decal/cleanable/dirt,
-/obj/map/light/brightwhite,
-/turf/unsimulated/floor/black,
-/area/afterlife/bar)
-"ddn" = (
-/obj/decal/cleanable/dirt,
-/obj/machinery/chem_dispenser/alcohol/ultra,
-/obj/map/light/brightwhite,
-/turf/unsimulated/floor/black,
-/area/afterlife/bar)
-"ddo" = (
-/obj/storage/closet/wardrobe/black/formalwear,
-/obj/item/clothing/under/misc/lawyer,
-/obj/item/storage/box/lightbox/tubes/red,
-/turf/unsimulated/floor/carpet/grime,
-/area/afterlife/bar)
-"ddp" = (
-/obj/machinery/door/airlock/pyro{
-	dir = 8
-	},
-/obj/disposalpipe/segment/horizontal,
-/turf/unsimulated/floor/black,
-/area/afterlife/bar)
-"ddq" = (
-/obj/machinery/bathtub{
-	anchored = 1;
-	dir = 4
-	},
-/turf/unsimulated/floor/plating,
-/area/afterlife/bar)
-"ddt" = (
-/obj/disposalpipe/segment/horizontal,
-/turf/unsimulated/floor/grey,
-/area/afterlife/bar)
-"ddu" = (
-/obj/disposalpipe/junction,
-/turf/unsimulated/floor/grey,
-/area/afterlife/bar)
-"ddv" = (
-/obj/decal/poster/wallsign/hazard_caution,
-/turf/unsimulated/wall/other,
-/area/afterlife/bar/sanctuary)
-"ddw" = (
-/obj/table/wood/round/auto,
-/obj/item/storage/box/nerd_kit,
-/turf/unsimulated/floor/carpet{
-	dir = 1;
-	icon_state = "fgreen2"
-	},
-/area/afterlife/bar)
-"ddx" = (
-/obj/machinery/deep_fryer{
-	dir = 8
-	},
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/grey,
-/area/afterlife/bar)
-"ddy" = (
-/obj/ladder{
-	id = "afterlife1"
-	},
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/wood,
-/area/afterlife/bar/sanctuary)
-"ddz" = (
-/obj/disposalpipe/segment/horizontal,
-/turf/unsimulated/wall/other,
-/area/afterlife/bar)
 "ddA" = (
-/obj/decal/tile_edge/line/black{
-	dir = 4;
-	icon_state = "tile1"
-	},
-/obj/table/reinforced/bar/auto,
-/obj/item/reagent_containers/food/drinks/espressocup{
-	pixel_y = 5
-	},
-/turf/unsimulated/floor/carpet{
-	dir = 1;
-	icon_state = "fred1"
-	},
-/area/afterlife/bar)
-"ddD" = (
-/obj/table/wood/round/auto,
-/obj/item/wrench/monkey,
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/carpet{
-	dir = 5;
-	icon_state = "fgreen2"
-	},
+/obj/decal/poster/wallsign/hazard_exheat,
+/turf/unsimulated/wall/other,
 /area/afterlife/bar)
 "ddE" = (
-/obj/storage/secure/closet/kitchen{
-	locked = 0
-	},
-/obj/item/storage/box/glassbox,
-/turf/unsimulated/floor/grey,
-/area/afterlife/bar)
-"ddF" = (
-/obj/disposalpipe/segment/bent/east,
-/turf/unsimulated/floor/grey,
+/obj/machinery/vending/clothing,
+/turf/unsimulated/floor/black,
 /area/afterlife/bar)
 "ddH" = (
-/obj/ladder{
-	id = "afterbar-lounge2base"
+/obj/stool/chair/couch{
+	dir = 4;
+	icon_state = "chair_couch-brown"
 	},
-/obj/map/light/white,
-/turf/unsimulated/floor/plating,
-/area/afterlife/bar/sanctuary)
+/obj/disposalpipe/segment/horizontal,
+/obj/decal/cleanable/dirt,
+/turf/unsimulated/floor/wood/two,
+/area/afterlife/bar)
 "ddI" = (
-/obj/table/reinforced/bar/auto,
-/obj/item/matchbook,
-/obj/map/light/brighterwhite,
-/obj/decal/tile_edge/line/black{
-	dir = 1;
-	icon_state = "tile1"
-	},
-/turf/unsimulated/floor/carpet{
-	dir = 1;
-	icon_state = "fred1"
-	},
+/obj/disposalpipe/segment/horizontal,
+/obj/grille/steel,
+/obj/window/auto/reinforced,
+/turf/unsimulated/floor/plating,
 /area/afterlife/bar)
 "ddJ" = (
-/obj/storage/closet/wardrobe/pride,
-/obj/map/light/brightwhite,
-/turf/unsimulated/floor/carpet/grime,
+/obj/decal/tile_edge/line/blue{
+	icon_state = "line3"
+	},
+/obj/decal/stage_edge,
+/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "ddL" = (
-/obj/table/reinforced/bar/auto,
-/obj/decal/cleanable/dirt,
-/obj/item/plate/tray,
-/obj/decal/tile_edge/line/black{
-	dir = 1;
-	icon_state = "tile1"
-	},
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/carpet{
-	dir = 1;
-	icon_state = "fred1"
-	},
+/obj/grille/steel,
+/obj/window/auto/reinforced,
+/obj/disposalpipe/segment/horizontal,
+/turf/unsimulated/floor/plating,
 /area/afterlife/bar)
 "ddM" = (
 /turf/unsimulated/floor/stairs{
@@ -57341,35 +57024,25 @@
 /turf/unsimulated/outdoors/grass,
 /area/shuttle/merchant_shuttle/left_centcom/donut2)
 "ddO" = (
-/obj/table/reinforced/bar/auto,
-/obj/decal/tile_edge/line/black{
-	dir = 1;
-	icon_state = "tile1"
-	},
-/obj/machinery/microwave,
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/carpet{
-	dir = 4;
-	icon_state = "red2"
-	},
+/obj/disposalpipe/segment/horizontal,
+/turf/space/fluid/noexplosion,
 /area/afterlife/bar)
 "ddP" = (
-/obj/decal/tile_edge/stripe,
-/turf/unsimulated/floor/wood,
+/obj/stool/chair/blue{
+	dir = 4;
+	icon_state = "chair-b"
+	},
+/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "ddQ" = (
-/obj/mic_stand,
-/obj/decal/tile_edge/stripe,
-/turf/unsimulated/floor/wood,
+/obj/table/wood/round/auto,
+/obj/item/game_kit,
+/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "ddR" = (
 /obj/stagebutton/colosseum,
 /turf/unsimulated/floor/setpieces/gauntlet/pod,
 /area/colosseum/staging)
-"ddS" = (
-/obj/decal/cleanable/fungus,
-/turf/unsimulated/wall/other,
-/area/afterlife/bar)
 "ddT" = (
 /obj/map/light/lava,
 /obj/map/light/dimred,
@@ -57851,22 +57524,9 @@
 	icon_state = "fullblack"
 	},
 /area/sim/racing_track)
-"dfi" = (
-/obj/kitchenspike,
-/turf/unsimulated/floor/grey,
-/area/afterlife/bar)
 "dfj" = (
-/obj/decal/tile_edge/line/black{
-	dir = 5;
-	icon_state = "tile1"
-	},
-/obj/table/reinforced/bar/auto,
-/obj/item/device/light/candle/small,
-/obj/item/device/light/candle/small,
-/turf/unsimulated/floor/carpet{
-	dir = 1;
-	icon_state = "fred1"
-	},
+/obj/decal/poster/wallsign/bar,
+/turf/unsimulated/wall/other,
 /area/afterlife/bar)
 "dfk" = (
 /obj/decal/fakeobjects{
@@ -57886,10 +57546,6 @@
 	icon_state = "fullblack"
 	},
 /area/sim/racing_track)
-"dfl" = (
-/obj/item/reagent_containers/glass/bucket,
-/turf/unsimulated/floor/plating,
-/area/afterlife/bar)
 "dfm" = (
 /obj/death_button/clean_gunsim,
 /turf/unsimulated/wall/auto/reinforced/supernorn,
@@ -58044,14 +57700,6 @@
 	icon_state = "white"
 	},
 /area/sim/racing_track)
-"dfB" = (
-/obj/decal/cleanable/dirt,
-/obj/storage/closet/wardrobe/green,
-/obj/item/clothing/under/shorts/psyche,
-/obj/item/storage/box/lightbox/tubes/blacklight,
-/obj/item/clothing/under/color/lime,
-/turf/unsimulated/floor/plating,
-/area/afterlife/bar)
 "dfF" = (
 /obj/table/virtual{
 	dir = 6;
@@ -58199,42 +57847,20 @@
 	},
 /area/iomoon/caves)
 "dfW" = (
-/obj/decal/stage_edge,
-/obj/loudspeaker,
-/turf/unsimulated/floor/wood/two,
+/obj/disposalpipe/segment/bent/south,
+/obj/map/light/secretblue,
+/turf/space/fluid/noexplosion,
 /area/afterlife/bar)
 "dfX" = (
-/obj/decal/tile_edge/line/black{
-	dir = 1;
-	icon_state = "tile1"
-	},
-/obj/table/reinforced/bar/auto,
-/obj/item/reagent_containers/food/drinks/drinkingglass/pitcher{
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/pitcher,
-/turf/unsimulated/floor/carpet{
-	dir = 1;
-	icon_state = "fred1"
-	},
+/obj/disposalpipe/segment/vertical,
+/turf/unsimulated/wall/other,
 /area/afterlife/bar)
 "dfY" = (
-/obj/map/light/white,
 /obj/map/light/brightwhite,
-/obj/machinery/vending/cards,
-/turf/unsimulated/floor/wood/two,
+/turf/unsimulated/floor/specialroom/gym,
 /area/afterlife/bar)
 "dga" = (
-/obj/table/reinforced/bar/auto,
-/obj/decal/tile_edge/line/black{
-	dir = 1;
-	icon_state = "tile1"
-	},
-/obj/machinery/espresso_machine,
-/turf/unsimulated/floor/carpet{
-	dir = 1;
-	icon_state = "fred1"
-	},
+/turf/simulated/wall/r_wall/afterbar,
 /area/afterlife/bar)
 "dgb" = (
 /obj/decal/fakeobjects/shuttleengine{
@@ -58246,45 +57872,16 @@
 	},
 /area/shuttle/merchant_shuttle/left_centcom/donut2)
 "dgc" = (
-/obj/machinery/computer/arcade{
-	desc = "The VR representation of a popular computer game."
-	},
 /obj/map/light/brightwhite,
-/turf/unsimulated/floor/wood/two,
-/area/afterlife/bar)
-"dgd" = (
-/obj/disposalpipe/segment/bent/south,
-/turf/unsimulated/wall/other,
-/area/afterlife/bar)
-"dge" = (
-/obj/decal/cleanable/dirt,
-/obj/machinery/light_switch/east,
-/obj/submachine/chef_sink/chem_sink{
-	desc = "A water-filled unit intended for custodial purposes.";
-	dir = 8;
-	name = "custodial sink";
-	pixel_x = 2
+/obj/decal/tile_edge/line/blue{
+	dir = 6;
+	icon_state = "line1"
 	},
-/turf/unsimulated/floor/plating,
-/area/afterlife/bar)
+/turf/unsimulated/floor/grime,
+/area/afterlife/bar/barspawn)
 "dgf" = (
-/obj/machinery/door/airlock/pyro,
-/turf/unsimulated/floor/carpet/grime,
-/area/afterlife/bar)
-"dgg" = (
-/obj/storage/closet/wardrobe/orange,
-/obj/item/device/light/glowstick,
-/obj/item/wrench,
-/obj/item/storage/box/costume/clown{
-	spawn_contents = list(/obj/item/clothing/mask/clown_hat,/obj/item/clothing/under/misc/clown,/obj/item/clothing/shoes/clown_shoes,/obj/item/storage/fanny/funny,/obj/item/card/id/clown)
-	},
-/obj/item/clothing/suit/bedsheet{
-	bcolor = "captain";
-	desc = "This colorful and somewhat childish bedsheet helps the captain sleep at night.";
-	icon_state = "bedsheet-captain";
-	name = "special bedsheet"
-	},
-/turf/unsimulated/floor/plating,
+/obj/stool/chair/comfy,
+/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dgj" = (
 /obj/grille/catwalk{
@@ -60689,7 +60286,8 @@
 	},
 /area/shuttle/escape/centcom/cogmap2)
 "dqe" = (
-/obj/decal/stage_edge,
+/obj/table/wood/round/auto,
+/obj/item/paper_bin,
 /turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dqf" = (
@@ -61426,7 +61024,8 @@
 /turf/unsimulated/outdoors/grass,
 /area/centcom/outside)
 "dsf" = (
-/turf/simulated/floor/airless/stairs/wood2,
+/obj/disposalpipe/segment/vertical,
+/turf/space/fluid/noexplosion,
 /area/afterlife/bar)
 "dsg" = (
 /turf/simulated/shuttle/wall{
@@ -62196,9 +61795,15 @@
 	},
 /area/hospital/underground)
 "dur" = (
-/turf/unsimulated/floor/carpet{
-	icon_state = "red2"
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	layer = 9.1;
+	pixel_x = 10
 	},
+/obj/decal/cleanable/dirt,
+/obj/machinery/chem_dispenser/alcohol/ultra,
+/turf/unsimulated/floor/black,
 /area/afterlife/bar)
 "dus" = (
 /obj/grille/steel,
@@ -62219,10 +61824,12 @@
 	},
 /area/shuttle/merchant_shuttle/left_centcom/donut2)
 "duu" = (
-/obj/stool/bench/red,
-/turf/unsimulated/floor/carpet{
-	icon_state = "red2"
-	},
+/obj/disposalpipe/segment/vertical,
+/obj/table/auto,
+/obj/item/storage/box/plates,
+/obj/item/storage/box/cutlery,
+/obj/item/storage/box/fruit_wedges,
+/turf/unsimulated/floor/grey,
 /area/afterlife/bar)
 "duv" = (
 /turf/simulated/shuttle/wall{
@@ -62250,10 +61857,12 @@
 	},
 /area/shuttle/merchant_shuttle/left_centcom/donut2)
 "duz" = (
-/obj/stool/bench/green,
-/turf/unsimulated/floor/carpet{
-	icon_state = "red2"
+/obj/disposalpipe/trunk/south,
+/obj/machinery/disposal{
+	name = "Lay-Z Chef Loafer Chute"
 	},
+/obj/decal/cleanable/dirt,
+/turf/unsimulated/floor/grey,
 /area/afterlife/bar)
 "duA" = (
 /obj/indestructible/shuttle_corner{
@@ -62289,32 +61898,19 @@
 	},
 /area/shuttle/merchant_shuttle/left_centcom/donut2)
 "duE" = (
-/obj/stool/bench/blue,
-/turf/unsimulated/floor/carpet{
-	dir = 6;
-	icon_state = "red2";
-	tag = "icon-fred2 (SOUTHEAST)"
-	},
+/obj/decal/poster/wallsign/escape_left,
+/turf/unsimulated/wall/other,
 /area/afterlife/bar)
 "duF" = (
-/obj/disposalpipe/junction{
-	dir = 4
-	},
-/turf/unsimulated/floor/black,
+/turf/unsimulated/wall/trench,
 /area/afterlife/bar)
 "duG" = (
-/obj/decal/tile_edge/line/green{
-	dir = 6;
-	icon_state = "line1"
-	},
-/turf/unsimulated/floor/wood/two,
+/obj/machinery/bot/skullbot/gold,
+/turf/unsimulated/floor/specialroom/gym,
 /area/afterlife/bar)
 "duH" = (
-/obj/decal/tile_edge/line/green{
-	dir = 10;
-	icon_state = "line1"
-	},
-/turf/unsimulated/floor/wood/two,
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/black,
 /area/afterlife/bar)
 "duI" = (
 /obj/machinery/door/airlock/external,
@@ -62593,11 +62189,6 @@
 /obj/extremely_spooky_ghost,
 /turf/unsimulated/grass,
 /area/centcom/lounge)
-"dvx" = (
-/obj/machinery/door/airlock/pyro,
-/obj/disposalpipe/segment/vertical,
-/turf/unsimulated/floor/grey,
-/area/afterlife/bar)
 "dvy" = (
 /turf/unsimulated/floor{
 	icon_state = "floor"
@@ -62730,10 +62321,11 @@
 	icon_state = "blue"
 	})
 "dvY" = (
-/obj/map/light/brightwhite,
-/obj/machinery/disposal,
-/obj/disposalpipe/trunk/east,
-/turf/unsimulated/floor/wood/two,
+/obj/decal/boxingropeenter{
+	dir = 4;
+	icon_state = "ringrope"
+	},
+/turf/unsimulated/floor/specialroom/gym,
 /area/afterlife/bar)
 "dvZ" = (
 /obj/machinery/light{
@@ -62826,11 +62418,6 @@
 /obj/item/clothing/mask/horse_mask/cursed/monkey,
 /turf/unsimulated/floor/wood/two,
 /area/centcom/offices/edad)
-"dwo" = (
-/obj/machinery/computer/tetris,
-/obj/map/light/brightwhite,
-/turf/unsimulated/floor/wood/two,
-/area/afterlife/bar)
 "dwp" = (
 /obj/admin_plaque{
 	name = "ZeWaka's Office";
@@ -65858,6 +65445,13 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"dEi" = (
+/obj/decal/tile_edge/line/green{
+	dir = 8;
+	icon_state = "line1"
+	},
+/turf/unsimulated/floor/wood/two,
+/area/afterlife/bar)
 "dEm" = (
 /obj/table/wood/auto/desk,
 /obj/item/paper/blueprint{
@@ -66130,10 +65724,13 @@
 	icon_state = "blue"
 	})
 "dEV" = (
-/obj/map/light/white,
-/obj/map/light/brightwhite,
-/obj/machinery/vending/capsule,
-/turf/unsimulated/floor/wood/two,
+/obj/stool/bed,
+/obj/decal/cleanable/dirt,
+/obj/item/clothing/suit/bedsheet{
+	bcolor = "blue";
+	icon_state = "bedsheet-blue"
+	},
+/turf/unsimulated/floor/carpet/grime,
 /area/afterlife/bar)
 "dEW" = (
 /obj/item/storage/toilet/random{
@@ -70907,10 +70504,10 @@
 	},
 /area/centcom/lounge)
 "dRw" = (
-/obj/stool/bar{
-	name = "stool"
+/turf/unsimulated/floor/stairs/dark{
+	dir = 8;
+	icon_state = "dark_stairs"
 	},
-/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dRx" = (
 /obj/lattice{
@@ -71133,194 +70730,155 @@
 /turf/unsimulated/floor/void,
 /area/centcom/offices/lyra)
 "dRZ" = (
-/obj/machinery/bot/duckbot,
-/obj/map/light/brightwhite,
-/turf/unsimulated/floor/blackwhite/whitegrime,
+/obj/stool/bench/red,
+/obj/disposalpipe/segment/horizontal,
+/turf/unsimulated/floor/carpet{
+	dir = 8;
+	icon_state = "red2"
+	},
 /area/afterlife/bar)
 "dSa" = (
-/obj/stool/chair/comfy/green{
-	dir = 4
-	},
-/turf/unsimulated/floor/wood/two,
+/obj/disposalpipe/segment/horizontal,
+/obj/machinery/drainage,
+/turf/unsimulated/floor/black,
 /area/afterlife/bar)
 "dSb" = (
+/obj/disposalpipe/segment/horizontal,
 /obj/map/light/brightwhite,
-/turf/unsimulated/floor/blackwhite/whitegrime,
+/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dSc" = (
-/obj/item/instrument/large/piano{
-	name = "old piano"
+/obj/decal/tile_edge/line/black{
+	dir = 8;
+	icon_state = "tile1"
 	},
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/wood,
+/obj/decal/tile_edge/line/blue{
+	dir = 1;
+	icon_state = "line3"
+	},
+/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dSd" = (
-/turf/unsimulated/floor/wood,
+/obj/stool/chair/blue,
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dSe" = (
-/obj/map/light/white,
-/turf/unsimulated/floor/plating,
-/area/afterlife/bar/sanctuary)
-"dSf" = (
-/obj/stool/chair/comfy/purple{
-	dir = 8
+/obj/decal/fakeobjects/pipe/heat{
+	dir = 6;
+	icon_state = "intact"
 	},
-/turf/unsimulated/floor/wood/two,
+/turf/space/fluid/noexplosion,
+/area/afterlife/bar)
+"dSf" = (
+/obj/disposalpipe/junction/left/west,
+/turf/unsimulated/floor/grey,
 /area/afterlife/bar)
 "dSg" = (
-/obj/disposalpipe/junction/right/east,
-/obj/decal/tile_edge/line/black{
-	dir = 4;
-	icon_state = "tile1"
-	},
-/obj/table/reinforced/bar/auto,
-/obj/decal/tile_edge/line/black{
-	dir = 4;
-	icon_state = "tile1"
-	},
-/obj/machinery/glass_recycler{
-	glass_amt = 666
-	},
-/turf/unsimulated/floor/carpet{
-	dir = 1;
-	icon_state = "fred1"
-	},
+/obj/grille/steel,
+/obj/window/auto/reinforced,
+/turf/unsimulated/floor/plating,
 /area/afterlife/bar)
 "dSh" = (
-/obj/machinery/disposal,
-/obj/disposalpipe/trunk/south{
-	dir = 4
-	},
-/obj/map/light/white,
-/turf/unsimulated/floor/wood,
-/area/afterlife/bar/sanctuary)
-"dSi" = (
-/obj/ladder{
-	icon_state = "ladder_wall";
-	id = "afterbar-lounge2base";
-	pixel_y = 20
-	},
-/turf/unsimulated/floor/wood/two,
-/area/afterlife/bar)
-"dSj" = (
-/obj/stool/chair/comfy/blue{
-	dir = 4;
-	tag = "icon-chair_comfy-blue (EAST)"
+/obj/dartboard{
+	pixel_y = 32
 	},
 /turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dSk" = (
-/obj/critter/boogiebot,
-/obj/map/light/brightwhite,
-/turf/unsimulated/floor/blackwhite/whitegrime,
+/obj/stool/bench/yellow,
+/turf/unsimulated/floor/carpet{
+	dir = 8;
+	icon_state = "red2"
+	},
 /area/afterlife/bar)
 "dSl" = (
-/obj/stool/chair/comfy/red{
-	dir = 8
-	},
-/turf/unsimulated/floor/wood/two,
+/obj/kitchenspike,
+/turf/unsimulated/floor/grey,
 /area/afterlife/bar)
 "dSm" = (
-/obj/stool/chair/comfy/purple,
-/turf/unsimulated/floor/wood/two,
-/area/afterlife/bar)
-"dSn" = (
-/obj/decal/boxingrope{
-	density = 0;
-	dir = 10
+/obj/machinery/deep_fryer{
+	dir = 8;
+	icon_state = "fryer0"
 	},
-/obj/table/wood/round/auto,
-/turf/unsimulated/floor/wood/two,
+/turf/unsimulated/floor/grey,
 /area/afterlife/bar)
 "dSo" = (
-/obj/decal/tile_edge/stripe{
-	dir = 4
+/obj/decal/boxingrope{
+	dir = 8;
+	icon_state = "ringrope"
 	},
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/wood,
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	layer = 9.1;
+	pixel_x = -10
+	},
+/turf/unsimulated/floor/specialroom/gym,
 /area/afterlife/bar)
 "dSp" = (
-/obj/table/wood/round/auto,
-/obj/item/plate,
-/obj/item/reagent_containers/food/snacks/burger/plague,
-/turf/unsimulated/floor/wood/two,
-/area/afterlife/bar)
-"dSq" = (
-/obj/stool/bar,
-/turf/unsimulated/floor/wood/two,
-/area/afterlife/bar)
-"dSr" = (
-/obj/table/wood/round/auto,
-/obj/item/instrument/fiddle,
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/carpet{
-	dir = 10;
-	icon_state = "fgreen2"
+/obj/decal/boxingropeenter{
+	dir = 9;
+	icon_state = "ringrope";
+	name = "Boxing ropes"
 	},
+/turf/unsimulated/floor/specialroom/gym,
 /area/afterlife/bar)
 "dSs" = (
-/obj/stool/bar{
-	name = "stool"
-	},
-/obj/decal/tile_edge/stripe,
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/wood,
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dSt" = (
-/obj/machinery/vending/coffee,
-/turf/unsimulated/floor/wood/two,
+/obj/disposalpipe/segment/horizontal,
+/obj/death_button{
+	desc = "A button. One that removes you from the afterlife bar (if you press it).";
+	icon = 'icons/obj/monitors.dmi';
+	icon_state = "party";
+	name = "afterlife bar ejection button"
+	},
+/turf/unsimulated/wall/other,
 /area/afterlife/bar)
 "dSu" = (
-/obj/decal/tile_edge/line/green{
-	dir = 5;
-	icon_state = "line1"
-	},
-/turf/unsimulated/floor/wood/two,
-/area/afterlife/bar)
-"dSv" = (
-/obj/decal/tile_edge/line/green{
-	dir = 1;
-	icon_state = "line1"
-	},
+/obj/disposalpipe/junction/left/west,
 /turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dSw" = (
-/obj/decal/tile_edge/line/green{
-	dir = 9;
-	icon_state = "line1"
+/obj/stool/bench/red,
+/obj/disposalpipe/segment/bent/south,
+/turf/unsimulated/floor/carpet{
+	icon_state = "red2"
 	},
-/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dSx" = (
-/obj/stool/chair/couch{
-	dir = 8
+/obj/stool/bench/blue,
+/obj/disposalpipe/segment/vertical,
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/carpet{
+	icon_state = "red2"
 	},
-/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dSy" = (
-/obj/stool/chair/couch{
-	dir = 4
+/obj/decal/boxingropeenter{
+	name = "Boxing ropes"
 	},
-/turf/unsimulated/floor/wood/two,
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/specialroom/gym,
 /area/afterlife/bar)
 "dSz" = (
+/obj/machinery/light,
 /obj/table/wood/round/auto,
-/obj/item/instrument/harmonica,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = -6;
-	pixel_y = 10
-	},
-/obj/decal/tile_edge/stripe,
-/obj/decal/tile_edge/stripe{
-	dir = 4
-	},
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/wood,
+/obj/item/device/light/candle/small,
+/obj/item/implant/projectile/bardart,
+/obj/item/implant/projectile/bardart,
+/obj/item/implant/projectile/bardart,
+/obj/item/implant/projectile/bardart,
+/obj/item/implant/projectile/bardart,
+/obj/item/implant/projectile/bardart,
+/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dSA" = (
-/obj/decal/boxingrope,
-/obj/table/wood/round/auto,
-/turf/unsimulated/floor/wood/two,
+/obj/decal/pole,
+/turf/unsimulated/wall/other,
 /area/afterlife/bar)
 "dSB" = (
 /obj/map/light/brightwhite,
@@ -71328,76 +70886,51 @@
 /turf/unsimulated/floor/wood/two,
 /area/dojo)
 "dSC" = (
-/obj/decal/boxingrope{
-	density = 0;
-	dir = 6
+/obj/stool/chair/comfy/green{
+	dir = 1;
+	icon_state = "chair_comfy-green"
 	},
-/obj/table/wood/round/auto,
 /turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dSD" = (
-/obj/stool/chair/comfy/red,
+/obj/decal/tile_edge/line/green{
+	dir = 2;
+	icon_state = "line1"
+	},
+/obj/map/light/brightwhite,
 /turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dSE" = (
-/obj/stool/chair/comfy{
-	dir = 4
-	},
-/turf/unsimulated/floor/wood/two,
-/area/afterlife/bar)
-"dSF" = (
-/obj/machinery/vending/kitchen{
-	freestuff = 1
-	},
-/turf/unsimulated/floor/grey,
-/area/afterlife/bar)
-"dSG" = (
-/obj/stool/chair/comfy{
-	dir = 8
-	},
+/obj/disposalpipe/segment/horizontal,
 /turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dSH" = (
-/obj/decal/boxingropeenter{
-	dir = 8
+/obj/decal/tile_edge/floorguide/botany{
+	dir = 1
 	},
-/turf/unsimulated/floor/specialroom/gym,
-/area/afterlife/bar)
-"dSI" = (
-/obj/stool/bar{
-	name = "stool"
-	},
-/obj/map/light/brightwhite,
-/turf/unsimulated/floor/wood/two,
+/obj/decal/tile_edge/floorguide/arrow_s,
+/turf/unsimulated/floor/wood,
 /area/afterlife/bar)
 "dSJ" = (
-/obj/table/wood/round/auto,
-/obj/item/game_kit,
-/obj/map/light/white,
+/obj/disposalpipe/segment/bent/west,
 /turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dSK" = (
-/obj/map/light/brightwhite,
-/turf/unsimulated/floor/specialroom/gym,
+/obj/disposaloutlet/south,
+/obj/disposalpipe/trunk/east,
+/turf/unsimulated/floor/plating,
 /area/afterlife/bar)
 "dSL" = (
-/obj/table/wood/round/auto,
-/obj/item/plate,
-/obj/item/reagent_containers/food/snacks/burger/sloppyjoe,
-/turf/unsimulated/floor/wood/two,
+/obj/decal/boxingropeenter{
+	dir = 6;
+	icon_state = "ringrope";
+	name = "Boxing ropes"
+	},
+/turf/unsimulated/floor/specialroom/gym,
 /area/afterlife/bar)
 "dSM" = (
-/obj/table/wood/round/auto,
-/obj/decal/cleanable/dirt,
-/obj/item/paper_bin,
-/obj/item/pen{
-	desc = "It's a normal black ink pen. Looks like it has been chewed on."
-	},
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/carpet{
-	dir = 9;
-	icon_state = "fgreen2"
-	},
+/obj/disposalpipe/segment/horizontal,
+/turf/unsimulated/floor/black,
 /area/afterlife/bar)
 "dSN" = (
 /obj/decal/fakeobjects/teleport_pad{
@@ -71408,186 +70941,143 @@
 /turf/unsimulated/floor/cave,
 /area/cavetiny)
 "dSO" = (
-/obj/table/wood/round/auto,
-/obj/item/decoration/ashtray{
-	icon_state = "ashtray4"
-	},
-/obj/map/light/white,
-/turf/unsimulated/floor/wood/two,
+/obj/machinery/vending/snack,
+/turf/unsimulated/floor/black,
 /area/afterlife/bar)
 "dSP" = (
-/obj/table/wood/round/auto,
-/obj/item/plate,
-/obj/item/reagent_containers/food/snacks/haggis,
-/obj/item/kitchen/utensil/fork{
-	pixel_x = -4
+/obj/disposalpipe/segment/horizontal,
+/obj/machinery/door/airlock/pyro{
+	dir = 8;
+	icon_state = "generic_closed"
 	},
-/obj/item/kitchen/utensil/knife{
-	pixel_x = 4
-	},
-/turf/unsimulated/floor/carpet{
-	dir = 5;
-	icon_state = "fgreen2"
-	},
+/turf/unsimulated/floor/black,
 /area/afterlife/bar)
 "dSQ" = (
 /obj/death_button/create_dummy,
 /turf/unsimulated/wall/auto/reinforced/supernorn,
 /area/sim/gunsim)
 "dSR" = (
-/obj/table/wood/round/auto,
-/obj/item/instrument/saxophone,
-/turf/unsimulated/floor/carpet{
-	dir = 10;
-	icon_state = "fgreen2"
-	},
+/obj/machinery/disposal,
+/obj/disposalpipe/trunk/south,
+/obj/decal/cleanable/dirt,
+/turf/unsimulated/floor/black,
 /area/afterlife/bar)
 "dSS" = (
-/obj/stool/chair/couch{
-	dir = 9
+/obj/machinery/door/airlock/pyro{
+	dir = 8;
+	icon_state = "generic_closed"
 	},
-/turf/unsimulated/floor/wood/two,
+/turf/unsimulated/floor/carpet/grime,
 /area/afterlife/bar)
 "dST" = (
-/obj/stool/chair/couch{
-	dir = 5
-	},
-/turf/unsimulated/floor/wood/two,
+/turf/unsimulated/floor/carpet/grime,
 /area/afterlife/bar)
 "dSU" = (
-/obj/machinery/bot/skullbot/gold,
-/obj/map/light/brightwhite,
-/turf/unsimulated/floor/specialroom/gym,
+/obj/decal/cleanable/dirt,
+/obj/item/sponge,
+/turf/unsimulated/floor/plating,
 /area/afterlife/bar)
 "dSV" = (
-/obj/table/wood/round/auto,
-/obj/item/decoration/ashtray,
-/obj/map/light/white,
-/turf/unsimulated/floor/wood/two,
+/obj/disposalpipe/segment/vertical,
+/obj/machinery/light,
+/obj/decal/fakeobjects/pipe/heat,
+/turf/space/fluid/noexplosion,
 /area/afterlife/bar)
 "dSW" = (
-/obj/table/wood/round/auto,
-/obj/item/cigpacket/cigarillo{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/obj/item/cigpacket/cigarillo{
-	pixel_x = 4;
-	pixel_y = 1
-	},
-/obj/map/light/white,
-/turf/unsimulated/floor/wood/two,
+/obj/storage/closet/wardrobe/black/formalwear,
+/obj/item/clothing/under/misc/lawyer,
+/obj/item/storage/box/lightbox/tubes/red,
+/turf/unsimulated/floor/carpet/grime,
 /area/afterlife/bar)
 "dSX" = (
-/obj/table/wood/round/auto,
-/obj/item/instrument/bagpipe,
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/carpet{
-	dir = 6;
-	icon_state = "fgreen2"
+/obj/storage/crate{
+	desc = "A small, cuboid object with a hinged top and empty interior. It smells kinda bad and seems to have an odd stain on it.";
+	icon = 'icons/misc/halloween.dmi';
+	name = "dented crate"
 	},
+/obj/item/paper{
+	icon_state = "paper";
+	info = "<i>not everything is related. spend less time looking for walls and more time inventing new types of spaghetti</i>";
+	name = "your next clue";
+	pixel_x = -2
+	},
+/obj/item/clothing/mask/cigarette/john,
+/turf/unsimulated/floor/plating,
 /area/afterlife/bar)
 "dSY" = (
-/obj/map/light/white,
-/turf/unsimulated/floor/wood/two,
+/obj/table/wood/round/auto,
+/obj/item/instrument/fiddle,
+/turf/unsimulated/floor/carpet{
+	dir = 8;
+	icon_state = "fgreen1"
+	},
 /area/afterlife/bar)
 "dSZ" = (
-/obj/table/wood/round/auto,
-/obj/item/instrument/bikehorn,
-/turf/unsimulated/floor/carpet{
-	icon_state = "fgreen2"
-	},
-/area/afterlife/bar)
-"dTa" = (
-/obj/machinery/vending/cigarette,
-/obj/map/light/white,
-/turf/unsimulated/floor/wood/two,
+/obj/critter/boogiebot,
+/turf/unsimulated/floor/blackwhite/whitegrime,
 /area/afterlife/bar)
 "dTb" = (
-/obj/table/wood/round/auto,
-/obj/decal/cleanable/dirt,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/carpet{
-	dir = 9;
-	icon_state = "fgreen2"
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	layer = 9.1;
+	pixel_x = 10
 	},
+/obj/disposalpipe/segment/vertical,
+/obj/machinery/vending/kitchen{
+	freestuff = 1
+	},
+/turf/unsimulated/floor/grey,
 /area/afterlife/bar)
 "dTc" = (
 /obj/map/light/brightwhite,
-/obj/decal/nothing{
-	dir = 8;
-	mouse_opacity = 0
-	},
-/turf/unsimulated/floor/grass/random,
-/area/area_that_kills_you_if_you_enter_it)
+/turf/unsimulated/wall/other,
+/area/afterlife/bar)
 "dTd" = (
-/obj/decal/boxingrope{
-	dir = 8
+/obj/decal/tile_edge/floorguide/arrow_s{
+	dir = 1
 	},
-/obj/map/light/brightwhite,
-/turf/unsimulated/floor/specialroom/gym,
+/obj/decal/tile_edge/floorguide/botany,
+/turf/unsimulated/floor/wood,
 /area/afterlife/bar)
 "dTe" = (
 /turf/unsimulated/floor/lava,
 /area/sim/racing_track)
 "dTf" = (
-/obj/decal/boxingrope{
-	dir = 4
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	layer = 9.1;
+	pixel_x = -10
 	},
-/obj/map/light/brightwhite,
-/turf/unsimulated/floor/specialroom/gym,
+/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dTg" = (
-/obj/decal/boxingropeenter{
-	dir = 9;
-	name = "Boxing ropes"
-	},
 /obj/map/light/brightwhite,
-/turf/unsimulated/floor/specialroom/gym,
+/obj/decal/tile_edge/floorguide/arrow_s{
+	dir = 1
+	},
+/obj/decal/tile_edge/floorguide/botany,
+/turf/unsimulated/floor/wood,
 /area/afterlife/bar)
 "dTh" = (
-/obj/decal/boxingropeenter{
-	dir = 6;
-	name = "Boxing ropes"
+/obj/decal/cleanable/dirt,
+/obj/machinery/light_switch/east,
+/obj/submachine/chef_sink/chem_sink{
+	desc = "A water-filled unit intended for custodial purposes.";
+	dir = 8;
+	name = "custodial sink";
+	pixel_x = 2
 	},
-/obj/map/light/brightwhite,
-/turf/unsimulated/floor/specialroom/gym,
+/turf/unsimulated/floor/plating,
 /area/afterlife/bar)
-"dTi" = (
-/obj/stool/chair/comfy{
-	dir = 1
-	},
-/turf/unsimulated/floor/carpet{
-	dir = 10;
-	icon_state = "fblue2";
-	tag = "icon-fblue2 (SOUTHWEST)"
-	},
-/area/afterlife/bar/sanctuary)
 "dTj" = (
-/obj/stool/chair/comfy{
-	dir = 1
-	},
-/turf/unsimulated/floor/carpet{
-	icon_state = "fblue2";
-	tag = "icon-fblue2"
-	},
-/area/afterlife/bar/sanctuary)
-"dTk" = (
-/obj/disposalpipe/segment/vertical,
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/grey,
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/wood,
 /area/afterlife/bar)
 "dTl" = (
-/obj/stool/chair/comfy{
-	dir = 1
-	},
-/turf/unsimulated/floor/carpet{
-	dir = 6;
-	icon_state = "fblue2";
-	tag = "icon-fblue2 (SOUTHEAST)"
-	},
-/area/afterlife/bar/sanctuary)
+/turf/unsimulated/floor/wood,
+/area/afterlife/bar)
 "dTm" = (
 /obj/decal/stage_edge{
 	layer = 2.8;
@@ -71597,155 +71087,102 @@
 /turf/unsimulated/floor/grass/random,
 /area/afterlife/heaven)
 "dTn" = (
-/obj/table/wood/round/auto,
-/obj/decal/cleanable/dirt,
-/obj/item/reagent_containers/food/drinks/bottle/thegoodstuff,
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/carpet{
-	dir = 6;
-	icon_state = "fgreen2"
-	},
+/turf/unsimulated/floor/blackwhite/whitegrime,
 /area/afterlife/bar)
 "dTo" = (
-/obj/table/wood/round/auto,
-/obj/item/razor_blade,
-/obj/item/scissors,
-/turf/unsimulated/floor/carpet{
-	dir = 5;
-	icon_state = "fgreen2"
+/obj/decal/tile_edge/floorguide/arrow_s{
+	dir = 1
 	},
+/obj/decal/tile_edge/floorguide/botany,
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	layer = 9.1;
+	pixel_x = -10
+	},
+/turf/unsimulated/floor/wood,
 /area/afterlife/bar)
 "dTp" = (
-/obj/stool/chair/comfy/yellow,
+/obj/decal/tile_edge/line/green{
+	dir = 2;
+	icon_state = "line1"
+	},
 /turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
-"dTq" = (
-/obj/disposalpipe/segment/bent/west,
-/turf/unsimulated/floor/grey,
-/area/afterlife/bar)
-"dTr" = (
-/obj/submachine/chef_oven{
-	desc = "An appliance back from the dead.";
-	dir = 8;
-	name = "salvaged oven"
-	},
-/turf/unsimulated/floor/grey,
-/area/afterlife/bar)
 "dTs" = (
-/obj/table/wood/round/auto,
-/obj/item/plate,
-/obj/item/reagent_containers/food/snacks/meatloaf,
-/obj/item/kitchen/utensil/fork{
-	pixel_x = -4
-	},
-/turf/unsimulated/floor/carpet{
-	dir = 10;
-	icon_state = "fgreen2"
-	},
-/area/afterlife/bar)
-"dTt" = (
+/obj/machinery/vending/monkey,
 /obj/decal/cleanable/dirt,
-/obj/map/light/brighterwhite,
 /turf/unsimulated/floor/grey,
 /area/afterlife/bar)
 "dTu" = (
-/obj/table/wood/round/auto,
-/obj/decal/cleanable/dirt,
-/obj/item/instrument/trumpet,
-/obj/map/light/brighterwhite,
-/turf/unsimulated/floor/carpet{
-	dir = 6;
-	icon_state = "fgreen2"
+/obj/decal/tile_edge/line/black{
+	dir = 1;
+	icon_state = "tile1"
 	},
-/area/afterlife/bar)
-"dTv" = (
-/obj/machinery/vending/monkey,
-/turf/unsimulated/floor/grey,
-/area/afterlife/bar)
-"dTw" = (
-/obj/stool/chair/comfy{
-	dir = 1
+/obj/decal/tile_edge/line/blue{
+	icon_state = "line3"
 	},
 /turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
-"dTx" = (
-/obj/decal/cleanable/dirt,
-/obj/item/crowbar,
-/obj/storage/secure/closet/civilian/janitor{
-	locked = 0;
-	spawn_contents = list(/obj/item/clothing/shoes/galoshes, /obj/item/reagent_containers/glass/bottle/cleaner = 2, /obj/item/reagent_containers/glass/bottle/acetone/janitors = 1, /obj/item/reagent_containers/glass/bottle/ammonia/janitors = 1, /obj/item/device/light/flashlight, /obj/item/caution = 4)
-	},
-/obj/item/mop/old,
-/obj/item/sponge,
-/obj/item/chem_grenade/cleaner,
-/obj/item/spraybottle/cleaner/tsunami,
-/obj/machinery/shower{
-	dir = 1;
-	pixel_y = 20
-	},
-/obj/decal/cleanable/writing{
-	desc = "Someone's scratched something here.";
-	name = "scratchy writing";
-	pixel_y = 26;
-	words = "Sooner or later, i'm getting off Gehenna. Dead or alive. Sooner or later. Dead or alive."
-	},
-/turf/unsimulated/floor/plating,
-/area/afterlife/bar)
-"dTy" = (
+"dTw" = (
 /obj/map/light/brightwhite,
-/turf/unsimulated/wall/other,
+/turf/unsimulated/floor/blackwhite/whitegrime,
 /area/afterlife/bar)
 "dTz" = (
-/obj/decal/boxingrope,
-/obj/table/wood/round/auto,
-/obj/map/light/white,
+/obj/machinery/computer/arcade{
+	desc = "The VR representation of a popular computer game."
+	},
 /turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dTA" = (
-/obj/decal/stage_edge,
-/obj/item/wrestlingbell{
-	density = 0;
-	pixel_y = 7
+/obj/machinery/bathtub{
+	anchored = 1;
+	dir = 4
 	},
-/obj/map/light/white,
-/turf/unsimulated/floor/wood/two,
+/turf/unsimulated/floor/plating,
 /area/afterlife/bar)
 "dTB" = (
-/turf/unsimulated/floor/plating,
-/area/afterlife/bar)
-"dTC" = (
-/obj/decal/cleanable/vomit{
-	desc = "Someone lost their lunch.  A long time ago.";
-	name = "dried vomit"
+/obj/decal/fakeobjects{
+	desc = "Geocities, is that you?";
+	dir = 1;
+	icon = 'icons/obj/junk.dmi';
+	icon_state = "construction";
+	name = "construction zone"
 	},
-/obj/item/storage/toilet/random{
-	dir = 8;
-	tag = "icon-toilet (WEST)"
-	},
-/obj/item/spacecash/buttcoin,
-/turf/unsimulated/floor/plating,
+/turf/unsimulated/floor/black,
 /area/afterlife/bar)
 "dTD" = (
-/obj/machinery/vending/snack,
-/turf/unsimulated/floor/wood/two,
-/area/afterlife/bar)
-"dTE" = (
-/obj/disposalpipe/segment/vertical,
-/obj/decal/poster/wallsign/poster_clown,
-/turf/unsimulated/wall/other,
-/area/afterlife/bar)
-"dTF" = (
-/obj/disposaloutlet/north,
-/obj/disposalpipe/trunk/south,
+/obj/machinery/door/airlock/pyro/maintenance{
+	dir = 8;
+	icon_state = "maint_closed"
+	},
+/obj/decal/cleanable/oil,
 /turf/unsimulated/floor/plating,
 /area/afterlife/bar)
+"dTE" = (
+/obj/decal/tile_edge/line/black{
+	dir = 9;
+	icon_state = "tile1"
+	},
+/obj/decal/tile_edge/line/blue{
+	dir = 6;
+	icon_state = "line4"
+	},
+/turf/unsimulated/floor/wood/two,
+/area/afterlife/bar)
+"dTF" = (
+/obj/storage/closet/wardrobe/pride,
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/black,
+/area/afterlife/bar)
 "dTG" = (
-/obj/disposalpipe/segment/bent/west,
+/obj/decal/poster/wallsign/poster_sol,
 /turf/unsimulated/wall/other,
 /area/afterlife/bar)
 "dTH" = (
-/obj/decal/cleanable/paper,
-/turf/unsimulated/floor/plating,
+/obj/storage/closet/wardrobe/wizard,
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/black,
 /area/afterlife/bar)
 "dTI" = (
 /obj/decal/fakeobjects/firelock_broken{
@@ -71767,20 +71204,11 @@
 /turf/unsimulated/floor/delivery,
 /area/crypt/sigma/lab)
 "dTJ" = (
-/obj/decal/cleanable/paper,
-/obj/submachine/slot_machine/cash,
-/obj/map/light/white,
-/turf/unsimulated/floor/plating,
+/turf/unsimulated/floor/black,
 /area/afterlife/bar)
 "dTK" = (
-/obj/disposalpipe/segment/vertical,
-/obj/decal/cleanable/writing{
-	desc = "Someone's scratched something here.";
-	name = "scratchy writing";
-	pixel_y = 26;
-	words = "Sooner or later, i'm getting off Gehenna. Dead or alive. Sooner or later. Dead or alive."
-	},
-/turf/unsimulated/wall/other,
+/obj/machinery/door/airlock/pyro,
+/turf/unsimulated/floor/black,
 /area/afterlife/bar)
 "dTL" = (
 /obj/shrub{
@@ -72052,6 +71480,10 @@
 	},
 /turf/unsimulated/floor/wood/two,
 /area/centcom/offices/efrem)
+"ejH" = (
+/obj/item/matchbook,
+/turf/unsimulated/floor/plating,
+/area/afterlife/bar)
 "enf" = (
 /turf/unsimulated/wall/auto/lead/white,
 /area/moon/museum/west)
@@ -72090,6 +71522,30 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
+"eqI" = (
+/obj/table/wood/round/auto,
+/obj/decal/cleanable/dirt,
+/obj/item/instrument/trumpet,
+/turf/unsimulated/floor/carpet{
+	dir = 6;
+	icon_state = "fgreen2"
+	},
+/area/afterlife/bar)
+"esk" = (
+/obj/storage/closet/wardrobe/orange,
+/obj/item/device/light/glowstick,
+/obj/item/wrench,
+/obj/item/storage/box/costume/clown{
+	spawn_contents = list(/obj/item/clothing/mask/clown_hat,/obj/item/clothing/under/misc/clown,/obj/item/clothing/shoes/clown_shoes,/obj/item/storage/fanny/funny,/obj/item/card/id/clown)
+	},
+/obj/item/clothing/suit/bedsheet{
+	bcolor = "captain";
+	desc = "This colorful and somewhat childish bedsheet helps the captain sleep at night.";
+	icon_state = "bedsheet-captain";
+	name = "special bedsheet"
+	},
+/turf/unsimulated/floor/plating,
+/area/afterlife/bar)
 "eso" = (
 /turf/unsimulated/floor/dream/beach{
 	icon_state = "shore-33"
@@ -72568,6 +72024,16 @@
 	icon_state = "shore-11"
 	},
 /area/titlescreen)
+"fIu" = (
+/obj/disposalpipe/segment/bent/west,
+/obj/submachine/chef_oven{
+	desc = "An appliance back from the dead.";
+	dir = 8;
+	icon_state = "oven_off";
+	name = "salvaged oven"
+	},
+/turf/unsimulated/floor/grey,
+/area/afterlife/bar)
 "fKf" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -72678,9 +72144,11 @@
 	icon_state = "blue"
 	})
 "gbs" = (
-/obj/submachine/slot_machine/cash,
-/obj/map/light/white,
-/turf/unsimulated/floor/wood/two,
+/obj/machinery/door/airlock/pyro/glass{
+	dir = 8;
+	name = "door to heaven"
+	},
+/turf/unsimulated/floor/wood,
 /area/afterlife/bar)
 "gbA" = (
 /obj/storage/crate,
@@ -72756,6 +72224,14 @@
 	icon_state = "Stairs2_wide"
 	},
 /area/centcom)
+"gnP" = (
+/obj/table/wood/round/auto,
+/obj/item/razor_blade,
+/turf/unsimulated/floor/carpet{
+	dir = 5;
+	icon_state = "fgreen2"
+	},
+/area/afterlife/bar)
 "gpj" = (
 /obj/table,
 /obj/item/paper/book/from_file/pharmacopia,
@@ -72841,6 +72317,10 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
+"gKq" = (
+/obj/machinery/light_switch/east,
+/turf/unsimulated/floor/black,
+/area/afterlife/bar)
 "gLs" = (
 /turf/unsimulated/floor/dream/beach{
 	icon_state = "shore-19"
@@ -72876,6 +72356,10 @@
 	},
 /turf/unsimulated/wall/auto/lead/blue,
 /area/crater/biodome/maint)
+"gQT" = (
+/obj/disposalpipe/loafer/horizontal,
+/turf/unsimulated/floor/grey,
+/area/afterlife/bar)
 "gUy" = (
 /obj/lattice{
 	dir = 4;
@@ -72964,11 +72448,9 @@
 	name = "Thunderdome Lounge"
 	})
 "hkk" = (
-/obj/stool/bench/blue,
-/turf/unsimulated/floor/carpet{
-	dir = 8;
-	icon_state = "red2"
-	},
+/obj/machinery/vending/cigarette,
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "hky" = (
 /obj/securearea,
@@ -73024,6 +72506,13 @@
 	},
 /turf/unsimulated/wall/auto/lead/blue,
 /area/upper_arctic/pod2)
+"huW" = (
+/obj/stool/bench/blue,
+/turf/unsimulated/floor/carpet{
+	dir = 8;
+	icon_state = "red2"
+	},
+/area/afterlife/bar)
 "hwJ" = (
 /obj/stool/chair/comfy/shuttle,
 /obj/machinery/light{
@@ -73092,6 +72581,15 @@
 "hCh" = (
 /turf/unsimulated/wall/auto/lead/gray,
 /area/sim/tdome/tdome2)
+"hCn" = (
+/obj/decal/cleanable/dirt,
+/obj/storage/closet/wardrobe/green,
+/obj/item/storage/toolbox/emergency,
+/obj/item/clothing/under/shorts/psyche,
+/obj/item/storage/box/lightbox/tubes/blacklight,
+/obj/item/clothing/under/color/lime,
+/turf/unsimulated/floor/plating,
+/area/afterlife/bar)
 "hCp" = (
 /obj/stool/chair/comfy/shuttle{
 	desc = "Equipped with a safety buckle!";
@@ -73171,6 +72669,17 @@
 	},
 /turf/unsimulated/floor/wood/seven,
 /area/centcom/offices/sovexe)
+"hQA" = (
+/obj/machinery/door/airlock/pyro/glass{
+	desc = "I bet this goes somewhere exciting!!!!!!!!!!!!!";
+	dir = 1;
+	icon_state = "glass_closed";
+	name = "door to...";
+	req_access_txt = null
+	},
+/obj/decal/tile_edge/floorguide/botany,
+/turf/unsimulated/floor/wood,
+/area/afterlife/bar)
 "hRf" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 1;
@@ -73258,6 +72767,22 @@
 /obj/burning_barrel,
 /turf/unsimulated/floor/setpieces/rootfloor,
 /area/centcom/offices/marknstein)
+"ifR" = (
+/turf/unsimulated/floor/grey,
+/area/afterlife/bar)
+"iin" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	layer = 9.1;
+	pixel_x = -10
+	},
+/obj/storage/secure/closet/fridge/kitchen{
+	locked = 0
+	},
+/obj/item/plant/herb/cannabis/spawnable,
+/turf/unsimulated/floor/grey,
+/area/afterlife/bar)
 "iiP" = (
 /turf/simulated/wall/auto/shuttle{
 	icon_state = "13"
@@ -73284,6 +72809,11 @@
 	},
 /turf/space/shuttle_transit,
 /area/shuttle_transit_space/east)
+"ipM" = (
+/obj/stool/chair/comfy/red,
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/wood/two,
+/area/afterlife/bar)
 "iqT" = (
 /turf/simulated/wall/auto/shuttle{
 	icon_state = "14"
@@ -73972,6 +73502,18 @@
 /obj/machinery/light/fluorescent/greenish,
 /turf/unsimulated/floor/setpieces/swampgrass,
 /area/centcom/offices/tterc)
+"kng" = (
+/obj/table/reinforced/bar/auto,
+/obj/decal/tile_edge/line/black{
+	dir = 1;
+	icon_state = "tile1"
+	},
+/obj/item/device/light/candle/small,
+/turf/unsimulated/floor/carpet{
+	dir = 1;
+	icon_state = "fred1"
+	},
+/area/afterlife/bar)
 "koi" = (
 /obj/item/clothing/under/gimmick/princess{
 	color = "#8c0b0b"
@@ -74126,6 +73668,14 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"kLx" = (
+/obj/stool/chair/comfy/purple{
+	dir = 1;
+	icon_state = "chair_comfy-purple"
+	},
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/wood/two,
+/area/afterlife/bar)
 "kOu" = (
 /obj/indestructible/shuttle_corner{
 	dir = 1;
@@ -74147,6 +73697,15 @@
 	icon_state = "Stairs_wide"
 	},
 /area/centcom)
+"kQe" = (
+/obj/decal/tile_edge/line/green{
+	dir = 6;
+	icon_state = "line1"
+	},
+/obj/map/light/brightwhite,
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/wood/two,
+/area/afterlife/bar)
 "kRQ" = (
 /obj/grille/steel,
 /obj/window/reinforced{
@@ -74163,6 +73722,22 @@
 	name = "plating"
 	},
 /area/hospital/samostrel)
+"kUY" = (
+/obj/table/reinforced/bar/auto,
+/obj/decal/tile_edge/line/black{
+	dir = 1;
+	icon_state = "tile1"
+	},
+/obj/disposalpipe/segment/vertical,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	layer = 9.1;
+	pixel_x = 10
+	},
+/obj/machinery/microwave,
+/turf/unsimulated/floor/carpet,
+/area/afterlife/bar)
 "kUZ" = (
 /obj/indestructible/shuttle_corner{
 	dir = 8;
@@ -74170,6 +73745,11 @@
 	},
 /turf/unsimulated/outdoors/grass,
 /area/shuttle/merchant_shuttle/diner_centcom)
+"kVB" = (
+/obj/decal/cleanable/dirt,
+/obj/machinery/gibber/output_east,
+/turf/unsimulated/floor/grey,
+/area/afterlife/bar)
 "kVK" = (
 /obj/stool/chair,
 /turf/space,
@@ -74275,6 +73855,15 @@
 	icon_state = "wall"
 	},
 /area/hospital/samostrel)
+"lqy" = (
+/obj/stool/bed,
+/obj/decal/cleanable/dirt,
+/obj/item/clothing/suit/bedsheet{
+	bcolor = "yellow";
+	icon_state = "bedsheet-yellow"
+	},
+/turf/unsimulated/floor/carpet/grime,
+/area/afterlife/bar)
 "lrI" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 1;
@@ -74315,6 +73904,13 @@
 	dir = 5
 	},
 /area/hospital/samostrel)
+"ltA" = (
+/obj/disposalpipe/segment/horizontal,
+/turf/unsimulated/floor/carpet{
+	dir = 10;
+	icon_state = "red2"
+	},
+/area/afterlife/bar)
 "luV" = (
 /obj/indestructible/shuttle_corner{
 	icon_state = "wall3_trans"
@@ -74356,6 +73952,20 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/merchant_shuttle/right_centcom/donut2)
+"lxR" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	layer = 9.1;
+	pixel_x = 10
+	},
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet{
+	bcolor = "green";
+	icon_state = "bedsheet-green"
+	},
+/turf/unsimulated/floor/carpet/grime,
+/area/afterlife/bar)
 "lxY" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 5;
@@ -74419,6 +74029,15 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/merchant_shuttle/diner_centcom)
+"lNw" = (
+/obj/table/reinforced/bar/auto,
+/obj/decal/tile_edge/line/black{
+	dir = 4;
+	icon_state = "tile1"
+	},
+/obj/item/device/light/candle/small,
+/turf/unsimulated/floor/carpet,
+/area/afterlife/bar)
 "lNP" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "It's a pipe manifold.  A grimy one.";
@@ -74506,11 +74125,14 @@
 /obj/machinery/computer3/generic/personal,
 /turf/unsimulated/floor/wood/two,
 /area/centcom/offices/tarmunora)
+"lYX" = (
+/obj/disposalpipe/segment/horizontal,
+/turf/unsimulated/wall/other,
+/area/afterlife/bar)
 "lZf" = (
-/turf/unsimulated/floor/carpet{
-	dir = 10;
-	icon_state = "red2"
-	},
+/obj/machinery/chem_dispenser/soda,
+/obj/decal/cleanable/dirt,
+/turf/unsimulated/floor/black,
 /area/afterlife/bar)
 "maI" = (
 /turf/simulated/shuttle/wall{
@@ -74590,9 +74212,16 @@
 	},
 /area/hospital)
 "mje" = (
-/obj/storage/closet/office,
-/turf/unsimulated/floor/wood/two,
-/area/afterlife/bar)
+/obj/map/light/brightwhite,
+/obj/decal/nothing{
+	dir = 8;
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "floor_dark"
+	},
+/area/area_that_kills_you_if_you_enter_it)
 "mlK" = (
 /turf/space,
 /turf/unsimulated/floor/caution/north,
@@ -74660,6 +74289,19 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
+"mxu" = (
+/obj/table/reinforced/bar/auto,
+/obj/decal/tile_edge/line/black{
+	dir = 5;
+	icon_state = "tile1"
+	},
+/obj/decal/cleanable/dirt,
+/obj/item/device/light/candle/small,
+/turf/unsimulated/floor/carpet{
+	dir = 1;
+	icon_state = "fred1"
+	},
+/area/afterlife/bar)
 "mAe" = (
 /obj/machinery/light/small/floor,
 /turf/unsimulated/floor/shuttle,
@@ -74744,6 +74386,10 @@
 /obj/decal/fakeobjects/dreambeach/stones,
 /turf/unsimulated/floor/dream/beach,
 /area/titlescreen)
+"mOh" = (
+/obj/decal/cleanable/paper,
+/turf/unsimulated/floor/plating,
+/area/afterlife/bar)
 "mPz" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -74982,9 +74628,27 @@
 	icon_state = "shore-5"
 	},
 /area/titlescreen)
+"noX" = (
+/obj/machinery/drainage,
+/turf/unsimulated/floor/plating,
+/area/afterlife/bar)
 "npu" = (
 /turf/unsimulated/wall/auto/lead/gray,
 /area/sim/racing_track)
+"nrb" = (
+/obj/table/reinforced/bar/auto,
+/obj/decal/tile_edge/line/black{
+	dir = 4;
+	icon_state = "tile1"
+	},
+/obj/machinery/glass_recycler{
+	glass_amt = 666
+	},
+/turf/unsimulated/floor/carpet{
+	dir = 1;
+	icon_state = "fred1"
+	},
+/area/afterlife/bar)
 "nrk" = (
 /obj/admin_plaque{
 	name = "Enakai's Office"
@@ -75472,6 +75136,10 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/merchant_shuttle/right_centcom/donut2)
+"opg" = (
+/obj/decal/cleanable/fungus,
+/turf/unsimulated/wall/other,
+/area/afterlife/bar)
 "oqW" = (
 /obj/machinery/door/unpowered/shuttle,
 /turf/space,
@@ -75627,6 +75295,18 @@
 	name = "wood floor"
 	},
 /area/centcom/offices/sord)
+"oRF" = (
+/obj/stool/bench/green,
+/obj/disposalpipe/segment/horizontal,
+/obj/machinery/light{
+	dir = 1;
+	icon_state = "tube1";
+	pixel_y = 6
+	},
+/turf/unsimulated/floor/carpet{
+	icon_state = "red2"
+	},
+/area/afterlife/bar)
 "oSl" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/kitchen/food_box/donut_box{
@@ -75717,6 +75397,10 @@
 /obj/item/paper/postcard/mushroom,
 /turf/unsimulated/floor/wood/two,
 /area/centcom/offices/efrem)
+"pfp" = (
+/obj/machinery/door/airlock/pyro,
+/turf/unsimulated/floor/grey,
+/area/afterlife/bar)
 "pfF" = (
 /obj/table/reinforced/industrial/auto,
 /obj/machinery/computer3/generic/personal,
@@ -75886,6 +75570,23 @@
 	name = "plating"
 	},
 /area/hospital/samostrel)
+"pvW" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	layer = 9.1;
+	pixel_x = 10
+	},
+/turf/unsimulated/floor/wood/two,
+/area/afterlife/bar)
+"pxZ" = (
+/obj/decal/tile_edge/line/blue{
+	dir = 4;
+	icon_state = "line1"
+	},
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/damaged5,
+/area/afterlife/bar/barspawn)
 "pBy" = (
 /obj/item/storage/wall/emergency{
 	pixel_y = 32
@@ -76197,11 +75898,8 @@
 	},
 /area/shuttle/escape/centcom/donut3)
 "qrE" = (
-/obj/stool/bench/green,
-/turf/unsimulated/floor/carpet{
-	dir = 8;
-	icon_state = "red2"
-	},
+/obj/decal/poster/wallsign/poster_ptoe,
+/turf/unsimulated/wall/other,
 /area/afterlife/bar)
 "qsP" = (
 /obj/wingrille_spawn/auto,
@@ -76240,6 +75938,19 @@
 	name = "plating"
 	},
 /area/hospital/samostrel)
+"qwv" = (
+/obj/table/reinforced/bar/auto,
+/obj/decal/tile_edge/line/black{
+	dir = 4;
+	icon_state = "tile1"
+	},
+/obj/disposalpipe/segment/horizontal,
+/obj/item/plate,
+/turf/unsimulated/floor/carpet{
+	dir = 1;
+	icon_state = "fred1"
+	},
+/area/afterlife/bar)
 "qwW" = (
 /obj/table/reinforced/auto,
 /obj/item/reagent_containers/food/snacks/burger/plague/fishstick{
@@ -76308,6 +76019,13 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/retentioncenter)
+"qIM" = (
+/obj/ladder{
+	id = "afterlife1"
+	},
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/wood,
+/area/afterlife/bar)
 "qIQ" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "The air from it smells faintly of mildew.";
@@ -76499,15 +76217,32 @@
 	},
 /area/hospital/samostrel)
 "rlN" = (
-/obj/submachine/claw_machine,
-/turf/unsimulated/floor/wood/two,
-/area/afterlife/bar)
+/obj/decal/tile_edge/line/blue{
+	dir = 4;
+	icon_state = "line1"
+	},
+/obj/map/light/brightwhite,
+/obj/decal/tile_edge/line/blue{
+	dir = 6;
+	icon_state = "line2"
+	},
+/turf/unsimulated/floor/scorched,
+/area/afterlife/bar/barspawn)
 "rnA" = (
 /turf/unsimulated/wall{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "diagonalWall"
 	},
 /area/hospital/samostrel)
+"rnO" = (
+/turf/unsimulated/floor/black{
+	desc = "DEFINITELY NOT A FLOOR OK";
+	icon = 'icons/turf/walls.dmi';
+	icon_state = "r_wall";
+	name = "wall";
+	opacity = 1
+	},
+/area/afterlife/bar)
 "rou" = (
 /obj/rack,
 /obj/item/clothing/under/gimmick/princess,
@@ -76723,6 +76458,10 @@
 	},
 /turf/unsimulated/outdoors/grass,
 /area/shuttle/merchant_shuttle/right_centcom/destiny)
+"rNn" = (
+/obj/machinery/bot/chefbot,
+/turf/unsimulated/floor/grey,
+/area/afterlife/bar)
 "rOb" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 4
@@ -76985,6 +76724,20 @@
 /area/sim/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
+"spZ" = (
+/obj/storage/secure/closet/kitchen{
+	locked = 0
+	},
+/obj/decal/cleanable/dirt,
+/obj/item/storage/box/glassbox,
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/grey,
+/area/afterlife/bar)
+"sqd" = (
+/obj/map/light/brightwhite,
+/obj/item/instrument/large/jukebox,
+/turf/unsimulated/floor/wood/two,
+/area/afterlife/bar)
 "srg" = (
 /obj/table/auto,
 /obj/table/auto,
@@ -77028,6 +76781,12 @@
 	},
 /turf/unsimulated/wall/auto/lead/blue,
 /area/centcom/lobby)
+"svX" = (
+/obj/stool/bench/yellow,
+/turf/unsimulated/floor/carpet{
+	icon_state = "red2"
+	},
+/area/afterlife/bar)
 "sxQ" = (
 /obj/machinery/light/small/floor,
 /turf/unsimulated/floor/shuttle{
@@ -77087,6 +76846,15 @@
 /obj/item/shinai_bag,
 /turf/unsimulated/floor/wood/two,
 /area/dojo)
+"sHX" = (
+/obj/table/reinforced/bar/auto,
+/obj/decal/tile_edge/line/black{
+	dir = 1;
+	icon_state = "tile1"
+	},
+/obj/item/storage/box/glassbox,
+/turf/unsimulated/floor/carpet,
+/area/afterlife/bar)
 "sHZ" = (
 /obj/item/paper{
 	pixel_x = 7;
@@ -77318,6 +77086,13 @@
 	icon_state = "wall3dir"
 	},
 /area/shuttle/merchant_shuttle/left_centcom/cogmap)
+"tDr" = (
+/obj/stool/chair/comfy/blue{
+	dir = 1;
+	icon_state = "chair_comfy-blue"
+	},
+/turf/unsimulated/floor/wood/two,
+/area/afterlife/bar)
 "tED" = (
 /obj/stool/bee_bed,
 /obj/dialogueobj/dreambee,
@@ -77428,6 +77203,16 @@
 	},
 /turf/unsimulated/wall/auto/lead/gray,
 /area/crypt/sigma/lab)
+"ukA" = (
+/obj/item/instrument/large/piano{
+	anchored = 1;
+	name = "old piano"
+	},
+/turf/unsimulated/floor/carpet{
+	dir = 9;
+	icon_state = "red2"
+	},
+/area/afterlife/bar)
 "ukK" = (
 /turf/unsimulated/floor/dream/beach{
 	icon_state = "shore-10"
@@ -77469,6 +77254,10 @@
 	dir = 4
 	},
 /area/hospital/samostrel)
+"uoB" = (
+/obj/stool/barber_chair,
+/turf/unsimulated/floor/wood/two,
+/area/afterlife/bar)
 "uqf" = (
 /obj/decal/fakeobjects/thrust{
 	dir = 8
@@ -77546,6 +77335,14 @@
 /obj/sign_accidents,
 /turf/unsimulated/wall/auto/lead/gray,
 /area/crypt/sigma)
+"uxb" = (
+/obj/disposalpipe/segment/bent/north,
+/obj/decal/tile_edge/line/green{
+	dir = 10;
+	icon_state = "line1"
+	},
+/turf/unsimulated/floor/wood/two,
+/area/afterlife/bar)
 "uxv" = (
 /turf/unsimulated/floor/dream/beach{
 	icon_state = "shore-39"
@@ -77597,6 +77394,14 @@
 	},
 /turf/unsimulated/floor/void,
 /area/centcom/offices/tterc)
+"uGM" = (
+/obj/table/wood/round/auto,
+/obj/item/saxophone,
+/turf/unsimulated/floor/carpet{
+	dir = 10;
+	icon_state = "fgreen2"
+	},
+/area/afterlife/bar)
 "uJX" = (
 /turf/unsimulated/wall/auto/lead/blue,
 /area/upper_arctic/hall)
@@ -77620,6 +77425,12 @@
 	icon_state = "shore-17"
 	},
 /area/titlescreen)
+"uLf" = (
+/obj/table/wood/round/auto,
+/obj/bedsheetbin,
+/obj/decal/cleanable/dirt,
+/turf/unsimulated/floor/carpet/grime,
+/area/afterlife/bar)
 "uMG" = (
 /obj/railing/red{
 	dir = 8;
@@ -77913,6 +77724,15 @@
 	},
 /turf/unsimulated/outdoors/grass,
 /area/shuttle/merchant_shuttle/diner_centcom)
+"vBI" = (
+/obj/table/reinforced/bar/auto,
+/obj/decal/tile_edge/line/black{
+	dir = 4;
+	icon_state = "tile1"
+	},
+/obj/item/matchbook,
+/turf/unsimulated/floor/carpet,
+/area/afterlife/bar)
 "vCm" = (
 /obj/machinery/door/unpowered/shuttle,
 /turf/space,
@@ -77959,6 +77779,13 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"vLL" = (
+/obj/decal/tile_edge/line/green{
+	dir = 4;
+	icon_state = "line1"
+	},
+/turf/unsimulated/floor/wood/two,
+/area/afterlife/bar)
 "vNH" = (
 /obj/indestructible/shuttle_corner{
 	dir = 8;
@@ -77966,6 +77793,10 @@
 	},
 /turf/unsimulated/outdoors/grass,
 /area/shuttle/merchant_shuttle/left_centcom/destiny)
+"vUR" = (
+/obj/disposalpipe/segment/vertical,
+/turf/unsimulated/floor/wood/two,
+/area/afterlife/bar)
 "vWb" = (
 /obj/stool/chair/office/purple{
 	dir = 1
@@ -78018,6 +77849,10 @@
 	},
 /turf/space/shuttle_transit,
 /area/shuttle_transit_space/north)
+"whB" = (
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/scorched,
+/area/afterlife/bar/barspawn)
 "wky" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -78108,6 +77943,14 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/merchant_shuttle/left_centcom/destiny)
+"wyI" = (
+/obj/table/wood/round/auto,
+/obj/item/instrument/bagpipe,
+/turf/unsimulated/floor/carpet{
+	dir = 8;
+	icon_state = "fgreen1"
+	},
+/area/afterlife/bar)
 "wAz" = (
 /turf/space,
 /turf/unsimulated/floor/engine/caution/corner2{
@@ -78184,6 +78027,23 @@
 "wLo" = (
 /turf/unsimulated/wall/auto/lead/blue,
 /area/centcom/lounge)
+"wLu" = (
+/obj/decal/cleanable/dirt,
+/obj/machinery/shower{
+	dir = 1;
+	pixel_y = 20
+	},
+/obj/item/crowbar,
+/obj/storage/secure/closet/civilian/janitor{
+	locked = 0;
+	spawn_contents = list(/obj/item/clothing/shoes/galoshes, /obj/item/reagent_containers/glass/bottle/cleaner = 2, /obj/item/reagent_containers/glass/bottle/acetone/janitors = 1, /obj/item/reagent_containers/glass/bottle/ammonia/janitors = 1, /obj/item/device/light/flashlight, /obj/item/caution = 4)
+	},
+/obj/item/mop/old,
+/obj/item/sponge,
+/obj/item/chem_grenade/cleaner,
+/obj/item/spraybottle/cleaner/tsunami,
+/turf/unsimulated/floor/plating,
+/area/afterlife/bar)
 "wLD" = (
 /turf/unsimulated/floor/dream/beach{
 	icon_state = "shore-43"
@@ -78293,6 +78153,10 @@
 /turf/space,
 /turf/unsimulated/floor/caution/east,
 /area/hospital/samostrel)
+"xeC" = (
+/obj/decal/cleanable/dirt,
+/turf/unsimulated/floor/plating,
+/area/afterlife/bar)
 "xgE" = (
 /turf/unsimulated/floor/carpet/red/fancy/narrow/east,
 /area/titlescreen)
@@ -78398,6 +78262,15 @@
 	},
 /turf/unsimulated/outdoors/grass,
 /area/shuttle/merchant_shuttle/right_centcom/donut2)
+"xFi" = (
+/obj/table/wood/round/auto,
+/obj/decal/cleanable/dirt,
+/obj/item/storage/box/nerd_kit,
+/turf/unsimulated/floor/carpet{
+	dir = 9;
+	icon_state = "fgreen2"
+	},
+/area/afterlife/bar)
 "xGt" = (
 /obj/item/sticker/gold_star{
 	pixel_x = -3
@@ -78628,6 +78501,16 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
+"yhb" = (
+/obj/disposalpipe/segment/vertical,
+/obj/submachine/chef_sink{
+	dir = 4;
+	name = "bar sink"
+	},
+/obj/decal/cleanable/dirt,
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/grey,
+/area/afterlife/bar)
 "yiq" = (
 /obj/item/reagent_containers/food/snacks/donut/custom/frosted{
 	desc = "IT HIM, IT REALLY HIM";
@@ -96431,10 +96314,10 @@ cpK
 cpL
 cpq
 aaa
-daS
-dTc
-dTc
-daS
+cnw
+cnw
+cnw
+cnw
 aaa
 cnx
 cnB
@@ -96733,10 +96616,10 @@ cqo
 cpq
 cpq
 aaa
-daM
-daT
-daT
-daM
+cnw
+cnw
+cnw
+cnw
 aaa
 ctb
 cnB
@@ -97035,10 +96918,10 @@ cqh
 cpL
 cpq
 aaa
-daN
-daT
-daT
-daM
+cnw
+cnw
+cnw
+cnw
 aaa
 ctb
 ctb
@@ -97337,10 +97220,10 @@ cpv
 cpH
 cpq
 aaa
-daM
-daX
-daX
-daM
+cnw
+cnw
+cnw
+cnw
 aaa
 cnz
 cnC
@@ -97639,10 +97522,10 @@ crb
 cpK
 cpq
 aaa
-daM
-dch
-dch
-daM
+cnw
+cnw
+cnw
+cnw
 aaa
 cnx
 cnx
@@ -97941,10 +97824,10 @@ cpL
 cpL
 cpq
 aaa
-daM
-dcK
-dcK
-daM
+cnw
+cnw
+cnw
+cnw
 aaa
 aaa
 aaa
@@ -98243,22 +98126,22 @@ cpv
 crf
 cpq
 aaa
-daM
-daZ
-daZ
-daM
-daM
-daM
-daM
-daM
-daM
-ddv
-daM
-cvH
-cvH
-cvH
-cvH
-cvH
+cnw
+cnw
+cnw
+cnw
+cnw
+cnw
+cnw
+cnw
+cnw
+cnw
+dTc
+mje
+mje
+dTc
+cnw
+cnw
 aaa
 aaa
 aaa
@@ -98545,26 +98428,26 @@ crc
 cpQ
 cpq
 aaa
-dbb
-daZ
-dcK
-daZ
-daZ
-dbT
-daZ
-daZ
-ddy
-daM
-ddH
 cvH
+cvH
+cvH
+cvH
+cvH
+cvH
+cvH
+cvH
+cvH
+cvH
+cvH
+whB
 dgc
-dRw
 cvH
 cvH
 cvH
 cvH
 cvH
 cvH
+daM
 cvH
 cvH
 aaa
@@ -98847,27 +98730,27 @@ cpL
 crg
 cpq
 aaa
-daM
-daB
-daZ
-daZ
-daZ
-daJ
-daM
-daM
-daM
-daM
-dcW
 cvH
+dTl
+dTl
+daG
+daX
+daJ
+daJ
+daJ
+dSo
+dSp
+duE
+pxZ
 rlN
-cwC
-dSn
+hQA
+dSH
+dTo
+dSH
 dTd
-cwl
-cwl
 dSH
 dTg
-dqe
+qIM
 cvH
 aaa
 ctn
@@ -99149,27 +99032,27 @@ cpv
 crh
 cpq
 aaa
-daD
+daM
 dbC
-dbU
-daZ
-daZ
-daZ
-daZ
-dcD
-dcW
-dcW
-dSe
+dTl
+daN
+dbi
+dcX
+dcX
+dcX
+dcX
+ddh
 cvH
 gbs
-cwC
+gbs
+cvH
 dSA
-cwf
-cwf
-cwf
-cwf
-dan
-dqe
+cvH
+cvH
+cvH
+opg
+cvH
+cvH
 cvH
 aaa
 ctn
@@ -99451,25 +99334,25 @@ cpK
 cri
 cpq
 aaa
-daM
-daF
+cvH
 daZ
+dTl
 dcK
-daZ
-daZ
-daZ
-daM
-cvH
-cvH
-cvH
-cvH
-mje
+dbT
+dcX
+dfY
+duG
+dcX
+dSy
+ddJ
 cwC
+cwC
+dTf
 dTz
 cwf
 dSK
 dSU
-cwf
+ejH
 dan
 dTA
 cvH
@@ -99753,28 +99636,28 @@ cpL
 crj
 cpq
 aaa
-dbb
+cvH
 daZ
-daZ
-daZ
-daZ
-daZ
-dcz
-daM
+dTl
+daN
+dbi
+dcX
+dcX
+dcX
 dcX
 ddh
 ddJ
-cvH
-dSY
 cwC
-dSA
-cwf
-cwf
-cwf
-cwf
-dan
-dqe
+cwC
+dSs
+cwC
 cvH
+lYX
+wLu
+xeC
+noX
+esk
+opg
 aaa
 ctn
 ctp
@@ -100056,26 +99939,26 @@ crk
 cpq
 aaa
 daM
-daR
-daH
-dTi
-daZ
-daZ
-daZ
-daM
+dTj
+dTl
+dTl
+dch
+dcw
 dde
-ddh
-ddh
+dvY
+dde
+dSL
+ddJ
 dgf
-cwC
-cwC
+xFi
+uGM
 dSC
 dTf
 cwi
 cJa
-cwi
+mOh
 dTh
-dqe
+hCn
 cvH
 aaa
 ctn
@@ -100357,27 +100240,27 @@ cpv
 crl
 cpq
 aaa
-dbb
-dbS
-dci
-dTj
-dcK
-daZ
-dba
-daM
-ddo
-ddh
-ddJ
 cvH
+dbS
+dTl
+dTj
+dTl
+ddd
+dba
+dRw
+ddo
+dSO
+dTu
+uoB
 dSY
+wyI
+tDr
 cwC
-cwC
-dSp
 dSt
-dcv
+cvH
 dTD
-dSL
-cwC
+cvH
+cvH
 cvH
 aaa
 ctn
@@ -100659,27 +100542,27 @@ cqi
 cpq
 cpq
 aaa
-daM
+cvH
 dcf
-dcn
 dTl
-daZ
-daZ
+dTl
+dTl
+ddp
 dcA
-daM
-cvH
-cvH
-cvH
-cvH
+dSc
+dSc
+dSc
+dTE
+ipM
+gnP
+eqI
+kLx
+cwC
+dSE
 cwC
 cwC
-cwC
-dSq
-cwC
-cwC
-cwC
-dSq
-cwC
+dTf
+sqd
 cvH
 aaa
 ctn
@@ -100961,27 +100844,27 @@ cpY
 crm
 cnH
 aaa
-daA
-daZ
-daZ
-daZ
-daZ
-daZ
-dbc
 cvH
-dSc
+daA
+dTl
+daQ
+dTl
+ddv
 dSs
-dfW
 cwC
-duG
+cwC
+dSs
+cwC
+cwC
+cwC
 ddc
-ddc
-ddc
+vUR
+vUR
 dSu
-cwC
-cwC
-cwC
-cwC
+kQe
+vLL
+vLL
+vLL
 cvH
 aaa
 ctn
@@ -101263,27 +101146,27 @@ cpY
 crm
 cnH
 aaa
-daM
-daR
-daH
-dTi
-dcK
-daZ
-daZ
 cvH
-dSd
-ddP
-dsf
+cvH
+cvH
+cvH
+cvH
+ddy
 cwC
-dcT
+cwC
+cwC
+ddP
+cwC
+cwC
+cwC
 dSb
-dSb
-dSb
-dSv
-dSm
-ddg
-dSr
-dcl
+cwC
+cwC
+dSE
+dTp
+dTn
+dTn
+dTn
 cvH
 aaa
 ctn
@@ -101565,23 +101448,23 @@ cpY
 crm
 cnH
 aaa
-dbb
-dbS
+duF
+dbY
 dcq
-dTj
-daZ
-daZ
-daZ
-ddd
+daS
+dcv
+ddH
+cwC
+cwC
 dSd
 ddQ
 dqe
-cwC
+ukA
 dcT
 dRZ
 dSk
-dSb
-dSv
+huW
+ltA
 dTp
 ddw
 dSZ
@@ -101867,27 +101750,27 @@ cpY
 crm
 cnH
 aaa
-daM
-dcf
+dbY
+dcq
 dcr
-dTl
-daZ
-daZ
+dcq
+dSg
+ddI
 dSh
-cvH
-dSo
-dSz
-dqe
 cwC
-dcT
-dSb
-dSb
-dSb
-dSv
+cwC
+dSz
+dTG
+nrb
+lNw
+qwv
+vBI
+mxu
+oRF
 dSD
-ddD
 dTn
-dcm
+dTn
+dTn
 cvH
 aaa
 ctn
@@ -102169,27 +102052,27 @@ cpY
 crm
 cnH
 aaa
-daM
-daI
-daI
-daI
-daI
-daI
+dbY
+dcq
+dcq
+dcq
+dcq
+ddL
 dcR
-ddi
-dvY
 cwC
 cwC
 cwC
+dTK
+dTJ
 duH
-ddf
-ddf
-ddf
+dSM
+dTJ
+sHX
 dSw
-cwC
-cwC
-cwC
-cwC
+uxb
+dEi
+dEi
+dEi
 cvH
 aaa
 ctn
@@ -102471,27 +102354,27 @@ cpY
 crm
 cnH
 aaa
-daC
+dbY
 dbX
-dbX
-dbX
-dcx
-dbX
-dda
-ddz
+dcq
+dcq
+dcH
+ddO
+dSg
+dSg
 dcI
 hkk
 qrE
 lZf
-cwC
+dTJ
 dSa
-dSj
-cwC
-cwC
+dTJ
+kng
+svX
 dSE
 cwC
-dSE
-cwC
+pvW
+dSs
 cvH
 aaa
 ctn
@@ -102773,26 +102656,26 @@ cqk
 crn
 cnH
 aaa
-daC
+duF
 dbY
-daP
-dbX
-dbX
-daE
-daE
-dgd
+dcq
+dcr
+dcq
+ddO
+dcq
+dSg
 dSg
 ddA
 dfj
 dur
-cwC
+gKq
 dSM
 dSR
-cwC
+kUY
 dSx
 dSJ
-cwC
-dSV
+cvH
+cvH
 dSS
 cvH
 aaa
@@ -103075,25 +102958,25 @@ cpV
 cqq
 cnH
 aaa
-daE
-daC
-dbX
-dcp
-dbX
-daE
-cvH
-cvH
+duF
+dbY
+dcq
+dcq
+dcq
+ddO
+dcq
+dSe
 dcV
-daK
-ddI
-dcL
-cwC
+dcV
+cvH
+cvH
+cvH
 dSP
-dSX
-cwC
-dSy
-dSO
-cwC
+cvH
+cvH
+cvH
+cvH
+cvH
 dSW
 dST
 cvH
@@ -103377,27 +103260,27 @@ cpV
 cro
 cnH
 aaa
-daE
-daC
-dcg
-dbX
-daE
-daE
-cvH
+duF
+dbY
+dcq
+daT
+dcq
+dfW
+dsf
 dcy
 dbZ
-daK
+dSV
 dfX
 duu
-cwC
+yhb
 dSf
 dSl
-cwC
-cwC
-dSG
-cwC
-dSG
-cwC
+iin
+kVB
+cvH
+uLf
+dST
+dST
 cvH
 aaa
 ctn
@@ -103679,27 +103562,27 @@ cnH
 cnH
 cnH
 aaa
-daE
-daE
-daC
-daL
-daE
-cvH
-cvH
+duF
+duF
+duF
+dbY
+dcq
+dcq
+dcq
 dcH
-dbZ
-daK
-ddL
+dcq
+duF
+cvH
 dcL
-cwC
-cwC
-cwC
-cwC
-cwC
-cwC
-cwC
-cwC
-cwC
+rNn
+gQT
+ifR
+ifR
+ifR
+pfp
+dST
+dST
+dST
 cvH
 aaa
 ctn
@@ -103981,26 +103864,26 @@ cog
 cog
 cog
 aaa
-daE
-daE
-daE
-daE
-daE
-cvH
+duF
+duF
+duF
+duF
+duF
+dbY
 ddm
-daK
-dbZ
-daK
+dcq
+duF
+dSX
 dga
 duz
-cwC
-cwC
+spZ
+fIu
 dSm
 dTb
 dTs
-dcl
-cwC
-cwC
+cvH
+lqy
+lxR
 dEV
 cvH
 aaa
@@ -104283,27 +104166,27 @@ aaa
 aaa
 aaa
 aaa
-cvH
-cvH
-cvH
-cvH
-cvH
-cvH
-ddn
-daK
 duF
-dcM
-ddO
+duF
+duF
+duF
+duF
+duF
+duF
+duF
+duF
+duF
+cvH
 duE
-cwC
-cwC
-daG
-dTo
-dTu
-dcm
-cwC
-cwC
-dfY
+cvH
+cvH
+cvH
+cvH
+cvH
+cvH
+rnO
+cvH
+cvH
 cvH
 aaa
 ctn
@@ -104593,19 +104476,19 @@ cvH
 cvH
 cvH
 cvH
-ddp
 cvH
 cvH
 cvH
-dTy
-cwC
-cwC
-cwC
-cwC
-cwC
-cwC
-cwC
-dTa
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
 cvH
 aaa
 aaa
@@ -104893,21 +104776,21 @@ cnw
 aaa
 cvH
 ddE
-dcB
-dcF
-ddt
-dcF
-dfi
-dcN
-cvH
-cwC
-cwC
-cvH
-cvH
-ddS
-ddb
-cvH
-cvH
+duH
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTB
+dTJ
+dTJ
+dTJ
 cvH
 aaa
 bXs
@@ -105195,21 +105078,21 @@ cnw
 aaa
 cvH
 dcs
-dct
-dbd
-ddt
-ddF
-dcJ
-dTk
-dvx
-dco
-dco
-ddi
-dfB
-dfl
-dcY
-ddj
-ddq
+dTB
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
 cvH
 aaa
 bXs
@@ -105495,24 +105378,24 @@ cnw
 cnw
 cnw
 aaa
-dbi
-dcu
-dcJ
-dcS
-ddu
-dTq
-dct
-dTt
 cvH
-dSi
-cwC
-ddz
-dTx
+dcu
 dTB
-dcZ
-ddk
-dgg
-ddS
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTB
+dTJ
+dTJ
+dTJ
+cvH
 aaa
 bXs
 bXs
@@ -105799,22 +105682,22 @@ cnw
 aaa
 cvH
 daO
-dcC
-dcU
-dTr
-ddx
-dSF
-dTv
-cvH
-dwo
-dSI
-ddz
+duH
 dTJ
-dTC
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
+dTJ
 dTH
-dge
 dTF
-ddi
+dTF
+cvH
 aaa
 bXs
 bXs
@@ -106101,7 +105984,6 @@ cnw
 aaa
 cvH
 cvH
-dcw
 cvH
 cvH
 cvH
@@ -106110,13 +105992,14 @@ cvH
 cvH
 cvH
 cvH
-dgd
-daQ
-daQ
-dTE
-dTK
-daQ
-dTG
+cvH
+cvH
+cvH
+cvH
+cvH
+cvH
+cvH
+cvH
 aaa
 bXs
 djc

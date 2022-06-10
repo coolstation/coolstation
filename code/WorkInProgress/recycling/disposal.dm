@@ -8,6 +8,7 @@
 #define PIPEC_TRANSPORT "#ffbef6"
 #define PIPEC_MINERAL "#a5fffc"
 #define PIPEC_CARGO "#f4ff53"
+#define PIPEC_SEWAGE "#778163"
 
 // virtual disposal object
 // travels through pipes in lieu of actual items
@@ -39,6 +40,7 @@
 		mail_tag = null
 		autoconfig = 0
 		routers = list()
+		reagents = new(1000)
 
 	pooled()
 		routers = null
@@ -48,6 +50,7 @@
 		set_dir(0)
 		last_sound = 0
 		mail_tag = null
+		reagents = null
 		..()
 
 	// initialize a holder from the contents of a disposal unit
@@ -68,6 +71,31 @@
 				var/mob/living/carbon/human/H = AM
 				H.unlock_medal("It'sa me, Mario", 1)
 
+	proc/init_sewer(var/obj/item/storage/toilet/toilet)
+		if(toilet.trunk)		//copypasted
+			src.set_loc(toilet.trunk)
+		else
+			src.set_loc(toilet)
+
+		if(!src.reagents)
+			src.reagents = new(1000)
+
+		src.reagents.add_reagent("water", 50)
+		src.reagents.add_reagent("sewage", rand(10,55))
+
+		if(toilet.poops)
+			src.reagents.add_reagent("poo",toilet.poops*25)
+			toilet.poops = 0
+		if(toilet.peeps)
+			src.reagents.add_reagent("urine",toilet.peeps*25)
+			toilet.peeps = 0
+
+		if(toilet.reagents && toilet.reagents.total_volume)
+			toilet.reagents.trans_to(src, toilet.reagents.total_volume)
+
+
+		for(var/atom/movable/AM in toilet)
+			AM.set_loc(src)
 
 
 	// start the movement process
@@ -133,6 +161,8 @@
 			AM.set_loc(src)	// move everything in other holder to this one
 		if(other.mail_tag && !src.mail_tag)
 			src.mail_tag = other.mail_tag
+		if(other.reagents.reagent_list)
+			other.reagents.trans_to(src, 1000)
 		pool(other)
 
 
@@ -337,6 +367,8 @@
 				AM.set_loc(T)
 				AM.pipe_eject(direction)
 				AM?.throw_at(target, 100, 1)
+
+			target.fluid_react(H.reagents, H.reagents.total_volume)
 			H.vent_gas(T)
 			pool(H)
 
@@ -350,6 +382,8 @@
 				AM.pipe_eject(0)
 				AM?.throw_at(target, 5, 1)
 
+
+			T.fluid_react(H.reagents, H.reagents.total_volume)
 			H.vent_gas(T)	// all gas vent to turf
 			pool(H)
 
@@ -569,6 +603,11 @@
 		name = "cargo pipe"
 		desc = "An underfloor cargo pipe."
 		color = PIPEC_CARGO
+
+	sewage // sewer
+		name = "sewer pipe"
+		desc = "... we have those?"
+		color = PIPEC_SEWAGE
 
 	New()
 		..()
@@ -1673,6 +1712,11 @@
 		name = "mineral pipe"
 		desc = "An underfloor mineral pipe."
 		color = PIPEC_MINERAL
+
+	sewage // sewer
+		name = "sewer pipe"
+		desc = "... we have those?"
+		color = PIPEC_SEWAGE
 
 	New()
 		..()
