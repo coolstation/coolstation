@@ -44,7 +44,7 @@ TOILET
 	if (istype(W, /obj/item/storage))
 		return
 	if ((istype(W, /obj/item/reagent_containers/glass)) || (istype(W, /obj/item/reagent_containers/food/drinks)))
-		if(src.reagents.total_volume >= src.reagents.maximum_volume)
+		if(src.reagents && (src.reagents.total_volume >= src.reagents.maximum_volume))
 			boutput(user, "That would just spill-over. You should flush first.")
 			return
 		var/obj/item/reagent_containers/R = W
