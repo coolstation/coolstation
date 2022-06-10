@@ -80,8 +80,8 @@
 		if(!src.reagents)
 			src.reagents = new(1000)
 
-		src.reagents.add_reagent("water", 100)
-		src.reagents.add_reagent("sewage", rand(25,50))
+		src.reagents.add_reagent("water", 50)
+		src.reagents.add_reagent("sewage", rand(10,55))
 
 		if(toilet.poops)
 			src.reagents.add_reagent("poo",toilet.poops*25)
@@ -96,9 +96,7 @@
 
 		for(var/atom/movable/AM in toilet)
 			AM.set_loc(src)
-			if(ishuman(AM))
-				var/mob/living/carbon/human/H = AM
-				H.unlock_medal("It'sa me, Mario", 1)
+
 
 	// start the movement process
 	// argument is the disposal unit the holder started in

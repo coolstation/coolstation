@@ -80,6 +80,7 @@ TOILET
 			user.visible_message("<span class='notice'>[user] dives into [src]!</span>", "<span class='notice'>You dive into [src]!</span>")
 			particleMaster.SpawnSystem(new /datum/particleSystem/tpbeam(src.loc))
 			playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 1)
+			H.unlock_medal("It'sa me, Mario", 1)
 
 			var/list/destinations = list()
 
