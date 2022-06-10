@@ -1966,8 +1966,9 @@
 									message = "<B>[src]</B> grunts for a moment- Then really fills the bowl!"
 									var/turf/terf = get_turf(src)
 									terf.fluid_react_single("miasma", 5, airborne = 1)
+									T.poops++
 								T.clogged += load
-								T.poops += load
+								T.poops++
 								playsound(src, src.sound_fart, 50, 0, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 								break
 						else
