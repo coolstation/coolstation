@@ -12,14 +12,25 @@ TOILET
 	deconstruct_flags = DECON_WRENCH | DECON_WELDER
 	var/status = 0.0
 	var/clogged = 0.0
+	var/obj/disposalpipe/trunk/trunk = null
 	anchored = 1.0
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "toilet"
 	rand_pos = 0
+	var/plumbed = 0
+	var/poops = 0
+	var/peeps = 0
 
 /obj/item/storage/toilet/New()
 	..()
 	START_TRACKING
+	SPAWN_DBG(0.5 SECONDS)
+		if (src)
+			trunk = locate() in src.loc
+			if(trunk)
+				trunk.linked = src	// link the pipe trunk to self
+				plumbed = 1
+
 
 /obj/item/storage/toilet/disposing()
 	STOP_TRACKING
@@ -109,9 +120,15 @@ TOILET
 				A.set_loc(target)
 #endif
 		src.clogged = 0
-		for (var/item in src.contents)
-			qdel(item)
-			src.hud?.remove_item(item)
+		if(plumbed && trunk)
+			var/obj/disposalholder/D = unpool(/obj/disposalholder)
+			D.init_sewer(src)
+			D.start(src) // not a disposaloutlet but lets see if that matters:)
+
+		else
+			for (var/item in src.contents)
+				qdel(item)
+				src.hud?.remove_item(item)
 
 	else if((src.clogged >= 1) || (src.contents.len >= 7) || (user.buckled != src.loc))
 		src.visible_message("<span class='notice'>The toilet is clogged!</span>")
