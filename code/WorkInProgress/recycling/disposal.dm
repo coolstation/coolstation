@@ -161,7 +161,7 @@
 			AM.set_loc(src)	// move everything in other holder to this one
 		if(other.mail_tag && !src.mail_tag)
 			src.mail_tag = other.mail_tag
-		if(other.reagents.reagent_list)
+		if(other.reagents)
 			other.reagents.trans_to(src, 1000)
 		pool(other)
 
