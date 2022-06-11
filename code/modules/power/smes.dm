@@ -183,8 +183,8 @@
 					var/overcharge = round(load / SMESMAXCHARGELEVEL)
 					if(prob(overcharge))
 						logTheThing("diary", src, null, "overloaded and went bang at [log_loc(src)]!")
-						explosion(src, src, (overcharge/2), (overcharge/2),\
-							overcharge, (overcharge * 1.5))
+						explosion(src, src, (overcharge/4), (overcharge/3),\
+							(overcharge/1.25), overcharge)
 
 
 			else					// if not enough capcity
