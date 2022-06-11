@@ -1028,12 +1028,12 @@ var/global/list/mapNames = list(
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
 	airlock_style = "pyro"
 
-	//escape_centcom = /area/shuttle/escape/centcom/cogmap
-	//escape_outpost = /area/shuttle/escape/outpost/cogmap
-	//escape_transit = /area/shuttle/escape/transit/cogmap
-	//escape_station = /area/shuttle/escape/station/cogmap
-	escape_def = SHUTTLE_SOUTH
-	escape_dir = SOUTH
+	escape_centcom = /area/shuttle/escape/centcom/cogmap2
+	escape_outpost = /area/shuttle/escape/outpost/cogmap2
+	Escape_transit = /area/shuttle/escape/transit/cogmap2
+	escape_station = /area/shuttle/escape/station/cogmap2
+	escape_def = SHUTTLE_EAST
+	escape_dir = EAST
 
 	//merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
 	//merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
