@@ -642,14 +642,16 @@
 		flick("pipe-mechsense-detect", src)
 		return ..()
 
-/obj/disposalpipe/configurator // place this inside the main router, after all the collector junctions, and before all of the main group routers.
+/obj/disposalpipe/segment/configurator // place this inside the main router, after all the collector junctions, and before all of the main group routers.
 	name = "mail chute configurator"
 	desc = "an electronic disposal pipe that dispenses little electronic tracking devices, permitting automatic mail router configuration"
 	icon_state = "pipe-s-dir"
 
 	New()
 		..()
+		dpdir = dir | turn(dir, 180)
 		processing_items |= src
+		update()
 
 	proc/process()
 		send_out_dat_fucken_packet()

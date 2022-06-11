@@ -1,4 +1,4 @@
-#define GEHENNA_TIME 190
+#define GEHENNA_TIME 210
 // 170 is like sunset ish, its nice but toxic
 #define WASTELAND_MIN_TEMP 250
 #define WASTELAND_MAX_TEMP 350
