@@ -369,7 +369,7 @@
 				AM?.throw_at(target, 100, 1)
 
 			if(H.reagents && H.reagents.total_volume)
-				target.fluid_react(H.reagents, H.reagents.total_volume)
+				T.fluid_react(H.reagents, H.reagents.total_volume)
 			H.vent_gas(T)
 			pool(H)
 
