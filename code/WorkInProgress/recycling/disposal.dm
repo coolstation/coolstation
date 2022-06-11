@@ -368,7 +368,8 @@
 				AM.pipe_eject(direction)
 				AM?.throw_at(target, 100, 1)
 
-			target.fluid_react(H.reagents, H.reagents.total_volume)
+			if(H.reagents && H.reagents.total_volume)
+				target.fluid_react(H.reagents, H.reagents.total_volume)
 			H.vent_gas(T)
 			pool(H)
 
@@ -382,8 +383,8 @@
 				AM.pipe_eject(0)
 				AM?.throw_at(target, 5, 1)
 
-
-			T.fluid_react(H.reagents, H.reagents.total_volume)
+			if(H.reagents && H.reagents.total_volume)
+				T.fluid_react(H.reagents, H.reagents.total_volume)
 			H.vent_gas(T)	// all gas vent to turf
 			pool(H)
 
