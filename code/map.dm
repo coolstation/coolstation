@@ -1030,7 +1030,7 @@ var/global/list/mapNames = list(
 
 	escape_centcom = /area/shuttle/escape/centcom/cogmap2
 	escape_outpost = /area/shuttle/escape/outpost/cogmap2
-	Escape_transit = /area/shuttle/escape/transit/cogmap2
+	escape_transit = /area/shuttle/escape/transit/cogmap2
 	escape_station = /area/shuttle/escape/station/cogmap2
 	escape_def = SHUTTLE_EAST
 	escape_dir = EAST
