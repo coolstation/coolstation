@@ -38,7 +38,7 @@
 	var/maxoutput = SMESMAXOUTPUT
 
 	get_desc()
-		. = {"It's [online ? "on" : "off"]line. [charging ? "It's charging, and it" : "It"] looks about [round(charge / capacity * 100, 20)]% full."}
+		. = {"It's [online ? "on" : "off"]line. [charging ? "It's charging, and it" : "It"] looks about [round(charge / capacity * 100, 20)]% full. [((maxinput > SMESMAXCHARGELEVEL) || (maxoutput > SMESMAXOUTPUT)) ? "It smells quite warm..." : ""]"}
 
 /obj/machinery/power/smes/attackby(obj/item/W, mob/user)
 	src.add_fingerprint(user)
@@ -179,12 +179,29 @@
 				// benefits to charged value so that minimal loss occurs.
 				charge += load * mult	// increase the charge
 				add_load(load)		// add the load to the terminal side network
-				if(tampered && load > SMESMAXCHARGELEVEL && prob(50))
+				if(tampered && load > SMESMAXCHARGELEVEL && prob(25))
 					var/overcharge = round(load / SMESMAXCHARGELEVEL)
-					if(prob(overcharge))
-						logTheThing("diary", src, null, "overloaded and went bang at [log_loc(src)]!")
-						explosion(src, src, (overcharge/4), (overcharge/3),\
-							(overcharge/1.25), overcharge)
+					charge = max((charge - load), 0)
+					switch(overcharge)
+						if(1)
+							// Very Mild
+							elecflash(src, (overcharge/2), overcharge)
+						if(2)
+							// Mild
+							elecflash(src, (overcharge/2), overcharge)
+							chargemode = 0
+							online = 0
+						if(3 to 7)
+							// Oops, charge circuitry trips out
+							SPAWN_DBG(0) zapStuff(overcharge/2)
+							chargemode = 0
+						if(8 to 100)
+							// Owie!
+							SPAWN_DBG(0) zapStuff(overcharge)
+							src.status |= BROKEN
+						if(101 to INFINITY)
+							SPAWN_DBG(0) zapStuff(overcharge)
+							explosion(src, src, 1, 1, 2, 4)
 
 
 			else					// if not enough capcity
@@ -208,6 +225,23 @@
 				playsound(src.loc, pick(ambience_power), 60, 1)
 
 		lastout = min(charge, output)		//limit output to that stored
+		if(tampered && lastout > SMESMAXOUTPUT && prob(25))
+			var/overcharge = round(lastout/SMESMAXOUTPUT)
+			switch(overcharge)
+				if(1)
+					elecflash(src, (overcharge/2), overcharge)
+				if(2)
+					elecflash(src, (overcharge/2), overcharge)
+				if(3 to 7)
+					// Oops, output circuitry trips out
+					SPAWN_DBG(0) zapStuff(overcharge/2)
+					online = 0
+				if(8 to 100)
+					SPAWN_DBG(0) zapStuff(overcharge)
+					status |= BROKEN
+				if(101 to INFINITY)
+					SPAWN_DBG(0) zapStuff(overcharge)
+					explosion(src, src, 1, 1, 2, 4)
 
 		charge -= lastout		// reduce the storage (may be recovered in /restore() if excessive)
 
@@ -332,6 +366,52 @@
 			else if(text2num(target) != null) //set by drag
 				src.output = clamp(text2num(target), 0 , src.maxoutput)
 				. = TRUE
+
+/obj/machinery/power/smes/proc/zapStuff(power)
+	var/atom/target = null
+	var/atom/last   = src
+	var/list/starts = new/list()
+	for(var/atom/movable/M in orange(3, src))
+		if(istype(M, /obj/overlay/tile_effect) || M.invisibility) continue
+		starts.Add(M)
+
+	if(!starts.len) return
+	if(prob(10))
+		var/person = null
+		person = (locate(/mob/living) in starts)
+		if(person)
+			target = person
+		else
+			target = pick(starts)
+	else
+		target = pick(starts)
+
+	if(isturf(target))
+		return
+
+	playsound(target, 'sound/effects/elec_bigzap.ogg', 40, 1)
+	for(var/count=0, count<3, count++)
+		if(target == null)
+			break
+		var/list/affected = DrawLine(last, target, /obj/line_obj/elec ,'icons/obj/projectiles.dmi',\
+			"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",OBJ_LAYER,1,\
+			PreloadedIcon='icons/effects/LghtLine.dmi')
+
+		for(var/obj/O in affected)
+			SPAWN_DBG(0.6 SECONDS) pool(O)
+
+		if(isliving(target)) //Probably unsafe.
+			target:TakeDamage("chest", 0, 20)
+
+		var/list/next = new/list()
+		for(var/atom/movable/M in orange(2, target))
+			if(istype(M, /obj/overlay/tile_effect) || istype(M, /obj/line_obj/elec) || M.invisibility)
+				continue
+			next.Add(M)
+
+		last = target
+		target = pick(next)
+
 
 /proc/rate_control(var/S, var/V, var/C, var/Min=1, var/Max=5, var/Limit=null)
 	var/href = "<A href='?src=\ref[S];rate control=1;[V]"
