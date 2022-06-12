@@ -41,7 +41,7 @@
 "aP" = (/obj/disposalpipe/segment/morgue,/obj/grille/catwalk/jen/side{dir = 5; icon_state = "catwalk_jen_side"},/turf/simulated/floor/plating,/area/station/security/checkpoint/cargo)
 "aQ" = (/obj/disposalpipe/segment/horizontal,/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/plating,/area/station/crew_quarters/catering)
 "aR" = (/obj/cable{d1 = 2; d2 = 4; icon_state = "6-8"},/turf/simulated/floor/yellow/side{dir = 1},/area/space)
-"aS" = (/obj/disposalpipe/trunk/zlevel{dir = 1; target_z = 1},/turf/simulated/floor/plating,/area/space)
+"aS" = (/obj/disposalpipe/trunk/zlevel{dir = 1; target_z = 1},/obj/structure/girder,/turf/simulated/floor/plating,/area/space)
 "aT" = (/turf/simulated/floor/yellowblack{dir = 1},/area/station/engine/power)
 "aU" = (/obj/machinery/light/fluorescent/neutral{dir = 1},/obj/disposalpipe/segment/bent/south,/turf/simulated/floor/grey,/area/station/science)
 "aV" = (/obj/disposalpipe/segment/morgue{dir = 4},/turf/simulated/wall/auto/reinforced,/area/space)
@@ -88,7 +88,7 @@
 "bL" = (/obj/disposalpipe/segment/horizontal,/obj/machinery/light/fluorescent/cool/very{dir = 1},/turf/simulated/floor/white,/area/station/medical/research)
 "bM" = (/obj/cable{d1 = 2; d2 = 4; icon_state = "2-9"},/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/yellow/side,/area/space)
 "bN" = (/obj/machinery/light/small/cool{dir = 4},/turf/simulated/floor/plating/random,/area/space)
-"bO" = (/obj/machinery/door/airlock/glass,/turf/simulated/floor/carpet/blue/standard/edge/north,/area/station/crew_quarters/quarters)
+"bO" = (/obj/machinery/door/airlock/glass,/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/carpet/blue/standard/edge/north,/area/station/crew_quarters/quarters)
 "bP" = (/obj/wingrille_spawn/reinforced,/turf/simulated/floor/grey,/area/space)
 "bQ" = (/obj/machinery/door/airlock/glass,/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/carpet/blue/standard/edge/south,/area/station/crew_quarters/quarters)
 "bR" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,/obj/disposalpipe/segment/food,/turf/simulated/floor/plating,/area/space)
@@ -141,7 +141,7 @@
 "cQ" = (/obj/wingrille_spawn/reinforced,/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,/turf/simulated/floor/plating,/area/space)
 "cR" = (/obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,/obj/machinery/light/fluorescent/harsh/very{dir = 1},/turf/simulated/floor/plating,/area/station/engine/coldloop)
 "cS" = (/obj/machinery/light/fluorescent/neutral{dir = 1},/turf/simulated/floor/grey,/area/space)
-"cT" = (/obj/cable,/obj/cable{d2 = 2; icon_state = "0-2"},/obj/cable{d2 = 4; icon_state = "0-4"},/obj/cable{icon_state = "0-6"},/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
+"cT" = (/obj/cable,/obj/cable{d2 = 2; icon_state = "0-2"},/obj/cable{d2 = 4; icon_state = "0-4"},/obj/cable{icon_state = "0-6"},/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
 "cU" = (/obj/machinery/portable_atmospherics/canister/oxygen,/turf/simulated/floor/plating,/area/station/engine/power)
 "cV" = (/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/yellow/side{dir = 6},/area/station/engine/power)
 "cW" = (/obj/disposalpipe/segment/vertical,/turf/simulated/floor/carpet/blue/standard/edge/se,/area/space)
@@ -149,7 +149,7 @@
 "cZ" = (/obj/disposalpipe/segment{dir = 2},/turf/simulated/floor/plating,/area/station/bridge/united_command)
 "da" = (/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,/obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,/turf/simulated/floor/black,/area/station/science/lab)
 "db" = (/obj/stool/chair/couch/blue{dir = 8},/turf/simulated/floor/grey,/area/station/science/artifact{name = "Artifact Lounge"})
-"dc" = (/obj/table/reinforced/industrial/auto,/obj/disposalpipe/trunk/zlevel{dir = 8; target_z = 1},/turf/simulated/floor/plating,/area/space)
+"dc" = (/obj/disposalpipe/trunk/zlevel{dir = 8; target_z = 1},/turf/simulated/floor/plating,/area/space)
 "dd" = (/obj/disposalpipe/segment/sewage{dir = 2},/turf/simulated/floor/grey,/area/station/science)
 "de" = (/obj/disposalpipe/segment/produce,/obj/rack,/turf/simulated/floor/plating,/area/station/crew_quarters/catering)
 "dg" = (/obj/machinery/door/airlock/glass/command,/turf/simulated/floor,/area/space)
@@ -177,7 +177,7 @@
 "dI" = (/turf/simulated/wall/asteroid/gehenna,/area/space)
 "dJ" = (/turf/unsimulated/wall/gehenna,/area/space)
 "dK" = (/turf/simulated/wall/asteroid/gehenna/z3/tough,/area/space)
-"dL" = (/obj/cable{d2 = 4; icon_state = "0-4"},/obj/cable{d2 = 2; icon_state = "0-2"},/obj/cable,/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
+"dL" = (/obj/cable{d2 = 4; icon_state = "0-4"},/obj/cable{d2 = 2; icon_state = "0-2"},/obj/cable,/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
 "dM" = (/obj/cable{icon_state = "4-8"},/turf/simulated/floor/plating,/area/space)
 "dN" = (/obj/disposalpipe/segment/bent/east,/turf/simulated/floor,/area/station/mining/staff_room)
 "dO" = (/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/grey,/area/station/bridge/united_command)
@@ -268,6 +268,7 @@
 "fT" = (/obj/wingrille_spawn/reinforced,/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/plating,/area/space)
 "fU" = (/obj/machinery/light/fluorescent/cool/very,/obj/disposalpipe/segment/horizontal,/turf/simulated/floor,/area/station/bridge/united_command)
 "fV" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor,/area/station/mining/staff_room)
+"fW" = (/obj/disposalpipe/junction/left/south,/turf/simulated/floor/grime,/area/space)
 "fY" = (/obj/disposalpipe/segment{dir = 2},/obj/grille/catwalk/jen/side{dir = 4},/turf/simulated/floor/plating,/area/space)
 "fZ" = (/turf/simulated/floor/white,/area/station/medical/research)
 "ga" = (/obj/decal/tile_edge/stripe/extra_big{dir = 10},/turf/simulated/floor/industrial,/area/station/routing/depot)
@@ -304,7 +305,7 @@
 "gL" = (/obj/decal/tile_edge/floorguide/arrow_e,/obj/railing/cyan{dir = 8},/turf/simulated/floor/plating,/area/station/crew_quarters/catering)
 "gN" = (/obj/wingrille_spawn/reinforced,/obj/disposalpipe/segment/produce,/turf/simulated/floor/plating,/area/station/crew_quarters/quarters)
 "gP" = (/obj/disposalpipe/segment/vertical,/turf/simulated/floor/yellow/side{dir = 6},/area/station/mining)
-"gQ" = (/obj/machinery/light/small/warm{dir = 1},/obj/disposalpipe/trunk/zlevel{dir = 2; target_z = 1},/turf/simulated/floor/plating,/area/station/bridge/united_command)
+"gQ" = (/obj/machinery/light/small/warm{dir = 1},/obj/disposalpipe/trunk/zlevel{dir = 2; target_z = 1},/obj/structure/girder,/turf/simulated/floor/plating,/area/station/bridge/united_command)
 "gR" = (/turf/simulated/floor/plating,/area/station/medical/research)
 "gS" = (/obj/machinery/atmospherics/pipe/manifold/overfloor/west,/turf/simulated/floor/plating,/area/station/engine/power)
 "gT" = (/obj/cable/blue{icon_state = "4-8"},/turf/simulated/floor/grey,/area/station/bridge/united_command)
@@ -319,6 +320,7 @@
 "hg" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,/turf/simulated/floor/plating,/area/space)
 "hh" = (/obj/cable{icon_state = "2-5"},/obj/cable{d1 = 2; d2 = 4; icon_state = "2-9"},/turf/simulated/floor/black,/area/station/security/beepsky)
 "hi" = (/obj/disposalpipe/segment/horizontal,/obj/railing/cyan{dir = 8},/turf/simulated/floor/plating,/area/space)
+"hj" = (/obj/cable{d2 = 8; icon_state = "0-8"},/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
 "hk" = (/obj/disposalpipe/segment/bent/north,/turf/simulated/floor/grey,/area/station/science/artifact{name = "Artifact Lounge"})
 "hl" = (/turf/simulated/wall/auto,/area/station/science/lobby)
 "hm" = (/obj/disposalpipe/segment/bent/north,/turf/simulated/floor/plating/random,/area/space)
@@ -353,6 +355,7 @@
 "hR" = (/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/carpet/blue/standard/edge/sw,/area/station/medical/research)
 "hS" = (/obj/decal/tile_edge/stripe{dir = 1},/turf/simulated/floor/black,/area/station/mining/staff_room)
 "hT" = (/obj/disposalpipe/segment/mineral,/obj/machinery/atmospherics/pipe/simple/insulated/northeast,/turf/simulated/floor/grey,/area/station/engine/storage)
+"hU" = (/obj/machinery/door/airlock/classic,/turf/simulated/floor/grey/blackgrime,/area/space)
 "hV" = (/obj/machinery/atmospherics/unary/cold_sink/freezer/north,/turf/simulated/floor/plating,/area/station/engine/coldloop)
 "hW" = (/obj/disposalpipe/segment/sewage{dir = 2},/turf/simulated/floor/black,/area/station/science)
 "hX" = (/obj/disposalpipe/segment/bent/west,/turf/simulated/floor/grey,/area/space)
@@ -373,6 +376,7 @@
 "ip" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,/turf/simulated/floor/plating,/area/space)
 "iq" = (/obj/cable{icon_state = "0-4"},/obj/cable{d2 = 8; icon_state = "0-8"},/obj/wingrille_spawn/reinforced,/turf/simulated/floor/plating,/area/space)
 "ir" = (/obj/disposalpipe/segment/bent/north,/turf/simulated/floor/white,/area/station/science/restroom)
+"is" = (/obj/disposalpipe/segment/vertical,/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
 "it" = (/obj/machinery/portable_atmospherics/canister/nitrogen,/turf/simulated/floor/plating,/area/station/engine/coldloop)
 "iv" = (/obj/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/plating,/area/station/engine/power)
 "iw" = (/obj/machinery/light/fluorescent/red{dir = 1},/turf/simulated/floor/yellowblack{dir = 1},/area/station/engine/power)
@@ -388,11 +392,11 @@
 "iJ" = (/turf/simulated/wall/auto,/area/station/science/lab)
 "iK" = (/obj/machinery/light/small/warm{dir = 4},/turf/simulated/floor/plating,/area/space)
 "iL" = (/obj/machinery/light/small/warm{dir = 1},/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,/turf/simulated/floor/yellow/side{dir = 1},/area/station/engine/power)
-"iM" = (/obj/cable{d1 = 2; d2 = 4; icon_state = "6-9"},/obj/disposalpipe/trunk/zlevel{dir = 4; target_z = 1},/turf/simulated/floor/plating,/area/space)
+"iM" = (/obj/cable{d1 = 2; d2 = 4; icon_state = "6-9"},/obj/disposalpipe/trunk/zlevel{dir = 4; target_z = 1},/obj/structure/girder,/turf/simulated/floor/plating,/area/space)
 "iP" = (/obj/grille{auto = 0},/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/plating,/area/station/crew_quarters/catering)
 "iS" = (/obj/cable/purple{icon_state = "2-4"},/obj/cable/purple{icon_state = "1-2"},/turf/simulated/floor/grey,/area/station/science/artifact{name = "Artifact Lounge"})
 "iT" = (/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,/turf/simulated/floor/plating,/area/station/science/testchamber)
-"iU" = (/obj/cable,/obj/cable{d2 = 2; icon_state = "0-2"},/obj/cable{d2 = 4; icon_state = "0-4"},/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
+"iU" = (/obj/cable,/obj/cable{d2 = 2; icon_state = "0-2"},/obj/cable{d2 = 4; icon_state = "0-4"},/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
 "iV" = (/obj/machinery/light/fluorescent/cool/very{dir = 1},/obj/cable{d2 = 8; icon_state = "0-8"},/obj/cable{icon_state = "0-4"},/obj/cable{d2 = 2; icon_state = "0-2"},/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
 "iX" = (/obj/disposalpipe/segment/produce,/obj/rack,/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/plating,/area/station/crew_quarters/catering)
 "iY" = (/obj/grille/catwalk/jen/side{dir = 4},/turf/simulated/floor/plating,/area/space)
@@ -466,6 +470,7 @@
 "kC" = (/obj/grille/catwalk/jen,/obj/machinery/light/fluorescent/cool/very{dir = 4},/turf/simulated/floor/plating,/area/station/engine/storage)
 "kD" = (/obj/disposalpipe/segment/food,/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/carpet/red/standard,/area/station/security/quarters)
 "kE" = (/obj/disposalpipe/segment/bent/north,/turf/simulated/floor/black,/area/station/science)
+"kF" = (/obj/machinery/vending/standard,/turf/simulated/floor,/area/space)
 "kH" = (/obj/table/auto{color = "#666666"},/turf/simulated/floor/grey,/area/station/science/lab)
 "kI" = (/obj/disposalpipe/segment/mail/vertical,/turf/simulated/wall/auto,/area/space)
 "kK" = (/obj/machinery/light/fluorescent/red{dir = 1},/turf/simulated/floor/plating,/area/space)
@@ -506,7 +511,7 @@
 "lC" = (/obj/cable/purple{icon_state = "1-2"},/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/black,/area/station/science/chemistry)
 "lD" = (/turf/simulated/floor/yellow/side,/area/station/engine/power)
 "lE" = (/obj/disposalpipe/switch_junction/left/west{dir = 4; mail_tag = "security"; name = "mail junction (security)"},/turf/simulated/floor/plating,/area/space)
-"lF" = (/obj/disposalpipe/segment/mineral{dir = 8},/obj/machinery/atmospherics/valve/purge/horizontal,/turf/simulated/floor/grey,/area/station/engine/storage)
+"lF" = (/obj/disposalpipe/segment/mineral{dir = 8},/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,/turf/simulated/floor/grey,/area/station/engine/storage)
 "lG" = (/obj/machinery/light/fluorescent/cool/very{dir = 1},/turf/simulated/floor,/area/station/mining/refinery)
 "lH" = (/obj/disposalpipe/segment/bent/west,/turf/simulated/floor/plating,/area/station/science/gen_storage)
 "lI" = (/obj/disposalpipe/segment/horizontal,/obj/disposalpipe/segment/mineral,/turf/simulated/floor,/area/station/mining)
@@ -517,6 +522,7 @@
 "lP" = (/obj/machinery/light/small/warm{dir = 4},/turf/simulated/floor/grey,/area/space)
 "lQ" = (/obj/machinery/door/airlock,/turf/simulated/floor/black,/area/station/security/quarters)
 "lR" = (/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor,/area/station/security/detectives_office)
+"lS" = (/obj/machinery/light/fluorescent/red{dir = 8},/turf/simulated/floor/plating,/area/station/science/testchamber)
 "lT" = (/obj/machinery/door/airlock/glass,/obj/disposalpipe/segment/morgue{dir = 4},/turf/simulated/floor/white,/area/station/medical/research)
 "lU" = (/obj/machinery/light/fluorescent/cool/very{dir = 1},/obj/table/auto,/turf/simulated/floor/carpet/grime,/area/station/mining/staff_room)
 "lW" = (/obj/disposalpipe/junction/middle/west,/turf/simulated/floor/grey,/area/station/engine/storage)
@@ -528,6 +534,7 @@
 "mc" = (/obj/storage/closet/wardrobe/yellow,/turf/simulated/floor/black,/area/station/mining/staff_room)
 "md" = (/turf/simulated/wall/auto/reinforced,/area/station/engine/coldloop)
 "mf" = (/obj/machinery/light/fluorescent/cool/very,/obj/disposalpipe/segment/produce{dir = 4},/turf/simulated/floor,/area/space)
+"mg" = (/obj/disposalpipe/segment/bent/south,/turf/simulated/floor/grey/blackgrime,/area/space)
 "mj" = (/turf/simulated/wall/auto,/area/station/science/construction)
 "mk" = (/obj/disposalpipe/segment/vertical,/turf/simulated/floor/plating,/area/station/mining)
 "ml" = (/obj/cable{icon_state = "4-8"},/turf/simulated/floor/plating,/area/station/routing/depot)
@@ -547,11 +554,11 @@
 "mA" = (/obj/machinery/door/airlock/glass/engineering,/turf/simulated/floor/plating,/area/station/engine/power)
 "mB" = (/obj/machinery/light/fluorescent/cool/very,/turf/simulated/floor,/area/station/mining/refinery)
 "mD" = (/obj/disposalpipe/segment/cargo{dir = 4},/obj/grille/catwalk/jen,/turf/simulated/floor/plating,/area/station/crew_quarters/catering)
-"mE" = (/turf/simulated/floor/carpet/blue/standard/edge/nw,/area/station/medical/research)
+"mE" = (/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/carpet/blue/standard/edge/nw,/area/station/medical/research)
 "mF" = (/obj/table/reinforced/industrial/auto,/turf/simulated/floor,/area/station/mining)
 "mG" = (/obj/disposalpipe/segment/mail/vertical,/obj/machinery/door/airlock/medical,/turf/simulated/floor/white,/area/station/medical/staff)
 "mH" = (/obj/cable{d1 = 2; d2 = 4; icon_state = "5-8"},/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/grey,/area/space)
-"mI" = (/obj/machinery/atmospherics/valve/horizontal{name = "Gas Feed 1"},/turf/simulated/wall/auto/reinforced,/area/station/science/testchamber)
+"mI" = (/obj/machinery/atmospherics/valve/purge/horizontal{name = "chamber purge valve"},/turf/simulated/wall/auto/reinforced,/area/station/science/testchamber)
 "mK" = (/obj/disposalpipe/junction/left/west,/obj/grille/catwalk/jen/side,/turf/simulated/floor/plating,/area/station/storage/warehouse)
 "mN" = (/obj/disposalpipe/segment/vertical,/turf/simulated/floor/yellow/side{dir = 1},/area/station/mining)
 "mO" = (/obj/disposalpipe/segment/vertical,/obj/cable{d1 = 2; d2 = 4; icon_state = "2-9"},/turf/simulated/floor/plating,/area/space)
@@ -569,7 +576,7 @@
 "nc" = (/obj/disposalpipe/segment/horizontal,/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/white,/area/station/medical/research)
 "nd" = (/obj/machinery/light/small/warm{dir = 1},/obj/disposalpipe/segment/morgue{dir = 4},/turf/simulated/floor/plating,/area/space)
 "ne" = (/obj/machinery/light/fluorescent/cool/very{dir = 8},/turf/simulated/floor,/area/station/bridge/united_command)
-"nf" = (/obj/machinery/light/fluorescent/neutral{dir = 1},/turf/simulated/floor,/area/space)
+"nf" = (/obj/machinery/light/fluorescent/neutral{dir = 1},/obj/table/auto{color = "#666666"},/turf/simulated/floor,/area/space)
 "nh" = (/obj/cable{icon_state = "2-5"},/obj/cable{d1 = 2; d2 = 4; icon_state = "2-9"},/obj/disposalpipe/segment/bent/south,/turf/simulated/floor/carpet/red/standard,/area/station/security/quarters)
 "ni" = (/obj/machinery/light/small/harsh,/turf/simulated/floor/plating,/area/space)
 "nj" = (/obj/machinery/light/fluorescent/cool/very{dir = 8},/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor,/area/space)
@@ -586,7 +593,7 @@
 "nu" = (/obj/disposalpipe/segment/mail/vertical,/obj/grille{auto = 0},/turf/simulated/floor/plating,/area/station/routing/depot)
 "nv" = (/obj/submachine/claw_machine,/obj/decal/cleanable/dirt,/turf/simulated/floor,/area/space)
 "nw" = (/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/grey,/area/station/science)
-"nx" = (/obj/cable{d2 = 2; icon_state = "0-2"},/obj/machinery/power/data_terminal/cable_tray{target_z = 1},/turf/simulated/floor/plating,/area/station/science/construction)
+"nx" = (/obj/cable{d2 = 2; icon_state = "0-2"},/obj/machinery/power/data_terminal/cable_tray{target_z = 1},/obj/structure/girder,/turf/simulated/floor/plating,/area/station/science/construction)
 "ny" = (/obj/disposalpipe/segment/vertical,/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/plating,/area/station/routing/depot)
 "nz" = (/obj/machinery/light/fluorescent/cool/very{dir = 1},/obj/table/reinforced/industrial/auto,/obj/machinery/turretid{pixel_y = 24; req_access_txt = "19"},/turf/simulated/floor/black,/area/station/security/beepsky)
 "nB" = (/obj/machinery/light/fluorescent/cool/very{dir = 8},/turf/simulated/floor/yellow/side{dir = 8},/area/station/mining/staff_room)
@@ -612,9 +619,9 @@
 "nV" = (/obj/cable{icon_state = "0-4"},/obj/cable{icon_state = "0-2"},/obj/cable,/obj/wingrille_spawn/reinforced,/turf/simulated/floor/plating,/area/space)
 "nW" = (/obj/machinery/light/fluorescent/cool/very{dir = 8},/obj/disposalpipe/trunk/zlevel{dir = 4; target_z = 1},/obj/structure/girder,/obj/decal/cleanable/dirt,/turf/simulated/floor/plating,/area/space)
 "nX" = (/obj/machinery/light/fluorescent/cool/very{dir = 8},/turf/simulated/floor/yellow/side{dir = 8},/area/station/mining)
-"nY" = (/obj/machinery/light/fluorescent/cool/very{dir = 8},/obj/machinery/vending/paint/broken,/obj/grille/catwalk/jen,/turf/simulated/floor/plating,/area/station/engine/storage)
+"nY" = (/obj/machinery/light/fluorescent/cool/very{dir = 8},/obj/grille/catwalk/jen,/obj/machinery/vending/standard,/turf/simulated/floor/plating,/area/station/engine/storage)
 "oa" = (/obj/stool/chair/couch/green{dir = 8},/turf/simulated/floor/white,/area/station/medical/research)
-"ob" = (/obj/cable,/obj/cable{d2 = 2; icon_state = "0-2"},/obj/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
+"ob" = (/obj/cable,/obj/cable{d2 = 2; icon_state = "0-2"},/obj/cable{d2 = 8; icon_state = "0-8"},/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
 "oc" = (/obj/disposalpipe/segment/food{dir = 4},/obj/cable{icon_state = "4-8"},/turf/simulated/floor/plating,/area/space)
 "od" = (/obj/disposalpipe/segment/mail/vertical,/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/grey,/area/station/bridge/united_command)
 "oe" = (/obj/table/reinforced/industrial/auto,/obj/machinery/light/fluorescent/harsh/very{dir = 1},/turf/simulated/floor/yellowblack{dir = 5},/area/station/engine/power)
@@ -688,7 +695,7 @@
 "pK" = (/obj/disposalpipe/segment/horizontal,/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/black,/area/station/science)
 "pL" = (/obj/machinery/computer/tetris,/obj/decal/cleanable/dirt,/turf/simulated/floor,/area/space)
 "pM" = (/obj/disposalpipe/segment/horizontal,/obj/grille/catwalk/jen,/turf/simulated/floor/plating,/area/space)
-"pN" = (/obj/machinery/light/fluorescent/cool/very{dir = 8},/obj/machinery/power/data_terminal/cable_tray{target_z = 1},/obj/cable{d2 = 8; icon_state = "0-4"},/turf/simulated/floor/plating,/area/station/storage/warehouse)
+"pN" = (/obj/machinery/light/fluorescent/cool/very{dir = 8},/obj/machinery/power/data_terminal/cable_tray{target_z = 1},/obj/cable{d2 = 8; icon_state = "0-4"},/obj/structure/girder,/turf/simulated/floor/plating,/area/station/storage/warehouse)
 "pO" = (/obj/cable/purple{icon_state = "1-2"},/obj/disposalpipe/segment/bent/south,/turf/simulated/floor/grey,/area/station/science)
 "pP" = (/obj/disposalpipe/segment/bent/west,/turf/simulated/floor/white,/area/space)
 "pQ" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/plating,/area/station/mining/refinery)
@@ -709,6 +716,7 @@
 "qi" = (/obj/machinery/light/fluorescent/cool/very{dir = 8},/obj/machinery/atmospherics/pipe/manifold/overfloor/west,/obj/item/wrench,/turf/simulated/floor/plating,/area/station/engine/storage)
 "qj" = (/obj/machinery/atmospherics/pipe/manifold/overfloor/north,/turf/simulated/floor/plating,/area/station/engine/coldloop)
 "qk" = (/obj/disposalpipe/trunk{dir = 8},/obj/machinery/disposal/mail/autoname/mining,/turf/simulated/floor/yellow/side{dir = 1},/area/station/mining/staff_room)
+"qm" = (/obj/machinery/light/small/blue{dir = 1},/obj/table/folding,/obj/item/clothing/under/towel,/obj/item/reagent_containers/syringe/krokodil,/turf/simulated/floor/grime,/area/space)
 "qn" = (/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/black,/area/station/security/checkpoint/cargo)
 "qp" = (/obj/disposalpipe/segment/cargo,/turf/simulated/floor/yellow/side,/area/station/mining)
 "qq" = (/obj/disposalpipe/segment/morgue{dir = 4},/obj/disposalpipe/segment/mineral,/obj/grille/catwalk/jen,/turf/simulated/floor/plating,/area/space)
@@ -729,6 +737,7 @@
 "qG" = (/obj/disposalpipe/segment/mail/vertical,/turf/simulated/wall/auto,/area/station/crew_quarters/catering)
 "qH" = (/obj/machinery/door/airlock/pyro/weapons,/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/disposalpipe/segment/vertical,/turf/simulated/floor/black,/area/station/security/beepsky)
 "qI" = (/obj/cable{icon_state = "4-8"},/obj/machinery/light/fluorescent/cool/very,/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/black,/area/station/security/checkpoint/cargo)
+"qJ" = (/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/grime,/area/space)
 "qK" = (/turf/simulated/wall/auto/reinforced,/area/station/engine/power)
 "qL" = (/obj/cable{d2 = 8; icon_state = "0-4"},/obj/machinery/power/data_terminal,/obj/machinery/power/monitor/smes{dir = 4},/turf/simulated/floor/plating,/area/station/engine/storage)
 "qN" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor,/area/station/bridge/united_command)
@@ -744,6 +753,7 @@
 "qY" = (/obj/decal/tile_edge/stripe/extra_big{dir = 8; tag = "icon-xtra_bigstripe-edge (WEST)"},/obj/disposalpipe/segment/sewage,/turf/simulated/floor/industrial,/area/station/routing/depot)
 "qZ" = (/turf/simulated/wall/auto,/area/station/science/testchamber)
 "rb" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/disposalpipe/segment/bent/east,/turf/simulated/floor/black,/area/station/ai_monitored/armory)
+"rc" = (/obj/table/auto{color = "#666666"},/turf/simulated/floor,/area/space)
 "rd" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/disposalpipe/segment/mail/vertical,/obj/decal/tile_edge/floorguide/arrow_n,/turf/simulated/floor,/area/space)
 "re" = (/obj/disposalpipe/segment/vertical,/turf/simulated/floor/black,/area/station/security/checkpoint/cargo)
 "rf" = (/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
@@ -758,13 +768,14 @@
 "rr" = (/obj/disposalpipe/segment/vertical,/obj/disposalpipe/segment/cargo{dir = 4},/turf/simulated/floor/plating,/area/space)
 "rs" = (/obj/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/plating,/area/space)
 "ru" = (/turf/simulated/wall/auto,/area/station/bridge/united_command)
-"rv" = (/obj/machinery/atmospherics/pipe/vertical_pipe/west{target_z = 1},/turf/simulated/floor/plating,/area/station/science/testchamber)
+"rv" = (/obj/machinery/atmospherics/pipe/vertical_pipe/west{target_z = 1},/obj/structure/girder,/turf/simulated/floor/plating,/area/station/science/testchamber)
 "rw" = (/obj/cable/purple{icon_state = "4-8"},/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/grey,/area/space)
 "rx" = (/obj/cable/purple{icon_state = "0-8"},/obj/decal/tile_edge/stripe/extra_big{dir = 8; tag = "icon-xtra_bigstripe-edge (WEST)"},/obj/machinery/power/data_terminal,/obj/machinery/networked/test_apparatus/xraymachine{pixel_x = 4},/turf/simulated/floor/black,/area/station/science/artifact{name = "Artifact Lounge"})
 "rz" = (/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/black,/area/station/engine/storage)
 "rA" = (/obj/disposalpipe/segment/mail/vertical,/obj/machinery/light/small/floor,/turf/simulated/floor/white,/area/station/medical/cdc)
 "rB" = (/obj/cable{icon_state = "4-8"},/obj/disposalpipe/segment/mail/horizontal,/obj/disposalpipe/segment/sewage,/turf/simulated/floor,/area/space)
 "rC" = (/obj/machinery/manufacturer/gas,/turf/simulated/floor/yellow/side{dir = 6},/area/station/mining)
+"rD" = (/obj/table/reinforced/auto,/obj/machinery/light/fluorescent/cyan{dir = 4},/turf/simulated/floor/grey/blackgrime,/area/space)
 "rE" = (/obj/decal/cleanable/rust/jen,/turf/simulated/floor/plating/random,/area/station/crew_quarters/fitness)
 "rF" = (/obj/machinery/light/fluorescent/red,/turf/simulated/floor/yellowblack,/area/station/engine/power)
 "rG" = (/obj/machinery/chem_dispenser,/turf/simulated/floor/black,/area/station/science/chemistry)
@@ -805,8 +816,11 @@
 "sv" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/overfloor/vertical,/turf/simulated/floor/grey,/area/space)
 "sw" = (/obj/machinery/door/airlock/classic,/turf/simulated/floor/plating/random,/area/space)
 "sx" = (/obj/disposalpipe/segment/produce,/obj/decal/tile_edge/floorguide/arrow_s,/turf/simulated/floor,/area/space)
+"sy" = (/turf/simulated/floor/grime,/area/space)
 "sz" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/disposalpipe/loafer/vertical,/turf/simulated/floor/carpet/red/standard,/area/station/security/quarters)
+"sA" = (/obj/disposalpipe/segment/bent/north,/turf/simulated/floor/grime,/area/space)
 "sB" = (/obj/disposalpipe/segment/food{dir = 4},/turf/simulated/wall/auto,/area/station/security/quarters)
+"sD" = (/obj/machinery/atmospherics/portables_connector/east,/turf/simulated/floor/plating,/area/station/engine/storage)
 "sH" = (/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/plating,/area/space)
 "sI" = (/obj/disposalpipe/switch_junction/biofilter/left/east,/obj/grille/catwalk/jen,/turf/simulated/floor/plating,/area/station/engine/storage)
 "sJ" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/plating,/area/space)
@@ -833,6 +847,7 @@
 "tj" = (/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/disposalpipe/segment/bent/west,/turf/simulated/floor/grey,/area/space)
 "tl" = (/obj/wingrille_spawn/crystal/full,/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,/turf/simulated/floor/plating,/area/station/science/testchamber)
 "tm" = (/obj/cabinet/chemistry,/turf/simulated/floor/black,/area/station/science/chemistry)
+"to" = (/obj/machinery/shower{dir = 4; pixel_x = 0},/turf/simulated/floor/white/grime,/area/space)
 "tp" = (/obj/disposalpipe/segment/sewage{dir = 2},/turf/simulated/floor/grey,/area/station/science/lobby)
 "tq" = (/obj/disposalpipe/segment/bent/north,/obj/grille/catwalk/jen,/obj/grille/catwalk/jen/side{dir = 4},/turf/simulated/floor/plating,/area/station/crew_quarters/catering)
 "tr" = (/obj/disposalpipe/segment/horizontal,/obj/grille/catwalk/jen,/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/plating,/area/station/crew_quarters/catering)
@@ -996,6 +1011,7 @@
 "wW" = (/obj/storage/secure/closet/command/hop,/turf/simulated/floor/black,/area/station/security/quarters)
 "wX" = (/turf/simulated/floor/plating,/area/station/science/testchamber)
 "wY" = (/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
+"wZ" = (/turf/simulated/floor/grey/blackgrime,/area/space)
 "xa" = (/obj/machinery/door/airlock/engineering,/obj/disposalpipe/segment/mineral{dir = 8},/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,/turf/simulated/floor/grey,/area/space)
 "xb" = (/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/stairs/wide{dir = 8},/area/station/storage/warehouse)
 "xc" = (/obj/machinery/light/fluorescent/cool/very{dir = 1},/obj/table/reinforced/industrial/auto,/obj/decal/cleanable/rust/jen,/turf/simulated/floor/grey,/area/station/crew_quarters/fitness)
@@ -1079,7 +1095,7 @@
 "yO" = (/obj/disposalpipe/trunk{dir = 8},/obj/machinery/disposal/mail/autoname/security/armory,/obj/machinery/light/small/cool,/turf/simulated/floor/black,/area/station/ai_monitored/armory)
 "yP" = (/obj/stool/bed,/obj/item/clothing/suit/bedsheet/blue,/obj/landmark/start{name = "Security Assistant"},/turf/simulated/floor/carpet/red/standard,/area/station/security/quarters)
 "yQ" = (/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/plating,/area/station/science/construction)
-"yR" = (/obj/table/reinforced/industrial/auto,/obj/disposalpipe/segment/bent/east,/turf/simulated/floor/plating,/area/space)
+"yR" = (/turf/simulated/floor/white/grime,/area/space)
 "yS" = (/obj/disposalpipe/segment/produce{dir = 4},/obj/machinery/light/fluorescent/cool/very{dir = 1},/obj/grille/catwalk/jen,/obj/table/reinforced/industrial/auto,/turf/simulated/floor/plating,/area/station/crew_quarters/catering)
 "yT" = (/obj/machinery/atmospherics/pipe/manifold/overfloor/south,/turf/simulated/floor/plating,/area/station/engine/coldloop)
 "yU" = (/obj/disposalpipe/segment/food,/obj/machinery/light/small/warm{dir = 8},/turf/simulated/floor/plating,/area/space)
@@ -1118,7 +1134,7 @@
 "zE" = (/turf/simulated/wall/auto/reinforced,/area/station/medical/cdc)
 "zG" = (/turf/simulated/wall/auto/reinforced,/area/station/security/beepsky)
 "zH" = (/turf/simulated/floor/white,/area/space)
-"zI" = (/obj/machinery/atmospherics/binary/passive_gate{dir = 8; pixel_y = 1},/turf/simulated/floor/grey,/area/station/engine/storage)
+"zI" = (/obj/machinery/atmospherics/binary/passive_gate{dir = 8; icon_state = "intact_on"; on = 1; pixel_y = 1},/turf/simulated/floor/grey,/area/station/engine/storage)
 "zJ" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,/turf/simulated/floor/plating,/area/space)
 "zK" = (/obj/table/auto,/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/carpet/grime,/area/station/mining/staff_room)
 "zL" = (/turf/simulated/floor/black,/area/station/security/checkpoint/cargo)
@@ -1136,6 +1152,7 @@
 "zX" = (/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/cable{icon_state = "2-4"},/turf/simulated/floor/black,/area/station/engine/power)
 "zZ" = (/obj/machinery/door/airlock/gannets/glass/chemistry,/obj/disposalpipe/segment{dir = 2},/turf/simulated/floor/grey,/area/station/science)
 "Aa" = (/obj/machinery/atmospherics/pipe/vertical_pipe/south{target_z = 1},/obj/structure/girder,/turf/simulated/floor/plating,/area/space)
+"Ab" = (/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor,/area/station/medical/research)
 "Ac" = (/obj/machinery/atmospherics/valve,/turf/simulated/floor/plating,/area/station/engine/storage)
 "Ad" = (/obj/disposalpipe/segment/sewage{dir = 2},/turf/simulated/floor/plating,/area/station/science/gen_storage)
 "Ae" = (/obj/disposalpipe/segment/morgue,/obj/wingrille_spawn/reinforced,/turf/simulated/floor,/area/station/bridge/united_command)
@@ -1171,7 +1188,7 @@
 "AN" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,/turf/simulated/wall/auto,/area/space)
 "AO" = (/obj/cable{icon_state = "4-8"},/obj/disposalpipe/switch_junction/right/east{mail_tag = "armory"; name = "mail junction (armory)"},/turf/simulated/floor/black,/area/station/security/checkpoint/cargo)
 "AP" = (/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/white,/area/station/medical/cdc)
-"AQ" = (/turf/simulated/floor/carpet/blue/standard/edge/ne,/area/station/crew_quarters/quarters)
+"AQ" = (/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/carpet/blue/standard/edge/ne,/area/station/crew_quarters/quarters)
 "AR" = (/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/plating,/area/space)
 "AS" = (/obj/disposalpipe/segment/mail/vertical,/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/black,/area/station/security/checkpoint/cargo)
 "AT" = (/obj/cable/blue{icon_state = "4-8"},/turf/simulated/wall/auto/reinforced,/area/space)
@@ -1194,7 +1211,7 @@
 "Bo" = (/obj/railing/cyan{dir = 4},/obj/railing/cyan,/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/plating,/area/space)
 "Bp" = (/obj/machinery/atmospherics/pipe/manifold/overfloor/west,/obj/wingrille_spawn/reinforced,/turf/simulated/floor/plating,/area/space)
 "Bq" = (/obj/disposalpipe/segment/bent/east,/turf/simulated/floor/carpet/grime,/area/station/mining/staff_room)
-"Bs" = (/turf/simulated/floor/carpet/blue/standard/edge/north,/area/station/crew_quarters/quarters)
+"Bs" = (/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/carpet/blue/standard/edge/north,/area/station/crew_quarters/quarters)
 "Bt" = (/obj/disposalpipe/segment/cargo,/obj/machinery/door/airlock/glass,/obj/grille/catwalk/jen,/turf/simulated/floor/plating,/area/space)
 "Bu" = (/obj/disposalpipe/segment/sewage,/turf/simulated/floor/plating,/area/space)
 "Bv" = (/obj/disposalpipe/switch_junction/biofilter/right/east,/turf/simulated/floor/plating{icon_state = "platingdmg3"},/area/space)
@@ -1263,7 +1280,7 @@
 "CU" = (/obj/cable/purple{icon_state = "1-8"},/obj/cable/purple{icon_state = "2-8"},/turf/simulated/floor/grey,/area/station/science/artifact{name = "Artifact Lounge"})
 "CV" = (/obj/disposalpipe/segment/sewage,/obj/grille/catwalk/jen/side,/turf/simulated/floor/plating,/area/space)
 "CX" = (/obj/grille/catwalk/jen,/obj/disposalpipe/trunk/zlevel{dir = 2; target_z = 1},/turf/simulated/floor/plating,/area/station/crew_quarters/catering)
-"CY" = (/obj/machinery/power/data_terminal/cable_tray{target_z = 1},/obj/cable/blue{icon_state = "0-2"},/turf/simulated/floor/plating,/area/station/bridge/united_command)
+"CY" = (/obj/machinery/power/data_terminal/cable_tray{target_z = 1},/obj/cable/blue{icon_state = "0-2"},/obj/structure/girder,/turf/simulated/floor/plating,/area/station/bridge/united_command)
 "CZ" = (/obj/disposalpipe/segment/morgue{dir = 4},/obj/disposalpipe/segment/cargo,/obj/grille/catwalk/jen,/turf/simulated/floor/plating,/area/space)
 "Da" = (/obj/disposalpipe/segment/produce{dir = 4},/turf/simulated/floor/plating,/area/space)
 "Dc" = (/obj/cable/purple{icon_state = "0-8"},/obj/decal/tile_edge/stripe/extra_big{dir = 8; tag = "icon-xtra_bigstripe-edge (WEST)"},/obj/machinery/power/data_terminal,/obj/machinery/computer3/terminal/zeta{dir = 8; setup_os_string = "ZETA_MAINFRAME"},/turf/simulated/floor/black,/area/station/science/artifact{name = "Artifact Lounge"})
@@ -1345,7 +1362,7 @@
 "EI" = (/obj/machinery/sparker{dir = 8; id = "combustion_ignition"; layer = 7; name = "Mounted Igniter"; pixel_x = -24},/turf/simulated/floor/airless/engine/glow/blue,/area/station/engine/combustion_chamber)
 "EJ" = (/obj/wingrille_spawn,/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/plating,/area/station/science/chemistry)
 "EL" = (/obj/disposalpipe/segment/sewage,/turf/simulated/floor/grey,/area/space)
-"EM" = (/obj/machinery/power/data_terminal/cable_tray{target_z = 1},/obj/cable{d2 = 8; icon_state = "0-4"},/obj/decal/cleanable/dirt,/turf/simulated/floor/plating,/area/space)
+"EM" = (/obj/machinery/power/data_terminal/cable_tray{target_z = 1},/obj/cable{d2 = 8; icon_state = "0-4"},/obj/decal/cleanable/dirt,/obj/structure/girder,/turf/simulated/floor/plating,/area/space)
 "EN" = (/obj/grille{auto = 0},/obj/disposalpipe/segment/cargo{dir = 4},/turf/simulated/floor/plating,/area/station/crew_quarters/catering)
 "EO" = (/obj/disposalpipe/segment/bent/south,/turf/simulated/floor/plating,/area/space)
 "EP" = (/obj/cable{d2 = 8; icon_state = "0-8"},/obj/cable,/obj/wingrille_spawn/reinforced,/turf/simulated/floor/plating,/area/space)
@@ -1461,14 +1478,14 @@
 "Hn" = (/obj/disposalpipe/segment/vertical,/turf/simulated/floor,/area/station/mining/staff_room)
 "Ho" = (/obj/storage/secure/closet/command/hos,/turf/simulated/floor/black,/area/station/security/quarters)
 "Hp" = (/obj/disposalpipe/segment/produce,/obj/grille/catwalk/jen,/turf/simulated/floor/plating,/area/space)
-"Hq" = (/obj/machinery/power/data_terminal/cable_tray{target_z = 1},/obj/cable{d2 = 8; icon_state = "0-4"},/obj/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/plating,/area/station/engine/storage)
+"Hq" = (/obj/machinery/power/data_terminal/cable_tray{target_z = 1},/obj/cable{d2 = 8; icon_state = "0-4"},/obj/cable{d2 = 8; icon_state = "0-8"},/obj/structure/girder,/turf/simulated/floor/plating,/area/station/engine/storage)
 "Hr" = (/turf/simulated/floor/plating,/area/station/engine/storage)
 "Hs" = (/obj/cable/purple{icon_state = "4-8"},/obj/disposalpipe/segment/bent/east,/turf/simulated/floor/grey,/area/space)
 "Ht" = (/obj/machinery/atmospherics/pipe/vertical_pipe/south{target_z = 1},/obj/structure/girder,/turf/simulated/floor,/area/space)
 "Hu" = (/obj/disposalpipe/segment/cargo{dir = 1},/obj/disposalpipe/segment/horizontal,/turf/simulated/floor,/area/station/storage/warehouse)
 "Hv" = (/obj/cable{icon_state = "2-4"},/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/plating,/area/space)
 "Hx" = (/obj/disposalpipe/segment/bent/west,/turf/simulated/floor/white,/area/station/medical/research)
-"Hy" = (/obj/cable,/obj/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
+"Hy" = (/obj/cable,/obj/cable{d2 = 8; icon_state = "0-8"},/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
 "Hz" = (/obj/cable/purple{icon_state = "4-8"},/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/grey,/area/station/science/artifact{name = "Artifact Lounge"})
 "HA" = (/obj/machinery/light/fluorescent/purpleish{dir = 8},/turf/simulated/floor/grey,/area/station/science/lobby)
 "HB" = (/obj/disposalpipe/segment/mail/horizontal,/obj/disposalpipe/segment/sewage,/turf/simulated/floor/plating,/area/station/crew_quarters/catering)
@@ -1552,7 +1569,7 @@
 "Jk" = (/obj/cable{d1 = 2; d2 = 4; icon_state = "6-9"},/turf/simulated/floor/plating,/area/station/engine/power)
 "Jl" = (/obj/table/reinforced/industrial/auto,/obj/decal/cleanable/dirt,/turf/simulated/floor/grey,/area/space)
 "Jm" = (/obj/machinery/light/fluorescent/cool/very{dir = 8},/obj/disposalpipe/segment/bent/north,/turf/simulated/floor/plating,/area/station/storage/warehouse)
-"Jn" = (/obj/cable{d2 = 2; icon_state = "0-2"},/obj/cable,/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
+"Jn" = (/obj/cable{d2 = 2; icon_state = "0-2"},/obj/cable,/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
 "Jo" = (/turf/simulated/wall/auto/reinforced,/area/station/engine/combustion_chamber)
 "Jp" = (/obj/machinery/door/airlock/pyro,/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/plating,/area/station/storage/warehouse)
 "Jq" = (/obj/disposalpipe/junction/left/south,/turf/simulated/floor/black,/area/station/science)
@@ -1664,7 +1681,7 @@
 "LM" = (/obj/disposalpipe/segment/horizontal,/obj/grille/catwalk/jen,/obj/cable{d1 = 2; d2 = 4; icon_state = "6-8"},/turf/simulated/floor/plating,/area/station/crew_quarters/catering)
 "LN" = (/obj/disposalpipe/segment/bent/east,/turf/simulated/floor/plating,/area/station/science/gen_storage)
 "LO" = (/obj/disposalpipe/segment/mail/vertical,/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor,/area/station/mining/staff_room)
-"LP" = (/turf/simulated/floor/carpet/blue/standard/edge/north,/area/station/medical/research)
+"LP" = (/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/carpet/blue/standard/edge/north,/area/station/medical/research)
 "LR" = (/obj/disposalpipe/segment/sewage,/turf/simulated/floor,/area/space)
 "LS" = (/obj/machinery/light/fluorescent{dir = 8},/obj/grille/catwalk/jen/side,/turf/simulated/floor/plating,/area/space)
 "LT" = (/obj/wingrille_spawn,/turf/simulated/floor/plating,/area/station/science)
@@ -1672,6 +1689,7 @@
 "LV" = (/obj/disposalpipe/segment/bent/east,/obj/machinery/portable_atmospherics/canister/empty,/obj/machinery/light/fluorescent/cool/very{dir = 4},/turf/simulated/floor/plating,/area/station/engine/storage)
 "LW" = (/obj/wingrille_spawn,/turf/simulated/floor/plating,/area/space)
 "LX" = (/obj/cable{icon_state = "0-2"},/obj/machinery/power/data_terminal,/obj/machinery/power/monitor,/turf/simulated/floor/yellowblack{dir = 1},/area/station/engine/power)
+"LY" = (/obj/machinery/shower{dir = 8},/turf/simulated/floor/white/grime,/area/space)
 "LZ" = (/obj/cable/purple{icon_state = "0-2"},/obj/decal/tile_edge/stripe/extra_big,/obj/machinery/power/data_terminal,/obj/machinery/networked/artifact_console{desc = "It just sorta showed up in a giant box of test equipment."; name = "giant mystery science doodad"; pixel_y = 6},/turf/simulated/floor/black,/area/station/science/artifact{name = "Artifact Lounge"})
 "Ma" = (/obj/cable{icon_state = "1-4"},/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/plating,/area/station/science/construction)
 "Mb" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/plating,/area/station/storage/warehouse)
@@ -1702,14 +1720,14 @@
 "MD" = (/obj/cable{d1 = 2; d2 = 4; icon_state = "6-8"},/turf/simulated/floor,/area/station/bridge/united_command)
 "ME" = (/turf/simulated/floor/stairs/wide{dir = 1},/area/station/engine/power)
 "MF" = (/obj/machinery/portable_atmospherics/canister/carbon_dioxide,/turf/simulated/floor,/area/space)
-"MG" = (/obj/machinery/light/fluorescent/cool/very,/obj/disposalpipe/trunk/zlevel{dir = 8; target_z = 1},/turf/simulated/floor/plating,/area/space)
+"MG" = (/obj/machinery/light/fluorescent/cool/very,/obj/disposalpipe/trunk/zlevel{dir = 8; target_z = 1},/obj/structure/girder,/turf/simulated/floor/plating,/area/space)
 "MH" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/door/airlock/engineering,/turf/simulated/floor/grey,/area/station/engine/power)
 "MJ" = (/turf/simulated/floor/yellow/side{dir = 1},/area/station/mining)
-"MK" = (/obj/disposalpipe/trunk/zlevel{dir = 8; target_z = 1},/turf/simulated/floor/plating,/area/space)
+"MK" = (/obj/machinery/light/fluorescent/cool/very{dir = 1},/turf/simulated/floor/white/grime,/area/space)
 "ML" = (/obj/disposalpipe/trunk{dir = 2},/obj/machinery/disposal,/turf/simulated/floor,/area/station/security/detectives_office)
 "MM" = (/obj/submachine/chef_sink{dir = 4; name = "bathroom sink"},/turf/simulated/floor/black,/area/station/security/quarters)
 "MN" = (/obj/disposalpipe/segment/mineral,/turf/simulated/wall/auto,/area/space)
-"MO" = (/obj/machinery/power/data_terminal/cable_tray{target_z = 1},/obj/cable,/turf/simulated/floor/plating,/area/space)
+"MO" = (/obj/machinery/power/data_terminal/cable_tray{target_z = 1},/obj/cable,/obj/structure/girder,/turf/simulated/floor/plating,/area/space)
 "MP" = (/obj/disposalpipe/segment/mineral{dir = 8},/obj/disposalpipe/segment/mail/vertical,/obj/decal/tile_edge/floorguide/arrow_s,/turf/simulated/floor/grey,/area/station/engine/storage)
 "MQ" = (/turf/simulated/floor/grey,/area/station/medical/research)
 "MR" = (/obj/disposalpipe/segment/mail/horizontal,/obj/disposalpipe/segment/sewage,/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
@@ -1741,7 +1759,7 @@
 "Nz" = (/obj/disposalpipe/segment/mineral,/turf/simulated/floor/yellow/side,/area/station/mining)
 "NA" = (/obj/machinery/light/fluorescent/cool/very{dir = 1},/obj/grille/catwalk/jen,/obj/disposalpipe/trunk{dir = 2},/turf/simulated/floor/plating,/area/space)
 "NB" = (/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor,/area/station/mining)
-"NC" = (/obj/machinery/atmospherics/pipe/simple/insulated/southeast,/obj/disposalpipe/segment/bent/east,/turf/simulated/floor/plating,/area/station/engine/storage)
+"NC" = (/obj/machinery/atmospherics/pipe/simple/insulated/southeast,/obj/machinery/atmospherics/pipe/manifold/overfloor/north,/turf/simulated/floor/plating,/area/station/engine/storage)
 "ND" = (/obj/cable/purple{icon_state = "4-8"},/obj/disposalpipe/segment/bent/north,/turf/simulated/floor/grey,/area/station/science/artifact{name = "Artifact Lounge"})
 "NE" = (/obj/disposalpipe/segment/cargo{dir = 4},/obj/railing/cyan{dir = 8},/turf/simulated/floor/plating,/area/station/crew_quarters/catering)
 "NF" = (/obj/machinery/light/fluorescent/cool/very{dir = 8},/turf/simulated/floor/darkblue,/area/space)
@@ -1750,6 +1768,7 @@
 "NI" = (/obj/cable/purple{icon_state = "2-8"},/obj/cable/purple{icon_state = "1-2"},/turf/simulated/floor/grey,/area/station/science/artifact{name = "Artifact Lounge"})
 "NJ" = (/obj/disposalpipe/trunk{dir = 8},/obj/machinery/floorflusher/industrial{name = "industrial loading chute - minerals"},/turf/simulated/floor,/area/station/storage/warehouse)
 "NK" = (/obj/disposalpipe/segment/sewage{dir = 8},/turf/simulated/floor/black,/area/space)
+"NL" = (/obj/disposalpipe/segment/bent/north,/turf/simulated/floor,/area/station/medical/research)
 "NN" = (/obj/disposalpipe/switch_junction/biofilter/right/east,/turf/simulated/floor/plating,/area/space)
 "NO" = (/obj/cable{d1 = 2; d2 = 4; icon_state = "4-10"},/obj/machinery/door/airlock/glass/command,/turf/simulated/floor,/area/space)
 "NQ" = (/obj/disposalpipe/segment/food,/obj/disposalpipe/segment/morgue{dir = 4},/obj/cable{icon_state = "1-10"},/turf/simulated/floor/plating,/area/space)
@@ -1761,7 +1780,7 @@
 "NX" = (/obj/stool/chair/couch/blue{dir = 8},/turf/simulated/floor/carpet/grime,/area/station/mining/staff_room)
 "NZ" = (/obj/cable{d2 = 2; icon_state = "0-2"},/turf/simulated/floor,/area/space)
 "Ob" = (/obj/disposalpipe/segment/morgue{dir = 4},/obj/disposalpipe/segment/vertical,/obj/grille/catwalk/jen,/turf/simulated/floor/plating,/area/space)
-"Oc" = (/obj/disposalpipe/trunk/zlevel{dir = 4; target_z = 1},/turf/simulated/floor/plating,/area/space)
+"Oc" = (/obj/machinery/shower{dir = 1},/turf/simulated/floor/white/grime,/area/space)
 "Od" = (/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/carpet/blue/standard/edge/south,/area/station/crew_quarters/quarters)
 "Oe" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/disposalpipe/segment/morgue{dir = 4},/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor,/area/station/storage/warehouse)
 "Oh" = (/obj/disposalpipe/segment/cargo{dir = 1},/turf/simulated/floor,/area/station/storage/warehouse)
@@ -1857,6 +1876,7 @@
 "Qk" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/disposalpipe/junction/left/south,/turf/simulated/floor/black,/area/station/security/beepsky)
 "Ql" = (/obj/cable/purple{icon_state = "1-2"},/obj/disposalpipe/switch_junction/left/west,/turf/simulated/floor/grey,/area/station/science)
 "Qm" = (/obj/cable{d1 = 2; d2 = 4; icon_state = "5-8"},/turf/simulated/floor,/area/space)
+"Qn" = (/obj/disposalpipe/trunk,/obj/item/storage/toilet,/turf/simulated/floor/grime,/area/space)
 "Qp" = (/obj/cable/purple{icon_state = "0-8"},/obj/decal/tile_edge/stripe/extra_big{dir = 10},/obj/machinery/power/data_terminal,/obj/table/auto{color = "#666666"},/obj/machinery/networked/storage/scanner{bank_id = "research"; pixel_y = 7},/turf/simulated/floor/black,/area/station/science/artifact{name = "Artifact Lounge"})
 "Qq" = (/obj/cable,/obj/machinery/power/data_terminal,/obj/machinery/networked/test_apparatus/gas_sensor{setup_tag = "WASTE"},/turf/simulated/floor/plating,/area/space)
 "Qs" = (/obj/disposalpipe/segment/mineral,/obj/grille/catwalk/jen,/turf/simulated/floor/plating,/area/space)
@@ -1925,7 +1945,7 @@
 "RM" = (/obj/disposalpipe/segment/produce,/turf/simulated/floor/plating,/area/station/crew_quarters/catering)
 "RN" = (/obj/disposalpipe/segment{dir = 2},/turf/simulated/floor/plating,/area/station/science)
 "RO" = (/obj/fitness/weightlifter,/obj/item/reagent_containers/food/drinks/water,/obj/decal/cleanable/water,/turf/simulated/floor/industrial,/area/station/crew_quarters/fitness)
-"RP" = (/obj/disposalpipe/segment/morgue,/obj/decal/tile_edge/floorguide/arrow_n,/obj/machinery/light/small/purpleish{dir = 1},/turf/simulated/floor,/area/space)
+"RP" = (/obj/disposalpipe/segment/morgue,/obj/decal/tile_edge/floorguide/arrow_n,/obj/machinery/light/fluorescent/blue{dir = 1},/turf/simulated/floor,/area/space)
 "RQ" = (/obj/machinery/light/fluorescent/cool/very{dir = 1},/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor,/area/space)
 "RR" = (/obj/disposalpipe/segment/morgue,/obj/cable/blue{icon_state = "4-8"},/turf/simulated/floor/grey,/area/station/bridge/united_command)
 "RT" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,/turf/simulated/floor/plating,/area/space)
@@ -1941,10 +1961,11 @@
 "Sf" = (/obj/cable{icon_state = "2-5"},/turf/simulated/floor/black,/area/station/security/beepsky)
 "Sg" = (/obj/disposalpipe/segment/bent/west,/turf/simulated/floor/plating,/area/station/engine/coldloop)
 "Sh" = (/obj/disposalpipe/segment/bent/north,/obj/decal/tile_edge/floorguide/arrow_e{pixel_x = 16},/turf/simulated/floor,/area/space)
-"Sj" = (/obj/cable{d1 = 2; d2 = 4; icon_state = "4-9"},/obj/disposalpipe/segment/mail/horizontal,/obj/machinery/light/small/purpleish,/turf/simulated/floor/plating,/area/space)
+"Sj" = (/obj/cable{d1 = 2; d2 = 4; icon_state = "4-9"},/obj/disposalpipe/segment/mail/horizontal,/obj/machinery/light/fluorescent/blue,/turf/simulated/floor/plating,/area/space)
 "Sk" = (/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/black,/area/station/science)
 "Sl" = (/turf/simulated/floor/stairs/wide/middle{dir = 4},/area/station/bridge/united_command)
 "Sn" = (/obj/disposalpipe/segment{dir = 2},/turf/simulated/floor,/area/station/bridge/united_command)
+"So" = (/obj/machinery/door/unpowered/wood/pyro{dir = 8},/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/grime,/area/space)
 "Sp" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/grey,/area/station/engine/storage)
 "Sq" = (/obj/machinery/light/fluorescent/cool/very,/turf/simulated/floor,/area/station/bridge/united_command)
 "Sr" = (/obj/disposalpipe/segment/mineral,/turf/simulated/floor,/area/station/mining)
@@ -1955,6 +1976,7 @@
 "Sx" = (/obj/table/reinforced/industrial/auto,/obj/item/plate,/obj/item/kitchen/utensil/fork{pixel_x = 8; pixel_y = 3},/obj/item/kitchen/utensil/knife{pixel_x = -7; pixel_y = 3},/obj/item/reagent_containers/food/snacks/sandwich/meatball,/obj/decal/cleanable/rust/jen,/turf/simulated/floor/grey,/area/station/crew_quarters/fitness)
 "Sy" = (/obj/cable/purple{icon_state = "1-4"},/obj/cable/purple{icon_state = "4-8"},/turf/simulated/floor/plating,/area/space)
 "Sz" = (/obj/cable{icon_state = "1-10"},/turf/simulated/floor/plating,/area/station/engine/storage)
+"SA" = (/obj/submachine/chef_sink{desc = "A common utility sink."; dir = 8; name = "utility sink"},/turf/simulated/floor/grey/blackgrime,/area/space)
 "SD" = (/obj/machinery/portable_atmospherics/canister/empty,/turf/simulated/floor,/area/space)
 "SE" = (/obj/disposalpipe/segment/mail/vertical,/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
 "SH" = (/obj/machinery/light/small/cool{dir = 8},/obj/disposalpipe/trunk{dir = 4},/obj/machinery/disposal,/turf/simulated/floor/carpet/grime,/area/station/mining/staff_room)
@@ -2054,6 +2076,7 @@
 "UK" = (/obj/disposalpipe/segment/vertical,/turf/simulated/floor/grey,/area/space)
 "UL" = (/obj/disposalpipe/segment/cargo,/obj/grille/catwalk/jen/side{dir = 1; icon_state = "catwalk_jen_side"},/turf/simulated/floor/plating,/area/space)
 "UM" = (/obj/disposalpipe/segment/morgue{dir = 4},/obj/disposalpipe/segment/sewage,/turf/simulated/floor/plating,/area/space)
+"UN" = (/obj/machinery/light/small/blue{dir = 8},/obj/disposalpipe/trunk{dir = 4},/obj/item/storage/toilet{dir = 4},/turf/simulated/floor/grime,/area/space)
 "UO" = (/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/wingrille_spawn/reinforced,/turf/simulated/floor/plating,/area/station/engine/power)
 "UP" = (/obj/disposalpipe/segment/bent/north,/turf/simulated/floor,/area/space)
 "UQ" = (/obj/disposalpipe/trunk/zlevel{dir = 8; target_z = 1},/obj/structure/girder,/turf/simulated/floor/plating,/area/station/science/construction)
@@ -2070,6 +2093,7 @@
 "Vg" = (/obj/machinery/atmospherics/pipe/simple/insulated/northwest,/obj/wingrille_spawn/reinforced,/turf/simulated/floor/plating,/area/space)
 "Vh" = (/obj/disposalpipe/segment/bent/west,/turf/simulated/floor/grey,/area/station/engine/storage)
 "Vi" = (/obj/cable/purple{icon_state = "2-4"},/obj/cable/purple{icon_state = "2-8"},/obj/cable/purple{icon_state = "1-2"},/turf/simulated/floor/grey,/area/station/science/artifact{name = "Artifact Lounge"})
+"Vj" = (/obj/disposalpipe/segment/sewage,/turf/simulated/floor,/area/station/medical/research)
 "Vk" = (/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/plating,/area/station/crew_quarters/catering)
 "Vl" = (/obj/table/reinforced/chemistry/auto,/obj/machinery/coffeemaker,/obj/decal/tile_edge/stripe{dir = 1},/turf/simulated/floor/black,/area/station/mining/staff_room)
 "Vm" = (/obj/machinery/light/small/floor,/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/grey,/area/station/bridge/united_command)
@@ -2100,6 +2124,7 @@
 "VM" = (/obj/wingrille_spawn/reinforced,/turf/simulated/floor/plating{icon_state = "platingdmg3"},/area/space)
 "VN" = (/obj/disposalpipe/segment/bent/east,/obj/machinery/light/fluorescent/neutral{dir = 8},/turf/simulated/floor/black,/area/station/science/lobby)
 "VP" = (/turf/simulated/floor/plating,/area/shuttle/sea_elevator/lower/med)
+"VQ" = (/obj/machinery/drainage/big,/turf/simulated/floor/white/grime,/area/space)
 "VR" = (/obj/disposalpipe/segment/vertical,/turf/simulated/floor/plating,/area/space)
 "VS" = (/obj/machinery/light/small/purpleish{dir = 4},/turf/simulated/floor/plating,/area/station/medical/research)
 "VU" = (/obj/disposalpipe/segment/vertical,/obj/grille/catwalk/jen,/obj/cable{d1 = 2; d2 = 4; icon_state = "2-9"},/turf/simulated/floor/plating,/area/station/crew_quarters/catering)
@@ -2130,10 +2155,11 @@
 "Wx" = (/obj/disposalpipe/segment/bent/south,/turf/simulated/floor/carpet/grime,/area/station/medical/staff)
 "Wy" = (/obj/disposalpipe/segment/mail/horizontal,/obj/machinery/door/airlock/classic,/turf/simulated/floor,/area/space)
 "Wz" = (/obj/cable/purple{icon_state = "1-4"},/turf/simulated/floor/grey,/area/space)
+"WB" = (/obj/disposalpipe/junction/left/south,/turf/simulated/floor/grey/blackgrime,/area/space)
 "WC" = (/obj/machinery/door/airlock/gannets/toxins/alt,/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/grey,/area/station/science/lab)
 "WD" = (/obj/railing/cyan,/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/plating,/area/space)
 "WE" = (/obj/wingrille_spawn/reinforced,/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/plating,/area/station/engine/power)
-"WF" = (/obj/machinery/atmospherics/pipe/vertical_pipe/south{target_z = 1},/turf/simulated/floor/plating,/area/station/science/testchamber)
+"WF" = (/obj/machinery/atmospherics/pipe/vertical_pipe/south{target_z = 1},/obj/structure/girder,/turf/simulated/floor/plating,/area/station/science/testchamber)
 "WH" = (/turf/simulated/wall/auto,/area/station/mining/refinery)
 "WI" = (/obj/disposalpipe/segment/sewage{dir = 2},/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/black,/area/station/science)
 "WL" = (/obj/machinery/atmospherics/valve/horizontal{name = "Gas Feed 1"},/turf/simulated/floor/plating,/area/space)
@@ -2141,6 +2167,7 @@
 "WN" = (/obj/machinery/light/small/warm{dir = 1},/obj/disposalpipe/segment/morgue{dir = 4},/turf/simulated/floor,/area/space)
 "WO" = (/obj/machinery/light/small/warm{dir = 8},/turf/simulated/floor/plating,/area/station/engine/coldloop)
 "WP" = (/obj/cable{d1 = 2; d2 = 4; icon_state = "4-10"},/turf/simulated/floor/grey,/area/station/bridge/united_command)
+"WQ" = (/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/grey/blackgrime,/area/space)
 "WR" = (/obj/machinery/atmospherics/binary/volume_pump{dir = 1; on = 1; transfer_rate = 1000},/obj/disposalpipe/segment/mineral{dir = 8},/turf/simulated/floor/grey,/area/space)
 "WS" = (/obj/machinery/light/fluorescent/cool/very,/turf/simulated/floor/grey,/area/station/medical/research)
 "WU" = (/obj/machinery/light/fluorescent/cool/very{dir = 8},/obj/grille/catwalk/jen,/turf/simulated/floor/plating,/area/station/engine/storage)
@@ -2154,6 +2181,7 @@
 "Xe" = (/obj/machinery/light/small/floor,/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/disposalpipe/segment/morgue,/turf/simulated/floor,/area/station/storage/warehouse)
 "Xf" = (/obj/item/bballbasket{dir = 8},/obj/decal/tile_edge/stripe/extra_big{dir = 10; icon_state = "bot2"},/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
 "Xg" = (/obj/machinery/drainage/big,/turf/simulated/floor/grey,/area/space)
+"Xh" = (/obj/disposalpipe/segment/sewage,/turf/simulated/floor/grime,/area/space)
 "Xi" = (/obj/table/auto{color = "#666666"},/turf/simulated/floor/black,/area/station/mining/staff_room)
 "Xm" = (/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor,/area/station/mining/refinery)
 "Xn" = (/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/white,/area/station/medical/cdc)
@@ -2166,6 +2194,7 @@
 "Xw" = (/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/wall/auto,/area/space)
 "Xx" = (/obj/disposalpipe/junction/middle/south,/turf/simulated/floor/white,/area/station/medical/cdc)
 "Xy" = (/obj/disposalpipe/junction/middle/east,/obj/grille/catwalk/jen,/turf/simulated/floor/plating,/area/space)
+"Xz" = (/obj/machinery/door/airlock/classic,/obj/disposalpipe/segment/sewage,/turf/simulated/floor/grey/blackgrime,/area/station/medical/research)
 "XA" = (/obj/machinery/door/airlock/classic,/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor,/area/station/science/restroom)
 "XB" = (/obj/disposalpipe/segment/mineral{dir = 8},/obj/grille/catwalk/jen,/obj/disposalpipe/segment/vertical,/turf/simulated/floor/plating,/area/station/storage/warehouse)
 "XC" = (/obj/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/plating,/area/space)
@@ -2255,7 +2284,7 @@
 "ZB" = (/obj/disposalpipe/segment/bent/west,/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/plating,/area/space)
 "ZC" = (/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/black,/area/station/security/checkpoint/cargo)
 "ZE" = (/obj/disposalpipe/segment/produce,/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/wood,/area/station/crew_quarters/quarters)
-"ZF" = (/obj/machinery/power/data_terminal/cable_tray{target_z = 1},/obj/cable{d2 = 4; icon_state = "0-4"},/turf/simulated/floor/plating,/area/station/bridge/united_command)
+"ZF" = (/obj/machinery/power/data_terminal/cable_tray{target_z = 1},/obj/cable{d2 = 4; icon_state = "0-4"},/obj/structure/girder,/turf/simulated/floor/plating,/area/station/bridge/united_command)
 "ZG" = (/obj/machinery/light/fluorescent/cool/very{dir = 8},/turf/simulated/floor/white,/area/station/medical/research)
 "ZH" = (/obj/disposalpipe/segment/bent/south,/obj/cable{icon_state = "4-8"},/turf/simulated/floor/black,/area/station/security/checkpoint/cargo)
 "ZI" = (/obj/table/reinforced/industrial/auto,/obj/item/device/analyzer/atmospheric/upgraded,/turf/simulated/floor/yellowblack{dir = 9},/area/station/engine/power)
@@ -2389,8 +2418,8 @@ dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdK
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKiaKHKHlRTLKHiadKdKdKdKdKdKPsPsPsPsPszGzGzGzGzGpBzGbjJiQzQkbjzGzGzGzGzGzGzGPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKuAuAxFHnEYvPnDldPfnqnqnqSrsfnqnqnqyolwVRsJdKdKdKdKdKdKdKPsPsPsPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKiaKHKHlRTLKHiadKdKdKdKdKdKPsdKabssssssssssssssZxzGzGyxzGqHzGPsPsPsPsPsPsPsPsdKdKdKdKdKdKdKdKdKClClClClClClldldnBHnnsqvClldlwlwlwlwfdzslwlwlwlwlwVRsJdKdKdKdKdKdKdKPspNXpPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKiaqgKHlRTLkgiadKdKdKdKdKdKPsPskIPsPsPsPsPsPsPsPsvGlNCngjJJlNPsdKdKdKdKdKdKdKdKdKdKdKdKClClClClClAXoSmcIzlUAXldtVHnnsuOVFklnKqkldaLAFsffhlwdldldlVRsJPsPsdKdKdKdKdKPsyuMbPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKiaKHKHlRTLKHiadKdKdKdKdKdKPsdlbqaddldlabMKvtyRdcvGplTvgjuIplPsdKdKdKdKdKdKdKdKdKdKdKdKCljtKQClClINZQZQZQBqKyFxAAEDAAAAYUDonsdNIwBEVHAFnqlwdldldlVRsJadPsdKdKdKdKdKPsQeJpPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKMwMwMwMwMwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKiaKHKHlRTLKHiadKdKdKdldldlPsdlbqdldlabzPMKOcgeCAsBETZtnhZRplvGytytytytdKdKdKdKdKdKdKdKClnCnRGCsTsTsTsTsTuCzKCbLwLwLwLwLFLOLwtLYHNBQZTbNBTITREOdlVRsJdlPsdKdKdKdKdKPsKDMbPsPsPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKiaKHKHlRTLKHiadKdKdKdKdKdKPsdlbqaddldlabOFvtabdcvGplTvgjuIplPsdKdKdKdKdKdKdKdKdKdKdKdKCljtKQClClINZQZQZQBqKyFxAAEDAAAAYUDonsdNIwBEVHAFnqlwdldldlVRsJadPsdKdKdKdKdKPsQeJpPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKMwMwMwMwMwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKiaKHKHlRTLKHiadKdKdKdldldlPsdlbqdldlabzPOFmvgeCAsBETZtnhZRplvGytytytytdKdKdKdKdKdKdKdKClnCnRGCsTsTsTsTsTuCzKCbLwLwLwLwLFLOLwtLYHNBQZTbNBTITREOdlVRsJdlPsdKdKdKdKdKPsKDMbPsPsPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKMwXvXvXvMwdKdKdKMwgQeagQMwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKiaKHKHlRTLKHiadKdKdKdliddlPsdlbqdldlVRkXAxXJUMEOvGplgjQYZRplvGVqrJKgytdKdKdKdKdKdKdKdKClHIXiClSHKyKyKyKyiCINClqWGJGJClsZEvHOOXClfhSrsffhlwdlBudlVRGfXJXJXJXJXJXJXJGXpwMbKDKDPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKMwXvXvXvMwdKdKdKMwkzpEkzMwMwMwMwMwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKiaqgKHlRTLkgiadKdKdKdldldlPsdKLldKPsafTCTCTCetajvGvGgjQYZRvGvGMMrJoUytdKdKdKdKdKdKdKfwClClClClClINZQZQZQZQINClClClClClClIhIhClCloIjctAlwlwPscPfwEZakPsPsPsPsPsPsPsPsJmKFZdLIPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKMwneXvvkMwdKdKdKMwkzpEkzCYpEpEpEMwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKPsdKdKdKiaKHKHlRTLKHiadKdKdKTCTCTCTCTCEbTCTCreTCWVWVBUpWvGghgjQYZRghvGytlQytytytytdKdKdKdKdKdKdKdKdKdKClINKBZQZQKBINCldKPseuBFaqcJcJfwNAtKOMOMxnFMTUwavKpxMtTUvKTUTUTUvKTKUksXRysXLIPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
@@ -2399,10 +2428,10 @@ dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdK
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwPsdladfwdldlfwNvUiUiIarucpTNcpcpcpcpcpTNcpMwLxkzpEkzIApEpEpEpEpEpEMwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKPsaeaeaeaeaeaeukijaeLRaeaeaeTCTCTCzLzLqnzLrexJTCjlzLzLZOvGgjgjQYZRgjQJgjgjgjPaHoytdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKPsaxLdhocJNrfwdVIFbxbyMAbdqABTqAmKVrqAqAHgqAqAwiVIxbPoPoPoLIPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwPsMidMGTdMdMGTDWDWDWDWRdDWDWBmcpcpcpcpcpcpMwcZkzpEkzIApEpEpEpEpEpEMwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKPsaeaeaeaeaeaeukunPFuYPFPFPFPFvMZCZCZCASZCPVxJZCZCpDZCaDbEaEaEaFwtUEytgjgjgjyPFkytdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKPsPsPsPsPskIfwkIkIPsbbHpQsfumwPsLLSJlqlqXelqlqiGlqlqOhCMPsPsPsPsPsPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwPsMOidfwabARaGSeSeSeSeylRoSeSeoxSeDdcpcpaIMwuVkzpEkzIApEpEpEpEpErpMwMwMwMwMwMwMwMwPsPsPsPsPsPsdKdKdKdKdKPsoZaCaCaCbrewOldkewrBewewewewByqIuTuTAOqIuTVZuTZHlLvuFpizhPsoXtMlaJytgjgjwMAIRpytdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKPsGSaeaeaeRQaeukukPsbbHpQsfudpPsTgSJlqlqXQlqlqHElqlqOhYwPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwPsOcsssszCssXwexdOdOexvvSMdOdOovdOEWDdcpcpMwcZkzpEkzIApEpEpEpEpEpEMwTNcpcpcpTNMwZFzOdMoAardlPsPsPsPsPsPsPsnjaeaeFlkUaeaeijkULRaeaeaePsTCTCTCTCEfEfEfPHTCqnreqnawvGytytioytytvGytytytytytytdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKPsoZaCaCGMukaeukukPsfwjgAJBtEZPsLLSJlqlqXQlqlqHElqlqOhCMPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKamamPsdldlfwaSOcGXzBzBzBzBzBqczBzBSXDdyHodSeSeyldnkzpEkzIApEpEpEpEpEpEMwcpcpcpcpcpMwpEdldldliMPTdZgmNKNKNKgmdZkRIYOIIYIYIYIYfGIYBMaeaeaeaeGSaeaePsdKdKdKBuTCTHJSjILivGNUgjkDgjNUvGdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKPsukaeaeukukaeukjKPsLSACCjowoQPsLLSJlqlqUclqlqHElqlqOhBwPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwPsmvsssszCssXwexdOdOexvvSMdOdOovdOEWDdcpcpMwcZkzpEkzIApEpEpEpEpEpEMwTNcpcpcpTNMwZFzOdMoAardlPsPsPsPsPsPsPsnjaeaeFlkUaeaeijkULRaeaeaePsTCTCTCTCEfEfEfPHTCqnreqnawvGytytioytytvGytytytytytytdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKPsoZaCaCGMukaeukukPsfwjgAJBtEZPsLLSJlqlqXQlqlqHElqlqOhCMPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKamamPsdldlfwaSmvGXzBzBzBzBzBqczBzBSXDdyHodSeSeyldnkzpEkzIApEpEpEpEpEpEMwcpcpcpcpcpMwpEdldldliMPTdZgmNKNKNKgmdZkRIYOIIYIYIYIYfGIYBMaeaeaeaeGSaeaePsdKdKdKBuTCTHJSjILivGNUgjkDgjNUvGdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKPsukaeaeukukaeukjKPsLSACCjowoQPsLLSJlqlqUclqlqHElqlqOhBwPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKamamamamamamPsPsPsPsPscpcpcpSlcpcpJabgqVXYdOdOqXqXcGqXthpCqXqXqXqXqXqXqXdOdOdOdOdOvJqXsssslEssHHDZlrlrlrlrlrlrNyQmaeaeaeaeaeijaeaeaeaeaeaeaeaeaePsdKdKdKBuTCbhvHuJajvGNUgjszgjNUvGdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKPsukoZaCLsLsaCLsLsaCaCLfNjPAPGXwvcjrkohcYXkokoltkokotBFCPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKamamjRWjWjpGYoZZYopGATgTgTgTvdgTgTLBRRtRgTgTgTyMYRYRYRYRiHpEpEpEpEpEpEMwcpcpcpcpWPEiqddMUsbqOcZxcnagagagagJTxWGMaeaeaeaeaeaeijaeaeaeaeaeaeaeaeaePsdKdKdKBuTCvAsMIEaPvGgugjkDgjKEvGdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKPsukUPaCaCaCaCaCaCaCdPsxkmAyHmPsOrSJlqlqjElqlqiGlqlqOhymPsPsPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKamamjRWjWjpGYoZZYopGATgTgTgTvdgTgTLBRRtRgTgTgTyMYRYRYRYRiHpEpEpEpEpEpEMwcpcpcpcpWPEiqddMUsbqmvZxcnagagagagJTxWGMaeaeaeaeaeaeijaeaeaeaeaeaeaeaeaePsdKdKdKBuTCvAsMIEaPvGgugjkDgjKEvGdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKPsukUPaCaCaCaCaCaCaCdPsxkmAyHmPsOrSJlqlqjElqlqiGlqlqOhymPsPsPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKamamsJPsPsDSDSPsDSDSPsPsPsPsGPcpcpVmvpYZcpcpaIMwpEwDpEpEpEwDpEpEpEwDpEMwcpcpcpUzcpMwZFfpgZkXMGdlfwStxWxWxWhJfwIjPFPFPFYOPFPFUGYOPFPFPFYOPFPFPFnMPsdKdKdKBuTCzeSPPIbnvGNUgjkDgjNUvGdKdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKPsgwaeaeaedCaeaeaePsEuWmUCULIIPswzSJlqlqjdlqlqHElqlqOhscXZNJPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKamamsJPseKzmQhgpgswneKPsdKPsdzSeSeiyNpuocpcpcpMwMwMwMwMwMwMwMwMwMwMwMwMwcpcpUzcpcpMwMwPsPsPsPsPsPsPsPsPsPsPsPsfwfwfwfwfwfwfwfwfwfwfwfwfwfwfwfwfwfwdKdKdKBuTCbhVdTCajPsPsPsbpPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsPsecHpQsfumwPswzSJlqlqjdlqlqscjVjVHugYxqLLPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKamamsJPsNFeKeKeKeKeKqsPsPsPsPsPsMwEQvpThcpcpcpcpcpTNcpcpcpTNcpcpcpTNcpcpcpUzcpcpcpTNFEPsdKdKdKdKdKdKdKdKdKdKPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwdKdKdKBuPszzoQbsbtaVXJXJNQndXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJAVnGnGnGWNnGnGnGnGGoeYqqCZObGXOePNWWWWlvlqlqLLlqlqsckfeszdPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
@@ -2440,20 +2469,20 @@ dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdK
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKYnRGRGbqdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKbqdKdKdKdKdKdKdKffMckVOTgLkPDJdXFNabbFZxbGPsrKdldldldldldlPshBPsUTyVDXDXDXDXyVDXExDXDXyVDXDXDXDXyVDXDXDXDXyVDXwQDXDXyVDXFSOFdldlUBPsjDUqhtPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKYnRGRGbqdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKbqdKdKdKdKdKdKdKffMcjLolgzaQHPDxiPIQuvdldlPstwabssssssssssZhOsDmMoDmDmDmDmDmDmDmMoDmDmDmDmDmDmDmDmDmDmDmDmDmDmpUDmDmDmDmMBssssOussPsyWlWhtPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKYnRGRGbqdKdKdKdKdKdKdKdKdKdKdKdKdKfwfwfwfwfwfwfwfwdKdKdKdKdKdKdKdKdKdKdKVeVeclVeVeVeVeVeVeVeVeJhZoyfNEvDYuVvENfkrrGqGqgKZxbqfwfwfwfwfwVztzUTVhfOqKqKqKqKqKqKaoMEONqKqKqKqKqKqKqKqKqKqKqKqKqKqKqKqKqKqKqKqKMHqKqKwUUqhtPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwYnRGRGbqfwdKdKdKdKdKdKdKdKdKdKdKdKfwNcNcNcNcNcNcfwdKdKdKdKdKdKdKdKdKdKdKVeyrSQzMOGxcOGzMyrtEVeeLufcwwbBaOCiXMrJNbDssssssssZxfwdKdKdKdKVzSpFnqKqKqKZIuPLXoeqKazaAqKqKOOfecDoncUZVonUrUrofqKgvSZiLoFonVuVuNmoBtDonjDUqhtPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwYnRGRGbqfwjmjmjmjmjmjmjmjmjmjmjmjmjmNcNcNcNcNcNcfwdKdKdKdKdKdKdKdKdKdKdKVeeCBORmRmBARmRmBABAzoCxtHYFVkoXWuYEFNQEmOdldKdKdKfwfwdKdKdKdKVzQFRconiwaTaYGmGmaWSVTFzkonGGgHfecDoncUcUonUrUrUrqKgSFdicSSonGGGGEtTxZbonjDUqhtPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwfwfwfwfwfwfwfwfwygUFUFhAgRjmUdksDLPeksZrjmBfHiHiZrjmNcNcNcNcNcNcfwdKdKdKdKdKdKdKdKdKdKdKVeyrHYvmDkDkDkDiHYyrVeqSkPIyeokPqSdeFNQERKdldKdKdKdKdKdKdKdKdKVzrzhuihihihihayVEihihihRBUOJBJBivnlJBqDGGononmAononLmFdsNSSonGGxvAokLmYonjDUqhtPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwtCfQBXBXWtfQspfTHGTQTQlngRjmHiHiHiHiHiHijmBfHiHiFejmfwfwNcfwfwfwfwdKdKdKdKdKdKdKdKdKdKdKVeyryrqaPJPJPJJLyryrVeqSkPDJqSkPqSRMFNQERKdldKdKdKdKdKdKdKdKdKVzrzKzAqAqAqZAAqAqAqAqZAzkonyizwfxfxzVqDhyJBJBJBJBNHcsJBJBJBJBAwGGGGGGboqKwUUqhtPsPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwAuzHzHIUAuzHzHcbygUFUFgRVSjmHiHiHiHiHiHiHiHiHiHiHiHifwNcNcNcNcNcfwdKdKdKdKdKVeVeVeVeVeVeVeaHyrqaPJPJPJJLyrnFVeqSkPudGiHSqSRMFNQERKdldKdKdKdKdKdKdKdKdKVzrzxAihihihihFuzXihihihRBOzGGFOFOFOFOGGhyJBJBJBJBNHcsJBJBJBJBJBRCRCkLmYonjDUqhtaddldldldldKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwAuzHzHRfAuzHzHfwygUFUFgRgRjmAZfmpcjwjwwujmMpYtHiHiHifwNcNcNcNcNcfwdKdKdKdKdKVeSsPUPlJKjXVeyryrqaPJPJPJJLyryrVeifkPudGiHSqSdXFNyURKdldKdKdKdKdKdKdKdKdKVzJQLconrFcIczktktcAcIczzkonGGBNrjrjDvGGGGGGGGGGGGqKDKGGGGGGGGGGGGJkOkZbonjDUqhtdldldldldldKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwAuzHzHRfAuzHzHfwyzTGPgTnTnjmjmjmmGjmjmjmjmIsJXHiHiHifwNcNcNcNcNcfwdKdKdKdKdKVeVVrErEWgWgyryryrNxBkxlBkyhyryrVeYFhrHBzWWuqSRMFNQERKdldKdKdKdKdKdKdKdKdKVzSpFnqKqKqKvItYQcTqqKcKcLqKqKNVPbPEGGlDuLlDlDlDuLqKPRRbFDoFSNlDlDZcTecVWEZeZlpdfbfbfbfbdldKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwAuzHzHRfAuzHzHfwKlREREQifZZLfZfZxifZZLfZjmHiHiHiHijmfwNcNcNcNcNcfwdKdKdKdKdKVerEtZWgROWgyryrHYEmCopmCofCHYyrVekPqSudGiGiqSRMFNQERKdldKdKdKdKdKdKdKdKdKVztzMCDXPjqKqKqKqKqKqKRAuBONqKqKeEeEqKqKqKqKqKqKqKqKqKKeKeqKqKqKqKqKqKqKqKwUUqhtPsPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwdKdKdKdKdKdKdKdKfwNcNcNcNcNcNcNcNcNcNcdKfwAuZitCpPAuZizHfwjoHkHkjUBIBIBIBIncBIBIKbouuXuXWxomjmNcNcNcNcNcNcfwdKdKdKdKdKVeIdWgWgWgWgyryryryryrHYyryryryrVekPqSudGiGiqSRMFNQERKdldKdKdKdKdKdKdKdKdKVzMXDmDmMoDmDmDmDmDmDmDmDmDmDmDmcHcHPjUTDmDmDmDmDmDmFrqFqFDmDmDmDmDmDmDmDmyWVhhtPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwsUIBIBIBIBIBIBIBIBFifwfwbHfwxOfwAufwfwfwUoREiAbIDpDpDpDpribJfZUojmUdZrxPZrjmNcNcNcNcNcNcfwdKdKdKdKdKVeqTALWgWgLezhKpTDFAGFGFyryryryrVekPYFSLESESESHeFNQERKdldKdKdKdKdKdKdKPsPsPshBPsfOMCDXDXPjUTFjFjFjFjFjgbFjeqeqMPbzFjFjFjFjgbFjGrGuGugbFjFjFjFjgbFjFjVhfOhtPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwfwdKdKdKdKdKdKdKzEzEYeYeYeYeYezEzEFcQgzEYeYezEzEzEdYwAfwNcoHPsJgGyncBIbLBIHxREfZTnTnTnTnTnxiREfZUoTnTnTnTnTnTnTnTnTnTnTnTnTnTnTBTBhGTnVeVeVeVeVezhzhzhzhqbSxQxzhyryrzhzhdEDPwFFNFNFNFNFNQERKPsdKdKdKdKdKdKdKPsdldtvEPsfOfOVzmrFnjDfOVzVzVzVzVzVzuFuFxNJCVzmdmdmdmdmdmdOUOUmdmdmdmdmdmdmdmdmdmdcPPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwfwdKdKdKdKdKdKzExXNRxXxXYeWpKfWpWpYeYeHJYeXoWpWpKfYeNchmIBLGxzPsJgUoxifZfZfZfZRETnTnPOEBMQTnxiREfZUojQxMxMxMxMxMjQxMxMxMxMxMjQxMxMxMxMxMjQxMxMxMxMjQAHwYCNoJhCLCkBChXDChiVVslzFRCNXHpaAHQWQERKPsdKdKdKdKdKdKdKPstJezZxPsPsPsPsPseAemPsPsqLkOGKHqGKrISzfIfIVzjyMkxdcRzvxdrgrgcRZfxdxdxdcRxdxdxdVYBudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKzExXxXxXxXxXxXVWYeWpWpWpWpYeGDxVYeRHAPAPAPsYIBIBIBxzbNPsKxUoxifZfZfZgInSTnVPVPMQMQzpxiREfZUoxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMmELPbOBsAQoJdLLCiUobcTHyJnFWlzFRwYwYNwAHQWQERKPsPsPsPsPsPsPsPsPsrVPsPsPsPrPrTWbPMdTuPzPsqLGKGKHqGKGeHrFyFyVzhsJexdxdIrxdrgrgxdZfxdxdqjqjZfxdxdIcTyHQdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKxXxXzExXxXxXxXxXxXxXYeWpWpWpWpYerkrAYeWpWpWpWpYeYeYeYeYeYezEJgUoxifZfZfZoaCKTnVPVPMQMQzpxiREfZUoxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMBDhRpebQHluiJFcFwYcFcFcFqzcFFWlzFRwYwYJjAHvgbRbSbVbVbVbVbVbVbVbVbVgXipdlPsPrPrgDbPMdTugDPsDRHrHrHrNCTOTOTOxfhYDFDFDFDFMsDFDhWaxoxoYSYSXFIMxoxoxoXFSgHQdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwYnRGRGbqfwdKdKdKdKdKdKdKdKdKdKdKdKfwyRMKOcOcMKyRfwdKdKdKdKdKdKdKdKdKdKdKVeyrSQzMOGxcOGzMyrtEVeeLufcwwbBaOCiXMrJNbDssssssssZxfwdKdKdKdKVzSpFnqKqKqKZIuPLXoeqKazaAqKqKOOfecDoncUZVonUrUrofqKgvSZiLoFonVuVuNmoBtDonjDUqhtPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwYnRGRGbqfwjmjmjmjmjmjmjmjmjmjmjmjmjmLYVQyRyRVQtofwdKdKdKdKdKdKdKdKdKdKdKVeeCBORmRmBARmRmBABAzoCxtHYFVkoXWuYEFNQEmOdldKdKdKfwfwdKdKdKdKVzQFRconiwaTaYGmGmaWSVTFzkonGGgHfecDoncUcUonUrUrUrqKgSFdicSSonGGGGEtTxZbonjDUqhtPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwfwfwfwfwfwfwfwfwygUFUFhAgRjmUdksDLPeksZrjmBfHiHiZrjmyRyRyRyRyRyRfwdKdKdKdKdKdKdKdKdKdKdKVeyrHYvmDkDkDkDiHYyrVeqSkPIyeokPqSdeFNQERKdldKdKdKdKdKdKdKdKdKVzrzhuihihihihayVEihihihRBUOJBJBivnlJBqDGGononmAononLmFdsNSSonGGxvAokLmYonjDUqhtPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwtCfQBXBXWtfQspfTHGTQTQlngRjmHiHiHiHiHiHijmBfHiHiFejmfwfwfwfwhUfwfwfwdKdKdKdKdKdKdKdKdKdKVeyryrqaPJPJPJJLyryrVeqSkPDJqSkPqSRMFNQERKdldKdKdKdKdKdKdKdKdKVzrzKzAqAqAqZAAqAqAqAqZAzkonyizwfxfxzVqDhyJBJBJBJBNHcsJBJBJBJBAwGGGGGGboqKwUUqhtPsPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwAuzHzHIUAuzHzHcbygUFUFgRVSjmHiHiHiHiHiHiHiHiHiHiHiHifwUNSoWQmgwZSAfwdKdKdKdKVeVeVeVeVeVeVeaHyrqaPJPJPJJLyrnFVeqSkPudGiHSqSRMFNQERKdldKdKdKdKdKdKdKdKdKVzrzxAihihihihFuzXihihihRBOzGGFOFOFOFOGGhyJBJBJBJBNHcsJBJBJBJBJBRCRCkLmYonjDUqhtaddldldldldKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwAuzHzHRfAuzHzHfwygUFUFgRgRjmAZfmpcjwjwwujmMpYtHiHiHifwfwfwsyXhsyrDfwdKdKdKdKVeSsPUPlJKjXVeyryrqaPJPJPJJLyryrVeifkPudGiHSqSdXFNyURKdldKdKdKdKdKdKdKdKdKVzJQLconrFcIczktktcAcIczzkonGGBNrjrjDvGGGGGGGGGGGGqKDKGGGGGGGGGGGGJkOkZbonjDUqhtdldldldldldKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwAuzHzHRfAuzHzHfwyzTGPgTnTnjmjmjmmGjmjmjmjmIsJXHiHiHifwUNSoqJfWsySAfwdKdKdKdKVeVVrErEWgWgyryryrNxBkxlBkyhyryrVeYFhrHBzWWuqSRMFNQERKdldKdKdKdKdKdKdKdKdKVzSpFnqKqKqKvItYQcTqqKcKcLqKqKNVPbPEGGlDuLlDlDlDuLqKPRRbFDoFSNlDlDZcTecVWEZeZlpdfbfbfbfbdldKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwAuzHzHRfAuzHzHfwKlREREQifZZLfZfZxifZZLfZjmHiHiHiHijmfwfwfwsyXhsySAfwdKdKdKdKVerEtZWgROWgyryrHYEmCopmCofCHYyrVekPqSudGiGiqSRMFNQERKdldKdKdKdKdKdKdKdKdKVztzMCDXPjqKqKqKqKqKqKRAuBONqKqKeEeEqKqKqKqKqKqKqKqKqKKeKeqKqKqKqKqKqKqKqKwUUqhtPsPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwdKdKdKdKdKdKdKdKfwNcNcNcNcNcNcNcNcNcNcdKfwAuZitCpPAuZizHfwjoHkHkjUBIBIBIBIncBIBIKbouuXuXWxomjmQnqmfwsyXhsyrDfwdKdKdKdKVeIdWgWgWgWgyryryryryrHYyryryryrVekPqSudGiGiqSRMFNQERKdldKdKdKdKdKdKdKdKdKVzMXDmDmMoDmDmDmDmDmDmDmDmDmDmDmcHcHPjUTDmDmDmDmDmDmFrqFqFDmDmDmDmDmDmDmDmyWVhhtPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwsUIBIBIBIBIBIBIBIBFifwfwbHfwxOfwAufwfwfwUoREiAbIDpDpDpDpribJfZUojmUdZrxPZrjmsAqJSoWQWBwZSAfwdKdKdKdKVeqTALWgWgLezhKpTDFAGFGFyryryryrVekPYFSLESESESHeFNQERKdldKdKdKdKdKdKdKPsPsPshBPsfOMCDXDXPjUTFjFjFjFjFjgbFjeqeqMPbzFjFjFjFjgbFjGrGuGugbFjFjFjFjgbFjFjVhfOhtPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwfwdKdKdKdKdKdKdKzEzEYeYeYeYeYezEzEFcQgzEYeYezEzEzEdYwAfwNcoHPsJgGyncBIbLBIHxREfZTnTnTnTnTnxiREfZUoTnTnTnTnTnTnTnTnTnTnXzTnTnTnTBTBhGTnVeVeVeVeVezhzhzhzhqbSxQxzhyryrzhzhdEDPwFFNFNFNFNFNQERKPsdKdKdKdKdKdKdKPsdldtvEPsfOfOVzmrFnjDfOVzVzVzVzVzVzuFuFxNJCVzmdmdmdmdmdmdOUOUmdmdmdmdmdmdmdmdmdmdcPPsdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwfwdKdKdKdKdKdKzExXNRxXxXYeWpKfWpWpYeYeHJYeXoWpWpKfYeNchmIBLGxzPsJgUoxifZfZfZfZRETnTnPOEBMQTnxiREfZUojQxMxMxMxMxMjQxMxMxMVjxMjQxMxMxMxMxMjQxMxMxMxMjQAHwYCNoJhCLCkBChXDChiVVslzFRCNXHpaAHQWQERKPsdKdKdKdKdKdKdKPstJezZxPsPsPsPsPseAemPsPsqLkOGKHqGKrISzfIfIVzjyMkxdcRzvxdrgrgcRZfxdxdxdcRxdxdxdVYBudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKzExXxXxXxXxXxXVWYeWpWpWpWpYeGDxVYeRHAPAPAPsYIBIBIBxzbNPsKxUoxifZfZfZgInSTnVPVPMQMQzpxiREfZUoxMxMxMxMxMxMxMxMxMxMNLAbAbAbAbAbAbAbAbAbAbAbmELPbOBsAQisdLhjiUobcTHyJnwPZEJFwYwYNwAHQWQERKPsPsPsPsPsPsPsPsPsrVPsPsPsPrPrTWbPMdTuPzPsqLGKGKHqGKGeHrFyFyVzhsJexdxdIrxdrgrgxdZfxdxdqjqjZfxdxdIcTyHQdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKxXxXzExXxXxXxXxXxXxXYeWpWpWpWpYerkrAYeWpWpWpWpYeYeYeYeYeYezEJgUoxifZfZfZoaCKTnVPVPMQMQzpxiREfZUoxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMBDhRpebQHluiJFcFwYcFcFcFqzcFFWlzFRwYwYJjAHvgbRbSbVbVbVbVbVbVbVbVbVgXipdlPsPrPrgDbPMdTugDPsDRHrsDjPNCTOTOTOxfhYDFDFDFDFMsDFDhWaxoxoYSYSXFIMxoxoxoXFSgHQdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKxXxXxXxXxXxXxXxXxXxXxXxXxXpZWpWpXuWpYeKoHJYeWpWpXuWpLHLuWpKfWpCObWBdbXxiBWfZfZfZbYTnTnwjWSMQTnxiREfZUovnxMxMxMxMxMvnxMxMxMxMxMvnxMxMxMxMxMvnxMxMcOxMvnAHwYwYoJwYwYwYwYwYwYwYIKVxMRrfrfkNyCidQEIDixsHsHsHsHsHsHsHsHFYJfdlPsgDgDgDbPMdTugDPsqijPnQHrOVHrqCqCWfVzWOurZfqhIrqhqhPYHQHQLkLktssSqjqjxdIcHQHQdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKzEzEzExXOxxXzExXxXxXxXxXxXxXYeWpWpWpWpWprkXnWpWpWpWpWpRHbWacIiacefzEJgUoxifZfZfZfZREYMTnTnTnTnTnNdREfZUofwfwfwfwfwfwfwfwfwfwfwfwfwfwfwfwfwfwfwfwfwGLfwfwPsXfDroJwYwYDrwYwYwYDrFWlzFRDrjZJjfwabpRVRbqPsPsPsPsPsPsPsPsdlzJbVgWoggDgDgDMdTulPPsRDHrHrHrOVVzVzVzyAVzmdkcmdmdmdmddKdKdKHQBSmohVFLhVopHQhVHQHQdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKzEzEzEzEzExXOxxXxXxXxXVWYeWpWpWpWpWpRHRqBZBZBZBZBZBZfaBZIiXxBZwSOQUoxifZfZfZfZREiADpDpDpDplTribXfZUofwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwpLnvijaefNPswYppcvOWOWOWOWOWOWOWypdotfcodAdAGhHZARuvbqfwdKdKdKdKdKdKPsdlabARbZKsfrZPZPKvEqEaxalFuszIknoKJoTSTSWvTSTSWvTSTSfwdKdKdKdKHQTryTxdHfJvJvHQHQHQHQdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
@@ -2478,16 +2507,16 @@ dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdK
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKrWILUbUbUbUbUbUbUbLrZurHZurHZunwKOFUrXrXFVFVFVrXrXJYCJpTpTpTpTpTpTiJiJiJiJiJIuAdPkwTLzLzIuIuIuIuIuIudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdldldldlfwYkYkYkfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwfwfwfwfwfwfwfwfwfwfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKrWQXmUmUGgqeUbUbUbZuZuoqZuRVZunwKOddrXtWwxLZMzYhrXfohWDUZUiJapkHPQGdpgcriJwTwTAdPkwTLzLzIuwXwXqZdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwfwfwfwfwfwfwfwfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKrWrWrWrWrWrWGgGgrWZuPyirWhEEXAEpvUYWrXxhUfvqVirxFVfokEejejxTSRSREGEGEGSRWCBhBhlHPkwTwTwTcmwXwXqZdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwkKBYhFbUORdldldlZuRhzNzNzNZunwKOuErXvwNIFtiSDcFVGbwvUtUtVoFmFmYrSwYKfgBzRjYfRjlHwTzRwTIuwXwXqZdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwdlQUSySyXRdldldlZuZuZuZuZuZuKWxmFVrXxUNIFtiSQpFVhMpKpFpFNlWrvbvbSIvbvbiJIuqBqBqBqBqBqBqBwXwXqZdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwfwfwfwfwteLWLWfwfwdKdKrXdbwmSUvsDCDCDCvsDCvsXarXIOSkDUDUiJapvbvbJzvbvbKLwcLtuDuDuDuDuDhvwXwXqZdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwEsdxgDyKKRfwfwfwrXFwFtAYtgTsTsTsXOjORuFtrXOpegpTpTiJkHvbvbxxYYKYPdOYqEtlNtwXsjtlmIrvWFqZdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwgDdxgDdxpVKrZPIlPnPnPnBQCqcEFTFtFtBBFtFtrXMvSkDUZUiJKJvbvbxxQMMePdJGdirMpzwXwXuDhvwXkMqZdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwgDWzVKyYPWHsrwtiHzHzHzxGCUXKrXhqhElXhErorXMvSkDUhpiJmbvbvbxxYYZNPddadirMIxwXsjtlmIiTVXqZdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwEsgDgDgDRaEdfwfwrXFtFtAYBBHWrXrXrXrXrXrXrXMvSkDUDUiJapvbvbvbvbvbvbwcLtuDuDuDuDuDhvDwqZqZdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwfwfwfwfwfwfwfwdKrXFwFtAYGZNDaiCgvjvjvjCgvjWcSkDUpTiJiJiJpriJiJiJiJiJLthvhvhvhvhvhvqZqZqZdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKrXFtFthkDCDCEVCuCuCuCuCuCuNuQSZUpTdKfwnfaeaeaenfaefwfwfwfwfwfwfwfwfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKrXrXrXrXrXrXrXpTpTpTpTpTpTfoDUDUpTdKfwaeaeaeaeaeaeaeaetFtFtFtFfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwkKBYhFbUORdldldlZuRhzNzNzNZunwKOuErXvwNIFtiSDcFVGbwvUtUtVoFmFmYrSwYKfgBzRjYfRjlHwTzRwTIuwXwXqZfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwdlQUSySyXRdldldlZuZuZuZuZuZuKWxmFVrXxUNIFtiSQpFVhMpKpFpFNlWrvbvbSIvbvbiJIuqBqBqBqBqBqBqBwXwXwXfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwfwfwfwfwteLWLWfwfwdKdKrXdbwmSUvsDCDCDCvsDCvsXarXIOSkDUDUiJapvbvbJzvbvbKLwcLtuDuDuDuDuDhvwXwXwXfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwEsdxgDyKKRfwfwfwrXFwFtAYtgTsTsTsXOjORuFtrXOpegpTpTiJkHvbvbxxYYKYPdOYqEtlNtwXsjtlmIrvWFwXfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwgDdxgDdxpVKrZPIlPnPnPnBQCqcEFTFtFtBBFtFtrXMvSkDUZUiJKJvbvbxxQMMePdJGdirMpzwXwXuDhvlSkMwXfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwgDWzVKyYPWHsrwtiHzHzHzxGCUXKrXhqhElXhErorXMvSkDUhpiJmbvbvbxxYYZNPddadirMIxwXsjtlmIiTVXwXfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwEsgDgDgDRaEdfwfwrXFtFtAYBBHWrXrXrXrXrXrXrXMvSkDUDUiJapvbvbvbvbvbvbwcLtuDuDuDuDuDhvDwwXwXfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwfwfwfwfwfwfwfwdKrXFwFtAYGZNDaiCgvjvjvjCgvjWcSkDUpTiJiJiJpriJiJiJiJiJLthvhvhvhvhvhvqZqZqZfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKrXFtFthkDCDCEVCuCuCuCuCuCuNuQSZUpTdKfwnfaeaeaenfrcfwfwfwfwfwfwfwfwfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKrXrXrXrXrXrXrXpTpTpTpTpTpTfoDUDUpTdKfwkFaeaeaercrcaeaetFtFtFtFfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKpTfoDUDUpTdKfwaeaeaeaeaeaeaeaenNnNnNnNfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKpTRNyjyjpTdKfwwJaeaeaeaeaeaeaeMFMFMFMFfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKpTyjyjyjpTdKfwfwLWSKfwaeaeaeaeSDSDSDSDfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
