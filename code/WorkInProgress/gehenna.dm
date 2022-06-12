@@ -1,4 +1,4 @@
-#define GEHENNA_TIME 210
+#define GEHENNA_TIME 250
 // 170 is like sunset ish, its nice but toxic
 #define WASTELAND_MIN_TEMP 250
 #define WASTELAND_MAX_TEMP 350
@@ -24,12 +24,19 @@
 	space_overlays()
 		return
 
-
+/turf/simulated/wall/asteroid/gehenna/z3
+	floor_turf = "/turf/simulated/floor/dirt"
 
 /turf/simulated/wall/asteroid/gehenna/tough
 	name = "dense sulferous rock"
 	desc = "looks densely packed"
 	icon_state = "gehenna_rock2"
+
+/turf/simulated/wall/asteroid/gehenna/z3/tough
+	name = "dense sulferous rock"
+	desc = "looks densely packed"
+	icon_state = "gehenna_rock2"
+
 
 /turf/unsimulated/wall/gehenna/
 	fullbright = 0
@@ -104,6 +111,8 @@
 		desc = "for seven years we toiled, to tame wild Gehenna"
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "gehenna_corner"
+
+
 
 
 /area/gehenna

@@ -1189,6 +1189,7 @@ DEFINE_FLOORS(techfloor/green,
 	mat_appearances_to_ignore = list("steel","synthrubber")
 	mat_changename = 0
 	mat_changedesc = 0
+	var/stone_color // runtime?????????? -warc
 
 /////////////////////////////////////////
 
