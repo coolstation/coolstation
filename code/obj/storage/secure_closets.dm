@@ -89,7 +89,8 @@
 	/obj/item/clothing/suit/armor/vest,
 	/obj/item/stamp/hop,
 	/obj/item/device/radio/headset/command/hop,
-	/obj/item/device/accessgun)
+	/obj/item/device/accessgun,
+	/obj/item/paper/manufacturer_blueprint/razorwave)
 
 /obj/storage/secure/closet/command/research_director
 	name = "\improper Research Director's locker"
@@ -106,7 +107,8 @@
 	/obj/item/clothing/mask/gas,
 	/obj/item/device/flash,
 	/obj/item/stamp/rd,
-	/obj/item/device/radio/headset/command/rd)
+	/obj/item/device/radio/headset/command/rd,
+	/obj/item/razorwave_antenna)
 
 	make_my_stuff()
 		if (..()) // make_my_stuff is called multiple times due to lazy init, so the parent returns 1 if it actually fired and 0 if it already has

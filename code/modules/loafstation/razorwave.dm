@@ -242,6 +242,18 @@ proc/razorwave_assess_threat(mob/living/carbon/human/target)
 		machine.scanning = null
 		machine.update_icon()
 
+
+/datum/manufacture/mechanics/razorwave
+	name = "interspatial visual aggregator"
+	frame_path = /obj/machinery/razorwave
+	time = 30 SECONDS
+	item_amounts = list(5,6,4)
+
+
+/obj/item/paper/manufacturer_blueprint/razorwave
+	blueprint = /datum/manufacture/mechanics/razorwave
+
+
 #undef RAZORWAVE_OVERLAY_POWER
 #undef RAZORWAVE_OVERLAY_OVERLOAD
 #undef RAZORWAVE_OVERLAY_ANTENNA
