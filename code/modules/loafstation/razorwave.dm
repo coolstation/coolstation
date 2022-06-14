@@ -9,7 +9,7 @@
 #define RAZORWAVE_AGENT_THREAT_MOD (-2)
 
 /// Weight applied to contraband var of items.
-#define RAZORWAVE_CONTRABAND_WEIGHT 0 // Set to 0.5 to scale razorwave to be more like security scanners.
+#define RAZORWAVE_CONTRABAND_WEIGHT 1 // Set to 0.5 to scale razorwave to be more like security scanners.
 /// Return the total threat of a given item.
 #define ASSESS_ITEM_THREAT(_rz_i) (_rz_i?.contraband * RAZORWAVE_CONTRABAND_WEIGHT)
 
@@ -54,9 +54,6 @@ proc/razorwave_assess_threat(mob/living/carbon/human/target)
 	w_class = W_CLASS_NORMAL
 	flags = FPRINT | TABLEPASS | CONDUCT
 	var/overloaded = FALSE
-
-	special_desc(dist, mob/user)
-		. = ..()
 
 
 // Razorwave device
@@ -134,11 +131,14 @@ proc/razorwave_assess_threat(mob/living/carbon/human/target)
 			boutput(user, "<span class='alert'>\The [src] is missing it's antenna!</span>")
 			return
 		if(src.antenna.overloaded)
-			boutput(user, "<span class'alert'>\The [src] is burned out, and can't be used again.</span>")
+			boutput(user, "<span class='alert'>\The [src.antenna] is burned out, and can't be used again.</span>")
 			return
 		if(src.status & (NOPOWER|BROKEN))
 			return
 		visible_message("<span class='notice'>[user] activates [src].</span>")
+		boutput(user, "<span class='alert'>\The [src] consumes [disk]!</span>")
+		user.u_equip(disk)
+		qdel(disk)
 		start_scan()
 		return
 	var/obj/item/razorwave_antenna/antenna = I
@@ -166,12 +166,15 @@ proc/razorwave_assess_threat(mob/living/carbon/human/target)
 
 /obj/machinery/razorwave/proc/finish_scan()
 	var/report_text = "INTERSPATIAL AGGREGATION REPORT<hr>"
-	for(var/mob/M as anything in src.get_trackable_mobs())
-		var/threat_level = razorwave_assess_threat(M)
+	for(var/mob/living/carbon/human/H as anything in src.get_trackable_mobs())
+		var/threat_level = razorwave_assess_threat(H)
 		if(threat_level >= RAZORWAVE_MIN_THREAT_LEVEL)
-			report_text += "<b>[M]</b> in [get_area(M)], threat level [threat_level]<br>" // Let's ignore disguises for now.
+			report_text += "<b>[H]</b> in [get_area(H)], threat level [threat_level]<br>" // Let's ignore disguises for now.
+		H.show_text( "You feel [pick("funny", "wrong", "confused", "dangerous", "sickly", "puzzled", "happy")].", "blue" )
+		H.take_toxin_damage(rand(1,10)) // yeah this thing probably isn't that healthy
 
 	src.antenna.overloaded = TRUE
+	src.antenna.desc += " It looks burned out."
 
 	var/obj/item/paper/result = unpool(/obj/item/paper)
 	result.info = report_text
@@ -228,7 +231,7 @@ proc/razorwave_assess_threat(mob/living/carbon/human/target)
 		if (machine.status & (NOPOWER | BROKEN) || !machine.antenna)
 			interrupt(INTERRUPT_ALWAYS)
 			return
-		playsound(src, 'sound/machines/razorwave_scan.ogg', 40, 0)
+		playsound(src.machine, 'sound/machines/razorwave_scan.ogg', 40, 0)
 
 	onEnd()
 		..()
