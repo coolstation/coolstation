@@ -333,29 +333,9 @@ obj/machinery/atmospherics/mixer
 	initialize()
 		if(node_in1 && node_out) return
 
-		var/node_out_connect = dir
-		var/node_in1_connect = flipped ? turn(dir, 90) : turn(dir, -90)
-		var/node_in2_connect = turn(dir, -180)
-
 		node_in1 = connect(flipped ? turn(dir, 90) : turn(dir, -90))
 		node_in2 = connect(turn(dir, -180))
 		node_out = connect(dir)
-
-
-		for(var/obj/machinery/atmospherics/target in get_step(src,node_in1_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node_in1 = target
-				break
-
-		for(var/obj/machinery/atmospherics/target in get_step(src,node_in2_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node_in2 = target
-				break
-
-		for(var/obj/machinery/atmospherics/target in get_step(src,node_out_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node_out = target
-				break
 
 		update_icon()
 		set_frequency(frequency)
