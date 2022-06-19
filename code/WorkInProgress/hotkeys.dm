@@ -61,6 +61,8 @@ client/verb/hotkeys()
 			<li><b>Ctrl+W:</b> Wink</li>
 			<li><b>Ctrl+Y:</b> Yawn</li>
 			<li><b>Ctrl+Z:</b> Snap</li>
+			<li><b>Ctrl+1:</b> Piss</li>
+			<li><b>Ctrl+2:</b> Poo</li>
 		<h3>Admin</h3>
 			<li><b>~:</b> Open common admin atom verbs</li>
 	</ul>"}, "window=hotkeys;title=Hotkeys" )

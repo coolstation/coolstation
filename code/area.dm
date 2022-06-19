@@ -1921,7 +1921,15 @@ ABSTRACT_TYPE(/area/station/mining)
 	sound_environment = 10
 
 /area/station/mining/staff_room
-  name = "Mining Staff Room"
+	name = "Mining Staff Room"
+
+/area/station/mining/equipment
+	name = "Mining Equipment Room"
+	icon_state = "miningg"
+
+/area/station/mining/tunnel
+	name = "Mining Tunnel Area"
+	icon_state = "purple"
 
 /area/station/mining/refinery
 	name = "Mining Refinery"

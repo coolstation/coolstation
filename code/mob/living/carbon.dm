@@ -92,7 +92,7 @@
 		var/obj/item/reagent_containers/poo_target = src.equipped()
 		var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new()
 		shit.owner = src // this is your shit.
-		if(!istype(src)) // just in case something unhuman poops, lets still make a turd.
+		if(!istype(H)) // just in case something unhuman poops, lets still make a turd.
 			var/turf/T = get_turf(src)
 			if (istype(T))
 				make_cleanable( /obj/decal/cleanable/mud,T)
@@ -124,7 +124,7 @@
 				else
 					playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 100, 1)
 					poo_target.reagents.add_reagent("poo",\
-						(H.poop_amount ? H.poop_amount : 5 * 2))
+						(H.poop_amount ? H.poop_amount : 5))
 					qdel(shit)
 			else
 				if(H.bioHolder.HasEffect("teflon_colon") || H.traitHolder.hasTrait("teflon_colon"))

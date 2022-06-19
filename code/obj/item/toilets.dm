@@ -12,14 +12,26 @@ TOILET
 	deconstruct_flags = DECON_WRENCH | DECON_WELDER
 	var/status = 0.0
 	var/clogged = 0.0
+	var/obj/disposalpipe/trunk/trunk = null
 	anchored = 1.0
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "toilet"
 	rand_pos = 0
+	var/plumbed = 0
+	var/poops = 0
+	var/peeps = 0
 
 /obj/item/storage/toilet/New()
 	..()
 	START_TRACKING
+	SPAWN_DBG(0.5 SECONDS)
+		if (src)
+			trunk = locate() in src.loc
+			if(trunk)
+				trunk.linked = src	// link the pipe trunk to self
+				plumbed = 1
+			reagents = new(500)
+
 
 /obj/item/storage/toilet/disposing()
 	STOP_TRACKING
@@ -32,6 +44,17 @@ TOILET
 		return
 	if (istype(W, /obj/item/storage))
 		return
+	if ((istype(W, /obj/item/reagent_containers/glass)) || (istype(W, /obj/item/reagent_containers/food/drinks)))
+		if(src.reagents && (src.reagents.total_volume >= src.reagents.maximum_volume))
+			boutput(user, "That would just spill-over. You should flush first.")
+			return
+		var/obj/item/reagent_containers/R = W
+		if(R.reagents && R.reagents.total_volume)
+			R.reagents.trans_to(src, R.reagents.total_volume)
+			playsound(src, "sound/misc/pourdrink.ogg", 50, 1)
+			boutput(user, "You pour out [R] into [src].")
+			return
+
 	if (istype(W, /obj/item/grab))
 		playsound(src, "sound/effects/toilet_flush.ogg", 50, 1)
 		user.visible_message("<span class='notice'>[user] gives [W:affecting] a swirlie!</span>", "<span class='notice'>You give [W:affecting] a swirlie. It's like Middle School all over again!</span>")
@@ -57,6 +80,7 @@ TOILET
 			user.visible_message("<span class='notice'>[user] dives into [src]!</span>", "<span class='notice'>You dive into [src]!</span>")
 			particleMaster.SpawnSystem(new /datum/particleSystem/tpbeam(src.loc))
 			playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 1)
+			H.unlock_medal("It'sa me, Mario", 1)
 
 			var/list/destinations = list()
 
@@ -109,9 +133,16 @@ TOILET
 				A.set_loc(target)
 #endif
 		src.clogged = 0
-		for (var/item in src.contents)
-			qdel(item)
-			src.hud?.remove_item(item)
+		if(plumbed && trunk)
+			var/obj/disposalholder/D = unpool(/obj/disposalholder)
+			D.init_sewer(src)
+			D.start(src) // not a disposaloutlet but lets see if that matters:)
+
+		else
+			for (var/item in src.contents)
+				qdel(item)
+				src.hud?.remove_item(item)
+			src.reagents.clear_reagents()
 
 	else if((src.clogged >= 1) || (src.contents.len >= 7) || (user.buckled != src.loc))
 		src.visible_message("<span class='notice'>The toilet is clogged!</span>")
