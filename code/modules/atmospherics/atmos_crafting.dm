@@ -550,24 +550,30 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 	For components with a single connection, the selected direction is used for the orientation instead.
 </head>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>2 Connections</b>
+	<font size="5">
 	<a href='?src=\ref[src];action=straight_NS'>|</a> ‧
 	<a href='?src=\ref[src];action=straight_EW'>─</a> ‧
 	<a href='?src=\ref[src];action=corner_SE'>┌</a> ‧
 	<a href='?src=\ref[src];action=corner_SW'>┐</a> ‧
 	<a href='?src=\ref[src];action=corner_NE'>└</a> ‧
 	<a href='?src=\ref[src];action=corner_NW'>┘</a>
+	</font>
 </div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>3 Connections</b>
+	<font size="5">
 	<a href='?src=\ref[src];action=junc_N'>┴</a> ‧
 	<a href='?src=\ref[src];action=junc_S'>┬</a> ‧
 	<a href='?src=\ref[src];action=junc_W'>┤</a> ‧
 	<a href='?src=\ref[src];action=junc_E'>├</a>
+	</font>
 </div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Orientation & Single Connection</b>
+	<font size="5">
 	<a href='?src=\ref[src];action=north'>↑</a> ‧
 	<a href='?src=\ref[src];action=south'>↓</a> ‧
 	<a href='?src=\ref[src];action=west'>←</a> ‧
 	<a href='?src=\ref[src];action=east'>→</a>
+	</font>
 </div>
 "}
 
