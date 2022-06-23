@@ -1424,7 +1424,7 @@
 	mutant_folder = 'icons/mob/monkey.dmi'
 	icon_state = "monkey"
 	eye_state = "eyes_monkey"
-	head_offset = -6
+	head_offset = -8
 	hand_offset = -2
 	body_offset = -7
 	leg_offset = -4
