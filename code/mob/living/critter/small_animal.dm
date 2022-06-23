@@ -1434,15 +1434,26 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	flags = TABLEPASS
 	fits_under_table = 1
 	var/freakout = 0
+	var/marten = 0
+	var/farten = 0
 	add_abilities = list(/datum/targetable/critter/trip)
 
 	New()
 		..()
 
 		//50% chance to be a dark-colored ferret
-		if (prob(50))
-			src.icon_state = "ferret-dark"
-			src.icon_state_dead = "ferret-dark-dead"
+		if (marten == 0) //only for regular ferts
+			if (prob(50))
+				src.icon_state = "ferret-dark"
+				src.icon_state_dead = "ferret-dark-dead"
+
+		//10% chance for a mart to fart
+		if (farten == 0) //only bother to do this with the regular one
+			if (prob(10))
+				src.farten = 1
+				src.name = "pine farten"
+				src.real_name = "pine farten"
+				src.desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front. This one stinks more than usual."
 
 	setup_hands()
 		..()
@@ -1485,12 +1496,50 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 			if (prob(10))
 				src.visible_message("[src] [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles")]!")
 
+			if (prob(25) && src.farten == 1) //fartens are 2.5x as excited during freakout
+				playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
+				src.visible_message("[src] farts wildly!")
+
 			if (src.freakout-- < 1)
 				src.visible_message("[src] calms down.")
-		else if (!src.client && prob(2))
+
+		if (src.farten == 1) //the reason for the name/gimmick, occasionally farts even when not freaking out
+			if (prob(15))
+				playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
+				src.visible_message("[src] farts!")
+
+		else if (!src.client && prob(2)) //add chance of freakout if nothing else
 			src.freakout = rand(30,40)
 		..()
 
+/mob/living/critter/small_animal/meatslinky/pine_marten //just a bigger ferret basically, specifically added for a fart joke
+	name = "pine marten"
+	real_name = "pine marten"
+	desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front."
+	icon_state = "farten"
+	icon_state_dead = "farten-dead"
+	marten = 1
+
+	New()
+		..()
+
+	proc/fart_along() //it's here because all fartens are martens but some martens are fartens too
+		if (src.farten == 1) //only farters here buster
+			if (src.freakout) //boost chance to fart if they're currently wigging out
+				if (prob(50))
+					playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
+					src.visible_message("[src] farts along excitedly!")
+				else
+					return //no double dipping on toob toots
+			else if (prob(15))
+				playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
+				src.visible_message("[src] farts along!")
+
+	farten //stink guaranteed!!!! this is the real reason we have pine martens
+		name = "pine farten"
+		real_name = "pine farten"
+		desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front. This one stinks more than usual."
+		farten = 1
 
 /* ================================================ */
 /* -------------------- Frog ---------------------- */
