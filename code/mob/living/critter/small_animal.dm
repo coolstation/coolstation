@@ -1536,7 +1536,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 				src.visible_message("[src] farts along!")
 
 	farten //stink guaranteed!!!! this is the real reason we have pine martens
-		name = "pine farten"
+		name = "pine marten"
 		real_name = "pine farten"
 		desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front. This one stinks more than usual."
 		farten = 1

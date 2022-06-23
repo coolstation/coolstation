@@ -227,6 +227,13 @@
 								if (41) message = "<B>[src]</B> farts, and as such, blob cannot evoulate."
 								if (42) message = "<b>[src]</B> farts. It might have been the Citizen Kane of farts."
 
+						//pine fartens get in on the act as well
+						for_by_tcl(F, /mob/living/critter/small_animal/meatslinky/pine_marten)
+							if(!IN_RANGE(F, src, 4)) //if we can't find a marten within 4 tiles then move on
+								continue
+							F.fart_along() // chance for mart to fart
+						//TODO: someone else needs to take a look, the proc exists and works on the farten but this is not calling it, this is just the poss scream stun code modified
+
 						// If there is a chest item, see if it can be activated on fart (attack_self)
 						if (src && src.chest_item != null) //Gotta do that pre-emptive runtime protection!
 							src.chest_item_attack_self_on_fart()
