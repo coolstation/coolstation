@@ -140,9 +140,10 @@
 			return // we shouldn'a been here!! adding this for legacy uses (i dont feel like chasing them down right now im old and im tired and im back hurts)
 		if(ceilingmounted)
 			return //some ceiling lights can be rotated but that will be by hand or map placement, not by this
-		if (map_settings)
-			if (!map_settings.auto_walls)
-				return // no walls to adjust to! stop it!! STOP IT!!
+		//if (map_settings)
+		//	if (!map_settings.auto_walls)
+		//		return // no walls to adjust to! stop it!! STOP IT!!
+		// well now we have the standard lighting object that isn't sticky and the auto object that is and we gotta do this at some point!!
 
 		SPAWN_DBG(1 DECI SECOND) //wait for the wingrille spawners to complete when map is loading (ugly i am sorry)
 			var/turf/T = null
@@ -162,7 +163,7 @@
 					is_perspective = 1 //these are also perspective and without this it doesn't go
 				src.set_dir(dir) //set direction for autoplacement
 				if (!is_perspective) //is this going on a flat wall?
-					return //then all we need is the direction for sticking
+					return //then all we need is the direction for sticking and are done here at this point
 				if (dir == EAST) //all this is for handling offsets on 3d looking walls
 					if (is_jen_wall)
 						src.pixel_x = 12
@@ -206,6 +207,8 @@
 	light_type = /obj/item/light/bulb
 	allowed_type = /obj/item/light/bulb
 
+/obj/machinery/light/small/auto
+	nostick = FALSE
 
 //floor lights
 /obj/machinery/light/small/floor
@@ -233,7 +236,6 @@
 
 	New()
 		..()
-
 
 /obj/machinery/light/emergency
 	icon_state = "ebulb1"
@@ -371,11 +373,12 @@
 /obj/machinery/light/fluorescent
 	light_type = /obj/item/light/tube
 	allowed_type = /obj/item/light/tube
-	nostick = 0
-
-
+	nostick = 0 //is this what we want? i'm leaving it for now but should probably be delorted
 	name = "fluorescent light fixture"
 	light_type = /obj/item/light/tube/neutral
+
+/obj/machinery/light/fluorescent/auto
+	nostick = FALSE //do the stick
 
 /obj/machinery/light/fluorescent/ceiling
 	icon_state = "overtube1"
