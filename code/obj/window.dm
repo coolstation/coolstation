@@ -707,9 +707,12 @@
 
 		if (map_setting && ticker)
 			src.update_neighbors()
+		//in my original code here i removed the if condition and just updated neighbors and i don't know why
+		//leaving it as is here for now
 
 		SPAWN_DBG(0)
 			src.update_icon()
+			//also need to add some logic as to when things get built vs. deconstructed vs. destroyed but at least it's in here
 
 	disposing()
 		..()
@@ -856,6 +859,85 @@
 	the_tuff_stuff
 		explosion_resistance = 5
 
+/obj/window/thindow/auto/
+	icon = 'icons/obj/window.dmi'
+	icon_state = "0"
+	//deconstruct_time = 20
+	object_flags = 0 // so they don't inherit the HAS_DIRECTIONAL_BLOCKING flag from thindows
+	// but let's see what happens if directional blocking IS on? ANSWER: YOU GAS FALL OUT
+	flags = FPRINT | USEDELAY | ON_BORDER | ALWAYS_SOLID_FLUID
+
+	var/list/connects_to = list(/obj/window/thindow/auto, /obj/window/thindow/auto/reinforced)
+	var/mod = null
+	alpha = 160
+
+	New()
+		..()
+
+		if (map_setting && ticker)
+			src.update_neighbors()
+
+		SPAWN_DBG(0)
+			src.update_icon()
+
+	disposing()
+		..()
+
+		if (map_setting)
+			src.update_neighbors()
+
+	proc/update_icon()
+		if (!src.anchored)
+			icon_state = "[mod]15"
+			density = 0
+			return
+
+		var/builtdir = 0
+		for (var/dir in cardinal)
+			var/turf/T = get_step(src, dir)
+			if (T && (T.type in connects_to))
+				builtdir |= dir
+			else if (islist(connects_to) && length(connects_to))
+				for (var/i=1, i <= connects_to.len, i++)
+					var/atom/A = locate(connects_to[i]) in T
+					if (!isnull(A))
+						if (istype(A, /atom/movable))
+							var/atom/movable/M = A
+							if (!M.anchored)
+								continue
+						builtdir |= dir
+						break
+		src.icon_state = "[mod][builtdir]"
+		src.dir = 10 //this SEEMS to block passage so this is a stopgap for now, maybe someone smarter can look and do a canpass deal
+
+	proc/update_neighbors()
+		for (var/obj/window/thindow/auto/O in orange(1,src))
+			O.update_icon()
+		for (var/obj/window/thindow/auto/reinforced/O in orange(1,src))
+			O.update_icon()
+
+	disposing()
+		..()
+
+		if (map_setting)
+			src.update_neighbors()
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (isscrewingtool(W))
+			src.anchored = !( src.anchored )
+			src.density = src.anchored
+			src.stops_space_move = !(src.stops_space_move)
+			playsound(src.loc, "sound/items/Screwdriver.ogg", 75, 1)
+			user << (src.anchored ? "You have fastened [src] to the floor." : "You have unfastened [src].")
+			src.update_icon()
+			src.update_neighbors()
+			return
+		if (..(W, user))
+			src.update_icon()
+/obj/window/thindow/auto/reinforced
+	icon = 'icons/obj/window.dmi'
+	icon_state = "R0"
+	mod = "R"
 /obj/wingrille_spawn
 	name = "window grille spawner"
 	icon = 'icons/obj/window.dmi'
@@ -903,6 +985,24 @@
 		icon_state = "wingrille_f"
 		full_win = 1
 
+	fakethindow
+		name = "reinforced thindow grille spawner"
+		win_path = "/obj/window/thindow/auto"
+		grille_path = "/obj/grille/classic"
+
+		set_up() //incredibly basic, pop in a grille and an autothindow and don't do redundant window placement
+			if (!locate(text2path(src.grille_path)) in get_turf(src))
+				var/obj/grille/new_grille = text2path(src.grille_path)
+				new new_grille(src.loc)
+			if (!locate(text2path(src.win_path)) in get_turf(src))
+				var/obj/window/new_win = text2path("[src.win_path]")
+				new new_win(src.loc)
+
+		reinforced
+			name = "reinforced thindow grille spawner"
+			icon_state = "r-wingrille"
+			win_path = "/obj/window/thindow/auto/reinforced"
+			grille_path = "/obj/grille/classic"
 	reinforced
 		name = "reinforced window grille spawner"
 		icon_state = "r-wingrille"
@@ -911,6 +1011,16 @@
 		full
 			icon_state = "r-wingrille_f"
 			full_win = 1
+
+		classic
+			name = "old style reinforced window grille spawner"
+			grille_path = "/obj/grille/classic"
+
+	classic
+		name = "old style reinforced window grille spawner"
+		grille_path = "/obj/grille/classic"
+
+
 
 	crystal
 		name = "crystal window grille spawner"
@@ -968,6 +1078,13 @@
 		tuff
 			name = "tuff stuff reinforced autowindow grille spawner"
 			win_path = "/obj/window/auto/reinforced/the_tuff_stuff"
+
+
+		classic
+			name = "old style window grille spawner"
+			grille_path = "/obj/grille/classic"
+
+
 
 //Cubicle walls! Also for the crunch. - from halloween.dm
 /obj/window/cubicle

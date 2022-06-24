@@ -958,6 +958,9 @@ proc/generate_space_color()
 	step_material = "step_outdoors"
 	step_priority = STEP_PRIORITY_MED
 
+/turf/simulated/wall/wooden
+	icon_state = "wooden"
+
 /turf/unsimulated
 	name = "command"
 	oxygen = MOLES_O2STANDARD
@@ -1005,6 +1008,9 @@ proc/generate_space_color()
 
 /turf/unsimulated/wall/other
 	icon_state = "r_wall"
+
+/turf/unsimulated/wall/wooden
+	icon_state = "wooden"
 
 /turf/unsimulated/bombvr
 	name = "Virtual Floor"
