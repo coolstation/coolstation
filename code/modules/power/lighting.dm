@@ -180,21 +180,6 @@
 				break
 			T = null
 
-/obj/machinery/light/ceiling //move to obj/machinery/light/large/ceiling when that's in
-	icon_state = "overtube1"
-	base_state = "overtube"
-	desc = "A lighting fixture, mounted to the ceiling."
-	plane = PLANE_NOSHADOW_ABOVE
-	allowed_type = /obj/item/light/tube
-	level = 2
-	//invisibility = INVIS_ALWAYS off for now since we need to be able to see and interact before ceilingmode is in
-	invisibility = INVIS_NONE
-	alpha = 100
-	ceilingmounted = 1 //determines interactibility
-
-	New()
-		..() //check something like wiring for how to set direction relative to what tile you place it by hand, since we can rotate this thing
-
 //big standing lamps
 /obj/machinery/light/flamp
 	name = "floor lamp"
@@ -390,6 +375,19 @@
 
 	name = "fluorescent light fixture"
 	light_type = /obj/item/light/tube/neutral
+
+/obj/machinery/light/fluorescent/ceiling
+	icon_state = "overtube1"
+	base_state = "overtube"
+	desc = "A lighting fixture, mounted to the ceiling."
+	plane = PLANE_NOSHADOW_ABOVE
+	level = 2
+	//invisibility = INVIS_ALWAYS off for now since we need to be able to see and interact before ceilingmode is in
+	invisibility = INVIS_NONE
+	alpha = 100
+	ceilingmounted = 1 //determines interactibility
+
+	//check something like wiring for how to set direction relative to what tile you place it by hand, since we can freely rotate this thing unlike floor/ceiling lights and wall lights
 
 // create a new lighting fixture
 /obj/machinery/light/New()
