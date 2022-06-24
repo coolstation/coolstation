@@ -18,6 +18,7 @@
 	var/fixture_type = /obj/machinery/light
 	var/light_type = /obj/item/light/tube
 	var/fitting = "tube"
+	//TODO: use some tool in hand to orient the mounts from wall to ceiling and vice versa
 
 // For metal sheets. Can't easily change an item's vars the way it's set up (Convair880).
 /obj/item/light_parts/bulb
@@ -35,6 +36,7 @@
 	installed_base_state = "floor"
 	fitting = "floor"
 	light_type = /obj/item/light/bulb
+	//TODO: use some tool in hand to orient the mounts from floor to ceiling and vice versa
 
 /obj/item/light_parts/proc/copy_light(obj/machinery/light/target)
 	installed_icon_state = target.icon_state
@@ -75,7 +77,7 @@
 // the standard tube light fixture
 
 /var/global/stationLights = new/list()
-/obj/machinery/light
+/obj/machinery/light //basic root of lighting, currently hosts fluorescent/tube/large lights, maybe move that to /obj/machinery/light/large for clarity
 	name = "light fixture"
 	icon = 'icons/obj/lighting.dmi'
 	var/base_state = "tube"		// base description and icon_state
@@ -96,7 +98,7 @@
 
 	var/fitting = "tube"
 	var/wallmounted = 1
-	var/ceilingmounted = 0 //not sure if this is how i'm going to handle it
+	var/ceilingmounted = 0 //not sure if this is how i'm going to handle ceiling mounts
 	var/nostick = TRUE //If set to true, overrides the autopositioning.
 	var/candismantle = 1
 
@@ -150,30 +152,48 @@
 				directions = cardinal
 			for (var/dir in directions)
 				T = get_step(src,dir)
-				if (istype(T,/turf/simulated/wall/auto) || istype(T,/turf/unsimulated/wall/auto) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window) in T))
-					var/is_jen_wall = 0 // jen walls' ceilings are narrower, so let's move the lights a bit further inward!
-					if (istype(T, /turf/simulated/wall/auto/jen) || istype(T, /turf/simulated/wall/auto/reinforced/jen))
-						is_jen_wall = 1
-					src.set_dir(dir)
-					if (dir == EAST)
-						if (is_jen_wall)
-							src.pixel_x = 12
-						else
-							src.pixel_x = 10
-					else if (dir == WEST)
-						if (is_jen_wall)
-							src.pixel_x = -12
-						else
-							src.pixel_x = -10
-					else if (dir == NORTH)
-						if (is_jen_wall)
-							src.pixel_y = 24
-						else
-							src.pixel_y = 21
-					break
+				var/is_perspective = 0 //check if the walls are not flat and classic- special handling needed to make them look nice
+				var/is_jen_wall = 0 // jen walls' ceilings are narrower, so let's move the lights a bit further inward!
+				if (istype(T,/turf/simulated/wall/auto/supernorn) || istype(T,/turf/simulated/wall/auto/marsoutpost) || istype(T,/turf/simulated/wall/auto/supernorn/wood) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window/auto) in T))
+					is_perspective = 1 //basically if it's a perspective autowall or new glass?? let's a go
+				if (istype(T, /turf/simulated/wall/auto/jen) || istype(T, /turf/simulated/wall/auto/reinforced/jen))
+					is_jen_wall = 1 //handling for different offsets in the sprites
+					is_perspective = 1 //these are also perspective and without this it doesn't go
+				src.set_dir(dir) //set direction for autoplacement
+				if (!is_perspective) //is this going on a flat wall?
+					return //then all we need is the direction for sticking
+				if (dir == EAST) //all this is for handling offsets on 3d looking walls
+					if (is_jen_wall)
+						src.pixel_x = 12
+					else
+						src.pixel_x = 10
+				else if (dir == WEST)
+					if (is_jen_wall)
+						src.pixel_x = -12
+					else
+						src.pixel_x = -10
+				else if (dir == NORTH)
+					if (is_jen_wall)
+						src.pixel_y = 24
+					else
+						src.pixel_y = 21
+				break
 			T = null
 
+/obj/machinery/light/ceiling //move to obj/machinery/light/large/ceiling when that's in
+	icon_state = "overtube1"
+	base_state = "overtube"
+	desc = "A lighting fixture, mounted to the ceiling."
+	plane = PLANE_NOSHADOW_ABOVE
+	allowed_type = /obj/item/light/tube
+	level = 2
+	//invisibility = INVIS_ALWAYS off for now since we need to be able to see and interact before ceilingmode is in
+	invisibility = INVIS_NONE
+	alpha = 100
+	ceilingmounted = 1 //determines interactibility
 
+	New()
+		..() //check something like wiring for how to set direction relative to what tile you place it by hand, since we can rotate this thing
 
 //big standing lamps
 /obj/machinery/light/flamp
