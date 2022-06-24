@@ -138,7 +138,8 @@
 		//auto position these lights so i don't have to mess with dirs in the map editor that's annoying!!!
 		if(nostick)
 			return // we shouldn'a been here!! adding this for legacy uses (i dont feel like chasing them down right now im old and im tired and im back hurts)
-
+		if(ceilingmounted)
+			return //some ceiling lights can be rotated but that will be by hand or map placement, not by this
 		if (map_settings)
 			if (!map_settings.auto_walls)
 				return // no walls to adjust to! stop it!! STOP IT!!
