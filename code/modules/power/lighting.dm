@@ -154,14 +154,17 @@
 				directions = cardinal
 			for (var/dir in directions)
 				T = get_step(src,dir)
+				if (istype(T,/turf/simulated/wall) || istype(T,/turf/unsimulated/wall) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window) in T)) //ah this was missing, set dir for every wall and check them later
 				var/is_perspective = 0 //check if the walls are not flat and classic- special handling needed to make them look nice
 				var/is_jen_wall = 0 // jen walls' ceilings are narrower, so let's move the lights a bit further inward!
 				if (istype(T,/turf/simulated/wall/auto/supernorn) || istype(T,/turf/simulated/wall/auto/marsoutpost) || istype(T,/turf/simulated/wall/auto/supernorn/wood) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window/auto) in T))
 					is_perspective = 1 //basically if it's a perspective autowall or new glass?? let's a go
+				if ((locate(/obj/wingrille_spawn/classic) in T) || (locate(/obj/wingrille_spawn/reinforced/classic) in T))
+					is_perspective = 0 //oh no the root of wingrille spawn is perspective but the classic wingrille spawn is not! time to handle and unset (this can surely be done better but whatever)
+					//actually shit how expensive is it to add a variable to turfs that says if they're perspective or classic?? i'm just imcoder enough to wonder but not enough to know
 				if (istype(T, /turf/simulated/wall/auto/jen) || istype(T, /turf/simulated/wall/auto/reinforced/jen))
 					is_jen_wall = 1 //handling for different offsets in the sprites
 					is_perspective = 1 //these are also perspective and without this it doesn't go
-				src.set_dir(dir) //set direction for autoplacement
 				if (!is_perspective) //is this going on a flat wall?
 					return //then all we need is the direction for sticking and are done here at this point
 				if (dir == EAST) //all this is for handling offsets on 3d looking walls
