@@ -1438,52 +1438,6 @@
 	partlistPart = "foot_right"
 	step_image_state = "footprintsR"
 
-//// SHELTERFROG LIMBS ////
-//////  PARENT  //////
-
-/obj/item/parts/human_parts/arm/mutant/shelterfrog
-	icon = 'icons/mob/shelterfrog.dmi'
-	partIcon = 'icons/mob/shelterfrog.dmi'
-
-/obj/item/parts/human_parts/leg/mutant/shelterfrog
-	icon = 'icons/mob/shelterfrog.dmi'
-	partIcon = 'icons/mob/shelterfrog.dmi'
-
-////// ACTUAL SHELTERFROG LIMBS //////
-/obj/item/parts/human_parts/arm/mutant/shelterfrog/left
-	name = "left shelterfrog arm"
-	desc = "A shelterfrog's left arm. CroOak."
-	icon_state = "arm_left"
-	slot = "l_arm"
-	side = "left"
-	handlistPart = "hand_left"
-
-/obj/item/parts/human_parts/arm/mutant/shelterfrog/right
-	name = "right shelterfrog arm"
-	desc = "A shelterfrog's right arm. FrOoOoak."
-	icon_state = "arm_right"
-	slot = "r_arm"
-	side = "right"
-	handlistPart = "hand_right"
-
-/obj/item/parts/human_parts/leg/mutant/shelterfrog/left
-	name = "left shelterfrog leg"
-	desc = "A shelterfrog's left leg. CroOoOk."
-	icon_state = "leg_left"
-	slot = "l_leg"
-	side = "left"
-	partlistPart = "foot_left"
-	step_image_state = "footprintsL"
-
-/obj/item/parts/human_parts/leg/mutant/shelterfrog/right
-	name = "right shelterfrog leg"
-	desc = "A shelterfrog's right leg. FroOoak"
-	icon_state = "leg_right"
-	slot = "r_leg"
-	side = "right"
-	partlistPart = "foot_right"
-	step_image_state = "footprintsR"
-
 //// ROACH LIMBS ////
 //////  PARENT  //////
 

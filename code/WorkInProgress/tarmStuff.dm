@@ -144,7 +144,7 @@
 		AddComponent(/datum/component/holdertargeting/smartgun/extinguisher, 1)
 
 	attack_hand()
-		return//:shelterfrog:
+		return//:looksnormal:
 
 /datum/component/holdertargeting/smartgun/extinguisher/is_valid_target(mob/user, mob/M)
 	return (M.hasStatus("burning"))
