@@ -704,6 +704,27 @@ var/list/special_pa_observing_verbs = list(
 		src.holder.Game()
 	return
 
+/client/proc/create_obj()
+	set name = "Create Object Panel"
+	SET_ADMIN_CAT(ADMIN_CAT_SERVER)
+	if (src.holder)
+		src.holder.create_object()
+	return
+
+/client/proc/create_mob()
+	set name = "Create Mob Panel"
+	SET_ADMIN_CAT(ADMIN_CAT_SERVER)
+	if (src.holder)
+		src.holder.create_mob()
+	return
+
+/client/proc/create_turf()
+	set name = "Fuck Terfs Panel"
+	SET_ADMIN_CAT(ADMIN_CAT_SERVER)
+	if (src.holder)
+		src.holder.create_turf()
+	return
+
 /client/proc/game_panel_but_called_secrets()
 	set name = "Secrets"
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
