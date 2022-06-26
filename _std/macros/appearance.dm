@@ -10,7 +10,6 @@
 #define HEAD_CAT 7
 #define HEAD_ROACH 8
 #define HEAD_FROG 9
-#define HEAD_SHELTER 10
 #define HEAD_VAMPTHRALL 11
 #define HEAD_RELI 12
 #define HEAD_CHICKEN 13

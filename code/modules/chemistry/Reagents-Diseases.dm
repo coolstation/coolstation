@@ -460,18 +460,6 @@ datum
 			thirst_value = -0.5
 			disease = /datum/ailment/disease/going_catty
 
-		disease/cocktail_sheltestgrog
-			name = "sheltestgrog"
-			id = "sheltestgrog"
-			description = "The essence of pure frogness."
-			reagent_state = LIQUID
-			taste = "heavenly"
-			disease = /datum/ailment/disease/frog_flu
-			fluid_r = 145
-			fluid_g = 185
-			fluid_b = 120
-			transparency = 255
-
 		// Marquesas' one stop pathology shop
 		blood/pathogen
 			name = "pathogen"

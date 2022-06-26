@@ -4,14 +4,14 @@
 
 
 // Pill of sheltestgrog for my office
-
+/*
 /obj/item/reagent_containers/pill/sheltestgrog
 	name = "pill"
 	New()
 		. = ..()
 		src.reagents.add_reagent("sheltestgrog", 100)
 
-
+*/
 
 // Gun that shoots Securitrons
 

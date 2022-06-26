@@ -523,10 +523,6 @@
 					src.organ_name = "frog head"
 					src.desc = "Croak."
 
-				if(HEAD_SHELTER)
-					src.organ_name = "shelterfrog head"
-					src.desc = "CroOoOoOooak."
-
 				if(HEAD_VAMPTHRALL)
 					src.organ_name = "vampiric thrall head"
 					src.desc = "Deader than undead."
