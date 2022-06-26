@@ -41,7 +41,7 @@
 	var/flair_colorable = 0 //this is a bugfix for non-colourable flairs being coloured
 
 	var/list/standard_symbols = list("None", "Bee", "Blood", "Eye", "No", "Clown", "Wizhat", "CoolS", "Brimstone", "Duck", "Planet+Moon", "Sol",\
-	"Candle", "Shelterbee")//symbols that cant be colored
+	"Candle")//symbols that cant be colored
 	var/list/colorable_symbols = list("None", "Skull", "Drop", "Shortcross", "Smile", "One", "FadeCircle", "Square", "NT", "Ghost", "Bone",\
 	"Heart", "Pentagram", "Key", "Lock") //list of symbols that can be coloured
 	var/list/alchemical_symbols = list("None", "Mercury", "Salt", "Sulfur", "Urine", "Water", "Fire", "Air", "Earth", "Calcination", "Congelation",\
