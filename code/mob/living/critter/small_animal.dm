@@ -1522,6 +1522,11 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 
 	New()
 		..()
+		START_TRACKING
+
+	disposing()
+		STOP_TRACKING
+		..()
 
 	proc/fart_along() //it's here because all fartens are martens but some martens are fartens too
 		if (src.farten == 1) //only farters here buster
