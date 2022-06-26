@@ -14,6 +14,7 @@
 	var/temp_resist = 0
 	var/shock_when_entered = 1
 	var/auto = FALSE
+	var/isperspective = TRUE
 	var/list/connects_to_turf = list(/turf/simulated/wall/auto, /turf/simulated/wall/auto/reinforced, /turf/simulated/shuttle/wall, /turf/unsimulated/wall)
 	var/list/connects_to_obj = list(/obj/indestructible/shuttle_corner,	/obj/grille/, /obj/machinery/door, /obj/window)
 	text = "<font color=#aaa>+"
@@ -467,13 +468,25 @@
 		var/diff = get_fraction_of_percentage_and_whole(health,health_max)
 		switch(diff)
 			if(-INFINITY to 25)
-				icon_state = "grille[builtdir]" + "-3"
+				if(isperspective)
+					icon_state = "grille[builtdir]" + "-3"
+				else
+					icon_state = "grille-3"
 			if(26 to 50)
-				icon_state = "grille[builtdir]" + "-2"
+				if(isperspective)
+					icon_state = "grille[builtdir]" + "-2"
+				else
+					icon_state = "grille-2"
 			if(51 to 75)
-				icon_state = "grille[builtdir]" + "-1"
+				if(isperspective)
+					icon_state = "grille[builtdir]" + "-1"
+				else
+					icon_state = "grille-1"
 			if(76 to INFINITY)
-				icon_state = "grille[builtdir]" + "-0"
+				if(isperspective)
+					icon_state = "grille[builtdir]" + "-0"
+				else
+					icon_state = "grille-0"
 
 	proc/update_neighbors()
 		for (var/obj/grille/G in orange(1,src))
