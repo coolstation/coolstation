@@ -711,21 +711,21 @@ var/list/special_pa_observing_verbs = list(
 	set name = "Create Object Panel"
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER)
 	if (src.holder)
-		src.holder.create_object()
+		src.holder.create_object(usr)
 	return
 
 /client/proc/create_mob()
 	set name = "Create Mob Panel"
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER)
 	if (src.holder)
-		src.holder.create_mob()
+		src.holder.create_mob(usr)
 	return
 
 /client/proc/create_turf()
 	set name = "Fuck Terfs Panel"
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER)
 	if (src.holder)
-		src.holder.create_turf()
+		src.holder.create_turf(usr)
 	return
 
 /client/proc/game_panel_but_called_secrets()
