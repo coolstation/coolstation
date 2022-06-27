@@ -59,3 +59,7 @@
 //cooldowns
 #define REST_TOGGLE_COOLDOWN 0.1 SECONDS
 #define EAT_COOLDOWN 0.5 SECONDS
+
+//message type flags for show_message (emote stuff)
+#define MESSAGE_VISIBLE 1
+#define MESSAGE_AUDIBLE 2

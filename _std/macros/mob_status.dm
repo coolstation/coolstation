@@ -6,6 +6,8 @@
 #define setunconscious(x) if (ismob(x)) x.stat = 1
 #define setdead(x) if (ismob(x)) x.stat = 2
 
+#define ismuzzled(x) (x.wear_mask && x.wear_mask.is_muzzle)
+
 // status effect system stuff
 #define ADD_STATUS_LIMIT(target, group, value)\
 	do { \
