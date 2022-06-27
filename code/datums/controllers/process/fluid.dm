@@ -31,7 +31,6 @@
 		///////////////////
 
 		for (var/datum/fluid_group/FG in processing_fluid_drains)
-			LAGCHECK(LAG_LOW)
 			if (!FG) continue
 
 			if (FG.queued_drains)
@@ -54,7 +53,6 @@
 		var/avg_viscosity = 0
 		for (var/datum/fluid_group/FG in processing_fluid_spreads)
 			if (world.time < FG.last_update_time + FG.avg_viscosity) continue
-			LAGCHECK(LAG_LOW)
 			if (!FG) continue
 
 			FG.last_update_time = world.time
@@ -92,7 +90,6 @@
 			src.last_group_update = world.time
 			var/atom/selected_temp_expose = 0
 			for (var/datum/fluid_group/FG in processing_fluid_groups)
-				LAGCHECK(LAG_MED)
 				if (!FG) continue
 				if (!FG.members || !length(FG.members)) continue
 
@@ -126,7 +123,6 @@
 
 					F.reagents.set_reagent_temp(F.reagents.total_temperature + change , 1)
 				*/
-				LAGCHECK(LAG_MED)
 				if (!FG) continue
 				//evaporate stuff
 				if (FG.amt_per_tile <= FG.required_to_spread && !FG.updating)
@@ -138,7 +134,6 @@
 						//blood shouldn't evaporate cause its evidence. Just create decals.
 						if (FG.reagents.get_master_reagent_name() == "blood")
 							for (var/obj/fluid/F in FG.members)
-								LAGCHECK(LAG_MED)
 								if (!F) continue
 								var/obj/decal/cleanable/blood/dynamic/B = make_cleanable(/obj/decal/cleanable/blood/dynamic,F.loc)
 								B.sample_reagent = "blood"
