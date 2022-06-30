@@ -135,8 +135,8 @@
 		src.ringlimiter = 0
 		
 	src.dont_spam = 1	//hey let's try having the fire alarm reset set protection against alarming again
-	SPAWN_DBG(5 SECONDS)	//maybe then you'll actually be able to reset it for a little without spam clicking a dozen times
-		src.dont_spam = 0	//maybe maybe i dunno im just a big stinky doofus though
+	sleep(5 SECONDS)	//maybe then you'll actually be able to reset it for a little without spam clicking a dozen times
+	src.dont_spam = 0	//maybe maybe i dunno im just a big stinky doofus though
 
 	post_alert(0)
 	return
@@ -163,8 +163,8 @@
 		playsound(src.loc, "sound/machines/firealarm.ogg", 50, 1)
 
 	src.dont_spam = 1
-	SPAWN_DBG(5 SECONDS)
-		src.dont_spam = 0
+	sleep(5 SECONDS)
+	src.dont_spam = 0
 
 	return
 
