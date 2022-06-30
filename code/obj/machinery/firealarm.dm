@@ -133,6 +133,10 @@
 
 	if (src.ringlimiter)
 		src.ringlimiter = 0
+		
+	src.dont_spam = 1	//hey let's try having the fire alarm reset set protection against alarming again
+	sleep(5 SECONDS)	//maybe then you'll actually be able to reset it for a little without spam clicking a dozen times
+		src.dont_spam = 0	//maybe maybe i dunno im just a big stinky doofus though
 
 	post_alert(0)
 	return
@@ -158,14 +162,11 @@
 		src.ringlimiter = 1
 		playsound(src.loc, "sound/machines/firealarm.ogg", 50, 1)
 
-
-
 	src.dont_spam = 1
-	SPAWN_DBG(5 SECONDS)
+	sleep(5 SECONDS)
 		src.dont_spam = 0
 
 	return
-
 
 /obj/machinery/firealarm/proc/post_alert(var/alarm, var/specific_target)
 //	var/datum/radio_frequency/frequency = radio_controller.return_frequency(alarm_frequency)
