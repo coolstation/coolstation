@@ -1051,23 +1051,23 @@ var/global/list/mapNames = list(
 /datum/map_settings/bobmap
 	name = "BOBMAP"
 	goonhub_map = "https://goonhub.com/maps/cogmap"
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/simulated/wall
+	rwalls = /turf/simulated/wall/r_wall
 	auto_walls = 1
 
-	windows = /obj/window/auto
-	windows_thin = /obj/window/pyro
-	rwindows = /obj/window/auto/reinforced
-	rwindows_thin = /obj/window/reinforced/pyro
-	windows_crystal = /obj/window/auto/crystal
-	windows_rcrystal = /obj/window/auto/crystal/reinforced
+	windows = /obj/window
+	windows_thin = /obj/window
+	rwindows = /obj/window/reinforced
+	rwindows_thin = /obj/window/reinforced
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
 	window_layer_full = COG2_WINDOW_LAYER
 	window_layer_north = GRILLE_LAYER+0.1
 	window_layer_south = FLY_LAYER+1
 	auto_windows = 1
 
-	ext_airlocks = /obj/machinery/door/airlock/pyro/external
-	airlock_style = "pyro"
+	ext_airlocks = /obj/machinery/door/airlock/external
+	airlock_style = "gannets"
 
 	escape_centcom = /area/shuttle/escape/centcom/cogmap
 	escape_outpost = /area/shuttle/escape/outpost/cogmap
