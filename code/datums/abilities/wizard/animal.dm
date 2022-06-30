@@ -22,6 +22,8 @@ var/list/animal_spell_critter_paths = list(/mob/living/critter/small_animal/mous
 /mob/living/critter/spider/baby,
 /mob/living/critter/spider/ice/baby,
 /mob/living/critter/small_animal/wasp,
+/mob/living/critter/small_animal/giantmantis,
+/mob/living/critter/small_animal/sheep,
 /mob/living/critter/small_animal/raccoon,
 /mob/living/critter/small_animal/slug,
 /mob/living/critter/small_animal/slug/snail,

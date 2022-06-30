@@ -1931,6 +1931,108 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 				return 2
 		return ..()
 
+/* ============================================== */
+/* ---------------- Giant Mantis ---------------- */
+/* ============================================== */
+
+/mob/living/critter/small_animal/giantmantis
+	name = "giant mantis"
+	real_name = "giant mantis"
+	desc = "A giant praying mantis, yikes. It looks sort of familiar, somehow."
+	icon_state = "giantmantis"
+	icon_state_dead = "giantmantis-dead"
+	speechverb_say = "clicks"
+	speechverb_exclaim = "screeches"
+	speechverb_ask = "chirps"
+	health_brute = 10
+	health_burn = 10
+	reagent_capacity = 100
+	flags = TABLEPASS
+	fits_under_table = 1
+	//add_abilities = list(/datum/targetable/critter/) TODO: claw swipe
+
+	setup_hands()
+		..()
+		var/datum/handHolder/HH = hands[1]
+		HH.limb = new /datum/limb/small_critter
+		HH.icon = 'icons/mob/critter_ui.dmi'
+		HH.icon_state = "handn"
+		HH.name = "weird grabby foot thing"
+		HH.limb_name = "foot"
+
+	death(var/gibbed)
+		if (!gibbed)
+			src.reagents.add_reagent("toxin", 50, null)
+			src.reagents.add_reagent("histamine", 50, null)
+		return ..()
+
+	specific_emotes(var/act, var/param = null, var/voluntary = 0)
+		switch (act)
+			if ("flip","dance")
+				if (src.emote_check(voluntary, 50) && !src.shrunk)
+					SPAWN_DBG(1 SECOND)
+						animate_bumble(src)
+					return null
+			if ("snap","buzz")
+				if (src.emote_check(voluntary, 30))
+					return "<span class='emote'><b>[src]</b> buzzes!</span>" // todo?: find buzz noise
+		return null
+
+	specific_emote_type(var/act)
+		switch (act)
+			if ("flip","dance")
+				return 1
+			if ("snap","buzz")
+				return 2
+		return ..()
+
+/* ============================================= */
+/* ------------------- Sheep ------------------- */
+/* ============================================= */
+
+/mob/living/critter/small_animal/sheep
+	name = "space sheep"
+	real_name = "space sheep"
+	desc = "A sheep. In space. Soft and fluffy."
+	icon_state = "sheep"
+	icon_state_dead = "sheep-dead"
+	density = 1
+	speechverb_say = "baaas"
+	speechverb_exclaim = "raaams"
+	speechverb_ask = "ewwwe"
+	meat_type = /obj/item/reagent_containers/food/snacks/ingredient/meat/synthmeat
+	name_the_meat = 1
+
+	setup_hands()
+		..()
+		var/datum/handHolder/HH = hands[1]
+		HH.limb = new /datum/limb/mouth/small
+		HH.icon = 'icons/mob/critter_ui.dmi'
+		HH.icon_state = "mouth"
+		HH.name = "mouth"
+		HH.limb_name = "teeth"
+		HH.can_hold_items = 0
+
+	specific_emotes(var/act, var/param = null, var/voluntary = 0)
+		switch (act)
+			if ("scream")
+				if (src.emote_check(voluntary, 50))
+					return "<span class='emote'><b>[src]</b> bleats!</span>"
+		return null
+
+	specific_emote_type(var/act)
+		switch (act)
+			if ("scream")
+				return 2
+		return ..()
+
+	on_pet(mob/user)
+		if (..())
+			return 1
+		if (prob(10))
+			src.audible_message("[src] purrs![prob(20) ? " Wait, what?" : null]",\
+			"You purr!")
+
 /* ================================================= */
 /* -------------------- Raccoon -------------------- */
 /* ================================================= */
