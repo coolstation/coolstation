@@ -1949,7 +1949,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	reagent_capacity = 100
 	flags = TABLEPASS
 	fits_under_table = 1
-	//add_abilities = list(/datum/targetable/critter/) TODO: claw swipe
+	add_abilities = list(/datum/targetable/critter/pounce) // TODO: add claw swipe
 
 	setup_hands()
 		..()
