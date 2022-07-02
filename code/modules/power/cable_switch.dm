@@ -88,8 +88,8 @@
 
 /obj/machinery/power/breaker/proc/merge_nets()
 	underlays = null
-	for (var/obj/cable/C in src)
-		C.set_loc(get_turf(src))
+	for (var/obj/cable/C in get_turf(src))
+		C.open_circuit = FALSE
 		C.update_network()
 
 /obj/machinery/power/breaker/proc/break_nets()
@@ -97,12 +97,9 @@
 	netnum = -1 // haha I sure as shit didn't think it was still connecting the pnet halves through the switch itelf
 	for (var/obj/cable/C in get_turf(src))
 		if(C.netnum && powernets && powernets.len >= C.netnum)		// Make sure cable & powernet data is valid
+			C.open_circuit = TRUE
 			var/datum/powernet/PN = powernets[C.netnum]
 			PN.cut_cable(C)	// Update the powernets
-			C.set_loc(src)
-			var/image/sprot = image(C.icon, C.icon_state) //so we're just gonna slap the cable's sprite under us :)
-			sprot.color = C.color
-			underlays += sprot
 		netnum = -1 // I don't really understand powernet propagation code but this seems necessary if there's multiple cables on a turf.
 	defer_powernet_rebuild = FALSE
 	makepowernets()
