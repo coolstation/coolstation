@@ -279,7 +279,7 @@
 
 			ai_pickupstuff()
 			ai_obstacle(1)
-			ai_openclosets()
+			//ai_openclosets() Kindly fuck off
 			//ai_findtarget()
 			if (ai_calm_down && ai_aggressive && prob(20))
 				ai_aggressive = 0
@@ -316,7 +316,7 @@
 			var/distance = get_dist(src,ai_target)
 
 			ai_obstacle(0)
-			ai_openclosets()
+			//ai_openclosets() no
 
 			if(ai_target == src && prob(10)) //If we're fighting ourselves we wanna look for other targets periodically
 				src.ai_findtarget_new()
@@ -485,7 +485,7 @@
 /mob/living/carbon/human/proc/ai_put_away_thing(obj/item/thing)
 
 
-/mob/living/carbon/human/proc/ai_do_hand_stuff()
+/mob/living/carbon/human/proc/ai_do_hand_stuff() //hey we've gone and disabled some of this stuff because monkeys are currently better sources of entropy than the crew and it's fucking aggravating (no hard feelings Pali) - Bat
 	if(prob(10))
 		src.in_throw_mode = !src.in_throw_mode
 
@@ -515,12 +515,13 @@
 	if(!src.equipped())
 		return
 
-	var/throw_equipped = prob(0.1)
+	var/throw_equipped = prob(0.1) //Doesn't do anything because throwing is commented out
 
-	if(IS_NPC_HATED_ITEM(src.equipped()))
-		throw_equipped |= prob(80)
+	//if(IS_NPC_HATED_ITEM(src.equipped()))
+	//	throw_equipped |= prob(80)
 
 	// pull things out of other things!
+	/* Absolutely fucking not
 	if(istype(src.equipped(), /obj/item/storage))
 		var/obj/item/storage/storage = src.equipped()
 		if(!length(storage.contents) && src.hand) // keep toolboxes in the right hand
@@ -533,12 +534,18 @@
 			storage.layer = initial(storage.layer)
 			taken.set_loc(storage.loc)
 			src.put_in_hand_or_drop(taken)
+	*/
 
 	// wear clothes
+	/* Actually let's not wear everything and then throw the unequipped shit all over the place
 	if(src.hand && IS_NPC_CLOTHING(src.equipped()) && prob(80) && (!(src.equipped().flags & ONBELT) || prob(0.1)))
 		src.hud.relay_click("invtoggle", src, list())
 		if(src.equipped())
 			throw_equipped |= prob(80)
+	*/
+	//A shittier version of the above but only for wearing hats, which I feel monkeys would be all about
+	if(src.hand && src.can_equip(src.equipped(), slot_head) && !src.get_slot(slot_head) && prob(25))
+		src.hud.relay_click("invtoggle", src, list())
 
 	if(istype(src.wear_mask, /obj/item/clothing/mask/cigarette))
 		var/obj/item/clothing/mask/cigarette/cigarette = src.wear_mask
@@ -553,9 +560,10 @@
 					if(!welder.welding)
 						welder.attack_self(src)
 				src.ai_attack_target(cigarette, src.equipped())
-				throw_equipped = 1
+				//throw_equipped = 1
 
 	// eat, drink, splash!
+	/*
 	if(istype(src.equipped(), /obj/item/reagent_containers))
 		var/poured = FALSE
 		if(istype(src.equipped(), /obj/item/reagent_containers/glass) || prob(20))
@@ -574,8 +582,10 @@
 			thing.set_loc(src.loc)
 			thing.dropped(src)
 			thing.layer = initial(thing.layer)
+	*/
 
 	// draw
+	//What if we leave this in? I don't think monkeys are likely to get crayons without outside help
 	if(istype(src.equipped(), /obj/item/pen/crayon) && prob(20))
 		var/list/turf/eligible = list()
 		for(var/turf/T in view(1, src))
@@ -589,11 +599,13 @@
 		src.equipped().attack_self(src)
 
 	// throw
+	/*
 	if(throw_equipped)
 		var/turf/T = get_turf(src)
 		if(T)
 			SPAWN_DBG(0.2 SECONDS) // todo: probably reorder ai_move stuff and remove this spawn, without this they keep hitting themselves
 				src.throw_item(locate(T.x + rand(-5, 5), T.y + rand(-5, 5), T.z), list("npc_throw"))
+	*/
 
 	// give
 	if(prob(src.hand ? 5 : 1) && src.equipped() && ai_state != AI_ATTACKING)
@@ -603,8 +615,8 @@
 					src.give_to(H)
 				break
 
-	// put on table
-	if(prob(5) && src.equipped())
+	// put on table (prob(5) -> prob(1) as part of monkey pacification)
+	if(prob(1) && src.equipped() && !iswrenchingtool(src.equipped())) //I've seen Krimpus disassemble botany's tables before
 		for(var/obj/table/table in view(1))
 			src.ai_attack_target(table, src.equipped())
 			break
@@ -948,7 +960,7 @@
 		var/obj/machinery/door/W = (locate(/obj/machinery/door) in get_turf(src.loc))
 		if(W.density) src.ai_attack_target(W, null)
 
-/mob/living/carbon/human/proc/ai_openclosets()
+/mob/living/carbon/human/proc/ai_openclosets() //unused
 	if (ai_incapacitated())
 		return
 	for (var/obj/storage/closet/C in view(1,src))
