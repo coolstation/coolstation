@@ -216,7 +216,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.1, 0.5, 0.5, 1, 1)
 			if (!S) CRASH("Did not manage to generate sound \"[soundin]\" with source [source].")
 			C.sound_playing[ S.channel ][1] = storedVolume
 			C.sound_playing[ S.channel ][2] = channel
-			//poopie
+
 			S.volume = ourvolume
 
 			if (spaced_env && !(flags & SOUND_IGNORE_SPACE))
