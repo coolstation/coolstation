@@ -1364,6 +1364,8 @@ About the new airlock wires panel:
 		return
 
 	if ((src.density) && (!( src.welded ) && !( src.operating ) && ((!src.arePowerSystemsOn()) || (status & NOPOWER)) && !( src.locked )))
+		if(!ON_COOLDOWN(src, "playsound", 1.5 SECONDS))
+			playsound(src, 'sound/machines/airlock_pry.ogg', 35, 1)
 		SPAWN_DBG( 0 )
 			src.operating = 1
 			play_animation("opening")
@@ -1381,6 +1383,8 @@ About the new airlock wires panel:
 			src.operating = 0
 
 	else if ((!src.density) && (!( src.welded ) && !( src.operating ) && !( src.locked )))
+		if(!ON_COOLDOWN(src, "playsound", 1.5 SECONDS))
+			playsound(src, 'sound/machines/airlock_pry.ogg', 35, 1)
 		SPAWN_DBG( 0 )
 			src.operating = 1
 			play_animation("closing")
@@ -1404,8 +1408,7 @@ About the new airlock wires panel:
 	else if (src.arePowerSystemsOn())
 		boutput(usr, "<span class='alert'>You try to pry [src]  open, but it won't budge! The power of \the [src] must be disabled first.</span>")
 
-	if(!ON_COOLDOWN(src, "playsound", 1.5 SECONDS))
-		playsound(src, 'sound/machines/airlock_pry.ogg', 35, 1)
+
 
 	return
 

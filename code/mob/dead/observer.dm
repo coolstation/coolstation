@@ -232,7 +232,7 @@
 	if(corpse && ismob(corpse))
 		src.corpse = corpse
 		src.set_loc(get_turf(corpse))
-		if(src.acid_name != null)
+		if(corpse.acid_name == null)
 			src.real_name = corpse.real_name
 		else
 			src.real_name = corpse.acid_name
@@ -801,7 +801,7 @@ mob/dead/observer/proc/insert_observer(var/atom/target)
 	newobs.attach_hud(hud)
 	newobs.set_observe_target(target)
 	newobs.name = src.name
-	if(src.acid_name != null)
+	if(corpse.acid_name == null)
 		src.real_name = corpse.real_name
 	else
 		src.real_name = corpse.acid_name
