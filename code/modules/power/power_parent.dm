@@ -94,7 +94,7 @@ var/makingpowernetssince = 0
 	else
 		makingpowernetssince = 0
 
-	var/netcount = 0
+	var/netcount = 1 //was 0, we now increment after building a net
 	powernets = list()
 
 	for_by_tcl(PC, /obj/cable)
@@ -108,7 +108,8 @@ var/makingpowernetssince = 0
 
 	for_by_tcl(PC, /obj/cable)
 		if(!PC.netnum)
-			powernet_nextlink(PC, ++netcount)
+			if (powernet_nextlink(PC, netcount))
+				netcount++
 		LAGCHECK(LAG_MED)
 
 	for(var/L = 1 to netcount)
@@ -168,6 +169,7 @@ var/makingpowernetssince = 0
 
 
 	for(var/obj/cable/C in T)
+		if(C.open_circuit) continue
 		if(C.d1 == fdir || C.d2 == fdir)
 			if(!unmarked || !C.netnum)
 				. += C
@@ -184,7 +186,7 @@ var/makingpowernetssince = 0
 
 	//var/straight = d1 == turn(d2, 180)
 	for(var/obj/cable/C in src.loc)
-		if(C != src && (C.d1 == d2 || C.d2 == d2 || (d1 && (C.d1 == d1 || C.d2 == d1))) && (!unmarked || !C.netnum)) // my turf, sharing a direction
+		if(C != src && (C.d1 == d2 || C.d2 == d2 || (d1 && (C.d1 == d1 || C.d2 == d1))) && (!unmarked || !C.netnum) && !C.open_circuit) // my turf, sharing a direction
 			/*
 			(straight && C.d1 == 0) || // straight line connects to knots
 			(!d1 && C.d1 == turn(C.d2, 180))) // knots connect to straight lines
@@ -220,7 +222,7 @@ var/makingpowernetssince = 0
 
 		for(var/obj/cable/C in T)
 
-			if(C.netnum && unmarked)
+			if((C.netnum && unmarked) || C.open_circuit)
 				continue
 
 			if(C.d1 == cdir || C.d2 == cdir)
@@ -239,17 +241,25 @@ var/makingpowernetssince = 0
 			. += C
 
 //LummoxJR patch:
+///I think this proc is for collecting power cables/machinery under netnumber [num] starting from [O]. I've added it returning TRUE when it finishes, or FALSE when it cuts of early (so makepowernets can reuse the netnum) - Bat
 /proc/powernet_nextlink(var/obj/O, var/num)
     var/list/P
     var/list/more
 
     //world.log << "start: [O] at [O.x].[O.y]"
 
+	///Cut setup early if we're an open circuit cable (stops em from connecting themselves to adjacent pnets)
+    if (istype(O, /obj/cable))
+        var/obj/cable/OC = O
+        if (OC.open_circuit)
+            //OC.netnum = num //makepowernets hands out netnums to unlinked cables, might as well use it so it's accounted for
+            return FALSE
+
     while(1)
         if( istype(O, /obj/cable) )
             var/obj/cable/C = O
             if(C.netnum > 0)
-                if(!more || !length(more)) return
+                if(!more || !length(more)) return TRUE
                 O = more[more.len]
                 more -= O
                 continue
@@ -261,7 +271,7 @@ var/makingpowernetssince = 0
 
             var/obj/machinery/power/M = O
             if(M.netnum > 0)
-                if(!more || !length(more)) return
+                if(!more || !length(more)) return TRUE
                 O = more[more.len]
                 more -= O
                 continue
@@ -274,7 +284,7 @@ var/makingpowernetssince = 0
                 O = more[more.len]
                 more -= O
                 continue
-            return
+            return TRUE
 
         O = P[1]
 
@@ -316,7 +326,7 @@ var/makingpowernetssince = 0
 
 	// remove the cut cable from the network
 	C.netnum = -1
-	C.set_loc(null)
+	C.open_circuit = TRUE //replaces C.set_loc(null)
 	cables -= C
 
 	powernet_nextlink(P1[1], number)		// propagate network from 1st side of cable, using current netnum
