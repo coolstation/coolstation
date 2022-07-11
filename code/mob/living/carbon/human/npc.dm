@@ -515,7 +515,7 @@
 	if(!src.equipped())
 		return
 
-	var/throw_equipped = prob(0.1) //Doesn't do anything because throwing is commented out
+	//var/throw_equipped = prob(0.1) //Doesn't do anything because throwing is commented out
 
 	//if(IS_NPC_HATED_ITEM(src.equipped()))
 	//	throw_equipped |= prob(80)
