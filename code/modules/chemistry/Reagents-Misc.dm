@@ -3770,7 +3770,7 @@ datum
 					..()
 					if (holder && ismob(holder.my_atom))
 						var/mob/bipbip = holder.my_atom
-						bipbip.playsound_local(bipbip.loc, "sound/musical_instruments/Vuvuzela_1.ogg", 50, 1)
+						bipbip.playsound_local(bipbip.loc, "sound/musical_instruments/Vuvuzela_1.ogg", 60, 1)
 
 		sakuride
 			name = "sakuride"

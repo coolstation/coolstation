@@ -77,6 +77,7 @@
 	var/insulator_default = "synthrubber"
 	var/conductor_default = "pharosium"
 	var/cuttable = "1"
+	var/open_circuit = FALSE //governed by breakers, prevents this cable from being added to a powernet, basically suspends a cable connection without deleting the cable
 
 	var/datum/material/insulator = null
 	var/datum/material/conductor = null
@@ -404,6 +405,21 @@
 // shock the user with probability prb
 
 /obj/cable/proc/shock(mob/user, prb)
+
+	if(open_circuit) //This goes before the netnum thing because it's probably 0 in this case
+		if (!powernets) return 0
+		var/result = 0 //this is a powernet number
+		var/max_avail = 0 //gotta keep track since we're gonna examine one pnet at a time
+		for(var/obj/cable/C in src.get_connections()) //Find the spiciest connection and use that
+			if (!C.netnum) continue
+			var/datum/powernet/PN
+			if(powernets.len >= C.netnum)
+				PN = powernets[C.netnum]
+				if (PN.avail > max_avail)
+					max_avail = PN.avail
+					result = C.netnum
+		return result ? src.electrocute(user, prb, result) : 0
+
 	if(!netnum)		// unconnected cable is unpowered
 		return 0
 
