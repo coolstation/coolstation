@@ -1403,6 +1403,7 @@
 
 	create_products()
 		..()
+		product_list += new/datum/data/vending_product(/obj/item/breaker_box, 30)
 		product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/mechanicbook, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/andcomp, 30)
 		product_list += new/datum/data/vending_product(/obj/item/mechanics/association, 30)
