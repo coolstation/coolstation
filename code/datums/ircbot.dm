@@ -68,7 +68,7 @@ var/global/datum/ircbot/ircbot = new /datum/ircbot()
 						src.load()
 				return "queued"
 			else
-				if (config.env == "dev" || !apikey) // If we have no API key, why even bother
+				if (!apikey) // If we have no API key, why even bother
 					return 0
 
 				args = (args == null ? list() : args)
