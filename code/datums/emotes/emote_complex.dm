@@ -568,7 +568,6 @@
 	else if (user.poops < 1)
 		message = "<B>[src]</B> grunts for a moment. [prob(1)?"something":"nothing"] happens."
 	else
-		user.poops--
 
 		user.poop()
 	return list(message, "<I>grunts</I>", MESSAGE_AUDIBLE)

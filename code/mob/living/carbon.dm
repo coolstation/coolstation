@@ -87,11 +87,16 @@
 	. = ..(give_medal, include_ejectables)
 
 /mob/living/carbon/proc/poop()
+	if(ON_COOLDOWN(src, "poo", 10 MINUTES))
+		boutput(src, "You don't feel ready to go.")
+		return
 	SPAWN_DBG(0.1 SECOND)
 		var/mob/living/carbon/human/H = src
 		var/obj/item/reagent_containers/poo_target = src.equipped()
 		var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new()
 		shit.owner = src // this is your shit.
+		if(src.poops)
+			src.poops--
 		if(!istype(H)) // just in case something unhuman poops, lets still make a turd.
 			var/turf/T = get_turf(src)
 			if (istype(T))
