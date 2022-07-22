@@ -177,7 +177,7 @@ ATTENTION: The changelog has moved into its own file: strings/changelog.txt
 								html += "<span class='tooltiptext'>[emoji_parts[2]]</span>"
 							html += "</span>"
 						if(pr_num)
-							html += "<a target='_blank' href='https://github.com/goonstation/goonstation/pull/[pr_num]' class='pr_link'><span class='pr_number'>#[pr_num]</span>&gt;</a>"
+							html += "<a target='_blank' href='https://github.com/coolstation/coolstation/pull/[pr_num]' class='pr_link'><span class='pr_number'>#[pr_num]</span>&gt;</a>"
 						html += "</li>"
 						added_author = 1
 					html += "<li>[copytext(line, 4, 0)]</li>"
@@ -191,7 +191,7 @@ ATTENTION: The changelog has moved into its own file: strings/changelog.txt
 								collapsible_html += "<span class='tooltiptext'>[emoji_parts[2]]</span>"
 							collapsible_html += "</span>"
 						if(pr_num)
-							collapsible_html += "<a target='_blank' href='https://github.com/goonstation/goonstation/pull/[pr_num]' class='pr_link'><span class='pr_number'>#[pr_num]</span>&gt;</a>"
+							collapsible_html += "<a target='_blank' href='https://github.com/coolstation/coolstation/pull/[pr_num]' class='pr_link'><span class='pr_number'>#[pr_num]</span>&gt;</a>"
 						collapsible_html += "</li>"
 						added_collapsible_author = 1
 					collapsible_html += "<li>[copytext(line, 4, 0)]</li>"

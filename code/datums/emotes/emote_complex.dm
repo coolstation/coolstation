@@ -564,9 +564,9 @@
 				playsound(user, user.sound_fart, 50, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 				break
 		else
-			message = "<B>[src]</B> unzips [his_or_her(src)] pants but, try as [he_or_she(src)] might, [he_or_she(src)] can't shit!"
+			message = "<B>[user]</B> unzips [his_or_her(user)] pants but, try as [he_or_she(user)] might, [he_or_she(user)] can't shit!"
 	else if (user.poops < 1)
-		message = "<B>[src]</B> grunts for a moment. [prob(1)?"something":"nothing"] happens."
+		message = "<B>[user]</B> grunts for a moment. [prob(1)?"something":"nothing"] happens."
 	else
 
 		user.poop()
