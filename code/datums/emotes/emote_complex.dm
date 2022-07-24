@@ -403,6 +403,7 @@
 
 
 /datum/emote/deathgasp
+	possible_while_dead = TRUE
 /datum/emote/deathgasp/return_cooldown(mob/user, voluntary = 0)
 	return (voluntary ? 5 SECONDS : 0 SECONDS) //I *think* this replicates [if (!voluntary || user.emote_check(voluntary,50))]
 /datum/emote/deathgasp/enact(mob/user, voluntary = 0, param)
