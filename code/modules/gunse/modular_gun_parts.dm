@@ -16,11 +16,19 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 /obj/item/gun_parts/
 	icon = 'icons/obj/items/cet_guns/accessory.dmi'
 	var/name_addition = ""
+	var/part_type = null
+	var/overlay_x = 0
+	var/overlay_y = 0
 	var/part_DRM = 0 //which gun models is this part compatible with?
 	var/obj/item/gun/modular/my_gun = null
 	proc/add_part_to_gun(var/obj/item/gun/modular/gun)
 		my_gun = gun
+		var/image/I = image(icon, icon_state)
+		I.pixel_x = overlay_x
+		I.pixel_y = overlay_y
+		my_gun.UpdateOverlays(I, part_type)
 		return 1
+
 	proc/remove_part_from_gun() // should safely un-do all of add_part_to_gun()
 		RETURN_TYPE(/obj/item/gun_parts/)
 		my_gun.name = my_gun.real_name
@@ -84,6 +92,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 ABSTRACT_TYPE(/obj/item/gun_parts/barrel)
 /obj/item/gun_parts/barrel/
 // useful vars
+	part_type = "barrel"
 	spread_angle = -BARREL_PENALTY // remove barrel penalty
 	silenced = 0
 	muzzle_flash = "muzzle_flash"
@@ -93,7 +102,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/barrel)
 	icon = 'icons/obj/items/cet_guns/barrels.dmi'
 	icon_state = "it_revolver"
 	length = STANDARD_BARREL_LEN
-
+	overlay_x = 10
+	overlay_y = 4
 
 	add_part_to_gun()
 		..()
@@ -107,6 +117,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/barrel)
 		my_gun.scatter = src.scatter
 		my_gun.jam_frequency_fire += src.jam_frequency_fire
 		my_gun.name = my_gun.name + " " + src.name_addition
+		//Icon! :)
+
+
 
 	remove_part_from_gun()
 		if(!my_gun)
@@ -123,6 +136,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/barrel)
 ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 /obj/item/gun_parts/stock/
 	//add a var for a power cell later
+	part_type = "stock"
 	can_dual_wield = 1
 	spread_angle = -GRIP_PENALTY // modifier, added to stock
 	max_ammo_capacity = 0 //modifier
@@ -134,6 +148,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 	var/list/ammo_list = list() // ammo that stays in the stock when removed
 	icon_state = "nt_wire_alt"
 	icon = 'icons/obj/items/cet_guns/stocks.dmi'
+	overlay_x = -10
 
 
 
@@ -179,6 +194,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 ABSTRACT_TYPE(/obj/item/gun_parts/magazine)
 /obj/item/gun_parts/magazine/
 
+	part_type = "magazine"
 	max_ammo_capacity = 0 //modifier
 	jam_frequency_reload = 5 //additional % chance to jam on reload. Just reload again to clear.
 	var/list/ammo_list = list() // ammo that stays in the mag when removed
@@ -213,8 +229,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/accessory/
 	var/alt_fire = 0 //does this accessory offer an alt-mode? light perhaps?
 	var/call_on_fire = 0 // does the gun call this accessory's on_fire() proc?
-
+	part_type = "accessory"
 	icon_state = "generic_magazine"
+	overlay_y = 10
 
 	proc/alt_fire()
 		return alt_fire
@@ -320,6 +337,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 			src.part = null
 			new_gun.buildTooltipContent()
 			new_gun.built = 0
+			new_gun.ClearAllOverlays(1) // clear the part overlays but keep cache? idk if thats better or worse.
 
 
 

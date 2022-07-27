@@ -396,6 +396,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	buildTooltipContent()
 	built = 1
 
+
 	//update the icon to match!!!!!
 
 /obj/item/gun/modular/proc/crank(mob/user)
