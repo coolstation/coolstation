@@ -1,6 +1,6 @@
 //i am speed !!!
-#define BASE_SPEED 1.65
-#define BASE_SPEED_SUSTAINED 1.5
+#define BASE_SPEED 1.85
+#define BASE_SPEED_SUSTAINED 1.65
 #define RUN_SCALING 0.12
 #define RUN_SCALING_LYING 0.2
 #define RUN_SCALING_STAGGER 0.64
