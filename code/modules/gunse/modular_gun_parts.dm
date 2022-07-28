@@ -454,6 +454,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	icon_state = "barrel_short"
 	contraband = 1
 	length = 17
+	overlay_x = 15
 
 /obj/item/gun_parts/barrel/foss/long
 	name = "\improper FOSS lensed long barrel"
@@ -545,6 +546,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	icon = 'icons/obj/items/cet_guns/stocks.dmi'
 	name_addition = "capable"
 	icon_state = "nt_wire"
+	overlay_x = -15
 
 /obj/item/gun_parts/stock/foss
 	name = "\improper FOSS laser stock"
@@ -557,6 +559,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	name_addition = "vicious"
 	icon = 'icons/obj/items/cet_guns/fossgun.dmi'
 	icon_state = "stock_single"
+	overlay_x = -15
 
 /obj/item/gun_parts/stock/foss/long
 	name = "\improper FOSS laser rifle stock"
@@ -630,4 +633,5 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	jam_frequency_reload = 8
 	name_addition = "LARGE"
 	icon_state = "juicer_drum"
+	overlay_y = 10
 
