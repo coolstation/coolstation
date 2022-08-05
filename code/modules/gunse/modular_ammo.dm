@@ -329,7 +329,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 /datum/projectile/laser/flashbulb
 	name = "open-source laser"
 	icon_state = "u_laser"
-	power = 20
+	power = 15
 	cost = 50
 	dissipation_delay = 5
 	brightness = 0
@@ -340,13 +340,13 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	color_blue = 0
 
 /datum/projectile/laser/flashbulb/two
-	power = 40
+	power = 25
 	color_red = 1
 	color_green = 1
 	cost = 75
 
 /datum/projectile/laser/flashbulb/three
-	power = 60
+	power = 35
 	color_red = 1
 	color_green = 0
 	cost = 100
@@ -360,11 +360,17 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		return
 
 /datum/projectile/laser/flashbulb/four
-	power = 80
+	power = 45
 	color_red = 1
 	color_green = 0
 	cost = 200
 
 	on_hit(atom/hit)
 		fireflash(get_turf(hit), 0)
-		hit.ex_act(3)
+		if (isliving(hit))
+			var/mob/living/L = hit
+			L.changeStatus("slowed", 1 SECOND)
+			L.change_misstep_chance(1)
+			L.emote("twitch_v")
+		return
+		//hit.ex_act(3)
