@@ -1,18 +1,28 @@
 var/datum/event_controller/random_events
 
+//The time for an event is scheduled to start, allowing admins to cancel/change inopportune event picks. These are also when events are picked. Set to 0 to disable
+//N.B. also look at the schedule interval for the random events process when setting these, it's very coarse and will need adjusting
+#define MAJOR_EVENT_FIRST_ADMIN_WARNING 2 MINUTES //(If you want only one warning, disable the second one and not the first)
+#define MAJOR_EVENT_SECOND_ADMIN_WARNING 40 SECONDS //In case that the first warning is scrolled off the window
+#define MINOR_EVENT_ADMIN_WARNING 0 SECONDS //these are mostly inconsequential so I'm gonna code one but have it disabled
+#define SPAWN_EVENT_ADMIN_WARNING 1 MINUTE	//Slightly more impactful
+
+//Default times for event types to begin
+#define MAJOR_EVENTS_BEGIN 30 MINUTES
+#define MINOR_EVENTS_BEGIN 10 MINUTES
+#define SPAWN_EVENTS_BEGIN 23 MINUTES
+
 /datum/event_controller
 	var/list/events = list()
-	var/major_events_begin = 18000 // 30m
-	var/time_between_events_lower = 6600  // 11m
-	var/time_between_events_upper = 12000 // 20m
+	var/time_between_events_lower = 11 MINUTES
+	var/time_between_events_upper = 20 MINUTES
 	var/events_enabled = 1
 	var/announce_events = 1
 	var/event_cycle_count = 0
 
 	var/list/minor_events = list()
-	var/minor_events_begin = 6000 // 10m
-	var/time_between_minor_events_lower = 4000 // roughly 8m
-	var/time_between_minor_events_upper = 8000 // roughly 14m
+	var/time_between_minor_events_lower = 400 SECONDS //6m 40s
+	var/time_between_minor_events_upper = 800 SECONDS //13m 20s
 	var/minor_events_enabled = 1
 	var/minor_event_cycle_count = 0
 
@@ -24,19 +34,25 @@ var/datum/event_controller/random_events
 #endif
 	var/list/player_spawn_events = list()
 	var/dead_players_threshold = 0.3
-	var/spawn_events_begin = 23 MINUTES
 	var/time_between_spawn_events = 8 MINUTES
+	var/spawn_event_cycle_count = 0
 
 	var/major_event_timer = 0
 	var/minor_event_timer = 0
 
-	var/next_major_event = 0
-	var/next_minor_event = 0
-	var/next_spawn_event = 0
+	//timestamps for when the next events happen
+	var/next_major_event = MAJOR_EVENTS_BEGIN
+	var/next_minor_event = MINOR_EVENTS_BEGIN
+	var/next_spawn_event = SPAWN_EVENTS_BEGIN
+	//the picked types for the next scheduled event
+	var/datum/random_event/next_picked_major_event = null
+	var/datum/random_event/next_picked_minor_event = null
+	var/datum/random_event/next_picked_spawn_event = null
 
 	var/time_lock = 1
 	var/list/special_events = list()
 	var/minimum_population = 15 // Minimum amount of players connected for event to occur
+	var/list/cooldowns
 
 	New()
 		..()
@@ -65,22 +81,46 @@ var/datum/event_controller/random_events
 		if (emergency_shuttle.location > SHUTTLE_LOC_STATION || current_state == GAME_STATE_FINISHED)
 			return
 
-		if (TIME >= major_events_begin)
-			if (TIME >= next_major_event)
-				event_cycle()
+		//MAJOR EVENTS
+		if (ticker.round_elapsed_ticks >= next_major_event)
+			event_cycle()
+		else if(MAJOR_EVENT_FIRST_ADMIN_WARNING) //check for admin warning timings
+			var/time_to_go = next_major_event - ticker.round_elapsed_ticks
+			if(time_to_go < MAJOR_EVENT_FIRST_ADMIN_WARNING)
+				if (!next_picked_major_event) next_picked_major_event = pick_random_event(events)
+				if (!ON_COOLDOWN(src, "major_event_first_warning", MAJOR_EVENT_FIRST_ADMIN_WARNING + 10)) //cooldown slightly longer than eligible period
+					message_admins("<span class='internal'>Random event soon: \An [next_picked_major_event.name] event will occur at around [round(next_major_event / 600)] minutes.<br><a href=\"?src=\ref[src];major_interrupt=1;major_cycle=[event_cycle_count]\">Cancel</a> - <a href=\"?src=\ref[src];major_change=1;major_cycle=[event_cycle_count]\">Change</a></span>")
+				else if (MAJOR_EVENT_SECOND_ADMIN_WARNING && time_to_go < MAJOR_EVENT_SECOND_ADMIN_WARNING)
+					if (ON_COOLDOWN(src, "major_event_second_warning", MAJOR_EVENT_SECOND_ADMIN_WARNING + 10))
+						message_admins("<span class='internal'>Random event imminent: [next_picked_major_event.name] will start shortly.<br><a href=\"?src=\ref[src];major_interrupt=1;major_cycle=[event_cycle_count]\">Cancel</a> - <a href=\"?src=\ref[src];major_change=1;major_cycle=[event_cycle_count]\">Change</a></span>")
 
-		if (TIME >= spawn_events_begin)
-			if (TIME >= next_spawn_event)
-				spawn_event()
+		//SPAWN EVENTS
+		if (ticker.round_elapsed_ticks >= next_spawn_event)
+			spawn_event()
+		else if(SPAWN_EVENT_ADMIN_WARNING)//check for admin warning timing
+			var/time_to_go = next_spawn_event - ticker.round_elapsed_ticks
+			if(time_to_go < SPAWN_EVENT_ADMIN_WARNING)
+				if (!next_picked_spawn_event) pick_random_spawn_event()
+				if (next_picked_spawn_event && !ON_COOLDOWN(src, "minor_event_first_warning", SPAWN_EVENT_ADMIN_WARNING + 10))
+					message_admins("<span class='internal'>Random spawn event soon: \An [next_picked_spawn_event.name] event will occur at around [round(next_spawn_event / 600)] minutes.<br><a href=\"?src=\ref[src];spawn_interrupt=1;spawn_cycle=[spawn_event_cycle_count]\">Cancel</a> - <a href=\"?src=\ref[src];spawn_change=1;spawn_cycle=[spawn_event_cycle_count]\">Change</a></span>")
 
-		if (TIME >= minor_events_begin)
-			if (TIME >= next_minor_event)
-				minor_event_cycle()
+		//MINOR EVENTS
+		if (ticker.round_elapsed_ticks >= next_minor_event)
+			minor_event_cycle()
+		else if(MINOR_EVENT_ADMIN_WARNING) //check for admin warning timing
+			var/time_to_go = next_minor_event - ticker.round_elapsed_ticks
+			if(time_to_go < MINOR_EVENT_ADMIN_WARNING)
+				if (!next_picked_minor_event) next_picked_minor_event = pick_random_event(minor_events)
+				if (!ON_COOLDOWN(src, "minor_event_first_warning", MINOR_EVENT_ADMIN_WARNING + 10))
+					message_admins("<span class='internal'>Minor random event soon: \An [next_picked_minor_event.name] event will occur at around [round(next_minor_event / 600)] minutes.<br><a href=\"?src=\ref[src];minor_interrupt=1;minor_cycle=[minor_event_cycle_count]\">Cancel</a> - <a href=\"?src=\ref[src];minor_change=1;minor_cycle=[minor_event_cycle_count]\">Change</a></span>")
 
 	proc/event_cycle()
 		event_cycle_count++
 		if (events_enabled && (total_clients() >= minimum_population))
-			do_random_event(events)
+			if (!next_picked_major_event)
+				next_picked_major_event = pick_random_event(events)
+			next_picked_major_event.event_effect()
+			next_picked_major_event = null
 		else
 			message_admins("<span class='internal'>A random event would have happened now, but they are disabled!</span>")
 
@@ -91,37 +131,31 @@ var/datum/event_controller/random_events
 	proc/minor_event_cycle()
 		minor_event_cycle_count++
 		if (minor_events_enabled)
-			do_random_event(minor_events)
+			if (!next_picked_minor_event)
+				next_picked_minor_event = pick_random_event(minor_events)
+			next_picked_minor_event.event_effect()
+			next_picked_minor_event = null
 
 		minor_event_timer = rand(time_between_minor_events_lower,time_between_minor_events_upper)
 		next_minor_event = TIME + minor_event_timer
 
 	proc/spawn_event(var/type = "player")
-		var/do_event = 1
+		spawn_event_cycle_count++
 		if (!events_enabled)
 			message_admins("<span class='internal'>A spawn event would have happened now, but they are disabled!</span>")
-			do_event = 0
-		if (total_clients() < minimum_population)
+		else if (total_clients() < minimum_population)
 			message_admins("<span class='internal'>A spawn event would have happened now, but there is not enough players!</span>")
-			do_event = 0
-
-		if (do_event && ticker?.mode?.do_random_events)
-			var/aap = get_alive_antags_percentage()
-			var/dcp = get_dead_crew_percentage()
-			if (aap < alive_antags_threshold && (ticker?.mode?.do_antag_random_spawns))
-				do_random_event(list(pick(antag_spawn_events)), source = "spawn_antag")
-				message_admins("<span class='internal'>Antag spawn event success!<br>[100 * aap]% of the alive crew were antags.</span>")
-			else if (dcp > dead_players_threshold)
-				do_random_event(player_spawn_events, source = "spawn_player")
-				message_admins("<span class='internal'>Player spawn event success!<br>[100 * dcp]% of the entire crew were dead.</span>")
-			else
-				message_admins("<span class='internal'>A spawn event would have happened now, but it was not needed based on alive players + antagonists headcount or game mode!<br>[100 * aap]% of the alive crew were antags and [100 * dcp]% of the entire crew were dead.</span>")
+		else if (ticker?.mode?.do_random_events)
+			if (!next_picked_spawn_event)
+				pick_random_spawn_event(events)
+			next_picked_spawn_event?.event_effect() //pick_random_spawn_event can fail if conditions aren't dire enough
+			next_picked_spawn_event = null
 
 		next_spawn_event = TIME + time_between_spawn_events
 
-	proc/do_random_event(var/list/event_bank, var/source = null)
+	proc/pick_random_event(var/list/event_bank, var/source = null)
 		if (!event_bank || event_bank.len < 1)
-			logTheThing("debug", null, null, "<b>Random Events:</b> do_random_event proc was passed a bad event bank")
+			logTheThing("debug", null, null, "<b>Random Events:</b> pick_random_event proc was passed a bad event bank")
 			return
 		if (!ticker?.mode?.do_random_events)
 			logTheThing("debug", null, null, "<b>Random Events:</b> Random events are turned off on this game mode.")
@@ -133,10 +167,24 @@ var/datum/event_controller/random_events
 				eligible += RE
 				weights += RE.weight
 		if (eligible.len > 0)
-			var/datum/random_event/this = weightedprob(eligible, weights)
-			this.event_effect(source)
+			return weightedprob(eligible, weights)
 		else
-			logTheThing("debug", null, null, "<b>Random Events:</b> do_random_event couldn't find any eligible events")
+			logTheThing("debug", null, null, "<b>Random Events:</b> pick_random_event couldn't find any eligible events")
+
+	//spawn events are kinda weird so they have their bespoke picking proc
+	proc/pick_random_spawn_event()
+		var/aap = get_alive_antags_percentage()
+		var/dcp = get_dead_crew_percentage()
+		if (aap < alive_antags_threshold && (ticker?.mode?.do_antag_random_spawns))
+			next_picked_spawn_event = pick_random_event(list(pick(antag_spawn_events)), source = "spawn_antag")
+			//message_admins("<span class='internal'>Antag spawn event success!<br>[round(100 * aap, 0.1)]% of the alive crew were antags.</span>")
+		else if (dcp > dead_players_threshold)
+			next_picked_spawn_event = pick_random_event(player_spawn_events, source = "spawn_player")
+			//message_admins("<span class='internal'>Player spawn event success!<br>[round(100 * dcp, 0.1)]% of the entire crew were dead.</span>")
+		else
+			message_admins("<span class='internal'>A spawn event would have happened now, but it was not needed based on alive players + antagonists headcount! Advancing next spawn event time.<br> \
+							[round(100 * aap, 0.1)]% of the alive crew were antags and [round(100 * dcp, 0.1)]% of the entire crew were dead.</span>")
+			next_spawn_event += time_between_spawn_events
 
 	proc/force_event(var/string,var/reason)
 		if (!string)
@@ -158,14 +206,9 @@ var/datum/event_controller/random_events
 		var/dat = "<html><body><title>Random Events Controller</title>"
 		dat += "<b><u>Random Event Controls</u></b><HR>"
 
-		if (current_state <= GAME_STATE_PREGAME)
-			dat += "<b>Random Events begin at: <a href='byond://?src=\ref[src];EventBegin=1'>[round(major_events_begin / 600)] minutes</a><br>"
-			dat += "<b>Minor Events begin at: <a href='byond://?src=\ref[src];MEventBegin=1'>[round(minor_events_begin / 600)] minutes</a><br>"
-			dat += "<b>Spawn Events begin at: <a href='byond://?src=\ref[src];MEventBegin=1'>[round(spawn_events_begin / 600)] minutes</a><br>"
-		else
-			dat += "Next major random event at [round(next_major_event / 600)] minutes into the round.<br>"
-			dat += "Next minor event at [round(next_minor_event / 600)] minutes into the round.<br>"
-			dat += "Next spawn event at [round(next_spawn_event / 600)] minutes into the round.<br>"
+		dat += "Next major event at <a href='byond://?src=\ref[src];ScheduleMajor=1'>[round(next_major_event / 600)] minutes</a> into the round.<br>"
+		dat += "Next minor event at <a href='byond://?src=\ref[src];ScheduleMinor=1'>[round(next_minor_event / 600)] minutes</a> into the round.<br>"
+		dat += "Next spawn event at <a href='byond://?src=\ref[src];ScheduleSpawn=1'>[round(next_spawn_event / 600)] minutes</a> into the round.<br>"
 
 		dat += "<b><a href='byond://?src=\ref[src];EnableEvents=1'>Random Events Enabled:</a></b> [events_enabled ? "Yes" : "No"]<br>"
 		dat += "<b><a href='byond://?src=\ref[src];EnableMEvents=1'>Minor Events Enabled:</a></b> [minor_events_enabled ? "Yes" : "No"]<br>"
@@ -207,6 +250,7 @@ var/datum/event_controller/random_events
 	Topic(href, href_list[])
 		//So we have not had any validation on the admin random events panel since its inception. Argh. /Spy
 		if(usr?.client && !usr.client.holder) {boutput(usr, "Only administrators may use this command."); return}
+		var/pop_up_UI = TRUE //this topic is now a mix of in-chat and panel commands, so the former shouldn't open the event controls
 
 		if(href_list["TriggerEvent"])
 			var/datum/random_event/RE = locate(href_list["TriggerEvent"]) in events
@@ -253,6 +297,70 @@ var/datum/event_controller/random_events
 				else
 					RE.event_effect("Triggered by [key_name(usr)]")
 
+		//in-chat command for cancelling an event about to happen
+		else if(href_list["major_interrupt"])
+			pop_up_UI = FALSE
+			if (event_cycle_count== text2num(href_list["major_cycle"]))// We've not clicked some old link
+				message_admins("Admin [key_name(usr)] cancelled the next major event")
+				logTheThing("admin", usr, null, "cancelled the next major event")
+				logTheThing("diary", usr, null, "cancelled the next major event", "admin")
+				major_event_timer = rand(time_between_events_lower,time_between_events_upper)
+				next_major_event = ticker.round_elapsed_ticks + major_event_timer
+				next_picked_major_event = null
+			else
+				boutput(usr, "<span=alert>That event has come and gone, silly.</span>")
+
+		//in-chat command for changing the type of event about to happen
+		else if(href_list["major_change"])
+			pop_up_UI = FALSE
+			var/new_event = input(usr, "Pick another event type", "Event shit", src.next_picked_major_event) as null|anything in events
+			if (event_cycle_count == text2num(href_list["major_cycle"]))
+				next_picked_major_event = new_event
+				message_admins("Admin [key_name(usr)] changed the next major event to [next_picked_major_event?.name].")
+				logTheThing("admin", usr, null, "changed the next major event to [next_picked_major_event?.name].")
+				logTheThing("diary", usr, null, "changed the next major event to [next_picked_major_event?.name].", "admin")
+			else
+				boutput(usr, "<span=alert>That event has come and gone, silly.</span>")
+
+		else if(href_list["minor_interrupt"])
+			pop_up_UI = FALSE
+			if (minor_event_cycle_count== text2num(href_list["minor_cycle"]))
+				minor_event_timer = rand(time_between_minor_events_lower,time_between_minor_events_upper)
+				next_minor_event = ticker.round_elapsed_ticks + minor_event_timer
+				next_picked_minor_event = null
+			else
+				boutput(usr, "<span=alert>That event has come and gone, silly.</span>")
+
+		else if(href_list["minor_change"])
+			pop_up_UI = FALSE
+			var/new_event = input(usr, "Pick another event type", "Event shit", src.next_picked_minor_event) as null|anything in minor_events
+			if (minor_event_cycle_count == text2num(href_list["minor_cycle"]))
+				next_picked_minor_event = new_event
+			else
+				boutput(usr, "<span=alert>That event has come and gone, silly.</span>")
+
+		else if(href_list["spawn_interrupt"])
+			pop_up_UI = FALSE
+			if (spawn_event_cycle_count== text2num(href_list["spawn_cycle"]))// We've not clicked some old link
+				message_admins("Admin [key_name(usr)] cancelled the next spawn event")
+				logTheThing("admin", usr, null, "cancelled the next spawn event")
+				logTheThing("diary", usr, null, "cancelled the next spawn event", "admin")
+				next_spawn_event = ticker.round_elapsed_ticks + time_between_spawn_events
+				next_picked_spawn_event = null
+			else
+				boutput(usr, "<span=alert>That event has come and gone, silly.</span>")
+
+		else if(href_list["spawn_change"])
+			pop_up_UI = FALSE
+			var/new_event = input(usr, "Pick another event type", "Event shit", src.next_picked_spawn_event) as null|anything in (antag_spawn_events + player_spawn_events)
+			if (spawn_event_cycle_count == text2num(href_list["spawn_cycle"]))
+				next_picked_spawn_event = new_event
+				message_admins("Admin [key_name(usr)] changed the next spawn event to [next_picked_spawn_event?.name].")
+				logTheThing("admin", usr, null, "changed the next spawn event to [next_picked_spawn_event?.name].")
+				logTheThing("diary", usr, null, "changed the next spawn event to [next_picked_spawn_event?.name].", "admin")
+			else
+				boutput(usr, "<span=alert>That event has come and gone, silly.</span>")
+
 		else if(href_list["DisableEvent"])
 			var/datum/random_event/RE = locate(href_list["DisableEvent"]) in events
 			if (!istype(RE,/datum/random_event/))
@@ -285,21 +393,29 @@ var/datum/event_controller/random_events
 			logTheThing("admin", usr, null, "set the minimum population for events to [minimum_population]")
 			logTheThing("diary", usr, null, "set the minimum population for events to [minimum_population]", "admin")
 
-		else if(href_list["EventBegin"])
-			var/time = input("How many minutes into the round until events begin?","Random Events") as num
-			major_events_begin = time * 600
+		else if(href_list["ScheduleMajor"])
+			var/time = input("At how many minutes should the next major event occur?","Random Events") as num
+			next_major_event = time MINUTES
 
-			message_admins("Admin [key_name(usr)] set random events to begin at [time] minutes")
-			logTheThing("admin", usr, null, "set random events to begin at [time] minutes")
-			logTheThing("diary", usr, null, "set random events to begin at [time] minutes", "admin")
+			message_admins("Admin [key_name(usr)] set next major event to occur at [time] minutes")
+			logTheThing("admin", usr, null, "set next major event to occur at [time] minutes")
+			logTheThing("diary", usr, null, "set next major event to occur at [time] minutes", "admin")
 
-		else if(href_list["MEventBegin"])
-			var/time = input("How many minutes into the round until minor events begin?","Random Events") as num
-			minor_events_begin = time * 600
+		else if(href_list["ScheduleMinor"])
+			var/time = input("At how many minutes should the next minor event occur?","Random Events") as num
+			next_minor_event = time MINUTES
 
-			message_admins("Admin [key_name(usr)] set minor events to begin at [time] minutes")
-			logTheThing("admin", usr, null, "set minor events to begin at [time] minutes")
-			logTheThing("diary", usr, null, "set minor events to begin at [time] minutes", "admin")
+			message_admins("Admin [key_name(usr)] set next minor event to occur at [time] minutes")
+			logTheThing("admin", usr, null, "set next minor event to occur at [time] minutes")
+			logTheThing("diary", usr, null, "set next minor event to occur at [time] minutes", "admin")
+
+		else if(href_list["ScheduleSpawn"])
+			var/time = input("At how many minutes should the next spawn event occur?","Random Events") as num
+			next_spawn_event = time MINUTES
+
+			message_admins("Admin [key_name(usr)] set next spawn event to occur at [time] minutes")
+			logTheThing("admin", usr, null, "set next spawn event to occur at [time] minutes")
+			logTheThing("diary", usr, null, "set next spawn event to occur at [time] minutes", "admin")
 
 		else if(href_list["EnableEvents"])
 			events_enabled = !events_enabled
@@ -385,4 +501,13 @@ var/datum/event_controller/random_events
 			logTheThing("admin", usr, null, "set minor event upper interval bound to [time_between_minor_events_upper / 600] minutes")
 			logTheThing("diary", usr, null, "set minor event upper interval bound to [time_between_minor_events_upper / 600] minutes", "admin")
 
-		src.event_config()
+		if (pop_up_UI)
+			src.event_config()
+
+#undef MAJOR_EVENT_FIRST_ADMIN_WARNING
+#undef MAJOR_EVENT_SECOND_ADMIN_WARNING
+#undef MINOR_EVENT_ADMIN_WARNING
+#undef SPAWN_EVENT_ADMIN_WARNING
+#undef MAJOR_EVENTS_BEGIN
+#undef MINOR_EVENTS_BEGIN
+#undef SPAWN_EVENTS_BEGIN
