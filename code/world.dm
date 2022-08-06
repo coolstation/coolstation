@@ -1221,7 +1221,7 @@ var/f_color_selector_handler/F_Color_Selector
 								var/mob/living/carbon/human/H = twitch_mob
 								H.ooc(msg)
 							return 1
-#endif
+#endif /* TWITCH_BOT_ALLOWED */
 
 		if (addr != config.ircbot_ip && addr != config.opengoon_api_ip && addr != config.opengoon2_hostname)
 			return 0 //ip filtering
