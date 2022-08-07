@@ -2658,6 +2658,26 @@ datum
 			fluid_b = 0
 			transparency = 255
 
+		fooddrink/parmesan
+			name = "space parmesan cheese"
+			id = "parmesan"
+			description = "A condiment often used on pizza and pasta. Don't worry, it's from the regions of Space Parma and Space Reggio Emilia."
+			reagent_state = SOLID
+			fluid_r = 225
+			fluid_g = 208
+			fluid_b = 165
+			transparency = 255
+
+		fooddrink/redpepper
+			name = "red pepper flakes"
+			id = "redpepper"
+			description = "A condiment often used on pizza and pasta. Kinda hot!"
+			reagent_state = SOLID
+			fluid_r = 174
+			fluid_g = 28
+			fluid_b = 3
+			transparency = 255
+
 		fooddrink/porktonium
 			name = "porktonium"
 			id = "porktonium"
