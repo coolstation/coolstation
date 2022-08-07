@@ -430,7 +430,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/barrel/NT
 	name = "standard barrel"
 	desc = "A cylindrical barrel, unrifled."
-	spread_angle = -13 // basic stabilisation
+	spread_angle = -BARREL_PENALTY + 7 // basic stabilisation
 	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN
 	icon_state = "nt_blue_short"
 	length = 16
@@ -438,7 +438,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/barrel/NT/long
 	name = "standard long barrel"
 	desc = "A cylindrical barrel, rifled."
-	spread_angle = -15
+	spread_angle = -BARREL_PENALTY + 5
 	name_addition = "longarm"
 	icon_state = "nt_blue"
 	length = 35
@@ -446,7 +446,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/barrel/foss
 	name = "\improper FOSS lensed barrel"
 	desc = "A cylindrical array of lenses to focus laser blasts."
-	spread_angle = -16
+	spread_angle = -BARREL_PENALTY + 4
 	lensing = 0.9
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_JUICE
 	name_addition = "lenser"
@@ -459,7 +459,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/barrel/foss/long
 	name = "\improper FOSS lensed long barrel"
 	desc = "A cylindrical array of lenses to focus laser blasts."
-	spread_angle = -17
+	spread_angle = -BARREL_PENALTY + 3
 	lensing = 1
 	name_addition = "focuser"
 	icon_state = "barrel_long"
@@ -468,7 +468,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/barrel/juicer
 	name = "\improper BLUNDA Barrel"
 	desc = "A cheaply-built shotgun barrel. Not great."
-	spread_angle = -3
+	spread_angle = -BARREL_PENALTY + 17 // jesus christ it's a spread machine
 	scatter = 1
 	jam_frequency_fire = 5 //but very poorly built
 	part_DRM = GUN_JUICE | GUN_NANO | GUN_FOSS
@@ -479,7 +479,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/barrel/juicer/longer
 	name = "\improper SNIPA Barrel"
 	desc = "A cheaply-built extended rifled shotgun barrel. Not good."
-	spread_angle = -17 // accurate??
+	spread_angle = -BARREL_PENALTY + 3 // accurate?? ish?
 	jam_frequency_fire = 15 //but very!!!!!!! poorly built
 	name_addition = "BLITZER"
 	icon_state = "juicer_long"
@@ -488,7 +488,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/barrel/soviet
 	name = "soviet lenses"
 	desc = "стопка линз для фокусировки вашего пистолета"
-	spread_angle = -14
+	spread_angle = -BARREL_PENALTY + 6
 	lensing = 1.2
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "comrade"
@@ -498,7 +498,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/barrel/soviet/long
 	name = "long soviet lenses"
 	desc = "стопка линз для фокусировки вашего пистолета"
-	spread_angle = -14
+	spread_angle = -BARREL_PENALTY + 5
 	lensing = 1.4
 	name_addition = "tovarisch"
 	icon_state = "soviet_lens_long"
@@ -507,7 +507,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/barrel/italian
 	name = "canna di fucile"
 	desc = "una canna di fucile di base e di alta qualità"
-	spread_angle = -11 // "alta qualità"
+	spread_angle = -BARREL_PENALTY + 9 // "alta qualità"
 	part_DRM = GUN_NANO | GUN_ITALIAN | GUN_SOVIET
 	name_addition = "paisan"
 	icon_state = "it_revolver_short"
@@ -517,7 +517,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/stock/NT
 	name = "standard grip"
 	desc = "A comfortable NT pistol grip"
-	spread_angle = -2 // basic stabilisation
+	spread_angle = -GRIP_PENALTY + 7 // basic stabilisation
 	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN
 	name_addition = "trusty"
 	icon = 'icons/obj/items/cet_guns/grips.dmi'
@@ -526,7 +526,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/stock/NT/shoulder
 	name = "standard stock"
 	desc = "A comfortable NT shoulder stock"
-	spread_angle = -5 // better stabilisation
+	spread_angle = -GRIP_PENALTY + 5 // better stabilisation
 	stock_two_handed = 1
 	can_dual_wield = 0
 	max_ammo_capacity = 1 // additional shot in the butt
@@ -538,8 +538,8 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/stock/NT/arm_brace
 	name = "standard brace"
 	desc = "A comfortable NT forearm brace"
-	spread_angle = -7 // quite better stabilisation
-	stock_two_handed = 1
+	spread_angle = -GRIP_PENALTY + 3 // quite better stabilisation
+	stock_two_handed = 0
 	can_dual_wield = 0
 	max_ammo_capacity = 1 // additional shot in the butt
 	jam_frequency_reload = 3 // a little more jammy
@@ -551,7 +551,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/stock/foss
 	name = "\improper FOSS laser stock"
 	desc = "An open-sourced laser dynamo, with a multiple-position winding spring."
-	spread_angle = -3 // basic stabilisation
+	spread_angle = -GRIP_PENALTY + 7 // basic stabilisation
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_JUICE
 	flashbulb_only = 1
 	max_crank_level = 2
@@ -563,7 +563,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 
 /obj/item/gun_parts/stock/foss/long
 	name = "\improper FOSS laser rifle stock"
-	spread_angle = -6 // better stabilisation
+	spread_angle = -GRIP_PENALTY + 4 // better stabilisation
 	stock_two_handed = 1
 	can_dual_wield = 0
 	max_crank_level = 3 // for syndicate ops
@@ -580,7 +580,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 
 /obj/item/gun_parts/stock/foss/longer
 	name = "\improper FOSS laser punt gun stock"
-	spread_angle = -1 // poor stabilisation
+	spread_angle = -GRIP_PENALTY + 9 // poor stabilisation
 	stock_two_handed = 1
 	can_dual_wield = 0
 	max_crank_level = 4 // for syndicate ops
@@ -591,7 +591,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/stock/italian
 	name = "impugnatura a pistola"
 	desc = "un'impugnatura rivestita in cuoio toscano per un revolver di alta qualità"
-	spread_angle = -1
+	spread_angle = -GRIP_PENALTY + 7
 	max_ammo_capacity = 1 // to make that revolver revolve!
 	jam_frequency_reload = 5 // a lot  more jammy!!
 	part_DRM = GUN_NANO | GUN_ITALIAN | GUN_SOVIET
@@ -602,7 +602,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/stock/italian/bigger
 	name = "impugnatura a pistola piu larga"
 	desc = "un'impugnatura rivestita in cuoio toscano per un revolver di alta qualità"
-	spread_angle = -3
+	spread_angle = -GRIP_PENALTY + 6
 	max_ammo_capacity = 3 // to make that revolver revolve!
 	jam_frequency_reload = 9 // a lot  more jammy!!
 	icon_state = "it_fancy"
