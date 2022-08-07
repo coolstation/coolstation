@@ -15,7 +15,7 @@
 
 /area/upper_arctic
 	filler_turf = "/turf/unsimulated/floor/arctic/snow"
-	sound_environment = 8
+	sound_environment = EAX_CAVE
 	skip_sims = 1
 	sims_score = 30
 	sound_group = "ice_moon"
@@ -23,14 +23,14 @@
 /area/upper_arctic/pod1
 	name = "Outpost Theta Pod One"
 	icon_state = "green"
-	sound_environment = 3
+	sound_environment = EAX_BATHROOM
 	skip_sims = 1
 	sims_score = 30
 
 /area/lower_arctic/pod1
 	name = "Outpost Theta Pod One"
 	icon_state = "green"
-	sound_environment = 3
+	sound_environment = EAX_BATHROOM
 	skip_sims = 1
 	sims_score = 30
 	sound_group = "arctic_caves"
@@ -38,44 +38,44 @@
 /area/upper_arctic/pod2
 	name = "Outpost Theta Pod Two"
 	icon_state = "purple"
-	sound_environment = 2
+	sound_environment = EAX_ROOM
 	skip_sims = 1
 	sims_score = 30
 
 /area/upper_arctic/hall
 	name = "Outpost Theta Connecting Hall"
 	icon_state = "yellow"
-	sound_environment = 12
-	sound_environment = 2
+	sound_environment = EAX_HALLWAY
+	sound_environment = EAX_ROOM
 	skip_sims = 1
 	sims_score = 30
 
 /area/upper_arctic/comms
 	name = "Communications Hut"
 	icon_state = "storage"
-	sound_environment = 2
-	sound_environment = 2
+	sound_environment = EAX_ROOM
+	sound_environment = EAX_ROOM
 	skip_sims = 1
 	sims_score = 30
 
 /area/upper_arctic/mining
 	name = "Glacier Access"
 	icon_state = "dk_yellow"
-	sound_environment = 2
-	sound_environment = 2
+	sound_environment = EAX_ROOM
+	sound_environment = EAX_ROOM
 	skip_sims = 1
 	sims_score = 30
 
 /area/lower_arctic/mining
 	name = "Glacier Access"
 	icon_state = "dk_yellow"
-	sound_environment = 2
-	sound_environment = 2
+	sound_environment = EAX_ROOM
+	sound_environment = EAX_ROOM
 	skip_sims = 1
 	sims_score = 30
 
 /area/upper_arctic/exterior
-	sound_environment = 15
+	sound_environment = EAX_FOREST
 	skip_sims = 1
 	sims_score = 30
 	New()
@@ -104,7 +104,7 @@
 	name = "Glacial Abyss"
 	icon_state = "purple"
 	filler_turf = "/turf/unsimulated/floor/arctic/snow/ice"
-	sound_environment = 8
+	sound_environment = EAX_CAVE
 	skip_sims = 1
 	sims_score = 30
 
@@ -112,7 +112,7 @@
 	name = "Peculiar Structure"
 	icon_state = "dk_yellow"
 	filler_turf = "/turf/unsimulated/floor/setpieces/bluefloor"
-	sound_environment = 5
+	sound_environment = EAX_STONEROOM
 	skip_sims = 1
 	sims_score = 30
 	sound_group = "precursor"  //Differs from the caves it's in, for a mysterious sound-blocking effect.
@@ -137,7 +137,7 @@
 		name = "Ominous Pit"
 		icon_state = "purple"
 		filler_turf = "/turf/unsimulated/floor/setpieces/bluefloor/pit" // this might fuck something up but it might also be hilarious
-		sound_environment = 24
+		sound_environment = EAX_DIZZY
 		sound_group = "ominouspit"
 		skip_sims = 1
 		sims_score = 300
@@ -148,7 +148,7 @@
 	name = "????"
 	icon_state = "security"
 	filler_turf = "/turf/unsimulated/floor/setpieces/bloodfloor"
-	sound_environment = 25
+	sound_environment = EAX_DISORDERED
 	skip_sims = 1
 	sims_score = 0
 

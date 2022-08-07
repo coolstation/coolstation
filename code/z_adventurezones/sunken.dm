@@ -13,7 +13,7 @@
   // 3 - bathroom for SUPER enclosed spaces
   // 21 - sewer pipe for enclosed aquatic areas
   // 22 - underwater for actual underwater areas (how i long for a low pass filter)
-  sound_environment = 21
+  sound_environment = EAX_SEWER_PIPE
   filler_turf = "/turf/space/fluid"
   sound_group = "sunken"
 
