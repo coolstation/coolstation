@@ -7,7 +7,7 @@ datum/controller/process/randomevents
 
 	setup()
 		name = "Random Events"
-		schedule_interval = 2.5 MINUTES
+		schedule_interval = 20 SECONDS //Was 2.5 MINUTES before admin warnings necessitated something finer
 
 	doWork()
 		random_events.process()
