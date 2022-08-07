@@ -222,6 +222,16 @@
 		icon_state = "shaker-pepper"
 		stuff = "pepper"
 
+	parmesan
+		name = "parmesan shaker"
+		desc = "A little round glass shaker you see at certain restaurants. It has some parmesan cheese in it."
+		icon_state = "shaker-parmesan"
+		stuff = "parmesan"
+	redpepper
+		name = "red pepper shaker"
+		desc = "A little round glass shaker you see at certain restaurants. It has some red pepper flakes in it."
+		icon_state = "shaker-redpepper"
+		stuff = "parmesan"
 	ketchup
 		name = "ketchup bottle"
 		desc = "A little bottle for putting condiments on stuff. It has some ketchup in it."
