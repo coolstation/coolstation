@@ -267,6 +267,7 @@
 "fh" = (/obj/machinery/door/airlock/pyro/external,/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/red/checker{dir = 4},/area/station/security/brig/north_side)
 "fi" = (/obj/machinery/light/fluorescent/cool/very{dir = 4},/obj/disposalpipe/segment/mail/vertical,/obj/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/red/checker{dir = 4},/area/station/security/brig/cell_block_control)
 "fj" = (/obj/fitness/stacklifter,/turf/gehenna/desert/plating{dir = 8; icon_state = "gehenna_tile"},/area/station/security/brig/north_side)
+"fk" = (/obj/machinery/light/fluorescent/warm,/turf/simulated/floor,/area/station/quartermaster/cargooffice/gunsmithing)
 "fl" = (/obj/disposalpipe/trunk/zlevel{dir = 1; target_z = 3},/turf/simulated/floor/white/grime,/area/station/security/secoffquarters)
 "fm" = (/obj/disposalpipe/segment/bent/east,/turf/simulated/floor/white/grime,/area/station/security/processing)
 "fn" = (/obj/submachine/chef_sink{dir = 1; name = "bathroom sink"},/turf/simulated/floor/white/grime,/area/station/security/secoffquarters)
@@ -387,7 +388,6 @@
 "hy" = (/obj/machinery/door/airlock/pyro/classic,/turf/simulated/floor/black,/area/space)
 "hz" = (/obj/machinery/light/fluorescent{dir = 1},/obj/stool/bench/auto,/turf/simulated/floor,/area/station/engine/engineering)
 "hA" = (/obj/machinery/light/fluorescent/cool/very,/obj/disposalpipe/trunk{dir = 4},/obj/machinery/disposal/mail/autoname/qm,/turf/simulated/floor,/area/station/quartermaster/storage)
-"hB" = (/obj/table/reinforced/auto,/turf/simulated/floor,/area/station/quartermaster/cargooffice/storefront)
 "hC" = (/obj/table/auto,/obj/item/saw,/turf/simulated/floor,/area/space)
 "hD" = (/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/carpet/grime,/area/station/chapel/office)
 "hE" = (/obj/cable{d2 = 4; icon_state = "0-4"},/obj/machinery/power/apc/autoname_west,/obj/storage/secure/closet/medical/chemical,/turf/simulated/floor/bluewhite{dir = 10},/area/station/medical/medbay/surgery)
@@ -418,17 +418,16 @@
 "id" = (/obj/ladder/auto,/turf/simulated/floor/plating,/area/space)
 "ie" = (/obj/machinery/light/fluorescent/cool/very{dir = 1},/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/bluewhite{dir = 1},/area/station/medical/medbay/surgery)
 "if" = (/obj/machinery/door/airlock/pyro/glass,/obj/disposalpipe/segment{dir = 2},/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,/turf/simulated/floor/wood,/area/station/crew_quarters/kitchen)
+"ig" = (/turf/simulated/floor,/area/station/quartermaster/cargooffice/storefront)
 "ih" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,/turf/simulated/floor/plating,/area/station/engine/engineering)
 "ii" = (/obj/machinery/disposal/mail/autoname/security{mail_tag = "Head of Security"; name = "Head of Security"},/obj/disposalpipe/trunk{dir = 1},/turf/simulated/floor/carpet/blue/fancy/edge,/area/station/security/hos)
 "ij" = (/obj/disposalpipe/segment/produce{dir = 4},/turf/simulated/wall/auto,/area/station/crew_quarters/kitchen)
-"ik" = (/obj/machinery/door/poddoor/pyro{density = 0; icon_state = "pdoor0"; id = "market_2"; name = "Public Market"; opacity = 0},/turf/simulated/floor,/area/station/quartermaster/cargooffice/storefront)
 "il" = (/obj/machinery/disposal,/obj/disposalpipe/trunk{dir = 2},/turf/simulated/floor/white,/area/station/medical/medbay)
 "im" = (/obj/machinery/door/unpowered/wood/pyro,/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/carpet/grime,/area/station/crew_quarters/baroffice)
 "in" = (/obj/disposalpipe/segment/vertical,/turf/simulated/floor,/area/station/quartermaster/storage)
 "io" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor,/area/station/security/secoffquarters)
 "ip" = (/turf/simulated/wall/auto/reinforced,/area/station/security/main)
 "iq" = (/obj/decal/tile_edge/stripe/extra_big,/obj/disposalpipe/segment/vertical,/turf/simulated/floor,/area/station/bridge/customs)
-"ir" = (/obj/machinery/door/airlock/pyro/classic{dir = 4},/turf/simulated/floor/black,/area/station/quartermaster/cargooffice)
 "is" = (/obj/disposalpipe/segment/morgue{dir = 4},/turf/simulated/floor/shuttlebay,/area/station/quartermaster/cargobay)
 "it" = (/obj/disposalpipe/segment/bent/north,/turf/simulated/floor/grey,/area/station/hangar/catering)
 "iu" = (/obj/machinery/atmospherics/pipe/simple/insulated{dir = 6},/turf/simulated/floor,/area/station/engine/core)
@@ -473,6 +472,7 @@
 "ji" = (/obj/machinery/door/airlock/pyro/glass/command{name = "Bridge"},/obj/disposalpipe/segment/brig,/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor,/area/station/bridge)
 "jj" = (/obj/disposalpipe/trunk{dir = 1},/obj/machinery/disposal,/obj/machinery/light/small/cool,/turf/simulated/floor/yellowblack,/area/station/engine/engineering/ce)
 "jk" = (/obj/machinery/door/airlock/pyro/glass,/obj/cable{icon_state = "1-2"},/obj/disposalpipe/segment/morgue,/turf/simulated/floor,/area/space)
+"jl" = (/obj/machinery/door_control/podbay/qm/new_walls/east{id = "hangar_qm_a"},/turf/simulated/floor,/area/station/quartermaster/cargooffice/gunsmithing)
 "jm" = (/obj/disposalpipe/junction/middle/south,/obj/cable{icon_state = "1-2"},/turf/simulated/floor/wood,/area/station/crew_quarters/bar)
 "jn" = (/turf/simulated/floor/black,/area/station/security/interrogation)
 "jo" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,/turf/simulated/floor/grey,/area/station/medical/robotics)
@@ -556,8 +556,7 @@
 "kQ" = (/obj/disposalpipe/segment/bent/south,/obj/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/carpet/grime,/area/station/crew_quarters/baroffice)
 "kR" = (/obj/wingrille_spawn/reinforced,/turf/simulated/floor/plating,/area/station/hydroponics/bay)
 "kS" = (/obj/machinery/power/apc/autoname_south,/obj/cable,/turf/simulated/floor/darkblue,/area/station/bridge)
-"kT" = (/obj/machinery/light/fluorescent/warm{dir = 1},/turf/simulated/floor,/area/station/quartermaster/cargooffice/gunsmithing)
-"kU" = (/turf/simulated/wall/auto/reinforced,/area/station/quartermaster/cargooffice/gunsmithing)
+"kT" = (/obj/machinery/door/airlock/pyro/classic{dir = 4},/turf/simulated/floor/black,/area/station/quartermaster/cargooffice)
 "kV" = (/obj/disposalpipe/segment/horizontal,/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/door/airlock/pyro/glass/med{dir = 4; id = "medbay_lobby"; name = "medical lobby airlock"},/turf/simulated/floor/white,/area/station/medical/medbay)
 "kW" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,/turf/simulated/wall/auto,/area/station/hangar/catering)
 "kX" = (/obj/disposalpipe/segment/bent/north,/turf/simulated/floor/plating,/area/space)
@@ -576,10 +575,11 @@
 "lk" = (/turf/simulated/floor,/area/station/engine/engineering)
 "ll" = (/obj/wingrille_spawn/reinforced,/turf/simulated/floor/plating,/area/space)
 "lm" = (/obj/machinery/door/airlock/pyro/external,/turf/gehenna/desert/plating{dir = 1; icon_state = "floor"; name = "floor"},/area/station/bridge/customs)
-"ln" = (/turf/simulated/wall/auto,/area/station/quartermaster/cargooffice/storefront)
+"ln" = (/obj/machinery/light/fluorescent/warm{dir = 1},/turf/simulated/floor,/area/station/quartermaster/cargooffice/storefront)
 "lo" = (/obj/table/wood/auto,/obj/machinery/light/small/floor,/obj/disposalpipe/segment/vertical,/turf/simulated/floor/darkblue,/area/station/bridge)
 "lp" = (/obj/decal/tile_edge/stripe/extra_big{dir = 6},/turf/simulated/floor,/area/station/quartermaster/storage)
 "lq" = (/obj/machinery/light/fluorescent/cool/very{dir = 4},/obj/disposalpipe/segment/vertical,/turf/simulated/floor/black,/area/station/security/secwing)
+"lr" = (/turf/simulated/wall/auto,/area/station/quartermaster/cargooffice/storefront)
 "ls" = (/obj/machinery/light/small/floor/red,/turf/simulated/floor/industrial,/area/shuttle/escape/station/cogmap2)
 "lt" = (/obj/railing/red,/obj/table/wood/auto,/turf/simulated/floor/wood,/area/station/chapel/sanctuary)
 "lu" = (/obj/machinery/drainage,/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,/obj/disposalpipe/segment/morgue{dir = 4},/turf/simulated/floor/white,/area/station/medical/medbay/surgery)
@@ -606,6 +606,7 @@
 "lP" = (/obj/table/wood/auto,/turf/simulated/floor/wood,/area/station/crew_quarters/bar)
 "lQ" = (/obj/machinery/door_control/podbay/qm/new_walls/south,/turf/simulated/floor,/area/station/quartermaster/cargooffice)
 "lR" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,/turf/simulated/floor/stairs/wide{dir = 4},/area/station/engine/engineering)
+"lS" = (/obj/machinery/light/fluorescent/warm,/turf/simulated/floor,/area/station/quartermaster/cargooffice/storefront)
 "lT" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor,/area/station/quartermaster/storage)
 "lU" = (/obj/grille/catwalk/jen/side{dir = 4},/obj/cable/blue{icon_state = "1-2"},/turf/simulated/floor/plating,/area/station/turret_protected/Zeta)
 "lV" = (/turf/simulated/floor,/area/station/security/brig/cell_block_control)
@@ -638,7 +639,6 @@
 "mw" = (/obj/machinery/light/small/floor,/turf/simulated/floor/black,/area/station/security/checkpoint/customs)
 "mx" = (/obj/disposalpipe/trunk{dir = 8},/obj/machinery/disposal/morgue,/turf/simulated/floor/bluewhite{dir = 4},/area/station/medical/medbay/cloner)
 "my" = (/obj/table/auto,/turf/simulated/floor,/area/station/engine/engineering/breakroom)
-"mz" = (/obj/machinery/light/fluorescent/warm{dir = 1},/turf/simulated/floor/black,/area/station/quartermaster/cargooffice/gunsmithing)
 "mA" = (/obj/disposalpipe/segment{dir = 4},/obj/grille/catwalk/jen/side{dir = 9},/obj/railing/cyan{dir = 8},/turf/simulated/floor/plating,/area/station/crew_quarters/baroffice)
 "mB" = (/turf/simulated/floor/stairs/wide/other{dir = 1},/area/station/engine/core)
 "mC" = (/obj/disposalpipe/segment/produce{dir = 2},/obj/cable{icon_state = "1-2"},/turf/simulated/floor/carpet/grime,/area/station/crew_quarters/baroffice)
@@ -653,7 +653,6 @@
 "mL" = (/obj/item/storage/toilet/random,/obj/disposalpipe/trunk,/turf/simulated/floor/white/grime,/area/station/security/secoffquarters)
 "mM" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,/turf/simulated/floor/carpet/blue/standard/edge/west,/area/station/medical/medbay/lobby)
 "mN" = (/obj/table/reinforced/bar/auto,/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/wood,/area/station/crew_quarters/bar)
-"mO" = (/obj/machinery/door/airlock/pyro/classic{dir = 4},/turf/simulated/floor/black,/area/station/quartermaster/storage)
 "mP" = (/turf/simulated/wall/auto/reinforced,/area/station/crew_quarters/kitchen/freezer)
 "mQ" = (/obj/cable{icon_state = "1-2"},/obj/cable{d1 = 2; d2 = 4; icon_state = "1-5"},/obj/cable{d1 = 2; d2 = 4; icon_state = "1-9"},/turf/simulated/floor/carpet/red/fancy/edge/west,/area/station/chapel/sanctuary)
 "mR" = (/obj/disposalpipe/segment/horizontal,/turf/simulated/floor,/area/station/medical/medbay/treatment)
@@ -776,7 +775,7 @@
 "pe" = (/obj/cable{icon_state = "0-2"},/obj/machinery/power/apc/autoname_north,/turf/simulated/floor/yellowblack{dir = 1},/area/station/engine/engineering/ce)
 "pf" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,/obj/disposalpipe/segment/food,/turf/simulated/floor/white/checker2,/area/station/crew_quarters/kitchen)
 "pg" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor,/area/station/engine/engineering)
-"ph" = (/obj/machinery/vending/gunse,/turf/simulated/floor/black,/area/station/quartermaster/cargooffice/gunsmithing)
+"ph" = (/turf/simulated/floor/black,/area/station/quartermaster/cargooffice/gunsmithing)
 "pi" = (/obj/table/wood/auto,/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/blue,/area/station/medical/medbay/lobby)
 "pj" = (/obj/disposalpipe/segment/vertical,/turf/simulated/floor/yellow/side,/area/station/engine/engineering)
 "pk" = (/turf/simulated/floor/white,/area/station/medical/medbay/surgery)
@@ -798,6 +797,7 @@
 "pA" = (/obj/disposalpipe/segment/morgue{dir = 4},/obj/cable{icon_state = "1-2"},/turf/simulated/floor/sanitary,/area/station/medical/crematorium)
 "pB" = (/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/carpet/blue/standard/edge/east,/area/station/crew_quarters/bar)
 "pC" = (/obj/disposalpipe/segment/horizontal,/obj/decal/tile_edge/stripe{dir = 1},/turf/simulated/floor/black,/area/station/quartermaster/cargobay)
+"pD" = (/obj/machinery/light/fluorescent/warm,/obj/item/gun_exploder,/turf/simulated/floor,/area/station/quartermaster/cargooffice/gunsmithing)
 "pE" = (/obj/disposalpipe/segment/morgue{dir = 4},/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/black,/area/station/security/checkpoint/customs)
 "pF" = (/obj/disposalpipe/segment/bent/north,/turf/simulated/floor/shuttlebay,/area/station/bridge/customs)
 "pG" = (/obj/cable{d2 = 2; icon_state = "0-2"},/obj/machinery/power/apc/autoname_north,/obj/table/auto,/obj/item/reagent_containers/food/snacks/pie/weed,/turf/simulated/floor,/area/station/hydroponics/lobby)
@@ -866,7 +866,7 @@
 "qR" = (/obj/machinery/door/poddoor/blast/pyro/podbay_autoclose/mainpod2_horizontal,/turf/simulated/floor/shuttlebay,/area/station/bridge/customs)
 "qS" = (/turf/simulated/wall/auto,/area/station/chapel/sanctuary)
 "qT" = (/obj/machinery/light/fluorescent/cool/very,/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/bluewhite,/area/station/medical/medbay/surgery)
-"qU" = (/obj/table/auto,/obj/machinery/light/fluorescent/cool/very{dir = 1},/obj/machinery/power/apc/autoname_north,/obj/cable{d2 = 2; icon_state = "0-2"},/turf/simulated/floor/sanitary/white,/area/station/crew_quarters/bathroom)
+"qU" = (/obj/table/auto,/obj/machinery/light/fluorescent/cool/very{dir = 1},/obj/machinery/power/apc/autoname_north,/obj/cable{d2 = 2; icon_state = "0-2"},/obj/item/sponge,/turf/simulated/floor/sanitary/white,/area/station/crew_quarters/bathroom)
 "qV" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,/obj/disposalpipe/segment/food{dir = 4},/turf/simulated/floor/white/checker2,/area/station/crew_quarters/kitchen)
 "qW" = (/obj/cable{icon_state = "0-2"},/obj/machinery/power/apc/autoname_north,/turf/simulated/floor,/area/station/engine/engineering/breakroom)
 "qX" = (/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor,/area/station/bridge)
@@ -886,6 +886,7 @@
 "rm" = (/turf/simulated/floor/stairs/wide{dir = 4},/area/station/quartermaster/cargooffice/gunsmithing)
 "rn" = (/obj/disposalpipe/segment/bent/north,/obj/decal/tile_edge/stripe{dir = 10},/turf/simulated/floor/black,/area/station/quartermaster/cargooffice)
 "ro" = (/obj/stool,/obj/railing/red,/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/wood,/area/station/chapel/sanctuary)
+"rp" = (/obj/machinery/door/poddoor/pyro{density = 0; icon_state = "pdoor0"; id = "market_2"; name = "Public Market"; opacity = 0},/turf/simulated/floor,/area/station/quartermaster/cargooffice/storefront)
 "rq" = (/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/white,/area/station/medical/medbay)
 "rr" = (/obj/machinery/door/airlock/pyro{dir = 2; name = "Bathroom"},/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/sanitary/blue,/area/station/medical/medbay/restroom)
 "rs" = (/obj/machinery/door/airlock/pyro/glass,/turf/simulated/floor/grey,/area/station/chapel/sanctuary)
@@ -981,7 +982,6 @@
 "te" = (/obj/machinery/vending/alcohol{pixel_y = 9},/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,/turf/simulated/floor/grey,/area/station/crew_quarters/baroffice)
 "tf" = (/obj/submachine/chef_sink{dir = 1; name = "bathroom sink"},/obj/machinery/light/fluorescent/cool/very{dir = 1},/turf/simulated/floor/white/grime,/area/station/security/secoffquarters)
 "tg" = (/obj/machinery/light/small/floor/harsh,/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/carpet/blue/standard/edge/east,/area/station/medical/medbay/lobby)
-"th" = (/obj/machinery/light/fluorescent/warm,/turf/simulated/floor,/area/station/quartermaster/cargooffice/gunsmithing)
 "ti" = (/obj/storage/crate/robotics_supplies,/turf/simulated/floor/grime,/area/station/medical/maintenance)
 "tj" = (/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor,/area/station/turret_protected/Zeta)
 "tk" = (/obj/machinery/light/small/floor/harsh,/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southeast,/turf/simulated/floor/carpet/blue/standard/edge/west,/area/station/medical/medbay/lobby)
@@ -1010,7 +1010,7 @@
 "tH" = (/obj/disposalpipe/segment/morgue{dir = 4},/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/black,/area/station/security/checkpoint/customs)
 "tI" = (/obj/disposalpipe/segment/vertical,/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/carpet/blue/fancy/edge{dir = 6; icon_state = "fblue2"},/area/station/bridge)
 "tJ" = (/obj/machinery/light/fluorescent/cool{dir = 8},/turf/simulated/floor,/area/station/engine/engineering/breakroom)
-"tK" = (/obj/stool/chair{dir = 1},/obj/landmark/start{name = "Security Assistant"},/turf/simulated/floor/wood,/area/station/crew_quarters/bar)
+"tK" = (/obj/stool/chair{dir = 1},/turf/simulated/floor/wood,/area/station/crew_quarters/bar)
 "tL" = (/obj/disposalpipe/trunk,/obj/disposaloutlet/east,/turf/simulated/floor/sanitary,/area/station/medical/crematorium)
 "tM" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/white,/area/station/medical/medbay/surgery)
 "tO" = (/obj/machinery/door/airlock/pyro/glass,/obj/disposalpipe/segment/vertical,/turf/simulated/floor,/area/space)
@@ -1173,8 +1173,6 @@
 "wR" = (/obj/disposalpipe/segment/morgue{dir = 4},/obj/disposalpipe/segment/vertical,/obj/cable{d1 = 2; d2 = 4; icon_state = "4-9"},/turf/simulated/floor,/area/station/bridge)
 "wS" = (/obj/table/regal/auto,/obj/candle_light{pixel_y = 13},/obj/cable{d1 = 2; d2 = 4; icon_state = "5-6"},/obj/cable{d1 = 2; d2 = 4; icon_state = "5-8"},/obj/cable{d1 = 2; d2 = 4; icon_state = "6-8"},/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/wood,/area/station/chapel/sanctuary)
 "wT" = (/obj/disposalpipe/segment/horizontal,/obj/decal/tile_edge/stripe,/turf/simulated/floor/black,/area/station/quartermaster/cargooffice)
-"wU" = (/obj/machinery/door_control{id = "market_2"; pixel_y = 24},/turf/simulated/floor,/area/station/quartermaster/cargooffice/storefront)
-"wV" = (/turf/simulated/floor/black,/area/station/quartermaster/cargooffice/gunsmithing)
 "wW" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,/obj/disposalpipe/segment/morgue,/turf/simulated/floor/blue,/area/station/medical/medbay/pharmacy)
 "wX" = (/obj/cable{d2 = 4; icon_state = "0-4"},/obj/machinery/power/apc/autoname_west,/turf/simulated/floor/plating,/area/station/maintenance/inner/nw)
 "wY" = (/turf/simulated/floor/wood,/area/station/chapel/sanctuary)
@@ -1185,7 +1183,6 @@
 "xd" = (/obj/monkeyplant,/turf/simulated/floor/green,/area/station/medical/research)
 "xe" = (/obj/disposalpipe/segment/bent/north,/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,/turf/simulated/floor/white/checker2,/area/station/crew_quarters/kitchen)
 "xf" = (/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/black,/area/station/chapel/sanctuary)
-"xg" = (/obj/machinery/light/fluorescent/warm,/obj/item/gun_exploder,/turf/simulated/floor,/area/station/quartermaster/cargooffice/gunsmithing)
 "xh" = (/obj/cable{icon_state = "4-8"},/obj/disposalpipe/segment/horizontal,/obj/cable{icon_state = "1-8"},/turf/simulated/floor,/area/station/engine/engineering/breakroom)
 "xi" = (/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/black,/area/station/chapel/sanctuary)
 "xj" = (/obj/disposalpipe/segment/bent/east,/turf/simulated/floor/black,/area/station/chapel/sanctuary)
@@ -1200,7 +1197,7 @@
 "xs" = (/turf/simulated/floor/black,/area/station/security/checkpoint/sec_foyer)
 "xt" = (/obj/table/wood/auto,/obj/item/paper_bin{pixel_y = 6},/obj/item/pen,/turf/simulated/floor/blue,/area/station/medical/medbay/lobby)
 "xu" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/white/checker2,/area/station/crew_quarters/kitchen)
-"xv" = (/obj/table/reinforced/auto,/turf/simulated/floor/black,/area/station/quartermaster/cargooffice/gunsmithing)
+"xv" = (/obj/landmark/start{name = "Bartender"},/turf/simulated/floor/carpet/blue/standard,/area/station/crew_quarters/bar)
 "xw" = (/obj/cable/blue{icon_state = "4-8"},/obj/disposalpipe/segment/bent/east,/turf/simulated/floor/carpet/blue/fancy/innercorner/omni,/area/station/bridge)
 "xx" = (/obj/machinery/light/fluorescent/cool/very,/obj/disposalpipe/segment/food{dir = 4},/turf/simulated/floor,/area/station/security/secoffquarters)
 "xy" = (/obj/disposalpipe/trunk/zlevel{dir = 8; target_z = 3},/obj/machinery/light/small/frostedred{dir = 8},/turf/simulated/floor/plating,/area/station/crew_quarters/bar)
@@ -1281,6 +1278,7 @@
 "yX" = (/obj/disposalpipe/segment/morgue{dir = 4},/obj/disposalpipe/segment/morgue,/turf/simulated/floor/plating,/area/station/medical/maintenance)
 "yY" = (/obj/disposalpipe/trunk{dir = 1},/obj/machinery/disposal{color = "#BBFFCC"; name = "Kitchen Chute"},/turf/simulated/floor,/area/station/quartermaster/storage)
 "yZ" = (/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/carpet/blue/fancy/innercorner/omni,/area/station/bridge)
+"za" = (/turf/simulated/floor,/area/station/quartermaster/cargooffice/gunsmithing)
 "zb" = (/obj/disposalpipe/segment/bent/north,/turf/simulated/floor/carpet/blue/fancy/edge,/area/station/bridge)
 "zc" = (/obj/machinery/light/fluorescent{dir = 4},/turf/simulated/floor/black,/area/station/quartermaster/cargobay)
 "zd" = (/obj/table/auto,/obj/shrub{desc = "You suspect that it's just an Earth fern."; icon = 'icons/obj/stationobjs.dmi'; icon_state = "plant"; name = "space fern"; pixel_y = 14},/obj/machinery/light/small/floor/warm/very,/turf/simulated/floor/grey,/area/station/medical/medbay)
@@ -1315,11 +1313,13 @@
 "zG" = (/obj/disposalpipe/segment{dir = 2},/turf/simulated/floor/wood,/area/station/crew_quarters/bar)
 "zH" = (/turf/simulated/floor/white,/area/station/medical/medbay)
 "zI" = (/obj/machinery/light/fluorescent/cool/very,/turf/simulated/floor,/area/station/quartermaster/cargooffice)
+"zJ" = (/obj/table/reinforced/auto,/obj/machinery/door_control/podbay/qm/new_walls/east{id = "hangar_qm_b"},/turf/simulated/floor,/area/station/quartermaster/cargooffice/storefront)
 "zK" = (/turf/simulated/floor/grey,/area/station/hangar/medical)
 "zL" = (/obj/machinery/light/fluorescent/cool/very{dir = 8},/turf/gehenna/desert,/area/station/security/brig/south_side)
 "zM" = (/obj/machinery/power/apc/autoname_north,/obj/cable{icon_state = "0-2"},/turf/simulated/floor/grey,/area/station/security/equipment)
 "zN" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/stairs/wide{dir = 4},/area/station/medical/medbay)
 "zO" = (/obj/stool/chair/couch{dir = 4},/turf/simulated/floor/carpet/blue/fancy/edge{dir = 5; icon_state = "fblue2"},/area/station/bridge/customs)
+"zP" = (/obj/machinery/door/poddoor/blast/pyro/podbay_autoclose/qm_horizontal/vertical{id = "hangar_qm_b"; name = "Shop"},/turf/simulated/floor,/area/station/quartermaster/cargooffice)
 "zQ" = (/obj/railing/cyan,/turf/gehenna/desert/plating,/area/space)
 "zR" = (/turf/simulated/wall/auto/reinforced,/area/station/medical/medbay/treatment)
 "zS" = (/obj/machinery/light/small/cool,/turf/gehenna/desert/plating{dir = 1; icon_state = "floor"; name = "floor"},/area/space)
@@ -1428,6 +1428,7 @@
 "BS" = (/obj/disposalpipe/segment/bent/south,/turf/simulated/floor/white/grime,/area/station/security/secoffquarters)
 "BT" = (/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/blue/checker,/area/station/medical/medbay/surgery/storage)
 "BU" = (/obj/stool/chair/comfy{dir = 8},/obj/landmark/start{name = "Bartender"},/turf/simulated/floor/carpet/grime,/area/station/crew_quarters/baroffice)
+"BV" = (/obj/machinery/light/fluorescent/warm{dir = 1},/turf/simulated/floor,/area/station/quartermaster/cargooffice/gunsmithing)
 "BW" = (/obj/machinery/atmospherics/pipe/manifold/west,/turf/simulated/floor/white,/area/station/medical/medbay)
 "BX" = (/obj/disposalpipe/segment/bent/west,/obj/grille/catwalk/jen/side{dir = 5; icon_state = "catwalk_jen_side"},/obj/cable{icon_state = "1-2"},/turf/simulated/floor/plating,/area/station/crew_quarters/baroffice)
 "BY" = (/obj/disposalpipe/segment/mail/bent/south,/turf/simulated/floor/grey,/area/station/medical/robotics)
@@ -1489,12 +1490,11 @@
 "Dd" = (/obj/cable{d1 = 2; d2 = 4; icon_state = "1-6"},/turf/simulated/floor,/area/station/bridge)
 "De" = (/obj/machinery/light/fluorescent/red{dir = 4},/turf/gehenna/desert/plating{dir = 4; icon_state = "gehenna_tile"},/area/space)
 "Df" = (/obj/machinery/light/small/floor,/obj/machinery/computer/sea_elevator/command,/turf/simulated/floor/grey,/area/station/bridge)
-"Dg" = (/obj/machinery/light/fluorescent/warm{dir = 1},/turf/simulated/floor,/area/station/quartermaster/cargooffice/storefront)
 "Dh" = (/obj/submachine/chef_sink{dir = 4},/turf/simulated/floor/sanitary/blue,/area/station/medical/medbay/restroom)
 "Di" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/plating,/area/station/engine/engineering)
 "Dj" = (/obj/decal/tile_edge/stripe/extra_big{dir = 6; icon_state = "xtra_bigstripe-corner2"},/turf/simulated/floor,/area/station/bridge/customs)
 "Dk" = (/obj/machinery/atmospherics/pipe/simple/insulated{dir = 4},/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/overfloor/vertical,/turf/simulated/floor/red/checker{dir = 4},/area/station/engine/core)
-"Dl" = (/obj/stool/chair{dir = 1},/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,/obj/landmark/start{name = "Security Assistant"},/turf/simulated/floor/wood,/area/station/crew_quarters/bar)
+"Dl" = (/obj/stool/chair{dir = 1},/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,/turf/simulated/floor/wood,/area/station/crew_quarters/bar)
 "Dm" = (/obj/machinery/computer3/generic/med_data,/obj/cable{d2 = 2; icon_state = "0-2"},/obj/machinery/power/data_terminal,/turf/simulated/floor/bluewhite{dir = 5},/area/station/medical/medbay/surgery)
 "Dn" = (/obj/disposalpipe/segment/vertical,/turf/simulated/floor/carpet/blue/fancy/innercorner/sw_triple,/area/station/security/hos)
 "Do" = (/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/plating/random,/area/station/engine/engineering)
@@ -1617,6 +1617,7 @@
 "FC" = (/obj/disposalpipe/segment{dir = 2},/obj/table/auto,/obj/item/item_box/postit,/obj/item/device/analyzer/healthanalyzer/borg,/obj/item/clothing/glasses/healthgoggles,/obj/item/clothing/glasses/visor,/obj/item/device/radio/headset/deaf,/turf/simulated/floor/carpet/blue/standard/edge/se,/area/station/medical/head)
 "FD" = (/obj/cable{d1 = 2; d2 = 4; icon_state = "2-9"},/turf/simulated/floor/carpet/red/fancy/edge/east,/area/station/chapel/sanctuary)
 "FE" = (/obj/machinery/door/airlock/pyro/security{dir = 4; opacity = 0},/obj/disposalpipe/segment/morgue{dir = 4},/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/black,/area/station/security/checkpoint/sec_foyer)
+"FF" = (/obj/machinery/vending/gunse,/turf/simulated/floor/black,/area/station/quartermaster/cargooffice/gunsmithing)
 "FG" = (/obj/cable{d2 = 8; icon_state = "0-8"},/obj/machinery/power/apc/autoname_east,/turf/simulated/floor/sanitary/white,/area/station/crew_quarters/kitchen/freezer)
 "FH" = (/turf/simulated/floor/stairs/wide,/area/station/engine/engineering)
 "FI" = (/obj/disposalpipe/segment/bent/east,/turf/simulated/floor/grey,/area/station/medical/robotics)
@@ -1647,6 +1648,7 @@
 "Gh" = (/obj/decal/tile_edge/stripe/extra_big{dir = 10; icon_state = "bot2"},/obj/cable{icon_state = "4-8"},/turf/simulated/floor/black,/area/station/quartermaster/storage)
 "Gi" = (/obj/cable{icon_state = "2-4"},/turf/simulated/floor/sanitary/white,/area/station/crew_quarters/kitchen/freezer)
 "Gj" = (/obj/machinery/light/small/floor,/turf/simulated/floor/black,/area/station/security/checkpoint/sec_foyer)
+"Gk" = (/turf/simulated/wall/auto/reinforced,/area/station/quartermaster/cargooffice/gunsmithing)
 "Gl" = (/obj/table/reinforced/auto,/turf/simulated/floor,/area/station/security/secoffquarters)
 "Gm" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/white,/area/station/medical/medbay)
 "Gn" = (/obj/machinery/vending/cola/blue,/turf/simulated/floor/carpet/blue/standard/edge/se,/area/station/crew_quarters/bar)
@@ -1673,7 +1675,7 @@
 "GI" = (/obj/decal/tile_edge/stripe/extra_big{dir = 5; icon_state = "xtra_bigstripe-corner2"},/turf/simulated/floor,/area/station/bridge/customs)
 "GJ" = (/obj/machinery/light/fluorescent/cool/very{dir = 1},/turf/simulated/floor/white/grime,/area/station/security/secoffquarters)
 "GK" = (/turf/simulated/wall/auto,/area/station/medical/crematorium)
-"GL" = (/obj/storage/secure/closet/medical/medkit,/turf/simulated/floor/blue,/area/station/medical/medbay/pharmacy)
+"GL" = (/obj/cabinet/restrictedmedical,/turf/simulated/floor/blue,/area/station/medical/medbay/pharmacy)
 "GM" = (/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/red/redblackchecker,/area/station/security/secwing)
 "GN" = (/obj/machinery/vending/port_a_nanomed,/turf/simulated/floor/blueblack,/area/station/medical/medbay/surgery/storage)
 "GO" = (/obj/cable{icon_state = "0-2"},/obj/machinery/power/apc/autoname_north,/turf/simulated/floor/black,/area/station/chapel/sanctuary)
@@ -1691,6 +1693,7 @@
 "Ha" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/carpet/blue/standard/edge/west,/area/station/crew_quarters/bar)
 "Hb" = (/turf/simulated/wall/auto,/area/station/chapel/office)
 "Hc" = (/obj/grille/catwalk{dir = 10; icon_state = "catwalk_cross"},/turf/simulated/floor/specialroom/sea_elevator_shaft{dir = 8},/area/shuttle/sea_elevator/upper/QM)
+"Hd" = (/obj/storage/secure/closet/medical/medkit,/turf/simulated/floor/blue,/area/station/medical/medbay/pharmacy)
 "He" = (/obj/shrub{dir = 1},/turf/simulated/floor/sanitary/white,/area/station/crew_quarters/bathroom)
 "Hf" = (/obj/disposalpipe/segment/bent/west,/turf/simulated/floor/grey,/area/station/hangar/engine)
 "Hg" = (/obj/cable{d2 = 8; icon_state = "0-8"},/obj/machinery/power/apc/autoname_east,/turf/simulated/floor/blueblack{dir = 8},/area/station/medical/medbay/surgery/storage)
@@ -1712,6 +1715,7 @@
 "Hw" = (/obj/disposalpipe/segment{dir = 2},/turf/simulated/wall/auto,/area/station/crew_quarters/bathroom)
 "Hx" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,/turf/simulated/floor/green,/area/station/medical/research)
 "Hy" = (/obj/cable{icon_state = "2-4"},/turf/simulated/floor/grey,/area/station/hangar/medical)
+"Hz" = (/obj/machinery/light/fluorescent/warm,/obj/table/reinforced/auto,/turf/simulated/floor/black,/area/station/quartermaster/cargooffice/gunsmithing)
 "HA" = (/obj/disposalpipe/segment/produce{dir = 4},/obj/cable{icon_state = "1-8"},/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/carpet/grime,/area/station/crew_quarters/baroffice)
 "HB" = (/obj/machinery/atmospherics/valve/horizontal,/turf/simulated/floor/yellow/side,/area/station/engine/core)
 "HC" = (/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/carpet/blue/fancy/narrow/T_west,/area/station/bridge)
@@ -1719,7 +1723,6 @@
 "HE" = (/obj/machinery/door/airlock/pyro/command/alt{dir = 8; name = "Mainframe"},/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor,/area/station/turret_protected/Zeta)
 "HF" = (/obj/disposalpipe/junction/left/south{color = "#FFFFBB"; name = "DA RANDOMIZER"},/turf/simulated/floor/red/checker{dir = 4},/area/station/security/brig/cell_block_control)
 "HG" = (/obj/disposalpipe/segment/mail/horizontal,/obj/disposalpipe/segment/vertical,/turf/simulated/floor/black,/area/station/engine/engineering/ce)
-"HI" = (/turf/simulated/wall/auto/reinforced,/area/station/quartermaster/cargooffice/storefront)
 "HJ" = (/obj/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/white,/area/station/medical/medbay)
 "HK" = (/obj/disposalpipe/segment/morgue,/obj/surgery_tray,/obj/item/scalpel{pixel_x = 3; pixel_y = 2},/obj/item/circular_saw{pixel_y = 11},/obj/item/hemostat{pixel_x = 3; pixel_y = -5},/obj/item/scissors/surgical_scissors{pixel_x = 5; pixel_y = 5},/obj/item/suture{pixel_y = 5},/obj/item/staple_gun{pixel_x = 4; pixel_y = 9},/obj/item/bandage{pixel_x = -2},/turf/simulated/floor/bluewhite{dir = 4},/area/station/medical/medbay/surgery)
 "HL" = (/obj/table/auto,/obj/submachine/mixer,/turf/simulated/floor/white/checker2,/area/station/crew_quarters/kitchen)
@@ -1818,7 +1821,8 @@
 "JA" = (/obj/cable{icon_state = "4-8"},/obj/cable{icon_state = "1-8"},/turf/simulated/floor/black,/area/station/engine/engineering/ce)
 "JB" = (/turf/simulated/wall/auto,/area/station/security/equipment)
 "JC" = (/obj/cable/blue{icon_state = "4-8"},/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/stairs/wide{dir = 4},/area/station/bridge)
-"JD" = (/obj/machinery/vending/monkey,/turf/simulated/floor/white/checker2,/area/station/crew_quarters/kitchen)
+"JD" = (/obj/machinery/vending/meat,/turf/simulated/floor/white/checker2,/area/station/crew_quarters/kitchen)
+"JE" = (/obj/machinery/light/fluorescent/warm{dir = 1},/turf/simulated/floor/black,/area/station/quartermaster/cargooffice/gunsmithing)
 "JF" = (/obj/disposalpipe/segment/morgue{dir = 4},/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/black,/area/station/security/checkpoint/sec_foyer)
 "JG" = (/obj/machinery/atmospherics/pipe/simple/insulated/vertical,/turf/simulated/floor/plating,/area/station/engine/engineering)
 "JH" = (/obj/disposalpipe/trunk{dir = 4},/obj/machinery/disposal/brig,/turf/simulated/floor/black,/area/station/security/secwing)
@@ -1914,7 +1918,7 @@
 "Lt" = (/obj/machinery/atmospherics/valve/horizontal,/turf/simulated/floor/red,/area/station/engine/core)
 "Lu" = (/obj/machinery/light/small/floor/harsh,/obj/disposalpipe/segment/vertical,/turf/simulated/floor/sanitary,/area/station/medical/morgue)
 "Lv" = (/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/black,/area/station/security/interrogation)
-"Lw" = (/obj/stool/chair/couch/blue{dir = 8},/turf/simulated/floor,/area/station/engine/engineering/breakroom)
+"Lw" = (/obj/stool/chair/couch/blue{dir = 8},/obj/landmark/start{name = "Engineer"},/turf/simulated/floor,/area/station/engine/engineering/breakroom)
 "Lx" = (/obj/disposalpipe/segment/vertical,/obj/disposalpipe/segment/morgue{dir = 4},/turf/simulated/floor,/area/space)
 "Ly" = (/obj/disposalpipe/segment/bent/south,/obj/cable{icon_state = "1-10"},/obj/cable{d1 = 2; d2 = 4; icon_state = "1-6"},/turf/simulated/floor/plating,/area/space)
 "Lz" = (/obj/machinery/light/small/floor,/turf/simulated/floor/shuttlebay,/area/station/quartermaster/cargobay)
@@ -1946,6 +1950,7 @@
 "LZ" = (/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor,/area/station/bridge)
 "Ma" = (/obj/disposalpipe/segment/mail/horizontal,/obj/grille/catwalk/jen/side{dir = 4},/obj/cable{icon_state = "1-10"},/turf/simulated/floor/plating,/area/station/crew_quarters/baroffice)
 "Mb" = (/obj/decal/tile_edge/stripe{dir = 10},/obj/cable{icon_state = "2-5"},/turf/simulated/floor/black,/area/station/quartermaster/storage)
+"Mc" = (/obj/machinery/door/airlock/pyro/classic{dir = 4},/turf/simulated/floor/black,/area/station/quartermaster/storage)
 "Md" = (/turf/simulated/floor/carpet/blue/fancy/edge,/area/station/bridge)
 "Me" = (/obj/cable{d1 = 2; d2 = 4; icon_state = "5-10"},/turf/simulated/floor,/area/space)
 "Mf" = (/obj/submachine/chef_sink{dir = 1; name = "bathroom sink"},/turf/simulated/floor,/area/station/bridge/hos)
@@ -2019,6 +2024,7 @@
 "Nw" = (/obj/disposalpipe/segment/vertical,/obj/cable{icon_state = "4-8"},/turf/simulated/floor,/area/station/hydroponics/bay)
 "Nx" = (/obj/cable{icon_state = "1-4"},/turf/simulated/floor,/area/station/hangar/security)
 "Ny" = (/turf/simulated/floor/carpet/blue/standard,/area/station/medical/medbay/lobby)
+"Nz" = (/obj/table/reinforced/auto,/turf/simulated/floor/black,/area/station/quartermaster/cargooffice/gunsmithing)
 "NA" = (/obj/machinery/light/fluorescent,/turf/simulated/floor/yellow/side,/area/station/engine/engineering)
 "NB" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/carpet/blue/fancy/edge,/area/station/bridge)
 "NC" = (/turf/simulated/wall/auto,/area/station/hangar/engine)
@@ -2057,6 +2063,7 @@
 "Oj" = (/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/white,/area/station/medical/medbay)
 "Ok" = (/obj/disposalpipe/segment{dir = 2},/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,/turf/simulated/floor/sanitary/white,/area/station/crew_quarters/bathroom)
 "Ol" = (/obj/disposalpipe/switch_junction/left/east,/turf/simulated/floor,/area/station/bridge)
+"Om" = (/obj/landmark/start{name = "Chief Engineer"},/turf/simulated/floor/black,/area/station/engine/engineering/ce)
 "On" = (/obj/cable{icon_state = "1-8"},/turf/simulated/floor/wood,/area/station/chapel/sanctuary)
 "Oo" = (/obj/disposalpipe/segment/mineral{dir = 8},/obj/decal/tile_edge/stripe/extra_big{dir = 10; icon_state = "bot2"},/turf/simulated/floor/black,/area/station/quartermaster/storage)
 "Op" = (/obj/machinery/plantpot/bareplant,/turf/unsimulated/dirt,/area/station/hydroponics/bay)
@@ -2129,6 +2136,7 @@
 "PE" = (/obj/disposalpipe/segment/horizontal,/obj/machinery/recharge_station,/turf/simulated/floor/grey,/area/station/medical/robotics)
 "PF" = (/obj/disposalpipe/segment/sewage{dir = 4},/turf/simulated/floor/sanitary/blue,/area/station/crew_quarters/bathroom)
 "PG" = (/obj/machinery/drainage,/obj/disposalpipe/segment/horizontal,/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,/turf/simulated/floor/sanitary/white,/area/station/crew_quarters/bathroom)
+"PH" = (/obj/landmark/start{name = "Chef"},/turf/simulated/floor/white/checker2,/area/station/crew_quarters/kitchen)
 "PI" = (/turf/simulated/wall/auto,/area/station/medical/head)
 "PJ" = (/obj/disposalpipe/segment{dir = 2},/obj/cable{icon_state = "1-2"},/turf/simulated/floor/wood,/area/station/crew_quarters/bar)
 "PK" = (/obj/machinery/light/small/floor/harsh,/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/carpet/blue/standard/edge/west,/area/station/medical/medbay/lobby)
@@ -2148,7 +2156,7 @@
 "PY" = (/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/plating,/area/station/security/secoffquarters)
 "PZ" = (/obj/disposalpipe/trunk{dir = 4},/obj/machinery/disposal,/turf/simulated/floor,/area/station/medical/medbay/treatment)
 "Qa" = (/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/disposalpipe/segment/bent/north,/turf/simulated/floor/plating,/area/station/maintenance/inner/north)
-"Qb" = (/turf/simulated/floor,/area/station/quartermaster/cargooffice/storefront)
+"Qb" = (/obj/machinery/door_control{id = "market_2"; pixel_y = 24},/turf/simulated/floor,/area/station/quartermaster/cargooffice/storefront)
 "Qc" = (/obj/disposalpipe/segment/vertical,/turf/simulated/floor/stairs/wide/middle{dir = 1},/area/station/security/secwing)
 "Qd" = (/obj/machinery/door/airlock/pyro{dir = 4; name = "Bathroom"},/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,/turf/simulated/floor/sanitary/white,/area/station/crew_quarters/bathroom)
 "Qe" = (/turf/simulated/floor,/area/station/quartermaster/cargooffice)
@@ -2247,7 +2255,6 @@
 "RW" = (/obj/machinery/light/fluorescent/warm{dir = 1},/turf/simulated/floor,/area/space)
 "RX" = (/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/floor/black/side{dir = 8},/area/station/engine/engineering)
 "RY" = (/obj/disposalpipe/segment/sewage,/turf/simulated/floor/plating,/area/space)
-"RZ" = (/obj/machinery/door_control/podbay/qm/new_walls/east{id = "hangar_qm_a"},/turf/simulated/floor,/area/station/quartermaster/cargooffice/gunsmithing)
 "Sb" = (/obj/machinery/light/fluorescent/warm{dir = 4},/obj/cable{d1 = 2; d2 = 4; icon_state = "2-10"},/turf/simulated/floor/grey,/area/station/chapel/sanctuary)
 "Sc" = (/obj/table/reinforced/auto,/obj/machinery/light/fluorescent/cool/very,/obj/item/device/analyzer/healthanalyzer{pixel_x = -3; pixel_y = -6},/obj/item/hemostat{pixel_x = 3; pixel_y = -5},/obj/item/scissors/surgical_scissors{pixel_x = 5; pixel_y = 5},/obj/item/suture{pixel_y = 5},/obj/item/scalpel{pixel_x = 3; pixel_y = 2},/turf/simulated/floor/sanitary,/area/station/medical/morgue)
 "Sd" = (/turf/simulated/floor/bluewhite{dir = 4},/area/station/medical/medbay/cloner)
@@ -2291,10 +2298,9 @@
 "SP" = (/obj/disposalpipe/segment/bent/east,/turf/simulated/floor/red,/area/station/security/checkpoint/sec_foyer)
 "SQ" = (/obj/machinery/light/fluorescent{dir = 1},/turf/simulated/floor/black,/area/station/engine/engineering)
 "SR" = (/obj/cable{icon_state = "1-8"},/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/white/checker2,/area/station/crew_quarters/kitchen)
-"SS" = (/turf/simulated/floor,/area/station/quartermaster/cargooffice/gunsmithing)
 "ST" = (/obj/disposalpipe/segment/mail/vertical,/turf/simulated/floor/carpet/grime,/area/station/crew_quarters/baroffice)
 "SU" = (/obj/disposalpipe/trunk{dir = 4},/obj/machinery/disposal,/turf/simulated/floor/wood,/area/station/crew_quarters/bar)
-"SV" = (/obj/stool/chair,/obj/landmark/start{name = "Security Assistant"},/turf/simulated/floor/wood,/area/station/crew_quarters/bar)
+"SV" = (/obj/stool/chair,/turf/simulated/floor/wood,/area/station/crew_quarters/bar)
 "SW" = (/obj/disposalpipe/segment/horizontal,/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,/turf/simulated/floor/sanitary/white,/area/station/crew_quarters/bathroom)
 "SX" = (/obj/disposalpipe/junction/right/east,/turf/simulated/floor/plating,/area/space)
 "SY" = (/obj/machinery/atmospherics/pipe/vertical_pipe/west{target_z = 3},/turf/simulated/floor/plating,/area/station/engine/core)
@@ -2339,14 +2345,14 @@
 "TL" = (/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/carpet/red/fancy/edge/ne,/area/station/chapel/sanctuary)
 "TM" = (/turf/simulated/floor/plating,/area/station/maintenance/inner/north)
 "TN" = (/obj/machinery/light/fluorescent/cool/very{dir = 1},/turf/simulated/floor/grey,/area/station/medical/medbay)
-"TO" = (/obj/machinery/light/fluorescent/warm,/turf/simulated/floor,/area/station/quartermaster/cargooffice/storefront)
+"TO" = (/obj/table/reinforced/auto,/turf/simulated/floor,/area/station/quartermaster/cargooffice/storefront)
 "TP" = (/obj/machinery/light/fluorescent/warm{dir = 1},/turf/simulated/floor/black,/area/station/chapel/sanctuary)
 "TQ" = (/obj/disposalpipe/segment/vertical,/obj/cable{d1 = 2; d2 = 4; icon_state = "4-10"},/turf/simulated/floor,/area/station/bridge)
 "TR" = (/obj/machinery/light/fluorescent{dir = 4},/turf/simulated/floor/yellow/side{dir = 4},/area/station/engine/core)
 "TS" = (/obj/machinery/light/small/floor/harsh,/turf/simulated/floor/grey,/area/station/hangar/medical)
 "TT" = (/turf/simulated/wall/r_wall,/area/station/turret_protected/Zeta)
 "TU" = (/obj/stool/bed/moveable/hospital,/obj/item/clothing/suit/bedsheet,/obj/item/bandage{pixel_x = -2},/turf/simulated/floor/white,/area/station/medical/medbay/pharmacy)
-"TV" = (/obj/stool/chair/couch/blue{dir = 4},/turf/simulated/floor,/area/station/engine/engineering/breakroom)
+"TV" = (/obj/stool/chair/couch/blue{dir = 4},/obj/landmark/start{name = "Engineer"},/turf/simulated/floor,/area/station/engine/engineering/breakroom)
 "TW" = (/turf/simulated/wall/auto/reinforced,/area/station/hydroponics/bay)
 "TX" = (/obj/table/reinforced/auto,/turf/simulated/floor,/area/station/security/main)
 "TY" = (/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/disposalpipe/segment/brig{dir = 4},/turf/simulated/floor,/area/station/bridge)
@@ -2395,7 +2401,6 @@
 "UQ" = (/obj/disposalpipe/segment/bent/south,/turf/gehenna/desert/plating{dir = 4; icon_state = "gehenna_tile"},/area/station/security/brig/south_side)
 "UR" = (/obj/machinery/light/fluorescent/cool/very{dir = 8},/obj/stool/chair{dir = 4},/turf/simulated/floor/blue,/area/station/medical/medbay/lobby)
 "US" = (/obj/machinery/door/airlock/pyro/glass/engineering{dir = 8; name = "Engineering"},/obj/cable{icon_state = "4-8"},/obj/disposalpipe/segment/horizontal,/turf/simulated/floor/plating,/area/space)
-"UT" = (/obj/table/reinforced/auto,/obj/machinery/door_control/podbay/qm/new_walls/east{id = "hangar_qm_b"},/turf/simulated/floor,/area/station/quartermaster/cargooffice/storefront)
 "UU" = (/turf/simulated/wall/auto,/area/station/security/main)
 "UV" = (/obj/cable/blue{icon_state = "1-4"},/obj/grille/catwalk/jen,/turf/simulated/floor/plating,/area/station/turret_protected/Zeta)
 "UW" = (/obj/table/reinforced/auto,/obj/item/reagent_containers/food/snacks/ingredient/meat/monkeymeat{pixel_x = 4},/turf/simulated/floor/bluewhite{dir = 4},/area/station/medical/medbay/cloner)
@@ -2425,7 +2430,6 @@
 "Vu" = (/obj/machinery/power/data_terminal/cable_tray{target_z = 3},/obj/cable{d2 = 4; icon_state = "0-4"},/obj/grille/catwalk/jen,/turf/simulated/floor/plating,/area/station/hydroponics/bay)
 "Vv" = (/obj/wingrille_spawn/reinforced,/turf/simulated/floor/plating,/area/station/security/secwing)
 "Vw" = (/obj/decal/tile_edge/stripe/extra_big{dir = 8; icon_state = "xtra_bigstripe-edge"},/obj/machinery/light/small/floor/harsh,/turf/simulated/floor/shuttlebay,/area/station/hangar/security)
-"Vx" = (/obj/machinery/light/fluorescent/warm,/obj/table/reinforced/auto,/turf/simulated/floor/black,/area/station/quartermaster/cargooffice/gunsmithing)
 "Vy" = (/obj/machinery/light/small/floor,/obj/cable{icon_state = "4-8"},/turf/simulated/floor,/area/station/hydroponics/lobby)
 "Vz" = (/obj/decal/stage_edge{layer = 2},/obj/machinery/light/fluorescent/warm{dir = 8},/turf/simulated/floor,/area/station/chapel/sanctuary)
 "VA" = (/obj/disposalpipe/segment/mail/horizontal,/obj/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/white,/area/station/medical/medbay)
@@ -2601,6 +2605,7 @@
 "YO" = (/obj/disposalpipe/segment/brig,/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/grey,/area/station/security/equipment)
 "YP" = (/turf/simulated/floor,/area/station/security/main)
 "YQ" = (/obj/machinery/light/fluorescent/cool{dir = 1},/turf/simulated/floor/grey,/area/station/hangar/engine)
+"YR" = (/turf/simulated/wall/auto/reinforced,/area/station/quartermaster/cargooffice/storefront)
 "YS" = (/obj/disposalpipe/segment/mail/horizontal,/turf/simulated/wall/auto,/area/station/crew_quarters/bar)
 "YT" = (/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/sanitary,/area/station/medical/morgue)
 "YU" = (/obj/disposalpipe/segment/bent/north,/turf/simulated/floor/white,/area/station/medical/medbay/cloner)
@@ -2629,7 +2634,6 @@
 "Zr" = (/obj/machinery/light/fluorescent/cool/very{dir = 8},/turf/simulated/floor/white,/area/station/medical/medbay)
 "Zs" = (/obj/machinery/light/fluorescent{dir = 4},/turf/gehenna/desert,/area/space)
 "Zt" = (/turf/simulated/floor/carpet/blue/fancy/narrow/T_east,/area/station/bridge)
-"Zu" = (/obj/machinery/door/poddoor/blast/pyro/podbay_autoclose/qm_horizontal/vertical{id = "hangar_qm_b"; name = "Shop"},/turf/simulated/floor,/area/station/quartermaster/cargooffice)
 "Zv" = (/obj/wingrille_spawn/reinforced,/turf/simulated/floor/plating,/area/station/medical/head)
 "Zw" = (/obj/disposalpipe/segment/mail/vertical,/turf/simulated/wall/auto,/area/station/engine/engineering)
 "Zx" = (/obj/disposalpipe/segment{dir = 2},/obj/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor,/area/station/medical/medbay/treatment)
@@ -2777,23 +2781,23 @@ dJdJdKdKdKdKdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaadIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 dJdJdKdKdKdKdIdIdIdIdIdIdIdIaaaaaaaaaaaadIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdIaaaadIdIdIdIdIdIdIdIdIdIdIdIdIXCXCXCQpXCXCXCdKdKdKdKdKdKamdKFxDXLHLHLHLHLHLHLHmFmFmFLHLHLHLHLHLHLHowACPvPvPvPvPvPvPvHFpzXUlVdCgPeReRgQjeOzyvKJKuBJBJBJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKKMOXXtRSuyRSXtinZOZOXtWqZOrDXtWqZOrDXtWqZOrDXtZOKMacacacdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKfwfwaeaesVlCaefwfwfwfwfwfwaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdIdIdIdIdIdIdIdIdIaaaaaaaadIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIXCzuzuzuzuzuXCdKdKdKdKdKdKamdKFxkJLHLHLHLHLHLHmFmFmFmFLHLHLHLHLHLHLHBRFxXUXUXUXUXUXUXUjEugXUXUXUXUXUXUXUXUXUXUjTjTaPaPjTjTdKdKdKdKndndndnddKdKdKdKndndndndnddKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKKMgBXtRSuyRSXtinZOZOXtWqZOrDXtWqZOrDXtWqZOrDXteFKMFWdYacdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvufwnLNpNpMTQgfwfwdIdIdIdIfwfwaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdIdIdIdIdIdIdIdIdIdIaadIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdKdIdIdIdIdIdIdKdKdKdKdIdIdIdIdIdIdIXCIGzuDDzuGpXCdKdKdKdKdKdKamdKFxDXLHLHLHLHLHLHLHmFmFLHLHLHLHLHLHLHLHqrVMdKdKdKdKdKdKXUjEugXUdIdIdIdIdIdIdIdIdIjTftfGeELqjTndndndndndmLtfndndndndndndfsGJfsnddKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKKMlBXtZOssZOXtinssZOXtNHhOlpXtNHhOlpXtNHhOlpXtZOKMiddTacdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvunLLxhkXdQgfwfwdKdKdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaadIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaadIdIdIdIdIdIaaaaaaaadIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdKdKdKdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdKdKdKXCzuzuzuzuzuXCdKdKdKdKdKdKamdKdKDXLHLHLHLHLHLHLHLHLHLHLHLHLHLHLHLHLHDXDXdKdKdKdKdKdKXUjEpzXUsosososososososodIjTCTCTJtJgncmHmHcfDqndflfsndfyfzfnRUndfBfFfKnddKdKdKdKdKdKdKdKkUkUkUkUkUkUkUkUkUkUkUkUkUkUKMuVQIVqwsuFuFLmuFuFNIGhMsGhGhGhMsGhGhGhysVsVsEaKMacKzacacacdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeRKeBMeaefwfwdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdIaaaaaaaadIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdKdKdKdKdKHbHbHbHbHbHbHbdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKXCXCQpXCQpXCXCdKdKRHRHRHRHRHdKdKDXLHLHLHLHDXixDXDXYzLHLHLHLHLHLHLHDXDXdKdKdKdKdKdKdKXUjEugXUpOkEpOfmpPROpPEUARBCXDXDkPfRBCliliufmjXbBSfsndfsfFfsVnndfsfVfsnddKdKdKdKdKdKdKdKkUSSSSkTSSSSkTSSSSrmmzwVwVwVmOZOZOMbErErErjadQErTEVsIbVsVsVsooyHyHyHDOtdyHyHWIDaLydldlacdKdKdKdKdKdKdKvudKdKdKdKdKdKdKvudKdKdKdKdKdKdKvuvuvuaeaesVlCaefwfwdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaadIdIdIdIdIdIaaaaaaaaaaaaaaaaaadIdIdIdKdKdKdKdKdKHbSJgbgbgbiYHbqSqSqSqSqSqSqSGKGKGKGKGKGKGKGKGKdKdKdKdKdKdKdKdKdKdKXCAElhntXCdKdKdKRHhNcXhNRHdKdKdKdKdKLHLHDXFxVRVRFxLHLHLHLHLHLHLHdKdKdKdKdKdKdKdKdKXUjEugXUpOpOpOnQmZmZqvsoidjTCTCThRfZjTvmKvPYPYBCLnnvLKnvVinvITPofsfFfKnddKdKdKdKdKdKdKdKkUSSSSSSSSSSSSSSSSkIwVwVwVwVKMhAkplTDpqdZOmSoOnqsGvBImVGXxVGyYVGXxVGQNOoKtAOQwDANXscAgUSAgAgAgAgAgAgAgiIAgAgAgAgAgAgAgiIAgAgAgAgAgAgAgUSOFOFOFOFIlQgfwfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaadIdIdIdIdIdIdIaaaaaaaaaaaaaadIdIdIdKdKdKdKdKdKHbRtgbgbgbxoHbpyTPJSJSJSUcGOGKeUeUeUGKeUeUeUGKdKdKdKdKdKdKdKdKdKdKXClhlhlhXCdKdKdKRHwJTMwJRHRHRHRHRHdKDXDXDXFxfWUQFxDXDXDXDXDXDXacacacacacacacacdKdKXUjEpzXUpOpOpOlNpOnopOsodIjTfICThRfJjTPijTjTjTndvYjTjTjTgdjTjTjTfsfsfsnddKdKdKdKdKdKdKdKkUSSSSSSSSSSSSSSSSkUwVwVwVkUKMKMKMQWKMKMZOmSsMZOKMKMKMKMKMKMKMKMKMKMKMKMKMKMKMnxNXmsOcBnjUXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJBnBnUgUghkUgQgfwfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIaaaaaaaaaaaadIdIdIdKdKdKdKdKHbRtwBfHwBxoHbxjUOxixixirbRglEWsCJCleUeUeUeUGKdKdKdKdKdKdKdKdKdKdKXClhlhlhXCdKdKdKRHwJTMwJUzZFcYqHRHdKdKdKdKFxFxqLFxdKdKdKdKdKdKacdKdKdKdKdKdKacacacXUCdfrXUpOhopOlNpOhopOsojTjTndeLIFndndxDjTgaWVkHpWjTghgjEegjgjjTndndndnddKdKdKdKdKdKdKdKkUSSSSxgSSSSxgSSRZkUphVxxvkUVoZKgVJjQeKMKMSOzWKMKMdKdKdKdKdKdKdKdKdKdKdKdKdKacJzkXAFMKaceMdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeaeaeaefwfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdIdIdIdIdIdIdIdIdIaaaadIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIaaaaaadIdIdIdIdKdKdKdKdKHbwkhDhDhDuuuGWhMJxfyOxfyKexGKtLiAOyeUeUeUeUGKpIpIXOXCXCXCXCXCdKdKXClhlhlhXCdKdKdKRHPLyfKQhwRCyfWGRHdKdKIwIwIwIwkvIwIwIwIwIwIwIwIwdKQtQtQtQtQtQtdIipgmMDqKUUjxjxjxgpjxjxjxsoGlXPovovEqmnOdVrjTsBurvzxajTgjgjEegjgrjTdKdKdKdKdKdKdKdKdKdKdKdKkULiLikULiLikULiLiqmqmqmqmqmwMicgVJjQeQeXqUNWjQeqmdjdjdjdjdjdjdjdjdjdjdjdjdjdjIQjQhgMKaceMdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeobaeaevufwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdKdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdKdKdKdKdKHbgbgbgbgbgbHbpykzpyNvpyfvpyGKAGJJpAxSxSxSxSWFyGMAXOXCCOuWXCXCXCXCXCAElhntXCXCXCXCRHRHRHUrhJskLaUrRHXCXCIwRBMfVdwPMfZDVdSAtQtQSAIwdKQtpNpNpNpNQtipipYPMDqKYPYPgmYPGTYPgmWiipGlovovovEqioovovjTttvzvzMojTgtgjEegjgtjTdKdKdKdKdKdKdKdKdKdKdKdKkUSSSSkTSSSSkTSSSSELylQeQeqmHcwAgVJjQeQeQeUNWjQeXqdjxLKyqwKyKyKyqwKyKyKyqwVFLdYDhckeMKaceMdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeaeaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdIdIdKdKdIdIdKdIdIdIdIdIdKdKdKdIdKdKdIdIdIdIdIdIdIaaaaaaaaaadIdIaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKHbgbgbwBHbHbHbqSmrqSInqSokqSGKMnZMosGVGVGVGVrSMAmVXOjqMmEjDfPNlhzvlhlhlhlhlhzvlhXCVDHjVTUMiVpqVDZEuRuSVDIwDKZJXRuLtsTdVdruSzSzruIwdKQtxYslXnsFgvjfOEjfVENljfjfjfjffYjfDLHWipjTjTovovEqioovovjTUYvzvzIkjTgygjEegjgjjTdKdKdKdKdKdKdKdKdKdKdKdKkUSSSSSSSSSSSSSSSSELQeQeQeqmVoVmIdJjlQQeQeUNFTWdWdFLCeBepCpCpCpCpCpCpCpCpCJmVfARARSXMKaceMdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeobaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdIdKdKdIdIdIdKdKdKdKdKdKdKdKdIdKdKdIdIdIaaaaaaaaaadIdIdIdIaaaaaaaadIdIdIdIdIdIdIdKdKdIdIdKdKdKdKdKdKdKdKdKHbgbgbKVHbHbHbqSlLwYGwwYfpqSqSqSpIpIpIpIpIpIpIGzmVXOyyyyyyyyPNlhvsiwiwUAiwiwqnlhXCVDVDVDLJjIpqMjpXVDVDVDIwAoyzVdZmZJZJvKANSASASAIwdKQtgEgFjKgGQtPlPDwiXWPbPbPbPbPbUBPbVJJcPbvMAZAZAZMCioovovxWvzvzvzxamagjgjEegjuAjTdKdKdKdKdKdKdKdKdKdKdKdKkUthSSSSSSSSSSSSthELQeQehdqmqmqmnkmiqmqmQernwTwTwTHqkdvGGbAvAvAvAvAvAvAvAvOedjacacacacaceMdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeaeaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIaaaaaaaadIdIdIdIdIaaaaaaaaaadIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKHbHbHbHbHbHbVOrJGywSUnseoErJozqSpIwXzsMqwznOpIpmBZpTnhnhiFyyPNtPEyzBqEYJztzBEzntXCheVDuhKZSKloJYKZKBVDhQIwVdVdVdMYVdRHRHxQRHRHRHRHdKQtgHgHIEgHQtYPvkrcBEEDEDvyfEvympEDXKNgxOoPRVYARVreiNxxKYCpwcwcwcmhmagjgjFzjtGvjTdKdKdKdKdKdKdKdKdKdKdKdKHIHIHIHIHIHIHIHIHIqmQeQeQeQeQfOqhtJjylqmzIQeQeQezIdjnTpKZBisisisisisisisisGXrVXJXJXJXJXJybdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeobaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIaadIdIdIdIdIdIdIdIaaaaaaaadIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKqSwYBLOnlLwYSDwYfpBLOnnzpIQOMlMloYMlHQXXmVXOjqyySpjqPNrMLAZtYZzBYZQAZtrMXCVDVDuhKZnjQKGYKZKBVDVDXCfQlhlhiPzvRHzlsPebRdTMRHRHQtvEvEhqvEQtYPZURcYPYPYPTXSGTXILYPqKRcipDVDVJBJBYKmcJBJBDVUYUYUYUYjTjTjTjTjTjTjTdKdKdKdKdKdKdKdKdKdKdKdKHIhBhBDgQbhBDgQbQbZuQeQeQeQeQeQeQeJjQeqmqmqmqmJlqmdjrvrvFKhLMHMHLzAvAvAvAvevdjdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeaeaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaadIdIdIdKdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKqSJUltnelfnBRowYlfNWNWroKEDCQmQmWxMlpIWCWCXOyyyySpyyyylJwfzBztrYsvxwxKJCPuRyRyPjCyUmKHUxVQsasasajpCtRwNhLZqXqGebQaoJuopLTMLajngIgJZcjnQtPlZURcUhYPYPTXYeTXILYPqKadsSDVfCmomoJMXozMvoDVdIdIdIdIacdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKHIQbQbQbQbhBQbQbQbZuQeQeQeQeQeQeQeJjQeQeQeylQeQeQedjrvrvFKAvAvAvAvAvAvAvAvevdjdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeobaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaadIdIdIdKdKdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKqSVzOGOGOGWBQrcwOGOGOGMipITGXOXOXOXOXOQHQHQHQHQHBpnhnhZQSxtDtDTrtDyuXNZQpwTxpwEQCxpwhhpwCxpwpwTxpwCSlFSinZibrWZhZhZhZhZhqHLajngIgJZcUaqthUKwWOhUhUhUhUhUOtVHOtjzYPQLngHVUpUplYvwMPfxDVdIdIdIdIacdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKHIQbQbQbQbhBQbQbQbZuCfQeQeQeQeQeQeJjQeQeLWLWLWQehddjrvrvFKAvAvAvAvAvAvAvAvOedjdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeaeaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaadIdIdKdKdKdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKqSGEpZpZpZmquOTLMvMvMvyipITGNbdIdIdIdIQHeKLrBtULzqzqzqtvDZyZASjVGZXiKnVStTjGUKxcUKUKUKGWVDVDVDpqrMpUINlhTQqXqGebebebgRVBoCaMjHjHjHICLvQtYPZURcwiYtzUzUzUHRyradSNhUiDDVfxmomolxmomofxDVdIdIdIdIacdIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKHIQbQbQbQbUTlnlnlnqmqmQeQeQeQeQequQqQequLWUwQeQeQedjsmrvFKhLMHMHLzAvAvAvAvevdjdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeobaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaadIdIdKdKdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKqSypTcTcTcXzrjCiTcTcTcdPpITGNbdKQHQHQHQHeKeKeKQHQHXCXCrMQAZtYZtSEfHCOhrMXCXcPPjFsasaSFkSVDVDPPXcXCqkINQXVWlhRHzlCCebMhVByfaMjHEYFiEYICQtUUXSmegZipYPYPYPsYWYzUgczUEpDVfCmogeYOgemovoDVdIdIdIdIacdIdIdIdIdIdIdKdIdIdIdIdIdIdIdIdIdIdIHIQbQbQbQbQbwUikQbQeirQeQeQeQeQeQeQeJaFoCDFoFoFoYydjrvrvFKAvAvAvAvAvAvAvAvZTdjdIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdKvuvuaeaeaeaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKqSkmTcTcXeoHWKFDsLTcTcYppITGNbdKQHodECKcqseKeKqsQHivXCAEpHzBztZlPgOYkOEKXCXCXCXCXCXCXCXCXCXCXCXCXCrMINznVWrMXCXCsUsUsUsUIXIXIXIXlXIXIXIXJHTJMIomxkYPYPYPsYILVKUfVKVKDVDVDVDVnEDVDVDVDVacacacacacdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIHIQbTOQbQbTOQblnTOQeqmJnvNvNvNQeQeQeQeQeLWQeQeQehddjrvrvFKAvAvAvAvAvAvAvAvGbdjdIdIdIdIdIdIdIdIdIdIdIdIdKdKdKvuvuaeaeobaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKqSypTcTcXemQCRoDsLTcTcdPpITGNbdKQHNFiEXueKeKBHBHQHQHXClhAKMdMdvpNBzbtIkcnbnbWLnbnbnbWLnbnbOlWLnbnbnbONDdVWlhlhlhsUGDgqCUIXyDWTHSunYicdIXWJRPMIlqxkPlYPYPsYILtrYdTvTvTbRfjMNqoQCPggCPTzKbCPacdIacdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIHIHIHIHIHIHIHIHIHIqmqmQeQeQeQeQeQeQeQeQeLWQeQeQeQedjrvrvDTwowoGbAvAvAvAvAvzcdjdIdIdIdIdIdIdIdIdIdIdIdIdKdKvuvuaeaeaeaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaadIdIdIdIdIdIaaaaaaaadIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdKdKdKdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdKdKdKXCzuzuzuzuzuXCdKdKdKdKdKdKamdKdKDXLHLHLHLHLHLHLHLHLHLHLHLHLHLHLHLHLHDXDXdKdKdKdKdKdKXUjEpzXUsosososososososodIjTCTCTJtJgncmHmHcfDqndflfsndfyfzfnRUndfBfFfKnddKdKdKdKdKdKdKdKGkGkGkGkGkGkGkGkGkGkGkGkGkGkKMuVQIVqwsuFuFLmuFuFNIGhMsGhGhGhMsGhGhGhysVsVsEaKMacKzacacacdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeRKeBMeaefwfwdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdIaaaaaaaadIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdKdKdKdKdKHbHbHbHbHbHbHbdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKXCXCQpXCQpXCXCdKdKRHRHRHRHRHdKdKDXLHLHLHLHDXixDXDXYzLHLHLHLHLHLHLHDXDXdKdKdKdKdKdKdKXUjEugXUpOkEpOfmpPROpPEUARBCXDXDkPfRBCliliufmjXbBSfsndfsfFfsVnndfsfVfsnddKdKdKdKdKdKdKdKGkzazaBVzazaBVzazarmJEphphphMcZOZOMbErErErjadQErTEVsIbVsVsVsooyHyHyHDOtdyHyHWIDaLydldlacdKdKdKdKdKdKdKvudKdKdKdKdKdKdKvudKdKdKdKdKdKdKvuvuvuaeaesVlCaefwfwdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaadIdIdIdIdIdIaaaaaaaaaaaaaaaaaadIdIdIdKdKdKdKdKdKHbSJgbgbgbiYHbqSqSqSqSqSqSqSGKGKGKGKGKGKGKGKGKdKdKdKdKdKdKdKdKdKdKXCAElhntXCdKdKdKRHhNcXhNRHdKdKdKdKdKLHLHDXFxVRVRFxLHLHLHLHLHLHLHdKdKdKdKdKdKdKdKdKXUjEugXUpOpOpOnQmZmZqvsoidjTCTCThRfZjTvmKvPYPYBCLnnvLKnvVinvITPofsfFfKnddKdKdKdKdKdKdKdKGkzazazazazazazazakIphphphphKMhAkplTDpqdZOmSoOnqsGvBImVGXxVGyYVGXxVGQNOoKtAOQwDANXscAgUSAgAgAgAgAgAgAgiIAgAgAgAgAgAgAgiIAgAgAgAgAgAgAgUSOFOFOFOFIlQgfwfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaadIdIdIdIdIdIdIaaaaaaaaaaaaaadIdIdIdKdKdKdKdKdKHbRtgbgbgbxoHbpyTPJSJSJSUcGOGKeUeUeUGKeUeUeUGKdKdKdKdKdKdKdKdKdKdKXClhlhlhXCdKdKdKRHwJTMwJRHRHRHRHRHdKDXDXDXFxfWUQFxDXDXDXDXDXDXacacacacacacacacdKdKXUjEpzXUpOpOpOlNpOnopOsodIjTfICThRfJjTPijTjTjTndvYjTjTjTgdjTjTjTfsfsfsnddKdKdKdKdKdKdKdKGkzazazazazazazazaGkphphphGkKMKMKMQWKMKMZOmSsMZOKMKMKMKMKMKMKMKMKMKMKMKMKMKMKMnxNXmsOcBnjUXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJXJBnBnUgUghkUgQgfwfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIaaaaaaaaaaaadIdIdIdKdKdKdKdKHbRtwBfHwBxoHbxjUOxixixirbRglEWsCJCleUeUeUeUGKdKdKdKdKdKdKdKdKdKdKXClhlhlhXCdKdKdKRHwJTMwJUzZFcYqHRHdKdKdKdKFxFxqLFxdKdKdKdKdKdKacdKdKdKdKdKdKacacacXUCdfrXUpOhopOlNpOhopOsojTjTndeLIFndndxDjTgaWVkHpWjTghgjEegjgjjTndndndnddKdKdKdKdKdKdKdKGkzazapDzazapDzajlGkFFHzNzGkVoZKgVJjQeKMKMSOzWKMKMdKdKdKdKdKdKdKdKdKdKdKdKdKacJzkXAFMKaceMdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeaeaeaefwfwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdIdIdIdIdIdIdIdIdIaaaadIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIaaaaaadIdIdIdIdKdKdKdKdKHbwkhDhDhDuuuGWhMJxfyOxfyKexGKtLiAOyeUeUeUeUGKpIpIXOXCXCXCXCXCdKdKXClhlhlhXCdKdKdKRHPLyfKQhwRCyfWGRHdKdKIwIwIwIwkvIwIwIwIwIwIwIwIwdKQtQtQtQtQtQtdIipgmMDqKUUjxjxjxgpjxjxjxsoGlXPovovEqmnOdVrjTsBurvzxajTgjgjEegjgrjTdKdKdKdKdKdKdKdKdKdKdKdKGkLiLiGkLiLiGkLiLiqmqmqmqmqmwMicgVJjQeQeXqUNWjQeqmdjdjdjdjdjdjdjdjdjdjdjdjdjdjIQjQhgMKaceMdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeobaeaevufwdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdKdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdKdKdKdKdKHbgbgbgbgbgbHbpykzpyNvpyfvpyGKAGJJpAxSxSxSxSWFyGMAXOXCCOuWXCXCXCXCXCAElhntXCXCXCXCRHRHRHUrhJskLaUrRHXCXCIwRBMfVdwPMfZDVdSAtQtQSAIwdKQtpNpNpNpNQtipipYPMDqKYPYPgmYPGTYPgmWiipGlovovovEqioovovjTttvzvzMojTgtgjEegjgtjTdKdKdKdKdKdKdKdKdKdKdKdKGkzazaBVzazaBVzazaELylQeQeqmHcwAgVJjQeQeQeUNWjQeXqdjxLKyqwKyKyKyqwKyKyKyqwVFLdYDhckeMKaceMdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeaeaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdIdIdKdKdIdIdKdIdIdIdIdIdKdKdKdIdKdKdIdIdIdIdIdIdIaaaaaaaaaadIdIaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKHbgbgbwBHbHbHbqSmrqSInqSokqSGKMnZMosGVGVGVGVrSMAmVXOjqMmEjDfPNlhzvlhlhlhlhlhzvlhXCVDHjVTUMiVpqVDZEuRuSVDIwDKZJXRuLtsTdVdruSzSzruIwdKQtxYslXnsFgvjfOEjfVENljfjfjfjffYjfDLHWipjTjTovovEqioovovjTUYvzvzIkjTgygjEegjgjjTdKdKdKdKdKdKdKdKdKdKdKdKGkzazazazazazazazaELQeQeQeqmVoVmIdJjlQQeQeUNFTWdWdFLCeBepCpCpCpCpCpCpCpCpCJmVfARARSXMKaceMdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeobaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdIdKdKdIdIdIdKdKdKdKdKdKdKdKdIdKdKdIdIdIaaaaaaaaaadIdIdIdIaaaaaaaadIdIdIdIdIdIdIdKdKdIdIdKdKdKdKdKdKdKdKdKHbgbgbKVHbHbHbqSlLwYGwwYfpqSqSqSpIpIpIpIpIpIpIGzmVXOyyyyyyyyPNlhvsiwiwUAiwiwqnlhXCVDVDVDLJjIpqMjpXVDVDVDIwAoyzVdZmZJZJvKANSASASAIwdKQtgEgFjKgGQtPlPDwiXWPbPbPbPbPbUBPbVJJcPbvMAZAZAZMCioovovxWvzvzvzxamagjgjEegjuAjTdKdKdKdKdKdKdKdKdKdKdKdKGkfkzazazazazazafkELQeQehdqmqmqmnkmiqmqmQernwTwTwTHqkdvGGbAvAvAvAvAvAvAvAvOedjacacacacaceMdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeaeaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIaaaaaaaadIdIdIdIdIaaaaaaaaaadIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKHbHbHbHbHbHbVOrJGywSUnseoErJozqSpIwXzsMqwznOpIpmBZpTnhnhiFyyPNtPEyzBqEYJztzBEzntXCheVDuhKZSKloJYKZKBVDhQIwVdVdVdMYVdRHRHxQRHRHRHRHdKQtgHgHIEgHQtYPvkrcBEEDEDvyfEvympEDXKNgxOoPRVYARVreiNxxKYCpwcwcwcmhmagjgjFzjtGvjTdKdKdKdKdKdKdKdKdKdKdKdKYRYRYRYRYRYRYRYRYRqmQeQeQeQeQfOqhtJjylqmzIQeQeQezIdjnTpKZBisisisisisisisisGXrVXJXJXJXJXJybdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeobaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIaadIdIdIdIdIdIdIdIaaaaaaaadIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKqSwYBLOnlLwYSDwYfpBLOnnzpIQOMlMloYMlHQXXmVXOjqyySpjqPNrMLAZtYZzBYZQAZtrMXCVDVDuhKZnjQKGYKZKBVDVDXCfQlhlhiPzvRHzlsPebRdTMRHRHQtvEvEhqvEQtYPZURcYPYPYPTXSGTXILYPqKRcipDVDVJBJBYKmcJBJBDVUYUYUYUYjTjTjTjTjTjTjTdKdKdKdKdKdKdKdKdKdKdKdKYRTOTOlnigTOlnigigzPQeQeQeQeQeQeQeJjQeqmqmqmqmJlqmdjrvrvFKhLMHMHLzAvAvAvAvevdjdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeaeaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaadIdIdIdKdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKqSJUltnelfnBRowYlfNWNWroKEDCQmQmWxMlpIWCWCXOyyyySpyyyylJwfzBztrYsvxwxKJCPuRyRyPjCyUmKHUxVQsasasajpCtRwNhLZqXqGebQaoJuopLTMLajngIgJZcjnQtPlZURcUhYPYPTXYeTXILYPqKadsSDVfCmomoJMXozMvoDVdIdIdIdIacdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKYRigigigigTOigigigzPQeQeQeQeQeQeQeJjQeQeQeylQeQeQedjrvrvFKAvAvAvAvAvAvAvAvevdjdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeobaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaadIdIdIdKdKdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKqSVzOGOGOGWBQrcwOGOGOGMipITGXOXOXOXOXOQHQHQHQHQHBpnhnhZQSxtDtDTrtDyuXNZQpwTxpwEQCxpwhhpwCxpwpwTxpwCSlFSinZibrWZhZhZhZhZhqHLajngIgJZcUaqthUKwWOhUhUhUhUhUOtVHOtjzYPQLngHVUpUplYvwMPfxDVdIdIdIdIacdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKYRigigigigTOigigigzPCfQeQeQeQeQeQeJjQeQeLWLWLWQehddjrvrvFKAvAvAvAvAvAvAvAvOedjdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeaeaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaadIdIdKdKdKdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKqSGEpZpZpZmquOTLMvMvMvyipITGNbdIdIdIdIQHeKLrBtULzqzqzqtvDZyZASjVGZXiKnVStTjGUKxcUKUKUKGWVDVDVDpqrMpUINlhTQqXqGebebebgRVBoCaMjHjHjHICLvQtYPZURcwiYtzUzUzUHRyradSNhUiDDVfxmomolxmomofxDVdIdIdIdIacdIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKYRigigigigzJlrlrlrqmqmQeQeQeQeQequQqQequLWUwQeQeQedjsmrvFKhLMHMHLzAvAvAvAvevdjdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKvuvuaeaeobaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaadIdIdKdKdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKqSypTcTcTcXzrjCiTcTcTcdPpITGNbdKQHQHQHQHeKeKeKQHQHXCXCrMQAZtYZtSEfHCOhrMXCXcPPjFsasaSFkSVDVDPPXcXCqkINQXVWlhRHzlCCebMhVByfaMjHEYFiEYICQtUUXSmegZipYPYPYPsYWYzUgczUEpDVfCmogeYOgemovoDVdIdIdIdIacdIdIdIdIdIdIdKdIdIdIdIdIdIdIdIdIdIdIYRigigigigigQbrpigQekTQeQeQeQeQeQeQeJaFoCDFoFoFoYydjrvrvFKAvAvAvAvAvAvAvAvZTdjdIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdKvuvuaeaeaeaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKqSkmTcTcXeoHWKFDsLTcTcYppITGNbdKQHodECKcqseKeKqsQHivXCAEpHzBztZlPgOYkOEKXCXCXCXCXCXCXCXCXCXCXCXCXCrMINznVWrMXCXCsUsUsUsUIXIXIXIXlXIXIXIXJHTJMIomxkYPYPYPsYILVKUfVKVKDVDVDVDVnEDVDVDVDVacacacacacdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIYRiglSigiglSiglrlSQeqmJnvNvNvNQeQeQeQeQeLWQeQeQehddjrvrvFKAvAvAvAvAvAvAvAvGbdjdIdIdIdIdIdIdIdIdIdIdIdIdKdKdKvuvuaeaeobaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKqSypTcTcXemQCRoDsLTcTcdPpITGNbdKQHNFiEXueKeKBHBHQHQHXClhAKMdMdvpNBzbtIkcnbnbWLnbnbnbWLnbnbOlWLnbnbnbONDdVWlhlhlhsUGDgqCUIXyDWTHSunYicdIXWJRPMIlqxkPlYPYPsYILtrYdTvTvTbRfjMNqoQCPggCPTzKbCPacdIacdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIYRYRYRYRYRYRYRYRYRqmqmQeQeQeQeQeQeQeQeQeLWQeQeQeQedjrvrvDTwowoGbAvAvAvAvAvzcdjdIdIdIdIdIdIdIdIdIdIdIdIdKdKvuvuaeaeaeaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKqSypTcTcXemQCRoDsLTcTcenKNAuNbdKQHUViTWgQTQTmUGdGdmUODODODODODQPiPlhVWAbuvuvuvuvuvuvuvuvuvYLuvuvuvuvpMuvwRNRNRNRBPpEpEtHvitmJFJFJFJFVLFELsvxRbomxkYPYPYPadVHklgTORDMsARfTzTzNxycjLycycxrTzacdIacdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIqmQevNvNvNQequQeQequLWLWLWQeQedjsmrvrvrvrvADAvAvAvAvAvGbdjaaaaaadIdIdIdIdIvudIdIdIdIvuvuaeaeobaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKqSkmTcTcXemQWKoDsLTcTcqjpIWbNbdKQHUuUuwtsxOJHEtjtjHEqXqXqXDHqXqXTCDHopwuTYTYTYTYTYTYTYTYTYhFTYTYhYnuRwksVWlhkslhsUGDGDGDIXIfxsxsGjxsXsIXuqvrswGUxkYPKGYPKGadLNCZMkCYPpLNSwSwSwSwNPgkgigiglacdIacdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIqmJnQeQeQeQeQeQeQeQeQeQeQeQehddjdjdjdjdjdjdjAvAvAvAvAvdjdjaaaaaaaaaadIdIdIvudIdIdIvuvuaeaeaeaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIaaaaaaaaaaaaaaaadIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaadIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKqSypTcTcXemQCRoDsLTcTcyppIWbNbdIQHstUulUfOeKBHBHQHQHXCXCXCXCXCXCXCXCiMjiXCXCXCXCXCXCXCXCXCLGXCXCXCXCmdXCXFXCXCsUsUfXGDEbIXNQxsxsxsxsVpqNEAkuuUUXxkxkxkxkxkxkRfFPDnHNqZRfMGgigiDGTzVwTaTaBuacdIacdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaqmQevNvNvNQeQeQeQeQeQeQeQeQeQeqmaaaaaaaaaadjwawawawawadjaaaaaaaaaaaahxhxdIvudIdIvuvuaeaeobaeaevuvudKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdJdJ
@@ -2839,21 +2843,21 @@ dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIaaaaaaaaaaaaaaaadIdIdIdI
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIaaaaaaaaaaaaaaaadIdIdIdIdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdKdKzTtiOwOwuMpYmWzxPMBsIIzxoUpYCHgDATxnUvHYQiQivbAzQiCsYoPmFdHsyoZNzHzHnwmtTeYslwGCGCoVnwzHvdusKSjgBbFswxfqIAPIdIdIdIdITBTBYHYHYHTBTBMgrdTBTBYHYHYHTBTBaaaaaaaaaaaaaaaaababababdIdIMRlkVarLrLrLrLrLPqIhIhdNTydOMtMtpgMtRXYWTmaVaVSQTmaheDuxWlWlWlihuxWldmWlWluxWldmWleqGaGadHdHdHdBaaaaceceananandHceananandHaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdKdKdKdIdIdIaaaaaaaaaaaaaadIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIaaaaaaaaaaaaaaaadIdIdIdIdIdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdKdKdKdKdKzTTjgfgfgfplqqiWjosjNnLRQvIvygrqiLQMVAJsuaIsuasfpdHhpdpdCzrqCupVIjIjIjtuEHENzXRDEHIuIjIjIjusUCRIZvsNqxRlFCPIdIdIdIdITBIJSVSVSVIJTBUjPdTBySlPNulPySapaaaaaaaaaaaaaaabababababdIdIMRlklklklklklkIisTvSvSLlhiPsPsPsuwPshWBOPQsnsnPQPQJrDBDiDiDiDijDDIDIzDDIXQWlWlMRMRMRwHwHMRdHdHdHdBaaaaceananandHceananandHaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdKdKdKdIdIdIaaaaaaaaaaaadIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIaaaaaaaaaaaaaaaadIdIdIdIdIdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdKdKdIdKzTTjgfgfgfhZqqOxJIZfNsJWNcvIIMIMtCrkzHHYxdHxREQikNkNkNkNkNZrUChnIjynNGzhEdsKIjFlEdFlGLvFIjBWHuoLIcIcIcIcHwIcIcIcIcIcIcFYlPlPlPFYFYIBTnFYtKtKzGtKtKapdIdIaaaaaaaaaaababababdIdKdKMRMRMRMRMRMRNAezwhNAIzIzZwMRMRMRwgMRuiuiMRWRWRMRMRMRMRMRMRMRMRMRMRMRMRWlIZWlWlWlWluxJGJGMRMRdHdHdHaaaaceananandHceananandHaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdKdKdIdIdIdIaaaaaaaaaadIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdIdIdKdKdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIaaaaaaaaaaaaaaaadIdIdIdIdIdIdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIzTGGCWBgkKpYRpHrAtIKYFIKIKExGmhKMpiLyIEwHYCwHYEwkNPOTNMUkNzHJxhnIjDEFlzhFlsKSCFlFlFlFlFlIjusUCKOIcQjKeDQUInSlvnmZLqUIcFYlPlPlPFYFYIBRsJhJhJhuZFYFYapdIdIdIdIdIaaababababdIdIdKdKdKdKMRHkHkMRMRmbGAIzIzlkEMMRrNTwBoMRIZIZMRJeJeMRdHdHdHdHdHdHdHdHdHdHMRMREvWlWlWlWlWlWlWlWlMRMRdHdHaaaaceananandHdBaaaaaadHaaaaaaaaaaaaaaaaaaaaaadIdIdIdKdKdKdIdIdIaaaaaaaaaadIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdIdIdIdIdIdIdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIaaaaaaaaaaaaaaaadIdIdIdIdIdIdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIzTGGCWBgkKpYRpHrAtIKYFIKIKExGmhKMpiLyIEwHYCwHYEwkNPOTNMUkNzHJxhnIjDEFlzhFlsKSCFlFlFlFlHdIjusUCKOIcQjKeDQUInSlvnmZLqUIcFYlPlPlPFYFYIBRsJhJhJhuZFYFYapdIdIdIdIdIaaababababdIdIdKdKdKdKMRHkHkMRMRmbGAIzIzlkEMMRrNTwBoMRIZIZMRJeJeMRdHdHdHdHdHdHdHdHdHdHMRMREvWlWlWlWlWlWlWlWlMRMRdHdHaaaaceananandHdBaaaaaadHaaaaaaaaaaaaaaaaaaaaaadIdIdIdKdKdKdIdIdIaaaaaaaaaadIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdIdIdIdIdIdIdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIaaaaaaaaaaaaaaaadIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIzTzTzTzTzTpYFIPEPEyxvCvPBYnGYfhnSqTFQZtlIMJqhukNAllIryryPzAfQCUFuIGsQytWQyIDszQyQyuCQyQyOHUdCuLLsOLPLPLPOkLPLPLPLPsdsOAQDlDlDlhIxRIBspYkTBTBTBFYoxapTBTBTBdIdIaaabababdIdIdIdKdKdKdKMRhTAjtZHkKkoIOfIzlktcMRrNTwBoMRnFWUMRMrOZMRaaaadHduaaaaaaaadDdHdHMRMRvAWlWlWlWlWlWlWlWlMRdHdHaaaaceananandHdHdHdHdHdHaaaaaaaaaaaaaaaaaaaaaadIdIdIdKdKdIdIdIaaaaaadIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaadIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIpYoGpYTurhTupYMOpYzHOTHsHsSruQhKFOcvkNpSfTryryPzusFZNUFfBmLcwWnKPhrCBDMNoiqorxStxHfPAiQdLbsbkwDvSWSWSWPGwnJORvuBwdRJFpqgyLtRjbYqutAAlcXGhlxmvgTBdIdIdIabababdIdIdIdIdKdKdKMRJXOaOKHkKkoIlklkdndWdXxNMRVgMRMRMRMRMRMRMRaaaadHcecececeaaaadDdHdHMRWlWlWlWldoMRWlWlWlHkdHdHaaaaceananandHduaaaaaadHaaaaaaaaaaaaaaaaaaaaaadIdIdIdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdKdKdKdKdKdKdIdIdIdIdIaadIdIdIdIdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdITuTuTuYMLuJTTuTuTukNnwnwnwkNkNSLAqRIkNkNwjWSrykNusUCCmIjXvFllHohTUytIyohKgFljJIjusUChnIcHeZiqlHeZimlmYZiHeIcSUjmKCJhCKJhJQymJhJhiQsiKUEVYSxyxpTBdIdIdIabababdIdIdIdIdKdKdKMRHMOKOKHkKkdVZZZZegHUjCeaBKecMRdKdIdIdIdIdIaaaadHanananceaaaaaadDdHMRWlWlWlWlMRMRWlWlTqMRdHdHaaaaceananandHceananandHaaaaaaaaaaaadIaaaaaadIdIdIdIdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdKdKdKdKdKdIdIdIaaaaaaaaaaaadIdIdIdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdITtZRnAZgZgBIgCkkTuzdVVvXpsWakNhnAqRICXkNkNkNkNkNYgUCCmzozoWwWDWwzoEcEcUZhfUZEcEcusUCUJIcIclZIcIclZIcIcDtIcIcTBGSYBYBXyKfqzzjTlJLKDTpniTBTBTBTBTBdIdIdIabababdzdIdIdIdKdKdKMROKOKrFlRALoIlklkrBdWdXeeMRwgMRdKdIdIdIdIaaaaaadHanananceceaaaaaadHMRMRWlWlWlWlWlWlWlMRMRdHdHdBaaceananandHceananandHaaaaaaaaaaaadIaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdKdKdIdIdIdIdIdIaaaaaaaaaaaaaaaadIdIdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIaaaadIdIdIdIdIdIdIdIdIdIdIdIdITthSYTZgZgGezYvqRxuHZGZGZCCcubYhAerXOjOjjAOjOjwvUdCupVzoItPUxzJVykEcKqiesutqDmEcBWjchnIcktBdJpxAKPIcMyRqRqIcQQYjFYFYJotnpoPkLVZVnJhsmEwmapdIdIdIdIdIdIababababdIdIdIdIdKdKMROKEESkuNZZeiZZZZejtcMRMRMRVgMRdKdIdIdIdIaaaaaadHananananceaaaaaadHdHMRMRWlWlWlWlWlMRMRdHdHdHdzdBaaaaaaaadHceananandHaaaaaaaaaaaadIdIdMdMdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdKdKdKdIdIdIdIdIaaaaaaaaaaaaaaaaaaaadIdIdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdITtvQiUQhEhBzMFMFmgWPWPrRsDWPWWQFHpCnCnCnnXCnCnWnBBrQhnWwOvHOLhHOSdUZQlpkhXMBUPUZusUChnIcNtFnIcJdKoJpPFChZjhrYVGFFYNiLVYcRFjXSumNuliaDsFkapmPmPmPmPmPdIdyabababdzdIdIdIdIdKMRHMpJJkIzYlVakjCVdRauacdKdIVgMRdKdIdIdIaaaaaaaadHananananceceaaaadDdHdHMRMRCBWlWlMRMRdHdHdHdHdHdHdHdHdHdHdHceananandHaaaaaaaaaadIdIdIaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdKdKdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaadIdIdKdJdJ
-dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIaaaaaaaaaaaadIdIdIdIdIdIdIdIdITthSGezYuPzYzYvqPxZGZGYnqCXpWMkMnVFrFrKptFFrFrBrEnrtoXPrQYJwXVyaZkArDrAXluETLQUZusUChnIcIcIcIcIcIcIcDUTfTDhrFbYCFYNiLVHaThThpBLVNiiawKGnapzzQEQEqAmPdIdIababababdIdIdIdIacacacdSEXacacacMReCefMRacdKdIVgMRdKdIdIaaaaaaaaaadHdHananananceceaaaadDdHdHMRMRHkMRMRdHdHdHdHdtdxduaaaaaaaaceceananandHaaaaaaaaaadIdIdIaaaaaaaaaaaadIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdKdKdKdKdKdIdIdIdIaaaaaaaaaadIdIaaaaaaaaaadIdIdIdKdJdJ
+dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIaaaaaaaaaaaadIdIdIdIdIdIdIdIdITthSGezYuPzYzYvqPxZGZGYnqCXpWMkMnVFrFrKptFFrFrBrEnrtoXPrQYJwXVyaZkArDrAXluETLQUZusUChnIcIcIcIcIcIcIcDUTfTDhrFbYCFYNiLVHaThxvpBLVNiiawKGnapzzQEQEqAmPdIdIababababdIdIdIdIacacacdSEXacacacMReCefMRacdKdIVgMRdKdIdIaaaaaaaaaadHdHananananceceaaaadDdHdHMRMRHkMRMRdHdHdHdHdtdxduaaaaaaaaceceananandHaaaaaaaaaadIdIdIaaaaaaaaaaaadIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdKdKdKdKdKdIdIdIdIaaaaaaaaaadIdIaaaaaaaaaadIdIdIdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdKdKdKdKdKdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdKdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIaaaaaaaaaaaaaadIdIdIdIdIdIdITtZRgCgCgCgCgCkkTtzTzTzClazTzTlaSHzTzTzTsgzTkNkNYgUChnWwMwHOnYnloqUZqJpkhXtMHKUZusUCUJofJbGNiRiRprIcIchrhrhrTBPJFYAwTBwZocUGnUTBjPiftajPVXCrCrCrCrmPdIdIdyabababdzdBsZdldlxEBqyMnRacdKccMReCSMMRccdKdIVgMRdKdIdIaaaaaaaaaaaadHanananananceceaaaadDdHdHdHdHdHdHdHababdHdvaaaaaaaaaaaaceanananandHaaaaaaaaaadIdIdIdIaaaaaaaaaaaadIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdKdKdKdKdIdIdIaaaaaaaaaadIdIdIdIaaaaaaaadIdIdIdIdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdKdKdKdKdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdKdIdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIaaaaaaaaaaaaaaaadIdIdIdIdITtTtTtgCSclzTtTtTtdIzTupQJDuDuyXvJqhMSiZLkzTdINKusUChnWwkxHOXEnlizUZAJpkyjtMHKUZusUCBWzgzfPXsQPXkqofdIAhyUyUKdCaKdKdKdimKdKdgSKdLOxqOBjPEBGiqpqpFGmPdIdIdIdyabababdzsZdldlxEFwIYBGacdKccMReCefMRccdKdKVgMRMRdIdIaaaaaaaaaaaadHdHanananananceceaaaaaaaaaaaaaaaaaadDdydHduaaaaaaaaaaaaceanananandHaaaaaaaaaadIdIdIdIdIdIaaaaaaaaaadIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdKdKdKdKdKdIdIdIaaaaaaaaaadIdIdIdIaaaaaaaaaadIdIdIdIdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdKdKdIdIdIdIdIdKdKdKdKdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIaaaaaaaaaaaaaaaadIdIdIdIdIdITtTtTtTtTtdIdIdIzTvfnananaujVbqhMSHtIHzTdINKusUChnWwOUHOTsYUmxUZOspkToNfxIUZusotOuKsLEBTBTBTHgofdIAhHTCEmABXKdBaWXmDIrtehaoWpvEOKTjPvUHPCrCrmkmPdIdIdIdIdyabababsZdldlxEmIdldlacdKccyWSBNLyWccdKdKehsXMRdIaaaaaaaaaaaaaaaadHdHananananancececeaaaaaaaaaaaaaaaadDdHaaaaaaaaaaaaceceananandHdHaaaaaaaadIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdKdKdKdKdKdKdKdIdIdKaaaaaaaaaadIdIdIdIaaaaaaaadIdIdIdIdIdIdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdKdKdKdKdKdKdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdIaazTzTzTzTzTYbTIzTzTsIsIzTdINKusUChnWwzeHOHOHOUWUZjhpkpktMhHUZBWRuRTrABcPXsQPXkqofdIAhtGCAyNwGXBFQlGLfFQFQLfXBYXrKjdjPVXEmVXVXVXmPrUrUdIdIdIabababdIdIacacacacacacdKccyWSBDYyWccdKdKMuFuMuMuFSFSFSaaaaaaaaaaaadHdHanananananancececececececececeaadHaaaaaaaaaaceceanananandHaaaaaaaadIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdKdKdKdKdKdKdKdIdIdIdIdIaaaaaaaaaadIdIdIdIaaaaaaaadIdIdIdIdIdIdIdKdJdJ
 dJdJdKdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdKdKdKdKdKdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdKdKdKdKdKdKdKdKdKdKdKdKdKdKdIdIdIaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIaaaaaaaaaadIzTzTzTzTzTzTzTzTdINKYgUChnzojSvTFtSvvLEchEqTIqtpSoEcuszyUJofPBrTyPGtwOofdIAhtGEkAaYmTHNmHARnNmkQSTKdDxxqiJJDlgogLOHLJRJRZPrUdIdIdIabababdIdIdIdIdIdIdKdKdKyWyWSBNLyWyWyWyWMudUwCpeDWekFSFSaaaaaaaaaaaadHdHanananananananananananananandqdHaaaaaaaaceceanananandHdHaaaaaaaadIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdKdKdKdKdKdKdKdIdIdIdIaaaaaaaaaadIdIdIdIaaaaaaaadIdIdIdIdIdIdIdIdKdJdJ
-dJdJdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdKdKdKdKdKdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIaaaadKdKdKdKdKdKdKdKdKdKdKdIdIdIdIaaaaaaaaaaaaaadIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdINKusUChnzozozoUkzozoEcEcEclWEcEcEcuszyhnZoZoZoZoZoZoZoacAhHTuYYaMazmzANEhpBUmCFXKdqyhViJDNDNogLOLODNDNLOrUdIdIdIdDababaadIdIdIdIdIdIdKdKyWsrxMemvvhGPtqWMueleoJAeresetFSaaaaaaaaaaaaaadHdHananananananananananananandHdHaaaaaaceceananananandHaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaadIdIaaaaaaaadIdIdIdIdIdIdIdIdIdIdKdJdJ
-dJdJdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdKdKdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIaaaaaaaadKdKdKdKdKdKdKdKdKdKdIdIdIdIaaaaaaaaaaaaaadIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdINKusUCOTHsNYHsrgHsHsQRzHzHATzHVlqcuszyhnNKdIdIdIaaaaaadIAhOWywrGnnKdAhAhAhAhWzAhKdXlxTpfjRDNogDNDNDNDNoKrUdIdIdIdIababaadIdIdIdIyWVkVkVkyWAxGBdZAxhGAxdZMugYptptKapthMFSaaaaaaaaaaaaaaaadHdHdHananananananananananandHduaacececeananananandHdHaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdKdJdJ
+dJdJdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdKdKdKdKdKdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIaaaadKdKdKdKdKdKdKdKdKdKdKdIdIdIdIaaaaaaaaaaaaaadIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdINKusUChnzozozoUkzozoEcEcEclWEcEcEcuszyhnZoZoZoZoZoZoZoacAhHTuYYaMazmzANEhpBUmCFXKdqyhViJDNDNogLOLOPHDNLOrUdIdIdIdDababaadIdIdIdIdIdIdKdKyWsrxMemvvhGPtqWMueleoJAeresetFSaaaaaaaaaaaaaadHdHananananananananananananandHdHaaaaaaceceananananandHaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaadIdIaaaaaaaadIdIdIdIdIdIdIdIdIdIdKdJdJ
+dJdJdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdKdKdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIaaaaaaaadKdKdKdKdKdKdKdKdKdKdIdIdIdIaaaaaaaaaaaaaadIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdINKusUCOTHsNYHsrgHsHsQRzHzHATzHVlqcuszyhnNKdIdIdIaaaaaadIAhOWywrGnnKdAhAhAhAhWzAhKdXlxTpfjRDNogDNDNDNDNoKrUdIdIdIdIababaadIdIdIdIyWVkVkVkyWAxGBdZAxhGAxdZMugYptptKaOmhMFSaaaaaaaaaaaaaaaadHdHdHananananananananananandHduaacececeananananandHdHaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdKdJdJ
 dJdJdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdIdKdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIaaaaaaaaaaaadKdKdKdKdKdKdKdKdKdIdIdIaaaaaaaaaaaaaadIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaadIdIdIdINKSqvjIMIMAyIMYrEGBjBjBjBjHJzHzHvduszyhnNKdIdIaaaaaaaaaaAhAhSISIAhAhAhdIRhMzOOERjPIPxemvtwtwZAHZDNDNDNLOrUdIdIdIdIababaadIdIdIdIVkmyLwTVxXAxuktzlDlDlDxhewnIMLMLIUWAxJFSaadwaaaaaaaaaaaaaaaadHdHdHdHdHdHdHdHdHdHdHdHdHcececeanananananandHdHaaaaaaaaaadIdIdIdIdIdIdIdKdKdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdIdKdJdJ
 dJdJdKdKdKdKdKdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdKdKdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIaaaaaaaaaaaadKdKdKdKdKdKdKdKdKdIdIaaaaaaaaaaaaaadIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaadIdIzRzRPcLSPcLBHmPcLBXfLBzRNKNKNKNKNKNKuszyUJNKdIaaaaaaaaaaaaaaaaaaaaaadIdIdIRhyFOiZXkbSRxuEuSZAWQBiOABNjLOZPrUdIdIdIaaababaadIdIdIdIVktJAxAxAxAxGBdZOIVkmumuMuGqiKiKiKHGrZFSaaaaaaaaaaaaaaaaaaaaaadDdHducecececececececececeananananananandHdHaaaaaaaaaadIdIdIdIdIdIdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIaaaadIdIdIdIdIdKdJdJ
 dJdJdKdKdKdKdKdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIdIdIdIdIdIdKdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIaaaaaaaaaaaaaadKdKdKdKdKdKdKdKaaaaaaaaaaaaaaaaaadIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaadIdIzRBlNSZxPcriYxPcGrVItyzRaaaaaaaahxNKwIOQhnNKdIaaaaaaaaaaaaaaaaaaaaaaaadIdIRhPeIofojPNTqVqMDNLORhTKRhRhFMFMFMFMFMaadqababdBdIdIdIdIVkAxAxAxAxAxGBHXjrjrwyAxMueyeyeyeyjjFSFSaaaaaaaaaaaaaaaaaaaaaaaadHaaanananananananananananananananandHdHaaaaaaaadIdIdIdIdIdIdIdKdKdKdKdKdKdKdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIdIaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadIdIdIdIdIdIaaaaaaaaaaaadIdIdIdKdKdJdJ
