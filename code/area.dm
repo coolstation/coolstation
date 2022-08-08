@@ -884,7 +884,7 @@ ABSTRACT_TYPE(/area/adventure)
 	name = "Adventure Zone"
 	icon_state = "purple"
 	force_fullbright = 0
-	sound_environment = 31
+	sound_environment = 31 // no fucking idea what this one means. -warc
 	skip_sims = 1
 	sims_score = 30
 	virtual = 1
@@ -2798,13 +2798,21 @@ ABSTRACT_TYPE(/area/station/quartermaster)
 
 /area/station/quartermaster/cargobay
 	name = "Cargo Bay"
-	icon_state = "quartstorage"
+	icon_state = "orange"
 	sound_environment = EAX_HANGAR
 
 /area/station/quartermaster/cargooffice
 	name = "Cargo Bay Office"
 	icon_state = "quartoffice"
 	sound_environment = EAX_HANGAR
+
+/area/station/quartermaster/cargooffice/storefront
+	name = "Quartermaster's Store"
+	icon_state = "fart"
+/area/station/quartermaster/cargooffice/gunsmithing
+	name = "Gunnery's Broomcloset"
+	icon_state = "grill"
+/area/station/quartermaster/cargooffice/idk_another_one
 
 ABSTRACT_TYPE(/area/station/janitor)
 /area/station/janitor
