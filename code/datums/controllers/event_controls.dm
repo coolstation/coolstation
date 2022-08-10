@@ -12,6 +12,9 @@ var/datum/event_controller/random_events
 #define MINOR_EVENTS_BEGIN 10 MINUTES
 #define SPAWN_EVENTS_BEGIN 23 MINUTES
 
+ABSTRACT_TYPE(/datum/random_event/major/player_spawn)
+ABSTRACT_TYPE(/datum/random_event/major/antag)
+
 /datum/event_controller
 	var/list/events = list()
 	var/time_between_events_lower = 11 MINUTES
@@ -57,6 +60,8 @@ var/datum/event_controller/random_events
 	New()
 		..()
 		for (var/X in childrentypesof(/datum/random_event/major))
+			if(IS_ABSTRACT(X)) // warc - fix for "random event cycle can pick nonexistent events "
+				continue
 			var/datum/random_event/RE = new X
 			events += RE
 
