@@ -1099,6 +1099,7 @@ ABSTRACT_TYPE(/area/adventure)
 ABSTRACT_TYPE(/area/diner)
 /area/diner
 	sound_environment = EAX_HALLWAY
+	//sound_group = "diner"
 #ifdef UNDERWATER_MAP
 	requires_power = FALSE
 #endif
@@ -1122,6 +1123,9 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner/hallway
 	name = "Space Diner Hallway"
 	icon_state = "blue"
+	sound_loop = 'sound/ambience/music/tane_loop_distorted.ogg'
+	sound_environment = EAX_HALLWAY
+	sound_loop_vol = 70
 
 /area/diner/hallway/docking
 	name = "Space Diner East Shuttle Docks"
@@ -1158,6 +1162,32 @@ ABSTRACT_TYPE(/area/diner)
 /area/tech_outpost
 	name = "Tech Outpost"
 	icon_state = "storage"
+
+/area/juicer
+	name = "Juicin' Grounds"
+	icon_state = "green"
+
+/area/juicer/club
+	name = "The Juice"
+	icon_state = "juicer"
+	sound_loop = 'sound/ambience/music/tane_loop_louder.ogg'
+	sound_environment = EAX_CONCERT_HALL
+	sound_loop_vol = 240
+	//sound_group = "diner"
+
+/area/juicer/club/outside
+	name = "Club Juice"
+	icon_state = "juicer2"
+	sound_loop = 'sound/ambience/music/tane_loop_distorted.ogg'
+	sound_environment = EAX_CARPETED_HALLWAY
+	sound_loop_vol = 140
+
+/area/juicer/club/back
+	name = "Club Juice back of house"
+	icon_state = "juicer3"
+	sound_loop = 'sound/ambience/music/tane_loop_distorted.ogg'
+	sound_environment = EAX_SEWER_PIPE
+	sound_loop_vol = 100
 
 // Gore's Z5 Space generation areas //
 ABSTRACT_TYPE(/area/prefab)
