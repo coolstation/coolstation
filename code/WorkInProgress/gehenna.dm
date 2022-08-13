@@ -25,7 +25,7 @@
 		return
 
 /turf/simulated/wall/asteroid/gehenna/z3
-	floor_turf = "/turf/simulated/floor/dirt"
+	floor_turf = "/turf/simulated/floor/sand"
 
 /turf/simulated/wall/asteroid/gehenna/tough
 	name = "dense sulferous rock"
