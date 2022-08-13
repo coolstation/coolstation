@@ -1,4 +1,5 @@
-#define GEHENNA_TIME 120
+#define GEHENNA_TIME 90
+// 120 is bright, magenta bloom, too hot to breathe
 // 170 is like sunset ish, its nice but toxic
 #define WASTELAND_MIN_TEMP 250
 #define WASTELAND_MAX_TEMP 350
