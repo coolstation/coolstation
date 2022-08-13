@@ -32,7 +32,7 @@
 
 	kitchen
 		name = "freezer (kitchen)"
-		current_temperature = 150
+		current_temperature = 250
 		on = 1
 
 		north
