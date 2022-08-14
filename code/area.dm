@@ -28,8 +28,13 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	/// List of all dudes who are here
 	var/list/population = list()
 
+	/// Instead of simulated/unsimulated turfs it's now on area
+	var/is_atmos_simulated = FALSE
+	// also this bit is now separate :)
+	/// Can you build shit in this area?
+	var/construction_allowed = TRUE
+
 	var/tmp/fire = null
-	var/atmos = 1
 	var/poweralm = 1
 	var/skip_sims = 0
 	var/tmp/sims_score = 100
@@ -423,6 +428,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 			power_equip = power_light = power_environ = 0
 
 /area/space // the base area you SHOULD be using for space/ocean/etc.
+	//these are the defaults but just in case someone messes with those
+	is_atmos_simulated = FALSE
+	construction_allowed = TRUE
 
 // zewaka - adventure/technical/admin areas below //
 
@@ -436,6 +444,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	force_fullbright = 1
 	expandable = 0//oh god i know some fucker would try this
 	requires_power = FALSE
+	is_atmos_simulated = FALSE
+	construction_allowed = FALSE
 
 	Entered(atom/movable/O) // TODO: make this better and not copy n pasted from area_that_kills_you_if_you_enter_it
 		..()
@@ -462,6 +472,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	expandable = 0
 	ambient_light = rgb(79, 164, 184)
 	// filler_turf = "/turf/unsimulated/floor/setpieces/gauntlet"
+	is_atmos_simulated = FALSE
+	construction_allowed = FALSE
 
 /area/cavetiny
 	name = "Caves"
@@ -472,6 +484,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	sound_environment = 8
 	teleport_blocked = 1
 	sound_group = "tinycave"
+	is_atmos_simulated = FALSE
+	construction_allowed = FALSE
 
 /area/fermented_potato
 	name = "????"
@@ -480,6 +494,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	sims_score = 50
 	force_fullbright = 0
 	teleport_blocked = 1
+	is_atmos_simulated = FALSE
+	construction_allowed = FALSE
 
 /area/area_that_kills_you_if_you_enter_it //People entering VR or exiting VR with stupid exploits are jerks.
 	name = "Invisible energy field that will kill you if you step into it"
@@ -488,6 +504,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	icon_state = "death"
 	requires_power = 0
 	teleport_blocked = 1
+	is_atmos_simulated = FALSE
+	construction_allowed = FALSE
 
 	Entered(atom/movable/O)
 		if (isobserver(O))
@@ -509,6 +527,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	icon_state = "battle_spawn"
 	requires_power = 0
 	teleport_blocked = 1
+	is_atmos_simulated = FALSE
+	construction_allowed = FALSE
 
 	Entered(atom/movable/O)
 		var/dest = null
@@ -689,6 +709,8 @@ ABSTRACT_TYPE(/area/shuttle/merchant_shuttle)
 	icon_state = "eshuttle_transit"
 	sound_group = "eshuttle_transit"
 	var/warp_dir = NORTH // fuck you
+	is_atmos_simulated = FALSE
+	construction_allowed = FALSE
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		..()
@@ -897,10 +919,12 @@ ABSTRACT_TYPE(/area/adventure)
 	name = "Factory V"
 	icon_state = "yellow"
 	expandable = 0
+	is_atmos_simulated = TRUE
 
 /area/buddyfactory/mainframe
 	name = "Old Computer Core"
 	icon_state = "purple"
+	is_atmos_simulated = TRUE
 
 /area/space_hive
 	name = "Space Bee Hive"
@@ -910,6 +934,7 @@ ABSTRACT_TYPE(/area/adventure)
 	teleport_blocked = 1
 	skip_sims = 1
 	sims_score = 100
+	construction_allowed = FALSE
 
 /area/helldrone
 	name = "Drone Corpse"
@@ -918,6 +943,7 @@ ABSTRACT_TYPE(/area/adventure)
 	teleport_blocked = 1
 	skip_sims = 1
 	sims_score = 50
+	is_atmos_simulated = TRUE
 
 	var/list/soundSubscribers = list()
 
@@ -1013,6 +1039,7 @@ ABSTRACT_TYPE(/area/adventure)
 /area/abandonedmedicalship
 	name = "Abandoned Medical ship"
 	icon_state = "yellow"
+	is_atmos_simulated = TRUE
 
 /area/abandonedoutpostthing
 	name = "Abandoned Outpost"
@@ -1058,6 +1085,7 @@ ABSTRACT_TYPE(/area/adventure)
 /area/iss
 	name = "Derelict Space Station"
 	icon_state = "derelict"
+	is_atmos_simulated = TRUE
 #ifdef SUBMARINE_MAP
 	force_fullbright = 1
 #endif
@@ -1069,15 +1097,18 @@ ABSTRACT_TYPE(/area/adventure)
 	name = "Pool Room"
 	icon_state = "yellow"
 	requires_power = FALSE
+	is_atmos_simulated = TRUE
 
 /area/abandonedship
 	name = "Abandoned ship"
 	icon_state = "yellow"
 	requires_power = FALSE
+	is_atmos_simulated = FALSE //These used to be simmed but the area seems to only comprise bits of airless wreckage so why bother
 
 /area/spacehabitat
 	name = "Habitat Dome"
 	icon_state = "green"
+	construction_allowed = FALSE
 
 /area/spacehabitat/beach
 	name = "Habitat Dome Beach"
@@ -1088,17 +1119,20 @@ ABSTRACT_TYPE(/area/adventure)
 	name = "Soviet derelict"
 	icon_state = "yellow"
 	requires_power = FALSE
+	is_atmos_simulated = TRUE
 
 /area/hollowasteroid/ //evilderelict.dm
 	name = "Forgotten Subterranean Wreckage"
 	icon_state = "derelict"
 	sound_loop = 'sound/ambience/spooky/Evilreaver_Ambience.ogg'
 	requires_power = FALSE
+	is_atmos_simulated = TRUE
 
 
 ABSTRACT_TYPE(/area/diner)
 /area/diner
 	sound_environment = 12
+	is_atmos_simulated = TRUE
 #ifdef UNDERWATER_MAP
 	requires_power = FALSE
 #endif
@@ -1377,6 +1411,7 @@ ABSTRACT_TYPE(/area/sim)
 	skip_sims = 1
 	sims_score = 100
 	sound_group = "vr"
+	construction_allowed = FALSE
 
 
 
@@ -1442,6 +1477,8 @@ ABSTRACT_TYPE(/area/sim)
 /// Base station area
 ABSTRACT_TYPE(/area/station)
 /area/station
+	is_atmos_simulated = TRUE
+	construction_allowed = TRUE
 	do_not_irradiate = 0
 	sound_fx_1 = 'sound/ambience/station/Station_VocalNoise1.ogg'
 	var/tmp/initial_structure_value = 0
@@ -3126,6 +3163,8 @@ ABSTRACT_TYPE(/area/station/catwalk)
 	name = "Research Outpost"
 	icon_state = "blue"
 	do_not_irradiate = 1
+	is_atmos_simulated = TRUE //This is basically station area so
+	construction_allowed = TRUE
 
 /area/research_outpost/protest
 	name = "Protest Outpost"
@@ -3392,6 +3431,7 @@ ABSTRACT_TYPE(/area/mining)
 	name = "Mining Outpost"
 	icon_state = "engine"
 	workplace = 1
+	is_atmos_simulated = TRUE //comment up there what are you on about the mining outpost is alive and well
 
 /area/mining/power
 	name = "Outpost Power Room"
@@ -3457,6 +3497,7 @@ ABSTRACT_TYPE(/area/mining)
 	icon_state = "red"
 	sound_environment = 3
 	workplace = 1
+	is_atmos_simulated = TRUE
 
 /area/prefab/tunnelsnake/toilet
 	name = "Toilet"
@@ -3507,6 +3548,7 @@ ABSTRACT_TYPE(/area/mining)
 	name = "Asylum Wards"
 	icon_state = "brig"
 	requires_power = 0
+	construction_allowed = FALSE
 
 
 /// Shamecube area, applied on the admin command. Blocks entry.
@@ -3518,6 +3560,7 @@ ABSTRACT_TYPE(/area/mining)
 	mouse_opacity = 1
 	luminosity = 1
 	force_fullbright = 1
+	construction_allowed = FALSE
 	CanEnter(var/atom/movable/A)
 		if(ismob(A) && A:client && A:client:player && A:client:player:shamecubed)
 			return 1
@@ -3532,6 +3575,7 @@ ABSTRACT_TYPE(/area/mining)
 	mouse_opacity = 0
 	luminosity = 0
 	force_fullbright = 0
+	is_atmos_simulated = TRUE
 	CanEnter()
 		return 1
 
@@ -3544,6 +3588,7 @@ ABSTRACT_TYPE(/area/mining)
 	power_equip = 0
 	power_light = 0
 	power_environ = 0
+	is_atmos_simulated = TRUE
 
 	proc/SetName(var/name)
 		src.name = name

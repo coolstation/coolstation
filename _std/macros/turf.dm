@@ -59,12 +59,12 @@
 	/turf/unsimulated/floor/airless/_PATH{_VARS};
 
 /// Creates typepaths for a `/turf/simulated/floor/_PATH` and a `/turf/simulated/floor/airless/_PATH` with vars from `_VARS`
-#define DEFINE_FLOORS_SIMMED(_PATH, _VARS) \
+//#define DEFINE_FLOORS_SIMMED(_PATH, _VARS) \
 	/turf/simulated/floor/_PATH{_VARS};\
 	/turf/simulated/floor/airless/_PATH{_VARS};
 
 /// Creates typepaths for a `/turf/unsimulated/floor/_PATH` and a `/turf/unsimulated/floor/airless/_PATH` with vars from `_VARS`
-#define DEFINE_FLOORS_UNSIMMED(_PATH, _VARS) \
+//#define DEFINE_FLOORS_UNSIMMED(_PATH, _VARS) \
 	/turf/unsimulated/floor/_PATH{_VARS};\
 	/turf/unsimulated/floor/airless/_PATH{_VARS};
 
@@ -74,22 +74,22 @@
 	/turf/unsimulated/floor/_PATH{_VARS};\
 
 /// Creates typepaths for a `/turf/simulated/floor/airless/_PATH` and a `/turf/unsimulated/floor/airless/_PATH with vars` from `_VARS`
-#define DEFINE_FLOORS_AIRLESS(_PATH, _VARS) \
+//#define DEFINE_FLOORS_AIRLESS(_PATH, _VARS) \
 	/turf/simulated/floor/airless/_PATH{_VARS};\
 	/turf/unsimulated/floor/airless/_PATH{_VARS};
 
 /// Creates a typepath for a `/turf/simulated/floor/_PATH` with vars from `_VARS`
-#define DEFINE_FLOOR_SIMMED(_PATH, _VARS) \
+//#define DEFINE_FLOOR_SIMMED(_PATH, _VARS) \
 	/turf/simulated/floor/_PATH{_VARS};
 
 /// Creates a typepath for a /turf/unsimulated/floor/_PATH with vars from _VARS
-#define DEFINE_FLOOR_UNSIMMED(_PATH, _VARS) \
+//#define DEFINE_FLOOR_UNSIMMED(_PATH, _VARS) \
 	/turf/unsimulated/floor/_PATH{_VARS};
 
 /// Creates a typepath for a /turf/simulated/floor/airless/_PATH with vars from _VARS
-#define DEFINE_FLOOR_SIMMED_AIRLESS(_PATH, _VARS) \
+//#define DEFINE_FLOOR_SIMMED_AIRLESS(_PATH, _VARS) \
 	/turf/simulated/floor/airless/_PATH{_VARS};
 
 /// Creates a typepath for a /turf/unsimulated/floor/airless/_PATH with vars from _VARS
-#define DEFINE_FLOOR_UNSIMMED_AIRLESS(_PATH, _VARS) \
+//#define DEFINE_FLOOR_UNSIMMED_AIRLESS(_PATH, _VARS) \
 	/turf/unsimulated/floor/airless/_PATH{_VARS};
