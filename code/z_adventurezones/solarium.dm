@@ -11,7 +11,7 @@ CONTENTS:
 	name = "Solarium"
 	icon_state = "yellow"
 	force_fullbright = 0
-	sound_environment = 5
+	sound_environment = EAX_STONEROOM
 	may_eat_here_in_restricted_z = 1
 	skip_sims = 1
 	sims_score = 100

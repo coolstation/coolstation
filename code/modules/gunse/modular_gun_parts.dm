@@ -16,11 +16,19 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 /obj/item/gun_parts/
 	icon = 'icons/obj/items/cet_guns/accessory.dmi'
 	var/name_addition = ""
+	var/part_type = null
+	var/overlay_x = 0
+	var/overlay_y = 0
 	var/part_DRM = 0 //which gun models is this part compatible with?
 	var/obj/item/gun/modular/my_gun = null
 	proc/add_part_to_gun(var/obj/item/gun/modular/gun)
 		my_gun = gun
+		var/image/I = image(icon, icon_state)
+		I.pixel_x = overlay_x
+		I.pixel_y = overlay_y
+		my_gun.UpdateOverlays(I, part_type)
 		return 1
+
 	proc/remove_part_from_gun() // should safely un-do all of add_part_to_gun()
 		RETURN_TYPE(/obj/item/gun_parts/)
 		my_gun.name = my_gun.real_name
@@ -84,6 +92,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 ABSTRACT_TYPE(/obj/item/gun_parts/barrel)
 /obj/item/gun_parts/barrel/
 // useful vars
+	part_type = "barrel"
 	spread_angle = -BARREL_PENALTY // remove barrel penalty
 	silenced = 0
 	muzzle_flash = "muzzle_flash"
@@ -93,7 +102,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/barrel)
 	icon = 'icons/obj/items/cet_guns/barrels.dmi'
 	icon_state = "it_revolver"
 	length = STANDARD_BARREL_LEN
-
+	overlay_x = 10
+	overlay_y = 4
 
 	add_part_to_gun()
 		..()
@@ -107,6 +117,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/barrel)
 		my_gun.scatter = src.scatter
 		my_gun.jam_frequency_fire += src.jam_frequency_fire
 		my_gun.name = my_gun.name + " " + src.name_addition
+		//Icon! :)
+
+
 
 	remove_part_from_gun()
 		if(!my_gun)
@@ -123,6 +136,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/barrel)
 ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 /obj/item/gun_parts/stock/
 	//add a var for a power cell later
+	part_type = "stock"
 	can_dual_wield = 1
 	spread_angle = -GRIP_PENALTY // modifier, added to stock
 	max_ammo_capacity = 0 //modifier
@@ -134,6 +148,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 	var/list/ammo_list = list() // ammo that stays in the stock when removed
 	icon_state = "nt_wire_alt"
 	icon = 'icons/obj/items/cet_guns/stocks.dmi'
+	overlay_x = -10
 
 
 
@@ -179,6 +194,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 ABSTRACT_TYPE(/obj/item/gun_parts/magazine)
 /obj/item/gun_parts/magazine/
 
+	part_type = "magazine"
 	max_ammo_capacity = 0 //modifier
 	jam_frequency_reload = 5 //additional % chance to jam on reload. Just reload again to clear.
 	var/list/ammo_list = list() // ammo that stays in the mag when removed
@@ -213,8 +229,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/accessory/
 	var/alt_fire = 0 //does this accessory offer an alt-mode? light perhaps?
 	var/call_on_fire = 0 // does the gun call this accessory's on_fire() proc?
-
+	part_type = "accessory"
 	icon_state = "generic_magazine"
+	overlay_y = 10
 
 	proc/alt_fire()
 		return alt_fire
@@ -320,6 +337,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 			src.part = null
 			new_gun.buildTooltipContent()
 			new_gun.built = 0
+			new_gun.ClearAllOverlays(1) // clear the part overlays but keep cache? idk if thats better or worse.
 
 
 
@@ -412,7 +430,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/barrel/NT
 	name = "standard barrel"
 	desc = "A cylindrical barrel, unrifled."
-	spread_angle = -13 // basic stabilisation
+	spread_angle = -BARREL_PENALTY + 7 // basic stabilisation
 	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN
 	icon_state = "nt_blue_short"
 	length = 16
@@ -420,7 +438,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/barrel/NT/long
 	name = "standard long barrel"
 	desc = "A cylindrical barrel, rifled."
-	spread_angle = -15
+	spread_angle = -BARREL_PENALTY + 5
 	name_addition = "longarm"
 	icon_state = "nt_blue"
 	length = 35
@@ -428,7 +446,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/barrel/foss
 	name = "\improper FOSS lensed barrel"
 	desc = "A cylindrical array of lenses to focus laser blasts."
-	spread_angle = -16
+	spread_angle = -BARREL_PENALTY + 4
 	lensing = 0.9
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_JUICE
 	name_addition = "lenser"
@@ -436,11 +454,12 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	icon_state = "barrel_short"
 	contraband = 1
 	length = 17
+	overlay_x = 15
 
 /obj/item/gun_parts/barrel/foss/long
 	name = "\improper FOSS lensed long barrel"
 	desc = "A cylindrical array of lenses to focus laser blasts."
-	spread_angle = -17
+	spread_angle = -BARREL_PENALTY + 3
 	lensing = 1
 	name_addition = "focuser"
 	icon_state = "barrel_long"
@@ -449,7 +468,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/barrel/juicer
 	name = "\improper BLUNDA Barrel"
 	desc = "A cheaply-built shotgun barrel. Not great."
-	spread_angle = -3
+	spread_angle = -BARREL_PENALTY + 17 // jesus christ it's a spread machine
 	scatter = 1
 	jam_frequency_fire = 5 //but very poorly built
 	part_DRM = GUN_JUICE | GUN_NANO | GUN_FOSS
@@ -460,7 +479,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/barrel/juicer/longer
 	name = "\improper SNIPA Barrel"
 	desc = "A cheaply-built extended rifled shotgun barrel. Not good."
-	spread_angle = -17 // accurate??
+	spread_angle = -BARREL_PENALTY + 3 // accurate?? ish?
 	jam_frequency_fire = 15 //but very!!!!!!! poorly built
 	name_addition = "BLITZER"
 	icon_state = "juicer_long"
@@ -469,7 +488,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/barrel/soviet
 	name = "soviet lenses"
 	desc = "стопка линз для фокусировки вашего пистолета"
-	spread_angle = -14
+	spread_angle = -BARREL_PENALTY + 6
 	lensing = 1.2
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "comrade"
@@ -479,7 +498,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/barrel/soviet/long
 	name = "long soviet lenses"
 	desc = "стопка линз для фокусировки вашего пистолета"
-	spread_angle = -14
+	spread_angle = -BARREL_PENALTY + 5
 	lensing = 1.4
 	name_addition = "tovarisch"
 	icon_state = "soviet_lens_long"
@@ -488,7 +507,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/barrel/italian
 	name = "canna di fucile"
 	desc = "una canna di fucile di base e di alta qualità"
-	spread_angle = -11 // "alta qualità"
+	spread_angle = -BARREL_PENALTY + 9 // "alta qualità"
 	part_DRM = GUN_NANO | GUN_ITALIAN | GUN_SOVIET
 	name_addition = "paisan"
 	icon_state = "it_revolver_short"
@@ -498,7 +517,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/stock/NT
 	name = "standard grip"
 	desc = "A comfortable NT pistol grip"
-	spread_angle = -2 // basic stabilisation
+	spread_angle = -GRIP_PENALTY + 7 // basic stabilisation
 	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN
 	name_addition = "trusty"
 	icon = 'icons/obj/items/cet_guns/grips.dmi'
@@ -507,7 +526,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/stock/NT/shoulder
 	name = "standard stock"
 	desc = "A comfortable NT shoulder stock"
-	spread_angle = -5 // better stabilisation
+	spread_angle = -GRIP_PENALTY + 5 // better stabilisation
 	stock_two_handed = 1
 	can_dual_wield = 0
 	max_ammo_capacity = 1 // additional shot in the butt
@@ -519,19 +538,20 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/stock/NT/arm_brace
 	name = "standard brace"
 	desc = "A comfortable NT forearm brace"
-	spread_angle = -7 // quite better stabilisation
-	stock_two_handed = 1
+	spread_angle = -GRIP_PENALTY + 3 // quite better stabilisation
+	stock_two_handed = 0
 	can_dual_wield = 0
 	max_ammo_capacity = 1 // additional shot in the butt
 	jam_frequency_reload = 3 // a little more jammy
 	icon = 'icons/obj/items/cet_guns/stocks.dmi'
 	name_addition = "capable"
 	icon_state = "nt_wire"
+	overlay_x = -15
 
 /obj/item/gun_parts/stock/foss
 	name = "\improper FOSS laser stock"
 	desc = "An open-sourced laser dynamo, with a multiple-position winding spring."
-	spread_angle = -3 // basic stabilisation
+	spread_angle = -GRIP_PENALTY + 7 // basic stabilisation
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_JUICE
 	flashbulb_only = 1
 	max_crank_level = 2
@@ -539,10 +559,11 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	name_addition = "vicious"
 	icon = 'icons/obj/items/cet_guns/fossgun.dmi'
 	icon_state = "stock_single"
+	overlay_x = -15
 
 /obj/item/gun_parts/stock/foss/long
 	name = "\improper FOSS laser rifle stock"
-	spread_angle = -6 // better stabilisation
+	spread_angle = -GRIP_PENALTY + 4 // better stabilisation
 	stock_two_handed = 1
 	can_dual_wield = 0
 	max_crank_level = 3 // for syndicate ops
@@ -559,7 +580,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 
 /obj/item/gun_parts/stock/foss/longer
 	name = "\improper FOSS laser punt gun stock"
-	spread_angle = -1 // poor stabilisation
+	spread_angle = -GRIP_PENALTY + 9 // poor stabilisation
 	stock_two_handed = 1
 	can_dual_wield = 0
 	max_crank_level = 4 // for syndicate ops
@@ -570,7 +591,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/stock/italian
 	name = "impugnatura a pistola"
 	desc = "un'impugnatura rivestita in cuoio toscano per un revolver di alta qualità"
-	spread_angle = -1
+	spread_angle = -GRIP_PENALTY + 7
 	max_ammo_capacity = 1 // to make that revolver revolve!
 	jam_frequency_reload = 5 // a lot  more jammy!!
 	part_DRM = GUN_NANO | GUN_ITALIAN | GUN_SOVIET
@@ -581,7 +602,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 /obj/item/gun_parts/stock/italian/bigger
 	name = "impugnatura a pistola piu larga"
 	desc = "un'impugnatura rivestita in cuoio toscano per un revolver di alta qualità"
-	spread_angle = -3
+	spread_angle = -GRIP_PENALTY + 6
 	max_ammo_capacity = 3 // to make that revolver revolve!
 	jam_frequency_reload = 9 // a lot  more jammy!!
 	icon_state = "it_fancy"
@@ -612,4 +633,5 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	jam_frequency_reload = 8
 	name_addition = "LARGE"
 	icon_state = "juicer_drum"
+	overlay_y = 10
 

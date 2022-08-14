@@ -503,6 +503,9 @@ TRAYS
 			src.wine = null
 			src.icon_state= "homph"
 
+	unchained
+		anchored = 0
+
 /obj/item/kitchen/food_box // I came in here just to make donut/egg boxes put the things in your hand when you take one out and I end up doing this instead, kill me. -haine
 	name = "food box"
 	desc = "A box that can hold food! Well, not this one, I mean. You shouldn't be able to see this one."

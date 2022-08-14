@@ -59,7 +59,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		force_fullbright = 0
 		requires_power = 0
 		luminosity = 0
-		sound_environment = 22
+		sound_environment = EAX_UNDERWATER
 		ambient_light = TRENCH_LIGHT
 
 /proc/decideSolid(var/turf/current, var/turf/center, var/sizemod = 0)

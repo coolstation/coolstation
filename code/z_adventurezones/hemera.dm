@@ -9,7 +9,7 @@ Obsidian Crown
 /area/h7
 	name = "Hemera VII"
 	icon_state = "yellow"
-	sound_environment = 12
+	sound_environment = EAX_HALLWAY
 	teleport_blocked = 1
 	skip_sims = 1
 	sims_score = 30
@@ -18,35 +18,35 @@ Obsidian Crown
 /area/h7/computer_core
 	name = "Aged Computer Core"
 	icon_state = "ai"
-	sound_environment = 3
+	sound_environment = EAX_BATHROOM
 	skip_sims = 1
 	sims_score = 30
 
 /area/h7/control
 	name = "Control Room"
 	icon_state = "purple"
-	sound_environment = 3
+	sound_environment = EAX_BATHROOM
 	skip_sims = 1
 	sims_score = 30
 
 /area/h7/lab
 	name = "Anomalous Materials Laboratory"
 	icon_state = "toxlab"
-	sound_environment = 10
+	sound_environment = EAX_HANGAR
 	skip_sims = 1
 	sims_score = 30
 
 /area/h7/crew
 	name = "Living Quarters"
 	icon_state = "crewquarters"
-	sound_environment = 2
+	sound_environment = EAX_ROOM
 	skip_sims = 1
 	sims_score = 30
 
 /area/h7/storage
 	name = "Equipment Storage"
 	icon_state = "storage"
-	sound_environment = 2
+	sound_environment = EAX_ROOM
 	skip_sims = 1
 	sims_score = 30
 

@@ -1085,12 +1085,12 @@ ABSTRACT_TYPE(/datum/supply_packs)
 	name = "Bargain Bows and Bands Box"
 	desc = "Headbands for all occasions."
 	cost = 2000
-	contains = list(/obj/item/clothing/head/headband/giraffe = 1,
+	contains = list(//obj/item/clothing/head/headband/giraffe = 1,
 					/obj/item/clothing/head/headband/antlers = 1,
 					/obj/item/clothing/head/headband/nyan/tiger = 1,
 					/obj/item/clothing/head/headband/nyan/leopard = 1,
 					/obj/item/clothing/head/headband/nyan/snowleopard = 1,
-					/obj/item/clothing/head/headband/bee = 2,
+					//obj/item/clothing/head/headband/bee = 2,
 					/obj/item/clothing/head/headband/nyan/random = 1)
 
 /datum/supply_packs/mask
