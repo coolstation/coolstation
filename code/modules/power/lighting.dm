@@ -456,6 +456,8 @@
 				light.disable()
 				elecflash(src,radius = 1, power = 2, exclude_center = 0)
 				logTheThing("station", null, null, "Light '[name]' burnt out (breakprob: [current_lamp.breakprob]) at ([showCoords(src.x, src.y, src.z)])")
+			else
+				current_lamp.breakprob += 0.25 // critical that your "increasing probability" thing actually, yknow, increase. ever.
 
 
 // attempt to set the light's on/off status
@@ -851,7 +853,7 @@
 	w_class = W_CLASS_SMALL
 	var/light_status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
-	var/breakprob = 0	// number of times switched
+	var/breakprob = 0	// number of times switched //warc: doesnt do ANYTHING anymore???? now it do????
 	m_amt = 60
 	var/rigged = 0		// true if rigged to explode
 	var/mob/rigger = null // mob responsible
