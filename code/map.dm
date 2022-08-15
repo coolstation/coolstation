@@ -1036,10 +1036,10 @@ var/global/list/mapNames = list(
 	escape_def = SHUTTLE_EAST
 	escape_dir = EAST
 
-	//merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
-	//merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
-	//merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
-	//merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
+	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
+	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
+	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
+	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
 
 	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
 		"the cargo office (QM)" = list(/area/station/quartermaster/office),

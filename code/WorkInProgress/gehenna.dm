@@ -1,4 +1,4 @@
-#define GEHENNA_TIME 30
+#define GEHENNA_TIME 0
 // 30 is a beautiful, goldenrod gehenna sunrise.
 // 60 is bright yellow, safe air.
 // 90 is bright, reddish, safe and warm.
@@ -9,7 +9,7 @@
 
 
 // Gehenna shit tho
-/turf/gehenna
+/turf/unsimulated/gehenna
 	name = "planet gehenna"
 	desc = "errrr"
 
@@ -50,7 +50,7 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock3"
 
-/turf/gehenna/desert
+/turf/unsimulated/gehenna/desert
 	name = "barren wasteland"
 	desc = "Looks really dry out there."
 	icon = 'icons/turf/floors.dmi'
