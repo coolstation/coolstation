@@ -1764,6 +1764,10 @@ ABSTRACT_TYPE(/area/station/maintenance/outer)
 	name = "Waste Disposal"
 	icon_state = "disposal"
 
+/area/station/maintenance/disposal/sewage
+	name = "Septic Tank"
+	icon_state = "fart"
+
 /area/station/maintenance/lowerstarboard
 	name = "Lower Starboard Maintenance"
 	icon_state = "lower_starboard_maintenance"
