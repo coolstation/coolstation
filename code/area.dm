@@ -5552,12 +5552,11 @@ MAJOR_AST(30)
 \* +++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 /area/centcom/outpost
-	filler_turf = null
 	name = "Nanotrasen Temporary Frontier Command"
 	icon_state = "yellow"
+	filler_turf = "/turf/space"
 
 /area/centcom/outpost/lower
-	filler_turf = null
 	name = "Nanotrasen Temporary Frontier Command Subdeck"
 	icon_state = "orange"
 

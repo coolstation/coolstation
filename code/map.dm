@@ -1013,6 +1013,7 @@ var/global/list/mapNames = list(
 	walls = /turf/simulated/wall/auto
 	rwalls = /turf/simulated/wall/auto/reinforced
 	auto_walls = 1
+	shuttle_map_turf = /turf/simulated/floor/industrial
 
 	windows = /obj/window/auto
 	windows_thin = /obj/window/pyro
