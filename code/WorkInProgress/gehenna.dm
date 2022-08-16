@@ -1,4 +1,4 @@
-#define GEHENNA_TIME 0
+#define GEHENNA_TIME 200
 // 30 is a beautiful, goldenrod gehenna sunrise.
 // 60 is bright yellow, safe air.
 // 90 is bright, reddish, safe and warm.
@@ -9,9 +9,10 @@
 
 
 // Gehenna shit tho
-/turf/unsimulated/gehenna
+/turf/unsimulated/floor/gehenna
 	name = "planet gehenna"
 	desc = "errrr"
+	opacity = 0
 
 /turf/simulated/wall/asteroid/gehenna
 	fullbright = 0
@@ -21,7 +22,7 @@
 	desc = "looks loosely packed"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock"
-	floor_turf = "/turf/gehenna/desert"
+	floor_turf = "/turf/unsimulated/floor/gehenna/desert"
 	New()
 		..()
 		src.icon_state = initial(src.icon_state)
@@ -50,13 +51,14 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock3"
 
-/turf/unsimulated/gehenna/desert
+/turf/unsimulated/floor/gehenna/desert
 	name = "barren wasteland"
 	desc = "Looks really dry out there."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna"
 	carbon_dioxide = 5*(sin(GEHENNA_TIME - 90)+ 1)
 	oxygen = MOLES_O2STANDARD
+	nitrogen = 0
 	temperature = WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
 
 	luminosity = 0.5*(sin(GEHENNA_TIME)+ 1)

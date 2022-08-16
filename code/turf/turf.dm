@@ -625,7 +625,7 @@ proc/generate_space_color()
 	var/old_process_cell_operations = src.process_cell_operations
 #endif
 
-	var/new_type = ispath(what) ? what : text2path(what) //what what, what WHAT WHAT WHAAAAAAAAT
+	var/new_type = ispath(what) ? null : text2path(what) //what what, what WHAT WHAT WHAAAAAAAAT
 	if (new_type)
 		new_turf = new new_type(src)
 		if (!isturf(new_turf))
@@ -633,7 +633,7 @@ proc/generate_space_color()
 
 	else switch(what)
 		if ("Desert")
-			new_turf = new /turf/gehenna/desert(src)
+			new_turf = new /turf/unsimulated/floor/gehenna/desert(src)
 		if ("Ocean")
 			new_turf = new /turf/space/fluid(src)
 		if ("Floor")
