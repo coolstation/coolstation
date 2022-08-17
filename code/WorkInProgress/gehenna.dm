@@ -1,10 +1,15 @@
-#define GEHENNA_TIME 230
+#define GEHENNA_TIME 370
 // 30 is a beautiful, goldenrod gehenna sunrise.
 // 60 is bright yellow, safe air.
 // 90 is bright, reddish, safe and warm.
 // 120 is bright, magenta bloom, too hot to breathe.
 // 170 is like sunset ish, its nice but toxic levels of CO2.
 // 200 is dark out, cool, and still toxic levels of CO2.
+// 230 is night time, and *just* under the CO2 toxicity threshold.
+// 260 much the same, less CO2
+// 290 same as above.
+// 320 same.
+// 350 twilight.
 #define WASTELAND_MIN_TEMP 250
 #define WASTELAND_MAX_TEMP 350
 
@@ -17,7 +22,7 @@
 
 /turf/simulated/wall/asteroid/gehenna
 	fullbright = 0
-	luminosity = 0.5*(sin(GEHENNA_TIME)+ 1)
+	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
 	name = "sulferous rock"
 	desc = "looks loosely packed"
@@ -62,7 +67,7 @@
 	nitrogen = 0
 	temperature = WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
 
-	luminosity = 0.5*(sin(GEHENNA_TIME)+ 1)
+	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
 	var/datum/light/point/light = null
 	var/light_r = 0.5*(sin(GEHENNA_TIME)+1)
