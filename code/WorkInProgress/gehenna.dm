@@ -1,9 +1,10 @@
-#define GEHENNA_TIME 200
+#define GEHENNA_TIME 230
 // 30 is a beautiful, goldenrod gehenna sunrise.
 // 60 is bright yellow, safe air.
 // 90 is bright, reddish, safe and warm.
 // 120 is bright, magenta bloom, too hot to breathe.
 // 170 is like sunset ish, its nice but toxic levels of CO2.
+// 200 is dark out, cool, and still toxic levels of CO2.
 #define WASTELAND_MIN_TEMP 250
 #define WASTELAND_MAX_TEMP 350
 
