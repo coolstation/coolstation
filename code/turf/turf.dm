@@ -625,7 +625,7 @@ proc/generate_space_color()
 	var/old_process_cell_operations = src.process_cell_operations
 #endif
 
-	var/new_type = ispath(what) ? null : text2path(what) //what what, what WHAT WHAT WHAAAAAAAAT
+	var/new_type = ispath(what) ? what : text2path(what) //what what, what WHAT WHAT WHAAAAAAAAT
 	if (new_type)
 		new_turf = new new_type(src)
 		if (!isturf(new_turf))
