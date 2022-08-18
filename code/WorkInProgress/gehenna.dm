@@ -10,6 +10,7 @@
 // 290 same as above.
 // 320 same.
 // 350 twilight.
+// 370 just beautiful. oh. wow. lovely.
 #define WASTELAND_MIN_TEMP 250
 #define WASTELAND_MAX_TEMP 350
 
