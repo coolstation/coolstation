@@ -1,4 +1,4 @@
-#define GEHENNA_TIME 370
+#define GEHENNA_TIME 10
 // 30 is a beautiful, goldenrod gehenna sunrise.
 // 60 is bright yellow, safe air.
 // 90 is bright, reddish, safe and warm.
