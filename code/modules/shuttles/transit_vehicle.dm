@@ -1,0 +1,300 @@
+// from loaf with love
+// (C) 2022 Stonepillars <https://github.com/stonepillars>
+
+
+ABSTRACT_TYPE(/datum/transit_stop)
+ABSTRACT_TYPE(/datum/transit_stop/elevator)
+/// Stops for a shuttle or elevator.
+/datum/transit_stop
+	/// Registry key for this stop.
+	var/stop_id
+	/// Display name of the location, used on the terminal
+	var/name = "Call 1-800-CODER"
+	/// Area to use when moving the vehicle.
+	var/target_area
+	/// The vehicle_id currently parked here.
+	/// if the platform of the elevator or the shuttle starts here, copy it's ID here.
+	var/current_occupant
+
+ABSTRACT_TYPE(/datum/transit_vehicle)
+/datum/transit_vehicle
+	/// Registry key for this route.
+	var/vehicle_id
+	/// Stop IDs that this vehicle can stop at.
+	var/list/stop_ids = list()
+	/// List of transit stops this vehicle can visit.
+	var/list/datum/transit_stop/stops = list()
+	/// The transit_stop datum this vehicle is parked at.
+	var/datum/transit_stop/current_location
+	/// Whether the vehicle is currently moving
+	var/in_transit = FALSE
+
+	/// Called by transit_controls prior to area move.
+	proc/departing(datum/transit_stop/destination)
+		return TRUE
+
+	/// Called after the area move
+	proc/arriving(datum/transit_stop/destination)
+		return TRUE
+
+
+var/global/datum/transit_controller/transit_controls = new
+
+/// Controller which manages transit routes
+/datum/transit_controller
+	/// Registry of vehicles by their id
+	var/list/vehicles = list()
+	/// Registry of stops by their id
+	var/list/stops = list()
+
+	New()
+		..()
+		var/used_stops = list()
+		var/used_targets = list()
+		var/datum/transit_stop/stop
+		for(var/type in concrete_typesof(/datum/transit_stop))
+			stop = get_singleton(type)
+			if(!stop.stop_id)
+				stack_trace("[type] has no stop_id")
+				continue
+			if(stop.stop_id in src.stops)
+				stack_trace("[type] has duplicate id with [src.stops[stop.stop_id]]")
+				continue
+			if(!stop.target_area)
+				stack_trace("[type] has no target_area")
+				continue
+			if(stop.target_area in used_targets)
+				stack_trace("[type] dupes target area of [used_targets[stop.target_area]]")
+				continue
+			used_targets[stop.target_area] = type
+			src.stops[stop.stop_id] = stop
+		var/datum/transit_vehicle/vehicle
+		for(var/type in concrete_typesof(/datum/transit_vehicle))
+			vehicle = get_singleton(type)
+			if(!vehicle.vehicle_id)
+				stack_trace("[type] has no vehicle_id")
+				continue
+			if(vehicle.vehicle_id in src.vehicles)
+				stack_trace("[type] has duplicate id with [src.vehicles[vehicle.vehicle_id]]")
+				continue
+			if(!length(vehicle.stop_ids))
+				stack_trace("[type] has no stops")
+				continue
+			for(var/stop_id in vehicle.stop_ids)
+				if(stop_id in used_stops) // TODO: Multiple vehicles, same route. Needs locking & Area magic.
+					stack_trace("[type] shares a stop with [used_stops[stop_id]]")
+					continue
+				stop = src.stops[stop_id]
+				if(!stop)
+					stack_trace("[type] has invalid stop: [stop_id]")
+					continue
+				if(stop.current_occupant == vehicle.vehicle_id)
+					vehicle.current_location = stop
+				vehicle.stops += stop
+				used_stops[stop_id] = type
+			if(!vehicle.current_location)
+				stack_trace("[type] has no starting location") // You need to set it's default stop.
+				continue
+			src.vehicles[vehicle.vehicle_id] = vehicle
+
+	proc/move_vehicle(vehicle_id, stop_id, mob/user)
+		var/datum/transit_stop/stop = src.stops[stop_id]
+		if(!stop)
+			return FALSE
+		if(stop.current_occupant)
+			return FALSE
+		var/datum/transit_vehicle/vehicle = src.vehicles[vehicle_id]
+		if(vehicle.in_transit)
+			return FALSE
+		if(!length(vehicle.stops))
+			return FALSE
+		if(!(stop in vehicle.stops) && !(stop_id in vehicle.stop_ids))
+			return FALSE
+		var/datum/transit_stop/current = vehicle.current_location
+		if(!current)
+			return FALSE
+		if(stop_id == current.stop_id || stop == current)
+			return FALSE
+		vehicle.in_transit = TRUE
+		logTheThing("station", user, null, "began departure for vehicle [vehicle_id] to [stop_id] at [log_loc(usr)]")
+		SPAWN_DBG(0)
+			vehicle.departing(stop)
+			var/area/start_location = locate(current.target_area)
+			var/area/end_location = locate(stop.target_area)
+			start_location.move_contents_to(end_location, ignore_fluid = 1)
+			vehicle.arriving(stop)
+			vehicle.current_location = stop
+			current.current_occupant = null
+			stop.current_occupant = vehicle.vehicle_id
+			vehicle.in_transit = FALSE
+		return TRUE
+
+
+/turf/simulated/floor/specialroom/elevator_shaft
+	name = "elevator shaft"
+	desc = "It looks like it goes down a long ways."
+	icon_state = "moon_shaft"
+	var/fall_landmark = LANDMARK_FALL_DEBUG
+
+	New()
+		..()
+
+		var/area_type = get_area(src)
+		var/turf/n = get_step(src,NORTH)
+		var/turf/e = get_step(src,EAST)
+		var/turf/w = get_step(src,WEST)
+		var/turf/s = get_step(src,SOUTH)
+
+		if (!istype(get_area(n), area_type))
+			n = null
+		if (!istype(get_area(e), area_type))
+			e = null
+		if (!istype(get_area(w), area_type))
+			w = null
+		if (!istype(get_area(s), area_type))
+			s = null
+
+		if (e && s)
+			set_dir(SOUTH)
+			e.set_dir(NORTH)
+			s.set_dir(WEST)
+		else if (e && n)
+			set_dir(WEST)
+			e.set_dir(EAST)
+			n.set_dir(SOUTH)
+		else if (w && s)
+			set_dir(NORTH)
+			w.set_dir(SOUTH)
+			s.set_dir(EAST)
+		else if (w && n)
+			set_dir(EAST)
+			w.set_dir(WEST)
+			n.set_dir(NORTH)
+
+	ex_act(severity)
+		return
+
+	Entered(atom/movable/A as mob|obj)
+		if (istype(A, /obj/overlay/tile_effect) || istype(A, /mob/dead) || istype(A, /mob/wraith) || istype(A, /mob/living/intangible))
+			return ..()
+		var/turf/T = pick_landmark(fall_landmark)
+		if (isturf(T))
+			visible_message("<span class='alert'>[A] falls down [src]!</span>")
+			if (ismob(A))
+				var/mob/M = A
+				random_brute_damage(M, 25)
+				M.changeStatus("weakened", 5 SECONDS)
+				M.emote("scream")
+				playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
+			A.set_loc(T)
+			return
+		else ..()
+
+
+
+ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
+/datum/transit_vehicle/elevator
+	/// Time the elevator will wait before departing
+	var/departure_delay = 2.5 SECONDS
+	/// Time the elevator will wait before opening/closing the doors
+	var/door_delay = 2 SECONDS
+	/// Time the elevator is gauranteed to wait after arriving at a stop.
+	var/disembark_time = 5 SECONDS
+	var/door_id_prefix = "elevator-"
+
+	departing(datum/transit_stop/destination)
+		var/turf/target
+		for(var/turf/T in locate(src.current_location.target_area))
+			target = T
+			break
+		if(target)
+			playsound(target, "sound/machines/elevator_move.ogg", 100, 0)
+		else
+			stack_trace("Vehicle [src.vehicle_id] had no turfs at stop [src.current_location.stop_id] ([src.current_location.target_area])")
+		sleep(door_delay)
+		for (var/obj/machinery/door/poddoor/M in by_type[/obj/machinery/door])
+			if (M.id == "[src.door_id_prefix][src.current_location.stop_id]")
+				M.close()
+		sleep(departure_delay)
+		for(var/mob/M in locate(destination.target_area)) // oh dear, stay behind the yellow line kids
+			SPAWN_DBG(1 DECI SECOND)
+				random_brute_damage(M, 30)
+				M.changeStatus("weakened", 5 SECONDS)
+				M.emote("scream")
+				playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 90, 1)
+
+	arriving(datum/transit_stop/destination)
+		sleep(door_delay)
+		for (var/obj/machinery/door/poddoor/M in by_type[/obj/machinery/door])
+			if (M.id == "[src.door_id_prefix][destination.stop_id]")
+				M.open()
+		sleep(disembark_time)
+
+/obj/machinery/computer/transit_terminal
+	name = "Vehicle Control"
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "turret1"
+	circuit_type = /obj/item/circuitboard/transit_terminal
+	/// Transit ID of the Vehicle this terminal controls
+	var/vehicle_id
+	/// The transit vehicle datum we control
+	var/datum/transit_vehicle/vehicle
+
+	thin
+		icon = 'icons/misc/mechanicsExpansion.dmi'
+		icon_state = "comp_buttpanel"
+		circuit_type = null
+		density = FALSE
+
+	New()
+		..()
+		SPAWN_DBG(5 SECONDS)
+			src.vehicle = transit_controls.vehicles[src.vehicle_id]
+			if(!src.vehicle)
+				stack_trace("vehicle [src.vehicle_id] invalid, deleting terminal")
+				qdel(src)
+				return
+
+	ui_status(mob/user, datum/ui_state/state)
+		. = min(
+			..(),
+			src.vehicle?.in_transit ? UI_UPDATE : UI_INTERACTIVE,
+			src.allowed(user) ? UI_INTERACTIVE : UI_CLOSE
+		)
+
+
+	ui_interact(mob/user, datum/tgui/ui)
+		ui = tgui_process.try_update_ui(user, src, ui)
+		if (!ui)
+			ui = new(user, src, "TransitTerminal", src.name)
+			ui.open()
+
+	ui_data(mob/user)
+		if(!src.vehicle)
+			. = list("panic"=TRUE)
+		var/stops = list()
+		for(var/datum/transit_stop/stop in src.vehicle.stops)
+			stops += list(
+				list(
+					"id" = stop.stop_id,
+					"disabled" = !!stop.current_occupant,
+					"label" = stop.name
+				)
+			)
+		. = list(
+			"in_transit" = src.vehicle.in_transit,
+			"stops" = stops
+		)
+
+	ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+		. = ..()
+		if(.)
+			return
+		switch(action)
+			if("move")
+				var/stopname = params["stopname"]
+				if(!transit_controls.move_vehicle(src.vehicle_id, stopname, ui.user))
+					boutput("<span class='alert'>Something went wrong, the vehicle wont move!</span>")
+					return FALSE
+				playsound(src.loc, 'sound/machines/chime.ogg', 40, 0.5)
+				return TRUE
