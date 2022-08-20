@@ -590,11 +590,11 @@
 				boutput(user, "That's not safe with the power on!")
 				return
 			if (candismantle)
-				boutput(user, "You begin to unscrew the fixture from the wall...")
+				boutput(user, "You begin to unscrew the fixture from the wall...", group = "[user]-dismantle_fixture")
 				playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
 				if (!do_after(user, 2 SECONDS))
 					return
-				boutput(user, "You unscrew the fixture from the wall.")
+				boutput(user, "You unscrew the fixture from the wall.", group = "[user]-dismantle_fixture")
 				var/obj/item/light_parts/parts = new /obj/item/light_parts(get_turf(src))
 				parts.copy_light(src)
 				qdel(src)

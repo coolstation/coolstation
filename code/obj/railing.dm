@@ -272,7 +272,7 @@
 			interrupt(INTERRUPT_ALWAYS)
 			return
 		for(var/mob/O in AIviewers(ownerMob))
-			O.show_text("[ownerMob] begins to pull [himself_or_herself(ownerMob)] over [the_railing].", "red")
+			O.show_text("[ownerMob] begins to pull [himself_or_herself(ownerMob)] over [the_railing].", "red", group = "[ownerMob]-vault_railing")
 
 	onEnd()
 		..()
@@ -305,14 +305,14 @@
 					ownerMob.changeStatus("weakened", 4 SECONDS)
 					playsound(the_railing, 'sound/impact_sounds/Metal_Clang_3.ogg', 50, 1, -1)
 					for(var/mob/O in AIviewers(ownerMob))
-						O.show_text("[ownerMob] tries to climb straight into \the [obstacle].[prob(30) ? pick(" What a goof!!", " A silly [ownerMob.name].", " <b>HE HOO HE HA</b>", " Good thing [he_or_she(ownerMob)] didn't bump [his_or_her(ownerMob)] head!") : null]", "red")
+						O.show_text("[ownerMob] tries to climb straight into \the [obstacle].[prob(30) ? pick(" What a goof!!", " A silly [ownerMob.name].", " <b>HE HOO HE HA</b>", " Good thing [he_or_she(ownerMob)] didn't bump [his_or_her(ownerMob)] head!") : null]", "red", group = "[ownerMob]-vault_railing")
 				// chance for additional head bump damage
 				if (prob(25))
 					ownerMob.changeStatus("weakened", 4 SECONDS)
 					ownerMob.TakeDamage("head", 10, 0, 0, DAMAGE_BLUNT)
 					playsound(the_railing, 'sound/impact_sounds/Metal_Hit_Heavy_1.ogg', 50, 1, -1)
 					for(var/mob/O in AIviewers(ownerMob))
-						O.show_text("[ownerMob] bumps [his_or_her(ownerMob)] head on \the [obstacle].[prob(30) ? pick(" Oof, that looked like it hurt!", " Is [he_or_she(ownerMob)] okay?", " Maybe that wasn't the wisest idea...", " Don't do that!") : null]", "red")
+						O.show_text("[ownerMob] bumps [his_or_her(ownerMob)] head on \the [obstacle].[prob(30) ? pick(" Oof, that looked like it hurt!", " Is [he_or_she(ownerMob)] okay?", " Maybe that wasn't the wisest idea...", " Don't do that!") : null]", "red", group = "[ownerMob]-vault_railing")
 			return TRUE
 		return FALSE
 
@@ -330,7 +330,7 @@
 				the_text = "[ownerMob] swooces right over [the_railing]!"
 			else
 				the_text = "[ownerMob] pulls [himself_or_herself(ownerMob)] over [the_railing]."
-			O.show_text("[the_text]", "red")
+			O.show_text("[the_text]", "red", group = "[ownerMob]-vault_railing")
 		logTheThing("combat", ownerMob, the_railing, "[is_athletic_jump ? "leaps over [the_railing] with [his_or_her(ownerMob)] athletic trait" : "crawls over [the_railing]"].")
 
 
@@ -394,7 +394,7 @@
 				verbing = "unfastening"
 				playsound(the_railing, "sound/items/Screwdriver.ogg", 50, 1)
 		for(var/mob/O in AIviewers(ownerMob))
-			O.show_text("[owner] begins [verbing] [the_railing].", "red")
+			O.show_text("[owner] begins [verbing] [the_railing].", "red", group = "[owner]-tool_on_railing")
 
 	onEnd()
 		..()
@@ -414,6 +414,6 @@
 				the_railing.anchored = 0
 				playsound(the_railing, "sound/items/Screwdriver.ogg", 50, 1)
 		for(var/mob/O in AIviewers(ownerMob))
-			O.show_text("[owner] [verbens] [the_railing].", "red")
+			O.show_text("[owner] [verbens] [the_railing].", "red", group = "[owner]-tool_on_railing")
 			logTheThing("station", ownerMob, the_railing, "[verbens] [the_railing].")
 
