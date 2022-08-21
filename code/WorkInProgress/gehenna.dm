@@ -1,4 +1,4 @@
-#define GEHENNA_TIME 45
+#define GEHENNA_TIME 135
 // 10 just beautiful. oh. wow. lovely.
 // 30 is a beautiful, goldenrod gehenna sunrise.
 // 45
@@ -138,7 +138,7 @@
 	name = "the barren wastes"
 	teleport_blocked = 0
 
-
+/*
 /obj/machinery/computer/sea_elevator/sec
 	upper = /area/shuttle/sea_elevator/upper/sec
 	lower = /area/shuttle/sea_elevator/lower/sec
@@ -158,7 +158,8 @@
 /obj/machinery/computer/sea_elevator/command
 	upper = /area/shuttle/sea_elevator/upper/command
 	lower = /area/shuttle/sea_elevator/lower/command
-
+*/
 /obj/machinery/computer/sea_elevator/NTFC
 	upper = /area/shuttle/sea_elevator/upper/NTFC
 	lower = /area/shuttle/sea_elevator/lower/NTFC
+

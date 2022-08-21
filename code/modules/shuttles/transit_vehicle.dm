@@ -121,12 +121,21 @@ var/global/datum/transit_controller/transit_controls = new
 			vehicle.departing(stop)
 			var/area/start_location = locate(current.target_area)
 			var/area/end_location = locate(stop.target_area)
-			start_location.move_contents_to(end_location, ignore_fluid = 1)
+			var/filler_turf_start = text2path(start_location.filler_turf)
+			var/filler_turf_end = text2path(end_location.filler_turf)
+			if (!filler_turf_start)
+				filler_turf_start = "space"
+			start_location.move_contents_to(end_location, filler_turf_start, ignore_fluid = 1)
+			for (var/turf/P in end_location)
+				if (istype(P, filler_turf_start))
+					P.ReplaceWith(filler_turf_end, keep_old_material = 0, force=1)
 			vehicle.arriving(stop)
 			vehicle.current_location = stop
 			current.current_occupant = null
 			stop.current_occupant = vehicle.vehicle_id
 			vehicle.in_transit = FALSE
+
+
 		return TRUE
 
 

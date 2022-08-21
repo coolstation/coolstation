@@ -616,12 +616,6 @@ ABSTRACT_TYPE(/area/shuttle)
 /area/shuttle/attack2/prison
 	icon_state = "shuttle2"
 
-/area/shuttle/mining/station
-	icon_state = "shuttle"
-
-/area/shuttle/mining/space
-	icon_state = "shuttle2"
-
 /area/shuttle/john/diner
 	icon_state = "shuttle"
 
@@ -1245,7 +1239,7 @@ ABSTRACT_TYPE(/area/prefab)
 	icon_state = "purple"
 
 // stuff
-
+/*
 /area/shuttle/sea_elevator/lower/sec // gehenna sec elevator
 	name = "Security Elevator Shaft"
 /area/shuttle/sea_elevator/upper/sec // gehenna sec elevator
@@ -1261,16 +1255,16 @@ ABSTRACT_TYPE(/area/prefab)
 /area/shuttle/sea_elevator/lower/QM
 	name = "Cargo Elevator Shaft"
 /area/shuttle/sea_elevator/upper/QM
-	name = "Cargo Elevator Shaft"
+	name = "Cargo Elevator Shaft"*/
 /area/shuttle/sea_elevator/lower/NTFC
 	name = "Cargo Elevator Shaft"
 /area/shuttle/sea_elevator/upper/NTFC
-	name = "Cargo Elevator Shaft"
+	name = "Cargo Elevator Shaft"/*
 /area/shuttle/sea_elevator/lower/command
 	name = "Command Elevator Shaft"
 /area/shuttle/sea_elevator/upper/command
 	name = "Command Elevator Shaft"
-
+*/
 
 // Sealab trench areas //
 
@@ -1975,6 +1969,9 @@ ABSTRACT_TYPE(/area/station/mining)
 
 /area/station/mining/cargo_staff_room
 	name = "Cargo Staff Room"
+
+/area/station/mining/dock
+	name = "Mining Shuttle Dock"
 
 /area/station/bridge
 	name = "Bridge"

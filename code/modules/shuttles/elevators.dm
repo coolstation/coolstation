@@ -160,52 +160,52 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/qm_top
 	name = "Quartermaster's Elevator"
 	icon_state = "shuttle"
-	filler_turf = /turf/simulated/floor/specialroom/elevator_shaft/qm
+	filler_turf = "/turf/simulated/floor/specialroom/elevator_shaft/qm"
 
 /area/transit_vehicle/elevator/qm_bot
 	name = "Quartermaster's Elevator"
 	icon_state = "shuttle2"
-	filler_turf = /turf/simulated/floor/plating
+	filler_turf = "/turf/simulated/floor/plating"
 
 /area/transit_vehicle/elevator/med_top
 	name = "Hospital Elevator"
 	icon_state = "shuttle"
-	filler_turf = /turf/simulated/floor/specialroom/elevator_shaft/med
+	filler_turf = "/turf/simulated/floor/specialroom/elevator_shaft/med"
 
 /area/transit_vehicle/elevator/med_bot
 	name = "Hospital Elevator"
 	icon_state = "shuttle2"
-	filler_turf = /turf/simulated/floor/plating
+	filler_turf = "/turf/simulated/floor/plating"
 
 /area/transit_vehicle/elevator/eng_top
 	name = "Engineering Elevator"
 	icon_state = "shuttle"
-	filler_turf = /turf/simulated/floor/specialroom/elevator_shaft/eng
+	filler_turf = "/turf/simulated/floor/specialroom/elevator_shaft/eng"
 
 /area/transit_vehicle/elevator/eng_bot
 	name = "Engineering Elevator"
 	icon_state = "shuttle2"
-	filler_turf = /turf/simulated/floor/plating
+	filler_turf = "/turf/simulated/floor/plating"
 
 /area/transit_vehicle/elevator/com_top
 	name = "Command Elevator"
 	icon_state = "shuttle"
-	filler_turf = /turf/simulated/floor/specialroom/elevator_shaft/com
+	filler_turf = "/turf/simulated/floor/specialroom/elevator_shaft/com"
 
 /area/transit_vehicle/elevator/com_bot
 	name = "Command Elevator"
 	icon_state = "shuttle2"
-	filler_turf = /turf/simulated/floor/plating
+	filler_turf = "/turf/simulated/floor/plating"
 
 /area/transit_vehicle/elevator/sec_top
 	name = "Security Elevator"
 	icon_state = "shuttle"
-	filler_turf = /turf/simulated/floor/specialroom/elevator_shaft/sec
+	filler_turf = "/turf/simulated/floor/specialroom/elevator_shaft/sec"
 
 /area/transit_vehicle/elevator/sec_bot
 	name = "Security Elevator"
 	icon_state = "shuttle2"
-	filler_turf = /turf/simulated/floor/plating
+	filler_turf = "/turf/simulated/floor/plating"
 
 /turf/simulated/floor/specialroom/elevator_shaft/qm
 	fall_landmark = LANDMARK_FALL_QM

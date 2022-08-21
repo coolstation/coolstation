@@ -1049,6 +1049,13 @@ var/global/list/mapNames = list(
 		"the bridge" = list(/area/station/bridge),
 		"the chapel" = list(/area/station/chapel/sanctuary))
 
+	init()
+		..()
+		SPAWN_DBG(10) // this sucks so much ass but it just- idk.
+			var/area/m_shuttle = locate(/area/shuttle/mining/station)
+			if(m_shuttle)
+				m_shuttle.filler_turf = "/turf/simulated/floor/industrial"
+
 /datum/map_settings/bobmap
 	name = "BOBMAP"
 	goonhub_map = "https://goonhub.com/maps/cogmap"
