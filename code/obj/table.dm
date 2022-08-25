@@ -242,22 +242,22 @@
 		else if (istype(W, /obj/item/plank))
 			if (status == 2)
 				if (istype(src, /obj/table/reinforced/bar)) //why must you be so confusing
-					boutput(user, "<span class='notice'>You can't add more than one finish, that's just illogical!</span>")
+					boutput(user, "<span class='notice'>You can't add more than one finish, that's just illogical!</span>", group = "make_bartable")
 					return
 				else if (istype(src, /obj/table/reinforced/auto))
-					boutput(user, "<span class='notice'>Now adding a faux wood finish to \the [src]</span>") //mwah
+					boutput(user, "<span class='notice'>Now adding a faux wood finish to \the [src]</span>", group = "make_bartable") //mwah
 					playsound(src.loc, "sound/items/zipper.ogg", 50, 1)
 					if(do_after(user,50))
 						var/obj/table/L = new /obj/table/reinforced/bar/auto(src.loc)
 						L.layer = src.layer - 0.01
 						qdel(W)
 						qdel(src)
-						boutput(user, "<span class='notice'>You have added a faux wood finish to \the [src]</span>")
+						boutput(user, "<span class='notice'>You have added a faux wood finish to \the [src]</span>", group = "make_bartable")
 					return
 				else
-					boutput(user, "<span class='notice'>\The [src] is too weak to be modified!</span>")
+					boutput(user, "<span class='notice'>\The [src] is too weak to be modified!</span>", group = "make_bartable")
 			else
-				boutput(user, "<span class='notice'>\The [src] is too weak to be modified!</span>")
+				boutput(user, "<span class='notice'>\The [src] is too weak to be modified!</span>", group = "make_bartable")
 
 		else if (isscrewingtool(W))
 			if (istype(src.desk_drawer) && src.desk_drawer.locked)
