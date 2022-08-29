@@ -366,6 +366,8 @@
 	amount = 2
 	heal_amt = 1
 	food_color = "#FFD700"
+	initial_volume = 10
+	initial_reagents = list("cheese"=10)
 	custom_food = 1
 	value = 5
 

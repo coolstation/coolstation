@@ -1846,6 +1846,12 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	cookbonus = 10
 	output = /obj/item/reagent_containers/food/snacks/risotto
 
+/datum/cookingrecipe/cheesewheel
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
+	amt1 = 4
+	cookbonus = 14
+	output = /obj/item/reagent_containers/food/snacks/cheesewheel
+
 // Recipe for zongzi is a WIP; we're gonna need rice balls or something
 
 /datum/cookingrecipe/oven/beefood

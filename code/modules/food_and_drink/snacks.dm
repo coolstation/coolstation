@@ -2595,3 +2595,51 @@
 	initial_reagents = list("silicate"=15)
 	rand_pos = 8
 	doants = FALSE
+
+/obj/item/reagent_containers/food/snacks/cheesewheel
+	name = "cheese wheel"
+	desc = "A giant wheel of cheese. It seems a slice is already missing."
+	icon = 'icons/obj/foodNdrink/food_meals.dmi'
+	icon_state = "cheesewheel"
+	throwforce = 6
+	real_name = "cheesewheel"
+	throw_speed = 2
+	throw_range = 5
+	stamina_cost = 5
+	stamina_damage = 2
+	var/slice_amount = 4
+	var/slice_product = /obj/item/reagent_containers/food/snacks/ingredient/cheese
+	initial_volume = 40
+	initial_reagents = "cheese"
+	food_effects = list("food_warm")
+
+	attack(mob/M, mob/user, def_zone)
+		if (user == M)
+			boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
+			user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
+			return
+		else
+			user.visible_message("<span class='alert'><b>[user]</b> futilely attempts to shove [src] into [M]'s mouth!</span>")
+			return
+
+	attackby(obj/item/W, mob/user)
+		if (istool(W, TOOL_CUTTING | TOOL_SAWING))
+			boutput(user, "<span class='notice'>You cut the cheese wheel into wedges.</span>")
+			src.make_slices(user)
+			return
+		..()
+
+	proc/make_slices(var/mob/user)
+		var/makeslices = floor(src.slice_amount * src.amount / src.start_amount)
+		if(!makeslices)
+			user.visible_message(SPAN_ALERT("[user] totally shreds the remaining scraps of [src]!"),SPAN_ALERT("You totally fuck up the remaining scraps of [src]!"))
+			qdel(src)
+			return
+		var/turf/T = get_turf(src)
+		. = list()
+		while (makeslices > 0)
+			var/obj/item/reagent_containers/food/snacks/cheese = new src.slice_product(T)
+			cheese.quality = src.quality
+			. += cheese
+			makeslices--
+		qdel(src)
