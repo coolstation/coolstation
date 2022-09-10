@@ -436,7 +436,7 @@ var/list/timewarp_interior_sounds = list('sound/ambience/industrial/Timeship_Gon
 			icon_state += pick("", "1","2")
 
 ////////////////////////////////////// turfs
-/turf/unsimulated/floor/void/timewarp
+/turf/floor/void/timewarp
 	name = "time-space breach"
 	desc = "Uhh.  UHHHH.  uh."
 	fullbright = 0

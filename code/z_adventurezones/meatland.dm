@@ -126,7 +126,7 @@ var/list/meatland_fx_sounds = list('sound/ambience/spooky/Meatzone_Squishy.ogg',
 	irradiated = 0.1
 
 
-/turf/unsimulated/floor/setpieces/bloodfloor/stomach
+/turf/floor/setpieces/bloodfloor/stomach
 	name = "acid"
 	density = 0
 	desc = "A pool of stomach acid.  Lovely."
@@ -1309,7 +1309,7 @@ var/list/meatland_fx_sounds = list('sound/ambience/spooky/Meatzone_Squishy.ogg',
 
 		host.updateUsrDialog()
 
-/turf/unsimulated/floor/key_floor
+/turf/floor/key_floor
 	var/found_thing = 0
 	attack_hand(var/mob/user)
 		if(!found_thing)

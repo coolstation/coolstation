@@ -80,7 +80,7 @@ Contents:
 /area/dojo/sakura
 	name = "sakura"
 	icon_state = "red"
-	filler_turf = "/turf/unsimulated/dirt"
+	filler_turf = "/turf/dirt"
 	sound_environment = EAX_FOREST
 	skip_sims = 1
 	sims_score = 0
@@ -93,7 +93,7 @@ Contents:
 /area/dojo
 	name = "dojo"
 	icon_state = "blue"
-	filler_turf = "/turf/unsimulated/dirt"
+	filler_turf = "/turf/dirt"
 	sound_environment = EAX_SEWER_PIPE
 	skip_sims = 1
 	sims_score = 15
@@ -482,15 +482,15 @@ Contents:
 
 // -Walls
 
-/turf/unsimulated/wall/auto/sengoku
+/turf/wall/auto/sengoku
 	icon = 'icons/turf/walls_sengoku.dmi'
-	connects_to = list(/turf/unsimulated/wall/auto/sengoku)
+	connects_to = list(/turf/wall/auto/sengoku)
 
-/turf/unsimulated/wall/auto/paper
+/turf/wall/auto/paper
 	icon = 'icons/turf/walls_paper.dmi'
-	connects_to = list(/turf/unsimulated/wall/auto/paper)
+	connects_to = list(/turf/wall/auto/paper)
 
-/turf/unsimulated/wall/sengoku_tall
+/turf/wall/sengoku_tall
 	icon = 'icons/turf/walls_sengoku.dmi'
 	icon_state= "tall"
 	opacity = 0
@@ -506,82 +506,82 @@ Contents:
 
 // -Floors
 
-/turf/unsimulated/floor/tatami //split up in the fancy new zewaka non-instanced floors way, i hope.
+/turf/floor/tatami //split up in the fancy new zewaka non-instanced floors way, i hope.
 	icon = 'icons/turf/dojo.dmi'
 	icon_state = "tatami"
 
-/turf/unsimulated/floor/tatami/north
+/turf/floor/tatami/north
 	icon = 'icons/turf/dojo.dmi'
 	icon_state = "north"
 
-/turf/unsimulated/floor/tatami/south
+/turf/floor/tatami/south
 	icon = 'icons/turf/dojo.dmi'
 	icon_state = "south"
 
-/turf/unsimulated/floor/tatami/east
+/turf/floor/tatami/east
 	icon = 'icons/turf/dojo.dmi'
 	icon_state = "east"
 
-/turf/unsimulated/floor/tatami/west
+/turf/floor/tatami/west
 	icon = 'icons/turf/dojo.dmi'
 	icon_state = "west"
 
-/turf/unsimulated/wall/water // yeah uh, it needs to be dense. but i'm pretty dense myself so here's this.
+/turf/wall/water // yeah uh, it needs to be dense. but i'm pretty dense myself so here's this.
 	name = "water"
 	icon = 'icons/misc/beach.dmi'
 	icon_state = "water"
 	density = 1
 	opacity = 0
 
-/turf/unsimulated/wall/water/border
+/turf/wall/water/border
 	icon = 'icons/turf/dojo.dmi'
 	icon_state = "water_border"
 
-/turf/unsimulated/floor/dojo/bridge/vertical
+/turf/floor/dojo/bridge/vertical
 	name = "bridge"
 	icon = 'icons/turf/dojo.dmi'
 	icon_state = "bridge_v"
 
-/turf/unsimulated/floor/dojo/bridge/horizontal
+/turf/floor/dojo/bridge/horizontal
 	name = "bridge"
 	icon = 'icons/turf/dojo.dmi'
 	icon_state = "bridge_h"
 
-/turf/unsimulated/floor/dojo/bridge
+/turf/floor/dojo/bridge
 	name = "bridge"
 	icon = 'icons/turf/dojo.dmi'
 
-/turf/unsimulated/floor/dojo/stone
+/turf/floor/dojo/stone
 	name = "stone"
 	icon = 'icons/turf/dojo.dmi'
 	icon_state = "stone"
 
-/turf/unsimulated/floor/dojo/stonestair
+/turf/floor/dojo/stonestair
 	name = "stone stairs"
 	icon = 'icons/turf/dojo.dmi'
 	icon_state = "stonestair"
 
-/turf/unsimulated/floor/dojo/stonestair/left
+/turf/floor/dojo/stonestair/left
 	icon_state = "stonestair_L"
 
-/turf/unsimulated/floor/dojo/stonestair/middle
+/turf/floor/dojo/stonestair/middle
 	icon_state = "stonestair_M"
 
-/turf/unsimulated/floor/dojo/stonestair/right
+/turf/floor/dojo/stonestair/right
 	icon_state = "stonestair_R"
 
-/turf/unsimulated/floor/dojo/sand
+/turf/floor/dojo/sand
 	name = "zen garden"
 	icon = 'icons/turf/dojo.dmi'
 	icon_state = "sand"
 
-/turf/unsimulated/floor/dojo/sand/horizontal
+/turf/floor/dojo/sand/horizontal
 	icon_state = "sand_horiz"
 
-/turf/unsimulated/floor/dojo/sand/vertical
+/turf/floor/dojo/sand/vertical
 	icon_state = "sand_vert"
 
-/turf/unsimulated/floor/dojo/sand/circle
+/turf/floor/dojo/sand/circle
 	icon_state = "sand_circ"
 
 // Simulated variants of turfs
