@@ -471,7 +471,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	force_fullbright = 0
 	expandable = 0
 	ambient_light = rgb(79, 164, 184)
-	// filler_turf = "/turf/unsimulated/floor/setpieces/gauntlet"
+	// filler_turf = "/turf/floor/setpieces/gauntlet"
 	is_atmos_simulated = FALSE
 	construction_allowed = FALSE
 
@@ -558,7 +558,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	requires_power = 0
 	teleport_blocked = 1
 	force_fullbright = 1
-	filler_turf = "/turf/unsimulated/nicegrass/random"
+	filler_turf = "/turf/nicegrass/random"
 
 /** Shuttle Areas
   *
@@ -821,7 +821,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 /area/someplace
 	name = "some place"
 	icon_state = "purple"
-	filler_turf = "/turf/unsimulated/floor/void"
+	filler_turf = "/turf/floor/void"
 	requires_power = 0
 	luminosity = 1
 	force_fullbright = 1
@@ -834,7 +834,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 /area/someplacehot
 	name = "some place"
 	icon_state = "atmos"
-	filler_turf = "/turf/unsimulated/floor/void"
+	filler_turf = "/turf/floor/void"
 	requires_power = 0
 	luminosity = 1
 	force_fullbright = 1

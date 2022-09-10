@@ -304,7 +304,7 @@ datum
 			amount = min(amount, target_reagents.maximum_volume - target_reagents.total_volume)
 
 			if (do_fluid_react && issimulatedturf(target))
-				var/turf/simulated/T = target
+				var/turf/T = target
 				return T.fluid_react(src, amount, index = index)
 
 			return trans_to_direct(target_reagents, amount, multiplier, index = index)

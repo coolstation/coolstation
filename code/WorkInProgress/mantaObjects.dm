@@ -1509,7 +1509,7 @@ var/obj/manta_speed_lever/mantaLever = null
 	item_state = "electropack"
 	force = 5.0
 
-/turf/unsimulated/floor/polarispit
+/turf/floor/polarispit
 	name = "deep abyss"
 	desc = "You can't see the bottom."
 	icon = 'icons/turf/outdoors.dmi'
@@ -1556,7 +1556,7 @@ var/obj/manta_speed_lever/mantaLever = null
 	bound_width = 96
 	appearance_flags = TILE_BOUND
 
-/turf/unsimulated/floor/special/fogofcheating
+/turf/floor/special/fogofcheating
 	name = "fog of cheating prevention"
 	desc = "Yeah, nice try."
 	icon_state = "void_gray"
