@@ -255,7 +255,7 @@ obj/machinery/atmospherics/pipe
 						dir = NORTHWEST
 
 		hide(var/i)
-			if(level == 1 && istype(loc, /turf/simulated))
+			if(level == 1 && issimulatedturf(src.loc))
 				invisibility = i ? 101 : 0
 			update_icon()
 

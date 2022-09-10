@@ -255,7 +255,7 @@
 	. = list()
 
 	for(var/d in cardinal)
-		var/turf/simulated/T = get_step(src, d)
+		var/turf/T = get_step(src, d)
 		if (T?.pathable && !T.density)
 			if(!LinkBlockedWithAccess(src, T, ID))
 				. += T
@@ -265,8 +265,7 @@
 	. = list()
 
 	for(var/d in alldirs)
-		var/turf/simulated/T = get_step(src, d)
-		//if(istype(T) && !T.density)
+		var/turf/T = get_step(src, d)
 		if (T?.pathable && !T.density)
 			if(!LinkBlockedWithAccess(src, T, ID))
 				. += T

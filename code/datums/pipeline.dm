@@ -152,8 +152,8 @@ datum/pipeline
 
 		return network
 
-	proc/mingle_with_turf(turf/simulated/target, mingle_volume)
-		if (!target || !air.volume) return
+	proc/mingle_with_turf(turf/target, mingle_volume)
+		if (!target || !issimulatedturf(target) || !air.volume) return
 		var/datum/gas_mixture/air_sample = air.remove_ratio(mingle_volume/air.volume)
 		air_sample.volume = mingle_volume
 
@@ -205,8 +205,8 @@ datum/pipeline
 		var/heat = 0
 		var/delta_temperature = 0
 
-		if(istype(target, /turf/simulated))
-			var/turf/simulated/modeled_location = target
+		if(issimulatedturf(target))
+			var/turf/modeled_location = target
 
 			// Turf with walls or without air
 			if(modeled_location.blocks_air || !modeled_location.air)
