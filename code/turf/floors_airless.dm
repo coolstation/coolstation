@@ -747,24 +747,6 @@
 
 /////////////////////////////////////////
 
-/turf/unsimulated/floor/vr
-	icon_state = "vrfloor"
-
-/turf/unsimulated/floor/vr/plating
-	icon_state = "vrplating"
-
-/turf/unsimulated/floor/vr/space
-	icon_state = "vrspace"
-
-/turf/unsimulated/floor/vr/white
-	icon_state = "vrwhitehall"
-
-/turf/simulated/floor/airless/vr/flashy
-	name = "Vspace"
-	icon_state = "flashyblue"
-
-/////////////////////////////////////////
-
 /turf/simulated/floor/airless/snow
 	name = "snow"
 	icon_state = "snow1"

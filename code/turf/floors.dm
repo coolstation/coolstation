@@ -992,6 +992,10 @@ DEFINE_FLOORS(marble/border_wb,
 /turf/unsimulated/floor/vr/white
 	icon_state = "vrwhitehall"
 
+/turf/simulated/floor/airless/vr/flashy
+	name = "Vspace"
+	icon_state = "flashyblue"
+
 // simulated setpieces
 
 /turf/simulated/floor/setpieces
