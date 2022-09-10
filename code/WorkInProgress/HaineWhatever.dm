@@ -1492,7 +1492,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 			for (var/mob/O in AIviewers(ownerMob))
 				O.show_message("[owner] applies [makeup] to [target ]!", 1)
 
-/turf/unsimulated/floor/seabed
+/turf/floor/seabed
 	name = "seabed"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "sand"

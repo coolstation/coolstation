@@ -2636,7 +2636,7 @@ Returns:
 
 		for(var/turf/T in range(areasize, src))
 			if(!isturf(T)) continue
-			new/turf/unsimulated/floor(T)
+			new/turf/floor(T)
 
 		usable = 1
 

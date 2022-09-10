@@ -176,7 +176,7 @@ Dirt
 
 // cognote: large adventure areas should probably mostly use unsimulated turfs. i'll leave your simulated versions in for now so i don't break your local files
 
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt
+/turf/floor/setpieces/carcosa/carcosa_dirt
 	name = "dirt"
 	desc = "It's just some odd looking dirt."
 	icon = 'icons/misc/exploration.dmi'
@@ -185,7 +185,7 @@ Dirt
 	ex_act(severity)
 		return
 
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt_inner
+/turf/floor/setpieces/carcosa/carcosa_dirt_inner
 	name = "dirt"
 	desc = "It's just some odd looking dirt."
 	icon = 'icons/misc/exploration.dmi'
