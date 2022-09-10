@@ -15,7 +15,7 @@
 	var/shock_when_entered = 1
 	var/auto = FALSE
 	var/isperspective = TRUE
-	var/list/connects_to_turf = list(/turf/simulated/wall/auto, /turf/simulated/wall/auto/reinforced, /turf/simulated/shuttle/wall, /turf/unsimulated/wall)
+	var/list/connects_to_turf = list(/turf/wall/auto, /turf/wall/auto/reinforced, /turf/shuttle/wall, /turf/wall)
 	var/list/connects_to_obj = list(/obj/indestructible/shuttle_corner,	/obj/grille/, /obj/machinery/door, /obj/window)
 	text = "<font color=#aaa>+"
 	anchored = 1

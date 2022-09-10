@@ -182,7 +182,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			border |= (block(locate(1,world.maxy-(AST_MAPBORDER-1),z_level), locate(world.maxx,world.maxy,z_level))) //Top
 
 			for(var/turf/T in border)
-				T.ReplaceWith(/turf/unsimulated/wall/trench, FALSE, TRUE, FALSE, TRUE)
+				T.ReplaceWith(/turf/wall/trench, FALSE, TRUE, FALSE, TRUE)
 				new/area/cordon/dark(T)
 				LAGCHECK(LAG_REALTIME)
 

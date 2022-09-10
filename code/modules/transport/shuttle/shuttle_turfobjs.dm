@@ -4,7 +4,7 @@
 
 
 ////////////////////////////////////////////////////////////////TURFS
-/turf/simulated/shuttle
+/turf/shuttle
 	name = "shuttle wall"
 	icon = 'icons/turf/shuttle.dmi'
 	thermal_conductivity = 0.05
@@ -33,7 +33,7 @@
 		..()
 		if (icon_state == "tplaceholder") icon_state = (channel_open ? "near_blank" : "[rand(1,25)]" )
 
-/turf/simulated/floor/shuttle
+/turf/floor/shuttle
 	name = "shuttle floor"
 	icon_state = "floor"
 	icon = 'icons/turf/shuttle.dmi'
@@ -56,29 +56,7 @@
 	damage_slashing()
 	damage_blunt()
 
-/turf/unsimulated/floor/shuttle
-	name = "shuttle floor"
-	icon_state = "floor"
-	icon = 'icons/turf/shuttle.dmi'
-	turf_flags = MOB_STEP
-
-	attackby()
-	attack_hand()
-	hitby()
-		. = ..()
-	reagent_act()
-	bullet_act()
-	ex_act()
-	blob_act()
-	meteorhit()
-	damage_heat()
-	damage_corrosive()
-	damage_piercing()
-	damage_slashing()
-	damage_blunt()
-
-
-/turf/simulated/wall/auto/shuttle
+/turf/wall/auto/shuttle
 	icon = 'icons/turf/walls_shuttle.dmi'
 	light_mod = "wall-"
 	connect_overlay = 1

@@ -2395,7 +2395,7 @@ var/global/list/cargopads = list()
 
 ////// Shit that goes in the asteroid belt, might split it into an exploring.dm later i guess
 
-/turf/simulated/wall/ancient
+/turf/wall/ancient
 	name = "strange wall"
 	desc = "A weird jet black metal wall indented with strange grooves and lines."
 	icon_state = "ancient"
@@ -2413,21 +2413,7 @@ var/global/list/cargopads = list()
 				return
 		else return
 
-/turf/simulated/floor/ancient
-	name = "strange surface"
-	desc = "A strange jet black metal floor. There are odd lines carved into it."
-	icon_state = "ancient"
-	step_material = "step_plating"
-	step_priority = STEP_PRIORITY_MED
-
-	attackby(obj/item/W as obj, mob/user as mob)
-		boutput(user, "<span class='combat'>You attack [src] with [W] but fail to even make a dent!</span>")
-		return
-
-	ex_act(severity)
-		return
-
-/turf/unsimulated/floor/ancient
+/turf/floor/ancient
 	name = "strange surface"
 	desc = "A strange jet black metal floor. There are odd lines carved into it."
 	icon_state = "ancient"

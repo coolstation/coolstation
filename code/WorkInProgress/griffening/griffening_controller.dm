@@ -463,7 +463,7 @@
 			return
 
 		for (var/turf/Q in block(locate(x - 3, y - 6, z), locate(x + 3, y + 6, z)))
-			var/turf/R = new /turf/unsimulated/floor/griffening(Q)
+			var/turf/R = new /turf/floor/griffening(Q)
 			field_decoration += R
 			if (R.x == x - 3 && !(abs(R.y - y) % 3))
 				var/obj/LT = new /obj/machinery/light(R)
@@ -551,11 +551,11 @@
 						GCH.position_hologram(x, R.y + 2)
 
 		for (var/turf/Q in block(locate(x - 4, y - 6, z), locate(x - 4, y + 6, z)))
-			var/turf/R = new /turf/unsimulated/wall/griffening(Q)
+			var/turf/R = new /turf/wall/griffening(Q)
 			field_decoration += R
 
 		for (var/turf/Q in block(locate(x + 4, y - 6, z), locate(x + 4, y + 6, z)))
-			var/turf/R = new /turf/unsimulated/wall/griffening(Q)
+			var/turf/R = new /turf/wall/griffening(Q)
 			field_decoration += R
 
 		area_indicator = new /obj/griffening_area(T, src)
@@ -737,7 +737,7 @@ td, th {
 	#undef addinfo1
 	#undef addinfo
 
-/turf/unsimulated/wall/griffening
+/turf/wall/griffening
 	icon = 'icons/misc/griffening/area_wall.dmi'
 	icon_state = null
 	density = 1
@@ -745,7 +745,7 @@ td, th {
 	name = "wall"
 	desc = "A holographic projector wall."
 
-/turf/unsimulated/floor/griffening
+/turf/floor/griffening
 	icon = 'icons/misc/griffening/area_floor.dmi'
 	icon_state = null
 	opacity = 0
