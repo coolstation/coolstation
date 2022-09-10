@@ -7,6 +7,9 @@
 
 	var/tagged = 0 // Gang wars thing
 
+	///If ReplaceWith() actually does a thing or not. Used to be a thing on turf, gets set for unsimmed turfs in New() in base_lighting.dm
+	var/can_replace_with_stuff = 0
+
 	level = 1.0
 
 	unsimulated
@@ -548,13 +551,13 @@ proc/generate_space_color()
 		if(O.level == 1)
 			O.hide(src.intact)
 
-/turf/unsimulated/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0)
-	if (can_replace_with_stuff || force)
-		return ..(what, keep_old_material = keep_old_material, handle_air = handle_air)
-	return
 
 /turf/proc/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0)
-	var/turf/simulated/new_turf
+
+	if (can_replace_with_stuff || force) //(for unsimmed turfs)
+		return ..(what, keep_old_material = keep_old_material, handle_air = handle_air)
+
+	var/turf/new_turf
 	var/old_dir = dir
 
 	var/oldmat = src.material
@@ -568,12 +571,11 @@ proc/generate_space_color()
 	APPLY_TO_GASES(_OLD_GAS_VAR_DEF)
 
 	if (handle_air)
-		if (istype(src, /turf/simulated)) //Setting oldair & oldparent if simulated.
-			var/turf/simulated/S = src
-			oldair = S.air
-			oldparent = S.parent
+		if (issimulatedturf(src)) //Setting oldair & oldparent if simulated.
+			oldair = src.air
+			oldparent = src.parent
 
-		else if (istype(src, /turf/unsimulated)) //Apparently unsimulated turfs can have static air as well!
+		else //Apparently unsimulated turfs can have static air as well!
 			#define _OLD_GAS_VAR_ASSIGN(GAS, ...) GAS ## _old = src.GAS;
 			APPLY_TO_GASES(_OLD_GAS_VAR_ASSIGN)
 			temp_old = src.temperature
@@ -581,7 +583,7 @@ proc/generate_space_color()
 
 	#undef _OLD_GAS_VAR_DEF
 
-	if (istype(src, /turf/simulated/floor))
+	if (istype(src, /turf/floor))
 		icon_old = icon_state // a hack but OH WELL, leagues better than before
 		name_old = name
 
@@ -637,27 +639,27 @@ proc/generate_space_color()
 		if ("Ocean")
 			new_turf = new /turf/space/fluid(src)
 		if ("Floor")
-			new_turf = new /turf/simulated/floor(src)
+			new_turf = new /turf/floor(src)
 		if ("MetalFoam")
-			new_turf = new /turf/simulated/floor/metalfoam(src)
+			new_turf = new /turf/floor/metalfoam(src)
 		if ("EngineFloor")
-			new_turf = new /turf/simulated/floor/engine(src)
+			new_turf = new /turf/floor/engine(src)
 		if ("Circuit")
-			new_turf = new /turf/simulated/floor/circuit(src)
+			new_turf = new /turf/floor/circuit(src)
 		if ("RWall")
 			if (map_settings)
 				new_turf = new map_settings.rwalls (src)
 			else
-				new_turf = new /turf/simulated/wall/r_wall(src)
+				new_turf = new /turf/wall/r_wall(src)
 		if("Concrete")
-			new_turf = new /turf/simulated/floor/concrete(src)
+			new_turf = new /turf/floor/concrete(src)
 		if ("Wall")
 			if (map_settings)
 				new_turf = new map_settings.walls (src)
 			else
-				new_turf = new /turf/simulated/wall(src)
-		if ("Unsimulated Floor")
-			new_turf = new /turf/unsimulated/floor(src)
+				new_turf = new /turf/wall(src)
+		if ("Unsimulated Floor") //AREASIMSTODO
+			new_turf = new /turf/floor(src)
 		else
 			new_turf = new /turf/space(src)
 
@@ -715,9 +717,9 @@ proc/generate_space_color()
 
 
 	if (handle_air)
-		if (istype(new_turf, /turf/simulated)) //Anything -> Simulated tile
-			var/turf/simulated/N = new_turf
-			if (oldair) //Simulated tile -> Simulated tile
+		if (issimulatedturf(src)) //Anything -> Simulated tile
+			var/turf/N = new_turf
+			if (src.oldair) //Simulated tile -> Simulated tile
 				N.air = oldair
 			else if(istype(N.air)) //Unsimulated tile (likely space) - > Simulated tile  // fix runtime: Cannot execute null.zero()
 				N.air.zero()
@@ -740,7 +742,7 @@ proc/generate_space_color()
 		if (air_master && oldparent) //Handling air parent changes for oldparent for Simulated -> Anything
 			air_master.groups_to_rebuild |= oldparent //Puts the oldparent into a queue to update the members.
 
-	if (istype(new_turf, /turf/simulated))
+	if (issimulatedturf(new_turf)) //ATMOSSIMSTODO - hope this works
 		// tells the atmos system "hey this tile changed, maybe rebuild the group / borders"
 		new_turf.update_nearby_tiles(1)
 
@@ -748,7 +750,7 @@ proc/generate_space_color()
 
 
 /turf/proc/ReplaceWithFloor()
-	var/turf/simulated/floor = ReplaceWith("Floor")
+	var/turf/floor = ReplaceWith("Floor")
 	if (icon_old)
 		floor.icon_state = icon_old
 	if (name_old)
@@ -758,7 +760,7 @@ proc/generate_space_color()
 
 	if (map_settings)
 		if (map_settings.auto_walls)
-			for (var/turf/simulated/wall/auto/W in orange(1))
+			for (var/turf/wall/auto/W in orange(1))
 				W.update_icon()
 		if (map_settings.auto_windows)
 			for (var/obj/window/auto/W in orange(1))
@@ -766,7 +768,7 @@ proc/generate_space_color()
 	return floor
 
 /turf/proc/ReplaceWithMetalFoam(var/mtype)
-	var/turf/simulated/floor/metalfoam/floor = ReplaceWith("MetalFoam")
+	var/turf/floor/metalfoam/floor = ReplaceWith("MetalFoam")
 	if(icon_old)
 		floor.icon_state = icon_old
 	if(name_old)
@@ -781,7 +783,7 @@ proc/generate_space_color()
 	return floor
 
 /turf/proc/ReplaceWithEngineFloor()
-	var/turf/simulated/floor = ReplaceWith("EngineFloor")
+	var/turf/floor = ReplaceWith("EngineFloor")
 	if(icon_old)
 		floor.icon_state = icon_old
 	for (var/obj/lattice/L in src.contents)
@@ -789,7 +791,7 @@ proc/generate_space_color()
 	return floor
 
 /turf/proc/ReplaceWithCircuit()
-	var/turf/simulated/floor = ReplaceWith("Circuit")
+	var/turf/floor = ReplaceWith("Circuit")
 	if(icon_old)
 		floor.icon_state = icon_old
 	for (var/obj/lattice/L in src.contents)
@@ -814,7 +816,7 @@ proc/generate_space_color()
 	return floor
 
 /turf/proc/ReplaceWithConcreteFloor()
-	var/turf/simulated/floor = ReplaceWith("Concrete")
+	var/turf/floor = ReplaceWith("Concrete")
 	if(icon_old)
 		floor.icon_state = icon_old
 	return floor
@@ -841,7 +843,7 @@ proc/generate_space_color()
 	var/wall = ReplaceWith("Wall")
 	if (map_settings)
 		if (map_settings.auto_walls)
-			for (var/turf/simulated/wall/auto/W in orange(1))
+			for (var/turf/wall/auto/W in orange(1))
 				W.update_icon()
 		if (map_settings.auto_windows)
 			for (var/obj/window/auto/W in orange(1))
@@ -852,7 +854,7 @@ proc/generate_space_color()
 	var/wall = ReplaceWith("RWall")
 	if (map_settings)
 		if (map_settings.auto_walls)
-			for (var/turf/simulated/wall/auto/W in orange(1))
+			for (var/turf/wall/auto/W in orange(1))
 				W.update_icon()
 		if (map_settings.auto_windows)
 			for (var/obj/window/auto/W in orange(1))
@@ -863,11 +865,9 @@ proc/generate_space_color()
   var/area/AR = src.loc
   return AR.sanctuary
 
-///turf/simulated/floor/Entered(atom/movable/A, atom/OL) //this used to run on every simulated turf (yes walls too!) -zewaka
-//	..()
-//moved step and slip functions into Carbon and Human files!
+//-------------An assortment of random miscellaneous turf definitions below
 
-/turf/simulated
+/turf/simulated //ATMOSSIMSTODO - merge into /turf definiton somehow
 	name = "station"
 	allows_vehicles = 0
 	stops_space_move = 1
@@ -896,19 +896,19 @@ proc/generate_space_color()
 					K.Attackby(W, user, params)
 			return ..()
 
-/turf/simulated/aprilfools/grass
+/turf/aprilfools/grass
 	name = "grass"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "grass"
 	step_material = "step_outdoors"
 	step_priority = STEP_PRIORITY_MED
 
-/turf/simulated/aprilfools/dirt
+/turf/aprilfools/dirt
 	name = "dirt"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "sand"
 
-/turf/simulated/aprilfools/brick_wall
+/turf/aprilfools/brick_wall
 	name = "brick wall"
 	icon = 'icons/misc/aprilfools.dmi'
 	icon_state = "brick_wall"
@@ -917,51 +917,51 @@ proc/generate_space_color()
 	pathable = 0
 	var/d_state = 0
 
-/turf/simulated/aprilfools/floor/concrete_floor
+/turf/aprilfools/floor/concrete_floor
 	name = "concrete floor"
 	icon = 'icons/misc/aprilfools.dmi'
 	icon_state = "concrete"
 
-/turf/unsimulated/aprilfools/grass
+/turf/aprilfools/grass
 	name = "grass"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "grass"
 	opacity = 0
 	density = 0
 
-/turf/unsimulated/aprilfools/dirt
+/turf/aprilfools/dirt
 	name = "dirt"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "sand"
 	opacity = 0
 	density = 0
 
-/turf/simulated/bar
+/turf/bar
 	name = "bar"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "bar"
 
-/turf/simulated/grimycarpet
+/turf/grimycarpet
 	name = "grimy carpet"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "grimy"
 
-/turf/unsimulated/grimycarpet
+/turf/grimycarpet
 	name = "grimy carpet"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "grimy"
 
-/turf/simulated/grass
+/turf/grass
 	name = "grass"
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "grass"
 	step_material = "step_outdoors"
 	step_priority = STEP_PRIORITY_MED
 
-/turf/simulated/wall/wooden
+/turf/wall/wooden
 	icon_state = "wooden"
 
-/turf/unsimulated
+/turf/unsimulated // ATMOSSIMSTODO - work into turf definition maybe?
 	name = "command"
 	oxygen = MOLES_O2STANDARD
 	nitrogen = MOLES_N2STANDARD
@@ -969,14 +969,14 @@ proc/generate_space_color()
 	stops_space_move = 1
 	text = "<font color=#aaa>."
 
-/turf/unsimulated/floor
+/turf/floor
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
 	text = "<font color=#aaa>."
 	plane = PLANE_FLOOR
 
-/turf/unsimulated/wall
+/turf/wall
 	name = "wall"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "riveted"
@@ -991,7 +991,7 @@ proc/generate_space_color()
 	plane = PLANE_FLOOR
 #endif
 
-/turf/unsimulated/wall/solidcolor
+/turf/wall/solidcolor
 	name = "invisible solid turf"
 	desc = "A solid... nothing? Is that even a thing?"
 	icon = 'icons/turf/walls.dmi'
@@ -1000,34 +1000,34 @@ proc/generate_space_color()
 	mouse_opacity = 0
 	fullbright = 1
 
-/turf/unsimulated/wall/solidcolor/white
+/turf/wall/solidcolor/white
 	icon_state = "white"
 
-/turf/unsimulated/wall/solidcolor/black
+/turf/wall/solidcolor/black
 	icon_state = "black"
 
-/turf/unsimulated/wall/other
+/turf/wall/other
 	icon_state = "r_wall"
 
-/turf/unsimulated/wall/wooden
+/turf/wall/wooden
 	icon_state = "wooden"
 
-/turf/unsimulated/bombvr
+/turf/bombvr
 	name = "Virtual Floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "vrfloor"
 
-/turf/unsimulated/floor/carpet
+/turf/floor/carpet
 	name = "carpet"
 	icon = 'icons/turf/carpet.dmi'
 	icon_state = "red1"
 
-/turf/unsimulated/wall/bombvr
+/turf/wall/bombvr
 	name = "Virtual Wall"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "vrwall"
 
-/turf/unsimulated/attack_hand(var/mob/user as mob)
+/turf/attack_hand(var/mob/user as mob)
 	if (src.density == 1)
 		return
 	if ((!( user.canmove ) || user.restrained() || !( user.pulling )))
@@ -1143,7 +1143,7 @@ proc/generate_space_color()
 			A.loc.Entered(A)
 #endif
 //Vr turf is a jerk and pretends to be broken.
-/turf/unsimulated/bombvr/ex_act(severity)
+/turf/bombvr/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			src.icon_state = "vrspace"
@@ -1160,7 +1160,7 @@ proc/generate_space_color()
 				src.icon_state = "vrplating"
 	return
 
-/turf/unsimulated/wall/bombvr/ex_act(severity)
+/turf/wall/bombvr/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			opacity = 0
@@ -1189,7 +1189,7 @@ proc/generate_space_color()
 ////////////////////////////////////////////////
 
 //stuff ripped out of keelinsstuff.dm
-/turf/unsimulated/floor/pool
+/turf/floor/pool
 	name = "water"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "poolwaterfloor"
@@ -1198,7 +1198,7 @@ proc/generate_space_color()
 		..()
 		src.set_dir(pick(NORTH,SOUTH))
 
-/turf/unsimulated/pool/no_animate
+/turf/pool/no_animate
 	name = "pool floor"
 	icon = 'icons/obj/fluid.dmi'
 	icon_state = "poolwaterfloor"
@@ -1206,7 +1206,7 @@ proc/generate_space_color()
 	New()
 		..()
 		src.set_dir(pick(NORTH,SOUTH))
-/turf/simulated/pool
+/turf/pool
 	name = "water"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "poolwaterfloor"
@@ -1215,7 +1215,7 @@ proc/generate_space_color()
 		..()
 		src.set_dir(pick(NORTH,SOUTH))
 
-/turf/simulated/pool/no_animate
+/turf/pool/no_animate
 	name = "pool floor"
 	icon = 'icons/obj/fluid.dmi'
 	icon_state = "poolwaterfloor"
@@ -1224,17 +1224,17 @@ proc/generate_space_color()
 		..()
 		src.set_dir(pick(NORTH,SOUTH))
 
-/turf/unsimulated/grasstodirt
+/turf/grasstodirt
 	name = "grass"
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "grasstodirt"
 
-/turf/unsimulated/grass
+/turf/grass
 	name = "grass"
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "grass"
 
-/turf/unsimulated/dirt
+/turf/dirt
 	name = "Dirt"
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "dirt"
@@ -1257,7 +1257,7 @@ proc/generate_space_color()
 						if (grave.special)
 							new grave.special (src)
 						else
-							switch (rand(1,5))
+							switch (rand(1,3))
 								if (1)
 									new /obj/item/skull {desc = "A skull.  That was robbed.  From a grave.";} ( src )
 								if (2)
@@ -1269,38 +1269,38 @@ proc/generate_space_color()
 		else
 			return ..()
 
-/turf/unsimulated/nicegrass
+/turf/nicegrass
 	name = "grass"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "grass"
 
-/turf/unsimulated/nicegrass/random
+/turf/nicegrass/random
 	New()
 		..()
 		src.set_dir(pick(cardinal))
 
-/turf/simulated/nicegrass
+/turf/nicegrass
 	name = "grass"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "grass"
 
-/turf/simulated/nicegrass/random
+/turf/nicegrass/random
 	New()
 		..()
 		src.set_dir(pick(cardinal))
 
 
-/turf/unsimulated/floor/ballpit
+/turf/floor/ballpit
 	name = "ball pit"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "ballpitfloor"
 
-/turf/simulated/floor/concrete
+/turf/floor/concrete
 	name = "concrete floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "concrete"
 
-/turf/unsimulated/wall/griffening
+/turf/wall/griffening
 	icon = 'icons/misc/griffening/area_wall.dmi'
 	icon_state = null
 	density = 1
@@ -1308,14 +1308,14 @@ proc/generate_space_color()
 	name = "wall"
 	desc = "A holographic projector wall."
 
-/turf/unsimulated/floor/griffening
+/turf/floor/griffening
 	icon = 'icons/misc/griffening/area_floor.dmi'
 	icon_state = null
 	opacity = 0
 	name = "floor"
 	desc = "A holographic projector floor."
 
-/turf/unsimulated/null_hole
+/turf/null_hole
 	name = "expedition chute"
 	icon = 'icons/obj/delivery.dmi'
 	icon_state = "floorflush_o"
