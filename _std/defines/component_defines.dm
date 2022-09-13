@@ -262,6 +262,8 @@
 // ---- fullauto UI thingy signals ----
 #define COMSIG_FULLAUTO_MOUSEDOWN "fullauto_mousedown"
 #define COMSIG_FULLAUTO_MOUSEDRAG "fullauto_mousedrag"
+/// MouseMove over a fullauto hud object
+#define COMSIG_FULLAUTO_MOUSEMOVE "fullauto_mousemove"
 #define COMSIG_GUN_PROJECTILE_CHANGED "gun_proj_changed"
 
 // ---- small cell component signals ----
