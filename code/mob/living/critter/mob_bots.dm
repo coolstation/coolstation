@@ -119,6 +119,9 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 				src.abilityHolder.addAbility(/datum/targetable/critter/bot/fill_with_chem/phlogiston_dust)
 				src.emagged = TRUE
 
+		is_open_container()
+			return TRUE
+
 		emagged
 			brute_hp = 50
 			burn_hp = 50
