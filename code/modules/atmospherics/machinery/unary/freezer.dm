@@ -4,6 +4,7 @@
 	icon_state = "freezer_0"
 	density = 1
 	anchored = 1.0
+	desc = "Demon brand freezer unit. Cools gas in the attached pipe network"
 	current_heat_capacity = 1000
 	var/pipe_direction = 1
 
