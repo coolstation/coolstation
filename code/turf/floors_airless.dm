@@ -11,12 +11,7 @@
 
 //////////////////////////////////////////////////////////// SPECIAL AIRLESS-ONLY TURFS
 
-/turf/simulated/floor/airless/solar
-	icon_state = "solarbase"
-	step_material = "step_lattice"
-	step_priority = STEP_PRIORITY_MED
-
-/turf/unsimulated/floor/airless/solar
+/turf/floor/airless/solar
 	icon_state = "solarbase"
 	step_material = "step_lattice"
 	step_priority = STEP_PRIORITY_MED
@@ -773,7 +768,7 @@
 
 /////////////////////////////////////////
 
-/turf/unsimulated/floor/airless/sand
+/turf/floor/airless/sand
 	name = "sand"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "sand"

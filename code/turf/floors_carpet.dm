@@ -1030,6 +1030,8 @@
 		dir = 10
 
 //UNSIMULATED GREEN CARPET//
+// ATMOSSIMSTODO - We probably don't need these, right?
+/*
 /turf/unsimulated/floor/carpet/green
 	icon_state = "green1"
 
