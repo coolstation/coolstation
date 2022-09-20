@@ -86,11 +86,11 @@ ABSTRACT_TYPE(/obj/item/furniture_parts)
 			return ..()
 
 	attack_self(mob/user as mob)
-		actions.start(new /datum/action/bar/icon/furniture_build(src, src.furniture_name, src.build_duration), user)
+		actions.start(new /datum/action/bar/icon/furniture_build(src, src.furniture_name, src.build_duration, get_turf(user)), user)
 
 
 	afterattack(atom/target, mob/user)
-		if (!isturf(target))
+		if (!isturf(target) || target.density)
 			return ..()
 		actions.start(new /datum/action/bar/icon/furniture_build(src, src.furniture_name, src.build_duration, target), user)
 
@@ -103,6 +103,12 @@ ABSTRACT_TYPE(/obj/item/furniture_parts)
 			src.contained_storage = null
 			qdel(O)
 		..()
+
+	mouse_drop(atom/movable/target)
+		. = ..()
+		if (HAS_ATOM_PROPERTY(usr, PROP_MOB_CAN_CONSTRUCT_WITHOUT_HOLDING) && isturf(target))
+			actions.start(new /datum/action/bar/icon/furniture_build(src, src.furniture_name, src.build_duration, target), usr)
+
 
 /* -------------------- Furniture Actions -------------------- */
 /datum/action/bar/icon/furniture_build

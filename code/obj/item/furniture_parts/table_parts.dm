@@ -1,7 +1,20 @@
-/* ---------- Table Parts ---------- */
+#define TABLE_WARNING(user) boutput(user, "<span class='alert'>You can't build a table under yourself! You'll have to build it somewhere adjacent instead.</span>")
 /obj/item/furniture_parts/table
 	name = "table parts"
 	desc = "A collection of parts that can be used to make a table."
+	check_existing_type = /obj/table
+
+	afterattack(atom/target, mob/user)
+		if (isturf(target) && target == get_turf(user))
+			TABLE_WARNING(user)
+			return
+		else
+			return ..()
+
+	attack_self(mob/user)
+		TABLE_WARNING(user)
+
+#undef TABLE_WARNING
 
 /obj/item/furniture_parts/table/desk
 	name = "desk parts"

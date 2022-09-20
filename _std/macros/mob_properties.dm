@@ -217,6 +217,8 @@ To remove:
 #define PROP_INVISIBILITY(x) x("invisibility", APPLY_MOB_PROPERTY_MAX, REMOVE_MOB_PROPERTY_MAX, PROP_UPDATE_INVISIBILITY)
 #define PROP_PASSIVE_WRESTLE(x) x("wrassler", APPLY_MOB_PROPERTY_SIMPLE, REMOVE_MOB_PROPERTY_SIMPLE)
 #define PROP_FAKEHEALTH_MAX(x) x("fake_health", APPLY_MOB_PROPERTY_MAX, REMOVE_MOB_PROPERTY_MAX)
+#define PROP_MOB_CAN_CONSTRUCT_WITHOUT_HOLDING(x) x("can_build_without_holding", APPLY_ATOM_PROPERTY_SIMPLE, REMOVE_ATOM_PROPERTY_SIMPLE) // mob can bulid furniture without holding them (for borgs)
+
 //Look I stole this from goon because swimming needs it, they made em atom instead of mob properties :v
 //Maybe we should too at some point
 #define PROP_ATOM_FLOATING(x) x("floating", APPLY_MOB_PROPERTY_SIMPLE, REMOVE_MOB_PROPERTY_SIMPLE)
