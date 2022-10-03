@@ -454,6 +454,12 @@ proc/generate_space_color()
 	return_if_overlay_or_effect(M)
 	src.material?.triggerOnEntered(src, M)
 
+	//optionally cancel swims
+	if (isliving(M) && M.hasStatus("swimming") && !istype(src, /turf/space/fluid))
+		if (src.active_liquid?.last_depth_level < 3) //Trying to swim into the air
+			actions.start(new/datum/action/swim_coyote_time(), M)
+			//M.delStatus("swimming")
+
 	if (global_sims_mode)
 		var/area/Ar = loc
 		if (!Ar.skip_sims)
