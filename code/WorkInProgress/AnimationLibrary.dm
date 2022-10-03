@@ -734,6 +734,21 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 			animate(pixel_y = initial_y, transform = null, time = floatspeed, loop = loopnum, easing = SINE_EASING)
 	return
 
+//largely vertical bobbing, a touch of rotation (actually nvm IDK how to do the rotation nicely :V)
+/proc/animate_swim(var/atom/A, var/loopnum = -1, bobspeed = 10, rotspeed = 20, random_side = 1)
+	if (!istype(A))
+		return
+	//var/floatdegrees = rand(5, 20)
+	//var/side = 1
+	//if(random_side) side = pick(-1, 1)
+
+	SPAWN_DBG(rand(1,10))
+		if (A)
+			var/initial_y = A.pixel_y
+			animate(A, pixel_y = initial_y + 6, /*transform = matrix(floatdegrees * (side == 1 ? -1:1), MATRIX_ROTATE),*/ time = bobspeed, loop = loopnum, easing = BACK_EASING, flags = EASE_OUT)
+			animate(pixel_y = initial_y + 2, /*transform = matrix(floatdegrees * (side == 1 ? 1:-1), MATRIX_ROTATE),*/ time = rotspeed, loop = loopnum, easing = SINE_EASING)
+	return
+
 /proc/animate_revenant_shockwave(var/atom/A, var/loopnum = -1, floatspeed = 20, random_side = 1)
 	if (!istype(A))
 		return

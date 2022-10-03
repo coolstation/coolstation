@@ -1948,6 +1948,8 @@
 		if(locfinder.Find("[I.screen_loc]")) //V offsets the screen loc of the item by half the difference of the sprite width and the default sprite width (32), to center the sprite in the box V
 			I.screen_loc = "[locfinder.group[1]][text2num(locfinder.group[2])-(width-32)/2][locfinder.group[3]]"
 
+		if (I.w_class > SWIMMING_UPPER_W_CLASS_BOUND)
+			delStatus("swimming")
 		return 1
 	else
 		if (isnull(hand))
@@ -1969,6 +1971,8 @@
 					I.set_loc(src)
 					src.update_inhands()
 					hud.add_object(I, HUD_LAYER+2, hud.layouts[hud.layout_style]["lhand"])
+					if (I.w_class > SWIMMING_UPPER_W_CLASS_BOUND)
+						delStatus("swimming")
 					return 1
 				else
 					return 0
@@ -1984,6 +1988,8 @@
 					I.set_loc(src)
 					src.update_inhands()
 					hud.add_object(I, HUD_LAYER+2, hud.layouts[hud.layout_style]["rhand"])
+					if (I.w_class > SWIMMING_UPPER_W_CLASS_BOUND)
+						delStatus("swimming")
 					return 1
 				else
 					return 0
@@ -3207,6 +3213,9 @@
 	var/steps = 1
 	if (move_dir & (move_dir-1))
 		steps *= DIAG_MOVE_DELAY_MULT
+
+	if (HAS_MOB_PROPERTY(src, PROP_ATOM_FLOATING)) //swimming
+		return ..()
 
 	//STEP SOUND HANDLING
 	if (!src.lying && isturf(NewLoc) && NewLoc.turf_flags & MOB_STEP)
