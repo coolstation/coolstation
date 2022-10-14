@@ -57,15 +57,25 @@
 	col_b = 0.7
 	light_type = null
 	brightness = 4.6
+	var/light_mode = 0
 
-	var/datum/component/holdertargeting/simple_light/light_dir
+	var/datum/component/holdertargeting/simple_light/light_dim
 	New(loc, R = initial(col_r), G = initial(col_g), B = initial(col_b))
 		..()
 		col_r = R
 		col_g = G
 		col_b = B
-		light_dir = src.AddComponent(/datum/component/holdertargeting/medium_directional_light, col_r * 255, col_g * 255, col_b  * 255, 210)
-		light_dir.update(0)
+		light_dim = src.AddComponent(/datum/component/holdertargeting/simple_light, col_r * 255, col_g * 255, col_b  * 255, 100)
+		light_dim.update(0)
+
+	var/datum/component/holdertargeting/simple_light/light_good
+	New(loc, R = initial(col_r), G = initial(col_g), B = initial(col_b))
+		..()
+		col_r = R
+		col_g = G
+		col_b = B
+		light_good = src.AddComponent(/datum/component/holdertargeting/medium_directional_light/, col_r * 255, col_g * 255, col_b  * 255, 210)
+		light_good.update(0)
 
 	emag_act(var/mob/user, var/obj/item/card/emag/E)
 		if (!src.emagged)
@@ -92,30 +102,43 @@
 		if (src.broken)
 			name = "broken flashlight"
 			return
-
-		src.on = !src.on
 		playsound(src, "sound/items/penclick.ogg", 30, 1)
-		if (src.on)
-			set_icon_state(src.icon_on)
-			if (src.emagged) // Burn them all!
-				user.apply_flash(60, 2, 0, 0, rand(2, 8), rand(1, 15), 0, 25, 100, stamina_damage = 70, disorient_time = 10)
-				for (var/mob/M in oviewers(2, get_turf(src)))
-					if (in_cone_of_vision(user, M)) // If the mob is in the direction we're looking
-						var/mob/living/target = M
-						if (istype(target))
-							target.apply_flash(60, 8, 0, 0, rand(2, 8), rand(1, 15), 0, 30, 100, stamina_damage = 190, disorient_time = 50)
-							logTheThing("combat", user, target, "flashes [constructTarget(target,"combat")] with an emagged flashlight.")
-				user.visible_message("<span class='alert'>The [src] in [user]'s hand bursts with a blinding flash!</span>", "<span class='alert'>The bulb in your hand explodes with a blinding flash!</span>")
-				on = 0
-				light_dir.update(0)
-				icon_state = "flightbroken"
-				name = "broken flashlight"
-				src.broken = 1
-			else
-				light_dir.update(1)
-		else
+		if(light_mode == 3) // if on the third mode, turn off
 			set_icon_state(src.icon_off)
-			light_dir.update(0)
+			src.on = 0
+			light_mode = 0
+			light_good.update(0)
+			return
+		if (src.emagged) // Burn them all!
+			user.apply_flash(60, 2, 0, 0, rand(2, 8), rand(1, 15), 0, 25, 100, stamina_damage = 70, disorient_time = 10)
+			for (var/mob/M in oviewers(2, get_turf(src)))
+				if (in_cone_of_vision(user, M)) // If the mob is in the direction we're looking
+					var/mob/living/target = M
+					if (istype(target))
+						target.apply_flash(60, 8, 0, 0, rand(2, 8), rand(1, 15), 0, 30, 100, stamina_damage = 190, disorient_time = 50)
+						logTheThing("combat", user, target, "flashes [constructTarget(target,"combat")] with an emagged flashlight.")
+			user.visible_message("<span class='alert'>The [src] in [user]'s hand bursts with a blinding flash!</span>", "<span class='alert'>The bulb in your hand explodes with a blinding flash!</span>")
+			on = 0
+			light_dim.update(0)
+			light_good.update(0)
+			icon_state = "flightbroken"
+			name = "broken flashlight"
+			src.broken = 1
+			return
+		else
+			if(light_mode == 0) // dim mode
+				set_icon_state(src.icon_on)
+				light_mode = 1
+				src.on = 1
+				light_dim.update(1)
+			else if(light_mode == 1) // red mode
+				set_icon_state("flight2")
+				light_mode = 2
+				light_dim.update(0)
+				light_good.update(1)
+			else if(light_mode == 2) // actual flashlight mode
+				set_icon_state(src.icon_on)
+				light_mode = 3
 
 /obj/item/device/light/flashlight/abilities = list(/obj/ability_button/flashlight_toggle)
 
