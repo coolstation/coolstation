@@ -636,12 +636,6 @@ ABSTRACT_TYPE(/area/shuttle)
 /area/shuttle/attack2/prison
 	icon_state = "shuttle2"
 
-/area/shuttle/mining/station
-	icon_state = "shuttle"
-
-/area/shuttle/mining/space
-	icon_state = "shuttle2"
-
 /area/shuttle/john/diner
 	icon_state = "shuttle"
 
@@ -1278,7 +1272,7 @@ ABSTRACT_TYPE(/area/prefab)
 	icon_state = "purple"
 
 // stuff
-
+/*
 /area/shuttle/sea_elevator/lower/sec // gehenna sec elevator
 	name = "Security Elevator Shaft"
 /area/shuttle/sea_elevator/upper/sec // gehenna sec elevator
@@ -1294,16 +1288,16 @@ ABSTRACT_TYPE(/area/prefab)
 /area/shuttle/sea_elevator/lower/QM
 	name = "Cargo Elevator Shaft"
 /area/shuttle/sea_elevator/upper/QM
-	name = "Cargo Elevator Shaft"
+	name = "Cargo Elevator Shaft"*/
 /area/shuttle/sea_elevator/lower/NTFC
 	name = "Cargo Elevator Shaft"
 /area/shuttle/sea_elevator/upper/NTFC
-	name = "Cargo Elevator Shaft"
+	name = "Cargo Elevator Shaft"/*
 /area/shuttle/sea_elevator/lower/command
 	name = "Command Elevator Shaft"
 /area/shuttle/sea_elevator/upper/command
 	name = "Command Elevator Shaft"
-
+*/
 
 // Sealab trench areas //
 
@@ -1800,6 +1794,10 @@ ABSTRACT_TYPE(/area/station/maintenance/outer)
 	name = "Waste Disposal"
 	icon_state = "disposal"
 
+/area/station/maintenance/disposal/sewage
+	name = "Septic Tank"
+	icon_state = "fart"
+
 /area/station/maintenance/lowerstarboard
 	name = "Lower Starboard Maintenance"
 	icon_state = "lower_starboard_maintenance"
@@ -2007,6 +2005,9 @@ ABSTRACT_TYPE(/area/station/mining)
 
 /area/station/mining/cargo_staff_room
 	name = "Cargo Staff Room"
+
+/area/station/mining/dock
+	name = "Mining Shuttle Dock"
 
 /area/station/bridge
 	name = "Bridge"
@@ -5596,12 +5597,11 @@ MAJOR_AST(30)
 \* +++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 /area/centcom/outpost
-	filler_turf = null
 	name = "Nanotrasen Temporary Frontier Command"
 	icon_state = "yellow"
+	filler_turf = "/turf/space"
 
 /area/centcom/outpost/lower
-	filler_turf = null
 	name = "Nanotrasen Temporary Frontier Command Subdeck"
 	icon_state = "orange"
 

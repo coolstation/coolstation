@@ -60883,13 +60883,6 @@
 	icon_state = "floor"
 	},
 /area/centcom)
-"drK" = (
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/right_centcom/cogmap2)
 "drL" = (
 /obj/lattice{
 	dir = 9;
@@ -60897,125 +60890,12 @@
 	},
 /turf/unsimulated/outdoors/grass,
 /area/centcom/outside)
-"drM" = (
-/obj/wingrille_spawn/auto,
-/turf/unsimulated/floor/plating,
-/area/shuttle/merchant_shuttle/right_centcom/cogmap2)
-"drN" = (
-/obj/machinery/shuttle/engine/heater{
-	dir = 8;
-	icon_state = "alt_heater"
-	},
-/turf/simulated/shuttle/wall{
-	icon_state = "wall3"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap2)
-"drO" = (
-/obj/machinery/shuttle/engine/propulsion{
-	dir = 4;
-	icon_state = "alt_propulsion"
-	},
-/turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/right_centcom/cogmap2)
 "drP" = (
 /obj/machinery/door/airlock/external,
 /turf/unsimulated/floor{
 	icon_state = "floor"
 	},
 /area/centcom)
-"drQ" = (
-/turf/simulated/shuttle/wall{
-	icon_state = "wall3"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap2)
-"drR" = (
-/obj/indestructible/shuttle_corner{
-	dir = 4;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap2)
-"drS" = (
-/obj/decal/fakeobjects/teleport_pad,
-/obj/machinery/light/small/floor,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap2)
-"drT" = (
-/obj/indestructible/shuttle_corner{
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap2)
-"drU" = (
-/obj/wingrille_spawn/auto,
-/turf/unsimulated/floor/engine,
-/area/shuttle/merchant_shuttle/right_centcom/cogmap2)
-"drV" = (
-/obj/table/reinforced/auto,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap2)
-"drW" = (
-/obj/stool/chair/comfy,
-/obj/npc/trader/random{
-	trader_area = "/area/shuttle/merchant_shuttle/right_station"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap2)
-"drX" = (
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap2)
-"drY" = (
-/obj/machinery/door/airlock/pyro/external{
-	dir = 4
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap2)
-"drZ" = (
-/obj/indestructible/shuttle_corner{
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/right_centcom/cogmap2)
-"dsa" = (
-/obj/indestructible/shuttle_corner{
-	dir = 1;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap2)
-"dsb" = (
-/obj/decal/fakeobjects/teleport_pad,
-/obj/marker/supplymarker,
-/obj/machinery/light/small/floor,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap2)
-"dsc" = (
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap2)
 "dse" = (
 /obj/lattice{
 	dir = 10;
@@ -61439,18 +61319,13 @@
 	},
 /turf/unsimulated/outdoors/grass,
 /area/shuttle/escape/centcom/destiny)
-"dtu" = (
-/turf/simulated/shuttle/wall{
-	icon_state = "wall3"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
 "dtv" = (
 /obj/indestructible/shuttle_corner{
 	dir = 1;
 	icon_state = "wall3_trans"
 	},
 /turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
+/area/space)
 "dtw" = (
 /obj/machinery/shuttle/engine/propulsion{
 	dir = 1;
@@ -61476,32 +61351,13 @@
 	dir = 1
 	},
 /area/crypt/sigma/morgue)
-"dtB" = (
-/turf/simulated/shuttle/wall{
-	icon_state = "wall3"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
 "dtC" = (
 /obj/machinery/shuttle/engine/propulsion{
 	dir = 1;
 	icon_state = "alt_propulsion"
 	},
 /turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
-"dtE" = (
-/obj/indestructible/shuttle_corner{
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
-"dtF" = (
-/turf/simulated/shuttle/wall{
-	dir = 1;
-	icon_state = "wall3dir"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
+/area/space)
 "dtG" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -61542,20 +61398,6 @@
 	icon_state = "cavern_edge2"
 	},
 /area/hospital/underground)
-"dtM" = (
-/obj/indestructible/shuttle_corner{
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
-"dtN" = (
-/obj/decal/fakeobjects/teleport_pad,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
 "dtO" = (
 /turf/unsimulated/floor/plating/damaged3,
 /area/hospital/underground)
@@ -61623,18 +61465,6 @@
 	name = "plating"
 	},
 /area/hospital/underground)
-"dtV" = (
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
-"dtW" = (
-/obj/decal/fakeobjects/teleport_pad,
-/obj/marker/supplymarker,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
 "dtX" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -61692,10 +61522,6 @@
 	},
 /turf/unsimulated/floor/plating/scorched,
 /area/hospital/underground)
-"duc" = (
-/obj/wingrille_spawn/auto,
-/turf/unsimulated/floor/shuttle,
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
 "due" = (
 /obj/stool/chair/comfy,
 /obj/npc/trader/random{
@@ -61704,7 +61530,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
+/area/space)
 "duf" = (
 /turf/unsimulated/wall{
 	dir = 1;
@@ -61719,26 +61545,6 @@
 	icon_state = "wall3"
 	},
 /area/shuttle/merchant_shuttle/right_centcom/donut2)
-"duh" = (
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
-"dui" = (
-/obj/machinery/light/small/floor,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
-"duj" = (
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
 "duk" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -61757,16 +61563,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
-"dum" = (
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
+/area/space)
 "dun" = (
 /turf/unsimulated/wall{
 	desc = "It's sealed shut.";
@@ -61776,18 +61573,12 @@
 	name = "security door"
 	},
 /area/hospital/underground)
-"duo" = (
-/obj/machinery/door/airlock/pyro/external,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
 "dup" = (
 /obj/machinery/door/airlock/pyro/external,
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
+/area/space)
 "duq" = (
 /turf/unsimulated/wall/setpieces/hospital/cavern{
 	dir = 5;
@@ -62078,15 +61869,6 @@
 "dvd" = (
 /turf/unsimulated/grass,
 /area/centcom/lounge)
-"dve" = (
-/obj/stool/chair/comfy,
-/obj/npc/trader/random{
-	trader_area = "/area/shuttle/merchant_shuttle/right_station"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap2)
 "dvf" = (
 /obj/decal/fakeobjects/firelock_broken{
 	dir = 8
@@ -62098,20 +61880,6 @@
 /obj/critter/zombie/scientist,
 /turf/unsimulated/floor/white/grime,
 /area/crypt/sigma/lab)
-"dvh" = (
-/obj/machinery/door/airlock/pyro/external{
-	dir = 4
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap2)
-"dvi" = (
-/obj/table/reinforced/auto,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap2)
 "dvj" = (
 /obj/decal/fakeobjects/firelock_broken{
 	dir = 8
@@ -62130,44 +61898,11 @@
 	dir = 1
 	},
 /area/crypt/sigma/morgue)
-"dvl" = (
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap2)
-"dvm" = (
-/obj/indestructible/shuttle_corner{
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/left_centcom/cogmap2)
 "dvn" = (
 /turf/unsimulated/floor/specialroom/freezer{
 	dir = 1
 	},
 /area/crypt/sigma/morgue)
-"dvo" = (
-/obj/indestructible/shuttle_corner{
-	dir = 1;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap2)
-"dvp" = (
-/obj/decal/fakeobjects/teleport_pad,
-/obj/marker/supplymarker,
-/obj/machinery/light/small/floor,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap2)
-"dvq" = (
-/turf/simulated/shuttle/wall{
-	icon_state = "wall3"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap2)
 "dvr" = (
 /obj/decal/tile_edge/line/black{
 	dir = 4;
@@ -71551,15 +71286,6 @@
 	icon_state = "shore-33"
 	},
 /area/titlescreen)
-"esx" = (
-/obj/indestructible/shuttle_corner{
-	dir = 4;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/diner_centcom)
 "esO" = (
 /obj/admin_plaque{
 	name = "Sord's Office"
@@ -71778,7 +71504,7 @@
 "eTR" = (
 /obj/wingrille_spawn/auto,
 /turf/unsimulated/floor/shuttle,
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
+/area/space)
 "eTU" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "It's a pipe manifold.  A grimy one.";
@@ -72284,10 +72010,6 @@
 "gGM" = (
 /turf/unsimulated/floor/void/channel,
 /area/adventure/channel/teleport)
-"gIA" = (
-/obj/wingrille_spawn/auto,
-/turf/unsimulated/floor/plating,
-/area/shuttle/merchant_shuttle/left_centcom/cogmap2)
 "gIU" = (
 /obj/decal/fakeobjects/thrust{
 	dir = 4
@@ -72336,14 +72058,6 @@
 	},
 /turf/unsimulated/floor/wood/two,
 /area/centcom/offices/mrfishstick)
-"gQl" = (
-/obj/indestructible/shuttle_corner{
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/diner_centcom)
 "gQE" = (
 /obj/cable{
 	d1 = 1;
@@ -72386,7 +72100,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/diner_centcom)
+/area/space)
 "hag" = (
 /obj/item/strange_candle{
 	pixel_x = -6;
@@ -72434,7 +72148,7 @@
 /turf/simulated/shuttle/wall{
 	icon_state = "wall3"
 	},
-/area/shuttle/merchant_shuttle/diner_centcom)
+/area/space)
 "hjh" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -72518,13 +72232,6 @@
 	},
 /turf/unsimulated/floor/shuttle,
 /area/shuttle/escape/centcom/destiny)
-"hxt" = (
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
 "hyU" = (
 /obj/decal/fakeobjects/firelock_broken{
 	desc = "This shuttle door is really jammed.  What's the point of it then?  WHAT IS THE POINT";
@@ -72758,7 +72465,7 @@
 /turf/simulated/shuttle/wall{
 	icon_state = "wall3"
 	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
+/area/space)
 "icJ" = (
 /obj/burning_barrel,
 /turf/unsimulated/floor/setpieces/rootfloor,
@@ -73140,13 +72847,6 @@
 	icon_state = "floor"
 	},
 /area/centcom/lounge)
-"jlk" = (
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/left_centcom/cogmap2)
 "jns" = (
 /obj/machinery/light,
 /turf/unsimulated/floor{
@@ -73463,15 +73163,6 @@
 	},
 /turf/unsimulated/outdoors/snow,
 /area/centcom/offices/virvatuli)
-"kiU" = (
-/obj/indestructible/shuttle_corner{
-	dir = 4;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
 "kjA" = (
 /turf/space,
 /turf/unsimulated/wall{
@@ -73599,15 +73290,6 @@
 	icon_state = "wall3dir"
 	},
 /area/shuttle/merchant_shuttle/left_centcom/destiny)
-"kzn" = (
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/diner_centcom)
 "kAr" = (
 /turf/unsimulated/floor/grey/side{
 	dir = 4
@@ -73672,15 +73354,6 @@
 /obj/map/light/brightwhite,
 /turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
-"kOu" = (
-/obj/indestructible/shuttle_corner{
-	dir = 1;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
 "kOS" = (
 /turf/space,
 /turf/unsimulated/floor/caution/corner/misc{
@@ -73740,7 +73413,7 @@
 	icon_state = "wall3_trans"
 	},
 /turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/diner_centcom)
+/area/space)
 "kVB" = (
 /obj/decal/cleanable/dirt,
 /obj/machinery/gibber/output_east,
@@ -73907,12 +73580,6 @@
 	icon_state = "red2"
 	},
 /area/afterlife/bar)
-"luV" = (
-/obj/indestructible/shuttle_corner{
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
 "lvn" = (
 /obj/decal/fakeobjects/lightbulb_broken{
 	dir = 4
@@ -73999,15 +73666,6 @@
 	icon_state = "shore-1"
 	},
 /area/titlescreen)
-"lFq" = (
-/obj/stool/chair/comfy,
-/obj/npc/trader/random{
-	trader_area = "/area/shuttle/merchant_shuttle/right_station"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/diner_centcom)
 "lGN" = (
 /turf/unsimulated/floor/void/channel,
 /area/adventure/channel)
@@ -74024,7 +73682,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/diner_centcom)
+/area/space)
 "lNw" = (
 /obj/table/reinforced/bar/auto,
 /obj/decal/tile_edge/line/black{
@@ -74130,11 +73788,6 @@
 /obj/decal/cleanable/dirt,
 /turf/unsimulated/floor/black,
 /area/afterlife/bar)
-"maI" = (
-/turf/simulated/shuttle/wall{
-	icon_state = "wall3dir"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
 "mbi" = (
 /obj/securearea{
 	desc = "Blue, blue.";
@@ -74441,7 +74094,7 @@
 "mVb" = (
 /obj/wingrille_spawn/auto,
 /turf/unsimulated/floor/plating,
-/area/shuttle/merchant_shuttle/diner_centcom)
+/area/space)
 "mWQ" = (
 /obj/landmark{
 	name = "pit_meatland"
@@ -74864,15 +74517,6 @@
 	},
 /turf/unsimulated/floor/void/channel,
 /area/adventure/channel/flingy)
-"nQA" = (
-/obj/indestructible/shuttle_corner{
-	dir = 1;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/diner_centcom)
 "nRf" = (
 /obj/item/paper{
 	burn_possible = 1;
@@ -75104,7 +74748,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap2)
+/area/space)
 "onQ" = (
 /obj/stool/chair/comfy/shuttle,
 /obj/machinery/light{
@@ -75251,13 +74895,6 @@
 	dir = 5
 	},
 /area/centcom/offices/varshie)
-"oKo" = (
-/obj/machinery/shuttle/engine/propulsion{
-	dir = 4;
-	icon_state = "alt_propulsion"
-	},
-/turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/diner_centcom)
 "oNv" = (
 /obj/machinery/light{
 	dir = 1;
@@ -75272,7 +74909,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/diner_centcom)
+/area/space)
 "oPY" = (
 /obj/item/mechanics/trigger/button{
 	anchored = 1;
@@ -75340,15 +74977,6 @@
 	name = "plating"
 	},
 /area/adventure/channel/flingy)
-"oXl" = (
-/obj/machinery/shuttle/engine/heater{
-	dir = 8;
-	icon_state = "alt_heater"
-	},
-/turf/simulated/shuttle/wall{
-	icon_state = "wall3"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap2)
 "oXr" = (
 /obj/item/paper{
 	pixel_x = -13;
@@ -75660,7 +75288,7 @@
 	icon_state = "wall3_trans"
 	},
 /turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
+/area/space)
 "pKT" = (
 /obj/securearea{
 	desc = "It looks pretty dangerous in there.";
@@ -75747,7 +75375,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
+/area/space)
 "pVP" = (
 /obj/item/paper{
 	info = "Workin' in Botany,<br>Gonna grow a lot of peaches.<br>Be thinkin' they look like butts<br>Or maybe it's butts that looks like peaches.<br>They contain synthetic peach juice,<br>Makes me think they're not real peaches.<br>Don't heckle me from rhyming words with themselves,<br>The Presidents Of The United States Of America did in their fucking song \"Peaches\"";
@@ -75786,7 +75414,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap2)
+/area/space)
 "qaO" = (
 /obj/machinery/door/airlock/gannets/glass/engineering/alt,
 /turf/unsimulated/floor{
@@ -75802,13 +75430,6 @@
 	icon_state = "shore-47"
 	},
 /area/titlescreen)
-"qdS" = (
-/obj/decal/fakeobjects/teleport_pad,
-/obj/machinery/light/small/floor,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/diner_centcom)
 "qfx" = (
 /obj/grille/steel,
 /obj/window/north,
@@ -75834,7 +75455,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
+/area/space)
 "qgO" = (
 /turf/unsimulated/wall/auto/sengoku{
 	icon_state = "5";
@@ -75842,10 +75463,6 @@
 	opacity = 0
 	},
 /area/titlescreen)
-"qhR" = (
-/obj/wingrille_spawn/auto,
-/turf/unsimulated/floor/engine,
-/area/shuttle/merchant_shuttle/left_centcom/cogmap2)
 "qiR" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 1
@@ -75900,7 +75517,7 @@
 "qsP" = (
 /obj/wingrille_spawn/auto,
 /turf/unsimulated/floor/engine,
-/area/shuttle/merchant_shuttle/diner_centcom)
+/area/space)
 "qvu" = (
 /obj/table/auto,
 /turf/space,
@@ -76109,7 +75726,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap2)
+/area/space)
 "qQy" = (
 /obj/machinery/sleeper/compact{
 	dir = 4
@@ -76654,7 +76271,7 @@
 /turf/simulated/shuttle/wall{
 	icon_state = "wall3"
 	},
-/area/shuttle/merchant_shuttle/diner_centcom)
+/area/space)
 "siD" = (
 /obj/item/reagent_containers/food/drinks/bottle/champagne{
 	pixel_x = -11;
@@ -76770,7 +76387,7 @@
 /turf/simulated/shuttle/wall{
 	icon_state = "wall3"
 	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
+/area/space)
 "suS" = (
 /obj/cable{
 	icon_state = "2-8"
@@ -76992,7 +76609,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
+/area/space)
 "tmc" = (
 /turf/unsimulated/wall{
 	dir = 6;
@@ -77081,7 +76698,7 @@
 /turf/simulated/shuttle/wall{
 	icon_state = "wall3dir"
 	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
+/area/space)
 "tDr" = (
 /obj/stool/chair/comfy/blue{
 	dir = 1;
@@ -77119,7 +76736,7 @@
 	dir = 1;
 	icon_state = "wall3dir"
 	},
-/area/shuttle/merchant_shuttle/right_centcom/cogmap)
+/area/space)
 "tUN" = (
 /turf/space,
 /turf/unsimulated/floor{
@@ -77161,7 +76778,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/diner_centcom)
+/area/space)
 "ubd" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 1;
@@ -77406,7 +77023,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
+/area/space)
 "uKE" = (
 /obj/stool/chair/comfy/shuttle/pilot{
 	dir = 8
@@ -77531,7 +77148,7 @@
 	icon_state = "alt_propulsion"
 	},
 /turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
+/area/space)
 "vbL" = (
 /turf/unsimulated/floor{
 	icon = 'icons/turf/adventure_gannets.dmi';
@@ -77576,7 +77193,7 @@
 	icon_state = "alt_propulsion"
 	},
 /turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/left_centcom/cogmap2)
+/area/space)
 "vjH" = (
 /turf/unsimulated/floor/plating,
 /area/retentioncenter)
@@ -77719,7 +77336,7 @@
 	icon_state = "wall3_trans"
 	},
 /turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/diner_centcom)
+/area/space)
 "vBI" = (
 /obj/table/reinforced/bar/auto,
 /obj/decal/tile_edge/line/black{
@@ -77977,15 +77594,6 @@
 	opacity = 0
 	},
 /area/titlescreen)
-"wEA" = (
-/obj/indestructible/shuttle_corner{
-	dir = 4;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap2)
 "wFO" = (
 /obj/npc/trader/random{
 	trader_area = "/area/shuttle/merchant_shuttle/left_station"
@@ -78377,7 +77985,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/diner_centcom)
+/area/space)
 "xWx" = (
 /obj/table/auto,
 /obj/decal/fakeobjects{
@@ -78478,7 +78086,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/left_centcom/cogmap)
+/area/space)
 "yfx" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "The air from it smells faintly of mildew.";
@@ -114522,10 +114130,10 @@ adi
 aaa
 dFc
 aES
-drK
-drU
-drU
-drZ
+kUZ
+qsP
+qsP
+vBq
 aES
 aES
 dFc
@@ -114824,10 +114432,10 @@ aeU
 aaa
 dFc
 aES
-drQ
-drV
-drV
-drQ
+hjf
+gZG
+gZG
+hjf
 aES
 aES
 dFc
@@ -115125,12 +114733,12 @@ acb
 aAy
 aaa
 dFc
-drK
-drR
-drW
-drX
-dsa
-drZ
+kUZ
+yeV
+pVO
+lLo
+qgj
+vBq
 aES
 dFc
 aaa
@@ -115427,12 +115035,12 @@ acb
 aAz
 aaa
 dFc
-drM
-drS
-drX
-drX
-dsb
-drM
+mVb
+qQd
+lLo
+lLo
+tZr
+mVb
 aES
 dFc
 aaa
@@ -115729,12 +115337,12 @@ aeC
 aeX
 aaa
 dFc
-drN
-drT
-drX
-drX
-dsc
-drN
+shf
+qan
+lLo
+lLo
+onw
+shf
 aES
 dFc
 aaa
@@ -116031,12 +115639,12 @@ abH
 adm
 aaa
 dFc
-drO
-drQ
-drY
-drY
-drQ
-drO
+vjx
+hjf
+oPW
+oPW
+hjf
+vjx
 aES
 dFc
 aaa
@@ -119677,11 +119285,11 @@ gcn
 drJ
 gcn
 aES
-hxt
+kUZ
 tAi
-dtF
+tUJ
 eTR
-dtu
+hjf
 iag
 vaZ
 aES
@@ -119979,13 +119587,13 @@ dms
 dpz
 gcn
 dnZ
-dtu
+hjf
 yeV
 uKz
 pVO
 uKz
-kOu
-dtu
+qgj
+hjf
 aES
 aES
 dFc
@@ -120281,13 +119889,13 @@ dny
 dmu
 pmv
 doa
-duo
-dui
-dtV
-dtV
-dtV
-dui
-duo
+dup
+dul
+lLo
+lLo
+lLo
+dul
+dup
 aES
 aES
 dFc
@@ -120583,13 +120191,13 @@ dny
 dmu
 gcn
 dnZ
-dtu
-dtE
-dtV
-dtW
-dtV
-duj
-dtu
+hjf
+qan
+lLo
+tkW
+lLo
+onw
+hjf
 aES
 aES
 dFc
@@ -120887,9 +120495,9 @@ gcn
 aES
 dtv
 tAi
-dtF
+tUJ
 eTR
-dtu
+hjf
 iag
 vaZ
 aES
@@ -123605,17 +123213,17 @@ gcn
 aES
 dtC
 suO
-dtB
-duc
-maI
+hjf
+eTR
+tAi
 tUJ
-luV
+vBq
 aES
 kUZ
-esx
-lFq
+yeV
+pVO
 xUS
-nQA
+qgj
 vBq
 dFc
 pqf
@@ -123905,16 +123513,16 @@ dny
 dnT
 gcn
 dnZ
-dtB
-kiU
-duh
+hjf
+yeV
+lLo
 tkW
-duh
+lLo
 qgj
-dtB
+hjf
 aES
 mVb
-qdS
+qQd
 lLo
 lLo
 tZr
@@ -124209,17 +123817,17 @@ pmv
 doa
 dup
 dul
-duh
-duh
-duh
+lLo
+lLo
+lLo
 dul
 dup
 aES
 shf
-gQl
+qan
 lLo
 lLo
-kzn
+onw
 shf
 dFc
 pqf
@@ -124509,20 +124117,20 @@ dny
 dmu
 gcn
 dnZ
-dtB
-dtM
-dtN
+hjf
+qan
+uKz
 due
-dtN
-dum
-dtB
+uKz
+onw
+hjf
 aES
-oKo
+vjx
 hjf
 oPW
 oPW
 hjf
-oKo
+vjx
 dFc
 rst
 kyf
@@ -124813,9 +124421,9 @@ gcn
 aES
 dtC
 suO
-dtB
-duc
-maI
+hjf
+eTR
+tAi
 tUJ
 pKN
 aES
@@ -130268,10 +129876,10 @@ aDK
 aES
 aES
 aES
-jlk
-qhR
-qhR
-dvm
+kUZ
+qsP
+qsP
+vBq
 aES
 dFc
 dFc
@@ -130570,10 +130178,10 @@ duK
 aES
 aES
 aES
-dvq
-dvi
-dvi
-dvq
+hjf
+gZG
+gZG
+hjf
 aES
 dFc
 dFc
@@ -130871,12 +130479,12 @@ aES
 aES
 aES
 aES
-jlk
-wEA
-dve
-dvl
-dvo
-dvm
+kUZ
+yeV
+pVO
+lLo
+qgj
+vBq
 dFc
 dFc
 dFc
@@ -131173,12 +130781,12 @@ aES
 aES
 aES
 aES
-gIA
+mVb
 qQd
-dvl
-dvl
-dvp
-gIA
+lLo
+lLo
+tZr
+mVb
 dFc
 dFc
 dFc
@@ -131475,12 +131083,12 @@ aES
 aES
 aES
 aES
-oXl
+shf
 qan
-dvl
-dvl
+lLo
+lLo
 onw
-oXl
+shf
 dFc
 dFc
 dFc
@@ -131778,10 +131386,10 @@ aES
 dFl
 aES
 vjx
-dvq
-dvh
-dvh
-dvq
+hjf
+oPW
+oPW
+hjf
 vjx
 dFc
 dFc

@@ -1368,6 +1368,9 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		else
 			src.lying = 0
 
+	if (src.lying && src.hasStatus("swimming"))
+		src.delStatus("swimming")
+
 	if (src.lying != src.lying_old)
 		src.lying_old = src.lying
 		src.animate_lying(src.lying)

@@ -184,3 +184,6 @@
 #define W_CLASS_HUGE 5
 #define W_CLASS_GIGANTIC 6
 #define W_CLASS_BUBSIAN 10
+
+///Anything above this prevents you from swimming
+#define SWIMMING_UPPER_W_CLASS_BOUND W_CLASS_SMALL
