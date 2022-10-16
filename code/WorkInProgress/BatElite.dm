@@ -55,7 +55,6 @@ Warc: i am nothing if not a temptress (content production)
 */
 
 //Produced content
-ABSTRACT_TYPE(/obj/decal/poster/wallsign/clown_calendar)
 /obj/decal/poster/wallsign/clown_calendar
 	desc = "A calendar with bawdy pinups of attractive clowns." //Presented without further comment
 	icon = 'icons/obj/decals/posters.dmi'
