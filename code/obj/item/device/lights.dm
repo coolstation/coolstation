@@ -135,8 +135,16 @@
 				set_icon_state("flight2")
 				light_mode = 2
 				light_dim.update(0)
+				light_good.r = 290
+				light_good.g = 10
+				light_good.b = 10
 				light_good.update(1)
 			else if(light_mode == 2) // actual flashlight mode
+				light_good.update(0)
+				light_good.r = src.col_r * 255
+				light_good.g = src.col_g * 255
+				light_good.b = src.col_b * 255
+				light_good.update(1)
 				set_icon_state(src.icon_on)
 				light_mode = 3
 
