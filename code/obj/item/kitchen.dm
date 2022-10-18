@@ -737,45 +737,89 @@ TRAYS
 		..()
 		BLOCK_SETUP(BLOCK_BOOK)
 
-	proc/add_contents(var/obj/item/W)
-		ordered_contents += W
-		tooltip_rebuild = 1
+	/// Attempts to add an item to the plate, if there's space. Returns TRUE if food is successfully added.
+	proc/add_contents(obj/item/food, mob/user, click_params)
+		. = FALSE
+		if (istype(food, /obj/item/plate))
+			if (food == src)
+				boutput(user, "<span class='alert'>You can't stack a [src] on itself!</span>")
+				return
+			if (src.plate_stacked)
+				boutput(user, "<span class='alert'>You can't stack anything on [src], it already has a plate stacked on it!</span>")
+				return
+			var/obj/item/plate/not_really_food = food
+			. = src.stackable && not_really_food.stackable // . is TRUE if we can stack the other plate on this plate, FALSE otherwise
 
-	proc/remove_contents(var/obj/item/W)
-		ordered_contents -= W
-		tooltip_rebuild = 1
+		if (length(src.foods_inside) == max_food && src.is_plate)
+			boutput(user, "<span class='alert'>There's no more space on \the [src]!</span>")
+			return
+			                                    // anything that isn't a plate may as well hold anything that fits the "plate"
+		if (!food.edible && !. && src.is_plate) // plates aren't edible, so we check if we're adding a valid plate as well (. is TRUE if so)
+			boutput(user, "<span class='alert'>That's not food, it doesn't belong on \the [src]!</span>")
+			return
+		if (food.w_class > W_CLASS_NORMAL && !.) // same logic as above, but to check if we can stack it
+			boutput(user, "You try to think of a way to put [food] [src.is_plate ? "on" : "in"] \the [src] but it's not possible! It's too large!")
+			return
+		if (food in src.vis_contents)
+			boutput(user, "That's already on the [src]!")
+			return
 
-	proc/update_icon()
-		for (var/i = 1, i <= ordered_contents.len, i++)
-			var/obj/item/F = ordered_contents[i]
-			var/image/I = SafeGetOverlayImage("food_[i]", F.icon, F.icon_state)
-			if(ordered_contents.len == 1)
-				I.transform *= 0.75
+		. = TRUE // If we got this far it's a valid plate content
+
+		if (istype(food, /obj/item/plate/))
+			src.plate_stacked = TRUE
+		else
+			src.foods_inside += food
+
+		src.place_on(food, user, click_params) // this handles pixel positioning
+		food.set_loc(src)
+		src.vis_contents += food
+		food.appearance_flags |= RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
+		food.vis_flags |= VIS_INHERIT_PLANE | VIS_INHERIT_LAYER
+		food.event_handler_flags |= NO_MOUSEDROP_QOL
+		RegisterSignal(food, COMSIG_ATOM_MOUSEDROP, .proc/indirect_pickup)
+		RegisterSignal(food, COMSIG_MOVABLE_SET_LOC, .proc/remove_contents)
+		RegisterSignal(food, COMSIG_ATTACKHAND, .proc/remove_contents)
+		src.UpdateIcon()
+		boutput(user, "You put [food] [src.is_plate ? "on" : "in"] \the [src].")
+
+	/// Removes a piece of food from the plate.
+	proc/remove_contents(obj/item/food)
+		MOVE_OUT_TO_TURF_SAFE(food, src)
+		src.vis_contents -= food
+		food.appearance_flags = initial(food.appearance_flags)
+		food.vis_flags = initial(food.vis_flags)
+		food.event_handler_flags = initial(food.event_handler_flags)
+		UnregisterSignal(food, COMSIG_ATOM_MOUSEDROP)
+		UnregisterSignal(food, COMSIG_MOVABLE_SET_LOC)
+		UnregisterSignal(food, COMSIG_ATTACKHAND)
+		if (istype(food, /obj/item/plate/))
+			src.plate_stacked = FALSE
+		else
+			src.foods_inside -= food
+
+		src.UpdateIcon()
+
+	/// Used to pick the plate up by click dragging some food to you, in case the plate is covered by big foods
+	proc/indirect_pickup(var/food, mob/user, atom/over_object)
+		if (user == over_object && in_interact_range(src, user) && can_act(user))
+			src.Attackhand(user)
+
+	/// Called when you throw or smash the plate, throwing the contents everywhere
+	proc/shit_goes_everywhere(depth = 1)
+		if (length(src.contents))
+			src.visible_message("<span class='alert'>Everything [src.is_plate ? "on" : "in"] \the [src] goes flying!</span>")
+		for (var/atom/movable/food in src)
+			food.set_loc(get_turf(src))
+			if (istype(food, /obj/item/plate))
+				var/obj/item/plate/not_food = food
+				SPAWN_DBG(0.1 SECONDS) // This is rude but I want a small delay in smashing nested plates. More satisfying
+					not_food?.shatter(depth)
 			else
-				I.transform *= 0.5
-				if(i % 2)
-					I.pixel_x = -4
-				else
-					I.pixel_x = 4
-			I.layer = src.layer + 0.1
-			src.UpdateOverlays(I, "food_[i]", 0, 1)
-		for (var/i = ordered_contents.len + 1, i <= src.overlays.len, i++)
-			src.ClearSpecificOverlays("food_[i]")
-		return
+				food.throw_at(get_offset_target_turf(src.loc, rand(throw_dist)-rand(throw_dist), rand(throw_dist)-rand(throw_dist)), 5, 1)
 
-	proc/shit_goes_everywhere()
-		src.visible_message("<span class='alert'>Everything on \the [src] goes flying!</span>")
-		for (var/i = 1, i <= ordered_contents.len, i++)
-			throw_targets += get_offset_target_turf(src.loc, rand(throw_dist)-rand(throw_dist), rand(throw_dist)-rand(throw_dist))
-
-		while (ordered_contents.len > 0)
-			var/obj/item/F = ordered_contents[1]
-			src.remove_contents(F)
-			src.update_icon()
-			F.set_loc(get_turf(src))
-			F.throw_at(pick(throw_targets), 5, 1)
-
-	proc/unique_attack_garbage_fuck(mob/M as mob, mob/user as mob)
+	/// Used to smash the plate over someone's head
+	proc/unique_attack_garbage_fuck(mob/M, mob/user)
 		attack_particle(user,M)
 		M.TakeDamageAccountArmor("head", force, 0, 0, DAMAGE_BLUNT)
 		playsound(src, "sound/impact_sounds/plate_break.ogg", 50, 1)
