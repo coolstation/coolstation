@@ -199,7 +199,7 @@ This is because if one 'square' element was used to cover the entire space, you 
 			offset_y = tg_layout ? round(i/slots_per_group) : (i%slots_per_group)
 			var/obj_loc = "[pos_x+offset_x],[pos_y+offset_y]" //no pixel coords cause that makes click detection harder above
 			var/final_loc = "[pos_x+offset_x],[pos_y+offset_y]:[pixel_y_adjust]"
-			I.screen_loc = do_hud_offset_thing(I, final_loc)
+			I.screen_loc = do_hud_offset_thing(I, do_hud_offset_thing(I, final_loc))
 			src.obj_locs[obj_loc] = I
 			i++
 		offset_x = tg_layout ? (i%slots_per_group) : round(i/slots_per_group)
