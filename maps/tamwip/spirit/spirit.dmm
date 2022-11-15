@@ -276,6 +276,14 @@
 /obj/landmark/random_room/size5x3,
 /turf/simulated/floor/plating,
 /area/station/maintenance/northwest)
+"bu" = (
+/obj/machinery/door/airlock/pyro{
+	dir = 4;
+	name = "Staff Only"
+	},
+/obj/access_spawn/maint,
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/north)
 "bv" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -1355,6 +1363,14 @@
 /obj/machinery/manufacturer/robotics,
 /turf/simulated/floor/grey,
 /area/station/quartermaster/office)
+"hN" = (
+/obj/machinery/door/airlock/pyro/command{
+	dir = 4;
+	name = "Head of Personnel"
+	},
+/obj/access_spawn/head_of_personnel,
+/turf/simulated/floor/carpet/blue,
+/area/station/crew_quarters/hop)
 "hO" = (
 /obj/window/auto,
 /turf/simulated/floor/plating,
@@ -2992,6 +3008,9 @@
 	dir = 4
 	},
 /area/station/bridge)
+"qY" = (
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/north)
 "qZ" = (
 /turf/simulated/wall/auto/reinforced/jen/dark2,
 /area/station/security/checkpoint/arrivals)
@@ -3922,6 +3941,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal)
+"ww" = (
+/obj/machinery/light/fluorescent/auto/warm,
+/turf/simulated/floor/carpet/blue,
+/area/station/bridge/hos)
 "wy" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -3963,9 +3986,10 @@
 /area/station/medical/crematorium)
 "wE" = (
 /obj/machinery/door/airlock/pyro/command{
-	dir = 4
+	name = "Bridge"
 	},
 /obj/disposalpipe/segment,
+/obj/access_spawn/heads,
 /turf/simulated/floor/black,
 /area/station/bridge)
 "wF" = (
@@ -4200,8 +4224,8 @@
 /turf/simulated/wall/auto/reinforced/jen/dark2,
 /area/station/engine/engineering/breakroom)
 "xR" = (
-/turf/simulated/wall/auto/reinforced/jen/dark2,
-/area/space)
+/turf/simulated/floor/carpet/blue,
+/area/station/bridge/hos)
 "xS" = (
 /obj/machinery/light/small/cool/very{
 	dir = 1
@@ -5001,6 +5025,9 @@
 	},
 /turf/simulated/floor/carpet/red/fancy,
 /area/station/crew_quarters/quarters)
+"BJ" = (
+/turf/simulated/wall/auto/jen/dark2,
+/area/station/bridge/hos)
 "BK" = (
 /turf/simulated/floor/redblack{
 	dir = 4
@@ -5149,12 +5176,13 @@
 /turf/simulated/floor/marble/border_bw,
 /area/station/hallway/primary/west)
 "Cq" = (
-/obj/machinery/door/airlock/pyro/command{
-	dir = 4
-	},
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/airlock/pyro/command{
+	name = "Bridge"
+	},
+/obj/access_spawn/heads,
 /turf/simulated/floor/black,
 /area/station/bridge)
 "Cr" = (
@@ -5482,6 +5510,11 @@
 	},
 /turf/simulated/floor/black/grime,
 /area/station/security/brig/north_side)
+"DC" = (
+/obj/table/reinforced/auto,
+/obj/window/bulletproof/east,
+/turf/simulated/floor/carpet/blue,
+/area/station/bridge/hos)
 "DH" = (
 /turf/simulated/wall/auto/reinforced/jen/dark3,
 /area/station/security/checkpoint/arrivals)
@@ -5876,6 +5909,10 @@
 	},
 /turf/simulated/floor/grime,
 /area/station/engine/inner)
+"FL" = (
+/obj/machinery/light/fluorescent/auto/warm,
+/turf/simulated/floor/carpet/blue,
+/area/station/crew_quarters/hop)
 "FP" = (
 /obj/stool/chair/comfy/red{
 	dir = 4
@@ -7208,6 +7245,12 @@
 	dir = 5
 	},
 /area/station/hallway/primary/east)
+"MM" = (
+/obj/machinery/light/fluorescent/auto/warm{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/blue,
+/area/station/bridge/hos)
 "MO" = (
 /obj/cable{
 	icon_state = "6-9"
@@ -7618,6 +7661,10 @@
 /obj/grille/steel,
 /turf/simulated/floor/engine/vacuum,
 /area/station/maintenance/southwest)
+"OU" = (
+/obj/landmark/random_room/size3x3,
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/north)
 "OW" = (
 /turf/simulated/wall/auto/shuttle{
 	icon_state = "14"
@@ -9177,8 +9224,9 @@
 /area/station/security/brig)
 "Xo" = (
 /obj/machinery/door/airlock/pyro/command{
-	dir = 4
+	name = "Bridge"
 	},
+/obj/access_spawn/heads,
 /turf/simulated/floor/black,
 /area/station/bridge)
 "Xp" = (
@@ -9325,6 +9373,13 @@
 	},
 /turf/simulated/floor/marble,
 /area/station/hallway/primary/east)
+"Yr" = (
+/obj/machinery/door/airlock/pyro/glass/command{
+	name = "Office"
+	},
+/obj/access_spawn/head_of_personnel,
+/turf/simulated/floor/carpet/blue,
+/area/station/bridge/hos)
 "Ys" = (
 /obj/table/reinforced/auto,
 /turf/simulated/floor/orangeblack,
@@ -9393,6 +9448,10 @@
 /obj/stool/bar,
 /turf/simulated/floor/carpet/red/standard,
 /area/station/crew_quarters/bar)
+"YM" = (
+/obj/machinery/light/small/auto,
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/north)
 "YN" = (
 /turf/simulated/floor/white/grime,
 /area/station/crew_quarters/catering)
@@ -9483,6 +9542,12 @@
 /obj/machinery/light/small/ceiling/cool,
 /turf/simulated/floor/marble,
 /area/station/hallway/primary/central)
+"Zn" = (
+/obj/machinery/light/fluorescent/auto/warm{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/blue,
+/area/station/crew_quarters/hop)
 "Zp" = (
 /obj/wingrille_spawn/auto,
 /turf/simulated/floor/redblack,
@@ -49689,14 +49754,14 @@ Jh
 Cv
 GM
 Jh
-xR
-xR
-xR
-xR
-xR
-xR
-xR
-xR
+FQ
+FQ
+FQ
+FQ
+FQ
+FQ
+FQ
+FQ
 pw
 pw
 pw
@@ -49991,14 +50056,14 @@ Jh
 Cv
 GM
 Jh
-iY
-iY
-iY
-iY
-iY
-iY
-iY
-xR
+yR
+yR
+yR
+yR
+yR
+yR
+yR
+FQ
 pw
 pw
 pw
@@ -50300,7 +50365,7 @@ xM
 xM
 xM
 xM
-xR
+FQ
 pw
 pw
 pw
@@ -52033,11 +52098,11 @@ au
 au
 au
 wf
+Zn
 AD
 AD
 AD
-AD
-AD
+FL
 Kt
 pw
 pw
@@ -52633,10 +52698,10 @@ au
 au
 iT
 wf
-AD
-AD
-AD
-AD
+xR
+xR
+xR
+Yr
 AD
 AD
 AD
@@ -52935,15 +53000,15 @@ uD
 SP
 iT
 wf
+xR
+xR
+xR
+BJ
+Kt
+Kt
+Kt
+Kt
 AD
-AD
-AD
-Kt
-Kt
-Kt
-Kt
-Kt
-Kt
 Kt
 pw
 pw
@@ -53237,16 +53302,16 @@ UA
 wf
 TQ
 wf
-AD
-AD
+xR
+xR
+xR
+BJ
+qY
+qY
+OU
+Kt
 AD
 Kt
-pw
-pw
-pw
-pw
-pw
-pw
 pw
 pw
 pw
@@ -53539,16 +53604,16 @@ au
 au
 iT
 wf
-AD
-AD
-AD
+MM
+xR
+ww
+BJ
+qY
+qY
+YM
 Kt
-pw
-pw
-pw
-pw
-pw
-pw
+FL
+Kt
 pw
 pw
 pw
@@ -53841,16 +53906,16 @@ BK
 IL
 UD
 wf
-AD
-AD
+xR
+xR
+xR
+BJ
+qY
+qY
+qY
+Kt
 AD
 Kt
-pw
-pw
-pw
-pw
-pw
-pw
 pw
 pw
 pw
@@ -54144,15 +54209,15 @@ bf
 bf
 bf
 px
+DC
+DC
 px
-px
-px
 oa
 oa
-oa
-oa
-oa
-oa
+bu
+Kt
+hN
+Kt
 oa
 oa
 oa
