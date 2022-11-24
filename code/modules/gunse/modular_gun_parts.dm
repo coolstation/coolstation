@@ -519,8 +519,8 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	spread_angle = 5
 	scatter = 2
 	name_addition = "Inaba"
-	icon = 'icons/obj/tselaguns/specialparts.dmi'
-	lenght = 15
+	icon = 'icons/obj/items/tselaguns/specialparts.dmi'
+	length = 15
 	icon_state = "zungunbarrel"
 
 // BASIC STOCKS
@@ -624,7 +624,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	spread_angle = -2
 	max_ammo_capacity = 5
 	jam_frequency_reload = 1 //should work?
-	icon = 'icons/obj/tselaguns/specialparts.dmi'
+	icon = 'icons/obj/items/tselaguns/specialparts.dmi'
 	icon_state = "zungunstock"
 	name_addition = "Udon"
 
@@ -648,22 +648,24 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	desc = "HEY YOU GOT A LISCENES FOR THAT????"
 	call_on_fire = 1
 	name_addition = "Musical"
-	icon = 'icons/obj/tselaguns/specialparts.dmi'
+	icon = 'icons/obj/items/tselaguns/specialparts.dmi'
 	icon_state = "trumpet"
 
-		on_fire()
-		playsound(src.my_gun.loc, pick('sound/musical_instruments/sax_bonk1.ogg'))
+	on_fire()
+		playsound(src.my_gun.loc, 
+		pick('sound/musical_instruments/saxbonk.ogg', 'sound/musical_instruments/saxbonk2.ogg'))
 
 /obj/item/gun_parts/accessory/zupressor
 	name = "Inba Zupressor" // I am so proud of this pun
 	desc = "the bullets are preparing, please wait warmly."
 	call_on_fire = 1
 	name_addition = "Zupressed"
-	icon = 'icons/obj/tselaguns/specialparts.dmi'
+	icon = 'icons/obj/items/tselaguns/specialparts.dmi'
 	icon_state = "zungunzunpressor"
 
-		on_fire()
-		playsound(src.my_gun.loc, pick('sound/weapons/Zunpet_attack.ogg'))
+	on_fire()
+		playsound(src.my_gun.loc, 
+		pick('sound/weapons/Zunpet_attack.ogg'))
 
 // No such thing as a basic magazine! they're all bullshit!!
 /obj/item/gun_parts/magazine/juicer
