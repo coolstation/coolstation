@@ -662,6 +662,9 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	icon = 'icons/obj/tselaguns/specialparts.dmi'
 	icon_state = "zungunzunpressor"
 
+			on_fire()
+		playsound(src.my_gun.loc, pick('sound/weapons/Zunpet_attack.ogg'), 50, 1, -1)
+
 // No such thing as a basic magazine! they're all bullshit!!
 /obj/item/gun_parts/magazine/juicer
 	name = "HOTT SHOTTS MAG"
