@@ -570,4 +570,4 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/luna/zunar
 		stock = /obj/item/gun_parts/stock/luna/zunar
-		accessory = new /obj/item/gunparts/accessory/zupressor
+		accessory = new /obj/item/gun_parts/accessory/zupressor

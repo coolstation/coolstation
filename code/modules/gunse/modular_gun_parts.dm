@@ -643,7 +643,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	on_fire()
 		playsound(src.my_gun.loc, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, -1)
 
-/obj/item/gunparts/accessory/trumpetnoiser
+/obj/item/gun_parts/accessory/trumpetnoiser
 	name = "Front of a Trumpet"
 	desc = "HEY YOU GOT A LISCENES FOR THAT????"
 	call_on_fire = 1
@@ -654,7 +654,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 		on_fire()
 		playsound(src.my_gun.loc, pick('sound/musical_instruments/sax_bonk1.ogg', 'sound/musical_instruments/sax_bonk2.ogg'), 50, 1, -1)
 
-/obj/item/gunparts/accessory/zupressor
+/obj/item/gun_parts/accessory/zupressor
 	name = "Inba Zupressor" // I am so proud of this pun
 	desc = "the bullets are preparing, please wait warmly."
 	call_on_fire = 1
