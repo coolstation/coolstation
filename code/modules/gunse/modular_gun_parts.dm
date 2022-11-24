@@ -652,7 +652,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	icon_state = "trumpet"
 
 		on_fire()
-		playsound(src.my_gun.loc, pick('sound/musical_instruments/sax_bonk1.ogg', 'sound/musical_instruments/sax_bonk2.ogg'), 50, 1, -1)
+		playsound(src.my_gun.loc, pick('sound/musical_instruments/sax_bonk1.ogg'))
 
 /obj/item/gun_parts/accessory/zupressor
 	name = "Inba Zupressor" // I am so proud of this pun
@@ -663,7 +663,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	icon_state = "zungunzunpressor"
 
 		on_fire()
-		playsound(src.my_gun.loc, pick('sound/weapons/Zunpet_attack.ogg'), 50, 1, -1)
+		playsound(src.my_gun.loc, pick('sound/weapons/Zunpet_attack.ogg'))
 
 // No such thing as a basic magazine! they're all bullshit!!
 /obj/item/gun_parts/magazine/juicer
