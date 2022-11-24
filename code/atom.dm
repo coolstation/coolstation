@@ -545,7 +545,10 @@
 
 	var/list/old_locs = src.locs
 	var/atom/A = src.loc
-	. = ..()
+	if(src.event_handler_flags & MOVE_NOCLIP)
+		src.set_loc(NewLoc)
+	else
+		. = ..()
 	src.move_speed = TIME - src.l_move_time
 	src.l_move_time = TIME
 	if (A != src.loc &&  !src.skip_loc_change_updates)

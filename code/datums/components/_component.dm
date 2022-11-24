@@ -509,7 +509,7 @@ TYPEINFO(/datum/component)
   * * component_type The typepath of the component to create or return
   * * ... additional arguments to be passed when creating the component if it does not exist
   */
-/datum/proc/LoadComponent(component_type, ...)
+/datum/proc/_LoadComponent(component_type, ...)
 	. = GetComponent(component_type)
 	if(!.)
 		return _AddComponent(args)
