@@ -443,6 +443,7 @@
 /// Returns false if there is a dense atom on the turf, unless a custom hueristic is passed.
 /proc/jpsTurfPassable(turf/T, turf/source, atom/passer, list/options)
 	. = TRUE
+	options ||= list()
 	if(T.density || !T.pathable) // simplest case
 		return FALSE
 	var/direction = get_dir(source, T)
