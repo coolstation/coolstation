@@ -513,6 +513,16 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	icon_state = "it_revolver_short"
 	length = 13
 
+/obj/item/gun_parts/barrel/luna/zunar
+	name = "Zunar mk8 barrel"
+	desc = "A somewhat short barrel that has trumpet buttons on it with a 0 and 1. Some sort of lens shutter too."
+	spread_angle = 5
+	scatter = 2
+	name_addition = "Inaba"
+	icon = 'icons/obj/tselaguns/specialparts.dmi'
+	lenght = 15
+	icon_state = "zungunbarrel"
+
 // BASIC STOCKS
 /obj/item/gun_parts/stock/NT
 	name = "standard grip"
@@ -608,6 +618,16 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	icon_state = "it_fancy"
 	name_addition = "jovial"
 
+/obj/item/gun_parts/stock/luna/zunar
+	name = "Zunar Mk8 grip"
+	desc = "The trigger looks to be taken from a game controller"
+	spread_angle = -2
+	max_ammo_capacity = 5
+	jam_frequency_reload = 1 //should work?
+	icon = 'icons/obj/tselaguns/specialparts.dmi'
+	icon_state = "zungunstock"
+	name_addition = "Udon"
+
 // BASIC ACCESSORIES
 	// flashlight!!
 	// grenade launcher!!
@@ -623,7 +643,24 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	on_fire()
 		playsound(src.my_gun.loc, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, -1)
 
+/obj/item/gunparts/accessory/trumpetnoiser
+	name = "Front of a Trumpet"
+	desc = "HEY YOU GOT A LISCENES FOR THAT????"
+	call_on_fire = 1
+	name_addition = "Musical"
+	icon = 'icons/obj/tselaguns/specialparts.dmi'
+	icon_state = "trumpet"
 
+		on_fire()
+		playsound(src.my_gun.loc, pick('sound/musical_instruments/sax_bonk1.ogg', 'sound/musical_instruments/sax_bonk2.ogg'), 50, 1, -1)
+
+/obj/item/gunparts/accessory/zupressor
+	name = "Inba Zupressor" // I am so proud of this pun
+	desc = "the bullets are preparing, please wait warmly."
+	call_on_fire = 1
+	name_addition = "Zupressed"
+	icon = 'icons/obj/tselaguns/specialparts.dmi'
+	icon_state = "zungunzunpressor"
 
 // No such thing as a basic magazine! they're all bullshit!!
 /obj/item/gun_parts/magazine/juicer

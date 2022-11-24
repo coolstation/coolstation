@@ -560,3 +560,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		..()
 		process_ammo()
 
+/obj/item/gun/modular/luna
+	name = "\improper Zun Gun"
+	real_name = "\improper Zun Gun"
+	desc = "A trumpet shaped gun thing. This seems really impractial for anything other than showing off."
+	max_ammo_capacity = 5 //nice round number to start with
+	spread_angle = 30
+	
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/luna/zunar
+		stock = /obj/item/gun_parts/stock/luna/zunar
+		accessory = new /obj/item/gunparts/accessory/zupressor
