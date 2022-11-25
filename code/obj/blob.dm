@@ -1324,7 +1324,7 @@
 		return 0
 
 	if (!admin_overmind) //admins can spread wherever (within reason)
-		if (istype(src,/turf/unsimulated/) && !istype(src,/turf/unsimulated/floor/shuttle))
+		if (!issimulatedturf(src))
 			if (feedback)
 				boutput(feedback, "<span class='alert'>You can't spread the blob onto that kind of tile.</span>")
 			return 0

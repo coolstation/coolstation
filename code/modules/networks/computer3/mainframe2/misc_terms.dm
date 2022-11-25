@@ -921,9 +921,9 @@
 
 			var/area/to_reset = get_area(vrbomb) //Reset the magic vr turf.
 			if(to_reset && to_reset.name != "Space")
-				for(var/turf/unsimulated/bombvr/VT in to_reset)
+				for(var/turf/bombvr/VT in to_reset)
 					VT.icon_state = initial(VT.icon_state)
-				for(var/turf/unsimulated/wall/bombvr/VT in to_reset)
+				for(var/turf/wall/bombvr/VT in to_reset)
 					VT.icon_state = initial(VT.icon_state)
 					VT.opacity = 1
 					VT.set_density(1)

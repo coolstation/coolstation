@@ -329,7 +329,7 @@
 			var/turf/T
 			for( var/dir in cardinal )
 				T = get_step( F, dir )
-				if (! (istype(T,/turf/simulated/floor) || istype (T,/turf/unsimulated/floor)) ) continue
+				if (!istype(T,/turf/floor)) continue
 				if (T.canpass())
 					if (T.active_liquid && T.active_liquid.group)
 						T.active_liquid.group.join(src)

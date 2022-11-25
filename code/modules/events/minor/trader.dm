@@ -5,7 +5,7 @@
 	//centcom_message = "A merchant shuttle has docked with the station."
 	var/active = 0
 	var/map_turf = /turf/space //Set in event_effect() by map settings
-	var/centcom_turf = /turf/unsimulated/outdoors/grass //Set in event_effect()
+	var/centcom_turf = /turf/outdoors/grass //Set in event_effect()
 
 	event_effect()
 		..()

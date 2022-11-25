@@ -317,7 +317,7 @@
 			if(istype(T, /turf/simulated/wall/asteroid))
 				T.ReplaceWith(/turf/simulated/floor/plating/airless/asteroid, force=TRUE)
 				continue
-			else if(!istype(T, /turf/unsimulated))
+			else if(istype(T, /turf/space) issimulatedturf(T)) //used to check for turf/unsimulated, I hope adding the space check was the right thing to do
 				continue
 
 			//Uh, make sure we don't block the shipping lanes!

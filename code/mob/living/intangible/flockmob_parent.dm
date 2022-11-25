@@ -76,7 +76,7 @@
 
 /mob/living/intangible/flock/Move(NewLoc, direct)
 	src.set_dir(get_dir(src, NewLoc))
-	if (isturf(NewLoc) && istype(NewLoc, /turf/unsimulated/wall)) // no getting past these walls, fucko
+	if (isturf(NewLoc) && istype(NewLoc, /turf/wall) && !issimulatedturf(NewLoc)) // no getting past these walls, fucko
 		return 0
 	..()
 

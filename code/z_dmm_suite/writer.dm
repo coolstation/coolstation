@@ -363,7 +363,7 @@ dmm_suite/prefab_saving/makeTemplate(turf/model as turf, flags as num)
 			var/new_path_str = replacetext("[model.type]", "simulated", "unsimulated")
 			var/new_type = text2path(new_path_str)
 			if(isnull(new_type))
-				new_type = model.density ? /turf/unsimulated/wall : /turf/unsimulated/floor
+				new_type = model.density ? /turf/wall : /turf/floor //ATMOSSIMSTODO - figure out what we need to do to have unsimulate work in the new system (maybe nothing?)
 				turfTemplate += "[new_type][checkAttributes(model, force_vars=unsimulate_reskinning_vars)],"
 			else
 				turfTemplate += "[new_type][checkAttributes(model, force_vars=unsimulate_mild_reskinning_vars)],"

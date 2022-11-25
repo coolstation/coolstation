@@ -2322,7 +2322,7 @@ var/global/night_mode_enabled = 0
 			R.name = "robust shamecube glass"
 			R.desc = "A pane of robust, yet shameful, glass."
 		var/turf/orig = get_step(targetLoc, direction)
-		var/turf/void = orig.ReplaceWith(/turf/unsimulated/floor/void, FALSE, TRUE, FALSE, TRUE)
+		var/turf/void = orig.ReplaceWith(/turf/floor/void, FALSE, TRUE, FALSE, TRUE)
 		void.name = "shameful void"
 		void.desc = "really is just a shame"
 		new/area/shamecube(get_step(targetLoc, direction))
@@ -2761,8 +2761,8 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 				map_generator.generate_terrain(space)
 				for (var/turf/S in space)
 					if(rain)
-						if(istype(S,/turf/unsimulated/floor/auto/swamp))
-							S.ReplaceWith(/turf/unsimulated/floor/auto/swamp/rain, force=TRUE)
+						if(istype(S,/turf/floor/auto/swamp))
+							S.ReplaceWith(/turf/floor/auto/swamp/rain, force=TRUE)
 						if(rain == "Yes")
 							S.UpdateOverlays(weather, "rain")
 						else

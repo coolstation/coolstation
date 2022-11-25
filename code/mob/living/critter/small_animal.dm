@@ -2037,7 +2037,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 
 	Move(var/atom/NewLoc, direct)
 		.=..()
-		if (prob(src.slime_chance) && (istype(src.loc, /turf/simulated/floor) || istype(src.loc, /turf/unsimulated/floor)))
+		if (prob(src.slime_chance) && (istype(src.loc, /turf/floor)))
 			if (locate(/obj/decal/cleanable/slime) in src.loc)
 				return
 			else

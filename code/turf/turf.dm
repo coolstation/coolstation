@@ -176,10 +176,10 @@
 	Move()
 		return 0
 
-/turf/unsimulated/meteorhit(obj/meteor as obj)
+/turf/unsimulated/meteorhit(obj/meteor as obj) //ATMOSSIMSTODO
 	return
 
-/turf/unsimulated/ex_act(severity)
+/turf/unsimulated/ex_act(severity) //ATMOSSIMSTODO
 	return
 
 /turf/space

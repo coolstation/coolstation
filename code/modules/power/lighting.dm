@@ -154,7 +154,7 @@
 				directions = cardinal
 			for (var/dir in directions)
 				T = get_step(src,dir)
-				if (istype(T,/turf/simulated/wall) || istype(T,/turf/unsimulated/wall) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window) in T)) //ah this was missing, set dir for every wall and check them later
+				if (istype(T,/turf/wall) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window) in T)) //ah this was missing, set dir for every wall and check them later
 					var/is_perspective = 0 //check if the walls are not flat and classic- special handling needed to make them look nice
 					var/is_jen_wall = 0 // jen walls' ceilings are narrower, so let's move the lights a bit further inward!
 					if (istype(T,/turf/simulated/wall/auto/supernorn) || istype(T,/turf/simulated/wall/auto/marsoutpost) || istype(T,/turf/simulated/wall/auto/supernorn/wood) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window/auto) in T))

@@ -851,7 +851,7 @@ datum
 			proc/remove_stickers(var/atom/target, var/volume)
 				var/can_remove_amt = volume / 10
 				var/removed_count = 0
-				if ((istype(target, /turf/simulated/wall) || istype(target, /turf/unsimulated/wall)))
+				if (istype(target, /turf/wall))
 					target = locate_sticker_wall(target)
 					if (!target)
 						return

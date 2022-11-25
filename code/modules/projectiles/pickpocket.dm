@@ -97,7 +97,7 @@
 							boutput(M, "\A [linkedGun.heldItem] tries to cram itself into your pockets! [pick(strikeFlavor)]")
 			else
 				var/turf/T = get_turf(hit)
-				if(isrestrictedz(T.z) || istype(T, /turf/unsimulated))
+				if(isrestrictedz(T.z) || issimulatedturf(T))
 					message_admins("[key_name(src.firer)] is a nerd and tried to fire a pickpocket gun on an unsimulated turf at [showCoords(T.x, T.y, T.z)].")
 					T.visible_message("The [linkedGun.name] jams!")
 					return

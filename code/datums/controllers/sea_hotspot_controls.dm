@@ -1152,7 +1152,7 @@
 		user.put_in_hand_or_drop(src)
 
 	afterattack(var/atom/A as mob|obj|turf, var/mob/user as mob)
-		if (src.can_put_up && (istype(A, /turf/simulated/wall) || istype(A, /turf/simulated/shuttle/wall) || istype(A, /turf/unsimulated/wall) || istype(A, /obj/window)))
+		if (src.can_put_up && (istype(A, /turf/wall) || istype(A, /turf/shuttle/wall) || istype(A, /obj/window)))
 			user.visible_message("<b>[user]</b> attaches [src] to [A].",\
 			"You attach [src] to [A].")
 			user.u_equip(src)

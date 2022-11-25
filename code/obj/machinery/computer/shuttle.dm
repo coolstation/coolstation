@@ -695,7 +695,7 @@
 		for(var/mob/M in end_location) // oh dear, stay behind the yellow line kids
 			SPAWN_DBG(1 DECI SECOND) M.gib()
 			bioele_accident()
-		start_location.move_contents_to(end_location, /turf/unsimulated/floor/setpieces/ancient_pit/shaft)
+		start_location.move_contents_to(end_location, /turf/floor/setpieces/ancient_pit/shaft)
 		location = 0
 
 	for(var/obj/machinery/computer/biodome_elevator/C in machine_registry[MACHINES_ELEVATORCOMPS])

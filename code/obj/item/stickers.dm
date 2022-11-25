@@ -545,7 +545,7 @@
 
 		..()
 
-		if (istype(A, /turf/simulated/wall) || istype(A, /turf/unsimulated/wall))
+		if (istype(A, /turf/wall))
 			src.set_loc(get_turf(user)) //If sticking to a wall, just set the loc to the user loc. Otherwise the spycam would be able to see through walls.
 
 		if (src.radio)
