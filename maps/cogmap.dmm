@@ -23126,7 +23126,7 @@
 /area/space)
 "bgH" = (
 /obj/displaycase{
-	displayed = new /obj/item/captaingun
+	displayed = new/obj/item/captaingun
 	},
 /obj/window/reinforced{
 	dir = 2
@@ -46567,7 +46567,8 @@
 	},
 /area/station/mining/staff_room)
 "cmR" = (
-/obj/machinery/computer/mining_shuttle,
+/obj/machinery/computer/transit_terminal/mining,
+/obj/machinery/computer/transit_terminal/mining,
 /turf/simulated/floor/yellow/side{
 	dir = 5
 	},
