@@ -902,7 +902,11 @@
 						playsound(src.loc, "sound/machines/click.ogg", 50, 1)
 						var/obj/item/award_item = locate(award_type) in src
 						if(award_item)
-							award_item.desc = src.desc
+							if(award_text)
+								award_item.desc = src.award_text
+							else
+								award_item.desc = src.desc
+
 							user.put_in_hand_or_drop(award_item)
 							user.visible_message("[user] takes the [award_name] from the frame.", "You take the [award_name] out of the frame.")
 							src.icon_state = icon_empty
@@ -1030,6 +1034,21 @@
 				if(M?.current?.client?.preferences?.name_last)
 					mdname = M.current.client.preferences.name_last
 				. += "It says \ [mdname] has been granted a license as a Physician and Surgeon entitled to practice the profession of medicine in space."
+
+		framed_award/captaindiploma
+			name = "Captain's old clown-college diploma."
+			desc = "A faded clown-college diploma, this must be ancient!"
+			award_type = /obj/item/toy/diploma
+			icon_glass = "capdiploma"
+			icon_award = "capdiploma1"
+			icon_state = "capdiploma1"
+			owner_job  = "Captain"
+
+			get_award_text(var/datum/mind/M)
+				var/capname = "someone, the name has been [pick("smeared quite badly", "erased", "scribbled out")],"
+				if(M?.current?.client?.preferences?.name_last)
+					capname = M.current.client.preferences.name_last
+				. += "It says \ [capname] has been awarded a Bachelor of [pick("Farts", "Fards")] Degree for the study of [pick("slipology", "jugglemancy", "pie science", "bicycle horn accoustics", "comic sans calligraphy", "gelotology", "flatology", "nuclear physics", "goonstation coder")]! It appears to be written in faded crayon."
 
 /obj/decal/poster/wallsign/pod_build
 	name = "poster"
