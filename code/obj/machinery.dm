@@ -14,6 +14,7 @@
 	flags = FPRINT | FLUID_SUBMERGE | TGUI_INTERACTIVE
 
 	var/machinery_flags = 0
+	pass_unstable = FALSE // Machines hopefully are stable.
 	var/status = 0
 	var/power_usage = 0
 	var/power_channel = EQUIP
