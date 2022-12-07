@@ -68,7 +68,9 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		src.UpdateName()
 		src.inventory_counter.update_number(src.amount)
 		switch (src.amount)
-			if (-INFINITY to 1)
+			if (-INFINITY to 0)
+				pool(src) // ???
+			if(1)
 				src.icon_state = icon_one
 			if (2 to (default_max_amount-1))
 				src.icon_state = icon_empty
@@ -143,6 +145,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 				update_stack_appearance()
 				sleep(5)
 			playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, 0, 0.8)
+			M.inventory_counter.update_number(M.ammo_list.len)
 			reloading = 0
 
 /obj/item/stackable_ammo/pistol/

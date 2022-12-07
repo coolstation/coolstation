@@ -35,7 +35,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/no_save = 0 // when 1, this should prevent the player from carrying it cross-round?
 	icon_state = "tranq_pistol"
 	contraband = 0
-
+	inventory_counter_enabled = 1
 
 	var/lensing = 0 // Variable used for optical gun barrels. laser intensity scales around 1.0 (or will!)
 	var/scatter = 0 // variable for using hella shotgun shells or something
@@ -58,6 +58,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/jam_frequency_fire = 1 //base % chance to jam on fire. Reload to clear.
 	var/jammed = 0
 	var/processing_ammo = 0
+
 
 
 	two_handed = 0
@@ -239,6 +240,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		processing_ammo = 0
 
 /obj/item/gun/modular/process_ammo(mob/user)
+
 	if(jammed)
 		boutput(user,"<span class='notice'><b>You clear the ammunition jam.</b></span>")
 		jammed = 0
@@ -277,6 +279,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	else
 		process_ammo(user)
 	buildTooltipContent()
+	src.inventory_counter.update_number(ammo_list.len)
+	// this is how many shots are left in the feeder- and does not include the one in the chamber. Should make for funny times
 
 /obj/item/gun/modular/canshoot()
 	if(jammed)
