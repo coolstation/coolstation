@@ -3,7 +3,7 @@
 	density = 1
 	icon = 'icons/obj/atmospherics/atmos.dmi'
 	icon_state = "sheater0"
-	name = "space HVAC"
+	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this space heater is guaranteed not to set the station on fire."
 	var/emagged = 0
 	var/obj/item/cell/cell
