@@ -1270,10 +1270,11 @@
 		product_list += new/datum/data/vending_product(/obj/item/device/flash, 4)
 		product_list += new/datum/data/vending_product(/obj/item/clothing/head/helmet/hardhat/security, 4)
 		product_list += new/datum/data/vending_product(/obj/item/device/pda2/security, 2)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/a38/stun, 2)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/nine_mm_NATO, 2)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/three, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/burst/three, 2)
 		product_list += new/datum/data/vending_product(/obj/item/implantcase/antirev, 3)
 		product_list += new/datum/data/vending_product(/obj/item/implanter, 1)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT, 1)
 #ifdef RP_MODE
 		product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/space_law, 1)
 #endif
