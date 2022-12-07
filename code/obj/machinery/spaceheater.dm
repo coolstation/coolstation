@@ -257,7 +257,7 @@
 	icon = 'icons/obj/atmospherics/atmos.dmi'
 	icon_state = "sauna0"
 	name = "space saunastove"
-	desc = "Made by Space Finnish using traditional space techniques, this space saunastove is guaranteed not to set the station on fire."
+	desc = "Swettiböls Dickensmoke."
 	var/obj/item/cell/cell
 	var/on = 0
 	var/heating = 0
