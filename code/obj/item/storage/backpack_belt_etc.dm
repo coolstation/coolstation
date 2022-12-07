@@ -565,19 +565,20 @@
 	icon_state = "secbelt"
 	item_state = "secbelt"
 	can_hold = list(/obj/item/baton, // not included in this list are guns that are already small enough to fit (like the detective's gun)
-	/obj/item/gun/energy/taser_gun,
-	/obj/item/gun/energy/phaser_gun,
-	/obj/item/gun/energy/laser_gun,
-	/obj/item/gun/energy/egun,
-	/obj/item/gun/energy/lawbringer,
-	/obj/item/gun/energy/lawbringer/old,
-	/obj/item/gun/energy/wavegun,
+	//obj/item/gun/energy/taser_gun,
+	//obj/item/gun/energy/phaser_gun,
+	//obj/item/gun/energy/laser_gun,
+	//obj/item/gun/energy/egun,
+	//obj/item/gun/energy/lawbringer,
+	//obj/item/gun/energy/lawbringer/old,
+	//obj/item/gun/energy/wavegun,
 	/obj/item/gun/kinetic/revolver,
 	/obj/item/gun/kinetic/zipgun,
 	/obj/item/clothing/mask/gas/NTSO,
-	/obj/item/gun/energy/tasersmg,
+	//obj/item/gun/energy/tasersmg,
 	/obj/item/gun/energy/signifer2, //added so the NTSO mask can be clipped to the belt, maybe good to do with all gas masks?
-	/obj/item/device/prisoner_scanner)
+	/obj/item/device/prisoner_scanner,
+	/obj/item/gun/modular ) // in the future this migh be the only gun who knows)
 	in_list_or_max = 1
 
 // kiki's detective shoulder (holster)
@@ -594,22 +595,25 @@
 
 
 	standard
-		spawn_contents = list(/obj/item/gun/energy/taser_gun, /obj/item/baton, /obj/item/barrier)
+		spawn_contents = list(/obj/item/gun/modular/NT, //energy/taser_gun,
+			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/capacitive/ten)
 
 	offense
-		spawn_contents = list(/obj/item/gun/energy/wavegun, /obj/item/baton, /obj/item/barrier)
+		spawn_contents = list(/obj/item/gun/modular/NT/long, //energy/wavegun,
+			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/capacitive/five, /obj/item/stackable_ammo/pistol/three)
 
 	support
 		spawn_contents = list(/obj/item/baton, /obj/item/reagent_containers/food/snacks/donut/custom/robust = 2,  /obj/item/reagent_containers/emergency_injector/morphine = 4)
 
 	control
-		spawn_contents = list(/obj/item/gun/energy/tasershotgun, /obj/item/baton, /obj/item/barrier)
+		spawn_contents = list(/obj/item/gun/modular/NT/long, //energy/tasershotgun,
+			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/capacitive/ten, /obj/item/stackable_ammo/capacitive/three)
 		New()
 			..()
 			can_hold += /obj/item/gun/energy/tasershotgun
 
 	assistant
-		spawn_contents = list(/obj/item/barrier, /obj/item/device/detective_scanner, /obj/item/device/ticket_writer)
+		spawn_contents = list(/obj/item/barrier, /obj/item/device/detective_scanner, /obj/item/device/ticket_writer, /obj/item/stackable_ammo/capacitive/three)
 
 	ntso
 		spawn_contents = list(/obj/item/gun/energy/signifer2, /obj/item/gun/kinetic/clock_188, /obj/item/baton/ntso, /obj/item/clothing/mask/gas/NTSO, /obj/item/storage/ntso_pouch, /obj/item/barrier) //secbelt subtype that only spawns on NTSO, not in vendor
@@ -618,7 +622,8 @@
 		spawn_contents = list(/obj/item/baton, /obj/item/barrier)
 
 	tasersmg
-		spawn_contents = list(/obj/item/gun/energy/tasersmg, /obj/item/baton, /obj/item/barrier)
+		spawn_contents = list(/obj/item/gun/modular/NT, //energy/tasersmg,
+			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/capacitive/burst/five, /obj/item/stackable_ammo/capacitive/three)
 
 //////////////////////////////
 // ~Nuke Ops Class Storage~ //
