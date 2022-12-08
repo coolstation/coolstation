@@ -387,8 +387,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	parts = list()
 	if(barrel)
 		parts += barrel
+	else
+		spread_angle += BARREL_PENALTY
 	if(stock)
 		parts += stock
+	else
+		spread_angle += GRIP_PENALTY
 	if(magazine)
 		parts += magazine
 	if(accessory)
@@ -397,11 +401,37 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	for(var/obj/item/gun_parts/part as anything in parts)
 		part.add_part_to_gun(src)
 
+
 	buildTooltipContent()
 	built = 1
 
-
 	//update the icon to match!!!!!
+
+/obj/item/gun/modular/proc/reset_gun()
+	parts = list()
+	barrel = null
+	stock = null
+	magazine = null
+	accessory = null
+
+	name = real_name
+
+	max_crank_level = 0
+	flashbulb_only = 0
+	scatter = 0
+	lensing = 0
+	muzzle_flash = 0
+	silenced = 0
+	accessory_alt = 0
+	accessory_on_fire = 0
+
+	spread_angle = initial(spread_angle)
+	max_ammo_capacity = initial(max_ammo_capacity)
+	jam_frequency_reload = initial(jam_frequency_reload)
+	jam_frequency_fire = initial(jam_frequency_fire)
+	can_dual_wield = initial(can_dual_wield)
+	two_handed = initial(two_handed)
+	spread_angle = initial(spread_angle)
 
 /obj/item/gun/modular/proc/crank(mob/user)
 	SPAWN_DBG(1)
@@ -448,7 +478,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "A simple, reliable cylindrical bored weapon."
 	max_ammo_capacity = 1 // single-shot pistols ha- unless you strap an expensive loading mag on it.
 	gun_DRM = GUN_NANO
-	spread_angle = BARREL_PENALTY + 4 // value without a barrel. Add one to keep things in line.
+	spread_angle = 2 // value without a barrel. Add one to keep things in line.
 	color = "#33FFFF"
 
 	make_parts()
@@ -471,7 +501,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "An open-sourced and freely modifiable FOSS Inductive Flash Arc, Model 2k/19"
 	max_ammo_capacity = 1 // just takes a flash bulb.
 	gun_DRM = GUN_FOSS
-	spread_angle = BARREL_PENALTY + 5 // value without a barrel. Add one to keep things in line.
+	spread_angle = 2
 	color = "#5555FF"
 	icon_state = "caplaser"
 	contraband = 2
@@ -507,7 +537,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "A juicer-built, juicer-'designed', and most importantly juicer-marketed gun."
 	max_ammo_capacity = 0 //fukt up mags only
 	gun_DRM = GUN_JUICE
-	spread_angle = BARREL_PENALTY + 10 // value without a barrel. Add one to keep things in line.
+	spread_angle = 7 // value without a barrel. Add one to keep things in line.
 	color = "#99FF99"
 	contraband = 1
 
@@ -530,7 +560,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
 	max_ammo_capacity = 4 // laser revolver
 	gun_DRM = GUN_SOVIET
-	spread_angle = BARREL_PENALTY + 5 // value without a barrel. Add one to keep things in line.
+	spread_angle = 4
 	color = "#FF9999"
 	icon_state = "laser"
 	contraband = 1
@@ -552,7 +582,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "Una pistola realizzata con acciaio, cuoio e olio d'oliva della più alta qualità possibile."
 	max_ammo_capacity = 2 // basic revolving mechanism
 	gun_DRM = GUN_ITALIAN
-	spread_angle = BARREL_PENALTY + 7 // value without a barrel. Add one to keep things in line.
+	spread_angle = 5 // value without a barrel. Add one to keep things in line.
 	color = "#FFFF99"
 
 	make_parts()
