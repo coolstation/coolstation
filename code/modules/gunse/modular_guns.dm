@@ -478,7 +478,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "A simple, reliable cylindrical bored weapon."
 	max_ammo_capacity = 1 // single-shot pistols ha- unless you strap an expensive loading mag on it.
 	gun_DRM = GUN_NANO
-	spread_angle = 2 // value without a barrel. Add one to keep things in line.
+	spread_angle = 2
 	color = "#33FFFF"
 
 	make_parts()
@@ -537,7 +537,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "A juicer-built, juicer-'designed', and most importantly juicer-marketed gun."
 	max_ammo_capacity = 0 //fukt up mags only
 	gun_DRM = GUN_JUICE
-	spread_angle = 7 // value without a barrel. Add one to keep things in line.
+	spread_angle = 7
 	color = "#99FF99"
 	contraband = 1
 
@@ -582,7 +582,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "Una pistola realizzata con acciaio, cuoio e olio d'oliva della più alta qualità possibile."
 	max_ammo_capacity = 2 // basic revolving mechanism
 	gun_DRM = GUN_ITALIAN
-	spread_angle = 5 // value without a barrel. Add one to keep things in line.
+	spread_angle = 5
 	color = "#FFFF99"
 
 	make_parts()

@@ -145,6 +145,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 				update_stack_appearance()
 				sleep(5)
 			playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, 0, 0.8)
+			boutput(user, "<span class='notice'>The hold is full</span>")
 			M.inventory_counter.update_number(M.ammo_list.len)
 			reloading = 0
 
@@ -196,9 +197,18 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		default_min_amount = 10
 		default_max_amount = 10
 
-/obj/item/stackable_ammo/capacitive/burst
+/obj/item/stackable_ammo/capacitive_burst
 	name = "\improper NT In-Capacit-8-or MAX"
+	real_name = "\improper NT In-Capacit-8-or MAX"
+	desc = "A lot of problems? A lot of solutions."
 	projectile_type = /datum/projectile/energy_bolt/three
+	ammo_DRM = GUN_NANO
+	icon_state = "nt_stun"
+	icon_full  = "nt_stun"
+	icon_empty = "nt_stun_empty"
+	icon_one   = "bullet_nerf"
+	icon_shell = "nerf_case"
+
 	three
 		default_min_amount = 3
 		default_max_amount = 3
@@ -235,6 +245,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		default_min_amount = 10
 		default_max_amount = 10
 
+ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 /obj/item/stackable_ammo/scatter/ // ABSOLUTELY USE THIS TYPE FOR ALL SCATTER AMMO, EVEN OPTICAL
 	name = "generic scatter ammo"
 	real_name = "generic scatter ammo"

@@ -11,7 +11,7 @@ Enjoy */
 
 
 /datum/player
-	/proc/savegun()
+	proc/savegun()
 		return
 
 
