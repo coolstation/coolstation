@@ -1,4 +1,4 @@
-### [![Coolstation](.github/assets/coolstation.png)](#) Welcome to the main repository for the Coolstation fork of the [Goonstation](https://github.com/coolstation/coolstation) branch of [Space Station 13](https://spacestation13.com/).
+### [![Coolstation](.github/assets/coolstation.png)](#) Welcome to the main repository for the Coolstation fork of the [Goonstation](https://github.com/goonstation/goonstation) branch of [Space Station 13](https://spacestation13.com/).
 
 [![fuckshit](https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)](#)[![made with crayons](https://forthebadge.com/images/badges/made-with-crayons.svg)](#)[![made in byond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](#)
 
@@ -14,7 +14,7 @@ We're still figuring it out and getting our own server up thank you very much pl
 [<img src=".github/assets/forums.png" alt="Forums" width="150" align="left">](https://forum.coolstation.space)
 We have wonderful formums for announcements and discussion. Feast your eyes, and then make suggestions, discussion about game, leave feedback, like and subscribe, and appeal a ban's.
 
-[<img src=".github/assets/wiki.png" alt="Goonhub" width="150" align="left">](https://wiki.coolstation.space/)
+[<img src=".github/assets/wiki.png" alt="Wiki" width="150" align="left">](https://wiki.coolstation.space/)
 You might leave our wiki knowing more than you did before or you might still just be confused but that's cool. It's still under construction don't worry about it.
 
 [<img src=".github/assets/goonhub.png" alt="Coolhub" width="150" align="left">](https://coolstation.space)
