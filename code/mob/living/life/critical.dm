@@ -33,13 +33,14 @@
 							owner.lastgasp() // if they were ok before dropping below zero health, call lastgasp() before setting them unconscious
 					owner.setStatus("paralysis", max(owner.getStatusDuration("paralysis"), 1.5 SECONDS * mult))
 				if (-99 to -80)
-					owner.take_oxygen_deprivation(1 * mult)
+					owner.take_oxygen_deprivation(1.5 * mult)
 					if (prob(percentmult(4, mult)))
 						boutput(owner, "<span class='alert'><b>Your chest hurts...</b></span>")
 						owner.changeStatus("paralysis", 2 SECONDS)
 						owner.contract_disease(/datum/ailment/malady/heartfailure,null,null,1)
 				if (-79 to -51)
 					owner.take_oxygen_deprivation(1 * mult)
+					owner.change_misstep_chance(1) // warc: experimentally adding a flat misstep each cycle
 					if (prob(percentmult(10, mult))) // shock added back to crit because it wasn't working as a bloodloss-only thing
 						owner.contract_disease(/datum/ailment/malady/shock,null,null,1)
 						//boutput(world, "\b LOG: ADDED SHOCK TO [src].")
@@ -52,7 +53,8 @@
 					if (prob(percentmult(3, mult)))
 						owner.changeStatus("paralysis", 2 SECONDS)
 				if (-50 to 0)
-					owner.take_oxygen_deprivation(0.25 * mult)
+					owner.take_oxygen_deprivation(0.75 * mult)
+					owner.change_misstep_chance(0.25) // warc: experimentally adding a flat misstep each cycle
 					/*if (src.reagents)
 						if (!src.reagents.has_reagent("inaprovaline") && prob(50))
 							src.take_oxygen_deprivation(1)*/
