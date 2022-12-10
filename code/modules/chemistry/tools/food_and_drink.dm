@@ -1665,7 +1665,7 @@
 	icon_state = "carafe-eng"
 	item_state = "carafe-eng"
 	initial_volume = 100
-	can_chug = 0
+	can_chug = 1
 	var/smashed = 0
 	var/shard_amt = 1
 	var/image/fluid_image
