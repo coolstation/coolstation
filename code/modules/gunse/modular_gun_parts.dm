@@ -29,7 +29,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 		my_gun.UpdateOverlays(I, part_type)
 		return 1
 
-	proc/remove_part_from_gun() // should safely un-do all of add_part_to_gun()
+	proc/remove_part_from_gun()
 		RETURN_TYPE(/obj/item/gun_parts/)
 		my_gun.name = my_gun.real_name
 		my_gun = null

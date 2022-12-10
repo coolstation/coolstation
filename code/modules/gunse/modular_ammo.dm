@@ -368,6 +368,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	color_green = 1
 	color_blue = 0
 
+
 /datum/projectile/laser/flashbulb/two
 	power = 25
 	color_red = 1

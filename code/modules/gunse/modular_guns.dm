@@ -128,12 +128,24 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		if(src.check_DRM(part))
 			boutput(user,"<span class='notice'><b>You loosely place [I] onto [src].</b></span>")
 			if (istype(I, /obj/item/gun_parts/barrel/))
+				if(barrel) //occupado
+					boutput(user,"<span class='notice'>...and knock [barrel] out of the way.</span>")
+					barrel.set_loc(get_turf(src))
 				barrel = I
 			if (istype(I, /obj/item/gun_parts/stock/))
+				if(stock) //occupado
+					boutput(user,"<span class='notice'>...and knock [stock] out of the way.</span>")
+					stock.set_loc(get_turf(src))
 				stock = I
 			if (istype(I, /obj/item/gun_parts/magazine/))
+				if(magazine) //occupado
+					boutput(user,"<span class='notice'>...and knock [magazine] out of the way.</span>")
+					magazine.set_loc(get_turf(src))
 				magazine = I
 			if (istype(I, /obj/item/gun_parts/accessory/))
+				if(accessory) //occupado
+					boutput(user,"<span class='notice'>...and knock [accessory] out of the way.</span>")
+					accessory.set_loc(get_turf(src))
 				accessory = I
 			user.u_equip(I)
 			I.dropped(user)
@@ -188,13 +200,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 /obj/item/gun/modular/proc/flash_process_ammo(mob/user)
 	if(processing_ammo)
-		return
+		return 0
 
 	if(jammed)
 		boutput(user,"<span class='notice'><b>You clear the ammunition jam.</b></span>")
 		jammed = 0
 		playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 40, 1)
-		return
+		return 0
 
 	if(flashbulb_health) // bulb still loaded
 		processing_ammo = 1
@@ -202,11 +214,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			crank(user)
 		else
 			handle_egun_shit(user)
-		return
+		processing_ammo = 0
+		return 1
 
 	if(!ammo_list.len) // empty!
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
-		return
+		return (current_projectile?1:0)
 
 	if(ammo_list.len > max_ammo_capacity)
 		var/waste = ammo_list.len - max_ammo_capacity
@@ -216,13 +229,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	if(!ammo_list.len) // empty! again!! just in case max ammo capacity was 0!!!
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
-		return
+		return (current_projectile?1:0)
 
 	if(prob(jam_frequency_reload))
 		jammed = 1
 		boutput(user,"<span class='alert'><b>Error! Jam detected!</b></span>")
 		playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
-		return
+		return 0
 	else
 		processing_ammo = 1
 		var/obj/item/stackable_ammo/flashbulb/FB = ammo_list[ammo_list.len]
@@ -238,17 +251,20 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		ammo_list.Remove(ammo_list[ammo_list.len]) //and remove it from the list
 
 		processing_ammo = 0
+		return (current_projectile?1:0)
 
 /obj/item/gun/modular/process_ammo(mob/user)
+	if(flashbulb_only) // additional branch for suicide
+		return flash_process_ammo(user)
 
 	if(jammed)
 		boutput(user,"<span class='notice'><b>You clear the ammunition jam.</b></span>")
 		jammed = 0
 		playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 40, 1)
-		return
+		return 0
 	if(!ammo_list.len) // empty!
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
-		return
+		return (current_projectile?1:0)
 	if(ammo_list.len > max_ammo_capacity)
 		var/waste = ammo_list.len - max_ammo_capacity
 		ammo_list.Cut(1,(1 + waste))
@@ -257,20 +273,21 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	if(!ammo_list.len) // empty! again!! just in case max ammo capacity was 0!!!
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
-		return
+		return 0
 
 	if(current_projectile) // chamber is loaded
-		return
+		return 1
 
 	if(prob(jam_frequency_reload))
 		jammed = 1
 		boutput(user,"<span class='alert'><b>Error! Jam detected!</b></span>")
 		playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
-		return
+		return 0
 	else
 		current_projectile = unpool(ammo_list[ammo_list.len]) // last one goes in
 		ammo_list.Remove(ammo_list[ammo_list.len]) //and remove it from the list
 		playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+		return 1
 
 
 /obj/item/gun/modular/attack_self(mob/user)
