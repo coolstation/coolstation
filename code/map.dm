@@ -1015,6 +1015,8 @@ var/global/list/mapNames = list(
 	auto_walls = 1
 	shuttle_map_turf = /turf/simulated/floor/industrial
 
+	arrivals_type = MAP_SPAWN_CRYO
+
 	windows = /obj/window/auto
 	windows_thin = /obj/window/pyro
 	rwindows = /obj/window/auto/reinforced
