@@ -1,4 +1,4 @@
-#define GEHENNA_TIME 135
+#define GEHENNA_TIME 30
 // 10 just beautiful. oh. wow. lovely.
 // 30 is a beautiful, goldenrod gehenna sunrise.
 // 45
