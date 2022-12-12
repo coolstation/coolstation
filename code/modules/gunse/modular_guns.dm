@@ -496,7 +496,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	max_ammo_capacity = 1 // single-shot pistols ha- unless you strap an expensive loading mag on it.
 	gun_DRM = GUN_NANO
 	spread_angle = 2
-	color = "#33FFFF"
+	color = "#aaFFFF"
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/NT(src)
@@ -519,7 +519,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	max_ammo_capacity = 1 // just takes a flash bulb.
 	gun_DRM = GUN_FOSS
 	spread_angle = 2
-	color = "#5555FF"
+	color = "#aaaaFF"
 	icon_state = "caplaser"
 	contraband = 2
 
@@ -531,7 +531,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 /obj/item/gun/modular/foss/long
 	desc = "An open-sourced and freely modifiable FOSS Inductive Flash Arc, Model 2k/20"
-	color = "#9955FF"
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/foss/long(src)
@@ -539,12 +538,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 /obj/item/gun/modular/foss/punt
 	desc = "An open-sourced and freely modifiable FOSS Inductive Flash Arc, Model 2k/420"
-	color = "#CC55FF"
 
 	make_parts()
-		barrel = new /obj/item/gun_parts/barrel/soviet/long(src)
+		barrel = new /obj/item/gun_parts/barrel/foss/long/very(src)
 		stock = new /obj/item/gun_parts/stock/foss/longer(src)
-		magazine = new /obj/item/gun_parts/magazine/juicer(src)
+
 
 
 

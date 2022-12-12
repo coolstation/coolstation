@@ -326,9 +326,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_state = "bulb_good"
 
 /obj/item/storage/box/foss_flashbulbs
+	name = "box of FOSSYN flashbulbs"
 	spawn_contents = list(/obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb)
 
 /obj/item/storage/box/foss_flashbulbs/better
+	name = "box of premium FOSSYN flashbulbs"
 	spawn_contents = list(/obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb)
 	make_my_stuff()
 		..()

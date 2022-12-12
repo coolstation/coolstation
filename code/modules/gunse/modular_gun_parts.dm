@@ -252,6 +252,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN
 	icon_state = "nt_blue_short"
 	length = 16
+	overlay_x = 3
 
 /obj/item/gun_parts/barrel/NT/long
 	name = "standard long barrel"
@@ -260,6 +261,22 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "longarm"
 	icon_state = "nt_blue"
 	length = 35
+
+/obj/item/gun_parts/barrel/NT/short
+	name = "standard snub barrel"
+	spread_angle = 4
+	length = 9
+	icon_state = "nt_blue_snub"
+	name_addition = "shortie"
+
+/obj/item/gun_parts/barrel/NT/long/very
+	name = "special long barrel"
+	desc = "A cylindrical barrel, rifled."
+	spread_angle = -1
+	name_addition = "polearm"
+	icon_state = "nt_blue"
+	length = 50
+	icon = 'icons/obj/items/cet_guns/64.dmi'
 
 /obj/item/gun_parts/barrel/foss
 	name = "\improper FOSS lensed barrel"
@@ -272,7 +289,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "barrel_short"
 	contraband = 1
 	length = 17
-	overlay_x = 15
+	overlay_x = 20
+	overlay_y = -2
 
 /obj/item/gun_parts/barrel/foss/long
 	name = "\improper FOSS lensed long barrel"
@@ -282,6 +300,16 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "focuser"
 	icon_state = "barrel_long"
 	length = 39
+
+/obj/item/gun_parts/barrel/foss/long/very
+	name = "\improper FOSS ultra lensed barrel"
+	desc = "A hyperbolic array of lenses to focus laser blasts."
+	spread_angle = -1
+	lensing = 0.85
+	name_addition = "catalyst"
+	icon = 'icons/obj/items/cet_guns/64.dmi'
+	icon_state = "foss_very_long"
+	length = 50
 
 /obj/item/gun_parts/barrel/juicer
 	name = "\improper BLUNDA Barrel"
@@ -293,6 +321,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "BLUNDER"
 	icon_state = "juicer_blunderbuss"
 	length = 12
+	overlay_y = -1
 
 /obj/item/gun_parts/barrel/juicer/longer
 	name = "\improper SNIPA Barrel"
@@ -312,6 +341,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "comrade"
 	icon_state = "soviet_lens"
 	length = 16
+	overlay_x = 8
 
 /obj/item/gun_parts/barrel/soviet/long
 	name = "long soviet lenses"
@@ -352,6 +382,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon = 'icons/obj/items/cet_guns/stocks.dmi'
 	name_addition = "sturdy"
 	icon_state = "nt_blue"
+	overlay_x = -8
+	overlay_y = 2
 
 /obj/item/gun_parts/stock/NT/arm_brace
 	name = "standard brace"
@@ -364,7 +396,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon = 'icons/obj/items/cet_guns/stocks.dmi'
 	name_addition = "capable"
 	icon_state = "nt_wire"
-	overlay_x = -15
+	overlay_x = -19
 
 /obj/item/gun_parts/stock/foss
 	name = "\improper FOSS laser stock"
@@ -377,7 +409,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "vicious"
 	icon = 'icons/obj/items/cet_guns/fossgun.dmi'
 	icon_state = "stock_single"
-	overlay_x = -15
+	overlay_x = -20
 
 /obj/item/gun_parts/stock/foss/long
 	name = "\improper FOSS laser rifle stock"
@@ -451,5 +483,5 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	jam_frequency_reload = 8
 	name_addition = "LARGE"
 	icon_state = "juicer_drum"
-	overlay_y = 10
+	overlay_y = 8
 
