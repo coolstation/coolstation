@@ -274,7 +274,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "A cylindrical barrel, rifled."
 	spread_angle = -1
 	name_addition = "polearm"
-	icon_state = "nt_blue"
+	icon_state = "nt_blue_very"
 	length = 50
 	icon = 'icons/obj/items/cet_guns/64.dmi'
 
