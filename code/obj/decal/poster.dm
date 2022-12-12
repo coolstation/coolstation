@@ -328,6 +328,14 @@
 			desc = "A warning sign which reads 'CONSTRUCTION AREA'."
 			icon_state = "wall_sign_danger"
 
+		WC_blue //I tried making some desc jokes for these but I guess I'm not cut out for toilet humour
+			name = "WC"
+			icon_state = "WC_blue"
+
+		WC_black
+			name = "WC"
+			icon_state = "WC_black"
+
 		pool
 			name = "Pool"
 			icon_state = "pool"
