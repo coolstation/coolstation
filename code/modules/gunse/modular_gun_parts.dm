@@ -277,6 +277,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "polearm"
 	icon_state = "nt_blue_very"
 	length = 50
+	overlay_x = 0
 	icon = 'icons/obj/items/cet_guns/64.dmi'
 
 /obj/item/gun_parts/barrel/foss
