@@ -252,7 +252,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN
 	icon_state = "nt_blue_short"
 	length = 16
-	overlay_x = 3
+	overlay_x = 23
+	overlay_y = -4
 
 /obj/item/gun_parts/barrel/NT/long
 	name = "standard long barrel"
