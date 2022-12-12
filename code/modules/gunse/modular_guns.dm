@@ -496,7 +496,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	max_ammo_capacity = 1 // single-shot pistols ha- unless you strap an expensive loading mag on it.
 	gun_DRM = GUN_NANO
 	spread_angle = 2
-	color = "#aaFFFF"
+	icon = 'icons/obj/items/cet_guns/recievers.dmi'
+	icon_state = "nt_blue"
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/NT(src)
