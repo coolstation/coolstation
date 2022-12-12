@@ -302,6 +302,14 @@
 			name = "Medical Bay"
 			icon_state = "wall_sign_medbay"
 
+		qm
+			name = "Quartermaster's"
+			icon_state = "QM"
+
+		logistics
+			name = "Logistics"
+			icon_state = "wall_logistics"
+
 		security
 			name = "Security"
 			icon_state = "wall_sign_security"
