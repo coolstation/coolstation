@@ -253,7 +253,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "nt_blue_short"
 	length = 16
 	overlay_x = 23
-	overlay_y = 0
+	overlay_y = 1
 
 /obj/item/gun_parts/barrel/NT/long
 	name = "standard long barrel"
