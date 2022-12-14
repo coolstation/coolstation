@@ -2165,6 +2165,11 @@ ABSTRACT_TYPE(/area/station/crew_quarters/radio)
 	icon_state = "cafeteria"
 	sound_environment = EAX_GENERIC
 
+/area/station/crew_quarters/farmers
+	name = "Farmer's Market"
+	icon_state = "cafeteria"
+	sound_environment = EAX_GENERIC
+
 /area/station/crew_quarters/cafeteria/the_rising_tide_bar
 		name = "The Rising Tide"
 
@@ -2825,6 +2830,11 @@ ABSTRACT_TYPE(/area/station/quartermaster)
 /area/station/quartermaster/refinery
 	name = "Refinery"
 	icon_state = "green"
+	sound_environment = EAX_HANGAR
+
+/area/station/quartermaster/automat
+	name = "Automat"
+	icon_state = "blue"
 	sound_environment = EAX_HANGAR
 
 /area/station/quartermaster/cargobay
