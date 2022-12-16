@@ -157,6 +157,9 @@ _________ _______  _______  _        _______ __________________   _______ ______
  // A R E A S \\
 //|||||||||||||\\
 
+/area/transit_vehicle/
+	requires_power = 0 // lintster
+
 /area/transit_vehicle/elevator/qm_top
 	name = "Quartermaster's Elevator"
 	icon_state = "shuttle"
