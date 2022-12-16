@@ -2552,6 +2552,11 @@ ABSTRACT_TYPE(/area/station/medical)
 	icon_state = "medresearch"
 	sound_environment = EAX_BATHROOM
 
+/area/station/medical/basement
+	name = "Hospital Basement"
+	icon_state = "medresearch"
+	sound_environment = EAX_BATHROOM
+
 /area/station/medical/head
 	name = "Medical Director's Office"
 	icon_state = "MD"
