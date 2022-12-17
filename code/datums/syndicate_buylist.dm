@@ -231,7 +231,7 @@ proc/build_syndi_buylist_cache()
 	item = /obj/item/clothing/head/bighat/syndicate
 	cost = 12
 	desc = "Think you're tough shit buddy?"
-	not_in_crates = 1 //see /datum/syndicate_buylist/surplus/bighat
+	not_in_crates = 1
 	blockedmode = list(/datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
 //////////////////////////////////////////////////// Standard items (traitor uplink) ///////////////////////////////////
@@ -257,11 +257,18 @@ proc/build_syndi_buylist_cache()
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/bomb
-	name = "Syndicates in Pipebomb"
+	name = "Small angry men in a bomb?"
 	item = /obj/item/pipebomb/bomb/miniature_syndicate
 	cost = 3
 	desc = "A rather volatile pipe bomb packed with miniature syndicate troops."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
+/datum/syndicate_buylist/traitor/bomb_real // the ol standby, standby me.
+	name = "Syndicate Pipebomb"
+	item = /obj/item/pipebomb/bomb/syndicate
+	cost = 4
+	desc = "Oh my god, JC a bomb!"
+	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/champrojector
 	name = "Chameleon Projector"
