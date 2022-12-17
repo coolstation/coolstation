@@ -72195,13 +72195,6 @@
 	},
 /turf/unsimulated/floor/shuttle,
 /area/shuttle/escape/centcom/destiny)
-"hxg" = (
-/obj/critter/blobman/meaty_martha,
-/turf/unsimulated/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_2";
-	name = "Fleshy Floor"
-	},
-/area/titlescreen)
 "hyU" = (
 /obj/decal/fakeobjects/firelock_broken{
 	desc = "This shuttle door is really jammed.  What's the point of it then?  WHAT IS THE POINT";
@@ -72424,6 +72417,10 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"hXN" = (
+/obj/critter/blobman/meaty_martha,
+/turf/unsimulated/floor/setpieces/bloodfloor,
+/area/titlescreen)
 "iag" = (
 /obj/machinery/shuttle/engine/heater{
 	icon_state = "alt_heater"
@@ -72564,10 +72561,6 @@
 	},
 /turf/unsimulated/floor/setpieces/rootfloor,
 /area/centcom/offices/marknstein)
-"iws" = (
-/obj/decal/fakeobjects/dreambeach/saturn,
-/turf/unsimulated/floor/setpieces/bloodfloor,
-/area/titlescreen)
 "iyY" = (
 /turf/unsimulated/floor/grey/side{
 	dir = 8
@@ -72935,6 +72928,13 @@
 	icon_state = "diagonalWall"
 	},
 /area/hospital/samostrel)
+"jKU" = (
+/obj/critter/blobman/meaty_martha,
+/turf/unsimulated/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "jMC" = (
 /obj/storage/crate,
 /turf/unsimulated/floor{
@@ -73331,6 +73331,11 @@
 	name = "plating"
 	},
 /area/hospital/samostrel)
+"kRS" = (
+/turf/unsimulated/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_3"
+	},
+/area/titlescreen)
 "kUY" = (
 /obj/table/reinforced/bar/auto,
 /obj/decal/tile_edge/line/black{
@@ -74731,10 +74736,6 @@
 /turf/space,
 /turf/unsimulated/floor/caution/east,
 /area/hospital/samostrel)
-"oBM" = (
-/obj/decal/fakeobjects/dreambeach/seashells,
-/turf/unsimulated/floor/setpieces/bloodfloor,
-/area/titlescreen)
 "oFC" = (
 /obj/decal/fakeobjects/firelock_broken,
 /turf/space,
@@ -75694,6 +75695,10 @@
 	icon_state = "floor"
 	},
 /area/hospital/samostrel)
+"rjU" = (
+/obj/decal/fakeobjects/dreambeach/seashells,
+/turf/unsimulated/floor/setpieces/bloodfloor,
+/area/titlescreen)
 "rlN" = (
 /obj/decal/tile_edge/line/blue{
 	dir = 4;
@@ -75776,11 +75781,6 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/centcom/donut3)
-"rzf" = (
-/turf/unsimulated/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_3"
-	},
-/area/titlescreen)
 "rAl" = (
 /obj/window/crystal/reinforced/west,
 /obj/window/crystal/reinforced/north,
@@ -76169,6 +76169,10 @@
 /obj/table/regal/auto,
 /turf/unsimulated/floor/carpet/red/standard,
 /area/centcom/offices/questx)
+"slv" = (
+/obj/decal/fakeobjects/dreambeach/saturn,
+/turf/unsimulated/floor/setpieces/bloodfloor,
+/area/titlescreen)
 "slL" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 10;
@@ -76977,6 +76981,13 @@
 	name = "sand"
 	},
 /area/centcom/offices/enakai)
+"vdG" = (
+/obj/decal/fakeobjects/dreambeach/stones,
+/turf/unsimulated/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "vdV" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 4
@@ -77246,10 +77257,6 @@
 	name = "plating"
 	},
 /area/hospital/samostrel)
-"wdO" = (
-/obj/critter/blobman/meaty_martha,
-/turf/unsimulated/floor/setpieces/bloodfloor,
-/area/titlescreen)
 "wei" = (
 /obj/decal/fakeobjects/thrust{
 	dir = 4
@@ -77660,13 +77667,6 @@
 	},
 /turf/unsimulated/outdoors/grass,
 /area/shuttle/merchant_shuttle/right_centcom/donut2)
-"xCA" = (
-/obj/decal/fakeobjects/dreambeach/stones,
-/turf/unsimulated/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_2";
-	name = "Fleshy Floor"
-	},
-/area/titlescreen)
 "xFi" = (
 /obj/table/wood/round/auto,
 /obj/decal/cleanable/dirt,
@@ -162781,7 +162781,7 @@ xYJ
 xYJ
 yiP
 xYJ
-xCA
+vdG
 xYJ
 yiP
 yiP
@@ -163079,7 +163079,7 @@ yiP
 xYJ
 xYJ
 xYJ
-wdO
+hXN
 xYJ
 yiP
 xYJ
@@ -163684,7 +163684,7 @@ xYJ
 yiP
 sQe
 xYJ
-xCA
+vdG
 xYJ
 xYJ
 xYJ
@@ -164591,7 +164591,7 @@ rgr
 ybJ
 rQC
 yiP
-rzf
+kRS
 wnu
 jxX
 yiP
@@ -164895,7 +164895,7 @@ ybJ
 iEd
 yiP
 yiP
-rzf
+kRS
 xYJ
 yiP
 vEz
@@ -165196,7 +165196,7 @@ tED
 ybJ
 nAf
 bMV
-rzf
+kRS
 yiP
 yiP
 xYJ
@@ -165497,9 +165497,9 @@ rgr
 xgE
 ybJ
 iEd
-rzf
-rzf
-rzf
+kRS
+kRS
+kRS
 yiP
 xYJ
 hqg
@@ -165798,12 +165798,12 @@ yiP
 rgr
 ybJ
 rQC
-rzf
-rzf
+kRS
+kRS
 wCN
 jxX
 yiP
-hxg
+jKU
 xYJ
 lUK
 yiP
@@ -166407,7 +166407,7 @@ yiP
 yiP
 yiP
 yiP
-xCA
+vdG
 xYJ
 yiP
 xYJ
@@ -166701,7 +166701,7 @@ ajg
 xYJ
 xYJ
 xYJ
-hxg
+jKU
 nyz
 xYJ
 xYJ
@@ -167610,14 +167610,14 @@ xYJ
 xYJ
 yiP
 yiP
-oBM
+rjU
 yiP
 xYJ
 xYJ
 xYJ
 xYJ
 xYJ
-iws
+slv
 xYJ
 ajg
 "}
