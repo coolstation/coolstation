@@ -2072,8 +2072,9 @@
 	desc = "A manufacturing unit calibrated to produce specialty glass objects"
 	icon_state = "fab-glass"
 	icon_base = "glass"
-	free_resource_amt = 10
-	free_resources = list(/obj/item/material_piece/glass)
+	free_resource_amt = 4
+	free_resources = list(/obj/item/material_piece/glass,
+		/obj/item/material_piece/copper)
 	available = list(/datum/manufacture/light_bulb,
 		/datum/manufacture/red_bulb,
 		/datum/manufacture/yellow_bulb,
