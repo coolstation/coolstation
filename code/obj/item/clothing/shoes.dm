@@ -322,6 +322,7 @@
 	desc = "Recent developments in trampoline-miniaturization technology have made these little wonders possible."
 	icon_state = "moonshoes"
 	mats = 2
+	c_flags = SAFE_FALL
 
 	equipped(var/mob/user, var/slot)
 		..()
