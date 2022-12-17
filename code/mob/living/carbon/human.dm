@@ -185,10 +185,10 @@
 	src.attach_hud(hud)
 	src.zone_sel = new(src)
 	src.attach_hud(zone_sel)
-
+/*
 	if (src.stamina_bar)
 		hud.add_object(src.stamina_bar, initial(src.stamina_bar.layer), "EAST-1, NORTH")
-
+*/
 
 	if (global_sims_mode) // IF YOU ARE HERE TO DISABLE SIMS MODE, DO NOT TOUCH THIS. LOOK IN GLOBAL.DM
 #ifdef RP_MODE
@@ -498,8 +498,8 @@
 		src.u_equip(src.w_uniform)
 
 	if (hud)
-		if(src.stamina_bar)
-			hud.remove_object(stamina_bar)
+//		if(src.stamina_bar)
+//			hud.remove_object(stamina_bar)
 
 		if (hud.master == src)
 			hud.master = null

@@ -573,8 +573,8 @@
 		else if (final_mod < 0)
 			src.remove_stamina(abs(final_mod))
 
-		if (src.stamina_bar && src.client)
-			src.stamina_bar.update_value(src)
+//		if (src.stamina_bar && src.client)
+//			src.stamina_bar.update_value(src)
 
 		last_stam_change = TIME
 

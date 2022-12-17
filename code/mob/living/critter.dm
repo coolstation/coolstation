@@ -118,10 +118,10 @@
 		hud = new custom_hud_type(src)
 		src.attach_hud(hud)
 		src.zone_sel = new(src, "CENTER[hud.next_right()], SOUTH")
-
+/*
 		if (src.stamina_bar)
 			hud.add_object(src.stamina_bar, initial(src.stamina_bar.layer), "EAST-1, NORTH")
-
+*/
 
 		health_update_queue |= src
 
@@ -141,8 +141,8 @@
 			organHolder = null
 
 		if(hud)
-			if(src.stamina_bar)
-				hud.remove_object(stamina_bar)
+//			if(src.stamina_bar)
+//				hud.remove_object(stamina_bar)
 
 			hud.dispose()
 			hud = null

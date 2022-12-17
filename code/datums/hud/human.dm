@@ -1167,8 +1167,8 @@
 			for (var/atom/movable/screen/hud/H in inventory_bg)
 				H.icon = new_file
 
-			if (master.stamina_bar)
-				master.stamina_bar.icon = new_file
+//			if (master.stamina_bar)
+//				master.stamina_bar.icon = new_file
 
 	proc/set_sprint(var/on)
 		return
