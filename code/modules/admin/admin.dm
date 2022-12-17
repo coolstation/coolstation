@@ -5164,6 +5164,31 @@ var/global/noir = 0
 	else
 		..()
 
+		// this is the time knife gimmick thing i guess? divorced from the marvel shit now?
+proc/timeywimey(var/time)
+	var/list/positions = list()
+	for(var/client/C in clients)
+		if(istype(C.mob, /mob/living))
+			if(C.mob == usr)
+				continue
+			var/mob/living/L = C.mob
+			positions.Add(L)
+			positions[L] = L.loc
+
+//	var/current_time = world.timeofday
+//	while (current_time + 100 > world.timeofday && current_time <= world.timeofday)
+	sleep(time)
+
+	for(var/mob/living/L in positions)
+		if (!L) continue
+		L.flash(3 SECONDS)
+		boutput(L, "<span class='alert'><B>You suddenly feel yourself pulled violently back in time!</B></span>")
+		L.set_loc(positions[L])
+		L.changeStatus("stunned", 6 SECONDS)
+		elecflash(L,power = 2)
+		playsound(L.loc, "sound/effects/mag_warp.ogg", 25, 1, -1)
+	return 1
+
 /*
 /mob/living/carbon/proc/cloak()
 	//Buggy as heck because of the way updating clothing works (it clears all invisibility variables and sets them based on if you have a cloaking device on or not)

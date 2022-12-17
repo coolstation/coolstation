@@ -58,12 +58,12 @@ starting with SHITTY BILL
 
 		var/obj/item/implant/access/infinite/shittybill/implant = new /obj/item/implant/access/infinite/shittybill(src)
 		implant.implanted(src, src)
-
+/*
 		var/obj/item/power_stones/G = new /obj/item/power_stones/Gall
 		G.set_loc(src)
 		src.chest_item = G
 		src.chest_item_sewn = 1
-
+*/
 	initializeBioholder()
 		. = ..()
 		bioHolder.mobAppearance.customization_second = new /datum/customization_style/beard/tramp
