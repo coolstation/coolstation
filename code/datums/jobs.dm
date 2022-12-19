@@ -1739,6 +1739,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 	New()
 		..()
+		limit = 0 //Disables radio host regardless of map settings/the 15% random roll (it's not clean but it works)
 		src.access = get_access("Radio Show Host")
 		return
 
