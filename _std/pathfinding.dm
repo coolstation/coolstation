@@ -534,7 +534,7 @@
 /// Returns false if there is a dense atom on the turf, unless a custom hueristic is passed.
 /proc/checkTurfPassable(turf/T, heuristic = null, heuristic_args = null, turf/source = null)
 	. = TRUE
-	if(T.density || !T.pathable) // simplest case
+	if(!T || T.density || !T.pathable) // simplest case
 		return FALSE
 	// if a source turf was included check for directional blocks between the two turfs
 	if (source && (T.turf_persistent.blocked_dirs || source.turf_persistent.blocked_dirs))
