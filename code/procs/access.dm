@@ -314,7 +314,7 @@
 			return list(access_maint_tunnels, access_tech_storage, access_research)
 
 		//////////////////////////// Engineering
-		if("Mechanic")
+		if("Mechanic", "Electrician")
 			return list(access_maint_tunnels, access_external_airlocks, access_engineering_control,
 						access_tech_storage,access_engineering_mechanic,access_engineering_power, access_engineering, access_engineering_storage)
 		if("Atmospheric Technician")
