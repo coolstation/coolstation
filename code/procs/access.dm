@@ -284,7 +284,7 @@
 
 		///////////////////////////// Medical
 		if("Medical Doctor")
-			return list(access_medical, access_medical_lockers, access_morgue, access_maint_tunnels)
+			return list(access_robotics, access_medical, access_medical_lockers, access_morgue, access_maint_tunnels)
 		if("Geneticist")
 			return list(access_medical, access_medical_lockers, access_morgue, access_medlab, access_maint_tunnels)
 		if("Pathologist")
@@ -296,39 +296,40 @@
 		if("Roboticist")
 			return list(access_robotics, access_tech_storage, access_medical, access_medical_lockers, access_morgue, access_maint_tunnels)
 		if("Pharmacist")
-			return list(access_research,access_tech_storage, access_maint_tunnels, access_chemistry,
+			return list(access_research, access_tech_storage, access_maint_tunnels, access_chemistry,
 						access_medical_lockers, access_medical, access_morgue)
 		if("Medical Assistant")
 			return list(access_maint_tunnels, access_tech_storage, access_medical, access_morgue)
 		if("Psychiatrist")
-			return list(access_medical, access_maint_tunnels)
+			return list(access_medical, access_maint_tunnels, access_morgue)
 
 		///////////////////////////// Science
 		if("Scientist")
 			return list(access_tox, access_tox_storage, access_research, access_chemistry)
 		if("Chemist")
-			return list(access_research, access_chemistry)
+			return list(access_research, access_chemistry, access_maint_tunnels)
 		if("Toxins Researcher")
-			return list(access_research, access_tox, access_tox_storage)
+			return list(access_research, access_tox, access_tox_storage, access_chemistry)
 		if("Research Assistant")
 			return list(access_maint_tunnels, access_tech_storage, access_research)
 
 		//////////////////////////// Engineering
 		if("Mechanic")
 			return list(access_maint_tunnels, access_external_airlocks, access_engineering_control,
-						access_tech_storage,access_engineering_mechanic,access_engineering_power)
+						access_tech_storage,access_engineering_mechanic,access_engineering_power, access_engineering, access_engineering_storage)
 		if("Atmospheric Technician")
 			return list(access_maint_tunnels, access_external_airlocks, access_construction, access_engineering_control,
 						access_eva, access_engineering, access_engineering_storage, access_engineering_eva, access_engineering_atmos)
 		if("Engineer")
-			return list(access_engineering,access_maint_tunnels,access_external_airlocks, access_engineering_control,
-						access_engineering_storage,access_engineering_atmos,access_engineering_engine,access_engineering_power)
+			return list(access_engineering, access_maint_tunnels, access_external_airlocks, access_engineering_control,
+						access_engineering_storage,access_engineering_atmos,access_engineering_engine,access_engineering_power,access_engineering_mechanic)
 		if("Miner")
 			return list(access_maint_tunnels, access_external_airlocks,
 						access_engineering_eva, access_mining_shuttle, access_mining,
-						access_mining_outpost, access_hangar)
+						access_mining_outpost, access_hangar, access_cargo)
 		if("Quartermaster")
-			return list(access_maint_tunnels, access_cargo, access_supply_console, access_hangar)
+			return list(access_maint_tunnels, access_cargo, access_supply_console, access_hangar,access_mining,
+						access_mining_shuttle, access_mining_outpost, access_external_airlocks)
 		if("Construction Worker")
 			return list(access_engineering,access_maint_tunnels,access_external_airlocks, access_engineering_control,
 						access_engineering_storage,access_engineering_atmos,access_engineering_engine,access_engineering_power)
@@ -339,13 +340,13 @@
 		if("Janitor")
 			return list(access_janitor, access_maint_tunnels, access_medical, access_morgue, access_crematorium)
 		if("Botanist", "Apiculturist")
-			return list(access_maint_tunnels, access_hydro)
-		if("Rancher")
 			return list(access_maint_tunnels, access_hydro, access_ranch)
+		if("Rancher")
+			return list(access_hydro, access_ranch)
 		if("Chef", "Sous-Chef")
-			return list(access_kitchen)
+			return list(access_kitchen, access_kitchen)
 		if("Bartender")
-			return list(access_bar)
+			return list(access_bar, access_kitchen)
 		if("Waiter")
 			return list(access_bar, access_kitchen)
 		if("Clown", "Boxer", "Barber", "Mime")
