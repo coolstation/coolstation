@@ -310,6 +310,19 @@
 			return
 		if (locate(/obj/lattice) in src)
 			return
+		if (ishuman(AM))
+			var/mob/living/carbon/human/H = AM
+			if (H.back && H.back.c_flags & IS_JETPACK)
+				if (istype(H.back, /obj/item/tank/jetpack)) //currently unnecessary but what if we have IS_JETPACK on clothing items that are not back-wear later on?
+					var/obj/item/tank/jetpack/J = H.back
+					if(J.allow_thrust(0.01, H))
+						return
+		if (isliving(AM))
+			var/mob/living/peep = AM
+			if (!ON_COOLDOWN(AM, "re-swim", 0.5 SECONDS)) //Try swimming, but not if they've just stopped (for a stun or whatever)
+				peep.attempt_swim() //should do nothing if they're already swimming I think?
+			if (HAS_MOB_PROPERTY(peep,PROP_ATOM_FLOATING))
+				return
 		return_if_overlay_or_effect(AM)
 
 		try_build_turf_list()

@@ -48,12 +48,7 @@
 	initialize()
 		if(node) return
 
-		var/node_connect = dir
-
-		for(var/obj/machinery/atmospherics/target in get_step(src,node_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node = target
-				break
+		node = connect(dir)
 
 		update_icon()
 
@@ -94,3 +89,13 @@
 			node = null
 
 		return null
+
+	sync_node_connections()
+		if (node)
+			node.sync_connect(src)
+
+	sync_connect(obj/machinery/atmospherics/reference)
+		var/refdir = get_dir(src, reference)
+		if (!node && refdir == dir)
+			node = reference
+		update_icon()

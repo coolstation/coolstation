@@ -404,11 +404,6 @@ Custom Books
 	icon_state = "cloningbook"
 	file_path = "strings/books/dealing_with_clonelieness.txt"
 
-/obj/item/paper/book/from_file/fun_facts_about_shelterfrogs //By Sartorious, part of the February 2021 Contest
-	name = "Fun Facts About Shelterfrogs"
-	icon_state = "frogbook"
-	file_path = "strings/books/fun_facts_about_shelterfrogs.txt"
-
 /obj/item/paper/book/from_file/moby_dick
 	name = "Moby Dick"
 	desc = "Some kinda book. What's that doing here?"

@@ -149,8 +149,10 @@
 			. += "<div><img src='[resource("images/tooltips/rare.gif")]' alt='' class='icon' /><span>Rare item</span></div>"
 		//combat stats
 		. += "<div><img src='[resource("images/tooltips/attack.png")]' alt='' class='icon' /><span>Damage: [src.force ? src.force : "0"] dmg[src.force ? "("+DAMAGE_TYPE_TO_STRING(src.hit_type)+")" : ""], [round((1 / (max(src.click_delay,src.combat_click_delay) / 10)), 0.1)] atk/s, [src.throwforce ? src.throwforce : "0"] thrown dmg</span></div>"
-		if (src.stamina_cost || src.stamina_damage)
-			. += "<div><img src='[resource("images/tooltips/stamina.png")]' alt='' class='icon' /><span>Stamina: [src.stamina_damage ? src.stamina_damage : "0"] dmg, [stamina_cost] consumed per swing</span></div>"
+		//if (src.stamina_cost || src.stamina_damage)
+		//	. += "<div><img src='[resource("images/tooltips/stamina.png")]' alt='' class='icon' /><span>Stamina: [src.stamina_damage ? src.stamina_damage : "0"] dmg, [stamina_cost] consumed per swing</span></div>"
+		if(src.rng_stun_rate)
+			. += "<div><img src='[resource("images/tooltips/stun.png")]' alt='' class='icon' /><span>Stun rate: [src.rng_stun_rate] %</span></div>"
 
 		//standard object properties
 		if(src.properties && length(src.properties))

@@ -1332,7 +1332,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 		I.layer = FLY_LAYER
 		src.overlays += I
 
-/obj/ladder/auto
+/obj/ladder/auto //Who put this shit above the parent object FFS
 
 	broken
 		name = "broken ladder"
@@ -1341,15 +1341,19 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 		broken = TRUE
 
 	New()
-		..()
 		if(z!=1)
 			icon_state = "ladder_wall"
+			plane = PLANE_DEFAULT
 
-		if (!id || id == "generic")
+		if (!id)
 			id = "[x][y]"
+		..() //moved this to the bottom to avoid repeating code here
 
-		src.tag = "ladder_[id][src.icon_state == "ladder" ? 0 : 1]"
-
+	#ifdef Z3_IS_A_STATION_LEVEL
+	attack_ai(mob/user) //Assuming for the moment that there's only autoladders on Gehenna
+		if (isAIeye(user))
+			climb(user)
+	#endif
 
 
 
@@ -1357,7 +1361,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 	name = "ladder"
 	desc = "A series of parallel bars designed to allow for controlled change of elevation.  You know, by climbing it.  You climb it."
 	icon = 'icons/misc/worlds.dmi'
-	icon_state = "ladder"
+	icon_state = "ladder-round" // also available: ladder-square
 	anchored = 1
 	density = 0
 	var/id = null
@@ -1373,8 +1377,12 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 		..()
 		if (!id)
 			id = "generic"
-
-		src.tag = "ladder_[id][src.icon_state == "ladder" ? 0 : 1]"
+		//I add round and square hole flavours of ladder and then find out some shit made all of ladder code work on 'icon_state == "ladder"', what the fuck?
+		//So I just went an flipped all the logic around because the lower level ladders still only have one icon_state (ladder_wall) but this is some shit coding.
+		src.tag = "ladder_[id][src.icon_state == "ladder_wall" ? 0 : 1]"
+		//This bit is my fault though
+		if (src.icon_state != "ladder_wall")
+			src.plane = PLANE_NOSHADOW_BELOW //no drop shadow under what's a dang hole in the floor >:(
 
 	attack_hand(mob/user as mob)
 		if (src.broken) return
@@ -1387,7 +1395,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 		if (istype(W, /obj/item/grab))
 			if (!W:affecting) return
 			user.lastattacked = src
-			src.visible_message("<span class='alert'><b>[user] is trying to shove [W:affecting] [icon_state == "ladder"?"down":"up"] [src]!</b></span>")
+			src.visible_message("<span class='alert'><b>[user] is trying to shove [W:affecting] [icon_state == "ladder_wall"?"up":"down"] [src]!</b></span>")
 			return attack_hand(W:affecting)
 
 	MouseDrop_T(atom/movable/O as mob, mob/user as mob) // lets let ghosts use ladders, please.
@@ -1397,11 +1405,12 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 			..()
 
 	proc/climb(mob/user as mob)
-		var/obj/ladder/otherLadder = locate("ladder_[id][src.icon_state == "ladder"]")
+		var/obj/ladder/otherLadder = locate("ladder_[id][src.icon_state == "ladder_wall"]")
 		if (!istype(otherLadder))
-			boutput(user, "You try to climb [src.icon_state == "ladder" ? "down" : "up"] the ladder, but seriously fail! Perhaps there's nowhere to go?")
+			boutput(user, "You try to climb [src.icon_state == "ladder_wall" ? "up" : "down"] the ladder, but seriously fail! Perhaps there's nowhere to go?")
 			return
-		boutput(user, "You climb [src.icon_state == "ladder" ? "down" : "up"] the ladder.")
+		if (!isobserver(user)) //Ghosts/eyes don't exactly climb
+			boutput(user, "You climb [src.icon_state == "ladder_wall" ? "up" : "down"] the ladder.")
 		user.set_loc(get_turf(otherLadder))
 
 //Puzzle elements

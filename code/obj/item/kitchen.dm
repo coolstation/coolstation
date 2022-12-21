@@ -416,6 +416,96 @@ TRAYS
 		sharpener_mode = !sharpener_mode
 		boutput(user, "You flip a hidden switch in the pizza cutter to the [sharpener_mode ? "ON" : "OFF"] position.")
 
+//420 lol
+/obj/item/kitchen/wineholder //mama mia
+	name = "novelty wine holder"
+	desc = "get it in their"
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "homph"
+	anchored = 1
+	flags = NOSPLASH
+	var/emagged = FALSE //hoo hoo
+	var/wine = FALSE //generic wine for now, will need to save and remake custom wines later like datums or whatever the hell those are
+
+	get_desc(dist, mob/user)
+		if (dist <= 3)
+			. += "There's [(src.wine) ? "a" : "no" ] wine bottle inserted in \the [src]."
+
+	attackby(obj/item/W as obj, mob/user as mob) //put a wine bottle in FUCK the priority is to pour reagents on it if it's already there
+		if (istype(W,/obj/item/reagent_containers/food/drinks/bottle/wine) && src.wine && !src.emagged)
+			boutput(user, "There's already a wine bottle in \the [src].")
+			return
+		if (istype(W,/obj/item/reagent_containers/food/drinks/bottle/wine) && !src.wine && !src.emagged)
+			user.remove_item(W)
+			src.wine = W
+			W.set_loc(src)
+			boutput(user, "You place \the wine bottle into \the [src].")
+			playsound(src, "sound/misc/tarantella-short.ogg", 50, 1)
+			src.icon_state = "homph-wine"
+		if (istype(W,/obj/item/reagent_containers/food/drinks/bottle/wine) && !src.wine && src.emagged) //risky business
+			boutput(user, "You place \the wine bottle into \the [src]. Take cover!") //you were warned
+			playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1) //this may be a mistake to put this sound here too but lmao i'm doing it
+			user.remove_item(W)
+			src.wine = W
+			W.set_loc(src) //put it in
+			src.launch_wine() //get it flip it set it send it say it
+		else return ..()
+
+	proc/launch_wine() //i don't feel good about any of this but that's okay
+		while (src.wine && src.emagged) //are we loaded and feeling silly
+			var/mob/living/target = locate() in view(7,src) //get it
+			if(!target) //introduce hl snark behavior: target everyone but the emagger within a certain grace period, but after that fair game? upgrade it
+				//find out how to make this spark and shake, this fucker's primed and ready to bust but there's nobody to bust on
+				sleep(50)//can't find anybody
+				return null
+			else
+				var/obj/item/W = src.wine
+				src.wine = null //set it
+				W.set_loc(get_turf(src)) //bring it out
+				src.icon_state = "homph-emag" //flip it
+				W.throw_at(target, 16, 5) //send it
+				src.visible_message("<span class='alert'><b>[src] launches the wine bottle at [target.name]!</b></span>") //say it
+				return 1
+		return 0
+
+	emag_act(var/mob/user, var/obj/item/card/emag/E) //emaggable behavior
+		if (!src.emagged)
+			src.emagged = TRUE
+			if(user)
+				boutput(user, "you make this meatball a little spicier!!! homph omph")
+			playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1)
+			if (!src.wine)
+				src.icon_state = "homph-emag" //if it's empty then just do the wiggle. we love the wiggles
+			else //must be something here then
+				src.launch_wine() //attempt to launch your bottle, if you have one, at whoever is nearby. if nobody, just fail. i am still working on this proc
+			sleep(600) //whatever the outcome, wait a little bit because it's reloadable (not sure if this will have Bad Effects while launch_wine is already sprung)
+			src.visible_message("<span class='alert'><b>[src] takes a nap!</b></span>") //chill
+			if(!src.wine) //logic should prevent a wine-holding buddy from turning back/disappearing the bottle
+				src.icon_state = "homph" //wiggles over
+			src.emagged = FALSE //boop, no longer emagged. put a wine bottle back and do it again!
+				/*would be kinda fucked up to add a thing where the emagged wine holder has a small chance to eat the emag w/ crunch noise and then barf it up with meat_plop 15 seconds later
+				i love meat_plop
+				i also love just how grody this thing is
+				also kinda wanna make this thing act like a weird little dense loaf except just harmless and weird. less dangerous and more like, a weird thing to do with an emag. it dopesn't make sense. GOOD.
+				reiterating: not deadly or annoying but just stupid
+				actually no save that kind of behavior for the larger, more awful version of this for admin crimes*/
+			return 1
+		return 0
+
+	attack_hand(mob/user as mob) //take a wine bottle out
+		src.add_fingerprint(user)
+		if (!src.wine)
+			user.show_text("\The [src] doesn't have anything in it.", "red")
+		else
+			boutput(user, "You take the wine out of \the [src].")
+			playsound(src, "sound/misc/tarantella-short.ogg", 50, 1)
+			user.put_in_hand_or_drop(src.wine)
+			src.wine = null
+			src.icon_state= "homph"
+
+	unchained
+		anchored = 0
+
 /obj/item/kitchen/food_box // I came in here just to make donut/egg boxes put the things in your hand when you take one out and I end up doing this instead, kill me. -haine
 	name = "food box"
 	desc = "A box that can hold food! Well, not this one, I mean. You shouldn't be able to see this one."
@@ -732,9 +822,9 @@ TRAYS
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(istype(H.head, /obj/item/clothing/head/helmet))
-					M.do_disorient(stamina_damage = 150, weakened = 0.1 SECONDS, disorient = 1 SECOND)
+					M.do_disorient(stamina_damage = 150, weakened = 0.1 SECONDS, disorient = 3 SECOND)
 				else
-					M.changeStatus("weakened", 1 SECONDS)
+					M.changeStatus("weakened", 2 SECONDS)
 					M.force_laydown_standup()
 			else if(ismobcritter(M))
 				var/mob/living/critter/L = M
@@ -744,9 +834,9 @@ TRAYS
 						has_helmet = TRUE
 						break
 				if(has_helmet)
-					M.do_disorient(stamina_damage = 150, weakened = 0.1 SECONDS, disorient = 1 SECOND)
+					M.do_disorient(stamina_damage = 150, weakened = 0.1 SECONDS, disorient = 3 SECOND)
 				else
-					M.changeStatus("weakened", 1 SECONDS)
+					M.changeStatus("weakened", 2 SECONDS)
 					M.force_laydown_standup()
 			else //borgs, ghosts, whatever
 				M.do_disorient(stamina_damage = 150, weakened = 0.1 SECONDS, disorient = 1 SECOND)

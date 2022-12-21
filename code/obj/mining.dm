@@ -1350,9 +1350,11 @@
 		if(!icon_old)
 			icon_old = icon_state
 
+		var/touch_my_air = (map_currently_very_dusty?(src.z!=3):(TRUE))
+
 		var/new_color = src.stone_color
 		src.RL_SetOpacity(0)
-		src.ReplaceWith(temp_floor_turf)
+		src.ReplaceWith(temp_floor_turf, handle_air=touch_my_air)
 		src.stone_color = new_color
 		src.opacity = 0
 		src.levelupdate()

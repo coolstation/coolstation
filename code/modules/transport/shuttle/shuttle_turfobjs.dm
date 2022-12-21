@@ -31,7 +31,7 @@
 
 	New()
 		..()
-		if (icon_state == "tplaceholder") icon_state = "near_blank"
+		if (icon_state == "tplaceholder") icon_state = (channel_open ? "near_blank" : "[rand(1,25)]" )
 
 /turf/simulated/floor/shuttle
 	name = "shuttle floor"

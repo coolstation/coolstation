@@ -515,6 +515,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.1, 0.5, 0.5, 1, 1)
 	S.volume *= getVolume( VOLUME_CHANNEL_AMBIENT ) / 100
 	if (pass_volume != 0)
 		S.volume *= attenuate_for_location(A)
+		S.volume *= max(1,(pass_volume / 100)) // warc: post-loudening for loud-requiring places
 		EARLY_RETURN_IF_QUIET(S.volume)
 	src << S
 
@@ -555,6 +556,9 @@ var/global/list/default_channel_volumes = list(1, 1, 0.1, 0.5, 0.5, 1, 1)
 			sound('sound/ambience/station/Station_VocalNoise2.ogg'),
 			sound('sound/ambience/station/Station_VocalNoise3.ogg'),
 			sound('sound/ambience/station/Station_VocalNoise4.ogg'),
+			sound('sound/ambience/station/Station_VocalNoise5.ogg'),
+			sound('sound/ambience/station/Station_VocalNoise6.ogg'),
+			sound('sound/ambience/station/Station_VocalNoise7.ogg'),
 			sound('sound/ambience/station/Station_MechanicalThrum1.ogg'),
 			sound('sound/ambience/station/Station_MechanicalThrum2.ogg'),
 			sound('sound/ambience/station/Station_MechanicalThrum3.ogg'),

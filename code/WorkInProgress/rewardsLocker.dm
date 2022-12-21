@@ -1233,26 +1233,6 @@
 		activator.verbs += /proc/smugproc
 		return 1
 
-/datum/achievementReward/shelterbee
-	title = "(Emote) Shelterbee"
-	desc = "Shelterbee expresses what you cannot. And it's also pretty dang cute."
-	required_medal = "Too Cool"
-
-	rewardActivate(var/mob/activator)
-		if (!istype(activator))
-			return
-		boutput(usr, "<span class='notice'>:shelterbee:</span>")
-		animate_emote(usr, /obj/effect/shelterbee)
-		return 1
-
-/obj/effect/shelterbee
-	name = "shelterbee"
-	icon = 'icons/mob/64.dmi'
-	icon_state = "shelterbee"
-	anchored = 1.0
-	pixel_x = -16
-	pixel_y = -16
-
 /datum/achievementReward/participantribbon
 	title = "(Transformation) Participation Ribbon"
 	desc = "Turn into a living participation ribbon. No refunds!"

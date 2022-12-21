@@ -66,7 +66,7 @@
 						break
 	else
 		src.navigate_to(get_step_rand(src))
-
+/*
 /// Sends the duckbot to a random spot on the station
 /obj/machinery/bot/duckbot/proc/mystical_journey()
 	var/list/stationAreas = get_accessible_station_areas()
@@ -87,7 +87,7 @@
 	src.access_lookup = "Captain"
 	src.botcard = new /obj/item/card/id(src)
 	src.botcard.access = get_access(src.access_lookup)
-
+*/
 /obj/machinery/bot/duckbot/process()
 	. = ..()
 	if(src.on == 1)
@@ -102,13 +102,7 @@
 				var/message = pick("wacka", "quack","quacky","gaggle")
 				src.speak(message, 1, 0)
 			if(!src.moving)
-				if(prob(1))/* This is a clusterfuck no thanks
-					if(!ON_COOLDOWN(global, DUCKBOT_NATURAL_MIGRATION_COOLDOWN, 15 MINUTES)) // Time to fly south(ern solar array) for the winter
-						src.declare_migration()
-					else*/
-					src.mystical_journey() // Time to go on a mystical journey
-				else
-					wakka_wakka()
+				wakka_wakka()
 			if(!ON_COOLDOWN(src, DUCKBOT_AMUSEMENT_COOLDOWN, src.amusement_cooldown) && prob(20))
 				playsound(src.loc, "sound/misc/amusingduck.ogg", 50, 0) // MUSIC
 		if(prob (7) && src.eggs >= 1)
@@ -165,7 +159,7 @@
 	src.processing_tier = src.PT_idle
 	src.SubscribeToProcess()
 	return 1
-
+/*
 /// Sends all the duckbots to a random spot on the station
 /obj/machinery/bot/duckbot/proc/migrate()
 	var/list/stationAreas = get_accessible_station_areas()
@@ -201,7 +195,8 @@
 	signal.transmission_method = TRANSMISSION_RADIO
 	frequency.post_signal(src, signal)
 	return TRUE
-
+*/
+/*
 /obj/machinery/bot/duckbot/receive_signal(datum/signal/signal)
 	if(!on)
 		return
@@ -223,6 +218,7 @@
 		return
 
 	// Someone asked this bot to go on an adventure! Must be migration season, let everyone know
+	 ~ Never activate this thanks,
 	if(signal.data["command"] == "migrate")
 		var/message_to_send = "wacka"
 		if(ON_COOLDOWN(global, DUCKBOT_FORCED_MIGRATION_COOLDOWN, 3 MINUTES))
@@ -233,7 +229,8 @@
 			ON_COOLDOWN(global, DUCKBOT_NATURAL_MIGRATION_COOLDOWN, 15 MINUTES)
 		if(signal.data["sender"])
 			src.send_confirm_signal(message_to_send, signal.data["sender"])
-
+			*/
+/*
 /obj/machinery/bot/duckbot/proc/send_confirm_signal(var/msg, var/target)
 	if(!ON_COOLDOWN(global, "duckbot_antispam_[target]", 1 SECOND))
 		var/datum/radio_frequency/frequency = radio_controller.return_frequency(FREQ_PDA)
@@ -246,7 +243,7 @@
 		sigsend.data["message"] = "[msg]"
 		sigsend.data["address_1"] = target
 		sigsend.transmission_method = TRANSMISSION_RADIO
-		frequency.post_signal(src, sigsend)
+		frequency.post_signal(src, sigsend)*/
 
 /obj/machinery/bot/duckbot/KillPathAndGiveUp(give_up)
 	. = ..()

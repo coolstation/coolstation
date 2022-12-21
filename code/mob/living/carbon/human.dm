@@ -109,7 +109,7 @@
 	var/ai_default_intent = INTENT_DISARM
 	var/ai_calm_down = 0 // do we chill out after a while?
 	var/ai_picking_pocket = 0
-	var/ai_offhand_pickup_chance = 50
+	var/ai_offhand_pickup_chance = 5
 
 	max_health = 100
 
@@ -185,10 +185,10 @@
 	src.attach_hud(hud)
 	src.zone_sel = new(src)
 	src.attach_hud(zone_sel)
-
+/*
 	if (src.stamina_bar)
 		hud.add_object(src.stamina_bar, initial(src.stamina_bar.layer), "EAST-1, NORTH")
-
+*/
 
 	if (global_sims_mode) // IF YOU ARE HERE TO DISABLE SIMS MODE, DO NOT TOUCH THIS. LOOK IN GLOBAL.DM
 #ifdef RP_MODE
@@ -498,8 +498,8 @@
 		src.u_equip(src.w_uniform)
 
 	if (hud)
-		if(src.stamina_bar)
-			hud.remove_object(stamina_bar)
+//		if(src.stamina_bar)
+//			hud.remove_object(stamina_bar)
 
 		if (hud.master == src)
 			hud.master = null
@@ -1948,6 +1948,8 @@
 		if(locfinder.Find("[I.screen_loc]")) //V offsets the screen loc of the item by half the difference of the sprite width and the default sprite width (32), to center the sprite in the box V
 			I.screen_loc = "[locfinder.group[1]][text2num(locfinder.group[2])-(width-32)/2][locfinder.group[3]]"
 
+		if (I.w_class > SWIMMING_UPPER_W_CLASS_BOUND)
+			delStatus("swimming")
 		return 1
 	else
 		if (isnull(hand))
@@ -1969,6 +1971,8 @@
 					I.set_loc(src)
 					src.update_inhands()
 					hud.add_object(I, HUD_LAYER+2, hud.layouts[hud.layout_style]["lhand"])
+					if (I.w_class > SWIMMING_UPPER_W_CLASS_BOUND)
+						delStatus("swimming")
 					return 1
 				else
 					return 0
@@ -1984,6 +1988,8 @@
 					I.set_loc(src)
 					src.update_inhands()
 					hud.add_object(I, HUD_LAYER+2, hud.layouts[hud.layout_style]["rhand"])
+					if (I.w_class > SWIMMING_UPPER_W_CLASS_BOUND)
+						delStatus("swimming")
 					return 1
 				else
 					return 0
@@ -3207,6 +3213,9 @@
 	var/steps = 1
 	if (move_dir & (move_dir-1))
 		steps *= DIAG_MOVE_DELAY_MULT
+
+	if (HAS_MOB_PROPERTY(src, PROP_ATOM_FLOATING)) //swimming
+		return ..()
 
 	//STEP SOUND HANDLING
 	if (!src.lying && isturf(NewLoc) && NewLoc.turf_flags & MOB_STEP)

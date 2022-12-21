@@ -147,10 +147,11 @@ Contains:
 			air_contents.react()
 			air_contents.react()
 			pressure = MIXTURE_PRESSURE(air_contents)
-
-			var/range = (pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE
+			// NOTE TO DEVS: THIS IS WHAT SETS THE BLAST RADIUS OF A TTV. GOTTA WRITE COMMENTS WITH KEYWORDS. TANK TRANSFER VALVE BOMB.
+			//var/range = (pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE // Warc: trying something new.
+			var/range = (pressure-TANK_FRAGMENT_PRESSURE)/(TANK_FRAGMENT_SCALE + (0.1 * pressure))
 			// (pressure - 5066.25 kpa) divided by 1013.25 kpa
-			range = min(range, 12)		// was 8
+			range = min(range, 8)		// was 8 // is 8 again
 
 			if(src in bible_contents)
 				for_by_tcl(B, /obj/item/storage/bible)//world)
@@ -359,6 +360,7 @@ Contains:
 	desc = "A jetpack that can be toggled on, letting the user use the gas inside as a propellant. Can also be hooked up to a compatible mask to allow you to breathe the gas inside. This is labelled to contain oxygen."
 	distribute_pressure = 17 // setting these things to start at the minimum pressure needed to breathe - Haine
 	compatible_with_TTV = 0
+	c_flags = IS_JETPACK
 
 	New()
 		..()

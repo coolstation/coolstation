@@ -60,7 +60,8 @@
 #define BLOCK_BURN					32768
 /// block an extra point of blunt damage when used to block
 #define BLOCK_BLUNT					65536
-
+/// cushions falls from heights
+#define SAFE_FALL					131072
 
 //Suit blood flags
 #define SUITBLOOD_ARMOR 1

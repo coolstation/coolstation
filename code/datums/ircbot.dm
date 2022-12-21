@@ -68,7 +68,7 @@ var/global/datum/ircbot/ircbot = new /datum/ircbot()
 						src.load()
 				return "queued"
 			else
-				if (config.env == "dev" || !apikey) // If we have no API key, why even bother
+				if (!apikey) // If we have no API key, why even bother
 					return 0
 
 				args = (args == null ? list() : args)
@@ -164,7 +164,7 @@ var/global/datum/ircbot/ircbot = new /datum/ircbot()
 	ircbot.toggleDebug(src)
 	return 1
 
-
+/* // Warc : disabling this until we have such a thing. Which is not today.
 /client/verb/linkDiscord(discordCode as text)
 	set name = "Link Discord"
 	set category = "Commands"
@@ -191,3 +191,4 @@ var/global/datum/ircbot/ircbot = new /datum/ircbot()
 	else
 		alert(src, "An unknown internal error occurred. Please report this.")
 		return 0
+*/

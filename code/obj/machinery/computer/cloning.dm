@@ -203,9 +203,9 @@
 	if (!subject.bioHolder || subject.bioHolder.HasEffect("husk"))
 		show_message("Error: Extreme genetic degredation present.", "danger")
 		return
-	if (istype(subject.mutantrace, /datum/mutantrace/kudzu))
+/*	if (istype(subject.mutantrace, /datum/mutantrace/kudzu))
 		show_message("Error: Incompatible cellular structure.", "danger")
-		return
+		return*/
 	if (istype(subject.mutantrace, /datum/mutantrace/zombie))
 		show_message("Error: Incompatible cellular structure.", "danger")
 		return

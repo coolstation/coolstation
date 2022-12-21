@@ -35,7 +35,7 @@
 /obj/machinery/shuttle/engine/propulsion
 	name = "propulsion"
 	icon_state = "propulsion"
-	opacity = 1
+	opacity = 0 //warc: why was this 1?
 	machine_registry_idx = MACHINES_SHUTTLEPROPULSION
 	var/stat1 = 1
 	var/stat2 = 1

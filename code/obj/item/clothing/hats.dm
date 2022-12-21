@@ -909,7 +909,7 @@ proc/filter_trait_hats(var/type)
 			processing_items.Remove(src)
 			processing = 0
 			return
-		if(prob(20))
+		if(prob(2))
 			var/turf/T = get_turf(src)
 			T.fluid_react_single("miasma_s", 5, airborne = 1)
 		if(prob(1))
@@ -1424,7 +1424,7 @@ ABSTRACT_TYPE(/obj/item/clothing/head/headband/nyan)
 	item_state = "antlers"
 	w_class = W_CLASS_TINY
 	throwforce = 0
-
+/*
 /obj/item/clothing/head/headband/giraffe
 	name = "giraffe ears"
 	desc = "Wearing these will take your fashion to another level."
@@ -1444,7 +1444,7 @@ ABSTRACT_TYPE(/obj/item/clothing/head/headband/nyan)
 	item_state = "antennae"
 	w_class = W_CLASS_TINY
 	throwforce = 0
-
+*/
 // BARRETTES
 
 ABSTRACT_TYPE(/obj/item/clothing/head/barrette)

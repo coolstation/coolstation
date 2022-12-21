@@ -1177,9 +1177,9 @@ var/global/noir = 0
 					if("Flashman")
 						H.set_mutantrace(/datum/mutantrace/flashy)
 						. = 1
-					if("Kudzuman")
+			/*		if("Kudzuman")
 						H.set_mutantrace(/datum/mutantrace/kudzu)
-						. = 1
+						. = 1*/
 					if("Ghostdrone")
 						droneize(H, 0)
 					if("Flubber")
@@ -3650,6 +3650,13 @@ var/global/noir = 0
 				usr.client.show_rules_to_player(M)
 			else
 				alert ("You must be at least a Secondary Admin to show rules to a player.")
+		if ("warngimmick")
+			if (src.level >= LEVEL_SA)
+				var/mob/M = locate(href_list["target"])
+				if (!M) return
+				usr.client.berate_player_gimmick(M)
+			else
+				alert ("You must be at least a Secondary Admin to tell off this player.")
 		if ("warn")
 			if (src.level >= LEVEL_SA)
 				var/mob/M = locate(href_list["target"])
@@ -4045,6 +4052,38 @@ var/global/noir = 0
 	// <A href='?src=\ref[src];action=s_rez;type=spawn_commandos'>Spawn a force of commandos</A><BR>
 	// <A href='?src=\ref[src];action=s_rez;type=spawn_turds'>Spawn a T.U.R.D.S. attack force</A><BR>
 	// <A href='?src=\ref[src];action=s_rez;type=spawn_smilingman'>Spawn a Smiling Man</A><BR>
+/var/create_mob_html = null
+/datum/admins/proc/create_mob(var/mob/user)
+	set background = 1
+	if (!create_mob_html)
+		var/mobjs = null
+		mobjs = jointext(typesof(/mob), ";")
+		create_mob_html = grabResource("html/admin/create_object.html")
+		create_mob_html = replacetext(create_mob_html, "null /* object types */", "\"[mobjs]\"")
+
+	if (user) user.Browse(replacetext(create_mob_html, "/* ref src */", "\ref[src]"), "window=create_mob;size=530x550")
+
+/var/create_object_html = null
+/datum/admins/proc/create_object(var/mob/user)
+	set background = 1
+	if (!create_object_html)
+		var/objectjs = null
+		objectjs = jointext(typesof(/obj), ";")
+		create_object_html = grabResource("html/admin/create_object.html")
+		create_object_html = replacetext(create_object_html, "null /* object types */", "\"[objectjs]\"")
+
+	if (user) user.Browse(replacetext(create_object_html, "/* ref src */", "\ref[src]"), "window=create_object;size=530x550")
+
+/var/create_turf_html = null
+/datum/admins/proc/create_turf(var/mob/user)
+	set background = 1
+	if (!create_turf_html)
+		var/turfjs = null
+		turfjs = jointext(typesof(/turf), ";")
+		create_turf_html = grabResource("html/admin/create_object.html")
+		create_turf_html = replacetext(create_turf_html, "null /* object types */", "\"[turfjs]\"")
+
+	if (user) user.Browse(replacetext(create_turf_html, "/* ref src */", "\ref[src]"), "window=create_turf;size=530x550")
 
 /datum/admins/proc/Game()
 	if (!usr) // somehoooow
@@ -5124,6 +5163,31 @@ var/global/noir = 0
 		src.mob.set_dir(direct)
 	else
 		..()
+
+		// this is the time knife gimmick thing i guess? divorced from the marvel shit now?
+proc/timeywimey(var/time)
+	var/list/positions = list()
+	for(var/client/C in clients)
+		if(istype(C.mob, /mob/living))
+			if(C.mob == usr)
+				continue
+			var/mob/living/L = C.mob
+			positions.Add(L)
+			positions[L] = L.loc
+
+//	var/current_time = world.timeofday
+//	while (current_time + 100 > world.timeofday && current_time <= world.timeofday)
+	sleep(time)
+
+	for(var/mob/living/L in positions)
+		if (!L) continue
+		L.flash(3 SECONDS)
+		boutput(L, "<span class='alert'><B>You suddenly feel yourself pulled violently back in time!</B></span>")
+		L.set_loc(positions[L])
+		L.changeStatus("stunned", 6 SECONDS)
+		elecflash(L,power = 2)
+		playsound(L.loc, "sound/effects/mag_warp.ogg", 25, 1, -1)
+	return 1
 
 /*
 /mob/living/carbon/proc/cloak()

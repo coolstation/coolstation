@@ -483,8 +483,8 @@
 		stamloc, HUD_LAYER, tooltipTheme = "stamina")
 		src.stamina_back = src.create_screen("stamina_back","Stamina", src.hud_icon, "stamina_back",\
 		stamloc, HUD_LAYER_UNDER_1)
-		if (src.master.stamina_bar)
-			src.stamina.desc = src.master.stamina_bar.getDesc(src.master)
+//		if (src.master.stamina_bar)
+//			src.stamina.desc = src.master.stamina_bar.getDesc(src.master)
 
 /datum/hud/critter/proc/create_temperature_element()
 	src.bodytemp = src.create_screen("bodytemp","Temperature", src.hud_icon, "temp0",\

@@ -1394,7 +1394,7 @@ PIPE BOMBS + CONSTRUCTION
 		return
 
 	attackby(obj/item/W, mob/user)
-
+		//NOTE: state 1 is unused since the first stages of pipe frames now happen through constructable atmos
 		if(isweldingtool(W) && state == 1)
 			if(!W:try_weld(user, 1))
 				return

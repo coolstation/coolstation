@@ -12,17 +12,17 @@
 	stamina_crit_chance = 0
 	//mat_changename = 0
 	rand_pos = 1
-	var/patreon_prob = 9
+	//var/patreon_prob = 9
 	var/rare_prob = 12
 	var/datum/figure_info/info = null
 
-	// grumble grumble
+	/* grumble grumble
 	patreon
 		patreon_prob = 100
 		rare_prob = 0
-
+*/
 	rare
-		patreon_prob = 0
+//		patreon_prob = 0
 		rare_prob = 100
 
 
@@ -33,9 +33,9 @@
 		else if (!istype(src.info))
 			var/datum/figure_info/randomInfo
 
-			var/potential_donator_ckey = usr?.mind.ckey
-			var/donator_figtype = null
-			if (potential_donator_ckey) // check if the player has a figurine (therefore a donator)
+//			var/potential_donator_ckey = usr?.mind.ckey
+//			var/donator_figtype = null
+/*			if (potential_donator_ckey) // check if the player has a figurine (therefore a donator)
 				for (var/datum/figure_info/patreon/fig as anything in concrete_typesof(/datum/figure_info/patreon))
 					if (initial(fig.ckey) == potential_donator_ckey)
 						donator_figtype = fig
@@ -45,7 +45,8 @@
 					randomInfo = donator_figtype
 				else
 					randomInfo = pick(figure_patreon_rarity)
-			else if (prob(src.rare_prob))
+			else */
+			if (prob(src.rare_prob))
 				randomInfo = pick(figure_high_rarity)
 			else
 				randomInfo = pick(figure_low_rarity)
@@ -107,11 +108,6 @@
 			else if(user:a_intent == INTENT_HARM)
 				playsound(src, "sound/impact_sounds/Flesh_Break_1.ogg", 15, 1, 0.1, 2.5)
 				user.visible_message("<span class='alert'>[user] bangs the [W.name] into the [src.name] over and over!</span>")
-		else if (W.force > 1 && src.icon_state == "fig-shelterfrog" || src.icon_state == "fig-shelterfrog-dead")
-			playsound(src.loc, W.hitsound, 50, 1, -1)
-			if (src.icon_state != "fig-shelterfrog-dead")
-				make_cleanable(/obj/decal/cleanable/blood,get_turf(src))
-				src.icon_state = "fig-shelterfrog-dead"
 		user.lastattacked = src
 		return 0
 
@@ -209,13 +205,14 @@ var/list/figure_high_rarity = list(\
 /datum/figure_info/vip,
 /datum/figure_info/actor,
 /datum/figure_info/regional_director,
-#ifdef XMAS
 /datum/figure_info/santa,
-#endif
 /datum/figure_info/pharmacist,
-/datum/figure_info/test_subject)
+/datum/figure_info/test_subject,
+/datum/figure_info/drsingh,
+/datum/figure_info/smallbart,
+/datum/figure_info/fartcan)
 
-var/list/figure_patreon_rarity = concrete_typesof(/datum/figure_info/patreon)
+//var/list/figure_patreon_rarity = concrete_typesof(/datum/figure_info/patreon)
 
 /datum/figure_info
 	var/name = "staff assistant"
@@ -490,22 +487,27 @@ var/list/figure_patreon_rarity = concrete_typesof(/datum/figure_info/patreon)
 		name = "\improper Father Jack"
 		icon_state = "jack"
 
-#ifdef XMAS
 	santa
 		name = "\improper Santa Claus"
 		icon_state = "santa"
-#endif
 
+	drsingh
+		name = "\improper Dr. Singh"
+		icon_state = "drsingh"
 
+	smallbart
+		name = "\improper Small Bart"
+		icon_state = "smallbart"
+
+	fartcan
+		name = "\improper Fart Canister"
+		icon_state = "fartcan"
+
+/*
 ABSTRACT_TYPE(/datum/figure_info/patreon)
 /datum/figure_info/patreon
 	/// ckey this figure is associated with
 	var/ckey = null
-
-	shelterfrog
-		name = "\improper Sheltered Frog"
-		icon_state = "shelterfrog"
-		ckey = "flourish"
 
 	dottyspud
 		name = "\improper Dotty Spud"
@@ -516,11 +518,6 @@ ABSTRACT_TYPE(/datum/figure_info/patreon)
 		name = "\improper Emily Claire"
 		icon_state = "emilyclaire"
 		ckey = "ursulamejor"
-
-	drsingh
-		name = "\improper Dr. Singh"
-		icon_state = "drsingh"
-		ckey = "magicmountain"
 
 	hubcapwillie
 		name = "\improper Hubcap Willie"
@@ -617,9 +614,7 @@ ABSTRACT_TYPE(/datum/figure_info/patreon)
 		icon_state = "derekclarke"
 		ckey = "heisenbee"
 
-	fartcan
-		name = "\improper Fart Canister"
-		icon_state = "fartcan"
+
 		ckey = "warcrimes"
 
 	tomato
@@ -726,7 +721,7 @@ ABSTRACT_TYPE(/datum/figure_info/patreon)
 		name = "\improper Ook"
 		icon_state = "ook"
 		ckey = "taocat"
-
+*/
 /obj/item/item_box/figure_capsule
 	name = "capsule"
 	desc = "A little plastic ball for keeping stuff in. Woah! We're truly in the future with technology like this."

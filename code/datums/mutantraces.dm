@@ -1424,7 +1424,7 @@
 	mutant_folder = 'icons/mob/monkey.dmi'
 	icon_state = "monkey"
 	eye_state = "eyes_monkey"
-	head_offset = -6
+	head_offset = -8
 	hand_offset = -2
 	body_offset = -7
 	leg_offset = -4
@@ -1829,36 +1829,7 @@
 						if (mob) mob.emote_allowed = 1
 					return message
 			else ..()
-
-/datum/mutantrace/amphibian/shelter
-	name = "Shelter Amphibian"
-	icon = 'icons/mob/shelterfrog.dmi'
-	icon_state = "body_m"
-	human_compatible = 1
-	jerk = 0
-	var/permanent = 0
-	mutant_folder = 'icons/mob/shelterfrog.dmi'
-	special_head = HEAD_SHELTER
-	r_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/shelterfrog/right
-	l_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/shelterfrog/left
-	r_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/shelterfrog/right
-	l_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/shelterfrog/left
-	mutant_appearance_flags = (NOT_DIMORPHIC | HAS_NO_SKINTONE | HAS_NO_EYES | BUILT_FROM_PIECES | HEAD_HAS_OWN_COLORS)
-
-
-	New()
-		..()
-		if(ishuman(mob))
-			mob.blood_color = "#91b978"
-
-	disposing()
-		if(ishuman(mob))
-			mob.bioHolder.RemoveEffect("mattereater")
-			mob.bioHolder.RemoveEffect("jumpy")
-			mob.bioHolder.RemoveEffect("vowelitis")
-			mob.bioHolder.RemoveEffect("accent_chav")
-		..()
-
+/*
 /datum/mutantrace/kudzu
 	name = "kudzu"
 	icon = 'icons/mob/kudzu.dmi'
@@ -1983,7 +1954,7 @@
 					mob.changeStatus("weakened", 3 SECONDS)
 
 		return
-
+*/
 /datum/mutantrace/cow
 	name = "cow"
 	icon = 'icons/mob/cow.dmi'

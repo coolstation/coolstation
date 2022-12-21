@@ -66,3 +66,18 @@ proc/buildRandomRooms()
 
 	market5x4
 		size = "5x4"
+
+	/*
+	Mall-style food-holes.
+	10 x 10. Public access via (5,1) and (6,1). Kitchen access via (1,10) and (1, 9)
+	*/
+	foodhole
+		size = "10x10"
+		apply()
+			var/datum/mapPrefab/random_room/room_prefab = pick_map_prefab(/datum/mapPrefab/random_room,\
+				list("foodhole"))
+			if(isnull(room_prefab))
+				CRASH("No random room prefab found for 'foodhole'")
+			room_prefab.applyTo(src.loc)
+			logTheThing("debug", null, null, "Applied foodhole prefab to [log_loc(src)]")
+			qdel(src)

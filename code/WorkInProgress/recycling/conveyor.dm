@@ -99,12 +99,14 @@
 /obj/machinery/conveyor/proc/move_thing(var/atom/movable/A)
 	if (A.anchored || A.temp_flags & BEING_CRUSHERED)
 		return
-	if(isobserver(A))
-		return
 	if(istype(A, /obj/machinery/bot) && A:on)	//They drive against the motion of the conveyor, ok.
 		return
 	if(istype(A, /obj/critter) && A:flying)		//They are flying above it, ok.
 		return
+	if (ismob(A))
+		var/mob/peep = A
+		if(HAS_MOB_PROPERTY(peep, PROP_ATOM_FLOATING)) // Don't put new checks here, apply this atom prop instead.
+			return
 	var/movedir = dir	// base movement dir
 	if(divert && dir == divdir)	// update if diverter present
 		movedir = divert

@@ -303,7 +303,7 @@
 	for (var/mob/M in (owner.thralls + owner.owner))
 		if ((M.client?.holder && M.client.deadchat && !M.client.player_mode)) continue
 		boutput(M, rendered)
-
+/*
 //kudzu hivemind say
 /mob/proc/say_kudzu(var/message, var/datum/abilityHolder/kudzu/owner)
 	var/name = src.real_name
@@ -333,7 +333,7 @@
 		if (istype(C.mob.abilityHolder, /datum/abilityHolder/kudzu))
 			boutput(C, rendered)
 		//////////////////////////////////
-
+*/
 /mob/proc/say_understands(var/mob/other, var/forced_language)
 	if (isdead(src))
 		return 1
@@ -565,12 +565,6 @@
 				ooc_class = "adminooc"
 		else if (src.client.is_mentor() && !src.client.stealth)
 			ooc_class = "mentorooc"
-
-		if( src.client.cloud_available() && src.client.cloud_get("donor") )
-			msg = replacetext(msg, ":shelterfrog:", "<img src='http://stuff.goonhub.com/shelterfrog.png' width=32>")
-
-		if (src.client.has_contestwinner_medal)
-			msg = replacetext(msg, ":shelterbee:", "<img src='http://stuff.goonhub.com/shelterbee.png' width=32>")
 
 		var/rendered = "<span class=\"ooc [ooc_class]\"><span class=\"prefix\">OOC:</span> <span class=\"name\" data-ctx='\ref[src.mind]'>[display_name]:</span> <span class=\"message\">[msg]</span></span>"
 

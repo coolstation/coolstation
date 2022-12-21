@@ -26,6 +26,7 @@ var/global/list/mapNames = list(
 	"Horizon" = 		list("id" = "HORIZON", 		"settings" = "horizon", 		"playerPickable" = 0),
 	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 0),
 	"Bobmap" = 	list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 1),
+	"Spirit" =	list("id" = "SPIRIT",		"settings" = "spirit",				"playerPickable" = 0),
 	//"Mushroom" =		list("id" = "MUSHROOM", 	"settings" = "mushroom",		"playerPickable" = ASS_JAM),
 	//"Trunkmap" = 		list("id" = "TRUNKMAP", 	"settings" = "trunkmap",		"playerPickable" = ASS_JAM),
 	"Oshan Laboratory"= list("id" = "OSHAN", 		"settings" = "oshan", 			"playerPickable" = 1),
@@ -229,23 +230,23 @@ var/global/list/mapNames = list(
 /datum/map_settings/cogmap
 	name = "COGMAP"
 	goonhub_map = "https://goonhub.com/maps/cogmap"
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/simulated/wall/
+	rwalls = /turf/simulated/wall/r_wall/
 	auto_walls = 0
 
 	windows = /obj/window/auto
-	windows_thin = /obj/window/pyro
-	rwindows = /obj/window/auto/reinforced
-	rwindows_thin = /obj/window/reinforced/pyro
-	windows_crystal = /obj/window/auto/crystal
-	windows_rcrystal = /obj/window/auto/crystal/reinforced
+	windows_thin = /obj/window
+	rwindows = /obj/window/reinforced
+	rwindows_thin = /obj/window/reinforced
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
 	window_layer_full = COG2_WINDOW_LAYER
 	window_layer_north = GRILLE_LAYER+0.1
 	window_layer_south = FLY_LAYER+1
 	auto_windows = 1
 
-	ext_airlocks = /obj/machinery/door/airlock/pyro/external
-	airlock_style = "pyro"
+	ext_airlocks = /obj/machinery/door/airlock/external
+	airlock_style = "fart butt old stuff"
 
 	escape_centcom = /area/shuttle/escape/centcom/cogmap
 	escape_outpost = /area/shuttle/escape/outpost/cogmap
@@ -1012,6 +1013,9 @@ var/global/list/mapNames = list(
 	walls = /turf/simulated/wall/auto
 	rwalls = /turf/simulated/wall/auto/reinforced
 	auto_walls = 1
+	shuttle_map_turf = /turf/simulated/floor/industrial
+
+	arrivals_type = MAP_SPAWN_CRYO
 
 	windows = /obj/window/auto
 	windows_thin = /obj/window/pyro
@@ -1027,17 +1031,17 @@ var/global/list/mapNames = list(
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
 	airlock_style = "pyro"
 
-	//escape_centcom = /area/shuttle/escape/centcom/cogmap
-	//escape_outpost = /area/shuttle/escape/outpost/cogmap
-	//escape_transit = /area/shuttle/escape/transit/cogmap
-	//escape_station = /area/shuttle/escape/station/cogmap
-	escape_def = SHUTTLE_SOUTH
-	escape_dir = SOUTH
+	escape_centcom = /area/shuttle/escape/centcom/cogmap2
+	escape_outpost = /area/shuttle/escape/outpost/cogmap2
+	escape_transit = /area/shuttle/escape/transit/cogmap2
+	escape_station = /area/shuttle/escape/station/cogmap2
+	escape_def = SHUTTLE_EAST
+	escape_dir = EAST
 
-	//merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
-	//merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
-	//merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
-	//merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
+	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
+	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
+	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
+	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
 
 	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
 		"the cargo office (QM)" = list(/area/station/quartermaster/office),
@@ -1047,26 +1051,33 @@ var/global/list/mapNames = list(
 		"the bridge" = list(/area/station/bridge),
 		"the chapel" = list(/area/station/chapel/sanctuary))
 
+	init()
+		..()
+		SPAWN_DBG(10) // this sucks so much ass but it just- idk.
+			var/area/m_shuttle = locate(/area/shuttle/mining/station)
+			if(m_shuttle)
+				m_shuttle.filler_turf = "/turf/simulated/floor/industrial"
+
 /datum/map_settings/bobmap
 	name = "BOBMAP"
 	goonhub_map = "https://goonhub.com/maps/cogmap"
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/simulated/wall
+	rwalls = /turf/simulated/wall/r_wall
 	auto_walls = 1
 
-	windows = /obj/window/auto
-	windows_thin = /obj/window/pyro
-	rwindows = /obj/window/auto/reinforced
-	rwindows_thin = /obj/window/reinforced/pyro
-	windows_crystal = /obj/window/auto/crystal
-	windows_rcrystal = /obj/window/auto/crystal/reinforced
+	windows = /obj/window
+	windows_thin = /obj/window
+	rwindows = /obj/window/reinforced
+	rwindows_thin = /obj/window/reinforced
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
 	window_layer_full = COG2_WINDOW_LAYER
 	window_layer_north = GRILLE_LAYER+0.1
 	window_layer_south = FLY_LAYER+1
 	auto_windows = 1
 
-	ext_airlocks = /obj/machinery/door/airlock/pyro/external
-	airlock_style = "pyro"
+	ext_airlocks = /obj/machinery/door/airlock/external
+	airlock_style = "gannets"
 
 	escape_centcom = /area/shuttle/escape/centcom/cogmap
 	escape_outpost = /area/shuttle/escape/outpost/cogmap
@@ -1094,6 +1105,36 @@ var/global/list/mapNames = list(
 		"the escape arm" = list(/area/station/hallway/secondary/exit),
 		"the central room of the crew lounge" = list(/area/station/crew_quarters/quarters),
 		"the chapel" = list(/area/station/chapel/sanctuary))
+
+/datum/map_settings/spirit
+	name = "SPIRIT"
+	goonhub_map = "https://goonhub.com/maps/cogmap"
+	walls = /turf/simulated/wall/auto/jen/dark2
+	rwalls = /turf/simulated/wall/auto/reinforced/jen/dark2
+	auto_walls = 1
+
+	windows = /obj/window/auto
+	windows_thin = /obj/window/pyro
+	rwindows = /obj/window/auto/reinforced
+	rwindows_thin = /obj/window/reinforced/pyro
+	windows_crystal = /obj/window/auto/crystal
+	windows_rcrystal = /obj/window/auto/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER
+	window_layer_north = GRILLE_LAYER+0.1
+	window_layer_south = FLY_LAYER+1
+	auto_windows = 1
+
+	ext_airlocks = /obj/machinery/door/airlock/pyro/external
+	airlock_style = "pyro"
+
+	escape_centcom = /area/shuttle/escape/centcom/cogmap
+	escape_outpost = /area/shuttle/escape/outpost/cogmap
+	escape_transit = /area/shuttle/escape/transit/cogmap
+	escape_station = /area/shuttle/escape/station/cogmap
+	escape_def = SHUTTLE_SOUTH
+	escape_dir = SOUTH
+
+
 
 /area/shuttle/escape/centcom
 	icon_state = "shuttle_escape"

@@ -12,7 +12,7 @@
 	requires_power = 0
 
 	filler_turf = "/turf/unsimulated/dirt"
-	sound_environment = 3
+	sound_environment = EAX_BATHROOM
 	skip_sims = 1
 	sims_score = 0
 	sound_group = "nomad"
@@ -31,7 +31,7 @@
 	requires_power = 0
 	sound_group = "nomad"
 	sound_loop = 'sound/ambience/nature/Rain_Heavy.ogg'
-	sound_environment = 15
+	sound_environment = EAX_FOREST
 
 	New()
 		..()

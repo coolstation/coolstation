@@ -33,6 +33,10 @@
 #define PROJ_PENALTY_BARREL 0.25
 #define STANDARD_BARREL_LEN 20 // is 20 centimetres good? bad? idk! but that's what 1.0 damage modifier is.
 
+//This determines the base spread for guns missing the critical parts, and therefore the default barrel/grip stabilisation as well.
+#define BARREL_PENALTY 20
+#define GRIP_PENALTY 10
+
 //modular gun shit
 #define GUN_NANO 				(1<<0)
 #define GUN_FOSS 				(1<<1)

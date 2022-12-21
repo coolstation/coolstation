@@ -454,6 +454,12 @@ proc/generate_space_color()
 	return_if_overlay_or_effect(M)
 	src.material?.triggerOnEntered(src, M)
 
+	//optionally cancel swims
+	if (isliving(M) && M.hasStatus("swimming") && !istype(src, /turf/space/fluid))
+		if (src.active_liquid?.last_depth_level < 3) //Trying to swim into the air
+			actions.start(new/datum/action/swim_coyote_time(), M)
+			//M.delStatus("swimming")
+
 	if (global_sims_mode)
 		var/area/Ar = loc
 		if (!Ar.skip_sims)
@@ -633,7 +639,7 @@ proc/generate_space_color()
 
 	else switch(what)
 		if ("Desert")
-			new_turf = new /turf/gehenna/desert(src)
+			new_turf = new /turf/unsimulated/floor/gehenna/desert(src)
 		if ("Ocean")
 			new_turf = new /turf/space/fluid(src)
 		if ("Floor")
@@ -958,6 +964,9 @@ proc/generate_space_color()
 	step_material = "step_outdoors"
 	step_priority = STEP_PRIORITY_MED
 
+/turf/simulated/wall/wooden
+	icon_state = "wooden"
+
 /turf/unsimulated
 	name = "command"
 	oxygen = MOLES_O2STANDARD
@@ -1005,6 +1014,9 @@ proc/generate_space_color()
 
 /turf/unsimulated/wall/other
 	icon_state = "r_wall"
+
+/turf/unsimulated/wall/wooden
+	icon_state = "wooden"
 
 /turf/unsimulated/bombvr
 	name = "Virtual Floor"

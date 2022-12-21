@@ -286,7 +286,7 @@ var/global
 	toggles_enabled = 1
 	announce_banlogin = 1
 	announce_jobbans = 0
-	channel_open = 0
+	channel_open = 0 // is the channel collapsed or is it open?
 
 
 	outpost_destroyed = 0

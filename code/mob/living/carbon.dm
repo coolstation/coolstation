@@ -87,12 +87,17 @@
 	. = ..(give_medal, include_ejectables)
 
 /mob/living/carbon/proc/poop()
+	if(ON_COOLDOWN(src, "poo", 10 MINUTES))
+		boutput(src, "You don't feel ready to go.")
+		return
 	SPAWN_DBG(0.1 SECOND)
 		var/mob/living/carbon/human/H = src
 		var/obj/item/reagent_containers/poo_target = src.equipped()
 		var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new()
 		shit.owner = src // this is your shit.
-		if(!istype(src)) // just in case something unhuman poops, lets still make a turd.
+		if(src.poops)
+			src.poops--
+		if(!istype(H)) // just in case something unhuman poops, lets still make a turd.
 			var/turf/T = get_turf(src)
 			if (istype(T))
 				make_cleanable( /obj/decal/cleanable/mud,T)
@@ -124,14 +129,15 @@
 				else
 					playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 100, 1)
 					poo_target.reagents.add_reagent("poo",\
-						(H.poop_amount ? H.poop_amount : 5 * 2))
+						(H.poop_amount ? H.poop_amount : 5))
 					qdel(shit)
 			else
 				if(H.bioHolder.HasEffect("teflon_colon") || H.traitHolder.hasTrait("teflon_colon"))
 					yeetapoop(H, shit)
 				else
 					shit.set_loc(src.loc)
-					H.visible_message("<span class='alert'><B>[H] [pick("takes a dump","drops a turd","shits a load","does a poo","craps all over")]!</B></span>")
+					H.visible_message("<span class='alert'><B>[H] [pick("takes a dump","drops a turd","shits a load","does a poo","craps all over","plops a deuce","splats a shit","shits a stinker", \
+					"funges an ape","leaves a log","releases [his_or_her(H)] bowel contents","excretes some feces","poops a pepperoni","is shittsing","fertilizes the floor")]!</B></span>")
 
 		return
 
@@ -151,7 +157,8 @@
 	shit.throw_at(get_turf(get_steps(C, target_dir, rand(2,5))), rand(2,5), rand(1,4))
 	C.visible_message("<span class='alert'><b>[C] [pick("hurls a loaf",\
 		"unloads at speed", "lobs a loaf", "shits with gusto", \
-		"shits with gutso", "fires the poo-cannon")]!</b></span>")
+		"shits with gutso", "fires the poo-cannon", "nukes a dookie", \
+		"blasts [his_or_her(C)] bowels", "fires a full broadside", "shits really, REALLY hard")]!</b></span>")
 
 
 

@@ -7,7 +7,7 @@ client/verb/hotkeys()
 			<li><b>Ctrl+F2:</b> Save screenshot</li>
 			<li><b>F3:</b> Mentorhelp</li>
 			<li><b>Alt:</b> Examine object clicked on</li>
-			<li><b>Ctrl:</b> Pull object clicked on</li>
+			<li><b>Ctrl:</b> Pull or release object clicked on</li>
 			<li><b>Space:</b> Toggles throw mode on when held down, toggles off when released</li>
 			<li><b>Alt+C:</b> OOC</li>
 			<li><b>TAB:</b> Bring focus to the input bar</li>
@@ -61,6 +61,8 @@ client/verb/hotkeys()
 			<li><b>Ctrl+W:</b> Wink</li>
 			<li><b>Ctrl+Y:</b> Yawn</li>
 			<li><b>Ctrl+Z:</b> Snap</li>
+			<li><b>Ctrl+1:</b> Piss</li>
+			<li><b>Ctrl+2:</b> Poo</li>
 		<h3>Admin</h3>
 			<li><b>~:</b> Open common admin atom verbs</li>
 	</ul>"}, "window=hotkeys;title=Hotkeys" )

@@ -134,8 +134,8 @@
 	if (can_bleed)
 		src.ensure_bp_list()
 
-	if (src.use_stamina)
-		src.stamina_bar = new(src)
+//	if (src.use_stamina)
+//		src.stamina_bar = new(src)
 		//stamina bar gets added to the hud in subtypes human and critter... im sorry.
 		//eventual hud merger pls
 
@@ -154,12 +154,12 @@
 
 	qdel(chat_text)
 	chat_text = null
-
+/*
 	if(stamina_bar)
 		for (var/datum/hud/thishud in huds)
 			thishud.remove_object(stamina_bar)
 		stamina_bar = null
-
+*/
 	for (var/atom/A as anything in stomach_process)
 		qdel(A)
 	for (var/atom/A as anything in skin_process)
@@ -485,7 +485,11 @@
 		else if (params["ctrl"])
 			var/atom/movable/movable = target
 			if (istype(movable))
-				movable.pull()
+				if (src.pulling && src.pulling == movable)
+					unpull_particle(src,src.pulling)
+					src.set_pulling(null)
+				else
+					movable.pull()
 
 				if (mob_flags & AT_GUNPOINT)
 					for(var/obj/item/grab/gunpoint/G in grabbed_by)
@@ -1363,6 +1367,9 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			src.lying = 1
 		else
 			src.lying = 0
+
+	if (src.lying && src.hasStatus("swimming"))
+		src.delStatus("swimming")
 
 	if (src.lying != src.lying_old)
 		src.lying_old = src.lying

@@ -18,6 +18,7 @@
 	var/fixture_type = /obj/machinery/light
 	var/light_type = /obj/item/light/tube
 	var/fitting = "tube"
+	//TODO: use some tool in hand to orient the mounts from wall to ceiling and vice versa
 
 // For metal sheets. Can't easily change an item's vars the way it's set up (Convair880).
 /obj/item/light_parts/bulb
@@ -35,6 +36,7 @@
 	installed_base_state = "floor"
 	fitting = "floor"
 	light_type = /obj/item/light/bulb
+	//TODO: use some tool in hand to orient the mounts from floor to ceiling and vice versa
 
 /obj/item/light_parts/proc/copy_light(obj/machinery/light/target)
 	installed_icon_state = target.icon_state
@@ -75,7 +77,7 @@
 // the standard tube light fixture
 
 /var/global/stationLights = new/list()
-/obj/machinery/light
+/obj/machinery/light //basic root of lighting, currently hosts fluorescent/tube/large lights, maybe move that to /obj/machinery/light/large for clarity
 	name = "light fixture"
 	icon = 'icons/obj/lighting.dmi'
 	var/base_state = "tube"		// base description and icon_state
@@ -96,7 +98,7 @@
 
 	var/fitting = "tube"
 	var/wallmounted = 1
-	var/ceilingmounted = 0 //not sure if this is how i'm going to handle it
+	var/ceilingmounted = 0 //not sure if this is how i'm going to handle ceiling mounts
 	var/nostick = TRUE //If set to true, overrides the autopositioning.
 	var/candismantle = 1
 
@@ -136,10 +138,12 @@
 		//auto position these lights so i don't have to mess with dirs in the map editor that's annoying!!!
 		if(nostick)
 			return // we shouldn'a been here!! adding this for legacy uses (i dont feel like chasing them down right now im old and im tired and im back hurts)
-
-		if (map_settings)
-			if (!map_settings.auto_walls)
-				return // no walls to adjust to! stop it!! STOP IT!!
+		if(ceilingmounted)
+			return //some ceiling lights can be rotated but that will be by hand or map placement, not by this
+		//if (map_settings)
+		//	if (!map_settings.auto_walls)
+		//		return // no walls to adjust to! stop it!! STOP IT!!
+		// well now we have the standard lighting object that isn't sticky and the auto object that is and we gotta do this at some point!!
 
 		SPAWN_DBG(1 DECI SECOND) //wait for the wingrille spawners to complete when map is loading (ugly i am sorry)
 			var/turf/T = null
@@ -150,12 +154,22 @@
 				directions = cardinal
 			for (var/dir in directions)
 				T = get_step(src,dir)
-				if (istype(T,/turf/simulated/wall/auto) || istype(T,/turf/unsimulated/wall/auto) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window) in T))
+				if (istype(T,/turf/simulated/wall) || istype(T,/turf/unsimulated/wall) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window) in T)) //ah this was missing, set dir for every wall and check them later
+					var/is_perspective = 0 //check if the walls are not flat and classic- special handling needed to make them look nice
 					var/is_jen_wall = 0 // jen walls' ceilings are narrower, so let's move the lights a bit further inward!
+					if (istype(T,/turf/simulated/wall/auto/supernorn) || istype(T,/turf/simulated/wall/auto/marsoutpost) || istype(T,/turf/simulated/wall/auto/supernorn/wood) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window/auto) in T))
+						is_perspective = 1 //basically if it's a perspective autowall or new glass?? let's a go
+					//if ((locate(/obj/wingrille_spawn/classic) in T) || (locate(/obj/wingrille_spawn/reinforced/classic) in T))
+						//is_perspective = 0 //oh no the root of wingrille spawn is perspective but the classic wingrille spawn is not! time to handle and unset (this can surely be done better but whatever)
+						//actually shit how expensive is it to add a variable to turfs that says if they're perspective or classic?? i'm just imcoder enough to wonder but not enough to know
+						//commented out until my new old grilles are readded
 					if (istype(T, /turf/simulated/wall/auto/jen) || istype(T, /turf/simulated/wall/auto/reinforced/jen))
-						is_jen_wall = 1
-					src.set_dir(dir)
-					if (dir == EAST)
+						is_jen_wall = 1 //handling for different offsets in the sprites
+						is_perspective = 1 //these are also perspective and without this it doesn't go
+					src.set_dir(dir) //okay here is the part that actually puts a light against a valid turf how did i accidentally delete this
+					if (!is_perspective) //is this going on a flat wall?
+						return //then all we need is the direction for sticking and are done here at this point
+					if (dir == EAST) //all this is for handling offsets on 3d looking walls
 						if (is_jen_wall)
 							src.pixel_x = 12
 						else
@@ -171,9 +185,7 @@
 						else
 							src.pixel_y = 21
 					break
-			T = null
-
-
+				T = null
 
 //big standing lamps
 /obj/machinery/light/flamp
@@ -200,6 +212,12 @@
 	light_type = /obj/item/light/bulb
 	allowed_type = /obj/item/light/bulb
 
+/obj/machinery/light/small/auto
+	nostick = FALSE
+
+	New()
+		..()
+		autoposition()
 
 //floor lights
 /obj/machinery/light/small/floor
@@ -227,7 +245,6 @@
 
 	New()
 		..()
-
 
 /obj/machinery/light/emergency
 	icon_state = "ebulb1"
@@ -366,10 +383,28 @@
 	light_type = /obj/item/light/tube
 	allowed_type = /obj/item/light/tube
 	nostick = 0
-
-
 	name = "fluorescent light fixture"
 	light_type = /obj/item/light/tube/neutral
+
+/obj/machinery/light/fluorescent/auto
+	nostick = FALSE //do the stick
+
+	New()
+		..()
+		autoposition()
+
+/obj/machinery/light/fluorescent/ceiling
+	icon_state = "overtube1"
+	base_state = "overtube"
+	desc = "A lighting fixture, mounted to the ceiling."
+	plane = PLANE_NOSHADOW_ABOVE
+	level = 2
+	//invisibility = INVIS_ALWAYS off for now since we need to be able to see and interact before ceilingmode is in
+	invisibility = INVIS_NONE
+	alpha = 100
+	ceilingmounted = 1 //determines interactibility
+
+	//check something like wiring for how to set direction relative to what tile you place it by hand, since we can freely rotate this thing unlike floor/ceiling lights and wall lights
 
 // create a new lighting fixture
 /obj/machinery/light/New()
@@ -421,6 +456,8 @@
 				light.disable()
 				elecflash(src,radius = 1, power = 2, exclude_center = 0)
 				logTheThing("station", null, null, "Light '[name]' burnt out (breakprob: [current_lamp.breakprob]) at ([showCoords(src.x, src.y, src.z)])")
+			else
+				current_lamp.breakprob += 0.25 // critical that your "increasing probability" thing actually, yknow, increase. ever.
 
 
 // attempt to set the light's on/off status
@@ -553,11 +590,11 @@
 				boutput(user, "That's not safe with the power on!")
 				return
 			if (candismantle)
-				boutput(user, "You begin to unscrew the fixture from the wall...")
+				boutput(user, "You begin to unscrew the fixture from the wall...", group = "[user]-dismantle_fixture")
 				playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
 				if (!do_after(user, 2 SECONDS))
 					return
-				boutput(user, "You unscrew the fixture from the wall.")
+				boutput(user, "You unscrew the fixture from the wall.", group = "[user]-dismantle_fixture")
 				var/obj/item/light_parts/parts = new /obj/item/light_parts(get_turf(src))
 				parts.copy_light(src)
 				qdel(src)
@@ -816,7 +853,7 @@
 	w_class = W_CLASS_SMALL
 	var/light_status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
-	var/breakprob = 0	// number of times switched
+	var/breakprob = 0	// number of times switched //warc: doesnt do ANYTHING anymore???? now it do????
 	m_amt = 60
 	var/rigged = 0		// true if rigged to explode
 	var/mob/rigger = null // mob responsible

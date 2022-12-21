@@ -35,7 +35,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/no_save = 0 // when 1, this should prevent the player from carrying it cross-round?
 	icon_state = "tranq_pistol"
 	contraband = 0
-
+	inventory_counter_enabled = 1
 
 	var/lensing = 0 // Variable used for optical gun barrels. laser intensity scales around 1.0 (or will!)
 	var/scatter = 0 // variable for using hella shotgun shells or something
@@ -58,6 +58,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/jam_frequency_fire = 1 //base % chance to jam on fire. Reload to clear.
 	var/jammed = 0
 	var/processing_ammo = 0
+
 
 
 	two_handed = 0
@@ -127,12 +128,24 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		if(src.check_DRM(part))
 			boutput(user,"<span class='notice'><b>You loosely place [I] onto [src].</b></span>")
 			if (istype(I, /obj/item/gun_parts/barrel/))
+				if(barrel) //occupado
+					boutput(user,"<span class='notice'>...and knock [barrel] out of the way.</span>")
+					barrel.set_loc(get_turf(src))
 				barrel = I
 			if (istype(I, /obj/item/gun_parts/stock/))
+				if(stock) //occupado
+					boutput(user,"<span class='notice'>...and knock [stock] out of the way.</span>")
+					stock.set_loc(get_turf(src))
 				stock = I
 			if (istype(I, /obj/item/gun_parts/magazine/))
+				if(magazine) //occupado
+					boutput(user,"<span class='notice'>...and knock [magazine] out of the way.</span>")
+					magazine.set_loc(get_turf(src))
 				magazine = I
 			if (istype(I, /obj/item/gun_parts/accessory/))
+				if(accessory) //occupado
+					boutput(user,"<span class='notice'>...and knock [accessory] out of the way.</span>")
+					accessory.set_loc(get_turf(src))
 				accessory = I
 			user.u_equip(I)
 			I.dropped(user)
@@ -187,13 +200,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 /obj/item/gun/modular/proc/flash_process_ammo(mob/user)
 	if(processing_ammo)
-		return
+		return 0
 
 	if(jammed)
 		boutput(user,"<span class='notice'><b>You clear the ammunition jam.</b></span>")
 		jammed = 0
 		playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 40, 1)
-		return
+		return 0
 
 	if(flashbulb_health) // bulb still loaded
 		processing_ammo = 1
@@ -201,11 +214,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			crank(user)
 		else
 			handle_egun_shit(user)
-		return
+		processing_ammo = 0
+		return 1
 
 	if(!ammo_list.len) // empty!
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
-		return
+		return (current_projectile?1:0)
 
 	if(ammo_list.len > max_ammo_capacity)
 		var/waste = ammo_list.len - max_ammo_capacity
@@ -215,13 +229,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	if(!ammo_list.len) // empty! again!! just in case max ammo capacity was 0!!!
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
-		return
+		return (current_projectile?1:0)
 
 	if(prob(jam_frequency_reload))
 		jammed = 1
 		boutput(user,"<span class='alert'><b>Error! Jam detected!</b></span>")
 		playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
-		return
+		return 0
 	else
 		processing_ammo = 1
 		var/obj/item/stackable_ammo/flashbulb/FB = ammo_list[ammo_list.len]
@@ -237,16 +251,20 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		ammo_list.Remove(ammo_list[ammo_list.len]) //and remove it from the list
 
 		processing_ammo = 0
+		return (current_projectile?1:0)
 
 /obj/item/gun/modular/process_ammo(mob/user)
+	if(flashbulb_only) // additional branch for suicide
+		return flash_process_ammo(user)
+
 	if(jammed)
 		boutput(user,"<span class='notice'><b>You clear the ammunition jam.</b></span>")
 		jammed = 0
 		playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 40, 1)
-		return
+		return 0
 	if(!ammo_list.len) // empty!
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
-		return
+		return (current_projectile?1:0)
 	if(ammo_list.len > max_ammo_capacity)
 		var/waste = ammo_list.len - max_ammo_capacity
 		ammo_list.Cut(1,(1 + waste))
@@ -255,20 +273,21 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	if(!ammo_list.len) // empty! again!! just in case max ammo capacity was 0!!!
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
-		return
+		return 0
 
 	if(current_projectile) // chamber is loaded
-		return
+		return 1
 
 	if(prob(jam_frequency_reload))
 		jammed = 1
 		boutput(user,"<span class='alert'><b>Error! Jam detected!</b></span>")
 		playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
-		return
+		return 0
 	else
 		current_projectile = unpool(ammo_list[ammo_list.len]) // last one goes in
 		ammo_list.Remove(ammo_list[ammo_list.len]) //and remove it from the list
 		playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+		return 1
 
 
 /obj/item/gun/modular/attack_self(mob/user)
@@ -277,6 +296,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	else
 		process_ammo(user)
 	buildTooltipContent()
+	src.inventory_counter.update_number(ammo_list.len)
+	// this is how many shots are left in the feeder- and does not include the one in the chamber. Should make for funny times
 
 /obj/item/gun/modular/canshoot()
 	if(jammed)
@@ -383,8 +404,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	parts = list()
 	if(barrel)
 		parts += barrel
+	else
+		spread_angle += BARREL_PENALTY
 	if(stock)
 		parts += stock
+	else
+		spread_angle += GRIP_PENALTY
 	if(magazine)
 		parts += magazine
 	if(accessory)
@@ -393,10 +418,37 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	for(var/obj/item/gun_parts/part as anything in parts)
 		part.add_part_to_gun(src)
 
+
 	buildTooltipContent()
 	built = 1
 
 	//update the icon to match!!!!!
+
+/obj/item/gun/modular/proc/reset_gun()
+	parts = list()
+	barrel = null
+	stock = null
+	magazine = null
+	accessory = null
+
+	name = real_name
+
+	max_crank_level = 0
+	flashbulb_only = 0
+	scatter = 0
+	lensing = 0
+	muzzle_flash = 0
+	silenced = 0
+	accessory_alt = 0
+	accessory_on_fire = 0
+
+	spread_angle = initial(spread_angle)
+	max_ammo_capacity = initial(max_ammo_capacity)
+	jam_frequency_reload = initial(jam_frequency_reload)
+	jam_frequency_fire = initial(jam_frequency_fire)
+	can_dual_wield = initial(can_dual_wield)
+	two_handed = initial(two_handed)
+	spread_angle = initial(spread_angle)
 
 /obj/item/gun/modular/proc/crank(mob/user)
 	SPAWN_DBG(1)
@@ -443,8 +495,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "A simple, reliable cylindrical bored weapon."
 	max_ammo_capacity = 1 // single-shot pistols ha- unless you strap an expensive loading mag on it.
 	gun_DRM = GUN_NANO
-	spread_angle = 24 // value without a barrel. Add one to keep things in line.
-	color = "#33FFFF"
+	spread_angle = 2
+	icon = 'icons/obj/items/cet_guns/recievers.dmi'
+	icon_state = "nt_blue"
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/NT(src)
@@ -466,8 +519,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "An open-sourced and freely modifiable FOSS Inductive Flash Arc, Model 2k/19"
 	max_ammo_capacity = 1 // just takes a flash bulb.
 	gun_DRM = GUN_FOSS
-	spread_angle = 25 // value without a barrel. Add one to keep things in line.
-	color = "#5555FF"
+	spread_angle = 2
+	color = "#aaaaFF"
 	icon_state = "caplaser"
 	contraband = 2
 
@@ -479,7 +532,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 /obj/item/gun/modular/foss/long
 	desc = "An open-sourced and freely modifiable FOSS Inductive Flash Arc, Model 2k/20"
-	color = "#9955FF"
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/foss/long(src)
@@ -487,12 +539,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 /obj/item/gun/modular/foss/punt
 	desc = "An open-sourced and freely modifiable FOSS Inductive Flash Arc, Model 2k/420"
-	color = "#CC55FF"
 
 	make_parts()
-		barrel = new /obj/item/gun_parts/barrel/soviet/long(src)
+		barrel = new /obj/item/gun_parts/barrel/foss/long/very(src)
 		stock = new /obj/item/gun_parts/stock/foss/longer(src)
-		magazine = new /obj/item/gun_parts/magazine/juicer/small(src)
+
 
 
 
@@ -502,14 +553,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "A juicer-built, juicer-'designed', and most importantly juicer-marketed gun."
 	max_ammo_capacity = 0 //fukt up mags only
 	gun_DRM = GUN_JUICE
-	spread_angle = 30 // value without a barrel. Add one to keep things in line.
+	spread_angle = 7
 	color = "#99FF99"
 	contraband = 1
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/juicer(src)
 		stock = new /obj/item/gun_parts/stock/NT(src)
-		magazine = new /obj/item/gun_parts/magazine/juicer/small(src)
+		magazine = new /obj/item/gun_parts/magazine/juicer(src)
 
 /obj/item/gun/modular/juicer/long
 	desc = "A juicer-built, juicer-'designed', and most importantly juicer-marketed gun."
@@ -525,7 +576,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
 	max_ammo_capacity = 4 // laser revolver
 	gun_DRM = GUN_SOVIET
-	spread_angle = 25 // value without a barrel. Add one to keep things in line.
+	spread_angle = 4
 	color = "#FF9999"
 	icon_state = "laser"
 	contraband = 1
@@ -539,11 +590,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		..()
 		process_ammo()
 
-/obj/item/gun/modular/soviet/scatter
-	make_parts()
-		barrel = new /obj/item/gun_parts/barrel/soviet/scatter(src)
-		stock = new /obj/item/gun_parts/stock/italian/bigger(src)
-		magazine = new /obj/item/gun_parts/magazine/juicer(src)
+
 
 /obj/item/gun/modular/italian
 	name = "\improper Italiano"
@@ -551,7 +598,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "Una pistola realizzata con acciaio, cuoio e olio d'oliva della più alta qualità possibile."
 	max_ammo_capacity = 2 // basic revolving mechanism
 	gun_DRM = GUN_ITALIAN
-	spread_angle = 27 // value without a barrel. Add one to keep things in line.
+	spread_angle = 5
 	color = "#FFFF99"
 
 	make_parts()

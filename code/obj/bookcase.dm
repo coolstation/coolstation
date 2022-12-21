@@ -202,10 +202,10 @@
 			if (src.contents.len > 0)
 				boutput(user, "You can't take apart \the [src] if there's still books on it.")
 				return
-			user.visible_message("[user] starts to take apart \the [src].", "You start to take apart \the [src].")
+			user.visible_message("[user] starts to take apart \the [src].", "You start to take apart \the [src].", group = "[user]-disassemble_bookcase")
 			if (!do_after(user, 2 SECONDS))
 				return
-			user.visible_message("[user] takes \the [src] apart.", "You take \the [src] apart.")
+			user.visible_message("[user] takes \the [src] apart.", "You take \the [src] apart.", group = "[user]-disassemble_bookcase")
 			playsound(src.loc, "sound/items/Ratchet.ogg", 50, 1)
 			new /obj/item/furniture_parts/bookshelf(src.loc)
 			qdel(src)

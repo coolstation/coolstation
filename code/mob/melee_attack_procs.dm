@@ -202,7 +202,7 @@
 	var/obj/stool/S = (locate(/obj/stool) in src.loc)
 	if (S && !src.lying && !src.getStatusDuration("weakened") && !src.getStatusDuration("paralysis"))
 		S.buckle_in(src,src,1)
-	else
+	else /*
 		var/obj/item/grab/block/G = new /obj/item/grab/block(src, src, src)
 		src.put_in_hand(G, src.hand)
 
@@ -212,11 +212,9 @@
 		src.setStatus("blocking", duration = INFINITE_STATUS)
 		block_begin(src)
 		src.next_click = world.time + (COMBAT_CLICK_DELAY)
-		/*
-		RIP
-		else
-			src.visible_message("<span class='alert'><B>[src] tweaks [his_or_her(src)] own nipples! That's [pick_string("tweak_yo_self.txt", "tweakadj")] [pick_string("tweak_yo_self.txt", "tweak")]!</B></span>")
 		*/
+		src.visible_message("<span class='alert'><B>[src] tweaks [his_or_her(src)] own nipples! That's [pick_string("tweak_yo_self.txt", "tweakadj")] [pick_string("tweak_yo_self.txt", "tweak")]!</B></span>")
+
 
 /mob/living/proc/grab_block() //this is sorta an ugly but fuck it!!!!
 	if (src.grabbed_by && src.grabbed_by.len > 0)
@@ -227,6 +225,7 @@
 	var/obj/item/I = src.equipped()
 	if (!I)
 		src.grab_self()
+		/*
 	else
 		var/obj/item/grab/block/G = new /obj/item/grab/block(I, src, src)
 		G.loc = I
@@ -240,7 +239,7 @@
 		src.setStatus("blocking", duration = INFINITE_STATUS)
 		block_begin(src)
 		src.next_click = world.time + (COMBAT_CLICK_DELAY)
-
+*/
 
 /mob/living/proc/grab_other(var/mob/living/target, var/suppress_final_message = 0, var/obj/item/grab_item = null)
 	if(!src || !target)
@@ -363,9 +362,10 @@
 		msgs.disarm_RNG_result |= "handle_item_arm"
 		return msgs
 
-	var/damage = rand(base_damage_low, base_damage_high) * extra_damage
+	//var/damage = rand(base_damage_low, base_damage_high) * extra_damage
 	var/mult = 1
-	var/target_stamina = STAMINA_MAX //uses stamina?
+	/*
+	var/target_stamina = STAMINA_MAX //uses stamina? - bleh
 	if (isliving(target))
 		var/mob/living/L = target
 		target_stamina = L.stamina
@@ -390,14 +390,15 @@
 		if(target_stamina >= 0)
 			msgs.stamina_target -= max(STAMINA_DISARM_DMG - (armor_mod*0.5), 0) //armor vs barehanded disarm gives flat reduction
 			msgs.force_stamina_target = 1
-
+*/
 
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if (H.sims)
 			mult *= H.sims.getMoodActionMultiplier()
 
-	var/stampart = round( ((STAMINA_MAX - target_stamina) / 3) )
+	//var/stampart = round(((STAMINA_MAX - target_stamina) / 3) )
+	var/stampart = round(abs((src.health - target.health)/3)) // the more disparity between the oponents, the more likely *either* will land a shove-down!
 	if (is_shove)
 		msgs.base_attack_message = "<span class='alert'><B>[src] shoves [target][DISARM_WITH_ITEM_TEXT]!</B></span>"
 		msgs.played_sound = 'sound/impact_sounds/Generic_Shove_1.ogg'
@@ -423,7 +424,7 @@
 		return msgs
 
 	if (is_shove) return msgs
-	var/disarm_success = prob(40 * lerp(clamp(200 - target_stamina, 0, 100)/100, 1, 0.5) * mult)
+	var/disarm_success = prob(40 * lerp(clamp(100 - target.health, 0, 100)/100, 1, 0.5) * mult)
 	if (disarm_success && target.check_block() && !(HAS_MOB_PROPERTY(target, PROP_CANTMOVE)))
 		disarm_success = 0
 		msgs.stamina_target -= STAMINA_DEFAULT_BLOCK_COST * 2

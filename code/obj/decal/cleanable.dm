@@ -1207,6 +1207,11 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	dirt5
 		icon_state = "dirt5"
 
+	random
+		New()
+			..()
+			icon_state = pick("dirt","dirt2","dirt3","dirt4","dirt5")
+
 	jen
 		icon_state = "dirt_jen"
 		plane = PLANE_NOSHADOW_BELOW

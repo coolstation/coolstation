@@ -368,7 +368,8 @@ world/proc/updateCameraVisibility()
 /obj/somepotato/billiards
 	name = "Billiards Table"
 	desc = "Who in God's name would get enjoyment at beating polyester spheres with wooden sticks???"
-	//icon = 'icons/obj/pooltable.dmi'
+	icon = 'icons/obj/pooltable.dmi'
+	icon_state = "table"
 
 
 /turf/unsimulated/floor/wood/two/trap

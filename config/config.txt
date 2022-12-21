@@ -88,3 +88,9 @@ SERVERREGION Development
 
 CDN http://cdn.coolstation.space
 ENV dev
+
+# SpaceBee/SpaceButt communications stuff.
+# IRCBOT_API must match whatever you have set on the receiving end. Case sensitive.
+# IRCLOG_URL is where your receiving end is.
+#IRCBOT_API testkeypleaseignore
+#IRCLOG_URL http://127.0.0.1:42069

@@ -62,8 +62,10 @@ obj/machinery/atmospherics/mixer
 		if (network_out == reference)
 			network_out = null
 
-	New()
+	New(loc, specify_direction = null, is_flipped = 0)
 		..()
+		if(is_flipped) //Lets built mixers set if they're flipped before initialising
+			flipped = is_flipped
 		switch(dir)
 			if(NORTH)
 				if(flipped)
@@ -331,24 +333,9 @@ obj/machinery/atmospherics/mixer
 	initialize()
 		if(node_in1 && node_out) return
 
-		var/node_out_connect = dir
-		var/node_in1_connect = flipped ? turn(dir, 90) : turn(dir, -90)
-		var/node_in2_connect = turn(dir, -180)
-
-		for(var/obj/machinery/atmospherics/target in get_step(src,node_in1_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node_in1 = target
-				break
-
-		for(var/obj/machinery/atmospherics/target in get_step(src,node_in2_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node_in2 = target
-				break
-
-		for(var/obj/machinery/atmospherics/target in get_step(src,node_out_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node_out = target
-				break
+		node_in1 = connect(flipped ? turn(dir, 90) : turn(dir, -90))
+		node_in2 = connect(turn(dir, -180))
+		node_out = connect(dir)
 
 		update_icon()
 		set_frequency(frequency)
@@ -430,6 +417,27 @@ obj/machinery/atmospherics/mixer
 			node_out = null
 
 		return null
+
+	sync_node_connections()
+		if (node_out)
+			node_out.sync_connect(src)
+		if (node_in1)
+			node_in1.sync_connect(src)
+		if (node_in2)
+			node_in2.sync_connect(src)
+
+	sync_connect(obj/machinery/atmospherics/reference)
+		if (reference in list(node_out, node_in1, node_in2))
+			return
+		var/refdir = get_dir(src, reference)
+		if (!node_out && refdir == dir)
+			node_out = reference
+		else if (!node_in1 && refdir == (flipped ? turn(dir, 90) : turn(dir, -90)))
+			node_in1 = reference
+		else if (!node_in2 && refdir == turn(dir, -180))
+			node_in2 = reference
+		update_icon()
+
 
 /obj/machinery/atmospherics/mixer/flipped
 	icon_state = "intact_flipped_off"

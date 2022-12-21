@@ -94,6 +94,14 @@ macro "base_macro"
 		name = "CTRL+Z"
 		command = "say \"*snap\""
 		is-disabled = true
+	elem "piss"
+		name = "CTRL+1"
+		command = "say \"*piss\""
+		is-disabled = true
+	elem "poo"
+		name = "CTRL+2"
+		command = "say \"*poo\""
+		is-disabled = true
 	elem "adminhelp"
 		name = "F1"
 		command = "adminhelp"
@@ -508,6 +516,11 @@ menu "menu"
 		command = "Help"
 		category = "&Help"
 		saved-params = "is-checked"
+	elem
+		name = "&Credits"
+		command = "credits"
+		category = "&Help"
+		saved-params = "is-checked"
 
 
 window "blank-map"
@@ -776,7 +789,7 @@ window "mainwindow"
 		saved-params = "pos;size;is-minimized;is-maximized"
 		on-size = "window-resize-event"
 		is-maximized = true
-		icon = 'icons\\goon_64.png'
+		icon = 'icons\\cool_64.png'
 		macro = "base_macro"
 		menu = "menu"
 	elem "mainvsplit"

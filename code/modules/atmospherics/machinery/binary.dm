@@ -85,18 +85,8 @@ obj/machinery/atmospherics/binary
 	initialize()
 		if(node1 && node2) return
 
-		var/node2_connect = dir
-		var/node1_connect = turn(dir, 180)
-
-		for(var/obj/machinery/atmospherics/target in get_step(src,node1_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node1 = target
-				break
-
-		for(var/obj/machinery/atmospherics/target in get_step(src,node2_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node2 = target
-				break
+		node2 = connect(dir)
+		node1 = connect(turn(dir, 180))
 
 		update_icon()
 
@@ -155,3 +145,20 @@ obj/machinery/atmospherics/binary
 			node2 = null
 
 		return null
+
+	sync_node_connections()
+		if (node1)
+			node1.sync_connect(src)
+		if (node2)
+			node2.sync_connect(src)
+
+	sync_connect(obj/machinery/atmospherics/reference)
+		if (reference in list(node1, node2))
+			return
+		var/refdir = get_dir(src, reference)
+		//We're giving a shit about the angles because all children expect node1 as input and node2 as output
+		if (!node1 && refdir == turn(dir, 180))
+			node1 = reference
+		else if (!node2 && refdir == dir)
+			node2 = reference
+		update_icon()

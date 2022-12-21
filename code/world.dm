@@ -313,6 +313,8 @@ var/f_color_selector_handler/F_Color_Selector
 		artifact_controls = new /datum/artifact_controller()
 		Z_LOG_DEBUG("Preload", "  mining_controls")
 		mining_controls = new /datum/mining_controller()
+		Z_LOG_DEBUG("Preload", "  emote_controls")
+		emote_controls = new /datum/emote_controller()
 		Z_LOG_DEBUG("Preload", "  score_tracker")
 		score_tracker = new /datum/score_tracker()
 		Z_LOG_DEBUG("Preload", "  actions")
@@ -1219,7 +1221,7 @@ var/f_color_selector_handler/F_Color_Selector
 								var/mob/living/carbon/human/H = twitch_mob
 								H.ooc(msg)
 							return 1
-#endif
+#endif /* TWITCH_BOT_ALLOWED */
 
 		if (addr != config.ircbot_ip && addr != config.opengoon_api_ip && addr != config.opengoon2_hostname)
 			return 0 //ip filtering

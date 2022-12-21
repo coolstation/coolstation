@@ -478,24 +478,14 @@ obj/machinery/atmospherics/pipe
 
 			for(var/direction in cardinal)
 				if(direction&connect_directions)
-					for(var/obj/machinery/atmospherics/target in get_step(src,direction))
-						if(target.initialize_directions & get_dir(target,src))
-							node1 = target
+					if (!node1)
+						node1 = connect(direction)
+					else if (!node2)
+						node2 = connect(direction)
+						if (node2) //both satisfied
 							break
-
-					connect_directions &= ~direction
-					break
-
-
-			for(var/direction in cardinal)
-				if(direction&connect_directions)
-					for(var/obj/machinery/atmospherics/target in get_step(src,direction))
-						if(target.initialize_directions & get_dir(target,src))
-							node2 = target
-							break
-
-					connect_directions &= ~direction
-					break
+					else //IDK how this would happen but
+						break
 
 			var/turf/T = src.loc			// hide if turf is not intact
 			hide(T.intact)
@@ -519,6 +509,22 @@ obj/machinery/atmospherics/pipe
 			update_icon()
 
 			return null
+
+		sync_node_connections()
+			if (node1)
+				node1.sync_connect(src)
+			if (node2)
+				node2.sync_connect(src)
+
+		sync_connect(obj/machinery/atmospherics/reference)
+			if (reference in list(node1, node2))
+				return
+			var/refdir = get_dir(src, reference)
+			if (!node1 && initialize_directions & refdir)
+				node1 = reference
+			else if (!node2 && initialize_directions & refdir)
+				node2 = reference
+			update_icon()
 
 	simple/insulated
 		//icon = 'icons/obj/atmospherics/pipes/red_pipe.dmi'
@@ -548,6 +554,20 @@ obj/machinery/atmospherics/pipe
 			//icon = 'icons/obj/atmospherics/pipes/blue_pipe.dmi'
 			color = "#017FFF"
 
+			vertical
+				dir = NORTH
+			northeast
+				dir = NORTHEAST
+			horizontal
+				dir = EAST
+			southeast
+				dir = SOUTHEAST
+			southwest
+				dir = SOUTHWEST
+			northwest
+				dir = NORTHWEST
+		fuel
+			color = "#EFE151"
 			vertical
 				dir = NORTH
 			northeast
@@ -925,8 +945,8 @@ obj/machinery/atmospherics/pipe
 			dir = WEST
 
 		New()
-			initialize_directions = dir
 			..()
+			initialize_directions = dir
 
 		process()
 			..()
@@ -951,12 +971,7 @@ obj/machinery/atmospherics/pipe
 				icon_state = "exposed"
 
 		initialize()
-			var/connect_direction = dir
-
-			for(var/obj/machinery/atmospherics/target in get_step(src,connect_direction))
-				if(target.initialize_directions & get_dir(target,src))
-					node1 = target
-					break
+			node1 = connect(dir)
 
 			update_icon()
 
@@ -971,6 +986,16 @@ obj/machinery/atmospherics/pipe
 			update_icon()
 
 			return null
+
+		sync_node_connections()
+			if (node1)
+				node1.sync_connect(src)
+
+		sync_connect(obj/machinery/atmospherics/reference)
+			var/refdir = get_dir(src, reference)
+			if (!node1 && refdir == dir)
+				node1 = reference
+			update_icon()
 
 		hide(var/i) //to make the little pipe section invisible, the icon changes.
 			if(node1)
@@ -1204,36 +1229,36 @@ obj/machinery/atmospherics/pipe
 
 			for(var/direction in cardinal)
 				if(direction&connect_directions)
-					for(var/obj/machinery/atmospherics/target in get_step(src,direction))
-						if(target.initialize_directions & get_dir(target,src))
-							node1 = target
+					if (!node1)
+						node1 = connect(direction)
+					else if (!node2)
+						node2 = connect(direction)
+					else if (!node3)
+						node3 = connect(direction)
+						if (node3) //all satisfied
 							break
-
-					connect_directions &= ~direction
-					break
-
-
-			for(var/direction in cardinal)
-				if(direction&connect_directions)
-					for(var/obj/machinery/atmospherics/target in get_step(src,direction))
-						if(target.initialize_directions & get_dir(target,src))
-							node2 = target
-							break
-
-					connect_directions &= ~direction
-					break
-
-
-			for(var/direction in cardinal)
-				if(direction&connect_directions)
-					for(var/obj/machinery/atmospherics/target in get_step(src,direction))
-						if(target.initialize_directions & get_dir(target,src))
-							node3 = target
-							break
-
-					connect_directions &= ~direction
-					break
+					else
+						break
 
 			var/turf/T = src.loc			// hide if turf is not intact
 			hide(T.intact)
-			//update_icon()
+
+		sync_node_connections()
+			if (node1)
+				node1.sync_connect(src)
+			if (node2)
+				node2.sync_connect(src)
+			if (node3)
+				node3.sync_connect(src)
+
+		sync_connect(obj/machinery/atmospherics/reference)
+			if (reference in list(node1, node2, node3))
+				return
+			var/refdir = get_dir(src, reference)
+			if (!node1 && initialize_directions & refdir)
+				node1 = reference
+			else if (!node2 && initialize_directions & refdir)
+				node2 = reference
+			else if (!node3 && initialize_directions & refdir)
+				node3 = reference
+			update_icon()

@@ -2619,8 +2619,8 @@
 						src.master.set_emotion(rumpus_emotion)
 
 					if (party_idle_counter-- <= 0)
-						party_idle_counter = rand(4,14)
-						if (prob(50))
+						party_idle_counter = rand(6,16)
+						if (prob(20))
 							src.master.speak(pick("Yay!", "Woo-hoo!", "Yee-haw!", "Oh boy!", "Oh yeah!", "My favorite color is probably [pick("red","green","mauve","anti-flash white", "aureolin", "coquelicot")].", "I'm glad we have the opportunity to relax like this.", "Imagine if I had two arms. I could hug twice as much!", "I like [pick("tea","coffee","hot chocolate","soda", "diet soda", "milk", "almond milk", "soy milk", "horchata", "hot cocoa with honey mixed in", "green tea", "black tea")]. I have no digestive system or even a mouth, but I'm pretty sure I would like it.", "Sometimes I wonder what it would be like if I could fly."))
 
 						else
@@ -2722,7 +2722,7 @@
 		var/tmp/list/arrested_messages = list("Have a secure day!","Your move, creep.", "God made tomorrow for the crooks we don't catch today.","One riot, one ranger.")
 
 #define ARREST_DELAY 2.5 //Delay between movements when chasing a criminal, slightly faster than usual. (2.5 vs 3)
-#define TIME_BETWEEN_CUTE_ACTIONS 1800 //Tenths of a second between cute actions
+#define TIME_BETWEEN_CUTE_ACTIONS 3800 //Tenths of a second between cute actions
 
 		patrol
 			name = "patrol"

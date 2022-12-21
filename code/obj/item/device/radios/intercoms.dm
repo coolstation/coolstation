@@ -38,7 +38,6 @@
 			var/new_color = default_frequency_color(src.frequency)
 			if(new_color)
 				screen_image.color = new_color
-		screen_image.alpha = 180
 		src.UpdateOverlays(screen_image, "screen")
 		if(src.pixel_x == 0 && src.pixel_y == 0)
 			update_pixel_offset_dir(src,null,src.dir)

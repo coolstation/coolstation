@@ -1,3 +1,13 @@
+/*
+There are two types of parent datum here, datum/ailment and datum/ailment_data
+(as well as a bunch of derivative parents + some disease-related procs on mob/living)
+
+/datum/ailment contains only static information about the disease, including stage effects and stuff
+/datum/ailment_data is the disease as instanced on a mob, so any changing data should go there.
+
+Now, it used to be that datum/ailment as instantiated per mob until someone split it up in a static and dynamic part I guess.
+The reason I know that is because whoever did that split also didn't clean up that shit very thoroughly, so the code below might be a bit confusing.
+*/
 /datum/ailment
 	// all the vars that don't change/are defaults go in here - these will be in a central list for referencing
 	var/name = "ailment"
@@ -63,8 +73,6 @@
 	var/develop_resist = 0
 	var/associated_reagent = null // associated reagent, duh
 
-	var/list/disease_data = list() // A list of things for people to research about the disease to make it
-	var/list/strain_data = list()  // Used for Rhinovirus
 
 // IMPLEMENT PROPER CURE PROC
 
@@ -150,6 +158,7 @@
 	var/virulence = 100    // how likely is this disease to spread
 	var/develop_resist = 0 // can you develop a resistance to this?
 	var/cycles = 0         // does this disease have a cyclical nature? if so, how many cycles have elapsed?
+	var/list/strain_data = list()  // Used for Rhinovirus but some other diseases could use arbitrary storage too
 
 	stage_act(var/mult)
 		if (!affected_mob || disposed)
@@ -236,6 +245,10 @@
 				master.stage_act(affected_mob,src)
 
 		return 0
+
+	disposing()
+		strain_data = null
+		..()
 
 /datum/ailment_data/addiction
 	var/associated_reagent = null
@@ -386,9 +399,11 @@
 			AD.detectability = strain.detectability
 			AD.develop_resist = strain.develop_resist
 			AD.cure = strain.cure
+			AD.spread = strain.spread
 			AD.info = strain.info
 			AD.resistance_prob = strain.resistance_prob
 			AD.temperature_cure = strain.temperature_cure
+			AD.strain_data = strain.strain_data.Copy()
 		else
 			AD.name = D.name
 			AD.stage_prob = D.stage_prob
@@ -398,6 +413,7 @@
 			AD.detectability = D.detectability
 			AD.develop_resist = D.develop_resist
 			AD.cure = D.cure
+			AD.spread = D.spread
 			AD.info = D.info
 			AD.resistance_prob = D.resistance_prob
 			AD.temperature_cure = D.temperature_cure
