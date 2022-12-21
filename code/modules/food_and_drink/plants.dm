@@ -989,6 +989,7 @@
 			var/turf/T = get_turf(src)
 			user.visible_message("[user] cuts [src] into slices.", "You cut [src] into slices.")
 			var/makeslices = 6
+			var amount = src.reagents.total_volume / makeslices
 			while (makeslices > 0)
 				var/obj/item/reagent_containers/food/snacks/plant/lime/wedge/P = new(T)
 				P.name = "[src.name] wedge"
@@ -997,6 +998,9 @@
 				var/datum/plantgenes/PDNA = P.plantgenes
 				if(DNA)
 					HYPpassplantgenes(DNA,PDNA)
+				if(amount > 0)
+					P.reagents.remove_any(P.reagents.total_volume)
+					src.reagents.trans_to(P, amount)
 				makeslices -= 1
 			pool (src)
 		..()
@@ -1039,6 +1043,7 @@
 			var/turf/T = get_turf(src)
 			user.visible_message("[user] cuts [src] into slices.", "You cut [src] into slices.")
 			var/makeslices = 6
+			var amount = src.reagents.total_volume / 6
 			while (makeslices > 0)
 				var/obj/item/reagent_containers/food/snacks/plant/lemon/wedge/P = new(T)
 				P.name = "[src.name] wedge"
@@ -1046,6 +1051,9 @@
 				var/datum/plantgenes/PDNA = P.plantgenes
 				if(DNA)
 					HYPpassplantgenes(DNA,PDNA)
+				if(amount > 0)
+					P.reagents.remove_any(P.reagents.total_volume)
+					src.reagents.trans_to(P, amount)
 				makeslices -= 1
 			pool (src)
 		..()
