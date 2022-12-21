@@ -317,6 +317,11 @@
 		..()
 		reagents.add_reagent("juice_orange",5)
 
+/obj/item/reagent_containers/food/snacks/plant/orange/spawnable
+	make_reagents()
+		src.create_reagents(30)
+		reagents.add_reagent("juice_orange", 25)
+
 /obj/item/reagent_containers/food/snacks/plant/orange/clockwork
 	name = "clockwork orange"
 	crop_prefix = "clockwork "
@@ -1009,6 +1014,11 @@
 		..()
 		reagents.add_reagent("juice_lime",5)
 
+/obj/item/reagent_containers/food/snacks/plant/lime/spawnable
+	make_reagents()
+		src.create_reagents(30)
+		reagents.add_reagent("juice_lime", 25)
+
 /obj/item/reagent_containers/food/snacks/plant/lemon/
 	name = "lemon"
 	desc = "Suprisingly not a commentary on the station's workmanship."
@@ -1052,6 +1062,11 @@
 	make_reagents()
 		..()
 		reagents.add_reagent("juice_lemon",5)
+
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable
+	make_reagents()
+		src.create_reagents(30)
+		reagents.add_reagent("juice_lemon", 25)
 
 /obj/item/reagent_containers/food/snacks/plant/slurryfruit/
 	name = "slurrypod"
