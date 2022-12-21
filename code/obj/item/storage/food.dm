@@ -85,9 +85,9 @@
 	name = "fruit wedge kit"
 	icon_state = "wedges"
 	desc = "All you need to make fruit wedges to put on drinks, for extra fanciness. Gosh!"
-	spawn_contents = list(/obj/item/reagent_containers/food/snacks/plant/orange,\
-	/obj/item/reagent_containers/food/snacks/plant/lemon,\
-	/obj/item/reagent_containers/food/snacks/plant/lime,\
+	spawn_contents = list(/obj/item/reagent_containers/food/snacks/plant/orange/spawnable,\
+	/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,\
+	/obj/item/reagent_containers/food/snacks/plant/lime/spawnable,\
 	/obj/item/kitchen/utensil/knife)
 
 /obj/item/storage/box/ic_cones
