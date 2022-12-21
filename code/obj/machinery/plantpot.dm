@@ -63,7 +63,7 @@
 	process()
 		..()
 		update_maptext()
-
+/*
 /obj/machinery/plantpot/kudzu
 	name = "hydroponics tray"
 	desc = "A tray filled with nutrient solution capable of sustaining plantlife... Made of plants."
@@ -83,7 +83,7 @@
 			else
 				return ..()
 		..()
-
+*/
 /obj/machinery/plantpot/bareplant
 	name = "arable soil"
 	desc = "A small mound of arable soil for planting and plant based activities."

@@ -10,7 +10,7 @@
 		if(locate(/obj/hotspot) in T) continue
 		if(!ignoreUnreachable && !can_line(get_turf(center), T, radius+1)) continue
 		for(var/obj/spacevine/V in T) qdel(V)
-		for(var/obj/kudzu_marker/M in T) qdel(M)
+//		for(var/obj/kudzu_marker/M in T) qdel(M)
 //		for(var/obj/alien/weeds/V in T) qdel(V)
 
 		var/obj/hotspot/h = unpool(/obj/hotspot)

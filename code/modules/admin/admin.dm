@@ -1177,9 +1177,9 @@ var/global/noir = 0
 					if("Flashman")
 						H.set_mutantrace(/datum/mutantrace/flashy)
 						. = 1
-					if("Kudzuman")
+			/*		if("Kudzuman")
 						H.set_mutantrace(/datum/mutantrace/kudzu)
-						. = 1
+						. = 1*/
 					if("Ghostdrone")
 						droneize(H, 0)
 					if("Flubber")
