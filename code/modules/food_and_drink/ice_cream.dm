@@ -124,7 +124,7 @@
 
 /obj/item/reagent_containers/food/snacks/italian_ice
 	name = "italian ice"
-	desc = "A paper cup full of Rito's Italian Ice. Somehow still appears empty."
+	desc = "A paper cup full of Rito's Italian Ice."
 	icon = 'icons/obj/foodNdrink/food_snacks.dmi'
 	icon_state = "italianice"
 	real_name = "italian ice"
