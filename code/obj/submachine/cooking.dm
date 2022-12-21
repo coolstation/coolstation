@@ -321,6 +321,13 @@
 						src.updateUsrDialog()
 						return
 
+					/*
+					if(false)
+						boutput(usr, "<span class='alert'>Disallowed chemical in beaker!</span>")
+						src.updateUsrDialog()
+						return
+						*/
+
 					if(beaker.reagents.total_volume < 40)
 						beaker.reagents.add_reagent("water", (40 - beaker.reagents.total_volume))
 
