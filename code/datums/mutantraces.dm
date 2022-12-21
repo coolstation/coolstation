@@ -1829,7 +1829,7 @@
 						if (mob) mob.emote_allowed = 1
 					return message
 			else ..()
-
+/*
 /datum/mutantrace/kudzu
 	name = "kudzu"
 	icon = 'icons/mob/kudzu.dmi'
@@ -1954,7 +1954,7 @@
 					mob.changeStatus("weakened", 3 SECONDS)
 
 		return
-
+*/
 /datum/mutantrace/cow
 	name = "cow"
 	icon = 'icons/mob/cow.dmi'
