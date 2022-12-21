@@ -646,6 +646,12 @@
 			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "mantaposter"
 
+		ritossign
+			name = "Rito's sign"
+			desc = "A sign for Rito's Italian Ices, that water ice place. Didn't they go out of business years ago?"
+			icon = 'icons/obj/decals/wallsigns.dmi'
+			icon_state = "ritoslogo"
+
 		teaparty
 			name = "Weird poster"
 			desc = "Seems to be a poster of some sort."
