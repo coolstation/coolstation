@@ -536,7 +536,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	max_ammo_capacity = 1 // just takes a flash bulb.
 	gun_DRM = GUN_FOSS
 	spread_angle = 2
-	color = "#aaaaFF"
+	//color = "#aaaaFF"
 	icon = 'icons/obj/items/cet_guns/fossgun.dmi'
 	icon_state = "foss_reciever"
 	contraband = 2
@@ -574,7 +574,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	max_ammo_capacity = 0 //fukt up mags only
 	gun_DRM = GUN_JUICE
 	spread_angle = 7
-	color = "#99FF99"
+	//color = "#99FF99"
 	contraband = 1
 	barrel_overlay_x = 12
 	barrel_overlay_y = 4
@@ -610,8 +610,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	max_ammo_capacity = 4 // laser revolver
 	gun_DRM = GUN_SOVIET
 	spread_angle = 4
-	color = "#FF9999"
-	icon_state = "laser"
+	//color = "#FF9999"
+	//icon_state = "laser"
 	contraband = 1
 
 	make_parts()
@@ -632,7 +632,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	max_ammo_capacity = 2 // basic revolving mechanism
 	gun_DRM = GUN_ITALIAN
 	spread_angle = 5
-	color = "#FFFF99"
+	//color = "#FFFF99"
 	stock_overlay_x = -10
 	barrel_overlay_x = 12
 	barrel_overlay_y = 4
