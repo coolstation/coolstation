@@ -613,6 +613,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	//color = "#FF9999"
 	//icon_state = "laser"
 	contraband = 1
+	stock_overlay_x = -10
+	barrel_overlay_x = 12
+	barrel_overlay_y = 4
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/soviet(src)
