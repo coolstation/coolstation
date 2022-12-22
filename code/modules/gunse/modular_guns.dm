@@ -36,6 +36,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	icon_state = "tranq_pistol"
 	contraband = 0
 	inventory_counter_enabled = 1
+	var/barrel_overlay_x = 0
+	var/barrel_overlay_y = 0
+	var/stock_overlay_x = 0
+	var/stock_overlay_y = 0
 
 	var/lensing = 0 // Variable used for optical gun barrels. laser intensity scales around 1.0 (or will!)
 	var/scatter = 0 // variable for using hella shotgun shells or something
@@ -498,10 +502,22 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	spread_angle = 2
 	icon = 'icons/obj/items/cet_guns/recievers.dmi'
 	icon_state = "nt_blue"
+	barrel_overlay_x = 23
+	barrel_overlay_y = 0
+	stock_overlay_x = -8
+	stock_overlay_y = -2
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/NT(src)
-		stock = new /obj/item/gun_parts/stock/NT(src)
+
+		if(prob(10))
+			stock = new /obj/item/gun_parts/stock/NT/fancy(src)
+		else if(prob(10))
+			stock = new /obj/item/gun_parts/stock/NT/ceremonial(src)
+		else if(prob(10)) // yes i know these are diminishing probabilities, thats the idea.
+			stock = new /obj/item/gun_parts/stock/NT/stub(src)
+		else
+			stock = new /obj/item/gun_parts/stock/NT(src)
 
 /obj/item/gun/modular/NT/long
 	name = "\improper NT rifle"
@@ -521,8 +537,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	gun_DRM = GUN_FOSS
 	spread_angle = 2
 	color = "#aaaaFF"
-	icon_state = "caplaser"
+	icon = 'icons/obj/items/cet_guns/fossgun.dmi'
+	icon_state = "foss_reciever"
 	contraband = 2
+	barrel_overlay_x = 18
+	barrel_overlay_y = 2
+	stock_overlay_x = -20
 
 
 	make_parts()
@@ -556,10 +576,18 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	spread_angle = 7
 	color = "#99FF99"
 	contraband = 1
+	barrel_overlay_x = 12
+	barrel_overlay_y = 4
+	stock_overlay_x = -10
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/juicer(src)
-		stock = new /obj/item/gun_parts/stock/NT(src)
+		if(prob(5))
+			stock = new /obj/item/gun_parts/stock/juicer/trans(src)
+		else if(prob(50))
+			stock = new /obj/item/gun_parts/stock/juicer/black(src)
+		else
+			stock = new /obj/item/gun_parts/stock/juicer(src)
 		magazine = new /obj/item/gun_parts/magazine/juicer(src)
 
 /obj/item/gun/modular/juicer/long
@@ -568,7 +596,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/juicer/longer(src)
-		stock = new /obj/item/gun_parts/stock/italian(src)
+		if(prob(50))
+			stock = new /obj/item/gun_parts/stock/juicer/black(src)
+		else if(prob(50))
+			stock = new /obj/item/gun_parts/stock/juicer/red(src)
+		else
+			stock = new /obj/item/gun_parts/stock/juicer/stub(src)
 
 /obj/item/gun/modular/soviet
 	name = "\improper Soviet лазерная"
@@ -600,6 +633,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	gun_DRM = GUN_ITALIAN
 	spread_angle = 5
 	color = "#FFFF99"
+	stock_overlay_x = -10
+	barrel_overlay_x = 12
+	barrel_overlay_y = 4
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/italian(src)
