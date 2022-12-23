@@ -41,6 +41,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/barrel_overlay_y = 0
 	var/stock_overlay_x = 0
 	var/stock_overlay_y = 0
+	var/foregrip_x = 0
+	var/foregrip_y = 0
 
 	var/lensing = 0 // Variable used for optical gun barrels. laser intensity scales around 1.0 (or will!)
 	var/scatter = 0 // variable for using hella shotgun shells or something
@@ -423,7 +425,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		spread_angle += GRIP_PENALTY
 	if(stock2)
 		parts += stock2
-		stock2.overlay_x += 16
+		stock2.overlay_x += foregrip_x
+		stock2.overlay_y += foregrip_y
 		stock2.part_type = "foregrip"
 		src.two_handed = 1
 	if(magazine)
@@ -569,6 +572,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	barrel_overlay_x = 18
 	barrel_overlay_y = 2
 	stock_overlay_x = -20
+	foregrip_x = 7
+	foregrip_y = -8
 
 
 	make_parts()
