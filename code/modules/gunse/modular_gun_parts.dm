@@ -36,6 +36,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 		my_gun = null
 		overlay_x = initial(overlay_x)
 		overlay_y = initial(overlay_y)
+		part_type = initial(part_type)
 		return src
 
 	//barrel vars
@@ -163,8 +164,11 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 		..()
 		if(!my_gun)
 			return
-		my_gun.stock = src
-		my_gun.can_dual_wield = src.can_dual_wield
+		if(part_type == "stock")
+			my_gun.stock = src
+			my_gun.can_dual_wield = src.can_dual_wield
+		else //foregrip
+			my_gun.stock2 = src
 		my_gun.max_ammo_capacity += src.max_ammo_capacity
 		my_gun.spread_angle = max(0, (my_gun.spread_angle + src.spread_angle)) // so we cant dip below 0
 		my_gun.two_handed |= src.stock_two_handed // if either the stock or the gun design is 2-handed, so is the assy.
@@ -336,7 +340,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "BLUNDER"
 	icon_state = "juicer_blunderbuss"
 	length = 12
-	overlay_y = -1
+	//overlay_y = -1
 
 /obj/item/gun_parts/barrel/juicer/longer
 	name = "\improper SNIPA Barrel"
@@ -377,10 +381,13 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	length = 13
 
 // BASIC STOCKS
+// Stocks should always have a negative spread angle unless they're particularly cumbersome.
+// those ones probably add functionality that offsets the +ve spread?
+
 /obj/item/gun_parts/stock/NT
 	name = "standard grip"
 	desc = "A comfortable NT pistol grip"
-	spread_angle = 2 // basic stabilisation
+	spread_angle = -3 // basic stabilisation
 	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN
 	name_addition = "trusty"
 	icon = 'icons/obj/items/cet_guns/grips.dmi'
@@ -405,13 +412,13 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	stub
 		name = "stub grip"
 		icon_state = "nt_stub"
-		spread_angle = 4
+		spread_angle = -1
 		name_addition = "stubby"
 
 /obj/item/gun_parts/stock/NT/shoulder
 	name = "standard stock"
 	desc = "A comfortable NT shoulder stock"
-	spread_angle = 1 // better stabilisation
+	spread_angle = -4 // better stabilisation
 	stock_two_handed = 1
 	can_dual_wield = 0
 	max_ammo_capacity = 1 // additional shot in the butt
@@ -419,8 +426,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon = 'icons/obj/items/cet_guns/stocks.dmi'
 	name_addition = "sturdy"
 	icon_state = "nt_blue"
-	overlay_x = -3
-	overlay_y = 2
+	overlay_x = -2
+	overlay_y = 1
 
 /obj/item/gun_parts/stock/NT/arm_brace
 	name = "standard brace"
@@ -438,7 +445,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/stock/foss
 	name = "\improper FOSS laser stock"
 	desc = "An open-sourced laser dynamo, with a multiple-position winding spring."
-	spread_angle = 2 // basic stabilisation
+	spread_angle = -3 // basic stabilisation
 	part_DRM = GUN_FOSS | GUN_SOVIET // | GUN_JUICE
 	flashbulb_only = 1
 	max_crank_level = 2
@@ -450,7 +457,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 /obj/item/gun_parts/stock/foss/long
 	name = "\improper FOSS laser rifle stock"
-	spread_angle = 1 // better stabilisation
+	spread_angle = -4 // better stabilisation
 	stock_two_handed = 1
 	can_dual_wield = 0
 	max_crank_level = 3 // for syndicate ops
@@ -459,7 +466,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/stock/foss/loader
 	name = "\improper FOSS laser loader stock"
 	desc = "An open-sourced laser dynamo, with a multiple-position winding spring. This one's kind of hard to hold."
-	spread_angle = 12 //  O NO
+	spread_angle = 7 //  O NO
 	max_ammo_capacity = 1 // more bulbs in the pocket
 	jam_frequency_reload = 10
 	name_addition = "robust"
@@ -467,7 +474,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 /obj/item/gun_parts/stock/foss/longer
 	name = "\improper FOSS laser punt gun stock"
-	spread_angle = 8 // poor stabilisation
+	spread_angle = 3 // poor stabilisation
 	stock_two_handed = 1
 	can_dual_wield = 0
 	max_crank_level = 4 // for syndicate ops
@@ -478,7 +485,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/stock/italian
 	name = "impugnatura a pistola"
 	desc = "un'impugnatura rivestita in cuoio toscano per un revolver di alta qualità"
-	spread_angle = 5
+	spread_angle = 0
 	max_ammo_capacity = 1 // to make that revolver revolve!
 	jam_frequency_reload = 5 // a lot  more jammy!!
 	part_DRM = GUN_NANO | GUN_ITALIAN | GUN_SOVIET
@@ -489,17 +496,17 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/stock/italian/bigger
 	name = "impugnatura a pistola piu larga"
 	desc = "un'impugnatura rivestita in cuoio toscano per un revolver di alta qualità"
-	spread_angle = 4
+	spread_angle = -1
 	max_ammo_capacity = 3 // to make that revolver revolve!
 	jam_frequency_reload = 9 // a lot  more jammy!!
 	icon_state = "it_fancy"
 	name_addition = "jovial"
-	icon_state = "it_plain"
+
 
 /obj/item/gun_parts/stock/juicer
 	name = "da grip"
 	desc = "some kind of knockoff tacticool pistol grip"
-	spread_angle = 4
+	spread_angle = -1
 	icon = 'icons/obj/items/cet_guns/grips.dmi'
 	icon_state = "white"
 	name_addition = "strapped"
@@ -507,7 +514,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	stub
 		name = "da stub"
 		desc = "some kind of stubbed tacticool pistol grip"
-		spread_angle = 6
+		spread_angle = 1 // positive, maybe later stub pistols will let you put them in a smaller pocket idk.
 		icon_state = "short_white"
 		name_addition = "FUCKED"
 

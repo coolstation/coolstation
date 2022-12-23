@@ -28,6 +28,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/gun_DRM = 0 // identify the gun model / type
 	var/obj/item/gun_parts/barrel/barrel = null
 	var/obj/item/gun_parts/stock/stock = null
+	var/obj/item/gun_parts/stock/stock2 = null // tHE SEQUEL TO STOCK????
 	var/obj/item/gun_parts/magazine/magazine = null
 	var/obj/item/gun_parts/accessory/accessory = null
 	var/list/obj/item/gun_parts/parts = list()
@@ -138,9 +139,17 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				barrel = I
 			if (istype(I, /obj/item/gun_parts/stock/))
 				if(stock) //occupado
-					boutput(user,"<span class='notice'>...and knock [stock] out of the way.</span>")
-					stock.set_loc(get_turf(src))
-				stock = I
+					if(!stock.stock_two_handed && !I:stock_two_handed)// i know i know, :, but we *JUST* checked, cmon.
+						boutput(user,"<span class='notice'>...in the forward position.</span>")
+						I:overlay_x += 16
+						I:part_type = "foregrip"
+						stock2 = I
+					else
+						boutput(user,"<span class='notice'>...and knock [stock] out of the way.</span>")
+						stock.set_loc(get_turf(src))
+						stock = I
+				else
+					stock = I
 			if (istype(I, /obj/item/gun_parts/magazine/))
 				if(magazine) //occupado
 					boutput(user,"<span class='notice'>...and knock [magazine] out of the way.</span>")
@@ -414,6 +423,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		parts += stock
 	else
 		spread_angle += GRIP_PENALTY
+	if(stock2)
+		parts += stock2
+		src.two_handed = 1
 	if(magazine)
 		parts += magazine
 	if(accessory)
@@ -499,7 +511,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "A simple, reliable cylindrical bored weapon."
 	max_ammo_capacity = 1 // single-shot pistols ha- unless you strap an expensive loading mag on it.
 	gun_DRM = GUN_NANO
-	spread_angle = 2
+	spread_angle = 7
 	icon = 'icons/obj/items/cet_guns/recievers.dmi'
 	icon_state = "nt_blue"
 	barrel_overlay_x = 23
@@ -535,7 +547,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "An open-sourced and freely modifiable FOSS Inductive Flash Arc, Model 2k/19"
 	max_ammo_capacity = 1 // just takes a flash bulb.
 	gun_DRM = GUN_FOSS
-	spread_angle = 2
+	spread_angle = 7
 	//color = "#aaaaFF"
 	icon = 'icons/obj/items/cet_guns/fossgun.dmi'
 	icon_state = "foss_reciever"
@@ -573,7 +585,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "A juicer-built, juicer-'designed', and most importantly juicer-marketed gun."
 	max_ammo_capacity = 0 //fukt up mags only
 	gun_DRM = GUN_JUICE
-	spread_angle = 7
+	spread_angle = 10
 	//color = "#99FF99"
 	contraband = 1
 	barrel_overlay_x = 12
@@ -609,7 +621,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
 	max_ammo_capacity = 4 // laser revolver
 	gun_DRM = GUN_SOVIET
-	spread_angle = 4
+	spread_angle = 9
 	//color = "#FF9999"
 	//icon_state = "laser"
 	contraband = 1
@@ -634,7 +646,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "Una pistola realizzata con acciaio, cuoio e olio d'oliva della più alta qualità possibile."
 	max_ammo_capacity = 2 // basic revolving mechanism
 	gun_DRM = GUN_ITALIAN
-	spread_angle = 5
+	spread_angle = 10
 	//color = "#FFFF99"
 	stock_overlay_x = -10
 	barrel_overlay_x = 12
