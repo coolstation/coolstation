@@ -141,8 +141,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				if(stock) //occupado
 					if(!stock.stock_two_handed && !I:stock_two_handed)// i know i know, :, but we *JUST* checked, cmon.
 						boutput(user,"<span class='notice'>...in the forward position.</span>")
-						I:overlay_x += 16
-						I:part_type = "foregrip"
 						stock2 = I
 					else
 						boutput(user,"<span class='notice'>...and knock [stock] out of the way.</span>")
@@ -425,6 +423,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		spread_angle += GRIP_PENALTY
 	if(stock2)
 		parts += stock2
+		stock2.overlay_x += 16
+		stock2.part_type = "foregrip"
 		src.two_handed = 1
 	if(magazine)
 		parts += magazine
@@ -540,6 +540,20 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		barrel = new /obj/item/gun_parts/barrel/NT/long(src)
 		stock = new /obj/item/gun_parts/stock/NT/shoulder(src)
 
+/obj/item/gun/modular/NT/bartender
+	name = "grey-market shotgun"
+	desc = "Cobbled together from unlicensed parts."
+	contraband = 3
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/juicer/chub(src)
+		if(prob(50))
+			stock = new /obj/item/gun_parts/stock/juicer/black(src)
+		else
+			stock = new /obj/item/gun_parts/stock/juicer(src)
+		if(prob(50))
+			stock2 = new /obj/item/gun_parts/stock/juicer/stub(src)
+		else
+			stock2 = new /obj/item/gun_parts/stock/NT/stub(src)
 
 /obj/item/gun/modular/foss // syndicate laser gun's!
 	name = "\improper FOSS laser"
@@ -551,7 +565,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	//color = "#aaaaFF"
 	icon = 'icons/obj/items/cet_guns/fossgun.dmi'
 	icon_state = "foss_reciever"
-	contraband = 2
+	contraband = 7
 	barrel_overlay_x = 18
 	barrel_overlay_y = 2
 	stock_overlay_x = -20
@@ -602,10 +616,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			stock = new /obj/item/gun_parts/stock/juicer(src)
 		magazine = new /obj/item/gun_parts/magazine/juicer(src)
 
-/obj/item/gun/modular/juicer/long
-	desc = "A juicer-built, juicer-'designed', and most importantly juicer-marketed gun."
-	color = "#55FF88"
 
+/obj/item/gun/modular/juicer/long
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/juicer/longer(src)
 		if(prob(50))
@@ -624,7 +636,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	spread_angle = 9
 	//color = "#FF9999"
 	//icon_state = "laser"
-	contraband = 1
+	contraband = 5
 	stock_overlay_x = -10
 	barrel_overlay_x = 12
 	barrel_overlay_y = 4

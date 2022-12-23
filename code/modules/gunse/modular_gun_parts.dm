@@ -342,6 +342,13 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	length = 12
 	//overlay_y = -1
 
+/obj/item/gun_parts/barrel/juicer/chub
+	name = "\improper BUSTIN Barrel"
+	spread_angle = 6
+	length = 25
+	icon_state = "juicer_chub"
+	name_addition = "BUSTER"
+
 /obj/item/gun_parts/barrel/juicer/longer
 	name = "\improper SNIPA Barrel"
 	desc = "A cheaply-built extended rifled shotgun barrel. Not good."
@@ -432,7 +439,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/stock/NT/arm_brace
 	name = "standard brace"
 	desc = "A comfortable NT forearm brace"
-	spread_angle = 0 // quite better stabilisation
+	spread_angle = -6 // quite better stabilisation
 	stock_two_handed = 0
 	can_dual_wield = 0
 	max_ammo_capacity = 1 // additional shot in the butt
@@ -506,7 +513,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/stock/juicer
 	name = "da grip"
 	desc = "some kind of knockoff tacticool pistol grip"
-	spread_angle = -1
+	spread_angle = -3
 	icon = 'icons/obj/items/cet_guns/grips.dmi'
 	icon_state = "white"
 	name_addition = "strapped"
@@ -514,9 +521,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	stub
 		name = "da stub"
 		desc = "some kind of stubbed tacticool pistol grip"
-		spread_angle = 1 // positive, maybe later stub pistols will let you put them in a smaller pocket idk.
+		spread_angle = -1
 		icon_state = "short_white"
-		name_addition = "FUCKED"
+		name_addition = "Fukt UP"
 
 	red
 		name = "redgrip"
