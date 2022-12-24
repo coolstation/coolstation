@@ -288,7 +288,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 			return
 
 	attackby(obj/item/I as obj, mob/user as mob)
-		/*if (istype(I, /obj/item/reagent_containers/pill))
+		if (istype(I, /obj/item/reagent_containers/pill)) //fun™
 
 			if (!I.reagents || !I.reagents.total_volume)
 				boutput(user, "<span class='alert'>[src] is empty.</span>")
@@ -303,7 +303,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 			I.reagents.trans_to(src, I.reagents.total_volume)
 			qdel(I)
 
-		else */if (istype(I, /obj/item/reagent_containers/food/snacks/ingredient/egg))
+		else if (istype(I, /obj/item/reagent_containers/food/snacks/ingredient/egg))
 			if (src.reagents.total_volume >= src.reagents.maximum_volume)
 				boutput(user, "<span class='alert'>[src] is full.</span>")
 				return
@@ -330,6 +330,17 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 				return
 
 			boutput(user, "<span class='notice'>You shove the [I] into [src].</span>")
+
+			I.reagents.trans_to(src, I.reagents.total_volume)
+			user.u_equip(I)
+			qdel(I)
+
+		else if (istype(I, /obj/item/reagent_containers/food/snacks/sugar))
+			if (src.reagents.total_volume >= src.reagents.maximum_volume)
+				boutput(user, "<span class='alert'>[src] is full.</span>")
+				return
+
+			boutput(user, "<span class='notice'>You pour the [I] into [src].</span>")
 
 			I.reagents.trans_to(src, I.reagents.total_volume)
 			user.u_equip(I)
