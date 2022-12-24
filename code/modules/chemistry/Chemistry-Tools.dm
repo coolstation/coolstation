@@ -335,7 +335,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 			user.u_equip(I)
 			qdel(I)
 
-		else if (istype(I, /obj/item/reagent_containers/food/snacks/sugar))
+		else if (istype(I, /obj/item/reagent_containers/food/snacks/ingredient/sugar))
 			if (src.reagents.total_volume >= src.reagents.maximum_volume)
 				boutput(user, "<span class='alert'>[src] is full.</span>")
 				return
