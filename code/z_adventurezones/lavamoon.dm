@@ -724,7 +724,7 @@ var/sound/iomoon_alarm_sound = null
 		reagents.add_reagent("salt", 10)
 		reagents.add_reagent("grease", 5)
 		reagents.add_reagent("msg", 2)
-		reagents.add_reagent("VHFCS", 8)
+		reagents.add_reagent("UGHFCS", 8)
 		reagents.add_reagent("egg",5)
 
 /obj/item/yoyo
