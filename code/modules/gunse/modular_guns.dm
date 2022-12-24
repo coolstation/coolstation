@@ -41,7 +41,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/barrel_overlay_y = 0
 	var/stock_overlay_x = 0
 	var/stock_overlay_y = 0
-	var/foregrip_x = 0
+	var/foregrip_x = 16
 	var/foregrip_y = 0
 
 	var/lensing = 0 // Variable used for optical gun barrels. laser intensity scales around 1.0 (or will!)
@@ -521,6 +521,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	barrel_overlay_y = 0
 	stock_overlay_x = -8
 	stock_overlay_y = -2
+	foregrip_x = 18
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/NT(src)
@@ -625,12 +626,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 /obj/item/gun/modular/juicer/long
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/juicer/longer(src)
-		if(prob(50))
-			stock = new /obj/item/gun_parts/stock/juicer/black(src)
-		else if(prob(50))
-			stock = new /obj/item/gun_parts/stock/juicer/red(src)
+		if(prob(70))
+			stock = new /obj/item/gun_parts/stock/italian(src)
 		else
-			stock = new /obj/item/gun_parts/stock/juicer/stub(src)
+			stock = new /obj/item/gun_parts/stock/italian/bigger(src)
+		if(prob(50))
+			stock2 = new /obj/item/gun_parts/stock/juicer/stub(src)
+
 
 /obj/item/gun/modular/soviet
 	name = "\improper Soviet лазерная"

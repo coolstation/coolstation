@@ -72,6 +72,9 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 			boutput(user, "<span class='notice'>You smash the pieces of the gun into place!</span>")
 			playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_1.ogg', 50, 1)
 			new_gun.build_gun()
+			user.u_equip(W)
+			W.dropped(user)
+			W.set_loc(src.loc)
 			return
 		else
 			boutput(user, "<span class='notice'>You smash the pieces of the gun apart!</span>")
