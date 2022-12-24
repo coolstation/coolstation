@@ -1174,6 +1174,17 @@
 			W.reagents.trans_to(src, W.reagents.total_volume)
 			qdel(W)
 
+		else if (istype(W, /obj/item/reagent_containers/food/snacks/ingredient/sugar))
+			if (src.reagents.total_volume >= src.reagents.maximum_volume)
+				boutput(user, "<span class='alert'>[src] is full.</span>")
+				return
+
+			boutput(user, "<span class='notice'>You pour the [W] into [src].</span>")
+
+			W.reagents.trans_to(src, W.reagents.total_volume)
+			user.u_equip(W)
+			qdel(W)
+
 		else
 			return ..()
 
