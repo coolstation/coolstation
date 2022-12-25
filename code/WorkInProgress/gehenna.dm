@@ -1,4 +1,4 @@
-#define GEHENNA_TIME 30
+#define GEHENNA_TIME ((BUILD_TIME_DAY * 24)+(BUILD_TIME_HOUR))
 // 10 just beautiful. oh. wow. lovely.
 // 30 is a beautiful, goldenrod gehenna sunrise.
 // 45
