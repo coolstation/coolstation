@@ -1,4 +1,5 @@
-#define GEHENNA_TIME ((BUILD_TIME_DAY * 24)+(BUILD_TIME_HOUR))
+#define GEHENNA_TIME (((BUILD_TIME_DAY * 24)+(BUILD_TIME_HOUR))*2)
+//the above expression results in about 4 days per month.
 // 10 just beautiful. oh. wow. lovely.
 // 30 is a beautiful, goldenrod gehenna sunrise.
 // 45
