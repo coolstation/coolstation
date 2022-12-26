@@ -130,6 +130,7 @@ obj/machinery/atmospherics/pipe
 		overfloor
 			level = 2
 			alpha = 255
+			layer = PIPE_OVERCAT
 
 			vertical
 				dir = NORTH
@@ -168,6 +169,7 @@ obj/machinery/atmospherics/pipe
 				overfloor
 					level = 2
 					alpha = 255
+					layer = PIPE_OVERCAT
 
 					vertical
 						dir = NORTH
@@ -204,6 +206,7 @@ obj/machinery/atmospherics/pipe
 				overfloor
 					level = 2
 					alpha = 255
+					layer = PIPE_OVERCAT
 
 					vertical
 						dir = NORTH
@@ -240,6 +243,7 @@ obj/machinery/atmospherics/pipe
 				overfloor
 					level = 2
 					alpha = 255
+					layer = PIPE_OVERCAT
 
 					vertical
 						dir = NORTH
@@ -659,6 +663,7 @@ obj/machinery/atmospherics/pipe
 		initialize_directions = SOUTH
 		density = 1
 		var/obj/machinery/atmospherics/node1
+		layer = PIPE_OVERCAT
 
 		north
 			dir = NORTH
@@ -1122,6 +1127,7 @@ obj/machinery/atmospherics/pipe
 
 		overfloor
 			level = 2
+			layer = PIPE_OVERCAT
 
 			north
 				dir = NORTH

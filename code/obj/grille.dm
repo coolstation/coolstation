@@ -70,6 +70,7 @@
 		icon_state = "grille-0"
 		color = "#808080"
 
+	// /obj/grille/catwalk/
 	catwalk
 		name = "catwalk surface"
 		icon = 'icons/obj/grille.dmi'
@@ -106,11 +107,13 @@
 			name = "catwalk surface" //Or I'll murder you since you are making things ugly on purpose.
 			icon_state = "catwalk_cross" //(Statement does not apply when you actually want to use the other ones.)
 
+		// /obj/grille/catwalk/jen
 		jen // ^^ no i made my own because i am epic
 			name = "maintenance catwalk"
 			icon_state = "catwalk_jen"
 			desc = "This looks marginally more safe than the ones outside, at least..."
-			layer = PIPE_LAYER + 0.01
+			plane = PLANE_NOSHADOW_BELOW // ???
+			layer = CATWALK_OVERPIPE // warc: increased from pipe+0.01 'cause it makes cabling look awkward over an otherwise really nice floor style?
 
 			attack_hand(obj/M, mob/user)
 				return 0
