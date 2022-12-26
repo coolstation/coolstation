@@ -1190,6 +1190,7 @@
 			if (pulling) pulling.icon = new_file
 			if (resting) resting.icon = new_file
 			if (sprinting) sprinting.icon = new_file
+			if (organ_butte) organ_butte.icon = new_file
 
 			if (health) health.icon = new_file
 			if (bleeding) bleeding.icon = new_file
