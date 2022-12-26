@@ -6,6 +6,8 @@
 	desc = "Has a valve and pump attached to it"
 
 	level = 1
+	plane = PLANE_NOSHADOW_BELOW
+	layer = PIPE_MACHINE_LAYER
 
 	var/id = null
 	var/frequency = "1439"
