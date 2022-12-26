@@ -13,6 +13,7 @@
 #define ui_gloves "CENTER-4, SOUTH+1"
 #define ui_id "CENTER-3, SOUTH+1"
 #define ui_clothing "CENTER-2, SOUTH+1"
+#define ui_butte "CENTER-2, SOUTH+2" //Every day we stray further from God's light, and towards where the sun doesn't shine
 #define ui_suit "CENTER-1, SOUTH+1"
 #define ui_glasses "CENTER, SOUTH+1"
 #define ui_ears "CENTER+1, SOUTH+1"
@@ -47,6 +48,7 @@
 #define tg_ui_id "CENTER-4:7,SOUTH:5"
 #define tg_ui_clothing "WEST:6,SOUTH+1:7"
 #define tg_ui_suit "WEST+1:8,SOUTH+1:7"
+#define tg_ui_butte "WEST+3:12, SOUTH+1:7" //Directly right of jumpsuit/exosuit/gloves
 #define tg_ui_glasses "WEST:6,SOUTH+2:9"
 #define tg_ui_ears "WEST+2:10,SOUTH+2:9"
 #define tg_ui_mask "WEST+1:8,SOUTH+2:9"

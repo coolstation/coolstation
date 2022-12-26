@@ -62,6 +62,8 @@
 	var/obj/item/chest_item = null	// Item stored in chest cavity
 	var/chest_item_sewn = 0			// Item is sewn in or is loose
 
+	var/obj/item/butt_item = null // Item stored in butt :)
+
 	var/cust_icon = 'icons/mob/human_hair.dmi'	// icon for hair, in case we want something else
 	var/special_one_icon = 'icons/mob/human_hair.dmi'
 	var/special_one_state = "none"
@@ -1275,6 +1277,8 @@
 		return slot_l_hand
 	if(src.r_hand == I)
 		return slot_r_hand
+	if(src.butt_item == I)
+		return slot_butt
 	return null
 
 /mob/living/carbon/human/is_in_hands(var/obj/O)
@@ -1725,6 +1729,7 @@
 //	slot_w_radio = 17
 	slot_in_backpack = 18
 	slot_in_belt = 19
+	slot_butt = 20
 
 /mob/living/carbon/human/u_equip(obj/item/W)
 	if (!W)
@@ -1738,6 +1743,10 @@
 			hud.set_visible(hud.rhand, 1)
 			hud.set_visible(hud.twohandl, 0)
 			hud.set_visible(hud.twohandr, 0)
+
+	if (butt_item == W)
+		hud.butte_item = null
+		butt_item = null
 
 	if (W == src.wear_suit)
 		src.update_hair_layer()
@@ -2026,6 +2035,8 @@
 			return src.l_store
 		if (slot_r_store)
 			return src.r_store
+		if (slot_butt)
+			return src.butt_item
 
 /mob/living/carbon/human/proc/force_equip(obj/item/I, slot)
 	//warning: icky code
@@ -2134,6 +2145,13 @@
 			if (src.belt && istype(src.belt, /obj/item/storage))
 				I.set_loc(src.belt)
 				equipped = 1
+		if (slot_butt)
+			if (!src.butt_item)
+				src.butt_item = I
+				hud.butte_item = I
+				hud.add_other_object(I, hud.layouts[hud.layout_style]["butte"])
+				I.equipped(src, slot_butt)
+				equipped = 1
 
 	if (equipped)
 		if (slot != slot_in_backpack && slot != slot_in_belt)
@@ -2177,6 +2195,8 @@
 		hud.add_other_object(src.l_store,hud.layouts[hud.layout_style]["storage1"])
 	if (src.r_store)
 		hud.add_other_object(src.r_store,hud.layouts[hud.layout_style]["storage2"])
+	if (src.butt_item)
+		hud.add_other_object(src.butt_item,hud.layouts[hud.layout_style]["butte"]) //
 
 /mob/living/carbon/human/proc/can_equip(obj/item/I, slot)
 	switch (slot)
@@ -2255,6 +2275,9 @@
 				var/obj/item/storage/S = src.belt
 				if (S.contents.len < 7 && I.w_class <= W_CLASS_NORMAL)
 					return 1
+		if (slot_butt)
+			if (I.w_class < W_CLASS_NORMAL) //I'm sorry your ass isn't that huge
+				return 1
 	return 0
 
 /mob/living/carbon/human/proc/equip_new_if_possible(path, slot)

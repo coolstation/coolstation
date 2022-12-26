@@ -1321,6 +1321,8 @@ var/global/curr_day = null
 		HUD.objects = H.hud.objects
 		HUD.click_check = 1
 
+		var/was_showing_butte = H.hud.show_butte
+
 		H.hud.master = null
 		qdel(H.hud)
 		qdel(H.zone_sel)
@@ -1332,6 +1334,12 @@ var/global/curr_day = null
 		H.attach_hud(H.zone_sel)
 		//H.stamina_bar = new(H)
 		//H.hud.add_object(H.stamina_bar, initial(H.stamina_bar.layer), "EAST-1, NORTH")
+		H.hud.butte_item = H.butt_item
+		SPAWN_DBG(0) //there's a fucking SPAWN in the human hud's New() :<
+			if (was_showing_butte) //I dunno if there's a better way, but I don't entirely understand all of human HUD code
+				H.hud.show_butt_slot()
+			else
+				H.hud.hide_butt_slot()
 		if(H.sims)
 			H.sims.add_hud()
 

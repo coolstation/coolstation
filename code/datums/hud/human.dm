@@ -21,6 +21,7 @@
 		swaphands
 		equip
 		tg_butts
+		organ_butte
 
 		health
 		health_brute
@@ -42,6 +43,8 @@
 	var/list/atom/movable/screen/hud/inventory_bg = list()
 	var/list/obj/item/inventory_items = list()
 	var/show_inventory = 1
+	var/show_butte = FALSE //
+	var/obj/item/butte_item = null
 	var/current_ability_set = 1
 	var/icon/icon_hud = 'icons/mob/hud_human_new.dmi'
 
@@ -90,6 +93,7 @@
 										"tg_butts" = 0,\
 										"ignore_inventory_hide" = 0,\
 										"show_bg" = 1,\
+										"butte" = ui_butte,\
 										), \
 							"tg" = list( \
 										"invtoggle" = tg_ui_invtoggle,\
@@ -127,6 +131,7 @@
 										"tg_butts" = tg_ui_extra_buttons,\
 										"ignore_inventory_hide" = list("id"),\
 										"show_bg" = 0,\
+										"butte" = tg_ui_butte,\
 										))
 
 
@@ -233,6 +238,8 @@
 			inventory_bg += create_screen("ears", "ears", src.icon_hud, "ears", layouts[layout_style]["ears"], HUD_LAYER+1)
 			inventory_bg += create_screen("mask", "mask", src.icon_hud, "mask", layouts[layout_style]["mask"], HUD_LAYER+1)
 			inventory_bg += create_screen("head", "head", src.icon_hud, "hair", layouts[layout_style]["head"], HUD_LAYER+1)
+			organ_butte = create_screen("butte", "butt", src.icon_hud, "butte", layouts[layout_style]["butte"], HUD_LAYER+1)
+			hide_butt_slot()
 
 			if (layouts[layout_style]["ignore_inventory_hide"])
 				for (var/id in layouts[layout_style]["ignore_inventory_hide"])
@@ -305,6 +312,10 @@
 
 			master?.update_equipment_screen_loc()
 
+	disposing()
+		butte_item = null
+		..()
+
 	relay_click(id, mob/user, list/params)
 		switch (id)
 			if ("invtoggle")
@@ -351,6 +362,10 @@
 						src.add_object(O, HUD_LAYER+2)
 					if (layout_style == "tg")
 						src.add_screen(legend)
+					if (show_butte)
+						src.add_screen(organ_butte)
+						if (butte_item)
+							src.add_object(butte_item, HUD_LAYER+2)
 				else
 					for (var/atom/movable/screen/hud/S in inventory_bg)
 						src.remove_screen(S)
@@ -358,6 +373,9 @@
 						src.remove_object(O)
 					if (layout_style == "tg")
 						src.remove_screen(legend)
+					src.remove_screen(organ_butte)
+					if (butte_item)
+						src.remove_object(butte_item)
 
 			if ("lhand")
 				master.swap_hand(1)
@@ -565,6 +583,8 @@
 				clicked_slot(slot_wear_mask)
 			if("head")
 				clicked_slot(slot_head)
+			if("butte")
+				clicked_slot(slot_butt)
 			#undef clicked_slot
 
 	MouseEntered(var/atom/movable/screen/hud/H, location, control, params)
@@ -619,6 +639,9 @@
 				entered_slot(slot_l_hand)
 			if ("rhand")
 				entered_slot(slot_r_hand)
+			if ("butte")
+				entered_slot(slot_butt)
+				test_slot(slot_butt)
 			if ("intent")
 				switch (master.a_intent)
 					if (INTENT_DISARM)
@@ -684,6 +707,8 @@
 				mdrop_slot(slot_l_hand)
 			if ("rhand")
 				mdrop_slot(slot_r_hand)
+			if ("butte")
+				mdrop_slot(slot_butt)
 		#undef mdrop_slot
 
 	MouseDrop_T(atom/movable/screen/hud/H, atom/movable/O as obj, mob/user as mob)
@@ -721,6 +746,8 @@
 				mdrop_slot(slot_l_hand)
 			if ("rhand")
 				mdrop_slot(slot_r_hand)
+			if ("butte")
+				mdrop_slot(slot_butt)
 		#undef mdrop_slot
 
 	proc/add_other_object(obj/item/I, loc) // this is stupid but necessary
@@ -729,6 +756,8 @@
 		for (var/atom/movable/screen/hud/H in inventory_bg)
 			if (loc == H.screen_loc)
 				hide = 1
+		if (I == butte_item && !show_butte)
+			hide = 1
 
 		if (hide)
 			inventory_items += I
@@ -742,6 +771,20 @@
 		if (length(inventory_items))
 			inventory_items -= I
 		remove_object(I)
+
+
+	proc/show_butt_slot()
+		show_butte = TRUE
+		if (show_inventory)
+			src.add_screen(organ_butte)
+			if (butte_item)
+				src.add_object(butte_item, HUD_LAYER+2)
+
+	proc/hide_butt_slot()
+		show_butte = FALSE
+		src.remove_screen(organ_butte)
+		if (butte_item)
+			src.remove_object(butte_item)
 
 	proc/update_hands()
 		if (master.limbs && !master.limbs.l_arm)
