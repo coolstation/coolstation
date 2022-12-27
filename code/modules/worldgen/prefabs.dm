@@ -7,6 +7,7 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 	var/prefabSizeX = 5
 	var/prefabSizeY = 5
 	var/underwater = 0 //prefab will only be used if this matches map_currently_underwater. I.e. if this is 1 and map_currently_underwater is 1 then the prefab may be used.
+	var/dusty = 0 		// prefab will only be used if this matched map_currently_very_dusty, see above if your so dumb.
 	var/required = 0   //If 1 we will try to always place thing thing no matter what. Required prefabs will only ever be placed once.
 
 	proc/applyTo(var/turf/target)
@@ -475,3 +476,53 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabPath = "assets/maps/prefabs/prefab_water_crashed.dmm"
 		prefabSizeX = 24
 		prefabSizeY = 32
+
+// gehenna's prefabs go here ok.
+
+	cave_spider
+		dusty = 1
+		maxNum = 3
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_spider.dmm"
+		prefabSizeX = 10
+		prefabSizeY = 10
+
+	cave_bread
+		dusty = 1
+		maxNum = 1
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_bread.dmm"
+		prefabSizeX = 10
+		prefabSizeY = 10
+
+	cave_meat
+		dusty = 1
+		maxNum = 2
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_meat.dmm"
+		prefabSizeX = 10
+		prefabSizeY = 10
+
+	cave_long
+		dusty = 1
+		maxNum = 3
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_long.dmm"
+		prefabSizeX = 10
+		prefabSizeY = 25
+
+	cave_wide
+		dusty = 1
+		maxNum = 3
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_wide.dmm"
+		prefabSizeX = 25
+		prefabSizeY = 10
+
+	cave_rockworms
+		dusty = 1
+		maxNum = 3
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_rockworms.dmm"
+		prefabSizeX = 5
+		prefabSizeY = 5
