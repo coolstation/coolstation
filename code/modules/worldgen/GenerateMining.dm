@@ -377,7 +377,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		if(T.z == GEH_ZLEVEL)
 			miningZ.Add(T)
 
-	var/num_to_place = AST_NUMPREFABS + rand(0,AST_NUMPREFABSEXTRA)
+	var/num_to_place = AST_NUMPREFABS + rand(0,AST_NUMPREFABSEXTRA) + 2
 	for (var/n = 1, n <= num_to_place, n++)
 		game_start_countdown?.update_status("Setting up mining level...\n(Prefab [n]/[num_to_place])")
 		var/datum/generatorPrefab/M = pickPrefab(1)

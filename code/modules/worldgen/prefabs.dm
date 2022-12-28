@@ -526,3 +526,19 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabPath = "assets/maps/prefabs/prefab_rockworms.dmm"
 		prefabSizeX = 5
 		prefabSizeY = 5
+
+	cave_cannibal
+		dusty = 1
+		maxNum = 1
+		probability = 25
+		prefabPath = "assets/maps/prefabs/prefab_cannibal.dmm"
+		prefabSizeX = 10
+		prefabSizeY = 10
+
+	cave_stash
+		dusty = 1
+		maxNum = 1
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_stash.dmm"
+		prefabSizeX = 20
+		prefabSizeY = 30
