@@ -34,6 +34,7 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock"
 	floor_turf = "/turf/unsimulated/floor/gehenna/desert"
+	hardness = 1
 	New()
 		..()
 		src.icon_state = initial(src.icon_state)
@@ -42,17 +43,19 @@
 
 /turf/simulated/wall/asteroid/gehenna/z3
 	floor_turf = "/turf/simulated/floor/sand"
+	hardness = 1
 
 /turf/simulated/wall/asteroid/gehenna/tough
 	name = "dense sulferous rock"
 	desc = "looks densely packed"
 	icon_state = "gehenna_rock2"
+	hardness = 2
 
 /turf/simulated/wall/asteroid/gehenna/z3/tough
 	name = "dense sulferous rock"
 	desc = "looks densely packed"
 	icon_state = "gehenna_rock2"
-
+	hardness = 2
 
 /turf/unsimulated/wall/gehenna/
 	fullbright = 0

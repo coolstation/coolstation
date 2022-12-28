@@ -540,5 +540,5 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		maxNum = 1
 		probability = 100
 		prefabPath = "assets/maps/prefabs/prefab_cave_stash.dmm"
-		prefabSizeX = 20
-		prefabSizeY = 30
+		prefabSizeX = 30
+		prefabSizeY = 20
