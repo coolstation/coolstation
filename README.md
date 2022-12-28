@@ -20,6 +20,9 @@ You might leave our wiki knowing more than you did before or you might still jus
 [<img src=".github/assets/goonhub.png" alt="Coolhub" width="150" align="left">](https://coolstation.space)
 Coolhub doesn't exiust yet but it probably will have like, maps and round info and be a good intro landing page. Right now it is a very good website. Please click on it. Please 🙏🥺 
 
+[<img src=".github/assets/discord.png" alt="DisCord" width="150" align="left">](https://discord.gg/Xh3yfs8KGn)
+It's discord. Don't make me say it twice.
+
 ## CONTRIBUTING
 
 Easy! 
