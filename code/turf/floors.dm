@@ -1069,6 +1069,7 @@ DEFINE_FLOORS(snowrough/border,
 	icon_state = "sand"
 	step_material = "step_outdoors"
 	step_priority = STEP_PRIORITY_MED
+	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
 
 	New()
 		..()

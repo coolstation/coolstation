@@ -476,8 +476,9 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 	if(map_currently_very_dusty)
 		makeMiningLevelGehenna()
+		hotspot_controller.generate_map(GEH_ZLEVEL, "desert")
 
-	hotspot_controller.generate_map()
+	hotspot_controller.generate_map(AST_ZLEVEL, map_currently_underwater ? "trench" : "space")
 
 /proc/pickPrefab(var/gehenna = 0)
 	var/list/eligible = list()
