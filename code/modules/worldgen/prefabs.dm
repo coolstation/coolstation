@@ -559,7 +559,7 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabSizeX = 10
 		prefabSizeY = 10
 
-	cave_farts
+	cave_parts
 		dusty = 1
 		maxNum = 1
 		probability = 100
