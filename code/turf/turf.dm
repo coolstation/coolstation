@@ -1121,7 +1121,8 @@ proc/generate_space_color()
 	var/zlevel = 3 //((A.z=3)?5:3)//(3,4)
 
 	if(A.z == 3) zlevel = 5
-	else zlevel = 3
+	else if(map_currently_very_dusty)
+		zlevel = 5
 
 	if (world.maxz < zlevel) // if there's less levels than the one we want to go to
 		zlevel = 1 // just boot people back to z1 so the server doesn't lag to fucking death trying to place people on maps that don't exist

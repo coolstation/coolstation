@@ -18,7 +18,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 	proc/place()
 		if (map_currently_underwater)
 			src.ReplaceWith(/turf/space/fluid/trench, FALSE, TRUE, FALSE, TRUE)
-		else if (map_currently_very_dusty)
+		else if (map_currently_very_dusty && ((src.z == 3)||(src.z == 1)))
 			src.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
 		else
 			src.ReplaceWith(/turf/space, FALSE, TRUE, FALSE, TRUE)
@@ -29,7 +29,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		place()
 			if (map_currently_underwater)
 				src.ReplaceWith(/turf/space/fluid/trench, FALSE, TRUE, FALSE, TRUE)
-			else if (map_currently_very_dusty)
+			else if (map_currently_very_dusty && ((src.z == 3)||(src.z == 1)))
 				src.ReplaceWith(/turf/simulated/floor/sand, FALSE, TRUE, FALSE, TRUE)
 			else
 				src.ReplaceWith(/turf/simulated/floor/plating/airless/asteroid, FALSE, TRUE, FALSE, TRUE)
@@ -38,8 +38,10 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		name = "variable wall"
 		icon_state = "wall"
 		place()
-			if (map_currently_very_dusty)
+			if (map_currently_very_dusty && (src.z == 3))
 				src.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/z3/tough, FALSE, TRUE, FALSE, TRUE)
+			else if (map_currently_very_dusty && (src.z == 1))
+				src.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/tough, FALSE, TRUE, FALSE, TRUE)
 			else
 				src.ReplaceWith(/turf/simulated/wall/asteroid, FALSE, TRUE, FALSE, TRUE)
 
@@ -49,7 +51,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		place()
 			if (map_currently_underwater)
 				src.ReplaceWith(/turf/space/fluid/trench, FALSE, TRUE, FALSE, TRUE)
-			else if (map_currently_very_dusty)
+			else if (map_currently_very_dusty && ((src.z == 3)||(src.z == 1)))
 				src.ReplaceWith(/turf/simulated/floor/sand, FALSE, TRUE, FALSE, TRUE)
 			else
 				src.ReplaceWith(/turf/space, FALSE, TRUE, FALSE, TRUE)
@@ -479,13 +481,13 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 	hotspot_controller.generate_map()
 
-/proc/pickPrefab(var/gehenna = 0)
+/proc/pickPrefab(var/dusty = 0)
 	var/list/eligible = list()
 	var/list/required = list()
 
 	for(var/datum/generatorPrefab/M in miningModifiers)
 		if(M.underwater != map_currently_underwater) continue
-		if(gehenna && (M.dusty != map_currently_very_dusty)) continue
+		if(M.dusty != dusty) continue
 		if(M.type in miningModifiersUsed)
 			if(M.required) continue
 			if(M.maxNum != -1)
