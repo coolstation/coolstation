@@ -42,7 +42,7 @@
 		return
 
 /turf/simulated/wall/asteroid/gehenna/z3
-	floor_turf = "/turf/simulated/floor/sand"
+	floor_turf = "/turf/simulated/floor/gehenna"
 	hardness = 1
 
 /turf/simulated/wall/asteroid/gehenna/tough
@@ -65,13 +65,34 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock3"
 
+/turf/simulated/floor/gehenna/
+	name = "sand"
+	icon = 'icons/turf/outdoors.dmi'
+	icon_state = "sand"
+	step_material = "step_outdoors"
+	step_priority = STEP_PRIORITY_MED
+	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
+
+	New()
+		..()
+		src.set_dir(pick(cardinal))
+
+/turf/simulated/floor/gehenna/plasma
+	oxygen = MOLES_O2STANDARD * 1.5
+	nitrogen = MOLES_N2STANDARD / 2
+	toxins = MOLES_O2STANDARD // hehh hehh hehhhehhhe
+
+/turf/simulated/floor/gehenna/farts
+	farts = MOLES_O2STANDARD
+	nitrogen = MOLES_N2STANDARD / 2
+
 /turf/unsimulated/floor/gehenna/desert
 	name = "barren wasteland"
 	desc = "Looks really dry out there."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna"
 	carbon_dioxide = 5*(sin(GEHENNA_TIME - 90)+ 1)
-	oxygen = MOLES_O2STANDARD
+	oxygen = MOLES_O2STANDARD * 2
 	nitrogen = 0
 	temperature = WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
 

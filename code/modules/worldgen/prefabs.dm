@@ -542,3 +542,27 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabPath = "assets/maps/prefabs/prefab_cave_stash.dmm"
 		prefabSizeX = 30
 		prefabSizeY = 20
+
+	cave_plasma
+		dusty = 1
+		maxNum = 2
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_plasma.dmm"
+		prefabSizeX = 10
+		prefabSizeY = 10
+
+	cave_farts
+		dusty = 1
+		maxNum = 2
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_farts.dmm"
+		prefabSizeX = 10
+		prefabSizeY = 10
+
+	cave_farts
+		dusty = 1
+		maxNum = 1
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_parts.dmm"
+		prefabSizeX = 25
+		prefabSizeY = 25
