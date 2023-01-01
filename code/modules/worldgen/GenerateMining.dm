@@ -168,9 +168,9 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			var/list/holeList = list()
 			for(var/k=0, k<AST_RNGWALKINST, k++)
 				var/turf/T = pick(L)
-				for(var/j=0, j<rand(2*AST_RNGWALKCNT,round(AST_RNGWALKCNT*3.5)), j++)
+				for(var/j=0, j<rand(2*AST_RNGWALKCNT,round(AST_RNGWALKCNT*4.5)), j++)
 					holeList.Add(T)
-					T = get_step(T, pick(NORTH,EAST,SOUTH,WEST))
+					T = get_step(T, pick(NORTH,EAST,SOUTH,WEST,EAST,SOUTH)) // slight S-E bias
 					if(!istype(T, /turf/simulated/wall/asteroid)) continue
 					var/turf/simulated/wall/asteroid/ast = T
 					ast.destroy_asteroid(0)
@@ -179,19 +179,13 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		for(var/i=0, i<80, i++)
 			var/list/L = list()
 			for (var/turf/simulated/wall/asteroid/gehenna/A in range(4,pick(generated)))
-				L+=A
+				if(prob(50))
+					L+=A
 
 			Turfspawn_Asteroid_SeedOre(L, rand(2,8), rand(1,70))
 
 		for(var/i=0, i<80, i++)
 			Turfspawn_Asteroid_SeedOre(generated)
-
-
-		//for(var/i=0, i<100, i++)
-		//	if(prob(20))
-		//		Turfspawn_Asteroid_SeedOre(generated, rand(2,6), rand(0,70))
-		//	else
-		//		Turfspawn_Asteroid_SeedOre(generated)
 
 		for(var/i=0, i<40, i++)
 			Turfspawn_Asteroid_SeedEvents(generated)
