@@ -168,6 +168,8 @@
 	if(target_z)
 		for(var/obj/machinery/power/data_terminal/cable_tray/tray in get_turf(locate(src.x,src.y,target_z)))
 			. |= tray
+			if(src.z > target_z)
+				new /obj/structure/girder(src.loc) //gotta go up!
 			break
 	else if(id)
 		for_by_tcl(tray, /obj/machinery/power/data_terminal/cable_tray)

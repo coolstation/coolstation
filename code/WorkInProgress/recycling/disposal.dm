@@ -1792,6 +1792,7 @@
 		START_TRACKING
 		if(src.z > target_z)
 			icon_state = "pipe-t"
+			new /obj/structure/girder(src.loc) //gotta go up!
 
 	disposing()
 		STOP_TRACKING
