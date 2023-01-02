@@ -392,7 +392,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 					logTheThing("debug", null, null, "Prefab placement #[n] [M.type][M.required?" (REQUIRED)":""] succeeded. [target] @ [showCoords(target.x, target.y, target.z)]")
 					stop = 1
 				count++
-				if (count >= 33)
+				if (count >= maxTries)
 					logTheThing("debug", null, null, "Prefab placement #[n] [M.type] failed due to maximum tries [maxTries][M.required?" WARNING: REQUIRED FAILED":""]. [target] @ [showCoords(target.x, target.y, target.z)]")
 		else break
 
