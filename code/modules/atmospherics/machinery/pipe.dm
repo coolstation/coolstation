@@ -1036,8 +1036,7 @@ obj/machinery/atmospherics/pipe
 		New()
 			initialize_directions = dir
 			..()
-			if(src.z > target_z)
-				icon_state = "inlet"
+
 
 		process()
 			..()
@@ -1053,12 +1052,15 @@ obj/machinery/atmospherics/pipe
 
 		update_icon()
 			if(node1)
-				icon_state = "intact"
+				if(src.z > target_z)
+					icon_state = "inlet"
+				else
+					icon_state = "trunk"
 
 				dir = get_dir(src, node1)
 
 			else
-				icon_state = "exposed"
+				icon_state = "inlet_filter-0"
 
 		initialize()
 			var/connect_direction = dir
@@ -1099,11 +1101,12 @@ obj/machinery/atmospherics/pipe
 			return null
 
 		hide(var/i) //to make the little pipe section invisible, the icon changes.
+			return /*
 			if(node1)
 				icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]intact"
 				dir = get_dir(src, node1)
 			else
-				icon_state = "exposed"
+				icon_state = "exposed"*/
 
 	manifold
 		icon = 'icons/obj/atmospherics/pipes/manifold_pipe.dmi'
