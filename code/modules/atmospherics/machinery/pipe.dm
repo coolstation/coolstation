@@ -1010,15 +1010,15 @@ obj/machinery/atmospherics/pipe
 				icon_state = "exposed"
 
 	vertical_pipe
-		icon = 'icons/obj/atmospherics/pipe_vent.dmi'
-		icon_state = "intact" // New sprite(s) needed
+		icon = 'icons/obj/atmospherics/pipes.dmi'
+		icon_state = "trunk" // New sprite(s) needed
 		name = "Vertical Pipe" // TODO
-		desc = "a section of vertical piping..." // TODO
+		desc = "a vertical pipe riser." // TODO
 		level = 1
 		volume = 250
 		dir = SOUTH
 		initialize_directions = SOUTH
-		color = "#F0F"
+		//color = "#F0F"
 		var/target_z
 		var/id
 		var/obj/machinery/atmospherics/node1
@@ -1036,6 +1036,8 @@ obj/machinery/atmospherics/pipe
 		New()
 			initialize_directions = dir
 			..()
+			if(src.z > target_z)
+				icon_state = "inlet"
 
 		process()
 			..()

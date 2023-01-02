@@ -149,9 +149,9 @@
 
 
 /obj/machinery/power/data_terminal/cable_tray
-	name = "cable tray"
-	desc = "A connector that goes off into somewhere..." //TODO
-	color = "#F0F"
+	name = "cable conduit port"
+	desc = "A vertical powernet riser." //TODO
+	color = "#5CF"
 	var/id
 	var/target_z
 

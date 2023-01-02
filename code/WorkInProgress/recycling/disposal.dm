@@ -1782,6 +1782,8 @@
 /obj/disposalpipe/trunk/zlevel
 	var/target_z
 	var/id
+	name = "vertical disposal trunk"
+	desc = "a section of vertical riser."
 	icon_state = "pipe-vt"
 	//color = "#FAF"
 
