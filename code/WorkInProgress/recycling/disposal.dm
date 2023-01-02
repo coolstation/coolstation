@@ -1782,11 +1782,14 @@
 /obj/disposalpipe/trunk/zlevel
 	var/target_z
 	var/id
-	color = "#FAF"
+	icon_state = "pipe-vt"
+	//color = "#FAF"
 
 	New()
 		..()
 		START_TRACKING
+		if(src.z > target_z)
+			icon_state = "pipe-t"
 
 	disposing()
 		STOP_TRACKING
