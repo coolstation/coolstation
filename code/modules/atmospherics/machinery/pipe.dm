@@ -1012,7 +1012,7 @@ obj/machinery/atmospherics/pipe
 	vertical_pipe
 		icon = 'icons/obj/atmospherics/pipes.dmi'
 		icon_state = "trunk" // New sprite(s) needed
-		name = "Vertical Pipe" // TODO
+		name = "vertical pipe trunk" // TODO
 		desc = "a vertical pipe riser." // TODO
 		level = 1
 		volume = 250
