@@ -418,7 +418,7 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 
 		new_icon.Blend(DEFAULT_MUD_COLOR, ICON_MULTIPLY)
 
-		new_icon.Blend(new /icon('icons/effects/blood.dmi', "itemblood"), ICON_MULTIPLY)
+		new_icon.Blend(new /icon('icons/misc/not_poo.dmi', "itemmud"), ICON_MULTIPLY)
 
 		if (I.uses_multiple_icon_states)
 			new_icon.Blend(new /icon(I.icon), ICON_UNDERLAY)
