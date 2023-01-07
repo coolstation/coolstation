@@ -307,8 +307,43 @@
 			icon_state = "QM"
 
 		logistics
-			name = "Logistics"
+			name = "logistics"
+			desc = "If you follow this one, you might find it pretty profitable."
 			icon_state = "wall_logistics"
+
+		logistics_right
+			name = "logistics"
+			icon_state = "wall_logistics_arrow_r"
+
+		logistics_left
+			name = "logistics"
+			icon_state = "wall_logistics_arrow_l"
+
+		bunks
+			name = "bunks"
+			desc = "If you follow this one, you might find it pretty restful."
+			icon_state = "wall_bunks"
+
+		bunks_right
+			name = "bunks"
+			icon_state = "wall_bunks_arrow_r"
+
+		bunks_left
+			name = "bunks"
+			icon_state = "wall_bunks_arrow_l"
+
+		cafeteria
+			name = "cafeteria"
+			desc = "If you follow this one, you might find it pretty delicious."
+			icon_state = "wall_cafeteria"
+
+		cafeteria_right
+			name = "cafeteria"
+			icon_state = "wall_cafeteria_arrow_r"
+
+		cafeteria_left
+			name = "cafeteria"
+			icon_state = "wall_cafeteria_arrow_l"
 
 		security
 			name = "Security"
