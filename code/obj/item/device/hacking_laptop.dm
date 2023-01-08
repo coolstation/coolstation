@@ -44,6 +44,7 @@
 
 	html += {"<title>D00R PHR34K The Airlock Liberatorrrr!!!</title>
 <body style="background-color:#C14417;">
+<b>D00R PHR34K</b><br>
 Hello hacker fucker<br><br>
 
 <b>This airlock is:</b><br>"}
@@ -63,7 +64,7 @@ Hello hacker fucker<br><br>
 	else
 		html += "<b>SAFE TO THE TOUCH</b> | <a href=byond://?src=\ref[src];command=electrify;the_door=\ref[target]>(Zappp it!)</a><br>"
 	html += "</body>"
-	user.Browse(html, "window=autohacker, size = 200x200")
+	user.Browse(html, "window=autohacker;size=250x150")
 
 
 /obj/item/device/hacking_laptop/proc/toggle(opening = FALSE, mob/user)
@@ -92,18 +93,21 @@ Hello hacker fucker<br><br>
 		usr.Browse(null, "window=autohacker")
 		return
 
+	var/wait = 0
 	switch(href_list["command"])
 		if ("open")
 			target.open()
+			wait = 0.6 SECONDS //Door parent why must you have a spawn and a sleep in open() and close() I need your density updates weh
 		if ("close")
 			target.close()
+			wait = 0.6 SECONDS
 		if ("togglebolts")
 			target.toggle_bolt(usr)
 		if ("electrify")
 			target.shock_perm(usr)
 		if ("makesafe")
 			target.shock_restore(usr)
-	SPAWN_DBG(0.1 SECONDS) //Door parent why must you have a spawn in open() and close() I need your density update weh
+	SPAWN_DBG(wait)
 		open_hack_UI(target, usr) //Update status :3
 
 //--------------------------------------------
