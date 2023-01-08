@@ -230,7 +230,7 @@ Links are ignored on this node. It uses the target node's links.
 	var/links = list() //Which nodes are inside this node. What "buttons" this node contains.
 	var/showBackToMain = 1 //Show button leading back to first screen on this node? Careful: Without this people might get stuck. Plan your dialogue.
 	var/datum/dialogueMaster/master = null
-	var/voiceClip = null //Maybe here u put a sound:)
+	var/voiceClips = list() //Maybe here u put a sound:)
 
 	New(var/datum/dialogueMaster/M)
 		master = M
@@ -283,6 +283,8 @@ Links are ignored on this node. It uses the target node's links.
 		return html
 
 	proc/onActivate(var/client/C) //Called when selected. If you want to hook the actual world up somehow. This runs before any html is generates so it could be used to manipulate things before that.
+		if(M && voiceClips.len)
+			playsound(M, pick(voiceClips), 40, 0)
 		return
 
 	// !!!!!!!!!!! WARNING : THIS WILL GET CALLED TWICE PER CHUI WINDOW CLOSE DUE TO A BUG I HAVENT BEEN ABLE TO RESOLVE - ACCOUNT FOR THAT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
