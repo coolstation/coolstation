@@ -230,6 +230,7 @@ Links are ignored on this node. It uses the target node's links.
 	var/links = list() //Which nodes are inside this node. What "buttons" this node contains.
 	var/showBackToMain = 1 //Show button leading back to first screen on this node? Careful: Without this people might get stuck. Plan your dialogue.
 	var/datum/dialogueMaster/master = null
+	var/voiceClip = null //Maybe here u put a sound:)
 
 	New(var/datum/dialogueMaster/M)
 		master = M
