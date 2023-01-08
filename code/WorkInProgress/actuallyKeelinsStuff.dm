@@ -1967,6 +1967,18 @@ Returns:
 			var/obj/item/clothing/mask/cigarette/C = W
 			if(!C.on)
 				C.light(user, "<span class='alert'>[user] lights the [C] with [src]. That seems appropriate.</span>")
+				return
+		if(W.w_class = W_CLASS_TINY)
+			add_fingerprint(user)
+			W.unequipped(user)
+			W.dropped(user)
+			src.visible_message("<span class='notice'>[user] tosses [W] into [src].</span>")
+			qdel(W)
+			light.set_brightness(1.1)
+			SPAWN_DBG(3 SECONDS)
+				light.set_brightness(1)
+			return
+		..()
 
 /*
 
