@@ -1968,7 +1968,7 @@ Returns:
 			if(!C.on)
 				C.light(user, "<span class='alert'>[user] lights the [C] with [src]. That seems appropriate.</span>")
 				return
-		if(W.w_class = W_CLASS_TINY)
+		if(W.w_class == W_CLASS_TINY)
 			add_fingerprint(user)
 			W.unequipped(user)
 			W.dropped(user)
