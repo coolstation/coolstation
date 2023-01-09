@@ -4,8 +4,8 @@
 	picture = "pm_start.png"
 	density = 1
 	anchored = 1
-	icon='icons/mob/human.dmi'
-	icon_state = "body_m"
+	icon = 'icons/obj/trader.dmi'
+	icon_state = "pricemaster"
 	hiketolerance = 0
 	dialogue = null
 
@@ -18,6 +18,7 @@
 			src.goods_sell += new /datum/commodity/pricemaster/robot_fist_r(src)
 		src.goods_sell += new /datum/commodity/pricemaster/communicator(src)
 		src.goods_sell += new /datum/commodity/pricemaster/lasergun(src)
+		src.set_dir(pick(NORTH,EAST,SOUTH,WEST))
 
 	Click(location,control,params)
 		dialogue.showDialogue(usr)
@@ -44,6 +45,7 @@
 		src.temp = null
 		var/master_price = 0
 		var/list/sentence = list()
+		src.set_dir(pick(NORTH,EAST,SOUTH,WEST))
 		// if something's gone wrong and there's no input, reject the haggle
 		// also reject if there's no change in the price at all
 		if (!askingprice) return
@@ -237,7 +239,7 @@ proc/init_pmvox() // first bare numbers
 	new/datum/priceVOXsound("500", "sound/voice/PRICEMASTER/500.ogg", 500))
 
 	pmvoxdollars = list(new/datum/priceVOXsound("billion", "sound/voice/PRICEMASTER/DOLLARS/BILLION_DOLLARS.ogg", 100000000, " BILLION DOLLARS"),
-	new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/DOLLARS/HUNDRED_AND_FIFTY_THOUSAND_DOLLARS.ogg", 150000, " HUNDRED AND FIFTY THOUSAND DOLLARS DOLLARS"),
+	new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/DOLLARS/HUNDRED_AND_FIFTY_THOUSAND_DOLLARS.ogg", 150000, " HUNDRED AND FIFTY THOUSAND DOLLARS"),
 	new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/DOLLARS/HUNDRED_AND_THIRTY_SIX_DOLLARS.ogg", 136, " HUNDRED AND THIRTY SIX DOLLARS"),
 	new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/DOLLARS/HUNDRED_BILLION_DOLLARS.ogg", 10000000000, " HUNDRED BILLION DOLLARS"),
 	new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/DOLLARS/HUNDRED_DOLLARS.ogg", 100, " HUNDRED DOLLARS"),
@@ -329,6 +331,10 @@ proc/init_pmvox() // first bare numbers
 							'sound/voice/PRICEMASTER/EXCLAMATIONS/EL_MAESTRO_DEL_PRICIO.ogg',\
 							'sound/voice/PRICEMASTER/EXCLAMATIONS/EVERYTHING_IS_FOR_SALE.ogg',\
 							'sound/voice/PRICEMASTER/EXCLAMATIONS/EVERYTHING_IS_FOR_SALE2.ogg')
+		onActivate(var/client/C)
+			..()
+			var/atom/A = master.master
+			A.set_dir(pick(NORTH,EAST,SOUTH,WEST))
 
 	pm_who
 		links= list(/datum/dialogueNode/pm_StartTrade)
@@ -372,6 +378,7 @@ proc/init_pmvox() // first bare numbers
 
 		onActivate(var/client/C)
 			var/atom/A = master.master
+			A.set_dir(pick(NORTH,EAST,SOUTH,WEST))
 			if(istype(A, /obj/npc/trader) && C.mob != null)
 				var/obj/npc/trader/T = A
 				if(T.angry)
