@@ -2897,6 +2897,6 @@
 	comname = "COMMUNICATION"
 	comtype = /obj/item/device/camera_viewer
 	onmarket = 0
-	price = 400000000000
+	price = 400000000//000
 	upperfluc = 10000
 	lowerfluc = -21000
