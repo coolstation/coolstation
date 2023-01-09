@@ -42,6 +42,8 @@
 	//////////////////////////////////////////////////
 	haggle(var/askingprice, var/buying, var/datum/commodity/H)
 		src.temp = null
+		var/master_price = 0
+		var/list/sentence = list()
 		// if something's gone wrong and there's no input, reject the haggle
 		// also reject if there's no change in the price at all
 		if (!askingprice) return
@@ -51,12 +53,14 @@
 			// we're buying, so we want to pay less per unit
 			if(askingprice > H.price)
 				if (src.bullshit >= 5)
-					H.price = askingprice
+					master_price = askingprice
 					src.temp = "<B>Cost:</B> [H.price] Credits<BR>"
 					src.temp += src.errormsgs[1]
 					H.haggleattempts++
+					src.bullshit++
 					//return
 				else
+					master_price = H.price
 					src.temp = "<B>Cost:</B> [H.price] Credits<BR>"
 					src.temp += src.errormsgs[2]
 					src.bullshit++
@@ -65,12 +69,14 @@
 			// we're selling, so we want to be paid MORE per unit
 			if(askingprice < H.price)
 				if (src.bullshit >= 5)
-					H.price = askingprice
+					master_price = askingprice
 					H.haggleattempts++
+					src.bullshit++
 					src.temp = "<B>Cost:</B> [H.price] Credits<BR>"
 					src.temp += src.errormsgs[3]
 					//return
 				else
+					master_price = H.price
 					src.temp = "<B>Cost:</B> [H.price] Credits<BR>"
 					src.temp += src.errormsgs[4]
 					src.bullshit++
@@ -80,73 +86,70 @@
 
 		//pricemaster does not haggle... much
 		var/firstnum = askingprice
-		var/master_price = 500
-		var/list/sentence = list()
 		var/list/temp2 = list()
 
-		if (patience == H.haggleattempts)
-			src.temp += "<BR>THE PRICEMASTER HAS SPOKEN."
-			sentence += pick(pmvoxend)
-			src.bullshit++
-		if(src.temp)
-			return // we already have our answer then.
+		if(!src.temp) // skip over the price generation if we just haggled badly
+			while(firstnum > 11)
+				firstnum /= 10
+			firstnum = round(firstnum)
 
-		while(firstnum > 11)
-			firstnum /= 10
-		firstnum = round(firstnum)
-
-		H.haggleattempts++
-		src.bullshit++
-
-		if(prob(5))
-			var/datum/priceVOXsound/V = pick(pmvoxcomplete)
-			sentence += V
-			master_price = V.value
-			src.temp = V.string
+			H.haggleattempts++
 			src.bullshit++
 
-		else
-			while((H.haggleattempts && (master_price < H.price) && src.bullshit))
-				src.bullshit--
+			if(prob(5))
+				var/datum/priceVOXsound/V = pick(pmvoxcomplete)
+				sentence += V
+				master_price = V.value
+				src.temp = V.string
+				src.bullshit++
 
-				for(var/datum/priceVOXsound/V in pmvoxnums) // find if we can spit their offer back at them
-					if(V.value == firstnum)
-						temp2 += V
-				if(temp2.len && prob(75)) // but not every time
-					var/datum/priceVOXsound/V = pick(temp2)
-					sentence += V
-					master_price = V.value
-					src.temp = V.string
-				else
-					var/datum/priceVOXsound/V = pick(pmvoxnums)
-					sentence += V
-					master_price = V.value
-					src.temp = V.string
+			else
+				while((H.haggleattempts && (master_price <= H.price) && src.bullshit))
+					src.bullshit--
+					sentence = list()//we need to reset this every loop just in case
 
-				temp2 = list()
-				if(!(master_price % 10)) //this ends in 0 so let's not add a Hundred mod to it.
-					for(var/datum/priceVOXsound/V in pmvoxdollars)
-						if(V.id == "hundred")
-							continue
-						temp2 += V
-					if(temp2.len)
+
+					for(var/datum/priceVOXsound/V in pmvoxnums) // find if we can spit their offer back at them
+						if(V.value == firstnum)
+							temp2 += V
+					if(temp2.len && prob(75)) // but not every time
 						var/datum/priceVOXsound/V = pick(temp2)
 						sentence += V
-						master_price *= V.value
-						src.temp += V.string
-				else
-					var/datum/priceVOXsound/V = pick(pmvoxdollars)
-					sentence += V
-					src.temp += V.string
-					if(V.value % 100)//has some trailing digits there
-						master_price = master_price * 100 + (V.value % 100)
-					else if(V.value == 150000) // special case
-						master_price = master_price*100000 + 50000
+						master_price = V.value
+						src.temp = V.string
 					else
-						master_price *= V.value
+						var/datum/priceVOXsound/V = pick(pmvoxnums)
+						sentence += V
+						master_price = V.value
+						src.temp = V.string
+
+					temp2 = list()
+					if(!(master_price % 10)) //this ends in 0 so let's not add a Hundred mod to it.
+						for(var/datum/priceVOXsound/V in pmvoxdollars)
+							if(V.id == "hundred")
+								continue
+							temp2 += V
+						if(temp2.len)
+							var/datum/priceVOXsound/V = pick(temp2)
+							sentence += V
+							master_price *= V.value
+							src.temp += V.string
+					else
+						var/datum/priceVOXsound/V = pick(pmvoxdollars)
+						sentence += V
+						src.temp += V.string
+						if(V.value % 100)//has some trailing digits there
+							master_price = master_price * 100 + (V.value % 100)
+						else if(V.value == 150000) // special case
+							master_price = master_price*100000 + 50000
+						else
+							master_price *= V.value
+		else
+			sentence += pick(pmvoxthings)
+
 		//ok so we either got a higher price or gave up
-		if (patience == H.haggleattempts)
-			src.temp += "<BR>THE PRICEMASTER HAS SPOKEN."
+		if (patience <= H.haggleattempts)
+			src.temp += " ... THE PRICEMASTER HAS SPOKEN."
 			sentence += pick(pmvoxend)
 
 		for(var/datum/priceVOXsound/V in sentence)
@@ -313,7 +316,7 @@ proc/init_pmvox() // first bare numbers
 	start = /datum/dialogueNode/pm_start
 	visibleDialogue = 1
 	floatingText = 1
-	floating_text_style = "font-size:xx-large;"
+	floating_text_style = "font-size:large;"
 	maxDistance = 3
 
 /datum/dialogueNode
@@ -361,8 +364,6 @@ proc/init_pmvox() // first bare numbers
 			if(istype(A, /obj/npc/trader))
 				var/obj/npc/trader/T = A
 				if(T.angry)
-					if(nopevoice.len)
-						playsound(T, pick(nopevoice), 50, 0)
 					return T.angrynope
 				else
 					return nodeText
@@ -370,13 +371,16 @@ proc/init_pmvox() // first bare numbers
 				return nodeText
 
 		onActivate(var/client/C)
-			..()
 			var/atom/A = master.master
 			if(istype(A, /obj/npc/trader) && C.mob != null)
 				var/obj/npc/trader/T = A
-				if(!T.angry)
-					T.openTrade(C.mob, windowName = "trader", windowSize = "400x700")
-				else
+				if(T.angry)
 					if(nopevoice.len)
-						playsound(T, pick(nopevoice), 50, 0)
+						playsound(master.master, pick(nopevoice), 50, 0)
+						cooldowning = TRUE
+						SPAWN_DBG(1 SECOND)
+							cooldowning = FALSE
+				else
+					T.openTrade(C.mob, windowName = "trader", windowSize = "400x700")
+			..()
 			return DIALOGUE_CLOSE
