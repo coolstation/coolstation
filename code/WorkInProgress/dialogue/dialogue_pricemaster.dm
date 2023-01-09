@@ -335,7 +335,7 @@ proc/init_pmvox() // first bare numbers
 	visibleDialogue = 1
 	floatingText = 1
 	floating_text_style = "font-size:large;"
-	maxDistance = 3
+	//maxDistance = 3
 
 /datum/dialogueNode
 	pm_start
