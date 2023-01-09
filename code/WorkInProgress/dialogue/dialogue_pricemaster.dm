@@ -16,8 +16,14 @@
 			src.goods_sell += new /datum/commodity/pricemaster/robot_fist_l(src)
 		else
 			src.goods_sell += new /datum/commodity/pricemaster/robot_fist_r(src)
+		if(prob(75))
+			src.goods_sell += new /datum/commodity/pricemaster/chainsaw(src)
+		else
+			src.goods_sell += new /datum/commodity/pricemaster/lasergun(src)
 		src.goods_sell += new /datum/commodity/pricemaster/communicator(src)
-		src.goods_sell += new /datum/commodity/pricemaster/lasergun(src)
+		src.goods_sell += new /datum/commodity/pricemaster/nunchucks(src)
+		src.goods_sell += new /datum/commodity/pricemaster/tv(src)
+
 		src.set_dir(pick(NORTH,EAST,SOUTH,WEST))
 
 	Click(location,control,params)

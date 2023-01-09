@@ -2865,14 +2865,38 @@
 	comname = "The Communicator"
 	comtype = /obj/item/device/radio
 	onmarket = 0
-	price = 5000
-	upperfluc = 200
-	lowerfluc = -200
+	price = 14000
+	upperfluc = 2000
+	lowerfluc = -2000
 
 /datum/commodity/pricemaster/lasergun
 	comname = "The Laser Gun"
 	comtype = /obj/item/gun/modular/soviet
 	onmarket = 0
-	price = 15000
+	price = 10000
 	upperfluc = 10000
 	lowerfluc = -2000
+
+/datum/commodity/pricemaster/chainsaw
+	comname = "The Laser Gun"
+	comtype = /obj/item/saw
+	onmarket = 0
+	price = 9000
+	upperfluc = 7000
+	lowerfluc = -2000
+
+/datum/commodity/pricemaster/nunchucks
+	comname = "El Nunchaku"
+	comtype = /obj/item/nunchucks
+	onmarket = 0
+	price = 150000
+	upperfluc = 10000
+	lowerfluc = -21000
+
+/datum/commodity/pricemaster/tv
+	comname = "COMMUNICATION"
+	comtype = /obj/item/device/camera_viewer
+	onmarket = 0
+	price = 400000000000
+	upperfluc = 10000
+	lowerfluc = -21000
