@@ -31,11 +31,11 @@
 					"THE PRICEMASTER HAS SPOKEN.",
 					"THANK YOU FOR SHOPPING.")
 
-	hagglemsgs = list("Alright, how's this sound?",
-					"You drive a hard bargain. How's this price?",
-					"You're busting my balls here. How's this?",
-					"I'm being more than generous here, I think you'll agree.",
-					"This is my final offer. Can't do better than this.")
+	successful_purchase_dialogue = list("THANK YOU FOR SHOPPING")
+	successful_purchase_sound = list('sound/voice/PRICEMASTER/EXCLAMATIONS/THANK_YOU_FOR_SHOPPING.ogg',\
+					'sound/voice/PRICEMASTER/EXCLAMATIONS/THANK_YOU_FOR_SHOPPING2.ogg',\
+					'sound/voice/PRICEMASTER/EXCLAMATIONS/THANK_YOU_FOR_SHOPPING3.ogg',\
+					'sound/voice/PRICEMASTER/EXCLAMATIONS/YES.ogg')
 
 
 	////////////////////////////////////////////////////
