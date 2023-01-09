@@ -54,6 +54,7 @@
 	proc/play(var/client/listener)
 		if (src.soundFile)
 			listener << src.soundFile
+
 /datum/hlVOXsound
 	var/id
 	var/ogg
@@ -3529,6 +3530,13 @@ var/global/ //mirroring above for hl
 	list/hlvoxsounds_flag_sorted = list()
 
 	list/hlvoxsounds = list()
+
+	list/pmvoxnums = list()    //leading numbers
+	list/pmvoxmisc = list()    //random shit
+	list/pmvoxdollars = list() //trailing numbers
+	list/pmvoxthings = list()  //objects he cares to buy (few)
+	list/pmvoxcomplete = list()//full firm prices
+	list/pmvoxend = list()
 
 #undef FX
 #undef NOUN

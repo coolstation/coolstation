@@ -283,8 +283,8 @@ Links are ignored on this node. It uses the target node's links.
 		return html
 
 	proc/onActivate(var/client/C) //Called when selected. If you want to hook the actual world up somehow. This runs before any html is generates so it could be used to manipulate things before that.
-		if(M && voiceClips.len)
-			playsound(M, pick(voiceClips), 40, 0)
+		if(master.master && voiceClips.len)
+			playsound(master.master, pick(voiceClips), 40, 0)
 		return
 
 	// !!!!!!!!!!! WARNING : THIS WILL GET CALLED TWICE PER CHUI WINDOW CLOSE DUE TO A BUG I HAVENT BEEN ABLE TO RESOLVE - ACCOUNT FOR THAT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
