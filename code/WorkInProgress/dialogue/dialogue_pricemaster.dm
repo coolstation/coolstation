@@ -1,6 +1,7 @@
 /obj/npc/trader/pricemaster
 	name = "The PriceMaster"
 	desc = "Make him an offer."
+	picture = "pm_start.png"
 	density = 1
 	anchored = 1
 	icon='icons/mob/human.dmi'
@@ -139,6 +140,8 @@
 					src.temp += V.string
 					if(V.value % 100)//has some trailing digits there
 						master_price = master_price * 100 + (V.value % 100)
+					else if(V.value == 150000) // special case
+						master_price = master_price*100000 + 50000
 					else
 						master_price *= V.value
 		//ok so we either got a higher price or gave up
@@ -315,7 +318,7 @@ proc/init_pmvox() // first bare numbers
 
 /datum/dialogueNode
 	pm_start
-		nodeImage = "generic.png"
+		nodeImage = "pm_start.png"
 		links= list(/datum/dialogueNode/pm_who, /datum/dialogueNode/pm_StartTrade)
 		linkText = "..."
 		nodeText = "EVERYTHING IS FOR SALE"
@@ -328,6 +331,7 @@ proc/init_pmvox() // first bare numbers
 		links= list(/datum/dialogueNode/pm_StartTrade)
 		linkText = "who are you?"
 		nodeText = "I AM PRICEMASTER"
+		nodeImage = "pm_who.png"
 		voiceClips = list('sound/voice/PRICEMASTER/EXCLAMATIONS/I_AM_PRICEMASTER.ogg',\
 							'sound/voice/PRICEMASTER/EXCLAMATIONS/I_AM_PRICEMASTER-MAKE_ME_AN_OFFER.ogg')
 
