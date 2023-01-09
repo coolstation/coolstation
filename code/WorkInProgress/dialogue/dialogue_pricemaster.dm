@@ -98,7 +98,7 @@
 			H.haggleattempts++
 			src.bullshit++
 
-			if(prob(5))
+			if(prob(10))
 				var/datum/priceVOXsound/V = pick(pmvoxcomplete)
 				sentence += V
 				master_price = V.value
@@ -146,6 +146,16 @@
 							master_price = master_price*100000 + 50000
 						else
 							master_price *= V.value
+
+			if((master_price <= 999) && prob(50)) // one last price hike
+				var/thousands = rand(1,5) // these are the safest ones i think
+				var/list/temp3 = list()
+				temp3 += pmvoxnums[thousands]
+				temp3 += pmvoxmisc[1]
+				temp3 += sentence
+				sentence = temp3
+				src.temp = pmvoxnums[thousands]:string + " THOUSAND " + src.temp
+				master_price += thousands * 1000
 		else
 			sentence += pick(pmvoxthings)
 
@@ -232,16 +242,16 @@ proc/init_pmvox() // first bare numbers
 	new/datum/priceVOXsound("70", "sound/voice/PRICEMASTER/70.ogg", 70, "SEVENTY"),
 	new/datum/priceVOXsound("78", "sound/voice/PRICEMASTER/78.ogg", 78, "SEVENTY-EIGHT"))
 
-	pmvoxmisc = list(new/datum/priceVOXsound("pointseven", "sound/voice/PRICEMASTER/POINT_SEVEN.ogg", 0.7),
+	pmvoxmisc = list(new/datum/priceVOXsound("thousand", "sound/voice/PRICEMASTER/THOUSAND.ogg", 1000),
+	new/datum/priceVOXsound("pointseven", "sound/voice/PRICEMASTER/POINT_SEVEN.ogg", 0.7),
 	new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/HUNDRED.ogg", 100),
 	new/datum/priceVOXsound("hundred_t", "sound/voice/PRICEMASTER/HUNDRED_THOUSAND.ogg", 100000),
-	new/datum/priceVOXsound("thousand", "sound/voice/PRICEMASTER/THOUSAND.ogg", 1000),
 	new/datum/priceVOXsound("500", "sound/voice/PRICEMASTER/500.ogg", 500))
 
 	pmvoxdollars = list(new/datum/priceVOXsound("billion", "sound/voice/PRICEMASTER/DOLLARS/BILLION_DOLLARS.ogg", 100000000, " BILLION DOLLARS"),
 	new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/DOLLARS/HUNDRED_AND_FIFTY_THOUSAND_DOLLARS.ogg", 150000, " HUNDRED AND FIFTY THOUSAND DOLLARS"),
 	new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/DOLLARS/HUNDRED_AND_THIRTY_SIX_DOLLARS.ogg", 136, " HUNDRED AND THIRTY SIX DOLLARS"),
-	new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/DOLLARS/HUNDRED_BILLION_DOLLARS.ogg", 10000000000, " HUNDRED BILLION DOLLARS"),
+	//new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/DOLLARS/HUNDRED_BILLION_DOLLARS.ogg", 10000000000, " HUNDRED BILLION DOLLARS"), // not sure why this one is so problematic
 	new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/DOLLARS/HUNDRED_DOLLARS.ogg", 100, " HUNDRED DOLLARS"),
 	new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/DOLLARS/HUNDRED_DOLLARS2.ogg", 100, " HUNDRED DOLLARS"),
 	new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/DOLLARS/HUNDRED_FORTY_SIX_DOLLARS.ogg", 146, " HUNDRED FORTY SIX DOLLARS"),
