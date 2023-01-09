@@ -6,12 +6,22 @@
 	icon='icons/mob/human.dmi'
 	icon_state = "body_m"
 	hiketolerance = 0
-
-	var/datum/dialogueMaster/dialogue = null
+	dialogue = null
 
 	New()
-		dialogue = new/datum/dialogueMaster/priceMaster(src)
 		..()
+		dialogue = new/datum/dialogueMaster/priceMaster(src)
+		if(prob(50))
+			src.goods_sell += new /datum/commodity/pricemaster/robot_fist_l(src)
+		else
+			src.goods_sell += new /datum/commodity/pricemaster/robot_fist_r(src)
+		src.goods_sell += new /datum/commodity/pricemaster/communicator(src)
+		src.goods_sell += new /datum/commodity/pricemaster/lasergun(src)
+
+		src.goods_buy += new /datum/commodity/pricemaster/robot_fist_l(src)
+		src.goods_buy += new /datum/commodity/pricemaster/robot_fist_r(src)
+		src.goods_buy += new /datum/commodity/pricemaster/communicator(src)
+		src.goods_buy += new /datum/commodity/pricemaster/lasergun(src)
 
 	Click(location,control,params)
 		dialogue.showDialogue(usr)
@@ -71,12 +81,12 @@
 		//pricemaster does not haggle... much
 		var/firstnum = askingprice
 		var/master_price = 500
-		var/sentence = list()
-		var/temp2 = list()
+		var/list/sentence = list()
+		var/list/temp2 = list()
 
 		while(firstnum > 11)
 			firstnum /= 10
-		firstnum = floor(firstnum)
+		firstnum = round(firstnum)
 
 		H.haggleattempts++
 		src.bullshit++
@@ -121,10 +131,10 @@
 					var/datum/priceVOXsound/V = pick(pmvoxdollars)
 					sentence += V
 					src.temp += V.string
-						if(V.value % 100)//has some trailing digits there
-							master_price = master_price * 100 + (V.value % 100)
-						else
-							master_price *= V.value
+					if(V.value % 100)//has some trailing digits there
+						master_price = master_price * 100 + (V.value % 100)
+					else
+						master_price *= V.value
 		//ok so we either got a higher price or gave up
 		if (patience == H.haggleattempts)
 			src.temp += "<BR>THE PRICEMASTER HAS SPOKEN."
@@ -207,7 +217,7 @@ proc/init_pmvox() // first bare numbers
 	"thousand" = new/datum/priceVOXsound("thousand", "sound/voice/PRICEMASTER/THOUSAND.ogg", 1000),
 	"500" = new/datum/priceVOXsound("500", "sound/voice/PRICEMASTER/500.ogg", 500))
 
-	pmvoxdollars = list("billion" = new/datum/priceVOXsound("billion", "sound/voice/PRICEMASTER/DOLLARS/BILLION_DOLLARS.ogg", 100000000 " BILLION DOLLARS"),
+	pmvoxdollars = list("billion" = new/datum/priceVOXsound("billion", "sound/voice/PRICEMASTER/DOLLARS/BILLION_DOLLARS.ogg", 100000000, " BILLION DOLLARS"),
 	"hundred_50_t" = new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/DOLLARS/HUNDRED_AND_FIFTY_THOUSAND_DOLLARS.ogg", 150000, " HUNDRED AND FIFTY THOUSAND DOLLARS DOLLARS"),
 	"hundred_36" = new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/DOLLARS/HUNDRED_AND_THIRTY_SIX_DOLLARS.ogg", 136, " HUNDRED AND THIRTY SIX DOLLARS"),
 	"hundred_b" = new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/DOLLARS/HUNDRED_BILLION_DOLLARS.ogg", 10000000000, " HUNDRED BILLION DOLLARS"),
@@ -215,9 +225,9 @@ proc/init_pmvox() // first bare numbers
 	"hundred2" = new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/DOLLARS/HUNDRED_DOLLARS2.ogg", 100, " HUNDRED DOLLARS"),
 	"hundred_46" = new/datum/priceVOXsound("hundred", "sound/voice/PRICEMASTER/DOLLARS/HUNDRED_FORTY_SIX_DOLLARS.ogg", 146, " HUNDRED FORTY SIX DOLLARS"),
 	"thousand" = new/datum/priceVOXsound("thousand", "sound/voice/PRICEMASTER/DOLLARS/THOUSAND_DOLLARS.ogg", 1000, " THOUSAND DOLLARS"),
-	"thousand2" = new/datum/priceVOXsound("thousand", "sound/voice/PRICEMASTER/DOLLARS/THOUSAND_DOLLARS2.ogg", 1000 " THOUSAND DOLLARS"),
-	"thousand3" = new/datum/priceVOXsound("thousand", "sound/voice/PRICEMASTER/DOLLARS/THOUSAND_DOLLARS3.ogg", 1000 " THOUSAND DOLLARS"),
-	"thousand4" = new/datum/priceVOXsound("thousand", "sound/voice/PRICEMASTER/DOLLARS/THOUSAND_DOLLARS4.ogg", 1000 " THOUSAND DOLLARS"))
+	"thousand2" = new/datum/priceVOXsound("thousand", "sound/voice/PRICEMASTER/DOLLARS/THOUSAND_DOLLARS2.ogg", 1000, " THOUSAND DOLLARS"),
+	"thousand3" = new/datum/priceVOXsound("thousand", "sound/voice/PRICEMASTER/DOLLARS/THOUSAND_DOLLARS3.ogg", 1000, " THOUSAND DOLLARS"),
+	"thousand4" = new/datum/priceVOXsound("thousand", "sound/voice/PRICEMASTER/DOLLARS/THOUSAND_DOLLARS4.ogg", 1000, " THOUSAND DOLLARS"))
 
 	pmvoxthings = list("communicator" = new/datum/priceVOXsound("communicator", "sound/voice/PRICEMASTER/THINGS/THE_COMMUNICATOR.ogg", 0),
 	"enemabox" = new/datum/priceVOXsound("enemabox", "sound/voice/PRICEMASTER/THINGS/THE_ENEMA_BOX.ogg", 0),
@@ -257,7 +267,7 @@ proc/init_pmvox() // first bare numbers
 	var/value
 	var/string = ""
 
-	New(var/id, var/file, var/value var/string = "")
+	New(var/id, var/file, var/value, var/string = "")
 		..()
 		src.id = id
 		src.ogg = file
@@ -267,21 +277,8 @@ proc/init_pmvox() // first bare numbers
 	disposing()
 		ogg = null
 		soundFile = null
-		voxsounds -= src
-		for(var/token in voxtokens)
-			var/list/sounds = voxsounds_flag_sorted[token]
-			sounds -= src
+		//voxsounds -= src //todo
 		..()
-
-	proc/matches_id(var/t)
-		. = id == lowertext(t)
-
-	proc/matches_flag(var/f)
-		. = 0
-		if (istext(f))
-			f = text2num(f)
-		if (isnum(f))
-			. = (f & flags)
 
 	proc/load(var/freq = 1)
 		if (src.ogg)
@@ -291,30 +288,39 @@ proc/init_pmvox() // first bare numbers
 
 	proc/play(var/atom/A)
 		if (src.soundFile)
-			listener << src.soundFile
+			playsound(A, src.soundFile)
 
 
 /datum/dialogueMaster/priceMaster
+	dialogueName = "THE PRICEMASTER"
+	start = /datum/dialogueNode/pm_start
+	visibleDialogue = 1
+	floatingText = 1
+	floating_text_style = "font-size:xx-large;"
+	maxDistance = 3
 
 /datum/dialogueNode
 	pm_start
+		nodeImage = "generic.png"
 		links= list(/datum/dialogueNode/pm_who, /datum/dialogueNode/pm_StartTrade)
 		linkText = "..."
-		soundClips = list('sound/voice/PRICEMASTER/EXCLAMATIONS/I_AM_PRICEMASTER.ogg',\
+		nodeText = "EVERYTHING IS FOR SALE"
+		voiceClips = list('sound/voice/PRICEMASTER/EXCLAMATIONS/I_AM_PRICEMASTER.ogg',\
 							'sound/voice/PRICEMASTER/EXCLAMATIONS/EL_MAESTRO_DEL_PRICIO.ogg',\
 							'sound/voice/PRICEMASTER/EXCLAMATIONS/EVERYTHING_IS_FOR_SALE.ogg',\
 							'sound/voice/PRICEMASTER/EXCLAMATIONS/EVERYTHING_IS_FOR_SALE2.ogg')
 
 	pm_who
-		links= list(/datum/dialogueNode/pm_start, /datum/dialogueNode/pm_StartTrade)
+		links= list(/datum/dialogueNode/pm_StartTrade)
 		linkText = "who are you?"
-		soundClips = list('sound/voice/PRICEMASTER/EXCLAMATIONS/I_AM_PRICEMASTER.ogg',\
+		nodeText = "I AM PRICEMASTER"
+		voiceClips = list('sound/voice/PRICEMASTER/EXCLAMATIONS/I_AM_PRICEMASTER.ogg',\
 							'sound/voice/PRICEMASTER/EXCLAMATIONS/I_AM_PRICEMASTER-MAKE_ME_AN_OFFER.ogg')
 
 	pm_StartTrade
-		nodeImage = "generic.png"
-		linkText = "I want to trade."
-		soundClips = list('sound/voice/PRICEMASTER/EXCLAMATIONS/MAKE_ME_AN_OFFER.ogg',\
+		linkText = "are you selling anything?"
+		nodeText = "MAKE ME AN OFFER"
+		voiceClips = list('sound/voice/PRICEMASTER/EXCLAMATIONS/MAKE_ME_AN_OFFER.ogg',\
 							'sound/voice/PRICEMASTER/EXCLAMATIONS/MAKE_ME_AN_OFFER2.ogg',\
 							'sound/voice/PRICEMASTER/EXCLAMATIONS/MAKE_ME_AN_OFFER3.ogg')
 

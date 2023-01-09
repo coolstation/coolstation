@@ -2839,3 +2839,40 @@
 	price = 21000
 	upperfluc = 20000
 	lowerfluc = -28500
+
+//pricemaster's wares
+/datum/commodity/pricemaster
+	onmarket = 0
+	desc = "He wants how much for that?"
+
+/datum/commodity/pricemaster/robot_fist_l
+	comname = "The Robot Fist"
+	comtype = /obj/item/parts/robot_parts/arm/left
+	onmarket = 0
+	price = 21000
+	upperfluc = 2000
+	lowerfluc = -2000
+
+/datum/commodity/pricemaster/robot_fist_r
+	comname = "The Robot Fist"
+	comtype = /obj/item/parts/robot_parts/arm/right
+	onmarket = 0
+	price = 22000
+	upperfluc = 3000
+	lowerfluc = -3000
+
+/datum/commodity/pricemaster/communicator
+	comname = "The Communicator"
+	comtype = /obj/item/device/radio
+	onmarket = 0
+	price = 5000
+	upperfluc = 200
+	lowerfluc = -200
+
+/datum/commodity/pricemaster/lasergun
+	comname = "The Laser Gun"
+	comtype = /obj/item/gun/modular/soviet
+	onmarket = 0
+	price = 15000
+	upperfluc = 10000
+	lowerfluc = -2000
