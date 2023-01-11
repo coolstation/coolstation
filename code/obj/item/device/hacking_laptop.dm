@@ -7,7 +7,8 @@
 	item_state = "briefcase"
 	desc = "A much smaller computer workstation, designed to be hoisted around by 80s pro gamers."
 	w_class = W_CLASS_NORMAL //Kinda weird to fit a whole briefcase in your backpack, but you have to cut newbies some slack (+ it creates a tell anyway)
-
+	var/overlay_image_url = "images/syndex.gif"
+	var/overlay_image_url2 = "images/noise1.png"
 	///net IDs of the doors this laptop has hacked
 	var/list/hacked_doors
 
@@ -43,11 +44,11 @@
 		return
 
 	html += {"<title>D00R PHR34K The Airlock Liberatorrrr!!!</title>
-<body style="background-color:#C14417;">
+<body style="background-color:#C14417;background-image:url([resource(src.overlay_image_url)]);">
 <b>D00R PHR34K</b><br>
 Hello hacker fucker<br><br>
-
-<b>This airlock is:</b><br>"}
+<div style = "background-image:url([resource(src.overlay_image_url2)]);font-size:large;font-family:courier;">
+<br><span style="background-color:yellow;"><b>This airlock is:</b><br>"}
 	// open/close status
 	if (!target.density) //IDK if there's a better var for this but fucking hell airlocks are complicated
 		html += "<b>OPENED</b> | <a href=byond://?src=\ref[src];command=close;the_door=\ref[target]>(Close!)</a><br>"
@@ -63,8 +64,8 @@ Hello hacker fucker<br><br>
 		html += "<b>LIVE AT [uppertext(station_or_ship())] VOLTAGE</b> | <a href=byond://?src=\ref[src];command=makesafe;the_door=\ref[target]>(Fuck that!)</a><br>"
 	else
 		html += "<b>SAFE TO THE TOUCH</b> | <a href=byond://?src=\ref[src];command=electrify;the_door=\ref[target]>(Zappp it!)</a><br>"
-	html += "</body>"
-	user.Browse(html, "window=autohacker;size=250x150")
+	html += "</span><br></div></body>"
+	user.Browse(html, "window=autohacker;size=450x350")
 
 
 /obj/item/device/hacking_laptop/proc/toggle(opening = FALSE, mob/user)
