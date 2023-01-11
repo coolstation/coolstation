@@ -2016,6 +2016,20 @@ ABSTRACT_TYPE(/area/station/mining)
 	name = "Customs"
 	icon_state = "yellow"
 
+/area/station/bridge/conference
+	name = "Conference Room"
+	icon_state = "yellow"
+
+/area/station/bridge/basement
+	name = "Command Basement"
+	icon_state = "yellow"
+
+/area/station/bridge/locker
+	name = "High Security Locker"
+	icon_state = "green"
+
+
+
 ABSTRACT_TYPE(/area/station/crew_quarters)
 /area/station/crew_quarters
 	name = "Crew Quarters"
@@ -3174,6 +3188,34 @@ ABSTRACT_TYPE(/area/station/catwalk)
 
 /area/station/routing/airbridge
 		name = "Airbridge Router"
+
+/area/station/wc
+		name = "Bathroom"
+		icon_state = "restrooms"
+
+/area/station/wc/bridge
+		name = "Command Bathroom"
+		icon_state = "restrooms_g"
+
+/area/station/wc/public
+		name = "Public Restrooms"
+		icon_state = "restrooms_y"
+
+/area/station/wc/sec
+		name = "Security Toilets"
+		icon_state = "restrooms_r"
+
+/area/station/wc/medbay
+		name = "Accessible Restrooms"
+		icon_state = "restrooms"
+
+/area/station/wc/research
+		name = "Research Bathroom"
+		icon_state = "restrooms"
+
+/area/station/wc/cargo
+		name = "Filthy Bathroom"
+		icon_state = "restrooms_r"
 
 /// Off-station research outpost. Used for Cog2.
 /area/research_outpost
