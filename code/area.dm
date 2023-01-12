@@ -1963,6 +1963,14 @@ ABSTRACT_TYPE(/area/station/mining)
 	name = "Mining Refinery"
 	icon_state = "miningg"
 
+/area/station/mining/barracks
+	name = "Mining Barracks"
+	icon_state = "blue"
+
+/area/station/mining/lobby
+	name = "Mining Department"
+	icon_state = "green"
+
 /area/station/mining/magnet
 	name = "Mining Magnet Control Room"
 	icon_state = "miningp"
