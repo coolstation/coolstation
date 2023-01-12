@@ -103,9 +103,15 @@
 				if(76 to INFINITY)
 					icon_state = initial(src.icon_state) + "-0"
 
+		grey //Old flavour (straight pieces and T junctions)
+			icon_state = "catwalk_grey"
+
 		cross //HEY YOU! YEAH, YOU LOOKING AT THIS. Use these for the corners of your catwalks!
 			name = "catwalk surface" //Or I'll murder you since you are making things ugly on purpose.
 			icon_state = "catwalk_cross" //(Statement does not apply when you actually want to use the other ones.)
+
+			grey //Old flavour (4-way junctions and corners)
+				icon_state = "catwalk_cross_grey"
 
 		// /obj/grille/catwalk/jen
 		jen // ^^ no i made my own because i am epic
