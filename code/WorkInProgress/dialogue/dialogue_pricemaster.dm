@@ -321,7 +321,7 @@ proc/init_pmvox() // first bare numbers
 		if (src.ogg)
 			src.soundFile = sound(src.ogg, wait = 1, channel = 5)
 			src.soundFile.frequency = freq
-			src.soundFile.volume = 50 //fuck vox man you are SO LOUD!!!!!!
+			src.soundFile.volume = 80 //fuck vox man you are SO LOUD!!!!!!
 
 	proc/play(var/client/listener)
 		if (src.soundFile)
@@ -335,7 +335,7 @@ proc/init_pmvox() // first bare numbers
 	visibleDialogue = 1
 	floatingText = 1
 	floating_text_style = "font-size:large;"
-	//maxDistance = 3
+	//maxDist    ance = 3
 
 /datum/dialogueNode
 	pm_start
@@ -399,7 +399,7 @@ proc/init_pmvox() // first bare numbers
 				var/obj/npc/trader/T = A
 				if(T.angry)
 					if(nopevoice.len)
-						playsound(master.master, pick(nopevoice), 50, 0)
+						playsound(master.master, pick(nopevoice), 80, 0)
 						cooldowning = TRUE
 						SPAWN_DBG(1 SECOND)
 							cooldowning = FALSE
