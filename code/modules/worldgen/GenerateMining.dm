@@ -30,7 +30,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			if (map_currently_underwater)
 				src.ReplaceWith(/turf/space/fluid/trench, FALSE, TRUE, FALSE, TRUE)
 			else if (map_currently_very_dusty && ((src.z == 3)||(src.z == 1)))
-				src.ReplaceWith(/turf/simulated/floor/gehenna, FALSE, TRUE, FALSE, TRUE)
+				src.ReplaceWith(/turf/simulated/floor/plating/gehenna, FALSE, TRUE, FALSE, TRUE)
 			else
 				src.ReplaceWith(/turf/simulated/floor/plating/airless/asteroid, FALSE, TRUE, FALSE, TRUE)
 
@@ -52,7 +52,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			if (map_currently_underwater)
 				src.ReplaceWith(/turf/space/fluid/trench, FALSE, TRUE, FALSE, TRUE)
 			else if (map_currently_very_dusty && ((src.z == 3)||(src.z == 1)))
-				src.ReplaceWith(/turf/simulated/floor/gehenna, FALSE, TRUE, FALSE, TRUE)
+				src.ReplaceWith(/turf/simulated/floor/plating/gehenna, FALSE, TRUE, FALSE, TRUE)
 			else
 				src.ReplaceWith(/turf/space, FALSE, TRUE, FALSE, TRUE)
 
@@ -145,7 +145,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		for(var/x=1,x<=world.maxx,x++)
 			for(var/y=1,y<=world.maxy,y++)
 				var/turf/T = locate(x,y,z_level)
-				if(istype(T, /turf/simulated/floor/gehenna)) continue // do not fill in the existing crevices, leaves the player more room.
+				if(istype(T, /turf/simulated/floor/plating/gehenna)) continue // do not fill in the existing crevices, leaves the player more room.
 				if(map[x][y] && !ISDISTEDGE(T, 3) && T.loc && ((T.loc.type == /area/space) || istype(T.loc , /area/allowGenerate)) )
 					var/turf/simulated/wall/asteroid/N = T.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
 					N.quality = rand(-101,101)

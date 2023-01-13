@@ -42,7 +42,7 @@
 		return
 
 /turf/simulated/wall/asteroid/gehenna/z3
-	floor_turf = "/turf/simulated/floor/gehenna"
+	floor_turf = "/turf/simulated/floor/plating/gehenna"
 	hardness = 1
 
 /turf/simulated/wall/asteroid/gehenna/tough
@@ -65,7 +65,7 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock3"
 
-/turf/simulated/floor/gehenna/
+/turf/simulated/floor/plating/gehenna/
 	name = "sand"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "sand"
@@ -77,12 +77,12 @@
 		..()
 		src.set_dir(pick(cardinal))
 
-/turf/simulated/floor/gehenna/plasma
+/turf/simulated/floor/plating/gehenna/plasma
 	oxygen = MOLES_O2STANDARD * 1.5
 	nitrogen = MOLES_N2STANDARD / 2
 	toxins = MOLES_O2STANDARD // hehh hehh hehhhehhhe
 
-/turf/simulated/floor/gehenna/farts
+/turf/simulated/floor/plating/gehenna/farts
 	farts = MOLES_O2STANDARD
 	nitrogen = MOLES_N2STANDARD / 2
 

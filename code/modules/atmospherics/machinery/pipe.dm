@@ -1025,6 +1025,7 @@ obj/machinery/atmospherics/pipe
 		var/id
 		var/obj/machinery/atmospherics/node1
 		var/obj/machinery/atmospherics/node2
+		pixel_y = 1
 
 		north
 			dir = NORTH

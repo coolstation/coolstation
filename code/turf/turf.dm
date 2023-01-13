@@ -639,7 +639,10 @@ proc/generate_space_color()
 
 	else switch(what)
 		if ("Desert")
-			new_turf = new /turf/unsimulated/floor/gehenna/desert(src)
+			if(src.z==3)
+				new_turf = new /turf/simulated/floor/plating/gehenna(src)
+			else
+				new_turf = new /turf/unsimulated/floor/gehenna/desert(src)
 		if ("Ocean")
 			new_turf = new /turf/space/fluid(src)
 		if ("Floor")
