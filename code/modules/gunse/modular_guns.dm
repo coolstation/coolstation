@@ -566,6 +566,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	desc = "A trumpet shaped gun thing. This seems really impractial for anything other than showing off."
 	max_ammo_capacity = 5 //nice round number to start with
 	spread_angle = 30
+	icon = 'icon/items/tselaguns/special.dmi'
+	icon_state = 'zungunfull'
 	
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/luna/zunar

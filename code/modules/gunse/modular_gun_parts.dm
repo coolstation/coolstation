@@ -515,10 +515,10 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 
 /obj/item/gun_parts/barrel/luna/zunar
 	name = "Zunar mk8 barrel"
-	desc = "A somewhat short barrel that has trumpet buttons on it with a 0 and 1. Some sort of lens shutter too."
-	spread_angle = 5
+	desc = "A somewhat short barrel that has a intagrated zupressor"
+	spread_angle = -5
 	scatter = 2
-	name_addition = "Inaba"
+	name_addition = "Inbagrated Zupressed"
 	icon = 'icons/obj/items/tselaguns/specialparts.dmi'
 	length = 15
 	icon_state = "zungunbarrel"
@@ -622,7 +622,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	name = "Zunar Mk8 grip"
 	desc = "The trigger looks to be taken from a game controller"
 	spread_angle = -2
-	max_ammo_capacity = 5
+	max_ammo_capacity = -5
 	jam_frequency_reload = 1 //should work?
 	icon = 'icons/obj/items/tselaguns/specialparts.dmi'
 	icon_state = "zungunstock"
