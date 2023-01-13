@@ -591,6 +591,7 @@ obj/machinery/atmospherics/pipe
 		level = 2
 		alpha = 255
 		fatigue_pressure = INFINITY
+		pixel_y = 1
 
 		north
 			dir = NORTH
@@ -626,6 +627,7 @@ obj/machinery/atmospherics/pipe
 		icon_state = "intact"
 		level = 2
 		alpha = 255
+		pixel_y = 1
 
 		minimum_temperature_difference = 20
 		thermal_conductivity = WINDOW_HEAT_TRANSFER_COEFFICIENT
