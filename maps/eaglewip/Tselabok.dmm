@@ -14736,7 +14736,7 @@
 /area)
 "nhQ" = (
 /obj/landmark/map{
-	name = "Tselabok"
+	name = "TSELABOK"
 	},
 /turf/unsimulated/floor/snowrough,
 /area/space)
@@ -24333,7 +24333,8 @@
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/pink,
 /obj/noticeboard/persistent{
-	name = "science notice board"
+	name = "science notice board";
+	persistent_id = "tselabok_science"
 	},
 /obj/item/sticker/postit{
 	desc = "Due to our unplanned landing into the station, the artifact lab ejector is currently out of commison. Instead, throw any unneeded artifiacts down the elevator shaft.";
