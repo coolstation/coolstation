@@ -139,6 +139,11 @@
 		desc = "These tiles were dislodged by something."
 		recover = TRUE
 
+/obj/decal/floatingtiles/loose/random
+	New()
+		..()
+		icon_state = "floattiles[rand(1,6)]"
+
 /obj/decal/implo
 	name = "implosion"
 	icon = 'icons/effects/64x64.dmi'
