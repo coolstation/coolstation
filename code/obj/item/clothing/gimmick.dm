@@ -94,6 +94,7 @@
 	desc = "Twoooo!"
 	icon_state = "owl"
 	item_state = "owl"
+	c_flags = SAFE_FALL
 
 	equipped(var/mob/user)
 		..()

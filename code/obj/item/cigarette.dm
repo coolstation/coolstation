@@ -380,6 +380,10 @@
 			src.flavor = "nicotine"
 		..()
 
+/obj/item/clothing/mask/cigarette/greasy
+	name = "greasy cigarette"
+	desc = "A cigarette that appears to have been ... dipped in grease? It's almost dripping!"
+	flavor = "grease"
 
 /obj/item/clothing/mask/cigarette/dryjoint
 	name = "dried up joint"
@@ -564,6 +568,13 @@
 	cigtype = /obj/item/clothing/mask/cigarette/random
 	icon_state = "cigpacket-p"
 	package_style = "cigpacket-p"
+
+/obj/item/cigpacket/greasy
+	name = "greasy cigarette packet"
+	desc = "Big Papa XL's old-fashioned Double Greased! The label on the slightly translucent packet proclaims these cigarettes to be sopping wet."
+	cigtype = /obj/item/clothing/mask/cigarette/greasy
+	icon_state = "cigpacket-g"
+	package_style = "cigpacket-g"
 
 /obj/item/cigpacket/syndicate // cogwerks: made them more sneaky, removed the glaringly obvious name
 // haine: these can just inherit the parent name and description vOv

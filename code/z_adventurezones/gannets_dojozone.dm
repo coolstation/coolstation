@@ -81,7 +81,7 @@ Contents:
 	name = "sakura"
 	icon_state = "red"
 	filler_turf = "/turf/unsimulated/dirt"
-	sound_environment = 15
+	sound_environment = EAX_FOREST
 	skip_sims = 1
 	sims_score = 0
 
@@ -94,7 +94,7 @@ Contents:
 	name = "dojo"
 	icon_state = "blue"
 	filler_turf = "/turf/unsimulated/dirt"
-	sound_environment = 21
+	sound_environment = EAX_SEWER_PIPE
 	skip_sims = 1
 	sims_score = 15
 	sound_group = "dojo"

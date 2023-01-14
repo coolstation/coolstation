@@ -25,15 +25,15 @@
 	icon_state = "gay"
 	icon_closed = "gay"
 	spawn_contents = list(/obj/item/clothing/under/pride = 2,
-	/obj/item/clothing/under/pride/ace = 2,
-	/obj/item/clothing/under/pride/aro = 2,
-	/obj/item/clothing/under/pride/bi = 2,
-	/obj/item/clothing/under/pride/inter = 2,
-	/obj/item/clothing/under/pride/pan = 2,
-	/obj/item/clothing/under/pride/poly = 2,
-	/obj/item/clothing/under/pride/nb = 2,
-	/obj/item/clothing/under/pride/lesb = 2,
-	/obj/item/clothing/under/pride/trans = 2)
+	/obj/item/clothing/under/pride/ace,
+	/obj/item/clothing/under/pride/aro,
+	/obj/item/clothing/under/pride/bi,
+	/obj/item/clothing/under/pride/inter,
+	/obj/item/clothing/under/pride/pan,
+	/obj/item/clothing/under/pride/poly,
+	/obj/item/clothing/under/pride/nb,
+	/obj/item/clothing/under/pride/lesb,
+	/obj/item/clothing/under/pride/trans)
 
 /obj/storage/closet/wardrobe/black
 	name = "black wardrobe"

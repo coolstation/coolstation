@@ -54,7 +54,7 @@
 /area/radiostation/serverroom
 	name = "Radio Server"
 	icon_state = "yellow"
-	sound_environment = 3
+	sound_environment = EAX_BATHROOM
 	workplace = 1
 
 //objects

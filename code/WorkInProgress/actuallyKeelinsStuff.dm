@@ -1842,18 +1842,21 @@ Returns:
 	return tube
 
 /obj/item/ghostboard
-	name = "Ouija board"
+	name = "\improper Ouija board"
 	desc = "A wooden board that allows for communication with spirits and such things. Or that's what the company that makes them claims, at least."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "lboard"
 	inhand_image_icon = 'icons/mob/inhand/hand_books.dmi'
 	item_state = "ouijaboard"
 	w_class = W_CLASS_NORMAL
+	var/list/altnames = list("wega","weegi","oiji","ojo","ooija","\improper OIJA","oujij","ouijs","oueja","wija","ouijo","weegee","luigi","luigi","\improper Luigi","weggy","quiche","\improper Wa weg","quija","\improper WEEGER","wedgie")
 
 	New()
 		. = ..()
 		START_TRACKING
 		BLOCK_SETUP(BLOCK_BOOK)
+		if(prob(2))
+			name = "[pick(altnames)] board"
 
 	disposing()
 		. = ..()
@@ -1964,6 +1967,18 @@ Returns:
 			var/obj/item/clothing/mask/cigarette/C = W
 			if(!C.on)
 				C.light(user, "<span class='alert'>[user] lights the [C] with [src]. That seems appropriate.</span>")
+				return
+		if(W.w_class == W_CLASS_TINY)
+			add_fingerprint(user)
+			W.unequipped(user)
+			W.dropped(user)
+			src.visible_message("<span class='notice'>[user] tosses [W] into [src].</span>")
+			qdel(W)
+			light.set_brightness(1.1)
+			SPAWN_DBG(3 SECONDS)
+				light.set_brightness(1)
+			return
+		..()
 
 /*
 

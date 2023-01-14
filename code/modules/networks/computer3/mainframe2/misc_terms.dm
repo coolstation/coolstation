@@ -4720,7 +4720,8 @@
 	icon_state = "gsensor1"
 	name = "Gas Sensor"
 	desc = "A device that detects the composition of the air nearby."
-	plane = PLANE_FLOOR //They're supposed to be embedded in the floor.
+	layer = FLOOR_EQUIP_LAYER2
+	plane = PLANE_NOSHADOW_BELOW
 	density = 0
 	dragload = 0
 

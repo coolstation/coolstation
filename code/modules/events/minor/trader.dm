@@ -5,7 +5,7 @@
 	//centcom_message = "A merchant shuttle has docked with the station."
 	var/active = 0
 	var/map_turf = /turf/space //Set in event_effect() by map settings
-	var/centcom_turf = /turf/unsimulated/outdoors/grass //Not currently modified
+	var/centcom_turf = /turf/unsimulated/outdoors/grass //Set in event_effect()
 
 	event_effect()
 		..()
@@ -13,6 +13,8 @@
 			return //This is to prevent admins from fucking up the shuttle arrival/departures by spamming this event.
 		active = 1
 		map_turf = map_settings.shuttle_map_turf
+		if(!channel_open)// go to NTFC
+			centcom_turf = /turf/space
 #ifdef UNDERWATER_MAP // bodge fix for oshan
 		var/shuttle = pick("left","right");
 #else

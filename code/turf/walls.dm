@@ -357,6 +357,9 @@
 			return ..(W, user)
 		else return
 
+	else if (istype(W, /obj/item/rcd))
+		return //STFU with your "uselessly hits wall" messages ffs
+
 	else
 		if(src.material)
 			src.material.triggerOnHit(src, W, user, 1)
@@ -545,6 +548,9 @@
 		if  (!grab_smash(G, user))
 			return ..(W, user)
 		else return
+
+	else if (istype(W, /obj/item/rcd))
+		return //STFU with your "uselessly hits wall" messages ffs
 
 	if(istype(src, /turf/simulated/wall/r_wall) && src.d_state > 0)
 		src.icon_state = "r_wall-[d_state]"

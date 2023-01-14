@@ -130,6 +130,7 @@ obj/machinery/atmospherics/pipe
 		overfloor
 			level = 2
 			alpha = 255
+			layer = PIPE_OVERCAT
 
 			vertical
 				dir = NORTH
@@ -168,6 +169,7 @@ obj/machinery/atmospherics/pipe
 				overfloor
 					level = 2
 					alpha = 255
+					layer = PIPE_OVERCAT
 
 					vertical
 						dir = NORTH
@@ -204,6 +206,7 @@ obj/machinery/atmospherics/pipe
 				overfloor
 					level = 2
 					alpha = 255
+					layer = PIPE_OVERCAT
 
 					vertical
 						dir = NORTH
@@ -240,6 +243,7 @@ obj/machinery/atmospherics/pipe
 				overfloor
 					level = 2
 					alpha = 255
+					layer = PIPE_OVERCAT
 
 					vertical
 						dir = NORTH
@@ -587,6 +591,7 @@ obj/machinery/atmospherics/pipe
 		level = 2
 		alpha = 255
 		fatigue_pressure = INFINITY
+		pixel_y = 1
 
 		north
 			dir = NORTH
@@ -622,6 +627,7 @@ obj/machinery/atmospherics/pipe
 		icon_state = "intact"
 		level = 2
 		alpha = 255
+		pixel_y = 1
 
 		minimum_temperature_difference = 20
 		thermal_conductivity = WINDOW_HEAT_TRANSFER_COEFFICIENT
@@ -659,6 +665,7 @@ obj/machinery/atmospherics/pipe
 		initialize_directions = SOUTH
 		density = 1
 		var/obj/machinery/atmospherics/node1
+		layer = PIPE_OVERCAT
 
 		north
 			dir = NORTH
@@ -1005,19 +1012,20 @@ obj/machinery/atmospherics/pipe
 				icon_state = "exposed"
 
 	vertical_pipe
-		icon = 'icons/obj/atmospherics/pipe_vent.dmi'
-		icon_state = "intact" // New sprite(s) needed
-		name = "Vertical Pipe" // TODO
-		desc = "a section of vertical piping..." // TODO
+		icon = 'icons/obj/atmospherics/pipes.dmi'
+		icon_state = "trunk" // New sprite(s) needed
+		name = "vertical pipe trunk" // TODO
+		desc = "a vertical pipe riser." // TODO
 		level = 1
 		volume = 250
 		dir = SOUTH
 		initialize_directions = SOUTH
-		color = "#F0F"
+		//color = "#F0F"
 		var/target_z
 		var/id
 		var/obj/machinery/atmospherics/node1
 		var/obj/machinery/atmospherics/node2
+		pixel_y = 1
 
 		north
 			dir = NORTH
@@ -1031,6 +1039,7 @@ obj/machinery/atmospherics/pipe
 		New()
 			initialize_directions = dir
 			..()
+
 
 		process()
 			..()
@@ -1046,12 +1055,15 @@ obj/machinery/atmospherics/pipe
 
 		update_icon()
 			if(node1)
-				icon_state = "intact"
+				if(src.z > target_z)
+					icon_state = "inlet"
+				else
+					icon_state = "trunk"
 
 				dir = get_dir(src, node1)
 
 			else
-				icon_state = "exposed"
+				icon_state = "inlet_filter-0"
 
 		initialize()
 			var/connect_direction = dir
@@ -1064,6 +1076,8 @@ obj/machinery/atmospherics/pipe
 			if(target_z)
 				for(var/obj/machinery/atmospherics/pipe/vertical_pipe/target_pipe in get_turf(locate(src.x,src.y,target_z)))
 					node2 = target_pipe
+					if(src.z > target_z)
+						new /obj/structure/girder(src.loc) //gotta go up!
 					break
 			else if(id)
 				for(var/obj/machinery/atmospherics/pipe/vertical_pipe/target_pipe in by_cat[TR_CAT_ATMOS_MACHINES])
@@ -1092,11 +1106,12 @@ obj/machinery/atmospherics/pipe
 			return null
 
 		hide(var/i) //to make the little pipe section invisible, the icon changes.
+			return /*
 			if(node1)
 				icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]intact"
 				dir = get_dir(src, node1)
 			else
-				icon_state = "exposed"
+				icon_state = "exposed"*/
 
 	manifold
 		icon = 'icons/obj/atmospherics/pipes/manifold_pipe.dmi'
@@ -1122,6 +1137,7 @@ obj/machinery/atmospherics/pipe
 
 		overfloor
 			level = 2
+			layer = PIPE_OVERCAT
 
 			north
 				dir = NORTH

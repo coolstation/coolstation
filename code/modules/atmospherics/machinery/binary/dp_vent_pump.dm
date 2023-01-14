@@ -10,6 +10,9 @@
 
 	level = 1
 
+	plane = PLANE_NOSHADOW_BELOW
+	layer = PIPE_MACHINE_LAYER
+
 	high_volume
 		name = "Large Dual Port Air Vent"
 

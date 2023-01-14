@@ -884,7 +884,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	slot_ears = list(/obj/item/device/radio/headset/civilian)
 	slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/bartending)
 	slot_lhan = list(/obj/item/reagent_containers/food/drinks/cocktailshaker)
-	items_in_backpack = list(/obj/item/gun/kinetic/riotgun)
+	items_in_backpack = list(/obj/item/gun/modular/NT/bartender, /obj/item/stackable_ammo/scatter/slug_rubber/three)
 
 	New()
 		..()
@@ -1739,6 +1739,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 	New()
 		..()
+		limit = 0 //Disables radio host regardless of map settings/the 15% random roll (it's not clean but it works)
 		src.access = get_access("Radio Show Host")
 		return
 

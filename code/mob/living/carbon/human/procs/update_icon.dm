@@ -66,6 +66,13 @@
 				else
 					UpdateOverlays(worn_suit.images[counter], "suit_image[counter]")
 
+			if ("shit-stained" in src.w_uniform.stains)
+				mud_image.icon_state = "uniformmud"
+				mud_image.layer = MOB_CLOTHING_LAYER+0.1
+				UpdateOverlays(mud_image, "suit_image_mud")
+			else
+				UpdateOverlays(null, "suit_image_mud")
+
 			if (worn_suit.blood_DNA)
 				blood_image.icon_state =  "uniformblood"
 				blood_image.layer = MOB_CLOTHING_LAYER+0.1
@@ -100,15 +107,17 @@
 			else
 				UpdateOverlays(null, "material_suit")
 
+			if ("shit-stained" in src.w_uniform.stains)
+				mud_image.icon_state = "uniformmud"
+				mud_image.layer = MOB_CLOTHING_LAYER+0.1
+				UpdateOverlays(mud_image, "suit_image_mud")
+			else
+				UpdateOverlays(null, "suit_image_mud")
+
 			if (src.w_uniform.blood_DNA)
-				if (src.w_uniform.blood_DNA == "--conductive_substance--")
-					blood_image.icon_state =  "uniformblood"
-					blood_image.layer = MOB_CLOTHING_LAYER+0.1
-					UpdateOverlays(blood_image, "suit_image_blood")
-				else
-					blood_image.icon_state =  "uniformblood_c"
-					blood_image.layer = MOB_CLOTHING_LAYER+0.1
-					UpdateOverlays(blood_image, "suit_image_blood")
+				blood_image.icon_state =  "uniformblood_c"
+				blood_image.layer = MOB_CLOTHING_LAYER+0.1
+				UpdateOverlays(blood_image, "suit_image_blood")
 			else
 				UpdateOverlays(null, "suit_image_blood")
 
@@ -118,6 +127,7 @@
 			counter++
 			UpdateOverlays(null, "suit_image[counter]")
 		UpdateOverlays(null, "suit_image_blood")
+		UpdateOverlays(null, "suit_image_mud")
 		UpdateOverlays(null, "material_suit")
 
 	if (src.wear_id)
@@ -131,6 +141,8 @@
 	else
 		UpdateOverlays(null, "wear_id")
 
+	// There's no code for shitstained hands (just for gloves) but if that's something that needs to exist, it should go here
+
 	// No blood overlay if we have gloves (e.g. bloody hands visible through clean gloves).
 	if (src.blood_DNA && !src.gloves)
 		if (src.lying)
@@ -142,17 +154,11 @@
 
 		blood_image.layer = MOB_HAND_LAYER2 + 0.1
 		if (src.limbs && src.limbs.l_arm && src.limbs.l_arm.accepts_normal_human_overlays)
-			if (src.blood_DNA == "--conductive_substance--")
-				blood_image.icon_state = "left_bloodyhands"
-			else
-				blood_image.icon_state = "left_bloodyhands_c"
+			blood_image.icon_state = "left_bloodyhands_c"
 			UpdateOverlays(blood_image, "bloody_hands_l")
 
 		if (src.limbs && src.limbs.r_arm && src.limbs.r_arm.accepts_normal_human_overlays)
-			if (src.blood_DNA == "--conductive_substance--")
-				blood_image.icon_state = "right_bloodyhands"
-			else
-				blood_image.icon_state = "right_bloodyhands_c"
+			blood_image.icon_state = "right_bloodyhands_c"
 			UpdateOverlays(blood_image, "bloody_hands_r")
 
 		blood_image.pixel_x = 0
@@ -162,22 +168,18 @@
 		UpdateOverlays(null, "bloody_hands_l")
 		UpdateOverlays(null, "bloody_hands_r")
 
+	// Also no barefoot poo overlays but that would go here
+
 	// same as above but for shoes/bare feet
 	if (islist(src.tracked_blood) && !src.shoes)
 
 		blood_image.layer = MOB_CLOTHING_LAYER+0.1
 		if (src.limbs && src.limbs.l_leg && src.limbs.l_leg.accepts_normal_human_overlays)
-			if (src.blood_DNA == "--conductive_substance--")
-				blood_image.icon_state = "left_shoeblood"
-			else
-				blood_image.icon_state = "left_shoeblood_c"
+			blood_image.icon_state = "left_shoeblood_c"
 			UpdateOverlays(blood_image, "bloody_feet_l")
 
 		if (src.limbs && src.limbs.r_leg && src.limbs.r_leg.accepts_normal_human_overlays)
-			if (src.blood_DNA == "--conductive_substance--")
-				blood_image.icon_state = "right_shoeblood"
-			else
-				blood_image.icon_state = "right_shoeblood_c"
+			blood_image.icon_state = "right_shoeblood_c"
 			UpdateOverlays(blood_image, "bloody_feet_r")
 
 		blood_image.pixel_x = 0
@@ -213,6 +215,31 @@
 		else
 			UpdateOverlays(null, "wear_gloves_r")
 
+		//Mud
+		if ("shit-stained" in src.gloves.stains)
+			if (src.lying)
+				mud_image.pixel_x = hand_offset
+				mud_image.pixel_y = 0
+			else
+				mud_image.pixel_x = 0
+				mud_image.pixel_y = hand_offset
+
+			mud_image.layer = MOB_HAND_LAYER2 + 0.1
+			if (src.limbs && src.limbs.l_arm && src.limbs.l_arm.accepts_normal_human_overlays)
+				mud_image.icon_state = "left_glovemud"
+			UpdateOverlays(mud_image, "muddy_gloves_l")
+
+			if (src.limbs && src.limbs.r_arm && src.limbs.r_arm.accepts_normal_human_overlays)
+				mud_image.icon_state = "right_glovemud"
+			UpdateOverlays(mud_image, "muddy_gloves_r")
+
+			mud_image.pixel_x = 0
+			mud_image.pixel_y = 0
+		else
+			UpdateOverlays(null, "muddy_gloves_l")
+			UpdateOverlays(null, "muddy_gloves_r")
+
+		//Blood
 		if (src.gloves.blood_DNA)
 			if (src.lying)
 				blood_image.pixel_x = hand_offset
@@ -223,17 +250,11 @@
 
 			blood_image.layer = MOB_HAND_LAYER2 + 0.1
 			if (src.limbs && src.limbs.l_arm && src.limbs.l_arm.accepts_normal_human_overlays)
-				if (src.blood_DNA == "--conductive_substance--")
-					blood_image.icon_state = "left_bloodygloves"
-				else
-					blood_image.icon_state = "left_bloodygloves_c"
+				blood_image.icon_state = "left_bloodygloves_c"
 			UpdateOverlays(blood_image, "bloody_gloves_l")
 
 			if (src.limbs && src.limbs.r_arm && src.limbs.r_arm.accepts_normal_human_overlays)
-				if (src.blood_DNA == "--conductive_substance--")
-					blood_image.icon_state = "right_bloodygloves"
-				else
-					blood_image.icon_state = "right_bloodygloves_c"
+				blood_image.icon_state = "right_bloodygloves_c"
 			UpdateOverlays(blood_image, "bloody_gloves_r")
 
 			blood_image.pixel_x = 0
@@ -247,6 +268,8 @@
 		UpdateOverlays(null, "wear_gloves_r")
 		UpdateOverlays(null, "bloody_gloves_l")
 		UpdateOverlays(null, "bloody_gloves_r")
+		UpdateOverlays(null, "muddy_gloves_l")
+		UpdateOverlays(null, "muddy_gloves_r")
 
 	// Stun glove overlay
 	if (src.gloves && src.gloves.uses >= 1)
@@ -279,25 +302,36 @@
 		else
 			UpdateOverlays(null, "wear_shoes")
 
+		if ("shit-stained" in src.shoes.stains)
+			mud_image.layer = MOB_CLOTHING_LAYER+0.1
+			if (src.limbs && src.limbs.l_leg && !.)
+				mud_image.icon_state = "left_shoemud"
+				UpdateOverlays(mud_image, "muddy_shoes_l")
+			else
+				UpdateOverlays(null, "muddy_shoes_l")
+
+			if (src.limbs && src.limbs.r_leg && !.)
+				mud_image.icon_state = "right_shoemud"
+				UpdateOverlays(mud_image, "muddy_shoes_r")
+			else
+				UpdateOverlays(null, "muddy_shoes_r")
+		else
+			UpdateOverlays(null, "muddy_shoes_l")
+			UpdateOverlays(null, "muddy_shoes_r")
+
 		if (src.shoes.blood_DNA)
 			blood_image.layer = MOB_CLOTHING_LAYER+0.1
 			if (src.limbs && src.limbs.l_leg && !.)
-				if (src.blood_DNA == "--conductive_substance--")
-					blood_image.icon_state = "left_shoeblood"
-				else
-					blood_image.icon_state = "left_shoeblood_c"
+				blood_image.icon_state = "left_shoeblood_c"
 				UpdateOverlays(blood_image, "bloody_shoes_l")
 			else
 				UpdateOverlays(null, "bloody_shoes_l")
 
 			if (src.limbs && src.limbs.r_leg && !.)
-				if (src.blood_DNA == "--conductive_substance--")
-					blood_image.icon_state = "right_shoeblood"
-				else
-					blood_image.icon_state = "right_shoeblood_c"
+				blood_image.icon_state = "right_shoeblood_c"
 				UpdateOverlays(blood_image, "bloody_shoes_r")
 			else
-				UpdateOverlays(null, "bloody_shoes_l")
+				UpdateOverlays(null, "bloody_shoes_r")
 		else
 			UpdateOverlays(null, "bloody_shoes_l")
 			UpdateOverlays(null, "bloody_shoes_r")
@@ -305,6 +339,8 @@
 		UpdateOverlays(null, "bloody_shoes_l")
 		UpdateOverlays(null, "bloody_shoes_r")
 		UpdateOverlays(null, "wear_shoes")
+		UpdateOverlays(null, "muddy_shoes_l")
+		UpdateOverlays(null, "muddy_shoes_r")
 
 	if (src.wear_suit)
 		wear_sanity_check(src.wear_suit)
@@ -328,22 +364,32 @@
 		else
 			UpdateOverlays(null, "material_armor")
 
+		//Mud
+		if ("shit-stained" in src.wear_suit.stains)
+			if (src.wear_suit.bloodoverlayimage & SUITBLOOD_ARMOR)
+				mud_image.icon_state = "armormud"
+			else if (src.wear_suit.bloodoverlayimage & SUITBLOOD_COAT)
+				mud_image.icon_state = "coatmud"
+			else
+				mud_image.icon_state = "suitmud"
+
+			switch (src.wear_suit.wear_image.layer)
+				if (MOB_OVERLAY_BASE)
+					mud_image.layer = MOB_OVERLAY_BASE + 0.1
+				if (MOB_ARMOR_LAYER)
+					mud_image.layer = MOB_ARMOR_LAYER + 0.1
+			UpdateOverlays(mud_image, "wear_suit_muddy")
+		else
+			UpdateOverlays(null, "wear_suit_muddy")
+
+		//Blood
 		if (src.wear_suit.blood_DNA)
 			if (src.wear_suit.bloodoverlayimage & SUITBLOOD_ARMOR)
-				if (src.wear_suit.blood_DNA == "--conductive_substance--")
-					blood_image.icon_state = "armorblood"
-				else
-					blood_image.icon_state = "armorblood_c"
+				blood_image.icon_state = "armorblood_c"
 			else if (src.wear_suit.bloodoverlayimage & SUITBLOOD_COAT)
-				if (src.wear_suit.blood_DNA == "--conductive_substance--")
-					blood_image.icon_state = "coatblood"
-				else
-					blood_image.icon_state = "coatblood_c"
+				blood_image.icon_state = "coatblood_c"
 			else
-				if (src.wear_suit.blood_DNA == "--conductive_substance--")
-					blood_image.icon_state = "suitblood"
-				else
-					blood_image.icon_state = "suitblood_c"
+				blood_image.icon_state = "suitblood_c"
 
 			switch (src.wear_suit.wear_image.layer)
 				if (MOB_OVERLAY_BASE)
@@ -367,6 +413,7 @@
 	else
 		UpdateOverlays(null, "wear_suit")
 		UpdateOverlays(null, "wear_suit_bloody")
+		UpdateOverlays(null, "wear_suit_muddy")
 		UpdateOverlays(null, "material_armor")
 
 	//tank transfer valve backpack's icon is handled in transfer_valve.dm
@@ -455,14 +502,24 @@
 			UpdateOverlays(src.wear_mask.worn_material_texture_image, "material_mask")
 		else
 			UpdateOverlays(null, "material_mask")
+
+		if (("shit-stained" in src.wear_mask.stains) && src.wear_mask.use_bloodoverlay) //I figure if it doesn't do blood it won't do poo either
+			mud_image.icon_state = "maskmud"
+			mud_image.layer = MOB_HEAD_LAYER1 + 0.1
+
+			mud_image.pixel_x = 0
+			mud_image.pixel_y = head_offset
+			UpdateOverlays(mud_image, "wear_mask_mud")
+			mud_image.pixel_x = 0
+			mud_image.pixel_y = 0
+		else
+			UpdateOverlays(null, "wear_mask_mud")
+
 		if (src.wear_mask.use_bloodoverlay)
 			if (src.wear_mask.blood_DNA)
-				if (src.wear_mask.blood_DNA == "--conductive_substance--")
-					blood_image.icon_state = "maskblood"
-					blood_image.layer = MOB_HEAD_LAYER1 + 0.1
-				else
-					blood_image.icon_state = "maskblood_c"
-					blood_image.layer = MOB_HEAD_LAYER1 + 0.1
+				blood_image.icon_state = "maskmud"
+				blood_image.layer = MOB_HEAD_LAYER1 + 0.1
+
 				blood_image.pixel_x = 0
 				blood_image.pixel_y = head_offset
 				UpdateOverlays(blood_image, "wear_mask_blood")
@@ -473,6 +530,7 @@
 	else
 		UpdateOverlays(null, "wear_mask")
 		UpdateOverlays(null, "wear_mask_blood")
+		UpdateOverlays(null, "wear_mask_mud")
 		UpdateOverlays(null, "material_mask")
 	// Head
 	if (src.head)
@@ -500,13 +558,23 @@
 			UpdateOverlays(src.head.worn_material_texture_image, "material_head")
 		else
 			UpdateOverlays(null, "material_head")
+
+		if ("shit-stained" in src.head.stains)
+			mud_image.icon_state = "helmetmud"
+			mud_image.layer = MOB_HEAD_LAYER2 + 0.1
+
+			mud_image.pixel_x = 0
+			mud_image.pixel_y = head_offset
+			UpdateOverlays(mud_image, "wear_head_mud")
+			mud_image.pixel_x = 0
+			mud_image.pixel_y = 0
+		else
+			UpdateOverlays(null, "wear_head_mud")
+
 		if (src.head.blood_DNA)
-			if (src.head.blood_DNA == "--conductive_substance--")
-				blood_image.icon_state = "helmetblood"
-				blood_image.layer = MOB_HEAD_LAYER2 + 0.1
-			else
-				blood_image.icon_state = "helmetblood_c"
-				blood_image.layer = MOB_HEAD_LAYER2 + 0.1
+			blood_image.icon_state = "helmetblood_c"
+			blood_image.layer = MOB_HEAD_LAYER2 + 0.1
+
 			blood_image.pixel_x = 0
 			blood_image.pixel_y = head_offset
 			UpdateOverlays(blood_image, "wear_head_blood")
@@ -517,6 +585,7 @@
 	else
 		UpdateOverlays(null, "wear_head")
 		UpdateOverlays(null, "wear_head_blood")
+		UpdateOverlays(null, "wear_head_mud")
 		UpdateOverlays(null, "material_head")
 	// Belt
 	if (src.belt)

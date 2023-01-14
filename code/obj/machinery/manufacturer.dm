@@ -2049,21 +2049,7 @@
 		/datum/manufacture/powercellE,
 		/datum/manufacture/powercellC,
 		/datum/manufacture/light_bulb,
-		/datum/manufacture/red_bulb,
-		/datum/manufacture/yellow_bulb,
-		/datum/manufacture/green_bulb,
-		/datum/manufacture/cyan_bulb,
-		/datum/manufacture/blue_bulb,
-		/datum/manufacture/purple_bulb,
-		/datum/manufacture/blacklight_bulb,
 		/datum/manufacture/light_tube,
-		/datum/manufacture/red_tube,
-		/datum/manufacture/yellow_tube,
-		/datum/manufacture/green_tube,
-		/datum/manufacture/cyan_tube,
-		/datum/manufacture/blue_tube,
-		/datum/manufacture/purple_tube,
-		/datum/manufacture/blacklight_tube,
 		/datum/manufacture/table_folding,
 		/datum/manufacture/jumpsuit,
 		/datum/manufacture/shoes,
@@ -2080,6 +2066,35 @@
 		/datum/manufacture/bullet_22,
 		/datum/manufacture/bullet_smoke,
 		/datum/manufacture/stapler)
+
+/obj/machinery/manufacturer/glasswares
+	name = "Glass Manufacturer"
+	desc = "A manufacturing unit calibrated to produce specialty glass objects"
+	icon_state = "fab-glass"
+	icon_base = "glass"
+	free_resource_amt = 4
+	free_resources = list(/obj/item/material_piece/glass,
+		/obj/item/material_piece/copper)
+	available = list(/datum/manufacture/light_bulb,
+		/datum/manufacture/red_bulb,
+		/datum/manufacture/yellow_bulb,
+		/datum/manufacture/green_bulb,
+		/datum/manufacture/cyan_bulb,
+		/datum/manufacture/blue_bulb,
+		/datum/manufacture/purple_bulb,
+		/datum/manufacture/blacklight_bulb,
+		/datum/manufacture/light_tube,
+		/datum/manufacture/red_tube,
+		/datum/manufacture/yellow_tube,
+		/datum/manufacture/green_tube,
+		/datum/manufacture/cyan_tube,
+		/datum/manufacture/blue_tube,
+		/datum/manufacture/purple_tube,
+		/datum/manufacture/blacklight_tube,
+		/datum/manufacture/glass,
+		/datum/manufacture/glassR,
+		/datum/manufacture/prodocs,
+		/datum/manufacture/glasses)
 
 /obj/machinery/manufacturer/robotics
 	name = "Robotics Fabricator"

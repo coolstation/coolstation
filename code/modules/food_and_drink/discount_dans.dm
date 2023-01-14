@@ -37,6 +37,7 @@
 				src.real_name = "Discount Deng's Quik-Noodles - Teriyaki TVP Flavor"
 				src.initial_reagents["synthflesh"] = 5
 				src.initial_reagents["msg"] = 5
+				src.initial_reagents["UGHFCS"] = 2
 				//R.add_reagent("synthflesh",5)
 				//R.add_reagent("msg",5)
 
@@ -207,7 +208,7 @@
 			if (2)
 				src.real_name = "Descuento Danito's Burritos - Strawberrito Churro Flavor"
 				src.desc = "There is no way anyone could possibly justify this."
-				src.initial_reagents["VHFCS"] = 8
+				src.initial_reagents["UGHFCS"] = 8
 				src.initial_reagents["oil"] = 2
 
 			if (3)
@@ -220,7 +221,7 @@
 				src.real_name = "Descuento Danito's Burritos - Pancake Sausage Brunch Flavor"
 				src.desc = "A self-heating breakfast burrito with a buttermilk pancake in lieu of a tortilla. A little frightening."
 				src.initial_reagents["porktonium"] = 4
-				src.initial_reagents["VHFCS"] = 2
+				src.initial_reagents["UGHFCS"] = 2
 				src.initial_reagents["coffee"] = 4
 
 			if (5)
@@ -484,7 +485,7 @@
 				src.name = "Morning Dan's Self-Microwaving Meals - Grand Slam Breakfast Flavor" //A real knockout
 				desc = "A self-heating TV dinner that'll knock you out of the park. You should probably use a fork."
 				src.initial_reagents["porktonium"] = 4
-				src.initial_reagents["VHFCS"] = 2
+				src.initial_reagents["UGHFCS"] = 2
 				src.initial_reagents["coffee"] = 4
 				src.initial_reagents["egg"] = 4
 				src.initial_reagents["george_melonium"] = 1 //IT'S OUTTA THE PARK
@@ -514,7 +515,7 @@
 				src.initial_reagents["blood"] = 4
 				src.initial_reagents["synthflesh"] = 3
 				src.initial_reagents["ketamine"] = 1
-				src.initial_reagents["VHFCS"] = 4
+				src.initial_reagents["UGHFCS"] = 4
 				src.initial_reagents["mashedpotatoes"] = 5
 				src.initial_reagents["gravy"] = 5
 

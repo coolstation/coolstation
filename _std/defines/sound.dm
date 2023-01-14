@@ -36,3 +36,30 @@ var/global/list/audio_channel_name_to_id = list(
 
 //playsound flags
 #define SOUND_IGNORE_SPACE (1<<0)
+
+#define EAX_GENERIC 0
+#define EAX_PADDED_CELL 1
+#define EAX_ROOM 2
+#define EAX_BATHROOM 3
+#define EAX_LIVINGROOM 4
+#define EAX_STONEROOM 5
+#define EAX_AUDITORIUM 6
+#define EAX_CONCERT_HALL 7
+#define EAX_CAVE 8
+#define EAX_ARENA 9
+#define EAX_HANGAR 10
+#define EAX_CARPETED_HALLWAY 11
+#define EAX_HALLWAY 12
+#define EAX_STONE_CORRIDOR 13
+#define EAX_ALLEY 14
+#define EAX_FOREST 15
+#define EAX_CITY 16
+#define EAX_MOUNTAINS 17
+#define EAX_QUARRY 18
+#define EAX_PLAIN 19
+#define EAX_PARKING_LOT 20
+#define EAX_SEWER_PIPE 21
+#define EAX_UNDERWATER 22
+#define EAX_DRUGGED 23
+#define EAX_DIZZY 24
+#define EAX_DISORDERED 25

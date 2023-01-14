@@ -1069,6 +1069,7 @@ DEFINE_FLOORS(snowrough/border,
 	icon_state = "sand"
 	step_material = "step_outdoors"
 	step_priority = STEP_PRIORITY_MED
+	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
 
 	New()
 		..()
@@ -1879,6 +1880,7 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 // --------------------------------------------
 
 /turf/proc/fall_to(var/turf/T, var/atom/movable/A)
+	var/safe = FALSE
 	if(istype(A, /obj/overlay/tile_effect)) //Ok enough light falling places. Fak.
 		return
 	if (isturf(T))
@@ -1889,10 +1891,20 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 				var/mob/living/carbon/human/H = M
 				if(H.gender == MALE) playsound(H.loc, "sound/voice/screams/male_scream.ogg", 100, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 				else playsound(H.loc, "sound/voice/screams/female_scream.ogg", 100, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
-			random_brute_damage(M, 50)
-			M.changeStatus("paralysis", 7 SECONDS)
-			SPAWN_DBG(0)
-				playsound(M.loc, pick('sound/impact_sounds/Slimy_Splat_1.ogg', 'sound/impact_sounds/Flesh_Break_1.ogg'), 75, 1)
+				if(H.shoes && (H.shoes.c_flags & SAFE_FALL))
+					safe = TRUE
+				if(H.wear_suit && (H.wear_suit.c_flags & SAFE_FALL))
+					safe = TRUE
+				if (H.back && (H.back.c_flags & IS_JETPACK))
+					safe = TRUE
+
+			if(safe)
+				visible_message("<span class='notice'>[A] lands gently on the ground.</span>")
+			else
+				random_brute_damage(M, 50)
+				M.changeStatus("paralysis", 7 SECONDS)
+				SPAWN_DBG(0)
+					playsound(M.loc, pick('sound/impact_sounds/Slimy_Splat_1.ogg', 'sound/impact_sounds/Flesh_Break_1.ogg'), 75, 1)
 		A.set_loc(T)
 		return
 

@@ -1013,6 +1013,9 @@ var/global/list/mapNames = list(
 	walls = /turf/simulated/wall/auto
 	rwalls = /turf/simulated/wall/auto/reinforced
 	auto_walls = 1
+	shuttle_map_turf = /turf/simulated/floor/industrial
+
+	arrivals_type = MAP_SPAWN_CRYO
 
 	windows = /obj/window/auto
 	windows_thin = /obj/window/pyro
@@ -1035,10 +1038,10 @@ var/global/list/mapNames = list(
 	escape_def = SHUTTLE_EAST
 	escape_dir = EAST
 
-	//merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
-	//merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
-	//merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
-	//merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
+	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
+	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
+	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
+	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
 
 	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
 		"the cargo office (QM)" = list(/area/station/quartermaster/office),
@@ -1047,6 +1050,13 @@ var/global/list/mapNames = list(
 		"the station's cafeteria" = list(/area/station/crew_quarters/cafeteria),
 		"the bridge" = list(/area/station/bridge),
 		"the chapel" = list(/area/station/chapel/sanctuary))
+
+	init()
+		..()
+		SPAWN_DBG(10) // this sucks so much ass but it just- idk.
+			var/area/m_shuttle = locate(/area/shuttle/mining/station)
+			if(m_shuttle)
+				m_shuttle.filler_turf = "/turf/simulated/floor/industrial"
 
 /datum/map_settings/bobmap
 	name = "BOBMAP"

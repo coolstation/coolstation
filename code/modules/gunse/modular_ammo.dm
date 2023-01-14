@@ -68,7 +68,9 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		src.UpdateName()
 		src.inventory_counter.update_number(src.amount)
 		switch (src.amount)
-			if (-INFINITY to 1)
+			if (-INFINITY to 0)
+				pool(src) // ???
+			if(1)
 				src.icon_state = icon_one
 			if (2 to (default_max_amount-1))
 				src.icon_state = icon_empty
@@ -143,6 +145,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 				update_stack_appearance()
 				sleep(5)
 			playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, 0, 0.8)
+			boutput(user, "<span class='notice'>The hold is full</span>")
+			M.inventory_counter.update_number(M.ammo_list.len)
 			reloading = 0
 
 /obj/item/stackable_ammo/pistol/
@@ -193,6 +197,30 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		default_min_amount = 10
 		default_max_amount = 10
 
+/obj/item/stackable_ammo/capacitive_burst
+	name = "\improper NT In-Capacit-8-or MAX"
+	real_name = "\improper NT In-Capacit-8-or MAX"
+	desc = "A lot of problems? A lot of solutions."
+	projectile_type = /datum/projectile/energy_bolt/three
+	ammo_DRM = GUN_NANO
+	icon_state = "nt_stun"
+	icon_full  = "nt_stun"
+	icon_empty = "nt_stun_empty"
+	icon_one   = "bullet_nerf"
+	icon_shell = "nerf_case"
+
+	three
+		default_min_amount = 3
+		default_max_amount = 3
+
+	five
+		default_min_amount = 5
+		default_max_amount = 5
+
+	ten
+		default_min_amount = 10
+		default_max_amount = 10
+
 /obj/item/stackable_ammo/zaubertube/
 	name = "\improper Elektrograd лазерный Zaubertube"
 	real_name = "Elektrograd лазерный Zaubertube"
@@ -217,6 +245,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		default_min_amount = 10
 		default_max_amount = 10
 
+ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 /obj/item/stackable_ammo/scatter/ // ABSOLUTELY USE THIS TYPE FOR ALL SCATTER AMMO, EVEN OPTICAL
 	name = "generic scatter ammo"
 	real_name = "generic scatter ammo"
@@ -239,6 +268,20 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	real_name = "\improper Hot Pocketz"
 	desc = "Ecologically and economically hand-packed by local Juicer children."
 	projectile_type = /datum/projectile/bullet/a12
+
+	three
+		default_min_amount = 3
+		default_max_amount = 3
+
+	five
+		default_min_amount = 5
+		default_max_amount = 5
+
+/obj/item/stackable_ammo/scatter/slug_rubber // scatter doesnt mean scatter, just means thick:)
+	name = "standard rubber slug"
+	real_name = "standard rubber slug"
+	desc = "An allegedly less-than-lethal riot deterrent slug, at least in low doses."
+	projectile_type = /datum/projectile/bullet/abg
 
 	three
 		default_min_amount = 3
@@ -297,9 +340,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	icon_state = "bulb_good"
 
 /obj/item/storage/box/foss_flashbulbs
+	name = "box of FOSSYN flashbulbs"
 	spawn_contents = list(/obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb)
 
 /obj/item/storage/box/foss_flashbulbs/better
+	name = "box of premium FOSSYN flashbulbs"
 	spawn_contents = list(/obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb)
 	make_my_stuff()
 		..()
@@ -329,7 +374,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 /datum/projectile/laser/flashbulb
 	name = "open-source laser"
 	icon_state = "u_laser"
-	power = 20
+	power = 15
 	cost = 50
 	dissipation_delay = 5
 	brightness = 0
@@ -339,14 +384,15 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	color_green = 1
 	color_blue = 0
 
+
 /datum/projectile/laser/flashbulb/two
-	power = 40
+	power = 25
 	color_red = 1
 	color_green = 1
 	cost = 75
 
 /datum/projectile/laser/flashbulb/three
-	power = 60
+	power = 35
 	color_red = 1
 	color_green = 0
 	cost = 100
@@ -360,11 +406,17 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		return
 
 /datum/projectile/laser/flashbulb/four
-	power = 80
+	power = 45
 	color_red = 1
 	color_green = 0
 	cost = 200
 
 	on_hit(atom/hit)
 		fireflash(get_turf(hit), 0)
-		hit.ex_act(3)
+		if (isliving(hit))
+			var/mob/living/L = hit
+			L.changeStatus("slowed", 1 SECOND)
+			L.change_misstep_chance(1)
+			L.emote("twitch_v")
+		return
+		//hit.ex_act(3)
