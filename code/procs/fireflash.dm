@@ -27,7 +27,7 @@
 */
 		//SPAWN_DBG(1.5 SECONDS) T.hotspot_expose(2000, 400)
 
-		if(istype(T, /turf/simulated/floor)) T:burn_tile()
+		if(istype(T, /turf/floor)) T:burn_tile()
 		SPAWN_DBG(0)
 			for(var/mob/living/L in T)
 				L.set_burning(33-radius)
@@ -124,7 +124,7 @@
 /* // experimental thing to let temporary hotspots affect atmos
 			existing_hotspot.perform_exposure()
 */
-		if(istype(T, /turf/simulated/floor)) T:burn_tile()
+		if(istype(T, /turf/floor)) T:burn_tile()
 		for (var/mob/living/L in T)
 			L.update_burning(min(55, max(0, expose_temp - 100 / 550)))
 			L.bodytemperature = (2 * L.bodytemperature + temp) / 3

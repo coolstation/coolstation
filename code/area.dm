@@ -336,7 +336,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 	proc/calculate_area_value()
 		var/value = 0
-		for (var/turf/simulated/floor/F in src.contents)
+		for (var/turf/floor/F in src.contents)
 			if (F.broken || F.burnt || F.icon_state == "plating")
 				continue
 			value++
@@ -350,9 +350,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 	proc/calculate_structure_value()
 		var/value = 0
-		for (var/turf/simulated/wall/W in src.contents)
+		for (var/turf/wall/W in src.contents)
 			value++
-		for (var/turf/simulated/floor/F in src.contents)
+		for (var/turf/floor/F in src.contents)
 			if (F.broken || F.burnt)
 				continue
 			value++
@@ -371,7 +371,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 		var/dirty = 0
 		var/list/dirtyStuff = list(/obj/decal/cleanable,/obj/fluid)
 
-		for (var/turf/simulated/T in src.contents)
+		for (var/turf/T in src.contents)
+			if (istype(T, /turf/space))
+				continue
 			dirty = 0
 			total_count++
 			for (var/thing in T.contents)
@@ -650,13 +652,13 @@ ABSTRACT_TYPE(/area/shuttle)
 
 /area/shuttle/icebase_elevator/upper
 	icon_state = "shuttle"
-	filler_turf = "/turf/simulated/floor/arctic/abyss"
+	filler_turf = "/turf/floor/arctic/abyss"
 	force_fullbright = 0
 	sound_group = "ice_moon"
 
 /area/shuttle/icebase_elevator/lower
 	icon_state = "shuttle2"
-	filler_turf = "/turf/simulated/floor/arctic/snow/ice"
+	filler_turf = "/turf/floor/arctic/snow/ice"
 	force_fullbright = 0
 	sound_group = "ice_moon"
 
@@ -1312,12 +1314,12 @@ ABSTRACT_TYPE(/area/prefab)
 /area/shuttle/sea_elevator/lower
 	name = "Sea Elevator Shaft"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/simulated/floor/plating"
+	filler_turf = "/turf/floor/plating"
 
 /area/shuttle/sea_elevator/upper
 	name = "Sea Elevator Shaft"
 	icon_state = "shuttle"
-	filler_turf = "/turf/simulated/floor/specialroom/sea_elevator_shaft"
+	filler_turf = "/turf/floor/specialroom/sea_elevator_shaft"
 
 /area/dank_trench
 	name = "marijuana trench 2" //this is lowercase on purpose

@@ -193,7 +193,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 							user.inertia_dir = user.dir
 							step(user, user.inertia_dir)
 				else
-					if(prob(10) && istype(user.loc, /turf/simulated/floor/specialroom/freezer)) //ZeWaka: Fix for null.loc
+					if(prob(10) && istype(user.loc, /turf/floor/specialroom/freezer)) //ZeWaka: Fix for null.loc
 						message = "<b>[user]</B> farts. The fart freezes in MID-AIR!!!"
 						new/obj/item/material_piece/fart(user.loc)
 						var/obj/item/material_piece/fart/F = new /obj/item/material_piece/fart

@@ -82,7 +82,7 @@
 			for (var/x = 1, x <= world.maxx, x++)
 				for (var/y = 1, y <= world.maxy, y++)
 					var/turf/T = locate(x,y,level)
-					if (T.name == "asteroid" || T.name == "cavern wall" || T.type == /turf/simulated/floor/plating/airless/asteroid || istype(T, /turf/simulated/wall/asteroid/gehenna/z3))
+					if (T.name == "asteroid" || T.name == "cavern wall" || T.type == /turf/floor/plating/airless/asteroid || istype(T, /turf/wall/asteroid/gehenna/z3))
 						turf_color = "solid"
 					else if (T.name == "trench floor" || T.name == "\proper space" || T.name == "sand")
 						turf_color = "empty"

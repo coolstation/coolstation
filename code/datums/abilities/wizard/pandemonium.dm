@@ -170,5 +170,5 @@
 /mob/living/proc/PAND_Grilles(var/protectuser = 1)
 	for(var/mob/O in AIviewers(src, null)) O.show_message(text("<span class='alert'><B>[]</B> reshapes the metal around \him!</span>", src), 1)
 	playsound(src.loc, "sound/impact_sounds/Metal_Hit_Light_1.ogg", 25, 1, -1)
-	for(var/turf/simulated/floor/T in view(src,7))
+	for(var/turf/floor/T in view(src,7))
 		if (prob(33)) new /obj/grille/classic(T)

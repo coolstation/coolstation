@@ -1,15 +1,15 @@
 ////Martian Turf stuff//////////////
-/turf/simulated/martian
+/turf/martian
 	name = "martian"
 	icon = 'icons/turf/martian.dmi'
 	thermal_conductivity = 0.05
 	heat_capacity = 0
 
-/turf/simulated/martian/floor
+/turf/martian/floor
 	name = "organic floor"
 	icon_state = "floor1"
 
-/turf/simulated/floor/martian/attackby(obj/item/C as obj, mob/user as mob, params)
+/turf/floor/martian/attackby(obj/item/C as obj, mob/user as mob, params)
 	if (istype(C, /obj/item/martianSeed))
 		var/obj/item/martianSeed/S = C
 		if(S)
@@ -19,7 +19,7 @@
 	else
 		..()
 
-/turf/simulated/martian/wall
+/turf/martian/wall
 	name = "organic wall"
 	icon_state = "wall1"
 	opacity = 1
@@ -34,7 +34,7 @@
 				gib(src.loc)
 				ReplaceWithSpace()
 
-/turf/simulated/martian/wall/ex_act(severity)
+/turf/martian/wall/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			src.health -= 40
@@ -46,7 +46,7 @@
 			src.health -= 5
 			checkhealth()
 
-/turf/simulated/martian/wall/proc/gib(atom/location)
+/turf/martian/wall/proc/gib(atom/location)
 	if (!location) return
 
 	var/obj/decal/cleanable/machine_debris/gib = null

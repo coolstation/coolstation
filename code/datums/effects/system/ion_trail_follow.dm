@@ -25,7 +25,7 @@
 		SPAWN_DBG(0)
 			var/turf/T = get_turf(src.holder)
 			if(T != src.oldposition)
-				if(istype(T, /turf/space) || (istype(holder, /obj/machinery/vehicle) && (istype(T, /turf/simulated) && T:allows_vehicles)) )
+				if(istype(T, /turf/space) || (istype(holder, /obj/machinery/vehicle) && (issimulatedturf(T) && T:allows_vehicles)) )
 					if (istext(istate) && istate != "blank")
 						var/obj/effects/ion_trails/I = unpool(/obj/effects/ion_trails)
 						I.set_loc(src.oldposition)
