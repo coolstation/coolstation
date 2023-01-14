@@ -2839,3 +2839,64 @@
 	price = 21000
 	upperfluc = 20000
 	lowerfluc = -28500
+
+//pricemaster's wares
+/datum/commodity/pricemaster
+	onmarket = 0
+	desc = "He wants how much for that?"
+
+/datum/commodity/pricemaster/robot_fist_l
+	comname = "The Robot Fist"
+	comtype = /obj/item/parts/robot_parts/arm/left
+	onmarket = 0
+	price = 21000
+	upperfluc = 2000
+	lowerfluc = -2000
+
+/datum/commodity/pricemaster/robot_fist_r
+	comname = "The Robot Fist"
+	comtype = /obj/item/parts/robot_parts/arm/right
+	onmarket = 0
+	price = 22000
+	upperfluc = 3000
+	lowerfluc = -3000
+
+/datum/commodity/pricemaster/communicator
+	comname = "The Communicator"
+	comtype = /obj/item/device/radio
+	onmarket = 0
+	price = 14000
+	upperfluc = 2000
+	lowerfluc = -2000
+
+/datum/commodity/pricemaster/lasergun
+	comname = "The Laser Gun"
+	comtype = /obj/item/gun/modular/soviet
+	onmarket = 0
+	price = 10000
+	upperfluc = 10000
+	lowerfluc = -2000
+
+/datum/commodity/pricemaster/chainsaw
+	comname = "The Laser Gun"
+	comtype = /obj/item/saw
+	onmarket = 0
+	price = 9000
+	upperfluc = 7000
+	lowerfluc = -2000
+
+/datum/commodity/pricemaster/nunchucks
+	comname = "El Nunchaku"
+	comtype = /obj/item/nunchucks
+	onmarket = 0
+	price = 150000
+	upperfluc = 10000
+	lowerfluc = -21000
+
+/datum/commodity/pricemaster/tv
+	comname = "COMMUNICATION"
+	comtype = /obj/item/device/camera_viewer
+	onmarket = 0
+	price = 400000000//000
+	upperfluc = 10000
+	lowerfluc = -21000

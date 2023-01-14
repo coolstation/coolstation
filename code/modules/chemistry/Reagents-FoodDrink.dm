@@ -2873,7 +2873,7 @@ datum
 		fooddrink/msg
 			name = "monosodium glutamate"
 			id = "msg"
-			description = "Monosodium Glutamate is a sodium salt known chiefly for its use as a controversial flavor enhancer."
+			description = "Monosodium Glutamate is a sodium salt known chiefly for its use as flavor enhancer."
 			fluid_r = 245
 			fluid_g = 245
 			fluid_b = 245
@@ -2889,11 +2889,25 @@ datum
 				if(method == INGEST)
 					boutput(M, "<span class='notice'>That tasted amazing!</span>")
 
+		fooddrink/UGHFCS
+			name = "ultra-giga-high-fructose corn syrup"
+			id = "UGHFCS"
+			description = "An unnaturally sweet syrup, created from corn syrup treated with some pretty high-tech research salts."
+			reagent_state = LIQUID
+			fluid_r = 240
+			fluid_g = 240
+			fluid_b = 240
+			transparency = 100
+			viscosity = 0.7
+			addiction_prob = 10
+
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
-				if(ishuman(M) && ((M.bioHolder.bloodType != "A+") || probmult(5)))
-					if (prob(10))
-						M.take_toxin_damage(rand(2.4) * mult)
+				M:HealDamage("All", 3 * mult)
+				M.reagents.add_reagent("sugar", 2.8 * mult)
+				if(ishuman(M) && (probmult(10)))
+					if (prob(15))
+						M.take_toxin_damage(rand(5) * mult)
 					if (prob(7))
 						boutput(M, "<span class='alert'>A horrible migraine overpowers you.</span>")
 						M.setStatus("stunned", max(M.getStatusDuration("stunned"), 4 SECONDS * mult))

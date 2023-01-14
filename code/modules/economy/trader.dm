@@ -28,6 +28,7 @@
 	var/list/successful_sale_dialogue = null
 	var/list/failed_sale_dialogue = null
 	var/list/successful_purchase_dialogue = null
+	var/list/successful_purchase_sound = null
 	var/list/failed_purchase_dialogue = null
 	var/pickupdialogue = null
 	var/pickupdialoguefailure = null
@@ -370,6 +371,8 @@
 			if(shopping_cart.len)
 				spawncrate()
 				src.temp = pickupdialogue
+				if(src.successful_purchase_sound && src.successful_purchase_sound.len)
+					playsound(src, pick(successful_purchase_sound), 50, 0)
 			else
 				src.temp = pickupdialoguefailure
 			src.temp += "<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"

@@ -3310,6 +3310,15 @@ datum
 			result_amount = 1
 			mix_phrase = "The mixture emits a sickly-sweet smell."
 
+		UGHFCS
+			name = "Ultra-Giga-High-Fructose Corn Syrup"
+			id = "UGHFCS"
+			result = "UGHFCS"
+			required_reagents = list("enriched_msg" = 1, "VHFCS" = 1, "denatured_enzyme" = 0)
+			result_amount = 2
+			required_temperature = T0C + 190
+			mix_phrase = "The mixture emits a terrible savory-sweet smell."
+
 		gravy
 			name = "Gravy"
 			id = "gravy"

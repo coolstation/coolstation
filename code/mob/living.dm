@@ -134,8 +134,8 @@
 	if (can_bleed)
 		src.ensure_bp_list()
 
-	if (src.use_stamina)
-		src.stamina_bar = new(src)
+//	if (src.use_stamina)
+//		src.stamina_bar = new(src)
 		//stamina bar gets added to the hud in subtypes human and critter... im sorry.
 		//eventual hud merger pls
 
@@ -154,12 +154,12 @@
 
 	qdel(chat_text)
 	chat_text = null
-
+/*
 	if(stamina_bar)
 		for (var/datum/hud/thishud in huds)
 			thishud.remove_object(stamina_bar)
 		stamina_bar = null
-
+*/
 	for (var/atom/A as anything in stomach_process)
 		qdel(A)
 	for (var/atom/A as anything in skin_process)

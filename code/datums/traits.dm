@@ -584,7 +584,7 @@
 	category = "skill"
 	points = -1
 	isPositive = 1
-
+/*
 /obj/trait/matrixflopout
 	name = "Matrix Flopout (-2) \[Skill\]"
 	cleanName = "Matrix Flopout"
@@ -593,7 +593,7 @@
 	category = "skill"
 	points = -2
 	isPositive = 1
-
+*/
 /obj/trait/happyfeet
 	name = "Happyfeet (-1) \[Skill\]"
 	cleanName = "Happyfeet"
@@ -701,7 +701,7 @@
 				owner.changeStatus("stunned", 2 SECONDS)
 
 // Stats - Undetermined Border
-
+/*
 /obj/trait/athletic
 	name = "Athletic (-2) \[Stats\]"
 	cleanName = "Athletic"
@@ -725,7 +725,7 @@
 	category = "stats"
 	points = -2
 	isPositive = 1
-
+*/
 //Category: Background.
 
 /obj/trait/immigrant

@@ -207,7 +207,7 @@ ATTENTION: The changelog has moved into its own file: strings/changelog.txt
 //<img alt="Goonstation 13" src="[resource("images/changelog/postcardsmall.jpg")]" class="postcard" />
 
 	html = {"
-<h1>Goonstation 13 <a href="#license"><img alt="Creative Commons CC-BY-NC-SA License" src="[resource("images/changelog/88x31.png")]" /></a></h1>
+<h1>Cool's tation 13 <a href="#license"><img alt="Creative Commons CC-BY-NC-SA License" src="[resource("images/changelog/88x31.png")]" /></a></h1>
 
 <ul class="links cf">
     <li>Official Wiki<br><strong><a target="_blank" href="https://wiki.coolstation.space/index.php/Main_Page">https://wiki.coolstation.space/index.php/Main_Page</a></strong><span></span></li>

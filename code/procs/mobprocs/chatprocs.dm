@@ -303,7 +303,7 @@
 	for (var/mob/M in (owner.thralls + owner.owner))
 		if ((M.client?.holder && M.client.deadchat && !M.client.player_mode)) continue
 		boutput(M, rendered)
-
+/*
 //kudzu hivemind say
 /mob/proc/say_kudzu(var/message, var/datum/abilityHolder/kudzu/owner)
 	var/name = src.real_name
@@ -333,7 +333,7 @@
 		if (istype(C.mob.abilityHolder, /datum/abilityHolder/kudzu))
 			boutput(C, rendered)
 		//////////////////////////////////
-
+*/
 /mob/proc/say_understands(var/mob/other, var/forced_language)
 	if (isdead(src))
 		return 1

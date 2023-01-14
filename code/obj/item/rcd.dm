@@ -171,7 +171,6 @@ Broken RCD + Effects
 					return
 				if (src.matter + R.matter > src.max_matter)
 					R.matter -= (src.max_matter - src.matter)
-					boutput(user, "The cartridge now contains [R.matter] units of matter.")
 					src.matter = src.max_matter
 				else
 					src.matter += R.matter
@@ -180,7 +179,7 @@ Broken RCD + Effects
 				R.tooltip_rebuild = 1
 				src.update_icon()
 				playsound(src, "sound/machines/click.ogg", 50, 1)
-				boutput(user, "\The [src] now holds [src.matter]/[src.max_matter] matter-units.")
+				boutput(user, "\The [src] now holds [src.matter]/[src.max_matter] units of matter.")
 				return
 			else
 				boutput(user, "This cartridge is not made of the proper material to be used in \The [src].")
@@ -193,27 +192,27 @@ Broken RCD + Effects
 
 		switch (mode)
 			if (RCD_MODE_AIRLOCK)
-				boutput(user, "Changed mode to 'Airlock'")
+				boutput(user, "Changed mode to 'Airlock'", group = "RCD_mode_switch")
 
 			if (RCD_MODE_DECONSTRUCT)
-				boutput(user, "Changed mode to 'Deconstruct'")
+				boutput(user, "Changed mode to 'Deconstruct'", group = "RCD_mode_switch")
 
 			if (RCD_MODE_WINDOWS)
-				boutput(user, "Changed mode to 'Windows'")
+				boutput(user, "Changed mode to 'Windows'", group = "RCD_mode_switch")
 
 			if (RCD_MODE_FLOORSWALLS)
-				boutput(user, "Changed mode to 'Floors and Walls'")
+				boutput(user, "Changed mode to 'Floors and Walls'", group = "RCD_mode_switch")
 
-			if (RCD_MODE_PODDOORCONTROL)
+			if (RCD_MODE_PODDOORCONTROL) //unused
 				boutput(user, "Changed mode to 'Pod Door Control'")
 				boutput(user, "<span class='notice'>Place a door control on a wall, then place any amount of pod doors on floors.</span>")
 				boutput(user, "<span class='notice'>You can also select an existing door control by whacking it with \the [src].</span>")
 
 			if (RCD_MODE_LIGHTBULBS)
-				boutput(user, "Changed mode to 'Light Bulb Fixture'")
+				boutput(user, "Changed mode to 'Light Bulb Fixture'", group = "RCD_mode_switch")
 
 			if (RCD_MODE_LIGHTTUBES)
-				boutput(user, "Changed mode to 'Light Tube Fixture'")
+				boutput(user, "Changed mode to 'Light Tube Fixture'", group = "RCD_mode_switch")
 
 		// Gonna change this so it doesn't shit sparks when mode switched
 		// Just that it does it only after actually doing something
@@ -465,7 +464,7 @@ Broken RCD + Effects
 				S.cell.charge -= checkamt * silicon_cost_multiplier
 		else
 			src.matter -= checkamt
-			boutput(user, "\The [src] now holds [src.matter]/[src.max_matter] matter units.")
+			boutput(user, "\The [src] now holds [src.matter]/[src.max_matter] matter units.", group = "RCD_ammo_consume")
 			src.update_icon()
 
 	proc/do_thing(mob/user as mob, atom/target, var/what, var/ammo, var/delay)
@@ -481,7 +480,7 @@ Broken RCD + Effects
 		src.working_on += target
 
 		playsound(src, "sound/machines/click.ogg", 50, 1)
-		boutput(user, "You start [what]... ([issilicon(user) ? "[ammo * src.silicon_cost_multiplier] charge" : "[ammo] matter units"][delay ? ", [delay / 10] seconds" : ""])")
+		boutput(user, "You start [what]... ([issilicon(user) ? "[ammo * src.silicon_cost_multiplier] charge" : "[ammo] matter units"][delay ? ", [delay / 10] seconds" : ""])", group = "RCD_does_thing")
 
 		if ((!delay || do_after(user, delay)) && ammo_check(user, ammo))
 			ammo_consume(user, ammo)

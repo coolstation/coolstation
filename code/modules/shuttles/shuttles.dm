@@ -31,7 +31,11 @@
 
 /datum/transit_vehicle/mining_shuttle
 	vehicle_id = "mining_shuttle"
+#ifdef DESERT_MAP
+	stop_ids = list("mining_dock","mining_diner")
+#else
 	stop_ids = list("mining_dock","mining_diner","mining_outpost")
+#endif
 
 	var/departure_delay = 8 SECONDS
 

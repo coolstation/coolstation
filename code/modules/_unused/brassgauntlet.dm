@@ -301,26 +301,72 @@ proc/badmaterial(var/mob/user, var/obj/item/W, var/obj/item/clothing/B)
 	user.visible_message("<span class='alert'><B>Your body is suddenly and violently ripped apart.</B></span>")
 	user.gib()
 
-proc/timeywimey(var/time)
-	var/list/positions = list()
-	for(var/client/C in clients)
-		if(istype(C.mob, /mob/living))
-			if(C.mob == usr)
-				continue
-			var/mob/living/L = C.mob
-			positions.Add(L)
-			positions[L] = L.loc
 
-//	var/current_time = world.timeofday
-//	while (current_time + 100 > world.timeofday && current_time <= world.timeofday)
-	sleep(time)
 
-	for(var/mob/living/L in positions)
-		if (!L) continue
-		L.flash(3 SECONDS)
-		boutput(L, "<span class='alert'><B>You suddenly feel yourself pulled violently back in time!</B></span>")
-		L.set_loc(positions[L])
-		L.changeStatus("stunned", 6 SECONDS)
-		elecflash(L,power = 2)
-		playsound(L.loc, "sound/effects/mag_warp.ogg", 25, 1, -1)
-	return 1
+
+/obj/item/clothing/gloves/brass_gauntlet
+	name = "Brass Gauntlet"
+	desc = "A strange gauntlet made of cogs and brass machinery. It has seven slots along the side."
+	icon_state = "brassgauntlet"
+	item_state = "brassgauntlet"
+	punch_damage_modifier = 3
+	burn_possible = 0
+	cant_self_remove = 1
+	cant_other_remove = 1
+	abilities = list()
+	ability_buttons = list()
+
+	attackby(obj/item/power_stones/W, mob/user)
+		if (istype(W, /obj/item/power_stones))
+			if(!istype(user, /mob/living/carbon/human)) return //This ain't a critter gauntlet
+			if(user:gloves != src)
+				boutput(user, "<span class='alert'><B>You need to be wearing it dingus!</B></span>")
+				return
+			for(var/obj/item/power_stones/S in src)
+				if(S.stonetype == W.stonetype)
+					boutput(user, "<span class='alert'><B>That's already in there you doofus!</B></span>") //Some nerd is going to figure out how to duplicate stones I know it
+					return
+			user.visible_message("<span class='alert'><B>[user] slots the [W] into the [src]!</B></span>")
+			user.drop_item()
+			W.set_loc(src)
+			abilities.Add(W.ability)
+
+			var/obj/ability_button/NB = new W.ability(src)
+			ability_buttons += NB
+			NB.the_item = src
+			NB.the_mob = user
+			NB.name = NB.name + " ([W.name])"
+
+			if(!user.item_abilities.Find(NB))
+				user.item_abilities.Add(NB)
+
+			user.need_update_item_abilities = 1
+			user.update_item_abilities()
+
+		//Nerd trap for using the philosophers stone
+		if (istype(W, /obj/item/alchemy/stone))
+			if(!istype(user, /mob/living/carbon/human)) return
+			if(user:gloves != src) return
+
+			badstone(user, W, src)
+			goldsnap(user)
+
+		//Wow this is super dumb and dangerous why would you do this
+		if(istype(W, /obj/item/raw_material))
+			if(!istype(user, /mob/living/carbon/human)) return
+			if(user:gloves != src) return
+
+			badmaterial(user, W, src)
+
+		//whytho
+		if(istype(W, /obj/item/brick))
+			if(!istype(user, /mob/living/carbon/human)) return
+			if(user:gloves != src) return
+
+			boutput(user, "<span class='alert'><B>You smack the [src] with the [W]. It makes a grumpy whirr. I don't think it liked that!</B></span>")
+			sleep(5 SECONDS)
+			boutput(user, "<span class='alert'><B>The [src] suddenly sucks you inside and devours you. Next time don't go smacking dangerous artifacts with bricks!</B></span>")
+			user.implode()
+
+		if(istype(W, /obj/item/plutonium_core/hootonium_core))
+			boutput(user, "<span class='alert'><B>The [src] reacts but the core is too big for the slots.</B></span>")

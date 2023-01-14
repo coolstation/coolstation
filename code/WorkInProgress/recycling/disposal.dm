@@ -1782,11 +1782,17 @@
 /obj/disposalpipe/trunk/zlevel
 	var/target_z
 	var/id
-	color = "#FAF"
+	name = "vertical disposal trunk"
+	desc = "a section of vertical riser."
+	icon_state = "pipe-vt"
+	//color = "#FAF"
 
 	New()
 		..()
 		START_TRACKING
+		if(src.z > target_z)
+			icon_state = "pipe-t"
+			new /obj/structure/girder(src.loc) //gotta go up!
 
 	disposing()
 		STOP_TRACKING

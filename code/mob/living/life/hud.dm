@@ -4,7 +4,7 @@
 		if (!owner.client) return ..()
 
 		//proc/handle_regular_hud_updates()
-		if (owner.stamina_bar) owner.stamina_bar.update_value(owner)
+//		if (owner.stamina_bar) owner.stamina_bar.update_value(owner)
 		//hud.update_indicators()
 
 

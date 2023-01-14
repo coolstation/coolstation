@@ -724,7 +724,7 @@ var/sound/iomoon_alarm_sound = null
 		reagents.add_reagent("salt", 10)
 		reagents.add_reagent("grease", 5)
 		reagents.add_reagent("msg", 2)
-		reagents.add_reagent("VHFCS", 8)
+		reagents.add_reagent("UGHFCS", 8)
 		reagents.add_reagent("egg",5)
 
 /obj/item/yoyo
@@ -1349,6 +1349,11 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 			id = "[x][y]"
 		..() //moved this to the bottom to avoid repeating code here
 
+	#ifdef Z3_IS_A_STATION_LEVEL
+	attack_ai(mob/user) //Assuming for the moment that there's only autoladders on Gehenna
+		if (isAIeye(user))
+			climb(user)
+	#endif
 
 
 
@@ -1404,7 +1409,8 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 		if (!istype(otherLadder))
 			boutput(user, "You try to climb [src.icon_state == "ladder_wall" ? "up" : "down"] the ladder, but seriously fail! Perhaps there's nowhere to go?")
 			return
-		boutput(user, "You climb [src.icon_state == "ladder_wall" ? "up" : "down"] the ladder.")
+		if (!isobserver(user)) //Ghosts/eyes don't exactly climb
+			boutput(user, "You climb [src.icon_state == "ladder_wall" ? "up" : "down"] the ladder.")
 		user.set_loc(get_turf(otherLadder))
 
 //Puzzle elements

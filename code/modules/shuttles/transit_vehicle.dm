@@ -187,14 +187,27 @@ var/global/datum/transit_controller/transit_controls = new
 		if (istype(A, /obj/overlay/tile_effect) || istype(A, /mob/dead) || istype(A, /mob/wraith) || istype(A, /mob/living/intangible))
 			return ..()
 		var/turf/T = pick_landmark(fall_landmark)
+		var/safe = FALSE
 		if (isturf(T))
 			visible_message("<span class='alert'>[A] falls down [src]!</span>")
 			if (ismob(A))
 				var/mob/M = A
-				random_brute_damage(M, 25)
-				M.changeStatus("weakened", 5 SECONDS)
-				M.emote("scream")
-				playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
+				if(ishuman(M))
+					var/mob/living/carbon/human/H = M
+					if(H.shoes && (H.shoes.c_flags & SAFE_FALL))
+						safe = TRUE
+					if(H.wear_suit && (H.wear_suit.c_flags & SAFE_FALL))
+						safe = TRUE
+					if (H.back && (H.back.c_flags & IS_JETPACK))
+						safe = TRUE
+
+				if(safe)
+					visible_message("<span class='notice'>[A] lands gently on the ground.</span>")
+				else
+					random_brute_damage(M, 25)
+					M.changeStatus("weakened", 5 SECONDS)
+					M.emote("scream")
+					playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
 			A.set_loc(T)
 			return
 		else ..()

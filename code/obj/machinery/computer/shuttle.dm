@@ -273,7 +273,7 @@
 	if(!active)
 		for(var/obj/machinery/computer/mining_shuttle/C in machine_registry[MACHINES_SHUTTLECOMPS])
 			active = 1
-			C.visible_message("<span class='alert'>The Mining Shuttle has been Called and will leave shortly!</span>")
+			C.visible_message("<span class='alert'>The Mining Shuttle has been called and will leave shortly!</span>")
 		SPAWN_DBG(10 SECONDS)
 			call_shuttle()
 
@@ -331,7 +331,7 @@
 			if(!active)
 				for(var/obj/machinery/computer/prison_shuttle/C in machine_registry[MACHINES_SHUTTLECOMPS])
 					active = 1
-					C.visible_message("<span class='alert'>The Prison Shuttle has been Called and will leave shortly!</span>")
+					C.visible_message("<span class='alert'>The Prison Shuttle has been called and will leave shortly!</span>")
 
 				SPAWN_DBG(10 SECONDS)
 					call_shuttle()
@@ -433,7 +433,7 @@
 			if(!active)
 				for(var/obj/machinery/computer/research_shuttle/C in machine_registry[MACHINES_SHUTTLECOMPS])
 					active = 1
-					C.visible_message("<span class='alert'>The Research Shuttle has been Called and will leave shortly!</span>")
+					C.visible_message("<span class='alert'>The Research Shuttle has been called and will leave shortly!</span>")
 
 				SPAWN_DBG(10 SECONDS)
 					call_shuttle()

@@ -45,8 +45,8 @@
 	.= 0
 
 /mob/living/carbon/human/update_stamina_desc(var/newDesc)
-	if (src.hud && src.hud.stamina)
-		src.hud.stamina.desc = newDesc
+//	if (src.hud && src.hud.stamina)
+//		src.hud.stamina.desc = newDesc
 
 /mob/living/critter/update_stamina_desc(var/newDesc)
 	if (src.hud && src.hud.stamina)

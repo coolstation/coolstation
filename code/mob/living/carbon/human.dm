@@ -129,6 +129,7 @@
 	var/static/image/undies_image = image('icons/mob/human_underwear.dmi') //, layer = MOB_UNDERWEAR_LAYER)
 	var/static/image/bandage_image = image('icons/obj/surgery.dmi', "layer" = EFFECTS_LAYER_UNDER_1-1)
 	var/static/image/blood_image = image('icons/effects/blood.dmi', "layer" = EFFECTS_LAYER_UNDER_1-1)
+	var/static/image/mud_image = image('icons/misc/not_poo.dmi', "layer" = EFFECTS_LAYER_UNDER_1-1) //:)
 	var/static/image/handcuff_img = image('icons/mob/mob.dmi')
 	var/static/image/shield_image = image('icons/mob/mob.dmi', "icon_state" = "shield")
 	var/static/image/heart_image = image('icons/mob/human.dmi')
@@ -185,10 +186,10 @@
 	src.attach_hud(hud)
 	src.zone_sel = new(src)
 	src.attach_hud(zone_sel)
-
+/*
 	if (src.stamina_bar)
 		hud.add_object(src.stamina_bar, initial(src.stamina_bar.layer), "EAST-1, NORTH")
-
+*/
 
 	if (global_sims_mode) // IF YOU ARE HERE TO DISABLE SIMS MODE, DO NOT TOUCH THIS. LOOK IN GLOBAL.DM
 #ifdef RP_MODE
@@ -498,8 +499,8 @@
 		src.u_equip(src.w_uniform)
 
 	if (hud)
-		if(src.stamina_bar)
-			hud.remove_object(stamina_bar)
+//		if(src.stamina_bar)
+//			hud.remove_object(stamina_bar)
 
 		if (hud.master == src)
 			hud.master = null

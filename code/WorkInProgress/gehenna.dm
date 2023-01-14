@@ -1,4 +1,5 @@
-#define GEHENNA_TIME 135
+#define GEHENNA_TIME (((BUILD_TIME_DAY * 24)+(BUILD_TIME_HOUR))*2)
+//the above expression results in about 4 days per month.
 // 10 just beautiful. oh. wow. lovely.
 // 30 is a beautiful, goldenrod gehenna sunrise.
 // 45
@@ -33,6 +34,7 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock"
 	floor_turf = "/turf/unsimulated/floor/gehenna/desert"
+	hardness = 1
 	New()
 		..()
 		src.icon_state = initial(src.icon_state)
@@ -40,18 +42,20 @@
 		return
 
 /turf/simulated/wall/asteroid/gehenna/z3
-	floor_turf = "/turf/simulated/floor/sand"
+	floor_turf = "/turf/simulated/floor/plating/gehenna"
+	hardness = 1
 
 /turf/simulated/wall/asteroid/gehenna/tough
 	name = "dense sulferous rock"
 	desc = "looks densely packed"
 	icon_state = "gehenna_rock2"
+	hardness = 2
 
 /turf/simulated/wall/asteroid/gehenna/z3/tough
 	name = "dense sulferous rock"
 	desc = "looks densely packed"
 	icon_state = "gehenna_rock2"
-
+	hardness = 2
 
 /turf/unsimulated/wall/gehenna/
 	fullbright = 0
@@ -61,13 +65,34 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock3"
 
+/turf/simulated/floor/plating/gehenna/
+	name = "sand"
+	icon = 'icons/turf/outdoors.dmi'
+	icon_state = "sand"
+	step_material = "step_outdoors"
+	step_priority = STEP_PRIORITY_MED
+	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
+
+	New()
+		..()
+		src.set_dir(pick(cardinal))
+
+/turf/simulated/floor/plating/gehenna/plasma
+	oxygen = MOLES_O2STANDARD * 1.5
+	nitrogen = MOLES_N2STANDARD / 2
+	toxins = MOLES_O2STANDARD // hehh hehh hehhhehhhe
+
+/turf/simulated/floor/plating/gehenna/farts
+	farts = MOLES_O2STANDARD
+	nitrogen = MOLES_N2STANDARD / 2
+
 /turf/unsimulated/floor/gehenna/desert
 	name = "barren wasteland"
 	desc = "Looks really dry out there."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna"
 	carbon_dioxide = 5*(sin(GEHENNA_TIME - 90)+ 1)
-	oxygen = MOLES_O2STANDARD
+	oxygen = MOLES_O2STANDARD * 2
 	nitrogen = 0
 	temperature = WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
 

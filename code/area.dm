@@ -1999,6 +1999,14 @@ ABSTRACT_TYPE(/area/station/mining)
 	name = "Mining Refinery"
 	icon_state = "miningg"
 
+/area/station/mining/barracks
+	name = "Mining Barracks"
+	icon_state = "blue"
+
+/area/station/mining/lobby
+	name = "Mining Department"
+	icon_state = "green"
+
 /area/station/mining/magnet
 	name = "Mining Magnet Control Room"
 	icon_state = "miningp"
@@ -2051,6 +2059,20 @@ ABSTRACT_TYPE(/area/station/mining)
 /area/station/bridge/customs
 	name = "Customs"
 	icon_state = "yellow"
+
+/area/station/bridge/conference
+	name = "Conference Room"
+	icon_state = "yellow"
+
+/area/station/bridge/basement
+	name = "Command Basement"
+	icon_state = "yellow"
+
+/area/station/bridge/locker
+	name = "High Security Locker"
+	icon_state = "green"
+
+
 
 ABSTRACT_TYPE(/area/station/crew_quarters)
 /area/station/crew_quarters
@@ -2198,6 +2220,11 @@ ABSTRACT_TYPE(/area/station/crew_quarters/radio)
 
 /area/station/crew_quarters/cafeteria
 	name = "Cafeteria"
+	icon_state = "cafeteria"
+	sound_environment = EAX_GENERIC
+
+/area/station/crew_quarters/farmers
+	name = "Farmer's Market"
 	icon_state = "cafeteria"
 	sound_environment = EAX_GENERIC
 
@@ -2583,6 +2610,11 @@ ABSTRACT_TYPE(/area/station/medical)
 	icon_state = "medresearch"
 	sound_environment = EAX_BATHROOM
 
+/area/station/medical/basement
+	name = "Hospital Basement"
+	icon_state = "medresearch"
+	sound_environment = EAX_BATHROOM
+
 /area/station/medical/head
 	name = "Medical Director's Office"
 	icon_state = "MD"
@@ -2861,6 +2893,11 @@ ABSTRACT_TYPE(/area/station/quartermaster)
 /area/station/quartermaster/refinery
 	name = "Refinery"
 	icon_state = "green"
+	sound_environment = EAX_HANGAR
+
+/area/station/quartermaster/automat
+	name = "Automat"
+	icon_state = "blue"
 	sound_environment = EAX_HANGAR
 
 /area/station/quartermaster/cargobay
@@ -3195,6 +3232,34 @@ ABSTRACT_TYPE(/area/station/catwalk)
 
 /area/station/routing/airbridge
 		name = "Airbridge Router"
+
+/area/station/wc
+		name = "Bathroom"
+		icon_state = "restrooms"
+
+/area/station/wc/bridge
+		name = "Command Bathroom"
+		icon_state = "restrooms_g"
+
+/area/station/wc/public
+		name = "Public Restrooms"
+		icon_state = "restrooms_y"
+
+/area/station/wc/sec
+		name = "Security Toilets"
+		icon_state = "restrooms_r"
+
+/area/station/wc/medbay
+		name = "Accessible Restrooms"
+		icon_state = "restrooms"
+
+/area/station/wc/research
+		name = "Research Bathroom"
+		icon_state = "restrooms"
+
+/area/station/wc/cargo
+		name = "Filthy Bathroom"
+		icon_state = "restrooms_r"
 
 /// Off-station research outpost. Used for Cog2.
 /area/research_outpost

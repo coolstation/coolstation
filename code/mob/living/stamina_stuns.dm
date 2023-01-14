@@ -94,7 +94,7 @@
 	if(!isnum(x)) return
 	if(prob(20) && ishellbanned(src)) return //Stamina regenerates 20% slower for you. RIP
 	stamina = min(stamina_max, stamina + x)
-	if(src.stamina_bar) src.stamina_bar.update_value(src)
+	//if(src.stamina_bar) src.stamina_bar.update_value(src)
 	return
 
 //Removes stamina
@@ -119,13 +119,13 @@
 		percReduction = (x * (stam_mod_items / 100))
 
 	stamina = max(STAMINA_NEG_CAP, stamina - (x - percReduction) )
-	src.stamina_bar?.update_value(src)
+//	src.stamina_bar?.update_value(src)
 	return
 
 /mob/living/carbon/human/remove_stamina(var/x)
 	..()
-	if (x >= 30 && src.hud && src.hud.stamina_back)
-		flick("stamina_back", src.hud.stamina_back)
+//	if (x >= 30 && src.hud && src.hud.stamina_back)
+//		flick("stamina_back", src.hud.stamina_back)
 
 /mob/living/critter/remove_stamina(var/x)
 	..()
@@ -141,7 +141,7 @@
 	if(!src.use_stamina) return
 	if(!isnum(x)) return
 	stamina = max(min(stamina_max, x), STAMINA_NEG_CAP)
-	if(src.stamina_bar) src.stamina_bar.update_value(src)
+//	if(src.stamina_bar) src.stamina_bar.update_value(src)
 	return
 
 //PLEASE ONLY EVER USE THESE TO MODIFY STAMINA. NEVER SET IT DIRECTLY.

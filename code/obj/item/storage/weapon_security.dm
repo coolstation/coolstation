@@ -49,22 +49,23 @@
 /* -------------------- Guns & Ammo -------------------- */
 
 /obj/item/storage/box/revolver
-	name = "revolver box"
+	name = "italian revolver box"
 	icon_state = "hard_case"
-	desc = "A box containing a syndicate revolver and ammo."
+	desc = "A box containing an italian revolver and ammo."
 	// cogwerks - i think the ammo boxes are dumb, giving the starting box more ammo
-	spawn_contents = list(/obj/item/gun/kinetic/revolver,\
+	spawn_contents = list(/obj/item/gun/modular/italian,\
 	/obj/item/ammo/bullets/a357 = 3,\
 	/obj/item/ammo/bullets/a357/AP = 2)
 
 /obj/item/storage/box/detectivegun
-	name = ".38 revolver box"
+	name = "italian revolver box"
 	icon_state = "hard_case"
-	desc = "A box containing a .38 caliber revolver and ammunition."
+	desc = "A box containing an italian revolver and ammo."
 	// Reduced the amount of ammo. The detective had four lethal and five stun speedloaders total in his closet, perhaps a bit too much (Convair880).
-	spawn_contents = list(/obj/item/gun/kinetic/detectiverevolver,\
-	/obj/item/ammo/bullets/a38 = 2,\
-	/obj/item/ammo/bullets/a38/stun = 2)
+	spawn_contents = list(/obj/item/gun/modular/italian,\
+	/obj/item/gun_parts/stock/italian/bigger,\
+	/obj/item/stackable_ammo/pistol/ten,\
+	/obj/item/stackable_ammo/pistol/three)
 
 /obj/item/storage/box/ak47 // cogwerks, terrorism update
 	name = "rifle box"

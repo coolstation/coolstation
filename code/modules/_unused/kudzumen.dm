@@ -200,58 +200,6 @@
 					boutput(holder.owner, "<span class='notice'>You create a guiding marker on [T].</span>")
 				new/obj/kudzu_marker(T)
 
-//technically kudzu, non invasive
-/obj/kudzu_marker
-	name = "benign kudzu"
-	desc = "A flowering subspecies of the kudzu plant that, is a non-invasive plant on space stations."
-	// invisibility = 101
-	anchored = 1
-	density = 0
-	opacity = 0
-	icon = 'icons/misc/kudzu_plus.dmi'
-	icon_state = "kudzu-benign-1"
-	var/health = 10
-
-	New(var/location as turf)
-		..()
-		icon_state = "kudzu-benign-[rand(1,3)]"
-		var/turf/T = get_turf(location)
-		T.temp_flags |= HAS_KUDZU
-
-	set_loc(var/newloc as turf|mob|obj in world)
-		//remove kudzu flag from current turf
-		var/turf/T1 = get_turf(loc)
-		if (T1)
-			T1.temp_flags &= ~HAS_KUDZU
-
-		..()
-		//Add kudzu flag to new turf.
-		var/turf/T2 = get_turf(newloc)
-		if (T2)
-			T2.temp_flags |= HAS_KUDZU
-
-
-	disposing()
-		var/turf/T = get_turf(src)
-		T.temp_flags &= ~HAS_KUDZU
-		..()
-
-	//mostly same as kudzu
-	attackby(obj/item/W as obj, mob/user as mob)
-		if (!W) return
-		if (!user) return
-		var/dmg = 1
-		if (W.hit_type == DAMAGE_CUT || W.hit_type == DAMAGE_BURN)
-			dmg = 3
-		else if (W.hit_type == DAMAGE_STAB)
-			dmg = 2
-		dmg *= isnum(W.force) ? min((W.force / 2), 5) : 1
-		DEBUG_MESSAGE("[user] damaging [src] with [W] [log_loc(src)]: dmg is [dmg]")
-		src.health -= dmg
-		if (src.health < 1)
-			qdel (src)
-		user.lastattacked  = src
-		..()
 
 
 /datum/targetable/kudzu/stealth

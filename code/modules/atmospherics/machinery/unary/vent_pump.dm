@@ -4,7 +4,8 @@
 	name = "Air Vent"
 	desc = "Has a valve and pump attached to it"
 	level = 1
-	plane = PLANE_FLOOR
+	plane = PLANE_NOSHADOW_BELOW
+	layer = PIPE_MACHINE_LAYER
 	var/on = 1
 	var/pump_direction = 1 //0 = siphoning, 1 = releasing
 	var/external_pressure_bound = ONE_ATMOSPHERE + 20

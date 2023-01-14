@@ -95,7 +95,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_MUSHROOM			// Updated Mushroom
 //#define MAP_OVERRIDE_TRUNKMAP			// Updated Ovary
 //#define MAP_OVERRIDE_CHIRON			// Chiron by Kusibu
-#define MAP_OVERRIDE_OSHAN			// Oshan
+//#define MAP_OVERRIDE_OSHAN			// Oshan
 //#define MAP_OVERRIDE_HORIZON			// Horizon by Warcrimes
 //#define MAP_OVERRIDE_BOBMAP				//to be renamed map by ReginaldHJ
 //#define MAP_OVERRIDE_SPIRIT			// Hastily Repurposed Shopping Mall - Tamber
@@ -106,7 +106,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_OZYMANDIAS
 //#define MAP_OVERRIDE_FLEET
 //#define MAP_OVERRIDE_ICARUS
-//define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do not use
+#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do not use
 //#define MAP_OVERRIDE_PAMGOC			// Pamgoc
 //#define MAP_OVERRIDE_WRESTLEMAP   // Wrestlemap by Overtone
 // #define MAP_OVERRIDE_POD_WARS   // 500x500 Pod Wars map
@@ -137,8 +137,8 @@ var/global/ci_dm_version_minor = "100"
 #define BUILD_TIME_TIMEZONE_OFFSET -0500
 #define BUILD_TIME_FULL "2009-02-13 18:31:30"
 #define BUILD_TIME_YEAR 2053
-#define BUILD_TIME_MONTH 01
-#define BUILD_TIME_DAY 13 //SET ME TO 13 TO TEST YOUR ASS_JAM CONTENT!!
+#define BUILD_TIME_MONTH 12
+#define BUILD_TIME_DAY 24 //SET ME TO 13 TO TEST YOUR ASS_JAM CONTENT!!
 #define BUILD_TIME_HOUR 18
 #define BUILD_TIME_MINUTE 31
 #define BUILD_TIME_SECOND 30
