@@ -1572,7 +1572,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	var/num2 = num2hex(hex2num(hexnum) - 554040)
 */
 
-/turf/simulated/tempstuff
+/turf/tempstuff
 	name = "floor"
 	icon = 'icons/misc/HaineSpriteDump.dmi'
 	icon_state = "gooberything_small"

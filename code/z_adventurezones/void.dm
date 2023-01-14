@@ -61,7 +61,7 @@ CONTENTS:
 /turf/floor/void/crunch
 	fullbright = 0
 
-/turf/simulated/wall/void
+/turf/wall/void
 	name = "dense void"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "darkvoid"
@@ -86,7 +86,7 @@ CONTENTS:
 		return
 
 
-/turf/simulated/floor/void
+/turf/floor/void
 	name = "void"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "void"

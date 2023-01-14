@@ -390,7 +390,9 @@ var/static/obj/item/card/id/ALL_ACCESS_CARD = new /obj/item/card/id/captains_spa
 /turf/proc
 	AdjacentTurfs()
 		. = list()
-		for(var/turf/simulated/t in oview(src,1))
+		for(var/turf/t in oview(src,1))
+			if (istype(t, /turf/space)) //Judging from this previously looking for simmed turfs and the proc names here, I presume this is correct
+				continue
 			if(!t.density)
 				if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
 					. += t
