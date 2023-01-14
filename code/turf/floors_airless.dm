@@ -25,10 +25,13 @@
 
 /turf/simulated/floor/airless/plating/catwalk
 	name = "catwalk support"
-	icon_state = "catwalk"
+	icon_state = "catwalk" //+ catwalk_cross for blue-grey, old catwalks available under catwalk_grey and catwalk_cross_grey
 	allows_vehicles = 1
 	step_material = "step_lattice"
 	step_priority = STEP_PRIORITY_MED
+
+/turf/simulated/floor/airless/plating/catwalk/grey
+	icon_state = "catwalk_grey"
 
 ////////////////////////////////////////////////////////////
 

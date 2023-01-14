@@ -302,6 +302,49 @@
 			name = "Medical Bay"
 			icon_state = "wall_sign_medbay"
 
+		qm
+			name = "Quartermaster's"
+			icon_state = "QM"
+
+		logistics
+			name = "logistics"
+			desc = "If you follow this one, you might find it pretty profitable."
+			icon_state = "wall_logistics"
+
+		logistics_right
+			name = "logistics"
+			icon_state = "wall_logistics_arrow_r"
+
+		logistics_left
+			name = "logistics"
+			icon_state = "wall_logistics_arrow_l"
+
+		bunks
+			name = "bunks"
+			desc = "If you follow this one, you might find it pretty restful."
+			icon_state = "wall_bunks"
+
+		bunks_right
+			name = "bunks"
+			icon_state = "wall_bunks_arrow_r"
+
+		bunks_left
+			name = "bunks"
+			icon_state = "wall_bunks_arrow_l"
+
+		cafeteria
+			name = "cafeteria"
+			desc = "If you follow this one, you might find it pretty delicious."
+			icon_state = "wall_cafeteria"
+
+		cafeteria_right
+			name = "cafeteria"
+			icon_state = "wall_cafeteria_arrow_r"
+
+		cafeteria_left
+			name = "cafeteria"
+			icon_state = "wall_cafeteria_arrow_l"
+
 		security
 			name = "Security"
 			icon_state = "wall_sign_security"
@@ -319,6 +362,14 @@
 			name = "CONSTRUCTION AREA"
 			desc = "A warning sign which reads 'CONSTRUCTION AREA'."
 			icon_state = "wall_sign_danger"
+
+		WC_blue //I tried making some desc jokes for these but I guess I'm not cut out for toilet humour
+			name = "WC"
+			icon_state = "WC_blue"
+
+		WC_black
+			name = "WC"
+			icon_state = "WC_black"
 
 		pool
 			name = "Pool"
@@ -630,6 +681,12 @@
 			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "mantaposter"
 
+		ritossign
+			name = "Rito's sign"
+			desc = "A sign for Rito's Italian Ices, that water ice place. Didn't they go out of business years ago?"
+			icon = 'icons/obj/decals/wallsigns.dmi'
+			icon_state = "ritoslogo"
+
 		teaparty
 			name = "Weird poster"
 			desc = "Seems to be a poster of some sort."
@@ -902,7 +959,11 @@
 						playsound(src.loc, "sound/machines/click.ogg", 50, 1)
 						var/obj/item/award_item = locate(award_type) in src
 						if(award_item)
-							award_item.desc = src.desc
+							if(award_text)
+								award_item.desc = src.award_text
+							else
+								award_item.desc = src.desc
+
 							user.put_in_hand_or_drop(award_item)
 							user.visible_message("[user] takes the [award_name] from the frame.", "You take the [award_name] out of the frame.")
 							src.icon_state = icon_empty
@@ -1030,6 +1091,21 @@
 				if(M?.current?.client?.preferences?.name_last)
 					mdname = M.current.client.preferences.name_last
 				. += "It says \ [mdname] has been granted a license as a Physician and Surgeon entitled to practice the profession of medicine in space."
+
+		framed_award/captaindiploma
+			name = "Captain's old clown-college diploma."
+			desc = "A faded clown-college diploma, this must be ancient!"
+			award_type = /obj/item/toy/diploma
+			icon_glass = "capdiploma"
+			icon_award = "capdiploma1"
+			icon_state = "capdiploma1"
+			owner_job  = "Captain"
+
+			get_award_text(var/datum/mind/M)
+				var/capname = "someone, the name has been [pick("smeared quite badly", "erased", "scribbled out")],"
+				if(M?.current?.client?.preferences?.name_last)
+					capname = M.current.client.preferences.name_last
+				. += "It says \ [capname] has been awarded a Bachelor of [pick("Farts", "Fards")] Degree for the study of [pick("slipology", "jugglemancy", "pie science", "bicycle horn accoustics", "comic sans calligraphy", "gelotology", "flatology", "nuclear physics", "goonstation coder")]! It appears to be written in faded crayon."
 
 /obj/decal/poster/wallsign/pod_build
 	name = "poster"

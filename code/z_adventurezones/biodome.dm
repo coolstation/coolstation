@@ -26,7 +26,7 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "Cenote"  // renamed, crater doesn't make any sense here
 	icon_state = "yellow"
 	force_fullbright = 0
-	sound_environment = 18
+	sound_environment = EAX_QUARRY
 	skip_sims = 1
 	sims_score = 30
 	sound_group = "biodome"
@@ -35,43 +35,43 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "Botanical Research Biodome"
 	icon_state = "green"
 	force_fullbright = 0
-	sound_environment = 1
+	sound_environment = EAX_PADDED_CELL
 	skip_sims = 1
 	sims_score = 30
 
 	north
 		name = "Biodome North"
-		sound_environment = 7
+		sound_environment = EAX_CONCERT_HALL
 
 	south
 		name = "Biodome South"
-		sound_environment = 7
+		sound_environment = EAX_CONCERT_HALL
 
 	entry
 		name = "Biodome Entrance"
 		icon_state = "shuttle"
-		sound_environment = 3
+		sound_environment = EAX_BATHROOM
 
 	research
 		name = "Biodome Research Core"
 		icon_state = "toxlab"
-		sound_environment = 2
+		sound_environment = EAX_ROOM
 
 	crew
 		name = "Biodome Staff Wing"
 		icon_state = "crewquarters"
-		sound_environment = 2
+		sound_environment = EAX_ROOM
 
 	maint
 		name = "Biodome Maintenance Wing"
 		icon_state = "yellow"
-		sound_environment = 3
+		sound_environment = EAX_BATHROOM
 
 /area/crater/cave
 	name = "Caves"
 	icon_state = "purple"
 	force_fullbright = 0
-	sound_environment = 8
+	sound_environment = EAX_CAVE
 	skip_sims = 1
 	sims_score = 30
 
@@ -102,7 +102,7 @@ SYNDICATE DRONE FACTORY AREAS
 	icon_state = "green"
 	force_fullbright = 0
 	filler_turf = "/turf/unsimulated/dirt"
-	sound_environment = 15
+	sound_environment = EAX_FOREST
 	skip_sims = 1
 	sims_score = 0
 	sound_group = "spooky_swamp"
@@ -136,7 +136,7 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "Mausoleum"
 	icon_state = "purple"
 	force_fullbright = 0
-	sound_environment = 5
+	sound_environment = EAX_STONEROOM
 	skip_sims = 1
 	sims_score = 0
 
@@ -180,7 +180,7 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "Catacombs"
 	icon_state = "purple"
 	force_fullbright = 0
-	sound_environment = 13
+	sound_environment = EAX_STONE_CORRIDOR
 	skip_sims = 1
 	sims_score = 0
 	sound_group = "catacombs"
@@ -1194,7 +1194,7 @@ var/satellite_crash_event_status = -1
 /area/drone
 	name = "Drone Assembly Outpost"
 	icon_state = "red"
-	sound_environment = 10
+	sound_environment = EAX_HANGAR
 	sound_group = "drone_factory"
 
 /area/drone/zone
@@ -1202,12 +1202,12 @@ var/satellite_crash_event_status = -1
 /area/drone/crew_quarters
 	name = "Crew Quarters"
 	icon_state = "showers"
-	sound_environment = 4
+	sound_environment = EAX_LIVINGROOM
 
 /area/drone/engineering
 	name = "Engineering"
 	icon_state = "yellow"
-	sound_environment = 5
+	sound_environment = EAX_STONEROOM
 
 /area/drone/office
 	name = "Design Office"

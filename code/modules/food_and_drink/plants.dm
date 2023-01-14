@@ -287,6 +287,7 @@
 			var/turf/T = get_turf(src)
 			user.visible_message("[user] cuts [src] into slices.", "You cut [src] into slices.")
 			var/makeslices = 6
+			var amount = src.reagents.total_volume / makeslices
 			while (makeslices > 0)
 				var/obj/item/reagent_containers/food/snacks/plant/orange/wedge/P = new(T)
 				P.name = "[src.name] wedge"
@@ -295,6 +296,9 @@
 				var/datum/plantgenes/PDNA = P.plantgenes
 				if(DNA)
 					HYPpassplantgenes(DNA,PDNA)
+				if(amount > 0)
+					P.reagents.remove_any(P.reagents.total_volume)
+					src.reagents.trans_to(P, amount)
 				makeslices -= 1
 			pool (src)
 		..()
@@ -316,6 +320,11 @@
 	make_reagents()
 		..()
 		reagents.add_reagent("juice_orange",5)
+
+/obj/item/reagent_containers/food/snacks/plant/orange/spawnable
+	make_reagents()
+		src.create_reagents(30)
+		reagents.add_reagent("juice_orange", 30)
 
 /obj/item/reagent_containers/food/snacks/plant/orange/clockwork
 	name = "clockwork orange"
@@ -984,6 +993,7 @@
 			var/turf/T = get_turf(src)
 			user.visible_message("[user] cuts [src] into slices.", "You cut [src] into slices.")
 			var/makeslices = 6
+			var amount = src.reagents.total_volume / makeslices
 			while (makeslices > 0)
 				var/obj/item/reagent_containers/food/snacks/plant/lime/wedge/P = new(T)
 				P.name = "[src.name] wedge"
@@ -992,6 +1002,9 @@
 				var/datum/plantgenes/PDNA = P.plantgenes
 				if(DNA)
 					HYPpassplantgenes(DNA,PDNA)
+				if(amount > 0)
+					P.reagents.remove_any(P.reagents.total_volume)
+					src.reagents.trans_to(P, amount)
 				makeslices -= 1
 			pool (src)
 		..()
@@ -1008,6 +1021,11 @@
 	make_reagents()
 		..()
 		reagents.add_reagent("juice_lime",5)
+
+/obj/item/reagent_containers/food/snacks/plant/lime/spawnable
+	make_reagents()
+		src.create_reagents(30)
+		reagents.add_reagent("juice_lime", 30)
 
 /obj/item/reagent_containers/food/snacks/plant/lemon/
 	name = "lemon"
@@ -1029,6 +1047,7 @@
 			var/turf/T = get_turf(src)
 			user.visible_message("[user] cuts [src] into slices.", "You cut [src] into slices.")
 			var/makeslices = 6
+			var amount = src.reagents.total_volume / makeslices
 			while (makeslices > 0)
 				var/obj/item/reagent_containers/food/snacks/plant/lemon/wedge/P = new(T)
 				P.name = "[src.name] wedge"
@@ -1036,6 +1055,9 @@
 				var/datum/plantgenes/PDNA = P.plantgenes
 				if(DNA)
 					HYPpassplantgenes(DNA,PDNA)
+				if(amount > 0)
+					P.reagents.remove_any(P.reagents.total_volume)
+					src.reagents.trans_to(P, amount)
 				makeslices -= 1
 			pool (src)
 		..()
@@ -1052,6 +1074,11 @@
 	make_reagents()
 		..()
 		reagents.add_reagent("juice_lemon",5)
+
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable
+	make_reagents()
+		src.create_reagents(30)
+		reagents.add_reagent("juice_lemon", 30)
 
 /obj/item/reagent_containers/food/snacks/plant/slurryfruit/
 	name = "slurrypod"

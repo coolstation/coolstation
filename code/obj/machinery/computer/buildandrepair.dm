@@ -142,6 +142,9 @@ ABSTRACT_TYPE(/obj/item/circuitboard)
 /obj/item/circuitboard/telescope
 	name = "Circuit board (Quantum Telescope)"
 	computertype = "/obj/machinery/computer/telescope"
+/obj/item/circuitboard/transit_terminal
+	name = "Circuit board (Transit Terminal)"
+	computertype = "/obj/machinery/computer/transit_terminal"
 
 /obj/computerframe/meteorhit(obj/O as obj)
 	qdel(src)

@@ -240,7 +240,7 @@
 	attackby(obj/W as obj, mob/user as mob)
 		if (has_tank)
 			if (iswrenchingtool(W))
-				user.show_text("You disconnect the bottle from [src].", "blue")
+				user.show_text("You disconnect the bottle from [src].", "blue", group = "[user]-watercooler_bottle")
 				var/obj/item/reagent_containers/food/drinks/P = new /obj/item/reagent_containers/food/drinks/coolerbottle(src.loc)
 				P.reagents.maximum_volume = max(P.reagents.maximum_volume, src.reagents.total_volume)
 				src.reagents.trans_to(P, reagents.total_volume)
@@ -249,7 +249,7 @@
 				src.update_icon()
 				return
 		else if (istype(W, /obj/item/reagent_containers/food/drinks/coolerbottle))
-			user.show_text("You connect the bottle to [src].", "blue")
+			user.show_text("You connect the bottle to [src].", "blue", group = "[user]-watercooler_bottle")
 			W.reagents.trans_to(src, W.reagents.total_volume)
 			user.u_equip(W)
 			qdel(W)
@@ -260,37 +260,36 @@
 		if (isscrewingtool(W))
 			if (src.anchored)
 				playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
-				user.show_text("You start unscrewing [src] from the floor.", "blue")
+				user.show_text("You start unscrewing [src] from the floor.", "blue", group = "[user]-(un)fasten_watercooler")
 				if (do_after(user, 3 SECONDS))
-					user.show_text("You unscrew [src] from the floor.", "blue")
+					user.show_text("You unscrew [src] from the floor.", "blue", group = "[user]-(un)fasten_watercooler")
 					src.anchored = 0
 					return
 			else
 				var/turf/T = get_turf(src)
 				if (istype(T, /turf/space))
-					user.show_text("What exactly are you gunna secure [src] to?", "red")
+					user.show_text("What exactly are you gunna secure [src] to?", "red", group = "[user]-(un)fasten_watercooler")
 					return
 				else
 					playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
-					user.show_text("You start securing [src] to [T].", "blue")
+					user.show_text("You start securing [src] to [T].", "blue", group = "[user]-(un)fasten_watercooler")
 					if (do_after(user, 3 SECONDS))
-						user.show_text("You secure [src] to [T].", "blue")
+						user.show_text("You secure [src] to [T].", "blue", group = "[user]-(un)fasten_watercooler")
 						src.anchored = 1
 						return
 		..()
 
 	attack_hand(mob/user as mob)
 		if (src.cup_amount <= 0)
-			user.show_text("\The [src] doesn't have any cups left, damnit.", "red")
+			user.show_text("\The [src] doesn't have any cups left, damnit.", "red", group = "[user]-watercooler_cup")
 			return
 		else
-			src.visible_message("<b>[user]</b> grabs a paper cup from [src].",\
-			"You grab a paper cup from [src].")
+			src.visible_message("<b>[user]</b> grabs [cup_amount == 1 ? "the last" : "a"] paper cup from [src].",\
+			"You grab [cup_amount == 1 ? "the last" : "a"] paper cup from [src].", group = "[user]-watercooler_cup")
 			src.cup_amount --
 			var/obj/item/reagent_containers/food/drinks/paper_cup/P = new /obj/item/reagent_containers/food/drinks/paper_cup(src)
 			user.put_in_hand_or_drop(P)
 			if (src.cup_amount <= 0)
-				user.show_text("That was the last cup!", "red")
 				src.update_icon()
 
 	piss

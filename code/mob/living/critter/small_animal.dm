@@ -1035,7 +1035,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 						playsound(T, pick('sound/impact_sounds/Slimy_Splat_1.ogg','sound/misc/meat_plop.ogg'), 100, 1)
 						make_cleanable( /obj/decal/cleanable/greenpuke,T)
 
-				new /obj/item/power_stones/Owl(src.loc)
+				//new /obj/item/power_stones/Owl(src.loc)
 		else
 			. = ..()
 
@@ -1070,7 +1070,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 						playsound(src, pick('sound/impact_sounds/Slimy_Splat_1.ogg','sound/misc/meat_plop.ogg'), 100, 1)
 						make_cleanable( /obj/decal/cleanable/greenpuke,T)
 
-				new /obj/item/power_stones/Owl(src.loc)
+				//new /obj/item/power_stones/Owl(src.loc)
 
 
 /* -------------------- Hooty -------------------- */
@@ -2453,9 +2453,10 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 			voice_gender = "female"
 
 		var/datum/figure_info/randomInfo
-		if (prob(1))
+/*		if (prob(1))
 			randomInfo = pick(figure_patreon_rarity)
-		else if (prob(10))
+		else */
+		if (prob(10))
 			randomInfo = pick(figure_high_rarity)
 		else
 			randomInfo = pick(figure_low_rarity)

@@ -231,7 +231,7 @@ proc/build_syndi_buylist_cache()
 	item = /obj/item/clothing/head/bighat/syndicate
 	cost = 12
 	desc = "Think you're tough shit buddy?"
-	not_in_crates = 1 //see /datum/syndicate_buylist/surplus/bighat
+	not_in_crates = 1
 	blockedmode = list(/datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
 //////////////////////////////////////////////////// Standard items (traitor uplink) ///////////////////////////////////
@@ -257,11 +257,18 @@ proc/build_syndi_buylist_cache()
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/bomb
-	name = "Syndicates in Pipebomb"
+	name = "Small angry men in a bomb?"
 	item = /obj/item/pipebomb/bomb/miniature_syndicate
 	cost = 3
 	desc = "A rather volatile pipe bomb packed with miniature syndicate troops."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
+/datum/syndicate_buylist/traitor/bomb_real // the ol standby, standby me.
+	name = "Syndicate Pipebomb"
+	item = /obj/item/pipebomb/bomb/syndicate
+	cost = 4
+	desc = "Oh my god, JC a bomb!"
+	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/champrojector
 	name = "Chameleon Projector"
@@ -336,6 +343,13 @@ proc/build_syndi_buylist_cache()
 	vr_allowed = 0
 	desc = "Like the microbomb, but much more powerful. Macrobombs for macrofun!"
 	blockedmode = list(/datum/game_mode/revolution)
+
+/datum/syndicate_buylist/traitor/autohacker
+	name = "Autohacker Laptop"
+	item = /obj/item/device/hacking_laptop
+	cost = 2
+	desc = "A laptop configured to hack into and manipulate airlocks, for the operative without skill or tools to do so by hand. Just hold it near the airlock for a few moments, then open it up and get with messing! Folds up into an unsuspecting briefcase, but note that the gamer branding on the inside might attract unwanted attention."
+	blockedmode = list(/datum/game_mode/spy_theft) //Not really suited to the random rewards of spies, but crate fans can still get them IMO
 
 /datum/syndicate_buylist/traitor/lightbreaker
 	name = "Light Breaker"

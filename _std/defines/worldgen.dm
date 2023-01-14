@@ -31,3 +31,5 @@
 #define AST_MAPBORDER 3
 /// Zlevel for generation.
 #define AST_ZLEVEL 5
+/// Zlevel for gehenna mines?
+#define GEH_ZLEVEL 3

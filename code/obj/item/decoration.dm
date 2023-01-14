@@ -57,6 +57,18 @@
 		else
 			return ..()
 
+	throw_at()
+		..()
+		if (src.butts)
+			src.visible_message("[src] spills all over the place.")
+			var/turf/T = get_turf(src)
+			make_cleanable( /obj/decal/cleanable/ash,T)
+			for (var/i = 0, i < src.butts, i++)
+				new /obj/item/cigbutt(T)
+			src.butts = 0 // pff
+			src.update_icon()
+			src.overlays = null
+
 	proc/update_icon()
 		if (src.butts <= 0)
 			src.icon_state = "ashtray"

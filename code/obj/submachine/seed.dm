@@ -1332,7 +1332,7 @@
 				if (src.working) src.working = 0
 				else src.working = 1
 
-
+/*
 /obj/submachine/seed_manipulator/kudzu
 	name = "KudzuMaster V1"
 	desc = "A strange \"machine\" that seems to function via fluids and plant fibers."
@@ -1375,3 +1375,4 @@
 				qdel(src)
 				return
 		..()
+*/

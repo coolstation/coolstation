@@ -694,7 +694,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 						playsound(src, pick('sound/impact_sounds/Slimy_Splat_1.ogg','sound/misc/meat_plop.ogg'), 100, 1)
 						make_cleanable( /obj/decal/cleanable/greenpuke,T)
 
-				new /obj/item/power_stones/Owl(src.loc)
+				//new /obj/item/power_stones/Owl(src.loc)
 
 		else
 			return ..(W, M)

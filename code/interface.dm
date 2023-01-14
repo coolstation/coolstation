@@ -49,7 +49,7 @@
 			set name = "Wiki"
 			set desc = "Open the Wiki in your browser"
 			set hidden = 1
-			src << link("http://wiki.ss13.co")
+			src << link("https://wiki.coolstation.space/index.php/Main_Page")
 
 		map()
 			set category = "Commands"
@@ -66,7 +66,7 @@
 			set name = "Forum"
 			set desc = "Open the Forum in your browser"
 			set hidden = 1
-			src << link("https://forum.ss13.co")
+			src << link("https://forum.coolstation.space")
 
 		savetraits()
 			set hidden = 1

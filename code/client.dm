@@ -291,7 +291,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 								<body>
 									<h1>You have been banned.</h1>
 									<span class='banreason'>Reason: [isbanned].</span><br>
-									If you believe you were unjustly banned, head to <a href=\"https://forum.ss13.co\">the forums</a> and post an appeal.
+									If you believe you were unjustly banned, head to <a href=\"https://forum.coolstation.space/viewforum.php?f=1">the forums</a> and post an appeal.
 								</body>
 							</html>
 						"}
@@ -1324,14 +1324,14 @@ var/global/curr_day = null
 		H.hud.master = null
 		qdel(H.hud)
 		qdel(H.zone_sel)
-		qdel(H.stamina_bar)
+		//qdel(H.stamina_bar)
 
 		H.hud = new(H)
 		H.attach_hud(H.hud)
 		H.zone_sel = new(H)
 		H.attach_hud(H.zone_sel)
-		H.stamina_bar = new(H)
-		H.hud.add_object(H.stamina_bar, initial(H.stamina_bar.layer), "EAST-1, NORTH")
+		//H.stamina_bar = new(H)
+		//H.hud.add_object(H.stamina_bar, initial(H.stamina_bar.layer), "EAST-1, NORTH")
 		if(H.sims)
 			H.sims.add_hud()
 

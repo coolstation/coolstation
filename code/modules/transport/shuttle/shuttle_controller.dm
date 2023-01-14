@@ -13,7 +13,7 @@ datum/shuttle_controller
 	var/list/airbridges = list()
 	var/map_turf = /turf/space //Set in New() by map settings
 	var/transit_turf = /turf/space/no_replace //Not currently modified
-	var/centcom_turf = /turf/unsimulated/outdoors/grass //Not currently modified
+	var/centcom_turf = /turf/unsimulated/outdoors/grass //modified in New() by global var
 
 
 	// call the shuttle
@@ -76,6 +76,8 @@ datum/shuttle_controller
 				if (S.emergency && !(S in src.airbridges))
 					src.airbridges += S
 			map_turf = map_settings.shuttle_map_turf
+			if(!channel_open)
+				centcom_turf = /turf/space
 
 		process()
 			if (!online)
@@ -260,9 +262,9 @@ datum/shuttle_controller
 										if (!bonus_stun)
 											M.show_text("You are thrown about as the shuttle launches due to not being securely buckled in!", "red")
 
-						var/area/shuttle_particle_spawn/particle_spawn = locate(/area/shuttle_particle_spawn) in world
-						if (particle_spawn)
-							particle_spawn.start_particles()
+						for(var/area/shuttle_particle_spawn/particle_spawn /*= locate(/area/shuttle_particle_spawn) */in world)
+							if (particle_spawn)
+								particle_spawn.start_particles()
 
 						var/escape_def = map_settings ? map_settings.escape_def : SHUTTLE_NODEF
 						for (var/turf/T in landmarks[LANDMARK_ESCAPE_POD_SUCCESS])

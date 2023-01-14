@@ -74,6 +74,7 @@
 			return nodeText
 
 	onActivate(var/client/C)
+		..()
 		var/atom/A = master.master
 		if(istype(A, /obj/npc/trader) && C.mob != null)
 			var/obj/npc/trader/T = A

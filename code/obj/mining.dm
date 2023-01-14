@@ -1355,7 +1355,8 @@
 		var/new_color = src.stone_color
 		src.RL_SetOpacity(0)
 		src.ReplaceWith(temp_floor_turf, handle_air=touch_my_air)
-		src.stone_color = new_color
+		if(istype(src))
+			src.stone_color = new_color
 		src.opacity = 0
 		src.levelupdate()
 

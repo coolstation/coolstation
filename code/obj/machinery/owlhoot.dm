@@ -61,6 +61,7 @@
 		..()
 		base_state = "judgementowl[rand(1,32)]"
 		icon_state = base_state
+		name = "Hooty McJudgementowl"
 
 	process()
 		..()

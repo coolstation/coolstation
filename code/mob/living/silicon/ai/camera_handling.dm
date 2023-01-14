@@ -271,10 +271,21 @@
 		//Target is inside a dummy
 		//Target is not at a turf
 		//Target is not on station level
-		return (target.loc?.z == 1) \
-				&& ((issilicon(target) && istype(target.loc, /turf) ) \
-				|| (ismobcritter(target) && istype(target.loc, /turf) ) \
-				|| !((ishuman(target) \
-				&& istype(target:wear_id, /obj/item/card/id/syndicate)) \
-				|| (hasvar(target, "wear_id") && istype(target:wear_id, /obj/item/device/pda2) && target:wear_id:ID_card && istype(target:wear_id:ID_card, /obj/item/card/id/syndicate)) \
-				||  !istype(target.loc, /turf)))
+	#ifdef Z3_IS_A_STATION_LEVEL //Only the first line actually differs, the linter doesn't like it when you ifdef part of a statement like this
+		return (target.loc?.z == Z_LEVEL_STATION || target.loc?.z == Z_LEVEL_DEBRIS) \
+			&& ((issilicon(target) && istype(target.loc, /turf) ) \
+			|| (ismobcritter(target) && istype(target.loc, /turf) ) \
+			|| !((ishuman(target) \
+			&& istype(target:wear_id, /obj/item/card/id/syndicate)) \
+			|| (hasvar(target, "wear_id") && istype(target:wear_id, /obj/item/device/pda2) && target:wear_id:ID_card && istype(target:wear_id:ID_card, /obj/item/card/id/syndicate)) \
+			||  !istype(target.loc, /turf)))
+	#else
+		return (target.loc?.z == Z_LEVEL_STATION) \
+			&& ((issilicon(target) && istype(target.loc, /turf) ) \
+			|| (ismobcritter(target) && istype(target.loc, /turf) ) \
+			|| !((ishuman(target) \
+			&& istype(target:wear_id, /obj/item/card/id/syndicate)) \
+			|| (hasvar(target, "wear_id") && istype(target:wear_id, /obj/item/device/pda2) && target:wear_id:ID_card && istype(target:wear_id:ID_card, /obj/item/card/id/syndicate)) \
+			||  !istype(target.loc, /turf)))
+	#endif
+

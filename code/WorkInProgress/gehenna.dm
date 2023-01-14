@@ -1,23 +1,40 @@
-#define GEHENNA_TIME 250
-// 170 is like sunset ish, its nice but toxic
+#define GEHENNA_TIME (((BUILD_TIME_DAY * 24)+(BUILD_TIME_HOUR))*2)
+//the above expression results in about 4 days per month.
+// 10 just beautiful. oh. wow. lovely.
+// 30 is a beautiful, goldenrod gehenna sunrise.
+// 45
+// 60 is bright yellow, safe air.
+// 90 is bright, reddish, safe and warm.
+// 120 is bright, magenta bloom, too hot to breathe.
+// 150 is a sakura-pink deathtrap, so inviting but so hot and toxic. probably peak deadliness.
+// 170 is like sunset ish, its nice but toxic levels of CO2.
+// 200 is dark out, cool, and still toxic levels of CO2.
+// 230 is night time, and *just* under the CO2 toxicity threshold.
+// 260 much the same, less CO2
+// 290 same as above.
+// 320 same.
+// 350 twilight.s
+// 370 just beautiful. oh. wow. lovely. Oh it's 10 again.
 #define WASTELAND_MIN_TEMP 250
 #define WASTELAND_MAX_TEMP 350
 
 
 // Gehenna shit tho
-/turf/gehenna
+/turf/unsimulated/floor/gehenna
 	name = "planet gehenna"
 	desc = "errrr"
+	opacity = 0
 
 /turf/simulated/wall/asteroid/gehenna
 	fullbright = 0
-	luminosity = 0.5*(sin(GEHENNA_TIME)+ 1)
+	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
 	name = "sulferous rock"
 	desc = "looks loosely packed"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock"
-	floor_turf = "/turf/gehenna/desert"
+	floor_turf = "/turf/unsimulated/floor/gehenna/desert"
+	hardness = 1
 	New()
 		..()
 		src.icon_state = initial(src.icon_state)
@@ -25,18 +42,20 @@
 		return
 
 /turf/simulated/wall/asteroid/gehenna/z3
-	floor_turf = "/turf/simulated/floor/dirt"
+	floor_turf = "/turf/simulated/floor/plating/gehenna"
+	hardness = 1
 
 /turf/simulated/wall/asteroid/gehenna/tough
 	name = "dense sulferous rock"
 	desc = "looks densely packed"
 	icon_state = "gehenna_rock2"
+	hardness = 2
 
 /turf/simulated/wall/asteroid/gehenna/z3/tough
 	name = "dense sulferous rock"
 	desc = "looks densely packed"
 	icon_state = "gehenna_rock2"
-
+	hardness = 2
 
 /turf/unsimulated/wall/gehenna/
 	fullbright = 0
@@ -46,16 +65,38 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock3"
 
-/turf/gehenna/desert
+/turf/simulated/floor/plating/gehenna/
+	name = "sand"
+	icon = 'icons/turf/outdoors.dmi'
+	icon_state = "sand"
+	step_material = "step_outdoors"
+	step_priority = STEP_PRIORITY_MED
+	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
+
+	New()
+		..()
+		src.set_dir(pick(cardinal))
+
+/turf/simulated/floor/plating/gehenna/plasma
+	oxygen = MOLES_O2STANDARD * 1.5
+	nitrogen = MOLES_N2STANDARD / 2
+	toxins = MOLES_O2STANDARD // hehh hehh hehhhehhhe
+
+/turf/simulated/floor/plating/gehenna/farts
+	farts = MOLES_O2STANDARD
+	nitrogen = MOLES_N2STANDARD / 2
+
+/turf/unsimulated/floor/gehenna/desert
 	name = "barren wasteland"
 	desc = "Looks really dry out there."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna"
 	carbon_dioxide = 5*(sin(GEHENNA_TIME - 90)+ 1)
-	oxygen = MOLES_O2STANDARD
+	oxygen = MOLES_O2STANDARD * 2
+	nitrogen = 0
 	temperature = WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
 
-	luminosity = 0.5*(sin(GEHENNA_TIME)+ 1)
+	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
 	var/datum/light/point/light = null
 	var/light_r = 0.5*(sin(GEHENNA_TIME)+1)
@@ -122,7 +163,7 @@
 	name = "the barren wastes"
 	teleport_blocked = 0
 
-
+/*
 /obj/machinery/computer/sea_elevator/sec
 	upper = /area/shuttle/sea_elevator/upper/sec
 	lower = /area/shuttle/sea_elevator/lower/sec
@@ -142,7 +183,8 @@
 /obj/machinery/computer/sea_elevator/command
 	upper = /area/shuttle/sea_elevator/upper/command
 	lower = /area/shuttle/sea_elevator/lower/command
-
+*/
 /obj/machinery/computer/sea_elevator/NTFC
 	upper = /area/shuttle/sea_elevator/upper/NTFC
 	lower = /area/shuttle/sea_elevator/lower/NTFC
+

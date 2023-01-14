@@ -272,68 +272,68 @@
 			if (src.repair_stage == 1)
 				var/obj/item/cable_coil/C = O
 				if (C.amount >= 10)
-					user.show_text("You begin to rewire the gun's circuit board...", "blue")
+					user.show_text("You begin to rewire the gun's circuit board...", "blue", group = "capgun")
 					if (do_after(user, 3.5 SECONDS))
-						user.show_text("You rewire the circuit board.", "blue")
+						user.show_text("You rewire the circuit board.", "blue", group = "capgun")
 						src.repair_stage = 2
 						if (C.material)
 							src.quality_counter += C.material.quality
 					else
-						user.show_text("You were interrupted!", "red")
+						user.show_text("You were interrupted!", "red", group = "capgun")
 						return
 				else
-					user.show_text("You need more wire than that.", "red")
+					user.show_text("You need more wire than that.", "red", group = "capgun")
 					return
 
 		else if (istype(O, /obj/item/coil/small))
 			if (src.repair_stage == 2)
-				user.show_text("You begin to install the coil...", "blue")
+				user.show_text("You begin to install the coil...", "blue", group = "capgun")
 				if (do_after(user, 3.5 SECONDS))
-					user.show_text("You install the coil.", "blue")
+					user.show_text("You install the coil.", "blue", group = "capgun")
 					src.repair_stage = 3
 					if (O.material)
 						src.quality_counter += O.material.quality
 					user.u_equip(O)
 					qdel(O)
 				else
-					user.show_text("You were interrupted!", "red")
+					user.show_text("You were interrupted!", "red", group = "capgun")
 					return
 
 		else if (istype(O, /obj/item/electronics/soldering))
 			if (src.repair_stage == 3)
-				user.show_text("You begin to solder the coil into place...", "blue")
+				user.show_text("You begin to solder the coil into place...", "blue", group = "capgun")
 				if (do_after(user, 3.5 SECONDS))
-					user.show_text("You solder the coil into place.", "blue")
+					user.show_text("You solder the coil into place.", "blue", group = "capgun")
 					src.repair_stage = 4
 				else
-					user.show_text("You were interrupted!", "red")
+					user.show_text("You were interrupted!", "red", group = "capgun")
 					return
 
 		else if (istype(O, /obj/item/lens))
 			if (src.repair_stage == 4)
-				user.show_text("You begin to install the lens...", "blue")
+				user.show_text("You begin to install the lens...", "blue", group = "capgun")
 				if (do_after(user, 3.5 SECONDS))
-					user.show_text("You install the lens.", "blue")
+					user.show_text("You install the lens.", "blue", group = "capgun")
 					src.repair_stage = 5
 					if (O.material)
 						src.quality_counter += O.material.quality
 					user.u_equip(O)
 					qdel(O)
 				else
-					user.show_text("You were interrupted!", "red")
+					user.show_text("You were interrupted!", "red", group = "capgun")
 					return
 
 		else if (ispulsingtool(O))
 			if (src.repair_stage == 5)
-				user.show_text("You initialize the control board.", "blue")
+				user.show_text("You initialize the control board.", "blue", group = "capgun")
 				src.repair_stage = 6
 
 		else if (istype(O, /obj/item/ammo/power_cell))
 			if (src.repair_stage == 6)
 				var/obj/item/ammo/power_cell/P = O
-				user.show_text("You begin to install the power cell...", "blue")
+				user.show_text("You begin to install the power cell...", "blue", group = "capgun")
 				if (do_after(user, 3.5 SECONDS))
-					user.show_text("You install the power cell.", "blue")
+					user.show_text("You install the power cell.", "blue", group = "capgun")
 					src.repair_stage = 7
 					user.u_equip(P)
 					P.set_loc(src)
@@ -341,7 +341,7 @@
 					if (P.material)
 						src.quality_counter += P.material.quality
 				else
-					user.show_text("You were interrupted!", "red")
+					user.show_text("You were interrupted!", "red", group = "capgun")
 					return
 
 		else

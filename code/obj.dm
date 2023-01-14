@@ -331,7 +331,10 @@
 	desc = "A lightweight support lattice."
 	name = "lattice"
 	icon = 'icons/obj/structures.dmi'
-	icon_state = "lattice"
+	icon_state = "lattice" //shiny blue-grey (also lattice-dir and lattice-dir-b)
+	//Old-style sprites are also available (icon states lattice_grey, lattice_grey-dir and lattice_grey-dir-b)
+	//Seems like all existing lattices are varedited to get the other icon states
+
 	density = 0
 	stops_space_move = 1
 	anchored = 1.0
@@ -379,6 +382,9 @@
 				new /obj/lattice/barricade(src.loc)
 				qdel(src)
 		return
+
+/obj/lattice/grey //This one's mostly for find/replace purposes of the 4-way lattices. The rest generally can be done by find/replacing the edited icon state
+	icon_state = "lattice_grey"
 
 /obj/lattice/barricade
 	name = "barricade"

@@ -226,6 +226,19 @@ datum
 
 			return largest_name
 
+		proc/get_master_reagent_name_except(var/exception)
+			var/largest_name = null
+			var/largest_volume = 0
+
+			for(var/reagent_id in reagent_list)
+				if(reagent_id == "smokepowder") continue
+				if(reagent_id == exception) continue
+				var/datum/reagent/current = reagent_list[reagent_id]
+				if(current.volume > largest_volume)
+					largest_name = current.name
+					largest_volume = current.volume
+
+			return largest_name
 
 		proc/get_master_reagent_id()
 			var/largest_id = null

@@ -131,7 +131,7 @@
 	name = "haine's rad hangout place"
 	icon_state = "purple"
 	requires_power = 0
-	sound_environment = 4
+	sound_environment = EAX_LIVINGROOM
 
 /proc/report_times()
 	DEBUG_MESSAGE("[world.time]")

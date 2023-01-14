@@ -111,6 +111,8 @@
 	var/nearest_beacon			// the nearest beacon's tag
 	var/turf/nearest_beacon_loc	// the nearest beacon's location
 
+	var/last_attack = 0 // explanatory
+
 	var/attack_per_step = 0 // Tries to attack every step. 1 = 75% chance to attack, 2 = 25% chance to attack
 	/// One WEEOOWEEOO at a time, please
 	var/weeooing
@@ -543,7 +545,7 @@
 		qdel(src)
 
 	/// Makes the bot able to baton people, then makes them unable to baton people after a while
-	proc/charge_baton()
+	proc/charge_baton() // UNUSED - WARC
 		src.baton_charged = TRUE
 		UpdateOverlays(chargepic, "secbot_charged")
 		SPAWN_DBG(src.baton_charge_duration)
@@ -552,42 +554,54 @@
 
 	/// Hits someone with our baton, or charges it if it isnt
 	proc/baton_attack(var/mob/living/carbon/M, var/force_attack = 0)
-		if(force_attack || baton_charged)
-			src.baton_charging = 0
-			src.icon_state = "secbot-c[src.emagged >= 2 ? "-wild" : null]"
-			var/maxstuns = 4
-			var/stuncount = (src.emagged >= 2) ? rand(5,10) : 1
-
-			// No need for unnecessary hassle, just make it ignore charges entirely for the time being.
-			if (src.our_baton && istype(src.our_baton))
-				src.our_baton.cost_normal = 0
-			else
-				src.our_baton = new src.our_baton_type(src)
-
-			while (stuncount > 0 && src.target)
-				// they moved while we were sleeping, abort
-				if(!IN_RANGE(src, src.target, 1))
-					src.icon_state = "secbot[src.on][(src.on && src.emagged >= 2) ? "-wild" : null]"
-					src.weeoo()
-					src.process()
-					return
-
-				stuncount--
-				src.our_baton.do_stun(src, M, src.stun_type, 2)
-				if (!stuncount && maxstuns-- <= 0)
-					src.KillPathAndGiveUp(KPAGU_CLEAR_PATH)
-				if (stuncount > 0)
-					sleep(BATON_DELAY_PER_STUN)
-
-			SPAWN_DBG(0.2 SECONDS)
-				src.icon_state = "secbot[src.on][(src.on && src.emagged >= 2) ? "-wild" : null]"
-			if (src.target.getStatusDuration("weakened"))
-				src.anchored = 1
-				src.target_lastloc = M.loc
-				src.KillPathAndGiveUp(KPAGU_CLEAR_PATH)
+		sleep(BATON_INITIAL_DELAY)
+		if(!IN_RANGE(src, src.target, 1))
 			return
+
+		src.icon_state = "secbot-c[src.emagged >= 2 ? "-wild" : null]"
+		var/maxstuns = 4
+		var/stuncount = (src.emagged >= 2) ? rand(5,10) : 1
+
+		last_attack = world.time
+
+		// No need for unnecessary hassle, just make it ignore charges entirely for the time being.
+		if (src.our_baton && istype(src.our_baton))
+			src.our_baton.cost_normal = 0
+			src.our_baton.cost_cyborg = 0
 		else
-			actions.start(new/datum/action/bar/icon/secbot_stun(src, src.target, M, src), src)
+			src.our_baton = new our_baton_type(src)
+
+		while (stuncount > 0 && src.target)
+			// they moved while we were sleeping, abort
+			if(!IN_RANGE(src, src.target, 1))
+				src.icon_state = "secbot[src.on][(src.on && src.emagged >= 2) ? "-wild" : null]"
+				return
+
+			stuncount--
+			src.our_baton.do_stun(src, M, src.stun_type, 2)
+			if (!stuncount && maxstuns-- <= 0)
+				target = null
+			if (stuncount > 0)
+				sleep(BATON_DELAY_PER_STUN)
+
+		SPAWN_DBG(0.2 SECONDS)
+			src.icon_state = "secbot[src.on][(src.on && src.emagged >= 2) ? "-wild" : null]"
+		if (src.target.getStatusDuration("weakened"))
+			mode = SECBOT_AGGRO
+			src.anchored = 1
+			src.target_lastloc = M.loc
+			src.KillPathAndGiveUp(KPAGU_CLEAR_PATH)
+		return
+
+	Move(var/turf/NewLoc, direct)
+		var/oldloc = src.loc
+		..()
+		if (src.attack_per_step && prob(src.attack_per_step == 2 ? 25 : 75))
+			if (oldloc != NewLoc && world.time != last_attack)
+				if (mode == SECBOT_AGGRO && target)
+					if (IN_RANGE(src, src.target, 1))
+						src.baton_attack(src.target)
+
 
 	process()
 		. = ..()
@@ -1340,7 +1354,7 @@
 		if (!isturf(master.loc) || !isturf(master.target?.loc)) // Most often, inside a locker
 			return 1 // cant cuff people through lockers... and not enough room to cuff if both are in that locker
 
-//secbot stunner bar thing
+//secbot stunner bar thing // UNUSED NOW - WARC
 /datum/action/bar/icon/secbot_stun
 	duration = 10
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
