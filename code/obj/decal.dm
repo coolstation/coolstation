@@ -143,6 +143,7 @@
 	New()
 		..()
 		icon_state = "floattiles[rand(1,6)]"
+		set_dir(pick(NORTH,EAST,SOUTH,WEST))
 
 /obj/decal/implo
 	name = "implosion"
