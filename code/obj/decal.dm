@@ -136,7 +136,6 @@
 		desc = "These tiles were dislodged by something."
 		recover = TRUE
 
-
 /obj/decal/implo
 	name = "implosion"
 	icon = 'icons/effects/64x64.dmi'
