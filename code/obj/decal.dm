@@ -115,6 +115,27 @@
 	anchored = 1
 	icon = 'icons/obj/adventurezones/void.dmi'
 	icon_state = "floattiles1"
+	var/recover = FALSE
+
+	attackby(obj/item/C as obj, mob/user as mob)
+		if (ispryingtool(C))
+			if(!recover) return
+			if(prob(33))
+				boutput(user, "<span class='alert'>You are able to salvage the tiles.</span>")
+				var/obj/item/I = unpool(/obj/item/tile)
+				I.set_loc(src)
+				if (src.material)
+					I.setMaterial(src.material)
+				else
+					var/datum/material/M = getMaterial("steel")
+					I.setMaterial(M)
+			qdel(src)
+
+	loose
+		name = "loose tiles"
+		desc = "These tiles were dislodged by something."
+		recover = TRUE
+
 
 /obj/decal/implo
 	name = "implosion"
