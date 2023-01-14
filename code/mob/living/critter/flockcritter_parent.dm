@@ -149,10 +149,10 @@
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration = 45
 
-	var/turf/simulated/target
+	var/turf/target
 	var/obj/decal/decal
 
-	New(var/turf/simulated/ntarg, var/duration_i)
+	New(var/turf/ntarg, var/duration_i)
 		..()
 		if (ntarg)
 			target = ntarg
@@ -174,9 +174,9 @@
 
 			// do effect
 			var/flick_anim = "spawn-floor"
-			if(istype(target, /turf/simulated/floor) || istype(target, /turf/space))
+			if(istype(target, /turf/floor) || istype(target, /turf/space))
 				src.decal = unpool(/obj/decal/flock_build_floor)
-			if(istype(target, /turf/simulated/wall))
+			if(istype(target, /turf/wall))
 				src.decal = unpool(/obj/decal/flock_build_wall)
 				flick_anim = "spawn-wall"
 			if(src.decal)
@@ -218,13 +218,13 @@
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration = 30
 
-	var/turf/simulated/target
+	var/turf/target
 	var/obj/decal/decal
 	var/obj/structurepath = /obj/grille/flock
 	var/cost = 25
 
 
-	New(var/turf/simulated/ntarg, var/structurepath_i, var/duration_i)
+	New(var/turf/ntarg, var/structurepath_i, var/duration_i)
 		..()
 		if (ntarg)
 			target = ntarg
@@ -481,8 +481,8 @@
 				c.dump_contents()
 				qdel(target)
 				target = null
-			if(/turf/simulated/wall/auto/feather)
-				var/turf/simulated/wall/auto/feather/f = target
+			if(/turf/wall/auto/feather)
+				var/turf/wall/auto/feather/f = target
 				f.dismantle_wall()
 			if(/obj/machinery/door/feather)
 				var/turf/T = get_turf(target)

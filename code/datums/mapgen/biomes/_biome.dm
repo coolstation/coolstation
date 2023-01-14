@@ -47,4 +47,4 @@
 	turf_type = /turf/floor/auto/swamp
 
 /datum/biome/mountain
-	turf_type = /turf/simulated/wall/asteroid/mountain
+	turf_type = /turf/wall/asteroid/mountain
