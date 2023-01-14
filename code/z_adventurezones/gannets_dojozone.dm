@@ -495,7 +495,7 @@ Contents:
 	icon_state= "tall"
 	opacity = 0
 
-/turf/simulated/wall/false_wall/sengoku
+/turf/wall/false_wall/sengoku
 	desc = "There seems to be markings on one of the edges, huh."
 	icon = 'icons/turf/walls_paper.dmi'
 	icon_state = "2"
@@ -586,7 +586,7 @@ Contents:
 
 // Simulated variants of turfs
 
-/turf/simulated/floor/dojo/sand
+/turf/floor/dojo/sand
 	name = "zen garden"
 	icon = 'icons/turf/dojo.dmi'
 	icon_state = "sand"
@@ -600,7 +600,7 @@ Contents:
 	circle
 		icon_state = "sand_circ"
 
-/turf/simulated/floor/dojo/stone
+/turf/floor/dojo/stone
 	name = "stone"
 	icon = 'icons/turf/dojo.dmi'
 	icon_state = "stone"

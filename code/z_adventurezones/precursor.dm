@@ -1241,7 +1241,7 @@
 							for (var/atom/A in T)
 								A.ex_act(1)
 
-							if (istype(T, /turf/simulated/wall))
+							if (istype(T, /turf/wall) && isconstructionturf(T))
 								T.ex_act(1)
 							else
 								T.ReplaceWithSpaceForce()

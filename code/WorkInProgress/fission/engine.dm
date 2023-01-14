@@ -216,7 +216,7 @@ REACTOR
 				// Get the turf
 				var/turf/T = get_turf(src)
 				// If it has air in it:
-				if(istype(T, /turf/simulated) && T:air)
+				if(issimulatedturf(T) && T:air)
 					// This count to see if there already exists
 					// a radiation trace gas
 					var/count = 0
@@ -290,7 +290,7 @@ REACTOR
 		// Get the turf
 		var/turf/T = get_turf(src)
 		// If it has air in it:
-		if(istype(T, /turf/simulated) && T:air)
+		if(issimulatedturf(T) && T:air)
 			// This count to see if there already exists
 			// a radiation trace gas
 			var/count = 0
