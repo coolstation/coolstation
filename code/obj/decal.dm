@@ -119,16 +119,19 @@
 
 	attackby(obj/item/C as obj, mob/user as mob)
 		if (ispryingtool(C))
-			if(!recover) return
+			if(!recover)
+				return ..()
 			if(prob(33))
-				boutput(user, "<span class='alert'>You are able to salvage the tiles.</span>")
+				boutput(user, "<span class='notice'>You are able to salvage the tiles.</span>")
 				var/obj/item/I = unpool(/obj/item/tile)
-				I.set_loc(src)
+				I.set_loc(src.loc)
 				if (src.material)
 					I.setMaterial(src.material)
 				else
 					var/datum/material/M = getMaterial("steel")
 					I.setMaterial(M)
+			else
+				boutput(user, "<span class='notice'>These tiles are too fucked to be of use.</span>")
 			qdel(src)
 
 	loose
