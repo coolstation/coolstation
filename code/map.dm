@@ -25,8 +25,9 @@ var/global/list/mapNames = list(
 	"Donut 3" = 		list("id" = "DONUT3", 		"settings" = "donut3",			"playerPickable" = 1, 		"MinPlayersAllowed" = 40),
 	"Horizon" = 		list("id" = "HORIZON", 		"settings" = "horizon", 		"playerPickable" = 0),
 	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 0),
-	"Bobmap" = 	list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 1),
-	"Spirit" =	list("id" = "SPIRIT",		"settings" = "spirit",				"playerPickable" = 0),
+	"Bobmap" = 			list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 1),
+	"Spirit" =			list("id" = "SPIRIT",		"settings" = "spirit",			"playerPickable" = 0),
+	"Tselabok" = 		list("id" = "TSELABOK",		"settings" = "tselabok",		"playerPickable" = 0),
 	//"Mushroom" =		list("id" = "MUSHROOM", 	"settings" = "mushroom",		"playerPickable" = ASS_JAM),
 	//"Trunkmap" = 		list("id" = "TRUNKMAP", 	"settings" = "trunkmap",		"playerPickable" = ASS_JAM),
 	"Oshan Laboratory"= list("id" = "OSHAN", 		"settings" = "oshan", 			"playerPickable" = 1),
@@ -212,6 +213,40 @@ var/global/list/mapNames = list(
 		"the courtroom" = list(/area/station/crew_quarters/courtroom),
 		"the central room in security" = list(/area/station/security/main),
 		"the hydroponics bay" = list(/area/station/hydroponics/bay))
+
+
+/datum/map_settings/tselabok // PLACEHOLDER
+	name = "TSELABOK"
+	goonhub_map = "http://goonhub.com/maps/donut3"
+	airlock_style = "pyro"
+	walls = /turf/simulated/wall/auto/jen
+	rwalls = /turf/simulated/wall/auto/reinforced/jen
+
+	escape_centcom = /area/shuttle/escape/centcom/donut3
+	escape_outpost = /area/shuttle/escape/outpost/donut3
+	escape_transit = /area/shuttle/escape/transit/donut3
+	escape_station = /area/shuttle/escape/station/donut3
+	escape_def = SHUTTLE_DONUT3
+	escape_dir = NORTH
+	auto_windows = 1
+
+	windows = /obj/window/auto
+	windows_thin = /obj/window/pyro
+	rwindows = /obj/window/auto/reinforced
+	rwindows_thin = /obj/window/reinforced/pyro
+	windows_crystal = /obj/window/auto/crystal
+	windows_rcrystal = /obj/window/auto/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER
+	window_layer_north = GRILLE_LAYER+0.1
+	window_layer_south = FLY_LAYER+1
+	auto_windows = 1
+
+	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/destiny
+	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/destiny
+	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/destiny
+	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/destiny
+
+	valid_nuke_targets = list() // POPULATE ME LATER!!! TODO!!!
 
 /datum/map_settings/cogmap_old
 	name = "COGMAP_OLD"
