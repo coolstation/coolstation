@@ -138,18 +138,23 @@
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "gehenna_tile"
 
+		thermal
+			name = "sand-covered solar plating"
+			desc = "absorbs the sun's rays, gets real hot."
+			temperature = WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(1.5*WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
+
 		podbay
 			icon_state = "gehenna_plating"
 
 	path
 		name = "beaten earth"
-		desc = "for seven years we toiled, to tame wild Gehenna"
+		desc = "this soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "gehenna_edge"
 
 	corner
 		name = "beaten earth"
-		desc = "for seven years we toiled, to tame wild Gehenna"
+		desc = "this soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "gehenna_corner"
 
