@@ -214,7 +214,7 @@
 		fullbright = 0
 
 /turf/space/proc/update_icon(starlight_alpha=255)
-	if(!isnull(space_color) && !istype(src, /turf/space/fluid))
+	if(!isnull(space_color) && !istype(src, /turf/space/fluid)&& !istype(src, /turf/space/gehenna))
 		src.color = space_color
 
 	if(fullbright)
@@ -642,7 +642,7 @@ proc/generate_space_color()
 			if(src.z==3)
 				new_turf = new /turf/simulated/floor/plating/gehenna(src)
 			else
-				new_turf = new /turf/unsimulated/floor/gehenna/desert(src)
+				new_turf = new /turf/space/gehenna/desert(src)
 		if ("Ocean")
 			new_turf = new /turf/space/fluid(src)
 		if ("Floor")

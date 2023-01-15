@@ -20,10 +20,20 @@
 
 
 // Gehenna shit tho
-/turf/unsimulated/floor/gehenna
+/turf/space/gehenna
 	name = "planet gehenna"
 	desc = "errrr"
 	opacity = 0
+	pathable = 0
+	mat_changename = 0
+	mat_changedesc = 0
+	fullbright = 0
+	luminosity = 1
+	intact = 0 //allow wire laying
+	throw_unlimited = 0
+	color = "#ffffff"
+	special_volume_override = -1
+
 
 /turf/simulated/wall/asteroid/gehenna
 	fullbright = 0
@@ -33,7 +43,7 @@
 	desc = "looks loosely packed"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock"
-	floor_turf = "/turf/unsimulated/floor/gehenna/desert"
+	floor_turf = "/turf/space/gehenna/desert"
 	hardness = 1
 	New()
 		..()
@@ -86,7 +96,7 @@
 	farts = MOLES_O2STANDARD
 	nitrogen = MOLES_N2STANDARD / 2
 
-/turf/unsimulated/floor/gehenna/desert
+/turf/space/gehenna/desert
 	name = "barren wasteland"
 	desc = "Looks really dry out there."
 	icon = 'icons/turf/floors.dmi'
