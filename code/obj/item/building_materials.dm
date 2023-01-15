@@ -1135,6 +1135,10 @@ MATERIAL
 #else
 		if (src.amount < 1)
 			return FALSE
+		for(var/obj/decal/floatingtiles/loose/L in S)
+			if(istype(L))
+				boutput(usr, "<span class='notice'>you need to clear the existing tile fragments.</span>")
+				return
 		var/turf/simulated/floor/W = S.ReplaceWithFloor()
 		if (W) //Wire: Fix for: Cannot read null.icon_old
 			W.inherit_area()
