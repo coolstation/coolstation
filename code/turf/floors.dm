@@ -1427,6 +1427,8 @@ DEFINE_FLOORS(techfloor/green,
 /turf/simulated/floor/proc/break_tile_to_plating()
 	if(intact) to_plating()
 	break_tile()
+	if(prob(25))
+		new /obj/decal/floatingtiles/loose/random(src)
 
 /turf/simulated/floor/proc/break_tile(var/force_break)
 	if(!force_break)
@@ -1599,6 +1601,11 @@ DEFINE_FLOORS(techfloor/green,
 
 		// Don't replace with an [else]! If a prying tool is found above [intact] might become 0 and this runs too, which is how floor swapping works now! - BatElite
 		if (!intact)
+			for(var/obj/decal/floatingtiles/loose/L in src.contents)
+				if(istype(L))
+					boutput(usr, "<span class='notice'>you need to clear the existing tile fragments.</span>")
+					return
+
 			restore_tile()
 			src.plate_mat = src.material
 			if(C.material)
