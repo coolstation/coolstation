@@ -57,8 +57,8 @@
 		else
 			return ..()
 
-	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
-			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+
+	throw_impact(atom/A, datum/thrown_thing/thr)
 		..()
 		if (src.butts)
 			src.visible_message("[src] spills all over the place.")
