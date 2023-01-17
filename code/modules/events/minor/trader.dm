@@ -58,6 +58,8 @@
 			for(var/atom/movable/AM as mob|obj in T)
 				if(isobserver(AM))
 					continue
+				if(istype(AM, /obj/overlay/tile_effect))
+					continue
 				AM.Move(D)
 			if(istype(T, /turf/simulated))
 				qdel(T)
