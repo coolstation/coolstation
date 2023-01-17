@@ -3344,12 +3344,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
-"cwz" = (
-/obj/landmark/drain_exit,
-/turf/simulated/floor/plating{
-	icon_state = "panelscorched"
-	},
-/area/station/maintenance/disposal/sewage)
 "cxq" = (
 /obj/machinery/atmospherics/pipe/tank/air_repressurization/south,
 /turf/simulated/floor/plating,
@@ -22288,6 +22282,12 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/plating,
 /area/station/mining/refinery)
+"pKz" = (
+/obj/landmark/drain_exit,
+/turf/simulated/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/station/maintenance/disposal/sewage)
 "pLh" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -90560,7 +90560,7 @@ oBe
 tqJ
 eTR
 gXi
-cwz
+pKz
 iKN
 eNa
 vcZ
