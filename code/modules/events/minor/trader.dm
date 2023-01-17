@@ -58,11 +58,14 @@
 			for(var/atom/movable/AM as mob|obj in T)
 				if(isobserver(AM))
 					continue
-				if(istype(AM, /obj/overlay/tile_effect))
+				if(istype(AM, /obj/overlay))
 					continue
 				AM.Move(D)
-			if(istype(T, /turf/simulated))
-				qdel(T)
+		/*	if(istype(T, /turf/simulated))
+				qdel(T)*/ // wait why the fuck???
+				// DELETING A TURF DESTROYDS ITS LIGHTING OVERLAY PERMANENTLY
+				// DO NOT EVER EVER EVER QDEL A TURF
+				// NOT EVEN IF THERE'S A FIRE
 
 		for (var/turf/P in start_location)
 			if (istype(P, centcom_turf))
