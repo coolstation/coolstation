@@ -8129,6 +8129,7 @@
 /obj/table/auto{
 	color = "#666666"
 	},
+/obj/item/device/camera_viewer,
 /turf/simulated/floor/grey,
 /area/station/science/research_director)
 "fKx" = (
@@ -18206,6 +18207,12 @@
 /obj/rack,
 /turf/simulated/floor/plating,
 /area/station/hallway/secondary/exit)
+"mIy" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/table/reinforced/industrial/auto,
+/obj/item/device/camera_viewer,
+/turf/simulated/floor,
+/area/station/security/processing)
 "mIK" = (
 /obj/disposalpipe/trunk{
 	dir = 4
@@ -23249,6 +23256,7 @@
 	pixel_x = 9
 	},
 /obj/item/clothing/head/helmet/camera,
+/obj/item/device/camera_viewer,
 /turf/simulated/floor/grey,
 /area/station/science/teleporter)
 "qwG" = (
@@ -30724,6 +30732,11 @@
 	},
 /turf/simulated/floor/carpet/blue/standard/edge/nw,
 /area/station/bridge/basement)
+"vwS" = (
+/obj/rack,
+/obj/item/device/camera_viewer,
+/turf/simulated/floor/plating,
+/area/station/hallway/secondary/exit)
 "vwY" = (
 /turf/simulated/wall,
 /area/station/science/lobby)
@@ -76598,7 +76611,7 @@ qBV
 jRr
 dnc
 oXY
-ezm
+mIy
 wVj
 iLx
 iLx
@@ -103778,7 +103791,7 @@ pdO
 pdO
 pdO
 dwP
-mIc
+vwS
 mIc
 mIc
 lhG
