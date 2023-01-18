@@ -3333,6 +3333,10 @@
 	})
 "cwb" = (
 /obj/rack,
+/obj/item/device/analyzer/atmospheric,
+/obj/item/device/analyzer/atmospheric{
+	pixel_x = -9
+	},
 /turf/simulated/floor/yellow/side,
 /area/station/engine/power)
 "cwf" = (
@@ -3374,6 +3378,9 @@
 	dir = 4
 	},
 /area/station/maintenance/disposal)
+"czz" = (
+/turf/simulated/floor/plating/gehenna,
+/area/station/science/testchamber)
 "czN" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -6340,6 +6347,11 @@
 /obj/machinery/atmospherics/portables_connector/north,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
+"ewK" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/airless/engine,
+/area/station/science/testchamber)
 "ewV" = (
 /turf/simulated/floor/plating,
 /area/station/mining/refinery)
@@ -12322,6 +12334,7 @@
 	d2 = 4;
 	icon_state = "5-10"
 	},
+/obj/item/storage/box/cablesbox/hotpink,
 /turf/simulated/floor/plating,
 /area/station/science/gen_storage)
 "iIl" = (
@@ -16757,6 +16770,13 @@
 /area/station/crew_quarters/info{
 	name = "Net Cafe"
 	})
+"lID" = (
+/obj/machinery/light/fluorescent/neutral{
+	dir = 4
+	},
+/obj/item/sheet/steel/fullstack,
+/turf/simulated/floor/plating,
+/area/station/science/testchamber)
 "lIR" = (
 /obj/machinery/atmospherics/binary/volume_pump{
 	on = 1;
@@ -21211,6 +21231,10 @@
 	pixel_x = -6;
 	pixel_y = 7
 	},
+/obj/item/device/multitool{
+	pixel_x = 9;
+	pixel_y = 8
+	},
 /turf/simulated/floor,
 /area/station/science/gen_storage)
 "oTW" = (
@@ -25133,6 +25157,10 @@
 /obj/grille/catwalk/jen,
 /turf/simulated/floor/plating,
 /area/station/maintenance/northwest)
+"rHN" = (
+/obj/machinery/portable_atmospherics/pump,
+/turf/simulated/floor,
+/area/station/science/gen_storage)
 "rHQ" = (
 /obj/cable/purple{
 	icon_state = "4-8"
@@ -30694,6 +30722,10 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/northwest,
 /turf/simulated/floor/grey,
 /area/station/engine/hotloop)
+"vvq" = (
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/plating,
+/area/station/science/testchamber)
 "vvw" = (
 /obj/disposalpipe/junction/right/east,
 /turf/simulated/floor/plating,
@@ -30866,6 +30898,7 @@
 /area/station/engine/hotloop)
 "vAv" = (
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/portable_atmospherics/pump,
 /turf/simulated/floor/plating,
 /area/station/science/gen_storage)
 "vAE" = (
@@ -31814,6 +31847,13 @@
 	dir = 8;
 	icon_state = "on";
 	on = 1
+	},
+/obj/machinery/sparker{
+	dir = 8;
+	id = "tox_ignition1";
+	layer = 7;
+	name = "Mounted Igniter";
+	pixel_x = -18
 	},
 /turf/simulated/floor/airless/engine,
 /area/station/science/testchamber)
@@ -65521,7 +65561,7 @@ bUV
 bUV
 iOy
 xEY
-nzY
+rHN
 nzY
 chn
 bwR
@@ -67332,7 +67372,7 @@ wky
 oBK
 rYR
 eSm
-bwR
+xew
 hkk
 eYl
 sAS
@@ -67632,9 +67672,9 @@ fpF
 xsI
 xsI
 oBK
-rYR
-eSm
-bwR
+ewK
+tba
+xew
 fCM
 eYl
 sAS
@@ -67935,8 +67975,8 @@ wcs
 wcs
 xaL
 rYR
-eSm
-bwR
+tba
+xew
 hkk
 eYl
 sAS
@@ -68237,8 +68277,8 @@ fsv
 bTk
 ark
 fLf
-eSm
-bwR
+tba
+xew
 bwR
 bwR
 bwR
@@ -68539,8 +68579,8 @@ eSm
 vKI
 eSm
 eSm
+tba
 eSm
-pdO
 pdO
 pdO
 pdO
@@ -68840,9 +68880,9 @@ lIR
 qbv
 pYF
 tNY
-qrt
-pdO
-pdO
+eSm
+vvq
+eSm
 pdO
 pdO
 pdO
@@ -69143,7 +69183,7 @@ uwy
 wso
 tba
 tba
-qZT
+tba
 qZT
 pdO
 qZT
@@ -69439,13 +69479,13 @@ bwR
 qrt
 qrt
 qrt
-whK
+lID
 rhB
 tba
 tba
 whK
 tba
-qZT
+czz
 qZT
 qZT
 sej
