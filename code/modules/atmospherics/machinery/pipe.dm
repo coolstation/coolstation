@@ -1077,7 +1077,7 @@ obj/machinery/atmospherics/pipe
 				for(var/obj/machinery/atmospherics/pipe/vertical_pipe/target_pipe in get_turf(locate(src.x,src.y,target_z)))
 					node2 = target_pipe
 					if(src.z > target_z)
-						new /obj/structure/girder(src.loc) //gotta go up!
+						new /obj/structure/girder/riser(src.loc) //gotta go up!
 					break
 			else if(id)
 				for(var/obj/machinery/atmospherics/pipe/vertical_pipe/target_pipe in by_cat[TR_CAT_ATMOS_MACHINES])

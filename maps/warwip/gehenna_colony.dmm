@@ -871,6 +871,17 @@
 /area/station/medical/medbay)
 "aLd" = (
 /obj/table/wood/auto,
+/obj/decal/tile_edge/floorguide/arrow_s{
+	dir = 8;
+	pixel_x = 32
+	},
+/obj/decal/tile_edge/floorguide/ladder{
+	pixel_x = 32
+	},
+/obj/decal/tile_edge/floorguide/evac{
+	dir = 4;
+	pixel_x = 32
+	},
 /turf/simulated/floor/carpet/grime,
 /area/station/security/secoffquarters)
 "aLX" = (
@@ -1516,6 +1527,15 @@
 	},
 /turf/simulated/floor/carpet/grime,
 /area/station/chapel/office)
+"buM" = (
+/obj/machinery/light/fluorescent{
+	dir = 1
+	},
+/obj/decal/tile_edge/floorguide/ladder{
+	pixel_y = 32
+	},
+/turf/simulated/floor/plating,
+/area/station/engine/engineering)
 "bvn" = (
 /obj/cable{
 	icon_state = "5-9"
@@ -2459,12 +2479,19 @@
 /turf/space/gehenna/desert,
 /area/space)
 "cjr" = (
-/obj/decal/tile_edge/floorguide/evac,
-/obj/decal/tile_edge/floorguide/arrow_s{
-	pixel_y = 16
+/obj/disposalpipe/segment/produce{
+	dir = 4
 	},
-/turf/simulated/wall,
-/area/station/maintenance/inner/north)
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10;
+	icon_state = "bot2"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/decal/tile_edge/floorguide/ladder{
+	pixel_x = 32
+	},
+/turf/simulated/floor/black,
+/area/station/quartermaster/storage)
 "cjz" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -3726,6 +3753,14 @@
 /turf/simulated/floor/black/side{
 	dir = 4
 	},
+/area/station/engine/engineering)
+"dmK" = (
+/obj/machinery/light/fluorescent,
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 8;
+	pixel_y = -32
+	},
+/turf/simulated/floor/yellow/side,
 /area/station/engine/engineering)
 "dmZ" = (
 /obj/machinery/light/fluorescent/cool/very{
@@ -6330,6 +6365,10 @@
 	},
 /obj/cable{
 	icon_state = "1-2"
+	},
+/obj/decal/tile_edge/floorguide/catering,
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 4
 	},
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/farmers)
@@ -8993,6 +9032,9 @@
 /area/station/quartermaster/cargobay)
 "igp" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/decal/tile_edge/floorguide/ladder{
+	pixel_y = 32
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
 "igQ" = (
@@ -14487,6 +14529,13 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	icon_state = "rugfull"
 	},
+/obj/decal/tile_edge/floorguide/evac{
+	pixel_y = 32
+	},
+/obj/decal/tile_edge/floorguide/arrow_s{
+	dir = 4;
+	pixel_y = 32
+	},
 /turf/simulated/floor/orange,
 /area/station/engine/engineering)
 "nuv" = (
@@ -19621,6 +19670,17 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/pharmacy)
+"rRi" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/decal/tile_edge/floorguide/ladder{
+	pixel_x = 32
+	},
+/turf/simulated/floor,
+/area/station/chapel/sanctuary)
 "rRl" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/south,
 /turf/simulated/floor/sanitary,
@@ -22342,6 +22402,17 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
+"uyf" = (
+/obj/disposalpipe/trunk/zlevel{
+	dir = 1;
+	target_z = 3
+	},
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 1;
+	pixel_x = -32
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/nw)
 "uyw" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 10;
@@ -24786,12 +24857,20 @@
 /turf/simulated/floor/grey,
 /area/station/engine/engineering)
 "wLc" = (
-/obj/decal/tile_edge/floorguide/arrow_s,
-/obj/decal/tile_edge/floorguide/evac{
-	dir = 8
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = 32
 	},
-/turf/simulated/wall/r_wall,
-/area/station/security/secoffquarters)
+/obj/decal/tile_edge/floorguide/evac{
+	pixel_y = 32
+	},
+/obj/decal/tile_edge/floorguide/arrow_s{
+	dir = 8;
+	pixel_y = 32
+	},
+/turf/simulated/floor/darkblue,
+/area/station/bridge/conference)
 "wLF" = (
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/nw)
@@ -25287,12 +25366,13 @@
 /turf/simulated/floor/industrial,
 /area/station/mining/dock)
 "xiq" = (
-/obj/decal/tile_edge/floorguide/evac,
-/obj/decal/tile_edge/floorguide/arrow_s{
-	dir = 4
+/obj/machinery/light/small/floor,
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 1;
+	pixel_x = -32
 	},
-/turf/simulated/wall,
-/area/station/engine/engineering)
+/turf/simulated/floor/grey,
+/area/station/bridge)
 "xis" = (
 /obj/submachine/chef_sink{
 	dir = 8
@@ -25931,6 +26011,13 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/west{
 	target_z = 3
 	},
+/obj/decal/tile_edge/floorguide/evac{
+	dir = 4;
+	pixel_x = 32
+	},
+/obj/decal/tile_edge/floorguide/arrow_e{
+	pixel_x = 32
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
 "xOA" = (
@@ -26364,6 +26451,12 @@
 	icon_state = "fblue2"
 	},
 /area/station/security/hos)
+"ykI" = (
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 8
+	},
+/turf/simulated/wall,
+/area/station/medical/maintenance)
 "ykX" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/northwest,
 /turf/simulated/floor/plating,
@@ -50683,7 +50776,7 @@ bGc
 rrh
 wrT
 hyG
-wrT
+rRi
 qXC
 ylG
 cKa
@@ -53094,7 +53187,7 @@ rgH
 bRb
 wCu
 tRl
-mKJ
+uyf
 ffv
 ffv
 ffv
@@ -53999,7 +54092,7 @@ ygw
 geb
 rcm
 pZJ
-pBj
+xiq
 rcm
 ffv
 aPJ
@@ -59193,7 +59286,7 @@ lRk
 wBe
 qIz
 sRB
-aRZ
+ykI
 aRZ
 aRZ
 aRZ
@@ -60337,8 +60430,8 @@ bTy
 vln
 hyd
 ykd
-cjr
-sUa
+lmc
+wLc
 geB
 pfk
 lNT
@@ -73920,7 +74013,7 @@ jEb
 jEb
 jEb
 ycA
-wLc
+ycA
 oKe
 uRT
 ycA
@@ -80626,8 +80719,8 @@ rAF
 uOn
 tFE
 fal
-nWC
-xiq
+dmK
+ewG
 nug
 fOm
 aco
@@ -87570,7 +87663,7 @@ iZU
 lgM
 kEp
 pgt
-oPU
+buM
 jLJ
 cML
 heK
@@ -92948,7 +93041,7 @@ tQe
 lxo
 tQe
 aTX
-bYu
+cjr
 gLl
 dAu
 tcd

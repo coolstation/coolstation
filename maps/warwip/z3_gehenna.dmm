@@ -3973,6 +3973,14 @@
 	dir = 8
 	},
 /area/station/security/processing)
+"cWj" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 1;
+	pixel_x = -32
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/south)
 "cWx" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/cable{
@@ -6343,6 +6351,13 @@
 	},
 /turf/simulated/floor/plating/gehenna,
 /area/noGenerate)
+"ewk" = (
+/obj/disposalpipe/segment/morgue,
+/obj/decal/tile_edge/floorguide/ladder{
+	pixel_x = 32
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/south)
 "ews" = (
 /obj/machinery/atmospherics/portables_connector/north,
 /turf/simulated/floor/plating,
@@ -7290,6 +7305,9 @@
 "fcA" = (
 /obj/decal/cleanable/dirt/random,
 /obj/decal/tile_edge/stripe/extra_big,
+/obj/decal/tile_edge/floorguide/ladder{
+	pixel_x = 32
+	},
 /turf/simulated/floor,
 /area/station/quartermaster/automat)
 "fcP" = (
@@ -10200,6 +10218,15 @@
 	},
 /turf/simulated/floor,
 /area/station/maintenance/northeast)
+"hcb" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 1
+	},
+/obj/decal/tile_edge/floorguide/ladder{
+	pixel_x = 32
+	},
+/turf/simulated/floor/grey,
+/area/station/bridge/basement)
 "hcj" = (
 /obj/disposalpipe/segment/produce{
 	dir = 4
@@ -10568,6 +10595,16 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/bridge/basement)
+"hxe" = (
+/obj/wingrille_spawn,
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 1;
+	pixel_x = -32
+	},
+/turf/simulated/floor/plating,
+/area/station/science/artifact{
+	name = "Artifact Lounge"
+	})
 "hxf" = (
 /obj/cable{
 	icon_state = "2-5"
@@ -11274,6 +11311,13 @@
 /area/station/medical/basement)
 "hUR" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southeast,
+/obj/decal/tile_edge/floorguide/ladder{
+	pixel_y = 32
+	},
+/obj/decal/tile_edge/floorguide/qm{
+	dir = 8;
+	pixel_y = 32
+	},
 /turf/simulated/floor/plating,
 /area/station/storage/warehouse)
 "hVv" = (
@@ -11704,6 +11748,10 @@
 /area/station/hallway/secondary/exit)
 "inP" = (
 /obj/ladder/auto,
+/obj/decal/tile_edge/floorguide/botany{
+	dir = 4
+	},
+/obj/decal/tile_edge/floorguide/catering,
 /turf/unsimulated/floor/yellow,
 /area/station/maintenance/central)
 "ioH" = (
@@ -15785,6 +15833,13 @@
 	dir = 4
 	},
 /area/station/mining/lobby)
+"kXe" = (
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 1;
+	pixel_x = -32
+	},
+/turf/simulated/floor/black,
+/area/station/maintenance/inner/north)
 "kXC" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -17545,6 +17600,10 @@
 /obj/disposalpipe/segment/mail/vertical,
 /obj/grille/catwalk/jen/side{
 	dir = 1
+	},
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 1;
+	pixel_x = -32
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/northeast)
@@ -25269,6 +25328,16 @@
 	dir = 1
 	},
 /area/station/janitor/supply)
+"rLM" = (
+/obj/disposalpipe/segment/vertical,
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 1;
+	pixel_x = -32
+	},
+/turf/simulated/floor/black,
+/area/station/security/secwing{
+	name = "Security Wing Tunnel Level"
+	})
 "rLY" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -25569,6 +25638,15 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/industrial,
 /area/station/routing/depot)
+"rXz" = (
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/obj/decal/tile_edge/floorguide/ladder{
+	pixel_x = 32
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/south)
 "rXA" = (
 /obj/disposalpipe/segment/bent/north,
 /obj/decal/cleanable/dirt/random,
@@ -31571,6 +31649,13 @@
 /obj/lattice,
 /turf/simulated/floor/plating/gehenna,
 /area/noGenerate)
+"vYT" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/decal/tile_edge/floorguide/ladder{
+	pixel_y = 32
+	},
+/turf/simulated/floor/grey,
+/area/station/engine/inner)
 "vYY" = (
 /obj/disposalpipe/segment/food{
 	dir = 4
@@ -32341,6 +32426,15 @@
 	dir = 6
 	},
 /area/station/mining/refinery)
+"wFo" = (
+/obj/machinery/light/small/floor,
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 1;
+	pixel_x = -32
+	},
+/turf/simulated/floor/grey,
+/area/station/bridge/basement)
 "wFy" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/simulated/wall,
@@ -59219,7 +59313,7 @@ oGE
 cLr
 mpg
 cLr
-sIb
+hxe
 oXV
 nDl
 brA
@@ -62151,7 +62245,7 @@ alv
 wwv
 mcT
 eUf
-aDr
+wFo
 fLw
 lNd
 pWo
@@ -64627,7 +64721,7 @@ oSa
 lab
 hUF
 fzL
-qEd
+ewk
 rLo
 uhM
 woc
@@ -66745,7 +66839,7 @@ eCs
 alx
 qlk
 sJI
-sJI
+cWj
 wQv
 tBg
 eSZ
@@ -71514,7 +71608,7 @@ jyD
 tgV
 kZg
 icR
-cSQ
+hcb
 hRY
 ecG
 sSi
@@ -74838,7 +74932,7 @@ apH
 cXW
 kVX
 nyS
-cXW
+kXe
 bzz
 apH
 iLx
@@ -78527,7 +78621,7 @@ btX
 ppX
 tYr
 nJS
-iOF
+rXz
 bUb
 aMD
 qAe
@@ -82379,7 +82473,7 @@ tSz
 kem
 vjk
 mrq
-lrR
+rLM
 mXo
 jgQ
 okI
@@ -95118,7 +95212,7 @@ uPM
 bCO
 fBp
 svF
-sdO
+vYT
 jyA
 bQc
 jOs
