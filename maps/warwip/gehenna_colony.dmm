@@ -416,7 +416,7 @@
 /area/station/maintenance/inner/north)
 "arH" = (
 /obj/machinery/light/fluorescent/cool/very,
-/turf/simulated/floor/grey,
+/turf/simulated/floor/black,
 /area/station/medical/medbay)
 "arP" = (
 /obj/disposalpipe/segment/bent/north,
@@ -807,7 +807,9 @@
 /obj/machinery/door/airlock/glass/medical,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/access_spawn/medical,
-/turf/simulated/floor/white,
+/turf/simulated/floor/greenwhite{
+	dir = 8
+	},
 /area/station/medical/research)
 "aJD" = (
 /obj/disposalpipe/segment{
@@ -1679,7 +1681,7 @@
 	name = "space fern";
 	pixel_y = 14
 	},
-/turf/simulated/floor/grey,
+/turf/simulated/floor/black,
 /area/station/medical/medbay)
 "bBa" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -2014,6 +2016,9 @@
 	dir = 4;
 	pixel_x = 10
 	},
+/obj/machinery/power/reactor_stats{
+	dir = 8
+	},
 /turf/simulated/floor/bot,
 /area/station/engine/monitoring)
 "bPr" = (
@@ -2033,6 +2038,9 @@
 /obj/disposalpipe/junction/right/south,
 /obj/cable{
 	icon_state = "1-2"
+	},
+/obj/cable{
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/farmers)
@@ -2396,7 +2404,9 @@
 /obj/disposalpipe/segment/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/access_spawn/medical,
-/turf/simulated/floor/blue,
+/turf/simulated/floor/bluewhite{
+	dir = 8
+	},
 /area/station/medical/medbay/treatment)
 "ceF" = (
 /obj/machinery/light/fluorescent/red,
@@ -2964,6 +2974,15 @@
 	},
 /turf/simulated/floor/sanitary,
 /area/station/security/brig/north_side)
+"cCR" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/wood,
+/area/station/crew_quarters/farmers)
 "cDc" = (
 /obj/disposalpipe/segment/produce{
 	dir = 2
@@ -3213,6 +3232,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
+/obj/machinery/meter,
 /turf/simulated/floor/engine,
 /area/station/engine/core)
 "cML" = (
@@ -4005,7 +4025,10 @@
 /area/station/crew_quarters/farmers)
 "dvN" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/east,
-/obj/machinery/meter,
+/obj/machinery/power/stats_meter{
+	name = "Hot Loop Inlet Meter";
+	tag = "Hot Loop Inlet Meter"
+	},
 /turf/simulated/floor/engine,
 /area/station/engine/core)
 "dww" = (
@@ -5388,7 +5411,9 @@
 	},
 /obj/machinery/door/airlock/medical,
 /obj/access_spawn/medical,
-/turf/simulated/floor/white,
+/turf/simulated/floor/blackwhite{
+	dir = 4
+	},
 /area/station/medical/medbay/surgery/storage)
 "eMq" = (
 /turf/simulated/wall/r_wall,
@@ -5745,7 +5770,9 @@
 	},
 /obj/machinery/door/firedoor/pyro,
 /obj/access_spawn/medical,
-/turf/simulated/floor/blue,
+/turf/simulated/floor/bluewhite{
+	dir = 1
+	},
 /area/station/medical/medbay/cloner)
 "eZK" = (
 /obj/stool/chair/couch{
@@ -6510,6 +6537,26 @@
 /area/station/medical/medbay/treatment)
 "fGV" = (
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/monkeyplant,
+/turf/simulated/floor/green,
+/area/station/medical/research)
+"fHA" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/computer3/terminal/zeta{
+	dir = 8;
+	name = "DWAINE Terminal - Med-Eng";
+	setup_os_string = "MED_MAINFRAME"
+	},
 /turf/simulated/floor/green,
 /area/station/medical/research)
 "fHE" = (
@@ -6750,7 +6797,9 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/access_spawn/medical,
-/turf/simulated/floor/white,
+/turf/simulated/floor/bluewhite{
+	dir = 4
+	},
 /area/station/medical/medbay/treatment)
 "fRL" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
@@ -8828,6 +8877,15 @@
 	},
 /turf/simulated/floor/shuttlebay,
 /area/station/quartermaster/cargobay)
+"hRe" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/wood,
+/area/station/crew_quarters/farmers)
 "hRx" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
@@ -9500,6 +9558,13 @@
 /obj/item/device/radio/intercom/security,
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/conference)
+"ivY" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/station/engine/engineering/ce)
 "iwa" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/machinery/disposal,
@@ -9618,7 +9683,9 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/data_terminal,
-/obj/machinery/communications_dish,
+/obj/machinery/communications_dish{
+	tag = "MAIN_DISH_SS13"
+	},
 /turf/simulated/floor/circuit/white,
 /area/station/turret_protected/Zeta)
 "iDe" = (
@@ -9801,7 +9868,9 @@
 "iKp" = (
 /obj/machinery/door/airlock/glass/medical,
 /obj/access_spawn/medical,
-/turf/simulated/floor/white,
+/turf/simulated/floor/blackwhite{
+	dir = 8
+	},
 /area/station/medical/medbay)
 "iKr" = (
 /obj/disposalpipe/segment/cargo{
@@ -10034,6 +10103,13 @@
 	icon_state = "gehenna_tile"
 	},
 /area/space)
+"iUe" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable{
+	icon_state = "1-10"
+	},
+/turf/simulated/floor/plating,
+/area/station/engine/engineering/ce)
 "iUB" = (
 /obj/machinery/door_control/podbay/security/new_walls/south,
 /turf/simulated/floor,
@@ -10253,7 +10329,8 @@
 /area/station/hangar/catering)
 "jhC" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
-/turf/simulated/floor/green,
+/obj/wingrille_spawn/reinforced,
+/turf/simulated/floor/plating,
 /area/station/medical/research)
 "jhD" = (
 /obj/table/reinforced/auto,
@@ -10966,6 +11043,11 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/cable{
 	icon_state = "1-8"
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/green,
 /area/station/medical/research)
@@ -12215,6 +12297,7 @@
 /area/station/quartermaster/cargooffice/storefront)
 "kQT" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
+/obj/machinery/meter,
 /turf/simulated/floor/engine,
 /area/station/engine/core)
 "kQU" = (
@@ -12273,8 +12356,8 @@
 /turf/simulated/floor,
 /area/station/security/secoffquarters)
 "kTf" = (
-/obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/wingrille_spawn,
 /turf/simulated/floor/plating,
 /area/station/medical/robotics)
 "kTs" = (
@@ -12771,13 +12854,13 @@
 /turf/simulated/floor/shuttlebay,
 /area/station/hangar/sec)
 "lre" = (
-/obj/machinery/atmospherics/unary/vent_pump/south,
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/floor/green,
 /area/station/medical/research)
 "lrm" = (
@@ -13118,7 +13201,7 @@
 /turf/simulated/floor/carpet/red/standard,
 /area/station/security/secoffquarters)
 "lKn" = (
-/obj/wingrille_spawn/reinforced,
+/obj/wingrille_spawn,
 /turf/simulated/floor/plating,
 /area/station/medical/robotics)
 "lLc" = (
@@ -13140,10 +13223,12 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/data_terminal,
-/obj/machinery/computer3/terminal/zeta{
-	setup_os_string = "ZETA_MAINFRAME"
-	},
 /obj/item/device/radio/intercom/cargo,
+/obj/machinery/computer3/terminal/zeta{
+	dir = 2;
+	name = "DWAINE Terminal - Med-Eng";
+	setup_os_string = "MED_MAINFRAME"
+	},
 /turf/simulated/floor/yellowblack{
 	dir = 5
 	},
@@ -13156,7 +13241,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
 	},
-/turf/simulated/floor/grey,
+/turf/simulated/floor/black,
 /area/station/medical/medbay)
 "lML" = (
 /obj/machinery/light/fluorescent/cool/very{
@@ -13717,6 +13802,9 @@
 	})
 "mxl" = (
 /obj/machinery/atmospherics/unary/vent_pump/north,
+/obj/stool/chair{
+	dir = 8
+	},
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/farmers)
 "mxq" = (
@@ -14864,6 +14952,12 @@
 /area/station/engine/engineering/ce)
 "nCC" = (
 /obj/machinery/light/fluorescent,
+/obj/machinery/computer3/terminal/zeta{
+	dir = 4;
+	setup_os_string = "CIV_MAINFRAME"
+	},
+/obj/cable,
+/obj/machinery/power/data_terminal,
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/farmers)
 "nCZ" = (
@@ -15137,7 +15231,9 @@
 	icon_state = "4-8"
 	},
 /obj/access_spawn/medical,
-/turf/simulated/floor/white,
+/turf/simulated/floor/bluewhite{
+	dir = 4
+	},
 /area/station/medical/medbay/treatment)
 "nOG" = (
 /obj/machinery/light/small/floor/harsh,
@@ -15225,6 +15321,9 @@
 	},
 /obj/cable{
 	icon_state = "1-8"
+	},
+/obj/cable{
+	icon_state = "5-8"
 	},
 /turf/simulated/floor/black,
 /area/station/engine/engineering/ce)
@@ -16689,6 +16788,7 @@
 /area/station/wc/sec)
 "piG" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/east,
+/obj/machinery/meter,
 /turf/simulated/floor/engine,
 /area/station/engine/core)
 "piU" = (
@@ -18183,6 +18283,7 @@
 	can_rupture = 0;
 	dir = 5
 	},
+/obj/machinery/meter,
 /turf/simulated/floor/engine,
 /area/station/engine/core)
 "qwC" = (
@@ -18551,7 +18652,10 @@
 /area/station/crew_quarters/kitchen)
 "qHA" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/northeast,
-/obj/machinery/meter,
+/obj/machinery/power/stats_meter{
+	name = "Cold Loop Outlet Meter";
+	tag = "Cold Loop Outlet Meter"
+	},
 /turf/simulated/floor/engine,
 /area/station/engine/core)
 "qHR" = (
@@ -18622,8 +18726,9 @@
 /turf/simulated/floor,
 /area/space)
 "qJP" = (
-/obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/bluewhite{
+	dir = 1
+	},
 /area/station/medical/research)
 "qJW" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/vertical,
@@ -18690,9 +18795,13 @@
 /turf/simulated/floor/stairs/wide/other,
 /area/station/crew_quarters/farmers)
 "qMh" = (
-/obj/machinery/genetics_booth,
-/turf/simulated/floor/green,
-/area/station/medical/research)
+/obj/machinery/atmospherics/pipe/manifold/overfloor/east,
+/obj/machinery/power/stats_meter{
+	name = "Hot Loop Outlet Meter";
+	tag = "Hot Loop Outlet Meter"
+	},
+/turf/simulated/floor/engine,
+/area/station/engine/core)
 "qMD" = (
 /obj/machinery/door/airlock/glass,
 /obj/disposalpipe/segment{
@@ -18880,7 +18989,9 @@
 	},
 /obj/machinery/door/firedoor/pyro,
 /obj/access_spawn/medical,
-/turf/simulated/floor/blue,
+/turf/simulated/floor/bluewhite{
+	dir = 1
+	},
 /area/station/medical/medbay/surgery)
 "qVf" = (
 /obj/decal/poster/wallsign/security_left,
@@ -20806,7 +20917,9 @@
 	icon_state = "4-8"
 	},
 /obj/access_spawn/medical,
-/turf/simulated/floor/white,
+/turf/simulated/floor/greenwhite{
+	dir = 4
+	},
 /area/station/medical/research)
 "sIi" = (
 /obj/machinery/light/fluorescent{
@@ -20897,7 +21010,7 @@
 /obj/machinery/computer/transit_terminal/med{
 	dir = 4
 	},
-/turf/simulated/floor/grey,
+/turf/simulated/floor/black,
 /area/station/medical/medbay)
 "sMq" = (
 /obj/machinery/door/unpowered/wood/pyro{
@@ -21420,7 +21533,7 @@
 /turf/simulated/floor/black,
 /area/station/engine/engineering)
 "tji" = (
-/obj/monkeyplant,
+/obj/machinery/atmospherics/unary/vent_pump/south,
 /turf/simulated/floor/green,
 /area/station/medical/research)
 "tjC" = (
@@ -21488,8 +21601,10 @@
 /area/station/hangar/engine)
 "tmj" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
-/obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/obj/machinery/genetics_booth,
+/turf/simulated/floor/bluewhite{
+	dir = 1
+	},
 /area/station/medical/research)
 "tmQ" = (
 /turf/simulated/floor/industrial,
@@ -21896,6 +22011,11 @@
 	})
 "tJp" = (
 /obj/disposalpipe/switch_junction/right/east,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/green,
 /area/station/medical/research)
 "tJQ" = (
@@ -23074,6 +23194,18 @@
 /obj/machinery/power/apc/autoname_west,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/nw)
+"uPw" = (
+/obj/cable{
+	icon_state = "2-5"
+	},
+/obj/grille/catwalk/cross/grey{
+	dir = 10
+	},
+/turf/space/gehenna/desert/plating{
+	dir = 1;
+	icon_state = "gehenna_tile"
+	},
+/area/space)
 "uPI" = (
 /obj/wingrille_spawn,
 /turf/simulated/floor/plating,
@@ -23109,7 +23241,7 @@
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/customs)
 "uRs" = (
-/turf/simulated/floor/grey,
+/turf/simulated/floor/black,
 /area/station/medical/medbay)
 "uRT" = (
 /obj/disposalpipe/segment/horizontal,
@@ -23317,6 +23449,18 @@
 /obj/access_spawn/engineering_control,
 /turf/simulated/floor/delivery,
 /area/station/engine/monitoring)
+"uYW" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/stool/chair{
+	dir = 4
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/green,
+/area/station/medical/research)
 "uZa" = (
 /obj/disposalpipe/segment/vertical,
 /turf/simulated/floor/grey,
@@ -24539,6 +24683,15 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
+"wjP" = (
+/obj/grille/catwalk/cross/grey{
+	dir = 5
+	},
+/turf/space/gehenna/desert/plating{
+	dir = 1;
+	icon_state = "gehenna_tile"
+	},
+/area/space)
 "wkN" = (
 /obj/cable{
 	icon_state = "0-2"
@@ -24710,6 +24863,15 @@
 /obj/machinery/atmospherics/pipe/manifold/north,
 /turf/simulated/floor/wood,
 /area/station/wc/medbay)
+"wrN" = (
+/obj/grille/catwalk/cross/grey{
+	dir = 9
+	},
+/turf/space/gehenna/desert/plating{
+	dir = 1;
+	icon_state = "gehenna_tile"
+	},
+/area/space)
 "wrP" = (
 /obj/cable/blue{
 	icon_state = "1-2"
@@ -25274,7 +25436,9 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/access_spawn/medical,
-/turf/simulated/floor/blue,
+/turf/simulated/floor/bluewhite{
+	dir = 8
+	},
 /area/station/medical/medbay/treatment)
 "wNS" = (
 /turf/simulated/floor,
@@ -26044,7 +26208,10 @@
 /area/station/quartermaster/cargooffice)
 "xAx" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/southeast,
-/obj/machinery/meter,
+/obj/machinery/power/stats_meter{
+	name = "Cold Loop Inlet Meter";
+	tag = "Cold Loop Inlet Meter"
+	},
 /turf/simulated/floor/engine,
 /area/station/engine/core)
 "xBf" = (
@@ -26249,6 +26416,17 @@
 	},
 /turf/simulated/floor/carpet/red/standard,
 /area/station/security/secoffquarters)
+"xLM" = (
+/obj/cable{
+	icon_state = "0-10"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/communications_dish,
+/turf/space/gehenna/desert/plating{
+	dir = 8;
+	icon_state = "gehenna_tile"
+	},
+/area/space)
 "xLN" = (
 /obj/disposalpipe/segment/mail/bent/west,
 /turf/simulated/floor/grey,
@@ -57777,7 +57955,7 @@ cyP
 oKp
 nGc
 cln
-tji
+bjH
 qJP
 iFq
 pUj
@@ -58077,7 +58255,7 @@ uSN
 uSN
 lZW
 tEI
-nGc
+tji
 lre
 jhC
 tmj
@@ -58381,7 +58559,7 @@ alg
 lla
 xGH
 cln
-qMh
+bjH
 qJP
 hHy
 uxV
@@ -58683,7 +58861,7 @@ iHS
 njq
 aRx
 jQy
-nGc
+bjH
 uSN
 lRk
 lRk
@@ -59588,7 +59766,7 @@ uSN
 hAI
 nGc
 aLX
-fGV
+uYW
 lRk
 lMG
 uRs
@@ -59890,7 +60068,7 @@ uSN
 rlp
 pCJ
 ewa
-fGV
+fHA
 lRk
 uRs
 uRs
@@ -70167,7 +70345,7 @@ rkS
 lAz
 xYF
 pYO
-wWQ
+hRe
 twZ
 pho
 twZ
@@ -70469,7 +70647,7 @@ rfc
 apb
 xGi
 bTj
-wWQ
+cCR
 nCC
 pho
 rBt
@@ -83744,7 +83922,7 @@ dvN
 igb
 bsV
 wiv
-dvN
+qMh
 qwp
 pgt
 xgw
@@ -85269,11 +85447,11 @@ iiv
 iiv
 iiv
 iiv
-iiv
-iiv
-iiv
-rwL
-rwL
+wrN
+vTg
+uPw
+ivY
+iUe
 rwL
 rwL
 rwL
@@ -85571,9 +85749,9 @@ iiv
 iiv
 iiv
 iiv
-iiv
-iiv
-iiv
+nOK
+xLM
+nOK
 iiv
 iiv
 iiv
@@ -85873,9 +86051,9 @@ iiv
 iiv
 iiv
 iiv
-iiv
-iiv
-iiv
+wjP
+vTg
+giY
 iiv
 iiv
 iiv
@@ -86120,7 +86298,7 @@ oem
 xDd
 lcf
 iGg
-iGg
+rya
 xDd
 urU
 iGg

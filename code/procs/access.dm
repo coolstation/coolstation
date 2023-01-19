@@ -344,7 +344,7 @@
 		if("Rancher")
 			return list(access_hydro, access_ranch)
 		if("Chef", "Sous-Chef")
-			return list(access_kitchen, access_kitchen)
+			return list(access_bar, access_kitchen)
 		if("Bartender")
 			return list(access_bar, access_kitchen)
 		if("Waiter")
