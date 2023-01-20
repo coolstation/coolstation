@@ -356,7 +356,7 @@
 											M, "[user] [barbery_type == "haircut" ? "snips" : "cuts"] at something on your head.",\
 									 user, "You wave your [barbery_type == "haircut" ? "scissors" : "razor"] around [M]'s fishy head, knocking loose some space barnnacles.")
 				return 0
-			if("monkey" || "sea monkey")
+			if("monkey", "sea monkey")
 				M.emote("scream")
 				playsound(M, "sound/impact_sounds/Slimy_Cut_1.ogg", 100, 1)
 				user.tri_message("[user] [barbery_type == "haircut" ? "snips" : "cuts"] [M]'s ear trying to trim [his_or_her(user)] hair!",\

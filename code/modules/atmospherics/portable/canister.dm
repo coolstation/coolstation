@@ -257,6 +257,8 @@
 								theAPC.updateicon()
 								theAPC.update()
 
+
+
 			else if (src.det.part_fs.time < 10 && src.det.part_fs.time > 7)  //EXPLOSION IMMINENT
 				src.add_simple_light("canister", list(1 * 255, 0.03 * 255, 0.03 * 255, 0.6 * 255))
 				src.visible_message("<span class='alert'>[src] flashes and sparks wildly!</span>")

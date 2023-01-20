@@ -334,7 +334,8 @@
 			if(2)
 				setup_font_color = "#A5A5FF"
 				setup_bg_color = "#4242E7"
-
+			if(3)
+				return // this pleases the linter, that's it. That's fucking it.
 	return
 
 /obj/machinery/computer3/attack_hand(mob/user as mob)
