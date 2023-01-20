@@ -4136,6 +4136,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/engine/power)
+"cYd" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/obj/machinery/nanofab/refining,
+/turf/simulated/floor,
+/area/station/quartermaster/refinery)
 "cYx" = (
 /obj/machinery/light_switch/north,
 /turf/simulated/floor/plating,
@@ -5234,7 +5241,7 @@
 "dIp" = (
 /obj/machinery/power/smes{
 	charge = 1e+006;
-	chargelevel = 10000;
+	chargelevel = 6000;
 	name = "SMES - AI CORE";
 	output = 5000
 	},
@@ -6657,6 +6664,14 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/engine/inner)
+"eAp" = (
+/obj/rack,
+/obj/item/device/matanalyzer{
+	pixel_x = 1;
+	pixel_y = 7
+	},
+/turf/simulated/floor,
+/area/station/mining/refinery)
 "eAu" = (
 /obj/machinery/light/small/warm,
 /obj/machinery/vending/alcohol,
@@ -8153,6 +8168,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/access_spawn/tech_storage,
 /turf/simulated/floor/plating,
 /area/station/storage/tech)
 "fAp" = (
@@ -8346,6 +8362,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/oreaccumulator,
 /turf/simulated/floor,
 /area/station/mining/refinery)
 "fIc" = (
@@ -11348,9 +11365,11 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
 "hLK" = (
-/obj/machinery/light/small/warm{
-	dir = 1
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
 	},
+/obj/machinery/power/furnace,
 /turf/simulated/floor/plating,
 /area/station/medical/medbay{
 	name = "Med-Eng Mainframe"
@@ -14346,6 +14365,13 @@
 	},
 /turf/simulated/floor,
 /area/station/mining/lobby)
+"jKS" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/obj/machinery/portable_reclaimer,
+/turf/simulated/floor,
+/area/station/quartermaster/refinery)
 "jKY" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/cable{
@@ -14569,6 +14595,10 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/item/slag_shovel{
+	pixel_x = 7;
+	pixel_y = 6
 	},
 /turf/simulated/floor,
 /area/station/quartermaster/refinery)
@@ -15578,6 +15608,13 @@
 /obj/storage/closet/emergency,
 /turf/simulated/floor/black,
 /area/station/science/chemistry)
+"kwI" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/obj/machinery/processor,
+/turf/simulated/floor,
+/area/station/quartermaster/refinery)
 "kwJ" = (
 /obj/disposalpipe/segment/produce,
 /obj/decal/xmas_lights{
@@ -17361,6 +17398,11 @@
 	},
 /turf/simulated/floor/black,
 /area/station/mining/barracks)
+"lHi" = (
+/obj/decal/cleanable/dirt/random,
+/obj/machinery/door/airlock/glass/engineering,
+/turf/simulated/floor/plating,
+/area/station/mining/refinery)
 "lHK" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -22133,6 +22175,10 @@
 	},
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
+	},
+/obj/item/device/matanalyzer{
+	pixel_x = 9;
+	pixel_y = 7
 	},
 /turf/simulated/floor/grime,
 /area/station/quartermaster/refinery)
@@ -27460,6 +27506,9 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/data_terminal,
+/obj/machinery/light/small/warm{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/station/medical/medbay{
 	name = "Med-Eng Mainframe"
@@ -28537,6 +28586,10 @@
 /obj/grille/catwalk/jen,
 /turf/simulated/floor/plating,
 /area/station/maintenance/northeast)
+"tnN" = (
+/obj/machinery/nanofab/mining,
+/turf/simulated/floor,
+/area/station/mining/refinery)
 "tnP" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/machinery/light/emergency,
@@ -29728,6 +29781,7 @@
 /obj/decal/poster/wallsign/engineering{
 	pixel_x = 32
 	},
+/obj/machinery/vending/computer3,
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
 "udT" = (
@@ -31677,6 +31731,13 @@
 /area/station/security/secwing{
 	name = "Security Wing Tunnel Level"
 	})
+"vrs" = (
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/obj/machinery/vending/medical_public,
+/turf/simulated/floor,
+/area/station/maintenance/northeast)
 "vrF" = (
 /obj/table/auto{
 	color = "#666666"
@@ -32872,6 +32933,9 @@
 	dir = 10;
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/cable{
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/plating,
 /area/station/medical/medbay{
@@ -34351,6 +34415,11 @@
 /obj/item/device/net_sniffer,
 /turf/simulated/floor/plating,
 /area/station/engine/elect)
+"xkN" = (
+/obj/decal/cleanable/dirt/random,
+/obj/machinery/processor,
+/turf/simulated/floor,
+/area/station/mining/refinery)
 "xkS" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/wall,
@@ -94537,7 +94606,7 @@ ewV
 gwu
 ltR
 avd
-bvD
+xkN
 lPW
 bDM
 bYP
@@ -94839,7 +94908,7 @@ ewV
 ewV
 dYK
 qRU
-qRU
+tnN
 lPW
 ygk
 bYP
@@ -95173,7 +95242,7 @@ pLG
 guh
 cor
 vND
-fxx
+vrs
 krm
 uQp
 qHv
@@ -95437,12 +95506,12 @@ qZT
 qZT
 qZT
 jkX
-fdL
+lHi
 fdL
 fdL
 fdL
 qRU
-qRU
+eAp
 aPa
 lPW
 nsW
@@ -95473,7 +95542,7 @@ dMF
 dyZ
 xsa
 wSg
-oyN
+kwI
 cef
 woZ
 krm
@@ -95739,7 +95808,7 @@ qZT
 qZT
 jkX
 qZT
-fdL
+lHi
 fdL
 fdL
 fdL
@@ -95775,7 +95844,7 @@ fVr
 wMH
 xjE
 aDd
-oyN
+cYd
 ehB
 kMD
 krm
@@ -96379,7 +96448,7 @@ rRF
 hiB
 xjE
 aDd
-oyN
+jKS
 pbt
 iRI
 krm
@@ -103972,7 +104041,7 @@ toy
 toy
 toy
 toy
-qZT
+iLx
 qZT
 qZT
 qZT

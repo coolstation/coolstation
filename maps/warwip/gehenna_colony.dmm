@@ -2500,6 +2500,10 @@
 	},
 /turf/simulated/floor/plating/random,
 /area/station/engine/engineering)
+"ciz" = (
+/obj/machinery/vending/medical_public,
+/turf/simulated/floor,
+/area/space)
 "ciH" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -6922,6 +6926,11 @@
 /obj/machinery/atmospherics/pipe/manifold/overfloor/west,
 /turf/simulated/floor/sanitary/white,
 /area/station/crew_quarters/kitchen/freezer)
+"gaW" = (
+/obj/decal/cleanable/dirt/random,
+/obj/machinery/abcu,
+/turf/simulated/floor/plating,
+/area/station/engine/engineering)
 "gbp" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/cable{
@@ -8081,6 +8090,10 @@
 	icon_state = "gehenna_tile"
 	},
 /area/space)
+"hea" = (
+/obj/machinery/manufacturer/hangar,
+/turf/simulated/floor/grey,
+/area/station/hangar/engine)
 "heK" = (
 /turf/space/gehenna/desert/plating{
 	dir = 1;
@@ -10133,6 +10146,13 @@
 /obj/machinery/disposal,
 /turf/simulated/floor/grey,
 /area/station/security/interrogation)
+"iXx" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/machinery/portable_reclaimer,
+/turf/simulated/floor,
+/area/station/quartermaster/storage)
 "iXR" = (
 /obj/cable{
 	d1 = 2;
@@ -10245,6 +10265,10 @@
 "jdc" = (
 /turf/simulated/wall,
 /area/station/hangar/catering)
+"jdg" = (
+/obj/machinery/dispenser,
+/turf/simulated/floor/plating,
+/area/station/engine/engineering)
 "jel" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8;
@@ -11434,6 +11458,11 @@
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
+"kiZ" = (
+/obj/decal/cleanable/dirt/random,
+/obj/machinery/vending/medical_public,
+/turf/simulated/floor,
+/area/station/engine/engineering/breakroom)
 "kja" = (
 /turf/simulated/wall/r_wall,
 /area/station/security/brig/cell_block_control)
@@ -11689,6 +11718,13 @@
 /obj/disposalpipe/segment/brig,
 /turf/simulated/floor/stairs/wide,
 /area/station/security/equipment)
+"kvv" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/obj/machinery/manufacturer/hangar,
+/turf/simulated/floor,
+/area/station/bridge/customs)
 "kwk" = (
 /obj/table/reinforced/auto,
 /obj/decal/cleanable/dirt/random,
@@ -13059,6 +13095,10 @@
 /obj/disposalpipe/segment/produce,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
+"lDN" = (
+/obj/storage/crate/abcumarker,
+/turf/simulated/floor/plating,
+/area/station/engine/engineering)
 "lEa" = (
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor/black,
@@ -15777,6 +15817,7 @@
 /area/station/hydroponics/bay)
 "ols" = (
 /obj/machinery/light/fluorescent/cool,
+/obj/table/auto,
 /turf/simulated/floor/grey,
 /area/station/hangar/engine)
 "olO" = (
@@ -15940,6 +15981,11 @@
 /obj/disposalpipe/segment/vertical,
 /turf/simulated/floor/wood,
 /area/station/chapel/sanctuary)
+"osQ" = (
+/obj/table/reinforced/auto,
+/obj/machinery/defib_mount,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/storefront)
 "osW" = (
 /obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor/carpet/blue/fancy/edge,
@@ -16409,6 +16455,10 @@
 	dir = 4
 	},
 /area/station/medical/medbay)
+"oNd" = (
+/obj/machinery/manufacturer/hangar,
+/turf/simulated/floor/grey,
+/area/station/hangar/medical)
 "oNq" = (
 /obj/table/auto,
 /obj/machinery/light/fluorescent{
@@ -16516,6 +16566,10 @@
 /obj/grille/catwalk/jen,
 /turf/simulated/floor/plating,
 /area/station/turret_protected/Zeta)
+"oQA" = (
+/obj/machinery/portable_atmospherics/pump,
+/turf/simulated/floor/sandytile,
+/area/station/security/brig/south_side)
 "oQO" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -17670,6 +17724,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/portable_reclaimer,
 /turf/simulated/floor/yellow/side{
 	dir = 1
 	},
@@ -21793,6 +21848,10 @@
 "tvt" = (
 /turf/simulated/floor/sandytile,
 /area/station/security/brig/south_side)
+"twf" = (
+/obj/machinery/portable_atmospherics/pump,
+/turf/simulated/floor/plating,
+/area/station/engine/engineering)
 "twl" = (
 /obj/machinery/door/airlock/glass,
 /obj/disposalpipe/segment/mail/vertical,
@@ -54325,7 +54384,7 @@ rdH
 rdH
 rdH
 rdH
-lec
+oNd
 wsc
 emE
 mEV
@@ -57013,7 +57072,7 @@ aRS
 mcC
 mcC
 mcC
-eMC
+kvv
 lOx
 qMN
 iiv
@@ -64240,7 +64299,7 @@ dIn
 xcD
 xcD
 xcD
-tvt
+oQA
 bTy
 msZ
 kIS
@@ -81229,7 +81288,7 @@ vFI
 udF
 udF
 udF
-wNr
+kiZ
 aOJ
 oDj
 tmc
@@ -82744,7 +82803,7 @@ jJw
 dmC
 dmC
 dPp
-cII
+hea
 xpW
 jEb
 jEb
@@ -88112,7 +88171,7 @@ qiv
 qiv
 qiv
 lmw
-lmw
+osQ
 uCZ
 slE
 rsb
@@ -89669,7 +89728,7 @@ dVx
 dVx
 dVx
 dnh
-dVx
+lDN
 cnR
 cML
 cML
@@ -89973,7 +90032,7 @@ dVx
 dVx
 dVx
 dVx
-lME
+gaW
 cML
 cML
 heK
@@ -91176,7 +91235,7 @@ wgn
 qGU
 jzm
 lbx
-dVx
+twf
 dVx
 dVx
 dVx
@@ -91478,7 +91537,7 @@ heK
 xHq
 jzm
 lbx
-dVx
+jdg
 lME
 dVx
 dVx
@@ -92924,7 +92983,7 @@ jEb
 jEb
 dAu
 gxt
-ddi
+iXx
 ycv
 jqJ
 jiT
@@ -111026,7 +111085,7 @@ bWg
 rNY
 rNY
 rNY
-rNY
+ciz
 rNY
 rNY
 rNY
