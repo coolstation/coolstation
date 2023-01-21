@@ -51,9 +51,18 @@
 	space_overlays()
 		return
 
+	ex_act(severity)
+		switch(severity)
+			if(1.0)
+				src.damage_asteroid(5)
+			if(2.0)
+				src.damage_asteroid(4)
+			if(3.0)
+				src.damage_asteroid(3)
+		return
+
 /turf/simulated/wall/asteroid/gehenna/z3
 	floor_turf = "/turf/simulated/floor/plating/gehenna"
-	hardness = 1
 
 /turf/simulated/wall/asteroid/gehenna/tough
 	name = "dense sulferous rock"
@@ -61,11 +70,19 @@
 	icon_state = "gehenna_rock2"
 	hardness = 2
 
-/turf/simulated/wall/asteroid/gehenna/z3/tough
-	name = "dense sulferous rock"
-	desc = "looks densely packed"
-	icon_state = "gehenna_rock2"
-	hardness = 2
+	ex_act(severity)
+		switch(severity)
+			if(1.0)
+				src.damage_asteroid(3)
+			if(2.0)
+				src.damage_asteroid(2)
+			if(3.0)
+				src.damage_asteroid(1)
+		return
+
+/turf/simulated/wall/asteroid/gehenna/tough/z3
+	floor_turf = "/turf/simulated/floor/plating/gehenna"
+
 
 /turf/unsimulated/wall/gehenna/
 	fullbright = 0

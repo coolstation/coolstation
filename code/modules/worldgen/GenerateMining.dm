@@ -39,7 +39,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		icon_state = "wall"
 		place()
 			if (map_currently_very_dusty && (src.z == 3))
-				src.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/z3/tough, FALSE, TRUE, FALSE, TRUE)
+				src.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/tough/z3, FALSE, TRUE, FALSE, TRUE)
 			else if (map_currently_very_dusty && (src.z == 1))
 				src.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/tough, FALSE, TRUE, FALSE, TRUE)
 			else
