@@ -1690,7 +1690,7 @@
 /area/station/quartermaster/refinery)
 "ben" = (
 /obj/machinery/door/firedoor/pyro,
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/station/maintenance/south)
 "beD" = (
 /obj/cable{
@@ -2371,6 +2371,10 @@
 "bzd" = (
 /turf/simulated/wall/r_wall,
 /area/station/crew_quarters/clown)
+"bzx" = (
+/obj/disposalpipe/segment/horizontal,
+/turf/simulated/floor,
+/area/station/maintenance/south)
 "bzz" = (
 /obj/disposalpipe/trunk{
 	dir = 4
@@ -2561,7 +2565,7 @@
 "bHo" = (
 /obj/disposalpipe/segment/bent/north,
 /obj/decal/cleanable/dirt/random,
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/station/maintenance/south)
 "bHp" = (
 /obj/cable{
@@ -3472,7 +3476,7 @@
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_y = 32
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/station/maintenance/south)
 "cxq" = (
 /obj/machinery/atmospherics/pipe/tank/air_repressurization/south,
@@ -3511,7 +3515,7 @@
 /obj/disposalpipe/segment{
 	dir = 2
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/station/medical/basement)
 "cAC" = (
 /obj/disposalpipe/segment/horizontal,
@@ -4246,7 +4250,7 @@
 	dir = 2
 	},
 /obj/decal/cleanable/dirt/random,
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/station/maintenance/south)
 "dab" = (
 /obj/disposalpipe/segment/mineral{
@@ -8197,7 +8201,7 @@
 /area/station/security/detectives_office)
 "fzL" = (
 /obj/disposalpipe/segment/bent/east,
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/station/medical/basement)
 "fAl" = (
 /obj/machinery/door/airlock/classic,
@@ -8603,16 +8607,11 @@
 /turf/simulated/wall,
 /area/station/science/research_director)
 "fOZ" = (
-/obj/cable{
-	icon_state = "4-8"
+/obj/ladder/auto,
+/obj/machinery/light/fluorescent/cyan{
+	dir = 1
 	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 6;
-	name = "autoname - SS13";
-	tag = ""
-	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/bluegreen,
 /area/station/maintenance/northwest)
 "fPo" = (
 /obj/machinery/light/fluorescent/cool/very{
@@ -13087,7 +13086,7 @@
 /obj/disposalpipe/segment{
 	dir = 2
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/station/maintenance/south)
 "iOM" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -13585,7 +13584,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/station/maintenance/south)
 "jcM" = (
 /obj/machinery/light/small/floor,
@@ -14950,7 +14949,7 @@
 "jXL" = (
 /obj/item/constructioncone,
 /obj/decal/cleanable/dirt/random,
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/station/maintenance/south)
 "jYb" = (
 /obj/machinery/conveyor/west{
@@ -16026,7 +16025,7 @@
 /area/station/quartermaster/automat)
 "kMc" = (
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon1_start,
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/station/maintenance/south)
 "kMm" = (
 /obj/burning_barrel,
@@ -16916,7 +16915,7 @@
 	icon_state = "1-2"
 	},
 /obj/decal/cleanable/dirt/random,
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/station/maintenance/south)
 "llA" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -18355,7 +18354,7 @@
 /obj/machinery/light/small/cool{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/station/maintenance/south)
 "mkE" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor,
@@ -19071,6 +19070,9 @@
 	},
 /turf/simulated/floor/plating/gehenna,
 /area/station/crew_quarters/clown)
+"mIY" = (
+/turf/simulated/floor/stairs,
+/area/station/maintenance/northwest)
 "mJo" = (
 /obj/cable{
 	icon_state = "1-10"
@@ -22366,6 +22368,10 @@
 /obj/decal/poster/wallsign/escape_right,
 /turf/simulated/wall/r_wall,
 /area/station/quartermaster/refinery)
+"pbv" = (
+/obj/disposalpipe/segment/bent/north,
+/turf/simulated/floor,
+/area/station/maintenance/south)
 "pbR" = (
 /obj/machinery/power/data_terminal,
 /obj/machinery/guardbot_dock,
@@ -22814,7 +22820,7 @@
 /obj/decal/tile_edge/floorguide/ladder{
 	pixel_x = 32
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/station/maintenance/south)
 "ptK" = (
 /obj/cable{
@@ -23514,6 +23520,11 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor/black,
 /area/station/ai_monitored/armory)
+"pVV" = (
+/obj/disposalpipe/segment/morgue,
+/obj/ladder/auto,
+/turf/simulated/floor/bluegreen,
+/area/station/medical/basement)
 "pWd" = (
 /obj/machinery/atmospherics/valve/horizontal{
 	name = "Gas Feed 2"
@@ -23801,6 +23812,13 @@
 /obj/machinery/light/small/warm,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/nw)
+"qfq" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor,
+/area/station/maintenance/south)
 "qfD" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -26397,15 +26415,13 @@
 /turf/simulated/floor/grime,
 /area/station/quartermaster/refinery)
 "rRP" = (
-/obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 1;
-	name = "autoname - SS13";
-	tag = ""
+/obj/ladder/auto,
+/obj/machinery/light/fluorescent/red{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/red/checker{
+	dir = 1
+	},
 /area/station/maintenance/northwest)
 "rRS" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/southwest,
@@ -28483,6 +28499,18 @@
 /area/station/security/armory{
 	name = "Small Arms"
 	})
+"tiq" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/northwest)
 "tix" = (
 /obj/machinery/light/fluorescent/neutral{
 	dir = 8
@@ -28737,6 +28765,10 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating,
+/area/station/maintenance/south)
+"tpA" = (
+/obj/disposalpipe/junction/right/east,
+/turf/simulated/floor,
 /area/station/maintenance/south)
 "tpI" = (
 /obj/table/folding,
@@ -29563,7 +29595,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/station/maintenance/south)
 "tVF" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -29827,7 +29859,7 @@
 /area/station/storage/warehouse)
 "udf" = (
 /obj/item/constructioncone,
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/station/maintenance/south)
 "udm" = (
 /obj/lattice,
@@ -34871,7 +34903,7 @@
 /obj/machinery/light/fluorescent/purple{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/station/maintenance/south)
 "xBL" = (
 /obj/disposalpipe/segment/morgue,
@@ -35120,7 +35152,7 @@
 /area/station/maintenance/south)
 "xIx" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/station/maintenance/south)
 "xIy" = (
 /obj/cable/purple{
@@ -65490,7 +65522,7 @@ awd
 wzn
 mHg
 nKb
-mDu
+uDj
 jXL
 qAe
 qAe
@@ -65794,13 +65826,13 @@ nDe
 czN
 iOF
 iOF
-rLo
+pbv
 xBt
 ben
-rUw
-uhM
+puM
+bzx
 xIx
-rUw
+puM
 tVa
 bxu
 kEu
@@ -66095,15 +66127,15 @@ lab
 hUF
 fzL
 pte
-rLo
-uhM
-woc
+pbv
+bzx
+qfq
 ben
 kMc
-uhM
+bzx
 xIx
-rUw
-rUw
+puM
+puM
 bxu
 kEu
 keV
@@ -66704,7 +66736,7 @@ gjE
 aRH
 vJn
 cZS
-wfS
+tpA
 xIx
 rUw
 rUw
@@ -67006,7 +67038,7 @@ uhM
 how
 wVR
 bHo
-uhM
+bzx
 xIx
 rUw
 rUw
@@ -67596,7 +67628,7 @@ lkM
 xOo
 cLK
 cLK
-cLK
+pVV
 eiD
 lVi
 cLK
@@ -67610,7 +67642,7 @@ mgM
 nMw
 qAe
 cwf
-uhM
+bzx
 uiP
 rUw
 woc
@@ -70280,7 +70312,7 @@ pdO
 tjT
 qMj
 mSo
-rRP
+ajj
 qYI
 qYI
 qYI
@@ -70880,7 +70912,7 @@ pdO
 pdO
 pdO
 pdO
-pdO
+nFb
 tjT
 mMc
 mSo
@@ -71181,10 +71213,10 @@ pdO
 pdO
 pdO
 pdO
-pdO
-pdO
-tjT
-mMc
+nFb
+nFb
+nFb
+tiq
 mSo
 ajj
 pdO
@@ -71483,9 +71515,9 @@ pdO
 pdO
 pdO
 pdO
-pdO
-pdO
-tjT
+nFb
+fOZ
+mIY
 mMc
 mSo
 ajj
@@ -71785,9 +71817,9 @@ pdO
 pdO
 pdO
 pdO
-pdO
-pdO
-tjT
+nFb
+nFb
+nFb
 mMc
 gCA
 ajj
@@ -72088,7 +72120,7 @@ pdO
 pdO
 pdO
 pdO
-pdO
+nFb
 tjT
 mMc
 mSo
@@ -75714,7 +75746,7 @@ pdO
 pdO
 pdO
 tjT
-fOZ
+mMc
 qtp
 opH
 ftG
@@ -76618,7 +76650,7 @@ iLx
 iLx
 pdO
 pdO
-pdO
+nFb
 tjT
 mMc
 mSo
@@ -76919,10 +76951,10 @@ iLx
 iLx
 iLx
 pdO
-pdO
-pdO
-tjT
-mMc
+nFb
+nFb
+nFb
+tiq
 mSo
 ajj
 pdO
@@ -77221,9 +77253,9 @@ toy
 iLx
 iLx
 pdO
-pdO
-pdO
-tjT
+nFb
+rRP
+mIY
 mMc
 mSo
 ajj
@@ -77523,9 +77555,9 @@ iLx
 iLx
 iLx
 pdO
-pdO
-pdO
-tjT
+nFb
+nFb
+nFb
 mMc
 mSo
 ajj
@@ -77826,7 +77858,7 @@ iLx
 iLx
 pdO
 pdO
-pdO
+nFb
 tjT
 mMc
 mSo
