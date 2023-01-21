@@ -2371,10 +2371,6 @@
 "bzd" = (
 /turf/simulated/wall/r_wall,
 /area/station/crew_quarters/clown)
-"bzx" = (
-/obj/disposalpipe/segment/horizontal,
-/turf/simulated/floor,
-/area/station/maintenance/south)
 "bzz" = (
 /obj/disposalpipe/trunk{
 	dir = 4
@@ -6711,7 +6707,13 @@
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/baroffice)
 "eAv" = (
-/obj/machinery/atmospherics/unary/vent_pump/east,
+/obj/machinery/disposal/morgue{
+	desc = "A pneumatic delivery chute for sending things directly to the crematorium.";
+	name = "crematorium chute"
+	},
+/obj/disposalpipe/trunk{
+	dir = 1
+	},
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "eAx" = (
@@ -6823,7 +6825,7 @@
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "eDn" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
+/obj/machinery/atmospherics/unary/vent_pump/east,
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "eDr" = (
@@ -9340,6 +9342,9 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor/grey,
 /area/station/science/lab)
+"goQ" = (
+/turf/simulated/floor/stairs,
+/area/station/maintenance/northwest)
 "gpi" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -11702,6 +11707,10 @@
 	},
 /turf/simulated/floor,
 /area/station/maintenance/northwest)
+"hTx" = (
+/obj/disposalpipe/segment/horizontal,
+/turf/simulated/floor,
+/area/station/maintenance/south)
 "hTF" = (
 /obj/disposalpipe/segment/cargo{
 	dir = 4
@@ -13184,7 +13193,7 @@
 /turf/simulated/floor/grey,
 /area/station/bridge/basement)
 "iQP" = (
-/obj/disposalpipe/segment/bent/north,
+/obj/disposalpipe/segment/bent/east,
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "iQU" = (
@@ -16711,6 +16720,16 @@
 	},
 /turf/simulated/floor,
 /area/station/medical/cdc)
+"lcZ" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/morgue,
+/turf/simulated/floor/white,
+/area/station/medical/basement)
 "ldd" = (
 /obj/table/wood/round/auto,
 /obj/item/kitchen/utensil/spoon{
@@ -19070,9 +19089,6 @@
 	},
 /turf/simulated/floor/plating/gehenna,
 /area/station/crew_quarters/clown)
-"mIY" = (
-/turf/simulated/floor/stairs,
-/area/station/maintenance/northwest)
 "mJo" = (
 /obj/cable{
 	icon_state = "1-10"
@@ -20619,6 +20635,10 @@
 /obj/wingrille_spawn/crystal,
 /turf/simulated/floor/plating,
 /area/station/engine/combustion_chamber)
+"nLl" = (
+/obj/disposalpipe/segment/bent/north,
+/turf/simulated/floor,
+/area/station/maintenance/south)
 "nLo" = (
 /obj/machinery/door/airlock/gannets/toxins/alt,
 /obj/access_spawn/tox_storage,
@@ -20765,6 +20785,10 @@
 	dir = 9
 	},
 /area/station/mining/refinery)
+"nQF" = (
+/obj/disposalpipe/junction/right/east,
+/turf/simulated/floor,
+/area/station/maintenance/south)
 "nQL" = (
 /obj/machinery/vending/security,
 /turf/simulated/floor,
@@ -22368,10 +22392,6 @@
 /obj/decal/poster/wallsign/escape_right,
 /turf/simulated/wall/r_wall,
 /area/station/quartermaster/refinery)
-"pbv" = (
-/obj/disposalpipe/segment/bent/north,
-/turf/simulated/floor,
-/area/station/maintenance/south)
 "pbR" = (
 /obj/machinery/power/data_terminal,
 /obj/machinery/guardbot_dock,
@@ -23520,11 +23540,6 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor/black,
 /area/station/ai_monitored/armory)
-"pVV" = (
-/obj/disposalpipe/segment/morgue,
-/obj/ladder/auto,
-/turf/simulated/floor/bluegreen,
-/area/station/medical/basement)
 "pWd" = (
 /obj/machinery/atmospherics/valve/horizontal{
 	name = "Gas Feed 2"
@@ -23812,13 +23827,6 @@
 /obj/machinery/light/small/warm,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/nw)
-"qfq" = (
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
-/turf/simulated/floor,
-/area/station/maintenance/south)
 "qfD" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -25164,6 +25172,13 @@
 /obj/disposalpipe/segment/bent/west,
 /turf/simulated/floor/industrial,
 /area/station/quartermaster/refinery)
+"rbz" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor,
+/area/station/maintenance/south)
 "rbJ" = (
 /obj/disposalpipe/segment/bent/south,
 /turf/simulated/floor/white,
@@ -26128,11 +26143,6 @@
 /turf/simulated/wall/asteroid/gehenna/z3,
 /area/station/maintenance/central)
 "rGL" = (
-/obj/disposalpipe/trunk,
-/obj/machinery/disposal/morgue{
-	desc = "A pneumatic delivery chute for sending things directly to the crematorium.";
-	name = "crematorium chute"
-	},
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 6;
@@ -26142,7 +26152,8 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
 	},
-/turf/simulated/floor/white,
+/obj/ladder/auto,
+/turf/simulated/floor/bluegreen,
 /area/station/medical/basement)
 "rHj" = (
 /obj/disposalpipe/segment/sewage,
@@ -28499,18 +28510,6 @@
 /area/station/security/armory{
 	name = "Small Arms"
 	})
-"tiq" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 6;
-	name = "autoname - SS13";
-	tag = ""
-	},
-/turf/simulated/floor/plating,
-/area/station/maintenance/northwest)
 "tix" = (
 /obj/machinery/light/fluorescent/neutral{
 	dir = 8
@@ -28765,10 +28764,6 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/station/maintenance/south)
-"tpA" = (
-/obj/disposalpipe/junction/right/east,
-/turf/simulated/floor,
 /area/station/maintenance/south)
 "tpI" = (
 /obj/table/folding,
@@ -31473,6 +31468,18 @@
 /obj/ladder/auto,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/north)
+"vef" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/northwest)
 "ven" = (
 /obj/lattice,
 /obj/decal/cleanable/dirt/random,
@@ -65826,11 +65833,11 @@ nDe
 czN
 iOF
 iOF
-pbv
+nLl
 xBt
 ben
 puM
-bzx
+hTx
 xIx
 puM
 tVa
@@ -66127,12 +66134,12 @@ lab
 hUF
 fzL
 pte
-pbv
-bzx
-qfq
+nLl
+hTx
+rbz
 ben
 kMc
-bzx
+hTx
 xIx
 puM
 puM
@@ -66736,7 +66743,7 @@ gjE
 aRH
 vJn
 cZS
-tpA
+nQF
 xIx
 rUw
 rUw
@@ -67038,7 +67045,7 @@ uhM
 how
 wVR
 bHo
-bzx
+hTx
 xIx
 rUw
 rUw
@@ -67628,7 +67635,7 @@ lkM
 xOo
 cLK
 cLK
-pVV
+cLK
 eiD
 lVi
 cLK
@@ -67642,7 +67649,7 @@ mgM
 nMw
 qAe
 cwf
-bzx
+hTx
 uiP
 rUw
 woc
@@ -67936,7 +67943,7 @@ eCs
 eCs
 rGL
 iQP
-aeQ
+lcZ
 eAv
 eCs
 sGo
@@ -71216,7 +71223,7 @@ pdO
 nFb
 nFb
 nFb
-tiq
+vef
 mSo
 ajj
 pdO
@@ -71517,7 +71524,7 @@ pdO
 pdO
 nFb
 fOZ
-mIY
+goQ
 mMc
 mSo
 ajj
@@ -76954,7 +76961,7 @@ pdO
 nFb
 nFb
 nFb
-tiq
+vef
 mSo
 ajj
 pdO
@@ -77255,7 +77262,7 @@ iLx
 pdO
 nFb
 rRP
-mIY
+goQ
 mMc
 mSo
 ajj
