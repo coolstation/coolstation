@@ -522,6 +522,20 @@
 	dir = 4
 	},
 /area/transit_vehicle/elevator/sec_top)
+"axn" = (
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/obj/cable{
+	icon_state = "1-4"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/white,
+/area/station/medical/medbay)
 "axH" = (
 /obj/cable{
 	d1 = 4;
@@ -1078,6 +1092,11 @@
 /turf/simulated/wall/r_wall,
 /area/station/maintenance/inner/nw)
 "aSF" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/bluewhite,
 /area/station/medical/medbay/surgery)
 "aSN" = (
@@ -1652,6 +1671,11 @@
 	dir = 1
 	},
 /obj/machinery/disposal,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor,
 /area/station/engine/core)
 "bzV" = (
@@ -3786,7 +3810,9 @@
 	icon_state = "2-4"
 	},
 /obj/cable{
-	icon_state = "4-8"
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/simulated/floor,
 /area/station/engine/engineering)
@@ -4736,6 +4762,13 @@
 	},
 /turf/simulated/floor/engine,
 /area/station/engine/core)
+"egz" = (
+/obj/decal/cleanable/dirt/random,
+/obj/cable{
+	icon_state = "2-5"
+	},
+/turf/simulated/floor,
+/area/station/engine/engineering)
 "egO" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -4901,6 +4934,13 @@
 	},
 /turf/space/gehenna/desert,
 /area/space)
+"enR" = (
+/obj/decal/cleanable/dirt/random,
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/yellow/side,
+/area/station/engine/engineering)
 "epl" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	can_rupture = 0
@@ -5251,6 +5291,9 @@
 /obj/disposalpipe/segment/horizontal,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	can_rupture = 0
+	},
+/obj/cable{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor,
 /area/station/engine/engineering)
@@ -5863,6 +5906,10 @@
 	dir = 8
 	},
 /obj/machinery/power/data_terminal,
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
 /turf/simulated/floor/bot,
 /area/station/engine/monitoring)
 "fal" = (
@@ -6177,6 +6224,13 @@
 	icon_state = "gehenna_corner"
 	},
 /area/space)
+"fpt" = (
+/obj/decal/cleanable/dirt/random,
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor,
+/area/station/engine/engineering)
 "fpA" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/manufacturer/robotics,
@@ -6324,6 +6378,17 @@
 	},
 /turf/simulated/floor,
 /area/station/security/main)
+"ftu" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/cold{
+	can_rupture = 0
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/engine/caution/east,
+/area/station/engine/core)
 "ftJ" = (
 /turf/simulated/wall/r_wall,
 /area/station/bridge/conference)
@@ -7335,6 +7400,9 @@
 /area/station/bridge)
 "gtD" = (
 /obj/decal/cleanable/dirt/random,
+/obj/cable{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/stairs/wide/other{
 	dir = 1
 	},
@@ -8174,6 +8242,16 @@
 /obj/machinery/manufacturer/hangar,
 /turf/simulated/floor/grey,
 /area/station/hangar/engine)
+"hem" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/yellow/side{
+	dir = 8
+	},
+/area/station/engine/core)
 "heK" = (
 /turf/space/gehenna/desert/plating{
 	dir = 1;
@@ -11446,6 +11524,14 @@
 	},
 /turf/simulated/floor,
 /area/station/engine/engineering)
+"kfr" = (
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "4-10"
+	},
+/turf/simulated/floor/plating/random,
+/area/station/engine/engineering)
 "kfs" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4;
@@ -12836,6 +12922,10 @@
 	name = "Engine Output Monitoring"
 	},
 /obj/machinery/power/data_terminal,
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-4"
+	},
 /turf/simulated/floor/bot,
 /area/station/engine/monitoring)
 "lkW" = (
@@ -13595,6 +13685,9 @@
 	dir = 1;
 	pixel_y = 32
 	},
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor,
 /area/station/engine/engineering)
 "mcU" = (
@@ -14041,6 +14134,9 @@
 /area/station/medical/research)
 "mDE" = (
 /obj/decal/cleanable/dirt/random,
+/obj/cable{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/bot,
 /area/station/engine/engineering)
 "mEJ" = (
@@ -15681,6 +15777,13 @@
 /obj/machinery/disposal,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
+"oet" = (
+/obj/disposalpipe/segment/vertical,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor,
+/area/station/engine/engineering)
 "oev" = (
 /obj/table/reinforced/auto,
 /obj/machinery/light/fluorescent/cool/very{
@@ -18328,6 +18431,9 @@
 /turf/simulated/floor/sanitary/white,
 /area/station/crew_quarters/kitchen/freezer)
 "qoL" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/stairs/wide,
 /area/station/engine/engineering)
 "qoR" = (
@@ -18605,6 +18711,14 @@
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
+"qzP" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/bluewhite,
+/area/station/medical/medbay/surgery)
 "qAt" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -18971,6 +19085,9 @@
 /area/station/crew_quarters/farmers)
 "qLG" = (
 /obj/decal/cleanable/dirt/random,
+/obj/cable{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/yellow/side{
 	dir = 1
 	},
@@ -19014,6 +19131,13 @@
 /obj/kitchenspike,
 /turf/simulated/floor/sanitary/white,
 /area/station/crew_quarters/kitchen/freezer)
+"qNf" = (
+/obj/disposalpipe/segment/bent/north,
+/obj/cable{
+	icon_state = "4-9"
+	},
+/turf/simulated/floor,
+/area/station/engine/engineering)
 "qNG" = (
 /obj/burning_barrel,
 /turf/space/gehenna/desert/corner{
@@ -21937,6 +22061,14 @@
 /obj/machinery/atmospherics/unary/vent_pump/north,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
+"tsH" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/plating,
+/area/station/engine/core)
 "tsV" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/vertical,
 /turf/simulated/wall,
@@ -22452,6 +22584,11 @@
 "tTT" = (
 /obj/machinery/atmospherics/binary/circulatorTemp/right,
 /obj/decal/tile_edge/stripe/extra_big,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/engine,
 /area/station/engine/core)
 "tTZ" = (
@@ -23694,6 +23831,13 @@
 	icon_state = "gehenna_tile"
 	},
 /area/space)
+"vaG" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor,
+/area/station/engine/engineering)
 "vbN" = (
 /obj/grille/catwalk{
 	dir = 10;
@@ -24703,9 +24847,6 @@
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/farmers)
 "wbB" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
 /obj/machinery/door/airlock/glass/engineering,
 /obj/machinery/door/firedoor/pyro{
 	dir = 4
@@ -25016,6 +25157,11 @@
 /area/space)
 "wpb" = (
 /obj/machinery/atmospherics/portables_connector/south,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/engine,
 /area/station/engine/core)
 "wpH" = (
@@ -26131,6 +26277,13 @@
 	},
 /turf/simulated/floor,
 /area/station/hangar/sec)
+"xmy" = (
+/obj/decal/cleanable/dirt/random,
+/obj/cable{
+	icon_state = "1-6"
+	},
+/turf/simulated/floor,
+/area/station/engine/engineering)
 "xmz" = (
 /obj/cable{
 	d1 = 1;
@@ -26445,6 +26598,11 @@
 	dir = 1
 	},
 /obj/disposalpipe/segment/bent/south,
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/simulated/floor,
 /area/station/engine/engineering)
 "xBn" = (
@@ -61206,7 +61364,7 @@ vwI
 nUC
 vwI
 vwI
-foS
+axn
 dmr
 oFE
 hbh
@@ -64827,7 +64985,7 @@ eKD
 eKD
 hqT
 eKD
-aSF
+qzP
 wuT
 jla
 pjb
@@ -78997,15 +79155,15 @@ iVv
 heK
 cML
 eNr
-eNr
-kHX
+egz
+enR
 gtD
 mDE
-eNr
+fpt
 mDE
 qoL
 qLG
-eNr
+xmy
 tgd
 eNr
 cML
@@ -79298,7 +79456,7 @@ iVv
 iVv
 cML
 cML
-lEw
+kfr
 sBL
 sjW
 vrG
@@ -79308,7 +79466,7 @@ cvx
 nuv
 uxc
 tZx
-jqF
+qNf
 eNr
 cML
 cML
@@ -79600,7 +79758,7 @@ iVv
 heK
 cML
 qMh
-tZx
+oet
 nXa
 nIC
 mvf
@@ -79610,7 +79768,7 @@ uYF
 mvf
 nIC
 xfp
-gZm
+vaG
 eNr
 dVx
 cML
@@ -79902,7 +80060,7 @@ iVv
 iVv
 ewG
 vhe
-tgd
+tFE
 fVy
 nIC
 tCO
@@ -79912,7 +80070,7 @@ nri
 daA
 nIC
 hGQ
-gZm
+vaG
 tgd
 dVx
 cML
@@ -80214,7 +80372,7 @@ rXo
 rhy
 nIC
 nIC
-gZm
+vaG
 tgd
 cML
 cML
@@ -80808,7 +80966,7 @@ iVv
 iVv
 ewG
 gZm
-tgd
+tFE
 nIC
 jlE
 wYT
@@ -85343,7 +85501,7 @@ pgt
 idO
 nXR
 pVs
-pVs
+ftu
 pVs
 pVs
 lwN
@@ -85645,7 +85803,7 @@ pgt
 bqO
 rJI
 rJI
-rJI
+hem
 rJI
 rJI
 nVY
@@ -86249,7 +86407,7 @@ pgt
 aGL
 pgt
 cFv
-gva
+tsH
 nMm
 pgt
 aGL
