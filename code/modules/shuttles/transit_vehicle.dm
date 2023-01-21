@@ -125,7 +125,7 @@ var/global/datum/transit_controller/transit_controls = new
 			var/filler_turf_end = text2path(end_location.filler_turf)
 			if (!filler_turf_start)
 				filler_turf_start = "space"
-			start_location.move_contents_to(end_location, filler_turf_start, ignore_fluid = 1)
+			start_location.move_contents_to(end_location, filler_turf_start, ignore_fluid = 0)
 			for (var/turf/P in end_location)
 				if (istype(P, filler_turf_start))
 					P.ReplaceWith(filler_turf_end, keep_old_material = 0, force=1)
