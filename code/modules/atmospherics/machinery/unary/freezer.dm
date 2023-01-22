@@ -6,6 +6,7 @@
 	anchored = 1.0
 	desc = "Demon brand freezer unit. Cools gas in the attached pipe network"
 	current_heat_capacity = 1000
+	mats = list("MET-1" = 8, "CON-1" = 15) //IDK it's something
 	var/pipe_direction = 1
 
 	north

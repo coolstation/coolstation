@@ -43,14 +43,16 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 /obj/item/atmospherics
 
 ///Parent crafting item, the pipe frame end of things. BTW these are stackable watch out
-/obj/item/atmospherics/pipeframe/
-	name = "heat conduit pipe frame" //exchanger pipes are the parent item 'cuz they don't need to accept modules
+ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
+/obj/item/atmospherics/pipeframe
+	name = "the platonic ideal of atmospheric piping frame"
 	desc = "Small pipes made to exchange heat inside with their environment."
 	icon = 'icons/obj/atmospherics/atmos_parts.dmi'
 	icon_state = "conduit_to-weld"
-	var/icon_welded = "frame_conduit"
+	///What does this look like after welding?
+	var/icon_welded
 	///What's this going to turn into when deployed (sans gizmo)?
-	var/frame_makes = /obj/machinery/atmospherics/pipe/simple/heat_exchanging
+	var/frame_makes = /obj/machinery/atmospherics
 	var/welded = FALSE
 	//The amount of connections this frame/assembly needs, gets overridden when a module is added
 	var/expected_connections = 2
@@ -60,10 +62,18 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 
 	//we might be trying to mix welded and unwelded
 	check_valid_stack(obj/item/atmospherics/pipeframe/O)
-		if (..())
+		. = ..()
+		if (.)
 			if (O.welded != welded)
-				return 0
-		return 1
+				. = 0
+
+	//Set appropriate welded status
+	split_stack(toRemove)
+		var/obj/item/atmospherics/pipeframe/newstack = ..()
+		if (istype(newstack)) //Parent call failed
+			newstack.welded = src.welded
+			newstack.icon_state = newstack.icon_welded
+		return newstack
 
 	get_desc(dist, mob/user)
 		..()
@@ -95,8 +105,14 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 	attackby(obj/item/W as obj, mob/user as mob, params, is_special = 0)
 		if (istool(W, TOOL_WELDING) && !welded)
 			if (W:try_weld(user,1))
-				welded = TRUE
-				icon_state = icon_welded
+				if (src.amount > 1) // No welding a stack of things in one go
+					var/obj/item/atmospherics/pipeframe/weldedpipe = split_stack(1)
+					weldedpipe.welded = TRUE
+					weldedpipe.icon_state = weldedpipe.icon_welded
+					user.put_in_hand_or_drop(weldedpipe)
+				else
+					welded = TRUE
+					icon_state = icon_welded
 				return
 		if (istype(W, /obj/item/atmospherics/pipeframe/))
 			stack_item(W)
@@ -147,6 +163,14 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 			return new frame_makes(destination, orientation)
 
 
+//Temperature exchanging piping
+/obj/item/atmospherics/pipeframe/exchanger
+	name = "heat conduit pipe frame"
+	desc = "Small pipes made to exchange heat inside with their environment."
+	icon_state = "conduit_to-weld"
+	icon_welded = "frame_conduit"
+	frame_makes = /obj/machinery/atmospherics/pipe/simple/heat_exchanging
+
 
 //The bit that going between normal piping and heat exchangers. Build direction points to the exchanger side
 /obj/item/atmospherics/pipeframe/exchanger_regular_junction
@@ -191,10 +215,10 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 
 	///We might have differing modules attached
 	check_valid_stack(obj/item/atmospherics/pipeframe/regular/O)
-		if (..()) //Includes welded check
+		. = ..()
+		if (.) //Includes welded check
 			if ((gizmo && (!O.gizmo || !(O.gizmo.type == gizmo.type))) || (!gizmo && O.gizmo)) //mismatch of gizmo types
-				return 0
-		return 1
+				. = 0
 
 	///Spawn a gizmo
 	split_stack(toRemove, spawn_gizmo = TRUE) //
@@ -204,6 +228,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 		if (gizmo)
 			var/obj/item/thingy = new src.gizmo.type
 			newstack.Attackby(thingy)
+		return newstack
 
 	attackby(obj/item/W as obj, mob/user as mob, params, is_special = 0)
 		if (istype(W, /obj/item/sheet))
@@ -240,12 +265,19 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 				W = W.split_stack(1)
 			else
 				user.u_equip(W)
-			W.set_loc(src)
-			gizmo = W
-			expected_connections = gizmo.expected_connections
-			name = "[gizmo.assembly_prefix] pipe assembly"
-			var/image/scrumpy = image(gizmo.icon, gizmo.icon_state)
-			UpdateOverlays(scrumpy, "added_gizmo")
+			//Hey it'd be a good idea to check if we're not a stack of things too
+			var/obj/item/atmospherics/pipeframe/regular/to_b_combined = src
+			if (src.amount > 1)
+				to_b_combined = split_stack(1)
+				to_b_combined.welded = TRUE
+			W.set_loc(to_b_combined)
+			to_b_combined.gizmo = W
+			to_b_combined.expected_connections = to_b_combined.gizmo.expected_connections
+			to_b_combined.name = "[to_b_combined.gizmo.assembly_prefix] pipe assembly"
+			var/image/scrumpy = image(to_b_combined.gizmo.icon, to_b_combined.gizmo.icon_state)
+			to_b_combined.UpdateOverlays(scrumpy, "added_gizmo")
+			if (to_b_combined != src)
+				user.put_in_hand_or_drop(to_b_combined)
 			return
 		#endif
 		..()
@@ -431,6 +463,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 
 //Binary machinery not included above: circulator (old and deprecated?) and circulatorTemp (TEG gas circulators)
 
+/* These two types aren't fit to be built directly
 /obj/item/atmospherics/module/cold_sink
 	name = "cold sink module"
 	icon_state = "cold-sink_module"
@@ -444,6 +477,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 	assembly_prefix = "heat reservoir"
 	machine_path = /obj/machinery/atmospherics/unary/heat_reservoir
 	expected_connections = 1
+*/
 
 /obj/item/atmospherics/module/furnace_connector //you know I thought furnaces plugged into atmos on their own accord.
 	name = "furnace connector module"
@@ -507,9 +541,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/volume_pump, 15)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/dp_vent, 10)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/passive_gate, 10)
-		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/cold_sink, 5)
-		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/heat_reservoir, 5)
-		//obj/item/atmospherics/module/furnace_connector
+		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/furnace_connector, 5)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/outlet_injector, 15)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/vent, 10)
 		product_list += new/datum/data/vending_product(/obj/item/atmospherics/module/vent_pump, 10)

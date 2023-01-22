@@ -1329,13 +1329,17 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 /obj/machinery/atmospherics/unary/furnace_connector
 	icon = 'icons/obj/atmospherics/heat_reservoir.dmi'
 	icon_state = "intact_off"
-	density = 1
 
 	name = "Furnace Connector"
 	desc = "Used to connect a furnace to a pipe network."
 
 	var/current_temperature = T20C
 	var/current_heat_capacity = 3000
+
+	New()
+		..()
+		var/obj/machinery/power/furnace/thermo/to_connect = locate() in src.loc //This is for building a new connector under a furnace, not so much map load
+		to_connect?.get_connector() //The furnace will try this on New too so we don't really need to give a shit if this fails
 
 	update_icon()
 		if(node)
@@ -1347,6 +1351,14 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 	process()
 		..()
 		return
+
+	disposing()
+		for(var/obj/machinery/power/furnace/thermo/F in src.loc)
+			if (F.f_connector == src)
+				F.f_connector = null
+		..()
+
+
 
 	proc/heat()
 		var/air_heat_capacity = HEAT_CAPACITY(air_contents)
@@ -1414,6 +1426,13 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 
 	*/
 */
+
+	disposing()
+		f_connector = null
+		qdel(heat_filter)
+		heat_filter = null
+		..()
+
 	on_burn()
 		var/datum/gas_mixture/environment = src.loc?.return_air()
 		var/ambient_temp = T20C
@@ -1429,8 +1448,8 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 		// charcoal actual high temp is 2500C
 		var/additional_heat = fuel_burn_scale * (3000)
 
-		src.f_connector.current_temperature = heat_filter.process(ambient_temp + 200 + additional_heat)
-		f_connector.heat()
+		src.f_connector?.current_temperature = heat_filter.process(ambient_temp + 200 + additional_heat)
+		f_connector?.heat()
 
 	on_inactive()
 		var/datum/gas_mixture/environment = src.loc?.return_air()
