@@ -407,6 +407,10 @@
 		if (. == 100)
 			return 100
 		if (!density)
+			if (istype(target, /obj/ladder))
+				var/obj/ladder/L = target
+				L.climb(src)
+				return
 			src.examine_verb(target)
 
 	examine_verb(atom/A as mob|obj|turf in view())
