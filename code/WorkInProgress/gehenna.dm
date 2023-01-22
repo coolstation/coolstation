@@ -65,7 +65,7 @@
 	floor_turf = "/turf/simulated/floor/plating/gehenna"
 
 /turf/simulated/wall/asteroid/gehenna/tough
-	name = "dense sulferous rock"
+	name = "crimson bedrock"
 	desc = "looks densely packed"
 	icon_state = "gehenna_rock2"
 	hardness = 2

@@ -1,18 +1,21 @@
 #define MAP_COLORS_TRENCH list(\
 		empty = rgb(0, 0, 50),\
-		solid = rgb(0, 0, 255),\
+		solid = rgb(50, 50, 255),\
+		tough = rgb(0, 0, 255),\
 		station = rgb(255, 153, 58),\
 		other = rgb(120, 200, 120))
 
 #define MAP_COLORS_SPACE list(\
 		empty = rgb(30, 30, 45),\
 		solid = rgb(180,180,180),\
+		tough = rgb(180, 180, 255),\
 		station = rgb(27, 163, 186),\
 		other = rgb(186, 0, 60))
 
 #define MAP_COLORS_DESERT list(\
 		empty = rgb(211, 167, 84),\
 		solid = rgb(188, 98, 66),\
+		tough = rgb(160, 60, 25),\
 		station = rgb(27, 163, 186),\
 		other = rgb(186, 0, 60))
 
@@ -84,6 +87,8 @@
 					var/turf/T = locate(x,y,level)
 					if (T.name == "asteroid" || T.name == "cavern wall" || T.type == /turf/simulated/floor/plating/airless/asteroid || istype(T, /turf/simulated/wall/asteroid/gehenna/z3))
 						turf_color = "solid"
+					else if (istype(T, /turf/simulated/wall/asteroid/gehenna/tough) || istype(T, /turf/simulated/wall/asteroid/geode))
+						turf_color = "tough"
 					else if (T.name == "trench floor" || T.name == "\proper space" || T.name == "sand")
 						turf_color = "empty"
 					else
@@ -174,6 +179,7 @@
 		}
 		.empty { background-color: [colors_to_use["empty"]]; }
 		.solid { background-color: [colors_to_use["solid"]]; }
+		.tough { background-color: [colors_to_use["tough"]]; }
 		.station { background-color: [colors_to_use["station"]]; }
 		.other { background-color: [colors_to_use["other"]]; }
 		.vent { background-color: rgb(255, 120, 120); }
@@ -186,6 +192,7 @@
 		</div>
 		<div class='key'>
 			<span><span class='solid'></span> Solid Rock</span>
+			<span><span class='tough'></span> Tough Rock</span>
 			<span><span class='station'></span> NT Asset</span>
 			<span><span class='other'></span> Unknown</span>
 			[map_currently_underwater?"<span><span class='vent'></span> Hotspot</span>":""]
