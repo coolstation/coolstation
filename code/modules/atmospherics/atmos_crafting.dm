@@ -54,8 +54,12 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	///What's this going to turn into when deployed (sans gizmo)?
 	var/frame_makes = /obj/machinery/atmospherics
 	var/welded = FALSE
-	//The amount of connections this frame/assembly needs, gets overridden when a module is added
+	///The amount of connections this frame/assembly needs, gets overridden when a module is added
 	var/expected_connections = 2
+	///Does direction matter for placing this thing? overridden by module
+	var/direction_matters = FALSE
+	///Gets slapped into the orientation HTML, basically "how the fuck do I place this", overridden by module
+	var/orientation_instructions = "Just slap it down IDK"
 	w_class = W_CLASS_SMALL //pipebombs are normal size but I don't wanna have these be bulky.
 	max_stack = 30
 
@@ -131,7 +135,11 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 				return
 			user.put_in_hand_or_drop(new_stack)
 			//new_stack.add_fingerprint(user) //IDK I haven't bothered with fingerprints anywhere else in this file
-		else ..()
+
+		else if (..()) //We've probably been picked up (at least that seems to be what attack_hand on items is doing)
+			if (src.welded && winget(user, "atmospipecrafting", "is-visible") == "true") //They've got the laying window open
+				var/datum/component/atmos_crafty/their_menu = user.GetComponent(/datum/component/atmos_crafty)
+				their_menu.showPanel(src.name, orientation_instructions) //Update the instructions to this frame's :3
 
 	///Bring up the orientation panel
 	attack_self(mob/user)
@@ -139,17 +147,17 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 			return ..()
 		var/datum/component/atmos_crafty/blepperdy_bloop = user.GetComponent(/datum/component/atmos_crafty)
 		if (!isnull(blepperdy_bloop))
-			blepperdy_bloop.showPanel()
+			blepperdy_bloop.showPanel(src.name, orientation_instructions)
 		else //Set em up with one of these if they're so gosh dang interested
 			blepperdy_bloop = user.AddComponent(/datum/component/atmos_crafty)
-			blepperdy_bloop.showPanel()
+			blepperdy_bloop.showPanel(src.name, orientation_instructions)
 		. = ..()
 
 ///This may seem useless but for the regular frames I need to do some weird stuff to work junctions in
 /obj/item/atmospherics/pipeframe/proc/validate_settings(orientation, direction, no_of_connections, mob/user)
 	if (no_of_connections != expected_connections)
 		return 0
-	if (!(orientation & direction)) //Direction isn't included in orientation (AKA settings are nonsense)
+	if (!(orientation & direction) && direction_matters) //Direction isn't included in orientation (AKA settings are nonsense)
 		boutput(user, "<span class='alert'>Your chosen direction isn't one of the sides the component connect to!</span>")
 		return 0 //Would every single machine type necessarily care? No, but the buildy procs assume direction is good
 	return 1
@@ -170,6 +178,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	icon_state = "conduit_to-weld"
 	icon_welded = "frame_conduit"
 	frame_makes = /obj/machinery/atmospherics/pipe/simple/heat_exchanging
+	orientation_instructions = "Straight and corner pieces only, direction does not matter."
 
 
 //The bit that going between normal piping and heat exchangers. Build direction points to the exchanger side
@@ -179,6 +188,8 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	icon_state = "junction_to-weld"
 	frame_makes = /obj/machinery/atmospherics/pipe/simple/junction
 	icon_welded = "frame_junction"
+	direction_matters = TRUE
+	orientation_instructions = "Straight pieces only, set direction to the side the exchanger end should be on."
 
 	pre_welded
 		welded = TRUE
@@ -200,6 +211,8 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	var/obj/item/atmospherics/module/gizmo =  null
 	//IDK what all these variants are but this is what I found used on atlas
 	frame_makes = /obj/machinery/atmospherics/pipe/simple/insulated
+	direction_matters = FALSE //unless overridden
+	orientation_instructions = "Regular pipes can be placed in any 2 or 3 connection orientation, the latter making manifolds. Direction does not matter."
 
 	disposing()
 		if (gizmo?.loc == src) //This is the bullshit that will let us split off of stack of gizmoed frames without spawning a gizmo every time
@@ -272,8 +285,12 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 				to_b_combined.welded = TRUE
 			W.set_loc(to_b_combined)
 			to_b_combined.gizmo = W
+
 			to_b_combined.expected_connections = to_b_combined.gizmo.expected_connections
 			to_b_combined.name = "[to_b_combined.gizmo.assembly_prefix] pipe assembly"
+			to_b_combined.direction_matters = to_b_combined.gizmo.cares_about_direction
+			to_b_combined.orientation_instructions = to_b_combined.gizmo.module_instructions
+
 			var/image/scrumpy = image(to_b_combined.gizmo.icon, to_b_combined.gizmo.icon_state)
 			to_b_combined.UpdateOverlays(scrumpy, "added_gizmo")
 			if (to_b_combined != src)
@@ -325,8 +342,9 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	var/machine_path = /obj/machinery/atmospherics/valve
 	///How many pipe connections come out of this thing, used for making sure that the player has a sensible configuration.
 	var/expected_connections = 2
-	///I think all in-line atmos machinery only goes straight but if yours can make the corner, set this (room to expand?)
-	var/can_do_corners = FALSE
+	///These override orientation_instructions and direction_matters on the pipe frame
+	var/module_instructions = "Someone didn't write instructions for me :)"
+	var/cares_about_direction = TRUE
 
 	attack_hand(mob/user)
 		if (amount > 1 && user.find_in_hand(src))
@@ -355,12 +373,14 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	icon_state = "valve_module"
 	assembly_prefix = "valve"
 	machine_path = /obj/machinery/atmospherics/valve
+	module_instructions = "Straight pieces only, set direction to either end."
 
 /obj/item/atmospherics/module/digital_valve
 	name = "digital valve module"
 	icon_state = "digital-valve_module"
 	assembly_prefix = "digital valve"
 	machine_path = /obj/machinery/atmospherics/valve/digital
+	module_instructions = "Straight pieces only, set direction to either end."
 
 /obj/item/atmospherics/module/manifold_valve
 	name = "manifold valve module"
@@ -368,6 +388,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	assembly_prefix = "manifold valve"
 	machine_path = /obj/machinery/atmospherics/manifold_valve
 	expected_connections = 3
+	module_instructions = "Any junction."
 
 	determine_and_place_machine(turf/destination, orientation, direction) //Manifold valve sprites point in the one direction they DON'T have a connection to
 		//Possible TODO: the valves only ever switch between two pairs when there's 3 possible pairs of pipes, but also they can't be flipped like mixers
@@ -388,6 +409,8 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	assembly_prefix = "gas filter"
 	machine_path = /obj/machinery/atmospherics/filter
 	expected_connections = 3
+	cares_about_direction = FALSE
+	module_instructions = "Any junction, direction is ignored."
 
 	determine_and_place_machine(turf/destination, orientation, direction)
 		switch (orientation)
@@ -407,6 +430,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	assembly_prefix = "gas mixer"
 	machine_path = /obj/machinery/atmospherics/mixer
 	expected_connections = 3
+	module_instructions = "Any junction, direction is the mixer's output. Output cannot be on the side connection."
 
 	determine_and_place_machine(turf/destination, orientation, direction)
 		switch (orientation)
@@ -427,6 +451,8 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	assembly_prefix = "connector port"
 	machine_path = /obj/machinery/atmospherics/portables_connector
 	expected_connections = 1
+	cares_about_direction = FALSE
+	module_instructions = "Connects towards direction, orientation is ignored."
 
 /obj/item/atmospherics/module/vent
 	name = "vent module"
@@ -434,6 +460,8 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	assembly_prefix = "vent"
 	machine_path = /obj/machinery/atmospherics/pipe/vent
 	expected_connections = 1
+	cares_about_direction = FALSE
+	module_instructions = "Connects towards direction, orientation is ignored."
 
 //--Things are kinda sorted by type, binary machines are up next and unary comes after that
 
@@ -442,24 +470,28 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	icon_state = "pump_module"
 	assembly_prefix = "pump"
 	machine_path = /obj/machinery/atmospherics/binary/pump
+	module_instructions = "Straight only, set direction in direction of output."
 
 /obj/item/atmospherics/module/volume_pump
 	name = "volume pump module"
 	icon_state = "volume-pump_module"
 	assembly_prefix = "volume pump"
 	machine_path = /obj/machinery/atmospherics/binary/volume_pump
+	module_instructions = "Straight only, set direction in direction of output."
 
 /obj/item/atmospherics/module/dp_vent
 	name = "dual port vent module"
 	icon_state = "dp-vent_module"
 	assembly_prefix = "dual port vent"
 	machine_path = /obj/machinery/atmospherics/binary/dp_vent_pump
+	module_instructions = "Straight only, set direction in direction of output."
 
 /obj/item/atmospherics/module/passive_gate
 	name = "passive gate module"
 	icon_state = "passive-gate_module"
 	assembly_prefix = "passive gate"
 	machine_path = /obj/machinery/atmospherics/binary/passive_gate
+	module_instructions = "Straight only, set direction in direction of output."
 
 //Binary machinery not included above: circulator (old and deprecated?) and circulatorTemp (TEG gas circulators)
 
@@ -485,6 +517,8 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	assembly_prefix = "furnace connector"
 	machine_path = /obj/machinery/atmospherics/unary/furnace_connector
 	expected_connections = 1
+	cares_about_direction = FALSE
+	module_instructions = "Connects towards direction, orientation is ignored."
 
 /obj/item/atmospherics/module/outlet_injector
 	name = "outlet injector module"
@@ -492,6 +526,8 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	assembly_prefix = "outlet injector"
 	machine_path = /obj/machinery/atmospherics/unary/outlet_injector
 	expected_connections = 1
+	cares_about_direction = FALSE
+	module_instructions = "Connects towards direction, orientation is ignored."
 
 /obj/item/atmospherics/module/vent_pump
 	name = "vent pump module"
@@ -499,12 +535,17 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	assembly_prefix = "vent pump"
 	machine_path = /obj/machinery/atmospherics/unary/vent_pump
 	expected_connections = 1
+	cares_about_direction = FALSE
+	module_instructions = "Connects towards direction, orientation is ignored."
 
 /obj/item/atmospherics/module/vent_scrubber
 	name = "vent scrubber module"
 	icon_state = "vent-scrubber_module"
 	assembly_prefix = "vent scrubber"
 	machine_path = /obj/machinery/atmospherics/unary/vent_scrubber
+	expected_connections = 1
+	cares_about_direction = FALSE
+	module_instructions = "Connects towards direction, orientation is ignored."
 
 //Unary machinery not included above: cryo_cell (a bit outside the remit of buildable atmos), generator_input (some sort of placeholder?)
 
@@ -561,10 +602,22 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	//Amount of connections of the current selection (so we don't have to fuck around with orientation to get the number)
 	var/no_of_connections = 2
 
+	///cache of the last assembly name we got, for post-Topic updates
+	var/last_name = null
+	///cache of the last assembly instructions we got, for post-Topic updates
+	var/last_instructions = null
+	///Text version for the HTML
+	var/orientation_text = "north to south"
 	//From here on out I copy-pasted the admin antag popups debug and started editing GLHF (that's also why the style is called antagType)
 	var/html
 
-	proc/generateHTML()
+	proc/generateHTML(assembly_name = null, orientation_instructions = null)
+
+		if (assembly_name)
+			last_name = assembly_name
+		if (orientation_instructions)
+			last_instructions = orientation_instructions
+
 		if (html)
 			html = ""
 
@@ -578,7 +631,9 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 <head>
 	Please select the orientation you want to build in.<br>
 	The direction corresponds to the outputting side of the component, if applicable.<br>
-	For components with a single connection, the selected direction is used for the orientation instead.
+	For components with a single connection, the selected direction is used for the orientation instead.<br>
+	<b>Orientation:</b> [orientation_text]<br>
+	<b>Direction:</b>	[dir_to_dirname(direction)]
 </head>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>2 Connections</b>
 	<font size="5">
@@ -606,17 +661,19 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	<a href='?src=\ref[src];action=east'>→</a>
 	</font>
 </div>
+<div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>[last_name]</b>
+	[last_instructions]
+</div>
 "}
 
-		return 1
+		return html
 
-	proc/showPanel()
-		if (!html)
-			if (!generateHTML())
-				alert("Unable to generate pipe orientation panel panel! Something's gone wacky!")
-				return
+	proc/showPanel(assembly_name = null, orientation_instructions = null)
+		if (!generateHTML(assembly_name, orientation_instructions))
+			alert("Unable to generate pipe orientation panel panel! Something's gone wacky!")
+			return
 
-		usr.Browse(html, "window=atmospipecrafting;size=300x375")
+		usr.Browse(html, "window=atmospipecrafting;size=350x400")
 
 	Topic(href, href_list)
 		if (!ismob(usr))
@@ -628,35 +685,45 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 			if ("straight_NS")
 				orientation = NORTH + SOUTH
 				no_of_connections = 2
+				orientation_text = "north to south"
 			if ("straight_EW")
 				orientation = EAST + WEST
 				no_of_connections = 2
+				orientation_text = "east to west"
 			if ("corner_SW")
 				orientation = SOUTH + WEST
 				no_of_connections = 2
+				orientation_text = "south-to-west corner"
 			if ("corner_SE")
 				orientation = SOUTH + EAST
 				no_of_connections = 2
+				orientation_text = "south-to-east corner"
 			if ("corner_NW")
 				orientation = NORTH + WEST
 				no_of_connections = 2
+				orientation_text = "north-to-west corner"
 			if ("corner_NE")
 				orientation = NORTH + EAST
 				no_of_connections = 2
+				orientation_text = "north-to-east corner"
 
 			// 3 connections
 			if ("junc_N")
 				orientation = NORTH + EAST + WEST
 				no_of_connections = 3
+				orientation_text = "north, east to west junction"
 			if ("junc_S")
 				orientation = SOUTH + EAST + WEST
 				no_of_connections = 3
+				orientation_text = "south, east to west junction"
 			if ("junc_W")
 				orientation = NORTH + SOUTH + WEST
 				no_of_connections = 3
+				orientation_text = "west, north to south junction"
 			if ("junc_E")
 				orientation = NORTH + SOUTH + EAST
 				no_of_connections = 3
+				orientation_text = "east, north to south junction"
 
 			// direction/single connection (these don't set no_of_connections because the placing code for 1-connection machines will just use direction)
 			if ("north")
@@ -667,6 +734,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 				direction = EAST
 			if ("west")
 				direction = WEST
+		usr.Browse(generateHTML(), "window=atmospipecrafting;size=350x400") //update window to new settings
 
 /obj/item/debug_atmos_bapper // I haven't made *deconstructable* atmos a thing yet so here you go for testing
 	name = "debug atmos bapper"
