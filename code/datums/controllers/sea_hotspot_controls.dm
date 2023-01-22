@@ -17,7 +17,7 @@
 		solid = rgb(188, 98, 66),\
 		tough = rgb(160, 60, 25),\
 		station = rgb(27, 163, 186),\
-		other = rgb(186, 0, 60))
+		other = rgb(226, 72, 121))
 
 /turf/proc/probe_test()
 	return hotspot_controller.probe_turf(src)
