@@ -2119,16 +2119,11 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 			return 1
 
 	end_dry()
-		if (src.dry == FRESH_MUD)
-			src.dry = 0
-			src.UpdateName()
-			src.dry_time = rand(300,600)
-		else
-			src.dry = DRY_MUD
-			src.stain = null
-			src.UpdateName()
-			processing_items.Remove(src)
-			return
+		src.dry = DRY_MUD
+		src.stain = null
+		src.UpdateName()
+		processing_items.Remove(src)
+		return
 
 	proc/add_volume(var/add_color, var/reagent_id = "poo", var/amount = 1, var/vis_amount = 1, var/list/bdata = null, var/i_state = null, var/direction = null, var/do_fluid_react = 1)
 
