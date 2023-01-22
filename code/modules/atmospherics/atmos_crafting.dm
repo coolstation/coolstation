@@ -497,15 +497,14 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	name = "vent pump module"
 	icon_state = "vent-pump_module"
 	assembly_prefix = "vent pump"
-	machine_path = /obj/machinery/atmospherics/unary/heat_reservoir
+	machine_path = /obj/machinery/atmospherics/unary/vent_pump
 	expected_connections = 1
 
 /obj/item/atmospherics/module/vent_scrubber
 	name = "vent scrubber module"
 	icon_state = "vent-scrubber_module"
 	assembly_prefix = "vent scrubber"
-	machine_path = /obj/machinery/atmospherics/unary/heat_reservoir
-	expected_connections = 1
+	machine_path = /obj/machinery/atmospherics/unary/vent_scrubber
 
 //Unary machinery not included above: cryo_cell (a bit outside the remit of buildable atmos), generator_input (some sort of placeholder?)
 
