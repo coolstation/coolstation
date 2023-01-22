@@ -119,8 +119,8 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna"
 	carbon_dioxide = 5*(sin(GEHENNA_TIME - 90)+ 1)
-	oxygen = MOLES_O2STANDARD * (sin(GEHENNA_TIME - 60)+ 2)
-	nitrogen = MOLES_O2STANDARD * (sin(GEHENNA_TIME + 90))
+	oxygen = MOLES_O2STANDARD * (sin(GEHENNA_TIME - 60)+2)
+	nitrogen = MOLES_O2STANDARD *0.5*(sin(GEHENNA_TIME + 90)+2)
 	temperature = WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
 
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
