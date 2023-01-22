@@ -458,7 +458,7 @@ MATERIAL
 
 				if("pipef_ex")
 					if (!amount_check(2,usr)) return
-					a_type = /obj/item/atmospherics/pipeframe/
+					a_type = /obj/item/atmospherics/pipeframe/exchanger
 					a_amount = 1
 					a_cost = 2
 					a_icon = 'icons/obj/atmospherics/atmos_parts.dmi'
