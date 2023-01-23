@@ -4841,6 +4841,13 @@
 /obj/disposalpipe/segment/cargo,
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
+"drt" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor,
+/area/station/crew_quarters/arcade)
 "drQ" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
@@ -22126,9 +22133,8 @@
 /turf/simulated/floor/black,
 /area/station/mining/barracks)
 "oEH" = (
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
+/obj/machinery/computer/stockexchange{
+	dir = 8
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/arcade)
@@ -78216,7 +78222,7 @@ ubW
 wQC
 tdt
 rBg
-wQC
+drt
 qAe
 how
 day

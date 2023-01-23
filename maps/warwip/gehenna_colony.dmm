@@ -801,9 +801,7 @@
 /turf/simulated/wall,
 /area/station/maintenance/inner/ne)
 "aJm" = (
-/obj/machinery/computer/security{
-	network = "Pathopost"
-	},
+/obj/machinery/computer/security,
 /turf/simulated/floor,
 /area/station/security/brig/cell_block_control)
 "aJp" = (
@@ -6763,6 +6761,13 @@
 "fJA" = (
 /obj/machinery/door/unpowered/wood/pyro{
 	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/storefront)
+"fKb" = (
+/obj/decal/cleanable/dirt/random,
+/obj/machinery/computer/stockexchange{
+	dir = 8
 	},
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
@@ -18580,10 +18585,10 @@
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
 "que" = (
+/obj/decal/cleanable/dirt/random,
 /obj/machinery/computer/ordercomp{
 	dir = 8
 	},
-/obj/decal/cleanable/dirt/random,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
 "quj" = (
@@ -23976,6 +23981,7 @@
 "vfZ" = (
 /obj/table/reinforced/auto,
 /obj/disposalpipe/segment/horizontal,
+/obj/machinery/computer/security/wooden_tv/small,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
 "vgb" = (
@@ -90062,7 +90068,7 @@ lan
 aqs
 wdL
 que
-que
+fKb
 coy
 vva
 nGP
