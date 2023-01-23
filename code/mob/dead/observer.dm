@@ -801,7 +801,7 @@ mob/dead/observer/proc/insert_observer(var/atom/target)
 	newobs.attach_hud(hud)
 	newobs.set_observe_target(target)
 	newobs.name = src.name
-	if(corpse.acid_name == null)
+	if(corpse && corpse.acid_name == null)
 		src.real_name = corpse.real_name
 	else
 		src.real_name = corpse.acid_name
