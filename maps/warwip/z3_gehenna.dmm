@@ -7792,6 +7792,16 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/black,
 /area/station/storage/warehouse)
+"ffI" = (
+/obj/cable/purple{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/networked/teleconsole{
+	dir = 8
+	},
+/turf/simulated/floor/grey,
+/area/station/science/teleporter)
 "ffL" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/simulated/floor/white,
@@ -19935,6 +19945,22 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/routing/depot)
+"neA" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/obj/cable/purple{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/computer/telescope{
+	dir = 8
+	},
+/turf/simulated/floor/grey,
+/area/station/science/teleporter)
 "neF" = (
 /obj/disposalpipe/segment/bent/east,
 /turf/simulated/floor/black,
@@ -20619,9 +20645,6 @@
 /obj/cable/purple{
 	icon_state = "4-8"
 	},
-/obj/stool/chair{
-	dir = 4
-	},
 /turf/simulated/floor/grey,
 /area/station/science/teleporter)
 "nBD" = (
@@ -21011,13 +21034,12 @@
 /turf/simulated/floor/plating,
 /area/station/engine/hotloop)
 "nOM" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 9;
-	name = "autoname - SS13";
-	tag = ""
+/obj/cable/purple{
+	icon_state = "2-4"
 	},
-/obj/machinery/light_switch/east,
+/obj/machinery/light_switch/east{
+	pixel_y = 24
+	},
 /turf/simulated/floor/grey,
 /area/station/science/teleporter)
 "nOQ" = (
@@ -24624,17 +24646,7 @@
 /turf/simulated/floor,
 /area/station/security/processing)
 "qvZ" = (
-/obj/machinery/light/fluorescent/neutral,
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/rack,
-/obj/item/clothing/head/helmet/camera{
-	pixel_x = -6
-	},
-/obj/item/clothing/head/helmet/camera{
-	pixel_x = 9
-	},
-/obj/item/clothing/head/helmet/camera,
-/obj/item/device/camera_viewer,
 /turf/simulated/floor/grey,
 /area/station/science/teleporter)
 "qwG" = (
@@ -30900,10 +30912,17 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal)
 "uxP" = (
-/obj/machinery/disposal/mail/autoname/research/telescience,
-/obj/disposalpipe/trunk{
-	dir = 8
+/obj/machinery/light/fluorescent/neutral,
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/rack,
+/obj/item/clothing/head/helmet/camera{
+	pixel_x = -6
 	},
+/obj/item/clothing/head/helmet/camera{
+	pixel_x = 9
+	},
+/obj/item/clothing/head/helmet/camera,
+/obj/item/device/camera_viewer,
 /turf/simulated/floor/grey,
 /area/station/science/teleporter)
 "uxX" = (
@@ -32667,11 +32686,13 @@
 /area/noGenerate)
 "vzz" = (
 /obj/cable/purple{
-	icon_state = "0-8"
+	icon_state = "4-8"
 	},
-/obj/machinery/power/data_terminal,
-/obj/machinery/networked/teleconsole{
-	dir = 8
+/obj/stool/chair{
+	dir = 4
+	},
+/obj/cable/purple{
+	icon_state = "1-8"
 	},
 /turf/simulated/floor/grey,
 /area/station/science/teleporter)
@@ -36182,6 +36203,13 @@
 "xXb" = (
 /turf/simulated/floor/black,
 /area/station/ai_monitored/armory)
+"xXr" = (
+/obj/machinery/disposal/mail/autoname/research/telescience,
+/obj/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/simulated/floor/grey,
+/area/station/science/teleporter)
 "xXA" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/disposalpipe/segment/mail/vertical,
@@ -67931,9 +67959,9 @@ rUw
 rUw
 kEu
 kEu
-kEu
-kEu
-kEu
+neA
+ffI
+xXr
 kEu
 eHA
 tlE
@@ -68233,9 +68261,9 @@ woc
 nMw
 uYT
 qAe
-pdO
-pdO
-pdO
+jrz
+jrz
+jrz
 iOy
 iOy
 sWa
