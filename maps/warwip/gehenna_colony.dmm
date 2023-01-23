@@ -434,6 +434,11 @@
 /obj/disposalpipe/segment/vertical,
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/customs)
+"ass" = (
+/obj/machinery/drainage,
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/white/grime,
+/area/station/wc/sec)
 "asB" = (
 /obj/machinery/manufacturer/hangar,
 /turf/simulated/floor,
@@ -1352,6 +1357,10 @@
 /obj/machinery/manufacturer/robotics,
 /turf/simulated/floor/grey,
 /area/station/medical/robotics)
+"bhx" = (
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "bhK" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/carpet/blue/standard/edge/west,
@@ -2076,6 +2085,10 @@
 /obj/cabinet/psychiatry,
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/treatment)
+"bPw" = (
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/wood,
+/area/station/crew_quarters/farmers)
 "bPS" = (
 /obj/machinery/light/small/floor/harsh,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -2736,6 +2749,10 @@
 	dir = 4
 	},
 /area/station/medical/medbay/cloner)
+"cqs" = (
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/darkblue,
+/area/station/turret_protected/Zeta)
 "cqB" = (
 /obj/disposalpipe/trunk/zlevel{
 	dir = 1;
@@ -4730,6 +4747,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/nw)
+"edY" = (
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/black,
+/area/station/engine/monitoring)
 "eea" = (
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/door/airlock/medical,
@@ -5365,6 +5386,7 @@
 "eGt" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /obj/disposalpipe/switch_junction/left/west,
+/obj/landmark/gps_waypoint,
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/treatment)
 "eGu" = (
@@ -6701,6 +6723,10 @@
 	},
 /turf/simulated/wall,
 /area/station/security/brig/cell_block_control)
+"fHJ" = (
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/carpet/blue/standard,
+/area/station/medical/medbay/lobby)
 "fHR" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -6911,6 +6937,10 @@
 	dir = 4
 	},
 /area/station/medical/medbay)
+"fQm" = (
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor,
+/area/station/security/main)
 "fQB" = (
 /obj/cable{
 	d1 = 1;
@@ -6959,6 +6989,7 @@
 	dir = 1
 	},
 /obj/machinery/light/small/floor/yellow,
+/obj/landmark/gps_waypoint,
 /turf/simulated/floor/industrial,
 /area/station/mining/dock)
 "fTf" = (
@@ -8277,6 +8308,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/landmark/gps_waypoint,
 /turf/simulated/floor/yellow/side{
 	dir = 8
 	},
@@ -8969,6 +9001,7 @@
 /area/station/security/secoffquarters)
 "hLl" = (
 /obj/disposalpipe/segment/vertical,
+/obj/landmark/gps_waypoint,
 /turf/simulated/floor/sanitary,
 /area/station/medical/morgue)
 "hLJ" = (
@@ -9011,6 +9044,7 @@
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/farmers)
 "hNm" = (
+/obj/landmark/gps_waypoint,
 /turf/simulated/floor/carpet/blue/fancy/innercorner/omni,
 /area/station/bridge)
 "hOb" = (
@@ -9245,6 +9279,10 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice)
+"ibh" = (
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor,
+/area/station/engine/engineering/breakroom)
 "ibu" = (
 /obj/table/auto,
 /obj/item/hand_labeler{
@@ -9266,6 +9304,7 @@
 /area/station/medical/medbay)
 "ibR" = (
 /obj/disposalpipe/segment/bent/west,
+/obj/landmark/gps_waypoint,
 /turf/simulated/floor,
 /area/station/security/secoffquarters)
 "ibS" = (
@@ -10131,6 +10170,17 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice/gunsmithing)
+"iMN" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "iND" = (
 /obj/machinery/shuttle/engine/heater{
 	dir = 4
@@ -10653,6 +10703,10 @@
 	dir = 1
 	},
 /area/station/engine/monitoring)
+"jlM" = (
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/white/checker2,
+/area/station/crew_quarters/kitchen)
 "jlS" = (
 /obj/machinery/door/airlock/glass,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -10711,6 +10765,10 @@
 	name = "Stall Door Control";
 	pixel_y = 24
 	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/storefront)
+"jpF" = (
+/obj/landmark/gps_waypoint,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
 "jqc" = (
@@ -10846,6 +10904,16 @@
 	},
 /turf/simulated/floor/darkblue,
 /area/station/bridge/customs)
+"jyl" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/white,
+/area/station/medical/medbay)
 "jyH" = (
 /obj/decal/poster/wallsign/security_wall,
 /turf/simulated/wall,
@@ -10893,6 +10961,10 @@
 	dir = 1
 	},
 /area/station/engine/engineering/ce)
+"jAs" = (
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/gunsmithing)
 "jAG" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/door/firedoor/pyro{
@@ -12323,6 +12395,10 @@
 /obj/machinery/manufacturer/glasswares,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice)
+"kHs" = (
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/sand,
+/area/station/security/brig/south_side)
 "kHx" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/cable{
@@ -12609,6 +12685,7 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/overfloor,
+/obj/landmark/gps_waypoint,
 /turf/simulated/floor/sanitary/white,
 /area/station/crew_quarters/kitchen/freezer)
 "kUa" = (
@@ -13047,6 +13124,11 @@
 	},
 /turf/simulated/floor/black,
 /area/station/chapel/sanctuary)
+"loM" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/carpet/grime,
+/area/station/chapel/office)
 "lpk" = (
 /obj/table/reinforced/auto,
 /obj/disposalpipe/segment/horizontal,
@@ -14218,6 +14300,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/landmark/gps_waypoint,
 /turf/simulated/floor/wood,
 /area/station/chapel/sanctuary)
 "mHP" = (
@@ -15937,6 +16020,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/landmark/gps_waypoint,
 /turf/simulated/floor,
 /area/station/crew_quarters/arcade/dungeon)
 "ohQ" = (
@@ -16956,6 +17040,7 @@
 /obj/cable/blue{
 	icon_state = "4-10"
 	},
+/obj/landmark/gps_waypoint,
 /turf/simulated/floor/carpet/blue/fancy/innercorner/sw_triple,
 /area/station/security/hos)
 "pbb" = (
@@ -17351,6 +17436,10 @@
 /obj/machinery/light/fluorescent/cool/very,
 /turf/space/gehenna/desert,
 /area/station/security/brig/north_side)
+"psr" = (
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/plating,
+/area/station/engine/engineering)
 "psu" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -17633,6 +17722,10 @@
 	dir = 4
 	},
 /area/station/engine/core)
+"pFu" = (
+/obj/landmark/gps_waypoint,
+/turf/space/gehenna/desert,
+/area/station/security/brig/north_side)
 "pFP" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable{
@@ -18572,6 +18665,11 @@
 	},
 /turf/simulated/floor/darkblue,
 /area/station/bridge/conference)
+"qtN" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor,
+/area/station/engine/engineering)
 "qua" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/disposalpipe/segment/morgue{
@@ -18704,6 +18802,7 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
 /obj/machinery/light/small/floor/harsh,
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/landmark/gps_waypoint,
 /turf/simulated/floor/grey,
 /area/station/medical/robotics)
 "qyo" = (
@@ -20367,6 +20466,7 @@
 /turf/simulated/floor,
 /area/space)
 "rOx" = (
+/obj/landmark/gps_waypoint,
 /turf/simulated/floor/black,
 /area/station/engine/engineering/ce)
 "rPt" = (
@@ -20560,6 +20660,11 @@
 	dir = 8
 	},
 /area/station/medical/medbay/cloner)
+"rXe" = (
+/obj/disposalpipe/segment/vertical,
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/grey,
+/area/station/security/equipment)
 "rXg" = (
 /obj/machinery/atmospherics/unary/vent_pump/north,
 /turf/simulated/floor,
@@ -21600,6 +21705,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/landmark/gps_waypoint,
 /turf/simulated/floor,
 /area/station/hydroponics/bay)
 "sUD" = (
@@ -22677,6 +22783,15 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor/carpet/blue/fancy/innercorner/east,
 /area/station/security/hos)
+"tXl" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/darkblue,
+/area/station/bridge/conference)
 "tXo" = (
 /obj/item/storage/wall/fire{
 	dir = 1;
@@ -23837,6 +23952,11 @@
 /obj/disposalpipe/junction/middle/north,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
+"uXR" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/wood,
+/area/station/wc/medbay)
 "uYd" = (
 /obj/tree1{
 	dir = 8
@@ -25109,6 +25229,10 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
+"wkE" = (
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/shuttlebay,
+/area/station/quartermaster/cargobay)
 "wkN" = (
 /obj/cable{
 	icon_state = "0-2"
@@ -26957,6 +27081,11 @@
 /obj/table/reinforced/auto,
 /turf/simulated/floor/black,
 /area/station/quartermaster/cargobay)
+"xOP" = (
+/obj/disposalpipe/segment/vertical,
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/black,
+/area/station/security/secwing)
 "xPN" = (
 /obj/machinery/door/airlock/glass,
 /turf/simulated/floor,
@@ -27094,6 +27223,10 @@
 /obj/machinery/vehicle/tank/car/security,
 /turf/simulated/floor/shuttlebay,
 /area/station/hangar/sec)
+"xXS" = (
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor/darkblue,
+/area/station/bridge/customs)
 "xYk" = (
 /obj/window/south,
 /obj/machinery/light/fluorescent/yellow{
@@ -48080,7 +48213,7 @@ aQM
 eJR
 syv
 rrM
-eqK
+loM
 qfm
 nHq
 uUv
@@ -54738,7 +54871,7 @@ ijG
 ijG
 eZE
 oCo
-ijG
+cqs
 ijG
 xDK
 ijG
@@ -58711,7 +58844,7 @@ tmj
 khA
 dkU
 nnW
-nnW
+jyl
 fsQ
 eJJ
 qua
@@ -61074,7 +61207,7 @@ qCj
 sjB
 foy
 dXw
-elK
+tXl
 mMZ
 ftJ
 wnF
@@ -63499,7 +63632,7 @@ thN
 anD
 blV
 tyJ
-pGl
+xXS
 lvV
 pGl
 rNE
@@ -63833,7 +63966,7 @@ qcj
 qcj
 qcj
 wYe
-qcj
+fHJ
 cfQ
 qcj
 aHU
@@ -65285,7 +65418,7 @@ gpX
 xcD
 xcD
 tla
-xcD
+kHs
 xcD
 xcD
 gYR
@@ -68376,7 +68509,7 @@ xxR
 tpT
 iJu
 wlx
-vqI
+uXR
 oah
 wlx
 ycG
@@ -70434,7 +70567,7 @@ bqB
 mWr
 pSh
 pte
-jUy
+fQm
 gLC
 bVt
 oFt
@@ -70712,7 +70845,7 @@ qZl
 qZl
 qZl
 qpG
-qZl
+pFu
 qZl
 qZl
 qZl
@@ -71049,7 +71182,7 @@ cjz
 tgI
 lYz
 nRh
-lJn
+xOP
 kBl
 kbc
 mlg
@@ -72903,7 +73036,7 @@ klx
 ldX
 eeS
 nvG
-ujV
+bPw
 sdK
 ipd
 uWu
@@ -73818,7 +73951,7 @@ rEE
 nsM
 gIB
 tit
-tit
+jlM
 tit
 tit
 sRq
@@ -74664,7 +74797,7 @@ oKx
 ovK
 lqE
 jcI
-xKg
+rXe
 xKg
 dkb
 lTc
@@ -77974,7 +78107,7 @@ jEb
 jEb
 aOA
 gHQ
-gfd
+ass
 vSC
 hWJ
 xRl
@@ -80141,7 +80274,7 @@ fVy
 nIC
 tCO
 fhI
-fhI
+edY
 nri
 daA
 nIC
@@ -81657,7 +81790,7 @@ pNH
 rAF
 uOn
 tFE
-fal
+qtN
 qcY
 ewG
 nug
@@ -81675,7 +81808,7 @@ fwc
 vpE
 vFI
 udF
-udF
+ibh
 udF
 kiZ
 aOJ
@@ -83416,7 +83549,7 @@ xmV
 dKi
 iMd
 fWW
-qFG
+jAs
 qFG
 wwp
 nSq
@@ -84897,7 +85030,7 @@ wxN
 bgl
 bgl
 bgl
-bgl
+iMN
 bgl
 bgl
 iCd
@@ -85528,7 +85661,7 @@ bmv
 mQZ
 hyl
 uiU
-lSE
+bhx
 fZX
 mVe
 wmE
@@ -87953,7 +88086,7 @@ mKB
 pqN
 aNf
 qiv
-qiv
+jpF
 qiv
 qiv
 qiv
@@ -91023,7 +91156,7 @@ cML
 tHc
 dVx
 dVx
-dVx
+psr
 dVx
 dVx
 dVx
@@ -92782,7 +92915,7 @@ cBk
 hqN
 hQO
 hqN
-hqN
+wkE
 xgk
 hqN
 hqN
