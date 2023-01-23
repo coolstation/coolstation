@@ -17,8 +17,7 @@
 // 370 just beautiful. oh. wow. lovely. Oh it's 10 again.
 #define WASTELAND_MIN_TEMP 250
 #define WASTELAND_MAX_TEMP 350
-
-global/var/gehenna_time = GEHENNA_TIME
+var/global/gehenna_time = GEHENNA_TIME
 
 // Gehenna shit tho
 /turf/space/gehenna
