@@ -597,13 +597,23 @@ proc/generate_space_color()
 		if(old_loc)
 			old_loc.contents -= src.loc
 	*/
-	if (map_currently_underwater && what == "Space")
-		what = "Ocean"
-		keep_old_material = 0
+	if ((map_currently_underwater && what == "Space")  && (src.z == 1 || src.z == 5))
+		var/area/area = src.loc
+		if(istype(area, /area/shuttle/))
+			what = "Plating"
+			keep_old_material = 1
+		else
+			what = "Ocean"
+			keep_old_material = 0
 
-	if (map_currently_very_dusty && what == "Space")
-		what = "Desert"
-		keep_old_material = 0
+	if ((map_currently_very_dusty && what == "Space") && (src.z == 1 || src.z == 3))
+		var/area/area = src.loc
+		if(istype(area, /area/shuttle/))
+			what = "Plating"
+			keep_old_material = 1
+		else
+			what = "Desert"
+			keep_old_material = 0
 
 	var/rlapplygen = RL_ApplyGeneration
 	var/rlupdategen = RL_UpdateGeneration
@@ -667,6 +677,8 @@ proc/generate_space_color()
 				new_turf = new /turf/simulated/wall(src)
 		if ("Unsimulated Floor")
 			new_turf = new /turf/unsimulated/floor(src)
+		if ("Plating")
+			new_turf = new /turf/simulated/floor/plating/random(src)
 		else
 			new_turf = new /turf/space(src)
 
