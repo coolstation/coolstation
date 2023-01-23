@@ -4841,13 +4841,6 @@
 /obj/disposalpipe/segment/cargo,
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
-"drt" = (
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
-/turf/simulated/floor,
-/area/station/crew_quarters/arcade)
 "drQ" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
@@ -10883,6 +10876,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/nw)
+"hhO" = (
+/obj/landmark/random_room/size3x3,
+/turf/simulated/floor/plating,
+/area/station/maintenance/northwest)
 "hih" = (
 /obj/machinery/atmospherics/unary/vent_pump/south,
 /turf/simulated/floor/black,
@@ -15653,6 +15650,10 @@
 /obj/machinery/light/emergency,
 /turf/simulated/floor,
 /area/station/security/detectives_office)
+"knv" = (
+/obj/machinery/light/fluorescent,
+/turf/simulated/floor/plating,
+/area/station/maintenance/northwest)
 "knN" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/machinery/light/small/warm{
@@ -18579,6 +18580,12 @@
 	},
 /turf/simulated/floor,
 /area/station/mining/refinery)
+"mgX" = (
+/obj/machinery/light/fluorescent{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/east)
 "mhJ" = (
 /obj/machinery/atmospherics/valve/horizontal,
 /turf/simulated/floor/plating,
@@ -21040,6 +21047,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/engine/hotloop)
+"nOt" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor,
+/area/station/crew_quarters/arcade)
 "nOM" = (
 /obj/cable/purple{
 	icon_state = "2-4"
@@ -22562,6 +22576,10 @@
 /obj/table/reinforced/auto,
 /turf/simulated/floor/black,
 /area/station/ai_monitored/armory)
+"oXh" = (
+/obj/landmark/random_room/size3x3,
+/turf/simulated/floor/plating,
+/area/station/maintenance/east)
 "oXj" = (
 /obj/disposalpipe/segment/morgue,
 /turf/simulated/floor/plating,
@@ -27171,6 +27189,10 @@
 	},
 /turf/simulated/floor,
 /area/station/storage/warehouse)
+"sdb" = (
+/obj/landmark/random_room/size5x3,
+/turf/simulated/floor/plating,
+/area/station/maintenance/south)
 "sdB" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/simulated/floor/stairs/wide{
@@ -30597,6 +30619,10 @@
 /obj/machinery/computer/transit_terminal/com,
 /turf/simulated/floor/grey,
 /area/station/bridge/basement)
+"unm" = (
+/obj/machinery/door/airlock/classic,
+/turf/simulated/floor/plating,
+/area/station/maintenance/northwest)
 "unt" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/south,
 /turf/simulated/floor/plating,
@@ -78179,11 +78205,11 @@ nFb
 kCU
 mSo
 ajj
-pdO
-pdO
-pdO
-pdO
-pdO
+nFb
+nFb
+nFb
+nFb
+nFb
 pdO
 pdO
 qZT
@@ -78222,7 +78248,7 @@ ubW
 wQC
 tdt
 rBg
-drt
+nOt
 qAe
 how
 day
@@ -78481,11 +78507,11 @@ tjT
 mMc
 mSo
 ajj
-pdO
-pdO
-pdO
-pdO
-pdO
+nFb
+aMf
+aMf
+hhO
+nFb
 pdO
 pdO
 pdO
@@ -78783,11 +78809,11 @@ tjT
 qMj
 mSo
 ajj
-pdO
-pdO
-pdO
-pdO
-pdO
+unm
+aMf
+aMf
+knv
+nFb
 pdO
 pdO
 pdO
@@ -79085,11 +79111,11 @@ tjT
 mMc
 mSo
 ajj
-jrz
-pdO
-pdO
-pdO
-pdO
+nFb
+aMf
+aMf
+aMf
+nFb
 pdO
 pdO
 pdO
@@ -81558,9 +81584,9 @@ jZT
 aBv
 nbd
 rUw
-kPQ
-kPQ
-kpW
+aBv
+qAe
+qAe
 kPQ
 kPQ
 kPQ
@@ -81860,9 +81886,9 @@ jZT
 aBv
 nbd
 rUw
-kPQ
-kPQ
-kPQ
+rUw
+sdb
+qAe
 kpW
 kPQ
 kPQ
@@ -82162,9 +82188,9 @@ jZT
 aBv
 nbd
 rUw
-kPQ
-kPQ
-kPQ
+rUw
+rUw
+qAe
 kpW
 kpW
 kPQ
@@ -82464,9 +82490,9 @@ jZT
 aBv
 nbd
 rUw
-kPQ
-kPQ
-kPQ
+rUw
+rUw
+qAe
 kPQ
 kpW
 kpW
@@ -82766,9 +82792,9 @@ jZT
 aBv
 uJd
 mDu
-kPQ
-uVN
-kPQ
+rUw
+rUw
+qAe
 kPQ
 kPQ
 kpW
@@ -83068,9 +83094,9 @@ jZT
 kJo
 uJd
 mDu
-kPQ
-kPQ
-uVN
+rUw
+rUw
+qAe
 kPQ
 kPQ
 kPQ
@@ -83372,7 +83398,7 @@ uJd
 mDu
 nsQ
 qAe
-qZT
+qAe
 pdO
 pdO
 kPQ
@@ -97198,10 +97224,10 @@ uQp
 tgg
 jrK
 wSY
-pdO
-pdO
-pdO
-pdO
+gTm
+gTm
+gTm
+gTm
 pdO
 pdO
 pdO
@@ -97500,10 +97526,10 @@ sRZ
 hAL
 ahP
 wSY
-pdO
-pdO
-pdO
-pdO
+oVx
+oVx
+oXh
+gTm
 pdO
 pdO
 pdO
@@ -97802,10 +97828,10 @@ mXR
 kCn
 xYS
 wSY
-pdO
-pdO
-pdO
-pdO
+mgX
+oVx
+oVx
+gTm
 pdO
 pdO
 pdO
@@ -98104,10 +98130,10 @@ whI
 jLO
 sSX
 wSY
-pdO
-pdO
-pdO
-pdO
+oVx
+oVx
+oVx
+gTm
 pdO
 pdO
 pdO
@@ -98408,7 +98434,7 @@ iXc
 wSY
 wMB
 wMB
-wMB
+oVx
 gTm
 gTm
 gTm
