@@ -1254,7 +1254,7 @@
 		//msgs.visible_message_target("<span class='alert'><B><I>... and lands a devastating hit!</B></I></span>")
 
 #else
-	// rng simple stuns for now - warc
+	// rng simple stuns for now - warc . keywords: rng stuns
 	if (rng_stun_rate && prob(rng_stun_rate))
 		M.do_disorient(weakened = rng_stun_weak, stunned = rng_stun_time, disorient = rng_stun_diso)
 		msgs.stamina_crit = 1
