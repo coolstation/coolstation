@@ -1090,6 +1090,11 @@
 	},
 /turf/simulated/floor,
 /area/station/turret_protected/AIbasecore1)
+"aKN" = (
+/obj/decal/cleanable/dirt/random,
+/obj/item/device/radio/beacon,
+/turf/simulated/floor/grey,
+/area/station/maintenance/disposal)
 "aLd" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/grey,
@@ -4187,6 +4192,15 @@
 /obj/access_spawn/maint,
 /turf/simulated/floor/plating,
 /area/station/mining/tunnel)
+"cXu" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/item/device/radio/beacon,
+/turf/simulated/floor,
+/area/station/storage/warehouse)
 "cXC" = (
 /obj/ladder/auto,
 /obj/machinery/light/fluorescent/red,
@@ -4875,6 +4889,15 @@
 /obj/machinery/meter,
 /turf/simulated/floor/plating,
 /area/station/maintenance/east)
+"dtv" = (
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "6-9"
+	},
+/obj/item/device/radio/beacon,
+/turf/simulated/floor/white,
+/area/station/medical/basement)
 "dtH" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -9766,6 +9789,12 @@
 	},
 /turf/simulated/floor,
 /area/station/medical/basement)
+"gyk" = (
+/obj/item/device/radio/beacon,
+/turf/simulated/floor/grey,
+/area/station/science/artifact{
+	name = "Artifact Lounge"
+	})
 "gyl" = (
 /obj/cable/purple{
 	icon_state = "1-2"
@@ -11150,6 +11179,13 @@
 /obj/disposalpipe/segment/vertical,
 /turf/simulated/floor/black,
 /area/station/ai_monitored/armory)
+"hyN" = (
+/obj/disposalpipe/segment/mineral,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/item/device/radio/beacon,
+/turf/simulated/floor/plating,
+/area/station/storage/warehouse)
 "hzm" = (
 /obj/disposalpipe/segment/cargo{
 	dir = 4
@@ -14746,6 +14782,10 @@
 /obj/machinery/vending/cigarette,
 /turf/simulated/floor,
 /area/station/security/processing)
+"jNF" = (
+/obj/item/device/radio/beacon,
+/turf/simulated/floor,
+/area/station/hallway/secondary/exit)
 "jNN" = (
 /obj/disposalpipe/segment/mineral{
 	dir = 8
@@ -15527,6 +15567,10 @@
 	},
 /turf/simulated/floor/yellow/side,
 /area/station/engine/inner)
+"klq" = (
+/obj/item/device/radio/beacon,
+/turf/simulated/floor/grey,
+/area/station/mining/equipment)
 "klx" = (
 /obj/machinery/light/small/warm{
 	dir = 8
@@ -20042,6 +20086,13 @@
 /obj/rack,
 /turf/simulated/floor/black,
 /area/station/engine/coldloop)
+"njk" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/item/device/radio/beacon,
+/turf/simulated/floor,
+/area/station/quartermaster/automat)
 "njo" = (
 /obj/disposalpipe/trunk,
 /obj/machinery/disposal/ore{
@@ -20167,6 +20218,10 @@
 /obj/decal/poster/wallsign/medbay_left,
 /turf/simulated/wall,
 /area/station/wc/public)
+"nni" = (
+/obj/item/device/radio/beacon,
+/turf/simulated/floor/black,
+/area/station/engine/inner)
 "nnw" = (
 /obj/cable{
 	icon_state = "0-4"
@@ -21278,6 +21333,10 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbooth)
+"nZC" = (
+/obj/item/device/radio/beacon,
+/turf/simulated/floor/plating,
+/area/station/maintenance/disposal/sewage)
 "nZO" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -24393,6 +24452,10 @@
 /obj/machinery/door/firedoor/pyro,
 /turf/simulated/floor/white,
 /area/station/medical/basement)
+"qml" = (
+/obj/item/device/radio/beacon,
+/turf/unsimulated/floor/specialroom/gym,
+/area/station/crew_quarters/fitness)
 "qmq" = (
 /obj/disposalpipe/trunk{
 	dir = 4
@@ -28564,6 +28627,7 @@
 /area/station/engine/coldloop)
 "sYP" = (
 /obj/disposalpipe/junction/middle/west,
+/obj/item/device/radio/beacon,
 /turf/simulated/floor/industrial,
 /area/station/routing/depot)
 "sYW" = (
@@ -31215,6 +31279,7 @@
 "uKg" = (
 /obj/disposalpipe/segment/morgue,
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/item/device/radio/beacon,
 /turf/simulated/floor/grey,
 /area/station/bridge/basement)
 "uKI" = (
@@ -33116,6 +33181,11 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
+"vSw" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/vertical,
+/obj/item/device/radio/beacon,
+/turf/simulated/floor/airless/engine/glow,
+/area/station/engine/combustion_chamber)
 "vSK" = (
 /obj/machinery/power/data_terminal/cable_tray{
 	target_z = 1
@@ -33323,6 +33393,10 @@
 /obj/lattice,
 /turf/simulated/floor/plating/gehenna,
 /area/noGenerate)
+"vYS" = (
+/obj/item/device/radio/beacon,
+/turf/simulated/floor/white,
+/area/station/medical/cdc)
 "vYY" = (
 /obj/disposalpipe/segment/food{
 	dir = 4
@@ -35253,6 +35327,7 @@
 	name = "Artifact Lounge"
 	})
 "xsI" = (
+/obj/item/device/radio/beacon,
 /turf/simulated/floor/airless/engine,
 /area/station/science/testchamber)
 "xtv" = (
@@ -36027,6 +36102,10 @@
 	dir = 9
 	},
 /area/station/crew_quarters/bar)
+"xSo" = (
+/obj/item/device/radio/beacon,
+/turf/simulated/floor,
+/area/station/security/processing)
 "xTA" = (
 /turf/simulated/wall,
 /area/station/mining/tunnel)
@@ -60586,7 +60665,7 @@ fWp
 fxs
 mex
 mex
-mex
+vYS
 mex
 mex
 oKF
@@ -63631,7 +63710,7 @@ pCl
 fCt
 dvT
 eBo
-cLr
+gyk
 sWR
 xaz
 rvp
@@ -67533,7 +67612,7 @@ eQV
 xLF
 lOb
 eQV
-suq
+dtv
 eQV
 aeQ
 nZY
@@ -78649,7 +78728,7 @@ pdO
 cnB
 lJt
 lJt
-oXY
+xSo
 sCB
 qBV
 jRr
@@ -80207,7 +80286,7 @@ gRC
 gRd
 pMr
 uwo
-pMr
+qml
 hAR
 nag
 lZB
@@ -86877,7 +86956,7 @@ xrG
 jjw
 rEp
 aQy
-ydz
+aKN
 ubj
 aLD
 kwy
@@ -90171,7 +90250,7 @@ svF
 xZa
 gXz
 dDQ
-ers
+nni
 ksv
 vpZ
 wfP
@@ -93219,7 +93298,7 @@ vIc
 boX
 boX
 qFY
-xXL
+nZC
 aeG
 aeG
 qFY
@@ -93451,7 +93530,7 @@ dmQ
 lMH
 uZt
 tfx
-xSa
+njk
 vig
 lMH
 lMH
@@ -94415,7 +94494,7 @@ qKB
 hwH
 nuG
 xmM
-bDx
+vSw
 bDx
 oDP
 mSE
@@ -98579,7 +98658,7 @@ dji
 sUd
 efy
 hus
-atC
+hyN
 rqO
 atC
 atC
@@ -99471,7 +99550,7 @@ cSg
 uYw
 uYw
 kui
-uYw
+klq
 uYw
 uYw
 uYw
@@ -101605,7 +101684,7 @@ jDw
 jDw
 rip
 iYK
-nhL
+cXu
 ppe
 ppe
 ppe
@@ -105236,7 +105315,7 @@ nNL
 nNL
 dwP
 esw
-nyN
+jNF
 gHl
 dwP
 pdO
