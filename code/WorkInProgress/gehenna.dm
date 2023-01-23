@@ -18,6 +18,7 @@
 #define WASTELAND_MIN_TEMP 250
 #define WASTELAND_MAX_TEMP 350
 
+global/var/gehenna_time = GEHENNA_TIME
 
 // Gehenna shit tho
 /turf/space/gehenna
