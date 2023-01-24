@@ -38,6 +38,8 @@
 	icon_state = "floord"
 	icon = 'icons/turf/shuttle.dmi'
 
+	oxygen = MOLES_N2STANDARD
+	nitrogen = MOLES_O2STANDARD
 
 /turf/simulated/wall/r_wall/shuttle_noprotections
 	name = "shuttle wall"
