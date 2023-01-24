@@ -5035,7 +5035,9 @@
 /obj/machinery/light/emergency{
 	dir = 1
 	},
-/obj/decal/tile_edge/stripe/extra_big,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6
+	},
 /turf/simulated/floor/industrial,
 /area/station/maintenance/northeast)
 "dvb" = (
@@ -10990,7 +10992,8 @@
 "heK" = (
 /obj/disposalpipe/segment/morgue,
 /obj/machinery/door/airlock/glass,
-/turf/simulated/floor,
+/obj/grille/catwalk/jen,
+/turf/simulated/floor/plating,
 /area/station/maintenance/west)
 "heU" = (
 /obj/wingrille_spawn/reinforced,
@@ -16223,12 +16226,9 @@
 /turf/simulated/floor/grey,
 /area/station/maintenance/disposal)
 "kzx" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4
-	},
-/obj/decal/tile_edge/stripe/extra_big,
-/turf/simulated/floor/industrial,
-/area/station/maintenance/northeast)
+/obj/wingrille_spawn/reinforced,
+/turf/simulated/floor/plating,
+/area/station/storage/warehouse)
 "kzF" = (
 /obj/decal/tile_edge/floorguide/evac{
 	dir = 1
@@ -23332,14 +23332,9 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "pnz" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4
-	},
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 6
-	},
-/turf/simulated/floor/industrial,
-/area/station/maintenance/northeast)
+/obj/wingrille_spawn/reinforced,
+/turf/simulated/floor/plating,
+/area/station/maintenance/northwest)
 "pnA" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -79833,7 +79828,7 @@ rUY
 nFb
 nFb
 nFb
-nFb
+pnz
 nFb
 nFb
 pdO
@@ -94313,7 +94308,7 @@ xSa
 rEq
 dVY
 fcU
-kzx
+oPM
 tnM
 oHp
 wSY
@@ -94615,7 +94610,7 @@ xSa
 rEq
 biC
 fcU
-kzx
+oPM
 tnM
 wko
 wSY
@@ -94917,7 +94912,7 @@ qGL
 dPg
 giT
 lMH
-pnz
+oPM
 tnM
 wko
 wSY
@@ -98227,7 +98222,7 @@ tzd
 neR
 mvI
 lnm
-quX
+kzx
 tmb
 tmb
 quX
