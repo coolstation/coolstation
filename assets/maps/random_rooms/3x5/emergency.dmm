@@ -13,10 +13,6 @@
 /turf/simulated/floor/plating,
 /area/dmm_suite/clear_area)
 "g" = (
-/obj/item/storage/wall/emergency{
-	dir = 1;
-	pixel_y = 32
-	},
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/simulated/floor/plating,
 /area/dmm_suite/clear_area)
@@ -25,7 +21,7 @@
 /turf/simulated/floor/plating,
 /area/dmm_suite/clear_area)
 "u" = (
-/obj/machinery/portable_atmospherics/canister/air,
+/obj/storage/closet/emergency,
 /turf/simulated/floor/plating,
 /area/dmm_suite/clear_area)
 "y" = (
@@ -59,10 +55,6 @@
 "W" = (
 /obj/random_item_spawner/tools/one_or_zero,
 /obj/machinery/portable_atmospherics/canister/air,
-/obj/item/storage/wall/emergency{
-	dir = 1;
-	pixel_y = 32
-	},
 /turf/simulated/floor/plating,
 /area/dmm_suite/clear_area)
 
@@ -71,7 +63,7 @@ g
 e
 U
 a
-U
+u
 "}
 (2,1,1) = {"
 U
