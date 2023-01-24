@@ -2505,6 +2505,7 @@
 /area/station/crew_quarters/quartersC)
 "bCo" = (
 /obj/machinery/vending/meat,
+/obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/grime,
 /area/station/quartermaster/automat)
 "bCN" = (
@@ -2760,6 +2761,12 @@
 	},
 /turf/simulated/floor/plating/gehenna,
 /area/station/crew_quarters/clown)
+"bNZ" = (
+/obj/machinery/door/airlock/maintenance,
+/obj/access_spawn/kitchen,
+/obj/access_spawn/bar,
+/turf/simulated/floor/plating,
+/area/station/crew_quarters/baroffice)
 "bOH" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
@@ -2975,6 +2982,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/northwest)
+"bXm" = (
+/obj/stool/bed,
+/obj/decal/cleanable/dirt/random,
+/obj/landmark/start{
+	name = "Scientist"
+	},
+/obj/item/clothing/suit/bedsheet/pink,
+/turf/simulated/floor/carpet/grime,
+/area/station/medical/staff)
 "bXK" = (
 /obj/disposalpipe/segment/vertical,
 /turf/simulated/floor,
@@ -4690,6 +4706,7 @@
 "djq" = (
 /obj/disposalpipe/segment/bent/north,
 /obj/table/reinforced/auto,
+/obj/random_item_spawner/tools/one_or_zero,
 /turf/simulated/floor/plating,
 /area/station/routing/depot)
 "djP" = (
@@ -8148,6 +8165,7 @@
 /area/station/science/chemistry)
 "fmc" = (
 /obj/table/reinforced/auto,
+/obj/random_item_spawner/junk/one_or_zero,
 /turf/simulated/floor/plating,
 /area/station/routing/depot)
 "fmQ" = (
@@ -9027,6 +9045,7 @@
 /obj/table/auto{
 	color = "#666666"
 	},
+/obj/random_item_spawner/tools/one_or_zero,
 /turf/simulated/floor/grime,
 /area/station/quartermaster/refinery)
 "fVx" = (
@@ -9391,6 +9410,9 @@
 /obj/item/fish/carp,
 /obj/item/reagent_containers/food/snacks/fish_fingers,
 /obj/item/reagent_containers/food/snacks/ice_cream/gross,
+/obj/machinery/light/small/warm{
+	dir = 8
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
 "ggB" = (
@@ -11900,6 +11922,7 @@
 /area/station/crew_quarters/baroffice)
 "hOn" = (
 /obj/table/reinforced/auto,
+/obj/random_item_spawner/tools/one_or_zero,
 /turf/simulated/floor/black,
 /area/station/storage/warehouse)
 "hOx" = (
@@ -12009,6 +12032,7 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/door/airlock/medical,
 /obj/access_spawn/medical,
+/obj/access_spawn/research,
 /turf/simulated/floor/carpet/grime,
 /area/station/medical/staff)
 "hRJ" = (
@@ -12854,6 +12878,7 @@
 /area/station/maintenance/central)
 "iwh" = (
 /obj/table/reinforced/industrial/auto,
+/obj/random_item_spawner/tableware/one_or_zero,
 /turf/simulated/floor/purple/side{
 	dir = 6
 	},
@@ -13698,16 +13723,10 @@
 /area/station/maintenance/central)
 "iUy" = (
 /obj/table/wood/round/auto,
-/obj/shrub{
-	desc = "Odd that these grow here at all.";
-	icon = 'icons/obj/stationobjs.dmi';
-	icon_state = "plant";
-	name = "space fern";
-	pixel_y = 14
-	},
 /obj/decal/poster/wallsign/pride/queer_villain{
 	pixel_y = 29
 	},
+/obj/item/storage/box/crayon/basic,
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/quartersC)
 "iUA" = (
@@ -14731,6 +14750,7 @@
 /obj/machinery/light/small/warm{
 	dir = 8
 	},
+/obj/random_item_spawner/snacks/one_or_zero,
 /turf/simulated/floor/black,
 /area/station/storage/warehouse)
 "jFP" = (
@@ -15856,11 +15876,9 @@
 /turf/simulated/floor,
 /area/station/security/detectives_office)
 "knv" = (
-/obj/machinery/light/small/cool{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/station/maintenance/northwest)
+/obj/machinery/vending/atmospherics,
+/turf/simulated/floor/grey,
+/area/station/mining/equipment)
 "knN" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/machinery/light/small/warm{
@@ -16087,6 +16105,7 @@
 /area/station/janitor/office)
 "kvq" = (
 /obj/table/auto,
+/obj/random_item_spawner/snacks/one_or_zero,
 /turf/simulated/floor,
 /area/station/medical/basement)
 "kvL" = (
@@ -16388,6 +16407,11 @@
 /obj/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/station/engine/inner)
+"kHx" = (
+/obj/table/reinforced/industrial/auto,
+/obj/random_item_spawner/snacks/one_or_zero,
+/turf/simulated/floor/plating,
+/area/station/crew_quarters/catering)
 "kHy" = (
 /obj/disposalpipe/junction/left/west,
 /obj/grille/catwalk/jen,
@@ -16876,6 +16900,7 @@
 "kTw" = (
 /obj/table/reinforced/industrial/auto,
 /obj/machinery/light/small/warm,
+/obj/random_item_spawner/tools/one_or_zero,
 /turf/simulated/floor/purple/side,
 /area/station/maintenance/disposal)
 "kUu" = (
@@ -18799,11 +18824,9 @@
 /turf/simulated/floor,
 /area/station/mining/refinery)
 "mgX" = (
-/obj/machinery/door/airlock/maintenance,
-/obj/access_spawn/kitchen,
-/obj/access_spawn/bar,
-/turf/simulated/floor/plating,
-/area/station/crew_quarters/baroffice)
+/obj/decal/cleanable/dirt/random,
+/turf/simulated/floor,
+/area/station/quartermaster/automat)
 "mhJ" = (
 /obj/machinery/atmospherics/valve/horizontal,
 /turf/simulated/floor/plating,
@@ -21391,6 +21414,7 @@
 /obj/decal/poster/wallsign/WC_blue{
 	pixel_x = -32
 	},
+/obj/decal/cleanable/dirt/random,
 /turf/simulated/floor,
 /area/station/quartermaster/automat)
 "nSC" = (
@@ -22015,7 +22039,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	icon_state = "delivery2"
 	},
-/turf/simulated/floor/black,
+/turf/simulated/floor/plating,
 /area/station/storage/warehouse)
 "ooP" = (
 /obj/cable{
@@ -23427,7 +23451,16 @@
 /area/station/routing/depot)
 "prU" = (
 /obj/table/wood/round/auto,
-/obj/item/storage/box/crayon/basic,
+/obj/shrub{
+	desc = "Odd that these grow here at all.";
+	icon = 'icons/obj/stationobjs.dmi';
+	icon_state = "plant";
+	name = "space fern";
+	pixel_y = 14
+	},
+/obj/decal/poster/wallsign/poster_rand{
+	pixel_x = 32
+	},
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/quartersC)
 "psb" = (
@@ -24366,6 +24399,12 @@
 /obj/plasticflaps,
 /turf/simulated/floor/plating,
 /area/station/wc/cargo)
+"qbi" = (
+/obj/machinery/light/small/cool{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/northwest)
 "qbq" = (
 /turf/simulated/wall/r_wall,
 /area/station/security/armory{
@@ -24835,6 +24874,10 @@
 	},
 /turf/simulated/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
+"qre" = (
+/obj/decal/cleanable/dirt/random,
+/turf/simulated/floor/carpet/grime,
+/area/station/medical/staff)
 "qrt" = (
 /turf/simulated/wall,
 /area/station/science/testchamber)
@@ -25411,6 +25454,7 @@
 /area/station/security/detectives_office)
 "qLv" = (
 /obj/machinery/vending/standard,
+/obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/grime,
 /area/station/quartermaster/automat)
 "qLz" = (
@@ -27049,6 +27093,7 @@
 "rOj" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/table/reinforced/auto,
+/obj/random_item_spawner/medicine/one_or_zero,
 /turf/simulated/floor/plating,
 /area/station/routing/depot)
 "rOs" = (
@@ -34313,6 +34358,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/bridge/locker)
+"wqt" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/decal/cleanable/dirt/random,
+/turf/simulated/floor,
+/area/station/quartermaster/automat)
 "wqv" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/machinery/light/small/warm{
@@ -35701,6 +35753,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/access_spawn/research,
 /obj/access_spawn/medical,
 /turf/simulated/floor/white,
 /area/station/medical/staff)
@@ -72560,7 +72613,7 @@ uvE
 hEd
 uFt
 iIy
-kIv
+bXm
 eCs
 xfO
 vFK
@@ -73153,7 +73206,7 @@ pdO
 pdO
 pdO
 hSZ
-aIc
+bXm
 cTb
 gcW
 hSZ
@@ -73164,7 +73217,7 @@ uFt
 uFt
 uFt
 utH
-kIv
+bXm
 eCs
 iUj
 tOw
@@ -73463,7 +73516,7 @@ irw
 irw
 iBb
 utH
-uFt
+qre
 hSZ
 hSZ
 hSZ
@@ -79477,7 +79530,7 @@ mSo
 ajj
 nFb
 aMf
-knv
+qbi
 aMf
 nFb
 pdO
@@ -82548,7 +82601,7 @@ npa
 npa
 wpy
 wpy
-mgX
+bNZ
 rUw
 nbd
 rUw
@@ -82820,7 +82873,7 @@ tkq
 uGq
 sEx
 rfi
-iYq
+kHx
 nvf
 ggk
 ggk
@@ -92746,7 +92799,7 @@ kPQ
 lMH
 qLv
 nSg
-xSa
+wqt
 jVY
 iHw
 lMH
@@ -93047,7 +93100,7 @@ kPQ
 kPQ
 lMH
 bCo
-tfx
+mgX
 xSa
 fKx
 mVk
@@ -97858,7 +97911,7 @@ bqE
 mnk
 hAT
 foF
-foF
+knv
 hJv
 lIf
 lIf
