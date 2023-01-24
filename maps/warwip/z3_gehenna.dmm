@@ -243,6 +243,10 @@
 /obj/landmark/start{
 	name = "Bartender"
 	},
+/obj/item/paper/book/from_file/pharmacopia{
+	pixel_x = 8;
+	pixel_y = 2
+	},
 /turf/simulated/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
 "aiB" = (
@@ -1764,6 +1768,12 @@
 /obj/decal/poster/wallsign/framed_award/firstbill{
 	pixel_x = -32
 	},
+/obj/table/wood/round/auto,
+/obj/item/reagent_containers/food/drinks/bottle/wine{
+	pixel_x = 9;
+	pixel_y = 14
+	},
+/obj/item/bluntwrap,
 /turf/simulated/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
 "beH" = (
@@ -7706,12 +7716,6 @@
 /turf/simulated/floor/plating,
 /area/station/routing/depot)
 "eZh" = (
-/obj/machinery/computer/security/wooden_tv{
-	name = "TeeVEE";
-	pixel_x = 1;
-	pixel_y = 7
-	},
-/obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
 "eZj" = (
@@ -15852,7 +15856,9 @@
 /turf/simulated/floor,
 /area/station/security/detectives_office)
 "knv" = (
-/obj/machinery/light/fluorescent,
+/obj/machinery/light/small/cool{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/northwest)
 "knN" = (
@@ -17355,6 +17361,11 @@
 /area/station/medical/cdc)
 "lhR" = (
 /obj/disposalpipe/segment/bent/north,
+/obj/machinery/computer/security/wooden_tv{
+	name = "TeeVEE";
+	pixel_x = 1;
+	pixel_y = 1
+	},
 /turf/simulated/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
 "liz" = (
@@ -18788,11 +18799,11 @@
 /turf/simulated/floor,
 /area/station/mining/refinery)
 "mgX" = (
-/obj/machinery/light/fluorescent{
-	dir = 1
-	},
+/obj/machinery/door/airlock/maintenance,
+/obj/access_spawn/kitchen,
+/obj/access_spawn/bar,
 /turf/simulated/floor/plating,
-/area/station/maintenance/east)
+/area/station/crew_quarters/baroffice)
 "mhJ" = (
 /obj/machinery/atmospherics/valve/horizontal,
 /turf/simulated/floor/plating,
@@ -19119,6 +19130,10 @@
 /obj/decal/cleanable/dirt/random,
 /obj/item/dice,
 /obj/item/clothing/mask/cigarette/nicofree,
+/obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled/sane{
+	pixel_x = -9;
+	pixel_y = 5
+	},
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "muw" = (
@@ -20415,6 +20430,7 @@
 	icon_state = "1-8"
 	},
 /obj/decal/cleanable/dirt/jen,
+/obj/item/material_piece/bone,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "nkW" = (
@@ -22232,6 +22248,10 @@
 	},
 /obj/machinery/power/apc/autoname_north,
 /obj/item/reagent_containers/pill/stox,
+/obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled/sane{
+	pixel_x = -9;
+	pixel_y = 5
+	},
 /turf/simulated/floor/carpet/red/standard,
 /area/station/security/hos/horizon)
 "oxn" = (
@@ -31929,6 +31949,7 @@
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/light/small/warm,
 /obj/storage/closet/wardrobe/white,
+/obj/item/reagent_containers/food/drinks/carafe/research,
 /turf/simulated/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
 "uTi" = (
@@ -32664,6 +32685,14 @@
 /obj/disposalpipe/segment/horizontal,
 /obj/disposalpipe/segment/produce,
 /obj/table/auto,
+/obj/item/cigbutt,
+/obj/item/kitchen/utensil/knife/plastic{
+	pixel_x = -6
+	},
+/obj/item/clothing/mask/cigarette/greasy{
+	pixel_x = 2;
+	pixel_y = 4
+	},
 /turf/simulated/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
 "vpS" = (
@@ -33126,6 +33155,14 @@
 /obj/disposalpipe/segment/horizontal,
 /obj/disposalpipe/segment/sewage,
 /obj/table/auto,
+/obj/item/clothing/mask/cigarette/dryjoint{
+	pixel_x = -15
+	},
+/obj/item/reagent_containers/food/snacks/plant/garlic{
+	pixel_x = -9;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled,
 /turf/simulated/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
 "vDi" = (
@@ -33237,6 +33274,10 @@
 /obj/item/storage/wall/fire{
 	dir = 1;
 	pixel_y = 32
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled/sane{
+	pixel_x = -9;
+	pixel_y = 5
 	},
 /turf/simulated/floor/black,
 /area/station/mining/barracks)
@@ -35079,8 +35120,8 @@
 	pixel_y = 5
 	},
 /obj/item/reagent_containers/food/drinks/bottle/wine{
-	pixel_x = 16;
-	pixel_y = 17
+	pixel_x = 9;
+	pixel_y = 14
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/simulated/floor/specialroom/bar,
@@ -79135,7 +79176,7 @@ ajj
 unm
 aMf
 aMf
-knv
+aMf
 nFb
 pdO
 pdO
@@ -79436,7 +79477,7 @@ mSo
 ajj
 nFb
 aMf
-aMf
+knv
 aMf
 nFb
 pdO
@@ -81303,7 +81344,7 @@ aBv
 aBv
 nbd
 rUw
-kPQ
+kpW
 kpW
 kPQ
 kPQ
@@ -81605,7 +81646,7 @@ jZT
 aBv
 nbd
 rUw
-kPQ
+kpW
 kpW
 kpW
 kPQ
@@ -81904,7 +81945,7 @@ esc
 wpy
 jUQ
 jZT
-aBv
+qAe
 nbd
 rUw
 kPQ
@@ -82206,7 +82247,7 @@ aEg
 wpy
 wpy
 jZT
-aBv
+rUw
 nbd
 rUw
 mDu
@@ -82507,8 +82548,8 @@ npa
 npa
 wpy
 wpy
-jZT
-aBv
+mgX
+rUw
 nbd
 rUw
 mDu
@@ -82810,13 +82851,13 @@ npa
 wpy
 wpy
 jZT
-aBv
+rUw
 nbd
 eAr
 qAe
 qAe
 kPQ
-kPQ
+kpW
 kpW
 kpW
 kPQ
@@ -83112,7 +83153,7 @@ npa
 dQY
 jUQ
 jZT
-aBv
+rUw
 uJd
 mDu
 mDu
@@ -98151,7 +98192,7 @@ mXR
 kCn
 xYS
 wSY
-mgX
+oVx
 oVx
 oVx
 gTm
