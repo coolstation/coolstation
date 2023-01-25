@@ -2140,6 +2140,10 @@ datum
 				if(M.bodytemperature < M.base_body_temp) // So it doesn't act like supermint
 					M.bodytemperature = min(M.base_body_temp, M.bodytemperature+(5 * mult))
 				M.make_jittery(3)
+				if(prob(50))
+					if(M.getStatusDuration("paralysis")) M.changeStatus("paralysis", -1 SECOND)
+					if(M.getStatusDuration("stunned")) M.changeStatus("stunned", -1 SECOND)
+					if(M.getStatusDuration("weakened")) M.changeStatus("weakened", -1 SECOND)
 
 		fooddrink/coffee/fresh
 			name = "freshly brewed coffee"
@@ -2243,6 +2247,10 @@ datum
 					tickcounter++
 
 				..()
+				if (prob(50))// basically, make it twice as effective
+					if(M.getStatusDuration("paralysis")) M.changeStatus("paralysis", -1 SECOND)
+					if(M.getStatusDuration("stunned")) M.changeStatus("stunned", -1 SECOND)
+					if(M.getStatusDuration("weakened")) M.changeStatus("weakened", -1 SECOND)
 
 			on_mob_life_complete(var/mob/M)
 				if(M)
