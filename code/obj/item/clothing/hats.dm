@@ -413,6 +413,7 @@ proc/filter_trait_hats(var/type)
 /obj/item/clothing/head/that
 	name = "hat"
 	desc = "An stylish looking hat"
+	wear_image_icon = 'icons/mob/fruithat.dmi'
 	icon_state = "tophat"
 	item_state = "that"
 
@@ -449,6 +450,7 @@ proc/filter_trait_hats(var/type)
 /obj/item/clothing/head/longtophat
 	name = "long tophat"
 	desc = "When you look at this hat you can only think of how many monkeys you could fit in it."
+	wear_image_icon = 'icons/mob/fruithat.dmi'
 	icon_state = "ltophat"
 	item_state = "lthat"
 
@@ -465,6 +467,7 @@ proc/filter_trait_hats(var/type)
 
 /obj/item/clothing/head/dramachefhat
 	name = "Dramatic Chef's Hat"
+	wear_image_icon = 'icons/mob/fruithat.dmi'
 	icon_state = "drama"
 	item_state = "chefhat" //TODO: unique inhand sprite?
 
@@ -485,6 +488,7 @@ proc/filter_trait_hats(var/type)
 	desc = "get dat fukken clog"
 	icon_state = "plunger"
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
+	wear_image_icon = 'icons/mob/fruithat.dmi'
 	item_state = "plunger"
 	setupProperties()
 		..()
@@ -813,6 +817,7 @@ proc/filter_trait_hats(var/type)
 /obj/item/clothing/head/bigtex
 	name = "75-gallon hat"
 	desc = "A recreation of the late Big Tex's hat, commisioned by Ol' Harner."
+	wear_image_icon = 'icons/mob/fruithat.dmi'
 	icon_state = "bigtex"
 	item_state = "bigtex"
 	setupProperties()
@@ -1233,14 +1238,14 @@ proc/filter_trait_hats(var/type)
 	name = "white hat"
 	desc = "A white tophat."
 	icon = 'icons/obj/clothing/item_hats.dmi'
-	wear_image_icon = 'icons/mob/head.dmi'
+	wear_image_icon = 'icons/mob/fruithat.dmi'
 	icon_state = "whtophat"
 	item_state = "whtophat"
 
 /obj/item/clothing/head/headsprout
 	name = "leaf hairclip"
 	desc = "A sign of a healthy, growing Staff Assistant."
-	wear_image_icon = 'icons/mob/head.dmi'
+	wear_image_icon = 'icons/mob/fruithat.dmi'
 	icon_state = "headsprout"
 	item_state = "headsprout"
 
