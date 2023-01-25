@@ -554,12 +554,12 @@ proc/generate_space_color()
 		if(O.level == 1)
 			O.hide(src.intact)
 
-/turf/unsimulated/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0)
+/turf/unsimulated/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0, donor_air_turf = null)
 	if (can_replace_with_stuff || force)
 		return ..(what, keep_old_material = keep_old_material, handle_air = handle_air)
 	return
 
-/turf/proc/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0)
+/turf/proc/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0, var/turf/simulated/donor_air_turf = null)
 	var/turf/simulated/new_turf
 	var/old_dir = dir
 
@@ -584,6 +584,10 @@ proc/generate_space_color()
 			APPLY_TO_GASES(_OLD_GAS_VAR_ASSIGN)
 			temp_old = src.temperature
 			#undef _OLD_GAS_VAR_ASSIGN
+
+	if(donor_air_turf && donor_air_turf.air) // this overrides the oldair and oldparent with a different source air
+		oldair = donor_air_turf.air
+		oldparent = donor_air_turf.parent
 
 	#undef _OLD_GAS_VAR_DEF
 

@@ -562,7 +562,7 @@ var/obj/item/dummy/click_dummy = new
 
 	var/list/turfs_src = get_area_turfs(src.type)
 	var/list/turfs_trg = get_area_turfs(A.type)
-	var/list/datum/gas_mixture/air_temp = list()
+
 
 	var/src_min_x = 0
 	var/src_min_y = 0
@@ -583,9 +583,8 @@ var/obj/item/dummy/click_dummy = new
 	for (var/turf/S in turfs_src)
 		var/turf/T = locate(S.x - src_min_x + trg_min_x, S.y - src_min_y + trg_min_y, trg_z)
 		if(T?.loc != A) continue
-		if(S.turf_flags & IS_TYPE_SIMULATED)
-			air_temp[S] = S:air
-		T.ReplaceWith(S.type, keep_old_material = 0, force=1)
+
+		T.ReplaceWith(S.type, keep_old_material = 0, force=1, donor_air_turf=S)
 		T.appearance = S.appearance
 		T.set_density(S.density)
 		T.set_dir(S.dir)
@@ -596,9 +595,6 @@ var/obj/item/dummy/click_dummy = new
 			if (istype(AM, /obj/forcefield) || istype(AM, /obj/overlay/tile_effect)) continue
 			if (!ignore_fluid && istype(AM, /obj/fluid)) continue
 			AM.set_loc(T)
-
-		if(S.turf_flags & IS_TYPE_SIMULATED)
-			T:air = air_temp[S] // this is a fucking HACK HACK HACK HACK!!!! ~warc
 
 		if(turftoleave)
 			S.ReplaceWith(turftoleave, keep_old_material = 0, force=1)
