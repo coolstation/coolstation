@@ -584,7 +584,7 @@ var/obj/item/dummy/click_dummy = new
 		var/turf/T = locate(S.x - src_min_x + trg_min_x, S.y - src_min_y + trg_min_y, trg_z)
 		if(T?.loc != A) continue
 
-		T.ReplaceWith(S.type, keep_old_material = 0, force=1, donor_air_turf=S.air?S:null)
+		T.ReplaceWith(S.type, keep_old_material = 0, force=1, donor_air_turf=(S.air ? S : null))
 		T.appearance = S.appearance
 		T.set_density(S.density)
 		T.set_dir(S.dir)
