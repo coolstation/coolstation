@@ -155,7 +155,8 @@ var/global/gehenna_time = GEHENNA_TIME
 		light.set_brightness(light_brightness)
 		light.set_color(light_r, light_g, light_b)
 		light.set_height(light_height)
-		light.enable()
+		SPAWN_DBG(0.1)
+			light.enable()
 
 
 
