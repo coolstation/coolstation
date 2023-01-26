@@ -626,7 +626,7 @@ var/datum/action_controller/actions
 	var/obj/item/sheet/sheet2 // in case you need to pull from more than one sheet
 	var/cost2 // same as above
 	var/spot
-	New(var/obj/item/sheet/csheet, var/cobjtype, var/ccost, var/datum/material/cmat, var/camount, var/cicon, var/cicon_state, var/cobjname, var/post_action_callback = null, var/obj/item/sheet/csheet2, var/ccost2, var/spot)
+	New(var/obj/item/sheet/csheet, var/cobjtype, var/ccost, var/datum/material/cmat, var/camount, var/cicon, var/cicon_state, var/cobjname, var/post_action_callback = null, var/obj/item/sheet/csheet2, var/ccost2, var/spot, var/duration_alt)
 		..()
 		icon = cicon
 		icon_state = cicon_state
@@ -638,6 +638,8 @@ var/datum/action_controller/actions
 		objname = cobjname
 		callback = post_action_callback
 		src.spot = spot
+		if(duration_alt)
+			duration = duration_alt
 		if (csheet2)
 			sheet2 = csheet2
 		if (ccost2)
