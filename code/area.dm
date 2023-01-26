@@ -1015,6 +1015,7 @@ ABSTRACT_TYPE(/area/adventure)
 /area/pricemaster
 	name = "Denton, Texas"
 	icon_state = "yellow"
+	requires_power = FALSE
 
 /area/abandonedmedicalship/robot_trader
 	name ="Robot Trade Outpost"
