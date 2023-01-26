@@ -8,6 +8,7 @@
 	icon_state = "pricemaster"
 	hiketolerance = 0
 	dialogue = null
+	trader_area = "/area/pricemaster"
 
 	New()
 		..()
@@ -321,7 +322,7 @@ proc/init_pmvox() // first bare numbers
 		if (src.ogg)
 			src.soundFile = sound(src.ogg, wait = 1, channel = 5)
 			src.soundFile.frequency = freq
-			src.soundFile.volume = 80 //fuck vox man you are SO LOUD!!!!!!
+			src.soundFile.volume = 100 //fuck vox man you are SO LOUD!!!!!!
 
 	proc/play(var/client/listener)
 		if (src.soundFile)
