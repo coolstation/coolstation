@@ -125,3 +125,25 @@
 		src.updateUsrDialog()
 		if(prob(5) && src.on)
 			playsound(src.loc, ambience_atmospherics, 30, 1)
+
+	was_built_from_frame(mob/user, newly_built)
+		..()
+		initialize_directions = dir
+		initialize()
+
+	//Having one (1) atmos machine that's done via the ruckingenur system instead of pipe frames is probably a great idea that won't cause bugs
+	was_deconstructed_to_frame(mob/user)
+		src.on = FALSE
+		//All of this is basically unary disposing
+		if(node)
+			node.disconnect(src)
+			if (network)
+				network.dispose()
+
+		if(air_contents)
+			qdel(air_contents)
+			air_contents = null
+
+		node = null
+		network = null
+		..()
