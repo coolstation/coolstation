@@ -41738,7 +41738,6 @@
 	pixel_x = 15;
 	pixel_y = 15
 	},
-
 /obj/map/light/dimred,
 /turf/unsimulated/floor/circuit/red)
 "csX" = (
@@ -61639,11 +61638,7 @@
 	},
 /area/shuttle/merchant_shuttle/left_centcom/donut2)
 "duz" = (
-/obj/disposalpipe/trunk/south,
-/obj/machinery/disposal{
-	name = "Lay-Z Chef Loafer Chute"
-	},
-/obj/decal/cleanable/dirt,
+/obj/submachine/chef_oven,
 /turf/unsimulated/floor/grey,
 /area/afterlife/bar)
 "duA" = (
@@ -70523,10 +70518,11 @@
 /turf/unsimulated/floor/grey,
 /area/afterlife/bar)
 "dSm" = (
-/obj/machinery/deep_fryer{
-	dir = 8;
-	icon_state = "fryer0"
+/obj/disposalpipe/trunk/south,
+/obj/machinery/disposal{
+	name = "Lay-Z Chef Loafer Chute"
 	},
+/obj/decal/cleanable/dirt,
 /turf/unsimulated/floor/grey,
 /area/afterlife/bar)
 "dSo" = (
@@ -70743,16 +70739,12 @@
 /turf/unsimulated/floor/blackwhite/whitegrime,
 /area/afterlife/bar)
 "dTb" = (
-/obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1";
-	layer = 9.1;
-	pixel_x = 10
+/obj/storage/secure/closet/kitchen{
+	locked = 0
 	},
-/obj/disposalpipe/segment/vertical,
-/obj/machinery/vending/kitchen{
-	freestuff = 1
-	},
+/obj/decal/cleanable/dirt,
+/obj/item/storage/box/glassbox,
+/obj/map/light/brightwhite,
 /turf/unsimulated/floor/grey,
 /area/afterlife/bar)
 "dTc" = (
@@ -70836,8 +70828,8 @@
 /turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
 "dTs" = (
-/obj/machinery/vending/monkey,
-/obj/decal/cleanable/dirt,
+/obj/disposalpipe/segment/bent/west,
+/obj/submachine/foodprocessor,
 /turf/unsimulated/floor/grey,
 /area/afterlife/bar)
 "dTu" = (
@@ -71723,13 +71715,7 @@
 /turf/unsimulated/wall/auto/lead/gray,
 /area/iomoon/base/underground)
 "fIu" = (
-/obj/disposalpipe/segment/bent/west,
-/obj/submachine/chef_oven{
-	desc = "An appliance back from the dead.";
-	dir = 8;
-	icon_state = "oven_off";
-	name = "salvaged oven"
-	},
+/obj/disposalpipe/segment/horizontal,
 /turf/unsimulated/floor/grey,
 /area/afterlife/bar)
 "fKf" = (
@@ -72450,6 +72436,11 @@
 	icon_state = "13"
 	},
 /area/shuttle/escape/centcom/donut3)
+"iiU" = (
+/obj/machinery/vending/monkey,
+/obj/decal/cleanable/dirt,
+/turf/unsimulated/floor/grey,
+/area/afterlife/bar)
 "imR" = (
 /obj/decal/skeleton{
 	desc = "The remains of some poor cosmonaut fellow.";
@@ -76197,12 +76188,7 @@
 	name = "Thunderdome Lounge"
 	})
 "spZ" = (
-/obj/storage/secure/closet/kitchen{
-	locked = 0
-	},
-/obj/decal/cleanable/dirt,
-/obj/item/storage/box/glassbox,
-/obj/map/light/brightwhite,
+/obj/machinery/deep_fryer,
 /turf/unsimulated/floor/grey,
 /area/afterlife/bar)
 "sqd" = (
@@ -77377,6 +77363,19 @@
 	dir = 8;
 	icon_state = "fgreen1"
 	},
+/area/afterlife/bar)
+"wzn" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	layer = 9.1;
+	pixel_x = 10
+	},
+/obj/disposalpipe/segment/vertical,
+/obj/machinery/vending/kitchen{
+	freestuff = 1
+	},
+/turf/unsimulated/floor/grey,
 /area/afterlife/bar)
 "wAz" = (
 /turf/space,
@@ -103261,11 +103260,11 @@ duF
 dSX
 dga
 duz
-spZ
+ifR
 fIu
-dSm
-dTb
-dTs
+ifR
+ifR
+ifR
 cvH
 lqy
 lxR
@@ -103562,12 +103561,12 @@ duF
 duF
 duF
 cvH
-duE
-cvH
-cvH
-cvH
-cvH
-cvH
+dSm
+dTb
+dTs
+spZ
+wzn
+iiU
 cvH
 rnO
 cvH
@@ -103864,13 +103863,13 @@ cvH
 cvH
 cvH
 cvH
-dTJ
-dTJ
-dTJ
-dTJ
-dTJ
-dTJ
-dTJ
+duE
+cvH
+cvH
+cvH
+cvH
+cvH
+cvH
 dTJ
 dTJ
 dTJ
