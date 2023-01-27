@@ -1607,6 +1607,10 @@
 /obj/cable{
 	icon_state = "5-9"
 	},
+/obj/disposalpipe/trunk/zlevel{
+	dir = 8;
+	target_z = 3
+	},
 /turf/simulated/floor/plating/random,
 /area/station/engine/engineering)
 "bvs" = (
@@ -2842,10 +2846,7 @@
 /turf/simulated/floor,
 /area/station/bridge)
 "ctc" = (
-/obj/disposalpipe/trunk/zlevel{
-	dir = 8;
-	target_z = 3
-	},
+/obj/disposalpipe/segment/horizontal,
 /obj/machinery/light/fluorescent,
 /turf/simulated/floor/plating/random,
 /area/station/engine/engineering)
