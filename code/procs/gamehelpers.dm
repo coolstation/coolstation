@@ -582,12 +582,10 @@ var/obj/item/dummy/click_dummy = new
 
 	for (var/turf/S in turfs_src)
 		var/turf/T = locate(S.x - src_min_x + trg_min_x, S.y - src_min_y + trg_min_y, trg_z)
-		var/turf/simulated/Can_we_just_get_past_the_need_for_fucking_type_checks_everywhere = null
-		if(T?.loc != A) continue
-		if(istype(S, /turf/simulated))
-			Can_we_just_get_past_the_need_for_fucking_type_checks_everywhere = S
 
-		T.ReplaceWith(S.type, keep_old_material = 0, force=1, donor_air_turf=Can_we_just_get_past_the_need_for_fucking_type_checks_everywhere)
+		if(T?.loc != A) continue
+
+		T.ReplaceWith(S.type, keep_old_material = 0, force=1, handle_air=0)
 		T.appearance = S.appearance
 		T.set_density(S.density)
 		T.set_dir(S.dir)
