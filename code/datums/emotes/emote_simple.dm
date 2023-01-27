@@ -349,7 +349,7 @@
 		return
 	if (!ismuzzled(user))
 		if (user.health <= 0)
-			var/dying_gasp_sfx = "sound/voice/gasps/[user.gender]_gasp_[pick(1,5)].ogg"
+			var/dying_gasp_sfx = "sound/voice/gasps/[pick("male","female")]_gasp_[pick(1,5)].ogg" // this is funnier than adding 5 new gasp sounds for neuters, just pick. for everyone. why not?
 			playsound(user, dying_gasp_sfx, 100, 0, 0, user.get_age_pitch())
 		else
 			playsound(user, user.sound_gasp, 15, 0, 0, user.get_age_pitch())

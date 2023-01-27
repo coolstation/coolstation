@@ -1547,7 +1547,7 @@ var/datum/action_controller/actions
 			if (istype(H))
 				H.hud.update_resting()
 			for (var/mob/O in AIviewers(M))
-				O.show_message("<span class='alert'><B>[M] throws themselves onto the floor!</B></span>", 1, group = "resist")
+				O.show_message("<span class='alert'><B>[M] throws [himself_or_herself(M)] onto the floor!</B></span>", 1, group = "resist")
 		else
 			for (var/mob/O in AIviewers(M))
 				O.show_message("<span class='alert'><B>[M] rolls around on the floor, trying to extinguish the flames.</B></span>", 1, group = "resist")
