@@ -509,8 +509,8 @@
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/fitness)
 "aod" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
 /obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/simulated/floor/grey,
 /area/station/engine/hotloop)
 "aoX" = (
@@ -3018,7 +3018,7 @@
 /area/station/security/processing)
 "bXM" = (
 /obj/disposalpipe/segment/mineral,
-/obj/machinery/atmospherics/pipe/simple/insulated/northeast,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/northeast,
 /turf/simulated/floor/grey,
 /area/station/engine/hotloop)
 "bXT" = (
@@ -3798,7 +3798,7 @@
 /obj/disposalpipe/segment/mineral{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/simulated/floor/grey,
 /area/station/engine/hotloop)
 "cFH" = (
@@ -4637,8 +4637,8 @@
 /turf/simulated/wall,
 /area/station/quartermaster/refinery)
 "dha" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/southwest,
 /obj/wingrille_spawn/crystal,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/southwest,
 /turf/simulated/floor/plating,
 /area/station/engine/combustion_chamber)
 "dhO" = (
@@ -6009,13 +6009,13 @@
 /turf/simulated/floor/industrial,
 /area/station/maintenance/west)
 "dYa" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/northwest,
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/wingrille_spawn/crystal,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/northwest,
 /turf/simulated/floor/plating,
 /area/station/engine/combustion_chamber)
 "dYd" = (
@@ -8543,7 +8543,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/simple/insulated/southeast,
+/obj/machinery/atmospherics/pipe/simple/insulated/fuel/southeast,
 /turf/simulated/floor,
 /area/station/engine/power)
 "fBf" = (
@@ -8626,6 +8626,10 @@
 	},
 /turf/simulated/floor,
 /area/station/security/processing)
+"fCZ" = (
+/obj/machinery/atmospherics/pipe/manifold/overfloor/north,
+/turf/simulated/floor/plating,
+/area/station/engine/hotloop)
 "fDn" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /obj/machinery/light_switch/north,
@@ -8657,6 +8661,11 @@
 /obj/machinery/meter,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
+"fEA" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/horizontal,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
+/turf/simulated/floor/airless/engine/glow/blue,
+/area/station/engine/combustion_chamber)
 "fEN" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/grille/catwalk/jen/side{
@@ -10441,6 +10450,17 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/northeast)
+"gKP" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/valve/horizontal{
+	name = "Gas Feed 2"
+	},
+/turf/simulated/floor/grey,
+/area/station/engine/hotloop)
 "gKS" = (
 /obj/machinery/light/small/warm{
 	dir = 1
@@ -10691,8 +10711,8 @@
 /area/station/maintenance/east)
 "gTG" = (
 /obj/disposalpipe/segment/bent/west,
-/obj/machinery/atmospherics/pipe/simple/insulated/southeast,
 /obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/southeast,
 /turf/simulated/floor/grey,
 /area/station/engine/inner)
 "gTQ" = (
@@ -11811,8 +11831,8 @@
 /turf/simulated/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "hIt" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /obj/wingrille_spawn/reinforced,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
 /turf/simulated/floor/plating,
 /area/station/engine/inner)
 "hIy" = (
@@ -12407,8 +12427,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
 /obj/wingrille_spawn/reinforced,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/simulated/floor/plating,
 /area/station/engine/inner)
 "ici" = (
@@ -13191,6 +13211,11 @@
 	},
 /turf/simulated/floor/black,
 /area/station/science/lobby)
+"iCI" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/vertical,
+/obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
+/turf/simulated/floor/airless/engine/glow/blue,
+/area/station/engine/combustion_chamber)
 "iCK" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -13839,8 +13864,8 @@
 /turf/simulated/floor/black,
 /area/station/engine/coldloop)
 "iWa" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/northeast,
 /obj/wingrille_spawn/crystal,
+/obj/machinery/atmospherics/pipe/simple/insulated/fuel/northeast,
 /turf/simulated/floor/plating,
 /area/station/engine/combustion_chamber)
 "iWm" = (
@@ -15419,6 +15444,14 @@
 /obj/decal/poster/wallsign/logistics_right,
 /turf/simulated/wall,
 /area/station/wc/public)
+"jVe" = (
+/obj/wingrille_spawn/crystal,
+/obj/machinery/door/firedoor/pyro{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
+/turf/simulated/floor/plating,
+/area/station/engine/hotloop)
 "jVu" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 2
@@ -16515,8 +16548,8 @@
 /area/station/medical/basement)
 "kHf" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
-/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
 /obj/wingrille_spawn/reinforced,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/simulated/floor/plating,
 /area/station/engine/inner)
 "kHx" = (
@@ -16677,6 +16710,11 @@
 	},
 /turf/simulated/floor,
 /area/station/maintenance/northeast)
+"kMJ" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
+/turf/simulated/floor/plating,
+/area/station/engine/hotloop)
 "kMX" = (
 /obj/cable{
 	d1 = 2;
@@ -20895,8 +20933,8 @@
 /turf/simulated/floor/grey,
 /area/station/science/lab)
 "nuG" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
 /obj/wingrille_spawn/crystal,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/simulated/floor/plating,
 /area/station/engine/combustion_chamber)
 "nuL" = (
@@ -21543,7 +21581,7 @@
 /turf/simulated/floor,
 /area/station/security/detectives_office)
 "nQN" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/vertical,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
 /turf/simulated/wall,
 /area/station/engine/inner)
 "nRP" = (
@@ -21968,6 +22006,12 @@
 /obj/machinery/meter,
 /turf/simulated/floor/white,
 /area/station/medical/medbooth)
+"ofI" = (
+/obj/machinery/atmospherics/valve/vertical{
+	name = "Exhaust Dump to Loop"
+	},
+/turf/simulated/wall/r_wall,
+/area/station/engine/combustion_chamber)
 "ofX" = (
 /obj/machinery/light/fluorescent/cool/very,
 /turf/simulated/floor/grey,
@@ -23722,7 +23766,7 @@
 /area/station/engine/elect)
 "pvo" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/vertical,
-/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/simulated/floor/airless/engine/glow/blue,
 /area/station/engine/combustion_chamber)
 "pvz" = (
@@ -23812,8 +23856,8 @@
 /area/station/wc/public)
 "pyn" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
-/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
 /obj/wingrille_spawn/crystal,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/simulated/floor/plating,
 /area/station/engine/combustion_chamber)
 "pyB" = (
@@ -24332,7 +24376,7 @@
 /obj/disposalpipe/segment/mineral{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/simulated/floor/grey,
 /area/station/engine/inner)
 "pSA" = (
@@ -27832,6 +27876,11 @@
 /obj/decal/tile_edge/floorguide/arrow_w,
 /turf/simulated/floor,
 /area/station/maintenance/northeast)
+"sgO" = (
+/obj/wingrille_spawn/crystal,
+/obj/machinery/atmospherics/pipe/manifold/overfloor/south,
+/turf/simulated/floor/plating,
+/area/station/engine/combustion_chamber)
 "sgS" = (
 /obj/decal/cleanable/dirt/random,
 /obj/cable{
@@ -28034,13 +28083,13 @@
 /turf/simulated/floor,
 /area/station/maintenance/northeast)
 "sll" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /obj/cable{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/wingrille_spawn/crystal,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
 /turf/simulated/floor/plating,
 /area/station/engine/combustion_chamber)
 "slD" = (
@@ -28119,7 +28168,7 @@
 /area/station/engine/hotloop)
 "sof" = (
 /obj/disposalpipe/segment/bent/north,
-/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/simulated/floor/grey,
 /area/station/engine/inner)
 "sog" = (
@@ -31010,8 +31059,8 @@
 /obj/disposalpipe/segment/mineral{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
 /obj/access_spawn/engineering_engine,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/simulated/floor/grey,
 /area/station/engine/hotloop)
 "ufR" = (
@@ -31080,8 +31129,8 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "ujd" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/northwest,
 /obj/wingrille_spawn/reinforced,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/northwest,
 /turf/simulated/floor/plating,
 /area/station/engine/inner)
 "ujg" = (
@@ -33174,7 +33223,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
 "vvh" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/northwest,
+/obj/machinery/atmospherics/pipe/simple/insulated/fuel/northwest,
 /turf/simulated/floor/grey,
 /area/station/engine/hotloop)
 "vvq" = (
@@ -33703,7 +33752,7 @@
 	name = "Artifact Lounge"
 	})
 "vMe" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/vertical,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
 /turf/simulated/wall,
 /area/station/maintenance/disposal)
 "vMl" = (
@@ -34744,8 +34793,8 @@
 /turf/simulated/floor/plating,
 /area/station/mining/staff_room)
 "wvo" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
 /turf/simulated/floor/grey,
 /area/station/maintenance/disposal)
 "wvY" = (
@@ -35090,11 +35139,11 @@
 	},
 /area/station/storage/warehouse)
 "wLT" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
 /obj/wingrille_spawn/crystal,
 /obj/machinery/door/firedoor/pyro{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/simulated/floor/plating,
 /area/station/engine/hotloop)
 "wLW" = (
@@ -36681,7 +36730,7 @@
 /area/station/hallway/secondary/exit)
 "xPN" = (
 /obj/machinery/atmospherics/valve/purge/horizontal{
-	name = "chamber purge valve"
+	name = "exhaust purge valve"
 	},
 /obj/cable{
 	d1 = 1;
@@ -93110,7 +93159,7 @@ nOQ
 mls
 xPN
 snZ
-dbA
+gKP
 dbA
 blI
 lVS
@@ -93714,7 +93763,7 @@ elj
 hFz
 wLT
 nNW
-wLT
+jVe
 nNW
 hou
 cZh
@@ -94016,7 +94065,7 @@ qKB
 fNy
 pvo
 uhV
-pvo
+iCI
 uhV
 uHl
 tuB
@@ -95822,11 +95871,11 @@ poe
 uEN
 eba
 fRJ
-ivF
-ivF
-qKB
-hwH
-nuG
+fCZ
+kMJ
+ofI
+fEA
+sgO
 hRO
 ykh
 ykh

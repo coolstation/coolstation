@@ -2030,9 +2030,7 @@
 	dir = 10;
 	icon_state = "catwalk_cross"
 	},
-/turf/simulated/floor/specialroom/sea_elevator_shaft{
-	dir = 8
-	},
+/turf/simulated/floor/shuttlebay,
 /area/transit_vehicle/elevator/eng_top)
 "bLS" = (
 /obj/decal/tile_edge/floorguide/arrow_w{
@@ -2826,6 +2824,9 @@
 /area/space)
 "csw" = (
 /obj/machinery/door_control/podbay/medbay/new_walls/east,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
 /turf/simulated/floor/grey,
 /area/station/hangar/medical)
 "csZ" = (
@@ -7622,9 +7623,7 @@
 	dir = 5;
 	icon_state = "catwalk_cross"
 	},
-/turf/simulated/floor/specialroom/sea_elevator_shaft{
-	dir = 1
-	},
+/turf/simulated/floor/shuttlebay,
 /area/transit_vehicle/elevator/eng_top)
 "gzv" = (
 /obj/machinery/light/fluorescent/cool/very,
@@ -9429,7 +9428,7 @@
 /obj/item/tank/jetpack{
 	pixel_x = -7
 	},
-/obj/item/tank/jetpack/backtank,
+/obj/item/tank/plasma,
 /turf/simulated/floor/industrial,
 /area/station/mining/dock)
 "ieh" = (
@@ -10936,7 +10935,7 @@
 /obj/machinery/computer/transit_terminal/thin/eng{
 	pixel_x = -25
 	},
-/turf/simulated/floor/specialroom/sea_elevator_shaft,
+/turf/simulated/floor/shuttlebay,
 /area/transit_vehicle/elevator/eng_top)
 "jtA" = (
 /obj/item/device/radio/beacon,
@@ -13030,6 +13029,9 @@
 /turf/simulated/floor,
 /area/station/hydroponics/bay)
 "lec" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
 /turf/simulated/floor/grey,
 /area/station/hangar/medical)
 "ler" = (
@@ -13116,14 +13118,13 @@
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice)
 "ljq" = (
-/obj/grille/catwalk{
-	dir = 9;
-	icon_state = "catwalk_cross"
-	},
 /obj/machinery/computer/transit_terminal/thin/qm{
 	pixel_x = -25
 	},
-/turf/simulated/floor/specialroom/sea_elevator_shaft,
+/obj/grille/catwalk/cross/grey{
+	dir = 9
+	},
+/turf/simulated/floor/shuttlebay,
 /area/transit_vehicle/elevator/qm_top)
 "ljR" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -13862,9 +13863,7 @@
 	dir = 6;
 	icon_state = "catwalk_cross"
 	},
-/turf/simulated/floor/specialroom/sea_elevator_shaft{
-	dir = 4
-	},
+/turf/simulated/floor/shuttlebay,
 /area/transit_vehicle/elevator/eng_top)
 "lXb" = (
 /obj/decal/cleanable/dirt/random,
@@ -15203,6 +15202,13 @@
 /obj/disposalpipe/segment/bent/east,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
+"npt" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8;
+	tag = "icon-xtra_bigstripe-edge (WEST)"
+	},
+/turf/simulated/floor/grey,
+/area/station/hangar/engine)
 "npu" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -16385,13 +16391,10 @@
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/pharmacy)
 "opL" = (
-/obj/grille/catwalk{
-	dir = 10;
-	icon_state = "catwalk_cross"
+/obj/grille/catwalk/cross/grey{
+	dir = 10
 	},
-/turf/simulated/floor/specialroom/sea_elevator_shaft{
-	dir = 8
-	},
+/turf/simulated/floor/shuttlebay,
 /area/transit_vehicle/elevator/qm_top)
 "opX" = (
 /obj/disposalpipe/segment/horizontal,
@@ -16977,6 +16980,9 @@
 /area/station/medical/medbay)
 "oNd" = (
 /obj/machinery/manufacturer/hangar,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
 /turf/simulated/floor/grey,
 /area/station/hangar/medical)
 "oNq" = (
@@ -17802,9 +17808,7 @@
 /obj/grille/catwalk/cross/grey{
 	dir = 5
 	},
-/turf/simulated/floor/specialroom/sea_elevator_shaft{
-	dir = 1
-	},
+/turf/simulated/floor/shuttlebay,
 /area/transit_vehicle/elevator/qm_top)
 "pzr" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -18964,13 +18968,10 @@
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/gunsmithing)
 "qwJ" = (
-/obj/grille/catwalk{
-	dir = 6;
-	icon_state = "catwalk_cross"
+/obj/grille/catwalk/cross/grey{
+	dir = 6
 	},
-/turf/simulated/floor/specialroom/sea_elevator_shaft{
-	dir = 4
-	},
+/turf/simulated/floor/shuttlebay,
 /area/transit_vehicle/elevator/qm_top)
 "qwN" = (
 /obj/cable{
@@ -22752,6 +22753,10 @@
 	dir = 4
 	},
 /obj/machinery/disposal,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9;
+	icon_state = "xtra_bigstripe-corner2"
+	},
 /turf/simulated/floor/grey,
 /area/station/hangar/engine)
 "tID" = (
@@ -24967,6 +24972,10 @@
 	},
 /obj/machinery/door_control/podbay/engineering/new_walls/north,
 /obj/decal/cleanable/dirt/random,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10;
+	icon_state = "xtra_bigstripe-corner2"
+	},
 /turf/simulated/floor/grey,
 /area/station/hangar/engine)
 "vLv" = (
@@ -25164,6 +25173,16 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
+"vVK" = (
+/obj/decal/poster/wallsign/fire,
+/obj/machinery/atmospherics/binary/passive_gate{
+	dir = 4;
+	icon_state = "intact_on";
+	on = 1;
+	pixel_y = 1
+	},
+/turf/simulated/wall,
+/area/station/engine/core)
 "vVT" = (
 /obj/table/reinforced/auto,
 /turf/simulated/floor,
@@ -83024,8 +83043,8 @@ uDh
 qEb
 aOJ
 vLu
-cII
-cII
+npt
+npt
 tHY
 xpW
 jEb
@@ -86924,7 +86943,7 @@ cFv
 tsH
 nMm
 pgt
-aGL
+vVK
 pgt
 bjZ
 iWC
