@@ -9068,6 +9068,13 @@
 /obj/machinery/atmospherics/pipe/manifold/east,
 /turf/simulated/floor/carpet/grime,
 /area/station/security/secoffquarters)
+"hKn" = (
+/obj/plasticflaps,
+/obj/machinery/conveyor/south{
+	operating = 1
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "hLl" = (
 /obj/disposalpipe/segment/vertical,
 /obj/landmark/gps_waypoint,
@@ -9777,6 +9784,12 @@
 /obj/machinery/light/small/floor/warm/very,
 /turf/simulated/floor/grey,
 /area/station/medical/medbay)
+"isX" = (
+/obj/machinery/conveyor/south{
+	operating = 1
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "itb" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -9884,6 +9897,11 @@
 /obj/access_spawn/cargo,
 /turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice)
+"iwG" = (
+/obj/decal/poster/wallsign/stencil/right/l,
+/obj/decal/poster/wallsign/stencil/left/l,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "iwI" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/machinery/light/small/floor/harsh,
@@ -9902,6 +9920,11 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/darkblue,
 /area/station/bridge/conference)
+"ixF" = (
+/obj/decal/poster/wallsign/stencil/left/t,
+/obj/decal/poster/wallsign/stencil/right/e,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "iyY" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/submachine/seed_manipulator,
@@ -11598,6 +11621,11 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
+"jWY" = (
+/turf/simulated/floor{
+	icon_state = "clown_carpet"
+	},
+/area/supply/sell_point)
 "jXo" = (
 /obj/machinery/light/fluorescent/red{
 	dir = 4
@@ -14608,6 +14636,11 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor,
 /area/station/security/main)
+"mOR" = (
+/obj/decal/poster/wallsign/stencil/left/m,
+/obj/decal/poster/wallsign/stencil/right/p,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "mOZ" = (
 /obj/disposalpipe/segment/brig,
 /turf/simulated/floor/grey,
@@ -16642,6 +16675,12 @@
 "ozg" = (
 /turf/simulated/floor/circuit/white,
 /area/station/turret_protected/Zeta)
+"ozk" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "ozt" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -20181,6 +20220,10 @@
 /obj/disposalpipe/segment/bent/west,
 /turf/simulated/floor/shuttlebay,
 /area/station/bridge/customs)
+"rtK" = (
+/obj/decal/cleanable/blood/splatter,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "rtV" = (
 /turf/simulated/floor/industrial,
 /area/shuttle/merchant_shuttle/left_station/cogmap)
@@ -23960,6 +24003,15 @@
 /obj/disposalpipe/segment/vertical,
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
+"uNl" = (
+/obj/item/paper{
+	info = "<h1> What the fuck is this?</h1><br> Simple, it's a fucking conveyor belt that leads acoss a plastic flap and onto a magical carpet that wisks your product away to an unscrupulpous buyer. <br><br> <i> did you test it? </i>  <br> absolutely the fuck not. I hope it works but if not, too bad. Eventually this will be replaced by a shuttle you can sell shit on. for now, just deal with magic. " ;
+	name = "F.A.Q.";
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "uNs" = (
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/power/apc/autoname_east,
@@ -24950,6 +25002,11 @@
 /obj/machinery/manufacturer/hangar,
 /turf/simulated/floor,
 /area/station/quartermaster/cargobay)
+"vKE" = (
+/obj/decal/poster/wallsign/stencil/right/e,
+/obj/decal/poster/wallsign/stencil/left/s,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "vKI" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/cable{
@@ -85979,8 +86036,8 @@ pzu
 pzu
 pzu
 pzu
-pzu
-pzu
+lSE
+lSE
 pzu
 pzu
 pzu
@@ -86280,12 +86337,12 @@ cqC
 cqC
 cqC
 cqC
-jEb
-jEb
-jEb
-jEb
-jEb
-jEb
+hyl
+uDK
+vKE
+mVe
+ixF
+lSE
 hyl
 gqL
 uIr
@@ -86582,12 +86639,12 @@ cqC
 cqC
 cqC
 cqC
-jEb
-jEb
-jEb
-jEb
-jEb
-jEb
+hyl
+uNl
+iwG
+mVe
+mOR
+jWY
 hyl
 kHn
 uIr
@@ -86884,12 +86941,12 @@ cqC
 cqC
 cqC
 cqC
-cqC
-jEb
-jEb
-jEb
-jEb
-jEb
+hyl
+lSE
+isX
+hKn
+isX
+jWY
 hyl
 liU
 uIr
@@ -87186,12 +87243,12 @@ cqC
 cqC
 cqC
 cqC
-jEb
-jEb
-jEb
-jEb
-jEb
-jEb
+hyl
+rtK
+lSE
+mVe
+ozk
+jWY
 hyl
 tBm
 uIr
@@ -87488,10 +87545,10 @@ cqC
 cqC
 cqC
 cqC
-jEb
-jEb
-jEb
-jEb
+hyl
+hyl
+hyl
+hyl
 dAu
 dAu
 hyl
