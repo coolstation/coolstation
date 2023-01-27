@@ -99,6 +99,7 @@ var/global/gehenna_time = GEHENNA_TIME
 	step_material = "step_outdoors"
 	step_priority = STEP_PRIORITY_MED
 	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
+	allows_vehicles = 1
 
 	New()
 		..()
