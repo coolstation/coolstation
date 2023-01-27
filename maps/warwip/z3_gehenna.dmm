@@ -42,6 +42,10 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/black,
 /area/station/crew_quarters/bar)
+"abf" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
+/turf/simulated/floor/grey,
+/area/station/engine/hotloop)
 "abs" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/red,
@@ -187,6 +191,12 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
+"afU" = (
+/obj/machinery/light/fluorescent/neutral{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/station/science/testchamber)
 "agb" = (
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/plating,
@@ -3018,7 +3028,8 @@
 /area/station/security/processing)
 "bXM" = (
 /obj/disposalpipe/segment/mineral,
-/obj/machinery/atmospherics/pipe/simple/insulated/purge/northeast,
+/obj/machinery/atmospherics/pipe/manifold/overfloor/west,
+/obj/machinery/meter,
 /turf/simulated/floor/grey,
 /area/station/engine/hotloop)
 "bXT" = (
@@ -3320,6 +3331,13 @@
 /obj/item/device/light/glowstick/green_on,
 /turf/simulated/floor/plating/gehenna,
 /area/noGenerate)
+"cjQ" = (
+/obj/machinery/light/fluorescent/neutral{
+	dir = 4
+	},
+/obj/item/sheet/steel/fullstack,
+/turf/simulated/floor/plating,
+/area/station/science/testchamber)
 "cjW" = (
 /obj/storage/secure/closet/animal,
 /obj/decal/cleanable/dirt,
@@ -3798,7 +3816,7 @@
 /obj/disposalpipe/segment/mineral{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
+/obj/machinery/atmospherics/valve/purge/horizontal,
 /turf/simulated/floor/grey,
 /area/station/engine/hotloop)
 "cFH" = (
@@ -18206,12 +18224,10 @@
 	name = "Net Cafe"
 	})
 "lID" = (
-/obj/machinery/light/fluorescent/neutral{
-	dir = 4
-	},
-/obj/item/sheet/steel/fullstack,
+/obj/machinery/atmospherics/pipe/manifold/overfloor/south,
+/obj/machinery/meter,
 /turf/simulated/floor/plating,
-/area/station/science/testchamber)
+/area/station/engine/coldloop)
 "lIR" = (
 /obj/machinery/atmospherics/binary/volume_pump{
 	on = 1;
@@ -21144,6 +21160,10 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/plating,
 /area/station/science/lobby)
+"nCi" = (
+/obj/machinery/light_switch/east,
+/turf/simulated/floor/plating,
+/area/station/science/testchamber)
 "nCt" = (
 /obj/machinery/power/apc/autoname_west,
 /obj/cable,
@@ -23014,6 +23034,11 @@
 	layer = 7;
 	name = "Mounted Igniter";
 	pixel_x = -18
+	},
+/obj/machinery/atmospherics/unary/outlet_injector{
+	dir = 8;
+	icon_state = "on";
+	on = 1
 	},
 /turf/simulated/floor/airless/engine/glow,
 /area/station/engine/combustion_chamber)
@@ -25507,6 +25532,7 @@
 /area/station/engine/elect)
 "qEV" = (
 /obj/wingrille_spawn/crystal,
+/obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
 /turf/simulated/floor/plating,
 /area/station/engine/combustion_chamber)
 "qFh" = (
@@ -26397,9 +26423,10 @@
 /turf/simulated/floor/plating,
 /area/station/medical/basement)
 "rhB" = (
-/obj/machinery/light_switch/east,
+/obj/machinery/atmospherics/pipe/manifold/overfloor/north,
+/obj/machinery/meter,
 /turf/simulated/floor/plating,
-/area/station/science/testchamber)
+/area/station/engine/coldloop)
 "rhK" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 8
@@ -27646,6 +27673,7 @@
 /area/station/routing/depot)
 "rYG" = (
 /obj/landmark/gps_waypoint,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/simulated/floor/grey,
 /area/station/engine/hotloop)
 "rYQ" = (
@@ -28880,6 +28908,17 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/science/bot_storage)
+"sNd" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/valve/purge/horizontal{
+	name = "exhaust recycling valve"
+	},
+/turf/simulated/floor/grey,
+/area/station/engine/hotloop)
 "sNg" = (
 /obj/cable/purple{
 	icon_state = "2-4"
@@ -34366,11 +34405,10 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/northeast)
 "whK" = (
-/obj/machinery/light/fluorescent/neutral{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/station/science/testchamber)
+/obj/disposalpipe/segment/mineral,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/northeast,
+/turf/simulated/floor/grey,
+/area/station/engine/hotloop)
 "whR" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -72345,11 +72383,11 @@ bwR
 qrt
 qrt
 qrt
-lID
-rhB
 tba
 tba
-whK
+tba
+tba
+tba
 tba
 czz
 qZT
@@ -72647,15 +72685,15 @@ bwR
 pdO
 pdO
 qrt
-qrt
-qrt
-qrt
-qrt
-qrt
-qrt
-qrt
-pdO
-pdO
+cjQ
+nCi
+tba
+tba
+afU
+tba
+czz
+qZT
+qZT
 sej
 sej
 sej
@@ -72948,14 +72986,14 @@ bwR
 bwR
 pdO
 pdO
-pdO
-pdO
-pdO
-pdO
-pdO
-pdO
-pdO
-pdO
+qrt
+qrt
+qrt
+qrt
+qrt
+qrt
+qrt
+qrt
 pdO
 pdO
 hTf
@@ -73550,18 +73588,18 @@ aBv
 uJd
 mDu
 kPQ
-kPQ
-kPQ
-kPQ
-kPQ
-kPQ
-kPQ
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+pdO
+pdO
+pdO
+pdO
+pdO
+pdO
+pdO
+pdO
+pdO
+pdO
+pdO
+pdO
 hTf
 twZ
 hTf
@@ -92558,7 +92596,7 @@ fAp
 cRc
 tjs
 bXM
-hjJ
+whK
 vfv
 hjJ
 alw
@@ -93162,7 +93200,7 @@ asl
 nOQ
 mls
 xPN
-snZ
+sNd
 gKP
 dbA
 blI
@@ -93464,7 +93502,7 @@ kSV
 iML
 jer
 aod
-ixG
+abf
 uNT
 vvh
 gkP
@@ -93766,7 +93804,7 @@ ivF
 elj
 hFz
 wLT
-nNW
+jVe
 jVe
 nNW
 hou
@@ -94068,7 +94106,7 @@ ivF
 qKB
 fNy
 pvo
-uhV
+iCI
 iCI
 uhV
 uHl
@@ -99500,10 +99538,10 @@ uCr
 xcC
 bTY
 agP
-unt
+lID
 wXC
 wXC
-sXP
+rhB
 mKU
 bTY
 mjY

@@ -4728,7 +4728,7 @@
 /turf/simulated/floor/plating,
 /area/space)
 "ebd" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/overfloor/southwest,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/southwest,
 /turf/simulated/floor/red,
 /area/station/engine/core)
 "ebi" = (
@@ -8411,7 +8411,7 @@
 /turf/simulated/floor/sanitary/blue,
 /area/station/medical/medbay/restroom)
 "hfF" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/overfloor/horizontal,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/simulated/floor/red,
 /area/station/engine/core)
 "hgt" = (
@@ -16482,6 +16482,9 @@
 	dir = 1;
 	target_z = 3
 	},
+/obj/decal/tile_edge/stripe/extra_big{
+	icon_state = "delivery2"
+	},
 /turf/simulated/floor,
 /area/station/quartermaster/storage)
 "osk" = (
@@ -17226,7 +17229,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/overfloor/vertical,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
 /turf/simulated/floor/red/checker{
 	dir = 4
 	},
