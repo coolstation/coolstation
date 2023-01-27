@@ -42,10 +42,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/black,
 /area/station/crew_quarters/bar)
-"abf" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
-/turf/simulated/floor/grey,
-/area/station/engine/hotloop)
 "abs" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/red,
@@ -123,6 +119,10 @@
 /obj/item/device/audio_log,
 /turf/simulated/floor/plating,
 /area/station/storage/tech)
+"acL" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
+/turf/simulated/floor/grey,
+/area/station/engine/hotloop)
 "adm" = (
 /obj/cable{
 	d1 = 1;
@@ -191,12 +191,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
-"afU" = (
-/obj/machinery/light/fluorescent/neutral{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/station/science/testchamber)
 "agb" = (
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/plating,
@@ -3331,13 +3325,6 @@
 /obj/item/device/light/glowstick/green_on,
 /turf/simulated/floor/plating/gehenna,
 /area/noGenerate)
-"cjQ" = (
-/obj/machinery/light/fluorescent/neutral{
-	dir = 4
-	},
-/obj/item/sheet/steel/fullstack,
-/turf/simulated/floor/plating,
-/area/station/science/testchamber)
 "cjW" = (
 /obj/storage/secure/closet/animal,
 /obj/decal/cleanable/dirt,
@@ -3414,6 +3401,12 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
+"cmt" = (
+/obj/machinery/light/fluorescent/neutral{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/station/science/testchamber)
 "cmE" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 8
@@ -5038,6 +5031,13 @@
 /obj/landmark/gps_waypoint,
 /turf/simulated/floor/white,
 /area/station/medical/basement)
+"dtB" = (
+/obj/machinery/light/fluorescent/neutral{
+	dir = 4
+	},
+/obj/item/sheet/steel/fullstack,
+/turf/simulated/floor/plating,
+/area/station/science/testchamber)
 "dtH" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -11283,6 +11283,11 @@
 /area/station/maintenance/central)
 "hnV" = (
 /obj/disposalpipe/segment/bent/east,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/industrial,
 /area/station/engine/storage)
 "hop" = (
@@ -15678,6 +15683,17 @@
 /obj/machinery/atmospherics/pipe/manifold/south,
 /turf/simulated/floor/plating,
 /area/station/bridge/locker)
+"kcf" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/valve/purge/horizontal{
+	name = "exhaust recycling valve"
+	},
+/turf/simulated/floor/grey,
+/area/station/engine/hotloop)
 "kcr" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/machinery/light/small/floor/cool/very,
@@ -16241,6 +16257,11 @@
 	dir = 4
 	},
 /obj/disposalpipe/segment/mail/vertical,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/industrial,
 /area/station/engine/storage)
 "kuN" = (
@@ -18224,10 +18245,12 @@
 	name = "Net Cafe"
 	})
 "lID" = (
-/obj/machinery/atmospherics/pipe/manifold/overfloor/south,
-/obj/machinery/meter,
-/turf/simulated/floor/plating,
-/area/station/engine/coldloop)
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/autoname_north,
+/turf/simulated/floor/industrial,
+/area/station/engine/storage)
 "lIR" = (
 /obj/machinery/atmospherics/binary/volume_pump{
 	on = 1;
@@ -21160,10 +21183,6 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/plating,
 /area/station/science/lobby)
-"nCi" = (
-/obj/machinery/light_switch/east,
-/turf/simulated/floor/plating,
-/area/station/science/testchamber)
 "nCt" = (
 /obj/machinery/power/apc/autoname_west,
 /obj/cable,
@@ -26423,10 +26442,13 @@
 /turf/simulated/floor/plating,
 /area/station/medical/basement)
 "rhB" = (
-/obj/machinery/atmospherics/pipe/manifold/overfloor/north,
-/obj/machinery/meter,
-/turf/simulated/floor/plating,
-/area/station/engine/coldloop)
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/industrial,
+/area/station/engine/storage)
 "rhK" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 8
@@ -28908,17 +28930,6 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/science/bot_storage)
-"sNd" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/valve/purge/horizontal{
-	name = "exhaust recycling valve"
-	},
-/turf/simulated/floor/grey,
-/area/station/engine/hotloop)
 "sNg" = (
 /obj/cable/purple{
 	icon_state = "2-4"
@@ -28979,6 +28990,10 @@
 /obj/landmark/random_room/size3x5,
 /turf/simulated/floor/plating/random,
 /area/station/maintenance/west)
+"sOi" = (
+/obj/machinery/light_switch/east,
+/turf/simulated/floor/plating,
+/area/station/science/testchamber)
 "sPb" = (
 /obj/storage/crate/wooden,
 /obj/item/clothing/gloves/yellow{
@@ -31556,6 +31571,11 @@
 	icon_state = "2-8"
 	},
 /obj/disposalpipe/junction/left/south,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/industrial,
 /area/station/engine/storage)
 "utR" = (
@@ -33295,6 +33315,11 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/plating,
 /area/station/mining/tunnel)
+"vwq" = (
+/obj/disposalpipe/segment/mineral,
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/northeast,
+/turf/simulated/floor/grey,
+/area/station/engine/hotloop)
 "vwy" = (
 /obj/machinery/door/airlock/classic,
 /obj/disposalpipe/segment/sewage,
@@ -34405,10 +34430,10 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/northeast)
 "whK" = (
-/obj/disposalpipe/segment/mineral,
-/obj/machinery/atmospherics/pipe/simple/insulated/purge/northeast,
-/turf/simulated/floor/grey,
-/area/station/engine/hotloop)
+/obj/machinery/atmospherics/pipe/manifold/overfloor/south,
+/obj/machinery/meter,
+/turf/simulated/floor/plating,
+/area/station/engine/coldloop)
 "whR" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -34511,6 +34536,11 @@
 /obj/disposalpipe/segment/bent/south,
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/fitness)
+"wmN" = (
+/obj/machinery/atmospherics/pipe/manifold/overfloor/north,
+/obj/machinery/meter,
+/turf/simulated/floor/plating,
+/area/station/engine/coldloop)
 "wnh" = (
 /obj/cable{
 	icon_state = "1-4"
@@ -72685,11 +72715,11 @@ bwR
 pdO
 pdO
 qrt
-cjQ
-nCi
+dtB
+sOi
 tba
 tba
-afU
+cmt
 tba
 czz
 qZT
@@ -89248,8 +89278,8 @@ kpW
 kPQ
 kPQ
 qgQ
-vxw
-vxw
+lID
+rhB
 hnV
 kun
 utQ
@@ -92596,7 +92626,7 @@ fAp
 cRc
 tjs
 bXM
-whK
+vwq
 vfv
 hjJ
 alw
@@ -93200,7 +93230,7 @@ asl
 nOQ
 mls
 xPN
-sNd
+kcf
 gKP
 dbA
 blI
@@ -93502,7 +93532,7 @@ kSV
 iML
 jer
 aod
-abf
+acL
 uNT
 vvh
 gkP
@@ -99538,10 +99568,10 @@ uCr
 xcC
 bTY
 agP
-lID
+whK
 wXC
 wXC
-rhB
+wmN
 mKU
 bTY
 mjY
