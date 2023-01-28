@@ -1537,6 +1537,12 @@
 /obj/disposalpipe/junction/right/south,
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
+"bqz" = (
+/obj/machinery/conveyor/south{
+	operating = 1
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "bqB" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/cable{
@@ -5563,6 +5569,15 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor,
 /area/station/engine/engineering/breakroom)
+"eLJ" = (
+/obj/item/paper{
+	info = "<h1> What the fuck is this?</h1><br> Simple, it's a fucking conveyor belt that leads acoss a plastic flap and onto a magical carpet that wisks your product away to an unscrupulpous buyer. <br><br> <i> did you test it? </i>  <br> absolutely the fuck not. I hope it works but if not, too bad. Eventually this will be replaced by a shuttle you can sell shit on. for now, just deal with magic. " ;
+	name = "F.A.Q.";
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "eLK" = (
 /obj/cable{
 	d1 = 2;
@@ -8947,6 +8962,12 @@
 /obj/disposalpipe/junction/left/east,
 /turf/simulated/floor/plating,
 /area/station/security/secoffquarters)
+"hDZ" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "hEo" = (
 /obj/disposalpipe/segment/sewage,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -9068,13 +9089,6 @@
 /obj/machinery/atmospherics/pipe/manifold/east,
 /turf/simulated/floor/carpet/grime,
 /area/station/security/secoffquarters)
-"hKn" = (
-/obj/plasticflaps,
-/obj/machinery/conveyor/south{
-	operating = 1
-	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "hLl" = (
 /obj/disposalpipe/segment/vertical,
 /obj/landmark/gps_waypoint,
@@ -9784,12 +9798,6 @@
 /obj/machinery/light/small/floor/warm/very,
 /turf/simulated/floor/grey,
 /area/station/medical/medbay)
-"isX" = (
-/obj/machinery/conveyor/south{
-	operating = 1
-	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "itb" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -9897,11 +9905,6 @@
 /obj/access_spawn/cargo,
 /turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice)
-"iwG" = (
-/obj/decal/poster/wallsign/stencil/right/l,
-/obj/decal/poster/wallsign/stencil/left/l,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "iwI" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/machinery/light/small/floor/harsh,
@@ -9920,11 +9923,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/darkblue,
 /area/station/bridge/conference)
-"ixF" = (
-/obj/decal/poster/wallsign/stencil/left/t,
-/obj/decal/poster/wallsign/stencil/right/e,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "iyY" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/submachine/seed_manipulator,
@@ -9932,6 +9930,11 @@
 	dir = 9
 	},
 /area/station/hydroponics/bay)
+"izr" = (
+/obj/decal/poster/wallsign/stencil/right/l,
+/obj/decal/poster/wallsign/stencil/left/l,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "izz" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -10055,7 +10058,7 @@
 /obj/machinery/atmospherics/binary/volume_pump{
 	dir = 8;
 	on = 1;
-	transfer_rate = 5000
+	transfer_rate = 1000
 	},
 /turf/simulated/floor/engine,
 /area/station/engine/core)
@@ -11179,6 +11182,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/nw)
+"jFo" = (
+/obj/plasticflaps,
+/obj/machinery/conveyor/south{
+	operating = 1
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "jFO" = (
 /obj/disposalpipe/segment/brig{
 	dir = 4
@@ -11621,11 +11631,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
-"jWY" = (
-/turf/simulated/floor{
-	icon_state = "clown_carpet"
-	},
-/area/supply/sell_point)
 "jXo" = (
 /obj/machinery/light/fluorescent/red{
 	dir = 4
@@ -12489,6 +12494,11 @@
 	dir = 1
 	},
 /area/station/medical/medbay/surgery/storage)
+"kGl" = (
+/obj/decal/poster/wallsign/stencil/right/e,
+/obj/decal/poster/wallsign/stencil/left/s,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "kGx" = (
 /obj/item/cable_coil/cut,
 /obj/storage/crate,
@@ -14125,6 +14135,10 @@
 	},
 /turf/simulated/floor/black,
 /area/station/engine/engineering)
+"mjK" = (
+/obj/decal/cleanable/blood/splatter,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "mlg" = (
 /turf/simulated/floor/red,
 /area/station/security/secwing)
@@ -14636,11 +14650,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor,
 /area/station/security/main)
-"mOR" = (
-/obj/decal/poster/wallsign/stencil/left/m,
-/obj/decal/poster/wallsign/stencil/right/p,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "mOZ" = (
 /obj/disposalpipe/segment/brig,
 /turf/simulated/floor/grey,
@@ -14968,6 +14977,11 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/wall,
 /area/station/crew_quarters/kitchen)
+"ndV" = (
+/turf/simulated/floor{
+	icon_state = "clown_carpet"
+	},
+/area/supply/sell_point)
 "ndX" = (
 /obj/cable{
 	d1 = 4;
@@ -16675,12 +16689,6 @@
 "ozg" = (
 /turf/simulated/floor/circuit/white,
 /area/station/turret_protected/Zeta)
-"ozk" = (
-/obj/machinery/light/fluorescent/cool/very{
-	dir = 4
-	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "ozt" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -20220,10 +20228,6 @@
 /obj/disposalpipe/segment/bent/west,
 /turf/simulated/floor/shuttlebay,
 /area/station/bridge/customs)
-"rtK" = (
-/obj/decal/cleanable/blood/splatter,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "rtV" = (
 /turf/simulated/floor/industrial,
 /area/shuttle/merchant_shuttle/left_station/cogmap)
@@ -23617,6 +23621,11 @@
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
+"uwG" = (
+/obj/decal/poster/wallsign/stencil/left/m,
+/obj/decal/poster/wallsign/stencil/right/p,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "uwL" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/item/storage/wall/fire{
@@ -24003,15 +24012,6 @@
 /obj/disposalpipe/segment/vertical,
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
-"uNl" = (
-/obj/item/paper{
-	info = "<h1> What the fuck is this?</h1><br> Simple, it's a fucking conveyor belt that leads acoss a plastic flap and onto a magical carpet that wisks your product away to an unscrupulpous buyer. <br><br> <i> did you test it? </i>  <br> absolutely the fuck not. I hope it works but if not, too bad. Eventually this will be replaced by a shuttle you can sell shit on. for now, just deal with magic. " ;
-	name = "F.A.Q.";
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "uNs" = (
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/power/apc/autoname_east,
@@ -25002,11 +25002,6 @@
 /obj/machinery/manufacturer/hangar,
 /turf/simulated/floor,
 /area/station/quartermaster/cargobay)
-"vKE" = (
-/obj/decal/poster/wallsign/stencil/right/e,
-/obj/decal/poster/wallsign/stencil/left/s,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "vKI" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/cable{
@@ -26914,6 +26909,11 @@
 	},
 /turf/simulated/floor/red/checker,
 /area/station/engine/core)
+"xoq" = (
+/obj/decal/poster/wallsign/stencil/left/t,
+/obj/decal/poster/wallsign/stencil/right/e,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "xpl" = (
 /obj/disposalpipe/segment/bent/east,
 /obj/decal/tile_edge/stripe{
@@ -86339,9 +86339,9 @@ cqC
 cqC
 hyl
 uDK
-vKE
+kGl
 mVe
-ixF
+xoq
 lSE
 hyl
 gqL
@@ -86640,11 +86640,11 @@ cqC
 cqC
 cqC
 hyl
-uNl
-iwG
+eLJ
+izr
 mVe
-mOR
-jWY
+uwG
+ndV
 hyl
 kHn
 uIr
@@ -86943,10 +86943,10 @@ cqC
 cqC
 hyl
 lSE
-isX
-hKn
-isX
-jWY
+bqz
+jFo
+bqz
+ndV
 hyl
 liU
 uIr
@@ -87244,11 +87244,11 @@ cqC
 cqC
 cqC
 hyl
-rtK
+mjK
 lSE
 mVe
-ozk
-jWY
+hDZ
+ndV
 hyl
 tBm
 uIr
