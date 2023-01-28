@@ -938,6 +938,11 @@
 /obj/item/paper_bin,
 /turf/simulated/floor/carpet/grime,
 /area/station/security/secoffquarters)
+"aLp" = (
+/obj/decal/poster/wallsign/stencil/right/e,
+/obj/decal/poster/wallsign/stencil/left/s,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "aLX" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/breathable{
 	dir = 4
@@ -1377,7 +1382,7 @@
 /area/station/security/main)
 "bhw" = (
 /obj/disposalpipe/segment/mail/bent/north,
-/obj/machinery/manufacturer/robotics,
+/obj/machinery/recharge_station,
 /turf/simulated/floor/grey,
 /area/station/medical/robotics)
 "bhx" = (
@@ -1537,12 +1542,6 @@
 /obj/disposalpipe/junction/right/south,
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
-"bqz" = (
-/obj/machinery/conveyor/south{
-	operating = 1
-	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "bqB" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/cable{
@@ -1627,7 +1626,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "bvC" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -3484,6 +3483,10 @@
 "cTg" = (
 /turf/simulated/wall/r_wall,
 /area/station/medical/medbay/lobby)
+"cTC" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
+/turf/simulated/floor/white,
+/area/station/medical/robotics)
 "cTM" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -4183,7 +4186,7 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "dxy" = (
 /obj/cable{
 	icon_state = "0-2"
@@ -5569,15 +5572,6 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor,
 /area/station/engine/engineering/breakroom)
-"eLJ" = (
-/obj/item/paper{
-	info = "<h1> What the fuck is this?</h1><br> Simple, it's a fucking conveyor belt that leads acoss a plastic flap and onto a magical carpet that wisks your product away to an unscrupulpous buyer. <br><br> <i> did you test it? </i>  <br> absolutely the fuck not. I hope it works but if not, too bad. Eventually this will be replaced by a shuttle you can sell shit on. for now, just deal with magic. " ;
-	name = "F.A.Q.";
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "eLK" = (
 /obj/cable{
 	d1 = 2;
@@ -5863,7 +5857,6 @@
 /turf/simulated/floor/red,
 /area/station/engine/core)
 "eTL" = (
-/obj/machinery/light/small/floor/harsh,
 /obj/disposalpipe/segment/vertical,
 /turf/simulated/floor/sanitary,
 /area/station/medical/morgue)
@@ -6338,7 +6331,7 @@
 /area/station/engine/engineering)
 "fpA" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/manufacturer/robotics,
+/obj/machinery/recharge_station,
 /turf/simulated/floor/grey,
 /area/station/medical/robotics)
 "fpD" = (
@@ -6649,6 +6642,11 @@
 /obj/machinery/disposal,
 /turf/simulated/floor,
 /area/station/security/secoffquarters)
+"fAm" = (
+/obj/decal/poster/wallsign/stencil/left/m,
+/obj/decal/poster/wallsign/stencil/right/p,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "fAT" = (
 /obj/machinery/firealarm{
 	dir = 4;
@@ -6725,7 +6723,7 @@
 /obj/machinery/light/small/floor/harsh,
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "fEd" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -7171,6 +7169,15 @@
 	},
 /turf/simulated/floor,
 /area/station/hangar/escape)
+"fYJ" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/white,
+/area/station/medical/robotics)
 "fZX" = (
 /obj/table/reinforced/auto,
 /obj/machinery/light/fluorescent/cool/very,
@@ -7932,7 +7939,7 @@
 	tag = ""
 	},
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "gNB" = (
 /obj/disposalpipe/segment/morgue,
 /obj/surgery_tray,
@@ -8962,12 +8969,6 @@
 /obj/disposalpipe/junction/left/east,
 /turf/simulated/floor/plating,
 /area/station/security/secoffquarters)
-"hDZ" = (
-/obj/machinery/light/fluorescent/cool/very{
-	dir = 4
-	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "hEo" = (
 /obj/disposalpipe/segment/sewage,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -9276,7 +9277,7 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "hWJ" = (
 /obj/machinery/door/airlock,
 /obj/disposalpipe/segment/vertical,
@@ -9605,6 +9606,10 @@
 	},
 /turf/simulated/floor/black,
 /area/station/quartermaster/storage)
+"iky" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/turf/simulated/floor/white,
+/area/station/medical/robotics)
 "ikJ" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -9861,7 +9866,7 @@
 "ivc" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "ivd" = (
 /obj/machinery/vehicle/pod_smooth/industrial{
 	dir = 8
@@ -9930,11 +9935,6 @@
 	dir = 9
 	},
 /area/station/hydroponics/bay)
-"izr" = (
-/obj/decal/poster/wallsign/stencil/right/l,
-/obj/decal/poster/wallsign/stencil/left/l,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "izz" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -10045,10 +10045,15 @@
 	dir = 5
 	},
 /area/station/hydroponics/bay)
+"iDS" = (
+/turf/simulated/floor{
+	icon_state = "clown_carpet"
+	},
+/area/supply/sell_point)
 "iEs" = (
 /obj/machinery/disposal,
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "iEE" = (
 /obj/table/wood/auto,
 /obj/machinery/phone/unlisted,
@@ -10509,7 +10514,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "iXZ" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 6
@@ -11182,13 +11187,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/nw)
-"jFo" = (
-/obj/plasticflaps,
-/obj/machinery/conveyor/south{
-	operating = 1
-	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "jFO" = (
 /obj/disposalpipe/segment/brig{
 	dir = 4
@@ -11427,6 +11425,9 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/chapel/sanctuary)
+"jPr" = (
+/turf/simulated/floor/white,
+/area/station/medical/robotics)
 "jPv" = (
 /obj/disposalpipe/segment/food,
 /turf/simulated/floor/wood,
@@ -11665,6 +11666,7 @@
 "jZV" = (
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/horizontal,
+/obj/machinery/light/small/floor/harsh,
 /turf/simulated/floor/sanitary,
 /area/station/medical/morgue)
 "kaF" = (
@@ -11841,6 +11843,13 @@
 	},
 /turf/space/gehenna/desert,
 /area/station/security/brig/north_side)
+"khM" = (
+/obj/plasticflaps,
+/obj/machinery/conveyor/south{
+	operating = 1
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "kih" = (
 /obj/machinery/light/small/floor,
 /obj/disposalpipe/segment/morgue,
@@ -11998,6 +12007,12 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/farmers)
+"knc" = (
+/obj/machinery/conveyor/south{
+	operating = 1
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "knQ" = (
 /turf/simulated/floor/red/checker{
 	dir = 4
@@ -12494,11 +12509,6 @@
 	dir = 1
 	},
 /area/station/medical/medbay/surgery/storage)
-"kGl" = (
-/obj/decal/poster/wallsign/stencil/right/e,
-/obj/decal/poster/wallsign/stencil/left/s,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "kGx" = (
 /obj/item/cable_coil/cut,
 /obj/storage/crate,
@@ -12924,6 +12934,10 @@
 /obj/disposalpipe/segment/morgue,
 /turf/simulated/floor,
 /area/station/security/secoffquarters)
+"kXS" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/simulated/floor/white,
+/area/station/medical/robotics)
 "kXT" = (
 /turf/simulated/wall/r_wall,
 /area/station/wc/sec)
@@ -13316,6 +13330,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/light_switch/east,
 /turf/simulated/floor/grey,
 /area/station/medical/robotics)
 "lpT" = (
@@ -13523,7 +13538,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "lzw" = (
 /obj/storage/secure/closet/medical{
 	name = "locker"
@@ -13853,6 +13868,12 @@
 /obj/table/reinforced/auto,
 /turf/simulated/floor,
 /area/station/bridge)
+"lQI" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 1
+	},
+/turf/simulated/floor/white,
+/area/station/medical/robotics)
 "lQW" = (
 /obj/machinery/light/fluorescent/cool/very,
 /turf/simulated/floor,
@@ -14135,10 +14156,6 @@
 	},
 /turf/simulated/floor/black,
 /area/station/engine/engineering)
-"mjK" = (
-/obj/decal/cleanable/blood/splatter,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "mlg" = (
 /turf/simulated/floor/red,
 /area/station/security/secwing)
@@ -14399,7 +14416,7 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "mBi" = (
 /obj/machinery/light/fluorescent,
 /obj/disposalpipe/segment/mail/horizontal,
@@ -14977,11 +14994,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/wall,
 /area/station/crew_quarters/kitchen)
-"ndV" = (
-/turf/simulated/floor{
-	icon_state = "clown_carpet"
-	},
-/area/supply/sell_point)
 "ndX" = (
 /obj/cable{
 	d1 = 4;
@@ -15276,7 +15288,7 @@
 /area/station/bridge)
 "npV" = (
 /obj/disposalpipe/segment/horizontal,
-/obj/machinery/recharge_station,
+/obj/machinery/manufacturer/robotics,
 /turf/simulated/floor/grey,
 /area/station/medical/robotics)
 "nqy" = (
@@ -15590,7 +15602,7 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "nEf" = (
 /obj/cable/blue{
 	icon_state = "1-2"
@@ -16951,7 +16963,7 @@
 "oKu" = (
 /obj/machinery/vending/medical,
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "oKx" = (
 /obj/disposalpipe/segment/food{
 	dir = 4
@@ -17405,7 +17417,7 @@
 /obj/machinery/door/airlock/glass/medical,
 /obj/access_spawn/medical,
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "phy" = (
 /obj/machinery/door/airlock/glass/medical,
 /obj/disposalpipe/segment{
@@ -19491,6 +19503,10 @@
 /obj/disposalpipe/junction/right/west,
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
+"qLu" = (
+/obj/decal/cleanable/blood/splatter,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "qLz" = (
 /obj/cable{
 	icon_state = "1-4"
@@ -22210,6 +22226,11 @@
 	},
 /turf/simulated/floor/black,
 /area/station/security/secoffquarters)
+"tfp" = (
+/obj/decal/poster/wallsign/stencil/right/l,
+/obj/decal/poster/wallsign/stencil/left/l,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "tfx" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/breathable{
 	dir = 1
@@ -22358,6 +22379,14 @@
 	icon_state = "plating_dusty2"
 	},
 /area/space)
+"tjX" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/white,
+/area/station/medical/robotics)
 "tkc" = (
 /obj/disposalpipe/segment/bent/west,
 /turf/simulated/floor/plating,
@@ -22478,6 +22507,11 @@
 /obj/disposalpipe/segment/vertical,
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
+"tri" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
+/obj/disposalpipe/segment/mail/horizontal,
+/turf/simulated/floor/white,
+/area/station/medical/robotics)
 "trl" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/red,
@@ -23198,7 +23232,7 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "udi" = (
 /obj/stool/chair{
 	dir = 1
@@ -23621,11 +23655,6 @@
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
-"uwG" = (
-/obj/decal/poster/wallsign/stencil/left/m,
-/obj/decal/poster/wallsign/stencil/right/p,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "uwL" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/item/storage/wall/fire{
@@ -24176,7 +24205,7 @@
 "uTW" = (
 /obj/machinery/manufacturer/medical,
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "uUf" = (
 /obj/table/reinforced/auto,
 /obj/disposalpipe/segment/brig{
@@ -24208,7 +24237,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "uUI" = (
 /obj/disposalpipe/segment/vertical,
 /obj/wingrille_spawn,
@@ -24600,7 +24629,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "vpp" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/cable{
@@ -24736,7 +24765,7 @@
 "vxn" = (
 /obj/machinery/light/small/floor/harsh,
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "vxF" = (
 /obj/machinery/drainage/big,
 /turf/simulated/floor/grey,
@@ -25299,7 +25328,7 @@
 /obj/machinery/door/airlock/glass/medical,
 /obj/access_spawn/medical,
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
+/area/station/medical/robotics)
 "vWO" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/wood,
@@ -25543,6 +25572,12 @@
 	},
 /turf/simulated/floor/carpet/blue/standard/edge/north,
 /area/station/medical/head)
+"win" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "wiv" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	can_rupture = 0
@@ -25644,6 +25679,10 @@
 /obj/storage/secure/closet/personal,
 /turf/simulated/floor/grey,
 /area/station/security/equipment)
+"wmf" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/simulated/floor/white,
+/area/station/medical/robotics)
 "wmE" = (
 /obj/decal/poster/wallsign/qm{
 	pixel_y = 32
@@ -25974,6 +26013,15 @@
 /obj/machinery/disposal,
 /turf/simulated/floor/grey,
 /area/station/hangar/catering)
+"wzn" = (
+/obj/item/paper{
+	info = "<h1> What the fuck is this?</h1><br> Simple, it's a fucking conveyor belt that leads acoss a plastic flap and onto a magical carpet that wisks your product away to an unscrupulpous buyer. <br><br> <i> did you test it? </i>  <br> absolutely the fuck not. I hope it works but if not, too bad. Eventually this will be replaced by a shuttle you can sell shit on. for now, just deal with magic. " ;
+	name = "F.A.Q.";
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "wzo" = (
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/atmospherics/pipe/manifold/east,
@@ -26898,6 +26946,11 @@
 /obj/wingrille_spawn,
 /turf/simulated/floor/plating,
 /area/station/medical/medbay)
+"xnq" = (
+/obj/decal/poster/wallsign/stencil/left/t,
+/obj/decal/poster/wallsign/stencil/right/e,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "xnT" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/stool,
@@ -26909,11 +26962,6 @@
 	},
 /turf/simulated/floor/red/checker,
 /area/station/engine/core)
-"xoq" = (
-/obj/decal/poster/wallsign/stencil/left/t,
-/obj/decal/poster/wallsign/stencil/right/e,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "xpl" = (
 /obj/disposalpipe/segment/bent/east,
 /obj/decal/tile_edge/stripe{
@@ -57113,10 +57161,10 @@ ihF
 ihF
 oKu
 fDX
-iFq
+fYJ
 mAc
 vxn
-pjb
+jPr
 lRk
 ist
 tfM
@@ -57414,11 +57462,11 @@ aFF
 hfz
 ihF
 uTW
-wSF
-iFq
-pUj
-mSK
-tiQ
+iky
+fYJ
+tri
+kXS
+cTC
 xnp
 ckH
 aRo
@@ -57715,12 +57763,12 @@ gJh
 pUF
 sNS
 bKo
-eti
+tjX
 bvs
 ucP
 dxm
 ivc
-eKw
+wmf
 xnp
 eVT
 aRo
@@ -58017,12 +58065,12 @@ mYx
 sRK
 aic
 pNr
-osk
+lQI
 voE
 iXR
 bvs
 hWH
-eKw
+wmf
 xnp
 tSn
 fvG
@@ -58321,7 +58369,7 @@ ihF
 ihF
 iEs
 lzn
-pjb
+jPr
 gNt
 uUG
 nDZ
@@ -86339,9 +86387,9 @@ cqC
 cqC
 hyl
 uDK
-kGl
+aLp
 mVe
-xoq
+xnq
 lSE
 hyl
 gqL
@@ -86640,11 +86688,11 @@ cqC
 cqC
 cqC
 hyl
-eLJ
-izr
+wzn
+tfp
 mVe
-uwG
-ndV
+fAm
+iDS
 hyl
 kHn
 uIr
@@ -86943,10 +86991,10 @@ cqC
 cqC
 hyl
 lSE
-bqz
-jFo
-bqz
-ndV
+knc
+khM
+knc
+iDS
 hyl
 liU
 uIr
@@ -87244,11 +87292,11 @@ cqC
 cqC
 cqC
 hyl
-mjK
+qLu
 lSE
 mVe
-hDZ
-ndV
+win
+iDS
 hyl
 tBm
 uIr
