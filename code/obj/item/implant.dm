@@ -315,10 +315,7 @@ THROWING DARTS
 				continue
 			cloner_areas += "[cl_implant.scanned_here]"
 		var/message = "DEATH ALERT: [src.owner][coords] in [myarea], " //youre lucky im not onelining this
-		if (he_or_she(src.owner) == "they")
-			message += "they " + (length(cloner_areas) ? "have been clone-scanned in [jointext(cloner_areas, ", ")]." : "do not have a cloning record.")
-		else
-			message += he_or_she(src.owner) + " " + (length(cloner_areas) ? "has been clone-scanned in [jointext(cloner_areas, ", ")]." : "does not have a cloning record.")
+		message += he_or_she(src.owner) + " " + (length(cloner_areas) ? "[pluralize_or_not(src.owner ? "have" : "has")] been clone-scanned in [jointext(cloner_areas, ", ")]." : "[pluralize_or_not(src.owner ? "do" : "does")] not have a cloning record.")
 
 		src.send_message(message, MGA_DEATH, "HEALTH-MAILBOT")
 

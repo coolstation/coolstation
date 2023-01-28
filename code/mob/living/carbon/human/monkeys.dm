@@ -443,12 +443,12 @@
 						spawn(0.5 SECONDS)
 							was_harmed(M)
 							var/singing_modifier = (M.singing & BAD_SINGING) ? "bad" : "loud"
-							src.visible_message("<B>[name]</B> becomes furious at [M] for their [singing_modifier] singing!", 1)
+							src.visible_message("<B>[name]</B> becomes furious at [M] for [his_or_her(M)] [singing_modifier] singing!", 1)
 							src.say(pick("Must take revenge for insult to music!", "I now attack you like your singing attacked my ears!"))
 					else
 						spawn(0.5 SECONDS)
 							src.visible_message(pick("<B>[name]</B> doesn't seem to like [M]'s singing", \
-							"<B>[name]</B> puts their hands over their ears", \
+							"<B>[name]</B> puts their hands over [his_or_her(src)] ears", \
 							), 1)
 						// monkey merely doesn't like the singing
 							src.say(pick("You human sing worse than a baboon!", \

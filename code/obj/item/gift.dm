@@ -88,7 +88,7 @@
 		else
 			boutput(user, "<span class='notice'>You need more paper.</span>")
 	else
-		boutput(user, "They're moving around too much.")
+		boutput(user, "[hes_or_shes(target)] moving around too much.")
 
 /obj/item/gift
 	desc = "For me!?"

@@ -329,7 +329,7 @@
 			user.show_text("You can't buckle anyone in before the game starts.", "red")
 			return 0
 		if (C.buckled)
-			boutput(user, "They're already buckled into something!", "red")
+			boutput(user, "[hes_or_shes(C)] already buckled into something!", "red")
 			return 0
 		if (src.security)
 			user.show_text("There's nothing you can buckle them to!", "red")
@@ -1637,7 +1637,7 @@
 
 	can_buckle(var/mob/M, var/mob/user)
 		if (M.buckled)
-			boutput(user, "They're already otherwise occupied!", "red")
+			boutput(user, "[hes_or_shes(M)] already otherwise occupied!", "red")
 			return 0
 		if (!( iscarbon(M) ) || get_dist(src, user) > 2 || M.loc != src.loc || user.restrained() || !isalive(user))
 			return 0
