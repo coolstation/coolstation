@@ -274,7 +274,7 @@
 				playsound(M, "sound/misc/boing/[rand(1,6)].ogg", 20, 1)
 				user.drop_item_throw()
 				user.tri_message("[M]'s flubbery body flings [user]'s [barbery_type == "haircut" ? "scissors" : "razor"] out of [his_or_her(user)] hand!",\
-											M, "[user] pokes you with [his_or_her(user)] [barbery_type == "haircut" ? "scissors" : "razor"], flinging them out of their hand",\
+											M, "[user] pokes you with [his_or_her(user)] [barbery_type == "haircut" ? "scissors" : "razor"], flinging them out of [his_or_her(user)] hand",\
 									 user, "[M]'s flubbery body flings the [barbery_type == "haircut" ? "scissors" : "razor"] out of your hand!")
 				return 0
 			if("flashy")

@@ -864,18 +864,17 @@ Note: Add new traitor items to syndicate_buylist.dm, not here.
 			title = "photo of [M]"
 			var/holding = null
 			if (M.l_hand || M.r_hand)
-				var/they_are = M.gender == "male" ? "He's" : M.gender == "female" ? "She's" : "They're"
 				if (M.l_hand)
-					holding = "[they_are] holding \a [M.l_hand]"
+					holding = "[hes_or_shes(M)] holding \a [M.l_hand]"
 				if (M.r_hand)
 					if (holding)
 						holding += " and \a [M.r_hand]."
 					else
-						holding = "[they_are] holding \a [M.r_hand]."
+						holding = "[hes_or_shes(M)] holding \a [M.r_hand]."
 				else if (holding)
 					holding += "."
 
-			var/they_look = M.gender == "male" ? "he looks" : M.gender == "female" ? "she looks" : "they look"
+			var/they_look = "[he_or_she(M)] look[pluralize_or_not(M) ? "" : "s"]"
 			var/health_info = M.health < 75 ? " - [they_look][M.health < 25 ? " really" : null] hurt" : null
 			if (!detail)
 				detail = "In the photo, you can see [M][M.lying ? " lying on [get_turf(M)]" : null][health_info][holding ? ". [holding]" : "."]"

@@ -309,7 +309,7 @@
 					boutput(user, "You can't seem to enter the phone for some reason!")
 					return
 				EXIT = PH.parent.linked.handset
-				user.visible_message("[user] enters the phone line using their [src].", "You enter the phone line using your [src].", "You hear a strange sucking noise.")
+				user.visible_message("[user] enters the phone line using [his_or_her(user)] [src].", "You enter the phone line using your [src].", "You hear a strange sucking noise.")
 				playsound(user.loc, "sound/effects/singsuck.ogg", 40, 1)
 				user.drop_item(PH)
 				user.set_loc(target_loc)

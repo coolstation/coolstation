@@ -1288,7 +1288,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 		if (istype(AM, /obj/item))
 			user.u_equip(AM)
 		AM.set_loc(get_turf(M))
-		logTheThing("combat", user, M, "uses a null scalpel ([src]) on [M] and removes their [AM.name] at [log_loc(user)].")
+		logTheThing("combat", user, M, "uses a null scalpel ([src]) on [M] and removes [his_or_her(M)] [AM.name] at [log_loc(user)].")
 		return
 
 	custom_suicide = 1
