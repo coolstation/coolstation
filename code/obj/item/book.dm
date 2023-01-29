@@ -421,6 +421,12 @@ Custom Books
 	icon_state = "syndiebook"
 	file_path = "strings/books/syndies_guide.txt"
 
+	/obj/item/paper/book/from_file/syndie_manifesto
+		name = "The Syndie Manifesto"
+		desc = "A rebound print-out from an old Syndicate e-zine"
+		icon_state = "syndiemanifesto"
+		file_path = "strings/books/syndie_manifesto.txt"
+
 /obj/item/paper/book/from_file/zoo_diary
 	name = "grimy diary"
 	desc = "It looks bedraggled."
