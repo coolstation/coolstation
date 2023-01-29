@@ -448,6 +448,7 @@
 /area/station/medical/robotics)
 "asp" = (
 /obj/disposalpipe/segment/vertical,
+/obj/table/wood/auto,
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/customs)
 "ass" = (
@@ -3356,6 +3357,10 @@
 	},
 /obj/cable/blue{
 	icon_state = "4-8"
+	},
+/obj/machinery/phone{
+	pixel_x = -27;
+	pixel_y = 9
 	},
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/customs)
@@ -10957,7 +10962,6 @@
 	},
 /obj/item/storage/toolbox/electrical,
 /obj/item/clothing/gloves/yellow,
-/obj/machinery/phone,
 /turf/simulated/floor/yellowblack{
 	dir = 9
 	},
@@ -12049,6 +12053,7 @@
 /area/station/quartermaster/cargobay)
 "jSG" = (
 /obj/disposalpipe/segment/bent/south,
+/obj/table/wood/auto,
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/customs)
 "jSX" = (
@@ -12341,6 +12346,10 @@
 	},
 /turf/simulated/floor,
 /area/station/engine/engineering)
+"keO" = (
+/obj/table/wood/auto,
+/turf/simulated/floor/carpet/grime,
+/area/station/medical/research)
 "kfr" = (
 /obj/cable{
 	d1 = 2;
@@ -14160,6 +14169,9 @@
 /obj/disposalpipe/segment/mail/vertical,
 /obj/table/reinforced/auto,
 /obj/machinery/door/window/southright,
+/obj/machinery/phone{
+	pixel_x = 4
+	},
 /turf/simulated/floor/green,
 /area/station/hydroponics/bay)
 "lAO" = (
@@ -16656,6 +16668,11 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor/specialroom/freezer,
 /area/station/medical/morgue)
+"nTM" = (
+/obj/table/reinforced/auto,
+/obj/machinery/phone,
+/turf/simulated/floor,
+/area/station/security/brig/cell_block_control)
 "nUc" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -18337,6 +18354,10 @@
 /area/space)
 "poa" = (
 /obj/disposalpipe/segment/bent/west,
+/obj/table/wood/auto,
+/obj/machinery/phone{
+	pixel_x = -4
+	},
 /turf/simulated/floor/red,
 /area/station/security/checkpoint/sec_foyer)
 "pof" = (
@@ -19794,6 +19815,13 @@
 /obj/landmark/gps_waypoint,
 /turf/simulated/floor,
 /area/station/engine/engineering)
+"qtX" = (
+/obj/table/wood/auto,
+/obj/machinery/phone{
+	pixel_x = -4
+	},
+/turf/simulated/floor/carpet/grime,
+/area/station/medical/research)
 "qua" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/disposalpipe/segment/morgue{
@@ -20965,6 +20993,9 @@
 	icon_state = "1-4"
 	},
 /obj/table/reinforced/auto,
+/obj/machinery/phone{
+	pixel_x = 4
+	},
 /turf/simulated/floor/black,
 /area/station/engine/monitoring)
 "rki" = (
@@ -23493,6 +23524,7 @@
 /area/station/hallway/secondary/exit)
 "trl" = (
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/table/wood/auto,
 /turf/simulated/floor/red,
 /area/station/security/checkpoint/sec_foyer)
 "trm" = (
@@ -27662,6 +27694,9 @@
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
+	},
+/obj/machinery/phone{
+	pixel_x = -4
 	},
 /turf/simulated/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
@@ -60744,7 +60779,7 @@ xfi
 bjH
 nJw
 eYy
-uYj
+qtX
 uSN
 alg
 lla
@@ -61650,7 +61685,7 @@ xfi
 bjH
 dNS
 nbt
-uYj
+keO
 uSN
 gCb
 cga
@@ -73671,7 +73706,7 @@ vxf
 vVT
 sXJ
 nqX
-vVT
+nTM
 oiZ
 kja
 bTy
