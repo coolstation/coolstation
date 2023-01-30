@@ -3931,7 +3931,9 @@
 /turf/simulated/floor/carpet/blue/fancy/innercorner/omni,
 /area/station/bridge)
 "djB" = (
-/obj/machinery/computer/transit_terminal/eng,
+/obj/machinery/button/elevator/eng{
+	pixel_y = 32
+	},
 /turf/simulated/floor/grey,
 /area/station/engine/engineering)
 "djV" = (
@@ -7506,10 +7508,14 @@
 /turf/simulated/floor/plating,
 /area/station/medical/maintenance)
 "fYo" = (
-/obj/machinery/light/small/floor,
-/obj/machinery/computer/transit_terminal/com,
-/turf/simulated/floor/grey,
-/area/station/bridge)
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8
+	},
+/obj/machinery/light/fluorescent/warm{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "fYu" = (
 /obj/machinery/light/fluorescent/warm{
 	dir = 1
@@ -7615,6 +7621,9 @@
 	dir = 4;
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/machinery/button/elevator/com{
+	pixel_y = 32
 	},
 /turf/simulated/floor/grey,
 /area/station/bridge)
@@ -11754,7 +11763,9 @@
 /turf/simulated/floor/industrial,
 /area/station/mining/dock)
 "jIy" = (
-/obj/machinery/computer/transit_terminal/sec,
+/obj/machinery/button/elevator/sec{
+	pixel_y = 32
+	},
 /turf/simulated/floor/black,
 /area/station/security/secoffquarters)
 "jJp" = (
@@ -12510,11 +12521,8 @@
 /turf/simulated/floor/shuttlebay,
 /area/station/hangar/sec)
 "kky" = (
-/obj/machinery/light/fluorescent{
-	dir = 1
-	},
-/obj/machinery/computer/transit_terminal/qm{
-	dir = 4
+/obj/machinery/button/elevator/qm{
+	pixel_y = 32
 	},
 /turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice)
@@ -22801,8 +22809,8 @@
 /turf/simulated/floor,
 /area/station/security/main)
 "sMj" = (
-/obj/machinery/computer/transit_terminal/med{
-	dir = 4
+/obj/machinery/button/elevator/med{
+	pixel_x = -32
 	},
 /turf/simulated/floor/black,
 /area/station/medical/medbay)
@@ -57711,7 +57719,7 @@ jEb
 jEb
 ygw
 ygw
-fYo
+pBj
 rcm
 rcm
 pBj
@@ -89418,7 +89426,7 @@ pef
 blM
 opp
 dAu
-oXg
+fYo
 oXg
 oXg
 ozE

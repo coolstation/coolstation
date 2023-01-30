@@ -8152,8 +8152,8 @@
 	name = "Artifact Lounge"
 	})
 "fhl" = (
-/obj/machinery/computer/transit_terminal/med{
-	dir = 4
+/obj/machinery/button/elevator/med{
+	pixel_x = -32
 	},
 /turf/simulated/floor/grey,
 /area/station/medical/basement)
@@ -13014,8 +13014,8 @@
 /turf/simulated/floor,
 /area/noGenerate)
 "iue" = (
-/obj/machinery/computer/transit_terminal/qm{
-	dir = 4
+/obj/machinery/button/elevator/qm{
+	pixel_y = 32
 	},
 /turf/simulated/floor/black,
 /area/station/storage/warehouse)
@@ -16723,8 +16723,10 @@
 /turf/simulated/floor/grey,
 /area/station/science/lab)
 "kHN" = (
-/obj/table/reinforced/auto,
 /obj/disposalpipe/segment/sewage,
+/obj/machinery/button/elevator/sec{
+	pixel_y = 32
+	},
 /turf/simulated/floor/black,
 /area/station/security/secwing{
 	name = "Security Wing Tunnel Level"
@@ -23367,10 +23369,12 @@
 /turf/simulated/floor/airless/engine/glow/blue,
 /area/station/engine/combustion_chamber)
 "oZl" = (
-/obj/machinery/light/fluorescent/red{
-	dir = 1
+/obj/machinery/button/elevator/eng{
+	pixel_y = 32
 	},
-/obj/machinery/computer/transit_terminal/eng,
+/obj/machinery/light/small/warm{
+	dir = 4
+	},
 /turf/simulated/floor/grey,
 /area/station/engine/inner)
 "oZo" = (
@@ -31613,11 +31617,6 @@
 /obj/reagent_dispensers/watertank,
 /turf/simulated/floor/purple,
 /area/station/janitor/supply)
-"unl" = (
-/obj/machinery/light/small/floor,
-/obj/machinery/computer/transit_terminal/com,
-/turf/simulated/floor/grey,
-/area/station/bridge/basement)
 "unm" = (
 /obj/machinery/door/airlock/classic,
 /turf/simulated/floor/plating,
@@ -31645,7 +31644,7 @@
 /area/station/janitor/supply)
 "unT" = (
 /obj/disposalpipe/segment/morgue,
-/obj/machinery/computer/transit_terminal/sec,
+/obj/table/reinforced/auto,
 /turf/simulated/floor/black,
 /area/station/security/secwing{
 	name = "Security Wing Tunnel Level"
@@ -35239,6 +35238,9 @@
 	dir = 4;
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/machinery/button/elevator/com{
+	pixel_y = 32
 	},
 /turf/simulated/floor/grey,
 /area/station/bridge/basement)
@@ -66379,7 +66381,7 @@ pdO
 pdO
 alv
 alv
-unl
+vBS
 uUf
 eUf
 aDr
