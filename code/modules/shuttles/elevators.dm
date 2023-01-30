@@ -167,6 +167,37 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /obj/machinery/computer/transit_terminal/thin/dum
 	vehicle_id = "dum_elevator"
 
+// buttons
+
+/obj/machinery/button/elevator/med
+	vehicle_id = "med_elevator"
+	stop_top_id = "med_top"
+	stop_bottom_id = "med_bot"
+
+/obj/machinery/button/elevator/qm
+	vehicle_id = "qm_elevator"
+	stop_top_id = "qm_top"
+	stop_bottom_id = "qm_bot"
+
+/obj/machinery/button/elevator/eng
+	vehicle_id = "eng_elevator"
+	stop_top_id = "eng_top"
+	stop_bottom_id = "eng_bot"
+
+/obj/machinery/button/elevator/com
+	vehicle_id = "com_elevator"
+	stop_top_id = "com_top"
+	stop_bottom_id = "com_bot"
+
+/obj/machinery/button/elevator/sec
+	vehicle_id = "sec_elevator"
+	stop_top_id = "sec_top"
+	stop_bottom_id = "sec_bot"
+
+/obj/machinery/button/elevator/dum
+	vehicle_id = "dum_elevator"
+	stop_top_id = "dum_top"
+	stop_bottom_id = "dum_bot"
 
       //|\\
      // | \\

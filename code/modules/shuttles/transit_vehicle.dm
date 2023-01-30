@@ -129,11 +129,13 @@ var/global/datum/transit_controller/transit_controls = new
 			for (var/turf/P in end_location)
 				if (istype(P, filler_turf_start))
 					P.ReplaceWith(filler_turf_end, keep_old_material = 0, force=1)
-			vehicle.arriving(stop)
+			SEND_SIGNAL(src, COMSIG_TRANSIT_VEHICLE_MOVED, vehicle)
+			vehicle.arriving(stop) //This may sleep, intentionally holding up this code
 			vehicle.current_location = stop
 			current.current_occupant = null
 			stop.current_occupant = vehicle.vehicle_id
 			vehicle.in_transit = FALSE
+			SEND_SIGNAL(src, COMSIG_TRANSIT_VEHICLE_READY, vehicle)
 
 
 		return TRUE
@@ -250,7 +252,7 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 		for (var/obj/machinery/door/poddoor/M in by_type[/obj/machinery/door])
 			if (M.id == "[src.door_id_prefix][destination.stop_id]")
 				M.open()
-		sleep(disembark_time)
+		sleep(disembark_time) //This intentionally holds up the last part of move_vehicle
 
 /obj/machinery/computer/transit_terminal
 	name = "Vehicle Control"
@@ -320,3 +322,64 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 					return FALSE
 				playsound(src.loc, 'sound/machines/chime.ogg', 40, 0.5)
 				return TRUE
+
+//Bat here adding a button because (TG)UI is a bother
+//We should bring all of the random buttons we got under a single banner sometime but this one gets a head start
+/obj/machinery/button/elevator
+	name = "elevator call button"
+	desc = "Send an elevator back and forth for your amusement"
+	icon = 'icons/obj/machines/buttons.dmi'
+	icon_state = "elev_idle"
+	//Which vehicle this button shuttles
+	var/vehicle_id
+	//Idem
+	var/datum/transit_vehicle/our_vehicle
+	//This button exists to save navigating the UI for elevators that just shuttle between two locations, if you want more than that you're better off using transit_terminal instead.
+	var/stop_top_id
+	var/stop_bottom_id
+
+	New()
+		..()
+		SPAWN_DBG(1 SECOND)
+			our_vehicle = transit_controls.vehicles[src.vehicle_id]
+			if (!our_vehicle) //RIP
+				status |= BROKEN //Safety permabrick ourselves
+			else
+				RegisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_MOVED, .proc/update_icon)
+				RegisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_READY, .proc/update_icon)
+			update_icon()
+
+	attack_hand(mob/user)
+		if (..()) // Range/sanity/power checks
+			return
+		if (our_vehicle.in_transit)
+			return
+		if (our_vehicle.current_location == transit_controls.stops[stop_bottom_id])
+			transit_controls.move_vehicle(src.vehicle_id, stop_top_id, user)
+			update_icon(,, "up")
+		else
+			transit_controls.move_vehicle(src.vehicle_id, stop_bottom_id, user)
+			update_icon(,, "down")
+		playsound(src.loc, 'sound/impact_sounds/Generic_Click_1.ogg', 40, 0.5)
+
+	attackby(obj/item/I, mob/user) //smack in the button with yer loot, food, or thing to shoot
+		attack_hand(user)
+
+	proc/update_icon(dummy = null, datum/transit_vehicle/vehicle = null ,direction = null) //The first argument ends up being the transit controller and IDK signals well enough to know what to do about it
+		if (status & (NOPOWER|BROKEN))
+			icon_state = "elev_offline"
+			return
+		switch(direction)
+			if ("up")
+				icon_state = "elev_transit_up"
+			if ("down")
+				icon_state = "elev_transit_down"
+			else//This handles signal-based calls
+				if (vehicle == our_vehicle)
+					icon_state = (our_vehicle.in_transit ? "elev_cooldown" : "elev_idle")
+
+	disposing()
+		UnregisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_MOVED)
+		UnregisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_READY)
+		our_vehicle = null
+		..()
