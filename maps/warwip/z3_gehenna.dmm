@@ -2444,8 +2444,10 @@
 /turf/simulated/wall/r_wall,
 /area/station/maintenance/west)
 "bxu" = (
-/obj/reagent_dispensers/heliumtank,
-/turf/simulated/floor/plating,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/turf/simulated/floor/grey/blackgrime,
 /area/station/maintenance/south)
 "bxR" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -3568,11 +3570,6 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/northeast)
 "crA" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/cable/purple{
 	icon_state = "4-8"
 	},
@@ -6298,6 +6295,11 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor/grey,
 /area/station/bridge/basement)
+"ecL" = (
+/obj/decal/cleanable/dirt/random,
+/obj/reagent_dispensers/heliumtank,
+/turf/simulated/floor/plating,
+/area/station/maintenance/south)
 "ecW" = (
 /obj/disposalpipe/junction/left/east,
 /obj/railing/cyan{
@@ -8344,7 +8346,7 @@
 /turf/simulated/floor/carpet/blue/standard/edge/nw,
 /area/station/crew_quarters/bar)
 "fnE" = (
-/obj/wingrille_spawn/reinforced,
+/obj/stool/bench/wooden/auto,
 /turf/simulated/floor/plating/gehenna,
 /area/station/maintenance/west)
 "foA" = (
@@ -9329,9 +9331,6 @@
 /area/station/crew_quarters/clown)
 "fYa" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/firealarm{
-	pixel_y = 24
-	},
 /turf/simulated/floor/grey/blackgrime,
 /area/station/science/teleporter)
 "fYc" = (
@@ -10497,11 +10496,6 @@
 /turf/simulated/floor/plating,
 /area/station/mining/lobby)
 "gHT" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
@@ -10562,6 +10556,7 @@
 /obj/machinery/light/small/warm{
 	dir = 1
 	},
+/obj/stool/bench/wooden/auto,
 /turf/simulated/floor/plating/gehenna,
 /area/station/maintenance/west)
 "gKZ" = (
@@ -12618,6 +12613,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/storage/tech)
+"igw" = (
+/obj/machinery/light/small/cool{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/maintenance/south)
 "igF" = (
 /obj/disposalpipe/segment/bent/east,
 /obj/grille/catwalk/jen,
@@ -14127,6 +14128,13 @@
 	},
 /turf/simulated/floor/black,
 /area/station/ai_monitored/armory)
+"iYW" = (
+/obj/machinery/light/small/cool{
+	dir = 4
+	},
+/obj/machinery/space_heater,
+/turf/simulated/floor/plating,
+/area/station/maintenance/south)
 "iZa" = (
 /obj/machinery/atmospherics/unary/cryo_cell/north,
 /turf/simulated/floor/white,
@@ -15837,14 +15845,10 @@
 /turf/simulated/floor,
 /area/station/engine/elect)
 "keV" = (
-/obj/cable{
-	icon_state = "0-2"
-	},
-/obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/power/apc/autoname_north,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
+/obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/science/teleporter)
 "kfg" = (
@@ -17304,6 +17308,7 @@
 "kWF" = (
 /obj/decal/cleanable/dirt,
 /obj/rack,
+/obj/item/mining_tools/pick,
 /turf/simulated/floor/industrial,
 /area/station/medical/basement)
 "kWJ" = (
@@ -19082,6 +19087,7 @@
 /obj/machinery/firealarm{
 	pixel_y = 24
 	},
+/obj/stool/bench/wooden/auto,
 /turf/simulated/floor/plating/gehenna,
 /area/station/maintenance/west)
 "mfN" = (
@@ -19572,10 +19578,9 @@
 /area/station/maintenance/central)
 "mwR" = (
 /obj/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+	icon_state = "0-8"
 	},
+/obj/machinery/power/apc/autoname_south,
 /turf/simulated/floor/grey,
 /area/station/science/teleporter)
 "mwY" = (
@@ -20448,6 +20453,7 @@
 /obj/item/reagent_containers/food/snacks/candy/caramel,
 /obj/item/reagent_containers/food/snacks/candy/caramel,
 /obj/item/device/light/flashlight,
+/obj/item/mining_tools/pick,
 /turf/simulated/floor/plating/gehenna,
 /area/noGenerate)
 "naf" = (
@@ -20583,6 +20589,11 @@
 /obj/machinery/power/data_terminal,
 /obj/machinery/computer/telescope{
 	dir = 8
+	},
+/obj/machinery/door_control{
+	id = "science_teleporter";
+	name = "Teleporter Door Control";
+	pixel_y = 32
 	},
 /turf/simulated/floor/grey,
 /area/station/science/teleporter)
@@ -27129,6 +27140,7 @@
 	pixel_x = -7;
 	pixel_y = 5
 	},
+/obj/item/mining_tools/pick,
 /turf/simulated/floor/plating,
 /area/station/science/artifact{
 	name = "Artifact Lounge"
@@ -28843,6 +28855,8 @@
 /area/station/storage/warehouse)
 "sEV" = (
 /obj/machinery/light_switch/east,
+/obj/rack,
+/obj/item/mining_tools/pick,
 /turf/simulated/floor/plating,
 /area/station/science/testchamber)
 "sEZ" = (
@@ -29406,6 +29420,14 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
+"sTS" = (
+/obj/machinery/door/poddoor/blast{
+	dir = 4;
+	id = "science_teleporter";
+	name = "teleporter blast door"
+	},
+/turf/simulated/floor/grey/blackgrime,
+/area/station/science/teleporter)
 "sUd" = (
 /obj/machinery/door/airlock/glass/engineering,
 /obj/disposalpipe/segment/mineral,
@@ -30259,6 +30281,9 @@
 "tux" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/machinery/computer/teleporter,
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
 /turf/simulated/floor/grey,
 /area/station/science/teleporter)
 "tuB" = (
@@ -34923,6 +34948,7 @@
 	dir = 4;
 	pixel_x = 24
 	},
+/obj/reagent_dispensers/heliumtank,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "woB" = (
@@ -60636,10 +60662,10 @@ pdO
 lJH
 toy
 pdO
-fnE
+wcF
 udT
 udT
-fnE
+wcF
 kPQ
 kPQ
 kpW
@@ -60938,10 +60964,10 @@ aQU
 utf
 toy
 rxG
-fnE
+wcF
 udT
 nbY
-fnE
+wcF
 kPQ
 kPQ
 kpW
@@ -61240,10 +61266,10 @@ pdO
 cZA
 toy
 lJH
-fnE
+wcF
 udT
 udT
-fnE
+wcF
 kPQ
 kPQ
 kPQ
@@ -61542,10 +61568,10 @@ qZT
 aQU
 cFt
 gsc
-fnE
+wcF
 udT
 udT
-fnE
+wcF
 kPQ
 kPQ
 kPQ
@@ -61844,10 +61870,10 @@ pdO
 pdO
 lJH
 lJH
-fnE
+wcF
 udT
 udT
-fnE
+wcF
 kPQ
 kPQ
 kPQ
@@ -62146,10 +62172,10 @@ pdO
 pdO
 pdO
 aki
-fnE
+wcF
 udT
 nbY
-fnE
+wcF
 kPQ
 kPQ
 kPQ
@@ -62448,10 +62474,10 @@ kiR
 qZT
 kiR
 tBD
-fnE
+wcF
 udT
 udT
-fnE
+wcF
 kPQ
 kPQ
 kPQ
@@ -62750,10 +62776,10 @@ lNd
 lNd
 cZA
 aki
-fnE
+wcF
 udT
 udT
-fnE
+wcF
 kPQ
 kPQ
 kPQ
@@ -63052,10 +63078,10 @@ lNd
 lNd
 lJH
 toy
-fnE
+wcF
 udT
 udT
-fnE
+wcF
 kPQ
 kPQ
 kPQ
@@ -63354,10 +63380,10 @@ lNd
 lNd
 aki
 wAs
-fnE
+wcF
 udT
 nbY
-fnE
+wcF
 kPQ
 kPQ
 kPQ
@@ -63656,10 +63682,10 @@ lNd
 lNd
 toy
 pdO
-fnE
+wcF
 udT
 udT
-fnE
+wcF
 kPQ
 kPQ
 kPQ
@@ -63958,10 +63984,10 @@ lNd
 lNd
 toy
 pdO
-fnE
+wcF
 udT
 udT
-fnE
+wcF
 kPQ
 kPQ
 kPQ
@@ -64260,10 +64286,10 @@ lNd
 lNd
 pdO
 pdO
-fnE
+wcF
 udT
 udT
-fnE
+wcF
 kPQ
 kPQ
 kPQ
@@ -64562,10 +64588,10 @@ lNd
 lNd
 pdO
 pdO
-fnE
+wcF
 udT
 nbY
-fnE
+wcF
 kPQ
 kPQ
 kPQ
@@ -64864,10 +64890,10 @@ lNd
 lNd
 pdO
 pdO
-fnE
+wcF
 udT
 udT
-fnE
+wcF
 kPQ
 kPQ
 kPQ
@@ -65166,10 +65192,10 @@ lNd
 lNd
 pdO
 pdO
-fnE
+wcF
 udT
 udT
-fnE
+wcF
 kPQ
 kPQ
 kPQ
@@ -65468,10 +65494,10 @@ lNd
 lNd
 pdO
 pdO
-fnE
+wcF
 udT
 udT
-fnE
+wcF
 kPQ
 kPQ
 kPQ
@@ -65770,10 +65796,10 @@ lNd
 lNd
 pdO
 pdO
-fnE
+wcF
 udT
 nbY
-fnE
+wcF
 kPQ
 kPQ
 kPQ
@@ -66072,10 +66098,10 @@ lNd
 lNd
 pdO
 pdO
-fnE
+wcF
 udT
 udT
-fnE
+wcF
 kPQ
 kPQ
 kPQ
@@ -66674,7 +66700,7 @@ lNd
 lNd
 lNd
 lNd
-uVu
+fnE
 sQT
 udT
 udT
@@ -66976,8 +67002,8 @@ lNd
 lNd
 lNd
 lNd
-uVu
 gKS
+udT
 udT
 udT
 nbY
@@ -67277,9 +67303,9 @@ lNd
 tOK
 alv
 pdO
-pdO
-bxm
+toy
 mfI
+udT
 udT
 udT
 udT
@@ -67635,7 +67661,7 @@ xIx
 puM
 tVa
 bxu
-kEu
+sTS
 fYa
 jZc
 ybt
@@ -67935,9 +67961,9 @@ kMc
 pzc
 xIx
 puM
-puM
+igw
 bxu
-kEu
+sTS
 keV
 gHT
 crA
@@ -69446,8 +69472,8 @@ pzc
 xWU
 qAe
 woc
-nMw
-uYT
+iYW
+ecL
 qAe
 jrz
 jrz
@@ -73979,10 +74005,10 @@ uiP
 nuL
 qAe
 aBv
-aBv
+qAe
 uJd
 mDu
-kPQ
+qAe
 pdO
 pdO
 pdO
@@ -82740,7 +82766,7 @@ jZT
 qAe
 nbd
 rUw
-kPQ
+qRR
 kpW
 kpW
 kpW
@@ -84790,7 +84816,7 @@ jrz
 pdO
 pdO
 pdO
-pdO
+qZT
 qZT
 xrh
 amu
@@ -102621,7 +102647,7 @@ kPQ
 kPQ
 uVN
 uVN
-kPQ
+uVN
 kPQ
 pdO
 pdO
@@ -103224,7 +103250,7 @@ kPQ
 kPQ
 uVN
 uVN
-uVN
+kPQ
 kPQ
 kpW
 pdO
