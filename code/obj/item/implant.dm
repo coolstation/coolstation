@@ -718,7 +718,7 @@ THROWING DARTS
 		if (src.suppress_mindslave_popup)
 			boutput(M, "<h2><span class='alert'>You feel an unwavering loyalty to your new master, [I.real_name]! Do not tell anyone about this unless your new master tells you to!</span></h2>")
 		else
-			boutput(M, "<h2><span class='alert'>You feel an unwavering loyalty to [I.real_name]! You feel you must obey \his every order! Do not tell anyone about this unless your master tells you to!</span></h2>")
+			boutput(M, "<h2><span class='alert'>You feel an unwavering loyalty to [I.real_name]! You feel you must obey [his_or_her(I)] every order! Do not tell anyone about this unless your master tells you to!</span></h2>")
 			SHOW_MINDSLAVE_TIPS(M)
 		if (src.custom_orders)
 			boutput(M, "<h2><span class='alert'>[I.real_name]'s will consumes your mind! <b>\"[src.custom_orders]\"</b> It <b>must</b> be done!</span></h2>")

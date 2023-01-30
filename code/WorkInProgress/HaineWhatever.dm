@@ -1798,7 +1798,7 @@ Now, his life is in my fist! NOW, HIS LIFE IS IN MY FIST!
 						sleep(2 SECONDS)
 						if (ishuman(H))
 							var/mob/living/carbon/human/HU = H
-							src.visible_message("<span class='alert'><B>[src] shoves \his hand into [H]'s chest!</B></span>")
+							src.visible_message("<span class='alert'><B>[src] shoves [his_or_her(src)] hand into [H]'s chest!</B></span>")
 							src.say("Kali ma, shakthi deh!")
 							if(HU.heart_op_stage <= 3.0)
 								HU:heart_op_stage = 4.0

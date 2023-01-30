@@ -355,7 +355,7 @@ var/global/the_automaton = null
 
 		else if (istype(W, /obj/item/book_kinginyellow))
 			if (keycount < AUTOMATON_MAX_KEYS || derelict_mode)
-				user.visible_message("<span class='alert'><b>[src]</b> ignores [user]'s attempts to hand over the book, even if \he waves it right in its face and get all obnoxious about it.  Maybe this isn't the right time?</span>",\
+				user.visible_message("<span class='alert'><b>[src]</b> ignores [user]'s attempts to hand over the book, even if [he_or_she(user)] waves it right in its face and get all obnoxious about it.  Maybe this isn't the right time?</span>",\
 				"<span class='alert'><b>[src]</b> ignores your attempts to hand over the book, even if you wave it right in its face and get all obnoxious about it.  Maybe this isn't the right time?</span>")
 				return
 

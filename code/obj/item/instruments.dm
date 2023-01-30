@@ -218,7 +218,7 @@
 			var/mob/living/carbon/human/H = user
 			if (H.sims)
 				H.sims.affectMotive("fun", 5)
-		user.visible_message("<B>[user]</B> lays down a [pick("sexy", "sensuous", "libidinous","spicy","flirtatious","salacious","sizzling","carnal","hedonistic")] riff on \his saxophone!")
+		user.visible_message("<B>[user]</B> lays down a [pick("sexy", "sensuous", "libidinous","spicy","flirtatious","salacious","sizzling","carnal","hedonistic")] riff on [his_or_her(user)] saxophone!")
 		playsound(get_turf(src), pick(src.sounds_sax), 50, 1)
 		for (var/obj/critter/dog/george/G in range(user,6))
 			if (prob(60))
