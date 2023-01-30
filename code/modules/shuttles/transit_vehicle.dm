@@ -360,7 +360,7 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 		else
 			transit_controls.move_vehicle(src.vehicle_id, stop_bottom_id, user)
 			update_icon(,, "down")
-		playsound(src.loc, 'sound/impact_sounds/Generic_Click_1.ogg', 40, 0.5)
+		playsound(src.loc, 'sound/misc/handle_click.ogg', 40, 0.5)
 
 	attackby(obj/item/I, mob/user) //smack in the button with yer loot, food, or thing to shoot
 		attack_hand(user)
