@@ -73,6 +73,9 @@
 		else
 			icon_state = "freezer_0"
 		return
+/*
+
+	***Old freezer UI code (just in case)***
 
 	attack_ai(mob/user as mob)
 		return src.Attackhand(user)
@@ -119,10 +122,39 @@
 		src.updateUsrDialog()
 		src.add_fingerprint(usr)
 		return
+*/
+
+//ported from Goonstation by SpacingNevada
+	ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+		. = ..()
+		if(.)
+			return
+		switch(action)
+			if("active_toggle")
+				src.on = !src.on
+				update_icon()
+				. = TRUE
+			if("set_target_temperature")
+				src.current_temperature = clamp(params["value"], 73.15, 293.15)
+				. = TRUE
+
+	ui_data(mob/user)
+		. = ..()
+		.["active"] = src.on
+		.["target_temperature"] = src.current_temperature
+		.["air_temperature"] = air_contents.temperature
+		.["air_pressure"] = MIXTURE_PRESSURE(air_contents)
+
+	ui_interact(mob/user, datum/tgui/ui)
+		ui = tgui_process.try_update_ui(user, src, ui)
+		if (!ui)
+			ui = new(user, src, "Freezer")
+			ui.set_autoupdate(TRUE)
+			ui.open()
 
 	process()
 		..()
-		src.updateUsrDialog()
+//		src.updateUsrDialog()
 		if(prob(5) && src.on)
 			playsound(src.loc, ambience_atmospherics, 30, 1)
 
