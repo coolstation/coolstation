@@ -2062,6 +2062,11 @@
 	},
 /turf/simulated/floor/shuttlebay,
 /area/transit_vehicle/elevator/eng_top)
+"bLL" = (
+/obj/disposalpipe/segment/vertical,
+/obj/machinery/vending/cola/red,
+/turf/simulated/floor/black,
+/area/station/security/secwing)
 "bLS" = (
 /obj/decal/tile_edge/floorguide/arrow_w{
 	pixel_x = 16
@@ -2790,6 +2795,7 @@
 "cnW" = (
 /obj/table/auto,
 /obj/disposalpipe/segment/food,
+/obj/machinery/cashreg,
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/farmers)
 "cog" = (
@@ -5246,6 +5252,11 @@
 	},
 /turf/simulated/floor/plating,
 /area/listeningpost)
+"eoV" = (
+/obj/table/auto,
+/obj/item/decoration/flower_vase/vase7,
+/turf/simulated/floor/wood,
+/area/station/crew_quarters/farmers)
 "epl" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	can_rupture = 0
@@ -12494,6 +12505,10 @@
 "kja" = (
 /turf/simulated/wall/r_wall,
 /area/station/security/brig/cell_block_control)
+"kjj" = (
+/obj/machinery/vending/snack,
+/turf/simulated/floor/blue,
+/area/station/medical/medbay/lobby)
 "kjG" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/wall,
@@ -14395,6 +14410,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
 	},
+/obj/machinery/vending/medical_public,
 /turf/simulated/floor/black,
 /area/station/medical/medbay)
 "lML" = (
@@ -16150,8 +16166,7 @@
 /turf/simulated/floor/industrial,
 /area/station/mining/dock)
 "nvG" = (
-/obj/table/auto,
-/obj/item/decoration/flower_vase/vase7,
+/obj/machinery/vending/cola/red,
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/farmers)
 "nvJ" = (
@@ -17441,7 +17456,6 @@
 "oxv" = (
 /obj/table/auto,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
-/obj/machinery/cashreg,
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/farmers)
 "oyF" = (
@@ -22092,6 +22106,10 @@
 	},
 /turf/simulated/floor/carpet/green/fancy/edge/north,
 /area/station/crew_quarters/farmers)
+"sfk" = (
+/obj/machinery/vending/cola/blue,
+/turf/simulated/floor/black,
+/area/station/medical/medbay)
 "sfu" = (
 /obj/disposalpipe/junction/right/east,
 /turf/simulated/floor,
@@ -24909,6 +24927,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/vending/cola/blue,
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/customs)
 "uDU" = (
@@ -28909,7 +28928,7 @@
 /turf/simulated/floor/wood,
 /area/station/wc/medbay)
 "yag" = (
-/obj/table/wood/auto,
+/obj/machinery/vending/cola/red,
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/lobby)
 "yaj" = (
@@ -62304,7 +62323,7 @@ pCJ
 ewa
 mDz
 lRk
-uRs
+sfk
 uRs
 uRs
 uRs
@@ -66523,7 +66542,7 @@ cTg
 fAV
 bml
 uSf
-yag
+kjj
 sJA
 bml
 lmo
@@ -71627,7 +71646,7 @@ uNs
 ukS
 iPA
 uUI
-lJn
+bLL
 sna
 mlg
 mlg
@@ -73781,7 +73800,7 @@ hYh
 gfA
 dki
 apb
-ujV
+eoV
 ujV
 vYE
 pJr
