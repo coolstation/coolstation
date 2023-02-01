@@ -55,7 +55,7 @@ export const Freezer = (props, context) => {
                 fontSize={1.25}
                 textAlign="center"
                 onClick={() => act('active_toggle')}>
-                {active === 0 ? "Deactivate" : "Activate"}
+                {active === 0 ? "Inactive" : "Active"}
               </Button>
             </Stack.Item>
           </Stack>
