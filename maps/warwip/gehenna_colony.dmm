@@ -1222,6 +1222,10 @@
 /obj/stool/bed/brig,
 /turf/simulated/floor/sandytile,
 /area/station/security/brig/south_side)
+"aWL" = (
+/obj/wingrille_spawn/reinforced,
+/turf/simulated/floor/plating,
+/area/station/medical/maintenance)
 "aXe" = (
 /obj/decal/poster/wallsign/WC_black,
 /turf/simulated/wall,
@@ -4025,6 +4029,10 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
+"dly" = (
+/obj/machinery/vending/snack,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/storefront)
 "dlC" = (
 /turf/simulated/floor/carpet/grime,
 /area/station/security/secoffquarters)
@@ -4574,7 +4582,7 @@
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/farmers)
 "dJV" = (
-/obj/wingrille_spawn,
+/obj/grille/steel,
 /turf/simulated/floor/plating,
 /area/station/medical/maintenance)
 "dJZ" = (
@@ -9382,6 +9390,7 @@
 	dir = 10;
 	icon_state = "bot2"
 	},
+/obj/access_spawn/hangar,
 /turf/simulated/floor,
 /area/station/quartermaster/cargobay)
 "hCa" = (
@@ -9713,6 +9722,13 @@
 	icon_state = "gehenna_tile"
 	},
 /area/station/security/brig/north_side)
+"hRG" = (
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/obj/access_spawn/hangar,
+/turf/simulated/floor/shuttlebay,
+/area/station/quartermaster/cargobay)
 "hRP" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
@@ -11680,6 +11696,10 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor,
 /area/station/engine/engineering/breakroom)
+"jCZ" = (
+/obj/access_spawn/hangar,
+/turf/simulated/floor/shuttlebay,
+/area/station/quartermaster/cargobay)
 "jDi" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
@@ -14338,6 +14358,7 @@
 /obj/machinery/vehicle/pod_smooth/industrial{
 	dir = 4
 	},
+/obj/access_spawn/hangar,
 /turf/simulated/floor/shuttlebay,
 /area/station/quartermaster/cargobay)
 "lJn" = (
@@ -14607,6 +14628,7 @@
 /area/station/mining/dock)
 "lXz" = (
 /obj/machinery/vehicle/tank/car,
+/obj/access_spawn/hangar,
 /turf/simulated/floor/shuttlebay,
 /area/station/quartermaster/cargobay)
 "lYz" = (
@@ -15595,6 +15617,7 @@
 /area/station/medical/robotics)
 "naC" = (
 /obj/machinery/vehicle/tank/car/whiteyellow,
+/obj/access_spawn/hangar,
 /turf/simulated/floor/shuttlebay,
 /area/station/quartermaster/cargobay)
 "naX" = (
@@ -19492,6 +19515,10 @@
 "qfm" = (
 /turf/simulated/wall,
 /area/station/chapel/office)
+"qfu" = (
+/obj/machinery/vending/cola/blue,
+/turf/simulated/wall/asteroid/gehenna,
+/area/space)
 "qfP" = (
 /obj/rack,
 /obj/mopbucket,
@@ -20776,6 +20803,16 @@
 	},
 /turf/simulated/floor,
 /area/station/security/secoffquarters)
+"ral" = (
+/obj/vehicle/forklift{
+	color = "#FFDDDD"
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10;
+	icon_state = "bot2"
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargobay)
 "raP" = (
 /obj/machinery/light/fluorescent/cool{
 	dir = 4
@@ -21643,6 +21680,7 @@
 /area/station/security/checkpoint/sec_foyer)
 "rLP" = (
 /obj/machinery/vehicle/tank/minisub/industrial,
+/obj/access_spawn/hangar,
 /turf/simulated/floor/shuttlebay,
 /area/station/quartermaster/cargobay)
 "rMe" = (
@@ -23932,6 +23970,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/vending/snack,
 /turf/simulated/floor/green,
 /area/station/medical/research)
 "tJQ" = (
@@ -26237,6 +26276,11 @@
 	dir = 10
 	},
 /area/station/engine/monitoring)
+"vNX" = (
+/obj/rack,
+/obj/item/wirecutters,
+/turf/simulated/floor/plating,
+/area/station/medical/maintenance)
 "vOV" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/wall,
@@ -28045,7 +28089,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/north)
 "xkn" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending/pizza,
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/farmers)
 "xko" = (
@@ -58710,7 +58754,7 @@ aRo
 aRZ
 rPt
 ykX
-aRZ
+aWL
 iiv
 iiv
 iiv
@@ -61428,7 +61472,7 @@ xlJ
 mcY
 euZ
 bhM
-sZL
+vNX
 aRZ
 cqC
 cqC
@@ -67449,7 +67493,7 @@ tif
 iiv
 iiv
 iiv
-cqC
+qfu
 cqC
 eMq
 pMX
@@ -90969,7 +91013,7 @@ qiv
 qiv
 qiv
 qiv
-qiv
+dly
 alZ
 nGX
 wCC
@@ -92475,7 +92519,7 @@ hBD
 tIG
 ofs
 fLt
-hBD
+ral
 ndp
 vKw
 xhT
@@ -93375,7 +93419,7 @@ fBM
 pdh
 iKr
 cBk
-hqN
+jCZ
 lJc
 coH
 rLP
@@ -93677,8 +93721,8 @@ fBM
 pdh
 iKr
 cBk
-hqN
-hQO
+jCZ
+hRG
 xOM
 hqN
 hqN
