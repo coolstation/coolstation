@@ -686,6 +686,15 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Clothing"
 
+/datum/manufacture/hardhat
+	name = "Hard Hat"
+	item_paths = list("INS-1","CON-1","MET-1")
+	item_amounts = list(1,1,1)
+	item_outputs = list(/obj/item/clothing/head/helmet/hardhat)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
 /datum/manufacture/shoes
 	name = "Black Shoes"
 	item_paths = list("FAB-1")

@@ -2051,6 +2051,7 @@
 		/datum/manufacture/light_bulb,
 		/datum/manufacture/light_tube,
 		/datum/manufacture/table_folding,
+		/datum/manufacture/hardhat,
 		/datum/manufacture/jumpsuit,
 		/datum/manufacture/shoes,
 		/datum/manufacture/breathmask,
@@ -2063,8 +2064,8 @@
 		/datum/manufacture/vuvuzela,
 		/datum/manufacture/harmonica,
 		/datum/manufacture/bikehorn,
-		/datum/manufacture/bullet_22,
-		/datum/manufacture/bullet_smoke,
+		//datum/manufacture/bullet_22,
+		//datum/manufacture/bullet_smoke,
 		/datum/manufacture/stapler)
 
 /obj/machinery/manufacturer/glasswares
