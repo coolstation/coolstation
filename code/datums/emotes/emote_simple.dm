@@ -388,9 +388,30 @@
 	if (!user.restrained())
 		return list("<B>[user]</B> places [his_or_her(user)] hand on [his_or_her(user)] face in exasperation.", "<I>places [his_or_her(user)] hand on [his_or_her(user)] face in exasperation</I>", MESSAGE_VISIBLE)
 	else
-		return list("<B>[src]</B> looks rather exasperated.", "<I>looks rather exasperated</I>", MESSAGE_VISIBLE) //mood
+		return list("<B>[user]</B> looks rather exasperated.", "<I>looks rather exasperated</I>", MESSAGE_VISIBLE) //mood
 
 //This one was in the middle of the complex emote section, look how dang long it is!
 /datum/emote/oneoff/handpuppet
 /datum/emote/oneoff/handpuppet/enact(mob/user, voluntary = 0, param)
-	return list("<b>[src]</b> throws [his_or_her(src)] voice, badly, while flapping [his_or_her(src)] thumb and index finger like some sort of lips.[prob(10) ? " Admittedly, it is a pretty good impression of the [pick("captain", "head of personnel", "clown", "research director", "chief engineer", "head of security", "medical director", "AI", "chaplain", "detective")]." : null]", null, MESSAGE_VISIBLE)
+	return list("<b>[user]</b> throws [his_or_her(user)] voice, badly, while flapping [his_or_her(user)] thumb and index finger like some sort of lips.[prob(10) ? " Admittedly, it is a pretty good impression of the [pick("captain", "head of personnel", "clown", "research director", "chief engineer", "head of security", "medical director", "AI", "chaplain", "detective")]." : null]", null, MESSAGE_VISIBLE)
+
+/datum/emote/help
+/datum/emote/help/enact(mob/user, voluntary = 0, param)
+	user.show_text("To use emotes, simply enter 'me (emote)' in the input bar. Certain emotes can be targeted at other characters - to do this, enter 'me (emote) (name of character)' without the brackets.")
+	user.show_text("For a list of all emotes, use 'me list'. For a list of basic emotes, use 'me listbasic'. For a list of emotes that can be targeted, use 'me listtarget'.")
+
+//Emotes differ per mob type, so
+/datum/emote/listtarget/human
+/datum/emote/listtarget/human/enact(mob/user, voluntary = 0, param)
+	user.show_text("salute, bow, hug, wave, glare, stare, look, leer, nod, flipoff, doubleflip, shakefist, handshake, daps, slap, boggle, highfive, fingerguns")
+
+/datum/emote/listbasic/human
+/datum/emote/listbasic/human/enact(mob/user, voluntary = 0, param)
+	user.show_text("smile, grin, smirk, frown, scowl, grimace, sulk, pout, nod, blink, drool, shrug, tremble, despair, quiver, shiver, shudder, shake, \
+	think, ponder, clap, wave, salute, flap, aflap, laugh, chuckle, giggle, chortle, guffaw, cough, hiccup, sigh, mumble, grumble, groan, moan, sneeze, \
+	sniff, snore, whimper, yawn, choke, gasp, weep, sob, wail, whine, gurgle, gargle, blush, flinch, blink_r, eyebrow, shakehead, shakebutt, \
+	pale, flipout, rage, shame, raisehand, crackknuckles, stretch, rude, cry, retch, raspberry, tantrum, gesticulate, wgesticulate, smug, \
+	nosepick, flex, facepalm, panic, snap, airquote, twitch, twitch_v, faint, deathgasp, signal, wink, collapse, trip, dance, scream, \
+	burp, fart, monologue, contemplate, custom")
+
+
