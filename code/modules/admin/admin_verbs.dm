@@ -437,9 +437,9 @@ var/list/admin_verbs = list(
 		/verb/print_flow_networks,
 		/client/proc/toggle_hard_reboot,
 		/client/proc/cmd_modify_respawn_variables,
-		/client/proc/set_nukie_score,
-		/client/proc/set_pod_wars_score,
-		/client/proc/set_pod_wars_deaths,
+		//client/proc/set_nukie_score,
+		//client/proc/set_pod_wars_score,
+		//client/proc/set_pod_wars_deaths,
 
 		/client/proc/player_panel_tgui,
 
