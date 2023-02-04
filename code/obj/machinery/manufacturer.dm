@@ -2415,8 +2415,8 @@
 /obj/machinery/manufacturer/gas
 	name = "Gas Extractor"
 	desc = "A manufacturing unit that can produce gas canisters from certain ores."
-	icon_state = "fab-mining"
-	icon_base = "mining"
+	icon_state = "fab-atmos"
+	icon_base = "atmos"
 	accept_blueprints = 0
 	available = list(
 	/datum/manufacture/atmos_can,
@@ -2522,6 +2522,28 @@
 	/datum/manufacture/biohazard)
 
 	hidden = list(/datum/manufacture/classcrate)
+
+/obj/machinery/manufacturer/engineering
+	name = "engineering manufacturer"
+	desc = "A manufacturing unit calibrated to produce gear for engineers."
+	icon_state = "fab-engi"
+	icon_base = "engi"
+	free_resource_amt = 5
+	free_resources = list(/obj/item/material_piece/steel,
+		/obj/item/material_piece/copper,
+		/obj/item/material_piece/glass)
+	//Please add to this
+	available = list(/datum/manufacture/extinguisher,
+	/datum/manufacture/hardhat,
+	/datum/manufacture/cable,
+	/datum/manufacture/powercell,
+	/datum/manufacture/powercellC,
+	/datum/manufacture/powercellE,
+	/datum/manufacture/RCDammo,
+	/datum/manufacture/RCDammomedium)
+
+	hidden = list(/datum/manufacture/RCDammolarge,
+	/datum/manufacture/RCD)
 
 /obj/machinery/manufacturer/zombie_survival
 	name = "Uber-Extreme Survival Manufacturer"
