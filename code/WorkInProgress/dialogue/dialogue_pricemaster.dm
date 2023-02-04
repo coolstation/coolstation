@@ -282,10 +282,10 @@ proc/init_pmvox() // first bare numbers
 	new/datum/priceVOXsound("136", "sound/voice/PRICEMASTER/COMPLETES/ONE_HUNDRED_AND_THIRTY_SIX_DOLLARS.ogg", 136,"ONE HUNDRED AND THIRTY SIX DOLLARS"))
 
 	pmvoxend = list(new/datum/priceVOXsound("spoken", "sound/voice/PRICEMASTER/EXCLAMATIONS/THE_PRICEMASTER_HAS_SPOKEN.ogg", 0, "THE PRICEMASTER HAS SPOKEN"),
-	new/datum/priceVOXsound("spoken2", "sound/voice/PRICEMASTER/EXCLAMATIONS/THE_PRICEMASTER_HAS_SPOKEN.ogg2", 0, "THE PRICEMASTER HAS SPOKEN"),
-	new/datum/priceVOXsound("spoken3", "sound/voice/PRICEMASTER/EXCLAMATIONS/THE_PRICEMASTER_HAS_SPOKEN.ogg3", 0, "THE PRICEMASTER HAS SPOKEN"),
-	new/datum/priceVOXsound("spoken4", "sound/voice/PRICEMASTER/EXCLAMATIONS/THE_PRICEMASTER_HAS_SPOKEN.ogg4", 0, "THE PRICEMASTER HAS SPOKEN"),
-	new/datum/priceVOXsound("spoken5", "sound/voice/PRICEMASTER/EXCLAMATIONS/THE_PRICEMASTER_HAS_SPOKEN.ogg5", 0, "THE PRICEMASTER HAS SPOKEN"))
+	new/datum/priceVOXsound("spoken2", "sound/voice/PRICEMASTER/EXCLAMATIONS/THE_PRICEMASTER_HAS_SPOKEN2.ogg", 0, "THE PRICEMASTER HAS SPOKEN"),
+	new/datum/priceVOXsound("spoken3", "sound/voice/PRICEMASTER/EXCLAMATIONS/THE_PRICEMASTER_HAS_SPOKEN3.ogg", 0, "THE PRICEMASTER HAS SPOKEN"),
+	new/datum/priceVOXsound("spoken4", "sound/voice/PRICEMASTER/EXCLAMATIONS/THE_PRICEMASTER_HAS_SPOKEN4.ogg", 0, "THE PRICEMASTER HAS SPOKEN"),
+	new/datum/priceVOXsound("spoken5", "sound/voice/PRICEMASTER/EXCLAMATIONS/THE_PRICEMASTER_HAS_SPOKEN5.ogg", 0, "THE PRICEMASTER HAS SPOKEN"))
 
 	SPAWN_DBG(0.1 SECONDS)
 		var/listolists = list(pmvoxnums, pmvoxmisc, pmvoxdollars, pmvoxthings, pmvoxcomplete, pmvoxend)
