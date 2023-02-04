@@ -39,7 +39,7 @@ datum/special_respawn
 		for(var/c = 0, c < number, c++)
 			var/player = find_player("a syndicate agent", TRUE)
 			if(player)
-				var/check = spawn_character_human("[syndicate_name()] Operative #[c+1]", player, pick_landmark(LANDMARK_SYNDICATE), "syndie")
+				var/check = spawn_character_human("[syndicate_name_foss()] Operative #[c+1]", player, pick_landmark(LANDMARK_SYNDICATE), "syndie")
 				if(!check)
 					break
 				r_number ++

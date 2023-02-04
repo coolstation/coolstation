@@ -95,7 +95,7 @@
 		..()
 		SPAWN_DBG(0)
 			if(ticker?.mode && istype(ticker.mode, /datum/game_mode/nuclear))
-				src.real_name = "[syndicate_name()] Operative #[ticker.mode:agent_number]"
+				src.real_name = "[syndicate_name_foss()] Operative #[ticker.mode:agent_number]"
 				ticker.mode:agent_number++
 			else
 				src.real_name = "Syndicate Agent"
