@@ -23,7 +23,7 @@
 
 /datum/game_mode/nuclear/announce()
 	boutput(world, "<B>The current game mode is - Nuclear Emergency!</B>")
-	boutput(world, "<B>[syndicate_name()] operatives are approaching [station_name(1)]! They intend to destroy the [station_or_ship()] with a nuclear warhead.</B>")
+	boutput(world, "<B>[syndicate_name_foss()] operatives are approaching [station_name(1)]! They intend to destroy the [station_or_ship()] with a nuclear warhead.</B>")
 
 /datum/game_mode/nuclear/pre_setup()
 	var/list/possible_syndicates = list()
@@ -168,7 +168,7 @@
 		bestow_objective(synd_mind,/datum/objective/specialist/nuclear)
 
 		var/obj_count = 1
-		boutput(synd_mind.current, "<span class='notice'>You are a [syndicate_name()] agent!</span>")
+		boutput(synd_mind.current, "<span class='notice'>You are a [syndicate_name_foss()] agent!</span>")
 		for(var/datum/objective/objective in synd_mind.objectives)
 			boutput(synd_mind.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			obj_count++
@@ -180,14 +180,14 @@
 			synd_mind.current.set_loc(pick_landmark(LANDMARK_SYNDICATE_BOSS))
 			if(!synd_mind.current.loc)
 				synd_mind.current.set_loc(pick_landmark(LANDMARK_SYNDICATE))
-			synd_mind.current.real_name = "[syndicate_name()] [leader_title]"
+			synd_mind.current.real_name = "[syndicate_name_foss()] [leader_title]"
 			equip_syndicate(synd_mind.current, 1)
 			new /obj/item/device/audio_log/nuke_briefing(synd_mind.current.loc, target_location_name)
 			leader_selected = 1
 		else
 			synd_mind.current.set_loc(pick_landmark(LANDMARK_SYNDICATE))
 			var/callsign = pick(callsign_list)
-			synd_mind.current.real_name = "[syndicate_name()] Operative [callsign]" //new naming scheme
+			synd_mind.current.real_name = "[syndicate_name_foss()] Operative [callsign]" //new naming scheme
 			callsign_list -= callsign
 			equip_syndicate(synd_mind.current, 0)
 		boutput(synd_mind.current, "<span class='alert'>Your headset allows you to communicate on the syndicate radio channel by prefacing messages with :h, as (say \":h Agent reporting in!\").</span>")
@@ -443,6 +443,32 @@ var/syndicate_name = null
 	else
 		name += pick("-", "*", "")
 		name += pick("Tech", "Sun", "Co", "Tek", "X", "Inc", "Gen", "Star", "Dyne", "Code", "Hive")
+
+	syndicate_name = name
+	return name
+
+
+/proc/syndicate_name_foss()
+	if (syndicate_name)
+		return syndicate_name
+
+	var/name = ""
+
+	// the F
+#if defined(XMAS)
+	name += pick("Festive", "Frosty", "Frozen", "Fantasy", "elF", "Feliz-Navidad", "Festival")
+#elif defined(HALLOWEEN)
+	name += pick("Frightening", "Freaky", "Fall", "Fleshy", "Fearful", "Fearsome", "Flaying", "Frankenstein")
+#else
+	name += pick("Free", "Free", "Free", "Free", "Free", "Free", "Free", "Free", "Free", "Francesco", "French", "Freeform", "Flamboyant", "Freaky", "Funk", "Famiglia")
+#endif
+	name += " "
+	// the O
+	name += pick("Original", "Ordinary", "Operable", "Ownerless", "Owl-themed", "Open", "Open", "Open", "Open", "Open", "Open", "Open", "Open", "Open")
+	name += "-"
+	name += pick("Sauce" , "Science", "Syndicate", "Salsa", "Sarsaparilla", "Surveillance", "Source", "Source", "Source", "Source", "Source", "Source", "Source")
+	name += " "
+	name += pick("Sauce" , "Science", "Syndicate", "Syndicate", "Syndicate", "Syndicate", "Syndicate", "Syndicate", "Salsa", "Sarsaparilla", "Surveillance", "Source")
 
 	syndicate_name = name
 	return name

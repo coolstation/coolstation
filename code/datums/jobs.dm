@@ -2249,7 +2249,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 		if (!M)
 			return
 		if (ticker?.mode && istype(ticker.mode, /datum/game_mode/nuclear))
-			M.real_name = "[syndicate_name()] Operative #[ticker.mode:agent_number]"
+			M.real_name = "[syndicate_name_foss()] Operative #[ticker.mode:agent_number]"
 			ticker.mode:agent_number++
 		else
 			M.real_name = "Syndicate Agent"
