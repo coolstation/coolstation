@@ -14534,6 +14534,10 @@
 /obj/item/device/radio/intercom/medical,
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/conference)
+"lOc" = (
+/obj/machinery/atmospherics/pipe/simple/overfloor/southwest,
+/turf/simulated/floor/plating,
+/area/space)
 "lOn" = (
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
@@ -23968,6 +23972,12 @@
 	},
 /turf/simulated/floor,
 /area/station/engine/engineering)
+"tGl" = (
+/obj/machinery/atmospherics/pipe/vertical_pipe/east{
+	target_z = 3
+	},
+/turf/simulated/floor/plating,
+/area/space)
 "tGm" = (
 /obj/submachine/cargopad/qm,
 /turf/simulated/floor,
@@ -24635,6 +24645,10 @@
 "ujV" = (
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/farmers)
+"uks" = (
+/obj/machinery/atmospherics/pipe/simple/overfloor,
+/turf/simulated/floor/plating,
+/area/space)
 "ukN" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/stool,
@@ -25118,6 +25132,12 @@
 "uGi" = (
 /turf/simulated/wall/r_wall,
 /area/station/engine/engineering/ce)
+"uGK" = (
+/obj/machinery/door/airlock,
+/obj/access_spawn/research,
+/obj/machinery/atmospherics/pipe/simple/overfloor,
+/turf/simulated/floor/plating,
+/area/space)
 "uHp" = (
 /turf/simulated/floor/specialroom/freezer,
 /area/station/medical/morgue)
@@ -53155,7 +53175,7 @@ iiv
 iiv
 msF
 msF
-nqM
+tGl
 nqM
 yjp
 xfi
@@ -53457,10 +53477,10 @@ iiv
 iiv
 msF
 etE
-nqM
-nqM
-iio
-xfi
+lOc
+uks
+uGK
+fxr
 iVv
 iiv
 iiv
