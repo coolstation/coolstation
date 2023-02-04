@@ -97,6 +97,14 @@
 		else //lets restart the action
 			src.onRestart()
 
+	onInterrupt()
+		..()
+		src.rod.is_fishing = false
+		src.rod.update_icon()
+		src.user.update_inhands()
+		return
+
+
 /obj/item/fishing_rod/enhanced //for testing/admin shenanigans
 	name = "enhanced fibreglass telescope ultralight 47" //droods
 	desc = "The latest model"
