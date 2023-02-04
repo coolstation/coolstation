@@ -358,41 +358,41 @@
 //I'm shoving a bunch of these under oneoff purely for the navigability of the object tree
 //ends in exclamation mark
 /*
-/datum/emote/oneoff/flipout
-/datum/emote/oneoff/flipout/enact(mob/user, voluntary = 0, param)
+/datum/emote/flipout
+/datum/emote/flipout/enact(mob/user, voluntary = 0, param)
 	return list("<B>[user]</B> flips the fuck out!", "<I>flips the fuck out!</I>", MESSAGE_VISIBLE)
 
 //ends in exclamation mark
-/datum/emote/oneoff/rage //also fury, angry
-/datum/emote/oneoff/rage/enact(mob/user, voluntary = 0, param)
+/datum/emote/rage //also fury, angry
+/datum/emote/rage/enact(mob/user, voluntary = 0, param)
 	return list("<B>[user]</B> becomes utterly furious!", "<I>becomes utterly furious!</I>", MESSAGE_VISIBLE)
 */
 //maptext differs
-/datum/emote/oneoff/pale
-/datum/emote/oneoff/pale/enact(mob/user, voluntary = 0, param)
+/datum/emote/pale
+/datum/emote/pale/enact(mob/user, voluntary = 0, param)
 	return list("<B>[user]</B> goes pale for a second.", "<I>goes pale...</I>", MESSAGE_VISIBLE)
 
 //one of 2 pronoun-using emotes that can't fail
-/datum/emote/oneoff/shame// also hanghead
-/datum/emote/oneoff/shame/enact(mob/user, voluntary = 0, param)
+/datum/emote/shame// also hanghead
+/datum/emote/shame/enact(mob/user, voluntary = 0, param)
 	return list("<B>[user]</B> hangs [his_or_her(user)] head in shame.", "<I>hangs [his_or_her(user)] head in shame</I>", MESSAGE_VISIBLE)
 
 //one of 2 pronoun-using emotes that can't fail
-/datum/emote/oneoff/shakehead// also smh
-/datum/emote/oneoff/shakehead/enact(mob/user, voluntary = 0, param)
+/datum/emote/shakehead// also smh
+/datum/emote/shakehead/enact(mob/user, voluntary = 0, param)
 	return list("<B>[user]</B> shakes [his_or_her(user)] head.", "<I>shakes [his_or_her(user)] head</I>", MESSAGE_VISIBLE)
 
 //even the sin that is the visible_restrain code can't deal with this
-/datum/emote/oneoff/facepalm
-/datum/emote/oneoff/facepalm/enact(mob/user, voluntary = 0, param)
+/datum/emote/facepalm
+/datum/emote/facepalm/enact(mob/user, voluntary = 0, param)
 	if (!user.restrained())
 		return list("<B>[user]</B> places [his_or_her(user)] hand on [his_or_her(user)] face in exasperation.", "<I>places [his_or_her(user)] hand on [his_or_her(user)] face in exasperation</I>", MESSAGE_VISIBLE)
 	else
 		return list("<B>[user]</B> looks rather exasperated.", "<I>looks rather exasperated</I>", MESSAGE_VISIBLE) //mood
 
 //This one was in the middle of the complex emote section, look how dang long it is!
-/datum/emote/oneoff/handpuppet
-/datum/emote/oneoff/handpuppet/enact(mob/user, voluntary = 0, param)
+/datum/emote/handpuppet
+/datum/emote/handpuppet/enact(mob/user, voluntary = 0, param)
 	return list("<b>[user]</b> throws [his_or_her(user)] voice, badly, while flapping [his_or_her(user)] thumb and index finger like some sort of lips.[prob(10) ? " Admittedly, it is a pretty good impression of the [pick("captain", "head of personnel", "clown", "research director", "chief engineer", "head of security", "medical director", "AI", "chaplain", "detective")]." : null]", null, MESSAGE_VISIBLE)
 
 /datum/emote/help
