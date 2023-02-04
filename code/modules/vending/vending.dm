@@ -2352,6 +2352,7 @@
 		product_list += new/datum/data/vending_product(/obj/decorative_pot, 5)
 		product_list += new/datum/data/vending_product(/obj/chicken_nesting_box,3)
 		product_list += new/datum/data/vending_product(/obj/item/chicken_carrier, 2)
+		product_list += new/datum/data/vending_product(/obj/item/fishing_rod, 3)
 
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/glass/water_pipe, 1, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/seedplanter/hidden, 1, hidden=1)
