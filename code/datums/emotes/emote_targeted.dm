@@ -57,69 +57,155 @@
 
 
 
-///Restrainable emotes that target a mob, kind of a bastard in terms of inheritance
+///Restrainable emotes that target a mob, kind of a bastard
 /datum/emote/visible_restrain/targeted
 	var/range = 5
 	var/no_out_of_range = FALSE // You can totally actively passively aggressively flip people off after they leave the room
 
-	//N.B. these emotes have a bit of a complicated relation to emote_string_leading and emote_string_trailing
-	//
+	///used when the target moves out of range
+	var/inaction_phrase = "emote upon"	//Can be a weighted list
+	///used in the popup where you pick your target
+	var/action_phrase = "emote upon" //idem, don't ask me why the unimportant strings sometimes have weights but the actual emote output doesn't (and I'm not coding that)
+	///This emote can target yourself (if nobody's around)
+	var/emote_onself = FALSE
 
-	//used when the target moves out of range: boutput(user, "[target] is [inaction_phrase]!")
-	var/inaction_phrase	//Can be a weighted list
-	var/action_phrase //idem, don't ask me why the unimportant strings sometimes have weights but the actual emote output doesn't (and I'm not coding that)
-	var/emote_onself = null
 	var/emote_onself_trailing = null //fuck you fingerguns
-	pronoun_proc = /proc/himself_or_herself
 
 	emote_fail = "struggles to move"
+
+	//So previously I coded up this group of emotes into using an abomination of a return statement, because everything's output differed very slightly in 5 ways. It was horrible
+	//But here's a few custom procs instead
+	proc/on_other(mob/user, mob/target)
+		return "OH FUCK THIS EMOTE ISN'T CODED PROPERLY"
+
+	proc/on_self(mob/user)
+		return "OH FUCK THIS EMOTE ISN'T CODED PROPERLY"
+
+	proc/maptext_on_other(mob/user, mob/target)
+		return "OH FUCK THIS EMOTE ISN'T CODED PROPERLY"
+
+	proc/maptext_on_self(mob/user)
+		return "OH FUCK THIS EMOTE ISN'T CODED PROPERLY"
 
 	saluteto
 		action_phrase = "salute"
 		inaction_phrase = "saluting"
-		emote_string = "salutes"
+
+		on_other(mob/user, mob/target)
+			return "<B>[user]</B> salutes [target]."
+
+		maptext_on_other(mob/user, mob/target)
+			return "<I>salutes [target]</I>"
+
 	waveto
 		action_phrase = "wave"
 		inaction_phrase = "waving"
-		emote_string = "waves to"
+
+		on_other(mob/user, mob/target)
+			return "<B>[user]</B> waves to [target]."
+
+		maptext_on_other(mob/user, mob/target)
+			return "<I>waves to [target]</I>"
+
 	bow
-		action_phrase = list("bow" = 99, "prostrate" = 1)
-		inaction_phrase = list("bowing" = 99, "prostration" = 1)
-		emote_string = "bows to"
+		action_phrase = "bow before"
+		inaction_phrase = list("bowing" = 99, "prostration" = 1) //IDK why the error message of all things is weighted on this one
+
+		on_other(mob/user, mob/target)
+			return "<B>[user]</B> bows to [target]."
+
+		maptext_on_other(mob/user, mob/target)
+			return "<I>bows to [target]</I>"
+
 	blowkiss
 		action_phrase = list("to whom you'll blow a kiss" = 99, "to whom you'll blow a smooch" = 1)
 		inaction_phrase = list("kissing" = 99, "smooching" = 1)
-		emote_string = "blows a kiss to"
-		emote_onself = "blows a kiss to..."
-		emote_onself_trailing = "?"
+		emote_onself = TRUE
+
+		on_other(mob/user, mob/target)
+			return "<B>[user]</B> blows a kiss to [target]."
+
+		maptext_on_other(mob/user, mob/target)
+			return "<I>blows a kiss to [target]</I>"
+
+		on_self(mob/user)
+			return "<B>[user]</B> blows a kiss to... [himself_or_herself(user)]?"
+
+		maptext_on_self(mob/user)
+			return "<I>blows a kiss to... [himself_or_herself(user)]</I>"
+
 	hug
 		range = 1
 		action_phrase = "hug"
 		inaction_phrase = "hugging"
-		emote_string = "hugs"
-		emote_onself = "hugs"
+		emote_onself = TRUE
+
+		on_other(mob/user, mob/target)
+			return "<B>[user]</B> hugs [target]."
+
+		maptext_on_other(mob/user, mob/target)
+			return "<I>hugs [target]</I>"
+
+		on_self(mob/user)
+			return "<B>[user]</B> hugs [himself_or_herself(user)]."
+
+		maptext_on_self(mob/user)
+			return "<I>hugs [himself_or_herself(user)]</I>"
+
 	sidehug
 		range = 1
 		action_phrase = "sidehug"
 		inaction_phrase = "sidehugging"
-		emote_string = "awkwardly side-hugs"
-		emote_onself = "sidehugs" //HOW
+		emote_onself = TRUE //HOW
+
+		on_other(mob/user, mob/target)
+			return "<B>[user]</B> awkwardly side-hugs [target]."
+
+		maptext_on_other(mob/user, mob/target)
+			return "<I>awkwardly side-hugs [target]</I>"
+
+		on_self(mob/user)
+			return "<B>[user]</B> sidehugs [himself_or_herself(user)]." //inconsistent hyphenation is how the original did it and IDC :3
+
+		maptext_on_self(mob/user)
+			return "<I>sidehugs [himself_or_herself(user)]</I>"
+
 	fingerguns
 		action_phrase = "point finger guns at"
-		inaction_phrase = "finger warfare" //fun fact fingerguns didn't have this
-		emote_string = "points finger guns at"
-		emote_string_trailing = "!"
-		emote_onself = "points finger guns at..."
-		emote_onself_trailing = "?"
+		inaction_phrase = "finger warfare" //fingerguns didn't have this but I had to
+		emote_onself = TRUE
+
+		on_other(mob/user, mob/target)
+			return "<B>[user]</B> points finger guns at [target]!"
+
+		maptext_on_other(mob/user, mob/target)
+			return "<I>points finger guns at [target]!</I>"
+
+		on_self(mob/user)
+			return "<B>[user]</B> points finger guns at... [himself_or_herself(user)]?"
+
+		maptext_on_self(mob/user)
+			return "<I>points finger guns at... [himself_or_herself(user)]?</I>"
+
 	fingerflip // The three middle finger emotes only differ in one inconsequental string :<
 		no_out_of_range = TRUE
-		emote_string = "flips off"
-		emote_string_trailing = "!" //previously only the maptext had the exclamation mark
-		emote_onself = "raises"
-		emote_onself_trailing = "middle finger"
+		emote_onself = TRUE
+		emote_fail = null
 		emote_fail_leading = "scowls and tries to move"
 		emote_fail_trailing = "arm"
 		pronoun_proc = /proc/his_or_her
+
+		on_other(mob/user, mob/target)
+			return "<B>[user]</B> flips off [target]!"
+
+		maptext_on_other(mob/user, mob/target)
+			return "<I>flips off [target]!</I>"
+
+		on_self(mob/user)
+			return "<B>[user]</B> raises [his_or_her(user)] middle finger."
+
+		maptext_on_self(mob/user)
+			return "<I>raises [himself_or_herself(user)]middle finger</I>"
 
 		flipoff
 			action_phrase = "flip off"
@@ -127,6 +213,7 @@
 			action_phrase = "give the bird"
 		middlefinger
 			action_phrase = "raise your middle finger at"
+
 	fingerflip2 // same deal, 2 fingers
 		no_out_of_range = TRUE
 		emote_string = "gives"
@@ -137,6 +224,18 @@
 		emote_fail_trailing = "arms"
 		pronoun_proc = /proc/his_or_her
 
+		on_other(mob/user, mob/target)
+			return "<B>[user]</B> gives [target] the double deuce!"
+
+		maptext_on_other(mob/user, mob/target)
+			return "<I>gives [target] the double deuce!</I>"
+
+		on_self(mob/user)
+			return "<B>[user]</B> raises both of [his_or_her(user)] middle fingers."
+
+		maptext_on_self(mob/user)
+			return "<I>raises both of [himself_or_herself(user)]middle fingers</I>"
+
 		doubleflip
 			action_phrase = "blast the double-finger"
 		doubledeuce
@@ -145,16 +244,26 @@
 			action_phrase = "give both birds"
 		flip2
 			action_phrase = "flip off twice"
+
 	dap // also daps
 		range = 1
 		action_phrase = "dap"
 		inaction_phrase = "dapping"
-		emote_string = "gives daps to"
 		emote_fail = "wriggles around a bit"
-		emote_onself = "shamefully gives daps to"
-		//Outputs used to differ massively, but I don't give  a shit:
-		//message = "<B>[user]</B> sadly can't find anybody to give daps to, and daps [himself_or_herself(user)]. Shameful."
-		//maptext_out = "<I>shamefully gives daps to [himself_or_herself(user)]</I>"
+		emote_onself = TRUE
+
+		on_other(mob/user, mob/target)
+			return "<B>[user]</B> gives daps [target]."
+
+		maptext_on_other(mob/user, mob/target)
+			return "<I>gives daps to [target]</I>"
+
+		on_self(mob/user)
+			return "<B>[user]</B> sadly can't find anybody to give daps to, and daps [himself_or_herself(user)]. Shameful."
+
+		maptext_on_self(mob/user)
+			return "<I>shamefully gives daps to [himself_or_herself(user)]</I>"
+
 	shakefist
 		action_phrase = "shake your fist at"
 		no_out_of_range = TRUE
@@ -164,9 +273,21 @@
 		emote_onself_trailing = "fist!"
 		emote_fail = null
 		emote_fail_leading = "tries to move"
-		emote_fail_trailing = "arm angrily"
+		emote_fail_trailing = "arm angrily!"
 
 		pronoun_proc = /proc/his_or_her
+
+		on_other(mob/user, mob/target)
+			return "<B>[user]</B> angrily shakes [his_or_her(user)] fist at [target]!"
+
+		maptext_on_other(mob/user, mob/target)
+			return "<I>angrily shakes [his_or_her(user)] fist at [target]!</I>"
+
+		on_self(mob/user)
+			return "<B><B>[user]</B> angrily shakes [his_or_her(user)] fist!"
+
+		maptext_on_self(mob/user)
+			return "<I>angrily shakes [his_or_her(user)] fist!</I>"
 
 /datum/emote/visible_restrain/targeted/enact(mob/living/user, voluntary = 0, param)
 	if (!istype(user)) //get_targets is on mob/living
@@ -187,26 +308,15 @@
 				boutput(user, "<span class='emote'><B>[M]</B> is not in [islist(inaction_phrase) ? weighted_pick(inaction_phrase) : inaction_phrase] distance!</span>")
 				return
 	if (!M) //emote on self
-		if (isnull(emote_onself))
+		if (!emote_onself)
 			return
-		//The hubris of liking descriptive variable names
-		/*
-			Since these returns have taken on regex levels of unreadable fuckassery
-			first argument
-				<B>[user]</B> [emote_onself] [call(pronoun_proc)(user)]																							// emoting mob emotes at self
-				[!isnull(emote_onself_trailing) ? emote_onself_trailing : ""] 																					// add trailing bit (see middle finger emotes) if it exists
-				[(emote_onself_trailing[length(emote_onself_trailing)] != "!" || emote_onself_trailing[length(emote_onself_trailing)] != "?") ? "." : ""]	// if the trailing bit does not end in an exclamation or question mark, add a period
-			second argument
-				[emote_onself] [call(pronoun_proc)(user)]									// emoting mob emotes at self (but leaving out mob's name)
-				[!isnull(emote_onself_trailing) ? emote_onself_trailing : ""] 				// add trailing bit (see middle finger emotes) if it exists
 
-			For what it's worth I'm cackling while writing this - Bat
-		*/
-		return list("<B>[user]</B> [emote_onself] [call(pronoun_proc)(user)] [!isnull(emote_onself_trailing) ? emote_onself_trailing : ""][(emote_onself_trailing[length(emote_onself_trailing)] != "!" || emote_onself_trailing[length(emote_onself_trailing)] != "?") ? "." : ""]", "<I>[emote_onself] [call(pronoun_proc)(user)] [!isnull(emote_onself_trailing) ? emote_onself_trailing : ""]</I>", MESSAGE_VISIBLE)
-	//The construction here is similar, except we emote at [M] and everything is in terms of emote_string rather than emote_onself
-	//BUT ALSO NOW: if emote_string_leading is not null then [emote_string_leading + pronoun proc] gets interjected SPECIFICALLY to support shakefist.
-	//I am so, so tired of all these doing slightly different things. daps can still fuck off
-	return list("<B>[user]</B> [!isnull(emote_string_leading) ? "[emote_string_leading] [call(pronoun_proc)(user)] " : ""][emote_string] [M] [!isnull(emote_string_trailing) ? emote_string_trailing : ""][(emote_string_trailing[length(emote_string_trailing)] != "!" || emote_string_trailing[length(emote_string_trailing)] != "?") ? "." : ""]", "<I>[!isnull(emote_string_leading) ? "[emote_string_leading] [call(pronoun_proc)(user)] " : ""][emote_string] [M] [!isnull(emote_string_trailing) ? emote_string_trailing : ""]</I>", MESSAGE_VISIBLE)
+		return list(on_self(user), maptext_on_self(user), MESSAGE_VISIBLE)
+		//I deleted the explanation for it but look at this mess
+		//return list("<B>[user]</B> [emote_onself] [call(pronoun_proc)(user)] [!isnull(emote_onself_trailing) ? emote_onself_trailing : ""][(emote_onself_trailing[length(emote_onself_trailing)] != "!" || emote_onself_trailing[length(emote_onself_trailing)] != "?") ? "." : ""]", "<I>[emote_onself] [call(pronoun_proc)(user)] [!isnull(emote_onself_trailing) ? emote_onself_trailing : ""]</I>", MESSAGE_VISIBLE)
+	return list(on_other(user,M), maptext_on_other(user,M), MESSAGE_VISIBLE)
+	//lol, lmao
+	//return list("<B>[user]</B> [!isnull(emote_string_leading) ? "[emote_string_leading] [call(pronoun_proc)(user)] " : ""][emote_string] [M] [!isnull(emote_string_trailing) ? emote_string_trailing : ""][(emote_string_trailing[length(emote_string_trailing)] != "!" || emote_string_trailing[length(emote_string_trailing)] != "?") ? "." : ""]", "<I>[!isnull(emote_string_leading) ? "[emote_string_leading] [call(pronoun_proc)(user)] " : ""][emote_string] [M] [!isnull(emote_string_trailing) ? emote_string_trailing : ""]</I>", MESSAGE_VISIBLE)
 
 
 //These I couldn't shoehorn into the abomination above
