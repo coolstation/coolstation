@@ -1988,7 +1988,7 @@ var/list/fun_images = list()
 			boutput(usr, "<span class='alert'>Implanted [implanted] people with microbombs. Any further humans that spawn will also have bombs.</span>")
 	else
 		boutput(usr, "<span class='alert'>Turned off spawning with microbombs. No existing microbombs have been deleted or disabled.</span>")
-
+/*
 /client/proc/set_nukie_score()
 	set popup_menu = 0
 	set name = "Set Nuke-Ops Scoreboard Values"
@@ -2045,7 +2045,7 @@ var/list/fun_images = list()
 	logTheThing("admin", usr ? usr : src, null, "set pod war death values to [nt_death_value] Nanotrasen deaths and [sy_death_value] Syndicate deaths.")
 	logTheThing("diary", usr ? usr : src, null, "set pod war death values to [nt_death_value] Nanotrasen deaths and [sy_death_value] Syndicate deaths.", "admin")
 	message_admins("[key_name(usr ? usr : src)] set pod war death values to [nt_death_value] Nanotrasen deaths and [sy_death_value] Syndicate deaths.")
-
+*/
 
 /mob/verb/admin_interact_verb()
 	set name = "admin_interact"

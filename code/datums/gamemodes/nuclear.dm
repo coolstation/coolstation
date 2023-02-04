@@ -480,6 +480,7 @@ var/syndicate_name = null
 	anchored = 1.0
 	opacity = 0
 	density = 1
+	var/shipname = "Battlecruiser Cairngorm"
 
 
 
@@ -496,7 +497,7 @@ var/syndicate_name = null
 		if(!isnull(last_reset_date))
 			var/days_passed = round((world.realtime - last_reset_date) / (1 DAY))
 			last_reset_text = "<h4>(memorial reset [days_passed] days ago)</h4>"
-		src.desc = "<center><h2><b>Battlecruiser Cairngorm Mission Memorial</b></h2><br> <h3>Successful missions: [wins]<br>\nUnsuccessful missions: [losses]</h3><br>[last_reset_text]</center>"
+		src.desc = "<center><h2><b>[shipname] Mission Memorial</b></h2><br> <h3>Successful missions: [wins]<br>\nUnsuccessful missions: [losses]</h3><br>[last_reset_text]</center>"
 
 	attack_hand(var/mob/user as mob)
 		if (..(user))
@@ -519,3 +520,11 @@ var/syndicate_name = null
 
 /obj/cairngorm_stats/right
 	icon_state = "memorial_right"
+
+/obj/cairngorm_stats/foss
+	shipname = "GNU/Battleship"
+
+	left
+		icon_state = "memorial_left"
+	right
+		icon_state = "memorial_right"
