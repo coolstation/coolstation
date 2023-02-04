@@ -586,4 +586,51 @@
 	if (user.mind && (user.mind.assigned_role in list("Captain", "Head of Personnel", "Head of Security", "Security Officer", "Security Assistant", "Detective", "Vice Officer", "Regional Director", "Inspector")))
 		user.recite_miranda()
 
+/datum/emote/suicide
+/datum/emote/suicide/enact(mob/user, voluntary = 0, param)
+	user.do_suicide()
 
+/datum/emote/custom
+/datum/emote/custom/enact(mob/user, voluntary = 0, param)
+	if (IS_TWITCH_CONTROLLED(user)) return
+	var/m_type
+	var/input = sanitize(html_encode(input("Choose an emote to display.")))
+	var/input2 = input("Is this a visible or audible emote?") in list("Visible","Audible")
+	if (input2 == "Visible") m_type = MESSAGE_VISIBLE
+	else if (input2 == "Audible") m_type = MESSAGE_AUDIBLE
+	else
+		alert("Unable to use this emote, must be either audible or visible.")
+		return
+	phrase_log.log_phrase("emote", input)
+	return list("<B>[user]</B> [input]", "<I>[input]</I>", m_type, copytext(input, 1, 10))
+
+/datum/emote/customv //custom visible
+/datum/emote/customv/enact(mob/user, voluntary = 0, param)
+	if (IS_TWITCH_CONTROLLED(user)) return
+	if (!param)
+		param = input("Choose an emote to display.")
+		if(!param) return
+
+	param = sanitize(html_encode(param))
+	phrase_log.log_phrase("emote", param)
+	return list("<b>[user]</b> [param]","<I>[param]</I>",MESSAGE_VISIBLE,copytext(param, 1, 10))
+
+/datum/emote/customh //custom heard
+/datum/emote/customh/enact(mob/user, voluntary = 0, param)
+	if (IS_TWITCH_CONTROLLED(user)) return
+	if (!param)
+		param = input("Choose an emote to display.")
+		if(!param) return
+
+	param = sanitize(html_encode(param))
+	phrase_log.log_phrase("emote", param)
+	return list("<b>[user]</b> [param]","<I>[param]</I>",MESSAGE_AUDIBLE,copytext(param, 1, 10))
+
+/datum/emote/me //AFAIK this exists for me_verb
+/datum/emote/me/enact(mob/user, voluntary = 0, param)
+	if (IS_TWITCH_CONTROLLED(user)) return
+	if (!param)
+		return
+	param = sanitize(html_encode(param))
+	phrase_log.log_phrase("emote", param)
+	return list("<b>[user]</b> [param]","<I>[param]</I>",MESSAGE_VISIBLE,copytext(param, 1, 10))
