@@ -604,7 +604,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
-////////////////////////////////
+/******************** Engineering **************************/
 
 /datum/manufacture/player_module
 	name = "Vending Module"
@@ -667,6 +667,100 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 30 SECONDS
 	create = 1
 	category = "Resource"
+
+/datum/manufacture/lamp_manufacturer
+	name = "Miniaturized Lamp Manufacturer"
+	item_paths = list("MET-1", "CON-2", "INS-1")
+	item_amounts = list(3, 5, 3)
+	item_outputs = list(/obj/item/lamp_manufacturer/organic)
+	time = 25 SECONDS
+	create = 1
+	category = "Tool"
+
+/******************** Atmospheric components **************************/
+
+/datum/manufacture/pipeframe
+	name = "Pre-formed Standard Piping"
+	item_paths = list("MET-1")
+	item_amounts = list(2)
+	item_outputs = list(/obj/item/atmospherics/pipeframe/regular)
+	time = 1 SECOND
+	create = 1
+	category = "Atmopherics"
+
+/datum/manufacture/pipeframe_ex
+	name = "Pre-formed Exchanger Piping"
+	item_paths = list("MET-1")
+	item_amounts = list(2)
+	item_outputs = list(/obj/item/atmospherics/pipeframe/exchanger)
+	time = 1 SECOND
+	create = 1
+	category = "Atmospherics"
+
+/datum/manufacture/pipeframe_ju
+	name = "Pre-formed Piping Junction"
+	item_paths = list("MET-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/atmospherics/pipeframe/exchanger_regular_junction)
+	time = 2 SECONDS
+	create = 1
+	category = "Atmospherics"
+
+
+/datum/manufacture/atmos_module
+	item_paths = list("MET-1", "CON-1")
+	item_amounts = list(4, 2)
+	time = 3 SECONDS
+	create = 1
+	category = "Atmospherics"
+
+/datum/manufacture/atmos_module/connector
+	name = "Connector Module"
+	item_outputs = list(/obj/item/atmospherics/module/connector)
+/datum/manufacture/atmos_module/digital_valve
+	name = "Digital Valve Module"
+	item_outputs = list(/obj/item/atmospherics/module/digital_valve)
+/datum/manufacture/atmos_module/dp_vent
+	name = "Dual Port Vent Module"
+	item_outputs = list(/obj/item/atmospherics/module/dp_vent)
+/datum/manufacture/atmos_module/filter
+	name = "Filter Module"
+	item_outputs = list(/obj/item/atmospherics/module/filter)
+/datum/manufacture/atmos_module/furnace_connector
+	name = "Furnace Connector Module"
+	item_outputs = list(/obj/item/atmospherics/module/furnace_connector)
+/datum/manufacture/atmos_module/manifold_valve
+	name = "Manifold Valve Module"
+	item_outputs = list(/obj/item/atmospherics/module/manifold_valve)
+/datum/manufacture/atmos_module/mixer
+	name = "Mixer Module"
+	item_outputs = list(/obj/item/atmospherics/module/mixer)
+/datum/manufacture/atmos_module/outlet_injector
+	name = "Outlet Injector Module"
+	item_outputs = list(/obj/item/atmospherics/module/outlet_injector)
+/datum/manufacture/atmos_module/passive_gate
+	name = "Passive Gate Module"
+	item_outputs = list(/obj/item/atmospherics/module/passive_gate)
+/datum/manufacture/atmos_module/pump
+	name = "Pump Module"
+	item_outputs = list(/obj/item/atmospherics/module/pump)
+/datum/manufacture/atmos_module/valve
+	name = "Valve Module"
+	item_outputs = list(/obj/item/atmospherics/module/valve)
+/datum/manufacture/atmos_module/vent
+	name = "Vent Module"
+	item_outputs = list(/obj/item/atmospherics/module/vent)
+/datum/manufacture/atmos_module/vent_pump
+	name = "Vent Pump Module"
+	item_outputs = list(/obj/item/atmospherics/module/vent_pump)
+/datum/manufacture/atmos_module/vent_scrubber
+	name = "Vent Scrubber Module"
+	item_outputs = list(/obj/item/atmospherics/module/vent_scrubber)
+/datum/manufacture/atmos_module/volume_pump
+	name = "Volume Pump Module"
+	item_outputs = list(/obj/item/atmospherics/module/volume_pump)
+
+/******************** Misc **************************/
 
 /datum/manufacture/sds
 	name = "Syndicate Destruction System"

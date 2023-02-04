@@ -43,7 +43,7 @@
 	var/last_queue_op = 0
 
 	var/category = null
-	var/list/categories = list("Tool","Clothing","Resource","Component","Machinery","Miscellaneous", "Downloaded")
+	var/list/categories = list("Tool","Clothing","Resource","Component","Machinery","Atmospherics","Miscellaneous", "Downloaded")
 	var/search = null
 	var/wires = 15
 	var/image/work_display = null
@@ -436,11 +436,7 @@
 
 		dat += "<div id='products'>"
 
-		// dat += "<B>Available Schematics</B><br>"
-		// if(istext(src.search))
-		// 	dat += " <small>(Search: \"[html_encode(src.search)]\")</small>"
-		// if(istext(src.category))
-		// 	dat += " <small>(Filter: \"[html_encode(src.category)]\")</small>"
+
 
 		// Get the list of stuff we can print ...
 		var/list/products = src.available + src.download
@@ -504,9 +500,12 @@
 
 		dat += "</div><div id='info'>"
 		dat += build_material_list(user)
-
+		//Search
+		dat += " <A href='?src=\ref[src];search=1'>(Search: \"[istext(src.search) ? html_encode(src.search) : "----"]\")</A><BR>"
+		//Filter
+		dat += " <A href='?src=\ref[src];category=1'>(Filter: \"[istext(src.category) ? html_encode(src.category) : "----"]\")</A>"
 		// This is not re-formatted yet just b/c i don't wanna mess with it
-		dat +="<B>Scanned Card:</B> <A href='?src=\ref[src];card=1'>([src.scan])</A><BR>"
+		dat +="<HR><B>Scanned Card:</B> <A href='?src=\ref[src];card=1'>([src.scan])</A><BR>"
 		if(scan)
 			var/datum/data/record/account = null
 			account = FindBankAccountByName(src.scan.registered)
@@ -648,7 +647,8 @@
 					src.search = null
 
 			if (href_list["category"])
-				src.category = input("Select which category to filter by.","Manufacturing Unit") as null|anything in src.categories
+				var/selection = input("Select which category to filter by.","Manufacturing Unit") as null|anything in list("REMOVE FILTER") + src.categories
+				src.category = ((selection == "REMOVE FILTER") ? null : selection)
 
 			if (href_list["continue"])
 				if (src.queue.len < 1)
@@ -2532,13 +2532,39 @@
 	free_resources = list(/obj/item/material_piece/steel,
 		/obj/item/material_piece/copper,
 		/obj/item/material_piece/glass)
-	//Please add to this
-	available = list(/datum/manufacture/extinguisher,
+
+	available = list(/datum/manufacture/screwdriver,
+	/datum/manufacture/wirecutters,
+	/datum/manufacture/wrench,
+	/datum/manufacture/crowbar,
+	/datum/manufacture/extinguisher,
+	/datum/manufacture/welder,
+	/datum/manufacture/soldering,
+	/datum/manufacture/flashlight,
+	/datum/manufacture/weldingmask,
+	/datum/manufacture/multitool,
+	/datum/manufacture/extinguisher,
+	/datum/manufacture/lamp_manufacturer,
 	/datum/manufacture/hardhat,
 	/datum/manufacture/cable,
 	/datum/manufacture/powercell,
 	/datum/manufacture/powercellC,
 	/datum/manufacture/powercellE,
+	/datum/manufacture/atmos_module/connector,
+	/datum/manufacture/atmos_module/digital_valve,
+	/datum/manufacture/atmos_module/dp_vent,
+	/datum/manufacture/atmos_module/filter,
+	/datum/manufacture/atmos_module/furnace_connector,
+	/datum/manufacture/atmos_module/manifold_valve,
+	/datum/manufacture/atmos_module/mixer,
+	/datum/manufacture/atmos_module/outlet_injector,
+	/datum/manufacture/atmos_module/passive_gate,
+	/datum/manufacture/atmos_module/pump,
+	/datum/manufacture/atmos_module/valve,
+	/datum/manufacture/atmos_module/vent,
+	/datum/manufacture/atmos_module/vent_pump,
+	/datum/manufacture/atmos_module/vent_scrubber,
+	/datum/manufacture/atmos_module/volume_pump,
 	/datum/manufacture/RCDammo,
 	/datum/manufacture/RCDammomedium)
 
