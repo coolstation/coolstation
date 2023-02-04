@@ -97,6 +97,29 @@
 		else //lets restart the action
 			src.onRestart()
 
+/obj/item/fishing_rod/enhanced //for testing/admin shenanigans
+	name = "enhanced fibreglass telescope ultralight 47" //droods
+	desc = "The latest model"
+	fishing_speed = -4 SECONDS
+	fishing_delay = 0.1 SECONDS
+
+	New()
+		..()
+		src.setMaterial(getMaterial("carbonfibre"), appearance = 1, setname = 0)
+		return .
+
+/obj/item/fishing_rod/rancher //for the rancher
+	name = "bamboo fishing rod"
+	desc = "More effective than your average fishing rod"
+	fishing_speed = 4 SECONDS
+	fishing_delay = 2 SECONDS
+
+	New()
+		..()
+		src.setMaterial(getMaterial("bamboo"), appearance = 1, setname = 0)
+		return .
+
+
 // portable fishing portal currently found in a prefab in space
 /obj/item/fish_portal
 	name = "Fishing Portal Generator"

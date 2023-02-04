@@ -261,6 +261,7 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_give_pet,
 		/client/proc/cmd_give_pets,
 		/client/proc/cmd_give_player_pets,
+		/client/proc/sega_bass_fishing,
 		/client/proc/cmd_customgrenade,
 		/client/proc/cmd_admin_gib,
 		/client/proc/cmd_admin_partygib,
@@ -1593,6 +1594,27 @@ var/list/fun_images = list()
 	logTheThing("admin", usr ? usr : src, null, "gave every player a pet [pet_path]!")
 	logTheThing("diary", usr ? usr : src, null, "gave every player a pet [pet_path]!", "admin")
 	message_admins("[key_name(usr ? usr : src)] gave every player a pet [pet_path]!")
+
+/client/proc/sega_bass_fishing()
+	set popup_menu = 0
+	set name = "Sega Bass Fishing"
+	set desc = "Give everyone a fishing rod and a fishing portal"
+	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	admin_only
+
+
+	for (var/mob/living/L in mobs)
+		var/obj/Rod = new /obj/item/fishing_rod(get_turf(L))
+		Rod.name = "[L]'s [Rod.name]"
+		new /obj/item/fish_portal(get_turf(L))
+		LAGCHECK(LAG_LOW)
+
+	vox_reinit_check()
+	vox_play("fish ing time")
+
+	logTheThing("admin", usr ? usr : src, null, "initiated bass fishing mode!")
+	logTheThing("diary", usr ? usr : src, null, "initiated bass fishing mode!", "admin")
+	message_admins("[key_name(usr ? usr : src)] initiated bass fishing mode!")
 
 /client/proc/cmd_customgrenade()
 	set popup_menu = 0
