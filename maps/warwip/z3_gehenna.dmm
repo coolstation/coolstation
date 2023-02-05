@@ -4371,6 +4371,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/rack,
+/obj/random_item_spawner/med_kit/one_or_zero,
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "cWh" = (
@@ -4810,6 +4811,11 @@
 /area/station/security/secwing{
 	name = "Security Wing Tunnel Level"
 	})
+"diZ" = (
+/obj/decal/cleanable/dirt/random,
+/obj/random_item_spawner/furniture_parts/maybe_few,
+/turf/simulated/floor/plating,
+/area/station/maintenance/south)
 "dji" = (
 /obj/disposalpipe/segment/mineral,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -6444,11 +6450,11 @@
 /turf/simulated/floor,
 /area/station/security/processing)
 "edT" = (
-/obj/disposalpipe/segment/sewage{
-	dir = 4
-	},
-/turf/simulated/wall,
-/area/station/maintenance/disposal/sewage)
+/obj/table/reinforced/industrial/auto,
+/obj/decal/cleanable/dirt/random,
+/obj/random_item_spawner/tools/one_or_zero,
+/turf/simulated/floor,
+/area/station/storage/warehouse)
 "eeU" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/decal/poster/wallsign/bunks{
@@ -6948,6 +6954,11 @@
 "ers" = (
 /turf/simulated/floor/black,
 /area/station/engine/inner)
+"erH" = (
+/obj/table/reinforced/auto,
+/obj/random_item_spawner/junk/one_or_zero,
+/turf/simulated/floor/plating,
+/area/station/crew_quarters/catering)
 "erI" = (
 /obj/disposalpipe/segment/cargo{
 	dir = 4
@@ -7124,6 +7135,7 @@
 "ezm" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/table/reinforced/industrial/auto,
+/obj/random_item_spawner/med_kit/one_or_zero,
 /turf/simulated/floor,
 /area/station/security/processing)
 "ezr" = (
@@ -7424,6 +7436,10 @@
 /area/station/security/secwing{
 	name = "Security Wing Tunnel Level"
 	})
+"eGX" = (
+/obj/decal/poster/wallsign/pool,
+/turf/simulated/wall,
+/area/station/maintenance/disposal/sewage)
 "eHj" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -8886,6 +8902,9 @@
 /obj/machinery/meter,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
+"fEx" = (
+/turf/simulated/wall/asteroid/gehenna/tough/z3,
+/area/station/engine/hotloop)
 "fEA" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/horizontal,
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
@@ -10937,6 +10956,7 @@
 /area/station/science/gen_storage)
 "gTg" = (
 /obj/rack,
+/obj/random_item_spawner/med_kit/one_or_zero,
 /turf/simulated/floor,
 /area/station/medical/cdc)
 "gTj" = (
@@ -14104,6 +14124,7 @@
 	tag = ""
 	},
 /obj/table/auto,
+/obj/random_item_spawner/desk_stuff/one_or_zero,
 /turf/simulated/floor,
 /area/station/medical/basement)
 "iUl" = (
@@ -15858,7 +15879,7 @@
 /turf/simulated/floor/plating{
 	icon_state = "panelscorched"
 	},
-/area/station/maintenance/disposal/sewage)
+/area/station/maintenance/disposal)
 "jYc" = (
 /obj/machinery/light_switch/north,
 /turf/simulated/floor/yellowblack{
@@ -15871,6 +15892,7 @@
 /obj/table/glass/reinforced/auto{
 	color = "#666666"
 	},
+/obj/random_item_spawner/med_tool/one_or_zero,
 /turf/simulated/floor,
 /area/station/medical/basement)
 "jYt" = (
@@ -16087,6 +16109,7 @@
 "kgv" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southeast,
 /obj/table/auto,
+/obj/random_item_spawner/junk/one_or_zero,
 /turf/simulated/floor,
 /area/station/medical/basement)
 "kgw" = (
@@ -19196,6 +19219,15 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
+"mcg" = (
+/obj/table/reinforced/industrial/auto,
+/obj/decal/cleanable/dirt/random,
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/random_item_spawner/med_kit/one_or_zero,
+/turf/simulated/floor,
+/area/station/storage/warehouse)
 "mci" = (
 /obj/storage/closet/wardrobe/yellow,
 /obj/machinery/light/small/warm{
@@ -21618,6 +21650,7 @@
 /obj/table/glass/reinforced/auto{
 	color = "#666666"
 	},
+/obj/random_item_spawner/tools/one_or_zero,
 /turf/simulated/floor,
 /area/station/medical/basement)
 "nCU" = (
@@ -22265,6 +22298,14 @@
 /obj/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/station/engine/power)
+"nYc" = (
+/obj/machinery/conveyor/north{
+	move_lag = 25;
+	name = "garbo belt";
+	operating = 1
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/disposal)
 "nYI" = (
 /obj/machinery/atmospherics/valve/purge/vertical,
 /turf/simulated/floor/plating,
@@ -22400,7 +22441,7 @@
 /turf/simulated/floor/plating{
 	icon_state = "platingdmg1"
 	},
-/area/station/maintenance/disposal/sewage)
+/area/station/maintenance/disposal)
 "ocE" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/simulated/wall,
@@ -24489,6 +24530,7 @@
 /obj/table/glass/reinforced/auto{
 	color = "#666666"
 	},
+/obj/random_item_spawner/medicine/one_or_zero,
 /turf/simulated/floor,
 /area/station/medical/basement)
 "pCl" = (
@@ -25061,6 +25103,7 @@
 	dir = 2
 	},
 /obj/rack,
+/obj/random_item_spawner/med_kit/one_or_zero,
 /turf/simulated/floor/bluegreen,
 /area/station/medical/cdc)
 "pZt" = (
@@ -27220,6 +27263,7 @@
 /obj/table/glass/reinforced/auto{
 	color = "#666666"
 	},
+/obj/random_item_spawner/med_kit/one_or_zero,
 /turf/simulated/floor/plating,
 /area/station/bridge/locker)
 "rnS" = (
@@ -27329,6 +27373,11 @@
 /obj/machinery/light/small/harsh,
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal)
+"rsx" = (
+/obj/decal/cleanable/dirt/random,
+/obj/random_item_spawner/furniture_parts/one_or_zero,
+/turf/simulated/floor/plating/random,
+/area/station/medical/cdc)
 "rsD" = (
 /turf/simulated/floor/industrial,
 /area/station/crew_quarters/fitness)
@@ -30741,7 +30790,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/station/maintenance/disposal/sewage)
+/area/station/maintenance/disposal)
 "txG" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -33283,7 +33332,7 @@
 /turf/simulated/floor/plating{
 	icon_state = "platingdmg1"
 	},
-/area/station/maintenance/disposal/sewage)
+/area/station/maintenance/disposal)
 "uZt" = (
 /obj/machinery/vending/book,
 /turf/simulated/floor/grime,
@@ -36078,7 +36127,7 @@
 /turf/simulated/floor/plating{
 	icon_state = "platingdmg3"
 	},
-/area/station/maintenance/disposal/sewage)
+/area/station/maintenance/disposal)
 "wMH" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -36485,6 +36534,7 @@
 /obj/decal/cleanable/dirt/jen,
 /obj/decal/cleanable/dirt/jen,
 /obj/decal/cleanable/dirt/random,
+/obj/random_item_spawner/furniture_parts/one_or_zero,
 /turf/simulated/floor/plating/random,
 /area/station/crew_quarters/clown)
 "xaz" = (
@@ -37571,6 +37621,7 @@
 /area/station/maintenance/south)
 "xNr" = (
 /obj/rack,
+/obj/random_item_spawner/buddytool/few,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/science/bot_storage)
 "xNV" = (
@@ -38033,15 +38084,12 @@
 /turf/simulated/floor/plating,
 /area/station/engine/hotloop)
 "ydi" = (
-/obj/machinery/conveyor/west{
-	name = "garbo belt";
-	operating = 1
-	},
-/obj/forcefield/energyshield/perma{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/station/maintenance/disposal/sewage)
+/obj/table/reinforced/industrial/auto,
+/obj/decal/cleanable/dirt/random,
+/obj/disposalpipe/segment/sewage,
+/obj/random_item_spawner/junk/one_or_zero,
+/turf/simulated/floor,
+/area/station/storage/warehouse)
 "ydz" = (
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/grey,
@@ -60238,7 +60286,7 @@ pdO
 pdO
 pdO
 pwK
-vVa
+rsx
 vVa
 qwL
 aev
@@ -84691,7 +84739,7 @@ sEx
 sZX
 sZX
 sJD
-gjY
+erH
 gjY
 gjY
 tkq
@@ -84723,7 +84771,7 @@ jZT
 kJo
 uJd
 mDu
-mDu
+diZ
 qAe
 kPQ
 kPQ
@@ -92567,7 +92615,7 @@ oSJ
 esx
 kSj
 uEN
-pdO
+fEx
 oaN
 oaN
 oaN
@@ -92869,15 +92917,15 @@ uEN
 vVZ
 dSA
 uEN
-vIc
+uEN
 oaN
 oaN
 oaN
-eNa
-edT
-ydi
-eNa
-eNa
+kfL
+str
+kQY
+kfL
+kfL
 vcZ
 iDD
 kxN
@@ -93177,9 +93225,9 @@ eNa
 eNa
 eNa
 txE
-qDc
-ijX
-eNa
+mbT
+nYc
+kfL
 vcZ
 iDD
 kxN
@@ -93481,7 +93529,7 @@ xXL
 wMG
 ocC
 ocC
-eNa
+kfL
 vcZ
 iDD
 kxN
@@ -93783,7 +93831,7 @@ otD
 uZp
 jYb
 ocC
-boX
+ubj
 vcZ
 iDD
 kxN
@@ -94085,7 +94133,7 @@ otD
 aeG
 nbH
 nbH
-eNa
+eGX
 vcZ
 iDD
 kxN
@@ -102464,8 +102512,8 @@ gQd
 bql
 fjY
 qUS
-qUS
-vrX
+edT
+mcg
 qUS
 fgh
 ppe
@@ -103974,7 +104022,7 @@ dab
 gFO
 aOY
 aPO
-aPO
+ydi
 vDR
 qUS
 nhL
@@ -104277,7 +104325,7 @@ hzm
 lAq
 qUS
 qUS
-qUS
+edT
 qUS
 nhL
 ppe
