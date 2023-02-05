@@ -24,6 +24,11 @@
 
 // end debugging stuff
 
+//some explosion stuff, for canbomb threshold and stuff like that
+#define CANISTER_BOMB_TEMP_MIN 70000
+#define CANISTER_BOMB_PRESSURE_MIN 7000
+#define CANISTER_BOMB_MAXCAP 10000 //THIS IS WHERE TO SET THE CANBOMB POWER MAXCAP
+
 
 
 /// in kPa * L/(K * mol)

@@ -745,7 +745,7 @@ obj/machinery/atmospherics/pipe
 
 		oxygen_agent_b
 			icon = 'icons/obj/atmospherics/tanks/red_orange_pipe_tank.dmi'
-			name = "Pressure Tank (Oxygen + Plasma)"
+			name = "Pressure Tank (Oxygen Agent B)"
 
 			north
 				dir = NORTH

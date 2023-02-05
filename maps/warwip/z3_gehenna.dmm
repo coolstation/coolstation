@@ -7081,6 +7081,15 @@
 /obj/machinery/door/airlock/external,
 /turf/simulated/floor/airless/engine,
 /area/station/science/testchamber)
+"ewL" = (
+/obj/grille/catwalk/jen/side{
+	dir = 1
+	},
+/obj/machinery/photocopier,
+/turf/simulated/floor/plating/random,
+/area/station/crew_quarters/info{
+	name = "Net Cafe"
+	})
 "ewV" = (
 /turf/simulated/floor/plating,
 /area/station/mining/refinery)
@@ -7984,7 +7993,7 @@
 /turf/simulated/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "eYl" = (
-/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/simulated/floor,
 /area/station/science/gen_storage)
 "eYy" = (
@@ -8844,12 +8853,19 @@
 /turf/simulated/floor/plating,
 /area/station/engine/power)
 "fCM" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/machinery/light/fluorescent/neutral{
-	dir = 1
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "1-6"
 	},
-/turf/simulated/floor,
-/area/station/science/gen_storage)
+/obj/stool,
+/obj/machinery/phone/wall{
+	pixel_x = -29
+	},
+/turf/simulated/floor/black,
+/area/station/crew_quarters/info{
+	name = "Net Cafe"
+	})
 "fCR" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 5;
@@ -9498,9 +9514,6 @@
 /area/station/bridge/basement)
 "fZu" = (
 /obj/machinery/atmospherics/portables_connector/south,
-/obj/machinery/light/fluorescent/neutral{
-	dir = 1
-	},
 /turf/simulated/floor,
 /area/station/science/gen_storage)
 "fZM" = (
@@ -11505,7 +11518,10 @@
 /turf/simulated/floor/grey,
 /area/station/engine/hotloop)
 "hkk" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/light/fluorescent/neutral{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/empty,
 /turf/simulated/floor,
 /area/station/science/gen_storage)
 "hlg" = (
@@ -12773,6 +12789,13 @@
 /obj/disposalpipe/segment/bent/west,
 /turf/simulated/floor,
 /area/station/maintenance/disposal)
+"ifo" = (
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	locked = 1
+	},
+/turf/simulated/floor/plating,
+/area/station/science/gen_storage)
 "ifU" = (
 /obj/rack,
 /obj/item/storage/box/diskbox{
@@ -16020,6 +16043,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/northeast)
+"kdJ" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor,
+/area/station/science/gen_storage)
 "kdX" = (
 /obj/disposalpipe/segment/morgue,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -16991,6 +17018,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/bridge/locker)
+"kJO" = (
+/obj/machinery/light/fluorescent/neutral{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/empty,
+/turf/simulated/floor,
+/area/station/science/gen_storage)
 "kKv" = (
 /obj/storage/closet/wardrobe/yellow,
 /turf/simulated/floor/black,
@@ -22683,6 +22717,21 @@
 /obj/machinery/atmospherics/pipe/manifold/north,
 /turf/simulated/floor,
 /area/station/medical/basement)
+"olm" = (
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "4-9"
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/black,
+/area/station/crew_quarters/info{
+	name = "Net Cafe"
+	})
 "oln" = (
 /obj/disposalpipe/switch_junction/biofilter/left/south,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -27843,6 +27892,13 @@
 /area/station/science/artifact{
 	name = "Artifact Lounge"
 	})
+"rIC" = (
+/obj/machinery/light/fluorescent/neutral{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/simulated/floor,
+/area/station/science/gen_storage)
 "rIG" = (
 /obj/machinery/atmospherics/portables_connector/south,
 /turf/simulated/floor/plating,
@@ -29156,7 +29212,7 @@
 /turf/simulated/wall/r_wall,
 /area/station/medical/staff)
 "sAS" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/simulated/floor,
 /area/station/science/gen_storage)
 "sBc" = (
@@ -31616,6 +31672,9 @@
 	dir = 4
 	},
 /obj/machinery/disposal,
+/obj/machinery/partyalarm{
+	pixel_y = -32
+	},
 /turf/simulated/floor/black,
 /area/station/crew_quarters/bar)
 "tYr" = (
@@ -35985,11 +36044,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor/plating,
 /area/station/storage/warehouse)
-"wHv" = (
-/obj/machinery/portable_atmospherics/canister/empty,
-/obj/machinery/light/fluorescent/neutral,
-/turf/simulated/floor,
-/area/station/science/gen_storage)
 "wIK" = (
 /obj/cable{
 	icon_state = "1-8"
@@ -36768,7 +36822,7 @@
 /turf/simulated/floor,
 /area/station/maintenance/northeast)
 "xjW" = (
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor,
 /area/station/science/gen_storage)
 "xka" = (
@@ -70587,7 +70641,7 @@ eQx
 aZE
 bcN
 ktF
-bwR
+kJO
 fZu
 wxw
 nzY
@@ -70889,10 +70943,10 @@ xHC
 aSH
 rYR
 eSm
-bwR
-hkk
-eYl
-sAS
+kdJ
+nzY
+nzY
+nzY
 xjW
 bwR
 pdO
@@ -71192,7 +71246,7 @@ oBK
 rYR
 eSm
 xew
-hkk
+nzY
 eYl
 sAS
 xjW
@@ -71494,10 +71548,10 @@ oBK
 ewK
 tba
 xew
-fCM
+nzY
 eYl
 sAS
-wHv
+xjW
 bwR
 pdO
 pdO
@@ -71795,11 +71849,11 @@ wcs
 xaL
 rYR
 tba
-xew
+ifo
 hkk
 eYl
 sAS
-xjW
+rIC
 bwR
 pdO
 pdO
@@ -78998,7 +79052,7 @@ pdO
 pdO
 kYn
 iPz
-nhU
+fCM
 gDG
 idN
 tZz
@@ -80207,8 +80261,8 @@ pdO
 kYn
 dVO
 nhU
-lIt
-ePQ
+olm
+ewL
 tZz
 mxI
 rsD

@@ -586,6 +586,15 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
+/datum/manufacture/agent_b_can
+	name = "Agent B Canister"
+	item_paths = list("MET-2","molitz_b")
+	item_amounts = list(3,15)
+	item_outputs = list(/obj/machinery/portable_atmospherics/canister/oxygen_agent_b)
+	time = 100 SECONDS
+	create = 1
+	category = "Machinery"
+
 /datum/manufacture/n2_can
 	name = "N2 Canister"
 	item_paths = list("MET-2","viscerite")

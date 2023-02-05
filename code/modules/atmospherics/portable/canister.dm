@@ -58,6 +58,11 @@
 	name = "Canister: \[O2\]"
 	icon_state = "blue"
 	casecolor = "blue"
+/obj/machinery/portable_atmospherics/canister/oxygen_agent_b
+	name = "Canister: \[Agent B\]"
+	icon_state = "bluish"
+	casecolor = "bluish"
+	volume = 500
 /obj/machinery/portable_atmospherics/canister/toxins
 	name = "Canister \[Plasma\]"
 	icon_state = "orange"
@@ -88,8 +93,6 @@
 	casecolor = "green"
 
 /obj/machinery/portable_atmospherics/canister/farts/filled
-	filled = 1.069
-
 	New()
 		..()
 		src.air_contents.farts = (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
@@ -729,6 +732,16 @@
 	..()
 
 	var/datum/gas/sleeping_agent/trace_gas = air_contents.get_or_add_trace_gas_by_type(/datum/gas/sleeping_agent)
+	trace_gas.moles = (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
+
+	src.update_icon()
+	return 1
+
+/obj/machinery/portable_atmospherics/canister/oxygen_agent_b/New()
+
+	..()
+
+	var/datum/gas/oxygen_agent_b/trace_gas = air_contents.get_or_add_trace_gas_by_type(/datum/gas/oxygen_agent_b)
 	trace_gas.moles = (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
 
 	src.update_icon()
