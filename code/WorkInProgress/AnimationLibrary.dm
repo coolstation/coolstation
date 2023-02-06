@@ -473,7 +473,7 @@ proc/muzzle_flash_attack_particle(var/mob/M, var/turf/origin, var/turf/target, v
 proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var/muzzle_light_color, var/offset=25)
 	if (!A || firing_angle == null || !muzzle_anim) return
 
-	var/obj/particle/attack/muzzleflash/muzzleflash = unpool(/obj/particle/attack/muzzleflash)
+	var/obj/particle/attack/muzzleflash/muzzleflash = new()
 
 	if(isnull(muzzle_light_color))
 		muzzle_light_color = default_muzzle_flash_colors[muzzle_anim]
@@ -1096,7 +1096,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 	var/turf/target_turf = get_turf(target)
 	if (!target_turf)
 		return
-	var/obj/decal/teleport_swirl/swirl = unpool(/obj/decal/teleport_swirl)
+	var/obj/decal/teleport_swirl/swirl = new()
 	swirl.set_loc(target_turf)
 	swirl.pixel_y = 10
 	if (play_sound)
@@ -1115,7 +1115,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 		return
 	if (locate(/obj/decal/residual_energy) in target_turf)
 		return
-	var/obj/decal/residual_energy/e = unpool(/obj/decal/residual_energy)
+	var/obj/decal/residual_energy/e = new()
 	e.set_loc(target_turf)
 	SPAWN_DBG(10 SECONDS)
 		if (e)
@@ -1132,11 +1132,11 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 	if(current_increment == 9)
 		if (locate(/obj/decal/purge_beam_end) in target_turf)
 			return
-		e = unpool(/obj/decal/purge_beam_end)
+		e = new()
 	else
 		if (locate(/obj/decal/purge_beam) in target_turf)
 			return
-		e = unpool(/obj/decal/purge_beam)
+		e = new()
 	e.set_loc(target_turf)
 	e.dir = sword_direction
 	SPAWN_DBG(7)
@@ -1154,11 +1154,11 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 	if(scan_type == 0)
 		if (locate(/obj/decal/syndicate_destruction_scan_center) in target_turf)
 			return
-		e = unpool(/obj/decal/syndicate_destruction_scan_center)
+		e = new()
 	else
 		if (locate(/obj/decal/syndicate_destruction_scan_side) in target_turf)
 			return
-		e = unpool(/obj/decal/syndicate_destruction_scan_side)
+		e = new()
 	e.set_loc(target_turf)
 	SPAWN_DBG(7)
 		if (e)

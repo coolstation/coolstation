@@ -77,7 +77,7 @@
 			else
 				trunk.linked = src	// link the pipe trunk to self
 
-			air_contents = unpool(/datum/gas_mixture)
+			air_contents = new()
 			//gas.volume = 1.05 * CELLSTANDARD
 			update()
 
@@ -254,7 +254,7 @@
 		flushing = 1
 
 		closeup()
-		var/obj/disposalholder/H = unpool(/obj/disposalholder)	// virtual holder object which actually
+		var/obj/disposalholder/H = new()	// virtual holder object which actually
 																// travels through the pipes.
 
 		H.init(src)	// copy the contents of disposer to holder

@@ -697,7 +697,7 @@ TRAYS
 			src.set_loc(shardturf)
 
 		for (var/i in 1 to 2)
-			var/obj/O = unpool(/obj/item/raw_material/shard/glass)
+			var/obj/O = new()
 			O.set_loc(shardturf)
 			if(src.material)
 				O.setMaterial(copyMaterial(src.material))

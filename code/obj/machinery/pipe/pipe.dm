@@ -7,8 +7,8 @@ var/linenums = 0
 /obj/machinery/pipeline/New()
 	..()
 
-	gas = unpool(/datum/gas_mixture)
-	ngas = unpool(/datum/gas_mixture)
+	gas = new()
+	ngas = new()
 
 	gasflowlist += src
 
@@ -686,11 +686,11 @@ var/linenums = 0
 
 /obj/machinery/circulator/New()
 	..()
-	gas1 = unpool(/datum/gas_mixture)
-	gas2 = unpool(/datum/gas_mixture)
+	gas1 = new()
+	gas2 = new()
 
-	ngas1 = unpool(/datum/gas_mixture)
-	ngas2 = unpool(/datum/gas_mixture)
+	ngas1 = new()
+	ngas2 = new()
 
 	gasflowlist += src
 
@@ -1113,8 +1113,8 @@ var/linenums = 0
 
 	..()
 	p_dir = dir
-	gas = unpool(/datum/gas_mixture)
-	ngas = unpool(/datum/gas_mixture)
+	gas = new()
+	ngas = new()
 	gasflowlist += src
 
 /obj/machinery/vent/disposing()
@@ -1205,8 +1205,8 @@ var/linenums = 0
 	..()
 
 	p_dir = dir
-	gas = unpool(/datum/gas_mixture)
-	ngas = unpool(/datum/gas_mixture)
+	gas = new()
+	ngas = new()
 	gasflowlist += src
 
 /obj/machinery/inlet/disposing()
@@ -1729,8 +1729,8 @@ var/linenums = 0
 
 /obj/machinery/inlet/filter/New()
 	..()
-	gas = unpool(/datum/gas_mixture)
-	ngas = unpool(/datum/gas_mixture)
+	gas = new()
+	ngas = new()
 
 /obj/machinery/inlet/filter/disposing()
 	if(gas)

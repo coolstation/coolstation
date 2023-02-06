@@ -312,7 +312,7 @@ What are the archived variables for?
 	if(amount <= 0)
 		return null
 
-	var/datum/gas_mixture/removed = unpool(/datum/gas_mixture)
+	var/datum/gas_mixture/removed = new()
 
 	#define _REMOVE_GAS(GAS, ...) \
 		removed.GAS = min(QUANTIZE((GAS/sum)*amount), GAS); \
@@ -339,7 +339,7 @@ What are the archived variables for?
 
 	ratio = min(ratio, 1)
 
-	var/datum/gas_mixture/removed = unpool(/datum/gas_mixture)
+	var/datum/gas_mixture/removed = new()
 
 	#define _REMOVE_GAS_RATIO(GAS, ...) \
 		removed.GAS = min(QUANTIZE(GAS*ratio), GAS); \

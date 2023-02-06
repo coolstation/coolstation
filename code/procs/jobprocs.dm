@@ -690,7 +690,7 @@
 		if (src.traitHolder && src.traitHolder.hasTrait("pawnstar"))
 			cashModifier = 1.25
 
-		var/obj/item/spacecash/S = unpool(/obj/item/spacecash)
+		var/obj/item/spacecash/S = new()
 		S.setup(src,wagesystem.jobs[JOB.name] * cashModifier)
 
 		if (isnull(src.get_slot(slot_r_store)))

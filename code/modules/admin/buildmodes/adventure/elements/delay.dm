@@ -6,7 +6,7 @@
 	var/selection
 
 	initialize()
-		selection = unpool(/obj/adventurepuzzle/marker)
+		selection = new /obj/adventurepuzzle/marker(src)
 		time_delay = input("Timing amount (in 1/10 seconds)", "Timing amount", 5) as num
 		var/per = input("Is this periodic? (Repeatedly triggers until aborted if started.)", "Periodic", "yes") in list("yes", "no")
 		periodic = (per == "yes") ? 1 : 0

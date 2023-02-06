@@ -2049,7 +2049,7 @@
 					P.name = IMG.img_name
 					P.desc = IMG.img_desc*/
 				else
-					var/obj/item/paper/P = unpool(/obj/item/paper)
+					var/obj/item/paper/P = new()
 					P.set_loc(src.loc)
 
 

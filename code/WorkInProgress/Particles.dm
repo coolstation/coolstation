@@ -158,7 +158,7 @@ var/datum/particleMaster/particleMaster = new
 			return 0
 
 	proc/new_particle(var/lifetime)
-		var/obj/particle/P = unpool(/obj/particle)
+		var/obj/particle/P = new()
 		P.death = world.time + lifetime
 		src.active_particles += P
 		return P

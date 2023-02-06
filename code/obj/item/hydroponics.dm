@@ -403,10 +403,10 @@
 			// 	S = new /obj/item/seed(src.loc,0)
 			// S.generic_seed_setup(selected)
 			if (selected.unique_seed)
-				S = unpool(selected.unique_seed)
+				S = new()
 				S.set_loc(src.loc)
 			else
-				S = unpool(/obj/item/seed)
+				S = new()
 				S.set_loc(src.loc)
 				S.removecolor()
 			S.generic_seed_setup(selected)

@@ -420,7 +420,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 
 	proc/smash()
 		playsound(src.loc, pick('sound/impact_sounds/Glass_Shatter_1.ogg','sound/impact_sounds/Glass_Shatter_2.ogg','sound/impact_sounds/Glass_Shatter_3.ogg'), 100, 1)
-		var/obj/item/raw_material/shard/glass/G = unpool(/obj/item/raw_material/shard/glass)
+		var/obj/item/raw_material/shard/glass/G = new()
 		G.set_loc(src.loc)
 		var/turf/U = src.loc
 		src.reagents.reaction(U)

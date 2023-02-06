@@ -49,7 +49,7 @@
 		src.ping.loc = target
 
 		src.ping.alpha = 0
-		var/matrix/M = unpool(/matrix)
+		var/matrix/M = new()
 		M.Reset()
 		M.Scale(3/2, 3/2)
 		src.ping.transform = M

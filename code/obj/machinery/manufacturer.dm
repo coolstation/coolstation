@@ -591,7 +591,7 @@
 							if (ejectamt == O.amount)
 								O.set_loc(get_output_location(O,1))
 							else
-								var/obj/item/material_piece/P = unpool(O.type)
+								var/obj/item/material_piece/P = new()
 								P.setMaterial(copyMaterial(O.material))
 								P.change_stack_amount(ejectamt - P.amount)
 								O.change_stack_amount(-ejectamt)
@@ -1834,7 +1834,7 @@
 		else if (free_resources.len && free_resource_amt > 0)
 			for (var/X in src.free_resources)
 				if (ispath(X))
-					var/obj/item/material_piece/P = unpool(X)
+					var/obj/item/material_piece/P = new()
 					P.set_loc(src)
 					if (free_resource_amt > 1)
 						P.change_stack_amount(free_resource_amt - P.amount)

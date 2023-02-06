@@ -22,8 +22,8 @@ obj/machinery/atmospherics/binary
 				initialize_directions = EAST|WEST
 			if(WEST)
 				initialize_directions = EAST|WEST
-		air1 = unpool(/datum/gas_mixture)
-		air2 = unpool(/datum/gas_mixture)
+		air1 = new()
+		air2 = new()
 
 		air1.volume = 200
 		air2.volume = 200

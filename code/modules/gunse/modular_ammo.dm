@@ -109,7 +109,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 					boutput(user, "<span class='alert'>You wish!</span>")
 					return
 				change_stack_amount( 0 - amt )
-				var/obj/item/stackable_ammo/young_money = unpool(/obj/item/stackable_ammo)
+				var/obj/item/stackable_ammo/young_money = new()
 				young_money.setup(user.loc, amt)
 				young_money.Attackhand(user)
 		else

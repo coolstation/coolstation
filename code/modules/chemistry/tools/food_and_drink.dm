@@ -251,10 +251,10 @@
 							if (istype(stored) && !stored.isgrass)
 								var/obj/item/seed/S
 								if (stored.unique_seed)
-									S = unpool(stored.unique_seed)
+									S = new()
 									S.set_loc(user.loc)
 								else
-									S = unpool(/obj/item/seed)
+									S = new()
 									S.set_loc(user.loc)
 									S.removecolor()
 
@@ -338,7 +338,7 @@
 
 		if (isliving(eater))
 			if (src.reagents && src.reagents.total_volume) //only create food chunks for reagents
-				var/obj/item/reagent_containers/food/snacks/bite/B = unpool(/obj/item/reagent_containers/food/snacks/bite)
+				var/obj/item/reagent_containers/food/snacks/bite/B = new()
 				B.set_loc(eater)
 				B.reagents.maximum_volume = reagents.total_volume/(src.amount ? src.amount : 1) //MBC : I copied this from the Eat proc. It doesn't really handle the reagent transfer evenly??
 				src.reagents.trans_to(B,B.reagents.maximum_volume,1,0)						//i'll leave it tho because i dont wanna mess anything up
@@ -905,7 +905,7 @@
 				var/turf/U = user.loc
 				user.visible_message("<span class='alert'>[src] shatters completely!</span>")
 				playsound(U, "sound/impact_sounds/Glass_Shatter_[rand(1,3)].ogg", 100, 1)
-				var/obj/item/raw_material/shard/glass/G = unpool(/obj/item/raw_material/shard/glass)
+				var/obj/item/raw_material/shard/glass/G = new()
 				G.set_loc(U)
 				qdel(src)
 				if (prob (25))
@@ -951,7 +951,7 @@
 
 		//have to do all this stuff anyway, so do it now
 		playsound(U, "sound/impact_sounds/Glass_Shatter_[rand(1,3)].ogg", 100, 1)
-		var/obj/item/raw_material/shard/glass/G = unpool(/obj/item/raw_material/shard/glass)
+		var/obj/item/raw_material/shard/glass/G = new()
 		G.set_loc(U)
 
 		if (src.reagents)
@@ -1289,7 +1289,7 @@
 		T.visible_message("<span class='alert'>[src] shatters!</span>")
 		playsound(T, "sound/impact_sounds/Glass_Shatter_[rand(1,3)].ogg", 100, 1)
 		for (var/i=src.shard_amt, i > 0, i--)
-			var/obj/item/raw_material/shard/glass/G = unpool(/obj/item/raw_material/shard/glass)
+			var/obj/item/raw_material/shard/glass/G = new()
 			G.set_loc(src.loc)
 		if (src.in_glass)
 			src.in_glass.set_loc(src.loc)
@@ -1716,7 +1716,7 @@
 		T.visible_message("<span class='alert'>[src] shatters!</span>")
 		playsound(T, "sound/impact_sounds/Glass_Shatter_[rand(1,3)].ogg", 100, 1)
 		for (var/i=src.shard_amt, i > 0, i--)
-			var/obj/item/raw_material/shard/glass/G = unpool(/obj/item/raw_material/shard/glass)
+			var/obj/item/raw_material/shard/glass/G = new()
 			G.set_loc(src.loc)
 		qdel(src)
 
@@ -1735,7 +1735,7 @@
 		M.TakeDamageAccountArmor("head", force, 0, 0, DAMAGE_BLUNT)
 		M.changeStatus("weakened", 2 SECONDS)
 		playsound(M, "sound/impact_sounds/Glass_Shatter_[rand(1,3)].ogg", 100, 1)
-		var/obj/O = unpool(/obj/item/raw_material/shard/glass)
+		var/obj/O = new()
 		O.set_loc(get_turf(M))
 		if (src.material)
 			O.setMaterial(copyMaterial(src.material))

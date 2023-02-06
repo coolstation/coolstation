@@ -1347,7 +1347,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 				chosen_bling = pick(src.possible_bling_common)
 			else
 				chosen_bling = /obj/item/spacecash
-			var/obj/item/bling = unpool(chosen_bling)
+			var/obj/item/bling = new chosen_bling()
 			bling.set_loc(T)
 			bling.throwforce = 8
 			src.cash_amt = max(src.cash_amt-src.shot_cost, 0)

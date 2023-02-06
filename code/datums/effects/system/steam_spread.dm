@@ -57,7 +57,7 @@ steam.start() -- spawns the effect
 		SPAWN_DBG(0)
 			if(holder)
 				src.location = get_turf(holder)
-			var/obj/effects/steam/steam = unpool(/obj/effects/steam)
+			var/obj/effects/steam/steam = new()
 			if(src.color)
 				steam.color = src.color
 			if(src.plane)

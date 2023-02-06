@@ -67,9 +67,9 @@
 			var/pickgem = rand(1,3)
 			var/obj/item/created = null
 			switch(pickgem)
-				if(1) created = unpool(/obj/item/raw_material/gemstone)
-				if(2) created = unpool(/obj/item/raw_material/uqill)
-				if(3) created = unpool(/obj/item/raw_material/fibrilith)
+				if(1) created = new()
+				if(2) created = new()
+				if(3) created = new()
 			created.set_loc(src.loc)
 			src.eaten -= rocks_per_gem
 

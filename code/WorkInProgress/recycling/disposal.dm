@@ -214,7 +214,7 @@
 		return
 
 	proc/dupe() // returns another disposalholder like this one
-		var/obj/disposalholder/autoconfig/dupe = unpool(/obj/disposalholder/autoconfig)
+		var/obj/disposalholder/autoconfig/dupe = new()
 		dupe.count = src.count
 		dupe.autoconfig = src.autoconfig
 		dupe.routers = src.routers.Copy()
@@ -676,7 +676,7 @@
 			logTheThing("debug", SJ, null, "deleting mail tags")
 			SJ.mail_tag = list()
 
-		var/obj/disposalholder/packet = unpool(/obj/disposalholder)
+		var/obj/disposalholder/packet = new()
 		packet.contents += new /obj/item/gnomechompski(packet)
 		packet.autoconfig = 2
 		packet.active = 1

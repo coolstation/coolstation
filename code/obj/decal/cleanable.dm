@@ -8,7 +8,7 @@
 
 ////////////////
 proc/make_cleanable(var/type,var/loc,var/list/viral_list)
-	var/obj/decal/cleanable/C = unpool(type)
+	var/obj/decal/cleanable/C = new()
 	C.name = initial(C.name) // ugh
 	C.setup(loc,viral_list)
 	.= C
@@ -1728,7 +1728,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 
 	proc/delete_same_tags()
 		for(var/obj/decal/cleanable/gangtag/T in get_turf(src))
-			if(T.owners == src.owners && T != src) pool(T)
+			if(T.owners == src.owners && T != src) qdel(T)
 
 	New()
 		..()

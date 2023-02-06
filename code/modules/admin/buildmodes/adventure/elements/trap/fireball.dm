@@ -7,7 +7,7 @@
 
 	initialize()
 		..()
-		selection = unpool(/obj/adventurepuzzle/marker)
+		selection = new /obj/adventurepuzzle/marker(src)
 		power = input("Fireball explosion power? (default should do if you want this to be doable)", "Fireball explosion", 5) as num
 		boutput(usr, "<span class='notice'>Right click to set trap target. Right click active target to clear target. Left click to place trap. Ctrl+click anywhere to finish.</span>")
 		boutput(usr, "<span class='notice'>Special note: If no target is set, the fireball will launch at the nearest mob.</span>")

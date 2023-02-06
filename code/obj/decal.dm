@@ -123,7 +123,7 @@
 				return ..()
 			if(prob(33))
 				boutput(user, "<span class='notice'>You are able to salvage the tiles.</span>")
-				var/obj/item/I = unpool(/obj/item/tile)
+				var/obj/item/I = new()
 				I.set_loc(src.loc)
 				if (src.material)
 					I.setMaterial(src.material)

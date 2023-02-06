@@ -785,7 +785,7 @@ datum
 				current_reagent = reagents_cache[reagent]
 
 				if(current_reagent)
-					current_reagent = unpool(current_reagent.type)
+					current_reagent = new()
 					reagent_list[reagent] = current_reagent
 					current_reagent.holder = src
 					current_reagent.volume = 0

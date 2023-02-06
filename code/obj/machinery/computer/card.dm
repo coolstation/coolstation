@@ -310,7 +310,7 @@
 		if (!( src.printing ))
 			src.printing = 1
 			sleep(5 SECONDS)
-			var/obj/item/paper/P = unpool(/obj/item/paper)
+			var/obj/item/paper/P = new()
 			P.set_loc(src.loc)
 
 			var/t1 = "<B>Crew Manifest:</B><BR>"

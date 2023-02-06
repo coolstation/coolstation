@@ -875,7 +875,7 @@
 		var/output_location = src.get_output_location()
 
 		var/bar_type = getProcessedMaterialForm(MAT)
-		var/obj/item/material_piece/BAR = unpool(bar_type)
+		var/obj/item/material_piece/BAR = new bar_type()
 		BAR.quality = quality
 		BAR.name += getQualityName(quality)
 		BAR.setMaterial(MAT)

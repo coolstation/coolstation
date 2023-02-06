@@ -113,7 +113,7 @@
 			status |= BROKEN
 
 			if(P)
-				var/obj/item/seed/S = unpool(/obj/item/seed)
+				var/obj/item/seed/S = new()
 
 				S.generic_seed_setup(P)
 				src.HYPnewplant(S)
@@ -697,9 +697,9 @@
 			user.visible_message("<span class='notice'>[user] plants a seed in the [src].</span>")
 			var/obj/item/seed/SEED
 			if(SP.selected.unique_seed)
-				SEED = unpool(SP.selected.unique_seed)
+				SEED = new SP.selected.unique_seed()
 			else
-				SEED = unpool(/obj/item/seed)
+				SEED = new()
 			SEED.generic_seed_setup(SP.selected)
 			SEED.set_loc(src)
 			if(SEED.planttype)
@@ -732,7 +732,7 @@
 			// Planting a crystal shard simply puts a crystal seed inside the plant pot for
 			// a moment, spawns a new plant from it, then deletes both the seed and the shard.
 			user.visible_message("<span class='notice'>[user] plants [W] in the tray.</span>")
-			var/obj/item/seed/crystal/WS = unpool(/obj/item/seed/crystal)
+			var/obj/item/seed/crystal/WS = new()
 			WS.set_loc(src)
 			HYPnewplant(WS)
 			pool(W)
@@ -1181,7 +1181,7 @@
 
 				// Start up the loop of grabbing all our produce. Remember, each iteration of
 				// this loop is for one item each.
-				var/obj/CROP = unpool(itemtype)
+				var/obj/CROP = new itemtype()
 				CROP.set_loc(src)
 				// I bet this will go real well.
 				if(!dont_rename_crop)
@@ -1290,10 +1290,10 @@
 					// need to pass genes and whatnot along like we did for fruit.
 					var/obj/item/seed/S = CROP
 					if(growing.unique_seed)
-						S = unpool(growing.unique_seed)
+						S = new growing.unique_seed()
 						S.set_loc(src)
 					else
-						S = unpool(/obj/item/seed)
+						S = new()
 						S.set_loc(src)
 						S.removecolor()
 
@@ -1352,10 +1352,10 @@
 					// incase you couldn't get them otherwise, though.
 					var/obj/item/seed/S
 					if(growing.unique_seed)
-						S = unpool(growing.unique_seed)
+						S = new growing.unique_seed()
 						S.set_loc(src)
 					else
-						S = unpool(/obj/item/seed)
+						S = new ()
 						S.set_loc(src)
 						S.removecolor()
 					var/datum/plantgenes/HDNA = src.plantgenes

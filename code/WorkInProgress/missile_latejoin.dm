@@ -152,7 +152,7 @@
 		src.loc = start
 
 proc/launch_with_missile(atom/movable/thing, turf/target)
-	var/obj/arrival_missile/missile = unpool(/obj/arrival_missile)
+	var/obj/arrival_missile/missile = new()
 	if(!target)
 		missile.reset_to_random_pos()
 	else
@@ -162,7 +162,7 @@ proc/launch_with_missile(atom/movable/thing, turf/target)
 	return missile
 
 proc/latejoin_missile_spawn(var/mob/character)
-	var/obj/arrival_missile/M = unpool(/obj/arrival_missile)
+	var/obj/arrival_missile/M = new()
 	var/turf/T = pick_landmark(LANDMARK_LATEJOIN_MISSILE)
 	var/missile_dir = landmarks[LANDMARK_LATEJOIN_MISSILE][T]
 	M.set_loc(T)

@@ -87,7 +87,7 @@
 			if(!limiter.canISpawn(/obj/effects/sparks))
 				continue
 			// Create sparks
-			var/obj/effects/sparks/sparks = unpool(/obj/effects/sparks)
+			var/obj/effects/sparks/sparks = new()
 			sparks.set_loc(src.location)
 			src.total_sparks++
 

@@ -76,9 +76,9 @@
 			user.visible_message("<span class='notice'>[user] plants a seed in \the [A].</span>")
 
 			if(SP.selected.unique_seed)
-				SEED = unpool(SP.selected.unique_seed)
+				SEED = new()
 			else
-				SEED = unpool(/obj/item/seed)
+				SEED = new()
 			SEED.generic_seed_setup(SP.selected)
 			SEED.set_loc(P)
 			if(SEED.planttype)

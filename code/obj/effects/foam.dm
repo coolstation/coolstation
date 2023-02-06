@@ -138,7 +138,7 @@
 
 				if(no_merge) continue
 
-			F = unpool(/obj/effects/foam)
+			F = new()
 			F.set_up(T, metal)
 			F.amount = amount
 			F.foam_id = src.foam_id //Just keep track of us being from the same source

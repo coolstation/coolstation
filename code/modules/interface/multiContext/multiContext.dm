@@ -29,7 +29,7 @@
 
 	var/list/buttons = list()
 	for(var/datum/contextAction/C as anything in applicable)
-		var/atom/movable/screen/contextButton/B = unpool(/atom/movable/screen/contextButton)
+		var/atom/movable/screen/contextButton/B = new()
 		B.setup(C, src, target)
 		B.alpha = 0
 		buttons.Add(B)
@@ -135,7 +135,7 @@
 		icon_state = action.getIconState(target, user)
 		name = action.getName(target, user)
 
-		var/matrix/trans = unpool(/matrix)
+		var/matrix/trans = new()
 		trans = trans.Reset()
 		trans.Translate(8, 16)
 		transform = trans

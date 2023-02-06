@@ -1177,7 +1177,7 @@ as it may become compromised.
 	else
 		if (src.amount >= 1 && user) //Wire: Fix for Cannot read null.loc (&& user)
 			src.amount--
-			var/obj/item/paper/P = unpool(/obj/item/paper)
+			var/obj/item/paper/P = new()
 			P.set_loc(src)
 			user.put_in_hand_or_drop(P)
 			if (rand(1,100) == 13)

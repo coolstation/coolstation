@@ -177,7 +177,7 @@
 		//src.visible_message("<span class='alert'><b>[src] has torn out its head!</b></span>")
 		//playsound(R.loc, "sound/impact_sounds/Machinery_Break_1.ogg", 40, 1)
 		/*
-		var/datum/effects/system/spark_spread/s = unpool(/datum/effects/system/spark_spread)
+		var/datum/effects/system/spark_spread/s = new()
 		s.set_up(5, 1, src)
 		s.start()
 		R.part_head.set_loc(src.loc)

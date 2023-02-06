@@ -61,7 +61,7 @@
 		if (parent?.group_processing)
 			parent.suspend_group_processing()
 
-		active_hotspot = unpool(/obj/hotspot)
+		active_hotspot = new()
 		active_hotspot.temperature = exposed_temperature
 		active_hotspot.volume = exposed_volume
 		active_hotspot.set_loc(src)

@@ -694,7 +694,7 @@ proc/Create_Tommyname()
 //calculate new px / py
 	if(istype(O, /turf))
 		var/turf/T = O
-		var/obj/movedummy/MD = unpool(/obj/movedummy)
+		var/obj/movedummy/MD = new()
 		MD.mimic_turf(T.type, 0)
 		MD.set_loc(T)
 		T.ReplaceWithSpace()
@@ -757,7 +757,7 @@ proc/Create_Tommyname()
 				if(!is_turf)
 					O = new t_type(null)
 				else
-					var/obj/movedummy/MD = unpool(/obj/movedummy)
+					var/obj/movedummy/MD = new()
 					MD.mimic_turf(t_type, animtime)
 					O = MD
 
