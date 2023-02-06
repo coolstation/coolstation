@@ -133,10 +133,12 @@
 		else if (user.r_hand)
 			thing = user.r_hand
 	if (thing)
+		animate_spin(thing, prob(50) ? "L" : "R", 1, 0)
+		/*
 		var/trans = thing.transform
 		animate(thing, transform = turn(trans, 120), time = 0.7, loop = 3, flags = ANIMATION_PARALLEL)
 		animate(transform = turn(trans, 240), time = 0.7, flags = ANIMATION_PARALLEL)
-		animate(transform = trans, time = 0.7, flags = ANIMATION_PARALLEL)
+		animate(transform = trans, time = 0.7, flags = ANIMATION_PARALLEL)*/
 		return list(thing.on_spin_emote(user), "<I>twirls [thing]</I>", MESSAGE_VISIBLE)
 	else
 		return list("<B>[user]</B> wiggles [his_or_her(user)] fingers a bit.[prob(10) ? " Weird." : null]", "<I>wiggles [his_or_her(user)] fingers a bit</I>", MESSAGE_VISIBLE)
