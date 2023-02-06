@@ -591,7 +591,7 @@
 							if (ejectamt == O.amount)
 								O.set_loc(get_output_location(O,1))
 							else
-								var/obj/item/material_piece/P = new()
+								var/obj/item/material_piece/P = new O.type()
 								P.setMaterial(copyMaterial(O.material))
 								P.change_stack_amount(ejectamt - P.amount)
 								O.change_stack_amount(-ejectamt)

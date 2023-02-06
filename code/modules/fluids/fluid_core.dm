@@ -75,7 +75,7 @@ var/mutable_appearance/fluid_ma
 	var/touched_channel = 0
 
 	var/list/wall_overlay_images = 0 //overlay bits onto a wall to make the water look deep. This is a cache of those overlays.
-	//var/list/floated_atoms = 0 //list of atoms we triggered a float anim on (cleanup later on qdel())
+	//var/list/floated_atoms = 0 //list of atoms we triggered a float anim on (cleanup later on disposing())
 
 	var/is_setup = 0
 	var/blocked_dirs = 0 //amount of cardinal directions that i was blocked by in last update(). Cache this to skip updates on 'inner' fluid tiles of a group

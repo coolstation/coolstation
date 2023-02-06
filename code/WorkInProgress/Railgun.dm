@@ -233,7 +233,7 @@ proc/DrawLine(atom/Start,atom/End,LineType,Icon,Whole_Icon_State = "",CenterOfIc
 	var/CoorCounter = Nullspace
 	if(Start.loc != End.loc&&!(Start.loc in orange(1,End.loc)))
 		while(CurrentLoc&&!(((ReturnedDir == NORTH||ReturnedDir == SOUTH)&&CurrentLoc.x == End.x)||((ReturnedDir == EAST||ReturnedDir == WEST)&&CurrentLoc.y == End.y)||(ReturnedDir == null&&CurrentLoc == End.loc)))
-			var/obj/NewLine = new()
+			var/obj/NewLine = new LineType()
 			if(!PreloadedIcon)
 				NewLine.icon = I
 				NewLine.icon_state = Whole_Icon_State
@@ -255,7 +255,7 @@ proc/DrawLine(atom/Start,atom/End,LineType,Icon,Whole_Icon_State = "",CenterOfIc
 			CoorCounter += Nullspace
 			CurrentLoc = line_ReturnNextTile(CurrentLoc,Angle)
 	if(CenterOfIconStart == 1)
-		var/obj/NewLineStart = new()
+		var/obj/NewLineStart = new LineType()
 		if(!PreloadedIcon)
 			NewLineStart.icon = I
 			NewLineStart.icon_state = HalfStart_Icon_State
@@ -267,7 +267,7 @@ proc/DrawLine(atom/Start,atom/End,LineType,Icon,Whole_Icon_State = "",CenterOfIc
 		NewLineStart.set_loc(Start.loc)
 		LineList.Add(NewLineStart)
 	if(CenterOfIconEnd == 1)
-		var/obj/NewLineEnd = new()
+		var/obj/NewLineEnd = new LineType()
 		if(!PreloadedIcon)
 			NewLineEnd.icon = I
 			NewLineEnd.icon_state = HalfEnd_Icon_State
@@ -291,28 +291,28 @@ proc/DrawLine(atom/Start,atom/End,LineType,Icon,Whole_Icon_State = "",CenterOfIc
 		else
 			if(L.pixel_y >= 17)
 				if(ExtraDetection == 1&&L.pixel_y <= 21)
-					var/obj/ExtraLine = new()
+					var/obj/ExtraLine = new LineType()
 					ExtraLine.set_loc(L.loc)
 					LineList.Add(ExtraLine)
 				L.pixel_y -= 32
 				L.y++
 			if(L.pixel_y <= -17)
 				if(ExtraDetection == 1&&L.pixel_y >= -21)
-					var/obj/ExtraLine = new()
+					var/obj/ExtraLine = new LineType()
 					ExtraLine.set_loc(L.loc)
 					LineList.Add(ExtraLine)
 				L.pixel_y += 32
 				L.y--
 			if(L.pixel_x >= 17)
 				if(ExtraDetection == 1&&L.pixel_x <= 21)
-					var/obj/ExtraLine = new()
+					var/obj/ExtraLine = new LineType()
 					ExtraLine.set_loc(L.loc)
 					LineList.Add(ExtraLine)
 				L.pixel_x -= 32
 				L.x++
 			if(L.pixel_x <= -17)
 				if(ExtraDetection == 1&&L.pixel_x >= -21)
-					var/obj/ExtraLine = new()
+					var/obj/ExtraLine = new LineType()
 					ExtraLine.set_loc(L.loc)
 					LineList.Add(ExtraLine)
 				L.pixel_x += 32

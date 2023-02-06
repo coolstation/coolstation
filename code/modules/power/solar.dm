@@ -131,7 +131,7 @@
 		else
 			var/obj/item/raw_material/shard/glass/G = new()
 			G.set_loc(src.loc)
-			G = new()
+			G = new /obj/item/raw_material/shard/glass()
 			G.set_loc(src.loc)
 
 			qdel(src)

@@ -52,7 +52,7 @@
 				if (src.reagents_internal.total_volume < src.pvol)
 					src.pcount = 0
 				else
-					P = new()
+					P = new /obj/item/reagent_containers/pill()
 					P.set_loc(src)
 					P.name = "[pname] pill"
 

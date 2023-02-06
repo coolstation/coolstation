@@ -116,7 +116,7 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 				var/turf/T = locate(Obj.x, 4, 1)
 				Obj.set_loc(T)
 				playsound(T, pick('sound/effects/elec_bigzap.ogg', 'sound/effects/elec_bzzz.ogg', 'sound/effects/electric_shock.ogg'), 50, 0)
-				var/obj/somesparks = new()
+				var/obj/somesparks = new /obj/effects/sparks()
 				somesparks.set_loc(T)
 				SPAWN_DBG(2 SECONDS)
 					if (somesparks) qdel(somesparks)

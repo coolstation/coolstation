@@ -559,7 +559,7 @@ Returns:
 			AM.set_loc(T)
 		else
 			src.visible_message("<span style='color: red; font-weight: bold'>The portal collapses in on itself!</span>")
-			var/obj/sparks = new()
+			var/obj/sparks = new /obj/effects/sparks()
 			sparks.set_loc(get_turf(src))
 			SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 			qdel(src)
@@ -3087,7 +3087,7 @@ Returns:
 			AM.set_loc(target)
 		else
 			src.visible_message("<span style='color: red; font-weight: bold'>The portal collapses in on itself!</span>")
-			var/obj/sparks = new()
+			var/obj/sparks = new /obj/effects/sparks()
 			sparks.set_loc(get_turf(src))
 			SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 			qdel(src)

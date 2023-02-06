@@ -1336,7 +1336,7 @@ DEFINE_FLOORS(techfloor/green,
 			switch(pick(1,2;75,3))
 				if (1)
 					if(prob(33))
-						var/obj/item/I = new()
+						var/obj/item/I = new /obj/item/raw_material/scrap_metal()
 						I.set_loc(src)
 						if (src.material)
 							I.setMaterial(src.material)

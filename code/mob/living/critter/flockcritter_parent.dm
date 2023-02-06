@@ -175,9 +175,9 @@
 			// do effect
 			var/flick_anim = "spawn-floor"
 			if(istype(target, /turf/simulated/floor) || istype(target, /turf/space))
-				src.decal = new()
+				src.decal = new /obj/decal/flock_build_floor()
 			if(istype(target, /turf/simulated/wall))
-				src.decal = new()
+				src.decal = new /obj/decal/flock_build_wall()
 				flick_anim = "spawn-wall"
 			if(src.decal)
 				src.decal.set_loc(target)
@@ -251,7 +251,7 @@
 
 			// do effect
 			var/flick_anim = "spawn-wall"
-			src.decal = new()
+			src.decal = new /obj/decal/flock_build_wall()
 			if(src.decal)
 				src.decal.set_loc(target)
 				flick(flick_anim, src.decal)
@@ -416,7 +416,7 @@
 					"You hear strange building noises.")
 				target.was_harmed(F, null, "flock", INTENT_DISARM)
 				// do effect
-				src.decal = new()
+				src.decal = new /obj/decal/flock_build_wall()
 				if(src.decal)
 					src.decal.set_loc(target)
 					flick("spawn-wall", src.decal)
@@ -490,7 +490,7 @@
 				var/obj/item/raw_material/shard/S = new()
 				S.set_loc(T)
 				S.setMaterial(getMaterial("gnesisglass"))
-				S = new()
+				S = new ()
 				S.set_loc(T)
 				S.setMaterial(getMaterial("gnesis"))
 				qdel(target)

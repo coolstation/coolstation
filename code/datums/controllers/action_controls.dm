@@ -148,8 +148,8 @@ var/datum/action_controller/actions
 		..()
 		var/atom/movable/A = owner
 		if(owner != null)
-			bar = new()
-			border = new()
+			bar = new /obj/actions/bar()
+			border = new /obj/actions/border()
 			border.set_icon_state(src.border_icon_state)
 			bar.set_icon_state(src.bar_icon_state)
 			bar.pixel_y = 5
@@ -159,8 +159,8 @@ var/datum/action_controller/actions
 				A.vis_contents += bar
 				A.vis_contents += border
 			if (place_to_put_bar)
-				target_bar = new()
-				target_border = new()
+				target_bar = new /obj/actions/bar()
+				target_border = new /obj/actions/border()
 				target_border.set_icon_state(src.border_icon_state)
 				target_bar.set_icon_state(src.bar_icon_state)
 				target_bar.pixel_y = 5
@@ -321,9 +321,9 @@ var/datum/action_controller/actions
 		..()
 		var/atom/movable/A = owner
 		if(owner != null)
-			shield_bar = new()
+			shield_bar = new /obj/actions/bar()
 			shield_bar.loc = owner.loc
-			armor_bar = new()
+			armor_bar = new /obj/actions/bar()
 			armor_bar.loc = owner.loc
 			shield_bar.pixel_y = 5
 			armor_bar.pixel_y = 5

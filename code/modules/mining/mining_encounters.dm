@@ -823,7 +823,7 @@
 		picker = rand(1,6)
 		switch(picker)
 			if (1 to 3)
-				I = new()
+				I = new /obj/item/raw_material/scrap_metal()
 				I.set_loc(pick(turfs_near_center))
 				I.setMaterial(scrap_material)
 			if (4)

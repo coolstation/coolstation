@@ -1543,7 +1543,7 @@
 
 /obj/item/proc/create_inventory_counter()
 	if (!src.inventory_counter)
-		src.inventory_counter = new()
+		src.inventory_counter = new /obj/overlay/inventory_counter()
 		src.vis_contents += src.inventory_counter
 
 /obj/item/proc/dropped(mob/user)

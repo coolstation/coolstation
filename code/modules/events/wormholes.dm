@@ -13,7 +13,7 @@
 			for(var/holes = rand(100,200), holes > 0, holes--)
 				holepick = pick(wormholeturfs)
 				targpick = pick(wormholeturfs)
-				var/obj/portal/P = new()
+				var/obj/portal/P = new /obj/portal/wormhole()
 				P.set_loc( holepick )
 				P.target = targpick
 				SPAWN_DBG(rand(18 SECONDS,32 SECONDS))

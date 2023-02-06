@@ -188,7 +188,7 @@
 		else if(R.amount>1)
 			R.set_loc(src)
 			for(R.amount,R.amount > 0, R.amount--)
-				var/obj/item/raw_material/new_mat = new()
+				var/obj/item/raw_material/new_mat = new R.type()
 				new_mat.set_loc(src)
 				amount_loaded++
 			if (user && R)

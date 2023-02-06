@@ -1041,7 +1041,7 @@ Broken RCD + Effects
 
 		for (var/turf/simulated/T in range(src, (rangeout-lifespan)))
 			if (prob(5 + lifespan) && limiter.canISpawn(/obj/effects/sparks))
-				var/obj/sparks = new()
+				var/obj/sparks = new /obj/effects/sparks()
 				sparks.set_loc(T)
 				SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 

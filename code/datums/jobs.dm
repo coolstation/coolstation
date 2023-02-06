@@ -1444,7 +1444,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 		if (B && istype(B))
 			var/obj/item/material_piece/gold/G = new()
 			G.set_loc(B)
-			G = new()
+			G = new /obj/item/material_piece/gold()
 			G.set_loc(B)
 
 		return

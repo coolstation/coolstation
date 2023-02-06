@@ -242,7 +242,7 @@ var/global/list/ghostdrone_candidates = list()
 			src.icon_state = "factory[src.factory_section]1"
 
 		else if ((src.factory_section == 1 || src.single_system) && !ghostdrone_factory_working && !src.current_assembly)
-			src.current_assembly = new()
+			src.current_assembly = new /obj/item/ghostdrone_assembly()
 			if (!src.current_assembly)
 				src.current_assembly = new(src)
 			src.current_assembly.set_loc(src)

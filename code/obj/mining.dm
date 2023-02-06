@@ -1334,7 +1334,7 @@
 				O.onExcavate(src)
 			var/makeores
 			for(makeores = src.amount, makeores > 0, makeores--)
-				var/obj/item/raw_material/MAT = new()
+				var/obj/item/raw_material/MAT = new ore_to_create()
 				MAT.set_loc(src)
 
 				if(MAT.material)

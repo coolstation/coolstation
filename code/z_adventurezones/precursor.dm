@@ -1195,7 +1195,7 @@
 			else
 				T_effect_prob = 100 * (1 - (max(T_dist-1,1) / range))
 			if (prob(8) && limiter.canISpawn(/obj/effects/sparks))
-				var/obj/sparks = new()
+				var/obj/sparks = new /obj/effects/sparks()
 				sparks.set_loc(T)
 				SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 
