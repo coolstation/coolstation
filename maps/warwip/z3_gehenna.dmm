@@ -1965,6 +1965,9 @@
 /area/station/engine/power)
 "biC" = (
 /obj/machinery/manufacturer/general,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
 /turf/simulated/floor/grime,
 /area/station/quartermaster/automat)
 "biP" = (
@@ -3310,12 +3313,13 @@
 /obj/disposalpipe/segment/mineral,
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
-/turf/simulated/floor,
+/turf/simulated/floor/industrial,
 /area/station/maintenance/northeast)
 "cfV" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
 	},
+/obj/decal/tile_edge/stripe/extra_big,
 /turf/simulated/floor,
 /area/station/quartermaster/automat)
 "cgr" = (
@@ -5832,18 +5836,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/medical/medbooth)
-"dPg" = (
-/obj/disposalpipe/segment/horizontal,
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 4
-	},
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor,
-/area/station/quartermaster/automat)
 "dPG" = (
 /turf/simulated/floor/plating,
 /area/station/engine/coldloop)
@@ -6133,6 +6125,9 @@
 	})
 "dVY" = (
 /obj/machinery/manufacturer/uniform,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
 /turf/simulated/floor/grime,
 /area/station/quartermaster/automat)
 "dWa" = (
@@ -6659,7 +6654,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/grime,
+/turf/simulated/floor/industrial,
 /area/station/maintenance/northeast)
 "ekM" = (
 /obj/machinery/light/fluorescent/neutral{
@@ -9063,14 +9058,13 @@
 /turf/simulated/floor/grey,
 /area/station/science/research_director)
 "fKx" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 6;
-	icon_state = "xtra_bigstripe-corner2"
-	},
 /obj/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/station/quartermaster/automat)
@@ -9770,8 +9764,7 @@
 	},
 /obj/machinery/phone,
 /obj/decal/tile_edge/stripe/extra_big{
-	dir = 5;
-	icon_state = "xtra_bigstripe-corner2"
+	dir = 1
 	},
 /turf/simulated/floor/grime,
 /area/station/quartermaster/automat)
@@ -13174,7 +13167,7 @@
 	dir = 4
 	},
 /obj/decal/tile_edge/floorguide/arrow_s,
-/turf/simulated/floor,
+/turf/simulated/floor/industrial,
 /area/station/maintenance/northeast)
 "isp" = (
 /obj/cable{
@@ -13785,13 +13778,12 @@
 /area/station/maintenance/disposal/sewage)
 "iLl" = (
 /obj/disposalpipe/segment/bent/east,
-/obj/decal/tile_edge/stripe/extra_big,
 /obj/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/industrial,
 /area/station/quartermaster/automat)
 "iLu" = (
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon5,
@@ -14568,7 +14560,7 @@
 /area/station/maintenance/south)
 "jhO" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/grime,
+/turf/simulated/floor/industrial,
 /area/station/maintenance/northeast)
 "jiq" = (
 /obj/cable{
@@ -15228,7 +15220,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/industrial,
 /area/station/maintenance/northeast)
 "jGV" = (
 /obj/machinery/light/fluorescent/neutral{
@@ -19440,6 +19432,10 @@
 /area/station/mining/refinery)
 "mgX" = (
 /obj/decal/cleanable/dirt/random,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6;
+	icon_state = "xtra_bigstripe-corner2"
+	},
 /turf/simulated/floor,
 /area/station/quartermaster/automat)
 "mhJ" = (
@@ -21071,7 +21067,7 @@
 	dir = 4
 	},
 /obj/item/device/radio/beacon,
-/turf/simulated/floor,
+/turf/simulated/floor/industrial,
 /area/station/quartermaster/automat)
 "njo" = (
 /obj/disposalpipe/trunk,
@@ -21124,7 +21120,7 @@
 /obj/disposalpipe/segment/cargo,
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
-/turf/simulated/floor,
+/turf/simulated/floor/industrial,
 /area/station/maintenance/northeast)
 "nkQ" = (
 /obj/cable{
@@ -22076,7 +22072,7 @@
 	d2 = 4;
 	icon_state = "6-8"
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/industrial,
 /area/station/maintenance/northeast)
 "nQt" = (
 /obj/cable{
@@ -26192,10 +26188,7 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 4
-	},
-/turf/simulated/floor,
+/turf/simulated/floor/industrial,
 /area/station/quartermaster/automat)
 "qGO" = (
 /obj/disposalpipe/segment/bent/north,
@@ -27626,7 +27619,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/industrial,
 /area/station/maintenance/northeast)
 "ryv" = (
 /obj/disposalpipe/segment{
@@ -27766,7 +27759,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/industrial,
 /area/station/quartermaster/automat)
 "rEy" = (
 /obj/disposalpipe/segment{
@@ -30293,6 +30286,7 @@
 /turf/simulated/floor/plating/random,
 /area/station/medical/cdc)
 "tfx" = (
+/obj/decal/tile_edge/stripe/extra_big,
 /turf/simulated/floor,
 /area/station/quartermaster/automat)
 "tfy" = (
@@ -30363,7 +30357,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/industrial,
 /area/station/maintenance/northeast)
 "tij" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -30915,10 +30909,7 @@
 /area/station/wc/public)
 "tzi" = (
 /obj/decal/cleanable/dirt/random,
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 6;
-	icon_state = "xtra_bigstripe-corner2"
-	},
+/obj/decal/tile_edge/stripe/extra_big,
 /turf/simulated/floor,
 /area/station/quartermaster/automat)
 "tzj" = (
@@ -33656,11 +33647,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 10;
-	icon_state = "xtra_bigstripe-corner2"
-	},
-/turf/simulated/floor,
+/turf/simulated/floor/industrial,
 /area/station/quartermaster/automat)
 "vio" = (
 /obj/cable{
@@ -35037,13 +35024,12 @@
 /turf/simulated/floor/grime,
 /area/station/wc/public)
 "vYq" = (
-/obj/decal/tile_edge/stripe/extra_big,
 /obj/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/industrial,
 /area/station/quartermaster/automat)
 "vYt" = (
 /obj/machinery/magnet_chassis{
@@ -36317,7 +36303,7 @@
 "wSV" = (
 /obj/disposalpipe/segment/produce,
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor,
+/turf/simulated/floor/industrial,
 /area/station/maintenance/northeast)
 "wSY" = (
 /turf/simulated/wall/r_wall,
@@ -37852,6 +37838,9 @@
 	})
 "xSa" = (
 /obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
 /turf/simulated/floor,
@@ -94716,7 +94705,7 @@ kPQ
 lMH
 lMH
 cfV
-xSa
+qGL
 vYq
 hSj
 kLG
@@ -95018,7 +95007,7 @@ kPQ
 lMH
 tLN
 tfx
-xSa
+qGL
 iLl
 iLz
 vjq
@@ -95622,7 +95611,7 @@ woB
 lMH
 tKY
 tfx
-xSa
+qGL
 rEq
 dVY
 fcU
@@ -95924,7 +95913,7 @@ dgd
 lMH
 lMH
 cfV
-xSa
+qGL
 rEq
 biC
 fcU
@@ -96227,7 +96216,7 @@ lMH
 rup
 tzi
 qGL
-dPg
+rEq
 giT
 lMH
 oPM
