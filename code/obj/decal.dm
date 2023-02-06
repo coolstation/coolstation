@@ -15,14 +15,14 @@
 
 		if (!real_name)
 			real_name = name
-
+/*
 	pooled()
 		..()
 
 
 	unpooled()
 		..()
-
+*/
 	proc/setup(var/L,var/list/viral_list)
 		set_loc(L)
 
@@ -543,13 +543,13 @@ obj/decal/fakeobjects/teleport_pad
 		src.set_dir(pick(cardinal))
 		if (prob(20))
 			new /obj/decal/alienflower(src.loc)
-
+/*
 	unpooled()
 		..()
 		src.set_dir(pick(cardinal))
 		if (prob(20))
 			new /obj/decal/alienflower(src.loc)
-
+*/
 /obj/decal/icefloor
 	name = "ice"
 	desc = "Slippery!"

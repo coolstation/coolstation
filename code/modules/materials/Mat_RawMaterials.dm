@@ -15,7 +15,7 @@
 			var/datum/material/M = getMaterial(default_material)
 			src.setMaterial(M)
 		setup_material()
-
+/*
 	unpooled()
 		..()
 		if (istext(default_material))
@@ -25,7 +25,7 @@
 
 	pooled()
 		..()
-
+*/
 	proc/setup_material()
 		.=0
 

@@ -86,7 +86,7 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 		if (Ar)
 			Ar.sims_score = min(Ar.sims_score + 6, 100)
 		..()
-
+/*
 	unpooled()
 		..()
 		dry = initial(dry)
@@ -100,7 +100,7 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 	pooled()
 		..()
 		src.sampled = initial(src.sampled) //I had to fix fire not resetting on magnesium, and now I find out sampled only resets on magnesium?
-
+*/
 	proc/process()
 		if (world.time > last_dry_start + dry_time)
 			end_dry()
@@ -454,10 +454,10 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 			B.UpdateOverlays(working_image, i)
 
 		..(B)
-
+/*
 	unpooled()
 		..()
-
+*/
 	get_blood_color()
 		return src.last_color
 
@@ -792,11 +792,11 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 		. = ..()
 		icon_state = initial(icon_state)
 		maptext_width = 16
-
+/*
 	pooled()
 		. = ..()
 		src.maptext = ""
-
+*/
 /obj/decal/cleanable/writing/spooky
 	icon = 'icons/obj/writing_animated_blood.dmi'
 	color = null
@@ -1280,13 +1280,13 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 			src.update_icon()
 		..()
 		return
-
+/*
 	unpooled()
 		..()
 		if (prob(5))
 			src.amount += rand(1,2)
 			src.update_icon()
-
+*/
 	proc/update_icon()
 		src.icon_state = "fungus[max(1,min(3, amount))]"
 
@@ -1440,7 +1440,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	can_dry = 1
 	dry_time = 1200
 	var/datum/light/light
-
+/*
 	unpooled()
 		light = new /datum/light/point
 		light.set_brightness(0.4)
@@ -1449,7 +1449,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 		light.attach(src)
 		light.enable()
 		..()
-
+*/
 	disposing()
 		if(light)
 			qdel(light)
@@ -1966,13 +1966,13 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 		src.create_reagents(reagents_max)
 		src.reagents.add_reagent("poo", 10)
 		..()
-
+/*
 	pooled()
 		..()
 
 	unpooled()
 		..()
-
+*/
 	setup()
 		if (!src.reagents)
 			src.create_reagents(reagents_max)
@@ -2097,10 +2097,10 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 	disposing()
 		diseases = list()
 		..()
-
+/*
 	unpooled()
 		..()
-
+*/
 	get_mud_color()
 		return src.last_color
 

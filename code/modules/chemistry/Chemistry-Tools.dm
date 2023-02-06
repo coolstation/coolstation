@@ -33,18 +33,18 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 		ensure_reagent_holder()
 		create_initial_reagents(new_initial_reagents)
 
-	pooled()
+	disposing()
 		if (src.reagents)
 			src.reagents.clear_reagents()
 		..()
-
+/*
 	unpooled()
 		if (src.reagents)
 			src.reagents.clear_reagents()
 		..()
 		setup_reagents(last_new_initial_reagents)
 
-
+*/
 	move_trigger(var/mob/M, kindof)
 		if (..() && reagents)
 			reagents.move_trigger(M, kindof)

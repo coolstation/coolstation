@@ -82,7 +82,7 @@
 	else
 		src.pixel_y = rand(-8, 8)
 		src.pixel_x = rand(-9, 9)
-
+/*
 /obj/item/paper/pooled()
 
 	..()
@@ -118,7 +118,7 @@
 			icon_state = "paper"
 
 	return
-
+*/
 /obj/item/paper/examine(mob/user)
 	. = ..()
 	ui_interact(user)

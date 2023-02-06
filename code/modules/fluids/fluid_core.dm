@@ -184,7 +184,7 @@ var/mutable_appearance/fluid_ma
 		my_depth_level = 0
 
 		..()
-
+/*
 	unpooled()
 
 		src.pooled = 0
@@ -196,7 +196,7 @@ var/mutable_appearance/fluid_ma
 		if (isturf(src.loc))
 			turf_remove_cleanup(src.loc)
 		..()
-
+*/
 	get_desc(dist, mob/user)
 		if (dist > 4)
 			return

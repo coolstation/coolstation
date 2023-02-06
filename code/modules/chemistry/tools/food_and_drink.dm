@@ -21,13 +21,13 @@
 
 	New()
 		..()
-
+/*
 	pooled()
 		..()
 
 	unpooled()
 		made_ants = 0
-		..()
+		..()*/
 
 	proc/on_table()
 		if (!isturf(src.loc)) return 0
@@ -110,7 +110,7 @@
 		if (doants)
 			processing_items.Add(src)
 		create_time = world.time
-
+/*
 	unpooled()
 		..()
 		src.icon = start_icon
@@ -119,7 +119,7 @@
 		current_mask = 5
 		if (doants)
 			processing_items.Add(src)
-		create_time = world.time
+		create_time = world.time*/
 
 //	pooled()
 //		if(!made_ants)
@@ -399,7 +399,7 @@
 	rand_pos = 1
 	var/poop_value = 0.5
 	var/did_react = 0
-
+/*
 	unpooled()
 		..()
 		did_react = 0
@@ -407,7 +407,7 @@
 	pooled()
 		..()
 		did_react = 0
-
+*/
 	proc/process_stomach(mob/living/owner, var/process_rate = 5)
 		if (owner && src.reagents)
 			if (!src.did_react)
@@ -797,7 +797,7 @@
 
 	on_reagent_change()
 		src.update_icon()
-
+/*
 	unpooled()
 		..()
 		src.broken = 0
@@ -807,7 +807,7 @@
 
 	pooled()
 		..()
-
+*/
 	custom_suicide = 1
 	suicide(var/mob/user as mob)
 		if (!src.user_can_suicide(user))
@@ -1005,7 +1005,7 @@
 	var/image/image_salt
 	var/image/image_wedge
 	var/image/image_doodad
-
+/*
 	unpooled()
 		..()
 		src.salted = 0
@@ -1016,7 +1016,7 @@
 
 	pooled()
 		..()
-
+*/
 	on_reagent_change()
 		src.update_icon()
 
@@ -1471,11 +1471,11 @@
 	New()
 		..()
 		pick_style()
-
+/*
 	unpooled()
 		..()
 		pick_style()
-
+*/
 	proc/pick_style()
 		src.glass_style = pick("drink","shot","wine","cocktail","flute")
 		switch(src.glass_style)
@@ -1508,13 +1508,13 @@
 		SPAWN_DBG(0)
 			if (src.reagents)
 				src.fill_it_up()
-
+/*
 	unpooled()
 		..()
 		SPAWN_DBG(0)
 			if (src.reagents)
 				src.fill_it_up()
-
+*/
 	proc/fill_it_up()
 		var/flavor = null
 

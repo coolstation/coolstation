@@ -1668,7 +1668,7 @@ Returns:
 	anchored = 1
 	density = 0
 	opacity = 0
-
+/*
 	unpooled()
 		color = "#ffffff"
 		pixel_x = 0
@@ -1676,7 +1676,7 @@ Returns:
 		alpha = 255
 		transform = matrix()
 		..()
-
+*/
 /datum/admins/proc/turn_off_pixelexplosion()
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
 	set name = "Turn off pixel explosion mode"

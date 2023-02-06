@@ -30,7 +30,7 @@
 	var/autoconfig = 0 //Is this a configuration packet? great! glad to hear it!
 	var/list/routers = null // a list of the places we have been so far.
 
-	unpooled()
+	New()
 		..()
 		gas = null
 		active = 0
@@ -42,7 +42,7 @@
 		routers = list()
 		reagents = new(1000)
 
-	pooled()
+	disposing()
 		routers = null
 		autoconfig = 0
 		gas = null

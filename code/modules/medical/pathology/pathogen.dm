@@ -879,12 +879,12 @@ datum/pathogen
 	New()
 		..()
 		setup(0, null, 0)
-
+/*
 	unpooled()
 		clear()
 		setup(0, null, 0)
 		..()
-
+*/
 	proc/create_weak()
 		randomize(0)
 		if (!dnasample)

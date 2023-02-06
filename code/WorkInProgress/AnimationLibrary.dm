@@ -169,7 +169,7 @@
 		icon = 'icons/mob/mob.dmi'
 		alpha = 255
 		plane = PLANE_OVERLAY_EFFECTS
-
+/*
 		unpooled()
 			..()
 			src.alpha = 255
@@ -177,7 +177,7 @@
 		pooled()
 			..()
 
-
+*/
 
 /mob/var/obj/particle/attack/attack_particle
 /mob/var/obj/particle/attack/sprint/sprint_particle

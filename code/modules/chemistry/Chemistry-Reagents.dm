@@ -60,7 +60,7 @@ datum
 		disposing()
 			holder = null
 			..()
-
+/*
 		pooled()
 			..()
 			transparency = initial(transparency)
@@ -71,7 +71,7 @@ datum
 			data = null
 			volume = 0
 			reacting = 0
-
+*/
 
 		proc/on_add()
 			if (stun_resist > 0)

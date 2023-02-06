@@ -1199,14 +1199,14 @@ var/datum/action_controller/actions
 	New()
 		..()
 		img = image('icons/ui/actions.dmi',src,"bar",6)
-
+/*
 	unpooled()
 		img = image('icons/ui/actions.dmi',src,"bar",6)
 		icon = initial(icon)
 		icon_state = initial(icon_state)
 		..()
-
-	pooled()
+*/
+	disposing()
 		loc = null
 		attached_objs = list()
 		ClearAllOverlays()
@@ -1225,14 +1225,14 @@ var/datum/action_controller/actions
 	New()
 		..()
 		img = image('icons/ui/actions.dmi',src,"border",5)
-
+/*
 	unpooled()
 		img = image('icons/ui/actions.dmi',src,"border",5)
 		icon = initial(icon)
 		icon_state = initial(icon_state)
 		..()
-
-	pooled()
+*/
+	disposing()
 		loc = null
 		attached_objs = list()
 		ClearAllOverlays()

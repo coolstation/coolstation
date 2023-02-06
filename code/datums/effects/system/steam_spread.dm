@@ -23,7 +23,7 @@ steam.start() -- spawns the effect
 	var/color = null
 	var/plane = null
 
-/datum/effects/system/steam_spread/pooled()
+/datum/effects/system/steam_spread/disposing()
 	..()
 	number = initial(number)
 	cardinals = initial(cardinals)

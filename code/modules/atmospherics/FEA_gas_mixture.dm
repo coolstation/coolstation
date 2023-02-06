@@ -58,7 +58,7 @@ What are the archived variables for?
 	..()
 	total_gas_mixtures++
 
-
+/*
 /datum/gas_mixture/unpooled()
 	volume = initial(volume)
 	temperature = initial(temperature)
@@ -78,7 +78,7 @@ What are the archived variables for?
 #endif
 	#undef _UNPOOL_GAS
 	..()
-
+*/
 // Mutator procs
 // For specific events
 /datum/gas_mixture/proc/zero()

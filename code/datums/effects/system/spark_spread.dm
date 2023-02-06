@@ -10,7 +10,7 @@
 	//pool(src)
 	//no no no no no stop doing this what the fuck man aaaaaaaa -singh
 
-/datum/effects/system/spark_spread/pooled()
+/datum/effects/system/spark_spread/disposing()
 	number = initial(number)
 	cardinals = initial(cardinals)
 	location = null

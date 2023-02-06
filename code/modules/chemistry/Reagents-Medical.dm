@@ -74,11 +74,11 @@ datum
 			overdose = 20
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
 			value = 5
-
+/*
 			pooled()
 				..()
 				counter = 1
-
+*/
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -126,11 +126,11 @@ datum
 			overdose = 20
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
 			value = 5
-
+/*
 			pooled()
 				..()
 				counter = 1
-
+*/
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -1076,10 +1076,10 @@ datum
 			value = 9 // 4c + 3c + 1c + 1c
 			var/remove_buff = 0
 			stun_resist = 15
-
+/*
 			pooled()
 				..()
-
+*/
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -1324,11 +1324,11 @@ datum
 			var/remove_buff = 0
 			var/total_misstep = 0
 			value = 18 // 5 4 5 3 1
-
+/*
 			pooled()
 				..()
 				remove_buff = 0
-
+*/
 			on_add()
 				if(istype(holder) && istype(holder.my_atom) && hascall(holder.my_atom,"add_stam_mod_max"))
 					remove_buff = holder.my_atom:add_stam_mod_max("atropine", -30)

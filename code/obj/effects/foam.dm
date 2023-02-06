@@ -36,7 +36,7 @@
 		I.Blend(src.foamcolor, ICON_ADD)
 		src.overlays += I
 
-/obj/effects/foam/pooled()
+/obj/effects/foam/disposing()
 	..()
 	name = "foam"
 	icon_state = "foam"
@@ -50,7 +50,7 @@
 	if(reagents)
 		reagents.clear_reagents()
 
-/obj/effects/foam/unpooled()
+/obj/effects/foam/New()
 	..()
 	amount = 3
 	expand = 1

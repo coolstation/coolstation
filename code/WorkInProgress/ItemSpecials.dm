@@ -1800,13 +1800,13 @@
 		if (del_self)
 			SPAWN_DBG(del_time)
 				pool(src)
-
+/*
 	unpooled()
 		..()
 
 	pooled()
 		..()
-
+*/
 	attackby()
 		was_clashed()
 
@@ -1908,12 +1908,12 @@
 		icon_state = "clash"
 		pixel_x = 0
 		pixel_y = 0
-
+/*
 		pooled()
 			..()
 			transform = null
 			color = null
-
+*/
 	barrier
 		name = "energy barrier"
 		icon = 'icons/effects/effects.dmi'
@@ -2043,7 +2043,7 @@
 	pixel_y = 0
 
 
-	unpooled()
+	New()
 		pixel_x = rand(-3,3)
 		pixel_y = rand(-15,6)
 		..()
@@ -2051,7 +2051,7 @@
 /obj/itemspecialeffect/impact/blood
 	icon_state = "blood_impact1"
 
-	unpooled()
+	New()
 		..()
 		if (prob(50))
 			icon_state = "blood_impact2"
@@ -2065,7 +2065,7 @@
 /obj/itemspecialeffect/impact/silicon
 	icon_state = "silicon_impact1"
 
-	unpooled()
+	New()
 		..()
 		if (prob(66))
 			icon_state = "silicon_impact2"
