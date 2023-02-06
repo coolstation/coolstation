@@ -63361,7 +63361,9 @@
 /obj/access_spawn/medical,
 /obj/firedoor_spawn,
 /obj/decal/garland/ephemeral,
-/obj/machinery/door/airlock/glass/medical,
+/obj/machinery/door/airlock/glass/medical{
+	id = "medbay_front"
+	},
 /turf/simulated/floor/blue,
 /area/station/medical/medbay)
 "vJK" = (
@@ -64092,7 +64094,9 @@
 /obj/access_spawn/medical,
 /obj/firedoor_spawn,
 /obj/decal/garland/ephemeral,
-/obj/machinery/door/airlock/glass/medical,
+/obj/machinery/door/airlock/glass/medical{
+	id = "medbay_front"
+	},
 /turf/simulated/floor/blue,
 /area/station/medical/medbay)
 "xrH" = (
