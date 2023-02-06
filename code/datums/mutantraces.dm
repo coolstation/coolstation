@@ -1268,9 +1268,9 @@
 	special_head = HEAD_WEREWOLF
 	mutant_organs = list("tail" = /obj/item/organ/tail/wolf)
 
-	head_offset = 5
-	hand_offset = 3
-	arm_offset = 3
+	//head_offset = 5
+	//hand_offset = 3
+	//arm_offset = 3
 
 	New()
 		..()
