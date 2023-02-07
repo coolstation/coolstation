@@ -2675,6 +2675,13 @@
 	},
 /turf/simulated/floor,
 /area/space)
+"coE" = (
+/obj/disposalpipe/segment/mail{
+	dir = 4
+	},
+/obj/machinery/light/emergency,
+/turf/simulated/floor/grey,
+/area/space)
 "coV" = (
 /obj/machinery/door/airlock/pyro/maintenance/alt,
 /turf/simulated/floor,
@@ -2854,6 +2861,12 @@
 	},
 /turf/simulated/floor,
 /area)
+"cxL" = (
+/obj/machinery/door/airlock/pyro/glass/botany{
+	dir = 4
+	},
+/turf/simulated/floor/concrete,
+/area/space)
 "czL" = (
 /obj/stool/chair/couch{
 	dir = 5
@@ -3995,6 +4008,10 @@
 "dvE" = (
 /turf/simulated/floor/carpet/purple/standard/edge/east,
 /area)
+"dvJ" = (
+/obj/machinery/door/airlock/pyro/maintenance/alt,
+/turf/simulated/floor/black,
+/area/space)
 "dvL" = (
 /obj/table/flock/auto,
 /turf/simulated/floor/yellow,
@@ -6397,6 +6414,10 @@
 	icon_state = "R1"
 	},
 /area)
+"fzn" = (
+/obj/table/wood/round/auto,
+/turf/simulated/floor/grass,
+/area/space)
 "fzM" = (
 /turf/simulated/wall/auto/reinforced/gannets{
 	icon_state = "R12"
@@ -6708,6 +6729,9 @@
 	icon_state = "leadjunction"
 	},
 /area)
+"fLv" = (
+/turf/simulated/floor/dojo/sand/horizontal,
+/area/space)
 "fLy" = (
 /obj/cable/hotpink{
 	icon_state = "5-10"
@@ -7229,6 +7253,12 @@
 "gkV" = (
 /obj/storage/secure/closet/research,
 /turf/simulated/floor/black,
+/area/space)
+"gli" = (
+/obj/stool/chair/comfy{
+	dir = 1
+	},
+/turf/simulated/floor/grass,
 /area/space)
 "gmO" = (
 /obj/disposalpipe/segment/mail,
@@ -9442,6 +9472,11 @@
 /obj/machinery/light/small/ceiling/harsh,
 /turf/simulated/floor/longtile/black,
 /area/space)
+"iei" = (
+/turf/simulated/floor/stairs/dark/wide{
+	dir = 9
+	},
+/area/space)
 "iex" = (
 /obj/railing,
 /obj/railing{
@@ -9636,6 +9671,14 @@
 "ilj" = (
 /turf/simulated/floor/carpet/clowncarpet/border{
 	dir = 6
+	},
+/area/space)
+"ilw" = (
+/obj/disposalpipe/segment/mail{
+	dir = 4
+	},
+/turf/simulated/floor/grey/side{
+	dir = 4
 	},
 /area/space)
 "ims" = (
@@ -10184,7 +10227,6 @@
 	dir = 8;
 	pixel_x = 33
 	},
-/obj/stool/bench/auto,
 /turf/simulated/floor/marble,
 /area/space)
 "iLu" = (
@@ -11596,6 +11638,11 @@
 "jUw" = (
 /turf/simulated/floor/carpet/blue/standard/innercorner/omni,
 /area)
+"jUX" = (
+/turf/simulated/floor/grey/side{
+	dir = 1
+	},
+/area/space)
 "jVe" = (
 /obj/cable/reinforced{
 	icon_state = "2-4-thick"
@@ -11912,6 +11959,7 @@
 	pixel_y = 6
 	},
 /obj/towelbin{
+	pixel_x = 15;
 	pixel_y = 19
 	},
 /obj/item/clothing/head/towel_hat,
@@ -12839,7 +12887,7 @@
 /area)
 "lby" = (
 /obj/machinery/light/fluorescent/cool,
-/turf/simulated/floor/black,
+/turf/simulated/floor/grey,
 /area/space)
 "lbE" = (
 /turf/simulated/floor/carpet/green/fancy/narrow/sw,
@@ -12885,6 +12933,13 @@
 	icon_state = "2-5"
 	},
 /turf/simulated/floor/plating/jen,
+/area/space)
+"leH" = (
+/obj/railing/green{
+	dir = 4
+	},
+/obj/railing/green,
+/turf/simulated/floor/grey,
 /area/space)
 "leI" = (
 /obj/cable/blue{
@@ -13387,6 +13442,10 @@
 "lDI" = (
 /turf/simulated/floor/carpet/green/fancy/innercorner/sw_triple,
 /area)
+"lEb" = (
+/obj/decal/cleanable/sakura,
+/turf/simulated/floor/dojo/sand/circle,
+/area/space)
 "lEd" = (
 /turf/simulated/wall/auto/jen/dark2{
 	icon_state = "6"
@@ -13482,6 +13541,10 @@
 	icon_state = "15"
 	},
 /area)
+"lIm" = (
+/obj/decal/cleanable/sakura,
+/turf/simulated/floor/dojo/sand/horizontal,
+/area/space)
 "lIA" = (
 /obj/cable/yellow{
 	icon_state = "6-9"
@@ -13536,6 +13599,11 @@
 	icon_state = "5-8"
 	},
 /turf/simulated/floor,
+/area/space)
+"lKZ" = (
+/turf/simulated/floor/stairs/dark{
+	dir = 9
+	},
 /area/space)
 "lLv" = (
 /obj/machinery/guardbot_dock,
@@ -13722,6 +13790,16 @@
 /obj/access_spawn/medlab,
 /obj/firedoor_spawn,
 /turf/simulated/floor/green,
+/area/space)
+"lTi" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/light/emergency{
+	dir = 1;
+	pixel_y = 24
+	},
+/turf/simulated/floor/grey,
 /area/space)
 "lTC" = (
 /turf/simulated/floor/engine,
@@ -14411,6 +14489,14 @@
 	dir = 8
 	},
 /area/space)
+"muX" = (
+/obj/sakura_tree{
+	pixel_x = -31;
+	pixel_y = -4
+	},
+/obj/decal/cleanable/sakura,
+/turf/simulated/floor/dojo/sand,
+/area/space)
 "mvy" = (
 /turf/simulated/wall/auto/shuttle,
 /area)
@@ -14994,6 +15080,12 @@
 "mSx" = (
 /turf/simulated/floor/carpet/blue/standard/edge/east,
 /area)
+"mSz" = (
+/obj/stool/chair/comfy{
+	dir = 8
+	},
+/turf/simulated/floor/grass,
+/area/space)
 "mSF" = (
 /obj/machinery/door/poddoor/blast/pyro,
 /turf/simulated/floor/snowcalm,
@@ -16424,6 +16516,10 @@
 	},
 /turf/simulated/floor,
 /area)
+"ofo" = (
+/obj/stool/chair/comfy,
+/turf/simulated/floor/grass,
+/area/space)
 "ofu" = (
 /turf/unsimulated/wall/setpieces/leadwall/gray{
 	icon_state = "leadjunction_gray"
@@ -16466,6 +16562,9 @@
 	},
 /turf/simulated/floor/black,
 /area)
+"ogo" = (
+/turf/simulated/floor/dojo/sand/vertical,
+/area/space)
 "ogz" = (
 /obj/disposalpipe/segment{
 	dir = 1;
@@ -17048,6 +17147,12 @@
 	icon_state = "R13"
 	},
 /area)
+"oDG" = (
+/obj/stool/chair/comfy{
+	dir = 4
+	},
+/turf/simulated/floor/grass,
+/area/space)
 "oDJ" = (
 /obj/disposalpipe/switch_junction/left/east{
 	mail_tag = "place";
@@ -18745,7 +18850,7 @@
 /obj/machinery/light/small/cool{
 	dir = 4
 	},
-/turf/simulated/floor/longtile/black,
+/turf/simulated/floor/black,
 /area/space)
 "qho" = (
 /turf/simulated/floor/carpet/blue/fancy/edge/ne,
@@ -19472,10 +19577,8 @@
 	},
 /area)
 "qIx" = (
-/obj/cable{
-	icon_state = "5-8"
-	},
-/turf/simulated/floor/concrete,
+/obj/submachine/seed_vendor,
+/turf/simulated/floor/grass,
 /area/space)
 "qID" = (
 /obj/cable/black{
@@ -19699,8 +19802,10 @@
 /turf/simulated/wall/auto/jen,
 /area/space)
 "qUC" = (
-/obj/machinery/light/fluorescent/warm,
-/turf/simulated/floor/black,
+/obj/stool/chair/couch{
+	dir = 8
+	},
+/turf/simulated/floor/grass,
 /area/space)
 "qUL" = (
 /turf/simulated/floor/shuttle{
@@ -19815,6 +19920,10 @@
 	pixel_y = 29
 	},
 /turf/unsimulated/floor/carpet/red/standard/edge/north,
+/area/space)
+"qYE" = (
+/obj/decal/cleanable/sakura,
+/turf/simulated/floor/dojo/sand/vertical,
 /area/space)
 "qYJ" = (
 /turf/simulated/wall/auto/jen{
@@ -21517,6 +21626,11 @@
 	},
 /turf/simulated/floor/specialroom/arcade,
 /area/space)
+"sxL" = (
+/turf/simulated/floor/stairs/dark/wide{
+	dir = 8
+	},
+/area/space)
 "sxQ" = (
 /turf/simulated/wall/auto/jen/dark2{
 	icon_state = "15"
@@ -21910,6 +22024,10 @@
 "sLW" = (
 /obj/disposalpipe/segment,
 /turf/simulated/floor/black,
+/area/space)
+"sMk" = (
+/obj/tree1,
+/turf/simulated/floor/grass,
 /area/space)
 "sNL" = (
 /turf/simulated/floor/shuttle{
@@ -23378,6 +23496,15 @@
 	icon_state = "7"
 	},
 /area)
+"tVY" = (
+/obj/railing/green{
+	dir = 4
+	},
+/obj/railing/green{
+	dir = 1
+	},
+/turf/simulated/floor/grey,
+/area/space)
 "tWV" = (
 /turf/simulated/floor/longtile,
 /area/space)
@@ -23426,15 +23553,10 @@
 	},
 /area/station/security/secwing)
 "tYR" = (
-/obj/table/round/auto,
-/obj/item/clothing/under/towel{
-	layer = 3;
-	pixel_y = 6
+/obj/stool/chair/couch{
+	dir = 4
 	},
-/obj/item/clothing/head/towel_hat{
-	pixel_y = 5
-	},
-/turf/simulated/floor/marble,
+/turf/simulated/floor/grass,
 /area/space)
 "tZs" = (
 /turf/simulated/wall/auto/reinforced/jen/green{
@@ -25715,7 +25837,7 @@
 /area/space)
 "waL" = (
 /obj/machinery/light/small/cool,
-/turf/simulated/floor/longtile/black,
+/turf/simulated/floor/black,
 /area/space)
 "wbm" = (
 /obj/grille/steel/broken{
@@ -25839,6 +25961,11 @@
 /obj/decal/cleanable/dirt/jen,
 /obj/disposalpipe/segment,
 /turf/simulated/floor,
+/area/space)
+"whf" = (
+/turf/simulated/floor/stairs/wood{
+	dir = 4
+	},
 /area/space)
 "whn" = (
 /turf/simulated/wall/auto/jen/green{
@@ -27536,6 +27663,14 @@
 	},
 /turf/simulated/floor/yellow,
 /area)
+"xul" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/grey/side{
+	dir = 4
+	},
+/area/space)
 "xum" = (
 /obj/cable/blue{
 	icon_state = "1-2"
@@ -28428,6 +28563,9 @@
 "yhj" = (
 /turf/simulated/floor/carpet/green/fancy/narrow/eastwest,
 /area)
+"yhv" = (
+/turf/simulated/floor/dojo/sand/circle,
+/area/space)
 "yhx" = (
 /turf/simulated/floor/yellow/corner{
 	dir = 8
@@ -88538,9 +88676,9 @@ kwk
 xOm
 tzZ
 kbq
-uJI
+xul
 xlb
-xGw
+ilw
 dLZ
 bgV
 mdC
@@ -88840,9 +88978,9 @@ dEy
 xOm
 kbq
 kbq
-bzF
+lTi
 hdA
-oJY
+coE
 dLZ
 hbw
 ova
@@ -90955,8 +91093,8 @@ kbq
 hbw
 xlb
 hbw
-xHO
-xHO
+hbw
+hbw
 ova
 ova
 dYk
@@ -91257,9 +91395,9 @@ kbq
 hbw
 xlb
 hbw
-xHO
-xHO
-xHO
+hbw
+hbw
+hbw
 ova
 dYk
 aQA
@@ -91555,13 +91693,13 @@ kbq
 kbq
 kbq
 kbq
-xHO
-xHO
-qIx
-xHO
-xHO
-xHO
-xHO
+hbw
+hbw
+sEg
+hbw
+hbw
+hbw
+hbw
 ova
 dYk
 aQA
@@ -94579,7 +94717,7 @@ hbw
 hbw
 hbw
 kbq
-xmE
+hQO
 kbq
 kbq
 kbq
@@ -94889,13 +95027,13 @@ uDf
 dYk
 aQA
 aQA
-eXL
-eXL
-eXL
-eXL
-eXL
-eXL
-eXL
+aQA
+aQA
+aQA
+aQA
+aQA
+aQA
+aQA
 kbq
 tzZ
 tzZ
@@ -95183,20 +95321,20 @@ hbw
 hbw
 hbw
 kbq
-xmE
-ejr
+eXL
+dvJ
 ejr
 ejr
 uDf
 dYk
 aQA
 aQA
-eXL
-eXL
-eXL
-eXL
-eXL
-eXL
+aQA
+aQA
+aQA
+aQA
+aQA
+aQA
 lby
 kbq
 tzZ
@@ -95485,7 +95623,7 @@ hbw
 hbw
 hbw
 kbq
-xmE
+eXL
 kbq
 ejr
 ejr
@@ -95498,8 +95636,8 @@ kbq
 kbq
 kbq
 kbq
-eXL
-eXL
+aQA
+aQA
 kbq
 tzZ
 tzZ
@@ -95714,10 +95852,10 @@ tzZ
 tzZ
 tzZ
 tzZ
-fnJ
-fnJ
-fnJ
-fnJ
+tzZ
+tzZ
+tzZ
+tzZ
 tzZ
 tzZ
 tzZ
@@ -95787,7 +95925,7 @@ hbw
 hbw
 hbw
 kbq
-xmE
+eXL
 kbq
 kbq
 kbq
@@ -95795,13 +95933,13 @@ kbq
 dYk
 aQA
 aQA
-eXL
+aQA
 uDf
 ejr
 ejr
 kbq
-eXL
-eXL
+aQA
+aQA
 kbq
 tzZ
 tzZ
@@ -96017,10 +96155,10 @@ tzZ
 fnJ
 fnJ
 fnJ
-fnJ
-fnJ
-fnJ
-fnJ
+tzZ
+tzZ
+tzZ
+tzZ
 tzZ
 tzZ
 tzZ
@@ -96070,12 +96208,12 @@ hbw
 hbw
 kbq
 eRj
+lvs
 eRj
 eRj
 eRj
 eRj
-eRj
-eRj
+cPg
 eRj
 kbq
 hbw
@@ -96089,21 +96227,21 @@ hbw
 hbw
 hbw
 kbq
-xmE
-xmE
-xmE
+eXL
+eXL
+eXL
 qhf
 xmE
 dYk
 aQA
 aQA
-eXL
+aQA
 uDf
 ejr
 ejr
 kbq
-eXL
-eXL
+aQA
+aQA
 kbq
 kbq
 kbq
@@ -96316,9 +96454,9 @@ tzZ
 tzZ
 tzZ
 fnJ
-tzZ
-tzZ
-tzZ
+fnJ
+fnJ
+fnJ
 tzZ
 tzZ
 tzZ
@@ -96391,7 +96529,7 @@ hbw
 hbw
 hbw
 kbq
-xmE
+hQO
 kbq
 kbq
 kbq
@@ -96399,16 +96537,16 @@ kbq
 dYk
 aQA
 aQA
-eXL
+aQA
 kbq
 kbq
 ejr
 kbq
-eXL
-eXL
-eXL
-eXL
-hbw
+aQA
+aQA
+aQA
+aQA
+jUX
 hbw
 hbw
 hbw
@@ -96618,8 +96756,8 @@ tzZ
 tzZ
 fnJ
 fnJ
-tzZ
-tzZ
+fnJ
+fnJ
 tzZ
 tzZ
 tzZ
@@ -96701,16 +96839,16 @@ uDf
 dYk
 aQA
 aQA
-eXL
-eXL
-eXL
-eXL
-eXL
-eXL
-eXL
-eXL
-eXL
-hbw
+aQA
+aQA
+aQA
+aQA
+aQA
+aQA
+aQA
+aQA
+aQA
+jUX
 hbw
 hbw
 hbw
@@ -97003,16 +97141,16 @@ uDf
 dYk
 aQA
 aQA
-eXL
+aQA
 kbq
 kbq
 ejr
 kbq
-eXL
-eXL
-eXL
-eXL
-hbw
+aQA
+aQA
+aQA
+aQA
+jUX
 hbw
 hbw
 hbw
@@ -97277,14 +97415,14 @@ hbw
 hbw
 hbw
 kbq
-fSL
-lvs
 eRj
-tYR
-kjk
 eRj
-cPg
-iKQ
+eRj
+eRj
+eRj
+eRj
+eRj
+eRj
 kbq
 hbw
 hbw
@@ -97305,16 +97443,16 @@ uDf
 dYk
 aQA
 aQA
-eXL
+aQA
 uDf
 ejr
 ejr
 kbq
-eXL
-eXL
-eXL
-eXL
-hbw
+aQA
+aQA
+aQA
+aQA
+jUX
 hbw
 hbw
 hbw
@@ -97579,14 +97717,14 @@ hbw
 hbw
 hbw
 kbq
-kbq
-kbq
 eRj
 eRj
 eRj
 eRj
-kbq
-kbq
+eRj
+eRj
+eRj
+eRj
 kbq
 hbw
 hbw
@@ -97607,13 +97745,13 @@ kbq
 dYk
 aQA
 aQA
-eXL
+aQA
 uDf
 ejr
 ejr
 kbq
-eXL
-eXL
+aQA
+aQA
 kbq
 kbq
 kbq
@@ -97881,14 +98019,14 @@ hbw
 hbw
 hbw
 kbq
-fSL
-lvs
-eRj
-eRj
-eRj
-eRj
-cPg
 iKQ
+eRj
+eRj
+eRj
+eRj
+eRj
+eRj
+eRj
 kbq
 hbw
 hbw
@@ -97909,13 +98047,13 @@ bVm
 aQA
 aQA
 aQA
-qUC
+liS
 kbq
 kbq
 kbq
 kbq
-eXL
-eXL
+aQA
+aQA
 kbq
 tzZ
 tzZ
@@ -98211,12 +98349,12 @@ aQA
 aQA
 aQA
 aQA
-eXL
-eXL
-eXL
-eXL
-eXL
-eXL
+aQA
+aQA
+aQA
+aQA
+aQA
+aQA
 lby
 kbq
 tzZ
@@ -98513,13 +98651,13 @@ aQA
 aQA
 aQA
 aQA
-eXL
-eXL
-eXL
-eXL
-eXL
-eXL
-eXL
+aQA
+aQA
+aQA
+aQA
+aQA
+aQA
+aQA
 kbq
 tzZ
 tzZ
@@ -98815,7 +98953,7 @@ aQA
 aQA
 aQA
 aQA
-eXL
+aQA
 kbq
 kbq
 fXC
@@ -100601,11 +100739,11 @@ hbw
 hbw
 hbw
 kbq
-hbw
-hbw
-kbq
-hbw
-hbw
+aQA
+aQA
+aQA
+aQA
+aQA
 kbq
 aQA
 aQA
@@ -100903,11 +101041,11 @@ hbw
 rqM
 rqM
 kbq
-dDB
-dDB
-rqM
-dDB
-dDB
+aQA
+aQA
+aQA
+aQA
+aQA
 kbq
 rqM
 rqM
@@ -101205,11 +101343,11 @@ rqM
 rqM
 dDB
 dDB
-dDB
-dDB
-dDB
-dDB
-dDB
+tVY
+iei
+lKZ
+sxL
+leH
 dDB
 dDB
 rqM
@@ -101805,7 +101943,7 @@ hbw
 hbw
 hbw
 rqM
-dDB
+qIx
 dDB
 dDB
 dDB
@@ -102110,6 +102248,7 @@ rqM
 dDB
 dDB
 dDB
+sMk
 dDB
 dDB
 dDB
@@ -102117,8 +102256,7 @@ dDB
 dDB
 dDB
 dDB
-dDB
-dDB
+sMk
 dDB
 rqM
 kbq
@@ -103014,8 +103152,8 @@ hbw
 hbw
 ova
 dDB
-dDB
-dDB
+qUC
+fzn
 dDB
 dDB
 dDB
@@ -103316,8 +103454,8 @@ hbw
 hbw
 ova
 dDB
-dDB
-dDB
+tYR
+fzn
 dDB
 dDB
 dDB
@@ -103619,17 +103757,17 @@ hbw
 ova
 dDB
 dDB
+mSz
+dDB
+dDB
+lEb
+qYE
+yhv
 dDB
 dDB
 dDB
 dDB
-dDB
-dDB
-dDB
-dDB
-dDB
-dDB
-dDB
+mci
 ova
 aQA
 aQA
@@ -103640,7 +103778,7 @@ ejr
 ejr
 ejr
 rqM
-fFW
+whf
 kbq
 ejr
 ejr
@@ -103919,14 +104057,14 @@ hbw
 hbw
 hbw
 ova
+mci
 dDB
 dDB
 dDB
 dDB
-dDB
-dDB
-dDB
-dDB
+fLv
+muX
+lIm
 dDB
 dDB
 dDB
@@ -103942,7 +104080,7 @@ rqM
 rqM
 lsC
 rqM
-fFW
+whf
 kbq
 kbq
 kbq
@@ -104221,19 +104359,19 @@ hbw
 hbw
 hbw
 ova
+mci
 dDB
 dDB
 dDB
 dDB
+yhv
+ogo
+yhv
 dDB
 dDB
 dDB
 dDB
-dDB
-dDB
-dDB
-dDB
-dDB
+mci
 ova
 aQA
 aQA
@@ -104524,16 +104662,16 @@ hbw
 hbw
 ova
 ova
+mci
+dDB
+oDG
 dDB
 dDB
 dDB
 dDB
 dDB
 dDB
-dDB
-dDB
-dDB
-dDB
+oDG
 dDB
 ova
 ova
@@ -104827,15 +104965,15 @@ hbw
 hbw
 ova
 ova
+ofo
+fzn
+gli
+mci
+mci
+mci
 dDB
-dDB
-dDB
-dDB
-dDB
-dDB
-dDB
-dDB
-dDB
+ofo
+fzn
 ova
 ova
 hbw
@@ -109388,8 +109526,8 @@ dDB
 dDB
 dDB
 kbq
-xHO
-xHO
+cxL
+cxL
 kbq
 kbq
 kbq
@@ -110901,7 +111039,7 @@ kbq
 kbq
 kbq
 kbq
-kbq
+fnJ
 fnJ
 fnJ
 fnJ
