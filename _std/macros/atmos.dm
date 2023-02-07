@@ -175,7 +175,7 @@
 // pipe properties
 
 #define NORMPIPERATE 30					//pipe-insulation rate divisor
-#define HEATPIPERATE 8					//heat-exch pipe insulation
+#define HEATPIPERATE 7					//heat-exch pipe insulation - was 8
 
 #define FLOWFRAC 0.99				// fraction of gas transfered per process
 
