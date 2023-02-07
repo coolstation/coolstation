@@ -145,7 +145,7 @@
 #define PLASMA_OXYGEN_FULLBURN				10
 
 /// Hotspot Maximum Temperature without a catalyst
-#define HOTSPOT_MAX_NOCAT_TEMPERATURE (80000)
+#define HOTSPOT_MAX_NOCAT_TEMPERATURE (100000) // increase from 80000
 /// Hotspot Maximum Temperature to maintain maths works to 1e35-sh in practice)
 #define HOTSPOT_MAX_CAT_TEMPERATURE (INFINITY)
 
