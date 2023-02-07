@@ -1834,7 +1834,7 @@
 		else if (free_resources.len && free_resource_amt > 0)
 			for (var/X in src.free_resources)
 				if (ispath(X))
-					var/obj/item/material_piece/P = new()
+					var/obj/item/material_piece/P = new X()
 					P.set_loc(src)
 					if (free_resource_amt > 1)
 						P.change_stack_amount(free_resource_amt - P.amount)

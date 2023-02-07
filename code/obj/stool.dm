@@ -1556,6 +1556,8 @@
 					if (src.deconstructable)
 						src.deconstruct()
 					else
+						var/obj/item/I = new /obj/item/raw_material/scrap_metal()
+						I.set_loc(get_turf(src))
 						qdel(src)
 					return
 			if (3)
@@ -1563,6 +1565,8 @@
 					if (src.deconstructable)
 						src.deconstruct()
 					else
+						var/obj/item/I = new /obj/item/raw_material/scrap_metal()
+						I.set_loc(get_turf(src))
 						qdel(src)
 					return
 			else
@@ -1570,7 +1574,7 @@
 
 	blob_act(var/power)
 		if (prob(power * 2.5))
-			var/obj/item/I = new()
+			var/obj/item/I = new /obj/item/raw_material/scrap_metal()
 			I.set_loc(get_turf(src))
 
 			if (src.material)

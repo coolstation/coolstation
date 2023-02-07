@@ -1348,7 +1348,7 @@ DEFINE_FLOORS(techfloor/green,
 					src.ReplaceWithSpace()
 				if(3)
 					if(prob(33))
-						var/obj/item/I = new()
+						var/obj/item/I = new /obj/item/raw_material/scrap_metal()
 						I.set_loc(src)
 						if (src.material)
 							I.setMaterial(src.material)

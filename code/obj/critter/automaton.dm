@@ -443,7 +443,7 @@ var/global/the_automaton = null
 			var/T_dist = get_dist(T, src)
 			var/T_effect_prob = 100 * (1 - (max(T_dist-1,1) / range))
 			if (prob(8) && limiter.canISpawn(/obj/effects/sparks))
-				var/obj/sparks = new()
+				var/obj/sparks = new /obj/effects/sparks()
 				sparks.set_loc(T)
 				SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 
@@ -454,7 +454,7 @@ var/global/the_automaton = null
 				SPAWN_DBG(rand(30, 50))
 					if (T)
 						playsound(T, pick('sound/effects/elec_bigzap.ogg', 'sound/effects/elec_bzzz.ogg', 'sound/effects/electric_shock.ogg'), 40, 0)
-						var/obj/somesparks = new()
+						var/obj/somesparks = new /obj/effects/sparks()
 						somesparks.set_loc(T)
 						SPAWN_DBG(2 SECONDS) if (somesparks) qdel(somesparks)
 						var/list/tempEffect

@@ -251,7 +251,7 @@
 							if (istype(stored) && !stored.isgrass)
 								var/obj/item/seed/S
 								if (stored.unique_seed)
-									S = new()
+									S = new stored.unique_seed()
 									S.set_loc(user.loc)
 								else
 									S = new()
@@ -1735,7 +1735,7 @@
 		M.TakeDamageAccountArmor("head", force, 0, 0, DAMAGE_BLUNT)
 		M.changeStatus("weakened", 2 SECONDS)
 		playsound(M, "sound/impact_sounds/Glass_Shatter_[rand(1,3)].ogg", 100, 1)
-		var/obj/O = new()
+		var/obj/O = new /obj/item/raw_material/shard/glass()
 		O.set_loc(get_turf(M))
 		if (src.material)
 			O.setMaterial(copyMaterial(src.material))

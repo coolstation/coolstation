@@ -243,7 +243,7 @@
 					B.setMaterial(M)
 
 				if (prob(50))
-					var/atom/movable/C = new()
+					var/atom/movable/C = new /obj/item/raw_material/scrap_metal()
 					C.set_loc(src)
 					if (src.material)
 						C.setMaterial(src.material)
