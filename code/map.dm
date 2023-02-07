@@ -247,6 +247,7 @@ var/global/list/mapNames = list(
 	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/destiny
 
 	valid_nuke_targets = list() // POPULATE ME LATER!!! TODO!!!
+	// Nuke target ideas. Civ, Garage, Sauna
 
 /datum/map_settings/cogmap_old
 	name = "COGMAP_OLD"

@@ -44,6 +44,8 @@
 
 #elif defined(MAP_OVERRIDE_BOBMAP)
 
+#elif defiend(MAP_OVERRIDE_TSELA)
+
 #elif defined(MAP_OVERRIDE_GEHENNA)
 #define DESERT_MAP
 #define Z3_IS_A_STATION_LEVEL //Allows AIs to work (mostly) across upper and lower level
