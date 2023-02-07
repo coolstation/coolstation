@@ -1372,6 +1372,11 @@
 /obj/decal/cleanable/dirt/jen,
 /turf/simulated/floor,
 /area/space)
+"bkl" = (
+/turf/simulated/floor/stairs/wood{
+	dir = 4
+	},
+/area/space)
 "bkA" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/vertical,
 /obj/cable/blue{
@@ -1643,6 +1648,13 @@
 	dir = 8
 	},
 /turf/simulated/floor/sandytile,
+/area/space)
+"bth" = (
+/obj/disposalpipe/segment/mail{
+	dir = 4
+	},
+/obj/machinery/light/emergency,
+/turf/simulated/floor/grey,
 /area/space)
 "btj" = (
 /obj/machinery/door/airlock/pyro/security/alt{
@@ -2020,6 +2032,11 @@
 	icon_state = "2-5"
 	},
 /turf/simulated/floor,
+/area/space)
+"bNg" = (
+/turf/simulated/floor/stairs/dark{
+	dir = 9
+	},
 /area/space)
 "bNi" = (
 /obj/cable{
@@ -2675,13 +2692,6 @@
 	},
 /turf/simulated/floor,
 /area/space)
-"coE" = (
-/obj/disposalpipe/segment/mail{
-	dir = 4
-	},
-/obj/machinery/light/emergency,
-/turf/simulated/floor/grey,
-/area/space)
 "coV" = (
 /obj/machinery/door/airlock/pyro/maintenance/alt,
 /turf/simulated/floor,
@@ -2861,12 +2871,6 @@
 	},
 /turf/simulated/floor,
 /area)
-"cxL" = (
-/obj/machinery/door/airlock/pyro/glass/botany{
-	dir = 4
-	},
-/turf/simulated/floor/concrete,
-/area/space)
 "czL" = (
 /obj/stool/chair/couch{
 	dir = 5
@@ -4008,10 +4012,6 @@
 "dvE" = (
 /turf/simulated/floor/carpet/purple/standard/edge/east,
 /area)
-"dvJ" = (
-/obj/machinery/door/airlock/pyro/maintenance/alt,
-/turf/simulated/floor/black,
-/area/space)
 "dvL" = (
 /obj/table/flock/auto,
 /turf/simulated/floor/yellow,
@@ -4124,6 +4124,10 @@
 /obj/cable/purple{
 	icon_state = "4-8"
 	},
+/turf/simulated/floor/black,
+/area/space)
+"dzg" = (
+/obj/machinery/door/airlock/pyro/maintenance/alt,
 /turf/simulated/floor/black,
 /area/space)
 "dzl" = (
@@ -5596,6 +5600,12 @@
 	},
 /turf/simulated/floor,
 /area)
+"eKy" = (
+/obj/machinery/light/fluorescent/warm{
+	dir = 1
+	},
+/turf/simulated/floor/marble,
+/area/space)
 "eKG" = (
 /obj/decal/tile_edge/line/black{
 	dir = 6;
@@ -6237,6 +6247,12 @@
 	},
 /turf/simulated/floor/black,
 /area/space)
+"fnm" = (
+/obj/machinery/door/airlock/pyro/glass/botany{
+	dir = 4
+	},
+/turf/simulated/floor/concrete,
+/area/space)
 "fnE" = (
 /turf/simulated/floor/carpet/green/standard/edge/ne,
 /area)
@@ -6414,10 +6430,6 @@
 	icon_state = "R1"
 	},
 /area)
-"fzn" = (
-/obj/table/wood/round/auto,
-/turf/simulated/floor/grass,
-/area/space)
 "fzM" = (
 /turf/simulated/wall/auto/reinforced/gannets{
 	icon_state = "R12"
@@ -6729,9 +6741,6 @@
 	icon_state = "leadjunction"
 	},
 /area)
-"fLv" = (
-/turf/simulated/floor/dojo/sand/horizontal,
-/area/space)
 "fLy" = (
 /obj/cable/hotpink{
 	icon_state = "5-10"
@@ -7254,12 +7263,6 @@
 /obj/storage/secure/closet/research,
 /turf/simulated/floor/black,
 /area/space)
-"gli" = (
-/obj/stool/chair/comfy{
-	dir = 1
-	},
-/turf/simulated/floor/grass,
-/area/space)
 "gmO" = (
 /obj/disposalpipe/segment/mail,
 /turf/simulated/floor/redblack{
@@ -7311,6 +7314,9 @@
 	icon_state = "5"
 	},
 /area)
+"goQ" = (
+/turf/simulated/floor/dojo/sand/circle,
+/area/space)
 "gpg" = (
 /obj/machinery/conveyor/north,
 /turf/simulated/floor/yellow,
@@ -7599,7 +7605,14 @@
 /obj/stool/chair/couch{
 	dir = 8
 	},
+/obj/machinery/light/fluorescent/warm{
+	dir = 8
+	},
 /turf/simulated/floor/marble,
+/area/space)
+"gAr" = (
+/obj/decal/cleanable/sakura,
+/turf/simulated/floor/dojo/sand/horizontal,
 /area/space)
 "gBu" = (
 /turf/simulated/floor/carpet/red/standard/narrow/T_south,
@@ -8167,6 +8180,11 @@
 "hdd" = (
 /turf/unsimulated/wall/setpieces/leadwall,
 /area)
+"hdn" = (
+/turf/simulated/floor/grey/side{
+	dir = 1
+	},
+/area/space)
 "hds" = (
 /turf/unsimulated/wall/setpieces/leadwall/gray{
 	dir = 1;
@@ -9259,6 +9277,14 @@
 	},
 /turf/simulated/floor/yellow,
 /area)
+"hSM" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/grey/side{
+	dir = 4
+	},
+/area/space)
 "hTD" = (
 /obj/cable/blue{
 	icon_state = "1-6"
@@ -9419,6 +9445,14 @@
 	dir = 4
 	},
 /area/space)
+"icF" = (
+/obj/sakura_tree{
+	pixel_x = -31;
+	pixel_y = -4
+	},
+/obj/decal/cleanable/sakura,
+/turf/simulated/floor/dojo/sand,
+/area/space)
 "icO" = (
 /obj/item/storage/wall/clothingrack/dresses,
 /turf/simulated/floor/white,
@@ -9471,11 +9505,6 @@
 /obj/decal/cleanable/dirt/jen,
 /obj/machinery/light/small/ceiling/harsh,
 /turf/simulated/floor/longtile/black,
-/area/space)
-"iei" = (
-/turf/simulated/floor/stairs/dark/wide{
-	dir = 9
-	},
 /area/space)
 "iex" = (
 /obj/railing,
@@ -9673,14 +9702,6 @@
 	dir = 6
 	},
 /area/space)
-"ilw" = (
-/obj/disposalpipe/segment/mail{
-	dir = 4
-	},
-/turf/simulated/floor/grey/side{
-	dir = 4
-	},
-/area/space)
 "ims" = (
 /obj/machinery/computer/ordercomp/console_upper{
 	dir = 4
@@ -9811,6 +9832,9 @@
 "isz" = (
 /obj/stool/chair/couch{
 	dir = 9
+	},
+/obj/machinery/light/fluorescent/warm{
+	dir = 8
 	},
 /turf/simulated/floor/marble,
 /area/space)
@@ -11514,6 +11538,10 @@
 /obj/stool/bench/wooden/auto,
 /turf/simulated/floor/wood/seven,
 /area/space)
+"jPa" = (
+/obj/stool/chair/comfy,
+/turf/simulated/floor/grass,
+/area/space)
 "jPL" = (
 /obj/item/scrap,
 /obj/item/raw_material/scrap_metal{
@@ -11638,11 +11666,6 @@
 "jUw" = (
 /turf/simulated/floor/carpet/blue/standard/innercorner/omni,
 /area)
-"jUX" = (
-/turf/simulated/floor/grey/side{
-	dir = 1
-	},
-/area/space)
 "jVe" = (
 /obj/cable/reinforced{
 	icon_state = "2-4-thick"
@@ -11915,6 +11938,15 @@
 	icon_state = "R7"
 	},
 /area)
+"kii" = (
+/obj/railing/green{
+	dir = 4
+	},
+/obj/railing/green{
+	dir = 1
+	},
+/turf/simulated/floor/grey,
+/area/space)
 "kir" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/reagent_containers/food/drinks/fueltank{
@@ -12672,6 +12704,12 @@
 	},
 /turf/simulated/floor,
 /area/space)
+"kRm" = (
+/obj/stool/chair/comfy{
+	dir = 1
+	},
+/turf/simulated/floor/grass,
+/area/space)
 "kRp" = (
 /obj/cable/black{
 	icon_state = "1-2"
@@ -12933,13 +12971,6 @@
 	icon_state = "2-5"
 	},
 /turf/simulated/floor/plating/jen,
-/area/space)
-"leH" = (
-/obj/railing/green{
-	dir = 4
-	},
-/obj/railing/green,
-/turf/simulated/floor/grey,
 /area/space)
 "leI" = (
 /obj/cable/blue{
@@ -13442,10 +13473,6 @@
 "lDI" = (
 /turf/simulated/floor/carpet/green/fancy/innercorner/sw_triple,
 /area)
-"lEb" = (
-/obj/decal/cleanable/sakura,
-/turf/simulated/floor/dojo/sand/circle,
-/area/space)
 "lEd" = (
 /turf/simulated/wall/auto/jen/dark2{
 	icon_state = "6"
@@ -13541,10 +13568,6 @@
 	icon_state = "15"
 	},
 /area)
-"lIm" = (
-/obj/decal/cleanable/sakura,
-/turf/simulated/floor/dojo/sand/horizontal,
-/area/space)
 "lIA" = (
 /obj/cable/yellow{
 	icon_state = "6-9"
@@ -13599,11 +13622,6 @@
 	icon_state = "5-8"
 	},
 /turf/simulated/floor,
-/area/space)
-"lKZ" = (
-/turf/simulated/floor/stairs/dark{
-	dir = 9
-	},
 /area/space)
 "lLv" = (
 /obj/machinery/guardbot_dock,
@@ -13790,16 +13808,6 @@
 /obj/access_spawn/medlab,
 /obj/firedoor_spawn,
 /turf/simulated/floor/green,
-/area/space)
-"lTi" = (
-/obj/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/light/emergency{
-	dir = 1;
-	pixel_y = 24
-	},
-/turf/simulated/floor/grey,
 /area/space)
 "lTC" = (
 /turf/simulated/floor/engine,
@@ -14489,14 +14497,6 @@
 	dir = 8
 	},
 /area/space)
-"muX" = (
-/obj/sakura_tree{
-	pixel_x = -31;
-	pixel_y = -4
-	},
-/obj/decal/cleanable/sakura,
-/turf/simulated/floor/dojo/sand,
-/area/space)
 "mvy" = (
 /turf/simulated/wall/auto/shuttle,
 /area)
@@ -14592,6 +14592,13 @@
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/plating,
+/area/space)
+"myr" = (
+/obj/railing/green{
+	dir = 4
+	},
+/obj/railing/green,
+/turf/simulated/floor/grey,
 /area/space)
 "myE" = (
 /obj/disposalpipe/segment/mail{
@@ -14804,6 +14811,10 @@
 	},
 /turf/simulated/floor/yellow,
 /area)
+"mGO" = (
+/obj/machinery/light/fluorescent/warm,
+/turf/simulated/floor/marble,
+/area/space)
 "mGT" = (
 /obj/disposalpipe/segment,
 /obj/cable/blue{
@@ -15080,12 +15091,6 @@
 "mSx" = (
 /turf/simulated/floor/carpet/blue/standard/edge/east,
 /area)
-"mSz" = (
-/obj/stool/chair/comfy{
-	dir = 8
-	},
-/turf/simulated/floor/grass,
-/area/space)
 "mSF" = (
 /obj/machinery/door/poddoor/blast/pyro,
 /turf/simulated/floor/snowcalm,
@@ -16415,6 +16420,11 @@
 "nYq" = (
 /turf/simulated/wall/auto/jen/purple,
 /area/space)
+"nYQ" = (
+/turf/simulated/floor/stairs/dark/wide{
+	dir = 9
+	},
+/area/space)
 "nZt" = (
 /obj/grille/catwalk/cross{
 	dir = 9
@@ -16516,10 +16526,6 @@
 	},
 /turf/simulated/floor,
 /area)
-"ofo" = (
-/obj/stool/chair/comfy,
-/turf/simulated/floor/grass,
-/area/space)
 "ofu" = (
 /turf/unsimulated/wall/setpieces/leadwall/gray{
 	icon_state = "leadjunction_gray"
@@ -16562,8 +16568,11 @@
 	},
 /turf/simulated/floor/black,
 /area)
-"ogo" = (
-/turf/simulated/floor/dojo/sand/vertical,
+"ogw" = (
+/obj/machinery/light/fluorescent/warm{
+	dir = 1
+	},
+/turf/simulated/floor/grey,
 /area/space)
 "ogz" = (
 /obj/disposalpipe/segment{
@@ -17147,12 +17156,6 @@
 	icon_state = "R13"
 	},
 /area)
-"oDG" = (
-/obj/stool/chair/comfy{
-	dir = 4
-	},
-/turf/simulated/floor/grass,
-/area/space)
 "oDJ" = (
 /obj/disposalpipe/switch_junction/left/east{
 	mail_tag = "place";
@@ -17739,6 +17742,10 @@
 	dir = 1
 	},
 /area/space)
+"pcJ" = (
+/obj/tree1,
+/turf/simulated/floor/grass,
+/area/space)
 "pcO" = (
 /obj/disposalpipe/segment/brig,
 /turf/simulated/floor/red,
@@ -18293,6 +18300,10 @@
 	},
 /turf/simulated/floor,
 /area)
+"pAg" = (
+/obj/decal/cleanable/sakura,
+/turf/simulated/floor/dojo/sand/vertical,
+/area/space)
 "pAD" = (
 /obj/item/device/radio/intercom/loudspeaker/speaker/south{
 	pixel_y = 32
@@ -18808,6 +18819,9 @@
 /obj/decal/cleanable/dirt/jen,
 /turf/simulated/floor,
 /area/space)
+"qdO" = (
+/turf/simulated/floor/dojo/sand/vertical,
+/area/space)
 "qeA" = (
 /obj/disposalpipe/switch_junction/right/east{
 	mail_tag = "place";
@@ -18885,6 +18899,11 @@
 	icon_state = "R6"
 	},
 /area)
+"qiI" = (
+/turf/simulated/floor/stairs/dark/wide{
+	dir = 8
+	},
+/area/space)
 "qiK" = (
 /obj/cable/yellow,
 /obj/cable/yellow{
@@ -19775,6 +19794,12 @@
 	},
 /turf/simulated/floor,
 /area/space)
+"qTg" = (
+/obj/stool/chair/comfy{
+	dir = 4
+	},
+/turf/simulated/floor/grass,
+/area/space)
 "qTz" = (
 /obj/cable/black{
 	icon_state = "6-9"
@@ -19920,10 +19945,6 @@
 	pixel_y = 29
 	},
 /turf/unsimulated/floor/carpet/red/standard/edge/north,
-/area/space)
-"qYE" = (
-/obj/decal/cleanable/sakura,
-/turf/simulated/floor/dojo/sand/vertical,
 /area/space)
 "qYJ" = (
 /turf/simulated/wall/auto/jen{
@@ -21626,11 +21647,6 @@
 	},
 /turf/simulated/floor/specialroom/arcade,
 /area/space)
-"sxL" = (
-/turf/simulated/floor/stairs/dark/wide{
-	dir = 8
-	},
-/area/space)
 "sxQ" = (
 /turf/simulated/wall/auto/jen/dark2{
 	icon_state = "15"
@@ -22024,10 +22040,6 @@
 "sLW" = (
 /obj/disposalpipe/segment,
 /turf/simulated/floor/black,
-/area/space)
-"sMk" = (
-/obj/tree1,
-/turf/simulated/floor/grass,
 /area/space)
 "sNL" = (
 /turf/simulated/floor/shuttle{
@@ -23496,15 +23508,6 @@
 	icon_state = "7"
 	},
 /area)
-"tVY" = (
-/obj/railing/green{
-	dir = 4
-	},
-/obj/railing/green{
-	dir = 1
-	},
-/turf/simulated/floor/grey,
-/area/space)
 "tWV" = (
 /turf/simulated/floor/longtile,
 /area/space)
@@ -24580,6 +24583,16 @@
 /obj/cable/black,
 /obj/machinery/power/apc/autoname_west,
 /turf/simulated/floor/plating/jen,
+/area/space)
+"uZE" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/light/emergency{
+	dir = 1;
+	pixel_y = 24
+	},
+/turf/simulated/floor/grey,
 /area/space)
 "uZF" = (
 /turf/simulated/wall/auto/reinforced/jen{
@@ -25962,11 +25975,6 @@
 /obj/disposalpipe/segment,
 /turf/simulated/floor,
 /area/space)
-"whf" = (
-/turf/simulated/floor/stairs/wood{
-	dir = 4
-	},
-/area/space)
 "whn" = (
 /turf/simulated/wall/auto/jen/green{
 	icon_state = "11"
@@ -25994,6 +26002,14 @@
 	icon_state = "R13"
 	},
 /area)
+"wim" = (
+/obj/disposalpipe/segment/mail{
+	dir = 4
+	},
+/turf/simulated/floor/grey/side{
+	dir = 4
+	},
+/area/space)
 "wiy" = (
 /obj/decal/poster/wallsign/stencil/left/i,
 /turf/unsimulated/floor/setpieces/bluefloor,
@@ -26159,6 +26175,10 @@
 	icon_state = "1"
 	},
 /area)
+"wrN" = (
+/obj/decal/cleanable/sakura,
+/turf/simulated/floor/dojo/sand/circle,
+/area/space)
 "wrP" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -26687,6 +26707,12 @@
 	icon_state = "SS13-Centred-2-U4"
 	},
 /area)
+"wPt" = (
+/obj/stool/chair/comfy{
+	dir = 8
+	},
+/turf/simulated/floor/grass,
+/area/space)
 "wPx" = (
 /obj/cable/yellow{
 	icon_state = "1-2"
@@ -26712,6 +26738,10 @@
 "wPM" = (
 /turf/simulated/floor/carpet/green/standard/innercorner/nw,
 /area)
+"wPP" = (
+/obj/table/wood/round/auto,
+/turf/simulated/floor/grass,
+/area/space)
 "wQw" = (
 /turf/simulated/floor/carpet/blue/standard/narrow/south,
 /area)
@@ -27663,14 +27693,6 @@
 	},
 /turf/simulated/floor/yellow,
 /area)
-"xul" = (
-/obj/disposalpipe/segment{
-	dir = 4
-	},
-/turf/simulated/floor/grey/side{
-	dir = 4
-	},
-/area/space)
 "xum" = (
 /obj/cable/blue{
 	icon_state = "1-2"
@@ -27822,6 +27844,9 @@
 "xxc" = (
 /turf/simulated/floor/carpet/purple/fancy/innercorner/west,
 /area)
+"xxe" = (
+/turf/simulated/floor/dojo/sand/horizontal,
+/area/space)
 "xxH" = (
 /obj/indestructible/shuttle_corner{
 	dir = 8
@@ -28563,9 +28588,6 @@
 "yhj" = (
 /turf/simulated/floor/carpet/green/fancy/narrow/eastwest,
 /area)
-"yhv" = (
-/turf/simulated/floor/dojo/sand/circle,
-/area/space)
 "yhx" = (
 /turf/simulated/floor/yellow/corner{
 	dir = 8
@@ -88676,9 +88698,9 @@ kwk
 xOm
 tzZ
 kbq
-xul
+hSM
 xlb
-ilw
+wim
 dLZ
 bgV
 mdC
@@ -88978,9 +89000,9 @@ dEy
 xOm
 kbq
 kbq
-lTi
+uZE
 hdA
-coE
+bth
 dLZ
 hbw
 ova
@@ -95322,7 +95344,7 @@ hbw
 hbw
 kbq
 eXL
-dvJ
+dzg
 ejr
 ejr
 uDf
@@ -96511,10 +96533,10 @@ hbw
 kbq
 kbq
 kbq
+eKy
 eRj
 eRj
-eRj
-eRj
+mGO
 kbq
 kbq
 kbq
@@ -96546,7 +96568,7 @@ aQA
 aQA
 aQA
 aQA
-jUX
+hdn
 hbw
 hbw
 hbw
@@ -96848,7 +96870,7 @@ aQA
 aQA
 aQA
 aQA
-jUX
+hdn
 hbw
 hbw
 hbw
@@ -97150,7 +97172,7 @@ aQA
 aQA
 aQA
 aQA
-jUX
+hdn
 hbw
 hbw
 hbw
@@ -97452,7 +97474,7 @@ aQA
 aQA
 aQA
 aQA
-jUX
+hdn
 hbw
 hbw
 hbw
@@ -98641,7 +98663,7 @@ hbw
 kbq
 kbq
 aQA
-aQA
+bVm
 aQA
 aQA
 aQA
@@ -99540,14 +99562,14 @@ kbq
 aQA
 aQA
 aQA
+bVm
 aQA
 aQA
 aQA
 aQA
 aQA
 aQA
-aQA
-aQA
+ybR
 kbq
 kbq
 kbq
@@ -100452,7 +100474,7 @@ aQA
 aQA
 aQA
 aQA
-aQA
+liS
 kbq
 ejr
 ejr
@@ -100748,7 +100770,7 @@ kbq
 aQA
 aQA
 aQA
-aQA
+ybR
 aQA
 aQA
 aQA
@@ -101041,11 +101063,11 @@ hbw
 rqM
 rqM
 kbq
+ogw
 aQA
 aQA
 aQA
-aQA
-aQA
+liS
 kbq
 rqM
 rqM
@@ -101343,11 +101365,11 @@ rqM
 rqM
 dDB
 dDB
-tVY
-iei
-lKZ
-sxL
-leH
+kii
+nYQ
+bNg
+qiI
+myr
 dDB
 dDB
 rqM
@@ -101659,7 +101681,7 @@ kbq
 aQA
 aQA
 aQA
-aQA
+liS
 kbq
 fnJ
 rqM
@@ -102248,7 +102270,7 @@ rqM
 dDB
 dDB
 dDB
-sMk
+pcJ
 dDB
 dDB
 dDB
@@ -102256,7 +102278,7 @@ dDB
 dDB
 dDB
 dDB
-sMk
+pcJ
 dDB
 rqM
 kbq
@@ -103153,7 +103175,7 @@ hbw
 ova
 dDB
 qUC
-fzn
+wPP
 dDB
 dDB
 dDB
@@ -103455,7 +103477,7 @@ hbw
 ova
 dDB
 tYR
-fzn
+wPP
 dDB
 dDB
 dDB
@@ -103757,12 +103779,12 @@ hbw
 ova
 dDB
 dDB
-mSz
+wPt
 dDB
 dDB
-lEb
-qYE
-yhv
+wrN
+pAg
+goQ
 dDB
 dDB
 dDB
@@ -103778,7 +103800,7 @@ ejr
 ejr
 ejr
 rqM
-whf
+bkl
 kbq
 ejr
 ejr
@@ -104062,9 +104084,9 @@ dDB
 dDB
 dDB
 dDB
-fLv
-muX
-lIm
+xxe
+icF
+gAr
 dDB
 dDB
 dDB
@@ -104080,7 +104102,7 @@ rqM
 rqM
 lsC
 rqM
-whf
+bkl
 kbq
 kbq
 kbq
@@ -104364,9 +104386,9 @@ dDB
 dDB
 dDB
 dDB
-yhv
-ogo
-yhv
+goQ
+qdO
+goQ
 dDB
 dDB
 dDB
@@ -104664,14 +104686,14 @@ ova
 ova
 mci
 dDB
-oDG
+qTg
 dDB
 dDB
 dDB
 dDB
 dDB
 dDB
-oDG
+qTg
 dDB
 ova
 ova
@@ -104965,15 +104987,15 @@ hbw
 hbw
 ova
 ova
-ofo
-fzn
-gli
+jPa
+wPP
+kRm
 mci
 mci
 mci
 dDB
-ofo
-fzn
+jPa
+wPP
 ova
 ova
 hbw
@@ -109526,8 +109548,8 @@ dDB
 dDB
 dDB
 kbq
-cxL
-cxL
+fnm
+fnm
 kbq
 kbq
 kbq
