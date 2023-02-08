@@ -412,6 +412,11 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
+"aqy" = (
+/obj/wingrille_spawn/reinforced,
+/obj/machinery/atmospherics/pipe/simple/insulated/vertical,
+/turf/simulated/floor/plating,
+/area/space)
 "aqK" = (
 /obj/cable{
 	d1 = 1;
@@ -6504,6 +6509,14 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/black,
 /area/station/engine/engineering)
+"fdS" = (
+/obj/machinery/door/poddoor/pyro{
+	dir = 2;
+	id = "tox_vent";
+	name = "Combustion Chamber Vent"
+	},
+/turf/simulated/floor/plating,
+/area/space)
 "fdZ" = (
 /obj/machinery/light/small/floor,
 /obj/disposalpipe/segment/horizontal,
@@ -18947,9 +18960,6 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/south{
 	target_z = 3
 	},
-/obj/machinery/light/small/cool{
-	dir = 4
-	},
 /turf/simulated/floor/plating,
 /area/space)
 "poa" = (
@@ -28235,6 +28245,15 @@
 	icon_state = "gehenna_tile"
 	},
 /area/pricemaster)
+"wEr" = (
+/obj/machinery/atmospherics/pipe/vertical_pipe/south{
+	target_z = 3
+	},
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/space)
 "wED" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/breathable{
 	dir = 1
@@ -29663,6 +29682,10 @@
 /obj/stool,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice)
+"xMO" = (
+/obj/machinery/atmospherics/pipe/vent/north,
+/turf/simulated/floor/plating,
+/area/space)
 "xMX" = (
 /obj/machinery/door/airlock/security,
 /obj/disposalpipe/segment/morgue{
@@ -64265,7 +64288,7 @@ msF
 msF
 msF
 msF
-iiv
+msF
 iiv
 iiv
 iiv
@@ -64564,11 +64587,11 @@ cqC
 msF
 ojv
 dij
-fxr
+xMO
+nqM
+nqM
+fdS
 xfi
-xfi
-xfi
-iiv
 iiv
 iiv
 iiv
@@ -64866,11 +64889,11 @@ cqC
 msF
 pny
 dij
-fxr
+xMO
+nqM
+nqM
+fdS
 xfi
-xfi
-xfi
-iiv
 iiv
 iiv
 iiv
@@ -65166,13 +65189,13 @@ iiv
 cqC
 cqC
 msF
-msF
-msF
-msF
-msF
-msF
-cqC
-iiv
+pny
+aqy
+xMO
+nqM
+nqM
+fdS
+xfi
 iiv
 iiv
 iiv
@@ -65467,14 +65490,14 @@ iiv
 iiv
 iiv
 cqC
-cqC
-cqC
-cqC
-cqC
-cqC
-cqC
-cqC
-iiv
+msF
+wEr
+aqy
+xMO
+nqM
+nqM
+fdS
+xfi
 iiv
 iiv
 iiv
@@ -65769,13 +65792,13 @@ iiv
 iiv
 iiv
 cqC
-cqC
-cqC
-cqC
-cqC
-cqC
-cqC
-cqC
+msF
+msF
+msF
+msF
+msF
+msF
+msF
 iiv
 iiv
 iiv
