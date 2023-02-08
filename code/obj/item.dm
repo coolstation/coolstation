@@ -301,7 +301,7 @@
 			// this is a gross hack to make things not just show "1" by default
 			src.inventory_counter.update_number(src.amount)
 	..()
-
+/*
 /obj/item/unpooled()
 	..()
 	src.amount = initial(src.amount)
@@ -342,7 +342,7 @@
 		src.inventory_counter = null
 
 	..()
-
+*/
 /obj/item/set_loc(var/newloc as turf|mob|obj in world)
 	if (src.temp_flags & IS_LIMB_ITEM)
 		if (istype(newloc,/obj/item/parts/human_parts/arm/left/item) || istype(newloc,/obj/item/parts/human_parts/arm/right/item))
@@ -1543,7 +1543,7 @@
 
 /obj/item/proc/create_inventory_counter()
 	if (!src.inventory_counter)
-		src.inventory_counter = unpool(/obj/overlay/inventory_counter)
+		src.inventory_counter = new /obj/overlay/inventory_counter()
 		src.vis_contents += src.inventory_counter
 
 /obj/item/proc/dropped(mob/user)

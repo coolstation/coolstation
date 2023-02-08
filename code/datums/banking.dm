@@ -388,7 +388,7 @@
 					boutput(usr, "<span class='alert'>Insufficient funds in account.</span>")
 				else
 					src.accessed_record.fields["current_money"] -= amount
-					var/obj/item/spacecash/S = unpool(/obj/item/spacecash)
+					var/obj/item/spacecash/S = new()
 					S.setup(src.loc, amount)
 					usr.put_in_hand_or_drop(S)
 
@@ -853,7 +853,7 @@
 					boutput(usr, "<span class='alert'>Insufficient funds in account.</span>")
 				else
 					src.accessed_record.fields["current_money"] -= amount
-					var/obj/item/spacecash/S = unpool(/obj/item/spacecash)
+					var/obj/item/spacecash/S = new()
 					S.setup(src.loc, amount)
 					usr.put_in_hand_or_drop(S)
 

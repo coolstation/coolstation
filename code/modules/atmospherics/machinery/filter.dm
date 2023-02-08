@@ -62,9 +62,9 @@ Filter types:
 		if(radio_controller)
 			initialize()
 
-		air_in = unpool(/datum/gas_mixture)
-		air_out1 = unpool(/datum/gas_mixture)
-		air_out2 = unpool(/datum/gas_mixture)
+		air_in = new()
+		air_out1 = new()
+		air_out2 = new()
 
 		air_in.volume = 200
 		air_out1.volume = 200
@@ -161,7 +161,7 @@ Filter types:
 		if(transfer_moles > 0)
 			var/datum/gas_mixture/removed = air_in.remove(transfer_moles)
 
-			var/datum/gas_mixture/filtered_out = unpool(/datum/gas_mixture)
+			var/datum/gas_mixture/filtered_out = new()
 			//if(filtered_out.temperature)
 			if(removed.temperature)
 				filtered_out.temperature = removed.temperature

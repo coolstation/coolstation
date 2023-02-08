@@ -174,7 +174,7 @@
 			user.u_equip(W)
 			pool(W)
 
-			var/obj/item/spacecash/buttcoin/S = unpool(/obj/item/spacecash/buttcoin)
+			var/obj/item/spacecash/buttcoin/S = new()
 			S.setup(get_turf(src))
 			user.put_in_hand_or_drop(S)
 

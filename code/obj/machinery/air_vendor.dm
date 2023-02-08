@@ -29,7 +29,7 @@ obj/machinery/air_vendor
 
 	New()
 		..()
-		gas_prototype = unpool(/datum/gas_mixture)
+		gas_prototype = new()
 
 	proc/update_icon()
 		if(status & BROKEN)
@@ -175,7 +175,7 @@ obj/machinery/air_vendor
 
 			if (href_list["return_credits"])
 				if (src.credits > 0)
-					var/obj/item/spacecash/returned = unpool(/obj/item/spacecash)
+					var/obj/item/spacecash/returned = new()
 					returned.setup(src.loc, src.credits)
 
 					usr.put_in_hand_or_eject(returned)

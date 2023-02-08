@@ -22,7 +22,7 @@
 		if(!istype(src))
 			return
 
-		var/obj/particle/par = unpool(/obj/particle)
+		var/obj/particle/par = new()
 
 		if(!istype(par))
 			return

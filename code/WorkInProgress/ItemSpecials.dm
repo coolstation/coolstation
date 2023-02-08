@@ -218,7 +218,7 @@
 	proc/showEffect(var/name = null, var/direction = NORTH, var/mob/user, alpha=255)
 		if(name == null || master == null) return
 		if(!user) user = usr
-		var/obj/itemspecialeffect/E = unpool(/obj/itemspecialeffect)
+		var/obj/itemspecialeffect/E = new()
 		if(src.animation_color)
 			E.color = src.animation_color
 		E.alpha = alpha
@@ -362,7 +362,7 @@
 
 				user.set_loc(lastTurf)
 				user.set_dir(direction)
-				var/obj/itemspecialeffect/bluefade/E = unpool(/obj/itemspecialeffect/bluefade)
+				var/obj/itemspecialeffect/bluefade/E = new()
 				E.setup(user.loc)
 				E.filters = filter(type="motion_blur", x=blurX, y=blurY)
 
@@ -379,10 +379,10 @@
 
 				if(hit)
 					if(prob(1))
-						var/obj/itemspecialeffect/zantetsuken/Z = unpool(/obj/itemspecialeffect/zantetsuken)
+						var/obj/itemspecialeffect/zantetsuken/Z = new()
 						Z.setup(user.loc)
 					else
-						var/obj/itemspecialeffect/rushhit/R = unpool(/obj/itemspecialeffect/rushhit)
+						var/obj/itemspecialeffect/rushhit/R = new()
 						R.setup(user.loc)
 
 				sleep(0.2)
@@ -440,7 +440,7 @@
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(master, direction)
 
-				var/obj/itemspecialeffect/simple/S = unpool(/obj/itemspecialeffect/simple)
+				var/obj/itemspecialeffect/simple/S = new()
 				if(src.animation_color)
 					S.color = src.animation_color
 				S.setup(turf)
@@ -589,7 +589,7 @@
 				var/turf/two = get_step(one, turn(direction, 90))
 				var/turf/three = get_step(one, turn(direction, -90))
 
-				var/obj/itemspecialeffect/swipe/swipe = unpool(/obj/itemspecialeffect/swipe)
+				var/obj/itemspecialeffect/swipe/swipe = new()
 				//pick random colour from get_hex_color_from_blade if the bladecolor/swipe_color is null. Randomized color each swing cause this saber is multicolored.
 				if (swipe_color == "RAND")
 					swipe.color = pick("#FF0000","#FF9A00","#FFFF00","#00FF78","#00FFFF","#0081DF","#CC00FF","#FFCCFF","#EBE6EB")
@@ -683,7 +683,7 @@
 				preUse(user)
 				var/pox = text2num(params["icon-x"]) - 16
 				var/poy = text2num(params["icon-y"]) - 16
-				var/obj/itemspecialeffect/S = unpool(special_effect_type)
+				var/obj/itemspecialeffect/S = new special_effect_type()
 				S.setup(get_step(user, get_dir(user, target)))
 				shoot_projectile_ST_pixel(user, projectile, target, pox, poy)
 				afterUse(user)
@@ -758,7 +758,7 @@
 				var/turf/threeB = get_step(three, direction)
 				var/turf/fourB = get_step(four, direction)
 
-				var/obj/itemspecialeffect/cracks = unpool(/obj/itemspecialeffect/cracks)
+				var/obj/itemspecialeffect/cracks = new()
 				cracks.setup(two)
 				cracks.set_dir(direction)
 				animate(cracks, alpha=0, time=30)
@@ -806,7 +806,7 @@
 				var/turf/threeB = get_step(three, direction)
 				var/turf/fourB = get_step(four, direction)
 
-				var/obj/itemspecialeffect/cracks = unpool(/obj/itemspecialeffect/cracks)
+				var/obj/itemspecialeffect/cracks = new()
 				cracks.setup(two)
 				cracks.set_dir(direction)
 				animate(cracks, alpha=0, time=30)
@@ -894,7 +894,7 @@
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(user, direction)
 
-				var/obj/itemspecialeffect/conc/C = unpool(/obj/itemspecialeffect/conc)
+				var/obj/itemspecialeffect/conc/C = new()
 				C.setup(turf)
 
 				var/hit = 0
@@ -942,7 +942,7 @@
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(user, direction)
 
-				var/obj/itemspecialeffect/conc/C = unpool(/obj/itemspecialeffect/conc)
+				var/obj/itemspecialeffect/conc/C = new()
 				C.setup(turf)
 
 				var/hit = 0
@@ -989,7 +989,7 @@
 				var/turf/two = get_step(one, turn(direction, 90))
 				var/turf/three = get_step(one, turn(direction, -90))
 
-				var/obj/itemspecialeffect/swipe/swipe = unpool(/obj/itemspecialeffect/swipe)
+				var/obj/itemspecialeffect/swipe/swipe = new()
 				swipe.setup(effect)
 				swipe.set_dir(direction)
 
@@ -1036,7 +1036,7 @@
 
 				var/turf/effect = get_step(master, direction)
 
-				var/obj/itemspecialeffect/spark/spark = unpool(/obj/itemspecialeffect/spark)
+				var/obj/itemspecialeffect/spark/spark = new()
 				spark.setup(effect)
 				spark.set_dir(direction)
 
@@ -1117,7 +1117,7 @@
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(master, direction)
 
-				var/obj/itemspecialeffect/simple2/S = unpool(/obj/itemspecialeffect/simple2)
+				var/obj/itemspecialeffect/simple2/S = new()
 				S.setup(turf)
 
 				var/hit = 0
@@ -1132,7 +1132,7 @@
 				SPAWN_DBG(secondhitdelay)
 
 					turf = get_step(master, direction)
-					var/obj/itemspecialeffect/simple2/SS = unpool(/obj/itemspecialeffect/simple2)
+					var/obj/itemspecialeffect/simple2/SS = new()
 					SS.setup(turf)
 
 					hit = 0
@@ -1174,7 +1174,7 @@
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(master, direction)
 
-				var/obj/itemspecialeffect/barrier/E = unpool(/obj/itemspecialeffect/barrier)
+				var/obj/itemspecialeffect/barrier/E = new()
 				E.setup(turf)
 				E.master = user
 				E.set_dir(direction)
@@ -1243,7 +1243,7 @@
 
 				var/turf/turf = get_step(master, direction)
 
-				var/obj/itemspecialeffect/flame/S = unpool(/obj/itemspecialeffect/flame)
+				var/obj/itemspecialeffect/flame/S = new()
 				S.set_dir(direction)
 				turf = get_step(turf,S.dir)
 
@@ -1319,7 +1319,7 @@
 				var/turf/turf = get_step(master, direction)
 
 
-				var/obj/itemspecialeffect/conc/C = unpool(/obj/itemspecialeffect/conc)
+				var/obj/itemspecialeffect/conc/C = new()
 				C.setup(turf)
 				for (var/obj/O in turf.contents)
 					if (istype(O, /obj/blob))
@@ -1370,13 +1370,13 @@
 				//sorry about this, it's so I don't unpool a simple effect twice by mistake
 				if(istype(master, /obj/item/baton))
 					if (!master:can_stun())
-						E = unpool(/obj/itemspecialeffect/simple)
+						E = new()
 					else
-						E = unpool(/obj/itemspecialeffect/spark/ntso)
+						E = new()
 						master:process_charges(-1)
 						// master:process_charges(-1, user)
 				else
-					E = unpool(/obj/itemspecialeffect/simple)
+					E = new()
 
 
 				E.setup(effect)
@@ -1690,7 +1690,7 @@
 				var/turf/two = get_step(one, turn(direction, 90))
 				var/turf/three = get_step(one, turn(direction, -90))
 
-				var/obj/itemspecialeffect/nunchucks/nunchuck = unpool(/obj/itemspecialeffect/nunchucks)
+				var/obj/itemspecialeffect/nunchucks/nunchuck = new()
 				nunchuck.setup(effect)
 				nunchuck.set_dir(direction)
 
@@ -1742,7 +1742,7 @@
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(master, direction)
 
-				var/obj/itemspecialeffect/simple/S = unpool(/obj/itemspecialeffect/simple)
+				var/obj/itemspecialeffect/simple/S = new()
 				S.setup(turf)
 
 				var/hit = 0
@@ -1800,13 +1800,13 @@
 		if (del_self)
 			SPAWN_DBG(del_time)
 				pool(src)
-
+/*
 	unpooled()
 		..()
 
 	pooled()
 		..()
-
+*/
 	attackby()
 		was_clashed()
 
@@ -1816,7 +1816,7 @@
 	proc/was_clashed(var/playsound = 1)
 		if (playsound)
 			playsound(src.loc, 'sound/impact_sounds/Stone_Cut_1.ogg', 50, 0.1, 0, 2)
-		var/obj/itemspecialeffect/clash/C = unpool(/obj/itemspecialeffect/clash)
+		var/obj/itemspecialeffect/clash/C = new()
 		C.setup(src.loc)
 
 
@@ -1908,12 +1908,12 @@
 		icon_state = "clash"
 		pixel_x = 0
 		pixel_y = 0
-
+/*
 		pooled()
 			..()
 			transform = null
 			color = null
-
+*/
 	barrier
 		name = "energy barrier"
 		icon = 'icons/effects/effects.dmi'
@@ -2043,7 +2043,7 @@
 	pixel_y = 0
 
 
-	unpooled()
+	New()
 		pixel_x = rand(-3,3)
 		pixel_y = rand(-15,6)
 		..()
@@ -2051,7 +2051,7 @@
 /obj/itemspecialeffect/impact/blood
 	icon_state = "blood_impact1"
 
-	unpooled()
+	New()
 		..()
 		if (prob(50))
 			icon_state = "blood_impact2"
@@ -2065,7 +2065,7 @@
 /obj/itemspecialeffect/impact/silicon
 	icon_state = "silicon_impact1"
 
-	unpooled()
+	New()
 		..()
 		if (prob(66))
 			icon_state = "silicon_impact2"

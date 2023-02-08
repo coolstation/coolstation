@@ -559,9 +559,9 @@ Returns:
 			AM.set_loc(T)
 		else
 			src.visible_message("<span style='color: red; font-weight: bold'>The portal collapses in on itself!</span>")
-			var/obj/sparks = unpool(/obj/effects/sparks)
+			var/obj/sparks = new /obj/effects/sparks()
 			sparks.set_loc(get_turf(src))
-			SPAWN_DBG(2 SECONDS) if (sparks) pool(sparks)
+			SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 			qdel(src)
 		return
 
@@ -572,9 +572,9 @@ Returns:
 			AM.set_loc(T)
 		else
 			src.visible_message("<span style='color: red; font-weight: bold'>The portal collapses in on itself!</span>")
-			var/obj/sparks = unpool(/obj/effects/sparks)
+			var/obj/sparks = new /obj/effects/sparks()
 			sparks.set_loc(get_turf(src))
-			SPAWN_DBG(2 SECONDS) if (sparks) pool(sparks)
+			SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 			qdel(src)
 		return
 	*/
@@ -1644,7 +1644,7 @@ Returns:
 			if(color != null)
 				var/actX = A.pixel_x + x - 1
 				var/actY = A.pixel_y + y - 1
-				var/obj/apixel/P = unpool(/obj/apixel)
+				var/obj/apixel/P = new()
 				P.set_loc(A.loc)
 				P.pixel_x = actX
 				P.pixel_y = actY
@@ -1668,7 +1668,7 @@ Returns:
 	anchored = 1
 	density = 0
 	opacity = 0
-
+/*
 	unpooled()
 		color = "#ffffff"
 		pixel_x = 0
@@ -1676,7 +1676,7 @@ Returns:
 		alpha = 255
 		transform = matrix()
 		..()
-
+*/
 /datum/admins/proc/turn_off_pixelexplosion()
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
 	set name = "Turn off pixel explosion mode"
@@ -3087,9 +3087,9 @@ Returns:
 			AM.set_loc(target)
 		else
 			src.visible_message("<span style='color: red; font-weight: bold'>The portal collapses in on itself!</span>")
-			var/obj/sparks = unpool(/obj/effects/sparks)
+			var/obj/sparks = new /obj/effects/sparks()
 			sparks.set_loc(get_turf(src))
-			SPAWN_DBG(2 SECONDS) if (sparks) pool(sparks)
+			SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 			qdel(src)
 
 	ex_act()

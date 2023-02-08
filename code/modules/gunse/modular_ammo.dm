@@ -51,14 +51,14 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		var/default_amount = default_min_amount == default_max_amount ? default_min_amount : rand(default_min_amount, default_max_amount)
 		src.amount = max(amt,default_amount)
 		src.update_stack_appearance()
-
+/*
 	unpooled()
 		..()
 		var/default_amount = default_min_amount == default_max_amount ? default_min_amount : rand(default_min_amount, default_max_amount)
 		src.amount = max(1, default_amount) //take higher
-		src.update_stack_appearance()
+		src.update_stack_appearance()*/
 
-	pooled()
+	disposing()
 		if (usr)
 			usr.u_equip(src) //wonder if that will work?
 		amount = 1
@@ -109,7 +109,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 					boutput(user, "<span class='alert'>You wish!</span>")
 					return
 				change_stack_amount( 0 - amt )
-				var/obj/item/stackable_ammo/young_money = unpool(/obj/item/stackable_ammo)
+				var/obj/item/stackable_ammo/young_money = new()
 				young_money.setup(user.loc, amt)
 				young_money.Attackhand(user)
 		else

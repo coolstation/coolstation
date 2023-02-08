@@ -660,7 +660,7 @@
 			gnesis_smash()
 		else
 			for (var/i=rand(3,4), i>0, i--)
-				var/obj/item/raw_material/shard/glass/G = unpool(/obj/item/raw_material/shard/glass)
+				var/obj/item/raw_material/shard/glass/G = new()
 				G.set_loc(src.loc)
 				if (src.material)
 					G.setMaterial(src.material)

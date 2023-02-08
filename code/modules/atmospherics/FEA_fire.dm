@@ -61,7 +61,7 @@
 		if (parent?.group_processing)
 			parent.suspend_group_processing()
 
-		active_hotspot = unpool(/obj/hotspot)
+		active_hotspot = new()
 		active_hotspot.temperature = exposed_temperature
 		active_hotspot.volume = exposed_volume
 		active_hotspot.set_loc(src)
@@ -109,7 +109,7 @@
 		if (loc)
 			loc:active_hotspot = null
 		..()
-
+/*
 	pooled()
 		STOP_TRACKING
 		..()
@@ -119,7 +119,7 @@
 		START_TRACKING
 		if (!light.attached_to)
 			light.attach(src)
-
+*/
 	// now this is ss13 level code
 	proc/set_real_color()
 		var/input = temperature / 100

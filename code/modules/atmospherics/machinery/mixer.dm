@@ -90,9 +90,9 @@ obj/machinery/atmospherics/mixer
 				else
 					initialize_directions = WEST|NORTH|EAST
 
-		air_in1 = unpool(/datum/gas_mixture)
-		air_in2 = unpool(/datum/gas_mixture)
-		air_out = unpool(/datum/gas_mixture)
+		air_in1 = new()
+		air_in2 = new()
+		air_out = new()
 
 		air_in1.volume = 200
 		air_in2.volume = 200

@@ -26,7 +26,7 @@
 
 		if (!made_reagents)
 			make_reagents()
-
+/*
 	unpooled()
 		..()
 		if(ispath(src.planttype))
@@ -38,8 +38,8 @@
 
 		if (!made_reagents)
 			make_reagents()
-
-	pooled()
+*/
+	disposing()
 		src.plantgenes = 0
 		src.made_reagents = 0
 		..()

@@ -8,7 +8,7 @@
 	var/oneshot
 
 	initialize()
-		selection = unpool(/obj/adventurepuzzle/marker)
+		selection = new /obj/adventurepuzzle/marker(src)
 		key_type = input("Key type", "Key type", "key") in list("key", "keycard", "artifact", "chtonic")
 		color_rgb = input("Color", "Color", "#ffffff") as color
 		key_name = input("Key name", "Key name", "[key_type]") as text

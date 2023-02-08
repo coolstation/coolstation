@@ -98,7 +98,7 @@ datum/pipeline
 			air = base.air_temporary
 			base.air_temporary = null
 		else
-			air = unpool(/datum/gas_mixture)
+			air = new()
 
 		while(possible_expansions.len>0)
 			for(var/obj/machinery/atmospherics/pipe/borderline in possible_expansions)
@@ -159,7 +159,7 @@ datum/pipeline
 
 		if(istype(target) && target.parent && target.parent.group_processing)
 			//Have to consider preservation of group statuses
-			var/datum/gas_mixture/turf_copy = unpool(/datum/gas_mixture)
+			var/datum/gas_mixture/turf_copy = new()
 
 			turf_copy.copy_from(target.parent.air)
 			turf_copy.volume = target.parent.air.volume //Copy a good representation of the turf from parent group

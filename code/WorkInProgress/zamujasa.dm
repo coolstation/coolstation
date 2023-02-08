@@ -1291,12 +1291,12 @@ Other Coolstation servers: Not Yet!!!</span>"})
 
 	proc/show_count()
 		invisibility = 0
-
+/*
 	pooled()
 		src.maptext = ""
 		src.invisibility = 101
 		..()
-
+*/
 
 
 

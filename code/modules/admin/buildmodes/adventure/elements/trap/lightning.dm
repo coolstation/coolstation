@@ -8,7 +8,7 @@
 
 	initialize()
 		..()
-		selection = unpool(/obj/adventurepuzzle/marker)
+		selection = new /obj/adventurepuzzle/marker(src)
 		damage = input("Trap damage? (500+ to gib instantly)", "Trap damage", 20) as num
 		stun = input("Stun time?", "Stun time", 6) as num
 		boutput(usr, "<span class='notice'>Right click to set trap target. Right click active target to clear target. Left click to place trap. Ctrl+click anywhere to finish.</span>")

@@ -13,20 +13,20 @@
 
 	New()
 		..()
-		unpooled()
+		//unpooled()
 
 	proc/make_reagents()
 		if (!src.reagents)
 			src.create_reagents(100)
-
+/*
 	unpooled()
 		src.reagents?.clear_reagents()
 		..()
 		make_reagents()
 		// hopefully prevent issues of "jumbo perfect large incredible nice perfect superb strawberry"
 		src.name = initial(name)
-
-	pooled()
+*/
+	disposing()
 		..()
 		if (src.reagents)
 			src.reagents.clear_reagents()

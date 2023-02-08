@@ -4,7 +4,7 @@
 	var/selection
 
 	initialize()
-		selection = unpool(/obj/adventurepuzzle/marker)
+		selection = new /obj/adventurepuzzle/marker(src)
 		boutput(usr, "<span class='notice'>Select a target location with right click, then left click to place portals. Ctrl+click anywhere to finish.</span>")
 
 	proc/clear_selection()

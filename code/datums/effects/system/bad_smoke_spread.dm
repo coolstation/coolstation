@@ -55,7 +55,7 @@ proc/ClearBadsmokeRefs(var/atom/A)
 		SPAWN_DBG(0)
 			if(holder)
 				src.location = get_turf(holder)
-			var/obj/effects/bad_smoke/smoke = unpool(/obj/effects/bad_smoke)
+			var/obj/effects/bad_smoke/smoke = new()
 			smoke.color = color
 			smoke.set_loc(src.location)
 			src.total_smoke++

@@ -16,7 +16,7 @@
 	var/saving = 0
 
 	initialize()
-		selection = unpool(/obj/adventurepuzzle/marker)
+		selection = new /obj/adventurepuzzle/marker(src)
 		//savename = input("Save file name", "Save file name", "save") as text
 		boutput(usr, "<span class='notice'>Use left clicks to mark two corners of the rectangular area to save. Saving will take a significant amount of time, and you should not modify the area until the saving is completed.</span>")
 

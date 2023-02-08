@@ -797,7 +797,7 @@
 	insert_observer(creatures[eye_name])
 
 mob/dead/observer/proc/insert_observer(var/atom/target)
-	var/mob/dead/target_observer/newobs = unpool(/mob/dead/target_observer)
+	var/mob/dead/target_observer/newobs = new()
 	newobs.attach_hud(hud)
 	newobs.set_observe_target(target)
 	newobs.name = src.name

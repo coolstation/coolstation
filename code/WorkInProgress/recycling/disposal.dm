@@ -30,7 +30,7 @@
 	var/autoconfig = 0 //Is this a configuration packet? great! glad to hear it!
 	var/list/routers = null // a list of the places we have been so far.
 
-	unpooled()
+	New()
 		..()
 		gas = null
 		active = 0
@@ -42,7 +42,7 @@
 		routers = list()
 		reagents = new(1000)
 
-	pooled()
+	disposing()
 		routers = null
 		autoconfig = 0
 		gas = null
@@ -214,7 +214,7 @@
 		return
 
 	proc/dupe() // returns another disposalholder like this one
-		var/obj/disposalholder/autoconfig/dupe = unpool(/obj/disposalholder/autoconfig)
+		var/obj/disposalholder/autoconfig/dupe = new()
 		dupe.count = src.count
 		dupe.autoconfig = src.autoconfig
 		dupe.routers = src.routers.Copy()
@@ -676,7 +676,7 @@
 			logTheThing("debug", SJ, null, "deleting mail tags")
 			SJ.mail_tag = list()
 
-		var/obj/disposalholder/packet = unpool(/obj/disposalholder)
+		var/obj/disposalholder/packet = new()
 		packet.contents += new /obj/item/gnomechompski(packet)
 		packet.autoconfig = 2
 		packet.active = 1

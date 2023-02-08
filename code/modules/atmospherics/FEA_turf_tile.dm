@@ -30,7 +30,7 @@ turf/return_air()
 	//  This is used in a lot of places and thrown away, so it should be pooled,
 	//  But there is no way to tell here if it will be retained or discarded, so
 	//  we can't pool the object returned by return_air. Bad news, man.
-	var/datum/gas_mixture/GM = unpool(/datum/gas_mixture)
+	var/datum/gas_mixture/GM = new()
 
 	#define _TRANSFER_GAS_TO_GM(GAS, ...) GM.GAS = GAS;
 	APPLY_TO_GASES(_TRANSFER_GAS_TO_GM)
@@ -41,7 +41,7 @@ turf/return_air()
 	return GM
 
 turf/remove_air(amount as num)//, remove_water = 0)
-	var/datum/gas_mixture/GM = unpool(/datum/gas_mixture)
+	var/datum/gas_mixture/GM = new()
 	var/sum = BASE_GASES_TOTAL_MOLES(src)
 	if(sum>0)
 		#define _TRANSFER_AMOUNT_TO_GM(GAS, ...) GM.GAS = (GAS / sum) * amount;
@@ -157,7 +157,7 @@ turf
 				if (model.graphic)
 					if (model.graphic != visuals_state)
 						if(!gas_icon_overlay)
-							gas_icon_overlay = unpool(/obj/overlay/tile_gas_effect)
+							gas_icon_overlay = new()
 							gas_icon_overlay.set_loc(src)
 						else
 							gas_icon_overlay.overlays.len = 0
@@ -175,7 +175,7 @@ turf
 			..()
 
 			if(!blocks_air)
-				air = unpool(/datum/gas_mixture)
+				air = new()
 
 				#define _TRANSFER_GAS_TO_AIR(GAS, ...) air.GAS = GAS;
 				APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)

@@ -15,14 +15,14 @@
 
 		if (!real_name)
 			real_name = name
-
+/*
 	pooled()
 		..()
 
 
 	unpooled()
 		..()
-
+*/
 	proc/setup(var/L,var/list/viral_list)
 		set_loc(L)
 
@@ -123,7 +123,7 @@
 				return ..()
 			if(prob(33))
 				boutput(user, "<span class='notice'>You are able to salvage the tiles.</span>")
-				var/obj/item/I = unpool(/obj/item/tile)
+				var/obj/item/I = new /obj/item/tile()
 				I.set_loc(src.loc)
 				if (src.material)
 					I.setMaterial(src.material)
@@ -543,13 +543,13 @@ obj/decal/fakeobjects/teleport_pad
 		src.set_dir(pick(cardinal))
 		if (prob(20))
 			new /obj/decal/alienflower(src.loc)
-
+/*
 	unpooled()
 		..()
 		src.set_dir(pick(cardinal))
 		if (prob(20))
 			new /obj/decal/alienflower(src.loc)
-
+*/
 /obj/decal/icefloor
 	name = "ice"
 	desc = "Slippery!"

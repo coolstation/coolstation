@@ -116,11 +116,11 @@
 
 /obj/portal/afterlife
 	desc = "Enter this to return to your ghostly form"
-
+/*
 	New()
 		..()
 		unpooled()
-
+*/
 	Bumped(mob/M as mob|obj)
 		SPAWN_DBG(0)
 			M.ghostize()

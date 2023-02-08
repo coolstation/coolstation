@@ -258,7 +258,7 @@
 				for(var/i=0, i<15, i++)
 					if(isnull(the_mob))
 						break
-					var/obj/effect/smoketemp/A = unpool(/obj/effect/smoketemp)
+					var/obj/effect/smoketemp/A = new()
 					A.set_loc(the_mob.loc)
 					SPAWN_DBG(1 SECOND)
 						src = null // Detatch this from the parent proc so we get to stay alive if the shoes blow up.
@@ -287,7 +287,7 @@
 		SPAWN_DBG(0)
 			for(var/i=0, i<R.soniclength, i++)
 				if(!the_mob) break
-				var/obj/effect/smoketemp/A = unpool(/obj/effect/smoketemp)
+				var/obj/effect/smoketemp/A = new()
 				A.set_loc(the_mob.loc)
 				SPAWN_DBG(1 SECOND)
 					src = null
@@ -304,7 +304,7 @@
 	opacity = 0
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
-
+/*
 	pooled()
 		..()
 		icon = null
@@ -314,7 +314,7 @@
 		..()
 		icon = initial(icon)
 		icon_state = initial(icon_state)
-
+*/
 ////////////////////////////////////////////////////////////
 
 /obj/ability_button/cebelt_toggle

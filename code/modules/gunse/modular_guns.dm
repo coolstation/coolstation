@@ -302,7 +302,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
 		return 0
 	else
-		current_projectile = unpool(ammo_list[ammo_list.len]) // last one goes in
+		var/ammotype = ammo_list[ammo_list.len]
+		current_projectile = new ammotype() // last one goes in
 		ammo_list.Remove(ammo_list[ammo_list.len]) //and remove it from the list
 		playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 		return 1
@@ -497,13 +498,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			if (0)
 				current_projectile = null // this shouldnt happen but just in case!
 			if (1)
-				current_projectile = unpool(/datum/projectile/laser/flashbulb/)
+				current_projectile = new /datum/projectile/laser/flashbulb()
 			if (2)
-				current_projectile = unpool(/datum/projectile/laser/flashbulb/two/)
+				current_projectile = new /datum/projectile/laser/flashbulb/two()
 			if (3)
-				current_projectile = unpool(/datum/projectile/laser/flashbulb/three/)
+				current_projectile = new /datum/projectile/laser/flashbulb/three()
 			if (4)
-				current_projectile = unpool(/datum/projectile/laser/flashbulb/four/)
+				current_projectile = new /datum/projectile/laser/flashbulb/four()
 			//if (5)
 				//current_projectile = /datum/projectile/laser/flashbulb/five
 		processing_ammo = 0

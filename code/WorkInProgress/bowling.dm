@@ -55,7 +55,7 @@
 			//icon_state = "bowling_gutter"
 
 		if(!air_contents)
-			air_contents = unpool(/datum/gas_mixture)
+			air_contents = new()
 
 	disposing()
 		if(air_contents)

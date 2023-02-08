@@ -4,11 +4,11 @@
 	..()
 	p_dir = (NORTH|SOUTH|EAST|WEST) ^ turn(dir, 180)
 
-	gas = unpool(/datum/gas_mixture)
-	ngas = unpool(/datum/gas_mixture)
+	gas = new()
+	ngas = new()
 
-	f_gas = unpool(/datum/gas_mixture)
-	f_ngas = unpool(/datum/gas_mixture)
+	f_gas = new()
+	f_ngas = new()
 
 	gasflowlist += src
 

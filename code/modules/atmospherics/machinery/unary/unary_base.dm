@@ -11,7 +11,7 @@
 	New()
 		..()
 		initialize_directions = dir
-		air_contents = unpool(/datum/gas_mixture)
+		air_contents = new()
 
 		air_contents.volume = 200
 

@@ -87,7 +87,7 @@
 		return measured * (1 + round(length(src.maptext_width) / 128))
 
 proc/make_chat_maptext(atom/target, msg, style = "", alpha = 255, force = 0, time = 40)
-	var/image/chat_maptext/text = unpool(/image/chat_maptext)
+	var/image/chat_maptext/text = new()
 	animate(text, maptext_y = 28, time = 0.01) // this shouldn't be necessary but it keeps breaking without it
 	if (!force)
 		msg = copytext(msg, 1, 128) // 4 lines, seems fine to me

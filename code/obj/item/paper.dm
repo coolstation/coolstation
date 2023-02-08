@@ -82,7 +82,7 @@
 	else
 		src.pixel_y = rand(-8, 8)
 		src.pixel_x = rand(-9, 9)
-
+/*
 /obj/item/paper/pooled()
 
 	..()
@@ -118,7 +118,7 @@
 			icon_state = "paper"
 
 	return
-
+*/
 /obj/item/paper/examine(mob/user)
 	. = ..()
 	ui_interact(user)
@@ -1177,7 +1177,7 @@ as it may become compromised.
 	else
 		if (src.amount >= 1 && user) //Wire: Fix for Cannot read null.loc (&& user)
 			src.amount--
-			var/obj/item/paper/P = unpool(/obj/item/paper)
+			var/obj/item/paper/P = new()
 			P.set_loc(src)
 			user.put_in_hand_or_drop(P)
 			if (rand(1,100) == 13)

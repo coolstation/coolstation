@@ -11,7 +11,7 @@ datum/pipe_network
 	var/datum/gas_mixture/air_transient = null
 
 	New()
-		air_transient = unpool(/datum/gas_mixture)
+		air_transient = new()
 
 		..()
 

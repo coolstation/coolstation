@@ -23,7 +23,8 @@
 	var/override_state = null
 	var/death = 0
 
-	unpooled()
+	New()
+	/*
 		src.alpha = 255
 		src.blend_mode = 0
 		src.color = null
@@ -31,6 +32,7 @@
 		src.pixel_y = 0
 		src.transform = null
 		src.override_state = null
+		*/
 		animate(src)
 		..()
 
@@ -158,7 +160,7 @@ var/datum/particleMaster/particleMaster = new
 			return 0
 
 	proc/new_particle(var/lifetime)
-		var/obj/particle/P = unpool(/obj/particle)
+		var/obj/particle/P = new()
 		P.death = world.time + lifetime
 		src.active_particles += P
 		return P

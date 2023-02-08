@@ -9,7 +9,7 @@
 	var/selection
 
 	initialize()
-		selection = unpool(/obj/adventurepuzzle/marker)
+		selection = new /obj/adventurepuzzle/marker(src)
 		button_type = input("Pad type", "Pad type", "ancient") in list("ancient", "runes")
 		color_rgb = input("Color", "Color", "#ffffff") as color
 		button_name = input("Pressure pad name", "Pressure pad name", "pressure pad") as text

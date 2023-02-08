@@ -713,7 +713,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T20C
 
@@ -735,7 +735,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T20C
 
@@ -757,7 +757,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T0C
 
@@ -780,7 +780,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T0C
 
@@ -804,7 +804,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T20C
 
@@ -826,7 +826,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T20C
 
@@ -848,7 +848,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T20C
 
@@ -871,7 +871,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T20C
 
@@ -898,7 +898,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T20C
 

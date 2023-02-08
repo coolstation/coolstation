@@ -32,7 +32,7 @@ proc/get_moving_lights_stats()
 		) ; \
 	if (src.RL_NeedsAdditive || _E.RL_NeedsAdditive || _N.RL_NeedsAdditive || _NE.RL_NeedsAdditive) { \
 		if(!src.RL_AddOverlay) { \
-			src.RL_AddOverlay = unpool(/obj/overlay/tile_effect/lighting/add) ; \
+			src.RL_AddOverlay = new /obj/overlay/tile_effect/lighting/add() ; \
 			src.RL_AddOverlay.set_loc(src) ; \
 			src.RL_AddOverlay.icon_state = src.RL_OverlayState ; \
 		} \
@@ -42,7 +42,7 @@ proc/get_moving_lights_stats()
 			_N.RL_AddLumR, _N.RL_AddLumG, _N.RL_AddLumB, 0, \
 			_NE.RL_AddLumR, _NE.RL_AddLumG, _NE.RL_AddLumB, 0, \
 			0, 0, 0, 1) ; \
-	} else { if(src.RL_AddOverlay) { pool(src.RL_AddOverlay); src.RL_AddOverlay = null; } } \
+	} else { if(src.RL_AddOverlay) { qdel(src.RL_AddOverlay); src.RL_AddOverlay = null; } } \
 	} while(false)
 
 
@@ -762,7 +762,7 @@ turf
 		RL_Init()
 			if (!fullbright && !loc:force_fullbright)
 				if(!src.RL_MulOverlay)
-					src.RL_MulOverlay = unpool(/obj/overlay/tile_effect/lighting/mul)
+					src.RL_MulOverlay = new()
 					src.RL_MulOverlay.set_loc(src)
 					src.RL_MulOverlay.icon_state = src.RL_OverlayState
 				if (RL_Started) RL_UPDATE_LIGHT(src)

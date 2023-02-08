@@ -2516,7 +2516,7 @@
 		if (fortune)
 			desc = "Half of a fortune cookie."
 			icon_state = "fortune-bottom"
-			var/obj/item/paper/fortune/B = unpool(/obj/item/paper/fortune)
+			var/obj/item/paper/fortune/B = new()
 			B.set_loc(user)
 
 			user.put_in_hand_or_drop(B)

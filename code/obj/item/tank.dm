@@ -33,7 +33,7 @@ Contains:
 
 	New()
 		..()
-		src.air_contents = unpool(/datum/gas_mixture)
+		src.air_contents = new()
 		src.air_contents.volume = 70 //liters
 		src.air_contents.temperature = T20C
 		processing_items |= src

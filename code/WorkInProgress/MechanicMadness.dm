@@ -618,7 +618,7 @@
 
 	proc/ejectmoney()
 		if (collected)
-			var/obj/item/spacecash/S = unpool(/obj/item/spacecash)
+			var/obj/item/spacecash/S = new()
 			S.setup(get_turf(src), collected)
 			collected = 0
 			tooltip_rebuild = 1
@@ -652,7 +652,7 @@
 				trunk = locate() in src.loc
 				if(trunk)
 					trunk.linked = src
-					air_contents = unpool(/datum/gas_mixture)
+					air_contents = new()
 			else if (src.level == 2) //loose
 				if (trunk) //ZeWaka: Fix for null.linked
 					trunk.linked = null
@@ -675,7 +675,7 @@
 	proc/flushit()
 		if(!trunk) return
 		LIGHT_UP_HOUSING
-		var/obj/disposalholder/H = unpool(/obj/disposalholder)
+		var/obj/disposalholder/H = new()
 
 		H.init(src)
 
