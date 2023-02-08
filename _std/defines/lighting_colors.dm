@@ -64,6 +64,9 @@
 /obj/machinery/light/_supertypes/blacklight;\
 /obj/machinery/light/_supertypes/blacklight/name = "blacklight "+#_fitting+" light fixture";\
 /obj/machinery/light/_supertypes/blacklight/light_type = /obj/item/light/_fitting/blacklight;\
+/obj/machinery/light/_supertypes/sodium_orange;\
+/obj/machinery/light/_supertypes/sodium_orange/name = "sodium orange "+#_fitting+" light fixture";\
+/obj/machinery/light/_supertypes/sodium_orange/light_type = /obj/item/light/_fitting/sodium_orange;\
 
 /obj/machinery/light/fluorescent
 ENUMERATE_FIXTURES(fluorescent, tube)

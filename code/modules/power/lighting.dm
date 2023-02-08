@@ -858,7 +858,7 @@
 	var/rigged = 0		// true if rigged to explode
 	var/mob/rigger = null // mob responsible
 	mats = 1
-	var/color_r = 1
+	var/color_r = 1//Note: the way to calculate this is pretty simple! X/255!
 	var/color_g = 1
 	var/color_b = 1
 	var/canberigged = 1
@@ -1035,6 +1035,14 @@
 			color_g = 0.81
 			color_b = 0.99
 
+	sodium_orange
+		name = "sodium orange light tube"
+		icon_state = "itube-yellow"
+		base_state = "itube-yellow"
+		color_r = 1
+		color_g = 0.654902
+		color_b = 0.341176
+
 // the smaller bulb light fixture
 
 /obj/item/light/bulb
@@ -1208,6 +1216,14 @@
 			color_r = 0.99
 			color_g = 0.81
 			color_b = 0.99
+
+	sodium_orange
+		name = "sodium orange light tube"
+		icon_state = "ibulb-yellow"
+		base_state = "ibubl-yellow"
+		color_r = 1
+		color_g = 0.654902
+		color_b = 0.341176
 
 /obj/item/light/big_bulb
 	name = "beacon bulb"
