@@ -220,8 +220,7 @@
 				if (S.material)
 					src.setMaterial(S.material)
 				else
-					var/datum/material/M = getMaterial("steel")
-					src.setMaterial(M)
+					src.setMaterial(getMaterial("steel"), copy = FALSE)
 				boutput(user, "<span class='notice'>You repaired the wall.</span>")
 				return
 
@@ -691,7 +690,7 @@
 /turf/unsimulated/wall/auto/coral
 	New()
 		..()
-		setMaterial(getMaterial("coral"))
+		setMaterial(getMaterial("coral"), copy = FALSE)
 
 // lead wall resprite by skeletonman0.... hooray for smoothwalls!
 ABSTRACT_TYPE(turf/unsimulated/wall/auto/lead)
@@ -793,7 +792,7 @@ ABSTRACT_TYPE(turf/unsimulated/wall/auto/lead)
 				if (the_wall.material)
 					A.setMaterial(the_wall.material)
 				else
-					A.setMaterial(getMaterial("steel"))
+					A.setMaterial(getMaterial("steel"), copy = FALSE)
 				the_wall.d_state = 1
 				the_wall.update_icon()
 			if (WALL_REMOVESUPPORTLINES)
@@ -809,7 +808,7 @@ ABSTRACT_TYPE(turf/unsimulated/wall/auto/lead)
 				if (the_wall.material)
 					A.setMaterial(the_wall.material)
 				else
-					A.setMaterial(getMaterial("steel"))
+					A.setMaterial(getMaterial("steel"), copy = FALSE)
 			if (WALL_PRYCOVER)
 				message = "You removed the cover."
 				the_wall.d_state = 4

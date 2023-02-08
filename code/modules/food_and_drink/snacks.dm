@@ -84,7 +84,7 @@
 
 	New()
 		..()
-		src.setMaterial(getMaterial("pizza"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("pizza"), appearance = 0, setname = 0, copy = FALSE)
 		if (prob(1))
 			SPAWN_DBG( rand(300, 900) )
 				src.visible_message("<b>[src]</b> <i>says, \"I'm pizza.\"</i>")
@@ -1414,7 +1414,7 @@
 	New()
 		..()
 		flick("ectoplasm-a", src)
-		src.setMaterial(getMaterial("ectoplasm"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("ectoplasm"), appearance = 0, setname = 0, copy = FALSE)
 
 	heal(mob/M)
 		..()
