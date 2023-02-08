@@ -1339,7 +1339,7 @@ DEFINE_FLOORS(techfloor/green,
 						var/obj/item/I = new /obj/item/raw_material/scrap_metal()
 						I.set_loc(src)
 						if (src.material)
-							I.setMaterial(src.material)
+							I.setMaterial(src.material, copy = (src.material == src.plate_mat))
 						else
 							I.setMaterial(getMaterial("steel"), copy = FALSE)
 					src.ReplaceWithLattice()
@@ -1350,7 +1350,7 @@ DEFINE_FLOORS(techfloor/green,
 						var/obj/item/I = new /obj/item/raw_material/scrap_metal()
 						I.set_loc(src)
 						if (src.material)
-							I.setMaterial(src.material)
+							I.setMaterial(src.material, copy = (src.material == src.plate_mat))
 						else
 							I.setMaterial(getMaterial("steel"), copy = FALSE)
 					if(prob(80))
@@ -1522,7 +1522,7 @@ DEFINE_FLOORS(techfloor/green,
 	else
 		var/atom/A = new /obj/item/tile(src)
 		if(src.material)
-			A.setMaterial(src.material)
+			A.setMaterial(src.material, copy = (src.material == src.plate_mat))
 		else
 			A.setMaterial(getMaterial("steel"), copy = FALSE)
 		.= A //return tile for crowbar special attack ok
@@ -1558,8 +1558,8 @@ DEFINE_FLOORS(techfloor/green,
 			var/obj/R1 = new /obj/item/rods(src)
 			var/obj/R2 = new /obj/item/rods(src)
 			if (material)
-				R1.setMaterial(material)
-				R2.setMaterial(material)
+				R1.setMaterial(material, copy = (src.material == src.plate_mat))
+				R2.setMaterial(material, copy = (src.material == src.plate_mat))
 			else
 				R1.setMaterial(getMaterial("steel"), copy = FALSE)
 				R2.setMaterial(getMaterial("steel"), copy = FALSE)
