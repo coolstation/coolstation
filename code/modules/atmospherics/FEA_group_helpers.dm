@@ -75,7 +75,7 @@
 			west.parent.members += src
 			parent = west.parent
 
-			air_master.tiles_to_update += west.parent.members
+			air_master.tiles_to_update |= west.parent.members
 			return 1
 
 		else
@@ -87,7 +87,7 @@
 		north.parent.members += src
 		parent = north.parent
 
-		air_master.tiles_to_update += north.parent.members
+		air_master.tiles_to_update |= north.parent.members
 		return 1
 
 
@@ -97,7 +97,7 @@
 		south.parent.members += src
 		parent = south.parent
 
-		air_master.tiles_to_update += south.parent.members
+		air_master.tiles_to_update |= south.parent.members
 		return 1
 
 	if(east_votes)
@@ -106,7 +106,7 @@
 		east.parent.members += src
 		parent = east.parent
 
-		air_master.tiles_to_update += east.parent.members
+		air_master.tiles_to_update |= east.parent.members
 		return 1
 
 	if(new_group_possible)
