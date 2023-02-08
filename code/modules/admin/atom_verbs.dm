@@ -69,7 +69,7 @@ var/global/atom_emergency_stop = 0
 				break
 			else
 				if (istype(A, transmute_path))
-					A.setMaterial(getMaterial(mat))
+					A.setMaterial(getMaterial(mat), copy = FALSE)
 					transmute ++
 					transmute_total ++
 					if (transmute >= amount_to_transmute)

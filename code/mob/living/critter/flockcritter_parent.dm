@@ -477,7 +477,7 @@
 				playsound(T, "sound/impact_sounds/Glass_Shatter_3.ogg", 25, 1)
 				var/obj/item/raw_material/shard/S = new()
 				S.set_loc(T)
-				S.setMaterial(getMaterial("gnesisglass"))
+				S.setMaterial(getMaterial("gnesisglass"), copy = FALSE)
 				c.dump_contents()
 				qdel(target)
 				target = null
@@ -489,10 +489,10 @@
 				playsound(T, "sound/impact_sounds/Glass_Shatter_3.ogg", 25, 1)
 				var/obj/item/raw_material/shard/S = new()
 				S.set_loc(T)
-				S.setMaterial(getMaterial("gnesisglass"))
+				S.setMaterial(getMaterial("gnesisglass"), copy = FALSE)
 				S = new ()
 				S.set_loc(T)
-				S.setMaterial(getMaterial("gnesis"))
+				S.setMaterial(getMaterial("gnesis"), copy = FALSE)
 				qdel(target)
 				target = null
 			if(/obj/table/flock, /obj/table/flock/auto)

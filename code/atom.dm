@@ -98,7 +98,7 @@ TYPEINFO(/atom)
 				if (amt_suffixes >= src.num_allowed_suffixes)
 					break
 				suffix += " " + i
-				amt_suffixes ++
+				amt_suffixes++
 			return suffix
 
 	proc/remove_prefixes(var/num = 1)
@@ -112,7 +112,7 @@ TYPEINFO(/atom)
 				if (num <= 0 || !length(src.name_prefixes))
 					return
 				src.name_prefixes -= i
-				num --
+				num--
 
 	proc/remove_suffixes(var/num = 1)
 		if (!num || !name_suffixes)
@@ -125,7 +125,7 @@ TYPEINFO(/atom)
 				if (num <= 0 || !length(src.name_suffixes))
 					return
 				src.name_suffixes -= i
-				num --
+				num--
 
 	proc/UpdateName()
 		src.name = "[name_prefix(null, 1)][initial(src.name)][name_suffix(null, 1)]"
@@ -405,7 +405,7 @@ TYPEINFO(/atom)
 
 	last_turf = src.loc // instead rely on set_loc to clear last_turf
 	set_loc(null)
-	..()
+	. = ..()
 
 
 /atom/movable/Move(NewLoc, direct)
@@ -920,7 +920,7 @@ TYPEINFO(/atom)
 	..()
 
 //same as above :)
-/atom/movable/setMaterial(var/datum/material/mat1, var/appearance = 1, var/setname = 1, var/copy = 1, var/use_descriptors = 0)
+/atom/movable/setMaterial(datum/material/mat1, appearance = 1, setname = 1, copy = 1, use_descriptors = 0)
 	var/prev_mat_triggeronentered = (src.material && src.material.triggersOnEntered && length(src.material.triggersOnEntered))
 	var/prev_added_hasentered = src.material?.owner_hasentered_added
 	..(mat1,appearance,setname,copy,use_descriptors)

@@ -186,7 +186,7 @@
 	setup_material()
 		..()
 		src.icon_state = pick("rock1","rock2","rock3")
-		src.setMaterial(getMaterial("rock"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("rock"), appearance = FALSE, setname = FALSE, copy = FALSE)
 
 /obj/item/raw_material/mauxite
 	name = "mauxite ore"
@@ -196,7 +196,7 @@
 	metal = 2
 
 	setup_material()
-		src.setMaterial(getMaterial("mauxite"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("mauxite"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/molitz
@@ -207,7 +207,7 @@
 	crystal = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("molitz"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("molitz"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/molitz_beta
@@ -218,7 +218,7 @@
 	crystal = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("molitz_b"), appearance = 1, setname = 0)
+		src.setMaterial(getMaterial("molitz_b"), appearance = TRUE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/pharosium
@@ -230,7 +230,7 @@
 	conductor = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("pharosium"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("pharosium"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/cobryl // relate this to precursors
@@ -241,7 +241,7 @@
 	metal = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("cobryl"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("cobryl"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/char
@@ -256,7 +256,7 @@
 	health = 20
 
 	setup_material()
-		src.setMaterial(getMaterial("char"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("char"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/claretine // relate this to wizardry somehow
@@ -267,7 +267,7 @@
 	conductor = 2
 
 	setup_material()
-		src.setMaterial(getMaterial("claretine"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("claretine"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/bohrum
@@ -279,7 +279,7 @@
 	dense = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("bohrum"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("bohrum"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/syreline
@@ -290,7 +290,7 @@
 	metal = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("syreline"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("syreline"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/erebite
@@ -302,7 +302,7 @@
 	powersource = 2
 
 	setup_material()
-		src.setMaterial(getMaterial("erebite"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("erebite"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 	ex_act(severity)
@@ -359,7 +359,7 @@
 	powersource = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("cerenkite"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("cerenkite"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/plasmastone
@@ -376,7 +376,7 @@
 	crystal = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("plasmastone"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("plasmastone"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/gemstone
@@ -401,7 +401,7 @@
 				picklist = list("onyx","rosequartz","citrine","jade","aquamarine","iolite")
 
 		var/datum/material/M = getMaterial(pick(picklist))
-		src.setMaterial(M)//, appearance = 0, setname = 0) // why was this set to not update the name/appearance??
+		src.setMaterial(M, appearance = TRUE, setname = TRUE, copy = FALSE)// why was this set to not update the name/appearance??
 
 /obj/item/raw_material/uqill // relate this to ancients
 	name = "uqill nugget"
@@ -411,7 +411,7 @@
 	dense = 2
 
 	setup_material()
-		src.setMaterial(getMaterial("uqill"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("uqill"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 
@@ -422,7 +422,7 @@
 	material_name = "Fibrilith"
 
 	setup_material()
-		src.setMaterial(getMaterial("fibrilith"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("fibrilith"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/telecrystal
@@ -434,7 +434,7 @@
 	powersource = 2
 
 	setup_material()
-		src.setMaterial(getMaterial("telecrystal"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("telecrystal"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 	attack(mob/M as mob, mob/user as mob, def_zone)//spyguy apologizes in advance -- not somepotato i promise
@@ -467,7 +467,7 @@
 	material_name = "Miracle Matter"
 
 	setup_material()
-		src.setMaterial(getMaterial("miracle"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("miracle"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/starstone
@@ -478,7 +478,7 @@
 	crystal = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("starstone"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("starstone"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/eldritch
@@ -490,7 +490,7 @@
 	dense = 2
 
 	setup_material()
-		src.setMaterial(getMaterial("koshmarite"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("koshmarite"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/martian
@@ -501,7 +501,7 @@
 	dense = 2
 
 	setup_material()
-		src.setMaterial(getMaterial("viscerite"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("viscerite"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		src.create_reagents(25)
 		src.reagents.add_reagent("synthflesh", 25)
 		return ..()
@@ -514,7 +514,7 @@
 	dense = 2
 
 	setup_material()
-		src.setMaterial(getMaterial("gold"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("gold"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 // Misc building material
@@ -527,7 +527,7 @@
 	scoopable = 0
 
 	setup_material()
-		src.setMaterial(getMaterial("fibrilith"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("fibrilith"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/cotton/
@@ -536,7 +536,7 @@
 	icon_state = "cotton"
 
 	setup_material()
-		src.setMaterial(getMaterial("cotton"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("cotton"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/ice
@@ -548,7 +548,7 @@
 	scoopable = 0
 
 	setup_material()
-		src.setMaterial(getMaterial("ice"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("ice"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 /obj/item/raw_material/scrap_metal
@@ -634,14 +634,12 @@
 	glass
 		setup_material()
 			..()
-			var/datum/material/M = getMaterial("glass")
-			src.setMaterial(M, appearance = 1, setname = 1) // why were these set to 0 and 0, why would you use a glass shard to make some other kind of materialed thing when you could just use the base /obj/item/raw_material/shard
+			src.setMaterial(getMaterial("glass"), appearance = TRUE, setname = TRUE, copy = FALSE) // why were these set to 0 and 0, why would you use a glass shard to make some other kind of materialed thing when you could just use the base /obj/item/raw_material/shard
 
 	plasmacrystal
 		setup_material()
 			..()
-			var/datum/material/M = getMaterial("plasmaglass")
-			src.setMaterial(M, appearance = 1, setname = 1)
+			src.setMaterial(getMaterial("plasmaglass"), appearance = TRUE, setname = TRUE, copy = FALSE)
 
 /obj/item/raw_material/shard/proc/step_on(mob/living/carbon/human/H as mob)
 	playsound(src.loc, src.sound_stepped, 50, 1)
@@ -661,7 +659,7 @@
 	dense = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("chitin"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("chitin"), appearance = FALSE, setname = FALSE, copy = FALSE)
 		return ..()
 
 // bars, tied into the new material system

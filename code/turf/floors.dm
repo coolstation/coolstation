@@ -27,7 +27,7 @@
 		if (has_material)
 			if (isnull(plate_mat))
 				plate_mat = getMaterial("steel")
-			setMaterial(plate_mat)
+			setMaterial(plate_mat, copy = FALSE)
 		roundstart_icon_state = icon_state
 		roundstart_dir = dir
 		var/obj/plan_marker/floor/P = locate() in src
@@ -456,8 +456,8 @@
 	step_priority = STEP_PRIORITY_MED
 
 	New()
-		..()
-		setMaterial(getMaterial("pharosium"))
+		plate_mat = getMaterial("pharosium")
+		. = ..()
 
 /turf/simulated/floor/circuit/green
 	icon_state = "circuit-green"
@@ -501,14 +501,14 @@
 	name = "carpet"
 	icon = 'icons/turf/carpet.dmi'
 	icon_state = "red1"
-	mat_appearances_to_ignore = list("cloth")
+	mat_appearances_to_ignore = list("cotton")
 	mat_changename = 0
 	step_material = "step_carpet"
 	step_priority = STEP_PRIORITY_MED
 
 	New()
-		..()
-		setMaterial(getMaterial("cloth"))
+		plate_mat = getMaterial("cotton")
+		. = ..()
 
 	break_tile()
 		..()
@@ -819,8 +819,8 @@ DEFINE_FLOORS(marble/border_wb,
 	step_priority = STEP_PRIORITY_MED
 
 	New()
-		..()
-		setMaterial(getMaterial("wood"))
+		plate_mat = getMaterial("wood")
+		. = ..()
 
 /turf/simulated/floor/wood/two
 	icon_state = "wooden"
@@ -1140,8 +1140,8 @@ DEFINE_FLOORS(techfloor/green,
 	step_priority = STEP_PRIORITY_MED
 
 	New()
-		..()
-		setMaterial(getMaterial("synthrubber"))
+		plate_mat = getMaterial("synthrubber")
+		. = ..()
 
 /turf/proc/grassify()
 	.=0
@@ -1251,8 +1251,8 @@ DEFINE_FLOORS(techfloor/green,
 	allows_vehicles = 1
 
 	New()
-		..()
-		setMaterial(getMaterial("blob"))
+		plate_mat = getMaterial("blob")
+		. = ..()
 
 	proc/setOvermind(var/mob/living/intangible/blob_overmind/O)
 		if (!material)
@@ -1339,10 +1339,9 @@ DEFINE_FLOORS(techfloor/green,
 						var/obj/item/I = new /obj/item/raw_material/scrap_metal()
 						I.set_loc(src)
 						if (src.material)
-							I.setMaterial(src.material)
+							I.setMaterial(src.material, copy = (src.material != src.plate_mat))
 						else
-							var/datum/material/M = getMaterial("steel")
-							I.setMaterial(M)
+							I.setMaterial(getMaterial("steel"), copy = FALSE)
 					src.ReplaceWithLattice()
 				if(2)
 					src.ReplaceWithSpace()
@@ -1351,10 +1350,9 @@ DEFINE_FLOORS(techfloor/green,
 						var/obj/item/I = new /obj/item/raw_material/scrap_metal()
 						I.set_loc(src)
 						if (src.material)
-							I.setMaterial(src.material)
+							I.setMaterial(src.material, copy = (src.material != src.plate_mat))
 						else
-							var/datum/material/M = getMaterial("steel")
-							I.setMaterial(M)
+							I.setMaterial(getMaterial("steel"), copy = FALSE)
 					if(prob(80))
 						src.break_tile_to_plating()
 					else
@@ -1415,9 +1413,9 @@ DEFINE_FLOORS(techfloor/green,
 	broken = 0
 	burnt = 0
 	if(plate_mat)
-		src.setMaterial(plate_mat)
+		src.setMaterial((plate_mat), copy = FALSE)
 	else
-		src.setMaterial(getMaterial("steel"))
+		src.setMaterial(getMaterial("steel"), copy = FALSE)
 	levelupdate()
 
 /turf/simulated/floor/proc/dismantle_wall()//can get called due to people spamming weldingtools on walls
@@ -1524,10 +1522,9 @@ DEFINE_FLOORS(techfloor/green,
 	else
 		var/atom/A = new /obj/item/tile(src)
 		if(src.material)
-			A.setMaterial(src.material)
+			A.setMaterial(src.material, copy = (src.material != src.plate_mat))
 		else
-			var/datum/material/M = getMaterial("steel")
-			A.setMaterial(M)
+			A.setMaterial(getMaterial("steel"), copy = FALSE)
 		.= A //return tile for crowbar special attack ok
 
 	to_plating()
@@ -1561,11 +1558,11 @@ DEFINE_FLOORS(techfloor/green,
 			var/obj/R1 = new /obj/item/rods(src)
 			var/obj/R2 = new /obj/item/rods(src)
 			if (material)
-				R1.setMaterial(material)
-				R2.setMaterial(material)
+				R1.setMaterial(material, copy = (src.material != src.plate_mat))
+				R2.setMaterial(material, copy = (src.material != src.plate_mat))
 			else
-				R1.setMaterial(getMaterial("steel"))
-				R2.setMaterial(getMaterial("steel"))
+				R1.setMaterial(getMaterial("steel"), copy = FALSE)
+				R2.setMaterial(getMaterial("steel"), copy = FALSE)
 			ReplaceWithFloor()
 			src.to_plating()
 			return

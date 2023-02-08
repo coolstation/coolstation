@@ -375,8 +375,8 @@
 	mat_appearances_to_ignore = list("pharosium")
 
 	New()
-		..()
-		setMaterial(getMaterial("pharosium"))
+		plate_mat = getMaterial("pharosium")
+		. = ..()
 
 /turf/simulated/floor/airless/circuit/green
 	icon_state = "circuit-green"
@@ -420,12 +420,12 @@
 	name = "carpet"
 	icon = 'icons/turf/carpet.dmi'
 	icon_state = "red1"
-	mat_appearances_to_ignore = list("cloth")
+	mat_appearances_to_ignore = list("cotton")
 	mat_changename = 0
 
 	New()
-		..()
-		setMaterial(getMaterial("cloth"))
+		plate_mat = getMaterial("cotton")
+		. = ..()
 
 	break_tile()
 		..()
@@ -651,8 +651,8 @@
 	step_priority = STEP_PRIORITY_MED
 
 	New()
-		..()
-		setMaterial(getMaterial("wood"))
+		plate_mat = getMaterial("wood")
+		. = ..()
 
 /turf/simulated/floor/airless/wood/two
 	icon_state = "wooden"
@@ -814,8 +814,8 @@
 	mat_changedesc = 0
 
 	New()
-		..()
-		setMaterial(getMaterial("synthrubber"))
+		plate_mat = getMaterial("synthrubber")
+		. = ..()
 
 /turf/simulated/floor/airless/grass/leafy
 	icon_state = "grass_leafy"

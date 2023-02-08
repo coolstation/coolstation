@@ -408,7 +408,7 @@
 
 	New()
 		..()
-		setMaterial(getMaterial("pharosium"))
+		setMaterial(getMaterial("pharosium"), copy = FALSE)
 
 /turf/unsimulated/floor/circuit/green
 	icon_state = "circuit-green"
@@ -457,7 +457,7 @@
 
 	New()
 		..()
-		setMaterial(getMaterial("cloth"))
+		setMaterial(getMaterial("cloth"), copy = FALSE)
 
 /turf/unsimulated/floor/carpet/grime
 	icon = 'icons/turf/floors.dmi'
@@ -678,7 +678,7 @@
 
 	New()
 		..()
-		setMaterial(getMaterial("wood"))
+		setMaterial(getMaterial("wood"), copy = FALSE)
 
 /turf/unsimulated/floor/wood/two
 	icon_state = "wooden"
@@ -894,7 +894,7 @@
 
 	New()
 		..()
-		setMaterial(getMaterial("synthrubber"))
+		setMaterial(getMaterial("synthrubber"), copy = FALSE)
 
 /turf/unsimulated/floor/grass/leafy
 	icon_state = "grass_leafy"
