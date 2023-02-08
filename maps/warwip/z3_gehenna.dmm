@@ -5392,7 +5392,7 @@
 /obj/machinery/door/airlock/classic,
 /obj/access_spawn/tox_storage,
 /turf/simulated/floor/plating,
-/area/noGenerate)
+/area/station/science/gen_storage)
 "dCB" = (
 /obj/machinery/drainage/big,
 /turf/simulated/floor,
@@ -20117,8 +20117,9 @@
 /turf/simulated/floor/grey,
 /area/station/science/lobby)
 "mDg" = (
-/turf/simulated/wall/asteroid/gehenna/tough/z3,
-/area/station/science/gen_storage)
+/obj/ladder/auto,
+/turf/simulated/floor/plating,
+/area/station/science/testchamber)
 "mDq" = (
 /obj/machinery/ignition_switch{
 	id = "tox_ignition1";
@@ -29011,7 +29012,7 @@
 /obj/machinery/portable_atmospherics/canister/toxins,
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor,
-/area/noGenerate)
+/area/station/science/gen_storage)
 "stn" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
@@ -31168,7 +31169,7 @@
 "tGg" = (
 /obj/machinery/atmospherics/portables_connector/north,
 /turf/simulated/floor,
-/area/noGenerate)
+/area/station/science/gen_storage)
 "tGA" = (
 /turf/simulated/floor/black,
 /area/station/science/chemistry)
@@ -33892,7 +33893,7 @@
 /obj/machinery/door/airlock/glass,
 /obj/machinery/door/firedoor/pyro,
 /turf/simulated/floor,
-/area/noGenerate)
+/area/station/science/gen_storage)
 "voR" = (
 /turf/simulated/wall,
 /area/station/quartermaster/refinery)
@@ -34411,7 +34412,7 @@
 /obj/wingrille_spawn,
 /obj/machinery/door/firedoor/pyro,
 /turf/simulated/floor/plating,
-/area/noGenerate)
+/area/station/science/gen_storage)
 "vCH" = (
 /obj/decal/poster/wallsign/biohazard,
 /turf/simulated/wall,
@@ -35985,7 +35986,7 @@
 	dir = 4
 	},
 /turf/simulated/floor,
-/area/noGenerate)
+/area/station/science/gen_storage)
 "wFy" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/simulated/wall,
@@ -37276,7 +37277,7 @@
 /obj/machinery/atmospherics/portables_connector/north,
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor,
-/area/noGenerate)
+/area/station/science/gen_storage)
 "xBt" = (
 /obj/machinery/light/fluorescent/purple{
 	dir = 8
@@ -68283,10 +68284,10 @@ nuq
 oLK
 ifo
 xew
-mDg
-mDg
-mDg
-mDg
+pdO
+pdO
+pdO
+pdO
 kPQ
 kPQ
 kPQ
@@ -68591,9 +68592,9 @@ bwR
 bwR
 bwR
 bwR
-mDg
-mDg
-mDg
+pdO
+pdO
+pdO
 iLx
 pdO
 hTf
@@ -68893,9 +68894,9 @@ vJl
 jre
 lgO
 bwR
-mDg
-mDg
-mDg
+pdO
+pdO
+pdO
 pdO
 pdO
 twZ
@@ -69196,8 +69197,8 @@ nzY
 fXS
 bwR
 bwR
-mDg
-mDg
+pdO
+pdO
 pdO
 pdO
 hTf
@@ -69498,8 +69499,8 @@ oIT
 fgN
 uvG
 bwR
-mDg
-mDg
+pdO
+pdO
 pdO
 pdO
 hTf
@@ -69799,7 +69800,7 @@ nzY
 gSb
 fgN
 xAn
-jrz
+bwR
 pdO
 pdO
 pdO
@@ -70101,7 +70102,7 @@ nzY
 kpS
 fgN
 tGg
-jrz
+bwR
 pdO
 pdO
 pdO
@@ -70403,7 +70404,7 @@ nzY
 whU
 fgN
 tGg
-jrz
+bwR
 pdO
 pdO
 pdO
@@ -70699,17 +70700,17 @@ aZE
 bcN
 ktF
 eSm
-eSm
+xew
 wxw
 xjW
 nzY
 oHs
-jrz
-jrz
-jrz
-fTy
-hTf
-hTf
+bwR
+bwR
+bwR
+bwR
+pdO
+pdO
 hTf
 hTf
 hTf
@@ -71001,17 +71002,17 @@ aSH
 rYR
 aSH
 fpF
-eSm
+xew
 rIC
 ntb
 nzY
 coe
-jrz
+bwR
 stm
 stm
-fTy
-hTf
-hTf
+bwR
+pdO
+pdO
 hTf
 hTf
 hTf
@@ -71303,7 +71304,7 @@ oBK
 gBR
 oBK
 fpF
-eSm
+xew
 sAS
 sAS
 nzY
@@ -71311,9 +71312,9 @@ nzY
 vCz
 stm
 stm
-fTy
-hTf
-hTf
+bwR
+pdO
+pdO
 hTf
 hTf
 hTf
@@ -71605,17 +71606,17 @@ can
 ewK
 nxt
 fpF
-eSm
+xew
 sAS
 sAS
 nzY
 nzY
 voM
-mrJ
+nzY
 stm
-fTy
-hTf
-hTf
+bwR
+pdO
+pdO
 hTf
 hTf
 hTf
@@ -71907,7 +71908,7 @@ wcs
 wcs
 wcs
 fpF
-eSm
+xew
 sEV
 nzY
 nzY
@@ -71915,9 +71916,9 @@ nzY
 vCz
 wFg
 stm
-fTy
-hTf
-hTf
+bwR
+pdO
+pdO
 hTf
 hTf
 hTf
@@ -72209,17 +72210,17 @@ qZn
 fLf
 nLo
 fpF
-eSm
+xew
 tNY
 nzY
 nzY
 fBL
-jrz
-jrz
-jrz
-fTy
-hTf
-hTf
+bwR
+bwR
+bwR
+bwR
+pdO
+pdO
 hTf
 hTf
 hTf
@@ -72511,17 +72512,17 @@ vKI
 vKI
 eSm
 eSm
-eSm
-jrz
+xew
+bwR
 dCv
-jrz
-jrz
-jrz
+bwR
+bwR
+bwR
 pdO
 pdO
-hTf
-hTf
-hTf
+pdO
+pdO
+pdO
 hTf
 hTf
 hTf
@@ -72810,7 +72811,7 @@ lIR
 qbv
 pYF
 pYF
-pYF
+dxU
 vvq
 eSm
 pdO
@@ -72821,9 +72822,9 @@ pdO
 pdO
 pdO
 pdO
-hTf
-hTf
-hTf
+pdO
+pdO
+pdO
 hTf
 hTf
 hTf
@@ -73123,9 +73124,9 @@ pdO
 pdO
 pdO
 pdO
-hTf
-hTf
-hTf
+pdO
+pdO
+pdO
 hTf
 hTf
 hTf
@@ -73409,7 +73410,7 @@ bwR
 qrt
 qrt
 qrt
-tba
+mDg
 tba
 uwy
 aTs
@@ -73418,9 +73419,9 @@ dxU
 tba
 tba
 qZT
-sej
-sej
-sej
+qZT
+qZT
+qZT
 hTf
 hTf
 hTf
@@ -73720,9 +73721,9 @@ hkk
 czz
 oIJ
 qZT
-sej
-sej
-sej
+qZT
+qZT
+qZT
 hTf
 hTf
 hTf
@@ -74022,9 +74023,9 @@ qrt
 qrt
 qrt
 pdO
-hTf
-sej
-sej
+pdO
+qZT
+qZT
 sej
 hTf
 hTf
@@ -74324,9 +74325,9 @@ pdO
 pdO
 pdO
 pdO
-hTf
-hTf
-hTf
+pdO
+pdO
+pdO
 sej
 sej
 sej
@@ -74626,9 +74627,9 @@ pdO
 pdO
 pdO
 pdO
-hTf
-twZ
-hTf
+pdO
+iLx
+pdO
 sej
 sej
 sej

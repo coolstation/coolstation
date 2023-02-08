@@ -416,7 +416,10 @@
 /obj/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /turf/simulated/floor/plating,
-/area/space)
+/area/station/science/testchamber{
+	name = "Test Chamber Exhaust";
+	requires_power = 0
+	})
 "aqK" = (
 /obj/cable{
 	d1 = 1;
@@ -2804,6 +2807,11 @@
 /obj/stool,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
+"ckv" = (
+/turf/simulated/wall,
+/area/station/science/artifact{
+	name = "Artifact Lounge"
+	})
 "ckH" = (
 /obj/stool/chair/couch{
 	dir = 8
@@ -3979,6 +3987,13 @@
 	},
 /turf/simulated/floor/black,
 /area/station/security/secwing)
+"dhl" = (
+/obj/ladder/auto,
+/turf/simulated/floor/plating,
+/area/station/science/testchamber{
+	name = "Test Chamber Exhaust";
+	requires_power = 0
+	})
 "dif" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/disposalpipe/segment/mail/horizontal,
@@ -3993,7 +4008,10 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /obj/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
-/area/space)
+/area/station/science/testchamber{
+	name = "Test Chamber Exhaust";
+	requires_power = 0
+	})
 "dis" = (
 /turf/simulated/wall/r_wall,
 /area/station/hangar/sec)
@@ -4079,6 +4097,13 @@
 "dkC" = (
 /turf/simulated/floor,
 /area/station/crew_quarters/farmers)
+"dkG" = (
+/obj/wingrille_spawn/reinforced,
+/turf/simulated/floor/plating,
+/area/station/science/testchamber{
+	name = "Test Chamber Exhaust";
+	requires_power = 0
+	})
 "dkL" = (
 /obj/plasticflaps,
 /obj/disposalpipe/segment{
@@ -5506,7 +5531,9 @@
 "etE" = (
 /obj/ladder/auto,
 /turf/simulated/floor/orange,
-/area/space)
+/area/station/science/artifact{
+	name = "Artifact Lounge"
+	})
 "etN" = (
 /obj/table/wood/auto,
 /obj/cable{
@@ -6516,7 +6543,10 @@
 	name = "Combustion Chamber Vent"
 	},
 /turf/simulated/floor/plating,
-/area/space)
+/area/station/science/testchamber{
+	name = "Test Chamber Exhaust";
+	requires_power = 0
+	})
 "fdZ" = (
 /obj/machinery/light/small/floor,
 /obj/disposalpipe/segment/horizontal,
@@ -6838,6 +6868,11 @@
 /obj/machinery/light/small/warm,
 /turf/simulated/floor/carpet/grime,
 /area/listeningpost)
+"frb" = (
+/turf/simulated/floor/plating,
+/area/station/science/artifact{
+	name = "Artifact Lounge"
+	})
 "frj" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/floor/stairs/wide/other{
@@ -9234,7 +9269,9 @@
 	tag = ""
 	},
 /turf/simulated/floor/plating,
-/area/space)
+/area/station/science/artifact{
+	name = "Artifact Lounge"
+	})
 "hlO" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/stool/bed/moveable,
@@ -10373,7 +10410,9 @@
 /obj/machinery/door/airlock,
 /obj/access_spawn/research,
 /turf/simulated/floor/plating,
-/area/space)
+/area/station/science/artifact{
+	name = "Artifact Lounge"
+	})
 "iir" = (
 /obj/decal/poster/wallsign/poster_nt{
 	pixel_x = -30
@@ -14937,7 +14976,9 @@
 "lOc" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/southwest,
 /turf/simulated/floor/plating,
-/area/space)
+/area/station/science/artifact{
+	name = "Artifact Lounge"
+	})
 "lOn" = (
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
@@ -17705,7 +17746,10 @@
 	tag = ""
 	},
 /turf/simulated/floor/plating,
-/area/space)
+/area/station/science/testchamber{
+	name = "Test Chamber Exhaust";
+	requires_power = 0
+	})
 "okc" = (
 /obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor/grey,
@@ -18961,7 +19005,10 @@
 	target_z = 3
 	},
 /turf/simulated/floor/plating,
-/area/space)
+/area/station/science/testchamber{
+	name = "Test Chamber Exhaust";
+	requires_power = 0
+	})
 "poa" = (
 /obj/disposalpipe/segment/bent/west,
 /obj/table/wood/auto,
@@ -21231,6 +21278,14 @@
 /obj/burning_barrel,
 /turf/space/gehenna/desert,
 /area/space)
+"qRe" = (
+/obj/machinery/door/airlock/glass,
+/obj/access_spawn/research,
+/turf/simulated/floor/plating,
+/area/station/science/testchamber{
+	name = "Test Chamber Exhaust";
+	requires_power = 0
+	})
 "qRh" = (
 /obj/table/wood/auto,
 /obj/machinery/light/fluorescent/warm{
@@ -24582,7 +24637,9 @@
 	target_z = 3
 	},
 /turf/simulated/floor/plating,
-/area/space)
+/area/station/science/artifact{
+	name = "Artifact Lounge"
+	})
 "tGm" = (
 /obj/submachine/cargopad/qm,
 /turf/simulated/floor,
@@ -25272,7 +25329,9 @@
 "uks" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /turf/simulated/floor/plating,
-/area/space)
+/area/station/science/artifact{
+	name = "Artifact Lounge"
+	})
 "ukN" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/stool,
@@ -25768,7 +25827,9 @@
 /obj/access_spawn/research,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /turf/simulated/floor/plating,
-/area/space)
+/area/station/science/artifact{
+	name = "Artifact Lounge"
+	})
 "uHp" = (
 /turf/simulated/floor/specialroom/freezer,
 /area/station/medical/morgue)
@@ -26639,6 +26700,12 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/robotics)
+"vpc" = (
+/turf/simulated/wall,
+/area/station/science/testchamber{
+	name = "Test Chamber Exhaust";
+	requires_power = 0
+	})
 "vpp" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/cable{
@@ -28253,7 +28320,10 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/space)
+/area/station/science/testchamber{
+	name = "Test Chamber Exhaust";
+	requires_power = 0
+	})
 "wED" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/breathable{
 	dir = 1
@@ -29685,7 +29755,10 @@
 "xMO" = (
 /obj/machinery/atmospherics/pipe/vent/north,
 /turf/simulated/floor/plating,
-/area/space)
+/area/station/science/testchamber{
+	name = "Test Chamber Exhaust";
+	requires_power = 0
+	})
 "xMX" = (
 /obj/machinery/door/airlock/security,
 /obj/disposalpipe/segment/morgue{
@@ -30180,7 +30253,9 @@
 "yjp" = (
 /obj/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
-/area/space)
+/area/station/science/artifact{
+	name = "Artifact Lounge"
+	})
 "yjE" = (
 /obj/cable,
 /obj/machinery/power/data_terminal,
@@ -30241,6 +30316,12 @@
 	},
 /turf/simulated/floor,
 /area/station/chapel/sanctuary)
+"ylH" = (
+/turf/simulated/floor/plating,
+/area/station/science/testchamber{
+	name = "Test Chamber Exhaust";
+	requires_power = 0
+	})
 "ymh" = (
 /obj/morgue{
 	dir = 8
@@ -53717,10 +53798,10 @@ iiv
 iiv
 iiv
 iiv
-msF
+ckv
 yjp
 iio
-msF
+ckv
 msF
 msF
 iiv
@@ -54018,10 +54099,10 @@ iiv
 iiv
 iiv
 iiv
-msF
-msF
+ckv
+ckv
 tGl
-nqM
+frb
 yjp
 xfi
 iiv
@@ -54320,7 +54401,7 @@ iiv
 iiv
 iiv
 iiv
-msF
+ckv
 etE
 lOc
 uks
@@ -54622,10 +54703,10 @@ iiv
 iiv
 iiv
 iiv
-msF
-msF
+ckv
+ckv
 hkN
-nqM
+frb
 yjp
 xfi
 iVv
@@ -54925,10 +55006,10 @@ iiv
 iiv
 iiv
 iiv
-msF
-msF
-msF
-msF
+ckv
+ckv
+ckv
+ckv
 iiv
 iVv
 iVv
@@ -64282,13 +64363,13 @@ iiv
 iiv
 cqC
 cqC
-msF
-msF
-msF
-msF
-msF
-msF
-msF
+vpc
+vpc
+vpc
+vpc
+vpc
+vpc
+vpc
 iiv
 iiv
 iiv
@@ -64581,15 +64662,15 @@ qkn
 iiv
 iiv
 iiv
-iiv
 cqC
 cqC
-msF
+cqC
+vpc
 ojv
 dij
 xMO
-nqM
-nqM
+ylH
+ylH
 fdS
 xfi
 iiv
@@ -64884,14 +64965,14 @@ iiv
 iiv
 iiv
 cqC
-cqC
-cqC
-msF
+vpc
+vpc
+vpc
 pny
 dij
 xMO
-nqM
-nqM
+ylH
+ylH
 fdS
 xfi
 iiv
@@ -65186,14 +65267,14 @@ iiv
 iiv
 iiv
 iiv
-cqC
-cqC
-msF
+dkG
+dhl
+vpc
 pny
 aqy
 xMO
-nqM
-nqM
+ylH
+ylH
 fdS
 xfi
 iiv
@@ -65488,14 +65569,14 @@ iiv
 iiv
 iiv
 iiv
-iiv
-cqC
-msF
+qRe
+ylH
+vpc
 wEr
 aqy
 xMO
-nqM
-nqM
+ylH
+ylH
 fdS
 xfi
 iiv
@@ -65790,15 +65871,15 @@ iiv
 iiv
 iiv
 iiv
-iiv
-cqC
-msF
-msF
-msF
-msF
-msF
-msF
-msF
+vpc
+vpc
+vpc
+vpc
+vpc
+vpc
+vpc
+vpc
+vpc
 iiv
 iiv
 iiv
