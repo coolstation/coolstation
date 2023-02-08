@@ -1731,15 +1731,6 @@
 	},
 /turf/simulated/floor/carpet/regalcarpet,
 /area/space)
-"byf" = (
-/obj/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/light/fluorescent/auto/sodium_orange{
-	dir = 1
-	},
-/turf/simulated/floor/grey,
-/area/space)
 "bys" = (
 /turf/unsimulated/wall/setpieces/leadwindow/gray{
 	dir = 4
@@ -8062,6 +8053,12 @@
 	},
 /turf/simulated/floor/plating/jen,
 /area/space)
+"gNQ" = (
+/obj/machinery/light/fluorescent/auto/sodium_orange{
+	dir = 8
+	},
+/turf/simulated/floor/grey,
+/area/space)
 "gOp" = (
 /turf/simulated/floor/stairs/wood{
 	dir = 4
@@ -8084,6 +8081,7 @@
 	pixel_x = -18;
 	pixel_y = -18
 	},
+/obj/machinery/light/small/floor/sodium_orange,
 /turf/simulated/floor/wood/six,
 /area/space)
 "gPn" = (
@@ -9255,9 +9253,9 @@
 	},
 /area)
 "hIH" = (
-/obj/machinery/light/small{
+/obj/machinery/light/small/auto/sodium_orange{
 	dir = 1;
-	pixel_y = 21
+	pixel_y = 18
 	},
 /turf/simulated/floor/snowcalm,
 /area/space)
@@ -10829,7 +10827,7 @@
 /turf/simulated/floor/blue,
 /area/space)
 "iYf" = (
-/obj/machinery/light/small,
+/obj/machinery/light/small/auto/sodium_orange,
 /turf/simulated/floor/plating/random,
 /area/space)
 "iYR" = (
@@ -12411,13 +12409,6 @@
 	},
 /turf/simulated/floor/grass,
 /area/space)
-"knf" = (
-/obj/disposalpipe/segment/mail{
-	dir = 4
-	},
-/obj/machinery/light/fluorescent/auto/sodium_orange,
-/turf/simulated/floor/grey,
-/area/space)
 "knF" = (
 /obj/cable/blue{
 	icon_state = "2-5"
@@ -12597,9 +12588,9 @@
 /area/space)
 "kuT" = (
 /obj/lattice,
-/obj/machinery/light/small{
+/obj/machinery/light/small/auto/sodium_orange{
 	dir = 1;
-	pixel_y = 21
+	pixel_y = 18
 	},
 /turf/simulated/floor/plating/random,
 /area/space)
@@ -13282,9 +13273,11 @@
 	},
 /area)
 "lby" = (
-/obj/disposalpipe/segment/mail,
-/obj/machinery/light/fluorescent/auto/sodium_orange{
+/obj/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/light/fluorescent/auto/sodium_orange{
+	dir = 1
 	},
 /turf/simulated/floor/grey,
 /area/space)
@@ -15074,7 +15067,7 @@
 /area/space)
 "mDi" = (
 /obj/machinery/power/monitor/console_lower{
-	dir = 8
+	dir = 4
 	},
 /obj/cable/blue{
 	icon_state = "0-4"
@@ -17348,10 +17341,6 @@
 	icon_state = "R13"
 	},
 /area)
-"orK" = (
-/obj/machinery/light/fluorescent/auto/sodium_orange,
-/turf/simulated/floor/grey,
-/area/space)
 "osi" = (
 /obj/cable/purple{
 	icon_state = "1-2"
@@ -18131,6 +18120,12 @@
 	icon_state = "SS13-Centred-2-L6"
 	},
 /area)
+"oWm" = (
+/obj/machinery/light/fluorescent/auto/sodium_orange{
+	dir = 4
+	},
+/turf/simulated/floor/grey,
+/area/space)
 "oWB" = (
 /obj/morgue{
 	dir = 2
@@ -18232,6 +18227,10 @@
 	},
 /turf/simulated/floor,
 /area)
+"paR" = (
+/obj/machinery/light/fluorescent/auto/sodium_orange,
+/turf/simulated/floor/grey,
+/area/space)
 "pbS" = (
 /obj/disposalpipe/segment{
 	dir = 2;
@@ -18990,6 +18989,7 @@
 /turf/simulated/floor/redblack,
 /area/station/security/secwing)
 "pIJ" = (
+/obj/disposalpipe/segment/mail,
 /obj/machinery/light/fluorescent/auto/sodium_orange{
 	dir = 4
 	},
@@ -21946,10 +21946,8 @@
 /turf/simulated/floor/black,
 /area/space)
 "sjG" = (
-/obj/machinery/light/fluorescent/auto/sodium_orange{
-	dir = 8
-	},
-/turf/simulated/floor/grey,
+/obj/machinery/light/small/auto,
+/turf/simulated/floor/wood/six,
 /area/space)
 "sjM" = (
 /obj/storage/secure/crate/weapon/armory/shotgun,
@@ -23216,10 +23214,10 @@
 /turf/simulated/floor,
 /area/space)
 "tfn" = (
-/obj/machinery/light/fluorescent/warm,
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
+/obj/machinery/light/fluorescent/auto/sodium_orange,
 /turf/simulated/floor/grey,
 /area/space)
 "tfD" = (
@@ -91029,7 +91027,7 @@ dLZ
 dLZ
 dLZ
 kbq
-byf
+lby
 fYX
 hQa
 jCI
@@ -91334,7 +91332,7 @@ ova
 jen
 iEO
 fYX
-knf
+tfn
 kbq
 kbq
 ejr
@@ -92847,7 +92845,7 @@ dYk
 cMO
 aQA
 aQA
-knf
+tfn
 kbq
 dTN
 ejr
@@ -95260,7 +95258,7 @@ kbq
 ejr
 ejr
 kbq
-byf
+lby
 cMO
 kFx
 uDf
@@ -95268,7 +95266,7 @@ ejr
 ejr
 mHO
 ejr
-ejr
+sjG
 kbq
 tzZ
 tzZ
@@ -96171,7 +96169,7 @@ cMO
 aQA
 kFx
 aQA
-pIJ
+oWm
 aQA
 aQA
 aQA
@@ -96776,10 +96774,10 @@ aQA
 kFx
 uDf
 ejr
-ejr
+sjG
 kbq
 aQA
-orK
+paR
 kbq
 tzZ
 tzZ
@@ -97377,7 +97375,7 @@ kbq
 dYk
 cMO
 aQA
-knf
+kFx
 kbq
 kbq
 uHi
@@ -97679,7 +97677,7 @@ uDf
 dYk
 cMO
 aQA
-kFx
+tfn
 kbq
 aQA
 aQA
@@ -97981,7 +97979,7 @@ uDf
 dYk
 cMO
 aQA
-knf
+kFx
 kbq
 kbq
 uHi
@@ -98588,10 +98586,10 @@ aQA
 kFx
 uDf
 ejr
-ejr
+sjG
 kbq
 aQA
-orK
+paR
 kbq
 tzZ
 tzZ
@@ -99191,7 +99189,7 @@ aQA
 aQA
 kFx
 aQA
-sjG
+gNQ
 aQA
 aQA
 aQA
@@ -100094,7 +100092,7 @@ jCI
 aQA
 aQA
 aQA
-knf
+tfn
 kbq
 kbq
 ejr
@@ -100393,7 +100391,7 @@ kbq
 kbq
 kbq
 hQa
-lby
+pIJ
 igE
 igE
 eBW
@@ -101292,7 +101290,7 @@ aQA
 aQA
 aQA
 aQA
-knf
+tfn
 kbq
 ejr
 ejr
@@ -104323,7 +104321,7 @@ ejr
 ejr
 mHO
 ejr
-ejr
+sjG
 kbq
 fnJ
 fnJ
@@ -105230,7 +105228,7 @@ hbw
 kbq
 dTN
 dTN
-dTN
+ejr
 kbq
 kbq
 kbq
@@ -105530,7 +105528,7 @@ hbw
 hbw
 hbw
 kbq
-dTN
+ejr
 ejr
 ejr
 kbq
@@ -105832,8 +105830,8 @@ hbw
 hbw
 hbw
 kbq
-ejr
-ejr
+dTN
+dTN
 ejr
 kbq
 ejr
@@ -107338,7 +107336,7 @@ hbw
 hbw
 hbw
 hbw
-ova
+hbw
 ova
 ejr
 ejr
