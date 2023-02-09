@@ -444,12 +444,6 @@
 /obj/machinery/door/airlock/pyro/classic,
 /turf/simulated/floor,
 /area/station/hangar/escape)
-"arv" = (
-/obj/machinery/atmospherics/pipe/manifold/west,
-/turf/simulated/floor/bluewhite{
-	dir = 4
-	},
-/area/station/medical/medbay)
 "arB" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable{
@@ -2917,17 +2911,6 @@
 /obj/wingrille_spawn,
 /turf/simulated/floor/plating,
 /area/station/quartermaster/cargooffice/storefront)
-"coD" = (
-/obj/disposalpipe/segment/horizontal,
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/bluewhite{
-	dir = 8
-	},
-/area/station/medical/medbay)
 "coH" = (
 /obj/machinery/light/fluorescent/ceiling,
 /turf/simulated/floor/black,
@@ -7575,6 +7558,15 @@
 /obj/ladder/auto,
 /turf/simulated/floor/yellow,
 /area/station/hallway/secondary/exit)
+"fPv" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/turf/simulated/floor/bluewhite{
+	dir = 8
+	},
+/area/station/medical/medbay)
 "fPG" = (
 /obj/table/wood/auto,
 /turf/simulated/floor/carpet/blue/fancy/edge{
@@ -9439,15 +9431,6 @@
 	},
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/white,
-/area/station/medical/medbay)
-"hsv" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
-/obj/disposalpipe/segment/morgue{
-	dir = 4
-	},
-/turf/simulated/floor/bluewhite{
-	dir = 8
-	},
 /area/station/medical/medbay)
 "hsQ" = (
 /obj/disposalpipe/segment{
@@ -13808,6 +13791,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/medical/maintenance)
+"kOT" = (
+/obj/machinery/atmospherics/pipe/manifold/west,
+/turf/simulated/floor/bluewhite{
+	dir = 4
+	},
+/area/station/medical/medbay)
 "kPj" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/cable{
@@ -15672,17 +15661,6 @@
 /obj/item/device/radio/intercom/engineering,
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/conference)
-"mCO" = (
-/obj/disposalpipe/segment/horizontal,
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/stairs/wide/other{
-	dir = 4
-	},
-/area/station/medical/medbay)
 "mCZ" = (
 /obj/machinery/door/airlock,
 /obj/cable{
@@ -21811,6 +21789,17 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/yellow/side,
 /area/station/engine/engineering)
+"rmI" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/stairs/wide/other{
+	dir = 4
+	},
+/area/station/medical/medbay)
 "rmT" = (
 /obj/cable{
 	d1 = 1;
@@ -22775,14 +22764,6 @@
 /area/station/security/checkpoint/east{
 	name = "Wasteland Security Checkpoint"
 	})
-"rYP" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
-/obj/disposalpipe/segment/morgue{
-	dir = 4
-	},
-/obj/table/auto,
-/turf/simulated/floor/white,
-/area/station/medical/medbay)
 "rYR" = (
 /obj/cable{
 	icon_state = "1-4"
@@ -24641,6 +24622,17 @@
 /obj/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/farmers)
+"tEC" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/bluewhite{
+	dir = 8
+	},
+/area/station/medical/medbay)
 "tEI" = (
 /obj/table/wood/auto,
 /turf/simulated/floor/carpet/blue/standard/edge/south,
@@ -29814,6 +29806,14 @@
 /obj/access_spawn/security,
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/sec_foyer)
+"xNg" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/obj/table/auto,
+/turf/simulated/floor/white,
+/area/station/medical/medbay)
 "xNl" = (
 /obj/disposalpipe/trunk/zlevel{
 	dir = 8;
@@ -61062,7 +61062,7 @@ vWB
 lRk
 lRk
 mRA
-mCO
+rmI
 fPP
 aRZ
 dRx
@@ -61969,7 +61969,7 @@ vrv
 vrv
 jUx
 qIz
-rYP
+xNg
 aRZ
 deQ
 deQ
@@ -64082,8 +64082,8 @@ rxu
 luh
 tnK
 xeW
-coD
-hsv
+tEC
+fPv
 lRk
 lRk
 xnp
@@ -69518,7 +69518,7 @@ wEP
 mSK
 mSe
 yag
-arv
+kOT
 url
 wjN
 cKi
