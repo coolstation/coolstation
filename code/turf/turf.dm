@@ -563,6 +563,10 @@ proc/generate_space_color()
 	var/turf/simulated/new_turf
 	var/old_dir = dir
 
+	if(explosions.exploding) // this is fucked up and messed up and fucked up.
+		handle_air = FALSE
+		keep_old_material = FALSE
+
 	var/oldmat = src.material
 
 	var/datum/gas_mixture/oldair = null //Set if old turf is simulated and has air on it.
