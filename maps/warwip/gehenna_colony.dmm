@@ -51,7 +51,7 @@
 /area/station/chapel/sanctuary)
 "abU" = (
 /obj/cable{
-	icon_state = "1-2"
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/yellowblack/corner{
 	dir = 1
@@ -91,7 +91,9 @@
 /area/space)
 "adB" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/mining/dock)
 "adW" = (
 /obj/cable{
@@ -118,7 +120,9 @@
 	icon_state = "2-9"
 	},
 /obj/disposalpipe/segment/bent/east,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "aeF" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -226,7 +230,9 @@
 	dir = 8
 	},
 /obj/decal/cleanable/dirt/random,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering/ce)
 "ajx" = (
 /obj/machinery/light/fluorescent/cool/very{
@@ -274,7 +280,9 @@
 	dir = 8;
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secoffquarters)
 "akD" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/southeast,
@@ -301,7 +309,9 @@
 /area/listeningpost)
 "alm" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -356,7 +366,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "anU" = (
 /obj/machinery/atmospherics/pipe/manifold/south,
@@ -402,7 +414,9 @@
 /area/station/engine/engineering)
 "apI" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/surgery)
 "aqs" = (
 /obj/disposalpipe/trunk{
@@ -415,7 +429,9 @@
 "aqy" = (
 /obj/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/testchamber{
 	name = "Test Chamber Exhaust";
 	requires_power = 0
@@ -451,7 +467,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "arH" = (
 /obj/machinery/light/fluorescent/cool/very,
@@ -477,7 +495,9 @@
 /area/station/quartermaster/cargooffice)
 "asD" = (
 /obj/machinery/drone_recharger,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "asG" = (
 /obj/machinery/light/small/floor/harsh,
@@ -486,14 +506,18 @@
 /area/station/medical/medbay/lobby)
 "asN" = (
 /obj/disposalpipe/junction/right/east,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "atw" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-9"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/checkpoint/cargo)
 "aty" = (
 /obj/table/wood/auto,
@@ -609,7 +633,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "ayK" = (
 /obj/disposalpipe/segment/vertical,
@@ -626,7 +652,9 @@
 /obj/grille/catwalk/jen/side{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "aAa" = (
 /obj/stool/bench/auto,
@@ -914,7 +942,9 @@
 	},
 /obj/disposalpipe/segment/bent/north,
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "aKa" = (
 /obj/machinery/door/airlock/pyro/external{
@@ -1021,20 +1051,26 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "aMM" = (
 /obj/storage/closet/coffin,
 /obj/machinery/light/small/frostedred{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "aMR" = (
 /obj/machinery/atmospherics/pipe/vertical_pipe/west{
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering{
 	icon_state = "red";
 	name = "Exhaust Vent";
@@ -1047,7 +1083,9 @@
 "aNJ" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/treatment1)
 "aOA" = (
 /turf/simulated/wall,
@@ -1083,7 +1121,9 @@
 	dir = 4;
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "aQr" = (
 /turf/space/gehenna/desert/plating{
@@ -1099,11 +1139,15 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/bridge/conference)
 "aQM" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/chapel/office)
 "aQO" = (
 /obj/disposalpipe/segment/morgue{
@@ -1256,7 +1300,9 @@
 /area/station/security/brig/south_side)
 "aWL" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "aXe" = (
 /obj/decal/poster/wallsign/WC_black,
@@ -1321,7 +1367,9 @@
 	dir = 8
 	},
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "aZV" = (
 /obj/cable{
@@ -1330,7 +1378,9 @@
 	icon_state = "1-8"
 	},
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "bam" = (
 /obj/disposalpipe/segment/vertical,
@@ -1357,7 +1407,9 @@
 "bcV" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay)
 "bda" = (
 /obj/disposalpipe/junction/right/north,
@@ -1450,14 +1502,18 @@
 	target_z = 3
 	},
 /obj/grille/catwalk/jen/side,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "bjp" = (
 /turf/simulated/floor/carpet/blue/fancy/edge,
 /area/station/security/hos)
 "bjH" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/research)
 "bjZ" = (
 /turf/simulated/floor/black/side{
@@ -1564,7 +1620,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "bnz" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -1755,7 +1813,9 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/checkpoint/cargo)
 "bxw" = (
 /obj/disposalpipe/segment/bent/east,
@@ -1792,7 +1852,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/pharmacy)
 "bAz" = (
 /obj/stool/chair{
@@ -1812,7 +1874,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/bridge/conference)
 "bAI" = (
 /turf/simulated/wall/r_wall,
@@ -1844,7 +1908,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "bBS" = (
 /obj/grille/catwalk/jen/side{
@@ -1856,11 +1922,15 @@
 /obj/cable/blue{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "bCc" = (
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secwing)
 "bCk" = (
 /obj/machinery/door/airlock/pyro/external{
@@ -1931,14 +2001,18 @@
 	name = "High-Capacity Pressure Tank (Carbon Dioxide)";
 	volume = 1000
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "bEC" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	can_rupture = 0
 	},
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/monitoring)
 "bEV" = (
 /obj/machinery/light/fluorescent/auto/yellow{
@@ -2042,7 +2116,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "bKo" = (
 /obj/machinery/door/airlock,
@@ -2220,7 +2296,9 @@
 /obj/machinery/light/fluorescent/red{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "bRh" = (
 /obj/submachine/chef_sink{
@@ -2333,13 +2411,17 @@
 /area/space)
 "bTO" = (
 /obj/disposalpipe/segment/brig,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
 "bTR" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/breathable,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/brig/south_side)
 "bUz" = (
 /obj/stool/chair{
@@ -2423,7 +2505,9 @@
 	dir = 1;
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "bXF" = (
 /obj/disposalpipe/segment/morgue{
@@ -2480,7 +2564,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/pharmacy)
 "cau" = (
 /turf/simulated/wall/r_wall,
@@ -2594,7 +2680,9 @@
 	dir = 1;
 	icon_state = "catwalk_jen_side"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "cdU" = (
 /obj/ladder/auto,
@@ -2625,7 +2713,9 @@
 /area/station/security/brig/south_side)
 "cfg" = (
 /obj/disposalpipe/segment/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "cft" = (
 /obj/machinery/camera{
@@ -2713,7 +2803,9 @@
 	icon_state = "1-8"
 	},
 /obj/disposalpipe/segment/mail/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "chY" = (
 /obj/cable{
@@ -2874,7 +2966,9 @@
 "cnR" = (
 /obj/decal/cleanable/dirt/random,
 /obj/random_item_spawner/junk/one_or_zero,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "cnW" = (
 /obj/table/auto,
@@ -2912,7 +3006,9 @@
 /area/station/quartermaster/storage)
 "coy" = (
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/storefront)
 "coH" = (
 /obj/machinery/light/fluorescent/ceiling,
@@ -2967,7 +3063,9 @@
 /obj/machinery/light/fluorescent/red{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "cqC" = (
 /turf/simulated/wall/asteroid/gehenna,
@@ -2983,7 +3081,9 @@
 /area/station/quartermaster/cargooffice)
 "csh" = (
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/treatment1)
 "csj" = (
 /obj/disposalpipe/segment/food,
@@ -2997,7 +3097,9 @@
 /area/station/security/secoffquarters)
 "cst" = (
 /obj/disposalpipe/segment/sewage,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "csw" = (
 /obj/machinery/door_control/podbay/medbay/new_walls/east,
@@ -3059,7 +3161,9 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/east{
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "cvU" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -3068,7 +3172,9 @@
 "cwo" = (
 /obj/disposalpipe/segment/food,
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secoffquarters)
 "cxg" = (
 /obj/disposalpipe/segment/horizontal,
@@ -3077,7 +3183,9 @@
 /area/station/bridge)
 "cxr" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/west,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "cxD" = (
 /obj/cable{
@@ -3086,7 +3194,9 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/segment/mail/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "cxN" = (
 /obj/decal/poster/wallsign/escape_right,
@@ -3105,7 +3215,9 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -3114,7 +3226,9 @@
 /obj/window/north,
 /obj/window/east,
 /obj/machinery/light/fluorescent/yellow,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "cyk" = (
 /obj/machinery/light/small/floor,
@@ -3200,7 +3314,9 @@
 /obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering{
 	icon_state = "red";
 	name = "Exhaust Vent";
@@ -3294,7 +3410,9 @@
 /area/station/crew_quarters/farmers)
 "cEh" = (
 /obj/random_item_spawner/junk/few,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "cEy" = (
 /turf/simulated/floor/carpet/grime,
@@ -3442,7 +3560,9 @@
 /area/station/crew_quarters/arcade/dungeon)
 "cIo" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/cloner)
 "cII" = (
 /turf/simulated/floor/grey,
@@ -3452,13 +3572,9 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/horizontal,
-/obj/decal/tile_edge/floorguide/arrow_e{
-	dir = 1
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
 	},
-/obj/decal/tile_edge/floorguide/evac{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
 "cJf" = (
 /obj/disposalpipe/segment/brig{
@@ -3494,7 +3610,9 @@
 /area/station/hangar/medical)
 "cJY" = (
 /obj/random_item_spawner/junk/few,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "cKa" = (
 /turf/simulated/wall,
@@ -3533,7 +3651,9 @@
 /obj/cable/blue{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "cLb" = (
 /obj/table/wood/auto,
@@ -3604,7 +3724,9 @@
 	icon_state = "ladder_wall";
 	id = "gehenna_tower_3"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "cPo" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -3753,7 +3875,9 @@
 /obj/disposalpipe/trunk{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/brig/south_side)
 "cZH" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -3793,7 +3917,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "dcS" = (
 /turf/simulated/floor/shuttlebay,
@@ -3836,7 +3962,9 @@
 	id = "combustion";
 	name = "Combustion Chamber Vent"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering{
 	icon_state = "red";
 	name = "Exhaust Vent";
@@ -3855,17 +3983,14 @@
 /obj/machinery/atmospherics/pipe/simple/junction{
 	dir = 4
 	},
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/decal/tile_edge/line/yellow{
-	icon_state = "line1"
-	},
+/obj/decal/tile_edge/stripe/extra_big,
 /turf/simulated/floor/black,
 /area/station/engine/monitoring)
 "ded" = (
 /obj/machinery/door/airlock/engineering,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "deC" = (
 /obj/decal/poster/wallsign/escape_right,
@@ -3882,7 +4007,9 @@
 	dir = 8;
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "deT" = (
 /obj/table/auto,
@@ -3906,7 +4033,9 @@
 /area/station/medical/medbay/pharmacy)
 "dff" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/northeast,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "dfr" = (
 /obj/cable{
@@ -3972,7 +4101,9 @@
 /area/station/crew_quarters/farmers)
 "dgf" = (
 /obj/disposalpipe/segment/bent/west,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "dgt" = (
 /obj/table/reinforced/industrial/auto,
@@ -3998,7 +4129,9 @@
 /area/station/security/secwing)
 "dhl" = (
 /obj/ladder/auto,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/testchamber{
 	name = "Test Chamber Exhaust";
 	requires_power = 0
@@ -4016,7 +4149,9 @@
 "dij" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/testchamber{
 	name = "Test Chamber Exhaust";
 	requires_power = 0
@@ -4073,9 +4208,6 @@
 /obj/machinery/atmospherics/pipe/simple/junction{
 	dir = 8
 	},
-/obj/cable{
-	icon_state = "1-2"
-	},
 /obj/decal/tile_edge/line/yellow{
 	icon_state = "line1"
 	},
@@ -4108,7 +4240,9 @@
 /area/station/crew_quarters/farmers)
 "dkG" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/testchamber{
 	name = "Test Chamber Exhaust";
 	requires_power = 0
@@ -4208,7 +4342,9 @@
 /obj/machinery/light/fluorescent{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "dnl" = (
 /turf/simulated/floor/yellow/side,
@@ -4218,7 +4354,9 @@
 /obj/window/north,
 /obj/window/west,
 /obj/machinery/light/fluorescent/yellow,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "dnt" = (
 /obj/cable{
@@ -4237,7 +4375,9 @@
 /area/station/bridge)
 "dnS" = (
 /obj/disposalpipe/segment/morgue,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "dod" = (
 /obj/table/reinforced/auto,
@@ -4253,7 +4393,9 @@
 	},
 /obj/access_spawn/maint,
 /obj/access_spawn/chapel_office,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "doE" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -4272,7 +4414,9 @@
 	icon_state = "ladder_wall";
 	id = "gehenna_tower_2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "doR" = (
 /obj/machinery/door/airlock/glass/command,
@@ -4343,7 +4487,9 @@
 /obj/grille/catwalk/jen/side{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "drD" = (
 /obj/disposalpipe/trunk{
@@ -4366,7 +4512,9 @@
 "drF" = (
 /obj/disposalpipe/segment/morgue,
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "drG" = (
 /obj/machinery/door_control/podbay/syndicate{
@@ -4391,7 +4539,9 @@
 /area/station/engine/engineering)
 "dsc" = (
 /obj/disposalpipe/junction/right/west,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "dsq" = (
 /obj/iv_stand,
@@ -4564,7 +4714,9 @@
 /obj/grille/catwalk/jen/side{
 	dir = 6
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "dBD" = (
 /obj/disposalpipe/segment/horizontal,
@@ -4588,7 +4740,9 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/east{
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "dEi" = (
 /obj/stool/chair,
@@ -4605,11 +4759,15 @@
 "dEL" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/portable_reclaimer,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "dEN" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/northeast,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "dGk" = (
 /obj/cable{
@@ -4715,7 +4873,9 @@
 /area/station/crew_quarters/farmers)
 "dJV" = (
 /obj/grille/steel,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "dJZ" = (
 /obj/disposalpipe/segment/morgue{
@@ -4736,7 +4896,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/gunsmithing)
 "dKo" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -4796,12 +4958,6 @@
 	},
 /turf/simulated/floor/darkblue,
 /area/station/bridge/customs)
-"dMS" = (
-/obj/machinery/atmospherics/pipe/manifold/west,
-/turf/simulated/floor/bluewhite{
-	dir = 4
-	},
-/area/station/medical/medbay)
 "dNE" = (
 /turf/space/gehenna/desert/path{
 	dir = 4;
@@ -4874,7 +5030,9 @@
 /obj/machinery/light/fluorescent{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "dRq" = (
 /obj/machinery/light/small/floor,
@@ -4890,7 +5048,9 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "dRI" = (
 /turf/simulated/floor/stairs/wide{
@@ -4906,7 +5066,9 @@
 "dTh" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/surgery/storage)
 "dTT" = (
 /obj/stool/chair/couch{
@@ -4941,10 +5103,14 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "dVx" = (
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "dWn" = (
 /turf/simulated/floor/carpet/grime,
@@ -4998,7 +5164,9 @@
 	dir = 4;
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "dYr" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
@@ -5062,14 +5230,18 @@
 	dir = 8
 	},
 /obj/disposalpipe/segment/mineral,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "ebc" = (
 /obj/machinery/light/fluorescent{
 	dir = 4
 	},
 /obj/decal/cleanable/dirt/random,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "ebd" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/southwest,
@@ -5097,7 +5269,9 @@
 	active = 1;
 	fuel = 600
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/listeningpost)
 "ece" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -5145,7 +5319,9 @@
 	dir = 1;
 	pixel_x = -32
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "edV" = (
 /obj/cable{
@@ -5183,11 +5359,15 @@
 "eeS" = (
 /obj/wingrille_spawn/reinforced,
 /obj/window_blinds/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/hydroponics/bay)
 "eeZ" = (
 /obj/random_item_spawner/junk/one_or_zero,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "efc" = (
 /turf/space/gehenna/desert/corner{
@@ -5329,7 +5509,9 @@
 /area/station/medical/medbay/treatment)
 "elr" = (
 /obj/decal/cleanable/dirt/mars,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "elt" = (
 /obj/disposalpipe/segment/brig,
@@ -5340,7 +5522,9 @@
 /obj/grille/catwalk/jen/side{
 	dir = 9
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "elF" = (
 /obj/cable{
@@ -5373,7 +5557,9 @@
 /area/station/medical/medbay/treatment)
 "emE" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/hangar/medical)
 "emQ" = (
 /obj/disposalpipe/junction/right/west,
@@ -5413,7 +5599,9 @@
 	color = "#FFBB70";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/listeningpost)
 "eoV" = (
 /obj/table/auto,
@@ -5451,7 +5639,9 @@
 	dir = 1;
 	pixel_y = 32
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/core)
 "eqK" = (
 /obj/disposalpipe/segment/horizontal,
@@ -5481,7 +5671,9 @@
 /area/station/bridge)
 "erA" = (
 /obj/decal/cleanable/dirt/random,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -5658,7 +5850,9 @@
 /obj/machinery/light/fluorescent{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "exE" = (
 /obj/storage/secure/closet/security/equipment,
@@ -5737,7 +5931,9 @@
 	dir = 8;
 	pixel_x = -16
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secwing)
 "eAw" = (
 /obj/reagent_dispensers/fueltank,
@@ -5755,7 +5951,9 @@
 /obj/machinery/light/fluorescent/red{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secoffquarters)
 "eBk" = (
 /obj/cable{
@@ -5944,7 +6142,9 @@
 /area/station/engine/engineering/ce)
 "eIw" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering/breakroom)
 "eJA" = (
 /obj/machinery/camera{
@@ -6030,7 +6230,9 @@
 	name = "Databank - Control";
 	setup_drive_type = /obj/item/disk/data/tape/master
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "eLP" = (
 /obj/stool/bench/auto,
@@ -6038,7 +6240,9 @@
 /area/station/chapel/sanctuary)
 "eMi" = (
 /obj/decal/cleanable/dirt/random,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering/ce)
 "eMo" = (
 /obj/cable{
@@ -6057,7 +6261,9 @@
 /area/station/medical/medbay)
 "eMx" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/hallway/secondary/exit)
 "eMA" = (
 /obj/machinery/atmospherics/valve/horizontal{
@@ -6100,7 +6306,9 @@
 	dir = 1;
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "eNL" = (
 /obj/disposalpipe/segment/horizontal,
@@ -6136,7 +6344,9 @@
 /area/station/mining/dock)
 "eOa" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay)
 "eOc" = (
 /obj/disposalpipe/segment/cargo{
@@ -6185,14 +6395,18 @@
 "ePk" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/atmospherics/pipe/simple/overfloor/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "ePo" = (
 /obj/disposalpipe/segment/cargo{
 	dir = 4
 	},
 /obj/disposalpipe/segment/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "ePV" = (
 /obj/disposalpipe/segment/morgue,
@@ -6201,7 +6415,9 @@
 "eQi" = (
 /obj/disposalpipe/segment/vertical,
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "eQD" = (
 /obj/decal/tile_edge/stripe/extra_big,
@@ -6422,7 +6638,9 @@
 	dir = 1;
 	icon_state = "catwalk_jen_side"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "eZF" = (
 /obj/cable{
@@ -6485,7 +6703,9 @@
 /area/station/engine/core)
 "faZ" = (
 /obj/disposalpipe/segment/bent/east,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "fbj" = (
 /obj/disposalpipe/segment/bent/south,
@@ -6535,7 +6755,9 @@
 /area/station/medical/medbay/cloner)
 "fde" = (
 /obj/wingrille_spawn/crystal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secoffquarters)
 "fdN" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -6551,7 +6773,9 @@
 	id = "tox_vent";
 	name = "Combustion Chamber Vent"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/testchamber{
 	name = "Test Chamber Exhaust";
 	requires_power = 0
@@ -6626,7 +6850,9 @@
 	output = 2500
 	},
 /obj/access_spawn/syndie_shuttle,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/listeningpost)
 "fhH" = (
 /obj/cable{
@@ -6667,7 +6893,9 @@
 /area/station/security/brig/south_side)
 "fkc" = (
 /obj/disposalpipe/segment/bent/north,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secoffquarters)
 "fkg" = (
 /obj/table/reinforced/auto,
@@ -6747,7 +6975,9 @@
 /obj/cable{
 	icon_state = "1-10"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering/ce)
 "fnj" = (
 /obj/machinery/light_switch{
@@ -6808,7 +7038,9 @@
 /obj/machinery/floorflusher/industrial{
 	name = "industrial loading chute - cargo"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/supply/delivery_point)
 "foS" = (
 /obj/disposalpipe/segment{
@@ -6821,7 +7053,9 @@
 /area/station/medical/medbay)
 "fpd" = (
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/hallway/secondary/exit)
 "fpi" = (
 /obj/machinery/light/fluorescent{
@@ -6878,7 +7112,9 @@
 /turf/simulated/floor/carpet/grime,
 /area/listeningpost)
 "frb" = (
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/artifact{
 	name = "Artifact Lounge"
 	})
@@ -6938,7 +7174,9 @@
 /area/station/engine/engineering/ce)
 "fst" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/hydroponics/bay)
 "fsA" = (
 /obj/storage/secure/closet/command/chief_engineer,
@@ -7212,7 +7450,9 @@
 /obj/machinery/floorflusher/industrial{
 	name = "industrial loading chute - cargo"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "fCk" = (
 /turf/simulated/floor/purple/checker{
@@ -7250,7 +7490,9 @@
 "fDl" = (
 /obj/wingrille_spawn,
 /obj/window_blinds/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/kitchen/freezer)
 "fDH" = (
 /obj/machinery/light/fluorescent/cool/very{
@@ -7302,7 +7544,9 @@
 /obj/disposalpipe/segment/brig{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -7488,7 +7732,9 @@
 /area/station/quartermaster/cargobay)
 "fLB" = (
 /obj/wingrille_spawn/crystal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/main)
 "fLE" = (
 /obj/stool/chair/comfy/red{
@@ -7547,11 +7793,15 @@
 	icon_state = "1-6"
 	},
 /obj/disposalpipe/segment/food,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "fNM" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/treatment1)
 "fNN" = (
 /obj/decal/poster/wallsign/qm,
@@ -7588,7 +7838,9 @@
 	dir = 4
 	},
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay)
 "fQm" = (
 /obj/landmark/gps_waypoint,
@@ -7767,7 +8019,9 @@
 /area/station/wc/sec)
 "fYk" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "fYo" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -7801,7 +8055,9 @@
 "gaW" = (
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/abcu,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "gbp" = (
 /obj/disposalpipe/segment/horizontal,
@@ -7834,7 +8090,9 @@
 "gcp" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/wingrille_spawn/crystal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/hos)
 "gcr" = (
 /obj/disposalpipe/segment/vertical,
@@ -7998,7 +8256,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "gjy" = (
 /obj/disposalpipe/segment/morgue{
@@ -8167,7 +8427,9 @@
 	icon_state = "2-8"
 	},
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "gtu" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -8219,7 +8481,9 @@
 /area/station/engine/core)
 "gva" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/core)
 "gvd" = (
 /obj/machinery/light/fluorescent/ceiling,
@@ -8310,7 +8574,9 @@
 "gyG" = (
 /obj/table/reinforced/industrial/auto,
 /obj/random_item_spawner/junk/one_or_zero,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/storage)
 "gyW" = (
 /obj/grille/catwalk{
@@ -8383,7 +8649,9 @@
 /obj/machinery/light/fluorescent/red{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "gBt" = (
 /obj/disposalpipe/segment/food,
@@ -8490,7 +8758,9 @@
 	dir = 4;
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "gHw" = (
 /obj/cable{
@@ -8500,7 +8770,9 @@
 /obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "gHQ" = (
 /obj/table/reinforced/auto,
@@ -8674,7 +8946,9 @@
 "gNT" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/disposalpipe/segment/morgue,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "gOc" = (
 /obj/forcefield/energyshield/perma,
@@ -8684,7 +8958,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -8731,7 +9007,9 @@
 /area/listeningpost)
 "gRa" = (
 /obj/disposalpipe/segment/mail/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "gRi" = (
 /obj/disposalpipe/segment/bent/east,
@@ -8756,7 +9034,9 @@
 	icon_state = "1-4"
 	},
 /obj/disposalpipe/segment/sewage,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/pharmacy)
 "gSW" = (
 /obj/disposalpipe/segment/sewage,
@@ -8794,7 +9074,9 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	can_rupture = 0
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "gUs" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -8909,7 +9191,9 @@
 	icon_state = "1-2"
 	},
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/main)
 "gXS" = (
 /obj/machinery/power/apc/autoname_north,
@@ -8940,7 +9224,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/overfloor,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -8963,7 +9249,9 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc/autoname_south,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/wc/sec)
 "gZm" = (
 /obj/disposalpipe/segment/horizontal,
@@ -9163,7 +9451,9 @@
 /area/station/engine/core)
 "hgt" = (
 /obj/disposalpipe/segment/bent/south,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "hgM" = (
 /obj/machinery/camera{
@@ -9178,7 +9468,9 @@
 "hhb" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northwest,
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "hhr" = (
 /obj/cable{
@@ -9186,7 +9478,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "hhR" = (
 /obj/disposalpipe/segment/vertical,
@@ -9232,7 +9526,9 @@
 /obj/machinery/door/airlock/pyro/external{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "hjH" = (
 /obj/table/auto,
@@ -9285,7 +9581,9 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/artifact{
 	name = "Artifact Lounge"
 	})
@@ -9345,7 +9643,9 @@
 "hnq" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/research)
 "hor" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
@@ -9416,13 +9716,17 @@
 /obj/disposalpipe/segment/brig{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/gunsmithing)
 "hrQ" = (
 /obj/machinery/atmospherics/valve/horizontal{
 	name = "burn chamber valve A"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/core)
 "hrX" = (
 /obj/disposalpipe/segment/brig{
@@ -9470,7 +9774,9 @@
 /area/station/quartermaster/cargooffice/storefront)
 "hto" = (
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/hydroponics/bay)
 "htE" = (
 /obj/disposalpipe/segment/produce{
@@ -9492,7 +9798,9 @@
 /obj/machinery/light/fluorescent/yellow{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "hvn" = (
 /obj/disposalpipe/trunk{
@@ -9500,7 +9808,9 @@
 	},
 /obj/machinery/disposal,
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "hvp" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/breathable{
@@ -9582,14 +9892,18 @@
 /obj/decal/cleanable/dirt/mars,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /obj/machinery/meter,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "hyd" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/machinery/light/small/frostedred{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "hyk" = (
 /obj/disposalpipe/segment/horizontal,
@@ -9666,7 +9980,9 @@
 /obj/machinery/light/small/warm{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "hBj" = (
 /obj/cable{
@@ -9755,7 +10071,9 @@
 /area/station/medical/crematorium)
 "hCX" = (
 /obj/disposalpipe/junction/left/east,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secoffquarters)
 "hEo" = (
 /obj/disposalpipe/segment/sewage,
@@ -9774,12 +10092,16 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/segment/mail/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "hFv" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/bridge/conference)
 "hGk" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
@@ -9812,7 +10134,9 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "hHc" = (
 /obj/plasticflaps,
@@ -9844,7 +10168,9 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/segment/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "hHL" = (
 /obj/machinery/door/airlock/external,
@@ -9956,7 +10282,9 @@
 	dir = 8
 	},
 /obj/disposalpipe/segment/food,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "hNm" = (
 /obj/landmark/gps_waypoint,
@@ -9994,7 +10322,9 @@
 "hOp" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/checkpoint/cargo)
 "hPd" = (
 /obj/decal/cleanable/dirt/random,
@@ -10080,7 +10410,9 @@
 	target_z = 3
 	},
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "hVl" = (
 /obj/disposalpipe/trunk{
@@ -10092,7 +10424,9 @@
 "hVs" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/access_spawn/heads,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "hVW" = (
 /obj/disposalpipe/segment/sewage,
@@ -10198,7 +10532,9 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	can_rupture = 0
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "iaF" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -10207,7 +10543,9 @@
 /obj/grille/catwalk/jen/side{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "iaH" = (
 /obj/machinery/sleeper/port_a_medbay,
@@ -10314,7 +10652,9 @@
 	dir = 1;
 	pixel_y = 32
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "ifF" = (
 /obj/disposalpipe/segment/morgue{
@@ -10367,7 +10707,9 @@
 /area/station/quartermaster/cargobay)
 "igp" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "igQ" = (
 /obj/cable{
@@ -10375,7 +10717,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -10423,7 +10767,9 @@
 "iio" = (
 /obj/machinery/door/airlock,
 /obj/access_spawn/research,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/artifact{
 	name = "Artifact Lounge"
 	})
@@ -10475,13 +10821,10 @@
 /turf/simulated/floor/black,
 /area/station/quartermaster/storage)
 "ikJ" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
 /obj/table/reinforced/auto,
 /obj/random_item_spawner/tools_w_igloves,
 /obj/item/paper_bin,
-/turf/simulated/floor/black,
+/turf/simulated/floor/yellow,
 /area/station/engine/monitoring)
 "ilp" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/southeast,
@@ -10493,7 +10836,9 @@
 "ilu" = (
 /obj/disposalpipe/segment/vertical,
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/gunsmithing)
 "ilE" = (
 /obj/disposalpipe/segment/morgue,
@@ -10530,7 +10875,9 @@
 /obj/cable/blue{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "imC" = (
 /obj/cable{
@@ -10649,7 +10996,9 @@
 	dir = 4
 	},
 /obj/disposalpipe/segment/morgue,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "iqR" = (
 /obj/machinery/atmospherics/valve{
@@ -10998,14 +11347,8 @@
 /area/station/maintenance/inner/nw)
 "iGc" = (
 /obj/cable{
-	icon_state = "1-8"
+	icon_state = "1-2"
 	},
-/obj/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/item/device/radio/beacon,
 /turf/simulated/floor/black,
 /area/station/engine/monitoring)
 "iGg" = (
@@ -11270,7 +11613,9 @@
 /area/station/security/checkpoint/customs)
 "iQH" = (
 /obj/wingrille_spawn/crystal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/checkpoint/sec_foyer)
 "iQI" = (
 /obj/table/reinforced/auto,
@@ -11382,7 +11727,9 @@
 /obj/machinery/firealarm{
 	pixel_y = 24
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "iUQ" = (
 /obj/machinery/camera{
@@ -11486,7 +11833,9 @@
 	dir = 4;
 	setup_os_string = "COM_MAINFRAME"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "jaL" = (
 /turf/simulated/floor/engine,
@@ -11505,7 +11854,9 @@
 /obj/machinery/light/small/warm{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "jby" = (
 /obj/ladder/auto,
@@ -11513,13 +11864,17 @@
 /area/station/hangar/catering)
 "jbV" = (
 /obj/disposalpipe/segment/mail/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "jcz" = (
 /obj/machinery/door/airlock/glass/engineering,
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/access_spawn/engineering_engine,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "jcI" = (
 /obj/cable{
@@ -11552,7 +11907,9 @@
 /area/station/hangar/catering)
 "jdg" = (
 /obj/machinery/dispenser,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "jel" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -11626,7 +11983,9 @@
 "jhC" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/research)
 "jhD" = (
 /obj/table/reinforced/auto,
@@ -11636,7 +11995,9 @@
 "jhX" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/research)
 "jig" = (
 /obj/disposalpipe/segment/vertical,
@@ -11667,7 +12028,9 @@
 	icon_state = "4-8"
 	},
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/core)
 "jkb" = (
 /obj/machinery/door/airlock/security,
@@ -11739,6 +12102,10 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
+"jlo" = (
+/obj/ladder/auto,
+/turf/space/gehenna/desert/plating,
+/area/space)
 "jlE" = (
 /obj/machinery/atmospherics/unary/cold_sink/freezer/kitchen/south{
 	name = "Air Cooler";
@@ -11793,7 +12160,9 @@
 "jnQ" = (
 /obj/decal/cleanable/dirt/random,
 /obj/disposalpipe/segment/brig,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -11831,7 +12200,9 @@
 /area/station/quartermaster/cargooffice/storefront)
 "jqc" = (
 /obj/disposalpipe/segment/bent/north,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "jqF" = (
 /obj/disposalpipe/segment/bent/north,
@@ -11862,7 +12233,9 @@
 /area/station/medical/medbay/treatment)
 "jrw" = (
 /obj/ladder/auto,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secoffquarters)
 "jrA" = (
 /obj/machinery/flasher/portable,
@@ -11950,7 +12323,9 @@
 "jxc" = (
 /obj/wingrille_spawn/reinforced_crystal,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "jxE" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -11978,6 +12353,12 @@
 	},
 /obj/landmark/gps_waypoint,
 /turf/simulated/floor/white,
+/area/station/medical/medbay)
+"jyB" = (
+/obj/machinery/atmospherics/pipe/manifold/west,
+/turf/simulated/floor/bluewhite{
+	dir = 4
+	},
 /area/station/medical/medbay)
 "jyH" = (
 /obj/decal/poster/wallsign/security_wall,
@@ -12024,7 +12405,9 @@
 /area/station/chapel/sanctuary)
 "jzZ" = (
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/bridge/conference)
 "jAh" = (
 /obj/table/reinforced/auto,
@@ -12062,7 +12445,9 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/north{
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "jCh" = (
 /obj/disposalpipe/segment{
@@ -12098,7 +12483,9 @@
 /area/station/quartermaster/storage)
 "jDm" = (
 /obj/disposalpipe/segment/bent/north,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "jDs" = (
 /obj/item/device/radio/beacon,
@@ -12106,7 +12493,9 @@
 /area/station/hangar/sec)
 "jDB" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/hangar/catering)
 "jDC" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -12138,11 +12527,15 @@
 /obj/machinery/light/fluorescent/red{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "jEw" = (
 /obj/disposalpipe/segment/mineral,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "jER" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -12151,7 +12544,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "jFO" = (
 /obj/disposalpipe/segment/brig{
@@ -12231,7 +12626,9 @@
 /obj/machinery/light/fluorescent/yellow{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "jJM" = (
 /obj/machinery/vehicle/tank/car/rusty,
@@ -12294,7 +12691,9 @@
 /area/station/medical/medbay/lobby)
 "jLJ" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "jLL" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -12327,7 +12726,9 @@
 	icon_state = "1-2"
 	},
 /obj/wingrille_spawn/crystal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/main)
 "jMJ" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -12337,7 +12738,9 @@
 /obj/cable{
 	icon_state = "1-10"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "jNf" = (
 /obj/cable{
@@ -12352,7 +12755,9 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "jNt" = (
 /obj/disposalpipe/segment/morgue,
@@ -12399,7 +12804,9 @@
 "jPd" = (
 /obj/decal/cleanable/dirt/random,
 /obj/item/storage/box/clothing/chief_engineer,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering/ce)
 "jPn" = (
 /obj/machinery/light/fluorescent/warm{
@@ -12450,7 +12857,9 @@
 	},
 /obj/wingrille_spawn,
 /obj/cable,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/arcade/dungeon)
 "jRu" = (
 /obj/disposalpipe/segment{
@@ -12461,7 +12870,9 @@
 /area/station/crew_quarters/kitchen)
 "jRJ" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/bridge/conference)
 "jSg" = (
 /turf/simulated/wall/r_wall,
@@ -12558,7 +12969,9 @@
 	icon_state = "4-8"
 	},
 /obj/access_spawn/cargo,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/storage)
 "jUT" = (
 /turf/space/gehenna/desert/plating/podbay,
@@ -12623,7 +13036,9 @@
 /area/station/medical/medbay)
 "jXl" = (
 /obj/disposalpipe/segment/bent/south,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -12837,7 +13252,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/storage)
 "khs" = (
 /obj/machinery/light_switch{
@@ -12965,7 +13382,9 @@
 	icon_state = "1-10"
 	},
 /obj/disposalpipe/segment/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "klp" = (
 /turf/simulated/floor/grey,
@@ -13084,14 +13503,6 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/black,
 /area/station/quartermaster/cargobay)
-"kqn" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
-/obj/disposalpipe/segment/morgue{
-	dir = 4
-	},
-/obj/table/auto,
-/turf/simulated/floor/white,
-/area/station/medical/medbay)
 "kqt" = (
 /obj/cable{
 	d2 = 8;
@@ -13189,7 +13600,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/checkpoint/east{
 	name = "Wasteland Security Checkpoint"
 	})
@@ -13230,11 +13643,15 @@
 /obj/disposalpipe/segment/morgue,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/main)
 "kxk" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "kxl" = (
 /obj/table/regal/auto,
@@ -13290,7 +13707,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secwing)
 "kxZ" = (
 /obj/machinery/camera{
@@ -13446,15 +13865,9 @@
 /turf/simulated/floor,
 /area/station/engine/engineering/breakroom)
 "kCX" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/decal/tile_edge/floorguide/arrow_s,
-/obj/decal/tile_edge/floorguide/evac{
-	dir = 4
-	},
+/obj/decal/tile_edge/stripe/extra_big,
 /turf/simulated/floor,
-/area/station/engine/engineering)
+/area/station/medical/medbay/lobby)
 "kDt" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/cable{
@@ -13468,9 +13881,9 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 9
 	},
-/obj/decal/tile_edge/line/yellow{
+/obj/decal/tile_edge/stripe/extra_big{
 	dir = 9;
-	icon_state = "line1"
+	icon_state = "xtra_bigstripe-corner2"
 	},
 /turf/simulated/floor/black,
 /area/station/engine/monitoring)
@@ -13485,13 +13898,17 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/storefront)
 "kEo" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -13547,7 +13964,9 @@
 /area/station/engine/engineering)
 "kFt" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/pharmacy)
 "kFy" = (
 /obj/machinery/power/apc/autoname_east,
@@ -13663,7 +14082,9 @@
 /obj/decal/tile_edge/floorguide/evac{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "kIS" = (
 /obj/table/reinforced/auto,
@@ -13683,7 +14104,9 @@
 /turf/simulated/floor/red,
 /area/station/security/secwing)
 "kJO" = (
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering{
 	icon_state = "red";
 	name = "Exhaust Vent";
@@ -13814,7 +14237,9 @@
 	pixel_x = 9;
 	pixel_y = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "kPj" = (
 /obj/disposalpipe/segment/horizontal,
@@ -13919,7 +14344,9 @@
 "kTf" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/robotics)
 "kTs" = (
 /obj/cable{
@@ -13968,10 +14395,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor,
 /area/station/security/main)
-"kVX" = (
-/obj/decal/tile_edge/stripe/extra_big,
-/turf/simulated/floor,
-/area/station/medical/medbay/lobby)
 "kVY" = (
 /obj/cable{
 	d1 = 1;
@@ -13993,7 +14416,9 @@
 	dir = 8;
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/hydroponics/bay)
 "kWI" = (
 /obj/machinery/door/airlock/command,
@@ -14011,7 +14436,9 @@
 /area/station/quartermaster/storage)
 "kWV" = (
 /obj/machinery/atmospherics/pipe/manifold/west,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering{
 	icon_state = "red";
 	name = "Exhaust Vent";
@@ -14024,9 +14451,20 @@
 "kXT" = (
 /turf/simulated/wall/r_wall,
 /area/station/wc/sec)
+"kYt" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/turf/simulated/floor/bluewhite{
+	dir = 8
+	},
+/area/station/medical/medbay)
 "kZe" = (
 /obj/machinery/light/small/cool,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "kZs" = (
 /obj/disposalpipe/trunk{
@@ -14039,7 +14477,9 @@
 /obj/machinery/door/airlock/maintenance,
 /obj/disposalpipe/segment/vertical,
 /obj/access_spawn/heads,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "kZB" = (
 /obj/disposalpipe/segment/bent/east,
@@ -14060,7 +14500,9 @@
 /obj/machinery/power/data_terminal,
 /obj/machinery/computer3/generic/communications,
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "lan" = (
 /obj/decal/poster/wallsign/poster_nt{
@@ -14103,7 +14545,9 @@
 /area/station/quartermaster/cargooffice)
 "lbx" = (
 /obj/wingrille_spawn/reinforced_crystal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "lcf" = (
 /obj/machinery/door/poddoor/pyro{
@@ -14121,7 +14565,9 @@
 /area/station/quartermaster/cargooffice/storefront)
 "lcm" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "lcM" = (
 /obj/machinery/light/fluorescent/warm{
@@ -14205,7 +14651,9 @@
 	icon_state = "0-4"
 	},
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "lgM" = (
 /obj/machinery/atmospherics/binary/volume_pump{
@@ -14224,7 +14672,9 @@
 /obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "lhU" = (
 /obj/stool/chair/comfy/blue{
@@ -14343,7 +14793,9 @@
 /area/station/maintenance/inner/north)
 "lmo" = (
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/lobby)
 "lmw" = (
 /obj/table/reinforced/auto,
@@ -14453,7 +14905,9 @@
 /area/station/security/brig/north_side)
 "lpX" = (
 /obj/disposalpipe/segment/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secoffquarters)
 "lqE" = (
 /obj/cable{
@@ -14491,7 +14945,9 @@
 "lsD" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/surgery/storage)
 "lto" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -14622,7 +15078,9 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/west{
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/storage)
 "lxt" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -14660,7 +15118,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/checkpoint/east{
 	name = "Wasteland Security Checkpoint"
 	})
@@ -14676,7 +15136,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering{
 	icon_state = "red";
 	name = "Exhaust Vent";
@@ -14756,11 +15218,15 @@
 /area/station/hangar/escape)
 "lDL" = (
 /obj/disposalpipe/segment/produce,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "lDN" = (
 /obj/storage/crate/abcumarker,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "lEa" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -14905,7 +15371,9 @@
 /area/station/security/secoffquarters)
 "lKn" = (
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/robotics)
 "lKu" = (
 /obj/machinery/r_door_control/podbay/syndicate/new_walls/north,
@@ -14945,7 +15413,9 @@
 /area/station/engine/monitoring)
 "lME" = (
 /obj/decal/cleanable/dirt/random,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "lMG" = (
 /obj/machinery/light/fluorescent/cool/very{
@@ -14998,7 +15468,9 @@
 /area/station/bridge/conference)
 "lOc" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/southwest,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/artifact{
 	name = "Artifact Lounge"
 	})
@@ -15176,7 +15648,9 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/checkpoint/east{
 	name = "Wasteland Security Checkpoint"
 	})
@@ -15281,7 +15755,9 @@
 	dir = 1;
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/pharmacy)
 "meH" = (
 /obj/disposalpipe/segment/morgue,
@@ -15291,16 +15767,22 @@
 /area/station/security/main)
 "mfy" = (
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering/breakroom)
 "mfV" = (
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/listeningpost)
 "mgc" = (
 /obj/storage/cart,
 /obj/decal/cleanable/dirt/random,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -15312,7 +15794,9 @@
 	icon_state = "1-4"
 	},
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "mgv" = (
 /obj/machinery/door/airlock/glass,
@@ -15440,6 +15924,14 @@
 	},
 /turf/space/gehenna/desert/plating/podbay,
 /area/station/bridge/customs)
+"mpr" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/obj/table/auto,
+/turf/simulated/floor/white,
+/area/station/medical/medbay)
 "mpV" = (
 /obj/disposalpipe/junction/right/south,
 /turf/simulated/floor,
@@ -15448,11 +15940,15 @@
 /obj/ladder{
 	id = "gehenna_tower_3"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "mqg" = (
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secoffquarters)
 "mqp" = (
 /obj/machinery/camera{
@@ -15465,7 +15961,9 @@
 /area/station/mining/dock)
 "mqs" = (
 /obj/decal/cleanable/dirt/random,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "mqI" = (
 /obj/machinery/light/fluorescent/cool/very{
@@ -15552,7 +16050,9 @@
 /area/listeningpost)
 "mvf" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/monitoring)
 "mvI" = (
 /obj/disposalpipe/segment/vertical,
@@ -15561,7 +16061,9 @@
 /area/station/security/secoffquarters)
 "mwe" = (
 /obj/storage/closet/coffin,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "mwE" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -15640,7 +16142,9 @@
 	target_z = 3
 	},
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "mzn" = (
 /obj/reagent_dispensers/watertank/fountain,
@@ -15687,7 +16191,9 @@
 	icon_state = "1-2"
 	},
 /obj/access_spawn/maint,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "mDu" = (
 /obj/table/auto,
@@ -15856,7 +16362,9 @@
 	dir = 1;
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "mLn" = (
 /obj/disposalpipe/segment/horizontal,
@@ -15916,7 +16424,9 @@
 "mNI" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay)
 "mOA" = (
 /obj/disposalpipe/segment/brig{
@@ -16054,7 +16564,9 @@
 /area/station/crew_quarters/farmers)
 "mVe" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice)
 "mVJ" = (
 /obj/disposalpipe/segment/horizontal,
@@ -16101,7 +16613,9 @@
 	dir = 4
 	},
 /obj/wingrille_spawn/reinforced_crystal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/core)
 "mXL" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -16152,7 +16666,9 @@
 	dir = 4;
 	setup_os_string = "COM_MAINFRAME"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "naf" = (
 /obj/machinery/door/airlock/glass,
@@ -16200,7 +16716,9 @@
 /area/station/quartermaster/cargobay)
 "naX" = (
 /obj/disposalpipe/segment/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "nbt" = (
 /obj/machinery/light/small/cool{
@@ -16243,7 +16761,9 @@
 /obj/disposalpipe/segment/brig{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -16278,7 +16798,9 @@
 	name = "autoname  - SS13";
 	tag = ""
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering{
 	icon_state = "red";
 	name = "Exhaust Vent";
@@ -16324,7 +16846,9 @@
 	},
 /obj/disposalpipe/segment/sewage,
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "neD" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/northwest,
@@ -16367,7 +16891,9 @@
 	icon_state = "5-8"
 	},
 /obj/disposalpipe/segment/food,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "nfN" = (
 /turf/simulated/wall,
@@ -16383,17 +16909,23 @@
 /obj/grille/catwalk/jen/side{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "nhp" = (
 /obj/disposalpipe/segment/morgue,
 /obj/disposalpipe/segment/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "nhz" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "nir" = (
 /obj/landmark/start{
@@ -16409,6 +16941,9 @@
 	dir = 10;
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/cable{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/yellowblack,
 /area/station/engine/monitoring)
@@ -16471,7 +17006,9 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "nkQ" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -16512,7 +17049,9 @@
 	},
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "nmJ" = (
 /obj/decal/tile_edge/floorguide/ladder{
@@ -16531,7 +17070,9 @@
 /area/station/bridge/conference)
 "nnq" = (
 /obj/wingrille_spawn/crystal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/hos)
 "nnJ" = (
 /obj/cable{
@@ -16553,7 +17094,9 @@
 /area/station/medical/medbay)
 "nnY" = (
 /obj/wingrille_spawn/reinforced_crystal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "noj" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
@@ -16631,7 +17174,9 @@
 /area/station/medical/robotics)
 "nqy" = (
 /obj/machinery/atmospherics/pipe/vent/south,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering{
 	icon_state = "red";
 	name = "Exhaust Vent";
@@ -16645,7 +17190,9 @@
 	color = "#FF00FF";
 	dir = 2
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/listeningpost)
 "nqB" = (
 /obj/fitness/weightlifter,
@@ -16662,7 +17209,9 @@
 /turf/simulated/wall/r_wall,
 /area/station/engine/engineering)
 "nqM" = (
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "nqX" = (
 /obj/cable{
@@ -16719,19 +17268,25 @@
 	color = "#FF00FF";
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/listeningpost)
 "nsM" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/kitchen)
 "ntn" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/cloner)
 "nug" = (
 /obj/ladder/auto,
@@ -16855,7 +17410,9 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "nAe" = (
 /obj/table/reinforced/auto,
@@ -16911,7 +17468,9 @@
 "nBo" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/head)
 "nBG" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southeast,
@@ -16947,7 +17506,9 @@
 	color = "#FF00FF";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/listeningpost)
 "nCZ" = (
 /obj/cable{
@@ -16957,14 +17518,18 @@
 /obj/machinery/light/small/cool{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "nDg" = (
 /obj/machinery/door/airlock/pyro/syndicate{
 	dir = 4
 	},
 /obj/access_spawn/syndie_shuttle,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/listeningpost)
 "nDs" = (
 /obj/machinery/door/airlock/pyro/external{
@@ -17033,7 +17598,9 @@
 	dir = 1
 	},
 /obj/machinery/meter,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/core)
 "nHh" = (
 /obj/disposalpipe/segment/bent/south,
@@ -17165,7 +17732,9 @@
 /obj/item/suture{
 	pixel_y = 5
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "nLi" = (
 /obj/disposalpipe/segment/bent/east,
@@ -17337,15 +17906,6 @@
 	},
 /turf/simulated/floor/black,
 /area/station/quartermaster/cargobay)
-"nUj" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
-/obj/disposalpipe/segment/morgue{
-	dir = 4
-	},
-/turf/simulated/floor/bluewhite{
-	dir = 8
-	},
-/area/station/medical/medbay)
 "nUC" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -17393,7 +17953,10 @@
 /area/station/chapel/sanctuary)
 "nUX" = (
 /obj/cable{
-	icon_state = "1-2"
+	icon_state = "1-4"
+	},
+/obj/cable{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/yellowblack/corner{
 	dir = 8
@@ -17541,11 +18104,15 @@
 "ocD" = (
 /obj/table/reinforced/industrial/auto,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/storage)
 "odN" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "oem" = (
 /obj/disposalpipe/trunk{
@@ -17578,6 +18145,9 @@
 	name = "Engineer"
 	},
 /obj/machinery/light_switch/north,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/yellowblack{
 	dir = 1
 	},
@@ -17586,7 +18156,9 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "oeA" = (
 /obj/disposalpipe/segment/vertical,
@@ -17777,7 +18349,9 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/testchamber{
 	name = "Test Chamber Exhaust";
 	requires_power = 0
@@ -17820,13 +18394,17 @@
 /area/station/medical/medbay/cloner)
 "okR" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secoffquarters)
 "okY" = (
 /obj/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/window_blinds/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/hydroponics/bay)
 "ols" = (
 /obj/machinery/light/fluorescent/cool,
@@ -17842,15 +18420,9 @@
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
 "omh" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 1
-	},
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/decal/tile_edge/line/yellow{
-	dir = 8;
-	icon_state = "line1"
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8
 	},
 /turf/simulated/floor/black,
 /area/station/engine/monitoring)
@@ -17858,7 +18430,9 @@
 /obj/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/window_blinds/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/hydroponics/bay)
 "onj" = (
 /obj/decal/cleanable/dirt/random,
@@ -17947,7 +18521,9 @@
 /area/station/hangar/escape)
 "orD" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -18067,7 +18643,9 @@
 	},
 /obj/cable,
 /obj/machinery/light/fluorescent/red,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "owL" = (
 /obj/submachine/chem_extractor,
@@ -18102,7 +18680,9 @@
 /obj/machinery/light/small/cool{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "oxv" = (
 /obj/table/auto,
@@ -18157,7 +18737,9 @@
 "oAi" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "oAt" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -18189,7 +18771,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "oCw" = (
 /obj/machinery/power/apc/autoname_north,
@@ -18275,13 +18859,17 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "oEj" = (
 /obj/disposalpipe/segment/brig{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "oEp" = (
 /turf/simulated/floor/black,
@@ -18383,7 +18971,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "oJK" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northwest,
@@ -18402,7 +18992,9 @@
 	dir = 4
 	},
 /obj/access_spawn/maint,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secoffquarters)
 "oKp" = (
 /obj/stool/chair{
@@ -18442,7 +19034,9 @@
 /area/station/security/secoffquarters)
 "oKF" = (
 /obj/disposalpipe/segment/bent/north,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "oKS" = (
 /obj/cable{
@@ -18460,7 +19054,9 @@
 /obj/disposalpipe/trunk{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "oMl" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -18531,12 +19127,16 @@
 /obj/grille/catwalk/jen/side{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "oNR" = (
 /obj/machinery/door/airlock/glass/engineering,
 /obj/access_spawn/engineering_engine,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "oNT" = (
 /obj/machinery/light/fluorescent/cool/very,
@@ -18581,7 +19181,9 @@
 /area/space)
 "oOm" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/treatment)
 "oPF" = (
 /obj/disposalpipe/segment/food,
@@ -18590,12 +19192,6 @@
 	},
 /turf/simulated/floor/stairs/wide,
 /area/station/crew_quarters/farmers)
-"oPU" = (
-/obj/machinery/light/fluorescent{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/station/engine/engineering)
 "oQl" = (
 /obj/machinery/disposal/mail/autoname/public/market{
 	mail_tag = "farmers market";
@@ -18617,7 +19213,9 @@
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "oQA" = (
 /obj/stool,
@@ -18647,7 +19245,9 @@
 "oSg" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/treatment1)
 "oSk" = (
 /obj/table/reinforced/auto,
@@ -18665,7 +19265,9 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secoffquarters)
 "oTn" = (
 /obj/table/reinforced/auto,
@@ -18704,11 +19306,15 @@
 /obj/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay)
 "oWD" = (
 /obj/table/reinforced/industrial/auto,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/storage)
 "oXg" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -18806,7 +19412,9 @@
 	color = "#FF00FF";
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/listeningpost)
 "pfi" = (
 /obj/machinery/power/data_terminal,
@@ -18853,7 +19461,9 @@
 /obj/disposalpipe/segment/mineral{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "pgt" = (
 /turf/simulated/wall/r_wall,
@@ -18999,12 +19609,16 @@
 /obj/machinery/atmospherics/unary/cold_sink/freezer/kitchen/west{
 	name = "freezer (morgue)"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "pkN" = (
 /obj/machinery/light/fluorescent,
 /obj/machinery/abcu,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "pkT" = (
 /obj/machinery/door/airlock/glass,
@@ -19038,7 +19652,9 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/south{
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/testchamber{
 	name = "Test Chamber Exhaust";
 	requires_power = 0
@@ -19062,7 +19678,9 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/west{
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/core)
 "poi" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -19086,7 +19704,9 @@
 /obj/cable{
 	icon_state = "2-5"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "ppc" = (
 /obj/machinery/camera{
@@ -19227,7 +19847,9 @@
 /area/station/security/brig/north_side)
 "psr" = (
 /obj/landmark/gps_waypoint,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "psu" = (
 /obj/machinery/camera{
@@ -19297,6 +19919,11 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/simulated/floor/yellowblack/corner{
 	dir = 4
 	},
@@ -19348,7 +19975,9 @@
 	icon_state = "4-8"
 	},
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "pxy" = (
 /obj/table/auto{
@@ -19532,7 +20161,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering/ce)
 "pGe" = (
 /obj/disposalpipe/segment/bent/west,
@@ -19691,7 +20322,9 @@
 /obj/machinery/atmospherics/pipe/manifold/overfloor/south,
 /obj/machinery/light/fluorescent,
 /obj/machinery/meter,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/core)
 "pMo" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -19766,9 +20399,7 @@
 /area/station/medical/medbay/restroom)
 "pNH" = (
 /obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/yellowblack/corner,
 /area/station/engine/monitoring)
@@ -19795,7 +20426,9 @@
 /area/station/chapel/sanctuary)
 "pPK" = (
 /obj/wingrille_spawn/reinforced_crystal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/core)
 "pQh" = (
 /obj/cable{
@@ -19853,7 +20486,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light_switch/west,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -19871,10 +20506,14 @@
 	dir = 2;
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "pRM" = (
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "pSh" = (
 /obj/disposalpipe/segment/brig{
@@ -19926,7 +20565,9 @@
 /obj/window/north,
 /obj/machinery/light/fluorescent/yellow,
 /obj/grille/steel,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "pTR" = (
 /obj/machinery/light/fluorescent/warm{
@@ -19942,7 +20583,9 @@
 /area/station/medical/medbay)
 "pUp" = (
 /obj/disposalpipe/segment/morgue,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "pUt" = (
 /obj/disposalpipe/trunk{
@@ -19998,7 +20641,9 @@
 /area/station/medical/robotics)
 "pVZ" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/lobby)
 "pWL" = (
 /obj/stool/chair/yellow,
@@ -20012,7 +20657,9 @@
 	icon_state = "4-8"
 	},
 /obj/grille/catwalk/jen/side,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "pXp" = (
 /obj/disposalpipe/segment/bent/south,
@@ -20060,7 +20707,9 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "pZJ" = (
 /obj/disposalpipe/segment/horizontal,
@@ -20071,7 +20720,9 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "pZV" = (
 /obj/table/auto{
@@ -20087,14 +20738,18 @@
 /obj/item/storage/toolbox/emergency{
 	pixel_y = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "qao" = (
 /obj/disposalpipe/segment/vertical,
 /turf/simulated/floor/carpet/grime,
 /area/station/chapel/office)
 "qas" = (
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/brig/south_side)
 "qaz" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -20233,14 +20888,18 @@
 	dir = 8
 	},
 /obj/disposalpipe/segment/sewage,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/wc/medbay)
 "qhF" = (
 /obj/machinery/atmospherics/unary/cold_sink/freezer/kitchen/west,
 /obj/grille/catwalk/jen/side{
 	dir = 6
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "qhQ" = (
 /obj/disposalpipe/segment/horizontal,
@@ -20266,7 +20925,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/checkpoint/east{
 	name = "Wasteland Security Checkpoint"
 	})
@@ -20436,7 +21097,9 @@
 "qpj" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "qpG" = (
 /obj/disposalpipe/segment/horizontal,
@@ -20518,7 +21181,9 @@
 /area/station/hangar/catering)
 "qsv" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/south,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "qsF" = (
 /obj/cable/blue{
@@ -20734,7 +21399,9 @@
 	},
 /obj/access_spawn/maint,
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "qzr" = (
 /obj/machinery/light_switch/east,
@@ -20762,15 +21429,20 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
 "qAv" = (
-/turf/simulated/floor/stairs/wide/other{
-	dir = 4
+/obj/machinery/light/fluorescent{
+	dir = 1
 	},
-/area/station/medical/medbay/lobby)
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
+/area/station/engine/engineering)
 "qAJ" = (
 /obj/machinery/disposal,
 /obj/disposalpipe/trunk,
@@ -20896,7 +21568,9 @@
 /obj/machinery/networked/mainframe/zeta{
 	tag = "COM_MAINFRAME"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "qFl" = (
 /obj/disposalpipe/segment/horizontal,
@@ -20932,7 +21606,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "qGb" = (
 /obj/machinery/light/fluorescent/cool/very{
@@ -21015,7 +21691,9 @@
 /obj/ladder{
 	id = "gehenna_tower_2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "qIb" = (
 /obj/machinery/light/fluorescent/cool/very{
@@ -21041,7 +21719,9 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "qIz" = (
 /obj/disposalpipe/segment/horizontal,
@@ -21259,7 +21939,9 @@
 "qPL" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "qPQ" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -21288,7 +21970,9 @@
 	dir = 5;
 	icon_state = "catwalk_jen_side"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "qQQ" = (
 /obj/disposalpipe/segment{
@@ -21313,7 +21997,9 @@
 "qRe" = (
 /obj/machinery/door/airlock/glass,
 /obj/access_spawn/research,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/testchamber{
 	name = "Test Chamber Exhaust";
 	requires_power = 0
@@ -21329,7 +22015,9 @@
 /obj/machinery/light/fluorescent{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "qRG" = (
 /obj/disposalpipe/segment/bent/south,
@@ -21465,7 +22153,9 @@
 	dir = 8
 	},
 /obj/machinery/disposal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "qYv" = (
 /obj/submachine/cargopad/qm2,
@@ -21485,7 +22175,9 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/surgery)
 "qYH" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -21546,7 +22238,9 @@
 "rbQ" = (
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/drone_recharger,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -21659,7 +22353,9 @@
 /area/station/hangar/catering)
 "rgH" = (
 /obj/disposalpipe/segment/bent/south,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "rgI" = (
 /obj/disposalpipe/segment/horizontal,
@@ -21762,14 +22458,11 @@
 /turf/simulated/floor/black,
 /area/station/quartermaster/storage)
 "rjY" = (
-/obj/cable{
-	icon_state = "1-4"
-	},
 /obj/table/reinforced/auto,
 /obj/machinery/phone{
 	pixel_x = 4
 	},
-/turf/simulated/floor/black,
+/turf/simulated/floor/yellow,
 /area/station/engine/monitoring)
 "rki" = (
 /obj/machinery/power/apc/autoname_north,
@@ -21778,7 +22471,9 @@
 	icon_state = "0-2"
 	},
 /obj/disposalpipe/segment/sewage,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/wc/medbay)
 "rkS" = (
 /obj/disposalpipe/segment/bent/east,
@@ -21859,7 +22554,9 @@
 /area/station/security/secwing)
 "rpA" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "rqu" = (
 /obj/structure/girder,
@@ -21929,7 +22626,9 @@
 	},
 /obj/machinery/door/airlock/maintenance,
 /obj/access_spawn/maint,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "rsG" = (
 /obj/table/auto,
@@ -21970,14 +22669,15 @@
 /area/station/bridge/conference)
 "rwc" = (
 /obj/disposalpipe/segment/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secoffquarters)
 "rwh" = (
-/obj/disposalpipe/segment/bent/west,
-/turf/simulated/floor/bluewhite{
-	dir = 8
+/turf/simulated/floor/stairs/wide/other{
+	dir = 4
 	},
-/area/station/medical/medbay)
+/area/station/medical/medbay/lobby)
 "rwq" = (
 /turf/simulated/floor,
 /area/station/bridge)
@@ -21990,7 +22690,9 @@
 	icon_state = "0-4"
 	},
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "rwA" = (
 /obj/cable{
@@ -22012,15 +22714,21 @@
 	},
 /obj/item/storage/toolbox/emergency,
 /obj/item/storage/firstaid/regular,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "rwL" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering/ce)
 "rxl" = (
 /obj/item/device/radio/beacon,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "rxu" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -22211,7 +22919,9 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/segment/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "rDL" = (
 /obj/stool/chair/comfy/green{
@@ -22243,7 +22953,9 @@
 	dir = 8
 	},
 /obj/access_spawn/engineering,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering/ce)
 "rFI" = (
 /obj/decal/poster/wallsign/poster_nt{
@@ -22316,7 +23028,9 @@
 	d2 = 8;
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/checkpoint/east{
 	name = "Wasteland Security Checkpoint"
 	})
@@ -22338,7 +23052,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "rKf" = (
 /obj/disposalpipe/junction/left/west,
@@ -22438,7 +23154,9 @@
 "rMr" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/bridge/conference)
 "rMF" = (
 /turf/simulated/floor/purplewhite/corner{
@@ -22501,7 +23219,9 @@
 /area/station/engine/engineering/ce)
 "rPt" = (
 /obj/machinery/atmospherics/pipe/tank/carbon_dioxide/south,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "rPx" = (
 /obj/machinery/disposal/mail/autoname/engineering{
@@ -22764,7 +23484,9 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/checkpoint/east{
 	name = "Wasteland Security Checkpoint"
 	})
@@ -22795,14 +23517,18 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "saK" = (
 /obj/machinery/firealarm{
 	pixel_y = 24
 	},
 /obj/machinery/atmospherics/pipe/manifold/overfloor/north,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/core)
 "sbN" = (
 /obj/machinery/door/airlock,
@@ -22841,7 +23567,9 @@
 /obj/ladder{
 	id = "gehenna_tower_1"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "scB" = (
 /obj/disposalpipe/segment/bent/south,
@@ -22878,7 +23606,9 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "sdK" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -22901,10 +23631,11 @@
 /turf/simulated/floor,
 /area/station/medical/medbay/lobby)
 "sfH" = (
-/obj/machinery/light/fluorescent,
-/obj/ladder/auto,
-/turf/simulated/floor/yellow,
-/area/station/engine/engineering)
+/obj/disposalpipe/segment/bent/west,
+/turf/simulated/floor/bluewhite{
+	dir = 8
+	},
+/area/station/medical/medbay)
 "sfR" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/machinery/door/firedoor/pyro{
@@ -22993,14 +23724,24 @@
 	icon_state = "1-8"
 	},
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "sli" = (
 /obj/cable{
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/horizontal,
-/turf/simulated/floor/plating,
+/obj/decal/tile_edge/floorguide/arrow_e{
+	dir = 1
+	},
+/obj/decal/tile_edge/floorguide/evac{
+	dir = 4
+	},
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "slE" = (
 /obj/stool/chair{
@@ -23097,7 +23838,9 @@
 /obj/disposalpipe/segment/food,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/hangar/catering)
 "sof" = (
 /obj/cable{
@@ -23135,7 +23878,9 @@
 	dir = 8;
 	pixel_x = -16
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/bridge/customs)
 "spz" = (
 /obj/machinery/atmospherics/unary/vent_pump/south,
@@ -23176,7 +23921,9 @@
 	dir = 8
 	},
 /obj/disposalpipe/segment/bent/north,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "srk" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -23232,7 +23979,9 @@
 	dir = 8;
 	tag = "icon-term (WEST)"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "sug" = (
 /obj/disposalpipe/segment/bent/north,
@@ -23255,11 +24004,15 @@
 /obj/table/auto,
 /obj/disposalpipe/segment/bent/west,
 /obj/item/satchel/hydro/large,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "svf" = (
 /obj/disposalpipe/segment/bent/north,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "svt" = (
 /obj/grille/catwalk/jen,
@@ -23270,7 +24023,9 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/data_terminal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "svW" = (
 /obj/disposalpipe/trunk{
@@ -23484,12 +24239,9 @@
 	},
 /area/space)
 "sFs" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
 /obj/table/reinforced/auto,
 /obj/random_item_spawner/tools_w_igloves,
-/turf/simulated/floor/black,
+/turf/simulated/floor/yellow,
 /area/station/engine/monitoring)
 "sFD" = (
 /obj/stool/chair/couch,
@@ -23551,7 +24303,9 @@
 	dir = 2;
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "sIN" = (
 /obj/machinery/light/small/floor/harsh,
@@ -23588,7 +24342,9 @@
 	icon_state = "4-10"
 	},
 /obj/machinery/atmospherics/pipe/simple/overfloor/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "sKW" = (
 /obj/machinery/camera{
@@ -23664,7 +24420,9 @@
 /obj/grille/catwalk/jen/side{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "sOf" = (
 /obj/machinery/light/fluorescent/cool/very,
@@ -23687,7 +24445,9 @@
 /obj/forcefield/energyshield/perma,
 /obj/machinery/door/airlock/pyro/external,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -23701,14 +24461,8 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
 	},
-/obj/decal/tile_edge/line/yellow{
-	dir = 1;
-	icon_state = "line1"
-	},
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
 	},
 /turf/simulated/floor/black,
 /area/station/engine/monitoring)
@@ -23768,7 +24522,9 @@
 "sRL" = (
 /obj/decal/cleanable/dirt/random,
 /obj/random_item_spawner/junk/one_or_zero,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering/ce)
 "sRN" = (
 /obj/cable{
@@ -23819,7 +24575,9 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay)
 "sUp" = (
 /obj/cable{
@@ -23881,33 +24639,24 @@
 /obj/cable{
 	icon_state = "5-9"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/wc/sec)
 "sXJ" = (
 /turf/simulated/floor,
 /area/station/security/brig/cell_block_control)
 "sXL" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/table/reinforced/auto,
-/turf/simulated/floor/black,
+/obj/ladder/auto,
+/turf/simulated/floor/yellow,
 /area/station/engine/monitoring)
 "sXV" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/food,
 /obj/window_blinds/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/hydroponics/bay)
 "sYk" = (
 /obj/disposalpipe/segment/brig,
@@ -23921,7 +24670,9 @@
 "sYI" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /obj/machinery/meter,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "sYL" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -23941,7 +24692,9 @@
 /area/station/wc/medbay)
 "sZL" = (
 /obj/rack,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "sZT" = (
 /obj/machinery/portable_atmospherics/canister/air/large,
@@ -23999,14 +24752,20 @@
 "tbv" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/brig/south_side)
 "tcd" = (
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/supply/spawn_point)
 "tcG" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "tcZ" = (
 /obj/table/auto,
@@ -24018,7 +24777,9 @@
 	pixel_x = 1;
 	pixel_y = 5
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "tdi" = (
 /obj/machinery/light/fluorescent{
@@ -24059,7 +24820,9 @@
 	dir = 4
 	},
 /obj/decal/cleanable/dirt/random,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "tfE" = (
 /obj/cable{
@@ -24135,7 +24898,9 @@
 "tgY" = (
 /obj/wingrille_spawn,
 /obj/disposalpipe/segment/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/arcade/dungeon)
 "tht" = (
 /obj/disposalpipe/trunk{
@@ -24165,7 +24930,9 @@
 	icon_state = "1-4"
 	},
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "tiQ" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
@@ -24208,7 +24975,9 @@
 /area/space)
 "tkc" = (
 /obj/disposalpipe/segment/bent/west,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "tkn" = (
 /obj/stool,
@@ -24309,7 +25078,9 @@
 /area/station/bridge)
 "toD" = (
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/main)
 "tpG" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -24335,7 +25106,9 @@
 /obj/grille/catwalk/jen/side{
 	dir = 6
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "tqE" = (
 /obj/machinery/light/fluorescent/cool/very{
@@ -24408,7 +25181,9 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/core)
 "tsV" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/vertical,
@@ -24418,7 +25193,9 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/east{
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secoffquarters)
 "ttz" = (
 /obj/disposalpipe/segment/vertical,
@@ -24439,7 +25216,9 @@
 "tuC" = (
 /obj/wingrille_spawn/crystal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secoffquarters)
 "tuG" = (
 /obj/cable{
@@ -24460,7 +25239,9 @@
 /area/station/security/brig/south_side)
 "twf" = (
 /obj/machinery/portable_atmospherics/pump,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "twl" = (
 /obj/machinery/door/airlock/glass,
@@ -24501,7 +25282,9 @@
 	icon_state = "4-8"
 	},
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -24511,7 +25294,9 @@
 /area/station/medical/medbay/pharmacy)
 "txY" = (
 /obj/machinery/atmospherics/pipe/vent/north,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering{
 	icon_state = "red";
 	name = "Exhaust Vent";
@@ -24573,7 +25358,9 @@
 /turf/simulated/floor/red/redblackchecker,
 /area/station/security/secwing)
 "tAQ" = (
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -24624,7 +25411,9 @@
 /area/station/medical/crematorium)
 "tEh" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "tEI" = (
 /obj/table/wood/auto,
@@ -24650,7 +25439,9 @@
 	icon_state = "4-8"
 	},
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "tFE" = (
 /obj/cable{
@@ -24662,7 +25453,9 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/east{
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/artifact{
 	name = "Artifact Lounge"
 	})
@@ -24690,12 +25483,16 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "tHO" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/head)
 "tHX" = (
 /obj/item/device/radio/beacon,
@@ -24781,7 +25578,9 @@
 /area/station/bridge/customs)
 "tLr" = (
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/bridge)
 "tLC" = (
 /obj/disposalpipe/segment/bent/east,
@@ -24888,7 +25687,9 @@
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice)
 "tQe" = (
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/storage)
 "tQp" = (
 /turf/simulated/wall,
@@ -24920,15 +25721,17 @@
 /area/station/engine/core)
 "tRl" = (
 /obj/disposalpipe/segment/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "tRU" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 10
 	},
-/obj/decal/tile_edge/line/yellow{
+/obj/decal/tile_edge/stripe/extra_big{
 	dir = 10;
-	icon_state = "line1"
+	icon_state = "xtra_bigstripe-corner2"
 	},
 /turf/simulated/floor/black,
 /area/station/engine/monitoring)
@@ -24966,7 +25769,9 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/listeningpost)
 "tTn" = (
 /obj/chainlink_fence,
@@ -25089,14 +25894,18 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "tZB" = (
 /obj/neon_lining{
 	color = "#FFBB70";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/listeningpost)
 "uaE" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
@@ -25165,7 +25974,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "udF" = (
 /turf/simulated/floor,
@@ -25178,7 +25989,9 @@
 /obj/grille/catwalk/jen/side{
 	dir = 10
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "udY" = (
 /obj/grille/catwalk/jen,
@@ -25188,7 +26001,9 @@
 /obj/cable/blue{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "uea" = (
 /obj/machinery/disposal/morgue{
@@ -25242,7 +26057,9 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "ufW" = (
 /obj/table/reinforced/auto,
@@ -25258,7 +26075,9 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -25315,7 +26134,9 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "uja" = (
 /obj/disposalpipe/segment/bent/north,
@@ -25351,7 +26172,9 @@
 /area/station/crew_quarters/farmers)
 "uks" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/artifact{
 	name = "Artifact Lounge"
 	})
@@ -25407,7 +26230,9 @@
 "umd" = (
 /obj/disposalpipe/segment/bent/north,
 /obj/machinery/light/small/cool,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "umW" = (
 /turf/simulated/wall,
@@ -25427,7 +26252,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/power/breaker,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "uop" = (
 /obj/cable{
@@ -25521,7 +26348,9 @@
 	color = "#FF00FF";
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/listeningpost)
 "urU" = (
 /obj/machinery/door/poddoor/pyro{
@@ -25552,6 +26381,11 @@
 	},
 /obj/cable{
 	icon_state = "1-2"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/simulated/floor/yellowblack/corner{
 	dir = 1
@@ -25594,7 +26428,9 @@
 /area/station/security/brig/north_side)
 "uwD" = (
 /obj/machinery/atmospherics/pipe/vent/north,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -25654,7 +26490,9 @@
 "uyQ" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "uyU" = (
 /turf/space/gehenna/desert/plating{
@@ -25709,7 +26547,9 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "uCe" = (
 /obj/cable{
@@ -25717,7 +26557,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "uCi" = (
 /obj/table/wood/auto,
@@ -25851,7 +26693,9 @@
 /obj/machinery/door/airlock,
 /obj/access_spawn/research,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/artifact{
 	name = "Artifact Lounge"
 	})
@@ -25914,7 +26758,9 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/checkpoint/east{
 	name = "Wasteland Security Checkpoint"
 	})
@@ -25999,7 +26845,9 @@
 	dir = 8
 	},
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "uMu" = (
 /obj/decal/tile_edge/stripe/extra_big,
@@ -26122,11 +26970,15 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/autoname_west,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "uPI" = (
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "uPP" = (
 /obj/disposalpipe/segment/brig{
@@ -26153,7 +27005,9 @@
 	icon_state = "2-8"
 	},
 /obj/disposalpipe/segment/bent/south,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "uRn" = (
 /obj/machinery/light/fluorescent/cool/very{
@@ -26285,7 +27139,9 @@
 "uUI" = (
 /obj/disposalpipe/segment/vertical,
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secwing)
 "uUK" = (
 /obj/disposalpipe/segment/brig{
@@ -26323,7 +27179,9 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/overfloor/vertical,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/access_spawn/engineering_control,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/core)
 "uWg" = (
 /obj/wingrille_spawn/reinforced,
@@ -26331,7 +27189,9 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/checkpoint/cargo)
 "uWo" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
@@ -26412,7 +27272,9 @@
 	icon_state = "4-8"
 	},
 /obj/access_spawn/syndie_shuttle,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/listeningpost)
 "uZa" = (
 /obj/disposalpipe/segment/vertical,
@@ -26431,7 +27293,9 @@
 /obj/cable{
 	icon_state = "2-9"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "uZQ" = (
 /obj/stool/chair/comfy/wheelchair,
@@ -26495,7 +27359,9 @@
 	icon_state = "0-4"
 	},
 /obj/cable,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/checkpoint/east{
 	name = "Wasteland Security Checkpoint"
 	})
@@ -26610,7 +27476,9 @@
 /area/station/hydroponics/bay)
 "vjY" = (
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/arcade/dungeon)
 "vki" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -26700,7 +27568,9 @@
 /obj/machinery/light/fluorescent/red{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "voh" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -26738,7 +27608,9 @@
 	d2 = 4;
 	icon_state = "5-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "vpB" = (
 /obj/disposalpipe/segment/bent/south,
@@ -26970,7 +27842,9 @@
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/scrubber,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "vCT" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/overfloor/southeast,
@@ -27221,7 +28095,9 @@
 	dir = 8
 	},
 /obj/disposalpipe/segment/food,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "vNx" = (
 /obj/machinery/power/apc/autoname_west,
@@ -27245,7 +28121,9 @@
 "vNX" = (
 /obj/rack,
 /obj/item/wirecutters,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "vOV" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -27284,7 +28162,9 @@
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "vQN" = (
 /obj/table/reinforced/industrial/auto,
@@ -27324,7 +28204,9 @@
 /area/station/medical/medbay)
 "vSl" = (
 /obj/disposalpipe/segment/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "vSC" = (
 /obj/machinery/light/small/floor/harsh,
@@ -27353,7 +28235,9 @@
 	dir = 4;
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/secoffquarters)
 "vTg" = (
 /obj/grille/catwalk/grey{
@@ -27391,7 +28275,9 @@
 /obj/decal/tile_edge/floorguide/ladder{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "vVK" = (
 /obj/decal/poster/wallsign/fire,
@@ -27547,7 +28433,9 @@
 "wbo" = (
 /obj/table/auto,
 /obj/item/storage/box/costume/hotdog,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "wbB" = (
 /obj/machinery/door/airlock/glass/engineering,
@@ -27652,7 +28540,9 @@
 	icon_state = "1-2"
 	},
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "wfb" = (
 /obj/disposalpipe/segment/sewage,
@@ -27690,7 +28580,9 @@
 	dir = 1;
 	pixel_y = 32
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering{
 	icon_state = "red";
 	name = "Exhaust Vent";
@@ -27705,7 +28597,9 @@
 "wgU" = (
 /obj/machinery/atmospherics/portables_connector/west,
 /obj/machinery/portable_atmospherics/scrubber,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "whq" = (
 /obj/storage/secure/closet/command/medical_director,
@@ -27856,13 +28750,17 @@
 	dir = 4
 	},
 /obj/random_item_spawner/junk/one_or_zero,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/core)
 "wnz" = (
 /obj/machinery/atmospherics/unary/cold_sink/freezer/kitchen/south{
 	name = "freezer (morgue)"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "wnE" = (
 /turf/simulated/floor/white,
@@ -28067,7 +28965,9 @@
 "wvR" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/security/checkpoint/east{
 	name = "Wasteland Security Checkpoint"
 	})
@@ -28155,7 +29055,9 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "wyk" = (
 /obj/stool/chair/comfy/blue{
@@ -28227,7 +29129,9 @@
 "wzT" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/access_spawn/medical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/pharmacy)
 "wBe" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
@@ -28267,7 +29171,9 @@
 /area/station/security/main)
 "wCu" = (
 /obj/disposalpipe/junction/right/south,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "wCC" = (
 /turf/simulated/wall/r_wall,
@@ -28275,7 +29181,9 @@
 "wCF" = (
 /obj/machinery/door/airlock/pyro/external,
 /obj/forcefield/energyshield/perma,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -28301,7 +29209,9 @@
 /obj/item/suture{
 	pixel_y = 5
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "wDa" = (
 /obj/stool/chair/blue,
@@ -28347,7 +29257,9 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/testchamber{
 	name = "Test Chamber Exhaust";
 	requires_power = 0
@@ -28400,7 +29312,9 @@
 	icon_state = "4-8"
 	},
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "wIs" = (
 /obj/machinery/light/fluorescent,
@@ -28486,12 +29400,16 @@
 	},
 /area/station/medical/medbay)
 "wLF" = (
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "wMf" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay)
 "wMj" = (
 /obj/machinery/atmospherics/pipe/tank/west,
@@ -28629,7 +29547,9 @@
 	color = "#FFBB70";
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/listeningpost)
 "wRF" = (
 /obj/storage/secure/closet/medical/medkit,
@@ -28670,7 +29590,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/storage)
 "wSF" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -28678,7 +29600,9 @@
 /area/station/medical/medbay)
 "wSH" = (
 /obj/machinery/light/fluorescent,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "wTr" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -28723,12 +29647,16 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/storage)
 "wVd" = (
 /obj/decal/cleanable/dirt/random,
 /obj/disposalpipe/segment/bent/north,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -28765,7 +29693,9 @@
 /area/station/crew_quarters/farmers)
 "wXq" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargooffice/gunsmithing)
 "wXZ" = (
 /obj/table/auto,
@@ -28788,7 +29718,9 @@
 "wYm" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/mail/vertical,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "wYE" = (
 /turf/simulated/wall/r_wall,
@@ -28800,6 +29732,9 @@
 /area/station/engine/core)
 "wYT" = (
 /obj/machinery/atmospherics/valve,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/black,
 /area/station/engine/monitoring)
 "wZa" = (
@@ -28858,7 +29793,9 @@
 /area/station/engine/engineering/ce)
 "xdl" = (
 /obj/disposalpipe/segment/bent/south,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "xdJ" = (
 /obj/machinery/light/small/floor/harsh,
@@ -28879,7 +29816,9 @@
 /obj/machinery/light/small/cool{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "xeq" = (
 /obj/cable{
@@ -28912,7 +29851,9 @@
 /obj/machinery/power/monitor/smes{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/turret_protected/Zeta)
 "xeF" = (
 /turf/simulated/floor/purple/checker,
@@ -29114,7 +30055,9 @@
 /area/station/hangar/catering)
 "xjM" = (
 /obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "xkn" = (
 /obj/machinery/vending/pizza,
@@ -29211,7 +30154,9 @@
 /area/station/bridge)
 "xnp" = (
 /obj/wingrille_spawn,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay)
 "xnO" = (
 /obj/cable{
@@ -29262,7 +30207,9 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/south{
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "xqI" = (
 /obj/disposalpipe/segment/produce{
@@ -29272,7 +30219,9 @@
 	dir = 8
 	},
 /obj/disposalpipe/segment/food,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/crew_quarters/farmers)
 "xqQ" = (
 /obj/machinery/camera{
@@ -29345,7 +30294,9 @@
 	d2 = 4;
 	icon_state = "5-8"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "xuv" = (
 /obj/machinery/r_door_control/podbay/catering,
@@ -29376,7 +30327,9 @@
 "xws" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/access_spawn/maint,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/nw)
 "xwu" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
@@ -29779,7 +30732,9 @@
 /area/station/quartermaster/cargooffice)
 "xMO" = (
 /obj/machinery/atmospherics/pipe/vent/north,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/testchamber{
 	name = "Test Chamber Exhaust";
 	requires_power = 0
@@ -29803,7 +30758,9 @@
 	dir = 8;
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "xNN" = (
 /obj/railing/orange,
@@ -29836,7 +30793,9 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/west{
 	target_z = 3
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/ne)
 "xOA" = (
 /obj/table/reinforced/auto,
@@ -29897,7 +30856,9 @@
 	icon_state = "0-8"
 	},
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "xRl" = (
 /obj/disposalpipe/segment/vertical,
@@ -29983,7 +30944,9 @@
 	icon_state = "4-8"
 	},
 /obj/access_spawn/hangar,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/quartermaster/cargobay)
 "xXu" = (
 /obj/table/folding,
@@ -30011,7 +30974,9 @@
 	dir = 1
 	},
 /obj/grille/steel,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/space)
 "xYF" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -30076,7 +31041,9 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "yax" = (
 /obj/machinery/light/fluorescent/cool/very{
@@ -30200,7 +31167,9 @@
 /obj/stool/chair{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/medbay/lobby)
 "yfc" = (
 /obj/table/wood/auto,
@@ -30222,7 +31191,9 @@
 	icon_state = "1-4"
 	},
 /obj/disposalpipe/segment/bent/north,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering)
 "yfA" = (
 /obj/machinery/light/fluorescent/cool/very,
@@ -30277,7 +31248,9 @@
 /area/station/quartermaster/cargooffice/storefront)
 "yjp" = (
 /obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/artifact{
 	name = "Artifact Lounge"
 	})
@@ -30287,7 +31260,9 @@
 /obj/machinery/networked/test_apparatus/gas_sensor{
 	setup_tag = "EXHAUST"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/engineering{
 	icon_state = "red";
 	name = "Exhaust Vent";
@@ -30302,13 +31277,17 @@
 /area/station/bridge/customs)
 "ykd" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/maintenance/inner/north)
 "ykz" = (
 /obj/machinery/atmospherics/valve/horizontal{
 	name = "burn chamber valve B"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/engine/core)
 "ykD" = (
 /obj/cable/blue{
@@ -30326,7 +31305,9 @@
 /area/station/security/hos)
 "ykX" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/northwest,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/medical/maintenance)
 "ylp" = (
 /obj/disposalpipe/segment/horizontal,
@@ -30342,7 +31323,9 @@
 /turf/simulated/floor,
 /area/station/chapel/sanctuary)
 "ylH" = (
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
 /area/station/science/testchamber{
 	name = "Test Chamber Exhaust";
 	requires_power = 0
@@ -54704,7 +55687,7 @@ cqC
 cqC
 cqC
 cqC
-iiv
+jlo
 iiv
 iiv
 iiv
@@ -61950,7 +62933,7 @@ vrv
 vrv
 jUx
 qIz
-kqn
+mpr
 aRZ
 deQ
 deQ
@@ -64062,9 +65045,9 @@ dLG
 rxu
 luh
 tnK
-rwh
+sfH
 yag
-nUj
+kYt
 lRk
 lRk
 xnp
@@ -64953,7 +65936,7 @@ iiv
 iiv
 pVZ
 dIx
-kVX
+kCX
 qcY
 cTg
 cqC
@@ -65558,7 +66541,7 @@ cTg
 cTg
 cTg
 pCr
-qAv
+rwh
 cTg
 cTg
 cTg
@@ -69499,7 +70482,7 @@ wEP
 mSK
 mSe
 wLc
-dMS
+jyB
 url
 wjN
 cKi
@@ -83070,8 +84053,8 @@ iVv
 evd
 ewG
 vhe
-kCX
-sfH
+tFE
+fVy
 nIC
 tCO
 fhI
@@ -90026,7 +91009,7 @@ rht
 czn
 pMa
 pgt
-oPU
+qAv
 qpj
 cML
 heK
@@ -91536,7 +92519,7 @@ iZU
 lgM
 kEp
 pgt
-oPU
+qAv
 jLJ
 cML
 heK
@@ -93046,7 +94029,7 @@ noj
 jAY
 qUH
 cML
-oPU
+qAv
 dVx
 dVx
 dVx
@@ -94256,7 +95239,7 @@ wgn
 nqF
 hjh
 cML
-oPU
+qAv
 dVx
 dVx
 rxl
@@ -98425,7 +99408,7 @@ jEb
 jEb
 deC
 xOs
-cIZ
+sli
 dXQ
 xNl
 xNl
@@ -99331,7 +100314,7 @@ jEb
 jEb
 jEb
 dwC
-sli
+cIZ
 oDR
 dwC
 jEb
@@ -99633,7 +100616,7 @@ jEb
 jEb
 jEb
 goL
-sli
+cIZ
 oDR
 dwC
 jEb
@@ -99935,7 +100918,7 @@ jEb
 jEb
 jEb
 goL
-sli
+cIZ
 oDR
 dwC
 jEb
@@ -100237,7 +101220,7 @@ jEb
 jEb
 jEb
 goL
-sli
+cIZ
 oDR
 dwC
 jEb
@@ -100539,7 +101522,7 @@ jEb
 jEb
 jEb
 goL
-sli
+cIZ
 oDR
 dwC
 jEb
@@ -100841,7 +101824,7 @@ jEb
 jEb
 jEb
 dwC
-sli
+cIZ
 oDR
 dwC
 jEb
@@ -101445,7 +102428,7 @@ jEb
 jEb
 jEb
 dwC
-sli
+cIZ
 oDR
 dwC
 jEb
@@ -101747,7 +102730,7 @@ jEb
 jEb
 jEb
 goL
-sli
+cIZ
 oDR
 dwC
 jEb
@@ -102049,7 +103032,7 @@ jEb
 jEb
 jEb
 goL
-sli
+cIZ
 oDR
 dwC
 jEb
@@ -102351,7 +103334,7 @@ jEb
 jEb
 jEb
 goL
-sli
+cIZ
 oDR
 dwC
 jEb
@@ -102653,7 +103636,7 @@ jEb
 jEb
 jEb
 goL
-sli
+cIZ
 oDR
 dwC
 jEb
@@ -102955,7 +103938,7 @@ jEb
 jEb
 jEb
 goL
-sli
+cIZ
 oDR
 dwC
 jEb
@@ -103257,7 +104240,7 @@ jEb
 jEb
 jEb
 dwC
-sli
+cIZ
 oDR
 dwC
 jEb
@@ -103861,7 +104844,7 @@ jEb
 jEb
 jEb
 dwC
-sli
+cIZ
 oDR
 dwC
 jEb
@@ -104163,7 +105146,7 @@ jEb
 jEb
 jEb
 goL
-sli
+cIZ
 oDR
 dwC
 jEb
@@ -104465,7 +105448,7 @@ jEb
 jEb
 jEb
 goL
-sli
+cIZ
 oDR
 dwC
 jEb
@@ -104767,7 +105750,7 @@ jEb
 jEb
 jEb
 goL
-sli
+cIZ
 oDR
 dwC
 jEb
@@ -105069,7 +106052,7 @@ jEb
 jEb
 jEb
 goL
-sli
+cIZ
 oDR
 dwC
 wwc
@@ -105371,7 +106354,7 @@ jEb
 jEb
 jEb
 dwC
-sli
+cIZ
 oDR
 dwC
 wwc
