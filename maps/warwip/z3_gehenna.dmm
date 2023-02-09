@@ -6958,9 +6958,6 @@
 /obj/decal/poster/wallsign/stencil/right/c{
 	pixel_y = 38
 	},
-/obj/decal/tile_edge/floorguide/arrow_n{
-	pixel_y = 32
-	},
 /turf/simulated/floor/industrial,
 /area/station/crewquarters/cryotron)
 "esc" = (
@@ -11903,12 +11900,8 @@
 /turf/simulated/floor/plating,
 /area/noGenerate)
 "hCB" = (
-/obj/decal/tile_edge/floorguide/medbay{
-	dir = 8
-	},
-/turf/simulated/floor/bluewhite{
-	dir = 1
-	},
+/obj/decal/tile_edge/floorguide/arrow_n,
+/turf/simulated/wall,
 /area/station/crewquarters/cryotron)
 "hDc" = (
 /obj/disposalpipe/segment/bent/west,
@@ -27192,6 +27185,14 @@
 	},
 /turf/simulated/floor/black,
 /area/station/engine/coldloop)
+"rlP" = (
+/obj/decal/tile_edge/floorguide/medbay{
+	dir = 8
+	},
+/turf/simulated/floor/bluewhite{
+	dir = 1
+	},
+/area/station/crewquarters/cryotron)
 "rmg" = (
 /obj/disposalpipe/segment/morgue,
 /turf/simulated/floor/black,
@@ -72771,9 +72772,9 @@ pdO
 pdO
 pdO
 pdO
-dwV
-erP
 hCB
+erP
+rlP
 brN
 ktA
 dwV
