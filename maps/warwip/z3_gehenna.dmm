@@ -4769,6 +4769,10 @@
 /obj/machinery/light/emergency{
 	dir = 4
 	},
+/obj/decal/tile_edge/floorguide/ladder,
+/obj/decal/tile_edge/floorguide/arrow_n{
+	dir = 4
+	},
 /turf/simulated/floor/white,
 /area/station/crewquarters/cryotron)
 "diK" = (
@@ -6944,12 +6948,20 @@
 /turf/simulated/floor/black,
 /area/station/science/chemistry)
 "erP" = (
-/obj/machinery/clothingbooth,
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10
+	},
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
 	},
-/obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/floor/grey,
+/obj/decal/poster/wallsign/stencil/right/c{
+	pixel_y = 38
+	},
+/obj/decal/tile_edge/floorguide/arrow_n{
+	pixel_y = 32
+	},
+/turf/simulated/floor/industrial,
 /area/station/crewquarters/cryotron)
 "esc" = (
 /obj/disposalpipe/segment/bent/west,
@@ -7539,9 +7551,13 @@
 /turf/simulated/floor/industrial,
 /area/station/medical/basement)
 "eKp" = (
-/obj/machinery/vending/air_vendor,
 /obj/disposalpipe/segment/bent/south,
-/turf/simulated/floor/grey,
+/obj/ladder/auto,
+/obj/decal/tile_edge/stripe/extra_big,
+/obj/decal/poster/wallsign/medbay_text{
+	pixel_y = 38
+	},
+/turf/simulated/floor/industrial,
 /area/station/crewquarters/cryotron)
 "eKt" = (
 /obj/disposalpipe/segment/horizontal,
@@ -8592,7 +8608,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
-/obj/machinery/vending/snack,
+/obj/machinery/clothingbooth,
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "fvq" = (
@@ -11887,13 +11903,13 @@
 /turf/simulated/floor/plating,
 /area/noGenerate)
 "hCB" = (
-/obj/disposalpipe/segment/morgue,
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 6;
-	icon_state = "xtra_bigstripe-corner2"
+/obj/decal/tile_edge/floorguide/medbay{
+	dir = 8
 	},
-/turf/simulated/floor/white,
-/area/station/medical/basement)
+/turf/simulated/floor/bluewhite{
+	dir = 1
+	},
+/area/station/crewquarters/cryotron)
 "hDc" = (
 /obj/disposalpipe/segment/bent/west,
 /obj/stool/bench/auto,
@@ -12728,6 +12744,7 @@
 /obj/decal/poster/wallsign/poster_human{
 	pixel_y = 32
 	},
+/obj/machinery/vending/air_vendor,
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "ieG" = (
@@ -13960,9 +13977,6 @@
 /area/station/bridge/basement)
 "iQP" = (
 /obj/disposalpipe/segment/bent/east,
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 1
-	},
 /turf/simulated/floor/blackwhite{
 	dir = 4
 	},
@@ -24711,6 +24725,9 @@
 	pixel_x = 29
 	},
 /obj/disposalpipe/segment/mail/vertical,
+/obj/decal/tile_edge/floorguide/medbay{
+	dir = 1
+	},
 /turf/simulated/floor/bluewhite{
 	dir = 1
 	},
@@ -27175,14 +27192,6 @@
 	},
 /turf/simulated/floor/black,
 /area/station/engine/coldloop)
-"rlP" = (
-/obj/disposalpipe/segment/morgue,
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 5;
-	icon_state = "xtra_bigstripe-corner2"
-	},
-/turf/simulated/floor/white,
-/area/station/medical/basement)
 "rmg" = (
 /obj/disposalpipe/segment/morgue,
 /turf/simulated/floor/black,
@@ -27809,8 +27818,9 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
 	},
-/obj/ladder/auto,
-/turf/simulated/floor/bluegreen,
+/turf/simulated/floor/blackwhite{
+	dir = 4
+	},
 /area/station/medical/basement)
 "rHj" = (
 /obj/disposalpipe/segment/sewage,
@@ -31580,13 +31590,6 @@
 /area/station/science/artifact{
 	name = "Artifact Lounge"
 	})
-"tVJ" = (
-/obj/disposalpipe/segment/morgue,
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 4
-	},
-/turf/simulated/floor/white,
-/area/station/medical/basement)
 "tVT" = (
 /obj/cable{
 	d1 = 2;
@@ -70063,9 +70066,9 @@ cLK
 cLK
 eiD
 lVi
-hCB
-tVJ
-rlP
+cLK
+cLK
+cLK
 nib
 grV
 eCs
@@ -72770,7 +72773,7 @@ pdO
 pdO
 dwV
 erP
-fXD
+hCB
 brN
 ktA
 dwV
