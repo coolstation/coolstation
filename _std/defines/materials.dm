@@ -17,6 +17,10 @@
 /// Rubber , latex etc
 #define MATERIAL_RUBBER 32
 
+// Gonna leave a bit of space between the categories and this one in case we want more categories, organisation!
+/// This material is altered from (infusion) or interpolated from (nanocrucible) other materials and needs to be copied
+#define MATERIAL_NONSTANDARD 256
+
 /// Global static list of rarity color associations
 var/global/static/list/RARITY_COLOR = list("#9d9d9d", "#ffffff", "#1eff00", "#0070dd", "#a335ee", "#ff8000", "#ff0000")
 

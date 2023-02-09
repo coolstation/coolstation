@@ -750,6 +750,7 @@
 			var/obj/item/material_piece/wad/W = new()
 
 			if(refined?.material)
+				refined.material.material_flags |= MATERIAL_NONSTANDARD
 				refined.material.canMix = 0
 				refined.material.name = "[master_chem_name]-infused [refined.material.name]"
 				refined.material.mat_id = "[master_chem_name][refined.material.mat_id]"

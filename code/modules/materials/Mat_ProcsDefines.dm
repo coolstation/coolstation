@@ -70,6 +70,8 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 		return 0
 	if(isnull(M1) && isnull(M2))
 		return 1
+	if(!(M1.material_flags & MATERIAL_NONSTANDARD) && !(M2.material_flags & MATERIAL_NONSTANDARD))
+		return M1.mat_id == M2.mat_id //Now that we're tracking mixed materials we can shortcut this proc most of the time
 	if(M1.properties.len != M2.properties.len || M1.mat_id != M2.mat_id)
 		return 0
 	if(M1.value != M2.value || M1.name != M2.name  || M1.color != M2.color ||M1.alpha != M2.alpha || M1.material_flags != M2.material_flags || M1.texture != M2.texture)
@@ -155,7 +157,7 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 /atom/proc/setMaterial(datum/material/mat1, appearance = 1, setname = 1, copy = 1, use_descriptors = 0)
 	if(!mat1 ||!istype(mat1, /datum/material))
 		return
-	if(copy)
+	if(mat1.material_flags & MATERIAL_NONSTANDARD) //Deprecating the copy flag in favour of marking all the nonstandard materials, it does wonders
 		mat1 = copyMaterial(mat1)
 
 	var/traitDesc = get_material_trait_desc(mat1)
@@ -343,12 +345,15 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 	//
 
 	//This is sub-optimal and only used because im dumb
-	if(mat1.material_flags & MATERIAL_CRYSTAL || mat2.material_flags & MATERIAL_CRYSTAL) newMat.material_flags |= MATERIAL_CRYSTAL
+	/*if(mat1.material_flags & MATERIAL_CRYSTAL || mat2.material_flags & MATERIAL_CRYSTAL) newMat.material_flags |= MATERIAL_CRYSTAL
 	if(mat1.material_flags & MATERIAL_METAL || mat2.material_flags & MATERIAL_METAL) newMat.material_flags |= MATERIAL_METAL
 	if(mat1.material_flags & MATERIAL_CLOTH || mat2.material_flags & MATERIAL_CLOTH) newMat.material_flags |= MATERIAL_CLOTH
 	if(mat1.material_flags & MATERIAL_ORGANIC || mat2.material_flags & MATERIAL_ORGANIC) newMat.material_flags |= MATERIAL_ORGANIC
 	if(mat1.material_flags & MATERIAL_ENERGY || mat2.material_flags & MATERIAL_ENERGY) newMat.material_flags |= MATERIAL_ENERGY
-	if(mat1.material_flags & MATERIAL_RUBBER || mat2.material_flags & MATERIAL_RUBBER) newMat.material_flags |= MATERIAL_RUBBER
+	if(mat1.material_flags & MATERIAL_RUBBER || mat2.material_flags & MATERIAL_RUBBER) newMat.material_flags |= MATERIAL_RUBBER*/
+	newMat.material_flags = mat1.material_flags | mat2.material_flags //<That's how it's done instead (not that just slapping all the mat flags together is great)
+
+	newMat.material_flags |= MATERIAL_NONSTANDARD
 
 	newMat.parent_materials.Add(mat1)
 	newMat.parent_materials.Add(mat2)
