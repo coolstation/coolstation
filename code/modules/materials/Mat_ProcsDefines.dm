@@ -142,31 +142,29 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 /// if a material is listed in here then we don't take on its color/alpha (maybe, if this works)
 /atom/var/list/mat_appearances_to_ignore = null
 
+/* //Used to be called in setMaterial but nothing ever had stats high/low enough to qualify
 /proc/getMaterialPrefixList(datum/material/base)
 	. = list()
 
 	for(var/datum/material_property/P in base.properties)
 		if(base.properties[P] >= P.prefix_high_min)
-			. |= P.getAdjective(base)
+			. |= P.getAdjective(base.properties[P])
 			continue
 		else if(base.properties[P] <= P.prefix_low_max)
-			. |= P.getAdjective(base)
+			. |= P.getAdjective(base.properties[P])
 			continue
+*/
 
 /// Sets the material of an object. PLEASE USE THIS TO SET MATERIALS UNLESS YOU KNOW WHAT YOU'RE DOING.
 /atom/proc/setMaterial(datum/material/mat1, appearance = 1, setname = 1, copy = 1, use_descriptors = 0)
-	if(!mat1 ||!istype(mat1, /datum/material))
+	if(!istype(mat1))
 		return
-	if(mat1.material_flags & MATERIAL_NONSTANDARD) //Deprecating the copy flag in favour of marking all the nonstandard materials, it does wonders
-		mat1 = copyMaterial(mat1)
 
 	var/traitDesc = get_material_trait_desc(mat1)
 	var/strPrefix = jointext(mat1.prefixes, " ")
 	var/strSuffix = jointext(mat1.suffixes, " ")
 
-	for(var/X in getMaterialPrefixList(mat1))
-		strPrefix += " [X]"
-	trim(strPrefix)
+	//trim(strPrefix)
 
 	if (src.mat_changename && setname)
 		src.remove_prefixes(99)
