@@ -14,7 +14,10 @@
 	*/
 /datum/material
 	/// The atom that this material is applied to
-	var/atom/owner = null
+	//var/atom/owner = null //SEIZE THE MATERIALS OF PRODUCTION
+	//Communism is when materials are shared between whatever needs them, capitalism is when your bloated game system brings the server to its knees
+	//(I know I'm not being clever here just let me have this one)
+
 	/// used to retrieve instances of these base materials from the cache.
 	var/mat_id = "ohshitium"
 	/// Name of the material, used for combination and scanning
@@ -131,10 +134,6 @@
 				L.Remove(P)
 		return
 
-	proc/fail()
-		qdel(owner)
-		return
-
 	/// Called when the material fails due to instability.
 	var/list/triggersFail = list()
 	/// Called when exposed to temperatures.
@@ -170,7 +169,7 @@
 	proc/triggerOnFail(var/atom/owner)
 		for(var/datum/materialProc/X in triggersFail)
 			X.execute(owner)
-		fail()
+		qdel(owner) //Merged proc/fail into here
 		return
 
 	proc/triggerOnEntered(var/atom/owner, var/atom/entering)
@@ -515,9 +514,9 @@
 	New()
 		setProperty("density", 40)
 		setProperty("hard", 40)
-		addTrigger(triggersTemp, new /datum/materialProc/molitz_temp())
-		addTrigger(triggersOnHit, new /datum/materialProc/molitz_on_hit())
-		addTrigger(triggersExp, new /datum/materialProc/molitz_exp())
+		//addTrigger(triggersTemp, new /datum/materialProc/molitz_temp())
+		//addTrigger(triggersOnHit, new /datum/materialProc/molitz_on_hit())
+		//addTrigger(triggersExp, new /datum/materialProc/molitz_exp())
 		return ..()
 
 	beta
@@ -528,8 +527,8 @@
 
 		New()
 			..()
-			removeTrigger(triggersTemp, /datum/materialProc/molitz_temp) // no need to remove molitz_on_hit, all it
-			addTrigger(triggersTemp, new /datum/materialProc/molitz_temp/agent_b()) // does is call molitz_temp
+			//removeTrigger(triggersTemp, /datum/materialProc/molitz_temp) // no need to remove molitz_on_hit, all it
+			//addTrigger(triggersTemp, new /datum/materialProc/molitz_temp/agent_b()) // does is call molitz_temp
 			return
 
 /datum/material/crystal/claretine
@@ -558,7 +557,7 @@
 		setProperty("radioactive", 75)
 		setProperty("stability", 10)
 
-		addTrigger(triggersFail, new /datum/materialProc/fail_explosive(100))
+		addTrigger(triggersFail, new /datum/materialProc/fail_explosive())
 		addTrigger(triggersOnAdd, new /datum/materialProc/erebite_flash())
 		addTrigger(triggersTemp, new /datum/materialProc/erebite_temp())
 		addTrigger(triggersExp, new /datum/materialProc/erebite_exp())

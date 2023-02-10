@@ -159,6 +159,7 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 /atom/proc/setMaterial(datum/material/mat1, appearance = 1, setname = 1, copy = 1, use_descriptors = 0)
 	if(!istype(mat1))
 		return
+	//No more copying shit
 
 	var/traitDesc = get_material_trait_desc(mat1)
 	var/strPrefix = jointext(mat1.prefixes, " ")
@@ -194,7 +195,7 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 	src.UpdateOverlays(null, "material")
 	if (src.mat_changeappearance && appearance && mat1.applyColor) //Why not move these to the front (no material has applyColor set to false btw)
 		if (islist(src.mat_appearances_to_ignore) && length(src.mat_appearances_to_ignore))
-			if (mat1.name in src.mat_appearances_to_ignore)
+			if (mat1.mat_id in src.mat_appearances_to_ignore)
 				set_color_alpha = 0
 		if (set_color_alpha)
 			if (mat1.texture)
