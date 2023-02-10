@@ -65,7 +65,7 @@
 					P.contributors += user
 			else
 				boutput(user, "<span class='alert'>You plant the seed, but nothing happens.</span>")
-				pool (SEED)
+				qdel(SEED)
 			return TRUE
 
 		else if(istype(I, /obj/item/seedplanter/))
@@ -89,7 +89,7 @@
 					P.contributors += user
 			else
 				boutput(user, "<span class='alert'>You plant the seed, but nothing happens.</span>")
-				pool (SEED)
+				qdel(SEED)
 			return TRUE
 
 
