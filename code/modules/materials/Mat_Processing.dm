@@ -730,8 +730,8 @@
 				if(W.material.properties.len)
 					boutput(user, "<span class='notice'><u>The material is:</u></span>")
 					for(var/datum/material_property/X in W.material.properties)
-						var/value = W.material.getProperty(X.id)
-						boutput(user, "<span class='notice'>• [X.getAdjective(W.material)] ([value])</span>")
+						var/value = W.material.properties[X] //Why use getProperty you have the damn property
+						boutput(user, "<span class='notice'>• [X.getAdjective(value)] ([value])</span>")
 				else
 					boutput(user, "<span class='notice'><u>The material is completely unremarkable.</u></span>")
 		else

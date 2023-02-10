@@ -33,7 +33,7 @@
 	proc/onRemoved(var/datum/material/M)
 		return
 
-	proc/getAdjective(var/datum/material/M)
+	proc/getAdjective(value)
 		return "odd"
 
 /datum/material_property/electrical_conductivity
@@ -46,8 +46,8 @@
 	prefix_high_min = 85
 	prefix_low_max = 20
 
-	getAdjective(var/datum/material/M)
-		switch(M.getProperty(id))
+	getAdjective(value)
+		switch(value)
 			if(1 to 14)
 				return "highly insulating"
 			if(15 to 30)
@@ -74,8 +74,8 @@
 	prefix_high_min = 85
 	prefix_low_max = 15
 
-	getAdjective(var/datum/material/M)
-		switch(M.getProperty(id))
+	getAdjective(value)
+		switch(value)
 			if(1 to 14)
 				return "very temperature-resistant"
 			if(15 to 30)
@@ -101,8 +101,8 @@
 	prefix_high_min = 85
 	prefix_low_max = 15
 
-	getAdjective(var/datum/material/M)
-		switch(M.getProperty(id))
+	getAdjective(value)
+		switch(value)
 			if(1 to 10)
 				return "very soft"
 			if(11 to 25)
@@ -126,8 +126,8 @@
 	prefix_high_min = 85
 	prefix_low_max = 15
 
-	getAdjective(var/datum/material/M)
-		switch(M.getProperty(id))
+	getAdjective(value)
+		switch(value)
 			if(1 to 10)
 				return "very light"
 			if(11 to 25)
@@ -151,8 +151,8 @@
 	prefix_high_min = 76
 	prefix_low_max = 25
 
-	getAdjective(var/datum/material/M)
-		switch(M.getProperty(id))
+	getAdjective(value)
+		switch(value)
 			if(1 to 10)
 				return "very dull"
 			if(11 to 25)
@@ -183,8 +183,8 @@
 	prefix_high_min = 85
 	prefix_low_max = 15
 
-	getAdjective(var/datum/material/M)
-		switch(M.getProperty(id))
+	getAdjective(value)
+		switch(value)
 			if(1 to 10)
 				return "very fireproof"
 			if(11 to 25)
@@ -208,8 +208,8 @@
 	prefix_high_min = 85
 	prefix_low_max = 15
 
-	getAdjective(var/datum/material/M)
-		switch(M.getProperty(id))
+	getAdjective(value)
+		switch(value)
 			if(1 to 10)
 				return "very corroded"
 			if(11 to 25)
@@ -233,8 +233,8 @@
 	prefix_high_min = 85
 	prefix_low_max = 15
 
-	getAdjective(var/datum/material/M)
-		switch(M.getProperty(id))
+	getAdjective(value)
+		switch(value)
 			if(1 to 10)
 				return "very unstable"
 			if(11 to 25)
@@ -258,8 +258,8 @@
 	prefix_high_min = 85
 	prefix_low_max = 15
 
-	getAdjective(var/datum/material/M)
-		switch(M.getProperty(id))
+	getAdjective(value)
+		switch(value)
 			if(1 to 10)
 				return "very impermeable"
 			if(11 to 25)
@@ -283,8 +283,8 @@
 	prefix_high_min = 1
 	prefix_low_max = 100
 
-	getAdjective(var/datum/material/M)
-		switch(M.getProperty(id))
+	getAdjective(value)
+		switch(value)
 			if(1 to 10)
 				return "slightly radioactive"
 			if(11 to 25)
@@ -323,8 +323,8 @@
 	default_value = 0
 
 
-	getAdjective(var/datum/material/M)
-		switch(M.getProperty(id))
+	getAdjective(value)
+		switch(value)
 			if(1 to 10)
 				return "glowing slightly blue"
 			if(11 to 25)
@@ -362,8 +362,8 @@
 	prefix_high_min = 25
 	prefix_low_max = 75
 
-	getAdjective(var/datum/material/M)
-		switch(M.getProperty(id))
+	getAdjective(value)
+		switch(value)
 			if(1 to 10)
 				return "barely fissile"
 			if(11 to 25)
@@ -387,8 +387,8 @@
 	prefix_high_min = 25
 	prefix_low_max = 75
 
-	getAdjective(var/datum/material/M)
-		switch(M.getProperty(id))
+	getAdjective(value)
+		switch(value)
 			if(1 to 10)
 				return "barely harmonic"
 			if(11 to 25)

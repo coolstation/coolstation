@@ -258,7 +258,7 @@
 				if (src.quality_counter >= src.q_threshold2)
 					L.setMaterial(getMaterial("gold"), appearance = 0, setname = 0)
 					if (L.material)
-						L.material.owner = L
+						//L.material.owner = L
 						L.material.triggerOnAdd(L)
 						L.name = "show-piece antique laser gun"
 						user.unlock_medal("Tinkerer", 1)
