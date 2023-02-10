@@ -116,6 +116,7 @@
 	icon = 'icons/obj/adventurezones/void.dmi'
 	icon_state = "floattiles1"
 	var/recover = FALSE
+	plane = PLANE_NOSHADOW_BELOW
 
 	attackby(obj/item/C as obj, mob/user as mob)
 		if (ispryingtool(C))
