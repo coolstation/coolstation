@@ -98,10 +98,9 @@
 	//Gonna have some bullshit here to cover for no more changing of material properties
 	var/fuel_life = 0
 
-	New()
+	onMaterialChanged()
 		..()
-		if (src.material)
-			fuel_life = max(material.getProperty("radioactive"),0) //If the material's not got radioactivity getPropery returns -1
+		fuel_life = max(material.getProperty("radioactive"),0) //If the material's not got radioactivity getPropery returns -1
 
 	cerenkite
 		New()
