@@ -50,5 +50,5 @@
 				step(smoke,direction)
 			sleep(75+rand(10,30))
 			if (smoke)
-				pool(smoke)
+				qdel(smoke)
 			src.total_smoke--

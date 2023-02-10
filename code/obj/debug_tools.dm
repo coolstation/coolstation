@@ -37,7 +37,7 @@
 				par.transform = null
 				par.override_state = null
 				animate(par)
-				pool(par)
+				qdel(par)
 
 		par.set_loc(get_turf(src.loc))
 		par.blend_mode = P.particle_blend_mode

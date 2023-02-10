@@ -45,7 +45,7 @@
 			src.visible_message("<span class='alert'><b>[src]</b> hungrily eats [src.target]!</span>")
 			playsound(src.loc, "sound/items/eatfood.ogg", 30, 1, -2)
 			src.eaten += material.amount
-			pool(src.target)
+			qdel(src.target)
 			src.target = null
 			src.task = "thinking"
 

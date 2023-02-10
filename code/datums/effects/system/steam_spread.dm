@@ -43,7 +43,7 @@ steam.start() -- spawns the effect
 
 /*
 /datum/effects/system/steam_spread/disposing()
-	pool(src)
+	qdel(src)
 */
 
 /datum/effects/system/steam_spread/proc/attach(atom/atom)
@@ -73,5 +73,5 @@ steam.start() -- spawns the effect
 				step(steam,direction)
 			sleep(2 SECONDS)
 			if (steam)
-				pool(steam)
+				qdel(steam)
 

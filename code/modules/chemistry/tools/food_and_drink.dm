@@ -419,7 +419,7 @@
 			if (src.reagents.total_volume <= 0)
 				owner.poops += poop_value
 				owner.stomach_process -= src
-				pool(src)
+				qdel(src)
 
 
 
@@ -1087,7 +1087,7 @@
 					src.reagents.reaction(get_turf(user), TOUCH, src.reagents.total_volume / 2)
 					src.reagents.add_reagent("ice", 10, null, (T0C - 50))
 					JOB_XP(user, "Clown", 1)
-					pool(W)
+					qdel(W)
 					return
 				else
 					boutput(user, "<span class='alert'>[src] is too full!</span>")
@@ -1096,7 +1096,7 @@
 				user.visible_message("[user] adds [W] to [src].",\
 				"You add [W] to [src].")
 				src.reagents.add_reagent("ice", 10, null, (T0C - 50))
-				pool(W)
+				qdel(W)
 				if ((user.mind.assigned_role == "Bartender") && (prob(40)))
 					JOB_XP(user, "Bartender", 1)
 				return

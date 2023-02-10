@@ -24,7 +24,7 @@
 		if (A)
 			A.overlays -= selection
 		if (selection)
-			pool(selection)
+			qdel(selection)
 		..()
 
 	build_click(var/mob/user, var/datum/buildmode_holder/holder, var/list/pa, var/atom/object)

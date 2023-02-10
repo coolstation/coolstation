@@ -54,7 +54,7 @@
 
 	disposing()
 		clear_markers()
-		pool(selection)
+		qdel(selection)
 		..()
 
 	proc/clear_markers()

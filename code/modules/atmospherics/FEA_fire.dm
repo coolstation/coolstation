@@ -34,7 +34,7 @@
 	if (active_hotspot)
 		if (locate(/obj/fire_foam) in src)
 			active_hotspot.dispose() // have to call this now to force the lighting cleanup
-			pool(active_hotspot)
+			qdel(active_hotspot)
 			active_hotspot = null
 
 		if (soh)
@@ -233,15 +233,15 @@
 
 		var/turf/simulated/floor/location = loc
 		if (!istype(location) || (locate(/obj/fire_foam) in location))
-			pool(src)
+			qdel(src)
 			return 0
 
 		if ((temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST) || (volume <= 1))
-			pool(src)
+			qdel(src)
 			return 0
 
 		if (!location.air || location.air.toxins < 0.5 || location.air.oxygen < 0.5)
-			pool(src)
+			qdel(src)
 			return 0
 
 		for (var/mob/living/L in loc)

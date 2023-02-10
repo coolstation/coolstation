@@ -17,7 +17,7 @@
 				P.set_loc( holepick )
 				P.target = targpick
 				SPAWN_DBG(rand(18 SECONDS,32 SECONDS))
-					pool(P)
+					qdel(P)
 				if (rand(1,1000) == 1)
 					Artifact_Spawn(holepick)
 				sleep(rand(1,15))

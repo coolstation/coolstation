@@ -717,7 +717,7 @@ proc/Create_Tommyname()
 	animate_slide(O, npx, npy, animtime)
 	sleep(animtime)
 	if(istype(O, /obj/movedummy))
-		pool(O)
+		qdel(O)
 	else
 		qdel(O)
 
@@ -821,7 +821,7 @@ proc/Create_Tommyname()
 	src.invisibility = 0
 	if(TTL)
 		SPAWN_DBG(TTL)
-			pool(src)
+			qdel(src)
 
 #undef STAT_STANDBY
 #undef STAT_MOVING

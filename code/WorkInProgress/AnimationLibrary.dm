@@ -498,7 +498,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 
 	SPAWN_DBG(0.6 SECONDS)
 		A.vis_contents.Remove(muzzleflash)
-		pool(muzzleflash)
+		qdel(muzzleflash)
 
 
 
@@ -1104,7 +1104,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 	SPAWN_DBG(1.5 SECONDS)
 		if (swirl)
 			swirl.pixel_y = 0
-			pool(swirl)
+			qdel(swirl)
 	return
 
 /proc/leaveresidual(var/atom/target)
@@ -1119,7 +1119,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 	e.set_loc(target_turf)
 	SPAWN_DBG(10 SECONDS)
 		if (e)
-			pool(e)
+			qdel(e)
 	return
 
 /proc/leavepurge(var/atom/target, var/current_increment, var/sword_direction)
@@ -1141,7 +1141,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 	e.dir = sword_direction
 	SPAWN_DBG(7)
 		if (e)
-			pool(e)
+			qdel(e)
 	return
 
 /proc/leavescan(var/atom/target, var/scan_type)
@@ -1162,7 +1162,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 	e.set_loc(target_turf)
 	SPAWN_DBG(7)
 		if (e)
-			pool(e)
+			qdel(e)
 	return
 
 /proc/sponge_size(var/atom/A, var/size = 1)

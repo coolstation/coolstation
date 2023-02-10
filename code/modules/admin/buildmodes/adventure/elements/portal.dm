@@ -11,7 +11,7 @@
 		if (!selection)
 			return
 		target.overlays -= selection
-		pool(selection)
+		qdel(selection)
 		selection = null
 
 	disposing()

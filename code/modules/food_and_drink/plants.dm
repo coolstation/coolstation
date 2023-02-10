@@ -73,7 +73,7 @@
 			if (ispath(src.planttype))
 				src.planttype = new src.planttype(src)
 			else
-				pool(src)
+				qdel(src)
 				return
 
 	/* For potential festivities! */
@@ -108,7 +108,7 @@
 		var/obj/decal/cleanable/tomatosplat/splat = new /obj/decal/cleanable/tomatosplat(T)
 		if(istype(splat) && src.reagents)
 			src.reagents.trans_to(splat,5) //could be deleted immediately
-		pool(src)
+		qdel(src)
 
 /obj/item/reagent_containers/food/snacks/plant/tomato/incendiary
 	name = "tomato"
@@ -131,7 +131,7 @@
 		var/obj/decal/cleanable/tomatosplat/splat = new /obj/decal/cleanable/tomatosplat(T)
 		if(istype(splat) && src.reagents)
 			src.reagents.trans_to(splat,5) //could be deleted immediately
-		pool(src)
+		qdel(src)
 		//..()
 
 /obj/item/reagent_containers/food/snacks/plant/tomato/tomacco
@@ -178,7 +178,7 @@
 		flick("cornsplode", src)
 		SPAWN_DBG(1 SECOND)
 			new /obj/item/reagent_containers/food/snacks/popcorn(get_turf(src))
-			pool(src)
+			qdel(src)
 
 /obj/item/reagent_containers/food/snacks/plant/corn/clear
 	name = "clear corn cob"
@@ -279,7 +279,7 @@
 			if(DNA)
 				HYPpassplantgenes(DNA,PDNA)
 			qdel(W)
-			pool(src)
+			qdel(src)
 		else if (istype(W, /obj/item/axe) || istype(W, /obj/item/circular_saw) || istype(W, /obj/item/kitchen/utensil/knife) || istype(W, /obj/item/scalpel) || istype(W, /obj/item/sword) || istype(W,/obj/item/saw) || istype(W,/obj/item/knife/butcher) && !istype (src, /obj/item/reagent_containers/food/snacks/plant/orange/wedge))
 			if (istype (src, /obj/item/reagent_containers/food/snacks/plant/orange/wedge))
 				boutput(user, "<span class='alert'>You can't cut wedges into wedges! What kind of insanity is that!?</span>")
@@ -844,7 +844,7 @@
 			if(!W.amount) qdel(W)
 
 			// Consume apple
-			pool(src)
+			qdel(src)
 		else ..()
 
 /obj/item/reagent_containers/food/snacks/plant/apple/poison
@@ -1195,7 +1195,7 @@
 				P.name = "[src.name] ring"
 				P.transform = src.transform
 
-			pool(src)
+			qdel(src)
 		else
 			..()
 
@@ -1277,7 +1277,7 @@
 				HYPpassplantgenes(DNA,PDNA)
 			makeslices -= 1
 		new /obj/item/reagent_containers/food/drinks/coconut(T)
-		pool(src)
+		qdel(src)
 
 	proc/someone_landed_on_us(mob/living/L, datum/thrown_thing/thr)
 		src.UnregisterSignal(L, COMSIG_MOVABLE_THROW_END)

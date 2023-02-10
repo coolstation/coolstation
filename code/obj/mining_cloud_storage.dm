@@ -194,7 +194,7 @@
 			if (user && R)
 				user.u_equip(R)
 				R.dropped()
-			pool(R)
+			qdel(R)
 		update_ore_amount(R.material_name,amount_loaded)
 
 

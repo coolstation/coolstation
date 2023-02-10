@@ -1799,7 +1799,7 @@
 		create_time = world.time //mbc : kind of janky lightweight way of making us not clash with ourselves. compare spawn time.
 		if (del_self)
 			SPAWN_DBG(del_time)
-				pool(src)
+				qdel(src)
 /*
 	unpooled()
 		..()
@@ -1942,13 +1942,13 @@
 			..(0)
 			if (playsound)
 				playsound(src.loc, 'sound/impact_sounds/Crystal_Shatter_1.ogg', 50, 0.1, 0, 0.5)
-			pool(src)
+			qdel(src)
 
 		proc/deactivate()
 			if (src.qdeled || src.pooled)
 				return
 			playsound(src.loc, 'sound/items/miningtool_off.ogg', 30, 0.1, 0, 2)
-			pool(src)
+			qdel(src)
 
 		Bumped()
 			bump_count++
@@ -1978,7 +1978,7 @@
 			loc = location
 			if (del_self)
 				SPAWN_DBG(5 SECONDS)
-					pool(src)
+					qdel(src)
 
 		was_clashed(var/playsound = 1)
 			.=0
