@@ -1403,7 +1403,7 @@
 						var/target_amount = round(src.resource_amounts[mat_id] / 10)
 						if (!target_amount)
 							src.contents -= I
-							pool(I)
+							qdel(I)
 						else if (I.amount != target_amount)
 							I.change_stack_amount(-(I.amount - target_amount))
 						break
@@ -1791,7 +1791,7 @@
 				if (istype(M, P) && M.material && isSameMaterial(M.material, P.material))
 					M.change_stack_amount(P.amount)
 					src.update_resource_amount(M.material.mat_id, P.amount * 10)
-					pool(P)
+					qdel(P)
 					return
 			src.update_resource_amount(P.material.mat_id, P.amount * 10)
 
@@ -1910,7 +1910,7 @@
 			if (ispath(src.blueprint))
 				src.blueprint = get_schematic_from_path(src.blueprint)
 			else
-				pool(src)
+				qdel(src)
 				return 0
 		else
 			if (istext(schematic))

@@ -69,7 +69,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		src.inventory_counter.update_number(src.amount)
 		switch (src.amount)
 			if (-INFINITY to 0)
-				pool(src) // ???
+				qdel(src) // ???
 			if(1)
 				src.icon_state = icon_one
 			if (2 to (default_max_amount-1))
@@ -130,14 +130,14 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		if(amount < 1)
 			user.u_equip(src)
 			src.dropped(user)
-			pool(src)
+			qdel(src)
 		SPAWN_DBG(0)
 			boutput(user, "<span class='notice'>You start loading rounds into [M]</span>")
 			while(M.ammo_list.len < M.max_ammo_capacity)
 				if(amount < 1)
 					user.u_equip(src)
 					src.dropped(user)
-					pool(src)
+					qdel(src)
 					break
 				playsound(src.loc, "sound/weapons/casings/casing-0[rand(1,9)].ogg", 10, 0.1, 0, 0.8)
 				amount--

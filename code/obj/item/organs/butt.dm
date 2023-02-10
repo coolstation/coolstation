@@ -172,7 +172,7 @@
 
 		else if (istype(W, /obj/item/spacecash) && W.type != /obj/item/spacecash/buttcoin)
 			user.u_equip(W)
-			pool(W)
+			qdel(W)
 
 			var/obj/item/spacecash/buttcoin/S = new()
 			S.setup(get_turf(src))

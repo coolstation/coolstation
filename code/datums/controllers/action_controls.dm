@@ -194,19 +194,19 @@ var/datum/action_controller/actions
 		SPAWN_DBG(0.5 SECONDS)
 			if (bar)
 				bar.set_loc(null)
-				pool(bar)
+				qdel(bar)
 				bar = null
 			if (border)
 				border.set_loc(null)
-				pool(border)
+				qdel(border)
 				border = null
 			if (target_bar)
 				target_bar.set_loc(null)
-				pool(target_bar)
+				qdel(target_bar)
 				target_bar = null
 			if (target_border)
 				target_border.set_loc(null)
-				pool(target_border)
+				qdel(target_border)
 				target_border = null
 
 	disposing()
@@ -219,19 +219,19 @@ var/datum/action_controller/actions
 			place_to_put_bar.vis_contents -= target_border
 		if (bar)
 			bar.set_loc(null)
-			pool(bar)
+			qdel(bar)
 			bar = null
 		if (border)
 			border.set_loc(null)
-			pool(border)
+			qdel(border)
 			border = null
 		if (target_bar)
 			target_bar.set_loc(null)
-			pool(target_bar)
+			qdel(target_bar)
 			target_bar = null
 		if (target_border)
 			target_border.set_loc(null)
-			pool(target_border)
+			qdel(target_border)
 			target_border = null
 		..()
 
@@ -344,9 +344,9 @@ var/datum/action_controller/actions
 		if (owner != null && islist(A.attached_objs))
 			A.attached_objs.Remove(shield_bar)
 			A.attached_objs.Remove(armor_bar)
-		pool(shield_bar)
+		qdel(shield_bar)
 		shield_bar = null
-		pool(armor_bar)
+		qdel(armor_bar)
 		armor_bar = null
 
 	onUpdate()

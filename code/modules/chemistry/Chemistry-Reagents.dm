@@ -59,6 +59,7 @@ datum
 
 		disposing()
 			holder = null
+			data = null
 			..()
 /*
 		pooled()
@@ -75,7 +76,7 @@ datum
 
 		proc/on_add()
 			if (stun_resist > 0)
-				if (ismob(holder.my_atom))
+				if (ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					M.add_stun_resist_mod("reagent_[src.id]", stun_resist)
 			return

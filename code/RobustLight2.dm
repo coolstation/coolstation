@@ -743,16 +743,16 @@ turf
 			/*
 			if (src.RL_MulOverlay)
 				src.RL_MulOverlay.set_loc(null)
-				pool(src.RL_MulOverlay)
+				qdel(src.RL_MulOverlay)
 				src.RL_MulOverlay = null
 			if (src.RL_AddOverlay)
 				src.RL_AddOverlay.set_loc(null)
-				pool(src.RL_AddOverlay)
+				qdel(src.RL_AddOverlay)
 				src.RL_AddOverlay = null
 			// cirr effort to remove redundant overlays that still persist EVEN THOUGH they shouldn't
 			for(var/obj/overlay/tile_effect/lighting/L in src.contents)
 				L.set_loc(null)
-				pool(L)
+				qdel(L)
 			*/
 
 		RL_Reset()
@@ -768,10 +768,10 @@ turf
 				if (RL_Started) RL_UPDATE_LIGHT(src)
 			else
 				if(src.RL_MulOverlay)
-					pool(src.RL_MulOverlay)
+					qdel(src.RL_MulOverlay)
 					src.RL_MulOverlay = null
 				if(src.RL_AddOverlay)
-					pool(src.RL_AddOverlay)
+					qdel(src.RL_AddOverlay)
 					src.RL_AddOverlay = null
 
 atom

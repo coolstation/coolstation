@@ -15,7 +15,7 @@ datum/pipeline
 
 		if(air?.volume)
 			temporarily_store_air()
-			pool(air)
+			qdel(air)
 		air = null
 
 		if (members)
@@ -94,7 +94,7 @@ datum/pipeline
 
 		if(base.air_temporary)
 			if(air)
-				pool(air)
+				qdel(air)
 			air = base.air_temporary
 			base.air_temporary = null
 		else
@@ -179,7 +179,7 @@ datum/pipeline
 
 				target.parent.suspend_group_processing()
 				target.air.copy_from(turf_copy)
-				pool(turf_copy) // done with this
+				qdel(turf_copy) // done with this
 
 		else
 			var/datum/gas_mixture/turf_air = target.return_air()

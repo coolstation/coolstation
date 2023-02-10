@@ -98,8 +98,8 @@ change the direction of created objects.<br>
 							sleep(0.5 SECONDS)
 							swirl.mouse_opacity = 1
 							pad.mouse_opacity = 1
-							pool(swirl)
-							pool(pad)
+							qdel(swirl)
+							qdel(pad)
 					if("Fancy and Inefficient yet Laggy Telepad")
 						SPAWN_DBG(cnt/10)
 							var/obj/decal/teleport_swirl/swirl = new()
@@ -132,8 +132,8 @@ change the direction of created objects.<br>
 							sleep(0.5 SECONDS)
 							swirl.mouse_opacity = 1
 							pad.mouse_opacity = 1
-							pool(swirl)
-							pool(pad)
+							qdel(swirl)
+							qdel(pad)
 
 					if("Blink")
 						var/atom/A = 0

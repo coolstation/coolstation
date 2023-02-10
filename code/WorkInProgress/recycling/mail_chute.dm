@@ -159,7 +159,7 @@
 				router_distance = H.count
 				if(H.routers.len)
 					routerlist += H.routers.Copy()
-			pool(H)
+			qdel(H)
 			return
 
 

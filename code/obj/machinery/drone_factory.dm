@@ -169,7 +169,7 @@ var/global/list/ghostdrone_candidates = list()
 	disposing()
 		..()
 		if (src.current_assembly)
-			pool(src.current_assembly)
+			qdel(src.current_assembly)
 		if (src.conveyors.len)
 			src.conveyors.len = 0
 

@@ -43,7 +43,7 @@ Contains:
 
 	disposing()
 		if(air_contents)
-			pool(air_contents)
+			qdel(air_contents)
 			air_contents = null
 		processing_items.Remove(src)
 		..()

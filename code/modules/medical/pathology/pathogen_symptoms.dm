@@ -1546,7 +1546,7 @@ datum/pathogeneffects/malevolent/seriouschills
 		var/obj/decal/icefloor/I = new()
 		I.set_loc(get_turf(M))
 		SPAWN_DBG(30 SECONDS)
-			pool(I)
+			qdel(I)
 
 	disease_act(var/mob/M as mob, var/datum/pathogen/origin)
 		if (!origin.symptomatic)

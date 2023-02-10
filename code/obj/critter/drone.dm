@@ -1047,7 +1047,7 @@
 
 		SPAWN_DBG(0.6 SECONDS)
 			for (var/obj/O in lineObjs)
-				pool(O)
+				qdel(O)
 
 	New()
 		..()
@@ -1168,7 +1168,7 @@
 
 		SPAWN_DBG(0.6 SECONDS)
 			for (var/obj/O in lineObjs)
-				pool(O)*/
+				qdel(O)*/
 
 /obj/critter/gunbot/drone/iridium/whydrone/horse
 	name = "Horseman"

@@ -72,10 +72,10 @@ obj/machinery/atmospherics/binary
 		network2 = null
 
 		if(air1)
-			pool(air1)
+			qdel(air1)
 
 		if(air2)
-			pool(air2)
+			qdel(air2)
 
 		air1 = null
 		air2 = null

@@ -608,7 +608,7 @@
 				current_buffer = 0
 
 				user.drop_item()
-				pool(W)
+				qdel(W)
 
 				SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_DEFAULT_MSG, null)
 				flick("comp_money1", src)
@@ -641,7 +641,7 @@
 
 	disposing()
 		if(air_contents)
-			pool(air_contents)
+			qdel(air_contents)
 			air_contents = null
 		trunk = null
 		..()
@@ -657,7 +657,7 @@
 				if (trunk) //ZeWaka: Fix for null.linked
 					trunk.linked = null
 				if(air_contents)
-					pool(air_contents)
+					qdel(air_contents)
 				air_contents = null
 				trunk = null
 			return 1
@@ -700,7 +700,7 @@
 			AM?.throw_at(target, 5, 1)
 
 		H.vent_gas(loc)
-		pool(H)
+		qdel(H)
 
 /obj/item/mechanics/thprint
 	name = "Thermal printer"

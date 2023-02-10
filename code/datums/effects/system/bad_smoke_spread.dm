@@ -70,10 +70,10 @@ proc/ClearBadsmokeRefs(var/atom/A)
 				var/turf/t = get_step(smoke, direction)
 				var/area/A = get_area(t)
 				if(A?.sanctuary)
-					pool(smoke)
+					qdel(smoke)
 					continue
 				step(smoke,direction)
 			sleep(150+rand(10,30))
 			if (smoke)
-				pool(smoke)
+				qdel(smoke)
 			src.total_smoke--

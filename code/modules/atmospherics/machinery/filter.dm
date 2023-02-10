@@ -102,11 +102,11 @@ Filter types:
 		network_in = null
 
 		if(air_in)
-			pool(air_in)
+			qdel(air_in)
 		if(air_out1)
-			pool(air_out1)
+			qdel(air_out1)
 		if(air_out2)
-			pool(air_out2)
+			qdel(air_out2)
 
 		air_in = null
 		air_out1 = null

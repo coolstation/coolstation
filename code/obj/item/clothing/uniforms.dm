@@ -1274,10 +1274,10 @@
 			T.wet = 0
 			dried ++
 		for (var/obj/decal/cleanable/water/W in T)
-			pool(W)
+			qdel(W)
 			dried ++
 		for (var/obj/decal/cleanable/urine/U in T) // ew
-			pool(U)
+			qdel(U)
 			dried ++
 		return dried
 

@@ -14,13 +14,13 @@
 
 /obj/machinery/pipefilter/disposing()
 	if(gas)
-		pool(gas)
+		qdel(gas)
 	if(ngas)
-		pool(ngas)
+		qdel(ngas)
 	if(f_gas)
-		pool(f_gas)
+		qdel(f_gas)
 	if(f_ngas)
-		pool(f_ngas)
+		qdel(f_ngas)
 	..()
 
 /obj/machinery/pipefilter/buildnodes()

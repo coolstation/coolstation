@@ -83,7 +83,7 @@
 		contextButtons.Remove(C)
 		if(C.overlays)
 			C.overlays = list()
-		pool(C)
+		qdel(C)
 
 /atom/New()
 	if(contextActions != null)

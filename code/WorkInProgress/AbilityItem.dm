@@ -263,7 +263,7 @@
 					SPAWN_DBG(1 SECOND)
 						src = null // Detatch this from the parent proc so we get to stay alive if the shoes blow up.
 						if(A)
-							pool(A)
+							qdel(A)
 					sleep(0.1 SECONDS)
 
 			the_mob.throw_at(curr, 16, 3)
@@ -292,7 +292,7 @@
 				SPAWN_DBG(1 SECOND)
 					src = null
 					if(A)
-						pool(A)
+						qdel(A)
 				if (!step(the_mob, the_mob.dir) && R.sonicbreak) break
 				sleep(10 - R.soniclevel)
 			..()

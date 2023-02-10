@@ -795,7 +795,7 @@ SYNDICATE DRONE FACTORY AREAS
 		SPAWN_DBG(18 SECONDS)
 			if ( smoke )
 				smoke.name = initial(smoke.name)
-				pool(smoke)
+				qdel(smoke)
 		return
 
 /////////////////////////////// ALCHEMY CIRCLE STUFF

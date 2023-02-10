@@ -683,7 +683,7 @@
 					src.contributors += user
 			else
 				boutput(user, "<span class='alert'>You plant the seed, but nothing happens.</span>")
-				pool (SEED)
+				qdel(SEED)
 			return
 
 		else if(istype(W, /obj/item/seedplanter/))
@@ -710,7 +710,7 @@
 					src.contributors += user
 			else
 				boutput(user, "<span class='alert'>You plant the seed, but nothing happens.</span>")
-				pool (SEED)
+				qdel(SEED)
 
 		else if(istype(W, /obj/item/reagent_containers/glass/))
 			// Not just watering cans - any kind of glass can be used to pour stuff in.
@@ -735,9 +735,9 @@
 			var/obj/item/seed/crystal/WS = new()
 			WS.set_loc(src)
 			HYPnewplant(WS)
-			pool(W)
+			qdel(W)
 			sleep(0.5 SECONDS)
-			pool(WS)
+			qdel(WS)
 			if(!(user in src.contributors))
 				src.contributors += user
 
@@ -1536,7 +1536,7 @@
 		// then get rid of the seed, mutate the genes a little and update the pot sprite.
 		if(growing.harvestable) src.harvests = growing.harvests + DNA.harvests
 		if(src.harvests < 1) src.harvests = 1
-		pool (SEED)
+		qdel(SEED)
 
 		HYPmutateplant(1)
 		post_alert("event_new")

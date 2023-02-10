@@ -136,7 +136,7 @@ var/datum/particleMaster/particleMaster = new
 		for (var/obj/particle/P in src.active_particles)
 			if (P.death < time)
 				src.active_particles -= P
-				pool(P)
+				qdel(P)
 				P = null
 			LAGCHECK(LAG_MED)
 

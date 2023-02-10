@@ -1265,7 +1265,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 
 				SPAWN_DBG(0.6 SECONDS)
 					for (var/obj/O in lineObjs)
-						pool(O)
+						qdel(O)
 
 				state = STATE_RECHARGING
 				last_state_time = ticker.round_elapsed_ticks

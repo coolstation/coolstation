@@ -106,7 +106,7 @@
 		if (reagents)
 			reagents.reaction(src.loc, TOUCH, 5, 0)
 			reagents.postfoam = 0
-	pool(src)
+	qdel(src)
 
 /obj/effects/foam/proc/process()
 	if(--amount < 0)

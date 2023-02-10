@@ -169,7 +169,7 @@ turf
 						gas_icon_overlay.dir = pick(cardinal)
 				else
 					if (gas_icon_overlay)
-						pool(gas_icon_overlay)
+						qdel(gas_icon_overlay)
 						gas_icon_overlay = null
 		New()
 			..()
@@ -205,7 +205,7 @@ turf
 			if(active_hotspot)
 				active_hotspot.dispose() // have to call this now to force the lighting cleanup
 				if (active_hotspot)
-					pool(active_hotspot)
+					qdel(active_hotspot)
 					active_hotspot = null
 			if(being_superconductive)
 				air_master.active_super_conductivity.Remove(src)
@@ -214,9 +214,9 @@ turf
 					var/turf/simulated/tile = get_step(src,direction)
 					if(air_master && istype(tile) && !tile.blocks_air)
 						air_master.tiles_to_update |= tile
-			pool(air)
+			qdel(air)
 			if (gas_icon_overlay)
-				pool(gas_icon_overlay)
+				qdel(gas_icon_overlay)
 				gas_icon_overlay = null
 			air = null
 			parent = null

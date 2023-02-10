@@ -411,7 +411,7 @@ var/global/the_automaton = null
 		playsound(target_turf, "sound/effects/teleport.ogg", 50, 1)
 		SPAWN_DBG(1.5 SECONDS)
 			swirl.pixel_y = 0
-			pool(swirl)
+			qdel(swirl)
 
 		src.visible_message("<span class='alert'>[src.name] seems to tense up and freeze.</span>")
 		playsound(src.loc, "sound/machines/glitch1.ogg", 50, 1)
@@ -462,7 +462,7 @@ var/global/the_automaton = null
 							tempEffect = DrawLine(src, somesparks, /obj/line_obj/elec, 'icons/obj/projectiles.dmi',"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",FLY_LAYER,1,PreloadedIcon='icons/effects/LghtLine.dmi')
 						sleep(0.6 SECONDS)
 						for (var/obj/O in tempEffect)
-							pool(O)
+							qdel(O)
 		world << sound('sound/misc/automaton_scratch.ogg')
 		sleep (10)
 		world << sound('sound/ambience/spooky/Void_Screaming.ogg')

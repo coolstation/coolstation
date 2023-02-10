@@ -159,7 +159,7 @@
 			F.old_icon_state = src.icon_state
 			user.put_in_hand_or_drop(F)
 
-		pool(src)
+		qdel(src)
 
 /obj/item/paper/attack_ai(var/mob/AI as mob)
 	var/mob/living/silicon/ai/user
@@ -358,7 +358,7 @@
 		var/obj/item/paper_mask/M = new /obj/item/paper_mask(get_turf(src.loc))
 		user.put_in_hand_or_drop(M)
 		user.u_equip(src)
-		pool(src)
+		qdel(src)
 	else
 		// cut paper?  the sky is the limit!
 		ui_interact(user)	// The other ui will be created with just read mode outside of this
@@ -1454,7 +1454,7 @@ as it may become compromised.
 		eat_twitch(M)
 		var/obj/item/paper/P = src
 		user.u_equip(P)
-		pool(P)
+		qdel(P)
 	else
 		..()
 

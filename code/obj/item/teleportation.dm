@@ -272,6 +272,6 @@ Frequency:
 		SPAWN_DBG(30 SECONDS)
 			if (P)
 				portals -= P
-				pool(P)
+				qdel(P)
 
 		return

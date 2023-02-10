@@ -32,7 +32,7 @@ datum/pipe_network
 			line_members.len = 0
 		line_members = null
 		if (air_transient)
-			pool(air_transient)
+			qdel(air_transient)
 		air_transient = null
 		..()
 

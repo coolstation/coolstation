@@ -139,7 +139,7 @@
 			if(T.z != 1)
 				src.z = 1
 
-		pool(src)
+		qdel(src)
 
 	proc/reset_to_random_pos()
 		src.reset_to_aim_at(locate(rand(1, world.maxx), rand(1, world.maxy), 1))

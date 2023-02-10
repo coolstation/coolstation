@@ -632,7 +632,7 @@ datum
 								lowertemp.toxins = max(lowertemp.toxins-50,0)
 								lowertemp.react()
 								T.assume_air(lowertemp)
-					pool(hotspot)
+					qdel(hotspot)
 
 				var/obj/fire_foam/F = (locate(/obj/fire_foam) in target)
 				if (!F)
@@ -640,7 +640,7 @@ datum
 					F.set_loc(target)
 					SPAWN_DBG(20 SECONDS)
 						if (F && !F.disposed)
-							pool(F)
+							qdel(F)
 				return
 
 			reaction_obj(var/obj/item/O, var/volume)
@@ -1036,7 +1036,7 @@ datum
 							lowertemp.toxins = max(lowertemp.toxins-50,0)
 							lowertemp.react()
 							T.assume_air(lowertemp)
-					pool(hotspot)
+					qdel(hotspot)
 				return
 
 		booster_enzyme

@@ -797,11 +797,11 @@
 
 			else if (istype(M, /obj/item/raw_material/shard))
 				if (output_bar_from_item(M, 10))
-					pool(M)
+					qdel(M)
 
 			else if (istype(M, /obj/item/raw_material))
 				output_bar_from_item(M)
-				pool(M)
+				qdel(M)
 
 			else if (istype(M, /obj/item/sheet))
 				if (output_bar_from_item(M, 10))

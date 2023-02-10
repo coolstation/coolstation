@@ -261,7 +261,7 @@ turf
 			sd_LastRedAdditiveApplied = 0
 			sd_LastGreenAdditiveApplied = 0
 			sd_LastBlueAdditiveApplied = 0
-			pool(src.effect_overlay_additive)
+			qdel(src.effect_overlay_additive)
 			src.effect_overlay_additive.set_loc(null)
 			src.effect_overlay_additive.alpha = 255
 			src.effect_overlay_additive = null
@@ -279,13 +279,13 @@ turf
 
 	proc/sd_StripEffectOverlayLighting()
 		if(effect_overlay)
-			pool(src.effect_overlay)
+			qdel(src.effect_overlay)
 			src.effect_overlay.set_loc(null)
 			src.effect_overlay = null
 
 	proc/sd_StripAdditiveEffectOverlay()
 		if(effect_overlay_additive)
-			pool(src.effect_overlay_additive)
+			qdel(src.effect_overlay_additive)
 			src.effect_overlay_additive.set_loc(null)
 			src.effect_overlay_additive = null
 

@@ -287,7 +287,7 @@
 				src.play_money += I.amount
 
 			I.amount = 0
-			pool(I)
+			qdel(I)
 
 	attack_hand(var/mob/user as mob)
 		src.add_dialog(user)

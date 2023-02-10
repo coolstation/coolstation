@@ -338,7 +338,7 @@
 				src.resources += C.resources
 				boutput(src, "<span class='notice'>You break down the resource cache, adding <span class='bold'>[C.resources]</span> resources to your own (you now have [src.resources] resource[src.resources == 1 ? "" : "s"]). </span>")
 			if(istype(I, /obj/item/raw_material))
-				pool(I) //gotta pool stuff bruh
+				qdel(I) //gotta pool stuff bruh
 			else
 				qdel(I)
 	// AI ticks are handled in mob_ai.dm, as they ought to be

@@ -310,9 +310,9 @@ var/mutable_appearance/fluid_ma
 
 		if (src.group)
 			if (!src.group.remove(src))
-				pool(src)
+				qdel(src)
 		else
-			pool(src)
+			qdel(src)
 
 		for(var/atom/A as anything in src.loc)
 			if (A && A.flags & FLUID_SUBMERGE)

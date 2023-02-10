@@ -265,7 +265,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			boutput(user,"<span class='notice'><b>FOSS Cathodic Flash Bulb loaded.</b></span>")
 			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 
-		pool(ammo_list[ammo_list.len])
+		qdel(ammo_list[ammo_list.len])
 		ammo_list.Remove(ammo_list[ammo_list.len]) //and remove it from the list
 
 		processing_ammo = 0
@@ -493,7 +493,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			crank_level++
 			playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 		if(current_projectile)
-			pool(current_projectile)
+			qdel(current_projectile)
 		switch(crank_level)
 			if (0)
 				current_projectile = null // this shouldnt happen but just in case!

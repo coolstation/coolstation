@@ -102,8 +102,8 @@ change the direction of created objects.<br>
 						sleep(0.5 SECONDS)
 						swirl.mouse_opacity = 1
 						pad.mouse_opacity = 1
-						pool(swirl)
-						pool(pad)
+						qdel(swirl)
+						qdel(pad)
 				if("Blink")
 					spawn_gift(T)
 					blink(T)
@@ -158,8 +158,8 @@ change the direction of created objects.<br>
 							sleep(0.5 SECONDS)
 							swirl.mouse_opacity = 1
 							pad.mouse_opacity = 1
-							pool(swirl)
-							pool(pad)
+							qdel(swirl)
+							qdel(pad)
 					if("Blink")
 						spawn_gift(Q)
 						blink(Q)
