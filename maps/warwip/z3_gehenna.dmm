@@ -5846,7 +5846,10 @@
 "dNu" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/firealarm{
-	pixel_y = 24
+	pixel_y = 32
+	},
+/obj/submachine/chef_sink/chem_sink{
+	pixel_y = 10
 	},
 /turf/simulated/floor/black,
 /area/station/crew_quarters/bar)
@@ -22565,14 +22568,14 @@
 	name = "Security Wing Tunnel Level"
 	})
 "nWl" = (
-/obj/dartboard{
-	pixel_x = -29
-	},
 /obj/machinery/firealarm{
 	pixel_y = 24
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/decal/cleanable/dirt/random,
+/obj/dartboard{
+	pixel_x = -29
+	},
 /turf/simulated/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "nWt" = (
@@ -26519,6 +26522,18 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
+"qGH" = (
+/obj/disposalpipe/segment/produce{
+	dir = 4
+	},
+/obj/submachine/chef_sink{
+	color = "#FFDDAA";
+	desc = "A common utility sink. Unsanitary.";
+	dir = 4;
+	name = "utility sink"
+	},
+/turf/simulated/floor/grey,
+/area/station/crew_quarters/baroffice)
 "qGJ" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -31456,6 +31471,9 @@
 	color = "#666666"
 	},
 /obj/item/wrench,
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = -7
+	},
 /turf/simulated/floor/white,
 /area/station/medical/medbooth)
 "tBQ" = (
@@ -37221,7 +37239,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/decal/floatingtiles/loose,
+/obj/decal/floatingtiles/loose/random,
 /turf/simulated/floor/plating/random,
 /area/station/crew_quarters/arcade)
 "xdz" = (
@@ -37327,7 +37345,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/decal/floatingtiles/loose,
+/obj/decal/floatingtiles/loose/random,
 /turf/simulated/floor/plating/random,
 /area/station/medical/basement)
 "xfY" = (
@@ -37422,7 +37440,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
-/obj/decal/floatingtiles/loose,
+/obj/decal/floatingtiles/loose/random,
 /turf/simulated/floor/plating/random,
 /area/station/medical/basement)
 "xkK" = (
@@ -83615,7 +83633,7 @@ ojN
 umA
 fDK
 sjY
-ruk
+qGH
 eAu
 fFY
 nqV
