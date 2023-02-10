@@ -18,8 +18,8 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 
 /// Returns one of the base materials by id.
 /proc/getMaterial(var/mat)
-	if(!istext(mat) || !length(mat)) return null
-	if(!material_cache.len) buildMaterialCache()
+	//if(!istext(mat) || !length(mat)) return null
+	//if(!material_cache.len) buildMaterialCache() //The cache gets build during the pre map load why do we check every time
 	if(mat in material_cache)
 		return material_cache[mat]
 	return null
@@ -164,6 +164,8 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 	var/strPrefix = jointext(mat1.prefixes, " ")
 	var/strSuffix = jointext(mat1.suffixes, " ")
 
+	//for(var/X in getMaterialPrefixList(mat1))
+	//	strPrefix += " [X]"
 	//trim(strPrefix)
 
 	if (src.mat_changename && setname)
@@ -190,17 +192,18 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 	src.alpha = 255
 	src.color = null
 	src.UpdateOverlays(null, "material")
-	if (islist(src.mat_appearances_to_ignore) && length(src.mat_appearances_to_ignore))
-		if (mat1.name in src.mat_appearances_to_ignore)
-			set_color_alpha = 0
-	if (set_color_alpha && src.mat_changeappearance && appearance && mat1.applyColor)
-		if (mat1.texture)
-			src.setTexture(mat1.texture, mat1.texture_blend, "material")
-		src.alpha = mat1.alpha
-		src.color = mat1.color
+	if (src.mat_changeappearance && appearance && mat1.applyColor) //Why not move these to the front (no material has applyColor set to false btw)
+		if (islist(src.mat_appearances_to_ignore) && length(src.mat_appearances_to_ignore))
+			if (mat1.name in src.mat_appearances_to_ignore)
+				set_color_alpha = 0
+		if (set_color_alpha)
+			if (mat1.texture)
+				src.setTexture(mat1.texture, mat1.texture_blend, "material")
+			src.alpha = mat1.alpha
+			src.color = mat1.color
 
 	src.material = mat1
-	mat1.owner = src
+	//mat1.owner = src
 	mat1.triggerOnAdd(src)
 	src.onMaterialChanged()
 
