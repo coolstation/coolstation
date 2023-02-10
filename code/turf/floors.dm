@@ -1367,6 +1367,12 @@ DEFINE_FLOORS(techfloor/green,
 /turf/simulated/floor/blob_act(var/power)
 	return
 
+//turf/proc/ReplaceWith used to go "istype(src, /turf/simulated/floor)" and IDK if you're gonna check that on every turf maybe just split it off
+/turf/simulated/floor/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0)
+	icon_old = icon_state
+	name_old = name
+	. = ..()
+
 /turf/simulated/floor/proc/update_icon()
 
 /turf/simulated/attack_hand(mob/user as mob)
