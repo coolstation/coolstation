@@ -799,10 +799,11 @@ datum
 			current_reagent.volume = new_amount
 			if(!current_reagent.data) current_reagent.data = sdata
 
+
 			src.last_temp = src.total_temperature
 			var/temp_temperature = src.total_temperature*src.total_volume*src.composite_heat_capacity + temp_new*new_amount*current_reagent.heat_capacity
 
-			var/divison_amount = src.total_volume*src.composite_heat_capacity + new_amount*current_reagent.heat_capacity
+			var/divison_amount = src.total_volume * src.composite_heat_capacity + new_amount * current_reagent.heat_capacity
 			if (divison_amount > 0)
 				src.total_temperature = temp_temperature / divison_amount
 
