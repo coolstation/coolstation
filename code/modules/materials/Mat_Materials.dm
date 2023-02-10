@@ -132,7 +132,7 @@
 		return
 
 	proc/fail()
-		del(owner)
+		qdel(owner)
 		return
 
 	/// Called when the material fails due to instability.
@@ -169,78 +169,78 @@
 
 	proc/triggerOnFail(var/atom/owner)
 		for(var/datum/materialProc/X in triggersFail)
-			call(X,  "execute")(owner)
+			X.execute(owner)
 		fail()
 		return
 
 	proc/triggerOnEntered(var/atom/owner, var/atom/entering)
 		for(var/datum/materialProc/X in triggersOnEntered)
-			call(X,  "execute")(owner, entering)
+			X.execute(owner, entering)
 		return
 
 	proc/triggerOnAttacked(var/obj/item/owner, var/mob/attacker, var/mob/attacked, var/atom/weapon)
 		for(var/datum/materialProc/X in triggersOnAttacked)
-			call(X,  "execute")(owner, attacker, attacked, weapon)
+			X.execute(owner, attacker, attacked, weapon)
 		return
 
 	proc/triggerOnBullet(var/obj/item/owner, var/atom/attacked, var/obj/projectile/projectile)
 		for(var/datum/materialProc/X in triggersOnBullet)
-			call(X,  "execute")(owner, attacked, projectile)
+			X.execute(owner, attacked, projectile)
 		return
 
 	proc/triggerOnAttack(var/obj/item/owner, var/mob/attacker, var/mob/attacked)
 		for(var/datum/materialProc/X in triggersOnAttack)
-			call(X,  "execute")(owner, attacker, attacked)
+			X.execute(owner, attacker, attacked)
 		return
 
 	proc/triggerOnLife(var/mob/M, var/obj/item/I, mult)
 		for(var/datum/materialProc/X in triggersOnLife)
-			call(X,  "execute")(M, I, mult)
+			X.execute(M, I, mult)
 		return
 
 	proc/triggerOnAdd(var/location)
 		for(var/datum/materialProc/X in triggersOnAdd)
-			call(X,  "execute")(location)
+			X.execute(location)
 		return
 
 	proc/triggerChem(var/location, var/chem, var/amount)
 		for(var/datum/materialProc/X in triggersChem)
-			call(X,  "execute")(location, chem, amount)
+			X.execute(location, chem, amount)
 		return
 
 	proc/triggerPickup(var/mob/M, var/obj/item/I)
 		for(var/datum/materialProc/X in triggersPickup)
-			call(X,  "execute")(M, I)
+			X.execute(M, I)
 		return
 
 	proc/triggerDrop(var/mob/M, var/obj/item/I)
 		for(var/datum/materialProc/X in triggersDrop)
-			call(X,  "execute")(M, I)
+			X.execute(M, I)
 		return
 
 	proc/triggerTemp(var/location, var/temp)
 		for(var/datum/materialProc/X in triggersTemp)
-			call(X,  "execute")(location, temp)
+			X.execute(location, temp)
 		return
 
 	proc/triggerExp(var/location, var/sev)
 		for(var/datum/materialProc/X in triggersExp)
-			call(X,  "execute")(location, sev)
+			X.execute(location, sev)
 		return
 
 	proc/triggerEat(var/mob/M, var/obj/item/I)
 		for(var/datum/materialProc/X in triggersOnEat)
-			call(X,  "execute")(M, I)
+			X.execute(M, I)
 		return
 
 	proc/triggerOnBlobHit(var/atom/owner, var/blobPower)
 		for(var/datum/materialProc/X in triggersOnBlobHit)
-			call(X,  "execute")(owner, blobPower)
+			X.execute(owner, blobPower)
 		return
 
 	proc/triggerOnHit(var/atom/owner, var/obj/attackobj, var/mob/attacker, var/meleeorthrow)
 		for(var/datum/materialProc/X in triggersOnHit)
-			call(X,  "execute")(owner, attackobj, attacker, meleeorthrow)
+			X.execute(owner, attackobj, attacker, meleeorthrow)
 		return
 
 
