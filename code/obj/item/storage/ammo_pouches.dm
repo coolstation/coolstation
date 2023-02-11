@@ -146,8 +146,7 @@
 	w_class = W_CLASS_SMALL
 	slots = 6
 	does_not_open_in_pocket = 0
-	spawn_contents = list(/obj/item/handcuffs = 3,\
-	/obj/item/ammo/power_cell/med_power,\
+	spawn_contents = list(/obj/item/handcuffs = 4,\
 	/obj/item/device/flash,\
 	/obj/item/instrument/whistle)
 
