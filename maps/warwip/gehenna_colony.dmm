@@ -16462,6 +16462,12 @@
 	},
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/lobby)
+"mNu" = (
+/obj/stool/chair{
+	dir = 8
+	},
+/turf/simulated/floor/white,
+/area/station/medical/medbay)
 "mNC" = (
 /obj/table/reinforced/auto,
 /obj/disposalpipe/segment/sewage,
@@ -17002,6 +17008,10 @@
 	},
 /turf/simulated/floor/yellowblack,
 /area/station/engine/monitoring)
+"niJ" = (
+/obj/machinery/vending/air_vendor,
+/turf/simulated/floor/carpet/blue/standard/narrow/north,
+/area/station/medical/medbay)
 "niO" = (
 /turf/simulated/floor/yellowblack{
 	dir = 1
@@ -19114,6 +19124,12 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/floor/stairs/wide,
 /area/station/security/secoffquarters)
+"oMA" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/blue/standard/narrow/south,
+/area/station/medical/medbay)
 "oMR" = (
 /obj/cable{
 	icon_state = "0-2"
@@ -21801,6 +21817,15 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
+"qJE" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 4
+	},
+/obj/stool/chair{
+	dir = 8
+	},
+/turf/simulated/floor/white,
+/area/station/medical/medbay)
 "qJP" = (
 /turf/simulated/floor/bluewhite{
 	dir = 1
@@ -26791,14 +26816,14 @@
 /obj/item/raw_material/char{
 	pixel_x = 6
 	},
-/obj/stool/chair/red{
-	dir = 4
-	},
 /obj/cable{
 	icon_state = "4-8"
 	},
 /obj/cable{
 	icon_state = "2-4"
+	},
+/obj/stool/chair/red{
+	dir = 4
 	},
 /turf/simulated/floor/plating{
 	icon_old = "fullblue"
@@ -69632,8 +69657,8 @@ aGy
 eMq
 eMq
 eMq
-pjb
-nHD
+niJ
+oMA
 pjb
 eMq
 msF
@@ -70840,9 +70865,9 @@ iUY
 kFt
 vLH
 eMq
-pjb
-eju
-pjb
+mNu
+qJE
+mNu
 eMq
 msF
 cqC
