@@ -693,6 +693,15 @@
 		..()
 		setMaterial(getMaterial("coral"))
 
+//Tsela walls!
+/turf/unsimulated/wall/auto/snow
+	icon = 'icons/turf/walls_snow.dmi'
+	connects_to = list(/turf/unsimulated/wall/auto/snow)
+	name = "Thickly Packed Snow"
+	desc = "How this withstands the insane winds of this world, you'll never know"
+	mod = "snow-"
+
+
 // lead wall resprite by skeletonman0.... hooray for smoothwalls!
 ABSTRACT_TYPE(turf/unsimulated/wall/auto/lead)
 /turf/unsimulated/wall/auto/lead
