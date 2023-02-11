@@ -919,37 +919,24 @@ TYPEINFO(/atom)
 							T.checkingcanpass = max(T.checkingcanpass-1, 0)
 	..()
 
-//same as above :)
-/atom/movable/setMaterial(datum/material/mat1, appearance = 1, setname = 1, copy = 1, use_descriptors = 0)
+///Handle materials giving/removing USE_HASENTERED
+/atom/movable/onMaterialChanged() //Note: this procs when going material->material or none->material. For going material->none see /atom/proc/removeMaterial()
+	if (src.material.triggersOnEntered && length(src.material.triggersOnEntered)) //This material needs USE_HASENTERED
+		if (!(src.event_handler_flags & USE_HASENTERED)) //And we don't have it already
+			src.event_handler_flags |= (USE_HASENTERED|HASENTERED_MAT_PROP) //Flag that this is only has the flag because of its material
 
-	// if the thing checked hasentered and the previous mat did not force this, it is a property of the turf
-	// if the thing checked hasentered and the previous mat did force this, ????????????????????????????????
-	// if the thing didnt check hasentered we don't care, just apply the new mat's force, or don't.
-	// so we need a flag to tell us if the hasentered is a mat prop or a natural prop.
-	var/prev_mat_triggeronentered = (src.material && src.material.triggersOnEntered && length(src.material.triggersOnEntered))
-	var/hasentered_was_mat_prop = (src.event_handler_flags & HASENTERED_MAT_PROP) // checking if it was a mat prop!
-	..(mat1,appearance,setname,copy,use_descriptors)
-	var/cur_mat_triggeronentered = (src.material && src.material.triggersOnEntered && length(src.material.triggersOnEntered))
-
-	if (prev_mat_triggeronentered != cur_mat_triggeronentered)
-		if (isturf(src.loc))
-			// Check if USE_HASENTERED needs to be added if atom is missing the flag and onEnter trigger was added
-			if (!(src.event_handler_flags & USE_HASENTERED) && cur_mat_triggeronentered)
+			if (isturf(src.loc)) //adjust turf if needed
 				var/turf/T = src.loc
-				if (T)
-					T.checkinghasentered++
-				//Slap flag on so moving the atom will properly adjust checkinghasentered
-				src.event_handler_flags |= USE_HASENTERED
-				src.event_handler_flags |= HASENTERED_MAT_PROP
-			// Check USE_HASENTERED needs to be removed when current material doesn't have onEnter trigger now and flag was added
-			else
-				if (!cur_mat_triggeronentered && hasentered_was_mat_prop)
-					var/turf/T = src.loc
-					if (T)
-						T.checkinghasentered = max(T.checkinghasentered-1, 0)
+				T.checkinghasentered++
 
-					src.event_handler_flags &= ~USE_HASENTERED
-					src.event_handler_flags &= ~HASENTERED_MAT_PROP
+	else if(src.event_handler_flags & HASENTERED_MAT_PROP) //Previous material did give this atom USE_HASENTERED
+		src.event_handler_flags &= ~(USE_HASENTERED|HASENTERED_MAT_PROP)
+
+		if (isturf(src.loc)) //adjust turf if needed
+			var/turf/T = src.loc
+			T.checkinghasentered = max(T.checkinghasentered-1, 0)
+
+	..()
 
 // standardized damage procs
 
