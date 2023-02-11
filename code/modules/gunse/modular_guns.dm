@@ -48,6 +48,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/scatter = 0 // variable for using hella shotgun shells or something
 
 	var/flashbulb_only = 0 // FOSS guns only
+	var/flash_auto = 0 // FOSS auto-fire setting
 	var/flashbulb_health = 0 // FOSS guns only
 	var/max_crank_level = 0 // FOSS guns only
 	var/crank_level = 0 // FOSS guns only
@@ -113,6 +114,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	if(barrel && barrel.length)
 		. += "<div><span>Barrel length: [src.barrel.length] </span></div>"
+
+	if(stock && crank_level)
+		. += "<div><span>Spring tension: [src.crank_level] </span></div>"
 
 	if(jam_frequency_fire || jam_frequency_reload)
 		. += "<div><img src='[resource("images/tooltips/jamjarrd.png")]' alt='' class='icon' /><span>Jammin: [src.jam_frequency_reload + src.jam_frequency_fire] </span></div>"
@@ -207,7 +211,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			buildTooltipContent()
 			return
 
-		P.power *= (barrel.length / STANDARD_BARREL_LEN) // 20 CM
+		P.power *= (1 + ((barrel.length-STANDARD_BARREL_LEN) / 2*STANDARD_BARREL_LEN)) // 20 CM
 		return
 
 
@@ -312,11 +316,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 /obj/item/gun/modular/attack_self(mob/user)
 	if(flashbulb_only)
 		flash_process_ammo(user)
+		src.inventory_counter.update_number(crank_level)
 	else
 		process_ammo(user)
+		src.inventory_counter.update_number(ammo_list.len)
+		// this is how many shots are left in the feeder- and does not include the one in the chamber. Should make for funny times
+
 	buildTooltipContent()
-	src.inventory_counter.update_number(ammo_list.len)
-	// this is how many shots are left in the feeder- and does not include the one in the chamber. Should make for funny times
+
+
 
 /obj/item/gun/modular/canshoot()
 	if(jammed)
@@ -324,6 +332,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(!built)
 		return 0
 	if(flashbulb_only && !flashbulb_health)
+		return 0
+	if(flash_auto && !crank_level)
 		return 0
 	if(current_projectile)
 		return 1
@@ -406,15 +416,20 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			var/mob/living/carbon/human/H = user
 			H.gunshot_residue = 1
 
-
 	if(flashbulb_health)// this should be nonzero if we have a flashbulb loaded.
-		flashbulb_health = max(0,(flashbulb_health - crank_level))//subtract cranks from life
-		crank_level = 0 // reset
+		if(flash_auto && crank_level) // auto-fire special handling
+			flashbulb_health--
+			crank_level--
+		else
+			flashbulb_health = max(0,(flashbulb_health - crank_level))//subtract cranks from life
+			crank_level = 0 // reset
+
 		if(!flashbulb_health) // that was the end of it!
 			user.show_text("<span class='alert'>Your gun's flash bulb burns out!</span>")
+		src.inventory_counter.update_number(crank_level)
 
-
-	current_projectile = null // empty chamber
+	if(!flash_auto)
+		current_projectile = null // empty chamber
 
 	src.update_icon()
 	return TRUE
@@ -471,6 +486,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	silenced = 0
 	accessory_alt = 0
 	accessory_on_fire = 0
+	flash_auto = 0
 
 	spread_angle = initial(spread_angle)
 	max_ammo_capacity = initial(max_ammo_capacity)
@@ -497,6 +513,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			boutput(user,"<span><b>You crank the handle.</b></span>")
 			crank_level++
 			playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
+
+		if(flash_auto) // keep the projectile at level 1 after incrementing the crank level.
+			if(!current_projectile)
+				current_projectile = new /datum/projectile/laser/flashbulb()
+			processing_ammo = 0
+			return
+
 		if(current_projectile)
 			qdel(current_projectile)
 		switch(crank_level)
@@ -619,7 +642,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		barrel = new /obj/item/gun_parts/barrel/foss/long/very(src)
 		stock = new /obj/item/gun_parts/stock/foss/longer(src)
 
-
+/obj/item/gun/modular/foss/loader
+	desc = "An open-sourced and freely modifiable FOSS Inductive Flash Arc, Model 2k/19L"
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/foss/long(src)
+		stock = new /obj/item/gun_parts/stock/foss/loader(src)
 
 
 /obj/item/gun/modular/juicer

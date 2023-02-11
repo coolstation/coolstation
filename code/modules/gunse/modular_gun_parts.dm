@@ -50,9 +50,10 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 
 	//stock vars
 	var/can_dual_wield = 1
-	//var/spread_angle = 0 // modifier, added to stock // repeat of barrel
+	//var/spread_angle = 0 	// modifier, added to stock // repeat of barrel
 	var/max_ammo_capacity = 0 //modifier
-	var/flashbulb_only = 0 // FOSS guns only
+	var/flashbulb_only = 0 	// FOSS guns only
+	var/flash_auto = 0 		// FOSS guns only
 	var/max_crank_level = 0 // FOSS guns only
 	var/stock_two_handed = 0 // if gun or stock is 2 handed, whole gun is 2 handed
 	var/stock_dual_wield = 1 // if gun AND stock can be dual wielded, whole gun can be dual wielded.
@@ -177,11 +178,13 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 		my_gun.ammo_list += src.ammo_list
 		my_gun.name = src.name_addition + " " + my_gun.name
 		if(flashbulb_only)
-			my_gun.flashbulb_only = src.flashbulb_only
+			my_gun.flashbulb_only = 1 //src.flashbulb_only
 			my_gun.max_crank_level = src.max_crank_level
+			my_gun.flash_auto = src.flash_auto
 		else
 			my_gun.flashbulb_only = 0
 			my_gun.max_crank_level = 0
+			my_gun.flash_auto = 0
 
 	remove_part_from_gun()
 		if(!my_gun)
@@ -344,7 +347,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle =  13 // jesus christ it's a spread machine
 	scatter = 1
 	jam_frequency_fire = 5 //but very poorly built
-	part_DRM = GUN_JUICE | GUN_NANO | GUN_FOSS
+	part_DRM = GUN_JUICE | GUN_NANO
 	name_addition = "BLUNDER"
 	icon_state = "juicer_blunderbuss"
 	length = 12
@@ -484,7 +487,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = 7 //  O NO
 	max_ammo_capacity = 1 // more bulbs in the pocket
 	jam_frequency_reload = 10
-	name_addition = "robust"
+	flash_auto = 1
+	max_crank_level = 20
+	name_addition = "automated"
 	icon_state = "stock_double"
 
 /obj/item/gun_parts/stock/foss/longer

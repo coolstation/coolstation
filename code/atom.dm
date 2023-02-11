@@ -921,6 +921,8 @@ TYPEINFO(/atom)
 
 ///Handle materials giving/removing USE_HASENTERED
 /atom/movable/onMaterialChanged() //Note: this procs when going material->material or none->material. For going material->none see /atom/proc/removeMaterial()
+	if(!src.material)
+		return
 	if (src.material.triggersOnEntered && length(src.material.triggersOnEntered)) //This material needs USE_HASENTERED
 		if (!(src.event_handler_flags & USE_HASENTERED)) //And we don't have it already
 			src.event_handler_flags |= (USE_HASENTERED|HASENTERED_MAT_PROP) //Flag that this is only has the flag because of its material

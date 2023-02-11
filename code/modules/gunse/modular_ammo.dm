@@ -349,6 +349,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 
 /obj/item/storage/box/foss_flashbulbs
 	name = "box of FOSSYN flashbulbs"
+	icon_state = "foss_bulb"
 	spawn_contents = list(/obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb)
 
 /obj/item/storage/box/foss_flashbulbs/better
@@ -356,15 +357,24 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	spawn_contents = list(/obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb)
 	make_my_stuff()
 		..()
-		if(prob(30))
+		if (prob(70))
 			new /obj/item/gun_parts/magazine/juicer(src)
 		else
-			if (prob(70))
-				new /obj/item/gun_parts/magazine/juicer(src)
-			else
-				new /obj/item/gun_parts/accessory/horn(src)
+			new /obj/item/gun_parts/accessory/horn(src)
+
+/obj/item/storage/box/foss_gun_kit
+	name = "Syndicate Gun Kit"
+	icon_state = "foss_gun"
+	spawn_contents = list(/obj/item/gun/modular/foss, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb)
+	make_my_stuff()
+		..()
+		if (prob(50))
+			new /obj/item/gun/modular/foss/loader(src)
+		else
+			new /obj/item/gun_parts/barrel/foss/long(src)
 
 // NEW PROJECTILE TYPES TEMPORARY STORAGE
+
 
 /datum/projectile/energy_bolt/three
 	power = 10
