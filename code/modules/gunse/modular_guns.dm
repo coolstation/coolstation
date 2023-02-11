@@ -419,6 +419,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	src.update_icon()
 	return TRUE
 
+/obj/item/gun/modular/shoot_point_blank(var/mob/M as mob, var/mob/user as mob, var/second_shot = 0)
+	..()
+	current_projectile = null // empty chamber
+	src.update_icon()
+
 /obj/item/gun/modular/proc/build_gun()
 	parts = list()
 	if(barrel)
