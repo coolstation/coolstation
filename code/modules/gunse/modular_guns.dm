@@ -565,6 +565,18 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		else
 			stock2 = new /obj/item/gun_parts/stock/NT/stub(src)
 
+/obj/item/gun/modular/NT/shotty
+	name = "\improper NT riot suppressor"
+	desc = "Cloned from Juicer parts, it seems."
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/NT/shotty(src)
+		if(prob(50))
+			stock = new /obj/item/gun_parts/stock/NT/stub(src)
+		else
+			stock = new /obj/item/gun_parts/stock/NT/fancy(src)
+		if(prob(30))
+			stock2 = new /obj/item/gun_parts/stock/NT/stub(src)
+
 /obj/item/gun/modular/foss // syndicate laser gun's!
 	name = "\improper FOSS laser"
 	real_name = "\improper FOSS laser"

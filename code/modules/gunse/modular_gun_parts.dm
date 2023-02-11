@@ -287,6 +287,14 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "nt_blue_snub"
 	name_addition = "shortie"
 
+/obj/item/gun_parts/barrel/NT/shotty
+	name = "sawn-off barrel"
+	spread_angle = 15
+	scatter = 1
+	length = 9
+	icon_state = "nt_blue_snub2"
+	name_addition = "shotty"
+
 /obj/item/gun_parts/barrel/NT/long/very
 	name = "special long barrel"
 	desc = "A cylindrical barrel, rifled."

@@ -277,6 +277,10 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 		default_min_amount = 5
 		default_max_amount = 5
 
+	ten
+		default_min_amount = 10
+		default_max_amount = 10
+
 /obj/item/stackable_ammo/scatter/slug_rubber // scatter doesnt mean scatter, just means thick:)
 	name = "standard rubber slug"
 	real_name = "standard rubber slug"
@@ -290,6 +294,10 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	five
 		default_min_amount = 5
 		default_max_amount = 5
+
+	ten
+		default_min_amount = 10
+		default_max_amount = 10
 
 /obj/item/stackable_ammo/flashbulb/
 	name = "\improper FOSSYN. CATHODIC FLASH BULBS"
