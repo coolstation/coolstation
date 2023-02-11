@@ -73,18 +73,11 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 		return
 
 /datum/materialProc/fail_explosive
-	var/lastTrigger = 0
-	var/trigger_chance = 100
-
-	New(var/chance = 100)
-		trigger_chance = chance
-		..()
 
 	execute(var/atom/location)
-		if(world.time - lastTrigger < 100) return
-		lastTrigger = world.time
-		var/turf/tloc = get_turf(location)
-		explosion(location, location, tloc, 1, 2, 3, 4, 1)
+		if (ON_COOLDOWN(location, "matproc_fail_explosive", 10 SECONDS))
+			return
+		explosion(location, location, get_turf(location), 1, 2, 3, 4, 1)
 		location.visible_message("<span class='alert'>[location] explodes!</span>")
 		return
 
@@ -107,28 +100,23 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 			if(owner.material)
 				M.changeStatus("n_radiation", max(round(owner.material.getProperty("n_radioactive") / 15),1) SECONDS, 3)
 		return
-
+// UNREFERENCED, DOUBLE CHECK IF YOU'RE GONNA USE THIS I THINK I ADJUSTED IT PROPERLY BUT I DIDN'T TEST
 /datum/materialProc/generic_reagent_onattacked
 	var/trigger_chance = 100
-	var/limit = 0
-	var/limit_count = 0
-	var/lastTrigger = 0
 	var/trigger_delay = 0
 	var/reagent_id = ""
 	var/reagent_amount = 0
 
-	New(var/reagid = "carbon", var/amt = 2, var/chance = 100, var/limit_t = 0, var/tdelay = 50)
+	New(var/reagid = "carbon", var/amt = 2, var/chance = 100, var/tdelay = 50)
 		trigger_chance = chance
-		limit = limit_t
 		trigger_delay = tdelay
 		reagent_id = reagid
 		reagent_amount = amt
 		..()
 
 	execute(var/obj/item/owner, var/mob/attacker, var/mob/attacked, var/atom/weapon)
-		if(limit && limit_count >= limit) return
-		if(world.time - lastTrigger < trigger_delay) return
-		lastTrigger = world.time
+		if (ON_COOLDOWN(owner, "matproc_generic_reagent_onattacked", trigger_delay))
+			return
 		if(prob(trigger_chance))
 			if(attacked.reagents)
 				attacked.reagents.add_reagent(reagent_id, reagent_amount, null, T0C)
@@ -136,37 +124,30 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 
 /datum/materialProc/generic_explode_attack
 	var/trigger_chance = 100
-	var/explode_limit = 0
-	var/explode_count = 0
-	var/lastTrigger = 0
 
 	desc = "It looks dangerously unstable."
 
-	New(var/chance = 100, var/limit = 0)
+	New(var/chance = 100)
 		trigger_chance = chance
-		explode_limit = limit
 		..()
 
 	execute(var/obj/item/owner)
-		if(explode_limit && explode_count >= explode_limit) return
-		if(world.time - lastTrigger < 50) return
-		lastTrigger = world.time
+		if (ON_COOLDOWN(owner, "matproc_generic_explode_attack", 5 SECONDS))
+			return
 		if(prob(trigger_chance))
-			explode_count++
 			var/turf/tloc = get_turf(owner)
 			explosion(owner, tloc, 0, 1, 2, 3, 1)
 			tloc.visible_message("<span class='alert'>[owner] explodes!</span>")
 			qdel(owner)
 		return
-
+//UNREFERENCED
 /datum/materialProc/generic_fireflash
-	var/lastTrigger = 0
 
 	execute(var/atom/location, var/temp)
 		if(temp < T0C + 200)
 			return
-		if(world.time - lastTrigger < 1200) return
-		lastTrigger = world.time
+		if (ON_COOLDOWN(location, "matproc_generic_fireflash", 2 MINUTES))
+			return
 		fireflash(get_turf(location), 1)
 		return
 
@@ -194,7 +175,7 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 			M.visible_message("<span class='alert'><b>[M.name]</b> falls to the floor, scratching themselves violently!</span>")
 			M.emote("scream")
 		return
-
+/* INCOMPATIBLE WITH SHARED MATERIALS
 /datum/materialProc/generic_reagent_onattack_depleting
 	var/reag_id = "carbon"
 	var/reag_amt = 1
@@ -216,8 +197,9 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 				if(owner.material)
 					owner.material.triggersOnAttack.Remove(src)
 		return
-
+*/
 /datum/materialProc/generic_reagent_onattack
+	//These are probably fine
 	var/reag_id = "carbon"
 	var/reag_amt = 1
 	var/reag_chance = 10
@@ -246,7 +228,7 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 		if(M?.reagents)
 			M.reagents.add_reagent(reag_id, reag_amt * mult, null, T0C)
 		return
-
+/* INCOMPATIBLE WITH SHARED MATERIALS
 /datum/materialProc/generic_reagent_onlife_depleting
 	var/reag_id = "carbon"
 	var/reag_amt = 1
@@ -267,27 +249,24 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 				if(I.material)
 					I.material.triggersOnLife.Remove(src)
 		return
-
+*/
 /datum/materialProc/generic_explosive
-	var/lastTrigger = 0
 
 	execute(var/atom/location, var/temp)
 		if(temp < T0C + 100)
 			return
-		if(world.time - lastTrigger < 100) return
-		lastTrigger = world.time
-		var/turf/tloc = get_turf(location)
-		explosion(location, tloc, 1, 2, 3, 4, 1)
+		if (ON_COOLDOWN(location, "matproc_generic_explosive", 10 SECONDS))
+			return
+		explosion(location, get_turf(location), 1, 2, 3, 4, 1)
 		location.visible_message("<span class='alert'>[location] explodes!</span>")
 		return
 
+//UNREFERENCED
 /datum/materialProc/flash_hit
-	var/last_trigger = 0
 	desc = "Every now and then it produces some bright sparks."
 
 	execute(var/obj/item/owner, var/mob/attacker, var/mob/attacked, var/atom/weapon)
-		if((world.time - last_trigger) >= 600)
-			last_trigger = world.time
+		if (!ON_COOLDOWN(owner, "matproc_flash_hit", 1 MINUTE))
 			attacked.visible_message("<span class='alert'>[owner] emits a flash of light!</span>")
 			for (var/mob/living/carbon/M in all_viewers(5, attacked))
 				M.apply_flash(8, 0, 0, 0, 3)
@@ -295,11 +274,9 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 
 /datum/materialProc/smoke_hit
 	desc = "Faint wisps of smoke rise from it."
-	var/last_trigger = 0
 
 	execute(var/obj/item/owner, var/mob/attacker, var/mob/attacked, var/atom/weapon)
-		if((world.time - last_trigger) >= 200)
-			last_trigger = world.time
+		if (!ON_COOLDOWN(owner, "matproc_smoke_hit", 20 SECONDS))
 			attacked.visible_message("<span class='alert'>[owner] emits a puff of smoke!</span>")
 			for(var/turf/T in view(1, attacked))
 				harmless_smoke_puff(get_turf(T))
@@ -354,17 +331,17 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 		return
 
 /datum/materialProc/plasmastone
-	var/total_plasma = 500
+	//var/total_plasma = 500 //Cant have this if we're reusing the same plasmastone mat for everything
 
 	execute(var/location) //exp and temp both have the location as first argument so i can use this for both.
 		var/turf/T = get_turf(location)
 		if(!T || T.density)
 			return
-		if(total_plasma <= 0)
+		/*if(total_plasma <= 0)
 			if(prob(2) && src.owner.owner)
 				src.owner.owner.visible_message("<span class='alert>[src.owner.owner] dissipates.</span>")
 				qdel(src.owner.owner)
-			return
+			return*/
 		for (var/turf/simulated/floor/target in range(1,location))
 			if(ON_COOLDOWN(target, "plasmastone_plasma_generate", 10 SECONDS)) continue
 			if(!target.blocks_air && target.air)
@@ -373,7 +350,7 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 
 				var/datum/gas_mixture/payload = new()
 				payload.toxins = 25
-				total_plasma -= payload.toxins
+				//total_plasma -= payload.toxins
 				payload.temperature = T20C
 				payload.volume = R_IDEAL_GAS_EQUATION * T20C / 1000
 				target.air.merge(payload)
@@ -382,7 +359,7 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 /datum/materialProc/plasmastone_on_hit
 	execute(var/atom/owner)
 		owner.material.triggerTemp(locate(owner))
-
+/*
 /datum/materialProc/molitz_temp
 	var/unresonant = 1
 	var/iterations = 4 // big issue I had was that with the strat that Im designing this for (teleporting crystals in and out of engine) one crystal could last you for like, 50 minutes, I didnt want to keep on reducing total amount as itd nerf agent b collection hard. So instead I drastically reduced amount and drastically upped output. This would speed up farming agent b to 3 minutes per crystal, which Im fine with
@@ -446,7 +423,7 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 /datum/materialProc/molitz_on_hit
 	execute(var/atom/owner, var/obj/attackobj)
 		owner.material.triggerTemp(owner, 1500)
-
+*/
 /datum/materialProc/miracle_add
 	execute(var/location)
 		animate_rainbow_glow(location)
@@ -492,33 +469,29 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 		return
 
 /datum/materialProc/erebite_temp
-	var/lastTrigger = 0
 
 	execute(var/atom/location, var/temp)
 		if(temp < T0C + 10) return
-		if(world.time - lastTrigger < 100) return
-		lastTrigger = world.time
-		var/turf/tloc = get_turf(location)
-		explosion(location, tloc, 0, 1, 2, 3, 1)
+		if (ON_COOLDOWN(location, "matproc_erebite_temperature_explosion", 10 SECONDS))
+			return
+		explosion(location, get_turf(location), 0, 1, 2, 3, 1)
 		location.visible_message("<span class='alert'>[location] explodes!</span>")
 		return
 
 /datum/materialProc/erebite_exp
-	var/lastTrigger = 0
 
 	execute(var/atom/location, var/sev)
-		if(world.time - lastTrigger < 100) return
-		lastTrigger = world.time
-		var/turf/tloc = get_turf(location)
+		if (ON_COOLDOWN(location, "matproc_erebite_chain_explosion", 10 SECONDS))
+			return
 		if(sev > 0 && sev < 4)
 			location.visible_message("<span class='alert'>[location] explodes!</span>")
 			switch(sev)
 				if(1)
-					explosion(location, tloc, 0, 1, 2, 3, 1)
+					explosion(location, get_turf(location), 0, 1, 2, 3, 1)
 				if(2)
-					explosion(location, tloc, -1, 0, 1, 2, 1)
+					explosion(location, get_turf(location), -1, 0, 1, 2, 1)
 				if(3)
-					explosion(location, tloc, -1, -1, 0, 1, 1)
+					explosion(location, get_turf(location), -1, -1, 0, 1, 1)
 			qdel(location)
 		return
 
@@ -553,16 +526,15 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 		return
 
 /datum/materialProc/soulsteel_entered
-	var/lastTrigger = 0
+
 	execute(var/obj/item/owner, var/atom/movable/entering)
 		if (!isobj(owner)) return
 		if (istype(entering, /mob/dead/observer) && prob(33))
 			var/mob/dead/observer/O = entering
 			if(O.observe_round) return
-			if(world.time - lastTrigger < 1800)
+			if (ON_COOLDOWN(owner, "matproc_soulsteel_entered", 3 MINUTES))
 				boutput(entering, "<span class='alert'>[owner] can not be possessed again so soon!</span>")
 				return
-			lastTrigger = world.time
 			var/mob/mobenter = entering
 			if(mobenter.client)
 				var/mob/living/object/OB = new/mob/living/object(owner, mobenter)

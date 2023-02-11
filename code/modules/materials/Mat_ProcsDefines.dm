@@ -18,8 +18,8 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 
 /// Returns one of the base materials by id.
 /proc/getMaterial(var/mat)
-	if(!istext(mat) || !length(mat)) return null
-	if(!material_cache.len) buildMaterialCache()
+	//if(!istext(mat) || !length(mat)) return null
+	//if(!material_cache.len) buildMaterialCache() //The cache gets build during the pre map load why do we check every time
 	if(mat in material_cache)
 		return material_cache[mat]
 	return null
@@ -70,6 +70,8 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 		return 0
 	if(isnull(M1) && isnull(M2))
 		return 1
+	if(!(M1.material_flags & MATERIAL_NONSTANDARD) && !(M2.material_flags & MATERIAL_NONSTANDARD))
+		return M1.mat_id == M2.mat_id //Now that we're tracking mixed materials we can shortcut this proc most of the time
 	if(M1.properties.len != M2.properties.len || M1.mat_id != M2.mat_id)
 		return 0
 	if(M1.value != M2.value || M1.name != M2.name  || M1.color != M2.color ||M1.alpha != M2.alpha || M1.material_flags != M2.material_flags || M1.texture != M2.texture)
@@ -113,11 +115,12 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 	src.alpha = initial(src.alpha)
 	src.color = initial(src.color)
 
-	if(src.material?.owner_hasentered_added)
+	if(src.event_handler_flags & HASENTERED_MAT_PROP)
 		if (isturf(src.loc))
 			var/turf/T = src.loc
 			T.checkinghasentered = max(T.checkinghasentered-1, 0)
 		src.event_handler_flags &= ~USE_HASENTERED
+		src.event_handler_flags &= ~HASENTERED_MAT_PROP
 
 	src.UpdateOverlays(null, "material")
 
@@ -140,31 +143,32 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 /// if a material is listed in here then we don't take on its color/alpha (maybe, if this works)
 /atom/var/list/mat_appearances_to_ignore = null
 
+/* //Used to be called in setMaterial but nothing ever had stats high/low enough to qualify
 /proc/getMaterialPrefixList(datum/material/base)
 	. = list()
 
 	for(var/datum/material_property/P in base.properties)
 		if(base.properties[P] >= P.prefix_high_min)
-			. |= P.getAdjective(base)
+			. |= P.getAdjective(base.properties[P])
 			continue
 		else if(base.properties[P] <= P.prefix_low_max)
-			. |= P.getAdjective(base)
+			. |= P.getAdjective(base.properties[P])
 			continue
+*/
 
 /// Sets the material of an object. PLEASE USE THIS TO SET MATERIALS UNLESS YOU KNOW WHAT YOU'RE DOING.
 /atom/proc/setMaterial(datum/material/mat1, appearance = 1, setname = 1, copy = 1, use_descriptors = 0)
-	if(!mat1 ||!istype(mat1, /datum/material))
+	if(!istype(mat1))
 		return
-	if(copy)
-		mat1 = copyMaterial(mat1)
+	//No more copying shit
 
 	var/traitDesc = get_material_trait_desc(mat1)
 	var/strPrefix = jointext(mat1.prefixes, " ")
 	var/strSuffix = jointext(mat1.suffixes, " ")
 
-	for(var/X in getMaterialPrefixList(mat1))
-		strPrefix += " [X]"
-	trim(strPrefix)
+	//for(var/X in getMaterialPrefixList(mat1))
+	//	strPrefix += " [X]"
+	//trim(strPrefix)
 
 	if (src.mat_changename && setname)
 		src.remove_prefixes(99)
@@ -190,17 +194,18 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 	src.alpha = 255
 	src.color = null
 	src.UpdateOverlays(null, "material")
-	if (islist(src.mat_appearances_to_ignore) && length(src.mat_appearances_to_ignore))
-		if (mat1.name in src.mat_appearances_to_ignore)
-			set_color_alpha = 0
-	if (set_color_alpha && src.mat_changeappearance && appearance && mat1.applyColor)
-		if (mat1.texture)
-			src.setTexture(mat1.texture, mat1.texture_blend, "material")
-		src.alpha = mat1.alpha
-		src.color = mat1.color
+	if (src.mat_changeappearance && appearance && mat1.applyColor) //Why not move these to the front (no material has applyColor set to false btw)
+		if (islist(src.mat_appearances_to_ignore) && length(src.mat_appearances_to_ignore))
+			if (mat1.mat_id in src.mat_appearances_to_ignore)
+				set_color_alpha = 0
+		if (set_color_alpha)
+			if (mat1.texture)
+				src.setTexture(mat1.texture, mat1.texture_blend, "material")
+			src.alpha = mat1.alpha
+			src.color = mat1.color
 
 	src.material = mat1
-	mat1.owner = src
+	//mat1.owner = src
 	mat1.triggerOnAdd(src)
 	src.onMaterialChanged()
 
@@ -343,12 +348,15 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 	//
 
 	//This is sub-optimal and only used because im dumb
-	if(mat1.material_flags & MATERIAL_CRYSTAL || mat2.material_flags & MATERIAL_CRYSTAL) newMat.material_flags |= MATERIAL_CRYSTAL
+	/*if(mat1.material_flags & MATERIAL_CRYSTAL || mat2.material_flags & MATERIAL_CRYSTAL) newMat.material_flags |= MATERIAL_CRYSTAL
 	if(mat1.material_flags & MATERIAL_METAL || mat2.material_flags & MATERIAL_METAL) newMat.material_flags |= MATERIAL_METAL
 	if(mat1.material_flags & MATERIAL_CLOTH || mat2.material_flags & MATERIAL_CLOTH) newMat.material_flags |= MATERIAL_CLOTH
 	if(mat1.material_flags & MATERIAL_ORGANIC || mat2.material_flags & MATERIAL_ORGANIC) newMat.material_flags |= MATERIAL_ORGANIC
 	if(mat1.material_flags & MATERIAL_ENERGY || mat2.material_flags & MATERIAL_ENERGY) newMat.material_flags |= MATERIAL_ENERGY
-	if(mat1.material_flags & MATERIAL_RUBBER || mat2.material_flags & MATERIAL_RUBBER) newMat.material_flags |= MATERIAL_RUBBER
+	if(mat1.material_flags & MATERIAL_RUBBER || mat2.material_flags & MATERIAL_RUBBER) newMat.material_flags |= MATERIAL_RUBBER*/
+	newMat.material_flags = mat1.material_flags | mat2.material_flags //<That's how it's done instead (not that just slapping all the mat flags together is great)
+
+	newMat.material_flags |= MATERIAL_NONSTANDARD
 
 	newMat.parent_materials.Add(mat1)
 	newMat.parent_materials.Add(mat2)
