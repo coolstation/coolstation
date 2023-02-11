@@ -4687,11 +4687,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/wall,
 /area/station/crew_quarters/kitchen)
-"dzx" = (
-/obj/table/auto,
-/obj/item/aiModule/random,
-/turf/simulated/floor,
-/area/station/bridge)
 "dAc" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -16055,6 +16050,11 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/floor/wood,
 /area/station/wc/medbay)
+"mtq" = (
+/obj/table/auto,
+/obj/item/aiModule/random,
+/turf/simulated/floor,
+/area/station/bridge)
 "mts" = (
 /turf/simulated/wall,
 /area/station/engine/engineering/breakroom)
@@ -23231,6 +23231,10 @@
 	},
 /turf/simulated/floor,
 /area/station/medical/medbay/treatment1)
+"rMU" = (
+/obj/machinery/computer/barcode/qm/no_belthell,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "rNE" = (
 /obj/machinery/door/airlock/pyro/external,
 /turf/space/gehenna/desert/plating{
@@ -60794,7 +60798,7 @@ vln
 vln
 pRM
 vln
-dzx
+mtq
 vUV
 uTU
 lGC
@@ -89769,7 +89773,7 @@ cqC
 cqC
 cqC
 cqC
-cqC
+hyl
 hyl
 uDK
 hvN
@@ -90071,8 +90075,8 @@ cqC
 cqC
 cqC
 cqC
-cqC
 hyl
+rMU
 evK
 wwW
 mVe
@@ -90373,8 +90377,8 @@ cqC
 cqC
 cqC
 cqC
-cqC
 hyl
+lSE
 lSE
 dpx
 hHc
@@ -90675,7 +90679,7 @@ cqC
 cqC
 cqC
 cqC
-cqC
+hyl
 hyl
 jsA
 lSE
