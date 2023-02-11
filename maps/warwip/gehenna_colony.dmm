@@ -4687,6 +4687,11 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/wall,
 /area/station/crew_quarters/kitchen)
+"dzx" = (
+/obj/table/auto,
+/obj/item/aiModule/random,
+/turf/simulated/floor,
+/area/station/bridge)
 "dAc" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -15050,6 +15055,21 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
 	},
+/obj/rack{
+	color = "#CCCCFF";
+	desc = "this is just a normal off-the-shelf rack...";
+	name = "law rack"
+	},
+/obj/item/aiModule/freeform,
+/obj/item/aiModule/makeCaptain{
+	pixel_y = 7
+	},
+/obj/item/aiModule/notHuman{
+	pixel_x = -8
+	},
+/obj/item/aiModule/protectStation{
+	pixel_x = -13
+	},
 /turf/simulated/floor/darkblue,
 /area/station/turret_protected/Zeta)
 "lwM" = (
@@ -15839,6 +15859,22 @@
 	dir = 6;
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/rack{
+	color = "#CCCCFF";
+	desc = "this is just a normal off-the-shelf rack...";
+	name = "law rack"
+	},
+/obj/item/aiModule/oneHuman,
+/obj/item/aiModule/rename{
+	pixel_x = 8
+	},
+/obj/item/aiModule/reset{
+	pixel_y = 7
+	},
+/obj/item/aiModule/conservePower{
+	pixel_x = 13;
+	pixel_y = 11
 	},
 /turf/simulated/floor/darkblue,
 /area/station/turret_protected/Zeta)
@@ -60757,7 +60793,7 @@ vln
 vln
 pRM
 vln
-oQO
+dzx
 vUV
 uTU
 lGC
