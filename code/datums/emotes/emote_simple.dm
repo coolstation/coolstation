@@ -349,7 +349,7 @@
 		return
 	if (!ismuzzled(user))
 		if (user.health <= 0)
-			var/dying_gasp_sfx = "sound/voice/gasps/[user.gender]_gasp_[pick(1,5)].ogg"
+			var/dying_gasp_sfx = "sound/voice/gasps/[pick("male","female")]_gasp_[pick(1,5)].ogg" // this is funnier than adding 5 new gasp sounds for neuters, just pick. for everyone. why not?
 			playsound(user, dying_gasp_sfx, 100, 0, 0, user.get_age_pitch())
 		else
 			playsound(user, user.sound_gasp, 15, 0, 0, user.get_age_pitch())
@@ -358,39 +358,60 @@
 //I'm shoving a bunch of these under oneoff purely for the navigability of the object tree
 //ends in exclamation mark
 /*
-/datum/emote/oneoff/flipout
-/datum/emote/oneoff/flipout/enact(mob/user, voluntary = 0, param)
+/datum/emote/flipout
+/datum/emote/flipout/enact(mob/user, voluntary = 0, param)
 	return list("<B>[user]</B> flips the fuck out!", "<I>flips the fuck out!</I>", MESSAGE_VISIBLE)
 
 //ends in exclamation mark
-/datum/emote/oneoff/rage //also fury, angry
-/datum/emote/oneoff/rage/enact(mob/user, voluntary = 0, param)
+/datum/emote/rage //also fury, angry
+/datum/emote/rage/enact(mob/user, voluntary = 0, param)
 	return list("<B>[user]</B> becomes utterly furious!", "<I>becomes utterly furious!</I>", MESSAGE_VISIBLE)
 */
 //maptext differs
-/datum/emote/oneoff/pale
-/datum/emote/oneoff/pale/enact(mob/user, voluntary = 0, param)
+/datum/emote/pale
+/datum/emote/pale/enact(mob/user, voluntary = 0, param)
 	return list("<B>[user]</B> goes pale for a second.", "<I>goes pale...</I>", MESSAGE_VISIBLE)
 
 //one of 2 pronoun-using emotes that can't fail
-/datum/emote/oneoff/shame// also hanghead
-/datum/emote/oneoff/shame/enact(mob/user, voluntary = 0, param)
+/datum/emote/shame// also hanghead
+/datum/emote/shame/enact(mob/user, voluntary = 0, param)
 	return list("<B>[user]</B> hangs [his_or_her(user)] head in shame.", "<I>hangs [his_or_her(user)] head in shame</I>", MESSAGE_VISIBLE)
 
 //one of 2 pronoun-using emotes that can't fail
-/datum/emote/oneoff/shakehead// also smh
-/datum/emote/oneoff/shakehead/enact(mob/user, voluntary = 0, param)
+/datum/emote/shakehead// also smh
+/datum/emote/shakehead/enact(mob/user, voluntary = 0, param)
 	return list("<B>[user]</B> shakes [his_or_her(user)] head.", "<I>shakes [his_or_her(user)] head</I>", MESSAGE_VISIBLE)
 
 //even the sin that is the visible_restrain code can't deal with this
-/datum/emote/oneoff/facepalm
-/datum/emote/oneoff/facepalm/enact(mob/user, voluntary = 0, param)
+/datum/emote/facepalm
+/datum/emote/facepalm/enact(mob/user, voluntary = 0, param)
 	if (!user.restrained())
 		return list("<B>[user]</B> places [his_or_her(user)] hand on [his_or_her(user)] face in exasperation.", "<I>places [his_or_her(user)] hand on [his_or_her(user)] face in exasperation</I>", MESSAGE_VISIBLE)
 	else
-		return list("<B>[src]</B> looks rather exasperated.", "<I>looks rather exasperated</I>", MESSAGE_VISIBLE) //mood
+		return list("<B>[user]</B> looks rather exasperated.", "<I>looks rather exasperated</I>", MESSAGE_VISIBLE) //mood
 
 //This one was in the middle of the complex emote section, look how dang long it is!
-/datum/emote/oneoff/handpuppet
-/datum/emote/oneoff/handpuppet/enact(mob/user, voluntary = 0, param)
-	return list("<b>[src]</b> throws [his_or_her(src)] voice, badly, while flapping [his_or_her(src)] thumb and index finger like some sort of lips.[prob(10) ? " Admittedly, it is a pretty good impression of the [pick("captain", "head of personnel", "clown", "research director", "chief engineer", "head of security", "medical director", "AI", "chaplain", "detective")]." : null]", null, MESSAGE_VISIBLE)
+/datum/emote/handpuppet
+/datum/emote/handpuppet/enact(mob/user, voluntary = 0, param)
+	return list("<b>[user]</b> throws [his_or_her(user)] voice, badly, while flapping [his_or_her(user)] thumb and index finger like some sort of lips.[prob(10) ? " Admittedly, it is a pretty good impression of the [pick("captain", "head of personnel", "clown", "research director", "chief engineer", "head of security", "medical director", "AI", "chaplain", "detective")]." : null]", null, MESSAGE_VISIBLE)
+
+/datum/emote/help
+/datum/emote/help/enact(mob/user, voluntary = 0, param)
+	user.show_text("To use emotes, simply enter 'me (emote)' in the input bar. Certain emotes can be targeted at other characters - to do this, enter 'me (emote) (name of character)' without the brackets.")
+	user.show_text("For a list of all emotes, use 'me list'. For a list of basic emotes, use 'me listbasic'. For a list of emotes that can be targeted, use 'me listtarget'.")
+
+//Emotes differ per mob type, so
+/datum/emote/listtarget/human
+/datum/emote/listtarget/human/enact(mob/user, voluntary = 0, param)
+	user.show_text("salute, bow, hug, wave, glare, stare, look, leer, nod, flipoff, doubleflip, shakefist, handshake, daps, slap, boggle, highfive, fingerguns")
+
+/datum/emote/listbasic/human
+/datum/emote/listbasic/human/enact(mob/user, voluntary = 0, param)
+	user.show_text("smile, grin, smirk, frown, scowl, grimace, sulk, pout, nod, blink, drool, shrug, tremble, despair, quiver, shiver, shudder, shake, \
+	think, ponder, clap, wave, salute, flap, aflap, laugh, chuckle, giggle, chortle, guffaw, cough, hiccup, sigh, mumble, grumble, groan, moan, sneeze, \
+	sniff, snore, whimper, yawn, choke, gasp, weep, sob, wail, whine, gurgle, gargle, blush, flinch, blink_r, eyebrow, shakehead, shakebutt, \
+	pale, flipout, rage, shame, raisehand, crackknuckles, stretch, rude, cry, retch, raspberry, tantrum, gesticulate, wgesticulate, smug, \
+	nosepick, flex, facepalm, panic, snap, airquote, twitch, twitch_v, faint, deathgasp, signal, wink, collapse, trip, dance, scream, \
+	burp, fart, monologue, contemplate, custom")
+
+

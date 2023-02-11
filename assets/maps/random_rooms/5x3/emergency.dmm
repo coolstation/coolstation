@@ -16,15 +16,8 @@
 /obj/machinery/light/small/floor/neutral,
 /turf/simulated/floor/plating,
 /area/dmm_suite/clear_area)
-"g" = (
-/obj/item/storage/wall/emergency{
-	dir = 1;
-	pixel_y = 32
-	},
-/turf/simulated/floor/plating,
-/area/dmm_suite/clear_area)
 "l" = (
-/obj/machinery/portable_atmospherics/canister/air,
+/obj/storage/closet/emergency,
 /turf/simulated/floor/plating,
 /area/dmm_suite/clear_area)
 "o" = (
@@ -48,10 +41,6 @@
 /turf/simulated/floor/plating,
 /area/dmm_suite/clear_area)
 "p" = (
-/obj/item/storage/wall/emergency{
-	dir = 1;
-	pixel_y = 32
-	},
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/simulated/floor/plating,
 /area/dmm_suite/clear_area)
@@ -70,7 +59,7 @@
 /area/dmm_suite/clear_area)
 
 (1,1,1) = {"
-g
+l
 B
 o
 "}

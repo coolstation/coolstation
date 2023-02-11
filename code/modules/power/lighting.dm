@@ -1280,6 +1280,7 @@
 // called after an attack with a light item
 // shatter light, unless it was an attempt to put it in a light socket
 // now only shatter if the intent was harm
+// WHY THO?
 
 /obj/item/light/afterattack(atom/target, mob/user)
 	if(istype(target, /obj/machinery/light))
@@ -1289,6 +1290,17 @@
 
 	if(light_status == LIGHT_OK || light_status == LIGHT_BURNED)
 		boutput(user, "The [name] shatters!")
+		light_status = LIGHT_BROKEN
+		force = 5
+		playsound(src.loc, "sound/impact_sounds/Glass_Hit_1.ogg", 75, 1)
+		update()
+
+/obj/item/light/throw_impact(atom/A, datum/thrown_thing/thr)
+	..()
+	if(prob(30))
+		return
+	if(light_status == LIGHT_OK || light_status == LIGHT_BURNED)
+		src.visible_message("The [name] shatters!")
 		light_status = LIGHT_BROKEN
 		force = 5
 		playsound(src.loc, "sound/impact_sounds/Glass_Hit_1.ogg", 75, 1)

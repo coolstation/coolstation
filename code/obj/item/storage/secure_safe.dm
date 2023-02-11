@@ -404,7 +404,7 @@
 /*
 /obj/item/storage/secure/sbriefcase/attack(mob/M as mob, mob/user as mob)
 	if (usr.bioHolder.HasEffect("clumsy") && prob(50))
-		user.visible_message("<span class='alert'><b>[usr]</b> swings [src] too hard and nails \himself in the face.</span>")
+		user.visible_message("<span class='alert'><b>[usr]</b> swings [src] too hard and nails [himself_or_herself(src)] in the face.</span>")
 		random_brute_damage(usr, 10)
 		usr.paralysis += 2
 		return

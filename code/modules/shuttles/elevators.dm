@@ -66,6 +66,17 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	stop_id 	= "sec_bot"
 	name		= "Security Lower Level"
 	target_area = /area/transit_vehicle/elevator/sec_bot
+
+/datum/transit_stop/elevator/dum_top
+	stop_id 	= "dum_top"
+	name		= "Dumbwaiter Upper Level"
+	target_area = /area/transit_vehicle/elevator/dum_top
+	current_occupant = "dum_elevator"
+
+/datum/transit_stop/elevator/dum_bot
+	stop_id 	= "dum_bot"
+	name		= "Dumbwaiter Lower Level"
+	target_area = /area/transit_vehicle/elevator/dum_bot
 /*
 /datum/transit_stop/elevator/
 	stop_id 	= ""
@@ -112,6 +123,9 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	vehicle_id = "sec_elevator"
 	stop_ids = list("sec_top","sec_bot")
 
+/datum/transit_vehicle/elevator/dum
+	vehicle_id = "dum_elevator"
+	stop_ids = list("dum_top","dum_bot")
 
 // computers
 
@@ -130,6 +144,9 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /obj/machinery/computer/transit_terminal/sec
 	vehicle_id = "sec_elevator"
 
+/obj/machinery/computer/transit_terminal/dum
+	vehicle_id = "dum_elevator"
+
 // thins
 
 /obj/machinery/computer/transit_terminal/thin/qm
@@ -147,7 +164,40 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /obj/machinery/computer/transit_terminal/thin/sec
 	vehicle_id = "sec_elevator"
 
+/obj/machinery/computer/transit_terminal/thin/dum
+	vehicle_id = "dum_elevator"
 
+// buttons
+
+/obj/machinery/button/elevator/med
+	vehicle_id = "med_elevator"
+	stop_top_id = "med_top"
+	stop_bottom_id = "med_bot"
+
+/obj/machinery/button/elevator/qm
+	vehicle_id = "qm_elevator"
+	stop_top_id = "qm_top"
+	stop_bottom_id = "qm_bot"
+
+/obj/machinery/button/elevator/eng
+	vehicle_id = "eng_elevator"
+	stop_top_id = "eng_top"
+	stop_bottom_id = "eng_bot"
+
+/obj/machinery/button/elevator/com
+	vehicle_id = "com_elevator"
+	stop_top_id = "com_top"
+	stop_bottom_id = "com_bot"
+
+/obj/machinery/button/elevator/sec
+	vehicle_id = "sec_elevator"
+	stop_top_id = "sec_top"
+	stop_bottom_id = "sec_bot"
+
+/obj/machinery/button/elevator/dum
+	vehicle_id = "dum_elevator"
+	stop_top_id = "dum_top"
+	stop_bottom_id = "dum_bot"
 
       //|\\
      // | \\
@@ -210,6 +260,16 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	icon_state = "shuttle2"
 	filler_turf = "/turf/simulated/floor/plating"
 
+/area/transit_vehicle/elevator/dum_top
+	name = "Dumbwaiter"
+	icon_state = "shuttle"
+	filler_turf = "/turf/simulated/floor/specialroom/elevator_shaft/dum"
+
+/area/transit_vehicle/elevator/dum_bot
+	name = "Dumbwaiter"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/simulated/floor/plating"
+
 /turf/simulated/floor/specialroom/elevator_shaft/qm
 	fall_landmark = LANDMARK_FALL_QM
 /turf/simulated/floor/specialroom/elevator_shaft/med
@@ -220,3 +280,5 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	fall_landmark = LANDMARK_FALL_COM
 /turf/simulated/floor/specialroom/elevator_shaft/sec
 	fall_landmark = LANDMARK_FALL_SEC
+/turf/simulated/floor/specialroom/elevator_shaft/dum
+	fall_landmark = LANDMARK_FALL_DUM

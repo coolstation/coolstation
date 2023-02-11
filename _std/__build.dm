@@ -88,7 +88,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_CONSTRUCTION		// Construction mode
 //#define MAP_OVERRIDE_DESTINY			// Destiny/RP
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
-//#define MAP_OVERRIDE_COGMAP			// Cogmap
+#define MAP_OVERRIDE_COGMAP			// Cogmap
 //#define MAP_OVERRIDE_COGMAP2			// Cogmap 2
 //#define MAP_OVERRIDE_DONUT2			// Updated Donut2
 //#define MAP_OVERRIDE_DONUT3			// Donut3 by Ryumi
@@ -106,8 +106,12 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_OZYMANDIAS
 //#define MAP_OVERRIDE_FLEET
 //#define MAP_OVERRIDE_ICARUS
+<<<<<<< HEAD
 //#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP
 #define MAP_OVERRIDE_TSELA			// Eagletanker WIP do not use
+=======
+//#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do not use
+>>>>>>> 21bd867037c23aefae95dec87cba58a9b75e6d80
 //#define MAP_OVERRIDE_PAMGOC			// Pamgoc
 //#define MAP_OVERRIDE_WRESTLEMAP   // Wrestlemap by Overtone
 // #define MAP_OVERRIDE_POD_WARS   // 500x500 Pod Wars map

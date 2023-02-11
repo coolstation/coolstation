@@ -782,7 +782,7 @@
 		if(act == "scream")
 			if(mob.emote_allowed)
 				mob.emote_allowed = 0
-				message = "<B>[mob]</B> screams with \his mind! Guh, that's creepy!"
+				message = "<B>[mob]</B> screams with [his_or_her(mob)] mind! Guh, that's creepy!"
 				playsound(mob, "sound/voice/screams/Psychic_Scream_1.ogg", 80, 0, 0, max(0.7, min(1.2, 1.0 + (30 - mob.bioHolder.age)/60)), channel=VOLUME_CHANNEL_EMOTE)
 				SPAWN_DBG(3 SECONDS)
 					mob.emote_allowed = 1
@@ -1268,9 +1268,9 @@
 	special_head = HEAD_WEREWOLF
 	mutant_organs = list("tail" = /obj/item/organ/tail/wolf)
 
-	head_offset = 5
-	hand_offset = 3
-	arm_offset = 3
+	//head_offset = 5
+	//hand_offset = 3
+	//arm_offset = 3
 
 	New()
 		..()
@@ -1502,10 +1502,10 @@
 				if (!muzzled)
 					. = "<B>[mob.name]</B> roars."
 			if("tail")
-				. = "<B>[mob.name]</B> waves \his tail."
+				. = "<B>[mob.name]</B> waves [his_or_her(mob)] tail."
 			if("paw")
 				if (!mob.restrained())
-					. = "<B>[mob.name]</B> flails \his paw."
+					. = "<B>[mob.name]</B> flails [his_or_her(mob)] paw."
 			if("scretch")
 				if (!muzzled)
 					. = "<B>[mob.name]</B> scretches."
@@ -1516,7 +1516,7 @@
 					. = "<B>[src.name]</B> rolls."
 			if("gnarl")
 				if (!muzzled)
-					. = "<B>[mob]</B> gnarls and shows \his teeth.."
+					. = "<B>[mob]</B> gnarls and shows [his_or_her(mob)] teeth.."
 			if("jump")
 				. = "<B>[mob.name]</B> jumps!"
 			if ("scream")

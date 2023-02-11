@@ -27,6 +27,7 @@ obj/machinery/atmospherics/binary/volume_pump
 	var/datum/radio_frequency/radio_connection
 
 	var/datum/pump_ui/volume_pump_ui/ui
+	pixel_y = -1
 
 	update_icon()
 		if(node1&&node2)

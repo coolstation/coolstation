@@ -8,7 +8,7 @@
 	layer = PIPE_MACHINE_LAYER
 	var/on = 1
 	var/pump_direction = 1 //0 = siphoning, 1 = releasing
-	var/external_pressure_bound = ONE_ATMOSPHERE + 20
+	var/external_pressure_bound = ONE_ATMOSPHERE + 40
 	var/internal_pressure_bound = 0
 	var/pressure_checks = 1
 	//1: Do not pass external_pressure_bound

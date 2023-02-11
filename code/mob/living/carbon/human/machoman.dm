@@ -992,7 +992,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					src.bioHolder.AddEffect("fire_resist")
 					src.transforming = 1
 					playsound(src.loc, "sound/voice/heavenly.ogg", 75)
-					src.visible_message("<span class='alert'><b>[src] closes \his eyes in silent macho prayer!</b></span>")
+					src.visible_message("<span class='alert'><b>[src] closes [his_or_her(src)] eyes in silent macho prayer!</b></span>")
 					sleep(4 SECONDS)
 					for (var/mob/N in viewers(src, null))
 						N.flash(3 SECONDS)
@@ -1376,7 +1376,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 
 	attack(mob/target as mob)
 		if (istype(target, /mob/living/carbon/human/machoman))
-			target.visible_message("<span class='alert'>[target] shoves \his face deep into [src] and breathes deeply!</span>")
+			target.visible_message("<span class='alert'>[target] shoves [his_or_her(target)] face deep into [src] and breathes deeply!</span>")
 			playsound(target.loc, "sound/voice/macho/macho_breathing02.ogg", 50, 1)
 			sleep(2.5 SECONDS)
 			playsound(target.loc, "sound/voice/macho/macho_freakout.ogg", 50, 1)
@@ -1394,7 +1394,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 				H.UpdateDamageIcon()
 				H.bodytemperature = H.base_body_temp
 		else
-			target.visible_message("<span class='alert'>[target] shoves \his face deep into [src]!</span>")
+			target.visible_message("<span class='alert'>[target] shoves [his_or_her(target)] face deep into [src]!</span>")
 			SPAWN_DBG(2.5 SECONDS)
 			target.visible_message("<span class='alert'>[target]'s pupils dilate.</span>")
 			target.changeStatus("stunned", 10 SECONDS)
@@ -2351,7 +2351,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					holder.owner.bioHolder.AddEffect("fire_resist")
 					holder.owner.transforming = 1
 					playsound(holder.owner.loc, "sound/voice/heavenly.ogg", 75)
-					holder.owner.visible_message("<span class='alert'><b>[holder.owner] closes \his eyes in silent macho prayer!</b></span>")
+					holder.owner.visible_message("<span class='alert'><b>[holder.owner] closes [his_or_her(holder.owner)] eyes in silent macho prayer!</b></span>")
 					sleep(4 SECONDS)
 					for (var/mob/N in viewers(holder.owner, null))
 						N.flash(3 SECONDS)

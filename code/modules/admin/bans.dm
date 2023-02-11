@@ -208,6 +208,15 @@ var/global/list/playersSeen = list()
 		var/msg = row["reason"]
 		discord_send("Ban applied by [key] against [key2] for reason [msg] with expiry [expiry]", -1)
 
+		var/ircmsg[] = new()
+		ircmsg["key"] = key
+		ircmsg["key2"] = key2
+		ircmsg["msg"] = msg
+		ircmsg["expiry"] = expiry
+		ircmsg["type"] = "added"
+
+		ircbot.export("ban", ircmsg)
+
 		if (targetC)
 			if (targetC.mob)
 				if (targetC.mob.contents) //for observers
@@ -382,6 +391,15 @@ var/global/list/playersSeen = list()
 		var/msg = "edited [target]'s ban. Reason: [row["reason"]]. Duration: [(expiry == 0 ? "Permanent": "[expiry]")]. [serverLogSnippet]."
 		discord_send("[name] ([key]) [msg]")
 
+		var/ircmsg[] = new()
+		ircmsg["key"] = key
+		ircmsg["key2"] = row["ckey"]
+		ircmsg["msg"] = msg
+		ircmsg["expiry"] = expiry
+		ircmsg["type"] = "edited"
+
+		ircbot.export("ban", ircmsg)
+
 		return 0
 
 	else
@@ -513,6 +531,15 @@ var/global/list/playersSeen = list()
 		var/name = (expired ? "\[Expired\]" : "[isclient(adminC) && adminC.mob && adminC.mob.name ? stripTextMacros(adminC.mob.name) : "N/A"]")
 		var/msg = (expired ? "[row["ckey"]]'s ban removed." : "deleted [row["ckey"]]'s ban.")
 		discord_send("[name] ([key]) [msg]", -1)
+
+		var/ircmsg[] = new()
+		ircmsg["key"] = key
+		ircmsg["key2"] = row["ckey"]
+		ircmsg["msg"] = msg
+		ircmsg["type"] = "removed"
+
+		ircbot.export("ban", ircmsg)
+
 
 		return 0
 

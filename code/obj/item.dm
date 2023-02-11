@@ -1254,7 +1254,7 @@
 		//msgs.visible_message_target("<span class='alert'><B><I>... and lands a devastating hit!</B></I></span>")
 
 #else
-	// rng simple stuns for now - warc
+	// rng simple stuns for now - warc . keywords: rng stuns
 	if (rng_stun_rate && prob(rng_stun_rate))
 		M.do_disorient(weakened = rng_stun_weak, stunned = rng_stun_time, disorient = rng_stun_diso)
 		msgs.stamina_crit = 1
@@ -1434,9 +1434,9 @@
 		if (O == (attacher || attachee))
 			continue
 		if (attacher == attachee)
-			O.show_message("<span class='alert'>[attacher] attaches [src] to \his own stump!</span>", 1)
+			O.show_message("<span class='alert'>[attacher] attaches [src] to [his_or_her(attachee)] own stump!</span>", 1)
 		else
-			O.show_message("<span class='alert'>[attachee] has [src] attached to \his stump by [attacher].</span>", 1)
+			O.show_message("<span class='alert'>[attachee] has [src] attached to [his_or_her(attachee)] stump by [attacher].</span>", 1)
 
 	if (attachee != attacher)
 		boutput(attachee, "<span class='alert'>[attacher] attaches [src] to your stump. It doesn't look very secure!</span>")

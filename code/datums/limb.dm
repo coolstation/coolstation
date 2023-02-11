@@ -404,17 +404,17 @@
 		return
 
 	help(mob/target, var/mob/living/user)
-		user.show_message("<span class='alert'>Nope. Not going to work. You're more likely to kill them.</span>")
+		user.show_message("<span class='alert'>Nope. Not going to work. You're more likely to kill [him_or_her(target)].</span>")
 		user.lastattacked = target
 
 	disarm(mob/target, var/mob/living/user)
 		logTheThing("combat", user, target, "mauls [constructTarget(target,"combat")] with bear limbs (disarm intent) at [log_loc(user)].")
-		user.visible_message("<span class='alert'>[user] mauls [target] while trying to disarm them!</span>")
+		user.visible_message("<span class='alert'>[user] mauls [target] while trying to disarm [him_or_her(target)]!</span>")
 		harm(target, user, 1)
 
 	grab(mob/target, var/mob/living/user)
 		logTheThing("combat", user, target, "mauls [constructTarget(target,"combat")] with bear limbs (grab intent) at [log_loc(user)].")
-		user.visible_message("<span class='alert'>[user] mauls [target] while trying to grab them!</span>")
+		user.visible_message("<span class='alert'>[user] mauls [target] while trying to grab [him_or_her(target)]!</span>")
 		harm(target, user, 1)
 
 	harm(mob/target, var/mob/living/user, var/no_logs = 0)
@@ -424,7 +424,7 @@
 		var/datum/attackResults/msgs = user.calculate_melee_attack(target, affecting, 6, 10, 0)
 		user.attack_effects(target, affecting)
 		var/action = pick("maim", "maul", "mangle", "rip", "claw", "lacerate", "mutilate")
-		msgs.base_attack_message = "<b><span class='alert'>[user] [action]s [target] with their [src.holder]!</span></b>"
+		msgs.base_attack_message = "<b><span class='alert'>[user] [action]s [target] with [his_or_her(user)] [src.holder]!</span></b>"
 		msgs.played_sound = "sound/impact_sounds/Flesh_Stab_1.ogg"
 		msgs.damage_type = DAMAGE_CUT
 		msgs.flush(SUPPRESS_LOGS)
@@ -451,7 +451,7 @@
 					if (prob(10))
 						var/turf/T = get_edge_target_turf(user, user.dir)
 						if (isturf(T))
-							M.visible_message("<span class='alert'><B>[user] savagely punches [M], sending them flying!</B></span>")
+							M.visible_message("<span class='alert'><B>[user] savagely punches [M], sending [him_or_her(M)] flying!</B></span>")
 							M.throw_at(T, 6, 2)
 					else
 						M.visible_message("<span class='alert'><B>[user] punches [M]!</B></span>")
@@ -517,7 +517,7 @@
 
 	disarm(mob/target, var/mob/living/user)
 		logTheThing("combat", user, target, "mauls [constructTarget(target,"combat")] with zomb limbs (disarm intent) at [log_loc(user)].")
-		user.visible_message("<span class='alert'>[user] mauls [target] while trying to disarm them!</span>")
+		user.visible_message("<span class='alert'>[user] mauls [target] while trying to disarm [him_or_her(target)]!</span>")
 		harm(target, user, 1)
 
 	grab(mob/target, var/mob/living/user)
@@ -553,7 +553,7 @@
 		var/datum/attackResults/msgs = user.calculate_melee_attack(target, affecting, 6, 10, 1)
 		user.attack_effects(target, affecting)
 		var/action = pick("maim", "maul", "mangle", "rip", "scratch", "mutilate")
-		msgs.base_attack_message = "<b><span class='alert'>[user] [action]s [target] with their [src.holder]!</span></b>"
+		msgs.base_attack_message = "<b><span class='alert'>[user] [action]s [target] with [his_or_her(user)] [src.holder]!</span></b>"
 		msgs.played_sound = "sound/impact_sounds/Flesh_Stab_1.ogg"
 		msgs.damage_type = DAMAGE_BLUNT
 		msgs.flush(SUPPRESS_LOGS)
@@ -618,7 +618,7 @@
 		var/datum/attackResults/msgs = user.calculate_melee_attack(target, affecting, 6, 10, 0)
 		user.attack_effects(target, affecting)
 		var/action = pick("lacerate", "carve", "mangle", "sever", "hack", "slice", "mutilate")
-		msgs.base_attack_message = "<b><span class='alert'>[user] [action]s [target] with their [src.holder]!</span></b>"
+		msgs.base_attack_message = "<b><span class='alert'>[user] [action]s [target] with [his_or_her(user)] [src.holder]!</span></b>"
 		msgs.played_sound = "sound/effects/sawhit.ogg"
 		boutput(target, "<span class='alert'>You can feel the saw slicing your body apart!</span>")
 		target.emote("scream")
@@ -664,7 +664,7 @@
 			return 0
 		if (prob(25))
 			logTheThing("combat", user, target, "accidentally harms [constructTarget(target,"combat")] with brullbar limbs at [log_loc(user)].")
-			user.visible_message("<span class='alert'><b>[user] accidentally claws [target] while trying to [user.a_intent] them!</b></span>", "<span class='alert'><b>You accidentally claw [target] while trying to [user.a_intent] them!</b></span>")
+			user.visible_message("<span class='alert'><b>[user] accidentally claws [target] while trying to [user.a_intent] [him_or_her(target)]!</b></span>", "<span class='alert'><b>You accidentally claw [target] while trying to [user.a_intent] [him_or_her(target)]!</b></span>")
 			harm(target, user, 1)
 			return 1
 		return 0
@@ -697,7 +697,7 @@
 		var/datum/attackResults/msgs = user.calculate_melee_attack(target, affecting, 6, 9, rand(5,9) * quality)
 		user.attack_effects(target, affecting)
 		var/action = pick("maim", "maul", "mangle", "rip", "claw", "lacerate", "mutilate")
-		msgs.base_attack_message = "<b><span class='alert'>[user] [action]s [target] with their [src.holder]!</span></b>"
+		msgs.base_attack_message = "<b><span class='alert'>[user] [action]s [target] with [his_or_her(user)] [src.holder]!</span></b>"
 		msgs.played_sound = "sound/impact_sounds/Flesh_Stab_1.ogg"
 		msgs.damage_type = DAMAGE_CUT
 		msgs.flush(SUPPRESS_LOGS)
@@ -739,7 +739,7 @@
 			return 0
 		if (prob(15))
 			logTheThing("combat", user, target, "accidentally harms [constructTarget(target,"combat")] with hot hands at [log_loc(user)].")
-			user.visible_message("<span class='alert'><b>[user] accidentally melts [target] while trying to [user.a_intent] them!</b></span>", "<span class='alert'><b>You accidentally melt [target] while trying to [user.a_intent] them!</b></span>")
+			user.visible_message("<span class='alert'><b>[user] accidentally melts [target] while trying to [user.a_intent] [him_or_her(target)]!</b></span>", "<span class='alert'><b>You accidentally melt [target] while trying to [user.a_intent] [him_or_her(target)]!</b></span>")
 			harm(target, user, 1)
 			return 1
 		return 0
@@ -771,7 +771,7 @@
 		var/datum/attackResults/msgs = user.calculate_melee_attack(target, affecting, 1, 3, 1, 0, 0)
 		user.attack_effects(target, affecting)
 
-		msgs.base_attack_message = "<b><span class='alert'>[user] melts [target] with their clutch!</span></b>"
+		msgs.base_attack_message = "<b><span class='alert'>[user] melts [target] with [his_or_her(user)] clutch!</span></b>"
 		msgs.played_sound = "sound/impact_sounds/burn_sizzle.ogg"
 		msgs.damage_type = DAMAGE_BURN
 		msgs.flush(SUPPRESS_LOGS)
@@ -819,7 +819,7 @@
 				var/turf/T = get_edge_target_turf(user, user.dir)
 
 				if (prob(66) && T && isturf(T))
-					user.visible_message("<span class='alert'><B>[user] mauls [victim] viciously, sending them flying!</B></span>")
+					user.visible_message("<span class='alert'><B>[user] mauls [victim] viciously, sending [him_or_her(victim)] flying!</B></span>")
 					victim.health -= 6 * victim.brutevuln
 					victim.throw_at(T, 10, 2)
 				else
@@ -832,7 +832,7 @@
 				var/turf/T = get_edge_target_turf(user, user.dir)
 
 				if (prob(66) && T && isturf(T))
-					user.visible_message("<span class='alert'><B>[user] savagely punches [victim], sending them flying!</B></span>")
+					user.visible_message("<span class='alert'><B>[user] savagely punches [victim], sending [him_or_her(victim)] flying!</B></span>")
 					victim.health -= 6 * victim.brutevuln
 					victim.throw_at(T, 10, 2)
 				else
@@ -926,7 +926,7 @@
 
 			msgs.played_sound = 'sound/impact_sounds/Generic_Shove_1.ogg'
 			user.werewolf_audio_effects(target, "disarm")
-			msgs.base_attack_message = "<span class='alert'><B>[user] [pick("clocks", "strikes", "smashes")] [target] with a [pick("fierce", "fearsome", "supernatural", "wild", "beastly")] punch, forcing them to the ground!</B></span>"
+			msgs.base_attack_message = "<span class='alert'><B>[user] [pick("clocks", "strikes", "smashes")] [target] with a [pick("fierce", "fearsome", "supernatural", "wild", "beastly")] punch, forcing [him_or_her(target)] to the ground!</B></span>"
 
 			if (prob(35))
 				msgs.damage_type = DAMAGE_CUT // Nasty claws!
@@ -971,7 +971,7 @@
 					HH.emote("scream")
 
 				msgs.played_sound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
-				msgs.base_attack_message = "<span class='alert'><B>[user] whips [HH] with the sharp edge of a chitinous tendril, shearing off their [limb_name]!</span>"
+				msgs.base_attack_message = "<span class='alert'><B>[user] whips [HH] with the sharp edge of a chitinous tendril, shearing off [his_or_her(HH)] [limb_name]!</span>"
 				msgs.damage_type = DAMAGE_CUT // We just lost a limb.
 
 				msgs.damage = rand(1,5)
@@ -984,7 +984,7 @@
 					target.drop_item() // Shamblers get a guaranteed disarm.
 
 				msgs.played_sound = 'sound/impact_sounds/Generic_Shove_1.ogg'
-				msgs.base_attack_message = "<span class='alert'><B>[user] shoves [target] with a [pick("powerful", "fearsome", "intimidating", "strong")] tendril[send_flying == 0 ? "" : ", forcing them to the ground"]!</B></span>"
+				msgs.base_attack_message = "<span class='alert'><B>[user] shoves [target] with a [pick("powerful", "fearsome", "intimidating", "strong")] tendril[send_flying == 0 ? "" : ", forcing [him_or_her(target)] to the ground"]!</B></span>"
 				msgs.damage = rand(1,2)
 
 		logTheThing("combat", user, target, "diarms [constructTarget(target,"combat")] with [src.weak == 1 ? "werewolf" : "abomination"] arms at [log_loc(user)].")
@@ -1047,9 +1047,9 @@
 				msgs.base_attack_message = "<span class='alert'><B>[user] delivers a supernatural punch, sending [target] flying!</b></span>"
 			else
 				if (prob(25))
-					msgs.base_attack_message = "<span class='alert'><B>[user] mauls [target] viciously[send_flying == 0 ? "" : ", forcing them to the ground"]!</B></span>"
+					msgs.base_attack_message = "<span class='alert'><B>[user] mauls [target] viciously[send_flying == 0 ? "" : ", forcing [him_or_her(target)] to the ground"]!</B></span>"
 				else
-					msgs.base_attack_message = "<span class='alert'><B>[user] slashes viciously at [target][send_flying == 0 ? "" : ", forcing them to the ground"]!</B></span>"
+					msgs.base_attack_message = "<span class='alert'><B>[user] slashes viciously at [target][send_flying == 0 ? "" : ", forcing [him_or_her(target)] to the ground"]!</B></span>"
 					target.add_fingerprint(user)
 
 			if (prob(33) && !isdead(target) && !issilicon(target))
@@ -1062,12 +1062,12 @@
 
 		else if (src.weak == 2)
 			if (send_flying == 2)
-				msgs.base_attack_message = "<span class='alert'><B>[user] delivers a coil of tentacles at [target], sending them flying!</b></span>"
+				msgs.base_attack_message = "<span class='alert'><B>[user] delivers a coil of tentacles at [target], sending [him_or_her(target)] flying!</b></span>"
 			else
 				if (prob(25))
-					msgs.base_attack_message = "<span class='alert'><B>[user] mauls [target] viciously[send_flying == 0 ? "" : ", forcing them to the ground"]!</B></span>"
+					msgs.base_attack_message = "<span class='alert'><B>[user] mauls [target] viciously[send_flying == 0 ? "" : ", forcing [him_or_her(target)] to the ground"]!</B></span>"
 				else
-					msgs.base_attack_message = "<span class='alert'><B>[user] slashes viciously at [target][send_flying == 0 ? "" : ", forcing them to the ground"]!</B></span>"
+					msgs.base_attack_message = "<span class='alert'><B>[user] slashes viciously at [target][send_flying == 0 ? "" : ", forcing [him_or_her(target)] to the ground"]!</B></span>"
 					target.add_fingerprint(user)
 
 			if (prob(33) && !isdead(target) && !issilicon(target))
@@ -1082,7 +1082,7 @@
 			if (send_flying == 2)
 				msgs.base_attack_message = "<span class='alert'><B>[user] delivers a savage blow, sending [target] flying!</b></span>"
 			else
-				msgs.base_attack_message = "<span class='alert'><B>[user] punches [target] with a [pick("powerful", "fearsome", "intimidating", "strong")] tendril[send_flying == 0 ? "" : ", forcing them to the ground"]!</B></span>"
+				msgs.base_attack_message = "<span class='alert'><B>[user] punches [target] with a [pick("powerful", "fearsome", "intimidating", "strong")] tendril[send_flying == 0 ? "" : ", forcing [him_or_her(target)] to the ground"]!</B></span>"
 
 			msgs.played_sound = pick(sounds_punch)
 			msgs.damage = rand(6, 13)
@@ -1178,7 +1178,7 @@
 			return 0
 		if (prob(25))
 			logTheThing("combat", user, target, "accidentally harms [constructTarget(target,"combat")] with claw arms at [log_loc(user)].")
-			user.visible_message("<span class='alert'><b>[user] accidentally claws [target] while trying to [user.a_intent] them!</b></span>", "<span class='alert'><b>You accidentally claw [target] while trying to [user.a_intent] them!</b></span>")
+			user.visible_message("<span class='alert'><b>[user] accidentally claws [target] while trying to [user.a_intent] [him_or_her(target)]!</b></span>", "<span class='alert'><b>You accidentally claw [target] while trying to [user.a_intent] [him_or_her(target)]!</b></span>")
 			harm(target, user, 1)
 			return 1
 		return 0
@@ -1211,7 +1211,7 @@
 		var/datum/attackResults/msgs = user.calculate_melee_attack(target, affecting, 2, 7, rand(1,3) * quality)
 		user.attack_effects(target, affecting)
 		var/action = pick("maim", "stab", "rip", "claw", "slashe")
-		msgs.base_attack_message = "<b><span class='alert'>[user] [action]s [target] with their [src.holder]!</span></b>"
+		msgs.base_attack_message = "<b><span class='alert'>[user] [action]s [target] with [his_or_her(user)] [src.holder]!</span></b>"
 		msgs.played_sound = "sound/impact_sounds/Flesh_Tear_3.ogg"
 		msgs.damage_type = DAMAGE_CUT
 		msgs.flush(SUPPRESS_LOGS)
@@ -1346,7 +1346,7 @@ var/list/ghostcritter_blocked = ghostcritter_blocked_objects()
 			var/mob/living/critter/small_animal/C = user
 			if (C.ghost_spawned)
 				if (max_wclass < 3)
-					user.visible_message("<span class='alert'><b>[user] tries to help [target], but they're worse than useless!</b></span>", "<span class='alert'><b>You try to help [target], but your spectral will can only manage a poke!</b></span>")
+					user.visible_message("<span class='alert'><b>[user] tries to help [target], but [hes_or_shes(user)] worse than useless!</b></span>", "<span class='alert'><b>You try to help [target], but your spectral will can only manage a poke!</b></span>")
 					playsound(user.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 25, 1, -1)
 					return
 		..()

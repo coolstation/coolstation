@@ -623,6 +623,9 @@
 				crit_chance += H.gloves.bonus_crit_chance
 			if (H.gloves.stamina_dmg_mult)
 				stamina_damage_mult += H.gloves.stamina_dmg_mult
+		var/stampart = round(abs((src.health - target.health)/5))
+		crit_chance += stampart // rng stuns
+		msgs.crit_chance += crit_chance
 
 	var/def_zone = null
 	if (istype(affecting, /obj/item/organ))
@@ -831,6 +834,7 @@
 	var/disarm_RNG_result = null // Blocked, shoved down etc.
 	var/bleed_always = 0 //Will cause bleeding regardless of damage type.
 	var/bleed_bonus = 0 //bonus to bleed damage specifically.
+	var/crit_chance = 5 //we're gonna pass a second value that determines likelyhood of making them horizontal.
 
 	//grouping of combat message
 	var/msg_group = 0
@@ -1048,7 +1052,7 @@
 						target.lastgasp()
 
 			if (stamina_crit)
-				target.handle_stamina_crit(stamina_target)
+				target.handle_stamina_crit(crit_chance)
 
 			if (src.disarm != 1)
 				owner.attack_finished(target)

@@ -1321,6 +1321,10 @@
 	proc/checkContinue()
 		if (glass.reagents.total_volume <= 0 || !isalive(glassholder) || !glassholder.find_in_hand(glass))
 			return FALSE
+		if ((target.reagents?.maximum_volume-target.reagents?.total_volume) <= 0) // we're fuckin full, slosh slosh,
+			target.visible_message("[target.name] [pick("fucken HURLS.","barfs it back up!","vomits bigtime!","pukes.")]")
+			target.vomit()
+			return FALSE
 		return TRUE
 
 	onStart()

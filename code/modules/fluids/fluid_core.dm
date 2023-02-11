@@ -15,7 +15,7 @@ var/list/ban_stacking_into_fluid = list( //ban these from producing fluid from a
 	"ash",\
 	"blackpowder",\
 	"leaves",\
-	"poo",\
+	//"poo",\ // THIS IS WHAT WAS DOINIT.
 )
 
 ///////////////////

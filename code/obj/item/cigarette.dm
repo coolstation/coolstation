@@ -242,6 +242,7 @@
 				if (7) message_append = " That's cold."
 				if (8) message_append = " How rude."
 				if (9) message_append = " Wow!"
+				if (10,11,12,13) message_append = ""
 			user.visible_message("<span class='alert'><B>[user]</B> blows smoke right into <B>[target]</B>'s face![message_append]</span>", group = "[user]_blow_smoke_at_[target]")
 
 			var/mob/living/carbon/human/human_target = target

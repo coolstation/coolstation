@@ -324,3 +324,6 @@ var/global/list/job_start_locations = list()
 		name = LANDMARK_SHUTTLE_DONUT3
 	destiny
 		name = LANDMARK_SHUTTLE_DESTINY
+
+/obj/landmark/drain_exit
+	name = LANDMARK_DRAIN_EXIT

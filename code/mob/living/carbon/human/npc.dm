@@ -95,7 +95,7 @@
 		..()
 		SPAWN_DBG(0)
 			if(ticker?.mode && istype(ticker.mode, /datum/game_mode/nuclear))
-				src.real_name = "[syndicate_name()] Operative #[ticker.mode:agent_number]"
+				src.real_name = "[syndicate_name_foss()] Operative #[ticker.mode:agent_number]"
 				ticker.mode:agent_number++
 			else
 				src.real_name = "Syndicate Agent"
@@ -381,7 +381,7 @@
 					if(src.bioHolder.HasEffect("coprolalia") && prob(10))
 						switch(pick(1,2))
 							if(1)
-								hearers(src) << "<B>[src.name]</B> makes machine-gun noises with \his mouth."
+								hearers(src) << "<B>[src.name]</B> makes machine-gun noises with [his_or_her(src)] mouth."
 							if(2)
 								src.say(pick("BANG!", "POW!", "Eat lead, [carbon_target.name]!", "Suck it down, [carbon_target.name]!"))
 
