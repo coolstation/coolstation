@@ -25,13 +25,13 @@
 // end debugging stuff
 
 //some explosion stuff, for canbomb threshold and stuff like that
-#define CANISTER_BOMB_TEMP_MIN 70000
-#define CANISTER_BOMB_PRESSURE_MIN 7000
+#define CANISTER_BOMB_TEMP_MIN 40000
+#define CANISTER_BOMB_PRESSURE_MIN 5000
 #ifdef DESERT_MAP  // I have to set lower caps for Gehenna because the tile replacement is so expensive. Lets call it atmospheric damping.
-#define CANISTER_BOMB_MAXCAP 1000
-#define CANISTER_BOMB_MINCAP 20
+#define CANISTER_BOMB_MAXCAP 4000
+#define CANISTER_BOMB_MINCAP 75
 #else
-#define CANISTER_BOMB_MAXCAP 10000 //THIS IS WHERE TO SET THE CANBOMB POWER MAXCAP
+#define CANISTER_BOMB_MAXCAP 8000 //THIS IS WHERE TO SET THE CANBOMB POWER MAXCAP
 #define CANISTER_BOMB_MINCAP 100   //THIS IS ACTUALLY THE BANG YOU GET WITH THE ABSOLUTE MINIMUM STATS
 #endif
 
