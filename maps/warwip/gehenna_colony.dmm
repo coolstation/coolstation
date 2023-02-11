@@ -16050,11 +16050,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/floor/wood,
 /area/station/wc/medbay)
-"mtq" = (
-/obj/table/auto,
-/obj/item/aiModule/random,
-/turf/simulated/floor,
-/area/station/bridge)
 "mts" = (
 /turf/simulated/wall,
 /area/station/engine/engineering/breakroom)
@@ -23231,10 +23226,6 @@
 	},
 /turf/simulated/floor,
 /area/station/medical/medbay/treatment1)
-"rMU" = (
-/obj/machinery/computer/barcode/qm/no_belthell,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "rNE" = (
 /obj/machinery/door/airlock/pyro/external,
 /turf/space/gehenna/desert/plating{
@@ -29842,6 +29833,10 @@
 /obj/machinery/light/small/floor/harsh,
 /turf/space/gehenna/desert/plating,
 /area/space)
+"xdK" = (
+/obj/machinery/computer/barcode/qm/no_belthell,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "xeb" = (
 /turf/space/gehenna/desert/plating{
 	icon_state = "wood2_stairs";
@@ -60798,7 +60793,7 @@ vln
 vln
 pRM
 vln
-mtq
+oQO
 vUV
 uTU
 lGC
@@ -90076,7 +90071,7 @@ cqC
 cqC
 cqC
 hyl
-rMU
+xdK
 evK
 wwW
 mVe
