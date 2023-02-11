@@ -720,18 +720,21 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_haloperidol", -5)
+					APPLY_MOB_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
+					M.drowsyness++
+					M.stuttering++
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_haloperidol")
+					REMOVE_MOB_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
 				return
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if(!M) M = holder.my_atom
 				M.jitteriness = max(M.jitteriness-50,0)
+				M.drowsyness = min(M.drowsyness+2, 20)
 				if (M.druggy > 0)
 					M.druggy -= 3
 					M.druggy = max(0, M.druggy)
@@ -764,7 +767,6 @@ datum
 						if(istype(virus.master,/datum/ailment/disease/space_madness) || istype(virus.master,/datum/ailment/disease/berserker))
 							M.cure_disease(virus)
 				if(prob(20)) M.take_brain_damage(1 * mult)
-				if(probmult(50)) M.drowsyness = max(M.drowsyness, 6)
 				if(probmult(10)) M.emote("drool")
 				..()
 				return
