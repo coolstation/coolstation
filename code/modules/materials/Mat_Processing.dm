@@ -69,9 +69,9 @@
 					mat_id = exists_nearby.material.mat_id
 				else
 					var/newType = getProcessedMaterialForm(X.material)
-					var/obj/item/material_piece/P = new newType()
+					var/obj/item/material_piece/P = new newType
 					P.set_loc(get_output_location())
-					P.setMaterial(copyMaterial(X.material))
+					P.setMaterial(X.material)
 					P.change_stack_amount(out_amount - P.amount)
 					mat_id = P.material.mat_id
 
@@ -93,9 +93,9 @@
 						second_mat_id = second_exists_nearby.material.mat_id
 					else
 						var/newType = getProcessedMaterialForm(second_mat)
-						var/obj/item/material_piece/PC = new newType()
+						var/obj/item/material_piece/PC = new newType
 						PC.set_loc(get_output_location())
-						PC.setMaterial(copyMaterial(second_mat))
+						PC.setMaterial(second_mat)
 						PC.change_stack_amount(out_amount - PC.amount)
 						second_mat_id = PC.material.mat_id
 
@@ -613,7 +613,7 @@
 				icon_state = "smelter1"
 				sleep(1 SECOND)
 				var/atom/obj1 = components[1]
-				output = copyMaterial(obj1.material)
+				output = obj1.material
 				logTheThing("station", user, null, "creates a [output] bar (<b>Material:</b> <i>[output.mat_id]</i>) with the [src] at [log_loc(src)].") //  Re-added/fixed because of erebite, plasmastone etc. alloys (Convair880).
 				handleSlag()
 			else

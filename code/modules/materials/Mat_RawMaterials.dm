@@ -38,7 +38,7 @@
 		if(toRemove >= amount || toRemove < 1) return 0
 		var/obj/item/material_piece/P = new src.type()
 		P.set_loc(src.loc)
-		P.setMaterial(copyMaterial(src.material))
+		P.setMaterial(src.material)
 		src.change_stack_amount(-toRemove)
 		P.change_stack_amount(toRemove - P.amount)
 		return P

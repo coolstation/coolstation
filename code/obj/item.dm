@@ -636,7 +636,7 @@
 	var/obj/item/P = new src.type(src.loc)
 
 	if(src.material)
-		P.setMaterial(copyMaterial(src.material))
+		P.setMaterial(src.material)
 
 	src.change_stack_amount(-toRemove)
 	P.change_stack_amount(toRemove - P.amount)

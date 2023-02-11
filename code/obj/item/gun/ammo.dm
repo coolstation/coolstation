@@ -311,7 +311,7 @@
 	icon_empty = "custom-0"
 
 	onMaterialChanged()
-		ammo_type.material = copyMaterial(src.material)
+		ammo_type.material = src.material
 
 		if(src.material)
 			ammo_type.power = round(material.getProperty("density") / 2.75)

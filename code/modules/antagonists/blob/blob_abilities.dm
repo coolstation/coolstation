@@ -1313,7 +1313,7 @@
 		if (!mats.len)
 			taking = 0
 			return 1
-		var/datum/material/to_merge = copyMaterial(mats[max_id])
+		var/datum/material/to_merge = mats[max_id]
 		owner.my_material = getInterpolatedMaterial(owner.my_material, to_merge, 0.17)
 		for (var/obj/O in deposits)
 			qdel(O)
@@ -1321,10 +1321,7 @@
 		SPAWN_DBG(0)
 			var/wg = 0
 			for (var/obj/blob/O in owner.blobs)
-				if (!O.material)
-					O.setMaterial(copyMaterial(owner.my_material))
-				else
-					O.setMaterial(getInterpolatedMaterial(O.material, to_merge, 0.17))
+				O.setMaterial(owner.my_material)
 				wg++
 				if (wg >= 20)
 					sleep(0.1 SECONDS)
