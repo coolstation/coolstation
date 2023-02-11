@@ -1590,6 +1590,21 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice)
+"bmD" = (
+/obj/machinery/atmospherics/pipe/vent/north,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 4;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
+/area/station/science/testchamber{
+	name = "Test Chamber Exhaust";
+	requires_power = 0
+	})
 "bmI" = (
 /obj/rack,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -4129,6 +4144,12 @@
 /area/station/security/secwing)
 "dhl" = (
 /obj/ladder/auto,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 4;
+	name = "autoname - SS13";
+	tag = ""
+	},
 /turf/simulated/floor/plating{
 	icon_old = "fullblue"
 	},
@@ -11551,7 +11572,10 @@
 /obj/machinery/shuttle/engine/heater{
 	dir = 4
 	},
-/turf/space/gehenna/desert,
+/turf/space/gehenna/desert/plating{
+	dir = 1;
+	icon_state = "gehenna_tile"
+	},
 /area/space)
 "iOb" = (
 /obj/machinery/light/fluorescent/cool{
@@ -18371,22 +18395,9 @@
 /turf/simulated/floor/shuttlebay,
 /area/station/hangar/medical)
 "ojv" = (
-/obj/machinery/atmospherics/pipe/vertical_pipe/south{
-	target_z = 3
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 4;
-	name = "autoname - SS13";
-	tag = ""
-	},
-/turf/simulated/floor/plating{
-	icon_old = "fullblue"
-	},
-/area/station/science/testchamber{
-	name = "Test Chamber Exhaust";
-	requires_power = 0
-	})
+/obj/machinery/computer/barcode/qm/no_belthell,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "okc" = (
 /obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor/grey,
@@ -29833,10 +29844,6 @@
 /obj/machinery/light/small/floor/harsh,
 /turf/space/gehenna/desert/plating,
 /area/space)
-"xdK" = (
-/obj/machinery/computer/barcode/qm/no_belthell,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "xeb" = (
 /turf/space/gehenna/desert/plating{
 	icon_state = "wood2_stairs";
@@ -65710,9 +65717,9 @@ cqC
 cqC
 cqC
 vpc
-ojv
+pny
 dij
-xMO
+bmD
 ylH
 ylH
 fdS
@@ -68113,7 +68120,7 @@ wuT
 pjb
 nWt
 eMq
-iiv
+cqC
 iiv
 iiv
 iiv
@@ -68415,8 +68422,8 @@ wuT
 pjb
 nWt
 eMq
-iiv
-iiv
+cqC
+cqC
 iiv
 iiv
 iiv
@@ -68717,8 +68724,8 @@ qVb
 eti
 wMP
 eMq
-iiv
-iiv
+cqC
+cqC
 iiv
 iiv
 iiv
@@ -69019,9 +69026,9 @@ wuT
 jla
 pjb
 eMq
-iiv
-iiv
-iiv
+cqC
+cqC
+cqC
 iiv
 iiv
 qMN
@@ -69321,7 +69328,7 @@ wuT
 sIi
 pjb
 eMq
-xfi
+cqC
 eMq
 eMq
 eMq
@@ -90071,7 +90078,7 @@ cqC
 cqC
 cqC
 hyl
-xdK
+ojv
 evK
 wwW
 mVe

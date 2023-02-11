@@ -721,8 +721,7 @@ datum
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_MOB_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
-					M.drowsyness++
-					M.stuttering++
+					M.change_misstep_chance(25)
 				return
 
 			on_remove()
@@ -734,7 +733,10 @@ datum
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if(!M) M = holder.my_atom
 				M.jitteriness = max(M.jitteriness-50,0)
-				M.drowsyness = min(M.drowsyness+2, 20)
+				M.do_disorient(disorient = src.volume)
+				if(prob(50 + src.volume))
+					M.drowsyness = max(M.drowsyness, 15)
+					M.setStatus("weakened", max(M.getStatusDuration("weakened"), src.volume))
 				if (M.druggy > 0)
 					M.druggy -= 3
 					M.druggy = max(0, M.druggy)

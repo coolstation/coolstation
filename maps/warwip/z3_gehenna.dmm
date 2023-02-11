@@ -26522,18 +26522,6 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
-"qGH" = (
-/obj/disposalpipe/segment/produce{
-	dir = 4
-	},
-/obj/submachine/chef_sink{
-	color = "#FFDDAA";
-	desc = "A common utility sink. Unsanitary.";
-	dir = 4;
-	name = "utility sink"
-	},
-/turf/simulated/floor/grey,
-/area/station/crew_quarters/baroffice)
 "qGJ" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -38376,6 +38364,18 @@
 /obj/machinery/atmospherics/pipe/manifold/west,
 /turf/simulated/floor/grey,
 /area/station/bridge/basement)
+"xQA" = (
+/obj/disposalpipe/segment/produce{
+	dir = 4
+	},
+/obj/submachine/chef_sink{
+	color = "#FFDDAA";
+	desc = "A common utility sink. Unsanitary.";
+	dir = 4;
+	name = "utility sink"
+	},
+/turf/simulated/floor/grey,
+/area/station/crew_quarters/baroffice)
 "xQE" = (
 /obj/disposalpipe/segment/mineral{
 	dir = 8
@@ -83633,7 +83633,7 @@ ojN
 umA
 fDK
 sjY
-qGH
+xQA
 eAu
 fFY
 nqV
