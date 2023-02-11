@@ -736,26 +736,25 @@
 			var/obj/item/refined = getObjectByPartName("Unprocessed Material")
 			var/obj/item/chemical = getObjectByPartName("Chemical")
 
-			var/master_chem = chemical.reagents.get_master_reagent()
-			var/master_chem_name = chemical.reagents.get_master_reagent_name()
-
-			var/datum/materialProc/generic_reagent_onlife/O = new/datum/materialProc/generic_reagent_onlife(master_chem,1)
-			refined.material.triggersOnLife.Cut()
-			refined.material.addTrigger(refined.material.triggersOnLife, O)
-
-			var/datum/materialProc/generic_reagent_onattack/A = new/datum/materialProc/generic_reagent_onattack(master_chem,1,10,25)
-			refined.material.triggersOnAttack.Cut()
-			refined.material.addTrigger(refined.material.triggersOnAttack, A)
-
 			var/obj/item/material_piece/wad/W = new()
 
-			if(refined?.material)
-				refined.material.material_flags |= MATERIAL_NONSTANDARD
-				refined.material.canMix = 0
-				refined.material.name = "[master_chem_name]-infused [refined.material.name]"
-				refined.material.mat_id = "[master_chem_name][refined.material.mat_id]"
-				W.setMaterial(refined.material)
-				W.change_stack_amount(9)
+			var/master_chem = chemical.reagents.get_master_reagent()
+			var/master_chem_name = chemical.reagents.get_master_reagent_name()
+			W.setMaterial(copyMaterial(refined.material))
+
+			var/datum/materialProc/generic_reagent_onlife/O = new/datum/materialProc/generic_reagent_onlife(master_chem,1)
+			W.material.triggersOnLife.Cut()
+			W.material.addTrigger(W.material.triggersOnLife, O)
+
+			var/datum/materialProc/generic_reagent_onattack/A = new/datum/materialProc/generic_reagent_onattack(master_chem,1,10,25)
+			W.material.triggersOnAttack.Cut()
+			W.material.addTrigger(W.material.triggersOnAttack, A)
+
+			W.material.material_flags |= MATERIAL_NONSTANDARD
+			W.material.canMix = 0
+			W.material.name = "[master_chem_name]-infused [W.material.name]"
+			W.material.mat_id = "[master_chem_name][W.material.mat_id]"
+			W.change_stack_amount(9)
 
 			W.set_loc(getOutputLocation(owner))
 		return
