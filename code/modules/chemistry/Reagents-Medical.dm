@@ -734,8 +734,8 @@ datum
 				if(!M) M = holder.my_atom
 				M.jitteriness = max(M.jitteriness-50,0)
 				M.do_disorient(disorient = src.volume)
-				if(prob(50 + src.volume))
-					M.drowsyness = max(M.drowsyness, 15)
+				if(prob(20 + src.volume))
+					M.drowsyness = max(M.drowsyness, src.volume)
 					M.setStatus("weakened", max(M.getStatusDuration("weakened"), src.volume))
 				if (M.druggy > 0)
 					M.druggy -= 3
