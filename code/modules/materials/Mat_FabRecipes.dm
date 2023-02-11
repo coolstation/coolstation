@@ -207,7 +207,7 @@
 				if(istype(opt, /obj/item/mining_mod/conc))
 					newObj.blasting = 1
 
-				newObj.setMaterial(mat1 = head.material, appearance = 1, setname = 1, copy = 1, use_descriptors = 0)
+				newObj.setMaterial(mat1 = head.material, appearance = 1, setname = 1, use_descriptors = 0)
 
 				if(newObj.blasting)
 					newObj.remove_prefixes(99)

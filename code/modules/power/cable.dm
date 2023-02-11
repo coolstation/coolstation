@@ -281,7 +281,7 @@
 	if (istype(source))
 		applyCableMaterials(src, source.insulator, source.conductor)
 	else
-		applyCableMaterials(src, getMaterial(insulator_default), getMaterial(conductor_default), copy_material = FALSE)
+		applyCableMaterials(src, getMaterial(insulator_default), getMaterial(conductor_default))
 
 	START_TRACKING
 

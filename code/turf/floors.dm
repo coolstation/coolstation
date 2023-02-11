@@ -27,7 +27,7 @@
 		if (has_material)
 			if (isnull(plate_mat))
 				plate_mat = getMaterial("steel")
-			setMaterial(plate_mat, copy = FALSE)
+			setMaterial(plate_mat)
 		roundstart_icon_state = icon_state
 		roundstart_dir = dir
 		var/obj/plan_marker/floor/P = locate() in src
@@ -1339,9 +1339,9 @@ DEFINE_FLOORS(techfloor/green,
 						var/obj/item/I = new /obj/item/raw_material/scrap_metal()
 						I.set_loc(src)
 						if (src.material)
-							I.setMaterial(src.material, copy = (src.material != src.plate_mat))
+							I.setMaterial(src.material)
 						else
-							I.setMaterial(getMaterial("steel"), copy = FALSE)
+							I.setMaterial(getMaterial("steel"))
 					src.ReplaceWithLattice()
 				if(2)
 					src.ReplaceWithSpace()
@@ -1350,9 +1350,9 @@ DEFINE_FLOORS(techfloor/green,
 						var/obj/item/I = new /obj/item/raw_material/scrap_metal()
 						I.set_loc(src)
 						if (src.material)
-							I.setMaterial(src.material, copy = (src.material != src.plate_mat))
+							I.setMaterial(src.material)
 						else
-							I.setMaterial(getMaterial("steel"), copy = FALSE)
+							I.setMaterial(getMaterial("steel"))
 					if(prob(80))
 						src.break_tile_to_plating()
 					else
@@ -1419,9 +1419,9 @@ DEFINE_FLOORS(techfloor/green,
 	broken = 0
 	burnt = 0
 	if(plate_mat)
-		src.setMaterial((plate_mat), copy = FALSE)
+		src.setMaterial((plate_mat))
 	else
-		src.setMaterial(getMaterial("steel"), copy = FALSE)
+		src.setMaterial(getMaterial("steel"))
 	levelupdate()
 
 /turf/simulated/floor/proc/dismantle_wall()//can get called due to people spamming weldingtools on walls
@@ -1528,9 +1528,9 @@ DEFINE_FLOORS(techfloor/green,
 	else
 		var/atom/A = new /obj/item/tile(src)
 		if(src.material)
-			A.setMaterial(src.material, copy = (src.material != src.plate_mat))
+			A.setMaterial(src.material)
 		else
-			A.setMaterial(getMaterial("steel"), copy = FALSE)
+			A.setMaterial(getMaterial("steel"))
 		.= A //return tile for crowbar special attack ok
 
 	to_plating()
@@ -1564,11 +1564,11 @@ DEFINE_FLOORS(techfloor/green,
 			var/obj/R1 = new /obj/item/rods(src)
 			var/obj/R2 = new /obj/item/rods(src)
 			if (material)
-				R1.setMaterial(material, copy = (src.material != src.plate_mat))
-				R2.setMaterial(material, copy = (src.material != src.plate_mat))
+				R1.setMaterial(material)
+				R2.setMaterial(material)
 			else
-				R1.setMaterial(getMaterial("steel"), copy = FALSE)
-				R2.setMaterial(getMaterial("steel"), copy = FALSE)
+				R1.setMaterial(getMaterial("steel"))
+				R2.setMaterial(getMaterial("steel"))
 			ReplaceWithFloor()
 			src.to_plating()
 			return

@@ -180,8 +180,8 @@
 				B.set_reinforcement(src.material)
 			else
 				var/datum/material/M = getMaterial("steel")
-				A.setMaterial(M, copy = FALSE)
-				B.setMaterial(M, copy = FALSE)
+				A.setMaterial(M)
+				B.setMaterial(M)
 				B.set_reinforcement(M)
 		else
 			if (prob(50)) // pardon all these nested probabilities, just trying to vary the damage appearance a bit
@@ -189,7 +189,7 @@
 				if (src.material)
 					A.setMaterial(src.material)
 				else
-					A.setMaterial(getMaterial("steel"), copy = FALSE)
+					A.setMaterial(getMaterial("steel"))
 
 				if (prob(50))
 					var/atom/movable/B = new /obj/item/raw_material/scrap_metal()
@@ -197,14 +197,14 @@
 					if (src.material)
 						B.setMaterial(src.material)
 					else
-						B.setMaterial(getMaterial("steel"), copy = FALSE)
+						B.setMaterial(getMaterial("steel"))
 
 			else if( prob(50))
 				var/atom/A = new /obj/structure/girder(src)
 				if (src.material)
 					A.setMaterial(src.material)
 				else
-					A.setMaterial(getMaterial("steel"), copy = FALSE)
+					A.setMaterial(getMaterial("steel"))
 
 	else
 		if (!devastated)
@@ -218,16 +218,16 @@
 				C.setMaterial(src.material)
 			else
 				var/datum/material/M = getMaterial("steel")
-				A.setMaterial(M, copy = FALSE)
-				B.setMaterial(M, copy = FALSE)
-				C.setMaterial(M, copy = FALSE)
+				A.setMaterial(M)
+				B.setMaterial(M)
+				C.setMaterial(M)
 		else
 			if (prob(50))
 				var/atom/A = new /obj/structure/girder/displaced(src)
 				if (src.material)
 					A.setMaterial(src.material)
 				else
-					A.setMaterial(getMaterial("steel"), copy = FALSE)
+					A.setMaterial(getMaterial("steel"))
 
 			else if (prob(50))
 				var/atom/B = new /obj/structure/girder(src)
@@ -235,7 +235,7 @@
 				if (src.material)
 					B.setMaterial(src.material)
 				else
-					B.setMaterial(getMaterial("steel"), copy = FALSE)
+					B.setMaterial(getMaterial("steel"))
 
 				if (prob(50))
 					var/atom/movable/C = new /obj/item/raw_material/scrap_metal()
@@ -243,13 +243,13 @@
 					if (src.material)
 						C.setMaterial(src.material)
 					else
-						C.setMaterial(getMaterial("steel"), copy = FALSE)
+						C.setMaterial(getMaterial("steel"))
 
 	var/atom/D = ReplaceWithFloor()
 	if (src.material && keep_material)
 		D.setMaterial(src.material)
 	else
-		D.setMaterial(getMaterial("steel"), copy = FALSE)
+		D.setMaterial(getMaterial("steel"))
 
 /turf/simulated/wall/burn_down()
 	src.ReplaceWithFloor()
@@ -434,7 +434,7 @@
 				if (src.material)
 					A.setMaterial(src.material)
 				else
-					A.setMaterial(getMaterial("steel"), copy = FALSE)
+					A.setMaterial(getMaterial("steel"))
 				boutput(user, "<span class='notice'>You removed the support rods.</span>")
 			else if((isrobot(user) && (user.loc == T)))
 				src.d_state = 6
@@ -442,7 +442,7 @@
 				if (src.material)
 					A.setMaterial(src.material)
 				else
-					A.setMaterial(getMaterial("steel"), copy = FALSE)
+					A.setMaterial(getMaterial("steel"))
 				boutput(user, "<span class='notice'>You removed the support rods.</span>")
 
 	else if (iswrenchingtool(W))
@@ -466,7 +466,7 @@
 			if (src.material)
 				A.setMaterial(src.material)
 			else
-				A.setMaterial(getMaterial("steel"), copy = FALSE)
+				A.setMaterial(getMaterial("steel"))
 
 	else if (isscrewingtool(W))
 		if (src.d_state == 1)
@@ -531,7 +531,7 @@
 			if(S.material)
 				src.setMaterial(S.material)
 			else
-				src.setMaterial(getMaterial("steel"), copy = FALSE)
+				src.setMaterial(getMaterial("steel"))
 			boutput(user, "<span class='notice'>You repaired the wall.</span>")
 
 //grabsmash

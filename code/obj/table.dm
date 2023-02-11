@@ -636,7 +636,7 @@
 	New()
 		..()
 		if (!src.material && default_material)
-			src.setMaterial(getMaterial(default_material), copy = FALSE)
+			src.setMaterial(getMaterial(default_material))
 		src.color = colorcache
 
 	UpdateName()

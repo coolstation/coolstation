@@ -157,7 +157,7 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 */
 
 /// Sets the material of an object. PLEASE USE THIS TO SET MATERIALS UNLESS YOU KNOW WHAT YOU'RE DOING.
-/atom/proc/setMaterial(datum/material/mat1, appearance = 1, setname = 1, copy = 1, use_descriptors = 0)
+/atom/proc/setMaterial(datum/material/mat1, appearance = 1, setname = 1, use_descriptors = 0)
 	if(!istype(mat1))
 		return
 	//No more copying shit
@@ -499,7 +499,7 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 	return null
 
 /// Yes hello apparently we need a proc for this because theres a million types of different wires and cables.
-/proc/applyCableMaterials(atom/C, datum/material/insulator, datum/material/conductor, copy_material = TRUE)
+/proc/applyCableMaterials(atom/C, datum/material/insulator, datum/material/conductor)
 	if(!conductor) return // silly
 
 	if(istype(C, /obj/cable))
@@ -508,11 +508,11 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 		cable.conductor = conductor
 
 		if (cable.insulator)
-			cable.setMaterial(cable.insulator, copy = copy_material)
+			cable.setMaterial(cable.insulator)
 			cable.name = "[cable.insulator.name]-insulated [cable.conductor.name]-cable"
 			cable.color = cable.insulator.color
 		else
-			cable.setMaterial(cable.conductor, copy = copy_material)
+			cable.setMaterial(cable.conductor)
 			cable.name = "uninsulated [cable.conductor.name]-cable"
 			cable.color = cable.conductor.color
 
@@ -523,9 +523,9 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 		coil.conductor = conductor
 
 		if (coil.insulator)
-			coil.setMaterial(coil.insulator, copy = copy_material)
+			coil.setMaterial(coil.insulator)
 			coil.color = coil.insulator.color
 		else
-			coil.setMaterial(coil.conductor, copy = copy_material)
+			coil.setMaterial(coil.conductor)
 			coil.color = coil.conductor.color
 		coil.updateName()

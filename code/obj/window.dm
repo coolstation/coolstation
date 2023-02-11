@@ -38,7 +38,7 @@
 		src.ini_dir = src.dir
 		update_nearby_tiles(need_rebuild=1)
 		if (default_material)
-			src.setMaterial(getMaterial(default_material), copy = FALSE)
+			src.setMaterial(getMaterial(default_material))
 		if (default_reinforcement)
 			src.reinforcement = getMaterial(default_reinforcement)
 		onMaterialChanged()

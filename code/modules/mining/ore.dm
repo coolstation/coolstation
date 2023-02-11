@@ -8,7 +8,7 @@
 	//metal = 1
 	//conductor = 1
 	New()
-		src.setMaterial(getMaterial("gold"), appearance = 0, setname = 0, copy = FALSE)
+		src.setMaterial(getMaterial("gold"), appearance = 0, setname = 0)
 		return ..()
 
 /datum/ore
