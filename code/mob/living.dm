@@ -1530,6 +1530,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 	. += base_speed
 	. += movement_delay_modifier
+	. *= (1.1 - (max(src.stamina_regen,2*STAMINA_REGEN)/STAMINA_REGEN)/10) // 1.1 - (0 to 0.2)
 
 	var/multiplier = 1 // applied before running multiplier
 	var/health_deficiency_adjustment = 0

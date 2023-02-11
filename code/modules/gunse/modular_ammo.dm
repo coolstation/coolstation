@@ -369,7 +369,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	make_my_stuff()
 		..()
 		if (prob(50))
-			new /obj/item/gun/modular/foss/loader(src)
+			new /obj/item/gun_parts/stock/foss/loader(src)
 		else
 			new /obj/item/gun_parts/barrel/foss/long(src)
 
