@@ -273,6 +273,39 @@
 
 		owner.my_material.color = owner.color
 
+//I don't like doing this but it's less resistance than moving all of blob abilities to the new system
+#ifdef Z3_IS_A_STATION_LEVEL
+/datum/blob_ability/upper_transfer
+	name = "Go To Upper Level"
+	desc = "See what's happening upstairs"
+	icon = 'icons/mob/ghost_observer_abilities.dmi'
+	icon_state = "upper_transfer"
+	targeted = 0
+
+	onUse()
+		if (..())
+			return
+		if (owner.z == Z_LEVEL_STATION)
+			return
+		var/turf/destination = locate(owner.x, owner.y, Z_LEVEL_STATION)
+		owner.set_loc(destination)
+
+/datum/blob_ability/lower_transfer
+	name = "Go To Lower Level"
+	desc = "See what's happening downstairs"
+	icon = 'icons/mob/ghost_observer_abilities.dmi'
+	icon_state = "lower_transfer"
+	targeted = 0
+
+	onUse()
+		if (..())
+			return
+		if (owner.z == Z_LEVEL_DEBRIS)
+			return
+		var/turf/destination = locate(owner.x, owner.y, Z_LEVEL_DEBRIS)
+		owner.set_loc(destination)
+#endif
+
 /datum/blob_ability/tutorial
 	name = "Interactive Tutorial"
 	desc = "Check out the interactive blob tutorial to get started with blobs."

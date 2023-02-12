@@ -562,6 +562,10 @@
 			src.addAbility(/datum/targetable/wraithAbility/whisper)
 			src.addAbility(/datum/targetable/wraithAbility/blood_writing)
 			src.addAbility(/datum/targetable/wraithAbility/make_poltergeist)
+		#ifdef Z3_IS_A_STATION_LEVEL
+			src.addAbility(/datum/targetable/ghost_observer/upper_transfer)
+			src.addAbility(/datum/targetable/ghost_observer/lower_transfer)
+		#endif
 
 		removeAllAbilities()
 			src.removeAbility(/datum/targetable/wraithAbility/help)
@@ -577,6 +581,10 @@
 			src.removeAbility(/datum/targetable/wraithAbility/whisper)
 			src.removeAbility(/datum/targetable/wraithAbility/blood_writing)
 			src.removeAbility(/datum/targetable/wraithAbility/make_poltergeist)
+		#ifdef Z3_IS_A_STATION_LEVEL
+			src.removeAbility(/datum/targetable/ghost_observer/upper_transfer)
+			src.removeAbility(/datum/targetable/ghost_observer/lower_transfer)
+		#endif
 
 		addAbility(var/abilityType)
 			abilityHolder.addAbility(abilityType)
