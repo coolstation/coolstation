@@ -1450,6 +1450,15 @@
 	},
 /turf/simulated/floor/yellow,
 /area/station/maintenance/inner/ne)
+"bfb" = (
+/obj/wingrille_spawn/reinforced,
+/obj/disposalpipe/segment/produce{
+	dir = 2
+	},
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
+/area/station/hydroponics/bay)
 "bfw" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/railing/yellow,
@@ -2951,6 +2960,7 @@
 /obj/table/reinforced/auto,
 /obj/machinery/door/window/southleft,
 /obj/machinery/cashreg,
+/obj/access_spawn/hydro,
 /turf/simulated/floor/green,
 /area/station/hydroponics/bay)
 "cln" = (
@@ -8355,6 +8365,15 @@
 /obj/machinery/atmospherics/unary/vent_pump/north,
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
+"gnP" = (
+/obj/wingrille_spawn/reinforced,
+/obj/disposalpipe/segment/produce{
+	dir = 4
+	},
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
+/area/station/hydroponics/bay)
 "goL" = (
 /turf/simulated/wall/asteroid/gehenna/tough,
 /area/station/maintenance/inner/ne)
@@ -9435,6 +9454,14 @@
 	dir = 8
 	},
 /area/station/engine/core)
+"het" = (
+/obj/disposalpipe/segment/produce{
+	dir = 4
+	},
+/turf/simulated/floor/grass{
+	name = "astroturf"
+	},
+/area/station/hydroponics/bay)
 "heK" = (
 /turf/space/gehenna/desert/plating{
 	dir = 1;
@@ -11317,6 +11344,7 @@
 /area/station/quartermaster/storage)
 "iDO" = (
 /obj/submachine/chem_extractor,
+/obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor/green/side{
 	dir = 5
 	},
@@ -11545,6 +11573,13 @@
 	dir = 4
 	},
 /area/station/engine/engineering)
+"iLU" = (
+/obj/machinery/plantpot,
+/obj/disposalpipe/segment/produce{
+	dir = 4
+	},
+/turf/simulated/floor/dirt,
+/area/station/hydroponics/bay)
 "iMd" = (
 /obj/machinery/vending/gunse,
 /obj/cable{
@@ -11935,6 +11970,12 @@
 	icon_old = "fullblue"
 	},
 /area/station/engine/engineering)
+"jdD" = (
+/obj/machinery/hydro_growlamp,
+/turf/simulated/floor/grass{
+	name = "astroturf"
+	},
+/area/station/hydroponics/bay)
 "jel" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8;
@@ -15227,6 +15268,7 @@
 /obj/machinery/phone{
 	pixel_x = 4
 	},
+/obj/access_spawn/hydro,
 /turf/simulated/floor/green,
 /area/station/hydroponics/bay)
 "lAO" = (
@@ -19396,6 +19438,16 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/wall,
 /area/station/maintenance/inner/north)
+"oYK" = (
+/obj/disposalpipe/trunk/zlevel{
+	dir = 8;
+	target_z = 3
+	},
+/turf/space/gehenna/desert/plating{
+	dir = 4;
+	icon_state = "gehenna_tile"
+	},
+/area/space)
 "oYM" = (
 /obj/cable{
 	icon_state = "0-2"
@@ -22883,10 +22935,14 @@
 /turf/simulated/floor,
 /area/station/bridge/customs)
 "rAh" = (
-/obj/machinery/hydro_growlamp,
-/turf/simulated/floor/grass{
-	name = "astroturf"
+/obj/disposalpipe/trunk{
+	dir = 2
 	},
+/obj/machinery/disposal{
+	color = "#BBFFCC";
+	name = "Produce Chute - Tunnel Storage"
+	},
+/turf/simulated/floor/industrial,
 /area/station/hydroponics/bay)
 "rAm" = (
 /obj/cable{
@@ -28036,9 +28092,7 @@
 /obj/machinery/light/fluorescent,
 /obj/table/auto,
 /obj/item/saw,
-/turf/simulated/floor/grass{
-	name = "astroturf"
-	},
+/turf/simulated/floor/industrial,
 /area/station/hydroponics/bay)
 "vIQ" = (
 /turf/simulated/floor/grey,
@@ -76882,7 +76936,7 @@ ahf
 hbX
 hbX
 rAh
-fst
+bfb
 iDO
 klx
 ldX
@@ -77181,11 +77235,11 @@ iiv
 iiv
 fst
 ahf
+jdD
 hbX
 hbX
 hbX
-hbX
-hbX
+het
 gfA
 nbU
 apb
@@ -77487,7 +77541,7 @@ dkO
 hbX
 hbX
 hbX
-hbX
+het
 gfA
 ldX
 eeS
@@ -77789,7 +77843,7 @@ fst
 ahf
 ahf
 hbX
-hbX
+het
 gfA
 moI
 omr
@@ -78091,7 +78145,7 @@ fst
 fst
 fst
 wbk
-ahf
+iLU
 kmQ
 mEJ
 eeS
@@ -78393,7 +78447,7 @@ iiv
 iiv
 fst
 fst
-fst
+gnP
 kWl
 bdi
 bdi
@@ -78695,7 +78749,7 @@ iiv
 iiv
 iiv
 iiv
-iiv
+oYK
 tEh
 ndf
 dkC
