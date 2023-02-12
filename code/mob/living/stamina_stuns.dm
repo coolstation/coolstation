@@ -20,7 +20,7 @@
 	return 0
 
 /mob/living/add_stam_mod_max(var/key, var/value)
-	if (!src.use_stamina) return
+	if (!src.use_stamina) return add_stun_resist_mod(key, value/2)
 	if(!isnum(value)) return
 	if(key in stamina_mods_max)
 		return 0
@@ -33,7 +33,7 @@
 	return 0
 
 /mob/living/remove_stam_mod_max(var/key)
-	if (!src.use_stamina) return
+	if (!src.use_stamina) return remove_stun_resist_mod(key)
 	if(!(key in stamina_mods_max))
 		return 0
 	stamina_mods_max.Remove(key)
@@ -44,7 +44,7 @@
 	. = 0
 
 /mob/living/get_stam_mod_max()
-	if (!src.use_stamina) return
+	if (!src.use_stamina) return get_stun_resist_mod()
 	var/val = 0
 	for(var/x in stamina_mods_max)
 		val += stamina_mods_max[x]
