@@ -1528,9 +1528,10 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	if (sustained_moves >= SUSTAINED_RUN_REQ)
 		base_speed = BASE_SPEED_SUSTAINED
 
+
 	. += base_speed
 	. += movement_delay_modifier
-	. *= (1.1 - (max(src.stamina_regen,2*STAMINA_REGEN)/STAMINA_REGEN)/10) // 1.1 - (0 to 0.2)
+	. *= (1.1 - ((max(src.stamina_regen + GET_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS)),(2*STAMINA_REGEN))/STAMINA_REGEN)/10) // 1.1 - (0 to 0.2)  // making stam regen do something???
 
 	var/multiplier = 1 // applied before running multiplier
 	var/health_deficiency_adjustment = 0
