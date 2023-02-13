@@ -9,3 +9,6 @@
 		if (U) //may be deleted lol
 			U.generate_worldgen()
 			LAGCHECK(LAG_REALTIME)
+
+	var/obj/item/storage/toilet/T = pick(by_type[/obj/item/storage/toilet])
+	T.curse()

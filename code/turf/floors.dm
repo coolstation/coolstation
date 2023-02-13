@@ -1081,11 +1081,13 @@ DEFINE_FLOORS(snowrough/border,
 	icon_state = "diamondtile"
 	step_material = "step_plating"
 	step_priority = STEP_PRIORITY_MED
+	allows_vehicles = 1
 
 /turf/unsimulated/floor/industrial
 	icon_state = "diamondtile"
 	step_material = "step_plating"
 	step_priority = STEP_PRIORITY_MED
+	allows_vehicles = 1
 
 /////////////////////////////////////////
 

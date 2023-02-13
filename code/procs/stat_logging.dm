@@ -165,7 +165,7 @@
 					if (mymaster) special = mymaster.real_name
 			if (ROLE_NUKEOP)
 				if (istype(ticker.mode, /datum/game_mode/nuclear))
-					special = syndicate_name()
+					special = syndicate_name_foss()
 					if (ticker.mode:nuke_detonated)
 						message["success"] = 1
 			if (ROLE_SPY_THIEF)

@@ -645,9 +645,13 @@
 		amt_per_tile = length(members) ? contained_amt / length(members) : 0
 
 		if (amt_per_tile > required_to_spread)
-			if (transfer_to && transfer_to.reagents && src.reagents)
-				src.reagents.trans_to_direct(transfer_to.reagents,min(fluids_to_remove * amt_per_tile, src.reagents.total_volume))
-				src.contained_amt = src.reagents.total_volume
+			if (transfer_to && src.reagents)
+				if (istype(transfer_to, /turf)) //turfs don't have reagents and need trans_to instead of trans_to_direct for fluid handling
+					src.reagents.trans_to(transfer_to,min(fluids_to_remove * amt_per_tile, src.reagents.total_volume))
+					src.contained_amt = src.reagents.total_volume
+				else if (transfer_to.reagents)
+					src.reagents.trans_to_direct(transfer_to.reagents,min(fluids_to_remove * amt_per_tile, src.reagents.total_volume))
+					src.contained_amt = src.reagents.total_volume
 			else
 				src.reagents.remove_any(fluids_to_remove * amt_per_tile)
 
@@ -678,10 +682,15 @@
 
 		var/removed_len = length(fluids_removed)
 
-		if (transfer_to && transfer_to.reagents && src.reagents)
-			src.reagents.skip_next_update = 1
-			src.reagents.trans_to_direct(transfer_to.reagents,src.amt_per_tile * removed_len)
-			src.contained_amt = src.reagents.total_volume
+		if (transfer_to && src.reagents)
+			if (istype(transfer_to, /turf)) //turfs don't have reagents and need trans_to instead of trans_to_direct for fluid handling
+				src.reagents.skip_next_update = 1
+				src.reagents.trans_to(transfer_to,src.amt_per_tile * removed_len)
+				src.contained_amt = src.reagents.total_volume
+			else if (transfer_to.reagents)
+				src.reagents.skip_next_update = 1
+				src.reagents.trans_to_direct(transfer_to.reagents,src.amt_per_tile * removed_len)
+				src.contained_amt = src.reagents.total_volume
 		else if (src.reagents && remove_reagent)
 			src.reagents.skip_next_update = 1
 			src.reagents.remove_any(src.amt_per_tile * removed_len)

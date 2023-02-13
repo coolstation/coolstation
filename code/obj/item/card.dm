@@ -121,6 +121,9 @@ GAUNTLET CARDS
 /obj/item/card/id/civilian
 	icon_state = "id_civ"
 
+/obj/item/card/id/pink
+	icon_state = "id_pink"
+
 /obj/item/card/id/clown
 	icon_state = "id_clown"
 	desc = "Wait, this isn't even an ID Card. It's a piece of a Chips Ahoy wrapper with crayon scribbles on it. What the fuck?"

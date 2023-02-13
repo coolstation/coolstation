@@ -626,7 +626,7 @@ var/datum/action_controller/actions
 	var/obj/item/sheet/sheet2 // in case you need to pull from more than one sheet
 	var/cost2 // same as above
 	var/spot
-	New(var/obj/item/sheet/csheet, var/cobjtype, var/ccost, var/datum/material/cmat, var/camount, var/cicon, var/cicon_state, var/cobjname, var/post_action_callback = null, var/obj/item/sheet/csheet2, var/ccost2, var/spot)
+	New(var/obj/item/sheet/csheet, var/cobjtype, var/ccost, var/datum/material/cmat, var/camount, var/cicon, var/cicon_state, var/cobjname, var/post_action_callback = null, var/obj/item/sheet/csheet2, var/ccost2, var/spot, var/duration_alt)
 		..()
 		icon = cicon
 		icon_state = cicon_state
@@ -638,6 +638,8 @@ var/datum/action_controller/actions
 		objname = cobjname
 		callback = post_action_callback
 		src.spot = spot
+		if(duration_alt)
+			duration = duration_alt
 		if (csheet2)
 			sheet2 = csheet2
 		if (ccost2)
@@ -1545,7 +1547,7 @@ var/datum/action_controller/actions
 			if (istype(H))
 				H.hud.update_resting()
 			for (var/mob/O in AIviewers(M))
-				O.show_message("<span class='alert'><B>[M] throws themselves onto the floor!</B></span>", 1, group = "resist")
+				O.show_message("<span class='alert'><B>[M] throws [himself_or_herself(M)] onto the floor!</B></span>", 1, group = "resist")
 		else
 			for (var/mob/O in AIviewers(M))
 				O.show_message("<span class='alert'><B>[M] rolls around on the floor, trying to extinguish the flames.</B></span>", 1, group = "resist")

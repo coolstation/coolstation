@@ -971,7 +971,7 @@
 		if (!no_dirs)
 			for (var/dir in cardinal)
 				var/turf/T = get_step(src, dir)
-				if ((!locate(/obj/wingrille_spawn) in T) && (!locate(/obj/grille) in T))
+				if ((!locate(/obj/wingrille_spawn) in T) && (!locate(text2path(src.grille_path)) in T)) // using the same text2path should avoid connectin to catwalks.
 					var/obj/window/new_win = text2path("[src.win_path]/[dir2text(dir)]")
 					new new_win(src.loc)
 		if (src.full_win)

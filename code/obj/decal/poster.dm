@@ -823,7 +823,7 @@
 
 		/* Be gay, do crime */
 		pride
-			name = "Pride"
+			name = "pride poster"
 			icon = 'icons/obj/items/prideflags.dmi'
 			icon_state = "poster_pride1"
 			desc = "Be Gay, Do Crime!"
@@ -904,7 +904,7 @@
 				... and EVIL! MWAHAHAHA!"*/
 
 ///////////////////////////////////////
-// AZUNGAR'S HEAD OF DEPARTMENT ITEMS// + FIREBARRAGE HELPED TOO BUT HE SMELLS
+// HATSUNE MIKU'S HEAD OF DEPARTMENT ITEMS// + FIREBARRAGE HELPED TOO BUT HE SMELLS
 ///////////////////////////////////////
 
 		framed_award

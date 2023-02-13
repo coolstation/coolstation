@@ -598,3 +598,27 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabPath = "assets/maps/prefabs/prefab_cave_landmines2.dmm"
 		prefabSizeX = 7
 		prefabSizeY = 7
+
+	cave_jeweler
+		dusty = 1
+		maxNum = 1
+		probability = 68
+		prefabPath = "assets/maps/prefabs/prefab_cave_jeweler.dmm"
+		prefabSizeX = 20
+		prefabSizeY = 15
+
+	cave_waffle //This one isn't great but the idea amused me, delete whenever you get tired of it :P
+		dusty = 1
+		maxNum = 1
+		probability = 63
+		prefabPath = "assets/maps/prefabs/prefab_cave_waffle.dmm"
+		prefabSizeX = 11
+		prefabSizeY = 9
+
+	cave_closet
+		dusty = 1
+		maxNum = 2
+		probability = 80
+		prefabPath = "assets/maps/prefabs/prefab_cave_closet.dmm"
+		prefabSizeX = 4
+		prefabSizeY = 4

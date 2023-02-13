@@ -142,8 +142,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			if (istype(I, /obj/item/gun_parts/stock/))
 				if(stock) //occupado
 					if(!stock.stock_two_handed && !I:stock_two_handed)// i know i know, :, but we *JUST* checked, cmon.
-						boutput(user,"<span class='notice'>...in the forward position.</span>")
-						stock2 = I
+						if(stock2)
+							boutput(user,"<span class='notice'>...and knock [stock2] out of the way.</span>")
+							stock2.set_loc(get_turf(src))
+							stock2 = I
+						else
+							boutput(user,"<span class='notice'>...in the forward position.</span>")
+							stock2 = I
 					else
 						boutput(user,"<span class='notice'>...and knock [stock] out of the way.</span>")
 						stock.set_loc(get_turf(src))

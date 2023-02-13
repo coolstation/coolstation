@@ -19,7 +19,7 @@
 	APPLY_TO_GASES(_DEF_SCRUBBER_VAR)
 	#undef _DEF_SCRUBBER_VAR
 
-	var/volume_rate = 120
+	var/volume_rate = 150 // was 120 - warc
 //
 	initialize()
 		..()

@@ -106,6 +106,23 @@
 					S.hud.remove_object(O)
 				user.visible_message("<b>[user.name]</b> dumps out [S] into [src].")
 				return
+		if (istype(I,/obj/item/decoration/ashtray/) && I:butts)
+			var/action = input(user, "What do you want to do with [I]?") as null|anything in list("Place it in the Chute","Empty it into the chute","Never Mind")
+			if (!action || action == "Never Mind")
+				return
+			if (!in_interact_range(src, user))
+				boutput(user, "<span class='alert'>You need to be closer to the chute to do that.</span>")
+				return
+			if (action == "Empty it into the chute")
+				var/obj/item/decoration/ashtray/S = I
+				for (var/i = 0, i < S.butts, i++)
+					var/obj/item/cigbutt/butt = new()
+					butt.set_loc(src)
+				S.butts = 0 // pff
+				S.update_icon()
+				S.overlays = null
+				user.visible_message("<b>[user.name]</b> dumps out [S] into [src].")
+				return
 		var/obj/item/magtractor/mag
 		if (istype(I.loc, /obj/item/magtractor))
 			mag = I.loc

@@ -155,7 +155,7 @@
 
 //ddoub le dodbleu
 /mob/living/handle_stamina_crit(var/damage)
-	if(!src.use_stamina) return
+	/*if(!src.use_stamina) return
 	damage = max(damage,10)
 	damage *= 4
 	if(src.stamina >= 1 )
@@ -182,8 +182,10 @@
 		if(!src.getStatusDuration("weakened"))
 			src.visible_message("<span class='alert'>[src] collapses!</span>")
 			src.changeStatus("weakened", (STAMINA_STUN_CRIT_TIME) SECONDS)
-		#endif
-	stamina_stun() //Just in case.
+		#endif*/
+	if(prob(STAMINA_SCALING_KNOCKOUT_BASE))
+		src.changeStatus("stunned", STAMINA_STUN_ON_CRIT_SEV)
+	stamina_stun(damage) //Just in case.
 	return
 
 
@@ -195,19 +197,19 @@
  * For example: You'd put this on a weapon after it removes stamina to make sure the stun applies
  * instantly and not on the next life tick.
  */
-/mob/proc/stamina_stun()
+/mob/proc/stamina_stun(var/chance)
 	return
 
-/mob/living/stamina_stun()
-	if(!src.use_stamina) return
-	if(src.stamina <= 0)
-		var/chance = STAMINA_SCALING_KNOCKOUT_BASE
-		chance += (src.stamina / STAMINA_NEG_CAP) * STAMINA_SCALING_KNOCKOUT_SCALER
-		if(prob(chance))
-			if(!src.getStatusDuration("weakened"))
-				src.visible_message("<span class='alert'>[src] collapses!</span>")
-				src.changeStatus("weakened", (STAMINA_STUN_TIME) SECONDS)
-				src.force_laydown_standup()
+/mob/living/stamina_stun(var/chance)
+	//if(!src.use_stamina) return
+	//if(src.stamina <= 0)
+	//var/chance = STAMINA_SCALING_KNOCKOUT_BASE
+	//chance += (src.stamina / STAMINA_NEG_CAP) * STAMINA_SCALING_KNOCKOUT_SCALER
+	if(prob(chance))
+		if(!src.getStatusDuration("weakened"))
+			src.visible_message("<span class='alert'>[src] collapses!</span>")
+			src.changeStatus("weakened", (STAMINA_STUN_TIME) SECONDS)
+			src.force_laydown_standup()
 
 //new disorient thing
 

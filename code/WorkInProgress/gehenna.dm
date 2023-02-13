@@ -17,13 +17,23 @@
 // 370 just beautiful. oh. wow. lovely. Oh it's 10 again.
 #define WASTELAND_MIN_TEMP 250
 #define WASTELAND_MAX_TEMP 350
-
+var/global/gehenna_time = GEHENNA_TIME
 
 // Gehenna shit tho
-/turf/unsimulated/floor/gehenna
+/turf/space/gehenna
 	name = "planet gehenna"
 	desc = "errrr"
 	opacity = 0
+	pathable = 0
+	mat_changename = 0
+	mat_changedesc = 0
+	fullbright = 0
+	luminosity = 1
+	intact = 0 //allow wire laying
+	throw_unlimited = 0
+	color = "#ffffff"
+	special_volume_override = -1
+
 
 /turf/simulated/wall/asteroid/gehenna
 	fullbright = 0
@@ -33,7 +43,7 @@
 	desc = "looks loosely packed"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock"
-	floor_turf = "/turf/unsimulated/floor/gehenna/desert"
+	floor_turf = "/turf/space/gehenna/desert"
 	hardness = 1
 	New()
 		..()
@@ -41,21 +51,38 @@
 	space_overlays()
 		return
 
+	ex_act(severity)
+		switch(severity)
+			if(1.0)
+				src.damage_asteroid(5)
+			if(2.0)
+				src.damage_asteroid(4)
+			if(3.0)
+				src.damage_asteroid(3)
+		return
+
 /turf/simulated/wall/asteroid/gehenna/z3
 	floor_turf = "/turf/simulated/floor/plating/gehenna"
-	hardness = 1
 
 /turf/simulated/wall/asteroid/gehenna/tough
-	name = "dense sulferous rock"
+	name = "crimson bedrock"
 	desc = "looks densely packed"
 	icon_state = "gehenna_rock2"
 	hardness = 2
 
-/turf/simulated/wall/asteroid/gehenna/z3/tough
-	name = "dense sulferous rock"
-	desc = "looks densely packed"
-	icon_state = "gehenna_rock2"
-	hardness = 2
+	ex_act(severity)
+		switch(severity)
+			if(1.0)
+				src.damage_asteroid(3)
+			if(2.0)
+				src.damage_asteroid(2)
+			if(3.0)
+				src.damage_asteroid(1)
+		return
+
+/turf/simulated/wall/asteroid/gehenna/tough/z3
+	floor_turf = "/turf/simulated/floor/plating/gehenna"
+
 
 /turf/unsimulated/wall/gehenna/
 	fullbright = 0
@@ -72,6 +99,7 @@
 	step_material = "step_outdoors"
 	step_priority = STEP_PRIORITY_MED
 	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
+	allows_vehicles = 1
 
 	New()
 		..()
@@ -83,17 +111,17 @@
 	toxins = MOLES_O2STANDARD // hehh hehh hehhhehhhe
 
 /turf/simulated/floor/plating/gehenna/farts
-	farts = MOLES_O2STANDARD
+	farts = MOLES_N2STANDARD / 2
 	nitrogen = MOLES_N2STANDARD / 2
 
-/turf/unsimulated/floor/gehenna/desert
+/turf/space/gehenna/desert
 	name = "barren wasteland"
 	desc = "Looks really dry out there."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna"
 	carbon_dioxide = 5*(sin(GEHENNA_TIME - 90)+ 1)
-	oxygen = MOLES_O2STANDARD * 2
-	nitrogen = 0
+	oxygen = MOLES_O2STANDARD * (sin(GEHENNA_TIME - 60)+2)
+	nitrogen = MOLES_O2STANDARD *0.5*(sin(GEHENNA_TIME + 90)+2)
 	temperature = WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
 
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
@@ -128,7 +156,8 @@
 		light.set_brightness(light_brightness)
 		light.set_color(light_r, light_g, light_b)
 		light.set_height(light_height)
-		light.enable()
+		SPAWN_DBG(0.1)
+			light.enable()
 
 
 
@@ -138,18 +167,23 @@
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "gehenna_tile"
 
+		thermal
+			name = "sand-covered solar plating"
+			desc = "absorbs the sun's rays, gets real hot."
+			temperature = WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(1.5*WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
+
 		podbay
 			icon_state = "gehenna_plating"
 
 	path
 		name = "beaten earth"
-		desc = "for seven years we toiled, to tame wild Gehenna"
+		desc = "this soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "gehenna_edge"
 
 	corner
 		name = "beaten earth"
-		desc = "for seven years we toiled, to tame wild Gehenna"
+		desc = "this soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "gehenna_corner"
 

@@ -33,7 +33,33 @@
 		..()
 		if (icon_state == "tplaceholder") icon_state = (channel_open ? "near_blank" : "[rand(1,25)]" )
 
-/turf/simulated/floor/shuttle
+/turf/simulated/floor/shuttle_noprotections
+	name = "shuttle floor"
+	icon_state = "floord"
+	icon = 'icons/turf/shuttle.dmi'
+
+	oxygen = MOLES_N2STANDARD
+	nitrogen = MOLES_O2STANDARD
+
+/turf/simulated/wall/r_wall/shuttle_noprotections
+	name = "shuttle wall"
+	icon = 'icons/turf/shuttle.dmi'
+	icon_state = "wall"
+	var/icon_style = "wall"
+	opacity = 0
+	density = 1
+	blocks_air = 1
+	pathable = 0
+
+	New()
+		..()
+		SPAWN_DBG(6 SECONDS) // patch up some ugly corners in derelict mode
+			if (derelict_mode)
+				if (src.icon_state == "[src.icon_style]_space")
+					src.icon_state = "[src.icon_style]_void"
+		return
+
+/turf/simulated/floor/shuttle // theres a bug with the crowbar special attack here. not great.
 	name = "shuttle floor"
 	icon_state = "floor"
 	icon = 'icons/turf/shuttle.dmi'

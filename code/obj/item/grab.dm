@@ -643,7 +643,7 @@
 		for (var/obj/item/clothing/C in clothing)
 			if (C.c_flags & (COVERSMOUTH | MASKINTERNALS))
 				for (var/mob/O in AIviewers(src.assailant, null))
-					O.show_message("<span class='alert'>[src.assailant] fails to choke [src.affecting] with [src.loc] because their [C] is in the way!</span>", 1)
+					O.show_message("<span class='alert'>[src.assailant] fails to choke [src.affecting] with [src.loc] because [his_or_her(affecting)] [C] is in the way!</span>", 1)
 				return 0
 
 		..(msg_overridden = 1)

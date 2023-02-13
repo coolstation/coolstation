@@ -30,7 +30,7 @@
 
 	. +=  "<br><span class='notice'>*---------*</span>"
 
-	// crappy hack because you can't do \his[src] etc
+	// crappy hack because you can't do \.his[src] etc
 	var/t_his = his_or_her(src)
 	var/t_him = him_or_her(src)
 

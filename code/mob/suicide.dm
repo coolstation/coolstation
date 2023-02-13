@@ -163,7 +163,7 @@
 	src.mainframe.do_suicide()
 
 /mob/living/silicon/ai/do_suicide()
-	src.visible_message("<span class='alert'><b>[src] is powering down. It looks like \he's trying to commit suicide.</b></span>")
+	src.visible_message("<span class='alert'><b>[src] is powering down. It looks like [he_or_she(src)]'s trying to commit suicide.</b></span>")
 	src.unlock_medal("Damned", 1)
 	SPAWN_DBG(3 SECONDS)
 		src.death()

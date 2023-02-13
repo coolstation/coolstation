@@ -8,7 +8,8 @@
 	name = "navigation beacon"
 	desc = "A radio beacon used for bot navigation."
 	level = 1		// underfloor
-	layer = 2.5 // TODO layer whatever
+	layer = CABLE_LAYER
+	plane = PLANE_NOSHADOW_BELOW
 	anchored = 1
 
 	var/open = 0		// true if cover is open

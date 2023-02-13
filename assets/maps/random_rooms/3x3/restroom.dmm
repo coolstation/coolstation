@@ -18,10 +18,12 @@
 /turf/simulated/floor/plating,
 /area/dmm_suite/clear_area)
 "v" = (
-/obj/submachine/chef_sink/chem_sink{
-	pixel_y = 12
-	},
 /obj/decal/cleanable/dirt,
+/obj/submachine/chef_sink{
+	desc = "A common utility sink.";
+	name = "utility sink";
+	pixel_y = 7
+	},
 /turf/simulated/floor/plating,
 /area/dmm_suite/clear_area)
 "D" = (
