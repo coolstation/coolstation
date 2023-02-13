@@ -211,7 +211,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			buildTooltipContent()
 			return
 
-		P.power *= (1 + ((barrel.length-STANDARD_BARREL_LEN) / 2*STANDARD_BARREL_LEN)) // 20 CM
+		var/barrel_adjustment = max((barrel.length-STANDARD_BARREL_LEN)/((barrel.length+STANDARD_BARREL_LEN)/2)/1.5,-0.75)
+		P.power *= min((1 + barrel_adjustment),2)
 		return
 
 
