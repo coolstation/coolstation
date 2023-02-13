@@ -214,7 +214,7 @@
 			return
 
 	if (user.bioHolder.HasEffect("clumsy") && prob(50))
-		user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and cuts \himself.</span>")
+		user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and cuts [himself_or_herself(user)].</span>")
 		user.TakeDamage(user.hand == 1 ? "l_arm" : "r_arm", 5, 5)
 		take_bleeding_damage(user, user, 5)
 		JOB_XP(user, "Clown", 1)
@@ -1162,7 +1162,7 @@
 		return 0
 	else
 		var/organtokill = pick("liver", "spleen", "heart", "appendix", "stomach", "intestines")
-		user.visible_message("<span class='alert'><b>[user] stabs the [src] into their own chest, ripping out their [organtokill]! [pick("Oh the humanity", "What a bold display", "That's not safe at all")]!</b></span>")
+		user.visible_message("<span class='alert'><b>[user] stabs the [src] into their own chest, ripping out [his_or_her(user)] [organtokill]! [pick("Oh the humanity", "What a bold display", "That's not safe at all")]!</b></span>")
 		user.organHolder.drop_and_throw_organ(organtokill, dist = 5, speed = 1, showtext = 1)
 		playsound(src.loc, "sound/impact_sounds/Blade_Small_Bloody.ogg", 50, 1)
 		user.TakeDamage("chest", 100, 0)

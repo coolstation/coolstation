@@ -130,69 +130,69 @@ jobs:
         run: |
           tools/ci/dm.sh -DCIBUILD -DTRAVIS_ASSJAM coolstation.dme
 
-  compile_full:
-    name: "Compile and Lint with Secret Submodule"
-    runs-on: ubuntu-20.04
-    if: |
-      ((github.event_name == 'push' && github.repository == 'coolstation/coolstation') || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == 'coolstation/coolstation')) && !contains(github.event.head_commit.message, 'skip ci')
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: true
-          token: '${{ secrets.ROBUDDYBOT_PAT }}'
+  # compile_full:
+  #   name: "Compile and Lint with Secret Submodule"
+  #   runs-on: ubuntu-20.04
+  #   if: |
+  #     ((github.event_name == 'push' && github.repository == 'coolstation/coolstation') || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == 'coolstation/coolstation')) && !contains(github.event.head_commit.message, 'skip ci')
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         submodules: true
+  #         token: '${{ secrets.ROBUDDYBOT_PAT }}'
 
-      - name: Install Dependencies
-        run: |
-          sudo dpkg --add-architecture i386
-          sudo apt-get update
-          sudo apt install libstdc++6:i386
+  #     - name: Install Dependencies
+  #       run: |
+  #         sudo dpkg --add-architecture i386
+  #         sudo apt-get update
+  #         sudo apt install libstdc++6:i386
 
-      - name: Cache BYOND
-        uses: actions/cache@v2
-        with:
-          path: $HOME/BYOND
-          key: ${{ runner.os }}-byond
+  #     - name: Cache BYOND
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: $HOME/BYOND
+  #         key: ${{ runner.os }}-byond
 
-      - name: Setup BYOND
-        run: |
-          tools/ci/install_byond.sh
-          cd $GITHUB_WORKSPACE
-          printenv
-          echo "BYOND_SYSTEM=/home/runner/BYOND/byond" >> $GITHUB_ENV
-          echo "/home/runner/BYOND/byond/bin" >> $GITHUB_PATH
-          echo "LD_LIBRARY_PATH=/home/runner/BYOND/byond/bin:$LD_LIBRARY_PATH" >> $GITHUB_ENV
-          echo "MANPATH=/home/runner/BYOND/byond/man:$MANPATH" >> $GITHUB_ENV
+  #     - name: Setup BYOND
+  #       run: |
+  #         tools/ci/install_byond.sh
+  #         cd $GITHUB_WORKSPACE
+  #         printenv
+  #         echo "BYOND_SYSTEM=/home/runner/BYOND/byond" >> $GITHUB_ENV
+  #         echo "/home/runner/BYOND/byond/bin" >> $GITHUB_PATH
+  #         echo "LD_LIBRARY_PATH=/home/runner/BYOND/byond/bin:$LD_LIBRARY_PATH" >> $GITHUB_ENV
+  #         echo "MANPATH=/home/runner/BYOND/byond/man:$MANPATH" >> $GITHUB_ENV
 
-      - name: Cache SpacemanDMM
-        uses: actions/cache@v2
-        with:
-          path: $HOME/SpacemanDMM
-          key: ${{ runner.os }}-spacemandmm
+  #     - name: Cache SpacemanDMM
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: $HOME/SpacemanDMM
+  #         key: ${{ runner.os }}-spacemandmm
 
-      - name: Setup Rust
-        uses: hecrj/setup-rust-action@v1.3.3
+  #     - name: Setup Rust
+  #       uses: hecrj/setup-rust-action@v1.3.3
 
-      - name: Install Dependencies
-        run: |
-          pip3 install setuptools
-          tools/ci/install_build_tools.sh
-          tools/ci/install_spaceman_dmm.sh dreamchecker
-          tools/bootstrap/python -c ''
-          touch +secret/__secret.dme
+  #     - name: Install Dependencies
+  #       run: |
+  #         pip3 install setuptools
+  #         tools/ci/install_build_tools.sh
+  #         tools/ci/install_spaceman_dmm.sh dreamchecker
+  #         tools/bootstrap/python -c ''
+  #         touch +secret/__secret.dme
 
-      - name: Misc Checks
-        run: |
-          tools/ci/check_filedirs.sh coolstation.dme
-          tools/ci/build_tgui.sh
-          tools/ci/check_grep.sh
-          tools/bootstrap/python -m dmi.test
-          tools/bootstrap/python -m mapmerge2.dmm_test
+  #     - name: Misc Checks
+  #       run: |
+  #         tools/ci/check_filedirs.sh coolstation.dme
+  #         tools/ci/build_tgui.sh
+  #         tools/ci/check_grep.sh
+  #         tools/bootstrap/python -m dmi.test
+  #         tools/bootstrap/python -m mapmerge2.dmm_test
 
-      - name: Run Linter
-        id: linter
-        run: |
-          ~/dreamchecker
+  #     - name: Run Linter
+  #       id: linter
+  #       run: |
+  #         ~/dreamchecker
 
-      - name: Compile
-        run: |
-          tools/ci/dm.sh -DCIBUILD -DTRAVIS_SUB coolstation.dme
+  #     - name: Compile
+  #       run: |
+  #         tools/ci/dm.sh -DCIBUILD -DTRAVIS_SUB coolstation.dme

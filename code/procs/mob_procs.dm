@@ -536,6 +536,18 @@
 
 	return pronouns.reflexive
 
+/proc/pluralize_or_not(var/mob/subject) //This was the closest to the other pronoun procs I could think of
+	var/datum/pronouns/pronouns
+
+	if (isabomination(subject))
+		pronouns = get_singleton(/datum/pronouns/abomination)
+	else if (subject && subject?.bioHolder?.mobAppearance?.pronouns)
+		pronouns = subject.bioHolder.mobAppearance.pronouns
+	else
+		pronouns = get_singleton(/datum/pronouns/theyThem)
+
+	return pronouns.pluralize
+
 /mob/proc/get_explosion_resistance()
 	return 0
 

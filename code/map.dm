@@ -1080,11 +1080,11 @@ var/global/list/mapNames = list(
 	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
 
 	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
-		"the cargo office (QM)" = list(/area/station/quartermaster/office),
+		"the cargo office (QM)" = list(/area/station/quartermaster/office, /area/station/quartermaster/cargooffice/storefront),
 		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
 		"the hospital" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/lobby),
-		"the station's cafeteria" = list(/area/station/crew_quarters/cafeteria),
-		"the bridge" = list(/area/station/bridge),
+		"the underground bar" = list(/area/station/crew_quarters/bar),
+		"the bridge" = list(/area/station/bridge, /area/station/bridge/conference),
 		"the chapel" = list(/area/station/chapel/sanctuary))
 
 	init()

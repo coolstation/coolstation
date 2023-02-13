@@ -94,6 +94,9 @@ ABSTRACT_TYPE(/obj/item/circuitboard)
 /obj/item/circuitboard/genetics
 	name = "Circuit board (Genetics)"
 	computertype = "/obj/machinery/computer/genetics"
+/obj/item/circuitboard/pathology
+	name = "Circuit board (Pathology)"
+	computertype = "/obj/machinery/computer/pathology"
 /obj/item/circuitboard/tetris
 	name = "Circuit board (Robustris Pro)"
 	computertype = "/obj/machinery/computer/tetris"

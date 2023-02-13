@@ -20,6 +20,7 @@ TOILET
 	var/plumbed = 0
 	var/poops = 0
 	var/peeps = 0
+	var/cursed = 0
 
 /obj/item/storage/toilet/New()
 	..()
@@ -214,3 +215,7 @@ TOILET
 	New()
 		..()
 		particleMaster.SpawnSystem(new /datum/particleSystem/sparkles(src))
+
+/obj/item/storage/toilet/proc/curse()
+	src.name = "cursed " + src.name
+	src.cursed = 1

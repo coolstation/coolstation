@@ -1096,7 +1096,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 						if (prob(33) && ishuman(O))
 							O.show_message("<span class='alert'>You feel ill from watching that.</span>")
 							for (var/mob/V in viewers(O, null))
-								V.show_message("<span class='alert'>[O] pukes all over \himself. Thanks, [user].</span>", 1)
+								V.show_message("<span class='alert'>[O] pukes all over [himself_or_herself(O)]. Thanks, [user].</span>", 1)
 								O.vomit()
 
 				W.reagents.handle_reactions()
@@ -1907,7 +1907,7 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 				if (last_touched.sims)
 					last_touched.sims.affectMotive("fun", 10)
 		else
-			A.add_mud(src, owner.poop_amount ? owner.poop_amount : 5)
+			A.add_mud(src, src.amount ? src.amount : 5)
 
 		qdel(src)
 
@@ -2119,16 +2119,11 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 			return 1
 
 	end_dry()
-		if (src.dry == FRESH_MUD)
-			src.dry = 0
-			src.UpdateName()
-			src.dry_time = rand(300,600)
-		else
-			src.dry = DRY_MUD
-			src.stain = null
-			src.UpdateName()
-			processing_items.Remove(src)
-			return
+		src.dry = DRY_MUD
+		src.stain = null
+		src.UpdateName()
+		processing_items.Remove(src)
+		return
 
 	proc/add_volume(var/add_color, var/reagent_id = "poo", var/amount = 1, var/vis_amount = 1, var/list/bdata = null, var/i_state = null, var/direction = null, var/do_fluid_react = 1)
 

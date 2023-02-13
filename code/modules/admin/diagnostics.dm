@@ -1041,13 +1041,13 @@ proc/debug_map_apc_count(delim,zlim)
 	set name = "Debug Overlay"
 	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
 	admin_only
-	var/list/available_overlays = list()
+	var/list/available_overlays = list("REMOVE")
 	for (var/datum/infooverlay/dummy as anything in childrentypesof(/datum/infooverlay))
 		var/name = initial(dummy.name)
 		if(isnull(name))
 			name = replacetext("[dummy]", "/datum/infooverlay/", "")
 		available_overlays[name] = dummy
-	var/name = input("Choose an overlay") as null|anything in (available_overlays + "REMOVE")
+	var/name = input("Choose an overlay") as null|anything in (available_overlays)
 	activeOverlay?.OnDisabled(src)
 	if(!name || name == "REMOVE")
 		if(infoOverlayImages)

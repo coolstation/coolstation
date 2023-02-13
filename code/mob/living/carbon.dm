@@ -94,6 +94,7 @@
 		var/mob/living/carbon/human/H = src
 		var/obj/item/reagent_containers/poo_target = src.equipped()
 		var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new()
+		shit.amount = src.poop_amount
 		shit.owner = src // this is your shit.
 		if(src.poops)
 			src.poops--

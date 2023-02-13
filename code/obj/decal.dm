@@ -745,3 +745,8 @@ obj/decal/fakeobjects/teleport_pad
 /obj/decal/tile_edge/floorguide/arrow_s
 	name = "Directional Navigation Guide"
 	icon_state = "endpiece_s"
+
+/obj/decal/tile_edge/floorguide/ladder
+	name = "Ladder Navigation Guide"
+	desc = "A ladder is in this direction."
+	icon_state = "guide_ladder"

@@ -563,6 +563,7 @@ var/obj/item/dummy/click_dummy = new
 	var/list/turfs_src = get_area_turfs(src.type)
 	var/list/turfs_trg = get_area_turfs(A.type)
 
+
 	var/src_min_x = 0
 	var/src_min_y = 0
 	for (var/turf/T as anything in turfs_src)
@@ -581,8 +582,10 @@ var/obj/item/dummy/click_dummy = new
 
 	for (var/turf/S in turfs_src)
 		var/turf/T = locate(S.x - src_min_x + trg_min_x, S.y - src_min_y + trg_min_y, trg_z)
+
 		if(T?.loc != A) continue
-		T.ReplaceWith(S.type, keep_old_material = 0, force=1)
+
+		T.ReplaceWith(S.type, keep_old_material = 0, force=1, handle_air=0)
 		T.appearance = S.appearance
 		T.set_density(S.density)
 		T.set_dir(S.dir)
@@ -591,8 +594,9 @@ var/obj/item/dummy/click_dummy = new
 		var/turf/T = locate(S.x - src_min_x + trg_min_x, S.y - src_min_y + trg_min_y, trg_z)
 		for (var/atom/movable/AM as anything in S)
 			if (istype(AM, /obj/forcefield) || istype(AM, /obj/overlay/tile_effect)) continue
-			if (!ignore_fluid && istype(AM, /obj/fluid)) continue
+			if (ignore_fluid && istype(AM, /obj/fluid)) continue // this previously said "!ignore_fluid" which seems like a mistake? setting ignore_fluid to 1 actually made it move fluids... ~warc
 			AM.set_loc(T)
+
 		if(turftoleave)
 			S.ReplaceWith(turftoleave, keep_old_material = 0, force=1)
 		else

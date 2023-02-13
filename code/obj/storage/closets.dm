@@ -52,16 +52,20 @@
 
 	make_my_stuff()
 		if (..()) // make_my_stuff is called multiple times due to lazy init, so the parent returns 1 if it actually fired and 0 if it already has
-			if (prob(80))
-				new /obj/item/extinguisher(src)
-			if (prob(50))
-				new /obj/item/clothing/head/helmet/firefighter(src)
+			//guarantees
+			new /obj/item/extinguisher(src)
+			new /obj/item/clothing/suit/fire(src)
+			new /obj/item/clothing/head/helmet/firefighter(src)
+			//maybes
 			if (prob(30))
-				new /obj/item/clothing/suit/fire(src)
+				new /obj/item/extinguisher(src)
+			if (prob(80)) // almost guaranteed
 				new /obj/item/clothing/mask/gas/emergency(src)
-			if (prob(10))
+			if (prob(30)) // second set
+				new /obj/item/clothing/suit/fire(src)
+				new /obj/item/clothing/head/helmet/firefighter(src)
+			if (prob(15)) // too good for *most* closets
 				new /obj/item/storage/firstaid/fire(src)
-			if (prob(5))
 				new /obj/item/storage/toolbox/emergency(src)
 			return 1
 

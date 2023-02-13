@@ -261,7 +261,7 @@
 		del(src)
 		return
 	src.attachedTo.visible_message("<b><span class='alert'>A sparking noise is heard as the igniter goes off. The plasma tank blows, creating a microexplosion and rupturing the canister.</span></b>")
-	if (MIXTURE_PRESSURE(attachedTo.air_contents) < 7000)
+	if (MIXTURE_PRESSURE(attachedTo.air_contents) < CANISTER_BOMB_PRESSURE_MIN)
 		src.attachedTo.visible_message("<b><span class='alert'>The ruptured canister, due to a serious lack of pressure, fails to explode into shreds and leaks its contents into the air.</span></b>")
 		src.attachedTo.health = 0
 		src.attachedTo.healthcheck()
@@ -269,7 +269,7 @@
 		src.attachedTo.overlay_state = null
 		del(src)
 		return
-	if (attachedTo.air_contents.temperature < 100000)
+	if (attachedTo.air_contents.temperature < CANISTER_BOMB_TEMP_MIN)
 		src.attachedTo.visible_message("<b><span class='alert'>The ruptured canister shatters from the pressure, but its temperature isn't high enough to create an explosion. Its contents leak into the air.</span></b>")
 		src.attachedTo.health = 0
 		src.attachedTo.healthcheck()
@@ -284,9 +284,9 @@
 	src.attachedTo.visible_message("<b><span class='alert'>The ruptured canister shatters from the pressure, and the hot gas ignites.</span></b>")
 
 
-	// WARC DOCUMENTING CODE: THIS IS WHERE TO SET THE CANBOMB MAXCAP. CANISTER BOMB EXPLOSION CURVE POWER FORMULA CANBOMB RANGE.
-	var/power = min(850 * (MIXTURE_PRESSURE(attachedTo.air_contents) + attachedTo.air_contents.temperature - 107000) / 233196469.0 + 200, 50000) //the second arg is the max explosion power
-	if (power == 50000) //they reached the cap SOMEHOW? well dang they deserve a medal
+	// WARC DOCUMENTING CODE: CANISTER BOMB EXPLOSION CURVE POWER FORMULA CANBOMB RANGE.
+	var/power = min(850 * (MIXTURE_PRESSURE(attachedTo.air_contents) + attachedTo.air_contents.temperature - (CANISTER_BOMB_TEMP_MIN + CANISTER_BOMB_PRESSURE_MIN)) / 233196469.0 + 200, CANISTER_BOMB_MAXCAP) //the second arg is the max explosion power
+	if (power == CANISTER_BOMB_MAXCAP) //they reached the cap SOMEHOW? well dang they deserve a medal
 		src.builtBy.unlock_medal("bang.", 1)
 	explosion_new(attachedTo, epicenter, power)
 
