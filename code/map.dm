@@ -1059,7 +1059,6 @@ var/global/list/mapNames = list(
 		/datum/job/engineering/engineer = 6,
 		/datum/job/civilian/chaplain = 2,
 		/datum/job/special/atmospheric_technician = 2,
-		/datum/job/special/station_builder = 2,
 		/datum/job/civilian/botanist = 3
 	)
 
