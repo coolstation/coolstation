@@ -131,8 +131,9 @@
 	desc = "hey wait, this isn't a credit. what the fuck is this actually?"
 	icon_state = "cashnone"
 
-	New()//this is only spawned as a gimmick and needs no logic
-		src.amount = 0 //but will disappear when stacked no prob it's super fucked up
+	New()
+		..(amt=0)//this is only spawned as a gimmick and needs no logic
+		//src.amount = 0 //but will disappear when stacked no prob it's super fucked up
 
 /obj/item/spacecash/five
 	default_min_amount = 5
