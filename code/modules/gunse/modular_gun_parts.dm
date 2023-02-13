@@ -14,7 +14,7 @@ accssry : mall ninja bullshit. optics. gadgets. flashlights. horns. sexy nude me
 
 ABSTRACT_TYPE(/obj/item/gun_parts)
 /obj/item/gun_parts/
-	icon = 'icons/obj/items/cet_guns/accessory.dmi'
+	icon = 'icons/obj/items/modular_guns/accessory.dmi'
 	var/name_addition = ""
 	var/part_type = null
 	var/overlay_x = 0
@@ -104,7 +104,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/barrel)
 	lensing = 0 // Variable used for optical gun barrels. Scalar around 1.0
 	jam_frequency_fire = 1 //additional % chance to jam on fire. Reload to clear.
 	scatter = 0
-	icon = 'icons/obj/items/cet_guns/barrels.dmi'
+	icon = 'icons/obj/items/modular_guns/barrels.dmi'
 	icon_state = "it_revolver"
 	length = STANDARD_BARREL_LEN
 	//overlay_x = 10
@@ -151,7 +151,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 	jam_frequency_reload = 0 //attitional % chance to jam on reload. Just reload again to clear.
 	var/list/ammo_list = list() // ammo that stays in the stock when removed
 	icon_state = "nt_wire_alt"
-	icon = 'icons/obj/items/cet_guns/stocks.dmi'
+	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	//overlay_x = -10
 	// for uniformity, shoulder stocks should end at the 16th pixel.
 	// add an overlay_x if your stock is too long to fit.
@@ -306,7 +306,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "nt_blue_very"
 	length = 50
 	//overlay_x = 5
-	icon = 'icons/obj/items/cet_guns/64.dmi'
+	icon = 'icons/obj/items/modular_guns/64.dmi'
 
 /obj/item/gun_parts/barrel/foss
 	name = "\improper FOSS lensed barrel"
@@ -315,7 +315,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	lensing = 0.9
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_JUICE
 	name_addition = "lenser"
-	icon = 'icons/obj/items/cet_guns/fossgun.dmi'
+	icon = 'icons/obj/items/modular_guns/fossgun.dmi'
 	icon_state = "barrel_short"
 	contraband = 1
 	length = 17
@@ -337,7 +337,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = -1
 	lensing = 0.85
 	name_addition = "catalyst"
-	icon = 'icons/obj/items/cet_guns/64.dmi'
+	icon = 'icons/obj/items/modular_guns/64.dmi'
 	icon_state = "foss_very_long"
 	length = 40
 
@@ -408,7 +408,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = -3 // basic stabilisation
 	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN
 	name_addition = "trusty"
-	icon = 'icons/obj/items/cet_guns/grips.dmi'
+	icon = 'icons/obj/items/modular_guns/grips.dmi'
 	icon_state = "nt_blue"
 	overlay_y = -1
 
@@ -441,7 +441,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	can_dual_wield = 0
 	max_ammo_capacity = 1 // additional shot in the butt
 	jam_frequency_reload = 2 // a little more jammy
-	icon = 'icons/obj/items/cet_guns/stocks.dmi'
+	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	name_addition = "sturdy"
 	icon_state = "nt_blue"
 	overlay_x = -2
@@ -455,7 +455,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	can_dual_wield = 0
 	max_ammo_capacity = 1 // additional shot in the butt
 	jam_frequency_reload = 3 // a little more jammy
-	icon = 'icons/obj/items/cet_guns/stocks.dmi'
+	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	name_addition = "capable"
 	icon_state = "nt_wire"
 	//overlay_x = -19
@@ -469,7 +469,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	max_crank_level = 2
 
 	name_addition = "agile"
-	icon = 'icons/obj/items/cet_guns/fossgun.dmi'
+	icon = 'icons/obj/items/modular_guns/fossgun.dmi'
 	icon_state = "stock_single"
 	//overlay_x = -20
 
@@ -509,7 +509,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	max_ammo_capacity = 1 // to make that revolver revolve!
 	jam_frequency_reload = 5 // a lot  more jammy!!
 	part_DRM = GUN_NANO | GUN_ITALIAN | GUN_SOVIET
-	icon = 'icons/obj/items/cet_guns/grips.dmi'
+	icon = 'icons/obj/items/modular_guns/grips.dmi'
 	icon_state = "it_plain"
 	name_addition = "quality"
 
@@ -527,7 +527,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "da grip"
 	desc = "some kind of knockoff tacticool pistol grip"
 	spread_angle = -3
-	icon = 'icons/obj/items/cet_guns/grips.dmi'
+	icon = 'icons/obj/items/modular_guns/grips.dmi'
 	icon_state = "white"
 	name_addition = "strapped"
 

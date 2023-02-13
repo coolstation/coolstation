@@ -550,7 +550,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	max_ammo_capacity = 1 // single-shot pistols ha- unless you strap an expensive loading mag on it.
 	gun_DRM = GUN_NANO
 	spread_angle = 7
-	icon = 'icons/obj/items/cet_guns/recievers.dmi'
+	icon = 'icons/obj/items/modular_guns/recievers.dmi'
 	icon_state = "nt_blue"
 	barrel_overlay_x = 23
 	barrel_overlay_y = 0
@@ -614,7 +614,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	gun_DRM = GUN_FOSS
 	spread_angle = 7
 	//color = "#aaaaFF"
-	icon = 'icons/obj/items/cet_guns/fossgun.dmi'
+	icon = 'icons/obj/items/modular_guns/fossgun.dmi'
 	icon_state = "foss_reciever"
 	contraband = 7
 	barrel_overlay_x = 18

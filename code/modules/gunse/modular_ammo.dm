@@ -4,7 +4,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	name = "1 round"
 	real_name = "round"
 	desc = "You gotta have bullets."
-	icon = 'icons/obj/items/cet_guns/ammo.dmi'
+	icon = 'icons/obj/items/modular_guns/ammo.dmi'
 	icon_state = "white"
 	var/icon_empty = "empty"
 	var/icon_one   = "bullet_white"
@@ -303,7 +303,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	name = "\improper FOSSYN. CATHODIC FLASH BULBS"
 	real_name = "FOSSYN. CATHODIC FLASH BULB"
 	desc = "A hefty glass tube filled with ionic gas, and two opposing electrodes."
-	icon = 'icons/obj/items/cet_guns/fossgun.dmi'
+	icon = 'icons/obj/items/modular_guns/fossgun.dmi'
 	icon_state = "bulb"
 	icon_shell = "bulb_burnt"
 	projectile_type = null
