@@ -229,8 +229,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/magazine)
 
 ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/accessory/
-	var/alt_fire = 0 //does this accessory offer an alt-mode? light perhaps?
+	var/alt_fire = 0 //does this accessory offer an alt-mode? light perhaps? (this is triggered by cycling with the chamber full)
 	var/call_on_fire = 0 // does the gun call this accessory's on_fire() proc?
+	var/call_on_cycle = 0 // does the gun call this accessory's on_cycle() proc? (thats when you cycle ammo)
 	part_type = "accessory"
 	icon_state = "generic_magazine"
 	overlay_y = 10
@@ -241,6 +242,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	proc/on_fire()
 		return call_on_fire
 
+	proc/on_cycle()
+		return call_on_cycle
+
 	add_part_to_gun()
 		..()
 		if(!my_gun)
@@ -248,6 +252,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		my_gun.accessory = src
 		my_gun.accessory_alt = alt_fire
 		my_gun.accessory_on_fire = call_on_fire
+		my_gun.accessory_on_cycle = call_on_cycle
 		my_gun.name = src.name_addition + " " + my_gun.name
 
 
@@ -255,7 +260,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	remove_part_from_gun()
 		if(!my_gun)
 			return
-
 		. = ..()
 
 
@@ -519,6 +523,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = -1
 	max_ammo_capacity = 3 // to make that revolver revolve!
 	jam_frequency_reload = 9 // a lot  more jammy!!
+	part_DRM = GUN_ITALIAN | GUN_SOVIET
 	icon_state = "it_fancy"
 	name_addition = "jovial"
 
@@ -566,7 +571,79 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	on_fire()
 		playsound(src.my_gun.loc, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, -1)
 
+	attack_self(mob/user as mob)
+		user.u_equip(src)
+		user.show_text("You de-militarise the bike horn, turning it into a normal funny one.", "blue")
+		var/obj/item/instrument/bikehorn/H = new()
+		user.put_in_hand_or_drop(H)
+		qdel(src)
 
+/obj/item/gun_parts/accessory/flashlight
+	name = "Tactical Enbrightener"
+	desc = "No deep operator can be without adequate Night-Vision equipment, or at the very least, a pocket torch taped to their barrel."
+	alt_fire = 1
+	icon_state = "flash_off"
+	overlay_x = 20
+	overlay_y = -5
+	var/col_r = 0.9
+	var/col_g = 0.8
+	var/col_b = 0.7
+	var/light_type = null
+	var/brightness = 4.6
+	var/light_mode = 0
+	var/icon_off = "flash_off"
+	var/icon_on = "flash_on"
+
+	var/datum/component/holdertargeting/simple_light/light_dim
+	var/datum/component/holdertargeting/simple_light/light_good
+
+
+	alt_fire()
+		playsound(src, "sound/items/penclick.ogg", 30, 1)
+		if(light_mode == 2) // if on the bright mode, turn off
+			set_icon_state(src.icon_off)
+			var/image/I = image(icon, icon_state)
+			I.pixel_x = overlay_x
+			I.pixel_y = overlay_y
+			my_gun.UpdateOverlays(I, part_type)
+			light_mode = 0
+			light_good.update(0)
+			return
+		if(light_mode == 0) // dim mode
+			set_icon_state(src.icon_on)
+			var/image/I = image(icon, icon_state)
+			I.pixel_x = overlay_x
+			I.pixel_y = overlay_y
+			my_gun.UpdateOverlays(I, part_type)
+			light_mode = 1
+			light_dim.update(1)
+		else if(light_mode == 1) // actual flashlight mode
+			light_dim.update(0)
+			light_good.update(1)
+			set_icon_state(src.icon_on)
+			var/image/I = image(icon, icon_state)
+			I.pixel_x = overlay_x
+			I.pixel_y = overlay_y
+			my_gun.UpdateOverlays(I, part_type)
+			light_mode = 2
+
+	add_part_to_gun()
+		..()
+		if(!my_gun)
+			return
+		light_dim = my_gun.AddComponent(/datum/component/holdertargeting/simple_light, col_r * 255, col_g * 255, col_b  * 255, 100)
+		light_dim.update(0)
+		light_good = my_gun.AddComponent(/datum/component/holdertargeting/medium_directional_light/, col_r * 255, col_g * 255, col_b  * 255, 210)
+		light_good.update(0)
+
+
+	remove_part_from_gun()
+		light_good.update(0)
+		light_good.light_target = src
+		light_dim.update(0)
+		light_dim.light_target = src
+		light_mode = 0
+		. = ..()
 
 // No such thing as a basic magazine! they're all bullshit!!
 /obj/item/gun_parts/magazine/juicer

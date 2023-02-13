@@ -61,6 +61,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	var/accessory_alt = 0 //does the accessory offer an alternative firing mode?
 	var/accessory_on_fire = 0 // does the accessory need to know when you fire?
+	var/accessory_on_cycle = 0 // does the accessory need to know you pressed C?
 
 	var/jam_frequency_reload = 1 //base % chance to jam on reload. Just reload again to clear.
 	var/jam_frequency_fire = 1 //base % chance to jam on fire. Reload to clear.
@@ -131,6 +132,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		var/obj/item/stackable_ammo/SA = I
 		SA.reload(src, user)
 		return
+	if(istype(I,/obj/item/instrument/bikehorn))
+		boutput(user,"<span class='notice'><b>You first radicalize the bike horn by telling it all about The Man.</b></span>")
+		playsound(src, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, -1)
+		user.u_equip(I)
+		I = new /obj/item/gun_parts/accessory/horn()
+		user.put_in_hand_or_drop(I)
+
 	if(istype(I,/obj/item/gun_parts/))
 		if(built)
 			boutput(user,"<span class='notice'><b>You cannot place parts onto an assembled gun.</b></span>")
@@ -277,6 +285,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return (current_projectile?1:0)
 
 /obj/item/gun/modular/process_ammo(mob/user)
+	if(accessory && accessory_on_cycle)
+		accessory.on_cycle()
+
 	if(flashbulb_only) // additional branch for suicide
 		return flash_process_ammo(user)
 
@@ -299,6 +310,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return 0
 
 	if(current_projectile) // chamber is loaded
+		if(accessory && accessory_alt)
+			accessory.alt_fire()
 		return 1
 
 	if(prob(jam_frequency_reload))
@@ -487,6 +500,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	silenced = 0
 	accessory_alt = 0
 	accessory_on_fire = 0
+	accessory_on_cycle = 0
 	flash_auto = 0
 
 	spread_angle = initial(spread_angle)
@@ -578,6 +592,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/NT/long(src)
 		stock = new /obj/item/gun_parts/stock/NT/shoulder(src)
+		if(prob(10))
+			accessory = new /obj/item/gun_parts/accessory/flashlight(src)
 
 /obj/item/gun/modular/NT/bartender
 	name = "grey-market shotgun"
@@ -593,6 +609,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			stock2 = new /obj/item/gun_parts/stock/juicer/stub(src)
 		else
 			stock2 = new /obj/item/gun_parts/stock/NT/stub(src)
+		if(prob(30))
+			accessory = new /obj/item/gun_parts/accessory/flashlight(src)
 
 /obj/item/gun/modular/NT/shotty
 	name = "\improper NT riot suppressor"

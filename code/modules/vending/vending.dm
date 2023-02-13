@@ -1660,7 +1660,8 @@
 	icon_broken = "food-broken"
 	icon_fallen = "food-fallen"
 	req_access_txt = ""
-	acceptcard = 0
+	acceptcard = 1
+	pay = 1
 
 	light_r =1
 	light_g = 0.88
@@ -1678,29 +1679,32 @@
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss/punt, 2)
 */
 		//above this line is for debug and testing only, they'll go in the bin later.
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/bartender, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long/very, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/short, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian/bigger, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/arm_brace, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/shoulder, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/fancy, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/ceremonial, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/stub, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet/long, 1)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/zaubertube/ten, 10)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/ten, 10)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/ten, 10)
-		product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 1, hidden=1)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet, 1, hidden=1)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 2, hidden=1)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2, hidden=1)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long, 2, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 2, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long/very, 2, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/short, 2, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/shotty, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 2, cost = PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/flashlight, 2, cost = PAY_UNTRAINED/4)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian, 2, cost = PAY_UNTRAINED/3)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian/bigger, 2, cost = PAY_UNTRAINED/2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/arm_brace, 2, cost = PAY_UNTRAINED/2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/shoulder, 2, cost = PAY_UNTRAINED/3)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/fancy, 2, cost = PAY_UNTRAINED/2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/ceremonial, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/stub, 2, cost = PAY_UNTRAINED/3)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet/long, 1, cost = PAY_UNTRAINED/2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet, 1, cost = PAY_UNTRAINED/2)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/zaubertube/ten, 10, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/ten, 10, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/ten, 10, cost = PAY_UNTRAINED/2)
+		product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 1, hidden=1, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet, 1, hidden=1, cost = PAY_UNTRAINED*2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 2, hidden=1, cost = PAY_UNTRAINED*2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2, hidden=1, cost = PAY_UNTRAINED*2)
 
 
 //The burden of these machinations weighs on my shoulders
