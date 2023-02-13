@@ -276,6 +276,10 @@
 	},
 /turf/simulated/floor/grime,
 /area/space)
+"anq" = (
+/obj/machinery/conveyor/north,
+/turf/simulated/floor/snowcalm,
+/area/supply/delivery_point)
 "anr" = (
 /obj/machinery/door/airlock/pyro/glass/security,
 /obj/disposalpipe/segment/mail,
@@ -3194,6 +3198,10 @@
 	},
 /turf/simulated/floor/plating/random,
 /area)
+"cJB" = (
+/obj/grille/steel/broken/corroded,
+/turf/simulated/floor/snowcalm,
+/area/supply/spawn_point)
 "cJE" = (
 /obj/disposalpipe/segment/mail,
 /obj/machinery/light/fluorescent/red{
@@ -3360,7 +3368,7 @@
 "cND" = (
 /obj/grille/steel/broken/corroded,
 /turf/simulated/floor/snowcalm,
-/area/space)
+/area/supply/sell_point)
 "cNN" = (
 /obj/cable/purple{
 	icon_state = "4-10"
@@ -4826,6 +4834,9 @@
 	},
 /turf/simulated/floor,
 /area)
+"dYa" = (
+/turf/simulated/floor/snowcalm,
+/area/supply/spawn_point)
 "dYk" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -8946,8 +8957,17 @@
 /turf/simulated/floor,
 /area/space)
 "htA" = (
-/turf/simulated/wall/auto/reinforced/supernorn/blackred,
-/area/station/security/brig/solitary)
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor,
+/area/space)
 "htT" = (
 /turf/simulated/floor/carpet/blue/fancy/innercorner/sw,
 /area)
@@ -18114,6 +18134,7 @@
 /area/space)
 "oTo" = (
 /obj/storage/crate/chest,
+/obj/item/wrench/gold,
 /turf/simulated/floor/plating,
 /area/space)
 "oTr" = (
@@ -22385,6 +22406,15 @@
 	},
 /turf/simulated/floor/black,
 /area)
+"sAW" = (
+/obj/disposalpipe/segment/mail{
+	dir = 4
+	},
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor,
+/area/space)
 "sBt" = (
 /obj/stool/chair/couch/yellow{
 	dir = 4
@@ -25312,7 +25342,7 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/turf/simulated/wall/auto/reinforced/supernorn/blackred,
+/turf/simulated/wall/auto,
 /area/station/security/brig/solitary)
 "uZU" = (
 /obj/disposalpipe/segment/brig,
@@ -25472,6 +25502,9 @@
 	},
 /turf/simulated/floor/yellow,
 /area)
+"vfM" = (
+/turf/simulated/floor/snowcalm,
+/area/supply/sell_point)
 "vfS" = (
 /turf/simulated/floor/carpet/purple/fancy/innercorner/nw_se,
 /area)
@@ -77411,7 +77444,7 @@ tzZ
 tzZ
 tzZ
 cND
-tzZ
+vfM
 tzZ
 tzZ
 tzZ
@@ -78003,7 +78036,7 @@ hbw
 oJx
 ujw
 cHh
-but
+anq
 but
 but
 tzZ
@@ -78014,8 +78047,8 @@ tzZ
 tzZ
 tzZ
 tzZ
-cND
-tzZ
+cJB
+dYa
 tzZ
 tzZ
 tzZ
@@ -83681,8 +83714,8 @@ aql
 gvd
 aql
 hbw
-hjF
-xGw
+htA
+sAW
 gZq
 gZq
 eEX
@@ -90315,7 +90348,7 @@ mJZ
 wAA
 uZU
 nAV
-htA
+gso
 sdR
 dzl
 cru
@@ -90616,9 +90649,9 @@ jWT
 gso
 gso
 uZQ
-htA
-htA
-htA
+gso
+gso
+gso
 cru
 sdR
 vLy
@@ -90969,7 +91002,7 @@ dLZ
 dLZ
 dLZ
 dLZ
-kbq
+aql
 lby
 fYX
 hQa
@@ -101519,7 +101552,7 @@ hbw
 hbw
 hbw
 hbw
-kbq
+aql
 eSs
 eSs
 eSs
@@ -101821,7 +101854,7 @@ hbw
 hbw
 mdC
 mdC
-kbq
+aql
 fLP
 aQA
 aQA
@@ -102151,10 +102184,10 @@ nbx
 nbx
 nbx
 nbx
-mdC
-mdC
-mdC
-mdC
+aql
+aql
+aql
+aql
 mdC
 mdC
 tzZ
@@ -102453,7 +102486,7 @@ nbx
 nbx
 nbx
 nbx
-mdC
+aql
 dEy
 dEy
 iCI
@@ -102755,12 +102788,12 @@ aql
 aql
 nbx
 nbx
-mdC
+aql
 dEy
 dEy
 viH
 dEy
-mdC
+aql
 nbx
 nbx
 nbx
@@ -103062,7 +103095,7 @@ dEy
 dEy
 dEy
 dEy
-mdC
+aql
 nbx
 nbx
 nbx
@@ -103364,7 +103397,7 @@ dEy
 dEy
 dEy
 dEy
-mdC
+aql
 nbx
 nbx
 nbx
@@ -103666,7 +103699,7 @@ dEy
 dEy
 hkj
 dEy
-mdC
+aql
 nbx
 nbx
 nbx
@@ -103964,11 +103997,11 @@ aql
 aql
 aql
 aql
-mdC
-mdC
-mdC
-mdC
-mdC
+aql
+aql
+aql
+aql
+aql
 nbx
 nbx
 nbx
@@ -106048,15 +106081,15 @@ hbw
 hbw
 hbw
 ova
-kbq
-kbq
-kbq
-kbq
-kbq
-kbq
-kbq
-kbq
-kbq
+aql
+aql
+aql
+aql
+aql
+aql
+aql
+aql
+aql
 ova
 hbw
 hbw
