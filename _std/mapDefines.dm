@@ -44,7 +44,7 @@
 
 #elif defined(MAP_OVERRIDE_BOBMAP)
 
-#elif defined(MAP_OVERRIDE_TSELA)
+#elif defined(MAP_OVERRIDE_TSELABOK)
 
 #elif defined(MAP_OVERRIDE_GEHENNA)
 #define DESERT_MAP
