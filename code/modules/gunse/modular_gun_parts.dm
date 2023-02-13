@@ -271,7 +271,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = 1 // basic stabilisation
 	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN
 	icon_state = "nt_blue_short"
-	length = 16
+	length = 19
 	//overlay_x = 23
 	//overlay_y = -1
 
@@ -281,12 +281,12 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = 0
 	name_addition = "longarm"
 	icon_state = "nt_blue"
-	length = 35
+	length = 30
 
 /obj/item/gun_parts/barrel/NT/short
 	name = "standard snub barrel"
 	spread_angle = 4
-	length = 9
+	length = 12
 	icon_state = "nt_blue_snub"
 	name_addition = "shortie"
 
@@ -294,7 +294,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "sawn-off barrel"
 	spread_angle = 15
 	scatter = 1
-	length = 9
+	length = 14
 	icon_state = "nt_blue_snub2"
 	name_addition = "shotty"
 
@@ -329,7 +329,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	lensing = 1
 	name_addition = "focuser"
 	icon_state = "barrel_long"
-	length = 39
+	length = 29
 
 /obj/item/gun_parts/barrel/foss/long/very
 	name = "\improper FOSS ultra lensed barrel"
@@ -339,7 +339,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "catalyst"
 	icon = 'icons/obj/items/cet_guns/64.dmi'
 	icon_state = "foss_very_long"
-	length = 50
+	length = 40
 
 /obj/item/gun_parts/barrel/juicer
 	name = "\improper BLUNDA Barrel"
@@ -377,7 +377,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "comrade"
 	icon_state = "soviet_lens"
-	length = 16
+	length = 18
 	//overlay_x = 8
 
 /obj/item/gun_parts/barrel/soviet/long
@@ -387,7 +387,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	lensing = 1.4
 	name_addition = "tovarisch"
 	icon_state = "soviet_lens_long"
-	length = 22
+	length = 25
 
 /obj/item/gun_parts/barrel/italian
 	name = "canna di fucile"
