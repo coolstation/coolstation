@@ -59,7 +59,9 @@
 		src.UpdateName()
 		src.inventory_counter.update_number(src.amount)
 		switch (src.amount)
-			if (-INFINITY to 9)
+			if (-INFINITY to 0)
+				src.icon_state = "cashnone"
+			if (1 to 9)
 				src.icon_state = "cashgreen"
 			if (10 to 49)
 				src.icon_state = "cashblue"
@@ -89,7 +91,19 @@
 			if (istype(I, /obj/item/spacecash/buttcoin))
 				boutput(user, "Your transaction will complete anywhere within 10 to 10e27 minutes from now.")
 				return
-
+			if (src.amount == 0 || I.amount == 0) //nested these so it doesn't do the check on every stack
+				if (src.amount == 0 && I.amount == 0)
+					user.visible_message("<span class='notice'>[user] crams no money into no money and the non-cash is annihilated completely.</span>")
+					stack_item(I)
+					return
+				if (src.amount == 0)
+					user.visible_message("<span class='notice'>[user] stacks no money into some money, somehow.</span>")
+					stack_item(I)
+					return
+				if (I.amount == 0)
+					user.visible_message("<span class='notice'>[user] shuffles some money into no money, unbelievably.</span>")
+					stack_item(I)
+					return
 			user.visible_message("<span class='notice'>[user] stacks some cash.</span>")
 			stack_item(I)
 		else
@@ -111,6 +125,14 @@
 
 //	attack_self(mob/user as mob)
 //		user.visible_message("fart")
+
+/obj/item/spacecash/zero //thanks No Money Nio
+	name = "0 dollars"
+	desc = "hey wait, this isn't a credit. what the fuck is this actually?"
+	icon_state = "cashnone"
+
+	New()//this is only spawned as a gimmick and needs no logic
+		src.amount = 0 //but will disappear when stacked no prob it's super fucked up
 
 /obj/item/spacecash/five
 	default_min_amount = 5

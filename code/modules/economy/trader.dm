@@ -1432,3 +1432,50 @@
 
 
 */
+
+
+/obj/npc/trader/nio
+	icon = 'icons/obj/trader.dmi'
+	icon_state = "nio"
+	picture = "nio.png"
+	name = "No Money Nio"
+	trader_area = "/area/diner/hallway"
+	angrynope = "i dont care any more"
+	whotext = "im the man who will give you $0 for 0 dollars, for free.\nmy name is No Money Nio and i will be behind the dumpster at pc jenney\nif you need me" //todo: note: need dumpster area to congregate
+	hiketolerance = 0
+
+	New()
+		..()
+		/////////////////////////////////////////////////////////
+		//// sell list //////////////////////////////////////////
+		/////////////////////////////////////////////////////////
+		src.goods_sell += new /datum/commodity/nomoneynio/zerodollars(src)
+		/////////////////////////////////////////////////////////
+		//// buy list ///////////////////////////////////////////
+		/////////////////////////////////////////////////////////
+		src.goods_buy += new /datum/commodity/nomoneynio/zerodollars(src)
+		/////////////////////////////////////////////////////////
+
+		greeting= {"hey"}
+
+		portrait_setup = "<img src='[resource("images/traders/[src.picture]")]'><HR><B>[src.name]</B><HR>"
+
+		sell_dialogue = "ill give you 0 dollars for that"
+
+		buy_dialogue = "ive got $0 for you"
+
+		successful_purchase_dialogue = list("that sthe stuff",
+			"come back again soon")
+
+		failed_sale_dialogue = list("what the fuck",
+			"you got one deal and 1 deal only")
+
+		successful_sale_dialogue = list("thqanks",
+			"you know where to find me")
+
+		failed_purchase_dialogue = list("thats not free enough",
+			"howd you fuck this up BUD")
+
+		pickupdialogue = "heres the goods"
+
+		pickupdialoguefailure = "yeah that works too"
