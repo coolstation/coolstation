@@ -10,10 +10,83 @@ Enjoy */
 //idk what im doing.
 
 
-/datum/player
-	proc/savegun()
+/client/proc/save_cloud_gun(var/save = 1)
+	if(save == 0)
+		if( cloud_available() )
+			cloud_put( "persistent_gun", "none")
 		return
+	// ok from here on out we assume we wanna save the gun on them, or otherwise we will commute the gun they started with to next round.
+	if(!src.mob)
+		return //we do nothing, so whatever they had they keep..
+	var/obj/item/gun/modular/gun = locate() in src.mob // this will catch the first gun it finds, too bad if you tried getting two.
+	if(!istype(gun))
+		return //we do nothing, so whatever they had they keep..
+	if(gun.contraband)
+		return //we do nothing, so whatever they had they keep..
+	var/list/gunne = list("type"="nano","barrel"="none","stock1"="none","stock2"="none","magazine"="none","accessory"="none")
+	//"type"="nano" is not strictly true, but if somehow you got a non-contraband fossie or soviet weapon... here's a free traser.
+	if(istype(gun, /obj/item/gun/modular/juicer))
+		gunne["type"] = "juicer"
+	if(istype(gun, /obj/item/gun/modular/italian))
+		gunne["type"] = "italian"
+	if(istype(gun.barrel))
+		gunne["barrel"] = gun.barrel.type
+	if(istype(gun.stock))
+		gunne["stock1"] = gun.stock.type
+	if(istype(gun.stock2))
+		gunne["stock2"] = gun.stock2.type
+	if(istype(gun.magazine))
+		gunne["magazine"] = gun.magazine.type
+	if(istype(gun.accessory))
+		gunne["accessory"] = gun.accessory.type
 
+	var/gun_json = json_encode(gunne)
+	if( cloud_available() )
+		cloud_put( "persistent_gun", gun_json )
+
+/client/proc/get_cloud_gun()
+	var/gun_json = null
+	var/obj/item/gun/modular/gun = null
+	if(!cloud_available())
+		return 0
+	else
+		if(cloud_get("persistent_gun") != "none")
+			gun_json = cloud_get("persistent_gun")
+	if(isnull(gun_json))
+		return 0 // we have nothing to work with!!
+	var/list/gunne = json_decode(gun_json)
+	if(!length(gunne))
+		return 0 // we have nothing to work with!!
+	switch(gunne["type"])
+		if("juicer")
+			gun = new /obj/item/gun/modular/juicer()
+		if("italian")
+			gun = new /obj/item/gun/modular/italian()
+		else
+			gun = new /obj/item/gun/modular/NT()
+	var/part_type = null
+	if(gunne["barrel"] != "none")
+		part_type = gunne["barrel"]
+		gun.barrel = new part_type()
+
+	if(gunne["stock1"] != "none")
+		part_type = gunne["stock1"]
+		gun.stock = new part_type()
+
+	if(gunne["stock2"] != "none")
+		part_type = gunne["stock2"]
+		gun.stock2 = new part_type()
+
+	if(gunne["magazine"] != "none")
+		part_type = gunne["magazine"]
+		gun.magazine = new part_type()
+
+	if(gunne["accessory"] != "none")
+		part_type = gunne["accessory"]
+		gun.accessory = new part_type()
+
+	gun.build_gun()
+	return gun
 
 
 

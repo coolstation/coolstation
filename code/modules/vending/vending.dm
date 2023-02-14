@@ -1275,7 +1275,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive_burst/three, 2)
 		product_list += new/datum/data/vending_product(/obj/item/implantcase/antirev, 3)
 		product_list += new/datum/data/vending_product(/obj/item/implanter, 1)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT, 3)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 3)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 2)
 #ifdef RP_MODE
 		product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/space_law, 1)
@@ -1670,8 +1670,8 @@
 	create_products()
 		..()
 		/*
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/basic, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss, 2)
@@ -1679,7 +1679,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss/punt, 2)
 */
 		//above this line is for debug and testing only, they'll go in the bin later.
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 2, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long, 2, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 2, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long, 2, cost = PAY_UNTRAINED)
@@ -1702,8 +1702,8 @@
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/ten, 10, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/ten, 10, cost = PAY_UNTRAINED/2)
 		product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 1, hidden=1, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet, 1, hidden=1, cost = PAY_UNTRAINED*2)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 2, hidden=1, cost = PAY_UNTRAINED*2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/basic, 1, hidden=1, cost = PAY_UNTRAINED*2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 2, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2, hidden=1, cost = PAY_UNTRAINED*2)
 
 

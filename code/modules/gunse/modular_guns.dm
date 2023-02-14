@@ -556,7 +556,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	return
 
 // BASIC GUN'S
-
 /obj/item/gun/modular/NT
 	name = "\improper NT pistol"
 	real_name = "\improper NT pistol"
@@ -572,6 +571,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	stock_overlay_y = -2
 	foregrip_x = 18
 
+/obj/item/gun/modular/NT/pistol
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/NT(src)
 
@@ -681,6 +681,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	barrel_overlay_y = 4
 	stock_overlay_x = -10
 
+
+/obj/item/gun/modular/juicer/blunder
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/juicer(src)
 		if(prob(5))
@@ -704,6 +706,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 
 /obj/item/gun/modular/soviet
+	shoot()
+		..()
+		process_ammo()
+
+/obj/item/gun/modular/soviet/basic
 	name = "\improper Soviet лазерная"
 	real_name = "\improper Soviet лазерная"
 	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
@@ -722,9 +729,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		stock = new /obj/item/gun_parts/stock/italian(src)
 
 
-	shoot()
-		..()
-		process_ammo()
+
 
 
 
@@ -740,12 +745,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	barrel_overlay_x = 12
 	barrel_overlay_y = 4
 
+	shoot()
+		..()
+		process_ammo()
+
+/obj/item/gun/modular/italian/italiano
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/italian(src)
 		stock = new /obj/item/gun_parts/stock/italian(src)
 
 
-	shoot()
-		..()
-		process_ammo()
+
 

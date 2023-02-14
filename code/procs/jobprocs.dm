@@ -518,6 +518,9 @@
 		else
 			src.Equip_Bank_Purchase(src.mind?.purchased_bank_item)
 
+		if(src.client && src.client.persistent_gun)
+			src.put_in_hand_or_drop(src.client.persistent_gun)
+
 	return
 
 /mob/living/carbon/human/proc/Equip_Job_Slots(var/datum/job/JOB)
