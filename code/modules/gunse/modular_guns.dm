@@ -300,6 +300,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return 0
 	if(!ammo_list.len) // empty!
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
+		if(accessory && accessory_alt)
+			accessory.alt_fire() // so you can turn your flashlight on without having ammo....
 		return (current_projectile?1:0)
 	if(ammo_list.len > max_ammo_capacity)
 		var/waste = ammo_list.len - max_ammo_capacity
