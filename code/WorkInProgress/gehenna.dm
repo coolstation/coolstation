@@ -105,6 +105,9 @@ var/global/gehenna_time = GEHENNA_TIME
 		..()
 		src.set_dir(pick(cardinal))
 
+	ex_act(severity) //TODO: cave ins?? people mentioned that repeatedly??
+		return //no plating/lattice thanx
+
 /turf/simulated/floor/plating/gehenna/plasma
 	oxygen = MOLES_O2STANDARD * 1.5
 	nitrogen = MOLES_N2STANDARD / 2
