@@ -7,6 +7,7 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 	"Surprised" = "ai_surprised",\
 	"Sad" = "ai_sad",\
 	"Mad" = "ai_mad",\
+	"Sassy" = "ai_sassy",\
 	"BSOD" = "ai_bsod",\
 	"Text" = "ai_text",\
 	"Blank" = "ai_blank",\
