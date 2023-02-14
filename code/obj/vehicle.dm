@@ -613,6 +613,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 	mats = 8
 	var/low_reagents_warning = 0
 	var/zamboni = 0
+	var/bigshoe = 0
 	var/sprayer_active = 0
 	var/image/image_under = null
 	var/icon_base = "floorbuffer"
@@ -627,6 +628,10 @@ ABSTRACT_TYPE(/obj/vehicle)
 		src.create_reagents(1250)
 		if(zamboni)
 			reagents.add_reagent("cryostylane", 1000)
+			return
+		else if(bigshoe)
+			reagents.add_reagent("ketchup", 1000) //closest we got to red sauce right now?
+			return
 		else
 			reagents.add_reagent("water", 1000)
 			//reagents.add_reagent("cleaner", 250) //don't even need this now that we have fluid, probably. If you want it, add it yer self
@@ -758,6 +763,22 @@ ABSTRACT_TYPE(/obj/vehicle)
 	update()
 	..()
 	in_bump = 1
+	if(ismob(AM) && src.bigshoe) //this repeats twice for some reason, i probably fucked up
+		var/mob/M = AM
+		boutput(rider, "<span class='alert'><B>You stomp on [M]!</B></span>")
+		for (var/mob/C in AIviewers(src))
+			if(C == rider)
+				continue
+			C.show_message("<span class='alert'><B>[rider] stomps all over [M] with \the [src]!</B></span>", 1)
+		M.changeStatus("stunned", 10 SECONDS)
+		M.changeStatus("weakened", 6 SECONDS)
+		M.TakeDamage("chest", 25, 0, 0, DAMAGE_BLUNT)
+		playsound(src.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 25, 1)
+		playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 25, 1) //placeholder sounds
+		//need a temporarily flattened animation state here- say scale y to .3 and x to 3? lasts for 10 sec
+		rider.say (pick("Wahoo!", "Mama Mia!", "Let's-a Go!", "Ha ha!"))
+		in_bump = 0
+		return
 	if(ismob(AM) && src.booster_upgrade)
 		var/mob/M = AM
 		boutput(rider, "<span class='alert'><B>You crash into [M]!</B></span>")
@@ -828,11 +849,16 @@ ABSTRACT_TYPE(/obj/vehicle)
 		return
 
 	var/msg
-
+	//TODO: pro-italian discrimination for the big shoe?
 	if(target == user && !user.stat)	// if drop self, then climbed in
-		msg = "[user.name] climbs onto the [src]."
-		boutput(user, "<span class='notice'>You climb onto \the [src].</span>")
-		src.log_rider(user, 0)
+		if(src.bigshoe)
+			msg = "[user.name] gets into [his_or_her(user)] [src] about it!"
+			boutput(user, "<span class='notice'>You hop into \the [src]!</span>")
+			src.log_rider(user, 0)
+		else
+			msg = "[user.name] climbs onto the [src]."
+			boutput(user, "<span class='notice'>You climb onto \the [src].</span>")
+			src.log_rider(user, 0)
 	else if(target != user && !user.restrained())
 		msg = "[user.name] helps [target.name] onto \the [src]!"
 		boutput(user, "<span class='notice'>You help [target.name] onto \the [src]!</span>")
@@ -844,9 +870,14 @@ ABSTRACT_TYPE(/obj/vehicle)
 	rider = target
 	if (target.client)
 		handle_button_addition()
-	rider.pixel_x = 0
-	rider.pixel_y = 10
-	src.UpdateOverlays(rider, "rider")
+	else
+		if (src.bigshoe)
+			rider.pixel_x = 0
+			rider.pixel_y = 8
+		else
+			rider.pixel_x = 0
+			rider.pixel_y = 10
+		src.UpdateOverlays(rider, "rider")
 
 	for (var/mob/C in AIviewers(src))
 		if(C == user)
@@ -933,6 +964,31 @@ ABSTRACT_TYPE(/obj/vehicle)
 			if (FB.reagents)
 				boutput(the_mob, "<span class='notice'><B>[FB]'s tank is [get_fullness(FB.reagents.total_volume / FB.reagents.maximum_volume * 100)].</B></span>")
 		return
+
+/////////////////////////////////////////////////////// Big Italian Shoe /////////////////////////////////
+
+/obj/vehicle/floorbuffer/reallybigshoe
+	name = "\improper Big Italian Shoe"
+	desc = "Mama Mia! Somebody ain't happy!"
+	icon_state = "bigshoe"
+	icon_base = "bigshoe"
+	bigshoe = 1
+	dir = 4 //make it look nice with default spawn rather than something that's asking if you have games on your phone
+
+	//needs big hopping movement, maybe small hops like moonboots when idle?
+
+/obj/vehicle/floorbuffer/reallybigshoe/update() //i got this working exactly once and then it got busted again so i'm taking a break
+	if (rider)
+		src.icon_state = "bigshoe"
+		if (!src.image_under)
+			src.image_under = image(icon = src.icon, icon_state = src.icon_base, layer = MOB_LAYER - 0.1)
+		else
+			src.image_under.icon_state = src.icon_base
+		src.underlays += src.image_under
+	else
+		src.icon_state = src.icon_base
+		src.UpdateOverlays(null, "rider")
+		src.underlays = null
 
 /////////////////////////////////////////////////////// Clown car ////////////////////////////////////////
 
