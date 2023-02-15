@@ -90,9 +90,9 @@ obj/machinery/atmospherics/mixer
 				else
 					initialize_directions = WEST|NORTH|EAST
 
-		air_in1 = unpool(/datum/gas_mixture)
-		air_in2 = unpool(/datum/gas_mixture)
-		air_out = unpool(/datum/gas_mixture)
+		air_in1 = new()
+		air_in2 = new()
+		air_out = new()
 
 		air_in1.volume = 200
 		air_in2.volume = 200
@@ -138,11 +138,11 @@ obj/machinery/atmospherics/mixer
 		network_out = null
 
 		if(air_in1)
-			pool(air_in1)
+			qdel(air_in1)
 		if(air_in2)
-			pool(air_in2)
+			qdel(air_in2)
 		if(air_out)
-			pool(air_out)
+			qdel(air_out)
 
 		air_in1 = null
 		air_in2 = null

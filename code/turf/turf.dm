@@ -563,6 +563,10 @@ proc/generate_space_color()
 	var/turf/simulated/new_turf
 	var/old_dir = dir
 
+	if(explosions.exploding) // this is fucked up and messed up and fucked up.
+		handle_air = FALSE
+		keep_old_material = FALSE
+
 	var/oldmat = src.material
 
 	var/datum/gas_mixture/oldair = null //Set if old turf is simulated and has air on it.
@@ -587,10 +591,6 @@ proc/generate_space_color()
 			#undef _OLD_GAS_VAR_ASSIGN
 
 	#undef _OLD_GAS_VAR_DEF
-
-	if (istype(src, /turf/simulated/floor))
-		icon_old = icon_state // a hack but OH WELL, leagues better than before
-		name_old = name
 
 	/*
 	if (!src.fullbright)
@@ -696,9 +696,9 @@ proc/generate_space_color()
 	new_turf.RL_ApplyGeneration = rlapplygen
 	new_turf.RL_UpdateGeneration = rlupdategen
 	if(new_turf.RL_MulOverlay)
-		pool(new_turf.RL_MulOverlay)
+		qdel(new_turf.RL_MulOverlay)
 	if(new_turf.RL_AddOverlay)
-		pool(new_turf.RL_AddOverlay)
+		qdel(new_turf.RL_AddOverlay)
 	new_turf.RL_MulOverlay = rlmuloverlay
 	new_turf.RL_AddOverlay = rladdoverlay
 
@@ -726,7 +726,7 @@ proc/generate_space_color()
 
 	//cleanup old overlay to prevent some Stuff
 	//This might not be necessary, i think its just the wall overlays that could be manually cleared here.
-	new_turf.RL_Cleanup() //Cleans up/mostly removes the lighting.
+	//new_turf.RL_Cleanup() // ACTUALLY this proc does nothing anymore		 //Cleans up/mostly removes the lighting.
 	new_turf.RL_Init()
 
 	//The following is required for when turfs change opacity during replace. Otherwise nearby lights will not be applying to the correct set of tiles.

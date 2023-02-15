@@ -1736,7 +1736,7 @@
 				return
 
 			user.drop_item()
-			pool(W)
+			qdel(W)
 			boutput(user, "You load the paper into [src].")
 			if(!src.sheets_remaining && !src.jam)
 				src.clear_alert()
@@ -1759,7 +1759,7 @@
 				boutput(user, "You load [W:amount] sheets into the tray.")
 				src.sheets_remaining += W:amount
 				user.drop_item()
-				pool(W)
+				qdel(W)
 
 			if(!src.jam)
 				src.clear_alert()
@@ -2049,7 +2049,7 @@
 					P.name = IMG.img_name
 					P.desc = IMG.img_desc*/
 				else
-					var/obj/item/paper/P = unpool(/obj/item/paper)
+					var/obj/item/paper/P = new()
 					P.set_loc(src.loc)
 
 

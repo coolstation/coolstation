@@ -78,6 +78,10 @@
 
 	New()
 		..()
+	#ifdef Z3_IS_A_STATION_LEVEL
+		src.add_ability(/datum/blob_ability/upper_transfer)
+		src.add_ability(/datum/blob_ability/lower_transfer)
+	#endif
 		src.add_ability(/datum/blob_ability/plant_nucleus)
 		src.add_ability(/datum/blob_ability/set_color)
 		src.add_ability(/datum/blob_ability/tutorial)
@@ -356,6 +360,10 @@
 		src.remove_all_abilities()
 		src.remove_all_upgrades()
 
+	#ifdef Z3_IS_A_STATION_LEVEL
+		src.add_ability(/datum/blob_ability/upper_transfer)
+		src.add_ability(/datum/blob_ability/lower_transfer)
+	#endif
 		src.add_ability(/datum/blob_ability/plant_nucleus)
 		src.add_ability(/datum/blob_ability/set_color)
 		src.add_ability(/datum/blob_ability/tutorial)

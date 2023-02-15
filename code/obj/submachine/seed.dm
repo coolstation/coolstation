@@ -480,7 +480,7 @@
 			splice_chance = max(0,min(splice_chance,100))
 			if (prob(splice_chance)) // We're good, so start splicing!
 				// Create the new seed
-				var/obj/item/seed/S = unpool(/obj/item/seed)
+				var/obj/item/seed/S = new()
 				S.set_loc(src)
 				var/datum/plant/P = new /datum/plant(S)
 				var/datum/plantgenes/DNA = new /datum/plantgenes(S)
@@ -1224,10 +1224,10 @@
 				//new getseed(src.loc)
 				var/obj/item/seed/S
 				if (I.unique_seed)
-					S = unpool(I.unique_seed)
+					S = new()
 					S.set_loc(src.loc)
 				else
-					S = unpool(/obj/item/seed)
+					S = new()
 					S.set_loc(src.loc)
 					S.removecolor()
 				S.generic_seed_setup(I)

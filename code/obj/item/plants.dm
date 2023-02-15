@@ -13,20 +13,20 @@
 
 	New()
 		..()
-		unpooled()
+		//unpooled()
 
 	proc/make_reagents()
 		if (!src.reagents)
 			src.create_reagents(100)
-
+/*
 	unpooled()
 		src.reagents?.clear_reagents()
 		..()
 		make_reagents()
 		// hopefully prevent issues of "jumbo perfect large incredible nice perfect superb strawberry"
 		src.name = initial(name)
-
-	pooled()
+*/
+	disposing()
 		..()
 		if (src.reagents)
 			src.reagents.clear_reagents()
@@ -52,8 +52,8 @@
 			src.reagents.trans_to(P, src.reagents.total_volume)
 			W.force_drop(user)
 			src.force_drop(user)
-			pool (W)
-			pool (src)
+			qdel(W)
+			qdel(src)
 			user.put_in_hand_or_drop(P)
 			JOB_XP(user, "Botanist", 1)
 
@@ -71,7 +71,7 @@
 			W.force_drop(user)
 			src.force_drop(user)
 			qdel(W)
-			pool(src)
+			qdel(src)
 			user.put_in_hand_or_drop(doink)
 			JOB_XP(user, "Botanist", 2)
 

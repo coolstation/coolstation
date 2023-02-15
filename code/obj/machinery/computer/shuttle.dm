@@ -818,7 +818,7 @@ var/bombini_saved = 0
 		dat += "<a href='byond://?src=\ref[src];dine=1'>Set Target: Diner</a><BR>"
 		dat += "<a href='byond://?src=\ref[src];owle=1'>Set Target: Owlery</a><BR>"
 #ifndef UNDERWATER_MAP
-#ifndef DESERT_MAP
+#ifndef Z3_IS_A_STATION_LEVEL
 		dat += "<a href='byond://?src=\ref[src];mine=1'>Set Target: Old Mining Station</a><BR>"
 #endif
 #endif

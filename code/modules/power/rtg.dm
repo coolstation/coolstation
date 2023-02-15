@@ -9,8 +9,8 @@
 
 	process()
 		if (fuel_pellet?.material && fuel_pellet.material.hasProperty("radioactive"))
-			lastgen = (4800 + rand(-100, 100)) * log(1 + fuel_pellet.material.getProperty("radioactive"))
-			fuel_pellet.material.adjustProperty("radioactive", -1)
+			lastgen = (4800 + rand(-100, 100)) * log(1 + fuel_pellet?.fuel_life)//fuel_pellet.material.getProperty("radioactive"))
+			fuel_pellet?.fuel_life--//fuel_pellet.material.adjustProperty("radioactive", -1)
 			add_avail(lastgen)
 			updateicon()
 
@@ -65,7 +65,7 @@
 		var/t = "<B>Radioisotope Thermoelectric Generator</B><br>"
 		t += "Output: [src.lastgen]W<br>"
 		if (fuel_pellet)
-			t += "Fuel pellet: [round(fuel_pellet.material.getProperty("radioactive"), 0.1)] rads <a href='?src=\ref[src];eject=1'>Eject</a><br>"
+			t += "Fuel pellet: [round(fuel_pellet.fuel_life, 0.1)] rads <a href='?src=\ref[src];eject=1'>Eject</a><br>"
 		else
 			t += "No fuel pellet inserted.<br>"
 		t += "<a href='?src=\ref[src];close=1'>Close</a>"
@@ -84,7 +84,8 @@
 			icon_state = "rtg_empty"
 			src.UpdateOverlays(null, "rtg")
 			return
-		src.UpdateOverlays(image('icons/obj/power.dmi', "rtg-f[min(1 + ceil(fuel_pellet.material.getProperty("radioactive") / 2), 5)]"), "rtg")
+		//src.UpdateOverlays(image('icons/obj/power.dmi', "rtg-f[min(1 + ceil(fuel_pellet.material.getProperty("radioactive") / 2), 5)]"), "rtg")
+		src.UpdateOverlays(image('icons/obj/power.dmi', "rtg-f[min(1 + ceil(fuel_pellet?.fuel_life / 2), 5)]"), "rtg")
 
 /obj/item/fuel_pellet
 	name = "fuel pellet"
@@ -94,7 +95,14 @@
 	throwforce = 5
 	w_class = W_CLASS_TINY
 
+	//Gonna have some bullshit here to cover for no more changing of material properties
+	var/fuel_life = 0
+
+	onMaterialChanged()
+		..()
+		fuel_life = max(material.getProperty("radioactive"),0) //If the material's not got radioactivity getPropery returns -1
+
 	cerenkite
 		New()
-			..()
 			src.setMaterial(getMaterial("cerenkite"))
+			..()

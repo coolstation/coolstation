@@ -16,7 +16,7 @@
 	desc = "Adjustable metal rings joined by cable, made to be applied to a person in such a way that they are unable to use their hands. Difficult to remove from oneself."
 	custom_suicide = 1
 
-/obj/item/handcuffs/setMaterial(var/datum/material/mat1, appearance, setname)
+/obj/item/handcuffs/setMaterial(var/datum/material/mat1, appearance, setname, use_descriptors)
 	..()
 	if (mat1.mat_id == "silver")
 		name = "silver handcuffs"

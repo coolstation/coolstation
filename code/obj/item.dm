@@ -301,7 +301,7 @@
 			// this is a gross hack to make things not just show "1" by default
 			src.inventory_counter.update_number(src.amount)
 	..()
-
+/*
 /obj/item/unpooled()
 	..()
 	src.amount = initial(src.amount)
@@ -338,11 +338,11 @@
 
 	if (src.inventory_counter)
 		src.vis_contents -= src.inventory_counter
-		pool(src.inventory_counter)
+		qdel(src.inventory_counter)
 		src.inventory_counter = null
 
 	..()
-
+*/
 /obj/item/set_loc(var/newloc as turf|mob|obj in world)
 	if (src.temp_flags & IS_LIMB_ITEM)
 		if (istype(newloc,/obj/item/parts/human_parts/arm/left/item) || istype(newloc,/obj/item/parts/human_parts/arm/right/item))
@@ -580,7 +580,7 @@
 		if(ismob(src.loc))
 			var/mob/holding_mob = src.loc
 			holding_mob.u_equip(src)
-		pool(src)
+		qdel(src)
 	return 1
 
 /obj/item/proc/stack_item(obj/item/other)
@@ -636,7 +636,7 @@
 	var/obj/item/P = new src.type(src.loc)
 
 	if(src.material)
-		P.setMaterial(copyMaterial(src.material))
+		P.setMaterial(src.material)
 
 	src.change_stack_amount(-toRemove)
 	P.change_stack_amount(toRemove - P.amount)
@@ -899,7 +899,7 @@
 			src.combust_ended()
 
 			if (src.burn_possible == 2)
-				pool(src)
+				qdel(src)
 			else
 				src.overlays.len = 0
 				qdel(src)
@@ -1464,7 +1464,7 @@
 	disposing_abilities()
 	setItemSpecial(null)
 	if (src.inventory_counter)
-		pool(src.inventory_counter)
+		qdel(src.inventory_counter)
 		src.inventory_counter = null
 
 	if(istype(src.loc, /obj/item/storage))
@@ -1543,7 +1543,7 @@
 
 /obj/item/proc/create_inventory_counter()
 	if (!src.inventory_counter)
-		src.inventory_counter = unpool(/obj/overlay/inventory_counter)
+		src.inventory_counter = new /obj/overlay/inventory_counter()
 		src.vis_contents += src.inventory_counter
 
 /obj/item/proc/dropped(mob/user)

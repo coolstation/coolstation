@@ -69,7 +69,7 @@ datum
 				for(var/reagent_id in reagent_list)
 					var/datum/reagent/current_reagent = reagent_list[reagent_id]
 					if(current_reagent)
-						pool(current_reagent)
+						qdel(current_reagent)
 				reagent_list.len = 0
 				reagent_list = null
 			my_atom = null
@@ -593,7 +593,7 @@ datum
 
 					reagents_changed()
 
-					pool(current_reagent)
+					qdel(current_reagent)
 
 					return 0
 
@@ -785,7 +785,7 @@ datum
 				current_reagent = reagents_cache[reagent]
 
 				if(current_reagent)
-					current_reagent = unpool(current_reagent.type)
+					current_reagent = new current_reagent.type()
 					reagent_list[reagent] = current_reagent
 					current_reagent.holder = src
 					current_reagent.volume = 0
@@ -799,10 +799,11 @@ datum
 			current_reagent.volume = new_amount
 			if(!current_reagent.data) current_reagent.data = sdata
 
+
 			src.last_temp = src.total_temperature
 			var/temp_temperature = src.total_temperature*src.total_volume*src.composite_heat_capacity + temp_new*new_amount*current_reagent.heat_capacity
 
-			var/divison_amount = src.total_volume*src.composite_heat_capacity + new_amount*current_reagent.heat_capacity
+			var/divison_amount = src.total_volume * src.composite_heat_capacity + new_amount * current_reagent.heat_capacity
 			if (divison_amount > 0)
 				src.total_temperature = temp_temperature / divison_amount
 

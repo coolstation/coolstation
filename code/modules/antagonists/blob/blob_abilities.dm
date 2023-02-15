@@ -273,6 +273,39 @@
 
 		owner.my_material.color = owner.color
 
+//I don't like doing this but it's less resistance than moving all of blob abilities to the new system
+#ifdef Z3_IS_A_STATION_LEVEL
+/datum/blob_ability/upper_transfer
+	name = "Go To Upper Level"
+	desc = "See what's happening upstairs"
+	icon = 'icons/mob/ghost_observer_abilities.dmi'
+	icon_state = "upper_transfer"
+	targeted = 0
+
+	onUse()
+		if (..())
+			return
+		if (owner.z == Z_LEVEL_STATION)
+			return
+		var/turf/destination = locate(owner.x, owner.y, Z_LEVEL_STATION)
+		owner.set_loc(destination)
+
+/datum/blob_ability/lower_transfer
+	name = "Go To Lower Level"
+	desc = "See what's happening downstairs"
+	icon = 'icons/mob/ghost_observer_abilities.dmi'
+	icon_state = "lower_transfer"
+	targeted = 0
+
+	onUse()
+		if (..())
+			return
+		if (owner.z == Z_LEVEL_DEBRIS)
+			return
+		var/turf/destination = locate(owner.x, owner.y, Z_LEVEL_DEBRIS)
+		owner.set_loc(destination)
+#endif
+
 /datum/blob_ability/tutorial
 	name = "Interactive Tutorial"
 	desc = "Check out the interactive blob tutorial to get started with blobs."
@@ -932,7 +965,7 @@
 		src.deduct_bio_points()
 
 		if (do_pool)
-			pool(I)
+			qdel(I)
 		else
 			qdel(I)
 
@@ -1313,7 +1346,7 @@
 		if (!mats.len)
 			taking = 0
 			return 1
-		var/datum/material/to_merge = copyMaterial(mats[max_id])
+		var/datum/material/to_merge = mats[max_id]
 		owner.my_material = getInterpolatedMaterial(owner.my_material, to_merge, 0.17)
 		for (var/obj/O in deposits)
 			qdel(O)
@@ -1321,10 +1354,7 @@
 		SPAWN_DBG(0)
 			var/wg = 0
 			for (var/obj/blob/O in owner.blobs)
-				if (!O.material)
-					O.setMaterial(copyMaterial(owner.my_material))
-				else
-					O.setMaterial(getInterpolatedMaterial(O.material, to_merge, 0.17))
+				O.setMaterial(owner.my_material)
 				wg++
 				if (wg >= 20)
 					sleep(0.1 SECONDS)

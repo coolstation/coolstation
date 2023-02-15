@@ -1087,6 +1087,17 @@ var/global/list/mapNames = list(
 		"the bridge" = list(/area/station/bridge, /area/station/bridge/conference),
 		"the chapel" = list(/area/station/chapel/sanctuary))
 
+	job_limits_override = list(
+		/datum/job/security/security_officer = 6,
+		/datum/job/research/scientist = 6,
+		/datum/job/research/medical_doctor = 6,
+		/datum/job/engineering/miner = 6,
+		/datum/job/engineering/engineer = 6,
+		/datum/job/civilian/chaplain = 2,
+		/datum/job/special/atmospheric_technician = 2,
+		/datum/job/civilian/botanist = 3
+	)
+
 	init()
 		..()
 		SPAWN_DBG(10) // this sucks so much ass but it just- idk.

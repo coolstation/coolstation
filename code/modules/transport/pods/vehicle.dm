@@ -1938,7 +1938,7 @@
 
 			playsound(src.loc, "warp", 50, 1, 0.1, 0.7)
 
-			var/obj/portal/P = unpool(/obj/portal)
+			var/obj/portal/P = new()
 			P.set_loc(get_turf(src))
 			var/turf/T = pick_landmark(LANDMARK_ESCAPE_POD_SUCCESS)
 			P.target = T

@@ -43,7 +43,7 @@
 
 	proc/removecolor()
 		src.overlays = 0
-
+/*
 	unpooled()
 		..()
 		src.plantgenes = new /datum/plantgenes(src)
@@ -61,7 +61,7 @@
 		planttype = 0
 		plantgenes = 0
 		seedcolor = "#000000"
-
+*/
 	proc/generic_seed_setup(var/datum/plant/P)
 		// This proc is pretty much entirely for regular seeds you find from the vendor
 		// or harvest, stuff like artifact seeds generally shouldn't be calling this.
@@ -160,11 +160,11 @@
 	New()
 		..()
 		gen_plant_type()
-
+/*
 	unpooled()
 		..()
 		gen_plant_type()
-
+*/
 	proc/gen_plant_type()
 		if (src.type == /obj/item/seed/alien)
 			// let's make the base seed randomise itself for fun and also for functionality

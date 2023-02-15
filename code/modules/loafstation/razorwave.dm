@@ -176,7 +176,7 @@ proc/razorwave_assess_threat(mob/living/carbon/human/target)
 	src.antenna.overloaded = TRUE
 	src.antenna.desc += " It looks burned out."
 
-	var/obj/item/paper/result = unpool(/obj/item/paper)
+	var/obj/item/paper/result = new()
 	result.info = report_text
 	result.set_loc(get_turf(src))
 	playsound(src, "sparks", 75, 1, -1)

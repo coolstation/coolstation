@@ -210,11 +210,25 @@ var/f_color_selector_handler/F_Color_Selector
 		var/datum/material/M = new mat()
 		material_cache.Add(M.mat_id)
 		material_cache[M.mat_id] = M
-	return
+
+#ifdef TRACY_PROFILER_HOOK
+/proc/prof_init()
+	var/lib
+	switch(world.system_type)
+		if(MS_WINDOWS) lib = "prof.dll"
+		if(UNIX) lib = "libprof.so"
+		else CRASH("unsupported platform")
+
+	var/init = call(lib, "init")()
+	if("0" != init) CRASH("[lib] init error: [init]")
+#endif
 
 //Called BEFORE the map loads. Useful for objects that require certain things be set during init
 /datum/preMapLoad
 	New()
+#ifdef TRACY_PROFILER_HOOK
+		prof_init()
+#endif
 		enable_auxtools_debugger()
 #ifdef REFERENCE_TRACKING
 		enable_reference_tracking()

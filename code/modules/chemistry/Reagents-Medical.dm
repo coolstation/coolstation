@@ -74,11 +74,11 @@ datum
 			overdose = 20
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
 			value = 5
-
+/*
 			pooled()
 				..()
 				counter = 1
-
+*/
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -126,11 +126,11 @@ datum
 			overdose = 20
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
 			value = 5
-
+/*
 			pooled()
 				..()
 				counter = 1
-
+*/
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -720,18 +720,23 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_haloperidol", -5)
+					APPLY_MOB_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
+					M.change_misstep_chance(25)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_haloperidol")
+					REMOVE_MOB_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
 				return
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if(!M) M = holder.my_atom
 				M.jitteriness = max(M.jitteriness-50,0)
+				M.do_disorient(disorient = src.volume)
+				if(prob(20 + src.volume))
+					M.drowsyness = max(M.drowsyness, src.volume)
+					M.setStatus("weakened", max(M.getStatusDuration("weakened"), src.volume))
 				if (M.druggy > 0)
 					M.druggy -= 3
 					M.druggy = max(0, M.druggy)
@@ -764,7 +769,6 @@ datum
 						if(istype(virus.master,/datum/ailment/disease/space_madness) || istype(virus.master,/datum/ailment/disease/berserker))
 							M.cure_disease(virus)
 				if(prob(20)) M.take_brain_damage(1 * mult)
-				if(probmult(50)) M.drowsyness = max(M.drowsyness, 6)
 				if(probmult(10)) M.emote("drool")
 				..()
 				return
@@ -1076,10 +1080,10 @@ datum
 			value = 9 // 4c + 3c + 1c + 1c
 			var/remove_buff = 0
 			stun_resist = 15
-
+/*
 			pooled()
 				..()
-
+*/
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -1324,11 +1328,11 @@ datum
 			var/remove_buff = 0
 			var/total_misstep = 0
 			value = 18 // 5 4 5 3 1
-
+/*
 			pooled()
 				..()
 				remove_buff = 0
-
+*/
 			on_add()
 				if(istype(holder) && istype(holder.my_atom) && hascall(holder.my_atom,"add_stam_mod_max"))
 					remove_buff = holder.my_atom:add_stam_mod_max("atropine", -30)

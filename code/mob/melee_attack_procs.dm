@@ -623,8 +623,10 @@
 				crit_chance += H.gloves.bonus_crit_chance
 			if (H.gloves.stamina_dmg_mult)
 				stamina_damage_mult += H.gloves.stamina_dmg_mult
-		var/stampart = round(abs((src.health - target.health)/5))
-		crit_chance += stampart // rng stuns
+		var/healthpart = round(abs((src.health - target.health)/5))
+		var/stampart = (((H.stamina_regen + GET_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS))-STAMINA_REGEN)/STAMINA_REGEN) // making stam regen do something???
+		crit_chance += stampart
+		crit_chance += healthpart // rng stuns
 		msgs.crit_chance += crit_chance
 
 	var/def_zone = null

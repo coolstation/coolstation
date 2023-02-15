@@ -326,7 +326,7 @@
 
 	proc/mulch_item(var/obj/I, score)
 		playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 50, 1)
-		pool( I )
+		qdel( I )
 		total_score += score
 		round_score += score
 		update_totals()
@@ -1291,12 +1291,12 @@ Other Coolstation servers: Not Yet!!!</span>"})
 
 	proc/show_count()
 		invisibility = 0
-
+/*
 	pooled()
 		src.maptext = ""
 		src.invisibility = 101
 		..()
-
+*/
 
 
 

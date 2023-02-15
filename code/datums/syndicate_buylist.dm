@@ -44,14 +44,28 @@ proc/build_syndi_buylist_cache()
 	name = "Revolver"
 	item = /obj/item/storage/box/revolver
 	cost = 6
-	desc = "The traditional sidearm of a Syndicate field agent. Holds 7 rounds and comes with extra ammo."
+	desc = "The traditional sidearm of an Italian Syndicate field agent. Holds a few rounds and comes with extra ammo."
+	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
+/datum/syndicate_buylist/generic/fossgun
+	name = "Open-Source Laser Gun"
+	item = /obj/item/storage/box/foss_gun_kit
+	cost = 6
+	desc = "A FOSS-Licensed hand-cranked open-source laser gun, and a few flashbulbs to boot. Tricky!"
+	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
+/datum/syndicate_buylist/generic/fossbulb
+	name = "Open-Source Flashbulbs"
+	item = /obj/item/storage/box/foss_flashbulbs
+	cost = 2
+	desc = "FOSS-Licensed hand-crafted open-source flashbulbs, only works with Open-Source Laser Guns!"
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/generic/pistol
-	name = "Suppressed .22 Pistol"
+	name = "NT Pistol"
 	item = /obj/item/storage/box/pistol
 	cost = 3
-	desc = "A fairly weak yet sneaky pistol, it can still be heard but it won't alert anyone about who fired it."
+	desc = "A fairly basic single action pistol. Standard issue, so it won't attract attention."
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/generic/shotgun

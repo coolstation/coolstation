@@ -165,7 +165,7 @@
 			amount--
 			the_gem = pick(gems)
 			if (floors.len) //ZeWaka: Fix for pick() from empty list
-				var/obj/item/G = unpool(the_gem)
+				var/obj/item/G = new the_gem()
 				G.set_loc(pick(floors))
 
 /////////////TELESCOPE ENCOUNTERS BELOW
@@ -806,11 +806,11 @@
 
 	switch(RarityClassRoll(100,0,list(90,50)))
 		if(1)
-			scrap_material = copyMaterial(getMaterial(pick("steel","mauxite")))
+			scrap_material = getMaterial(pick("steel","mauxite"))
 		if(2)
-			scrap_material = copyMaterial(getMaterial(pick("cobryl","bohrum")))
+			scrap_material = getMaterial(pick("cobryl","bohrum"))
 		if(3)
-			scrap_material = copyMaterial(getMaterial(pick("gold","syreline")))
+			scrap_material = getMaterial(pick("gold","syreline"))
 
 	var/list/turfs_near_center = list()
 	for(var/turf/T in range(size - 1,center))
@@ -823,7 +823,7 @@
 		picker = rand(1,6)
 		switch(picker)
 			if (1 to 3)
-				I = unpool(/obj/item/raw_material/scrap_metal)
+				I = new /obj/item/raw_material/scrap_metal()
 				I.set_loc(pick(turfs_near_center))
 				I.setMaterial(scrap_material)
 			if (4)
