@@ -3740,6 +3740,12 @@
 /obj/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/station/medical/medbooth)
+"csm" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/grille/catwalk/jen,
+/obj/machinery/light/small/red,
+/turf/simulated/floor/plating,
+/area/station/maintenance/northeast)
 "csp" = (
 /obj/cable{
 	d1 = 1;
@@ -14948,6 +14954,11 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal)
+"jjS" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/machinery/door/firedoor/border_only,
+/turf/simulated/floor/plating,
+/area/station/maintenance/south)
 "jjT" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/breathable{
 	dir = 4
@@ -15319,14 +15330,8 @@
 /turf/simulated/floor/industrial,
 /area/station/maintenance/west)
 "juD" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4
-	},
-/obj/grille/catwalk/jen,
-/obj/machinery/light/small/warm{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
+/obj/ladder/auto,
+/turf/simulated/floor/grime,
 /area/station/maintenance/northeast)
 "jvt" = (
 /obj/disposalpipe/segment/mineral,
@@ -17951,14 +17956,12 @@
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "kVc" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4
-	},
-/obj/grille/catwalk/jen,
-/obj/machinery/light/small/red{
+/obj/decal/cleanable/dirt/random,
+/obj/storage/secure/closet/personal/empty,
+/obj/machinery/light/fluorescent/cool/very{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/grime,
 /area/station/maintenance/northeast)
 "kVg" = (
 /obj/disposalpipe/segment{
@@ -27389,11 +27392,6 @@
 /obj/decal/poster/wallsign/hazard_caution,
 /turf/simulated/wall,
 /area/station/maintenance/disposal)
-"qYc" = (
-/obj/disposalpipe/segment/horizontal,
-/obj/machinery/door/firedoor/border_only,
-/turf/simulated/floor/plating,
-/area/station/maintenance/south)
 "qYI" = (
 /turf/simulated/wall,
 /area/station/janitor/supply)
@@ -33577,6 +33575,9 @@
 	},
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 10
+	},
+/obj/machinery/light/small/warm{
+	dir = 1
 	},
 /turf/simulated/floor/industrial,
 /area/station/maintenance/northeast)
@@ -80393,7 +80394,7 @@ qAe
 qAe
 qAe
 fMd
-qYc
+jjS
 qAe
 kiA
 qAe
@@ -93617,9 +93618,9 @@ lya
 lya
 lya
 wSY
-kVc
+oPM
 tnM
-wko
+csm
 akf
 nHw
 iLx
@@ -93918,7 +93919,7 @@ uCS
 guW
 mFg
 lya
-iqh
+juD
 euE
 tnM
 wko
@@ -94220,7 +94221,7 @@ lya
 kOP
 hVv
 lya
-iqh
+kVc
 euE
 tnM
 wko
@@ -94825,7 +94826,7 @@ tIr
 lMH
 lMH
 lMH
-juD
+oPM
 tnM
 wko
 akf
