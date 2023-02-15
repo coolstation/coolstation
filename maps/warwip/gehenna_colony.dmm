@@ -222,7 +222,7 @@
 /area/station/quartermaster/cargooffice/storefront)
 "aiB" = (
 /obj/machinery/door/airlock/engineering,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
 /area/station/engine/core)
 "aiT" = (
@@ -704,9 +704,7 @@
 	name = "Store Lockdown Doors";
 	opacity = 0
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice/gunsmithing)
 "aBK" = (
@@ -2676,7 +2674,7 @@
 	name = "Store Lockdown Doors";
 	opacity = 0
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice/gunsmithing)
 "ccJ" = (
@@ -3469,9 +3467,7 @@
 /area/station/medical/medbay/cloner)
 "cFv" = (
 /obj/machinery/door/airlock/glass/engineering,
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/engineering_engine,
 /turf/simulated/floor/yellow/side{
 	dir = 1
@@ -4170,7 +4166,7 @@
 "dif" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/door/firedoor/pyro{
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/simulated/floor/stairs/wide/other{
@@ -4337,7 +4333,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/glass,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/medical,
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment1)
@@ -4904,6 +4900,9 @@
 /area/station/crew_quarters/farmers)
 "dJV" = (
 /obj/grille/steel,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/simulated/floor/plating{
 	icon_old = "fullblue"
 	},
@@ -5001,7 +5000,7 @@
 /area/station/crew_quarters/kitchen)
 "dNN" = (
 /obj/disposalpipe/segment/horizontal,
-/obj/machinery/door/firedoor/pyro{
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/simulated/floor/black,
@@ -5158,7 +5157,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/engineering,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/engineering_engine,
 /turf/simulated/floor,
 /area/station/engine/core)
@@ -5327,6 +5326,7 @@
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/gunsmithing)
 "edu" = (
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/stairs/wide/other{
 	dir = 1
 	},
@@ -6509,7 +6509,7 @@
 /area/station/security/equipment)
 "eSt" = (
 /obj/disposalpipe/segment/vertical,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
 /area/station/bridge)
 "eSJ" = (
@@ -6682,7 +6682,7 @@
 /obj/machinery/door/airlock/glass/medical{
 	id = "clone_begone"
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/medical,
 /turf/simulated/floor/bluewhite{
 	dir = 1
@@ -7190,7 +7190,7 @@
 	name = "Store Lockdown Doors";
 	opacity = 0
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice)
 "frV" = (
@@ -7679,7 +7679,7 @@
 	opacity = 0
 	},
 /obj/disposalpipe/segment/mail/vertical,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice)
 "fIR" = (
@@ -7695,7 +7695,7 @@
 "fJi" = (
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/door/airlock/engineering,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/yellowblack,
 /area/station/engine/core)
 "fJp" = (
@@ -7935,7 +7935,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/glass/engineering,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/yellow,
 /area/station/engine/engineering/breakroom)
 "fTp" = (
@@ -8737,7 +8737,7 @@
 /turf/simulated/floor,
 /area/station/bridge)
 "gDp" = (
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 4;
@@ -9100,7 +9100,7 @@
 	name = "Store Lockdown Doors";
 	opacity = 0
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice)
 "gUa" = (
@@ -9138,7 +9138,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
 /area/station/bridge)
 "gUS" = (
@@ -10807,9 +10807,7 @@
 /area/station/security/checkpoint/cargo)
 "iij" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/farmers)
 "iio" = (
@@ -11187,6 +11185,9 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/access_spawn/cargo,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice)
 "iwq" = (
@@ -11402,9 +11403,7 @@
 /area/station/engine/monitoring)
 "iGg" = (
 /obj/table/reinforced/auto,
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice/storefront)
 "iGt" = (
@@ -11457,7 +11456,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
 "iIU" = (
@@ -12067,7 +12066,7 @@
 "jig" = (
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/door/airlock/glass/engineering,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/yellow,
 /area/station/engine/engineering/breakroom)
 "jiT" = (
@@ -12489,9 +12488,7 @@
 /area/station/quartermaster/cargooffice/gunsmithing)
 "jAG" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/farmers)
 "jAY" = (
@@ -14002,9 +13999,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/kitchen,
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/kitchen)
@@ -14217,6 +14212,9 @@
 	icon_state = "4-8"
 	},
 /obj/access_spawn/cargo,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice)
 "kMt" = (
@@ -14256,7 +14254,7 @@
 /turf/simulated/floor/grey,
 /area/station/medical/robotics)
 "kNH" = (
-/obj/machinery/door/firedoor/pyro{
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/simulated/floor/black,
@@ -14590,7 +14588,7 @@
 /area/station/engine/engineering)
 "lbg" = (
 /obj/machinery/door/airlock/glass/engineering,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/engineering_control,
 /turf/simulated/floor/yellowblack{
 	dir = 5
@@ -14605,7 +14603,7 @@
 	opacity = 0
 	},
 /obj/disposalpipe/segment/vertical,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice)
 "lbx" = (
@@ -14826,7 +14824,7 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/segment/mail/vertical,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
 /area/station/bridge)
 "lla" = (
@@ -15341,7 +15339,7 @@
 /area/station/security/checkpoint/customs)
 "lFw" = (
 /obj/machinery/door/airlock/glass/engineering,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/engineering_control,
 /turf/simulated/floor/yellowblack{
 	dir = 6
@@ -15968,7 +15966,7 @@
 "mjA" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/door/firedoor/pyro{
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/simulated/floor/black,
@@ -16608,7 +16606,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/decal/poster/wallsign/WC_blue{
 	pixel_x = 32;
 	pixel_y = 8
@@ -17362,7 +17360,7 @@
 /obj/disposalpipe/segment{
 	dir = 2
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/sanitary/white,
 /area/station/wc/medbay)
 "nsK" = (
@@ -17868,9 +17866,7 @@
 /area/station/wc/sec)
 "nMm" = (
 /obj/machinery/door/airlock/glass/engineering,
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/engineering_engine,
 /turf/simulated/floor/yellow/side,
 /area/station/engine/core)
@@ -18179,7 +18175,7 @@
 /area/station/security/main)
 "obc" = (
 /obj/machinery/door/airlock/gannets/glass/alt,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/hydro,
 /obj/disposalpipe/segment/produce{
 	dir = 2
@@ -18719,7 +18715,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/pyro{
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/simulated/floor/stairs/wide{
@@ -19680,6 +19676,9 @@
 	id = "med_lob_bath"
 	},
 /obj/access_spawn/medical,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/station/wc/medbay)
 "pjJ" = (
@@ -20335,7 +20334,7 @@
 /turf/simulated/floor/black,
 /area/station/chapel/sanctuary)
 "pJo" = (
-/obj/machinery/door/firedoor/pyro{
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/simulated/floor/grey,
@@ -20401,6 +20400,9 @@
 	id = "med_lob_bath"
 	},
 /obj/access_spawn/medical,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/station/wc/medbay)
 "pLI" = (
@@ -20574,9 +20576,7 @@
 /area/station/security/brig/cell_block_control)
 "pRj" = (
 /obj/machinery/door/airlock/gannets/glass/alt,
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/hydro,
 /turf/simulated/floor/green/side{
 	dir = 8
@@ -21972,7 +21972,7 @@
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/kitchen,
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/kitchen)
@@ -22206,7 +22206,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/medical,
 /turf/simulated/floor/bluewhite{
 	dir = 1
@@ -22867,9 +22867,7 @@
 "rya" = (
 /obj/table/reinforced/auto,
 /obj/machinery/cashreg,
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice/storefront)
 "ryx" = (
@@ -22951,7 +22949,7 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/segment/vertical,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/glass/engineering,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/yellow/side{
@@ -23020,7 +23018,7 @@
 	opacity = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice)
 "rDj" = (
@@ -23761,7 +23759,7 @@
 /area/station/medical/medbay)
 "sfR" = (
 /obj/disposalpipe/segment/horizontal,
-/obj/machinery/door/firedoor/pyro{
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/simulated/floor/grey,
@@ -24236,7 +24234,7 @@
 /area/station/chapel/office)
 "syH" = (
 /obj/disposalpipe/segment/sewage,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/sanitary/white,
 /area/station/wc/medbay)
 "szw" = (
@@ -24252,7 +24250,7 @@
 /area/station/medical/robotics)
 "szA" = (
 /obj/machinery/door/airlock/engineering,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/engineering_engine,
 /turf/simulated/floor/yellowblack{
 	dir = 1
@@ -24557,6 +24555,7 @@
 /area/station/bridge/customs)
 "sOx" = (
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/stairs/wide/middle{
 	dir = 1
 	},
@@ -24731,9 +24730,7 @@
 /area/station/quartermaster/cargooffice)
 "sWG" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/stairs/wide{
 	dir = 4
 	},
@@ -25188,7 +25185,7 @@
 /area/listeningpost)
 "tnK" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
@@ -25431,9 +25428,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/stairs/wide/other{
 	dir = 4
 	},
@@ -25452,7 +25447,7 @@
 	name = "Store Lockdown Doors";
 	opacity = 0
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice)
 "tzo" = (
@@ -25465,7 +25460,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/glass/engineering,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/engineering_control,
 /turf/simulated/floor/yellowblack{
 	dir = 9
@@ -27680,7 +27675,7 @@
 /area/station/security/brig/north_side)
 "vmP" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
 "vmV" = (
@@ -28061,7 +28056,7 @@
 /obj/stool/chair{
 	dir = 8
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/sanitary/white,
 /area/station/wc/medbay)
 "vHW" = (
@@ -28132,7 +28127,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/pyro{
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/simulated/floor/black,
@@ -28233,7 +28228,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/glass/engineering,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/engineering_control,
 /turf/simulated/floor/yellowblack{
 	dir = 10
@@ -28269,7 +28264,7 @@
 /area/station/bridge)
 "vPR" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
 "vPY" = (
@@ -28560,9 +28555,7 @@
 /area/station/crew_quarters/farmers)
 "wbB" = (
 /obj/machinery/door/airlock/glass/engineering,
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/engineering,
 /turf/simulated/floor/delivery,
 /area/station/engine/engineering)
@@ -28852,7 +28845,7 @@
 /area/station/engine/engineering)
 "wmK" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/door/firedoor/pyro{
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/simulated/floor/grey,
@@ -29005,9 +28998,7 @@
 	name = "Store Lockdown Doors";
 	opacity = 0
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice/gunsmithing)
 "wsX" = (
@@ -29080,6 +29071,7 @@
 /area/station/medical/crematorium)
 "wvz" = (
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/stairs/wide{
 	dir = 1
 	},
@@ -29790,7 +29782,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/kitchen,
 /obj/access_spawn/hydro,
 /turf/simulated/floor/grey,
