@@ -64,6 +64,11 @@ Enjoy */
 			gun = new /obj/item/gun/modular/italian()
 		else
 			gun = new /obj/item/gun/modular/NT()
+	if(!istype(gun))
+		return // just in case we fucked it BIGTIMES
+
+	gun.reset_gun() // important!!
+
 	var/part_type = null
 	if(gunne["barrel"] != "none")
 		part_type = gunne["barrel"]

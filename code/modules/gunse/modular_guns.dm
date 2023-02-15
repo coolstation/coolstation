@@ -43,6 +43,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/stock_overlay_y = 0
 	var/foregrip_x = 16
 	var/foregrip_y = 0
+	var/magazine_overlay_x = 0
+	var/magazine_overlay_y = 0
 
 	var/lensing = 0 // Variable used for optical gun barrels. laser intensity scales around 1.0 (or will!)
 	var/scatter = 0 // variable for using hella shotgun shells or something
@@ -298,6 +300,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return 0
 	if(!ammo_list.len) // empty!
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
+		if(accessory && accessory_alt)
+			accessory.alt_fire() // so you can turn your flashlight on without having ammo....
 		return (current_projectile?1:0)
 	if(ammo_list.len > max_ammo_capacity)
 		var/waste = ammo_list.len - max_ammo_capacity
@@ -569,6 +573,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	barrel_overlay_y = 0
 	stock_overlay_x = -8
 	stock_overlay_y = -2
+	magazine_overlay_y = -5
 	foregrip_x = 18
 
 /obj/item/gun/modular/NT/pistol

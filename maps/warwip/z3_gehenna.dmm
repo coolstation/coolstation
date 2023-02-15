@@ -33,6 +33,14 @@
 	},
 /turf/simulated/floor/black,
 /area/station/engine/coldloop)
+"aaW" = (
+/obj/table/glass/reinforced/auto{
+	color = "#666666"
+	},
+/turf/simulated/floor/black,
+/area/station/security/armory{
+	name = "Small Arms"
+	})
 "aba" = (
 /obj/decal/poster/wallsign/security_left,
 /turf/simulated/wall/r_wall,
@@ -2180,6 +2188,11 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/floor/plating,
 /area/station/science/gen_storage)
+"blU" = (
+/obj/table/reinforced/auto,
+/obj/item/stackable_ammo/zaubertube/three,
+/turf/simulated/floor/black,
+/area/station/ai_monitored/armory)
 "bmi" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -6176,6 +6189,15 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/bridge/basement)
+"dUi" = (
+/obj/table/glass/reinforced/auto{
+	color = "#666666"
+	},
+/obj/item/gun/modular/NT/pistol,
+/turf/simulated/floor/black,
+/area/station/security/armory{
+	name = "Small Arms"
+	})
 "dUm" = (
 /obj/cable{
 	d1 = 4;
@@ -8247,7 +8269,6 @@
 /obj/table/glass/reinforced/auto{
 	color = "#666666"
 	},
-/obj/item/gun/modular/NT/long,
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor/black,
 /area/station/security/armory{
@@ -12609,6 +12630,16 @@
 	icon_old = "diamondtile"
 	},
 /area/station/maintenance/east)
+"hPR" = (
+/obj/table/auto{
+	color = "#666666"
+	},
+/obj/machinery/light/fluorescent/cool/very,
+/obj/item/stackable_ammo/scatter/slug_rubber/ten,
+/turf/simulated/floor/black,
+/area/station/security/armory{
+	name = "Small Arms"
+	})
 "hPT" = (
 /obj/cable{
 	icon_state = "1-8"
@@ -20012,7 +20043,7 @@
 /obj/table/glass/reinforced/auto{
 	color = "#666666"
 	},
-/obj/item/gun/modular/NT/long,
+/obj/item/gun/modular/NT/shotty,
 /turf/simulated/floor/black,
 /area/station/security/armory{
 	name = "Small Arms"
@@ -20222,6 +20253,8 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/autoname_west,
+/obj/table/reinforced/auto,
+/obj/item/gun/modular/soviet/basic,
 /turf/simulated/floor/black,
 /area/station/ai_monitored/armory)
 "mpO" = (
@@ -24393,7 +24426,7 @@
 /obj/table/glass/reinforced/auto{
 	color = "#666666"
 	},
-/obj/item/gun/modular/NT,
+/obj/item/gun/modular/NT/long,
 /turf/simulated/floor/black,
 /area/station/security/armory{
 	name = "Small Arms"
@@ -24482,8 +24515,18 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
+"pcc" = (
+/obj/table/reinforced/auto,
+/obj/item/stackable_ammo/scatter/slug_rubber/ten,
+/turf/simulated/floor/black,
+/area/station/ai_monitored/armory)
 "pcg" = (
-/obj/machinery/vending/gunse,
+/obj/machinery/vending/gunse{
+	acceptcard = 0;
+	desc = "Nanotrasen Official Gunse storage unit.";
+	name = "NanoGunse - Corporate";
+	pay = 0
+	},
 /turf/simulated/floor/black,
 /area/station/ai_monitored/armory)
 "pcv" = (
@@ -29016,6 +29059,11 @@
 /obj/item/raw_material/rock,
 /turf/simulated/floor/plating/gehenna,
 /area/noGenerate)
+"rVU" = (
+/obj/table/reinforced/auto,
+/obj/item/stackable_ammo/capacitive/ten,
+/turf/simulated/floor/black,
+/area/station/ai_monitored/armory)
 "rWk" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -32439,6 +32487,11 @@
 	},
 /turf/simulated/floor/carpet/grime,
 /area/station/mining/staff_room)
+"tXJ" = (
+/obj/table/reinforced/industrial/auto,
+/obj/item/stackable_ammo/pistol/ten,
+/turf/simulated/floor/black,
+/area/station/ai_monitored/armory)
 "tXK" = (
 /obj/machinery/light/fluorescent/purple{
 	dir = 4
@@ -37681,7 +37734,7 @@
 "xfo" = (
 /obj/disposalpipe/segment/vertical,
 /obj/table/reinforced/auto,
-/obj/item/gun/modular/juicer,
+/obj/item/gun/modular/juicer/long,
 /turf/simulated/floor/black,
 /area/station/ai_monitored/armory)
 "xfp" = (
@@ -88477,7 +88530,7 @@ oZo
 ijD
 ijD
 ijD
-oZo
+aaW
 qbq
 sbm
 apH
@@ -89065,9 +89118,9 @@ pdO
 pdO
 taZ
 taZ
-pHS
+tXJ
 iYQ
-xXb
+pcc
 iYQ
 mpC
 iYQ
@@ -90879,9 +90932,9 @@ taZ
 taZ
 pqS
 lAu
-xXb
+rVU
 lAu
-xXb
+blU
 lAu
 feq
 taZ
@@ -91191,7 +91244,7 @@ taZ
 taZ
 taZ
 qbq
-oZo
+dUi
 ijD
 geX
 ijD
@@ -91493,11 +91546,11 @@ taZ
 taZ
 qbq
 qbq
-oZo
+dUi
 ijD
 geX
 ijD
-mke
+aaW
 qbq
 qbq
 pdO
@@ -91799,7 +91852,7 @@ ybs
 ijD
 aCG
 ijD
-iwy
+hPR
 qbq
 qbq
 pdO

@@ -206,7 +206,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/magazine)
 	icon_state = "generic_magazine"
 	contraband = 1
 
-	add_part_to_gun()
+	add_part_to_gun(var/obj/item/gun/modular/gun)
+		overlay_x += gun.magazine_overlay_x
+		overlay_y += gun.magazine_overlay_y
 		..()
 		if(!my_gun)
 			return
