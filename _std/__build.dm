@@ -38,8 +38,6 @@ o+`        `-` ``..-:yooos-..----------..`
 
 //////////// PROFILING OPTIONS
 
-//#define TRACY_PROFILER_HOOK // Enables the hook for the DM Tracy profiler in world/init()
-
 //#define SERVER_SIDE_PROFILING_FULL_ROUND 1 // Generate and save profiler data for the entire round
 //#define SERVER_SIDE_PROFILING_PREGAME 1	// Generate and save profiler data for pregame work (before "Welcome to pregame lobby")
 //#define SERVER_SIDE_PROFILING_INGAME_ONLY 1 // Generate and save profiler data for post-pregame work
@@ -108,8 +106,12 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_OZYMANDIAS
 //#define MAP_OVERRIDE_FLEET
 //#define MAP_OVERRIDE_ICARUS
+<<<<<<< HEAD
 //#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP
 #define MAP_OVERRIDE_TSELA			// Eagletanker WIP do not use
+=======
+//#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do not use
+>>>>>>> 21bd867037c23aefae95dec87cba58a9b75e6d80
 //#define MAP_OVERRIDE_PAMGOC			// Pamgoc
 //#define MAP_OVERRIDE_WRESTLEMAP   // Wrestlemap by Overtone
 // #define MAP_OVERRIDE_POD_WARS   // 500x500 Pod Wars map
