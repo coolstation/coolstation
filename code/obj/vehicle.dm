@@ -679,7 +679,8 @@ ABSTRACT_TYPE(/obj/vehicle)
 		if(src.bigshoe) //big steppy
 			pixel_x = rand(-4, 4)
 			pixel_y = rand(3, 8)
-			playsound(src.loc, "sound/misc/step/step_heavyboots_[rand(1,3)].ogg", 30, 1)
+			//playsound(src.loc, "sound/misc/step/step_heavyboots_[rand(1,3)].ogg", 30, 1)
+			playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 30, 1)
 			SPAWN_DBG(1 DECI SECOND)
 				pixel_x = rand(-1, 1)
 				pixel_y = rand(-1, 1)
@@ -989,6 +990,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 	icon_base = "bigshoe"
 	bigshoe = 1
 	layer = MOB_LAYER + 1
+	delay = 2
 
 	//maybe this does small hops like moonboots when idle?
 
