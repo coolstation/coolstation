@@ -519,8 +519,13 @@
 			src.Equip_Bank_Purchase(src.mind?.purchased_bank_item)
 
 		if(src.client && src.client.persistent_gun && !src.mind.do_not_save_gun)
-			src.put_in_hand_or_drop(src.client.persistent_gun)
-
+			if(ishuman(src))
+				var/mob/living/carbon/human/H = src
+				if(!H.equip_if_possible(src.client.persistent_gun, H.slot_in_backpack))
+					src.put_in_hand_or_drop(src.client.persistent_gun)
+				//backup option - not trying this first because jobs that start with anything in hand will drop 2-handed weapons by default. lame.
+			else
+				src.put_in_hand_or_drop(src.client.persistent_gun)
 	return
 
 /mob/living/carbon/human/proc/Equip_Job_Slots(var/datum/job/JOB)
