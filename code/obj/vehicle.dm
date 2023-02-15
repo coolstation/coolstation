@@ -613,6 +613,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 	mats = 8
 	var/low_reagents_warning = 0
 	var/zamboni = 0
+	var/bigshoe = 0
 	var/sprayer_active = 0
 	var/image/image_under = null
 	var/icon_base = "floorbuffer"
@@ -627,6 +628,10 @@ ABSTRACT_TYPE(/obj/vehicle)
 		src.create_reagents(1250)
 		if(zamboni)
 			reagents.add_reagent("cryostylane", 1000)
+			return
+		else if(bigshoe)
+			reagents.add_reagent("ketchup", 1000) //closest we got to red sauce right now?
+			return
 		else
 			reagents.add_reagent("water", 1000)
 			//reagents.add_reagent("cleaner", 250) //don't even need this now that we have fluid, probably. If you want it, add it yer self
@@ -671,11 +676,19 @@ ABSTRACT_TYPE(/obj/vehicle)
 /obj/vehicle/floorbuffer/Move()
 	. = ..()
 	if(. && rider)
-		pixel_x = rand(-1, 1)
-		pixel_y = rand(-1, 1)
-		SPAWN_DBG(1 DECI SECOND)
+		if(src.bigshoe) //big steppy
+			pixel_x = rand(-4, 4)
+			pixel_y = rand(3, 8)
+			playsound(src.loc, "sound/misc/step/step_heavyboots_[rand(1,3)].ogg", 30, 1)
+			SPAWN_DBG(1 DECI SECOND)
+				pixel_x = rand(-1, 1)
+				pixel_y = rand(-1, 1)
+		else
 			pixel_x = rand(-1, 1)
 			pixel_y = rand(-1, 1)
+			SPAWN_DBG(1 DECI SECOND)
+				pixel_x = rand(-1, 1)
+				pixel_y = rand(-1, 1)
 		if (!src.sprayer_active)
 			var/turf/T = get_turf(src)
 			if (istype(T) && T.active_liquid)
@@ -758,6 +771,22 @@ ABSTRACT_TYPE(/obj/vehicle)
 	update()
 	..()
 	in_bump = 1
+	if(ismob(AM) && src.bigshoe) //this repeats twice for some reason, i probably fucked up but it's funny
+		var/mob/M = AM
+		boutput(rider, "<span class='alert'><B>You stomp on [M]!</B></span>")
+		for (var/mob/C in AIviewers(src))
+			if(C == rider)
+				continue
+			C.show_message("<span class='alert'><B>[rider] stomps all over [M] with \the [src]!</B></span>", 1)
+		M.changeStatus("stunned", 6 SECONDS) //unfortunately there's several ticks before someone falls over, blocking full on rampages.
+		M.changeStatus("weakened", 6 SECONDS) //and i don't want to THROW because this is a stomp kinda thing, you know?
+		M.TakeDamage("chest", 12.5, 0, 0, DAMAGE_BLUNT) //halved for now
+		playsound(src.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 25, 1)
+		playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 25, 1) //placeholder sounds
+		//need a temporarily flattened animation state on M here- say scale y to .3 and x to 3? lasts for 6 sec?
+		rider.say (pick("Wahoo!", "Mama Mia!", "Let's-a Go!", "Ha ha!")) //maybe this only happens if you're italian?
+		in_bump = 0
+		return
 	if(ismob(AM) && src.booster_upgrade)
 		var/mob/M = AM
 		boutput(rider, "<span class='alert'><B>You crash into [M]!</B></span>")
@@ -828,11 +857,16 @@ ABSTRACT_TYPE(/obj/vehicle)
 		return
 
 	var/msg
-
+	//TODO: pro-italian discrimination for the big shoe?
 	if(target == user && !user.stat)	// if drop self, then climbed in
-		msg = "[user.name] climbs onto the [src]."
-		boutput(user, "<span class='notice'>You climb onto \the [src].</span>")
-		src.log_rider(user, 0)
+		if(src.bigshoe)
+			msg = "[user.name] gets into [his_or_her(user)] [src] about it!"
+			boutput(user, "<span class='notice'>You hop into \the [src]!</span>")
+			src.log_rider(user, 0)
+		else
+			msg = "[user.name] climbs onto the [src]."
+			boutput(user, "<span class='notice'>You climb onto \the [src].</span>")
+			src.log_rider(user, 0)
 	else if(target != user && !user.restrained())
 		msg = "[user.name] helps [target.name] onto \the [src]!"
 		boutput(user, "<span class='notice'>You help [target.name] onto \the [src]!</span>")
@@ -844,8 +878,12 @@ ABSTRACT_TYPE(/obj/vehicle)
 	rider = target
 	if (target.client)
 		handle_button_addition()
-	rider.pixel_x = 0
-	rider.pixel_y = 10
+	if (src.bigshoe)
+		rider.pixel_x = 0
+		rider.pixel_y = 8
+	else
+		rider.pixel_x = 0
+		rider.pixel_y = 10
 	src.UpdateOverlays(rider, "rider")
 
 	for (var/mob/C in AIviewers(src))
@@ -906,7 +944,15 @@ ABSTRACT_TYPE(/obj/vehicle)
 	Click()
 		if (!the_mob)
 			return
-		if (istype(the_mob.loc, /obj/vehicle/floorbuffer))
+		if (istype(the_mob.loc, /obj/vehicle/floorbuffer/reallybigshoe))
+			var/obj/vehicle/floorbuffer/reallybigshoe/RBS = the_mob.loc
+			RBS.sprayer_active = !RBS.sprayer_active
+			if (RBS.sprayer_active)
+				boutput(the_mob, "<span class='notice'><B>You turn on [RBS]'s pasta-saucer.</span></B>")
+			else
+				boutput(the_mob, "<span class='notice'><B>You turn off [RBS]'s pasta-saucer.</span></B>")
+			playsound(the_mob, "sound/misc/meat_plop.ogg", 50, 1)
+		else if (istype(the_mob.loc, /obj/vehicle/floorbuffer))
 			var/obj/vehicle/floorbuffer/FB = the_mob.loc
 			FB.sprayer_active = !FB.sprayer_active
 			if (FB.sprayer_active)
@@ -933,6 +979,31 @@ ABSTRACT_TYPE(/obj/vehicle)
 			if (FB.reagents)
 				boutput(the_mob, "<span class='notice'><B>[FB]'s tank is [get_fullness(FB.reagents.total_volume / FB.reagents.maximum_volume * 100)].</B></span>")
 		return
+
+/////////////////////////////////////////////////////// Big Italian Shoe /////////////////////////////////
+
+/obj/vehicle/floorbuffer/reallybigshoe //get ready for some bad code and a really obnoxious gimmick item
+	name = "\improper Big Italian Shoe"
+	desc = "Mama Mia! Somebody ain't happy!"
+	icon_state = "bigshoe"
+	icon_base = "bigshoe"
+	bigshoe = 1
+	layer = MOB_LAYER + 1
+
+	//maybe this does small hops like moonboots when idle?
+
+/obj/vehicle/floorbuffer/reallybigshoe/update() //gonna move this back to the original update with bigshoe carveouts when i understand it more but for now...
+	if (rider)
+		src.icon_state = "bigshoe"
+		if (!src.image_under)
+			src.image_under = image(icon = src.icon, icon_state = src.icon_base, layer = MOB_LAYER - 0.1)
+		else
+			src.image_under.icon_state = src.icon_base
+		src.underlays += src.image_under
+	else
+		src.icon_state = src.icon_base
+		src.UpdateOverlays(null, "rider")
+		src.underlays = null
 
 /////////////////////////////////////////////////////// Clown car ////////////////////////////////////////
 
