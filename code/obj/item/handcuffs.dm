@@ -16,7 +16,7 @@
 	desc = "Adjustable metal rings joined by cable, made to be applied to a person in such a way that they are unable to use their hands. Difficult to remove from oneself."
 	custom_suicide = 1
 
-/obj/item/handcuffs/setMaterial(var/datum/material/mat1, appearance, setname)
+/obj/item/handcuffs/setMaterial(var/datum/material/mat1, appearance, setname, use_descriptors)
 	..()
 	if (mat1.mat_id == "silver")
 		name = "silver handcuffs"
@@ -53,14 +53,14 @@
 				//why didn't we just loop through /mob/living/carbon/human in the first place instead of all mobs?
 				O.show_message("<span class='alert'>You feel ill from watching that.</span>") // O is grossed out
 				for (var/mob/V in viewers(O, null)) // loop through all the mobs that can see O locally
-					V.show_message("<span class='alert'>[O.name] pukes all over \himself. Thanks, [user.name].</span>", 1) // tell them that O puked
+					V.show_message("<span class='alert'>[O.name] pukes all over [himself_or_herself(O)]. Thanks, [user.name].</span>", 1) // tell them that O puked
 					playsound(O.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1) // play a sound where O is
 					make_cleanable( /obj/decal/cleanable/vomit,O.loc) // make a vomit decal where O
 					// these last two parts are within the for loop so that means that for EVERY MOB THAT SEES THIS, A SOUND AND DECAL ARE MADE
 */
 		for (var/mob/living/carbon/human/O in AIviewers(user, null))
 			if (O != user && prob(33))
-				O.visible_message("<span class='alert'>[O] pukes all over [him_or_her(O)]self. Thanks, [user].</span>",\
+				O.visible_message("<span class='alert'>[O] pukes all over [himself_or_herself(O)]. Thanks, [user].</span>",\
 				"<span class='alert'>You feel ill from watching that. Thanks, [user].</span>")
 				O.vomit()
 

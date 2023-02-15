@@ -209,7 +209,7 @@
 			src.stoked += stoked_value * amtload
 			F.amount -= amtload
 			if (F.amount <= 0)
-				pool(F)
+				qdel(F)
 			else
 				if(amtload && F.inventory_counter)
 					F.inventory_counter.update_number(F.amount)

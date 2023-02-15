@@ -48,6 +48,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/scatter = 0 // variable for using hella shotgun shells or something
 
 	var/flashbulb_only = 0 // FOSS guns only
+	var/flash_auto = 0 // FOSS auto-fire setting
 	var/flashbulb_health = 0 // FOSS guns only
 	var/max_crank_level = 0 // FOSS guns only
 	var/crank_level = 0 // FOSS guns only
@@ -60,6 +61,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	var/accessory_alt = 0 //does the accessory offer an alternative firing mode?
 	var/accessory_on_fire = 0 // does the accessory need to know when you fire?
+	var/accessory_on_cycle = 0 // does the accessory need to know you pressed C?
 
 	var/jam_frequency_reload = 1 //base % chance to jam on reload. Just reload again to clear.
 	var/jam_frequency_fire = 1 //base % chance to jam on fire. Reload to clear.
@@ -114,6 +116,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(barrel && barrel.length)
 		. += "<div><span>Barrel length: [src.barrel.length] </span></div>"
 
+	if(stock && crank_level)
+		. += "<div><span>Spring tension: [src.crank_level] </span></div>"
+
 	if(jam_frequency_fire || jam_frequency_reload)
 		. += "<div><img src='[resource("images/tooltips/jamjarrd.png")]' alt='' class='icon' /><span>Jammin: [src.jam_frequency_reload + src.jam_frequency_fire] </span></div>"
 
@@ -127,6 +132,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		var/obj/item/stackable_ammo/SA = I
 		SA.reload(src, user)
 		return
+	if(istype(I,/obj/item/instrument/bikehorn))
+		boutput(user,"<span class='notice'><b>You first radicalize the bike horn by telling it all about The Man.</b></span>")
+		playsound(src, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, -1)
+		user.u_equip(I)
+		I = new /obj/item/gun_parts/accessory/horn()
+		user.put_in_hand_or_drop(I)
+
 	if(istype(I,/obj/item/gun_parts/))
 		if(built)
 			boutput(user,"<span class='notice'><b>You cannot place parts onto an assembled gun.</b></span>")
@@ -142,8 +154,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			if (istype(I, /obj/item/gun_parts/stock/))
 				if(stock) //occupado
 					if(!stock.stock_two_handed && !I:stock_two_handed)// i know i know, :, but we *JUST* checked, cmon.
-						boutput(user,"<span class='notice'>...in the forward position.</span>")
-						stock2 = I
+						if(stock2)
+							boutput(user,"<span class='notice'>...and knock [stock2] out of the way.</span>")
+							stock2.set_loc(get_turf(src))
+							stock2 = I
+						else
+							boutput(user,"<span class='notice'>...in the forward position.</span>")
+							stock2 = I
 					else
 						boutput(user,"<span class='notice'>...and knock [stock] out of the way.</span>")
 						stock.set_loc(get_turf(src))
@@ -202,7 +219,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			buildTooltipContent()
 			return
 
-		P.power *= (barrel.length / STANDARD_BARREL_LEN) // 20 CM
+		var/barrel_adjustment = max((barrel.length-STANDARD_BARREL_LEN)/((barrel.length+STANDARD_BARREL_LEN)/2)/1.5,-0.75)
+		P.power *= min((1 + barrel_adjustment),2)
 		return
 
 
@@ -260,13 +278,16 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			boutput(user,"<span class='notice'><b>FOSS Cathodic Flash Bulb loaded.</b></span>")
 			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 
-		pool(ammo_list[ammo_list.len])
+		qdel(ammo_list[ammo_list.len])
 		ammo_list.Remove(ammo_list[ammo_list.len]) //and remove it from the list
 
 		processing_ammo = 0
 		return (current_projectile?1:0)
 
 /obj/item/gun/modular/process_ammo(mob/user)
+	if(accessory && accessory_on_cycle)
+		accessory.on_cycle()
+
 	if(flashbulb_only) // additional branch for suicide
 		return flash_process_ammo(user)
 
@@ -289,6 +310,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return 0
 
 	if(current_projectile) // chamber is loaded
+		if(accessory && accessory_alt)
+			accessory.alt_fire()
 		return 1
 
 	if(prob(jam_frequency_reload))
@@ -297,7 +320,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
 		return 0
 	else
-		current_projectile = unpool(ammo_list[ammo_list.len]) // last one goes in
+		var/ammotype = ammo_list[ammo_list.len]
+		current_projectile = new ammotype() // last one goes in
 		ammo_list.Remove(ammo_list[ammo_list.len]) //and remove it from the list
 		playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 		return 1
@@ -306,11 +330,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 /obj/item/gun/modular/attack_self(mob/user)
 	if(flashbulb_only)
 		flash_process_ammo(user)
+		src.inventory_counter.update_number(crank_level)
 	else
 		process_ammo(user)
+		src.inventory_counter.update_number(ammo_list.len)
+		// this is how many shots are left in the feeder- and does not include the one in the chamber. Should make for funny times
+
 	buildTooltipContent()
-	src.inventory_counter.update_number(ammo_list.len)
-	// this is how many shots are left in the feeder- and does not include the one in the chamber. Should make for funny times
+
+
 
 /obj/item/gun/modular/canshoot()
 	if(jammed)
@@ -318,6 +346,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(!built)
 		return 0
 	if(flashbulb_only && !flashbulb_health)
+		return 0
+	if(flash_auto && !crank_level)
 		return 0
 	if(current_projectile)
 		return 1
@@ -400,18 +430,28 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			var/mob/living/carbon/human/H = user
 			H.gunshot_residue = 1
 
-
 	if(flashbulb_health)// this should be nonzero if we have a flashbulb loaded.
-		flashbulb_health = max(0,(flashbulb_health - crank_level))//subtract cranks from life
-		crank_level = 0 // reset
+		if(flash_auto && crank_level) // auto-fire special handling
+			flashbulb_health--
+			crank_level--
+		else
+			flashbulb_health = max(0,(flashbulb_health - crank_level))//subtract cranks from life
+			crank_level = 0 // reset
+
 		if(!flashbulb_health) // that was the end of it!
 			user.show_text("<span class='alert'>Your gun's flash bulb burns out!</span>")
+		src.inventory_counter.update_number(crank_level)
 
-
-	current_projectile = null // empty chamber
+	if(!flash_auto)
+		current_projectile = null // empty chamber
 
 	src.update_icon()
 	return TRUE
+
+/obj/item/gun/modular/shoot_point_blank(var/mob/M as mob, var/mob/user as mob, var/second_shot = 0)
+	..()
+	current_projectile = null // empty chamber
+	src.update_icon()
 
 /obj/item/gun/modular/proc/build_gun()
 	parts = list()
@@ -460,6 +500,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	silenced = 0
 	accessory_alt = 0
 	accessory_on_fire = 0
+	accessory_on_cycle = 0
+	flash_auto = 0
 
 	spread_angle = initial(spread_angle)
 	max_ammo_capacity = initial(max_ammo_capacity)
@@ -486,19 +528,26 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			boutput(user,"<span><b>You crank the handle.</b></span>")
 			crank_level++
 			playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
+
+		if(flash_auto) // keep the projectile at level 1 after incrementing the crank level.
+			if(!current_projectile)
+				current_projectile = new /datum/projectile/laser/flashbulb()
+			processing_ammo = 0
+			return
+
 		if(current_projectile)
-			pool(current_projectile)
+			qdel(current_projectile)
 		switch(crank_level)
 			if (0)
 				current_projectile = null // this shouldnt happen but just in case!
 			if (1)
-				current_projectile = unpool(/datum/projectile/laser/flashbulb/)
+				current_projectile = new /datum/projectile/laser/flashbulb()
 			if (2)
-				current_projectile = unpool(/datum/projectile/laser/flashbulb/two/)
+				current_projectile = new /datum/projectile/laser/flashbulb/two()
 			if (3)
-				current_projectile = unpool(/datum/projectile/laser/flashbulb/three/)
+				current_projectile = new /datum/projectile/laser/flashbulb/three()
 			if (4)
-				current_projectile = unpool(/datum/projectile/laser/flashbulb/four/)
+				current_projectile = new /datum/projectile/laser/flashbulb/four()
 			//if (5)
 				//current_projectile = /datum/projectile/laser/flashbulb/five
 		processing_ammo = 0
@@ -507,7 +556,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	return
 
 // BASIC GUN'S
-
 /obj/item/gun/modular/NT
 	name = "\improper NT pistol"
 	real_name = "\improper NT pistol"
@@ -515,7 +563,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	max_ammo_capacity = 1 // single-shot pistols ha- unless you strap an expensive loading mag on it.
 	gun_DRM = GUN_NANO
 	spread_angle = 7
-	icon = 'icons/obj/items/cet_guns/recievers.dmi'
+	icon = 'icons/obj/items/modular_guns/recievers.dmi'
 	icon_state = "nt_blue"
 	barrel_overlay_x = 23
 	barrel_overlay_y = 0
@@ -523,6 +571,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	stock_overlay_y = -2
 	foregrip_x = 18
 
+/obj/item/gun/modular/NT/pistol
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/NT(src)
 
@@ -543,6 +592,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/NT/long(src)
 		stock = new /obj/item/gun_parts/stock/NT/shoulder(src)
+		if(prob(10))
+			accessory = new /obj/item/gun_parts/accessory/flashlight(src)
 
 /obj/item/gun/modular/NT/bartender
 	name = "grey-market shotgun"
@@ -558,6 +609,20 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			stock2 = new /obj/item/gun_parts/stock/juicer/stub(src)
 		else
 			stock2 = new /obj/item/gun_parts/stock/NT/stub(src)
+		if(prob(30))
+			accessory = new /obj/item/gun_parts/accessory/flashlight(src)
+
+/obj/item/gun/modular/NT/shotty
+	name = "\improper NT riot suppressor"
+	desc = "Cloned from Juicer parts, it seems."
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/NT/shotty(src)
+		if(prob(50))
+			stock = new /obj/item/gun_parts/stock/NT/stub(src)
+		else
+			stock = new /obj/item/gun_parts/stock/NT/fancy(src)
+		if(prob(30))
+			stock2 = new /obj/item/gun_parts/stock/NT/stub(src)
 
 /obj/item/gun/modular/foss // syndicate laser gun's!
 	name = "\improper FOSS laser"
@@ -567,7 +632,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	gun_DRM = GUN_FOSS
 	spread_angle = 7
 	//color = "#aaaaFF"
-	icon = 'icons/obj/items/cet_guns/fossgun.dmi'
+	icon = 'icons/obj/items/modular_guns/fossgun.dmi'
 	icon_state = "foss_reciever"
 	contraband = 7
 	barrel_overlay_x = 18
@@ -596,7 +661,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		barrel = new /obj/item/gun_parts/barrel/foss/long/very(src)
 		stock = new /obj/item/gun_parts/stock/foss/longer(src)
 
-
+/obj/item/gun/modular/foss/loader
+	desc = "An open-sourced and freely modifiable FOSS Inductive Flash Arc, Model 2k/19L"
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/foss/long(src)
+		stock = new /obj/item/gun_parts/stock/foss/loader(src)
 
 
 /obj/item/gun/modular/juicer
@@ -612,6 +681,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	barrel_overlay_y = 4
 	stock_overlay_x = -10
 
+
+/obj/item/gun/modular/juicer/blunder
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/juicer(src)
 		if(prob(5))
@@ -635,6 +706,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 
 /obj/item/gun/modular/soviet
+	shoot()
+		..()
+		process_ammo()
+
+/obj/item/gun/modular/soviet/basic
 	name = "\improper Soviet лазерная"
 	real_name = "\improper Soviet лазерная"
 	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
@@ -653,9 +729,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		stock = new /obj/item/gun_parts/stock/italian(src)
 
 
-	shoot()
-		..()
-		process_ammo()
+
 
 
 
@@ -671,12 +745,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	barrel_overlay_x = 12
 	barrel_overlay_y = 4
 
+	shoot()
+		..()
+		process_ammo()
+
+/obj/item/gun/modular/italian/italiano
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/italian(src)
 		stock = new /obj/item/gun_parts/stock/italian(src)
 
 
-	shoot()
-		..()
-		process_ammo()
+
 

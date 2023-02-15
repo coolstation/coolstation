@@ -624,7 +624,7 @@ world/proc/updateCameraVisibility()
 			t.aiImage.loc = t
 
 		#ifdef DESERT_MAP //This isn't strictly necessary but saving desert istype checks on 90k turfs per zlevel processed feels worth it?
-			addAIImage(t.aiImage, "aiImage_\ref[t.aiImage]", low_priority=(istype(t, /turf/simulated/wall/asteroid/gehenna) || istype(t, /turf/unsimulated/floor/gehenna/desert)))
+			addAIImage(t.aiImage, "aiImage_\ref[t.aiImage]", low_priority=(istype(t, /turf/simulated/wall/asteroid/gehenna) || istype(t, /turf/space/gehenna/desert)))
 		#else //(That works out to 90k of those two desert checks for most maps and 180k space checks for gehenna)
 			addAIImage(t.aiImage, "aiImage_\ref[t.aiImage]", low_priority=istype(t, /turf/space))
 		#endif

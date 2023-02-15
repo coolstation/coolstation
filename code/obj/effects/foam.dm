@@ -36,7 +36,7 @@
 		I.Blend(src.foamcolor, ICON_ADD)
 		src.overlays += I
 
-/obj/effects/foam/pooled()
+/obj/effects/foam/disposing()
 	..()
 	name = "foam"
 	icon_state = "foam"
@@ -50,7 +50,7 @@
 	if(reagents)
 		reagents.clear_reagents()
 
-/obj/effects/foam/unpooled()
+/obj/effects/foam/New()
 	..()
 	amount = 3
 	expand = 1
@@ -106,7 +106,7 @@
 		if (reagents)
 			reagents.reaction(src.loc, TOUCH, 5, 0)
 			reagents.postfoam = 0
-	pool(src)
+	qdel(src)
 
 /obj/effects/foam/proc/process()
 	if(--amount < 0)
@@ -138,7 +138,7 @@
 
 				if(no_merge) continue
 
-			F = unpool(/obj/effects/foam)
+			F = new()
 			F.set_up(T, metal)
 			F.amount = amount
 			F.foam_id = src.foam_id //Just keep track of us being from the same source

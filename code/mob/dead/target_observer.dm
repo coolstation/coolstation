@@ -16,7 +16,7 @@ var/list/observers = list()
 		observers += src
 		mobs += src
 		//set_observe_target(target)
-
+/*
 	unpooled()
 		..()
 		src.mob_properties = list()
@@ -49,7 +49,7 @@ var/list/observers = list()
 		huds.len = 0
 
 		..()
-
+*/
 	disposing()
 		//Remove ourselves from the global observer list
 		observers -= src
@@ -182,6 +182,6 @@ var/list/observers = list()
 					my_ghost.z = 1
 
 			src.my_ghost = null
-			pool(src)
+			qdel(src)
 
 

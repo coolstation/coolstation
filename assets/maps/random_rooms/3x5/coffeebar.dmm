@@ -38,11 +38,14 @@
 /obj/table/reinforced/bar/auto,
 /turf/simulated/floor/black,
 /area/dmm_suite/clear_area)
-"E" = (
-/obj/table/reinforced/bar/auto,
-/obj/drink_rack/cup{
+"D" = (
+/obj/cup_rack{
 	pixel_y = 32
 	},
+/turf/simulated/floor/black,
+/area/dmm_suite/clear_area)
+"E" = (
+/obj/table/reinforced/bar/auto,
 /obj/machinery/espresso_machine{
 	pixel_y = 4
 	},
@@ -65,8 +68,8 @@ a
 "}
 (3,1,1) = {"
 y
-a
-a
+C
+D
 a
 e
 "}

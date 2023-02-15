@@ -273,7 +273,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			//src.warp = 100
 
 		if (istype(A, /obj/decal/cleanable)) //MBC : this check sucks, but its far better than cleanables doing hard-delete at the whims of the singularity. replace ASAP when i figure out cleanablessssss
-			pool(A)
+			qdel(A)
 			gain = 2
 		else
 			var/obj/O = A
@@ -620,7 +620,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			if(!W:try_weld(user, 1, noisy = 2))
 				return
 			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/machinery/field_generator/proc/weld_action,\
-			list(user), W.icon, W.icon_state, "[user] finishes using their [W.name] on the field generator.", null)
+			list(user), W.icon, W.icon_state, "[user] finishes using [his_or_her(user)] [W.name] on the field generator.", null)
 		if(state == WRENCHED)
 			boutput(user, "You start to weld the field generator to the floor.")
 			return
@@ -1027,7 +1027,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			if(!W:try_weld(user, 1, noisy = 2))
 				return
 			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/machinery/emitter/proc/weld_action,\
-			list(user), W.icon, W.icon_state, "[user] finishes using their [W.name] on the emitter.", null)
+			list(user), W.icon, W.icon_state, "[user] finishes using [his_or_her(user)] [W.name] on the emitter.", null)
 		if(state == WRENCHED)
 			boutput(user, "You start to weld the emitter to the floor.")
 			return

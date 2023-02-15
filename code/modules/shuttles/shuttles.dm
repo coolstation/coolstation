@@ -31,7 +31,7 @@
 
 /datum/transit_vehicle/mining_shuttle
 	vehicle_id = "mining_shuttle"
-#ifdef DESERT_MAP
+#ifdef Z3_IS_A_STATION_LEVEL
 	stop_ids = list("mining_dock","mining_diner")
 #else
 	stop_ids = list("mining_dock","mining_diner","mining_outpost")

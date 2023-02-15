@@ -131,7 +131,7 @@ TRAYS
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if(user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and stabs \himself.</span>")
+			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and stabs [himself_or_herself(user)].</span>")
 			random_brute_damage(user, 10)
 			JOB_XP(user, "Clown", 1)
 		if(!saw_surgery(M,user)) // it doesn't make sense, no. but hey, it's something.
@@ -167,7 +167,7 @@ TRAYS
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if(user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and cuts \himself.</span>")
+			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and cuts [himself_or_herself(user)].</span>")
 			random_brute_damage(user, 20)
 			JOB_XP(user, "Clown", 1)
 		if(!scalpel_surgery(M,user))
@@ -195,7 +195,7 @@ TRAYS
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if (user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span style=\"color:red\"><b>[user]</b> fumbles [src] and jabs \himself.</span>")
+			user.visible_message("<span style=\"color:red\"><b>[user]</b> fumbles [src] and jabs [himself_or_herself(user)].</span>")
 			random_brute_damage(user, 5)
 		if (prob(20))
 			src.break_utensil(user)
@@ -204,7 +204,7 @@ TRAYS
 			return ..()
 
 	suicide(var/mob/user as mob)
-		user.visible_message("<span style=\"color:red\"><b>[user] tries to jab [src] straight through \his eye and into \his brain!</b></span>")
+		user.visible_message("<span style=\"color:red\"><b>[user] tries to jab [src] straight through [his_or_her(user)] eye and into [his_or_her(user)] brain!</b></span>")
 		src.break_utensil(user)
 		spawn(100)
 			if (user)
@@ -224,7 +224,7 @@ TRAYS
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if (user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span style=\"color:red\"><b>[user]</b> fumbles [src] and stabs \himself.</span>")
+			user.visible_message("<span style=\"color:red\"><b>[user]</b> fumbles [src] and stabs [himself_or_herself(user)].</span>")
 			random_brute_damage(user, 5)
 		if (prob(20))
 			src.break_utensil(user)
@@ -233,7 +233,7 @@ TRAYS
 			return ..()
 
 	suicide(var/mob/user as mob)
-		user.visible_message("<span style=\"color:red\"><b>[user] tries to stab [src] right into \his heart!</b></span>")
+		user.visible_message("<span style=\"color:red\"><b>[user] tries to stab [src] right into [his_or_her(user)] heart!</b></span>")
 		src.break_utensil(user)
 		spawn(100)
 			if (user)
@@ -253,7 +253,7 @@ TRAYS
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if(user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and cuts \himself.</span>")
+			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and cuts [himself_or_herself(user)].</span>")
 			random_brute_damage(user, 5)
 			JOB_XP(user, "Clown", 1)
 		if(prob(20))
@@ -263,7 +263,7 @@ TRAYS
 			return ..()
 
 	suicide(var/mob/user as mob)
-		user.visible_message("<span class='alert'><b>[user] tries to slash  \his own throat with [src]!</b></span>")
+		user.visible_message("<span class='alert'><b>[user] tries to slash  [his_or_her(user)] own throat with [src]!</b></span>")
 		src.break_utensil(user)
 		SPAWN_DBG(10 SECONDS)
 			if(user)
@@ -697,10 +697,10 @@ TRAYS
 			src.set_loc(shardturf)
 
 		for (var/i in 1 to 2)
-			var/obj/O = unpool(/obj/item/raw_material/shard/glass)
+			var/obj/O = new /obj/item/raw_material/shard/glass()
 			O.set_loc(shardturf)
 			if(src.material)
-				O.setMaterial(copyMaterial(src.material))
+				O.setMaterial(src.material)
 			O.throw_at(get_offset_target_turf(shardturf, rand(-4,4), rand(-4,4)), 7, 1)
 
 		qdel(src)

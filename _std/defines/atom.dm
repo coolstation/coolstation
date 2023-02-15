@@ -28,6 +28,7 @@
 #define IS_TRINKET 1024 		//used for trinkets GC
 #define IS_FARTABLE 2048
 #define NO_MOUSEDROP_QOL 4096 //overrides the click drag mousedrop pickup QOL kinda stuff
+#define HASENTERED_MAT_PROP 8192 // if the USE_HASENTERED flag is a material property, so we know when to flush it.
 //TBD the rest
 
 //THROW flags (what kind of throw, we can have ddifferent kinds of throws ok)

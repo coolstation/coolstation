@@ -111,7 +111,7 @@
 		if (istype(src, /obj/machinery/disposal/mail)) flick("mailchute-flush", src)
 		else flick("disposal-flush", src)
 
-		var/obj/disposalholder/H = unpool(/obj/disposalholder)	// virtual holder object which actually
+		var/obj/disposalholder/H = new()	// virtual holder object which actually
 																// travels through the pipes.
 
 		H.init(src)	// copy the contents of disposer to holder
@@ -159,7 +159,7 @@
 				router_distance = H.count
 				if(H.routers.len)
 					routerlist += H.routers.Copy()
-			pool(H)
+			qdel(H)
 			return
 
 
@@ -196,7 +196,7 @@
 			if (istype(src, /obj/machinery/disposal/mail)) flick("mailchute-flush", src)
 			else flick("disposal-flush", src)
 
-			var/obj/disposalholder/H = unpool(/obj/disposalholder)	// virtual holder object which actually
+			var/obj/disposalholder/H = new()	// virtual holder object which actually
 																	// travels through the pipes.
 
 			H.init(src)	// copy the contents of disposer to holder

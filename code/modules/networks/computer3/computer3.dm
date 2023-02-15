@@ -334,7 +334,8 @@
 			if(2)
 				setup_font_color = "#A5A5FF"
 				setup_bg_color = "#4242E7"
-
+			if(3)
+				return // this pleases the linter, that's it. That's fucking it.
 	return
 
 /obj/machinery/computer3/attack_hand(mob/user as mob)
@@ -693,7 +694,7 @@ function lineEnter (ev)
 			A.set_dir(src.dir)
 			if (src.status & BROKEN)
 				boutput(user, "<span class='notice'>The broken glass falls out.</span>")
-				var/obj/item/raw_material/shard/glass/G = unpool(/obj/item/raw_material/shard/glass)
+				var/obj/item/raw_material/shard/glass/G = new()
 				G.set_loc( src.loc )
 				A.state = 3
 				A.icon_state = "3"

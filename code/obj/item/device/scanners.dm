@@ -444,7 +444,7 @@ that cannot be itched
 	pixelaction(atom/target, params, mob/user, reach)
 		var/turf/T = get_turf(target)
 		if ((analyzer_upgrade == 1) && (get_dist(user, T)>1))
-			user.visible_message("<span class='notice'><b>[user]</b> takes a distant atmospheric reading of [T].</span>")
+			//user.visible_message("<span class='notice'><b>[user]</b> takes a distant atmospheric reading of [T].</span>")
 			boutput(user, scan_atmospheric(T, visible = 1))
 			src.add_fingerprint(user)
 			return
@@ -460,7 +460,7 @@ that cannot be itched
 			user.show_text("Unable to obtain a reading.", "red")
 			return
 
-		user.visible_message("<span class='notice'><b>[user]</b> takes an atmospheric reading of [location].</span>")
+		//user.visible_message("<span class='notice'><b>[user]</b> takes an atmospheric reading of [location].</span>")
 		boutput(user, scan_atmospheric(location, visible = 1)) // Moved to scanprocs.dm to cut down on code duplication (Convair880).
 		return
 
@@ -472,7 +472,7 @@ that cannot be itched
 			return
 
 		if (istype(A, /obj) || isturf(A))
-			user.visible_message("<span class='notice'><b>[user]</b> takes an atmospheric reading of [A].</span>")
+			//user.visible_message("<span class='notice'><b>[user]</b> takes an atmospheric reading of [A].</span>")
 			boutput(user, scan_atmospheric(A, visible = 1))
 		src.add_fingerprint(user)
 		return
@@ -716,7 +716,7 @@ that cannot be itched
 		logTheThing("admin", user, null, "tickets <b>[ticket_target]</b> with the reason: [ticket_reason].")
 		playsound(src, "sound/machines/printer_thermal.ogg", 50, 1)
 		SPAWN_DBG(3 SECONDS)
-			var/obj/item/paper/p = unpool(/obj/item/paper)
+			var/obj/item/paper/p = new()
 			p.set_loc(get_turf(src))
 			p.name = "Official Caution - [ticket_target]"
 			p.info = ticket_text

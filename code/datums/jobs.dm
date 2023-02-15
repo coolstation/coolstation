@@ -466,11 +466,7 @@ ABSTRACT_TYPE(/datum/job/security)
 
 /datum/job/security/security_officer
 	name = "Security Officer"
-#ifdef MAP_OVERRIDE_MANTA
-	limit = 4
-#else
 	limit = 5
-#endif
 	wages = PAY_TRADESMAN
 	allow_traitors = 0
 	allow_spy_theft = 0
@@ -613,7 +609,7 @@ ABSTRACT_TYPE(/datum/job/research)
 #endif
 	name = "Pathologist"
 	#ifdef CREATE_PATHOGENS
-	limit = 1
+	limit = 2
 	#else
 	limit = 0
 	#endif
@@ -635,7 +631,7 @@ ABSTRACT_TYPE(/datum/job/research)
 
 /datum/job/research/roboticist
 	name = "Roboticist"
-	limit = 3
+	limit = 2
 	wages = 200
 	slot_belt = list(/obj/item/device/pda2/medical/robotics)
 	slot_jump = list(/obj/item/clothing/under/rank/roboticist)
@@ -756,7 +752,7 @@ ABSTRACT_TYPE(/datum/job/engineering)
 
 /datum/job/engineering/miner
 	name = "Miner"
-	limit = 3
+	limit = 5
 	wages = PAY_TRADESMAN
 	slot_back = list(/obj/item/storage/backpack/withO2)
 	slot_belt = list(/obj/item/device/pda2/mining)
@@ -801,11 +797,7 @@ ABSTRACT_TYPE(/datum/job/engineering)
 
 /datum/job/engineering/engineer
 	name = "Engineer"
-#ifdef MAP_OVERRIDE_MANTA
-	limit = 4
-#else
 	limit = 5
-#endif
 	wages = PAY_TRADESMAN
 	slot_back = list(/obj/item/storage/backpack/withO2)
 	slot_belt = list(/obj/item/storage/belt/utility/prepared)
@@ -903,11 +895,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 /datum/job/civilian/botanist
 	name = "Botanist"
-	#ifdef MAP_OVERRIDE_DONUT3
-	limit = 7
-	#else
 	limit = 5
-	#endif
 	wages = PAY_TRADESMAN
 	slot_belt = list(/obj/item/device/pda2/botanist)
 	slot_jump = list(/obj/item/clothing/under/rank/hydroponics)
@@ -932,7 +920,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	slot_glov = list(/obj/item/clothing/gloves/black)
 	slot_poc1 = list(/obj/item/paper/ranch_guide)
 	slot_ears = list(/obj/item/device/radio/headset/civilian)
-	items_in_backpack = list(/obj/item/fishing_rod, /obj/item/chicken_carrier, /obj/item/device/camera_viewer/ranch)
+	items_in_backpack = list(/obj/item/fishing_rod/rancher, /obj/item/chicken_carrier, /obj/item/device/camera_viewer/ranch)
 
 	New()
 		..()
@@ -1250,7 +1238,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 /datum/job/special/atmospheric_technician
 	name = "Atmospherish Technician"
 	linkcolor = "#FF9900"
-	limit = 0
+	limit = 1
 	wages = PAY_TRADESMAN
 	slot_belt = list(/obj/item/device/pda2/atmos)
 	slot_jump = list(/obj/item/clothing/under/misc/atmospheric_technician)
@@ -1442,9 +1430,9 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 		var/obj/item/storage/secure/sbriefcase/B = M.find_type_in_hand(/obj/item/storage/secure/sbriefcase)
 		if (B && istype(B))
-			var/obj/item/material_piece/gold/G = unpool(/obj/item/material_piece/gold)
+			var/obj/item/material_piece/gold/G = new()
 			G.set_loc(B)
-			G = unpool(/obj/item/material_piece/gold)
+			G = new /obj/item/material_piece/gold()
 			G.set_loc(B)
 
 		return
@@ -1582,9 +1570,9 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 		var/obj/item/storage/briefcase/B = M.find_type_in_hand(/obj/item/storage/briefcase)
 		if (B && istype(B))
-			var/obj/item/material_piece/gold/G = unpool(/obj/item/material_piece/gold)
+			var/obj/item/material_piece/gold/G = new()
 			G.set_loc(B)
-			G = unpool(/obj/item/material_piece/gold)
+			G = new()
 			G.set_loc(B)
 
 		return
@@ -2249,7 +2237,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 		if (!M)
 			return
 		if (ticker?.mode && istype(ticker.mode, /datum/game_mode/nuclear))
-			M.real_name = "[syndicate_name()] Operative #[ticker.mode:agent_number]"
+			M.real_name = "[syndicate_name_foss()] Operative #[ticker.mode:agent_number]"
 			ticker.mode:agent_number++
 		else
 			M.real_name = "Syndicate Agent"

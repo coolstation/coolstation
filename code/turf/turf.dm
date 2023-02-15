@@ -214,7 +214,7 @@
 		fullbright = 0
 
 /turf/space/proc/update_icon(starlight_alpha=255)
-	if(!isnull(space_color) && !istype(src, /turf/space/fluid))
+	if(!isnull(space_color) && !istype(src, /turf/space/fluid)&& !istype(src, /turf/space/gehenna))
 		src.color = space_color
 
 	if(fullbright)
@@ -563,10 +563,15 @@ proc/generate_space_color()
 	var/turf/simulated/new_turf
 	var/old_dir = dir
 
+	if(explosions.exploding) // this is fucked up and messed up and fucked up.
+		handle_air = FALSE
+		keep_old_material = FALSE
+
 	var/oldmat = src.material
 
 	var/datum/gas_mixture/oldair = null //Set if old turf is simulated and has air on it.
 	var/datum/air_group/oldparent = null //Ditto.
+	var/zero_new_turf_air = (turf_flags & CAN_BE_SPACE_SAMPLE)
 
 	//For unsimulated static air tiles such as ice moon surface.
 	var/temp_old = null
@@ -587,23 +592,29 @@ proc/generate_space_color()
 
 	#undef _OLD_GAS_VAR_DEF
 
-	if (istype(src, /turf/simulated/floor))
-		icon_old = icon_state // a hack but OH WELL, leagues better than before
-		name_old = name
-
 	/*
 	if (!src.fullbright)
 		var/area/old_loc = src.loc
 		if(old_loc)
 			old_loc.contents -= src.loc
 	*/
-	if (map_currently_underwater && what == "Space")
-		what = "Ocean"
-		keep_old_material = 0
+	if ((map_currently_underwater && what == "Space")  && (src.z == 1 || src.z == 5))
+		var/area/area = src.loc
+		if(istype(area, /area/shuttle/))
+			what = "Plating"
+			keep_old_material = 1
+		else
+			what = "Ocean"
+			keep_old_material = 0
 
-	if (map_currently_very_dusty && what == "Space")
-		what = "Desert"
-		keep_old_material = 0
+	if ((map_currently_very_dusty && what == "Space") && (src.z == 1 || src.z == 3))
+		var/area/area = src.loc
+		if(istype(area, /area/shuttle/))
+			what = "Plating"
+			keep_old_material = 1
+		else
+			what = "Desert"
+			keep_old_material = 0
 
 	var/rlapplygen = RL_ApplyGeneration
 	var/rlupdategen = RL_UpdateGeneration
@@ -642,7 +653,7 @@ proc/generate_space_color()
 			if(src.z==3)
 				new_turf = new /turf/simulated/floor/plating/gehenna(src)
 			else
-				new_turf = new /turf/unsimulated/floor/gehenna/desert(src)
+				new_turf = new /turf/space/gehenna/desert(src)
 		if ("Ocean")
 			new_turf = new /turf/space/fluid(src)
 		if ("Floor")
@@ -667,6 +678,8 @@ proc/generate_space_color()
 				new_turf = new /turf/simulated/wall(src)
 		if ("Unsimulated Floor")
 			new_turf = new /turf/unsimulated/floor(src)
+		if ("Plating")
+			new_turf = new /turf/simulated/floor/plating/random(src)
 		else
 			new_turf = new /turf/space(src)
 
@@ -683,9 +696,9 @@ proc/generate_space_color()
 	new_turf.RL_ApplyGeneration = rlapplygen
 	new_turf.RL_UpdateGeneration = rlupdategen
 	if(new_turf.RL_MulOverlay)
-		pool(new_turf.RL_MulOverlay)
+		qdel(new_turf.RL_MulOverlay)
 	if(new_turf.RL_AddOverlay)
-		pool(new_turf.RL_AddOverlay)
+		qdel(new_turf.RL_AddOverlay)
 	new_turf.RL_MulOverlay = rlmuloverlay
 	new_turf.RL_AddOverlay = rladdoverlay
 
@@ -713,7 +726,7 @@ proc/generate_space_color()
 
 	//cleanup old overlay to prevent some Stuff
 	//This might not be necessary, i think its just the wall overlays that could be manually cleared here.
-	new_turf.RL_Cleanup() //Cleans up/mostly removes the lighting.
+	//new_turf.RL_Cleanup() // ACTUALLY this proc does nothing anymore		 //Cleans up/mostly removes the lighting.
 	new_turf.RL_Init()
 
 	//The following is required for when turfs change opacity during replace. Otherwise nearby lights will not be applying to the correct set of tiles.
@@ -728,7 +741,7 @@ proc/generate_space_color()
 			var/turf/simulated/N = new_turf
 			if (oldair) //Simulated tile -> Simulated tile
 				N.air = oldair
-			else if(istype(N.air)) //Unsimulated tile (likely space) - > Simulated tile  // fix runtime: Cannot execute null.zero()
+			else if(zero_new_turf_air && istype(N.air)) //Unsimulated tile (likely space) - > Simulated tile  // fix runtime: Cannot execute null.zero() << ever heard of walls you butt???
 				N.air.zero()
 
 			#define _OLD_GAS_VAR_NOT_NULL(GAS, ...) GAS ## _old ||
@@ -1274,6 +1287,8 @@ proc/generate_space_color()
 									new /obj/item/plank {name = "rotted coffin wood"; desc = "Just your normal, everyday rotten wood.  That was robbed.  From a grave.";} ( src )
 								if (3)
 									new /obj/item/clothing/under/suit/pinstripe {name = "old pinstripe suit"; desc  = "A pinstripe suit.  That was stolen.  Off of a buried corpse.";} ( src )
+								if(4,5)
+									break
 						break
 
 		else

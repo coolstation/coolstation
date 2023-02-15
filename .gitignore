@@ -37,6 +37,9 @@ __pycache__/
 # Ignore compiled linux libs in the root folder, e.g. librust_g.so
 /*.so
 
+# Ignore the tracy profiler .dll
+prof.dll
+
 # Build tools cache
 /tools/**/.cache
 

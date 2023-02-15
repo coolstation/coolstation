@@ -637,7 +637,7 @@ sound
 	disposing()
 		// Haha you cant delete me you fuck
 		if(!qdeled)
-			pool(src)
+			qdel(src)
 		else
 			//Yes I can
 			..()

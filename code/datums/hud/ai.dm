@@ -15,6 +15,11 @@
 		hologram
 		killswitch
 
+#ifdef Z3_IS_A_STATION_LEVEL
+	var/atom/movable/screen/hud/upper
+	var/atom/movable/screen/hud/lower
+#endif
+
 	var/list/spinner = list("/", "-", "\\", "|")
 	var/spinner_num = 1
 
@@ -71,6 +76,11 @@
 		tracking.maptext_width = 32*15
 		tracking.maptext_x = 34
 		tracking.maptext_y = -1
+
+	#ifdef Z3_IS_A_STATION_LEVEL
+		upper = create_screen("upper", "Go Up", 'icons/mob/ghost_observer_abilities.dmi', "upper_transfer", "WEST, NORTH-4", HUD_LAYER)
+		lower = create_screen("lower", "Go Down", 'icons/mob/ghost_observer_abilities.dmi', "lower_transfer", "WEST, NORTH-5", HUD_LAYER)
+	#endif
 
 		update()
 
@@ -176,3 +186,17 @@
 					master.create_hologram()
 				else
 					boutput(master, "Deploy to an AI Eye first to create a hologram.")
+		#ifdef Z3_IS_A_STATION_LEVEL
+			if ("upper") //Fuck me UI code is really such that we need to implement the same thing in 3 spots
+				if(master.deployed_to_eyecam)
+					if (master.eyecam.z == Z_LEVEL_STATION)
+						return
+					var/turf/destination = locate(master.eyecam.x, master.eyecam.y, Z_LEVEL_STATION)
+					master.eyecam.set_loc(destination)
+			if ("lower")
+				if(master.deployed_to_eyecam)
+					if (master.eyecam.z == Z_LEVEL_DEBRIS)
+						return
+					var/turf/destination = locate(master.eyecam.x, master.eyecam.y, Z_LEVEL_DEBRIS)
+					master.eyecam.set_loc(destination)
+		#endif

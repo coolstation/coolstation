@@ -147,9 +147,9 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 			pixel_x = rand(-6, 6)
 			pixel_y = rand(-6, 6)
 			if(prob(5) && limiter.canISpawn(/obj/effects/sparks))
-				var/obj/sparks = unpool(/obj/effects/sparks)
+				var/obj/sparks = new /obj/effects/sparks()
 				sparks.set_loc(src.loc)
-				SPAWN_DBG(2 SECONDS) if (sparks) pool(sparks)
+				SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 			return TRUE
 
 /obj/machinery/bot/guardbot/xmas
@@ -1059,7 +1059,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 			if(!src.stat && !src.transforming)
 				for (var/mob/C in viewers(src))
 					shake_camera(C, 10, 64)
-					C.show_message("<span class='alert'><B>[src] stomps the ground with \his huge feet!</B></span>", 1)
+					C.show_message("<span class='alert'><B>[src] stomps the ground with [his_or_her(src)] huge feet!</B></span>", 1)
 				playsound(src.loc, "meteorimpact.ogg", 80, 1, 1, 0.6)
 				for (var/mob/living/M in view(src,2))
 					if (M == src)
@@ -1124,7 +1124,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 				for(var/obj/item/grab/G in src)
 					if(G.affecting == M)
 						return
-				src.visible_message("<span class='alert'><B>[src] snatches up [M] in \his huge claws!</B></span>")
+				src.visible_message("<span class='alert'><B>[src] snatches up [M] in [his_or_her(src)] huge claws!</B></span>")
 				var/obj/item/grab/G = new /obj/item/grab(src, src, M)
 				usr.put_in_hand_or_drop(G)
 				M.changeStatus("stunned", 1 SECOND)
@@ -1147,7 +1147,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 				if(ishuman(G.affecting))
 					src.verbs -= /mob/living/carbon/human/krampus/verb/krampus_crush
 					var/mob/living/carbon/human/H = G.affecting
-					src.visible_message("<span class='alert'><B>[src] begins squeezing [H] in \his hand!</B></span>")
+					src.visible_message("<span class='alert'><B>[src] begins squeezing [H] in [his_or_her(src)] hand!</B></span>")
 					H.set_loc(src.loc)
 					while (!isdead(H))
 						if (src.stat || src.transforming || get_dist(src,H) > 1)
@@ -1187,7 +1187,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 			for(var/obj/item/grab/G in src)
 				if(ishuman(G.affecting))
 					var/mob/living/carbon/human/H = G.affecting
-					src.visible_message("<span class='alert'><B>[src] raises [H] up to \his mouth! Oh shit!</B></span>")
+					src.visible_message("<span class='alert'><B>[src] raises [H] up to [his_or_her(src)] mouth! Oh shit!</B></span>")
 					H.set_loc(src.loc)
 					sleep(6 SECONDS)
 					if (src.stat || src.transforming || get_dist(src,H) > 1)
