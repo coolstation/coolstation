@@ -518,7 +518,7 @@
 		else
 			src.Equip_Bank_Purchase(src.mind?.purchased_bank_item)
 
-		if(src.client && src.client.persistent_gun)
+		if(src.client && src.client.persistent_gun && !src.mind.do_not_save_gun)
 			src.put_in_hand_or_drop(src.client.persistent_gun)
 
 	return
