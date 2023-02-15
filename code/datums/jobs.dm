@@ -59,6 +59,7 @@
 	var/spawn_miscreant = 0
 	var/rounds_needed_to_play = 0 //0 by default, set to the amount of rounds they should have in order to play this
 	var/map_can_autooverride = 1 // if set to 0 map can't change limit on this job automatically (it can still set it manually)
+	var/do_not_save_gun = 0		// if set to 1, this job will not pull from the gun's persistence cloud nor will it register one at end of round.
 
 	New()
 		..()
@@ -142,6 +143,9 @@
 			if (M.traitHolder && !M.traitHolder.hasTrait("loyalist"))
 				cant_spawn_as_rev = 1 //Why would an NT Loyalist be a revolutionary?
 
+			if (src.do_not_save_gun && !isnull(M.mind))
+				M.mind.do_not_save_gun = 1
+
 // Command Jobs
 
 ABSTRACT_TYPE(/datum/job/command)
@@ -149,6 +153,7 @@ ABSTRACT_TYPE(/datum/job/command)
 	linkcolor = "#00CC00"
 	slot_card = /obj/item/card/id/command
 	map_can_autooverride = 0
+	do_not_save_gun = 1
 
 /datum/job/command/captain
 	name = "Captain"
@@ -463,6 +468,7 @@ ABSTRACT_TYPE(/datum/job/security)
 	linkcolor = "#FF0000"
 	slot_card = /obj/item/card/id/security
 	recieves_miranda = 1
+	do_not_save_gun = 1
 
 /datum/job/security/security_officer
 	name = "Security Officer"

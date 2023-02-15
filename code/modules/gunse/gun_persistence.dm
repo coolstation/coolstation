@@ -19,10 +19,12 @@ Enjoy */
 	if(!src.mob)
 		return //we do nothing, so whatever they had they keep..
 	var/obj/item/gun/modular/gun = locate() in src.mob // this will catch the first gun it finds, too bad if you tried getting two.
-	if(!istype(gun))
-		return //we do nothing, so whatever they had they keep..
+	if(!istype(gun)) // well you survived, but empty-handed. sorry.
+		if( cloud_available() )
+			cloud_put( "persistent_gun", "none")
+		return
 	if(gun.contraband)
-		return //we do nothing, so whatever they had they keep..
+		return //okay your gun is illegal, maybe you grabbed a fossie gun, idk - but im not gonna *punish* you for it.
 	var/list/gunne = list("type"="nano","barrel"="none","stock1"="none","stock2"="none","magazine"="none","accessory"="none")
 	//"type"="nano" is not strictly true, but if somehow you got a non-contraband fossie or soviet weapon... here's a free traser.
 	if(istype(gun, /obj/item/gun/modular/juicer))
@@ -92,6 +94,8 @@ Enjoy */
 
 	gun.build_gun()
 	return gun
+
+
 
 
 
