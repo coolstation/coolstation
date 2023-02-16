@@ -39,9 +39,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	inventory_counter_enabled = 1
 	var/barrel_overlay_x = 0
 	var/barrel_overlay_y = 0
+	var/bullpup_stock = 0 // this one's fucky. some guns i guess will want a single pistol grip to be forward, but dual or shoulder at the back. this is that offset i guess.
 	var/stock_overlay_x = 0
 	var/stock_overlay_y = 0
-	var/foregrip_x = 16
+	var/foregrip_x = 12
 	var/foregrip_y = 0
 	var/magazine_overlay_x = 0
 	var/magazine_overlay_y = 0
@@ -182,6 +183,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			user.u_equip(I)
 			I.dropped(user)
 			I.set_loc(src)
+			part.add_overlay_to_gun(src,0)
 		else
 			boutput(user,"<span class='notice'><b>The [src]'s DRM prevents you from attatching [I].</b></span>")
 			playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
@@ -564,17 +566,18 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	name = "\improper NT pistol"
 	real_name = "\improper NT pistol"
 	desc = "A simple, reliable cylindrical bored weapon."
-	max_ammo_capacity = 1 // single-shot pistols ha- unless you strap an expensive loading mag on it.
+	max_ammo_capacity = 0 // single-shot pistols ha- unless you strap an expensive loading mag on it.
 	gun_DRM = GUN_NANO
 	spread_angle = 7
 	icon = 'icons/obj/items/modular_guns/recievers.dmi'
 	icon_state = "nt_blue"
 	barrel_overlay_x = 23
 	barrel_overlay_y = 0
-	stock_overlay_x = -8
+	stock_overlay_x = -10
 	stock_overlay_y = -2
 	magazine_overlay_y = -5
-	foregrip_x = 18
+
+	bullpup_stock = 1
 
 /obj/item/gun/modular/NT/pistol
 	make_parts()
@@ -593,7 +596,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	name = "\improper NT rifle"
 	real_name = "\improper NT rifle"
 	desc = "A simple, reliable rifled bored weapon."
-	max_ammo_capacity = 2
+
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/NT/long(src)
 		stock = new /obj/item/gun_parts/stock/NT/shoulder(src)
@@ -742,13 +745,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	name = "\improper Italiano"
 	real_name = "\improper Italiano"
 	desc = "Una pistola realizzata con acciaio, cuoio e olio d'oliva della più alta qualità possibile."
-	max_ammo_capacity = 2 // basic revolving mechanism
+	max_ammo_capacity = 3 // basic revolving mechanism
 	gun_DRM = GUN_ITALIAN
 	spread_angle = 10
 	//color = "#FFFF99"
 	stock_overlay_x = -10
 	barrel_overlay_x = 12
 	barrel_overlay_y = 4
+	jam_frequency_fire = 3
+	jam_frequency_reload = 3
 
 	shoot()
 		..()
@@ -760,5 +765,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		stock = new /obj/item/gun_parts/stock/italian(src)
 
 
-
-
+/obj/item/gun/modular/italian/big_italiano
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/italian/(src)
+		stock = new /obj/item/gun_parts/stock/italian/bigger(src)
