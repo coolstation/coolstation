@@ -337,6 +337,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(flashbulb_only)
 		flash_process_ammo(user)
 		src.inventory_counter.update_number(crank_level)
+	else if(src.max_ammo_capacity == 0) //single shot? no cycle, no count, it shows up as 0 if we don't skip it
+		boutput(user, "<span class='notice'>You check the chamber and [src] appears to be [src.current_projectile == null ? "unloaded[prob(15) ? ". ...Probably!" : "."]" : "loaded[prob(15) ? ". ...Maybe?" : "."]"]</span>")
+		playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 	else
 		process_ammo(user)
 		src.inventory_counter.update_number(ammo_list.len)
