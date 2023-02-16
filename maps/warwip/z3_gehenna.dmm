@@ -1066,10 +1066,10 @@
 /turf/simulated/floor/carpet/grime,
 /area/station/medical/staff)
 "aIr" = (
-/obj/disposalpipe/segment/food{
+/obj/disposalpipe/segment/sewage,
+/obj/disposalpipe/segment/brig{
 	dir = 4
 	},
-/obj/disposalpipe/segment/sewage,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/north)
 "aIv" = (
@@ -1552,6 +1552,9 @@
 /obj/disposalpipe/segment/horizontal,
 /obj/table/reinforced/industrial/auto,
 /obj/item/item_box/pens,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
 /turf/simulated/floor,
 /area/station/security/processing)
 "aXz" = (
@@ -3658,6 +3661,7 @@
 /area/station/medical/basement)
 "coE" = (
 /obj/landmark/gps_waypoint,
+/obj/disposalpipe/segment/bent/west,
 /turf/simulated/floor/carpet/red/standard,
 /area/station/security/quarters{
 	name = "Sec. Officers Sleeping Quarters"
@@ -4254,7 +4258,7 @@
 /turf/simulated/wall,
 /area/station/security/checkpoint/medical)
 "cOy" = (
-/obj/disposalpipe/segment/food{
+/obj/disposalpipe/segment/brig{
 	dir = 4
 	},
 /turf/simulated/floor/carpet/red/standard,
@@ -5366,7 +5370,7 @@
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/catering)
 "dwt" = (
-/obj/disposalpipe/segment/food{
+/obj/disposalpipe/segment/brig{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -7638,7 +7642,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
 	},
-/obj/disposalpipe/segment/morgue,
+/obj/disposalpipe/segment/bent/east,
 /turf/simulated/floor/black,
 /area/station/security/secwing{
 	name = "Security Wing Tunnel Level"
@@ -7831,6 +7835,12 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/cdc)
+"eLj" = (
+/obj/disposalpipe/segment/bent/south,
+/turf/simulated/floor/carpet/red/standard,
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
+	})
 "eLm" = (
 /obj/fluid_spawner/polluted_filth{
 	amount = 7250
@@ -8778,6 +8788,12 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/northwest,
 /turf/simulated/floor/airless/engine/glow,
 /area/station/engine/combustion_chamber)
+"fsp" = (
+/obj/disposalpipe/segment/morgue,
+/turf/simulated/floor/carpet/red/standard,
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
+	})
 "fsv" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/southwest,
 /obj/wingrille_spawn/crystal,
@@ -9121,6 +9137,7 @@
 	dir = 5;
 	icon_state = "xtra_bigstripe-corner2"
 	},
+/obj/decal/tile_edge/stripe/extra_big,
 /turf/simulated/floor,
 /area/station/security/processing)
 "fCZ" = (
@@ -10815,6 +10832,9 @@
 /area/station/storage/warehouse)
 "gGu" = (
 /obj/storage/closet/emergency,
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
 /turf/simulated/floor/black,
 /area/station/security/quarters{
 	name = "Sec. Officers Sleeping Quarters"
@@ -11209,6 +11229,10 @@
 	dir = 1;
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8;
+	tag = "icon-xtra_bigstripe-edge (WEST)"
 	},
 /turf/simulated/floor,
 /area/station/security/processing)
@@ -13289,6 +13313,9 @@
 	color = "#666666"
 	},
 /obj/item/clothing/head/helmet/camera/security,
+/obj/disposalpipe/segment/brig{
+	dir = 4
+	},
 /turf/simulated/floor/carpet/red/standard,
 /area/station/security/quarters{
 	name = "Sec. Officers Sleeping Quarters"
@@ -15331,6 +15358,9 @@
 /area/station/maintenance/west)
 "juD" = (
 /obj/ladder/auto,
+/obj/decal/tile_edge/stripe/extra_big{
+	icon_state = "delivery2"
+	},
 /turf/simulated/floor/grime,
 /area/station/maintenance/northeast)
 "jvt" = (
@@ -16455,7 +16485,6 @@
 /turf/simulated/floor/grey,
 /area/station/science/lab)
 "kdX" = (
-/obj/disposalpipe/segment/morgue,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
@@ -17958,7 +17987,7 @@
 "kVc" = (
 /obj/decal/cleanable/dirt/random,
 /obj/storage/secure/closet/personal/empty,
-/obj/machinery/light/fluorescent/cool/very{
+/obj/machinery/light/fluorescent/yellow{
 	dir = 1
 	},
 /turf/simulated/floor/grime,
@@ -18670,6 +18699,14 @@
 /turf/simulated/floor/black,
 /area/station/security/secwing{
 	name = "Security Wing Tunnel Level"
+	})
+"lsf" = (
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/red/standard,
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
 	})
 "lsy" = (
 /obj/storage/cart,
@@ -20124,6 +20161,16 @@
 /obj/disposalpipe/segment/bent/west,
 /turf/simulated/floor/black,
 /area/station/ai_monitored/armory)
+"mmY" = (
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/obj/grille/catwalk/jen,
+/obj/decal/poster/wallsign/poster_clown{
+	pixel_y = 32
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/northeast)
 "mnj" = (
 /obj/cable{
 	d1 = 2;
@@ -20386,6 +20433,12 @@
 /obj/decal/cleanable/dirt/dirt3,
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
+"mwz" = (
+/obj/machinery/light/fluorescent/cool/very,
+/obj/disposalpipe/segment/horizontal,
+/obj/ladder/auto,
+/turf/simulated/floor/yellow,
+/area/station/security/processing)
 "mwB" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -22341,6 +22394,13 @@
 "nFb" = (
 /turf/simulated/wall,
 /area/station/maintenance/northwest)
+"nFd" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/simulated/floor,
+/area/station/security/processing)
 "nFy" = (
 /obj/decal/cleanable/dirt/dirt2,
 /turf/simulated/wall/asteroid/gehenna/tough/z3,
@@ -23772,7 +23832,6 @@
 /turf/simulated/floor/plating,
 /area/station/security/beepsky)
 "oDT" = (
-/obj/disposalpipe/segment/morgue,
 /turf/simulated/wall,
 /area/station/security/secwing{
 	name = "Security Wing Tunnel Level"
@@ -25817,6 +25876,17 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/west)
+"pZF" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/disposalpipe/junction/right/north,
+/turf/simulated/floor/carpet/red/standard,
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
+	})
 "pZH" = (
 /obj/disposalpipe/junction/left/north,
 /turf/simulated/floor/plating,
@@ -26241,6 +26311,17 @@
 /obj/decal/tile_edge/floorguide/arrow_s,
 /turf/simulated/floor,
 /area/station/storage/warehouse)
+"qjZ" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/disposalpipe/segment/brig,
+/turf/simulated/floor/carpet/red/standard,
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
+	})
 "qkY" = (
 /obj/cable{
 	d1 = 2;
@@ -27278,10 +27359,10 @@
 /turf/simulated/floor/industrial,
 /area/station/maintenance/east)
 "qUm" = (
-/obj/disposalpipe/segment/food{
+/obj/storage/closet/biohazard,
+/obj/disposalpipe/segment/brig{
 	dir = 4
 	},
-/obj/storage/closet/biohazard,
 /turf/simulated/floor/black,
 /area/station/security/quarters{
 	name = "Sec. Officers Sleeping Quarters"
@@ -29206,7 +29287,7 @@
 	name = "Artifact Lounge"
 	})
 "scP" = (
-/obj/disposalpipe/segment/food{
+/obj/disposalpipe/segment/brig{
 	dir = 4
 	},
 /turf/simulated/wall,
@@ -29742,6 +29823,15 @@
 /obj/machinery/computer/teleporter,
 /turf/simulated/floor/plating,
 /area/station/bridge/locker)
+"ssv" = (
+/obj/disposalpipe/segment/morgue,
+/obj/disposalpipe/segment/brig{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/red/standard,
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
+	})
 "ssE" = (
 /obj/disposalpipe/segment/mineral{
 	dir = 8
@@ -30568,9 +30658,13 @@
 /turf/simulated/floor/grey,
 /area/station/bridge/basement)
 "sSl" = (
-/obj/disposalpipe/segment/bent/south,
-/turf/simulated/floor/plating,
-/area/station/maintenance/inner/north)
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/turf/simulated/wall,
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
+	})
 "sSn" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/northeast,
 /turf/simulated/floor/airless/engine/glow/blue,
@@ -30830,6 +30924,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/disposalpipe/segment/morgue,
 /turf/simulated/floor/carpet/red/standard,
 /area/station/security/quarters{
 	name = "Sec. Officers Sleeping Quarters"
@@ -32961,8 +33056,9 @@
 /turf/simulated/floor,
 /area/station/janitor/supply)
 "unT" = (
-/obj/disposalpipe/segment/morgue,
-/obj/table/reinforced/auto,
+/obj/disposalpipe/trunk{
+	dir = 4
+	},
 /turf/simulated/floor/black,
 /area/station/security/secwing{
 	name = "Security Wing Tunnel Level"
@@ -38636,6 +38732,13 @@
 /obj/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/station/engine/storage)
+"xMJ" = (
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 4
+	},
+/obj/decal/poster/wallsign/warning3,
+/turf/simulated/wall/r_wall,
+/area/station/maintenance/northeast)
 "xNe" = (
 /obj/cable{
 	d1 = 4;
@@ -39380,6 +39483,16 @@
 /obj/storage/secure/crate/dan/snacks,
 /turf/simulated/floor/plating,
 /area/station/bridge/locker)
+"ykJ" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/simulated/floor,
+/area/station/security/processing)
 "ylq" = (
 /obj/submachine/chef_sink{
 	desc = "A common utility sink.";
@@ -84253,7 +84366,7 @@ ucN
 mAF
 oXY
 oXY
-oXY
+nFd
 aXy
 wVj
 iLx
@@ -84556,7 +84669,7 @@ agC
 pfE
 pfE
 fCR
-iRP
+mwz
 wVj
 iLx
 iLx
@@ -84857,7 +84970,7 @@ xeQ
 cnB
 mxx
 mxx
-qBV
+ykJ
 gSL
 wVj
 iLx
@@ -87867,7 +87980,7 @@ apH
 bBx
 bBx
 ijj
-gZw
+oDT
 pxf
 pxf
 epX
@@ -88169,7 +88282,7 @@ apH
 rSD
 iBG
 taV
-gZw
+oDT
 pxf
 pxf
 dvb
@@ -88772,7 +88885,7 @@ sTs
 apH
 bBx
 dwt
-sSl
+taV
 oDT
 unT
 kdX
@@ -89074,11 +89187,11 @@ uTW
 enG
 enG
 scP
+sSl
 enG
+scP
 enG
-enG
-enG
-vMG
+sSl
 enG
 xFW
 nbU
@@ -89380,7 +89493,7 @@ gGu
 enG
 ing
 mPr
-yhK
+lsf
 yhK
 wBR
 xSj
@@ -89678,9 +89791,9 @@ mAR
 bfb
 qkY
 cOy
-yhK
-yhK
-yhK
+eLj
+fsp
+ssv
 sZs
 coE
 kPs
@@ -89980,9 +90093,9 @@ xYP
 gcl
 aCx
 gBi
-oWG
-oWG
-oWG
+qjZ
+qjZ
+pZF
 mZA
 oWG
 oWG
@@ -93316,7 +93429,7 @@ pdO
 pdO
 pdO
 wSY
-oPM
+mmY
 tnM
 wko
 akf
@@ -93617,7 +93730,7 @@ lya
 lya
 lya
 lya
-wSY
+xMJ
 oPM
 tnM
 csm

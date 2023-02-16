@@ -24,15 +24,21 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 
 	proc/add_part_to_gun(var/obj/item/gun/modular/gun)
 		my_gun = gun
-		var/image/I = image(icon, icon_state)
-		I.pixel_x = overlay_x
-		I.pixel_y = overlay_y
-		my_gun.UpdateOverlays(I, part_type)
+		add_overlay_to_gun(gun, 1)
 		return 1
+
+	proc/add_overlay_to_gun(var/obj/item/gun/modular/gun, var/correctly = 0)
+		var/image/I = image(icon, icon_state)
+		if(correctly)
+			I.pixel_x = overlay_x
+			I.pixel_y = overlay_y
+		else
+			I.pixel_x = overlay_x + (rand(-5,5))
+			I.pixel_y = overlay_y + (rand(-5,5))
+		gun.UpdateOverlays(I, part_type)
 
 	proc/remove_part_from_gun()
 		RETURN_TYPE(/obj/item/gun_parts/)
-		my_gun.name = my_gun.real_name
 		my_gun = null
 		overlay_x = initial(overlay_x)
 		overlay_y = initial(overlay_y)
@@ -160,6 +166,22 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 
 
 	add_part_to_gun(var/obj/item/gun/modular/gun)
+		if(!istype(gun))
+			return
+		if(gun.bullpup_stock && !stock_two_handed)//this one gets its primary stock forward, secondary back.
+			if(part_type == "stock") // primary goes forward
+				overlay_x += gun.foregrip_x
+			else // this is the secondary, check if the barrel is long enough????
+				if(gun.barrel && (gun.barrel.length >= gun.foregrip_x ))
+					overlay_x += gun.foregrip_x
+				else
+					boutput(usr,"<span class='alert'><b>Error! The foregrip just falls off 'cause there's jack shit to hold it!</b></span>")
+					gun.stock2 = null
+					gun.parts &= ~src
+					src.set_loc(get_turf(src))
+					gun.UpdateOverlays(null, part_type)
+					return
+
 		overlay_x += gun.stock_overlay_x
 		overlay_y += gun.stock_overlay_y
 		..()
@@ -168,7 +190,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 		if(part_type == "stock")
 			my_gun.stock = src
 			my_gun.can_dual_wield = src.can_dual_wield
-		else //foregrip
+		else //foregrip or "stock2"
 			my_gun.stock2 = src
 		my_gun.max_ammo_capacity += src.max_ammo_capacity
 		my_gun.spread_angle = max(0, (my_gun.spread_angle + src.spread_angle)) // so we cant dip below 0
@@ -445,12 +467,12 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = -4 // better stabilisation
 	stock_two_handed = 1
 	can_dual_wield = 0
-	max_ammo_capacity = 1 // additional shot in the butt
+	max_ammo_capacity = 2 // additional shot in the butt
 	jam_frequency_reload = 2 // a little more jammy
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	name_addition = "sturdy"
 	icon_state = "nt_blue"
-	overlay_x = -2
+	overlay_x = 0
 	overlay_y = 1
 
 /obj/item/gun_parts/stock/NT/arm_brace
@@ -464,7 +486,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	name_addition = "capable"
 	icon_state = "nt_wire"
-	//overlay_x = -19
+	overlay_x = -12
+
 
 /obj/item/gun_parts/stock/foss
 	name = "\improper FOSS laser stock"
@@ -477,7 +500,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "agile"
 	icon = 'icons/obj/items/modular_guns/fossgun.dmi'
 	icon_state = "stock_single"
-	//overlay_x = -20
+
 
 /obj/item/gun_parts/stock/foss/long
 	name = "\improper FOSS laser rifle stock"
@@ -513,7 +536,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "un'impugnatura rivestita in cuoio toscano per un revolver di alta qualità"
 	spread_angle = 0
 	max_ammo_capacity = 1 // to make that revolver revolve!
-	jam_frequency_reload = 5 // a lot  more jammy!!
+	jam_frequency_reload = 3 // a lot  more jammy!!
 	part_DRM = GUN_NANO | GUN_ITALIAN | GUN_SOVIET
 	icon = 'icons/obj/items/modular_guns/grips.dmi'
 	icon_state = "it_plain"
@@ -524,7 +547,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "un'impugnatura rivestita in cuoio toscano per un revolver di alta qualità"
 	spread_angle = -1
 	max_ammo_capacity = 3 // to make that revolver revolve!
-	jam_frequency_reload = 9 // a lot  more jammy!!
+	jam_frequency_reload = 6 // a lot  more jammy!!
 	part_DRM = GUN_ITALIAN | GUN_SOVIET
 	icon_state = "it_fancy"
 	name_addition = "jovial"
@@ -537,6 +560,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon = 'icons/obj/items/modular_guns/grips.dmi'
 	icon_state = "white"
 	name_addition = "strapped"
+	overlay_y = -4
 
 	stub
 		name = "da stub"

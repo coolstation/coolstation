@@ -15,6 +15,9 @@ ABSTRACT_TYPE(/datum/transit_stop/elevator)
 	/// The vehicle_id currently parked here.
 	/// if the platform of the elevator or the shuttle starts here, copy it's ID here.
 	var/current_occupant
+	// any additional procs to call on landing at this stop? sure!
+	proc/on_arrival()
+		return
 
 ABSTRACT_TYPE(/datum/transit_vehicle)
 /datum/transit_vehicle

@@ -252,15 +252,6 @@
 	icon_state = "gehenna_tile"
 	},
 /area/space)
-"ajO" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 4
-	},
-/obj/machinery/light/small/floor/yellow,
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "ajS" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/machinery/light/fluorescent/ceiling,
@@ -280,6 +271,7 @@
 	dir = 8;
 	target_z = 3
 	},
+/obj/grille/catwalk/jen,
 /turf/simulated/floor/plating{
 	icon_old = "fullblue"
 	},
@@ -290,6 +282,17 @@
 	icon_state = "plating_dusty1"
 	},
 /area/space)
+"ala" = (
+/obj/disposalpipe/segment/bent/south,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9;
+	icon_state = "xtra_bigstripe-edge"
+	},
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "alg" = (
 /obj/table/wood/auto,
 /obj/shrub{
@@ -308,7 +311,10 @@
 	},
 /area/listeningpost)
 "alm" = (
-/obj/machinery/atmospherics/pipe/simple/overfloor,
+/obj/machinery/power/apc/autoname_east,
+/obj/cable{
+	icon_state = "0-8"
+	},
 /turf/simulated/floor/plating{
 	icon_old = "fullblue"
 	},
@@ -347,6 +353,14 @@
 /obj/rack,
 /turf/simulated/floor,
 /area/station/security/main)
+"anv" = (
+/turf/simulated/floor/stairs/wide{
+	dir = 8
+	},
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "anD" = (
 /obj/machinery/door/airlock/glass/command,
 /obj/disposalpipe/segment/brig,
@@ -354,6 +368,7 @@
 	pixel_y = 10
 	},
 /obj/access_spawn/heads,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/darkblue,
 /area/station/bridge)
 "anK" = (
@@ -510,6 +525,13 @@
 	icon_old = "fullblue"
 	},
 /area/station/maintenance/inner/ne)
+"asU" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/red,
+/area/station/security/secwing)
 "atw" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable{
@@ -536,6 +558,10 @@
 /area/station/security/secoffquarters)
 "atL" = (
 /obj/disposalpipe/segment/bent/east,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor,
 /area/station/quartermaster/cargobay)
 "auj" = (
@@ -598,6 +624,19 @@
 	dir = 4
 	},
 /area/transit_vehicle/elevator/sec_top)
+"axc" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8;
+	tag = "icon-xtra_bigstripe-edge (WEST)"
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "axn" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -707,10 +746,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice/gunsmithing)
-"aBK" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/breathable,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "aBL" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/machinery/atmospherics/pipe/manifold/west,
@@ -794,6 +829,11 @@
 /obj/decal/poster/wallsign/escape_right,
 /turf/simulated/wall/r_wall,
 /area/space)
+"aEh" = (
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "aFF" = (
 /obj/table/auto,
 /obj/towelbin,
@@ -1112,10 +1152,13 @@
 	},
 /area/station/medical/maintenance)
 "aQr" = (
-/turf/space/gehenna/desert/plating{
-	dir = 4;
-	icon_state = "gehenna_tile"
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8
 	},
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -1161,15 +1204,6 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/medical/medbay)
-"aRr" = (
-/obj/machinery/light/fluorescent/auto/yellow,
-/turf/space/gehenna/desert/plating{
-	dir = 4;
-	icon_state = "gehenna_tile"
-	},
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "aRx" = (
 /obj/cable{
 	d1 = 1;
@@ -1242,6 +1276,16 @@
 	},
 /turf/simulated/floor/black,
 /area/station/quartermaster/storage)
+"aUA" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/obj/machinery/light/small/floor/yellow,
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "aVR" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/cable{
@@ -1299,6 +1343,15 @@
 	dir = 8
 	},
 /area/station/bridge/customs)
+"aXv" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "aXF" = (
 /obj/table/reinforced/auto,
 /obj/cable{
@@ -1452,13 +1505,12 @@
 /area/station/quartermaster/cargooffice/storefront)
 "bgl" = (
 /obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/industrial,
 /area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
+	icon_state = "quart";
+	name = "Cargo Bay"
 	})
 "bhd" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -1580,6 +1632,14 @@
 	},
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/lobby)
+"bms" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 8
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "bmv" = (
 /obj/decal/tile_edge/stripe,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -1708,9 +1768,13 @@
 /turf/simulated/floor/engine,
 /area/station/engine/core)
 "bsW" = (
+/obj/cable{
+	icon_state = "1-8"
+	},
 /turf/simulated/floor/industrial,
 /area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
+	icon_state = "quart";
+	name = "Cargo Bay"
 	})
 "buk" = (
 /obj/cable{
@@ -1831,18 +1895,6 @@
 /obj/disposalpipe/segment/bent/east,
 /turf/simulated/floor,
 /area/station/security/main)
-"byp" = (
-/obj/machinery/door/airlock/pyro/external,
-/obj/forcefield/energyshield/perma,
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "byu" = (
 /obj/disposalpipe/trunk{
 	dir = 1
@@ -1960,6 +2012,7 @@
 /obj/machinery/door/airlock/glass/command,
 /obj/disposalpipe/segment/vertical,
 /obj/access_spawn/heads,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
 /area/station/bridge)
 "bDS" = (
@@ -1996,15 +2049,6 @@
 	},
 /turf/simulated/floor,
 /area/station/engine/engineering)
-"bEs" = (
-/obj/machinery/atmospherics/pipe/simple/overfloor,
-/turf/space/gehenna/desert/plating{
-	dir = 4;
-	icon_state = "gehenna_tile"
-	},
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "bEA" = (
 /obj/machinery/atmospherics/pipe/tank/carbon_dioxide{
 	dir = 8;
@@ -2025,14 +2069,16 @@
 	},
 /area/station/engine/monitoring)
 "bEV" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8
+	},
 /obj/machinery/light/fluorescent/auto/yellow{
 	dir = 4
 	},
-/turf/space/gehenna/desert{
-	dir = 8;
-	icon_state = "gehenna"
-	},
-/area/space)
+/turf/simulated/floor/black,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "bEX" = (
 /obj/table/auto,
 /turf/simulated/floor/blueblack,
@@ -2130,6 +2176,15 @@
 	icon_old = "fullblue"
 	},
 /area/station/maintenance/inner/north)
+"bJF" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "bKo" = (
 /obj/machinery/door/airlock,
 /obj/cable{
@@ -2219,16 +2274,8 @@
 /turf/simulated/floor/carpet/blue/standard/edge/south,
 /area/station/medical/medbay/lobby)
 "bMH" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 10;
-	icon_state = "xtra_bigstripe-corner2"
-	},
-/obj/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "1-6"
-	},
-/turf/simulated/floor/industrial,
+/obj/forcefield/energyshield/perma,
+/turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -2349,12 +2396,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/floor/grey,
 /area/station/hangar/catering)
-"bSe" = (
-/obj/machinery/atmospherics/pipe/vent/west,
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "bSo" = (
 /obj/machinery/light/fluorescent{
 	dir = 1
@@ -2421,9 +2462,7 @@
 /area/space)
 "bTO" = (
 /obj/disposalpipe/segment/brig,
-/turf/simulated/floor/plating{
-	icon_old = "fullblue"
-	},
+/turf/simulated/floor/industrial,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -2470,13 +2509,16 @@
 	},
 /area/station/hangar/escape)
 "bWl" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9;
+	icon_state = "xtra_bigstripe-corner2"
+	},
 /obj/cable{
-	icon_state = "4-8"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/turf/space/gehenna/desert/plating{
-	dir = 4;
-	icon_state = "gehenna_tile"
-	},
+/turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -2544,6 +2586,13 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor/black,
 /area/station/quartermaster/storage)
+"bYK" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor,
+/area/station/security/secoffquarters)
 "bYL" = (
 /obj/machinery/light/small/floor/harsh,
 /obj/disposalpipe/segment/mail/vertical,
@@ -2614,10 +2663,14 @@
 /turf/simulated/floor/grey,
 /area/station/hangar/engine)
 "caT" = (
-/obj/decal/poster/wallsign/stencil/left/m,
-/obj/decal/poster/wallsign/stencil/right/p,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "cby" = (
 /obj/stool/chair{
 	dir = 8
@@ -2852,6 +2905,19 @@
 /obj/random_item_spawner/junk/one_or_zero,
 /turf/simulated/floor,
 /area/listeningpost)
+"cju" = (
+/obj/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal,
+/obj/machinery/light/fluorescent/auto/cool{
+	dir = 4
+	},
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "cjz" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -3090,6 +3156,13 @@
 	},
 /turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice)
+"crv" = (
+/obj/table/reinforced/auto,
+/obj/machinery/microwave{
+	pixel_y = 4
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/storefront)
 "csh" = (
 /obj/wingrille_spawn,
 /turf/simulated/floor/plating{
@@ -3097,13 +3170,13 @@
 	},
 /area/station/medical/medbay/treatment1)
 "csj" = (
-/obj/disposalpipe/segment/food,
 /obj/table/reinforced/auto,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 0;
 	name = "autoname - SS13"
 	},
+/obj/disposalpipe/segment/brig,
 /turf/simulated/floor/black,
 /area/station/security/secoffquarters)
 "cst" = (
@@ -3119,6 +3192,13 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/hangar/medical)
+"csX" = (
+/turf/simulated/floor/stairs/wide{
+	dir = 1
+	},
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "csZ" = (
 /obj/cable{
 	d1 = 4;
@@ -3138,6 +3218,9 @@
 /area/station/engine/engineering)
 "cto" = (
 /obj/machinery/light/small/floor,
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
 "ctF" = (
@@ -3152,13 +3235,6 @@
 /obj/disposalpipe/segment/morgue,
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/treatment)
-"cub" = (
-/obj/decal/tile_edge/floorguide/ladder{
-	dir = 8
-	},
-/obj/decal/tile_edge/floorguide/evac,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice/gunsmithing)
 "cuo" = (
 /turf/simulated/wall,
 /area/station/medical/head)
@@ -3188,8 +3264,8 @@
 /turf/simulated/wall,
 /area/station/medical/medbay/cloner)
 "cwo" = (
-/obj/disposalpipe/segment/food,
 /obj/wingrille_spawn,
+/obj/disposalpipe/segment/brig,
 /turf/simulated/floor/plating{
 	icon_old = "fullblue"
 	},
@@ -3216,12 +3292,6 @@
 	icon_old = "fullblue"
 	},
 /area/station/engine/engineering)
-"cxK" = (
-/obj/ladder/auto,
-/turf/simulated/floor/black,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "cxN" = (
 /obj/decal/poster/wallsign/escape_right,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
@@ -3286,16 +3356,6 @@
 /obj/table/wood/auto,
 /turf/simulated/floor,
 /area/station/bridge)
-"czg" = (
-/obj/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "4-9"
-	},
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "czn" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/north,
 /turf/simulated/floor,
@@ -3478,10 +3538,12 @@
 	},
 /area/station/engine/core)
 "cFC" = (
-/turf/simulated/floor{
-	icon_state = "clown_carpet"
-	},
-/area/supply/sell_point)
+/obj/table/reinforced/auto,
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "cFS" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -3689,6 +3751,15 @@
 /obj/disposalpipe/segment/bent/west,
 /turf/simulated/floor,
 /area/station/crew_quarters/arcade/dungeon)
+"cLy" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "cMp" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 6
@@ -4017,19 +4088,6 @@
 	icon_old = "fullblue"
 	},
 /area/station/engine/engineering)
-"dei" = (
-/obj/machinery/door/poddoor/pyro{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "gunsmith";
-	name = "Store Lockdown Doors";
-	opacity = 0
-	},
-/obj/machinery/door/airlock/maintenance,
-/obj/access_spawn/maint,
-/turf/simulated/floor/grey,
-/area/station/quartermaster/cargooffice/gunsmithing)
 "deC" = (
 /obj/decal/poster/wallsign/escape_right,
 /turf/simulated/wall/r_wall,
@@ -4374,6 +4432,15 @@
 /obj/access_spawn/syndie_shuttle,
 /turf/simulated/floor,
 /area/listeningpost)
+"dmN" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "dmZ" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -4472,6 +4539,7 @@
 /obj/cable/blue{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/darkblue,
 /area/station/bridge)
 "dph" = (
@@ -4484,12 +4552,6 @@
 	},
 /turf/simulated/floor/industrial,
 /area/station/hangar/escape)
-"dpx" = (
-/obj/machinery/conveyor/south{
-	operating = 1
-	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "dpG" = (
 /obj/decal/poster/wallsign/medbay_left,
 /turf/simulated/wall,
@@ -4505,6 +4567,18 @@
 /obj/machinery/light_switch/north,
 /turf/simulated/floor,
 /area/station/security/checkpoint/cargo)
+"dqc" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/black,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "dqE" = (
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -4745,15 +4819,6 @@
 	icon_state = "plating_dusty2"
 	},
 /area/space)
-"dBp" = (
-/obj/machinery/atmospherics/pipe/simple/overfloor/northwest,
-/turf/space/gehenna/desert/plating{
-	dir = 4;
-	icon_state = "gehenna_tile"
-	},
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "dBz" = (
 /obj/grille/catwalk/jen/side{
 	dir = 6
@@ -4779,15 +4844,6 @@
 	},
 /turf/simulated/floor/industrial,
 /area/station/mining/dock)
-"dCX" = (
-/obj/storage/cart,
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 1
-	},
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "dDI" = (
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/atmospherics/pipe/vertical_pipe/east{
@@ -4967,7 +5023,7 @@
 /turf/simulated/floor/grey,
 /area/station/bridge/conference)
 "dKP" = (
-/obj/disposalpipe/segment/food,
+/obj/disposalpipe/segment/brig,
 /obj/cable{
 	d1 = 4;
 	d2 = 8;
@@ -4982,6 +5038,13 @@
 /obj/machinery/manufacturer/personnel,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice)
+"dLv" = (
+/turf/simulated/floor/stairs/wide/other{
+	dir = 1
+	},
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "dLG" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/southeast,
 /obj/disposalpipe/segment/bent/east,
@@ -5224,6 +5287,13 @@
 	icon_old = "fullblue"
 	},
 /area/station/maintenance/inner/ne)
+"dYb" = (
+/obj/machinery/door/firedoor/border_only,
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "dYr" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /obj/cable{
@@ -5272,15 +5342,6 @@
 	dir = 1
 	},
 /area/transit_vehicle/elevator/com_top)
-"eaH" = (
-/obj/machinery/atmospherics/pipe/simple/overfloor/horizontal,
-/turf/space/gehenna/desert/plating{
-	dir = 4;
-	icon_state = "gehenna_tile"
-	},
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "eaS" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -5329,6 +5390,16 @@
 	icon_old = "fullblue"
 	},
 /area/listeningpost)
+"ebP" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "ece" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/cable{
@@ -5338,6 +5409,16 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
+"ech" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "ecp" = (
 /obj/table/auto,
 /turf/simulated/floor/sanitary/white,
@@ -5368,10 +5449,11 @@
 /turf/simulated/floor/shuttlebay,
 /area/station/hangar/medical)
 "edU" = (
-/obj/storage/cart,
-/turf/simulated/floor/plating{
-	icon_old = "fullblue"
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6;
+	icon_state = "xtra_bigstripe-corner2"
 	},
+/turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -5471,6 +5553,14 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice)
+"ehM" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 8
+	},
+/obj/decal/tile_edge/floorguide/evac,
+/turf/simulated/floor/grey,
+/area/station/bridge)
 "ehN" = (
 /obj/machinery/manufacturer/mining,
 /turf/simulated/floor/industrial,
@@ -5480,10 +5570,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/glass,
+/obj/access_spawn/hangar,
 /turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
+/area/station/mining/dock)
 "ejk" = (
 /obj/machinery/light/small/warm,
 /turf/simulated/floor/black,
@@ -5539,6 +5628,14 @@
 /obj/item/robodefibrillator,
 /turf/simulated/floor,
 /area/station/medical/medbay/treatment1)
+"ekI" = (
+/obj/machinery/vehicle/pod_smooth/industrial,
+/obj/access_spawn/hangar,
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "ekQ" = (
 /obj/machinery/door/unpowered/wood/pyro{
 	dir = 4
@@ -5559,6 +5656,20 @@
 /obj/cabinet,
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/treatment)
+"elm" = (
+/obj/decal/tile_edge/stripe{
+	dir = 1
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/black,
+/area/station/quartermaster/cargooffice)
 "elr" = (
 /obj/decal/cleanable/dirt/mars,
 /turf/simulated/floor/plating{
@@ -5805,12 +5916,6 @@
 /obj/item/decoration/ashtray,
 /turf/simulated/floor,
 /area/station/crew_quarters/arcade/dungeon)
-"etR" = (
-/obj/disposalpipe/segment/brig,
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "euw" = (
 /obj/table/reinforced/auto,
 /obj/disposalpipe/segment/horizontal,
@@ -5821,8 +5926,20 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/sec_foyer)
+"euy" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 5
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "euZ" = (
 /obj/ladder/auto,
 /turf/simulated/floor/yellow,
@@ -5855,15 +5972,6 @@
 "evG" = (
 /turf/simulated/wall/r_wall,
 /area/station/security/checkpoint/customs)
-"evK" = (
-/obj/item/paper{
-	info = "<h1> What the fuck is this?</h1><br> Simple, it's a fucking conveyor belt that leads acoss a plastic flap and onto a magical carpet that wisks your product away to an unscrupulpous buyer. <br><br> <i> did you test it? </i>  <br> absolutely the fuck not. I hope it works but if not, too bad. Eventually this will be replaced by a shuttle you can sell shit on. for now, just deal with magic. " ;
-	name = "F.A.Q.";
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "evP" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /obj/grille/catwalk/grey{
@@ -5881,6 +5989,16 @@
 "ewG" = (
 /turf/simulated/wall,
 /area/station/engine/engineering)
+"exg" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/vertical,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "exh" = (
 /obj/cable{
 	d2 = 8;
@@ -6009,6 +6127,7 @@
 /obj/machinery/light/fluorescent/red{
 	dir = 1
 	},
+/obj/grille/catwalk/jen,
 /turf/simulated/floor/plating{
 	icon_old = "fullblue"
 	},
@@ -6079,12 +6198,6 @@
 	},
 /turf/simulated/floor,
 /area/station/engine/engineering)
-"eFi" = (
-/obj/disposalpipe/segment/bent/south,
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "eFp" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -6094,6 +6207,13 @@
 	},
 /turf/simulated/floor/industrial,
 /area/station/hangar/escape)
+"eFC" = (
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 8
+	},
+/obj/decal/tile_edge/floorguide/evac,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/gunsmithing)
 "eFV" = (
 /obj/disposalpipe/segment/bent/west,
 /obj/cable/blue{
@@ -6164,6 +6284,10 @@
 "eHe" = (
 /obj/cable/blue{
 	icon_state = "1-2"
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
 	},
 /turf/simulated/floor/darkblue,
 /area/station/bridge/conference)
@@ -6335,6 +6459,16 @@
 	},
 /turf/simulated/floor,
 /area/station/bridge/customs)
+"eNe" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9;
+	icon_state = "xtra_bigstripe-edge"
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "eNk" = (
 /obj/table/reinforced/auto,
 /obj/machinery/light/fluorescent/cool/very{
@@ -6583,6 +6717,13 @@
 /obj/disposalpipe/segment/vertical,
 /turf/simulated/floor/specialroom/freezer,
 /area/station/medical/morgue)
+"eUs" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "eUt" = (
 /obj/disposalpipe/segment/cargo{
 	dir = 4
@@ -6642,6 +6783,9 @@
 /obj/machinery/light/fluorescent/warm{
 	dir = 4
 	},
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
 /turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice/gunsmithing)
 "eXN" = (
@@ -6678,6 +6822,10 @@
 	dir = 1
 	},
 /area/listeningpost)
+"eZp" = (
+/obj/item/gun_exploder,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/gunsmithing)
 "eZA" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -6781,17 +6929,6 @@
 	dir = 1
 	},
 /area/station/medical/medbay/treatment)
-"fcp" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 1
-	},
-/obj/machinery/light/fluorescent/auto/yellow{
-	dir = 4
-	},
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "fcq" = (
 /obj/tree1,
 /turf/simulated/floor/grass/leafy,
@@ -6870,10 +7007,7 @@
 /area/station/security/secoffquarters)
 "ffO" = (
 /obj/decal/tile_edge/stripe/extra_big,
-/obj/machinery/light/fluorescent/auto/yellow{
-	dir = 8
-	},
-/turf/simulated/floor/industrial,
+/turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -6951,6 +7085,7 @@
 /area/station/security/brig/south_side)
 "fkc" = (
 /obj/disposalpipe/segment/bent/north,
+/obj/grille/catwalk/jen,
 /turf/simulated/floor/plating{
 	icon_old = "fullblue"
 	},
@@ -7005,6 +7140,17 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice)
+"flK" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "flM" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /turf/simulated/floor,
@@ -7359,6 +7505,9 @@
 "fvD" = (
 /obj/table/reinforced/auto,
 /obj/machinery/cashreg,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/sec_foyer)
 "fvG" = (
@@ -7373,6 +7522,15 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/floor/engine,
 /area/station/engine/core)
+"fvS" = (
+/obj/disposalpipe/segment/horizontal,
+/turf/simulated/floor/stairs/wide{
+	dir = 4
+	},
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "fwc" = (
 /turf/simulated/wall/r_wall,
 /area/station/engine/engineering/breakroom)
@@ -7453,7 +7611,7 @@
 /turf/simulated/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
 "fzo" = (
-/obj/disposalpipe/segment/food,
+/obj/disposalpipe/segment/brig,
 /turf/simulated/wall,
 /area/station/security/secoffquarters)
 "fzS" = (
@@ -7591,7 +7749,7 @@
 /turf/simulated/floor,
 /area/station/bridge)
 "fFi" = (
-/obj/disposalpipe/segment/food{
+/obj/disposalpipe/segment/brig{
 	dir = 4
 	},
 /turf/simulated/wall,
@@ -7600,9 +7758,7 @@
 /obj/disposalpipe/segment/brig{
 	dir = 4
 	},
-/turf/simulated/floor/plating{
-	icon_old = "fullblue"
-	},
+/turf/simulated/floor/industrial,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -7724,7 +7880,7 @@
 /turf/simulated/floor/yellowblack,
 /area/station/engine/core)
 "fJp" = (
-/obj/disposalpipe/segment/food,
+/obj/disposalpipe/segment/brig,
 /turf/simulated/floor/black,
 /area/station/security/secoffquarters)
 "fJx" = (
@@ -7755,13 +7911,6 @@
 	icon_state = "gehenna_tile"
 	},
 /area/space)
-"fKh" = (
-/obj/machinery/door/airlock/glass,
-/obj/access_spawn/cargo,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "fKC" = (
 /obj/machinery/light/fluorescent/cool/very,
 /turf/simulated/floor/black,
@@ -7995,11 +8144,16 @@
 /turf/simulated/floor/carpet/blue/standard/edge/east,
 /area/station/medical/medbay/lobby)
 "fVl" = (
-/obj/machinery/light/fluorescent/cool/very{
-	dir = 4
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9;
+	icon_state = "xtra_bigstripe-corner2"
 	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
+/obj/disposalpipe/segment/vertical,
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "fVt" = (
 /obj/machinery/light/fluorescent/cool/very,
 /obj/ladder/auto,
@@ -8079,6 +8233,17 @@
 	},
 /turf/simulated/floor/white/grime,
 /area/station/wc/sec)
+"fXN" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 5;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/obj/disposalpipe/segment/vertical,
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "fYk" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/horizontal,
 /turf/simulated/floor/plating{
@@ -8328,13 +8493,6 @@
 	},
 /turf/simulated/floor/specialroom/freezer,
 /area/station/medical/morgue)
-"gjH" = (
-/obj/machinery/light/fluorescent/cool/very{
-	dir = 8
-	},
-/obj/disposalpipe/segment/vertical,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "gki" = (
 /obj/machinery/vending/snack,
 /turf/simulated/floor,
@@ -8575,6 +8733,12 @@
 	},
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
+"gvK" = (
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/turf/simulated/floor/darkblue/checker,
+/area/station/bridge/customs)
 "gvU" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/stool/chair{
@@ -8662,16 +8826,6 @@
 /obj/filing_cabinet,
 /turf/simulated/floor/red,
 /area/station/security/checkpoint/sec_foyer)
-"gzI" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 8;
-	tag = "icon-xtra_bigstripe-edge (WEST)"
-	},
-/obj/machinery/light/small/floor/yellow,
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "gzX" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -8797,10 +8951,30 @@
 /turf/simulated/floor,
 /area/station/bridge)
 "gEw" = (
-/obj/decal/poster/wallsign/stencil/left/t,
-/obj/decal/poster/wallsign/stencil/right/e,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 5;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
+"gFX" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "gGh" = (
 /obj/disposalpipe/segment/food{
 	dir = 4
@@ -8862,6 +9036,17 @@
 	},
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/treatment)
+"gIz" = (
+/obj/machinery/power/apc/autoname_east,
+/obj/cable,
+/obj/machinery/light/fluorescent/auto/cool{
+	dir = 4
+	},
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "gIB" = (
 /obj/disposalpipe/trunk/mail/north,
 /obj/machinery/disposal/mail/autoname/kitchen,
@@ -9022,16 +9207,10 @@
 	},
 /area/station/medical/maintenance)
 "gOc" = (
-/obj/forcefield/energyshield/perma,
-/obj/machinery/door/airlock/pyro/external,
 /obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	icon_state = "2-5"
 	},
-/turf/simulated/floor/plating{
-	icon_old = "fullblue"
-	},
+/turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -9057,12 +9236,6 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor,
 /area/station/security/main)
-"gQn" = (
-/obj/disposalpipe/segment/bent/east,
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "gQM" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/simulated/floor,
@@ -9272,6 +9445,10 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/red,
 /area/station/security/checkpoint/sec_foyer)
 "gXZ" = (
@@ -9291,13 +9468,7 @@
 /turf/simulated/floor,
 /area/station/quartermaster/storage)
 "gYL" = (
-/obj/machinery/light/fluorescent/cool/very{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/overfloor,
-/turf/simulated/floor/plating{
-	icon_old = "fullblue"
-	},
+/turf/simulated/floor/stairs/wide/other,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -9503,6 +9674,10 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
 	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor,
 /area/station/bridge)
 "hfv" = (
@@ -9609,6 +9784,17 @@
 	icon_old = "fullblue"
 	},
 /area/station/engine/engineering)
+"hjz" = (
+/obj/decal/tile_edge/floorguide/evac{
+	dir = 4
+	},
+/obj/decal/tile_edge/floorguide/arrow_s{
+	dir = 1
+	},
+/turf/simulated/wall/r_wall,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "hjH" = (
 /obj/table/auto,
 /obj/machinery/light/fluorescent,
@@ -9820,6 +10006,10 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/customs)
 "hsn" = (
@@ -9907,18 +10097,14 @@
 /turf/simulated/floor/engine,
 /area/station/engine/core)
 "hvN" = (
-/obj/decal/poster/wallsign/stencil/right/e,
-/obj/decal/poster/wallsign/stencil/left/s,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
-"hvQ" = (
 /obj/decal/tile_edge/stripe/extra_big{
-	dir = 8;
-	tag = "icon-xtra_bigstripe-edge (WEST)"
+	dir = 4
 	},
-/turf/simulated/floor/industrial,
+/obj/disposalpipe/segment/horizontal,
+/turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
+	icon_state = "quart";
+	name = "Cargo Bay"
 	})
 "hvW" = (
 /obj/disposalpipe/segment/cargo{
@@ -9947,11 +10133,12 @@
 /area/station/bridge)
 "hwt" = (
 /obj/cable{
-	icon_state = "4-8"
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/industrial,
 /area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
+	icon_state = "quart";
+	name = "Cargo Bay"
 	})
 "hww" = (
 /obj/cable{
@@ -9991,14 +10178,6 @@
 "hyl" = (
 /turf/simulated/wall/r_wall,
 /area/station/quartermaster/cargooffice)
-"hym" = (
-/obj/disposalpipe/segment/brig,
-/turf/simulated/floor/stairs/wide{
-	dir = 1
-	},
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "hyA" = (
 /obj/decal/poster/wallsign/medbay,
 /turf/simulated/wall/r_wall,
@@ -10033,8 +10212,16 @@
 "hyM" = (
 /obj/machinery/door/airlock/glass,
 /obj/access_spawn/cargo,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "hyN" = (
 /obj/disposalpipe/segment/food{
 	dir = 4
@@ -10158,6 +10345,7 @@
 /area/station/medical/crematorium)
 "hCX" = (
 /obj/disposalpipe/junction/left/east,
+/obj/grille/catwalk/jen,
 /turf/simulated/floor/plating{
 	icon_old = "fullblue"
 	},
@@ -10190,13 +10378,6 @@
 	icon_old = "fullblue"
 	},
 /area/station/bridge/conference)
-"hFP" = (
-/obj/table/reinforced/auto,
-/obj/machinery/microwave{
-	pixel_y = 4
-	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice/storefront)
 "hGk" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northeast,
 /turf/simulated/floor/white,
@@ -10233,12 +10414,12 @@
 	},
 /area/station/medical/maintenance)
 "hHc" = (
-/obj/plasticflaps,
-/obj/machinery/conveyor/south{
-	operating = 1
-	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
+/obj/access_spawn/hangar,
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "hHx" = (
 /obj/machinery/light/fluorescent{
 	dir = 8
@@ -10294,10 +10475,6 @@
 /obj/table/reinforced/auto,
 /turf/simulated/floor/grey,
 /area/station/security/equipment)
-"hIu" = (
-/obj/item/gun_exploder,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice/gunsmithing)
 "hIT" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -10446,6 +10623,17 @@
 	},
 /turf/simulated/floor,
 /area/station/security/main)
+"hQo" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8;
+	tag = "icon-xtra_bigstripe-edge (WEST)"
+	},
+/obj/machinery/light/small/floor/yellow,
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "hQD" = (
 /obj/table/auto,
 /obj/machinery/light/fluorescent{
@@ -10471,12 +10659,14 @@
 	},
 /area/station/security/brig/north_side)
 "hRG" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10;
+	icon_state = "xtra_bigstripe-corner2"
 	},
-/obj/access_spawn/hangar,
-/turf/simulated/floor/shuttlebay,
-/area/station/quartermaster/cargobay)
+/turf/simulated/floor/black,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "hRP" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
@@ -10649,11 +10839,6 @@
 /obj/machinery/sleeper/port_a_medbay,
 /turf/simulated/floor/blueblack,
 /area/station/medical/medbay/surgery/storage)
-"iaK" = (
-/turf/simulated/floor/stairs/wide,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "iaR" = (
 /obj/decal/tile_edge/stripe{
 	dir = 1
@@ -10711,6 +10896,16 @@
 	dir = 10
 	},
 /area/listeningpost)
+"idj" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "idD" = (
 /obj/machinery/firealarm{
 	pixel_y = 24
@@ -10775,6 +10970,12 @@
 	},
 /turf/simulated/floor,
 /area/station/engine/engineering/breakroom)
+"ifY" = (
+/obj/wingrille_spawn/reinforced,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
+/area/station/quartermaster/cargooffice/storefront)
 "igb" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	can_rupture = 0
@@ -10789,15 +10990,13 @@
 /turf/simulated/floor/engine,
 /area/station/engine/core)
 "ige" = (
-/obj/disposalpipe/segment/vertical,
-/obj/decal/tile_edge/floorguide/ladder{
-	dir = 1
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
 	},
-/obj/decal/tile_edge/floorguide/evac{
-	dir = 8
-	},
-/turf/simulated/floor/darkblue,
-/area/station/bridge/conference)
+/turf/simulated/floor/black,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "ign" = (
 /obj/disposalpipe/segment/cargo{
 	dir = 4
@@ -11330,17 +11529,6 @@
 	},
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
-"iCd" = (
-/obj/cable{
-	icon_state = "1-8"
-	},
-/obj/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "iCi" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -11571,14 +11759,6 @@
 	},
 /turf/simulated/floor,
 /area/station/quartermaster/cargobay)
-"iKB" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 1
-	},
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "iKE" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -11645,17 +11825,6 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice/gunsmithing)
-"iMN" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/landmark/gps_waypoint,
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "iNx" = (
 /turf/simulated/floor/plating/gehenna,
 /area/listeningpost)
@@ -11726,6 +11895,12 @@
 	},
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/customs)
+"iQC" = (
+/obj/decal/cleanable/dirt/random,
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "iQH" = (
 /obj/wingrille_spawn/crystal,
 /turf/simulated/floor/plating{
@@ -11973,14 +12148,6 @@
 	icon_old = "fullblue"
 	},
 /area/station/maintenance/inner/north)
-"jbx" = (
-/obj/machinery/light/fluorescent/cool/very{
-	dir = 8
-	},
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "jby" = (
 /obj/ladder/auto,
 /turf/simulated/floor/yellow,
@@ -12066,9 +12233,20 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
 	},
-/obj/disposalpipe/segment/food,
+/obj/disposalpipe/segment/brig,
 /turf/simulated/floor/black,
 /area/station/security/secoffquarters)
+"jfl" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8;
+	tag = "icon-xtra_bigstripe-edge (WEST)"
+	},
+/obj/disposalpipe/segment/vertical,
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "jfm" = (
 /obj/machinery/atmospherics/portables_connector/east,
 /obj/cable{
@@ -12109,6 +12287,16 @@
 	},
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/customs)
+"jhi" = (
+/obj/machinery/manufacturer/hangar,
+/obj/machinery/light/fluorescent/auto/cool{
+	dir = 8
+	},
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "jhC" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/wingrille_spawn/reinforced,
@@ -12256,7 +12444,10 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/access_spawn/cargo,
 /turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "jmj" = (
 /obj/cable{
 	d1 = 1;
@@ -12400,9 +12591,14 @@
 /turf/simulated/floor/carpet/blue/fancy/innercorner/omni,
 /area/station/bridge/customs)
 "jsA" = (
-/obj/decal/cleanable/blood/splatter,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
+/obj/machinery/light/fluorescent/auto/cool{
+	dir = 4
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "jsE" = (
 /obj/machinery/light/fluorescent/warm{
 	dir = 1
@@ -12454,14 +12650,6 @@
 	icon_old = "fullblue"
 	},
 /area/station/engine/engineering)
-"jxE" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 4
-	},
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "jxX" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -12554,6 +12742,17 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/farmers)
+"jAH" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 5;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/obj/machinery/light/fluorescent/auto/cool,
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "jAY" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 4
@@ -12597,9 +12796,8 @@
 /turf/simulated/floor,
 /area/station/engine/engineering/breakroom)
 "jCZ" = (
-/obj/access_spawn/hangar,
-/turf/simulated/floor/shuttlebay,
-/area/station/quartermaster/cargobay)
+/turf/simulated/floor/industrial,
+/area/shuttle/merchant_shuttle/left_station/cogmap)
 "jDi" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
@@ -13050,6 +13248,14 @@
 	},
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/sec_foyer)
+"jTv" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "jTM" = (
 /obj/cable{
 	d1 = 4;
@@ -13161,9 +13367,7 @@
 /area/station/medical/medbay)
 "jXl" = (
 /obj/disposalpipe/segment/bent/south,
-/turf/simulated/floor/plating{
-	icon_old = "fullblue"
-	},
+/turf/simulated/floor/industrial,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -13259,6 +13463,15 @@
 	},
 /turf/simulated/floor/shuttlebay,
 /area/station/bridge/customs)
+"kcf" = (
+/obj/machinery/light/fluorescent/auto/yellow{
+	dir = 8
+	},
+/turf/space/gehenna/desert{
+	dir = 8;
+	icon_state = "gehenna"
+	},
+/area/space)
 "kcg" = (
 /obj/disposalpipe/segment/brig{
 	dir = 4
@@ -13320,6 +13533,15 @@
 	},
 /turf/simulated/floor,
 /area/station/engine/engineering)
+"keI" = (
+/obj/storage/cart,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "keO" = (
 /obj/table/wood/auto,
 /turf/simulated/floor/carpet/grime,
@@ -13339,6 +13561,19 @@
 	},
 /turf/simulated/floor/industrial,
 /area/station/hangar/escape)
+"kfv" = (
+/obj/machinery/door/poddoor/pyro{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "gunsmith";
+	name = "Store Lockdown Doors";
+	opacity = 0
+	},
+/obj/machinery/door/airlock/maintenance,
+/obj/access_spawn/maint,
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/gunsmithing)
 "kfF" = (
 /obj/disposalpipe/segment/produce{
 	dir = 4
@@ -13355,6 +13590,12 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor/black,
 /area/station/quartermaster/storage)
+"kfL" = (
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/turf/simulated/floor/black,
+/area/station/chapel/sanctuary)
 "kgE" = (
 /obj/disposalpipe/segment/morgue,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -13438,19 +13679,6 @@
 /obj/access_spawn/security,
 /turf/simulated/floor/red/redblackchecker,
 /area/station/security/secwing)
-"kiU" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/space/gehenna/desert/plating{
-	dir = 4;
-	icon_state = "gehenna_tile"
-	},
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "kiZ" = (
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/vending/medical_public,
@@ -13686,17 +13914,6 @@
 	icon_state = "plating_dusty1"
 	},
 /area/space)
-"ktE" = (
-/obj/cable{
-	icon_state = "1-8"
-	},
-/turf/space/gehenna/desert/plating{
-	dir = 4;
-	icon_state = "gehenna_tile"
-	},
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "ktJ" = (
 /obj/machinery/light/fluorescent/red,
 /turf/space/gehenna/desert/plating{
@@ -14996,6 +15213,9 @@
 "lpk" = (
 /obj/table/reinforced/auto,
 /obj/disposalpipe/segment/horizontal,
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/simulated/floor/blueblack{
 	dir = 8
 	},
@@ -15029,6 +15249,7 @@
 /area/station/security/brig/north_side)
 "lpX" = (
 /obj/disposalpipe/segment/vertical,
+/obj/grille/catwalk/jen,
 /turf/simulated/floor/plating{
 	icon_old = "fullblue"
 	},
@@ -15394,6 +15615,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
 /turf/simulated/floor/blueblack{
 	dir = 8
 	},
@@ -15471,20 +15695,10 @@
 	},
 /area/station/engine/core)
 "lJc" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4
-	},
-/obj/machinery/vehicle/pod_smooth/industrial{
-	dir = 4
-	},
-/obj/access_spawn/hangar,
-/turf/simulated/floor/shuttlebay,
-/area/station/quartermaster/cargobay)
-"lJm" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
 	},
-/turf/simulated/floor/industrial,
+/turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -15523,6 +15737,15 @@
 	icon_old = "fullblue"
 	},
 /area/station/medical/robotics)
+"lKq" = (
+/obj/machinery/light/fluorescent/auto/yellow{
+	dir = 4
+	},
+/turf/space/gehenna/desert{
+	dir = 8;
+	icon_state = "gehenna"
+	},
+/area/space)
 "lKu" = (
 /obj/machinery/r_door_control/podbay/syndicate/new_walls/north,
 /obj/access_spawn/syndie_shuttle,
@@ -15559,6 +15782,15 @@
 	dir = 5
 	},
 /area/station/engine/monitoring)
+"lMn" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "lME" = (
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/plating{
@@ -15584,20 +15816,25 @@
 /obj/stool,
 /turf/simulated/floor,
 /area/station/security/secoffquarters)
-"lMX" = (
-/obj/machinery/door/airlock/glass,
-/obj/access_spawn/cargo,
-/obj/disposalpipe/segment/vertical,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "lNd" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/west,
 /turf/simulated/floor/red/checker{
 	dir = 8
 	},
 /area/station/engine/core)
+"lNf" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "lNI" = (
 /obj/machinery/door/unpowered/wood/pyro{
 	dir = 8
@@ -15665,6 +15902,17 @@
 	},
 /turf/simulated/floor/engine,
 /area/station/engine/core)
+"lPH" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/stairs/wide/other{
+	dir = 4
+	},
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "lPO" = (
 /obj/morgue,
 /turf/simulated/floor/specialroom/freezer,
@@ -15714,6 +15962,12 @@
 /obj/disposalpipe/segment/morgue,
 /turf/simulated/floor/white,
 /area/station/medical/medbay/cloner)
+"lSk" = (
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/turf/simulated/floor,
+/area/station/crew_quarters/arcade/dungeon)
 "lSE" = (
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice)
@@ -15852,6 +16106,17 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/medical/robotics)
+"mbY" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8;
+	tag = "icon-xtra_bigstripe-edge (WEST)"
+	},
+/obj/disposalpipe/segment/horizontal,
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "mcC" = (
 /turf/simulated/floor/shuttlebay,
 /area/station/bridge/customs)
@@ -16076,6 +16341,9 @@
 /area/station/mining/dock)
 "mou" = (
 /obj/stool/bench/auto,
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
 /turf/simulated/floor/carpet/red/standard/edge/north,
 /area/station/security/main)
 "moI" = (
@@ -16164,6 +16432,16 @@
 	},
 /turf/simulated/floor,
 /area/station/medical/medbay/treatment1)
+"msb" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "msy" = (
 /obj/machinery/light/fluorescent,
 /turf/space/gehenna/desert/plating{
@@ -16282,15 +16560,6 @@
 	icon_state = "gehenna_tile"
 	},
 /area/space)
-"myE" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 9;
-	name = "autoname - SS13";
-	tag = ""
-	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "myG" = (
 /obj/disposalpipe/trunk{
 	dir = 4
@@ -16394,6 +16663,16 @@
 	},
 /turf/simulated/floor/shuttlebay,
 /area/station/quartermaster/cargobay)
+"mEm" = (
+/obj/machinery/light/fluorescent/auto/cool{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "mEJ" = (
 /obj/submachine/seed_manipulator{
 	dir = 8
@@ -16787,18 +17066,6 @@
 	icon_old = "fullblue"
 	},
 /area/station/engine/core)
-"mXL" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 5;
-	icon_state = "xtra_bigstripe-corner2"
-	},
-/obj/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "mXR" = (
 /obj/machinery/door/airlock,
 /turf/simulated/floor/sanitary,
@@ -17066,15 +17333,6 @@
 "nfN" = (
 /turf/simulated/wall,
 /area/station/medical/robotics)
-"nfR" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 9;
-	icon_state = "xtra_bigstripe-corner2"
-	},
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "ngT" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -17165,6 +17423,16 @@
 	},
 /turf/simulated/floor/carpet/blue/standard/edge/se,
 /area/station/medical/research)
+"njJ" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/decal/tile_edge/stripe/extra_big,
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "njX" = (
 /obj/cable{
 	d2 = 2;
@@ -17235,13 +17503,16 @@
 	},
 /area/station/maintenance/inner/north)
 "nmJ" = (
-/obj/disposalpipe/segment/horizontal,
-/obj/decal/tile_edge/floorguide/ladder{
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/machinery/light/fluorescent/auto/yellow{
 	dir = 8
 	},
-/obj/decal/tile_edge/floorguide/evac,
-/turf/simulated/floor/grey,
-/area/station/bridge)
+/turf/simulated/floor/black,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "nnq" = (
 /obj/wingrille_spawn/crystal,
 /turf/simulated/floor/plating{
@@ -17481,11 +17752,11 @@
 /turf/simulated/floor/specialroom/freezer,
 /area/station/medical/crematorium)
 "nuL" = (
-/obj/decal/tile_edge/stripe/extra_big,
-/obj/machinery/light/fluorescent/auto/yellow{
-	dir = 4
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 5;
+	icon_state = "xtra_bigstripe-corner2"
 	},
-/turf/simulated/floor/industrial,
+/turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -17573,12 +17844,15 @@
 	},
 /turf/simulated/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
-"nzF" = (
-/obj/machinery/light/fluorescent/auto/yellow,
-/obj/machinery/atmospherics/pipe/simple/overfloor/horizontal,
+"nyY" = (
+/obj/machinery/light/fluorescent/auto/cool{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/industrial,
 /area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
+	icon_state = "quart";
+	name = "Cargo Bay"
 	})
 "nAa" = (
 /obj/disposalpipe/segment{
@@ -17608,15 +17882,13 @@
 /turf/simulated/floor,
 /area/station/quartermaster/cargobay)
 "nAS" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 1
-	},
-/obj/machinery/light/fluorescent/auto/yellow{
-	dir = 8
+/obj/cable{
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/industrial,
 /area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
+	icon_state = "quart";
+	name = "Cargo Bay"
 	})
 "nBb" = (
 /obj/disposalpipe/segment{
@@ -17732,6 +18004,16 @@
 "nGc" = (
 /turf/simulated/floor/green,
 /area/station/medical/research)
+"nGu" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8;
+	tag = "icon-xtra_bigstripe-edge (WEST)"
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "nGP" = (
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor,
@@ -17863,21 +18145,18 @@
 	},
 /turf/simulated/floor/industrial,
 /area/station/mining/dock)
-"nJG" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 1
-	},
-/obj/cable{
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "nJU" = (
 /obj/machinery/atmospherics/unary/vent_pump/east,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice)
+"nJZ" = (
+/obj/storage/cart,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "nKp" = (
 /turf/simulated/wall/r_wall,
 /area/listeningpost)
@@ -18231,10 +18510,37 @@
 	},
 /turf/simulated/floor/black,
 /area/station/chapel/sanctuary)
+"oaf" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "oah" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor/wood,
 /area/station/wc/medbay)
+"oau" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/light/fluorescent/auto/cool{
+	dir = 4
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "oaJ" = (
 /obj/stool/chair{
 	dir = 1
@@ -18280,12 +18586,29 @@
 	icon_old = "fullblue"
 	},
 /area/station/quartermaster/storage)
+"ocL" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor,
+/area/station/bridge)
 "odN" = (
 /obj/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating{
 	icon_old = "fullblue"
 	},
 /area/station/engine/engineering)
+"oeg" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 5;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "oem" = (
 /obj/disposalpipe/trunk{
 	dir = 1
@@ -18370,17 +18693,6 @@
 	},
 /turf/simulated/floor,
 /area/station/bridge/customs)
-"ofW" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 1
-	},
-/obj/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "ogv" = (
 /obj/machinery/light/fluorescent/ceiling,
 /turf/simulated/floor/shuttlebay,
@@ -18499,11 +18811,13 @@
 /turf/simulated/floor,
 /area/station/security/brig/cell_block_control)
 "ojg" = (
-/obj/machinery/atmospherics/pipe/simple/overfloor/southeast,
-/turf/space/gehenna/desert/plating{
-	dir = 4;
-	icon_state = "gehenna_tile"
+/obj/machinery/light/fluorescent/auto/yellow{
+	dir = 4
 	},
+/obj/cable{
+	icon_state = "1-10"
+	},
+/turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -18511,10 +18825,6 @@
 /obj/machinery/light/small/floor/harsh,
 /turf/simulated/floor/shuttlebay,
 /area/station/hangar/medical)
-"ojv" = (
-/obj/machinery/computer/barcode/qm/no_belthell,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "okc" = (
 /obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor/grey,
@@ -18658,6 +18968,13 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/medical/robotics)
+"oqt" = (
+/obj/disposalpipe/junction/middle/south,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "ord" = (
 /obj/machinery/firealarm{
 	pixel_y = 24
@@ -18680,6 +18997,7 @@
 /area/station/hangar/escape)
 "orD" = (
 /obj/wingrille_spawn/reinforced,
+/obj/cable,
 /turf/simulated/floor/plating{
 	icon_old = "fullblue"
 	},
@@ -18851,12 +19169,6 @@
 "oyF" = (
 /turf/simulated/floor/grime,
 /area/station/medical/maintenance)
-"oyU" = (
-/obj/machinery/atmospherics/pipe/simple/overfloor/southeast,
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "oyX" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
@@ -19116,6 +19428,16 @@
 "oHj" = (
 /turf/simulated/floor,
 /area/station/medical/medbay/treatment1)
+"oIq" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "oIK" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -19151,6 +19473,7 @@
 	dir = 4
 	},
 /obj/access_spawn/maint,
+/obj/grille/catwalk/jen,
 /turf/simulated/floor/plating{
 	icon_old = "fullblue"
 	},
@@ -19205,6 +19528,9 @@
 	},
 /turf/simulated/floor/black,
 /area/station/engine/engineering/ce)
+"oLr" = (
+/turf/simulated/floor/industrial,
+/area/shuttle/cargo/station)
 "oLQ" = (
 /obj/machinery/disposal/mail/autoname/engineering{
 	mail_tag = "Solar Tower";
@@ -19310,6 +19636,10 @@
 	dir = 1;
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
 	},
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice)
@@ -19430,6 +19760,7 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
+/obj/grille/catwalk/jen,
 /turf/simulated/floor/plating{
 	icon_old = "fullblue"
 	},
@@ -19448,10 +19779,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
 	},
-/obj/disposalpipe/trunk{
-	dir = 8
-	},
-/obj/machinery/disposal,
+/obj/table/reinforced/auto,
 /turf/simulated/floor,
 /area/station/security/main)
 "oTL" = (
@@ -19620,13 +19948,6 @@
 	},
 /turf/simulated/wall,
 /area/station/medical/medbay/treatment)
-"pfN" = (
-/obj/machinery/light/fluorescent/auto/yellow,
-/obj/disposalpipe/segment/horizontal,
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "pfV" = (
 /obj/disposalpipe/segment/sewage,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -19990,19 +20311,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/station/wc/medbay)
-"prQ" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 1
-	},
-/obj/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "6-8"
-	},
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "prR" = (
 /obj/cable{
 	icon_state = "2-5"
@@ -20164,16 +20472,19 @@
 /obj/item/reagent_containers/food/drinks/fueltank,
 /turf/simulated/floor/purplewhite/corner,
 /area/listeningpost)
-"pxB" = (
-/obj/machinery/atmospherics/pipe/simple/overfloor/horizontal,
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "pxD" = (
 /obj/disposalpipe/segment/food,
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/farmers)
+"pxI" = (
+/obj/machinery/door/firedoor/border_only,
+/turf/simulated/floor/stairs{
+	dir = 1
+	},
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "pyn" = (
 /obj/disposalpipe/segment/brig{
 	dir = 4
@@ -20201,9 +20512,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
-"pzu" = (
-/turf/simulated/wall,
-/area/station/quartermaster/cargooffice)
 "pAf" = (
 /obj/decal/cleanable/dirt/random,
 /turf/space/gehenna/desert/plating{
@@ -20612,13 +20920,10 @@
 	},
 /area/station/engine/core)
 "pQh" = (
-/obj/cable{
-	icon_state = "2-4"
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
 	},
-/turf/space/gehenna/desert/plating{
-	dir = 4;
-	icon_state = "gehenna_tile"
-	},
+/turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -20664,10 +20969,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/light_switch/west,
-/turf/simulated/floor/plating{
-	icon_old = "fullblue"
-	},
+/turf/simulated/floor/stairs/wide,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -20755,6 +21057,12 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
+"pTT" = (
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/storefront)
 "pUj" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
 /obj/disposalpipe/segment/mail/horizontal,
@@ -21135,6 +21443,16 @@
 /obj/railing/cyan,
 /turf/space/gehenna/desert/plating,
 /area/space)
+"qkr" = (
+/obj/disposalpipe/segment/vertical,
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 1
+	},
+/obj/decal/tile_edge/floorguide/evac{
+	dir = 8
+	},
+/turf/simulated/floor/darkblue,
+/area/station/bridge/conference)
 "qku" = (
 /obj/cable{
 	d1 = 4;
@@ -21298,22 +21616,11 @@
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
 "qqx" = (
-/obj/machinery/light/fluorescent/auto/yellow{
-	dir = 1
-	},
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
-"qqC" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 9;
 	icon_state = "xtra_bigstripe-corner2"
 	},
-/obj/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/industrial,
+/turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -21587,12 +21894,13 @@
 /turf/simulated/floor/white,
 /area/station/medical/medbay/pharmacy)
 "qzA" = (
-/obj/machinery/light/fluorescent/auto/yellow,
-/obj/machinery/atmospherics/pipe/simple/overfloor/horizontal,
-/turf/space/gehenna/desert/plating{
-	dir = 4;
-	icon_state = "gehenna_tile"
+/obj/machinery/door/airlock/pyro/external{
+	dir = 8
 	},
+/obj/forcefield/energyshield/perma{
+	dir = 4
+	},
+/turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -21622,6 +21930,16 @@
 	icon_old = "fullblue"
 	},
 /area/station/engine/engineering)
+"qAC" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "qAJ" = (
 /obj/machinery/disposal,
 /obj/disposalpipe/trunk,
@@ -22471,6 +22789,16 @@
 /obj/machinery/disposal,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice)
+"reC" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/disposalpipe/segment/horizontal,
+/obj/machinery/computer/transit_terminal/cargo,
+/obj/access_spawn/hangar,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "reL" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/disposalpipe/switch_junction/right/south,
@@ -22493,14 +22821,6 @@
 	name = "reinforced plating"
 	},
 /area/listeningpost)
-"reZ" = (
-/obj/machinery/light/fluorescent/cool/very{
-	dir = 4
-	},
-/turf/simulated/floor/stairs/wide/other,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "rfc" = (
 /obj/machinery/light/fluorescent,
 /obj/machinery/disposal/mail/autoname/hydroponics,
@@ -22591,11 +22911,14 @@
 	},
 /area/station/engine/core)
 "rhu" = (
-/obj/decal/tile_edge/stripe/extra_big,
+/obj/machinery/door/airlock/pyro/external{
+	dir = 8
+	},
+/obj/forcefield/energyshield/perma{
+	dir = 4
+	},
 /turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
+/area/station/mining/dock)
 "rhy" = (
 /obj/storage/secure/closet/engineering/engineer,
 /obj/disposalpipe/segment/horizontal,
@@ -22631,13 +22954,13 @@
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/pharmacy)
 "rjw" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 6;
-	icon_state = "xtra_bigstripe-corner2"
+/obj/cable{
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/industrial,
 /area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
+	icon_state = "quart";
+	name = "Cargo Bay"
 	})
 "rjJ" = (
 /obj/decal/tile_edge/stripe{
@@ -22842,8 +23165,11 @@
 /turf/simulated/floor/shuttlebay,
 /area/station/bridge/customs)
 "rtV" = (
-/turf/simulated/floor/industrial,
-/area/shuttle/merchant_shuttle/left_station/cogmap)
+/turf/simulated/wall,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "ruC" = (
 /obj/decal/poster/wallsign/escape_right,
 /turf/simulated/wall,
@@ -22858,6 +23184,15 @@
 /obj/decal/poster/wallsign/security,
 /turf/simulated/wall/r_wall,
 /area/space)
+"rvM" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "rvP" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/breathable{
 	dir = 1
@@ -22866,6 +23201,7 @@
 /area/station/bridge/conference)
 "rwc" = (
 /obj/disposalpipe/segment/horizontal,
+/obj/grille/catwalk/jen,
 /turf/simulated/floor/plating{
 	icon_old = "fullblue"
 	},
@@ -23461,6 +23797,10 @@
 /obj/stool/chair{
 	dir = 1
 	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/carpet/red/standard/edge/sw,
 /area/station/security/main)
 "rQE" = (
@@ -23524,11 +23864,15 @@
 /turf/simulated/floor/sanitary/blue,
 /area/station/medical/medbay/restroom)
 "rRV" = (
-/turf/simulated/floor/stairs/wide/other{
-	dir = 1
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
+/turf/simulated/floor/industrial,
 /area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
+	icon_state = "quart";
+	name = "Cargo Bay"
 	})
 "rSr" = (
 /obj/disposalpipe/trunk,
@@ -23593,6 +23937,9 @@
 /obj/machinery/light/lamp{
 	pixel_x = 6;
 	pixel_y = 5
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
 	},
 /turf/simulated/floor/blueblack{
 	dir = 8
@@ -23792,6 +24139,15 @@
 	dir = 1
 	},
 /area/station/medical/medbay/surgery/storage)
+"sdz" = (
+/obj/disposalpipe/segment/brig{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/storefront)
 "sdC" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -23840,6 +24196,18 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/black,
 /area/station/security/interrogation)
+"sgv" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/light/fluorescent/auto/cool{
+	dir = 8
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "sgC" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
 /obj/disposalpipe/segment/mail/horizontal,
@@ -23921,6 +24289,16 @@
 	icon_old = "fullblue"
 	},
 /area/station/maintenance/inner/north)
+"skE" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 5
+	},
+/obj/disposalpipe/segment/bent/east,
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "sli" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -23994,14 +24372,15 @@
 /turf/simulated/floor/black,
 /area/station/security/interrogation)
 "smM" = (
-/obj/disposalpipe/segment/horizontal,
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
 	},
-/turf/simulated/floor,
-/area/station/security/main)
+/obj/machinery/light/small/floor/yellow,
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "smO" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/simulated/wall,
@@ -24163,12 +24542,6 @@
 	name = "reinforced plating"
 	},
 /area/listeningpost)
-"stV" = (
-/obj/decal/cleanable/dirt/random,
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "stW" = (
 /obj/cable{
 	d2 = 8;
@@ -24335,10 +24708,8 @@
 	},
 /area/station/engine/core)
 "szK" = (
-/turf/space/gehenna/desert/plating,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
+/turf/simulated/floor/industrial,
+/area/shuttle/merchant_shuttle/right_station/cogmap)
 "sAz" = (
 /turf/simulated/wall,
 /area/station/medical/medbay/treatment1)
@@ -24642,12 +25013,7 @@
 /turf/simulated/wall/r_wall,
 /area/station/security/equipment)
 "sOQ" = (
-/obj/forcefield/energyshield/perma,
-/obj/machinery/door/airlock/pyro/external,
-/obj/machinery/atmospherics/pipe/simple/overfloor,
-/turf/simulated/floor/plating{
-	icon_old = "fullblue"
-	},
+/turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -24865,6 +25231,13 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/security/equipment)
+"sYv" = (
+/obj/decal/tile_edge/stripe/extra_big,
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/turf/simulated/floor,
+/area/station/bridge/customs)
 "sYI" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /obj/machinery/meter,
@@ -25153,6 +25526,17 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/shuttlebay,
 /area/station/hangar/engine)
+"tjK" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 5;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/industrial,
+/area/station/mining/dock)
 "tjN" = (
 /obj/table/auto,
 /obj/item/storage/box/revimp_kit{
@@ -25202,6 +25586,10 @@
 	dir = 5
 	},
 /area/listeningpost)
+"tlf" = (
+/obj/ladder/auto,
+/turf/simulated/floor,
+/area/station/security/main)
 "tlA" = (
 /obj/cable{
 	d1 = 4;
@@ -25343,7 +25731,11 @@
 /turf/simulated/floor,
 /area/station/bridge)
 "trz" = (
-/obj/machinery/light_switch/north,
+/obj/machinery/door/airlock/glass,
+/obj/access_spawn/hangar,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/industrial,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
@@ -25477,7 +25869,16 @@
 /area/station/crew_quarters/kitchen)
 "txu" = (
 /obj/cable{
-	icon_state = "4-8"
+	d2 = 8;
+	icon_state = "0-4"
+	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /obj/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating{
@@ -25741,17 +26142,6 @@
 "tJd" = (
 /turf/simulated/floor,
 /area/station/security/checkpoint/cargo)
-"tJm" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 9;
-	name = "autoname - SS13";
-	tag = ""
-	},
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "tJp" = (
 /obj/disposalpipe/switch_junction/right/east,
 /obj/cable{
@@ -25835,7 +26225,10 @@
 /obj/access_spawn/cargo,
 /obj/disposalpipe/segment/vertical,
 /turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "tNJ" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/cable{
@@ -25995,6 +26388,17 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/kitchen)
+"tTv" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/obj/machinery/light/fluorescent/auto/cool,
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "tTN" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/table/auto,
@@ -26036,13 +26440,18 @@
 /obj/access_spawn/syndie_shuttle,
 /turf/simulated/floor/white,
 /area/listeningpost)
-"tVL" = (
-/obj/machinery/door/airlock/pyro/external,
-/obj/forcefield/energyshield/perma,
-/obj/machinery/atmospherics/pipe/simple/overfloor,
-/turf/simulated/floor/industrial,
+"tUy" = (
+/obj/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal,
+/obj/machinery/light/fluorescent/auto/cool{
+	dir = 8
+	},
+/turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
+	icon_state = "quart";
+	name = "Cargo Bay"
 	})
 "tVS" = (
 /obj/disposalpipe/segment/horizontal,
@@ -26123,6 +26532,15 @@
 	},
 /turf/simulated/floor/shuttlebay,
 /area/station/quartermaster/cargobay)
+"ubC" = (
+/obj/machinery/light/fluorescent/auto/cool{
+	dir = 8
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "ubF" = (
 /obj/machinery/clonepod,
 /obj/machinery/light/fluorescent/cool/very{
@@ -26181,6 +26599,13 @@
 "udF" = (
 /turf/simulated/floor,
 /area/station/engine/engineering/breakroom)
+"udP" = (
+/obj/disposalpipe/segment/horizontal,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "udU" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/west,
 /obj/machinery/light/small/cool{
@@ -26323,6 +26748,13 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/lobby)
+"uiy" = (
+/obj/disposalpipe/segment/vertical,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "uiU" = (
 /obj/machinery/disposal/mail/autoname/qm,
 /obj/disposalpipe/trunk{
@@ -26628,10 +27060,15 @@
 	},
 /area/station/security/brig/north_side)
 "uwD" = (
-/obj/machinery/atmospherics/pipe/vent/north,
-/turf/simulated/floor/plating{
-	icon_old = "fullblue"
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8
 	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -26734,15 +27171,13 @@
 /obj/machinery/power/apc/autoname_north,
 /turf/simulated/floor,
 /area/station/bridge/customs)
-"uBl" = (
+"uAZ" = (
 /obj/disposalpipe/trunk{
-	dir = 1
+	dir = 8
 	},
 /obj/machinery/disposal,
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
+/turf/simulated/floor,
+/area/station/security/main)
 "uBz" = (
 /obj/cable{
 	d2 = 8;
@@ -26821,11 +27256,14 @@
 	},
 /area/station/bridge/customs)
 "uDK" = (
-/obj/machinery/light/fluorescent/cool/very{
-	dir = 1
+/obj/wingrille_spawn/reinforced,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
 	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "uDO" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -27210,6 +27648,16 @@
 	icon_old = "fullblue"
 	},
 /area/station/engine/engineering)
+"uQD" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10
+	},
+/obj/machinery/light/small/floor/yellow,
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "uRn" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -27308,6 +27756,9 @@
 "uUf" = (
 /obj/table/reinforced/auto,
 /obj/disposalpipe/segment/brig{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /turf/simulated/floor/black,
@@ -27530,6 +27981,19 @@
 	dir = 8
 	},
 /area/transit_vehicle/elevator/med_top)
+"vbY" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "vcA" = (
 /turf/simulated/wall/r_wall,
 /area/station/quartermaster/cargobay)
@@ -27542,6 +28006,7 @@
 	icon_state = "1-2"
 	},
 /obj/access_spawn/heads,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
 /area/station/bridge)
 "vdi" = (
@@ -27933,6 +28398,13 @@
 	},
 /turf/simulated/floor,
 /area/station/quartermaster/cargobay)
+"vvY" = (
+/obj/machinery/light/fluorescent/auto/yellow,
+/turf/space/gehenna/desert{
+	dir = 8;
+	icon_state = "gehenna"
+	},
+/area/space)
 "vwI" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -28088,12 +28560,6 @@
 "vDK" = (
 /turf/simulated/wall/r_wall,
 /area/station/security/main)
-"vDP" = (
-/obj/disposalpipe/segment/horizontal,
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "vFA" = (
 /turf/space/gehenna/desert/corner{
 	dir = 9;
@@ -28115,6 +28581,15 @@
 	},
 /turf/simulated/floor,
 /area/station/engine/engineering/breakroom)
+"vGh" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "vGk" = (
 /obj/cable{
 	d1 = 4;
@@ -28324,6 +28799,18 @@
 	icon_old = "fullblue"
 	},
 /area/station/medical/maintenance)
+"vOr" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/black,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "vOV" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/wall,
@@ -28434,6 +28921,7 @@
 	dir = 4;
 	target_z = 3
 	},
+/obj/grille/catwalk/jen,
 /turf/simulated/floor/plating{
 	icon_old = "fullblue"
 	},
@@ -28674,8 +29162,12 @@
 /turf/simulated/floor/black,
 /area/station/chapel/office)
 "wdI" = (
+/obj/forcefield/energyshield/perma,
 /turf/simulated/floor/industrial,
-/area/shuttle/merchant_shuttle/right_station/cogmap)
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "wdJ" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -28714,17 +29206,18 @@
 	dir = 8
 	},
 /area/listeningpost)
-"weC" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 4;
-	name = "autoname - SS13";
-	tag = ""
+"weB" = (
+/obj/disposalpipe/segment/horizontal,
+/turf/simulated/floor/stairs/wide/other{
+	dir = 8
 	},
-/turf/simulated/floor/industrial,
 /area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
+	icon_state = "quart";
+	name = "Cargo Bay"
 	})
+"weC" = (
+/turf/simulated/wall/r_wall,
+/area/station/mining/dock)
 "weT" = (
 /turf/space/gehenna/desert/plating{
 	dir = 2;
@@ -28850,16 +29343,22 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
+"wjO" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "wkE" = (
 /obj/landmark/gps_waypoint,
 /turf/simulated/floor/shuttlebay,
 /area/station/quartermaster/cargobay)
 "wkN" = (
-/obj/cable{
-	icon_state = "0-2"
+/obj/machinery/light/fluorescent/auto/yellow{
+	dir = 8
 	},
-/obj/machinery/power/apc/autoname_north,
-/turf/simulated/floor/industrial,
+/turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
@@ -29113,12 +29612,6 @@
 	dir = 1
 	},
 /area/transit_vehicle/elevator/med_top)
-"wtW" = (
-/obj/machinery/light/fluorescent/cool/very{
-	dir = 8
-	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
 "wuo" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
@@ -29133,17 +29626,6 @@
 "wuT" = (
 /turf/simulated/wall,
 /area/station/medical/medbay/surgery)
-"wuX" = (
-/obj/decal/tile_edge/floorguide/evac{
-	dir = 4
-	},
-/obj/decal/tile_edge/floorguide/arrow_s{
-	dir = 1
-	},
-/turf/simulated/wall/r_wall,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "wuZ" = (
 /obj/disposalpipe/junction/left/east,
 /turf/simulated/floor/black,
@@ -29209,13 +29691,20 @@
 /area/station/quartermaster/cargooffice/gunsmithing)
 "wwE" = (
 /obj/machinery/atmospherics/unary/vent_pump/east,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor,
 /area/station/bridge)
 "wwW" = (
-/obj/decal/poster/wallsign/stencil/right/l,
-/obj/decal/poster/wallsign/stencil/left/l,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
+/obj/access_spawn/hangar,
+/obj/disposalpipe/segment/horizontal,
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "wxg" = (
 /obj/cable{
 	d2 = 4;
@@ -29224,6 +29713,15 @@
 /obj/machinery/power/apc/autoname_west,
 /turf/simulated/floor/grey,
 /area/station/security/interrogation)
+"wxE" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/machinery/light/fluorescent/auto/yellow{
+	dir = 8
+	},
+/turf/simulated/floor/industrial,
+/area/station/mining/dock)
 "wxK" = (
 /obj/machinery/light/small/floor,
 /turf/simulated/floor,
@@ -29238,14 +29736,10 @@
 /turf/simulated/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
 "wxN" = (
-/obj/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-9"
-	},
-/turf/simulated/floor/industrial,
+/turf/simulated/wall/r_wall,
 /area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
+	icon_state = "quart";
+	name = "Cargo Bay"
 	})
 "wxO" = (
 /obj/machinery/door/airlock/glass,
@@ -29275,12 +29769,20 @@
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/conference)
 "wyp" = (
-/obj/machinery/light/fluorescent/auto/yellow,
-/turf/space/gehenna/desert{
-	dir = 8;
-	icon_state = "gehenna"
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/area/space)
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "wyM" = (
 /obj/disposalpipe/switch_junction/left/east,
 /turf/simulated/floor,
@@ -29782,6 +30284,12 @@
 	icon_state = "fblue2"
 	},
 /area/station/bridge)
+"wSp" = (
+/obj/ladder/auto,
+/turf/simulated/floor/black,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "wSq" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
@@ -29901,6 +30409,16 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/farmers)
+"wXk" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6
+	},
+/obj/machinery/light/small/floor/yellow,
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "wXq" = (
 /obj/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating{
@@ -29987,6 +30505,16 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/conference)
+"xcg" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/disposalpipe/segment/vertical,
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "xcD" = (
 /turf/simulated/floor/sand,
 /area/station/security/brig/south_side)
@@ -30343,6 +30871,11 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
+"xmO" = (
+/turf/simulated/floor/stairs/wide,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "xmV" = (
 /obj/cable{
 	d1 = 1;
@@ -30665,9 +31198,11 @@
 /turf/simulated/floor/red/redblackchecker,
 /area/station/security/secwing)
 "xzP" = (
-/obj/disposalpipe/segment/bent/west,
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "xAx" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/southeast,
 /obj/machinery/power/stats_meter{
@@ -30798,10 +31333,11 @@
 	},
 /area/space)
 "xHr" = (
-/obj/forcefield/energyshield/perma,
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable,
 /turf/simulated/floor/industrial,
 /area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
+	icon_state = "quart";
+	name = "Cargo Bay"
 	})
 "xHH" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -30820,6 +31356,14 @@
 	dir = 4
 	},
 /area/station/security/brig/cell_block_control)
+"xIl" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 4
+	},
+/turf/simulated/floor/stairs/wide/other,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "xIp" = (
 /obj/table/reinforced/auto,
 /obj/disposalpipe/segment/mail/vertical,
@@ -30982,11 +31526,15 @@
 "xNS" = (
 /obj/stool/chair,
 /obj/disposalpipe/segment/horizontal,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/carpet/grime,
 /area/station/security/secoffquarters)
 "xOf" = (
 /obj/disposalpipe/segment/horizontal,
-/obj/disposalpipe/segment/food,
+/obj/disposalpipe/segment/brig,
 /turf/simulated/floor/white/grime,
 /area/station/wc/sec)
 "xOk" = (
@@ -31009,6 +31557,10 @@
 /area/station/maintenance/inner/ne)
 "xOA" = (
 /obj/table/reinforced/auto,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/grey,
 /area/station/security/equipment)
 "xOB" = (
@@ -31289,6 +31841,17 @@
 	},
 /turf/simulated/floor/specialroom/freezer,
 /area/station/medical/crematorium)
+"ybx" = (
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "yby" = (
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/wall,
@@ -31477,6 +32040,16 @@
 	icon_state = "red";
 	name = "Exhaust Vent";
 	requires_power = 0
+	})
+"yjL" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/wingrille_spawn/reinforced,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
 	})
 "yjN" = (
 /obj/machinery/vehicle/pod_smooth/light{
@@ -52522,7 +53095,7 @@ cKa
 cKa
 cKa
 xWi
-rZV
+lSk
 cIi
 itm
 iBu
@@ -53413,7 +53986,7 @@ jEb
 jEb
 jEb
 cKa
-xTU
+kfL
 pJi
 nZF
 cKa
@@ -59157,7 +59730,7 @@ ygw
 ygw
 geb
 rcm
-nmJ
+ehM
 pBj
 rcm
 ffv
@@ -62188,7 +62761,7 @@ ksm
 oBN
 fWJ
 ygw
-uuh
+sYv
 mcC
 mcC
 mcC
@@ -65195,7 +65768,7 @@ vln
 faZ
 eQi
 kZw
-ige
+qkr
 kTw
 qCj
 sjB
@@ -68530,7 +69103,7 @@ rwq
 fyL
 rwq
 ygw
-cUD
+gvK
 rKi
 fBE
 kEw
@@ -69132,7 +69705,7 @@ lgE
 ygw
 njX
 npu
-rwq
+ocL
 evG
 evG
 lFu
@@ -75783,7 +76356,7 @@ lGQ
 cby
 bCc
 mlg
-mlg
+asU
 kZK
 tgI
 wVZ
@@ -76074,7 +76647,7 @@ jUy
 aQW
 wyM
 hAW
-bVt
+uAZ
 fLB
 nnq
 gcp
@@ -76376,7 +76949,7 @@ gXO
 hPR
 wcO
 spY
-smM
+rVf
 jMo
 fls
 wMx
@@ -76678,7 +77251,7 @@ kxb
 pHk
 rXg
 gLC
-bVt
+tlf
 fLB
 ckf
 lYO
@@ -79388,7 +79961,7 @@ lpX
 tap
 fzY
 haa
-vuM
+bYK
 vuM
 fJx
 uUK
@@ -82078,7 +82651,7 @@ cqC
 cqC
 cqC
 cqC
-cqC
+jEb
 jEb
 jEb
 jEb
@@ -82684,7 +83257,7 @@ cqC
 cqC
 cqC
 cqC
-cqC
+jEb
 jEb
 jEb
 jEb
@@ -82986,9 +83559,9 @@ cqC
 cqC
 cqC
 cqC
-cqC
-cqC
-cqC
+jEb
+jEb
+jEb
 jEb
 jEb
 jEb
@@ -83289,10 +83862,10 @@ cqC
 cqC
 cqC
 cqC
-cqC
-cqC
-cqC
-cqC
+jEb
+jEb
+jEb
+jEb
 jEb
 jEb
 jEb
@@ -83592,10 +84165,10 @@ cqC
 cqC
 cqC
 cqC
-cqC
-cqC
-cqC
-cqC
+jEb
+jEb
+jEb
+jEb
 jEb
 jEb
 jEb
@@ -83881,15 +84454,6 @@ cqC
 cqC
 cqC
 cqC
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
 cqC
 cqC
 cqC
@@ -83898,6 +84462,15 @@ cqC
 cqC
 cqC
 cqC
+cqC
+cqC
+cqC
+cqC
+cqC
+jEb
+jEb
+jEb
+jEb
 jEb
 jEb
 jEb
@@ -84179,20 +84752,6 @@ cqC
 cqC
 cqC
 cqC
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
 cqC
 cqC
 cqC
@@ -84201,6 +84760,20 @@ cqC
 cqC
 cqC
 cqC
+cqC
+cqC
+cqC
+cqC
+cqC
+cqC
+cqC
+cqC
+cqC
+cqC
+jEb
+jEb
+jEb
+jEb
 jEb
 jEb
 jEb
@@ -84478,31 +85051,31 @@ cqC
 cqC
 cqC
 cqC
-cqC
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-cqC
-cqC
-cqC
-cqC
-cqC
-cqC
+msF
+msF
+msF
+msF
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
 jEb
 jEb
 jEb
@@ -84779,33 +85352,33 @@ cqC
 cqC
 cqC
 cqC
-cqC
+msF
+msF
 iiv
 iiv
 iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-cqC
-cqC
-cqC
-cqC
-cqC
+bMH
+edU
+ige
+nmJ
+ige
+ige
+dqc
+nmJ
+ige
+nuL
+edU
+nmJ
+ige
+ige
+ige
+nmJ
+ige
+ige
+nuL
+wkN
+fsP
+jEb
 jEb
 jEb
 jEb
@@ -85080,33 +85653,33 @@ cqC
 cqC
 cqC
 cqC
+msF
+msF
 iiv
 iiv
 iiv
 iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-cqC
-cqC
-cqC
-cqC
+bMH
+ffO
+jCZ
+jCZ
+jCZ
+jCZ
+jCZ
+jCZ
+jCZ
+pQh
+ffO
+szK
+szK
+szK
+szK
+szK
+szK
+szK
+pQh
+sOQ
+fsP
 cqC
 cqC
 jEb
@@ -85381,34 +85954,34 @@ cqC
 cqC
 cqC
 cqC
-cqC
+msF
+msF
 iiv
 iiv
 iiv
 iiv
 iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-cqC
-cqC
+bMH
+ffO
+jCZ
+jCZ
+jCZ
+jCZ
+jCZ
+jCZ
+jCZ
+pQh
+ffO
+szK
+szK
+szK
+szK
+szK
+szK
+szK
+pQh
+sOQ
+fsP
 cqC
 cqC
 cqC
@@ -85682,35 +86255,35 @@ cqC
 cqC
 cqC
 cqC
-cqC
-cqC
+msF
+msF
 iiv
 iiv
 iiv
 iiv
 iiv
 iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-iiv
-cqC
-cqC
+bMH
+ffO
+jCZ
+jCZ
+jCZ
+jCZ
+jCZ
+jCZ
+jCZ
+pQh
+ffO
+szK
+szK
+szK
+szK
+szK
+szK
+szK
+pQh
+sOQ
+fsP
 cqC
 cqC
 cqC
@@ -85739,7 +86312,7 @@ fsP
 fsP
 fsP
 gwG
-wuX
+hjz
 gwG
 gwG
 cqC
@@ -85984,7 +86557,7 @@ cqC
 cqC
 cqC
 cqC
-cqC
+msF
 iiv
 iiv
 iiv
@@ -85992,26 +86565,26 @@ iiv
 iiv
 iiv
 iiv
-iiv
-iiv
-vFA
-efc
-iVv
-iVv
-lnA
-cMO
-iiv
-iiv
-iiv
-iiv
-vFA
-efc
-iVv
-iVv
-iVv
-iVv
+bMH
+ffO
+jCZ
+jCZ
+jCZ
+jCZ
+jCZ
+jCZ
+jCZ
+pQh
+ffO
 szK
-aRr
+szK
+szK
+szK
+szK
+szK
+szK
+pQh
+sOQ
 fsP
 fsP
 fsP
@@ -86025,24 +86598,24 @@ fsP
 fsP
 fsP
 fsP
-edU
-edU
-edU
+nJZ
+nJZ
+nJZ
 erA
 cxR
 tAQ
 tAQ
 tAQ
-tAQ
+dLv
 fFm
-tAQ
-rRV
-jbx
-bsW
-bsW
+aEh
+aEh
+bms
+aEh
+aEh
 mgc
-cxK
-dCX
+wSp
+keI
 gwG
 fsP
 fsP
@@ -86294,31 +86867,31 @@ iiv
 iiv
 iiv
 iiv
-iiv
-iiv
-efc
-iVv
-iVv
-iVv
-iVv
-iVv
-iVv
-iVv
-iVv
-iVv
-iVv
-iVv
-iVv
-iVv
-szK
-aQr
+bMH
+ffO
+jCZ
+jCZ
+jCZ
+jCZ
+jCZ
+jCZ
+jCZ
 pQh
-kiU
+ffO
+szK
+szK
+szK
+szK
+szK
+szK
+szK
+pQh
+sOQ
 gOc
 pRx
+wyp
 igQ
-igQ
-igQ
+wyp
 igQ
 igQ
 igQ
@@ -86335,17 +86908,17 @@ tAQ
 tAQ
 tAQ
 tAQ
-tAQ
+csX
 jXl
 bTO
-hym
-etR
-etR
+bTO
+bTO
+bTO
 jnQ
 wVd
-lJm
-nfR
-iaK
+jTv
+rvM
+xmO
 tAQ
 wCF
 wgn
@@ -86596,33 +87169,33 @@ iiv
 iiv
 iiv
 iiv
-iiv
-iiv
-iVv
-iVv
-iVv
-iVv
-iVv
+bMH
+hRG
+lJc
 bEV
-iVv
-iVv
-iVv
-iVv
-iVv
-iVv
-iVv
+lJc
+lJc
+lJc
+bEV
+lJc
+qqx
+hRG
+bEV
+lJc
+vOr
+lJc
 bEV
 aQr
-aQr
+uwD
 bWl
 ojg
 sOQ
 gYL
 alm
-uwD
+tAQ
+qAt
 tAQ
 tAQ
-kEo
 tAQ
 tAQ
 tAQ
@@ -86642,12 +87215,12 @@ nSq
 nSq
 nSq
 rbQ
-stV
-stV
+iQC
+iQC
 nbX
-stV
-bsW
-reZ
+iQC
+aEh
+xIl
 tAQ
 wCF
 wgn
@@ -86898,11 +87471,6 @@ iiv
 iiv
 iiv
 iiv
-iiv
-iiv
-iVv
-iVv
-iVv
 fsP
 fsP
 fsP
@@ -86912,17 +87480,22 @@ fsP
 fsP
 fsP
 fsP
-fsP
-fsP
-fsP
-fsP
-bWl
+qzA
 qzA
 fsP
 fsP
 fsP
 fsP
 fsP
+trz
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
+fsP
+flK
 fsP
 fsP
 fsP
@@ -86944,7 +87517,7 @@ qFG
 hrb
 nSq
 nSq
-dei
+kfv
 wXq
 hrO
 nSq
@@ -87201,42 +87774,42 @@ iiv
 iiv
 iiv
 iiv
-iiv
+evb
+fXe
 iVv
 iVv
 iVv
-xHr
-weC
-ffO
+iVv
+kcf
+wgn
+wgn
+wgn
+wgn
 rtV
-rtV
-rtV
-rtV
-rtV
-rtV
-rtV
+rjw
+sgv
 nAS
 bsW
-fsP
-bWl
-eaH
-cqC
-cqC
-cqC
-cqC
-cqC
-cqC
-jEb
-jEb
-jEb
-jEb
-jEb
+xzP
+ubC
+xzP
+xzP
+msb
+ubC
+xzP
+xzP
+xzP
+nyY
+skE
+xcg
+fXN
+tUy
 hyl
 dLh
 lSE
 xpR
 uTb
-lSE
+wjO
 lQW
 nSq
 iPU
@@ -87246,10 +87819,10 @@ qFG
 qFG
 uoF
 wod
-cub
+eFC
 wod
 lwn
-hIu
+eZp
 vDF
 nSq
 cqC
@@ -87507,32 +88080,32 @@ iiv
 evb
 iVv
 iVv
-xHr
-bsW
-rhu
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+vvY
 rtV
-rtV
-rtV
-rtV
-rtV
-rtV
-rtV
-nJG
 bgl
-byp
-ktE
-eaH
-cqC
-cqC
-cqC
-cqC
-cqC
-cqC
-cqC
-jEb
-jEb
-jEb
-jEb
+xzP
+xzP
+xzP
+idj
+aXv
+aXv
+aXv
+aXv
+aXv
+aXv
+aXv
+oeg
+dYb
+wwW
+ekI
+caT
+cFC
 hyl
 ugR
 lSE
@@ -87809,32 +88382,32 @@ iiv
 iiv
 iVv
 iVv
-xHr
-bsW
-rhu
-rtV
-rtV
-rtV
-rtV
-rtV
-rtV
-rtV
-ofW
-oyU
-tVL
-bEs
-dBp
-cqC
-cqC
-cqC
-cqC
-cqC
-cqC
-jEb
-jEb
-jEb
-jEb
-jEb
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+wdI
+bgl
+xzP
+idj
+smM
+cLy
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+vGh
+dYb
+wwW
+hHc
+caT
+cFC
 hyl
 iKE
 nJU
@@ -88111,32 +88684,32 @@ iiv
 iiv
 iVv
 iVv
-xHr
-bsW
-rhu
-rtV
-rtV
-rtV
-rtV
-rtV
-rtV
-rtV
-ofW
-nzF
-fsP
-aQr
-szK
-cqC
-cqC
-cqC
-cqC
-cqC
-cqC
-cqC
-jEb
-jEb
-jEb
-jEb
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+wdI
+bgl
+idj
+cLy
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+vGh
+uDK
+mbY
+axc
+gFX
+gIz
 hyl
 asB
 uIr
@@ -88413,32 +88986,32 @@ iiv
 iiv
 iVv
 iVv
-xHr
-bsW
-rhu
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+wdI
+lNf
+wXk
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+eNe
+tTv
+uDK
+fvS
+lPH
 rtV
 rtV
-rtV
-rtV
-rtV
-rtV
-rtV
-ofW
-pxB
-fsP
-pzu
-pzu
-pzu
-pzu
-pzu
-pzu
-pzu
-pzu
-pzu
-pzu
-pzu
-pzu
-pzu
 hyl
 ipE
 uIr
@@ -88715,31 +89288,31 @@ iiv
 iiv
 iVv
 iVv
-fsP
-wkN
-bMH
-gzI
-hvQ
-hvQ
-gzI
-hvQ
-hvQ
-gzI
-qqC
-pxB
-fKh
-lSE
-lSE
-wtW
-lSE
-tPH
-dYT
-gjH
-dYT
-dYT
-dYT
-gjH
-dYT
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+wdI
+njJ
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+eNe
+ebP
+xzP
+pxI
+oqt
+exg
+uiy
 tNz
 dYT
 dYT
@@ -89016,32 +89589,32 @@ iiv
 iiv
 iiv
 iVv
-wyp
-fsP
-qqx
-bsW
-wxN
-bgl
-bgl
-bgl
-iMN
-bgl
-bgl
-iCd
-bSe
-fKh
-lSE
-lSE
-lSE
-lSE
-gQM
-aBK
-frQ
-frQ
-frQ
-frQ
-frQ
-frQ
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+wdI
+njJ
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+aUA
+xzP
+xHr
+yjL
+reC
+oIq
+eUs
 jlS
 frQ
 frQ
@@ -89319,36 +89892,36 @@ iiv
 iiv
 iVv
 iVv
-fsP
-trz
-rjw
-ajO
-jxE
-jxE
-ajO
-jxE
-jxE
-ajO
-mXL
-gQn
-lMX
-dYT
-dYT
-dYT
-dYT
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+wdI
+njJ
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+euy
+oeg
 xzP
-lSE
-myE
-lSE
-lSE
-lSE
-lSE
-lSE
+pxI
+udP
+ybx
+oaf
 hyM
-lSE
-lSE
-uIr
-xpR
+xmV
+xmV
+lMn
+elm
 bmv
 nUG
 rdY
@@ -89621,32 +90194,32 @@ iiv
 iiv
 iVv
 iVv
-xHr
-bsW
-rhu
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
 wdI
-wdI
-wdI
-wdI
-wdI
-wdI
-wdI
-ofW
-vDP
-fsP
-pzu
-pzu
-pzu
-pzu
-pzu
-pzu
-pzu
-pzu
-lSE
-lSE
-pzu
-pzu
-pzu
+vbY
+uQD
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+euy
+jAH
+uDK
+weB
+anv
+rtV
+rtV
 hyl
 fDH
 uIr
@@ -89923,32 +90496,32 @@ iiv
 iiv
 iVv
 iVv
-xHr
-bsW
-rhu
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
 wdI
-wdI
-wdI
-wdI
-wdI
-wdI
-wdI
-ofW
-pfN
-fsP
-fsP
-cqC
-cqC
-cqC
-cqC
-cqC
-hyl
-hyl
+bgl
+qAC
+bJF
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+vGh
 uDK
 hvN
-mVe
+dmN
 gEw
-lSE
+jhi
 hyl
 gqL
 uIr
@@ -90225,30 +90798,30 @@ iiv
 iiv
 iVv
 iVv
-xHr
-bsW
-rhu
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
 wdI
-wdI
-wdI
-wdI
-wdI
-wdI
-wdI
-prQ
-eFi
-uBl
-fsP
-cqC
-cqC
-cqC
-cqC
-cqC
-hyl
-ojv
-evK
+bgl
+xzP
+qAC
+hQo
+bJF
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+oLr
+vGh
+dYb
 wwW
-mVe
+ekI
 caT
 cFC
 hyl
@@ -90274,7 +90847,7 @@ fkg
 xDd
 joB
 iir
-qiv
+dOl
 wCC
 iiv
 iiv
@@ -90527,31 +91100,31 @@ iiv
 iiv
 iVv
 iVv
-xHr
-bsW
-rhu
-wdI
-wdI
-wdI
-wdI
-wdI
-wdI
-wdI
-iKB
-czg
-bsW
-fsP
-cqC
-cqC
-cqC
-cqC
-cqC
-hyl
-lSE
-lSE
-dpx
+iVv
+iVv
+iVv
+iVv
+iVv
+iVv
+vvY
+rtV
+bgl
+xzP
+xzP
+xzP
+qAC
+nGu
+nGu
+nGu
+nGu
+nGu
+nGu
+nGu
+ebP
+dYb
+wwW
 hHc
-dpx
+caT
 cFC
 hyl
 liU
@@ -90570,14 +91143,14 @@ sRD
 npk
 eWV
 xDd
-eTq
+sdz
 qiv
 qiv
 xDd
 cto
 qiv
-dOl
-wCC
+qiv
+ifY
 iiv
 iiv
 iiv
@@ -90829,32 +91402,32 @@ iiv
 iiv
 iVv
 iVv
-xHr
-bsW
-nuL
-wdI
-wdI
-wdI
-wdI
-wdI
-wdI
-wdI
-fcp
+iVv
+iVv
+lKq
+wgn
+wgn
+wgn
+wgn
+rtV
+rRV
+oau
+nAS
 hwt
-tJm
-fsP
-cqC
-cqC
-cqC
-cqC
-cqC
-hyl
-hyl
+xzP
 jsA
-lSE
-mVe
+xzP
+xzP
+ech
+jsA
+xzP
+xzP
+xzP
+mEm
+ala
+jfl
 fVl
-cFC
+cju
 hyl
 tBm
 uIr
@@ -91131,30 +91704,30 @@ iiv
 iiv
 iVv
 iVv
-fsP
-fsP
-fsP
-fsP
-fsP
-fsP
-fsP
-fsP
-fsP
-fsP
-fsP
-ehY
-fsP
-fsP
 ybI
-cqC
-cqC
-cqC
-cqC
-cqC
-hyl
-hyl
-hyl
-hyl
+ybI
+ybI
+ybI
+rhu
+rhu
+ybI
+ybI
+ybI
+ybI
+ybI
+ehY
+weC
+weC
+weC
+wxN
+wxN
+wxN
+wxN
+wxN
+wxN
+wxN
+wxN
+wxN
 dAu
 dAu
 hyl
@@ -91439,9 +92012,9 @@ plD
 xBf
 xBf
 xBf
+wxE
 xBf
-xBf
-gMu
+tjK
 xin
 vGR
 dCo
@@ -92989,7 +93562,7 @@ lmw
 eTq
 qiv
 pLI
-hFP
+crv
 coy
 coy
 coy
@@ -93587,7 +94160,7 @@ qPE
 owp
 lSE
 hyl
-qiv
+pTT
 cki
 vJD
 qRG
@@ -93855,7 +94428,7 @@ fsV
 aeF
 aeF
 aeF
-aeF
+fsV
 aeF
 hBt
 mqp
@@ -93899,7 +94472,7 @@ etq
 qiv
 dgF
 cnX
-wCC
+ifY
 iiv
 iiv
 iiv
@@ -94155,8 +94728,8 @@ ybI
 ybI
 ybI
 ybI
-ybI
-ybI
+adB
+adB
 ybI
 ybI
 ybI
@@ -95698,8 +96271,8 @@ fBM
 pdh
 iKr
 cBk
-jCZ
-lJc
+hqN
+hQO
 coH
 rLP
 hqN
@@ -96000,8 +96573,8 @@ fBM
 pdh
 iKr
 cBk
-jCZ
-hRG
+hqN
+hQO
 xOM
 hqN
 hqN

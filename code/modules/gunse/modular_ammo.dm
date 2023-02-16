@@ -124,7 +124,22 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 			return
 		if(!M.ammo_list)
 			M.ammo_list = list()
-		if(M.ammo_list.len >= M.max_ammo_capacity)
+		M.chamber_checked = 0
+		if((M.ammo_list.len >= M.max_ammo_capacity) || !M.max_ammo_capacity)
+			if(M.current_projectile)
+				boutput(user, "<span class='notice'>There's already a cartridge in [M]!</span>")
+				return
+			if(!M.current_projectile)
+				boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [M]</span>")
+				M.current_projectile = new projectile_type()
+				amount --
+				update_stack_appearance()
+				if(amount < 1)
+					user.u_equip(src)
+					src.dropped(user)
+					qdel(src)
+				M.inventory_counter.update_number(!!M.current_projectile)
+				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1) //play the sound here because single shot bypasses cycle_ammo
 			return
 		reloading = 1
 		if(amount < 1)
@@ -146,6 +161,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 				sleep(5)
 			playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, 0, 0.8)
 			boutput(user, "<span class='notice'>The hold is full</span>")
+			if(!M.current_projectile)
+				M.process_ammo()
 			M.inventory_counter.update_number(M.ammo_list.len)
 			reloading = 0
 

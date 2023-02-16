@@ -105,6 +105,7 @@ var/global/list/mapNames = list(
 	var/escape_dir = SOUTH
 
 	var/shuttle_map_turf = /turf/space
+	var/qm_supply_type = "space" //can also be "shuttle"!
 
 	var/merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom
 	var/merchant_left_station = /area/shuttle/merchant_shuttle/left_station
@@ -1010,12 +1011,13 @@ var/global/list/mapNames = list(
 /datum/map_settings/gehenna
 	name = "GEHENNA"
 	goonhub_map = "https://coolstation.space/adults.html"
-	walls = /turf/simulated/wall/auto
-	rwalls = /turf/simulated/wall/auto/reinforced
-	auto_walls = 1
+	walls = /turf/simulated/wall
+	rwalls = /turf/simulated/wall/r_wall
+	auto_walls = 0
 	shuttle_map_turf = /turf/simulated/floor/industrial
 
 	arrivals_type = MAP_SPAWN_CRYO
+	qm_supply_type = "shuttle"
 
 	windows = /obj/window/auto
 	windows_thin = /obj/window/pyro
@@ -1068,6 +1070,9 @@ var/global/list/mapNames = list(
 			var/area/m_shuttle = locate(/area/shuttle/mining/station)
 			if(m_shuttle)
 				m_shuttle.filler_turf = "/turf/simulated/floor/industrial"
+			var/area/c_shuttle = locate(/area/shuttle/cargo/station)
+			if(c_shuttle)
+				c_shuttle.filler_turf = "/turf/simulated/floor/industrial"
 
 /datum/map_settings/bobmap
 	name = "BOBMAP"
