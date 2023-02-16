@@ -183,7 +183,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 					return
 
 		overlay_x += gun.stock_overlay_x
-		overlay_y += gun.stock_overlay_yw
+		overlay_y += gun.stock_overlay_y
 		..()
 		if(!my_gun)
 			return
