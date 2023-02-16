@@ -338,8 +338,17 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		flash_process_ammo(user)
 		src.inventory_counter.update_number(crank_level)
 	else if(src.max_ammo_capacity == 0) //single shot? no cycle, no count, it shows up as 0 if we don't skip it
-		boutput(user, "<span class='notice'>You check the chamber and [src] appears to be [src.current_projectile == null ? "unloaded[prob(15) ? ". ...Probably!" : "."]" : "loaded[prob(15) ? ". ...Maybe?" : "."]"]</span>")
-		playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+		if(src.jammed) //whoops gotta handle this too. call it a misfire
+			if(prob(10)) //unlucky, dump the round
+				src.jammed = 0
+				src.current_projectile = null
+				boutput(user, "<span class='notice'>You pull the bad round out of [src]</span>") //drop a dud
+			else //just hit it again it'll work for sure
+				src.jammed = 0
+				boutput(user, "<span class='notice'>You re-cock the hammer on [src]</span>") //good 2 go
+		else
+			boutput(user, "<span class='notice'>You check the chamber and [src] appears to be [src.current_projectile == null ? "unloaded[prob(15) ? ". ...Probably!" : "."]" : "loaded[prob(15) ? ". ...Maybe?" : "."]"]</span>")
+			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 	else
 		process_ammo(user)
 		src.inventory_counter.update_number(ammo_list.len)
