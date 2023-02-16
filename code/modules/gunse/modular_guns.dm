@@ -61,6 +61,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/max_ammo_capacity = 1 // How much ammo can this gun hold? Don't make this null (Convair880).
 	var/list/ammo_list = list() // a list of datum/projectile types
 	current_projectile = null // chambered round
+	var/chamber_checked = 0 // this lets us fast-track alt-fire modes and stuff instead of re-checking the breech every time
 
 	var/accessory_alt = 0 //does the accessory offer an alternative firing mode?
 	var/accessory_on_fire = 0 // does the accessory need to know when you fire?
@@ -295,6 +296,27 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(flashbulb_only) // additional branch for suicide
 		return flash_process_ammo(user)
 
+	if(src.max_ammo_capacity == 0) //single shot? no cycle, no count, it shows up as 0 if we don't skip it
+		if(src.jammed) //whoops gotta handle this too. call it a misfire
+			if(prob(10)) //unlucky, dump the round
+				src.jammed = 0
+				src.current_projectile = null
+				boutput(user, "<span class='notice'>You pull the bad round out of [src]</span>") //drop a dud
+				return 0
+			else //just hit it again it'll work for sure
+				src.jammed = 0
+				boutput(user, "<span class='notice'>You re-cock the hammer on [src]</span>") //good 2 go
+				return 1
+		else
+			if(chamber_checked && accessory && accessory_alt)
+				accessory.alt_fire()
+			else
+				boutput(user, "<span class='notice'>You check the chamber and [src] appears to be [src.current_projectile == null ? "unloaded[prob(15) ? ". ...Probably!" : "."]" : "loaded[prob(15) ? ". ...Maybe?" : "."]"]</span>")
+				if(!chamber_checked)
+					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+					chamber_checked = 1
+			return (current_projectile?1:0)
+
 	if(jammed)
 		boutput(user,"<span class='notice'><b>You clear the ammunition jam.</b></span>")
 		jammed = 0
@@ -337,22 +359,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(flashbulb_only)
 		flash_process_ammo(user)
 		src.inventory_counter.update_number(crank_level)
-	else if(src.max_ammo_capacity == 0) //single shot? no cycle, no count, it shows up as 0 if we don't skip it
-		if(src.jammed) //whoops gotta handle this too. call it a misfire
-			if(prob(10)) //unlucky, dump the round
-				src.jammed = 0
-				src.current_projectile = null
-				boutput(user, "<span class='notice'>You pull the bad round out of [src]</span>") //drop a dud
-			else //just hit it again it'll work for sure
-				src.jammed = 0
-				boutput(user, "<span class='notice'>You re-cock the hammer on [src]</span>") //good 2 go
-		else
-			boutput(user, "<span class='notice'>You check the chamber and [src] appears to be [src.current_projectile == null ? "unloaded[prob(15) ? ". ...Probably!" : "."]" : "loaded[prob(15) ? ". ...Maybe?" : "."]"]</span>")
-			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 	else
 		process_ammo(user)
-		src.inventory_counter.update_number(ammo_list.len)
+		if(src.max_ammo_capacity)
+			src.inventory_counter.update_number(ammo_list.len)
 		// this is how many shots are left in the feeder- and does not include the one in the chamber. Should make for funny times
+		else
+			src.inventory_counter.update_number(!!current_projectile) // 1 if its loaded, 0 if not.
 
 	buildTooltipContent()
 
@@ -442,6 +455,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	SEND_SIGNAL(user, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
 
+	chamber_checked = 0
+
 	if (ismob(user))
 		var/mob/M = user
 		if (ishuman(M) && src.add_residue) // Additional forensic evidence for kinetic firearms (Convair880).
@@ -462,6 +477,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	if(!flash_auto)
 		current_projectile = null // empty chamber
+
+	if(!max_ammo_capacity)
+		src.inventory_counter.update_number(!!current_projectile)
 
 	src.update_icon()
 	return TRUE
