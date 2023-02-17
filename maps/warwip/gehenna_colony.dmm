@@ -7140,17 +7140,6 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice)
-"flK" = (
-/obj/wingrille_spawn/reinforced,
-/obj/cable{
-	icon_state = "0-8"
-	},
-/turf/simulated/floor/plating{
-	icon_old = "fullblue"
-	},
-/area/station/quartermaster/cargooffice/idk_another_one{
-	name = "Merchant Landing Pad"
-	})
 "flM" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /turf/simulated/floor,
@@ -8563,6 +8552,12 @@
 	icon_old = "fullblue"
 	},
 /area/station/hydroponics/bay)
+"gol" = (
+/obj/wingrille_spawn/reinforced,
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
+/area/station/quartermaster/cargooffice/storefront)
 "goL" = (
 /turf/simulated/wall/asteroid/gehenna/tough,
 /area/station/maintenance/inner/ne)
@@ -10623,17 +10618,6 @@
 	},
 /turf/simulated/floor,
 /area/station/security/main)
-"hQo" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 8;
-	tag = "icon-xtra_bigstripe-edge (WEST)"
-	},
-/obj/machinery/light/small/floor/yellow,
-/turf/simulated/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	icon_state = "quart";
-	name = "Cargo Bay"
-	})
 "hQD" = (
 /obj/table/auto,
 /obj/machinery/light/fluorescent{
@@ -10970,12 +10954,6 @@
 	},
 /turf/simulated/floor,
 /area/station/engine/engineering/breakroom)
-"ifY" = (
-/obj/wingrille_spawn/reinforced,
-/turf/simulated/floor/plating{
-	icon_old = "fullblue"
-	},
-/area/station/quartermaster/cargooffice/storefront)
 "igb" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	can_rupture = 0
@@ -12748,6 +12726,9 @@
 	icon_state = "xtra_bigstripe-corner2"
 	},
 /obj/machinery/light/fluorescent/auto/cool,
+/obj/railing/cyan{
+	dir = 8
+	},
 /turf/simulated/floor/industrial,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
@@ -19809,6 +19790,17 @@
 	icon_old = "fullblue"
 	},
 /area/station/quartermaster/storage)
+"oWI" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/plating{
+	icon_old = "fullblue"
+	},
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "oXg" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
@@ -20478,9 +20470,7 @@
 /area/station/crew_quarters/farmers)
 "pxI" = (
 /obj/machinery/door/firedoor/border_only,
-/turf/simulated/floor/stairs{
-	dir = 1
-	},
+/turf/simulated/floor,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
 	name = "Cargo Bay"
@@ -20886,6 +20876,14 @@
 /obj/decal/poster/wallsign/WC_blue,
 /turf/simulated/wall,
 /area/station/medical/medbay/restroom)
+"pNA" = (
+/turf/simulated/floor/stairs/wide{
+	dir = 1
+	},
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "pNH" = (
 /obj/cable{
 	icon_state = "2-4"
@@ -25586,10 +25584,6 @@
 	dir = 5
 	},
 /area/listeningpost)
-"tlf" = (
-/obj/ladder/auto,
-/turf/simulated/floor,
-/area/station/security/main)
 "tlA" = (
 /obj/cable{
 	d1 = 4;
@@ -26350,6 +26344,14 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/medical/medbay)
+"tSo" = (
+/turf/simulated/floor/stairs/wide/other{
+	dir = 1
+	},
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "tSG" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/southeast,
 /turf/simulated/floor/white,
@@ -26394,6 +26396,9 @@
 	icon_state = "xtra_bigstripe-corner2"
 	},
 /obj/machinery/light/fluorescent/auto/cool,
+/obj/railing/cyan{
+	dir = 4
+	},
 /turf/simulated/floor/industrial,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
@@ -27171,13 +27176,6 @@
 /obj/machinery/power/apc/autoname_north,
 /turf/simulated/floor,
 /area/station/bridge/customs)
-"uAZ" = (
-/obj/disposalpipe/trunk{
-	dir = 8
-	},
-/obj/machinery/disposal,
-/turf/simulated/floor,
-/area/station/security/main)
 "uBz" = (
 /obj/cable{
 	d2 = 8;
@@ -27197,6 +27195,13 @@
 	icon_old = "fullblue"
 	},
 /area/space)
+"uCh" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable,
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "uCi" = (
 /obj/table/wood/auto,
 /obj/disposalpipe/segment/mail/vertical,
@@ -27697,6 +27702,13 @@
 /obj/item/pen,
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/lobby)
+"uSm" = (
+/obj/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/disposal,
+/turf/simulated/floor,
+/area/station/security/main)
 "uSE" = (
 /obj/machinery/atmospherics/valve{
 	dir = 4;
@@ -28238,6 +28250,17 @@
 	icon_old = "fullblue"
 	},
 /area/station/crew_quarters/farmers)
+"vnT" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8;
+	tag = "icon-xtra_bigstripe-edge (WEST)"
+	},
+/obj/machinery/light/small/floor/yellow,
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "voh" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -30334,6 +30357,10 @@
 /obj/item/pen/marker/orange,
 /turf/simulated/floor/carpet/green,
 /area/station/crew_quarters/farmers)
+"wTu" = (
+/obj/ladder/auto,
+/turf/simulated/floor,
+/area/station/security/main)
 "wTI" = (
 /obj/disposalpipe/segment/brig{
 	dir = 4
@@ -31333,8 +31360,10 @@
 	},
 /area/space)
 "xHr" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/breathable,
-/turf/simulated/floor/industrial,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/simulated/floor/stairs/wide/middle{
+	dir = 1
+	},
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
 	name = "Cargo Bay"
@@ -76647,7 +76676,7 @@ jUy
 aQW
 wyM
 hAW
-uAZ
+uSm
 fLB
 nnq
 gcp
@@ -77251,7 +77280,7 @@ kxb
 pHk
 rXg
 gLC
-tlf
+wTu
 fLB
 ckf
 lYO
@@ -87495,7 +87524,7 @@ fsP
 fsP
 fsP
 fsP
-flK
+oWI
 fsP
 fsP
 fsP
@@ -89308,7 +89337,7 @@ oLr
 oLr
 eNe
 ebP
-xzP
+tSo
 pxI
 oqt
 exg
@@ -89609,7 +89638,7 @@ oLr
 oLr
 oLr
 aUA
-xzP
+uCh
 xHr
 yjL
 reC
@@ -89912,7 +89941,7 @@ oLr
 oLr
 euy
 oeg
-xzP
+pNA
 pxI
 udP
 ybx
@@ -90809,7 +90838,7 @@ wdI
 bgl
 xzP
 qAC
-hQo
+vnT
 bJF
 oLr
 oLr
@@ -91150,7 +91179,7 @@ xDd
 cto
 qiv
 qiv
-ifY
+gol
 iiv
 iiv
 iiv
@@ -94472,7 +94501,7 @@ etq
 qiv
 dgF
 cnX
-ifY
+gol
 iiv
 iiv
 iiv
