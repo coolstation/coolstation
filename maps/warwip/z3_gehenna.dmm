@@ -10830,6 +10830,21 @@
 /obj/disposalpipe/segment/sewage,
 /turf/simulated/floor/plating,
 /area/station/storage/warehouse)
+"gFR" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8;
+	tag = "icon-xtra_bigstripe-edge (WEST)"
+	},
+/obj/machinery/light/emergency{
+	dir = 4
+	},
+/turf/simulated/floor/industrial,
+/area/station/maintenance/central)
 "gGu" = (
 /obj/storage/closet/emergency,
 /obj/disposalpipe/segment/morgue{
@@ -12847,6 +12862,13 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southeast,
 /turf/simulated/floor/plating,
 /area/station/storage/warehouse)
+"hUY" = (
+/obj/disposalpipe/segment/vertical,
+/obj/machinery/light/emergency{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/central)
 "hVv" = (
 /obj/machinery/light/fluorescent/cyan,
 /turf/simulated/floor/grime,
@@ -13458,6 +13480,9 @@
 "iqh" = (
 /obj/storage/secure/closet/personal/empty,
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/light/emergency{
+	dir = 4
+	},
 /turf/simulated/floor/grime,
 /area/station/maintenance/northeast)
 "iqi" = (
@@ -22642,6 +22667,13 @@
 /obj/decal/cleanable/rust/jen,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
+"nMK" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/light/emergency{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/central)
 "nMR" = (
 /obj/stool/bench/auto,
 /turf/simulated/floor,
@@ -34124,6 +34156,14 @@
 /obj/item/reagent_containers/food/drinks/carafe/research,
 /turf/simulated/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
+"uTh" = (
+/obj/disposalpipe/segment/food,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/machinery/light/emergency{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/central)
 "uTi" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -37247,6 +37287,13 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor/carpet/grime,
 /area/station/mining/barracks)
+"wNj" = (
+/obj/disposalpipe/segment/produce,
+/obj/machinery/light/emergency{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/central)
 "wNq" = (
 /obj/cable{
 	d1 = 4;
@@ -87433,7 +87480,7 @@ erI
 kNM
 sTP
 sTP
-sTP
+uTh
 gvc
 mxR
 sTP
@@ -87711,7 +87758,7 @@ cdc
 rXX
 aHe
 eFV
-ltA
+hUY
 dHc
 ltA
 reB
@@ -88330,7 +88377,7 @@ xOI
 xOI
 xOI
 xOI
-xOI
+wNj
 xOI
 nGf
 tMA
@@ -88618,7 +88665,7 @@ cUv
 ybl
 dgl
 kYl
-anN
+gFR
 anN
 bfz
 nWG
@@ -90418,7 +90465,7 @@ tNp
 dww
 sJt
 jFq
-wwf
+nMK
 sPp
 sPp
 sPp
