@@ -359,8 +359,11 @@
 			explosion(src, src.loc, 20, 30, 40, 50)
 			qdel(src)
 			return
-#ifdef MAP_OVERRIDE_MANTA
-		world.showCinematic("manta_nukies")
+#ifdef MAP_OVERRIDE_GEHENNA
+		var/datum/hud/cinematic/cinematic = new
+		for (var/client/C in clients)
+			cinematic.add_client(C)
+		cinematic.play("gehenna_nuke")
 #else
 		var/datum/hud/cinematic/cinematic = new
 		for (var/client/C in clients)
