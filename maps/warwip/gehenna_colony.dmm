@@ -4763,7 +4763,9 @@
 /obj/disposalpipe/segment/cargo{
 	dir = 4
 	},
-/obj/rack,
+/obj/machinery/computer/barcode/qm/no_belthell{
+	dir = 8
+	},
 /turf/simulated/floor,
 /area/station/quartermaster/storage)
 "dGV" = (
@@ -11090,11 +11092,13 @@
 /turf/simulated/floor/white/grime,
 /area/station/wc/sec)
 "ivy" = (
-/obj/table/wood/auto,
-/obj/disposalpipe/segment/mail/vertical,
-/obj/item/disk/data/floppy/read_only/communications,
-/turf/simulated/floor/darkblue/checker,
-/area/station/bridge/conference)
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/machinery/computer/barcode/qm/no_belthell{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "iwa" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/machinery/disposal,
@@ -15436,6 +15440,12 @@
 	},
 /turf/simulated/floor/black,
 /area/station/security/secoffquarters)
+"lNT" = (
+/obj/table/wood/auto,
+/obj/disposalpipe/segment/mail/vertical,
+/obj/item/disk/data/floppy/read_only/communications,
+/turf/simulated/floor/darkblue/checker,
+/area/station/bridge/conference)
 "lOc" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/southwest,
 /turf/simulated/floor/plating,
@@ -65576,7 +65586,7 @@ xdl
 mwE
 hbx
 xcf
-ivy
+lNT
 gKF
 wyk
 fdZ
@@ -89729,7 +89739,7 @@ gqL
 uIr
 xpR
 vlN
-isk
+ivy
 kta
 isk
 frQ
