@@ -2081,6 +2081,98 @@
 					. = "<B>[mob]</B> BWAHCAWCKs!"
 					playsound(mob, "sound/voice/screams/chicken_bawk.ogg", 50, 0, 0, mob.get_age_pitch())
 
+/datum/mutantrace/fert
+	name = "ferret"
+	icon = 'icons/mob/fert.dmi'
+	icon_state = "body_m"
+	override_attack = 0
+	mutant_appearance_flags = (NOT_DIMORPHIC | HAS_HUMAN_EYES | BUILT_FROM_PIECES | HAS_EXTRA_DETAILS | FIX_COLORS | SKINTONE_USES_PREF_COLOR_1 | HAS_SPECIAL_HAIR | TORSO_HAS_SKINTONE | WEARS_UNDERPANTS)
+	voice_override = "fert"
+	special_head = HEAD_FERT
+	special_head_state = "head"
+	mutant_organs = list("tail" = /obj/item/organ/tail/fert)
+	mutant_folder = 'icons/mob/fert.dmi'
+	special_hair_1_icon = 'icons/mob/fert.dmi'
+	special_hair_1_state = "head_detail_altcolor"
+	special_hair_1_color = CUST_2 //middle
+	special_hair_2_icon = 'icons/mob/fert.dmi'
+	special_hair_2_state = "head_detail_banditmask"
+	special_hair_2_color = CUST_1 //bottom: base color
+	special_hair_3_icon = 'icons/mob/fert.dmi'
+	special_hair_3_state = "head_detail_noseears"
+	special_hair_3_color = CUST_3 //top
+	detail_1_icon = 'icons/mob/fert.dmi'
+	detail_1_state = "chest_detail_altcolor" //counter-shading
+	detail_1_color = CUST_2 //middle
+	r_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/fert/right
+	l_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/fert/left
+	r_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/fert/right
+	l_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/fert/left
+	race_mutation = /datum/bioEffect/mutantrace/fert
+	clothing_icon_override = 'icons/mob/fert_clothes.dmi'
+	color_channel_names = list("Base Coat", "Alternate Color", "Nose and Ears")
+	dna_mutagen_banned = FALSE
+
+	//thanks for the sprites and hard work, Cet!!
+
+	New(var/mob/living/carbon/human/H)
+		..()
+		if(ishuman(H))
+			H.bioHolder.AddEffect("stinky")
+			//H.bioHolder.AddEffect("clumsy") //better handled with a cooldown power: lets a ferretperson move and act faster for a limited time...
+			//but they're extra clumsy while it's active and they're weakened for a few seconds and a little slow for the duration of the cooldown?
+			H.mob_flags |= SHOULD_HAVE_A_TAIL
+
+			H.update_face()
+			H.update_body()
+			H.update_clothing()
+
+	emote(var/act) //need a weasel-scream, possibly flip variant (unless we move handling of mutantrace variant emotes to The Big Stack, which could be helpful)
+		var/message = null
+		switch (act)
+			if ("dance") //yoink the following from meatslinky
+				if (mob.emote_allowed)
+					SPAWN_DBG(0) //wiggle for sure
+						var/x = rand(5,10)
+						while (x-- > 0)
+							mob.pixel_x = rand(-6,6)
+							mob.pixel_y = rand(-6,6)
+							mob.dir = pick(1,2,4,8)
+							sleep(0.2 SECONDS)
+							if (x == 0) //it's fine for the critters to be sloppy but not the player, get back to normal position at the end
+								mob.pixel_x = 0
+								mob.pixel_y = 0
+								if (prob(2)) //when done, also a chance to flop
+									mob.changeStatus("weakened", 5 SECONDS)
+									mob.visible_message("<span class='alert'><B>[mob] gets exhausted from prancing about and falls over!</B></span>")
+								else if (prob(20)) //but... maybe just one more flip, for the road
+									animate_spin(mob, prob(50) ? "L" : "R", 1, 0)
+
+					if (prob(20)) //possibly spin but with a greater chance than regular ferts
+						animate_spin(mob, prob(50) ? "L" : "R", 1, 0)
+					message = "<B>[mob]</B> [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles","weasel-wardances")]!"
+					SPAWN_DBG(3 SECONDS)
+						if (mob) mob.emote_allowed = 1
+					return message
+			if ("laugh") //maybe these sometimes just happen. add a random freakout var like the regular ferrets maybe?
+				if (mob.emote_allowed)
+					mob.emote_allowed = 0
+					message = "<B>[mob]</B> dooks excitedly!"
+					SPAWN_DBG(1 SECONDS)
+						if (mob) mob.emote_allowed = 1
+					return message
+
+	disposing()
+		if(ishuman(mob))
+			//var/mob/living/carbon/human/L = mob
+			//L.bioHolder.RemoveEffect("stinky") //that stink doesn't wash off so easily
+			mob.mob_flags &= ~SHOULD_HAVE_A_TAIL
+			mob.base_body_temp = initial(mob.base_body_temp)
+		. = ..()
+
+	say_verb()
+		return "dooks"
+
 #undef OVERRIDE_ARM_L
 #undef OVERRIDE_ARM_R
 #undef OVERRIDE_LEG_R
