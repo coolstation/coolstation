@@ -679,7 +679,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 		if(src.bigshoe) //big steppy
 			pixel_x = rand(-4, 4)
 			pixel_y = rand(3, 8)
-			//playsound(src.loc, "sound/misc/step/step_heavyboots_[rand(1,3)].ogg", 30, 1)
+			//playsound(src.loc, "sound/misc/step/step_heavyboots_[rand(1,3)].ogg", 30, 1) doesn't play for some people for some reason
 			playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 30, 1)
 			SPAWN_DBG(1 DECI SECOND)
 				pixel_x = rand(-1, 1)
@@ -774,18 +774,18 @@ ABSTRACT_TYPE(/obj/vehicle)
 	in_bump = 1
 	if(ismob(AM) && src.bigshoe) //this repeats twice for some reason, i probably fucked up but it's funny
 		var/mob/M = AM
-		boutput(rider, "<span class='alert'><B>You stomp on [M]!</B></span>")
+		boutput(rider, "<span class='alert'><B>You kick [M]!</B></span>")
 		for (var/mob/C in AIviewers(src))
 			if(C == rider)
 				continue
-			C.show_message("<span class='alert'><B>[rider] stomps all over [M] with \the [src]!</B></span>", 1)
-		M.changeStatus("stunned", 6 SECONDS) //unfortunately there's several ticks before someone falls over, blocking full on rampages.
-		M.changeStatus("weakened", 6 SECONDS) //and i don't want to THROW because this is a stomp kinda thing, you know?
+			C.show_message("<span class='alert'><B>[rider] kicks [M] with \the [src]!</B></span>", 1)
+		var/turf/target = get_edge_target_turf(src, src.dir)
+		M.throw_at(target, 5, 1) //kicks them out of the way so we don't get slowed down, stomps are when you enter
+		M.changeStatus("stunned", 4 SECONDS)
+		M.changeStatus("weakened", 2 SECONDS)
 		M.TakeDamage("chest", 12.5, 0, 0, DAMAGE_BLUNT) //halved for now
 		playsound(src.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 25, 1)
 		playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 25, 1) //placeholder sounds
-		//need a temporarily flattened animation state on M here- say scale y to .3 and x to 3? lasts for 6 sec?
-		rider.say (pick("Wahoo!", "Mama Mia!", "Let's-a Go!", "Ha ha!")) //maybe this only happens if you're italian?
 		in_bump = 0
 		return
 	if(ismob(AM) && src.booster_upgrade)
@@ -1006,6 +1006,45 @@ ABSTRACT_TYPE(/obj/vehicle)
 		src.icon_state = src.icon_base
 		src.UpdateOverlays(null, "rider")
 		src.underlays = null
+
+/obj/vehicle/floorbuffer/reallybigshoe/proc/StompOn(var/mob/living/carbon/human/H)
+	if (!rider)
+		return //don't stomp if someone isn't actually riding the shoe (i.e. pushing)
+	playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
+	//handle some specific checks
+	var/mob/living/carbon/human/R = src.rider
+	//if (R.reagents && R.reagents.has_reagent("ethanol"))
+		// M.unlock_medal("D-Shoe-UI", 1) not really
+	if (R.italian)
+		R.say (pick("Wahoo!", "Mama Mia!", "Let's-a Go!", "Ha ha!")) //there it is
+
+	var/damage = rand(2,6) //a little less rough because it can easily happen multiple times
+	H.TakeDamage("head", 2*damage, 0) //same damage allocation as mulebot, for now
+	H.TakeDamage("chest",2*damage, 0)
+	H.TakeDamage("l_leg",0.5*damage, 0)
+	H.TakeDamage("r_leg",0.5*damage, 0)
+	H.TakeDamage("l_arm",0.5*damage, 0)
+	H.TakeDamage("r_arm",0.5*damage, 0)
+	H.changeStatus("stunned", 5 SECONDS)
+
+	boutput(rider, "<span class='alert'><B>You stomp on [H]!</B></span>")
+	for (var/mob/C in AIviewers(src))
+		if(C == rider)
+			continue
+		C.show_message("<span class='alert'><B>[rider] stomps all over [H] with \the [src]!</B></span>", 1)
+
+	/*var/squished = 0 //not working, will deal with later
+	if (!squished) //we only want to squish and unsquish once to keep it clean
+		H.Scale(4, .25)
+		squished = 1
+		SPAWN_DBG(10 SECONDS)
+			if(squished)
+			H.Scale(.25, 4) //don't care if this doesn't work i'm slamming it in fore the playtest
+			squished = 0 */
+
+	//take_bleeding_damage(H, null, 2 * damage, DAMAGE_BLUNT)
+
+	//bloodiness += 4 //red footprints, eventually
 
 /////////////////////////////////////////////////////// Clown car ////////////////////////////////////////
 

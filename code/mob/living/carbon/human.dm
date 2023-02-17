@@ -1349,11 +1349,14 @@
 	alert("Go play HellMOO if you wanna do that.")
 
 // called when something steps onto a human
-// this could be made more general, but for now just handle mulebot
+// oh no it's even worse now
 /mob/living/carbon/human/HasEntered(var/atom/movable/AM)
 	var/obj/machinery/bot/mulebot/MB = AM
+	var/obj/vehicle/floorbuffer/reallybigshoe/RBS = AM
 	if (istype(MB))
 		MB.RunOver(src)
+	if (istype(RBS))
+		RBS.StompOn(src)
 
 /mob/living/carbon/human/Topic(href, href_list)
 	if (istype(usr.loc,/obj/dummy/spell_invis/) || isghostdrone(usr))
