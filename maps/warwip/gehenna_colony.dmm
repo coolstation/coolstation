@@ -702,10 +702,6 @@
 	icon_state = "fblue2"
 	},
 /area/station/bridge)
-"aAR" = (
-/obj/disposalpipe/segment/bent/south,
-/turf/simulated/wall/r_wall,
-/area/station/quartermaster/cargobay)
 "aBr" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/southwest,
 /obj/disposalpipe/segment/mail/horizontal,
@@ -1108,10 +1104,6 @@
 	},
 /turf/simulated/floor/darkblue,
 /area/station/turret_protected/Zeta)
-"aPL" = (
-/obj/disposalpipe/junction/left/west,
-/turf/simulated/floor,
-/area/station/quartermaster/cargobay)
 "aQi" = (
 /obj/disposalpipe/trunk/zlevel{
 	dir = 4;
@@ -7037,12 +7029,11 @@
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/conference)
 "foA" = (
-/obj/disposalpipe/trunk,
-/obj/machinery/floorflusher/industrial{
-	name = "industrial loading chute - cargo"
+/obj/machinery/light/small/cool{
+	dir = 1
 	},
 /turf/simulated/floor/plating,
-/area/supply/delivery_point)
+/area/station/maintenance/inner/ne)
 "foS" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -7452,13 +7443,6 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/customs)
-"fBM" = (
-/obj/disposalpipe/trunk,
-/obj/machinery/floorflusher/industrial{
-	name = "industrial loading chute - cargo"
-	},
-/turf/simulated/floor/plating,
-/area/space)
 "fCk" = (
 /turf/simulated/floor/purple/checker{
 	dir = 1
@@ -19404,10 +19388,6 @@
 	},
 /turf/simulated/floor/carpet/red/fancy/edge/east,
 /area/station/chapel/sanctuary)
-"pdh" = (
-/obj/disposalpipe/junction/right/east,
-/turf/simulated/wall/r_wall,
-/area/station/quartermaster/cargobay)
 "pef" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -22914,10 +22894,6 @@
 	},
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/conference)
-"rDO" = (
-/obj/disposalpipe/segment/bent/north,
-/turf/simulated/wall/r_wall,
-/area/station/quartermaster/cargobay)
 "rEE" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/disposalpipe/segment/horizontal,
@@ -24739,7 +24715,7 @@
 /area/station/security/brig/south_side)
 "tcd" = (
 /turf/simulated/floor/plating,
-/area/supply/spawn_point)
+/area/station/maintenance/inner/ne)
 "tcG" = (
 /obj/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
@@ -30084,12 +30060,6 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/farmers)
-"xko" = (
-/obj/disposalpipe/segment/cargo{
-	dir = 4
-	},
-/turf/simulated/wall/r_wall,
-/area/station/quartermaster/cargobay)
 "xku" = (
 /obj/rack,
 /obj/item/satchel/hydro/large,
@@ -94308,7 +94278,7 @@ mhC
 pjJ
 dAu
 foA
-rDO
+vcA
 vcA
 beb
 alu
@@ -94609,8 +94579,8 @@ ler
 tTo
 cox
 dAu
-fBM
-pdh
+tcd
+vcA
 atL
 kqf
 xwN
@@ -94911,8 +94881,8 @@ xrV
 mhC
 iDr
 dAu
-fBM
-pdh
+tcd
+vcA
 ign
 jSx
 xpy
@@ -95213,8 +95183,8 @@ xrV
 mhC
 fVt
 dAu
-fBM
-pdh
+tcd
+vcA
 smb
 cBk
 lpt
@@ -95515,8 +95485,8 @@ xrV
 mhC
 chj
 dAu
-fBM
-pdh
+tcd
+vcA
 iKr
 cBk
 hqN
@@ -95817,8 +95787,8 @@ ler
 uFW
 noo
 dAu
-fBM
-pdh
+tcd
+vcA
 iKr
 cBk
 hqN
@@ -96119,8 +96089,8 @@ xrV
 bYu
 dyk
 dAu
-fBM
-pdh
+tcd
+vcA
 iKr
 cBk
 hqN
@@ -96421,8 +96391,8 @@ xrV
 bYu
 bHZ
 dAu
-fBM
-pdh
+foA
+vcA
 smb
 cBk
 hqN
@@ -96723,8 +96693,8 @@ xrV
 bYu
 dyk
 dAu
-wbS
-xko
+tcd
+vcA
 iKr
 cBk
 hqN
@@ -97025,9 +96995,9 @@ vki
 jfy
 gRy
 dAu
-wbS
-aAR
-aPL
+tcd
+vcA
+iKr
 cBk
 hqN
 hQO
@@ -97327,7 +97297,7 @@ jiT
 kfF
 vWR
 dAu
-wbS
+tcd
 vcA
 qGT
 cBk
@@ -97629,7 +97599,7 @@ jiT
 bYu
 hoO
 dAu
-wbS
+tcd
 vcA
 smb
 cBk
@@ -98233,7 +98203,7 @@ dAu
 trM
 jUR
 dAu
-wYE
+tcd
 vcA
 xWK
 qFl
