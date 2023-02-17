@@ -1924,6 +1924,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/turret_protected/Zeta)
+"bBT" = (
+/obj/disposalpipe/segment/morgue,
+/turf/simulated/floor/grey,
+/area/station/maintenance/inner/nw)
 "bCc" = (
 /obj/wingrille_spawn,
 /turf/simulated/floor/plating,
@@ -7821,7 +7825,7 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
-/obj/wingrille_spawn/reinforced,
+/obj/wingrille_spawn,
 /turf/simulated/floor/plating,
 /area/station/medical/medbay)
 "fQm" = (
@@ -12321,6 +12325,11 @@
 	},
 /turf/simulated/floor/darkblue,
 /area/station/bridge/customs)
+"jyd" = (
+/obj/disposalpipe/segment/bent/south,
+/obj/grille/catwalk/jen,
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/nw)
 "jyl" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/cable{
@@ -29519,11 +29528,6 @@
 	},
 /turf/simulated/floor/carpet/blue/standard/edge/sw,
 /area/station/medical/medbay/lobby)
-"wPb" = (
-/obj/disposalpipe/segment/bent/south,
-/obj/grille/catwalk/jen,
-/turf/simulated/floor/plating,
-/area/station/maintenance/inner/nw)
 "wPZ" = (
 /obj/rack,
 /turf/simulated/floor,
@@ -30073,10 +30077,6 @@
 /obj/grille/catwalk/jen,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/north)
-"xkf" = (
-/obj/disposalpipe/segment/morgue,
-/turf/simulated/floor/grey,
-/area/station/maintenance/inner/nw)
 "xkn" = (
 /obj/machinery/vending/pizza,
 /obj/disposalpipe/segment/produce{
@@ -58070,7 +58070,7 @@ uTy
 wLF
 wLF
 uiZ
-wPb
+jyd
 bRb
 wCu
 tRl
@@ -58375,7 +58375,7 @@ rgH
 dnS
 dnS
 nhp
-xkf
+bBT
 mKJ
 ffv
 mhJ
@@ -60846,7 +60846,7 @@ jze
 sgC
 snw
 hGk
-xnp
+eOa
 ckH
 aRo
 xIA
@@ -61148,7 +61148,7 @@ ucP
 dxm
 ivc
 qaM
-xnp
+eOa
 eVT
 aRo
 gdo
@@ -61450,7 +61450,7 @@ iXR
 bvs
 hWH
 qaM
-xnp
+eOa
 tSn
 fvG
 vBi

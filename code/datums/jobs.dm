@@ -873,6 +873,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 /datum/job/civilian/bartender
 	name = "Bartender"
 	alias_names = list("Barman")
+	do_not_save_gun = 1
 	limit = 1
 	wages = PAY_UNTRAINED
 	slot_belt = list(/obj/item/device/pda2/bartender)
