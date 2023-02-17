@@ -12845,13 +12845,6 @@
 /area/station/medical/basement)
 "hUR" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southeast,
-/obj/decal/tile_edge/floorguide/ladder{
-	pixel_y = 32
-	},
-/obj/decal/tile_edge/floorguide/qm{
-	dir = 8;
-	pixel_y = 32
-	},
 /turf/simulated/floor/plating,
 /area/station/storage/warehouse)
 "hVv" = (
@@ -26550,6 +26543,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
+/obj/machinery/light/small/warm,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
 "qus" = (
@@ -26678,6 +26672,12 @@
 /area/station/crew_quarters/bar)
 "qyo" = (
 /obj/disposalpipe/segment/vertical,
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 4
+	},
+/obj/decal/tile_edge/floorguide/qm{
+	dir = 1
+	},
 /turf/simulated/wall,
 /area/station/maintenance/inner/ne)
 "qyp" = (
@@ -33078,11 +33078,12 @@
 /turf/simulated/floor/yellow,
 /area/station/storage/warehouse)
 "uoo" = (
-/obj/decal/tile_edge/floorguide/ladder{
-	dir = 4
+/obj/decal/tile_edge/floorguide/ladder,
+/obj/decal/tile_edge/floorguide/qm{
+	dir = 8
 	},
-/turf/simulated/wall,
-/area/station/maintenance/south)
+/turf/simulated/wall/r_wall,
+/area/station/maintenance/inner/ne)
 "uor" = (
 /obj/machinery/light/small/floor,
 /obj/disposalpipe/segment{
@@ -36195,6 +36196,12 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/basement)
+"wdK" = (
+/obj/decal/tile_edge/floorguide/ladder{
+	dir = 4
+	},
+/turf/simulated/wall,
+/area/station/maintenance/south)
 "wee" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -38733,6 +38740,9 @@
 	dir = 4
 	},
 /obj/decal/poster/wallsign/warning3,
+/obj/decal/tile_edge/floorguide/qm{
+	dir = 1
+	},
 /turf/simulated/wall/r_wall,
 /area/station/maintenance/northeast)
 "xNe" = (
@@ -71437,7 +71447,7 @@ eCs
 sGo
 sGo
 rrD
-uoo
+wdK
 vbQ
 ivA
 mAa
@@ -107301,7 +107311,7 @@ pdO
 xqD
 xqD
 xqD
-xqD
+uoo
 hUR
 jhi
 gHt

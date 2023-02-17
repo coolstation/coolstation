@@ -91,7 +91,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		boutput(user, "<span class='alert'>You need another stack!</span>")
 
 	attackby(var/obj/item/I as obj, mob/user as mob)
-		if (istype(I, /obj/item/stackable_ammo) && src.amount < src.max_stack)
+		if (istype(I, /obj/item/stackable_ammo) && (src.amount < src.max_stack) && (src.type == I.type))
 
 			user.visible_message("<span class='notice'>[user] stacks some rounds.</span>")
 			stack_item(I)
@@ -109,7 +109,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 					boutput(user, "<span class='alert'>You wish!</span>")
 					return
 				change_stack_amount( 0 - amt )
-				var/obj/item/stackable_ammo/young_money = new()
+				var/obj/item/stackable_ammo/young_money = new src.type()
 				young_money.setup(user.loc, amt)
 				young_money.Attackhand(user)
 		else
