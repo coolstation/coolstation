@@ -7026,6 +7026,7 @@
 /obj/machinery/microwave{
 	pixel_y = 4
 	},
+/obj/item/device/radio/intercom/bridge,
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/conference)
 "foA" = (
@@ -7719,6 +7720,7 @@
 /obj/cable/blue{
 	icon_state = "1-8"
 	},
+/obj/item/device/radio/intercom/security,
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/conference)
 "fLG" = (
@@ -11089,10 +11091,8 @@
 /area/station/wc/sec)
 "ivy" = (
 /obj/table/wood/auto,
-/obj/cable/blue{
-	icon_state = "1-2"
-	},
-/obj/item/device/radio/intercom/security,
+/obj/disposalpipe/segment/mail/vertical,
+/obj/item/disk/data/floppy/read_only/communications,
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/conference)
 "iwa" = (
@@ -14615,6 +14615,7 @@
 /obj/stool/chair/comfy/blue{
 	dir = 1
 	},
+/obj/item/device/radio/intercom/medical,
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/conference)
 "lhV" = (
@@ -15435,11 +15436,6 @@
 	},
 /turf/simulated/floor/black,
 /area/station/security/secoffquarters)
-"lNT" = (
-/obj/table/wood/auto,
-/obj/item/device/radio/intercom/medical,
-/turf/simulated/floor/darkblue/checker,
-/area/station/bridge/conference)
 "lOc" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/southwest,
 /turf/simulated/floor/plating,
@@ -16179,12 +16175,6 @@
 /obj/item/storage/toolbox/emergency,
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/farmers)
-"mCA" = (
-/obj/table/wood/auto,
-/obj/disposalpipe/segment/mail/vertical,
-/obj/item/device/radio/intercom/engineering,
-/turf/simulated/floor/darkblue/checker,
-/area/station/bridge/conference)
 "mCZ" = (
 /obj/machinery/door/airlock,
 /obj/cable{
@@ -19870,6 +19860,7 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/bent/west,
+/obj/item/device/radio/intercom/engineering,
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/conference)
 "puX" = (
@@ -21450,6 +21441,7 @@
 /obj/table/wood/auto,
 /obj/machinery/light/small/floor,
 /obj/disposalpipe/segment/vertical,
+/obj/machinery/phone,
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/conference)
 "qCv" = (
@@ -23675,9 +23667,7 @@
 /area/station/hangar/engine)
 "sjB" = (
 /obj/table/wood/auto,
-/obj/item/device/radio/intercom/bridge,
 /obj/disposalpipe/segment/vertical,
-/obj/machinery/phone,
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/conference)
 "sjR" = (
@@ -26526,13 +26516,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/space)
-"uCi" = (
-/obj/table/wood/auto,
-/obj/disposalpipe/segment/mail/vertical,
-/obj/item/disk/data/floppy/read_only/communications,
-/obj/item/device/radio/intercom/science,
-/turf/simulated/floor/darkblue/checker,
-/area/station/bridge/conference)
 "uCx" = (
 /obj/disposalpipe/junction/middle/north,
 /turf/simulated/floor/darkblue,
@@ -29054,6 +29037,7 @@
 	dir = 1
 	},
 /obj/disposalpipe/segment/bent/north,
+/obj/item/device/radio/intercom/science,
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/conference)
 "wyp" = (
@@ -64385,7 +64369,7 @@ mwE
 oDq
 fnH
 gKF
-mCA
+gKF
 ptW
 fdZ
 elK
@@ -64687,7 +64671,7 @@ nEf
 kmg
 inV
 qaS
-ivy
+qaS
 fLE
 gOL
 elK
@@ -65291,7 +65275,7 @@ lmc
 sUa
 geB
 pfk
-lNT
+pfk
 lhU
 gOL
 wKD
@@ -65592,8 +65576,8 @@ xdl
 mwE
 hbx
 xcf
+ivy
 gKF
-uCi
 wyk
 fdZ
 sUa
