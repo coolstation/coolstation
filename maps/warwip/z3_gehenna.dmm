@@ -2224,6 +2224,9 @@
 /area/station/medical/medbooth)
 "bnk" = (
 /obj/disposalpipe/junction/left/east,
+/obj/landmark/spawner{
+	name = "monkeyspawn_rathen"
+	},
 /turf/simulated/floor/grey,
 /area/station/engine/hotloop)
 "bny" = (
@@ -2591,6 +2594,12 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
+"byJ" = (
+/obj/landmark/spawner{
+	name = "monkeyspawn_horse"
+	},
+/turf/simulated/floor/plating/gehenna,
+/area/noGenerate)
 "byL" = (
 /turf/simulated/floor/plating,
 /area/station/science/artifact{
@@ -16384,6 +16393,9 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/networked/telepad,
+/obj/landmark/spawner{
+	name = "monkeyspawn_albert"
+	},
 /turf/simulated/floor/black,
 /area/station/science/teleporter)
 "jZn" = (
@@ -17174,6 +17186,12 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/station/maintenance/central)
+"kxS" = (
+/obj/landmark/spawner{
+	name = "monkeyspawn_mrmuggles"
+	},
+/turf/simulated/floor/industrial,
+/area/station/crew_quarters/fitness)
 "kyd" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/cable{
@@ -19866,6 +19884,10 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/bridge/basement)
+"mdi" = (
+/obj/landmark/halloween,
+/turf/simulated/floor/plating,
+/area/station/hallway/secondary/exit)
 "mdr" = (
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/light/small/cool{
@@ -21696,6 +21718,9 @@
 	dir = 4
 	},
 /obj/item/device/radio/beacon,
+/obj/landmark/spawner{
+	name = "monkeyspawn_mrsmuggles"
+	},
 /turf/simulated/floor/industrial,
 /area/station/quartermaster/automat)
 "njo" = (
@@ -28654,6 +28679,13 @@
 /obj/structure/girder,
 /turf/simulated/floor/plating/random,
 /area/station/medical/cdc)
+"rHn" = (
+/obj/decal/cleanable/dirt/random,
+/obj/landmark/halloween,
+/turf/simulated/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/maintenance/northwest)
 "rHI" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -30607,6 +30639,10 @@
 "sPJ" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/wall/r_wall,
+/area/station/maintenance/east)
+"sQg" = (
+/obj/landmark/halloween,
+/turf/simulated/floor/plating,
 /area/station/maintenance/east)
 "sQI" = (
 /obj/machinery/light/fluorescent/purpleish{
@@ -33233,6 +33269,9 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
+/obj/landmark{
+	name = "bubsbeejob"
+	},
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/medical)
 "usb" = (
@@ -33392,6 +33431,7 @@
 /area/station/maintenance/southeast)
 "uwo" = (
 /obj/machinery/light/fluorescent/ceiling,
+/obj/landmark/boxing_ring,
 /turf/simulated/floor/specialroom/gym,
 /area/station/crew_quarters/fitness)
 "uwy" = (
@@ -35174,6 +35214,11 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/plating,
 /area/station/mining/tunnel)
+"vwa" = (
+/obj/decal/cleanable/dirt/random,
+/obj/landmark/halloween,
+/turf/simulated/floor/plating,
+/area/station/maintenance/south)
 "vwy" = (
 /obj/machinery/door/airlock/classic,
 /obj/disposalpipe/segment/sewage,
@@ -77236,7 +77281,7 @@ kPQ
 kpW
 kPQ
 kPQ
-mDu
+vwa
 uiP
 uhM
 qAe
@@ -77499,7 +77544,7 @@ qZT
 qZT
 qZT
 qZT
-qZT
+byJ
 qZT
 qZT
 qZT
@@ -80840,7 +80885,7 @@ wTj
 tZz
 mgO
 hfC
-rsD
+kxS
 rsD
 rsD
 tZz
@@ -83231,7 +83276,7 @@ tvV
 vEf
 nni
 lfb
-lfb
+rHn
 nFb
 pdO
 qZT
@@ -101041,7 +101086,7 @@ wSY
 oVx
 oVx
 oVx
-oVx
+sQg
 gTm
 pdO
 pdO
@@ -107977,7 +108022,7 @@ pdO
 pdO
 dwP
 nNL
-nNL
+mdi
 nNL
 vsc
 inK

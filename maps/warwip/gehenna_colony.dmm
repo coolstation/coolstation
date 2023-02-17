@@ -6836,6 +6836,9 @@
 /area/station/medical/medbay/lobby)
 "fgW" = (
 /obj/item/clothing/under/towel,
+/obj/landmark/spawner{
+	name = "monkeyspawn_krimpus"
+	},
 /turf/simulated/floor/grass/leafy,
 /area/station/hydroponics/bay)
 "fhx" = (
@@ -11092,13 +11095,11 @@
 /turf/simulated/floor/white/grime,
 /area/station/wc/sec)
 "ivy" = (
-/obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
-/obj/machinery/computer/barcode/qm/no_belthell{
-	dir = 4
+/obj/landmark/spawner{
+	name = "monkeyspawn_tanhony"
 	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
+/turf/simulated/floor/black,
+/area/station/hangar/escape)
 "iwa" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/machinery/disposal,
@@ -15441,11 +15442,11 @@
 /turf/simulated/floor/black,
 /area/station/security/secoffquarters)
 "lNT" = (
-/obj/table/wood/auto,
-/obj/disposalpipe/segment/mail/vertical,
-/obj/item/disk/data/floppy/read_only/communications,
-/turf/simulated/floor/darkblue/checker,
-/area/station/bridge/conference)
+/obj/landmark/spawner{
+	name = "monkeyspawn_stirstir"
+	},
+/turf/simulated/floor/sanitary,
+/area/station/security/brig/north_side)
 "lOc" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/southwest,
 /turf/simulated/floor/plating,
@@ -16185,6 +16186,14 @@
 /obj/item/storage/toolbox/emergency,
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/farmers)
+"mCA" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/machinery/computer/barcode/qm/no_belthell{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "mCZ" = (
 /obj/machinery/door/airlock,
 /obj/cable{
@@ -26526,6 +26535,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/space)
+"uCi" = (
+/obj/table/wood/auto,
+/obj/disposalpipe/segment/mail/vertical,
+/obj/item/disk/data/floppy/read_only/communications,
+/turf/simulated/floor/darkblue/checker,
+/area/station/bridge/conference)
 "uCx" = (
 /obj/disposalpipe/junction/middle/north,
 /turf/simulated/floor/darkblue,
@@ -65586,7 +65601,7 @@ xdl
 mwE
 hbx
 xcf
-lNT
+uCi
 gKF
 wyk
 fdZ
@@ -73110,7 +73125,7 @@ qZl
 vmr
 rQF
 xzH
-xzH
+lNT
 vmr
 jEb
 jEb
@@ -89739,7 +89754,7 @@ gqL
 uIr
 xpR
 vlN
-ivy
+mCA
 kta
 isk
 frQ
@@ -114181,7 +114196,7 @@ rNY
 qCv
 pUv
 pUv
-pUv
+ivy
 pUv
 tQp
 iiv
