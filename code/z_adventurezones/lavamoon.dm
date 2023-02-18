@@ -1418,7 +1418,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 
 
 /datum/action/bar/icon/ladder_climb
-	duration = 0.6 SECOND
+	duration = 0.4 SECONDS
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	id = "ladder_climb"
 	icon = 'icons/ui/actions.dmi'
