@@ -1094,6 +1094,12 @@
 	dir = 4
 	},
 /area/transit_vehicle/elevator/com_top)
+"aPF" = (
+/obj/table/wood/auto,
+/obj/disposalpipe/segment/mail/vertical,
+/obj/item/disk/data/floppy/read_only/communications,
+/turf/simulated/floor/darkblue/checker,
+/area/station/bridge/conference)
 "aPJ" = (
 /obj/machinery/disposal/mail/autoname/bridge{
 	mail_tag = "computer core";
@@ -4713,6 +4719,14 @@
 	icon_old = "fullblack"
 	},
 /area/station/engine/engineering)
+"dDW" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/machinery/computer/barcode/qm/no_belthell{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice)
 "dEi" = (
 /obj/stool/chair,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -6999,6 +7013,17 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/conference)
+"fnV" = (
+/obj/machinery/light/fluorescent/cool/very,
+/obj/machinery/door_control{
+	id = "trainstation_shutter";
+	name = "Safety Shutters";
+	pixel_x = 24
+	},
+/obj/table/auto,
+/obj/machinery/phone,
+/turf/simulated/floor/black,
+/area/station/hangar/escape)
 "fob" = (
 /obj/decal/tile_edge/floorguide/ladder{
 	dir = 8
@@ -7691,8 +7716,13 @@
 	},
 /area/space)
 "fKC" = (
-/obj/machinery/light/fluorescent/cool/very,
-/turf/simulated/floor/black,
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 8
+	},
+/obj/item/device/radio/intercom/medical{
+	dir = 1
+	},
+/turf/simulated/floor/blueblack,
 /area/station/hangar/escape)
 "fKG" = (
 /obj/decal/tile_edge/stripe{
@@ -7909,6 +7939,15 @@
 	dir = 8;
 	name = "Dead plant";
 	pixel_y = 10
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/light/lamp/green{
+	pixel_x = -6;
+	pixel_y = 15
 	},
 /turf/simulated/floor/black,
 /area/station/hangar/escape)
@@ -11095,8 +11134,9 @@
 /turf/simulated/floor/white/grime,
 /area/station/wc/sec)
 "ivy" = (
-/obj/landmark/spawner{
-	name = "monkeyspawn_tanhony"
+/obj/machinery/computer/security/wooden_tv,
+/obj/decal/poster/wallsign/poster_nt{
+	pixel_y = 32
 	},
 /turf/simulated/floor/black,
 /area/station/hangar/escape)
@@ -11268,6 +11308,12 @@
 	dir = 5
 	},
 /area/station/hydroponics/bay)
+"iDZ" = (
+/obj/stool/chair/blue{
+	dir = 8
+	},
+/turf/simulated/floor/black,
+/area/station/hangar/escape)
 "iEs" = (
 /obj/machinery/disposal,
 /turf/simulated/floor/white,
@@ -14637,6 +14683,12 @@
 	},
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice)
+"lie" = (
+/obj/landmark/spawner{
+	name = "monkeyspawn_stirstir"
+	},
+/turf/simulated/floor/sanitary,
+/area/station/security/brig/north_side)
 "lis" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
@@ -15163,6 +15215,15 @@
 /area/station/security/secoffquarters)
 "lDy" = (
 /obj/table/reinforced/auto,
+/obj/machinery/cashreg,
+/obj/decal/poster/wallsign/poster_sol{
+	pixel_y = 32
+	},
+/obj/item/storage/box/pen,
+/obj/item/device/radio{
+	pixel_x = 9;
+	pixel_y = 7
+	},
 /turf/simulated/floor/black,
 /area/station/hangar/escape)
 "lDL" = (
@@ -15442,11 +15503,17 @@
 /turf/simulated/floor/black,
 /area/station/security/secoffquarters)
 "lNT" = (
-/obj/landmark/spawner{
-	name = "monkeyspawn_stirstir"
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
 	},
-/turf/simulated/floor/sanitary,
-/area/station/security/brig/north_side)
+/obj/machinery/power/data_terminal,
+/obj/table/reinforced/auto,
+/obj/machinery/computer3/generic/personal{
+	pixel_y = 11
+	},
+/turf/simulated/floor/black,
+/area/station/hangar/escape)
 "lOc" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/southwest,
 /turf/simulated/floor/plating,
@@ -16187,13 +16254,11 @@
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/farmers)
 "mCA" = (
-/obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
-/obj/machinery/computer/barcode/qm/no_belthell{
+/obj/stool/chair/blue{
 	dir = 4
 	},
-/turf/simulated/floor,
-/area/station/quartermaster/cargooffice)
+/turf/simulated/floor/black,
+/area/station/hangar/escape)
 "mCZ" = (
 /obj/machinery/door/airlock,
 /obj/cable{
@@ -19354,6 +19419,12 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor,
 /area/station/engine/engineering/breakroom)
+"oZa" = (
+/obj/item/device/radio/intercom/engineering{
+	dir = 1
+	},
+/turf/simulated/floor/yellowblack,
+/area/station/hangar/escape)
 "oZf" = (
 /turf/simulated/wall,
 /area/station/crew_quarters/kitchen/freezer)
@@ -20273,6 +20344,15 @@
 /obj/random_item_spawner/junk/one_or_zero,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
+"pLO" = (
+/obj/table/reinforced/auto,
+/obj/machinery/cashreg,
+/obj/item/device/radio{
+	pixel_x = 8;
+	pixel_y = 11
+	},
+/turf/simulated/floor/black,
+/area/station/hangar/escape)
 "pLV" = (
 /obj/machinery/drainage,
 /obj/disposalpipe/segment/horizontal,
@@ -23334,6 +23414,11 @@
 /obj/decal/floatingtiles/loose/random,
 /turf/simulated/floor/plating/random,
 /area/station/engine/engineering)
+"rUl" = (
+/obj/table/reinforced/auto,
+/obj/item/paper_bin,
+/turf/simulated/floor/black,
+/area/station/hangar/escape)
 "rUn" = (
 /obj/railway{
 	icon_state = "4-8"
@@ -23508,6 +23593,12 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor/black,
 /area/station/quartermaster/storage)
+"sci" = (
+/obj/landmark/spawner{
+	name = "monkeyspawn_tanhony"
+	},
+/turf/simulated/floor/black,
+/area/station/hangar/escape)
 "sco" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -24017,6 +24108,11 @@
 /area/station/crew_quarters/kitchen)
 "svY" = (
 /obj/disposalpipe/segment/bent/east,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor,
 /area/station/hangar/escape)
 "swe" = (
@@ -26347,6 +26443,12 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice/storefront)
+"urX" = (
+/obj/item/device/radio/intercom/security{
+	dir = 1
+	},
+/turf/simulated/floor/redblack,
+/area/station/hangar/escape)
 "utp" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/red/redblackchecker,
@@ -26536,11 +26638,14 @@
 /turf/simulated/floor/plating,
 /area/space)
 "uCi" = (
-/obj/table/wood/auto,
-/obj/disposalpipe/segment/mail/vertical,
-/obj/item/disk/data/floppy/read_only/communications,
-/turf/simulated/floor/darkblue/checker,
-/area/station/bridge/conference)
+/obj/table/reinforced/auto,
+/obj/item/stamp{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/snacks/candy/taffy,
+/turf/simulated/floor/black,
+/area/station/hangar/escape)
 "uCx" = (
 /obj/disposalpipe/junction/middle/north,
 /turf/simulated/floor/darkblue,
@@ -29529,6 +29634,11 @@
 /obj/disposalpipe/segment/horizontal,
 /obj/cable{
 	icon_state = "1-2"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/simulated/floor,
 /area/station/hangar/escape)
@@ -65601,7 +65711,7 @@ xdl
 mwE
 hbx
 xcf
-uCi
+aPF
 gKF
 wyk
 fdZ
@@ -73125,7 +73235,7 @@ qZl
 vmr
 rQF
 xzH
-lNT
+lie
 vmr
 jEb
 jEb
@@ -89754,7 +89864,7 @@ gqL
 uIr
 xpR
 vlN
-mCA
+dDW
 kta
 isk
 frQ
@@ -113592,7 +113702,7 @@ soH
 tQp
 tQp
 lDy
-lDy
+rUl
 tQp
 tQp
 iiv
@@ -113894,7 +114004,7 @@ rNY
 tQp
 xRc
 pUv
-pUv
+iDZ
 fKC
 tQp
 iiv
@@ -114196,8 +114306,8 @@ rNY
 qCv
 pUv
 pUv
-ivy
-pUv
+sci
+urX
 tQp
 iiv
 iiv
@@ -114496,10 +114606,10 @@ rNY
 rNY
 rNY
 tQp
-pUv
+ivy
 pUv
 ite
-pUv
+oZa
 tQp
 iiv
 iiv
@@ -114798,10 +114908,10 @@ rNY
 rNY
 rNY
 tQp
+lNT
+mCA
 pUv
-pUv
-pUv
-fKC
+fnV
 tQp
 iiv
 iiv
@@ -115101,8 +115211,8 @@ rNY
 soH
 tQp
 fUO
-lDy
-lDy
+uCi
+pLO
 tQp
 tQp
 iiv
@@ -115402,7 +115512,7 @@ rNY
 rNY
 rNY
 ciz
-rNY
+uyk
 rNY
 rNY
 rNY
@@ -115704,7 +115814,7 @@ rNY
 rNY
 rNY
 rNY
-rNY
+uyk
 rNY
 rNY
 soH
@@ -116006,7 +116116,7 @@ rNY
 bLS
 rNY
 rNY
-rNY
+uyk
 rNY
 rNY
 xMo
