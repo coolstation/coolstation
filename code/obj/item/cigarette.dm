@@ -381,6 +381,16 @@
 	desc = "A cigarette that appears to have been ... dipped in grease? It's almost dripping!"
 	flavor = "grease"
 
+/obj/item/clothing/mask/cigarette/brute
+	name = "medical cigarette"
+	desc = "A certified prescription cigarette, formulated to treat minor wounds."
+	flavor = "styptic_powder"
+
+/obj/item/clothing/mask/cigarette/burn
+	name = "medical cigarette"
+	desc = "A certified prescription cigarette, formulated to treat minor burns."
+	flavor = "silver_sulfadiazine"
+
 /obj/item/clothing/mask/cigarette/dryjoint
 	name = "dried up joint"
 	desc = "An ancient joint, it's paper now resembles the burial shroud of an egyptian king. There's no telling what the roller could have twisted up in here."
@@ -571,6 +581,20 @@
 	cigtype = /obj/item/clothing/mask/cigarette/greasy
 	icon_state = "cigpacket-g"
 	package_style = "cigpacket-g"
+
+/obj/item/cigpacket/brute
+	name = "Medical cigarette packet - Brute"
+	desc = "For when you're all beat up and need to feel healthier in some ways but maybe not others."
+	cigtype = /obj/item/clothing/mask/cigarette/brute
+	icon_state = "cigpacket-br"
+	package_style = "cigpacket-br"
+
+/obj/item/cigpacket/burn
+	name = "Medical cigarette packet - Burn"
+	desc = "If you're feeling burned, burn one of these! Note: If no lighters are available, try using your own flaming body."
+	cigtype = /obj/item/clothing/mask/cigarette/burn
+	icon_state = "cigpacket-bu"
+	package_style = "cigpacket-bu"
 
 /obj/item/cigpacket/syndicate // cogwerks: made them more sneaky, removed the glaringly obvious name
 // haine: these can just inherit the parent name and description vOv
