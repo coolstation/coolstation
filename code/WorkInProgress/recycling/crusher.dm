@@ -23,7 +23,7 @@
 	var/bblood = 0
 
 	if(istype(AM,/obj/item/scrap))
-		AM.set_loc(src.loc)
+		AM.loc = src.loc
 		return
 
 	if(world.timeofday - AM.last_bumped <= 60)
