@@ -363,11 +363,6 @@
 	desc = "Blow everyone away with your minty fresh breath!"
 	flavor = "menthol"
 
-/obj/item/clothing/mask/cigarette/dryjoint
-	name = "dried up joint"
-	desc = "An ancient joint, it's paper now resembles the burial shroud of an egyptian king. There's no telling what the roller could have twisted up in here."
-	nic_free = 1
-	flavor = "THC"
 
 /obj/item/clothing/mask/cigarette/random
 	name = "laced cigarette"
