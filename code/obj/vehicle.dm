@@ -780,12 +780,15 @@ ABSTRACT_TYPE(/obj/vehicle)
 				continue
 			C.show_message("<span class='alert'><B>[rider] kicks [M] with \the [src]!</B></span>", 1)
 		var/turf/target = get_edge_target_turf(src, src.dir)
-		M.throw_at(target, 5, 1) //kicks them out of the way so we don't get slowed down, stomps are when you enter
+		M.throw_at(target, 5, 1) //kicks them out of the way so we don't get slowed down, stomps are when you enter same turf
 		M.changeStatus("stunned", 4 SECONDS)
 		M.changeStatus("weakened", 2 SECONDS)
 		M.TakeDamage("chest", 12.5, 0, 0, DAMAGE_BLUNT) //halved for now
 		playsound(src.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 25, 1)
 		playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 25, 1) //placeholder sounds
+		var/mob/living/carbon/human/R = src.rider
+		if (R.traitHolder.hasTrait("italian"))
+			R.say (pick("Wahoo!", "Mama Mia!", "Let's-a Go!", "Ha ha!")) //there it is
 		in_bump = 0
 		return
 	if(ismob(AM) && src.booster_upgrade)
@@ -1013,10 +1016,10 @@ ABSTRACT_TYPE(/obj/vehicle)
 	playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 	//handle some specific checks
 	var/mob/living/carbon/human/R = src.rider
-	//if (R.reagents && R.reagents.has_reagent("ethanol"))
-		// M.unlock_medal("D-Shoe-UI", 1) not really
-	if (R.italian)
-		R.say (pick("Wahoo!", "Mama Mia!", "Let's-a Go!", "Ha ha!")) //there it is
+	//if (R.reagents && R. wearing plumber outfit etc))
+		// M.unlock_medal("Copyright Not Intendo", 1) not really (but maybe)
+	if (R.traitHolder.hasTrait("italian"))
+		R.say(pick("Wahoo!", "Mama Mia!", "Let's-a Go!", "Ha ha!")) //there it is
 
 	var/damage = rand(2,6) //a little less rough because it can easily happen multiple times
 	H.TakeDamage("head", 2*damage, 0) //same damage allocation as mulebot, for now
