@@ -383,12 +383,12 @@
 
 /obj/item/clothing/mask/cigarette/brute
 	name = "medical cigarette"
-	desc = "A certified prescription cigarette, formulated to treat minor burn wounds."
+	desc = "A certified prescription cigarette, formulated to treat minor wounds."
 	flavor = "styptic_powder"
 
 /obj/item/clothing/mask/cigarette/burn
 	name = "medical cigarette"
-	desc = "A certified prescription cigarette, formulated to treat minor burn wounds."
+	desc = "A certified prescription cigarette, formulated to treat minor burns."
 	flavor = "silver_sulfadiazine"
 
 /obj/item/clothing/mask/cigarette/dryjoint
