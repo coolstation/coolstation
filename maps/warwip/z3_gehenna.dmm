@@ -2594,12 +2594,6 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
-"byJ" = (
-/obj/landmark/spawner{
-	name = "monkeyspawn_horse"
-	},
-/turf/simulated/floor/plating/gehenna,
-/area/noGenerate)
 "byL" = (
 /turf/simulated/floor/plating,
 /area/station/science/artifact{
@@ -8060,6 +8054,10 @@
 	},
 /turf/simulated/wall,
 /area/station/mining/lobby)
+"eRl" = (
+/obj/landmark/halloween,
+/turf/simulated/floor/plating,
+/area/station/hallway/secondary/exit)
 "eRr" = (
 /obj/disposalpipe/segment/cargo,
 /obj/machinery/camera{
@@ -8384,6 +8382,12 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/plating,
 /area/station/mining/refinery)
+"fea" = (
+/obj/landmark/spawner{
+	name = "monkeyspawn_horse"
+	},
+/turf/simulated/floor/plating/gehenna,
+/area/noGenerate)
 "feq" = (
 /obj/machinery/portable_atmospherics/canister/sleeping_agent,
 /turf/simulated/floor/black,
@@ -16055,6 +16059,10 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
+/obj/vehicle/forklift,
+/obj/decal/tile_edge/stripe/extra_big{
+	icon_state = "delivery2"
+	},
 /turf/simulated/floor,
 /area/station/storage/warehouse)
 "jQR" = (
@@ -17186,12 +17194,6 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/station/maintenance/central)
-"kxS" = (
-/obj/landmark/spawner{
-	name = "monkeyspawn_mrmuggles"
-	},
-/turf/simulated/floor/industrial,
-/area/station/crew_quarters/fitness)
 "kyd" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/cable{
@@ -18091,6 +18093,12 @@
 /obj/machinery/light/small/warm,
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal)
+"kWy" = (
+/obj/landmark/spawner{
+	name = "monkeyspawn_mrmuggles"
+	},
+/turf/simulated/floor/industrial,
+/area/station/crew_quarters/fitness)
 "kWF" = (
 /obj/decal/cleanable/dirt,
 /obj/rack,
@@ -19076,6 +19084,11 @@
 /obj/machinery/atmospherics/pipe/manifold/east,
 /turf/simulated/floor/plating,
 /area/station/bridge/locker)
+"lDI" = (
+/obj/decal/cleanable/dirt/random,
+/obj/landmark/halloween,
+/turf/simulated/floor/plating,
+/area/station/maintenance/south)
 "lEh" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/wingrille_spawn,
@@ -19884,10 +19897,6 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/bridge/basement)
-"mdi" = (
-/obj/landmark/halloween,
-/turf/simulated/floor/plating,
-/area/station/hallway/secondary/exit)
 "mdr" = (
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/light/small/cool{
@@ -21078,6 +21087,13 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/engine/hotloop)
+"mPo" = (
+/obj/decal/cleanable/dirt/random,
+/obj/landmark/halloween,
+/turf/simulated/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/maintenance/northwest)
 "mPr" = (
 /obj/machinery/power/apc/autoname_west,
 /obj/cable{
@@ -28679,13 +28695,6 @@
 /obj/structure/girder,
 /turf/simulated/floor/plating/random,
 /area/station/medical/cdc)
-"rHn" = (
-/obj/decal/cleanable/dirt/random,
-/obj/landmark/halloween,
-/turf/simulated/floor/plating{
-	icon_old = "diamondtile"
-	},
-/area/station/maintenance/northwest)
 "rHI" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -30639,10 +30648,6 @@
 "sPJ" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/wall/r_wall,
-/area/station/maintenance/east)
-"sQg" = (
-/obj/landmark/halloween,
-/turf/simulated/floor/plating,
 /area/station/maintenance/east)
 "sQI" = (
 /obj/machinery/light/fluorescent/purpleish{
@@ -35069,6 +35074,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
+"vsH" = (
+/obj/landmark/halloween,
+/turf/simulated/floor/plating,
+/area/station/maintenance/east)
 "vsW" = (
 /obj/disposalpipe/junction/right/east,
 /turf/simulated/floor/carpet/blue/standard/edge/se,
@@ -35214,11 +35223,6 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/plating,
 /area/station/mining/tunnel)
-"vwa" = (
-/obj/decal/cleanable/dirt/random,
-/obj/landmark/halloween,
-/turf/simulated/floor/plating,
-/area/station/maintenance/south)
 "vwy" = (
 /obj/machinery/door/airlock/classic,
 /obj/disposalpipe/segment/sewage,
@@ -35279,6 +35283,14 @@
 "vxw" = (
 /turf/simulated/floor/industrial,
 /area/station/engine/storage)
+"vxB" = (
+/obj/disposalpipe/segment/vertical,
+/obj/vehicle/forklift,
+/obj/decal/tile_edge/stripe/extra_big{
+	icon_state = "delivery2"
+	},
+/turf/simulated/floor,
+/area/station/storage/warehouse)
 "vxK" = (
 /obj/disposalpipe/segment/cargo,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -77281,7 +77293,7 @@ kPQ
 kpW
 kPQ
 kPQ
-vwa
+lDI
 uiP
 uhM
 qAe
@@ -77544,7 +77556,7 @@ qZT
 qZT
 qZT
 qZT
-byJ
+fea
 qZT
 qZT
 qZT
@@ -80885,7 +80897,7 @@ wTj
 tZz
 mgO
 hfC
-kxS
+kWy
 rsD
 rsD
 tZz
@@ -83276,7 +83288,7 @@ tvV
 vEf
 nni
 lfb
-rHn
+mPo
 nFb
 pdO
 qZT
@@ -101086,7 +101098,7 @@ wSY
 oVx
 oVx
 oVx
-sQg
+vsH
 gTm
 pdO
 pdO
@@ -104996,7 +105008,7 @@ iPA
 hzm
 uQx
 fLL
-fNt
+vxB
 jQD
 bjj
 iWu
@@ -108022,7 +108034,7 @@ pdO
 pdO
 dwP
 nNL
-mdi
+eRl
 nNL
 vsc
 inK
