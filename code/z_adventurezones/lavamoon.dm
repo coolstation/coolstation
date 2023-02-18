@@ -1409,9 +1409,71 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 		if (!istype(otherLadder))
 			boutput(user, "You try to climb [src.icon_state == "ladder_wall" ? "up" : "down"] the ladder, but seriously fail! Perhaps there's nowhere to go?")
 			return
-		if (!isobserver(user)) //Ghosts/eyes don't exactly climb
-			boutput(user, "You climb [src.icon_state == "ladder_wall" ? "up" : "down"] the ladder.")
-		user.set_loc(get_turf(otherLadder))
+		if (isobserver(user)) //Ghosts/eyes don't exactly climb
+			user.set_loc(get_turf(otherLadder))
+			return
+			//boutput(user, "You climb [src.icon_state == "ladder_wall" ? "up" : "down"] the ladder.")
+		actions.start(new /datum/action/bar/icon/ladder_climb(user, src, otherLadder), user)
+		//user.set_loc(get_turf(otherLadder))
+
+
+/datum/action/bar/icon/ladder_climb
+	duration = 0.6 SECOND
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
+	id = "ladder_climb"
+	icon = 'icons/ui/actions.dmi'
+	icon_state = "ladder_climb"
+	var/mob/pizzaghetti
+	var/obj/ladder/delicate_penis
+	var/obj/ladder/robust_penis
+
+	proc/check_drop()
+		if(delicate_penis.icon_state != "ladder_wall")
+			pizzaghetti.show_text("You fall down the ladder!", "red")
+			pizzaghetti.set_loc(get_turf(robust_penis))
+			random_brute_damage(pizzaghetti, 10)
+			pizzaghetti.emote("scream")
+			playsound(pizzaghetti.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
+		else
+			pizzaghetti.show_text("You fall off  the ladder!", "orange")
+			random_brute_damage(pizzaghetti, 7)
+		pizzaghetti.changeStatus("weakened", 3 SECONDS)
+
+	New(The_Owner, The_Ladder, The_Other_Ladder)
+		if(!The_Owner || !The_Ladder || !The_Other_Ladder)
+			return
+		..()
+		pizzaghetti = The_Owner
+		delicate_penis = The_Ladder
+		robust_penis = The_Other_Ladder
+
+	onUpdate()
+		..()
+		// you gotta hold still to jump!
+		if (get_dist(pizzaghetti, delicate_penis) > 1)
+			pizzaghetti.show_text("Your climb was interrupted!", "red")
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+	onInterrupt(flag)
+		. = ..()
+		if(prob(30))
+			check_drop()
+
+
+
+	onStart()
+		..()
+		if (get_dist(pizzaghetti, delicate_penis) > 1 || delicate_penis == null || pizzaghetti == null)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		for(var/mob/O in AIviewers(pizzaghetti))
+			O.show_text("[pizzaghetti] begins to climb [delicate_penis.icon_state == "ladder_wall" ? "up" : "down"] the ladder.", "red", group = "[pizzaghetti]-climb_ladder")
+
+	onEnd()
+		..()
+		pizzaghetti.set_loc(get_turf(robust_penis))
+
 
 //Puzzle elements
 
