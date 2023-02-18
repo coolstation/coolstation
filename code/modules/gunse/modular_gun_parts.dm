@@ -320,7 +320,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 /obj/item/gun_parts/barrel/NT/shotty
 	name = "sawn-off barrel"
-	spread_angle = 15
+	spread_angle = 10
 	scatter = 1
 	length = 14
 	icon_state = "nt_blue_snub2"

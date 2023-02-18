@@ -43,7 +43,7 @@ proc/build_syndi_buylist_cache()
 /datum/syndicate_buylist/generic/revolver
 	name = "Revolver"
 	item = /obj/item/storage/box/revolver
-	cost = 6
+	cost = 5
 	desc = "The traditional sidearm of an Italian Syndicate field agent. Holds a few rounds and comes with extra ammo."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
@@ -71,7 +71,7 @@ proc/build_syndi_buylist_cache()
 /datum/syndicate_buylist/generic/shotgun
 	name = "Shotgun"
 	item = /obj/item/storage/box/shotgun
-	cost = 8
+	cost = 6
 	desc = "Not exactly stealthy, but it'll certainly make an impression."
 	not_in_crates = 1
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
