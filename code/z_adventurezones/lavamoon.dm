@@ -1367,14 +1367,16 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 	var/id = null
 	var/broken = FALSE
 
+
 	broken
 		name = "broken ladder"
 		desc = "it's too damaged to climb."
 		icon_state = "ladder_wall_broken"
 		broken = TRUE
 
+
+
 	New()
-		..()
 		if (!id)
 			id = "generic"
 		//I add round and square hole flavours of ladder and then find out some shit made all of ladder code work on 'icon_state == "ladder"', what the fuck?
@@ -1382,7 +1384,33 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 		src.tag = "ladder_[id][src.icon_state == "ladder_wall" ? 0 : 1]"
 		//This bit is my fault though
 		if (src.icon_state != "ladder_wall")
+			src.event_handler_flags  = USE_HASENTERED | USE_FLUID_ENTER// hehehhe
 			src.plane = PLANE_NOSHADOW_BELOW //no drop shadow under what's a dang hole in the floor >:(
+		..()
+
+	HasEntered(atom/movable/AM, atom/OldLoc)
+		..()
+		if (src.broken) return
+		if(istype(AM, /obj/item))
+			if(prob(70))
+				var/obj/ladder/otherLadder = locate("ladder_[id][src.icon_state == "ladder_wall"]")
+				if (!istype(otherLadder))
+					return
+				src.visible_message("[AM] falls down the ladder.")
+				AM.set_loc(get_turf(otherLadder))
+		else if(ismob(AM))
+			var/mob/schmuck = AM
+			if ((schmuck.stat || schmuck.getStatusDuration("weakened")) && prob(30))
+				var/obj/ladder/otherLadder = locate("ladder_[id][src.icon_state == "ladder_wall"]")
+				if (!istype(otherLadder))
+					return
+				src.visible_message("[AM] falls down the ladder.")
+				random_brute_damage(schmuck, 10)
+				schmuck.show_text("You fall down the ladder!", "red")
+				schmuck.changeStatus("weakened", 3 SECONDS)
+				AM.set_loc(get_turf(otherLadder))
+
+
 
 	attack_hand(mob/user as mob)
 		if (src.broken) return
@@ -1403,6 +1431,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 			climb(user)
 		else
 			..()
+
 
 	proc/climb(mob/user as mob)
 		var/obj/ladder/otherLadder = locate("ladder_[id][src.icon_state == "ladder_wall"]")
@@ -1435,7 +1464,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 			pizzaghetti.emote("scream")
 			playsound(pizzaghetti.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
 		else
-			pizzaghetti.show_text("You fall off  the ladder!", "orange")
+			pizzaghetti.show_text("You fall off  the ladder!", "red")
 			random_brute_damage(pizzaghetti, 7)
 		pizzaghetti.changeStatus("weakened", 3 SECONDS)
 
