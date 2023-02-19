@@ -152,38 +152,48 @@
 			desc = "This doesn't look very safe, but it's probably good enough."
 			plane = PLANE_NOSHADOW_BELOW
 			layer = CATWALK_OVERPIPE
+			connects_to_obj = list(/obj/grille/catwalk/bob) //only itself
 			var/edges = null //how many edges does this grille have? manually specified at the moment for bobcat walk
 			var/image/edge_overlay = null
 			//var/image/damage_overlay = null
 			//var/damage_dir = pick(1,2,4,8) //if it will work like i hope it will, give damage overlays 4 directions and pick one at random
 
-			proc/overlay_edges() //call this on new() and when the number of grille-touching edges changes, autowall style. only connect to self!
+			proc/overlay_edges() //call this on autocatwalk new() and when the number of grille-touching edges changes, autowall style. only connect to self!
 				if (!src.edges)
-					return
-				src.edge_overlay = image(src.icon,"[initial(src.icon_state)]-edge-[src.edges]") //these edges are borrowed from jen's catwalks
+					ClearSpecificOverlays("edge")
+					edge_overlay = null
+				else
+					src.edge_overlay = image(src.icon,"[initial(src.icon_state)]-edge-[src.edges]") //these edges are borrowed from jen's catwalks
 				UpdateOverlays(src.edge_overlay,"edge")
 
-			//THIS IS ALL MANUALLY PLACED/MAPPED FOR NOW AND ONLY APPLIES TO MY CATWALKS SO IGNORE THIS WIP CODE IT DOESN'T DO ANYTHING
-
-			/*proc/find_edges() //for building flat, directionally tiling autogrilles/catwalks
-				var/found_edges = null //0-4
-				var/edge_dir = null //where do we point this catwalk/grille
-				//do a count of /obj/grille/catwalk/bob touching a cardinal and set edges var + set direction
-				//you want your edge overlay pointing in the direction of where your tiles connect
-				//for catwalk/bob in dirs etc. etc.
-					//0 = 4 (no connections, boxed in, all edge, direction doesn't matter) //maybe null this out...
-					//1,2,4,8 = 1 (connected 1 direction, edge 3 directions. just pick the opposite. if 1, then 2. if 4, then 8)
-					//5,6,9,10 = 1 (diagonals, for a fuzzy definition of edge. still counts since edge-1 iconstate has 8 directions. just subtract from 15)
-					//3,12 (NS/EW) = 2 (if dir 12, then set dir 3, and vice versa)
-					//7,11,13,14= 3 (connected in 3 directions, edge 1 direction: same as before, subtract from 15 and you have your non-connected edge)
-					//15 = 0 (standard tile surrounded by identical friends, no edge, direction doesn't matter)
-					//todo: find a better way to describe/implement this with some bitwise checks/loops, or just yoink some autowall style code
-				//edges = found_edges
-				//dir=edge_dir
-				return	*/
-
-			//maybe redefine update icon here and build it freshhhhh
-
+			//manually called for now, still wip. i hate all this so if you have a feeling you wanna fix it, go for it
+			proc/update_edges() //for constructing flat, directionally tiling autogrilles/catwalks. call on change, but not on build (mapper may want things normal)
+				var/connections = 0 //assume isolated at start
+				var/connectdir = 0
+				for (var/dir in cardinal)
+					var/turf/T = get_step(src, dir)
+					if (islist(connects_to_obj) && length(connects_to_obj))
+						for (var/i=1, i <= connects_to_obj.len, i++)
+							var/atom/A = locate(connects_to_obj[i]) in T
+							if (!isnull(A)) //found it
+								connectdir |= dir
+								connections++
+								break //stop checking anything else on the tile
+				if(connectdir in ordinal) //literal edge case: since single edge overlay has 8 dirs, diagonals get to be lumped under one continuous edge!
+					src.edges = 1
+				else
+					src.edges = 4 - connections
+				switch(src.edges) //determine directional flip
+					if(3)
+						src.dir = turn(connectdir,180) //three edges? take the direction of the one connection and do the opposite.
+					if(2)
+						src.dir = connectdir //opposite edges? leave it, that's how the spriting/mapping works
+					if(1)
+						if(connectdir in ordinal) //literal edge case: since single edge overlay has 8 dirs, diagonals get to be lumped under one continuous edge!
+							src.dir = turn(connectdir,180) //and it also gets a basic flip
+						else
+							src.dir = 15 - connectdir //if the three directions are grille, you're surrounded with only one way left to go.
+				src.overlay_edges() //need to decide if here or update proc but if you're calling in you probably want this
 
 			/*proc/overlay_damage() //call this on damage, work in progress, i haven't built any overlays yet. groundwork for wall and floor damage and general bustin'
 				src.damage_overlay = image(src.icon,"[initial(src.icon_state)]-damage") //hopefully can be generalized
