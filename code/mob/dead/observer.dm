@@ -402,7 +402,7 @@
 	set name = "Toggle Health"
 	if (!health_shown)
 		health_shown = 1
-		(CLIENT_IMAGE_GROUP_HEALTH_MON_ICONS).add_mob(src)
+		get_image_group(CLIENT_IMAGE_GROUP_HEALTH_MON_ICONS).add_mob(src)
 		boutput(src, "Health status toggled on.")
 	else
 		health_shown = 0
