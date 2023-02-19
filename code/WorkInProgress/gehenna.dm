@@ -213,7 +213,7 @@ var/global/gehenna_time = GEHENNA_TIME
 		if (ishuman(O))
 			var/mob/living/jerk = O
 			if (!isdead(jerk))
-				if((istype(jerk:wear_suit, /obj/item/clothing/suit/armor))||(istype(jerk:wear_suit, /obj/item/clothing/suit/space)))&&(istype(jerk:head, /obj/item/clothing/head/helmet/space)) return
+				if((istype(jerk:wear_suit, /obj/item/clothing/suit/armor))||(istype(jerk:wear_suit, /obj/item/clothing/suit/space))&&(istype(jerk:head, /obj/item/clothing/head/helmet/space))) return
 				random_brute_damage(jerk, 50)
 				jerk.changeStatus("weakened", 40 SECONDS)
 				step(jerk,EAST)
