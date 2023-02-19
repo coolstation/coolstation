@@ -203,6 +203,24 @@
 			get_image_group(CLIENT_IMAGE_GROUP_ARREST_ICONS).remove_mob(user)
 		..()
 
+/obj/item/clothing/glasses/sunglasses/ceilingdebug
+	name = "\improper Ceiling Debug Sunglasses"
+	desc = "Sunglasses that make you feel so cool you can't stop looking up. (??????????)"
+	icon_state = "sec"
+	color_r = 0.95 // darken a little, kinda red
+	color_g = 0.9
+	color_b = 0.9
+
+	equipped(var/mob/user, var/slot)
+		..()
+		if (slot == SLOT_GLASSES)
+			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_mob(user)
+
+	unequipped(var/mob/user)
+		if(src.equipped_in_slot == SLOT_GLASSES)
+			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_mob(user)
+		..()
+
 /obj/item/clothing/glasses/sunglasses/sechud/superhero
 	name = "superhero mask"
 	desc = "Perfect for hiding your identity while fighting crime."
