@@ -145,6 +145,98 @@
 			twosides
 				icon_state = "catwalk_jen_2sides"
 
+		bob // okay my turn yes hello this is bobcat walk welcome to you
+			name = "maintenance catwalk"
+			icon = 'icons/obj/catwalkfancy.dmi' //not actually fancy but i'm gonna try to redo them all to use overlay parts
+			icon_state = "catwalk_bob" //has centered middle channel to see underwires easily
+			desc = "This doesn't look very safe, but it's probably good enough."
+			plane = PLANE_NOSHADOW_BELOW
+			layer = CATWALK_OVERPIPE
+			var/edges = null //how many edges does this grille have? manually specified at the moment for bobcat walk
+			var/image/edge_overlay = null
+			//var/image/damage_overlay = null
+			//var/damage_dir = pick(1,2,4,8) //if it will work like i hope it will, give damage overlays 4 directions and pick one at random
+
+			proc/overlay_edges() //call this on new() and when the number of grille-touching edges changes, autowall style. only connect to self!
+				if (!src.edges)
+					return
+				src.edge_overlay = image(src.icon,"[initial(src.icon_state)]-edge-[src.edges]") //these edges are borrowed from jen's catwalks
+				UpdateOverlays(src.edge_overlay,"edge")
+
+			//THIS IS ALL MANUALLY PLACED/MAPPED FOR NOW AND ONLY APPLIES TO MY CATWALKS SO IGNORE THIS WIP CODE IT DOESN'T DO ANYTHING
+
+			/*proc/find_edges() //for building flat, directionally tiling autogrilles/catwalks
+				var/found_edges = null //0-4
+				var/edge_dir = null //where do we point this catwalk/grille
+				//do a count of /obj/grille/catwalk/bob touching a cardinal and set edges var + set direction
+				//you want your edge overlay pointing in the direction of where your tiles connect
+				//for catwalk/bob in dirs etc. etc.
+					//0 = 4 (no connections, boxed in, all edge, direction doesn't matter) //maybe null this out...
+					//1,2,4,8 = 1 (connected 1 direction, edge 3 directions. just pick the opposite. if 1, then 2. if 4, then 8)
+					//5,6,9,10 = 1 (diagonals, for a fuzzy definition of edge. still counts since edge-1 iconstate has 8 directions. just subtract from 15)
+					//3,12 (NS/EW) = 2 (if dir 12, then set dir 3, and vice versa)
+					//7,11,13,14= 3 (connected in 3 directions, edge 1 direction: same as before, subtract from 15 and you have your non-connected edge)
+					//15 = 0 (standard tile surrounded by identical friends, no edge, direction doesn't matter)
+					//todo: find a better way to describe/implement this with some bitwise checks/loops, or just yoink some autowall style code
+				//edges = found_edges
+				//dir=edge_dir
+				return	*/
+
+			//maybe redefine update icon here and build it freshhhhh
+
+
+			/*proc/overlay_damage() //call this on damage, work in progress, i haven't built any overlays yet. groundwork for wall and floor damage and general bustin'
+				src.damage_overlay = image(src.icon,"[initial(src.icon_state)]-damage") //hopefully can be generalized
+				UpdateOverlays(src.edge_overlay,"damage") */
+
+			/*	actually that overlay_damage thing could probably just go into the damage handling switch case of update_icon(), can't it. i'll save it for later..
+				will cut up and rewrite jen catwalks using these overlays and then do the same with regular catwalks
+				finally, do the same with grilles. after it works great i can start writing something neat for flooring and walls getting scorched and fucked up
+				leaving this as notes to myself later, at least it works now ilu - bob*/
+
+			attack_hand(obj/M, mob/user) //copying jen's behavior for now
+				return 0
+
+			attackby(obj/item/W, mob/user)
+				if (issnippingtool(W))
+					..()
+				else
+					src.loc.Attackby(user.equipped(), user)
+
+			reagent_act(var/reagent_id,var/volume)
+				..()
+
+			New()
+				..()
+				src.overlay_edges() //when this is generalized we can move this into update_icon
+				src.update_icon()
+
+			//not buildable (yet) but we can probably do that + define standard catwalks per map
+			side
+				edges = "1"
+				#ifdef IN_MAP_EDITOR
+				icon_state = "catwalk_bob-map-1" //collapsed the states to icons but this is just for mapping
+				#endif
+			twosides
+				edges = "2"
+				#ifdef IN_MAP_EDITOR
+				icon_state = "catwalk_bob-map-2"
+				#endif
+			inner
+				edges = "3"
+				#ifdef IN_MAP_EDITOR
+				icon_state = "catwalk_bob-map-3"
+				#endif
+			fourcorners
+				edges = "4"
+				#ifdef IN_MAP_EDITOR
+				icon_state = "catwalk_bob-map-4"
+				#endif
+			corroded //for mappers, forget edges
+				icon_state = "catwalk_bob-corroded"
+			melted
+				icon_state = "catwalk_bob-melted"
+
 	onMaterialChanged()
 		..()
 		if (istype(src.material))
