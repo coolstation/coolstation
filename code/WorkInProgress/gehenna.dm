@@ -200,6 +200,29 @@ var/global/gehenna_time = GEHENNA_TIME
 	name = "the barren wastes"
 	teleport_blocked = 0
 
+/area/gehenna/wasteland/stormy
+	name = "the horrid wastes"
+	icon_state = "yellow"
+
+	New()
+		..()
+		overlays += image(icon = 'icons/turf/areas.dmi', icon_state = "dustverlay", layer = EFFECTS_LAYER_BASE)
+
+	Entered(atom/movable/O)
+		..()
+		if (ishuman(O))
+			var/mob/living/jerk = O
+			if (!isdead(jerk))
+				if((istype(jerk:wear_suit, /obj/item/clothing/suit/armor))||(istype(jerk:wear_suit, /obj/item/clothing/suit/space)))&&(istype(jerk:head, /obj/item/clothing/head/helmet/space)) return
+				random_brute_damage(jerk, 50)
+				jerk.changeStatus("weakened", 40 SECONDS)
+				step(jerk,EAST)
+				if(prob(50))
+					playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_2.ogg', 50, 1)
+					boutput(jerk, pick("Dust gets caught in your eyes!","The wind blows you off course!","Debris pierces through your skin!"))
+
+
+
 /*
 /obj/machinery/computer/sea_elevator/sec
 	upper = /area/shuttle/sea_elevator/upper/sec
