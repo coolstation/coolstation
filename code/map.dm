@@ -25,7 +25,8 @@ var/global/list/mapNames = list(
 	"Donut 3" = 		list("id" = "DONUT3", 		"settings" = "donut3",			"playerPickable" = 1, 		"MinPlayersAllowed" = 40),
 	"Horizon" = 		list("id" = "HORIZON", 		"settings" = "horizon", 		"playerPickable" = 0),
 	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 0),
-	"Bobmap" = 	list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 1),
+	"Bobmap" = 	list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 0,  		"MinPlayersAllowed" = 20),
+	//"Dockmap" = 	list("id" = "DOCKMAP",		"settings" = "dockmap",			"playerPickable" = 0,	"MaxPlayersAllowed" = 30),
 	"Spirit" =	list("id" = "SPIRIT",		"settings" = "spirit",				"playerPickable" = 0),
 	//"Mushroom" =		list("id" = "MUSHROOM", 	"settings" = "mushroom",		"playerPickable" = ASS_JAM),
 	//"Trunkmap" = 		list("id" = "TRUNKMAP", 	"settings" = "trunkmap",		"playerPickable" = ASS_JAM),
@@ -1076,7 +1077,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/bobmap
 	name = "BOBMAP"
-	goonhub_map = "https://goonhub.com/maps/cogmap"
+	goonhub_map = "https://coolstation.space/stingray.html"
 	walls = /turf/simulated/wall
 	rwalls = /turf/simulated/wall/r_wall
 	auto_walls = 1
@@ -1121,6 +1122,41 @@ var/global/list/mapNames = list(
 		"the escape arm" = list(/area/station/hallway/secondary/exit),
 		"the central room of the crew lounge" = list(/area/station/crew_quarters/quarters),
 		"the chapel" = list(/area/station/chapel/sanctuary))
+
+/*/datum/map_settings/dockmap //by robert goodsmells age 34 (for shuttle/offstation econony testing)
+	name = "DOCKMAP"
+	goonhub_map = "https://coolstation.space/stingray.html"
+	walls = /turf/simulated/wall
+	rwalls = /turf/simulated/wall/r_wall
+	auto_walls = 1
+
+	windows = /obj/window
+	windows_thin = /obj/window
+	rwindows = /obj/window/reinforced
+	rwindows_thin = /obj/window/reinforced
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER
+	window_layer_north = GRILLE_LAYER+0.1
+	window_layer_south = FLY_LAYER+1
+	auto_windows = 1
+
+	ext_airlocks = /obj/machinery/door/airlock/external
+	airlock_style = "gannets"
+
+	escape_centcom = /area/shuttle/escape/centcom/??map
+	escape_outpost = /area/shuttle/escape/outpost/??map
+	escape_transit = /area/shuttle/escape/transit/??map
+	escape_station = /area/shuttle/escape/station/??map
+	escape_def = SHUTTLE_EAST
+	escape_dir = EAST
+
+	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/??map
+	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/??map
+	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/??map
+	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/??map
+
+	valid_nuke_targets = list("the main security room" = list(/area/station/security/main))*/
 
 /datum/map_settings/spirit
 	name = "SPIRIT"
