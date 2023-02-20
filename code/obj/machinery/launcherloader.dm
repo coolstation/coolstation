@@ -557,6 +557,7 @@
 		flick("packing-active", src)
 		src.icon_state = "packing"
 		playsound(src.loc, "sound/machines/printer_cargo.ogg", 75, 0)
+		sleep(1 SECONDS)
 		var/turf/T = get_step(src, src.dir)
 		var/obj/storage/crate/packing/C = new /obj/storage/crate/packing(T)
 		if(src.destination_tag)
@@ -564,7 +565,6 @@
 		for(var/atom/movable/A as mob|obj in src)
 			A.set_loc(C)
 		update()
-		sleep(2 SECONDS)
 		operating = FALSE
 
 	proc/is_acceptable_content(var/atom/A) // copied from large_storage_parent
