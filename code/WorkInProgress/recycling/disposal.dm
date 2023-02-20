@@ -567,7 +567,7 @@
 				dir = WEST
 	brig
 		name = "brig pipe"
-		desc = "An underfloor brig pipe."
+		desc = "An underfloor brig pipe. Bripe."
 		color = PIPEC_BRIG
 
 	ejection
@@ -577,12 +577,22 @@
 
 	morgue
 		name = "morgue pipe"
-		desc = "An underfloor morgue pipe."
+		desc = "An underfloor morgue pipe, for dead people."
+		color = PIPEC_MORGUE
+
+	quarantine
+		name = "quarantine pipe"
+		desc = "An underfloor quarantine pipe."
+		color = PIPEC_MORGUE
+
+	genetics
+		name = "genetics pipe"
+		desc = "An underfloor genetics pipe, for dead people."
 		color = PIPEC_MORGUE
 
 	food
 		name = "food pipe"
-		desc = "An underfloor food pipe."
+		desc = "An underfloor food pipe lined with non-stick, probably-food-safe materials."
 		color = PIPEC_FOOD
 
 	produce

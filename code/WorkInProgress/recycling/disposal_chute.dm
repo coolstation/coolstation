@@ -514,6 +514,24 @@
 	desc = "A pneumatic delivery chute for sending things directly to the morgue."
 	icon_style = "morgue"
 
+/obj/machinery/disposal/morgue
+	name = "morgue chute"
+	icon_state = "morguechute"
+	desc = "A pneumatic delivery chute for sending things directly to genetics."
+	icon_style = "morgue"
+
+/obj/machinery/disposal/crematorium
+	name = "crematorium chute"
+	icon_state = "morguechute"
+	desc = "A pneumatic delivery chute for sending things directly to the crematorium."
+	icon_style = "morgue"
+
+/obj/machinery/disposal/quarantine
+	name = "quarantine chute"
+	icon_state = "morguechute"
+	desc = "A pneumatic delivery chute for sending things directly to quarantine."
+	icon_style = "morgue"
+
 /obj/machinery/disposal/sci
 	name = "research chute"
 	icon_state = "scichute"
