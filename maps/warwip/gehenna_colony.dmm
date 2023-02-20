@@ -2094,6 +2094,7 @@
 "bHZ" = (
 /obj/machinery/light/fluorescent/cool/very,
 /obj/rack,
+/obj/random_item_spawner/junk/one_or_zero,
 /turf/simulated/floor,
 /area/station/quartermaster/storage)
 "bIa" = (
@@ -3790,6 +3791,13 @@
 /obj/machinery/atmospherics/pipe/manifold/overfloor/north,
 /turf/simulated/floor/specialroom/freezer,
 /area/station/medical/crematorium)
+"cSm" = (
+/obj/machinery/conveyor/south{
+	operating = 1
+	},
+/obj/plasticflaps,
+/turf/simulated/floor/plating,
+/area/station/quartermaster/storage)
 "cSr" = (
 /obj/storage/crate/robotics_supplies,
 /turf/simulated/floor/grime,
@@ -3849,6 +3857,10 @@
 	},
 /turf/simulated/floor/red,
 /area/station/security/checkpoint/sec_foyer)
+"cWt" = (
+/obj/wingrille_spawn/reinforced,
+/turf/simulated/floor/plating,
+/area/station/quartermaster/cargobay)
 "cWI" = (
 /obj/cabinet/chemicals,
 /turf/simulated/floor/blue/checker,
@@ -4857,6 +4869,11 @@
 /obj/table/reinforced/auto,
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/customs)
+"dJx" = (
+/obj/machinery/door/airlock/maintenance,
+/obj/access_spawn/cargo,
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/ne)
 "dJL" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/disposalpipe/segment/mail/vertical,
@@ -7061,8 +7078,9 @@
 /turf/simulated/floor/darkblue/checker,
 /area/station/bridge/conference)
 "foA" = (
-/obj/machinery/light/small/cool{
-	dir = 1
+/obj/machinery/conveyor/north{
+	name = "conveyor belt";
+	operating = 1
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
@@ -9475,6 +9493,9 @@
 	dir = 10;
 	icon_state = "bot2"
 	},
+/obj/submachine/ATM{
+	pixel_x = -32
+	},
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
 "hfz" = (
@@ -11153,6 +11174,12 @@
 	},
 /turf/simulated/floor/black,
 /area/station/crew_quarters/info)
+"ivL" = (
+/obj/wingrille_spawn/reinforced,
+/turf/simulated/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/quartermaster/storage)
 "iwa" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/machinery/disposal,
@@ -14011,6 +14038,14 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor/black,
 /area/station/quartermaster/storage)
+"kGa" = (
+/obj/machinery/conveyor/north{
+	name = "conveyor belt";
+	operating = 1
+	},
+/obj/plasticflaps,
+/turf/simulated/floor/plating,
+/area/station/quartermaster/storage)
 "kGc" = (
 /obj/rack,
 /obj/item/bandage{
@@ -14170,6 +14205,15 @@
 	dir = 4
 	},
 /area/station/security/brig/cell_block_control)
+"kLV" = (
+/obj/machinery/conveyor/west{
+	operating = 1
+	},
+/obj/machinery/light/small/cool{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/ne)
 "kMi" = (
 /obj/machinery/door/airlock/glass,
 /obj/decal/tile_edge/stripe{
@@ -15451,6 +15495,12 @@
 	dir = 5
 	},
 /area/station/engine/monitoring)
+"lLD" = (
+/obj/machinery/conveyor/west{
+	operating = 1
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/ne)
 "lMn" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /obj/cable{
@@ -17652,6 +17702,9 @@
 	})
 "nGP" = (
 /obj/decal/cleanable/dirt/random,
+/obj/submachine/ATM{
+	pixel_x = 32
+	},
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
 "nGT" = (
@@ -19702,8 +19755,10 @@
 /obj/disposalpipe/segment/cargo{
 	dir = 4
 	},
-/obj/rack,
-/obj/random_item_spawner/junk/one_or_zero,
+/obj/machinery/conveyor/north{
+	name = "conveyor belt";
+	operating = 1
+	},
 /turf/simulated/floor,
 /area/station/quartermaster/storage)
 "pjU" = (
@@ -23107,6 +23162,15 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor,
 /area/station/bridge)
+"rGp" = (
+/obj/machinery/light/small/cool{
+	dir = 1
+	},
+/obj/machinery/conveyor/west{
+	operating = 1
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/ne)
 "rGz" = (
 /turf/simulated/floor/stairs/wide/other,
 /area/station/security/secwing)
@@ -25741,6 +25805,15 @@
 	},
 /turf/simulated/floor,
 /area/station/security/secoffquarters)
+"tNt" = (
+/obj/machinery/conveyor/west{
+	operating = 1
+	},
+/obj/machinery/packing_machine{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/ne)
 "tNz" = (
 /obj/machinery/door/airlock/glass,
 /obj/access_spawn/cargo,
@@ -28567,6 +28640,9 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 10;
 	icon_state = "bot2"
+	},
+/obj/machinery/conveyor/south{
+	operating = 1
 	},
 /turf/simulated/floor/black,
 /area/station/quartermaster/storage)
@@ -94528,7 +94604,7 @@ igS
 xrV
 mhC
 pjJ
-dAu
+kGa
 foA
 vcA
 vcA
@@ -94831,7 +94907,7 @@ ler
 tTo
 cox
 dAu
-tcd
+lLD
 vcA
 atL
 kqf
@@ -95133,7 +95209,7 @@ xrV
 mhC
 iDr
 dAu
-tcd
+lLD
 vcA
 ign
 jSx
@@ -95435,7 +95511,7 @@ xrV
 mhC
 fVt
 dAu
-tcd
+kLV
 vcA
 smb
 cBk
@@ -95736,9 +95812,9 @@ igS
 xrV
 mhC
 chj
-dAu
-tcd
-vcA
+ivL
+lLD
+cWt
 iKr
 cBk
 hqN
@@ -96038,9 +96114,9 @@ ajS
 ler
 uFW
 noo
-dAu
-tcd
-vcA
+ivL
+tNt
+cWt
 iKr
 cBk
 hqN
@@ -96340,9 +96416,9 @@ jqJ
 xrV
 bYu
 dyk
-dAu
-tcd
-vcA
+ivL
+lLD
+cWt
 iKr
 cBk
 hqN
@@ -96643,7 +96719,7 @@ xrV
 bYu
 bHZ
 dAu
-foA
+rGp
 vcA
 smb
 cBk
@@ -96945,7 +97021,7 @@ xrV
 bYu
 xKY
 dAu
-tcd
+lLD
 vcA
 iKr
 cBk
@@ -97247,7 +97323,7 @@ vki
 jfy
 gRy
 dAu
-tcd
+lLD
 vcA
 iKr
 cBk
@@ -97548,8 +97624,8 @@ jqJ
 jiT
 kfF
 vWR
-dAu
-tcd
+cSm
+lLD
 vcA
 qGT
 cBk
@@ -97851,7 +97927,7 @@ jiT
 bYu
 hoO
 dAu
-tcd
+lLD
 vcA
 smb
 cBk
@@ -98455,7 +98531,7 @@ dAu
 trM
 jUR
 dAu
-tcd
+dJx
 vcA
 xWK
 qFl
