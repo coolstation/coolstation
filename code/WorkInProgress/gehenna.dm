@@ -199,10 +199,16 @@ var/global/gehenna_time = GEHENNA_TIME
 	icon_state = "red"
 	name = "the barren wastes"
 	teleport_blocked = 0
+	sound_loop = 'sound/ambience/loop/Gehenna_Surface.ogg'
+	sound_environment = EAX_PLAIN
+	sound_loop_vol = 80 + ((0.5*sin(GEHENNA_TIME-135)+0.5)*(50)) //louder in the cold, cold night. min 80, max 130
 
 /area/gehenna/wasteland/stormy
 	name = "the horrid wastes"
 	icon_state = "yellow"
+	sound_loop = 'sound/ambience/loop/Gehenna_Surface.ogg' //need something wimdy, maybe overlay a storm sound on this
+	sound_environment = EAX_PLAIN
+	sound_loop_vol = 150 //always loud, fukken storming
 
 	New()
 		..()
@@ -221,7 +227,10 @@ var/global/gehenna_time = GEHENNA_TIME
 					playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_2.ogg', 50, 1)
 					boutput(jerk, pick("Dust gets caught in your eyes!","The wind blows you off course!","Debris pierces through your skin!"))
 
-
+/area/gehenna/underground
+	icon_state = "unknown"
+	name = "the sulfurous caverns"
+	teleport_blocked = 0
 
 /*
 /obj/machinery/computer/sea_elevator/sec
