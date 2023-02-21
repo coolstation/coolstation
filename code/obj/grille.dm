@@ -103,6 +103,29 @@
 				if(76 to INFINITY)
 					icon_state = initial(src.icon_state) + "-0"
 
+		elevator //''''temporary'''' hack so damage doesn't change its manually-set-by-mapper iconstate
+			name = "elevator platform"
+			desc = "It's bad enough when the grilles are stationary, this feels even WORSE."
+
+			update_icon(special_icon_state)
+				if (ruined)
+					return
+
+				if (istext(special_icon_state))
+					icon_state = src.icon_state + "-" + special_icon_state
+					return
+
+				var/diff = get_fraction_of_percentage_and_whole(health,health_max)
+				switch(diff)
+					if(-INFINITY to 25)
+						icon_state = src.icon_state + "-3"
+					if(26 to 50)
+						icon_state = src.icon_state + "-2"
+					if(51 to 75)
+						icon_state = src.icon_state + "-1"
+					if(76 to INFINITY)
+						icon_state = src.icon_state + "-0"
+
 		grey //Old flavour (straight pieces and T junctions)
 			icon_state = "catwalk_grey"
 
