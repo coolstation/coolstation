@@ -1714,6 +1714,21 @@
 		desc = "An underfloor morgue pipe."
 		color = PIPEC_MORGUE
 
+	quarantine
+		name = "quarantine pipe"
+		desc = "An underfloor quarantine pipe."
+		color = PIPEC_QUARANTINE
+
+	genetics
+		name = "genetics pipe"
+		desc = "An underfloor genetics pipe, for dead people."
+		color = PIPEC_GENETICS
+
+	crematorium
+		name = "crematorium pipe"
+		desc = "An underfloor crematorium pipe, for dead people."
+		color = PIPEC_CREMATORIUM
+
 	food
 		name = "food pipe"
 		desc = "An underfloor food pipe."
