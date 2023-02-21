@@ -5597,6 +5597,11 @@
 	pixel_x = -7
 	},
 /obj/window/reinforced/north,
+/obj/item/pen/red,
+/obj/item/pen{
+	pixel_x = 6;
+	pixel_y = 4
+	},
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/treatment)
 "emE" = (
@@ -6732,6 +6737,7 @@
 	name = "Medical Director"
 	},
 /obj/disposalpipe/segment/horizontal,
+/obj/blind_switch/area/south,
 /turf/simulated/floor/carpet/blue/standard/edge/south,
 /area/station/medical/head)
 "fae" = (
@@ -14658,6 +14664,11 @@
 /obj/disposalpipe/trunk{
 	dir = 8
 	},
+/obj/decal/poster/wallsign/hypothermia{
+	desc = "Seems like something the head surgeon would draw.";
+	pixel_y = 32
+	},
+/obj/decal/cleanable/dirt,
 /turf/simulated/floor/carpet/blue/standard/edge/ne,
 /area/station/medical/head)
 "ldF" = (
@@ -17606,6 +17617,7 @@
 "nBo" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/window_blinds/vertical,
 /turf/simulated/floor/plating,
 /area/station/medical/head)
 "nBG" = (
@@ -25676,6 +25688,7 @@
 "tHO" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/horizontal,
+/obj/window_blinds/vertical,
 /turf/simulated/floor/plating,
 /area/station/medical/head)
 "tHX" = (

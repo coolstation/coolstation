@@ -1118,6 +1118,19 @@
 			return
 		C.Browse(grabResource("html/how_to_build_a_pod.html"),"window=how_to_build_a_pod;size=[imgw]x[imgh];title=How to Build a Space Pod")
 
+/obj/decal/poster/wallsign/hypothermia
+	name = "repulsive public service poster"
+	icon = 'icons/obj/decals/posters.dmi'
+	icon_state = "frostbite"
+	popup_win = 1
+	imgw = 690
+	imgh = 570
+
+	show_popup_win(var/client/C)
+		if (!C || !src.popup_win)
+			return
+		C.Browse("<html><body style='margin:2px'><img src='[resource("images/arts/hypothermia.jpg")]'></body></html>","window=Map;size=[imgw]x[imgh];title=Map")
+
 /obj/decal/poster/wallsign/pod_build/nt
 	icon_state = "nt-pod-poster"
 /obj/decal/poster/wallsign/pod_build/sy
