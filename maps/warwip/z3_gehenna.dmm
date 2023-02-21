@@ -667,16 +667,6 @@
 	},
 /turf/simulated/floor/grey/blackgrime,
 /area/station/science/bot_storage)
-"atH" = (
-/obj/machinery/power/data_terminal,
-/obj/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/turf/simulated/floor/plating{
-	icon_old = "diamondtile"
-	},
-/area/station/maintenance/east)
 "atP" = (
 /obj/cable{
 	d1 = 2;
@@ -2261,16 +2251,6 @@
 /obj/machinery/atmospherics/portables_connector/east,
 /turf/simulated/floor/plating,
 /area/station/engine/coldloop)
-"bnC" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/simulated/floor/plating{
-	icon_old = "diamondtile"
-	},
-/area/station/maintenance/east)
 "bnG" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/simulated/floor/grey,
@@ -9937,6 +9917,19 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/medical)
+"gcg" = (
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/power/monitor{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/station/medical/medbay{
+	name = "Med-Eng Mainframe"
+	})
 "gcl" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/floor/carpet/red/standard,
@@ -11101,6 +11094,19 @@
 /obj/grille/catwalk/jen,
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
+"gMv" = (
+/obj/disposalpipe/segment/cargo{
+	dir = 4
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/maintenance/east)
 "gME" = (
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_x = 32
@@ -12683,16 +12689,6 @@
 	},
 /turf/simulated/floor/black,
 /area/station/storage/warehouse)
-"hOv" = (
-/obj/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/data_terminal,
-/obj/machinery/power/monitor{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/station/maintenance/inner/nw)
 "hOx" = (
 /obj/disposalpipe/segment/cargo{
 	dir = 4
@@ -13207,6 +13203,17 @@
 "ifo" = (
 /turf/simulated/wall/r_wall,
 /area/station/science/lab)
+"ifC" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/nw)
 "ifU" = (
 /obj/rack,
 /obj/item/storage/box/diskbox{
@@ -22414,6 +22421,16 @@
 /obj/decal/poster/wallsign/medbay_left,
 /turf/simulated/wall,
 /area/station/hallway/secondary/exit)
+"nAJ" = (
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/maintenance/east)
 "nBb" = (
 /obj/cable/purple{
 	icon_state = "4-8"
@@ -23686,19 +23703,6 @@
 /obj/machinery/door/airlock/classic,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
-"ote" = (
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/power/data_terminal,
-/obj/machinery/power/monitor{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
-/area/station/medical/medbay{
-	name = "Med-Eng Mainframe"
-	})
 "otD" = (
 /turf/simulated/floor/plating{
 	icon_state = "platingdmg3"
@@ -27444,17 +27448,6 @@
 	},
 /turf/simulated/floor,
 /area/station/engine/elect)
-"qQo" = (
-/obj/disposalpipe/segment/mail/horizontal,
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/plating{
-	icon_old = "diamondtile"
-	},
-/area/station/maintenance/east)
 "qQA" = (
 /obj/cable{
 	d1 = 4;
@@ -28527,6 +28520,16 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/plating,
 /area/station/science/lobby)
+"rwK" = (
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/power/monitor{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/nw)
 "rxp" = (
 /obj/cable/blue,
 /obj/machinery/power/data_terminal,
@@ -31915,6 +31918,17 @@
 "twZ" = (
 /turf/simulated/wall/asteroid/gehenna/z3,
 /area/space)
+"txo" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/maintenance/east)
 "txE" = (
 /obj/machinery/conveyor/south{
 	name = "garbo belt";
@@ -32514,13 +32528,11 @@
 /obj/item/disk/data/fixed_disk{
 	pixel_y = -2
 	},
-/obj/machinery/light/small{
-	dir = 8
-	},
 /obj/item/peripheral/printer{
 	pixel_x = 1;
 	pixel_y = -1
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/plating,
 /area/station/storage/tech)
 "tPM" = (
@@ -32547,19 +32559,6 @@
 /obj/machinery/atmospherics/pipe/manifold/north,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
-"tRF" = (
-/obj/disposalpipe/segment/cargo{
-	dir = 4
-	},
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/plating{
-	icon_old = "diamondtile"
-	},
-/area/station/maintenance/east)
 "tRL" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -38804,6 +38803,16 @@
 /area/station/science/artifact{
 	name = "Artifact Lounge"
 	})
+"xGR" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/maintenance/east)
 "xHh" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 2
@@ -39304,17 +39313,6 @@
 /obj/item/storage/box/glassbox,
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/baroffice)
-"xTS" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/simulated/floor/plating,
-/area/station/maintenance/inner/nw)
 "xUJ" = (
 /obj/disposalpipe/trunk{
 	dir = 8
@@ -65943,7 +65941,7 @@ pdO
 npO
 ijI
 mdE
-xTS
+ifC
 uzY
 emo
 aBI
@@ -66546,8 +66544,8 @@ pdO
 pdO
 npO
 ijI
-hOv
-xTS
+rwK
+ifC
 lVb
 jti
 vPQ
@@ -76880,7 +76878,7 @@ dLw
 jNe
 aPm
 xnI
-ote
+gcg
 hRJ
 qAe
 qAe
@@ -101316,7 +101314,7 @@ wMB
 xmr
 uOY
 nLc
-atH
+nAJ
 tVJ
 bbe
 odr
@@ -101616,9 +101614,9 @@ wMB
 wMB
 wMB
 oxw
-qQo
-tRF
-bnC
+txo
+gMv
+xGR
 tVJ
 kfg
 qON
