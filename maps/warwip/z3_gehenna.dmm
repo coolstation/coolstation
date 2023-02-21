@@ -667,6 +667,16 @@
 	},
 /turf/simulated/floor/grey/blackgrime,
 /area/station/science/bot_storage)
+"atH" = (
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/maintenance/east)
 "atP" = (
 /obj/cable{
 	d1 = 2;
@@ -2251,6 +2261,16 @@
 /obj/machinery/atmospherics/portables_connector/east,
 /turf/simulated/floor/plating,
 /area/station/engine/coldloop)
+"bnC" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/maintenance/east)
 "bnG" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/simulated/floor/grey,
@@ -3786,6 +3806,9 @@
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
+	},
+/obj/machinery/light/small/red{
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
@@ -11768,6 +11791,11 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/nw)
 "hhO" = (
@@ -12056,8 +12084,13 @@
 /area/station/engine/combustion_chamber)
 "hwR" = (
 /obj/decal/cleanable/dirt/random,
-/obj/machinery/light/small/red{
-	dir = 4
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/power/monitor{
+	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/noGenerate)
@@ -12650,6 +12683,16 @@
 	},
 /turf/simulated/floor/black,
 /area/station/storage/warehouse)
+"hOv" = (
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/power/monitor{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/nw)
 "hOx" = (
 /obj/disposalpipe/segment/cargo{
 	dir = 4
@@ -13209,14 +13252,11 @@
 /area/station/mining/tunnel)
 "iiA" = (
 /obj/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+	icon_state = "0-2"
 	},
+/obj/machinery/power/data_terminal,
 /turf/simulated/floor/plating,
-/area/station/medical/medbay{
-	name = "Med-Eng Mainframe"
-	})
+/area/station/maintenance/inner/nw)
 "iiJ" = (
 /obj/cable{
 	d1 = 1;
@@ -19960,6 +20000,10 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/nw)
 "mdZ" = (
@@ -23642,6 +23686,19 @@
 /obj/machinery/door/airlock/classic,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
+"ote" = (
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/power/monitor{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/station/medical/medbay{
+	name = "Med-Eng Mainframe"
+	})
 "otD" = (
 /turf/simulated/floor/plating{
 	icon_state = "platingdmg3"
@@ -23830,6 +23887,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/plating{
 	icon_old = "diamondtile"
@@ -27384,6 +27444,17 @@
 	},
 /turf/simulated/floor,
 /area/station/engine/elect)
+"qQo" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/maintenance/east)
 "qQA" = (
 /obj/cable{
 	d1 = 4;
@@ -32476,6 +32547,19 @@
 /obj/machinery/atmospherics/pipe/manifold/north,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
+"tRF" = (
+/obj/disposalpipe/segment/cargo{
+	dir = 4
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/maintenance/east)
 "tRL" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -39220,6 +39304,17 @@
 /obj/item/storage/box/glassbox,
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/baroffice)
+"xTS" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/nw)
 "xUJ" = (
 /obj/disposalpipe/trunk{
 	dir = 8
@@ -65545,7 +65640,7 @@ pdO
 pdO
 npO
 ijI
-aBI
+iiA
 hhE
 jrs
 prM
@@ -65848,7 +65943,7 @@ pdO
 npO
 ijI
 mdE
-iNJ
+xTS
 uzY
 emo
 aBI
@@ -66451,8 +66546,8 @@ pdO
 pdO
 npO
 ijI
-aBI
-iNJ
+hOv
+xTS
 lVb
 jti
 vPQ
@@ -76483,7 +76578,7 @@ fwP
 fwP
 nGg
 oXT
-iiA
+hQy
 hRJ
 foA
 gtw
@@ -76785,7 +76880,7 @@ dLw
 jNe
 aPm
 xnI
-hRJ
+ote
 hRJ
 qAe
 qAe
@@ -77086,9 +77181,9 @@ pZt
 pZt
 pZt
 tFl
-kPQ
-kpW
-kpW
+qRR
+qRR
+qRR
 kPQ
 kPQ
 kPQ
@@ -101221,7 +101316,7 @@ wMB
 xmr
 uOY
 nLc
-tVJ
+atH
 tVJ
 bbe
 odr
@@ -101521,9 +101616,9 @@ wMB
 wMB
 wMB
 oxw
-uOY
-nLc
-tVJ
+qQo
+tRF
+bnC
 tVJ
 kfg
 qON
@@ -104191,7 +104286,7 @@ kUu
 jfd
 sMw
 sMw
-sMw
+uAS
 uAS
 gHq
 mla
