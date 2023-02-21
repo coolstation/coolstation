@@ -693,9 +693,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 8
 	},
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "aqc" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -913,9 +911,7 @@
 	},
 /obj/machinery/light/small/ceiling/warm/very,
 /turf/simulated/floor/white,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "avd" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -1895,19 +1891,13 @@
 /turf/simulated/floor/wood,
 /area/station/chapel/sanctuary)
 "aSj" = (
-/obj/machinery/networked/storage/tape_drive{
-	locked = 0;
-	name = "Isolated Databank";
-	read_only = 1
-	},
 /obj/machinery/power/data_terminal,
 /obj/cable/hotpink{
 	icon_state = "0-4"
 	},
+/obj/machinery/networked/storage/tape_drive/lab,
 /turf/simulated/floor/purplewhite,
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "aSp" = (
 /obj/machinery/light/fluorescent/auto/neutral,
 /turf/simulated/floor/neutral/side{
@@ -2724,20 +2714,14 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/obj/machinery/networked/mainframe{
-	desc = "A mainframe computer, designated as the cold backup. You'd need at least one other person to try to steal it.";
-	device_tag = "PNET_MAINFRAMEC";
-	name = "Cold Mainframe"
-	},
 /obj/cable/blue{
 	icon_state = "0-8"
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/light/small/auto/warm/very,
+/obj/machinery/networked/mainframe/cold,
 /turf/simulated/floor/techfloor,
-/area/radiostation/serverroom{
-	name = "Server Room - Cold Site"
-	})
+/area/station/science/server_room/cold)
 "bnh" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
@@ -3340,9 +3324,7 @@
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/red/checker,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "bCs" = (
 /obj/stool/chair/couch/green{
 	dir = 8
@@ -3440,9 +3422,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 1
 	},
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "bEL" = (
 /obj/cable/blue{
 	icon_state = "1-2"
@@ -4377,9 +4357,7 @@
 "ccU" = (
 /obj/machinery/atmospherics/unary/vent_pump,
 /turf/simulated/floor/white,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "cdt" = (
 /obj/machinery/light/fluorescent/auto/neutral,
 /turf/simulated/floor/blue/corner,
@@ -4938,9 +4916,7 @@
 	pixel_y = 7
 	},
 /turf/simulated/wall/r_wall,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "crq" = (
 /obj/disposalpipe/trunk/morgue{
 	dir = 4
@@ -5308,9 +5284,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/white,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "cBJ" = (
 /obj/machinery/light/small/ceiling/cool/very,
 /turf/simulated/floor/bluewhite/corner{
@@ -5456,9 +5430,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 4
 	},
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "cGv" = (
 /obj/machinery/atmospherics/binary/pump{
 	frequency = 1225;
@@ -5825,9 +5797,7 @@
 "cPw" = (
 /obj/machinery/light/small/ceiling/warm/very,
 /turf/simulated/floor/white,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "cPz" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -6093,6 +6063,7 @@
 "cVb" = (
 /obj/table/glass/auto,
 /obj/item/aiModule/protectStation,
+/obj/item/disk/data/memcard/main2,
 /turf/simulated/floor/techfloor,
 /area/station/turret_protected/ai_module_storage)
 "cVf" = (
@@ -6123,9 +6094,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/wall/r_wall,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "cVZ" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	dir = 9
@@ -6216,9 +6185,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/white,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "cWS" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -6631,9 +6598,7 @@
 	pixel_y = -14
 	},
 /turf/simulated/wall/r_wall,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "dkk" = (
 /obj/disposalpipe/segment/morgue,
 /obj/machinery/light/small/auto/warm,
@@ -6703,9 +6668,7 @@
 /obj/access_spawn/heads,
 /obj/firedoor_spawn,
 /turf/simulated/floor/purple,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "dkY" = (
 /obj/machinery/computer/security,
 /obj/cable/blue{
@@ -7349,9 +7312,7 @@
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/red/checker,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "dAe" = (
 /obj/storage/crate,
 /turf/simulated/floor/plating,
@@ -7542,9 +7503,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/red/checker,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "dDm" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
@@ -7853,9 +7812,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/purple,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "dIT" = (
 /obj/machinery/door/unpowered/wood,
 /obj/firedoor_spawn,
@@ -7883,9 +7840,7 @@
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/red/checker,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "dJn" = (
 /obj/cable/blue{
 	icon_state = "1-2"
@@ -8233,9 +8188,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/purple,
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "dTt" = (
 /obj/table/auto/desk,
 /obj/machinery/networked/printer,
@@ -8996,9 +8949,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe,
 /turf/simulated/floor/bot/caution,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "ekY" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4
@@ -10701,7 +10652,6 @@
 	},
 /obj/machinery/disposal/morgue{
 	density = 0;
-	desc = "A pneumatic delivery chute for sending things directly to genetics.";
 	name = "genetics chute";
 	pixel_y = 16
 	},
@@ -12225,9 +12175,7 @@
 	pixel_x = 24
 	},
 /turf/simulated/floor/white,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "fDN" = (
 /obj/machinery/light/small/auto/neutral,
 /turf/simulated/floor,
@@ -13053,9 +13001,7 @@
 	},
 /obj/machinery/light/small/ceiling/warm,
 /turf/simulated/floor/white,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "fXD" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -13446,20 +13392,12 @@
 /area/station/maintenance/inner/south)
 "ghQ" = (
 /obj/machinery/power/data_terminal,
-/obj/machinery/networked/storage/tape_drive{
-	bank_id = "WARMDB";
-	desc = "A networked tape drive for the backup mainframe.";
-	name = "Warm Databank";
-	setup_drive_type = null;
-	setup_spawn_with_tape = 0
-	},
 /obj/cable/brown{
 	icon_state = "0-8"
 	},
+/obj/machinery/networked/storage/tape_drive/warm,
 /turf/simulated/floor/red/redblackchecker,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "ghV" = (
 /obj/rack,
 /turf/simulated/floor,
@@ -13771,9 +13709,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/purple,
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "god" = (
 /obj/disposalpipe/segment/mail,
 /turf/simulated/floor/plating,
@@ -13908,22 +13844,14 @@
 	},
 /area/station/science/artifact)
 "grG" = (
-/obj/machinery/networked/storage/tape_drive{
-	bank_id = "COLDDB";
-	desc = "A networked tape drive for the backup mainframe.";
-	name = "Cold Databank";
-	setup_drive_type = null;
-	setup_spawn_with_tape = 0
-	},
 /obj/cable/blue{
 	icon_state = "0-8"
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/light/small/auto/warm/very,
+/obj/machinery/networked/storage/tape_drive/cold,
 /turf/simulated/floor/techfloor,
-/area/radiostation/serverroom{
-	name = "Server Room - Cold Site"
-	})
+/area/station/science/server_room/cold)
 "grQ" = (
 /obj/disposalpipe/trunk/mail{
 	dir = 4
@@ -13939,9 +13867,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 4
 	},
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "grZ" = (
 /obj/stool/chair/syndicate{
 	dir = 1
@@ -14166,9 +14092,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/white,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "gxZ" = (
 /obj/lattice{
 	dir = 4;
@@ -14394,9 +14318,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 6
 	},
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "gDn" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -14750,9 +14672,7 @@
 /area/station/janitor/office)
 "gNb" = (
 /turf/simulated/wall/r_wall,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "gNc" = (
 /obj/stool/chair/boxingrope_corner{
 	dir = 6
@@ -15644,9 +15564,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 1
 	},
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "hhd" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -16225,12 +16143,13 @@
 /obj/machinery/light/emergency{
 	dir = 1
 	},
+/obj/table/glass/auto,
+/obj/item/disk/data/tape/artifact_research,
+/obj/item/disk/data/tape/guardbot_tools,
 /turf/simulated/floor/purplewhite{
 	dir = 5
 	},
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "hwx" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -17011,9 +16930,7 @@
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/white,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "hUG" = (
 /obj/table/wood/auto,
 /obj/item/kitchen/food_box/donut_box,
@@ -19445,9 +19362,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 9
 	},
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "jaI" = (
 /obj/item/storage/toilet{
 	dir = 8
@@ -19559,9 +19474,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 4
 	},
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "jdq" = (
 /obj/machinery/light/small/auto/warm,
 /obj/cable/conduit/segment/horizontal,
@@ -19971,9 +19884,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 8
 	},
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "jlG" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/cable{
@@ -20322,9 +20233,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 1
 	},
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "jtf" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
 /turf/simulated/floor/white,
@@ -20672,9 +20581,7 @@
 /area/station/communications)
 "jCa" = (
 /turf/simulated/floor/white,
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "jCd" = (
 /obj/cable/blue{
 	icon_state = "1-2"
@@ -20888,6 +20795,11 @@
 /obj/machinery/light/small/auto/warm,
 /turf/simulated/floor/engine,
 /area/station/engine/hotloop)
+"jHz" = (
+/mob/living/silicon/robot/buddy,
+/obj/machinery/guardbot_dock,
+/turf/simulated/floor/white,
+/area/station/science/gen_storage)
 "jHF" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -21182,9 +21094,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/white,
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "jNd" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -21770,9 +21680,7 @@
 	pixel_y = -14
 	},
 /turf/simulated/wall/r_wall,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "kaX" = (
 /obj/cable/blue{
 	icon_state = "1-2"
@@ -22264,9 +22172,7 @@
 /area/station/hallway/primary/north)
 "kkc" = (
 /turf/simulated/floor/white,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "kkh" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -22289,9 +22195,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 1
 	},
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "klw" = (
 /obj/stool/chair{
 	dir = 8
@@ -23771,9 +23675,6 @@
 /turf/space,
 /area/station/com_dish/auxdish)
 "kQd" = (
-/obj/machinery/networked/mainframe{
-	name = "Isolated Mainframe"
-	},
 /obj/machinery/power/data_terminal,
 /obj/cable/hotpink{
 	icon_state = "0-4"
@@ -23782,10 +23683,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/light/small/cool,
+/obj/machinery/networked/mainframe/lab,
 /turf/simulated/floor/purplewhite,
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "kQq" = (
 /obj/bookcase,
 /turf/simulated/floor/wood/two,
@@ -25111,9 +25011,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/white,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "lzh" = (
 /obj/disposalpipe/segment{
 	dir = 1
@@ -26208,9 +26106,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 9
 	},
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "lYb" = (
 /obj/rack,
 /obj/item/sheet/glass/fullstack,
@@ -26563,9 +26459,7 @@
 "mfw" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
 /turf/simulated/floor/plating,
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "mfy" = (
 /obj/cable{
 	d1 = 2;
@@ -27150,9 +27044,7 @@
 	},
 /obj/machinery/power/apc/autoname_south,
 /turf/simulated/floor/purplewhite,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "mtD" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
 /turf/simulated/floor/plating,
@@ -27353,9 +27245,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 8
 	},
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "myW" = (
 /obj/disposalpipe/segment/food{
 	dir = 1
@@ -27974,9 +27864,7 @@
 /area/station/hallway/secondary/northwest)
 "mMp" = (
 /turf/simulated/wall,
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "mMq" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -28566,12 +28454,12 @@
 	info = "Unfortunately, the request for an actual load-balancing switch for fault-tolerance was denied prior to it going down.<br><br>So, here's your failover kit on the table. If something goes wrong with the active server?<br><br>Pry up the marked floor tile, cut the red wire at the blue wire, and hook up the brown wire to the blue wire instead.<br><br>It's not pretty, but I'm thinking it might work. All these dang viruses...<br><br>-R.C<br><br>P.S. Everyone's DWAINE terminals have to be set up again to connect to the backup server's address. TERM_PING!<br>";
 	name = "Failover Kit Note"
 	},
+/obj/item/disk/data/memcard/main2,
+/obj/item/disk/data/tape/boot2,
 /turf/simulated/floor/purplewhite{
 	dir = 10
 	},
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "mZV" = (
 /turf/simulated/floor/yellow/corner,
 /area/station/engine/monitoring)
@@ -29897,9 +29785,7 @@
 	dir = 4
 	},
 /turf/simulated/wall/r_wall,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "nCb" = (
 /obj/decal/cleanable/dirt/dirt5{
 	dir = 1
@@ -29967,9 +29853,7 @@
 /area/station/hallway/primary/central)
 "nEC" = (
 /turf/simulated/wall/r_wall,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "nEF" = (
 /obj/machinery/door/airlock/glass,
 /obj/access_spawn/hydro,
@@ -30694,13 +30578,12 @@
 	dir = 1
 	},
 /turf/simulated/floor/white,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "nTN" = (
 /obj/table/glass/auto,
 /obj/item/aiModule/makeCaptain,
 /obj/machinery/light/fluorescent/cool/very,
+/obj/item/disk/data/tape/boot2,
 /turf/simulated/floor/techfloor,
 /area/station/turret_protected/ai_module_storage)
 "nUg" = (
@@ -32064,9 +31947,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/wall/r_wall,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "ozL" = (
 /obj/disposalpipe/segment/food{
 	dir = 4
@@ -33417,9 +33298,7 @@
 	pixel_y = -1
 	},
 /turf/simulated/floor/purplewhite,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "phw" = (
 /obj/cable/yellow{
 	icon_state = "4-8"
@@ -33561,9 +33440,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 8
 	},
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "pjO" = (
 /obj/surgery_tray{
 	anchored = 1
@@ -34942,9 +34819,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 1
 	},
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "pQW" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -36023,6 +35898,11 @@
 	},
 /turf/simulated/floor/circuit,
 /area/station/turret_protected/ai_upload)
+"qqa" = (
+/obj/stool/bar,
+/obj/machinery/navbeacon/guardbot_buddytime,
+/turf/simulated/floor/wood/seven,
+/area/station/crew_quarters/bar)
 "qqj" = (
 /obj/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
@@ -38150,9 +38030,7 @@
 	pixel_y = 7
 	},
 /turf/simulated/wall/r_wall,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "rpS" = (
 /turf/simulated/wall/r_wall,
 /area/station/engine/coldloop)
@@ -39088,9 +38966,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/purple,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "rKt" = (
 /obj/disposalpipe/segment/mail,
 /obj/cable/blue{
@@ -39166,9 +39042,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 8
 	},
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "rLl" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -39249,6 +39123,11 @@
 	},
 /turf/simulated/floor/carpet/green/standard,
 /area/station/crew_quarters/courtroom)
+"rMw" = (
+/obj/machinery/light/small/auto/neutral,
+/obj/machinery/guardbot_dock,
+/turf/simulated/floor/purplewhite,
+/area/station/science/gen_storage)
 "rMx" = (
 /obj/table/gun_workbench,
 /turf/simulated/floor/wood{
@@ -41036,9 +40915,18 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/red/redblackchecker,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
+"szC" = (
+/obj/cable/blue{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
+	dir = 8
+	},
+/mob/living/silicon/robot/buddy,
+/obj/machinery/guardbot_dock,
+/turf/simulated/floor/white,
+/area/station/science/gen_storage)
 "szG" = (
 /obj/machinery/door/unpowered/wood,
 /obj/firedoor_spawn,
@@ -42198,9 +42086,7 @@
 /obj/access_spawn/heads,
 /obj/firedoor_spawn,
 /turf/simulated/floor/purple,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "tbO" = (
 /obj/disposalpipe/segment/food{
 	dir = 8;
@@ -43209,9 +43095,7 @@
 "tzo" = (
 /obj/machinery/light/small/ceiling/warm,
 /turf/simulated/floor/white,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "tzu" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -43542,9 +43426,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 5
 	},
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "tFS" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -43906,9 +43788,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 8
 	},
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "tOD" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -44296,20 +44176,15 @@
 /area/station/maintenance/inner/ne)
 "tWH" = (
 /obj/machinery/power/data_terminal,
-/obj/machinery/networked/mainframe{
-	desc = "A mainframe computer, designated as the warm backup. It's pretty big, and still hot!";
-	name = "Warm Mainframe"
-	},
 /obj/cable/brown{
 	icon_state = "0-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 4
 	},
+/obj/machinery/networked/mainframe/warm,
 /turf/simulated/floor/red/redblackchecker,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "tWI" = (
 /obj/machinery/vending/clothing,
 /turf/simulated/floor/neutral/side,
@@ -45714,9 +45589,7 @@
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/purplewhite,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "uEn" = (
 /obj/disposalpipe/segment/mail,
 /obj/machinery/door/window/northleft,
@@ -45922,6 +45795,11 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/nw)
+"uKh" = (
+/mob/living/silicon/robot/buddy,
+/obj/machinery/guardbot_dock,
+/turf/simulated/floor/purplewhite,
+/area/station/science/gen_storage)
 "uKm" = (
 /obj/stool/chair/red,
 /obj/cable{
@@ -47327,9 +47205,7 @@
 	name = "Scientist"
 	},
 /turf/simulated/floor/white,
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "vmE" = (
 /obj/machinery/light/small/auto/neutral,
 /obj/machinery/light/emergency,
@@ -47566,9 +47442,7 @@
 "vst" = (
 /obj/decal/poster/wallsign/warning3,
 /turf/simulated/wall/r_wall,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "vsC" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -49133,9 +49007,7 @@
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/red/redblackchecker,
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "wdo" = (
 /obj/disposalpipe/segment/brig,
 /turf/simulated/floor/red/corner{
@@ -49823,9 +49695,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 4
 	},
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "wpH" = (
 /obj/lattice{
 	dir = 9;
@@ -50113,9 +49983,7 @@
 "wuo" = (
 /obj/decal/poster/wallsign/warning3,
 /turf/simulated/wall/r_wall,
-/area/radiostation/serverroom{
-	name = "Server Room - Hot Site"
-	})
+/area/station/science/server_room)
 "wuy" = (
 /obj/table/reinforced/bar/auto,
 /turf/simulated/bar,
@@ -51220,9 +51088,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 10
 	},
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "wTS" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -51574,9 +51440,7 @@
 	},
 /obj/wingrille_spawn/fakethindow/reinforced,
 /turf/simulated/floor/plating,
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "xbb" = (
 /obj/machinery/atmospherics/pipe/simple/insulated,
 /turf/simulated/floor/yellow/side,
@@ -52582,9 +52446,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 8
 	},
-/area/station/science{
-	name = "Computer Lab"
-	})
+/area/station/science/computer_lab)
 "xwN" = (
 /obj/disposalpipe/segment/mail,
 /obj/cable{
@@ -53710,9 +53572,7 @@
 /turf/simulated/floor/purplewhite{
 	dir = 1
 	},
-/area/radiostation/serverroom{
-	name = "Server Room - Warm Site"
-	})
+/area/station/science/server_room/warm)
 "xZY" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/yellow,
@@ -90800,7 +90660,7 @@ fwX
 bTx
 jkG
 coK
-vRQ
+qqa
 jJD
 iVN
 iVN
@@ -107496,7 +107356,7 @@ njX
 ahd
 vFQ
 fTJ
-mPv
+uKh
 njX
 hpa
 jIP
@@ -107798,7 +107658,7 @@ cQn
 ixo
 ayj
 jjj
-qLg
+rMw
 njX
 cId
 jIP
@@ -108100,7 +107960,7 @@ njX
 ahd
 vFQ
 sra
-lnn
+uKh
 njX
 cId
 jIP
@@ -109306,8 +109166,8 @@ oST
 dpj
 njX
 wHW
-ipc
-sra
+jHz
+szC
 qLg
 njX
 cId

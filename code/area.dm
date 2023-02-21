@@ -389,7 +389,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 			if ("Zen Garden") sound_fx_1 = pick('sound/ambience/station/ZenGarden1.ogg','sound/ambience/station/ZenGarden2.ogg')
 			//if ("Engine Control") sound_fx_1 = pick(ambience_engine)
 			//if ("Atmospherics") sound_fx_1 = pick(ambience_atmospherics)
-			if ("Radio Server") sound_fx_1 = pick(ambience_computer) //"Computer Core"
+			if ("Radio Server", "Server Room", "Computer Lab") sound_fx_1 = pick(ambience_computer) //"Computer Core"
+				//todo: computer ambience only if area's apc is powering equipment
 			//if ("Engineering Power Room") sound_fx_1 = pick(ambience_power)
 			if ("Ice Moon") sound_fx_1 = pick('sound/ambience/nature/Wind_Cold1.ogg', 'sound/ambience/nature/Wind_Cold2.ogg', 'sound/ambience/nature/Wind_Cold3.ogg')
 			if ("Biodome North") sound_fx_1 = pick('sound/ambience/nature/Biodome_Bugs.ogg', 'sound/ambience/nature/Biodome_Birds1.ogg', 'sound/ambience/nature/Biodome_Birds2.ogg', 'sound/ambience/nature/Biodome_Monkeys.ogg')
@@ -2200,7 +2201,6 @@ ABSTRACT_TYPE(/area/station/crew_quarters/radio)
 /area/station/crew_quarters/cafeteria/the_rising_tide_bar
 		name = "The Rising Tide"
 
-
 /area/station/crew_quarters/kitchen
 	name = "Kitchen"
 	icon_state = "kitchen"
@@ -2980,6 +2980,22 @@ ABSTRACT_TYPE(/area/station/science)
 	name = "Research Sector Construction Area"
 	icon_state = "yellow"
 	do_not_irradiate = 1
+
+/area/station/science/server_room/ //might not always be in research
+	name = "Server Room"
+	icon_state = "red"
+
+/area/station/science/server_room/cold
+	name = "Server Room - Cold Backup"
+	icon_state = "blue"
+
+/area/station/science/server_room/warm
+	name = "Server Room - Cold Backup"
+	icon_state = "orange"
+
+/area/station/science/computer_lab
+	name = "Computer Lab"
+	icon_state = "purple"
 
 ABSTRACT_TYPE(/area/station/chapel)
 /area/station/chapel
