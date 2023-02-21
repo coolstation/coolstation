@@ -34,13 +34,10 @@
 	},
 /area/station/medical/head)
 "aaZ" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
 /obj/machinery/light/emergency{
 	dir = 4
 	},
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/blue/side{
 	dir = 4
 	},
@@ -80,10 +77,9 @@
 /area/station/storage/tools)
 "acJ" = (
 /obj/morgue,
-/obj/disposalpipe/segment/morgue{
+/obj/disposalpipe/segment/crematorium{
 	dir = 1;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/sanitary/white,
 /area/station/medical/morgue)
@@ -397,11 +393,10 @@
 /area/station/security/detectives_office)
 "ajO" = (
 /obj/stool/bench/wooden,
-/obj/disposalpipe/trunk/morgue{
-	dir = 4;
-	name = "crematorium pipe"
-	},
 /obj/item/device/radio/beacon,
+/obj/disposalpipe/trunk/ejection{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/station/chapel/sanctuary)
 "ajP" = (
@@ -601,15 +596,14 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 4
 	},
-/obj/disposalpipe/segment/morgue{
+/obj/disposalpipe/segment/quarantine{
 	dir = 4;
-	icon_state = "pipe-c";
-	name = "quarantine pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
 "aoz" = (
-/obj/tree1,
+/obj/decal/fakeobjects/palmtree,
 /turf/simulated/floor/grass{
 	name = "astroturf"
 	},
@@ -1052,13 +1046,13 @@
 /turf/simulated/floor,
 /area/station/turret_protected/ai)
 "axk" = (
-/obj/disposalpipe/segment/morgue,
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
+/obj/disposalpipe/segment/morgue,
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/nw)
 "axr" = (
@@ -1086,9 +1080,7 @@
 	},
 /area/station/hydroponics/lobby)
 "axV" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/ejection,
 /turf/simulated/wall,
 /area/station/chapel)
 "axX" = (
@@ -1287,14 +1279,12 @@
 /turf/simulated/floor/grey/blackgrime,
 /area/station/chapel/funeral_parlor)
 "aCc" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/stool/chair/wooden{
 	desc = "An antique chair.";
 	dir = 4;
 	name = "old wooden chair"
 	},
+/obj/disposalpipe/segment/ejection,
 /turf/simulated/floor/specialroom/chapel,
 /area/station/chapel)
 "aCf" = (
@@ -1443,9 +1433,7 @@
 /turf/simulated/floor,
 /area/station/engine/core)
 "aFU" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/wall,
 /area/station/crew_quarters/showers)
 "aFV" = (
@@ -1498,14 +1486,12 @@
 /turf/simulated/floor,
 /area/station/quartermaster/cargobay)
 "aHe" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/stool/chair/wooden{
 	desc = "An antique chair.";
 	dir = 4;
 	name = "old wooden chair"
 	},
+/obj/disposalpipe/segment/ejection,
 /turf/simulated/floor/specialroom/chapel{
 	dir = 4
 	},
@@ -1591,6 +1577,12 @@
 /obj/table/glass/auto,
 /turf/simulated/floor/neutral/side,
 /area/station/hallway/primary/central)
+"aJm" = (
+/obj/decal/floatingtiles{
+	icon_state = "floattiles2"
+	},
+/turf/simulated/floor/airless/plating/scorched,
+/area/abandonedship)
 "aJx" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
@@ -1757,10 +1749,8 @@
 /area/station/maintenance/inner/south)
 "aON" = (
 /obj/decal/poster/wallsign/poster_borg,
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/quarantine{
+	dir = 4
 	},
 /turf/simulated/wall,
 /area/station/medical/robotics)
@@ -2174,10 +2164,7 @@
 /turf/simulated/floor/red,
 /area/station/security/checkpoint/arrivals)
 "bax" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/blue/side{
 	dir = 4
 	},
@@ -2196,6 +2183,10 @@
 "bbj" = (
 /obj/cable{
 	icon_state = "2-4"
+	},
+/obj/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor,
 /area/station/security/hos)
@@ -2284,21 +2275,13 @@
 /area/station/science/lobby)
 "bcL" = (
 /obj/disposalpipe/junction{
+	color = "#f2a673";
 	dir = 1;
 	icon_state = "pipe-j2";
 	name = "ejection pipe"
 	},
 /turf/simulated/wall,
 /area/station/chapel)
-"bcN" = (
-/obj/wingrille_spawn/fakethindow/reinforced,
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 2;
-	name = "chump pipe"
-	},
-/turf/simulated/floor/plating,
-/area/station/crew_quarters/quarters)
 "bdv" = (
 /obj/storage/cart/trash,
 /turf/simulated/floor,
@@ -2417,9 +2400,7 @@
 /obj/cable/blue{
 	icon_state = "2-4"
 	},
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
 "bhC" = (
@@ -2803,9 +2784,9 @@
 	icon_state = "0-2"
 	},
 /obj/disposalpipe/switch_junction/biofilter{
+	color = "#fbed92";
 	dir = 2;
-	icon_state = "pipe-sj2";
-	name = "loafer chump filter"
+	icon_state = "pipe-sj2"
 	},
 /obj/machinery/power/apc{
 	areastring = "Arcade";
@@ -2824,10 +2805,9 @@
 /turf/simulated/floor/techfloor,
 /area/station/turret_protected/ai_module_storage)
 "bpX" = (
-/obj/disposalpipe/segment/morgue{
+/obj/disposalpipe/segment/ejection{
 	dir = 8;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/wall,
 /area/station/chapel)
@@ -2835,13 +2815,12 @@
 /turf/simulated/wall/r_wall,
 /area/station/chapel/sanctuary)
 "bqf" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
-	},
 /obj/storage/crate/bin{
 	icon_state = "largebinopen";
 	open = 1
+	},
+/obj/disposalpipe/segment/ejection{
+	dir = 4
 	},
 /turf/simulated/floor/blue/side{
 	dir = 10
@@ -2916,10 +2895,8 @@
 /area/station/chapel)
 "bsx" = (
 /obj/disposalpipe/segment,
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/quarantine{
+	dir = 4
 	},
 /turf/simulated/floor/white/side{
 	dir = 8
@@ -2976,10 +2953,8 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 1
 	},
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/quarantine{
+	dir = 4
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
@@ -3075,9 +3050,7 @@
 /turf/simulated/floor/grey/blackgrime,
 /area/station/chapel/funeral_parlor)
 "bwz" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/black/grime,
 /area/station/crew_quarters/courtroom)
 "bwI" = (
@@ -3120,10 +3093,8 @@
 /area/station/bridge/customs)
 "bxU" = (
 /obj/cabinet/medical,
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/quarantine{
+	dir = 4
 	},
 /turf/simulated/floor/bluewhite{
 	dir = 1
@@ -3189,12 +3160,10 @@
 /turf/space,
 /area/listeningpost/power)
 "byW" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/machinery/light/emergency{
 	dir = 8
 	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/wood/seven,
 /area/station/crew_quarters/bar)
 "bzc" = (
@@ -3549,6 +3518,12 @@
 	},
 /turf/simulated/floor/sanitary/blue,
 /area/station/medical/cdc)
+"bIN" = (
+/obj/item/reagent_containers/food/snacks/plant/banana,
+/turf/simulated/floor/grass{
+	name = "astroturf"
+	},
+/area/station/medical/dome)
 "bIR" = (
 /turf/simulated/wall/r_wall,
 /area/station/security/checkpoint/customs)
@@ -3705,9 +3680,7 @@
 /turf/simulated/floor/carpet/red/fancy/edge/ne,
 /area/station/chapel)
 "bLV" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/neutral/side,
 /area/station/hallway/secondary/northwest)
 "bMr" = (
@@ -4076,6 +4049,11 @@
 	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
+"bUT" = (
+/obj/decal/cleanable/machine_debris,
+/obj/item/device/light/glowstick,
+/turf/simulated/floor/airless/plating/scorched,
+/area/abandonedship)
 "bVa" = (
 /obj/machinery/light/small{
 	brightness = 2;
@@ -4254,8 +4232,8 @@
 /area/station/crew_quarters/courtroom)
 "bZi" = (
 /obj/table/auto,
-/obj/disposalpipe/segment/morgue,
 /obj/machinery/light/fluorescent/cool,
+/obj/disposalpipe/segment/morgue,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "bZx" = (
@@ -4275,9 +4253,8 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal)
 "bZV" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/ejection{
+	dir = 4
 	},
 /turf/simulated/wall,
 /area/station/chapel/sanctuary)
@@ -4299,13 +4276,11 @@
 	},
 /area/station/hallway/primary/southeast)
 "cbN" = (
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 4;
-	name = "chump pipe"
-	},
 /obj/machinery/door/airlock,
 /obj/firedoor_spawn,
+/obj/disposalpipe/segment/ejection{
+	dir = 4
+	},
 /turf/simulated/floor,
 /area/station/crew_quarters/quarters)
 "cbP" = (
@@ -4332,6 +4307,13 @@
 	dir = 8
 	},
 /area/station/security/main)
+"ccx" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/stepstool/folded,
+/turf/simulated/floor,
+/area/station/janitor/office)
 "ccy" = (
 /obj/table/glass,
 /obj/machinery/light/emergency,
@@ -4774,9 +4756,7 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "cnd" = (
@@ -4813,6 +4793,7 @@
 /area/station/crew_quarters/jazz)
 "cns" = (
 /obj/table/wood/round,
+/obj/item/reagent_containers/food/snacks/plant/coconut,
 /turf/simulated/floor/grass{
 	name = "astroturf"
 	},
@@ -4836,9 +4817,7 @@
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/surgery/storage)
 "coD" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/south)
 "coK" = (
@@ -4918,14 +4897,14 @@
 /turf/simulated/wall/r_wall,
 /area/station/science/server_room)
 "crq" = (
-/obj/disposalpipe/trunk/morgue{
-	dir = 4
-	},
 /obj/disposaloutlet{
 	density = 0;
 	dir = 4;
 	name = "chump outlet";
 	pixel_x = 11
+	},
+/obj/disposalpipe/trunk/ejection{
+	dir = 4
 	},
 /turf/simulated/wall,
 /area/station/medical/medbay/treatment)
@@ -5132,6 +5111,11 @@
 /obj/machinery/light/small/auto/warm,
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/north)
+"cxo" = (
+/obj/decal/cleanable/machine_debris,
+/obj/decal/cleanable/dirt,
+/turf/simulated/floor/airless/damaged5,
+/area/abandonedship)
 "cxp" = (
 /obj/disposalpipe/segment/morgue,
 /obj/cable/blue{
@@ -5214,11 +5198,9 @@
 /turf/simulated/floor/caution/west,
 /area/station/hangar/main)
 "cyO" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/wingrille_spawn/fakethindow/reinforced,
 /obj/window_blinds,
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/medical/medbay/treatment)
 "czd" = (
@@ -5779,6 +5761,7 @@
 /area/station/engine/substation/pylon)
 "cPe" = (
 /obj/disposalpipe/switch_junction/biofilter{
+	color = "#696969";
 	dir = 2;
 	icon_state = "pipe-sj2"
 	},
@@ -6278,9 +6261,7 @@
 	pixel_x = 6;
 	pixel_y = 1
 	},
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor,
 /area/station/crew_quarters/fitness)
 "dax" = (
@@ -6317,10 +6298,8 @@
 /turf/simulated/wall,
 /area/station/crew_quarters/kitchen/freezer)
 "dbP" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/genetics{
+	dir = 4
 	},
 /turf/simulated/wall,
 /area/station/medical/medbay/treatment2)
@@ -6386,12 +6365,10 @@
 /turf/space,
 /area/station/solar/north)
 "ddz" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/cable{
 	icon_state = "1-8"
 	},
+/obj/disposalpipe/segment/ejection,
 /turf/simulated/floor/wood,
 /area/station/chapel/sanctuary)
 "ddW" = (
@@ -6410,10 +6387,8 @@
 /area/space)
 "deU" = (
 /obj/stool/chair/wooden,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/machinery/light/fluorescent/auto/neutral,
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/carpet/purple/fancy{
 	icon_state = "fpurple1"
 	},
@@ -6476,9 +6451,7 @@
 "dhl" = (
 /obj/table/auto,
 /obj/item/plate/tray,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "dhu" = (
@@ -6571,15 +6544,14 @@
 /turf/simulated/floor/carpet/red/fancy/innercorner/nw,
 /area/station/chapel)
 "dju" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
-	},
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
 /obj/machinery/light/fluorescent/auto/neutral,
+/obj/disposalpipe/segment/crematorium{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/blue/side{
 	dir = 0
 	},
@@ -6817,11 +6789,9 @@
 /turf/simulated/floor/engine/caution/east,
 /area/station/engine/core)
 "doS" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
+/obj/disposalpipe/segment/genetics{
 	dir = 1;
-	icon_state = "pipe-c";
-	name = "genetics pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/blue/corner{
 	dir = 4
@@ -6907,6 +6877,10 @@
 	},
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
+"drj" = (
+/obj/item/stepstool/folded,
+/turf/simulated/floor,
+/area/station/janitor/supply)
 "drr" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4
@@ -6965,10 +6939,10 @@
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/barber_shop)
 "drP" = (
-/obj/disposalpipe/segment/morgue,
 /obj/surgery_tray/kitchen_island{
 	anchored = 1
 	},
+/obj/disposalpipe/segment/morgue,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "drS" = (
@@ -6997,10 +6971,10 @@
 	},
 /area/station/mining)
 "dsO" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/machinery/light/small/auto/neutral,
+/obj/disposalpipe/segment/crematorium{
+	dir = 1
+	},
 /turf/simulated/floor/bluewhite,
 /area/station/medical/medbay/treatment)
 "dsP" = (
@@ -7037,7 +7011,6 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/monkeyplant,
 /turf/simulated/floor/blue/checker,
 /area/station/medical/research)
 "duj" = (
@@ -7387,11 +7360,9 @@
 	},
 /area/station/crewquarters/fuq3)
 "dBB" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
+/obj/disposalpipe/segment/genetics{
 	dir = 2;
-	icon_state = "pipe-c";
-	name = "genetics pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/blue/side{
 	dir = 5
@@ -7890,16 +7861,14 @@
 /turf/simulated/floor/specialroom/freezer/blue,
 /area/station/crew_quarters/kitchen/freezer)
 "dKg" = (
-/obj/disposalpipe/trunk/morgue{
-	desc = "An underfloor corpse pipe.";
-	dir = 8;
-	name = "quarantine pipe"
-	},
 /obj/machinery/disposal/morgue{
 	desc = "A pneumatic delivery chute for sending things directly to quarantine.";
 	name = "quarantine chute"
 	},
 /obj/machinery/light/fluorescent/cool,
+/obj/disposalpipe/trunk/quarantine{
+	dir = 8
+	},
 /turf/simulated/floor/sanitary/blue,
 /area/station/medical/cdc)
 "dKL" = (
@@ -8261,9 +8230,7 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor,
 /area/station/hallway/secondary/northwest)
 "dVk" = (
@@ -8438,10 +8405,10 @@
 /obj/item/reagent_containers/glass/bottle/formaldehyde,
 /obj/item/reagent_containers/syringe,
 /obj/item_dispenser/latex_gloves,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/machinery/light/fluorescent/cool/very{
+	dir = 1
+	},
+/obj/disposalpipe/segment/crematorium{
 	dir = 1
 	},
 /turf/simulated/floor/sanitary/white,
@@ -8481,12 +8448,10 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/disposalpipe/segment{
 	dir = 4
 	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor,
 /area/station/hallway/primary/southeast)
 "dZC" = (
@@ -8663,9 +8628,7 @@
 /turf/simulated/floor/white,
 /area/station/medical/head)
 "eef" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/wall,
 /area/station/crew_quarters/courtroom)
 "eep" = (
@@ -9133,10 +9096,10 @@
 /turf/simulated/floor/wood/seven,
 /area/station/crew_quarters/jazz)
 "epG" = (
-/obj/disposalpipe/segment/morgue,
 /obj/landmark/start{
 	name = "Chef"
 	},
+/obj/disposalpipe/segment/morgue,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "epK" = (
@@ -9163,6 +9126,14 @@
 	},
 /turf/simulated/floor/wood,
 /area/station/bridge)
+"eql" = (
+/obj/lattice,
+/obj/decal/floatingtiles{
+	dir = 4;
+	icon_state = "floattiles3"
+	},
+/turf/space,
+/area/space)
 "eqm" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -9475,12 +9446,10 @@
 /area/station/hallway/primary/north)
 "euU" = (
 /obj/cabinet/medical,
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
-	},
 /obj/machinery/light/small/cool,
+/obj/disposalpipe/segment/quarantine{
+	dir = 4
+	},
 /turf/simulated/floor/bluewhite{
 	dir = 1
 	},
@@ -9571,20 +9540,15 @@
 	},
 /area/station/medical/medbay/treatment)
 "exc" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
 /obj/machinery/light/small/auto/neutral,
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/red/side{
 	dir = 4
 	},
 /area/station/hallway/primary/south)
 "exe" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/hallway/primary/central)
 "exq" = (
@@ -9765,10 +9729,8 @@
 /area/station/security/main)
 "eBx" = (
 /obj/machinery/light/small/auto/neutral,
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 4;
-	name = "chump pipe"
+/obj/disposalpipe/segment/ejection{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/quarters)
@@ -9832,11 +9794,8 @@
 /turf/simulated/floor/carpet/grime,
 /area/station/crew_quarters/catering)
 "eFn" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
 /obj/machinery/light/fluorescent/auto/neutral,
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/blue/side{
 	dir = 4
 	},
@@ -10645,15 +10604,13 @@
 /turf/simulated/floor,
 /area/station/hallway/secondary/south)
 "eWn" = (
-/obj/disposalpipe/trunk/morgue{
-	desc = "An underfloor corpse pipe.";
-	dir = 8;
-	name = "genetics pipe"
-	},
 /obj/machinery/disposal/morgue{
 	density = 0;
 	name = "genetics chute";
 	pixel_y = 16
+	},
+/obj/disposalpipe/trunk/genetics{
+	dir = 8
 	},
 /turf/simulated/floor/sanitary/white,
 /area/station/medical/morgue)
@@ -10709,10 +10666,9 @@
 /area/station/hallway/primary/southeast)
 "eXQ" = (
 /obj/cable/conduit/segment/horizontal,
-/obj/disposalpipe/segment/morgue{
+/obj/disposalpipe/segment/crematorium{
 	dir = 1;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/neutral/side{
 	dir = 1
@@ -10738,6 +10694,15 @@
 /obj/table/auto,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
+"eYF" = (
+/obj/decal/fakeobjects{
+	desc = "What was this thing even supposed to do?";
+	icon = 'icons/obj/machines/nuclear.dmi';
+	icon_state = "engineoff";
+	name = "broken machine"
+	},
+/turf/simulated/floor/airless/plating/damaged2,
+/area/abandonedship)
 "eYH" = (
 /turf/simulated/floor,
 /area/station/bridge/customs)
@@ -10751,11 +10716,7 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/info)
 "eYR" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 1;
-	name = "quarantine pipe"
-	},
+/obj/disposalpipe/segment/quarantine,
 /turf/simulated/floor/bluewhite/corner{
 	dir = 4
 	},
@@ -10851,6 +10812,9 @@
 /obj/access_spawn/research,
 /turf/simulated/floor/purple,
 /area/station/science/chemistry)
+"fbj" = (
+/turf/simulated/wall/asteroid,
+/area/space)
 "fbt" = (
 /turf/simulated/floor,
 /area/station/storage/secure)
@@ -10961,10 +10925,7 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor,
 /area/station/hallway/primary/south)
 "fcX" = (
@@ -11176,11 +11137,9 @@
 	},
 /area/station/medical/medbay/treatment)
 "fhq" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/machinery/light/small/auto/warm,
 /obj/machinery/teleport/portal_generator,
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/teleporter)
 "fhJ" = (
@@ -11256,11 +11215,10 @@
 	persistent_id = "bar";
 	pixel_x = 32
 	},
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
-	},
 /obj/disposalpipe/segment,
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
+	},
 /turf/simulated/floor/neutral/side{
 	dir = 1
 	},
@@ -11357,10 +11315,8 @@
 /area/station/engine/engineering/ce/private)
 "flg" = (
 /obj/cabinet/pathology,
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/quarantine{
+	dir = 4
 	},
 /turf/simulated/floor/bluewhite{
 	dir = 5
@@ -11481,12 +11437,11 @@
 /area/station/science/gen_storage)
 "fnY" = (
 /obj/decal/cleanable/dirt/dirt2,
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 1
 	},
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/ejection{
+	dir = 4
 	},
 /turf/simulated/floor/grey/blackgrime,
 /area/station/chapel/funeral_parlor)
@@ -11633,13 +11588,13 @@
 	},
 /area/listeningpost/power)
 "fqK" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/cable{
 	icon_state = "4-8"
 	},
 /obj/machinery/light/small/auto/neutral,
+/obj/disposalpipe/segment/crematorium{
+	dir = 1
+	},
 /turf/simulated/floor/bluewhite,
 /area/station/medical/medbay/treatment)
 "fqM" = (
@@ -11712,10 +11667,8 @@
 	name = "chump outlet";
 	pixel_x = 21
 	},
-/obj/disposalpipe/trunk/morgue{
-	desc = "An underfloor corpse pipe.";
-	dir = 4;
-	name = "quarantine pipe"
+/obj/disposalpipe/trunk/quarantine{
+	dir = 4
 	},
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/treatment2)
@@ -11794,6 +11747,10 @@
 	dir = 8
 	},
 /area/station/hallway/primary/south)
+"ftr" = (
+/obj/landmark/artifact,
+/turf/simulated/floor/plating/airless/asteroid,
+/area/space)
 "fty" = (
 /obj/disposalpipe/trunk{
 	dir = 4
@@ -11889,10 +11846,9 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
 "fvJ" = (
-/obj/disposalpipe/segment/morgue{
+/obj/disposalpipe/segment/crematorium{
 	dir = 2;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/white,
 /area/station/medical/breakroom)
@@ -11979,6 +11935,24 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/science/teleporter)
+"fyp" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Yikes.";
+	icon = 'icons/obj/machines/nuclear64x32.dmi';
+	icon_state = "broken";
+	name = "damaged reactor"
+	},
+/obj/decal/glow{
+	brightness = 2;
+	color_b = 0.1;
+	color_g = 0.3;
+	color_r = 0.5;
+	invisibility = 101;
+	name = "glow - REACTOR"
+	},
+/turf/simulated/floor/airless/plating/damaged1,
+/area/abandonedship)
 "fyG" = (
 /obj/warp_beacon/mainpod1,
 /obj/lattice{
@@ -12310,6 +12284,12 @@
 	dir = 8
 	},
 /area/station/hallway/primary/central)
+"fHo" = (
+/obj/disposalpipe/segment/crematorium{
+	dir = 1
+	},
+/turf/simulated/wall,
+/area/station/chapel)
 "fHs" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -12412,6 +12392,19 @@
 /obj/access_spawn/public,
 /turf/simulated/floor/black/grime,
 /area/station/crew_quarters/courtroom)
+"fJC" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/obj/decal/fakeobjects/pipe{
+	dir = 4
+	},
+/obj/decal/floatingtiles{
+	icon_state = "floattiles4"
+	},
+/turf/space,
+/area/space)
 "fJE" = (
 /obj/machinery/door/unpowered/wood,
 /obj/firedoor_spawn,
@@ -12580,6 +12573,15 @@
 	},
 /turf/simulated/wall,
 /area/station/medical/robotics)
+"fNH" = (
+/obj/lattice,
+/obj/decal/fakeobjects/shuttleengine{
+	dir = 8
+	},
+/turf/simulated/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/abandonedship)
 "fNK" = (
 /obj/machinery/deep_fryer{
 	dir = 4
@@ -13357,11 +13359,10 @@
 /area/station/security/secwing)
 "ghe" = (
 /obj/cable/conduit/segment/horizontal,
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
-	},
 /obj/machinery/light/fluorescent/auto/neutral,
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
+	},
 /turf/simulated/floor/neutral/side{
 	dir = 1
 	},
@@ -13574,10 +13575,7 @@
 /turf/simulated/wall/r_wall,
 /area/station/crew_quarters/arcade)
 "gkN" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/blue/corner,
 /area/station/hallway/primary/south)
 "gle" = (
@@ -13608,11 +13606,12 @@
 /turf/simulated/floor/specialroom/chapel,
 /area/station/chapel)
 "glM" = (
-/obj/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/firealarm{
 	pixel_y = 24
+	},
+/obj/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/red/side{
 	dir = 1
@@ -13758,9 +13757,6 @@
 /obj/machinery/disposal/mail/small{
 	dir = 1;
 	pixel_y = 32
-	},
-/obj/disposalpipe/segment{
-	dir = 4
 	},
 /turf/simulated/floor/red/side{
 	dir = 1
@@ -14128,12 +14124,10 @@
 	},
 /area/station/mining/staff_room)
 "gyH" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/neutral/side{
 	dir = 4
 	},
@@ -14294,9 +14288,6 @@
 	dir = 1;
 	pixel_y = 20
 	},
-/obj/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/recharger,
 /obj/item/sticker/googly_eye/angry,
 /turf/simulated/floor/red/side{
@@ -14427,14 +14418,12 @@
 /turf/simulated/floor/wood/seven,
 /area/station/crew_quarters/bar)
 "gFL" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/storage/secure/closet/personal/empty{
 	anchored = 1;
 	name = "juror locker"
 	},
 /obj/machinery/light/fluorescent/cool,
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/black/side,
 /area/station/crew_quarters/courtroom)
 "gGs" = (
@@ -14447,10 +14436,7 @@
 /area/station/maintenance/disposal)
 "gGF" = (
 /obj/cable/conduit/segment/horizontal,
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/red/corner{
 	dir = 4
 	},
@@ -14589,6 +14575,11 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/lobby)
+"gLe" = (
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/robot_debris,
+/turf/simulated/floor/airless/plating/damaged2,
+/area/abandonedship)
 "gLg" = (
 /obj/disposalpipe/segment/brig,
 /obj/stool/chair/red,
@@ -14598,11 +14589,10 @@
 /obj/cable/white{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
-	},
 /obj/machinery/light/small/auto/neutral,
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
+	},
 /turf/simulated/floor/neutral/side,
 /area/station/hallway/primary/central)
 "gLD" = (
@@ -14845,10 +14835,6 @@
 /area/station/crew_quarters/fitness)
 "gRE" = (
 /obj/machinery/computer/security/wooden_tv,
-/obj/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
 /turf/simulated/floor/red/side{
 	dir = 5
 	},
@@ -14861,9 +14847,8 @@
 /turf/simulated/floor,
 /area/station/quartermaster/cargobay)
 "gSc" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/neutral/side{
 	dir = 1
@@ -14887,8 +14872,8 @@
 /turf/simulated/grass,
 /area/station/garden/owlery)
 "gSm" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 1
 	},
 /turf/simulated/floor/sanitary/white,
 /area/station/medical/morgue)
@@ -15016,14 +15001,6 @@
 	dir = 5
 	},
 /area/station/security/main)
-"gVF" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "quarantine pipe"
-	},
-/turf/simulated/wall,
-/area/station/medical/medbay/surgery/storage)
 "gVG" = (
 /obj/machinery/door/airlock/medical,
 /obj/firedoor_spawn,
@@ -15099,10 +15076,8 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/south)
 "gWQ" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/cable/conduit/segment/horizontal,
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/nw)
 "gWR" = (
@@ -15116,10 +15091,8 @@
 /area/space)
 "gXd" = (
 /obj/item/storage/wall/medical,
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 4;
-	name = "chump pipe"
+/obj/disposalpipe/segment/ejection{
+	dir = 4
 	},
 /turf/simulated/wall,
 /area/station/crew_quarters/quarters)
@@ -15227,11 +15200,9 @@
 	},
 /area/station/storage/primary)
 "gYV" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/machinery/door/airlock/medical,
 /obj/firedoor_spawn,
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/white,
 /area/station/medical/breakroom)
 "gZe" = (
@@ -15268,6 +15239,12 @@
 	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
+"haj" = (
+/obj/decal/cleanable/oil,
+/turf/simulated/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/abandonedship)
 "har" = (
 /obj/item/storage/wall/clothingrack/clothes1,
 /obj/cable{
@@ -15852,6 +15829,11 @@
 	},
 /turf/simulated/floor,
 /area/station/hallway/primary/north)
+"hoE" = (
+/obj/decal/cleanable/machine_debris,
+/obj/item/motherboard,
+/turf/simulated/floor/airless/plating/scorched,
+/area/abandonedship)
 "hoO" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -16062,15 +16044,13 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/south)
 "huO" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "huP" = (
@@ -16090,10 +16070,8 @@
 	dir = 1
 	},
 /obj/access_spawn/robotics,
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/quarantine{
+	dir = 4
 	},
 /turf/simulated/floor/blue,
 /area/station/medical/robotics)
@@ -16205,6 +16183,13 @@
 	},
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/cloner)
+"hxp" = (
+/obj/item/raw_material/shard/glass{
+	icon_state = "small"
+	},
+/obj/decal/cleanable/dirt,
+/turf/simulated/floor/airless/plating/damaged3,
+/area/abandonedship)
 "hxx" = (
 /obj/machinery/light/fluorescent/auto/neutral,
 /obj/item/extinguisher{
@@ -16316,11 +16301,10 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
-	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
+	dir = 4
+	},
+/obj/disposalpipe/segment/crematorium{
 	dir = 4
 	},
 /turf/simulated/floor/white,
@@ -16359,10 +16343,9 @@
 /area/station/science/lobby)
 "hAA" = (
 /obj/machinery/vending/snack,
-/obj/disposalpipe/segment/morgue{
+/obj/disposalpipe/segment/crematorium{
 	dir = 2;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/neutral/side{
 	dir = 1
@@ -16403,9 +16386,7 @@
 /turf/simulated/floor,
 /area/station/mining)
 "hCB" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/wall,
 /area/station/hallway/primary/northwest)
 "hCK" = (
@@ -16467,9 +16448,8 @@
 /obj/cable/blue{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
@@ -16519,6 +16499,9 @@
 	},
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/treatment)
+"hEx" = (
+/turf/simulated/floor/airless/damaged2,
+/area/abandonedship)
 "hEF" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -16728,6 +16711,13 @@
 /obj/machinery/door/airlock/classic,
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/clown)
+"hNH" = (
+/obj/decal/floatingtiles{
+	dir = 8;
+	icon_state = "floattiles4"
+	},
+/turf/space,
+/area/space)
 "hNJ" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -16801,9 +16791,7 @@
 /area/station/bridge)
 "hQG" = (
 /obj/machinery/drainage,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/sanitary,
 /area/station/crew_quarters/showers)
 "hRa" = (
@@ -16968,9 +16956,8 @@
 /turf/simulated/floor/carpet/blue/fancy/narrow/se,
 /area/station/bridge)
 "hVM" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/wall,
 /area/station/medical/robotics)
@@ -17047,11 +17034,10 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "hXP" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
-	},
 /obj/machinery/light/fluorescent/auto/neutral,
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
+	},
 /turf/simulated/floor/neutral/side{
 	dir = 1
 	},
@@ -17069,10 +17055,9 @@
 /turf/space,
 /area/station/com_dish/comdish)
 "hYI" = (
-/obj/disposalpipe/segment/morgue{
+/obj/disposalpipe/segment/crematorium{
 	dir = 1;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/neutral/corner{
 	dir = 4
@@ -17421,9 +17406,9 @@
 /area/station/hydroponics/lobby)
 "igQ" = (
 /obj/disposalpipe/switch_junction/biofilter{
+	color = "#fbed92";
 	dir = 8;
-	icon_state = "pipe-sj2";
-	name = "chumpfilter pipe"
+	icon_state = "pipe-sj2"
 	},
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
@@ -17440,12 +17425,10 @@
 /obj/cable/white{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/neutral/side{
 	dir = 4
 	},
@@ -17486,9 +17469,7 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/ejection,
 /turf/simulated/floor/carpet/red/decal/outercross,
 /area/station/chapel)
 "iid" = (
@@ -17509,9 +17490,7 @@
 /turf/simulated/floor,
 /area/station/hydroponics/lobby)
 "iip" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/neutral/side{
 	dir = 4
 	},
@@ -17978,9 +17957,7 @@
 	},
 /area/station/medical/robotics)
 "itY" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/nw)
 "iuh" = (
@@ -18435,12 +18412,10 @@
 /obj/disposalpipe/segment/brig{
 	dir = 4
 	},
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
 	},
@@ -18703,6 +18678,9 @@
 	},
 /turf/simulated/floor/engine,
 /area/station/engine/hotloop)
+"iKw" = (
+/turf/simulated/floor/airless/plating/scorched,
+/area/abandonedship)
 "iKB" = (
 /obj/storage/secure/closet/barber,
 /turf/simulated/floor/wood,
@@ -19087,6 +19065,13 @@
 	dir = 1
 	},
 /area/station/hallway/primary/northwest)
+"iSJ" = (
+/obj/decal/floatingtiles{
+	dir = 4;
+	icon_state = "floattiles4"
+	},
+/turf/simulated/floor/airless/plating/scorched,
+/area/abandonedship)
 "iSX" = (
 /turf/simulated/floor/blue/side{
 	dir = 1
@@ -19110,6 +19095,12 @@
 	},
 /turf/simulated/wall,
 /area/station/hallway/primary/north)
+"iTm" = (
+/obj/decal/fakeobjects/shuttlethruster{
+	dir = 4
+	},
+/turf/space,
+/area/abandonedship)
 "iTr" = (
 /turf/simulated/wall/r_wall,
 /area/station/atmos/hookups/south)
@@ -19305,14 +19296,12 @@
 /turf/simulated/wall,
 /area/station/storage/tools)
 "iYK" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
-	},
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -24
+	},
+/obj/disposalpipe/segment/genetics{
+	dir = 4
 	},
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/treatment2)
@@ -19323,15 +19312,20 @@
 /obj/disposalpipe/segment,
 /turf/simulated/floor/caution/corner/nw,
 /area/station/quartermaster/cargobay)
+"iZo" = (
+/obj/disposalpipe/segment/genetics{
+	dir = 4
+	},
+/turf/simulated/wall,
+/area/station/medical/medbay/surgery/storage)
 "iZD" = (
 /obj/cable/conduit/segment/horizontal,
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
-	},
 /obj/machinery/light/small/auto/neutral,
 /obj/machinery/firealarm{
 	pixel_y = 24
+	},
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/neutral/side{
 	dir = 1
@@ -19427,6 +19421,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/east)
+"jbU" = (
+/obj/lattice,
+/obj/item/cable_coil/cut{
+	icon_state = "coil1"
+	},
+/turf/space,
+/area/space)
 "jcE" = (
 /obj/storage/crate,
 /turf/simulated/floor/green/side{
@@ -19440,13 +19441,11 @@
 	},
 /area/station/mining/refinery)
 "jcJ" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/railing/yellow{
 	dir = 4
 	},
 /obj/stool/bench/wooden,
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
 	},
@@ -19486,6 +19485,13 @@
 /obj/machinery/cashreg,
 /turf/simulated/floor,
 /area/station/hydroponics/lobby)
+"jdu" = (
+/obj/lattice,
+/obj/decal/fakeobjects/pipe{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "jdH" = (
 /obj/cable/blue{
 	icon_state = "1-4"
@@ -19529,13 +19535,11 @@
 /turf/simulated/wall/r_wall,
 /area/station/hydroponics/bay)
 "jeo" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/bluewhite{
 	dir = 1
 	},
@@ -19583,10 +19587,9 @@
 /turf/simulated/floor/carpet/red/fancy/edge/west,
 /area/station/chapel)
 "jfD" = (
-/obj/disposalpipe/segment/morgue{
+/obj/disposalpipe/segment/quarantine{
 	dir = 8;
-	icon_state = "pipe-c";
-	name = "quarantine pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/bluewhite{
 	dir = 10
@@ -19594,10 +19597,8 @@
 /area/station/medical/medbay/treatment)
 "jfI" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/quarantine{
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/station/medical/robotics)
@@ -19710,10 +19711,8 @@
 /turf/simulated/floor/engine,
 /area/station/engine/gas)
 "jij" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/quarantine{
+	dir = 4
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
@@ -19766,6 +19765,9 @@
 /obj/decal/boxingrope,
 /turf/simulated/floor/specialroom/gym,
 /area/station/crew_quarters/fitness)
+"jjx" = (
+/turf/simulated/wall/asteroid/ice,
+/area/space)
 "jjQ" = (
 /mob/living/critter/small_animal/mouse/remy,
 /obj/disposalpipe/segment/morgue,
@@ -19776,6 +19778,7 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/junction{
+	color = "#a51313";
 	dir = 1;
 	name = "crematorium pipe"
 	},
@@ -19903,18 +19906,16 @@
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/pharmacy)
 "jlK" = (
-/obj/disposalpipe/segment/morgue{
+/obj/disposalpipe/segment/crematorium{
 	dir = 4;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/neutral/corner,
 /area/station/hallway/primary/central)
 "jlL" = (
 /obj/machinery/light/small/auto/neutral,
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/neutral/side,
 /area/station/hallway/primary/central)
@@ -20102,6 +20103,13 @@
 	},
 /turf/simulated/wall,
 /area/station/hangar/science)
+"jqA" = (
+/obj/decal/cleanable/dirt,
+/obj/item/cable_coil/cut{
+	icon_state = "coil1"
+	},
+/turf/simulated/floor/airless/plating/damaged1,
+/area/abandonedship)
 "jqI" = (
 /obj/disposalpipe/segment/mail,
 /turf/simulated/wall,
@@ -20379,10 +20387,7 @@
 /area/station/atmos/hookups/south)
 "jxu" = (
 /obj/decal/poster/wallsign/medbay_right,
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/blue,
 /area/station/hallway/primary/south)
 "jxT" = (
@@ -20515,6 +20520,13 @@
 	},
 /turf/simulated/floor/sanitary/blue,
 /area/station/medical/cdc)
+"jAR" = (
+/obj/decal/floatingtiles{
+	dir = 1
+	},
+/obj/structure/girder,
+/turf/simulated/floor/airless/plating/scorched,
+/area/abandonedship)
 "jBj" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	can_rupture = 0;
@@ -20568,6 +20580,10 @@
 /obj/machinery/light/small/auto/warm,
 /turf/simulated/floor/caution/east,
 /area/station/engine/inner)
+"jBY" = (
+/obj/decal/cleanable/dirt,
+/turf/simulated/floor/airless/plating/scorched,
+/area/abandonedship)
 "jBZ" = (
 /obj/machinery/power/data_terminal,
 /obj/machinery/computer/announcement{
@@ -20647,15 +20663,16 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/disposalpipe/segment{
-	dir = 1
-	},
 /obj/machinery/power/apc/autoname_east,
 /obj/machinery/door_control{
 	id = "lockdown_sec";
 	name = "security lockdown control";
 	pixel_x = 22;
 	pixel_y = -11
+	},
+/obj/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/red/side{
 	dir = 4
@@ -20777,6 +20794,7 @@
 /area/station/science/lobby)
 "jGX" = (
 /obj/disposalpipe/junction{
+	color = "#f2a673";
 	name = "ejection pipe"
 	},
 /obj/machinery/door/airlock/glass,
@@ -20893,12 +20911,11 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/market)
 "jJf" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
-	},
 /obj/cable{
 	icon_state = "1-2"
+	},
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/neutral/side,
 /area/station/hallway/primary/central)
@@ -20931,12 +20948,11 @@
 	},
 /area/station/hallway/primary/southwest)
 "jJz" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
-	},
 /obj/machinery/atmospherics/pipe/manifold{
 	dir = 1
+	},
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
@@ -21165,11 +21181,10 @@
 /obj/cable/white{
 	icon_state = "1-4"
 	},
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
-	},
 /obj/machinery/light/small/auto/neutral,
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
+	},
 /turf/simulated/floor/neutral/side,
 /area/station/hallway/primary/central)
 "jOu" = (
@@ -21348,16 +21363,6 @@
 	dir = 4
 	},
 /area/station/medical/medbay/surgery)
-"jRD" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 1;
-	name = "genetics pipe"
-	},
-/turf/simulated/floor/blue/side{
-	dir = 4
-	},
-/area/station/hallway/secondary/south)
 "jRO" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -21438,10 +21443,8 @@
 /turf/simulated/floor/grime,
 /area/station/security/brig/genpop)
 "jVb" = (
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 4;
-	name = "chump pipe"
+/obj/disposalpipe/segment/ejection{
+	dir = 4
 	},
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
@@ -21455,6 +21458,12 @@
 	dir = 1
 	},
 /area/station/hallway/primary/northwest)
+"jVG" = (
+/obj/item/reagent_containers/food/snacks/plant/coconut,
+/turf/simulated/floor/grass{
+	name = "astroturf"
+	},
+/area/station/medical/dome)
 "jVI" = (
 /obj/disposalpipe/trunk{
 	dir = 1
@@ -21505,9 +21514,7 @@
 /turf/simulated/floor,
 /area/station/bridge)
 "jWy" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor,
 /area/station/hallway/primary/southeast)
 "jWE" = (
@@ -21558,10 +21565,9 @@
 /area/station/crewquarters/fuq3)
 "jXR" = (
 /obj/cable/conduit/segment/vertical,
-/obj/disposalpipe/segment/morgue{
+/obj/disposalpipe/segment/crematorium{
 	dir = 2;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
@@ -21589,17 +21595,16 @@
 "jYb" = (
 /obj/disposalpipe/segment/mail,
 /obj/cable/conduit/segment/horizontal,
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/neutral/side{
 	dir = 1
 	},
 /area/station/hallway/primary/southeast)
 "jYd" = (
-/obj/disposalpipe/segment/morgue,
 /obj/cable/conduit/segment/bent/north,
+/obj/disposalpipe/segment/morgue,
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/nw)
 "jYh" = (
@@ -21873,10 +21878,9 @@
 /obj/cable/white{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/segment/morgue{
+/obj/disposalpipe/segment/crematorium{
 	dir = 8;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/neutral/side{
 	dir = 6
@@ -22000,9 +22004,8 @@
 /area/station/engine/inner)
 "kgR" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/station/hallway/primary/central)
@@ -22010,9 +22013,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/vintage{
 	desc = "You knew it had to be around here somewhere!"
 	},
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/fitness)
 "khx" = (
@@ -22106,12 +22107,10 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor,
 /area/station/hallway/primary/southeast)
 "kja" = (
@@ -22355,12 +22354,10 @@
 /turf/simulated/floor/carpet/red/standard/edge/nw,
 /area/station/chapel/sanctuary)
 "knG" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "knK" = (
@@ -22418,14 +22415,12 @@
 	},
 /area/station/crew_quarters/fitness)
 "koV" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/machinery/computer/shuttle{
 	desc = "A computer that hails passing trader shuttles.";
 	dir = 8;
 	name = "randomtradershuttle"
 	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/neutral/side{
 	dir = 4
 	},
@@ -22598,9 +22593,7 @@
 /turf/simulated/bar,
 /area/station/mining/cargo_staff_room)
 "ksA" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/wall,
 /area/station/crew_quarters/fitness)
 "ktn" = (
@@ -22763,6 +22756,17 @@
 /obj/machinery/atmospherics/valve/horizontal,
 /turf/simulated/floor/white,
 /area/station/science/lab)
+"kxa" = (
+/obj/decal/glow{
+	brightness = 2;
+	color_b = 0.1;
+	color_g = 0.3;
+	color_r = 0.5;
+	invisibility = 101;
+	name = "glow - REACTOR"
+	},
+/turf/simulated/floor/airless/plating/damaged1,
+/area/abandonedship)
 "kxd" = (
 /obj/rack,
 /obj/item/storage/belt/medical,
@@ -23061,10 +23065,7 @@
 /area/station/crew_quarters/catering)
 "kDX" = (
 /obj/decal/poster/wallsign/medbay_right,
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/blue,
 /area/station/hallway/secondary/south)
 "kEd" = (
@@ -23078,10 +23079,9 @@
 	},
 /area/station/security/checkpoint/customs)
 "kEn" = (
-/obj/disposalpipe/segment/morgue{
+/obj/disposalpipe/segment/crematorium{
 	dir = 1;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
@@ -23168,9 +23168,7 @@
 /obj/cable/blue{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
 "kFU" = (
@@ -23205,14 +23203,11 @@
 /turf/simulated/floor/engine,
 /area/station/engine/ptl)
 "kGs" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
 /obj/decal/poster/wallsign/medbay{
 	pixel_x = 26;
 	pixel_y = 3
 	},
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/blue/side{
 	dir = 4
 	},
@@ -23371,10 +23366,8 @@
 /obj/cable/blue{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/quarantine{
+	dir = 4
 	},
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/surgery/storage)
@@ -23383,14 +23376,13 @@
 	desc = "A pneumatic delivery chute for sending things directly to the chapel crematorium.";
 	name = "crematorium chute"
 	},
-/obj/disposalpipe/trunk/morgue{
-	dir = 1;
-	name = "crematorium pipe"
-	},
 /obj/cable{
 	icon_state = "4-8"
 	},
 /obj/machinery/light/fluorescent/cool,
+/obj/disposalpipe/trunk/crematorium{
+	dir = 1
+	},
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/cloner)
 "kJB" = (
@@ -23663,6 +23655,12 @@
 /obj/storage/secure/closet/research,
 /turf/simulated/floor/purplewhite,
 /area/station/science/gen_storage)
+"kPH" = (
+/obj/decal/floatingtiles{
+	icon_state = "floattiles5"
+	},
+/turf/simulated/floor/airless/plating/scorched,
+/area/abandonedship)
 "kPK" = (
 /obj/lattice{
 	dir = 4;
@@ -23766,10 +23764,9 @@
 /turf/simulated/floor/purple,
 /area/station/hallway/primary/southeast)
 "kSx" = (
-/obj/disposalpipe/segment/morgue{
+/obj/disposalpipe/segment/crematorium{
 	dir = 2;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
@@ -23820,8 +23817,8 @@
 /turf/simulated/floor/wood,
 /area/station/bridge)
 "kTu" = (
-/obj/disposalpipe/segment/morgue,
 /obj/cable/conduit/segment/bent/south,
+/obj/disposalpipe/segment/morgue,
 /turf/simulated/wall,
 /area/station/hallway/primary/northwest)
 "kTE" = (
@@ -24024,19 +24021,17 @@
 /turf/simulated/floor/engine/caution/west,
 /area/station/engine/gas)
 "kZW" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/cable/blue{
 	icon_state = "1-4"
+	},
+/obj/disposalpipe/segment/crematorium{
+	dir = 1
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
 "lad" = (
 /obj/cable/conduit/segment/vertical,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "lae" = (
@@ -24899,10 +24894,8 @@
 /turf/simulated/floor,
 /area/station/mining/staff_room)
 "lwn" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/quarantine{
+	dir = 4
 	},
 /turf/simulated/wall,
 /area/station/medical/robotics)
@@ -24970,10 +24963,8 @@
 /turf/simulated/floor/white,
 /area/station/science/lobby)
 "lxP" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/genetics{
+	dir = 4
 	},
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/cloner)
@@ -25100,8 +25091,8 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 1
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
@@ -25294,14 +25285,12 @@
 /turf/simulated/floor,
 /area/station/maintenance/central)
 "lGG" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/wingrille_spawn/fakethindow/reinforced,
 /obj/window_blinds/cog2/right{
 	layer = 2.9;
 	pixel_y = 13
 	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/courtroom)
 "lGL" = (
@@ -25361,13 +25350,11 @@
 /turf/simulated/floor,
 /area/station/hallway/secondary/northwest)
 "lHw" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/machinery/light/emergency{
 	dir = 4
 	},
 /obj/machinery/light/fluorescent/auto/neutral,
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/neutral/side{
 	dir = 4
 	},
@@ -25379,13 +25366,11 @@
 /turf/simulated/floor/caution/west,
 /area/station/hangar/main)
 "lID" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
-	},
 /obj/cable/blue{
 	icon_state = "1-2"
+	},
+/obj/disposalpipe/segment/genetics{
+	dir = 4
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/surgery/storage)
@@ -25499,6 +25484,12 @@
 /obj/disposalpipe/segment/mail,
 /turf/simulated/floor/neutral/side,
 /area/station/hallway/primary/northeast)
+"lKr" = (
+/obj/decal/cleanable/machine_debris,
+/obj/item/device/guardbot_tool/tesla,
+/obj/item/device/guardbot_tool/tesla,
+/turf/simulated/floor/airless/damaged5,
+/area/abandonedship)
 "lKx" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/disposalpipe/segment/morgue,
@@ -25618,10 +25609,8 @@
 /turf/simulated/floor/purple/side,
 /area/station/hallway/primary/southeast)
 "lNB" = (
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 4;
-	name = "chump pipe"
+/obj/disposalpipe/segment/ejection{
+	dir = 4
 	},
 /turf/simulated/wall,
 /area/station/crew_quarters/quarters)
@@ -25829,6 +25818,12 @@
 	},
 /turf/simulated/floor/techfloor,
 /area/station/turret_protected/ai)
+"lRZ" = (
+/turf/simulated/shuttle/wall{
+	dir = 4;
+	icon_state = "wall3_space"
+	},
+/area/abandonedship)
 "lSe" = (
 /obj/machinery/light/emergency,
 /obj/machinery/light/small/auto/warm,
@@ -25945,10 +25940,7 @@
 /turf/simulated/wall,
 /area/station/science/teleporter)
 "lTQ" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/blue/side{
 	dir = 4
 	},
@@ -26162,9 +26154,7 @@
 /turf/simulated/floor/wood,
 /area/station/bridge)
 "lZa" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/wood/seven,
 /area/station/crew_quarters/bar)
 "lZn" = (
@@ -26272,6 +26262,13 @@
 	dir = 8
 	},
 /area/station/science/testchamber)
+"mbM" = (
+/obj/decal/floatingtiles{
+	dir = 4
+	},
+/obj/structure/girder,
+/turf/simulated/floor/airless/plating/scorched,
+/area/abandonedship)
 "mbO" = (
 /obj/machinery/light/fluorescent/auto/neutral,
 /turf/simulated/floor/yellow/side{
@@ -26545,11 +26542,9 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/north)
 "mhR" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
+/obj/disposalpipe/segment/genetics{
 	dir = 1;
-	icon_state = "pipe-c";
-	name = "genetics pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/blue/side{
 	dir = 4
@@ -26608,6 +26603,15 @@
 /obj/decal/cleanable/dirt/dirt5,
 /turf/simulated/floor/caution/west,
 /area/station/mining/refinery)
+"mkd" = (
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-dir"
+	},
+/turf/simulated/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/abandonedship)
 "mke" = (
 /obj/lattice{
 	dir = 4;
@@ -26929,9 +26933,7 @@
 /turf/space,
 /area/station/com_dish/auxdish)
 "mqG" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/neutral/side{
 	dir = 4
 	},
@@ -26962,9 +26964,7 @@
 /area/station/atmos/hookups/southwest)
 "mrt" = (
 /obj/decoration/decorativeplant/plant2,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/wood/seven,
 /area/station/crew_quarters/bar)
 "mrx" = (
@@ -27030,10 +27030,7 @@
 	},
 /area/station/bridge)
 "mtx" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/red/side{
 	dir = 4
 	},
@@ -27162,6 +27159,18 @@
 	dir = 4
 	},
 /area/station/chapel)
+"mwG" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir"
+	},
+/obj/decal/fakeobjects/shuttleengine{
+	dir = 8
+	},
+/turf/simulated/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/abandonedship)
 "mwH" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 8
@@ -27412,11 +27421,8 @@
 	},
 /area/station/security/main)
 "mAN" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
 /obj/wingrille_spawn/fakethindow/reinforced,
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/plating,
 /area/station/hallway/primary/south)
 "mAU" = (
@@ -27663,10 +27669,8 @@
 	},
 /area/station/mining)
 "mGx" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/genetics{
+	dir = 4
 	},
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/treatment2)
@@ -28078,9 +28082,8 @@
 	density = 0;
 	pixel_x = 13
 	},
-/obj/disposalpipe/trunk/morgue{
-	dir = 4;
-	name = "crematorium pipe"
+/obj/disposalpipe/trunk/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/grey/blackgrime,
 /area/station/chapel/funeral_parlor)
@@ -28358,12 +28361,9 @@
 /turf/simulated/floor/carpet/red/fancy/edge/south,
 /area/station/chapel)
 "mYs" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
 /obj/machinery/door/airlock/glass,
 /obj/firedoor_spawn,
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/blue/side{
 	dir = 4
 	},
@@ -28425,12 +28425,10 @@
 /turf/simulated/floor,
 /area/station/maintenance/solar/west)
 "mZw" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/south)
 "mZx" = (
@@ -28510,14 +28508,11 @@
 /turf/simulated/floor/yellow/side,
 /area/station/mining)
 "nbc" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
 /obj/decal/poster/wallsign/medbay{
 	pixel_x = 26;
 	pixel_y = 3
 	},
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/blue/side{
 	dir = 4
 	},
@@ -28605,12 +28600,21 @@
 /area/station/security/checkpoint/arrivals)
 "ndW" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/window_blinds,
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/medical/breakroom)
+"nee" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "It is still kinda warm.";
+	icon = 'icons/obj/machines/nuclear.dmi';
+	icon_state = "neutinj";
+	name = "busted machine"
+	},
+/turf/simulated/floor/airless/plating/damaged3,
+/area/abandonedship)
 "nep" = (
 /obj/decal/mule/beacon/no_auto_dropoff_spawn,
 /turf/simulated/floor/shuttlebay,
@@ -28716,11 +28720,10 @@
 /turf/simulated/floor/carpet/blue/fancy/edge,
 /area/station/bridge)
 "nhv" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
-	},
 /obj/machinery/light/fluorescent/auto/neutral,
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
+	},
 /turf/simulated/floor/neutral/side{
 	dir = 1
 	},
@@ -28769,6 +28772,7 @@
 "niC" = (
 /mob/living/carbon/human/npc/monkey,
 /obj/machinery/light/small/auto/neutral,
+/obj/item/reagent_containers/food/snacks/plant/banana,
 /turf/simulated/floor/grass{
 	name = "astroturf"
 	},
@@ -29031,13 +29035,11 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
-	},
 /obj/disposalpipe/segment{
 	dir = 1
+	},
+/obj/disposalpipe/segment/genetics{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/station/hallway/primary/south)
@@ -29251,13 +29253,10 @@
 /turf/simulated/floor/white,
 /area/station/medical/medbay/surgery/storage)
 "nqw" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/neutral/side{
 	dir = 4
 	},
@@ -29582,6 +29581,12 @@
 	dir = 6
 	},
 /area/station/engine/inner)
+"nwU" = (
+/obj/decal/fakeobjects/airmonitor_broken,
+/turf/simulated/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/abandonedship)
 "nxa" = (
 /obj/decal/cleanable/dirt,
 /turf/simulated/floor,
@@ -29690,6 +29695,9 @@
 /obj/firedoor_spawn,
 /turf/simulated/floor,
 /area/station/hallway/primary/southwest)
+"nzK" = (
+/turf/simulated/floor/airless/plating/damaged1,
+/area/abandonedship)
 "nAm" = (
 /obj/storage/secure/closet/research/chemical,
 /obj/cable/blue{
@@ -30080,10 +30088,8 @@
 /area/station/security/brig/genpop)
 "nJD" = (
 /obj/cabinet/medicalmenders,
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/quarantine{
+	dir = 4
 	},
 /turf/simulated/floor/bluewhite{
 	dir = 9
@@ -30418,9 +30424,7 @@
 /area/station/maintenance/disposal)
 "nPT" = (
 /obj/storage/secure/closet/personal/empty,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/black/side{
 	dir = 1
 	},
@@ -30467,13 +30471,11 @@
 	},
 /area/station/hallway/primary/central)
 "nRj" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/machinery/disposal/small,
+/obj/disposalpipe/segment/genetics{
+	dir = 4
 	},
 /obj/disposalpipe/trunk,
-/obj/machinery/disposal/small,
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/treatment2)
 "nRI" = (
@@ -30534,9 +30536,8 @@
 /turf/simulated/floor/white,
 /area/station/medical/medbay/surgery)
 "nSu" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/neutral/corner{
 	dir = 1
@@ -30883,10 +30884,8 @@
 /area/station/science/testchamber)
 "oae" = (
 /obj/disposalpipe/segment/mail,
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 4;
-	name = "chump pipe"
+/obj/disposalpipe/segment/ejection{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/quarters)
@@ -31247,10 +31246,8 @@
 /turf/simulated/floor/purple/side,
 /area/station/hallway/primary/southeast)
 "oln" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/genetics{
+	dir = 4
 	},
 /turf/simulated/wall,
 /area/station/medical/medbay/cloner)
@@ -31294,9 +31291,7 @@
 /turf/simulated/wall/r_wall,
 /area/station/security/brig/north_side)
 "omr" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/wall,
 /area/station/chapel/funeral_parlor)
 "omv" = (
@@ -31435,12 +31430,11 @@
 /area/station/medical/research)
 "opP" = (
 /obj/cable/conduit/segment/horizontal,
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
-	},
 /obj/machinery/door/airlock/glass,
 /obj/firedoor_spawn,
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
+	},
 /turf/simulated/floor/neutral/side{
 	dir = 1
 	},
@@ -31656,12 +31650,11 @@
 /turf/simulated/floor/plating,
 /area/station/engine/substation/west)
 "ovy" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
-	},
 /obj/cable/blue{
 	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/blue/side{
 	dir = 0
@@ -31727,10 +31720,8 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/quarantine{
+	dir = 4
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
@@ -31855,10 +31846,9 @@
 	},
 /area/station/engine/substation/west)
 "oyg" = (
-/obj/disposalpipe/segment/morgue{
+/obj/disposalpipe/segment/crematorium{
 	dir = 2;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/wall,
 /area/station/chapel)
@@ -32177,10 +32167,8 @@
 /area/station/maintenance/solar/west)
 "oGL" = (
 /obj/disposalpipe/segment/morgue,
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 4;
-	name = "chump pipe"
+/obj/disposalpipe/segment/ejection{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/station/maintenance/central)
@@ -32210,14 +32198,10 @@
 	},
 /area/station/crew_quarters/jazz)
 "oHc" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/ejection{
+	dir = 4
 	},
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 4;
-	name = "chump pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor,
 /area/station/maintenance/central)
 "oHd" = (
@@ -32225,10 +32209,9 @@
 	pixel_x = 10;
 	pixel_y = 10
 	},
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	icon_state = "pipe-c";
-	name = "chump pipe"
+/obj/disposalpipe/segment/ejection{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
@@ -32278,9 +32261,7 @@
 "oIo" = (
 /obj/towelbin,
 /obj/table/auto,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor,
 /area/station/crew_quarters/fitness)
 "oIq" = (
@@ -32354,9 +32335,8 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
@@ -32490,15 +32470,26 @@
 	dir = 1
 	},
 /area/station/security/main)
+"oNA" = (
+/obj/decal/cleanable/dirt,
+/obj/storage/crate{
+	name = "Dented Crate"
+	},
+/obj/item/raw_material/cerenkite,
+/obj/item/raw_material/cerenkite,
+/obj/item/raw_material/cerenkite,
+/obj/item/raw_material/cerenkite,
+/obj/item/raw_material/cerenkite,
+/turf/simulated/floor/airless/plating/damaged2,
+/area/abandonedship)
 "oNI" = (
 /obj/machinery/disposal/morgue{
 	name = "crematorium chute";
 	pixel_x = -6;
 	pixel_y = -2
 	},
-/obj/disposalpipe/trunk/morgue{
-	dir = 8;
-	name = "crematorium pipe"
+/obj/disposalpipe/trunk/crematorium{
+	dir = 8
 	},
 /turf/simulated/floor/white/corner{
 	dir = 4
@@ -32607,14 +32598,12 @@
 	},
 /area/station/hallway/primary/southeast)
 "oQM" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/machinery/light/fluorescent/auto/neutral,
 /obj/railing/yellow{
 	dir = 4
 	},
 /obj/stool/bench/wooden,
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
 	},
@@ -32637,6 +32626,18 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
+"oRf" = (
+/obj/decal/fakeobjects/shuttleengine{
+	dir = 8
+	},
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir"
+	},
+/turf/simulated/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/abandonedship)
 "oRz" = (
 /obj/stool/chair/yellow{
 	dir = 8
@@ -32956,9 +32957,7 @@
 	pixel_y = -9
 	},
 /obj/item/bballbasket,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/fitness)
 "oZE" = (
@@ -33082,10 +33081,9 @@
 /turf/simulated/floor/caution,
 /area/station/engine/inner)
 "pct" = (
-/obj/disposalpipe/segment/morgue{
+/obj/disposalpipe/segment/crematorium{
 	dir = 1;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/white,
 /area/station/medical/breakroom)
@@ -33237,11 +33235,11 @@
 /turf/simulated/floor/techfloor,
 /area/station/turret_protected/ai)
 "pgq" = (
-/obj/disposalpipe/segment/morgue,
 /obj/surgery_tray/kitchen_island{
 	anchored = 1
 	},
 /obj/item/kitchen/rollingpin,
+/obj/disposalpipe/segment/morgue,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "pgx" = (
@@ -33278,9 +33276,7 @@
 /area/station/quartermaster/cargobay)
 "phb" = (
 /obj/cable/conduit/segment/vertical,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/neutral/corner,
 /area/station/hallway/primary/central)
 "phh" = (
@@ -33325,10 +33321,8 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/cable/conduit/segment/bent/north,
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/neutral/side{
 	dir = 4
 	},
@@ -33343,9 +33337,7 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/southeast)
 "pis" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor,
 /area/station/crew_quarters/fitness)
 "piy" = (
@@ -33356,9 +33348,7 @@
 /turf/simulated/floor/plating,
 /area/station/science/research_director)
 "piz" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/morgue,
 /turf/simulated/floor,
 /area/station/hallway/primary/northwest)
 "piD" = (
@@ -33465,10 +33455,8 @@
 /area/station/engine/ptl)
 "pjU" = (
 /obj/disposalpipe/segment/mail,
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 4;
-	name = "chump pipe"
+/obj/disposalpipe/segment/ejection{
+	dir = 4
 	},
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
@@ -33547,11 +33535,10 @@
 /turf/simulated/wall/r_wall,
 /area/station/security/brig/cell_block)
 "pkG" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
-	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
+	dir = 4
+	},
+/obj/disposalpipe/segment/crematorium{
 	dir = 4
 	},
 /turf/simulated/floor/white,
@@ -33595,12 +33582,8 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
 "plx" = (
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 2;
-	name = "chump pipe"
-	},
 /obj/wingrille_spawn/fakethindow/reinforced,
+/obj/disposalpipe/segment/ejection,
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/quarters)
 "plz" = (
@@ -33793,11 +33776,10 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
-	},
 /obj/disposalpipe/segment,
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "pqC" = (
@@ -33899,6 +33881,7 @@
 /area/station/hallway/secondary/south)
 "prO" = (
 /obj/disposalpipe/junction{
+	color = "#696969";
 	icon_state = "pipe-j2";
 	name = "morgue pipe"
 	},
@@ -33912,14 +33895,10 @@
 /turf/space,
 /area/station/hangar/sec)
 "psh" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/ejection{
+	dir = 4
 	},
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 4;
-	name = "chump pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor,
 /area/station/crew_quarters/fitness)
 "psx" = (
@@ -34142,16 +34121,15 @@
 	},
 /area/station/storage/tech)
 "pzY" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 2;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
-	},
 /obj/cable{
 	icon_state = "1-2"
 	},
 /obj/stool/chair/wooden{
 	dir = 4
+	},
+/obj/disposalpipe/segment/ejection{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/carpet/red/standard/edge/sw,
 /area/station/chapel/sanctuary)
@@ -34200,10 +34178,8 @@
 	},
 /area/station/hydroponics/bay)
 "pBN" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/genetics{
+	dir = 4
 	},
 /turf/simulated/floor/blue/side{
 	dir = 8
@@ -34264,11 +34240,6 @@
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/courtroom)
 "pCH" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
-	},
 /obj/cable/blue{
 	icon_state = "2-4"
 	},
@@ -34280,6 +34251,9 @@
 	},
 /obj/landmark/start{
 	name = "Geneticist"
+	},
+/obj/disposalpipe/segment/genetics{
+	dir = 4
 	},
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/cloner)
@@ -34388,9 +34362,6 @@
 /turf/simulated/floor/orangeblack,
 /area/station/quartermaster/cargooffice)
 "pGR" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/railing/yellow{
 	dir = 1
 	},
@@ -34398,6 +34369,7 @@
 	dir = 4
 	},
 /obj/stool/bench/wooden,
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
 	},
@@ -34536,11 +34508,9 @@
 /turf/simulated/floor/carpet/red/fancy/narrow/west,
 /area/station/chapel)
 "pKc" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
+/obj/disposalpipe/segment/genetics{
 	dir = 2;
-	icon_state = "pipe-c";
-	name = "genetics pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/neutral/side{
 	dir = 4
@@ -34588,6 +34558,14 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
+"pKZ" = (
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-dir"
+	},
+/obj/structure/girder/displaced,
+/turf/space,
+/area/space)
 "pLe" = (
 /obj/cable/blue{
 	icon_state = "1-2"
@@ -34832,6 +34810,7 @@
 /area/station/hallway/primary/northeast)
 "pRb" = (
 /obj/disposalpipe/switch_junction/biofilter{
+	color = "#a51313";
 	dir = 1
 	},
 /obj/decal/cleanable/dirt/dirt5,
@@ -35407,11 +35386,10 @@
 	name = "crematorium chute";
 	pixel_y = 16
 	},
-/obj/disposalpipe/trunk/morgue{
-	dir = 1;
-	name = "crematorium pipe"
-	},
 /obj/machinery/light/small/cool/very{
+	dir = 1
+	},
+/obj/disposalpipe/trunk/crematorium{
 	dir = 1
 	},
 /turf/simulated/floor/sanitary/white,
@@ -35546,10 +35524,8 @@
 /area/station/medical/cdc)
 "qfw" = (
 /obj/disposalpipe/segment/morgue,
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 4;
-	name = "chump pipe"
+/obj/disposalpipe/segment/ejection{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/fitness)
@@ -35595,6 +35571,14 @@
 	},
 /turf/simulated/wall,
 /area/station/maintenance/central)
+"qjh" = (
+/obj/lattice,
+/obj/decal/floatingtiles{
+	dir = 8;
+	icon_state = "floattiles3"
+	},
+/turf/space,
+/area/space)
 "qjA" = (
 /obj/machinery/door/airlock/medical,
 /obj/cable{
@@ -35626,11 +35610,7 @@
 	},
 /area/station/medical/medbay/surgery)
 "qjX" = (
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 2;
-	name = "chump pipe"
-	},
+/obj/disposalpipe/segment/ejection,
 /turf/simulated/wall,
 /area/station/crew_quarters/quarters)
 "qjY" = (
@@ -36247,19 +36227,15 @@
 /turf/simulated/floor/white,
 /area/station/science/chemistry)
 "qxo" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/cable/blue{
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 10
 	},
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/crematorium,
+/obj/disposalpipe/segment/quarantine{
+	dir = 4
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
@@ -36328,6 +36304,7 @@
 /area/station/maintenance/inner/south)
 "qzb" = (
 /obj/disposalpipe/junction{
+	color = "#a51313";
 	dir = 1;
 	name = "crematorium pipe"
 	},
@@ -36513,10 +36490,8 @@
 /turf/space,
 /area/space)
 "qGi" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/genetics{
+	dir = 4
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/surgery/storage)
@@ -36919,13 +36894,11 @@
 /turf/simulated/wall,
 /area/station/crewquarters/fuq3)
 "qOZ" = (
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 4;
-	name = "chump pipe"
-	},
 /obj/machinery/door/airlock/glass,
 /obj/firedoor_spawn,
+/obj/disposalpipe/segment/ejection{
+	dir = 4
+	},
 /turf/simulated/floor,
 /area/station/crew_quarters/fitness)
 "qPe" = (
@@ -37143,12 +37116,10 @@
 	},
 /area/station/engine/engineering)
 "qTy" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
 "qTz" = (
@@ -37222,9 +37193,7 @@
 /area/station/medical/medbay/cloner)
 "qVb" = (
 /obj/cable/conduit/segment/vertical,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/neutral/side{
 	dir = 4
 	},
@@ -37422,7 +37391,9 @@
 /obj/disposaloutlet/north{
 	pixel_y = -4
 	},
-/obj/disposalpipe/trunk/ejection,
+/obj/disposalpipe/trunk/ejection{
+	dir = 2
+	},
 /turf/space,
 /area/space)
 "raC" = (
@@ -37499,10 +37470,8 @@
 	name = "East Hallway West Restroom"
 	})
 "rbU" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/firedoor_spawn,
+/obj/disposalpipe/segment/ejection,
 /turf/simulated/floor/stairs/wood{
 	dir = 1
 	},
@@ -37579,9 +37548,7 @@
 	},
 /area/station/engine/monitoring)
 "reB" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/wall,
 /area/station/hallway/primary/central)
 "reJ" = (
@@ -37699,12 +37666,10 @@
 /turf/simulated/floor/purplewhite,
 /area/station/science/lab)
 "rhd" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
-	},
 /obj/storage/secure/closet/medical/uniforms,
+/obj/disposalpipe/segment/genetics{
+	dir = 4
+	},
 /turf/simulated/floor/bluewhite{
 	dir = 8
 	},
@@ -37725,10 +37690,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/segment/morgue{
+/obj/disposalpipe/segment/crematorium{
 	dir = 8;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
@@ -37787,10 +37751,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor,
 /area/station/hallway/primary/south)
 "riX" = (
@@ -37839,7 +37800,7 @@
 	},
 /area/station/hallway/primary/south)
 "rjN" = (
-/obj/disposalpipe/segment/food{
+/obj/disposalpipe/segment/ejection{
 	dir = 1;
 	icon_state = "pipe-c"
 	},
@@ -38002,6 +37963,13 @@
 	},
 /turf/simulated/wall,
 /area/station/medical/morgue)
+"roo" = (
+/obj/lattice,
+/obj/decal/floatingtiles{
+	icon_state = "floattiles6"
+	},
+/turf/space,
+/area/space)
 "roz" = (
 /obj/machinery/door/airlock/command,
 /obj/access_spawn/captain,
@@ -38034,6 +38002,10 @@
 "rpS" = (
 /turf/simulated/wall/r_wall,
 /area/station/engine/coldloop)
+"rpV" = (
+/obj/decal/cleanable/machine_debris,
+/turf/space,
+/area/space)
 "rqz" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
 /obj/window_blinds/cog2{
@@ -38345,9 +38317,8 @@
 	},
 /area/station/hallway/primary/north)
 "rwj" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/sanitary/white,
 /area/station/medical/morgue)
@@ -38387,6 +38358,18 @@
 	dir = 10
 	},
 /area/station/bridge)
+"ryo" = (
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-dir"
+	},
+/obj/decal/fakeobjects/shuttleengine{
+	dir = 8
+	},
+/turf/simulated/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/abandonedship)
 "ryx" = (
 /obj/access_spawn/chapel_office,
 /obj/machinery/door/airlock/glass,
@@ -38711,9 +38694,7 @@
 /area/station/security/brig/genpop)
 "rDI" = (
 /obj/machinery/door/airlock/maintenance,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/sanitary,
 /area/station/crew_quarters/showers)
 "rEd" = (
@@ -38921,9 +38902,7 @@
 	dir = 4
 	},
 /obj/machinery/drainage,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/sanitary,
 /area/station/crew_quarters/showers)
 "rJo" = (
@@ -39330,9 +39309,8 @@
 /obj/cable/white{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/neutral/side,
 /area/station/hallway/primary/central)
@@ -39388,13 +39366,9 @@
 /turf/simulated/floor/caution/west,
 /area/station/hangar/main)
 "rRp" = (
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 2;
-	name = "chump pipe"
-	},
 /obj/machinery/door/airlock/glass,
 /obj/firedoor_spawn,
+/obj/disposalpipe/segment/ejection,
 /turf/simulated/floor,
 /area/station/crew_quarters/quarters)
 "rRv" = (
@@ -39859,9 +39833,7 @@
 /turf/simulated/floor/plating,
 /area/station/bridge/customs)
 "sce" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/wall,
 /area/station/crew_quarters/kitchen)
 "scf" = (
@@ -39933,13 +39905,13 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/market)
 "sda" = (
-/obj/disposalpipe/segment/morgue,
 /obj/disposalpipe/segment{
 	dir = 4
 	},
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/disposalpipe/segment/morgue,
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/nw)
 "sdf" = (
@@ -40094,12 +40066,10 @@
 /turf/simulated/floor/grime,
 /area/station/security/brig/genpop)
 "sgv" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
-	},
 /obj/storage/secure/closet/medical/medkit,
+/obj/disposalpipe/segment/genetics{
+	dir = 4
+	},
 /turf/simulated/floor/bluewhite{
 	dir = 4
 	},
@@ -40366,6 +40336,13 @@
 /obj/item/wrench,
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
+"slS" = (
+/obj/decal/floatingtiles{
+	dir = 8;
+	icon_state = "floattiles6"
+	},
+/turf/simulated/floor/airless/plating/scorched,
+/area/abandonedship)
 "smv" = (
 /obj/storage/secure/closet/personal/empty{
 	anchored = 1;
@@ -40543,6 +40520,9 @@
 "sqb" = (
 /obj/cable{
 	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/station/security/hos)
@@ -40749,9 +40729,7 @@
 /obj/item/reagent_containers/glass/bottle/bubblebath,
 /obj/item/reagent_containers/food/snacks/ingredient/pepperoni_log,
 /obj/table/wood/round,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/sanitary,
 /area/station/crew_quarters/showers)
 "sue" = (
@@ -40916,6 +40894,10 @@
 	},
 /turf/simulated/floor/red/redblackchecker,
 /area/station/science/server_room/warm)
+"szt" = (
+/obj/decal/cleanable/dirt,
+/turf/simulated/floor/airless/plating/damaged1,
+/area/abandonedship)
 "szC" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -41003,9 +40985,9 @@
 /area/station/hallway/primary/south)
 "sCs" = (
 /obj/disposalpipe/switch_junction/biofilter{
+	color = "#a51313";
 	dir = 1;
-	icon_state = "pipe-sj2";
-	name = "crematorium chump filter"
+	icon_state = "pipe-sj2"
 	},
 /turf/simulated/floor/blue/side{
 	dir = 0
@@ -41097,6 +41079,7 @@
 /area/station/crew_quarters/fitness)
 "sFm" = (
 /obj/disposalpipe/junction/right{
+	color = "#696969";
 	dir = 8
 	},
 /obj/machinery/firealarm{
@@ -41436,11 +41419,6 @@
 /turf/simulated/floor/delivery,
 /area/station/storage/secure)
 "sNp" = (
-/obj/disposalpipe/trunk/morgue{
-	desc = "An underfloor corpse pipe.";
-	dir = 4;
-	name = "genetics pipe"
-	},
 /obj/disposaloutlet{
 	dir = 4;
 	mailgroup = "medresearch";
@@ -41448,6 +41426,9 @@
 	message = "Delivery alert in Morgue.";
 	name = "Genetics Outlet";
 	pixel_x = 14
+	},
+/obj/disposalpipe/trunk/genetics{
+	dir = 4
 	},
 /turf/simulated/wall,
 /area/station/medical/research)
@@ -41701,10 +41682,8 @@
 	name = "chump outlet";
 	pixel_x = 21
 	},
-/obj/disposalpipe/trunk/food{
-	desc = "An underfloor ejection pipe trunk.";
-	dir = 2;
-	name = "chump outlet"
+/obj/disposalpipe/trunk/ejection{
+	dir = 2
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/quarters)
@@ -41764,10 +41743,10 @@
 	},
 /area/station/mining)
 "sWd" = (
-/obj/disposalpipe/segment/morgue,
 /obj/disposalpipe/segment/food{
 	dir = 4
 	},
+/obj/disposalpipe/segment/morgue,
 /turf/simulated/wall/wooden,
 /area/station/crew_quarters/bar)
 "sWe" = (
@@ -41842,10 +41821,8 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/quarters)
 "sYa" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/machinery/bot/duckbot,
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/fitness)
 "sYj" = (
@@ -42088,10 +42065,9 @@
 /turf/simulated/floor/purple,
 /area/station/science/server_room)
 "tbO" = (
-/obj/disposalpipe/segment/food{
+/obj/disposalpipe/segment/ejection{
 	dir = 8;
-	icon_state = "pipe-c";
-	name = "chump pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/wall,
 /area/station/crew_quarters/quarters)
@@ -42177,9 +42153,8 @@
 /turf/simulated/nicegrass,
 /area/station/hydroponics/bay)
 "tet" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/neutral/side{
 	dir = 1
@@ -42370,9 +42345,7 @@
 /turf/simulated/floor/shuttlebay,
 /area/station/hangar/sec)
 "tiJ" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/ejection,
 /turf/simulated/floor/specialroom/chapel{
 	dir = 5
 	},
@@ -42465,11 +42438,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 2;
-	name = "chump pipe"
-	},
+/obj/disposalpipe/segment/ejection,
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
 "tlj" = (
@@ -42587,9 +42556,8 @@
 /area/station/engine/gas)
 "tow" = (
 /obj/cable/conduit/segment/horizontal,
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/neutral/side{
 	dir = 1
@@ -42790,9 +42758,7 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/south)
 "tsz" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/wall,
 /area/station/hallway/secondary/northwest)
 "tsC" = (
@@ -42836,9 +42802,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/south)
 "tue" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "tuf" = (
@@ -42895,10 +42859,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/segment/morgue{
+/obj/disposalpipe/segment/crematorium{
 	dir = 4;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
@@ -42934,12 +42897,10 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/disposalpipe/segment{
 	dir = 4
 	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor,
 /area/station/hallway/secondary/northwest)
 "twh" = (
@@ -42956,6 +42917,13 @@
 /area/station/hallway/primary/east/restroom{
 	name = "East Hallway East Restroom"
 	})
+"twl" = (
+/obj/item/storage/secure/ssafe/loot{
+	pixel_x = 6;
+	pixel_y = -28
+	},
+/turf/simulated/floor/airless/plating/scorched,
+/area/abandonedship)
 "tws" = (
 /obj/disposalpipe/segment/mail{
 	dir = 2;
@@ -43304,6 +43272,15 @@
 /obj/landmark/start/latejoin,
 /turf/simulated/floor/shuttle,
 /area/shuttle/arrival/station)
+"tDi" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir"
+	},
+/turf/simulated/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/abandonedship)
 "tDm" = (
 /turf/simulated/floor/yellow/side{
 	dir = 1
@@ -43624,6 +43601,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/north)
+"tLj" = (
+/obj/disposalpipe/segment/crematorium,
+/turf/simulated/floor,
+/area/station/hallway/primary/northwest)
 "tLm" = (
 /obj/cable{
 	icon_state = "2-8"
@@ -43853,10 +43834,8 @@
 /obj/cable/blue{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/genetics{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/station/hallway/primary/south)
@@ -43962,11 +43941,11 @@
 /turf/simulated/floor/specialroom/chapel,
 /area/station/chapel)
 "tSB" = (
-/obj/disposalpipe/segment/morgue,
 /obj/machinery/door/airlock/medical,
 /obj/access_spawn/morgue,
 /obj/firedoor_spawn,
 /obj/access_spawn/morgue,
+/obj/disposalpipe/segment/morgue,
 /turf/simulated/floor,
 /area/station/chapel/funeral_parlor)
 "tSC" = (
@@ -44738,6 +44717,16 @@
 /obj/machinery/power/data_terminal,
 /turf/simulated/floor/blue/checker,
 /area/station/medical/research)
+"uhC" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/obj/decal/fakeobjects/pipe{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "uhY" = (
 /obj/stool,
 /turf/simulated/floor/carpet/red/standard/innercorner{
@@ -44792,10 +44781,9 @@
 /turf/simulated/floor/plating,
 /area/station/security/armory)
 "ujf" = (
-/obj/disposalpipe/segment/food{
+/obj/disposalpipe/segment/ejection{
 	dir = 1;
-	icon_state = "pipe-c";
-	name = "chump pipe"
+	icon_state = "pipe-c"
 	},
 /turf/simulated/wall,
 /area/station/crew_quarters/quarters)
@@ -44922,12 +44910,10 @@
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/bar)
 "uoy" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
-	},
 /obj/machinery/light/small/auto/neutral,
+/obj/disposalpipe/segment/genetics{
+	dir = 4
+	},
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/treatment2)
 "uoJ" = (
@@ -44945,9 +44931,7 @@
 /area/station/science/lobby)
 "uoX" = (
 /obj/table/auto,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "upg" = (
@@ -45044,10 +45028,8 @@
 /turf/simulated/floor/purplewhite,
 /area/station/science/research_director)
 "urN" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/machinery/light/fluorescent/auto/neutral,
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/neutral/side{
 	dir = 4
 	},
@@ -45089,9 +45071,7 @@
 /turf/simulated/floor/purplewhite,
 /area/station/science/teleporter)
 "utk" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/wall,
 /area/station/maintenance/inner/south)
 "uts" = (
@@ -45231,12 +45211,16 @@
 	},
 /area/station/hallway/primary/central)
 "uwg" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
+"uwj" = (
+/obj/item/cable_coil/cut,
+/obj/structure/girder/displaced,
+/turf/simulated/floor/airless/scorched,
+/area/abandonedship)
 "uwr" = (
 /obj/disposalpipe/segment/brig{
 	dir = 4
@@ -45777,22 +45761,19 @@
 /turf/simulated/floor/plating,
 /area/station/engine/inner)
 "uJI" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/neutral/side,
 /area/station/hallway/primary/central)
 "uJR" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/nw)
 "uKh" = (
@@ -45824,9 +45805,7 @@
 /area/station/engine/inner)
 "uKD" = (
 /obj/submachine/foodprocessor,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "uKF" = (
@@ -45893,6 +45872,12 @@
 	dir = 4
 	},
 /area/station/science/artifact)
+"uMy" = (
+/turf/simulated/shuttle/wall{
+	dir = 1;
+	icon_state = "wall3_space"
+	},
+/area/abandonedship)
 "uMG" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -46106,6 +46091,9 @@
 /obj/machinery/light/emergency,
 /turf/simulated/floor/marble/border_wb,
 /area/station/crewquarters/fuq3)
+"uPT" = (
+/turf/simulated/floor/plating/airless/asteroid,
+/area/space)
 "uPV" = (
 /obj/disposalpipe/segment/mail{
 	dir = 1;
@@ -46131,9 +46119,7 @@
 	dir = 8;
 	pixel_y = 8
 	},
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "uQO" = (
@@ -46525,10 +46511,7 @@
 /turf/space,
 /area/station/maintenance/outer/south)
 "uZA" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/neutral/side{
 	dir = 4
 	},
@@ -46949,6 +46932,18 @@
 /obj/machinery/light/emergency,
 /turf/simulated/floor/engine,
 /area/station/engine/coldloop)
+"vhk" = (
+/obj/decal/floatingtiles{
+	icon_state = "floattiles3"
+	},
+/obj/decal/fakeobjects/firelock_broken{
+	desc = "Rust has rendered this airlock useless.";
+	icon = 'icons/misc/hstation.dmi';
+	icon_state = "bloodydoor";
+	name = "broken airlock"
+	},
+/turf/simulated/floor/airless/plating/damaged3,
+/area/abandonedship)
 "vhA" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -46959,10 +46954,8 @@
 /turf/simulated/floor/wood,
 /area/station/bridge)
 "vhI" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/machinery/teleport/portal_ring,
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/teleporter)
 "vhT" = (
@@ -46984,14 +46977,11 @@
 /obj/disposalpipe/segment/brig{
 	dir = 4
 	},
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
 /obj/machinery/light/fluorescent/auto/neutral,
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/red/side{
 	dir = 4
 	},
@@ -47292,6 +47282,10 @@
 	},
 /turf/simulated/floor,
 /area/station/hydroponics/lobby)
+"vpp" = (
+/obj/structure/girder/displaced,
+/turf/simulated/floor/airless/plating/scorched,
+/area/abandonedship)
 "vps" = (
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
@@ -47434,9 +47428,7 @@
 /obj/stool/chair/couch/blue{
 	dir = 8
 	},
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/white,
 /area/station/medical/breakroom)
 "vst" = (
@@ -47573,10 +47565,8 @@
 /turf/space,
 /area/station/hangar/qm)
 "vvN" = (
-/obj/disposalpipe/segment/food{
-	desc = "An underfloor ejection pipe.";
-	dir = 4;
-	name = "chump pipe"
+/obj/disposalpipe/segment/ejection{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/quarters)
@@ -47603,9 +47593,7 @@
 /turf/space,
 /area/space)
 "vwb" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor,
 /area/station/maintenance/central)
 "vwc" = (
@@ -47945,15 +47933,13 @@
 	},
 /area/station/hallway/secondary/northwest)
 "vEU" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/disposalpipe/segment{
 	dir = 4
 	},
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/nw)
 "vFk" = (
@@ -48382,11 +48368,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/east)
 "vPj" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 1;
-	name = "quarantine pipe"
-	},
+/obj/disposalpipe/segment/quarantine,
 /turf/simulated/floor/bluewhite{
 	dir = 8
 	},
@@ -48414,13 +48396,12 @@
 /turf/simulated/floor/airless/solar,
 /area/station/solar/north)
 "vPD" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 2;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
-	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 9
+	},
+/obj/disposalpipe/segment/crematorium{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
@@ -48593,12 +48574,10 @@
 /turf/simulated/floor/purplewhite/corner,
 /area/station/science/lobby)
 "vTC" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/disposalpipe/segment/food{
 	dir = 4
 	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/wood/seven,
 /area/station/crew_quarters/bar)
 "vUk" = (
@@ -48888,6 +48867,15 @@
 	},
 /turf/simulated/floor/red/checker,
 /area/station/security/equipment)
+"wag" = (
+/obj/decal/fakeobjects/firelock_broken{
+	desc = "Rust has rendered this airlock useless.";
+	icon = 'icons/misc/hstation.dmi';
+	icon_state = "bloodydoor";
+	name = "broken airlock"
+	},
+/turf/simulated/floor/airless/plating/scorched,
+/area/abandonedship)
 "was" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/pink,
@@ -50185,12 +50173,16 @@
 	},
 /turf/simulated/floor/white,
 /area/station/science/teleporter)
+"wAg" = (
+/obj/storage/crate,
+/obj/item/clothing/suit/rad,
+/obj/item/clothing/head/rad_hood,
+/turf/simulated/floor/airless/scorched,
+/area/abandonedship)
 "wAp" = (
 /obj/disposalpipe/segment/morgue,
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/genetics{
+	dir = 4
 	},
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/cloner)
@@ -50248,12 +50240,11 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/se)
 "wBf" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4;
-	name = "crematorium pipe"
-	},
 /obj/item/device/radio/intercom/loudspeaker/speaker/south{
 	pixel_y = 34
+	},
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
 	},
 /turf/simulated/floor/neutral/side{
 	dir = 1
@@ -50364,13 +50355,11 @@
 /area/station/crew_quarters/courtroom)
 "wDO" = (
 /obj/machinery/drainage,
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
-	},
 /obj/cable/blue{
 	icon_state = "1-4"
+	},
+/obj/disposalpipe/segment/genetics{
+	dir = 4
 	},
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/cloner)
@@ -50637,13 +50626,12 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "wIR" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 8;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
-	},
 /obj/cable/blue{
 	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/crematorium{
+	dir = 8;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/blue/side{
 	dir = 0
@@ -50788,6 +50776,10 @@
 "wMb" = (
 /obj/machinery/door/airlock/glass,
 /obj/access_spawn/brig,
+/obj/disposalpipe/broken{
+	color = "#fbed92";
+	dir = 8
+	},
 /turf/simulated/floor/red,
 /area/station/security/main)
 "wMy" = (
@@ -51036,9 +51028,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
 "wSq" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor,
 /area/station/hallway/secondary/northwest)
 "wSz" = (
@@ -51052,6 +51042,18 @@
 /obj/decal/cleanable/rust,
 /turf/simulated/wall/r_wall,
 /area/station/mining/cargo_staff_room)
+"wTb" = (
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-dir"
+	},
+/obj/decal/floatingtiles{
+	dir = 8;
+	icon_state = "floattiles3"
+	},
+/obj/structure/girder/displaced,
+/turf/space,
+/area/space)
 "wTg" = (
 /obj/machinery/light/emergency{
 	dir = 4
@@ -51147,16 +51149,14 @@
 /obj/machinery/computer/genetics{
 	dir = 8
 	},
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
-	},
 /obj/machinery/power/data_terminal,
 /obj/cable/blue{
 	icon_state = "0-8"
 	},
 /obj/machinery/light/fluorescent/cool,
+/obj/disposalpipe/segment/genetics{
+	dir = 4
+	},
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/cloner)
 "wVL" = (
@@ -51214,9 +51214,7 @@
 /turf/simulated/shuttle/wall/cockpit,
 /area/shuttle/arrival/station)
 "wWT" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
 "wWV" = (
@@ -51373,10 +51371,8 @@
 /turf/space,
 /area/station/engine/coldloop)
 "xac" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
+/obj/disposalpipe/segment/quarantine{
+	dir = 4
 	},
 /turf/simulated/wall,
 /area/station/medical/medbay/surgery/storage)
@@ -51517,11 +51513,8 @@
 /turf/simulated/floor/plating,
 /area/station/science/teleporter)
 "xcv" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
 /obj/machinery/light/small/auto/neutral,
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/neutral/side{
 	dir = 4
 	},
@@ -51966,12 +51959,11 @@
 /area/station/crew_quarters/courtroom)
 "xmM" = (
 /obj/cable/conduit/segment/horizontal,
-/obj/disposalpipe/segment/morgue{
-	dir = 2;
-	icon_state = "pipe-c";
-	name = "crematorium pipe"
-	},
 /obj/machinery/light/fluorescent/auto/neutral,
+/obj/disposalpipe/segment/crematorium{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/neutral/side{
 	dir = 1
 	},
@@ -52057,9 +52049,7 @@
 /area/station/science/gen_storage)
 "xoy" = (
 /obj/table/round/auto,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/white,
 /area/station/medical/breakroom)
 "xoE" = (
@@ -52116,12 +52106,10 @@
 /turf/simulated/floor,
 /area/station/hallway/secondary/south)
 "xpU" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/machinery/computer/teleporter{
 	dir = 8
 	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/teleporter)
 "xpX" = (
@@ -52248,13 +52236,10 @@
 /turf/simulated/floor,
 /area/station/security/main)
 "xth" = (
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	name = "genetics pipe"
-	},
 /obj/disposalpipe/segment{
 	dir = 4
 	},
+/obj/disposalpipe/segment/genetics,
 /turf/simulated/floor/blue/side{
 	dir = 4
 	},
@@ -52305,8 +52290,8 @@
 	},
 /area/station/medical/robotics)
 "xtA" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
+/obj/disposalpipe/segment/crematorium{
+	dir = 1
 	},
 /turf/simulated/wall,
 /area/station/medical/morgue)
@@ -52377,9 +52362,7 @@
 /turf/simulated/floor/red/checker,
 /area/station/security/main)
 "xuZ" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/neutral/side{
 	dir = 6
 	},
@@ -52466,9 +52449,7 @@
 "xxy" = (
 /obj/stool/chair/wooden,
 /obj/railing/yellow,
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/carpet/purple/fancy/edge,
 /area/station/crew_quarters/courtroom)
 "xxD" = (
@@ -52538,6 +52519,12 @@
 	},
 /turf/simulated/wall,
 /area/station/engine/core)
+"xzr" = (
+/obj/decal/floatingtiles{
+	icon_state = "floattiles4"
+	},
+/turf/space,
+/area/space)
 "xzw" = (
 /obj/machinery/disposal_pipedispenser,
 /obj/cable/white{
@@ -52832,6 +52819,11 @@
 	dir = 4
 	},
 /area/station/medical/medbay/treatment)
+"xFF" = (
+/turf/simulated/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/abandonedship)
 "xFS" = (
 /turf/simulated/wall/r_wall,
 /area/station/crew_quarters/pool)
@@ -52871,9 +52863,7 @@
 /turf/simulated/floor/grime,
 /area/station/security/brig/genpop)
 "xHv" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/neutral/side{
 	dir = 1
 	},
@@ -52963,6 +52953,9 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/mail,
+/obj/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor,
 /area/station/security/hos)
 "xKQ" = (
@@ -53072,6 +53065,12 @@
 	dir = 4
 	},
 /area/station/hallway/primary/north)
+"xMx" = (
+/obj/item/cable_coil/cut{
+	icon_state = "coil1"
+	},
+/turf/simulated/floor/airless/plating/damaged1,
+/area/abandonedship)
 "xMF" = (
 /obj/machinery/vending/snack,
 /turf/simulated/floor/black/grime,
@@ -53136,10 +53135,8 @@
 /turf/simulated/floor/purple,
 /area/station/science/research_director)
 "xPs" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
 /obj/machinery/light/fluorescent/cool/very,
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/sanitary,
 /area/station/crew_quarters/showers)
 "xPx" = (
@@ -53169,9 +53166,7 @@
 /turf/simulated/wall/r_wall,
 /area/station/science/testchamber)
 "xPC" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/wall/wooden,
 /area/station/crew_quarters/bar)
 "xPL" = (
@@ -53188,9 +53183,7 @@
 /turf/unsimulated/floor/airless/plating/damaged2,
 /area/station/crewquarters/fuq3)
 "xQj" = (
-/obj/disposalpipe/segment/morgue{
-	name = "crematorium pipe"
-	},
+/obj/disposalpipe/segment/crematorium,
 /turf/simulated/wall,
 /area/station/medical/medbay/cloner)
 "xQl" = (
@@ -53233,6 +53226,19 @@
 	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
+"xRi" = (
+/obj/decal/floatingtiles{
+	icon_state = "floattiles2"
+	},
+/obj/decal/fakeobjects/firelock_broken{
+	desc = "Rust has rendered this airlock useless.";
+	icon = 'icons/misc/hstation.dmi';
+	icon_state = "bloodydoor";
+	name = "broken airlock"
+	},
+/obj/item/mine/radiation/armed,
+/turf/simulated/floor/airless/plating/damaged2,
+/area/abandonedship)
 "xRF" = (
 /obj/machinery/vending/capsule,
 /obj/machinery/light/fluorescent/auto/neutral,
@@ -53498,15 +53504,13 @@
 "xYR" = (
 /obj/cable,
 /obj/machinery/power/apc/autoname_south,
-/obj/disposalpipe/segment/morgue{
-	desc = "An underfloor body pipe leading to genetics.";
-	dir = 4;
-	name = "genetics pipe"
-	},
 /obj/machinery/door_control{
 	id = "lockdown_quar";
 	name = "quarantine lockdown control";
 	pixel_x = -24
+	},
+/obj/disposalpipe/segment/quarantine{
+	dir = 4
 	},
 /turf/simulated/floor/sanitary/blue,
 /area/station/medical/cdc)
@@ -53752,6 +53756,16 @@
 "yeT" = (
 /turf/simulated/wall,
 /area/station/science/chemistry)
+"yeW" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir"
+	},
+/obj/decal/fakeobjects/shuttlethruster{
+	dir = 4
+	},
+/turf/space,
+/area/abandonedship)
 "yeX" = (
 /obj/machinery/door/airlock/glass/engineering,
 /obj/firedoor_spawn,
@@ -56090,6 +56104,7 @@ xzG
 xzG
 xzG
 xzG
+fbj
 xzG
 xzG
 xzG
@@ -56116,10 +56131,9 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
+fbj
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -56392,6 +56406,8 @@ xzG
 xzG
 xzG
 xzG
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -56418,11 +56434,9 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+fbj
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -56694,6 +56708,24 @@ xzG
 xzG
 xzG
 xzG
+fbj
+xzG
+xzG
+xzG
+xzG
+xzG
+xzG
+xzG
+vOw
+xzG
+xzG
+xzG
+xzG
+xzG
+xzG
+xzG
+xzG
+fbj
 xzG
 xzG
 xzG
@@ -56703,28 +56735,10 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+fbj
+fbj
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -56786,6 +56800,10 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -57008,6 +57026,8 @@ xzG
 xzG
 xzG
 xzG
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -57018,15 +57038,9 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+fbj
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -57088,6 +57102,11 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -57309,6 +57328,8 @@ xzG
 xzG
 xzG
 xzG
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -57320,15 +57341,8 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -57389,6 +57403,12 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -57610,6 +57630,9 @@ xzG
 xzG
 xzG
 xzG
+fbj
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -57620,16 +57643,7 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+fbj
 xzG
 xzG
 xzG
@@ -57691,6 +57705,12 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -57911,16 +57931,10 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+fbj
+fbj
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -57993,6 +58007,12 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -58213,15 +58233,9 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+fbj
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -58296,6 +58310,10 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -58517,11 +58535,7 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+fbj
 xzG
 xzG
 xzG
@@ -59148,7 +59162,7 @@ xzG
 xzG
 xzG
 xzG
-xzG
+fbj
 xzG
 xzG
 xzG
@@ -59196,6 +59210,8 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -59437,6 +59453,8 @@ xzG
 xzG
 xzG
 xzG
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -59446,12 +59464,8 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -59498,6 +59512,8 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -59730,6 +59746,7 @@ xzG
 xzG
 xzG
 xzG
+xzr
 xzG
 xzG
 xzG
@@ -59737,6 +59754,10 @@ xzG
 xzG
 xzG
 xzG
+fbj
+fbj
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -59744,16 +59765,9 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+fbj
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -59801,6 +59815,7 @@ xzG
 xzG
 xzG
 xzG
+jjx
 xzG
 xzG
 xzG
@@ -60040,6 +60055,11 @@ xzG
 xzG
 xzG
 xzG
+rpV
+fbj
+fbj
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -60048,13 +60068,7 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+fbj
 xzG
 xzG
 xzG
@@ -60339,16 +60353,16 @@ xzG
 xzG
 xzG
 xzG
+iTm
+yeW
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+iTm
+fbj
+fbj
+fbj
+fbj
+vOw
 xzG
 xzG
 xzG
@@ -60641,16 +60655,16 @@ xzG
 xzG
 xzG
 xzG
+ryo
+fNH
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+oRf
+mwG
+fbj
+fbj
+fbj
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -60693,6 +60707,9 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -60939,23 +60956,20 @@ xzG
 xzG
 xzG
 xzG
+xFF
+mkd
+haj
+xFF
+xFF
+tDi
+xFF
+fbj
+fbj
+fbj
+fbj
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+vOw
 xzG
 xzG
 xzG
@@ -60993,6 +61007,13 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -61237,21 +61258,14 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+xFF
+uhC
+eYF
+nzK
+xFF
+xFF
+xFF
+xFF
 xzG
 xzG
 xzG
@@ -61295,6 +61309,13 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -61539,21 +61560,14 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+xFF
+iKw
+jqA
+nzK
+xRi
+vpp
+roo
+xFF
 xzG
 xzG
 xzG
@@ -61597,6 +61611,13 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+uPT
+ftr
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -61841,23 +61862,16 @@ xzG
 xzG
 xzG
 xzG
+xFF
+wAg
+fyp
+szt
+haj
+aJm
+uwj
+haj
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+rpV
 xzG
 xzG
 xzG
@@ -61898,6 +61912,15 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
+uPT
+uPT
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -62137,27 +62160,18 @@ xzG
 xzG
 xzG
 xzG
+vOw
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+xFF
+kPH
+kxa
+xMx
+xFF
+jAR
+mbM
+xFF
 xzG
 xzG
 xzG
@@ -62200,6 +62214,15 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
+jjx
+uPT
+uPT
+uPT
+uPT
+jjx
 xzG
 xzG
 xzG
@@ -62443,23 +62466,14 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+xFF
+slS
+hEx
+twl
+xFF
+xFF
+wag
+xFF
 xzG
 xzG
 xzG
@@ -62502,6 +62516,15 @@ xzG
 xzG
 xzG
 xzG
+jjx
+uPT
+jjx
+jjx
+jjx
+uPT
+jjx
+uPT
+uPT
 xzG
 xzG
 xzG
@@ -62738,30 +62761,21 @@ xzG
 xzG
 xzG
 xzG
+fbj
 xzG
 xzG
 xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+xFF
+lKr
+nee
+uhC
+xFF
+cxo
+iSJ
+xFF
 xzG
 xzG
 xzG
@@ -62804,6 +62818,15 @@ xzG
 xzG
 xzG
 xzG
+uPT
+uPT
+jjx
+uPT
+uPT
+uPT
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -63039,31 +63062,22 @@ xzG
 xzG
 xzG
 xzG
+fbj
+fbj
+fbj
 xzG
 xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+xFF
+hoE
+hxp
+uhC
+xFF
+qjh
+uNi
+xFF
 xzG
 xzG
 xzG
@@ -63106,6 +63120,15 @@ xzG
 xzG
 xzG
 xzG
+jjx
+uPT
+jjx
+jjx
+uPT
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -63342,34 +63365,25 @@ xzG
 xzG
 xzG
 xzG
+fbj
+fbj
+fbj
 xzG
 xzG
 xzG
 xzG
+xFF
+oNA
+oNA
+fJC
+haj
+jBY
+jbU
+xFF
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+vOw
 xzG
 xzG
 xzG
@@ -63400,12 +63414,24 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
 xzG
 xzG
 xzG
 xzG
 xzG
 xzG
+jjx
+uPT
+uPT
+jjx
+uPT
+uPT
+uPT
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -63415,6 +63441,8 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -63639,35 +63667,21 @@ xzG
 xzG
 xzG
 xzG
+fbj
+fbj
+fbj
 xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+xFF
+xFF
+xFF
+xFF
+xFF
+vhk
+xFF
+xFF
 xzG
 xzG
 xzG
@@ -63702,11 +63716,24 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+uPT
+uPT
+uPT
+jjx
+uPT
+uPT
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -63715,6 +63742,10 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -63939,12 +63970,20 @@ xzG
 xzG
 xzG
 xzG
+fbj
 xzG
 xzG
 xzG
 xzG
 xzG
+xFF
 xzG
+jdu
+xFF
+eql
+uNi
+bUT
+xFF
 xzG
 xzG
 xzG
@@ -63952,32 +63991,7 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+hNH
 xzG
 xzG
 xzG
@@ -64003,12 +64017,24 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
+jjx
+jjx
+uPT
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -64018,6 +64044,10 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -64248,30 +64278,14 @@ xzG
 xzG
 xzG
 xzG
+uMy
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+uNi
+xFF
+pKZ
+haj
+xFF
+lRZ
 xzG
 xzG
 xzG
@@ -64305,12 +64319,24 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
+jjx
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -64321,6 +64347,8 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -64555,24 +64583,10 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+nwU
+wTb
+xFF
+gLe
 xzG
 xzG
 xzG
@@ -64608,6 +64622,8 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -64618,6 +64634,11 @@ xzG
 xzG
 xzG
 xzG
+jjx
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -64864,17 +64885,10 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+xFF
+gbG
+iqB
+uNi
 xzG
 xzG
 xzG
@@ -65168,7 +65182,7 @@ xzG
 xzG
 xzG
 xzG
-xzG
+xzr
 xzG
 xzG
 xzG
@@ -65473,11 +65487,11 @@ xzG
 xzG
 xzG
 xzG
+fbj
 xzG
 xzG
 xzG
-xzG
-xzG
+fbj
 xzG
 xzG
 xzG
@@ -65774,12 +65788,12 @@ xzG
 xzG
 xzG
 xzG
+fbj
+fbj
+fbj
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -66077,12 +66091,12 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+fbj
+fbj
+fbj
+fbj
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -66380,10 +66394,10 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
+fbj
+fbj
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -66681,6 +66695,10 @@ xzG
 xzG
 xzG
 xzG
+fbj
+fbj
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -66693,11 +66711,7 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+fbj
 xzG
 xzG
 xzG
@@ -66999,8 +67013,8 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -67301,8 +67315,8 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
+fbj
+fbj
 xzG
 xzG
 xzG
@@ -67901,7 +67915,7 @@ xzG
 xzG
 xzG
 xzG
-xzG
+vOw
 xzG
 xzG
 xzG
@@ -68847,8 +68861,8 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -69149,8 +69163,8 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -69701,7 +69715,7 @@ xzG
 xzG
 xzG
 xzG
-xzG
+vOw
 xzG
 xzG
 xzG
@@ -71554,9 +71568,9 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -71855,11 +71869,11 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+jjx
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -72157,11 +72171,11 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+jjx
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -72458,12 +72472,12 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+jjx
+jjx
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -72760,12 +72774,12 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+jjx
+jjx
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -73063,12 +73077,12 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+jjx
+jjx
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -73365,12 +73379,12 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+jjx
+jjx
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -73667,11 +73681,11 @@ xzG
 xzG
 xzG
 xzG
-xzG
-xzG
-xzG
-xzG
-xzG
+jjx
+jjx
+jjx
+jjx
+jjx
 xzG
 xzG
 xzG
@@ -86179,9 +86193,9 @@ dRb
 bHo
 cKf
 jGu
-jGu
-jGu
 aoz
+jGu
+jGu
 jGu
 cKf
 taA
@@ -86483,7 +86497,7 @@ jGu
 xaL
 jGu
 jGu
-jGu
+aoz
 jGu
 jBy
 aDu
@@ -86784,7 +86798,7 @@ gUb
 jGu
 jGu
 jGu
-jGu
+jVG
 jGu
 niC
 cKf
@@ -87014,11 +87028,11 @@ fXJ
 tgx
 tgx
 oyg
-axV
+fHo
 fnY
 pRb
 omr
-piz
+tLj
 hCB
 gWQ
 itY
@@ -87366,7 +87380,7 @@ qjX
 plx
 rRp
 jGX
-bcN
+plx
 qjX
 qjX
 ujf
@@ -87687,7 +87701,7 @@ wVE
 aNS
 dRb
 lBT
-jGu
+bIN
 jGu
 oYw
 xaL
@@ -89532,9 +89546,9 @@ iEz
 iEz
 iEz
 dBB
-jRD
+lTQ
 xth
-jRD
+lTQ
 lTQ
 lTQ
 eFn
@@ -92860,9 +92874,9 @@ pKS
 ybl
 oWy
 gml
-gVF
-gml
 xac
+gml
+iZo
 gml
 gml
 gml
@@ -94976,7 +94990,7 @@ oNK
 gml
 xac
 gml
-xac
+iZo
 gml
 coT
 gml
@@ -95790,7 +95804,7 @@ vaA
 fcX
 gdu
 sGF
-rXr
+ccx
 ajP
 hrA
 dia
@@ -101629,7 +101643,7 @@ twZ
 twZ
 fib
 fib
-fib
+drj
 gvP
 xzG
 xzG
