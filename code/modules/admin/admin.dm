@@ -2410,7 +2410,7 @@ var/global/noir = 0
 								if("Cow")
 									H.set_mutantrace(/datum/mutantrace/cow)
 								if ("Fert")
-									H.set_mutantrace(/datum/mutantrace/cow)
+									H.set_mutantrace(/datum/mutantrace/fert)
 							LAGCHECK(LAG_LOW)
 						message_admins("<span class='internal'>[key_name(usr)] transformed everyone into a [which].</span>")
 						logTheThing("admin", usr, null, "transformed everyone into a [which].")
