@@ -3,6 +3,9 @@
 #define PIPEC_BRIG "#ff6666"
 #define PIPEC_EJECTION "#f2a673"
 #define PIPEC_MORGUE "#696969"
+#define PIPEC_CREMATORIUM "#a51313"
+#define PIPEC_QUARANTINE "#54ad00"
+#define PIPEC_GENETICS "#403b81"
 #define PIPEC_FOOD "#fbed92"
 #define PIPEC_PRODUCE "#b2ff4f"
 #define PIPEC_TRANSPORT "#ffbef6"
@@ -583,12 +586,17 @@
 	quarantine
 		name = "quarantine pipe"
 		desc = "An underfloor quarantine pipe."
-		color = PIPEC_MORGUE
+		color = PIPEC_QUARANTINE
 
 	genetics
 		name = "genetics pipe"
 		desc = "An underfloor genetics pipe, for dead people."
-		color = PIPEC_MORGUE
+		color = PIPEC_GENETICS
+
+	crematorium
+		name = "crematorium pipe"
+		desc = "An underfloor crematorium pipe, for dead people."
+		color = PIPEC_CREMATORIUM
 
 	food
 		name = "food pipe"
