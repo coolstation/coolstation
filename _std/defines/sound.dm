@@ -1,7 +1,10 @@
 //Reserved Area Ambience sound channels
-#define SOUNDCHANNEL_LOOPING 123
-#define SOUNDCHANNEL_FX_1 124
-#define SOUNDCHANNEL_FX_2 125
+#define SOUNDCHANNEL_BIGALARM 122 //uh oh
+#define SOUNDCHANNEL_LOOPING_Z 123 //gehenna outdoors wind (for now)
+#define SOUNDCHANNEL_LOOPING_1 124
+#define SOUNDCHANNEL_LOOPING_2 125
+#define SOUNDCHANNEL_FX_1 126
+#define SOUNDCHANNEL_FX_2 127
 
 //sound mute
 #define SOUND_NONE 0
@@ -29,14 +32,16 @@ var/global/list/audio_channel_name_to_id = list(
 	"mentorpm" = VOLUME_CHANNEL_MENTORPM
 )
 
-//Area Ambience
-#define AMBIENCE_LOOPING 1
-#define AMBIENCE_FX_1 2
-#define AMBIENCE_FX_2 3
+//Area Ambience Switch
+#define AMBIENCE_LOOPING_1 1
+#define AMBIENCE_LOOPING_2 2
+#define AMBIENCE_FX_1 3
+#define AMBIENCE_FX_2 4
 
 //playsound flags
 #define SOUND_IGNORE_SPACE (1<<0)
 
+//standard environments
 #define EAX_GENERIC 0
 #define EAX_PADDED_CELL 1
 #define EAX_ROOM 2

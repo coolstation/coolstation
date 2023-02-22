@@ -17,7 +17,7 @@ CONTENTS:
 	skip_sims = 1
 	sims_score = 15
 	sound_group = "void"
-	sound_loop = 'sound/ambience/spooky/Void_Song.ogg'
+	sound_loop_1 = 'sound/ambience/spooky/Void_Song.ogg'
 	ambient_light = rgb(6.9, 4.20, 6.9)
 
 	New()

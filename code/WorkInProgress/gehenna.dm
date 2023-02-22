@@ -19,6 +19,9 @@
 #define WASTELAND_MAX_TEMP 350
 var/global/gehenna_time = GEHENNA_TIME
 
+//audio
+// volume curve so wind stuff is loudest at night: 80 + ((0.5*sin(GEHENNA_TIME-135)+0.5)*(50))
+
 // Gehenna shit tho
 /turf/space/gehenna
 	name = "planet gehenna"
@@ -199,16 +202,14 @@ var/global/gehenna_time = GEHENNA_TIME
 	icon_state = "red"
 	name = "the barren wastes"
 	teleport_blocked = 0
-	sound_loop = 'sound/ambience/loop/Gehenna_Surface.ogg'
 	sound_environment = EAX_PLAIN
-	sound_loop_vol = 80 + ((0.5*sin(GEHENNA_TIME-135)+0.5)*(50)) //louder in the cold, cold night. min 80, max 130
 
 /area/gehenna/wasteland/stormy
 	name = "the horrid wastes"
 	icon_state = "yellow"
-	sound_loop = 'sound/ambience/loop/Gehenna_Surface.ogg' //need something wimdy, maybe overlay a storm sound on this
 	sound_environment = EAX_PLAIN
-	sound_loop_vol = 150 //always loud, fukken storming
+	//sound_loop_1 = 'sound/ambience/loop/nothingyet' //need something wimdy, maybe overlay a storm sound on this
+	//sound_loop_1_vol = 150 //always loud, fukken storming
 
 	New()
 		..()

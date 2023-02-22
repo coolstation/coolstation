@@ -451,7 +451,11 @@ var/global/list/default_channel_volumes = list(1, 1, 0.1, 0.5, 0.5, 1, 1)
 	S.falloff = 9999//(world.view + extrarange) / 3.5
 	//world.log << "Playing sound; wv = [world.view] + er = [extrarange] / 3.5 = falloff [S.falloff]"
 	S.wait = 0 //No queue
-	S.channel = rand(1,900) //Any channel
+	//S.channel = rand(1,900) //Any channel
+	//are you kidding?? this is why it interrupts ambience???
+	S.channel = rand(200,900)
+	//THE ABOVE IS A BAD HACK UNTIL WARC CAN DO RANGE OF 200-900 WITH INCREMENT
+	//NO MORE STEPPING ON RESERVED SOUNDS, AND SOON NO MORE STEPPING ON REGULAR SOUNDS. HOORAY
 	S.volume = vol
 	S.priority = 5
 	S.environment = 0
@@ -473,14 +477,16 @@ var/global/list/default_channel_volumes = list(1, 1, 0.1, 0.5, 0.5, 1, 1)
  	*
  	* Calling this proc is handled by the Area our client is in, see [area/proc/Exited()] and [area/proc/Entered()]
  	*
- 	* LOOPING channel sound will keep playing until fed a pass_volume of 0 (done automagically)
+ 	* LOOPING channel sounds will keep playing until fed a pass_volume of 0 (done automagically)
+	* LOOPING_1 is for the main sound, LOOPING_2 is a hack for secondary stuff. fade between the two as you progress, etc.
  	* For FX sounds, they will play once.
+	* For Z sounds, they will loop if defined. Handle it by area (space as one sound, indoors as another, etc.)
  	*
  	* FX_1 is area-specific background noise handled by area/pickAmbience(), FX_2 is more noticeable stuff directly triggered, normally shorter
  	*/
-/client/proc/playAmbience(area/A, type = AMBIENCE_LOOPING, pass_volume)
+/client/proc/playAmbience(area/A, type = AMBIENCE_LOOPING_1, pass_volume=50)
 
-	/// Types of sounds: AMBIENCE_LOOPING, AMBIENCE_FX_1, and AMBIENCE_FX_2
+	/// Types of sounds: AMBIENCE_LOOPING_1, AMBIENCE_LOOPING_2, AMBIENCE_FX_1, and AMBIENCE_FX_2
 	var/soundtype = null
 
 	/// Holds the associated sound channel we want
@@ -492,13 +498,29 @@ var/global/list/default_channel_volumes = list(1, 1, 0.1, 0.5, 0.5, 1, 1)
 	/// Should the sound set the wait var?
 	var/soundwait = 0
 
+	/// Updating volume of playing sounds without repeating them from the start? ooh hoo hoo
+	var/soundupdate = 0
+
 	switch(type)
-		if (AMBIENCE_LOOPING)
+		if (AMBIENCE_LOOPING_1)
 			if (pass_volume != 0) //lets us cancel loop sounds by passing 0
 				if (src.last_soundgroup && (src.last_soundgroup == A.sound_group))
-					return //Don't need to change loopAMB if we're in the same sound group
-				soundtype = A.sound_loop
-			soundchannel = SOUNDCHANNEL_LOOPING
+					if (!A.sound_group_varied)
+						return //Don't need to change loopAMB if we're in the same sound group and it doesn't expect change within itself
+					//just change the volume
+					soundupdate = 1
+				soundtype = A.sound_loop_1
+			soundchannel = SOUNDCHANNEL_LOOPING_1
+			soundrepeat = 1
+		if (AMBIENCE_LOOPING_2)
+			if (pass_volume != 0) //lets us cancel loop sounds by passing 0
+				if (src.last_soundgroup && (src.last_soundgroup == A.sound_group))
+					if (!A.sound_group_varied)
+						return //Don't need to change loopAMB if we're in the same sound group and it doesn't expect change within itself
+					//just change the volume
+					soundupdate = 1
+				soundtype = A.sound_loop_2
+			soundchannel = SOUNDCHANNEL_LOOPING_2
 			soundrepeat = 1
 		if (AMBIENCE_FX_1)
 			soundtype = A.sound_fx_1
@@ -513,6 +535,8 @@ var/global/list/default_channel_volumes = list(1, 1, 0.1, 0.5, 0.5, 1, 1)
 	sound_playing[ S.channel ][1] = S.volume
 	sound_playing[ S.channel ][2] = VOLUME_CHANNEL_AMBIENT
 	S.volume *= getVolume( VOLUME_CHANNEL_AMBIENT ) / 100
+	if (soundupdate)
+		S.status |= SOUND_UPDATE //brimgo
 	if (pass_volume != 0)
 		S.volume *= attenuate_for_location(A)
 		S.volume *= max(1,(pass_volume / 100)) // warc: post-loudening for loud-requiring places
