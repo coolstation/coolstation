@@ -2147,7 +2147,7 @@
 							if (x == 0) //it's fine for the critters to be sloppy but not the player, get back to normal position at the end
 								mob.pixel_x = 0
 								mob.pixel_y = 0
-								if (prob(2)) //when done, also a chance to flop
+								if (prob(5)) //when done, also a chance to flop
 									mob.changeStatus("weakened", 5 SECONDS)
 									mob.visible_message("<span class='alert'><B>[mob] gets exhausted from prancing about and falls over!</B></span>")
 								else if (prob(20)) //but... maybe just one more flip, for the road
@@ -2157,12 +2157,13 @@
 					for (var/mob/O in viewers(mob, null)) //most viewers don't care, but,
 						if (O != mob && isfert(O)) //big ferrets
 							if (prob(15) && O.emote_allowed) //any higher and it's probably too much chaos. jfc
-								O.show_message("<span class='alert'>You CAN'T CONTROL YOURSELF AT ALL!!!!!</span>")
+								O.show_message("<span class='alert'>You CAN'T CONTROL YOURSELF AT ALL!!! YOU GOTTA [pick("WOBBLE","WIGGLE","WIG OUT","FREAK OUT","BOUNCE AROUND","GET WOOZED UP")]!!!</span>")
 								for (var/mob/V in viewers(O, null)) //secondary viewers watching this trainwreck unfold
 									V.show_message("<span class='notice'>[O] joins [mob] in these [pick("fuckin'","absolutely","totally","")] [pick("weaselly","toobular","dooked-up","slinky","stinky")] [pick("shenanigans","hijinks","carryings-on","behaviors","wiggles","wobbles")].</span>", 1)
 									O.emote("dance")
 							else //managed to resist, this time...
-								O.show_message("<span class='notice'><b>[mob]</b> is [pick("fuckin'","absolutely","totally","")] [pick("wigging out","frolicking","freaking out","going wild","wiggling","wobbling")]! You feel a certain way about that!", 1)
+								if(prob(25))
+									O.show_message("<span class='notice'><b>[mob]</b> is [pick("fuckin'","absolutely","totally","")] [pick("wigging out","frolicking","freaking out","going wild","wiggling","wobbling")]! You feel a certain way about that!", 1)
 						if (istype(O, /mob/living/critter/small_animal/meatslinky)) //small ferrets
 							var/mob/living/critter/small_animal/meatslinky/F = O
 							F.contagiousfreakout()
