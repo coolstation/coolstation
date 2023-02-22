@@ -1102,7 +1102,7 @@ proc/debug_map_apc_count(delim,zlim)
 			img.app.color = rgb((val*255), 0, (255-val*255))
 			if(!isnull(val))
 				img.app.overlays = list(src.makeText(round(val*100)/100, RESET_ALPHA))
-
+/*
 	jps_passable_turfs
 		name = "jps passable turfs"
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
@@ -1115,6 +1115,7 @@ proc/debug_map_apc_count(delim,zlim)
 					I.alpha = 100
 					I.appearance_flags |= RESET_ALPHA
 					img.app.overlays += I
+*/
 
 /client/var/list/infoOverlayImages
 /client/var/datum/infooverlay/activeOverlay
