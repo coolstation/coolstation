@@ -2127,12 +2127,17 @@
 			H.update_body()
 			H.update_clothing()
 
-	emote(var/act) //need a weasel-scream, possibly flip variant (unless we move handling of mutantrace variant emotes to The Big Stack, which could be helpful)
+	emote(var/act) //need a weasel-scream, possibly flip variant (unless we move handling of mutantrace variant emotes to The Big Datum Stack, which could be very helpful)
 		var/message = null
 		switch (act)
 			if ("dance") //yoink the following from meatslinky
 				if (mob.emote_allowed)
-					SPAWN_DBG(0) //wiggle for sure
+					mob.emote_allowed = 0 //forgot the cooldown start when i implemented
+					message = "<B>[mob]</B> [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles","weasel-wardances")]!"
+					if (prob(20)) //possibly spin but with a greater chance than regular ferts
+						animate_spin(mob, prob(50) ? "L" : "R", 1, 0)
+					//the actual dance:
+					SPAWN_DBG(0) //commence the wiggling
 						var/x = rand(5,10)
 						while (x-- > 0)
 							mob.pixel_x = rand(-6,6)
@@ -2147,12 +2152,22 @@
 									mob.visible_message("<span class='alert'><B>[mob] gets exhausted from prancing about and falls over!</B></span>")
 								else if (prob(20)) //but... maybe just one more flip, for the road
 									animate_spin(mob, prob(50) ? "L" : "R", 1, 0)
-
-					if (prob(20)) //possibly spin but with a greater chance than regular ferts
-						animate_spin(mob, prob(50) ? "L" : "R", 1, 0)
-					message = "<B>[mob]</B> [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles","weasel-wardances")]!"
+					//excite ferts who can see you:
+					sleep(0.1 SECONDS) //so they don't start fuckin' dancing before you do
+					for (var/mob/O in viewers(mob, null)) //most viewers don't care, but,
+						if (O != mob && isfert(O)) //big ferrets
+							if (prob(15) && O.emote_allowed) //any higher and it's probably too much chaos. jfc
+								O.show_message("<span class='alert'>You CAN'T CONTROL YOURSELF AT ALL!!!!!</span>")
+								for (var/mob/V in viewers(O, null)) //secondary viewers watching this trainwreck unfold
+									V.show_message("<span class='notice'>[O] joins [mob] in these [pick("fuckin'","absolutely","totally","")] [pick("weaselly","toobular","dooked-up","slinky","stinky")] [pick("shenanigans","hijinks","carryings-on","behaviors","wiggles","wobbles")].</span>", 1)
+									O.emote("dance")
+							else //managed to resist, this time...
+								O.show_message("<span class='notice'><b>[mob]</b> is [pick("fuckin'","absolutely","totally","")] [pick("wigging out","frolicking","freaking out","going wild","wiggling","wobbling")]! You feel a certain way about that!", 1)
+						if (istype(O, /mob/living/critter/small_animal/meatslinky)) //small ferrets
+							var/mob/living/critter/small_animal/meatslinky/F = O
+							F.contagiousfreakout()
 					SPAWN_DBG(3 SECONDS)
-						if (mob) mob.emote_allowed = 1
+						if (mob) mob.emote_allowed = 1 //finish cooldown
 					return message
 			if ("laugh") //maybe these sometimes just happen. add a random freakout var like the regular ferrets maybe?
 				if (mob.emote_allowed)

@@ -1490,27 +1490,91 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 					src.pixel_y = rand(-6,6)
 					sleep(0.2 SECONDS)
 
+			//chance to excite other ferts? probably not smart but
+			if (prob(1))
+				for (var/mob/O in viewers(src, null)) //most viewers don't care, but,
+					if (istype(O, /mob/living/critter/small_animal/meatslinky)) //only small ferrets
+						var/mob/living/critter/small_animal/meatslinky/F = O
+						F.contagiousfreakout()
+
 			if (prob(5))
-				animate_spin(src, pick("L","R"))
+				animate_spin(src, prob(50) ? "L" : "R", 1, 0) //infinite spin just got a little bit silly
 
 			if (prob(10))
-				src.visible_message("[src] [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles")]!")
+				src.visible_message("<span class='emote'><b>[src]</b> [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles")]!</span>")
 
-			if (prob(25) && src.farten == 1) //fartens are 2.5x as excited during freakout
-				playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
-				src.visible_message("[src] farts wildly!")
+			if (prob(5))
+				src.emote("laugh")
+
+			if (prob(15) && src.farten == 1) //fartens are 2.5x as excited during freakout
+				src.emote("fart")
 
 			if (src.freakout-- < 1)
-				src.visible_message("[src] calms down.")
+				src.visible_message("<span class='emote'><b>[src]</b> calms down.</span>")
+				src.pixel_x = 0 //get back to baseline
+				src.pixel_y = 0
 
 		if (src.farten == 1) //the reason for the name/gimmick, occasionally farts even when not freaking out
-			if (prob(15))
-				playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
-				src.visible_message("[src] farts!")
+			if (prob(5))
+				src.emote("fart")
 
 		else if (!src.client && prob(2)) //add chance of freakout if nothing else
 			src.freakout = rand(30,40)
 		..()
+
+	specific_emotes(var/act, var/param = null, var/voluntary = 0) //finally
+		switch (act)
+			if ("laugh")
+				if (src.emote_check(voluntary, 50))
+					//need ferret dook and scream sounds
+					return "<span class='emote'><b>[src]</b> dooks!</span>"
+			if ("fart")
+				if (src.emote_check(voluntary, 50))
+					playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
+					if(src.freakout)
+						return "<span class='emote'><b>[src]</b> farts <b>WILDLY</b>!</span>"
+					else
+						return "<span class='emote'><b>[src]</b> farts!</span>"
+		return null
+
+	proc/contagiousfreakout() //if you think regular ferrets get excited over other regular ferrets just you wait bud
+		if (src.freakout) //boost chance to freak out if they're currently freaking out, but don't add to it
+			if (prob(15))
+				src.visible_message("<span class='emote'><b>[src]</b> goes absolutely bonkers!</span>")
+				SPAWN_DBG(0)
+					var/x = rand(20,30)
+					while (x-- > 0)
+						src.pixel_x = rand(-6,6)
+						src.pixel_y = rand(-6,6)
+						src.dir = pick(1,2,4,8)
+						if(prob(4))
+							animate_spin(src, prob(50) ? "L" : "R", 1, 0)
+						if(prob(4))
+							src.emote("laugh")
+						sleep(0.2 SECONDS)
+					src.visible_message("<span class='emote'><b>[src]</b> calms down a little bit.</span>")
+			else
+				return
+		if (prob(5))
+			src.freakout += 10 //from calm, they get a little antsier
+			src.visible_message("<span class='emote'><b>[src]</b> gets riled up!</span>")
+			SPAWN_DBG(0)
+				var/x = rand(10,20)
+				while (x-- > 0)
+					src.pixel_x = rand(-6,6)
+					src.pixel_y = rand(-6,6)
+					src.dir = pick(1,2,4,8)
+					if(prob(3))
+						animate_spin(src, prob(50) ? "L" : "R", 1, 0) //try a rare spin every loop
+					if(prob(3))
+						src.emote("laugh")
+					sleep(0.2 SECONDS)
+				src.visible_message("<span class='emote'><b>[src]</b> calms down again. For now.</span>")
+		else
+			if(prob(10))
+				src.freakout += 5 //just a tiny bit because it happened
+			else
+				return
 
 /mob/living/critter/small_animal/meatslinky/pine_marten //just a bigger ferret basically, specifically added for a fart joke
 	name = "pine marten"
@@ -1528,17 +1592,17 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 		STOP_TRACKING
 		..()
 
-	proc/fart_along() //it's here because all fartens are martens but some martens are fartens too
+	proc/fart_along() //it's here because all fartens are martens but some martens are fartens too. can ferts fart? woh knows.
 		if (src.farten == 1) //only farters here buster
-			if (src.freakout) //boost chance to fart if they're currently wigging out
-				if (prob(50))
+			if (src.freakout)
+				if (prob(50)) //boost chance to fart if they're currently wigging out
 					playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
-					src.visible_message("[src] farts along excitedly!")
+					src.visible_message("<span class='emote'><b>[src]</b> farts along excitedly!</span>")
 				else
 					return //no double dipping on toob toots
 			else if (prob(15))
 				playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
-				src.visible_message("[src] farts along!")
+				src.visible_message("<span class='emote'><b>[src]</b> farts along!</span>")
 
 	farten //stink guaranteed!!!! this is the real reason we have pine martens
 		name = "pine farten" //regular martens that fart will still be called pine marten but this one is explicit about it
