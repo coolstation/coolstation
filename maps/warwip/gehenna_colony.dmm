@@ -4675,7 +4675,13 @@
 /turf/simulated/floor/specialroom/freezer,
 /area/station/medical/morgue)
 "dyk" = (
-/obj/rack,
+/obj/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal{
+	color = "#BBFFCC";
+	name = "Kitchen Chute"
+	},
 /turf/simulated/floor,
 /area/station/quartermaster/storage)
 "dys" = (
@@ -10329,9 +10335,8 @@
 /turf/simulated/wall,
 /area/station/hydroponics/bay)
 "hMN" = (
-/obj/machinery/conveyor/west{
-	operating = 1
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
+/obj/machinery/portable_reclaimer,
 /turf/simulated/floor,
 /area/station/quartermaster/storage)
 "hNb" = (
@@ -11823,10 +11828,12 @@
 /area/station/security/interrogation)
 "iXx" = (
 /obj/decal/tile_edge/stripe/extra_big{
-	dir = 4
+	dir = 10;
+	icon_state = "bot2"
 	},
-/obj/machinery/portable_reclaimer,
-/turf/simulated/floor,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/disposalpipe/segment/bent/east,
+/turf/simulated/floor/black,
 /area/station/quartermaster/storage)
 "iXR" = (
 /obj/cable{
@@ -15781,11 +15788,10 @@
 /turf/simulated/floor/black,
 /area/station/security/secwing)
 "lYF" = (
-/obj/decal/tile_edge/stripe/extra_big,
-/obj/machinery/light/fluorescent/ceiling,
-/obj/machinery/conveyor/west{
-	operating = 1
+/obj/decal/tile_edge/stripe/extra_big{
+	icon_state = "delivery2"
 	},
+/obj/machinery/door/window/southleft,
 /turf/simulated/floor,
 /area/station/quartermaster/storage)
 "lYG" = (
@@ -17271,12 +17277,8 @@
 	},
 /area/space)
 "noo" = (
-/obj/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/machinery/disposal{
-	color = "#BBFFCC";
-	name = "Kitchen Chute"
+/obj/decal/tile_edge/stripe/extra_big{
+	icon_state = "delivery2"
 	},
 /turf/simulated/floor,
 /area/station/quartermaster/storage)
@@ -23435,13 +23437,6 @@
 	icon_state = "gehenna_corner"
 	},
 /area/space)
-"rPT" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
-/obj/machinery/conveyor/west{
-	operating = 1
-	},
-/turf/simulated/floor,
-/area/station/quartermaster/storage)
 "rPU" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -26938,14 +26933,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/treatment)
-"uFW" = (
-/obj/disposalpipe/segment/bent/east,
-/obj/decal/tile_edge/stripe/extra_big{
-	icon_state = "delivery2"
-	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
-/turf/simulated/floor/black,
-/area/station/quartermaster/storage)
 "uGi" = (
 /turf/simulated/wall/r_wall,
 /area/station/engine/engineering/ce)
@@ -75363,7 +75350,7 @@ lEL
 uKX
 mBi
 jSg
-jSg
+cqC
 cqC
 cqC
 iiv
@@ -79271,7 +79258,7 @@ iiv
 iiv
 iiv
 iiv
-iiv
+wgn
 tEh
 dkC
 dkC
@@ -79573,7 +79560,7 @@ iiv
 iiv
 iiv
 iiv
-iiv
+heK
 twZ
 njm
 twZ
@@ -79875,10 +79862,10 @@ qRb
 iiv
 iiv
 iiv
-iiv
+heK
 pDb
 wgn
-cqC
+wgn
 cqC
 cqC
 cqC
@@ -81694,8 +81681,8 @@ iVv
 cqC
 cqC
 cqC
+evb
 fXe
-iVv
 iVv
 iVv
 iVv
@@ -92197,7 +92184,7 @@ dAu
 gxt
 sZT
 sZT
-vqV
+hMN
 hIT
 kWL
 gYA
@@ -94913,9 +94900,9 @@ jEb
 jEb
 dAu
 gxt
-hMN
-rPT
-lYF
+opp
+vqV
+ajS
 ler
 tTo
 cox
@@ -96124,10 +96111,10 @@ gxt
 opp
 vqV
 ajS
-ler
-uFW
+xrV
+mhC
 noo
-ivL
+lYF
 tNt
 cWt
 iKr
@@ -96427,7 +96414,7 @@ ddi
 ycv
 jqJ
 xrV
-bYu
+iXx
 dyk
 ivL
 lLD
@@ -97329,9 +97316,9 @@ jEb
 jEb
 dAu
 cCr
-hMN
-rPT
-lYF
+opp
+vqV
+ajS
 vki
 jfy
 gRy
@@ -97631,7 +97618,7 @@ jEb
 jEb
 dAu
 gxt
-iXx
+ddi
 ycv
 jqJ
 jiT
