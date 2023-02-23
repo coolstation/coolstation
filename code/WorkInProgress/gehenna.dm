@@ -20,7 +20,12 @@
 var/global/gehenna_time = GEHENNA_TIME
 
 //audio
-// volume curve so wind stuff is loudest at night: 80 + ((0.5*sin(GEHENNA_TIME-135)+0.5)*(50))
+//you want some audio to play overall in "space" but reduced when you're in a non-space area? check it out
+var/global/gehenna_surface_loop = 'sound/ambience/loop/Gehenna_Surface.ogg' //Z1
+var/global/gehenna_underground_loop = 'sound/ambience/loop/Gehenna_Surface.ogg' //Z3
+// volume curve so wind stuff is loudest in the cold, cold night
+var/global/gehenna_surface_loop_vol = (80 + ((0.5*sin(GEHENNA_TIME-135)+0.5)*(50))) //volume meant for outside, min 80 max 130
+var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 3) //just have it the same but quiet i guess (with a proper cave soundscape, increase to like 100 or something)
 
 // Gehenna shit tho
 /turf/space/gehenna

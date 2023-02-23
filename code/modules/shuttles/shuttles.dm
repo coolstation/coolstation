@@ -23,6 +23,13 @@
 /area/shuttle/mining/space
 	icon_state = "shuttle2"
 	filler_turf = "/turf/space"
+	//sneaky
+	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
+	sound_loop_1_vol = -10
+	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
+	sound_loop_2_vol = 50
+	sound_group = "diner" //the music's kind of everywhere isn't it
+	sound_group_varied = 1
 
 /area/shuttle/mining/outpost
 	icon_state = "shuttle"

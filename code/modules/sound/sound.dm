@@ -479,6 +479,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.1, 0.5, 0.5, 1, 1)
  	*
  	* LOOPING channel sounds will keep playing until fed a pass_volume of 0 (done automagically)
 	* LOOPING_1 is for the main sound, LOOPING_2 is a hack for secondary stuff. fade between the two as you progress, etc.
+	* Also good for loops: feed pass_volume of -1 to mute it in an area, but keep it playing. Stay Sync'd!
  	* For FX sounds, they will play once.
 	* For Z sounds, they will loop if defined. Handle it by area (space as one sound, indoors as another, etc.)
  	*
@@ -537,9 +538,14 @@ var/global/list/default_channel_volumes = list(1, 1, 0.1, 0.5, 0.5, 1, 1)
 	S.volume *= getVolume( VOLUME_CHANNEL_AMBIENT ) / 100
 	if (soundupdate)
 		S.status |= SOUND_UPDATE //brimgo
+	if (pass_volume == -1)
+		S.status |= SOUND_MUTE
 	if (pass_volume != 0)
 		S.volume *= attenuate_for_location(A)
 		S.volume *= max(1,(pass_volume / 100)) // warc: post-loudening for loud-requiring places
+	if (soundrepeat)
+		S.status |= SOUND_STREAM //should be lighter for clients
+	if (!soundrepeat) //loops need to be quiet with the way we might use them
 		EARLY_RETURN_IF_QUIET(S.volume)
 	src << S
 
@@ -553,6 +559,64 @@ var/global/list/default_channel_volumes = list(1, 1, 0.1, 0.5, 0.5, 1, 1)
 			SPAWN_DBG(20 SECONDS) //20s
 				A.played_fx_2 = 0
 
+//fuck it this does one thing: take a z-level's overarching ambience and plays it to the specific z-loop channel, reused for every z level's loop
+//takes a current z and "insideness" of the area for audio reduction. handles volume in here
+//this is almost exclusively for gehenna colony's benefit but any other planet-side maps like it will probably find it useful
+/client/proc/playAmbienceZ(var/Z, var/insideness)
+	var/soundfile = null
+	var/zloopvol = 0
+	var/soundupdate = 0
+	var/soundmute = 0
+	var/reduction = 4
+
+	if (insideness) //if something remembered to pass it and it's non-zero (fuck)
+		reduction = (insideness * 0.5) + 0.5
+		//insideness:
+		//1 is outside, no reduction
+		//2 is non-space area that's open, 33% reduction
+		//3 is non-space area that's insulated but adjacent to /area/space, 50% reduction
+		//4 is non-space area that's insulated but not adjacent, 60% reduction
+
+	if (insideness == 20) //special case calling for a mute
+		soundmute = 1
+
+	#ifdef DESERT_MAP //only z-loops we got right now
+	switch(Z)
+		if(1)
+			soundfile = gehenna_surface_loop //surface wind, much quieter inside station areas
+			zloopvol = gehenna_surface_loop_vol / reduction //minvol 80, maxvol 130, loudest at cold night, reduced by how "inside" we are
+		if(3)
+			soundfile = gehenna_underground_loop //for now it's the same wind but really quiet (cave sounds might be appropriate)
+			zloopvol = gehenna_underground_loop_vol / reduction //very quiet wind sounds now, sorta quiet cave sounds with dripping and etc. later
+		//in any other case, this won't play anything and stop any currently playing z-loop
+	#else
+	return //if you're not gehenna you currently don't have Z loops to hand over so fuck off don't call this number
+	#endif
+
+	if (zloopvol != 0) //lets us cancel loop sounds by passing 0
+		if ((src.last_zloop == soundfile) && (src.last_zvol == zloopvol)) //if the volume and loop are the same
+			return
+		if ((src.last_zloop == soundfile) && (src.last_zvol != zloopvol)) //same sound, different volume
+			soundupdate = 1
+		//otherwise: start new sound or replace existing
+		//this works great for things like having a different sound on Z1 vs Z3, but if it's the same sound it'll change without restarting
+
+	var/sound/S = sound(soundfile, repeat = 1, wait = 0, volume = zloopvol, channel = SOUNDCHANNEL_LOOPING_Z)
+	S.priority = 200
+	S.status |= SOUND_STREAM //should be lighter for clients
+	if (soundupdate)
+		S.status |= SOUND_UPDATE
+	if (soundmute)
+		S.status |= SOUND_MUTE
+	sound_playing[ S.channel ][1] = S.volume
+	sound_playing[ S.channel ][2] = VOLUME_CHANNEL_AMBIENT
+	S.volume *= getVolume( VOLUME_CHANNEL_AMBIENT ) / 100
+	if (zloopvol != 0)
+		S.volume *= max(1,(zloopvol / 100)) // warc: post-loudening for loud-requiring places
+		//the 'early return if quiet' that was here might interfere with variable z-level loop volumes
+	src << S
+	src.last_zvol = zloopvol //store in mob's client
+	src.last_zloop = soundfile
 
 /// pool of precached sounds
 /var/global/list/sb_tricks = list(sound('sound/effects/sbtrick1.ogg'),sound('sound/effects/sbtrick2.ogg'),sound('sound/effects/sbtrick3.ogg'),sound('sound/effects/sbtrick4.ogg'),sound('sound/effects/sbtrick5.ogg'),sound('sound/effects/sbtrick6.ogg'),sound('sound/effects/sbtrick7.ogg'),sound('sound/effects/sbtrick8.ogg'),sound('sound/effects/sbtrick9.ogg'),sound('sound/effects/sbtrick10.ogg'))

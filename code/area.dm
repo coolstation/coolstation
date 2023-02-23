@@ -187,6 +187,30 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 				if (!played_fx_1 && prob(AMBIENCE_ENTER_PROB))
 					src.pickAmbience()
 					M.client.playAmbience(src, AMBIENCE_FX_1, 18)
+
+				//playAmbienceZ(Z level as num, passthrough vol in code/modules/sound.dm
+				//the function picks the z-loop to play for whatever z-level you're on, if defined
+				#ifdef DESERT_MAP //only do this for gehenna for now
+				var/insideness = 1
+				//reduces audio by (0.5*insidedness) + 1
+				//1 is outside, no reduction
+				//2 is 33%
+				//3 is 50%
+				//4 is 60%
+				//7 is 75%
+				//9 is 80%
+				//20 is 95% and is a special case to just mute the sound without stopping it
+
+				if(M.loc.loc.type != /area/space) //bleh
+					insideness = 4 //this is the easiest level to check so let's just use this as our non-space case FOR NOW (happy 2053 to you reading this)
+				M.client.playAmbienceZ(M.z, insideness)
+
+				//categories and checks for later or maybe never:
+				//outside, non-space area that's open
+				//non-space area that's insulated but adjacent to /area/space
+				//non-space area that's insulated but not adjacent
+				#endif
+
 				#undef AMBIENCE_ENTER_PROB
 
 		if ((isliving(A) || iswraith(A)) || locate(/mob) in A)
@@ -1110,6 +1134,13 @@ ABSTRACT_TYPE(/area/diner)
 #ifdef UNDERWATER_MAP
 	requires_power = FALSE
 #endif
+	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
+	sound_loop_1_vol = -1
+	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
+	sound_loop_2_vol = 10
+	sound_group = "diner" //the music's kind of everywhere isn't it
+	sound_group_varied = 1
+	//check shuttles.dm for the diner
 
 /area/diner/hangar
 	name = "Space Diner Parking"
@@ -1135,7 +1166,6 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_1_vol = 20
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
 	sound_loop_2_vol = 70
-	sound_group = "juicerclub"
 	sound_group_varied = 1
 
 /area/diner/hallway/docking
@@ -1177,6 +1207,7 @@ ABSTRACT_TYPE(/area/diner)
 /area/juicer
 	name = "Juicin' Grounds"
 	icon_state = "green"
+	sound_group = "diner"
 
 /area/juicer/club
 	name = "The Juice"
@@ -1186,7 +1217,6 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_1_vol = 240
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
 	sound_loop_2_vol = 20
-	sound_group = "juicerclub"
 	sound_group_varied = 1
 
 /area/juicer/club/outside
@@ -1197,7 +1227,6 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_1_vol = 20
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
 	sound_loop_2_vol = 140
-	sound_group = "juicerclub"
 	sound_group_varied = 1
 
 /area/juicer/club/back
@@ -1208,7 +1237,6 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_1_vol = 20
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
 	sound_loop_2_vol = 100
-	sound_group = "juicerclub"
 
 // Gore's Z5 Space generation areas //
 ABSTRACT_TYPE(/area/prefab)
