@@ -190,7 +190,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 				//playAmbienceZ(Z level as num, passthrough vol in code/modules/sound.dm
 				//the function picks the z-loop to play for whatever z-level you're on, if defined
-				#ifdef DESERT_MAP //only do this for gehenna for now
+				#ifdef DESERT_MAP //only do this for gehenna for now, but if anyone else wants in on it i WILL generalize it immediately rather than eventually -bob
 				var/insideness = 1
 				//reduces audio by (0.5*insidedness) + 1
 				//1 is outside, no reduction
@@ -203,12 +203,14 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 				if(M.loc.loc.type != /area/space) //bleh
 					insideness = 4 //this is the easiest level to check so let's just use this as our non-space case FOR NOW (happy 2053 to you reading this)
-				M.client.playAmbienceZ(M.z, insideness)
-
+					//can make a proc that does a calculation that might be useful for adjusting a room's sound environment in general
+					//especially if we figure out how to implement occlusion and such. (god i hope sound occlusion isn't calculated serverside...)
 				//categories and checks for later or maybe never:
-				//outside, non-space area that's open
-				//non-space area that's insulated but adjacent to /area/space
-				//non-space area that's insulated but not adjacent
+				//outside
+				//non-space area that's open
+				//non-space area that's insulated but adjacent to /area/space (window, wall)
+				//non-space area that's insulated but not adjacent (deep in station)
+				M.client.playAmbienceZ(M.z, insideness)
 				#endif
 
 				#undef AMBIENCE_ENTER_PROB

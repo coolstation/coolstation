@@ -567,6 +567,9 @@ var/global/list/default_channel_volumes = list(1, 1, 0.1, 0.5, 0.5, 1, 1)
 	var/zloopvol = 0
 	var/soundupdate = 0
 	var/soundmute = 0
+
+	#ifdef DESERT_MAP //only z-loops we got right now
+	//moving this in here to shut up the runtime warning for "var defined but unused"
 	var/reduction = 4
 
 	if (insideness) //if something remembered to pass it and it's non-zero (fuck)
@@ -579,8 +582,6 @@ var/global/list/default_channel_volumes = list(1, 1, 0.1, 0.5, 0.5, 1, 1)
 
 	if (insideness == 20) //special case calling for a mute
 		soundmute = 1
-
-	#ifdef DESERT_MAP //only z-loops we got right now
 	switch(Z)
 		if(1)
 			soundfile = gehenna_surface_loop //surface wind, much quieter inside station areas
