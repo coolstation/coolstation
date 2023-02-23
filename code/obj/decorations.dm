@@ -1278,3 +1278,11 @@ obj/decoration/floralarrangement
 	anchored = 1
 	density = 1
 
+obj/decoration/windchimes
+	name = "windchimes"
+	desc = "Aside from sounding nice, they also helpfully let you know if there's airflow in a room! Neato!"
+	icon = 'icons/obj/noise_makers.dmi'
+	icon_state = "windchime"
+	anchored = 1
+	density = 1
+
