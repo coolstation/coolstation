@@ -219,12 +219,16 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	name = "the horrid wastes"
 	icon_state = "yellow"
 	sound_environment = EAX_PLAIN
-	//sound_loop_1 = 'sound/ambience/loop/nothingyet' //need something wimdy, maybe overlay a storm sound on this
-	//sound_loop_1_vol = 150 //always loud, fukken storming
+	sound_loop_1 = 'sound/ambience/loop/SANDSTORM.ogg' //need something wimdy, maybe overlay a storm sound on this
+	sound_loop_1_vol = 250 //always loud, fukken storming
+	var/list/assholes_to_hurt = list()
+	var/buffeting_assoles = FALSE
 
 	New()
 		..()
 		overlays += image(icon = 'icons/turf/areas.dmi', icon_state = "dustverlay", layer = EFFECTS_LAYER_BASE)
+		for(var/turf/space/gehenna/desert/T in src)
+			T.temperature = WASTELAND_MAX_TEMP
 
 	Entered(atom/movable/O)
 		..()
@@ -232,12 +236,41 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 			var/mob/living/jerk = O
 			if (!isdead(jerk))
 				if((istype(jerk:wear_suit, /obj/item/clothing/suit/armor))||(istype(jerk:wear_suit, /obj/item/clothing/suit/space))&&(istype(jerk:head, /obj/item/clothing/head/helmet/space))) return
-				random_brute_damage(jerk, 50)
-				jerk.changeStatus("weakened", 40 SECONDS)
-				step(jerk,EAST)
+				random_brute_damage(jerk, 20)
+				assholes_to_hurt |= jerk
 				if(prob(50))
 					playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_2.ogg', 50, 1)
-					boutput(jerk, pick("Dust gets caught in your eyes!","The wind blows you off course!","Debris pierces through your skin!"))
+					boutput(jerk, pick("Sand gets caught in your eyes!","The wind blows you off course!","Debris really fucks up your skin!"))
+					jerk.changeStatus("weakened", 13 SECONDS)
+				SPAWN_DBG(10)
+					src.process_some_sand()
+
+	Exited(atom/movable/A)
+		..()
+		if (ismob(A))
+			var/mob/living/jerk = A
+			assholes_to_hurt &= ~jerk
+
+	proc/process_some_sand()
+		if(buffeting_assoles)
+			return
+		while(assholes_to_hurt.len)
+			buffeting_assoles = TRUE
+			for(var/mob/living/jerk in assholes_to_hurt)
+				if(!istype(jerk) || isdead(jerk))
+					assholes_to_hurt &= ~jerk
+					continue
+				if((istype(jerk:wear_suit, /obj/item/clothing/suit/armor))||(istype(jerk:wear_suit, /obj/item/clothing/suit/space))&&(istype(jerk:head, /obj/item/clothing/head/helmet/space)))
+					assholes_to_hurt &= ~jerk
+					continue
+				random_brute_damage(jerk, 10)
+				if(prob(50))
+					playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_2.ogg', 50, 1)
+					boutput(jerk, pick("Dust gets caught in your eyes!","The wind disorients you!","Debris pierces through your skin!"))
+					jerk.changeStatus("weakened", 7 SECONDS)
+			sleep(10 SECONDS)
+		buffeting_assoles = FALSE
+
 
 /area/gehenna/underground
 	icon_state = "unknown"
