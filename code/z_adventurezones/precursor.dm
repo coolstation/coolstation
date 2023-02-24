@@ -116,7 +116,7 @@
 	skip_sims = 1
 	sims_score = 30
 	sound_group = "precursor"  //Differs from the caves it's in, for a mysterious sound-blocking effect.
-	sound_loop = 'sound/ambience/industrial/Precursor_Drone1.ogg'
+	sound_loop_1 = 'sound/ambience/industrial/Precursor_Drone1.ogg'
 
 	New()
 		..()

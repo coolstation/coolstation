@@ -3,6 +3,9 @@
 #define PIPEC_BRIG "#ff6666"
 #define PIPEC_EJECTION "#f2a673"
 #define PIPEC_MORGUE "#696969"
+#define PIPEC_CREMATORIUM "#a51313"
+#define PIPEC_QUARANTINE "#54ad00"
+#define PIPEC_GENETICS "#403b81"
 #define PIPEC_FOOD "#fbed92"
 #define PIPEC_PRODUCE "#b2ff4f"
 #define PIPEC_TRANSPORT "#ffbef6"
@@ -567,7 +570,7 @@
 				dir = WEST
 	brig
 		name = "brig pipe"
-		desc = "An underfloor brig pipe."
+		desc = "An underfloor brig pipe. Bripe."
 		color = PIPEC_BRIG
 
 	ejection
@@ -577,12 +580,27 @@
 
 	morgue
 		name = "morgue pipe"
-		desc = "An underfloor morgue pipe."
+		desc = "An underfloor morgue pipe, for dead people."
 		color = PIPEC_MORGUE
+
+	quarantine
+		name = "quarantine pipe"
+		desc = "An underfloor quarantine pipe."
+		color = PIPEC_QUARANTINE
+
+	genetics
+		name = "genetics pipe"
+		desc = "An underfloor genetics pipe, for dead people."
+		color = PIPEC_GENETICS
+
+	crematorium
+		name = "crematorium pipe"
+		desc = "An underfloor crematorium pipe, for dead people."
+		color = PIPEC_CREMATORIUM
 
 	food
 		name = "food pipe"
-		desc = "An underfloor food pipe."
+		desc = "An underfloor food pipe lined with non-stick, probably-food-safe materials."
 		color = PIPEC_FOOD
 
 	produce
@@ -1695,6 +1713,21 @@
 		name = "morgue pipe"
 		desc = "An underfloor morgue pipe."
 		color = PIPEC_MORGUE
+
+	quarantine
+		name = "quarantine pipe"
+		desc = "An underfloor quarantine pipe."
+		color = PIPEC_QUARANTINE
+
+	genetics
+		name = "genetics pipe"
+		desc = "An underfloor genetics pipe, for dead people."
+		color = PIPEC_GENETICS
+
+	crematorium
+		name = "crematorium pipe"
+		desc = "An underfloor crematorium pipe, for dead people."
+		color = PIPEC_CREMATORIUM
 
 	food
 		name = "food pipe"

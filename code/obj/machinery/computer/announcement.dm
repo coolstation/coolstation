@@ -207,6 +207,7 @@
 
 		var/list/messages = process_language(message)
 		src.announcement_radio.talk_into(src, messages, 0, src.name, src.say_language)
+		world << csound("sounds/misc/announcement_chime.ogg")
 		logTheThing("station", src, null, "ANNOUNCES: [message]")
 		return 1
 

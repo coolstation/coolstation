@@ -19,10 +19,12 @@ Enjoy */
 	if(!src.mob)
 		return //we do nothing, so whatever they had they keep..
 	var/obj/item/gun/modular/gun = locate() in src.mob // this will catch the first gun it finds, too bad if you tried getting two.
-	if(!istype(gun))
-		return //we do nothing, so whatever they had they keep..
-	if(gun.contraband)
-		return //we do nothing, so whatever they had they keep..
+	if(!istype(gun)) // well you survived, but empty-handed. sorry.
+		if( cloud_available() )
+			cloud_put( "persistent_gun", "none")
+		return
+	if(gun.contraband || gun.no_save)
+		return //okay your gun is illegal, maybe you grabbed a fossie gun, idk - but im not gonna *punish* you for it.
 	var/list/gunne = list("type"="nano","barrel"="none","stock1"="none","stock2"="none","magazine"="none","accessory"="none")
 	//"type"="nano" is not strictly true, but if somehow you got a non-contraband fossie or soviet weapon... here's a free traser.
 	if(istype(gun, /obj/item/gun/modular/juicer))
@@ -64,6 +66,11 @@ Enjoy */
 			gun = new /obj/item/gun/modular/italian()
 		else
 			gun = new /obj/item/gun/modular/NT()
+	if(!istype(gun))
+		return // just in case we fucked it BIGTIMES
+
+	gun.reset_gun() // important!!
+
 	var/part_type = null
 	if(gunne["barrel"] != "none")
 		part_type = gunne["barrel"]
@@ -87,6 +94,8 @@ Enjoy */
 
 	gun.build_gun()
 	return gun
+
+
 
 
 
@@ -142,6 +151,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 			return
 		var/obj/item/gun/modular/new_gun = W
 		if(!new_gun.built)
+			new_gun.ClearAllOverlays(1)
 			boutput(user, "<span class='notice'>You smash the pieces of the gun into place!</span>")
 			playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_1.ogg', 50, 1)
 			new_gun.build_gun()

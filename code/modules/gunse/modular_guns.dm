@@ -39,10 +39,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	inventory_counter_enabled = 1
 	var/barrel_overlay_x = 0
 	var/barrel_overlay_y = 0
+	var/bullpup_stock = 0 // this one's fucky. some guns i guess will want a single pistol grip to be forward, but dual or shoulder at the back. this is that offset i guess.
 	var/stock_overlay_x = 0
 	var/stock_overlay_y = 0
-	var/foregrip_x = 16
+	var/foregrip_x = 12
 	var/foregrip_y = 0
+	var/magazine_overlay_x = 0
+	var/magazine_overlay_y = 0
 
 	var/lensing = 0 // Variable used for optical gun barrels. laser intensity scales around 1.0 (or will!)
 	var/scatter = 0 // variable for using hella shotgun shells or something
@@ -58,6 +61,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/max_ammo_capacity = 1 // How much ammo can this gun hold? Don't make this null (Convair880).
 	var/list/ammo_list = list() // a list of datum/projectile types
 	current_projectile = null // chambered round
+	var/chamber_checked = 0 // this lets us fast-track alt-fire modes and stuff instead of re-checking the breech every time
 
 	var/accessory_alt = 0 //does the accessory offer an alternative firing mode?
 	var/accessory_on_fire = 0 // does the accessory need to know when you fire?
@@ -180,6 +184,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			user.u_equip(I)
 			I.dropped(user)
 			I.set_loc(src)
+			part.add_overlay_to_gun(src,0)
 		else
 			boutput(user,"<span class='notice'><b>The [src]'s DRM prevents you from attatching [I].</b></span>")
 			playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
@@ -291,6 +296,27 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(flashbulb_only) // additional branch for suicide
 		return flash_process_ammo(user)
 
+	if(src.max_ammo_capacity == 0) //single shot? no cycle, no count, it shows up as 0 if we don't skip it
+		if(src.jammed) //whoops gotta handle this too. call it a misfire
+			if(prob(10)) //unlucky, dump the round
+				src.jammed = 0
+				src.current_projectile = null
+				boutput(user, "<span class='notice'>You pull the bad round out of [src]</span>") //drop a dud
+				return 0
+			else //just hit it again it'll work for sure
+				src.jammed = 0
+				boutput(user, "<span class='notice'>You re-cock the hammer on [src]</span>") //good 2 go
+				return 1
+		else
+			if(chamber_checked && accessory && accessory_alt)
+				accessory.alt_fire()
+			else
+				boutput(user, "<span class='notice'>You check the chamber and [src] appears to be [src.current_projectile == null ? "unloaded[prob(15) ? ". ...Probably!" : "."]" : "loaded[prob(15) ? ". ...Maybe?" : "."]"]</span>")
+				if(!chamber_checked)
+					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+					chamber_checked = 1
+			return (current_projectile?1:0)
+
 	if(jammed)
 		boutput(user,"<span class='notice'><b>You clear the ammunition jam.</b></span>")
 		jammed = 0
@@ -298,6 +324,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return 0
 	if(!ammo_list.len) // empty!
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
+		if(accessory && accessory_alt)
+			accessory.alt_fire() // so you can turn your flashlight on without having ammo....
 		return (current_projectile?1:0)
 	if(ammo_list.len > max_ammo_capacity)
 		var/waste = ammo_list.len - max_ammo_capacity
@@ -333,8 +361,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		src.inventory_counter.update_number(crank_level)
 	else
 		process_ammo(user)
-		src.inventory_counter.update_number(ammo_list.len)
+		if(src.max_ammo_capacity)
+			src.inventory_counter.update_number(ammo_list.len)
 		// this is how many shots are left in the feeder- and does not include the one in the chamber. Should make for funny times
+		else
+			src.inventory_counter.update_number(!!current_projectile) // 1 if its loaded, 0 if not.
 
 	buildTooltipContent()
 
@@ -424,6 +455,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	SEND_SIGNAL(user, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
 
+	chamber_checked = 0
+
 	if (ismob(user))
 		var/mob/M = user
 		if (ishuman(M) && src.add_residue) // Additional forensic evidence for kinetic firearms (Convair880).
@@ -444,6 +477,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	if(!flash_auto)
 		current_projectile = null // empty chamber
+
+	if(!max_ammo_capacity)
+		src.inventory_counter.update_number(!!current_projectile)
 
 	src.update_icon()
 	return TRUE
@@ -560,16 +596,18 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	name = "\improper NT pistol"
 	real_name = "\improper NT pistol"
 	desc = "A simple, reliable cylindrical bored weapon."
-	max_ammo_capacity = 1 // single-shot pistols ha- unless you strap an expensive loading mag on it.
+	max_ammo_capacity = 0 // single-shot pistols ha- unless you strap an expensive loading mag on it.
 	gun_DRM = GUN_NANO
 	spread_angle = 7
 	icon = 'icons/obj/items/modular_guns/recievers.dmi'
 	icon_state = "nt_blue"
 	barrel_overlay_x = 23
 	barrel_overlay_y = 0
-	stock_overlay_x = -8
+	stock_overlay_x = -10
 	stock_overlay_y = -2
-	foregrip_x = 18
+	magazine_overlay_y = -5
+
+	bullpup_stock = 1
 
 /obj/item/gun/modular/NT/pistol
 	make_parts()
@@ -588,7 +626,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	name = "\improper NT rifle"
 	real_name = "\improper NT rifle"
 	desc = "A simple, reliable rifled bored weapon."
-	max_ammo_capacity = 2
+
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/NT/long(src)
 		stock = new /obj/item/gun_parts/stock/NT/shoulder(src)
@@ -737,13 +775,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	name = "\improper Italiano"
 	real_name = "\improper Italiano"
 	desc = "Una pistola realizzata con acciaio, cuoio e olio d'oliva della più alta qualità possibile."
-	max_ammo_capacity = 2 // basic revolving mechanism
+	max_ammo_capacity = 3 // basic revolving mechanism
 	gun_DRM = GUN_ITALIAN
 	spread_angle = 10
 	//color = "#FFFF99"
 	stock_overlay_x = -10
 	barrel_overlay_x = 12
 	barrel_overlay_y = 4
+	jam_frequency_fire = 3
+	jam_frequency_reload = 3
 
 	shoot()
 		..()
@@ -755,5 +795,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		stock = new /obj/item/gun_parts/stock/italian(src)
 
 
-
-
+/obj/item/gun/modular/italian/big_italiano
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/italian/(src)
+		stock = new /obj/item/gun_parts/stock/italian/bigger(src)

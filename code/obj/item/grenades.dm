@@ -799,7 +799,9 @@ PIPE BOMBS + CONSTRUCTION
 		var/sound/S = sound(soundin)
 		S.frequency = 32000 + ((10-i)*4000)
 		S.wait = 0 //No queue
-		S.channel = 0 //Any channel
+		S.channel = 149 - i //Any channel EDIT: I THINK NOT.
+		//Should be safeish, channels 150-160 until we can pop this back into generate_sound like it oughta be.
+		//seriously i don't think this has been touched since first-codering. buttbombs: a true and beautiful relic.
 		S.volume = vol
 		S.priority = 0
 
@@ -890,6 +892,74 @@ PIPE BOMBS + CONSTRUCTION
 	icon_state = "fartbomb"
 	sound_beep = 'sound/voice/farts/poo2.ogg'
 	sound_explode = 'sound/voice/farts/superfart.ogg'
+	var/splashzone =  5 //calculate effects, can be increased from 5 to 8 (oh no)
+	var/radioactive = 0 //dirty, you say
+
+	prearmed
+		armed = 1
+		anchored = 1
+
+		New()
+			SPAWN_DBG(0)
+				src.beep(10)
+			return ..()
+
+	//this thing used to spread a big grid of poo everywhere
+	//so let's pay tribute in the worst possible way
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (istype(W, /obj/item/reagent_containers/food/snacks/ingredient/mud)) //sigh (i only have myself to blame)
+			if (istype(src, /obj/item/gimmickbomb/butt/dirty))
+				if (src.splashzone <= 7)
+					src.splashzone++
+					user.show_text("you fucking make it even worse somehow", "red")
+					qdel(W)
+				else
+					user.show_text("<b>You've gone much too far already. This cannot be permitted.</b>", "red")
+					qdel(W) //lose the poo. consider it poo-nishment for your poo-bris
+			else
+				var/obj/item/gimmickbomb/butt/dirty/DB = new /obj/item/gimmickbomb/butt/dirty //make it dirty
+				DB.set_loc(get_turf(user))
+				user.show_text("You... put the poo in the [src.name]. jesus fucking christ", "blue")
+				qdel(W)
+				qdel(src)
+		//if (istype(W, obj/item/plutonium_core) && istype(src, /obj/item/gimmickbomb/butt/dirty))
+			//src.radioactive = 1 //this is a bad idea but it's a funny one and if they're used for chaos dunks then fuck it, this isn't REALLY so bad
+			//src.name = "Seriously Dirty Bomb"
+			//src.desc = "oh shit this thing is <b>glowing</b>. drop and run!"
+			//src.iconstate = "fartbomb-radio" //green and glowing
+		else
+			return ..()
+
+	dirty
+		name = "Dirty Bomb"
+		desc = "What a crappy grenade. For real this time."
+		//iconstate = "fartbomb-dirty"
+
+		detonate()
+			for(var/mob/living/carbon/human/H in range(splashzone, src))
+				if (H.wear_suit)
+					H.wear_suit.add_mud(src)
+					H.set_clothing_icon_dirty()
+				else if (H.w_uniform)
+					H.w_uniform.add_mud(src)
+					H.set_clothing_icon_dirty()
+				if (H.shoes)
+					H.shoes.add_mud(src)
+					H.set_clothing_icon_dirty()
+				if (prob(20))
+					H.vomit() //grody
+			//if (src.radioactive)
+				//do some radioactive stuff i dunno check the radmine. tbd tbd tbd
+			..()
+		prearmed
+			armed = 1
+			anchored = 1
+
+			New()
+				SPAWN_DBG(0)
+					src.beep(10)
+				return ..()
 
 /obj/item/gimmickbomb/gold
 	name = "Gold Bomb"
@@ -910,16 +980,6 @@ PIPE BOMBS + CONSTRUCTION
 			SPAWN_DBG(0)
 				M.become_statue(getMaterial("gold"))
 		..()
-
-
-/obj/item/gimmickbomb/butt/prearmed
-	armed = 1
-	anchored = 1
-
-	New()
-		SPAWN_DBG(0)
-			src.beep(10)
-		return ..()
 
 /obj/item/gimmickbomb/owlgib/prearmed
 	armed = 1

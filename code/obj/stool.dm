@@ -1521,7 +1521,7 @@
 		return
 
 /* steplader */
-/obj/stool/stepstool //this can be cleaned up from some lingering buckle stuffs and other checks
+/obj/stool/stepstool //this can be cleaned up from some lingering buckle stuffs and other checks. also forces looking up
 	name = "stepladder"
 	desc = "A small freestanding ladder that lets you peek your head up at the ceiling. Mostly for changing lightbulbs. Maybe for wrestling."
 	icon = 'icons/obj/fluid.dmi'
@@ -1608,6 +1608,8 @@
 				if (M == user)
 					user.visible_message("<span class='notice'><b>[M]</b> steps off [H.on_chair].</span>", "<span class='notice'>You step off [src].</span>")
 					src.add_fingerprint(user)
+					M.lookingup = 0
+					get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_mob(M)
 					unbuckle()
 					return
 			if (src.foldable)
@@ -1617,6 +1619,8 @@
 					chump.on_chair = 0
 					chump.pixel_y = 0
 					chump.ceilingreach = 0
+					chump.lookingup = 0
+					get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_mob(chump)
 					chump.changeStatus("weakened", 1 SECOND)
 					chump.changeStatus("stunned", 2 SECONDS)
 					random_brute_damage(chump, 15)
@@ -1669,6 +1673,8 @@
 			to_buckle.set_loc(src.loc)
 			to_buckle.pixel_y = 10
 			to_buckle.ceilingreach = 1
+			to_buckle.lookingup = 1
+			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_mob(to_buckle)
 			if (src.anchored)
 				to_buckle.anchored = 1
 			H.on_chair = src
@@ -1703,6 +1709,8 @@
 		if (istype(H) && H.on_chair)// == 1)
 			M.pixel_y = 0
 			M.ceilingreach = 0
+			M.lookingup = 0
+			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_mob(M)
 			reset_anchored(M)
 			M.buckled = null
 			src.buckled_guy = null

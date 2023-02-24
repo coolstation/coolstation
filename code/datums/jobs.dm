@@ -59,6 +59,7 @@
 	var/spawn_miscreant = 0
 	var/rounds_needed_to_play = 0 //0 by default, set to the amount of rounds they should have in order to play this
 	var/map_can_autooverride = 1 // if set to 0 map can't change limit on this job automatically (it can still set it manually)
+	var/do_not_save_gun = 0		// if set to 1, this job will not pull from the gun's persistence cloud nor will it register one at end of round.
 
 	New()
 		..()
@@ -142,6 +143,9 @@
 			if (M.traitHolder && !M.traitHolder.hasTrait("loyalist"))
 				cant_spawn_as_rev = 1 //Why would an NT Loyalist be a revolutionary?
 
+			if (src.do_not_save_gun && !isnull(M.mind))
+				M.mind.do_not_save_gun = 1
+
 // Command Jobs
 
 ABSTRACT_TYPE(/datum/job/command)
@@ -149,6 +153,7 @@ ABSTRACT_TYPE(/datum/job/command)
 	linkcolor = "#00CC00"
 	slot_card = /obj/item/card/id/command
 	map_can_autooverride = 0
+	do_not_save_gun = 1
 
 /datum/job/command/captain
 	name = "Captain"
@@ -463,6 +468,7 @@ ABSTRACT_TYPE(/datum/job/security)
 	linkcolor = "#FF0000"
 	slot_card = /obj/item/card/id/security
 	recieves_miranda = 1
+	do_not_save_gun = 1
 
 /datum/job/security/security_officer
 	name = "Security Officer"
@@ -867,6 +873,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 /datum/job/civilian/bartender
 	name = "Bartender"
 	alias_names = list("Barman")
+	do_not_save_gun = 1
 	limit = 1
 	wages = PAY_UNTRAINED
 	slot_belt = list(/obj/item/device/pda2/bartender)
@@ -2275,6 +2282,41 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	slot_poc2 = list()
 	slot_poc1 = list()
 // hidden jobs for nt-so vs syndicate spec-ops
+
+/datum/job/special/juicer/ //gotta have a root somewhere
+	linkcolor = "#0066ff"
+	name = "Juicer"
+	limit = 0
+	wages = 0
+	slot_back = list()
+	slot_belt = list()
+	slot_jump = list()
+	slot_suit = list()
+	slot_head = list()
+	slot_foot = list()
+	slot_ears = list()
+	slot_mask = list()
+	slot_card = null		///obj/item/card/id/
+	slot_poc1 = list()
+	slot_poc2 = list()
+	slot_lhan = list()
+	slot_rhan = list()
+
+/datum/job/special/juicer/clubfert
+	linkcolor = "#0066ff"
+	name = "Juicer Clubgoer"
+	slot_jump = list(/obj/item/clothing/under/gimmick/eightiesmens) //temporary until i can get a good list together, this supports pick() doesn't it?
+	slot_foot = list(/obj/item/clothing/shoes/heels/dancin)
+	special_spawn_location = 1 //club, duh
+	spawn_x = 194 //hopefully this won't futz with npc spawns
+	spawn_y = 131
+	spawn_z = 5
+
+	special_setup(var/mob/living/carbon/human/M)
+		..()
+		if (!M)
+			return
+		M.set_mutantrace(/datum/mutantrace/fert) //they're all dooks, huh?
 
 /datum/job/special/syndicate_specialist
 	linkcolor = "#C70039"

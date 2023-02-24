@@ -95,6 +95,11 @@ Custom Books
 		icon_state = "cargoguide"
 		file_path = "strings/books/cargo_pocket_guide.txt"
 
+	gunsmith
+		name = "Gun's Systen Pocket Guide"
+		icon_state = "gunguide"
+		file_path = "strings/books/gun_pocket_guide.txt"
+
 /****MatSci and Mining****/
 
 /obj/item/paper/book/from_file/matsci_guide_old

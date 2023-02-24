@@ -117,13 +117,16 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	var/waking_critters = 0
 
 	// this chunk zone is for Area Ambience
-	var/sound_loop = null
-	var/sound_loop_vol = 50
+	var/sound_loop_1 = null
+	var/sound_loop_1_vol = 50
+	var/sound_loop_2 = null
+	var/sound_loop_2_vol = 50
 	var/sound_fx_1 = null
 	var/sound_fx_2 = null
 	var/tmp/played_fx_1 = 0
 	var/tmp/played_fx_2 = 0
 	var/sound_group = null
+	var/sound_group_varied = null //crossfade between sounds in group, outside is rain inside is rain on roof etc
 
 	/// default environment for sounds - see sound datum vars documentation for the presets.
 	var/sound_environment = EAX_PADDED_CELL
@@ -175,12 +178,41 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 				if (lastarea) //People can come from places with no area. :byondood:
 					M.client.last_soundgroup = lastarea.sound_group
 
-				if (sound_loop)
-					M.client.playAmbience(src, AMBIENCE_LOOPING, sound_loop_vol)
+				if (sound_loop_1)
+					M.client.playAmbience(src, AMBIENCE_LOOPING_1, sound_loop_1_vol)
+
+				if (sound_loop_2) //secondary loop, transition and mixing
+					M.client.playAmbience(src, AMBIENCE_LOOPING_2, sound_loop_2_vol)
 
 				if (!played_fx_1 && prob(AMBIENCE_ENTER_PROB))
 					src.pickAmbience()
 					M.client.playAmbience(src, AMBIENCE_FX_1, 18)
+
+				//playAmbienceZ(Z level as num, passthrough vol in code/modules/sound.dm
+				//the function picks the z-loop to play for whatever z-level you're on, if defined
+				#ifdef DESERT_MAP //only do this for gehenna for now, but if anyone else wants in on it i WILL generalize it immediately rather than eventually -bob
+				var/insideness = 1
+				//reduces audio by (0.5*insidedness) + 1
+				//1 is outside, no reduction
+				//2 is 33%
+				//3 is 50%
+				//4 is 60%
+				//7 is 75%
+				//9 is 80%
+				//20 is 95% and is a special case to just mute the sound without stopping it
+
+				if(M.loc.loc.type != /area/space) //bleh
+					insideness = 4 //this is the easiest level to check so let's just use this as our non-space case FOR NOW (happy 2053 to you reading this)
+					//can make a proc that does a calculation that might be useful for adjusting a room's sound environment in general
+					//especially if we figure out how to implement occlusion and such. (god i hope sound occlusion isn't calculated serverside...)
+				//categories and checks for later or maybe never:
+				//outside
+				//non-space area that's open
+				//non-space area that's insulated but adjacent to /area/space (window, wall)
+				//non-space area that's insulated but not adjacent (deep in station)
+				M.client.playAmbienceZ(M.z, insideness)
+				#endif
+
 				#undef AMBIENCE_ENTER_PROB
 
 		if ((isliving(A) || iswraith(A)) || locate(/mob) in A)
@@ -227,13 +259,15 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 		if (ismob(A))
 			var/mob/M = A
 			if (M?.client)
-				if (sound_loop || sound_group)
+				if (sound_loop_1 || sound_loop_2 || sound_group)
 					SPAWN_DBG(1 DECI SECOND)
 						var/area/mobarea = get_area(M)
 						// If the area we are exiting has a sound loop but the new area doesn't
 						// we should stop the ambience or it will play FOREVER causing player insanity
-						if (M?.client && (mobarea?.sound_group != src.sound_group || isnull(src.sound_group)) && !mobarea?.sound_loop)
-							M.client.playAmbience(src, AMBIENCE_LOOPING, 0) //pass 0 to cancel
+						if (M?.client && (mobarea?.sound_group != src.sound_group || isnull(src.sound_group)) && (!mobarea?.sound_loop_1)) //different place and doesn't have loop 1?
+							M.client.playAmbience(src, AMBIENCE_LOOPING_1, 0) //pass 0 to cancel
+						if (M?.client && (mobarea?.sound_group != src.sound_group || isnull(src.sound_group)) && (!mobarea?.sound_loop_2)) //same with loop 2?
+							M.client.playAmbience(src, AMBIENCE_LOOPING_2, 0) //pass 0 to cancel
 
 		if ((isliving(A) || iswraith(A)) || locate(/mob) in A)
 			//world.log << "[src] exited by [A]"
@@ -389,7 +423,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 			if ("Zen Garden") sound_fx_1 = pick('sound/ambience/station/ZenGarden1.ogg','sound/ambience/station/ZenGarden2.ogg')
 			//if ("Engine Control") sound_fx_1 = pick(ambience_engine)
 			//if ("Atmospherics") sound_fx_1 = pick(ambience_atmospherics)
-			if ("Radio Server") sound_fx_1 = pick(ambience_computer) //"Computer Core"
+			if ("Radio Server", "Server Room", "Computer Lab") sound_fx_1 = pick(ambience_computer) //"Computer Core"
+				//todo: computer ambience only if area's apc is powering equipment
 			//if ("Engineering Power Room") sound_fx_1 = pick(ambience_power)
 			if ("Ice Moon") sound_fx_1 = pick('sound/ambience/nature/Wind_Cold1.ogg', 'sound/ambience/nature/Wind_Cold2.ogg', 'sound/ambience/nature/Wind_Cold3.ogg')
 			if ("Biodome North") sound_fx_1 = pick('sound/ambience/nature/Biodome_Bugs.ogg', 'sound/ambience/nature/Biodome_Birds1.ogg', 'sound/ambience/nature/Biodome_Birds2.ogg', 'sound/ambience/nature/Biodome_Monkeys.ogg')
@@ -801,7 +836,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	sims_score = 15
 	expandable = 0
 	sound_group = "some place"
-	sound_loop = 'sound/ambience/spooky/Somewhere_Tone.ogg'
+	sound_loop_1 = 'sound/ambience/spooky/Somewhere_Tone.ogg'
 
 /area/someplacehot
 	name = "some place"
@@ -813,8 +848,8 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	skip_sims = 1
 	sims_score = 15
 	sound_group = "some place hot"
-	sound_loop = 'sound/ambience/loop/Fire_Medium.ogg'
-	sound_loop_vol = 75
+	sound_loop_1 = 'sound/ambience/loop/Fire_Medium.ogg'
+	sound_loop_1_vol = 75
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		..()
@@ -924,7 +959,7 @@ ABSTRACT_TYPE(/area/adventure)
 				helldrone_awake_sound.file = 'sound/machines/giantdrone_loop.ogg'
 				helldrone_awake_sound.repeat = 0
 				helldrone_awake_sound.wait = 0
-				helldrone_awake_sound.channel = 122
+				helldrone_awake_sound.channel = SOUNDCHANNEL_BIGALARM
 				helldrone_awake_sound.volume = 60
 				helldrone_awake_sound.priority = 255
 				helldrone_awake_sound.status = SOUND_UPDATE
@@ -934,7 +969,7 @@ ABSTRACT_TYPE(/area/adventure)
 				helldrone_wakeup_sound.file = 'sound/machines/giantdrone_startup.ogg'
 				helldrone_wakeup_sound.repeat = 0
 				helldrone_wakeup_sound.wait = 0
-				helldrone_wakeup_sound.channel = 122
+				helldrone_wakeup_sound.channel = SOUNDCHANNEL_BIGALARM
 				helldrone_wakeup_sound.volume = 60
 				helldrone_wakeup_sound.priority = 255
 				helldrone_wakeup_sound.status = SOUND_UPDATE
@@ -1091,17 +1126,23 @@ ABSTRACT_TYPE(/area/adventure)
 /area/hollowasteroid/ //evilderelict.dm
 	name = "Forgotten Subterranean Wreckage"
 	icon_state = "derelict"
-	sound_loop = 'sound/ambience/spooky/Evilreaver_Ambience.ogg'
+	sound_loop_1 = 'sound/ambience/spooky/Evilreaver_Ambience.ogg'
 	requires_power = FALSE
 
 
 ABSTRACT_TYPE(/area/diner)
 /area/diner
 	sound_environment = EAX_HALLWAY
-	//sound_group = "diner"
 #ifdef UNDERWATER_MAP
 	requires_power = FALSE
 #endif
+	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
+	sound_loop_1_vol = -1
+	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
+	sound_loop_2_vol = 10
+	sound_group = "diner" //the music's kind of everywhere isn't it
+	sound_group_varied = 1
+	//check shuttles.dm for the diner
 
 /area/diner/hangar
 	name = "Space Diner Parking"
@@ -1122,9 +1163,12 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner/hallway
 	name = "Space Diner Hallway"
 	icon_state = "blue"
-	sound_loop = 'sound/ambience/music/tane_loop_distorted.ogg'
 	sound_environment = EAX_HALLWAY
-	sound_loop_vol = 70
+	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
+	sound_loop_1_vol = 20
+	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
+	sound_loop_2_vol = 70
+	sound_group_varied = 1
 
 /area/diner/hallway/docking
 	name = "Space Diner East Shuttle Docks"
@@ -1165,28 +1209,36 @@ ABSTRACT_TYPE(/area/diner)
 /area/juicer
 	name = "Juicin' Grounds"
 	icon_state = "green"
+	sound_group = "diner"
 
 /area/juicer/club
 	name = "The Juice"
 	icon_state = "juicer"
-	sound_loop = 'sound/ambience/music/tane_loop_louder.ogg'
 	sound_environment = EAX_CONCERT_HALL
-	sound_loop_vol = 240
-	//sound_group = "diner"
+	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
+	sound_loop_1_vol = 240
+	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
+	sound_loop_2_vol = 20
+	sound_group_varied = 1
 
 /area/juicer/club/outside
 	name = "Club Juice"
 	icon_state = "juicer2"
-	sound_loop = 'sound/ambience/music/tane_loop_distorted.ogg'
 	sound_environment = EAX_CARPETED_HALLWAY
-	sound_loop_vol = 140
+	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
+	sound_loop_1_vol = 20
+	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
+	sound_loop_2_vol = 140
+	sound_group_varied = 1
 
 /area/juicer/club/back
 	name = "Club Juice back of house"
 	icon_state = "juicer3"
-	sound_loop = 'sound/ambience/music/tane_loop_distorted.ogg'
 	sound_environment = EAX_SEWER_PIPE
-	sound_loop_vol = 100
+	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
+	sound_loop_1_vol = 20
+	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
+	sound_loop_2_vol = 100
 
 // Gore's Z5 Space generation areas //
 ABSTRACT_TYPE(/area/prefab)
@@ -1228,7 +1280,7 @@ ABSTRACT_TYPE(/area/prefab)
 /area/prefab/candy_shop
 	name = "Candy Shop"
 	icon_state = "blue"
-	sound_loop = 'sound/ambience/music/shoptheme.ogg'
+	sound_loop_1 = 'sound/ambience/music/shoptheme.ogg'
 	sound_environment = EAX_ROOM
 
 /area/prefab/space_casino
@@ -1329,7 +1381,7 @@ ABSTRACT_TYPE(/area/prefab)
 	name = "Mobius Strip Mall"
 	icon_state = "purple"
 	sound_environment = EAX_ROOM
-	sound_loop = 'sound/ambience/music/shoptheme.ogg'
+	sound_loop_1 = 'sound/ambience/music/shoptheme.ogg'
 
 /area/prefab/mobius/mfortuna
 	name = "M. Fortuna's House of Fortune"
@@ -1992,7 +2044,7 @@ ABSTRACT_TYPE(/area/station/mining)
 	sound_environment = EAX_LIVINGROOM
 #ifdef SUBMARINE_MAP
 	sound_group = "bridge"
-	sound_loop = 'sound/ambience/station/underwater/sub_bridge_ambi1.ogg'
+	sound_loop_1 = 'sound/ambience/station/underwater/sub_bridge_ambi1.ogg'
 #endif
 
 /area/station/bridge/united_command //currently only on atlas - ET
@@ -2199,7 +2251,6 @@ ABSTRACT_TYPE(/area/station/crew_quarters/radio)
 
 /area/station/crew_quarters/cafeteria/the_rising_tide_bar
 		name = "The Rising Tide"
-
 
 /area/station/crew_quarters/kitchen
 	name = "Kitchen"
@@ -2751,8 +2802,8 @@ ABSTRACT_TYPE(/area/station/security)
 	icon_state = "detective"
 	sound_environment = EAX_FOREST
 	workplace = 1
-	sound_loop = 'sound/ambience/station/detectivesoffice.ogg'
-	sound_loop_vol = 30
+	sound_loop_1 = 'sound/ambience/station/detectivesoffice.ogg'
+	sound_loop_1_vol = 30
 	sound_group = "detective"
 
 /area/station/security/detectives_office_manta/detectives_bedroom
@@ -2980,6 +3031,22 @@ ABSTRACT_TYPE(/area/station/science)
 	name = "Research Sector Construction Area"
 	icon_state = "yellow"
 	do_not_irradiate = 1
+
+/area/station/science/server_room/ //might not always be in research
+	name = "Server Room"
+	icon_state = "red"
+
+/area/station/science/server_room/cold
+	name = "Server Room - Cold Backup"
+	icon_state = "blue"
+
+/area/station/science/server_room/warm
+	name = "Server Room - Cold Backup"
+	icon_state = "orange"
+
+/area/station/science/computer_lab
+	name = "Computer Lab"
+	icon_state = "purple"
 
 ABSTRACT_TYPE(/area/station/chapel)
 /area/station/chapel
@@ -4107,7 +4174,7 @@ area/station/hallway/starboardupperhallway
 	sound_environment = EAX_LIVINGROOM
 #ifdef SUBMARINE_MAP
 	sound_group = "bridge"
-	sound_loop = 'sound/ambience/station/underwater/sub_bridge_ambi1.ogg'
+	sound_loop_1 = 'sound/ambience/station/underwater/sub_bridge_ambi1.ogg'
 #endif
 
 /area/station2/captain //Three below this one are because Manta uses specific ambience on the bridge
@@ -4768,8 +4835,8 @@ area/station/crewquarters/cryotron
 	icon_state = "detective"
 	sound_environment = EAX_FOREST
 	workplace = 1
-	sound_loop = 'sound/ambience/station/detectivesoffice.ogg'
-	sound_loop_vol = 30
+	sound_loop_1 = 'sound/ambience/station/detectivesoffice.ogg'
+	sound_loop_1_vol = 30
 	sound_group = "detective"
 
 	detectives_bedroom

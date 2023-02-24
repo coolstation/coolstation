@@ -387,6 +387,12 @@
 			M:update_face()
 			M:update_body()
 
+		if(prob(3) && ishuman(M))
+			boutput(M, "<span class='alert'>You wackily and randomly turn into a ferret.</span>")
+			M.set_mutantrace(/datum/mutantrace/fert)
+			M:update_face()
+			M:update_body()
+
 		if(prob(3))
 			boutput(M, "<span class='alert'>You wackily and randomly turn into a monkey.</span>")
 			M:monkeyize()

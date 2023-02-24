@@ -19,6 +19,14 @@
 #define WASTELAND_MAX_TEMP 350
 var/global/gehenna_time = GEHENNA_TIME
 
+//audio
+//you want some audio to play overall in "space" but reduced when you're in a non-space area? check it out
+var/global/gehenna_surface_loop = 'sound/ambience/loop/Gehenna_Surface.ogg' //Z1
+var/global/gehenna_underground_loop = 'sound/ambience/loop/Gehenna_Surface.ogg' //Z3
+// volume curve so wind stuff is loudest in the cold, cold night
+var/global/gehenna_surface_loop_vol = (80 + ((0.5*sin(GEHENNA_TIME-135)+0.5)*(50))) //volume meant for outside, min 80 max 130
+var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 3) //just have it the same but quiet i guess (with a proper cave soundscape, increase to like 100 or something)
+
 // Gehenna shit tho
 /turf/space/gehenna
 	name = "planet gehenna"
@@ -198,6 +206,36 @@ var/global/gehenna_time = GEHENNA_TIME
 /area/gehenna/wasteland
 	icon_state = "red"
 	name = "the barren wastes"
+	teleport_blocked = 0
+	sound_environment = EAX_PLAIN
+
+/area/gehenna/wasteland/stormy
+	name = "the horrid wastes"
+	icon_state = "yellow"
+	sound_environment = EAX_PLAIN
+	//sound_loop_1 = 'sound/ambience/loop/nothingyet' //need something wimdy, maybe overlay a storm sound on this
+	//sound_loop_1_vol = 150 //always loud, fukken storming
+
+	New()
+		..()
+		overlays += image(icon = 'icons/turf/areas.dmi', icon_state = "dustverlay", layer = EFFECTS_LAYER_BASE)
+
+	Entered(atom/movable/O)
+		..()
+		if (ishuman(O))
+			var/mob/living/jerk = O
+			if (!isdead(jerk))
+				if((istype(jerk:wear_suit, /obj/item/clothing/suit/armor))||(istype(jerk:wear_suit, /obj/item/clothing/suit/space))&&(istype(jerk:head, /obj/item/clothing/head/helmet/space))) return
+				random_brute_damage(jerk, 50)
+				jerk.changeStatus("weakened", 40 SECONDS)
+				step(jerk,EAST)
+				if(prob(50))
+					playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_2.ogg', 50, 1)
+					boutput(jerk, pick("Dust gets caught in your eyes!","The wind blows you off course!","Debris pierces through your skin!"))
+
+/area/gehenna/underground
+	icon_state = "unknown"
+	name = "the sulfurous caverns"
 	teleport_blocked = 0
 
 /*

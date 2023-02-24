@@ -103,6 +103,11 @@
 				if(76 to INFINITY)
 					icon_state = initial(src.icon_state) + "-0"
 
+		elevator //''''temporary'''' hack so damage doesn't change its manually-set-by-mapper iconstate
+			name = "elevator platform"
+			desc = "It's bad enough when the grilles are stationary, this feels even WORSE."
+			icon_state = "catwalk_cross" //realizing now that we could just use catwalk_cross but this has a more sensible description anyway
+
 		grey //Old flavour (straight pieces and T junctions)
 			icon_state = "catwalk_grey"
 
@@ -144,6 +149,122 @@
 
 			twosides
 				icon_state = "catwalk_jen_2sides"
+
+		bob // okay my turn yes hello this is bobcat walk welcome to you
+			name = "maintenance catwalk"
+			icon = 'icons/obj/catwalkfancy.dmi' //not actually fancy but i'm gonna try to redo them all to use overlay parts
+			icon_state = "catwalk_bob" //has centered middle channel to see underwires easily
+			desc = "This doesn't look very safe, but it's probably good enough."
+			plane = PLANE_NOSHADOW_BELOW
+			layer = CATWALK_OVERPIPE
+			connects_to_obj = list(/obj/grille/catwalk/bob) //only itself
+			var/edges = null //how many edges does this grille have? manually specified at the moment for bobcat walk
+			var/image/edge_overlay = null
+			//var/image/damage_overlay = null
+			//var/damage_dir = pick(1,2,4,8) //if it will work like i hope it will, give damage overlays 4 directions and pick one at random
+
+			//manually called for now, still wip. i hate all this so if you have a feeling you wanna fix it, go for it
+			proc/update_edges() //for constructing flat, directionally tiling autogrilles/catwalks. call on change, but not on build (mapper may want things normal)
+				var/connections = 0 //assume isolated at start
+				var/connectdir = 0
+				for (var/dir in cardinal)
+					var/turf/T = get_step(src, dir)
+					if (islist(connects_to_obj) && length(connects_to_obj))
+						for (var/i=1, i <= connects_to_obj.len, i++)
+							var/atom/A = locate(connects_to_obj[i]) in T
+							if (!isnull(A)) //found it
+								connectdir |= dir
+								connections++
+								break //stop checking anything else on the tile
+				if(connectdir in ordinal) //literal edge case: since single edge overlay has 8 dirs, diagonals get to be lumped under one continuous edge!
+					src.edges = 1
+				else
+					src.edges = 4 - connections
+				switch(src.edges) //determine directional flip
+					if(3)
+						src.dir = turn(connectdir,180) //three edges? take the direction of the one connection and do the opposite.
+					if(2)
+						src.dir = connectdir //opposite edges? leave it, that's how the spriting/mapping works
+					if(1)
+						if(connectdir in ordinal) //literal edge case: since single edge overlay has 8 dirs, diagonals get to be lumped under one continuous edge!
+							src.dir = turn(connectdir,180) //and it also gets a basic flip
+						else
+							src.dir = 15 - connectdir //if the three directions are grille, you're surrounded with only one way left to go.
+				src.overlay_edges() //need to decide if here or update proc but if you're calling in you probably want this
+
+			proc/overlay_edges() //call this on autocatwalk new() and when the number of grille-touching edges changes, autowall style. only connect to self!
+				if (!src.edges)
+					ClearSpecificOverlays("edge")
+					edge_overlay = null
+				else
+					src.edge_overlay = image(src.icon,"[initial(src.icon_state)]-edge-[src.edges]") //these edges are borrowed from jen's catwalks
+				UpdateOverlays(src.edge_overlay,"edge")
+
+			/*proc/update_damage() //call this on damage, work in progress, i haven't built any overlays yet. groundwork for wall and floor damage and general bustin'
+				var/diff = get_fraction_of_percentage_and_whole(health,health_max)
+				var/dam = 0
+				if (src.ruined)
+					return //already fucked all the way up? only thing to do is scrap it
+				switch(diff)
+					if(-INFINITY to 25)
+						dam = 3
+					if(26 to 50)
+						dam = 2
+					if(51 to 75)
+						dam = 1
+					if(76 to INFINITY)
+						dam = 0
+				src.damage_overlay = image(src.icon,"[initial(src.icon_state)]-damage-[dam]",dir=src.damage_dir) //hopefully can be generalized
+				//totally ruined catwalks get cut state, unless damaged by conditions of corrosion or burning. i think that's handled elsewhere, which is fine
+				UpdateOverlays(src.edge_overlay,"damage") */
+
+			/*	actually that overlay_damage thing could probably just go into the damage handling switch case of update_icon(), can't it. i'll save it for later..
+				will cut up and rewrite jen catwalks using these overlays and then do the same with regular catwalks
+				finally, do the same with grilles. after it works great i can start writing something neat for flooring and walls getting scorched and fucked up
+				leaving this as notes to myself later, at least it works now ilu - bob*/
+
+			attack_hand(obj/M, mob/user) //copying jen's behavior for now
+				return 0
+
+			attackby(obj/item/W, mob/user)
+				if (issnippingtool(W))
+					..()
+				else
+					src.loc.Attackby(user.equipped(), user)
+
+			reagent_act(var/reagent_id,var/volume)
+				..()
+
+			New()
+				..()
+				src.overlay_edges() //when this is generalized we can move this into update_icon
+				src.update_icon()
+
+			//not buildable (yet) but we can probably do that + define standard catwalks per map
+			side
+				edges = "1"
+				#ifdef IN_MAP_EDITOR
+				icon_state = "catwalk_bob-map-1" //collapsed the states to icons but this is just for mapping
+				#endif
+			twosides
+				edges = "2"
+				#ifdef IN_MAP_EDITOR
+				icon_state = "catwalk_bob-map-2"
+				#endif
+			inner
+				edges = "3"
+				#ifdef IN_MAP_EDITOR
+				icon_state = "catwalk_bob-map-3"
+				#endif
+			fourcorners
+				edges = "4"
+				#ifdef IN_MAP_EDITOR
+				icon_state = "catwalk_bob-map-4"
+				#endif
+			corroded //for mappers, forget edges
+				icon_state = "catwalk_bob-corroded"
+			melted
+				icon_state = "catwalk_bob-melted"
 
 	onMaterialChanged()
 		..()
