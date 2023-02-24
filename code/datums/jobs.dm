@@ -2283,6 +2283,41 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	slot_poc1 = list()
 // hidden jobs for nt-so vs syndicate spec-ops
 
+/datum/job/special/juicer/ //gotta have a root somewhere
+	linkcolor = "#0066ff"
+	name = "Juicer"
+	limit = 0
+	wages = 0
+	slot_back = list()
+	slot_belt = list()
+	slot_jump = list()
+	slot_suit = list()
+	slot_head = list()
+	slot_foot = list()
+	slot_ears = list()
+	slot_mask = list()
+	slot_card = null		///obj/item/card/id/
+	slot_poc1 = list()
+	slot_poc2 = list()
+	slot_lhan = list()
+	slot_rhan = list()
+
+/datum/job/special/juicer/clubfert
+	linkcolor = "#0066ff"
+	name = "Juicer Clubgoer"
+	slot_jump = list(/obj/item/clothing/under/gimmick/eightiesmens) //temporary until i can get a good list together, this supports pick() doesn't it?
+	slot_foot = list(/obj/item/clothing/shoes/heels/dancin)
+	special_spawn_location = 1 //club, duh
+	spawn_x = 194 //hopefully this won't futz with npc spawns
+	spawn_y = 131
+	spawn_z = 5
+
+	special_setup(var/mob/living/carbon/human/M)
+		..()
+		if (!M)
+			return
+		M.set_mutantrace(/datum/mutantrace/fert) //they're all dooks, huh?
+
 /datum/job/special/syndicate_specialist
 	linkcolor = "#C70039"
 	name = "Syndicate Special Operative"

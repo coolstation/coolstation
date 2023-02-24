@@ -158,7 +158,6 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 				if(!IN_RANGE(F, user, 4)) //if we can't find a marten within 4 tiles then move on
 					continue
 				F.fart_along() // chance for mart to fart
-			//TODO: someone else needs to take a look, the proc exists and works on the farten but this is not calling it, this is just the poss scream stun code modified
 
 
 

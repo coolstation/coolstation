@@ -1434,6 +1434,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	flags = TABLEPASS
 	fits_under_table = 1
 	var/freakout = 0
+	var/gotfreaked = 0
 	var/marten = 0
 	var/farten = 0
 	add_abilities = list(/datum/targetable/critter/trip)
@@ -1442,13 +1443,13 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 		..()
 
 		//50% chance to be a dark-colored ferret
-		if (marten == 0) //only for regular ferts
+		if (!marten) //only for regular ferts
 			if (prob(50))
 				src.icon_state = "ferret-dark"
 				src.icon_state_dead = "ferret-dark-dead"
 
 		//10% chance for a mart to fart
-		if (farten == 0) //only bother to do this with the regular one
+		if ((marten) && (!farten)) //only bother to do this with the regular one
 			if (prob(10))
 				src.farten = 1
 				src.name = "pine farten"
@@ -1482,12 +1483,30 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 		if (isdead(src))
 			return 0
 
+		if (prob(70))
+			SPAWN_DBG(0)
+				var/takeawalk = pick(cardinal)
+				step(src, takeawalk)
+				if (prob(50))
+					sleep(0.5 SECONDS)
+					step(src, takeawalk)
+					if (prob(20))
+						sleep(0.5 SECONDS)
+						step(src, takeawalk)
+						if (prob(30))
+							sleep(0.5 SECONDS)
+							step(src, takeawalk)
+					else if	(prob(20))
+						sleep(0.5 SECONDS)
+						step(src, pick(cardinal))
+
 		if (src.freakout)
 			SPAWN_DBG(0)
 				var/x = rand(2,4)
 				while (x-- > 0)
 					src.pixel_x = rand(-6,6)
 					src.pixel_y = rand(-6,6)
+					step(src, pick(cardinal), 1)
 					sleep(0.2 SECONDS)
 
 			//chance to excite other ferts? probably not smart but
@@ -1497,14 +1516,38 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 						var/mob/living/critter/small_animal/meatslinky/F = O
 						F.contagiousfreakout()
 
+			if (prob(70))
+				var/takeawalk = pick(cardinal)
+				step(src, takeawalk)
+				if (prob(50))
+					step(src, takeawalk)
+					if (prob(40))
+						step(src, takeawalk)
+						if (prob(35))
+							step(src, takeawalk)
+					else if	(prob(30))
+						step(src, pick(cardinal))
 			if (prob(5))
 				animate_spin(src, prob(50) ? "L" : "R", 1, 0) //infinite spin just got a little bit silly
 
 			if (prob(10))
 				src.visible_message("<span class='emote'><b>[src]</b> [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles")]!</span>")
 
-			if (prob(5))
+			if (prob(3))
 				src.emote("laugh")
+
+			if (prob(3)) //zoomies
+				SPAWN_DBG(0)
+					src.visible_message("<span class='emote'><b>[src]</b> starts zooming around!</span>")
+					var/zoom = pick(cardinal)
+					walk(src, zoom)
+					var/x = rand(6,10)
+					while (x-- > 0)
+						if(prob(50))
+							zoom = turn(zoom,pick(90, 45, -45, -90))
+							walk(src, zoom)
+						sleep(0.5 SECONDS)
+					walk(src, 0) //okay stop
 
 			if (prob(15) && src.farten == 1) //fartens are 2.5x as excited during freakout
 				src.emote("fart")
@@ -1517,6 +1560,9 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 		if (src.farten == 1) //the reason for the name/gimmick, occasionally farts even when not freaking out
 			if (prob(5))
 				src.emote("fart")
+
+		if (prob(2))
+			src.emote("laugh")
 
 		else if (!src.client && prob(2)) //add chance of freakout if nothing else
 			src.freakout = rand(30,40)
@@ -1531,6 +1577,8 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 			if ("fart")
 				if (src.emote_check(voluntary, 50))
 					playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
+					if(farten)
+						src.expel_fart_gas()
 					if(src.freakout)
 						return "<span class='emote'><b>[src]</b> farts <b>WILDLY</b>!</span>"
 					else
@@ -1540,41 +1588,64 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	proc/contagiousfreakout() //if you think regular ferrets get excited over other regular ferrets just you wait bud
 		if (src.freakout) //boost chance to freak out if they're currently freaking out, but don't add to it
 			if (prob(15))
-				src.visible_message("<span class='emote'><b>[src]</b> goes absolutely bonkers!</span>")
+				if ((!src.gotfreaked))
+					src.gotfreaked = 1
+					SPAWN_DBG(12)
+						src.gotfreaked = 0
+					src.visible_message("<span class='emote'><b>[src]</b> goes absolutely bonkers!</span>")
+					SPAWN_DBG(0)
+						var/x = rand(20,30)
+						while (x-- > 0)
+							src.pixel_x = rand(-6,6)
+							src.pixel_y = rand(-6,6)
+							src.dir = pick(1,2,4,8)
+							if(prob(4))
+								animate_spin(src, prob(50) ? "L" : "R", 1, 0)
+							if(prob(4))
+								src.emote("laugh")
+							sleep(0.2 SECONDS)
+						src.visible_message("<span class='emote'><b>[src]</b> calms down a little bit.</span>")
+			else
+				return
+		if (prob(5))
+			if ((!src.gotfreaked) || resonance_fertscade)
+				src.gotfreaked = 1
+				SPAWN_DBG(12)
+					src.gotfreaked = 0
+				src.freakout += 10 //from calm, they get a little antsier
+				src.visible_message("<span class='emote'><b>[src]</b> gets riled up!</span>")
 				SPAWN_DBG(0)
-					var/x = rand(20,30)
+					var/x = rand(10,20)
 					while (x-- > 0)
 						src.pixel_x = rand(-6,6)
 						src.pixel_y = rand(-6,6)
 						src.dir = pick(1,2,4,8)
-						if(prob(4))
-							animate_spin(src, prob(50) ? "L" : "R", 1, 0)
-						if(prob(4))
+						if(prob(3))
+							animate_spin(src, prob(50) ? "L" : "R", 1, 0) //try a rare spin every loop
+						if(prob(3))
 							src.emote("laugh")
 						sleep(0.2 SECONDS)
-					src.visible_message("<span class='emote'><b>[src]</b> calms down a little bit.</span>")
-			else
-				return
-		if (prob(5))
-			src.freakout += 10 //from calm, they get a little antsier
-			src.visible_message("<span class='emote'><b>[src]</b> gets riled up!</span>")
-			SPAWN_DBG(0)
-				var/x = rand(10,20)
-				while (x-- > 0)
-					src.pixel_x = rand(-6,6)
-					src.pixel_y = rand(-6,6)
-					src.dir = pick(1,2,4,8)
-					if(prob(3))
-						animate_spin(src, prob(50) ? "L" : "R", 1, 0) //try a rare spin every loop
-					if(prob(3))
-						src.emote("laugh")
-					sleep(0.2 SECONDS)
-				src.visible_message("<span class='emote'><b>[src]</b> calms down again. For now.</span>")
+					src.visible_message("<span class='emote'><b>[src]</b> calms down again. For now.</span>")
 		else
 			if(prob(10))
 				src.freakout += 5 //just a tiny bit because it happened
-			else
-				return
+
+	proc/expel_fart_gas() //only for pine fartens
+		var/turf/T = get_turf(src)
+		var/datum/gas_mixture/gas = new()
+		//gas.vacuum()
+		if(src.reagents && src.reagents.get_reagent_amount("fartonium") > 6.9)
+			gas.farts = 6.9
+		else if(src.reagents && src.reagents.get_reagent_amount("egg") > 6.9)
+			gas.farts = 2.69
+		else if(src.reagents && src.reagents.get_reagent_amount("refried_beans") > 6.9)
+			gas.farts = 1.69
+		else
+			gas.farts = 0.69
+		gas.temperature = T20C
+		gas.volume = R_IDEAL_GAS_EQUATION * T20C / 20000 //they're smaller, so, why not
+		if (T)
+			T.assume_air(gas)
 
 /mob/living/critter/small_animal/meatslinky/pine_marten //just a bigger ferret basically, specifically added for a fart joke
 	name = "pine marten"
