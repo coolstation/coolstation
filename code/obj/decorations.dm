@@ -1285,7 +1285,7 @@ obj/decoration/windchimes
 	icon_state = "windchime"
 	anchored = 1
 	density = 1
-<<<<<<< HEAD
+
 	var/cooldown = 500 //thats around five minutes yeah? -eagle
 
 	if(!ON_COOLDOWN(owner, "windchime-delay", 500 SECOND))
