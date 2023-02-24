@@ -1285,4 +1285,10 @@ obj/decoration/windchimes
 	icon_state = "windchime"
 	anchored = 1
 	density = 1
+	var/cooldown = 500 //thats around five minutes yeah? -eagle
 
+	if(!ON_COOLDOWN(owner, "windchime-delay", 500 SECOND))
+		playsound(owner, "sound/effects/windchimesbamboo.ogg", 50, 1)
+
+	attack_hand(mob/user as mob) //don't know how to make it so it doesn't just chime constantly -eagle
+		playsound (src.loc, [pick("sound/effects/windchimesbamboo.ogg"))
