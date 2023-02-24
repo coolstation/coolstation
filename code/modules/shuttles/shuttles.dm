@@ -105,6 +105,7 @@
 	name		= "NTFC Cargo Hub Dock"
 	target_area = /area/shuttle/cargo/hub
 	on_arrival()
+		shippingmarket.CSS_at_NTFC = TRUE
 		for(var/atom/movable/AM in locate(target_area))
 			var/datum/artifact/art = null
 			if(isobj(AM))
@@ -122,6 +123,8 @@
 							continue
 				shippingmarket.sell_crate(AM)
 
+
+
 /obj/machinery/computer/transit_terminal/cargo
 	name = "Cargo Shuttle Service Computer"
 	vehicle_id = "cargo_shuttle"
@@ -137,6 +140,7 @@
 
 
 	departing(datum/transit_stop/destination)
+		shippingmarket.CSS_at_NTFC = FALSE
 		var/turf/target
 		for(var/turf/T in locate(src.current_location.target_area))
 			target = T

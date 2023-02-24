@@ -10,6 +10,7 @@
 	var/list/active_traders = list()
 	var/max_buy_items_at_once = 99
 	var/last_market_update = 0
+	var/CSS_at_NTFC = TRUE
 
 	var/list/supply_requests = list() // Pending requests, of type /datum/supply_order
 	var/list/supply_history = list() // History of all approved requests, of type string
