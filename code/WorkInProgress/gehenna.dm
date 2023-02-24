@@ -158,6 +158,8 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 3) //just 
 						generateLight = 1
 						src.make_light()
 						break */
+		if(icon_state == "gehenna_beat" || icon_state == "gehenna")
+			src.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 
 
 	make_light()
@@ -198,7 +200,11 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 3) //just 
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "gehenna_corner"
 
-
+	beaten
+		name = "beaten earth"
+		desc = "this soil has been beaten flat by years of foot traffic."
+		icon = 'icons/turf/floors.dmi'
+		icon_state = "gehenna_beat"
 
 
 /area/gehenna
