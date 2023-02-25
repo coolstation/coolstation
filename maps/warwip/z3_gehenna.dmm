@@ -1384,6 +1384,7 @@
 	dir = 2
 	},
 /obj/grille/steel,
+/obj/window/south,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "aSf" = (
@@ -2668,8 +2669,11 @@
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/quartersC)
 "bCo" = (
-/obj/machinery/vending/meat,
+/obj/machinery/vending/meat{
+	pixel_x = -4
+	},
 /obj/decal/cleanable/dirt/random,
+/obj/window/east,
 /turf/simulated/floor/grime,
 /area/station/quartermaster/automat)
 "bCN" = (
@@ -4503,6 +4507,7 @@
 /obj/machinery/light/fluorescent/harsh/very{
 	dir = 1
 	},
+/obj/window/west,
 /turf/simulated/floor/plating,
 /area/station/engine/power)
 "cWc" = (
@@ -4812,6 +4817,10 @@
 /obj/machinery/space_heater,
 /turf/simulated/floor/plating,
 /area/station/hallway/secondary/exit)
+"dfu" = (
+/obj/window/east,
+/turf/simulated/floor/white/grime,
+/area/station/wc/public)
 "dfy" = (
 /obj/lattice,
 /turf/simulated/floor/plating/random,
@@ -5805,6 +5814,12 @@
 	dir = 9
 	},
 /area/station/mining/lobby)
+"dHR" = (
+/obj/item/sponge{
+	name = "loofah"
+	},
+/turf/simulated/floor/white/grime,
+/area/station/wc/public)
 "dIp" = (
 /obj/machinery/power/smes{
 	charge = 1e+006;
@@ -5922,6 +5937,13 @@
 /obj/disposaloutlet/west,
 /turf/simulated/floor/airless/engine/glow,
 /area/station/engine/combustion_chamber)
+"dLh" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/window/west,
+/turf/simulated/floor/white/grime,
+/area/station/wc/public)
 "dLr" = (
 /turf/simulated/floor/carpet/grime,
 /area/station/mining/staff_room)
@@ -9457,6 +9479,7 @@
 "fMv" = (
 /obj/disposalpipe/segment/cargo,
 /obj/decal/cleanable/dirt/random,
+/obj/grille/catwalk/jen,
 /turf/simulated/floor/plating,
 /area/station/mining/refinery)
 "fMK" = (
@@ -11509,6 +11532,7 @@
 /obj/machinery/power/data_terminal/cable_tray{
 	target_z = 1
 	},
+/obj/window/south,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "gYn" = (
@@ -12670,6 +12694,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/autoname_north,
+/obj/window/east,
 /turf/simulated/floor/plating,
 /area/station/engine/power)
 "hNL" = (
@@ -12915,6 +12940,11 @@
 /obj/disposalpipe/junction/right/east,
 /turf/simulated/floor/special/researchdown,
 /area/station/medical/basement)
+"hUI" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/window/east,
+/turf/simulated/floor,
+/area/station/security/processing)
 "hUR" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southeast,
 /turf/simulated/floor/plating,
@@ -15524,6 +15554,7 @@
 /area/station/science/lobby)
 "jze" = (
 /obj/machinery/portable_atmospherics/canister/air/large,
+/obj/window/west,
 /turf/simulated/floor/plating,
 /area/station/engine/power)
 "jzh" = (
@@ -17360,6 +17391,11 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/engine/inner)
+"kAM" = (
+/obj/window/west,
+/obj/item/rubberduck,
+/turf/simulated/floor/white/grime,
+/area/station/wc/public)
 "kBg" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -17827,6 +17863,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/grille/catwalk/jen,
 /turf/simulated/floor/plating,
 /area/station/mining/refinery)
 "kOP" = (
@@ -18760,7 +18797,10 @@
 	},
 /area/station/crew_quarters/fitness)
 "lpw" = (
-/obj/machinery/vending/air_vendor,
+/obj/machinery/vending/air_vendor{
+	pixel_x = -2
+	},
+/obj/window/east,
 /turf/simulated/floor/grime,
 /area/station/quartermaster/automat)
 "lpR" = (
@@ -19442,7 +19482,10 @@
 /turf/simulated/floor/plating,
 /area/station/storage/warehouse)
 "lOb" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/coffee{
+	pixel_x = -2
+	},
+/obj/window/east,
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "lOm" = (
@@ -21341,6 +21384,10 @@
 	},
 /obj/machinery/disposal,
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/light/small/warm{
+	dir = 1
+	},
+/obj/grille/catwalk/jen,
 /turf/simulated/floor/plating,
 /area/station/mining/refinery)
 "mTO" = (
@@ -22096,9 +22143,10 @@
 /turf/simulated/floor/plating,
 /area/station/science/research_director)
 "nre" = (
-/obj/item/rubberduck,
-/turf/simulated/floor/white/grime,
-/area/station/wc/public)
+/obj/decal/cleanable/dirt/random,
+/obj/window/west,
+/turf/simulated/floor/plating,
+/area/station/mining/refinery)
 "nrw" = (
 /obj/machinery/light/fluorescent/cool/very,
 /turf/simulated/floor/plating,
@@ -22815,6 +22863,7 @@
 	dir = 4
 	},
 /obj/decal/cleanable/rust/jen,
+/obj/window/south,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "nMK" = (
@@ -25663,6 +25712,7 @@
 "pKw" = (
 /obj/disposalpipe/segment/vertical,
 /obj/decal/cleanable/dirt/random,
+/obj/grille/catwalk/jen,
 /turf/simulated/floor/plating,
 /area/station/mining/refinery)
 "pKz" = (
@@ -26527,11 +26577,9 @@
 /turf/simulated/floor/plating,
 /area/station/engine/inner)
 "qlj" = (
-/obj/item/sponge{
-	name = "loofah"
-	},
-/turf/simulated/floor/white/grime,
-/area/station/wc/public)
+/obj/window/east,
+/turf/simulated/floor,
+/area/station/security/processing)
 "qlk" = (
 /obj/machinery/atmospherics/pipe/vertical_pipe/south{
 	target_z = 1
@@ -27275,8 +27323,11 @@
 /turf/simulated/floor,
 /area/station/security/detectives_office)
 "qLv" = (
-/obj/machinery/vending/standard,
+/obj/machinery/vending/standard{
+	pixel_x = 4
+	},
 /obj/decal/cleanable/dirt/random,
+/obj/window/west,
 /turf/simulated/floor/grime,
 /area/station/quartermaster/automat)
 "qLz" = (
@@ -28472,7 +28523,10 @@
 /turf/simulated/floor/carpet/red/standard,
 /area/station/security/hos/horizon)
 "rup" = (
-/obj/machinery/vending/pda,
+/obj/machinery/vending/pda{
+	pixel_x = 3
+	},
+/obj/window/west,
 /turf/simulated/floor/grime,
 /area/station/quartermaster/automat)
 "ruJ" = (
@@ -30427,6 +30481,7 @@
 "sHs" = (
 /obj/disposalpipe/segment/mineral,
 /obj/decal/cleanable/dirt/random,
+/obj/grille/catwalk/jen,
 /turf/simulated/floor/plating,
 /area/station/mining/refinery)
 "sHv" = (
@@ -31118,7 +31173,10 @@
 "sYW" = (
 /obj/machinery/light/fluorescent/cool/very,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
-/obj/machinery/clothingbooth,
+/obj/machinery/clothingbooth{
+	pixel_x = 4
+	},
+/obj/window/west,
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "sZb" = (
@@ -32117,6 +32175,7 @@
 /obj/item/reagent_containers/glass/beaker/cryoxadone{
 	pixel_x = -7
 	},
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
 /turf/simulated/floor/white,
 /area/station/medical/medbooth)
 "tBQ" = (
@@ -32377,7 +32436,10 @@
 /turf/simulated/floor/grey,
 /area/station/science/lobby)
 "tKY" = (
-/obj/machinery/vending/floppy,
+/obj/machinery/vending/floppy{
+	pixel_x = -4
+	},
+/obj/window/east,
 /turf/simulated/floor/grime,
 /area/station/quartermaster/automat)
 "tKZ" = (
@@ -32406,7 +32468,10 @@
 /turf/simulated/floor/sandytile,
 /area/station/crew_quarters/clown)
 "tLN" = (
-/obj/machinery/vending/computer3,
+/obj/machinery/vending/computer3{
+	pixel_x = 4
+	},
+/obj/window/west,
 /turf/simulated/floor/grime,
 /area/station/quartermaster/automat)
 "tMz" = (
@@ -32548,6 +32613,7 @@
 /area/station/maintenance/inner/ne)
 "tQz" = (
 /obj/disposalpipe/segment/sewage,
+/obj/window/west,
 /turf/simulated/floor,
 /area/station/security/processing)
 "tQB" = (
@@ -35856,6 +35922,7 @@
 /obj/storage/secure/closet/personal,
 /obj/decal/cleanable/dirt/random,
 /obj/decal/cleanable/rust/jen,
+/obj/item/device/reagentscanner,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "vJs" = (
@@ -36568,6 +36635,7 @@
 /obj/machinery/shower{
 	dir = 1
 	},
+/obj/window/east,
 /turf/simulated/floor/white/grime,
 /area/station/wc/public)
 "whm" = (
@@ -36834,6 +36902,7 @@
 "wpu" = (
 /obj/disposalpipe/segment/bent/east,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
+/obj/window/west,
 /turf/simulated/floor,
 /area/station/security/processing)
 "wpw" = (
@@ -37048,7 +37117,10 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
 	},
-/obj/machinery/vending/air_vendor,
+/obj/machinery/vending/air_vendor{
+	pixel_x = 3
+	},
+/obj/window/west,
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "wvk" = (
@@ -38475,6 +38547,14 @@
 /obj/decal/cleanable/dirt/jen,
 /turf/simulated/floor/sandytile,
 /area/station/crew_quarters/clown)
+"xtw" = (
+/obj/disposalpipe/trunk/zlevel{
+	dir = 2;
+	target_z = 1
+	},
+/obj/window/south,
+/turf/simulated/floor/plating,
+/area/station/maintenance/south)
 "xtV" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/wingrille_spawn/reinforced,
@@ -39011,7 +39091,11 @@
 /turf/simulated/floor,
 /area/station/storage/warehouse)
 "xLF" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/cigarette{
+	pixel_x = -2;
+	pixel_y = 3
+	},
+/obj/window/east,
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "xLP" = (
@@ -39324,6 +39408,7 @@
 /area/station/crew_quarters/bar)
 "xSo" = (
 /obj/item/device/radio/beacon,
+/obj/window/east,
 /turf/simulated/floor,
 /area/station/security/processing)
 "xTA" = (
@@ -70864,7 +70949,7 @@ nZY
 eCs
 nLB
 uhM
-how
+xtw
 wVR
 bHo
 pzc
@@ -76580,7 +76665,7 @@ pdO
 pdO
 pdO
 irw
-vqx
+dHR
 qLz
 pFW
 irw
@@ -76884,7 +76969,7 @@ pdO
 irw
 eRx
 fEQ
-nre
+vqx
 irw
 jtv
 irw
@@ -77185,8 +77270,8 @@ pdO
 pdO
 irw
 whl
+dfu
 vqx
-qlj
 irw
 wqb
 irw
@@ -77486,8 +77571,8 @@ pdO
 pdO
 pdO
 irw
-whl
-vqx
+dLh
+kAM
 vqx
 irw
 tze
@@ -81971,10 +82056,10 @@ pdO
 pdO
 pdO
 cnB
-lJt
-lJt
+qlj
+qlj
 xSo
-sCB
+hUI
 qBV
 jRr
 dnc
@@ -99461,8 +99546,8 @@ qZT
 jkX
 heh
 fdL
-fdL
-fdL
+nre
+nre
 qRU
 aOo
 aPa
