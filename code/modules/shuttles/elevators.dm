@@ -12,6 +12,15 @@ _________ _______  _______  _        _______ __________________   _______ ______
    )_(   |/   \__/|/     \||/    )_)\_______)\_______/   )_(     \_______)   )_(   (_______)|/       \_______) */
 
 
+/datum/transit_stop/elevator
+	can_receive_vehicle() //Any amount of blobs in the destination area prevents movement, cause area contents would get moved indiscriminately
+		var/area/transit_vehicle/elevator/our_area = locate(target_area) //And blobs are really not built for that sort of thing
+		return !our_area.blob_blockage
+
+	vehicle_can_depart() //Similar deal but this is to prevent blobs getting taken on a ride
+		var/area/transit_vehicle/elevator/our_area = locate(target_area) //Which is less of a disaster but still
+		return !our_area.blob_blockage
+
 /datum/transit_stop/elevator/qm_top
 	stop_id 	= "qm_top"
 	name		= "Quartermaster's Upper Level"
@@ -209,6 +218,21 @@ _________ _______  _______  _        _______ __________________   _______ ______
 
 /area/transit_vehicle/
 	requires_power = 0 // lintster
+
+/area/transit_vehicle/elevator
+	///Count of blob objects keeping this place occupied (don't care about the instances just if any are blocking at all)
+	var/blob_blockage = 0
+
+	Entered(atom/movable/A, atom/oldloc)
+		if (istype(A, /obj/blob))
+			blob_blockage++
+		. = ..()
+
+	Exited(atom/movable/A)
+		if (istype(A, /obj/blob))
+			blob_blockage--
+		. = ..()
+
 
 /area/transit_vehicle/elevator/qm_top
 	name = "Quartermaster's Elevator"

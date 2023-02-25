@@ -1113,12 +1113,15 @@
 		turf_z3 = locate(turf_z1.x, turf_z1.y, 3)
 
 		//Do we have a blob in at least one of the two turfs
-		var/obj/blob/B = locate() in turf_z1
-		if (!B)
-			B = locate() in turf_z3
-			if (!B)
-				boutput(owner, "<span class='alert'>You must spread here first.</span>")
-				return 1
+		var/obj/blob/B_z1 = locate() in turf_z1
+		var/obj/blob/B_z3 = locate() in turf_z3
+
+		if (!(B_z1) && !(B_z3))
+			boutput(owner, "<span class='alert'>You must spread here first on either level.</span>")
+			return 1
+		if ((B_z1 && B_z1.type != /obj/blob) || (B_z3 && B_z3.type != /obj/blob))
+			boutput(owner, "<span class='alert'>You can't convert special tiles.</span>")
+			return 1
 
 		//This bit is kinda ugly, sorry
 		if (!istype(get_area(turf_z1), /area/transit_vehicle/elevator)) //Just gonna assume that if one isn't on an elevator the other isn't either
@@ -1139,17 +1142,16 @@
 
 		var/obj/blob/linked/up
 		var/obj/blob/linked/down
-		B = locate() in turf_z1 //Remove & replace
+		//Remove & replace
 		up = new /obj/blob/linked/upper(turf_z1)
-		if (B)
-			up.setMaterial(B.material)
-			qdel(B)
+		if (B_z1)
+			up.setMaterial(B_z1.material)
+			qdel(B_z1)
 
-		B = locate() in turf_z3
 		down = new /obj/blob/linked/lower(turf_z3)
-		if (B)
-			down.setMaterial(B.material)
-			qdel(B)
+		if (B_z3)
+			down.setMaterial(B_z3.material)
+			qdel(B_z3)
 
 		up.linked_blob = down
 		down.linked_blob = up
