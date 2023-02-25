@@ -1483,23 +1483,6 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 		if (isdead(src))
 			return 0
 
-		if (prob(70))
-			SPAWN_DBG(0)
-				var/takeawalk = pick(cardinal)
-				step(src, takeawalk)
-				if (prob(50))
-					sleep(0.5 SECONDS)
-					step(src, takeawalk)
-					if (prob(20))
-						sleep(0.5 SECONDS)
-						step(src, takeawalk)
-						if (prob(30))
-							sleep(0.5 SECONDS)
-							step(src, takeawalk)
-					else if	(prob(20))
-						sleep(0.5 SECONDS)
-						step(src, pick(cardinal))
-
 		if (src.freakout)
 			SPAWN_DBG(0)
 				var/x = rand(2,4)
@@ -1516,17 +1499,6 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 						var/mob/living/critter/small_animal/meatslinky/F = O
 						F.contagiousfreakout()
 
-			if (prob(70))
-				var/takeawalk = pick(cardinal)
-				step(src, takeawalk)
-				if (prob(50))
-					step(src, takeawalk)
-					if (prob(40))
-						step(src, takeawalk)
-						if (prob(35))
-							step(src, takeawalk)
-					else if	(prob(30))
-						step(src, pick(cardinal))
 			if (prob(5))
 				animate_spin(src, prob(50) ? "L" : "R", 1, 0) //infinite spin just got a little bit silly
 
@@ -1535,19 +1507,6 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 
 			if (prob(3))
 				src.emote("laugh")
-
-			if (prob(3)) //zoomies
-				SPAWN_DBG(0)
-					src.visible_message("<span class='emote'><b>[src]</b> starts zooming around!</span>")
-					var/zoom = pick(cardinal)
-					walk(src, zoom)
-					var/x = rand(6,10)
-					while (x-- > 0)
-						if(prob(50))
-							zoom = turn(zoom,pick(90, 45, -45, -90))
-							walk(src, zoom)
-						sleep(0.5 SECONDS)
-					walk(src, 0) //okay stop
 
 			if (prob(15) && src.farten == 1) //fartens are 2.5x as excited during freakout
 				src.emote("fart")
