@@ -418,6 +418,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	color_red = 0
 	color_green = 1
 	color_blue = 0
+	projectile_speed = 75
 
 
 /datum/projectile/laser/flashbulb/two
@@ -425,12 +426,14 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	color_red = 1
 	color_green = 1
 	cost = 75
+	projectile_speed = 70
 
 /datum/projectile/laser/flashbulb/three
 	power = 35
 	color_red = 1
 	color_green = 0
 	cost = 100
+	projectile_speed = 65
 
 	on_hit(atom/hit)
 		if (isliving(hit))
@@ -438,6 +441,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 			L.changeStatus("slowed", 1 SECOND)
 			L.change_misstep_chance(1)
 			L.emote("twitch_v")
+		if(prob(5))
+			hit.ex_act(3)
 		return
 
 /datum/projectile/laser/flashbulb/four
@@ -445,6 +450,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	color_red = 1
 	color_green = 0
 	cost = 200
+	projectile_speed = 60
 
 	on_hit(atom/hit)
 		fireflash(get_turf(hit), 0)
@@ -453,5 +459,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 			L.changeStatus("slowed", 1 SECOND)
 			L.change_misstep_chance(1)
 			L.emote("twitch_v")
+		if(prob(20))
+			hit.ex_act(3)
 		return
 		//hit.ex_act(3)
