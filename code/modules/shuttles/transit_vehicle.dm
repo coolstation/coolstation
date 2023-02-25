@@ -333,6 +333,7 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 	desc = "Send an elevator back and forth for your amusement"
 	icon = 'icons/obj/machines/buttons.dmi'
 	icon_state = "elev_idle"
+	anchored = 1
 	//Which vehicle this button shuttles
 	var/vehicle_id
 	//Idem
