@@ -237,6 +237,9 @@
 		owner.add_ability(/datum/blob_ability/repair)
 		owner.add_ability(/datum/blob_ability/absorb)
 		owner.add_ability(/datum/blob_ability/promote)
+	#ifdef Z3_IS_A_STATION_LEVEL
+		owner.add_ability(/datum/blob_ability/blob_level_transfer)
+	#endif
 		owner.add_ability(/datum/blob_ability/build/ribosome)
 		owner.add_ability(/datum/blob_ability/build/lipid)
 		owner.add_ability(/datum/blob_ability/build/mitochondria)
@@ -1086,6 +1089,77 @@
 	bio_point_cost = 5
 	build_path = /obj/blob/firewall
 	buildname = "firewall"
+
+/datum/blob_ability/blob_level_transfer //Spread up/down ladders & elevators, not the thing that moves the overmind between levels
+	name = "Build Level Transfer"
+	icon_state = "blob-leveltransfer"
+	desc = "This will convert a blob tile into a vertical lever transfer, allowing you to spread across station levels. Only placeable in elevator shafts and on ladders."
+
+	bio_point_cost = 4 //2x that of spread
+	cooldown_time = 4 SECONDS //Idem, though this one doesn't have scaling maths
+
+	onUse(turf/turf_z1)
+		if (..())
+			return 1 //I dunno
+
+	#ifndef Z3_IS_A_STATION_LEVEL
+		logTheThing("debug", src, null, "A blob tried making a level transfer on a map that doesn't support it, what?")
+		return 1
+	#endif
+		var/turf/turf_z3
+		if (!turf_z1)
+			turf_z1 = get_turf(owner)
+		turf_z1 = locate(turf_z1.x, turf_z1.y, 1) //I don't care if this ends up being unnecessary
+		turf_z3 = locate(turf_z1.x, turf_z1.y, 3)
+
+		//Do we have a blob in at least one of the two turfs
+		var/obj/blob/B_z1 = locate() in turf_z1
+		var/obj/blob/B_z3 = locate() in turf_z3
+
+		if (!(B_z1) && !(B_z3))
+			boutput(owner, "<span class='alert'>You must spread here first on either level.</span>")
+			return 1
+		if ((B_z1 && B_z1.type != /obj/blob) || (B_z3 && B_z3.type != /obj/blob))
+			boutput(owner, "<span class='alert'>You can't convert special tiles.</span>")
+			return 1
+
+		//This bit is kinda ugly, sorry
+		if (!istype(get_area(turf_z1), /area/transit_vehicle/elevator)) //Just gonna assume that if one isn't on an elevator the other isn't either
+			var/obj/ladder/turf_ladder = locate() in turf_z1
+			if (turf_ladder)
+				turf_ladder.blocked = TRUE //I'd shove this on New() in the blobs but we have to check for these ladders anyway, might as well
+
+				turf_ladder = locate() in turf_z3 //Do the same on Z3
+				if (turf_ladder)
+					turf_ladder.blocked = TRUE
+			else //I'm fine with there just being hald a ladder pair, no doubt some asshat is going to find ways to delete ladders to fight blobs
+				turf_ladder = locate() in turf_z3
+				if (turf_ladder)
+					turf_ladder.blocked = TRUE
+				else //no ladder or elevator, aborte
+					boutput(owner, "<span class='alert'>This must be used at an elevator shaft or ladder.</span>")
+					return 1
+
+		var/obj/blob/linked/up
+		var/obj/blob/linked/down
+		//Remove & replace
+		up = new /obj/blob/linked/upper(turf_z1)
+		if (B_z1)
+			up.setMaterial(B_z1.material)
+			qdel(B_z1)
+
+		down = new /obj/blob/linked/lower(turf_z3)
+		if (B_z3)
+			down.setMaterial(B_z3.material)
+			qdel(B_z3)
+
+		up.linked_blob = down
+		down.linked_blob = up
+		up.setOvermind(owner)
+		down.setOvermind(owner)
+		src.deduct_bio_points()
+		src.do_cooldown()
+		owner.playsound_local(owner.loc, "sound/voice/blob/blobspread[rand(1, 6)].ogg", 80, 1)
 
 //////////////
 // UPGRADES //

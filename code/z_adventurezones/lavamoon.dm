@@ -1366,6 +1366,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 	density = 0
 	var/id = null
 	var/broken = FALSE
+	var/blocked = FALSE //blob level transfers atm, maybe hatches in the future?
 
 
 	broken
@@ -1390,7 +1391,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 
 	HasEntered(atom/movable/AM, atom/OldLoc)
 		..()
-		if (src.broken) return
+		if (src.broken || src.blocked) return
 		if(istype(AM, /obj/item))
 			if(prob(70))
 				var/obj/ladder/otherLadder = locate("ladder_[id][src.icon_state == "ladder_wall"]")
@@ -1413,13 +1414,13 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 
 
 	attack_hand(mob/user as mob)
-		if (src.broken) return
+		if (src.broken || src.blocked) return
 		if (user.stat || user.getStatusDuration("weakened") || get_dist(user, src) > 1)
 			return
 		src.climb(user)
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if (src.broken) return
+		if (src.broken || src.blocked) return
 		if (istype(W, /obj/item/grab))
 			if (!W:affecting) return
 			user.lastattacked = src
