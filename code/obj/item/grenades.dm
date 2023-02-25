@@ -892,7 +892,7 @@ PIPE BOMBS + CONSTRUCTION
 	icon_state = "fartbomb"
 	sound_beep = 'sound/voice/farts/poo2.ogg'
 	sound_explode = 'sound/voice/farts/superfart.ogg'
-	var/splashzone =  5 //calculate effects, can be increased from 5 to 8 (oh no)
+	var/splashzone =  2 //calculate effects, can be increased from 5 to 8 (oh no)
 	var/radioactive = 0 //dirty, you say
 
 	prearmed
@@ -910,7 +910,7 @@ PIPE BOMBS + CONSTRUCTION
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/reagent_containers/food/snacks/ingredient/mud)) //sigh (i only have myself to blame)
 			if (istype(src, /obj/item/gimmickbomb/butt/dirty))
-				if (src.splashzone <= 7)
+				if (src.splashzone < 4)
 					src.splashzone++
 					user.show_text("you fucking make it even worse somehow", "red")
 					qdel(W)
@@ -937,6 +937,38 @@ PIPE BOMBS + CONSTRUCTION
 		//iconstate = "fartbomb-dirty"
 
 		detonate()
+			var/theturf = get_turf(src)
+			var/list/spraybits = new/list()
+			var/direction = NORTH
+
+			for(var/i=0, i<9, i++)
+				var/obj/effects/spray/S = new/obj/effects/spray(theturf) //color this brown
+				SPAWN_DBG(15 SECONDS) qdel(S)
+				S.set_dir(direction)
+				S.color = "#875232"
+				S.original_dir = direction
+				direction = turn(direction,45)
+				spraybits += S
+
+			SPAWN_DBG(0)
+				//Center tile
+				var/obj/effects/spray/S = spraybits[1]
+				make_cleanable(/obj/decal/cleanable/mud,S.loc)
+				if(is_blocked_turf(S.loc))
+					spraybits -= S
+					qdel(S)
+
+				//Distance tiles
+				for(var/i=0, i<src.splashzone, i++)
+					for(var/obj/effects/spray/SP in spraybits)
+						SP.set_loc(get_step(SP.loc, SP.original_dir))
+						make_cleanable(/obj/decal/cleanable/mud,SP.loc)
+						if(is_blocked_turf(SP.loc))
+							make_cleanable(/obj/decal/cleanable/mud,SP.loc)
+							spraybits -= SP
+							qdel(SP)
+
+			//just make sure nobody walks away clean
 			for(var/mob/living/carbon/human/H in range(splashzone, src))
 				if (H.wear_suit)
 					H.wear_suit.add_mud(src)
@@ -951,6 +983,7 @@ PIPE BOMBS + CONSTRUCTION
 					H.vomit() //grody
 			//if (src.radioactive)
 				//do some radioactive stuff i dunno check the radmine. tbd tbd tbd
+
 			..()
 		prearmed
 			armed = 1
