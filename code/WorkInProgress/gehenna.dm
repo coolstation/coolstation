@@ -208,6 +208,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 
 
 /area/gehenna
+	requires_power = 0
 
 /area/gehenna/wasteland
 	icon_state = "red"
@@ -242,6 +243,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 					playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_2.ogg', 50, 1)
 					boutput(jerk, pick("Sand gets caught in your eyes!","The wind blows you off course!","Debris really fucks up your skin!"))
 					jerk.changeStatus("weakened", 13 SECONDS)
+					jerk.change_eye_blurry(15, 30)
 				SPAWN_DBG(10)
 					src.process_some_sand()
 
@@ -261,13 +263,14 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 					assholes_to_hurt &= ~jerk
 					continue
 				if((istype(jerk:wear_suit, /obj/item/clothing/suit/armor))||(istype(jerk:wear_suit, /obj/item/clothing/suit/space))&&(istype(jerk:head, /obj/item/clothing/head/helmet/space)))
-					assholes_to_hurt &= ~jerk
+					//assholes_to_hurt &= ~jerk //warc: gonna not remove them and just pass over, so if they lose their suit later they get hurt.
 					continue
 				random_brute_damage(jerk, 10)
 				if(prob(50))
 					playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_2.ogg', 50, 1)
 					boutput(jerk, pick("Dust gets caught in your eyes!","The wind disorients you!","Debris pierces through your skin!"))
 					jerk.changeStatus("weakened", 7 SECONDS)
+					jerk.change_eye_blurry(10, 20)
 			sleep(10 SECONDS)
 		buffeting_assoles = FALSE
 
