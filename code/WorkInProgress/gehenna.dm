@@ -218,6 +218,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 /area/gehenna/wasteland/stormy
 	name = "the horrid wastes"
 	icon_state = "yellow"
+	requires_power = 0
 	sound_environment = EAX_PLAIN
 	sound_loop_1 = 'sound/ambience/loop/SANDSTORM.ogg' //need something wimdy, maybe overlay a storm sound on this
 	sound_loop_1_vol = 250 //always loud, fukken storming
