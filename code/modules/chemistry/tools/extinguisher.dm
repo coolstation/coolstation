@@ -29,15 +29,8 @@
 
 
 
-	var/list/banned_reagents = list("vomit",
-	"blackpowder",
-	"blood",
-	"ketchup",
-	"gvomit",
-	"carbon",
-	"cryostylane",
-	"chickensoup",
-	"salt")
+	var/list/banned_reagents = list("blackpowder",
+	"cryostylane",) //let's allow some grife, to start, though agreed on black powder and cryo
 	var/list/melting_reagents = list("acid",
 	"pacid",
 	"phlogiston",
@@ -67,14 +60,16 @@
 		return "The handle is broken."
 	return "Contains [src.reagents.total_volume] units."
 
+/*
 /obj/item/extinguisher/attack(mob/M as mob, mob/user as mob)
 	src.hide_attack = 0
 	if(user.a_intent == "help") //don't smack people with a deadly weapon while you're trying to extinguish them, thanks
-		src.hide_attack = 1
+		src.hide_attack = 1	//i disagree (we will make harm and help intents more consistent but until then this is always funny)
 		if (safety)
 			src.attack_self(user)
 		return
 	..()
+*/
 
 /obj/item/extinguisher/pixelaction(atom/target, params, mob/user, reach)
 	..()
