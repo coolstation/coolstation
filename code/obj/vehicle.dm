@@ -1575,7 +1575,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	if(crashed)
 		if(crashed == 2)
 			if(istype(src, /obj/vehicle/cat/garfield/sex))
-				playsound(src.loc, "sound/misc/sexgarf/garf4.ogg", 70, 1)
+				playsound(src.loc, "sound/misc/sexgarf/garf4.ogg", 70)
 			else
 				playsound(src.loc, "sound/voice/animal/cat.ogg", 70, 1)
 		boutput(rider, "<span class='alert'><B>You are flung over the [src]'s head!</B></span>")
