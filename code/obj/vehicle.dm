@@ -287,6 +287,19 @@ ABSTRACT_TYPE(/obj/vehicle)
 				S.weeoo()
 		return
 
+/obj/ability_button/sexgarf
+	name = "sex garfield"
+	icon = 'icons/misc/abilities.dmi'
+	icon_state = "noise"
+
+	Click()
+		if(!the_mob) return
+
+		if (istype(the_mob.loc, /obj/vehicle/cat/garfield/sex))
+			var/obj/vehicle/cat/garfield/sex/sexgarf = the_mob.loc
+			sexgarf.catchphrase()
+		return
+
 /obj/vehicle/segway/proc/update()
 	if (rider)
 		src.icon_state = "[src.icon_base][src.icon_rider_state]"
@@ -1472,6 +1485,22 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	desc = "I'm not overweight, I'm undertall."
 	icon_state = "garfield"
 
+/obj/vehicle/cat/garfield/sex
+	name = "sex garfield"
+	desc = "sex garfield"
+	icon_state = "sexgarfield"
+	var/catchphrase_in_progress = 0
+	ability_buttons_to_initialize = list(/obj/ability_button/sexgarf)
+
+/obj/vehicle/cat/garfield/sex/proc/catchphrase()
+	if (catchphrase_in_progress)
+		return
+
+	catchphrase_in_progress = 1
+	playsound(src.loc, "sound/misc/sexgarf/garf[rand(1,5)].ogg", 50)
+	SPAWN_DBG(3 SECONDS)
+		catchphrase_in_progress = 0
+
 /obj/vehicle/cat/odie
 	name = "Odie??"
 	desc = "Arf arf arf!"
@@ -1545,7 +1574,10 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	walk(src, 0)
 	if(crashed)
 		if(crashed == 2)
-			playsound(src.loc, "sound/voice/animal/cat.ogg", 70, 1)
+			if(istype(src, /obj/vehicle/cat/garfield/sex))
+				playsound(src.loc, "sound/misc/sexgarf/garf4.ogg", 70, 1)
+			else
+				playsound(src.loc, "sound/voice/animal/cat.ogg", 70, 1)
 		boutput(rider, "<span class='alert'><B>You are flung over the [src]'s head!</B></span>")
 		rider.changeStatus("stunned", 8 SECONDS)
 		rider.changeStatus("weakened", 5 SECONDS)
