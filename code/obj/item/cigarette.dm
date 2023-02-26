@@ -113,7 +113,7 @@
 				puffrate = src.reagents.total_volume / numpuffs //40 active cycles (200 total, about 10 minutes)
 			processing_items |= src
 
-			src.rng_stun_rate = 20 //%
+			src.rng_stun_rate = 30 //%
 
 			hit_type = DAMAGE_BURN
 

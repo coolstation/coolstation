@@ -970,6 +970,11 @@
 	},
 /turf/simulated/floor/specialroom/gym,
 /area/station/crew_quarters/fitness)
+"aFw" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/window/east,
+/turf/simulated/floor,
+/area/station/security/processing)
 "aFK" = (
 /obj/storage/cart/medcart,
 /turf/simulated/floor/plating,
@@ -4622,6 +4627,10 @@
 /obj/disposalpipe/segment/food,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
+"cZn" = (
+/obj/item/shovel,
+/turf/simulated/floor/plating/gehenna,
+/area/noGenerate)
 "cZs" = (
 /obj/cable{
 	d1 = 1;
@@ -4817,10 +4826,6 @@
 /obj/machinery/space_heater,
 /turf/simulated/floor/plating,
 /area/station/hallway/secondary/exit)
-"dfu" = (
-/obj/window/east,
-/turf/simulated/floor/white/grime,
-/area/station/wc/public)
 "dfy" = (
 /obj/lattice,
 /turf/simulated/floor/plating/random,
@@ -5814,12 +5819,6 @@
 	dir = 9
 	},
 /area/station/mining/lobby)
-"dHR" = (
-/obj/item/sponge{
-	name = "loofah"
-	},
-/turf/simulated/floor/white/grime,
-/area/station/wc/public)
 "dIp" = (
 /obj/machinery/power/smes{
 	charge = 1e+006;
@@ -5937,13 +5936,6 @@
 /obj/disposaloutlet/west,
 /turf/simulated/floor/airless/engine/glow,
 /area/station/engine/combustion_chamber)
-"dLh" = (
-/obj/machinery/shower{
-	dir = 1
-	},
-/obj/window/west,
-/turf/simulated/floor/white/grime,
-/area/station/wc/public)
 "dLr" = (
 /turf/simulated/floor/carpet/grime,
 /area/station/mining/staff_room)
@@ -6456,7 +6448,10 @@
 /turf/simulated/floor,
 /area/station/maintenance/northeast)
 "dYK" = (
-/obj/item/shovel,
+/obj/item/slag_shovel{
+	pixel_x = 7;
+	pixel_y = 6
+	},
 /turf/simulated/floor,
 /area/station/mining/refinery)
 "dYR" = (
@@ -12940,11 +12935,6 @@
 /obj/disposalpipe/junction/right/east,
 /turf/simulated/floor/special/researchdown,
 /area/station/medical/basement)
-"hUI" = (
-/obj/disposalpipe/segment/mail/horizontal,
-/obj/window/east,
-/turf/simulated/floor,
-/area/station/security/processing)
 "hUR" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southeast,
 /turf/simulated/floor/plating,
@@ -17391,11 +17381,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/engine/inner)
-"kAM" = (
-/obj/window/west,
-/obj/item/rubberduck,
-/turf/simulated/floor/white/grime,
-/area/station/wc/public)
 "kBg" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -19119,6 +19104,13 @@
 /obj/decal/poster/wallsign/escape_right,
 /turf/simulated/wall/r_wall,
 /area/station/maintenance/central)
+"lCa" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/window/west,
+/turf/simulated/floor/white/grime,
+/area/station/wc/public)
 "lCi" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 8
@@ -26026,6 +26018,14 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor/black,
 /area/station/ai_monitored/armory)
+"pVS" = (
+/obj/disposalpipe/trunk/zlevel{
+	dir = 2;
+	target_z = 1
+	},
+/obj/window/south,
+/turf/simulated/floor/plating,
+/area/station/maintenance/south)
 "pWd" = (
 /obj/machinery/atmospherics/valve/horizontal{
 	name = "Gas Feed 2"
@@ -31976,6 +31976,10 @@
 /mob/living/critter/spider/med,
 /turf/simulated/floor/plating/gehenna,
 /area/noGenerate)
+"twP" = (
+/obj/window/east,
+/turf/simulated/floor/white/grime,
+/area/station/wc/public)
 "twR" = (
 /obj/cable{
 	d2 = 8;
@@ -32245,6 +32249,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
+"tEg" = (
+/obj/item/sponge{
+	name = "loofah"
+	},
+/turf/simulated/floor/white/grime,
+/area/station/wc/public)
 "tEr" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -38547,14 +38557,6 @@
 /obj/decal/cleanable/dirt/jen,
 /turf/simulated/floor/sandytile,
 /area/station/crew_quarters/clown)
-"xtw" = (
-/obj/disposalpipe/trunk/zlevel{
-	dir = 2;
-	target_z = 1
-	},
-/obj/window/south,
-/turf/simulated/floor/plating,
-/area/station/maintenance/south)
 "xtV" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/wingrille_spawn/reinforced,
@@ -39537,6 +39539,11 @@
 /area/station/science/artifact{
 	name = "Artifact Lounge"
 	})
+"xXZ" = (
+/obj/window/west,
+/obj/item/rubberduck,
+/turf/simulated/floor/white/grime,
+/area/station/wc/public)
 "xYo" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -70949,7 +70956,7 @@ nZY
 eCs
 nLB
 uhM
-xtw
+pVS
 wVR
 bHo
 pzc
@@ -76665,7 +76672,7 @@ pdO
 pdO
 pdO
 irw
-dHR
+tEg
 qLz
 pFW
 irw
@@ -77270,7 +77277,7 @@ pdO
 pdO
 irw
 whl
-dfu
+twP
 vqx
 irw
 wqb
@@ -77571,8 +77578,8 @@ pdO
 pdO
 pdO
 irw
-dLh
-kAM
+lCa
+xXZ
 vqx
 irw
 tze
@@ -82059,7 +82066,7 @@ cnB
 qlj
 qlj
 xSo
-hUI
+aFw
 qBV
 jRr
 dnc
@@ -107185,7 +107192,7 @@ qZT
 qZT
 qZT
 qZT
-qZT
+cZn
 qZT
 qZT
 qZT
