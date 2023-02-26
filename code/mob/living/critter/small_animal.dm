@@ -1532,6 +1532,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 			if ("laugh")
 				if (src.emote_check(voluntary, 50))
 					//need ferret dook and scream sounds
+					playsound(src, 'sound/misc/talk/fert.ogg', 40, 1, 0.3, 1.5, channel=VOLUME_CHANNEL_EMOTE)
 					return "<span class='emote'><b>[src]</b> dooks!</span>"
 			if ("fart")
 				if (src.emote_check(voluntary, 50))

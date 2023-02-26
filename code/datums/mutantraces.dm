@@ -2186,6 +2186,7 @@
 				if (mob.emote_allowed)
 					mob.emote_allowed = 0
 					message = "<B>[mob]</B> dooks excitedly!"
+					playsound(mob, 'sound/misc/talk/fert.ogg', 40, 1, 0.3, channel=VOLUME_CHANNEL_EMOTE)
 					SPAWN_DBG(1 SECONDS)
 						if (mob) mob.emote_allowed = 1
 					return message
