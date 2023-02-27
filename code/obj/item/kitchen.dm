@@ -486,11 +486,13 @@ TRAYS
 							else //okay bud you had 15 whole seconds
 								target = O
 								break */
-						else //can't find anybody, wait 5 and try again
+						else //can't find anybody, wait 10 and try again
 							animate_storage_thump(src)
 							src.dir = turn(src.dir,-180)
-							playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1)
-							sleep(5 SECONDS)
+							sleep(4 SECONDS)
+							animate_storage_thump(src)
+							src.dir = turn(src.dir,-180)
+							sleep(6 SECONDS)
 			//firing
 			if (!src.emagged || !target) //are we still even emagged, or did we even find a target?
 				src.launching = 0
