@@ -446,11 +446,9 @@ TRAYS
 			src.icon_state = "homph-wine"
 			if (src.emagged)
 				boutput(user, "You place \the [W] into \the [src]. Take cover!") //you were warned
+				src.visible_message("<span class='alert'><b> The [src] starts looking around for a target!</b></span>")
 				playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1)
-				SPAWN_DBG(1 SECONDS) //begin countdown
-					animate_storage_thump(src)
-					src.dir = turn(src.dir,-180)
-					src.launch_wine() //launch sequence engaged
+				src.launch_wine() //launch sequence engaged
 			else
 				boutput(user, "You place \the [W] into \the [src].")
 				playsound(src, "sound/misc/tarantella-short.ogg", 50, 1)
@@ -503,7 +501,7 @@ TRAYS
 			W.throw_at(target, 16, 5,bonus_throwforce=49)
 			playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1)
 			src.icon_state = "homph-emag"
-			src.visible_message("<span class='alert'><b> \the [src] launches the [W] at [target]!</b></span>")
+			src.visible_message("<span class='alert'><b>\The [src] launches the [W] at [target]!</b></span>")
 			src.launching = 0
 			return
 		else
@@ -516,12 +514,14 @@ TRAYS
 				if (!src.wine)
 					src.icon_state = "homph-emag"
 					boutput(user, "you make this meatball a little spicier!!! homph omph")
+					src.visible_message("<span class='alert'><b> The [src] gets a wild look in its eyes!</b></span>")
 				else
 					boutput(user, "you make this meatball a little spicier!!! ...You should probably take cover!")
+					src.visible_message("<span class='alert'><b> The [src] starts looking around for a target!</b></span>")
 					src.launch_wine() //you get a grace period for arming it
 			playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1)
 			SPAWN_DBG(5 MINUTES) //start the process to un-emag
-				src.visible_message("<span class='alert'><b>\the [src] takes a nap!</b></span>") //chill
+				src.visible_message("<b>\The [src] takes a nap!</b>") //chill
 				if(src.wine)
 					src.icon_state = "homph-wine"
 				else
@@ -533,7 +533,7 @@ TRAYS
 				src.visible_message("<b>\The [src]</b> looks a little busy at the moment!")
 				return 0
 			if (get_dist(src, user) >= 2)
-				src.visible_message("<b>\The [src]</b> shrugs!")
+				src.visible_message("<b>\The [src]</b> shrugs and starts flipping out anyway!")
 				return 0
 			src.launching = 1
 			playsound(src, "sound/items/eatfood.ogg", 50, 1)

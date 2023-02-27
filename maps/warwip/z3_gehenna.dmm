@@ -2319,8 +2319,7 @@
 	icon_state = "4-8"
 	},
 /obj/decal/tile_edge/stripe/extra_big{
-	dir = 1;
-	icon_state = "xtra_bigstripe-edge"
+	dir = 1
 	},
 /turf/simulated/floor/black,
 /area/station/engine/inner)
@@ -5628,7 +5627,6 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/computer3/terminal/zeta{
-	dir = 2;
 	name = "DWAINE Terminal - Med-Eng";
 	setup_os_string = "MED_MAINFRAME"
 	},
@@ -11598,7 +11596,6 @@
 	},
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/atmospherics/binary/passive_gate{
-	dir = 2;
 	icon_state = "intact_on";
 	on = 1;
 	pixel_y = 1
@@ -13321,7 +13318,6 @@
 /area/station/medical/basement)
 "ijX" = (
 /obj/machinery/conveyor/north{
-	move_lag = 4;
 	name = "garbo belt";
 	operating = 1
 	},
@@ -13617,7 +13613,6 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/computer3/terminal/zeta{
-	dir = 2;
 	name = "DWAINE Terminal - Med-Eng";
 	setup_os_string = "MED_MAINFRAME"
 	},
@@ -15471,7 +15466,6 @@
 "jvt" = (
 /obj/disposalpipe/segment/mineral,
 /obj/machinery/atmospherics/binary/passive_gate{
-	dir = 2;
 	icon_state = "intact_on";
 	on = 1;
 	pixel_y = 1
@@ -17459,8 +17453,7 @@
 	icon_state = "4-8"
 	},
 /obj/grille/catwalk/jen/side{
-	dir = 6;
-	icon_state = "catwalk_jen_side"
+	dir = 6
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/northwest)
@@ -18365,7 +18358,6 @@
 "lbw" = (
 /obj/disposalpipe/segment/food,
 /obj/machinery/atmospherics/binary/passive_gate{
-	dir = 2;
 	icon_state = "intact_on";
 	on = 1;
 	pixel_y = 1
@@ -22116,6 +22108,9 @@
 /obj/table/reinforced/bar/auto,
 /obj/machinery/light/fluorescent/cool/very,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
+/obj/item/kitchen/wineholder{
+	pixel_y = 5
+	},
 /turf/simulated/floor/black/side{
 	dir = 8
 	},
@@ -22979,7 +22974,6 @@
 /area/station/engine/inner)
 "nRm" = (
 /obj/machinery/conveyor/north{
-	move_lag = 4;
 	name = "garbo belt";
 	operating = 1
 	},
@@ -25795,9 +25789,6 @@
 "pNY" = (
 /obj/table/reinforced/bar/auto,
 /obj/machinery/light/fluorescent/warm,
-/obj/item/kitchen/wineholder{
-	pixel_y = 5
-	},
 /turf/simulated/floor/black,
 /area/station/crew_quarters/bar)
 "pOh" = (
