@@ -527,6 +527,9 @@ TRAYS
 				src.emagged = 0
 			return 1
 		if (src.emagged && (!src.wine)) //get greedy? gotta do it with an empty holder
+			if (src.launching)
+				src.visible_message("<b>\The [src]</b> looks a little busy at the moment!")
+				return 0
 			if (get_dist(src, user) >= 2)
 				src.visible_message("<b>\The [src]</b> shrugs!")
 				return 0
@@ -551,8 +554,8 @@ TRAYS
 				sleep(3 SECONDS)
 
 				var/obj/item/card/emag/EI = new /obj/item/card/emag(src.loc)
-				EI.name = "\improper Carta Elettromagnetica"
-				EI.desc = "Un sequencer crittografico! Profuma di vino..."
+				EI.name = "Carta Elettromagnetica"
+				EI.desc = "È una scheda con una striscia magnetica attaccata a dei circuiti. Comunemente indicato come 'EMAG'. Profuma di vino..."
 				playsound(src, "sound/misc/meat_plop.ogg", 50, 1)
 				if (get_dist(src, user) <= 7)
 					EI.throw_at(user, 16, 5)
