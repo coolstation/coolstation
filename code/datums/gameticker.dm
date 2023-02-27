@@ -772,9 +772,11 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					if (player_loses_held_item)
 						logTheThing("debug", null, null, "[player.ckey] lost held item")
 						player.client.set_last_purchase(0)
-						player.client.save_cloud_gun(0)
+						if(!player.mind.do_not_save_gun)
+							player.client.save_cloud_gun(0)
 					else
-						player.client.save_cloud_gun(1)
+						if(!player.mind.do_not_save_gun)
+							player.client.save_cloud_gun(1)
 
 					bank_earnings.pilot_bonus = pilot_bonus
 					bank_earnings.final_payout = earnings

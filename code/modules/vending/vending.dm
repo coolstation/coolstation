@@ -1110,7 +1110,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/tvdinner, 10, cost=PAY_UNTRAINED/6)
 
 
-/obj/machinery/vending/cigarette
+/obj/machinery/vending/cigarette //eventually wanna make one of these specifically for medbay
 	name = "cigarette machine"
 	desc = "If you want to get cancer, might as well do it in style!"
 	pay = 1
@@ -1133,6 +1133,8 @@
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(1,3), cost=PAY_UNTRAINED/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/propuffs, 10, cost=PAY_TRADESMAN/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo, 10, cost=PAY_TRADESMAN/5)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/brute, 5, cost=PAY_TRADESMAN/10)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/burn, 5, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/cigarbox, 1, cost=PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/patch/nicotine, 10, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/matchbook, 10, cost=PAY_UNTRAINED/20)
@@ -1679,28 +1681,28 @@
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss/punt, 2)
 */
 		//above this line is for debug and testing only, they'll go in the bin later.
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 2, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long, 2, cost = PAY_TRADESMAN)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 2, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 2, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long, 2, cost = PAY_TRADESMAN*1.5)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 2, cost = PAY_TRADESMAN*1.5)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long, 2, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long/very, 2, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long/very, 2, cost = PAY_TRADESMAN*1.2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/short, 2, 2, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/shotty, 2, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 2, cost = PAY_UNTRAINED/5)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/flashlight, 2, cost = PAY_UNTRAINED/4)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 2, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian, 2, cost = PAY_UNTRAINED/3)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian/bigger, 2, cost = PAY_UNTRAINED/2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/arm_brace, 2, cost = PAY_UNTRAINED/2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/shoulder, 2, cost = PAY_UNTRAINED/3)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 2, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian/bigger, 2, cost = PAY_UNTRAINED*1.1)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/arm_brace, 2, cost = PAY_UNTRAINED/1.5)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/shoulder, 2, cost = PAY_UNTRAINED/1.5)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/fancy, 2, cost = PAY_UNTRAINED/2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/ceremonial, 2, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/stub, 2, cost = PAY_UNTRAINED/3)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet/long, 1, cost = PAY_UNTRAINED/2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet, 1, cost = PAY_UNTRAINED/2)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/zaubertube/ten, 10, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/ten, 10, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/ten, 10, cost = PAY_UNTRAINED/2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/stub, 2, cost = PAY_UNTRAINED/2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet/long, 1, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet, 1, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/zaubertube/ten, 10, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/ten, 10, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/ten, 10, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 1, hidden=1, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/basic, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 2, hidden=1, cost = PAY_UNTRAINED*2)

@@ -93,10 +93,10 @@
 /obj/item/storage/box/shotgun
 	name = "shotgun box"
 	icon_state = "hard_case"
-	desc = "A box containing a high-powered shotgun and some ammo."
+	desc = "A box containing a low-powered shotgun and some ammo."
 	spawn_contents = list(/obj/item/gun/modular/NT/shotty,\
-	/obj/item/stackable_ammo/pistol/ten,\
 	/obj/item/stackable_ammo/scatter/buckshot/ten,\
+	/obj/item/stackable_ammo/capacitive_burst/ten,\
 	/obj/item/stackable_ammo/scatter/slug_rubber/ten)
 
 /obj/item/storage/box/revolver_ammo

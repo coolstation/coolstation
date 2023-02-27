@@ -19,6 +19,14 @@
 #define WASTELAND_MAX_TEMP 350
 var/global/gehenna_time = GEHENNA_TIME
 
+//audio
+//you want some audio to play overall in "space" but reduced when you're in a non-space area? check it out
+var/global/gehenna_surface_loop = 'sound/ambience/loop/Gehenna_Surface.ogg' //Z1
+var/global/gehenna_underground_loop = 'sound/ambience/loop/Gehenna_Surface.ogg' //Z3
+// volume curve so wind stuff is loudest in the cold, cold night
+var/global/gehenna_surface_loop_vol = (110 + ((0.5*sin(GEHENNA_TIME-135)+0.5)*(200))) //volume meant for outside, min 110 max 310
+var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just have it the same but quiet i guess (with a proper cave soundscape, increase to like 100 or something)
+
 // Gehenna shit tho
 /turf/space/gehenna
 	name = "planet gehenna"
@@ -150,6 +158,8 @@ var/global/gehenna_time = GEHENNA_TIME
 						generateLight = 1
 						src.make_light()
 						break */
+		if(icon_state == "gehenna_beat" || icon_state == "gehenna")
+			src.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 
 
 	make_light()
@@ -190,14 +200,85 @@ var/global/gehenna_time = GEHENNA_TIME
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "gehenna_corner"
 
-
+	beaten
+		name = "beaten earth"
+		desc = "this soil has been beaten flat by years of foot traffic."
+		icon = 'icons/turf/floors.dmi'
+		icon_state = "gehenna_beat"
 
 
 /area/gehenna
+	requires_power = 0
 
 /area/gehenna/wasteland
 	icon_state = "red"
 	name = "the barren wastes"
+	teleport_blocked = 0
+	sound_environment = EAX_PLAIN
+
+/area/gehenna/wasteland/stormy
+	name = "the horrid wastes"
+	icon_state = "yellow"
+	requires_power = 0
+	sound_environment = EAX_PLAIN
+	sound_loop_1 = 'sound/ambience/loop/SANDSTORM.ogg' //need something wimdy, maybe overlay a storm sound on this
+	sound_loop_1_vol = 250 //always loud, fukken storming
+	var/list/assholes_to_hurt = list()
+	var/buffeting_assoles = FALSE
+
+	New()
+		..()
+		overlays += image(icon = 'icons/turf/areas.dmi', icon_state = "dustverlay", layer = EFFECTS_LAYER_BASE)
+		for(var/turf/space/gehenna/desert/T in src)
+			T.temperature = WASTELAND_MAX_TEMP
+
+	Entered(atom/movable/O)
+		..()
+		if (ishuman(O))
+			var/mob/living/jerk = O
+			if (!isdead(jerk))
+				assholes_to_hurt |= jerk
+				if((istype(jerk:wear_suit, /obj/item/clothing/suit/armor))||(istype(jerk:wear_suit, /obj/item/clothing/suit/space))&&(istype(jerk:head, /obj/item/clothing/head/helmet/space))) return
+				random_brute_damage(jerk, 20)
+				if(prob(50))
+					playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_2.ogg', 50, 1)
+					boutput(jerk, pick("Sand gets caught in your eyes!","The wind blows you off course!","Debris really fucks up your skin!"))
+					jerk.changeStatus("weakened", 13 SECONDS)
+					jerk.change_eye_blurry(15, 30)
+				SPAWN_DBG(10)
+					src.process_some_sand()
+
+	Exited(atom/movable/A)
+		..()
+		if (ismob(A))
+			var/mob/living/jerk = A
+			assholes_to_hurt &= ~jerk
+
+	proc/process_some_sand()
+		if(buffeting_assoles)
+			return
+		while(assholes_to_hurt.len)
+			buffeting_assoles = TRUE
+			for(var/mob/living/jerk in assholes_to_hurt)
+				if(!istype(jerk) || isdead(jerk))
+					assholes_to_hurt &= ~jerk
+					continue
+				if((istype(jerk:wear_suit, /obj/item/clothing/suit/armor))||(istype(jerk:wear_suit, /obj/item/clothing/suit/space))&&(istype(jerk:head, /obj/item/clothing/head/helmet/space)))
+					//assholes_to_hurt &= ~jerk //warc: gonna not remove them and just pass over, so if they lose their suit later they get hurt.
+					continue
+				random_brute_damage(jerk, 10)
+				if(prob(50))
+					playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_2.ogg', 50, 1)
+					boutput(jerk, pick("Dust gets caught in your eyes!","The wind disorients you!","Debris pierces through your skin!"))
+					jerk.changeStatus("weakened", 7 SECONDS)
+					jerk.change_eye_blurry(10, 20)
+			sleep(10 SECONDS)
+		buffeting_assoles = FALSE
+
+
+/area/gehenna/underground
+	icon_state = "unknown"
+	name = "the sulfurous caverns"
 	teleport_blocked = 0
 
 /*

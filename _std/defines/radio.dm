@@ -52,6 +52,7 @@
 #define R_FREQ_INTERCOM_BOTANY 1446
 #define R_FREQ_INTERCOM_AI 1447
 #define R_FREQ_INTERCOM_BRIDGE 1442
+#define R_FREQ_INTERCOM_TELESCIENCE 1444
 
 // let's start putting adventure zone factions in here
 #define R_FREQ_WIZARD 1089 // magic number, used in many magic tricks

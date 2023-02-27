@@ -47,6 +47,8 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 	var/non_admin_dj = 0
 
 	var/last_soundgroup = null
+	var/last_zvol = null
+	var/last_zloop = null
 
 	var/widescreen = 0
 	var/vert_split = 1

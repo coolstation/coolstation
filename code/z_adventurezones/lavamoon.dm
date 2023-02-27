@@ -112,7 +112,7 @@ var/sound/iomoon_alarm_sound = null
 				S.file = ambientSound
 				S.repeat = 0
 				S.wait = 0
-				S.channel = 123
+				S.channel = SOUNDCHANNEL_FX_1
 				S.volume = 60
 				S.priority = 255
 				S.status = SOUND_UPDATE
@@ -126,7 +126,7 @@ var/sound/iomoon_alarm_sound = null
 					iomoon_alarm_sound.file = 'sound/machines/lavamoon_alarm1.ogg'
 					iomoon_alarm_sound.repeat = 0
 					iomoon_alarm_sound.wait = 0
-					iomoon_alarm_sound.channel = 122
+					iomoon_alarm_sound.channel = SOUNDCHANNEL_BIGALARM
 					iomoon_alarm_sound.volume = 60
 					iomoon_alarm_sound.priority = 255
 					iomoon_alarm_sound.status = SOUND_UPDATE
@@ -1366,6 +1366,8 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 	density = 0
 	var/id = null
 	var/broken = FALSE
+	var/blocked = FALSE //blob level transfers atm, maybe hatches in the future?
+
 
 	broken
 		name = "broken ladder"
@@ -1373,8 +1375,9 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 		icon_state = "ladder_wall_broken"
 		broken = TRUE
 
+
+
 	New()
-		..()
 		if (!id)
 			id = "generic"
 		//I add round and square hole flavours of ladder and then find out some shit made all of ladder code work on 'icon_state == "ladder"', what the fuck?
@@ -1382,16 +1385,42 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 		src.tag = "ladder_[id][src.icon_state == "ladder_wall" ? 0 : 1]"
 		//This bit is my fault though
 		if (src.icon_state != "ladder_wall")
+			src.event_handler_flags  = USE_HASENTERED | USE_FLUID_ENTER// hehehhe
 			src.plane = PLANE_NOSHADOW_BELOW //no drop shadow under what's a dang hole in the floor >:(
+		..()
+
+	HasEntered(atom/movable/AM, atom/OldLoc)
+		..()
+		if (src.broken || src.blocked) return
+		if(istype(AM, /obj/item))
+			if(prob(70))
+				var/obj/ladder/otherLadder = locate("ladder_[id][src.icon_state == "ladder_wall"]")
+				if (!istype(otherLadder))
+					return
+				src.visible_message("[AM] falls down the ladder.")
+				AM.set_loc(get_turf(otherLadder))
+		else if(ismob(AM))
+			var/mob/schmuck = AM
+			if ((schmuck.stat || schmuck.getStatusDuration("weakened")) && prob(30))
+				var/obj/ladder/otherLadder = locate("ladder_[id][src.icon_state == "ladder_wall"]")
+				if (!istype(otherLadder))
+					return
+				src.visible_message("[AM] falls down the ladder.")
+				random_brute_damage(schmuck, 10)
+				schmuck.show_text("You fall down the ladder!", "red")
+				schmuck.changeStatus("weakened", 3 SECONDS)
+				AM.set_loc(get_turf(otherLadder))
+
+
 
 	attack_hand(mob/user as mob)
-		if (src.broken) return
+		if (src.broken || src.blocked) return
 		if (user.stat || user.getStatusDuration("weakened") || get_dist(user, src) > 1)
 			return
 		src.climb(user)
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if (src.broken) return
+		if (src.broken || src.blocked) return
 		if (istype(W, /obj/item/grab))
 			if (!W:affecting) return
 			user.lastattacked = src
@@ -1404,14 +1433,77 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 		else
 			..()
 
+
 	proc/climb(mob/user as mob)
 		var/obj/ladder/otherLadder = locate("ladder_[id][src.icon_state == "ladder_wall"]")
 		if (!istype(otherLadder))
 			boutput(user, "You try to climb [src.icon_state == "ladder_wall" ? "up" : "down"] the ladder, but seriously fail! Perhaps there's nowhere to go?")
 			return
-		if (!isobserver(user)) //Ghosts/eyes don't exactly climb
-			boutput(user, "You climb [src.icon_state == "ladder_wall" ? "up" : "down"] the ladder.")
-		user.set_loc(get_turf(otherLadder))
+		if (isobserver(user)) //Ghosts/eyes don't exactly climb
+			user.set_loc(get_turf(otherLadder))
+			return
+			//boutput(user, "You climb [src.icon_state == "ladder_wall" ? "up" : "down"] the ladder.")
+		actions.start(new /datum/action/bar/icon/ladder_climb(user, src, otherLadder), user)
+		//user.set_loc(get_turf(otherLadder))
+
+
+/datum/action/bar/icon/ladder_climb
+	duration = 0.4 SECONDS
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
+	id = "ladder_climb"
+	icon = 'icons/ui/actions.dmi'
+	icon_state = "ladder_climb"
+	var/mob/pizzaghetti
+	var/obj/ladder/delicate_penis
+	var/obj/ladder/robust_penis
+
+	proc/check_drop()
+		if(delicate_penis.icon_state != "ladder_wall")
+			pizzaghetti.show_text("You fall down the ladder!", "red")
+			pizzaghetti.set_loc(get_turf(robust_penis))
+			random_brute_damage(pizzaghetti, 10)
+			pizzaghetti.emote("scream")
+			playsound(pizzaghetti.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
+		else
+			pizzaghetti.show_text("You fall off  the ladder!", "red")
+			random_brute_damage(pizzaghetti, 7)
+		pizzaghetti.changeStatus("weakened", 3 SECONDS)
+
+	New(The_Owner, The_Ladder, The_Other_Ladder)
+		if(!The_Owner || !The_Ladder || !The_Other_Ladder)
+			return
+		..()
+		pizzaghetti = The_Owner
+		delicate_penis = The_Ladder
+		robust_penis = The_Other_Ladder
+
+	onUpdate()
+		..()
+		// you gotta hold still to jump!
+		if (get_dist(pizzaghetti, delicate_penis) > 1)
+			pizzaghetti.show_text("Your climb was interrupted!", "red")
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+	onInterrupt(flag)
+		. = ..()
+		if(prob(30))
+			check_drop()
+
+
+
+	onStart()
+		..()
+		if (get_dist(pizzaghetti, delicate_penis) > 1 || delicate_penis == null || pizzaghetti == null)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		for(var/mob/O in AIviewers(pizzaghetti))
+			O.show_text("[pizzaghetti] begins to climb [delicate_penis.icon_state == "ladder_wall" ? "up" : "down"] the ladder.", "red", group = "[pizzaghetti]-climb_ladder")
+
+	onEnd()
+		..()
+		pizzaghetti.set_loc(get_turf(robust_penis))
+
 
 //Puzzle elements
 

@@ -91,7 +91,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		boutput(user, "<span class='alert'>You need another stack!</span>")
 
 	attackby(var/obj/item/I as obj, mob/user as mob)
-		if (istype(I, /obj/item/stackable_ammo) && src.amount < src.max_stack)
+		if (istype(I, /obj/item/stackable_ammo) && (src.amount < src.max_stack) && (src.type == I.type))
 
 			user.visible_message("<span class='notice'>[user] stacks some rounds.</span>")
 			stack_item(I)
@@ -109,7 +109,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 					boutput(user, "<span class='alert'>You wish!</span>")
 					return
 				change_stack_amount( 0 - amt )
-				var/obj/item/stackable_ammo/young_money = new()
+				var/obj/item/stackable_ammo/young_money = new src.type()
 				young_money.setup(user.loc, amt)
 				young_money.Attackhand(user)
 		else
@@ -124,7 +124,22 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 			return
 		if(!M.ammo_list)
 			M.ammo_list = list()
-		if(M.ammo_list.len >= M.max_ammo_capacity)
+		M.chamber_checked = 0
+		if((M.ammo_list.len >= M.max_ammo_capacity) || !M.max_ammo_capacity)
+			if(M.current_projectile)
+				boutput(user, "<span class='notice'>There's already a cartridge in [M]!</span>")
+				return
+			if(!M.current_projectile)
+				boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [M]</span>")
+				M.current_projectile = new projectile_type()
+				amount --
+				update_stack_appearance()
+				if(amount < 1)
+					user.u_equip(src)
+					src.dropped(user)
+					qdel(src)
+				M.inventory_counter.update_number(!!M.current_projectile)
+				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1) //play the sound here because single shot bypasses cycle_ammo
 			return
 		reloading = 1
 		if(amount < 1)
@@ -146,6 +161,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 				sleep(5)
 			playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, 0, 0.8)
 			boutput(user, "<span class='notice'>The hold is full</span>")
+			if(!M.current_projectile)
+				M.process_ammo()
 			M.inventory_counter.update_number(M.ammo_list.len)
 			reloading = 0
 
@@ -401,6 +418,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	color_red = 0
 	color_green = 1
 	color_blue = 0
+	projectile_speed = 75
 
 
 /datum/projectile/laser/flashbulb/two
@@ -408,12 +426,14 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	color_red = 1
 	color_green = 1
 	cost = 75
+	projectile_speed = 70
 
 /datum/projectile/laser/flashbulb/three
 	power = 35
 	color_red = 1
 	color_green = 0
 	cost = 100
+	projectile_speed = 65
 
 	on_hit(atom/hit)
 		if (isliving(hit))
@@ -421,6 +441,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 			L.changeStatus("slowed", 1 SECOND)
 			L.change_misstep_chance(1)
 			L.emote("twitch_v")
+		if(prob(5))
+			hit.ex_act(3)
 		return
 
 /datum/projectile/laser/flashbulb/four
@@ -428,6 +450,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	color_red = 1
 	color_green = 0
 	cost = 200
+	projectile_speed = 60
 
 	on_hit(atom/hit)
 		fireflash(get_turf(hit), 0)
@@ -436,5 +459,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 			L.changeStatus("slowed", 1 SECOND)
 			L.change_misstep_chance(1)
 			L.emote("twitch_v")
+		if(prob(20))
+			hit.ex_act(3)
 		return
 		//hit.ex_act(3)

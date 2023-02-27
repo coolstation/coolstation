@@ -1,5 +1,5 @@
 
-/obj/decal/poster
+/obj/decal/poster //don't use this one (or do, i'm not your dad)
 	desc = "A piece of paper with an image on it. Clearly dealing with incredible technology here."
 	name = "poster"
 	icon = 'icons/obj/items/items.dmi'
@@ -7,16 +7,19 @@
 	anchored = 1
 	opacity = 0
 	density = 0
-	var/imgw = 600
-	var/imgh = 400
-	var/popup_win = 1
+	var/imgw = 600 //set this to around +10 your image's actual size or whatever size you want the window to be
+	var/imgh = 400 //ditto
+	var/img = "images/arts/posters/sweaterferrets.jpg" //fallback image
+	var/resource = null //use html resource instead of quick and dirty html image? ex. "html/traitorTips/wizardTips.html"
+	var/popup_win = 1 //wallsign root is 0 don't worry about it
+	var/cat = "poster" //reuse windows, define differently if you want a separate/persistent category
 	layer = EFFECTS_LAYER_BASE
 	plane = PLANE_NOSHADOW_ABOVE
 
 	examine()
 		if (usr.client && src.popup_win)
 			src.show_popup_win(usr)
-			return list()
+			return list() //someone smarter than me please tell me why we wouldn't also return the name/desc in chatbox like a usual examine
 		else
 			return ..()
 
@@ -24,7 +27,13 @@
 		if (!C || !src.popup_win)
 			return
 		// wtf why is this using wizardtips... with a custom size... fuck it im leaving this one out of the centralization -singh
-		C.Browse(grabResource("html/traitorTips/wizardTips.html"),"window=antagTips;size=[imgw]x[imgh];title=Antagonist Tips")
+		//C.Browse(grabResource("html/traitorTips/wizardTips.html"),"window=antagTips;size=[imgw]x[imgh];title=Antagonist Tips")
+		// miss you lots, buddy
+		if (src.resource) //do we have a resource defined?
+			C.Browse(grabResource("[resource]"),"window=[cat];size=[imgw]x[imgh];title=[name]")
+		else //no? then it's obviously an image
+			C.Browse("<html><title>[name]</title><body style='margin:2px'><img src='[resource("[img]")]'></body></html>","window=[cat];size=[imgw]x[imgh];title=[name]")
+			//C.Browse("<img src=\"[resource("images/pw_map.png")]\">","window=Map;size=[imgw]x[imgh];title=Map") //marginless from pw_map, preserved as curiosity (or if i fucked up and need to put it back)
 
 	wallsign
 		desc = "A sign, on a wall. Wow!"
@@ -577,6 +586,18 @@
 			desc = "A huge poster that reads 'I want YOU for NT!'"
 			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "you_4_nt"
+			imgw = 365
+			imgh = 450
+
+		poster_y4ntshitty
+			name = "\improper NanoTrasen recruitment poster"
+			desc = "SOMEONE has a passion for graphic design. Fuck..."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "you_4_nt"
+			popup_win = 1
+			imgw = 365
+			imgh = 450
+			img = "images/arts/posters/y4nt-shitty.jpg"
 
 		poster_beach
 			name = "beach poster"
@@ -1108,15 +1129,21 @@
 				. += "It says \ [capname] has been awarded a Bachelor of [pick("Farts", "Fards")] Degree for the study of [pick("slipology", "jugglemancy", "pie science", "bicycle horn accoustics", "comic sans calligraphy", "gelotology", "flatology", "nuclear physics", "goonstation coder")]! It appears to be written in faded crayon."
 
 /obj/decal/poster/wallsign/pod_build
-	name = "poster"
+	name = "\improper How to Build a Space Pod"
 	icon = 'icons/obj/decals/posters_64x32.dmi'
 	icon_state = "nt-pod-poster"
 	popup_win = 1
+	resource = "html/how_to_build_a_pod.html"
+	cat = "how_to_build_a_pod"
 
-	show_popup_win(var/client/C)
-		if (!C || !src.popup_win)
-			return
-		C.Browse(grabResource("html/how_to_build_a_pod.html"),"window=how_to_build_a_pod;size=[imgw]x[imgh];title=How to Build a Space Pod")
+/obj/decal/poster/wallsign/hypothermia
+	name = "repulsive public service poster"
+	icon = 'icons/obj/decals/posters.dmi'
+	icon_state = "frostbite"
+	popup_win = 1
+	imgw = 690
+	imgh = 570
+	img = "images/arts/posters/hypothermia.jpg"
 
 /obj/decal/poster/wallsign/pod_build/nt
 	icon_state = "nt-pod-poster"
@@ -1131,12 +1158,8 @@
 	popup_win = 1
 	imgw = 702
 	imgh = 702
-
-	show_popup_win(var/client/C)
-		if (!C || !src.popup_win)
-			return
-
-		C.Browse("<img src=\"[resource("images/pw_map.png")]\">","window=Map;size=[imgw]x[imgh];title=Map")
+	img = "images/pw_map.png"
+	cat = "map"
 
 /obj/decal/poster/banner
 	name = "banner"

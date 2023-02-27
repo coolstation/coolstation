@@ -1102,6 +1102,17 @@ obj/trait/pilot
 	category = "species"
 	mutantRace = /datum/mutantrace/cow
 
+/obj/trait/fert
+	name = "Musteline (-1) \[Species\]"
+	cleanName = "Musteline"
+	icon_state = "fertT"
+	desc = "Now everyone will know your stinky secret."
+	id = "fert"
+	points = -1
+	isPositive = 1
+	category = "species"
+	mutantRace = /datum/mutantrace/fert
+
 /obj/trait/skeleton
 	name = "Skeleton (-2) \[Species\]"
 	cleanName = "Skeleton"

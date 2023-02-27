@@ -4151,9 +4151,7 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/red,
 /area/station/security/checkpoint/arrivals)
 "amb" = (
@@ -4418,9 +4416,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/red,
 /area/station/security/checkpoint/arrivals)
 "amV" = (
@@ -6870,7 +6866,7 @@
 	p_open = 1
 	},
 /obj/item/storage/box/donkpocket_kit,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
 "atE" = (
@@ -9065,7 +9061,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/yellow/side{
 	dir = 8
 	},
@@ -9075,7 +9071,7 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/green/side{
 	dir = 4
 	},
@@ -10465,17 +10461,13 @@
 /obj/machinery/light/emergency{
 	dir = 1
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/neutral/side{
 	dir = 1
 	},
 /area/station/hallway/primary/central)
 "aCZ" = (
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/neutral/side{
 	dir = 1
 	},
@@ -11138,9 +11130,7 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "aEq" = (
@@ -11474,7 +11464,7 @@
 	name = "Interrogation Room";
 	opacity = 0
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/black,
 /area/station/security/main)
 "aFj" = (
@@ -11668,9 +11658,7 @@
 	dir = 4
 	},
 /obj/machinery/light/emergency,
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/neutral/side,
 /area/station/hallway/primary/central)
 "aFE" = (
@@ -11680,9 +11668,7 @@
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/neutral/side,
 /area/station/hallway/primary/central)
 "aFF" = (
@@ -13341,11 +13327,11 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/segment,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
 /area/station/hallway/primary/east)
 "aJQ" = (
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
 /area/station/hallway/primary/east)
 "aJT" = (
@@ -17695,18 +17681,18 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/grey/side{
 	dir = 8
 	},
 /area/station/hallway/primary/central)
 "aUt" = (
 /obj/disposalpipe/segment/transport,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "aUu" = (
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "aUv" = (
@@ -18769,9 +18755,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/delivery,
 /area/station/hallway/primary/central)
 "aWV" = (
@@ -19382,9 +19366,7 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "aYi" = (
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/delivery,
 /area/station/hallway/primary/central)
 "aYj" = (
@@ -20557,7 +20539,7 @@
 	tag = ""
 	},
 /obj/item/pen/marker/blue,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/black,
 /area/station/security/checkpoint)
 "bbg" = (
@@ -22291,7 +22273,7 @@
 /obj/item/stamp{
 	pixel_x = 4
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/noticeboard/persistent{
 	name = "Customs persistent notice board";
 	persistent_id = "customs";
@@ -22305,7 +22287,7 @@
 /obj/machinery/cashreg{
 	pixel_y = 5
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/black,
 /area/station/security/checkpoint)
 "beV" = (
@@ -22314,7 +22296,7 @@
 	pixel_x = 6;
 	pixel_y = 5
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/black,
 /area/station/security/checkpoint)
 "beW" = (
@@ -28440,9 +28422,7 @@
 /turf/simulated/floor/plating,
 /area/station/engine/inner)
 "btD" = (
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/plating,
 /area/station/engine/inner)
 "btE" = (
@@ -28703,9 +28683,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/plating,
 /area/station/engine/inner)
 "but" = (
@@ -28731,9 +28709,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/plating,
 /area/station/engine/inner)
 "buw" = (
@@ -32506,9 +32482,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/plating,
 /area/station/engine/inner)
 "bEu" = (
@@ -33638,9 +33612,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/plating,
 /area/station/quartermaster/office)
 "bHJ" = (
@@ -37115,9 +37087,7 @@
 	icon_state = "4-8"
 	},
 /obj/wingrille_spawn/auto/crystal,
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/engine/vacuum,
 /area/station/science/lab)
 "bPy" = (
@@ -37601,9 +37571,7 @@
 	dir = 1
 	},
 /obj/decal/tile_edge/stripe/extra_big,
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
 /area/station/quartermaster/office)
 "bQz" = (
@@ -39634,7 +39602,7 @@
 	dir = 1
 	},
 /obj/decal/tile_edge/stripe/extra_big,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
 /area/station/science/lobby)
 "bVv" = (
@@ -39888,9 +39856,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	can_rupture = 0
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/delivery,
 /area/station/hallway/primary/south)
 "bVY" = (
@@ -40232,9 +40198,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	can_rupture = 0
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/delivery,
 /area/station/hallway/primary/south)
 "bWO" = (
@@ -40356,9 +40320,7 @@
 /area/station/crew_quarters/supplylobby)
 "bXh" = (
 /obj/disposalpipe/segment/mail,
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
 /area/station/crew_quarters/supplylobby)
 "bXi" = (
@@ -40609,9 +40571,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	can_rupture = 0
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/delivery,
 /area/station/hallway/primary/south)
 "bXR" = (
@@ -40638,9 +40598,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	can_rupture = 0
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/delivery,
 /area/station/hallway/primary/south)
 "bXV" = (
@@ -40891,9 +40849,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
 /area/station/crew_quarters/supplylobby)
 "bYE" = (
@@ -41946,7 +41902,7 @@
 /obj/disposalpipe/segment/ejection{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/red,
 /area/station/security/checkpoint/cargo)
 "cbt" = (
@@ -48084,9 +48040,7 @@
 	pixel_x = 6;
 	pixel_y = 3
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/delivery,
 /area/station/science/chemistry)
 "cqB" = (
@@ -60183,9 +60137,7 @@
 /obj/item/reagent_containers/food/snacks/cake/chocolate/gateau{
 	pixel_y = 8
 	},
-/obj/machinery/door/firedoor/pyro{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/black,
 /area/station/crew_quarters/cafeteria)
 "pQX" = (
@@ -62305,7 +62257,7 @@
 /obj/machinery/cashreg{
 	pixel_y = -2
 	},
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/black,
 /area/station/security/checkpoint)
 "tJo" = (
@@ -62398,7 +62350,7 @@
 	dir = 1
 	},
 /obj/wingrille_spawn/auto/crystal,
-/obj/machinery/door/firedoor/pyro,
+/obj/machinery/door/firedoor/border_only,
 /obj/decal/wreath/ephemeral,
 /turf/simulated/floor/engine/vacuum,
 /area/station/science/lab)

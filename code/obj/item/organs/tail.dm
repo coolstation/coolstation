@@ -212,6 +212,17 @@
 	organ_image_under_suit_2 = null
 	organ_image_over_suit = "cow_over_suit_1"	// just the tail, no nose
 
+/obj/item/organ/tail/fert
+	name = "ferret tail"
+	desc = "A short, energetic tail."
+	icon_state = "tail-lizard"	// need a bloody detached sprite in surgery.dmi but this works for now
+	organ_image_icon = 'icons/mob/fert.dmi'
+	organ_image_under_suit_1 = "fert_under_suit"
+	organ_image_under_suit_2 = null
+	organ_image_over_suit = "fert_over_suit"
+	tail_num = TAIL_FERT
+	colorful = 1
+
 /obj/item/organ/tail/wolf
 	name = "wolf tail"
 	desc = "A long, fluffy tail."

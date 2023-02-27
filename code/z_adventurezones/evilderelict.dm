@@ -177,7 +177,7 @@ var/maniac_previous_victim = "Unknown"
 	name = "Forgotten Station"
 	icon_state = "derelict"
 	teleport_blocked = 1
-	sound_loop = 'sound/ambience/spooky/Evilreaver_Ambience.ogg'
+	sound_loop_1 = 'sound/ambience/spooky/Evilreaver_Ambience.ogg'
 #ifdef MAP_OVERRIDE_OSHAN
 	requires_power = FALSE
 #endif

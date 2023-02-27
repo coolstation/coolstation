@@ -135,6 +135,35 @@
 		setup_tape_type = /obj/item/disk/data/tape
 		setup_allow_boot = 1
 
+	tape_drive/warm
+		name = "Warm Backup Databank"
+		desc = "A networked tape drive for the backup mainframe."
+		setup_access_click = 1
+		setup_allow_boot = 1
+		net_number = 1 //if someone turns this on accidentally don't interfere with normal networking until it's working right and configured to 0
+	tape_drive/cold
+		name = "Cold Backup Databank"
+		desc = "A networked tape drive for the backup mainframe."
+		setup_access_click = 1
+		setup_allow_boot = 1
+		setup_spawn_with_tape = 0
+		net_number = 1 //see above
+	tape_drive/lab
+		name = "Databank"
+		desc = "A networked tape drive for lab use."
+		setup_access_click = 1
+		setup_allow_boot = 1
+		setup_spawn_with_tape = 0
+		net_number = 3 //nerdnet
+
+	tape_drive/syndie
+		name = "Liberated Databank"
+		desc = "A networked tape drive for software-freedom activities. Gallantly rescued from station 11."
+		setup_access_click = 1
+		setup_allow_boot = 1
+		setup_spawn_with_tape = 0
+		net_number = 2 //syndinet?
+
 	clone()
 		var/obj/machinery/networked/storage/clonestore = ..()
 		if (!clonestore)

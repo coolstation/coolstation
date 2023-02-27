@@ -149,6 +149,16 @@
 	msgLose = "Your udders fall off!"
 	icon_state  = "cow"
 
+/datum/bioEffect/mutantrace/fert
+	name = "Musteline Genetics"
+	desc = "The subject gets \'slinky and stinky\', whatever that means."
+	id = "fert"
+	mutantrace_option = "Ferret"
+	mutantrace_path = /datum/mutantrace/fert
+	msgGain = "You feel REALLY EXCITED and want to jump around a bit."
+	msgLose = "You calm down a lot, but for some reason you still stink???"
+	icon_state  = "fert"
+
 /datum/bioEffect/mutantrace/chicken
 	name = "Experimental Strain Epsilon Gamma Gamma #5"
 	desc = "For exclusive use under the supervision of Dr. Cox MD. Unauthorized modification, replication, and distribution prohibited."
