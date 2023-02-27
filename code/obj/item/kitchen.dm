@@ -463,7 +463,6 @@ TRAYS
 			return //already busy
 		if (src.wine && src.emagged) //loaded and ready?
 			src.launching = 1
-			var/attempts = 0
 			//warm up
 			sleep(2 SECONDS)
 			animate_storage_thump(src)
