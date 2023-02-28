@@ -2132,14 +2132,14 @@
 		switch (act)
 			if ("dance")
 				if (mob.emote_allowed)
-					mob.emote_allowed = 0
+					if (!(src.client && src.client.holder)) mob.emote_allowed = 0
 					if (voluntary)
 						message = "<B>[mob]</B> [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles","weasel-wardances")]!" //public message
-						SPAWN_DBG(6 SECONDS)
+						SPAWN_DBG(4 SECONDS)
 							if (mob) mob.emote_allowed = 1 //finish cooldown
 					else
 						mob.show_message("<span class='alert'>You CAN'T CONTROL YOURSELF AT ALL!!! YOU GOTTA [pick("WOBBLE","WIGGLE","WIG OUT","FREAK OUT","BOUNCE AROUND","GET WOOZED UP")]!!!</span>") //message to only yourself
-						SPAWN_DBG(4 SECONDS) //shorter cooldown for involuntary
+						SPAWN_DBG(2 SECONDS) //shorter cooldown for involuntary
 							if (mob) mob.emote_allowed = 1
 				else
 					return
