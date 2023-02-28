@@ -70407,6 +70407,12 @@
 "dSK" = (
 /obj/disposaloutlet/south,
 /obj/disposalpipe/trunk/east,
+/obj/critter/meatslinky{
+	color = "#88ccFF";
+	desc = "A ferret that went to space. Who knows if he'll be long?";
+	health = 9999999;
+	name = "stinky ferret"
+	},
 /turf/unsimulated/floor/plating,
 /area/afterlife/bar)
 "dSL" = (
@@ -71001,6 +71007,12 @@
 	icon_state = "fgreen2"
 	},
 /area/afterlife/bar)
+"erz" = (
+/turf/unsimulated/dirt{
+	dir = 8;
+	icon_state = "dirttograss"
+	},
+/area/sim/racing_track)
 "esk" = (
 /obj/storage/closet/wardrobe/orange,
 /obj/item/device/light/glowstick,
@@ -71122,6 +71134,14 @@
 "eyM" = (
 /turf/unsimulated/wall/auto/lead/gray,
 /area/crypt/sigma/morgue)
+"eyY" = (
+/obj/decal/poster/wallsign/stencil/left/u,
+/obj/decal/poster/wallsign/stencil/right/n,
+/turf/unsimulated/dirt{
+	dir = 6;
+	icon_state = "dirttograss"
+	},
+/area/sim/racing_track)
 "ezs" = (
 /turf/unsimulated/floor/stairs/wide,
 /area/centcom)
@@ -71221,6 +71241,11 @@
 	icon_state = "diagonalWall"
 	},
 /area/hospital/samostrel)
+"eRi" = (
+/turf/unsimulated/dirt{
+	icon_state = "dirttograss"
+	},
+/area/sim/racing_track)
 "eTm" = (
 /obj/item/clothing/under/pride/ace,
 /obj/storage/closet{
@@ -71320,12 +71345,14 @@
 	},
 /area/hospital/samostrel)
 "fgM" = (
-/turf/unsimulated/wall/setpieces/fakewindow{
-	dir = 6
+/obj/item/bananapeel,
+/turf/unsimulated/floor{
+	icon_state = "diamondtile-simple"
 	},
 /area/sim/racing_track{
-	icon_state = "green";
-	name = "garrys"
+	force_fullbright = 0;
+	icon_state = "blue";
+	name = "garrys dark room"
 	})
 "fhy" = (
 /obj/decal/fakeobjects{
@@ -71596,6 +71623,12 @@
 	icon_state = "floor"
 	},
 /area/centcom/lounge)
+"gaa" = (
+/turf/unsimulated/dirt{
+	dir = 9;
+	icon_state = "dirttograss"
+	},
+/area/sim/racing_track)
 "gaE" = (
 /obj/admin_plaque{
 	name = "Vaughn Moon's Office"
@@ -72071,6 +72104,12 @@
 	icon_state = "bloodfloor_3"
 	},
 /area/meat_derelict/guts)
+"hIT" = (
+/turf/unsimulated/dirt{
+	dir = 4;
+	icon_state = "dirttograss"
+	},
+/area/sim/racing_track)
 "hKB" = (
 /obj/table/auto,
 /obj/machinery/light/small/iomoon{
@@ -72312,6 +72351,11 @@
 	},
 /turf/unsimulated/wall/auto/lead/blue,
 /area/crater)
+"isS" = (
+/obj/decal/poster/wallsign/stencil/right/r,
+/obj/decal/poster/wallsign/stencil/left/r,
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/racing_track)
 "itp" = (
 /obj/machinery/vehicle/tank/car/rusty,
 /obj/decal/tile_edge/line/grey{
@@ -72365,6 +72409,11 @@
 	},
 /turf/unsimulated/floor/wood/two,
 /area/centcom/offices/mrfishstick)
+"ivj" = (
+/obj/decal/poster/wallsign/stencil/left/e,
+/obj/decal/poster/wallsign/stencil/right/e,
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/racing_track)
 "iwj" = (
 /obj/item/storage/toilet{
 	dir = 4;
@@ -72625,6 +72674,12 @@
 /turf/space,
 /turf/unsimulated/floor/caution/south,
 /area/hospital/samostrel)
+"jjn" = (
+/obj/decal/poster/wallsign/stencil/right/d,
+/turf/unsimulated/dirt{
+	icon_state = "dirttograss"
+	},
+/area/sim/racing_track)
 "jks" = (
 /obj/stool/chair{
 	dir = 8
@@ -72718,6 +72773,12 @@
 	opacity = 0
 	},
 /area/titlescreen)
+"jBa" = (
+/turf/unsimulated/dirt{
+	dir = 5;
+	icon_state = "dirttograss"
+	},
+/area/sim/racing_track)
 "jCe" = (
 /obj/stool/chair/comfy/shuttle,
 /obj/machinery/light{
@@ -73512,8 +73573,9 @@
 /area/meat_derelict/guts)
 "lPI" = (
 /obj/decal/cleanable/gangtag{
-	icon_state = "gangtag12";
-	pixel_x = 28
+	icon_state = "gangtag22";
+	pixel_x = 0;
+	pixel_y = 32
 	},
 /turf/unsimulated/floor{
 	icon_state = "metalfoam"
@@ -74740,12 +74802,8 @@
 	},
 /area/afterlife/bar)
 "oRP" = (
-/obj/decal/cleanable/gangtag{
-	icon_state = "gangtag22";
-	pixel_x = 28
-	},
-/turf/unsimulated/floor{
-	icon_state = "metalfoam"
+/turf/unsimulated/wall/setpieces/fakewindow{
+	dir = 6
 	},
 /area/sim/racing_track{
 	icon_state = "green";
@@ -75736,6 +75794,10 @@
 	icon_state = "green";
 	name = "garrys"
 	})
+"ryA" = (
+/obj/decal/poster/wallsign/stencil/left/s,
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/racing_track)
 "rAl" = (
 /obj/window/crystal/reinforced/west,
 /obj/window/crystal/reinforced/north,
@@ -76221,6 +76283,10 @@
 /area/shuttle/escape/centcom/destiny)
 "sAM" = (
 /obj/decal/cleanable/fungus,
+/obj/decal/cleanable/gangtag{
+	icon_state = "gangtag12";
+	pixel_x = 28
+	},
 /turf/unsimulated/floor{
 	icon_state = "metalfoam"
 	},
@@ -76308,6 +76374,11 @@
 	},
 /turf/unsimulated/floor/wood/two,
 /area/centcom/offices/studenterhue)
+"sIN" = (
+/turf/unsimulated/dirt{
+	icon_state = "grasstodirt"
+	},
+/area/sim/racing_track)
 "sJF" = (
 /turf/unsimulated/floor/stairs{
 	dir = 8;
@@ -77340,6 +77411,9 @@
 "wvy" = (
 /turf/unsimulated/floor/carpet/red/fancy/narrow/nw,
 /area/centcom/offices/sovexe)
+"wvY" = (
+/turf/unsimulated/dirt,
+/area/sim/racing_track)
 "wxG" = (
 /obj/tombstone{
 	dir = 9
@@ -77527,6 +77601,11 @@
 /turf/space,
 /turf/unsimulated/floor/blackwhite/whitegrime,
 /area/hospital/samostrel)
+"xby" = (
+/obj/decal/poster/wallsign/stencil/left/g,
+/obj/decal/poster/wallsign/stencil/right/a,
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/racing_track)
 "xcp" = (
 /turf/space,
 /turf/unsimulated/wall{
@@ -77568,6 +77647,11 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/retentioncenter)
+"xiI" = (
+/obj/decal/poster/wallsign/stencil/left/m,
+/obj/decal/poster/wallsign/stencil/right/o,
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/racing_track)
 "xjD" = (
 /turf/unsimulated/wall{
 	dir = 8;
@@ -77585,6 +77669,12 @@
 	},
 /turf/unsimulated/wall/auto/lead/blue,
 /area/upper_arctic/pod1)
+"xkv" = (
+/turf/unsimulated/dirt{
+	dir = 10;
+	icon_state = "dirttograss"
+	},
+/area/sim/racing_track)
 "xky" = (
 /obj/decal/fakeobjects/shuttlethruster{
 	desc = "A small impulse drive.";
@@ -77721,6 +77811,15 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/centcom/donut3)
+"xKp" = (
+/obj/critter/meatslinky{
+	color = "#88ccFF";
+	desc = "A ferret that went to space. Who knows if he'll be long?";
+	health = 9999999;
+	name = "stinky ferret"
+	},
+/turf/unsimulated/dirt,
+/area/sim/racing_track)
 "xPv" = (
 /obj/cable{
 	d1 = 2;
@@ -77763,6 +77862,12 @@
 	icon_state = "floor2"
 	},
 /area/space)
+"xVx" = (
+/obj/tree1{
+	desc = "It's a tree. You see the phrase 'Vote for Death Badman 2day' carved into it."
+	},
+/turf/unsimulated/dirt,
+/area/sim/racing_track)
 "xWx" = (
 /obj/table/auto,
 /obj/decal/fakeobjects{
@@ -104479,8 +104584,8 @@ uVP
 dlU
 dlU
 uVP
+fzG
 jXM
-pxk
 pxk
 pxk
 pxk
@@ -104781,14 +104886,14 @@ uVP
 dlU
 dlU
 uVP
-pxk
+fzG
 jXM
 pxk
 pxk
 pxk
 pxk
 pxk
-fgM
+pxk
 pVG
 fNo
 fNo
@@ -105083,14 +105188,14 @@ uVP
 dlU
 nzV
 uVP
+fzG
+lPI
 pxk
 pxk
 pxk
 pxk
 pxk
 pxk
-pxk
-fgM
 pVG
 fNo
 fNo
@@ -105383,14 +105488,14 @@ cvH
 aaa
 uVP
 dlU
-dlU
+fgM
 uVP
-pxk
-oRP
-pxk
+fzG
 pxk
 pxk
-lPI
+pxk
+pxk
+pxk
 sAM
 fzG
 pVG
@@ -105687,12 +105792,12 @@ uVP
 dlU
 mkr
 uVP
-uVP
-uVP
+fzG
+fzG
 fzG
 jXM
 fzG
-fzG
+oRP
 fzG
 fzG
 pVG
@@ -105989,9 +106094,9 @@ uVP
 uVP
 piD
 uVP
-jlc
 uVP
-iIA
+uVP
+fzG
 iIA
 iIA
 iIA
@@ -106293,7 +106398,7 @@ jlc
 uVP
 jlc
 uVP
-njh
+fzG
 njh
 njh
 njh
@@ -106595,7 +106700,7 @@ jlc
 jlc
 jlc
 uVP
-njh
+fzG
 njh
 ipz
 iPq
@@ -106897,7 +107002,7 @@ jlc
 uVP
 jlc
 uVP
-njh
+fzG
 njh
 pVG
 fNo
@@ -107199,7 +107304,7 @@ jlc
 uVP
 jlc
 uVP
-njh
+fzG
 njh
 pVG
 fNo
@@ -107803,7 +107908,7 @@ jlc
 uVP
 jlc
 uVP
-njh
+fzG
 njh
 pVG
 fNo
@@ -108105,7 +108210,7 @@ jlc
 uVP
 jlc
 uVP
-njh
+fzG
 njh
 pVG
 fNo
@@ -108407,7 +108512,7 @@ jlc
 jlc
 jlc
 uVP
-njh
+fzG
 njh
 pVG
 fzG
@@ -109618,7 +109723,7 @@ bMc
 bMc
 bMc
 bMc
-bMc
+xby
 bMc
 bMc
 bMc
@@ -109920,7 +110025,7 @@ bMc
 bMc
 bMc
 bMc
-bMc
+isS
 bMc
 bMc
 bMc
@@ -110222,9 +110327,9 @@ bMc
 bMc
 bMc
 bMc
+ivj
 bMc
-bMc
-bMc
+xiI
 bMc
 bMc
 bMc
@@ -110524,12 +110629,12 @@ bMc
 bMc
 bMc
 bMc
+ryA
 bMc
-bMc
-bMc
-bMc
-bMc
-bMc
+eyY
+hIT
+hIT
+jBa
 bMc
 bMc
 bUm
@@ -110828,10 +110933,10 @@ bRS
 bMc
 bMc
 bMc
-bMc
-bMc
-bMc
-bMc
+jjn
+wvY
+wvY
+sIN
 bMc
 bMc
 bXs
@@ -111130,10 +111235,10 @@ bPy
 bMc
 bMc
 bMc
-bMc
-bMc
-bMc
-bMc
+eRi
+wvY
+wvY
+sIN
 bMc
 bMc
 bUm
@@ -111432,10 +111537,10 @@ bPy
 bMc
 bMc
 bMc
-bMc
-bMc
-bMc
-bMc
+eRi
+xVx
+xKp
+sIN
 bMc
 bMc
 bXs
@@ -111734,10 +111839,10 @@ bPy
 bMc
 bMc
 bMc
-bMc
-bMc
-bMc
-bMc
+eRi
+wvY
+wvY
+sIN
 bMc
 bMc
 bUm
@@ -112036,10 +112141,10 @@ bPy
 bMc
 bMc
 bMc
-bMc
-bMc
-bMc
-bMc
+eRi
+wvY
+wvY
+sIN
 bMc
 bMc
 bXs
@@ -112338,10 +112443,10 @@ bPy
 bMc
 bMc
 bMc
-bMc
-bMc
-bMc
-bMc
+xkv
+erz
+erz
+gaa
 bMc
 bMc
 bUm
