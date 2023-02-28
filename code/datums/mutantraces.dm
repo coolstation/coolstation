@@ -2132,7 +2132,7 @@
 		switch (act)
 			if ("dance")
 				if (mob.emote_allowed)
-					if (!(src.client && src.client.holder)) mob.emote_allowed = 0
+					if (!(mob.client && mob.client.holder)) mob.emote_allowed = 0
 					if (voluntary)
 						message = "<B>[mob]</B> [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles","weasel-wardances")]!" //public message
 						SPAWN_DBG(4 SECONDS)
