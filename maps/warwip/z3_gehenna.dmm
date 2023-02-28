@@ -2618,6 +2618,9 @@
 	dir = 4
 	},
 /obj/machinery/disposal,
+/obj/machinery/light/emergency{
+	dir = 8
+	},
 /turf/simulated/floor/black,
 /area/station/maintenance/inner/north)
 "bzZ" = (
@@ -14174,6 +14177,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/machinery/light/emergency,
 /turf/simulated/floor,
 /area/station/security/processing)
 "iJw" = (
@@ -26667,11 +26671,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
-"qoQ" = (
-/obj/decal/cleanable/dirt/random,
-/obj/machinery/bathtub,
-/turf/simulated/floor/plating,
-/area/station/maintenance/south)
 "qpS" = (
 /obj/machinery/atmospherics/valve{
 	name = "tunnel level air supply"
@@ -31436,6 +31435,11 @@
 	dir = 1
 	},
 /area/station/crew_quarters/bar)
+"tgb" = (
+/obj/decal/cleanable/dirt/random,
+/obj/machinery/bathtub,
+/turf/simulated/floor/plating,
+/area/station/maintenance/south)
 "tgd" = (
 /obj/grille/steel,
 /turf/simulated/floor/plating/random,
@@ -37372,9 +37376,6 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/light/emergency{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/black/side{
@@ -86023,7 +86024,7 @@ jZT
 aYh
 uJd
 mDu
-qoQ
+tgb
 qAe
 kPQ
 kPQ
