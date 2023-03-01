@@ -10,6 +10,8 @@
 	var/station_budget = 0.0
 	var/shipping_budget = 0.0
 	var/research_budget = 0.0
+	var/finserv_budget = 0.0 // NanoTrasen gets their share of every transaction.
+				 // ... if the channel ever reopens for them to collect it.
 
 	var/list/jobs = new/list()
 
@@ -64,6 +66,7 @@
 		station_budget = 100000
 		shipping_budget = 30000
 		research_budget = 20000
+		finserv_budget = 20000
 
 		// This is gonna throw up some crazy errors if it isn't done right!
 		// cogwerks - raising all of the paychecks, oh god
