@@ -471,7 +471,7 @@ TRAYS
 			animate_storage_thump(src)
 			src.dir = turn(src.dir,-180)
 			src.visible_message("<span class='alert'><b>\The [src] lets out [pick("a strange","a weird","an awful","a <b>sexy<b>","a")] [pick("moan","groan","sigh")]!</b></span>")
-			playsound(src, "sound/voice/hoooagh2.ogg", 75, 1)
+			playsound(src, "sound/voice/hoooagh2.ogg", 100, 1)
 			sleep((rand(3,6)) SECONDS)
 			animate_storage_thump(src)
 			src.dir = turn(src.dir,-180)
@@ -490,11 +490,11 @@ TRAYS
 					var/obj/item/W = src.wine
 					W.set_loc(get_turf(src)) //bring it out
 					src.wine = null //clear it from the holder
-					W.throw_at(target, 16, 5, 24)
+					W.throw_at(target, 16, 5, 49)
 					animate_storage_thump(src)
 					playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1)
 					src.icon_state = "homph-emag"
-					src.visible_message("<span class='alert'><b>\The [src] launches the [W] at [target]!</b></span>")
+					src.visible_message("<span class='alert'><b>\The [src] launches \the [W] at [target]!</b></span>")
 				else
 					src.visible_message("<span class='alert'><b>\The [src] looks incredibly disappointed.</b></span>")
 				src.launching = 0
@@ -507,11 +507,11 @@ TRAYS
 				src.icon_state = "homph-emag"
 				if(user)
 					boutput(user, "you make this meatball a little spicier!!! homph omph")
-				src.visible_message("<span class='alert'><b> The [src] buzzes oddly and gets a wild look in its eyes!</b></span>")
+				src.visible_message("<span class='alert'><b> \The [src] buzzes oddly and gets a wild look in its eyes!</b></span>")
 			else
 				if(user)
 					boutput(user, "you make this meatball a little spicier!!! ...You should probably take cover!")
-				src.visible_message("<span class='alert'><b> The [src] buzzes oddly and starts looking around for a target!</b></span>")
+				src.visible_message("<span class='alert'><b> \The [src] buzzes oddly and starts looking around for a target!</b></span>")
 				SPAWN_DBG(1 SECOND)
 					src.launch_wine() //otherwise it waits for the whole process to end to return 1
 			playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1)
@@ -532,12 +532,12 @@ TRAYS
 			if (get_dist(src, user) >= 2)
 				return 0
 			src.launching = 1
-			playsound(src, "sound/items/eatfood.ogg", 50, 1)
+			playsound(src, "sound/items/eatfood.ogg", 100, 1)
 			user.visible_message("<b>[src]</b> eats [user]'s [E]!","Your [E] gets eaten by \the [src]. What the fuck!?")
 			src.icon_state = "homph"
 			qdel(E)
 			SPAWN_DBG(2 SECONDS)
-				playsound(src, "sound/voice/burp.ogg", 50, 1)
+				playsound(src, "sound/voice/burp.ogg", 100, 1)
 				src.visible_message("<b>[src]</b> burps.")
 				sleep(3 SECOND)
 
@@ -557,9 +557,9 @@ TRAYS
 				playsound(src, "sound/misc/meat_plop.ogg", 50, 1)
 				if (get_dist(src, user) <= 7)
 					EI.throw_at(user, 16, 5)
-					src.visible_message("<b>\The [src]</b> spits out [EI] at [user]!")
+					src.visible_message("<b>\The [src]</b> spits out a [EI] at [user]!")
 				else
-					src.visible_message("<b>\The [src]</b> spits out [EI]!")
+					src.visible_message("<b>\The [src]</b> spits out a [EI]!")
 				src.icon_state = "homph-emag"
 				src.launching = 0
 			return 0
