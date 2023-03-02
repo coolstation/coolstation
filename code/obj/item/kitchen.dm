@@ -462,63 +462,54 @@ TRAYS
 		if (src.wine && src.emagged) //loaded and ready?
 			src.launching = 1
 			//warm up
+			animate_storage_thump(src)
+			src.dir = turn(src.dir,-180)
 			sleep(2 SECONDS)
 			animate_storage_thump(src)
 			src.dir = turn(src.dir,-180)
 			sleep(3 SECONDS)
+			animate_storage_thump(src)
+			src.dir = turn(src.dir,-180)
+			src.visible_message("<span class='alert'><b>\The [src] lets out [pick("a strange","a weird","an awful","a <b>sexy<b>","a")] [pick("moan","groan","sigh")]!</b></span>")
+			playsound(src, "sound/voice/hoooagh2.ogg", 75, 1)
+			sleep(5 SECONDS)
+			animate_storage_thump(src)
+			src.dir = turn(src.dir,-180)
+			sleep(5 SECONDS)
 			//target selection
 			var/mob/living/target = locate() in view(7,src)
-			if(!target) //start the search
-				sleep(5 SECONDS)
-				while (src.wine && src.emagged)
-					for (var/mob/O in viewers(src, null))
-						if(O) //found someone who isn't the user
-							target = O
-							break
-						/* else if(O == user) //snark behavior, let's check if it's grace period or whatnot
-							if(attempts <= 3) //forget it. too much effort. scrapping this idea
-								animate_storage_thump(src)
-								src.dir = turn(src.dir,-180)
-								attempts++
-								sleep(5 SECONDS)
-							else //okay bud you had 15 whole seconds
-								target = O
-								break */
-						else //can't find anybody, wait 10 and try again
-							animate_storage_thump(src)
-							src.dir = turn(src.dir,-180)
-							sleep(4 SECONDS)
-							animate_storage_thump(src)
-							src.dir = turn(src.dir,-180)
-							sleep(6 SECONDS)
+			//"the search for another target" functionality was broken and laggy as shit
+			//i'll come back later, since it'd be nice to have a projectile landwine
 			//firing
 			if (!src.emagged || !target) //are we still even emagged, or did we even find a target?
+				src.visible_message("<span class='alert'><b>\The [src] stops searching for a target.</b></span>")
 				src.launching = 0
 				return
-			var/obj/item/W = src.wine
-			W.set_loc(get_turf(src)) //bring it out
-			src.wine = null //clear it from the holder
-			W.throw_at(target, 16, 5,bonus_throwforce=49)
-			playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1)
-			src.icon_state = "homph-emag"
-			src.visible_message("<span class='alert'><b>\The [src] launches the [W] at [target]!</b></span>")
-			src.launching = 0
-			return
-		else
-			return
+			if (src.launching)
+				var/obj/item/W = src.wine
+				W.set_loc(get_turf(src)) //bring it out
+				src.wine = null //clear it from the holder
+				W.throw_at(target, 16, 5, 24)
+				animate_storage_thump(src)
+				playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1)
+				src.icon_state = "homph-emag"
+				src.visible_message("<span class='alert'><b>\The [src] launches the [W] at [target]!</b></span>")
+				src.launching = 0
+				return
 
 	emag_act(var/mob/user, var/obj/item/card/emag/E) //emaggable behavior
 		if (!src.emagged)
 			src.emagged = 1
-			if(user)
-				if (!src.wine)
-					src.icon_state = "homph-emag"
+			if (!src.wine)
+				src.icon_state = "homph-emag"
+				if(user)
 					boutput(user, "you make this meatball a little spicier!!! homph omph")
-					src.visible_message("<span class='alert'><b> The [src] gets a wild look in its eyes!</b></span>")
-				else
+				src.visible_message("<span class='alert'><b> The [src] buzzes oddly and gets a wild look in its eyes!</b></span>")
+			else
+				if(user)
 					boutput(user, "you make this meatball a little spicier!!! ...You should probably take cover!")
-					src.visible_message("<span class='alert'><b> The [src] starts looking around for a target!</b></span>")
-					src.launch_wine() //you get a grace period for arming it
+				src.visible_message("<span class='alert'><b> The [src] buzzes oddly and starts looking around for a target!</b></span>")
+				src.launch_wine() //you get a grace period anyway
 			playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1)
 			SPAWN_DBG(5 MINUTES) //start the process to un-emag
 				src.visible_message("<b>\The [src] takes a nap!</b>") //chill
@@ -528,12 +519,12 @@ TRAYS
 					src.icon_state = "homph"
 				src.emagged = 0
 			return 1
-		if (src.emagged && (!src.wine)) //get greedy? gotta do it with an empty holder
+
+		if (src.emagged && (!src.wine)) //double emag
 			if (src.launching)
 				src.visible_message("<b>\The [src]</b> looks a little busy at the moment!")
 				return 0
 			if (get_dist(src, user) >= 2)
-				src.visible_message("<b>\The [src]</b> shrugs and starts flipping out anyway!")
 				return 0
 			src.launching = 1
 			playsound(src, "sound/items/eatfood.ogg", 50, 1)
@@ -554,16 +545,16 @@ TRAYS
 				if (get_dist(src, user) <= 7)
 					src.visible_message("<b>\The [src]</b> winks jovially at [user]. Everything about this feels [prob(90)?" wrong.":" right!"]")
 				sleep(3 SECONDS)
-
+				//yes this is a ripoff of the golden emag
 				var/obj/item/card/emag/EI = new /obj/item/card/emag(src.loc)
 				EI.name = "Carta Elettromagnetica"
 				EI.desc = "È una scheda con una striscia magnetica attaccata a dei circuiti. Comunemente indicato come 'EMAG'. Profuma di vino..."
 				playsound(src, "sound/misc/meat_plop.ogg", 50, 1)
 				if (get_dist(src, user) <= 7)
 					EI.throw_at(user, 16, 5)
-					src.visible_message("<b>\The [src]</b> spits out \a [EI] at [user]!")
+					src.visible_message("<b>\The [src]</b> spits out [EI] at [user]!")
 				else
-					src.visible_message("<b>\The [src]</b> spits out \a [EI]!")
+					src.visible_message("<b>\The [src]</b> spits out [EI]!")
 				src.icon_state = "homph-emag"
 				src.launching = 0
 			return 0
