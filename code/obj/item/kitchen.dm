@@ -418,8 +418,8 @@ TRAYS
 
 //420 lol
 /obj/item/kitchen/wineholder //mama mia
-	name = "novelty wine holder"
-	desc = "get it in their..."
+	name = "\improper novelty wine holder"
+	desc = "LOOKS NORMAL!!!"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "homph"
 	anchored = 1
@@ -430,7 +430,7 @@ TRAYS
 
 	get_desc(dist, mob/user)
 		if (dist <= 3)
-			. += " There's [(src.wine) ? "a" : "no" ] wine bottle inserted in \the [src]."
+			. += " There's [(src.wine) ? "a" : "no" ] wine bottle inserted in \the [src][(src.wine) ? "." : ". get it in their...." ]"
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W,/obj/item/reagent_containers/food/drinks/bottle/wine)) //need to add hobowine and make bottles breakable when thrown
@@ -472,10 +472,10 @@ TRAYS
 			src.dir = turn(src.dir,-180)
 			src.visible_message("<span class='alert'><b>\The [src] lets out [pick("a strange","a weird","an awful","a <b>sexy<b>","a")] [pick("moan","groan","sigh")]!</b></span>")
 			playsound(src, "sound/voice/hoooagh2.ogg", 75, 1)
-			sleep(5 SECONDS)
+			sleep((rand(3,6)) SECONDS)
 			animate_storage_thump(src)
 			src.dir = turn(src.dir,-180)
-			sleep(5 SECONDS)
+			sleep((rand(3,6)) SECONDS)
 			//target selection
 			var/mob/living/target = locate() in view(7,src)
 			//"the search for another target" functionality was broken and laggy as shit
@@ -486,14 +486,17 @@ TRAYS
 				src.launching = 0
 				return
 			if (src.launching)
-				var/obj/item/W = src.wine
-				W.set_loc(get_turf(src)) //bring it out
-				src.wine = null //clear it from the holder
-				W.throw_at(target, 16, 5, 24)
-				animate_storage_thump(src)
-				playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1)
-				src.icon_state = "homph-emag"
-				src.visible_message("<span class='alert'><b>\The [src] launches the [W] at [target]!</b></span>")
+				if (src.wine)
+					var/obj/item/W = src.wine
+					W.set_loc(get_turf(src)) //bring it out
+					src.wine = null //clear it from the holder
+					W.throw_at(target, 16, 5, 24)
+					animate_storage_thump(src)
+					playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1)
+					src.icon_state = "homph-emag"
+					src.visible_message("<span class='alert'><b>\The [src] launches the [W] at [target]!</b></span>")
+				else
+					src.visible_message("<span class='alert'><b>\The [src] looks incredibly disappointed.</b></span>")
 				src.launching = 0
 				return
 
@@ -509,7 +512,8 @@ TRAYS
 				if(user)
 					boutput(user, "you make this meatball a little spicier!!! ...You should probably take cover!")
 				src.visible_message("<span class='alert'><b> The [src] buzzes oddly and starts looking around for a target!</b></span>")
-				src.launch_wine() //you get a grace period anyway
+				SPAWN_DBG(1 SECOND)
+					src.launch_wine() //otherwise it waits for the whole process to end to return 1
 			playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1)
 			SPAWN_DBG(5 MINUTES) //start the process to un-emag
 				src.visible_message("<b>\The [src] takes a nap!</b>") //chill
@@ -518,6 +522,7 @@ TRAYS
 				else
 					src.icon_state = "homph"
 				src.emagged = 0
+				src.launching = 0 //otherwise you can't get the wine back out.
 			return 1
 
 		if (src.emagged && (!src.wine)) //double emag
@@ -565,6 +570,8 @@ TRAYS
 		src.add_fingerprint(user)
 		if (!src.wine)
 			user.show_text("\The [src] doesn't have anything in it.", "red")
+		else if (!src.launching)
+			user.show_text("No way! You're not touching that thing right now.", "red")
 		else
 			boutput(user, "You take \the [src.wine] out of \the [src].")
 			playsound(src, "sound/misc/tarantella-short.ogg", 50, 1)
