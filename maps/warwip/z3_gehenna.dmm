@@ -1647,6 +1647,10 @@
 /obj/disposalpipe/segment/sewage,
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal/sewage)
+"aZv" = (
+/obj/item/chair/folded/stepladder,
+/turf/simulated/floor,
+/area/station/storage/warehouse)
 "aZE" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/southeast,
 /obj/wingrille_spawn/crystal,
@@ -6245,6 +6249,13 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/plating,
 /area/station/maintenance/southeast)
+"dUp" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 4
+	},
+/obj/item/chair/folded/stepladder,
+/turf/simulated/floor/grey,
+/area/station/mining/equipment)
 "dUx" = (
 /obj/cable{
 	d1 = 4;
@@ -16650,6 +16661,7 @@
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
 "kge" = (
+/obj/item/chair/folded/stepladder,
 /turf/simulated/floor/purple/side{
 	dir = 8
 	},
@@ -19838,11 +19850,11 @@
 /turf/simulated/floor/industrial,
 /area/station/maintenance/central)
 "lYV" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /obj/stool,
 /obj/landmark/start{
 	name = "Staff Assistant"
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/simulated/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "lZB" = (
@@ -22121,6 +22133,10 @@
 /obj/machinery/light/fluorescent/cool/very,
 /turf/simulated/floor/plating,
 /area/station/bridge/locker)
+"nrE" = (
+/obj/item/chair/folded/stepladder,
+/turf/simulated/floor/plating,
+/area/station/maintenance/east)
 "nsc" = (
 /obj/cable/purple{
 	icon_state = "0-2"
@@ -22750,8 +22766,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/stool,
 /obj/disposalpipe/segment/bent/east,
+/obj/stool/bar,
 /obj/landmark/start{
 	name = "Staff Assistant"
 	},
@@ -25930,6 +25946,10 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor/carpet/blue/standard/edge/north,
 /area/station/crew_quarters/bar)
+"pTB" = (
+/obj/item/chair/folded,
+/turf/simulated/floor/grey,
+/area/station/crew_quarters/fitness)
 "pTH" = (
 /obj/cable{
 	d1 = 2;
@@ -27399,7 +27419,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/stool,
+/obj/stool/bar,
 /obj/landmark/start{
 	name = "Staff Assistant"
 	},
@@ -31717,12 +31737,12 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/stool,
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/stool/bar,
 /obj/landmark/start{
 	name = "Staff Assistant"
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "toU" = (
@@ -32286,10 +32306,10 @@
 	name = "Security Wing Tunnel Level"
 	})
 "tFz" = (
-/obj/stool,
 /obj/disposalpipe/segment/food{
 	dir = 4
 	},
+/obj/stool,
 /obj/landmark/start{
 	name = "Staff Assistant"
 	},
@@ -33231,8 +33251,11 @@
 "ukZ" = (
 /obj/decal/cleanable/dirt/dirt4,
 /obj/decal/cleanable/dirt/jen,
-/obj/stool/chair/syndicate,
 /obj/npc/trader/exclown,
+/obj/stool/bar{
+	loose = 1;
+	name = "loose stool"
+	},
 /turf/simulated/floor/plating/gehenna,
 /area/station/crew_quarters/clown)
 "uln" = (
@@ -35299,6 +35322,10 @@
 /obj/landmark/halloween,
 /turf/simulated/floor/plating,
 /area/station/maintenance/east)
+"vsS" = (
+/obj/item/chair/folded/stepladder/wrestling,
+/turf/simulated/floor/grey,
+/area/station/crew_quarters/fitness)
 "vsW" = (
 /obj/disposalpipe/junction/right/east,
 /turf/simulated/floor/carpet/blue/standard/edge/se,
@@ -36882,6 +36909,7 @@
 /obj/disposalpipe/segment/bent/east,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /obj/window/west,
+/obj/item/chair/folded/stepladder,
 /turf/simulated/floor,
 /area/station/security/processing)
 "wpw" = (
@@ -38016,6 +38044,7 @@
 /area/station/science/gen_storage)
 "xaM" = (
 /obj/disposalpipe/segment/produce,
+/obj/stool,
 /turf/simulated/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "xaQ" = (
@@ -84784,10 +84813,10 @@ tZz
 tpI
 gRC
 iRU
-gRC
+pTB
 jKZ
 gRC
-gRC
+vsS
 mWk
 gUk
 lbl
@@ -100758,7 +100787,7 @@ sRZ
 bic
 ahP
 wSY
-oVx
+nrE
 oVx
 oXh
 gTm
@@ -103451,7 +103480,7 @@ wsA
 qCV
 aJe
 aJe
-qCV
+dUp
 pSe
 gkJ
 hLu
@@ -105884,7 +105913,7 @@ edT
 qUS
 nhL
 ppe
-ppe
+aZv
 dGq
 sqs
 tbQ

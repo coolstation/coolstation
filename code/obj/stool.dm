@@ -101,7 +101,7 @@
 
 	proc/toggle_secure(mob/user as mob)
 		if (user)
-			user.visible_message("<b>[user]</b> [src.anchored ? "loosens" : "tightens"] the castors of [src].[istype(src.loc, /turf/space) ? " It doesn't do much, though, since [src] is in space and all." : null]")
+			user.visible_message("<b>[user]</b> [src.anchored ? "loosens" : "tightens"] the casters of [src].[istype(src.loc, /turf/space) ? " It doesn't do much, though, since [src] is in space and all." : null]")
 		playsound(src, "sound/items/Screwdriver.ogg", 100, 1)
 		src.anchored = !(src.anchored)
 		src.p_class = src.anchored ? initial(src.p_class) : 2
@@ -145,22 +145,72 @@
 	icon_state = "bar-stool"
 	desc = "Like a stool, but in a bar."
 	parts_type = /obj/item/furniture_parts/stool/bar
+	anchored = 1
 	var/loose = 0 //hee hee
+	var/lying = 0
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (isscrewingtool(W))
+			src.toggle_loose(user)
+			return
+		if (isweldingtool(W))
 			src.toggle_secure(user)
 			return
 		else
 			return ..()
 
+	attack_hand(mob/user as mob)
+		if (src.lying)
+			user.visible_message("[user] sets [src] back upright. It still doesn't look secure...",\
+			"You set [src] upright again. It still doesn't look secure...")
+			src.lying = 0
+			animate_rest(src, !src.lying)
+			return
+		else
+			return ..()
+
 	//setting up for a later prank when i unfuckle the rest
+	//should really adjust the desc but i'm lazy at the moment
 	proc/toggle_loose(mob/user as mob)
 		if (user)
-			user.visible_message("<b>[user]</b> [src.loose ? "loosens" : "tightens"] the supports of [src].")
+			user.visible_message("<b>[user]</b> [src.loose ? "tightens" : "loosens"] the floor supports to the rest of [src]. [src.anchored ? null : "The connection to the floor still looks pretty loose..."]")
 		playsound(src, "sound/items/Screwdriver.ogg", 100, 1)
 		src.loose = !(src.loose)
 		return
+
+	//setting up for a later prank when i unfuckle the rest
+	toggle_secure(mob/user as mob)
+		if (istype(get_turf(src), /turf/space))
+			if (user)
+				user.show_text("What exactly are you gunna secure [src] to?", "red")
+			return
+		if (user)
+			user.visible_message("<b>[user]</b> [src.anchored ? "unwelds" : "welds"] the floor supports of [src] securely in place. [src.loose ? "The rest of it still looks pretty loose..." : null]")
+		src.anchored ? playsound(src, "sound/items/Welder2.ogg", 100, 1) : playsound(src, "sound/items/Welder.ogg", 100, 1)
+		src.anchored = !(src.anchored)
+		return
+
+	/* //like this: just plum fuckled.
+	HasEntered(atom/movable/AM as mob|obj)
+		if (!src.loose && src.anchored)
+			return //it's stable, do nothing
+		if (src.lying)
+			return //it's already fallen down
+		if (ishuman(AM))
+			var/mob/living/carbon/human/H = AM
+			H.visible_message("<span class='alert'>[H] tries to sit on [src], but it tips right over!</span>",\
+			"<span class='alert'>You're knocked on your ass as [src] tips over! Looks like it wasn't screwed down right.</span>",\
+			"<span class='alert'>You hear someone's been knocked right down on they are ass.</span>")
+			H.changeStatus("stunned", 5 SECONDS)
+			H.changeStatus("weakened", 3 SECONDS)
+		src.fall_over()
+	*/
+
+	proc/fall_over()
+		if (src.lying)
+			return
+		src.lying = 1
+		animate_rest(src, !src.lying)
 
 /obj/stool/wooden
 	name = "wooden stool"
@@ -1359,7 +1409,7 @@
 
 	toggle_secure(mob/user as mob)
 		if (user)
-			user.visible_message("<b>[user]</b> [src.anchored ? "loosens" : "tightens"] the castors of [src].[istype(src.loc, /turf/space) ? " It doesn't do much, though, since [src] is in space and all." : null]")
+			user.visible_message("<b>[user]</b> [src.anchored ? "loosens" : "tightens"] the casters of [src].[istype(src.loc, /turf/space) ? " It doesn't do much, though, since [src] is in space and all." : null]")
 		playsound(src, "sound/items/Screwdriver.ogg", 100, 1)
 		src.anchored = !(src.anchored)
 		return
