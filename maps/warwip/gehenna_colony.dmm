@@ -5010,6 +5010,11 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/autoname_north,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/north)
 "dLh" = (
@@ -23408,6 +23413,9 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/segment/vertical,
+/obj/cable{
+	icon_state = "1-4"
+	},
 /turf/simulated/floor/plating{
 	icon_old = "diamondtile"
 	},
@@ -31298,6 +31306,11 @@
 	dir = 8;
 	target_z = 3
 	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc/autoname_east,
 /turf/simulated/floor/plating{
 	icon_old = "diamondtile"
 	},

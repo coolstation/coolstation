@@ -194,7 +194,6 @@
 /turf/simulated/floor/plating,
 /area/station/mining/tunnel)
 "agC" = (
-/obj/machinery/power/apc/autoname_east,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -614,7 +613,6 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/autoname_north,
 /turf/simulated/floor/plating,
 /area/station/mining/lobby)
 "atf" = (
@@ -901,14 +899,11 @@
 	name = "Sec. Officers Sleeping Quarters"
 	})
 "aCG" = (
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc/autoname_east,
-/turf/simulated/floor/black,
-/area/station/security/armory{
-	name = "Small Arms"
+/obj/disposalpipe/segment/bent/east,
+/obj/machinery/power/apc/autoname_north,
+/turf/simulated/floor/plating,
+/area/station/security/secwing{
+	name = "Security Wing Tunnel Level"
 	})
 "aDd" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -2637,7 +2632,7 @@
 /obj/machinery/power/apc/autoname_south,
 /obj/grille/catwalk/jen,
 /turf/simulated/floor/plating,
-/area/station/maintenance/inner/north)
+/area/station/security/processing)
 "bAP" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/decal/cleanable/dirt/random,
@@ -4219,15 +4214,11 @@
 /turf/simulated/wall/r_wall,
 /area/noGenerate)
 "cNh" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/disposalpipe/segment/morgue{
+	dir = 4
 	},
-/obj/cable{
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/black,
+/obj/machinery/power/apc/autoname_east,
+/turf/simulated/floor/plating,
 /area/station/security/armory{
 	name = "Small Arms"
 	})
@@ -5397,8 +5388,11 @@
 /obj/disposalpipe/segment/brig{
 	dir = 4
 	},
+/obj/machinery/power/apc/autoname_east,
 /turf/simulated/floor/plating,
-/area/station/maintenance/inner/north)
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
+	})
 "dww" = (
 /obj/machinery/light/small/warm{
 	dir = 1
@@ -9978,13 +9972,12 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/northeast)
 "geX" = (
-/obj/cable{
-	icon_state = "4-8"
+/obj/disposalpipe/segment/food,
+/obj/machinery/light/emergency{
+	dir = 4
 	},
-/turf/simulated/floor/black,
-/area/station/security/armory{
-	name = "Small Arms"
-	})
+/turf/simulated/floor/plating,
+/area/station/maintenance/central)
 "gfB" = (
 /obj/cable{
 	d1 = 1;
@@ -10173,7 +10166,7 @@
 /obj/machinery/power/apc/autoname_north,
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/plating,
-/area/station/maintenance/inner/ne)
+/area/station/mining/lobby)
 "gkP" = (
 /obj/disposalpipe/switch_junction/biofilter/left/east,
 /turf/simulated/floor/grey,
@@ -20714,14 +20707,12 @@
 /turf/simulated/floor/black,
 /area/station/science/chemistry)
 "myw" = (
-/obj/machinery/power/apc/autoname_north,
-/obj/cable{
-	icon_state = "0-2"
+/obj/disposalpipe/segment/bent/west,
+/obj/machinery/light/emergency{
+	dir = 4
 	},
-/turf/simulated/floor/black,
-/area/station/security/secwing{
-	name = "Security Wing Tunnel Level"
-	})
+/turf/simulated/floor/plating,
+/area/station/maintenance/central)
 "myP" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/cable{
@@ -21176,9 +21167,6 @@
 	dir = 8
 	},
 /obj/cable{
-	icon_state = "1-2"
-	},
-/obj/cable{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
@@ -21203,16 +21191,6 @@
 	icon_old = "diamondtile"
 	},
 /area/station/maintenance/northwest)
-"mPr" = (
-/obj/machinery/power/apc/autoname_west,
-/obj/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/turf/simulated/floor/carpet/red/standard,
-/area/station/security/quarters{
-	name = "Sec. Officers Sleeping Quarters"
-	})
 "mPX" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable{
@@ -21538,10 +21516,7 @@
 /obj/disposalpipe/segment/food,
 /obj/cable{
 	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/cable{
+	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/carpet/red/standard,
@@ -28309,6 +28284,9 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/light/emergency{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
 "rpl" = (
@@ -29317,15 +29295,6 @@
 /obj/access_spawn/forensics,
 /turf/simulated/floor,
 /area/station/security/detectives_office)
-"rUM" = (
-/obj/disposalpipe/segment/vertical,
-/obj/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/black,
-/area/station/security/armory{
-	name = "Small Arms"
-	})
 "rUY" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -31188,15 +31157,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/simulated/floor,
 /area/station/security/processing)
-"sZs" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/disposalpipe/segment/morgue,
-/turf/simulated/floor/carpet/red/standard,
-/area/station/security/quarters{
-	name = "Sec. Officers Sleeping Quarters"
-	})
 "sZX" = (
 /obj/disposalpipe/trunk/zlevel{
 	dir = 1;
@@ -86595,7 +86555,7 @@ wTz
 wTz
 pdO
 gZw
-myw
+rfY
 mOf
 gBZ
 kkm
@@ -88100,7 +88060,7 @@ qbq
 qbq
 sbm
 apH
-kem
+aCG
 lPL
 dqw
 apH
@@ -89310,7 +89270,7 @@ sTs
 apH
 bBx
 dwt
-taV
+cNh
 oDT
 unT
 kdX
@@ -89327,7 +89287,7 @@ nFJ
 fQj
 vlQ
 ckQ
-ffQ
+geX
 vUN
 ffQ
 ffQ
@@ -89336,7 +89296,7 @@ ffQ
 ffQ
 ffQ
 efD
-nGf
+myw
 azB
 lar
 hmU
@@ -89917,7 +89877,7 @@ qUm
 gGu
 enG
 ing
-mPr
+yhK
 lsf
 yhK
 wBR
@@ -90219,7 +90179,7 @@ cOy
 eLj
 fsp
 ssv
-sZs
+fsp
 coE
 kPs
 rSZ
@@ -90510,7 +90470,7 @@ taZ
 dtH
 ijD
 wPo
-cNh
+kLe
 bjv
 hih
 eNo
@@ -90812,7 +90772,7 @@ nzO
 fZM
 psN
 ddj
-rUM
+ddj
 ddj
 jLa
 kBU
@@ -91114,7 +91074,7 @@ taZ
 cOh
 ijD
 ijD
-geX
+ijD
 ijD
 ijD
 xgL
@@ -91416,7 +91376,7 @@ taZ
 qbq
 qbq
 ijD
-geX
+ijD
 ijD
 qbq
 qbq
@@ -91718,7 +91678,7 @@ taZ
 qbq
 dUi
 ijD
-geX
+ijD
 ijD
 mke
 qbq
@@ -92020,7 +91980,7 @@ qbq
 qbq
 dUi
 ijD
-geX
+ijD
 ijD
 aaW
 qbq
@@ -92322,7 +92282,7 @@ qbq
 qbq
 ybs
 ijD
-aCG
+ijD
 ijD
 hPR
 qbq
@@ -103198,7 +103158,7 @@ uYw
 uYw
 uYw
 uYw
-pSe
+xqD
 bjM
 lsy
 ryc
@@ -103500,7 +103460,7 @@ qCV
 aJe
 aJe
 dUp
-pSe
+xqD
 gkJ
 hLu
 wli
@@ -103802,7 +103762,7 @@ pSe
 pSe
 pSe
 pSe
-pSe
+xqD
 mfF
 tRE
 oRs
