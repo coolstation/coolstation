@@ -81,6 +81,33 @@
 		else
 			return ..()
 
+	proc/can_sit(var/mob/M, var/mob/user) //less stringent checks that can apply to every stool, including if the stool is a chair or bed
+		if (!M)
+			return 0
+		if (get_dist(src, user) > 1)
+			return 0
+		if (( !isalive(user) || is_incapacitated(user) ))
+			return 0
+		if(src.buckled_guy && src.buckled_guy.buckled == src)
+			user.show_text("There's already someone in [src]!", "red")
+			return 0
+		if (M.buckled)
+			boutput(user, "[M] is already buckled into something!", "red")
+			return 0
+		return 1
+
+	//but sometimes you want to definitively sit on things that don't have buckles???
+	proc/sit_down(mob/living/to_sit, mob/living/user, var/stand = 0) //Handles the actual sitting down
+		if (!can_sit(to_sit,user)) return
+
+		if (to_sit == user)
+			user.visible_message("<span class='notice'><b>[to_sit]</b> sits down!</span>", "<span class='notice'>You sit down.</span>")
+		else
+			user.visible_message("<span class='notice'><b>[to_sit]</b> is sat down by [user].</span>", "<span class='notice'>You sit [to_sit] down.</span>")
+
+		//to_sit.setStatus("sitting", duration = INFINITE_STATUS) //just move to get up
+		return
+
 	proc/can_buckle(var/mob/M, var/mob/user)
 		.= 0
 
@@ -96,6 +123,13 @@
 		return
 
 	proc/unbuckle() //Ditto but for unbuckling
+		if (src.buckled_guy)
+			src.buckled_guy.end_chair_flip_targeting()
+
+	proc/can_stand(var/mob/M, var/mob/user)
+		.= 0
+
+	proc/unstand() //Ditto but for unstanding
 		if (src.buckled_guy)
 			src.buckled_guy.end_chair_flip_targeting()
 
@@ -190,7 +224,7 @@
 		src.anchored = !(src.anchored)
 		return
 
-	/* //like this: just plum fuckled.
+	/* //like this: just plum fuckled. everything else works though
 	HasEntered(atom/movable/AM as mob|obj)
 		if (!src.loose && src.anchored)
 			return //it's stable, do nothing
@@ -1593,7 +1627,7 @@
 	icon = 'icons/obj/fluid.dmi'
 	icon_state = "ladder"
 	anchored = 0
-	density = 1
+	density = 0
 	var/wrestling = 0
 	parts_type = /obj/item/furniture_parts/stepladder
 
@@ -1631,7 +1665,7 @@
 
 	MouseDrop_T(mob/M as mob, mob/user as mob)
 		if (M == user) //don't care intents, only mousedrop
-			buckle_in(M, user)
+			stand_on(M, user)
 			return
 		if (M != user) //don't care intents, only mousedrop
 			user.show_text("You can't lift someone else up on [src]! ...Yet!", "red")
@@ -1639,7 +1673,7 @@
 		else
 			return ..()
 
-	proc/can_climb(var/mob/user)
+	can_stand(var/mob/user)
 		if (!( iscarbon(user) ) || get_dist(src, user) > 2 || user.restrained() || !isalive(user))
 			return 0 //wrong type, too far, or dead maybe
 		if(src.buckled_guy && src.buckled_guy.buckled == src && src.buckled_guy != user)
@@ -1647,12 +1681,16 @@
 			return 0
 		return 1
 
-	//should be climb_on but let's just supersede it for now since stepladders don't have buckles
-	buckle_in(mob/living/user)
+	can_buckle(var/mob/M, var/mob/user)
+		.= 0 //just in case
+
+	//should be stand_on but let's just supersede it for now since stepladders don't have buckles
+	//this will eventually go to stool/chair and possibly just stool
+	proc/stand_on(mob/living/user)
 		if(!istype(user)) return
 		if(user.hasStatus("weakened")) return
 		if(src.buckled_guy && src.buckled_guy.buckled == src && user != src.buckled_guy) return
-		if(!can_climb(user)) return
+		if(!can_stand(user)) return
 
 		if(ishuman(user))
 			if(ON_COOLDOWN(user, "chair_stand", 1 SECOND))
@@ -1665,14 +1703,17 @@
 			src.buckledIn = 1
 			user.buckled = src
 			user.setStatus("buckled", duration = INFINITE_STATUS)
-			RegisterSignal(user, COMSIG_MOVABLE_SET_LOC, .proc/maybe_unclimb)
+			//user.setStatus("standingon", duration = INFINITE_STATUS) //click to get down
+			RegisterSignal(user, COMSIG_MOVABLE_SET_LOC, .proc/maybe_unstand)
 			//set special effects
 			if (src.wrestling)
 				H.start_chair_flip_targeting()
+				//user.setStatus("aggressivestand", duration = INFINITE_STATUS) //click to not flying-tackle (if possible)
 			else
 				H.ceilingreach = 1
 				H.lookingup = 1
 				get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_mob(user)
+				//user.setStatus("passivestand", duration = INFINITE_STATUS) //click to flying-tackle (if possible)
 			//set positioning
 			user.set_loc(src.loc)
 			user.pixel_y = 10
@@ -1680,8 +1721,8 @@
 				user.anchored = 1
 			return 1
 
-	proc/maybe_unclimb(source, turf/oldloc)
-		// unclimb if the guy is not on a turf, or if their ladder is out of range
+	proc/maybe_unstand(source, turf/oldloc)
+		// unstand if the guy is not on a turf, or if their ladder is out of range
 		if(!isturf(buckled_guy.loc) || (!IN_RANGE(src, oldloc, 1)))
 			UnregisterSignal(buckled_guy, COMSIG_MOVABLE_SET_LOC)
 			unbuckle()
@@ -1691,8 +1732,8 @@
 	desc = "A small freestanding ladder that lets you lay the smack down on your enemies. Mostly for wrestling. Not for changing lightbulbs."
 	icon = 'icons/obj/fluid.dmi'
 	icon_state = "ladder"
-	anchored = 1 //no wheels, can be tipped over
-	density = 1
+	anchored = 0 //no wheels, can be tipped over
+	density = 1 //can be pushed around, which may make the user fall
 	wrestling = 1
 	parts_type = /obj/item/furniture_parts/stepladder/wrestling
 
