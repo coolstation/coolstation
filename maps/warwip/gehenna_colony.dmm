@@ -4444,12 +4444,12 @@
 /area/station/bridge)
 "dnS" = (
 /obj/disposalpipe/segment/morgue,
-/obj/grille/catwalk/jen,
 /obj/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
+/obj/grille/catwalk/jen,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/nw)
 "dod" = (
@@ -8495,6 +8495,14 @@
 /obj/decal/poster/wallsign/cafeteria_right,
 /turf/simulated/wall,
 /area/station/crew_quarters/farmers)
+"gmF" = (
+/obj/machinery/power/apc/autoname_west,
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/plating,
+/area/station/medical/crematorium)
 "gne" = (
 /turf/simulated/floor/bluewhite{
 	dir = 8
@@ -12572,13 +12580,8 @@
 "jyd" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/grille/catwalk/jen,
-/obj/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc/autoname_west,
 /turf/simulated/floor/plating,
-/area/station/medical/crematorium)
+/area/station/maintenance/inner/nw)
 "jyl" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/cable{
@@ -22829,6 +22832,11 @@
 /obj/grille/catwalk/jen/side{
 	dir = 1
 	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/nw)
 "rgI" = (
@@ -25964,6 +25972,14 @@
 	},
 /turf/simulated/floor,
 /area/station/engine/engineering)
+"tFW" = (
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/nw)
 "tGl" = (
 /obj/machinery/atmospherics/pipe/vertical_pipe/east{
 	target_z = 3
@@ -58575,7 +58591,7 @@ jEb
 jEb
 uTy
 wLF
-wLF
+gmF
 uiZ
 jyd
 bRb
@@ -58877,7 +58893,7 @@ jEb
 jEb
 uTy
 wLF
-wLF
+tFW
 rgH
 dnS
 gfd

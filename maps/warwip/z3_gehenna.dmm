@@ -185,6 +185,17 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/plating,
 /area/station/mining/lobby)
+"age" = (
+/obj/disposalpipe/segment/bent/west,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/black,
+/area/station/security/secwing{
+	name = "Security Wing Tunnel Level"
+	})
 "agi" = (
 /turf/simulated/floor,
 /area/station/maintenance/disposal)
@@ -317,6 +328,11 @@
 /obj/disposalpipe/segment/sewage,
 /obj/disposalpipe/segment/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/black,
 /area/station/security/secwing{
 	name = "Security Wing Tunnel Level"
@@ -901,6 +917,9 @@
 "aCG" = (
 /obj/disposalpipe/segment/bent/east,
 /obj/machinery/power/apc/autoname_north,
+/obj/cable{
+	icon_state = "0-10"
+	},
 /turf/simulated/floor/plating,
 /area/station/security/secwing{
 	name = "Security Wing Tunnel Level"
@@ -1070,6 +1089,14 @@
 /obj/disposalpipe/segment/sewage,
 /obj/disposalpipe/segment/brig{
 	dir = 4
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "6-8"
+	},
+/obj/cable{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/north)
@@ -4213,9 +4240,12 @@
 	dir = 4
 	},
 /obj/machinery/power/apc/autoname_east,
+/obj/cable{
+	icon_state = "0-9"
+	},
 /turf/simulated/floor/plating,
-/area/station/security/armory{
-	name = "Small Arms"
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
 	})
 "cNi" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -5388,9 +5418,13 @@
 	dir = 4
 	},
 /obj/machinery/power/apc/autoname_east,
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
 /turf/simulated/floor/plating,
-/area/station/security/quarters{
-	name = "Sec. Officers Sleeping Quarters"
+/area/station/security/armory{
+	name = "Small Arms"
 	})
 "dww" = (
 /obj/machinery/light/small/warm{
@@ -10432,6 +10466,11 @@
 	dir = 1;
 	pixel_x = -32
 	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/black,
 /area/station/security/secwing{
 	name = "Security Wing Tunnel Level"
@@ -12962,10 +13001,6 @@
 	dir = 8;
 	tag = "icon-xtra_bigstripe-edge (WEST)"
 	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
 /obj/machinery/power/apc/autoname_east,
 /obj/cable{
 	d2 = 8;
@@ -14963,6 +14998,11 @@
 /area/station/maintenance/inner/north)
 "jgQ" = (
 /obj/disposalpipe/junction/middle/south,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/black,
 /area/station/security/secwing{
 	name = "Security Wing Tunnel Level"
@@ -16619,6 +16659,12 @@
 	})
 "kem" = (
 /obj/disposalpipe/segment/bent/east,
+/obj/cable{
+	icon_state = "2-5"
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/north)
 "keO" = (
@@ -19514,6 +19560,9 @@
 "lPL" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/disposalpipe/segment/morgue,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/north)
 "lPW" = (
@@ -20433,6 +20482,11 @@
 /obj/machinery/door/airlock/maintenance,
 /obj/disposalpipe/segment/vertical,
 /obj/access_spawn/maint,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/north)
 "mrs" = (
@@ -21379,6 +21433,16 @@
 /obj/grille/catwalk/jen,
 /turf/simulated/floor/plating,
 /area/station/mining/refinery)
+"mTH" = (
+/obj/disposalpipe/trunk/zlevel{
+	dir = 8;
+	target_z = 1
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/north)
 "mTO" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/decal/cleanable/dirt/random,
@@ -23037,6 +23101,11 @@
 	},
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/disposalpipe/segment/sewage,
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /turf/simulated/floor/black,
 /area/station/security/secwing{
 	name = "Security Wing Tunnel Level"
@@ -23534,6 +23603,11 @@
 /area/station/crew_quarters/bar)
 "okI" = (
 /obj/disposalpipe/segment/sewage,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/black,
 /area/station/security/secwing{
 	name = "Security Wing Tunnel Level"
@@ -29599,6 +29673,18 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/plating/gehenna,
 /area/allowGenerate)
+"sdt" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8;
+	tag = "icon-xtra_bigstripe-edge (WEST)"
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/industrial,
+/area/station/maintenance/west)
 "sdB" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/simulated/floor/stairs/wide{
@@ -32957,12 +33043,11 @@
 "uaT" = (
 /obj/table/auto,
 /obj/decal/cleanable/dirt/random,
-/obj/machinery/light_switch/north,
 /obj/random_item_spawner/desk_stuff/one_or_zero,
-/obj/machinery/power/apc/autoname_north,
 /obj/cable{
 	icon_state = "0-2"
 	},
+/obj/machinery/power/apc/autoname_north,
 /turf/simulated/floor/plating,
 /area/station/janitor/office)
 "ubg" = (
@@ -34040,6 +34125,16 @@
 	},
 /turf/simulated/floor/airless/engine/glow/blue,
 /area/station/engine/combustion_chamber)
+"uHr" = (
+/obj/disposalpipe/trunk/zlevel{
+	dir = 4;
+	target_z = 1
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/north)
 "uIa" = (
 /obj/machinery/light/fluorescent/cool/very,
 /obj/disposalpipe/segment/mail/horizontal,
@@ -34985,6 +35080,11 @@
 /area/station/engine/hotloop)
 "vjk" = (
 /obj/disposalpipe/segment/vertical,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/north)
 "vjm" = (
@@ -37174,6 +37274,14 @@
 /obj/window/west,
 /turf/simulated/floor/white,
 /area/station/medical/basement)
+"wuQ" = (
+/obj/machinery/light/small/warm{
+	dir = 1
+	},
+/obj/decal/cleanable/dirt/random,
+/obj/machinery/light_switch/north,
+/turf/simulated/floor/plating,
+/area/station/maintenance/southeast)
 "wvk" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -72152,7 +72260,7 @@ dXG
 dXG
 dXG
 dXG
-dXG
+sdt
 dXG
 iUj
 hVS
@@ -87812,7 +87920,7 @@ kem
 vjk
 mrq
 gtm
-mXo
+age
 jgQ
 okI
 ajH
@@ -88412,7 +88520,7 @@ qbq
 sbm
 apH
 bBx
-bBx
+mTH
 ijj
 oDT
 pxf
@@ -88714,7 +88822,7 @@ qbq
 sbm
 apH
 rSD
-iBG
+uHr
 taV
 oDT
 pxf
@@ -92423,7 +92531,7 @@ gKf
 rWk
 mbT
 kfL
-uQG
+wuQ
 dIW
 iUA
 kxN
