@@ -80,3 +80,15 @@ Warc: i am nothing if not a temptress (content production)
 	icon_state = "calendar_rand"
 	amt2spawn = 1
 	items2spawn = list(/obj/decal/poster/wallsign/clown_calendar/slip, /obj/decal/poster/wallsign/clown_calendar/bridge, /obj/decal/poster/wallsign/clown_calendar/honk)
+
+//I have a phobia for spiderwebs why the fuck did I do this
+/obj/spacevine/web //looking at this spread genuinely triggers fear
+	name = "webzu"
+	desc = "Jesus Christ there's so many spiders in there fuck shit fuck."
+	icon_state = "web-light1"
+	base_state = "web"
+	vinepath = /obj/spacevine/web/living
+
+/obj/spacevine/web/living
+	run_life = 1
+//These will make the flower pods like kudzu does, cause kudzu infection is a proc on humans called by their decomposition lifeprocess what the hell am I supposed to do with that
