@@ -74,7 +74,7 @@
 
 	var/insulator_default = "synthrubber"
 	var/conductor_default = "pharosium"
-	var/tapped = 0 //0: completely insulated 1: safely tapped 2: unsafely tapped
+	var/tapped = 0 //0: completely insulated 1: unsafely tapped
 	var/open_circuit = FALSE //governed by breakers, prevents this cable from being added to a powernet, basically suspends a cable connection without deleting the cable
 
 	var/datum/material/insulator = null
@@ -211,8 +211,8 @@
 	if (!src.tapped) //really just exposed in this case, but this is still useful for other reasons
 		shock(user, 25)
 		src.visible_message("<span class='alert'>[user] melts the cable's insulation, for some reason.</span>")
-		src.tapped = 2 //might work as a quick and dirty tap, who knows
-		//regular tapped cable can't safely be reused and will need to be recycled
+		src.tapped = 1 //might work as a quick and dirty tap, who knows
+		//can't safely be reused and will need to be recycled
 	//todo: set cable is melted, with an overlay
 	//new proc: do the glass shard thing and see if someone stepping on it doesn't have shoes and if not, zap them
 	return
@@ -454,6 +454,7 @@
 	name = "power conduit"
 	desc = "A rigid assembly of superconducting power lines."
 	icon_state = "conduit-large"
+	var/iconbase = "conduit-large"
 	var/loose = 1 //Unweld, then cut
 	var/cuts_required = 4
 	var/cuts = 0
@@ -461,63 +462,109 @@
 	var/connects = 2
 	var/connections = 0 //bitflag for all possible connected directions
 	var/connected = 0 //bitflag for all actually connected directions
+	var/connectsmall = 1 //can you connect a small conduit trunk to it
 	//var/deconstructs_into = /obj/conduitparts"
 
-	tapped = 0 //1 for standard small conduit tap, 2 for hotwire syndie tap (equivalent to d1 = 0 in regular cable)
+	tapped = 0 //for hotwire syndie tap (equivalent to d1 = 0 in regular cable)
 
 	insulator_default = "synthrubber"
 	conductor_default = "claretine" //lmao don't scrap it for claretine please (this should affect capacity tbh)
 
 //different types
 /obj/cable/conduit/tee
-	name = "all-way conduit junction"
+	name = "three-way conduit junction"
 	desc = "A rigid assembly of superconducting power lines. A three-way junction has been made."
+	icon_state = "conduit-large-tee"
 	iconmod = "-tee"
 	cuts_required = 6
 	connects = 4
 /obj/cable/conduit/allway
 	name = "all-way conduit junction"
 	desc = "A rigid assembly of superconducting power lines. A four-way junction has been made."
+	icon_state = "conduit-large-all"
 	iconmod = "-all"
 	cuts_required = 8
 	connects = 4
+	connectsmall = 0
 
 /obj/cable/conduit/tap
-	name = "conduit tap"
-	desc = "A rigid assembly of superconducting power lines. A terminal tap has been added mid-length."
+	name = "power conduit"
+	desc = "A rigid assembly of superconducting power lines. An illicit, non-standard terminal tap has been added mid-length."
+	icon_state = "conduit-large-tap"
 	iconmod = "-tap"
-	tapped = 1
+	tapped = 1 //can connect to terminals
+	connectsmall = 0
+	//make this an overlay for standard conduit eventually. but for now...
 
 /obj/cable/conduit/trunk
-	name = "conduit terminal"
-	desc = "A rigid assembly of superconducting power lines. It ends in a terminal tap."
+	name = "conduit trunk"
+	desc = "A rigid assembly of superconducting power lines. It ends in a standard terminal tap."
+	icon_state = "conduit-large-trunk"
 	iconmod = "-trunk"
-	tapped = 1 //can connect to terminals
+	connectsmall = 0
 
 /obj/cable/conduit/switcher
 	name = "switched conduit"
 	desc = "A rigid assembly of superconducting power lines. It has a heavy duty in-line switch built in."
+	icon_state = "conduit-large-sw1"
 	iconmod = "-sw1"
+	connectsmall = 0
 	//var/open_circuit = FALSE //governed by a breaker, prevents this cable from being added to a powernet, basically suspends a cable connection without deleting the cable (thanks BatElite)
 	//let's save this fuckre for later
 
 //--------------------------------------------------------------------------------------------
+//---- small conduits
+//--------------------------------------------------------------------------------------------
+// small conduits only connect to small conduits
+// or maybe tapped large conduits
+// or maybe power monitoring systems
+// for nerds
+//--------------------------------------------------------------------------------------------
+/obj/cable/conduit/small
+	name = "small power conduit"
+	desc = "A small, two-line superconductor conduit, meant for direct monitoring of power generation and storage."
+	icon_state = "conduit-small"
+	iconbase = "conduit-small"
+	color = "#BA9B67"
+	connectsmall = 0
+
+/obj/cable/conduit/small/tap
+	name = "small power conduit tap"
+	desc = "A small, two-line superconductor conduit tap, to allow connection to power monitoring equipment."
+	icon_state = "conduit-small-tap"
+	iconmod = "-tap"
+	tapped = 1
+
+/obj/cable/conduit/small/trunk //legit engi tap of conduits, built in
+	name = "small power conduit trunk"
+	desc = "A small, two-line superconductor conduit trunk, which attaches to standard conduits to feed power to monitoring equipment."
+	icon_state = "conduit-small-trunk"
+	iconmod = "-trunk"
+	tapped = 1
+	connectsmall = 0
+
+//--------------------------------------------------------------------------------------------
 //--- conduit standard procs
 //--------------------------------------------------------------------------------------------
-//this is the fixed thing, will need to crib more from disposals
-/obj/cable/conduit/New() //var/obj/item/conduit/source draggable and droppable and clickable to rotate 90
+
+/obj/cable/conduit/New() //var/obj/item/conduit/source draggable and droppable and clickable to rotate 90 so this may still b
 	..()
 	//if (source)
 		//src.dir = source.dir
-		//src.iconmod = source.iconmod
+		//src.iconmod = source.iconmod //was this already pre-tapped?
 	var/turf/T = src.loc			// hide if turf is not intact
 									// but show if in space
 	if(istype(T, /turf/space) && !istype(T,/turf/space/fluid)) hide(0)
 	else if(level==1) hide(T.intact)
-	applyCableMaterials(src, getMaterial(insulator_default), getMaterial(conductor_default))
-	START_TRACKING
+	//applyCableMaterials(src, getMaterial(insulator_default), getMaterial(conductor_default))
+	START_TRACKING //hm
 
 /obj/cable/conduit/updateicon()
+	icon_state = "[iconbase][iconmod]"
+	alpha = invisibility ? 128 : 255
+	//if (cableimg)
+	//	cableimg.icon_state = icon_state
+	//	cableimg.alpha = invisibility ? 128 : 255
 	return //no iconstate changes until we add damage/manual tapping (plus iconstate for unwelded connectors maybe)
 
 /obj/cable/conduit/ex_act(severity) //doesn't get deleted but it can get partly disconnected
@@ -670,6 +717,7 @@
 		//P.dir = src.dir
 		playsound(src, "sound/items/Ratchet.ogg", 75, 1)
 		//qdel(src)
+
 //--------------------------------------------------------------------------------------------
 //--- powernet handling (oh god)
 //--------------------------------------------------------------------------------------------
@@ -677,7 +725,25 @@
 // can be 1 of 3 outcomes:
 // 1. Isolated conduit -> create new powernet
 // 2. Joins to end or connects loop -> add to old network
-// 3. Bridges gap between 2-4(!!) networks -> merge the networks (oh god help me)
+// 3. Bridges gap between 2-4(!!) networks -> merge the networks (help me)
+//--------------------------------------------------------------------------------------------
+
+//notes on taps:
+	//
+	//engineering will be able to make safe taps on large conduits to connect small conduit trunks for powernet monitoring
+	//this is done by installing a small conduit trunk onto it. pretty basic. conduit to small conduit connection. preserves security.
+
+	//but... if a certain sort were to install illegal electrical equipment, we get crime-a-tap
+	//syndicate taps can be applied to any straight cable (no trunks or junctions, the overlay will be too weird
+
+	//such newly tapped conduits should try to connect to any valid connection on top of it when created...
+	//...in case of existing valid connection that wouldn't otherwise be connected
+	//get other cables on turf and see if any of them have D1 = 0, while cables also check for tapped
+	//however, the connection to the tap should otherwise be made by the smaller, tapping connection on top
+
+	//then: :getin:
+	//burns out regular cables if current too high, fucked up sparks, the works.
+	//even better if you can lock the switchgear closed so nobody can fix it without shutting down the engine or doing dangerous repairs
 
 //standard connection: conduits to conduits
 /obj/cable/conduit/update_network()
@@ -697,10 +763,7 @@
 	if (!connections) //nobody? really? after all that? new powernet all by yourself
 		src.makenewpowernet()
 
-	//now let's check for devices on us
-	//BY THE WAY HELLO YES IN MOST NORMAL USE CASES THIS WILL BE HANDLED BY CONDUIT TRUNKS THANKS
-	//but for now, we're doing this. and also taps will exist soon anyway so whatever.
-	//by the way secure taps only connect to small conduits, syndicate taps will allow regular station wires to get connected
+	//now let's check for valid powernet devices on us (if we are a trunk or if we are synditapped)
 	if (!request_rebuild)
 		request_rebuild = src.connect_devices(T)
 
@@ -716,6 +779,7 @@
 
 
 //special handling for conduit trunks, which connect to SMES and large power generating devices
+//connects only in one direction, so let's save the checks
 //this cannot tap into conduits, if you want to connect to an existing conduit: use a T junction
 /obj/cable/conduit/trunk/update_network()
 	if(makingpowernets) // this might cause local issues but prevents a big global race condition that breaks everything
@@ -747,19 +811,18 @@
 
 //if conduit has a direction facing the opposite direction as our conduit, it's a possible connection
 /obj/cable/conduit/proc/make_all_connections(var/turf/T)
-	//one's for cardinal, others are for ordinal.
-	var/checkdir = turn(src.dir,180)
-	var/checkdir1 = turn(src.dir,-135)
-	var/checkdir2 = turn(src.dir,135)
 	for (var/d in cardinal)
 		var/turf/TC = get_step(src, d)
 		var/obj/cable/conduit/C = locate() in TC
 		if (C)	//got one
 			if (src.dir in ordinal) //c-bend?
-				if (!(checkdir1 &= C.dir) || !(checkdir2 &= C.dir)) //check for the opposite of 45deg to either direction on the neighboring turf and if neither match... keep going
-					continue
-			else //straight/junction?
-				if (!(checkdir &= C.dir)) //same but 180 flip turnwise. bitflags are neat when you learn how to use them
+				var/checkdir1 = turn(src.dir,-135)
+				var/checkdir2 = turn(src.dir,135)
+				if (!(checkdir1 &= C.dir) && !(checkdir2 &= C.dir)) //check both component cardinals on the neighboring turf.
+					continue //if neither have matching opposites, keep looping
+			else //straight/junction
+				var/checkdir = turn(src.dir,180)
+				if (!(checkdir &= C.dir)) //same but simple 180 flip turnwise. bitflags are neat when you learn how to use them
 					continue
 			//made it through and we still have a valid connection to make
 			if (src.connect_conduit(C))
@@ -777,6 +840,8 @@
 
 //takes another conduit and connects it to this one, returns 1 if successfully connected
 /obj/cable/conduit/proc/connect_conduit(var/obj/cable/conduit/C)
+	if (!C)
+		return 0
 	if (C.netnum && powernets[C.netnum]) //does this have a valid powernet already?
 		if (!src.netnum) //and we don't have one?
 			var/datum/powernet/PN = powernets[C.netnum]
@@ -810,10 +875,17 @@
 			//just add them to ours
 			C.netnum = src.netnum
 			PN.cables += C
+	if (src.netnum && (src.netnum == C.netnum))
+		return 1
+	else
+		return 0
 
-//for anything that directly connects to this tapped thing
+
+//for anything that directly connects to this tapped thing (this is going away, to be replaced by a crimer proc for connecting regular cables)
+//but the commented out stuff might be useful for regular cables
 /obj/cable/conduit/proc/connect_devices(var/turf/T)
-	var/rebuild = 0
+	return 0
+	/*var/rebuild = 0
 	if (isturf(T) && src.tapped) //are we tapped in any way? well then fuck and also piss, that means something can be attached!!! at least for now. d1 = 0 equivalent
 		for (var/obj/machinery/power/M in T.contents)
 			if(M.netnum == 0 || powernets[M.netnum].cables.len == 0) //if it's not connected, or the net it's connected to has no cables? fucked up, let's fix that (also connect APCs and terminals to us)
@@ -828,10 +900,34 @@
 			else if(M.netnum != src.netnum) // this shouldn't actually ever happen probably
 				rebuild = 1 //but let's handle it anyway with Another Fucking MakePowernets, just in case
 				break
-		//if (src.tapped = 2) //or worse yet, attached to the rest of the station distribution cables (but like, we'll add that later that is not a use case for this right now)
+		//or worse yet, attached to the rest of the station distribution cables (but like, we'll add that later)
+		//if (src.tapped)
 			//for (var/obj/cable/C in T.contents) try to connect a cable (later, the syndie tap item doesn't even EXIST yet)
 			//if successful congratulations you are now a spark throwing hell mess
 			//also cause bugs, wrong data, cable burnouts, etc.
+	return rebuild */
+
+//this will replace the above or whatever
+///obj/cable/conduit/proc/connect_tap(var/turf/T)
+
+//connection handling for trunks, which only check one direction and connect to limited things
+//should just be SMES/power generating equipment only, no regular terminals, data terminals, conduit taps or other trunks)
+/obj/cable/conduit/trunk/connect_devices(var/turf/T)
+	var/rebuild = 0
+	if (isturf(T))
+		for (var/obj/machinery/power/M in T.contents)
+			if(M.netnum == 0 || powernets[M.netnum].cables.len == 0)
+				if(M.netnum)
+					M.powernet.nodes -= M
+					M.powernet.data_nodes -= M
+				M.netnum = src.netnum
+				M.powernet = powernets[M.netnum]
+				M.powernet.nodes += M
+				if(M.use_datanet)
+					M.powernet.data_nodes += M
+			else if(M.netnum != src.netnum)
+				rebuild = 1
+				break
 	return rebuild
 
 //breaking this out for now and not using it, but i will definitely put this into /cable
@@ -856,24 +952,6 @@
 				break
 	return rebuild
 
-	//notes on taps:
-	//
-	//a tapped conduit should try to connect to any valid connection on top of it when created...
-	//...in case of existing valid connection that wouldn't otherwise be connected
-	//however, the connection to the tap should otherwise be made by the smaller, tapping connection on top
-	//
-	//engineering will be able to make safe taps on large conduits to connect small conduit trunks for powernet monitoring
-	//i.e. when installed, check for small conduit trunks on src turf and connect them, and them alone, since we never connect directly to anything else
-	//
-	//but... if a certain sort were to install illegal electrical equipment, we get tapped 2: the squeakquel
-	//get other cables on turf and see if any of them have D1 = 0, while cables and small trunk taps also check for tapped == 2
-	//then: :getin:
-	//burns out regular cables if current too high, fucked up sparks, the works.
-	//even better if you can lock the switchgear closed so nobody can fix it without shutting down the engine or doing dangerous repairs
-	//
-	//both of these can be applied to any straight cable (no trunks or junctions, the overlay will be too weird
-	//these checks will be done by regular cables, or bootstrapped by the tap itself when placed
-
 //debug messages, hit it with some electronic pulsing tool or whatever
 /obj/cable/conduit/proc/debug_messages_for_conduits()
 	if (src.connections)
@@ -889,56 +967,16 @@
 		if (src.connected) //huh?
 			src.visible_message("<span class='alert'>[src] is a confusing conduit. (No connections possible yet [connected]connections made.)</span>")
 
-//connection handling for trunks, which only check one direction and connect to limited things
-//should just be SMES/power generating equipment only, no terminals or conduit taps)
-/obj/cable/conduit/trunk/connect_devices(var/turf/T)
-	var/rebuild = 0
-	if (isturf(T) && src.tapped)
-		for (var/obj/machinery/power/M in T.contents)
-			if(M.netnum == 0 || powernets[M.netnum].cables.len == 0)
-				if(M.netnum)
-					M.powernet.nodes -= M
-					M.powernet.data_nodes -= M
-				M.netnum = src.netnum
-				M.powernet = powernets[M.netnum]
-				M.powernet.nodes += M
-				if(M.use_datanet)
-					M.powernet.data_nodes += M
-			else if(M.netnum != src.netnum)
-				rebuild = 1
-				break
-	return rebuild
-
-// -----------------------------
-// ------ small conduits -------
-// -----------------------------
-
-/obj/cable/conduit/small
-	name = "small power conduit"
-	desc = "A two-line superconductor conduit, meant for direct monitoring of power output by terminals."
-	icon_state = "conduit-small"
-	color = "#BA9B67"
-
-/obj/cable/conduit/small/tap
-	name = "small power conduit tap"
-	desc = "A two-line superconductor conduit tap, meant for direct monitoring of power output by terminals."
-	iconmod = "-tap"
-	tapped = 1
-
-/obj/cable/conduit/small/trunk
-	name = "small power conduit trunk"
-	desc = "A two-line superconductor conduit tap, meant for direct monitoring of power output by terminals."
-	iconmod = "-trunk"
-	tapped = 1
-
 //--------------------------------------------------------------------------------------------
 //---- small conduit procs
 //--------------------------------------------------------------------------------------------
 //small conduits only connect to small conduits and that's handled by the make_all_connections override
 //might make an end overlay so it appears capped, but that's later
+//mostly works the same as large conduit procs
 //--------------------------------------------------------------------------------------------
 
 //this is a small conduit trunk, this goes onto a large conduit and feeds the small conduits and small conduit taps
+//visually connects to the closest side's conductor pairs. this means: no curves, no allways, no switches
 //at least, when it's finished. see comments in previous goes-arounds unless something is different or fucked up
 /obj/cable/conduit/small/trunk/update_network()
 	if(makingpowernets)
@@ -952,19 +990,36 @@
 
 	//hey remember what i said about something different or fucked up
 	//find a tapped conduit buddy on same tile and do the same shit as above.
+	//but this shit has to be straight and perpendicular
 	var/turf/T = get_step(src, src.dir)
 	var/obj/cable/conduit/C = locate() in T //still look for large conduits
 	if (C)
-		if (istype(C,/obj/cable/conduit)) //should only be one but let's iterate anyway while it's still fresh code
-			if (C.tapped)
-				var/checkdir = turn(src.dir,180)
-				if (checkdir &= C.dir)
+		if (istype(C,/obj/cable/conduit/tee)) //we must connect to a t junction
+			var/checkdir = turn(src.dir,180)
+			if (checkdir &= C.dir)
+				if (src.connect_conduit(C))
+					src.conduits += C
+				src.connections |= src.dir
+		else if (istype(C,/obj/cable/conduit) && !istype(C,/obj/cable/conduit/small)) //it must not be small, no no no
+			if (C.dir in cardinal) //or a straight conduit
+				var/checkdir = turn(src.dir,90)
+				if (checkdir &= C.dir) //works one way?
 					if (src.connect_conduit(C))
 						src.conduits += C
 						src.connections |= src.dir
-					//if (C.tapped = 2)
-						//generate a lotta fucked up sparks on a continuing basis from this and connected small conduit taps
-						//also garble output to all monitoring computers
+						//if (C.tapped)
+							//generate a lotta fucked up sparks on a continuing basis from this and connected small conduit taps
+							//also garble output to all monitoring computers
+			else
+				var/checkdir1 = turn(src.dir,-90)
+				var/checkdir2 = turn(src.dir,90)
+				if ((checkdir1 &= C.dir) || (checkdir2 &= C.dir)) //either works?
+					if (src.connect_conduit(C))
+						src.conduits += C
+						src.connections |= src.dir
+						//if (C.tapped)
+							//etc.
+
 
 	if (!connections)
 		src.makenewpowernet()
@@ -975,55 +1030,19 @@
 		makepowernets()
 	//and we're basically done here
 
-//this is the process the taps use
-//you can connect to power monitoring terminals only
-/obj/cable/conduit/small/tap/update_network()
-	if(makingpowernets)
-		return
-
-	var/turf/T = get_turf(src)
-	var/request_rebuild = 0
-
-	var/turf/TC = get_step(src, src.dir)
-	var/obj/cable/conduit/small/C = locate() in TC
-	if (C)
-		var/checkdir = turn(src.dir,180)
-		if (checkdir &= C.dir)
-			if (src.connect_conduit(C))
-				src.conduits += C
-				src.connections |= src.dir
-
-
-	for (var/obj/cable/conduit/C in T.contents)
-		if (istype(C,/obj/cable/conduit/small)) //should only be one but let's iterate anyway while it's still fresh code
-			if (src.connect_conduit(C))
-				src.conduits += C
-				src.connections |= src.dir
-		else
-			continue //small conduits only
-		//if (C.tapped = 2)
-			//generate a lotta fucked up sparks on a continuing basis from this and connected small conduit taps
-			//also garble output to all monitoring computers
-		//otherwise pretty standard powernet connection
-
-	if (!connections)
-		src.makenewpowernet()
-
-	if(request_rebuild)
-		makepowernets()
-
+//forces small conduits and small taps to only connect to small connections
 /obj/cable/conduit/small/make_all_connections(var/turf/T)
-	var/checkdir = turn(src.dir,180)
-	var/checkdir1 = turn(src.dir,-135)
-	var/checkdir2 = turn(src.dir,135)
 	for (var/d in cardinal)
 		var/turf/TC = get_step(src, d)
 		var/obj/cable/conduit/small/C = locate() in TC
 		if (C)	//got one
 			if (src.dir in ordinal) //c-bend?
+				var/checkdir1 = turn(src.dir,-135)
+				var/checkdir2 = turn(src.dir,135)
 				if (!(checkdir1 &= C.dir) || !(checkdir2 &= C.dir)) //check for the opposite of 45deg to either direction on the neighboring turf and if neither match... keep going
 					continue
 			else //straight/junction?
+				var/checkdir = turn(src.dir,180)
 				if (!(checkdir &= C.dir)) //same but 180 flip turnwise. bitflags are neat when you learn how to use them
 					continue
 			//made it through and we still have a valid connection to make
@@ -1033,9 +1052,9 @@
 
 //this is engineering only, high power monitoring of direct engine output. the small conduits can't be used for any good crimes.
 //see prior conduit/device_check for full comments
-/obj/cable/conduit/small/proc/device_check(var/turf/T)
+/obj/cable/conduit/small/tap/proc/device_check(var/turf/T)
 	var/rebuild = 0
-	if (isturf(T) && src.tapped)
+	if (isturf(T))
 		for (var/obj/machinery/power/M in T.contents)
 			if(M.netnum == 0 || powernets[M.netnum].cables.len == 0)
 			//only engine/smes/ptl monitoring computers should be connected here
