@@ -5092,6 +5092,10 @@
 "dnj" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/grille/catwalk/jen,
+/obj/machinery/power/apc/autoname_west,
+/obj/cable{
+	icon_state = "0-4"
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/west)
 "dnr" = (
@@ -8193,13 +8197,22 @@
 /turf/simulated/wall/r_wall,
 /area/station/security/hos/horizon)
 "eUZ" = (
-/obj/disposalpipe/segment/morgue,
-/obj/grille/catwalk/jen,
 /obj/cable{
-	icon_state = "2-5"
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	name = "autoname - SS13";
+	tag = ""
 	},
 /turf/simulated/floor/plating,
-/area/station/maintenance/west)
+/area/station/maintenance/inner/nw)
 "eVq" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
 /obj/wingrille_spawn/reinforced,
@@ -9417,17 +9430,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 9;
-	name = "autoname - SS13";
-	tag = ""
-	},
+/obj/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/nw)
 "fMd" = (
@@ -9521,9 +9524,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
-	},
-/obj/cable{
-	icon_state = "1-10"
 	},
 /turf/simulated/floor,
 /area/station/maintenance/west)
@@ -9975,12 +9975,12 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/northeast)
 "geX" = (
-/obj/cable{
-	icon_state = "4-8"
+/obj/disposalpipe/segment/food,
+/obj/machinery/light/emergency{
+	dir = 4
 	},
-/obj/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
-/area/station/maintenance/inner/nw)
+/area/station/maintenance/central)
 "gfB" = (
 /obj/cable{
 	d1 = 1;
@@ -13260,16 +13260,12 @@
 /turf/simulated/floor/plating,
 /area/station/storage/warehouse)
 "iiV" = (
-/obj/disposalpipe/segment/horizontal,
-/obj/disposalpipe/segment/morgue,
-/obj/grille/catwalk/jen,
-/obj/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+/obj/disposalpipe/segment/bent/west,
+/obj/machinery/light/emergency{
+	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/station/maintenance/west)
+/area/station/maintenance/central)
 "ije" = (
 /obj/blind_switch/area/east,
 /obj/cable{
@@ -15143,7 +15139,7 @@
 /obj/machinery/power/apc/autoname_east,
 /obj/grille/catwalk/jen,
 /turf/simulated/floor/plating,
-/area/station/maintenance/west)
+/area/station/janitor/supply)
 "jlg" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor,
@@ -15782,12 +15778,17 @@
 	},
 /area/station/security/checkpoint/medical)
 "jJo" = (
-/obj/disposalpipe/segment/food,
-/obj/machinery/light/emergency{
-	dir = 4
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/obj/grille/catwalk/jen,
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
 	},
 /turf/simulated/floor/plating,
-/area/station/maintenance/central)
+/area/station/maintenance/west)
 "jJB" = (
 /obj/cable/purple{
 	icon_state = "1-2"
@@ -20705,12 +20706,13 @@
 /turf/simulated/floor/black,
 /area/station/science/chemistry)
 "myw" = (
-/obj/disposalpipe/segment/bent/west,
-/obj/machinery/light/emergency{
-	dir = 4
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
 	},
-/turf/simulated/floor/plating,
-/area/station/maintenance/central)
+/obj/machinery/power/apc/autoname_south,
+/turf/simulated/floor/plating/random,
+/area/station/medical/cdc)
 "myP" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/cable{
@@ -21189,14 +21191,6 @@
 	icon_old = "diamondtile"
 	},
 /area/station/maintenance/northwest)
-"mPr" = (
-/obj/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc/autoname_south,
-/turf/simulated/floor/plating/random,
-/area/station/medical/cdc)
 "mPX" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable{
@@ -26248,6 +26242,9 @@
 	},
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "2-5"
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/west)
 "qdg" = (
@@ -39404,13 +39401,8 @@
 /obj/machinery/disposal/cart_port,
 /obj/storage/cart/trash,
 /obj/grille/catwalk/jen,
-/obj/machinery/power/apc/autoname_east,
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
 /turf/simulated/floor/plating,
-/area/station/janitor/supply)
+/area/station/maintenance/west)
 "xUP" = (
 /obj/machinery/light/fluorescent/cool/very,
 /obj/cable{
@@ -66025,7 +66017,7 @@ pdO
 npO
 ijI
 mdE
-fMc
+eUZ
 uzY
 emo
 aBI
@@ -66327,7 +66319,7 @@ pdO
 npO
 ijI
 npO
-geX
+fMc
 npO
 xdz
 npO
@@ -68194,7 +68186,7 @@ bza
 uVu
 uVu
 rNq
-mPr
+myw
 cep
 hZC
 gcB
@@ -71180,7 +71172,7 @@ urA
 ukB
 pHJ
 qcs
-lwX
+jJo
 nxw
 lwX
 ukB
@@ -71786,8 +71778,8 @@ jDm
 qJB
 bov
 xCV
-eUZ
-iiV
+bov
+cAC
 nZl
 cEZ
 bov
@@ -89290,7 +89282,7 @@ nFJ
 fQj
 vlQ
 ckQ
-jJo
+geX
 vUN
 ffQ
 ffQ
@@ -89299,7 +89291,7 @@ ffQ
 ffQ
 ffQ
 efD
-myw
+iiV
 azB
 lar
 hmU
