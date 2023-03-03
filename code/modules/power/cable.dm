@@ -477,7 +477,7 @@
 	icon_state = "conduit-large-tee"
 	iconmod = "-tee"
 	cuts_required = 6
-	connects = 4
+	connects = 3
 /obj/cable/conduit/allway
 	name = "all-way conduit junction"
 	desc = "A rigid assembly of superconducting power lines. A four-way junction has been made."
@@ -501,6 +501,7 @@
 	desc = "A rigid assembly of superconducting power lines. It ends in a standard terminal tap."
 	icon_state = "conduit-large-trunk"
 	iconmod = "-trunk"
+	connects = 1
 	connectsmall = 0
 
 /obj/cable/conduit/switcher
@@ -540,7 +541,7 @@
 	desc = "A small, two-line superconductor conduit trunk, which attaches to standard conduits to feed power to monitoring equipment."
 	icon_state = "conduit-small-trunk"
 	iconmod = "-trunk"
-	tapped = 1
+	connects = 1
 	connectsmall = 0
 
 //--------------------------------------------------------------------------------------------
@@ -809,25 +810,43 @@
 		makepowernets()
 	//and we're basically done here
 
-//if conduit has a direction facing the opposite direction as our conduit, it's a possible connection
+//if conduit has a direction facing the opposite direction as our conduit, it's a possible connections
+//previous problem: the logic is wrong
+
 /obj/cable/conduit/proc/make_all_connections(var/turf/T)
-	for (var/d in cardinal)
-		var/turf/TC = get_step(src, d)
-		var/obj/cable/conduit/C = locate() in TC
-		if (C)	//got one
-			if (src.dir in ordinal) //c-bend?
-				var/checkdir1 = turn(src.dir,-135)
-				var/checkdir2 = turn(src.dir,135)
-				if (!(checkdir1 &= C.dir) && !(checkdir2 &= C.dir)) //check both component cardinals on the neighboring turf.
-					continue //if neither have matching opposites, keep looping
-			else //straight/junction
-				var/checkdir = turn(src.dir,180)
-				if (!(checkdir &= C.dir)) //same but simple 180 flip turnwise. bitflags are neat when you learn how to use them
+	var/condirs = src.find_condirs(src)
+	if (condirs)
+		for (var/d in condirs)
+			var/turf/TC = get_step(src, d)
+			var/obj/cable/conduit/C = locate() in TC
+			if (C) //got one
+				var/checkdir = turn(d,180)
+				if (checkdir &= C.find_condirs()) //do they make an equal but opposite pair?
+					if (src.connect_conduit(C))
+						src.conduits += C
+						src.connections |= src.dir
+				else //no match
 					continue
-			//made it through and we still have a valid connection to make
-			if (src.connect_conduit(C))
-				src.conduits += C
-				src.connections |= src.dir
+		return 1 //worked
+	else
+		return 0 //oh no
+
+//check directions this conduit is actually facing
+/obj/cable/conduit/proc/find_condirs()
+	var/condirs = 0
+	if (src.connects == 1)
+		condirs = src.dir //same facing
+	if (src.connects == 2)
+		if (src.dir in ordinal) //bend
+			condirs |= turn(src.dir,-45) //connection to quarter CCW
+			condirs |= turn(src.dir,45) //connection to quarter CW
+		else //straight
+			condirs = src.dir + turn(src.dir,180) //+ behind you
+	if (src.connects == 3)
+		condirs = 15 - turn(src.dir,180) //everywhere but behind you
+	if (src.connects == 4)
+		condirs = 15 //all of them
+	return condirs
 
 //if despite all best efforts there are no powernet connections to be had, make a new powernet
 /obj/cable/conduit/proc/makenewpowernet()
@@ -994,32 +1013,24 @@
 	var/turf/T = get_step(src, src.dir)
 	var/obj/cable/conduit/C = locate() in T //still look for large conduits
 	if (C)
-		if (istype(C,/obj/cable/conduit/tee)) //we must connect to a t junction
+		if (istype(C,/obj/cable/conduit/small))//it must not be small, no no no
+			return 0 //need to loop this for all items instead of.. this
+		if (C.connects == 3 && C.connectsmall) //we can connect to a T-junction if we're facing opposite directions: easy
 			var/checkdir = turn(src.dir,180)
 			if (checkdir &= C.dir)
 				if (src.connect_conduit(C))
 					src.conduits += C
-				src.connections |= src.dir
-		else if (istype(C,/obj/cable/conduit) && !istype(C,/obj/cable/conduit/small)) //it must not be small, no no no
-			if (C.dir in cardinal) //or a straight conduit
-				var/checkdir = turn(src.dir,90)
-				if (checkdir &= C.dir) //works one way?
-					if (src.connect_conduit(C))
-						src.conduits += C
-						src.connections |= src.dir
-						//if (C.tapped)
-							//generate a lotta fucked up sparks on a continuing basis from this and connected small conduit taps
-							//also garble output to all monitoring computers
-			else
-				var/checkdir1 = turn(src.dir,-90)
-				var/checkdir2 = turn(src.dir,90)
-				if ((checkdir1 &= C.dir) || (checkdir2 &= C.dir)) //either works?
-					if (src.connect_conduit(C))
-						src.conduits += C
-						src.connections |= src.dir
-						//if (C.tapped)
-							//etc.
-
+					src.connections |= src.dir
+			//will need to update logic of other connections to allow this
+		else if (C.connects == 2 && C.connectsmall) //is it a two way that we can connect to
+			var/checkdir = turn(src.dir,90)
+			if (checkdir &= C.find_condirs())
+				if (src.connect_conduit(C))
+					src.conduits += C
+					src.connections |= src.dir
+					//if (C.tapped)
+						//generate a lotta fucked up sparks on a continuing basis from this and connected small conduit taps
+						//also garble output to all monitoring computers
 
 	if (!connections)
 		src.makenewpowernet()
@@ -1032,23 +1043,22 @@
 
 //forces small conduits and small taps to only connect to small connections
 /obj/cable/conduit/small/make_all_connections(var/turf/T)
-	for (var/d in cardinal)
-		var/turf/TC = get_step(src, d)
-		var/obj/cable/conduit/small/C = locate() in TC
-		if (C)	//got one
-			if (src.dir in ordinal) //c-bend?
-				var/checkdir1 = turn(src.dir,-135)
-				var/checkdir2 = turn(src.dir,135)
-				if (!(checkdir1 &= C.dir) || !(checkdir2 &= C.dir)) //check for the opposite of 45deg to either direction on the neighboring turf and if neither match... keep going
+	var/condirs = src.find_condirs(src)
+	if (condirs)
+		for (var/d in condirs)
+			var/turf/TC = get_step(src, d)
+			var/obj/cable/conduit/small/C = locate() in TC
+			if (C)	//got one
+				var/checkdir = turn(d,180)
+				if (checkdir &= C.find_condirs()) //do they make an equal but opposite pair?
+					if (src.connect_conduit(C))
+						src.conduits += C
+						src.connections |= src.dir
+				else //no match
 					continue
-			else //straight/junction?
-				var/checkdir = turn(src.dir,180)
-				if (!(checkdir &= C.dir)) //same but 180 flip turnwise. bitflags are neat when you learn how to use them
-					continue
-			//made it through and we still have a valid connection to make
-			if (src.connect_conduit(C))
-				src.conduits += C
-				src.connections |= src.dir
+		return 1 //worked
+	else
+		return 0 //oh no
 
 //this is engineering only, high power monitoring of direct engine output. the small conduits can't be used for any good crimes.
 //see prior conduit/device_check for full comments
