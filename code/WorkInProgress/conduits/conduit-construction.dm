@@ -102,6 +102,6 @@
 					boutput(user, "You attach the conduit to the underfloor.")
 					var/obj/cable/conduit/P = new conduit_type(src.loc)
 					P.dir = src.dir
-				playsound(src.loc, "sound/items/Ratchet.ogg", 100, 1)
+				playsound(src.loc, "sound/items/Ratchet.ogg", 75, 1)
 
 		else ..()
