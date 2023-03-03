@@ -58,7 +58,7 @@
 // the power cable object
 /obj/cable
 	level = 1
-	anchored =1
+	anchored = 1
 	var/tmp/netnum = 0
 	name = "power cable"
 	desc = "A flexible power cable."
@@ -67,8 +67,6 @@
 	var/d1 = 0
 	var/d2 = 1
 	var/iconmod = null
-	//var/image/cableimg = null
-	//^ is unnecessary, i think
 	layer = CABLE_LAYER
 	plane = PLANE_NOSHADOW_BELOW
 	color = "#DD0000"
@@ -76,152 +74,11 @@
 
 	var/insulator_default = "synthrubber"
 	var/conductor_default = "pharosium"
-	var/cuttable = "1"
+	var/tapped = 0 //0: completely insulated 1: safely tapped 2: unsafely tapped
 	var/open_circuit = FALSE //governed by breakers, prevents this cable from being added to a powernet, basically suspends a cable connection without deleting the cable
 
 	var/datum/material/insulator = null
 	var/datum/material/conductor = null
-
-/obj/cable/conduit //a disastrous mashup of cables and disposal pipes for heavy duty connectivity
-// note don't get used to it just yet as i will probably be changing some of the iconstate naming conventions
-	name = "power conduit"
-	desc = "A rigid assembly of superconducting power lines."
-	icon_state = "conduit"
-	iconmod = "-conduit"
-
-	conductor_default = "claretine"
-	insulator_default = "synthrubber"
-
-	//same as normal cables but you have to click them multiple cuts heheheh
-	var/static/welds_required = 2
-	var/welds = 0
-
-	get_desc(dist, mob/user)
-		if(dist < 4 && welds)
-			.= "<br>" + "The conduit looks partially detached."
-
-	cut(mob/user,turf/T) //not cuttable, intercept any attempts to cut
-		boutput(user, "<span class='alert'>In retrospect, this looks more like a welding job.</span>")
-		src.visible_message("<span class='alert'>[user] tries to cut through section of [src], but the conduit is too thick.</span>")
-
-	updateicon()
-		return //these are rigid items, we will not be updating icons with directions, but we will be using iconstate names for powernet direction
-
-	weld(mob/user,turf/T) //weld to dismantle, disposal pipe style
-		welds++
-		shock(user, 50)
-		var/num = "first"
-		if (welds == 2)
-			num = "second"
-		src.visible_message("<span class='alert'>[user] slices through the [num] conductor pair of [src].</span>")
-
-		if (welds >= welds_required)
-			src.visible_message("<span class='alert'>If the next part of this was working, it would spawn right now!</span>")
-			welds = 0 //reset the count and do nothing
-		else
-			playsound(src.loc, "sound/items/Welder.ogg", 50, 1)
-
-/obj/cable/conduit/segment
-	icon_state = "1-2-conduit"
-	iconmod = "-conduit"
-
-	horizontal
-		dir = EAST
-		icon_state = "4-8-conduit"
-	vertical
-		dir = NORTH
-		icon_state = "1-2-conduit"
-	bent
-		icon_state = "1-4-conduit"
-		desc = "A rigid assembly of superconducting power lines. This conduit has been curved at an angle."
-		north
-			dir = NORTH
-			icon_state = "1-4-conduit"
-		east
-			dir = EAST
-			icon_state = "4-2-conduit"
-		south
-			dir = SOUTH
-			icon_state = "2-8-conduit"
-		west
-			dir = WEST
-			icon_state = "8-1-conduit"
-
-/obj/cable/conduit/junction
-	icon_state = "a-1-conduit"
-	name = "three-way conduit junction"
-	desc = "A rigid assembly of superconducting power lines. A three-way junction has been made."
-	north
-		dir = NORTH
-		icon_state = "a-1-conduit"
-	east
-		dir = EAST
-		icon_state = "a-4-conduit"
-	south
-		dir = SOUTH
-		icon_state = "a-2-conduit"
-	west
-		dir = WEST
-		icon_state = "a-8-conduit"
-
-/obj/cable/conduit/allway
-	icon_state = "a-a-conduit"
-	name = "all-way conduit junction"
-	desc = "A rigid assembly of superconducting power lines. A four-way junction has been made."
-
-/obj/cable/conduit/tap
-	icon_state = "1-2-conduit-tap"
-	name = "conduit tap"
-	desc = "A rigid assembly of superconducting power lines. A terminal tap has been added mid-length."
-	horizontal
-		dir = EAST
-		icon_state = "4-8-conduit-tap"
-	vertical
-		dir = NORTH
-		icon_state = "1-2-conduit-tap"
-
-/obj/cable/conduit/trunk
-	icon_state = "conduit-t"
-	name = "conduit terminal"
-	desc = "A rigid assembly of superconducting power lines. It ends in a terminal tap."
-	north
-		dir = NORTH
-		icon_state = "0-1-conduit"
-	east
-		dir = EAST
-		icon_state = "0-4-conduit"
-	south
-		dir = SOUTH
-		icon_state = "0-2-conduit"
-	west
-		dir = WEST
-		icon_state = "0-8-conduit"
-
-/obj/cable/conduit/switcher
-	icon_state = "1-2-conduit-sw1"
-	name = "switched conduit"
-	desc = "A rigid assembly of superconducting power lines. It has a heavy duty in-line switch built in."
-	east
-		dir = EAST
-		icon_state = "4-8-conduit-sw1"
-	west
-		dir = WEST
-		icon_state = "8-4-conduit-sw1"
-	vertical
-		dir = NORTH
-		icon_state = "1-2-conduit-sw1"
-
-/obj/cable/conduit/small
-	name = "small power conduit"
-	desc = "A two-line superconductor conduit, meant for direct monitoring of power output by terminals."
-	icon_state = "1-2-smallconduit"
-	iconmod = "-smallconduit"
-	color = "#BA9B67"
-
-/obj/cable/conduit/small/tap
-	name = "small power conduit tap"
-	desc = "A two-line superconductor conduit tap, meant for direct monitoring of power output by terminals."
-	icon_state = "0-1-smallconduit"
 
 /obj/cable/reinforced
 	name = "reinforced power cable"
@@ -351,16 +208,14 @@
 	return
 
 /obj/cable/proc/weld(mob/user,turf/T) //set up the welder proc for conduit
-	src.visible_message("<span class='alert'>[user] melts the cable's insulation for some reason.</span>")
-	//todo: set cable is melted
+	if (!src.tapped) //really just exposed in this case, but this is still useful for other reasons
+		shock(user, 25)
+		src.visible_message("<span class='alert'>[user] melts the cable's insulation, for some reason.</span>")
+		src.tapped = 2 //might work as a quick and dirty tap, who knows
+		//regular tapped cable can't safely be reused and will need to be recycled
+	//todo: set cable is melted, with an overlay
 	//new proc: do the glass shard thing and see if someone stepping on it doesn't have shoes and if not, zap them
-	//probably don't want to do powernet shit
-
-	shock(user, 50)
-
 	return
-
-
 
 /obj/cable/attackby(obj/item/W, mob/user)
 
@@ -444,8 +299,6 @@
 // 2. Joins to end or bridges loop of a single network (may also connect isolated machine) -> add to old network
 // 3. Bridges gap between 2 networks -> merge the networks (must rebuild lists also) (currently just calls makepowernets. welp)
 
-
-
 /obj/cable/proc/update_network()
 	if(makingpowernets) // this might cause local issues but prevents a big global race condition that breaks everything
 		return
@@ -455,10 +308,14 @@
 	var/request_rebuild = 0
 
 	for (var/obj/cable/new_cable_d1 in src.get_connections_one_dir(is_it_d2 = 0))
+		if (istype(new_cable_d1, /obj/cable/conduit))
+			continue //for now (implement and check for unsafe taps later)
 		cable_d1 = new_cable_d1
 		break
 
 	for (var/obj/cable/new_cable_d2 in src.get_connections_one_dir(is_it_d2 = 1))
+		if (istype(new_cable_d2, /obj/cable/conduit))
+			continue
 		cable_d2 = new_cable_d2
 		break
 
@@ -579,3 +436,504 @@
 		logTheThing("station", user, null, "lays a cable[powered == 1 ? " (powered when connected)" : ""] at [log_loc(src)].")
 
 	return
+
+//conduits! a disastrous mashup of cables and disposal pipes for heavy duty and secure connectivity
+//moved down here to make it easier to work and look at
+//let's say this *safely* does up to 5 megawatts worth of whatever amp draw (draw, not supply) and gets more dangerous above that?
+
+/obj/cable/conduit
+	name = "power conduit"
+	desc = "A rigid assembly of superconducting power lines."
+	icon_state = "conduit-large"
+	var/welded = 1 //Unweld, then cut
+	var/static/cuts_required = 4
+	var/cuts = 0
+	var/list/conduits = list() //debug var, to remove later
+	var/connects = 2
+	var/connections = 0 //bitflag for all possible connected directions
+	var/connected = 0 //bitflag for all actually connected directions
+	//var/deconstructs_into = /obj/conduitparts"
+
+	tapped = 0 //1 for standard small conduit tap, 2 for hotwire syndie tap (equivalent to d1 = 0 in regular cable)
+	//for later disassembly and capacity, may or may not use. i want to make it a slow pain in the ass but balance it out with being incredibly fuckin' tough and blast resistant
+	//connect_n = 4
+	//connect_s = 4
+	//connect_e = 4
+	//connect_w = 4
+
+	insulator_default = "synthrubber"
+	conductor_default = "claretine" //lmao don't scrap it for claretine please (this should affect capacity tbh)
+
+/obj/cable/conduit/tee
+	name = "all-way conduit junction"
+	desc = "A rigid assembly of superconducting power lines. A three-way junction has been made."
+	iconmod = "-tee"
+	connects = 4
+/obj/cable/conduit/allway
+	name = "all-way conduit junction"
+	desc = "A rigid assembly of superconducting power lines. A four-way junction has been made."
+	iconmod = "-all"
+	connects = 4
+
+/obj/cable/conduit/tap
+	name = "conduit tap"
+	desc = "A rigid assembly of superconducting power lines. A terminal tap has been added mid-length."
+	iconmod = "-tap"
+	tapped = 1
+
+/obj/cable/conduit/trunk
+	name = "conduit terminal"
+	desc = "A rigid assembly of superconducting power lines. It ends in a terminal tap."
+	iconmod = "-trunk"
+	tapped = 1 //can connect to terminals
+
+/obj/cable/conduit/switcher
+	name = "switched conduit"
+	desc = "A rigid assembly of superconducting power lines. It has a heavy duty in-line switch built in."
+	iconmod = "-sw1"
+	//var/open_circuit = FALSE //governed by a breaker, prevents this cable from being added to a powernet, basically suspends a cable connection without deleting the cable (thanks BatElite)
+	//let's save this fuckre for later
+
+/obj/cable/conduit/small
+	name = "small power conduit"
+	desc = "A two-line superconductor conduit, meant for direct monitoring of power output by terminals."
+	icon_state = "conduit-small"
+	color = "#BA9B67"
+
+/obj/cable/conduit/small/tap
+	name = "small power conduit tap"
+	desc = "A two-line superconductor conduit tap, meant for direct monitoring of power output by terminals."
+	iconmod = "-tap"
+	tapped = 1
+
+/obj/cable/conduit/small/trunk
+	name = "small power conduit trunk"
+	desc = "A two-line superconductor conduit tap, meant for direct monitoring of power output by terminals."
+	iconmod = "-trunk"
+	tapped = 1
+
+//conduprocs time
+//this is the fixed thing, will need to crib more from disposals
+/obj/cable/conduit/New() //var/obj/item/conduit/source draggable and droppable and clickable to rotate 90
+	..()
+	//if (source)
+		//src.dir = source.dir
+		//src.iconmod = source.iconmod
+	var/turf/T = src.loc			// hide if turf is not intact
+									// but show if in space
+	if(istype(T, /turf/space) && !istype(T,/turf/space/fluid)) hide(0)
+	else if(level==1) hide(T.intact)
+	applyCableMaterials(src, getMaterial(insulator_default), getMaterial(conductor_default))
+	START_TRACKING
+
+/obj/cable/conduit/updateicon()
+	return //no iconstate changes until we add damage/manual tapping (plus iconstate for unwelded connectors maybe)
+
+/obj/cable/conduit/ex_act(severity)
+
+	/* switch (severity)
+		if (1)
+			//
+		if (2)
+			if (prob(30))
+				src.welded = 0
+			if (prob(15))
+				var/atom/A = new/obj/item/cable_coil(src.loc, src.d1 ? 2 : 1)
+				applyCableMaterials(A, src.insulator, src.conductor)
+				qdel(src)*/
+	return //for now
+
+/obj/cable/conduit/get_desc(dist, mob/user)
+	if(dist < 4 && !welded)
+		.= "<br>The conduit splice covers look partially detached."
+
+//still fuckin' deciding which way to go. how's this sound:
+//deconstruct: screwdriver, cut cut cut cut (4 per connected side, but generally pretty fast), wrench -> pickupable thing -> screwdriver -> 4 2-length sections of thick claretine wire (or maybe an 8long coil?) and 2 rods
+//construct: hit a coil of at least 8 lengths of thick wire with a stack of at least 2 rods and a wirecutter in your hand -> pickupable thing -> wrench, weld weld weld weld, screwdriver?
+
+/obj/cable/conduit/cut(mob/user,turf/T)
+	if(welded) //don't even try unless it's loose
+		boutput(user, "<span class='alert'>This looks more like a welding job for now.</span>")
+		return
+	cuts++
+	//capacity-- //reduced by cuts, increased by welds. always cut in pairs, whether per conductor or side.
+	//this is something to come back to later
+	shock(user, 90) //very dangerous, always cut power
+	var/num = "first"
+	if (cuts == 2)
+		num = "second"
+	if (cuts == 3)
+		num = "third"
+	if (cuts == 4)
+		num = "fourth"
+	if (cuts == 5)
+		num = "fifth?? what"
+	else if (cuts >= cuts_required) //cut it out
+		src.visible_message("<span class='alert'>[user] would have dismantled [src] by now, if there was anything to dismantle it into.</span>","<span class='alert'>You would have dismantled [src] by now, if there was anything to dismantle it into.</span>")
+		playsound(src.loc, "sound/items/Wirecutter.ogg", 75, 1)
+		sleep(0.5)
+		playsound(src.loc, "sound/items/Wirecutter.ogg", 75, 1)
+		//..()
+		//var/obj/conduitparts/P = new/obj/conduitparts
+	else
+		playsound(src.loc, "sound/items/Wirecutter.ogg", 75, 1)
+		sleep(0.5)
+		playsound(src.loc, "sound/items/Wirecutter.ogg", 75, 1)
+		src.visible_message("<span class='alert'>[user] cuts through \the [src]'s [num] set of exposed conductor pairs.</span>","<span class='alert'>You cut through \the [src]'s [num] set of exposed conductor pairs.</span>")
+
+/obj/cable/conduit/weld(mob/user,turf/T) //weld to dismantle, disposal pipe style
+	shock(user, 50)
+	if (welded)
+		src.visible_message("<span class='alert'>[user] slice through [src]'s conductor supports.</span>","<span class='alert'>You slice through [src]'s conductor supports.</span>")
+		src.welded = 0
+	else
+		src.visible_message("<span class='alert'>[user] welds [src]'s conductor supports into place.</span>","<span class='alert'>You weld [src]'s conductor supports into place.</span>")
+		src.welded = 1
+	//add progress bar maybe, two seconds
+
+// called when a new conduit is created
+// can be 1 of 3 outcomes:
+// 1. Isolated conduit -> create new powernet
+// 2. Joins to end or connects loop -> add to old network
+// 3. Bridges gap between 2-4(!!) networks -> merge the networks (oh god help me)
+
+/obj/cable/conduit/update_network()
+	if(makingpowernets) // this might cause local issues but prevents a big global race condition that breaks everything
+		return
+
+	var/turf/T = get_turf(src)
+	var/request_rebuild = 0
+	//one's for cardinal, others are for ordinal. doing them here because fuck it
+
+	//find them
+	src.find_all_connections(T)
+
+	//itsy bitsy funny debug
+	src.debug_messages_for_conduits()
+
+	if (!connections) //nobody? really? after all that? new powernet all by yourself
+		src.makenewpowernet()
+
+	//now let's check for devices on us
+	//BY THE WAY HELLO YES IN MOST NORMAL USE CASES THIS WILL BE HANDLED BY CONDUIT TRUNKS THANKS
+	//but for now, we're doing this. and also taps will exist soon anyway so whatever.
+	//by the way secure taps only connect to small conduits, syndicate taps will allow regular station wires to get connected
+	src.connect_devices(T)
+
+	//now let's check for devices 1 tile next to us... oh wait
+	//NOBODY SHOULD BE SUCKING OFF POWER DIRECTLY FROM CONDUITS
+	//THAT IS THE POINT
+	//OF CONDUITS
+	//leaving it here for the time being though, in case anything out there is relying on this behavior
+	src.power_devices()
+
+	if(request_rebuild)
+		makepowernets()
+
+//if conduit has a direction facing the opposite direction as this check, it's a possible connection
+/obj/cable/conduit/find_all_connections(var/turf/T)
+	var/checkdir = turn(src.dir,180)
+	var/checkdir1 = turn(src.dir,-135)
+	var/checkdir2 = turn(src.dir,135)
+	for (var/d in cardinal)
+		var/turf/TC = get_step(src, d)
+		var/obj/cable/conduit/C = locate() in TC
+		if (C)	//got one
+			if (src.dir in ordinal) //c-bend?
+				if (!(checkdir1 &= C.dir) || !(checkdir2 &= C.dir)) //check for the opposite of 45deg to either direction on the neighboring turf and if neither match... keep going
+					continue
+			else //straight/junction?
+				if (!(checkdir &= C.dir)) //same but 180 flip turnwise. bitflags are neat when you learn how to use them
+					continue
+			//made it through and we still have a valid connection to make
+			conduit_connect(C, d)
+
+//if (src.tapped) //engineering will be able to make taps to connect small conduit trunks to big conduits
+	//get small conduit trunks on T and connect them, since we never connect directly to wires.
+	//but... if a certain sort were to install illegal electrical equipment...
+	//if (src.tapped == 2) //the squeakquel
+		//get other cables on turf and see if any of them have D1 = 0
+		//then: :getin:
+		//burns out regular cables
+		//fucked up sparks
+		//even better if you can lock the switchgear closed
+		//both of these can be applied to any straight cable (no trunks or junctions, the overlay will be too weird
+
+//takes a conduit and a direction because i dunno
+/obj/cable/conduit/connect_conduit(var/obj/cable/conduit/C, var/d)
+	src.conduits += C //for debug vars
+		src.connections |= d
+		if (C.netnum && powernets[C.netnum]) //does this have a valid powernet already?
+			if (!src.netnum) //and we don't have one?
+				var/datum/powernet/PN = powernets[C.netnum]
+				PN.cables += src
+				src.netnum = C.netnum //now we do
+				src.connected |= d
+			else //oh we DO have a powernet, and they do, too...
+				var/datum/powernet/PN = src.get_powernet()
+				var/datum/powernet/PC = C.get_powernet()
+				src.netnum = C.netnum
+				PC.cables += src
+				if(PN.cables.len <= PC.cables.len) //theirs is bigger
+					PN.join_to(PC)
+				else
+					PC.join_to(PN)
+				src.connected |= d
+		else //no valid powernet on connected conduit
+			if (!src.netnum) //and WE don't have one? fucked up if true
+				//let's see if we can go without this, for now
+				/*logTheThing("debug", src, conduit_A, "Conduit \ref[src] ([src.x], [src.y], [src.z]) connected to \ref[conduit_A] which had netnum 0, rebuilding powernets.")
+				DEBUG_MESSAGE("Conduit \ref[src] ([src.x], [src.y], [src.z]) connected to \ref[conduit_A] which had netnum 0, rebuilding powernets.")
+				return makepowernets()*/
+				//new powernet (the only case where we gotta make one, luckily)
+				var/datum/powernet/PN = new()
+				powernets += PN
+				PN.cables += src
+				PN.number = length(powernets)
+				src.netnum = length(powernets)
+				//add the conduit
+				PN = powernets[C.netnum]
+				PN.cables += src
+				C.netnum = src.netnum
+				PN.cables += C
+				src.connected |= dir
+			else //but if WE have one...
+				var/datum/powernet/PN = src.get_powernet()
+				//just add them on
+				C.netnum = src.netnum
+				PN.cables += C
+				src.connected |= dir
+
+/obj/cable/conduit/connect_devices(var/turf/T)
+	if (isturf(T) && src.tapped && !request_rebuild) 	//are we tapped in any way? well then fuck and also piss, that means something can be attached!!! d1 = 0 equivalent
+		//if (src.tapped = 2) //or worse yet, attached to the rest of the station distribution cables (but like, we'll add that later that is not a use case for this right now)
+			//try to connect a cable (later, the syndie tap item doesn't even EXIST yet)
+		for (var/obj/machinery/power/M in T.contents)
+			if(M.netnum == 0 || powernets[M.netnum].cables.len == 0) //if it's not connected, or the net it's connected to has no cables? fucked up, let's fix that (also connect APCs and terminals to us)
+				if(M.netnum) //it's still "connected" to a technically nonexistent powernet but it's orphaned or stranded something so: let's do a little cleanup
+					M.powernet.nodes -= M
+					M.powernet.data_nodes -= M
+				M.netnum = src.netnum //now let's connect it to our powernet
+				M.powernet = powernets[M.netnum]
+				M.powernet.nodes += M
+				if(M.use_datanet)
+					M.powernet.data_nodes += M //link up
+			else if(M.netnum != src.netnum) // this shouldn't actually ever happen probably
+				request_rebuild = 1 //but let's handle it anyway with Another Fucking MakePowernets, just in case
+				break
+
+/obj/cable/conduit/makenewpowernet()
+	var/datum/powernet/PN = new()
+	powernets += PN
+	PN.cables += src
+	PN.number = length(powernets)
+	src.netnum = length(powernets)
+	src.visible_message("<span class='alert'>[src] is a lonely conduit, but is working.</span>")
+
+/obj/cable/conduit/power_devices()
+	if(!request_rebuild)
+		for (var/d in alldirs) //okay let's iterate in every direction (including ones we didn't connect and diagonals)
+			var/turf/TP = get_step(src, d)
+			for (var/obj/machinery/power/M in TP.contents)
+				if(!M.directwired || M.netnum == -1) //which basically means... terminals, and also APCs (which connect through terminals)
+					continue
+				if(M.netnum == 0 || powernets[M.netnum].cables.len == 0) //same as above, let's clean it up and bring it into us
+					if(M.netnum)
+						M.powernet.nodes -= M
+						M.powernet.data_nodes -= M
+					M.netnum = src.netnum //you are mine now, you belong to me
+					M.powernet = powernets[M.netnum]
+					M.powernet.nodes += M
+					if(M.use_datanet)
+						M.powernet.data_nodes += M
+				else if(M.netnum != src.netnum)
+					request_rebuild = 1 //fuck
+					break
+
+/obj/cable/conduit/debug_messages_for_conduits()
+	if (src.connections) //woaw we got something
+		if (!src.connected)
+			src.visible_message("<span class='alert'>Now [src] is a loser conduit. ([connections] connections possible but none made at all.)</span>")
+		else if (src.connections >= src.connected)
+			src.visible_message("<span class='alert'>Now [src] is a loser conduit. ([connections] connections possible yet [connected] connections made.)</span>")
+		else if (src.connections <= src.connected)
+			src.visible_message("<span class='alert'>Now [src] is a confusing conduit. ([connections] connections possible yet [connected] connections made.)</span>")
+		else if (src.connections == src.connected)
+			src.visible_message("<span class='alert'>Now [src] is a happy conduit. [connections] connections found, and [connected] connections made equals them.</span>")
+	else
+		if (src.connected) //huh?
+			src.visible_message("<span class='alert'>Now [src] is a confusing conduit. (No connections possible yet [connected]connections made.)</span>")
+
+/obj/cable/conduit/debug_messages_for_trunks()
+	if (src.connections)
+		if (!src.connected)
+			src.visible_message("<span class='alert'>Now [src] is a loser trunk. ([connections] connections possible but none made at all.)</span>")
+		else if (src.connections >= src.connected)
+			src.visible_message("<span class='alert'>Now [src] is a loser trunk. ([connections] connections possible yet [connected] connections made.)</span>")
+		else if (src.connections <= src.connected)
+			src.visible_message("<span class='alert'>Now [src] is a confusing trunk. ([connections] connections possible yet [connected] connections made.)</span>")
+		else if (src.connections == src.connected)
+			src.visible_message("<span class='alert'>Now [src] is a happy trunk. [connections] connections found, and [connected] connections made equals them.</span>")
+	else
+		if (src.connected)
+			src.visible_message("<span class='alert'>Now [src] is a confusing trunk. (No connections possible yet [connected]connections made.)</span>")
+
+//i was planning to just push the conduit update but then i realized oh fuck, oh my god, shit, piss, i might as well do it while it's fresh so here i am happy 3 am to me
+//this cannot tap into conduits, if you want to connect them use a T junction
+/obj/cable/conduit/trunk/update_network()
+	if(makingpowernets) // this might cause local issues but prevents a big global race condition that breaks everything
+						// still want to figure you out, unless batclaire does
+		return
+
+	var/turf/T = get_turf(src)
+	var/request_rebuild = 0
+
+	if (!connections) //nobody? really? after all that? new powernet
+		var/datum/powernet/PN = new()
+		powernets += PN
+		PN.cables += src
+		PN.number = length(powernets)
+		src.netnum = length(powernets)
+		src.visible_message("<span class='alert'>[src] is a lonely trunk, but is working.</span>")
+
+	//now let's check for devices on us
+	//I REALLY need to finish small conduits now so we can better isolate our direct power monitoring EDIT: never mind i did them anyway
+	//BUT THIS IS HERE SO NOTHING ELSE BREAKS WHILE I'M FINISHING THE REST
+	//by the way secure taps only connect to small conduits, syndicate taps will allow regular station wires to get connected
+	src.connect_devices(T)
+
+	if(request_rebuild)
+		makepowernets()
+
+//modify this to account for different connections
+/obj/cable/conduit/trunk/connect_devices(var/turf/T)
+	if (isturf(T) && src.tapped && !request_rebuild)
+		for (var/obj/machinery/power/M in T.contents)
+			if(M.netnum == 0 || powernets[M.netnum].cables.len == 0)
+				if(M.netnum)
+					M.powernet.nodes -= M
+					M.powernet.data_nodes -= M
+				M.netnum = src.netnum
+				M.powernet = powernets[M.netnum]
+				M.powernet.nodes += M
+				if(M.use_datanet)
+					M.powernet.data_nodes += M
+			else if(M.netnum != src.netnum)
+				request_rebuild = 1
+				break
+
+//this is a small conduit trunk, this goes onto a large conduit and feeds the small conduits and small conduit taps
+//you can connect to even less things buddy- power monitoring systems only
+//at least, when it's finished. see comments in previous goes-arounds unless something is different or fucked up here
+/obj/cable/conduit/small/trunk/update_network()
+	if(makingpowernets)
+		return
+
+	var/turf/T = get_turf(src)
+	var/request_rebuild = 0
+
+	var/turf/TC = get_step(src, src.dir)
+	var/obj/cable/conduit/C = locate() in TC
+	if (C)
+		var/checkdir = turn(src.dir,180)
+		if (checkdir &= C.dir)
+			conduits += C
+			src.connections |= src.dir
+			src.connect_trunk(C)
+
+	src.debug_messages_for_trunks
+
+	//hey remember what i said about something different or fucked up
+	//find a tapped conduit buddy on same tile and do the same shit as above.
+	for (var/obj/cable/conduit/C in T.contents)
+		if (istype(C,/obj/cable/conduit/small)) //should only be one but let's iterate anyway while it's still fresh code
+			continue //this should only connect to large conduits that are tapped
+		if (C.tapped == 0)
+			continue //tap required
+		//if (C.tapped = 2)
+			//generate a lotta fucked up sparks but no connection and no danger (unless you touch it while it's on)
+		//pretty standard powernet connection
+		src.connect_trunk(C)
+
+	if (!connections)
+		var/datum/powernet/PN = new()
+		powernets += PN
+		PN.cables += src
+		PN.number = length(powernets)
+		src.netnum = length(powernets)
+		src.visible_message("<span class='alert'>[src] is a lonely trunk, but is working.</span>")
+
+	if(request_rebuild)
+		makepowernets()
+
+/obj/cable/conduit/connect_trunk(C)
+	if (C.netnum && powernets[C.netnum])
+		if (!src.netnum)
+			var/datum/powernet/PN = powernets[C.netnum]
+			PN.cables += src
+			src.netnum = C.netnum
+		else
+			var/datum/powernet/PN = src.get_powernet()
+			var/datum/powernet/PC = C.get_powernet()
+			src.netnum = C.netnum
+			PC.cables += src
+			if(PN.cables.len <= PC.cables.len)
+				PN.join_to(PC)
+			else
+				PC.join_to(PN)
+
+/obj/cable/conduit/connect_tap(C)
+	if (C.netnum && powernets[C.netnum])
+		if (!src.netnum)
+			var/datum/powernet/PN = powernets[C.netnum]
+			PN.cables += src
+			src.netnum = C.netnum
+		else
+			var/datum/powernet/PN = src.get_powernet()
+			var/datum/powernet/PC = C.get_powernet()
+			src.netnum = C.netnum
+			PC.cables += src
+			if(PN.cables.len <= PC.cables.len)
+				PN.join_to(PC)
+			else
+				PC.join_to(PN)
+
+	else
+		if (!src.netnum)
+			var/datum/powernet/PN = new()
+			powernets += PN
+			PN.cables += src
+			PN.number = length(powernets)
+			src.netnum = length(powernets)
+			PN = powernets[C.netnum]
+			PN.cables += src
+			C.netnum = src.netnum
+			PN.cables += C
+		else
+			var/datum/powernet/PN = src.get_powernet()
+			C.netnum = src.netnum
+			PN.cables += C
+
+//now let's check for devices on us
+//this is engineering only, high power monitoring of direct engine output. the small conduits can't be used for any good crimes.
+//see prior conduit/device_check for full comments
+/obj/cable/conduit/small/device_check(var/turf/T)
+	if (isturf(T) && src.tapped && !request_rebuild)
+		for (var/obj/machinery/power/M in T.contents)
+			if(M.netnum == 0 || powernets[M.netnum].cables.len == 0)
+			//only engine/smes/ptl monitoring computers should be connected here
+			//powers monitoring terminal stuff directly off distributed mains. maybe set that with a var
+			//call it /var/directconduitsmall or something i don't know
+				if(M.netnum)
+					M.powernet.nodes -= M
+					M.powernet.data_nodes -= M
+				M.netnum = src.netnum
+				M.powernet = powernets[M.netnum]
+				M.powernet.nodes += M
+				if(M.use_datanet)
+					M.powernet.data_nodes += M
+			else if(M.netnum != src.netnum)
+				request_rebuild = 1
+				break
+
+/obj/cable/conduit/small/tap/update_network()
