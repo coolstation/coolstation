@@ -1794,7 +1794,7 @@
 			M.bioHolder.AddEffect("mattereater")
 			M.bioHolder.AddEffect("jumpy")
 			M.bioHolder.AddEffect("vowelitis")
-			M.bioHolder.AddEffect("accent_chav")
+			M.bioHolder.AddEffect("accent_brummie")
 
 
 	disposing()
@@ -1804,7 +1804,7 @@
 				mob.bioHolder.RemoveEffect("mattereater")
 				mob.bioHolder.RemoveEffect("jumpy")
 				mob.bioHolder.RemoveEffect("vowelitis")
-				mob.bioHolder.RemoveEffect("accent_chav")
+				mob.bioHolder.RemoveEffect("accent_brummie")
 		original_blood_color = null
 		..()
 

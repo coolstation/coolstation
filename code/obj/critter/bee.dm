@@ -44,7 +44,7 @@
 	"captain","centcom","centcom-red","tophat","ptophat","mjhat","plunger","cakehat0","cakehat1",
 	"butt-nc","butt-plant","butt-cyber","purplebutt","santa","yellow","blue","red","green","black","white",
 	"psyche","wizard","wizardred","wizardpurple","witch","obcrown","macrown","safari","viking","dolan",
-	"camhat","redcamhat","mailcap","paper","policehelm","bikercap","apprentice","chavcap","flatcap","ntberet",
+	"camhat","redcamhat","mailcap","paper","policehelm","bikercap","apprentice","brummiecap","flatcap","ntberet",
 	"captain-fancy","rank-fancy","mime_beret","mime_bowler","buckethat", "syndicate_top", "syndicate_top_biggest")
 
 	var/sleep_y_offset = 5 // this amount removed from the hat's pixel_y on sleep or death

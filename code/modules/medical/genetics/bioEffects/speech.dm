@@ -63,10 +63,10 @@
 		message = elvisfy(message)
 		return message
 
-/datum/bioEffect/speech/chav
+/datum/bioEffect/speech/brummie
 	name = "Frontal Gyrus Alteration Type-C"
 	desc = "Forces the language center of the subject's brain to construct sentences in a more rudimentary manner."
-	id = "accent_chav"
+	id = "accent_brummie"
 	effectType = EFFECT_TYPE_DISABILITY
 	isBad = 1
 	msgGain = "Ye feel like a reet prat like, innit?"
@@ -81,7 +81,7 @@
 	OnSpeak(var/message)
 		if (!istext(message))
 			return ""
-		message = chavify(message)
+		message = brummieify(message)
 		return message
 
 /datum/bioEffect/speech/scots

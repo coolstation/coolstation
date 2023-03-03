@@ -1998,7 +1998,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 		..()
 		if (!M)
 			return
-		M.bioHolder.AddEffect("accent_chav", magical=1)
+		M.bioHolder.AddEffect("accent_brummie", magical=1)
 
 /datum/job/special/halloween/ghost
 	name = "Ghost"
