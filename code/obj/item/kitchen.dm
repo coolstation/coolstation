@@ -525,7 +525,7 @@ TRAYS
 				src.launching = 0 //otherwise you can't get the wine back out.
 			return 1
 
-		if (src.emagged && (!src.wine)) //double emag
+		if (src.emagged && (!src.wine) && user) //double emag, must be empty
 			if (src.launching)
 				src.visible_message("<b>\The [src]</b> looks a little busy at the moment!")
 				return 0
@@ -533,7 +533,7 @@ TRAYS
 				return 0
 			src.launching = 1
 			playsound(src, "sound/items/eatfood.ogg", 100, 1)
-			user.visible_message("<b>[src]</b> eats [user]'s [E]!","Your [E] gets eaten by \the [src]. What the fuck!?")
+			user.visible_message("<b>[src]</b> eats [user]'s [E]! What the fuck?","Your [E] gets eaten by \the [src]. What the fuck!?")
 			src.icon_state = "homph"
 			qdel(E)
 			SPAWN_DBG(2 SECONDS)
@@ -570,7 +570,7 @@ TRAYS
 		src.add_fingerprint(user)
 		if (!src.wine)
 			user.show_text("\The [src] doesn't have anything in it.", "red")
-		else if (!src.launching)
+		else if (src.launching)
 			user.show_text("No way! You're not touching that thing right now.", "red")
 		else
 			boutput(user, "You take \the [src.wine] out of \the [src].")
