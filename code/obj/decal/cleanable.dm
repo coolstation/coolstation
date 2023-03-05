@@ -76,6 +76,8 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 			if(isturf(src.loc))
 				var/turf/T = src.loc
 				T.messy++
+				if (src.gross && !(istype(T,/turf/space)))
+					T.clean = 0
 				last_turf = T
 
 			if (istype(src.loc, /turf/simulated/floor))
@@ -89,6 +91,8 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 		if (istype(src.loc, /turf/simulated/floor))
 			var/turf/simulated/T = src.loc
 			T.messy = max(T.messy-1, 0)
+			if (!T.messy) //no mess left at all?
+				T.clean	= 1 //we're probably being cleaned
 
 		var/area/Ar = get_area(src)
 		if (Ar)

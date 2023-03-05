@@ -408,16 +408,17 @@
 			(not_food_safe()) //but after griming, let's still roll around and collect whatever nasty gibs and whatnot is still there
 		//bugs also because lol
 		var/obj/reagent_dispensers/cleanable/ants/ants = locate(/obj/reagent_dispensers/cleanable/ants) in T
-		if (ants)
+		if (ants && !(src.reagents.has_reagent("ants"))) //no double dipping
 			ants.reagents.trans_to(src, 1)
 		var/obj/reagent_dispensers/cleanable/spiders/spiders = locate(/obj/reagent_dispensers/cleanable/spiders) in T
-		if (spiders)
+		if (spiders && !(src.reagents.has_reagent("spiders")))
 			spiders.reagents.trans_to(src, 1)
 		return //mission accomplished ur food is possibly gross as hell now
 
 	proc/not_food_safe() //finds grimable elements on the ground
 		if (!isturf(src.loc)) return 0
 		var/grimecount = 0
+		var/turf/T = src.loc
 		for (var/atom/movable/M in src.loc) //check if we've been left in a good spot
 			if (istype(M, /obj/storage/secure/closet/fridge))
 				return 0
@@ -427,10 +428,13 @@
 				return 0
 			else if (istype(src.loc, /turf/space))
 				return 0 //no grime in space
-		//out of the loop and still here? that means we're on the floor probably
-		grimecount++ //assume floor is probably dirty and not janitor-spotless (turfs may later have var/gross set with travel, time, cleanables, etc.)
-		//TODO: turf var: gross. 0 if not gross, 1 if gross. gross set on application of a var/gross=1 cleanable, which also adds grime to any food
-		//gross resets on clean. some floors can never ever ever be not-gross.
+		//check the floor's dirtitude
+		//turf var/clean. 1 if not gross, 0 if gross. clean set on mopping, etc. removed when a var/gross=1 cleanable added.
+		//turf gross var resets on clean. some floors can never ever ever be not-gross so even if they are "clean" they still add a bonus grime.
+		if (T.clean == 0)
+			grimecount++
+		if (T.permadirty == 1)
+			grimecount++
 		for (var/obj/decal/cleanable/D in src.loc)
 			if (grimecount >= 6)
 				break

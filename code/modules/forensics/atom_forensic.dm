@@ -211,6 +211,7 @@
 			var/turf/T = get_turf(src)
 			for (var/obj/decal/cleanable/mess in T)
 				qdel(mess)
+			T.clean = 1
 			T.messy = 0
 
 		else // Don't think it should clean doors and the like. Give the detective at least something to work with.

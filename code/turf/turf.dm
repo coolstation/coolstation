@@ -45,7 +45,9 @@
 	var/tmp/checkinghasproximity = 0
 	/// directions of this turf being blocked by directional blocking objects. So we don't need to loop through the entire contents
 	var/tmp/blocked_dirs = 0
-	var/wet = 0
+	var/wet = 0 //slippery when
+	var/clean = 0 //is this floor recently cleaned? like, clean enough to eat off of? almost no floor starts clean
+	var/permadirty = 0 //grimy tiles can never truly be clean
 	throw_unlimited = 0 //throws cannot stop on this tile if true (also makes space drift)
 
 	var/step_material = 0
@@ -195,6 +197,7 @@
 	plane = PLANE_SPACE
 	special_volume_override = 0
 	text = ""
+	clean = 1 //in space, no one needs you to clean
 	var/static/list/space_color = generate_space_color()
 	var/static/image/starlight
 
