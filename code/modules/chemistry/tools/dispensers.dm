@@ -93,6 +93,14 @@
 		src.Scale(scale, scale)
 		src.set_dir(pick(NORTH, SOUTH, EAST, WEST))
 		reagents.add_reagent("ants",20)
+		if (isturf(src.loc))
+			for (var/obj/item/reagent_containers/food/snacks/snack in src.loc)
+				if (!snack.doants)
+					continue //they don't touch the stuff
+				if (src.reagents.total_volume >= 11) //we can lose up to half, and ants get everywhere
+					src.reagents.trans_to(snack,1) //fuck you eat the ants
+				else
+					break
 
 	get_desc(dist, mob/user)
 		return null
@@ -124,6 +132,12 @@
 		src.pixel_x = rand(-8,8)
 		src.pixel_y = rand(-8,8)
 		reagents.add_reagent("spiders", 5)
+		if (isturf(src.loc))
+			for (var/obj/item/reagent_containers/food/snacks/snack in src.loc)
+				if (src.reagents.total_volume >= 4) //up to two lucky winners
+					src.reagents.trans_to(snack,1)
+				else
+					break
 
 	get_desc(dist, mob/user)
 		return null

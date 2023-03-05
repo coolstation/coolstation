@@ -91,6 +91,7 @@
 	edible = 1
 	rand_pos = 1
 	var/has_cigs = 0
+	var/grimy = 0
 
 	var/use_bite_mask = 1
 	var/current_mask = 5
@@ -331,6 +332,11 @@
 	afterattack(obj/target, mob/user , flag)
 		return
 
+	dropped()
+		SPAWN_DBG(0)
+			src.get_grimy()
+		..()
+
 	proc/on_bite(mob/eater)
 		//if (reagents?.total_volume)
 		//	reagents.reaction(M, INGEST)
@@ -384,6 +390,53 @@
 							H.force_equip(I,item_slot) // mobs don't have force_equip
 							return
 			drop.set_loc(get_turf(src.loc))
+
+	proc/get_grimy() //signal-driven, checked on drop, removed
+		if (!isturf(src.loc)) //inside something or not on the ground?
+			return
+		sleep(0.5 SECONDS) //handle throws
+		var/turf/T = src.loc
+		sleep(4.5 SECONDS) //literal five second rule
+		if (!isturf(src.loc)) //inside something or not on the ground?
+			return
+		if (!src.grimy) //i'll come back to it and make it an "up to 5 grimes" thing rather than once, up to 5 grimes at a time
+			var/grime = not_food_safe() //let's see what grossness abounds on this turf
+			if (grime && (prob(75)))
+				src.reagents.add_reagent("grime", grime) //grime
+				src.grimy = 1
+		//bugs also because lol
+		var/obj/reagent_dispensers/cleanable/ants/ants = locate(/obj/reagent_dispensers/cleanable/ants) in T
+		if (ants)
+			ants.reagents.trans_to(src, 1)
+		var/obj/reagent_dispensers/cleanable/spiders/spiders = locate(/obj/reagent_dispensers/cleanable/spiders) in T
+		if (spiders)
+			spiders.reagents.trans_to(src, 1)
+		return //mission accomplished ur food is possibly gross as hell now
+
+	proc/not_food_safe() //finds grimable elements on the ground
+		if (!isturf(src.loc)) return 0
+		var/grimecount = 0
+		for (var/atom/movable/M in src.loc) //check if we've been left in a good spot
+			if (istype(M, /obj/storage/secure/closet/fridge))
+				return 0
+			else if (istype(M, /obj/storage/crate/freezer))
+				return 0
+			else if (istype(M, /obj/table)) //i don't think tables can be messy and this is good enough tbh
+				return 0
+			else if (istype(src.loc, /turf/space))
+				return 0 //no grime in space
+		//out of the loop and still here? that means we're on the floor probably
+		grimecount++ //assume floor is probably dirty and not janitor-spotless (turfs may later have var/gross set with travel, time, cleanables, etc.)
+		//TODO: turf var: gross. 0 if not gross, 1 if gross. gross set on application of a var/gross=1 cleanable, which also adds grime to any food
+		//gross resets on clean. some floors can never ever ever be not-gross.
+		for (var/obj/decal/cleanable/D in src.loc)
+			if (grimecount >= 6)
+				break
+			if (D.gross)
+				grimecount++
+			if (D.reagents)
+				D.reagents.trans_to(src, 1)
+		return grimecount
 
 /obj/item/reagent_containers/food/snacks/bite
 	name = "half-digested food chunk"
