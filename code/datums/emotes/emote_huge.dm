@@ -580,6 +580,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 				toilet.peeps++
 				user.sims.affectMotive("Bladder", 100)
 				user.sims.affectMotive("Hygiene", -5)
+				user.cleanhands = 0
 			else if(beaker)
 				boutput(user, "<span class='alert'>You don't feel desperate enough to piss in the beaker.</span>")
 			else if(user.wear_suit || user.w_uniform)
@@ -597,6 +598,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 				toilet.peeps+=2
 				user.sims.affectMotive("Bladder", 100)
 				user.sims.affectMotive("Hygiene", -5)
+				user.cleanhands = 0
 			else if(beaker)
 				if(user.wear_suit || user.w_uniform)
 					message = "<B>[user]</B> unzips [his_or_her(user)] pants, takes aim, and pees in the beaker."
@@ -605,6 +607,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 				beaker.reagents.add_reagent("urine", 4)
 				user.sims.affectMotive("Bladder", 100)
 				user.sims.affectMotive("Hygiene", -25)
+				user.cleanhands = 0
 			else
 				if(user.wear_suit || user.w_uniform)
 					boutput(user, "<span class='alert'>You don't feel desperate enough to piss into your [user.w_uniform ? "uniform" : "suit"].</span>")
@@ -623,6 +626,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 				toilet.peeps+=3
 				user.sims.affectMotive("Bladder", 100)
 				user.sims.affectMotive("Hygiene", -5)
+				user.cleanhands = 0
 			else if(beaker)
 				if(user.wear_suit || user.w_uniform)
 					message = "<B>[user]</B> unzips [his_or_her(user)] pants, takes aim, and fills the beaker with pee."
@@ -631,6 +635,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 				user.sims.affectMotive("Bladder", 100)
 				user.sims.affectMotive("Hygiene", -25)
 				beaker.reagents.add_reagent("urine", 4)
+				user.cleanhands = 0
 			else
 				if (user.wear_suit || user.w_uniform)
 					message = "<B>[user]</B> pisses all over [himself_or_herself(user)]!"
@@ -653,6 +658,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 				for (var/obj/item/storage/toilet/T in user.loc)
 					message = pick("<B>[user]</B> unzips [his_or_her(user)] pants and pees in the toilet.", "<B>[user]</B> empties [his_or_her(user)] bladder.", "<span class='notice'>Ahhh, sweet relief.</span>")
 					user.urine = 0
+					user.cleanhands = 0
 					T.clogged += 0.10
 					T.peeps++
 					break

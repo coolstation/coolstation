@@ -251,6 +251,7 @@
 				M.blood_DNA = null
 				M.add_forensic_trace("btype", M.blood_type)
 				M.blood_type = null
+				M.cleanhands = 0
 
 			M.add_forensic_trace("fprints", M.fingerprints)
 			M.fingerprints = null // Foreign fingerprints on the mob.

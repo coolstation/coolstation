@@ -96,6 +96,8 @@
 	var/charges = 0.0
 	var/urine = 0.0
 	var/poops = 0.0
+	var/cleanhands = 1 //wash em before handling food or internal organs
+	var/wiped = 1 //giving new mobs the benefit of the doubt (does nothing, but varediting admins will see your shame)
 	var/nutrition = 100
 	var/losebreath = 0.0
 	var/intent = null
