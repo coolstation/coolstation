@@ -404,6 +404,8 @@
 			if (grime && (prob(75)))
 				src.reagents.add_reagent("grime", grime) //grime
 				src.grimy = 1
+		else
+			(not_food_safe()) //but after griming, let's still roll around and collect whatever nasty gibs and whatnot is still there
 		//bugs also because lol
 		var/obj/reagent_dispensers/cleanable/ants/ants = locate(/obj/reagent_dispensers/cleanable/ants) in T
 		if (ants)
