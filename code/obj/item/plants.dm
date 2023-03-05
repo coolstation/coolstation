@@ -12,6 +12,7 @@
 
 	New()
 		..()
+		make_reagents()
 		//unpooled()
 
 	proc/make_reagents()
