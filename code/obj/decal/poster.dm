@@ -923,6 +923,9 @@
 		/*	desc = "Chaos, and rebellion, against an oppressive -- and, quite frankly, \
 				incredibly boring -- status quo! Passion, community, queer history, \
 				... and EVIL! MWAHAHAHA!"*/
+		pride/italian
+			name = "Italian Pride"
+			icon_state = "poster_pride15"
 
 ///////////////////////////////////////
 // HATSUNE MIKU'S HEAD OF DEPARTMENT ITEMS// + FIREBARRAGE HELPED TOO BUT HE SMELLS
