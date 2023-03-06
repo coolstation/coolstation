@@ -928,7 +928,6 @@ obj/decoration/ceilingfan
 	attack_hand(mob/user as mob)
 		if (!user.wiped)
 			user.visible_message("Oh, poo... You really needed that.")
-			user.wiped = 1
 		else
 			user.visible_message("Well, damn. At least you don't need it right now.")
 
