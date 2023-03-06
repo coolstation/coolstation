@@ -572,6 +572,7 @@
 				T.add_contents(shit)
 				playsound(user, user.sound_fart, 50, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 				break
+			user.wiped = 0
 			user.cleanhands = 0
 		else
 			message = "<B>[user]</B> unzips [his_or_her(user)] pants but, try as [he_or_she(user)] might, [he_or_she(user)] can't shit!"

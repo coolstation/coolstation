@@ -292,12 +292,12 @@
 /area/station/medical/medbay/surgery/storage)
 "aaJ" = (
 /obj/table/auto,
-/obj/item/shipcomponent/secondary_system/gps,
 /obj/item/crowbar,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
 /obj/machinery/light_switch/auto,
+/obj/item/shipcomponent/secondary_system/lock,
 /turf/simulated/floor/shuttlebay,
 /area/station/hangar/engine)
 "aaK" = (
@@ -27892,8 +27892,8 @@
 /area/station/hangar/main)
 "brp" = (
 /obj/table/auto,
-/obj/item/shipcomponent/secondary_system/gps,
 /obj/machinery/light_switch/auto,
+/obj/item/shipcomponent/secondary_system/lock,
 /turf/simulated/floor/damaged3,
 /area/station/hangar/main)
 "brq" = (
@@ -44689,9 +44689,6 @@
 "ciP" = (
 /obj/wingrille_spawn/auto,
 /turf/simulated/floor/plating/random,
-/area/station/ranch)
-"ciQ" = (
-/turf/simulated/floor/grass/leafy,
 /area/station/ranch)
 "ciR" = (
 /obj/player_piano,
@@ -84450,7 +84447,7 @@ aDr
 chc
 ciZ
 ciB
-ciQ
+ciT
 aMX
 aOn
 aPy
@@ -84752,7 +84749,7 @@ aDr
 chc
 ciP
 ciO
-ciQ
+ciT
 aMX
 aOo
 ckn
@@ -85054,7 +85051,7 @@ aDr
 chc
 ciZ
 ciT
-ciQ
+ciT
 aMX
 aOp
 aPC
@@ -85359,7 +85356,7 @@ ciZ
 cjz
 aMr
 ciy
-ciQ
+ciT
 ciC
 smn
 scc

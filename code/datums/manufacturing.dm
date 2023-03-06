@@ -1899,7 +1899,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Resource"
 
-
+/*	deprecated (sensors do GPS)
 /datum/manufacture/gps
 	name = "Ship's Navigation GPS"
 	item_paths = list("MET-1")
@@ -1907,7 +1907,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	item_outputs = list(/obj/item/shipcomponent/secondary_system/gps)
 	time = 12 SECONDS
 	create = 1
-	category = "Resource"
+	category = "Resource"*/
 
 /datum/manufacture/cargohold
 	name = "Cargo Hold"

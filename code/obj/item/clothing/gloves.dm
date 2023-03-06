@@ -17,6 +17,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 	var/punch_damage_modifier = 0
 	var/atom/movable/overlay/overl = null
 	var/activeweapon = 0 // Used for gloves that can be toggled to turn into a weapon (example, bladed gloves)
+	var/clean = 1
 
 	var/hide_prints = 1 // Seems more efficient to do this with one global proc and a couple of vars (Convair880).
 	var/scramble_prints = 0

@@ -67,6 +67,7 @@
 				user.visible_message("<span class='notice'>[user] cleans [his_or_her(user)] gloves.</span>")
 				H.gloves.clean_forensic() // Ditto (Convair880).
 				H.set_clothing_icon_dirty()
+				H.gloves.clean = 1
 			else
 				user.visible_message("<span class='notice'>[user] washes [his_or_her(user)] hands.</span>")
 				if (H.sims)
@@ -74,6 +75,7 @@
 				H.blood_DNA = null // Don't want to use it here, though. The sink isn't a shower (Convair880).
 				H.blood_type = null
 				H.set_clothing_icon_dirty()
+				H.cleanhands = 1
 		..()
 
 /obj/submachine/ice_cream_dispenser
