@@ -894,11 +894,45 @@ obj/decoration/ceilingfan
 
 /obj/decoration/toiletholder
 	name = "toilet paper holder"
-	desc = "Why would you even need this when there's no..?"
+	desc = "It's a toilet paper holder.<br>Finally, after all this time, you can wipe! Or not wipe, that's also a choice you can make."
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "toiletholder"
 	anchored = 1
 	density = 0
+	//var/papersleft = 20 //whatever
+
+	attack_hand(mob/user as mob) //paper into toilet handling needed
+		if (ishuman(user)) //buttcheck
+			var/mob/living/carbon/human/H = user
+			if (!H.get_organ("butt"))
+				user.visible_message("So, uh. Hey. Bad news: you can't wipe right now. But hey, at least you don't need to, either, right?")
+				return
+		if (!user.wiped)
+			if (prob(70))
+				user.visible_message("You wipe your [pick("ASS","BUTT","DUMPER","TUCHUS","BOOTY","BUTTOCKS","REAR END","HOAL", "BONUS ZONE")].") //i don't know i should be asleep
+				user.wiped = 1
+			else
+				user.visible_message("You wipe your [pick("ASS","BUTT","DUMPER","TUCHUS","BOOTY","BUTTOCKS","REAR END","HOAL", "BONUS ZONE")], but it wasn't enough!.")
+			//papersleft--
+		else
+			user.visible_message("You don't need to wipe right now, but you're showing good initiative.")
+
+/obj/decoration/toiletholder/empty
+	name = "toilet paper holder"
+	desc = "It's a toilet paper holder.<br>Someone used the last of it and didn't replace it..."
+	icon = 'icons/obj/decoration.dmi'
+	icon_state = "toiletholder-empty"
+	anchored = 1
+	density = 0
+
+	attack_hand(mob/user as mob)
+		if (!user.wiped)
+			user.visible_message("Oh, poo... You really needed that.")
+			user.wiped = 1
+		else
+			user.visible_message("Well, damn. At least you don't need it right now.")
+
+	//attack with toilet paper to refill. whatever.
 
 /obj/decoration/tabletopfull
 	name = "tabletop shelf"
