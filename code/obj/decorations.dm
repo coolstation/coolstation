@@ -905,17 +905,17 @@ obj/decoration/ceilingfan
 		if (ishuman(user)) //buttcheck
 			var/mob/living/carbon/human/H = user
 			if (!H.get_organ("butt"))
-				user.visible_message("So, uh. Hey. Bad news: you can't wipe right now. But hey, at least you don't need to, either, right?")
+				boutput(user, "So, uh. Hey. Bad news: you can't wipe right now. But hey, at least you don't need to, either, right?")
 				return
 		if (!user.wiped)
 			if (prob(70))
-				user.visible_message("You wipe your [pick("ASS","BUTT","DUMPER","TUCHUS","BOOTY","BUTTOCKS","REAR END","HOAL", "BONUS ZONE")].") //i don't know i should be asleep
+				user.visible_message("[user] wipes [his_or_her(user)] [pick("ASS","BUTT","DUMPER","TUCHUS","BOOTY","BUTTOCKS","REAR END","HOAL", "BONUS ZONE")].","You wipe your [pick("ASS","BUTT","DUMPER","TUCHUS","BOOTY","BUTTOCKS","REAR END","HOAL", "BONUS ZONE")].") //i don't know i should be asleep
 				user.wiped = 1
 			else
-				user.visible_message("You wipe your [pick("ASS","BUTT","DUMPER","TUCHUS","BOOTY","BUTTOCKS","REAR END","HOAL", "BONUS ZONE")], but it wasn't enough!.")
+				user.visible_message("[user] wipes [his_or_her(user)] [pick("ASS","BUTT","DUMPER","TUCHUS","BOOTY","BUTTOCKS","REAR END","HOAL", "BONUS ZONE")].","You wipe your [pick("ASS","BUTT","DUMPER","TUCHUS","BOOTY","BUTTOCKS","REAR END","HOAL", "BONUS ZONE")], but you need to go back for another pass!") //i don't know i should be asleep
 			//papersleft--
 		else
-			user.visible_message("You don't need to wipe right now, but you're showing good initiative.")
+			boutput(user, "You don't need to wipe right now, but you're showing good initiative.")
 
 /obj/decoration/toiletholder/empty
 	name = "toilet paper holder"
