@@ -565,6 +565,7 @@ table#cooktime a#start {
 			src.recipes += new /datum/cookingrecipe/sandwich_c(src)
 			src.recipes += new /datum/cookingrecipe/sandwich_p_h(src)
 			src.recipes += new /datum/cookingrecipe/sandwich_p(src)
+			src.recipes += new /datum/cookingrecipe/sandwich_mitraillette(src)
 			src.recipes += new /datum/cookingrecipe/sandwich_custom(src)
 			src.recipes += new /datum/cookingrecipe/onionchips(src)
 			src.recipes += new /datum/cookingrecipe/mint_chutney(src)

@@ -150,6 +150,13 @@
 			..()
 			reagents.add_reagent("honey", 10)
 
+/obj/item/reagent_containers/food/snacks/sandwich/mitraillette
+	name = "mitraillette"
+	desc = "A sandwich with meat, fries and sauce."
+	icon_state = "mitraillette"
+	amount = 6
+	food_effects = list("food_hp_up_big", "food_explosion_resist")
+
 /obj/item/reagent_containers/food/snacks/burger
 	name = "burger"
 	desc = "A burger."

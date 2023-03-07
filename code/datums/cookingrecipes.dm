@@ -544,6 +544,14 @@
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/sandwich/banhmi
 
+/datum/cookingrecipe/sandwich_mitraillette //Hey lads what the fuck is with all the sandwich recipes and single letters, writing out words isn't going to hurt you.
+	item1 = /obj/item/baguette
+	item2 = /obj/item/reagent_containers/food/snacks/fries
+	item3 = /obj/item/reagent_containers/food/snacks/ingredient/meat
+	item4 = /obj/item/reagent_containers/food/snacks/condiment
+	cookbonus = 9 //IDK what this is exactly
+	output = /obj/item/reagent_containers/food/snacks/sandwich/mitraillette
+
 /datum/cookingrecipe/sandwich_custom
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
 	amt1 = 2
