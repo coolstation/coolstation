@@ -32,7 +32,7 @@
 				//Ignoring do_not_irradiate here
 				if (!A.irradiated)
 					A.irradiated = TRUE
-					//A.icon_state = "blowout" Fairly certain this icon_state doesn't exist (anymore)
+					A.icon_state = "blueold" //gonna try this warc wanted cherenkov flavour
 				for (var/turf/T in A)
 					//Might be interesting for folks to scour the desert for artifacts after, the odds of spawning are lower cause it spawned kinda a lot in testing
 					if (rand(0,1000) < 3 && (istype(T,/turf/simulated/floor) || istype(T, /turf/space/gehenna/desert)))
