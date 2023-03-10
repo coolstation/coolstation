@@ -403,10 +403,16 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 	// remove temporary areas
 	for (var/turf/T in get_area_turfs(/area/noGenerate))
-		new /area/allowGenerate/caves(T)
+		if(T.z==3)
+			new /area/gehenna/underground(T)
+		else
+			new /area/space(T)
 
 	for (var/turf/T in get_area_turfs(/area/allowGenerate))
-		new /area/space(T)
+		if(T.z==3)
+			new /area/gehenna/underground(T)
+		else
+			new /area/space(T)
 
 	boutput(world, "<span class='alert'>Generated (the other) Mining Level in [((world.timeofday - startTime)/10)] seconds!")
 

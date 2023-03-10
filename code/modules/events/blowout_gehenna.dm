@@ -1,6 +1,6 @@
 /datum/random_event/major/blowout_gehenna
 	name = "Radioactive Blowout (Gehenna)"
-	required_elapsed_round_time = 40 MINUTES
+	required_elapsed_round_time = 20 MINUTES
 	var/space_color = "#ff4646"
 #ifndef MAP_OVERRIDE_GEHENNA
 	disabled = TRUE
@@ -32,7 +32,7 @@
 				//Ignoring do_not_irradiate here
 				if (!A.irradiated)
 					A.irradiated = TRUE
-					A.icon_state = "blueold" //gonna try this warc wanted cherenkov flavour
+				A.icon_state = "bluenew" //gonna try this warc wanted cherenkov flavour
 				for (var/turf/T in A)
 					//Might be interesting for folks to scour the desert for artifacts after, the odds of spawning are lower cause it spawned kinda a lot in testing
 					if (rand(0,1000) < 3 && (istype(T,/turf/simulated/floor) || istype(T, /turf/space/gehenna/desert)))
@@ -79,7 +79,11 @@
 					continue
 				if (!A.permarads)
 					A.irradiated = FALSE
+
+				else
+					A.irradiated = initial(A.irradiated)
 				A.icon_state = null
+
 			blowout = FALSE
 
 			command_alert("All radiation alerts onboard [station_name(1)] have been cleared. You may now leave the tunnels freely.", "All Clear")

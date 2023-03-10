@@ -209,28 +209,45 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 
 /area/gehenna
 	requires_power = 0
+	icon_state = "dither_b"
+	name = "the gehennan desert"
+
+/area/gehenna/south // just in case i need a separate area for stuff
+	requires_power = 0
+	icon_state = "dither_g"
+	name = "the gehennan desert"
 
 /area/gehenna/wasteland
-	icon_state = "red"
+	icon_state = "dither_r"
 	name = "the barren wastes"
 	teleport_blocked = 0
 	sound_environment = EAX_PLAIN
+	permarads = 1
+	irradiated = 0.3
+
+	New()
+		..()
+		for(var/turf/space/gehenna/desert/T in src)
+			T.temperature = (T.temperature + WASTELAND_MAX_TEMP)/2 // hotter but not maximum.
 
 /area/gehenna/wasteland/stormy
 	name = "the horrid wastes"
 	icon_state = "yellow"
+	teleport_blocked = 1
 	requires_power = 0
 	sound_environment = EAX_PLAIN
 	sound_loop_1 = 'sound/ambience/loop/SANDSTORM.ogg' //need something wimdy, maybe overlay a storm sound on this
 	sound_loop_1_vol = 250 //always loud, fukken storming
 	var/list/assholes_to_hurt = list()
 	var/buffeting_assoles = FALSE
+	irradiated = 0.5
 
 	New()
 		..()
 		overlays += image(icon = 'icons/turf/areas.dmi', icon_state = "dustverlay", layer = EFFECTS_LAYER_BASE)
 		for(var/turf/space/gehenna/desert/T in src)
 			T.temperature = WASTELAND_MAX_TEMP
+
 
 	Entered(atom/movable/O)
 		..()
@@ -277,9 +294,14 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 
 
 /area/gehenna/underground
-	icon_state = "unknown"
+	icon_state = "dither_g"
 	name = "the sulfurous caverns"
 	teleport_blocked = 0
+	sound_group = "caves"
+	force_fullbright = 0
+	requires_power = 0
+	luminosity = 0
+	sound_environment = EAX_CAVE
 
 /*
 /obj/machinery/computer/sea_elevator/sec
