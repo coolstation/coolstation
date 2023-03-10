@@ -2233,6 +2233,10 @@
 /obj/reagent_dispensers/foamtank,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
+"bkr" = (
+/obj/storage/closet/radiation,
+/turf/simulated/floor/black,
+/area/station/mining/staff_room)
 "bkO" = (
 /obj/disposalpipe/segment/sewage,
 /turf/simulated/floor/plating,
@@ -7311,6 +7315,7 @@
 "eoz" = (
 /obj/decal/cleanable/dirt/random,
 /obj/decal/cleanable/cobweb,
+/obj/storage/closet/radiation,
 /turf/simulated/floor/plating,
 /area/station/hallway/secondary/exit{
 	name = "Lower Escape Shuttle Hallway"
@@ -33504,6 +33509,11 @@
 /obj/machinery/atmospherics/portables_connector/north,
 /turf/simulated/floor,
 /area/station/science/gen_storage)
+"tGy" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
+/obj/storage/closet/radiation,
+/turf/simulated/floor/plating,
+/area/station/science/testchamber)
 "tGA" = (
 /turf/simulated/floor/black,
 /area/station/science/chemistry)
@@ -40238,6 +40248,10 @@
 	},
 /turf/simulated/floor/industrial,
 /area/station/engine/storage)
+"xDY" = (
+/obj/storage/closet/radiation,
+/turf/simulated/floor/plating,
+/area/station/bridge/locker)
 "xEs" = (
 /obj/disposalpipe/segment/food{
 	dir = 4
@@ -75323,8 +75337,8 @@ pus
 bUS
 sps
 bjd
-jex
-jex
+xDY
+xDY
 kBg
 jex
 kVZ
@@ -75712,7 +75726,7 @@ lIR
 qbv
 pYF
 pYF
-dxU
+tGy
 vvq
 eSm
 pdO
@@ -100072,7 +100086,7 @@ eZY
 bIP
 eEO
 ohD
-eEO
+bkr
 gFr
 lnm
 agb

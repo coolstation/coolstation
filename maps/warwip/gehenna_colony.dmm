@@ -2429,6 +2429,7 @@
 /area/station/medical/research)
 "bUW" = (
 /obj/table/clothred/auto,
+/obj/item/clothing/head/helmet/space,
 /turf/space/gehenna/desert/plating{
 	icon_state = "carpetSE";
 	name = "sand-covered carpet"
@@ -2927,19 +2928,9 @@
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
 "ckv" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/disposalpipe/segment/horizontal,
-/obj/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/plating{
-	icon_old = "diamondtile"
-	},
-/area/station/maintenance/northeast)
+/obj/storage/closet/radiation,
+/turf/simulated/floor,
+/area/station/hangar/escape)
 "ckH" = (
 /obj/stool/chair/couch{
 	dir = 8
@@ -2981,6 +2972,15 @@
 	},
 /turf/simulated/floor/green,
 /area/station/medical/research)
+"clP" = (
+/obj/table/reinforced/auto,
+/obj/item/clothing/suit/space,
+/obj/item/clothing/head/helmet/space,
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "cmE" = (
 /turf/space/gehenna/desert/beaten,
 /area/pricemaster)
@@ -7240,15 +7240,12 @@
 /turf/simulated/floor/carpet/grime,
 /area/listeningpost)
 "frb" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4
-	},
-/obj/cable,
-/obj/machinery/power/apc/autoname_east,
-/turf/simulated/floor/plating{
-	icon_old = "diamondtile"
-	},
-/area/station/hallway/secondary/exit)
+/obj/storage/closet/radiation,
+/turf/simulated/floor/grey,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "frj" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/floor/stairs/wide,
@@ -8455,6 +8452,16 @@
 	},
 /turf/simulated/floor/specialroom/freezer,
 /area/station/medical/morgue)
+"gjE" = (
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/obj/cable,
+/obj/machinery/power/apc/autoname_east,
+/turf/simulated/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/hallway/secondary/exit)
 "gki" = (
 /obj/machinery/vending/snack,
 /turf/simulated/floor,
@@ -20389,6 +20396,20 @@
 	dir = 8
 	},
 /area/station/medical/medbay/surgery)
+"psN" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/horizontal,
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/maintenance/northeast)
 "psS" = (
 /turf/simulated/wall/r_wall,
 /area/pricemaster)
@@ -31540,6 +31561,8 @@
 	},
 /obj/item/mining_tools/pick,
 /obj/item/storage/toolbox/mechanical,
+/obj/item/clothing/suit/space,
+/obj/item/clothing/head/helmet/space,
 /turf/simulated/floor/industrial,
 /area/station/mining/dock)
 "xVg" = (
@@ -88227,7 +88250,7 @@ dYb
 wwW
 hHc
 caT
-cFC
+frb
 hyl
 iKE
 nJU
@@ -90643,7 +90666,7 @@ dYb
 wwW
 ekI
 caT
-cFC
+clP
 hyl
 kHn
 uIr
@@ -106957,8 +106980,8 @@ jEb
 jEb
 jEb
 dwC
-ckv
-frb
+psN
+gjE
 dwC
 wwc
 lOn
@@ -118107,7 +118130,7 @@ rUn
 fCA
 rNY
 uyk
-ezQ
+ckv
 tQp
 cqC
 cqC
