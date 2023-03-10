@@ -2926,6 +2926,20 @@
 /obj/stool,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
+"ckv" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/horizontal,
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/maintenance/northeast)
 "ckH" = (
 /obj/stool/chair/couch{
 	dir = 8
@@ -5980,6 +5994,9 @@
 /area/gehenna)
 "exE" = (
 /obj/storage/secure/closet/security/equipment,
+/obj/cable{
+	icon_state = "0-4"
+	},
 /turf/simulated/floor,
 /area/station/security/checkpoint/cargo)
 "exV" = (
@@ -7221,6 +7238,16 @@
 /obj/machinery/light/small/warm,
 /turf/simulated/floor/carpet/grime,
 /area/listeningpost)
+"frb" = (
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/obj/cable,
+/obj/machinery/power/apc/autoname_east,
+/turf/simulated/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/hallway/secondary/exit)
 "frj" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/floor/stairs/wide,
@@ -26067,6 +26094,11 @@
 /turf/simulated/floor,
 /area/station/security/brig/cell_block_control)
 "tJd" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/simulated/floor,
 /area/station/security/checkpoint/cargo)
 "tJp" = (
@@ -27291,6 +27323,9 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "1-6"
+	},
+/obj/cable{
+	icon_state = "1-2"
 	},
 /turf/simulated/floor,
 /area/station/security/checkpoint/cargo)
@@ -106921,8 +106956,8 @@ jEb
 jEb
 jEb
 dwC
-cIZ
-oDR
+ckv
+frb
 dwC
 wwc
 lOn
