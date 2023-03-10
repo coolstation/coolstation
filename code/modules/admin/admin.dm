@@ -4313,7 +4313,7 @@ var/global/noir = 0
 
 	dat += "</div>"
 
-	usr.Browse(dat, "window=gamepanel")
+	usr.Browse(dat, "window=gamepanel;size=500x750")
 	return
 
 /datum/admins/proc/restart()
