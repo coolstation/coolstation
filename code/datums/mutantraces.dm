@@ -2190,6 +2190,10 @@
 					SPAWN_DBG(1 SECONDS)
 						if (mob) mob.emote_allowed = 1
 					return message
+			if ("scream")
+				if (mob.emote_check(voluntary, 50))
+					. = "<B>[mob]</B> screams!"
+					playsound(mob, "sound/voice/screams/weaselscream.ogg", 50, 0, 0, mob.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 			else
 				..() //oh right do the rest
 
