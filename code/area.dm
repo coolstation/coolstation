@@ -200,8 +200,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 				//7 is 75%
 				//9 is 80%
 				//20 is 95% and is a special case to just mute the sound without stopping it
-
-				if(M.loc.loc.type != /area/space) //bleh
+				if(M.loc.loc.type == /area/gehenna)
+					insideness = 1
+				else if(M.loc.loc.type != /area/space) //bleh
 					insideness = 4 //this is the easiest level to check so let's just use this as our non-space case FOR NOW (happy 2053 to you reading this)
 					//can make a proc that does a calculation that might be useful for adjusting a room's sound environment in general
 					//especially if we figure out how to implement occlusion and such. (god i hope sound occlusion isn't calculated serverside...)
