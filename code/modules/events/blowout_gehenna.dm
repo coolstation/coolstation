@@ -14,10 +14,10 @@
 
 		for (var/mob/M in mobs)
 			M.flash(3 SECONDS)
-		var/sound/siren = sound('sound/misc/airraid_loop_short.ogg')
+		var/sound/siren = sound('sound/misc/airraid_loop.ogg')
 		siren.repeat = TRUE
 		siren.channel = 5
-		siren.volume = 50 // wire note: lets not deafen players with an air raid siren
+		siren.volume = 75 // wire note: lets not deafen players with an air raid siren
 		world << siren
 		command_alert("Extreme levels of radiation detected approaching the planet surface. All personnel have [timetoreach].[timetoreachsec] seconds to reach the tunnel level. This is not a test.", "Anomaly Alert")
 
@@ -40,7 +40,7 @@
 
 			siren.repeat = FALSE
 			siren.channel = 5
-			siren.volume = 50
+			siren.volume = 75
 
 			for (var/mob/N in mobs)
 				N.flash(3 SECONDS)
