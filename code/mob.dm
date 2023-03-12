@@ -493,6 +493,8 @@
 		src.addOverlaysClient(src.client)  //ov1
 
 	src.emote_allowed = 1
+	src.ai?.suspended = TRUE
+	src.ai?.stop_move() //In case we possess the mob mid-step (needed at least for anything running wanderer ai)
 
 	if (!src.mind)
 		src.mind = new (src)
@@ -532,6 +534,7 @@
 		for (var/datum/hud/hud in src.huds)
 			hud.remove_client(src.last_client)
 
+	src.ai?.suspended = FALSE
 
 	..()
 
