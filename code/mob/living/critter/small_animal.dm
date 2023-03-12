@@ -1489,7 +1489,6 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 				while (x-- > 0)
 					src.pixel_x = rand(-6,6)
 					src.pixel_y = rand(-6,6)
-					step(src, pick(cardinal), 1)
 					sleep(0.2 SECONDS)
 
 			//chance to excite other ferts? probably not smart but
