@@ -2520,6 +2520,19 @@
 /obj/access_spawn/security,
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/sec_foyer)
+"bYh" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 8;
+	name = "autoname  - SS13";
+	tag = ""
+	},
+/turf/simulated/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "bYu" = (
 /obj/disposalpipe/segment/produce{
 	dir = 4
@@ -6397,6 +6410,15 @@
 	},
 /turf/simulated/floor,
 /area/station/bridge/customs)
+"eMX" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 10;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/space/gehenna/desert/path,
+/area/gehenna)
 "eNe" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 9
@@ -11615,6 +11637,18 @@
 /obj/machinery/light/fluorescent/cool/very,
 /turf/simulated/floor,
 /area/station/bridge)
+"iGv" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 8;
+	name = "autoname  - SS13";
+	tag = ""
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "iGA" = (
 /obj/disposalpipe/junction/left/south,
 /turf/simulated/floor/sanitary/white,
@@ -15595,6 +15629,13 @@
 	},
 /turf/simulated/floor/black,
 /area/station/security/secoffquarters)
+"lDg" = (
+/obj/decal/stage_edge{
+	layer = 2
+	},
+/obj/window/west,
+/turf/simulated/floor,
+/area/station/chapel/sanctuary)
 "lDy" = (
 /obj/table/reinforced/auto,
 /obj/machinery/cashreg,
@@ -15959,6 +16000,12 @@
 "lPH" = (
 /obj/cable{
 	icon_state = "4-8"
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 10;
+	name = "autoname - SS13";
+	tag = ""
 	},
 /turf/simulated/floor/stairs/wide/other{
 	dir = 4
@@ -19630,6 +19677,13 @@
 	},
 /turf/simulated/floor/sanitary/white,
 /area/station/wc/medbay)
+"oNF" = (
+/obj/decal/stage_edge{
+	layer = 2
+	},
+/obj/window/east,
+/turf/simulated/floor,
+/area/station/chapel/sanctuary)
 "oNJ" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -21787,6 +21841,18 @@
 	dir = 4
 	},
 /area/listeningpost)
+"qvp" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 4;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/simulated/floor/industrial,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	icon_state = "quart";
+	name = "Cargo Bay"
+	})
 "qvU" = (
 /obj/machinery/light/fluorescent{
 	dir = 1
@@ -23561,6 +23627,20 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/northeast)
+"rGy" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 4;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/simulated/floor/black,
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "rGz" = (
 /turf/simulated/floor/stairs/wide/other,
 /area/station/security/secwing)
@@ -28153,6 +28233,10 @@
 /obj/decal/poster/wallsign/WC_blue{
 	pixel_x = -32
 	},
+/obj/submachine/ATM{
+	pixel_y = 32
+	},
+/obj/window/east,
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/farmers)
 "vly" = (
@@ -54140,7 +54224,7 @@ osK
 qHp
 osK
 uSF
-rhL
+oNF
 xBI
 aHJ
 buk
@@ -55348,7 +55432,7 @@ dPo
 qlk
 dPo
 uSF
-rhL
+lDg
 axH
 aHJ
 mPG
@@ -84064,7 +84148,7 @@ eLC
 eLC
 eLC
 eLC
-evd
+eMX
 luz
 cGT
 rHD
@@ -85205,7 +85289,7 @@ edU
 ige
 nmJ
 ige
-ige
+rGy
 dqc
 nmJ
 ige
@@ -85216,7 +85300,7 @@ ige
 ige
 ige
 nmJ
-ige
+rGy
 ige
 nuL
 wkN
@@ -87064,7 +87148,7 @@ nbX
 iQC
 aEh
 xIl
-tAQ
+bYh
 wCF
 wgn
 eLC
@@ -87633,7 +87717,7 @@ rjw
 sgv
 nAS
 bsW
-xzP
+qvp
 ubC
 xzP
 xzP
@@ -88272,7 +88356,7 @@ uuY
 wod
 wod
 nSq
-cqC
+jEb
 cqC
 iiv
 iiv
@@ -88574,8 +88658,8 @@ uuY
 wod
 vDF
 nSq
-cqC
-cqC
+jEb
+jEb
 iiv
 iiv
 iiv
@@ -88876,8 +88960,8 @@ uuY
 wod
 kKo
 nSq
-cqC
-cqC
+jEb
+jEb
 iiv
 iiv
 iiv
@@ -89178,7 +89262,7 @@ lwn
 wod
 kKo
 nSq
-cqC
+jEb
 iiv
 iiv
 iiv
@@ -89480,7 +89564,7 @@ lwn
 wod
 vDF
 nSq
-cqC
+jEb
 iiv
 iiv
 iiv
@@ -91257,7 +91341,7 @@ rRV
 oau
 nAS
 hwt
-xzP
+iGv
 jsA
 xzP
 xzP
@@ -106687,7 +106771,7 @@ lOn
 lOn
 wxK
 lOn
-lOn
+ncw
 wwc
 wwc
 jEb
