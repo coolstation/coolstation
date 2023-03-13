@@ -7968,12 +7968,6 @@
 	name = "plating"
 	},
 /area/hospital/underground)
-"aCG" = (
-/obj/decal/fakeobjects/teleport_pad,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
 "aCI" = (
 /obj/table/auto,
 /obj/mug_rack{
@@ -8307,12 +8301,6 @@
 	icon_state = "panelwall_cap"
 	},
 /area/hospital/underground)
-"aDA" = (
-/obj/machinery/light/small/floor,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
 "aDB" = (
 /turf/unsimulated/wall{
 	desc = "It's sealed shut.";
@@ -8321,12 +8309,6 @@
 	name = "security door"
 	},
 /area/owlery/staffhall)
-"aDC" = (
-/turf/simulated/shuttle/wall{
-	dir = 1;
-	icon_state = "wall3dir"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
 "aDD" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = ""
@@ -8517,12 +8499,6 @@
 /obj/storage/secure/closet/engineering/electrical,
 /turf/unsimulated/floor/plating/scorched,
 /area/hospital/underground)
-"aEi" = (
-/obj/machinery/shuttle/engine/propulsion{
-	icon_state = "alt_propulsion"
-	},
-/turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
 "aEj" = (
 /obj/machinery/light{
 	dir = 8;
@@ -8597,11 +8573,6 @@
 /obj/stool/chair,
 /turf/unsimulated/floor/plating/scorched,
 /area/hospital/underground)
-"aEB" = (
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
 "aEC" = (
 /obj/decal/cleanable/cobweb2,
 /obj/decal/fakeobjects{
@@ -8699,31 +8670,6 @@
 	name = "plating"
 	},
 /area/hospital/underground)
-"aEV" = (
-/obj/indestructible/shuttle_corner{
-	dir = 1;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
-"aEW" = (
-/obj/decal/fakeobjects/teleport_pad,
-/obj/marker/supplymarker,
-/obj/machinery/light/small/floor,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
-"aEX" = (
-/obj/machinery/shuttle/engine/heater{
-	icon_state = "alt_heater"
-	},
-/turf/simulated/shuttle/wall{
-	icon_state = "wall3"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
 "aEY" = (
 /obj/decal/fakeobjects/firelock_broken{
 	dir = 8;
@@ -8843,12 +8789,6 @@
 	name = "plating"
 	},
 /area/hospital/underground)
-"aFz" = (
-/turf/simulated/shuttle/wall{
-	dir = 5;
-	icon_state = "wall3dir"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
 "aFA" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -60764,76 +60704,12 @@
 /obj/disposalpipe/segment/vertical,
 /turf/space/fluid/noexplosion,
 /area/afterlife/bar)
-"dsg" = (
-/turf/simulated/shuttle/wall{
-	dir = 4;
-	icon_state = "wall3dir"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
 "dsh" = (
 /turf/simulated/shuttle/wall{
 	dir = 5;
 	icon_state = "wall3dir"
 	},
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
-"dsi" = (
-/turf/simulated/shuttle/wall{
-	dir = 8;
-	icon_state = "wall3dir"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
-"dsj" = (
-/obj/machinery/shuttle/engine/propulsion{
-	dir = 1;
-	icon_state = "alt_propulsion"
-	},
-/turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
-"dsk" = (
-/obj/indestructible/shuttle_corner{
-	dir = 4;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
-"dsl" = (
-/obj/decal/fakeobjects/teleport_pad,
-/obj/marker/supplymarker,
-/obj/machinery/light/small/floor,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
-"dsm" = (
-/obj/indestructible/shuttle_corner{
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
-"dsn" = (
-/obj/machinery/shuttle/engine/heater{
-	dir = 1;
-	icon_state = "alt_heater"
-	},
-/turf/simulated/shuttle/wall{
-	icon_state = "wall3"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
-"dso" = (
-/obj/decal/fakeobjects/teleport_pad,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
-"dsq" = (
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
+/area/space)
 "dsr" = (
 /obj/decal/fakeobjects/core{
 	desc = "It looks inactive.  Hope there isn't any fuel left in there...";
@@ -60865,15 +60741,6 @@
 	dir = 1
 	},
 /area/hospital/underground)
-"dsu" = (
-/obj/indestructible/shuttle_corner{
-	dir = 1;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
 "dsv" = (
 /obj/stool/chair/comfy,
 /obj/npc/trader/random{
@@ -60883,27 +60750,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
-"dsw" = (
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
-"dsx" = (
-/turf/simulated/shuttle/wall{
-	dir = 1;
-	icon_state = "wall3dir"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
-"dsz" = (
-/turf/simulated/shuttle/wall{
-	icon_state = "wall3"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
+/area/space)
 "dsA" = (
 /obj/decal/cleanable/oil/streak,
 /turf/unsimulated/floor{
@@ -71120,12 +70967,6 @@
 /turf/space,
 /turf/unsimulated/floor/carpet/office,
 /area/hospital/samostrel)
-"ewR" = (
-/obj/machinery/door/airlock/external,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
 "eyo" = (
 /turf/unsimulated/wall/auto/lead/white,
 /area/moon/museum/giftshop)
@@ -72208,7 +72049,7 @@
 	dir = 8;
 	icon_state = "wall3dir"
 	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
+/area/space)
 "hVQ" = (
 /obj/machinery/door/poddoor/blast/single{
 	desc = "An old blast door. It has plenty of scratches and dents on its surface.";
@@ -72493,12 +72334,6 @@
 	icon_state = "floor6"
 	},
 /area/centcom/offices/pali)
-"iOJ" = (
-/obj/wingrille_spawn/auto,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
 "iOQ" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 8
@@ -73119,11 +72954,6 @@
 "kxa" = (
 /turf/unsimulated/wall/auto/lead/gray,
 /area/crypt/sigma/storage)
-"kyf" = (
-/turf/simulated/shuttle/wall{
-	icon_state = "wall3dir"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
 "kAr" = (
 /turf/unsimulated/floor/grey/side{
 	dir = 4
@@ -74240,12 +74070,6 @@
 /obj/landmark/load_prefab_shuttledmm/destiny,
 /turf/unsimulated/outdoors/grass,
 /area/centcom/outside)
-"nwm" = (
-/obj/indestructible/shuttle_corner{
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
 "nyc" = (
 /obj/stool/chair{
 	dir = 8
@@ -75011,11 +74835,6 @@
 	},
 /turf/unsimulated/floor/wood/two,
 /area/centcom/offices/studenterhue)
-"pqf" = (
-/turf/simulated/shuttle/wall{
-	icon_state = "wall3"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
 "ptv" = (
 /obj/admin_plaque{
 	name = "Mark's Code Dungeon";
@@ -75141,15 +74960,6 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/escape/centcom/donut3)
-"pJw" = (
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
 "pKN" = (
 /obj/indestructible/shuttle_corner{
 	dir = 4;
@@ -75472,7 +75282,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
+/area/space)
 "qDa" = (
 /turf/unsimulated/floor/carpet/red/fancy/narrow/west,
 /area/titlescreen)
@@ -75552,11 +75362,6 @@
 	dir = 1
 	},
 /area/centcom/offices/cogwerks)
-"qNe" = (
-/turf/simulated/shuttle/wall{
-	icon_state = "wall3dir"
-	},
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
 "qOO" = (
 /obj/decal/fakeobjects/dreambeach/mars,
 /turf/unsimulated/floor/setpieces/bloodfloor{
@@ -75755,13 +75560,6 @@
 	icon_state = "floor6"
 	},
 /area/centcom/offices/pali)
-"rst" = (
-/obj/indestructible/shuttle_corner{
-	dir = 1;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
 "rtc" = (
 /turf/unsimulated/wall/auto/lead/blue,
 /area/crater/biodome/crew)
@@ -75939,13 +75737,6 @@
 	icon_state = "rootfloor_2"
 	},
 /area/centcom/offices/marknstein)
-"rMc" = (
-/obj/indestructible/shuttle_corner{
-	dir = 4;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/right_centcom/destiny)
 "rNn" = (
 /obj/machinery/bot/chefbot,
 /turf/unsimulated/floor/grey,
@@ -76035,7 +75826,7 @@
 	dir = 4;
 	icon_state = "wall3dir"
 	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
+/area/space)
 "rXk" = (
 /turf/unsimulated/dirt,
 /area/sim/racing_track)
@@ -77287,13 +77078,6 @@
 	},
 /turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
-"vNH" = (
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/outdoors/grass,
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
 "vUR" = (
 /obj/disposalpipe/segment/vertical,
 /turf/unsimulated/floor/wood/two,
@@ -77444,7 +77228,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
+/area/space)
 "wyI" = (
 /obj/table/wood/round/auto,
 /obj/item/instrument/bagpipe,
@@ -77504,7 +77288,7 @@
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
+/area/space)
 "wHY" = (
 /obj/item/clothing/shoes/red{
 	desc = "Aren't these the HoS's? You feel like he can probably live without these.";
@@ -77516,15 +77300,6 @@
 /turf/space,
 /turf/unsimulated/floor/engine,
 /area/hospital/samostrel)
-"wLj" = (
-/obj/indestructible/shuttle_corner{
-	dir = 4;
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
 "wLo" = (
 /turf/unsimulated/wall/auto/lead/blue,
 /area/centcom/lounge)
@@ -77564,14 +77339,6 @@
 	dir = 8
 	},
 /area/shuttle/escape/centcom/cogmap2)
-"wOC" = (
-/obj/indestructible/shuttle_corner{
-	icon_state = "wall3_trans"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/merchant_shuttle/left_centcom/destiny)
 "wRR" = (
 /obj/decal/fakeobjects/dreambeach/earth,
 /turf/unsimulated/floor/setpieces/bloodfloor{
@@ -117040,13 +116807,13 @@ aES
 aES
 aES
 aES
-dsj
-dsn
-dsz
-ewR
-qNe
-dsx
-nwm
+dtC
+suO
+hjf
+wxJ
+tAi
+tUJ
+vBq
 aES
 aES
 aES
@@ -117342,13 +117109,13 @@ aES
 aES
 aES
 aES
-dsg
-dsk
-dso
-dsq
-dsq
-dsu
-dsz
+rWC
+yeV
+uKz
+lLo
+lLo
+qgj
+hjf
 aES
 aES
 dFl
@@ -117645,10 +117412,10 @@ dpT
 vWX
 aES
 dsh
-dsl
-dsq
-dsq
-dsq
+tZr
+lLo
+lLo
+lLo
 dsv
 qCU
 aES
@@ -117946,13 +117713,13 @@ dqV
 drH
 aES
 aES
-dsi
-dsm
-dso
-dsq
-dsq
-dsw
-dsz
+hVM
+qan
+uKz
+lLo
+lLo
+onw
+hjf
 aES
 aES
 aES
@@ -118248,13 +118015,13 @@ dro
 dpV
 dpM
 aES
-dsj
-dsn
-dsz
-ewR
-qNe
-dsx
-rMc
+dtC
+suO
+hjf
+wxJ
+tAi
+tUJ
+pKN
 aES
 aES
 aES
@@ -122799,13 +122566,13 @@ gZG
 hjf
 dFc
 dFc
-vNH
-kyf
-aDC
+kUZ
+tAi
+tUJ
 wxJ
-pqf
-aEX
-aEi
+hjf
+iag
+vaZ
 dFc
 aES
 aES
@@ -123101,12 +122868,12 @@ xUS
 qgj
 vBq
 dFc
-pqf
-wLj
-aEB
-aEB
-aCG
-aEV
+hjf
+yeV
+lLo
+lLo
+uKz
+qgj
 rWC
 dFc
 aES
@@ -123403,13 +123170,13 @@ lLo
 tZr
 mVb
 dFc
-iOJ
+qCU
 wFO
-aDA
-aEB
-aEB
-aEW
-aFz
+dul
+lLo
+lLo
+tZr
+dsh
 dFc
 aES
 aES
@@ -123705,12 +123472,12 @@ lLo
 onw
 shf
 dFc
-pqf
-wOC
-aEB
-aEB
-aCG
-pJw
+hjf
+qan
+lLo
+lLo
+uKz
+onw
 hVM
 dFc
 aES
@@ -124007,13 +123774,13 @@ oPW
 hjf
 vjx
 dFc
-rst
-kyf
-aDC
+dtv
+tAi
+tUJ
 wxJ
-pqf
-aEX
-aEi
+hjf
+iag
+vaZ
 dFc
 aES
 aES
