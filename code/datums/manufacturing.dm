@@ -1762,6 +1762,15 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Clothing"
 
+/datum/manufacture/industrialcombatarmor
+	name = "Industrial Combat Armor Set"
+	item_paths = list("MET-3","CON-2","DEN-2", "POW-1")
+	item_amounts = list(40,25,30,10) //Expensive for a reason
+	item_outputs = list(/obj/item/clothing/suit/space/mining_combat,/obj/item/clothing/head/helmet/space/mining_combat)
+	time = 120 SECONDS
+	create = 1
+	category = "Clothing"
+
 /datum/manufacture/industrialboots
 	name = "Mechanised Boots"
 	item_paths = list("MET-2","CON-2","POW-1")

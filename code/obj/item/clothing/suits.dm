@@ -1327,12 +1327,12 @@
 
 /obj/item/clothing/suit/space/mining_combat // for fighting z5 critters.
 	name = "mining combat armor"
-	desc = "Heavy armor designed to withstand the rigours of space combat. Less resistant against the elements than industrial armor."
+	desc = "Nanotrasen's take on a old Soviet prototype combat spacesuit. Protective at the cost of everything else."
 	icon_state = "mining_combat"
 	item_state = "mining_combat"
 	c_flags = SPACEWEAR
 	body_parts_covered = TORSO|LEGS|ARMS
-	mats = 60 //should be the most expensive armor.
+	mats = 90 //should be the most expensive armor.
 
 	setupProperties()
 		..()
@@ -1342,6 +1342,7 @@
 		setProperty("exploprot", 20)
 		setProperty("meleeprot", 5)
 		setProperty("rangedprot", 2)
+		setProperty("space_movespeed",1.5) //lumber towards your foe!
 
 //NT pod wars suits
 /obj/item/clothing/suit/space/nanotrasen
