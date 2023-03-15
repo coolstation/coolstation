@@ -2285,6 +2285,7 @@
 	/datum/manufacture/breathmask,
 	/datum/manufacture/engspacesuit,
 	/datum/manufacture/industrialarmor,
+	/datum/manufacture/industrialcombatarmor,
 	/datum/manufacture/industrialboots,
 	/datum/manufacture/powercell,
 	/datum/manufacture/powercellE,
