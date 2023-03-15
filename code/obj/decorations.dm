@@ -1292,6 +1292,6 @@ obj/decoration/windchimes
 		playsound(owner, "sound/effects/windchimesbamboo.ogg", 50, 1)
 
 	attack_hand(mob/user as mob) //don't know how to make it so it doesn't just chime constantly -eagle
-		playsound (src.loc, [pick("sound/effects/windchimesbamboo.ogg"))
+		playsound (src.loc, (pick("sound/effects/windchimesbamboo.ogg"))
 
 
