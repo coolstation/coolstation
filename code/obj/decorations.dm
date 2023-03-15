@@ -1288,10 +1288,9 @@ obj/decoration/windchimes
 	var/times_to_play = 1
 	var/cooldown = 500 //thats around five minutes yeah? -eagle
 
-	effect_process(var/obj/O)
-		playsound(owner, "sound/effects/windchimesbamboo.ogg", 50, 1)
+	proc/effect_process(var/obj/O)
+		playsound (src loc, "sound/effects/windchimesbamboo.ogg", 50, 1)
 
 	attack_hand(mob/user as mob) //don't know how to make it so it doesn't just chime constantly -eagle
-		playsound (src.loc, (pick("sound/effects/windchimesbamboo.ogg"))
-
+		playsound (src.loc, (pick("sound/effects/windchimesbamboo.ogg")))
 
