@@ -8585,6 +8585,10 @@
 /obj/item/clothing/suit/bedsheet/blue,
 /turf/simulated/floor,
 /area/station/crew_quarters/quarters)
+"eet" = (
+/obj/cabinet/medicalburn,
+/turf/simulated/floor/blue/checker,
+/area/station/medical/medbay/pharmacy)
 "eeA" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -17772,7 +17776,7 @@
 /area/station/maintenance/inner/ne)
 "itj" = (
 /obj/disposalpipe/segment/mail/vertical,
-/obj/cabinet/medical,
+/obj/cabinet/medicalbrute,
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/pharmacy)
 "itC" = (
@@ -18036,6 +18040,10 @@
 /obj/machinery/power/data_terminal,
 /turf/simulated/floor,
 /area/station/quartermaster/cargobay)
+"iyP" = (
+/obj/cabinet/medicalmenders,
+/turf/simulated/floor/blue/checker,
+/area/station/medical/medbay/pharmacy)
 "izb" = (
 /obj/disposalpipe/segment/morgue,
 /obj/cable{
@@ -34944,7 +34952,7 @@
 	},
 /area/station/crew_quarters/courtroom)
 "pZx" = (
-/obj/table/auto,
+/obj/table/reinforced/chemistry/beakers,
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/pharmacy)
 "pZz" = (
@@ -36469,6 +36477,10 @@
 /obj/crematorium,
 /turf/simulated/floor/black/grime,
 /area/station/medical/crematorium)
+"qMr" = (
+/obj/cabinet/medicalbulk,
+/turf/simulated/floor/blue/checker,
+/area/station/medical/medbay/pharmacy)
 "qMu" = (
 /obj/lattice{
 	dir = 4;
@@ -42689,6 +42701,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/south)
+"tyu" = (
+/obj/cabinet/medicalcritical,
+/turf/simulated/floor/blue/checker,
+/area/station/medical/medbay/pharmacy)
 "tyI" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe,
 /turf/simulated/floor/white,
@@ -49168,6 +49184,11 @@
 	},
 /turf/simulated/floor/yellow,
 /area/station/storage/primary)
+"woM" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/cabinet/medicaltoxin,
+/turf/simulated/floor/blue/checker,
+/area/station/medical/medbay/pharmacy)
 "woV" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -97210,7 +97231,7 @@ vub
 cFm
 itj
 cFm
-itj
+woM
 tMv
 iaW
 fcH
@@ -97510,9 +97531,9 @@ tRl
 aIu
 pZx
 wcH
-lvB
+eet
 wcH
-lvB
+tyu
 wDU
 wPF
 fcH
@@ -98718,9 +98739,9 @@ tKO
 aIu
 yju
 wcH
-lvB
+iyP
 wcH
-lvB
+qMr
 wDU
 wcH
 qTz

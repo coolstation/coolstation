@@ -237,7 +237,7 @@
 		rebuildOverlays()
 		return ..()
 
-/obj/cabinet/medical/brute
+/obj/cabinet/medicalbrute
 	name = "Trauma Cabinet"
 	desc = "Cabinet full of brute-damage-oriented medication."
 
@@ -251,7 +251,7 @@
 		rebuildOverlays()
 		return ..()
 
-/obj/cabinet/medical/burn
+/obj/cabinet/medicalburn
 	name = "Burn Cabinet"
 	desc = "Cabinet full of burn-damage-oriented medications."
 
@@ -265,7 +265,7 @@
 		rebuildOverlays()
 		return ..()
 
-/obj/cabinet/medical/toxin
+/obj/cabinet/medicaltoxin
 	name = "Anti-Toxins Cabinet"
 	desc = "Cabinet for anti-toxin and anti-poisoning medication."
 	//should have some better injectable anti-tox thing, instead of just charcoal, calomel, or stuff you have to make
@@ -280,7 +280,7 @@
 		rebuildOverlays()
 		return ..()
 
-/obj/cabinet/medical/critical
+/obj/cabinet/medicalcritical
 	name = "Critical Care Cabinet"
 	desc = "Cabinet full of medicine intended to stabilize the most critical patients."
 
@@ -296,7 +296,7 @@
 
 //what do we fill this with? not the stuff that the MD has locked up or stuff better cooked up in a chem machine
 //but something that's more involved or unusual? anyway...
-/* /obj/cabinet/medical/specialist
+/* /obj/cabinet/medicalspecialist
 	name = "Specialist Drugs Cabinet"
 	desc = "Cabinet full of more obscure or advanced medication."
 
@@ -311,7 +311,7 @@
 		return ..()
 
 */
-/obj/cabinet/medical/bulk
+/obj/cabinet/medicalbulk
 	name = "Bulk Drugs Cabinet"
 	desc = "Cabinet full of bulk medicine reserve beakers."
 
