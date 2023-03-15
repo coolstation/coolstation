@@ -146,7 +146,8 @@
 	dir = 1
 	},
 /obj/machinery/conveyor_switch{
-	pixel_x = 27
+	pixel_x = 27;
+	pixel_y = 8
 	},
 /turf/simulated/floor,
 /area/space)
@@ -1698,6 +1699,7 @@
 /area/space)
 "bvU" = (
 /obj/machinery/door/airlock/pyro/security/alt,
+/obj/access_spawn/maint,
 /turf/simulated/floor/red,
 /area/space)
 "bwM" = (
@@ -4600,6 +4602,7 @@
 /obj/machinery/door/airlock/pyro/security/alt{
 	dir = 4
 	},
+/obj/access_spawn/maint,
 /turf/simulated/floor/red,
 /area/space)
 "dNR" = (
@@ -4684,6 +4687,12 @@
 /turf/simulated/floor/blue/side{
 	dir = 1
 	},
+/area/space)
+"dRR" = (
+/obj/neon_lining{
+	dir = 8
+	},
+/turf/simulated/floor/plating/jen,
 /area/space)
 "dRX" = (
 /turf/simulated/wall/auto/feather{
@@ -5290,6 +5299,10 @@
 	},
 /turf/simulated/floor,
 /area)
+"erK" = (
+/obj/machinery/computer/supplycomp,
+/turf/simulated/floor,
+/area/space)
 "erR" = (
 /obj/table/flock/auto{
 	icon_state = "10"
@@ -8699,6 +8712,9 @@
 /area/space)
 "hkj" = (
 /obj/table/reinforced/bar/auto,
+/obj/neon_lining{
+	dir = 4
+	},
 /turf/simulated/floor/plating/jen,
 /area/space)
 "hkE" = (
@@ -9740,6 +9756,7 @@
 /obj/landmark/start{
 	name = "Chief Engineer"
 	},
+/obj/item/clothing/mask/kitsune,
 /turf/simulated/floor/yellow/corner,
 /area/space)
 "ial" = (
@@ -10369,6 +10386,9 @@
 /area/space)
 "iCI" = (
 /obj/roulette_table_w,
+/obj/neon_lining{
+	dir = 8
+	},
 /turf/simulated/floor/plating/jen,
 /area/space)
 "iCY" = (
@@ -12020,9 +12040,7 @@
 	},
 /area/space)
 "jTM" = (
-/obj/item/device/light/candle/small{
-	pixel_y = -9
-	},
+/obj/critter/mannequin,
 /turf/simulated/floor/plating/jen,
 /area/space)
 "jUj" = (
@@ -14081,6 +14099,11 @@
 /obj/machinery/light/emergency{
 	dir = 8
 	},
+/obj/machinery/door_control{
+	id = "KABLAMO";
+	name = "OPEN THE DAMN ELEVATOR DOORl";
+	pixel_x = -28
+	},
 /turf/simulated/floor/purpleblack{
 	dir = 4
 	},
@@ -14531,6 +14554,9 @@
 /obj/item/device/multitool{
 	pixel_x = 12;
 	pixel_y = 4
+	},
+/obj/machinery/phone/wall{
+	pixel_y = 30
 	},
 /turf/simulated/floor/black,
 /area/space)
@@ -16394,7 +16420,7 @@
 /obj/disposalpipe/trunk/brig{
 	dir = 1
 	},
-/obj/machinery/floorflusher/solitary4,
+/obj/machinery/floorflusher,
 /turf/simulated/floor/red,
 /area/space)
 "nAV" = (
@@ -17415,6 +17441,10 @@
 	icon_state = "R13"
 	},
 /area)
+"orY" = (
+/obj/neon_lining,
+/turf/simulated/floor/plating/jen,
+/area/space)
 "osi" = (
 /obj/cable/purple{
 	icon_state = "1-2"
@@ -17887,8 +17917,13 @@
 	},
 /area)
 "oIO" = (
-/obj/machinery/phone/wall,
-/turf/simulated/wall/auto/jen/blue,
+/obj/decal/fakeobjects{
+	desc = "seems kinda out of place";
+	icon = 'icons/misc/lunar.dmi';
+	icon_state = "mannequin";
+	name = "Mannequin"
+	},
+/turf/simulated/floor/plating/jen,
 /area/space)
 "oJx" = (
 /obj/machinery/conveyor/north,
@@ -17989,11 +18024,11 @@
 /turf/simulated/floor/plating/random,
 /area)
 "oLu" = (
-/obj/machinery/computer3/terminal/console_lower{
-	dir = 8
-	},
 /obj/cable/blue{
 	icon_state = "0-8"
+	},
+/obj/machinery/computer3/generic/communications/console_lower{
+	dir = 8
 	},
 /turf/simulated/floor/plating/jen,
 /area/space)
@@ -20028,6 +20063,16 @@
 	},
 /turf/simulated/floor/green,
 /area/space)
+"qCw" = (
+/obj/machinery/door_control{
+	id = "KABLAMO";
+	name = "OPEN THE DAMN ELEVATOR DOORl";
+	pixel_x = 26
+	},
+/turf/simulated/floor/purpleblack{
+	dir = 4
+	},
+/area/space)
 "qCx" = (
 /obj/cable/reinforced{
 	icon_state = "4-8-thick"
@@ -20292,6 +20337,12 @@
 	},
 /turf/simulated/floor/yellow,
 /area)
+"qOr" = (
+/obj/neon_lining{
+	dir = 4
+	},
+/turf/simulated/floor/plating/jen,
+/area/space)
 "qOt" = (
 /turf/simulated/wall/auto/jen/dark4{
 	icon_state = "8"
@@ -24002,7 +24053,9 @@
 /turf/simulated/floor/plating/random,
 /area)
 "tMc" = (
-/obj/ladder,
+/obj/ladder{
+	id = "nuclear"
+	},
 /turf/simulated/floor/black,
 /area/space)
 "tMn" = (
@@ -26467,6 +26520,11 @@
 "vTH" = (
 /turf/simulated/floor/carpet/purple/standard/edge/se,
 /area)
+"vTZ" = (
+/obj/machinery/light/fluorescent/ceiling,
+/obj/decal/cleanable/dirt/jen,
+/turf/simulated/floor,
+/area/space)
 "vUu" = (
 /obj/storage/crate/wooden,
 /obj/random_item_spawner/shoe/lots,
@@ -26558,8 +26616,13 @@
 	},
 /area)
 "vXF" = (
-/obj/machinery/hydro_growlamp,
-/turf/simulated/floor/grass,
+/obj/candle_light{
+	desc = "It's a little candle";
+	icon = 'icons/obj/decoration.dmi';
+	icon_state = "lil_candle1";
+	pixel_y = 8
+	},
+/turf/simulated/floor/plating/jen,
 /area/space)
 "vXL" = (
 /obj/grille/catwalk/jen/side{
@@ -28718,6 +28781,10 @@
 	},
 /turf/simulated/floor,
 /area)
+"xHr" = (
+/obj/decal/cleanable/blood,
+/turf/simulated/floor/plating/jen,
+/area/space)
 "xHL" = (
 /obj/wingrille_spawn/auto/crystal,
 /obj/cable/purple{
@@ -29357,6 +29424,7 @@
 /turf/simulated/floor/carpet/green/fancy/narrow/eastwest,
 /area)
 "yhx" = (
+/obj/machinery/computer/supplycomp,
 /turf/simulated/floor/yellow/corner{
 	dir = 8
 	},
@@ -29453,6 +29521,10 @@
 	},
 /turf/simulated/floor/longtile/black,
 /area/space)
+"yjc" = (
+/obj/machinery/hydro_growlamp,
+/turf/simulated/floor/grass,
+/area/space)
 "yjr" = (
 /obj/submachine/chef_sink/chem_sink{
 	desc = "A water-filled unit intended for hand-washing purposes.";
@@ -29479,7 +29551,9 @@
 /obj/grille/catwalk/jen/side{
 	dir = 9
 	},
-/obj/ladder,
+/obj/ladder{
+	id = "nuclear"
+	},
 /turf/simulated/floor/plating/jen,
 /area/space)
 "ykR" = (
@@ -64106,7 +64180,7 @@ dLp
 jEJ
 wbn
 wbn
-jEJ
+qCw
 xBs
 oHK
 rvt
@@ -65011,7 +65085,7 @@ qnL
 nYq
 nYq
 pcv
-pcv
+sbu
 nYq
 nYq
 aAJ
@@ -71668,7 +71742,7 @@ ova
 aql
 mdC
 mdC
-dEy
+oIO
 dEy
 dLZ
 dLZ
@@ -71969,9 +72043,9 @@ reT
 hbw
 unF
 mdC
-dEy
-dEy
-dEy
+oIO
+vXF
+xHr
 dLZ
 aql
 aql
@@ -72272,7 +72346,7 @@ rYq
 hbw
 mdC
 mdC
-dEy
+oIO
 dEy
 jTM
 aql
@@ -74327,7 +74401,7 @@ wyg
 nbx
 kgo
 kgo
-oIO
+cHV
 maZ
 bzU
 ubT
@@ -77117,8 +77191,8 @@ uwQ
 hbw
 hbw
 hbw
-hbw
-hbw
+fUe
+fUe
 hbw
 hbw
 hbw
@@ -77419,10 +77493,10 @@ hbw
 wKm
 hbw
 fUe
-hbw
-wKm
-hbw
-hbw
+fUe
+vTZ
+fUe
+fUe
 hbw
 hbw
 fXX
@@ -77721,7 +77795,7 @@ hbw
 hbw
 hbw
 fUe
-hbw
+fUe
 hbw
 hbw
 hbw
@@ -78318,12 +78392,12 @@ xLW
 kcb
 fPn
 kcb
-kbq
-kbq
+aql
+aql
 fqh
 hbw
 hbw
-hbw
+nBA
 nWU
 voa
 efU
@@ -78621,11 +78695,11 @@ hbw
 pvP
 pvP
 uMk
-kbq
+aql
 tIn
 fUe
 hbw
-hbw
+gGh
 onJ
 kcb
 ova
@@ -78930,7 +79004,7 @@ hbw
 hbw
 oPN
 ova
-hbw
+erK
 hbw
 hbw
 ova
@@ -93394,7 +93468,7 @@ dhW
 dhW
 dhW
 dhW
-hbw
+xgr
 hbw
 poK
 hbw
@@ -101273,8 +101347,8 @@ aql
 ejr
 dTN
 aql
-ejr
-ejr
+dTN
+mPU
 aql
 aql
 aql
@@ -102484,7 +102558,7 @@ nbx
 nbx
 aql
 dEy
-dEy
+dRR
 iCI
 dEy
 mdC
@@ -102788,7 +102862,7 @@ aql
 dEy
 dEy
 viH
-dEy
+orY
 aql
 nbx
 nbx
@@ -103090,7 +103164,7 @@ mdC
 dEy
 dEy
 dEy
-dEy
+orY
 aql
 nbx
 nbx
@@ -103392,7 +103466,7 @@ mdC
 dEy
 dEy
 dEy
-dEy
+orY
 aql
 nbx
 nbx
@@ -103692,7 +103766,7 @@ ejr
 ejr
 aql
 dEy
-dEy
+qOr
 hkj
 dEy
 aql
@@ -108514,7 +108588,7 @@ nbx
 aql
 mci
 dDB
-dDB
+yjc
 dDB
 dDB
 mci
@@ -109120,13 +109194,13 @@ aql
 dDB
 dDB
 dDB
-vXF
 dDB
 dDB
 dDB
 dDB
 dDB
 dDB
+mci
 ova
 xGw
 hbw
@@ -109428,7 +109502,7 @@ dDB
 dDB
 dDB
 dDB
-dDB
+mci
 ova
 xGw
 hbw
@@ -109730,7 +109804,7 @@ dDB
 dDB
 dDB
 dDB
-dDB
+mci
 ova
 xGw
 hbw
@@ -111536,9 +111610,9 @@ aql
 dDB
 dDB
 dDB
-dDB
-dDB
-dDB
+mci
+mci
+mci
 dDB
 dDB
 dDB
