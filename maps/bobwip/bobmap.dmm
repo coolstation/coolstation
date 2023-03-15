@@ -360,7 +360,9 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 8
 	},
-/obj/disposalpipe/switch_junction/right/west,
+/obj/disposalpipe/switch_junction/right/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/white,
 /area/station/science/lobby)
 "ajx" = (
@@ -694,7 +696,9 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
-/obj/disposalpipe/switch_junction/right/east,
+/obj/disposalpipe/switch_junction/right/east{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/wood,
 /area/station/bridge)
 "aqg" = (
@@ -1846,7 +1850,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/left/east,
+/obj/disposalpipe/switch_junction/left/east{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/northeast)
 "aRe" = (
@@ -2585,7 +2591,9 @@
 /obj/cable/blue{
 	icon_state = "2-4"
 	},
-/obj/disposalpipe/switch_junction/right/east,
+/obj/disposalpipe/switch_junction/right/east{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/nw)
 "blu" = (
@@ -2860,7 +2868,9 @@
 /turf/simulated/floor/engine,
 /area/station/engine/hotloop)
 "bsu" = (
-/obj/disposalpipe/switch_junction/right/south,
+/obj/disposalpipe/switch_junction/right/south{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/specialroom/chapel{
 	dir = 8
 	},
@@ -3617,7 +3627,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/right/west,
+/obj/disposalpipe/switch_junction/right/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/white,
 /area/station/science/lobby)
 "bKQ" = (
@@ -4668,7 +4680,9 @@
 /area/station/medical/morgue)
 "cmA" = (
 /obj/cable/conduit/segment/bent/south,
-/obj/disposalpipe/switch_junction/left/west,
+/obj/disposalpipe/switch_junction/left/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
 "cmB" = (
@@ -4702,7 +4716,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/right/west,
+/obj/disposalpipe/switch_junction/right/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/blue/side{
 	dir = 0
 	},
@@ -5005,7 +5021,9 @@
 	})
 "cvF" = (
 /obj/machinery/light/small/cool/very,
-/obj/disposalpipe/switch_junction/left/east,
+/obj/disposalpipe/switch_junction/left/east{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/grey/blackgrime,
 /area/station/chapel/funeral_parlor)
 "cvI" = (
@@ -5427,12 +5445,12 @@
 /turf/simulated/floor/black/grime,
 /area/station/medical/crematorium)
 "cHW" = (
-/obj/table/reinforced/chemistry/auto,
 /obj/item/storage/box/beakerbox,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 8
 	},
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/table/reinforced/chemistry/beakers,
 /turf/simulated/floor/white,
 /area/station/science/chemistry)
 "cHY" = (
@@ -5872,7 +5890,9 @@
 /turf/simulated/floor/yellow/side,
 /area/station/hallway/primary/northeast)
 "cTN" = (
-/obj/disposalpipe/switch_junction/left/north,
+/obj/disposalpipe/switch_junction/left/north{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor{
 	icon_state = "nt_logo"
 	},
@@ -6437,7 +6457,9 @@
 /obj/cable/blue{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/switch_junction/right/south,
+/obj/disposalpipe/switch_junction/right/south{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/white,
 /area/station/science/lobby)
 "diQ" = (
@@ -6465,7 +6487,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/left/west,
+/obj/disposalpipe/switch_junction/left/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/neutral/corner{
 	dir = 1
 	},
@@ -6691,6 +6715,14 @@
 /obj/machinery/light/fluorescent/auto/neutral,
 /turf/simulated/floor/green/checker,
 /area/station/hydroponics/lobby)
+"doz" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
+	dir = 8
+	},
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/table/reinforced/chemistry/beakers,
+/turf/simulated/floor/white,
+/area/station/science/chemistry)
 "doN" = (
 /turf/simulated/floor/engine/caution/east,
 /area/station/engine/core)
@@ -6902,7 +6934,9 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/northeast)
 "dto" = (
-/obj/disposalpipe/switch_junction/right/south,
+/obj/disposalpipe/switch_junction/right/south{
+	color = "#8dc2f4"
+	},
 /turf/simulated/grass,
 /area/station/garden/owlery)
 "dtA" = (
@@ -7159,9 +7193,6 @@
 /turf/simulated/floor/plating,
 /area/listeningpost/power)
 "dzt" = (
-/obj/storage/secure/closet/fridge/blood{
-	anchored = 1
-	},
 /turf/simulated/floor/bluewhite{
 	dir = 1
 	},
@@ -7371,7 +7402,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light/small/auto/neutral,
-/obj/disposalpipe/switch_junction/right/north,
+/obj/disposalpipe/switch_junction/right/north{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/neutral/side{
 	dir = 8
 	},
@@ -8077,7 +8110,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/left/east,
+/obj/disposalpipe/switch_junction/left/east{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/nw)
 "dUu" = (
@@ -8527,7 +8562,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/switch_junction/right/north,
+/obj/disposalpipe/switch_junction/right/north{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/white,
 /area/station/medical/head)
 "eef" = (
@@ -9023,7 +9060,9 @@
 /obj/cable/blue{
 	icon_state = "1-8"
 	},
-/obj/disposalpipe/switch_junction/right/south,
+/obj/disposalpipe/switch_junction/right/south{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/wood,
 /area/station/bridge)
 "eql" = (
@@ -10363,7 +10402,9 @@
 "eUv" = (
 /obj/table/auto,
 /obj/item/robodefibrillator,
-/obj/disposalpipe/switch_junction/right/west,
+/obj/disposalpipe/switch_junction/right/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/bluewhite,
 /area/station/medical/medbay/surgery)
 "eUC" = (
@@ -13125,7 +13166,9 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 1
 	},
-/obj/disposalpipe/switch_junction/right/south,
+/obj/disposalpipe/switch_junction/right/south{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/surgery)
 "gep" = (
@@ -13257,7 +13300,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/left/west,
+/obj/disposalpipe/switch_junction/left/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/southeast)
 "gih" = (
@@ -13376,7 +13421,9 @@
 	level = 1;
 	name = "cold loop purge pipe"
 	},
-/obj/disposalpipe/junction/right/west,
+/obj/disposalpipe/junction/right/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/southeast)
 "gke" = (
@@ -13938,7 +13985,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe,
-/obj/disposalpipe/switch_junction/right/north,
+/obj/disposalpipe/switch_junction/right/north{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/white,
 /area/station/science/lobby)
 "gys" = (
@@ -15573,7 +15622,9 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
-/obj/disposalpipe/switch_junction/left/south,
+/obj/disposalpipe/switch_junction/left/south{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
 "hnu" = (
@@ -15781,8 +15832,6 @@
 /area/station/hallway/primary/northeast)
 "hsA" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/table/auto,
-/obj/machinery/phone,
 /obj/machinery/light/small/auto/neutral,
 /turf/simulated/floor,
 /area/station/crew_quarters/quarters)
@@ -16081,9 +16130,9 @@
 	},
 /area/station/hydroponics/lobby)
 "hzu" = (
-/obj/reagent_dispensers/watertank/fountain,
+/obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor,
-/area/station/crew_quarters/quarters)
+/area/station/mining)
 "hzv" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
 /turf/simulated/floor/plating,
@@ -17721,6 +17770,11 @@
 /obj/machinery/light/small/auto/warm,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
+"itj" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/cabinet/medical,
+/turf/simulated/floor/blue/checker,
+/area/station/medical/medbay/pharmacy)
 "itC" = (
 /obj/machinery/light/fluorescent/auto/neutral,
 /turf/simulated/floor/wood{
@@ -17832,7 +17886,9 @@
 /obj/cable/blue{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/switch_junction/left/south,
+/obj/disposalpipe/switch_junction/left/south{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/north)
 "iwh" = (
@@ -18624,7 +18680,9 @@
 /obj/cable/blue{
 	icon_state = "2-8"
 	},
-/obj/disposalpipe/switch_junction/right/north,
+/obj/disposalpipe/switch_junction/right/north{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "iNM" = (
@@ -20192,7 +20250,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light/small/auto/warm,
-/obj/disposalpipe/switch_junction/right/north,
+/obj/disposalpipe/switch_junction/right/north{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/hydroponics)
 "jyA" = (
@@ -20295,6 +20355,11 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/station/engine/hotloop)
+"jBq" = (
+/obj/table/auto,
+/obj/machinery/phone,
+/turf/simulated/floor,
+/area/station/crew_quarters/quarters)
 "jBv" = (
 /obj/item/chem_grenade/firefighting{
 	pixel_x = -11;
@@ -20682,8 +20747,8 @@
 /obj/cable/blue{
 	icon_state = "2-4"
 	},
-/obj/table/reinforced/chemistry/beakers,
 /obj/machinery/light/fluorescent/auto/neutral,
+/obj/table/reinforced/chemistry/auto,
 /turf/simulated/floor/purplewhite{
 	dir = 9
 	},
@@ -23491,7 +23556,9 @@
 	level = 1;
 	name = "cold loop purge pipe"
 	},
-/obj/disposalpipe/switch_junction/right/west,
+/obj/disposalpipe/switch_junction/right/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/purple,
 /area/station/hallway/primary/southeast)
 "kSx" = (
@@ -23538,7 +23605,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/right/north,
+/obj/disposalpipe/switch_junction/right/north{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/wood,
 /area/station/bridge)
 "kTu" = (
@@ -24267,7 +24336,9 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/right/north,
+/obj/disposalpipe/switch_junction/right/north{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/southeast)
 "lnl" = (
@@ -24586,6 +24657,10 @@
 /obj/wingrille_spawn/fakethindow/reinforced,
 /turf/simulated/floor/plating,
 /area/station/medical/medbay/lobby)
+"lvB" = (
+/obj/cabinet/medical,
+/turf/simulated/floor/blue/checker,
+/area/station/medical/medbay/pharmacy)
 "lvC" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -24658,7 +24733,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/right/east,
+/obj/disposalpipe/switch_junction/right/east{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/north)
 "lxf" = (
@@ -24829,7 +24906,9 @@
 	},
 /area/station/medical/dome)
 "lCv" = (
-/obj/disposalpipe/switch_junction/left/east,
+/obj/disposalpipe/switch_junction/left/east{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/carpet/red/standard/narrow/eastwest,
 /area/station/crew_quarters/jazz)
 "lCE" = (
@@ -25039,7 +25118,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/right/east,
+/obj/disposalpipe/switch_junction/right/east{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/northeast)
 "lHc" = (
@@ -25429,7 +25510,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/right/west,
+/obj/disposalpipe/switch_junction/right/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/secondary/northwest)
 "lPW" = (
@@ -26227,7 +26310,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/switch_junction/left/south,
+/obj/disposalpipe/switch_junction/left/south{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
 "mgw" = (
@@ -26475,7 +26560,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/switch_junction/left/north,
+/obj/disposalpipe/switch_junction/left/north{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/lobby)
 "mnA" = (
@@ -27234,7 +27321,9 @@
 /obj/cable/blue{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/switch_junction/left/south,
+/obj/disposalpipe/switch_junction/left/south{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor{
 	icon_state = "nt_logo"
 	},
@@ -27372,6 +27461,7 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/junction/right{
+	color = "#8dc2f4";
 	dir = 4
 	},
 /turf/simulated/floor/neutral/side,
@@ -27551,7 +27641,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/switch_junction/right/north,
+/obj/disposalpipe/switch_junction/right/north{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/secondary/northwest)
 "mMp" = (
@@ -29205,15 +29297,12 @@
 /turf/simulated/floor/engine,
 /area/station/engine/core)
 "nwA" = (
-/obj/surgery_tray{
-	anchored = 1
+/obj/cable{
+	icon_state = "4-8"
 	},
-/obj/surgery_tray{
-	anchored = 1
-	},
-/obj/item/storage/box/beakerbox,
-/turf/simulated/floor/blue/checker,
-/area/station/medical/medbay/pharmacy)
+/obj/disposalpipe/segment/mail/bent/west,
+/turf/simulated/floor/yellow,
+/area/station/mining)
 "nwI" = (
 /obj/decal/cleanable/dirt,
 /turf/simulated/floor/yellow/corner{
@@ -30707,7 +30796,9 @@
 	level = 1;
 	name = "cold loop purge pipe"
 	},
-/obj/disposalpipe/switch_junction/left/west,
+/obj/disposalpipe/switch_junction/left/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/purple/side,
 /area/station/hallway/primary/southeast)
 "oen" = (
@@ -31117,7 +31208,9 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 4
 	},
-/obj/disposalpipe/switch_junction/right/south,
+/obj/disposalpipe/switch_junction/right/south{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/neutral/side{
 	dir = 1
 	},
@@ -31898,7 +31991,9 @@
 /obj/cable/blue{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/switch_junction/left/north,
+/obj/disposalpipe/switch_junction/left/north{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "oHZ" = (
@@ -33051,12 +33146,9 @@
 	},
 /area/station/science/server_room/warm)
 "pjO" = (
-/obj/surgery_tray{
-	anchored = 1
-	},
-/obj/item/storage/box/beakerbox,
-/turf/simulated/floor/blue/checker,
-/area/station/medical/medbay/pharmacy)
+/obj/reagent_dispensers/watertank/fountain,
+/turf/simulated/floor,
+/area/station/crew_quarters/quarters)
 "pjQ" = (
 /obj/decal/fakeobjects/firealarm_broken,
 /turf/simulated/wall/r_wall,
@@ -33820,7 +33912,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/switch_junction/right/east,
+/obj/disposalpipe/switch_junction/right/east{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "pCD" = (
@@ -33960,7 +34054,9 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/north)
 "pGL" = (
-/obj/disposalpipe/switch_junction/left/north,
+/obj/disposalpipe/switch_junction/left/north{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/red/side{
 	dir = 8
 	},
@@ -34509,7 +34605,9 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
-/obj/disposalpipe/switch_junction/right/south,
+/obj/disposalpipe/switch_junction/right/south{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
 "pTN" = (
@@ -35128,7 +35226,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/right/east,
+/obj/disposalpipe/switch_junction/right/east{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "qhJ" = (
@@ -35195,6 +35295,9 @@
 "qjV" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 4
+	},
+/obj/storage/secure/closet/fridge/blood{
+	anchored = 1
 	},
 /turf/simulated/floor/bluewhite{
 	dir = 4
@@ -36759,7 +36862,9 @@
 /turf/simulated/floor,
 /area/station/engine/monitoring)
 "qUV" = (
-/obj/disposalpipe/junction/right/north,
+/obj/disposalpipe/junction/right/north{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "qVa" = (
@@ -37502,7 +37607,9 @@
 /turf/simulated/floor/grime,
 /area/station/security/brig/genpop)
 "rnz" = (
-/obj/disposalpipe/switch_junction/right/north,
+/obj/disposalpipe/switch_junction/right/north{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "rnO" = (
@@ -37540,10 +37647,11 @@
 /turf/simulated/floor/wood,
 /area/station/bridge/captain)
 "rpz" = (
-/obj/table/auto,
-/obj/machinery/light/small/floor/cool/very,
-/turf/simulated/floor/blue/checker,
-/area/station/medical/medbay/pharmacy)
+/obj/stool/chair/couch/blue{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/station/crew_quarters/quarters)
 "rpE" = (
 /obj/decal/poster/wallsign/stencil/left/w{
 	pixel_x = -16;
@@ -37859,7 +37967,9 @@
 "rvp" = (
 /obj/table/wood/auto/desk,
 /obj/random_item_spawner/desk_stuff/two,
-/obj/disposalpipe/switch_junction/right/east,
+/obj/disposalpipe/switch_junction/right/east{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/carpet/red/fancy/edge/east,
 /area/station/chapel/office)
 "rvt" = (
@@ -37909,6 +38019,7 @@
 	pixel_x = -4;
 	pixel_y = 9
 	},
+/obj/disposalpipe/trunk/mail/south,
 /turf/simulated/floor/yellow/side{
 	dir = 1
 	},
@@ -38240,7 +38351,9 @@
 /obj/cable/blue{
 	icon_state = "2-4"
 	},
-/obj/disposalpipe/junction/middle/east,
+/obj/disposalpipe/junction/middle/east{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "rDB" = (
@@ -39060,7 +39173,9 @@
 /turf/simulated/floor/plating,
 /area/station/engine/core)
 "rUF" = (
-/obj/cryotron,
+/obj/stool/chair/couch/blue{
+	dir = 4
+	},
 /turf/simulated/floor,
 /area/station/crew_quarters/quarters)
 "rUW" = (
@@ -40236,10 +40351,10 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/table/reinforced/chemistry/beakers,
 /obj/decal/poster/wallsign/poster_ptoe{
 	pixel_y = 30
 	},
+/obj/table/reinforced/chemistry/auto,
 /turf/simulated/floor/purplewhite{
 	dir = 1
 	},
@@ -40291,7 +40406,9 @@
 	icon_state = "4-8"
 	},
 /obj/decal/mule/dropoff,
-/obj/disposalpipe/switch_junction/left/east,
+/obj/disposalpipe/switch_junction/left/east{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/delivery,
 /area/station/maintenance/outer/nw)
 "suV" = (
@@ -40481,7 +40598,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/left/west,
+/obj/disposalpipe/switch_junction/left/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/southeast)
 "sAF" = (
@@ -40518,7 +40637,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/junction/right/west,
+/obj/disposalpipe/junction/right/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/neutral/corner{
 	dir = 4
 	},
@@ -40605,7 +40726,9 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/right/west,
+/obj/disposalpipe/switch_junction/right/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
 "sET" = (
@@ -42761,7 +42884,9 @@
 	level = 1;
 	name = "cold loop purge pipe"
 	},
-/obj/disposalpipe/switch_junction/left/west,
+/obj/disposalpipe/switch_junction/left/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/southeast)
 "tCJ" = (
@@ -42994,7 +43119,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/switch_junction/right/west,
+/obj/disposalpipe/switch_junction/right/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/blue/side{
 	dir = 0
 	},
@@ -43501,7 +43628,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/right/west,
+/obj/disposalpipe/switch_junction/right/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
 "tSO" = (
@@ -43597,7 +43726,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/left/west,
+/obj/disposalpipe/switch_junction/left/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/purple/side,
 /area/station/hallway/primary/southeast)
 "tVd" = (
@@ -43623,7 +43754,9 @@
 /area/station/quartermaster/cargobay)
 "tVs" = (
 /obj/machinery/light/fluorescent/cool/very,
-/obj/disposalpipe/switch_junction/right/west,
+/obj/disposalpipe/switch_junction/right/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/bluewhite,
 /area/station/medical/medbay/surgery)
 "tVA" = (
@@ -44344,7 +44477,9 @@
 /turf/simulated/floor/plating,
 /area/station/medical/breakroom)
 "ulL" = (
-/obj/disposalpipe/switch_junction/right/west,
+/obj/disposalpipe/switch_junction/right/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/wood,
 /area/station/bridge)
 "umo" = (
@@ -44371,6 +44506,15 @@
 /obj/firedoor_spawn,
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
+"unl" = (
+/obj/cable/blue{
+	icon_state = "4-8"
+	},
+/obj/cabinet/chemistry,
+/turf/simulated/floor/purplewhite{
+	dir = 1
+	},
+/area/station/science/chemistry)
 "uny" = (
 /obj/lattice,
 /obj/grille/catwalk{
@@ -44843,7 +44987,9 @@
 /turf/simulated/floor/carpet/grime,
 /area/station/crew_quarters/catering)
 "uyC" = (
-/obj/disposalpipe/switch_junction/left/south,
+/obj/disposalpipe/switch_junction/left/south{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/neutral/side{
 	dir = 8
 	},
@@ -45593,7 +45739,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/left/west,
+/obj/disposalpipe/switch_junction/left/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/blue/side{
 	dir = 0
 	},
@@ -48266,7 +48414,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/right/west,
+/obj/disposalpipe/switch_junction/right/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/purplewhite{
 	dir = 1
 	},
@@ -48682,7 +48832,9 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 5
 	},
-/obj/disposalpipe/switch_junction/right/west,
+/obj/disposalpipe/switch_junction/right/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
 "wiu" = (
@@ -48858,7 +49010,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/right/east,
+/obj/disposalpipe/switch_junction/right/east{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/security/main)
 "wkO" = (
@@ -50469,7 +50623,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/right/west,
+/obj/disposalpipe/switch_junction/right/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/neutral/side{
 	dir = 1
 	},
@@ -50622,6 +50778,13 @@
 	dir = 1
 	},
 /area/station/science/storage)
+"wXn" = (
+/obj/surgery_tray{
+	anchored = 1
+	},
+/obj/item/storage/box/beakerbox,
+/turf/simulated/floor/blue/checker,
+/area/station/medical/medbay/pharmacy)
 "wXo" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
 /turf/simulated/floor/plating,
@@ -52262,7 +52425,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/junction/right/west,
+/obj/disposalpipe/junction/right/west{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/blue/side{
 	dir = 0
 	},
@@ -52293,6 +52458,10 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/surgery_tray{
+	anchored = 1
+	},
+/obj/item/storage/box/beakerbox,
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/pharmacy)
 "xJf" = (
@@ -52475,7 +52644,9 @@
 /obj/cable/blue{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/switch_junction/right/south,
+/obj/disposalpipe/switch_junction/right/south{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor,
 /area/station/hallway/primary/north)
 "xOV" = (
@@ -52844,7 +53015,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/left/east,
+/obj/disposalpipe/switch_junction/left/east{
+	color = "#8dc2f4"
+	},
 /turf/simulated/floor/neutral/corner{
 	dir = 1
 	},
@@ -87931,7 +88104,7 @@ ykB
 ykB
 ugW
 ykB
-hzu
+qsQ
 qsQ
 qsQ
 qsQ
@@ -88234,10 +88407,10 @@ fGj
 qsQ
 qsQ
 qsQ
-qsQ
-qsQ
-qsQ
-qsQ
+wGd
+xtE
+xtE
+xeP
 bQU
 kgk
 oae
@@ -89136,7 +89309,7 @@ ykB
 ykB
 ugW
 ykB
-qsQ
+pjO
 qsQ
 qsQ
 qsQ
@@ -89740,8 +89913,8 @@ ykB
 vIh
 sLP
 ykB
+rpz
 qsQ
-rUF
 qsQ
 qsQ
 qsQ
@@ -90042,7 +90215,7 @@ ykB
 eeq
 iHx
 ykB
-qsQ
+rUF
 qsQ
 ppX
 qbm
@@ -90344,7 +90517,7 @@ ykB
 ykB
 ykB
 ykB
-qsQ
+jBq
 qsQ
 bFI
 bFI
@@ -97035,9 +97208,9 @@ tHb
 uAt
 vub
 cFm
+itj
 cFm
-cFm
-cFm
+itj
 tMv
 iaW
 fcH
@@ -97337,9 +97510,9 @@ tRl
 aIu
 pZx
 wcH
+lvB
 wcH
-nwA
-wcH
+lvB
 wDU
 wPF
 fcH
@@ -97640,7 +97813,7 @@ aIu
 vzv
 thI
 wcH
-rpz
+wcH
 wcH
 wDU
 wPF
@@ -97942,7 +98115,7 @@ aIu
 vBo
 thI
 wcH
-pZx
+wcH
 wcH
 fGS
 gex
@@ -98243,9 +98416,9 @@ tRl
 aIu
 wgB
 wcH
+lvB
 wcH
-pjO
-wcH
+lvB
 wDU
 cMp
 fcH
@@ -98545,9 +98718,9 @@ tKO
 aIu
 yju
 wcH
+lvB
 wcH
-wcH
-wcH
+lvB
 wDU
 wcH
 qTz
@@ -99453,7 +99626,7 @@ aIu
 oKt
 wXZ
 oKt
-wcH
+wXn
 wDU
 oKt
 oKt
@@ -101563,7 +101736,7 @@ mCg
 pnE
 oLY
 yeT
-eZV
+unl
 htK
 bwO
 htK
@@ -101869,7 +102042,7 @@ xjF
 htK
 jsw
 okG
-qxl
+doz
 ley
 nRZ
 rpE
@@ -111476,9 +111649,9 @@ dWw
 jgX
 uYB
 ryc
-wIv
-wIv
-nsq
+hzu
+hzu
+nwA
 ffM
 wIv
 wIv
