@@ -112,6 +112,9 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 	atomicthumbs
 		ckey = ""
 		name = "Office of Atomicthumbs"
+	batelite
+		ckey = "roselace"
+		name = "Here Be Bats"
 	bubs
 		ckey = "insanoblan"
 		name = "Office of bubs"
