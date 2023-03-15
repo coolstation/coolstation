@@ -234,7 +234,7 @@
 	desc = "Contains charcoal - used to treat toxins and damage from toxins."
 	initial_reagents = "charcoal"
 
-/obj/item/reagent_containers/syringe/antiviral
+/obj/item/reagent_containers/syringe/antiviral //it's antiviral here even though... you know what, never mind
 	name = "syringe (spaceacillin)"
 	desc = "Contains antibacterial agents."
 	initial_reagents = "spaceacillin"
