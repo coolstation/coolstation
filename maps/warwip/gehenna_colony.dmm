@@ -685,7 +685,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
 	},
-/obj/cabinet,
+/obj/cabinet/medicalcritical,
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/treatment)
 "aAI" = (
@@ -5635,7 +5635,7 @@
 /turf/simulated/floor/shuttlebay,
 /area/station/hangar/medical)
 "ekZ" = (
-/obj/cabinet,
+/obj/cabinet/medicalbrute,
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/treatment)
 "elm" = (
@@ -6247,7 +6247,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
 	},
-/obj/cabinet,
+/obj/cabinet/medicalburn,
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/treatment)
 "eHe" = (
@@ -6947,7 +6947,7 @@
 /turf/simulated/floor/purplewhite,
 /area/listeningpost)
 "feI" = (
-/obj/cabinet/medical,
+/obj/cabinet/medicalbulk,
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/pharmacy)
 "ffq" = (
@@ -23028,12 +23028,12 @@
 /turf/simulated/floor/shuttlebay,
 /area/station/hangar/engine)
 "riZ" = (
-/obj/cabinet/medicalmenders,
 /obj/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/cabinet/medicaltoxin,
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/pharmacy)
 "rjw" = (
@@ -26128,7 +26128,7 @@
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice)
 "tGI" = (
-/obj/cabinet/restrictedmedical,
+/obj/machinery/chem_master,
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/pharmacy)
 "tHc" = (
