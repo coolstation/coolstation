@@ -1109,3 +1109,31 @@
 		playsound(the_table, "sound/items/Deconstruct.ogg", 50, 1)
 		owner.visible_message("<span class='notice'>[owner] disassembles [the_table].</span>")
 		the_table.deconstruct()
+
+//So surgery trays are kinda like tables except not, I guess? I reckon we could merge the two
+//empty
+/obj/surgery_tray/tool_cart
+	name = "tool cart"
+	desc = "A cart filled with tools, so you don't have to lug them in yourself. You'll return them, right?"
+	icon = 'icons/obj/furniture/table_industrial.dmi' //All the furniture dmis are set up for autotiling and this has no place anywhere, but a tool cart is *sorta* a table for industrial purposes
+	icon_state = "tool_cart"
+	var/obj/item/storage/desk_drawer/internal_inv
+	mechanics_type_override = /obj/surgery_tray/tool_cart //In case someone scans a prepared cart
+
+	New(spawn_tools_midround = FALSE) //IDK if it's feasible to reach this argument in most code, but it's here if you want
+		..()
+		if (!internal_inv) //don't overwrite prepared cart thx
+			internal_inv = new(src)
+
+	//stolen/adapted from table
+	MouseDrop(atom/over_object, src_location, over_location)
+		if (usr && usr == over_object && src.internal_inv)
+			return src.internal_inv.MouseDrop(over_object, src_location, over_location)
+		..()
+
+//prefilled
+/obj/surgery_tray/tool_cart/prepared //following belt precedent
+
+	New()
+		internal_inv = new /obj/item/storage/desk_drawer/prepared_tool_cart(src) //prefilled with tools
+		..()
