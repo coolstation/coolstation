@@ -409,6 +409,22 @@
 			return
 		..()
 
+/obj/item/storage/desk_drawer/prepared_tool_cart //boy the tool carts are funky in terms of inheritance
+	//Got some spares just in case, no welders cause I figure these'll be in podbays which have welding closets
+	spawn_contents = list(/obj/item/crowbar,
+	/obj/item/crowbar,
+	/obj/item/wirecutters,
+	/obj/item/wirecutters,
+	/obj/item/screwdriver,
+	/obj/item/screwdriver,
+	/obj/item/wrench,
+	/obj/item/wrench,
+	/obj/item/reagent_containers/glass/oilcan,
+	/obj/item/clothing/gloves/black,
+	/obj/item/cable_coil/white, //approximately the neutral/live/earth wiring colours for the US
+	/obj/item/cable_coil/black, //don't ask why the cart contents reference that of all things, I thought it'd be a cute thing to do :P
+	/obj/item/cable_coil/green) //anyway we got slots to fill, so
+
 /obj/item/storage/rockit
 	name = "\improper Rock-It Launcher"
 	desc = "Huh..."
