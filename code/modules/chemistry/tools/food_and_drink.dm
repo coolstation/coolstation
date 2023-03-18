@@ -835,9 +835,11 @@
 	desc = "A stylish bottle for the containment of liquids."
 	var/label = "none" // Look in bottle.dmi for the label names
 	var/labeled = 0 // For writing on the things with a pen
+	var/cap = "none" // same as label names in bottle.dmi- they match
 	//var/static/image/bottle_image = null
 	var/static/image/image_fluid = null
 	var/static/image/image_label = null
+	var/static/image/image_cap = null
 	var/static/image/image_ice = null
 	var/ice = null
 	var/unbreakable = 0
@@ -852,6 +854,7 @@
 
 	New()
 		..()
+		src.cap = src.label //quick and dirty
 		src.update_icon()
 
 	on_reagent_change()
@@ -894,8 +897,10 @@
 					//src.image_label = image('icons/obj/foodNdrink/bottle.dmi')
 				//src.image_label.icon_state = "label-broken-[src.label]"
 				src.UpdateOverlays(src.image_label, "label")
+				src.UpdateOverlays(null, "cap")
 			else
 				src.UpdateOverlays(null, "label")
+				src.UpdateOverlays(null, "cap")
 		else
 			if (!src.reagents || src.reagents.total_volume <= 0) //Fix for cannot read null/volume. Also FUCK YOU REAGENT CREATING FUCKBUG!
 				src.icon_state = "bottle-[src.bottle_style]"
@@ -926,6 +931,11 @@
 				src.UpdateOverlays(src.image_label, "label")
 			else
 				src.UpdateOverlays(null, "label")
+			if (src.cap)
+				ENSURE_IMAGE(src.image_cap, src.icon, "cap-[src.cap]")
+				src.UpdateOverlays(src.image_cap, "cap")
+			else
+				src.UpdateOverlays(null, "cap")
 			// Ice is implemented below; we just need sprites from whichever poor schmuck that'll be willing to do all that ridiculous sprite work
 			if (src.reagents.has_reagent("ice"))
 				ENSURE_IMAGE(src.image_ice, src.icon, "ice-[src.fluid_style]")
