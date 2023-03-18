@@ -1897,3 +1897,90 @@
 	name = "golden cocktail shaker"
 	desc = "A golden plated tumbler with a top, used to mix cocktails. Can hold up to 120 units. So rich! So opulent! So... tacky."
 	icon_state = "golden_cocktailshaker"
+
+/obj/item/cap
+	name = "bottle cap"
+	desc = "A small metal lid for a bottled refreshment. It's slightly bent from being pried off."
+	icon = 'icons/obj/foodNdrink/bottle.dmi'
+	icon_state = "bottlecap-red" //eventually i'll
+	var/cap_type = 1
+	w_class = W_CLASS_TINY
+	rand_pos = 1
+
+/obj/item/cap/cork
+	name = "cork"
+	desc = "A small cork for a wine bottle."
+	icon = 'icons/obj/foodNdrink/bottle.dmi'
+	icon_state = "cork"
+	cap_type = 2
+
+/obj/item/cap/screwtop
+	name = "bottle cap"
+	desc = "A screw-on cap for a bottle." //this can include bottle caps for sodas probably
+	icon = 'icons/obj/foodNdrink/bottle.dmi' //same as standard cap, will apply offsets to image overlay and just use the same
+	icon_state = "screwtop"
+	cap_type = 3
+
+/obj/item/cap/champcork
+	name = "champagne cork"
+	desc = "A distinctive cork for a champagne bottle."
+	icon = 'icons/obj/foodNdrink/bottle.dmi'
+	icon_state = "champcork"
+	cap_type = 4
+
+/obj/item/bottleopener
+	name = "bottle opener"
+	desc = "A basic bottle opener. Pops off caps and pierces cans."
+	icon = 'icons/obj/foodNdrink/bottle.dmi'
+	icon_state = "opener"
+	var/does_bottles = 1
+	var/does_wine = 0
+	var/does_cans = 1
+/obj/item/bottleopener/corkscrew
+	name = "corkscrew"
+	desc = "A really helpful bartender's tool! Opens capped bottles, pierces cans, and pulls wine corks."
+	icon = 'icons/obj/foodNdrink/bottle.dmi'
+	icon_state = "corkscrew"
+	does_wine = 1
+
+	get_desc(var/dist, var/mob/user)
+		if (user.mind?.assigned_role == "Bartender")
+			. = " Hope you don't lose it!"
+		else
+			. = " They probably won't miss it..."
+
+/obj/item/bottleopener/mounted
+	name = "mounted bottle opener"
+	desc = "One of those permanently mounted bottle openers. Handy for opening capped bottles, plus you'll never lose track of it!"
+	anchored = 1
+	icon = 'icons/obj/foodNdrink/bottle.dmi'
+	icon_state = "opener-mounted"
+	flags = NOSPLASH
+	does_wine = 0
+	does_cans = 0
+
+	attackby(obj/item/W as obj, mob/user as mob) //add clumsiness handling, crack open that cold one in a very literal way
+		if (istype(W, /obj/item/reagent_containers/food/drinks/bottle))
+			var/obj/item/reagent_containers/food/drinks/bottle/B = W //temporary handling until i get the other stuff cleanly written
+			//like i'm gonna go back to null instead of none but that's just because of some other label-style handling at the moment
+			if (!(B.cap == "none"))
+				B.cap = "none"
+				playsound(user, "sound/items/coindrop.ogg", 50, 1) //temporary
+				B.update_icon()
+				boutput(user, "You pop the top on [B], even though you could already drink from it somehow!")
+			else if (B.cap == "none")
+				boutput(user, "You realize [B] is already cracked open!") //temporary handling until i get the other stuff cleanly written
+				/* egh this goes back in after i have open container handling and etc.
+				user.visible_message("<b>[user]</b> cracks open a [B] with the [src].", "You crack open a [B] with the [src].")
+				var/obj/item/cap/C = new/obj/item/cap
+				if(B.cap)
+					C.icon_state = "cap-[B.cap]"
+				C.set_loc(src.loc) //leave it on the ground
+				//better yet, chance to send flying...
+				//or maybe integrate a trash can thing? whatev
+				playsound(user, "sound/items/coindrop.ogg", 50, 1) //temporary
+				B.update_icon()*/
+			else
+				boutput(user, "\The [src] can't open \the [B]!")
+		else //screwdriver to remove, etc. ?
+			return //no further action
