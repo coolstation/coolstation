@@ -1620,7 +1620,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/drinkingglass/icing, 3)
 		product_list += new/datum/data/vending_product(/obj/item/kitchen/chopsticks_package, 5)
 		product_list += new/datum/data/vending_product(/obj/item/plate/tray, 3)
-		product_list += new/datum/data/vending_product(/obj/surgery_tray/kitchen_island, 2)
+		product_list += new/datum/data/vending_product(/obj/table/kitchen_island, 2)
 		product_list += new/datum/data/vending_product(/obj/item/storage/lunchbox, 12)
 		product_list += new/datum/data/vending_product(/obj/item/ladle, 1)
 		product_list += new/datum/data/vending_product(/obj/item/soup_pot, 1)
