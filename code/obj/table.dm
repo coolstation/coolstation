@@ -425,7 +425,7 @@
 				playsound(src, "sound/misc/chair/office/scoot[rand(1,5)].ogg", 40, 1)
 
 			//if we're over the max amount a table can fit, have a chance to drop an item. Chance increases with items on tray
-			if (prob((src.contents.len-max_to_move)*1.1))
+			if (prob((length(src.attached_objs)-max_to_move)*1.1))
 				var/obj/item/falling = pick(src.attached_objs)
 				detach(falling)
 				// src.visible_message("[falling] falls off of [src]!")
