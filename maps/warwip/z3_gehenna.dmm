@@ -6606,8 +6606,11 @@
 /obj/table/auto{
 	color = "#666666"
 	},
-/obj/item/storage/toolbox/emergency,
 /obj/decal/cleanable/dirt/random,
+/obj/item/reagent_containers/glass/beaker/large/saline{
+	pixel_y = 10
+	},
+/obj/item/storage/toolbox/emergency,
 /turf/simulated/floor/white,
 /area/station/medical/medbooth)
 "dWD" = (
@@ -33329,6 +33332,10 @@
 	pixel_x = -7
 	},
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/item/reagent_containers/glass/beaker/large/epinephrine{
+	pixel_x = -11;
+	pixel_y = 11
+	},
 /turf/simulated/floor/white,
 /area/station/medical/medbooth)
 "tBQ" = (
