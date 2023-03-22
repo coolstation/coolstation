@@ -58,7 +58,7 @@ What are the archived variables for?
 	..()
 	total_gas_mixtures++
 
-
+/*
 /datum/gas_mixture/unpooled()
 	volume = initial(volume)
 	temperature = initial(temperature)
@@ -78,7 +78,7 @@ What are the archived variables for?
 #endif
 	#undef _UNPOOL_GAS
 	..()
-
+*/
 // Mutator procs
 // For specific events
 /datum/gas_mixture/proc/zero()
@@ -301,7 +301,7 @@ What are the archived variables for?
 			var/datum/gas/corresponding = src.get_or_add_trace_gas_by_type(trace_gas.type)
 			corresponding.moles += trace_gas.moles*giver.group_multiplier/group_multiplier
 
-	pool(giver)
+	qdel(giver)
 	return 1
 
 //Proportionally removes amount of gas from the gas_mixture
@@ -312,7 +312,7 @@ What are the archived variables for?
 	if(amount <= 0)
 		return null
 
-	var/datum/gas_mixture/removed = unpool(/datum/gas_mixture)
+	var/datum/gas_mixture/removed = new()
 
 	#define _REMOVE_GAS(GAS, ...) \
 		removed.GAS = min(QUANTIZE((GAS/sum)*amount), GAS); \
@@ -339,7 +339,7 @@ What are the archived variables for?
 
 	ratio = min(ratio, 1)
 
-	var/datum/gas_mixture/removed = unpool(/datum/gas_mixture)
+	var/datum/gas_mixture/removed = new()
 
 	#define _REMOVE_GAS_RATIO(GAS, ...) \
 		removed.GAS = min(QUANTIZE(GAS*ratio), GAS); \

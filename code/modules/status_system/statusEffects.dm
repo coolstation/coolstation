@@ -1525,13 +1525,13 @@
 			weighted_average = 0
 			#ifdef CREATE_PATHOGENS
 			if(!isdead(L))
-				var/datum/pathogen/P = unpool(/datum/pathogen)
+				var/datum/pathogen/P = new()
 				P.create_weak()
 				P.spread = 0
 				wrap_pathogen(L.reagents, P, 10)
 			#endif
 		if(probmult(puke_prob))
-			L.visible_message("<span class='alert'>[L] pukes all over \himself.</span>", "<span class='alert'>You puke all over yourself!</span>")
+			L.visible_message("<span class='alert'>[L] pukes all over [himself_or_herself(L)].</span>", "<span class='alert'>You puke all over yourself!</span>")
 			L.vomit()
 		return ..(timePassed)
 
@@ -1636,3 +1636,42 @@
 		if (!ismob(owner)) return
 		var/mob/M = owner
 		M.bioHolder.RemoveEffect(charge)
+
+///When a mob is currently swimming
+/datum/statusEffect/swimming
+	id = "swimming"
+	name = "Swimming"
+	desc = "You are swimming"
+
+	onAdd()
+		//No atom properties around these parts :V
+		var/mob/ffs = owner
+		animate_swim(owner)
+		APPLY_MOB_PROPERTY(ffs, PROP_ATOM_FLOATING, src) //footsteps and glass shards and conveyors
+		APPLY_MOB_PROPERTY(ffs, PROP_NO_MOVEMENT_PUFFS, src)
+		..()
+
+	onRemove()
+		var/mob/ffs = owner
+		animate(owner, pixel_y = 0)
+		REMOVE_MOB_PROPERTY(ffs, PROP_ATOM_FLOATING, src)
+		REMOVE_MOB_PROPERTY(ffs, PROP_NO_MOVEMENT_PUFFS, src)
+		var/turf/space/fluid/warp_z5/trenchhole = owner.loc
+		ON_COOLDOWN(owner,"re-swim", 0.5 SECONDS) //Small cooldown so the trench hole doesn't immediately put the mob on swimming again (they plummet instead :D)
+		var/end_z_cross = TRUE
+		if (ishuman(src)) //let jetpack fans go up and down
+			var/mob/living/carbon/human/H = src
+			if (H.back && H.back.c_flags & IS_JETPACK)
+				if (istype(H.back, /obj/item/tank/jetpack))
+					var/obj/item/tank/jetpack/J = H.back
+					if(J.allow_thrust(0.01, H))
+						end_z_cross = FALSE //jetpack can "take over"
+		if (end_z_cross) //Yes non humans always stop the z cross
+			actions.stopId("swimming", owner)
+		if (istype(trenchhole)) //Probably don't need to give a shit if they're in a closet or sub or something
+			trenchhole.Entered(owner)
+		..()
+
+	clicked(list/params)
+		owner.delStatus("swimming")
+		..()

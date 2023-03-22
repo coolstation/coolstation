@@ -20,6 +20,7 @@ TOILET
 	var/plumbed = 0
 	var/poops = 0
 	var/peeps = 0
+	var/cursed = 0
 
 /obj/item/storage/toilet/New()
 	..()
@@ -134,7 +135,7 @@ TOILET
 #endif
 		src.clogged = 0
 		if(plumbed && trunk)
-			var/obj/disposalholder/D = unpool(/obj/disposalholder)
+			var/obj/disposalholder/D = new()
 			D.init_sewer(src)
 			D.start(src) // not a disposaloutlet but lets see if that matters:)
 
@@ -214,3 +215,7 @@ TOILET
 	New()
 		..()
 		particleMaster.SpawnSystem(new /datum/particleSystem/sparkles(src))
+
+/obj/item/storage/toilet/proc/curse()
+	src.name = "cursed " + src.name
+	src.cursed = 1

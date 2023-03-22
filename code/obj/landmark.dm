@@ -175,7 +175,8 @@ var/global/list/job_start_locations = list()
 		"monkeyspawn_rathen" = /mob/living/carbon/human/npc/monkey/mr_rathen,
 		"monkeyspawn_mrmuggles" = /mob/living/carbon/human/npc/monkey/mr_muggles,
 		"monkeyspawn_mrsmuggles" = /mob/living/carbon/human/npc/monkey/mrs_muggles,
-		"monkeyspawn_syndicate" = /mob/living/carbon/human/npc/monkey/oppenheimer,
+		"monkeyspawn_syndicate" = /mob/living/carbon/human/npc/monkey/minty,
+		"monkeyspawn_foss" = /mob/living/carbon/human/npc/monkey/trovalds,
 		"monkeyspawn_horse" = /mob/living/carbon/human/npc/monkey/horse,
 		"monkeyspawn_krimpus" = /mob/living/carbon/human/npc/monkey/krimpus,
 		"monkeyspawn_tanhony" = /mob/living/carbon/human/npc/monkey/tanhony,
@@ -324,3 +325,6 @@ var/global/list/job_start_locations = list()
 		name = LANDMARK_SHUTTLE_DONUT3
 	destiny
 		name = LANDMARK_SHUTTLE_DESTINY
+
+/obj/landmark/drain_exit
+	name = LANDMARK_DRAIN_EXIT

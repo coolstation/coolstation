@@ -452,7 +452,7 @@ var/obj/manta_speed_lever/mantaLever = null
 
 	process()
 		if(broken == 1)
-			var/obj/sparks = unpool(/obj/effects/sparks/end)
+			var/obj/sparks = new /obj/effects/sparks/end()
 			sparks.set_loc(src.loc)
 			playsound(src.loc, "sparks", 100, 1)
 			var/area/TT = get_area(src)
@@ -1401,7 +1401,7 @@ var/obj/manta_speed_lever/mantaLever = null
 	icon_state = "green"
 	sound_group = "polaris"
 	teleport_blocked = 1
-	sound_loop = 'sound/ambience/loop/Polarisloop.ogg'
+	sound_loop_1 = 'sound/ambience/loop/Polarisloop.ogg'
 
 /area/wrecknsspolaris/vault
 	requires_power = 0
@@ -1565,7 +1565,7 @@ var/obj/manta_speed_lever/mantaLever = null
 	name = "NSS Manta Secret Vault"
 	icon_state = "red"
 	teleport_blocked = 1
-	sound_loop = "sound/ambience/loop/manta_vault.ogg"
+	sound_loop_1 = "sound/ambience/loop/manta_vault.ogg"
 	sound_group = "vault"
 
 /obj/trigger/mantasecrettrigger

@@ -135,6 +135,35 @@
 		setup_tape_type = /obj/item/disk/data/tape
 		setup_allow_boot = 1
 
+	tape_drive/warm
+		name = "Warm Backup Databank"
+		desc = "A networked tape drive for the backup mainframe."
+		setup_access_click = 1
+		setup_allow_boot = 1
+		net_number = 1 //if someone turns this on accidentally don't interfere with normal networking until it's working right and configured to 0
+	tape_drive/cold
+		name = "Cold Backup Databank"
+		desc = "A networked tape drive for the backup mainframe."
+		setup_access_click = 1
+		setup_allow_boot = 1
+		setup_spawn_with_tape = 0
+		net_number = 1 //see above
+	tape_drive/lab
+		name = "Databank"
+		desc = "A networked tape drive for lab use."
+		setup_access_click = 1
+		setup_allow_boot = 1
+		setup_spawn_with_tape = 0
+		net_number = 3 //nerdnet
+
+	tape_drive/syndie
+		name = "Liberated Databank"
+		desc = "A networked tape drive for software-freedom activities. Gallantly rescued from station 11."
+		setup_access_click = 1
+		setup_allow_boot = 1
+		setup_spawn_with_tape = 0
+		net_number = 2 //syndinet?
+
 	clone()
 		var/obj/machinery/networked/storage/clonestore = ..()
 		if (!clonestore)
@@ -1736,7 +1765,7 @@
 				return
 
 			user.drop_item()
-			pool(W)
+			qdel(W)
 			boutput(user, "You load the paper into [src].")
 			if(!src.sheets_remaining && !src.jam)
 				src.clear_alert()
@@ -1759,7 +1788,7 @@
 				boutput(user, "You load [W:amount] sheets into the tray.")
 				src.sheets_remaining += W:amount
 				user.drop_item()
-				pool(W)
+				qdel(W)
 
 			if(!src.jam)
 				src.clear_alert()
@@ -2049,7 +2078,7 @@
 					P.name = IMG.img_name
 					P.desc = IMG.img_desc*/
 				else
-					var/obj/item/paper/P = unpool(/obj/item/paper)
+					var/obj/item/paper/P = new()
 					P.set_loc(src.loc)
 
 
@@ -4720,7 +4749,8 @@
 	icon_state = "gsensor1"
 	name = "Gas Sensor"
 	desc = "A device that detects the composition of the air nearby."
-	plane = PLANE_FLOOR //They're supposed to be embedded in the floor.
+	layer = FLOOR_EQUIP_LAYER2
+	plane = PLANE_NOSHADOW_BELOW
 	density = 0
 	dragload = 0
 

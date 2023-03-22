@@ -392,7 +392,7 @@ obj/item/gnomechompski/elf
 			src.shotsLeft--
 			for(var/mob/O in AIviewers(user, null))
 				if (O.client)
-					O.show_message("<span class='alert'>[user] points the gun at \his head. Wonk!</span>", 1, "<span class='alert'>Wonk!</span>", 2)
+					O.show_message("<span class='alert'>[user] points the gun at [his_or_her(user)] head. Wonk!</span>", 1, "<span class='alert'>Wonk!</span>", 2)
 					playsound(user, "sound/vox/wonk.ogg", 70, 1)
 
 			return 0
@@ -1287,7 +1287,7 @@ var/list/owlery_sounds = list('sound/voice/animal/hoot.ogg','sound/ambience/owlz
 	name = "owl fuckery"
 	sound_group = "owl"
 	teleport_blocked = 1
-	sound_environment = 12
+	sound_environment = EAX_HALLWAY
 
 	New()
 		..()
@@ -1308,48 +1308,48 @@ var/list/owlery_sounds = list('sound/voice/animal/hoot.ogg','sound/ambience/owlz
 /area/owlery/Owlopen
 	name = "Owlery Arrivals"
 	icon_state = "green"
-	sound_loop = 'sound/ambience/owlzone/owlbanjo.ogg'
+	sound_loop_1 = 'sound/ambience/owlzone/owlbanjo.ogg'
 	sound_group = "owl_banjo"
 
 /area/owlery/owllock
 	name = "Owl Observatory Room"
 	icon_state = "yellow"
-	sound_loop = 'sound/ambience/owlzone/owlambi3.ogg'
+	sound_loop_1 = 'sound/ambience/owlzone/owlambi3.ogg'
 	sound_group = "owl_amb3"
 
 /area/owlery/owleryhall
 	name = "Owlery Hall Junction"
 	icon_state = "orange"
-	sound_loop = 'sound/ambience/owlzone/owlbanjo.ogg'
+	sound_loop_1 = 'sound/ambience/owlzone/owlbanjo.ogg'
 	sound_group = "owl_banjo"
 
 /area/owlery/gangzone
 	name = "Mad Owl Den"
 	icon_state = "purple"
-	sound_loop = 'sound/ambience/owlzone/owlambi2.ogg'
+	sound_loop_1 = 'sound/ambience/owlzone/owlambi2.ogg'
 	sound_group = "owl_amb2"
 
 /area/owlery/staffhall
 	name = "Staff Hall"
 	icon_state = "crewquarters"
-	sound_loop = 'sound/ambience/owlzone/owlbanjo.ogg'
+	sound_loop_1 = 'sound/ambience/owlzone/owlbanjo.ogg'
 	sound_group = "owl_banjo"
 
 /area/owlery/office
 	name = "Office Wing"
 	icon_state = "red"
-	sound_loop = 'sound/ambience/owlzone/owlbanjo.ogg'
+	sound_loop_1 = 'sound/ambience/owlzone/owlbanjo.ogg'
 	sound_group = "owl_banjo"
 
 /area/owlery/lab
 	name = "Perfectly Legal Laboratory"
 	icon_state = "blue"
-	sound_loop = 'sound/ambience/owlzone/owlambi5.ogg'
+	sound_loop_1 = 'sound/ambience/owlzone/owlambi5.ogg'
 
 /area/owlery/Owlmait
 	name = "Owl Maintenance"
 	icon_state = "dk_yellow"
-	sound_loop = 'sound/ambience/owlzone/owlbanjo.ogg'
+	sound_loop_1 = 'sound/ambience/owlzone/owlbanjo.ogg'
 	sound_group = "owl_banjo"
 
 /area/owlery/solars
@@ -1363,13 +1363,13 @@ var/list/owlery_sounds = list('sound/voice/animal/hoot.ogg','sound/ambience/owlz
 /area/owlery/Owlmait2
 	name = "River Loop Maintenance"
 	icon_state = "dk_yellow"
-	sound_loop = 'sound/ambience/owlzone/owlambi3.ogg'
+	sound_loop_1 = 'sound/ambience/owlzone/owlambi3.ogg'
 	sound_group = "owl_amb3"
 
 /area/syndicate/minerva5/command
 	name = "Administrator's Office"
 	icon_state = "red"
-	sound_loop = 'sound/ambience/station/JazzLounge1.ogg'
+	sound_loop_1 = 'sound/ambience/station/JazzLounge1.ogg'
 
 
 //Other fuckable things

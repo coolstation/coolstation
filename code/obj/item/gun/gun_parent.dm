@@ -489,9 +489,9 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 	var/dmg = user.get_brute_damage() + user.get_burn_damage()
 	src.shoot_point_blank(user, user)
 	var/new_dmg = user.get_brute_damage() + user.get_burn_damage()
-	if (new_dmg >= (dmg + 20)) // it did some appreciable amount of damage
+	if (new_dmg >= (dmg + 10)) // it did some appreciable amount of damage
 		user.TakeDamage("head", 500, 0)
-	else if (new_dmg < (dmg + 20))
+	else
 		user.visible_message("<span class='alert'>[user] hangs their head in shame because they chose such a weak gun.</span>")
 	return 1
 

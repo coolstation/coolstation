@@ -35,7 +35,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	var/tmp/timeDilationUpperBound = OVERLOADED_WORLD_TICKLAG
 	var/tmp/highMapCpuCount = 0 // how many times in a row has the map_cpu been high
 
-	var/list/lobby_music = list('sound/radio_station/lobby/opus_number_null.ogg','sound/radio_station/lobby/tv_girl.ogg','sound/radio_station/lobby/tane_lobby.ogg','sound/radio_station/lobby/muzak_lobby.ogg','sound/radio_station/lobby/say_you_will.ogg')
+	var/list/lobby_music = list('sound/radio_station/lobby/opus_number_null.ogg','sound/radio_station/lobby/tv_girl.ogg','sound/radio_station/lobby/tane_lobby.ogg','sound/radio_station/lobby/muzak_lobby.ogg','sound/radio_station/lobby/say_you_will.ogg','sound/radio_station/lobby/two_of_them.ogg')
 
 
 
@@ -772,6 +772,11 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					if (player_loses_held_item)
 						logTheThing("debug", null, null, "[player.ckey] lost held item")
 						player.client.set_last_purchase(0)
+						if(!player.mind.do_not_save_gun)
+							player.client.save_cloud_gun(0)
+					else
+						if(!player.mind.do_not_save_gun)
+							player.client.save_cloud_gun(1)
 
 					bank_earnings.pilot_bonus = pilot_bonus
 					bank_earnings.final_payout = earnings

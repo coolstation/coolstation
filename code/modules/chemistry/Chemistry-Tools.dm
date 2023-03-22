@@ -33,18 +33,18 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 		ensure_reagent_holder()
 		create_initial_reagents(new_initial_reagents)
 
-	pooled()
+	disposing()
 		if (src.reagents)
 			src.reagents.clear_reagents()
 		..()
-
+/*
 	unpooled()
 		if (src.reagents)
 			src.reagents.clear_reagents()
 		..()
 		setup_reagents(last_new_initial_reagents)
 
-
+*/
 	move_trigger(var/mob/M, kindof)
 		if (..() && reagents)
 			reagents.move_trigger(M, kindof)
@@ -322,7 +322,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 			boutput(user, "<span class='notice'>You rip up the [I] into tiny pieces and sprinkle it into [src].</span>")
 
 			I.reagents.trans_to(src, I.reagents.total_volume)
-			pool(I)
+			qdel(I)
 
 		else if (istype(I, /obj/item/reagent_containers/food/snacks/breadloaf))
 			if (src.reagents.total_volume >= src.reagents.maximum_volume)
@@ -330,6 +330,17 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 				return
 
 			boutput(user, "<span class='notice'>You shove the [I] into [src].</span>")
+
+			I.reagents.trans_to(src, I.reagents.total_volume)
+			user.u_equip(I)
+			qdel(I)
+
+		else if (istype(I, /obj/item/reagent_containers/food/snacks/ingredient/sugar))
+			if (src.reagents.total_volume >= src.reagents.maximum_volume)
+				boutput(user, "<span class='alert'>[src] is full.</span>")
+				return
+
+			boutput(user, "<span class='notice'>You pour the [I] into [src].</span>")
 
 			I.reagents.trans_to(src, I.reagents.total_volume)
 			user.u_equip(I)
@@ -409,7 +420,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 
 	proc/smash()
 		playsound(src.loc, pick('sound/impact_sounds/Glass_Shatter_1.ogg','sound/impact_sounds/Glass_Shatter_2.ogg','sound/impact_sounds/Glass_Shatter_3.ogg'), 100, 1)
-		var/obj/item/raw_material/shard/glass/G = unpool(/obj/item/raw_material/shard/glass)
+		var/obj/item/raw_material/shard/glass/G = new()
 		G.set_loc(src.loc)
 		var/turf/U = src.loc
 		src.reagents.reaction(U)

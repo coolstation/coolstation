@@ -25,10 +25,13 @@
 
 /turf/simulated/floor/airless/plating/catwalk
 	name = "catwalk support"
-	icon_state = "catwalk"
+	icon_state = "catwalk" //+ catwalk_cross for blue-grey, old catwalks available under catwalk_grey and catwalk_cross_grey
 	allows_vehicles = 1
 	step_material = "step_lattice"
 	step_priority = STEP_PRIORITY_MED
+
+/turf/simulated/floor/airless/plating/catwalk/grey
+	icon_state = "catwalk_grey"
 
 ////////////////////////////////////////////////////////////
 
@@ -372,8 +375,8 @@
 	mat_appearances_to_ignore = list("pharosium")
 
 	New()
-		..()
-		setMaterial(getMaterial("pharosium"))
+		plate_mat = getMaterial("pharosium")
+		. = ..()
 
 /turf/simulated/floor/airless/circuit/green
 	icon_state = "circuit-green"
@@ -417,12 +420,12 @@
 	name = "carpet"
 	icon = 'icons/turf/carpet.dmi'
 	icon_state = "red1"
-	mat_appearances_to_ignore = list("cloth")
+	mat_appearances_to_ignore = list("cotton")
 	mat_changename = 0
 
 	New()
-		..()
-		setMaterial(getMaterial("cloth"))
+		plate_mat = getMaterial("cotton")
+		. = ..()
 
 	break_tile()
 		..()
@@ -648,8 +651,8 @@
 	step_priority = STEP_PRIORITY_MED
 
 	New()
-		..()
-		setMaterial(getMaterial("wood"))
+		plate_mat = getMaterial("wood")
+		. = ..()
 
 /turf/simulated/floor/airless/wood/two
 	icon_state = "wooden"
@@ -811,8 +814,8 @@
 	mat_changedesc = 0
 
 	New()
-		..()
-		setMaterial(getMaterial("synthrubber"))
+		plate_mat = getMaterial("synthrubber")
+		. = ..()
 
 /turf/simulated/floor/airless/grass/leafy
 	icon_state = "grass_leafy"

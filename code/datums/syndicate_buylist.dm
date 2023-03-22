@@ -43,21 +43,35 @@ proc/build_syndi_buylist_cache()
 /datum/syndicate_buylist/generic/revolver
 	name = "Revolver"
 	item = /obj/item/storage/box/revolver
+	cost = 5
+	desc = "The traditional sidearm of an Italian Syndicate field agent. Holds a few rounds and comes with extra ammo."
+	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
+/datum/syndicate_buylist/generic/fossgun
+	name = "Open-Source Laser Gun"
+	item = /obj/item/storage/box/foss_gun_kit
 	cost = 6
-	desc = "The traditional sidearm of a Syndicate field agent. Holds 7 rounds and comes with extra ammo."
+	desc = "A FOSS-Licensed hand-cranked open-source laser gun, and a few flashbulbs to boot. Tricky!"
+	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
+/datum/syndicate_buylist/generic/fossbulb
+	name = "Open-Source Flashbulbs"
+	item = /obj/item/storage/box/foss_flashbulbs
+	cost = 2
+	desc = "FOSS-Licensed hand-crafted open-source flashbulbs, only works with Open-Source Laser Guns!"
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/generic/pistol
-	name = "Suppressed .22 Pistol"
+	name = "NT Pistol"
 	item = /obj/item/storage/box/pistol
 	cost = 3
-	desc = "A fairly weak yet sneaky pistol, it can still be heard but it won't alert anyone about who fired it."
+	desc = "A fairly basic single action pistol. Standard issue, so it won't attract attention."
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/generic/shotgun
 	name = "Shotgun"
 	item = /obj/item/storage/box/shotgun
-	cost = 8
+	cost = 6
 	desc = "Not exactly stealthy, but it'll certainly make an impression."
 	not_in_crates = 1
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
@@ -231,7 +245,7 @@ proc/build_syndi_buylist_cache()
 	item = /obj/item/clothing/head/bighat/syndicate
 	cost = 12
 	desc = "Think you're tough shit buddy?"
-	not_in_crates = 1 //see /datum/syndicate_buylist/surplus/bighat
+	not_in_crates = 1
 	blockedmode = list(/datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
 //////////////////////////////////////////////////// Standard items (traitor uplink) ///////////////////////////////////
@@ -257,11 +271,18 @@ proc/build_syndi_buylist_cache()
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/bomb
-	name = "Syndicates in Pipebomb"
+	name = "Small angry men in a bomb?"
 	item = /obj/item/pipebomb/bomb/miniature_syndicate
 	cost = 3
 	desc = "A rather volatile pipe bomb packed with miniature syndicate troops."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
+/datum/syndicate_buylist/traitor/bomb_real // the ol standby, standby me.
+	name = "Syndicate Pipebomb"
+	item = /obj/item/pipebomb/bomb/syndicate
+	cost = 4
+	desc = "Oh my god, JC a bomb!"
+	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/champrojector
 	name = "Chameleon Projector"
@@ -336,6 +357,13 @@ proc/build_syndi_buylist_cache()
 	vr_allowed = 0
 	desc = "Like the microbomb, but much more powerful. Macrobombs for macrofun!"
 	blockedmode = list(/datum/game_mode/revolution)
+
+/datum/syndicate_buylist/traitor/autohacker
+	name = "Autohacker Laptop"
+	item = /obj/item/device/hacking_laptop
+	cost = 2
+	desc = "A laptop configured to hack into and manipulate airlocks, for the operative without skill or tools to do so by hand. Just hold it near the airlock for a few moments, then open it up and get with messing! Folds up into an unsuspecting briefcase, but note that the gamer branding on the inside might attract unwanted attention."
+	blockedmode = list(/datum/game_mode/spy_theft) //Not really suited to the random rewards of spies, but crate fans can still get them IMO
 
 /datum/syndicate_buylist/traitor/lightbreaker
 	name = "Light Breaker"
@@ -582,14 +610,6 @@ This is basically useless for anyone but miners.
 	cost = 7
 	desc = "This old earth beauty is made by hand with strict attention to detail. Unlike today's competing botanical chainsaw, it actually cuts things!"
 	not_in_crates = 1
-	job = list("Botanist")
-	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
-
-/datum/syndicate_buylist/traitor/hotbox_lighter
-	name = "Hotbox Lighter"
-	item = /obj/item/device/light/zippo/syndicate
-	cost = 1
-	desc = "The unique fuel mixture gives this lighter a unique flame capable of creating a much denser smoke when burning piles of herbs compared to any normal lighter!"
 	job = list("Botanist")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
 

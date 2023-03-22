@@ -425,7 +425,7 @@
 			boutput(user, "<span class='notice'>You insert [W].</span>")
 			user.u_equip(W)
 			W.dropped()
-			pool( W )
+			qdel( W )
 			src.generate_HTML(1)
 			return
 		else
@@ -701,7 +701,7 @@
 		if (href_list["return_credits"])
 			SPAWN_DBG(src.vend_delay)
 				if (src.credit > 0)
-					var/obj/item/spacecash/returned = unpool(/obj/item/spacecash)
+					var/obj/item/spacecash/returned = new()
 					returned.setup(src.get_output_location(), src.credit)
 
 					usr.put_in_hand_or_eject(returned) // try to eject it into the users hand, if we can
@@ -1110,7 +1110,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/tvdinner, 10, cost=PAY_UNTRAINED/6)
 
 
-/obj/machinery/vending/cigarette
+/obj/machinery/vending/cigarette //eventually wanna make one of these specifically for medbay
 	name = "cigarette machine"
 	desc = "If you want to get cancer, might as well do it in style!"
 	pay = 1
@@ -1130,8 +1130,11 @@
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket, 20, cost=PAY_UNTRAINED/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/nicofree, 10, cost=PAY_UNTRAINED/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/menthol, 10, cost=PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(1,3), cost=PAY_UNTRAINED/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/propuffs, 10, cost=PAY_TRADESMAN/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo, 10, cost=PAY_TRADESMAN/5)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/brute, 5, cost=PAY_TRADESMAN/10)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/burn, 5, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/cigarbox, 1, cost=PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/patch/nicotine, 10, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/matchbook, 10, cost=PAY_UNTRAINED/20)
@@ -1270,10 +1273,12 @@
 		product_list += new/datum/data/vending_product(/obj/item/device/flash, 4)
 		product_list += new/datum/data/vending_product(/obj/item/clothing/head/helmet/hardhat/security, 4)
 		product_list += new/datum/data/vending_product(/obj/item/device/pda2/security, 2)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/a38/stun, 2)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/nine_mm_NATO, 2)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/three, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive_burst/three, 2)
 		product_list += new/datum/data/vending_product(/obj/item/implantcase/antirev, 3)
 		product_list += new/datum/data/vending_product(/obj/item/implanter, 1)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 3)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 2)
 #ifdef RP_MODE
 		product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/space_law, 1)
 #endif
@@ -1295,16 +1300,14 @@
 
 	create_products()
 		..()
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/abg, 6)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/a38, 2)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/a38/stun, 3)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/nine_mm_NATO,3)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/flare, 3)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/smoke, 3)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/pbr, 5)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/ten, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/ten, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/slug_rubber/ten, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/buckshot/three, 3)
 		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/tranq_darts, 3)
 		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/tranq_darts/anti_mutant, 3)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/a12/weak, 1, hidden=1) // this may be a bad idea, but it's only one box //Maybe don't put the delimbing version in here
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/zaubertube/three, 1, hidden=1) // this may be a bad idea, but it's only one box //Maybe don't put the delimbing version in here
+
 /obj/machinery/vending/cola
 	name = "soda machine"
 	pay = 1
@@ -1659,7 +1662,8 @@
 	icon_broken = "food-broken"
 	icon_fallen = "food-fallen"
 	req_access_txt = ""
-	acceptcard = 0
+	acceptcard = 1
+	pay = 1
 
 	light_r =1
 	light_g = 0.88
@@ -1667,26 +1671,42 @@
 
 	create_products()
 		..()
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet, 2)
-
+		/*
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/basic, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss/long, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss/punt, 2)
-		product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs/better, 2)
+*/
 		//above this line is for debug and testing only, they'll go in the bin later.
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian/bigger, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/arm_brace, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet/long, 2)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/zaubertube/ten, 10)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/ten, 10)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/ten, 10)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 2, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long, 2, cost = PAY_TRADESMAN*1.5)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 2, cost = PAY_TRADESMAN*1.5)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long/very, 2, cost = PAY_TRADESMAN*1.2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/short, 2, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/shotty, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 2, cost = PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/flashlight, 2, cost = PAY_UNTRAINED/4)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 2, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian/bigger, 2, cost = PAY_UNTRAINED*1.1)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/arm_brace, 2, cost = PAY_UNTRAINED/1.5)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/shoulder, 2, cost = PAY_UNTRAINED/1.5)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/fancy, 2, cost = PAY_UNTRAINED/2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/ceremonial, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/stub, 2, cost = PAY_UNTRAINED/2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet/long, 1, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet, 1, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/zaubertube/ten, 10, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/ten, 10, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/ten, 10, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 1, hidden=1, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/basic, 1, hidden=1, cost = PAY_UNTRAINED*2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 2, hidden=1, cost = PAY_UNTRAINED*2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2, hidden=1, cost = PAY_UNTRAINED*2)
 
 
 //The burden of these machinations weighs on my shoulders
@@ -2335,8 +2355,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/glass/bottle/powerplant, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/glass/bottle/fruitful, 5)
 		product_list += new/datum/data/vending_product(/obj/decorative_pot, 5)
-		product_list += new/datum/data/vending_product(/obj/chicken_nesting_box,3)
-		product_list += new/datum/data/vending_product(/obj/item/chicken_carrier, 2)
+		product_list += new/datum/data/vending_product(/obj/item/fishing_rod, 3)
 
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/glass/water_pipe, 1, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/seedplanter/hidden, 1, hidden=1)
@@ -2750,7 +2769,7 @@
 
 	New()
 		..()
-		gas_prototype = unpool(/datum/gas_mixture)
+		gas_prototype = new()
 
 	proc/fill_cost()
 		if(!holding) return 0

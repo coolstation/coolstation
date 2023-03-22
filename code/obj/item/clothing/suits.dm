@@ -649,7 +649,7 @@
 					return
 				else
 					for (var/i=3, i>0, i--)
-						var/obj/item/material_piece/cloth/cottonfabric/CF = unpool(/obj/item/material_piece/cloth/cottonfabric)
+						var/obj/item/material_piece/cloth/cottonfabric/CF = new()
 						CF.set_loc(get_turf(src))
 					boutput(user, "You rip up [src].")
 					user.u_equip(src)
@@ -1102,7 +1102,7 @@
 		item_state = "spacecap-red"
 
 /obj/item/clothing/suit/space/syndicate
-	name = "red space suit"
+	name = "FOSS space suit"
 	icon_state = "syndicate"
 	item_state = "space_suit_syndicate"
 	desc = "A suit that protects against low pressure environments. Issued to syndicate operatives."
@@ -1117,12 +1117,12 @@
 	commissar_greatcoat
 		name = "commander's great coat"
 		icon_state = "commissar_greatcoat"
-		desc = "A fear-inspiring, black-leather great coat, typically worn by a Syndicate Nuclear Operative Commander. So scary even the vacuum of space doesn't dare claim the wearer."
+		desc = "The kind of tacky trenchcoat you'd see down at the mall."
 
 		setupProperties()
 			..()
-			setProperty("exploprot", 40)
-			setProperty("meleeprot", 6)
+			setProperty("exploprot", 10)
+			setProperty("meleeprot", 1)
 			setProperty("rangedprot", 3)
 
 	knight // nukie melee class armor

@@ -1153,7 +1153,7 @@ var/global/noir = 0
 					alert("This secret can only be used on human mobs.")
 					return
 				var/mob/living/carbon/human/H = M
-				var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman", "Kudzuman","Ghostdrone","Flubber","Cow")
+				var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Fert","Ghostdrone","Flubber","Cow")
 				if (!which)
 					return
 				. = 0
@@ -1177,9 +1177,12 @@ var/global/noir = 0
 					if("Flashman")
 						H.set_mutantrace(/datum/mutantrace/flashy)
 						. = 1
-					if("Kudzuman")
-						H.set_mutantrace(/datum/mutantrace/kudzu)
+					if("Fert")
+						H.set_mutantrace(/datum/mutantrace/fert)
 						. = 1
+			/*		if("Kudzuman")
+						H.set_mutantrace(/datum/mutantrace/kudzu)
+						. = 1*/
 					if("Ghostdrone")
 						droneize(H, 0)
 					if("Flubber")
@@ -2364,7 +2367,7 @@ var/global/noir = 0
 							alert("This secret can only be used on human mobs.")
 							return
 						var/mob/living/carbon/human/H = who
-						var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cow")
+						var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cow","Fert")
 						if (!which)
 							return
 						switch(which)
@@ -2382,12 +2385,14 @@ var/global/noir = 0
 								H.set_mutantrace(/datum/mutantrace/flashy)
 							if ("Cow")
 								H.set_mutantrace(/datum/mutantrace/cow)
+							if ("Fert")
+								H.set_mutantrace(/datum/mutantrace/fert)
 						message_admins("<span class='internal'>[key_name(usr)] transformed [H.real_name] into a [which].</span>")
 						logTheThing("admin", usr, null, "transformed [H.real_name] into a [which].")
 						logTheThing("diary", usr, null, "transformed [H.real_name] into a [which].", "admin")
 
 					if("transform_all")
-						var/which = input("Transform everyone into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cow")
+						var/which = input("Transform everyone into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cow","Fert")
 						for(var/mob/living/carbon/human/H in mobs)
 							switch(which)
 								if("Monkey") H.monkeyize()
@@ -2404,6 +2409,8 @@ var/global/noir = 0
 									H.set_mutantrace(/datum/mutantrace/flashy)
 								if("Cow")
 									H.set_mutantrace(/datum/mutantrace/cow)
+								if ("Fert")
+									H.set_mutantrace(/datum/mutantrace/fert)
 							LAGCHECK(LAG_LOW)
 						message_admins("<span class='internal'>[key_name(usr)] transformed everyone into a [which].</span>")
 						logTheThing("admin", usr, null, "transformed everyone into a [which].")
@@ -4306,7 +4313,7 @@ var/global/noir = 0
 
 	dat += "</div>"
 
-	usr.Browse(dat, "window=gamepanel")
+	usr.Browse(dat, "window=gamepanel;size=500x750")
 	return
 
 /datum/admins/proc/restart()
@@ -5163,6 +5170,31 @@ var/global/noir = 0
 		src.mob.set_dir(direct)
 	else
 		..()
+
+		// this is the time knife gimmick thing i guess? divorced from the marvel shit now?
+proc/timeywimey(var/time)
+	var/list/positions = list()
+	for(var/client/C in clients)
+		if(istype(C.mob, /mob/living))
+			if(C.mob == usr)
+				continue
+			var/mob/living/L = C.mob
+			positions.Add(L)
+			positions[L] = L.loc
+
+//	var/current_time = world.timeofday
+//	while (current_time + 100 > world.timeofday && current_time <= world.timeofday)
+	sleep(time)
+
+	for(var/mob/living/L in positions)
+		if (!L) continue
+		L.flash(3 SECONDS)
+		boutput(L, "<span class='alert'><B>You suddenly feel yourself pulled violently back in time!</B></span>")
+		L.set_loc(positions[L])
+		L.changeStatus("stunned", 6 SECONDS)
+		elecflash(L,power = 2)
+		playsound(L.loc, "sound/effects/mag_warp.ogg", 25, 1, -1)
+	return 1
 
 /*
 /mob/living/carbon/proc/cloak()

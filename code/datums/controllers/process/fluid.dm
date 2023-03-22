@@ -36,7 +36,7 @@
 
 			if (FG.queued_drains)
 				FG.reagents.skip_next_update = 1
-				FG.drain(FG.last_drain.active_liquid ? FG.last_drain.active_liquid : pick(FG.members), FG.queued_drains) //420 drain it
+				FG.drain(FG.last_drain.active_liquid ? FG.last_drain.active_liquid : pick(FG.members), FG.queued_drains, pick_landmark(LANDMARK_DRAIN_EXIT)) //420 drain it
 				if(!FG)
 					continue
 				FG.queued_drains = 0

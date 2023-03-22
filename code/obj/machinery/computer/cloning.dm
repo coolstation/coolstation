@@ -128,7 +128,7 @@
 		cash.amount = 0
 		user.show_text("<span class='notice'>You add [cash] to the credit in [src].</span>")
 		user.u_equip(W)
-		pool(W)
+		qdel(W)
 	else if (istype(W, /obj/item/disk/data/floppy))
 		if (!src.diskette)
 			user.drop_item()
@@ -203,9 +203,9 @@
 	if (!subject.bioHolder || subject.bioHolder.HasEffect("husk"))
 		show_message("Error: Extreme genetic degredation present.", "danger")
 		return
-	if (istype(subject.mutantrace, /datum/mutantrace/kudzu))
+/*	if (istype(subject.mutantrace, /datum/mutantrace/kudzu))
 		show_message("Error: Incompatible cellular structure.", "danger")
-		return
+		return*/
 	if (istype(subject.mutantrace, /datum/mutantrace/zombie))
 		show_message("Error: Incompatible cellular structure.", "danger")
 		return

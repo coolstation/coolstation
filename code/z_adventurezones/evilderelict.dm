@@ -160,7 +160,7 @@ var/maniac_previous_victim = "Unknown"
 				SPAWN_DBG(5 SECONDS)
 					if(id == "evilreaverbridge")
 						playsound(src.loc, 'sound/machines/driveclick.ogg', 50, 1)
-						var/obj/item/paper/PA = unpool(/obj/item/paper)
+						var/obj/item/paper/PA = new()
 						PA.set_loc(src.loc)
 
 						PA.info = "<center>YOU DO NOT BELONG HERE<BR><font size=30>LEAVE NOW</font></center>" //rude!
@@ -177,7 +177,7 @@ var/maniac_previous_victim = "Unknown"
 	name = "Forgotten Station"
 	icon_state = "derelict"
 	teleport_blocked = 1
-	sound_loop = 'sound/ambience/spooky/Evilreaver_Ambience.ogg'
+	sound_loop_1 = 'sound/ambience/spooky/Evilreaver_Ambience.ogg'
 #ifdef MAP_OVERRIDE_OSHAN
 	requires_power = FALSE
 #endif

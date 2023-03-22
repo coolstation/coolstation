@@ -94,6 +94,7 @@
 	desc = "Twoooo!"
 	icon_state = "owl"
 	item_state = "owl"
+	c_flags = SAFE_FALL
 
 	equipped(var/mob/user)
 		..()
@@ -776,23 +777,23 @@
 			H.bioHolder.AddEffect("clumsy")
 			H.update_colorful_parts()
 
-/obj/item/clothing/under/gimmick/chav
+/obj/item/clothing/under/gimmick/brummie
 	name = "blue tracksuit"
 	desc = "Looks good on yew innit?"
-	icon_state = "chav1"
-	item_state = "chav1"
+	icon_state = "brummie1"
+	item_state = "brummie1"
 	New()
 		..()
 		desc = pick("Looks good on yew innit?", "Aww yeah that jackets sick m8")
 		if(prob(50))
 			name = "Burberry plaid jacket"
-			icon_state = "chav2"
+			icon_state = "brummie2"
 			item_state = "lb_suit"
 
-/obj/item/clothing/head/chav
+/obj/item/clothing/head/brummie
 	name = "burberry cap"
 	desc = "Sick flatbrims m8"
-	icon_state = "chavcap"
+	icon_state = "brummiecap"
 	item_state = "caphat"
 
 /obj/item/clothing/under/gimmick/safari

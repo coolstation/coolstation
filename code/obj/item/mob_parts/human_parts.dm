@@ -310,7 +310,7 @@
 		if(strangling == 1)
 			if(holder.losebreath < 5) holder.losebreath = 5
 			if(prob(20-rebelliousness))
-				holder.visible_message("<span class='alert'>[holder.name] stops trying to strangle themself.</span>", "<span class='alert'>You manage to pull your [src.name] away from your throat!</span>")
+				holder.visible_message("<span class='alert'>[holder.name] stops trying to strangle [himself_or_herself(holder)].</span>", "<span class='alert'>You manage to pull your [src.name] away from your throat!</span>")
 				strangling = 0
 				holder.losebreath -= 5
 			return
@@ -322,10 +322,10 @@
 			boutput(holder, "<span class='alert'>Your [src.name] moves by itself!</span>")
 			holder.emote("slap")
 		else if(prob(rebelliousness) && holder.get_eye_blurry() == 0) //Poke own eye
-			holder.visible_message("<span class='alert'>[holder.name] pokes themself in the eye with their [src.name].</span>", "<span class='alert'>Your [src.name] pokes you in the eye!</span>")
+			holder.visible_message("<span class='alert'>[holder.name] pokes [himself_or_herself(holder)] in the eye with [his_or_her(holder)] [src.name].</span>", "<span class='alert'>Your [src.name] pokes you in the eye!</span>")
 			holder.change_eye_blurry(10)
 		else if(prob(rebelliousness) && holder.losebreath == 0) //Strangle self
-			holder.visible_message("<span class='alert'>[holder.name] tries to strangle themself with their [src.name].</span>", "<span class='alert'>Your [src.name] tries to strangle you!</span>")
+			holder.visible_message("<span class='alert'>[holder.name] tries to strangle [himself_or_herself(holder)] with [his_or_her(holder)] [src.name].</span>", "<span class='alert'>Your [src.name] tries to strangle you!</span>")
 			holder.emote("gasp")
 			holder.losebreath = 5
 			strangling = 1
@@ -2114,6 +2114,57 @@
 /obj/item/parts/human_parts/leg/mutant/flashy/right
 	name = "psychedelic right leg"
 	desc = "A polychromatic right leg."
+	icon_state = "leg_right"
+	slot = "r_leg"
+	side = "right"
+	partlistPart = "foot_right"
+	step_image_state = "footprintsR"
+
+//// FERT LIMBS ////
+///// PARENT  /////
+
+/obj/item/parts/human_parts/arm/mutant/fert
+	icon = 'icons/mob/fert.dmi'
+	partIcon = 'icons/mob/fert.dmi'
+	skintoned = 1
+	limb_overlay_1_color = CUST_2
+
+/obj/item/parts/human_parts/leg/mutant/fert
+	icon = 'icons/mob/fert.dmi'
+	partIcon = 'icons/mob/fert.dmi'
+	skintoned = 1
+	limb_overlay_1_color = CUST_2
+
+//// LIMBS ////
+/obj/item/parts/human_parts/arm/mutant/fert/left
+	name = "left ferret arm"
+	desc = "A ferret's left arm. Dook!"
+	icon_state = "arm_left"
+	slot = "l_arm"
+	side = "left"
+	handlistPart = "hand_left"
+	/*custom non-skintone coloration per cet's request may need to be done by overlay, which is fine, just double it*/
+
+/obj/item/parts/human_parts/arm/mutant/fert/right
+	name = "right ferret arm"
+	desc = "A ferret's right arm. Dook?"
+	icon_state = "arm_right"
+	slot = "r_arm"
+	side = "right"
+	handlistPart = "hand_right"
+
+/obj/item/parts/human_parts/leg/mutant/fert/left
+	name = "left ferret leg"
+	desc = "A ferret's left leg. Looks normal."
+	icon_state = "leg_left"
+	slot = "l_leg"
+	side = "left"
+	partlistPart = "foot_left"
+	step_image_state = "footprintsL"
+
+/obj/item/parts/human_parts/leg/mutant/fert/right
+	name = "right ferret leg"
+	desc = "A ferret's right leg. Smells fine."
 	icon_state = "leg_right"
 	slot = "r_leg"
 	side = "right"

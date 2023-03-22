@@ -149,9 +149,9 @@
 
 
 /obj/machinery/power/data_terminal/cable_tray
-	name = "cable tray"
-	desc = "A connector that goes off into somewhere..." //TODO
-	color = "#F0F"
+	name = "cable conduit port"
+	desc = "A vertical powernet riser." //TODO
+	color = "#5CF"
 	var/id
 	var/target_z
 
@@ -168,6 +168,8 @@
 	if(target_z)
 		for(var/obj/machinery/power/data_terminal/cable_tray/tray in get_turf(locate(src.x,src.y,target_z)))
 			. |= tray
+			if(src.z > target_z)
+				new /obj/structure/girder/riser(src.loc) //gotta go up!
 			break
 	else if(id)
 		for_by_tcl(tray, /obj/machinery/power/data_terminal/cable_tray)

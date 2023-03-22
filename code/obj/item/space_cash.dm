@@ -42,7 +42,7 @@
 		var/default_amount = default_min_amount == default_max_amount ? default_min_amount : rand(default_min_amount, default_max_amount)
 		src.amount = max(amt,default_amount)
 		src.update_stack_appearance()
-
+/*
 	unpooled()
 		..()
 		var/default_amount = default_min_amount == default_max_amount ? default_min_amount : rand(default_min_amount, default_max_amount)
@@ -54,12 +54,14 @@
 			usr.u_equip(src) //wonder if that will work?
 		amount = 1
 		..()
-
+*/
 	update_stack_appearance()
 		src.UpdateName()
 		src.inventory_counter.update_number(src.amount)
 		switch (src.amount)
-			if (-INFINITY to 9)
+			if (-INFINITY to 0)
+				src.icon_state = "cashnone"
+			if (1 to 9)
 				src.icon_state = "cashgreen"
 			if (10 to 49)
 				src.icon_state = "cashblue"
@@ -89,7 +91,19 @@
 			if (istype(I, /obj/item/spacecash/buttcoin))
 				boutput(user, "Your transaction will complete anywhere within 10 to 10e27 minutes from now.")
 				return
-
+			if (src.amount == 0 || I.amount == 0) //nested these so it doesn't do the check on every stack
+				if (src.amount == 0 && I.amount == 0)
+					user.visible_message("<span class='notice'>[user] crams no money into no money and the non-cash is annihilated completely.</span>")
+					stack_item(I)
+					return
+				if (src.amount == 0)
+					user.visible_message("<span class='notice'>[user] stacks no money into some money, somehow.</span>")
+					stack_item(I)
+					return
+				if (I.amount == 0)
+					user.visible_message("<span class='notice'>[user] shuffles some money into no money, unbelievably.</span>")
+					stack_item(I)
+					return
 			user.visible_message("<span class='notice'>[user] stacks some cash.</span>")
 			stack_item(I)
 		else
@@ -103,7 +117,7 @@
 					boutput(user, "<span class='alert'>You wish!</span>")
 					return
 				change_stack_amount( 0 - amt )
-				var/obj/item/spacecash/young_money = unpool(/obj/item/spacecash)
+				var/obj/item/spacecash/young_money = new()
 				young_money.setup(user.loc, amt)
 				young_money.Attackhand(user)
 		else
@@ -111,6 +125,15 @@
 
 //	attack_self(mob/user as mob)
 //		user.visible_message("fart")
+
+/obj/item/spacecash/zero //thanks No Money Nio
+	name = "0 dollars"
+	desc = "hey wait, this isn't a credit. what the fuck is this actually?"
+	icon_state = "cashnone"
+
+	New()
+		..(amt=0)//this is only spawned as a gimmick and needs no logic
+		//src.amount = 0 //but will disappear when stacked no prob it's super fucked up
 
 /obj/item/spacecash/five
 	default_min_amount = 5
@@ -170,7 +193,7 @@
 	New()
 		..()
 		processing_items |= src
-
+/*
 	pooled()
 		processing_items -= src
 		..()
@@ -178,7 +201,7 @@
 	unpooled()
 		..()
 		processing_items |= src
-
+*/
 	update_stack_appearance()
 		return
 
@@ -229,7 +252,7 @@
 		icon_state = "moneybag"
 		item_state = "moneybag"
 		inhand_image_icon = 'icons/mob/inhand/hand_general.dmi'
-
+/*
 	unpooled()
 		..()
 		amount = rand(1,10000)
@@ -242,7 +265,7 @@
 
 	pooled()
 		..()
-
+*/
 
 
 /obj/item/spacebux // Not space cash. Actual spacebux. Wow.
@@ -287,7 +310,7 @@
 		tooltip_rebuild = 1
 		src.amount = amt
 		src.update_stack_appearance()
-
+/*
 	unpooled()
 		..()
 		src.amount = 0
@@ -300,7 +323,7 @@
 		src.amount = 0
 		src.spent = 0
 		..()
-
+*/
 	update_stack_appearance()
 		src.UpdateName()
 		src.inventory_counter?.update_number(amount)

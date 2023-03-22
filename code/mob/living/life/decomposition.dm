@@ -46,6 +46,14 @@
 		..()
 
 	proc/icky_icky_miasma(var/turf/T)
+		if(!T)
+			return
+		var/datum/gas_mixture/gas = new()
+		gas.farts = 1
+		gas.temperature = T20C
+		gas.volume = R_IDEAL_GAS_EQUATION * T20C / 1000
+		T.assume_air(gas)
+		/*
 		var/mob/living/carbon/human/H = owner
 		var/max_produce_miasma = H.decomp_stage * 20
 		if (T.active_airborne_liquid && prob(90)) //sometimes just add anyway lol
@@ -55,3 +63,4 @@
 
 		if (max_produce_miasma)
 			T.fluid_react_single("miasma", 3, airborne = 1)
+		*/

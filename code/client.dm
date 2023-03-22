@@ -47,6 +47,8 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 	var/non_admin_dj = 0
 
 	var/last_soundgroup = null
+	var/last_zvol = null
+	var/last_zloop = null
 
 	var/widescreen = 0
 	var/vert_split = 1
@@ -67,6 +69,8 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 	var/persistent_bank_valid = FALSE
 	var/persistent_bank = 0 //cross-round persistent cash value (is increased as a function of job paycheck + station score)
 	var/persistent_bank_item = 0 //Name of a bank item that may have persisted from a previous round. (Using name because I'm assuming saving a string is better than saving a whole datum)
+
+	var/obj/item/gun/modular/persistent_gun = null // :3
 
 	var/datum/reputations/reputations = null
 
@@ -291,7 +295,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 								<body>
 									<h1>You have been banned.</h1>
 									<span class='banreason'>Reason: [isbanned].</span><br>
-									If you believe you were unjustly banned, head to <a href=\"https://forum.ss13.co\">the forums</a> and post an appeal.
+									If you believe you were unjustly banned, head to <a href=\"https://forum.coolstation.space/viewforum.php?f=1">the forums</a> and post an appeal.
 								</body>
 							</html>
 						"}
@@ -766,6 +770,9 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 		if( failed )
 			logTheThing( "debug", src, null, "Failed to store persistent bank item in the ~cloud~: [failed]" )
 
+	persistent_gun = get_cloud_gun()
+	if( !persistent_gun && cloud_available() )
+		logTheThing( "debug", src, null, "persistent gun load failed but that's not necessarilly a bad thing." )
 
 //MBC TODO : PERSISTENTBANK_VERSION_MIN, MAX FOR BANKING SO WE CAN WIPE AWAY EVERYONE'S HARD WORK WITH A SINGLE LINE OF CODE CHANGE
 // defines are already set, just do the checks here ok
@@ -1324,14 +1331,14 @@ var/global/curr_day = null
 		H.hud.master = null
 		qdel(H.hud)
 		qdel(H.zone_sel)
-		qdel(H.stamina_bar)
+		//qdel(H.stamina_bar)
 
 		H.hud = new(H)
 		H.attach_hud(H.hud)
 		H.zone_sel = new(H)
 		H.attach_hud(H.zone_sel)
-		H.stamina_bar = new(H)
-		H.hud.add_object(H.stamina_bar, initial(H.stamina_bar.layer), "EAST-1, NORTH")
+		//H.stamina_bar = new(H)
+		//H.hud.add_object(H.stamina_bar, initial(H.stamina_bar.layer), "EAST-1, NORTH")
 		if(H.sims)
 			H.sims.add_hud()
 

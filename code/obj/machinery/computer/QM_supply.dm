@@ -100,7 +100,7 @@ var/global/datum/rockbox_globals/rockbox_globals = new /datum/rockbox_globals
 						if (7)
 							df = "an incredibly symptomatic"
 					D.desc = "It is [df] pathogen with a hazard rating of [rating]. We identify it to be a [ds] organism made up of [P.body_type.plural]. [P.suppressant.desc]"
-					var/datum/pathogen/copy = unpool(/datum/pathogen)
+					var/datum/pathogen/copy = new()
 					copy.setup(0, P, 0, null)
 					D.assoc_pathogen = copy
 					src.analysis_by_uid[uid] = D
@@ -364,7 +364,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 		<div style='float: right;'>
 			Market updates in <strong>99:99</strong>
 		</div>
-		Budget: <strong>XXXXXXXX</strong> Credits
+		Budget: <strong>XXXXXXXX</strong> Credits | Like, it's chill.
 		<div style='clear: both; text-align: center; font-weight: bold; padding: 0.2em;'>
 			Requests &middot;
 			Place Order &middot;
@@ -380,7 +380,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 		<div style='float: right;'>
 			Market updates in <strong>[timer ? timer : "...uh"]</strong>
 		</div>
-		Budget: <strong>[wagesystem.shipping_budget]</strong> Credits
+		Budget: <strong>[wagesystem.shipping_budget]</strong> Credits. | [shippingmarket.CSS_at_NTFC ? "All Clear" : "<span style='color:red;'>SHUTTLE NOT IN POSITION</span>"]
 		<div style='clear: both; text-align: center; font-weight: bold; padding: 0.2em;'>
 			<a href='[topicLink("requests")]'>Requests ([shippingmarket.supply_requests.len])</a> &bull;
 			<a href='[topicLink("order")]'>Place Order</a> &bull;

@@ -189,25 +189,22 @@
 				if (src.material)
 					A.setMaterial(src.material)
 				else
-					var/datum/material/M = getMaterial("steel")
-					A.setMaterial(M)
+					A.setMaterial(getMaterial("steel"))
 
 				if (prob(50))
-					var/atom/movable/B = unpool(/obj/item/raw_material/scrap_metal)
+					var/atom/movable/B = new /obj/item/raw_material/scrap_metal()
 					B.set_loc(src)
 					if (src.material)
 						B.setMaterial(src.material)
 					else
-						var/datum/material/M = getMaterial("steel")
-						B.setMaterial(M)
+						B.setMaterial(getMaterial("steel"))
 
 			else if( prob(50))
 				var/atom/A = new /obj/structure/girder(src)
 				if (src.material)
 					A.setMaterial(src.material)
 				else
-					var/datum/material/M = getMaterial("steel")
-					A.setMaterial(M)
+					A.setMaterial(getMaterial("steel"))
 
 	else
 		if (!devastated)
@@ -230,8 +227,7 @@
 				if (src.material)
 					A.setMaterial(src.material)
 				else
-					var/datum/material/M = getMaterial("steel")
-					A.setMaterial(M)
+					A.setMaterial(getMaterial("steel"))
 
 			else if (prob(50))
 				var/atom/B = new /obj/structure/girder(src)
@@ -239,24 +235,21 @@
 				if (src.material)
 					B.setMaterial(src.material)
 				else
-					var/datum/material/M = getMaterial("steel")
-					B.setMaterial(M)
+					B.setMaterial(getMaterial("steel"))
 
 				if (prob(50))
-					var/atom/movable/C = unpool(/obj/item/raw_material/scrap_metal)
+					var/atom/movable/C = new /obj/item/raw_material/scrap_metal()
 					C.set_loc(src)
 					if (src.material)
 						C.setMaterial(src.material)
 					else
-						var/datum/material/M = getMaterial("steel")
-						C.setMaterial(M)
+						C.setMaterial(getMaterial("steel"))
 
 	var/atom/D = ReplaceWithFloor()
 	if (src.material && keep_material)
 		D.setMaterial(src.material)
 	else
-		var/datum/material/M = getMaterial("steel")
-		D.setMaterial(M)
+		D.setMaterial(getMaterial("steel"))
 
 /turf/simulated/wall/burn_down()
 	src.ReplaceWithFloor()
@@ -356,6 +349,9 @@
 		if  (!grab_smash(G, user))
 			return ..(W, user)
 		else return
+
+	else if (istype(W, /obj/item/rcd))
+		return //STFU with your "uselessly hits wall" messages ffs
 
 	else
 		if(src.material)
@@ -535,8 +531,7 @@
 			if(S.material)
 				src.setMaterial(S.material)
 			else
-				var/datum/material/M = getMaterial("steel")
-				src.setMaterial(M)
+				src.setMaterial(getMaterial("steel"))
 			boutput(user, "<span class='notice'>You repaired the wall.</span>")
 
 //grabsmash
@@ -545,6 +540,9 @@
 		if  (!grab_smash(G, user))
 			return ..(W, user)
 		else return
+
+	else if (istype(W, /obj/item/rcd))
+		return //STFU with your "uselessly hits wall" messages ffs
 
 	if(istype(src, /turf/simulated/wall/r_wall) && src.d_state > 0)
 		src.icon_state = "r_wall-[d_state]"

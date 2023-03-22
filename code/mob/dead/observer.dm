@@ -14,6 +14,7 @@
 	var/observe_round = 0
 	var/health_shown = 0
 	var/arrest_shown = 0
+	var/ceiling_shown = 0
 	var/delete_on_logout = 1
 	var/delete_on_logout_reset = 1
 	var/obj/item/clothing/head/wig/wig = null
@@ -408,6 +409,18 @@
 		get_image_group(CLIENT_IMAGE_GROUP_HEALTH_MON_ICONS).remove_mob(src)
 		boutput(src, "Health status toggled off.")
 
+/mob/dead/observer/verb/show_ceiling()
+	set category = "Ghost"
+	set name = "Toggle Ceiling Objects"
+	if (!ceiling_shown)
+		ceiling_shown = 1
+		get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_mob(src)
+		boutput(src, "Ceiling objects toggled on.")
+	else
+		ceiling_shown = 0
+		get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_mob(src)
+		boutput(src, "Ceiling objects toggled off.")
+
 /mob/dead/observer/verb/show_arrest()
 	set category = "Ghost"
 	set name = "Toggle Arrest Status"
@@ -447,6 +460,9 @@
 		if(arrest_shown)
 			arrest_shown = 0
 			get_image_group(CLIENT_IMAGE_GROUP_ARREST_ICONS).remove_mob(src)
+		if(ceiling_shown)
+			ceiling_shown = 0
+			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_mob(src)
 
 
 	if(!src.key && delete_on_logout)
@@ -797,14 +813,15 @@
 	insert_observer(creatures[eye_name])
 
 mob/dead/observer/proc/insert_observer(var/atom/target)
-	var/mob/dead/target_observer/newobs = unpool(/mob/dead/target_observer)
+	var/mob/dead/target_observer/newobs = new()
 	newobs.attach_hud(hud)
 	newobs.set_observe_target(target)
 	newobs.name = src.name
-	if(corpse.acid_name == null)
-		src.real_name = corpse.real_name
-	else
-		src.real_name = corpse.acid_name
+	if (src.corpse)
+		if(!corpse.acid_name)
+			src.real_name = corpse.real_name
+		else
+			src.real_name = corpse.acid_name
 	newobs.my_ghost = src
 	delete_on_logout_reset = delete_on_logout
 	delete_on_logout = 0

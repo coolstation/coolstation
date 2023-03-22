@@ -7,6 +7,7 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 	"Surprised" = "ai_surprised",\
 	"Sad" = "ai_sad",\
 	"Mad" = "ai_mad",\
+	"Sassy" = "ai_sassy",\
 	"BSOD" = "ai_bsod",\
 	"Text" = "ai_text",\
 	"Blank" = "ai_blank",\
@@ -2035,8 +2036,13 @@ proc/is_mob_trackable_by_AI(var/mob/M)
 		return 0
 	if (ishuman(M) && (istype(M:wear_id, /obj/item/card/id/syndicate) || (istype(M:wear_id, /obj/item/device/pda2) && M:wear_id:ID_card && istype(M:wear_id:ID_card, /obj/item/card/id/syndicate))))
 		return 0
-	if(M.z != 1 && M.z != usr.z)
+#ifdef Z3_IS_A_STATION_LEVEL
+	if((M.z != Z_LEVEL_STATION && M.z != Z_LEVEL_DEBRIS) && M.z != usr.z)
 		return 0
+#else
+	if(M.z != Z_LEVEL_STATION && M.z != usr.z)
+		return 0
+#endif
 	if(!istype(M.loc, /turf)) //in a closet or something, AI can't see him anyways
 		return 0
 	if(M.invisibility) //cloaked
@@ -2066,8 +2072,13 @@ proc/get_mobs_trackable_by_AI()
 			continue
 		if (istype(M,/mob/living/critter/aquatic) || istype(M, /mob/living/critter/small_animal/chicken))
 			continue
-		if(M.z != 1 && M.z != usr.z)
+	#ifdef Z3_IS_A_STATION_LEVEL
+		if((M.z != Z_LEVEL_STATION && M.z != Z_LEVEL_DEBRIS) && M.z != usr.z)
 			continue
+	#else
+		if(M.z != Z_LEVEL_STATION && M.z != usr.z)
+			continue
+	#endif
 		if(!istype(M.loc, /turf)) //in a closet or something, AI can't see him anyways
 			continue
 		if(M.invisibility) //cloaked

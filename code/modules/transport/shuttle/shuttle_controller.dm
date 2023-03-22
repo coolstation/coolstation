@@ -13,7 +13,7 @@ datum/shuttle_controller
 	var/list/airbridges = list()
 	var/map_turf = /turf/space //Set in New() by map settings
 	var/transit_turf = /turf/space/no_replace //Not currently modified
-	var/centcom_turf = /turf/unsimulated/outdoors/grass //Not currently modified
+	var/centcom_turf = /turf/unsimulated/outdoors/grass //modified in New() by global var
 
 
 	// call the shuttle
@@ -76,6 +76,8 @@ datum/shuttle_controller
 				if (S.emergency && !(S in src.airbridges))
 					src.airbridges += S
 			map_turf = map_settings.shuttle_map_turf
+			if(!channel_open)
+				centcom_turf = /turf/space
 
 		process()
 			if (!online)
@@ -182,8 +184,12 @@ datum/shuttle_controller
 						var/display_time = round(timeleft()/60)
 						//if (display_time <= 0) // The Emergency Shuttle will be entering the wormhole to CentCom in 0 minutes!
 							//display_time = 1 // fuckofffffffffff
-						boutput(world, "<B>The Emergency Shuttle will be entering the wormhole to CentCom in [display_time] minute[s_es(display_time)]! Please prepare for wormhole traversal.</B>")
+						if(channel_open)
+							boutput(world, "<B>The Emergency Shuttle will be entering the wormhole to CentCom in [display_time] minute[s_es(display_time)]! Please prepare for wormhole traversal.</B>")
+						else
+							boutput(world, "<B>The Emergency Shuttle will be departing for CentCom in [display_time] minute[s_es(display_time)]. Please ensure all personnel have boarded the shuttle.</B>")
 						announcement_done = 1
+
 
 					else if (announcement_done < 2 && timeleft < 30)
 						var/area/sound_location = locate(/area/shuttle_sound_spawn)
@@ -260,9 +266,9 @@ datum/shuttle_controller
 										if (!bonus_stun)
 											M.show_text("You are thrown about as the shuttle launches due to not being securely buckled in!", "red")
 
-						var/area/shuttle_particle_spawn/particle_spawn = locate(/area/shuttle_particle_spawn) in world
-						if (particle_spawn)
-							particle_spawn.start_particles()
+						for(var/area/shuttle_particle_spawn/particle_spawn /*= locate(/area/shuttle_particle_spawn) */in world)
+							if (particle_spawn)
+								particle_spawn.start_particles()
 
 						var/escape_def = map_settings ? map_settings.escape_def : SHUTTLE_NODEF
 						for (var/turf/T in landmarks[LANDMARK_ESCAPE_POD_SUCCESS])

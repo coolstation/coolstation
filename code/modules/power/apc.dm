@@ -158,7 +158,7 @@ var/zapLimiter = 0
 		cell.maxcharge = cell_type	// cell_type is maximum charge (old default was 1000 or 2500 (values one and two respectively)
 		cell.charge = start_charge * cell.maxcharge / 100.0 		// (convert percentage to actual value)
 
-	if (!isnull(src.areastring) && !isnull(get_area_name(src.areastring)))
+	if (!isnull(src.areastring) && !isnull(get_area_name(src.areastring))) //Old-style maint APCs: manually edited areastring (which sucks to do)
 		src.area = get_area_name(src.areastring)
 		src.name = "[src.areastring] APC"
 	else
@@ -167,6 +167,25 @@ var/zapLimiter = 0
 		// 2015 addendum: The fixed name checks are kept for backward compatibility, I'm not gonna manually replace every APC of each of the six maps we have right now.
 		if (src.autoname_on_spawn == 1 || (name == "N APC" || name == "E APC" || name == "S APC" || name == "W APC"))
 			src.name = "[area.name] APC"
+
+		//New-style maint APCs: do the single-tile mapping trick folks used to do, but then have the APC merge it with nearby maint area so it's all maint by roundstart
+		if (istype(area, /area/station) && world.game_state < GAME_STATE_PREGAME) //don't want folks changing areas after setup, nor fuck up azones somehow
+			var/turf/ourturf = get_turf(src)
+			var/turf/testturf
+
+			for (var/direction in cardinal)
+				testturf = get_step(ourturf, direction)
+				if (!istype(testturf, /turf/simulated/floor)) //In case we're in-room but the adjacent wall happens to be maint-owned
+					continue //If we are actually located in maint there should be a maint floor adjactent to us, unless you've mapped a 1 tile wide dead end lined with APCs I guess :p
+				if ((locate(/obj/window) in testturf) || locate(/obj/wingrille_spawn) in testturf)//fuck u destiny
+					continue
+				var/area/testarea = get_area(testturf)
+				if (istype(testarea, /area/station/maintenance))
+					src.areastring = src.area.name //avoids tripping APC count diagnostic
+					testarea.contents += ourturf
+					break
+
+
 	if (!QDELETED(src.area))
 		src.area.area_apc = src
 

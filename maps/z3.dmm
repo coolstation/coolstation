@@ -2115,40 +2115,14 @@
 /turf/simulated/floor,
 /area/radiostation/bedroom)
 "agp" = (
-/turf/space,
-/turf/simulated/shuttle/wall{
-	dir = 9;
-	icon_state = "wall3"
-	},
-/area/mining/dock)
-"agq" = (
-/turf/simulated/shuttle/wall{
-	dir = 4;
-	icon_state = "wall3dir"
-	},
-/area/mining/dock)
-"agr" = (
-/turf/simulated/shuttle/wall{
-	dir = 5;
-	icon_state = "wall3dir"
-	},
-/area/mining/dock)
-"ags" = (
-/obj/decal/fakeobjects/shuttleengine{
+/obj/machinery/computer/transit_terminal/mining{
 	dir = 4
 	},
-/turf/simulated/shuttle/wall{
-	dir = 8;
-	icon_state = "wall3dir"
-	},
+/turf/simulated/floor/grime,
 /area/mining/dock)
-"agt" = (
-/turf/space,
-/turf/simulated/shuttle/wall{
-	dir = 6;
-	icon_state = "diagonalWall3"
-	},
-/area/mining/dock)
+"agq" = (
+/turf/simulated/wall/auto/reinforced/supernorn,
+/area/mining/mainasteroid)
 "agu" = (
 /obj/machinery/door/airlock{
 	name = "Maint Crew Quarters"
@@ -2160,32 +2134,6 @@
 	},
 /turf/simulated/floor,
 /area/mining/miningoutpost)
-"agv" = (
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/turf/simulated/shuttle/wall{
-	dir = 6;
-	icon_state = "wall3"
-	},
-/area/mining/dock)
-"agw" = (
-/obj/machinery/light{
-	dir = 1;
-	pixel_x = -1
-	},
-/obj/table/auto,
-/obj/item/spacecash/ten,
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/mining/dock)
-"agx" = (
-/obj/storage/closet/emergency,
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/mining/dock)
 "agy" = (
 /obj/item/clothing/mask/breath,
 /turf/space,
@@ -2296,47 +2244,6 @@
 /obj/item/clothing/suit/labcoat/genetics,
 /turf/unsimulated/floor/setpieces/hivefloor,
 /area/space_hive)
-"agO" = (
-/obj/table/auto,
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/mining/dock)
-"agP" = (
-/obj/storage/crate,
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/mining/dock)
-"agQ" = (
-/obj/machinery/light{
-	dir = 1;
-	pixel_x = -1
-	},
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/mining/dock)
-"agR" = (
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/turf/simulated/shuttle/wall{
-	dir = 10;
-	icon_state = "diagonalWall3"
-	},
-/area/mining/dock)
-"agS" = (
-/turf/simulated/shuttle/wall{
-	dir = 4;
-	icon_state = "wall3"
-	},
-/area/mining/dock)
-"agT" = (
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/mining/dock)
 "agU" = (
 /obj/machinery/door/unpowered/wood/pyro{
 	name = "Quarters"
@@ -2416,24 +2323,10 @@
 /obj/storage/closet/wardrobe/yellow,
 /turf/simulated/floor/black,
 /area/mining/quarters)
-"ahj" = (
-/obj/machinery/door/airlock/external,
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/mining/dock)
 "ahk" = (
 /obj/machinery/door/unpowered/wood/stall,
 /turf/simulated/floor/black,
 /area/mining/quarters)
-"ahl" = (
-/obj/stool/chair{
-	dir = 4
-	},
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/mining/dock)
 "ahm" = (
 /turf/simulated/wall/r_wall{
 	icon = 'icons/misc/evilreaverstation.dmi';
@@ -2574,40 +2467,6 @@
 	},
 /turf/simulated/floor/grime,
 /area/mining/dock)
-"ahG" = (
-/obj/rack,
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/mining/dock)
-"ahH" = (
-/obj/item/rods/steel,
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/mining/dock)
-"ahI" = (
-/obj/rack,
-/obj/item/tank/air,
-/obj/item/tank/air,
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/mining/dock)
-"ahJ" = (
-/obj/rack,
-/obj/item/satchel/mining/large,
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/mining/dock)
-"ahK" = (
-/turf/space,
-/turf/simulated/shuttle/wall{
-	dir = 10;
-	icon_state = "diagonalWall3"
-	},
-/area/mining/dock)
 "ahL" = (
 /obj/cable{
 	icon_state = "1-4"
@@ -2714,44 +2573,6 @@
 	},
 /turf/simulated/floor/grime,
 /area/mining/magnet_control)
-"ahY" = (
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/turf/simulated/shuttle/wall{
-	dir = 6;
-	icon_state = "diagonalWall3"
-	},
-/area/mining/dock)
-"ahZ" = (
-/obj/machinery/light,
-/obj/rack,
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/mining/dock)
-"aia" = (
-/obj/machinery/light,
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/mining/dock)
-"aib" = (
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/turf/simulated/shuttle/wall{
-	dir = 9;
-	icon_state = "wall3"
-	},
-/area/mining/dock)
-"aic" = (
-/turf/space,
-/turf/simulated/shuttle/wall{
-	dir = 6;
-	icon_state = "wall3"
-	},
-/area/mining/dock)
 "aid" = (
 /obj/machinery/door/airlock/external,
 /turf/simulated/floor/delivery,
@@ -2882,12 +2703,8 @@
 /turf/simulated/floor/plating,
 /area/mining/manufacturing)
 "ait" = (
-/obj/table/auto,
-/obj/item/reagent_containers/food/snacks/biscuit,
-/turf/simulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/mining/dock)
+/turf/space,
+/area/shuttle/mining/outpost)
 "aiu" = (
 /obj/table/auto,
 /obj/cable{
@@ -3223,7 +3040,7 @@
 /area/space)
 "ajr" = (
 /obj/decal/cleanable/fungus,
-/turf/simulated/wall/auto/supernorn,
+/turf/simulated/floor/grime,
 /area/mining/dock)
 "ajs" = (
 /obj/disposalpipe/segment/transport{
@@ -3911,6 +3728,7 @@
 /turf/simulated/floor/airless/damaged2,
 /area/space)
 "alo" = (
+/obj/machinery/door/airlock/external,
 /turf/simulated/floor/caution/west,
 /area/mining/dock)
 "alp" = (
@@ -4231,16 +4049,6 @@
 	},
 /turf/simulated/floor/grime,
 /area/mining/power)
-"amb" = (
-/obj/decal/fakeobjects/shuttlethruster{
-	dir = 8
-	},
-/turf/space,
-/turf/simulated/shuttle/wall{
-	dir = 6;
-	icon_state = "diagonalWall3"
-	},
-/area/mining/dock)
 "amc" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -4780,15 +4588,9 @@
 /turf/simulated/floor/caution/east,
 /area/mining/miningoutpost)
 "anp" = (
-/obj/decal/fakeobjects/shuttlethruster{
-	dir = 8
-	},
 /turf/space,
-/turf/simulated/shuttle/wall{
-	dir = 6;
-	icon_state = "wall3"
-	},
-/area/mining/dock)
+/turf/space,
+/area/shuttle/mining/outpost)
 "anq" = (
 /obj/cable{
 	d1 = 4;
@@ -6671,7 +6473,7 @@
 	dir = 8
 	},
 /obj/submachine/chem_extractor,
-/turf/simulated/floor/plating/damaged1,
+/turf/simulated/floor/plating,
 /area/salyut)
 "arU" = (
 /obj/machinery/power/data_terminal,
@@ -6751,12 +6553,12 @@
 	},
 /obj/item/device/reagentscanner,
 /obj/item/storage/pill_bottle/cyberpunk,
-/turf/simulated/floor/plating/damaged1,
+/turf/simulated/floor/plating,
 /area/salyut)
 "asb" = (
 /obj/item/raw_material/shard/glass,
 /obj/item/reagent_containers/dropper/mechanical,
-/turf/simulated/floor/plating/damaged1,
+/turf/simulated/floor/plating,
 /area/salyut)
 "asc" = (
 /obj/computerframe{
@@ -6766,7 +6568,7 @@
 	name = "smashed computer"
 	},
 /obj/map/light/white,
-/turf/simulated/floor/plating/damaged1,
+/turf/simulated/floor/plating,
 /area/salyut)
 "asd" = (
 /obj/rack,
@@ -6800,7 +6602,7 @@
 /area/space)
 "asg" = (
 /obj/decal/cleanable/machine_debris,
-/turf/simulated/floor/plating/damaged1,
+/turf/simulated/floor/plating,
 /area/salyut)
 "ash" = (
 /turf/simulated/floor/plating/damaged3,
@@ -6812,7 +6614,7 @@
 	})
 "asj" = (
 /obj/item/raw_material/shard/glass,
-/turf/simulated/floor/plating/damaged1,
+/turf/simulated/floor/plating,
 /area/salyut)
 "ask" = (
 /obj/cable{
@@ -6822,9 +6624,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/spyshack)
-"asl" = (
-/turf/simulated/floor/plating/damaged1,
-/area/salyut)
 "asm" = (
 /obj/cable{
 	d1 = 1;
@@ -6873,7 +6672,7 @@
 /area/buddyfactory)
 "asr" = (
 /obj/decal/cleanable/dirt,
-/turf/simulated/floor/plating/damaged1,
+/turf/simulated/floor/plating,
 /area/salyut)
 "ass" = (
 /obj/item/cable_coil/cut{
@@ -6882,7 +6681,7 @@
 /obj/decal/cleanable/machine_debris{
 	icon_state = "gib7"
 	},
-/turf/simulated/floor/plating/damaged1,
+/turf/simulated/floor/plating,
 /area/salyut)
 "ast" = (
 /obj/lattice,
@@ -6893,12 +6692,6 @@
 	},
 /turf/space,
 /area/space)
-"asu" = (
-/obj/machinery/door/unpowered/shuttle{
-	autoclose = 1
-	},
-/turf/simulated/floor/plating/damaged1,
-/area/salyut)
 "asv" = (
 /obj/machinery/launcher_loader/east,
 /turf/simulated/floor/plating,
@@ -6959,7 +6752,8 @@
 	dir = 4
 	},
 /obj/storage/secure/closet/research/chemical,
-/turf/simulated/floor/plating/damaged1,
+/obj/item/gun/modular/soviet/basic,
+/turf/simulated/floor/plating,
 /area/salyut)
 "asE" = (
 /obj/machinery/power/data_terminal,
@@ -7074,7 +6868,7 @@
 /obj/decal/fakeobjects/pipe{
 	dir = 4
 	},
-/turf/simulated/floor/plating/damaged1,
+/turf/simulated/floor/plating,
 /area/salyut)
 "asQ" = (
 /obj/decal/fakeobjects/pipe{
@@ -7090,7 +6884,7 @@
 /obj/decal/cleanable/machine_debris,
 /obj/decal/cleanable/oil,
 /obj/machinery/chem_master,
-/turf/simulated/floor/plating/damaged1,
+/turf/simulated/floor/plating,
 /area/salyut)
 "asS" = (
 /obj/lattice{
@@ -7107,7 +6901,7 @@
 /obj/item/cable_coil/cut{
 	icon_state = "coil1"
 	},
-/turf/simulated/floor/plating/damaged1,
+/turf/simulated/floor/plating,
 /area/salyut)
 "asU" = (
 /obj/decal/cleanable/oil/streak,
@@ -7161,7 +6955,7 @@
 /obj/decal/cleanable/machine_debris{
 	icon_state = "gib7"
 	},
-/turf/simulated/floor/plating/damaged1,
+/turf/simulated/floor/plating,
 /area/salyut)
 "atc" = (
 /turf/simulated/floor/grime,
@@ -7244,13 +7038,9 @@
 	},
 /turf/simulated/floor/plating/airless,
 /area/space)
-"atm" = (
-/obj/structure/girder/displaced,
-/turf/simulated/floor/plating/damaged1,
-/area/salyut)
 "atn" = (
 /obj/decal/cleanable/oil,
-/turf/simulated/floor/plating/damaged1,
+/turf/simulated/shuttle/wall,
 /area/salyut)
 "ato" = (
 /turf/simulated/floor/bot,
@@ -7759,10 +7549,6 @@
 	name = "caution sign"
 	},
 /turf/simulated/floor/plating/airless/asteroid,
-/area/space)
-"auA" = (
-/obj/effects/background_objects/star_red,
-/turf/space,
 /area/space)
 "auB" = (
 /obj/grille/catwalk,
@@ -25064,10 +24850,6 @@
 /obj/machinery/space_heater,
 /turf/simulated/floor/airless/caution/northsouth,
 /area/space)
-"gFZ" = (
-/obj/effects/background_objects/x5,
-/turf/space,
-/area/space)
 "hmp" = (
 /turf/unsimulated/floor/stairs/dark{
 	dir = 8
@@ -25300,6 +25082,10 @@
 	},
 /turf/simulated/floor/longtile/black,
 /area/space)
+"xlN" = (
+/obj/machinery/telejam/active,
+/turf/simulated/floor/plating,
+/area/salyut)
 "xOl" = (
 /turf/simulated/floor/plating/airless/asteroid{
 	stone_color = "#D1E6FF"
@@ -38541,7 +38327,7 @@ aaa
 aaa
 aaa
 aaa
-auA
+nkf
 anF
 aWr
 aWF
@@ -68852,7 +68638,7 @@ aaa
 aaa
 aaa
 aaa
-auA
+nkf
 aaa
 aaa
 aaa
@@ -70358,10 +70144,10 @@ aaa
 aaa
 aaa
 aaa
-adF
-adz
-adz
-agV
+aaa
+atN
+atN
+aaa
 aaa
 aaa
 aaa
@@ -70659,12 +70445,12 @@ aaa
 aaa
 aaa
 aaa
-agp
-agS
-ahj
-ahj
-agS
-ahK
+atN
+aaa
+aaa
+aaa
+aaa
+atN
 aaa
 aaa
 aaa
@@ -70960,14 +70746,14 @@ aaa
 aaa
 aaa
 aaa
-agp
-agv
-agT
-agT
-agT
-ahl
-ahY
-ahK
+atN
+atN
+aaa
+aaa
+aaa
+aaa
+atN
+atN
 aaa
 aaa
 aan
@@ -71262,14 +71048,14 @@ aaa
 aaa
 aaa
 aaa
-agq
-agw
-agT
-agT
-agT
-ahG
-ahZ
-agq
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 boD
@@ -71349,7 +71135,7 @@ arT
 asg
 asD
 asR
-atm
+axA
 aaa
 aaa
 aNH
@@ -71564,14 +71350,14 @@ aaa
 aaa
 aaa
 aaa
-agr
-agx
-agT
-agT
-agT
-ahH
-ahH
-agr
+aaa
+ait
+ait
+ait
+ait
+ait
+ait
+aaa
 aaa
 bow
 anJ
@@ -71650,8 +71436,8 @@ axA
 asa
 asj
 asP
-asl
-asl
+ayY
+ayX
 arK
 bkn
 afQ
@@ -71864,16 +71650,16 @@ aaa
 aaa
 aaa
 aaa
-ahf
-aaK
-agr
-agx
-agT
-agT
-agT
-ahI
-ahI
-agr
+aaa
+aaa
+aaa
+ait
+ait
+ait
+ait
+ait
+ait
+ait
 aaK
 aan
 anJ
@@ -71950,7 +71736,7 @@ boP
 boP
 axA
 asb
-asl
+xlN
 asP
 asT
 atn
@@ -72168,15 +71954,15 @@ aaa
 aaa
 aaa
 aaa
-agr
-ait
-agT
-agT
-agT
-agT
-agT
-agr
 aaa
+ait
+ait
+ait
+ait
+ait
+ait
+ait
+ait
 aaa
 anJ
 aob
@@ -72255,7 +72041,7 @@ asc
 asr
 asP
 atb
-atm
+axA
 aaa
 aaa
 aGZ
@@ -72470,15 +72256,15 @@ aaa
 aaa
 aaa
 aaa
-agr
-agP
-agT
-agT
-agT
-ahJ
-ahJ
-agr
 aaa
+ait
+ait
+ait
+ait
+ait
+ait
+ait
+ait
 boy
 aeQ
 aob
@@ -72559,7 +72345,7 @@ asP
 axA
 aAj
 aaa
-bkx
+aaa
 aaa
 aaa
 aaa
@@ -72770,17 +72556,17 @@ aaa
 aaa
 aaa
 aaa
-ahf
-aaK
-ags
-agQ
-agT
-agT
-agT
-agT
-aia
-ags
-aaK
+aaa
+aaa
+aaa
+ait
+ait
+ait
+ait
+ait
+ait
+ait
+ait
 aan
 aeQ
 aob
@@ -72856,7 +72642,7 @@ aaa
 aaa
 aGZ
 axA
-asu
+ayX
 axA
 axA
 aGH
@@ -73074,13 +72860,13 @@ aaa
 aaa
 aaa
 aaa
-amb
-agR
-agT
-agT
-agT
-agO
-aib
+atN
+anp
+ait
+ait
+ait
+ait
+anp
 anp
 aaa
 aao
@@ -73377,12 +73163,12 @@ aaa
 aaa
 aaa
 aaa
-agt
-agS
-ahj
-ahj
-agS
-aic
+anp
+ait
+ait
+ait
+ait
+anp
 aaa
 aaa
 aao
@@ -74590,7 +74376,7 @@ ajo
 aid
 aid
 ajo
-aaK
+afR
 aan
 aeP
 aeP
@@ -74891,8 +74677,8 @@ aiN
 akw
 alr
 alN
-aiN
-aaa
+agp
+afR
 aeP
 aeP
 aff
@@ -75194,7 +74980,7 @@ akx
 alr
 alN
 ajr
-aeP
+agq
 aeP
 aff
 aff

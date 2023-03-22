@@ -10,6 +10,7 @@
 	var/list/active_traders = list()
 	var/max_buy_items_at_once = 99
 	var/last_market_update = 0
+	var/CSS_at_NTFC = TRUE
 
 	var/list/supply_requests = list() // Pending requests, of type /datum/supply_order
 	var/list/supply_history = list() // History of all approved requests, of type string
@@ -198,7 +199,7 @@
 						if (istype(O, /obj/item/raw_material) || istype(O, /obj/item/sheet) || istype(O, /obj/item/material_piece) || istype(O, /obj/item/plant) || istype(O, /obj/item/reagent_containers/food/snacks/plant))
 							add *= O:amount // TODO: fix for snacks
 							if (sell)
-								pool(O)
+								qdel(O)
 						else
 							if (sell)
 								qdel(O)
@@ -207,7 +208,7 @@
 					else if (istype(O, /obj/item/spacecash))
 						duckets += 0.9 * O:amount
 						if (sell)
-							pool(O)
+							qdel(O)
 		else // Please excuse this duplicate code, I'm gonna change trader commodity lists into associative ones later I swear
 			for(var/obj/O in items)
 				for (var/datum/commodity/C in commodities_list)
@@ -218,7 +219,7 @@
 						if (istype(O, /obj/item/raw_material) || istype(O, /obj/item/sheet) || istype(O, /obj/item/material_piece) || istype(O, /obj/item/plant) || istype(O, /obj/item/reagent_containers/food/snacks/plant))
 							add *= O:amount // TODO: fix for snacks
 							if (sell)
-								pool(O)
+								qdel(O)
 						else
 							if (sell)
 								qdel(O)
@@ -227,7 +228,7 @@
 					else if (istype(O, /obj/item/spacecash))
 						duckets += O:amount
 						if (sell)
-							pool(O)
+							qdel(O)
 
 		return duckets
 
@@ -257,45 +258,76 @@
 
 	proc/receive_crate(atom/movable/shipped_thing)
 
-		var/turf/spawnpoint
-		for(var/turf/T in get_area_turfs(/area/supply/spawn_point))
-			spawnpoint = T
-			break
+		if(map_settings.qm_supply_type == "shuttle")
+			var/turf/free_turf = null
+			for(var/turf/T in get_area_turfs(/area/shuttle/cargo/hub))
+				if(T.density)
+					continue
+				if(istype(T, /turf/space/) || istype(T, /turf/simulated/floor/caution))
+					continue
+				else
+					var/dense = 0
+					for(var/obj/O in T)
+						if(O.density)
+							dense = 1
+							break
+					if(!dense)
+						free_turf = T
+						break
+			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
+			var/datum/signal/pdaSignal = get_free_signal()
+			pdaSignal.transmission_method = TRANSMISSION_RADIO
+			if(free_turf)
+				shipped_thing.set_loc(free_turf)
+				pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT", "group"=list(MGD_CARGO, MGA_SHIPPING), "sender"="00000000", "message"="Shipment loaded onto Cargo Shuttle: [shipped_thing.name].")
 
-		var/turf/target
-		for(var/turf/T in get_area_turfs(/area/supply/delivery_point))
-			target = T
-			break
+			else
+				pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT", "group"=list(MGD_CARGO, MGA_SHIPPING), "sender"="00000000", "message"="<span class='alert'><b>Failed to load shipment: [shipped_thing.name]. Check shuttle status.</b></span>")
 
-		if (!spawnpoint)
-			logTheThing("debug", null, null, "<b>Shipping: </b> No spawn turfs found! Can't deliver crate")
+			transmit_connection.post_signal(null, pdaSignal)
 			return
 
-		if (!target)
-			logTheThing("debug", null, null, "<b>Shipping: </b> No target turfs found! Can't deliver crate")
-			return
 
-		shipped_thing.set_loc(spawnpoint)
+		else // "space"
+			var/turf/spawnpoint
+			for(var/turf/T in get_area_turfs(/area/supply/spawn_point))
+				spawnpoint = T
+				break
 
-		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
-		var/datum/signal/pdaSignal = get_free_signal()
-		pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT", "group"=list(MGD_CARGO, MGA_SHIPPING), "sender"="00000000", "message"="Shipment arriving to Cargo Bay: [shipped_thing.name].")
-		pdaSignal.transmission_method = TRANSMISSION_RADIO
-		transmit_connection.post_signal(null, pdaSignal)
+			var/turf/target
+			for(var/turf/T in get_area_turfs(/area/supply/delivery_point))
+				target = T
+				break
+
+			if (!spawnpoint)
+				logTheThing("debug", null, null, "<b>Shipping: </b> No spawn turfs found! Can't deliver crate")
+				return
+
+			if (!target)
+				logTheThing("debug", null, null, "<b>Shipping: </b> No target turfs found! Can't deliver crate")
+				return
+
+			shipped_thing.set_loc(spawnpoint)
+
+			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
+			var/datum/signal/pdaSignal = get_free_signal()
+			pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT", "group"=list(MGD_CARGO, MGA_SHIPPING), "sender"="00000000", "message"="Shipment arriving to Cargo Bay: [shipped_thing.name].")
+			pdaSignal.transmission_method = TRANSMISSION_RADIO
+			transmit_connection.post_signal(null, pdaSignal)
 
 
 
-		for(var/obj/machinery/door/poddoor/P in by_type[/obj/machinery/door])
-			if (P.id == "qm_dock")
-				playsound(P.loc, "sound/machines/bellalert.ogg", 50, 0)
-				SPAWN_DBG(SUPPLY_OPEN_TIME)
-					if (P?.density)
-						P.open()
-				SPAWN_DBG(SUPPLY_CLOSE_TIME)
-					if (P && !P.density)
-						P.close()
+			for(var/obj/machinery/door/poddoor/P in by_type[/obj/machinery/door])
+				if (P.id == "qm_dock")
+					playsound(P.loc, "sound/machines/bellalert.ogg", 50, 0)
+					SPAWN_DBG(SUPPLY_OPEN_TIME)
+						if (P?.density)
+							P.open()
+					SPAWN_DBG(SUPPLY_CLOSE_TIME)
+						if (P && !P.density)
+							P.close()
 
-		shipped_thing.throw_at(target, 100, 1)
+			shipped_thing.throw_at(target, 100, 1)
 
 	proc/clear_path_to_market()
 		var/list/bounds = get_area_turfs(/area/supply/delivery_point)

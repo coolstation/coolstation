@@ -279,6 +279,14 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 					else if(src.egg_amount > 0) // egg was inserted alone
 						src.cook(MW_COOK_EGG)
 					else if(src.extra_item != null) // However if there's a weird item inside we want to break it, not dirty it
+						for(var/obj/item/gun_parts/P in src.contents)
+							if(prob(25)) // if you put a gun part in, theres a chance youll change it's DRM. Still breaks the microwave.
+								P.part_DRM = pick(GUN_FOSS,GUN_ITALIAN,GUN_JUICE,GUN_NANO,GUN_SOVIET)
+								src.visible_message("<span class='notice'>[P] lets off a few sparks.</span>")
+							else if(prob(25))
+								src.visible_message("<span class='notice'>[P] lets off a whole bunch of smoke.</span>")
+								qdel(P)
+								extra_item = new /obj/item/reagent_containers/food/snacks/yuckburn(src)
 						src.cook(MW_COOK_BREAK)
 					else //Otherwise it was empty, so just turn it on then off again with nothing happening
 						src.visible_message("<span class='notice'>You're grilling nothing!</span>")

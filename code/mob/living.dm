@@ -134,8 +134,8 @@
 	if (can_bleed)
 		src.ensure_bp_list()
 
-	if (src.use_stamina)
-		src.stamina_bar = new(src)
+//	if (src.use_stamina)
+//		src.stamina_bar = new(src)
 		//stamina bar gets added to the hud in subtypes human and critter... im sorry.
 		//eventual hud merger pls
 
@@ -154,12 +154,12 @@
 
 	qdel(chat_text)
 	chat_text = null
-
+/*
 	if(stamina_bar)
 		for (var/datum/hud/thishud in huds)
 			thishud.remove_object(stamina_bar)
 		stamina_bar = null
-
+*/
 	for (var/atom/A as anything in stomach_process)
 		qdel(A)
 	for (var/atom/A as anything in skin_process)
@@ -1368,6 +1368,9 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		else
 			src.lying = 0
 
+	if (src.lying && src.hasStatus("swimming"))
+		src.delStatus("swimming")
+
 	if (src.lying != src.lying_old)
 		src.lying_old = src.lying
 		src.animate_lying(src.lying)
@@ -1525,8 +1528,10 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	if (sustained_moves >= SUSTAINED_RUN_REQ)
 		base_speed = BASE_SPEED_SUSTAINED
 
+
 	. += base_speed
 	. += movement_delay_modifier
+	. *= (1.1 - (max(src.stamina_regen + GET_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS),(2*STAMINA_REGEN))/STAMINA_REGEN)/10) // 1.1 - (0 to 0.2)  // making stam regen do something???
 
 	var/multiplier = 1 // applied before running multiplier
 	var/health_deficiency_adjustment = 0

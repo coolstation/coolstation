@@ -15,14 +15,14 @@
 
 		if (!real_name)
 			real_name = name
-
+/*
 	pooled()
 		..()
 
 
 	unpooled()
 		..()
-
+*/
 	proc/setup(var/L,var/list/viral_list)
 		set_loc(L)
 
@@ -115,6 +115,36 @@
 	anchored = 1
 	icon = 'icons/obj/adventurezones/void.dmi'
 	icon_state = "floattiles1"
+	var/recover = FALSE
+	plane = PLANE_NOSHADOW_BELOW
+
+	attackby(obj/item/C as obj, mob/user as mob)
+		if (ispryingtool(C))
+			if(!recover)
+				return ..()
+			if(prob(33))
+				boutput(user, "<span class='notice'>You are able to salvage the tiles.</span>")
+				var/obj/item/I = new /obj/item/tile()
+				I.set_loc(src.loc)
+				if (src.material)
+					I.setMaterial(src.material)
+				else
+					var/datum/material/M = getMaterial("steel")
+					I.setMaterial(M)
+			else
+				boutput(user, "<span class='notice'>These tiles are too fucked to be of use.</span>")
+			qdel(src)
+
+	loose
+		name = "loose tiles"
+		desc = "These tiles were dislodged by something."
+		recover = TRUE
+
+/obj/decal/floatingtiles/loose/random
+	New()
+		..()
+		icon_state = "floattiles[rand(1,6)]"
+		set_dir(pick(NORTH,EAST,SOUTH,WEST))
 
 /obj/decal/implo
 	name = "implosion"
@@ -461,7 +491,7 @@ obj/decal/fakeobjects/teleport_pad
 	MouseDrop_T(mob/M as mob, mob/user as mob)
 		if (can_buckle(M,user))
 			M.set_loc(src.loc)
-			user.visible_message("<span class='notice'><b>[M]</b> climbs up on [src]!</span>", "<span class='notice'>You climb up on [src].</span>")
+			user.visible_message("<span class='notice'><b>[M]</b> climbs up on [src], ready to lay down the pain!</span>", "<span class='notice'>You climb up on [src] and prepare to rain destruction!</span>")
 			buckle_in(M, user, 1)
 
 	CanPass(atom/movable/mover, turf/target, height=0, air_group=0) // stolen from window.dm
@@ -514,13 +544,13 @@ obj/decal/fakeobjects/teleport_pad
 		src.set_dir(pick(cardinal))
 		if (prob(20))
 			new /obj/decal/alienflower(src.loc)
-
+/*
 	unpooled()
 		..()
 		src.set_dir(pick(cardinal))
 		if (prob(20))
 			new /obj/decal/alienflower(src.loc)
-
+*/
 /obj/decal/icefloor
 	name = "ice"
 	desc = "Slippery!"
@@ -716,3 +746,8 @@ obj/decal/fakeobjects/teleport_pad
 /obj/decal/tile_edge/floorguide/arrow_s
 	name = "Directional Navigation Guide"
 	icon_state = "endpiece_s"
+
+/obj/decal/tile_edge/floorguide/ladder
+	name = "Ladder Navigation Guide"
+	desc = "A ladder is in this direction."
+	icon_state = "guide_ladder"

@@ -69,20 +69,20 @@
 			src.equip_new_if_possible(/obj/item/clothing/suit/space, slot_wear_suit)
 			src.equip_new_if_possible(/obj/item/clothing/head/helmet/space, slot_head)
 
-/mob/living/carbon/human/npc/monkey/von_braun
-	name = "Von Braun"
-	real_name = "Von Braun"
+/mob/living/carbon/human/npc/monkey/trovalds //change the name a little while later here and in map's
+	name = "Trovalds"
+	real_name = "Trovalds"
 	gender = "male"
 	ai_offhand_pickup_chance = 40 // went through training as a spy thief, skilled at snatching stuff
 	New()
 		..()
 		SPAWN_DBG(1 SECOND)
 			src.equip_new_if_possible(/obj/item/clothing/suit/space/syndicate, slot_wear_suit)
-			src.equip_new_if_possible(/obj/item/clothing/head/helmet/space, slot_head)
+			//src.equip_new_if_possible(/obj/item/clothing/head/helmet/space, slot_head) //this hides ID and he's not going out, so
 
-/mob/living/carbon/human/npc/monkey/oppenheimer
-	name = "Oppenheimer"
-	real_name = "Oppenheimer"
+/mob/living/carbon/human/npc/monkey/minty //same. like i get it's the nuclear operative thing but
+	name = "Nick \'Minty\' Kelvin"
+	real_name = "Nick \'Minty\' Kelvin"
 	gender = "male"
 	ai_offhand_pickup_chance = 40 // went through training as a spy thief, skilled at snatch- wait, I'm getting a feeling of deja vu
 	ai_aggressive = TRUE
@@ -99,12 +99,12 @@
 			src.equip_new_if_possible(/obj/item/clothing/head/helmet/space, slot_head)
 
 			var/obj/item/card/id/ID = new/obj/item/card/id(src)
-			ID.name = "Oppenheimer's ID Card"
+			ID.name = "Nick \'Minty\' Kelvin's ID Card"
 			ID.assignment = "Syndicate Monkey"
-			ID.registered = "Oppenheimer"
+			ID.registered = "Nick \'Minty\' Kelvin"
 			ID.icon = 'icons/obj/items/card.dmi'
 			ID.icon_state = "id_syndie"
-			ID.desc = "Oppenheimer's identification card."
+			ID.desc = "Nick \'Minty\' Kelvin's identification card."
 
 			src.equip_if_possible(ID, slot_wear_id)
 
@@ -114,7 +114,7 @@
 			return FALSE
 		return !istype(M.get_id(), preferred_card_type)
 /*
-/mob/living/carbon/human/npc/monkey/oppenheimer/pod_wars
+/mob/living/carbon/human/npc/monkey/minty/pod_wars
 	preferred_card_type = /obj/item/card/id/pod_wars/syndicate
 
 	New()
@@ -443,12 +443,12 @@
 						spawn(0.5 SECONDS)
 							was_harmed(M)
 							var/singing_modifier = (M.singing & BAD_SINGING) ? "bad" : "loud"
-							src.visible_message("<B>[name]</B> becomes furious at [M] for their [singing_modifier] singing!", 1)
+							src.visible_message("<B>[name]</B> becomes furious at [M] for [his_or_her(M)] [singing_modifier] singing!", 1)
 							src.say(pick("Must take revenge for insult to music!", "I now attack you like your singing attacked my ears!"))
 					else
 						spawn(0.5 SECONDS)
 							src.visible_message(pick("<B>[name]</B> doesn't seem to like [M]'s singing", \
-							"<B>[name]</B> puts their hands over their ears", \
+							"<B>[name]</B> puts their hands over [his_or_her(src)] ears", \
 							), 1)
 						// monkey merely doesn't like the singing
 							src.say(pick("You human sing worse than a baboon!", \

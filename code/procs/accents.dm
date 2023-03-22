@@ -1045,12 +1045,12 @@
 	P.chars_used = used
 	return P
 
-/proc/chavify(var/string)
+/proc/brummieify(var/string)
 	var/modded = ""
 	var/datum/text_roamer/T = new/datum/text_roamer(string)
 
 	for(var/i = 0, i < length(string), i=i)
-		var/datum/parse_result/P = chav_parse(T)
+		var/datum/parse_result/P = brummie_parse(T)
 		modded += P.string
 		i += P.chars_used
 		T.curr_char_pos = T.curr_char_pos + P.chars_used
@@ -1061,7 +1061,7 @@
 
 	return modded
 
-/proc/chav_parse(var/datum/text_roamer/R)
+/proc/brummie_parse(var/datum/text_roamer/R)
 	var/new_string = ""
 	var/used = 0
 

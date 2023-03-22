@@ -10,6 +10,9 @@
 
 	level = 1
 
+	plane = PLANE_NOSHADOW_BELOW
+	layer = PIPE_MACHINE_LAYER
+
 	high_volume
 		name = "Large Dual Port Air Vent"
 
@@ -22,7 +25,7 @@
 	var/on = 0
 	var/pump_direction = 1 //0 = siphoning, 1 = releasing
 
-	var/external_pressure_bound = ONE_ATMOSPHERE
+	var/external_pressure_bound = ONE_ATMOSPHERE + 40
 	var/input_pressure_min = 0
 	var/output_pressure_max = 0
 

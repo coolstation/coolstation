@@ -168,6 +168,10 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 
 		src.addAbility(/datum/targetable/ghost_observer/spooktober_writing)
 #endif
+#ifdef Z3_IS_A_STATION_LEVEL
+		src.addAbility(/datum/targetable/ghost_observer/upper_transfer)
+		src.addAbility(/datum/targetable/ghost_observer/lower_transfer)
+#endif
 		src.updateButtons()
 
 	//this weird. doesn't remove from screen.
@@ -192,6 +196,10 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 		src.removeAbility(/datum/targetable/ghost_observer/manifest)
 		src.removeAbility(/datum/targetable/ghost_observer/decorate)
 		src.removeAbility(/datum/targetable/ghost_observer/spooktober_writing)
+#endif
+#ifdef Z3_IS_A_STATION_LEVEL
+		src.removeAbility(/datum/targetable/ghost_observer/upper_transfer)
+		src.removeAbility(/datum/targetable/ghost_observer/lower_transfer)
 #endif
 		src.updateButtons()
 
@@ -562,7 +570,7 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 
 		var/turf/T = get_turf(holder.owner)
 		if (!istype(T, /turf/space) && !T.density)
-			var/obj/itemspecialeffect/poof/P = unpool(/obj/itemspecialeffect/poof)
+			var/obj/itemspecialeffect/poof/P = new()
 			P.setup(T)
 			playsound(T,"sound/effects/poff.ogg", 50, 1, pitch = 1)
 			new /obj/critter/bat(T)

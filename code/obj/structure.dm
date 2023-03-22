@@ -8,6 +8,11 @@ obj/structure
 		var/state = 0
 		desc = "A metal support for an incomplete wall. Metal could be added to finish the wall, reinforced metal could make the girders stronger, or it could be pried to displace it."
 
+		riser
+			name = "riser"
+			desc = "A metal support for piping or cables going up a story."
+			icon_state = "riser"
+
 		displaced
 			name = "displaced girder"
 			icon_state = "displaced"

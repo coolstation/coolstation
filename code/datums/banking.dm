@@ -10,6 +10,8 @@
 	var/station_budget = 0.0
 	var/shipping_budget = 0.0
 	var/research_budget = 0.0
+	var/finserv_budget = 0.0 // NanoTrasen gets their share of every transaction.
+				 // ... if the channel ever reopens for them to collect it.
 
 	var/list/jobs = new/list()
 
@@ -64,6 +66,7 @@
 		station_budget = 100000
 		shipping_budget = 30000
 		research_budget = 20000
+		finserv_budget = 20000
 
 		// This is gonna throw up some crazy errors if it isn't done right!
 		// cogwerks - raising all of the paychecks, oh god
@@ -71,7 +74,7 @@
 		jobs["Engineer"] = PAY_TRADESMAN
 		jobs["Miner"] = PAY_TRADESMAN
 		jobs["Mechanic"] = PAY_DOCTORATE
-//		jobs["Atmospheric Technician"] = PAY_TRADESMAN
+		jobs["Atmospheric Technician"] = PAY_TRADESMAN
 		jobs["Security Officer"] = PAY_TRADESMAN
 //		jobs["Vice Officer"] = PAY_TRADESMAN
 		jobs["Detective"] = PAY_TRADESMAN
@@ -224,7 +227,7 @@
 				boutput(user, "<span class='notice'>You insert the cash into the ATM.</span>")
 				src.accessed_record.fields["current_money"] += I.amount
 				I.amount = 0
-				pool(I)
+				qdel(I)
 			else boutput(user, "<span class='alert'>You need to log in before depositing cash!</span>")
 			return
 		if(istype(I, /obj/item/lotteryTicket))
@@ -262,7 +265,7 @@
 					src.accessed_record.fields["current_money"] += I.amount
 
 				I.amount = 0
-				pool(I)
+				qdel(I)
 			else boutput(user, "<span class='alert'>You need to log in before depositing cash!</span>")
 		else if(istype(I, /obj/item/lotteryTicket))
 			if (src.accessed_record)
@@ -388,7 +391,7 @@
 					boutput(usr, "<span class='alert'>Insufficient funds in account.</span>")
 				else
 					src.accessed_record.fields["current_money"] -= amount
-					var/obj/item/spacecash/S = unpool(/obj/item/spacecash)
+					var/obj/item/spacecash/S = new()
 					S.setup(src.loc, amount)
 					usr.put_in_hand_or_drop(S)
 
@@ -700,7 +703,7 @@
 				boutput(user, "<span class='notice'>You insert the cash into the ATM.</span>")
 				src.accessed_record.fields["current_money"] += I.amount
 				I.amount = 0
-				pool(I)
+				qdel(I)
 				attack_hand(user)
 			else boutput(user, "<span class='alert'>You need to log in before depositing cash!</span>")
 			return
@@ -853,7 +856,7 @@
 					boutput(usr, "<span class='alert'>Insufficient funds in account.</span>")
 				else
 					src.accessed_record.fields["current_money"] -= amount
-					var/obj/item/spacecash/S = unpool(/obj/item/spacecash)
+					var/obj/item/spacecash/S = new()
 					S.setup(src.loc, amount)
 					usr.put_in_hand_or_drop(S)
 

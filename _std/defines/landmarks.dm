@@ -16,6 +16,7 @@
 #define LANDMARK_BOXING_RING "boxing ring"
 #define LANDMARK_GPS_WAYPOINT "GPS Waypoint"
 #define LANDMARK_ARTIFACT_SPAWN "artifact spawner"
+#define LANDMARK_DRAIN_EXIT "drain_exit" //Where drains send fluids (well, practically but the actual draining happens in fluid code itself)
 
 // centcom shuttle landmarks
 #define LANDMARK_SHUTTLE_COG1 "shuttle-cog1"
@@ -83,6 +84,14 @@
 #define LANDMARK_FALL_MOON_MUSEUM "moonfall_museum" // Lunar museum elevator shaft
 #define LANDMARK_FALL_SEA "seafall" // Oshan trench elevator
 #define LANDMARK_FALL_SPACEMAS "spacemasfall" // Merry Spacemas!
+#define LANDMARK_FALL_QM  "qmfall" //QM elevator shaft
+#define LANDMARK_FALL_MED "medfall"//Hospital elevator shaft
+#define LANDMARK_FALL_COM "comfall"//Command elevator shaft
+#define LANDMARK_FALL_ENG "engfall"//Engineering elevator shaft
+#define LANDMARK_FALL_SEC "secfall"//Security elevator shaft
+#define LANDMARK_FALL_DUM "dumfall"//aeeeee eem stoock!!
+#define LANDMARK_FALL_NTFC "ntfcfall" /// ????????
+#define LANDMARK_FALL_NTFCM "ntfcfallm" //// CMON
 
 // misc adventure zone stuff
 

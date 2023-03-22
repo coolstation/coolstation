@@ -37,7 +37,7 @@
 	name = "Strange Beach"
 	icon_state = "yellow"
 	force_fullbright = 1
-	sound_environment = 19
+	sound_environment = EAX_PLAIN
 
 /turf/unsimulated/greek/grass
 	name = "grass"
@@ -75,12 +75,12 @@
 /area/greek/caves
 	name = "Strange Caves"
 	icon_state = "green"
-	sound_environment = 8
+	sound_environment = EAX_CAVE
 
 /area/greek/cliffs
 	name = "Strange Cliffs"
 	icon_state = "blue"
-	sound_environment = 8
+	sound_environment = EAX_CAVE
 	force_fullbright = 1
 
 /turf/unsimulated/greek/cave
@@ -184,7 +184,7 @@
 /area/greek/underworld
 	name = "Strange Depths"
 	icon_state = "purple"
-	sound_environment = 25
+	sound_environment = EAX_DISORDERED
 
 /area/greek/underworld/pit
 	icon_state = "white"

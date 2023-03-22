@@ -220,8 +220,7 @@
 				if (S.material)
 					src.setMaterial(S.material)
 				else
-					var/datum/material/M = getMaterial("steel")
-					src.setMaterial(M)
+					src.setMaterial(getMaterial("steel"))
 				boutput(user, "<span class='notice'>You repaired the wall.</span>")
 				return
 

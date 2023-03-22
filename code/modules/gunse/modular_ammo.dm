@@ -4,7 +4,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	name = "1 round"
 	real_name = "round"
 	desc = "You gotta have bullets."
-	icon = 'icons/obj/items/cet_guns/ammo.dmi'
+	icon = 'icons/obj/items/modular_guns/ammo.dmi'
 	icon_state = "white"
 	var/icon_empty = "empty"
 	var/icon_one   = "bullet_white"
@@ -51,14 +51,14 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		var/default_amount = default_min_amount == default_max_amount ? default_min_amount : rand(default_min_amount, default_max_amount)
 		src.amount = max(amt,default_amount)
 		src.update_stack_appearance()
-
+/*
 	unpooled()
 		..()
 		var/default_amount = default_min_amount == default_max_amount ? default_min_amount : rand(default_min_amount, default_max_amount)
 		src.amount = max(1, default_amount) //take higher
-		src.update_stack_appearance()
+		src.update_stack_appearance()*/
 
-	pooled()
+	disposing()
 		if (usr)
 			usr.u_equip(src) //wonder if that will work?
 		amount = 1
@@ -68,7 +68,9 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		src.UpdateName()
 		src.inventory_counter.update_number(src.amount)
 		switch (src.amount)
-			if (-INFINITY to 1)
+			if (-INFINITY to 0)
+				qdel(src) // ???
+			if(1)
 				src.icon_state = icon_one
 			if (2 to (default_max_amount-1))
 				src.icon_state = icon_empty
@@ -89,7 +91,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		boutput(user, "<span class='alert'>You need another stack!</span>")
 
 	attackby(var/obj/item/I as obj, mob/user as mob)
-		if (istype(I, /obj/item/stackable_ammo) && src.amount < src.max_stack)
+		if (istype(I, /obj/item/stackable_ammo) && (src.amount < src.max_stack) && (src.type == I.type))
 
 			user.visible_message("<span class='notice'>[user] stacks some rounds.</span>")
 			stack_item(I)
@@ -107,7 +109,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 					boutput(user, "<span class='alert'>You wish!</span>")
 					return
 				change_stack_amount( 0 - amt )
-				var/obj/item/stackable_ammo/young_money = unpool(/obj/item/stackable_ammo)
+				var/obj/item/stackable_ammo/young_money = new src.type()
 				young_money.setup(user.loc, amt)
 				young_money.Attackhand(user)
 		else
@@ -122,20 +124,35 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 			return
 		if(!M.ammo_list)
 			M.ammo_list = list()
-		if(M.ammo_list.len >= M.max_ammo_capacity)
+		M.chamber_checked = 0
+		if((M.ammo_list.len >= M.max_ammo_capacity) || !M.max_ammo_capacity)
+			if(M.current_projectile)
+				boutput(user, "<span class='notice'>There's already a cartridge in [M]!</span>")
+				return
+			if(!M.current_projectile)
+				boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [M]</span>")
+				M.current_projectile = new projectile_type()
+				amount --
+				update_stack_appearance()
+				if(amount < 1)
+					user.u_equip(src)
+					src.dropped(user)
+					qdel(src)
+				M.inventory_counter.update_number(!!M.current_projectile)
+				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1) //play the sound here because single shot bypasses cycle_ammo
 			return
 		reloading = 1
 		if(amount < 1)
 			user.u_equip(src)
 			src.dropped(user)
-			pool(src)
+			qdel(src)
 		SPAWN_DBG(0)
 			boutput(user, "<span class='notice'>You start loading rounds into [M]</span>")
 			while(M.ammo_list.len < M.max_ammo_capacity)
 				if(amount < 1)
 					user.u_equip(src)
 					src.dropped(user)
-					pool(src)
+					qdel(src)
 					break
 				playsound(src.loc, "sound/weapons/casings/casing-0[rand(1,9)].ogg", 10, 0.1, 0, 0.8)
 				amount--
@@ -143,6 +160,10 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 				update_stack_appearance()
 				sleep(5)
 			playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, 0, 0.8)
+			boutput(user, "<span class='notice'>The hold is full</span>")
+			if(!M.current_projectile)
+				M.process_ammo()
+			M.inventory_counter.update_number(M.ammo_list.len)
 			reloading = 0
 
 /obj/item/stackable_ammo/pistol/
@@ -193,6 +214,30 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		default_min_amount = 10
 		default_max_amount = 10
 
+/obj/item/stackable_ammo/capacitive_burst
+	name = "\improper NT In-Capacit-8-or MAX"
+	real_name = "\improper NT In-Capacit-8-or MAX"
+	desc = "A lot of problems? A lot of solutions."
+	projectile_type = /datum/projectile/energy_bolt/three
+	ammo_DRM = GUN_NANO
+	icon_state = "nt_stun"
+	icon_full  = "nt_stun"
+	icon_empty = "nt_stun_empty"
+	icon_one   = "bullet_nerf"
+	icon_shell = "nerf_case"
+
+	three
+		default_min_amount = 3
+		default_max_amount = 3
+
+	five
+		default_min_amount = 5
+		default_max_amount = 5
+
+	ten
+		default_min_amount = 10
+		default_max_amount = 10
+
 /obj/item/stackable_ammo/zaubertube/
 	name = "\improper Elektrograd лазерный Zaubertube"
 	real_name = "Elektrograd лазерный Zaubertube"
@@ -217,6 +262,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		default_min_amount = 10
 		default_max_amount = 10
 
+ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 /obj/item/stackable_ammo/scatter/ // ABSOLUTELY USE THIS TYPE FOR ALL SCATTER AMMO, EVEN OPTICAL
 	name = "generic scatter ammo"
 	real_name = "generic scatter ammo"
@@ -248,11 +294,33 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		default_min_amount = 5
 		default_max_amount = 5
 
+	ten
+		default_min_amount = 10
+		default_max_amount = 10
+
+/obj/item/stackable_ammo/scatter/slug_rubber // scatter doesnt mean scatter, just means thick:)
+	name = "standard rubber slug"
+	real_name = "standard rubber slug"
+	desc = "An allegedly less-than-lethal riot deterrent slug, at least in low doses."
+	projectile_type = /datum/projectile/bullet/abg
+
+	three
+		default_min_amount = 3
+		default_max_amount = 3
+
+	five
+		default_min_amount = 5
+		default_max_amount = 5
+
+	ten
+		default_min_amount = 10
+		default_max_amount = 10
+
 /obj/item/stackable_ammo/flashbulb/
 	name = "\improper FOSSYN. CATHODIC FLASH BULBS"
 	real_name = "FOSSYN. CATHODIC FLASH BULB"
 	desc = "A hefty glass tube filled with ionic gas, and two opposing electrodes."
-	icon = 'icons/obj/items/cet_guns/fossgun.dmi'
+	icon = 'icons/obj/items/modular_guns/fossgun.dmi'
 	icon_state = "bulb"
 	icon_shell = "bulb_burnt"
 	projectile_type = null
@@ -297,21 +365,33 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	icon_state = "bulb_good"
 
 /obj/item/storage/box/foss_flashbulbs
+	name = "box of FOSSYN flashbulbs"
+	icon_state = "foss_bulb"
 	spawn_contents = list(/obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb)
 
 /obj/item/storage/box/foss_flashbulbs/better
+	name = "box of premium FOSSYN flashbulbs"
 	spawn_contents = list(/obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb)
 	make_my_stuff()
 		..()
-		if(prob(30))
+		if (prob(70))
 			new /obj/item/gun_parts/magazine/juicer(src)
 		else
-			if (prob(70))
-				new /obj/item/gun_parts/magazine/juicer(src)
-			else
-				new /obj/item/gun_parts/accessory/horn(src)
+			new /obj/item/gun_parts/accessory/horn(src)
+
+/obj/item/storage/box/foss_gun_kit
+	name = "Syndicate Gun Kit"
+	icon_state = "foss_gun"
+	spawn_contents = list(/obj/item/gun/modular/foss, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb)
+	make_my_stuff()
+		..()
+		if (prob(50))
+			new /obj/item/gun_parts/stock/foss/loader(src)
+		else
+			new /obj/item/gun_parts/barrel/foss/long(src)
 
 // NEW PROJECTILE TYPES TEMPORARY STORAGE
+
 
 /datum/projectile/energy_bolt/three
 	power = 10
@@ -329,7 +409,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 /datum/projectile/laser/flashbulb
 	name = "open-source laser"
 	icon_state = "u_laser"
-	power = 20
+	power = 15
 	cost = 50
 	dissipation_delay = 5
 	brightness = 0
@@ -338,18 +418,22 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	color_red = 0
 	color_green = 1
 	color_blue = 0
+	projectile_speed = 75
+
 
 /datum/projectile/laser/flashbulb/two
-	power = 40
+	power = 25
 	color_red = 1
 	color_green = 1
 	cost = 75
+	projectile_speed = 70
 
 /datum/projectile/laser/flashbulb/three
-	power = 60
+	power = 35
 	color_red = 1
 	color_green = 0
 	cost = 100
+	projectile_speed = 65
 
 	on_hit(atom/hit)
 		if (isliving(hit))
@@ -357,14 +441,25 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 			L.changeStatus("slowed", 1 SECOND)
 			L.change_misstep_chance(1)
 			L.emote("twitch_v")
+		if(prob(5))
+			hit.ex_act(3)
 		return
 
 /datum/projectile/laser/flashbulb/four
-	power = 80
+	power = 45
 	color_red = 1
 	color_green = 0
 	cost = 200
+	projectile_speed = 60
 
 	on_hit(atom/hit)
 		fireflash(get_turf(hit), 0)
-		hit.ex_act(3)
+		if (isliving(hit))
+			var/mob/living/L = hit
+			L.changeStatus("slowed", 1 SECOND)
+			L.change_misstep_chance(1)
+			L.emote("twitch_v")
+		if(prob(20))
+			hit.ex_act(3)
+		return
+		//hit.ex_act(3)

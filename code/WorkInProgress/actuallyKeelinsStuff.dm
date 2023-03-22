@@ -559,9 +559,9 @@ Returns:
 			AM.set_loc(T)
 		else
 			src.visible_message("<span style='color: red; font-weight: bold'>The portal collapses in on itself!</span>")
-			var/obj/sparks = unpool(/obj/effects/sparks)
+			var/obj/sparks = new /obj/effects/sparks()
 			sparks.set_loc(get_turf(src))
-			SPAWN_DBG(2 SECONDS) if (sparks) pool(sparks)
+			SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 			qdel(src)
 		return
 
@@ -572,9 +572,9 @@ Returns:
 			AM.set_loc(T)
 		else
 			src.visible_message("<span style='color: red; font-weight: bold'>The portal collapses in on itself!</span>")
-			var/obj/sparks = unpool(/obj/effects/sparks)
+			var/obj/sparks = new /obj/effects/sparks()
 			sparks.set_loc(get_turf(src))
-			SPAWN_DBG(2 SECONDS) if (sparks) pool(sparks)
+			SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 			qdel(src)
 		return
 	*/
@@ -1644,7 +1644,7 @@ Returns:
 			if(color != null)
 				var/actX = A.pixel_x + x - 1
 				var/actY = A.pixel_y + y - 1
-				var/obj/apixel/P = unpool(/obj/apixel)
+				var/obj/apixel/P = new()
 				P.set_loc(A.loc)
 				P.pixel_x = actX
 				P.pixel_y = actY
@@ -1656,7 +1656,7 @@ Returns:
 	qdel(A)
 	SPAWN_DBG(7 SECONDS)
 		for(var/datum/D in pixels)
-			pool(D)
+			qdel(D)
 
 	return
 
@@ -1668,7 +1668,7 @@ Returns:
 	anchored = 1
 	density = 0
 	opacity = 0
-
+/*
 	unpooled()
 		color = "#ffffff"
 		pixel_x = 0
@@ -1676,7 +1676,7 @@ Returns:
 		alpha = 255
 		transform = matrix()
 		..()
-
+*/
 /datum/admins/proc/turn_off_pixelexplosion()
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
 	set name = "Turn off pixel explosion mode"
@@ -1842,18 +1842,21 @@ Returns:
 	return tube
 
 /obj/item/ghostboard
-	name = "Ouija board"
+	name = "\improper Ouija board"
 	desc = "A wooden board that allows for communication with spirits and such things. Or that's what the company that makes them claims, at least."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "lboard"
 	inhand_image_icon = 'icons/mob/inhand/hand_books.dmi'
 	item_state = "ouijaboard"
 	w_class = W_CLASS_NORMAL
+	var/list/altnames = list("wega","weegi","oiji","ojo","ooija","\improper OIJA","oujij","ouijs","oueja","wija","ouijo","weegee","luigi","luigi","\improper Luigi","weggy","quiche","\improper Wa weg","quija","\improper WEEGER","wedgie")
 
 	New()
 		. = ..()
 		START_TRACKING
 		BLOCK_SETUP(BLOCK_BOOK)
+		if(prob(2))
+			name = "[pick(altnames)] board"
 
 	disposing()
 		. = ..()
@@ -1964,6 +1967,18 @@ Returns:
 			var/obj/item/clothing/mask/cigarette/C = W
 			if(!C.on)
 				C.light(user, "<span class='alert'>[user] lights the [C] with [src]. That seems appropriate.</span>")
+				return
+		if(W.w_class == W_CLASS_TINY)
+			add_fingerprint(user)
+			W.unequipped(user)
+			W.dropped(user)
+			src.visible_message("<span class='notice'>[user] tosses [W] into [src].</span>")
+			qdel(W)
+			light.set_brightness(1.1)
+			SPAWN_DBG(3 SECONDS)
+				light.set_brightness(1)
+			return
+		..()
 
 /*
 
@@ -3072,9 +3087,9 @@ Returns:
 			AM.set_loc(target)
 		else
 			src.visible_message("<span style='color: red; font-weight: bold'>The portal collapses in on itself!</span>")
-			var/obj/sparks = unpool(/obj/effects/sparks)
+			var/obj/sparks = new /obj/effects/sparks()
 			sparks.set_loc(get_turf(src))
-			SPAWN_DBG(2 SECONDS) if (sparks) pool(sparks)
+			SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 			qdel(src)
 
 	ex_act()
@@ -3795,8 +3810,8 @@ var/list/lag_list = new/list()
 	luminosity = 1
 	force_fullbright = 1
 	requires_power = 0
-	sound_loop = 'sound/ambience/loop/Shore.ogg'
-	sound_loop_vol = 100
+	sound_loop_1 = 'sound/ambience/loop/Shore.ogg'
+	sound_loop_1_vol = 100
 
 	New()
 		..()

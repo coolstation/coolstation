@@ -708,7 +708,7 @@
 	special
 		icon_background = "key_special"
 
-
+/*
 /datum/contextAction/kudzu
 	icon = 'icons/ui/context16x16.dmi'
 	name = "Deconstruct with Tool"
@@ -750,7 +750,7 @@
 			boutput(user, "Shaping [target] into a plantmaster, please remain still...")
 			extra_time = 5 SECONDS
 			. = ..()
-
+*/
 /datum/contextAction/cake
 	icon = 'icons/ui/context16x16.dmi'
 	name = "Cake action"

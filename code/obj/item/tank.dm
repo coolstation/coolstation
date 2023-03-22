@@ -17,7 +17,7 @@ Contains:
 
 	var/datum/gas_mixture/air_contents = null
 	var/distribute_pressure = ONE_ATMOSPHERE
-	var/integrity = 3
+	var/integrity = 4
 	var/compatible_with_TTV = 1
 	flags = FPRINT | TABLEPASS | CONDUCT | ONBACK | TGUI_INTERACTIVE
 
@@ -33,7 +33,7 @@ Contains:
 
 	New()
 		..()
-		src.air_contents = unpool(/datum/gas_mixture)
+		src.air_contents = new()
 		src.air_contents.volume = 70 //liters
 		src.air_contents.temperature = T20C
 		processing_items |= src
@@ -43,7 +43,7 @@ Contains:
 
 	disposing()
 		if(air_contents)
-			pool(air_contents)
+			qdel(air_contents)
 			air_contents = null
 		processing_items.Remove(src)
 		..()
@@ -149,9 +149,9 @@ Contains:
 			pressure = MIXTURE_PRESSURE(air_contents)
 			// NOTE TO DEVS: THIS IS WHAT SETS THE BLAST RADIUS OF A TTV. GOTTA WRITE COMMENTS WITH KEYWORDS. TANK TRANSFER VALVE BOMB.
 			//var/range = (pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE // Warc: trying something new.
-			var/range = (pressure-TANK_FRAGMENT_PRESSURE)/(TANK_FRAGMENT_SCALE + (0.1 * pressure))
+			var/range = (pressure-TANK_FRAGMENT_PRESSURE)/(TANK_FRAGMENT_SCALE)// + (0.1 * pressure))
 			// (pressure - 5066.25 kpa) divided by 1013.25 kpa
-			range = min(range, 8)		// was 8 // is 8 again
+			range = min(range, 10)		// was 8 // is 8 again // nope its 10
 
 			if(src in bible_contents)
 				for_by_tcl(B, /obj/item/storage/bible)//world)
@@ -360,6 +360,7 @@ Contains:
 	desc = "A jetpack that can be toggled on, letting the user use the gas inside as a propellant. Can also be hooked up to a compatible mask to allow you to breathe the gas inside. This is labelled to contain oxygen."
 	distribute_pressure = 17 // setting these things to start at the minimum pressure needed to breathe - Haine
 	compatible_with_TTV = 0
+	c_flags = IS_JETPACK
 
 	New()
 		..()

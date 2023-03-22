@@ -61,16 +61,16 @@
 			src.icon_state = pick("panelscorched", "platingdmg1", "platingdmg2", "platingdmg3")
 		if (prob(2))
 			make_cleanable(/obj/decal/cleanable/dirt,src)
-		if (prob(2))
+		else if (prob(2))
 			make_cleanable(/obj/decal/cleanable/dirt/dirt2,src)
-		if (prob(2))
+		else if (prob(2))
 			make_cleanable(/obj/decal/cleanable/dirt/dirt3,src)
-		if (prob(2))
+		else if (prob(2))
 			make_cleanable(/obj/decal/cleanable/dirt/dirt4,src)
-		if (prob(2))
+		else if (prob(2))
 			make_cleanable(/obj/decal/cleanable/dirt/dirt5,src)
 		else if (prob(2))
-			var/obj/C = pick(/obj/decal/cleanable/paper, /obj/decal/cleanable/fungus, /obj/decal/cleanable/dirt, /obj/decal/cleanable/ash,\
+			var/obj/C = pick(/obj/decal/cleanable/paper, /obj/decal/cleanable/fungus, /obj/decal/cleanable/ash,\
 			/obj/decal/cleanable/molten_item, /obj/decal/cleanable/machine_debris, /obj/decal/cleanable/oil, /obj/decal/cleanable/rust)
 			make_cleanable( C ,src)
 		else if ((locate(/obj) in src) && prob(3))
@@ -150,6 +150,7 @@
 
 /turf/simulated/floor/grime
 	icon_state = "floorgrime"
+	permadirty = 1
 
 /////////////////////////////////////////
 
@@ -181,6 +182,7 @@
 
 /turf/simulated/floor/white/grime
 	icon_state = "floorgrime-w"
+	permadirty = 1
 
 /////////////////////////////////////////
 
@@ -195,7 +197,7 @@
 
 /turf/simulated/floor/black/grime
 	icon_state = "floorgrime-b"
-
+	permadirty = 1
 
 /turf/simulated/floor/blackwhite
 	icon_state = "darkwhite"
@@ -208,9 +210,11 @@
 
 /turf/simulated/floor/blackwhite/whitegrime
 	icon_state = "floorgrime_bw1"
+	permadirty = 1
 
 /turf/simulated/floor/blackwhite/whitegrime/other
 	icon_state = "floorgrime_bw2"
+	permadirty = 1
 
 /////////////////////////////////////////
 
@@ -228,15 +232,19 @@
 
 /turf/simulated/floor/grey/blackgrime
 	icon_state = "floorgrime_gb1"
+	permadirty = 1
 
 /turf/simulated/floor/grey/blackgrime/other
 	icon_state = "floorgrime_gb2"
+	permadirty = 1
 
 /turf/simulated/floor/grey/whitegrime
 	icon_state = "floorgrime_gw1"
+	permadirty = 1
 
 /turf/simulated/floor/grey/whitegrime/other
 	icon_state = "floorgrime_gw2"
+	permadirty = 1
 
 /////////////////////////////////////////
 
@@ -252,17 +260,14 @@
 /turf/simulated/floor/red/checker
 	icon_state = "redchecker"
 
-
 /turf/simulated/floor/red/redblackchecker
 	icon_state = "redblackchecker"
-
 
 /turf/simulated/floor/redblack
 	icon_state = "redblack"
 
 /turf/simulated/floor/redblack/corner
 	icon_state = "redblackcorner"
-
 
 /turf/simulated/floor/redwhite
 	icon_state = "redwhite"
@@ -290,7 +295,6 @@
 
 /turf/simulated/floor/blueblack/corner
 	icon_state = "blueblackcorner"
-
 
 /turf/simulated/floor/bluewhite
 	icon_state = "bluewhite"
@@ -334,13 +338,11 @@
 /turf/simulated/floor/green/checker
 	icon_state = "greenchecker"
 
-
 /turf/simulated/floor/greenblack
 	icon_state = "greenblack"
 
 /turf/simulated/floor/greenblack/corner
 	icon_state = "greenblackcorner"
-
 
 /turf/simulated/floor/greenwhite
 	icon_state = "greenwhite"
@@ -370,13 +372,11 @@
 /turf/simulated/floor/purple/checker
 	icon_state = "purplechecker"
 
-
 /turf/simulated/floor/purpleblack
 	icon_state = "purpleblack"
 
 /turf/simulated/floor/purpleblack/corner
 	icon_state = "purpleblackcorner"
-
 
 /turf/simulated/floor/purplewhite
 	icon_state = "purplewhite"
@@ -456,8 +456,8 @@
 	step_priority = STEP_PRIORITY_MED
 
 	New()
-		..()
-		setMaterial(getMaterial("pharosium"))
+		plate_mat = getMaterial("pharosium")
+		. = ..()
 
 /turf/simulated/floor/circuit/green
 	icon_state = "circuit-green"
@@ -501,14 +501,14 @@
 	name = "carpet"
 	icon = 'icons/turf/carpet.dmi'
 	icon_state = "red1"
-	mat_appearances_to_ignore = list("cloth")
+	mat_appearances_to_ignore = list("cotton")
 	mat_changename = 0
 	step_material = "step_carpet"
 	step_priority = STEP_PRIORITY_MED
 
 	New()
-		..()
-		setMaterial(getMaterial("cloth"))
+		plate_mat = getMaterial("cotton")
+		. = ..()
 
 	break_tile()
 		..()
@@ -522,6 +522,7 @@
 	name = "cheap carpet"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "grimy"
+	permadirty = 1
 
 /turf/simulated/floor/carpet/arcade
 	icon = 'icons/turf/floors.dmi'
@@ -592,12 +593,15 @@ DEFINE_FLOORS(carpet/clowncarpet/innercorner,
 
 /turf/simulated/floor/sanitary
 	icon_state = "freezerfloor"
+	clean = 1
 
 /turf/simulated/floor/sanitary/white
 	icon_state = "freezerfloor2"
+	clean = 1
 
 /turf/simulated/floor/sanitary/blue
 	icon_state = "freezerfloor3"
+	clean = 1
 
 ////////////////////////////////////////
 
@@ -606,13 +610,16 @@ DEFINE_FLOORS(terrazzo,
 	icon = 'icons/turf/floors.dmi';\
 	icon_state = "terrazzo_beige";\
 	step_material = "step_wood";\
+	clean = 1;\
 	step_priority = STEP_PRIORITY_MED)
 
 DEFINE_FLOORS(terrazzo/black,
-	icon_state = "terrazzo_black")
+	icon_state = "terrazzo_black";\
+	clean = 1)
 
 DEFINE_FLOORS(terrazzo/white,
-	icon_state = "terrazzo_white")
+	icon_state = "terrazzo_white";\
+	clean = 1)
 
 /////////////////////////////////////////
 
@@ -621,16 +628,20 @@ DEFINE_FLOORS(marble,
 	icon = 'icons/turf/floors.dmi';\
 	icon_state = "marble_white";\
 	step_material = "step_wood";\
+	clean = 1;\
 	step_priority = STEP_PRIORITY_MED)
 
 DEFINE_FLOORS(marble/black,
-	icon_state = "marble_black")
+	icon_state = "marble_black";\
+	clean = 1)
 
 DEFINE_FLOORS(marble/border_bw,
-	icon_state = "marble_border_bw")
+	icon_state = "marble_border_bw";\
+	clean = 1)
 
 DEFINE_FLOORS(marble/border_wb,
-	icon_state = "marble_border_wb")
+	icon_state = "marble_border_wb";\
+	clean = 1)
 
 /////////////////////////////////////////
 
@@ -663,15 +674,19 @@ DEFINE_FLOORS(marble/border_wb,
 	name = "freezer floor"
 	icon_state = "freezerfloor"
 	temperature = T0C
+	clean = 1
 
 /turf/simulated/floor/specialroom/freezer/white
 	icon_state = "freezerfloor2"
+	clean = 1
 
 /turf/simulated/floor/specialroom/freezer/blue
 	icon_state = "freezerfloor3"
+	clean = 1
 
 /turf/simulated/floor/specialroom/medbay
 	icon_state = "medbay"
+	clean = 1 //but not for long
 
 /////////////////////////////////////////
 
@@ -699,7 +714,6 @@ DEFINE_FLOORS(marble/border_wb,
 
 /turf/simulated/floor/delivery/caution
 	icon_state = "deliverycaution"
-
 
 /turf/simulated/floor/bot
 	icon_state = "bot"
@@ -819,8 +833,8 @@ DEFINE_FLOORS(marble/border_wb,
 	step_priority = STEP_PRIORITY_MED
 
 	New()
-		..()
-		setMaterial(getMaterial("wood"))
+		plate_mat = getMaterial("wood")
+		. = ..()
 
 /turf/simulated/floor/wood/two
 	icon_state = "wooden"
@@ -1002,11 +1016,13 @@ DEFINE_FLOORS(marble/border_wb,
 		name = "bloody floor"
 		desc = "Yuck."
 		icon_state = "bloodfloor_1"
+		permadirty = 1
 
 	hivefloor
 		name = "hive floor"
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "hive"
+		permadirty = 1
 
 /////////////////////////////////////////
 
@@ -1069,6 +1085,8 @@ DEFINE_FLOORS(snowrough/border,
 	icon_state = "sand"
 	step_material = "step_outdoors"
 	step_priority = STEP_PRIORITY_MED
+	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
+	permadirty = 1 //sand gets everywhere
 
 	New()
 		..()
@@ -1080,11 +1098,15 @@ DEFINE_FLOORS(snowrough/border,
 	icon_state = "diamondtile"
 	step_material = "step_plating"
 	step_priority = STEP_PRIORITY_MED
+	allows_vehicles = 1
+	permadirty = 1
 
 /turf/unsimulated/floor/industrial
 	icon_state = "diamondtile"
 	step_material = "step_plating"
 	step_priority = STEP_PRIORITY_MED
+	allows_vehicles = 1
+	permadirty = 1
 
 /////////////////////////////////////////
 
@@ -1135,10 +1157,11 @@ DEFINE_FLOORS(techfloor/green,
 	mat_changedesc = 0
 	step_material = "step_outdoors"
 	step_priority = STEP_PRIORITY_MED
+	permadirty = 1
 
 	New()
-		..()
-		setMaterial(getMaterial("synthrubber"))
+		plate_mat = getMaterial("synthrubber")
+		. = ..()
 
 /turf/proc/grassify()
 	.=0
@@ -1172,7 +1195,7 @@ DEFINE_FLOORS(techfloor/green,
 		src.set_dir(pick(cardinal))
 
 /turf/simulated/floor/grass/random/alt
-	icon_state = "grass_eh"
+	icon_state = "grass_eh" //ya grass
 
 /turf/simulated/floor/grasstodirt
 	name = "grass"
@@ -1181,6 +1204,7 @@ DEFINE_FLOORS(techfloor/green,
 	mat_appearances_to_ignore = list("steel","synthrubber")
 	mat_changename = 0
 	mat_changedesc = 0
+	permadirty = 1
 
 /turf/simulated/floor/dirt
 	name = "dirt"
@@ -1189,6 +1213,7 @@ DEFINE_FLOORS(techfloor/green,
 	mat_appearances_to_ignore = list("steel","synthrubber")
 	mat_changename = 0
 	mat_changedesc = 0
+	permadirty = 1 //its dirt.............
 	var/stone_color // runtime?????????? -warc
 
 /////////////////////////////////////////
@@ -1248,8 +1273,8 @@ DEFINE_FLOORS(techfloor/green,
 	allows_vehicles = 1
 
 	New()
-		..()
-		setMaterial(getMaterial("blob"))
+		plate_mat = getMaterial("blob")
+		. = ..()
 
 	proc/setOvermind(var/mob/living/intangible/blob_overmind/O)
 		if (!material)
@@ -1324,34 +1349,28 @@ DEFINE_FLOORS(techfloor/green,
 	switch(severity)
 		if(1.0)
 			src.ReplaceWithSpace()
-#ifdef UNDERWATER_MAP
-			//if (prob(10))
-			//	src.ex_act(severity+1)
-#endif
 
 		if(2.0)
 			switch(pick(1,2;75,3))
 				if (1)
 					if(prob(33))
-						var/obj/item/I = unpool(/obj/item/raw_material/scrap_metal)
+						var/obj/item/I = new /obj/item/raw_material/scrap_metal()
 						I.set_loc(src)
 						if (src.material)
 							I.setMaterial(src.material)
 						else
-							var/datum/material/M = getMaterial("steel")
-							I.setMaterial(M)
+							I.setMaterial(getMaterial("steel"))
 					src.ReplaceWithLattice()
 				if(2)
 					src.ReplaceWithSpace()
 				if(3)
 					if(prob(33))
-						var/obj/item/I = unpool(/obj/item/raw_material/scrap_metal)
+						var/obj/item/I = new /obj/item/raw_material/scrap_metal()
 						I.set_loc(src)
 						if (src.material)
 							I.setMaterial(src.material)
 						else
-							var/datum/material/M = getMaterial("steel")
-							I.setMaterial(M)
+							I.setMaterial(getMaterial("steel"))
 					if(prob(80))
 						src.break_tile_to_plating()
 					else
@@ -1365,6 +1384,12 @@ DEFINE_FLOORS(techfloor/green,
 
 /turf/simulated/floor/blob_act(var/power)
 	return
+
+//turf/proc/ReplaceWith used to go "istype(src, /turf/simulated/floor)" and IDK if you're gonna check that on every turf maybe just split it off
+/turf/simulated/floor/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0)
+	icon_old = icon_state
+	name_old = name
+	. = ..()
 
 /turf/simulated/floor/proc/update_icon()
 
@@ -1412,7 +1437,7 @@ DEFINE_FLOORS(techfloor/green,
 	broken = 0
 	burnt = 0
 	if(plate_mat)
-		src.setMaterial(plate_mat)
+		src.setMaterial((plate_mat))
 	else
 		src.setMaterial(getMaterial("steel"))
 	levelupdate()
@@ -1426,6 +1451,8 @@ DEFINE_FLOORS(techfloor/green,
 /turf/simulated/floor/proc/break_tile_to_plating()
 	if(intact) to_plating()
 	break_tile()
+	if(prob(25))
+		new /obj/decal/floatingtiles/loose/random(src)
 
 /turf/simulated/floor/proc/break_tile(var/force_break)
 	if(!force_break)
@@ -1521,8 +1548,7 @@ DEFINE_FLOORS(techfloor/green,
 		if(src.material)
 			A.setMaterial(src.material)
 		else
-			var/datum/material/M = getMaterial("steel")
-			A.setMaterial(M)
+			A.setMaterial(getMaterial("steel"))
 		.= A //return tile for crowbar special attack ok
 
 	to_plating()
@@ -1598,6 +1624,11 @@ DEFINE_FLOORS(techfloor/green,
 
 		// Don't replace with an [else]! If a prying tool is found above [intact] might become 0 and this runs too, which is how floor swapping works now! - BatElite
 		if (!intact)
+			for(var/obj/decal/floatingtiles/loose/L in src.contents)
+				if(istype(L))
+					boutput(usr, "<span class='notice'>you need to clear the existing tile fragments.</span>")
+					return
+
 			restore_tile()
 			src.plate_mat = src.material
 			if(C.material)
@@ -1879,6 +1910,7 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 // --------------------------------------------
 
 /turf/proc/fall_to(var/turf/T, var/atom/movable/A)
+	var/safe = FALSE
 	if(istype(A, /obj/overlay/tile_effect)) //Ok enough light falling places. Fak.
 		return
 	if (isturf(T))
@@ -1889,10 +1921,20 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 				var/mob/living/carbon/human/H = M
 				if(H.gender == MALE) playsound(H.loc, "sound/voice/screams/male_scream.ogg", 100, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 				else playsound(H.loc, "sound/voice/screams/female_scream.ogg", 100, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
-			random_brute_damage(M, 50)
-			M.changeStatus("paralysis", 7 SECONDS)
-			SPAWN_DBG(0)
-				playsound(M.loc, pick('sound/impact_sounds/Slimy_Splat_1.ogg', 'sound/impact_sounds/Flesh_Break_1.ogg'), 75, 1)
+				if(H.shoes && (H.shoes.c_flags & SAFE_FALL))
+					safe = TRUE
+				if(H.wear_suit && (H.wear_suit.c_flags & SAFE_FALL))
+					safe = TRUE
+				if (H.back && (H.back.c_flags & IS_JETPACK))
+					safe = TRUE
+
+			if(safe)
+				visible_message("<span class='notice'>[A] lands gently on the ground.</span>")
+			else
+				random_brute_damage(M, 50)
+				M.changeStatus("paralysis", 7 SECONDS)
+				SPAWN_DBG(0)
+					playsound(M.loc, pick('sound/impact_sounds/Slimy_Splat_1.ogg', 'sound/impact_sounds/Flesh_Break_1.ogg'), 75, 1)
 		A.set_loc(T)
 		return
 

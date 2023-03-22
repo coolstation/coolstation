@@ -44,3 +44,51 @@
 	name = "space boss California shirt"
 	desc = "A memorial to the declaration of a space boss. California."
 	icon_state = "spaceboss_shirt"
+
+/*
+2022-10-14
+Warc: but the question is - if anyone is using paper calendara with pictures of hot, naked, lusciously buttered up, lascivious and tempting, dark, mysterious, pants-meltingly desireable, mouth watering clownes on them- who is and why?
+
+Bat: don't tempt my spriting hand :P
+
+Warc: i am nothing if not a temptress (content production)
+*/
+
+//Produced content
+/obj/decal/poster/wallsign/clown_calendar
+	desc = "A calendar with bawdy pinups of attractive clowns." //Presented without further comment
+	icon = 'icons/obj/decals/posters.dmi'
+
+	get_desc(var/dist, var/mob/user)
+		if (user.mind?.assigned_role == "Clown")
+			. += " These promote heavily unrealistic expectations for clowns!" //Clown solidarity
+
+/obj/decal/poster/wallsign/clown_calendar/slip
+	name = "Banana-Peel Beefcakes" //(deliberately proper names)
+	icon_state = "calendar_A"
+
+/obj/decal/poster/wallsign/clown_calendar/bridge
+	name = "Bridge Break-in Burlesques"
+	icon_state = "calendar_B"
+
+/obj/decal/poster/wallsign/clown_calendar/honk
+	name = "Hunks That Honk"
+	icon_state = "calendar_C"
+
+/obj/random_item_spawner/clown_calendar
+	icon = 'icons/obj/decals/posters.dmi'
+	icon_state = "calendar_rand"
+	amt2spawn = 1
+	items2spawn = list(/obj/decal/poster/wallsign/clown_calendar/slip, /obj/decal/poster/wallsign/clown_calendar/bridge, /obj/decal/poster/wallsign/clown_calendar/honk)
+
+//I have a phobia for spiderwebs why the fuck did I do this
+/obj/spacevine/web //looking at this spread genuinely triggers fear
+	name = "webzu"
+	desc = "Jesus Christ there's so many spiders in there fuck shit fuck."
+	icon_state = "web-light1"
+	base_state = "web"
+	vinepath = /obj/spacevine/web/living
+
+/obj/spacevine/web/living
+	run_life = 1
+//These will make the flower pods like kudzu does, cause kudzu infection is a proc on humans called by their decomposition lifeprocess what the hell am I supposed to do with that

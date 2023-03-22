@@ -67,6 +67,7 @@
 				user.visible_message("<span class='notice'>[user] cleans [his_or_her(user)] gloves.</span>")
 				H.gloves.clean_forensic() // Ditto (Convair880).
 				H.set_clothing_icon_dirty()
+				H.gloves.clean = 1
 			else
 				user.visible_message("<span class='notice'>[user] washes [his_or_her(user)] hands.</span>")
 				if (H.sims)
@@ -74,6 +75,7 @@
 				H.blood_DNA = null // Don't want to use it here, though. The sink isn't a shower (Convair880).
 				H.blood_type = null
 				H.set_clothing_icon_dirty()
+				H.cleanhands = 1
 		..()
 
 /obj/submachine/ice_cream_dispenser
@@ -231,6 +233,174 @@
 			src.overlays.len = 0
 
 		src.icon_state = "ice_creamer[src.cone ? "1" : "0"]"
+
+		return
+
+/obj/submachine/italian_ice_dispenser
+	name = "Italian Ice Dispenser"
+	desc = "A machine designed to dispense Rito's Italian Ice."
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "ice_creamer0"
+	anchored = 1
+	density = 1
+	mats = 18
+	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
+	flags = NOSPLASH
+	var/list/flavors = list("water")
+	var/obj/item/reagent_containers/glass/beaker = null
+	var/obj/item/reagent_containers/food/snacks/italian_ice_cup/cup = null
+	var/doing_a_thing = 0
+
+	attack_hand(var/mob/user as mob)
+		src.add_dialog(user)
+		var/dat = "<b>Rito's Italian Ice Maker</b><br>"
+		if(src.cup)
+			dat += "<a href='?src=\ref[src];eject=cone'>Eject Cup</a><br>"
+			dat += "<b>Select a Flavor:</b><br><ul>"
+			for(var/flavor in flavors)
+				dat += "<li><a href='?src=\ref[src];flavor=[flavor]'>[capitalize(flavor)]</a></li>"
+			if(src.beaker)
+				dat += "<li><a href='?src=\ref[src];flavor=beaker'>From Beaker</a></li>"
+			dat += "</ul><br>"
+
+		else
+			dat += "<b>No Cup Inserted!</b><br>"
+
+		if(src.beaker)
+			dat += "<a href='?src=\ref[src];eject=beaker'>Eject Beaker</a><br>"
+
+		user.Browse(dat, "window=icecream;size=400x500")
+		onclose(user, "icecream")
+		return
+
+	attack_ai(var/mob/user as mob)
+		return attack_hand(user)
+
+	Topic(href, href_list)
+		if (istype(src.loc, /turf) && (( get_dist(src, usr) <= 1) || issilicon(usr) || isAI(usr)))
+			if (!isliving(usr) || iswraith(usr) || isintangible(usr))
+				return
+			if (is_incapacitated(usr) || usr.restrained())
+				return
+
+			src.add_fingerprint(usr)
+			src.add_dialog(usr)
+
+			if(href_list["eject"])
+				switch(href_list["eject"])
+					if("beaker")
+						if(src.beaker)
+							src.beaker.set_loc(src.loc)
+							usr.put_in_hand_or_eject(src.beaker) // try to eject it into the users hand, if we can
+							src.beaker = null
+							src.update_icon()
+
+					if("cone")
+						if(src.cup)
+							src.cup.set_loc(src.loc)
+							usr.put_in_hand_or_eject(src.cup) // try to eject it into the users hand, if we can
+							src.cup = null
+							src.update_icon()
+
+			else if(href_list["flavor"])
+				if(doing_a_thing)
+					src.updateUsrDialog()
+					return
+				if(!cup)
+					boutput(usr, "<span class='alert'>There is no cone loaded!</span>")
+					src.updateUsrDialog()
+					return
+
+				var/the_flavor = href_list["flavor"]
+				if(the_flavor == "beaker")
+					if(!beaker)
+						boutput(usr, "<span class='alert'>There is no beaker loaded!</span>")
+						src.updateUsrDialog()
+						return
+
+					if(!beaker.reagents.total_volume)
+						boutput(usr, "<span class='alert'>The beaker is empty!</span>")
+						src.updateUsrDialog()
+						return
+
+					/*
+					if(false)
+						boutput(usr, "<span class='alert'>Disallowed chemical in beaker!</span>")
+						src.updateUsrDialog()
+						return
+						*/
+
+					if(beaker.reagents.total_volume < 40)
+						beaker.reagents.add_reagent("water", (40 - beaker.reagents.total_volume))
+
+					doing_a_thing = 1
+					qdel(src.cup)
+					src.cup = null
+					var/obj/item/reagent_containers/food/snacks/italian_ice/newice = new
+					beaker.reagents.trans_to(newice,40)
+					newice.set_loc(src.loc)
+
+				else
+					if(the_flavor in src.flavors)
+						doing_a_thing = 1
+						qdel(src.cup)
+						src.cup = null
+						var/obj/item/reagent_containers/food/snacks/italian_ice/newice = new
+						newice.reagents.add_reagent(the_flavor,40)
+						newice.set_loc(src.loc)
+					else
+						boutput(usr, "<span class='alert'>Unknown flavor!</span>")
+
+				doing_a_thing = 0
+				src.update_icon()
+
+			src.updateUsrDialog()
+		return
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (W.cant_drop) // For borg held items
+			boutput(user, "<span class='alert'>You can't put that in \the [src] when it's attached to you!</span>")
+			return
+
+		if (istype(W, /obj/item/reagent_containers/food/snacks/italian_ice_cup/))
+			if(src.cup)
+				boutput(user, "There is already a cup loaded.")
+				return
+			else
+				user.drop_item()
+				W.set_loc(src)
+				src.cup = W
+				boutput(user, "<span class='notice'>You load the cup into [src].</span>")
+
+			src.update_icon()
+			src.updateUsrDialog()
+
+		else if (istype(W, /obj/item/reagent_containers/glass/) || istype(W, /obj/item/reagent_containers/food/drinks/))
+			if(src.beaker)
+				boutput(user, "There is already a beaker loaded.")
+				return
+			else
+				user.drop_item()
+				W.set_loc(src)
+				src.beaker = W
+				boutput(user, "<span class='alert'>You load [W] into [src].</span>")
+
+			src.update_icon()
+			src.updateUsrDialog()
+		else ..()
+
+	MouseDrop_T(obj/item/W as obj, mob/user as mob)
+		if ((istype(W, /obj/item/reagent_containers/food/snacks/italian_ice_cup) || istype(W, /obj/item/reagent_containers/glass/) || istype(W, /obj/item/reagent_containers/food/drinks/)) && in_interact_range(W, user) && in_interact_range(src, user))
+			return src.Attackby(W, user)
+		return ..()
+
+	proc/update_icon()
+		if(src.beaker)
+			src.overlays += image(src.icon, "ice_creamer_beaker")
+		else
+			src.overlays.len = 0
+
+		src.icon_state = "ice_creamer[src.cup ? "1" : "0"]"
 
 		return
 
@@ -395,6 +565,7 @@ table#cooktime a#start {
 			src.recipes += new /datum/cookingrecipe/sandwich_c(src)
 			src.recipes += new /datum/cookingrecipe/sandwich_p_h(src)
 			src.recipes += new /datum/cookingrecipe/sandwich_p(src)
+			src.recipes += new /datum/cookingrecipe/sandwich_mitraillette(src)
 			src.recipes += new /datum/cookingrecipe/sandwich_custom(src)
 			src.recipes += new /datum/cookingrecipe/onionchips(src)
 			src.recipes += new /datum/cookingrecipe/mint_chutney(src)
@@ -863,50 +1034,50 @@ table#cooktime a#start {
 					qdel( P )
 				if (/obj/item/plant/wheat/metal)
 					new/obj/item/reagent_containers/food/snacks/condiment/ironfilings/(src.loc)
-					pool( P )
+					qdel( P )
 				if (/obj/item/plant/wheat/durum)
 					new/obj/item/reagent_containers/food/snacks/ingredient/flour/semolina(src.loc)
-					pool( P )
+					qdel( P )
 				if (/obj/item/plant/wheat)
 					new/obj/item/reagent_containers/food/snacks/ingredient/flour/(src.loc)
-					pool( P )
+					qdel( P )
 				if (/obj/item/plant/oat)
 					new/obj/item/reagent_containers/food/snacks/ingredient/oatmeal/(src.loc)
-					pool( P )
+					qdel( P )
 				if (/obj/item/reagent_containers/food/snacks/ingredient/rice_sprig)
 					new/obj/item/reagent_containers/food/snacks/ingredient/rice(src.loc)
-					pool( P )
+					qdel( P )
 				if (/obj/item/reagent_containers/food/snacks/plant/tomato)
 					new/obj/item/reagent_containers/food/snacks/condiment/ketchup(src.loc)
-					pool( P )
+					qdel( P )
 				if (/obj/item/reagent_containers/food/snacks/plant/peanuts)
 					new/obj/item/reagent_containers/food/snacks/ingredient/peanutbutter(src.loc)
-					pool( P )
+					qdel( P )
 				if (/obj/item/reagent_containers/food/snacks/ingredient/egg)
 					new/obj/item/reagent_containers/food/snacks/condiment/mayo(src.loc)
-					pool( P )
+					qdel( P )
 				if (/obj/item/reagent_containers/food/snacks/ingredient/pasta/sheet)
 					new/obj/item/reagent_containers/food/snacks/ingredient/spaghetti(src.loc)
-					pool( P )
+					qdel( P )
 				if (/obj/item/reagent_containers/food/snacks/plant/chili/chilly)
 					var/datum/plantgenes/DNA = P:plantgenes
 					var/obj/item/reagent_containers/food/snacks/condiment/coldsauce/F = new(src.loc)
 					F.reagents.add_reagent("cryostylane", DNA.potency)
-					pool( P )
+					qdel( P )
 				if (/obj/item/reagent_containers/food/snacks/plant/chili/ghost_chili)
 					var/datum/plantgenes/DNA = P:plantgenes
 					var/obj/item/reagent_containers/food/snacks/condiment/hotsauce/ghostchilisauce/F = new(src.loc)
 					F.reagents.add_reagent("ghostchilijuice", 5 + DNA.potency)
-					pool( P )
+					qdel( P )
 				if (/obj/item/reagent_containers/food/snacks/plant/chili)
 					var/datum/plantgenes/DNA = P:plantgenes
 					var/obj/item/reagent_containers/food/snacks/condiment/hotsauce/F = new(src.loc)
 					F.reagents.add_reagent("capsaicin", DNA.potency)
-					pool( P )
+					qdel( P )
 				if (/obj/item/plant/sugar)
 					var/obj/item/reagent_containers/food/snacks/ingredient/sugar/F = new(src.loc)
 					F.reagents.add_reagent("sugar", 20)
-					pool( P )
+					qdel( P )
 				if (/obj/item/reagent_containers/food/drinks/milk)
 					new/obj/item/reagent_containers/food/snacks/condiment/cream(src.loc)
 					qdel( P )

@@ -678,6 +678,10 @@
 				hud.update_tools()
 				break
 		return
+	if (istype(target, /obj/ladder))
+		var/obj/ladder/L = target
+		L.climb(src)
+		return
 	..()
 
 /mob/living/silicon/hivebot/proc/activated(obj/item/O)

@@ -551,7 +551,8 @@ var/global/list/atomTooltips = new()
 
 		atomTooltips.Remove(src)
 
-	..()
+	ClearAllOverlays()
+	. = ..()
 
 
 // DEBUG

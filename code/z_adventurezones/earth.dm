@@ -19,7 +19,7 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 	name = "Centcom"
 	icon_state = "purple"
 	requires_power = 0
-	sound_environment = 4
+	sound_environment = EAX_LIVINGROOM
 	teleport_blocked = 1
 	skip_sims = 1
 	sims_score = 25
@@ -112,6 +112,9 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 	atomicthumbs
 		ckey = ""
 		name = "Office of Atomicthumbs"
+	batelite
+		ckey = "roselace"
+		name = "Here Be Bats"
 	bubs
 		ckey = "insanoblan"
 		name = "Office of bubs"

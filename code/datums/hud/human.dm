@@ -28,8 +28,8 @@
 		health_tox
 		health_oxy
 		bleeding
-		stamina
-		stamina_back
+		//stamina
+		//stamina_back
 		bodytemp
 		oxygen
 		fire
@@ -137,7 +137,7 @@
 
 		for(var/datum/statusEffect/S as anything in src.statusUiElements) //Remove stray effects.
 			if(!master || !master.statusEffects || !(S in master.statusEffects))
-				pool(statusUiElements[S])
+				qdel(statusUiElements[S])
 				src.statusUiElements.Remove(S)
 				qdel(S)
 
@@ -156,7 +156,7 @@
 					pos_x -= spacing
 				else
 					if(S.visible)
-						var/atom/movable/screen/statusEffect/U = unpool(/atom/movable/screen/statusEffect)
+						var/atom/movable/screen/statusEffect/U = new()
 						U.init(master,S)
 						U.icon = icon_hud
 						statusUiElements.Add(S)
@@ -249,27 +249,27 @@
 			health_tox = create_screen("mtox","Toxin Damage", src.icon_hud, "blank", "EAST, NORTH", HUD_LAYER, tooltipTheme = "healthDam healthDam0")
 			health_oxy = create_screen("moxy","Oxygen Damage", src.icon_hud, "blank", "EAST, NORTH", HUD_LAYER, tooltipTheme = "healthDam healthDam0")
 
-			bleeding = create_screen("bleeding","Bleed Warning", src.icon_hud, "blood0", "EAST-3, NORTH", HUD_LAYER, tooltipTheme = "healthDam healthDam0")
+			bleeding = create_screen("bleeding","Bleed Warning", src.icon_hud, "blood0", "EAST-2, NORTH", HUD_LAYER, tooltipTheme = "healthDam healthDam0")
 			bleeding.desc = "This indicator warns that you are currently bleeding. You will die if the situation is not remedied."
-
+/*
 			stamina = create_screen("stamina","Stamina", src.icon_hud, "stamina", "EAST-1, NORTH", HUD_LAYER, tooltipTheme = "stamina")
 			stamina_back = create_screen("stamina_back","Stamina", src.icon_hud, "stamina_back", "EAST-1, NORTH", HUD_LAYER-2)
 			if (master?.stamina_bar)
 				stamina.desc = master.stamina_bar.getDesc(master)
-
-			bodytemp = create_screen("bodytemp","Temperature", src.icon_hud, "temp0", "EAST-2, NORTH", HUD_LAYER, tooltipTheme = "tempInd tempInd0")
+*/
+			bodytemp = create_screen("bodytemp","Temperature", src.icon_hud, "temp0", "EAST-1, NORTH", HUD_LAYER, tooltipTheme = "tempInd tempInd0")
 			bodytemp.desc = "The temperature feels fine."
 
-			oxygen = create_screen("oxygen","Suffocation Warning", src.icon_hud, "oxy0", "EAST-4, NORTH", HUD_LAYER, tooltipTheme = "statusOxy")
+			oxygen = create_screen("oxygen","Suffocation Warning", src.icon_hud, "oxy0", "EAST-3, NORTH", HUD_LAYER, tooltipTheme = "statusOxy")
 			oxygen.desc = "This indicator warns that you are currently suffocating. You will take oxygen damage until the situation is remedied."
 
-			fire = create_screen("fire","Fire Warning", src.icon_hud, "fire0", "EAST-5, NORTH", HUD_LAYER, tooltipTheme = "statusFire")
+			fire = create_screen("fire","Fire Warning", src.icon_hud, "fire0", "EAST-4, NORTH", HUD_LAYER, tooltipTheme = "statusFire")
 			fire.desc = "This indicator warns that you are either on fire, or too hot. You will take burn damage until the situation is remedied."
 
-			toxin = create_screen("toxin","Toxic Warning",src.icon_hud, "toxin0", "EAST-6, NORTH", HUD_LAYER, tooltipTheme = "statusToxin")
+			toxin = create_screen("toxin","Toxic Warning",src.icon_hud, "toxin0", "EAST-5, NORTH", HUD_LAYER, tooltipTheme = "statusToxin")
 			toxin.desc = "This indicator warns that you are poisoned. You will take toxic damage until the situation is remedied."
 
-			rad = create_screen("rad","Radiation Warning", src.icon_hud, "rad0", "EAST-7, NORTH", HUD_LAYER, tooltipTheme = "statusRad")
+			rad = create_screen("rad","Radiation Warning", src.icon_hud, "rad0", "EAST-6, NORTH", HUD_LAYER, tooltipTheme = "statusRad")
 			rad.desc = "This indicator warns that you are irradiated. You will take toxic and burn damage until the situation is remedied."
 
 			ability_toggle = create_screen("ability", "Toggle Ability Hotbar", src.icon_hud, "[layouts[layout_style]["ability_icon"]]1", layouts[layout_style]["abiltoggle"], HUD_LAYER)
@@ -503,10 +503,10 @@
 					return
 
 				out(master, bodytemp.desc)
-
+/*
 			if ("stamina")
 				out(master, "<span class='green'>[stamina.desc]</span>")
-
+*/
 			if ("oxygen")
 				out(master, "<span class='alert'>[oxygen.desc]</span>")
 
@@ -1150,8 +1150,8 @@
 
 			if (health) health.icon = new_file
 			if (bleeding) bleeding.icon = new_file
-			if (stamina) stamina.icon = new_file
-			if (stamina_back) stamina_back.icon = new_file
+			//if (stamina) stamina.icon = new_file
+			//if (stamina_back) stamina_back.icon = new_file
 			if (bodytemp) bodytemp.icon = new_file
 			if (oxygen) oxygen.icon = new_file
 			if (fire) fire.icon = new_file
@@ -1167,12 +1167,14 @@
 			for (var/atom/movable/screen/hud/H in inventory_bg)
 				H.icon = new_file
 
-			if (master.stamina_bar)
-				master.stamina_bar.icon = new_file
+//			if (master.stamina_bar)
+//				master.stamina_bar.icon = new_file
 
 	proc/set_sprint(var/on)
+		return
+	/*
 		if(stamina)
-			stamina.icon_state = on ? "stamina_sprint" : "stamina"
+			stamina.icon_state = on ? "stamina_sprint" : "stamina"*/
 
 
 

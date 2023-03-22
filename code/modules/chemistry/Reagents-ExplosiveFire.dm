@@ -251,11 +251,11 @@ datum
 			transparency = 230
 			minimum_reaction_temperature = T0C+25
 			var/ignited = 0
-
+/*
 			pooled()
 				..()
 				ignited = 0
-
+*/
 			reaction_temperature(exposed_temperature, exposed_volume)
 				var/datum/reagents/myholder = holder
 				if(!holder?.my_atom?.is_open_container())
@@ -280,11 +280,11 @@ datum
 			transparency = 230
 			minimum_reaction_temperature = T0C + 100
 			var/ignited = FALSE
-
+/*
 			pooled()
 				..()
 				ignited = FALSE
-
+*/
 			reaction_temperature(exposed_temperature, exposed_volume)
 				var/datum/reagents/myholder = holder
 				if(!holder?.my_atom?.is_open_container())
@@ -729,7 +729,7 @@ datum
 				if((M.health > 20) && (prob(33)))
 					M.take_toxin_damage(1 * mult)
 				if(probmult(1))
-					M.visible_message("<span class='alert'>[M] pukes all over \himself.</span>", "<span class='alert'>You puke all over yourself!</span>")
+					M.visible_message("<span class='alert'>[M] pukes all over [himself_or_herself(M)].</span>", "<span class='alert'>You puke all over yourself!</span>")
 					M.vomit()
 				..()
 
@@ -844,11 +844,11 @@ datum
 			fluid_b = 64
 			minimum_reaction_temperature = T0C+100
 			var/is_dry = 0
-
+/*
 			pooled()
 				..()
 				is_dry = 0
-
+*/
 			proc/bang()
 				if(holder?.my_atom)
 					holder.my_atom.visible_message("<b>The powder detonates!</b>")
@@ -900,14 +900,14 @@ datum
 				..()
 				SPAWN_DBG(200 + rand(10, 600) * rand(1, 4)) //Random time until it becomes HIGHLY VOLATILE
 					dry()
-
+/*
 
 			unpooled()
 				SPAWN_DBG(200 + rand(10, 600) * rand(1, 4)) //Random time until it becomes HIGHLY VOLATILE
 					dry()
 				..()
 
-
+*/
 
 		combustible/nitrogentriiodide/dry
 			id = "nitrotri_dry"
@@ -922,12 +922,12 @@ datum
 				..()
 				SPAWN_DBG(10 * rand(11,600)) //At least 11 seconds, at most 10 minutes
 					bang()
-
+/*
 			unpooled()
 				is_dry = 1
 				SPAWN_DBG(10 * rand(11,600)) //At least 11 seconds, at most 10 minutes
 					bang()
-				..()
+				..()*/
 
 			reaction_turf(var/turf/T, var/volume)
 				var/obj/decal/cleanable/nitrotriiodide/NT = ..()

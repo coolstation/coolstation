@@ -24,7 +24,7 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 				S.file = ambientSound
 				S.repeat = 0
 				S.wait = 0
-				S.channel = 123
+				S.channel = SOUNDCHANNEL_FX_1
 				S.volume = 60
 				S.priority = 255
 				S.status = SOUND_UPDATE
@@ -116,10 +116,10 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 				var/turf/T = locate(Obj.x, 4, 1)
 				Obj.set_loc(T)
 				playsound(T, pick('sound/effects/elec_bigzap.ogg', 'sound/effects/elec_bzzz.ogg', 'sound/effects/electric_shock.ogg'), 50, 0)
-				var/obj/somesparks = unpool(/obj/effects/sparks)
+				var/obj/somesparks = new /obj/effects/sparks()
 				somesparks.set_loc(T)
 				SPAWN_DBG(2 SECONDS)
-					if (somesparks) pool(somesparks)
+					if (somesparks) qdel(somesparks)
 
 				Obj.throw_at(get_edge_target_turf(T, NORTH), 200, 1)
 

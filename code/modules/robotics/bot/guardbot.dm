@@ -1888,7 +1888,7 @@
 
 			src.add_task(src.model_task.copy_file(),1)
 
-		if(src.task?.disposed || src.task.master != src)
+		if(src.task?.disposed || src.task?.master != src)
 			src.task = null
 		if(istype(src.task))
 			src.task.task_act()
@@ -2273,7 +2273,7 @@
 				var/list/affected = DrawLine(last, target_r, /obj/line_obj/elec ,'icons/obj/projectiles.dmi',"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",OBJ_LAYER,1,PreloadedIcon='icons/effects/LghtLine.dmi')
 
 				for(var/obj/O in affected)
-					SPAWN_DBG(0.6 SECONDS) pool(O)
+					SPAWN_DBG(0.6 SECONDS) qdel(O)
 
 				if(isliving(target_r)) //Probably unsafe.
 					playsound(target_r:loc, "sound/effects/electric_shock.ogg", 50, 1)
@@ -2619,8 +2619,8 @@
 						src.master.set_emotion(rumpus_emotion)
 
 					if (party_idle_counter-- <= 0)
-						party_idle_counter = rand(4,14)
-						if (prob(50))
+						party_idle_counter = rand(6,16)
+						if (prob(20))
 							src.master.speak(pick("Yay!", "Woo-hoo!", "Yee-haw!", "Oh boy!", "Oh yeah!", "My favorite color is probably [pick("red","green","mauve","anti-flash white", "aureolin", "coquelicot")].", "I'm glad we have the opportunity to relax like this.", "Imagine if I had two arms. I could hug twice as much!", "I like [pick("tea","coffee","hot chocolate","soda", "diet soda", "milk", "almond milk", "soy milk", "horchata", "hot cocoa with honey mixed in", "green tea", "black tea")]. I have no digestive system or even a mouth, but I'm pretty sure I would like it.", "Sometimes I wonder what it would be like if I could fly."))
 
 						else
@@ -2722,7 +2722,7 @@
 		var/tmp/list/arrested_messages = list("Have a secure day!","Your move, creep.", "God made tomorrow for the crooks we don't catch today.","One riot, one ranger.")
 
 #define ARREST_DELAY 2.5 //Delay between movements when chasing a criminal, slightly faster than usual. (2.5 vs 3)
-#define TIME_BETWEEN_CUTE_ACTIONS 1800 //Tenths of a second between cute actions
+#define TIME_BETWEEN_CUTE_ACTIONS 3800 //Tenths of a second between cute actions
 
 		patrol
 			name = "patrol"

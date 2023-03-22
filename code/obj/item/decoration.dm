@@ -54,8 +54,28 @@
 			src.overlays += "ashtray-smoke"
 			SPAWN_DBG(80 SECONDS)
 				src.overlays -= "ashtray-smoke"
+		else if(istype(W, /obj/item/cigbutt))
+			boutput(user, "You put [W] in [src].")
+			user.u_equip(W)
+			qdel(W)
+			src.butts ++ // hehhh
+			src.update_icon()
+
 		else
 			return ..()
+
+
+	throw_impact(atom/A, datum/thrown_thing/thr)
+		..()
+		if (src.butts)
+			src.visible_message("[src] spills all over the place.")
+			var/turf/T = get_turf(src)
+			make_cleanable( /obj/decal/cleanable/ash,T)
+			for (var/i = 0, i < src.butts, i++)
+				new /obj/item/cigbutt(T)
+			src.butts = 0 // pff
+			src.update_icon()
+			src.overlays = null
 
 	proc/update_icon()
 		if (src.butts <= 0)

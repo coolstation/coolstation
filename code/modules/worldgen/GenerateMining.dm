@@ -18,6 +18,8 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 	proc/place()
 		if (map_currently_underwater)
 			src.ReplaceWith(/turf/space/fluid/trench, FALSE, TRUE, FALSE, TRUE)
+		else if (map_currently_very_dusty && ((src.z == 3)||(src.z == 1)))
+			src.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
 		else
 			src.ReplaceWith(/turf/space, FALSE, TRUE, FALSE, TRUE)
 
@@ -27,6 +29,8 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		place()
 			if (map_currently_underwater)
 				src.ReplaceWith(/turf/space/fluid/trench, FALSE, TRUE, FALSE, TRUE)
+			else if (map_currently_very_dusty && ((src.z == 3)||(src.z == 1)))
+				src.ReplaceWith(/turf/simulated/floor/plating/gehenna, FALSE, TRUE, FALSE, TRUE)
 			else
 				src.ReplaceWith(/turf/simulated/floor/plating/airless/asteroid, FALSE, TRUE, FALSE, TRUE)
 
@@ -34,7 +38,12 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		name = "variable wall"
 		icon_state = "wall"
 		place()
-			src.ReplaceWith(/turf/simulated/wall/asteroid, FALSE, TRUE, FALSE, TRUE)
+			if (map_currently_very_dusty && (src.z == 3))
+				src.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/tough/z3, FALSE, TRUE, FALSE, TRUE)
+			else if (map_currently_very_dusty && (src.z == 1))
+				src.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/tough, FALSE, TRUE, FALSE, TRUE)
+			else
+				src.ReplaceWith(/turf/simulated/wall/asteroid, FALSE, TRUE, FALSE, TRUE)
 
 	clear //Replaced with map appropriate clear tile for mining level (asteroid floor on oshan, space on other maps)
 		name = "variable clear"
@@ -42,6 +51,8 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		place()
 			if (map_currently_underwater)
 				src.ReplaceWith(/turf/space/fluid/trench, FALSE, TRUE, FALSE, TRUE)
+			else if (map_currently_very_dusty && ((src.z == 3)||(src.z == 1)))
+				src.ReplaceWith(/turf/simulated/floor/plating/gehenna, FALSE, TRUE, FALSE, TRUE)
 			else
 				src.ReplaceWith(/turf/space, FALSE, TRUE, FALSE, TRUE)
 
@@ -59,8 +70,17 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		force_fullbright = 0
 		requires_power = 0
 		luminosity = 0
-		sound_environment = 22
+		sound_environment = EAX_UNDERWATER
 		ambient_light = TRENCH_LIGHT
+
+	caves
+		name = "Caves"
+		sound_group = "caves"
+		force_fullbright = 0
+		requires_power = 0
+		luminosity = 0
+		sound_environment = EAX_CAVE
+		//ambient_light = TRENCH_LIGHT
 
 /proc/decideSolid(var/turf/current, var/turf/center, var/sizemod = 0)
 	if(!current || !center || (current.loc.type != /area/space && !istype(current.loc , /area/allowGenerate)) || !istype(current, /turf/space))
@@ -105,6 +125,84 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 					count2 += default
 
 	return (count >= minSolid + ((generation==4||generation==3) ? endFill : 0 ) || (count2<=(generation==4?1:2) && fillLarge && (generation==3 || generation==4)) ) //Remove ((generation==4||generation==3)?-1:0) for larger corridors
+
+
+/datum/mapGenerator/desertCaverns
+	generate(var/list/miningZ, var/z_level = GEH_ZLEVEL, var/generate_borders = TRUE)
+		var/map[world.maxx][world.maxy]
+		for(var/x=1,x<=world.maxx,x++)
+			for(var/y=1,y<=world.maxy,y++)
+				map[x][y] = pick(90;1,100;0) //Initialize randomly.
+
+		for(var/i=0, i<5, i++) //5 Passes to smooth it out.
+			var/mapnew[world.maxx][world.maxy]
+			for(var/x=1,x<=world.maxx,x++)
+				for(var/y=1,y<=world.maxy,y++)
+					mapnew[x][y] = CAGetSolid(map, x, y, i)
+					LAGCHECK(LAG_REALTIME)
+			map = mapnew
+
+		for(var/x=1,x<=world.maxx,x++)
+			for(var/y=1,y<=world.maxy,y++)
+				var/turf/T = locate(x,y,z_level)
+				if(istype(T, /turf/simulated/floor/plating/gehenna)) continue // do not fill in the existing crevices, leaves the player more room.
+				if(map[x][y] && !ISDISTEDGE(T, 3) && T.loc && ((T.loc.type == /area/space) || istype(T.loc , /area/allowGenerate)) )
+					var/turf/simulated/wall/asteroid/N = T.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
+					N.quality = rand(-101,101)
+					generated.Add(N)
+				if(T.loc.type == /area/space || istype(T.loc, /area/allowGenerate))
+					new/area/allowGenerate/caves(T)
+				LAGCHECK(LAG_REALTIME)
+
+		var/list/used = list()
+		for(var/s=0, s<20, s++)
+			var/turf/TU = pick(generated - used)
+			var/list/L = list()
+			for(var/turf/simulated/wall/asteroid/A in orange(5,TU))
+				L.Add(A)
+			seeds.Add(TU)
+			seeds[TU] = L
+			used.Add(L)
+			used.Add(TU)
+
+			var/list/holeList = list()
+			for(var/k=0, k<AST_RNGWALKINST, k++)
+				var/turf/T = pick(L)
+				for(var/j=0, j<rand(2*AST_RNGWALKCNT,round(AST_RNGWALKCNT*4.5)), j++)
+					holeList.Add(T)
+					T = get_step(T, pick(NORTH,EAST,SOUTH,WEST,EAST,SOUTH)) // slight S-E bias
+					if(!istype(T, /turf/simulated/wall/asteroid)) continue
+					var/turf/simulated/wall/asteroid/ast = T
+					ast.destroy_asteroid(0)
+
+
+		for(var/i=0, i<80, i++)
+			var/list/L = list()
+			for (var/turf/simulated/wall/asteroid/gehenna/A in range(4,pick(generated)))
+				if(prob(50))
+					L+=A
+
+			Turfspawn_Asteroid_SeedOre(L, rand(2,8), rand(1,70))
+
+		for(var/i=0, i<80, i++)
+			Turfspawn_Asteroid_SeedOre(generated)
+
+		for(var/i=0, i<40, i++)
+			Turfspawn_Asteroid_SeedEvents(generated)
+
+		if(generate_borders)
+			var/list/border = list()
+			border |= (block(locate(1,1,z_level), locate(AST_MAPBORDER,world.maxy,z_level))) //Left
+			border |= (block(locate(1,1,z_level), locate(world.maxx,AST_MAPBORDER,z_level))) //Bottom
+			border |= (block(locate(world.maxx-(AST_MAPBORDER-1),1,z_level), locate(world.maxx,world.maxy,z_level))) //Right
+			border |= (block(locate(1,world.maxy-(AST_MAPBORDER-1),z_level), locate(world.maxx,world.maxy,z_level))) //Top
+
+			for(var/turf/T in border)
+				T.ReplaceWith(/turf/unsimulated/wall/gehenna, FALSE, TRUE, FALSE, TRUE)
+				new/area/cordon/dark(T)
+				LAGCHECK(LAG_REALTIME)
+
+		return miningZ
 
 /datum/mapGenerator/seaCaverns //Cellular automata based generator. Produces cavern-like maps. Empty space is filled with asteroid floor.
 	generate(var/list/miningZ, var/z_level = AST_ZLEVEL, var/generate_borders = TRUE)
@@ -266,6 +364,59 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 							ast.destroy_asteroid(0)
 		return miningZ
 
+/proc/makeMiningLevelGehenna()
+	var/list/miningZ = list()
+	var/startTime = world.timeofday
+	boutput(world, "<span class='alert'>Generating the OTHER Mining Level ...</span>")
+
+	for(var/turf/T)
+		if(T.z == GEH_ZLEVEL)
+			miningZ.Add(T)
+
+	var/num_to_place = AST_NUMPREFABS + rand(0,AST_NUMPREFABSEXTRA) + 2
+	for (var/n = 1, n <= num_to_place, n++)
+		game_start_countdown?.update_status("Setting up mining level...\n(Prefab [n]/[num_to_place])")
+		var/datum/generatorPrefab/M = pickPrefab(1)
+		if (M)
+			var/maxX = (world.maxx - M.prefabSizeX - AST_MAPBORDER)
+			var/maxY = (world.maxy - M.prefabSizeY - AST_MAPBORDER)
+			var/stop = 0
+			var/count= 0
+			var/maxTries = (M.required ? 200:33)
+			while (!stop && count < maxTries) //Kinda brute forcing it. Dumb but whatever.
+				var/turf/target = locate(rand(1+AST_MAPBORDER, maxX), rand(1+AST_MAPBORDER,maxY), GEH_ZLEVEL)
+				var/ret = M.applyTo(target)
+				if (ret == 0)
+					logTheThing("debug", null, null, "Prefab placement #[n] [M.type] failed due to blocked area. [target] @ [showCoords(target.x, target.y, target.z)]")
+				else
+					logTheThing("debug", null, null, "Prefab placement #[n] [M.type][M.required?" (REQUIRED)":""] succeeded. [target] @ [showCoords(target.x, target.y, target.z)]")
+					stop = 1
+				count++
+				if (count >= maxTries)
+					logTheThing("debug", null, null, "Prefab placement #[n] [M.type] failed due to maximum tries [maxTries][M.required?" WARNING: REQUIRED FAILED":""]. [target] @ [showCoords(target.x, target.y, target.z)]")
+		else break
+
+	var/datum/mapGenerator/D = new/datum/mapGenerator/desertCaverns()
+
+	game_start_countdown?.update_status("Setting up mining level...\nGenerating terrain... again...")
+	miningZ = D.generate(miningZ)
+
+	// remove temporary areas
+	for (var/turf/T in get_area_turfs(/area/noGenerate))
+		if(T.z==3)
+			new /area/gehenna/underground(T)
+		else
+			new /area/space(T)
+
+	for (var/turf/T in get_area_turfs(/area/allowGenerate))
+		if(T.z==3)
+			new /area/gehenna/underground(T)
+		else
+			new /area/space(T)
+
+	boutput(world, "<span class='alert'>Generated (the other) Mining Level in [((world.timeofday - startTime)/10)] seconds!")
+
+
 /proc/makeMiningLevel()
 	var/list/miningZ = list()
 	var/startTime = world.timeofday
@@ -313,25 +464,31 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 	miningZ = D.generate(miningZ)
 
 	// remove temporary areas
-	for (var/turf/T in get_area_turfs(/area/noGenerate))
-		if (map_currently_underwater)
-			new /area/allowGenerate/trench(T)
-		else
-			new /area/space(T)
-	if (!map_currently_underwater)
-		for (var/turf/T in get_area_turfs(/area/allowGenerate))
-			new /area/space(T)
+	if(!map_currently_very_dusty)
+		for (var/turf/T in get_area_turfs(/area/noGenerate))
+			if (map_currently_underwater)
+				new /area/allowGenerate/trench(T)
+			else
+				new /area/space(T)
+		if (!map_currently_underwater)
+			for (var/turf/T in get_area_turfs(/area/allowGenerate))
+				new /area/space(T)
 
 	boutput(world, "<span class='alert'>Generated Mining Level in [((world.timeofday - startTime)/10)] seconds!")
 
-	hotspot_controller.generate_map()
+	if(map_currently_very_dusty)
+		makeMiningLevelGehenna()
+		hotspot_controller.generate_map(GEH_ZLEVEL, "desert")
 
-/proc/pickPrefab()
+	hotspot_controller.generate_map(AST_ZLEVEL, map_currently_underwater ? "trench" : "space")
+
+/proc/pickPrefab(var/dusty = 0)
 	var/list/eligible = list()
 	var/list/required = list()
 
 	for(var/datum/generatorPrefab/M in miningModifiers)
 		if(M.underwater != map_currently_underwater) continue
+		if(M.dusty != dusty) continue
 		if(M.type in miningModifiersUsed)
 			if(M.required) continue
 			if(M.maxNum != -1)

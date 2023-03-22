@@ -3,6 +3,9 @@
 #define PIPEC_BRIG "#ff6666"
 #define PIPEC_EJECTION "#f2a673"
 #define PIPEC_MORGUE "#696969"
+#define PIPEC_CREMATORIUM "#a51313"
+#define PIPEC_QUARANTINE "#54ad00"
+#define PIPEC_GENETICS "#403b81"
 #define PIPEC_FOOD "#fbed92"
 #define PIPEC_PRODUCE "#b2ff4f"
 #define PIPEC_TRANSPORT "#ffbef6"
@@ -30,7 +33,7 @@
 	var/autoconfig = 0 //Is this a configuration packet? great! glad to hear it!
 	var/list/routers = null // a list of the places we have been so far.
 
-	unpooled()
+	New()
 		..()
 		gas = null
 		active = 0
@@ -42,7 +45,7 @@
 		routers = list()
 		reagents = new(1000)
 
-	pooled()
+	disposing()
 		routers = null
 		autoconfig = 0
 		gas = null
@@ -134,7 +137,7 @@
 				if(!(count--))
 					active = 0
 					if(autoconfig)//we dont want dead config packets to stay put, we want them to evaporate.
-						pool(src)
+						qdel(src)
 		return
 
 	// find the turf which should contain the next pipe
@@ -163,7 +166,7 @@
 			src.mail_tag = other.mail_tag
 		if(other.reagents)
 			other.reagents.trans_to(src, 1000)
-		pool(other)
+		qdel(other)
 
 
 	// called when player tries to move while in a pipe
@@ -214,7 +217,7 @@
 		return
 
 	proc/dupe() // returns another disposalholder like this one
-		var/obj/disposalholder/autoconfig/dupe = unpool(/obj/disposalholder/autoconfig)
+		var/obj/disposalholder/autoconfig/dupe = new()
 		dupe.count = src.count
 		dupe.autoconfig = src.autoconfig
 		dupe.routers = src.routers.Copy()
@@ -371,7 +374,7 @@
 			if(H.reagents && H.reagents.total_volume)
 				T.fluid_react(H.reagents, H.reagents.total_volume)
 			H.vent_gas(T)
-			pool(H)
+			qdel(H)
 
 		else	// no specified direction, so throw in random direction
 
@@ -386,7 +389,7 @@
 			if(H.reagents && H.reagents.total_volume)
 				T.fluid_react(H.reagents, H.reagents.total_volume)
 			H.vent_gas(T)	// all gas vent to turf
-			pool(H)
+			qdel(H)
 
 		return
 
@@ -416,7 +419,7 @@
 				for(var/atom/movable/AM in H)
 					AM.set_loc(T)
 					AM.pipe_eject(0)
-				pool(H)
+				qdel(H)
 				return
 
 			// otherswise, do normal expel from turf
@@ -567,7 +570,7 @@
 				dir = WEST
 	brig
 		name = "brig pipe"
-		desc = "An underfloor brig pipe."
+		desc = "An underfloor brig pipe. Bripe."
 		color = PIPEC_BRIG
 
 	ejection
@@ -577,12 +580,27 @@
 
 	morgue
 		name = "morgue pipe"
-		desc = "An underfloor morgue pipe."
+		desc = "An underfloor morgue pipe, for dead people."
 		color = PIPEC_MORGUE
+
+	quarantine
+		name = "quarantine pipe"
+		desc = "An underfloor quarantine pipe."
+		color = PIPEC_QUARANTINE
+
+	genetics
+		name = "genetics pipe"
+		desc = "An underfloor genetics pipe, for dead people."
+		color = PIPEC_GENETICS
+
+	crematorium
+		name = "crematorium pipe"
+		desc = "An underfloor crematorium pipe, for dead people."
+		color = PIPEC_CREMATORIUM
 
 	food
 		name = "food pipe"
-		desc = "An underfloor food pipe."
+		desc = "An underfloor food pipe lined with non-stick, probably-food-safe materials."
 		color = PIPEC_FOOD
 
 	produce
@@ -660,7 +678,7 @@
 	transfer(var/obj/disposalholder/H)
 		if(H.autoconfig == 1)// its one of our own little packets that made it all the way around. So we kill him.
 			logTheThing("debug", src, null, "got a little guy back")
-			pool(H)
+			qdel(H)
 			return null
 		if(H.autoconfig == 2)
 			logTheThing("debug", src, null, "the journey begin's")
@@ -676,7 +694,7 @@
 			logTheThing("debug", SJ, null, "deleting mail tags")
 			SJ.mail_tag = list()
 
-		var/obj/disposalholder/packet = unpool(/obj/disposalholder)
+		var/obj/disposalholder/packet = new()
 		packet.contents += new /obj/item/gnomechompski(packet)
 		packet.autoconfig = 2
 		packet.active = 1
@@ -1458,7 +1476,7 @@
 				AM.pipe_eject(dir)
 				AM.throw_at(stuff_chucking_target, 3, 1)
 			H.vent_gas(src.loc)
-			pool(H)
+			qdel(H)
 
 			return null
 
@@ -1529,7 +1547,7 @@
 				AM.throw_at(stuff_chucking_target, 3, 1)
 			if (H.contents.len < 1)
 				H.vent_gas(src.loc)
-				pool(H)
+				qdel(H)
 				return null
 
 		var/turf/T = H.nextloc()
@@ -1696,6 +1714,21 @@
 		desc = "An underfloor morgue pipe."
 		color = PIPEC_MORGUE
 
+	quarantine
+		name = "quarantine pipe"
+		desc = "An underfloor quarantine pipe."
+		color = PIPEC_QUARANTINE
+
+	genetics
+		name = "genetics pipe"
+		desc = "An underfloor genetics pipe, for dead people."
+		color = PIPEC_GENETICS
+
+	crematorium
+		name = "crematorium pipe"
+		desc = "An underfloor crematorium pipe, for dead people."
+		color = PIPEC_CREMATORIUM
+
 	food
 		name = "food pipe"
 		desc = "An underfloor food pipe."
@@ -1782,11 +1815,17 @@
 /obj/disposalpipe/trunk/zlevel
 	var/target_z
 	var/id
-	color = "#FAF"
+	name = "vertical disposal trunk"
+	desc = "a section of vertical riser."
+	icon_state = "pipe-vt"
+	//color = "#FAF"
 
 	New()
 		..()
 		START_TRACKING
+		if(src.z > target_z)
+			icon_state = "pipe-t"
+			new /obj/structure/girder/riser(src.loc) //gotta go up!
 
 	disposing()
 		STOP_TRACKING
@@ -1941,7 +1980,7 @@
 			AM.pipe_eject(dir)
 			AM.throw_at(target, src.throw_range, src.throw_speed)
 		H.vent_gas(src.loc)
-		pool(H)
+		qdel(H)
 
 		return
 

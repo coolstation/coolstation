@@ -475,17 +475,17 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 	if (usr.stat)
 		return
 
-	boutput(usr, "Deconstructing frame...")
+	boutput(usr, "Deconstructing frame...", group = "vehicleframe_decon")
 
 	var/timer = 5 * stage + 30
 	while(timer > 0)
 		if(do_after(usr, 1 SECONDS))
 			timer -= 10
 		else
-			boutput(usr, "<span class='alert'>You were interrupted!</span>")
+			boutput(usr, "<span class='alert'>You were interrupted!</span>", group = "vehicleframe_decon")
 			return
 
-	boutput(usr, "<span class='notice'>You deconstructed the [src].</span>")
+	boutput(usr, "<span class='notice'>You deconstructed the [src].</span>", group = "vehicleframe_decon")
 	var/obj/O
 	if (stage == 10)
 		O = new src.control_type( get_turf(src) )
@@ -539,124 +539,124 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 	switch(stage)
 		if(0)
 			if (iswrenchingtool(W))
-				boutput(user, "You begin to secure the frame...")
+				boutput(user, "You begin to secure the frame...", group = "vehicleframe_con")
 				playsound(src.loc, "sound/items/Ratchet.ogg", 50, 1)
 				if (!do_after(user, 3 SECONDS))
-					boutput(user, "<span class='alert'>You were interrupted!</span>")
+					boutput(user, "<span class='alert'>You were interrupted!</span>", group = "vehicleframe_con")
 					return
-				boutput(user, "You wrench some of the frame parts together.")
+				boutput(user, "You wrench some of the frame parts together.", group = "vehicleframe_con")
 				src.overlays += image(src.icon, "[pick("frame1", "frame2")]")
 				stage = 1
 			else
-				boutput(user, "If only there was some way to secure all this junk together! You should get a wrench.")
+				boutput(user, "If only there was some way to secure all this junk together! You should get a wrench.", group = "vehicleframe_con")
 
 		if(1)
 			if (iswrenchingtool(W))
-				boutput(user, "You begin to secure the rest of the frame...")
+				boutput(user, "You begin to secure the rest of the frame...", group = "vehicleframe_con")
 				playsound(src.loc, "sound/items/Ratchet.ogg", 50, 1)
 				if (!do_after(user, 3 SECONDS))
-					boutput(user, "<span class='alert'>You were interrupted!</span>")
+					boutput(user, "<span class='alert'>You were interrupted!</span>", group = "vehicleframe_con")
 					return
-				boutput(user, "You finish wrenching the frame parts together.")
+				boutput(user, "You finish wrenching the frame parts together.", group = "vehicleframe_con")
 				src.overlays -= image(src.icon, "frame1")
 				src.overlays -= image(src.icon, "frame2")
 				icon_state = "frame"
 				stage = 2
 			else
-				boutput(user, "You should probably finish putting these parts together. A wrench would do the trick!")
+				boutput(user, "You should probably finish putting these parts together. A wrench would do the trick!", group = "vehicleframe_con")
 
 		if(2)
 			if (isweldingtool(W))
 				if(!W:try_weld(user, 1))
 					return
-				boutput(user, "You begin to weld the joints of the frame...")
+				boutput(user, "You begin to weld the joints of the frame...", group = "vehicleframe_con")
 				if (!do_after(user, 3 SECONDS))
-					boutput(user, "<span class='alert'>You were interrupted!</span>")
+					boutput(user, "<span class='alert'>You were interrupted!</span>", group = "vehicleframe_con")
 					return
-				boutput(user, "You weld the joints of the frame together.")
+				boutput(user, "You weld the joints of the frame together.", group = "vehicleframe_con")
 				stage = 3
 			else
-				boutput(user, "Even with the bolts secured, the joints of this frame still feel pretty wobbly. Welding it will make it nice and sturdy.")
+				boutput(user, "Even with the bolts secured, the joints of this frame still feel pretty wobbly. Welding it will make it nice and sturdy.", group = "vehicleframe_con")
 
 		if(3)
 			var/obj/item/cable_coil/C = W
 			if(istype(C))
 				if(C.amount < src.cable_amt)
-					boutput(user, "<span class='notice'>You need at least [src.cable_amt] lengths of cable.</span>")
+					boutput(user, "<span class='notice'>You need at least [src.cable_amt] lengths of cable.</span>", group = "vehicleframe_con")
 					return
-				boutput(user, "You begin to install the wiring...")
+				boutput(user, "You begin to install the wiring...", group = "vehicleframe_con")
 				playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 				if (!do_after(user, 3 SECONDS) || !C.use(src.cable_amt))
-					boutput(user, "<span class='alert'>You were interrupted!</span>")
+					boutput(user, "<span class='alert'>You were interrupted!</span>", group = "vehicleframe_con")
 					return
-				boutput(user, "You add power cables to the MiniPutt frame.")
+				boutput(user, "You add power cables to the MiniPutt frame.", group = "vehicleframe_con")
 				src.overlays += image(src.icon, "wires")
 				stage = 4
 			else
-				boutput(user, "You're not gonna get very far without power cables. You should get at least [src.cable_amt] lengths of it.")
+				boutput(user, "You're not gonna get very far without power cables. You should get at least [src.cable_amt] lengths of it.", group = "vehicleframe_con")
 
 		if(4)
 			if(istype(W, src.boards_type))
-				boutput(user, "You begin to install the circuit boards...")
+				boutput(user, "You begin to install the circuit boards...", group = "vehicleframe_con")
 				playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 				if (!do_after(user, 3 SECONDS))
-					boutput(user, "<span class='alert'>You were interrupted!</span>")
+					boutput(user, "<span class='alert'>You were interrupted!</span>", group = "vehicleframe_con")
 					return
-				boutput(user, "You install the internal circuitry parts.")
+				boutput(user, "You install the internal circuitry parts.", group = "vehicleframe_con")
 				user.u_equip(W)
 				qdel(W)
 				src.overlays += image(src.icon, "circuits")
 				stage = 5
 			else
-				boutput(user, "Maybe those wires should be connecting something together. Some kind of circuitry, perhaps.")
+				boutput(user, "Maybe those wires should be connecting something together. Some kind of circuitry, perhaps.", group = "vehicleframe_con")
 
 		if(5)
 			if(istype(W, /obj/item/sheet))
 				var/obj/item/sheet/S = W
 				if (S.material && S.material.material_flags & MATERIAL_METAL)
 					if( S.amount < src.metal_amt)
-						boutput(user, text("<span class='alert'>You need at least [src.metal_amt] metal sheets to make the internal plating.</span>"))
+						boutput(user, text("<span class='alert'>You need at least [src.metal_amt] metal sheets to make the internal plating.</span>"), group = "vehicleframe_con")
 						return
-					boutput(user, "You begin to install the internal plating...")
+					boutput(user, "You begin to install the internal plating...", group = "vehicleframe_con")
 					playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 					if (!do_after(user, 3 SECONDS) || !S.change_stack_amount(-src.metal_amt))
-						boutput(user, "<span class='alert'>You were interrupted!</span>")
+						boutput(user, "<span class='alert'>You were interrupted!</span>", group = "vehicleframe_con")
 						return
-					boutput(user, "You construct internal covers over the circuitry systems.")
+					boutput(user, "You construct internal covers over the circuitry systems.", group = "vehicleframe_con")
 					src.overlays += image(src.icon, "covers")
 					stage = 6
 				else
-					boutput(user, "<span class='alert'>These sheets aren't the right kind of material. You need metal!</span>")
+					boutput(user, "<span class='alert'>These sheets aren't the right kind of material. You need metal!</span>", group = "vehicleframe_con")
 			else
-				boutput(user, "You shouldn't just leave all those circuits exposed! That's dangerous! You'll need three sheets of metal to cover it all up.")
+				boutput(user, "You shouldn't just leave all those circuits exposed! That's dangerous! You'll need three sheets of metal to cover it all up.", group = "vehicleframe_con")
 
 		if(6)
 			if(istype(W, src.engine_type))
-				boutput(user, "You begin to install the engine...")
+				boutput(user, "You begin to install the engine...", group = "vehicleframe_con")
 				playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 				if (!do_after(user, 3 SECONDS))
-					boutput(user, "<span class='alert'>You were interrupted!</span>")
+					boutput(user, "<span class='alert'>You were interrupted!</span>", group = "vehicleframe_con")
 					return
-				boutput(user, "You install the engine.")
+				boutput(user, "You install the engine.", group = "vehicleframe_con")
 				user.u_equip(W)
 				qdel(W)
 				src.overlays += image(src.icon, "thrust")
 				stage = 7
 			else
-				boutput(user, "Having an engine might be nice.")
+				boutput(user, "Having an engine might be nice.", group = "vehicleframe_con")
 
 		if(7)
 			if(istype(W, /obj/item/podarmor))
 				var/obj/item/podarmor/armor = W
 				if(!armor.vehicle_types["[src.type]"])
-					boutput(user, "That type of armor is not compatible with this frame.")
+					boutput(user, "That type of armor is not compatible with this frame.", group = "vehicleframe_con")
 					return
-				boutput(user, "You begin to install the [W]...")
+				boutput(user, "You begin to install the [W]...", group = "vehicleframe_con")
 				playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 				if (!do_after(user, 3 SECONDS))
-					boutput(user, "<span class='alert'>You were interrupted!</span>")
+					boutput(user, "<span class='alert'>You were interrupted!</span>", group = "vehicleframe_con")
 					return
-				boutput(user, "You loosely attach the light armor plating.")
+				boutput(user, "You loosely attach the [W].", group = "vehicleframe_con")
 				user.u_equip(W)
 				qdel(W)
 				src.overlays += image(src.icon, armor.overlay_state)
@@ -666,55 +666,55 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 				if(istype(W, /obj/item/podarmor/armor_custom))
 					src.setMaterial(W.material)
 			else
-				boutput(user, "You don't think you're going anywhere without a skin, do you? Get some armor!")
+				boutput(user, "You don't think you're going anywhere without a skin, do you? Get some armor!", group = "vehicleframe_con")
 
 		if(8)
 			if (isweldingtool(W))
 				if(!W:try_weld(user, 1))
 					return
-				boutput(user, "You begin to weld the exterior...")
+				boutput(user, "You begin to weld the exterior...", group = "vehicleframe_con")
 				if (!do_after(user, 3 SECONDS))
-					boutput(user, "<span class='alert'>You were interrupted!</span>")
+					boutput(user, "<span class='alert'>You were interrupted!</span>", group = "vehicleframe_con")
 					return
-				boutput(user, "You weld the seams of the outer skin to make it air-tight.")
+				boutput(user, "You weld the seams of the outer skin to make it air-tight.", group = "vehicleframe_con")
 				stage = 9
 			else
-				boutput(user, "The outer skin still feels pretty loose. Welding it together would make it nice and airtight.")
+				boutput(user, "The outer skin still feels pretty loose. Welding it together would make it nice and airtight.", group = "vehicleframe_con")
 
 		if(9)
 			if(istype(W, src.control_type))
-				boutput(user, "You begin to install the control system...")
+				boutput(user, "You begin to install the control system...", group = "vehicleframe_con")
 				playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 				if (!do_after(user, 3 SECONDS))
-					boutput(user, "<span class='alert'>You were interrupted!</span>")
+					boutput(user, "<span class='alert'>You were interrupted!</span>", group = "vehicleframe_con")
 					return
-				boutput(user, "You install the control system.")
+				boutput(user, "You install the control system.", group = "vehicleframe_con")
 				user.u_equip(W)
 				qdel(W)
 				src.overlays += image(src.icon,"control")
 				stage = 10
 			else
-				boutput(user, "It's not gonna get very far without a control system!")
+				boutput(user, "It's not gonna get very far without a control system!", group = "vehicleframe_con")
 
 		if(10)
 			if(istype(W, /obj/item/sheet))
 				var/obj/item/sheet/S = W
 				if (!S.material)
-					boutput(user, "These sheets won't work. You'll need reinforced glass or crystal.")
+					boutput(user, "These sheets won't work. You'll need reinforced glass or crystal.", group = "vehicleframe_con")
 					return
 				if (!(S.material.material_flags & MATERIAL_CRYSTAL) || !S.reinforcement)
-					boutput(user, "These sheets won't work. You'll need reinforced glass or crystal.")
+					boutput(user, "These sheets won't work. You'll need reinforced glass or crystal.", group = "vehicleframe_con")
 					return
 
 				if (S.amount < src.glass_amt)
-					boutput(user, text("<span class='alert'>You need at least [src.glass_amt] reinforced glass sheets to make the cockpit window and outer indicator surfaces.</span>"))
+					boutput(user, text("<span class='alert'>You need at least [src.glass_amt] reinforced glass sheets to make the cockpit window and outer indicator surfaces.</span>"), group = "vehicleframe_con")
 					return
-				boutput(user, "You begin to install the glass...")
+				boutput(user, "You begin to install the glass...", group = "vehicleframe_con")
 				playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 				if (!do_after(user, 3 SECONDS) || !S.change_stack_amount(-src.glass_amt))
-					boutput(user, "<span class='alert'>You were interrupted!</span>")
+					boutput(user, "<span class='alert'>You were interrupted!</span>", group = "vehicleframe_con")
 					return
-				boutput(user, "With the cockpit and exterior indicators secured, the control system automatically starts up.")
+				boutput(user, "With the cockpit and exterior indicators secured, the control system automatically starts up.", group = "vehicleframe_con")
 
 				var/obj/machinery/vehicle/V = new vehicle_type( src.loc )
 				if (src.armor_type == /obj/item/podarmor/armor_custom)
@@ -724,7 +724,7 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 				qdel(src)
 
 			else
-				boutput(user, "You weren't thinking of heading out without a reinforced cockpit, were you? Put some reinforced glass on it! Three [src.glass_amt] will do.")
+				boutput(user, "You weren't thinking of heading out without a reinforced cockpit, were you? Put some reinforced glass on it! Three [src.glass_amt] will do.", group = "vehicleframe_con")
 
 /*-----------------------------*/
 /*                             */
@@ -1445,7 +1445,7 @@ ABSTRACT_TYPE(/obj/item/podarmor)
 
 			playsound(src.loc, "warp", 50, 1, 0.1, 0.7)
 
-			var/obj/portal/P = unpool(/obj/portal)
+			var/obj/portal/P = new()
 			P.set_loc(get_turf(src))
 			var/turf/T = pick_landmark(LANDMARK_ESCAPE_POD_SUCCESS)
 			src.set_dir(map_settings ? map_settings.escape_dir : SOUTH)

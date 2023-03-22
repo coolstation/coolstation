@@ -1485,7 +1485,7 @@
 
 	A.reagents.add_reagent("pathogen", amount)
 	var/datum/reagent/blood/pathogen/R = A.reagents.get_reagent("pathogen")
-	var/datum/pathogen/P = unpool(/datum/pathogen)
+	var/datum/pathogen/P = new()
 	P.setup(1)
 	R.pathogens += P.pathogen_uid
 	R.pathogens[P.pathogen_uid] = P
@@ -2177,7 +2177,7 @@ var/global/night_mode_enabled = 0
 			logTheThing("admin", usr, H, "replaced [constructTarget(H,"admin")]'s [lowertext(organ)] with [created_organ]")
 			logTheThing("diary", usr, H, "replaced [constructTarget(H,"diary")]'s [lowertext(organ)] with [created_organ]", "admin")
 		if ("Drop")
-			if (alert(usr, "Are you sure you want [H] to drop their [lowertext(organ)]?", "Confirmation", "Yes", "No") == "Yes")
+			if (alert(usr, "Are you sure you want [H] to drop [his_or_her(H)] [lowertext(organ)]?", "Confirmation", "Yes", "No") == "Yes")
 				H.organHolder.drop_organ(organ)
 				boutput(usr, "<span class='notice'>[H]'s [lowertext(organ)] dropped.</span>")
 				logTheThing("admin", usr, H, "dropped [constructTarget(H,"admin")]'s [lowertext(organ)]")
