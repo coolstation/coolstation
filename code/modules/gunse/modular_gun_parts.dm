@@ -562,7 +562,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "it_fancy"
 	name_addition = "jovial"
 
-<<<<<<< HEAD
+
 /obj/item/gun_parts/stock/luna/zunar
 	name = "Zunar Mk8 grip"
 	desc = "The trigger looks to be taken from a game controller"
@@ -572,7 +572,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon = 'icons/obj/items/tselaguns/specialparts.dmi'
 	icon_state = "zungunstock"
 	name_addition = "Udon"
-=======
+
 
 /obj/item/gun_parts/stock/juicer
 	name = "da grip"
@@ -602,7 +602,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		icon_state = "trans"
 		throwforce = 10 // hehe
 		name_addition = "queer"
->>>>>>> 4e42ea5508c7beb42f09ab75f9e03fc83a0df041
+
 
 // BASIC ACCESSORIES
 	// flashlight!!
@@ -619,7 +619,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	on_fire()
 		playsound(src.my_gun.loc, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, -1)
 
-<<<<<<< HEAD
+
 /obj/item/gun_parts/accessory/trumpetnoiser
 	name = "Front of a Trumpet"
 	desc = "HEY YOU GOT A LISCENES FOR THAT????"
@@ -629,17 +629,17 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "trumpet"
 
 	on_fire()
-		playsound(src.my_gun.loc, 
+		playsound(src.my_gun.loc,
 		pick('sound/musical_instruments/saxbonk.ogg', 'sound/musical_instruments/saxbonk2.ogg'))
 
 /obj/item/gun_parts/accessory/zupressor
 	name = "Inba Zupressor" // I am so proud of this pun
-	desc = "the bullets are preparing, please wait warmly."
+	desc = "A curious supressor. It has two bunny ears on it."
 	call_on_fire = 1
 	name_addition = "Zupressed"
 	icon = 'icons/obj/items/tselaguns/specialparts.dmi'
 	icon_state = "zungunzunpressor"
-=======
+
 	attack_self(mob/user as mob)
 		user.u_equip(src)
 		user.show_text("You de-militarise the bike horn, turning it into a normal funny one.", "blue")
@@ -704,10 +704,10 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		light_dim.update(0)
 		light_good = my_gun.AddComponent(/datum/component/holdertargeting/medium_directional_light/, col_r * 255, col_g * 255, col_b  * 255, 210)
 		light_good.update(0)
->>>>>>> 4e42ea5508c7beb42f09ab75f9e03fc83a0df041
+
 
 	on_fire()
-		playsound(src.my_gun.loc, 
+		playsound(src.my_gun.loc,
 		pick('sound/weapons/Zunpet_attack.ogg'))
 
 	remove_part_from_gun()

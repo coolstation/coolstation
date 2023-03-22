@@ -795,27 +795,26 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		stock = new /obj/item/gun_parts/stock/italian(src)
 
 
-<<<<<<< HEAD
+
 	shoot()
 		..()
 		process_ammo()
 
 /obj/item/gun/modular/luna
-	name = "\improper Zun Gun"
-	real_name = "\improper Zun Gun"
+	name = "\improper Lunar Trumpet"
+	real_name = "\improper Lunar Trumpet"
 	desc = "A trumpet shaped gun thing. This seems really impractial for anything other than showing off."
 	max_ammo_capacity = 5 //nice round number to start with
 	spread_angle = 30
 	icon = 'icon/items/tselaguns/special.dmi'
-	icon_state = 'zungunfull'
-	
+	icon_state = 'zungunstock'
+
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/luna/zunar
 		stock = /obj/item/gun_parts/stock/luna/zunar
 		accessory = new /obj/item/gun_parts/accessory/zupressor
-=======
+
 /obj/item/gun/modular/italian/big_italiano
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/italian/(src)
 		stock = new /obj/item/gun_parts/stock/italian/bigger(src)
->>>>>>> 4e42ea5508c7beb42f09ab75f9e03fc83a0df041
