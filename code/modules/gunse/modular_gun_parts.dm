@@ -472,7 +472,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 // 	spread_angle = 5
 // 	scatter = 2
 // 	name_addition = "Inbagrated Zupressed"
-// 	icon = 'icons/obj/items/tselaguns/specialparts.dmi'
+// 	icon = 'icons/obj/items/modular_guns/specialparts.dmi'
 // 	length = 15
 // 	icon_state = "zungunbarrel"
 
@@ -697,7 +697,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "HEY YOU GOT A LISCENES FOR THAT????"
 	call_on_fire = 1
 	name_addition = "Musical"
-	icon = 'icons/obj/items/tselaguns/specialparts.dmi'
+	icon = 'icons/obj/items/modular_guns/specialparts.dmi'
 	icon_state = "trumpet"
 
 	on_fire()
@@ -708,7 +708,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 // 	desc = "A curious supressor. It has two bunny ears on it."
 // 	call_on_fire = 1
 // 	name_addition = "Zupressed"
-// 	icon = 'icons/obj/items/tselaguns/specialparts.dmi'
+// 	icon = 'icons/obj/items/modular_guns/specialparts.dmi'
 // 	icon_state = "zungunzunpressor"
 
 
