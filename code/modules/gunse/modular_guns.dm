@@ -796,7 +796,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		barrel = new/obj/item/gun_parts/barrel/soviet/improvshort (src)
 		stock = new/obj/item/gun_parts/stock/soviet/improvstock (src)
 		stock2 = new/obj/item/gun_parts/stock/soviet/akgrip (src)
-		magazine = new/obj/item/gun_parts/magazine/soviet/10round (src)
+		magazine = new/obj/item/gun_parts/magazine/soviet/tenround (src)
 
 /obj/item/gun/modular/italian
 	name = "\improper Italiano"

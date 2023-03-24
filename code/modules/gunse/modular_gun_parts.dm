@@ -787,7 +787,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "juicer_drum"
 	overlay_y = 8
 
-/obj/item/gun_parts/magazine/soviet/10round //no name additions for the next two. Don't change it!- eagle
+/obj/item/gun_parts/magazine/soviet/tenround //no name additions for the next two. Don't change it!- eagle
 	name = "the bottom third of a AK magazine"
 	desc = "Some fuckin asshole took the other two thirds!"
 	max_ammo_capacity = 10
