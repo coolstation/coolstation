@@ -1050,9 +1050,11 @@ var/global/list/mapNames = list(
 		"the cargo office (QM)" = list(/area/station/quartermaster/office, /area/station/quartermaster/cargooffice/storefront),
 		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
 		"the hospital" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/lobby),
-		"the underground bar" = list(/area/station/crew_quarters/bar),
+		"the underground bar" = list(/area/station/crew_quarters/bar, /area/station/crew_quarters/fitness),
 		"the bridge" = list(/area/station/bridge, /area/station/bridge/conference),
-		"the chapel" = list(/area/station/chapel/sanctuary))
+		"the chapel" = list(/area/station/chapel/sanctuary),
+		"the fucking staff assistants' rat's nest between the tunnels" = list(/area/gehenna/underground/staffies_nest),
+		"somewhere in the main tunnels, whatever" = list(/area/station/maintenance/west, /area/station/maintenance/inner/north, /area/station/maintenance/central, /area/station/maintenance/inner/ne, /area/station/maintenance/outer/east, /area/station/maintenance/south, /area/station/maintenance/inner/nw))
 
 	job_limits_override = list(
 		/datum/job/security/security_officer = 6,

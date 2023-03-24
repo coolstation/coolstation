@@ -66,6 +66,21 @@
 	amount_per_transfer_from_this = 5
 	initial_reagents = "saline"
 
+//no longer just in beakers
+/obj/item/reagent_containers/glass/bottle/brute
+	name = "bottle (styptic powder)"
+	desc = "A small bottle. Contains styptic powder - used to control bleeding and heal trauma."
+	bottle_style = "1"
+	amount_per_transfer_from_this = 10
+	initial_reagents = "styptic_powder"
+
+/obj/item/reagent_containers/glass/bottle/burn
+	name = "bottle (silver sulfadiazine)"
+	desc = "A small bottle. Contains silver sulfadiazine - used to heal burns."
+	bottle_style = "1"
+	amount_per_transfer_from_this = 10
+	initial_reagents = "silver_sulfadiazine"
+
 /obj/item/reagent_containers/glass/bottle/aspirin
 	name = "bottle (salicylic acid)"
 	desc = "A small bottle containing medicine for pain and fevers."
@@ -213,6 +228,13 @@
 	bottle_style = "1"
 	amount_per_transfer_from_this = 5
 	initial_reagents = "antihistamine"
+
+/obj/item/reagent_containers/glass/bottle/spaceacillin
+	name = "bottle (spaceacillin)"
+	desc = "A small bottle of weak antibacterial agents."
+	bottle_style = "3"
+	amount_per_transfer_from_this = 5
+	initial_reagents = "spaceacillin"
 
 /obj/item/reagent_containers/glass/bottle/eyedrops
 	name = "bottle (oculine)"

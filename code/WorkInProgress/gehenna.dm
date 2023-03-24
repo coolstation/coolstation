@@ -303,6 +303,10 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	luminosity = 0
 	sound_environment = EAX_CAVE
 
+/area/gehenna/underground/staffies_nest
+	name = "the rat's nest"
+	teleport_blocked = 1
+
 /*
 /obj/machinery/computer/sea_elevator/sec
 	upper = /area/shuttle/sea_elevator/upper/sec
