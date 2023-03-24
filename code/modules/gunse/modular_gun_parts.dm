@@ -607,7 +607,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "A old Three Line Rifle stock, ready to fight once more"
 	spread_angle = -8
 	stock_two_handed = 1
-	part_DRM = GUN_SOVIET
+	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "wooden"
 	icon_state = "woodstock"
 	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
@@ -616,7 +616,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "Hammered Metal Stock"
 	desc = "Some spare metal hammered into a vaugly stock shape"
 	spread_angle = -2
-	part_DRM = GUN_SOVIET
+	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "Machined"
 	icon_state = "improvstock"
 	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
@@ -625,7 +625,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "Kalash Grip"
 	desc = "A Kalash Grip. Now where's the rest of it..."
 	spread_angle = -1
-	part_DRM = GUN_SOVIET
+	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	icon_state = "kalashgrip"
 	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
 
@@ -807,11 +807,11 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	part_DRM = GUN_SOVIET
 	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
 
-/obj/item/gunparts/magazine/soviet/ak
-	name = "Intact AK magazine"
-	desc = "One of the few still intact AK mags this side of the frontier! Score!"
-	max_ammo_capacity = 30// ITS A FULL AK MAG OKAY
-	name_addition = "intact"
-	icon_state = "akmag"
-	part_DRM = GUN_SOVIET
-	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
+// /obj/item/gunparts/magazine/soviet/ak
+// 	name = "Intact AK magazine"
+// 	desc = "One of the few still intact AK mags this side of the frontier! Score!"
+// 	max_ammo_capacity = 30// ITS A FULL AK MAG OKAY
+// 	name_addition = "intact"
+// 	icon_state = "akmag"
+// 	part_DRM = GUN_SOVIET
+// 	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
