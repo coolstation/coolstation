@@ -429,12 +429,12 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/soviet/improvshort
 	name = "Improvised Short Barrel"
 	desc = "Some pipe shrouded with the remains of a soviet spacesuit"
-	spread_ angle = -2
+	spread_angle = -2
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "stubby"
 	length = 15
 	icon_state = "improvshortbarrel"
-	icon = 'icons/obj/items/tsealguns/mistfits.dmi'
+	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
 
 /obj/item/gun_parts/barrel/soviet/improvlong
 	name = "Improvised Long Barrel"
@@ -444,7 +444,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "rifled"
 	length = 53
 	icon_state = "improvlongbarrel"
-	icon = 'icons/obj/items/tsealguns/mistfits.dmi'
+	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
 
 /obj/item/gun_parts/barrel/soviet/improvlong
 	name = "Improvised Long Barrel"
@@ -454,7 +454,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "rifled"
 	length = 53
 	icon_state = "improvtransbarrel"
-	icon = 'icons/obj/items/tsealguns/mistfits.dmi'
+	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
+
 /obj/item/gun_parts/barrel/soviet/ppsh
 	name = "Historical barrel"
 	desc = "This really belongs in a museum"
@@ -463,7 +464,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "Vintage"
 	length = 27
 	icon_state = "historicbarrel"
-	icon = 'icons/obj/items/tsealguns/mistfits.dmi'
+	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
 
 // /obj/item/gun_parts/barrel/luna/zunar
 // 	name = "Zunar mk8 barrel"
@@ -609,7 +610,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	part_DRM = GUN_SOVIET
 	name_addition = "wooden"
 	icon_state = "woodstock"
-	icon = 'icons/obj/items/tsealguns/mistfits.dmi'
+	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
 
 /obj/item/gun_parts/stock/soviet/improvmetal
 	name = "Hammered Metal Stock"
@@ -618,7 +619,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	part_DRM = GUN_SOVIET
 	name_addition = "Machined"
 	icon_state = "improvstock"
-	icon = 'icons/obj/items/tsealguns/mistfits.dmi'
+	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
 
 /obj/item/gun_parts/stock/soviet/akgrip //no name addition
 	name = "Kalash Grip"
@@ -809,7 +810,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gunparts/magazine/soviet/ak
 	name = "Intact AK magazine"
 	desc = "One of the few still intact AK mags this side of the frontier! Score!"
-	max_ammo_capacity = 30 // ITS A FULL AK MAG OKAY???
+	max_ammo_capacity = 30// ITS A FULL AK MAG OKAY???
 	name_addition = "intact"
 	icon_state = "akmag"
 	part_DRM = GUN_SOVIET

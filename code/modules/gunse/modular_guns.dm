@@ -771,7 +771,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	real_name = "\improper Misfit"
 	desc = "A spacer design slapped together from salvaged soviet parts, the Misfit is known for it's ease of manufacture and durablity."
 	max_ammo_capacity = 0 //comes with a mag
-	gun_drm = GUN_SOVIET
+	gun_DRM = GUN_SOVIET
 	spread_angle = 15
 	jam_frequency_fire = 35
 	jam_frequency_reload = 10
@@ -784,7 +784,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	real_name = "\improper Misfit"
 	desc = "A spacer design slapped together from salvaged soviet parts, the Misfit is known for it's ease of manufacture and durablity."
 	max_ammo_capacity = 0 //comes with a mag
-	gun_drm = GUN_SOVIET
+	gun_DRM = GUN_SOVIET
 	spread_angle = 15
 	jam_frequency_fire = 35
 	jam_frequency_reload = 10
