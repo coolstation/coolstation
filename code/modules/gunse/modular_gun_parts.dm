@@ -810,7 +810,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gunparts/magazine/soviet/ak
 	name = "Intact AK magazine"
 	desc = "One of the few still intact AK mags this side of the frontier! Score!"
-	max_ammo_capacity = 30// ITS A FULL AK MAG OKAY???
+	max_ammo_capacity = 30// ITS A FULL AK MAG OKAY
 	name_addition = "intact"
 	icon_state = "akmag"
 	part_DRM = GUN_SOVIET
