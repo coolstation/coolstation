@@ -434,7 +434,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "stubby"
 	length = 15
 	icon_state = "improvshortbarrel"
-	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
 /obj/item/gun_parts/barrel/soviet/improvlong
 	name = "Improvised Long Barrel"
@@ -443,8 +443,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "rifled"
 	length = 53
-	icon_state = "improvlongbarrel"
-	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
+	icon_state = "longimprovbarrel"
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
 /obj/item/gun_parts/barrel/soviet/improvlong
 	name = "Improvised Long Barrel"
@@ -454,7 +454,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "rifled"
 	length = 53
 	icon_state = "improvtransbarrel"
-	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
 /obj/item/gun_parts/barrel/soviet/ppsh
 	name = "Historical barrel"
@@ -464,7 +464,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "Vintage"
 	length = 27
 	icon_state = "historicbarrel"
-	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
 // /obj/item/gun_parts/barrel/luna/zunar
 // 	name = "Zunar mk8 barrel"
@@ -610,7 +610,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "wooden"
 	icon_state = "woodstock"
-	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
 /obj/item/gun_parts/stock/soviet/improvmetal
 	name = "Hammered Metal Stock"
@@ -619,7 +619,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "Machined"
 	icon_state = "improvstock"
-	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
 /obj/item/gun_parts/stock/soviet/akgrip //no name addition
 	name = "Kalash Grip"
@@ -627,7 +627,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = -1
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	icon_state = "kalashgrip"
-	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
 // /obj/item/gun_parts/stock/luna/zunar
 // 	name = "Zunar Mk8 grip"
@@ -635,7 +635,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 // 	spread_angle = -2
 // 	max_ammo_capacity = -5
 // 	jam_frequency_reload = 1 //should work?
-// 	icon = 'icons/obj/items/tselaguns/specialparts.dmi'
+// 	icon = 'icons/obj/items/modular_guns/specialparts.dmi'
 // 	icon_state = "zungunstock"
 // 	name_addition = "Udon"
 
@@ -795,7 +795,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	jam_frequency_reload = 10
 	icon_state = "thirdcapmag"
 	part_DRM = GUN_SOVIET
-	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
 
 /obj/item/gun_parts/magazine/soviet/halfak
@@ -805,13 +805,13 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	jam_frequency_reload = 5
 	icon_state = "halfcapmag"
 	part_DRM = GUN_SOVIET
-	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
-// /obj/item/gunparts/magazine/soviet/ak
-// 	name = "Intact AK magazine"
-// 	desc = "One of the few still intact AK mags this side of the frontier! Score!"
-// 	max_ammo_capacity = 30// ITS A FULL AK MAG OKAY
-// 	name_addition = "intact"
-// 	icon_state = "akmag"
-// 	part_DRM = GUN_SOVIET
-// 	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
+/obj/item/gun_parts/magazine/soviet/ak
+	name = "Intact AK magazine"
+	desc = "One of the few still intact AK mags this side of the frontier! Score!"
+	max_ammo_capacity = 30 // ITS A FULL AK MAG OKAY
+	name_addition = "intact"
+	icon_state = "akmag"
+	part_DRM = GUN_SOVIET
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'

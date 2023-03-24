@@ -776,7 +776,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	jam_frequency_fire = 35
 	jam_frequency_reload = 10
 	contraband = 4
-	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 	icon_state = "mistfit"
 
 /obj/item/gun/modular/soviet/misfit //just for loot! Gonna work on probs later so all parts can spawn (aside from the bigger mags) but I gotta go fast so this can get put into playtest today
@@ -789,7 +789,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	jam_frequency_fire = 35
 	jam_frequency_reload = 10
 	contraband = 4
-	icon = 'icons/obj/items/tselaguns/mistfits.dmi'
+	stock_overlay_x = -10
+	barrel_overlay_x = 12
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 	icon_state = "mistfit"
 
 	make_parts()
