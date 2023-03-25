@@ -5059,6 +5059,13 @@
 "cxo" = (
 /obj/decal/cleanable/machine_debris,
 /obj/decal/cleanable/dirt,
+/obj/death_button{
+	density = 1;
+	desc = "here it is (please do not touch)";
+	icon = 'icons/obj/crabgun.dmi';
+	icon_state = "crabgun";
+	name = "pipis"
+	},
 /turf/simulated/floor/airless/damaged5,
 /area/abandonedship)
 "cxp" = (
@@ -16339,6 +16346,13 @@
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/treatment)
 "hEx" = (
+/obj/death_button{
+	density = 1;
+	desc = "here it is (please do not touch)";
+	icon = 'icons/obj/crabgun.dmi';
+	icon_state = "crabgun";
+	name = "bepis"
+	},
 /turf/simulated/floor/airless/damaged2,
 /area/abandonedship)
 "hEF" = (
@@ -22115,13 +22129,6 @@
 	},
 /obj/cable/blue{
 	icon_state = "2-4"
-	},
-/obj/death_button{
-	density = 1;
-	desc = "here it is (please do not touch)";
-	icon = 'icons/obj/crabgun.dmi';
-	icon_state = "crabgun";
-	name = "bepis"
 	},
 /turf/simulated/floor,
 /area/station/hallway/primary/north)
@@ -42042,24 +42049,15 @@
 	},
 /area/station/chapel)
 "tiK" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
 /obj/death_button{
 	density = 1;
 	desc = "here it is (please do not touch)";
 	icon = 'icons/obj/crabgun.dmi';
 	icon_state = "crabgun";
-	name = "pipis"
+	name = "pebim"
 	},
-/obj/machinery/atmospherics/pipe/simple/insulated{
-	can_rupture = 0;
-	dir = 4;
-	level = 1;
-	name = "hot loop purge pipe"
-	},
-/turf/simulated/floor,
-/area/station/hallway/primary/southeast)
+/turf/simulated/floor/airless/plating/damaged1,
+/area/abandonedship)
 "tjx" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -47643,16 +47641,6 @@
 	},
 /turf/simulated/floor/techfloor,
 /area/station/turret_protected/ai)
-"vHt" = (
-/obj/death_button{
-	density = 1;
-	desc = "here it is (please do not touch)";
-	icon = 'icons/obj/crabgun.dmi';
-	icon_state = "crabgun";
-	name = "pebim"
-	},
-/turf/simulated/floor,
-/area/station/hallway/secondary/exit)
 "vHK" = (
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor,
@@ -50947,8 +50935,8 @@
 /turf/simulated/wall,
 /area/station/medical/medbay/surgery/storage)
 "xad" = (
-/mob/living/carbon/human/npc/monkey/angry,
 /obj/machinery/light/small/floor,
+/mob/living/carbon/human/npc/monkey,
 /turf/simulated/floor/specialroom/gym,
 /area/station/crew_quarters/fitness)
 "xap" = (
@@ -60802,7 +60790,7 @@ xzG
 xFF
 uhC
 eYF
-nzK
+tiK
 xFF
 xFF
 xFF
@@ -85775,7 +85763,7 @@ vps
 vps
 njK
 nXA
-vHt
+vps
 vps
 fYF
 sjr
@@ -115042,7 +115030,7 @@ vVw
 pWY
 tyO
 fmo
-tiK
+uHb
 lNu
 wlV
 aZG
