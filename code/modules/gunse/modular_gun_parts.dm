@@ -468,7 +468,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 // /obj/item/gun_parts/barrel/luna/zunar
 // 	name = "Zunar mk8 barrel"
-// 	desc = "A somewhat short barrel that has a intagrated zupressor"
+// 	desc = "A somewhat short barrel that has a integrated zupressor"
 // 	spread_angle = 5
 // 	scatter = 2
 // 	name_addition = "Inbagrated Zupressed"
