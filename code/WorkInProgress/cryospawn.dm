@@ -109,7 +109,7 @@
 				return
 			var/turf/firstLoc = locate(src.x, src.y, src.z)
 			thePerson.set_loc( firstLoc )
-			playsound(src, 'sound/vox/decompression.ogg',be_loud ? 50 : 2)
+			playsound(src, 'sound/misc/decompression.ogg',be_loud ? 50 : 2)
 			for (var/obj/O in src) // someone dropped something
 				O.set_loc(firstLoc)
 
