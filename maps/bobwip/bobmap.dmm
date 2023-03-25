@@ -1955,7 +1955,7 @@
 /area/station/hangar/arrivals)
 "aUe" = (
 /obj/health_scanner/floor,
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/bluewhite,
 /area/station/medical/medbay/lobby)
 "aUo" = (
@@ -4202,7 +4202,7 @@
 /area/station/crew_quarters/courtroom)
 "bZi" = (
 /obj/table/auto,
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /obj/disposalpipe/segment/morgue,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
@@ -4374,7 +4374,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/disposalpipe/segment{
 	dir = 4
 	},
@@ -5504,7 +5504,7 @@
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "cKu" = (
-/obj/table,
+/obj/table/auto,
 /obj/item/clothing/head/pinwheel_hat,
 /turf/simulated/floor/carpet/arcade,
 /area/station/crew_quarters/arcade)
@@ -5577,7 +5577,7 @@
 /obj/landmark{
 	name = "shitty_bill_respawn"
 	},
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "cMp" = (
@@ -7787,7 +7787,7 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 5
 	},
-/obj/table,
+/obj/table/auto,
 /obj/item/clothing/gloves/latex/blue,
 /obj/item/kitchen/utensil/knife,
 /obj/item/spraybottle/cleaner,
@@ -7798,7 +7798,7 @@
 	desc = "A pneumatic delivery chute for sending things directly to quarantine.";
 	name = "quarantine chute"
 	},
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /obj/disposalpipe/trunk/quarantine{
 	dir = 8
 	},
@@ -9781,7 +9781,7 @@
 /obj/cable/blue{
 	icon_state = "0-4"
 	},
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/bluewhite{
 	dir = 8
 	},
@@ -12571,7 +12571,7 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /turf/simulated/floor/plating,
 /area/station/storage/primary)
 "fQb" = (
@@ -12964,7 +12964,7 @@
 /turf/simulated/floor/white,
 /area/station/science/lobby)
 "fZT" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/disposalpipe/segment{
 	dir = 1
 	},
@@ -13149,7 +13149,7 @@
 /obj/vehicle/floorbuffer{
 	dir = 8
 	},
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor,
 /area/station/janitor/office)
 "gdu" = (
@@ -13232,7 +13232,7 @@
 	name = "Crew Quarters Bathroom"
 	})
 "ggS" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable/blue{
 	icon_state = "1-2"
 	},
@@ -14308,7 +14308,7 @@
 	anchored = 1;
 	name = "juror locker"
 	},
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/black/side,
 /area/station/crew_quarters/courtroom)
@@ -15407,7 +15407,7 @@
 	dir = 4
 	},
 /obj/table/auto,
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/purplewhite{
 	dir = 1
 	},
@@ -17927,7 +17927,7 @@
 /turf/simulated/wall,
 /area/station/hallway/primary/southeast)
 "iwV" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-4"
@@ -17963,7 +17963,7 @@
 	name = "Chemistry Privacy Shutters";
 	opacity = 0
 	},
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /turf/simulated/floor/plating,
 /area/station/security/hos)
 "ixo" = (
@@ -19510,7 +19510,7 @@
 /area/station/medical/medbay/surgery/storage)
 "jhm" = (
 /obj/storage/secure/closet/fridge/pathology,
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/sanitary/blue,
 /area/station/medical/cdc)
 "jhA" = (
@@ -19883,7 +19883,7 @@
 /area/station/medical/medbay/treatment)
 "jpW" = (
 /obj/machinery/vending/pathology,
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/sanitary/blue,
 /area/station/medical/cdc)
 "jpY" = (
@@ -20474,7 +20474,7 @@
 /turf/simulated/floor/yellow/corner,
 /area/station/engine/elect)
 "jDT" = (
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -21665,9 +21665,9 @@
 /turf/simulated/floor,
 /area/station/hangar/mining)
 "kel" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow,
 /turf/simulated/floor/plating,
-/area/station/crew_quarters/fitness)
+/area/station/medical/medbay/surgery)
 "ken" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -22314,7 +22314,7 @@
 	name = "Chemistry Privacy Shutters";
 	opacity = 0
 	},
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/disposalpipe/broken{
 	dir = 4
 	},
@@ -22573,7 +22573,7 @@
 /obj/item/storage/belt/medical,
 /obj/item/clothing/suit/bio_suit/paramedic,
 /obj/item/storage/medical_pouch,
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/bluewhite,
 /area/station/medical/medbay/surgery/storage)
 "kxf" = (
@@ -23178,7 +23178,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /obj/disposalpipe/trunk/crematorium{
 	dir = 1
 	},
@@ -23442,7 +23442,7 @@
 /turf/space,
 /area/station/com_dish/auxdish)
 "kPw" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable,
 /turf/simulated/floor/plating,
 /area/station/security/brig/solitary)
@@ -24322,7 +24322,7 @@
 /area/station/crew_quarters/bar)
 "lmO" = (
 /obj/item/clothing/head/party/birthday,
-/obj/table,
+/obj/table/auto,
 /turf/simulated/floor/carpet/arcade,
 /area/station/crew_quarters/arcade)
 "lmR" = (
@@ -25642,7 +25642,7 @@
 	name = "Chemistry Privacy Shutters";
 	opacity = 0
 	},
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /turf/simulated/floor/plating,
 /area/station/security/hos)
 "lSu" = (
@@ -26561,7 +26561,7 @@
 /area/station/science/lab)
 "mnp" = (
 /obj/storage/cart/medcart,
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/bluewhite,
 /area/station/medical/medbay/surgery/storage)
 "mns" = (
@@ -26816,7 +26816,7 @@
 	},
 /area/station/crew_quarters/courtroom)
 "msR" = (
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/black,
 /area/station/crew_quarters/courtroom)
 "msZ" = (
@@ -27366,7 +27366,7 @@
 	pixel_x = 8;
 	pixel_y = 4
 	},
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor,
 /area/station/crew_quarters/fitness)
 "mEx" = (
@@ -27493,7 +27493,7 @@
 /area/station/engine/coldloop)
 "mHR" = (
 /obj/table/auto,
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/green,
 /area/station/hydroponics/bay)
 "mHX" = (
@@ -27802,7 +27802,7 @@
 /obj/machinery/light/emergency{
 	dir = 1
 	},
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "mPv" = (
@@ -28137,7 +28137,7 @@
 /turf/simulated/floor/airless/carpet/grime,
 /area/station/crew_quarters/pool)
 "mXO" = (
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
 	},
@@ -28949,7 +28949,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /obj/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
@@ -29274,7 +29274,7 @@
 /area/station/medical/cdc)
 "nvw" = (
 /obj/machinery/vending/monkey,
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "nvF" = (
@@ -29969,7 +29969,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/north)
 "nLz" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -29985,7 +29985,7 @@
 /turf/simulated/wall,
 /area/station/storage/primary)
 "nLN" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -30000,7 +30000,7 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/computer3/generic/personal,
-/obj/table,
+/obj/table/auto,
 /turf/simulated/floor/bluewhite{
 	dir = 4
 	},
@@ -30053,7 +30053,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/south)
 "nNe" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -30082,7 +30082,7 @@
 /turf/simulated/floor/carpet/green/fancy/narrow/west,
 /area/station/hos/quarter)
 "nNA" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -30168,7 +30168,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/blue/checker,
 /area/station/medical/research)
 "nPz" = (
@@ -30196,7 +30196,7 @@
 	},
 /area/station/crew_quarters/courtroom)
 "nQl" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -30218,7 +30218,7 @@
 /turf/simulated/floor/neutral/side,
 /area/station/hallway/primary/south)
 "nQJ" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -30780,7 +30780,7 @@
 /area/station/bridge)
 "odZ" = (
 /obj/item/clothing/head/party/birthday/blue,
-/obj/table,
+/obj/table/auto,
 /obj/disposalpipe/segment,
 /turf/simulated/floor/carpet/arcade,
 /area/station/crew_quarters/arcade)
@@ -31081,7 +31081,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/north)
 "ons" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -31492,7 +31492,7 @@
 /area/station/hydroponics/bay)
 "owE" = (
 /obj/item/reagent_containers/food/snacks/pizza/meatball,
-/obj/table,
+/obj/table/auto,
 /obj/item/kitchen/utensil/knife/pizza_cutter,
 /obj/disposalpipe/segment,
 /turf/simulated/floor/carpet/arcade,
@@ -32470,7 +32470,7 @@
 	icon_state = "0-8"
 	},
 /obj/item/cable_coil/blue,
-/obj/table,
+/obj/table/auto,
 /obj/item/disk/data/tape/master{
 	pixel_x = 3;
 	pixel_y = 9
@@ -32637,7 +32637,7 @@
 /turf/simulated/wall/r_wall,
 /area/station/engine/inner)
 "oXD" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-2"
@@ -33385,7 +33385,7 @@
 	dir = 8;
 	name = "Monkey Dome APC"
 	},
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/blue/checker,
 /area/station/medical/research)
 "pnE" = (
@@ -34096,7 +34096,7 @@
 /turf/simulated/floor/grime,
 /area/station/security/brig/genpop)
 "pHz" = (
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /obj/submachine/poster_creator{
 	dir = 1
 	},
@@ -34619,7 +34619,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
 "pTN" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-2"
@@ -36865,7 +36865,7 @@
 	anchored = 1;
 	density = 0
 	},
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor,
 /area/station/crew_quarters/fitness)
 "qUP" = (
@@ -37053,7 +37053,7 @@
 /turf/simulated/floor/techfloor,
 /area/station/turret_protected/ai_module_storage)
 "qZZ" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/window_blinds,
 /turf/simulated/floor/plating,
 /area/station/security/main)
@@ -38120,7 +38120,7 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/southeast)
 "rAm" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
 	icon_state = "2-4"
 	},
@@ -38336,7 +38336,7 @@
 /turf/simulated/floor,
 /area/station/security/main)
 "rCP" = (
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
@@ -39827,7 +39827,7 @@
 /obj/table/auto,
 /obj/item/kitchen/utensil/knife/pizza_cutter,
 /obj/machinery/light/emergency,
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "siW" = (
@@ -40882,7 +40882,7 @@
 /obj/machinery/door_control/podbay/security/new_walls/north{
 	name = "security hangar switch"
 	},
-/obj/table,
+/obj/table/auto,
 /obj/machinery/light/fluorescent/auto/neutral,
 /obj/item/podarmor/armor_heavy,
 /turf/simulated/floor/caution/west,
@@ -40892,7 +40892,7 @@
 /turf/simulated/floor/wood,
 /area/station/bridge)
 "sJJ" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-2"
@@ -42744,7 +42744,7 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/southeast)
 "tzf" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -42919,7 +42919,7 @@
 	name = "Chemistry Privacy Shutters";
 	opacity = 0
 	},
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
 	icon_state = "1-2"
 	},
@@ -44149,7 +44149,7 @@
 	},
 /area/station/science/lab)
 "uck" = (
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/green,
 /area/station/hydroponics/bay)
 "ucm" = (
@@ -44445,7 +44445,7 @@
 /turf/simulated/floor/plating,
 /area/station/hallway/primary/central)
 "uip" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-4"
@@ -45256,7 +45256,7 @@
 /turf/simulated/floor/yellow/side,
 /area/station/storage/tech)
 "uEu" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -47367,7 +47367,7 @@
 /turf/simulated/floor/airless/solar,
 /area/station/solar/east)
 "vAp" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -47387,7 +47387,7 @@
 	},
 /area/station/science/lab)
 "vAU" = (
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/black/grime,
 /area/station/crew_quarters/courtroom)
 "vBa" = (
@@ -47593,7 +47593,7 @@
 /turf/simulated/floor/white,
 /area/station/science/gen_storage)
 "vFV" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -49563,7 +49563,7 @@
 /turf/simulated/floor/red,
 /area/station/security/visitation)
 "wvV" = (
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor,
 /area/station/crew_quarters/fitness)
 "wwb" = (
@@ -50519,7 +50519,7 @@
 /area/station/medical/medbay/treatment)
 "wQR" = (
 /obj/reagent_dispensers/cleanable/ants,
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "wQT" = (
@@ -50721,7 +50721,7 @@
 /obj/cable/blue{
 	icon_state = "0-8"
 	},
-/obj/machinery/light/fluorescent/cool,
+/obj/machinery/light/fluorescent/auto/cool,
 /obj/disposalpipe/segment/genetics{
 	dir = 4
 	},
@@ -51398,7 +51398,7 @@
 /turf/simulated/floor/red/corner,
 /area/station/security/main)
 "xkc" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -51538,7 +51538,7 @@
 /turf/simulated/wall,
 /area/station/crew_quarters/courtroom)
 "xmT" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -52009,7 +52009,7 @@
 /turf/simulated/floor/carpet/purple/fancy/edge,
 /area/station/crew_quarters/courtroom)
 "xxD" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/disposalpipe/segment/food{
 	dir = 4
 	},
@@ -52529,7 +52529,7 @@
 /obj/disposalpipe/segment{
 	dir = 1
 	},
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/disposalpipe/segment/food{
 	dir = 4
 	},
@@ -53530,7 +53530,7 @@
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/pharmacy)
 "yjQ" = (
-/obj/wingrille_spawn/auto/tuff,
+/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -82986,10 +82986,10 @@ qNP
 sik
 gkJ
 wgz
-kel
-kel
-kel
-kel
+ptP
+ptP
+ptP
+ptP
 wgz
 wgz
 hjW
@@ -96935,8 +96935,8 @@ eQs
 xdW
 iTa
 dyt
-fcH
-fcH
+kel
+kel
 wgi
 gPz
 lla
@@ -98143,8 +98143,8 @@ gex
 phC
 ylY
 shz
-fcH
-fcH
+kel
+kel
 wgi
 tVs
 wDp
