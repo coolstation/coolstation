@@ -329,6 +329,8 @@ var/f_color_selector_handler/F_Color_Selector
 		mining_controls = new /datum/mining_controller()
 		Z_LOG_DEBUG("Preload", "  emote_controls")
 		emote_controls = new /datum/emote_controller()
+		Z_LOG_DEBUG("Preload", "  broadcast_controls")
+		broadcast_controls = new /datum/broadcast_controller()
 		Z_LOG_DEBUG("Preload", "  score_tracker")
 		score_tracker = new /datum/score_tracker()
 		Z_LOG_DEBUG("Preload", "  actions")
@@ -670,6 +672,10 @@ var/f_color_selector_handler/F_Color_Selector
 	Z_LOG_DEBUG("World/Init", "Making Manta start moving...")
 	mantaSetMove(moving=1, doShake=0)
 #endif
+
+	//Please delete this once broadcasting code has been proven to work and integrated into shit
+	Z_LOG_DEBUG("World/Init", "Setting up a test transmission...")
+	broadcast_controls.broadcast_start(new /datum/directed_broadcast/testing)
 
 #ifdef TWITCH_BOT_ALLOWED
 	for (var/client/C)

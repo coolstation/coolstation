@@ -152,8 +152,8 @@
 	ai_target_old.len = 0
 	move_laying = null
 
-	qdel(chat_text)
-	chat_text = null
+	//qdel(chat_text) should be on atom now
+	//chat_text = null
 /*
 	if(stamina_bar)
 		for (var/datum/hud/thishud in huds)

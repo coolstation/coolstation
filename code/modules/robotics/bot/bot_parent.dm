@@ -96,8 +96,8 @@
 
 	disposing()
 		botcard = null
-		qdel(chat_text)
-		chat_text = null
+		//qdel(chat_text) should be on atom now
+		//chat_text = null
 		if(cam)
 			cam.dispose()
 			cam = null
