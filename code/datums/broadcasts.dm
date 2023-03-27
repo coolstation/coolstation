@@ -27,6 +27,7 @@ If you're instead looking for something with branching in the messaging, I think
 	var/list/list/messages = list()
 
 	var/index = 1
+	var/id
 	///The amount of times this broadcast will loop (the broadcast will stop ticking once it reaches 0, but there's no 0th loop)
 	var/loops_remaining = LOOP_INFINITELY
 	///Toggle to clear the receiving objects list after the broadcast stops. Probably want this to be TRUE to clean up references, but in case you've got a broadca
@@ -62,6 +63,15 @@ If you're instead looking for something with branching in the messaging, I think
 		index = 1
 		if (loops_remaining != LOOP_INFINITELY)
 			loops_remaining--
+
+
+		if (loops_remaining == 0)
+			broadcast_controls.broadcast_stop(src)
+		//	SEND_SIGNAL(broadcast, COMSIG_BROADCAST_ENDED)
+			return
+		//else
+		//	SEND_SIGNAL(broadcast, COMSIG_BROADCAST_LOOPED, loops_remaining)
+
 
 
 
@@ -100,34 +110,47 @@ If you're instead looking for something with branching in the messaging, I think
 	ON_COOLDOWN(src, "next_broadcast", delay2use)
 
 
-#undef LOOP_INFINITELY
 #undef DEFAULT_BROADCAST_MESSAGE_TIME
 
 /obj/shitty_radio
 	name = "shitty test radio"
 	desc = "fuck me that's one shitty radio"
 	var/on = TRUE
+	var/station = TR_CAT_RADIO_BROADCAST_RECEIVERS
+
 	icon_state = "transmitter-on"
 	icon = 'icons/obj/loudspeakers.dmi'
 	color = "#AAAAAA"
 
 	New()
 		..()
-		START_TRACKING_CAT(TR_CAT_RADIO_BROADCAST_RECEIVERS)
+		START_TRACKING_CAT(station)
 
 	attack_hand(mob/user)
 		if (on)
 			on = FALSE
-			STOP_TRACKING_CAT(TR_CAT_RADIO_BROADCAST_RECEIVERS)
+			STOP_TRACKING_CAT(station)
 			icon_state = "transmitter"
 		else
-			START_TRACKING_CAT(TR_CAT_RADIO_BROADCAST_RECEIVERS)
+			START_TRACKING_CAT(station)
 			on = TRUE
 			icon_state = "transmitter-on"
 		. = ..()
 
+	finite_demo
+		name = "shittier test radio"
+		desc = "god damn this fucking blight on the station (use a multitool to start this)"
+		color = "#541771"
+		station = TR_CAT_FINITE_BROADCAST_RECEIVERS
+
+		attackby(obj/item/I, mob/user)
+			if (istool(I, TOOL_PULSING))
+				broadcast_controls.broadcast_start("demo_finite")
+			..()
+
 
 /datum/directed_broadcast/testing
+	id = "demo"
 	//Mixing entries like this would be bad form I feel, but to demonstrate that it functions
 	messages = list(\
 		list("This is the first message for this test broadcast. It has a longer delay than default.", 9 SECONDS),\
@@ -137,3 +160,20 @@ If you're instead looking for something with branching in the messaging, I think
 	)
 
 	broadcast_cat = TR_CAT_RADIO_BROADCAST_RECEIVERS
+
+/datum/directed_broadcast/testing_finite
+	id = "demo_finite"
+	loops_remaining = 2
+	//Mixing entries like this would be bad form I feel, but to demonstrate that it functions
+	messages = list(\
+		"This broadcast will loop twice, and then stop.",\
+		"But after that you can restart it by hitting one of the shittier radios with a multitool.",\
+		"In the meantime, let me just say I'm gay.",\
+		"I think it'd be pretty cool if you made some of these broadcasts too.",\
+		"This is the last message in the loop.",\
+	)
+
+	broadcast_cat = TR_CAT_FINITE_BROADCAST_RECEIVERS
+
+
+#undef LOOP_INFINITELY
