@@ -8970,11 +8970,11 @@
 /area/station/solar/north)
 "eof" = (
 /obj/machinery/light/fluorescent/auto/neutral,
-/obj/machinery/disposal/mail/small/autoname{
-	dir = 8;
-	pixel_x = 5
-	},
 /obj/disposalpipe/trunk/mail/north,
+/obj/machinery/disposal/mail/autoname/hydroponics{
+	mail_tag = "hydroponics lobby";
+	name = "Hydroponics Lobby"
+	},
 /turf/simulated/floor/green/side{
 	dir = 6
 	},
@@ -11114,11 +11114,6 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal)
 "fiH" = (
-/obj/noticeboard/persistent{
-	name = "Bar persistent notice board";
-	persistent_id = "bar";
-	pixel_x = 32
-	},
 /obj/disposalpipe/segment,
 /obj/disposalpipe/segment/crematorium{
 	dir = 4
@@ -13756,7 +13751,7 @@
 /area/station/science/server_room/cold)
 "grQ" = (
 /obj/disposalpipe/trunk/mail/east,
-/obj/machinery/disposal/mail/small/autoname,
+/obj/machinery/disposal/mail/autoname/hydroponics,
 /turf/simulated/floor/green,
 /area/station/hydroponics/bay)
 "grX" = (
@@ -13900,10 +13895,10 @@
 	},
 /area/station/crew_quarters/captain)
 "guA" = (
-/obj/machinery/disposal/small,
 /obj/disposalpipe/trunk{
 	dir = 8
 	},
+/obj/machinery/disposal,
 /turf/simulated/floor/green,
 /area/station/hydroponics/bay)
 "guG" = (
@@ -24137,14 +24132,13 @@
 	name = "Cold Backup"
 	})
 "lhX" = (
-/obj/barber_pole{
-	pixel_x = -6;
-	pixel_y = 28
+/obj/noticeboard/persistent{
+	name = "Bar persistent notice board";
+	persistent_id = "bar";
+	pixel_x = 0
 	},
-/turf/simulated/floor/neutral/side{
-	dir = 1
-	},
-/area/station/hallway/secondary/northwest)
+/turf/simulated/floor/wood/seven,
+/area/station/crew_quarters/bar)
 "lic" = (
 /obj/cable{
 	icon_state = "2-8"
@@ -24793,6 +24787,7 @@
 	pixel_x = -8;
 	pixel_y = 13
 	},
+/obj/fitness/speedbag/clown,
 /turf/simulated/floor/carpet/arcade,
 /area/station/crew_quarters/arcade)
 "lxu" = (
@@ -34506,7 +34501,7 @@
 "pQj" = (
 /obj/machinery/light_switch/east,
 /obj/disposalpipe/trunk/mail/north,
-/obj/machinery/disposal/mail/autoname,
+/obj/machinery/disposal/mail/autoname/kitchen,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "pQk" = (
@@ -34647,8 +34642,8 @@
 /area/station/hallway/primary/central)
 "pTy" = (
 /obj/decal/cleanable/cobweb,
-/obj/fitness/speedbag/clown,
 /obj/machinery/light/fluorescent/cool/very,
+/obj/machinery/vending/fortune,
 /turf/simulated/floor/carpet/arcade,
 /area/station/crew_quarters/arcade)
 "pTF" = (
@@ -38715,10 +38710,10 @@
 /turf/simulated/floor/techfloor,
 /area/station/turret_protected/ai_module_storage)
 "rKQ" = (
-/obj/decal/cleanable/dirt/dirt5,
-/obj/machinery/vending/fortune,
-/turf/simulated/floor/carpet/arcade,
-/area/station/crew_quarters/arcade)
+/obj/window,
+/obj/barber_pole,
+/turf/simulated/floor/plating,
+/area/station/crew_quarters/barber_shop)
 "rKV" = (
 /obj/item/luggable_computer,
 /obj/table/auto,
@@ -39745,10 +39740,11 @@
 	},
 /area/station/hallway/primary/south)
 "sfs" = (
-/obj/machinery/disposal/mail/small{
-	pixel_x = 8
-	},
 /obj/disposalpipe/trunk/mail/west,
+/obj/machinery/disposal/mail/autoname/engineering{
+	mail_tag = "chief engineerage";
+	name = "chief engineerage"
+	},
 /turf/simulated/floor/yellow/side{
 	dir = 6
 	},
@@ -41371,11 +41367,9 @@
 /turf/simulated/wall,
 /area/station/security/interrogation)
 "sTs" = (
-/obj/machinery/disposal/mail/small/autoname{
-	dir = 4
-	},
 /obj/machinery/light/small/auto/warm,
 /obj/disposalpipe/trunk/mail/east,
+/obj/machinery/disposal/mail/small/autoname/chapel/east,
 /turf/simulated/floor/carpet/red/fancy/edge/nw,
 /area/station/chapel/office)
 "sTz" = (
@@ -44272,7 +44266,6 @@
 /area/station/quartermaster/cargobay)
 "udh" = (
 /obj/disposalpipe/trunk/mail/east,
-/obj/machinery/disposal/mail,
 /obj/machinery/light/small/auto/neutral,
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
@@ -50976,7 +50969,10 @@
 "wZy" = (
 /obj/machinery/light/emergency,
 /obj/disposalpipe/trunk/mail/north,
-/obj/machinery/disposal/mail,
+/obj/machinery/disposal/mail/autoname/public/crew{
+	mail_tag = "jazz";
+	name = "Comrade's Quarters"
+	},
 /turf/simulated/floor/wood/seven,
 /area/station/crew_quarters/jazz)
 "wZS" = (
@@ -82435,7 +82431,7 @@ iXr
 hzo
 eof
 nye
-rKQ
+cLL
 dPo
 ngo
 xoa
@@ -84542,7 +84538,7 @@ xIj
 mIg
 rBZ
 mIg
-xQl
+rKQ
 qWd
 nRS
 lES
@@ -85147,7 +85143,7 @@ mIg
 jqK
 drM
 xIj
-lhX
+ifQ
 nRS
 tNu
 wYU
@@ -87858,7 +87854,7 @@ eae
 fzW
 qaC
 vsL
-iVN
+lhX
 iVN
 aXA
 iVN
