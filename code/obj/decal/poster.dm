@@ -599,6 +599,16 @@
 			imgh = 450
 			img = "images/arts/posters/y4nt-shitty.jpg"
 
+		poster_tiger
+			name = "tiger poster"
+			desc = "Wow, it's free! Totally worth it!"
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "tiger"
+			popup_win = 1
+			imgw = 410
+			imgh = 275
+			img = "images/arts/posters/tiger.png"
+
 		poster_beach
 			name = "beach poster"
 			desc = "Sun, sea, and sand! Just visit VR."
