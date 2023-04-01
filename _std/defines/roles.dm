@@ -34,3 +34,6 @@
 #define ROLE_OMNITRAITOR "omnitraitor"
 #define ROLE_GRINCH "grinch"
 #define ROLE_FLOOR_GOBLIN "floor_goblin"
+#define ROLE_DATING_SIM_PROTAG "Baka"
+#define ROLE_DATING_SIM_TSUNDRE "New Girl who just arrived on the station"
+#define ROLE_DATING_SIM_THIRD_WHEEL "Best friend who shows up for one scene and then vanishes"
