@@ -671,7 +671,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			user.urinate()
 	return list(message, null, MESSAGE_VISIBLE)
 
-/*
+
 /datum/emote/dab
 	cooldown = 2 SECONDS
 /datum/emote/dab/enact(mob/living/carbon/human/user, voluntary = 0, param) //I'm honestly not sure how I'm ever going to code anything lower than this - Readster 23/04/19
@@ -686,7 +686,8 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			I = P.ID_card
 	if(H && (!H.limbs.l_arm || !H.limbs.r_arm || H.restrained()))
 		user.show_text("You can't do that without free arms!")
-	else if((user.mind && (user.mind.assigned_role in list("Clown", "Staff Assistant", "Captain"))) || istraitor(H) || isconspirator(H) || isnukeop(H) || isnukeopgunbot(H) || ASS_JAM || istype(user.head, /obj/item/clothing/head/bighat/syndicate/) || istype(I, /obj/item/card/id/dabbing_license) || (user.reagents && user.reagents.has_reagent("puredabs")) || (user.reagents && user.reagents.has_reagent("extremedabs"))) //only clowns and the useless know the true art of dabbing
+		return list(,,)
+	else if((user.mind && (user.mind.assigned_role in list("Clown", "Staff Assistant", "Captain"))) || istraitor(H) || isnukeop(H) || ASS_JAM || istype(user.head, /obj/item/clothing/head/bighat/syndicate/) || istype(I, /obj/item/card/id/dabbing_license) || (user.reagents && user.reagents.has_reagent("puredabs")) || (user.reagents && user.reagents.has_reagent("extremedabs"))) //only clowns and the useless know the true art of dabbing
 		var/obj/item/card/id/dabbing_license/dab_id = null
 		if(istype(I, /obj/item/card/id/dabbing_license)) // if we are using a dabbing license, save it so we can increment stats
 			dab_id = I
@@ -694,10 +695,15 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			dab_id.tooltip_rebuild = 1
 		user.add_karma(-4)
 		if(!dab_id && locate(/obj/machinery/bot/secbot/beepsky) in view(7, get_turf(user)))
-			var/datum/db_record/sec_record = data_core.security.find_record("name", user.name)
-			if(sec_record && sec_record["criminal"] != "*Arrest*")
-				sec_record["criminal"] = "*Arrest*"
-				sec_record["mi_crim"] = "Public dabbing."
+			for(var/datum/data/record/R in data_core.general) //copy paste from public urination, hope it works
+				if(R.fields["name"] == user.name)
+					for (var/datum/data/record/S in data_core.security)
+						if (S.fields["id"] == R.fields["id"])
+							// now add to rap sheet
+
+							S.fields["criminal"] = "*Arrest*"
+							S.fields["mi_crim"] = "Public dabbing."
+							break
 
 		if(user.reagents) user.reagents.add_reagent("dabs",5)
 
@@ -756,5 +762,6 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			playsound(user.loc,"sound/misc/deepfrieddabs.ogg",50,0, channel=VOLUME_CHANNEL_EMOTE)
 	else
 		user.show_text("You don't know how to do that but you feel deeply ashamed for trying", "red")
+		return list(,,)
 	return list(message, null, MESSAGE_VISIBLE)
-*/
+
