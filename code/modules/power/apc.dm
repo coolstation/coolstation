@@ -564,6 +564,10 @@ var/zapLimiter = 0
 	src.repair_status = 3
 
 /obj/machinery/power/apc/attack_ai(mob/user)
+	if (isAI(user) && ACTION_GOVERNOR_BLOCKED(AI_GOVERNOR_APCS))
+		boutput(user, "<span class='alert'>You have lost the ability to interface with APCs.</span>" )
+		return
+
 	if (src.aidisabled && !src.wiresexposed)
 		boutput(user, "AI control for this APC interface has been disabled.")
 	else
