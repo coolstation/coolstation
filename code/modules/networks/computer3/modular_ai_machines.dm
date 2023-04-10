@@ -74,12 +74,41 @@ var/list/governor_registry = list()
 		*/
 
 		//You can copy-paste this into desmos if you want a visual: f(x)=(x-15)^{\left(\frac{5}{7}\right)}+15
-		var/force_no_null_plox = isnull(W.force) ? 0 : W.force
-		var/adjusted_damage = (force_no_null_plox - 15)**(5/7) + 15
-		health -= adjusted_damage
-		if (health <= 0)
-			color = "#BB0000"
-			on_disable()
+		if (isnull(W.force)) return ..()
+		var/adjusted_damage = (W.force - 15)/2.5 + 15
+		user.lastattacked = src
+		attack_particle(user,src)
+		playsound(src.loc, 'sound/impact_sounds/Metal_Hit_Light_1.ogg' , 60, 1, pitch = 1.6)
+		if (src.health > 0)
+			src.take_damage(adjusted_damage, user)
+		else
+			elecflash(src,power=2) //
+	ex_act(severity)
+		take_damage(160 + rand(-10, 10) - (50*(severity-1))) //150-170 for severity 1 (a guaranteed robogib), 100-120 for severity 2 (only unharmed governors survive), 50-70 for severity 3
+
+
+
+/obj/machinery/networked/ai_governor/proc/take_damage(damage)
+	//glass breaking first
+	if (health >= 90 && (health - damage) < 90)
+		playsound(src.loc, 'sound/impact_sounds/Glass_Shards_Hit_1.ogg' , 65, 1)
+		UpdateOverlays(image(src.icon, "governor_glass-burst", layer = FLOAT_LAYER+1), "glass")
+	else if (health >= 60 && (health - damage) < 60)
+		playsound(src.loc, 'sound/impact_sounds/Glass_Shatter_2.ogg' , 65, 1)
+		UpdateOverlays(image(src.icon, "governor_glass-shattered", layer = FLOAT_LAYER+1), "glass")
+	else if (health < 60 && prob(70)) //smashing into the electronics
+		elecflash(src,power=2)
+
+	health -= damage
+
+	if (health <= 0)
+		UpdateOverlays(image(src.icon, "governor_guts-smashed", layer = FLOAT_LAYER), "guts")
+		icon_state = "governor_body-damaged"
+		//color = "#BB0000"
+		on_disable()
+	if (health <= -25 && !src.disposed)
+		robogibs(get_turf(src), null)
+		qdel(src)
 
 ///Whenever a governor goes up it updates the registry
 /obj/machinery/networked/ai_governor/proc/on_enable()
