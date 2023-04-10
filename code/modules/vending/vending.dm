@@ -98,7 +98,7 @@
 	var/pay = 0 // Does this vending machine require money?
 	var/acceptcard = 1 // does the machine accept ID swiping?
 	var/credit = 0 //How much money is currently in the machine?
-	var/profit = 0.90 // cogwerks: how much of a cut should the QMs get from the sale, expressed as a percent
+	var/profit = 0.90 // Percentage of item cost that goes to player. Rest goes to QM/shipping budget.
 
 	// Receipts and Service charge! Because this machine provides a useful service to you, the customer,
 	// and we should be compensated for that! uwu
