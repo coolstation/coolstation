@@ -930,6 +930,22 @@
 		src.item_state = "clipboard[(locate(/obj/item/paper) in src) ? "1" : "0"]"
 		return
 
+	throw_begin(atom/target)
+		if (src.contents.len < 2)
+			return
+
+		var/tossables = rand(1, src.contents.len)
+		while(tossables)
+			var/obj/item/Thing = pick(src.contents)
+			tossables--
+			if(Thing)
+				SPAWN_DBG(0)
+					Thing.set_loc(src.loc)
+					// if we just throw_at the target, we get a laser-beam line of paper
+					// I want more scatterage
+					Thing.throw_at(get_offset_target_turf(target, rand(-2,2), rand(-2, 2)), rand(6), 1)
+		src.update()
+
 /obj/item/clipboard/with_pen
 	New()
 		..()
@@ -994,6 +1010,21 @@
 			output += "<a href='?src=\ref[src];id=[i];action=retrieve'>[src.contents[i].name]</a><br>"
 		output += "</body></html>"
 		user << browse(output, "window=folder;size=400x600")
+
+	throw_begin(atom/target)
+		if (src.contents.len < 2)
+			return
+
+		var/tossables = rand(1, src.contents.len)
+		while(tossables)
+			var/obj/item/Thing = pick(src.contents)
+			tossables--
+			if(Thing)
+				SPAWN_DBG(0)
+					Thing.set_loc(src.loc)
+					// if we just throw_at the target, we get a laser-beam line of paper
+					// I want more scatterage
+					Thing.throw_at(get_offset_target_turf(target, rand(-2,2), rand(-2, 2)), rand(1, 6), 1)
 
 /* =============== BOOKLETS =============== */
 
