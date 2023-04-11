@@ -977,9 +977,21 @@
 				W.set_loc(src)
 				src.amount++
 				tooltip_rebuild = 1
+		if (istype(W, /obj/item/matchbook))
+			if (src.contents.len < 11)
+				boutput(user, "You cram the matchbook into the folder.")
+				user.drop_item()
+				W.set_loc(src)
+				src.amount++
 
 	attack_self(var/mob/user as mob)
-		show_window(user)
+		var/obj/item/matchbook/M = locate() in src.contents
+		if(istype(M))
+			user.visible_message("<span class='alert'>[src] ignites!</span>")
+			playsound(user.loc, 'sound/effects/welder_ignite.ogg', 50, 1)
+			combust(src)
+		else
+			show_window(user)
 
 	Topic(var/href, var/href_list)
 		if (get_dist(src, usr) > 1 || iswraith(usr) || isintangible(usr))

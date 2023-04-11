@@ -166,7 +166,7 @@
 		SPAWN_DBG(3.2 SECONDS)
 			var/obj/item/paper/P = new()
 			P.set_loc(src.loc)
-			P.name = "paper - 'Receipt'"
+			P.name = "'[item]' receipt"
 			P.info = receiptText
 
 		// receipt_count--
