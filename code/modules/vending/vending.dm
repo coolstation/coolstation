@@ -1217,6 +1217,7 @@
 	light_r =1
 	light_g = 0.88
 	light_b = 0.88
+	print_receipts_long = TRUE
 
 
 
@@ -1281,6 +1282,7 @@
 	light_r =1
 	light_g = 0.88
 	light_b = 0.88
+	print_receipts_long = TRUE
 
 	create_products()
 		..()
