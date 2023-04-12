@@ -930,8 +930,12 @@
 		src.item_state = "clipboard[(locate(/obj/item/paper) in src) ? "1" : "0"]"
 		return
 
-	throw_begin(atom/target)
+	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
+		..()
 		if (src.contents.len < 2)
+			return
+
+		if(prob(10))
 			return
 
 		var/tossables = rand(1, src.contents.len)
@@ -943,7 +947,7 @@
 					Thing.set_loc(src.loc)
 					// if we just throw_at the target, we get a laser-beam line of paper
 					// I want more scatterage
-					Thing.throw_at(get_offset_target_turf(target, rand(-2,2), rand(-2, 2)), rand(6), 1)
+					Thing.throw_at(get_offset_target_turf(hit_atom.loc, rand(-2,2), rand(-2, 2)), rand(6), 1)
 		src.update()
 
 /obj/item/clipboard/with_pen
