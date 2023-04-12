@@ -104,6 +104,7 @@
 	// and we should be compensated for that! uwu
 	// Also, you may need a receipt to take to your department head for expenses reimbursements~
 	var/print_receipts = TRUE
+	var/print_receipts_long = FALSE
 	var/receipt_count = 20 // TODO: Printer rolls for receipts?
 	var/min_serv_chg = 2 // 2 bux just to use your damn machine? Rasm frasm grumble!
 	var/serv_chg_pct = 0.02
@@ -153,19 +154,25 @@
 		else
 			accountName = accountFrom.fields["name"]
 		var/receiptText = "<b>Payment Receipt</b><br>Please keep this for departmental records.<br>"
-		receiptText += "[item]: [amount]"
+		receiptText += "[item]: $[amount]"
 		if(serv_chg_amount > 0)
-			receiptText += "<b>Service Charge</b>: [serv_chg_amount]<br>"
+			receiptText += "<b>Service Charge</b>: $[serv_chg_amount]<br>"
 		else
 			receiptText += "<b>-Service Charge Waived-</b>"
 		receiptText += "<hr>"
-		receiptText += "<b>Total</b> (deducted from [accountName]): [amount + serv_chg_amount]"
+		receiptText += "<b>Total</b> (deducted from [accountName]): $[amount + serv_chg_amount]"
 
 		playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 50, 1)
 
 		SPAWN_DBG(3.2 SECONDS)
 			var/obj/item/paper/P = new()
 			P.set_loc(src.loc)
+			if(print_receipts_long)
+				P.icon_state = "thermal_paper_med"
+				P.desc = "Holy crap, how long does a receipt need to be?!"
+			else
+				P.icon_state = "thermal_paper"
+
 			P.name = "'[item]' receipt"
 			P.info = receiptText
 
