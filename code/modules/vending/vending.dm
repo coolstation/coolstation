@@ -149,18 +149,20 @@
 			return
 
 		var/accountName
-		if(!istype(accountFrom))
-			accountName="-CASH SALE-"
-		else
-			accountName = accountFrom.fields["name"]
-		var/receiptText = "<b>Payment Receipt</b><br>Please keep this for departmental records.<br>"
-		receiptText += "[item]: $[amount]"
-		if(serv_chg_amount > 0)
+		var/receiptText = "<b>Payment Receipt</b><br><i>Please keep this for departmental records.</i><br>"
+		receiptText += "[item]: $[amount]<br>"
+		if(serv_chg_amount > 0 || amount != 0)
 			receiptText += "<b>Service Charge</b>: $[serv_chg_amount]<br>"
 		else
-			receiptText += "<b>-Service Charge Waived-</b>"
+			receiptText += "<b>-Service Charge Waived-</b><br>"
+			serv_chg_amount = 0
+
 		receiptText += "<hr>"
-		receiptText += "<b>Total</b> (deducted from [accountName]): $[amount + serv_chg_amount]"
+
+		if(!istype(accountFrom))
+			receiptText += "<b>Total</b>: $[amount + serv_chg_amount]"
+		else
+			receiptText += "<b>Total</b> (deducted from [accountFrom.fields["name"]]): $[amount + serv_chg_amount]"
 
 		playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 50, 1)
 
