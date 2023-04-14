@@ -148,7 +148,6 @@
 		if(!print_receipts)
 			return
 
-		var/accountName
 		var/receiptText = "<b>Payment Receipt</b><br><i>Please keep this for departmental records.</i><br>"
 		receiptText += "[item]: $[amount]<br>"
 		if(serv_chg_amount > 0 || amount != 0)
