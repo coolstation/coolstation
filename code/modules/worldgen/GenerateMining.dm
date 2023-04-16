@@ -1,5 +1,4 @@
 #define ISDISTEDGE(A, D) (((A.x > (world.maxx - D) || A.x <= D)||(A.y > (world.maxy - D) || A.y <= D))?1:0) //1 if A is within D tiles range from edge of the map.
-
 var/list/miningModifiers = list()
 var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
@@ -148,7 +147,6 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				if(istype(T, /turf/simulated/floor/plating/gehenna)) continue // do not fill in the existing crevices, leaves the player more room.
 				if(map[x][y] && !ISDISTEDGE(T, 3) && T.loc && ((T.loc.type == /area/gehenna/underground) || istype(T.loc , /area/allowGenerate)) )
 					var/turf/simulated/wall/asteroid/N = T.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
-					N.quality = rand(-101,101)
 					generated.Add(N)
 				if(T.loc.type == /area/gehenna/underground || istype(T.loc, /area/allowGenerate))
 					new/area/allowGenerate/caves(T)
@@ -202,6 +200,19 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				new/area/cordon/dark(T)
 				LAGCHECK(LAG_REALTIME)
 
+		//Same deal as on asteroidsDistance, try manually seeding some starstones so they're not magnet exclusive (though there's no magnet available on gehenna, right?)
+		for (var/i = 1, i <= 3 ,i++) //3 tries cause odds of success are much better on gehenna, closer to 2/3rds of the map is eligible
+			var/turf/simulated/wall/asteroid/TRY = pick(miningZ)
+			if (!istype(TRY))
+				logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] failed - bad turf.")
+				continue
+			if (TRY.ore)
+				logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] failed - ore present.")
+				continue
+			//asteroid and unoccupied!
+			Turfspawn_Asteroid_SeedSpecificOre(list(TRY),"starstone",1) //This probably makes a coder from 10 years ago cry
+			logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] success!")
+
 		return miningZ
 
 /datum/mapGenerator/seaCaverns //Cellular automata based generator. Produces cavern-like maps. Empty space is filled with asteroid floor.
@@ -224,7 +235,6 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				var/turf/T = locate(x,y,z_level)
 				if(map[x][y] && !ISDISTEDGE(T, 3) && T.loc && ((T.loc.type == /area/space) || istype(T.loc , /area/allowGenerate)) )
 					var/turf/simulated/wall/asteroid/N = T.ReplaceWith(/turf/simulated/wall/asteroid/dark, FALSE, TRUE, FALSE, TRUE)
-					N.quality = rand(-101,101)
 					generated.Add(N)
 				if(T.loc.type == /area/space || istype(T.loc, /area/allowGenerate))
 					new/area/allowGenerate/trench(T)
@@ -289,6 +299,19 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			for (var/turf/space/fluid/TT in range(rand(2,4),T))
 				TT.spawningFlags |= SPAWN_TRILOBITE
 
+		//I copied this from the desert caves without testing, how often are we gonna run Oshan anyway
+		for (var/i = 1, i <= 3 ,i++)
+			var/turf/simulated/wall/asteroid/TRY = pick(miningZ)
+			if (!istype(TRY))
+				logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] failed - no wall.")
+				continue
+			if (TRY.ore)
+				logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] failed - ore present.")
+				continue
+			//asteroid and unoccupied!
+			Turfspawn_Asteroid_SeedSpecificOre(list(TRY),"starstone",1)
+			logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] success!")
+
 		return miningZ
 
 /datum/mapGenerator/asteroidsDistance //Generates a bunch of asteroids based on distance to seed/center. Super simple.
@@ -296,7 +319,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		var/numAsteroidSeed = AST_SEEDS + rand(1, 5)
 		for(var/i=0, i<numAsteroidSeed, i++)
 			var/turf/X = pick(miningZ)
-			var/quality = rand(-101,101)
+			//var/quality = rand(-101,101)
 
 			while(!istype(X, /turf/space) || ISDISTEDGE(X, AST_MAPSEEDBORDER) || (X.loc.type != /area/space && !istype(X.loc , /area/allowGenerate)))
 				X = pick(miningZ)
@@ -338,7 +361,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				if((T?.loc?.type == /area/space) || istype(T?.loc , /area/allowGenerate))
 					var/turf/simulated/wall/asteroid/AST = T.ReplaceWith(/turf/simulated/wall/asteroid)
 					placed.Add(AST)
-					AST.quality = quality
+					//AST.quality = quality
 				LAGCHECK(LAG_REALTIME)
 
 			if(prob(15))
@@ -362,6 +385,22 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 							if(!istype(T, /turf/simulated/wall/asteroid)) continue
 							var/turf/simulated/wall/asteroid/ast = T
 							ast.destroy_asteroid(0)
+
+		//So I think it's kinda BS that the funkiest ores are magnet exclusive
+		//but starstone is supposed to be very rare, so how about this:
+		//We try n times picking turfs at random from the entire Z level, and if we happen to hit an unoccupied asteroid turf we plant a starstone
+		//This relies on better-than-chance odds of dud turf picks. By my estimate the asteroid field is generally like 20-30% actual asteroid.
+		for (var/i = 1, i <= 10 ,i++) //10 tries atm, which I think should give a decent chance no starstones spawn.
+			var/turf/simulated/wall/asteroid/TRY = pick(miningZ)
+			if (!istype(TRY))
+				logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] failed - no asteroid.")
+				continue
+			if (TRY.ore)
+				logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] failed - ore present.")
+				continue
+			//asteroid and unoccupied!
+			Turfspawn_Asteroid_SeedSpecificOre(list(TRY),"starstone",1) //This probably makes a coder from 10 years ago cry
+			logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] success!")
 		return miningZ
 
 /proc/makeMiningLevelGehenna()
@@ -512,3 +551,5 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				miningModifiersUsed[P.type] = 1
 			return P
 		else return null
+
+#undef ISDISTEDGE
