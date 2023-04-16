@@ -77,6 +77,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	desc = "looks densely packed"
 	icon_state = "gehenna_rock2"
 	hardness = 2
+	turf_flags = IS_TYPE_SIMULATED | MINE_MAP_PRESENTS_TOUGH
 
 	ex_act(severity)
 		switch(severity)
@@ -108,6 +109,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	step_priority = STEP_PRIORITY_MED
 	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
 	allows_vehicles = 1
+	turf_flags = IS_TYPE_SIMULATED | MOB_SLIP | MOB_STEP | MINE_MAP_PRESENTS_EMPTY
 
 	New()
 		..()

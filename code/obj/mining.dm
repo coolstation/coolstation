@@ -984,6 +984,7 @@
 #else
 	fullbright = 1
 #endif
+	turf_flags = IS_TYPE_SIMULATED | MINE_MAP_PRESENTS_SOLID
 
 	consider_superconductivity(starting)
 		return FALSE
@@ -1007,6 +1008,7 @@
 		stone_color = "#575A5E"
 		default_ore = null
 		hardness = 10
+		turf_flags = IS_TYPE_SIMULATED | MINE_MAP_PRESENTS_TOUGH
 
 
 // cogwerks - adding some new wall types for cometmap and whatever else
@@ -1415,7 +1417,7 @@
 	var/stone_color = "#CCCCCC"
 	var/image/coloration_overlay = null
 	var/list/space_overlays = list()
-	turf_flags = MOB_SLIP | MOB_STEP | IS_TYPE_SIMULATED | FLUID_MOVE
+	turf_flags = MOB_SLIP | MOB_STEP | IS_TYPE_SIMULATED | FLUID_MOVE | MINE_MAP_PRESENTS_SOLID //solid might seem weird, but empty represents space so
 
 #ifdef UNDERWATER_MAP
 	fullbright = 0
