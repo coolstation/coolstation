@@ -146,11 +146,11 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			for(var/y=1,y<=world.maxy,y++)
 				var/turf/T = locate(x,y,z_level)
 				if(istype(T, /turf/simulated/floor/plating/gehenna)) continue // do not fill in the existing crevices, leaves the player more room.
-				if(map[x][y] && !ISDISTEDGE(T, 3) && T.loc && ((T.loc.type == /area/space) || istype(T.loc , /area/allowGenerate)) )
+				if(map[x][y] && !ISDISTEDGE(T, 3) && T.loc && ((T.loc.type == /area/gehenna/underground) || istype(T.loc , /area/allowGenerate)) )
 					var/turf/simulated/wall/asteroid/N = T.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
 					N.quality = rand(-101,101)
 					generated.Add(N)
-				if(T.loc.type == /area/space || istype(T.loc, /area/allowGenerate))
+				if(T.loc.type == /area/gehenna/underground || istype(T.loc, /area/allowGenerate))
 					new/area/allowGenerate/caves(T)
 				LAGCHECK(LAG_REALTIME)
 
@@ -365,13 +365,9 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		return miningZ
 
 /proc/makeMiningLevelGehenna()
-	var/list/miningZ = list()
+	var/list/miningZ = block(locate(1, 1, GEH_ZLEVEL), locate(world.maxx, world.maxy, GEH_ZLEVEL))
 	var/startTime = world.timeofday
 	boutput(world, "<span class='alert'>Generating the OTHER Mining Level ...</span>")
-
-	for(var/turf/T)
-		if(T.z == GEH_ZLEVEL)
-			miningZ.Add(T)
 
 	var/num_to_place = AST_NUMPREFABS + rand(0,AST_NUMPREFABSEXTRA) + 2
 	for (var/n = 1, n <= num_to_place, n++)
@@ -418,17 +414,13 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 
 /proc/makeMiningLevel()
-	var/list/miningZ = list()
+	var/list/miningZ = block(locate(1, 1, AST_ZLEVEL), locate(world.maxx, world.maxy, AST_ZLEVEL))
 	var/startTime = world.timeofday
 	if(world.maxz < AST_ZLEVEL)
 		boutput(world, "<span class='alert'>Skipping Mining Generation!</span>")
 		return
 	else
 		boutput(world, "<span class='alert'>Generating Mining Level ...</span>")
-
-	for(var/turf/T)
-		if(T.z == AST_ZLEVEL)
-			miningZ.Add(T)
 
 	var/num_to_place = AST_NUMPREFABS + rand(0,AST_NUMPREFABSEXTRA)
 	for (var/n = 1, n <= num_to_place, n++)
