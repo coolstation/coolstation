@@ -1,4 +1,8 @@
 #define ISDISTEDGE(A, D) (((A.x > (world.maxx - D) || A.x <= D)||(A.y > (world.maxy - D) || A.y <= D))?1:0) //1 if A is within D tiles range from edge of the map.
+#define NO_BORDER 0
+#define YES_BORDER 1
+#define BORDER_PREBAKED 2
+
 var/list/miningModifiers = list()
 var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
@@ -98,59 +102,91 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 	proc/generate(var/list/levelTurfs)
 		return levelTurfs
 
-/proc/CAGetSolid(var/L, var/currentX, var/currentY, var/generation)
-	var/default = 1 //1 = wall, 0 = empty
-	var/minSolid = 5 //Min amount of solid tiles in a given window to produce another solid tile, less = more dense map
-	var/fillLarge = 0 //If 1, put rocks in the middle of very large open caverns so they don't look so empty. Can create very tight maps.
-	var/endFill = -1 //Reduce minSolid by this much in the last few passes (produces tighter corridors)
-	var/passTwoRange = 2 //Range Threshold for second pass (fill pass, see fillLarge). The higher the number, the larger the cavern needs to be before it is filled in.
+//Why are we defining 5 vars every CAGetSolid call like this when they could be defines, mining aint got time for this
+#define CAGGETSOLID_DEFAULT 1 //1 = wall, 0 = empty
+#define CAGGETSOLID_MIN_SOLID 5 //Min amount of solid tiles in a given window to produce another solid tile, less = more dense map
+#define CAGGETSOLID_END_FILL -1 //Reduce minSolid by this much in the last few passes (produces tighter corridors)
 
+//#define CAGGETSOLID_FILL_LARGE //If defined, put rocks in the middle of very large open caverns so they don't look so empty. Can create very tight maps.
+#define CAGGETSOLID_PASS_TWO_RANGE 2 //Range Threshold for second pass (fill pass, see fillLarge). The higher the number, the larger the cavern needs to be before it is filled in.
+
+/proc/CAGetSolid(var/L, var/currentX, var/currentY, var/generation)
 	var/count = 0
 	for(var/xx=-1, xx<=1, xx++)
 		for(var/yy=-1, yy<=1, yy++)
 			if(currentX+xx <= world.maxx && currentX+xx >= 1 && currentY+yy <= world.maxy && currentY+yy >= 1)
 				count += L[currentX+xx][currentY+yy]
 			else //OOB, count as wall.
-				count += default
+				count += CAGGETSOLID_DEFAULT
+
+#ifndef CAGGETSOLID_FILL_LARGE
+	return (count >= CAGGETSOLID_MIN_SOLID + ((generation==4||generation==3) ? CAGGETSOLID_END_FILL : 0 ))
+#else
+	//So the logic of the original return statement (simplified) is "5+ walls in a 3*3 OR less than 2 walls in a 5*5"
+	//Meaning, if the first loop cleared its threshold that would evaluate true regardless. Might as well skip the back half right.
+	var/result = (count >= CAGGETSOLID_MIN_SOLID + ((generation==4||generation==3) ? CAGGETSOLID_END_FILL : 0 ))
+	if (result) return TRUE
 
 	var/count2 = 0
 	if(fillLarge)
-		for(var/xx=-passTwoRange, xx<=passTwoRange, xx++)
-			for(var/yy=-passTwoRange, yy<=passTwoRange, yy++)
-				if(abs(xx)==passTwoRange && abs(yy)==passTwoRange) continue //Skip diagonals for this one. Better results
+		for(var/xx=-CAGGETSOLID_PASS_TWO_RANGE, xx<=CAGGETSOLID_PASS_TWO_RANGE, xx++)
+			for(var/yy=-CAGGETSOLID_PASS_TWO_RANGE, yy<=CAGGETSOLID_PASS_TWO_RANGE, yy++)
+				if(abs(xx)==CAGGETSOLID_PASS_TWO_RANGE && abs(yy)==CAGGETSOLID_PASS_TWO_RANGE) continue //Skip diagonals for this one. Better results
 				if(currentX+xx <= world.maxx && currentX+xx >= 1 && currentY+yy <= world.maxy && currentY+yy >= 1)
 					count2 += L[currentX+xx][currentY+yy]
 				else //OOB, count as wall.
-					count2 += default
+					count2 += CAGGETSOLID_DEFAULT
 
-	return (count >= minSolid + ((generation==4||generation==3) ? endFill : 0 ) || (count2<=(generation==4?1:2) && fillLarge && (generation==3 || generation==4)) ) //Remove ((generation==4||generation==3)?-1:0) for larger corridors
+	return (count2<=(generation==4?1:2) && fillLarge && (generation==3 || generation==4))
+
+	//Look I appreciate being able to get your return on one line like this, but this proc is called like 400000+ times to make the trench & desert levels
+	//We gotta go fast so why have the back half of that OR in there when it's not used in practice?
+	//return (count >= CAGGETSOLID_MIN_SOLID + ((generation==4||generation==3) ? CAGGETSOLID_END_FILL : 0 ) || (count2<=(generation==4?1:2) && fillLarge && (generation==3 || generation==4)) ) //Remove ((generation==4||generation==3)?-1:0) for larger corridors
+#endif
+
+#undef CAGGETSOLID_DEFAULT
+#undef CAGGETSOLID_MIN_SOLID
+#undef CAGGETSOLID_END_FILL
+#undef CAGGETSOLID_PASS_TWO_RANGE
 
 
 /datum/mapGenerator/desertCaverns
-	generate(var/list/miningZ, var/z_level = GEH_ZLEVEL, var/generate_borders = TRUE)
+	//I don't know why these generators bother with the miningZ var btw, the desert/trench generators didn't do anything with them before starstone generation was added
+	generate(var/list/miningZ, var/z_level = GEH_ZLEVEL, var/generate_borders = YES_BORDER)
+		//Generate start/end coords further in if borders are used, at the current default of 3 wide borders that saves ~3,5k turfs getting iterated over.
+		var/startx = (generate_borders ? AST_MAPBORDER+1 : 1)
+		var/starty = (generate_borders ? AST_MAPBORDER+1 : 1)
+		var/endx = (generate_borders ? world.maxx-(AST_MAPBORDER) : world.maxx)
+		var/endy = (generate_borders ? world.maxy-(AST_MAPBORDER) : world.maxy)
+
+		var/startTime = world.timeofday
+
 		var/map[world.maxx][world.maxy]
-		for(var/x=1,x<=world.maxx,x++)
-			for(var/y=1,y<=world.maxy,y++)
+		for(var/x=max(startx - 1,1), x <= min(endx + 1, world.maxx), x++)
+			for(var/y=max(starty - 1,1), y<= min(endy + 1, world.maxy), y++)
 				map[x][y] = pick(90;1,100;0) //Initialize randomly.
+		boutput(world, "<span class='alert'>Desert map initial at [((world.timeofday - startTime)/10)] seconds!")
 
 		for(var/i=0, i<5, i++) //5 Passes to smooth it out.
 			var/mapnew[world.maxx][world.maxy]
-			for(var/x=1,x<=world.maxx,x++)
-				for(var/y=1,y<=world.maxy,y++)
+			for(var/x=startx,x<=endx,x++)
+				for(var/y=starty,y<=endy,y++)
 					mapnew[x][y] = CAGetSolid(map, x, y, i)
 					LAGCHECK(LAG_REALTIME)
 			map = mapnew
+		boutput(world, "<span class='alert'>Desert map 5th smoothing pass at [((world.timeofday - startTime)/10)] seconds!")
 
-		for(var/x=1,x<=world.maxx,x++)
-			for(var/y=1,y<=world.maxy,y++)
+		for(var/x=startx,x<=endx,x++)
+			for(var/y=starty,y<=endy,y++)
 				var/turf/T = locate(x,y,z_level)
 				if(istype(T, /turf/simulated/floor/plating/gehenna)) continue // do not fill in the existing crevices, leaves the player more room.
-				if(map[x][y] && !ISDISTEDGE(T, 3) && T.loc && ((T.loc.type == /area/gehenna/underground) || istype(T.loc , /area/allowGenerate)) )
+				if(map[x][y]/* && !ISDISTEDGE(T, 3) */&& T.loc && ((T.loc.type == /area/gehenna/underground) || istype(T.loc , /area/allowGenerate)) )
 					var/turf/simulated/wall/asteroid/N = T.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
 					generated.Add(N)
 				if(T.loc.type == /area/gehenna/underground || istype(T.loc, /area/allowGenerate))
 					new/area/allowGenerate/caves(T)
 				LAGCHECK(LAG_REALTIME)
+		boutput(world, "<span class='alert'>Desert mass turf replacement at [((world.timeofday - startTime)/10)] seconds!")
 
 		var/list/used = list()
 		for(var/s=0, s<20, s++)
@@ -187,8 +223,8 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 		for(var/i=0, i<40, i++)
 			Turfspawn_Asteroid_SeedEvents(generated)
-
-		if(generate_borders)
+		boutput(world, "<span class='alert'>Desert ore seeding at [((world.timeofday - startTime)/10)] seconds!")
+		if(generate_borders == YES_BORDER) //border needed and isn't prebaked
 			var/list/border = list()
 			border |= (block(locate(1,1,z_level), locate(AST_MAPBORDER,world.maxy,z_level))) //Left
 			border |= (block(locate(1,1,z_level), locate(world.maxx,AST_MAPBORDER,z_level))) //Bottom
@@ -199,7 +235,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				T.ReplaceWith(/turf/unsimulated/wall/gehenna, FALSE, TRUE, FALSE, TRUE)
 				new/area/cordon/dark(T)
 				LAGCHECK(LAG_REALTIME)
-
+		boutput(world, "<span class='alert'>Desert ore borders at [((world.timeofday - startTime)/10)] seconds!")
 		//Same deal as on asteroidsDistance, try manually seeding some starstones so they're not magnet exclusive (though there's no magnet available on gehenna, right?)
 		for (var/i = 1, i <= 3 ,i++) //3 tries cause odds of success are much better on gehenna, closer to 2/3rds of the map is eligible
 			var/turf/simulated/wall/asteroid/TRY = pick(miningZ)
@@ -216,7 +252,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		return miningZ
 
 /datum/mapGenerator/seaCaverns //Cellular automata based generator. Produces cavern-like maps. Empty space is filled with asteroid floor.
-	generate(var/list/miningZ, var/z_level = AST_ZLEVEL, var/generate_borders = TRUE)
+	generate(var/list/miningZ, var/z_level = AST_ZLEVEL, var/generate_borders = YES_BORDER)
 		var/map[world.maxx][world.maxy]
 		for(var/x=1,x<=world.maxx,x++)
 			for(var/y=1,y<=world.maxy,y++)
@@ -431,10 +467,10 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 					logTheThing("debug", null, null, "Prefab placement #[n] [M.type] failed due to maximum tries [maxTries][M.required?" WARNING: REQUIRED FAILED":""]. [target] @ [showCoords(target.x, target.y, target.z)]")
 		else break
 
-	var/datum/mapGenerator/D = new/datum/mapGenerator/desertCaverns()
+	var/datum/mapGenerator/desertCaverns/D = new/datum/mapGenerator/desertCaverns()
 
 	game_start_countdown?.update_status("Setting up mining level...\nGenerating terrain... again...")
-	miningZ = D.generate(miningZ)
+	miningZ = D.generate(miningZ, generate_borders = BORDER_PREBAKED)
 
 	// remove temporary areas
 	for (var/turf/T in get_area_turfs(/area/noGenerate))
@@ -553,3 +589,6 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		else return null
 
 #undef ISDISTEDGE
+#undef NO_BORDER
+#undef YES_BORDER
+#undef BORDER_PREBAKED
