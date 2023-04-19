@@ -144,10 +144,6 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 	//return (count >= CAGGETSOLID_MIN_SOLID + ((generation==4||generation==3) ? CAGGETSOLID_END_FILL : 0 ) || (count2<=(generation==4?1:2) && fillLarge && (generation==3 || generation==4)) ) //Remove ((generation==4||generation==3)?-1:0) for larger corridors
 #endif
 
-#undef CAGGETSOLID_DEFAULT
-#undef CAGGETSOLID_MIN_SOLID
-#undef CAGGETSOLID_END_FILL
-#undef CAGGETSOLID_PASS_TWO_RANGE
 
 
 /datum/mapGenerator/desertCaverns
@@ -159,23 +155,53 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		var/endx = (generate_borders ? world.maxx-(AST_MAPBORDER) : world.maxx)
 		var/endy = (generate_borders ? world.maxy-(AST_MAPBORDER) : world.maxy)
 
-		var/startTime = world.timeofday
-
+		//Generate a map full of random 1s and 0s, 1s are dense rock and 0s are loose rock
 		var/map[world.maxx][world.maxy]
 		for(var/x=max(startx - 1,1), x <= min(endx + 1, world.maxx), x++)
 			for(var/y=max(starty - 1,1), y<= min(endy + 1, world.maxy), y++)
 				map[x][y] = pick(90;1,100;0) //Initialize randomly.
-		boutput(world, "<span class='alert'>Desert map initial at [((world.timeofday - startTime)/10)] seconds!")
 
-		for(var/i=0, i<5, i++) //5 Passes to smooth it out.
+		//Feed the map of random noise through a smoothing algorithm a few times, creating a marbled texture by the end
+		/*for(var/i=0, i<5, i++) //5 Passes to smooth it out.
 			var/mapnew[world.maxx][world.maxy]
 			for(var/x=startx,x<=endx,x++)
 				for(var/y=starty,y<=endy,y++)
 					mapnew[x][y] = CAGetSolid(map, x, y, i)
 					LAGCHECK(LAG_REALTIME)
-			map = mapnew
-		boutput(world, "<span class='alert'>Desert map 5th smoothing pass at [((world.timeofday - startTime)/10)] seconds!")
+			map = mapnew*/
 
+		/*
+		So how about we inline CAGetSolid into this?
+		The reason for doing this is computer science levels of optimisation bullshit. CAGetSolid checks the 3*3 around a cell and counts 1 in that (OOB are dense)
+		It has no context of which order it's being called in but since we'd call it with consecutive cells, 6 of 9 cells being evaluated are the same until we reach the end of a row
+		This means that just by doing some manual memory shuffling we save , which should in theory speed up the process considerably.
+		While I'm at it, I'm just gonna ignore OOB checking since in practice this is only ever going to operating within the 3 tile buffer.
+		*/
+		for(var/i=0, i<5, i++) //5 Passes to smooth it out.
+			var/mapnew[world.maxx][world.maxy]
+			for(var/x=startx,x<=endx,x++)
+				var/list/rolling_counts = list(0,0,0,0,0,0)
+				var/index = 6 //We'll pre-populate the first 2
+				var/count
+				for(var/yy=-1, yy<1, yy++)
+					count = 0
+					for(var/xx=-1, xx<=1, xx++)
+						count += map[x+xx][starty+yy]
+					rolling_counts[yy+5] = count
+
+				for(var/y=starty,y<=endy,y++)
+					count = 0
+					for(var/xx=-1, xx<=1, xx++)
+						count += map[x + xx][y + 1]
+					rolling_counts[index] = count
+					index++
+					if (index > 6) index = 4
+					var/sum_of_dense = rolling_counts[4] + rolling_counts[5] + rolling_counts[6]
+					mapnew[x][y] = (sum_of_dense >= CAGGETSOLID_MIN_SOLID + ((i==4||i==3) ? CAGGETSOLID_END_FILL : 0 ))
+					LAGCHECK(LAG_REALTIME)
+			map = mapnew
+
+		//Actually convert the map we've ended up with into turf changes
 		for(var/x=startx,x<=endx,x++)
 			for(var/y=starty,y<=endy,y++)
 				var/turf/T = locate(x,y,z_level)
@@ -186,7 +212,6 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				if(T.loc.type == /area/gehenna/underground || istype(T.loc, /area/allowGenerate))
 					new/area/allowGenerate/caves(T)
 				LAGCHECK(LAG_REALTIME)
-		boutput(world, "<span class='alert'>Desert mass turf replacement at [((world.timeofday - startTime)/10)] seconds!")
 
 		var/list/used = list()
 		for(var/s=0, s<20, s++)
@@ -223,7 +248,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 		for(var/i=0, i<40, i++)
 			Turfspawn_Asteroid_SeedEvents(generated)
-		boutput(world, "<span class='alert'>Desert ore seeding at [((world.timeofday - startTime)/10)] seconds!")
+
 		if(generate_borders == YES_BORDER) //border needed and isn't prebaked
 			var/list/border = list()
 			border |= (block(locate(1,1,z_level), locate(AST_MAPBORDER,world.maxy,z_level))) //Left
@@ -235,7 +260,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				T.ReplaceWith(/turf/unsimulated/wall/gehenna, FALSE, TRUE, FALSE, TRUE)
 				new/area/cordon/dark(T)
 				LAGCHECK(LAG_REALTIME)
-		boutput(world, "<span class='alert'>Desert ore borders at [((world.timeofday - startTime)/10)] seconds!")
+
 		//Same deal as on asteroidsDistance, try manually seeding some starstones so they're not magnet exclusive (though there's no magnet available on gehenna, right?)
 		for (var/i = 1, i <= 3 ,i++) //3 tries cause odds of success are much better on gehenna, closer to 2/3rds of the map is eligible
 			var/turf/simulated/wall/asteroid/TRY = pick(miningZ)
@@ -592,3 +617,8 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 #undef NO_BORDER
 #undef YES_BORDER
 #undef BORDER_PREBAKED
+
+#undef CAGGETSOLID_DEFAULT
+#undef CAGGETSOLID_MIN_SOLID
+#undef CAGGETSOLID_END_FILL
+#undef CAGGETSOLID_PASS_TWO_RANGE
