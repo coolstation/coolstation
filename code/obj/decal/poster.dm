@@ -534,6 +534,15 @@
 			name = "COLD LOOP"
 			icon_state = "wall_coldloop"
 
+		aarea
+			name = "area information sign"
+			desc = "A sign that lets you know that this is, in fact, a area."
+			icon_state = "wall_area"
+			popup_win = 1
+			imgw = 180
+			imgh = 230
+			img = "images/arts/posters/sign-area.jpg"
+
 		poster_hair
 			name = "Fabulous Hair!"
 			desc = "There's a bunch of ladies with really fancy hair pictured on this."
