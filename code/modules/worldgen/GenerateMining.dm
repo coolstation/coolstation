@@ -161,7 +161,8 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			for(var/y=max(starty - 1,1), y<= min(endy + 1, world.maxy), y++)
 				map[x][y] = pick(90;1,100;0) //Initialize randomly.
 
-		//Feed the map of random noise through a smoothing algorithm a few times, creating a marbled texture by the end
+
+		//Previous version of the smoothing loop, which I figure might be of interest to someone when the code below looks too shit
 		/*for(var/i=0, i<5, i++) //5 Passes to smooth it out.
 			var/mapnew[world.maxx][world.maxy]
 			for(var/x=startx,x<=endx,x++)
@@ -171,32 +172,39 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			map = mapnew*/
 
 		/*
-		So how about we inline CAGetSolid into this?
+		So how about we inline CAGetSolid into this smoothing bit?
 		The reason for doing this is computer science levels of optimisation bullshit. CAGetSolid checks the 3*3 around a cell and counts 1 in that (OOB are dense)
 		It has no context of which order it's being called in but since we'd call it with consecutive cells, 6 of 9 cells being evaluated are the same until we reach the end of a row
 		This means that just by doing some manual memory shuffling we save , which should in theory speed up the process considerably.
 		While I'm at it, I'm just gonna ignore OOB checking since in practice this is only ever going to operating within the 3 tile buffer.
 		*/
+		//Feed the map of random noise through a smoothing algorithm a few times, creating a marbled texture by the end
 		for(var/i=0, i<5, i++) //5 Passes to smooth it out.
 			var/mapnew[world.maxx][world.maxy]
 			for(var/x=startx,x<=endx,x++)
+				//So this is silly, since we only need to store 3 things. The problem is BYOND kept making a fucking associative list with numeric association indices (which I tihnk isn't supposed ot be possible?)
+				//Resulting shit just getting stored randomly in places.
+				//And rather than become the kind of masochist who engages in whatever fucking pedantry is going on, I've just decided to instead used indices 4 through 6 since count only goes up to 3
 				var/list/rolling_counts = list(0,0,0,0,0,0)
-				var/index = 6 //We'll pre-populate the first 2
+				var/index = 6 //We'll pre-populate the first 2 (indices 4 & 5)
 				var/count
+
+				//First, handle the rows behind and
 				for(var/yy=-1, yy<1, yy++)
 					count = 0
 					for(var/xx=-1, xx<=1, xx++)
 						count += map[x+xx][starty+yy]
 					rolling_counts[yy+5] = count
 
+				//Now all that needs to be checked for each y is the three turfs one ahead of y
 				for(var/y=starty,y<=endy,y++)
 					count = 0
 					for(var/xx=-1, xx<=1, xx++)
 						count += map[x + xx][y + 1]
 					rolling_counts[index] = count
 					index++
-					if (index > 6) index = 4
-					var/sum_of_dense = rolling_counts[4] + rolling_counts[5] + rolling_counts[6]
+					if (index > 6) index = 4 //Again, this is dumb, I agree
+					var/sum_of_dense = rolling_counts[4] + rolling_counts[5] + rolling_counts[6] //but it works
 					mapnew[x][y] = (sum_of_dense >= CAGGETSOLID_MIN_SOLID + ((i==4||i==3) ? CAGGETSOLID_END_FILL : 0 ))
 					LAGCHECK(LAG_REALTIME)
 			map = mapnew
@@ -206,12 +214,14 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			for(var/y=starty,y<=endy,y++)
 				var/turf/T = locate(x,y,z_level)
 				if(istype(T, /turf/simulated/floor/plating/gehenna)) continue // do not fill in the existing crevices, leaves the player more room.
+				//Clobber only the things that are in safe-to-clobber areas. Since we crop the borders off of x and y we don't need to do DISTEDGE anymore.
 				if(map[x][y]/* && !ISDISTEDGE(T, 3) */&& T.loc && ((T.loc.type == /area/gehenna/underground) || istype(T.loc , /area/allowGenerate)) )
 					var/turf/simulated/wall/asteroid/N = T.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
 					generated.Add(N)
 				if(T.loc.type == /area/gehenna/underground || istype(T.loc, /area/allowGenerate))
 					new/area/allowGenerate/caves(T)
 				LAGCHECK(LAG_REALTIME)
+
 
 		var/list/used = list()
 		for(var/s=0, s<20, s++)
@@ -234,7 +244,9 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 					var/turf/simulated/wall/asteroid/ast = T
 					ast.destroy_asteroid(0)
 
+		//For the next bit, you might want to turn on DEBUG_ORE_GENERATION in sea_hotspot_controls.dm so you can see what ore generation looks like at scale
 
+		//This bit seeds random squares of the level with large amounts of ore, densely packed.
 		for(var/i=0, i<80, i++)
 			var/list/L = list()
 			for (var/turf/simulated/wall/asteroid/gehenna/A in range(4,pick(generated)))
@@ -243,9 +255,12 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 			Turfspawn_Asteroid_SeedOre(L, rand(2,8), rand(1,70))
 
+		//Sprinkles random ore veins just all over the map
 		for(var/i=0, i<80, i++)
 			Turfspawn_Asteroid_SeedOre(generated)
 
+		//Seeds gem/artifact/crate/rock modifiers. Note that without specifying an amount of events the proc will randomly do between 1 and 6 each time
+		//(meaning if i is still 40 on the line below, that's anywhere from 40-240 events)
 		for(var/i=0, i<40, i++)
 			Turfspawn_Asteroid_SeedEvents(generated)
 
