@@ -548,6 +548,16 @@
 			desc = "There's a bunch of ladies with really fancy hair pictured on this."
 			icon_state = "wall_poster_hair"
 
+		poster_idiotbastard
+			name = "Strange poster"
+			desc = "You have no idea what the hell this is."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "idiotbastard"
+			popup_win = 1
+			imgw = 645
+			imgh = 545
+			img = "images/arts/posters/idiot-bastard.jpg"
+
 		poster_cool
 			name = "cool poster"
 			desc = "There's a couple people pictured on this poster, looking pretty cool."
