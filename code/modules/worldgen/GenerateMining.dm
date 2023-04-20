@@ -253,11 +253,11 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				if(prob(50))
 					L+=A
 
-			Turfspawn_Asteroid_SeedOre(L, rand(2,8), rand(1,70))
+			Turfspawn_Asteroid_SeedOre(L, rand(2,8), rand(1,70), TRUE)
 
 		//Sprinkles random ore veins just all over the map
 		for(var/i=0, i<80, i++)
-			Turfspawn_Asteroid_SeedOre(generated)
+			Turfspawn_Asteroid_SeedOre(generated, spicy = TRUE)
 
 		//Seeds gem/artifact/crate/rock modifiers. Note that without specifying an amount of events the proc will randomly do between 1 and 6 each time
 		//(meaning if i is still 40 on the line below, that's anywhere from 40-240 events)
@@ -441,9 +441,9 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				LAGCHECK(LAG_REALTIME)
 
 			if(prob(15))
-				Turfspawn_Asteroid_SeedOre(placed, rand(2,6), rand(0,40))
+				Turfspawn_Asteroid_SeedOre(placed, rand(2,6), rand(0,40), TRUE)
 			else
-				Turfspawn_Asteroid_SeedOre(placed)
+				Turfspawn_Asteroid_SeedOre(placed, spicy = TRUE)
 
 			Turfspawn_Asteroid_SeedEvents(placed)
 

@@ -5,10 +5,17 @@ var/list/asteroid_blocked_turfs = list()
 /datum/mining_controller
 	var/mining_z = 4
 	var/mining_z_asteroids_max = 0
+	//Every child of datum/ore except for the event parent
 	var/list/ore_types_all = list()
+	//Regular
 	var/list/ore_types_common = list()
 	var/list/ore_types_uncommon = list()
 	var/list/ore_types_rare = list()
+	//Things not randomly generated in the magnet, but permissible in Z-level generation
+	var/list/ore_types_common_spicy = list() //empty atm
+	var/list/ore_types_uncommon_spicy = list() //empty atm
+	var/list/ore_types_rare_spicy = list() //erebite, miraclium
+	//Every child of datum/ore/event
 	var/list/events = list()
 	// magnet vars
 	var/turf/magnetic_center = null
@@ -28,30 +35,38 @@ var/list/asteroid_blocked_turfs = list()
 	New()
 		..()
 		for (var/X in childrentypesof(/datum/ore) - /datum/ore/event)
-			var/datum/ore/O = new X
-			ore_types_common += O
-			ore_types_all += O
+			ore_types_all += new X
 
 		for (var/X in childrentypesof(/datum/mining_encounter))
 			var/datum/mining_encounter/MC = new X
 			mining_encounters_common += MC
 			mining_encounters_all += MC
 
-		for (var/datum/ore/O in src.ore_types_common)
-			if (O.no_pick)
-				ore_types_common -= O
+		for (var/datum/ore/O in src.ore_types_all)
+			O.set_up() //movin' up here above so none are skipped, though I don't think any ores so far have a use for the call here, at the moment
+			if (O.no_pick == 2)
 				continue
 
 			if (istype(O, /datum/ore/event/))
 				events += O
-				ore_types_common -= O
-			if (O.rarity_tier == 2)
-				ore_types_uncommon += O
-				ore_types_common -= O
-			else if (O.rarity_tier == 3)
-				ore_types_rare += O
-				ore_types_common -= O
-			O.set_up()
+				continue
+			switch(O.rarity_tier)
+				if (1) //common
+					if (O.no_pick)
+						ore_types_common_spicy += O
+					else
+						ore_types_common += O
+				if (2) //uncommon
+					if (O.no_pick)
+						ore_types_uncommon_spicy += O
+					else
+						ore_types_uncommon += O
+				if (3) //rare
+					if (O.no_pick)
+						ore_types_rare_spicy += O
+					else
+						ore_types_rare += O
+
 
 		for (var/datum/mining_encounter/MC in mining_encounters_common)
 			if (MC.no_pick)
