@@ -690,7 +690,10 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/trunk/mail/west,
-/obj/machinery/disposal/mail/autoname,
+/obj/machinery/disposal/mail/autoname/research/chemistry{
+	mail_tag = "complab";
+	name = "Computer Lab"
+	},
 /turf/simulated/floor/purplewhite{
 	dir = 8
 	},
@@ -744,7 +747,10 @@
 /area/station/maintenance/outer/nw)
 "arF" = (
 /obj/disposalpipe/trunk/mail/east,
-/obj/machinery/disposal/mail,
+/obj/machinery/disposal/mail{
+	mail_tag = "owlnasium";
+	name = "mail chute - owlnasium"
+	},
 /turf/simulated/grass,
 /area/station/garden/owlery)
 "arI" = (
@@ -1997,8 +2003,8 @@
 /obj/cable/blue{
 	icon_state = "1-8"
 	},
-/obj/machinery/disposal/mail/small,
 /obj/disposalpipe/trunk/mail/east,
+/obj/machinery/disposal/mail/small/autoname/research/south,
 /turf/simulated/floor/purplewhite,
 /area/station/science/lobby)
 "aVB" = (
@@ -3634,9 +3640,7 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/switch_junction/right/west{
-	color = "#8dc2f4"
-	},
+/obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/white,
 /area/station/science/lobby)
 "bKQ" = (
@@ -5504,6 +5508,16 @@
 "cJL" = (
 /turf/simulated/floor/carpet/red/fancy/innercorner/ne,
 /area/station/chapel)
+"cJP" = (
+/obj/machinery/disposal/mail/autoname/bridge{
+	mail_tag = "bridge-cap";
+	name = "Bridge Captain"
+	},
+/obj/disposalpipe/trunk/mail/north,
+/turf/simulated/floor/wood{
+	icon_state = "wooden"
+	},
+/area/station/crew_quarters/captain)
 "cKf" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
 /turf/simulated/floor/plating,
@@ -9795,7 +9809,10 @@
 /area/station/medical/medbay/surgery/storage)
 "eGV" = (
 /obj/disposalpipe/trunk/mail/west,
-/obj/machinery/disposal/mail/autoname,
+/obj/machinery/disposal/mail/autoname/research/chemistry{
+	mail_tag = "artlab";
+	name = "Artifact Lab"
+	},
 /turf/simulated/floor/white,
 /area/station/science/artifact)
 "eGY" = (
@@ -11956,12 +11973,8 @@
 /turf/simulated/floor/shuttlebay,
 /area/listeningpost/power)
 "fAU" = (
-/obj/machinery/disposal/mail{
-	density = 0;
-	pixel_y = 10
-	},
 /obj/disposalpipe/trunk/mail/north,
-/obj/machinery/light/fluorescent/auto/neutral,
+/obj/machinery/disposal/mail/autoname/mechanics,
 /turf/simulated/floor/yellow/side{
 	dir = 1
 	},
@@ -13659,9 +13672,9 @@
 /area/listeningpost)
 "gpH" = (
 /obj/disposalpipe/trunk/mail/south,
-/obj/machinery/disposal/mail/small{
-	dir = 1;
-	pixel_y = 32
+/obj/machinery/disposal/mail/autoname/security{
+	mail_tag = "security-HOS";
+	name = "Security HOS"
 	},
 /turf/simulated/floor/red/side{
 	dir = 1
@@ -14287,10 +14300,6 @@
 /turf/space,
 /area/station/engine/coldloop)
 "gEN" = (
-/obj/machinery/disposal/mail/small{
-	dir = 1;
-	pixel_y = 32
-	},
 /obj/disposalpipe/trunk/mail/north,
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -15487,9 +15496,7 @@
 /area/station/bridge)
 "hjm" = (
 /obj/disposalpipe/trunk/mail/west,
-/obj/machinery/disposal/mail/small/autoname{
-	dir = 8
-	},
+/obj/machinery/disposal/mail/autoname/janitor,
 /turf/simulated/floor,
 /area/station/janitor/office)
 "hjH" = (
@@ -17845,13 +17852,14 @@
 /turf/simulated/floor,
 /area/station/security/brig/cell_block)
 "iuu" = (
-/obj/iv_stand,
-/obj/machinery/disposal/mail/small{
-	dir = 1;
-	pixel_y = 32
-	},
 /obj/machinery/light/fluorescent/cool/very,
 /obj/disposalpipe/trunk/mail/south,
+/obj/machinery/disposal/mail{
+	mail_tag = "Operating Room";
+	mailgroup = "medresearch";
+	message = "1";
+	name = "mail chute-'Operating Room'"
+	},
 /turf/simulated/floor/bluewhite{
 	dir = 5
 	},
@@ -22053,13 +22061,11 @@
 /turf/simulated/floor/red,
 /area/station/security/interrogation)
 "klB" = (
-/obj/cable{
-	icon_state = "4-8"
+/obj/disposalpipe/segment/mail/bent/south,
+/turf/simulated/floor/wood{
+	icon_state = "wooden"
 	},
-/obj/disposalpipe/trunk/mail/north,
-/obj/machinery/disposal/mail/small,
-/turf/simulated/floor/purplewhite,
-/area/station/science/lobby)
+/area/station/crew_quarters/captain)
 "klQ" = (
 /obj/decal/cleanable/dirt/dirt4,
 /obj/decal/cleanable/dirt,
@@ -23526,6 +23532,7 @@
 	icon_state = "2-8"
 	},
 /obj/disposalpipe/segment/mail/vertical,
+/obj/iv_stand,
 /turf/simulated/floor/bluewhite{
 	dir = 4
 	},
@@ -27287,9 +27294,12 @@
 /turf/simulated/floor/plating/airless/asteroid/lighted,
 /area/listeningpost/power)
 "mBl" = (
-/obj/machinery/disposal/mail/autoname,
 /obj/machinery/light/fluorescent/cool/very,
 /obj/disposalpipe/trunk/mail/east,
+/obj/machinery/disposal/mail/autoname/chapel{
+	mail_tag = "cream-a-taur-ium";
+	name = "cream-a-taur-ium"
+	},
 /turf/simulated/floor/grey/blackgrime,
 /area/station/chapel/funeral_parlor)
 "mBr" = (
@@ -29973,9 +29983,7 @@
 	icon_state = "2-8"
 	},
 /obj/disposalpipe/trunk/mail/west,
-/obj/machinery/disposal/mail/small/autoname{
-	dir = 8
-	},
+/obj/machinery/disposal/mail/autoname/bridge,
 /turf/simulated/floor/wood,
 /area/station/bridge)
 "nLc" = (
@@ -32037,8 +32045,8 @@
 /obj/cable/blue{
 	icon_state = "1-2"
 	},
-/obj/disposalpipe/switch_junction/left/north{
-	color = "#8dc2f4"
+/obj/disposalpipe/junction/left{
+	dir = 1
 	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
@@ -33406,16 +33414,11 @@
 /turf/simulated/floor,
 /area/station/security/main)
 "pno" = (
-/obj/machinery/disposal/mail{
-	mail_tag = "Operating Room";
-	mailgroup = "medresearch";
-	message = "1";
-	name = "mail chute-'Operating Room'"
-	},
 /obj/machinery/light/emergency{
 	dir = 4
 	},
 /obj/disposalpipe/trunk/mail/west,
+/obj/machinery/disposal/mail/autoname/medbay/pathology,
 /turf/simulated/floor/sanitary/blue,
 /area/station/medical/cdc)
 "pnB" = (
@@ -34964,8 +34967,8 @@
 /turf/simulated/floor/red/checker,
 /area/station/security/interrogation)
 "pYW" = (
-/obj/machinery/disposal/mail,
 /obj/disposalpipe/trunk/mail/east,
+/obj/machinery/disposal/mail/autoname/research/telescience,
 /turf/simulated/floor/purplewhite{
 	dir = 10
 	},
@@ -35084,11 +35087,11 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/quarters)
 "qbp" = (
-/obj/machinery/disposal/mail/small{
-	dir = 4;
-	pixel_x = -11
-	},
 /obj/disposalpipe/trunk/mail/east,
+/obj/machinery/disposal/mail/small/autoname/medbay/east{
+	mail_tag = "headsurgeon-medbay";
+	name = "Medbay Head Surgeon"
+	},
 /turf/simulated/floor/bluewhite{
 	dir = 8
 	},
@@ -39366,8 +39369,9 @@
 /area/station/maintenance/inner/ne)
 "rXW" = (
 /obj/disposalpipe/trunk/mail/south,
-/obj/machinery/disposal/mail/small/autoname{
-	dir = 8
+/obj/machinery/disposal/mail/autoname/bridge{
+	mail_tag = "bridge-com";
+	name = "Bridge Communcations"
 	},
 /turf/simulated/floor,
 /area/station/communications)
@@ -47340,8 +47344,7 @@
 	},
 /area/station/science/lab)
 "vxD" = (
-/obj/disposalpipe/trunk/mail/north,
-/obj/machinery/disposal/mail/small,
+/obj/disposalpipe/segment/mail/bent/north,
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
 	},
@@ -75541,8 +75544,8 @@ pkt
 bwT
 tEg
 nZu
-bwT
-bwT
+klB
+cJP
 xOV
 pkt
 xuA
@@ -107869,7 +107872,7 @@ dvC
 wyO
 sYL
 bKC
-klB
+hAy
 iJC
 tFo
 keQ
