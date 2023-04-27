@@ -202,7 +202,7 @@
 	var/static/image/starlight
 
 	flags = ALWAYS_SOLID_FLUID
-	turf_flags = CAN_BE_SPACE_SAMPLE
+	turf_flags = CAN_BE_SPACE_SAMPLE | MINE_MAP_PRESENTS_EMPTY
 	event_handler_flags = IMMUNE_SINGULARITY
 	dense
 		icon_state = "dplaceholder"

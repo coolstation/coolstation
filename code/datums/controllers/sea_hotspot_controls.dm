@@ -92,15 +92,11 @@
 			for (var/x = 1, x <= world.maxx, x++)
 				for (var/y = 1, y <= world.maxy, y++)
 					var/turf/T = locate(x,y,level)
-					if (T.name == "asteroid" || T.name == "cavern wall" || T.type == /turf/simulated/floor/plating/airless/asteroid || istype(T, /turf/simulated/wall/asteroid/gehenna/z3))
+					if (T.turf_flags & MINE_MAP_PRESENTS_SOLID)
 						turf_color = "solid"
-#ifdef DEBUG_ORE_GENERATION
-						if (istype(T, /turf/simulated/wall/asteroid) && T:ore)
-							turf_color = "ore"
-#endif
-					else if (istype(T, /turf/simulated/wall/asteroid/gehenna/tough) || istype(T, /turf/simulated/wall/asteroid/geode))
+					else if (T.turf_flags & MINE_MAP_PRESENTS_TOUGH)
 						turf_color = "tough"
-					else if (T.name == "trench floor" || T.name == "\proper space" || T.name == "sand")
+					else if (T.turf_flags & MINE_MAP_PRESENTS_EMPTY)
 						turf_color = "empty"
 					else
 						if (level == GEH_ZLEVEL) //more hardcoded grossness but IDK this proc just kinda sucks
@@ -113,7 +109,10 @@
 								turf_color = "station"
 							else
 								turf_color = "other"
-
+#ifdef DEBUG_ORE_GENERATION
+					if (istype(T, /turf/simulated/wall/asteroid) && T:ore)
+						turf_color = "ore"
+#endif
 
 					map["[level]"].DrawBox(colors_to_use[turf_color], x * 2, y * 2, x * 2 + 1, y * 2 + 1)
 
