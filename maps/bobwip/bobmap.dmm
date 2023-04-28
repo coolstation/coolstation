@@ -10660,7 +10660,9 @@
 /area/station/engine/hotloop)
 "eZn" = (
 /obj/table/reinforced/bar/auto,
-/obj/item/decoration/flower_vase/vase7,
+/obj/shitty_radio{
+	pixel_y = 7
+	},
 /turf/simulated/floor/wood/seven,
 /area/station/crew_quarters/bar)
 "eZC" = (
@@ -19006,8 +19008,13 @@
 /turf/simulated/floor/bot,
 /area/station/hydroponics/lobby)
 "iTJ" = (
-/turf/simulated/wall,
-/area/station/medical/medbooth)
+/obj/table/reinforced/bar/auto,
+/obj/item/decoration/ashtray,
+/obj/item/decoration/flower_vase/vase7{
+	pixel_x = 13
+	},
+/turf/simulated/floor/wood/seven,
+/area/station/crew_quarters/bar)
 "iTK" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -24747,6 +24754,7 @@
 /area/station/medical/robotics)
 "lws" = (
 /obj/disposalpipe/segment/brig,
+/obj/item/gun_exploder,
 /turf/simulated/floor/red/checker,
 /area/station/security/equipment)
 "lww" = (
@@ -29478,7 +29486,7 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/station/hallway/primary/southeast)
 "nyF" = (
 /obj/cable{
@@ -29595,9 +29603,13 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
 "nBj" = (
-/obj/machinery/light/small/auto/warm,
+/obj/cable/blue{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/bob,
 /turf/simulated/floor/plating,
-/area/station/medical/medbooth)
+/area/station/hallway/primary/northeast)
 "nBl" = (
 /obj/decal/cleanable/dirt/dirt2,
 /obj/storage/crate,
@@ -30508,11 +30520,7 @@
 /turf/simulated/floor/caution/west,
 /area/station/engine/inner)
 "nWa" = (
-/obj/machinery/vending/security_ammo,
-/obj/machinery/light/emergency{
-	dir = 8
-	},
-/obj/machinery/light/fluorescent/auto/neutral,
+/obj/machinery/vending/gunse,
 /turf/simulated/floor/red/checker,
 /area/station/security/equipment)
 "nWt" = (
@@ -30535,8 +30543,16 @@
 /turf/simulated/floor/carpet/grime,
 /area/listeningpost)
 "nWF" = (
-/turf/simulated/floor/plating,
-/area/station/medical/medbooth)
+/obj/storage/secure/closet/personal{
+	anchored = 1;
+	density = 0
+	},
+/obj/item/device/microphone{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/turf/simulated/floor,
+/area/station/crew_quarters/fitness)
 "nWH" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
 /turf/simulated/floor/neutral/side{
@@ -35379,7 +35395,7 @@
 /turf/simulated/floor/grime,
 /area/station/security/brig/genpop)
 "qkj" = (
-/obj/submachine/weapon_vendor,
+/obj/machinery/vending/security_ammo,
 /turf/simulated/floor/red,
 /area/station/security/armory)
 "qkm" = (
@@ -39830,6 +39846,7 @@
 /area/station/medical/cdc)
 "sho" = (
 /obj/storage/crate/bin,
+/obj/item/gun/modular/juicer/blunder,
 /turf/simulated/floor/plating,
 /area/station/crewquarters/fuq3)
 "shr" = (
@@ -44180,7 +44197,7 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/station/turret_protected/ai)
 "ubO" = (
 /obj/machinery/computer3/generic/personal,
@@ -45419,10 +45436,6 @@
 /obj/disposalpipe/segment/mail/bent/north,
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
-"uHq" = (
-/obj/machinery/vending/security_ammo,
-/turf/simulated/floor/red,
-/area/station/security/armory)
 "uHu" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
 /turf/simulated/floor/plating,
@@ -46063,9 +46076,7 @@
 /area/station/medical/medbay/surgery)
 "uVx" = (
 /obj/machinery/computer/ordercomp{
-	dir = 4;
-	pixel_x = 6;
-	pixel_y = 2
+	dir = 4
 	},
 /turf/simulated/floor/red/checker,
 /area/station/security/equipment)
@@ -72780,7 +72791,7 @@ paJ
 sKT
 qkj
 rHB
-uHq
+eAw
 gyL
 tjE
 uok
@@ -85160,7 +85171,7 @@ qtn
 uju
 dPo
 erf
-sjR
+nWF
 iOp
 swb
 fCR
@@ -90879,7 +90890,7 @@ jJD
 wPh
 cWk
 iVN
-vou
+iTJ
 jeP
 iVN
 jgZ
@@ -100859,8 +100870,8 @@ uMP
 loH
 hGo
 iGP
-iTJ
-nBj
+bbg
+itf
 oLJ
 oLJ
 oLJ
@@ -101161,8 +101172,8 @@ jRO
 iGX
 iGX
 xjo
-iTJ
-nWF
+bbg
+plf
 plf
 plf
 plf
@@ -101463,8 +101474,8 @@ jRO
 iGX
 iGX
 myr
-iTJ
-nWF
+bbg
+plf
 plf
 plf
 plf
@@ -101765,8 +101776,8 @@ jRO
 iGX
 lRs
 jPq
-iTJ
-nWF
+bbg
+plf
 plf
 plf
 plf
@@ -102966,7 +102977,7 @@ oEk
 sfP
 pUZ
 vgN
-izR
+nBj
 bzH
 nSM
 oZW
@@ -103570,7 +103581,7 @@ aHO
 lpP
 pUZ
 vgN
-izR
+nBj
 gbV
 loa
 ilL
