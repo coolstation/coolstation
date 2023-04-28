@@ -61,28 +61,43 @@ var/list/governor_registry = list()
 		. = "<br>This one allows the AI to <b>[desc_func].</b>"
 
 	attackby(obj/item/W as obj, mob/user as mob, params, is_special = 0)
+		//Repairs (placeholder-ish)
+		if (istype(W, /obj/item/cable_coil))
+			if (health < 60 && W.change_stack_amount(-2))
+				health += 10
+				boutput(user, "<span class='alert'>You fix some of the circuitry.</span>")
+				if (health >= 0)
+					UpdateOverlays(image(src.icon, "governor_guts-spinning", layer = FLOAT_LAYER), "guts")
+					on_enable()
+				return
+			else
+				boutput(user, "<span class='alert'>The circuitry is fine.</span>")
+				return
+		else if (istype(W, /obj/item/sheet) && W.material && (W.material.material_flags & MATERIAL_CRYSTAL) && W.change_stack_amount(-5))
+			if (health >= 60 && health < 90)
+				health = initial(src.health)
+				boutput(user, "<span class='alert'>You replace the glass panel.</span>")
+				UpdateOverlays(image(src.icon, "governor_glass", layer = FLOAT_LAYER+1), "glass")
+				return
+
+
 		/*
 		A friend gave me this formula, it's largely arbitrary but the point is I wanted something to bring the damage of various weapons closer
 		to a single value (15) since most weapons have fairly low values in the 5-12 range, but there's a few outliers. I didn't want those to level
 		the	governor immediately but also it shouldn't take someone with a wrench like 30 hits to break this.
 		Breaking a governor shouldn't be hard, but there should be a bit of drama involved. :3
-
-		A 0 force item will do about 8 damage, a 5 force item about 10, 10 force does about 12
-		conversely, the 30 force airlock sledge will do around 22 and the 60 force csaber will do about 30
-
-		As a result of this math bullshit, this thing's health isn't gonna be fake-integer a lot of the time.
 		*/
 
-		//You can copy-paste this into desmos if you want a visual: f(x)=(x-15)^{\left(\frac{5}{7}\right)}+15
 		if (isnull(W.force)) return ..()
 		var/adjusted_damage = (W.force - 15)/2.5 + 15
 		user.lastattacked = src
 		attack_particle(user,src)
-		playsound(src.loc, 'sound/impact_sounds/Metal_Hit_Light_1.ogg' , 60, 1, pitch = 1.6)
-		if (src.health > 0)
+		playsound(src.loc, 'sound/impact_sounds/Metal_Hit_Light_1.ogg' , 75, 1, pitch = 1.6)
+		if (src.health > -10)
 			src.take_damage(adjusted_damage, user)
 		else
 			elecflash(src,power=2) //
+
 	ex_act(severity)
 		take_damage(160 + rand(-10, 10) - (50*(severity-1))) //150-170 for severity 1 (a guaranteed robogib), 100-120 for severity 2 (only unharmed governors survive), 50-70 for severity 3
 
@@ -142,41 +157,49 @@ var/list/governor_registry = list()
 
 
 /obj/machinery/networked/ai_governor/airlocks
+	name = "\improper AI governor (airlocks)"
 	desc_func = "interface with airlocks"
 	registry_ID = AI_GOVERNOR_AIRLOCKS
 	stripe_colour = "#99BB77" //significantly lighter than the radio governor
 
 /obj/machinery/networked/ai_governor/APCs
+	name = "\improper AI governor (APCs)"
 	desc_func = "interface with APCs"
 	registry_ID = AI_GOVERNOR_APCS
 	stripe_colour = "#FFBB44"
 
 /obj/machinery/networked/ai_governor/cameras
+	name = "\improper AI governor (tracking)"
 	desc_func = "track people over the camera network"
 	registry_ID = AI_GOVERNOR_TRACKING
 	stripe_colour = "#AAAAAA"
 
 /obj/machinery/networked/ai_governor/killswitch
+	name = "\improper AI governor (don't use, not implemented)"
 	desc_func = "receive and automatically obey killswitch orders"
 	registry_ID = AI_GOVERNOR_KILLSWITCH
 	stripe_colour = "#BB1234"
 
 /obj/machinery/networked/ai_governor/viewports
+	name = "\improper AI governor (viewports)"
 	desc_func = "make and maintain viewports"
 	registry_ID = AI_GOVERNOR_VIEWPORTS
 	stripe_colour = "#CC88FF"
 
 /obj/machinery/networked/ai_governor/general_radio	//:1
+	name = "\improper AI governor (don't use, sucks)"
 	desc_func = "use the general radio channel"
 	registry_ID = AI_GOVERNOR_GENRADIO
 	stripe_colour = RADIOC_STANDARD
 
 /obj/machinery/networked/ai_governor/core_radio //:2
+	name = "\improper AI governor (don't use, sucks)"
 	desc_func = "use the AI core radio channel"
 	registry_ID = AI_GOVERNOR_CORERADIO
 	stripe_colour = "#7F7FE2" //AI intercoms don't use a define IDK why
 
 /obj/machinery/networked/ai_governor/department_radio //:3
+	name = "\improper AI governor (departmental radio)"
 	desc_func = "use departmental radio channels"
 	registry_ID = AI_GOVERNOR_DEPRADIO
 	stripe_colour = RADIOC_COMMAND
