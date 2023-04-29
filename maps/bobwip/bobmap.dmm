@@ -206,6 +206,7 @@
 	},
 /obj/machinery/power/apc{
 	areastring = "Head of Personnel's Personal Quarter";
+	dir = 4;
 	name = "HoP's  Quarters APC";
 	pixel_x = 24
 	},
@@ -1322,7 +1323,6 @@
 /area/station/crew_quarters/arcade)
 "aCs" = (
 /obj/item/clothing/under/towel,
-/obj/machinery/light/small/auto/warm,
 /turf/simulated/floor/wood,
 /area/station/bridge/captain)
 "aCJ" = (
@@ -1773,6 +1773,9 @@
 "aOQ" = (
 /obj/landmark/start{
 	name = "Captain"
+	},
+/obj/decal/poster/wallsign/framed_award{
+	pixel_y = 27
 	},
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
@@ -2599,9 +2602,6 @@
 /area/station/chapel/office)
 "bkX" = (
 /obj/item/device/radio/intercom/brig,
-/obj/machinery/firealarm{
-	pixel_y = 24
-	},
 /turf/simulated/floor/red/checker,
 /area/station/security/equipment)
 "bla" = (
@@ -5519,7 +5519,7 @@
 	dir = 8
 	},
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/table/reinforced/chemistry/beakers,
+/obj/table/reinforced/chemistry/auto,
 /turf/simulated/floor/white,
 /area/station/science/chemistry)
 "cHY" = (
@@ -6831,7 +6831,7 @@
 	dir = 8
 	},
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/table/reinforced/chemistry/beakers,
+/obj/table/reinforced/chemistry/auto,
 /turf/simulated/floor/white,
 /area/station/science/chemistry)
 "doN" = (
@@ -9687,7 +9687,6 @@
 	},
 /area/station/hallway/secondary/south)
 "ezg" = (
-/obj/bookcase,
 /obj/stool/chair/comfy{
 	dir = 4
 	},
@@ -9858,9 +9857,9 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc{
-	areastring = "Cargo Office";
+	areastring = "Cargo Bay Office";
 	dir = 8;
-	name = "Cargo Office APC";
+	name = "Cargo Bay Office APC";
 	pixel_x = -24
 	},
 /turf/simulated/floor/caution/north,
@@ -10142,7 +10141,7 @@
 "eLw" = (
 /obj/machinery/power/apc{
 	areastring = "Courtroom";
-	dir = 1;
+	dir = 8;
 	name = "Courtroom APC";
 	pixel_x = -24
 	},
@@ -12718,14 +12717,13 @@
 	},
 /area/station/hallway/primary/south)
 "fOb" = (
-/obj/machinery/power/apc{
-	areastring = "Bathroom";
-	dir = 8;
-	name = "Bathroom APC";
-	pixel_y = -24
-	},
 /obj/cable{
 	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	areastring = "Crew Quarters Bathroom";
+	name = "Crew Quarters Bathroom APC";
+	pixel_y = -24
 	},
 /turf/simulated/floor/sanitary,
 /area/station/crew_quarters/toilets{
@@ -13283,9 +13281,17 @@
 /turf/simulated/floor/wood,
 /area/station/bridge)
 "gaW" = (
-/obj/decal/poster/wallsign/framed_award/firstbill,
-/turf/simulated/wall/r_wall,
-/area/station/hos/quarter)
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/disposalpipe/segment{
+	dir = 1
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/outer/nw)
 "gbx" = (
 /obj/stool/bench,
 /obj/landmark/start{
@@ -16019,9 +16025,18 @@
 /turf/simulated/bar,
 /area/station/mining/staff_room)
 "hqX" = (
-/obj/decal/poster/wallsign/framed_award,
-/turf/simulated/wall/r_wall,
-/area/station/crew_quarters/captain)
+/obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/power/apc{
+	areastring = "Crematorium";
+	dir = 4;
+	name = "Crematorium APC";
+	pixel_x = 24
+	},
+/obj/cable{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/outer/nw)
 "hrt" = (
 /obj/lattice{
 	dir = 6;
@@ -18326,6 +18341,7 @@
 	},
 /obj/machinery/power/apc{
 	areastring = "Arrivals Bathroom";
+	dir = 8;
 	name = "Arrivals Bathroom APC";
 	pixel_x = -24
 	},
@@ -18501,6 +18517,7 @@
 	},
 /obj/machinery/power/apc{
 	areastring = "Information Office";
+	dir = 8;
 	name = "Information Office APC";
 	pixel_x = -24
 	},
@@ -20943,8 +20960,8 @@
 /turf/simulated/floor/engine,
 /area/station/engine/hotloop)
 "jHz" = (
-/mob/living/silicon/robot/buddy,
 /obj/machinery/guardbot_dock,
+/obj/machinery/bot/guardbot,
 /turf/simulated/floor/white,
 /area/station/science/gen_storage)
 "jHF" = (
@@ -21715,7 +21732,6 @@
 "jXV" = (
 /obj/machinery/power/apc{
 	areastring = "Brig - Solitary Cells";
-	dir = 4;
 	name = "Brig - Solitary Cells APC"
 	},
 /obj/cable,
@@ -22093,6 +22109,9 @@
 "kfJ" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/hop,
+/obj/decal/poster/wallsign/framed_award/firstbill{
+	pixel_y = 28
+	},
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
 	},
@@ -22372,7 +22391,6 @@
 /area/station/medical/medbay/treatment)
 "kmr" = (
 /obj/table/wood/auto/desk,
-/obj/item/gun/kinetic/detectiverevolver,
 /obj/item/decoration/ashtray{
 	butts = 5;
 	name = "grubby old ashtray"
@@ -23824,7 +23842,9 @@
 /turf/simulated/floor/purplewhite,
 /area/station/science/computer_lab)
 "kQq" = (
-/obj/bookcase,
+/obj/decal/fakeobjects/bookcase{
+	density = 1
+	},
 /turf/simulated/floor/wood/two,
 /area/station/library)
 "kQt" = (
@@ -25638,6 +25658,10 @@
 "lJx" = (
 /obj/machinery/light/emergency{
 	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/simulated/floor/red/checker,
 /area/station/security/equipment)
@@ -29335,9 +29359,9 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc{
-	areastring = "Mining";
+	areastring = "Mining Department";
 	dir = 1;
-	name = "Mining APC";
+	name = "Mining Department APC";
 	pixel_y = 24
 	},
 /turf/simulated/floor/plating,
@@ -31391,6 +31415,7 @@
 /obj/item/storage/toilet{
 	dir = 4
 	},
+/obj/machinery/light/small/auto/warm,
 /turf/simulated/floor/wood,
 /area/station/bridge/captain)
 "oie" = (
@@ -33779,18 +33804,6 @@
 	icon_state = "wooden"
 	},
 /area/station/crew_quarters/fitness)
-"pkQ" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/disposalpipe/segment{
-	dir = 1
-	},
-/obj/cable{
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/plating,
-/area/station/maintenance/outer/nw)
 "pkZ" = (
 /obj/machinery/computer/ordercomp,
 /obj/machinery/light/fluorescent/auto/neutral,
@@ -33888,7 +33901,6 @@
 	},
 /obj/machinery/power/apc{
 	areastring = "Monkey Dome";
-	dir = 8;
 	name = "Monkey Dome APC"
 	},
 /obj/machinery/light/fluorescent/auto/cool,
@@ -34151,19 +34163,6 @@
 "pua" = (
 /turf/simulated/shuttle/wall,
 /area/shuttle/arrival/station)
-"pur" = (
-/obj/disposalpipe/segment/mail/vertical,
-/obj/machinery/power/apc{
-	areastring = "Crematorium";
-	dir = 4;
-	name = "Crematorium APC";
-	pixel_x = 24
-	},
-/obj/cable{
-	icon_state = "0-8"
-	},
-/turf/simulated/floor/plating,
-/area/station/maintenance/outer/nw)
 "pux" = (
 /obj/stool/chair/comfy/blue{
 	dir = 4
@@ -35400,9 +35399,9 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc{
-	areastring = "Sanctuary";
+	areastring = "Chapel";
 	dir = 4;
-	name = "Sanctuary APC";
+	name = "Chapel APC";
 	pixel_x = 24
 	},
 /obj/machinery/light/small/auto/warm,
@@ -38395,6 +38394,7 @@
 	},
 /obj/machinery/power/apc{
 	areastring = "Cloning";
+	dir = 1;
 	name = "Cloning APC";
 	pixel_y = 24
 	},
@@ -39574,7 +39574,9 @@
 	},
 /obj/machinery/power/apc{
 	areastring = "Security";
-	name = "Security APC"
+	dir = 8;
+	name = "Security APC";
+	pixel_x = -24
 	},
 /turf/simulated/floor/red/side{
 	dir = 8
@@ -41152,8 +41154,8 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 8
 	},
-/mob/living/silicon/robot/buddy,
 /obj/machinery/guardbot_dock,
+/obj/machinery/bot/guardbot,
 /turf/simulated/floor/white,
 /area/station/science/gen_storage)
 "szG" = (
@@ -42740,6 +42742,7 @@
 	pixel_x = -5;
 	pixel_y = 11
 	},
+/obj/item/reagent_containers/glass/water_pipe,
 /turf/unsimulated/floor/grime,
 /area/station/hydroponics/lobby)
 "tla" = (
@@ -43656,7 +43659,10 @@
 /turf/simulated/floor/yellow,
 /area/station/engine/engineering)
 "tFd" = (
-/obj/machinery/door/airlock/maintenance,
+/obj/machinery/door/airlock/maintenance{
+	locked = 1;
+	name = "WATCH OUT THERES BEARS IN HERE"
+	},
 /obj/firedoor_spawn,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
@@ -44535,6 +44541,7 @@
 	pixel_x = 5;
 	pixel_y = -5
 	},
+/obj/machinery/light/small/auto/warm,
 /turf/simulated/floor/wood,
 /area/station/bridge/captain)
 "tXY" = (
@@ -44848,6 +44855,13 @@
 "udh" = (
 /obj/disposalpipe/trunk/mail/east,
 /obj/machinery/light/small/auto/neutral,
+/obj/machinery/disposal/mail{
+	mail_tag = "fitness";
+	mailgroup = null;
+	mailgroup2 = null;
+	message = "1";
+	name = "mail chute-'Fitness'"
+	},
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
 	},
@@ -46167,6 +46181,7 @@
 	},
 /obj/machinery/power/apc{
 	areastring = "Janitor's Office";
+	dir = 8;
 	name = "Janitor's Office APC";
 	pixel_x = -24
 	},
@@ -48491,6 +48506,7 @@
 	},
 /obj/machinery/power/apc{
 	areastring = "Waste Disposal";
+	dir = 8;
 	name = "Waste Disposal APC";
 	pixel_x = -24
 	},
@@ -48618,6 +48634,7 @@
 /obj/disposalpipe/segment/mail/vertical,
 /obj/machinery/power/apc{
 	areastring = "Hydroponics Lobby";
+	dir = 8;
 	name = "Hydroponics Lobby APC";
 	pixel_x = -24
 	},
@@ -50204,6 +50221,7 @@
 /obj/disposalpipe/segment/mail/bent/west,
 /obj/machinery/power/apc{
 	areastring = "Barber Shop";
+	dir = 4;
 	name = "Barber Shop APC";
 	pixel_x = 24
 	},
@@ -76534,7 +76552,7 @@ yls
 xnC
 sSv
 vLe
-hqX
+pkt
 aOQ
 faz
 oaL
@@ -78648,7 +78666,7 @@ vEB
 nKR
 aeO
 rdD
-gaW
+xTl
 kfJ
 sGB
 igk
@@ -84300,7 +84318,7 @@ eRD
 eRD
 cXE
 mHX
-pkQ
+gaW
 uPz
 mHX
 hvA
@@ -84602,7 +84620,7 @@ qrs
 qrs
 ddc
 eif
-pur
+hqX
 gUC
 qrs
 qrs
@@ -92795,7 +92813,7 @@ whN
 bFI
 kQq
 uRi
-dNj
+kQq
 ezg
 qZo
 vhT
@@ -93097,8 +93115,8 @@ whN
 bFI
 kQq
 dNj
-dNj
 kQq
+dNj
 dNj
 vhT
 feP
@@ -93399,8 +93417,8 @@ whN
 bFI
 kQq
 dNj
-dNj
 kQq
+dNj
 dNj
 vhT
 vhT
@@ -101854,10 +101872,10 @@ iGX
 xjo
 bbg
 plf
+bKw
 plf
 plf
-plf
-plf
+bKw
 bbg
 nnd
 akd
@@ -102457,11 +102475,11 @@ iGX
 lRs
 jPq
 bbg
+bKw
 plf
 plf
 plf
-plf
-plf
+bKw
 bbg
 nnd
 akd
