@@ -11554,6 +11554,16 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/hallway/primary/southeast)
+"fkN" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/power/apc/autoname_north,
+/obj/cable{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/ne)
 "fkW" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -16428,6 +16438,9 @@
 	},
 /obj/machinery/light/emergency{
 	dir = 1
+	},
+/obj/cable{
+	icon_state = "6-8"
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
@@ -26226,7 +26239,7 @@
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/plating,
-/area/station/maintenance/inner/ne)
+/area/station/mining/staff_room)
 "lPH" = (
 /obj/cable/white{
 	icon_state = "4-8"
@@ -35210,6 +35223,13 @@
 	},
 /turf/simulated/floor,
 /area/station/engine/core)
+"pKN" = (
+/obj/storage/closet/emergency,
+/obj/cable{
+	icon_state = "1-9"
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/ne)
 "pKS" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 8
@@ -111597,8 +111617,8 @@ duj
 duj
 qWs
 nSM
-eGY
-aBG
+fkN
+pKN
 xEK
 tQC
 lWR
