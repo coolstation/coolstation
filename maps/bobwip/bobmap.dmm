@@ -205,9 +205,9 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc{
-	areastring = "Head of Personnel's Personal Quarter";
+	areastring = "AI Module Storage";
 	dir = 4;
-	name = "HoP's  Quarters APC";
+	name = "AI Module Storage APC";
 	pixel_x = 24
 	},
 /turf/simulated/floor/wood,
@@ -950,7 +950,10 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/trunk/mail/east,
-/obj/machinery/disposal/mail/small,
+/obj/machinery/disposal/mail/small{
+	mail_tag = "bridge-hop";
+	mailgroup = "command"
+	},
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
 	},
@@ -5598,7 +5601,7 @@
 "cJP" = (
 /obj/machinery/disposal/mail/autoname/bridge{
 	mail_tag = "bridge-cap";
-	name = "Bridge Captain"
+	name = "Bridge (Captain)"
 	},
 /obj/disposalpipe/trunk/mail/north,
 /turf/simulated/floor/wood{
@@ -6079,14 +6082,12 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/south)
 "cUF" = (
-/obj/machinery/disposal/mail/small{
-	dir = 8
-	},
 /obj/machinery/light/small/cool{
 	brightness = 1.4;
 	dir = 4
 	},
 /obj/disposalpipe/trunk/mail/north,
+/obj/machinery/disposal/mail/small/autoname/security/detective/west,
 /turf/simulated/floor/carpet/grime,
 /area/station/security/detectives_office)
 "cUH" = (
@@ -9537,7 +9538,9 @@
 "euA" = (
 /obj/disposalpipe/trunk/mail/east,
 /obj/machinery/disposal/mail/small{
-	dir = 4
+	dir = 4;
+	mail_tag = "engine-control";
+	mailgroup = "engineer"
 	},
 /turf/simulated/floor/yellow/side{
 	dir = 8
@@ -29527,9 +29530,7 @@
 	dir = 4
 	},
 /obj/machinery/disposal/small{
-	dir = 8;
-	pixel_x = 11;
-	pixel_y = -5
+	dir = 8
 	},
 /turf/simulated/floor/red/side{
 	dir = 4
