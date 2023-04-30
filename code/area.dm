@@ -3043,7 +3043,7 @@ ABSTRACT_TYPE(/area/station/science)
 	icon_state = "blue"
 
 /area/station/science/server_room/warm
-	name = "Server Room - Cold Backup"
+	name = "Server Room - Warm Backup"
 	icon_state = "orange"
 
 /area/station/science/computer_lab
