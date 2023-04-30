@@ -590,9 +590,8 @@ var/global/list/default_channel_volumes = list(1, 1, 0.1, 0.5, 0.5, 1, 1)
 			soundfile = gehenna_underground_loop //for now it's the same wind but really quiet (cave sounds might be appropriate)
 			zloopvol = gehenna_underground_loop_vol / reduction //very quiet wind sounds now, sorta quiet cave sounds with dripping and etc. later
 		//in any other case, this won't play anything and stop any currently playing z-loop
-	#else
-	return //if you're not gehenna you currently don't have Z loops to hand over so fuck off don't call this number
 	#endif
+	//removed #else so that it will just pass null to the ambient channel and stop (and also shut the linter up)
 
 	if (zloopvol != 0) //lets us cancel loop sounds by passing 0
 		if ((src.last_zloop == soundfile) && (src.last_zvol == zloopvol)) //if the volume and loop are the same
