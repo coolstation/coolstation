@@ -6811,9 +6811,13 @@
 /turf/simulated/floor,
 /area/station/quartermaster/cargobay)
 "dnn" = (
-/obj/machinery/atmospherics/pipe/simple/insulated{
-	can_rupture = 0;
-	dir = 1
+/obj/machinery/atmospherics/binary/passive_gate{
+	dir = 1;
+	icon_state = "intact_on";
+	name = "hot loop engine inflow";
+	on = 1;
+	pixel_y = 1;
+	target_pressure = 1e+031
 	},
 /turf/simulated/wall,
 /area/station/engine/core)
@@ -7229,8 +7233,13 @@
 /turf/simulated/floor/engine/caution/west,
 /area/station/engine/inner)
 "dwA" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/cold{
-	can_rupture = 0
+/obj/machinery/atmospherics/binary/passive_gate{
+	dir = 1;
+	icon_state = "intact_on";
+	name = "cold loop engine inflow";
+	on = 1;
+	pixel_y = 1;
+	target_pressure = 1e+031
 	},
 /turf/simulated/wall,
 /area/station/engine/core)
@@ -46468,16 +46477,12 @@
 /turf/simulated/floor/white,
 /area/station/medical/medbooth)
 "uNf" = (
-/obj/machinery/atmospherics/binary/passive_gate{
-	dir = 1;
-	icon_state = "intact_on";
-	name = "hot loop engine inflow";
-	on = 1;
-	pixel_y = 1;
-	target_pressure = 1e+031
-	},
 /obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable/conduit/segment/horizontal,
+/obj/machinery/atmospherics/pipe/simple/insulated{
+	can_rupture = 0;
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/station/engine/core)
 "uNi" = (
@@ -52902,16 +52907,11 @@
 	},
 /area/station/science/lobby)
 "xuJ" = (
-/obj/machinery/atmospherics/binary/passive_gate{
-	dir = 1;
-	icon_state = "intact_on";
-	name = "cold loop engine inflow";
-	on = 1;
-	pixel_y = 1;
-	target_pressure = 1e+031
-	},
 /obj/wingrille_spawn/fakethindow/reinforced,
 /obj/cable/conduit/segment/horizontal,
+/obj/machinery/atmospherics/pipe/simple/insulated/cold{
+	can_rupture = 0
+	},
 /turf/simulated/floor/plating,
 /area/station/engine/core)
 "xuZ" = (
