@@ -1693,6 +1693,10 @@ ABSTRACT_TYPE(/area/shuttle/asylum)
 	name = "Treatment Center"
 	icon_state = "treatment_center"
 
+/area/station/medical/medbay/recovery
+	name = "Recovery Room"
+	icon_state = "treatment_center"
+
 // Asylum
 ABSTRACT_TYPE(/area/station/medical/asylum)
 /area/station/medical/asylum
