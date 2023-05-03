@@ -103,7 +103,7 @@
 	//equip_traitor(leader) <- Quad insurgents and the starter gear are more than sufficient. Spies really don't need a traitor uplink on top of that.
 
 	var/the_slot = null
-	if (istype(leader.back, /obj/item/storage/) && leader.back.contents.len < 7)
+	if (leader.back?.storage && !leader.back.storage.is_full())
 		leader.equip_if_possible(new /obj/item/storage/box/spykit(leader), leader.slot_in_backpack)
 		the_slot = "backpack"
 	else
@@ -242,7 +242,7 @@
 	w_class = W_CLASS_SMALL
 	var/charges = 4
 
-	proc/update_icon()
+	update_icon()
 		src.icon_state = "revimplanter[min(4, round((src.charges/initial(src.charges)), 0.25) * 4)]"
 		return
 

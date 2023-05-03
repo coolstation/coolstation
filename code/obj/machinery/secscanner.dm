@@ -226,9 +226,8 @@
 			if (istype(perp.r_store))
 				threatcount += GET_ATOM_PROPERTY(perp.r_store, PROP_MOVABLE_VISIBLE_CONTRABAND) * 0.5
 
-			if (istype(perp.back) && istype(perp.back, /obj/item/storage))
-				var/obj/item/storage/storage_back = perp.back
-				for(var/obj/item/item in storage_back.get_contents())
+			if (perp.back?.storage)
+				for(var/obj/item/item in perp.back.storage.get_contents())
 					threatcount += GET_ATOM_PROPERTY(item, PROP_MOVABLE_VISIBLE_CONTRABAND) * 0.5
 
 		if (!has_carry_permit)
@@ -240,9 +239,8 @@
 			if (istype(perp.r_store))
 				threatcount += GET_ATOM_PROPERTY(perp.r_store, PROP_MOVABLE_VISIBLE_GUNS) * 0.5
 
-			if (istype(perp.back) && istype(perp.back, /obj/item/storage))
-				var/obj/item/storage/storage_back = perp.back
-				for(var/obj/item/item in storage_back.get_contents())
+			if (perp.back?.storage)
+				for(var/obj/item/item in perp.back.storage.get_contents())
 					threatcount += GET_ATOM_PROPERTY(item, PROP_MOVABLE_VISIBLE_GUNS) * 0.5
 
 		//Agent cards lower threatlevel

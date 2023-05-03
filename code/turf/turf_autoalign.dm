@@ -39,7 +39,7 @@
 	the_tuff_stuff
 		explosion_resistance = 7
 	// ty to somepotato for assistance with making this proc actually work right :I
-	proc/update_icon()
+	update_icon()
 		var/builtdir = 0
 		if (connect_overlay && !islist(connects_with_overlay))
 			connects_with_overlay = list()
@@ -699,7 +699,7 @@
 		..()
 
 
-	proc/update_icon()
+	update_icon()
 		var/builtdir = 0
 		var/overlaydir = 0
 		if (connect_overlay && !islist(connects_with_overlay))

@@ -94,7 +94,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 		. = "<br><span class='notice'>[reagents.get_description(user,rc_flags)]</span>"
 		return
 
-	MouseDrop(atom/over_object as obj)
+	mouse_drop(atom/over_object as obj)
 		if (!src.is_open_container())
 			boutput(usr, "<span class='alert'>The [src] is closed!</span>")
 			return ..()

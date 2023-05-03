@@ -77,7 +77,7 @@
 			src.update_icon()
 			src.overlays = null
 
-	proc/update_icon()
+	update_icon()
 		if (src.butts <= 0)
 			src.icon_state = "ashtray"
 		else if (src.butts == 1)

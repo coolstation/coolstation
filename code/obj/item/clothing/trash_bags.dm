@@ -54,11 +54,9 @@
 			boutput(user, "<span class='alert'>\The [src] is too full for [W] to fit!</span>")
 			return
 		else
-			if (istype(src.loc, /obj/item/storage))
-				var/obj/item/storage/S = src.loc
-				if (S.max_wclass < W.w_class) // too big to fit in the thing we're in already!
-					boutput(user, "<span class='alert'>You can't fit [W] in [src] while [src] is inside [S]!</span>")
-					return
+			if (src.stored && src.stored.check_can_hold(W) == STORAGE_WONT_FIT) // too big to fit in the thing we're in already!
+				boutput(user, "<span class='alert'>You can't fit [W] in [src] while [src] is inside [src.stored.linked_item]!</span>")
+				return
 			user.u_equip(W)
 			W.set_loc(src)
 			playsound(src.loc, "rustle", 50, 1, SOUND_RANGE_MODERATE)
@@ -124,7 +122,7 @@
 				src.loc.visible_message("\An [A] falls out of [src]!")
 			A.set_loc(get_turf(src))
 
-	MouseDrop(atom/over_object, src_location, over_location)
+	mouse_drop(atom/over_object, src_location, over_location)
 		..()
 		if (!usr || usr.stat || usr.restrained() || get_dist(src, usr) > 1 || get_dist(usr, over_object) > 1)
 			return

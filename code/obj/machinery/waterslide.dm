@@ -25,7 +25,7 @@
 		fluidtank = new/obj/item/reagent_containers/food/drinks/fueltank/chlorine/mostly_water(src)
 		update_icon()
 
-	proc/update_icon()
+	update_icon()
 		var/image/under = image(src.icon, "waterslidepump-under", dir=src.dir) // very hacky way to show dir on the icon
 		var/image/endpiece = image(src.icon, "waterslide-end", dir=turn(src.dir, 180))
 		src.ClearAllOverlays()

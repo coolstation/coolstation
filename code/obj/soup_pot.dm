@@ -116,7 +116,7 @@
 			else
 				pot.Attackby(W,user)
 				if(!pot.my_soup)
-					W.afterattack(pot,user) // ????
+					W.AfterAttack(pot,user) // ????
 
 	MouseDrop_T(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/soup_pot) && in_interact_range(W, user) && in_interact_range(src, user))
@@ -423,7 +423,7 @@
 			return src.Attackby(W, user)
 		return ..()
 
-	MouseDrop(atom/over_object, src_location, over_location)
+	mouse_drop(atom/over_object, src_location, over_location)
 		if (usr.is_in_hands(src))
 			var/turf/T = over_object
 			if (!(usr in range(1, T)))

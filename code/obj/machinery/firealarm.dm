@@ -69,7 +69,7 @@
 		alarm.volume = 60
 		sound_emitter.add(alarm, "alarm") // played by area/firealert
 
-/obj/machinery/firealarm/proc/update_icon()
+/obj/machinery/firealarm/update_icon()
 	switch(icon_state)
 		if("fire0")
 			src.UpdateOverlays(fire0, "fire0")
@@ -80,7 +80,6 @@
 		else
 			src.UpdateOverlays(null, "fire0")
 			src.UpdateOverlays(null, "fire1")
-	MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, alarm_frequency)
 
 /obj/machinery/firealarm/disposing()
 	STOP_TRACKING

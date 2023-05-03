@@ -87,13 +87,14 @@
 			var/obj/item/platestack/PS = W
 			var/plateCount = PS.platenum + 1
 			glass_amt += plateCount * PLATE_COST
-		else if (istype(W, /obj/item/storage/box))
-			var/obj/item/storage/S = W
-			for (var/obj/item/I in S.get_contents())
+		else if (W.storage)
+			for (var/obj/item/I as anything in W.storage.get_contents())
 				if (!.(I, user))
 					break
 
 		if (success)
+			W.stored?.transfer_stored_item(W, src, user = user)
+
 			user.visible_message("<span class='notice'>[user] inserts [W] into [src].</span>")
 			user.u_equip(W)
 			if (istype(W, /obj/item/raw_material/shard))

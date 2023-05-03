@@ -26,7 +26,7 @@
 		update_icon()
 		return
 
-	proc/update_icon()
+	update_icon()
 		if (on)
 			if(heating)
 				icon_state = "sheaterH"
@@ -278,7 +278,7 @@
 		update_icon()
 		return
 
-	proc/update_icon()
+	update_icon()
 		if (on)
 			if(heating)
 				icon_state = "saunaH"

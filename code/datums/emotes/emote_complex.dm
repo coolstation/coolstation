@@ -637,12 +637,12 @@
 					var/turf/terf = get_turf(user)
 					terf.fluid_react_single("miasma", 5, airborne = 1)
 					var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new(terlet, user.poop_amount)
-					terlet.add_contents(shit)
+					terlet.storage.add_contents(shit)
 					terlet.reagents.add_reagent("miasma", 5)
 				terlet.clogged += load
 				var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new(terlet, user.poop_amount)
 				terlet.reagents.add_reagent("poo", user.poop_amount)
-				terlet.add_contents(shit)
+				terlet.storage.add_contents(shit)
 				playsound(user, user.sound_fart, 50, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 				break
 			user.wiped = 0

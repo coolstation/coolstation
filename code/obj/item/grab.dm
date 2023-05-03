@@ -350,7 +350,7 @@
 
 		return 0
 
-	proc/update_icon()
+	update_icon()
 		switch (src.state)
 			if (GRAB_PASSIVE)
 				icon_state = "reinforce"

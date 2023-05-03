@@ -50,8 +50,8 @@
 		user.show_text("You repair the lock on [src].", "blue")
 	return 1
 
-/obj/item/storage/secure/attackby(obj/item/W as obj, mob/user as mob, obj/item/storage/T)
-	if ((W.w_class > W_CLASS_NORMAL || istype(W, /obj/item/storage/secure)))
+/obj/item/storage/secure/attackby(obj/item/W as obj, mob/user as mob)
+	if (!(src.storage.check_can_hold(W) == STORAGE_CAN_HOLD) || istype(W, /obj/item/storage/secure))
 		return
 	//Waluigi hates this
 	if (hackable)
@@ -89,7 +89,7 @@
 		return
 	return ..()
 
-/obj/item/storage/secure/MouseDrop(atom/over_object, src_location, over_location)
+/obj/item/storage/secure/mouse_drop(atom/over_object, src_location, over_location)
 	if ((usr.is_in_hands(src) || over_object == usr) && src.locked == 1)
 		boutput(usr, "<span class='alert'>[src] is locked and cannot be opened!</span>")
 		return
@@ -470,49 +470,48 @@
 		var/loot = rand(1,9)
 		switch (loot)
 			if (1)
-				new /obj/item/material_piece/gold(src)
+				src.storage.add_contents(new /obj/item/material_piece/gold(src))
 				for (var/i=6, i>0, i--)
 					var/obj/item/spacecash/thousand/S = new()
-					S.setup(src)
+					S.setup(src, try_add_to_storage = TRUE)
 			if (2)
 				for (var/i=2, i>0, i--)
-					new /obj/item/material_piece/gold(src)
+					src.storage.add_contents(new /obj/item/material_piece/gold(src))
 				for (var/i=4, i>0, i--)
 					var/obj/item/spacecash/thousand/S = new()
-					S.setup(src)
+					S.setup(src, try_add_to_storage = TRUE)
 			if (3)
 				for (var/i=5, i>0, i--)
 					var/obj/item/spacecash/thousand/S = new()
-					S.setup(src)
+					S.setup(src, try_add_to_storage = TRUE)
 			if (4)
 				for (var/i=4, i>0, i--)
-					new /obj/item/skull(src)
+					src.storage.add_contents(new /obj/item/skull(src))
 				for (var/i=2, i>0, i--)
 					var/obj/item/spacecash/thousand/S = new()
-					S.setup(src)
+					S.setup(src, try_add_to_storage = TRUE)
 			if (5)
 				for (var/i=2, i>0, i--)
-					new /obj/item/skull(src)
+					src.storage.add_contents(new /obj/item/skull(src))
 				for (var/i=2, i>0, i--)
 					var/obj/item/spacecash/thousand/S = new()
-					S.setup(src)
+					S.setup(src, try_add_to_storage = TRUE)
 			if (6)
 				for (var/i=2, i>0, i--)
-					//new /obj/item/gun/energy/laser_gun(src)
-					new /obj/item/gun/modular/soviet/short/basic(src)
-					new /obj/item/stackable_ammo/pistol/zaubertube/three(src)
+					src.storage.add_contents(new /obj/item/gun/modular/soviet/short/basic(src))
+					src.storage.add_contents(new /obj/item/stackable_ammo/pistol/zaubertube/three(src))
 				for (var/i=3, i>0, i--)
 					var/obj/item/spacecash/thousand/S = new()
-					S.setup(src)
+					S.setup(src, try_add_to_storage = TRUE)
 			if (7)
-				new /obj/item/gun/modular/NT/shotty(src)
-				new /obj/item/stackable_ammo/shotgun/slug_rubber/five(src)
+				src.storage.add_contents(new /obj/item/gun/modular/NT/shotty(src))
+				src.storage.add_contents(new /obj/item/stackable_ammo/shotgun/slug_rubber/five(src))
 				for (var/i=3, i>0, i--)
 					var/obj/item/spacecash/thousand/S = new()
-					S.setup(src)
+					S.setup(src, try_add_to_storage = TRUE)
 			if (8)
 				for (var/i=7, i>0, i--)
-					new /obj/item/raw_material/telecrystal(src)
+					src.storage.add_contents(new /obj/item/raw_material/telecrystal(src))
 			if (9)
 				var/list/treasures = list(/obj/item/material_piece/gold,\
 				/obj/item/raw_material/telecrystal,\
@@ -544,19 +543,19 @@
 				/obj/item/device/key/random,\
 				/obj/item/paper/IOU)
 
-				for (var/i=rand(1,7), i>0, i--)
+				for (var/i=rand(1,src.storage.slots), i>0, i--)
 					var/treasure = pick(treasures)
 					if (ispath(treasure))
 						if (ispath(treasures[treasure])) // for things that should spawn with specific other things, ie guns & ammo
 							if (i <= 5) // if there's enough room for two things
-								new treasure(src)
+								src.storage.add_contents(new treasure(src))
 								var/treasure_extra = treasures[treasure]
-								new treasure_extra(src)
+								src.storage.add_contents(new treasure_extra(src))
 								i-- // one less thing since we spawned two
 							else // if there's not enough room
 								i++ // try again
 						else // if there's no matching thing to spawn
-							new treasure(src)
+							src.storage.add_contents(new treasure(src))
 					else // if what we selected wasn't a valid path
 						i++ // try again
 

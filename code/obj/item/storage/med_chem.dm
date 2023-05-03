@@ -482,7 +482,7 @@
 			if (eyez.len)
 				for (var/i=rand(2,3), i>0, i--)
 					var/epath = pick(eyez)
-					new epath(src)
+					src.storage.add_contents(new epath(src))
 
 /* -------------------- Wall Storage -------------------- */
 
@@ -496,26 +496,26 @@
 
 	make_my_stuff()
 		..()
-		new /obj/item/bandage(src)
-		new /obj/item/bandage(src)
-		new /obj/item/tweezers(src)
-		new /obj/item/storage/pill_bottle/salicylic_acid(src)
+		src.storage.add_contents(new /obj/item/bandage(src))
+		src.storage.add_contents(new /obj/item/bandage(src))
+		src.storage.add_contents(new /obj/item/tweezers(src))
+		src.storage.add_contents(new /obj/item/storage/pill_bottle/salicylic_acid(src))
 
 		if (prob(40))
-			new /obj/item/storage/firstaid/regular(src)
+			src.storage.add_contents(new /obj/item/storage/firstaid/regular(src))
 		if (prob(40))
-			new /obj/item/reagent_containers/glass/bottle/ethanol(src)
+			src.storage.add_contents(new /obj/item/reagent_containers/glass/bottle/ethanol(src))
 
 		switch (weighted_pick(list("gloves" = 20, "mask" = 20, "autoinjector" = 10, "both" = 10)))
 			if ("gloves")
-				new /obj/item/clothing/gloves/latex(src)
+				src.storage.add_contents(new /obj/item/clothing/gloves/latex(src))
 			if ("mask")
-				new /obj/item/clothing/mask/surgical(src)
+				src.storage.add_contents(new /obj/item/clothing/mask/surgical(src))
 			if ("autoinjector")
-				new /obj/item/reagent_containers/emergency_injector/spaceacillin(src)
+				src.storage.add_contents(new /obj/item/reagent_containers/emergency_injector/spaceacillin(src))
 			if ("both")
-				new /obj/item/clothing/gloves/latex(src)
-				new /obj/item/clothing/mask/surgical(src)
+				src.storage.add_contents(new /obj/item/clothing/gloves/latex(src))
+				src.storage.add_contents(new /obj/item/clothing/mask/surgical(src))
 
 /* -------------------- Pill Bottles - Medical -------------------- */
 

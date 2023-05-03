@@ -104,7 +104,7 @@ ABSTRACT_TYPE(/obj/item/furniture_parts)
 			qdel(O)
 		..()
 
-	MouseDrop(atom/target, src_location, over_location, over_control, params)
+	mouse_drop(atom/target, src_location, over_location, over_control, params)
 		. = ..()
 		if (HAS_ATOM_PROPERTY(usr, PROP_CAN_CONSTRUCT_WITHOUT_HOLDING) && isturf(target))
 			actions.start(new /datum/action/bar/icon/furniture_build(src, src.furniture_name, src.build_duration, target), usr)

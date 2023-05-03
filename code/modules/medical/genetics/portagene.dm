@@ -32,7 +32,7 @@
 		. = ..()
 		. += "Home turf: [get_area(src.homeloc)]."
 
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		..()
 		if (isobserver(usr) || isintangible(usr))
 			return

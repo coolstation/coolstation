@@ -1661,7 +1661,7 @@
 		return
 
 
-	proc/update_icon()
+	update_icon()
 		return
 
 obj/item/clothing/gloves/concussive
@@ -2041,17 +2041,18 @@ obj/item/clothing/gloves/concussive
 			user.show_text("The [T.name] is securely bolted to your chassis.", "red")
 			return
 
-		boutput(user, "<span class='notice'>Teleporting [T]...</span>")
-		playsound(user.loc, "sound/machines/click.ogg", 50, 1)
+		boutput(user, "<span class='notice'>Teleporting [T] to [src.target]...</span>")
+		playsound(user.loc, 'sound/machines/click.ogg', 50, 1)
+		SETUP_GENERIC_ACTIONBAR(user, src, 3 SECONDS, .proc/finish_teleport, list(T, user), null, null, null, null)
+		return TRUE
 
-		if(do_after(user, 5 SECONDS))
-			// And these too (Convair880).
-			if (ismob(T.loc) && T.loc == user)
-				user.u_equip(T)
-			if (istype(T.loc, /obj/item/storage))
-				var/obj/item/storage/S_temp = T.loc
-				var/datum/hud/storage/H_temp = S_temp.hud
-				H_temp.remove_object(T)
+
+	proc/finish_teleport(var/obj/T, var/mob/user)
+		if (ismob(T.loc) && T.loc == user)
+			user.u_equip(T)
+		if (istype(T, /obj/item))
+			var/obj/item/I = T
+			I.stored?.transfer_stored_item(I, get_turf(I), user = user)
 
 			// And logs for good measure (Convair880).
 			var/is_locked = 0

@@ -17,10 +17,10 @@
 	New(master)
 		..()
 		src.master = master
-		src.primary_group = create_screen("boxes", "Storage", 'icons/mob/screen1.dmi', "block", ui_storage_area)
+		src.primary_group = create_screen("boxes", "Storage", 'icons/ui/screen1.dmi', "block", ui_storage_area)
 		// secondary cluster only init'd when needed
-		src.close_button = create_screen("close", "Close", 'icons/mob/screen1.dmi', "x", ui_storage_close, HUD_LAYER+1)
-		src.selection_highlight = create_screen("sel", "sel", 'icons/mob/hud_human_new.dmi', "sel", null, HUD_LAYER+1.2)
+		src.close_button = create_screen("close", "Close", 'icons/ui/screen1.dmi', "x", ui_storage_close, HUD_LAYER+1)
+		src.selection_highlight = create_screen("sel", "sel", 'icons/ui/hud_human_new.dmi', "sel", null, HUD_LAYER+1.2)
 		if(src.master)
 			update()
 
@@ -139,7 +139,7 @@
 
 //idk if i can even use the params of mousedrop for this
 /*
-	MouseDrop(var/atom/movable/screen/hud/H, atom/over_object, src_location, over_location, over_control, params)
+	mouse_drop(var/atom/movable/screen/hud/H, atom/over_object, src_location, over_location, over_control, params)
 		var/obj/item/I = src.obj_locs[H.screen_loc]
 		if (I)
 			I.MouseDrop(over_object, src_location, over_location, over_control, params)
@@ -179,7 +179,7 @@ This is because if one 'square' element was used to cover the entire space, you 
 			var/primary_cluster_slots = ((groups-2)*MAX_GROUP_SIZE) + (MAX_GROUP_SIZE-1) // Middle row storage slots + Bottom row storage slots
 			var/secondary_cluster_slots = max_slots - primary_cluster_slots // Will always range from 1 to MAX_GROUP_SIZE
 			if (isnull(src.secondary_group))
-				src.secondary_group = create_screen("boxes", "Storage", 'icons/mob/screen1.dmi', "block", ui_storage_area)
+				src.secondary_group = create_screen("boxes", "Storage", 'icons/ui/screen1.dmi', "block", ui_storage_area)
 			var/start_x = tg_layout ? pos_x : (pos_x+groups-1)
 			var/start_y = tg_layout ? (pos_y+groups-1) : pos_y
 			var/end_x = tg_layout ? start_x + secondary_cluster_slots - 1 : start_x
@@ -211,7 +211,7 @@ This is because if one 'square' element was used to cover the entire space, you 
 	proc/add_item(obj/item/I, mob/user = usr)
 		update(user)
 
-	proc/remove_item(obj/item/I)
+	proc/remove_item(obj/item/I, mob/user = usr)
 		remove_object(I)
 		update(user)
 

@@ -72,7 +72,7 @@
 		src.check_health()
 		return
 
-	proc/update_icon()
+	update_icon()
 		set_icon_state("[src.base_state][src.active ? null : "_off"]")
 		return
 
@@ -672,7 +672,7 @@
 	on_reagent_change()
 		src.update_icon()
 
-	proc/update_icon()
+	update_icon()
 		src.underlays = null
 
 		if (reagents.total_volume)

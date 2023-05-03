@@ -3,7 +3,7 @@
 //TODO:
 // - Message Datum pooling and recycling.
 
-#define IN_CABINET (istype(src.loc,/obj/item/storage/mechanics))
+#define IN_CABINET (istype(src.stored?.linked_item,/obj/item/storage/mechanics))
 #define CONTAINER_LIGHT_TIME 2 // process()es to light up for when one component is triggered. this adds up to MAX_CONTAINER_LIGHT_TIME
 #define MAX_CONTAINER_LIGHT_TIME 10 // max process()es to light up for
 #define CABINET_CAPACITY 23
@@ -103,7 +103,7 @@
 			if(src.welded)
 				boutput(user,"<span class='alert'>The [src] is welded shut.</span>")
 				return
-			src.does_not_open_in_pocket=src.open
+			src.opens_if_worn=!src.open
 			src.open=!src.open
 			playsound(src.loc,'sound/items/screwdriver.ogg',50)
 			if(!src.open)
@@ -170,7 +170,7 @@
 		close_storage_menus() // still ugly but probably quite better performing
 			for(var/mob/chump in src.users)
 				for(var/datum/hud/storage/hud in chump.huds)
-					if(hud.master.linked_item == src) hud.close_button.clicked()
+					if(hud.master == src.storage) hud.close_button.clicked()
 			src.users = list() // gee golly i hope garbage collection does its job
 			return 1
 		destroy_outside_connections()
@@ -201,7 +201,7 @@
 		..()
 		src.contents=null
 		return
-	MouseDrop(atom/target)
+	mouse_drop(atom/target)
 		if(!istype(usr))
 			return
 		if(src.open && target == usr)
@@ -242,7 +242,7 @@
 			src.set_loc(get_turf(user))
 			user.drop_item()
 			return
-		MouseDrop(atom/target)
+		mouse_drop(atom/target)
 		// thanks, whoever hardcoded that pick-up action into obj/item/MouseDrop()!
 			if(istype(target,/atom/movable/screen/hud))
 				return
@@ -308,7 +308,7 @@
 
 	attack_hand(mob/user as mob)
 		..()
-		if (!istype(src.loc,/obj/item/storage/mechanics/housing_handheld))
+		if (!istype(src.stored?.linked_item,/obj/item/storage/mechanics/housing_handheld))
 			qdel(src) //if outside the gun, delet
 			return
 		if(level == 1)
@@ -380,7 +380,7 @@
 				particle_list.Cut()
 			return
 		light_up_housing( ) // are we in a housing? if so, tell it to light up
-			var/obj/item/storage/mechanics/the_container = src.loc
+			var/obj/item/storage/mechanics/the_container = src.stored?.linked_item
 			if(istype(the_container,/obj/item/storage/mechanics)) // wew lad i hope this compiles
 				the_container.light_up()
 			return
@@ -435,8 +435,8 @@
 		else if(iswrenchingtool(W))
 			switch(level)
 				if(1) //Level 1 = wrenched into place
-					boutput(user, "You detach the [src] from the [istype(src.loc,/obj/item/storage/mechanics) ? "housing" : "underfloor"] and deactivate it.")
-					logTheThing("station", user, null, "detaches a <b>[src]</b> from the [istype(src.loc,/obj/item/storage/mechanics) ? "housing" : "underfloor"] and deactivates it at [log_loc(src)].")
+					boutput(user, "You detach the [src] from the [istype(src.stored?.linked_item,/obj/item/storage/mechanics) ? "housing" : "underfloor"] and deactivate it.")
+					logTheThing("station", user, null, "detaches a <b>[src]</b> from the [istype(src.stored?.linked_item,/obj/item/storage/mechanics) ? "housing" : "underfloor"] and deactivates it at [log_loc(src)].")
 					level = 2
 					anchored = UNANCHORED
 					clear_owner()
@@ -453,8 +453,8 @@
 							if (Z.type == src.type && Z.level == 1)
 								boutput(user,"<span class='alert'>No matter how hard you try, you are not able to think of a way to fit more than one [src] on a single tile.</span>")
 								return
-					boutput(user, "You attach the [src] to the [istype(src.loc,/obj/item/storage/mechanics) ? "housing" : "underfloor"] and activate it.")
-					logTheThing("station", user, null, "attaches a <b>[src]</b> to the [istype(src.loc,/obj/item/storage/mechanics) ? "housing" : "underfloor"]  at [log_loc(src)].")
+					boutput(user, "You attach the [src] to the [istype(src.stored?.linked_item,/obj/item/storage/mechanics) ? "housing" : "underfloor"] and activate it.")
+					logTheThing("station", user, null, "attaches a <b>[src]</b> to the [istype(src.stored?.linked_item,/obj/item/storage/mechanics) ? "housing" : "underfloor"]  at [log_loc(src)].")
 					level = 1
 					anchored = ANCHORED
 					set_owner(user)
@@ -483,7 +483,7 @@
 		SEND_SIGNAL(src,COMSIG_MECHCOMP_RM_ALL_CONNECTIONS)
 		return ..()
 
-	MouseDrop(obj/O, null, var/src_location, var/control_orig, var/control_new, var/params)
+	mouse_drop(obj/O, null, var/src_location, var/control_orig, var/control_new, var/params)
 		if(level == 2 || (istype(O, /obj/item/mechanics) && O.level == 2))
 			boutput(usr, "<span class='alert'>Both components need to be secured into place before they can be connected.</span>")
 			return ..()
@@ -492,9 +492,15 @@
 		return
 
 	proc/componentSay(var/string)
-		string = trim(sanitize(html_encode(string)), 1)
+		string = trim(sanitize(html_encode(string)))
+		var/image/chat_maptext/maptext = null
+		var/mob/user = usr
+		if (src_exists_inside_user_or_user_storage && !src.storage)
+			maptext = make_chat_maptext(src.owner, "[string]", "color: #FFBF00;", alpha = 255)
+		else
+			maptext = make_chat_maptext(src.loc, "[string]", "color: #FFBF00;", alpha = 255)
 		for(var/mob/O in all_hearers(7, src.loc))
-			O.show_message("<span class='game radio'><span class='name'>[src]</span><b> [bicon(src)] [pick("squawks", "beeps", "boops", "says", "screeches")], </b> <span class='message'>\"[string]\"</span></span>",2)
+			O.show_message("<span class='game radio'><span class='name'>[src]</span><b> [bicon(src)] [pick("squawks", "beeps", "boops", "says", "screeches")], </b> <span class='message'>\"[string]\"</span></span>",2, assoc_maptext = maptext)
 
 	hide(var/intact)
 		under_floor = (intact && level==1)

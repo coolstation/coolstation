@@ -368,7 +368,7 @@
 			return 1
 		return 0
 
-	MouseDrop(atom/over_object as mob|obj)
+	mouse_drop(atom/over_object as mob|obj)
 		if (over_object == usr && ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			if (in_interact_range(src, H))
@@ -377,7 +377,7 @@
 		..()
 
 	//I'm sorry sylvester... I'll fix this later when I have time, I promise. - Kyle
-	proc/update_icon()
+	update_icon()
 		if (src.alive)
 			if (src.wearing_beret)
 				if (istype(wearing_beret, /obj/item/clothing/head/hos_hat))

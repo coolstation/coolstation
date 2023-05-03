@@ -47,6 +47,9 @@
 	/// can be either FALSE, TRUE, or PRESERVE_CACHE
 	var/tmp/pass_unstable = TRUE
 
+	/// Storage for items
+	var/datum/storage/storage = null
+
 /* -------------------- name stuff -------------------- */
 	/*
 	to change names: either add or remove something with the appropriate proc(s) and then call atom.UpdateName()
@@ -180,6 +183,8 @@
 				src.delStatus(effect)
 			src.statusEffects = null
 		atom_properties = null
+
+		src.remove_storage()
 		..()
 
 	proc/Turn(var/rot)
@@ -281,7 +286,7 @@
 	return 0
 
 /atom/proc/emp_act()
-	return
+	src.storage?.storage_emp_act()
 
 /atom/proc/emag_act(var/mob/user, var/obj/item/card/emag/E) //This is gonna be fun!
 	return 0
@@ -730,8 +735,16 @@
 	if(src.hint)
 		. += "<br><span class='notice'>hint: <i>[hint]</i></span><br>"
 
-///Called when something is click-dragged onto this atom
-/atom/proc/MouseDrop_T()
+/// Override MouseDrop_T instead of this. Call this instead of MouseDrop_T, but you probably shouldn't!
+/atom/proc/_MouseDrop_T(dropped, user, src_location, over_location, src_control, over_control, params)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	SPAWN_DBG(0) // Yes, things break if this isn't a spawn.
+		if(SEND_SIGNAL(src, COMSIG_ATOM_MOUSEDROP_T, dropped, user, src_location, over_location, src_control, over_control, params))
+			return
+		src.MouseDrop_T(dropped, user, src_location, over_location, over_control, src_control, params)
+
+/atom/proc/MouseDrop_T(dropped, user, src_location, over_location, over_control, src_control, params)
+	PROTECTED_PROC(TRUE)
 	return
 
 //hey what if attack_hand got sent click params for the benefit of 1 thing
@@ -743,11 +756,14 @@
 
 /atom/proc/attack_hand(mob/user as mob, params, location, control)
 	PROTECTED_PROC(TRUE)
+	src.storage?.storage_item_attack_hand(user)
 	if (flags & TGUI_INTERACTIVE)
 		return ui_interact(user)
-	return
 
 /atom/proc/attack_ai(mob/user as mob)
+	return
+
+/atom/proc/update_icon()
 	return
 
 ///wrapper proc for /atom/proc/attackby so that signals are always sent. Call this, but do not override it.
@@ -761,6 +777,8 @@
 ///internal proc for when an atom is attacked by an item. Override this, but do not call it,
 /atom/proc/attackby(obj/item/W as obj, mob/user as mob, params, is_special = 0)
 	PROTECTED_PROC(TRUE)
+	if (src.storage?.storage_item_attack_by(W, user))
+		return
 	src.material?.triggerOnHit(src, W, user, 1)
 	if (user && W && !(W.flags & SUPPRESSATTACK))  //!( istype(W, /obj/item/grab)  || istype(W, /obj/item/spraybottle) || istype(W, /obj/item/card/emag)))
 		user.visible_message("<span class='combat'><B>[user] hits [src] with [W]!</B></span>")
@@ -853,33 +871,44 @@
 
 	return null
 
-/atom/MouseDrop(atom/over_object as mob|obj|turf)
-	SPAWN_DBG( 0 )
-		if (istype(over_object, /atom))
-			if (isalive(usr))
-				//To stop ghostdrones dragging people anywhere
-				if (isghostdrone(usr) && ismob(src) && src != usr)
-					return
-
-				/* This was SUPPOSED to make the innerItem of items act on the mousedrop instead but it doesnt work for no reason
-				if (isitem(src))
-					var/obj/item/W = src
-					if (W.useInnerItem && W.contents.len > 0)
-						target = pick(W.contents)
-				//world.log << "calling mousedrop_t on [over_object] with params: [src], [usr]"
-				*/
-
-				over_object.MouseDrop_T(src, usr)
-			else
-				if (istype(over_object, /obj/machinery)) // For cyborg docking stations (Convair880).
-					var/obj/machinery/M = over_object
-					if (M.allow_stunned_dragndrop == 1)
-						M.MouseDrop_T(src, usr)
+/// Override mouse_drop instead of this. Call this instead of mouse_drop, but you probably shouldn't!
+/atom/MouseDrop(atom/over_object, src_location, over_location, src_control, over_control, params)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!isatom(over_object))
 		return
-	..()
-	return
+	if (ismovable(src) && isobserver(usr) && usr.client?.holder?.ghost_interaction)
+		var/atom/movable/movablesrc = src
+		var/list/params_list = params2list(params)
+		if ((isturf(over_object) || over_object == src) && !movablesrc.anchored)
+			if ((over_object in movablesrc.locs) || over_object == src)
+				animate(src,
+					pixel_x = text2num(params_list["icon-x"]) - 16,
+					pixel_y = text2num(params_list["icon-y"]) - 16,
+					time = 0.1 SECONDS,
+					easing = LINEAR_EASING
+				)
+			else if (BOUNDS_DIST(src, over_object) <= 1)
+				movablesrc.set_loc(over_object)
+			else
+				movablesrc.throw_at(over_object, 1000, 1, params=params_list)
+			return
+		else if(isitem(movablesrc))
+			over_object.Attackby(movablesrc, usr, params_list)
+			return
+	if (isalive(usr) && !isintangible(usr) && isghostdrone(usr) && ismob(src) && src != usr)
+		return // Stops ghost drones from MouseDropping mobs
+	if (isAIeye(usr) || (isobserver(usr) && src != usr))
+		return // Stops AI eyes from click-dragging anything, and observers from click-dragging anything that isn't themselves (ugh)
+	over_object._MouseDrop_T(src, usr, src_location, over_location, src_control, over_control, params)
+	if (SEND_SIGNAL(src, COMSIG_ATOM_MOUSEDROP, usr, over_object, src_location, over_location, src_control, over_control, params))
+		return
+	src.mouse_drop(over_object, src_location, over_location, src_control, over_control, params)
 
-/atom/proc/relaymove()
+/atom/proc/mouse_drop(atom/over_object, src_location, over_location, src_control, over_control, params)
+	PROTECTED_PROC(TRUE)
+	src.storage?.storage_item_mouse_drop(usr, over_object, src_location, over_location)
+
+/atom/proc/relaymove(mob/user, direction, delay, running)
 	.= 0
 
 /atom/proc/on_reagent_change(var/add = 0) // if the reagent container just had something added, add will be 1.
@@ -1036,6 +1065,15 @@
 		update_mdir_light_visibility(src.dir)
 
 	return src
+
+/atom/movable/proc/move_trigger(mob/M, kindof)
+	var/atom/movable/AM = src.loc
+	while (AM && !isarea(AM) && AM != M)
+		AM = AM.loc
+	if (!AM || isarea(AM))
+		return FALSE
+	src.storage?.storage_item_move_triggered(M, kindof)
+	return TRUE
 
 //reason for having this proc is explained below
 /atom/proc/set_density(var/newdensity)

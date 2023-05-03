@@ -173,7 +173,7 @@ WET FLOOR SIGN
 	var/lastUse = null
 
 	afterattack(atom/A as mob|obj, mob/user as mob)
-		if (istype(A, /obj/item/storage))
+		if (A.storage)
 			return
 		if (!isturf(user.loc))
 			return
@@ -198,7 +198,7 @@ WET FLOOR SIGN
 	return
 
 /obj/item/spraybottle/afterattack(atom/A as mob|obj, mob/user as mob)
-	if (istype(A, /obj/item/storage))
+	if (A.storage)
 		return
 	if (!isturf(user.loc)) // Hi, I'm hiding in a closet like a wuss while spraying people with death chems risk-free.
 		return
@@ -1200,7 +1200,7 @@ WET FLOOR SIGN
 		else
 			. = ..()
 
-/obj/item/handheld_vacuum/proc/update_icon()
+/obj/item/handheld_vacuum/update_icon()
 	if (trashbag)
 		var/image/I = image(src.icon, "handvac-bag")
 		I.color = istype(trashbag, /obj/item/clothing/under/trash_bag/biohazard) ? "#ff4459" : "#777777"
