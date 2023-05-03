@@ -533,12 +533,6 @@ datum/pump_ui/circulator_ui
 		return our_circ
 
 
-/obj/machinery/power/monitor
-	name = "Power Monitoring Computer"
-	icon = 'icons/obj/computer.dmi'
-	icon_state = "power"
-	density = 1
-	anchored = 1
 
 /obj/machinery/power/generatorTemp
 	name = "generator"
