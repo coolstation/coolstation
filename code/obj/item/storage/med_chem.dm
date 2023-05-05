@@ -300,7 +300,7 @@
 	/obj/item/bandage)
 
 /obj/item/storage/box/burnbox
-	name = "toxin treatment box"
+	name = "burn treatment box"
 	icon_state = "pharmburn"
 	desc = "A box containing pill bottles of silver sulfadiazine, a topical burn treatment, and menthol."
 	spawn_contents = list(/obj/item/reagent_containers/glass/bottle/burn = 4,\
