@@ -114,8 +114,14 @@ var/zapLimiter = 0
 			noalerts = 1
 			aidisabled = 1
 
-	manual
-		name = "APC"
+	busted //real APC that you want to start busted 4 environmental storytelling (i.e. intending player repair, or because the APC check complains otherwise)
+		start_charge = 4 //no juice left
+		icon_state = "apc-b-map" //but still have a convenient map icons,
+
+		New()
+			..()
+			SPAWN_DBG(0.5 SECONDS)
+				set_broken() //just normal apc that's been fucked up. thats it. thats the secret.
 
 /proc/RandomAPCWires()
 	//to make this not randomize the wires, just set index to 1 and increment it in the flag for loop (after doing everything else).
