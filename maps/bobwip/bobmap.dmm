@@ -231,13 +231,9 @@
 /turf/simulated/floor/carpet/red/standard,
 /area/station/chapel/sanctuary)
 "afB" = (
-/obj/decal/poster/wallsign/medbay{
-	pixel_y = -24
-	},
-/turf/simulated/floor/blue/side{
-	dir = 0
-	},
-/area/station/hallway/primary/south)
+/obj/decal/poster/wallsign/medbay,
+/turf/simulated/wall,
+/area/station/medical/medbay/lobby)
 "afE" = (
 /obj/machinery/light/fluorescent/auto/neutral,
 /turf/simulated/floor/wood,
@@ -954,7 +950,6 @@
 /obj/machinery/atmospherics/pipe/manifold{
 	dir = 4
 	},
-/obj/machinery/light/small/ceiling/warm/very,
 /turf/simulated/floor/white,
 /area/station/science/server_room)
 "avd" = (
@@ -3398,13 +3393,10 @@
 /area/station/medical/robotics)
 "bCn" = (
 /obj/machinery/power/data_terminal,
-/obj/machinery/networked/mainframe{
-	desc = "A mainframe computer designated as the primary server. It's pretty big, and indeed hot!";
-	name = "Hot Mainframe"
-	},
 /obj/cable/orange{
 	icon_state = "0-4"
 	},
+/obj/machinery/networked/mainframe/zeta,
 /turf/simulated/floor/red/checker,
 /area/station/science/server_room)
 "bCs" = (
@@ -5327,8 +5319,6 @@
 "cyr" = (
 /obj/item/clothing/suit/bedsheet/blue,
 /obj/stool/bed,
-/obj/machinery/power/apc/autoname_south,
-/obj/cable,
 /obj/machinery/light/fluorescent/auto/neutral,
 /turf/simulated/floor/white,
 /area/station/medical/head)
@@ -5986,7 +5976,6 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/south)
 "cPw" = (
-/obj/machinery/light/small/ceiling/warm/very,
 /turf/simulated/floor/white,
 /area/station/science/server_room)
 "cPz" = (
@@ -7774,6 +7763,7 @@
 /obj/cable/orange{
 	icon_state = "4-8"
 	},
+/obj/machinery/light/small/ceiling/warm/very,
 /turf/simulated/floor/red/checker,
 /area/station/science/server_room)
 "dDm" = (
@@ -8110,6 +8100,7 @@
 /obj/cable/orange{
 	icon_state = "0-4"
 	},
+/obj/machinery/light/small/ceiling/warm/very,
 /turf/simulated/floor/red/checker,
 /area/station/science/server_room)
 "dJn" = (
@@ -9627,8 +9618,7 @@
 	dir = 8
 	},
 /obj/machinery/disposal/small{
-	dir = 4;
-	pixel_x = -11
+	dir = 4
 	},
 /obj/window/cubicle{
 	dir = 2;
@@ -10510,9 +10500,8 @@
 	},
 /obj/machinery/power/apc{
 	areastring = "Server Room - Cold Backup";
-	equipment = 0;
-	lighting = 0;
-	name = "Server Room - Cold Backup APC"
+	name = "Server Room - Cold Backup APC";
+	operating = 0
 	},
 /obj/cable,
 /obj/machinery/light/fluorescent/auto/neutral,
@@ -13469,7 +13458,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 4
 	},
-/obj/machinery/light/small/ceiling/warm,
 /turf/simulated/floor/white,
 /area/station/science/server_room/warm)
 "fXD" = (
@@ -20786,12 +20774,6 @@
 	},
 /turf/simulated/floor/carpet/green/standard/narrow/eastwest,
 /area/station/crew_quarters/barber_shop)
-"jqM" = (
-/obj/cable{
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/white,
-/area/station/medical/head)
 "jqP" = (
 /obj/rack,
 /obj/item/sheet/steel/fullstack,
@@ -23550,7 +23532,7 @@
 "kxo" = (
 /obj/machinery/disposal/small{
 	dir = 1;
-	pixel_y = 32
+	pixel_y = 24
 	},
 /obj/disposalpipe/trunk{
 	dir = 4
@@ -23968,16 +23950,6 @@
 /obj/machinery/light/small/auto/neutral,
 /turf/simulated/floor/engine,
 /area/station/engine/ptl)
-"kGs" = (
-/obj/decal/poster/wallsign/medbay{
-	pixel_x = 26;
-	pixel_y = 3
-	},
-/obj/disposalpipe/segment/genetics,
-/turf/simulated/floor/blue/side{
-	dir = 4
-	},
-/area/station/hallway/primary/south)
 "kGu" = (
 /obj/machinery/atmospherics/binary/volume_pump{
 	dir = 4;
@@ -26069,16 +26041,6 @@
 	},
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
-"lEy" = (
-/obj/disposalpipe/segment/genetics,
-/obj/decal/poster/wallsign/medbay{
-	pixel_x = 26;
-	pixel_y = 3
-	},
-/turf/simulated/floor/blue/side{
-	dir = 4
-	},
-/area/station/hallway/primary/south)
 "lEC" = (
 /turf/simulated/wall,
 /area/station/science/artifact)
@@ -28910,24 +28872,6 @@
 /obj/disposalpipe/segment/mail/bent/west,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/chapel/funeral_parlor)
-"mNN" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/cable/blue{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/insulated{
-	can_rupture = 0;
-	dir = 4;
-	level = 1;
-	name = "hot loop purge pipe"
-	},
-/obj/cable/blue{
-	icon_state = "2-8"
-	},
-/turf/simulated/floor,
-/area/station/hallway/primary/southeast)
 "mNO" = (
 /obj/cable{
 	d1 = 2;
@@ -30219,7 +30163,7 @@
 	},
 /obj/machinery/disposal/ore/small/north{
 	pixel_x = 6;
-	pixel_y = 32
+	pixel_y = 17
 	},
 /turf/simulated/floor/yellow/side{
 	dir = 1
@@ -38975,9 +38919,6 @@
 	dir = 4
 	},
 /obj/disposalpipe/segment/mail/vertical,
-/obj/cable/blue{
-	icon_state = "2-8"
-	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "rhT" = (
@@ -39623,7 +39564,8 @@
 	pixel_y = 32
 	},
 /obj/machinery/disposal/mail/small/autoname/mining/north{
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 17
 	},
 /turf/simulated/floor/yellow/side{
 	dir = 1
@@ -42265,6 +42207,7 @@
 /obj/cable/brown{
 	icon_state = "4-8"
 	},
+/obj/machinery/light/small/ceiling/warm/very,
 /turf/simulated/floor/red/redblackchecker,
 /area/station/science/server_room/warm)
 "szt" = (
@@ -44556,10 +44499,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/security/visitation)
-"tzo" = (
-/obj/machinery/light/small/ceiling/warm,
-/turf/simulated/floor/white,
-/area/station/science/server_room/warm)
 "tzu" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -44738,9 +44677,6 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/mail/bent/south,
-/obj/cable/blue{
-	icon_state = "2-8"
-	},
 /turf/simulated/floor,
 /area/station/hallway/primary/northeast)
 "tCR" = (
@@ -45695,7 +45631,7 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 4
 	},
-/obj/machinery/networked/mainframe/warm,
+/obj/machinery/networked/mainframe/zeta/warm,
 /turf/simulated/floor/red/redblackchecker,
 /area/station/science/server_room/warm)
 "tWI" = (
@@ -47160,8 +47096,7 @@
 /area/station/bridge)
 "uEc" = (
 /obj/machinery/power/apc/autoname_south{
-	equipment = 0;
-	lighting = 0
+	operating = 0
 	},
 /obj/cable{
 	icon_state = "0-4"
@@ -48532,6 +48467,8 @@
 /area/station/security/main)
 "vgG" = (
 /obj/storage/secure/closet/command/medical_director,
+/obj/cable,
+/obj/machinery/power/apc/autoname_south,
 /turf/simulated/floor/white,
 /area/station/medical/head)
 "vgN" = (
@@ -49612,7 +49549,7 @@
 /area/station/security/armory)
 "vFW" = (
 /obj/cable{
-	icon_state = "1-8"
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/white,
 /area/station/medical/head)
@@ -50611,6 +50548,7 @@
 /obj/cable/brown{
 	icon_state = "0-8"
 	},
+/obj/machinery/light/small/ceiling/warm/very,
 /turf/simulated/floor/red/redblackchecker,
 /area/station/science/server_room/warm)
 "wdo" = (
@@ -90941,12 +90879,12 @@ riM
 fcW
 gkN
 bax
-kGs
+bax
 jxu
 bax
 bax
 bax
-lEy
+bax
 mYs
 lTQ
 lTQ
@@ -91243,12 +91181,12 @@ mbV
 yfr
 rLW
 sIf
-wiX
+afB
 dPl
 sIf
 wiX
 sIf
-wiX
+afB
 wiX
 iEz
 iEz
@@ -91845,7 +91783,7 @@ pbq
 rMd
 mbV
 xts
-afB
+mQB
 wiX
 hBz
 azT
@@ -91862,7 +91800,7 @@ lFS
 qtU
 qbp
 esD
-jqM
+dEe
 cyr
 ppJ
 jvc
@@ -93657,8 +93595,8 @@ qDq
 rMd
 mbV
 xts
+mQB
 afB
-wiX
 hEX
 cyn
 mzq
@@ -104540,7 +104478,7 @@ aMS
 vst
 xZR
 kkc
-tzo
+kkc
 kkc
 fXy
 gxS
@@ -116003,7 +115941,7 @@ tCE
 iAs
 uge
 cbr
-mNN
+gDn
 afN
 wlV
 wlV
