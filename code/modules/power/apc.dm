@@ -19,7 +19,7 @@ var/zapLimiter = 0
 
 /obj/machinery/power/apc
 	name = "area power controller"
-	icon_state = "apc0"
+	icon_state = "apc0-map"
 	anchored = 1
 	plane = PLANE_NOSHADOW_ABOVE
 	req_access = list(access_engineering_power)
@@ -74,7 +74,6 @@ var/zapLimiter = 0
 		name = "Autoname N APC"
 		dir = NORTH
 		autoname_on_spawn = 1
-		pixel_y = 24
 
 		nopoweralert
 			noalerts = 1
@@ -86,7 +85,6 @@ var/zapLimiter = 0
 		name = "Autoname E APC"
 		dir = EAST
 		autoname_on_spawn = 1
-		pixel_x = 24
 
 		nopoweralert
 			noalerts = 1
@@ -98,7 +96,6 @@ var/zapLimiter = 0
 		name = "Autoname S APC"
 		dir = SOUTH
 		autoname_on_spawn = 1
-		pixel_y = -24
 
 		nopoweralert
 			noalerts = 1
@@ -110,13 +107,15 @@ var/zapLimiter = 0
 		name = "Autoname W APC"
 		dir = WEST
 		autoname_on_spawn = 1
-		pixel_x = -24
 
 		nopoweralert
 			noalerts = 1
 		noaicontrol
 			noalerts = 1
 			aidisabled = 1
+
+	manual
+		name = "APC"
 
 /proc/RandomAPCWires()
 	//to make this not randomize the wires, just set index to 1 and increment it in the flag for loop (after doing everything else).
