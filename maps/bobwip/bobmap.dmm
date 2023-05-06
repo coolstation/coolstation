@@ -876,7 +876,7 @@
 /area/station/chapel/sanctuary)
 "atl" = (
 /obj/machinery/door_control{
-	id = "cargodock_out";
+	id = "qm_outgoing";
 	pixel_x = 24
 	},
 /turf/simulated/floor/caution/south,
@@ -907,9 +907,12 @@
 /turf/simulated/floor/purple/side,
 /area/station/hallway/primary/southeast)
 "atB" = (
-/obj/machinery/door/firedoor/border_only,
-/turf/simulated/floor/caution/south,
-/area/station/quartermaster/office)
+/obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/conveyor/south{
+	id = "cargo2crew"
+	},
+/turf/simulated/floor/caution/east,
+/area/station/quartermaster/cargobay)
 "atI" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 6
@@ -3159,7 +3162,7 @@
 /obj/machinery/door/poddoor/blast/pyro{
 	dir = 4;
 	icon_state = "bdoormid1";
-	id = "qm_dock"
+	id = "qm_incoming"
 	},
 /obj/forcefield/energyshield/perma/doorlink{
 	desc = "A door-linked force field that prevents gasses from passing through it.";
@@ -7391,10 +7394,12 @@
 /turf/simulated/floor,
 /area/station/maintenance/disposal)
 "dwi" = (
-/obj/machinery/conveyor/north,
 /obj/machinery/light/small/auto/neutral,
 /obj/disposalpipe/segment/mineral{
 	dir = 1
+	},
+/obj/machinery/conveyor/south{
+	id = "cargo2crew"
 	},
 /turf/simulated/floor/caution/west,
 /area/station/quartermaster/cargobay)
@@ -14246,7 +14251,9 @@
 /turf/simulated/floor,
 /area/station/engine/substation/pylon)
 "gnf" = (
-/obj/machinery/door_control/podbay/qm/new_walls,
+/obj/machinery/door_control/podbay/qm/new_walls{
+	id = "hangar_cargo"
+	},
 /turf/simulated/wall/r_wall,
 /area/station/hangar/qm)
 "gnl" = (
@@ -15108,7 +15115,12 @@
 /obj/disposalpipe/segment/mineral{
 	dir = 1
 	},
-/obj/machinery/light_switch/auto,
+/obj/machinery/door_control{
+	desc = "A remote control switch for the cargo bay door.";
+	id = "cargosto";
+	name = "storage door control";
+	pixel_x = -26
+	},
 /turf/simulated/floor/caution/south,
 /area/station/quartermaster/cargobay)
 "gHo" = (
@@ -20064,11 +20076,17 @@
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/recovery)
 "iYY" = (
-/obj/machinery/conveyor/north,
 /obj/plasticflaps,
-/obj/machinery/door/poddoor/pyro/podbay_autoclose/qm_horizontal,
+/obj/machinery/door/poddoor/pyro/podbay_autoclose/qm_horizontal{
+	autoclose = 0;
+	id = "cargosto";
+	name = "storage door"
+	},
 /obj/disposalpipe/segment/mineral{
 	dir = 1
+	},
+/obj/machinery/conveyor/south{
+	id = "cargo2crew"
 	},
 /turf/simulated/floor/caution/corner/nw,
 /area/station/quartermaster/cargobay)
@@ -25401,7 +25419,7 @@
 /obj/machinery/door/poddoor/blast/pyro{
 	dir = 4;
 	icon_state = "bdoormid1";
-	id = "qm_dock_out"
+	id = "qm_outgoing"
 	},
 /obj/machinery/mass_driver{
 	dir = 4;
@@ -32060,7 +32078,9 @@
 /turf/simulated/floor/purple,
 /area/station/science/teleporter)
 "oac" = (
-/obj/machinery/conveyor/south,
+/obj/machinery/conveyor/south{
+	id = "cargo2crew"
+	},
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor/caution/east,
 /area/station/quartermaster/cargobay)
@@ -32145,6 +32165,9 @@
 "ocb" = (
 /obj/item/device/radio/intercom/cargo{
 	dir = 1
+	},
+/obj/machinery/conveyor_switch{
+	id = "cargo2crew"
 	},
 /turf/simulated/floor/caution/corner/misc{
 	dir = 10
@@ -34331,9 +34354,11 @@
 /turf/simulated/floor/white,
 /area/station/science/storage)
 "pbS" = (
-/obj/machinery/conveyor/north,
 /obj/disposalpipe/segment/mineral{
 	dir = 1
+	},
+/obj/machinery/conveyor/south{
+	id = "cargo2crew"
 	},
 /turf/simulated/floor/caution/west,
 /area/station/quartermaster/cargobay)
@@ -34552,6 +34577,7 @@
 /obj/disposalpipe/segment/mineral{
 	dir = 1
 	},
+/obj/machinery/light_switch/auto,
 /turf/simulated/floor/caution,
 /area/station/quartermaster/cargobay)
 "phn" = (
@@ -36519,7 +36545,7 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/door_control{
-	id = "cargodock_out";
+	id = "qm_incoming";
 	pixel_x = 24
 	},
 /turf/simulated/floor/caution/north,
@@ -39505,10 +39531,16 @@
 /turf/simulated/floor/white,
 /area/station/medical/medbay/surgery/storage)
 "rrN" = (
-/obj/machinery/conveyor/south,
 /obj/plasticflaps,
-/obj/machinery/door/poddoor/pyro/podbay_autoclose/qm_horizontal,
 /obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/conveyor/south{
+	id = "cargo2crew"
+	},
+/obj/machinery/door/poddoor/pyro/podbay_autoclose/qm_horizontal{
+	autoclose = 0;
+	id = "cargosto";
+	name = "storage door"
+	},
 /turf/simulated/floor/caution/corner/ne,
 /area/station/quartermaster/cargobay)
 "rrR" = (
@@ -44432,18 +44464,30 @@
 /turf/simulated/wall,
 /area/station/hallway/secondary/northwest)
 "tsC" = (
-/obj/machinery/conveyor/south,
 /obj/plasticflaps,
-/obj/machinery/door/poddoor/pyro/podbay_autoclose/qm_horizontal,
 /obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/conveyor/south{
+	id = "cargo2crew"
+	},
+/obj/machinery/door/poddoor/pyro/podbay_autoclose/qm_horizontal{
+	autoclose = 0;
+	id = "cargosto";
+	name = "storage door"
+	},
 /turf/simulated/floor/caution/corner/se,
 /area/station/quartermaster/cargobay)
 "tsS" = (
-/obj/machinery/conveyor/north,
 /obj/plasticflaps,
-/obj/machinery/door/poddoor/pyro/podbay_autoclose/qm_horizontal,
 /obj/disposalpipe/segment/mineral{
 	dir = 1
+	},
+/obj/machinery/conveyor/south{
+	id = "cargo2crew"
+	},
+/obj/machinery/door/poddoor/pyro/podbay_autoclose/qm_horizontal{
+	autoclose = 0;
+	id = "cargosto";
+	name = "storage door"
 	},
 /turf/simulated/floor/caution/corner/sw,
 /area/station/quartermaster/cargobay)
@@ -55595,10 +55639,6 @@
 /obj/item/reagent_containers/food/snacks/pickle/trash,
 /turf/simulated/floor/plating,
 /area/station/crewquarters/fuq3)
-"ycZ" = (
-/obj/machinery/light/small/auto/warm,
-/turf/space,
-/area/space)
 "ydv" = (
 /obj/cable/blue{
 	icon_state = "1-4"
@@ -73341,7 +73381,7 @@ xzG
 xzG
 xzG
 xzG
-ycZ
+xzG
 xzG
 xzG
 xzG
@@ -107693,7 +107733,7 @@ dCh
 pkL
 lLw
 dWZ
-atB
+vQZ
 vrV
 geQ
 hec
@@ -110120,7 +110160,7 @@ eLi
 tVr
 rrN
 oac
-oac
+atB
 tsC
 uRM
 lye
