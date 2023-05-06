@@ -5515,15 +5515,16 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/northwest)
 "cGn" = (
-/obj/machinery/computer3/terminal{
-	dir = 8
-	},
 /obj/machinery/power/data_terminal,
 /obj/cable/hotpink{
 	icon_state = "0-2"
 	},
 /obj/cable/hotpink{
 	icon_state = "1-2"
+	},
+/obj/machinery/computer3/terminal/zeta{
+	dir = 8;
+	setup_os_string = "ZETA_MAINFRAME"
 	},
 /turf/simulated/floor/purplewhite{
 	dir = 4
@@ -11857,11 +11858,12 @@
 "fqs" = (
 /obj/machinery/power/data_terminal,
 /obj/cable/blue,
-/obj/machinery/computer3/terminal/network{
-	dir = 8
-	},
 /obj/cable/blue{
 	icon_state = "1-2"
+	},
+/obj/machinery/computer3/terminal/zeta{
+	dir = 8;
+	setup_os_string = "ZETA_MAINFRAME"
 	},
 /turf/simulated/floor/purplewhite{
 	dir = 4
@@ -20004,11 +20006,12 @@
 	},
 /area/station/storage/primary)
 "jdk" = (
-/obj/machinery/computer3/terminal{
-	dir = 8
-	},
 /obj/machinery/power/data_terminal,
 /obj/cable/blue,
+/obj/machinery/computer3/terminal/zeta{
+	dir = 8;
+	setup_os_string = "ZETA_MAINFRAME"
+	},
 /turf/simulated/floor/purplewhite{
 	dir = 4
 	},
@@ -24678,8 +24681,9 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/data_terminal,
-/obj/machinery/computer3/terminal/network{
-	dir = 8
+/obj/machinery/computer3/terminal/zeta{
+	dir = 8;
+	setup_os_string = "ZETA_MAINFRAME"
 	},
 /turf/simulated/floor/white,
 /area/station/science/artifact)
@@ -35723,7 +35727,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/data_terminal,
-/obj/machinery/computer3/terminal/network,
+/obj/machinery/computer3/terminal/zeta,
 /turf/simulated/floor/purplewhite{
 	dir = 1
 	},
@@ -54914,7 +54918,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/data_terminal,
-/obj/machinery/computer3/terminal/network,
+/obj/machinery/computer3/terminal/zeta,
 /turf/simulated/floor/purplewhite{
 	dir = 1
 	},
