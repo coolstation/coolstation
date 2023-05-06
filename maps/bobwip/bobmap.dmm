@@ -13729,10 +13729,16 @@
 /obj/pool{
 	dir = 1
 	},
-/obj/disco_ball{
-	icon_state = "billiardlamp"
-	},
 /obj/decal/garland/ephemeral,
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "A lamp, but it doesn't seem like it's meant for this kind of pool.";
+	icon = 'icons/obj/decoration.dmi';
+	icon_state = "billiardlamp";
+	layer = 5.1;
+	name = "billiards lamp"
+	},
 /turf/simulated/floor/airless/carpet/grime,
 /area/station/crew_quarters/pool)
 "gcz" = (
@@ -13784,18 +13790,10 @@
 	level = 2
 	},
 /obj/effect_sparker,
-/obj/machinery/power/apc{
+/obj/machinery/power/apc/busted{
 	areastring = "Pool Room";
-	cell_type = 1;
-	coverlocked = 0;
 	dir = 1;
-	equipment = 0;
-	icon_state = "apc-b";
-	locked = 0;
-	name = "Billiards Parlor APC";
-	pixel_y = 24;
-	req_access_txt = "";
-	start_charge = 0
+	name = "Billiards Parlor APC"
 	},
 /turf/simulated/floor/airless/carpet/grime,
 /area/station/crew_quarters/pool)
@@ -17359,7 +17357,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
-/area/station/crew_quarters/clown)
+/area/station/maintenance/inner/ne)
 "hNH" = (
 /obj/decal/floatingtiles{
 	dir = 8;
@@ -18416,12 +18414,8 @@
 "iqg" = (
 /obj/decal/cleanable/blood/splatter/extra,
 /obj/decal/cleanable/dirt/dirt5,
-/obj/machinery/light/emergency{
-	brightness = 0.7;
-	on = 1;
-	tag = "clownhole"
-	},
 /obj/npc/trader/exclown,
+/obj/machinery/light/emergency,
 /turf/simulated/floor,
 /area/station/crew_quarters/clown)
 "iql" = (
@@ -22685,21 +22679,13 @@
 	name = "Clown"
 	},
 /obj/decal/cleanable/dirt/dirt5,
-/obj/machinery/power/apc{
-	areastring = "Clown Hole";
-	cell_type = 1;
-	coverlocked = 0;
-	dir = 1;
-	equipment = 0;
-	icon_state = "apc-b";
-	locked = 0;
-	name = "Emergency Bathroom APC";
-	pixel_y = 24;
-	req_access_txt = "";
-	start_charge = 0
-	},
 /obj/cable{
 	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/busted{
+	areastring = "Clown Hole";
+	dir = 1;
+	name = "Emergency Bathroom APC"
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/clown)
