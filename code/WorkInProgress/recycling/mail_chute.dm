@@ -33,7 +33,7 @@
 				src.mail_tag = "[A.mail_tag]" //politely get mail tag from area.mail_tag
 		if (src.autotag == 2 && isnull(src.mail_tag))
 			var/area/A = get_area(src)
-				src.mail_tag = "[A.name]" //rudely get mail tag from area.name
+			src.mail_tag = "[A.name]" //rudely get mail tag from area.name
 		if (src.autoname == 1 && !isnull(src.mail_tag))
 			src.name = "mail chute ([src.mail_tag])"
 		if (isnull(src.mail_tag)) //no assign, and no autotag? that's a bad time friend
