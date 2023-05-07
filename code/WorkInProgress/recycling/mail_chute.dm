@@ -12,6 +12,7 @@
 	var/datum/radio_frequency/radio_connection
 	var/last_inquire = 0 //No signal spamming etc
 	var/autoname = 0
+	var/autotag = 0 //get mail tag from area it's placed on. 2 goes by area.name
 
 	var/message = null
 	var/mailgroup = null
@@ -25,8 +26,22 @@
 
 	New()
 		..()
+		// defers to manual tags, otherwise try to get the tag from area (if enabled)
+		if (src.autotag == 1 && isnull(src.mail_tag)) //get tag from area- each area must have a unique mailtag and also should be formatted friendly to mail chute list
+			var/area/A = get_area(src)
+			if (A.mail_tag) //not every area will have a mail tag set, especially off station Z
+				src.mail_tag = "[A.mail_tag]" //politely get mail tag from area.mail_tag
+		if (src.autotag == 2 && isnull(src.mail_tag))
+			var/area/A = get_area(src)
+				src.mail_tag = "[A.name]" //rudely get mail tag from area.name
 		if (src.autoname == 1 && !isnull(src.mail_tag))
 			src.name = "mail chute ([src.mail_tag])"
+		if (isnull(src.mail_tag)) //no assign, and no autotag? that's a bad time friend
+			src.name = "unaddressable mail chute"
+			src.mode = 4 //cycling lights to make it obvious (mode is defined in disposal_chute.dm as "DISPOSAL_CHUTE_NOTAG")
+			logTheThing("debug", src, null, "has no mailtag!")
+
+		//TODO for later: do a datumized lookup for mailgroups/notifications based on mailtags so those can be set automatically too
 
 		SPAWN_DBG(10 SECONDS)
 			if (src)
@@ -218,6 +233,12 @@
 		ex_act(severity)
 			return
 
+/obj/machinery/disposal/mail/autotag //proof of concept, if this works out i'll make the directional small mailbox version too
+	autotag = 1 //check for area.mail_tag and apply it
+	autoname = 1 //then rename
+
+/obj/machinery/disposal/mail/autotag/doitlive
+	autotag = 2 //just grab that area's name and use that as the mail tag (caution! some different areas may still have the same name and this can suck)
 /obj/machinery/disposal/mail/autoname
 	autoname = 1
 
