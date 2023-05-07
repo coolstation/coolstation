@@ -239,6 +239,7 @@
 
 /obj/machinery/disposal/mail/autotag/doitlive
 	autotag = 2 //just grab that area's name and use that as the mail tag (caution! some different areas may still have the same name and this can suck)
+
 /obj/machinery/disposal/mail/autoname
 	autoname = 1
 
@@ -424,6 +425,13 @@
 	icon = 'icons/obj/disposal_small.dmi'
 	handle_normal_state = "disposal-handle"
 	density = 0
+
+/obj/machinery/disposal/mail/small/autotag //same as before
+	autotag = 1
+	autoname = 1
+
+/obj/machinery/disposal/mail/small/autotag/doitlive
+	autotag = 2
 
 /obj/machinery/disposal/mail/small/autoname
 	autoname = 1
