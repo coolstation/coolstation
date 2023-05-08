@@ -1054,7 +1054,7 @@
 	name = "Pod Bay APC"
 	},
 /turf/simulated/floor/plating,
-/area/station/maintenance/outer/se)
+/area/station/maintenance/southwest)
 "awN" = (
 /obj/pool,
 /obj/effect_sparker,
@@ -1639,7 +1639,7 @@
 	name = "hangar and escape hallway repressurization tank"
 	},
 /turf/simulated/floor/plating,
-/area/station/maintenance/outer/se)
+/area/station/maintenance/southwest)
 "aLu" = (
 /turf/simulated/floor/carpet/red/fancy/edge/nw,
 /area/station/chapel/sanctuary)
@@ -2167,7 +2167,7 @@
 "bbh" = (
 /obj/machinery/light/emergency,
 /turf/simulated/floor/plating,
-/area/station/maintenance/outer/se)
+/area/station/maintenance/southwest)
 "bbj" = (
 /obj/cable{
 	icon_state = "2-4"
@@ -4846,7 +4846,7 @@
 	name = "southeast hallway repressurization tank"
 	},
 /turf/simulated/floor/plating,
-/area/station/storage/primary)
+/area/station/maintenance/outer/se)
 "csn" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
 /turf/simulated/floor/shuttle,
@@ -5709,6 +5709,9 @@
 "cOQ" = (
 /obj/cable{
 	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/autoname_west{
+	areastring = "Medical Research"
 	},
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/fitness)
@@ -7044,6 +7047,13 @@
 	},
 /turf/space,
 /area/station/solar/north)
+"dvy" = (
+/obj/cable/blue{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment,
+/turf/simulated/floor/blue/checker,
+/area/station/medical/research)
 "dvC" = (
 /obj/cable/blue{
 	icon_state = "0-8"
@@ -8031,6 +8041,12 @@
 /obj/table/glass/auto,
 /turf/simulated/floor/neutral/side,
 /area/station/hallway/primary/northeast)
+"dSf" = (
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/southwest)
 "dSn" = (
 /obj/machinery/portable_atmospherics/pump,
 /turf/simulated/floor/yellow/side{
@@ -8832,6 +8848,11 @@
 /obj/decal/mule/beacon,
 /turf/simulated/floor,
 /area/station/storage/secure)
+"ekq" = (
+/obj/wingrille_spawn/fakethindow/reinforced,
+/obj/disposalpipe/segment/mail/vertical,
+/turf/simulated/floor/plating,
+/area/station/medical/research)
 "ekr" = (
 /obj/rack,
 /obj/item/chair/folded,
@@ -9065,7 +9086,7 @@
 /obj/machinery/shieldgenerator/meteorshield,
 /obj/machinery/power/data_terminal,
 /turf/simulated/floor/plating,
-/area/station/maintenance/outer/se)
+/area/station/maintenance/southwest)
 "epX" = (
 /obj/cable/blue{
 	icon_state = "1-4"
@@ -10383,6 +10404,12 @@
 /obj/machinery/portable_atmospherics/canister/air/large,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/central)
+"eRw" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/southwest)
 "eRz" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 5
@@ -10616,7 +10643,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
-/area/station/maintenance/outer/se)
+/area/station/maintenance/southwest)
 "eYm" = (
 /obj/stool/chair,
 /obj/disposalpipe/segment/mail/horizontal,
@@ -13428,7 +13455,7 @@
 	},
 /obj/machinery/door/airlock/maintenance,
 /turf/simulated/floor,
-/area/station/maintenance/outer/se)
+/area/station/maintenance/southwest)
 "giW" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/neutral/side{
@@ -13800,7 +13827,7 @@
 	name = "Southwest Primary Hallway APC"
 	},
 /turf/simulated/floor/plating,
-/area/station/maintenance/outer/se)
+/area/station/maintenance/southwest)
 "gqT" = (
 /turf/simulated/wall/r_wall,
 /area/station/security/main)
@@ -14716,6 +14743,10 @@
 /obj/filing_cabinet,
 /turf/simulated/floor,
 /area/station/crew_quarters/info)
+"gNJ" = (
+/obj/disposalpipe/segment,
+/turf/simulated/floor/blue/checker,
+/area/station/medical/research)
 "gOz" = (
 /obj/table/auto/desk,
 /obj/cable/blue{
@@ -15349,7 +15380,7 @@
 	name = "Air Reserve (Escape Hallway)"
 	},
 /turf/simulated/floor/plating,
-/area/station/storage/primary)
+/area/station/maintenance/outer/se)
 "hct" = (
 /obj/storage/secure/filing_cabinet,
 /obj/cable/blue{
@@ -17360,6 +17391,9 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/east)
+"ica" = (
+/turf/simulated/floor/plating,
+/area/station/maintenance/southwest)
 "icg" = (
 /obj/table/wood/auto/desk,
 /obj/item/device/radio/intercom/loudspeaker,
@@ -18751,6 +18785,13 @@
 "iHb" = (
 /turf/simulated/floor/plating,
 /area/station/maintenance/solar/north)
+"iHh" = (
+/obj/cable/conduit/segment/horizontal,
+/obj/disposalpipe/segment,
+/turf/simulated/floor/neutral/side{
+	dir = 1
+	},
+/area/station/hallway/primary/south)
 "iHn" = (
 /obj/cable/conduit/segment/vertical,
 /turf/simulated/floor/sanitary/blue,
@@ -19454,6 +19495,9 @@
 /obj/machinery/light/small/ceiling/cool/very,
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
+"iYy" = (
+/turf/simulated/wall,
+/area/station/maintenance/southwest)
 "iYB" = (
 /obj/disposalpipe/trunk,
 /obj/machinery/light/small/auto/neutral,
@@ -21870,7 +21914,7 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/engineering_power,
 /turf/simulated/floor/plating,
-/area/station/maintenance/outer/se)
+/area/station/maintenance/southwest)
 "kbL" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor,
 /obj/machinery/meter,
@@ -23020,7 +23064,7 @@
 	},
 /obj/machinery/light/small/auto/warm,
 /turf/simulated/floor/plating,
-/area/station/maintenance/outer/se)
+/area/station/maintenance/southwest)
 "kBR" = (
 /obj/storage/crate/bin,
 /obj/disposalpipe/segment{
@@ -24030,6 +24074,10 @@
 /area/space)
 "kVJ" = (
 /obj/machinery/light_switch/auto,
+/obj/machinery/disposal/small/south,
+/obj/disposalpipe/trunk{
+	dir = 2
+	},
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/cloner)
 "kVL" = (
@@ -24622,6 +24670,8 @@
 /obj/cable/blue{
 	icon_state = "1-4"
 	},
+/obj/machinery/disposal/mail/small/autotag/south,
+/obj/disposalpipe/trunk/mail/south,
 /turf/simulated/floor/blue/checker,
 /area/station/medical/research)
 "lmx" = (
@@ -24728,6 +24778,12 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/sanitary/blue,
 /area/station/medical/cdc)
+"lpd" = (
+/obj/landmark{
+	name = "blobstart"
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/southwest)
 "lpo" = (
 /obj/machinery/power/data_terminal,
 /obj/cable/blue{
@@ -25049,6 +25105,10 @@
 /area/station/hallway/primary/east/restroom{
 	name = "East Hallway West Restroom"
 	})
+"lwY" = (
+/obj/disposalpipe/segment,
+/turf/simulated/wall,
+/area/station/medical/medbay/cloner)
 "lwZ" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -28490,6 +28550,16 @@
 /obj/machinery/light/small/auto/neutral,
 /turf/simulated/floor/green/side,
 /area/station/hydroponics/lobby)
+"mWM" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/disposalpipe/segment/mail/vertical,
+/turf/simulated/floor,
+/area/station/hallway/primary/southeast)
 "mWS" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -28604,7 +28674,7 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/plating,
-/area/station/maintenance/outer/se)
+/area/station/maintenance/southwest)
 "mZh" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -28705,13 +28775,11 @@
 "nbq" = (
 /obj/machinery/light/fluorescent/auto/cool,
 /obj/table/round/auto,
-/obj/machinery/power/apc{
-	areastring = "Cloning";
-	dir = 1;
-	name = "Cloning APC"
-	},
 /obj/cable{
 	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/autoname_north{
+	areastring = "Cloning"
 	},
 /turf/simulated/floor/blue/checker,
 /area/station/medical/medbay/cloner)
@@ -28738,7 +28806,7 @@
 	name = "Escape Shuttle Hallway APC"
 	},
 /turf/simulated/floor/plating,
-/area/station/maintenance/outer/se)
+/area/station/maintenance/southwest)
 "ncz" = (
 /obj/machinery/light/fluorescent/auto/cool/very,
 /turf/simulated/floor/sanitary,
@@ -29456,6 +29524,11 @@
 	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
+"nsn" = (
+/obj/wingrille_spawn/fakethindow/reinforced,
+/obj/disposalpipe/segment,
+/turf/simulated/floor/plating,
+/area/station/medical/research)
 "nsq" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -31276,6 +31349,11 @@
 /obj/disposalpipe/segment/crematorium{
 	dir = 4
 	},
+/obj/machinery/power/apc{
+	areastring = "Monkey Dome";
+	dir = 1;
+	name = "Monkey Dome APC"
+	},
 /turf/simulated/floor/blue/checker,
 /area/station/medical/research)
 "oiO" = (
@@ -31530,6 +31608,7 @@
 /obj/disposalpipe/segment/ejection{
 	dir = 4
 	},
+/obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor/neutral/side{
 	dir = 1
 	},
@@ -38118,6 +38197,12 @@
 /obj/fitness/stacklifter,
 /turf/simulated/floor/specialroom/gym/alt,
 /area/station/crew_quarters/fitness)
+"rpy" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/southwest)
 "rpE" = (
 /obj/decal/poster/wallsign/stencil/left/w{
 	pixel_x = -16;
@@ -38686,7 +38771,7 @@
 "rBr" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
 /turf/simulated/floor/plating,
-/area/station/maintenance/outer/se)
+/area/station/maintenance/southwest)
 "rBy" = (
 /obj/lattice{
 	dir = 8;
@@ -39481,7 +39566,7 @@
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/plating,
-/area/station/storage/primary)
+/area/station/maintenance/outer/se)
 "rRv" = (
 /obj/lattice{
 	dir = 8;
@@ -39705,6 +39790,13 @@
 	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
+"rVM" = (
+/obj/cable/conduit/segment/horizontal,
+/obj/disposalpipe/segment,
+/turf/simulated/floor/neutral/side{
+	dir = 1
+	},
+/area/station/hallway/primary/southeast)
 "rVV" = (
 /obj/machinery/light/small/ceiling/cool,
 /turf/simulated/floor/specialroom/gym,
@@ -39751,8 +39843,14 @@
 /turf/simulated/floor,
 /area/station/maintenance/outer/north)
 "rXf" = (
+/obj/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/autoname_west{
+	areastring = "Monkey Dome"
+	},
 /turf/simulated/floor/plating,
-/area/station/storage/primary)
+/area/station/crew_quarters/fitness)
 "rXj" = (
 /obj/disposalpipe/segment/mail/bent/north,
 /obj/machinery/power/data_terminal,
@@ -43281,6 +43379,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
+/obj/machinery/power/apc/autoname_north,
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
 "tBd" = (
@@ -44477,6 +44576,17 @@
 	},
 /turf/simulated/wall,
 /area/station/crew_quarters/kitchen/freezer)
+"tZl" = (
+/obj/cable/blue{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/switch_junction/left/west{
+	color = "#8dc2f4"
+	},
+/turf/simulated/floor/blue/side{
+	dir = 0
+	},
+/area/station/hallway/primary/southeast)
 "tZp" = (
 /obj/decal/cleanable/tomatosplat,
 /obj/computer3frame{
@@ -44759,7 +44869,7 @@
 	},
 /obj/machinery/light/small/auto/warm,
 /turf/simulated/floor/plating,
-/area/station/maintenance/outer/se)
+/area/station/maintenance/southwest)
 "udp" = (
 /obj/machinery/door/airlock,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
@@ -45036,6 +45146,10 @@
 	dir = 10
 	},
 /area/station/engine/gas)
+"ukI" = (
+/obj/machinery/light/small/auto/warm,
+/turf/simulated/floor/plating,
+/area/station/maintenance/southwest)
 "ukN" = (
 /obj/lattice{
 	dir = 10;
@@ -45405,7 +45519,7 @@
 /obj/machinery/power/apc/autoname_south,
 /obj/cable,
 /turf/simulated/floor/plating,
-/area/station/maintenance/outer/se)
+/area/station/maintenance/southwest)
 "uvf" = (
 /obj/stool/chair/red,
 /obj/machinery/door_control{
@@ -47301,6 +47415,9 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/station/engine/substation/west)
+"viO" = (
+/turf/simulated/wall/r_wall,
+/area/station/maintenance/southwest)
 "vjj" = (
 /turf/simulated/floor/purple,
 /area/station/science/lobby)
@@ -48555,6 +48672,13 @@
 /obj/machinery/light/small/auto/warm,
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/north)
+"vOf" = (
+/obj/machinery/disposal/small/west,
+/obj/disposalpipe/trunk{
+	dir = 2
+	},
+/turf/simulated/floor/blue/checker,
+/area/station/medical/research)
 "vOw" = (
 /turf/space{
 	icon_state = "aplaceholder"
@@ -50446,7 +50570,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/plating,
-/area/station/maintenance/outer/se)
+/area/station/maintenance/southwest)
 "wBf" = (
 /obj/item/device/radio/intercom/loudspeaker/speaker/south{
 	pixel_y = 34
@@ -50557,9 +50681,6 @@
 /obj/disposalpipe/segment/ejection{
 	dir = 1;
 	icon_state = "pipe-c"
-	},
-/obj/cable{
-	icon_state = "1-2"
 	},
 /turf/simulated/floor/neutral/side{
 	dir = 1
@@ -50840,7 +50961,7 @@
 /obj/machinery/door/airlock/engineering,
 /obj/access_spawn/engineering_power,
 /turf/simulated/floor/plating,
-/area/station/maintenance/outer/se)
+/area/station/maintenance/southwest)
 "wIx" = (
 /obj/disposalpipe/segment/mineral{
 	dir = 4
@@ -52426,6 +52547,13 @@
 	dir = 1
 	},
 /area/station/mining/lobby)
+"xpZ" = (
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
+	},
+/obj/disposalpipe/segment,
+/turf/simulated/floor/blue/checker,
+/area/station/medical/research)
 "xqb" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -53672,6 +53800,15 @@
 "xTl" = (
 /turf/simulated/wall/r_wall,
 /area/station/hos/quarter)
+"xTp" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/junction{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/station/hallway/primary/south)
 "xTt" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -80561,8 +80698,8 @@ mmg
 wVf
 bkr
 wVf
-ahb
-ahb
+viO
+viO
 xzG
 xzG
 xzG
@@ -80863,9 +81000,9 @@ wDS
 oGF
 yaV
 wVf
-sDP
-ahb
-ahb
+ica
+viO
+viO
 xzG
 xzG
 xzG
@@ -81165,9 +81302,9 @@ rGF
 pcG
 wVf
 wVf
-sDP
-hnz
-ahb
+ica
+ukI
+viO
 xzG
 xzG
 xzG
@@ -81458,17 +81595,17 @@ xBC
 xBC
 xBC
 oqm
-ahb
-ahb
-ahb
+viO
+viO
+viO
 wVf
 mZh
 wVf
 wVf
 aYW
 sDP
-sDP
-sDP
+ica
+ica
 rBr
 xzG
 xzG
@@ -81760,18 +81897,18 @@ xBC
 xBC
 xBC
 xBC
-whC
-sDP
-sDP
-ahb
-orN
-sDP
+iYy
+ica
+ica
+viO
+eRw
+ica
 epU
-ahb
-sDP
-sDP
-sDP
-ahb
+viO
+ica
+ica
+ica
+viO
 xzG
 xzG
 xzG
@@ -82062,18 +82199,18 @@ qeo
 qeo
 oTc
 xBC
-whC
-sDP
-ahb
-ahb
+iYy
+ica
+viO
+viO
 kBK
-sDP
-sDP
+ica
+ica
 kbF
-sDP
-sDP
-sDP
-ahb
+ica
+ica
+ica
+viO
 xzG
 xzG
 xzG
@@ -82364,18 +82501,18 @@ qWS
 qeo
 uRg
 xBC
-whC
-sDP
+iYy
+ica
 wIw
-xyw
-orN
-sDP
+lpd
+eRw
+ica
 bbh
-ahb
-sDP
-sDP
-hnz
-ahb
+viO
+ica
+ica
+ukI
+viO
 xzG
 xzG
 xzG
@@ -82666,18 +82803,18 @@ adJ
 adj
 dgC
 hwd
-whC
-sDP
-ahb
+iYy
+ica
+viO
 awm
 wAZ
-kuU
+rpy
 uuS
-ahb
+viO
 aLk
-sDP
-ahb
-ahb
+ica
+viO
+viO
 xzG
 xzG
 xzG
@@ -82968,17 +83105,17 @@ wRb
 ydX
 koL
 wSz
-whC
-whC
-ahb
-sDP
-orN
-ahb
-ahb
-ahb
-ahb
-ahb
-ahb
+iYy
+iYy
+viO
+ica
+eRw
+viO
+viO
+viO
+viO
+viO
+viO
 xzG
 xzG
 xzG
@@ -83270,12 +83407,12 @@ wRb
 qeo
 sfg
 wSz
-whC
-sDP
-sDP
+iYy
+ica
+ica
 udn
 ncs
-ahb
+viO
 xzG
 xzG
 xzG
@@ -83572,12 +83709,12 @@ vaG
 qeo
 mem
 wSz
-whC
-iyC
-kuU
+iYy
+dSf
+rpy
 mZg
-ahb
-ahb
+viO
+viO
 xzG
 xzG
 xzG
@@ -83874,11 +84011,11 @@ lXr
 qeo
 tOA
 nfj
-whC
+iYy
 eYj
-sDP
+ica
 gqL
-ahb
+viO
 xzG
 xzG
 xzG
@@ -84176,8 +84313,8 @@ wMP
 qeo
 dgC
 faJ
-whC
-orN
+iYy
+eRw
 nvh
 nvh
 fyY
@@ -91702,9 +91839,9 @@ ydA
 ydA
 ydA
 kVJ
-pVm
-rMd
-mbV
+lwY
+iHh
+xTp
 xts
 mQB
 sIf
@@ -94416,13 +94553,13 @@ sGX
 fot
 hjT
 snp
-snp
-guR
-lKU
-snp
-dMQ
-tow
-pnE
+vOf
+xpZ
+dvy
+gNJ
+nsn
+rVM
+kBc
 cnd
 vjZ
 mPx
@@ -94724,7 +94861,7 @@ mBz
 qyf
 oGA
 wDm
-wBI
+pnE
 qqD
 iEz
 jSC
@@ -95015,7 +95152,7 @@ cHM
 dbP
 xaN
 cOQ
-cOQ
+rXf
 xaN
 foB
 tDI
@@ -95024,10 +95161,10 @@ fot
 guR
 jgi
 lmf
-dMQ
+ekq
 ooR
-pnE
-tRl
+mWM
+tZl
 iEz
 iEz
 iEz
@@ -97425,8 +97562,8 @@ ahb
 iyC
 kuU
 rRk
-rXf
-hdT
+sDP
+whC
 csk
 hbY
 enc
