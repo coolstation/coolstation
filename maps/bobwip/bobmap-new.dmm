@@ -8318,6 +8318,10 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/white,
 /area/station/medical/medbay/lobby)
+"dXb" = (
+/obj/machinery/genetics_booth,
+/turf/simulated/floor/neutral/side,
+/area/station/crew_quarters/fitness)
 "dXg" = (
 /obj/stool/bench,
 /obj/landmark/start{
@@ -17911,10 +17915,6 @@
 	dir = 6
 	},
 /area/station/engine/elect)
-"ilz" = (
-/obj/disposalpipe/segment/ejection,
-/turf/simulated/wall,
-/area/station/crew_quarters/lounge)
 "ilD" = (
 /obj/table/auto,
 /obj/machinery/phone,
@@ -21691,6 +21691,16 @@
 	dir = 4
 	},
 /area/station/hallway/primary/west)
+"jQZ" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "jRd" = (
 /obj/cable{
 	icon_state = "2-8"
@@ -22106,6 +22116,7 @@
 	},
 /obj/machinery/door/airlock/maintenance,
 /obj/machinery/door/firedoor/border_only,
+/obj/access_spawn/engineering,
 /turf/simulated/floor/plating,
 /area/station/engine/engineering)
 "kbA" = (
@@ -25103,12 +25114,6 @@
 	dir = 10
 	},
 /area/station/science/teleporter)
-"lrj" = (
-/obj/disposalpipe/segment/food{
-	dir = 4
-	},
-/turf/simulated/floor,
-/area/station/crew_quarters/lounge)
 "lrt" = (
 /obj/disposalpipe/segment,
 /obj/machinery/door/airlock/syndicate{
@@ -35647,6 +35652,12 @@
 	},
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/treatment)
+"pWR" = (
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/crew_quarters/lounge)
 "pWV" = (
 /obj/grille/classic,
 /obj/cable{
@@ -36130,6 +36141,13 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/surgery)
+"qgt" = (
+/obj/wingrille_spawn/fakethindow/reinforced,
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/station/crew_quarters/lounge)
 "qgK" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -38795,15 +38813,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/east)
-"ruu" = (
-/obj/cable/blue{
-	icon_state = "2-4"
-	},
-/obj/disposalpipe/segment/food{
-	dir = 4
-	},
-/turf/simulated/floor,
-/area/station/crew_quarters/lounge)
 "ruA" = (
 /obj/item/storage/toilet/random{
 	dir = 4
@@ -42032,10 +42041,6 @@
 /obj/disposalpipe/segment/transport,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
-"sOl" = (
-/obj/machinery/genetics_booth,
-/turf/simulated/floor/neutral/side,
-/area/station/crew_quarters/fitness)
 "sOq" = (
 /obj/cable/conduit/segment/vertical,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
@@ -44666,6 +44671,15 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/surgery/storage)
+"tTq" = (
+/obj/cable/blue{
+	icon_state = "2-4"
+	},
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/crew_quarters/lounge)
 "tTH" = (
 /obj/cable/blue{
 	icon_state = "0-4"
@@ -45679,6 +45693,7 @@
 "upg" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/machinery/door/firedoor/border_only,
+/obj/access_spawn/engineering,
 /turf/simulated/floor/plating,
 /area/station/engine/engineering)
 "upU" = (
@@ -48475,16 +48490,6 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/specialroom/chapel,
 /area/station/chapel/sanctuary)
-"vzE" = (
-/obj/lattice{
-	dir = 4;
-	icon_state = "lattice-dir"
-	},
-/obj/disposalpipe/segment/food{
-	dir = 4
-	},
-/turf/space,
-/area/space)
 "vzK" = (
 /obj/item/brick,
 /turf/simulated/grass,
@@ -49171,6 +49176,10 @@
 /obj/table/wood/round/auto,
 /turf/simulated/floor/wood/seven,
 /area/station/crew_quarters/bar)
+"vQp" = (
+/obj/disposalpipe/segment/ejection,
+/turf/simulated/wall,
+/area/station/crew_quarters/lounge)
 "vQx" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -50705,13 +50714,6 @@
 	},
 /turf/simulated/floor/carpet/red/standard,
 /area/station/chapel/sanctuary)
-"wwe" = (
-/obj/wingrille_spawn/fakethindow/reinforced,
-/obj/disposalpipe/segment/food{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/station/crew_quarters/lounge)
 "wwf" = (
 /obj/machinery/light_switch/east,
 /obj/storage/secure/closet/civilian/bartender,
@@ -83211,7 +83213,7 @@ iqB
 xzG
 xzG
 xzG
-vzE
+jQZ
 xzG
 xzG
 xzG
@@ -83513,7 +83515,7 @@ iqB
 xzG
 xzG
 xzG
-vzE
+jQZ
 xzG
 xzG
 xzG
@@ -83815,7 +83817,7 @@ iqB
 xzG
 xzG
 xzG
-vzE
+jQZ
 xzG
 xzG
 xzG
@@ -84117,7 +84119,7 @@ iqB
 xzG
 xzG
 xzG
-vzE
+jQZ
 xzG
 xzG
 xzG
@@ -84419,7 +84421,7 @@ wgz
 wgz
 wSm
 wSm
-wwe
+qgt
 wgz
 wgz
 xzG
@@ -85023,7 +85025,7 @@ hus
 xZF
 xZF
 xZF
-lrj
+pWR
 xZF
 wgz
 wgz
@@ -85325,7 +85327,7 @@ mew
 mew
 iWM
 xZF
-ruu
+tTq
 igB
 muF
 ezn
@@ -85930,7 +85932,7 @@ mew
 iWM
 xZF
 oDe
-ilz
+vQp
 mAN
 mYs
 wgz
@@ -86579,7 +86581,7 @@ yhb
 yhb
 qPr
 ycy
-sOl
+dXb
 xaN
 fjs
 uBJ
