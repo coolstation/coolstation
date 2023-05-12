@@ -735,6 +735,7 @@
 					chump.on_chair = 0
 					chump.pixel_y = 0
 					chump.ceilingreach = 0
+					chump.lookingup = 0
 					chump.changeStatus("weakened", 1 SECOND)
 					chump.changeStatus("stunned", 2 SECONDS)
 					random_brute_damage(chump, 15)
@@ -810,6 +811,7 @@
 				to_buckle.set_loc(src.loc)
 				to_buckle.pixel_y = 10
 				H.ceilingreach = 1
+				H.lookingup = 1
 				if (src.anchored)
 					to_buckle.anchored = 1
 				H.on_chair = src
@@ -856,6 +858,7 @@
 		if (istype(H) && H.on_chair)// == 1)
 			M.pixel_y = 0
 			H.ceilingreach = 0
+			H.lookingup = 0
 			reset_anchored(M)
 			M.buckled = null
 			buckled_guy.force_laydown_standup()
