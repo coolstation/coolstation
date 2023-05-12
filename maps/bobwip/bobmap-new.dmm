@@ -37976,8 +37976,11 @@
 /turf/simulated/wall/r_wall,
 /area/station/engine/inner)
 "rav" = (
-/obj/wingrille_spawn/fakethindow/reinforced,
-/turf/simulated/floor/plating,
+/obj/machinery/door/airlock/glass,
+/obj/machinery/door/firedoor/border_only,
+/turf/simulated/floor/neutral/side{
+	dir = 8
+	},
 /area/station/hallway/secondary/northwest)
 "ray" = (
 /obj/disposaloutlet/north{
@@ -42332,12 +42335,15 @@
 	},
 /area/station/hallway/primary/central)
 "sXK" = (
-/obj/wingrille_spawn/fakethindow/reinforced,
 /obj/disposalpipe/segment/mail/vertical,
 /obj/cable/blue{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/obj/machinery/door/airlock/glass,
+/obj/machinery/door/firedoor/border_only,
+/turf/simulated/floor/neutral/side{
+	dir = 8
+	},
 /area/station/hallway/secondary/northwest)
 "sXL" = (
 /turf/simulated/floor/carpet/blue/standard/innercorner/sw,
@@ -43307,8 +43313,11 @@
 /area/station/hallway/primary/south)
 "tsz" = (
 /obj/disposalpipe/segment/crematorium,
-/obj/wingrille_spawn/fakethindow/reinforced,
-/turf/simulated/floor/plating,
+/obj/machinery/door/airlock/glass,
+/obj/machinery/door/firedoor/border_only,
+/turf/simulated/floor/neutral/side{
+	dir = 4
+	},
 /area/station/hallway/secondary/northwest)
 "tsC" = (
 /obj/plasticflaps,
@@ -49270,12 +49279,11 @@
 /area/station/hallway/primary/north)
 "vVz" = (
 /obj/disposalpipe/segment/morgue,
-/obj/machinery/door/airlock/glass,
-/obj/machinery/door/firedoor/border_only,
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/obj/wingrille_spawn/fakethindow/reinforced,
+/turf/simulated/floor/plating,
 /area/station/hallway/secondary/northwest)
 "vVP" = (
 /obj/machinery/shower{
