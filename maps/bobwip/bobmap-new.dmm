@@ -8318,10 +8318,6 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/white,
 /area/station/medical/medbay/lobby)
-"dXb" = (
-/obj/machinery/genetics_booth,
-/turf/simulated/floor/neutral/side,
-/area/station/crew_quarters/fitness)
 "dXg" = (
 /obj/stool/bench,
 /obj/landmark/start{
@@ -11165,6 +11161,12 @@
 /obj/machinery/light/small/auto/warm,
 /turf/simulated/floor/wood/two,
 /area/station/library)
+"fiu" = (
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/crew_quarters/lounge)
 "fiB" = (
 /obj/disposalpipe/segment{
 	dir = 8;
@@ -13521,6 +13523,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/north)
+"giG" = (
+/obj/machinery/genetics_booth,
+/turf/simulated/floor/neutral/side,
+/area/station/crew_quarters/fitness)
 "giP" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -19582,6 +19588,15 @@
 /obj/table/auto,
 /turf/simulated/floor,
 /area/station/janitor/office)
+"iWf" = (
+/obj/cable/blue{
+	icon_state = "2-4"
+	},
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/crew_quarters/lounge)
 "iWm" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/door/airlock/security,
@@ -21160,6 +21175,16 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/north)
+"jFg" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "jFu" = (
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/wall,
@@ -21691,16 +21716,6 @@
 	dir = 4
 	},
 /area/station/hallway/primary/west)
-"jQZ" = (
-/obj/lattice{
-	dir = 4;
-	icon_state = "lattice-dir"
-	},
-/obj/disposalpipe/segment/food{
-	dir = 4
-	},
-/turf/space,
-/area/space)
 "jRd" = (
 /obj/cable{
 	icon_state = "2-8"
@@ -35652,12 +35667,6 @@
 	},
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/treatment)
-"pWR" = (
-/obj/disposalpipe/segment/food{
-	dir = 4
-	},
-/turf/simulated/floor,
-/area/station/crew_quarters/lounge)
 "pWV" = (
 /obj/grille/classic,
 /obj/cable{
@@ -36141,13 +36150,6 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/surgery)
-"qgt" = (
-/obj/wingrille_spawn/fakethindow/reinforced,
-/obj/disposalpipe/segment/food{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/station/crew_quarters/lounge)
 "qgK" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -44671,15 +44673,6 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/surgery/storage)
-"tTq" = (
-/obj/cable/blue{
-	icon_state = "2-4"
-	},
-/obj/disposalpipe/segment/food{
-	dir = 4
-	},
-/turf/simulated/floor,
-/area/station/crew_quarters/lounge)
 "tTH" = (
 /obj/cable/blue{
 	icon_state = "0-4"
@@ -48337,7 +48330,7 @@
 	},
 /obj/machinery/door/airlock/external,
 /obj/access_spawn/cargo,
-/turf/space,
+/turf/simulated/floor/shuttlebay,
 /area/station/hangar/qm)
 "vvN" = (
 /turf/simulated/wall,
@@ -49176,10 +49169,6 @@
 /obj/table/wood/round/auto,
 /turf/simulated/floor/wood/seven,
 /area/station/crew_quarters/bar)
-"vQp" = (
-/obj/disposalpipe/segment/ejection,
-/turf/simulated/wall,
-/area/station/crew_quarters/lounge)
 "vQx" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -50845,6 +50834,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
 /area/station/hallway/primary/northeast)
+"wzn" = (
+/obj/disposalpipe/segment/ejection,
+/turf/simulated/wall,
+/area/station/crew_quarters/lounge)
 "wzw" = (
 /obj/item/raw_material/shard/glass,
 /turf/space,
@@ -51668,6 +51661,13 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor/wood,
 /area/station/bridge)
+"wOd" = (
+/obj/wingrille_spawn/fakethindow/reinforced,
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/station/crew_quarters/lounge)
 "wOm" = (
 /turf/simulated/wall/r_wall,
 /area/station/hallway/primary/southeast)
@@ -83213,7 +83213,7 @@ iqB
 xzG
 xzG
 xzG
-jQZ
+jFg
 xzG
 xzG
 xzG
@@ -83515,7 +83515,7 @@ iqB
 xzG
 xzG
 xzG
-jQZ
+jFg
 xzG
 xzG
 xzG
@@ -83817,7 +83817,7 @@ iqB
 xzG
 xzG
 xzG
-jQZ
+jFg
 xzG
 xzG
 xzG
@@ -84119,7 +84119,7 @@ iqB
 xzG
 xzG
 xzG
-jQZ
+jFg
 xzG
 xzG
 xzG
@@ -84421,7 +84421,7 @@ wgz
 wgz
 wSm
 wSm
-qgt
+wOd
 wgz
 wgz
 xzG
@@ -85025,7 +85025,7 @@ hus
 xZF
 xZF
 xZF
-pWR
+fiu
 xZF
 wgz
 wgz
@@ -85327,7 +85327,7 @@ mew
 mew
 iWM
 xZF
-tTq
+iWf
 igB
 muF
 ezn
@@ -85932,7 +85932,7 @@ mew
 iWM
 xZF
 oDe
-vQp
+wzn
 mAN
 mYs
 wgz
@@ -86581,7 +86581,7 @@ yhb
 yhb
 qPr
 ycy
-dXb
+giG
 xaN
 fjs
 uBJ
@@ -90783,7 +90783,7 @@ xaN
 oPI
 oPI
 oPI
-xaN
+tyd
 oPI
 oPI
 oPI
@@ -92286,7 +92286,7 @@ eVj
 bFI
 pTF
 jpm
-oSB
+bMu
 bFI
 ycy
 ygL
@@ -92588,8 +92588,8 @@ wOL
 bFI
 pTF
 jpm
-bMu
-bFI
+oSB
+mtD
 ycy
 ygL
 ygL
@@ -93193,7 +93193,7 @@ rBD
 vTC
 jpm
 oSB
-mtD
+kiY
 ycy
 ycy
 ycy
@@ -93495,7 +93495,7 @@ rBD
 mcN
 jpm
 oSB
-bFI
+mtD
 ycy
 ygL
 ygL
@@ -94099,7 +94099,7 @@ mcN
 mcN
 jpm
 oSB
-mtD
+bFI
 ycy
 ygL
 bmK
@@ -94401,7 +94401,7 @@ mcN
 mcN
 rHD
 wQT
-bFI
+mtD
 ycy
 ygL
 ygL
@@ -94703,7 +94703,7 @@ sol
 sol
 mQk
 bMu
-bFI
+mtD
 ycy
 ygL
 ygL
@@ -95307,7 +95307,7 @@ pCy
 pCy
 pCy
 xad
-mtD
+bFI
 cPn
 bck
 ygL
