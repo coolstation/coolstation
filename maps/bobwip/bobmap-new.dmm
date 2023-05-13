@@ -183,6 +183,9 @@
 	density = 0;
 	pixel_y = 16
 	},
+/obj/machinery/light/fluorescent/ceiling/neutral{
+	dir = 4
+	},
 /turf/simulated/floor/red/checker,
 /area/station/security/equipment)
 "aem" = (
@@ -2783,6 +2786,10 @@
 /obj/machinery/light/small/auto/neutral,
 /turf/simulated/floor,
 /area/station/hallway/secondary/northwest)
+"bpG" = (
+/obj/machinery/light/small/auto/neutral,
+/turf/simulated/floor,
+/area/station/crew_quarters/fitness)
 "bpR" = (
 /obj/cable/blue{
 	icon_state = "0-2"
@@ -3316,10 +3323,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
-"bCJ" = (
-/obj/machinery/genetics_booth,
-/turf/simulated/floor,
-/area/station/crew_quarters/fitness)
 "bCZ" = (
 /obj/table/wood/round/auto,
 /obj/item/clothing/head/cowboy,
@@ -5040,15 +5043,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
 /area/station/quartermaster/cargobay)
-"cvj" = (
-/obj/cable/blue{
-	icon_state = "2-4"
-	},
-/obj/disposalpipe/segment/food{
-	dir = 4
-	},
-/turf/simulated/floor,
-/area/station/crew_quarters/lounge)
 "cvk" = (
 /obj/cable/blue{
 	icon_state = "2-8"
@@ -7918,6 +7912,11 @@
 /obj/reagent_dispensers/fueltank,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/central)
+"dLO" = (
+/obj/disposalpipe/segment/crematorium,
+/obj/machinery/light/small/auto/neutral,
+/turf/simulated/floor,
+/area/station/hallway/primary/central)
 "dMj" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -8355,11 +8354,6 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor/specialroom/freezer/blue,
 /area/station/crew_quarters/kitchen/freezer)
-"dXV" = (
-/obj/disposalpipe/segment/crematorium,
-/obj/machinery/light/small/auto/neutral,
-/turf/simulated/floor,
-/area/station/hallway/primary/central)
 "dYa" = (
 /turf/simulated/wall/asteroid/lighted,
 /area/listeningpost/power)
@@ -11404,6 +11398,10 @@
 	dir = 1
 	},
 /area/station/hallway/primary/southeast)
+"fmv" = (
+/obj/reagent_dispensers/watertank/fountain,
+/turf/simulated/floor/wood/three,
+/area/station/crew_quarters/fitness)
 "fmR" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -12298,6 +12296,10 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
+"fGj" = (
+/obj/machinery/genetics_booth,
+/turf/simulated/floor,
+/area/station/crew_quarters/fitness)
 "fGA" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -20803,10 +20805,6 @@
 	},
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
-"jvD" = (
-/obj/machinery/light/small/auto/neutral,
-/turf/simulated/floor,
-/area/station/crew_quarters/fitness)
 "jvF" = (
 /obj/decal/cleanable/dirt/dirt4,
 /turf/simulated/floor/plating,
@@ -21705,6 +21703,15 @@
 	mail_tag = "Crew Quarters";
 	name = "Crew Quarters"
 	})
+"jQN" = (
+/obj/cable/blue{
+	icon_state = "2-4"
+	},
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/crew_quarters/lounge)
 "jQV" = (
 /obj/machinery/firealarm{
 	dir = 4;
@@ -29152,9 +29159,6 @@
 	dir = 4
 	},
 /obj/stool/bench,
-/obj/machinery/light/fluorescent/ceiling/neutral{
-	dir = 4
-	},
 /turf/simulated/floor/red/checker,
 /area/station/security/equipment)
 "ndP" = (
@@ -32363,10 +32367,6 @@
 	},
 /turf/simulated/floor/engine,
 /area/station/engine/inner)
-"oxk" = (
-/obj/disposalpipe/segment/ejection,
-/turf/simulated/wall,
-/area/station/crew_quarters/lounge)
 "oxn" = (
 /obj/cable,
 /obj/cable{
@@ -35539,9 +35539,6 @@
 /area/station/hangar/qm)
 "pTW" = (
 /obj/disposalpipe/segment/brig,
-/obj/machinery/light/fluorescent/ceiling/neutral{
-	dir = 4
-	},
 /turf/simulated/floor/red/checker,
 /area/station/security/equipment)
 "pUn" = (
@@ -39756,10 +39753,6 @@
 /obj/decal/poster/wallsign/warning3,
 /turf/simulated/wall/r_wall,
 /area/station/crewquarters/fuq3)
-"rNM" = (
-/obj/reagent_dispensers/watertank/fountain,
-/turf/simulated/floor/wood/three,
-/area/station/crew_quarters/fitness)
 "rNN" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -45561,6 +45554,10 @@
 /obj/window_blinds,
 /turf/simulated/floor/plating,
 /area/station/medical/breakroom)
+"ulC" = (
+/obj/disposalpipe/segment/ejection,
+/turf/simulated/wall,
+/area/station/crew_quarters/lounge)
 "ulL" = (
 /obj/disposalpipe/switch_junction/right/west{
 	color = "#8dc2f4"
@@ -85328,7 +85325,7 @@ mew
 mew
 iWM
 xZF
-cvj
+jQN
 igB
 muF
 ezn
@@ -85933,7 +85930,7 @@ mew
 iWM
 xZF
 oDe
-oxk
+ulC
 mAN
 mYs
 wgz
@@ -88092,7 +88089,7 @@ yhb
 yhb
 hPW
 vlK
-rNM
+fmv
 oYR
 oYR
 oYR
@@ -90791,7 +90788,7 @@ oPI
 xaN
 gMV
 uaL
-bCJ
+fGj
 pVm
 pVm
 vPC
@@ -91084,7 +91081,7 @@ bFI
 xaN
 lrQ
 ycy
-jvD
+bpG
 ycy
 ycy
 ycy
@@ -95302,9 +95299,9 @@ osk
 pCy
 pCy
 pCy
-dXV
+dLO
 pCy
-dXV
+dLO
 pCy
 pCy
 xad

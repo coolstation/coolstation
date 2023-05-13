@@ -460,7 +460,7 @@
 		name = "\improper 'I vored' sticker"
 		desc = "You vored! That means you totally ate someone. Or maybe you got ate? But hey, at least you got a sticker for it!"
 		icon_state = "gold_star"
-		placement = "Voter"
+		placement = "Vorer"
 
 //	-----------------------------------
 //			v Spy Sticker Stuff v
