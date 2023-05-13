@@ -964,6 +964,10 @@
 	},
 /turf/simulated/floor/white,
 /area/station/science/server_room)
+"auW" = (
+/obj/disposalpipe/segment/ejection,
+/turf/simulated/wall,
+/area/station/crew_quarters/lounge)
 "avd" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -2624,12 +2628,6 @@
 	dir = 4
 	},
 /area/station/mining/dock)
-"bmn" = (
-/obj/disposalpipe/segment/food{
-	dir = 4
-	},
-/turf/simulated/floor,
-/area/station/crew_quarters/lounge)
 "bmq" = (
 /obj/stool/chair/wooden{
 	dir = 8
@@ -2887,6 +2885,13 @@
 	dir = 8
 	},
 /area/station/medical/medbay/treatment)
+"bsF" = (
+/obj/wingrille_spawn/fakethindow/reinforced,
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/station/crew_quarters/lounge)
 "bsK" = (
 /obj/machinery/computer/pathology{
 	dir = 8
@@ -7364,6 +7369,15 @@
 /obj/machinery/phone,
 /turf/simulated/floor/white,
 /area/station/medical/medbooth)
+"dBf" = (
+/obj/cable/blue{
+	icon_state = "2-4"
+	},
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/crew_quarters/lounge)
 "dBh" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -8029,6 +8043,10 @@
 	dir = 1
 	},
 /area/station/mining/lobby)
+"dQc" = (
+/obj/machinery/light/small/auto/neutral,
+/turf/simulated/floor,
+/area/station/crew_quarters/fitness)
 "dQA" = (
 /obj/lattice,
 /obj/grille/catwalk,
@@ -8195,10 +8213,6 @@
 	name = "test chamber plating"
 	},
 /area/station/science/testchamber)
-"dUM" = (
-/obj/machinery/light/small/auto/neutral,
-/turf/simulated/floor,
-/area/station/crew_quarters/fitness)
 "dUP" = (
 /obj/decal/mule/dropoff,
 /turf/simulated/floor/white,
@@ -9289,13 +9303,6 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/head)
-"esE" = (
-/obj/wingrille_spawn/fakethindow/reinforced,
-/obj/disposalpipe/segment/food{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/station/crew_quarters/lounge)
 "esR" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -11005,10 +11012,6 @@
 /obj/reagent_dispensers/fueltank,
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/north)
-"ffe" = (
-/obj/machinery/genetics_booth,
-/turf/simulated/floor/neutral/side,
-/area/station/crew_quarters/fitness)
 "ffi" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -13481,6 +13484,12 @@
 /obj/rack,
 /turf/simulated/floor,
 /area/station/crew_quarters/market)
+"gib" = (
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/crew_quarters/lounge)
 "gic" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/cable/blue{
@@ -35845,6 +35854,10 @@
 /obj/access_spawn/engineering_power,
 /turf/simulated/floor/yellow,
 /area/station/engine/substation/east)
+"pZh" = (
+/obj/machinery/genetics_booth,
+/turf/simulated/floor/neutral/side,
+/area/station/crew_quarters/fitness)
 "pZr" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -44847,6 +44860,11 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
+"tWB" = (
+/obj/disposalpipe/segment/crematorium,
+/obj/machinery/light/small/auto/neutral,
+/turf/simulated/floor,
+/area/station/hallway/primary/central)
 "tWH" = (
 /obj/machinery/power/data_terminal,
 /obj/cable/brown{
@@ -47253,15 +47271,6 @@
 	dir = 1
 	},
 /area/station/security/main)
-"uXN" = (
-/obj/cable/blue{
-	icon_state = "2-4"
-	},
-/obj/disposalpipe/segment/food{
-	dir = 4
-	},
-/turf/simulated/floor,
-/area/station/crew_quarters/lounge)
 "uXS" = (
 /obj/machinery/light/fluorescent/auto/neutral,
 /obj/disposalpipe/segment/morgue{
@@ -49354,10 +49363,6 @@
 /obj/wingrille_spawn/fakethindow/reinforced,
 /turf/simulated/floor/plating,
 /area/station/hallway/secondary/northwest)
-"vVL" = (
-/obj/disposalpipe/segment/ejection,
-/turf/simulated/wall,
-/area/station/crew_quarters/lounge)
 "vVP" = (
 /obj/machinery/shower{
 	dir = 4
@@ -84422,7 +84427,7 @@ wgz
 wgz
 wSm
 wSm
-esE
+bsF
 wgz
 wgz
 xzG
@@ -85026,7 +85031,7 @@ hus
 xZF
 xZF
 xZF
-bmn
+gib
 xZF
 wgz
 wgz
@@ -85328,7 +85333,7 @@ mew
 mew
 iWM
 xZF
-uXN
+dBf
 igB
 muF
 ezn
@@ -85933,7 +85938,7 @@ mew
 iWM
 xZF
 oDe
-vVL
+auW
 mAN
 mYs
 wgz
@@ -86582,7 +86587,7 @@ yhb
 yhb
 qPr
 ycy
-ffe
+pZh
 xaN
 fjs
 uBJ
@@ -91084,7 +91089,7 @@ bFI
 xaN
 lrQ
 ycy
-dUM
+dQc
 ycy
 ycy
 ycy
@@ -95302,9 +95307,9 @@ osk
 pCy
 pCy
 pCy
+tWB
 pCy
-pCy
-pCy
+tWB
 pCy
 pCy
 xad
