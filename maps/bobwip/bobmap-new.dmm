@@ -2786,10 +2786,6 @@
 /obj/machinery/light/small/auto/neutral,
 /turf/simulated/floor,
 /area/station/hallway/secondary/northwest)
-"bpG" = (
-/obj/machinery/light/small/auto/neutral,
-/turf/simulated/floor,
-/area/station/crew_quarters/fitness)
 "bpR" = (
 /obj/cable/blue{
 	icon_state = "0-2"
@@ -7912,11 +7908,6 @@
 /obj/reagent_dispensers/fueltank,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/central)
-"dLO" = (
-/obj/disposalpipe/segment/crematorium,
-/obj/machinery/light/small/auto/neutral,
-/turf/simulated/floor,
-/area/station/hallway/primary/central)
 "dMj" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -8005,6 +7996,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/nw)
+"dOE" = (
+/obj/machinery/light/small/auto/neutral,
+/turf/simulated/floor,
+/area/station/crew_quarters/fitness)
 "dOT" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/bluewhite{
@@ -11398,10 +11393,6 @@
 	dir = 1
 	},
 /area/station/hallway/primary/southeast)
-"fmv" = (
-/obj/reagent_dispensers/watertank/fountain,
-/turf/simulated/floor/wood/three,
-/area/station/crew_quarters/fitness)
 "fmR" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -12296,10 +12287,6 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
-"fGj" = (
-/obj/machinery/genetics_booth,
-/turf/simulated/floor,
-/area/station/crew_quarters/fitness)
 "fGA" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -19552,6 +19539,11 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor,
 /area/station/hallway/primary/northeast)
+"iTS" = (
+/obj/disposalpipe/segment/crematorium,
+/obj/machinery/light/small/auto/neutral,
+/turf/simulated/floor,
+/area/station/hallway/primary/central)
 "iUv" = (
 /obj/cable/white{
 	icon_state = "2-8"
@@ -21703,15 +21695,6 @@
 	mail_tag = "Crew Quarters";
 	name = "Crew Quarters"
 	})
-"jQN" = (
-/obj/cable/blue{
-	icon_state = "2-4"
-	},
-/obj/disposalpipe/segment/food{
-	dir = 4
-	},
-/turf/simulated/floor,
-/area/station/crew_quarters/lounge)
 "jQV" = (
 /obj/machinery/firealarm{
 	dir = 4;
@@ -39399,6 +39382,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/solar/west)
+"rGN" = (
+/obj/reagent_dispensers/watertank/fountain,
+/turf/simulated/floor/wood/three,
+/area/station/crew_quarters/fitness)
 "rHe" = (
 /obj/disposalpipe/segment/ejection{
 	dir = 4
@@ -42800,6 +42787,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/north)
+"teU" = (
+/obj/disposalpipe/segment/ejection,
+/turf/simulated/wall,
+/area/station/crew_quarters/lounge)
 "tfj" = (
 /obj/machinery/light/small{
 	dir = 1;
@@ -45554,10 +45545,6 @@
 /obj/window_blinds,
 /turf/simulated/floor/plating,
 /area/station/medical/breakroom)
-"ulC" = (
-/obj/disposalpipe/segment/ejection,
-/turf/simulated/wall,
-/area/station/crew_quarters/lounge)
 "ulL" = (
 /obj/disposalpipe/switch_junction/right/west{
 	color = "#8dc2f4"
@@ -48203,6 +48190,7 @@
 /area/listeningpost/power)
 "vrV" = (
 /obj/disposaloutlet{
+	density = 0;
 	desc = "An outlet for the pneumatic mail system.";
 	dir = 4;
 	name = "undeliverable mail outlet";
@@ -49178,6 +49166,10 @@
 /obj/table/wood/round/auto,
 /turf/simulated/floor/wood/seven,
 /area/station/crew_quarters/bar)
+"vQs" = (
+/obj/machinery/genetics_booth,
+/turf/simulated/floor,
+/area/station/crew_quarters/fitness)
 "vQx" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -51578,6 +51570,15 @@
 	},
 /turf/simulated/floor/wood/three,
 /area/station/crew_quarters/fitness)
+"wMf" = (
+/obj/cable/blue{
+	icon_state = "2-4"
+	},
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/crew_quarters/lounge)
 "wMk" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -85325,7 +85326,7 @@ mew
 mew
 iWM
 xZF
-jQN
+wMf
 igB
 muF
 ezn
@@ -85930,7 +85931,7 @@ mew
 iWM
 xZF
 oDe
-ulC
+teU
 mAN
 mYs
 wgz
@@ -88089,7 +88090,7 @@ yhb
 yhb
 hPW
 vlK
-fmv
+rGN
 oYR
 oYR
 oYR
@@ -90788,7 +90789,7 @@ oPI
 xaN
 gMV
 uaL
-fGj
+vQs
 pVm
 pVm
 vPC
@@ -91081,7 +91082,7 @@ bFI
 xaN
 lrQ
 ycy
-bpG
+dOE
 ycy
 ycy
 ycy
@@ -95299,9 +95300,9 @@ osk
 pCy
 pCy
 pCy
-dLO
+iTS
 pCy
-dLO
+iTS
 pCy
 pCy
 xad
