@@ -141,7 +141,7 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 		ckey = "mybluecorners"
 		name = "Office of Dotty Spud"
 	nevada
-		cket = "spacingnevada"
+		ckey = "spacingnevada"
 		name = "Claire's Office of Claire"
 	patrickstar
 		ckey = ""
