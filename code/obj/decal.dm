@@ -401,6 +401,22 @@ obj/decal/fakeobjects/teleport_pad
 	anchored = 1
 	density = 1
 
+/obj/decal/fakeobjects/nestofmattresses //gross
+	name = "smelly pile of mattresses"
+	desc = "Some kind of foul, horrible creature has piled up a bunch of old mattresses here???"
+	icon = 'icons/misc/96x64.dmi'
+	icon_state = "mattresspile"
+	anchored = 1
+	density = 1
+
+/obj/decal/fakeobjects/hose //gross
+	name = "garden hose"
+	desc = "A garden hose stand, with spigot. You don't feel like touching this."
+	icon = 'icons/obj/decoration.dmi'
+	icon_state = "hose"
+	anchored = 1
+	density = 1
+
 //sealab prefab fakeobjs
 
 /obj/decal/fakeobjects/pcb

@@ -539,8 +539,8 @@
 			desc = "A sign that lets you know that this is, in fact, a area."
 			icon_state = "wall_area"
 			popup_win = 1
-			imgw = 180
-			imgh = 230
+			imgw = 185
+			imgh = 235
 			img = "images/arts/posters/sign-area.jpg"
 
 		poster_hair
