@@ -1,10 +1,13 @@
-
+///Max stack size for lining
 #define MAXLINING 40
+
+///Neon lining autoplacement vars
+#define AUTOPLACE_STRUCTURAL 1 //Walls, doors and windows
 
 /// The neon lining object, used for placing neon lining.
 /obj/item/neon_lining
 	name = "neon lining"
-	var/base_name = "neon lining"
+	var/base_name = "neon lining" //<- probably superfluous? how much naming is going on with neon lining coils, the item that lets you place neon lining?
 	desc = "A coil of neon lining."
 	amount = 1
 	max_stack = MAXLINING
@@ -24,6 +27,12 @@
 	event_handler_flags = USE_GRAB_CHOKE | USE_FLUID_ENTER
 	special_grab = /obj/item/grab
 	inventory_counter_enabled = 1
+
+
+	abilities = list(/obj/ability_button/lining_auto_walls)
+
+	///Flags for the various autopositioning settings
+	var/auto_flags = 0
 
 	var/lining_item_color = "blue"
 
@@ -126,11 +135,80 @@
 		boutput(user, "You can't lay neon lining at a place that far away.")
 		return
 
-	else
-		var/obj/neon_lining/C = new /obj/neon_lining(F, user.dir, src.lining_item_color)
+	else //Placing neon
+		var/obj/neon_lining/C
+		if (!auto_flags) //No autoplacement: just follow user dir
+			C = new /obj/neon_lining(F, user.dir, src.lining_item_color)
+		else //Funky stuff
+			var/to_line_along = 0 //Directions we want to go along cause there's walls there or whatever
+			if (auto_flags & AUTOPLACE_STRUCTURAL)
+				for(var/d in cardinal)
+					var/turf/T = get_turf(get_step(F, d))
+					if (!T || T.density) //Is a wall, or we're at the edge of the map which I feel might as well be neon-lined
+						to_line_along |= d
+						continue
+					if (locate(/obj/window) in T) //Can't be arsed to check thindows
+						to_line_along |= d
+						continue
+					if (locate(/obj/machinery/door/airlock) in T)
+						to_line_along |= d
+						continue
+
+			//Now to interpret what walls we're lining along
+			if (!to_line_along) //No nearby walls, default to straight & user dir
+				C = new /obj/neon_lining(F, user.dir, src.lining_item_color)
+
+			else if (to_line_along in cardinal) //one wall
+				C = new /obj/neon_lining(F, to_line_along, src.lining_item_color)
+
+			else if (to_line_along == (NORTH | SOUTH)) //Opposite walls, we need to use & spawn 2 pieces for this
+				if (src.amount > 1)
+					C = new /obj/neon_lining(F, NORTH, src.lining_item_color)
+					C.add_fingerprint(user)
+					change_stack_amount(-1)
+				C = new /obj/neon_lining(F, SOUTH, src.lining_item_color)
+
+			else if (to_line_along == (EAST | WEST))  //idem but other walls
+				if (src.amount > 1)
+					C = new /obj/neon_lining(F, EAST, src.lining_item_color)
+					C.add_fingerprint(user)
+					change_stack_amount(-1)
+				C = new /obj/neon_lining(F, WEST, src.lining_item_color)
+
+			else if (to_line_along == (NORTH | SOUTH | EAST | WEST)) //All walls? hope you like your 1x1 neon cell
+				C = new /obj/neon_lining(F, SOUTH, src.lining_item_color, 1) //shape 1 is circle
+
+			else
+				var/non_lining = to_line_along ^ (NORTH | SOUTH | EAST | WEST) //xor to maybe get a single dir out
+				if (non_lining in cardinal) //cause if that's the case we've got 3 walls
+					C = new /obj/neon_lining(F, turn(non_lining, 180), src.lining_item_color, 4) //4 is a u piece
+				else //By process of elimination, a corner
+					C = new /obj/neon_lining(F, turn(to_line_along, -45), src.lining_item_color, 5) //5 i a corner
+
+
 		boutput(user, "You set some neon lining on the floor.")
 		C.add_fingerprint(user)
 		change_stack_amount(-1)
 	return
 
 #undef MAXLINING
+
+
+//Neon lining auto-placement
+//cause jeez it's tedious
+
+/obj/ability_button/lining_auto_walls
+	name = "Toggle wall/window autoorient"
+	icon_state = "rocketshoes"
+
+	execute_ability()
+		var/obj/item/neon_lining/N = the_item
+		if (N.auto_flags & AUTOPLACE_STRUCTURAL)
+			N.auto_flags &= ~AUTOPLACE_STRUCTURAL
+			boutput(the_mob, "<span class='notice'>No longer orienting lining along structural elements.</span>")
+		else
+			N.auto_flags |= AUTOPLACE_STRUCTURAL
+			boutput(the_mob, "<span class='notice'>Now orienting lining along structural elements.</span>")
+		..()
+
+#undef AUTOPLACE_STRUCTURAL

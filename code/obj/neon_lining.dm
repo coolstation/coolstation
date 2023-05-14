@@ -29,9 +29,10 @@
 	///The overlay image which hosts the glowing parts.
 	var/image/glow
 
-	New(loc, set_rotation = SOUTH, set_color = "blue")
+	New(loc, set_rotation = SOUTH, set_color = "blue", set_shape = LINING_STRAIGHT)
 		. = ..()
 		lining_rotation = set_rotation
+		lining_shape = set_shape
 		//set_dir(lining_rotation)
 		if (set_color in list("blue", "pink", "yellow"))
 			lining_color = set_color
