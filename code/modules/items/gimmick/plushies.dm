@@ -174,6 +174,10 @@
 	name = "possum plush toy"
 	icon_state = "possum"
 
+/obj/item/toy/plush/small/skounk
+	name = "skounk plush toy"
+	icon_state = "skounk"
+
 /obj/item/toy/plush/small/brullbar
 	name = "brullbar plush toy"
 	icon_state = "brullbar"

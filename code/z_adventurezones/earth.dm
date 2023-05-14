@@ -158,6 +158,9 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 	sheezius
 		ckey = "sheezius"
 		name = "Claire's Office of Claire"
+	stardust
+		ckey = "stardust"
+		name = "Office of Stardust"
 	tamber
 		ckey = "tamber"
 		name = "Office of Tamber"
