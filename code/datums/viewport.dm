@@ -112,6 +112,9 @@
 	set name = "EXPERIMENTAL: Create Viewport"
 	set desc = "Expand your powers with Nanotransen's Viewportifier!"
 
+	if (ACTION_GOVERNOR_BLOCKED(AI_GOVERNOR_VIEWPORTS))
+		boutput( src, "<span class='alert'>You have lost the ability to make viewports.</span>" )
+		return
 
 	var/list/viewports = client.getViewportsByType("AI: Viewport")
 	if(viewports.len >= 5)
