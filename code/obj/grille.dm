@@ -83,6 +83,7 @@
 		auto = FALSE
 		connects_to_turf = null
 		connects_to_turf = null
+		flags = FPRINT | CONDUCT | USEDELAY | MINERAL_MAGNET_SAFE
 
 		update_icon(special_icon_state)
 			if (ruined)
