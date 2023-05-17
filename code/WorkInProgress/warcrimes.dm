@@ -105,22 +105,25 @@ var/fartcount = 0
 
 
 
+/obj/decal/fakeobjects/surfer
+	icon = 'icons/obj/large/64x32.dmi'
+	icon_state = "surfer"
+	name = "a piece of debris!"
+	desc = "i think i've figured out a way!"
 
 
-
-
-obj/decal/fakeobjects/thrust
+/obj/decal/fakeobjects/thrust
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "sparkle_ions"
 	name = "ionized exhaust"
 	desc = "Thankfully harmless, to registered employees anyway."
 
-obj/decal/fakeobjects/thrust/flames
+/obj/decal/fakeobjects/thrust/flames
 	icon_state = "engineshit"
-obj/decal/fakeobjects/thrust/flames2
+/obj/decal/fakeobjects/thrust/flames2
 	icon_state = "engineshit2"
 
-obj/item/paper/tug/invoice
+/obj/item/paper/tug/invoice
 	name = "Big Yank's Space Tugs, Limited."
 	desc = "Looks like a bill of sale."
 	info = {"<b>Client:</b> Bill, John
@@ -131,7 +134,7 @@ obj/item/paper/tug/invoice
 			<br><b>Total Charge:</b> 17,440 paid in full with value-added meat.
 			<br>Big Yank's Cheap Tug"}
 
-obj/item/paper/tug/warehouse
+/obj/item/paper/tug/warehouse
 	name = "Big Yank's Space Tugs, Limited."
 	desc = "Looks like a bill of sale. It is blank"
 	info = {"<b>Client:</b>
