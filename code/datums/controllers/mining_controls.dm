@@ -30,8 +30,6 @@ var/list/asteroid_blocked_turfs = list()
 	var/list/small_encounters = list()
 	var/list/mining_encounters_selectable = list()
 
-	var/list/magnet_do_not_erase = list(/obj/securearea,/obj/forcefield/mining,/obj/grille/catwalk,/obj/grille/catwalk/cross, /obj/overlay)
-
 	New()
 		..()
 		for (var/X in childrentypesof(/datum/ore) - /datum/ore/event)
@@ -200,6 +198,7 @@ var/list/asteroid_blocked_turfs = list()
 	density = 0
 	invisibility = 101
 	anchored = 1
+	flags = FPRINT | MINERAL_MAGNET_SAFE
 
 /// *** MISC *** ///
 

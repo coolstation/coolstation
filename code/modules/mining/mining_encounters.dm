@@ -909,11 +909,11 @@
 		var/list/ores_to_pick = list()
 		switch(rarity_roller)
 			if(3) // rare tier
-				ores_to_pick = mining_controls.ore_types_rare + (spicy ? mining_controls.ore_types_rare_spicy : null)
+				ores_to_pick = (spicy ? (mining_controls.ore_types_rare + mining_controls.ore_types_rare_spicy) : mining_controls.ore_types_rare) //These statements are ugly but oops adding null to the ore list before
 			if(2) // uncommon tier
-				ores_to_pick = mining_controls.ore_types_uncommon + (spicy ? mining_controls.ore_types_uncommon_spicy : null)
+				ores_to_pick = (spicy ? (mining_controls.ore_types_uncommon + mining_controls.ore_types_uncommon_spicy) : mining_controls.ore_types_uncommon) //(IDK how to do it better)
 			else // common tier
-				ores_to_pick = mining_controls.ore_types_common + (spicy ? mining_controls.ore_types_common_spicy : null)
+				ores_to_pick = (spicy ? (mining_controls.ore_types_common + mining_controls.ore_types_common_spicy) : mining_controls.ore_types_common)
 
 		var/datum/ore/O = pick(ores_to_pick)
 		var/ore_tiles = rand(O.tiles_per_rock_min,O.tiles_per_rock_max)

@@ -134,6 +134,7 @@
 	var/scan_range = 7
 	var/turf/magnetic_center
 	alpha = 128
+	flags = MINERAL_MAGNET_SAFE
 
 	small
 		width = 7
@@ -151,7 +152,7 @@
 		var/turf/origin = get_turf(src)
 		for (var/turf/T in block(origin, locate(origin.x + width - 1, origin.y + height - 1, origin.z)))
 			for (var/obj/O in T)
-				if (!(O.type in mining_controls.magnet_do_not_erase) && !istype(O, /obj/magnet_target_marker))
+				if (!(O.flags & MINERAL_MAGNET_SAFE))
 					qdel(O)
 			T.overlays.len = 0 //clear out the astroid edges and scan effects
 			T.ReplaceWithSpace()
@@ -644,7 +645,7 @@
 		build_icon()
 
 		for (var/obj/O in mining_controls.magnet_area.contents)
-			if (!(O.type in mining_controls.magnet_do_not_erase))
+			if (!(O.flags & MINERAL_MAGNET_SAFE))
 				qdel(O)
 		for (var/turf/simulated/T in mining_controls.magnet_area.contents)
 			if (!istype(T,/turf/simulated/floor/airless/plating/catwalk/))
@@ -2136,6 +2137,7 @@ obj/item/clothing/gloves/concussive
 	density = 1
 	opacity = 0
 	anchored = 0
+	processing_tier = PROCESSING_HALF //~0.8Hz
 	var/active = 0
 	var/cell = null
 	var/target = null
