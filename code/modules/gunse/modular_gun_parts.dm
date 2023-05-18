@@ -430,39 +430,41 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "Improvised Short Barrel"
 	desc = "Some pipe shrouded with the remains of a soviet spacesuit"
 	spread_angle = -2
+	jam_frequency_fire = -3
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "stubby"
-	length = 15
+	length = 13
 	icon_state = "improvshortbarrel"
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
 /obj/item/gun_parts/barrel/soviet/improvlong
 	name = "Improvised Long Barrel"
-	desc = "Several mismatched parts from old rifles, welded together just for you"
+	desc = "Several mismatched parts from old hunting rifles, all welded together."
 	spread_angle = -4
-	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
+	jam_frequency_fire = 5
+	part_DRM = GUN_FOSS | GUN_SOVIET |
 	name_addition = "rifled"
-	length = 53
+	length = 35
 	icon_state = "longimprovbarrel"
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
-/obj/item/gun_parts/barrel/soviet/improvlong
+/obj/item/gun_parts/barrel/soviet/improvlong/trans
 	name = "Improvised Long Barrel"
-	desc = "Several mismatched parts from old rifles. Someone painted a trans flag on it"
-	spread_angle = -5
-	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
-	name_addition = "rifled"
-	length = 53
+	desc = "Several mismatched parts from old hunting rifles. Someone painted a trans flag on it"
+	spread_angle = -4
+	jam_frequency_fire = 5
+	part_DRM = GUN_FOSS | GUN_SOVIET |
+	length = 35
 	icon_state = "improvtransbarrel"
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
 /obj/item/gun_parts/barrel/soviet/ppsh
 	name = "Historical barrel"
 	desc = "This really belongs in a museum"
-	spread_angle = -3
+	spread_angle = -2
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
-	name_addition = "Vintage"
-	length = 27
+	name_addition = "vintage"
+	length = 25
 	icon_state = "historicbarrel"
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
@@ -788,29 +790,39 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "juicer_drum"
 	overlay_y = 8
 
-/obj/item/gun_parts/magazine/soviet/tenround //no name additions for the next two. Don't change it!- eagle
+/obj/item/gun_parts/magazine/soviet/ak/thirdak //no name additions for the next two. Don't change it!- eagle
 	name = "the bottom third of a AK magazine"
 	desc = "Some fuckin asshole took the other two thirds!"
-	max_ammo_capacity = 10
-	jam_frequency_reload = 10
+	max_ammo_capacity = 3
+	jam_frequency_reload = 1
 	icon_state = "thirdcapmag"
 	part_DRM = GUN_SOVIET
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
 
-/obj/item/gun_parts/magazine/soviet/halfak
+/obj/item/gun_parts/magazine/soviet/ak/halfak
 	name = "Half a AK mag"
 	desc = "Another sawed in half AK magazine. Bummer."
-	max_ammo_capacity = 15
+	max_ammo_capacity = 5
 	jam_frequency_reload = 5
 	icon_state = "halfcapmag"
 	part_DRM = GUN_SOVIET
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
 /obj/item/gun_parts/magazine/soviet/ak
+	name = "Gunked up magazine"
+	desc = "It's full of gunk and rust. Shit."
+	max_ammo_capacity = 8
+	jam_frequency_reload = 10
+	name_addition = "intact"
+	icon_state = "akmag"
+	part_DRM = GUN_SOVIET
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+
+/obj/item/gun_parts/magazine/soviet/ak/ungunked
 	name = "Intact AK magazine"
 	desc = "One of the few still intact AK mags this side of the frontier! Score!"
-	max_ammo_capacity = 30 // ITS A FULL AK MAG OKAY
+	max_ammo_capacity = 30 //Admin spawn only for Gimmick Fun Times (and cause I want to test stuff with it)
 	name_addition = "intact"
 	icon_state = "akmag"
 	part_DRM = GUN_SOVIET

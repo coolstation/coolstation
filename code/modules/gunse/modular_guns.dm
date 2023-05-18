@@ -770,11 +770,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	name = "\improper Misfit"
 	real_name = "\improper Misfit"
 	desc = "A spacer design slapped together from salvaged soviet parts, the Misfit is known for it's ease of manufacture and durablity."
-	max_ammo_capacity = 0 //comes with a mag
+	max_ammo_capacity = 0 //Gotta use a mag
 	gun_DRM = GUN_SOVIET
-	spread_angle = 15
-	jam_frequency_fire = 35
-	jam_frequency_reload = 10
+	spread_angle = 10
+	jam_frequency_fire = 15
+	jam_frequency_reload = 4
 	stock_overlay_x = -10
 	stock_overlay_y = 1
 	barrel_overlay_x = 22
@@ -782,16 +782,22 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	contraband = 4
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 	icon_state = "mistfit"
+		make_parts()
+		barrel = new/obj/item/gun_parts/barrel/soviet/improvshort (src)
+		stock = new/obj/item/gun_parts/stock/soviet/improvmetal (src)
+		stock2 = new/obj/item/gun_parts/stock/soviet/akgrip (src)
+		magazine = new/obj/item/gun_parts/magazine/soviet/ak/thirdak (src)
 
-/obj/item/gun/modular/soviet/misfit //just for loot! Gonna work on probs later so all parts can spawn (aside from the bigger mags) but I gotta go fast so this can get put into playtest today
+
+/obj/item/gun/modular/soviet/misfit //just for loot! Gonna work on probs later so all parts can spawn (aside from the bigger mags)
 	name = "\improper Misfit"
 	real_name = "\improper Misfit"
 	desc = "A spacer design slapped together from salvaged soviet parts, the Misfit is known for it's ease of manufacture and durablity."
 	max_ammo_capacity = 0 //comes with a mag
 	gun_DRM = GUN_SOVIET
 	spread_angle = 15
-	jam_frequency_fire = 35
-	jam_frequency_reload = 10
+	jam_frequency_fire = 15
+	jam_frequency_reload = 4
 	contraband = 4
 	stock_overlay_x = -14
 	stock_overlay_y = 1
@@ -804,7 +810,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		barrel = new/obj/item/gun_parts/barrel/soviet/improvshort (src)
 		stock = new/obj/item/gun_parts/stock/soviet/improvmetal (src)
 		stock2 = new/obj/item/gun_parts/stock/soviet/akgrip (src)
-		magazine = new/obj/item/gun_parts/magazine/soviet/tenround (src)
+		magazine = new/obj/item/gun_parts/magazine/soviet/ak/thirdak (src)
 
 /obj/item/gun/modular/italian
 	name = "\improper Italiano"
