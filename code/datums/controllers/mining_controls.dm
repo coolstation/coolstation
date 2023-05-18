@@ -177,36 +177,85 @@ var/list/asteroid_blocked_turfs = list()
 		return pick(small_encounters)
 
 /datum/mining_controller/proc/show_stats()
-	var/dat = "<html><body><title>Mining Level Statistics</title>"
-		/*dat += "<b><u>Artifact Controls</u></b><HR><small>"
-		dat += "<a href='byond://?src=\ref[src];Spawnnew=1'>Spawn a new Artifact on your current tile</b></a><br>"
+	var/dat = {"<html>
+<head>
+	<title>Mining Level Statistics</title>
+	<style>
+		table, td, th {
+			border-collapse: collapse;
+			border: 1px solid #FF6961;
+			font-size: 100%;
+		}
+		th { background: #FF6961; }
+		td, th {
+			margin:	0;
+			padding: 0.25em 0.5em;
+		}
+	</style>
+</head>
+<body>
 
-		dat += "<a href='byond://?src=\ref[src];Spawntype=1'>Spawn Type:</a> "
-		if (!spawner_type)
-			dat += "Random"
-		else
-			dat += "[spawner_type]"
+		"}
 
-		dat += "<br><a href='byond://?src=\ref[src];Spawncine=1'>Cinematic Spawning:</a> "
-		if (spawner_cine)
-			dat += "Yes"
-		else
-			dat += "No"
-		dat += "<br><br>"*/
-	if (!length(mining_level_stats))
+	if (!length(src.mining_level_stats))
 		dat += "<b>No mining level stats found, are you by any chance bypassing the generation with one of the compile speed-up options?</b>"
 	else
-		dat += "TODO"
+		for (var/datum/mining_level_stats/some_stats as anything in src.mining_level_stats)
+			//ORE TABLE
+			dat += "<b>Z-level: [some_stats.z_level] | Generator: [some_stats.generator]<br>"
+			dat += "Total Ores: [some_stats.total_generated_ores] | Total Events: [some_stats.total_generated_events] | Total Event Calls: [some_stats.total_event_calls]</b><br>"
+			dat += {"<table>
+				<tr>
+					<th>Ore Name</th>
+					<th>Veins</th>
+					<th>No. Generated</th>
+					<th>No. Misses</th>
+					<th>% Success</th>
+					<th>Avg Per Vein</th>
+					<th>% Of Generated</th>
+				</tr>"}
+			for (var/an_ore in some_stats.total_ore_ids)
+				//var/datum/ore/the_ore_datum = src.get_ore_from_string(an_ore) //For vein size
+				// <td>[the_ore_datum.tiles_per_rock_min]-[the_ore_datum.tiles_per_rock_max]</td>
+				dat +=	{"<tr>
+					<td><b>[an_ore]</b></td>
+					<td>[some_stats.veins[an_ore]]</td>
+					<td>[some_stats.ores[an_ore]]</td>
+					<td>[!isnull(some_stats.misses[an_ore]) ? some_stats.misses[an_ore] : "-"]</td>
+					<td>[some_stats.ore_success_percentages[an_ore]]%</td>
+					<td>[some_stats.ore_averages_per_vein[an_ore]]</td>
+
+					<td>[some_stats.ore_total_percentages[an_ore]]%</td>
+				</tr>"}
+			//EVENT TABLE
+			dat += {"<table>
+				<tr>
+					<th>Event Name</th>
+					<th>Calls</th>
+					<th>No. Generated</th>
+					<th>No. Misses</th>
+					<th>% Success</th>
+					<th>% of calls</th>
+					<th>% Of Generated</th>
+				</tr>"}
+			for (var/an_event in some_stats.total_event_ids)
+				//var/datum/ore/the_ore_datum = src.get_ore_from_string(an_ore) //fun fact events are weird ores, we want the  distribution min/max this time
+				dat +=	{"<tr>
+					<td><b>[an_event]</b></td>
+					<td>[some_stats.event_calls[an_event]]</td>
+					<td>[some_stats.events[an_event]]</td>
+					<td>[!isnull(some_stats.event_misses[an_event]) ? some_stats.event_misses[an_event] : "-"]</td>
+					<td>[some_stats.event_success_percentages[an_event]]%</td>
+					<td>[some_stats.event_call_percentages[an_event]]%</td>
+					<td>[some_stats.event_total_percentages[an_event]]%</td>
+				</tr>"}
+			dat += "<br>"
 
 
 	dat += "</small></body></html>"
 
-	usr.Browse(dat,"window=miningstats;size=400x600")
+	usr.Browse(dat,"window=miningstats;size=800x600")
 
-	/*
-
-	No mining level stats found, are you by any chance compiling with one of the compile speed-up options?
-	*/
 
 
 
