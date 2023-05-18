@@ -18,7 +18,7 @@
 #ifndef IM_REALLY_IN_A_FUCKING_HURRY_HERE
 #define SKIP_FEA_SETUP 0
 #define SKIP_Z5_SETUP 0
-#define SKIP_CAM_VIS 1 //Uncomment if you want atmos/mining but not waiting on this crap
+//#define SKIP_CAM_VIS 1 //Uncomment if you want atmos/mining but not waiting on this crap
 #endif
 
 // Server side profiler stuff for when you want to profile how laggy the game is
