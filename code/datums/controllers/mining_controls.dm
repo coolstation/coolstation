@@ -30,6 +30,9 @@ var/list/asteroid_blocked_turfs = list()
 	var/list/small_encounters = list()
 	var/list/mining_encounters_selectable = list()
 
+	//Z level generation stats
+	var/list/datum/mining_level_stats = list()
+
 	New()
 		..()
 		for (var/X in childrentypesof(/datum/ore) - /datum/ore/event)
@@ -172,6 +175,40 @@ var/list/asteroid_blocked_turfs = list()
 
 	proc/select_small_encounter(var/rarity_mod)
 		return pick(small_encounters)
+
+/datum/mining_controller/proc/show_stats()
+	var/dat = "<html><body><title>Mining Level Statistics</title>"
+		/*dat += "<b><u>Artifact Controls</u></b><HR><small>"
+		dat += "<a href='byond://?src=\ref[src];Spawnnew=1'>Spawn a new Artifact on your current tile</b></a><br>"
+
+		dat += "<a href='byond://?src=\ref[src];Spawntype=1'>Spawn Type:</a> "
+		if (!spawner_type)
+			dat += "Random"
+		else
+			dat += "[spawner_type]"
+
+		dat += "<br><a href='byond://?src=\ref[src];Spawncine=1'>Cinematic Spawning:</a> "
+		if (spawner_cine)
+			dat += "Yes"
+		else
+			dat += "No"
+		dat += "<br><br>"*/
+	if (!length(mining_level_stats))
+		dat += "<b>No mining level stats found, are you by any chance bypassing the generation with one of the compile speed-up options?</b>"
+	else
+		dat += "TODO"
+
+
+	dat += "</small></body></html>"
+
+	usr.Browse(dat,"window=miningstats;size=400x600")
+
+	/*
+
+	No mining level stats found, are you by any chance compiling with one of the compile speed-up options?
+	*/
+
+
 
 /area/mining/magnet
 	name = "Magnet Area"

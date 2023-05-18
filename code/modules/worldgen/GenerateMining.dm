@@ -149,6 +149,12 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 /datum/mapGenerator/desertCaverns
 	//I don't know why these generators bother with the miningZ var btw, the desert/trench generators didn't do anything with them before starstone generation was added
 	generate(var/list/miningZ, var/z_level = GEH_ZLEVEL, var/generate_borders = YES_BORDER)
+		//Set up stat logging
+		var/datum/mining_level_stats/our_stats = new
+		our_stats.z_level = z_level
+		our_stats.generator = src.type
+		mining_controls.mining_level_stats += our_stats
+
 		//Generate start/end coords further in if borders are used, at the current default of 3 wide borders that saves ~3,5k turfs getting iterated over.
 		var/startx = (generate_borders ? AST_MAPBORDER+1 : 1)
 		var/starty = (generate_borders ? AST_MAPBORDER+1 : 1)
@@ -253,16 +259,16 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				if(prob(50))
 					L+=A
 
-			Turfspawn_Asteroid_SeedOre(L, rand(2,8), rand(1,70), TRUE)
+			Turfspawn_Asteroid_SeedOre(L, rand(2,8), rand(1,70), TRUE, level_stats = our_stats)
 
 		//Sprinkles random ore veins just all over the map
 		for(var/i=0, i<80, i++)
-			Turfspawn_Asteroid_SeedOre(generated, spicy = TRUE)
+			Turfspawn_Asteroid_SeedOre(generated, spicy = TRUE, level_stats = our_stats)
 
 		//Seeds gem/artifact/crate/rock modifiers. Note that without specifying an amount of events the proc will randomly do between 1 and 6 each time
 		//(meaning if i is still 40 on the line below, that's anywhere from 40-240 events)
 		for(var/i=0, i<40, i++)
-			Turfspawn_Asteroid_SeedEvents(generated)
+			Turfspawn_Asteroid_SeedEvents(generated, level_stats = our_stats)
 
 		if(generate_borders == YES_BORDER) //border needed and isn't prebaked
 			var/list/border = list()
@@ -286,13 +292,21 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] failed - ore present.")
 				continue
 			//asteroid and unoccupied!
-			Turfspawn_Asteroid_SeedSpecificOre(list(TRY),"starstone",1) //This probably makes a coder from 10 years ago cry
+			Turfspawn_Asteroid_SeedSpecificOre(list(TRY),"starstone",1, level_stats = our_stats) //This probably makes a coder from 10 years ago cry
 			logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] success!")
 
+		//We're done, get some totals up
+		our_stats.calculate_totals()
 		return miningZ
 
 /datum/mapGenerator/seaCaverns //Cellular automata based generator. Produces cavern-like maps. Empty space is filled with asteroid floor.
 	generate(var/list/miningZ, var/z_level = AST_ZLEVEL, var/generate_borders = YES_BORDER)
+		//Set up stat logging
+		var/datum/mining_level_stats/our_stats = new
+		our_stats.z_level = z_level
+		our_stats.generator = src.type
+		mining_controls.mining_level_stats += our_stats
+
 		var/map[world.maxx][world.maxy]
 		for(var/x=1,x<=world.maxx,x++)
 			for(var/y=1,y<=world.maxy,y++)
@@ -343,10 +357,10 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			for (var/turf/simulated/wall/asteroid/dark/A in range(4,pick(generated)))
 				L+=A
 
-			Turfspawn_Asteroid_SeedOre(L, rand(2,8), rand(1,70))
+			Turfspawn_Asteroid_SeedOre(L, rand(2,8), rand(1,70), level_stats = our_stats)
 
 		for(var/i=0, i<80, i++)
-			Turfspawn_Asteroid_SeedOre(generated)
+			Turfspawn_Asteroid_SeedOre(generated, level_stats = our_stats)
 
 
 		//for(var/i=0, i<100, i++)
@@ -356,7 +370,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		//		Turfspawn_Asteroid_SeedOre(generated)
 
 		for(var/i=0, i<40, i++)
-			Turfspawn_Asteroid_SeedEvents(generated)
+			Turfspawn_Asteroid_SeedEvents(generated, level_stats = our_stats)
 
 		if(generate_borders)
 			var/list/border = list()
@@ -385,13 +399,21 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] failed - ore present.")
 				continue
 			//asteroid and unoccupied!
-			Turfspawn_Asteroid_SeedSpecificOre(list(TRY),"starstone",1)
+			Turfspawn_Asteroid_SeedSpecificOre(list(TRY),"starstone",1, level_stats = our_stats)
 			logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] success!")
 
+		//We're done, get some totals up
+		our_stats.calculate_totals()
 		return miningZ
 
 /datum/mapGenerator/asteroidsDistance //Generates a bunch of asteroids based on distance to seed/center. Super simple.
-	generate(var/list/miningZ)
+	generate(var/list/miningZ, z_level = AST_ZLEVEL)
+		//Set up stat logging
+		var/datum/mining_level_stats/our_stats = new
+		our_stats.z_level = z_level
+		our_stats.generator = src.type
+		mining_controls.mining_level_stats += our_stats
+
 		var/numAsteroidSeed = AST_SEEDS + rand(1, 5)
 		for(var/i=0, i<numAsteroidSeed, i++)
 			var/turf/X = pick(miningZ)
@@ -441,11 +463,11 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				LAGCHECK(LAG_REALTIME)
 
 			if(prob(15))
-				Turfspawn_Asteroid_SeedOre(placed, rand(2,6), rand(0,40), TRUE)
+				Turfspawn_Asteroid_SeedOre(placed, rand(2,6), rand(0,40), TRUE, level_stats = our_stats)
 			else
-				Turfspawn_Asteroid_SeedOre(placed, spicy = TRUE)
+				Turfspawn_Asteroid_SeedOre(placed, spicy = TRUE, level_stats = our_stats)
 
-			Turfspawn_Asteroid_SeedEvents(placed)
+			Turfspawn_Asteroid_SeedEvents(placed, level_stats = our_stats)
 
 			if(placed.len)
 				generated.Add(placed)
@@ -475,8 +497,11 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] failed - ore present.")
 				continue
 			//asteroid and unoccupied!
-			Turfspawn_Asteroid_SeedSpecificOre(list(TRY),"starstone",1) //This probably makes a coder from 10 years ago cry
+			Turfspawn_Asteroid_SeedSpecificOre(list(TRY),"starstone",1, level_stats = our_stats) //This probably makes a coder from 10 years ago cry
 			logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] success!")
+
+		//We're done, get some totals up
+		our_stats.calculate_totals()
 		return miningZ
 
 /proc/makeMiningLevelGehenna()
@@ -568,7 +593,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		D = new/datum/mapGenerator/asteroidsDistance()
 
 	game_start_countdown?.update_status("Setting up mining level...\nGenerating terrain...")
-	miningZ = D.generate(miningZ)
+	miningZ = D.generate(miningZ, AST_ZLEVEL)
 
 	// remove temporary areas
 	if(!map_currently_very_dusty)
@@ -637,3 +662,108 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 #undef CAGGETSOLID_MIN_SOLID
 #undef CAGGETSOLID_END_FILL
 #undef CAGGETSOLID_PASS_TWO_RANGE
+
+///// ------------------------------------------------------------------ /////
+//Let's get some stats on the mining Z level generation
+
+///Modular mining Z level generation stats holder, to be used by the global mining controller
+/datum/mining_level_stats
+	///Which Z level?
+	var/z_level
+	///type of the generator that generated this level (the data is actually entered mostly by the lower level seeding procs and not the generator itself)
+	var/generator
+
+	///Every ore that has been attemped to be generated, so we always have a full list of IDs even if one of them failed every single time somehow
+	var/list/total_ore_ids = list()
+	///Every event that has been attempted to be generated
+	var/list/total_event_ids = list()
+	///Counts of ores, by ore name (which are practically also their ID)
+	var/list/ores = list()
+	///Counts of ore "veins" by ore name, since some ores generate larger veins by
+	var/list/veins = list()
+	///Counts of ores that failed to generate, by name
+	var/list/misses = list()
+	///Counts of mining events, by name
+	var/list/events = list()
+	///Amount of set_event calls by name, analogous to ore veins since some events will spawn a bunch of copies around neighbouring turfs
+	var/list/event_calls = list() //And I feel like there's some interest to be had in relative distribution that isn't skewed by a few factors of 12
+	///Counts of events that couldn't be placed, by name
+	var/list/event_misses = list()
+
+	///Asteroid generation specific
+	//var/amount_of_seeds = 0
+	//var/failed_seeds = 0
+
+	var/total_generated_ores = 0
+	var/total_generated_events = 0
+	var/total_event_calls = 0
+
+	///percentage of every ore versus total generated ore, by name
+	var/list/ore_total_percentages = list()
+	///percentage of succeeded vs total generations per ore type, by name
+	var/list/ore_success_percentages = list()
+	///ores / veins, by ore name
+	var/list/ore_averages_per_vein = list()
+
+	//var/list/ore_percentage_in_rarity_bracket = list()
+	///percentage of event vs total
+	var/list/event_total_percentages = list()
+	///percentage of event calls vs total
+	var/list/event_call_percentages = list()
+	///percentage of succeeded vs total generations per event type, by name
+	var/list/event_success_percentages = list()
+
+
+//Calculate percentages and stuff, once level generation has populated all the ores.
+/datum/mining_level_stats/proc/calculate_totals()
+	//First, get 2 sortin'
+	//sortList(total_ore_ids)
+	//sortList(total_event_ids)
+
+	//I don't care that much for decimals, so 0,1% is good enough
+	for (var/an_ore in total_ore_ids)
+		if (isnull(ores[an_ore])) //short if we didn't manage to generate anything
+			ore_total_percentages[an_ore] = 0
+			ore_success_percentages[an_ore] = 0
+			ore_averages_per_vein[an_ore] = 0
+			continue
+
+		if (total_generated_ores) //no div by 0 pls
+			ore_total_percentages[an_ore] = round((ores[an_ore]/total_generated_ores)*100, 0.1)
+		else
+			ore_total_percentages[an_ore] = 0
+
+		if (!isnull(misses[an_ore]))
+			ore_success_percentages[an_ore] = round((ores[an_ore]/(ores[an_ore] + misses[an_ore]))*100 ,0.1)
+		else //No fails!
+			ore_success_percentages[an_ore] = 100
+
+		if (!isnull(veins[an_ore])) //shouldn't be possible but
+			ore_averages_per_vein[an_ore] = round(ores[an_ore]/veins[an_ore], 0.1)
+		else
+			ore_averages_per_vein[an_ore] = 0
+
+	for (var/an_event in total_event_ids)
+		if (isnull(events[an_event])) //No events generated, which should be impossible
+			event_total_percentages[an_event] = 0
+			event_success_percentages[an_event] = 0
+			event_call_percentages[an_event] = 0 //<- Not necessarily accurate but IDC
+			continue
+
+		if (total_generated_events)
+			event_total_percentages[an_event] = round((events[an_event]/total_generated_events)*100, 0.1)
+		else
+			event_total_percentages[an_event] = 0
+
+		//if (isnull(event_calls[an_event]))
+		//	event_
+
+		if (total_event_calls && !isnull(event_calls[an_event]))
+			event_call_percentages[an_event] = round((event_calls[an_event]/total_event_calls)*100, 0.1)
+		else
+			event_call_percentages[an_event] = 0
+
+		if (!isnull(event_misses[an_event]))
+			event_success_percentages[an_event] = round((events[an_event]/(events[an_event] + event_misses[an_event]))*100, 0.1)
+		else
+			event_success_percentages[an_event] = 100
