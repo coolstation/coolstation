@@ -735,6 +735,7 @@
 					chump.on_chair = 0
 					chump.pixel_y = 0
 					chump.ceilingreach = 0
+					chump.lookingup = 0
 					chump.changeStatus("weakened", 1 SECOND)
 					chump.changeStatus("stunned", 2 SECONDS)
 					random_brute_damage(chump, 15)
@@ -810,6 +811,7 @@
 				to_buckle.set_loc(src.loc)
 				to_buckle.pixel_y = 10
 				H.ceilingreach = 1
+				H.lookingup = 1
 				if (src.anchored)
 					to_buckle.anchored = 1
 				H.on_chair = src
@@ -856,6 +858,7 @@
 		if (istype(H) && H.on_chair)// == 1)
 			M.pixel_y = 0
 			H.ceilingreach = 0
+			H.lookingup = 0
 			reset_anchored(M)
 			M.buckled = null
 			buckled_guy.force_laydown_standup()
@@ -937,14 +940,17 @@
 			else
 				src.set_dir(face_dir)
 
-			if (src.dir == NORTH)
-				src.layer = FLY_LAYER+1
-			else
-				src.layer = OBJ_LAYER
+			update_icon()
 			if (buckled_guy)
 				var/mob/living/carbon/C = src.buckled_guy
 				C.set_dir(dir)
 		return
+
+	proc/update_icon()
+		if (src.dir == NORTH)
+			src.layer = FLY_LAYER+1
+		else
+			src.layer = OBJ_LAYER
 
 	blue
 		icon_state = "chair-b"
@@ -1050,20 +1056,8 @@
 		src.overl.master = src
 		src.overl.set_dir(src.dir)
 */
-	rotate()
-		set src in oview(1)
-		set category = "Local"
 
-		src.set_dir(turn(src.dir, 90))
-//		src.overl.set_dir(src.dir)
-		src.update_icon()
-		if (buckled_guy)
-			var/mob/living/carbon/C = src.buckled_guy
-			C.set_dir(dir)
-		return
-
-
-	proc/update_icon()
+	update_icon()
 		if (src.dir == NORTH)
 			src.layer = FLY_LAYER+1
 		else
@@ -1263,7 +1257,7 @@
 		if (arm_icon_state)
 			src.update_icon()
 
-	proc/update_icon()
+	update_icon()
 		if (src.dir == NORTH)
 			src.layer = FLY_LAYER+1
 		else
@@ -1543,7 +1537,7 @@
 		src.update_icon()
 		return
 
-	proc/update_icon()
+	update_icon()
 		src.icon_state = "e_chair[src.on]"
 		if (!src.image_belt)
 			src.image_belt = image(src.icon, "e_chairo[src.on][src.lethal]", layer = FLY_LAYER + 1)

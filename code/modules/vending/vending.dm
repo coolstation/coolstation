@@ -98,7 +98,17 @@
 	var/pay = 0 // Does this vending machine require money?
 	var/acceptcard = 1 // does the machine accept ID swiping?
 	var/credit = 0 //How much money is currently in the machine?
-	var/profit = 0.90 // cogwerks: how much of a cut should the QMs get from the sale, expressed as a percent
+	var/profit = 0.90 // Percentage of item cost that goes to player. Rest goes to QM/shipping budget.
+
+	// Receipts and Service charge! Because this machine provides a useful service to you, the customer,
+	// and we should be compensated for that! uwu
+	// Also, you may need a receipt to take to your department head for expenses reimbursements~
+	var/print_receipts = TRUE
+	var/print_receipts_long = FALSE
+	var/receipt_count = 20 // TODO: Printer rolls for receipts?
+	var/min_serv_chg = 2 // 2 bux just to use your damn machine? Rasm frasm grumble!
+	var/serv_chg_pct = 0.02
+	var/datum/data/record/servicechgaccount = null
 
 	var/HTML = null // guh
 	var/vending_HTML = null // buh
@@ -129,12 +139,53 @@
 		light.set_color(light_r, light_g, light_b)
 		..()
 		src.panel_image = image(src.icon, src.icon_panel)
+		if(!servicechgaccount)
+			servicechgaccount = wagesystem.finserv_budget
+
 	var/lastvend = 0
+
+	proc/printReceipt(var/datum/data/record/accountFrom, item, amount, serv_chg_amount)
+		if(!print_receipts)
+			return
+
+		var/receiptText = "<b>Payment Receipt</b><br><i>Please keep this for departmental records.</i><br>"
+		receiptText += "[item]: $[amount]<br>"
+		if(serv_chg_amount > 0 || amount != 0)
+			receiptText += "<b>Service Charge</b>: $[serv_chg_amount]<br>"
+		else
+			receiptText += "<b>-Service Charge Waived-</b><br>"
+			serv_chg_amount = 0
+
+		receiptText += "<hr>"
+
+		if(!istype(accountFrom))
+			receiptText += "<b>Total</b>: $[amount + serv_chg_amount]"
+		else
+			receiptText += "<b>Total</b> (deducted from [accountFrom.fields["name"]]): $[amount + serv_chg_amount]"
+
+		playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 50, 1)
+
+		SPAWN_DBG(3.2 SECONDS)
+			var/obj/item/paper/P = new()
+			P.set_loc(src.loc)
+			if(print_receipts_long)
+				P.icon_state = "thermal_paper_med"
+				P.desc = "Holy crap, how long does a receipt need to be?!"
+			else
+				P.icon_state = "thermal_paper"
+
+			P.name = "'[item]' receipt"
+			P.info = receiptText
+
+		// receipt_count--
+
 
 	proc/vendinput(var/datum/mechanicsMessage/inp)
 		if( world.time < lastvend ) return//aaaaaaa
 		lastvend = world.time + 2
 		var/datum/data/vending_product/R = throw_item()
+		var/service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost * serv_chg_pct)
+		printReceipt(0, R.product_name, R.product_cost, service_charge)
 		if(R?.logged_on_vend)
 			logTheThing("station", usr, null, "randomly vended a logged product ([R.product_name]) using mechcomp from [src] at [log_loc(src)].")
 
@@ -208,7 +259,9 @@
 		src.postvend_effect()
 		sleep(1.5 SECONDS)
 		if(prob(50)) // Additionally, fuck you. *smack*
-			throw_item()
+			var/datum/data/vending_product/R = throw_item()
+			var/service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost* serv_chg_pct)
+			printReceipt(0, R.product_name, R.product_cost, service_charge)
 
 
 	proc/get_output_location()
@@ -606,6 +659,8 @@
 						return
 					if (account.fields["current_money"] < R.product_cost)
 						boutput(usr, "<span class='alert'>Insufficient funds in account. To use machine credit, log out.</span>")
+						account.fields["current_money"] -= min_serv_chg
+						servicechgaccount["current_money"] += min_serv_chg
 						flick(src.icon_deny,src)
 						src.vend_ready = 1
 						src.paying_for = R
@@ -632,11 +687,14 @@
 			src.prevend_effect()
 			if(!src.freestuff) R.product_amount--
 
+			var/service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost* serv_chg_pct)
 			if (src.pay)
 				if (src.acceptcard && account)
 					account.fields["current_money"] -= R.product_cost
+					account.fields["current_money"] -= service_charge
 				else
 					src.credit -= R.product_cost
+					service_charge = 0
 				if (!isplayer)
 					wagesystem.shipping_budget += round(R.product_cost * profit) // cogwerks - maybe money shouldn't just vanish into the aether idk
 				else
@@ -678,6 +736,7 @@
 					if (S)
 						playsound(src.loc, S, 50, 0)
 				src.postvend_effect()
+				printReceipt(account, R.product_name, R.product_cost, service_charge)
 
 				SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL, "productDispensed=[R.product_name]")
 
@@ -1159,6 +1218,7 @@
 	light_r =1
 	light_g = 0.88
 	light_b = 0.88
+	print_receipts_long = TRUE
 
 
 
@@ -1223,6 +1283,7 @@
 	light_r =1
 	light_g = 0.88
 	light_b = 0.88
+	print_receipts_long = TRUE
 
 	create_products()
 		..()
@@ -1620,7 +1681,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/drinkingglass/icing, 3)
 		product_list += new/datum/data/vending_product(/obj/item/kitchen/chopsticks_package, 5)
 		product_list += new/datum/data/vending_product(/obj/item/plate/tray, 3)
-		product_list += new/datum/data/vending_product(/obj/surgery_tray/kitchen_island, 2)
+		product_list += new/datum/data/vending_product(/obj/table/kitchen_island, 2)
 		product_list += new/datum/data/vending_product(/obj/item/storage/lunchbox, 12)
 		product_list += new/datum/data/vending_product(/obj/item/ladle, 1)
 		product_list += new/datum/data/vending_product(/obj/item/soup_pot, 1)

@@ -1105,7 +1105,7 @@
 	#ifndef Z3_IS_A_STATION_LEVEL
 		logTheThing("debug", src, null, "A blob tried making a level transfer on a map that doesn't support it, what?")
 		return 1
-	#endif
+	#else
 		var/turf/turf_z3
 		if (!turf_z1)
 			turf_z1 = get_turf(owner)
@@ -1160,6 +1160,7 @@
 		src.deduct_bio_points()
 		src.do_cooldown()
 		owner.playsound_local(owner.loc, "sound/voice/blob/blobspread[rand(1, 6)].ogg", 80, 1)
+	#endif
 
 //////////////
 // UPGRADES //

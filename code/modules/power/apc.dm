@@ -19,7 +19,7 @@ var/zapLimiter = 0
 
 /obj/machinery/power/apc
 	name = "area power controller"
-	icon_state = "apc0"
+	icon_state = "apc0-map"
 	anchored = 1
 	plane = PLANE_NOSHADOW_ABOVE
 	req_access = list(access_engineering_power)
@@ -74,7 +74,6 @@ var/zapLimiter = 0
 		name = "Autoname N APC"
 		dir = NORTH
 		autoname_on_spawn = 1
-		pixel_y = 24
 
 		nopoweralert
 			noalerts = 1
@@ -86,7 +85,6 @@ var/zapLimiter = 0
 		name = "Autoname E APC"
 		dir = EAST
 		autoname_on_spawn = 1
-		pixel_x = 24
 
 		nopoweralert
 			noalerts = 1
@@ -98,7 +96,6 @@ var/zapLimiter = 0
 		name = "Autoname S APC"
 		dir = SOUTH
 		autoname_on_spawn = 1
-		pixel_y = -24
 
 		nopoweralert
 			noalerts = 1
@@ -110,13 +107,21 @@ var/zapLimiter = 0
 		name = "Autoname W APC"
 		dir = WEST
 		autoname_on_spawn = 1
-		pixel_x = -24
 
 		nopoweralert
 			noalerts = 1
 		noaicontrol
 			noalerts = 1
 			aidisabled = 1
+
+	busted //real APC that you want to start busted 4 environmental storytelling (i.e. intending player repair, or because the APC check complains otherwise)
+		start_charge = 4 //no juice left
+		icon_state = "apc-b-map" //but still have a convenient map icons,
+
+		New()
+			..()
+			SPAWN_DBG(0.5 SECONDS)
+				set_broken() //just normal apc that's been fucked up. thats it. thats the secret.
 
 /proc/RandomAPCWires()
 	//to make this not randomize the wires, just set index to 1 and increment it in the flag for loop (after doing everything else).
@@ -564,6 +569,10 @@ var/zapLimiter = 0
 	src.repair_status = 3
 
 /obj/machinery/power/apc/attack_ai(mob/user)
+	if (isAI(user) && ACTION_GOVERNOR_BLOCKED(AI_GOVERNOR_APCS))
+		boutput(user, "<span class='alert'>You have lost the ability to interface with APCs.</span>" )
+		return
+
 	if (src.aidisabled && !src.wiresexposed)
 		boutput(user, "AI control for this APC interface has been disabled.")
 	else

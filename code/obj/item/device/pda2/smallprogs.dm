@@ -18,6 +18,8 @@
 //Ticket writer
 //Cargo request
 //Station Namer
+//Space GPS
+//AI Governor Manifest
 
 //Banking
 /datum/computer/file/pda_program/banking
@@ -1285,6 +1287,34 @@ Using electronic "Detomatix" BOMB program is perhaps less simple!<br>
 			src.y = T.y
 			src.z = T.z
 
+		src.master.add_fingerprint(usr)
+		src.master.updateSelfDialog()
+		return
+
+///allows AIs to see what actions are active/inactive
+/datum/computer/file/pda_program/ai_governors
+	name = "AI Governor Manifest"
+	size = 2
+
+	return_text()
+		if(..())
+			return
+
+		var/dat = src.return_text_header()
+		dat += "<h4>Governor Manifest:</h4>"
+
+		for (var/index in governor_registry)
+			dat += "[index]: [length(governor_registry[index]) ? "ENABLED" : "DISABLED"]<br>"
+		dat += "<br>"
+
+		dat += "<a href='byond://?src=\ref[src];update=1'>Refresh</a>"
+
+		return dat
+
+	Topic(href, href_list)
+		if(..())
+			return
+		//We want the refresh to just redraw the thing, which doesn't actually require any special handling :)
 		src.master.add_fingerprint(usr)
 		src.master.updateSelfDialog()
 		return

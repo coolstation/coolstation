@@ -446,6 +446,11 @@ ABSTRACT_TYPE(/obj/item/record/random)
 	record_name = "december"
 	song = "sound/radio_station/music/december.xm"
 
+/obj/item/record/benson
+	name = "crispy recording"
+	record_name = "bensoni arizoni"
+	song = "sound/radio_station/music/bensoni_arizoni.ogg"
+
 /obj/item/record/spacebux // Many thanks to Camryn Buttes!!
 	add_overlay = 0
 	icon_state = "record_red"

@@ -47,8 +47,8 @@ obj/item/rocko
 
 	disposing()
 		processing_items -= src
-		qdel(chat_text)
-		chat_text = null
+		//qdel(chat_text) should be on atom now
+		//chat_text = null
 		STOP_TRACKING_CAT(TR_CAT_PETS)
 		..()
 

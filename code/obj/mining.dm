@@ -134,6 +134,7 @@
 	var/scan_range = 7
 	var/turf/magnetic_center
 	alpha = 128
+	flags = MINERAL_MAGNET_SAFE
 
 	small
 		width = 7
@@ -151,7 +152,7 @@
 		var/turf/origin = get_turf(src)
 		for (var/turf/T in block(origin, locate(origin.x + width - 1, origin.y + height - 1, origin.z)))
 			for (var/obj/O in T)
-				if (!(O.type in mining_controls.magnet_do_not_erase) && !istype(O, /obj/magnet_target_marker))
+				if (!(O.flags & MINERAL_MAGNET_SAFE))
 					qdel(O)
 			T.overlays.len = 0 //clear out the astroid edges and scan effects
 			T.ReplaceWithSpace()
@@ -644,7 +645,7 @@
 		build_icon()
 
 		for (var/obj/O in mining_controls.magnet_area.contents)
-			if (!(O.type in mining_controls.magnet_do_not_erase))
+			if (!(O.flags & MINERAL_MAGNET_SAFE))
 				qdel(O)
 		for (var/turf/simulated/T in mining_controls.magnet_area.contents)
 			if (!istype(T,/turf/simulated/floor/airless/plating/catwalk/))
@@ -984,6 +985,7 @@
 #else
 	fullbright = 1
 #endif
+	turf_flags = IS_TYPE_SIMULATED | MINE_MAP_PRESENTS_SOLID
 
 	consider_superconductivity(starting)
 		return FALSE
@@ -1007,6 +1009,7 @@
 		stone_color = "#575A5E"
 		default_ore = null
 		hardness = 10
+		turf_flags = IS_TYPE_SIMULATED | MINE_MAP_PRESENTS_TOUGH
 
 
 // cogwerks - adding some new wall types for cometmap and whatever else
@@ -1415,7 +1418,7 @@
 	var/stone_color = "#CCCCCC"
 	var/image/coloration_overlay = null
 	var/list/space_overlays = list()
-	turf_flags = MOB_SLIP | MOB_STEP | IS_TYPE_SIMULATED | FLUID_MOVE
+	turf_flags = MOB_SLIP | MOB_STEP | IS_TYPE_SIMULATED | FLUID_MOVE | MINE_MAP_PRESENTS_SOLID //solid might seem weird, but empty represents space so
 
 #ifdef UNDERWATER_MAP
 	fullbright = 0
@@ -2134,6 +2137,7 @@ obj/item/clothing/gloves/concussive
 	density = 1
 	opacity = 0
 	anchored = 0
+	processing_tier = PROCESSING_HALF //~0.8Hz
 	var/active = 0
 	var/cell = null
 	var/target = null

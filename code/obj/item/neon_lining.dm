@@ -1,18 +1,21 @@
-
+///Max stack size for lining
 #define MAXLINING 40
-#define STARTLINING 1
+
+///Neon lining autoplacement vars
+#define AUTOPLACE_STRUCTURAL 1 //Walls, doors and windows
+
 /// The neon lining object, used for placing neon lining.
 /obj/item/neon_lining
 	name = "neon lining"
-	var/base_name = "neon lining"
+	var/base_name = "neon lining" //<- probably superfluous? how much naming is going on with neon lining coils, the item that lets you place neon lining?
 	desc = "A coil of neon lining."
-	amount = STARTLINING
+	amount = 1
 	max_stack = MAXLINING
 	stack_type = /obj/item/neon_lining
 	icon = 'icons/obj/decals/neon_lining.dmi'
 	icon_state = "item_blue"
 	item_state = "electronic"
-	throwforce = 2
+	throwforce = 2	//I'm pretty sure half the vars from here on down are practically irrelevant and I don't know why they're set like this. comments, people!
 	w_class = W_CLASS_TINY
 	throw_speed = 2
 	throw_range = 5
@@ -20,15 +23,25 @@
 	stamina_damage = 5
 	stamina_cost = 5
 	stamina_crit_chance = 10
-	rand_pos = 1
+	//rand_pos = 1 Unnessecary atm, see New()
 	event_handler_flags = USE_GRAB_CHOKE | USE_FLUID_ENTER
 	special_grab = /obj/item/grab
 	inventory_counter_enabled = 1
 
+
+	abilities = list(/obj/ability_button/lining_auto_walls)
+
+	///Flags for the various autopositioning settings
+	var/auto_flags = 0
+
 	var/lining_item_color = "blue"
 
-	New(loc, length = STARTLINING)
+	New(loc, length = 1, set_color = "blue")
 		src.amount = length
+		if (set_color in list("blue", "pink", "yellow"))
+			lining_item_color = set_color
+			updateicon()
+		//This can probably be folded into obj/item/rand_pos if we add a var for the offset severity
 		pixel_x = rand(-2,2)
 		pixel_y = rand(-2,2)
 		..(loc)
@@ -51,34 +64,6 @@
 				user.suiciding = 0
 		return 1
 
-	proc/use(var/used)
-		if (src.amount < used)
-			return 0
-		else if (src.amount == used)
-			qdel(src)
-			return 1
-		else
-			amount -= used
-			tooltip_rebuild = 1
-			src.updateicon()
-			return 1
-
-	proc/take(var/amt, var/newloc)
-		if (amt > amount)
-			amt = amount
-			tooltip_rebuild = 1
-			src.updateicon()
-		if (amt == amount)
-			if (ismob(loc))
-				var/mob/owner = loc
-				owner.u_equip(src)
-			set_loc(newloc)
-			return src
-		src.use(amt)
-		var/obj/item/neon_lining/C = new /obj/item/neon_lining(newloc)
-		C.amount = amt
-		return
-
 	proc/updateicon()
 		set_icon_state("item_[lining_item_color]")
 		inventory_counter?.update_number(amount)
@@ -95,6 +80,7 @@
 	New(loc, length)
 		..(loc, rand(1,5))
 
+///Default length in the Qm crates
 /obj/item/neon_lining/shipped
 	New(loc, length)
 		..(loc, 20)
@@ -116,44 +102,22 @@
 
 /obj/item/neon_lining/attackby(obj/item/W, mob/user)
 	if (issnippingtool(W) && src.amount > 1)
-		src.amount--
-		tooltip_rebuild = 1
-		take(1, user.loc)
-		boutput(user, "You cut a piece off the [base_name].")
-		src.updateicon()
+		var/obj/item/neon_lining/A = split_stack(round(input("How long of a wire do you wish to cut?","Length of [src.amount]",1) as num))
+		if (istype(A))
+			A.lining_item_color = src.lining_item_color
+			A.updateicon()
+			user.put_in_hand_or_drop(A)
+			boutput(user, "You cut a piece off the [base_name].")
+		//Not sure if these two are still necessary
+		//tooltip_rebuild = 1
+		//src.updateicon()
 		return
 
-	else if (istype(W, /obj/item/neon_lining))
-		var/obj/item/neon_lining/C = W
-
-		if (C.amount == MAXLINING)
-			boutput(user, "The coil is too long, you cannot add any more lining to it.")
-			return
-
-		if ((C.amount + src.amount <= MAXLINING))
-			C.amount += src.amount
-			boutput(user, "You join the lining coils together.")
-			C.tooltip_rebuild = 1
-			C.updateicon()
-			if(istype(src.loc, /obj/item/storage))
-				var/obj/item/storage/storage = src.loc
-				storage.hud.remove_object(src)
-			else if(istype(src.loc, /mob))
-				var/mob/M = src.loc
-				M.u_equip(src)
-				M.drop_item(src)
-			qdel(src)
-			return
-
-		else
-			boutput(user, "You transfer [MAXLINING - src.amount] length\s of lining from one coil to the other.")
-			src.amount -= (MAXLINING-C.amount)
-			src.updateicon()
-			tooltip_rebuild = 1
-			C.amount = MAXLINING
-			C.updateicon()
-			C.tooltip_rebuild = 1
-			return
+	if (check_valid_stack(W))
+		stack_item(W)
+		if(!user.is_in_hands(src))
+			user.put_in_hand(src)
+		boutput(user, "You join the lining coils together.")
 
 /obj/item/neon_lining/MouseDrop_T(atom/movable/O as obj, mob/user as mob)
 	..(O, user)
@@ -171,21 +135,80 @@
 		boutput(user, "You can't lay neon lining at a place that far away.")
 		return
 
-	else
-		var/dirn = user.dir
+	else //Placing neon
+		var/obj/neon_lining/C
+		if (!auto_flags) //No autoplacement: just follow user dir
+			C = new /obj/neon_lining(F, user.dir, src.lining_item_color)
+		else //Funky stuff
+			var/to_line_along = 0 //Directions we want to go along cause there's walls there or whatever
+			if (auto_flags & AUTOPLACE_STRUCTURAL)
+				for(var/d in cardinal)
+					var/turf/T = get_turf(get_step(F, d))
+					if (!T || T.density) //Is a wall, or we're at the edge of the map which I feel might as well be neon-lined
+						to_line_along |= d
+						continue
+					if (locate(/obj/window) in T) //Can't be arsed to check thindows
+						to_line_along |= d
+						continue
+					if (locate(/obj/machinery/door/airlock) in T)
+						to_line_along |= d
+						continue
 
-		var/obj/neon_lining/C = new /obj/neon_lining(F, src)
-		if (dirn == SOUTH)
-			C.lining_rotation = 0
-		else if (dirn == EAST)
-			C.lining_rotation = 3
-		else if (dirn == WEST)
-			C.lining_rotation = 1
-		else //NORTH
-			C.lining_rotation = 2
+			//Now to interpret what walls we're lining along
+			if (!to_line_along) //No nearby walls, default to straight & user dir
+				C = new /obj/neon_lining(F, user.dir, src.lining_item_color)
+
+			else if (to_line_along in cardinal) //one wall
+				C = new /obj/neon_lining(F, to_line_along, src.lining_item_color)
+
+			else if (to_line_along == (NORTH | SOUTH)) //Opposite walls, we need to use & spawn 2 pieces for this
+				if (src.amount > 1)
+					C = new /obj/neon_lining(F, NORTH, src.lining_item_color)
+					C.add_fingerprint(user)
+					change_stack_amount(-1)
+				C = new /obj/neon_lining(F, SOUTH, src.lining_item_color)
+
+			else if (to_line_along == (EAST | WEST))  //idem but other walls
+				if (src.amount > 1)
+					C = new /obj/neon_lining(F, EAST, src.lining_item_color)
+					C.add_fingerprint(user)
+					change_stack_amount(-1)
+				C = new /obj/neon_lining(F, WEST, src.lining_item_color)
+
+			else if (to_line_along == (NORTH | SOUTH | EAST | WEST)) //All walls? hope you like your 1x1 neon cell
+				C = new /obj/neon_lining(F, SOUTH, src.lining_item_color, 1) //shape 1 is circle
+
+			else
+				var/non_lining = to_line_along ^ (NORTH | SOUTH | EAST | WEST) //xor to maybe get a single dir out
+				if (non_lining in cardinal) //cause if that's the case we've got 3 walls
+					C = new /obj/neon_lining(F, turn(non_lining, 180), src.lining_item_color, 4) //4 is a u piece
+				else //By process of elimination, a corner
+					C = new /obj/neon_lining(F, turn(to_line_along, -45), src.lining_item_color, 5) //5 i a corner
+
+
 		boutput(user, "You set some neon lining on the floor.")
-		C.lining_color = lining_item_color
 		C.add_fingerprint(user)
-		C.lining_update_icon()
-		use(1)
+		change_stack_amount(-1)
 	return
+
+#undef MAXLINING
+
+
+//Neon lining auto-placement
+//cause jeez it's tedious
+
+/obj/ability_button/lining_auto_walls
+	name = "Toggle wall/window autoorient"
+	icon_state = "rocketshoes"
+
+	execute_ability()
+		var/obj/item/neon_lining/N = the_item
+		if (N.auto_flags & AUTOPLACE_STRUCTURAL)
+			N.auto_flags &= ~AUTOPLACE_STRUCTURAL
+			boutput(the_mob, "<span class='notice'>No longer orienting lining along structural elements.</span>")
+		else
+			N.auto_flags |= AUTOPLACE_STRUCTURAL
+			boutput(the_mob, "<span class='notice'>Now orienting lining along structural elements.</span>")
+		..()
+
+#undef AUTOPLACE_STRUCTURAL

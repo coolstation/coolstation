@@ -19,7 +19,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        map: ["COGMAP", "DESTINY", "OSHAN", "GEHENNA", "SPACE_PREFAB", "UNDERWATER_PREFAB", "FULL"]
+        map: ["SPACE_PREFAB", "FULL"]
+# Should check prefabs for errors along with the currently active map. we don't do underwater maps, at least for now.
+# If we figure out the right way to define startup on the server without hard config change, then we can put GEHENNA and BOBMAP back in easy peasy
+# Old matrix:
+# map: ["COGMAP", "DESTINY", "OSHAN", "GEHENNA", "SPACE_PREFAB", "UNDERWATER_PREFAB", "FULL"]
         compiletype: ["default"]
     steps:
       - uses: actions/checkout@v2
