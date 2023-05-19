@@ -782,7 +782,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	contraband = 4
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 	icon_state = "mistfit"
-		make_parts()
+
+	make_parts()
 		barrel = new/obj/item/gun_parts/barrel/soviet/improvshort (src)
 		stock = new/obj/item/gun_parts/stock/soviet/improvmetal (src)
 		stock2 = new/obj/item/gun_parts/stock/soviet/akgrip (src)

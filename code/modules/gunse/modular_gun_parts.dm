@@ -442,7 +442,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "Several mismatched parts from old hunting rifles, all welded together."
 	spread_angle = -4
 	jam_frequency_fire = 5
-	part_DRM = GUN_FOSS | GUN_SOVIET |
+	part_DRM = GUN_FOSS | GUN_SOVIET
 	name_addition = "rifled"
 	length = 35
 	icon_state = "longimprovbarrel"
@@ -453,7 +453,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "Several mismatched parts from old hunting rifles. Someone painted a trans flag on it"
 	spread_angle = -4
 	jam_frequency_fire = 5
-	part_DRM = GUN_FOSS | GUN_SOVIET |
+	part_DRM = GUN_FOSS | GUN_SOVIET
 	length = 35
 	icon_state = "improvtransbarrel"
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
@@ -620,7 +620,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = -2
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "Machined"
-	icon_state = "improvstock"
+	icon_state = "shittyfoldingstock"
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
 /obj/item/gun_parts/stock/soviet/akgrip //no name addition
