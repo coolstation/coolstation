@@ -1,3 +1,4 @@
+ABSTRACT_TYPE(/datum/cookingrecipe)
 /datum/cookingrecipe
 	var/item1 = null
 	var/item2 = null
@@ -7,9 +8,14 @@
 	var/amt2 = 1
 	var/amt3 = 1
 	var/amt4 = 1
-	var/cookbonus = null // how much cooking it needs to get a healing bonus
-	var/output = null // what you get from this recipe
-	var/useshumanmeat = 0 // used for naming of human meat dishes after their victims
+	/// how much cooking it needs to get a healing bonus
+	var/cookbonus = null
+	/// what you get from this recipe
+	var/output = null
+	/// used for naming of human meat dishes after their victims
+	var/useshumanmeat = 0
+	/// If you want to disable this recipe from the oven recipe list
+	var/enabled = 1
 
 	proc/specialOutput(var/obj/submachine/ourCooker)
 		return null //If returning an object, that is used as the output
@@ -792,6 +798,7 @@
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/flour
 	cookbonus = 1
 	output = /obj/item/reagent_containers/food/snacks/wonton_spawner
+	enabled = FALSE //Mixer (KitchenHelper) recipe
 
 /datum/cookingrecipe/taco_shell
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/tortilla
@@ -1241,12 +1248,14 @@
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/egg
 	cookbonus = 6
 	output = /obj/item/reagent_containers/food/snacks/condiment/custard
+	enabled = FALSE //Mixer (KitchenHelper) recipe
 
 /datum/cookingrecipe/gruel
 	item1 = /obj/item/reagent_containers/food/snacks/yuck
 	amt1 = 3
 	cookbonus = 10
 	output = /obj/item/reagent_containers/food/snacks/soup/gruel
+	enabled = FALSE //Mixer (KitchenHelper) recipe
 
 /datum/cookingrecipe/porridge
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/rice
@@ -1334,6 +1343,7 @@
 	amt2 = 2
 	cookbonus = 10
 	output = /obj/item/reagent_containers/food/snacks/cake_batter
+	enabled = FALSE //Mixer (KitchenHelper) recipe
 
 /datum/cookingrecipe/cake_cream
 	item1 = /obj/item/reagent_containers/food/snacks/cake_batter
@@ -1446,6 +1456,7 @@
 	item1 = /obj/item/reagent_containers/food/snacks/cake_batter
 	amt1 = 1
 	output = null
+	enabled = FALSE //Mixer (KitchenHelper) recipe
 
 	specialOutput(var/obj/submachine/ourCooker)
 		if (!ourCooker)
@@ -1491,6 +1502,7 @@
 	amt3 = 2
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/ingredient/pancake_batter
+	enabled = FALSE //Mixer (KitchenHelper) recipe
 
 /datum/cookingrecipe/pancake
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/pancake_batter
@@ -1502,30 +1514,36 @@
 	amt1 = 3
 	cookbonus = 10
 	output = /obj/item/reagent_containers/food/snacks/mashedpotatoes
+	enabled = FALSE //Mixer (KitchenHelper) recipe
 
 /datum/cookingrecipe/mashedbrains
 	item1 = /obj/item/organ/brain
 	cookbonus = 10
 	output = /obj/item/reagent_containers/food/snacks/mashedbrains
+	enabled = FALSE //Mixer (KitchenHelper) recipe
 
 /datum/cookingrecipe/creamofmushroom
 	item1 = /obj/item/reagent_containers/food/snacks/mushroom
 	item2 = /obj/item/reagent_containers/food/drinks/milk
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/soup/creamofmushroom
+	enabled = FALSE //Mixer (KitchenHelper) recipe
 
 /datum/cookingrecipe/creamofmushroom/amanita
 	item1 = /obj/item/reagent_containers/food/snacks/mushroom/amanita
 	output = /obj/item/reagent_containers/food/snacks/soup/creamofmushroom/amanita
+	enabled = FALSE //Mixer (KitchenHelper) recipe
 
 /datum/cookingrecipe/creamofmushroom/psilocybin
 	item1 = /obj/item/reagent_containers/food/snacks/mushroom/psilocybin
 	output = /obj/item/reagent_containers/food/snacks/soup/creamofmushroom/psilocybin
+	enabled = FALSE //Mixer (KitchenHelper) recipe
 
 /datum/cookingrecipe/meatpaste
 	item1 =  /obj/item/reagent_containers/food/snacks/ingredient/meat/
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/ingredient/meatpaste/
+	enabled = FALSE //Mixer (KitchenHelper) recipe
 
 /datum/cookingrecipe/sloppyjoe
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/meatpaste
@@ -1688,6 +1706,7 @@
 	item2 = /obj/item/reagent_containers/food/drinks/milk
 	cookbonus = 14
 	output = /obj/item/reagent_containers/food/snacks/condiment/butters
+	enabled = FALSE //Mixer (KitchenHelper) recipe
 
 /datum/cookingrecipe/lipstick
 	item1 = /obj/item/pen/crayon
