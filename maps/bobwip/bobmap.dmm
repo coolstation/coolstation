@@ -18176,8 +18176,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/computer/mining_shuttle{
-	dir = 8
+/obj/machinery/computer/transit_terminal/mining{
+	dir = 8;
+	name = "Mining Shuttle"
 	},
 /turf/simulated/floor/yellow/side{
 	dir = 4
