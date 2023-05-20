@@ -3115,6 +3115,7 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon10,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
 "byR" = (
@@ -5695,6 +5696,7 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/junction/middle/east,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon3,
 /turf/simulated/floor{
 	icon_state = "nt_logo"
 	},
@@ -11935,6 +11937,13 @@
 /obj/item_dispenser/icedispenser,
 /turf/simulated/wall,
 /area/station/crew_quarters/bar)
+"fxa" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon8,
+/turf/simulated/floor,
+/area/station/hallway/primary/northeast)
 "fxy" = (
 /obj/cable/blue{
 	icon_state = "1-4"
@@ -13953,6 +13962,10 @@
 	dir = 1
 	},
 /area/station/science/artifact)
+"grp" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon2,
+/turf/simulated/floor,
+/area/station/crew_quarters/lounge)
 "grG" = (
 /obj/cable/blue{
 	icon_state = "0-8"
@@ -14038,6 +14051,10 @@
 /obj/lattice,
 /turf/space,
 /area/station/science/lab)
+"gtJ" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon4,
+/turf/simulated/floor/wood,
+/area/station/crew_quarters/barber_shop)
 "gtM" = (
 /obj/disposalpipe/segment/brig{
 	dir = 4
@@ -16037,6 +16054,7 @@
 	dir = 1
 	},
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon7,
 /turf/simulated/floor,
 /area/station/hallway/primary/north)
 "hoE" = (
@@ -16372,6 +16390,10 @@
 	dir = 1
 	},
 /area/station/hallway/primary/northeast)
+"hwT" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon11,
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/east)
 "hwV" = (
 /obj/decal/mule/beacon,
 /turf/simulated/floor/white,
@@ -16588,7 +16610,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/neutral/side{
-	dir = 1
+	dir = 5
 	},
 /area/station/hallway/primary/northwest)
 "hAC" = (
@@ -16960,6 +16982,14 @@
 	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay/surgery/storage)
+"hKF" = (
+/obj/cable/blue{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon6,
+/turf/simulated/floor,
+/area/station/hallway/primary/central)
 "hKI" = (
 /turf/simulated/floor/grey/blackgrime,
 /area/listeningpost)
@@ -17375,6 +17405,10 @@
 	},
 /turf/simulated/floor/specialroom/chapel,
 /area/station/science/artifact)
+"hWz" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon17,
+/turf/simulated/floor,
+/area/station/hallway/primary/south)
 "hWK" = (
 /obj/cable,
 /obj/machinery/power/apc{
@@ -17830,8 +17864,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/computer/mining_shuttle{
-	dir = 8
+/obj/machinery/computer/transit_terminal/mining{
+	dir = 8;
+	name = "Mining Shuttle"
 	},
 /turf/simulated/floor/yellow/side{
 	dir = 4
@@ -19196,6 +19231,7 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon9,
 /turf/simulated/floor,
 /area/station/hallway/primary/northeast)
 "iMj" = (
@@ -20279,6 +20315,10 @@
 /obj/machinery/manufacturer/hangar,
 /turf/simulated/floor,
 /area/station/hangar/qm)
+"jkk" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon14,
+/turf/simulated/floor,
+/area/station/hallway/primary/south)
 "jkv" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -23267,6 +23307,10 @@
 	},
 /turf/simulated/floor/red,
 /area/station/security/visitation)
+"kzI" = (
+/obj/machinery/light/fluorescent/auto/neutral,
+/turf/simulated/floor/neutral,
+/area/station/hallway/primary/northwest)
 "kzP" = (
 /turf/simulated/wall,
 /area/station/medical/cdc)
@@ -24021,6 +24065,9 @@
 /obj/storage/closet/emergency,
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
+"kOI" = (
+/turf/simulated/floor/neutral,
+/area/station/hallway/primary/northwest)
 "kOJ" = (
 /obj/cable/blue{
 	icon_state = "1-8"
@@ -24429,6 +24476,14 @@
 /obj/machinery/atmospherics/unary/vent_pump{
 	dir = 8
 	},
+/turf/simulated/floor/wood/seven,
+/area/station/crew_quarters/bar)
+"kYw" = (
+/obj/plasticflaps{
+	opacity = 1
+	},
+/obj/machinery/door/airlock/security,
+/obj/access_spawn/security,
 /turf/simulated/floor/wood/seven,
 /area/station/crew_quarters/bar)
 "kYx" = (
@@ -26680,6 +26735,10 @@
 	dir = 9
 	},
 /area/station/engine/substation/west)
+"lYT" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon16,
+/turf/simulated/floor/wood/three,
+/area/station/crew_quarters/fitness)
 "lYW" = (
 /obj/machinery/power/data_terminal,
 /obj/cable/blue{
@@ -27248,6 +27307,7 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/courtroom)
 "mld" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon13,
 /turf/simulated/floor,
 /area/station/hallway/primary/southeast)
 "mle" = (
@@ -31328,6 +31388,7 @@
 /obj/machinery/light/emergency{
 	dir = 8
 	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon19,
 /turf/simulated/floor,
 /area/station/crew_quarters/stockex)
 "nXu" = (
@@ -31377,6 +31438,10 @@
 	},
 /turf/simulated/nicegrass,
 /area/station/hydroponics/bay)
+"nYf" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon15,
+/turf/simulated/floor,
+/area/station/hangar/escape)
 "nYh" = (
 /obj/disposalpipe/broken{
 	dir = 1
@@ -31686,6 +31751,22 @@
 	},
 /turf/simulated/floor/neutral,
 /area/station/bridge/customs)
+"ogG" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/insulated{
+	can_rupture = 0;
+	dir = 4;
+	level = 1;
+	name = "hot loop purge pipe"
+	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon12,
+/turf/simulated/floor,
+/area/station/hallway/primary/southeast)
 "ogM" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	can_rupture = 0
@@ -34032,6 +34113,13 @@
 	},
 /turf/simulated/floor/carpet/blue/fancy,
 /area/station/bridge)
+"pia" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon18,
+/turf/simulated/floor,
+/area/station/hallway/primary/west)
 "piy" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
 /obj/window_blinds/cog2/left{
@@ -34041,7 +34129,7 @@
 /area/station/science/research_director)
 "piz" = (
 /obj/disposalpipe/segment/morgue,
-/turf/simulated/floor,
+/turf/simulated/floor/neutral,
 /area/station/hallway/primary/northwest)
 "piD" = (
 /obj/securearea,
@@ -39398,6 +39486,10 @@
 	dir = 1
 	},
 /area/station/security/checkpoint/arrivals)
+"rED" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon20_to_1_end,
+/turf/simulated/floor/caution/east,
+/area/station/crew_quarters/fitness)
 "rEI" = (
 /obj/cable/blue{
 	icon_state = "0-4"
@@ -44349,7 +44441,7 @@
 /area/station/maintenance/outer/north)
 "tLj" = (
 /obj/disposalpipe/segment/crematorium,
-/turf/simulated/floor,
+/turf/simulated/floor/neutral,
 /area/station/hallway/primary/northwest)
 "tLm" = (
 /obj/disposalpipe/segment/mail/bent/west,
@@ -44673,6 +44765,14 @@
 	dir = 6
 	},
 /area/station/mining/lobby)
+"tRK" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/cable/blue{
+	icon_state = "4-8"
+	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon1_start,
+/turf/simulated/floor,
+/area/station/hallway/primary/west)
 "tRR" = (
 /obj/storage/crate,
 /obj/machinery/light/small/auto/neutral,
@@ -49532,6 +49632,10 @@
 /obj/window_blinds,
 /turf/simulated/floor/plating,
 /area/station/security/detectives_office)
+"vXG" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon5,
+/turf/simulated/floor/wood/seven,
+/area/station/crew_quarters/bar)
 "vXV" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -83926,7 +84030,7 @@ wkO
 wkO
 hXt
 qBp
-yhb
+hWz
 aiY
 wZy
 dRF
@@ -84505,8 +84609,8 @@ xzG
 xzG
 wec
 uHh
-uWn
-vHK
+tRK
+pia
 uHh
 xQj
 uoo
@@ -85091,7 +85195,7 @@ dPo
 erf
 taG
 xZF
-xZF
+grp
 gPo
 hus
 xZF
@@ -87184,7 +87288,7 @@ eae
 eYs
 xIj
 qsN
-mIg
+gtJ
 mIg
 mIg
 xIP
@@ -87865,7 +87969,7 @@ uBJ
 uBJ
 uBJ
 muv
-uBJ
+lYT
 uBJ
 uBJ
 tyd
@@ -88152,7 +88256,7 @@ mJe
 nUH
 iAi
 kjD
-yhb
+jkk
 cjN
 yhb
 rKB
@@ -88375,7 +88479,7 @@ axV
 bcL
 bpX
 kMg
-aeb
+kzI
 gDd
 wrH
 gDd
@@ -88677,7 +88781,7 @@ avS
 tIL
 rlN
 kMg
-vMA
+kOI
 gDd
 hur
 gDd
@@ -89304,7 +89408,7 @@ iVN
 aXA
 iVN
 aXA
-lfD
+vsL
 gSc
 tNu
 wYU
@@ -89606,7 +89710,7 @@ iVN
 jkG
 iVN
 iVN
-vsL
+kYw
 nhv
 lES
 bvM
@@ -90205,7 +90309,7 @@ oJt
 ttj
 iDZ
 iwh
-iVN
+vXG
 iVN
 xMd
 iVN
@@ -90296,7 +90400,7 @@ yfn
 uzr
 yit
 yit
-yit
+nYf
 nvc
 eWe
 koF
@@ -91761,7 +91865,7 @@ ygL
 ygL
 bIc
 xMF
-xMF
+rED
 cnn
 cwk
 cRG
@@ -92028,7 +92132,7 @@ iVN
 lfD
 tet
 oSB
-jpm
+hKF
 mcN
 bFI
 ykB
@@ -94466,7 +94570,7 @@ rBD
 nZN
 nZN
 rBD
-mcN
+pTF
 mcN
 mcN
 mcN
@@ -99874,7 +99978,7 @@ haR
 fHk
 nSM
 guc
-wra
+fxa
 izR
 gbV
 joV
@@ -110200,7 +110304,7 @@ jLa
 lRp
 sxJ
 sqM
-lYK
+ogG
 kRS
 osW
 xAN
@@ -113815,7 +113919,7 @@ uev
 sGy
 bmJ
 rus
-ygl
+hwT
 mVE
 hfo
 pve
