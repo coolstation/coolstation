@@ -29,10 +29,14 @@
 	///The overlay image which hosts the glowing parts.
 	var/image/glow
 
-	New(loc, set_rotation = SOUTH, set_color = "blue", set_shape = LINING_STRAIGHT)
+	New(loc, set_rotation = null, set_color = null, set_shape = null)
 		. = ..()
-		lining_rotation = set_rotation
-		lining_shape = set_shape
+		if (set_rotation)
+			lining_rotation = set_rotation
+		else //Here's to not fucking up the diner club neon (it'll probably break other, more complicated stuff though)
+			lining_rotation = src.dir
+		if (set_shape)
+			lining_shape = set_shape
 		//set_dir(lining_rotation)
 		if (set_color in list("blue", "pink", "yellow"))
 			lining_color = set_color
