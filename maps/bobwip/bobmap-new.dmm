@@ -13963,9 +13963,14 @@
 	},
 /area/station/science/artifact)
 "grp" = (
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon2,
-/turf/simulated/floor,
-/area/station/crew_quarters/lounge)
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
+	},
+/obj/machinery/light/fluorescent/auto/neutral,
+/turf/simulated/floor/neutral/side{
+	dir = 1
+	},
+/area/station/hallway/primary/northwest)
 "grG" = (
 /obj/cable/blue{
 	icon_state = "0-8"
@@ -16973,9 +16978,13 @@
 /turf/simulated/floor/white,
 /area/station/medical/medbay/treatment)
 "hJF" = (
-/obj/machinery/light/fluorescent/auto/harsh/very,
+/obj/disposalpipe/segment/morgue,
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon2,
 /turf/simulated/floor,
-/area/station/hallway/primary/west)
+/area/station/hallway/secondary/northwest)
 "hKC" = (
 /obj/machinery/atmospherics/unary/vent_pump{
 	dir = 4
@@ -47050,10 +47059,6 @@
 /area/station/crewquarters/fuq3)
 "uPM" = (
 /obj/machinery/light/fluorescent/auto/neutral,
-/obj/disposalpipe/segment/mail/vertical,
-/obj/cable/blue{
-	icon_state = "1-2"
-	},
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
 "uPT" = (
@@ -50569,7 +50574,7 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/segment/mail/vertical,
-/obj/machinery/light/fluorescent/harsh,
+/obj/machinery/light/fluorescent/auto/neutral,
 /turf/simulated/floor/red/side{
 	dir = 8
 	},
@@ -82789,7 +82794,7 @@ xLb
 nYh
 uHh
 uHh
-hJF
+jCZ
 wgR
 uHh
 uHh
@@ -85195,7 +85200,7 @@ dPo
 erf
 taG
 xZF
-grp
+xZF
 gPo
 hus
 xZF
@@ -87326,7 +87331,7 @@ whl
 whl
 whl
 yiP
-mcN
+uPM
 rHD
 lkX
 uoo
@@ -87628,7 +87633,7 @@ wML
 wML
 sXK
 rQK
-uPM
+rQK
 wiL
 lkX
 uoo
@@ -87915,7 +87920,7 @@ yiL
 yiL
 yiL
 gZz
-yiL
+hJF
 yiL
 yiL
 yiL
@@ -89711,7 +89716,7 @@ jkG
 iVN
 iVN
 kYw
-nhv
+gSc
 lES
 bvM
 cmH
@@ -90013,7 +90018,7 @@ iVN
 iVN
 vyT
 vsL
-gSc
+grp
 tNu
 lPI
 hOo
