@@ -2003,3 +2003,71 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			return copytext(message, 2)
 	src.singing = 0
 	. =  message
+
+// can stumble or flip while drunk
+/mob/living/proc/can_drunk_act()
+	if (!src.canmove || !isturf(src.loc))
+		return FALSE
+	if (length(src.grabbed_by))
+		for (var/obj/item/grab/G in src.grabbed_by)
+			if (istype(G, /obj/item/grab/block))
+				continue
+			if (G.state > GRAB_PASSIVE)
+				return FALSE
+	return !src.lying && !((length(src.grabbed_by) || src.pulled_by) && src.hasStatus("handcuffed"))
+
+/mob/living/take_radiation_dose(Sv,internal=FALSE)
+	// if we don't have the radiation lifeprocess, we're immune, so don't send any messages or burn us
+	// but we should still allow ourselves to heal
+	if(Sv > 0 && !src.lifeprocesses[/datum/lifeprocess/radiation])
+		return
+	var/actual_dose = ..()
+	if(actual_dose > 0.2 && !internal)
+		src.TakeDamage("All",0,20*clamp(actual_dose/4.0, 0, 1)) //a 2Sv dose all at once will badly burn you
+		if(!ON_COOLDOWN(src,"radiation_feel_message_burn",5 SECONDS))
+			src.show_message("<span class='alert'>[pick("Your skin blisters!","It hurts!","Oh god, it burns!")]</span>") //definitely get a message for that
+	else if((actual_dose > 0) && (!src.radiation_dose || prob(10)) && !ON_COOLDOWN(src,"radiation_feel_message",10 SECONDS))
+		src.show_message("<span class='alert'>[pick("Your skin prickles.","You taste iron.","You smell ozone.","You feel a wave of pins and needles.","Is it hot in here?")]</span>")
+
+/mob/living/get_hud()
+	return src.vision
+
+///Init function for adding life processes. Called on New() and when being revived. The counterpart to reduce_lifeprocess_on_death
+/mob/living/proc/restore_life_processes()
+
+/mob/living/get_desc(dist, mob/user)
+	. = ..()
+	if (isdead(src) && src.last_words && (user?.traitHolder?.hasTrait("training_chaplain") || istype(user, /mob/dead/observer)))
+		. += "<br>[capitalize(his_or_her(src))] last words were: \"[src.last_words]\"."
+
+/mob/living/lastgasp(allow_dead=FALSE, grunt=null)
+	set waitfor = FALSE
+	if (!allow_dead && !isalive(src)) return
+	if (src.disposed || !src.client) return // break if it's an npc or a disconnected player
+	var/found_text = FALSE
+	var/enteredtext = winget(src, "mainwindow.input", "text") // grab the text from the input bar
+	if (length(enteredtext) > 5 && copytext(enteredtext, 1, 6) == "say \"") // check if the player is trying to say something
+		winset(src, "mainwindow.input", "text=\"\"") // clear the player's input bar to register death / unconsciousness
+		enteredtext = copytext(enteredtext, 6, 0) // grab the text they were trying to say
+		if (length(enteredtext))
+			found_text = TRUE
+	if (!found_text)
+		enteredtext = winget(src, "saywindow.say-input", "text")
+		if (length(enteredtext))
+			winset(src, "saywindow.say-input", "text=\"\"")
+			winset(src, "saywindow", "is-visible=false")
+			src.cancel_typing("say")
+			found_text = TRUE
+	if (found_text)
+		if (length(enteredtext) > 20)
+			enteredtext = copytext(enteredtext, 1, length(enteredtext) - rand(1, 10))
+		var/message = enteredtext + "--" + grunt
+		logTheThing(LOG_SAY, src, "lastgasp SAY: [html_encode(message)] [log_loc(src)]")
+		var/old_stat = src.stat
+		setalive(src) // okay so we need to be temporarily alive for this in case it's happening as we were dying...
+		if (ishuman(src))
+			var/mob/living/carbon/human/H = src
+			H.say(message, ignore_stamina_winded = 1) // say the thing they were typing and grunt
+		else
+			src.say(message)
+		src.stat = old_stat // back to being dead 😌
