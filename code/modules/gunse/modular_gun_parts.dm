@@ -442,6 +442,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "Several mismatched parts from old hunting rifles, all welded together."
 	spread_angle = -4
 	jam_frequency_fire = 5
+	barrel_overlay_x = 8
+	barrel_overlay_y = -2
 	part_DRM = GUN_FOSS | GUN_SOVIET
 	name_addition = "rifled"
 	length = 35
@@ -453,6 +455,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "Several mismatched parts from old hunting rifles. Someone painted a trans flag on it"
 	spread_angle = -4
 	jam_frequency_fire = 5
+	barrel_overlay_x = 8
+	barrel_overlay_y = -2
 	part_DRM = GUN_FOSS | GUN_SOVIET
 	length = 35
 	icon_state = "improvtransbarrel"
@@ -618,6 +622,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "A old Three Line Rifle stock, ready to fight once more"
 	spread_angle = -8
 	stock_two_handed = 1
+	stock_overlay_x = -9
+	stock_overlay_y = -3
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "wooden"
 	icon_state = "woodstock"
@@ -627,6 +633,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "Hammered Metal Stock"
 	desc = "Some spare metal hammered into a vaugly stock shape"
 	spread_angle = -2
+	stock_overlay_x = -9
+	stock_overlay_y = -2
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "Machined"
 	icon_state = "shittyfoldingstock"

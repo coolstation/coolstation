@@ -775,10 +775,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	spread_angle = 10
 	jam_frequency_fire = 15
 	jam_frequency_reload = 4
-	stock_overlay_x = -10
-	stock_overlay_y = 1
-	barrel_overlay_x = 22
-	barrel_overlay_y = 1
+	stock_overlay_x = -9
+	stock_overlay_y = -1
+	barrel_overlay_x = 0
+	barrel_overlay_y = 0
 	contraband = 4
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 	icon_state = "mistfit"
