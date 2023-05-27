@@ -540,6 +540,14 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "nt_wire"
 	overlay_x = -12
 
+/obj/item/gun_parts/stock/juicer/jucinstock
+	name = "\improper DORF MASTER STRIKE MASTER COMPACT STOCK"
+	desc = "With the new DORF STRIKE MASTER COMPACT STOCK, you can UNLEASH your real inner ELITE WARRIOR with its revolutionary DORFing cool technology. DORF UP OR GEIT AUGHT(c)(tm)(r)"
+	max_ammo_capacity = 2
+	spread_angle = 4 //If you have a nerf gun, you'll know why.
+	name_addition = "DORF STRIKER"
+	icon = 'icons/obj/itmes/modular_guns/mistfits.dmi'
+	icon_state = "improvstockuggo"
 
 /obj/item/gun_parts/stock/foss
 	name = "\improper FOSS laser stock"
@@ -622,6 +630,14 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "Machined"
 	icon_state = "shittyfoldingstock"
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+
+/obj/item/gun_parts/stock/soviet/improvplastic
+	name = "Weird Looking Stock"
+	desc = "A strangely familiar stock. You might have had one of these when you were a kid or somethin" //hey wait a second
+	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
+	name_addition = "Wobbly"
+	icon_state = "improvstock"
+	icon = 'icons/obj/items/modular_guns/mistfist.dmi'
 
 /obj/item/gun_parts/stock/soviet/akgrip //no name addition
 	name = "Kalash Grip"
