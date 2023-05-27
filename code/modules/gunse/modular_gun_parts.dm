@@ -547,7 +547,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	max_ammo_capacity = 2
 	spread_angle = 4 //If you have a nerf gun, you'll know why.
 	name_addition = "DORF STRIKER"
-	icon = 'icons/obj/itmes/modular_guns/mistfits.dmi'
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 	icon_state = "improvstockuggo"
 
 /obj/item/gun_parts/stock/foss
@@ -638,7 +638,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "Wobbly"
 	icon_state = "improvstock"
-	icon = 'icons/obj/items/modular_guns/mistfist.dmi'
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
 /obj/item/gun_parts/stock/soviet/akgrip //no name addition
 	name = "Kalash Grip"
