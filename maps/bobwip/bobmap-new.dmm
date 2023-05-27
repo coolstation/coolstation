@@ -3115,7 +3115,6 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
-/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon10,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
 "byR" = (
@@ -9501,10 +9500,8 @@
 /turf/space,
 /area/shuttle/arrival/station)
 "ewO" = (
-/obj/landmark{
-	name = "blobstart"
-	},
 /obj/disposalpipe/segment/transport,
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon10,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
 "ewP" = (
@@ -11938,12 +11935,13 @@
 /turf/simulated/wall,
 /area/station/crew_quarters/bar)
 "fxa" = (
-/obj/cable{
+/obj/cable/blue{
 	icon_state = "4-8"
 	},
+/obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon8,
 /turf/simulated/floor,
-/area/station/hallway/primary/northeast)
+/area/station/hallway/primary/central)
 "fxy" = (
 /obj/cable/blue{
 	icon_state = "1-4"
@@ -20068,7 +20066,8 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/wall/r_wall,
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
 "jfk" = (
 /turf/simulated/floor/white,
@@ -23673,11 +23672,11 @@
 /turf/simulated/floor/engine,
 /area/station/engine/ptl)
 "kGs" = (
-/obj/plasticflaps{
-	opacity = 1
+/obj/landmark{
+	name = "blobstart"
 	},
-/turf/simulated/floor/wood/seven,
-/area/station/crew_quarters/barber_shop)
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/ne)
 "kGu" = (
 /obj/machinery/atmospherics/binary/volume_pump{
 	dir = 4;
@@ -24488,13 +24487,14 @@
 /turf/simulated/floor/wood/seven,
 /area/station/crew_quarters/bar)
 "kYw" = (
-/obj/plasticflaps{
-	opacity = 1
+/obj/grille/catwalk,
+/obj/lattice,
+/obj/disposalpipe/segment/mail/vertical,
+/obj/cable{
+	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/security,
-/obj/access_spawn/security,
-/turf/simulated/floor/wood/seven,
-/area/station/crew_quarters/bar)
+/turf/simulated/floor/plating,
+/area/station/catwalk/east)
 "kYx" = (
 /obj/kitchenspike,
 /obj/machinery/light/fluorescent/auto/cool/very,
@@ -25794,6 +25794,10 @@
 	},
 /turf/simulated/floor,
 /area/station/security/main)
+"lFt" = (
+/obj/wingrille_spawn/fakethindow/reinforced,
+/turf/simulated/floor/plating,
+/area/space)
 "lFC" = (
 /obj/item/storage/box/glassbox{
 	pixel_x = -2;
@@ -48774,6 +48778,16 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/nw)
+"vCe" = (
+/obj/grille/catwalk,
+/obj/lattice,
+/obj/disposalpipe/segment/mail/vertical,
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/plating,
+/area/station/catwalk/east)
 "vCn" = (
 /obj/cabinet/chemicals,
 /obj/cable{
@@ -85485,7 +85499,7 @@ wtx
 xIj
 xIj
 xIj
-kGs
+xIj
 xIj
 xZu
 vMA
@@ -89715,7 +89729,7 @@ iVN
 jkG
 iVN
 iVN
-kYw
+vsL
 gSc
 lES
 bvM
@@ -92137,7 +92151,7 @@ iVN
 lfD
 tet
 oSB
-hKF
+jpm
 mcN
 bFI
 ykB
@@ -95157,7 +95171,7 @@ vsL
 vsL
 hXP
 lKx
-jpm
+hKF
 whN
 bFI
 nmo
@@ -98172,7 +98186,7 @@ wYQ
 wYQ
 uxx
 oSB
-jpm
+fxa
 jmv
 ePT
 aMb
@@ -99983,7 +99997,7 @@ haR
 fHk
 nSM
 guc
-fxa
+wra
 izR
 gbV
 joV
@@ -110272,7 +110286,7 @@ rXY
 lVM
 lVM
 lVM
-plf
+kGs
 scf
 aBG
 xMi
@@ -112993,8 +113007,8 @@ lVM
 nom
 scf
 xMi
-uNi
-jzv
+syK
+syK
 jzv
 jzv
 jzv
@@ -113295,8 +113309,8 @@ lVM
 byi
 ndu
 jfh
-jWq
-jWq
+kYw
+vCe
 jWq
 jWq
 jWq
@@ -113597,8 +113611,8 @@ lVM
 owY
 itf
 xMi
-uNi
-xuA
+lFt
+syK
 xuA
 xuA
 xuA
