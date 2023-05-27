@@ -408,6 +408,143 @@
 
 var/list/oven_recipes = list()
 
+//Bat here, what if we actually populated that oven_recipes list? maybe autosort it while we're at it.
+proc/build_oven_recipes()
+	if (length(oven_recipes))
+		return
+	var/list/things = filtered_concrete_typesof(/datum/cookingrecipe, /proc/filter_disabled_oven_recipes)
+	for(var/recipe in things)
+		insert_recipe(new recipe)
+		//oven_recipes += new recipe
+
+///Adds a recipe into the oven recipe list, such that the list remains sorted in a way (and if it can't do that it'll CRASH)
+proc/insert_recipe(datum/cookingrecipe/recipe)
+	if (!istype(recipe)) return
+	//Total amount of items to make this recipes, including duplicates
+	var/number_of_ingredients = 0
+	//Every non-null itemX type,
+	var/list/non_null_ingredients = list()
+	//I didn't invent the format don't blame me for this
+	if (recipe.item1)
+		number_of_ingredients += recipe.amt1
+		non_null_ingredients += recipe.item1
+	if (recipe.item2)
+		number_of_ingredients += recipe.amt2
+		non_null_ingredients += recipe.item2
+	if (recipe.item3)
+		number_of_ingredients += recipe.amt3
+		non_null_ingredients += recipe.item3
+	if (recipe.item4)
+		number_of_ingredients += recipe.amt4
+		non_null_ingredients += recipe.item4
+
+	if (!number_of_ingredients)
+		CRASH("Attempted to add a recipe with zero ingredients!")
+	/*
+	if (!length(oven_recipes)) //I imagine an empty list isn't actually a problem but my brain can't be bothered right now
+		oven_recipes += recipe
+		oven_recipes[recipe] = number_of_ingredients //Cache the number for quick traversal
+		return*/
+	var/inserted = FALSE
+	for (var/index = 1, index <= length(oven_recipes), index++)
+		var/datum/cookingrecipe/other_recipe = oven_recipes[index]
+		if (number_of_ingredients < oven_recipes[other_recipe]) //Less ingredients
+			continue
+
+		else if (number_of_ingredients > oven_recipes[other_recipe]) //We use more ingredients, so we've reached our stop
+			oven_recipes.Insert(index, recipe)
+			oven_recipes[recipe] = number_of_ingredients //Cache the number for quick traversal
+			inserted = TRUE
+			break
+
+		else //Equal ingredients, which means it's thorough validation time
+			//Wikipedia's maths pages are pretty well known for being basically incomprehensible to the uninitiated, so I didn't find the exact problem this is solving
+			//but I get the feeling this is NP-hard? Correct me if I'm wrong.
+
+			//Uuuugh
+			var/list/other_non_null_ingredients = list()
+			if (other_recipe.item1)
+				other_non_null_ingredients += other_recipe.item1
+			if (other_recipe.item2)
+				other_non_null_ingredients += other_recipe.item2
+			if (other_recipe.item3)
+				other_non_null_ingredients += other_recipe.item3
+			if (other_recipe.item4)
+				other_non_null_ingredients += other_recipe.item4
+
+			if (length(non_null_ingredients) != length(other_non_null_ingredients)) //If we want a different amount of types of ingredients, no problem
+				/*Mathematically this shortcut wouldn't be entirely secure:
+				If recipe A had item1 = baguette and amt1 = 2,
+				and recipe B had item1 = baguette and item2 = baguette (both with amounts of 1)
+				those would in theory both require 2 baguettes while these lists would be of differing lengths
+
+				But we can get away with it because the oven can't deal with recipe B either;
+				OVEN_checkitem would flag the same single baguette as satisfying both item1 and item2. :)*/
+				continue
+
+			var/recipes_will_clash = TRUE
+
+			var/recipe_more_specific = "NEITHER"
+			check_every_ingredient:
+				for(var/ingredient_index = 1, ingredient_index <= length(non_null_ingredients), ingredient_index++)
+
+					var/ingredient_in_both = FALSE
+
+					//var/an_ingredient = non_null_ingredients[ingredient_index]
+					for(var/other_ingredient_index = 1, other_ingredient_index <= length(other_non_null_ingredients), other_ingredient_index++)
+						if (non_null_ingredients[ingredient_index] == other_non_null_ingredients[other_ingredient_index]) //Exact typepath match
+							ingredient_in_both = TRUE
+							break
+						//this recipe's ingredient is a subtype of the other recipe's (more specific)
+						if (ispath(non_null_ingredients[ingredient_index], other_non_null_ingredients[other_ingredient_index]))
+							ingredient_in_both = TRUE
+							if (recipe_more_specific == other_recipe) //We've already found another ingredient in the other recipe that is more specific than one of ours
+								recipe_more_specific = "FUCK"
+								break check_every_ingredient
+							else
+								recipe_more_specific = recipe
+								break //I *think* breaking here is safe because oven code implicitly can't handle recipes where ingredient A is a subtype of ingredient B
+						//other recipe's ingredient is more specific (same idea, just with the roles reversed)
+						else if (ispath(other_non_null_ingredients[other_ingredient_index], non_null_ingredients[ingredient_index]))
+							ingredient_in_both = TRUE
+							if (recipe_more_specific == recipe)
+								recipe_more_specific = "FUCK"
+								break check_every_ingredient
+							else
+								recipe_more_specific = other_recipe
+								break
+
+					if (!ingredient_in_both)
+						recipes_will_clash = FALSE
+						break
+
+
+
+			if (recipes_will_clash) //Recipes are similar enough that poor ordering will make one unreachable
+				//Can't use a switch for this
+				if(recipe_more_specific == recipe) //Our recipe needs to come before the other recipe
+					oven_recipes.Insert(index, recipe)
+					oven_recipes[recipe] = number_of_ingredients
+					inserted = TRUE
+					break
+				else if(recipe_more_specific == other_recipe)
+					//Our more generic recipe needs to come after this one at least, so we'll just let the big for loop run on (in case there's more very similar recipes later)
+					continue
+				else if(recipe_more_specific == "FUCK")//Recipe A and B are mostly the same, but A has an ingredient more specific than B's equivalent while another of B's ingredients is more specific than A's
+					CRASH("Ordering of [recipe] and [other_recipe] in the oven recipe list is undecidable!")
+				else if(recipe_more_specific == "NEITHER")//Ingredients are just identical
+					CRASH("[recipe] ingredient requirements are identical to those of [other_recipe]!")
+
+	//If we reached this far without inserting, we should append to the end
+	if (!inserted)
+		oven_recipes += recipe
+		oven_recipes[recipe] = number_of_ingredients
+
+
+proc/filter_disabled_oven_recipes(var/type)
+	var/datum/cookingrecipe/thosefood = type //I ate
+	return initial(thosefood.enabled)
+
 /obj/submachine/chef_oven
 	name = "oven"
 	desc = "A multi-cooking unit featuring a hob, grill, oven and more."
@@ -530,11 +667,13 @@ table#cooktime a#start {
 	//        oven checks through the recipe list will make it pick the simple recipe and finish the cooking proc
 	//        before it even gets to the more complex recipe, wasting the ingredients that would have gone to the
 	//        more complicated one and pissing off the chef by giving something different than what he wanted!
-
+		build_oven_recipes()
 		src.recipes = oven_recipes
 		if (!src.recipes)
 			src.recipes = list()
 
+		//Fuuuuck all of this
+		/*
 		if (!src.recipes.len)
 			src.recipes += new /datum/cookingrecipe/haggass(src)
 			src.recipes += new /datum/cookingrecipe/haggis(src)
@@ -735,7 +874,7 @@ table#cooktime a#start {
 			src.recipes += new /datum/cookingrecipe/meatloaf(src)
 			src.recipes += new /datum/cookingrecipe/hardboiled(src)
 			src.recipes += new /datum/cookingrecipe/bakedpotato(src)
-			src.recipes += new /datum/cookingrecipe/rice_ball(src)
+			src.recipes += new /datum/cookingrecipe/rice_ball(src)*/
 
 	Topic(href, href_list)
 		if ((get_dist(src, usr) > 1 && (!issilicon(usr) && !isAI(usr))) || !isliving(usr) || iswraith(usr) || isintangible(usr))
@@ -1208,7 +1347,7 @@ table#cooktime a#start {
 var/list/mixer_recipes = list()
 
 /obj/submachine/mixer
-	name = "KitchenHelper"
+	name = "\improper KitchenHelper"
 	desc = "A food Mixer."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "blender"
