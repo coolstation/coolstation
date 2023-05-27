@@ -542,6 +542,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 /obj/item/gun_parts/stock/juicer/jucinstock
 	name = "\improper DORF MASTER STRIKE MASTER COMPACT STOCK"
+	part_DRM = GUN_JUICE
 	desc = "With the new DORF STRIKE MASTER COMPACT STOCK, you can UNLEASH your real inner ELITE WARRIOR with its revolutionary DORFing cool technology. DORF UP OR GEIT AUGHT"
 	max_ammo_capacity = 2
 	spread_angle = 4 //If you have a nerf gun, you'll know why.
