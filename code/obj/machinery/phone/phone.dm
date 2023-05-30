@@ -6,18 +6,20 @@
 	anchored = 1
 	density = 0
 	mats = 25
+	deconstruct_flags = DECON_SCREWDRIVER | DECON_WIRECUTTERS | DECON_MULTITOOL
 	_health = 50
 	var/can_talk_across_z_levels = 0
 	var/phone_id = null
 	var/obj/machinery/phone/linked = null
 	var/ringing = 0
 	var/answered = 0
-	var/location = null
 	var/last_ring = 0
-	var/connected = 1 // as in to a phone line. Not to another phone. So you can cut the phone wire and disable it!
+	var/connected = 1
 	var/emagged = 0
 	var/dialing = 0
 	var/labelling = 0
+	var/cord_active = FALSE
+	var/unlisted = FALSE
 	var/obj/item/phone_handset/handset = null
 	var/chui/window/phonecall/phonebook
 	var/phoneicon = "phone"
@@ -31,37 +33,39 @@
 	New()
 		..() // Set up power usage, subscribe to loop, yada yada yada
 		src.icon_state = "[phoneicon]"
-		src.location = get_area(src)
+		var/area/location = get_area(src)
 
 		// Give the phone an appropriate departmental color. Jesus christ thats fancy.
-		if(istype(src.location,/area/station/security))
+		if(istype(location,/area/station/security))
 			src.color = "#ff0000"
-		else if(istype(src.location,/area/station/bridge))
+		else if(istype(location,/area/station/bridge))
 			src.color = "#00aa00"
-		else if(istype(src.location, /area/station/engine) || istype(src.location, /area/station/quartermaster) || istype(src.location, /area/station/mining))
+		else if(istype(location, /area/station/engine) || istype(location, /area/station/quartermaster) || istype(location, /area/station/mining))
 			src.color = "#aaaa00"
-		else if(istype(src.location, /area/station/science))
+		else if(istype(location, /area/station/science))
 			src.color = "#9933ff"
-		else if(istype(src.location, /area/station/medical))
+		else if(istype(location, /area/station/medical))
 			src.color = "#0000ff"
 		else
 			src.color = "#663300"
 		src.overlays += image('icons/obj/machines/phones.dmi',"[dialicon]")
 		// Generate a name for the phone.
-		var/area/my_area = get_area(src)
-		var/base_name = my_area.name // tentative name
-		var/temp_name = base_name
-		var/name_counter = 1
-		for(var/obj/machinery/phone/M in phonelist)
-			if(M.phone_id && M.phone_id == temp_name)
-				name_counter++
-				temp_name = "[base_name] [name_counter]"
 
-		src.phone_id = temp_name
+		if(isnull(src.phone_id))
+			var/temp_name = src.name
+			if(temp_name == initial(src.name) && location)
+				temp_name = location.name
+			var/name_counter = 1
+			for_by_tcl(M, /obj/machinery/phone)
+				if(M.phone_id && M.phone_id == temp_name)
+					name_counter++
+			if(name_counter > 1)
+				temp_name = "[temp_name] [name_counter]"
+			src.phone_id = temp_name
 
-		src.desc += " There is a small label on the phone that reads \"[temp_name]\""
+		src.desc += " There is a small label on the phone that reads \"[src.phone_id]\""
 
-		phonelist.Add(src)
+		START_TRACKING
 
 		return
 
@@ -75,14 +79,12 @@
 			handset.parent = null
 		handset = null
 
-		phonelist.Remove(src)
+		STOP_TRACKING
 		..()
 
 	// Attempt to pick up the handset
-	attack_hand(mob/living/user as mob,var/cellmode = 0)
+	attack_hand(mob/living/user as mob)
 		..(user)
-		if(cellmode)
-			return
 		if(src.answered == 1)
 			return
 
@@ -92,6 +94,10 @@
 
 		src.icon_state = "[answeredicon]"
 		playsound(user, "sound/machines/phones/pick_up.ogg", 50, 0)
+
+		cord_active = TRUE
+		var/atom/movable/cord_line = new /atom/movable(src.loc)
+		draw_cord(handset, cord_line)
 
 		if(src.ringing == 0) // we are making an outgoing call
 			if(src.connected == 1)
@@ -103,19 +109,11 @@
 				if(user)
 					boutput(user,"<span class='alert'>As you pick up the phone you notice that the cord has been cut!</span>")
 		else
-			answer_phone()
-			if(src.linked)
-				src.linked.play_pickup_sound()
+			src.ringing = 0
+			src.linked.ringing = 0
+			if(src.linked.handset.holder)
+				src.linked.handset.holder.playsound_local(src.linked.handset.holder,"sound/machines/phones/remote_answer.ogg",50,0)
 		return
-
-	proc/answer_phone()
-		src.ringing = 0
-		src.linked.ringing = 0
-
-	proc/play_pickip_sound()
-		if(!handset || !handset.holder) //fuck
-			return
-		handset.holder.playsound_local(src.linked.handset.holder,"sound/machines/phones/remote_answer.ogg",50,0)
 
 	attack_ai(mob/user as mob)
 		return
@@ -124,8 +122,6 @@
 		if(istype(P, /obj/item/phone_handset))
 			var/obj/item/phone_handset/PH = P
 			if(PH.parent == src)
-				if(src.linked && src.linked.handset && src.linked.handset.holder)
-					src.linked.handset.holder.playsound_local(src.linked.handset.holder,"sound/machines/phones/remote_answer.ogg",50,0)
 				user.drop_item(PH)
 				qdel(PH)
 				hang_up()
@@ -154,6 +150,7 @@
 			return
 		..()
 		src._health -= P.force
+		attack_particle(user,src)
 		if(src._health <= 0)
 			if(src.linked)
 				hang_up()
@@ -197,23 +194,31 @@
 
 
 	proc/hang_up()
+		src.answered = 0
 		if(src.linked) // Other phone needs updating
+			if(!src.linked.answered) // nobody picked up. Go back to not-ringing state
+				src.linked.icon_state = "[phoneicon]"
+			else if(src.linked.handset && src.linked.handset.holder)
+				src.linked.handset.holder.playsound_local(src.linked.handset.holder,"sound/machines/phones/remote_hangup.ogg",50,0)
+			src.linked.ringing = 0
 			src.linked.linked = null
 			src.linked = null
-			src.linked.hang_up()
 		src.ringing = 0
 		src.handset = null
 		src.icon_state = "[phoneicon]"
+//		src.cord_active = FALSE
 		playsound(src.loc,"sound/machines/phones/hang_up.ogg" ,50,0)
 
 	// This makes phones do that thing that phones do
 	proc/call_other(var/obj/machinery/phone/target)
 		// Dial the number
+		if(!src.handset)
+			return
 		src.dialing = 1
 		src.handset.holder?.playsound_local(src.handset.holder,"sound/machines/phones/dial.ogg" ,50,0)
 		SPAWN_DBG(4 SECONDS)
 			// Is it busy?
-			if(!target.can_be_called())
+			if(target.answered || target.linked || target.connected == 0)
 				playsound(src.loc,"sound/machines/phones/phone_busy.ogg" ,50,0)
 				src.dialing = 0
 				return
@@ -226,24 +231,52 @@
 			src.dialing = 0
 			return
 
-	proc/can_be_called()
-		return answered || linked || !connected
+	proc/draw_cord(var/obj/item/phone_handset/the_handset, atom/movable/cord_line)
+		cord_line.mouse_opacity = 0
+		cord_line.appearance_flags = 0
+		cord_line.color = src.color
+		cord_line.pixel_x = src.pixel_x
+		cord_line.pixel_y = src.pixel_y
+		cord_line.icon = 'icons/obj/machines/phones.dmi'
+		cord_line.icon_state = "cord"
+		animate(cord_line, alpha=255, time=1 SECOND)
+		while(cord_active)
+			if(src.qdeled || src.handset == null || !the_handset)
+				qdel(cord_line)
+				the_handset = null
+				src.cord_active = FALSE
+				break
+			var/dist = GET_DIST(src,the_handset)
+			src.set_dir(get_dir(src,the_handset))
+			if(cord_line)
+				var/ang = get_angle(get_turf(src), get_turf(the_handset))
+				var/cord_line_dist = 8 + 40 / (1 + 3 ** (3 - dist / 10))
+				var/matrix/M = matrix()
+				var/cord_line_scale = (1.1 * dist)
+//				var/cord_line_scale = (0.9 * dist) + (dist * 0.1 / (1 + 3 ** (3 - dist / 10)))
+				M = M.Scale(1, cord_line_scale * 2)
+				M = M.Turn(ang)
+				M = M.Translate(cord_line_dist * sin(ang), cord_line_dist * cos(ang))
+				animate(cord_line, transform=M, time=0.2 SECONDS, flags=ANIMATION_PARALLEL)
 
-	/obj/machinery/phone/custom_suicide = 1
-	/obj/machinery/phone/suicide(var/mob/user as mob)
-		if (!src.user_can_suicide(user))
-			return 0
-		if (ishuman(user))
-			user.visible_message("<span class='alert'><b>[user] bashes the [src] into their head repeatedly!</b></span>")
-			user.TakeDamage("head", 150, 0)
-			return 1
+			sleep(0.2 SECONDS)
+
+
+/obj/machinery/phone/custom_suicide = 1
+/obj/machinery/phone/suicide(var/mob/user as mob)
+	if (!src.user_can_suicide(user))
+		return 0
+	if (ishuman(user))
+		user.visible_message("<span class='alert'><b>[user] bashes the [src] into their head repeatedly!</b></span>")
+		user.TakeDamage("head", 150, 0)
+		return 1
 
 
 
 // Interface for placing a call
 /chui/window/phonecall
 	name = "phonebook"
-	windowSize = "350x700"
+	windowSize = "250x500"
 	var/obj/machinery/phone/owner = null
 
 	New(var/obj/machinery/phone/creator)
@@ -252,7 +285,8 @@
 
 	GetBody()
 		var/html = ""
-		for(var/obj/machinery/phone/P in phonelist)
+		for_by_tcl(P, /obj/machinery/phone)
+			if (P.unlisted) continue
 			html += "[theme.generateButton(P.phone_id, "[P.phone_id]")] <br/>"
 		return html
 
@@ -260,7 +294,7 @@
 		if(src.owner.dialing == 1 || src.owner.linked)
 			return
 		if(owner)
-			for(var/obj/machinery/phone/P in phonelist)
+			for_by_tcl(P, /obj/machinery/phone)
 				if(P.phone_id == id)
 					owner.call_other(P)
 					return
@@ -276,6 +310,7 @@
 	var/obj/machinery/phone/parent = null
 	var/mob/holder = null //GC WOES (just dont use this var, get holder using loc)
 	flags = TALK_INTO_HAND
+	w_class = 1
 
 	New(var/obj/machinery/phone/parent_phone, var/mob/living/picker_upper)
 		if(!parent_phone)
@@ -307,7 +342,7 @@
 
 	talk_into(mob/M as mob, text, secure, real_name, lang_id)
 		..()
-		if(get_dist(src,holder) > 0 || !src.parent.linked) // Guess they dropped it? *shrug
+		if(get_dist(src,holder) > 0 || !src.parent.linked || !src.parent.linked.handset) // Guess they dropped it? *shrug
 			return
 		var/processed = "<span class='game say'><span class='bold'>[M.name] \[<span style=\"color:[src.color]\"> [bicon(src)] [src.parent.phone_id]</span>\] says, </span> <span class='message'>\"[text[1]]\"</span></span>"
 		var/mob/T = src.parent.linked.handset.holder
@@ -318,29 +353,13 @@
 			for (var/obj/item/device/radio/intercom/I in range(3, T))
 				I.talk_into(M, text, null, M.real_name, lang_id)
 
-	call_other(var/obj/machinery/phone/target)
-		// Dial the number
-		src.dialing = 1
-		src.handset.holder?.playsound_local(src.handset.holder,"sound/machines/phones/dial.ogg" ,50,0)
-		SPAWN_DBG(4 SECONDS)
-			// Is it busy?
-			if(!target.can_be_called())
-				playsound(src.loc,"sound/machines/phones/phone_busy.ogg" ,50,0)
-				src.dialing = 0
-				return
-
-			// Start ringing the other phone (handled by process)
-			src.linked = target
-			target.linked = src
-			src.ringing = 1
-			src.linked.ringing = 1
-			src.dialing = 0
-			return
-
-
+	// Attempt to pick up the handset
+	attack_hand(mob/living/user as mob)
+		..(user)
+		holder = user
 
 /obj/machinery/phone/wall
-	name = "phone"
+	name = "wall phone"
 	icon = 'icons/obj/machines/phones.dmi'
 	desc = "A landline phone. In space. Where there is no land. Hmm."
 	icon_state = "wallphone"
@@ -353,3 +372,128 @@
 	answeredicon = "wallphone_answered"
 	dialicon = "wallphone_dial"
 
+/obj/machinery/phone/unlisted
+	unlisted = TRUE
+
+//
+//		----------------- CELL PHONE STUFF STARTS HERE ---------------------
+//
+
+
+/*
+		Radio Antennas. Cell phones require a signal to work!
+
+
+/var/global/list/radio_antennas = list()
+
+/obj/machinery/radio_antenna
+	icon='icons/obj/large/32x64.dmi'
+	icon_state = "commstower"
+	var/range = 10
+	var/active = 0
+
+	process()
+		..()
+
+	proc/get_max_range()
+		return range * 5
+
+	proc/process_message()
+
+/obj/machinery/radio_antenna/large
+	range = 40
+
+/obj/item/phone/cellphone
+	icon_state = "cellphone"
+	mats = 25
+	_health = 20
+	var/can_talk_across_z_levels = 0
+	var/phone_id = null
+	var/ringmode = 0 // 0 for silent, 1 for vibrate, 2 for ring
+	var/ringing = 0
+	var/answered = 0
+	var/last_ring = 0
+	var/dialing = 0
+	var/labelling = 0
+	var/chui/window/phonecall/phonebook
+	var/phoneicon = "cellphone"
+	var/ringingicon = "cellphone_ringing"
+	var/answeredicon = "cellphone_answered"
+	var/obj/item/ammo/power_cell/cell = new /obj/item/ammo/power_cell/med_power
+	var/activated = 0
+
+
+	New()
+		..()
+
+	attackby(obj/item/P as obj, mob/living/user as mob)
+		if(istype(P,/obj/item/card/id))
+			if(src.activated)
+				if(alert("Do you want to un-register this phone?","yes","no") == "yes")
+					registered = 0
+					phone_id = ""
+					phonelist.Remove(src)
+			else
+				var/obj/item/card/id/new_id = obj
+				user.show_text("Activating the phone. Please wait!","blue")
+				actions.start(new/datum/action/bar/icon/activate_cell_phone(src.icon_state,src,new_id), user)
+
+		..()
+		src._health -= P.force
+		if(src._health <= 0)
+			if(src.linked)
+				hang_up()
+			src.gib(src.loc)
+			qdel(src)
+
+
+	proc/ring()
+
+	proc/talk_into()
+
+
+	proc/find_nearest_radio_tower()
+		var/min_distance = inf
+		var/nearest_tower = null
+		for(var/machinery/radio_tower/tower in radio_antennas)
+			if(!tower.active || tower.z != src.z)
+				continue
+			if(max(abs(tower.x - src.x),abs(tower.y - src.y) < nearest_tower)
+				nearest_tower = tower
+		return nearest_tower
+
+
+/obj/item/phone/cellphone/bananaphone
+	name = "Banana Phone"
+	icon = 'icons/obj/machines/phones.dmi'
+	desc = "A cellular, bananular phone."
+	icon_state = "bananaphone"
+	phoneicon = "bananaphone"
+	ringingicon = "bananaphone_ringing"
+	answeredicon = "bananaphone_answered"
+
+	ring()
+
+/datum/action/bar/icon/activate_cell_phone
+	duration = 50
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
+	id = "activate_cell_phone"
+	icon = 'icons/obj/machines/phones.dmi'
+	icon_state = "cellphone"
+	var/obj/item/cellphone/phone
+	var/registering_name
+
+	New(icon,newphone,newid_name)
+		icon_state = icon
+		phone = newphone
+		registering_name = newid_name
+		..()
+
+
+	onEnd()
+		phone.registered = 1
+		phone.phone_id = "[id.registered]'s Cell Phone"
+		phonelist.Add(phone)
+		..()
+
+*/
