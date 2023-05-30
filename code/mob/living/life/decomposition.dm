@@ -49,7 +49,7 @@
 		if(!T)
 			return
 		var/datum/gas_mixture/gas = new()
-		gas.farts = 5
+		gas.farts = 1
 		gas.temperature = T20C
 		gas.volume = R_IDEAL_GAS_EQUATION * T20C / 1000
 		T.assume_air(gas)

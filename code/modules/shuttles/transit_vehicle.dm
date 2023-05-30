@@ -18,6 +18,13 @@ ABSTRACT_TYPE(/datum/transit_stop/elevator)
 	// any additional procs to call on landing at this stop? sure!
 	proc/on_arrival()
 		return
+	/// Is something preventing this stop from being navigated to?
+	proc/can_receive_vehicle()
+		return TRUE
+
+	/// Is something preventing the vehicle from leaving this stop?
+	proc/vehicle_can_depart()
+		return TRUE
 
 ABSTRACT_TYPE(/datum/transit_vehicle)
 /datum/transit_vehicle
@@ -106,6 +113,8 @@ var/global/datum/transit_controller/transit_controls = new
 			return FALSE
 		if(stop.current_occupant)
 			return FALSE
+		if(!stop.can_receive_vehicle())
+			return FALSE
 		var/datum/transit_vehicle/vehicle = src.vehicles[vehicle_id]
 		if(vehicle.in_transit)
 			return FALSE
@@ -117,6 +126,8 @@ var/global/datum/transit_controller/transit_controls = new
 		if(!current)
 			return FALSE
 		if(stop_id == current.stop_id || stop == current)
+			return FALSE
+		if(!current.vehicle_can_depart())
 			return FALSE
 		vehicle.in_transit = TRUE
 		logTheThing("station", user, null, "began departure for vehicle [vehicle_id] to [stop_id] at [log_loc(usr)]")
@@ -189,7 +200,7 @@ var/global/datum/transit_controller/transit_controls = new
 		return
 
 	Entered(atom/movable/A as mob|obj)
-		if (istype(A, /obj/overlay/tile_effect) || istype(A, /mob/dead) || istype(A, /mob/wraith) || istype(A, /mob/living/intangible))
+		if (istype(A, /obj/overlay/tile_effect) || istype(A, /mob/dead) || istype(A, /mob/wraith) || istype(A, /mob/living/intangible) || istype(A, /obj/blob))
 			return ..()
 		var/turf/T = pick_landmark(fall_landmark)
 		var/safe = FALSE
@@ -333,6 +344,7 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 	desc = "Send an elevator back and forth for your amusement"
 	icon = 'icons/obj/machines/buttons.dmi'
 	icon_state = "elev_idle"
+	anchored = 1
 	//Which vehicle this button shuttles
 	var/vehicle_id
 	//Idem

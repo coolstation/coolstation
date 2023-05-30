@@ -1102,7 +1102,7 @@
 		item_state = "spacecap-red"
 
 /obj/item/clothing/suit/space/syndicate
-	name = "red space suit"
+	name = "FOSS space suit"
 	icon_state = "syndicate"
 	item_state = "space_suit_syndicate"
 	desc = "A suit that protects against low pressure environments. Issued to syndicate operatives."
@@ -1117,12 +1117,12 @@
 	commissar_greatcoat
 		name = "commander's great coat"
 		icon_state = "commissar_greatcoat"
-		desc = "A fear-inspiring, black-leather great coat, typically worn by a Syndicate Nuclear Operative Commander. So scary even the vacuum of space doesn't dare claim the wearer."
+		desc = "The kind of tacky trenchcoat you'd see down at the mall."
 
 		setupProperties()
 			..()
-			setProperty("exploprot", 40)
-			setProperty("meleeprot", 6)
+			setProperty("exploprot", 10)
+			setProperty("meleeprot", 1)
 			setProperty("rangedprot", 3)
 
 	knight // nukie melee class armor
@@ -1327,12 +1327,12 @@
 
 /obj/item/clothing/suit/space/mining_combat // for fighting z5 critters.
 	name = "mining combat armor"
-	desc = "Heavy armor designed to withstand the rigours of space combat. Less resistant against the elements than industrial armor."
+	desc = "Nanotrasen's take on a old Soviet prototype combat spacesuit. Protective at the cost of everything else."
 	icon_state = "mining_combat"
 	item_state = "mining_combat"
 	c_flags = SPACEWEAR
 	body_parts_covered = TORSO|LEGS|ARMS
-	mats = 60 //should be the most expensive armor.
+	mats = 90 //should be the most expensive armor.
 
 	setupProperties()
 		..()
@@ -1342,6 +1342,7 @@
 		setProperty("exploprot", 20)
 		setProperty("meleeprot", 5)
 		setProperty("rangedprot", 2)
+		setProperty("space_movespeed",1.5) //lumber towards your foe!
 
 //NT pod wars suits
 /obj/item/clothing/suit/space/nanotrasen

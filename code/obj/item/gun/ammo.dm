@@ -126,7 +126,7 @@
 		else if (A.caliber in K.caliber) // Some guns can have multiple calibers.
 			check = 1
 		else if (K.caliber == null) // Special treatment for zip guns, huh.
-			if (A.caliber == 1.58)  // Prevent MRPT rocket
+			if (A.caliber == 1.58 || A.caliber == 6969)  // Prevent MRPT rocket & dueling rounds (have some honour)
 				check = 0
 			else
 				check = 1
@@ -1173,6 +1173,16 @@
 /obj/item/ammo/bullets/foamdarts/ten
 	amount_left = 10
 	max_amount = 10
+
+/obj/item/ammo/bullets/dueling
+	sname = "dueling rounds"
+	name = "dueling round case"
+	icon_state = "dueling_rounds"
+	ammo_type = new/datum/projectile/bullet/dueling
+
+	amount_left = 4 //Each side gets 2 tries
+	max_amount = 4
+	caliber = 6969 //better not let folks use these in other guns
 
 /datum/action/bar/icon/powercellswap
 	duration = 1 SECOND

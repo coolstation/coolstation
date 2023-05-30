@@ -46,6 +46,8 @@
 #define ATTACK_SELF_DELAY		 (1<<20)
 /// Is currently scaled by bubsium
 #define IS_BUBSIUM_SCALED		 (1<<21)
+/// Does not get nuked by the mineral magnet area clear (does not block activating the magnet)
+#define MINERAL_MAGNET_SAFE (1<<22)
 
 
 //Item function flags

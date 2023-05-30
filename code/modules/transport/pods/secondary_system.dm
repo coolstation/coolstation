@@ -463,6 +463,7 @@
 		onclose(user, "ship_sec_system")
 		return
 
+/* deprecated (sensors do GPS much more thoroughly than this POS)
 /obj/item/shipcomponent/secondary_system/gps
 	name = "Ship's Navigation GPS"
 	desc = "A useful navigation device for those lost in space."
@@ -480,6 +481,7 @@
 			<b>X</b>: [src.ship.x]<BR><b>Y</b>: [src.ship.y]"}
 		user.Browse(dat, "window=ship_sec_system")
 		onclose(user, "ship_sec_system")
+*/
 
 /obj/item/shipcomponent/secondary_system/UFO
 	name = "Abductor"

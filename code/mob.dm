@@ -74,7 +74,7 @@
 	var/can_lie = 0
 	var/canmove = 1.0
 	var/ceilingreach = 0
-	var/lookingup = 1
+	var/lookingup = 0
 	var/incrit = 0
 	var/timeofdeath = 0.0
 	var/fakeloss = 0
@@ -96,6 +96,8 @@
 	var/charges = 0.0
 	var/urine = 0.0
 	var/poops = 0.0
+	var/cleanhands = 1 //wash em before handling food or internal organs
+	var/wiped = 1 //giving new mobs the benefit of the doubt (does nothing, but varediting admins will see your shame)
 	var/nutrition = 100
 	var/losebreath = 0.0
 	var/intent = null
@@ -491,6 +493,8 @@
 		src.addOverlaysClient(src.client)  //ov1
 
 	src.emote_allowed = 1
+	src.ai?.suspended = TRUE
+	src.ai?.stop_move() //In case we possess the mob mid-step (needed at least for anything running wanderer ai)
 
 	if (!src.mind)
 		src.mind = new (src)
@@ -530,6 +534,7 @@
 		for (var/datum/hud/hud in src.huds)
 			hud.remove_client(src.last_client)
 
+	src.ai?.suspended = FALSE
 
 	..()
 

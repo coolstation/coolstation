@@ -59,7 +59,7 @@ ABSTRACT_TYPE(/datum/plant/veg)
 	endurance = 10
 	genome = 16
 	nectarlevel = 6
-	commuts = list(/datum/plant_gene_strain/damage_res,/datum/plant_gene_strain/stabilizer)
+	commuts = list(/datum/plant_gene_strain/damage_res,/datum/plant_gene_strain/stabilizer,/datum/plant_gene_strain/reagent_adder/toxic)
 
 /datum/plant/veg/onion
 	name = "Onion"
@@ -73,6 +73,7 @@ ABSTRACT_TYPE(/datum/plant/veg)
 	endurance = 3
 	genome = 13
 	commuts = list(/datum/plant_gene_strain/splicing,/datum/plant_gene_strain/reagent_adder/toxic)
+	assoc_reagents = list("acetic_acid") // i know its more of a sulfuric acid, but this is the one that only kinda stings. replace with allicin or somethiung. -warc
 
 /datum/plant/veg/garlic
 	name = "Garlic"
@@ -86,3 +87,4 @@ ABSTRACT_TYPE(/datum/plant/veg)
 	endurance = 3
 	genome = 13
 	commuts = list(/datum/plant_gene_strain/growth_fast,/datum/plant_gene_strain/terminator)
+	assoc_reagents = list("acetic_acid") // i know its more of a sulfuric acid, but this is the one that only kinda stings. replace with allicin or somethiung. -warc

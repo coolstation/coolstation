@@ -90,6 +90,8 @@
 #define LANDMARK_FALL_ENG "engfall"//Engineering elevator shaft
 #define LANDMARK_FALL_SEC "secfall"//Security elevator shaft
 #define LANDMARK_FALL_DUM "dumfall"//aeeeee eem stoock!!
+#define LANDMARK_FALL_NTFC "ntfcfall" /// ????????
+#define LANDMARK_FALL_NTFCM "ntfcfallm" //// CMON
 
 // misc adventure zone stuff
 

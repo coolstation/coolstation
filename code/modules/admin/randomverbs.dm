@@ -458,7 +458,7 @@
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
 	set name = "Create Command Report"
 	admin_only
-	var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as null|message
+	var/input = input(usr, "Please enter anything you want for the body of the message. Headline comes next.", "What?", "") as null|message
 	if(!input)
 		return
 	var/input2 = input(usr, "Add a headline for this alert?", "What?", "") as null|text
@@ -489,7 +489,7 @@
 	set name = "Adv. Command Report"
 	admin_only
 
-	var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as null|message
+	var/input = input(usr, "Please enter anything you want for the body of the message. Headline comes next.", "What?", "") as null|message
 	if (!input)
 		return
 	var/input2 = input(usr, "Add a headline for this alert?", "What?", "") as null|text

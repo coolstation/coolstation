@@ -12,6 +12,15 @@ _________ _______  _______  _        _______ __________________   _______ ______
    )_(   |/   \__/|/     \||/    )_)\_______)\_______/   )_(     \_______)   )_(   (_______)|/       \_______) */
 
 
+/datum/transit_stop/elevator
+	can_receive_vehicle() //Any amount of blobs in the destination area prevents movement, cause area contents would get moved indiscriminately
+		var/area/transit_vehicle/elevator/our_area = locate(target_area) //And blobs are really not built for that sort of thing
+		return !our_area.blob_blockage
+
+	vehicle_can_depart() //Similar deal but this is to prevent blobs getting taken on a ride
+		var/area/transit_vehicle/elevator/our_area = locate(target_area) //Which is less of a disaster but still
+		return !our_area.blob_blockage
+
 /datum/transit_stop/elevator/qm_top
 	stop_id 	= "qm_top"
 	name		= "Quartermaster's Upper Level"
@@ -77,6 +86,23 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	stop_id 	= "dum_bot"
 	name		= "Dumbwaiter Lower Level"
 	target_area = /area/transit_vehicle/elevator/dum_bot
+
+/datum/transit_stop/elevator/ntfc_top
+	stop_id 	= "ntfc_top"
+	name		= "Major Shuttle Dock Ring"
+	target_area = /area/transit_vehicle/elevator/ntfc_top
+
+/datum/transit_stop/elevator/ntfc_mid
+	stop_id 	= "ntfc_mid"
+	name		= "Minor Shuttle Dock Ring"
+	target_area = /area/transit_vehicle/elevator/ntfc_mid
+
+/datum/transit_stop/elevator/ntfc_bot
+	stop_id 	= "ntfc_bot"
+	name		= "Administration"
+	target_area = /area/transit_vehicle/elevator/ntfc_bot
+	current_occupant = "ntfc_elevator"
+
 /*
 /datum/transit_stop/elevator/
 	stop_id 	= ""
@@ -127,6 +153,10 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	vehicle_id = "dum_elevator"
 	stop_ids = list("dum_top","dum_bot")
 
+/datum/transit_vehicle/elevator/ntfc
+	vehicle_id = "ntfc_elevator"
+	stop_ids = list("ntfc_top","ntfc_mid","ntfc_bot")
+
 // computers
 
 /obj/machinery/computer/transit_terminal/qm
@@ -147,6 +177,8 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /obj/machinery/computer/transit_terminal/dum
 	vehicle_id = "dum_elevator"
 
+/obj/machinery/computer/transit_terminal/ntfc
+	vehicle_id = "ntfc_elevator"
 // thins
 
 /obj/machinery/computer/transit_terminal/thin/qm
@@ -167,6 +199,8 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /obj/machinery/computer/transit_terminal/thin/dum
 	vehicle_id = "dum_elevator"
 
+/obj/machinery/computer/transit_terminal/thin/ntfc
+	vehicle_id = "ntfc_elevator"
 // buttons
 
 /obj/machinery/button/elevator/med
@@ -209,6 +243,21 @@ _________ _______  _______  _        _______ __________________   _______ ______
 
 /area/transit_vehicle/
 	requires_power = 0 // lintster
+
+/area/transit_vehicle/elevator
+	///Count of blob objects keeping this place occupied (don't care about the instances just if any are blocking at all)
+	var/blob_blockage = 0
+
+	Entered(atom/movable/A, atom/oldloc)
+		if (istype(A, /obj/blob))
+			blob_blockage++
+		. = ..()
+
+	Exited(atom/movable/A)
+		if (istype(A, /obj/blob))
+			blob_blockage--
+		. = ..()
+
 
 /area/transit_vehicle/elevator/qm_top
 	name = "Quartermaster's Elevator"
@@ -270,6 +319,21 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	icon_state = "shuttle2"
 	filler_turf = "/turf/simulated/floor/plating"
 
+/area/transit_vehicle/elevator/ntfc_top
+	name = "Space Elevator"
+	icon_state = "shuttle"
+	filler_turf = "/turf/simulated/floor/specialroom/elevator_shaft/ntfc"
+
+/area/transit_vehicle/elevator/ntfc_mid
+	name = "Space Elevator"
+	icon_state = "dither_r"
+	filler_turf = "/turf/simulated/floor/specialroom/elevator_shaft/ntfcm"
+
+/area/transit_vehicle/elevator/ntfc_bot
+	name = "Space Elevator"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/simulated/floor/plating"
+
 /turf/simulated/floor/specialroom/elevator_shaft/qm
 	fall_landmark = LANDMARK_FALL_QM
 /turf/simulated/floor/specialroom/elevator_shaft/med
@@ -282,3 +346,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	fall_landmark = LANDMARK_FALL_SEC
 /turf/simulated/floor/specialroom/elevator_shaft/dum
 	fall_landmark = LANDMARK_FALL_DUM
+/turf/simulated/floor/specialroom/elevator_shaft/ntfcm
+	fall_landmark = LANDMARK_FALL_NTFC
+/turf/simulated/floor/specialroom/elevator_shaft/ntfc
+	fall_landmark = LANDMARK_FALL_NTFCM

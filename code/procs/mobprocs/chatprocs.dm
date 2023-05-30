@@ -434,7 +434,7 @@
 			speechverb = "sings disco style"
 		else if (src.bioHolder?.HasEffect("accent_scots"))
 			speechverb = pick("laments", "sings", "croons", "intones", "sobs", "bemoans")
-		else if (src.bioHolder?.HasEffect("accent_chav"))
+		else if (src.bioHolder?.HasEffect("accent_brummie"))
 			speechverb = "raps"
 		else if (src.singing & SOFT_SINGING)
 			speechverb = pick("hums", "lullabies")

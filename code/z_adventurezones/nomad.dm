@@ -16,7 +16,7 @@
 	skip_sims = 1
 	sims_score = 0
 	sound_group = "nomad"
-	sound_loop = 'sound/ambience/nature/Rain_Heavy.ogg'
+	sound_loop_1 = 'sound/ambience/nature/Rain_Heavy.ogg'
 
 	New()
 		..()
@@ -30,7 +30,7 @@
 	ambient_light = rgb(0, 0, 0)
 	requires_power = 0
 	sound_group = "nomad"
-	sound_loop = 'sound/ambience/nature/Rain_Heavy.ogg'
+	sound_loop_1 = 'sound/ambience/nature/Rain_Heavy.ogg'
 	sound_environment = EAX_FOREST
 
 	New()

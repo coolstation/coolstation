@@ -8,6 +8,7 @@
 	density = 0
 	layer = EFFECTS_LAYER_BASE
 	plane = PLANE_NOSHADOW_BELOW
+	flags = FPRINT | MINERAL_MAGNET_SAFE
 
 /obj/joeq
 	desc = "Here lies Joe Q. Loved by all. He was a terrorist. R.I.P."

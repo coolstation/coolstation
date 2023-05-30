@@ -83,6 +83,7 @@
 		auto = FALSE
 		connects_to_turf = null
 		connects_to_turf = null
+		flags = FPRINT | CONDUCT | USEDELAY | MINERAL_MAGNET_SAFE
 
 		update_icon(special_icon_state)
 			if (ruined)
@@ -102,6 +103,11 @@
 					icon_state = initial(src.icon_state) + "-1"
 				if(76 to INFINITY)
 					icon_state = initial(src.icon_state) + "-0"
+
+		elevator //''''temporary'''' hack so damage doesn't change its manually-set-by-mapper iconstate
+			name = "elevator platform"
+			desc = "It's bad enough when the grilles are stationary, this feels even WORSE."
+			icon_state = "catwalk_cross" //realizing now that we could just use catwalk_cross but this has a more sensible description anyway
 
 		grey //Old flavour (straight pieces and T junctions)
 			icon_state = "catwalk_grey"
@@ -158,14 +164,6 @@
 			//var/image/damage_overlay = null
 			//var/damage_dir = pick(1,2,4,8) //if it will work like i hope it will, give damage overlays 4 directions and pick one at random
 
-			proc/overlay_edges() //call this on autocatwalk new() and when the number of grille-touching edges changes, autowall style. only connect to self!
-				if (!src.edges)
-					ClearSpecificOverlays("edge")
-					edge_overlay = null
-				else
-					src.edge_overlay = image(src.icon,"[initial(src.icon_state)]-edge-[src.edges]") //these edges are borrowed from jen's catwalks
-				UpdateOverlays(src.edge_overlay,"edge")
-
 			//manually called for now, still wip. i hate all this so if you have a feeling you wanna fix it, go for it
 			proc/update_edges() //for constructing flat, directionally tiling autogrilles/catwalks. call on change, but not on build (mapper may want things normal)
 				var/connections = 0 //assume isolated at start
@@ -195,8 +193,30 @@
 							src.dir = 15 - connectdir //if the three directions are grille, you're surrounded with only one way left to go.
 				src.overlay_edges() //need to decide if here or update proc but if you're calling in you probably want this
 
-			/*proc/overlay_damage() //call this on damage, work in progress, i haven't built any overlays yet. groundwork for wall and floor damage and general bustin'
-				src.damage_overlay = image(src.icon,"[initial(src.icon_state)]-damage") //hopefully can be generalized
+			proc/overlay_edges() //call this on autocatwalk new() and when the number of grille-touching edges changes, autowall style. only connect to self!
+				if (!src.edges)
+					ClearSpecificOverlays("edge")
+					edge_overlay = null
+				else
+					src.edge_overlay = image(src.icon,"[initial(src.icon_state)]-edge-[src.edges]") //these edges are borrowed from jen's catwalks
+				UpdateOverlays(src.edge_overlay,"edge")
+
+			/*proc/update_damage() //call this on damage, work in progress, i haven't built any overlays yet. groundwork for wall and floor damage and general bustin'
+				var/diff = get_fraction_of_percentage_and_whole(health,health_max)
+				var/dam = 0
+				if (src.ruined)
+					return //already fucked all the way up? only thing to do is scrap it
+				switch(diff)
+					if(-INFINITY to 25)
+						dam = 3
+					if(26 to 50)
+						dam = 2
+					if(51 to 75)
+						dam = 1
+					if(76 to INFINITY)
+						dam = 0
+				src.damage_overlay = image(src.icon,"[initial(src.icon_state)]-damage-[dam]",dir=src.damage_dir) //hopefully can be generalized
+				//totally ruined catwalks get cut state, unless damaged by conditions of corrosion or burning. i think that's handled elsewhere, which is fine
 				UpdateOverlays(src.edge_overlay,"damage") */
 
 			/*	actually that overlay_damage thing could probably just go into the damage handling switch case of update_icon(), can't it. i'll save it for later..

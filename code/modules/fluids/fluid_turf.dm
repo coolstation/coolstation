@@ -383,6 +383,7 @@
 	generateLight = 0
 	allow_hole = 0
 	spawningFlags = SPAWN_DECOR | SPAWN_PLANTS | SPAWN_FISH | SPAWN_LOOT | SPAWN_HALLU
+	turf_flags = FLUID_MOVE | MINE_MAP_PRESENTS_EMPTY
 
 	blow_hole()
 		if(src.z == 5)

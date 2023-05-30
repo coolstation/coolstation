@@ -112,6 +112,7 @@
 				// ... also set suit/uniform to bottomless? I dunno
 			else
 				H.visible_message("<span class='alert'><B>[H] shits [his_or_her(H)] pants!</B></span>")
+				H.wiped = 0 //+1 trait idea: nothin' but net
 			if(H.w_uniform)
 				H.w_uniform.add_mud(H, H.poop_amount ? H.poop_amount : 5)
 			else
@@ -132,6 +133,8 @@
 					poo_target.reagents.add_reagent("poo",\
 						(H.poop_amount ? H.poop_amount : 5))
 					qdel(shit)
+				H.cleanhands = 0
+				H.wiped = 0
 			else
 				if(H.bioHolder.HasEffect("teflon_colon") || H.traitHolder.hasTrait("teflon_colon"))
 					yeetapoop(H, shit)
@@ -139,6 +142,7 @@
 					shit.set_loc(src.loc)
 					H.visible_message("<span class='alert'><B>[H] [pick("takes a dump","drops a turd","shits a load","does a poo","craps all over","plops a deuce","splats a shit","shits a stinker", \
 					"funges an ape","leaves a log","releases [his_or_her(H)] bowel contents","excretes some feces","poops a pepperoni","is shittsing","fertilizes the floor")]!</B></span>")
+					H.wiped = 0
 
 		return
 
@@ -170,11 +174,12 @@
 			src.visible_message("<span class='alert'><B>[src] pees in [pee_target]!</B></span>")
 			playsound(src, "sound/misc/pourdrink.ogg", 50, 1)
 			pee_target.reagents.add_reagent("urine", 4)
+			src.cleanhands = 0 //probably made a mess, gross, wash em
 			return
 
 		// possibly change the text colour to the gray emote text
 		src.visible_message(pick("<B>[src]</B> unzips their pants and pees on the floor.", "<B>[src]</B> pisses all over the floor!", "<B>[src]</B> makes a big piss puddle on the floor."))
-
+		src.cleanhands = 0
 		var/obj/decal/cleanable/urine/U = make_cleanable(/obj/decal/cleanable/urine, src.loc)
 
 		// Flag the urine stain if the pisser is trying to make fake initropidril

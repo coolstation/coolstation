@@ -67,6 +67,9 @@ ABSTRACT_TYPE(/datum/supply_packs)
 					S.req_access = list()
 					S.req_access += text2num(access)
 
+				if (istype(S, /obj/storage) && prob(20)) //just to be safe
+					new /obj/item/reagent_containers/food/snacks/silica_packet(S) //since these count as food you could sell em on to traders
+
 		if (contains.len)
 			for (var/B in contains)
 				var/thepath = B

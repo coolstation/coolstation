@@ -64,6 +64,7 @@ var/list/server_toggles_tab_verbs = list(\
 /datum/admins/proc/adrev,\
 /datum/admins/proc/toggledeadchat,\
 /datum/admins/proc/togglefarting,\
+/datum/admins/proc/toggleferting,\
 /datum/admins/proc/toggle_blood_system,\
 /datum/admins/proc/toggle_bone_system,\
 /datum/admins/proc/togglesuicide,\
@@ -652,6 +653,20 @@ var/global/IP_alerts = 1
 	logTheThing("admin", usr, null, "toggled Farting [farting_allowed ? "on" : "off"].")
 	logTheThing("diary", usr, null, "toggled Farting [farting_allowed ? "on" : "off"].", "admin")
 	message_admins("[key_name(usr)] toggled Farting [farting_allowed ? "on" : "off"]")
+
+/datum/admins/proc/toggleferting()
+	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
+	set desc = "Toggle Cascading Ferret Excitement on or off."
+	set name = "Toggle Ferting"
+	NOT_IF_TOGGLES_ARE_OFF
+	resonance_fertscade = !( resonance_fertscade )
+	if (resonance_fertscade)
+		boutput(world, "<B>Ferret Frenzy has been enabled.</B>")
+	else
+		boutput(world, "<B>Ferret Frenzy has been disabled.</B>")
+	logTheThing("admin", usr, null, "toggled Ferret Frenzy [resonance_fertscade ? "on" : "off"].")
+	logTheThing("diary", usr, null, "toggled Ferret Frenzy [resonance_fertscade ? "on" : "off"].", "admin")
+	message_admins("[key_name(usr)] toggled Ferret Frenzy [resonance_fertscade ? "on" : "off"]")
 
 /datum/admins/proc/toggleemoterandom()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)

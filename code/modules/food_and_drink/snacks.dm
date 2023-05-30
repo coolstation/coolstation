@@ -2620,3 +2620,23 @@
 	initial_volume = 20
 	initial_reagents = list("THC"=10,"CBD"=10)
 	food_effects = list("food_brute","food_burn")
+
+/*
+	schwick:
+		yknow i was gonna ask "can we eat them" but i feel like i already know the answer to that
+		it wouldn't be ss13 any other way
+
+	Bobskunk:
+		exactly
+*/
+/obj/item/reagent_containers/food/snacks/silica_packet
+	name = "silica packet"
+	desc = "A pouch filled with dessicant. Throw away, do not eat."
+	icon = 'icons/obj/foodNdrink/food_dessert.dmi' //:)
+	icon_state = "silica_packet"
+	amount = 1 //oh yeah we're in the cursed times where amount is also the bites left on food
+	heal_amt = 0
+	initial_volume = 15
+	initial_reagents = list("silicate"=15)
+	rand_pos = TRUE
+	doants = FALSE

@@ -63,11 +63,11 @@
 	result = /datum/bioEffect/speech/unintelligable
 
 /datum/geneticsrecipe/vowels
-	required_effects = list("accent_swedish","accent_chav")
+	required_effects = list("accent_swedish","accent_brummie")
 	result = /datum/bioEffect/speech/vowelitis
 
 /datum/geneticsrecipe/coprolalia
-	required_effects = list("accent_chav","accent_tommy")
+	required_effects = list("accent_brummie","accent_tommy")
 	result = /datum/bioEffect/coprolalia
 
 /datum/geneticsrecipe/blind

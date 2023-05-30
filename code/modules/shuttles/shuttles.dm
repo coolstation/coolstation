@@ -23,6 +23,13 @@
 /area/shuttle/mining/space
 	icon_state = "shuttle2"
 	filler_turf = "/turf/space"
+	//sneaky
+	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
+	sound_loop_1_vol = -10
+	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
+	sound_loop_2_vol = 50
+	sound_group = "diner" //the music's kind of everywhere isn't it
+	sound_group_varied = 1
 
 /area/shuttle/mining/outpost
 	icon_state = "shuttle"
@@ -98,6 +105,7 @@
 	name		= "NTFC Cargo Hub Dock"
 	target_area = /area/shuttle/cargo/hub
 	on_arrival()
+		shippingmarket.CSS_at_NTFC = TRUE
 		for(var/atom/movable/AM in locate(target_area))
 			var/datum/artifact/art = null
 			if(isobj(AM))
@@ -115,6 +123,8 @@
 							continue
 				shippingmarket.sell_crate(AM)
 
+
+
 /obj/machinery/computer/transit_terminal/cargo
 	name = "Cargo Shuttle Service Computer"
 	vehicle_id = "cargo_shuttle"
@@ -130,6 +140,7 @@
 
 
 	departing(datum/transit_stop/destination)
+		shippingmarket.CSS_at_NTFC = FALSE
 		var/turf/target
 		for(var/turf/T in locate(src.current_location.target_area))
 			target = T

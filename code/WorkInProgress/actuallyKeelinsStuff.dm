@@ -3810,8 +3810,8 @@ var/list/lag_list = new/list()
 	luminosity = 1
 	force_fullbright = 1
 	requires_power = 0
-	sound_loop = 'sound/ambience/loop/Shore.ogg'
-	sound_loop_vol = 100
+	sound_loop_1 = 'sound/ambience/loop/Shore.ogg'
+	sound_loop_1_vol = 100
 
 	New()
 		..()

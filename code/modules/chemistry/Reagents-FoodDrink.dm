@@ -3674,6 +3674,50 @@ datum
 					M.changeStatus("weakened", 2 SECONDS)
 					M.contract_disease(/datum/ailment/disease/food_poisoning, null, null, 1) // path, name, strain, bypass resist
 
+		fooddrink/grime
+			name = "grime"
+			id = "grime"
+			taste = "vile"
+			description = "That non-specific grossness that builds up in uncleaned spaces and mishandled food. Mostly dust and hair, though."
+			fluid_r = 160
+			fluid_g = 110
+			fluid_b = 80
+			overdose = 3 //we don't add a lot of this stuff to anything
+			var/do_tummy = 1
+
+			reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume_passed)
+				. = ..()
+				if(!volume_passed)
+					return
+				if(!ishuman(M))
+					return
+
+				//var/mob/living/carbon/human/H = M
+				if(method == INGEST)
+					boutput(M, "<span class='alert'>There was something [pick("gross", "gritty", "hairy", "slimy")] in that... </span>")
+					if(prob(10))
+						M.vomit()
+					else if(prob(20))
+						M.take_toxin_damage(rand(1,2))
+
+			do_overdose(var/severity, var/mob/M, var/mult = 1)
+				if(!M) M = holder.my_atom
+
+				if (prob(5))
+					boutput(M, "<span class='alert'>You feel like you scrubbed the kitchen floor with your tongue. Ugh!</span>")
+					if(prob(50))
+						M.vomit()
+				else if (prob(5))
+					boutput(M, "<span class='alert'>You [pick("cough up", "spit out")] some [pick("hair", "gristle", "dust", "slime")].</span>")
+					if(prob(20))
+						M.take_toxin_damage(rand(1,2))
+				else if (prob(10) && do_tummy)
+					boutput(M, "<span class='alert'>Your stomach feels so much worse all of a sudden...</span>")
+					if (ishuman(M)) //hey some other overdose did it with contract_disease too, c'mon, it's okay (probably)
+						M:contract_disease(/datum/ailment/disease/food_poisoning, null, null, 0) // path, name, strain, bypass resist
+					do_tummy = 0
+				return
+
 		fooddrink/fakecheese
 			name = "cheese substitute"
 			id = "fakecheese"

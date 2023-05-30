@@ -695,8 +695,18 @@ proc/filter_trait_hats(var/type)
 	item_state = "lgloves"
 	see_face = 1
 	body_parts_covered = HEAD
+	var/obj/item/paper/paper = null
 
-/obj/item/paper_hat/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/head/paper_hat/attack_self(mob/user)
+	if(!paper)
+		paper = new()
+	user.u_equip(src)
+	boutput(user, "<span class='notice'>You unfold the hat.</span>")
+	user.put_in_hand_or_drop(paper)
+	qdel(src)
+
+
+/obj/item/clothing/head/paper_hat/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/pen))
 		var/obj/item/pen/P = W
 		if (P.font_color)

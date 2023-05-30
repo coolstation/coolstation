@@ -14,6 +14,8 @@ var/list/ai_move_scheduled = list()
 	var/move_side = 0 //merge with reverse later ok messy
 
 	var/enabled = 1
+	///A client is controlling the mob so the AI should be inactive
+	var/suspended = FALSE //(keeping client login/logout separate from the enabled var cause that seems like asking for problems otherwise)
 
 	var/exclude_from_mobs_list = 0
 
@@ -54,7 +56,7 @@ var/list/ai_move_scheduled = list()
 	proc/tick()
 		if(isdead(owner))
 			enabled = 0
-		if(!enabled)
+		if(!enabled || suspended)
 			walk(owner, 0)
 			return
 		if (!current_task)
@@ -118,6 +120,7 @@ var/list/ai_move_scheduled = list()
 		move_target = null
 		ai_move_scheduled -= src
 		walk(owner,0)
+		owner.move_dir = 0 //Fuck you wander task
 
 	proc/move_step()
 		if (src.move_side)

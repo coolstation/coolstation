@@ -112,7 +112,7 @@ var/sound/iomoon_alarm_sound = null
 				S.file = ambientSound
 				S.repeat = 0
 				S.wait = 0
-				S.channel = 123
+				S.channel = SOUNDCHANNEL_FX_1
 				S.volume = 60
 				S.priority = 255
 				S.status = SOUND_UPDATE
@@ -126,7 +126,7 @@ var/sound/iomoon_alarm_sound = null
 					iomoon_alarm_sound.file = 'sound/machines/lavamoon_alarm1.ogg'
 					iomoon_alarm_sound.repeat = 0
 					iomoon_alarm_sound.wait = 0
-					iomoon_alarm_sound.channel = 122
+					iomoon_alarm_sound.channel = SOUNDCHANNEL_BIGALARM
 					iomoon_alarm_sound.volume = 60
 					iomoon_alarm_sound.priority = 255
 					iomoon_alarm_sound.status = SOUND_UPDATE
@@ -1366,6 +1366,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 	density = 0
 	var/id = null
 	var/broken = FALSE
+	var/blocked = FALSE //blob level transfers atm, maybe hatches in the future?
 
 
 	broken
@@ -1390,7 +1391,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 
 	HasEntered(atom/movable/AM, atom/OldLoc)
 		..()
-		if (src.broken) return
+		if (src.broken || src.blocked) return
 		if(istype(AM, /obj/item))
 			if(prob(70))
 				var/obj/ladder/otherLadder = locate("ladder_[id][src.icon_state == "ladder_wall"]")
@@ -1413,13 +1414,13 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 
 
 	attack_hand(mob/user as mob)
-		if (src.broken) return
+		if (src.broken || src.blocked) return
 		if (user.stat || user.getStatusDuration("weakened") || get_dist(user, src) > 1)
 			return
 		src.climb(user)
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if (src.broken) return
+		if (src.broken || src.blocked) return
 		if (istype(W, /obj/item/grab))
 			if (!W:affecting) return
 			user.lastattacked = src

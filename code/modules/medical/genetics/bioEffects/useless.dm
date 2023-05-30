@@ -220,6 +220,13 @@
 			for(var/mob/living/carbon/C in view(6,get_turf(owner)))
 				if (C == owner)
 					continue
+				if (C.bioHolder.HasEffect("stinky"))
+					if(prob(50))
+						boutput(C, "<span class='notice'>[pick("Actually, smells kinda good in here...","Stinks pretty good around here....","Oooh, that's a good stink...","Hmmm... musky.","It smells pretty alright in this place!")]</span>")
+						continue
+					else
+						if(prob(50))
+							continue // this breaks down to 50% chance to like it, 25% chance to ignore it, 25% chance to find it stinky. ~warc
 				if (src.variant == 2)
 					boutput(C, "<span class='alert'>[src.personalized_stink]</span>")
 				else

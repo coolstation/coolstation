@@ -69,7 +69,7 @@
 			src.equip_new_if_possible(/obj/item/clothing/suit/space, slot_wear_suit)
 			src.equip_new_if_possible(/obj/item/clothing/head/helmet/space, slot_head)
 
-/mob/living/carbon/human/npc/monkey/von_braun //change the name a little while later here and in map's
+/mob/living/carbon/human/npc/monkey/trovalds //change the name a little while later here and in map's
 	name = "Trovalds"
 	real_name = "Trovalds"
 	gender = "male"
@@ -80,7 +80,7 @@
 			src.equip_new_if_possible(/obj/item/clothing/suit/space/syndicate, slot_wear_suit)
 			//src.equip_new_if_possible(/obj/item/clothing/head/helmet/space, slot_head) //this hides ID and he's not going out, so
 
-/mob/living/carbon/human/npc/monkey/oppenheimer //same. like i get it's the nuclear operative thing but
+/mob/living/carbon/human/npc/monkey/minty //same. like i get it's the nuclear operative thing but
 	name = "Nick \'Minty\' Kelvin"
 	real_name = "Nick \'Minty\' Kelvin"
 	gender = "male"
@@ -114,7 +114,7 @@
 			return FALSE
 		return !istype(M.get_id(), preferred_card_type)
 /*
-/mob/living/carbon/human/npc/monkey/oppenheimer/pod_wars
+/mob/living/carbon/human/npc/monkey/minty/pod_wars
 	preferred_card_type = /obj/item/card/id/pod_wars/syndicate
 
 	New()

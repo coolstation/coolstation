@@ -8,6 +8,8 @@
 #define DISPOSAL_CHUTE_OFF 0
 #define DISPOSAL_CHUTE_CHARGING 1
 #define DISPOSAL_CHUTE_CHARGED 2
+#define DISPOSAL_CHUTE_NOTRUNK 3
+#define DISPOSAL_CHUTE_NOTAG 4
 
 /obj/machinery/disposal
 	name = "disposal unit"
@@ -41,7 +43,7 @@
 			if (src)
 				trunk = locate() in src.loc
 				if(!trunk)
-					mode = DISPOSAL_CHUTE_OFF
+					mode = DISPOSAL_CHUTE_NOTRUNK
 					flush = 0
 				else
 					trunk.linked = src	// link the pipe trunk to self
@@ -62,6 +64,15 @@
 			qdel(air_contents)
 			air_contents = null
 		..()
+
+	proc/rechecktrunk() //not called by anything, yet, but if you build/dismantle a trunk, toggle power, or have some sort of explosion act on it, it should try to poke this
+		trunk = locate() in src.loc
+		if(!trunk)
+			mode = DISPOSAL_CHUTE_NOTRUNK
+			flush = 0
+		else
+			trunk.linked = src
+		update()
 
 	proc/initair()
 		air_contents = new()
@@ -291,11 +302,13 @@
 	// update the icon & overlays to reflect mode & status
 	proc/update()
 		if (status & BROKEN)
-			icon_state = "disposal-broken"
+			// icon_state = "disposal-broken" //iconstate does not exist
 			ClearAllOverlays()
 			mode = DISPOSAL_CHUTE_OFF
 			flush = 0
 			power_usage = 0
+			var/image/I = image(src.icon, "disposal-busted") //so we can still use this: permanent red light
+			UpdateOverlays(I, "status", 0, 1)
 			return
 
 		// flush handle
@@ -341,6 +354,10 @@
 				I.icon_state = "[light_style]-charge"
 			if (DISPOSAL_CHUTE_CHARGED)
 				I.icon_state = "[light_style]-ready"
+			if (DISPOSAL_CHUTE_NOTRUNK)
+				I.icon_state = "disposal-notrunk" //common overlay
+			if (DISPOSAL_CHUTE_NOTAG)
+				I.icon_state = "mail-notag" //mail only, but works on all
 			else
 				I = null
 
@@ -512,6 +529,24 @@
 	name = "morgue chute"
 	icon_state = "morguechute"
 	desc = "A pneumatic delivery chute for sending things directly to the morgue."
+	icon_style = "morgue"
+
+/obj/machinery/disposal/morgue
+	name = "morgue chute"
+	icon_state = "morguechute"
+	desc = "A pneumatic delivery chute for sending things directly to genetics."
+	icon_style = "morgue"
+
+/obj/machinery/disposal/crematorium
+	name = "crematorium chute"
+	icon_state = "morguechute"
+	desc = "A pneumatic delivery chute for sending things directly to the crematorium."
+	icon_style = "morgue"
+
+/obj/machinery/disposal/quarantine
+	name = "quarantine chute"
+	icon_state = "morguechute"
+	desc = "A pneumatic delivery chute for sending things directly to quarantine."
 	icon_style = "morgue"
 
 /obj/machinery/disposal/sci
@@ -714,3 +749,5 @@
 #undef DISPOSAL_CHUTE_OFF
 #undef DISPOSAL_CHUTE_CHARGING
 #undef DISPOSAL_CHUTE_CHARGED
+#undef DISPOSAL_CHUTE_NOTRUNK
+#undef DISPOSAL_CHUTE_NOTAG

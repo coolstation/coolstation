@@ -268,6 +268,7 @@ var/global
 	debug_mixed_forced_wraith = 0
 	debug_mixed_forced_blob = 0
 	farting_allowed = 1
+	resonance_fertscade = 0
 	random_emotesounds = 1
 	blood_system = 1
 	bone_system = 0
@@ -490,7 +491,7 @@ var/global
 
 	list/cooldowns
 
-	syndicate_currency = "[pick("Syndie","Baddie","Evil","Spooky","Dread","Yee","Murder","Illegal","Totally-Legit","Crime","Awful")][pick("-"," ")][pick("credits","bux","tokens","cash","dollars","tokens","dollarydoos","tickets","souls","doubloons","Pesos","Rubles","Rupees")]"
+	syndicate_currency = "[pick("Flooz","Beenz")]"
 
 
 /proc/addGlobalRenderSource(var/image/I, var/key)

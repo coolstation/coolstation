@@ -7,11 +7,35 @@
 	mats = 6
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_MULTITOOL
 	var/datum/data/record/mainaccount = null
+	var/datum/data/record/servicechgaccount = null
 
+	var/receipt_count = 20 // Todo: ...new printer rolls for receipts?
+	var/min_serv_chg  = 5
+	var/serv_chg_pct  = 0.02 // Percentage for service charge. 0.02 == 2%
 
 	New()
 		..()
 		UnsubscribeProcess()
+		if(!servicechgaccount)
+			servicechgaccount = wagesystem.finserv_budget
+
+	proc/PrintReceipt(var/datum/data/record/accountTo, var/datum/data/record/accountFrom, amount, serv_chg_amount)
+		//
+		var/receiptText = "<b>Payment Receipt</b><br>"
+
+		receiptText += "<b>[accountTo.fields["name"]]</b>: [amount]<br>"
+		receiptText += "<b>Service Charge</b>: [serv_chg_amount]<br>"
+		receiptText += "<hr>"
+		receiptText += "<b>Total</b> (deducted from [accountFrom.fields["name"]]): [amount + serv_chg_amount]"
+
+		playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 50, 1)
+		SPAWN_DBG(3.2 SECONDS)
+			var/obj/item/paper/P = new()
+			P.set_loc(src.loc)
+			P.name = "paper- 'Receipt'"
+			P.info = receiptText
+
+		receipt_count--
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/device/pda2) && W:ID_card)
@@ -33,7 +57,7 @@
 					boutput(user, "<span class='alert'>Unable to find bank account!</span>")
 					return
 
-				user.visible_message("<span class='notice'>[user] swipes [src] with [W].</span>")
+				user.visible_message("<span class='notice'>[user] configures [src] with [W].</span>")
 				return
 
 			if (card.registered in FrozenAccounts)
@@ -50,20 +74,34 @@
 
 			if (target_account == mainaccount)
 				boutput(user, "<span class='alert'>You can't send funds with the host ID to the host ID!</span>")
+				// TAKE SERVICE FEE :3
+				target_account.fields["current_money"] -= min_serv_chg
+				servicechgaccount["current_money"] += min_serv_chg
 				return
 
 			boutput(user, "<span class='notice'>The current host ID is [mainaccount.fields["name"]]. Insert a value less than zero to cancel transaction.</span>")
 			var/amount = input(user, "How much money would you like to send?", "Deposit", 0) as null|num
 			if (amount <= 0)
+				// Assume the service fee
+				target_account.fields["current_money"] -= min_serv_chg
+				servicechgaccount["current_money"] += min_serv_chg
 				return
 			if (amount > target_account.fields["current_money"])
 				boutput(user, "<span class='alert'>Insufficent funds. [W] only has [target_account.fields["current_money"]] credits.</span>")
+				// But take the service fee anyway~
+				target_account.fields["current_money"] -= min_serv_chg
+				servicechgaccount["current_money"] += min_serv_chg
 				return
 			boutput(user, "<span class='notice'>Sending transaction.</span>")
 			user.visible_message("<span class='notice'>[user] swipes [src] with [W].</span>")
 			target_account.fields["current_money"] -= amount
 			mainaccount.fields["current_money"] += amount
+			var/service_charge = ((amount * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(amount * serv_chg_pct)
+			target_account.fields["current_money"] -= service_charge
+			servicechgaccount["current_money"] += service_charge
+
 			user.visible_message("<b>[src]</b> beeps, \"[mainaccount.fields["name"]] now holds [mainaccount.fields["current_money"]] credits. Thank you for your service!\"")
+			PrintReceipt(mainaccount, target_account, amount, service_charge)
 
 	attack_hand(mob/user as mob)
 		if (!mainaccount)

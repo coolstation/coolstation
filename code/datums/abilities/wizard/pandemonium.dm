@@ -76,7 +76,7 @@
 		M.bioHolder.AddEffect("accent_swedish", timeleft = 15)
 		M.bioHolder.AddEffect("accent_comic", timeleft = 15)
 		M.bioHolder.AddEffect("accent_elvis", timeleft = 15)
-		M.bioHolder.AddEffect("accent_chav", timeleft = 15)
+		M.bioHolder.AddEffect("accent_brummie", timeleft = 15)
 
 /mob/living/proc/PAND_Tripballs(var/protectuser = 1)
 	for(var/mob/O in AIviewers(src, null)) O.show_message(text("<span class='alert'><B>[]</B> radiates a confusing aura!</span>", src), 1)

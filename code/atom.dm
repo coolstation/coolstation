@@ -157,6 +157,12 @@ TYPEINFO(/atom)
 		if (temp_flags & (HAS_BAD_SMOKE))
 			ClearBadsmokeRefs(src)
 
+		//I can't tell if there's actually GC issues with maptext because "chat_text" is also a var name in a dozen different places
+		//but fuck me why isn't this cleared centrally, lads.
+		if (chat_text)
+			qdel(chat_text)
+			chat_text = null
+
 		fingerprintshidden = null
 		tag = null
 

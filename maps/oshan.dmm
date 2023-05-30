@@ -292,12 +292,12 @@
 /area/station/medical/medbay/surgery/storage)
 "aaJ" = (
 /obj/table/auto,
-/obj/item/shipcomponent/secondary_system/gps,
 /obj/item/crowbar,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
 /obj/machinery/light_switch/auto,
+/obj/item/shipcomponent/secondary_system/lock,
 /turf/simulated/floor/shuttlebay,
 /area/station/hangar/engine)
 "aaK" = (
@@ -3102,7 +3102,7 @@
 /turf/simulated/floor/black,
 /area/station/medical/robotics)
 "agS" = (
-/obj/surgery_tray,
+/obj/table/surgery_tray,
 /obj/item/circular_saw{
 	pixel_x = 3;
 	pixel_y = 12
@@ -3567,7 +3567,7 @@
 	dir = 5;
 	icon_state = "line2"
 	},
-/obj/item_dispenser/medical_mask,
+/obj/item_dispenser/medical_mask_internals,
 /turf/simulated/floor/white,
 /area/station/medical/medbay/surgery)
 "aid" = (
@@ -5417,7 +5417,7 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/east)
 "amt" = (
-/obj/surgery_tray,
+/obj/table/surgery_tray,
 /obj/item/circular_saw{
 	pixel_x = 3;
 	pixel_y = 12
@@ -27892,8 +27892,8 @@
 /area/station/hangar/main)
 "brp" = (
 /obj/table/auto,
-/obj/item/shipcomponent/secondary_system/gps,
 /obj/machinery/light_switch/auto,
+/obj/item/shipcomponent/secondary_system/lock,
 /turf/simulated/floor/damaged3,
 /area/station/hangar/main)
 "brq" = (
@@ -39288,7 +39288,7 @@
 /obj/item/clothing/mask/balaclava,
 /obj/item/pen/infrared,
 /obj/item/device/light/glowstick,
-/obj/item/clothing/head/chav,
+/obj/item/clothing/head/brummie,
 /obj/item/storage/pill_bottle/cyberpunk,
 /obj/item/c_tube,
 /obj/cable{
@@ -44690,9 +44690,6 @@
 /obj/wingrille_spawn/auto,
 /turf/simulated/floor/plating/random,
 /area/station/ranch)
-"ciQ" = (
-/turf/simulated/floor/grass/leafy,
-/area/station/ranch)
 "ciR" = (
 /obj/player_piano,
 /turf/simulated/floor/black,
@@ -44702,7 +44699,6 @@
 /turf/simulated/floor/shuttlebay,
 /area/shuttle/sea_elevator_room)
 "ciT" = (
-/obj/chicken_nesting_box,
 /turf/simulated/floor/grass/leafy,
 /area/station/ranch)
 "ciU" = (
@@ -44896,7 +44892,6 @@
 /turf/simulated/floor/plating/random,
 /area/station/maintenance/inner/central)
 "cjE" = (
-/obj/chicken_nesting_box,
 /obj/machinery/light/fluorescent/auto/harsh,
 /turf/simulated/floor/grass/leafy,
 /area/station/ranch)
@@ -84452,7 +84447,7 @@ aDr
 chc
 ciZ
 ciB
-ciQ
+ciT
 aMX
 aOn
 aPy
@@ -84754,7 +84749,7 @@ aDr
 chc
 ciP
 ciO
-ciQ
+ciT
 aMX
 aOo
 ckn
@@ -85056,7 +85051,7 @@ aDr
 chc
 ciZ
 ciT
-ciQ
+ciT
 aMX
 aOp
 aPC
@@ -85361,7 +85356,7 @@ ciZ
 cjz
 aMr
 ciy
-ciQ
+ciT
 ciC
 smn
 scc

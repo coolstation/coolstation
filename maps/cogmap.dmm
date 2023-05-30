@@ -34034,11 +34034,11 @@
 /obj/storage/crate,
 /obj/machinery/shieldgenerator/meteorshield,
 /obj/machinery/shieldgenerator/meteorshield,
-/obj/item/clothing/under/gimmick/chav{
+/obj/item/clothing/under/gimmick/brummie{
 	pixel_x = -6;
 	pixel_y = 4
 	},
-/obj/item/clothing/head/chav{
+/obj/item/clothing/head/brummie{
 	pixel_x = -3;
 	pixel_y = 6
 	},
@@ -50532,7 +50532,7 @@
 	},
 /area/station/medical/medbay/surgery)
 "cwI" = (
-/obj/surgery_tray,
+/obj/table/surgery_tray,
 /obj/item/circular_saw{
 	pixel_y = 11
 	},
@@ -52853,7 +52853,7 @@
 /turf/simulated/floor/grass/leafy,
 /area/station/hallway/secondary/exit)
 "cCS" = (
-/obj/surgery_tray,
+/obj/table/surgery_tray,
 /obj/item/circular_saw{
 	pixel_y = 11
 	},
@@ -55902,6 +55902,13 @@
 	},
 /turf/simulated/floor/grime,
 /area/station/security/brig)
+"hjX" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/rubber_chicken,
+/turf/simulated/floor/grass/leafy,
+/area/station/ranch)
 "hmN" = (
 /obj/grille/catwalk/grey,
 /obj/landmark/magnet_shield,
@@ -60115,6 +60122,10 @@
 	name = "astroturf"
 	},
 /area/station/hydroponics/bay)
+"pNm" = (
+/obj/machinery/plantpot,
+/turf/simulated/floor/grass/leafy,
+/area/station/ranch)
 "pQP" = (
 /obj/machinery/atmospherics/pipe/manifold{
 	level = 2
@@ -123789,7 +123800,7 @@ adC
 atW
 awI
 awI
-azp
+hjX
 dTC
 atV
 auW
@@ -124089,7 +124100,7 @@ adC
 adC
 adC
 apY
-awI
+pNm
 awI
 azp
 eJd
@@ -124102,7 +124113,7 @@ avj
 awI
 azp
 awI
-awI
+pNm
 apY
 adC
 aah
@@ -124391,7 +124402,7 @@ adC
 adC
 adC
 apY
-awI
+pNm
 awI
 azp
 eJd
@@ -124404,7 +124415,7 @@ atV
 awI
 azp
 awI
-awI
+pNm
 apY
 adC
 aaj
