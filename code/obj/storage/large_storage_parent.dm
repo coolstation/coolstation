@@ -52,6 +52,8 @@
 	var/owner_ckey = null // owner of the crunchy cart, so they don't get crunched
 	var/opening_anim = null
 	var/closing_anim = null
+	///If true, this storage will sort the first 8 items on open for access QOL
+	var/autosorting = TRUE
 
 	var/list/spawn_contents = list() // maybe better than just a bunch of stuff in New()?
 	var/made_stuff
@@ -592,20 +594,21 @@
 			spawn_contents = null
 
 		//2023-5-30: Let's trial some auto-sorting QOL on these
-		var/start_py = 10
-		var/start_px = -11
-		var/items = 1
-		for (var/obj/item/I in contents) //Wanna skip mobs, wanna skip non-items
-			if (items > 8)
-				I.pixel_y = min(0,pixel_y) //try to keep the bottom of the cart sprite free, clicking stuffed crates is a goddamn pain
-			else
-				I.pixel_x = start_px //If you did custom pixel offsets in make_my_stuff or in the map
-				I.pixel_y = start_py //Sorry but they're getting nuked
-				start_px += 6
-				if (items == 4) //shit's hardcoded, sue me
-					start_px = -11
-					start_py = 0
-			items++
+		if (src.autosorting)
+			var/start_py = 10
+			var/start_px = -11
+			var/items = 1
+			for (var/obj/item/I in contents) //Wanna skip mobs, wanna skip non-items
+				if (items > 8)
+					I.pixel_y = min(0,pixel_y) //try to keep the bottom of the cart sprite free, clicking stuffed crates is a goddamn pain
+				else
+					I.pixel_x = start_px //If you did custom pixel offsets in make_my_stuff or in the map
+					I.pixel_y = start_py //Sorry but they're getting nuked
+					start_px += 7
+					if (items == 4) //shit's hardcoded, sue me
+						start_px = -11
+						start_py = 0
+				items++
 
 		var/newloc = get_turf(src)
 		for (var/obj/O in src)
