@@ -106,12 +106,8 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_OZYMANDIAS
 //#define MAP_OVERRIDE_FLEET
 //#define MAP_OVERRIDE_ICARUS
-<<<<<<< HEAD
 //#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP
 #define MAP_OVERRIDE_TSELA			// Eagletanker WIP do not use
-=======
-//#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do not use
->>>>>>> 7eb324a50ffa2a7044d7d98807aca54a1df1eda6
 //#define MAP_OVERRIDE_PAMGOC			// Pamgoc
 //#define MAP_OVERRIDE_WRESTLEMAP   // Wrestlemap by Overtone
 // #define MAP_OVERRIDE_POD_WARS   // 500x500 Pod Wars map
