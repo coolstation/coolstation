@@ -1754,3 +1754,33 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		ammo = new/obj/item/ammo/bullets/foamdarts/ten
 		set_current_projectile(new/datum/projectile/bullet/foamdart)
 		..()
+
+/obj/item/gun/kinetic/dueling_pistol
+	name = "dueling pistol"
+	desc = "Let's settle this."
+	w_class = W_CLASS_NORMAL
+	icon_state = "dueling_pistol"
+	//color = "#ABBBFF"
+	caliber = 6969 //
+	contraband = 0 //Beepsky DO NOT INTERFERE
+
+	max_ammo_capacity = 1
+
+	New()
+		ammo = new/obj/item/ammo/bullets/dueling
+		ammo.amount_left = 0 //Start empty
+		set_current_projectile(new/datum/projectile/bullet/dueling)
+		..()
+
+	dropped(mob/user) //I can guarantee someone's gonna try and cheat this by dropping the gun before the opponent's bullet can hit them
+		ON_COOLDOWN(user, "duel_anticheat", 1.5 SECONDS) //Jokes on you chump
+		..()
+
+/obj/item/storage/box/dueling
+	name = "dueling pistol case"
+	desc = "A very fancy case for those arguments that words cannot resolve."
+	icon_state = "dueling_case_thats_a_shitty_edit_of_the_hard_case" //I couldn't be bothered at this point
+	slots = 3
+
+	spawn_contents = list(/obj/item/gun/kinetic/dueling_pistol = 2,\
+	/obj/item/ammo/bullets/dueling)

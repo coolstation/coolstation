@@ -184,8 +184,12 @@ datum/shuttle_controller
 						var/display_time = round(timeleft()/60)
 						//if (display_time <= 0) // The Emergency Shuttle will be entering the wormhole to CentCom in 0 minutes!
 							//display_time = 1 // fuckofffffffffff
-						boutput(world, "<B>The Emergency Shuttle will be entering the wormhole to CentCom in [display_time] minute[s_es(display_time)]! Please prepare for wormhole traversal.</B>")
+						if(channel_open)
+							boutput(world, "<B>The Emergency Shuttle will be entering the wormhole to CentCom in [display_time] minute[s_es(display_time)]! Please prepare for wormhole traversal.</B>")
+						else
+							boutput(world, "<B>The Emergency Shuttle will be departing for CentCom in [display_time] minute[s_es(display_time)]. Please ensure all personnel have boarded the shuttle.</B>")
 						announcement_done = 1
+
 
 					else if (announcement_done < 2 && timeleft < 30)
 						var/area/sound_location = locate(/area/shuttle_sound_spawn)

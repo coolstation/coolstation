@@ -654,7 +654,7 @@
 		spawn_contents = list(/obj/item/shipcomponent/mainweapon/mining,
 		/obj/item/shipcomponent/secondary_system/repair,
 		/obj/item/shipcomponent/sensor/mining,
-		/obj/item/shipcomponent/secondary_system/gps)
+		/obj/item/shipcomponent/secondary_system/lock)
 
 	ship2
 		spawn_contents = list(/obj/item/shipcomponent/mainweapon/foamer,

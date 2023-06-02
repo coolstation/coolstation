@@ -152,8 +152,8 @@
 	ai_target_old.len = 0
 	move_laying = null
 
-	qdel(chat_text)
-	chat_text = null
+	//qdel(chat_text) should be on atom now
+	//chat_text = null
 /*
 	if(stamina_bar)
 		for (var/datum/hud/thishud in huds)
@@ -747,14 +747,26 @@
 				if (isAI(src))
 					switch (lowertext(copytext(message, 2, 3))) // One vs. two letter prefix.
 						if ("1")
+							if (ACTION_GOVERNOR_BLOCKED(AI_GOVERNOR_GENRADIO))
+								var/mob/living/silicon/ai/me = src //ugh
+								boutput(me.deployed_to_eyecam ? me.eyecam : src, "<span class='alert'>You have lost the ability to use the general radio.</span>")
+								return
 							message_mode = "internal 1"
 							message = copytext(message, 3)
 
 						if ("2")
+							if (ACTION_GOVERNOR_BLOCKED(AI_GOVERNOR_CORERADIO))
+								var/mob/living/silicon/ai/me = src
+								boutput(me.deployed_to_eyecam ? me.eyecam : src, "<span class='alert'>You have lost the ability to use the AI core radio.</span>")
+								return
 							message_mode = "internal 2"
 							message = copytext(message, 3)
 
 						if ("3")
+							if (ACTION_GOVERNOR_BLOCKED(AI_GOVERNOR_DEPRADIO))
+								var/mob/living/silicon/ai/me = src
+								boutput(me.deployed_to_eyecam ? me.eyecam : src, "<span class='alert'>You have lost the ability to use the departmental radio.</span>")
+								return
 							message_mode = "monitor"
 							var/end = 3
 							if (!lowertext(copytext(message,3,4) == " "))

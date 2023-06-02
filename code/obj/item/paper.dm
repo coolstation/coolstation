@@ -145,6 +145,8 @@
 		if (fold == "Paper hat")
 			user.show_text("You fold the paper into a hat! Neat.", "blue")
 			var/obj/item/clothing/head/paper_hat/H = new()
+			H.paper = src
+			src.set_loc(H)
 			user.put_in_hand_or_drop(H)
 		else
 			var/obj/item/paper/folded/F = null
@@ -158,8 +160,7 @@
 			F.old_desc = src.desc
 			F.old_icon_state = src.icon_state
 			user.put_in_hand_or_drop(F)
-
-		qdel(src)
+			qdel(src)
 
 /obj/item/paper/attack_ai(var/mob/AI as mob)
 	var/mob/living/silicon/ai/user

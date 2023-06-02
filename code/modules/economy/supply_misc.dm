@@ -63,6 +63,8 @@
 			return 1
 		else if (!M.can_lie && isdead(M))
 			return 1
+		else if (ismonkey(M)) // lets be honest here.
+			return 1
 		else if(!M.lying) // or you're lying down
 			return 0
 	return ..()

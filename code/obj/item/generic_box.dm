@@ -256,34 +256,34 @@
 		styptic
 			name = "box of healing patches"
 			contained_item = /obj/item/reagent_containers/patch/bruise
-			item_amount = 10
-			max_item_amount = 10
+			item_amount = 6
+			max_item_amount = 6
 		silver_sulf
 			name = "box of burn patches"
 			contained_item = /obj/item/reagent_containers/patch/burn
-			item_amount = 10
-			max_item_amount = 10
+			item_amount = 6
+			max_item_amount = 6
 		synthflesh
 			name = "box of synthflesh patches"
 			contained_item = /obj/item/reagent_containers/patch/synthflesh
-			item_amount = 10
-			max_item_amount = 10
+			item_amount = 6
+			max_item_amount = 6
 
 		mini_styptic
 			name = "box of mini healing patches"
 			contained_item = /obj/item/reagent_containers/patch/mini/bruise
-			item_amount = 10
-			max_item_amount = 10
+			item_amount = 8
+			max_item_amount = 8
 		mini_silver_sulf
 			name = "box of mini burn patches"
 			contained_item = /obj/item/reagent_containers/patch/mini/burn
-			item_amount = 10
-			max_item_amount = 10
+			item_amount = 8
+			max_item_amount = 8
 		mini_synthflesh
 			name = "box of mini synthflesh patches"
 			contained_item = /obj/item/reagent_containers/patch/mini/synthflesh
-			item_amount = 10
-			max_item_amount = 10
+			item_amount = 8
+			max_item_amount = 8
 
 	pens
 		name = "box of pens"

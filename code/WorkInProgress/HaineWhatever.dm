@@ -874,7 +874,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 			for (var/obj/item/reagent_containers/food/drinks/drinkingglass/glass in src)
 				src.glassware += glass
 			// add a random accent
-			var/my_mutation = pick("accent_elvis", "stutter", "accent_chav", "accent_swedish", "accent_tommy", "unintelligable", "slurring")
+			var/my_mutation = pick("accent_elvis", "stutter", "accent_brummie", "accent_swedish", "accent_tommy", "unintelligable", "slurring")
 			src.bioHolder.AddEffect(my_mutation)
 
 	was_harmed(var/mob/M as mob, var/obj/item/weapon = 0, var/special = 0, var/intent = null)

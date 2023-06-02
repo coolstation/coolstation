@@ -3078,7 +3078,7 @@ var/global/noir = 0
 
 					if ("command_report_zalgo")
 						if (src.level >= LEVEL_ADMIN)
-							var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as null|text
+							var/input = input(usr, "Please enter anything you want for the body of the message. Headline comes next..", "What?", "") as null|text
 							input = zalgoify(input, rand(0,2), rand(0, 2), rand(0, 2))
 							if(!input)
 								return
@@ -3099,7 +3099,7 @@ var/global/noir = 0
 
 					if ("command_report_void")
 						if (src.level >= LEVEL_ADMIN)
-							var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as null|text
+							var/input = input(usr, "Please enter anything you want for the body of the message. Headline comes next.", "What?", "") as null|text
 							input = voidSpeak(input)
 							if(!input)
 								return
@@ -4313,7 +4313,7 @@ var/global/noir = 0
 
 	dat += "</div>"
 
-	usr.Browse(dat, "window=gamepanel")
+	usr.Browse(dat, "window=gamepanel;size=500x750")
 	return
 
 /datum/admins/proc/restart()

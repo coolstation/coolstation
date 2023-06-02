@@ -116,12 +116,10 @@
 			stationLights += src
 
 		if(ceilingmounted)
-			lightfixtureimage = image(src.icon,src.loc,src.icon_state,PLANE_NOSHADOW_ABOVE -1,src.dir)
-			//does not update when moved or rotated... not great but better than it used to be
-			//may need help figuring out why i need to specify a direction and a location for it to show up???
-			//do i look like i know what a pointer reference is i just want a picture of a got dang light fixture
+			//src.invisibility = 101 //the actual object is hidden on start and we rely on clickable images in the group
+			lightfixtureimage = image(src.icon,src,src.icon_state,PLANE_NOSHADOW_ABOVE -1,src.dir)
 			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_image(lightfixtureimage)
-			lightfixtureimage.alpha = 160 //plus the 80 alpha and it's nearly normally opaque
+			lightfixtureimage.alpha = 160
 
 		var/area/A = get_area(src)
 		if (A)
@@ -254,9 +252,6 @@
 	//mouse_opacity = see above, images and overlays inherit this clickability toggle and i'm going to eat my own head with my other head
 	alpha = 80
 	ceilingmounted = 1
-
-	New()
-		..()
 
 //oh no i can't find my bare shitty bulb sprite guess i'll remake it for next time
 

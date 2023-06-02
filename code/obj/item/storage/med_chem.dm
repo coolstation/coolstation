@@ -281,6 +281,114 @@
 	desc = "A box containing body bags*, which, like the name suggests, are used for transporting bodies around. Usually dead ones.<br><small><i>*Bodies not included.</i></small>"
 	spawn_contents = list(/obj/item/body_bag = 7)
 
+/* -------------------- Medicines for Pharmacy ---------------- */
+
+/obj/item/storage/box/brutebox
+	name = "trauma treatment box"
+	icon_state = "pharmbrute"
+	desc = "A box containing bottles of styptic powder, a topical anti-bleeding wound treatment, and salicylic acid."
+	spawn_contents = list(/obj/item/reagent_containers/glass/bottle/brute = 4,\
+	/obj/item/storage/pill_bottle/salicylic_acid = 2,\
+	/obj/item/bandage)
+
+/obj/item/storage/box/brutepatchbox
+	name = "trauma patch box"
+	icon_state = "pharmbrutepatch"
+	desc = "A box containing boxes of styptic powder patches, a topical anti-bleeding wound treatment."
+	spawn_contents = list(/obj/item/item_box/medical_patches/styptic = 4,\
+	/obj/item/item_box/medical_patches/mini_styptic = 2,\
+	/obj/item/bandage)
+
+/obj/item/storage/box/burnbox
+	name = "burn treatment box"
+	icon_state = "pharmburn"
+	desc = "A box containing pill bottles of silver sulfadiazine, a topical burn treatment, and menthol."
+	spawn_contents = list(/obj/item/reagent_containers/glass/bottle/burn = 4,\
+	/obj/item/storage/pill_bottle/menthol = 2,\
+	/obj/item/bandage)
+
+/obj/item/storage/box/burnpatchbox
+	name = "burn patch box"
+	icon_state = "pharmburnpatch"
+	desc = "A box containing boxes of silver sulfadiazine patches, a topical burn treatment."
+	spawn_contents = list(/obj/item/item_box/medical_patches/silver_sulf = 4,\
+	/obj/item/item_box/medical_patches/mini_silver_sulf = 2,\
+	/obj/item/bandage)
+
+/obj/item/storage/box/antitoxbox
+	name = "toxin treatment box"
+	icon_state = "pharmtoxin"
+	desc = "A box containing pill bottles of charcoal, a basic antitoxin drug."
+	spawn_contents = list(/obj/item/storage/pill_bottle/antitox = 6)
+
+/obj/item/storage/box/purgativebox
+	name = "purgative box"
+	icon_state = "pharmpurg"
+	desc = "A box containing pill bottles of calomel and space ipecac, basic toxin purgatives."
+	spawn_contents = list(/obj/item/storage/pill_bottle/calomel = 3,\
+	/obj/item/storage/pill_bottle/ipecac = 3)
+
+/obj/item/storage/box/epibox
+	name = "cardiac stimulant box"
+	icon_state = "pharmepi"
+	desc = "A box containing bottles of epinephrine, a cardiac stimulant."
+	spawn_contents = list(/obj/item/reagent_containers/glass/bottle/epinephrine = 6,\
+	/obj/item/reagent_containers/syringe)
+
+/obj/item/storage/box/salbutamolbox
+	name = "respiratory stimulant box"
+	icon_state = "pharmsalb"
+	desc = "A box containing pill bottles of salbutamol, a respiratory recovery drug."
+	spawn_contents = list(/obj/item/storage/pill_bottle/salbutamol = 6)
+
+/obj/item/storage/box/salinebox
+	name = "saline-glucose solution box"
+	icon_state = "pharmsaline"
+	desc = "A box containing bottles of saline-glucose solution, for patients with blood loss or shock."
+	spawn_contents = list(/obj/item/reagent_containers/glass/bottle/saline = 6,\
+	/obj/item/reagent_containers/syringe)
+
+/obj/item/storage/box/critcardiacbox
+	name = "critical cardiac care box"
+	icon_state = "pharmcrit"
+	desc = "A box containing bottles of atropine, a powerful cardiac stimulant, and heparin."
+	spawn_contents = list(/obj/item/reagent_containers/glass/bottle/atropine = 4,\
+	/obj/item/reagent_containers/glass/bottle/heparin = 2,\
+	/obj/item/reagent_containers/syringe)
+
+/obj/item/storage/box/antiradbox
+	name = "radiation treatment box"
+	icon_state = "pharmrad"
+	desc = "A box containing bottles of potassium iodide, a minor radiation treatment."
+	spawn_contents = list(/obj/item/reagent_containers/glass/bottle/antirad = 6,\
+	/obj/item/reagent_containers/syringe)
+
+/obj/item/storage/box/shockbox
+	name = "shock recovery box"
+	icon_state = "pharmshock"
+	desc = "A box containing bottles of insulin and antihistamine." //and naloxone, if we implement that
+	spawn_contents = list(/obj/item/reagent_containers/glass/bottle/insulin = 3,\
+	/obj/item/reagent_containers/glass/bottle/antihistamine = 3,\
+	/obj/item/reagent_containers/syringe)
+
+/obj/item/storage/box/diseasebox
+	name = "disease management box"
+	icon_state = "pharmdisease"
+	desc = "A box containing bottles of spaceacillin, haloperidol and antihistamine, for managing diseases."
+	spawn_contents = list(/obj/item/reagent_containers/glass/bottle/spaceacillin = 3,\
+	/obj/item/reagent_containers/glass/bottle/haloperidol,\
+	/obj/item/reagent_containers/glass/bottle/antihistamine,\
+	/obj/item/reagent_containers/syringe)
+
+/obj/item/storage/box/bloodbox
+	name = "blood management box"
+	icon_state = "pharmblood"
+	desc = "A box containing bottles of heparin, filgrastim and proconvertin, for advanced blood management."
+	spawn_contents = list(/obj/item/reagent_containers/glass/bottle/heparin = 2,\
+	/obj/item/reagent_containers/glass/bottle/filgrastim = 2,\
+	/obj/item/reagent_containers/glass/bottle/proconvertin = 2,\
+	/obj/item/reagent_containers/syringe)
+
 /* -------------------- Prostheses storage -------------------- */
 
 /obj/item/storage/box/prosthesis_kit
@@ -442,8 +550,13 @@
 
 /obj/item/storage/pill_bottle/ipecac
 	name = "pill bottle (space ipecac)"
-	desc = "Contains pills used induce emesis."
+	desc = "Contains pills used to induce emesis."
 	spawn_contents = list(/obj/item/reagent_containers/pill/ipecac = 7)
+
+/obj/item/storage/pill_bottle/calomel
+	name = "pill bottle (calomel)"
+	desc = "Contains pills used to purge the body of toxins, 19th century style."
+	spawn_contents = list(/obj/item/reagent_containers/pill/calomel = 7)
 
 /* -------------------- Pill Bottles - Drugs -------------------- */
 

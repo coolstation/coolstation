@@ -691,7 +691,29 @@ datum
 					var/icon/I = icon(W.icon)
 					I.ColorTone( rgb(165,242,243) )
 					W.icon = I
-				return
+				..() //might as well call parent if we're here :V
+
+			//Bat here, someone mentioned silica gel packets and this chem seems close enough so
+			//gonna give this some new dessicant and poison properties and we're gonna call it a day
+
+			///dessicate turfs
+			reaction_turf(var/turf/T, var/volume)
+				..()
+				qdel(T?.active_liquid)
+
+			reaction_mob(var/mob/M, var/method=TOUCH, var/volume, var/paramslist = 0)
+				..()
+				if (method == TOUCH && (M.material?.material_flags & MATERIAL_CRYSTAL)) //If it works on windows...
+					var/amt = 5*(volume/10)
+					M.HealDamage("All", amt, amt, amt)
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				if (!M) M = holder.my_atom
+				if (!(M.material?.material_flags & MATERIAL_CRYSTAL)) //glass people are immune :)
+					M.take_toxin_damage(0.75 * mult)
+					if (prob(5))
+						boutput(M, "<span class='alert'>You feel dry.</span>")
+				..()
 
 //foam precursor
 

@@ -132,7 +132,7 @@
 				last = curr
 				curr = curr.transfer(src)
 				if(!curr)
-					last.expel(src, loc, dir)
+					last.expel(src, get_turf(loc), dir)
 
 				if(!(count--))
 					active = 0

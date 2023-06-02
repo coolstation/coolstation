@@ -534,10 +534,29 @@
 			name = "COLD LOOP"
 			icon_state = "wall_coldloop"
 
+		aarea
+			name = "area information sign"
+			desc = "A sign that lets you know that this is, in fact, a area."
+			icon_state = "wall_area"
+			popup_win = 1
+			imgw = 185
+			imgh = 235
+			img = "images/arts/posters/sign-area.jpg"
+
 		poster_hair
 			name = "Fabulous Hair!"
 			desc = "There's a bunch of ladies with really fancy hair pictured on this."
 			icon_state = "wall_poster_hair"
+
+		poster_idiotbastard
+			name = "Strange poster"
+			desc = "You have no idea what the hell this is."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "idiotbastard"
+			popup_win = 1
+			imgw = 645
+			imgh = 545
+			img = "images/arts/posters/idiot-bastard.jpg"
 
 		poster_cool
 			name = "cool poster"
@@ -598,6 +617,16 @@
 			imgw = 365
 			imgh = 450
 			img = "images/arts/posters/y4nt-shitty.jpg"
+
+		poster_tiger
+			name = "tiger poster"
+			desc = "Wow, it's free! Totally worth it!"
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "tiger"
+			popup_win = 1
+			imgw = 410
+			imgh = 275
+			img = "images/arts/posters/tiger.png"
 
 		poster_beach
 			name = "beach poster"
@@ -923,6 +952,9 @@
 		/*	desc = "Chaos, and rebellion, against an oppressive -- and, quite frankly, \
 				incredibly boring -- status quo! Passion, community, queer history, \
 				... and EVIL! MWAHAHAHA!"*/
+		pride/italian
+			name = "Italian Pride"
+			icon_state = "poster_pride15"
 
 ///////////////////////////////////////
 // HATSUNE MIKU'S HEAD OF DEPARTMENT ITEMS// + FIREBARRAGE HELPED TOO BUT HE SMELLS

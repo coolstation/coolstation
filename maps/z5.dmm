@@ -4385,6 +4385,11 @@
 /obj/decal/poster/wallsign/stencil/left/u,
 /turf/simulated/floor/plating,
 /area/diner/hallway)
+"lL" = (
+/obj/storage/crate/freezer,
+/obj/item/gun/modular/juicer/blunder,
+/turf/simulated/floor/grime,
+/area/juicer/club/back)
 "lO" = (
 /obj/machinery/door/airlock/external,
 /turf/simulated/floor/shuttle{
@@ -4941,7 +4946,7 @@
 /turf/simulated/floor/black,
 /area/juicer/club/outside)
 "nu" = (
-/obj/decal/fakeobjects/anvil,
+/obj/item/gun_exploder,
 /turf/simulated/floor/grime,
 /area/juicer/club/back)
 "ny" = (
@@ -5579,9 +5584,7 @@
 	icon_state = "tube1"
 	},
 /obj/storage/crate/freezer,
-/obj/item/gun/modular/juicer/long,
-/obj/item/gun_parts/magazine/juicer,
-/obj/item/reagent_containers/food/drinks/bottle/hobo_wine/safe,
+/obj/item/gun/modular/juicer/blunder,
 /turf/simulated/floor/grime,
 /area/juicer/club/back)
 "BY" = (
@@ -5615,7 +5618,6 @@
 "Ct" = (
 /obj/storage/crate/freezer,
 /obj/item/gun/modular/juicer/long,
-/obj/item/gun_parts/magazine/juicer,
 /turf/simulated/floor/grime,
 /area/juicer/club/back)
 "CB" = (
@@ -5645,8 +5647,7 @@
 /area/diner/arcade)
 "CT" = (
 /obj/storage/crate/freezer,
-/obj/item/gun/modular/juicer,
-/obj/item/gun_parts/magazine/juicer,
+/obj/item/gun/modular/italian/big_italiano,
 /turf/simulated/floor/grime,
 /area/juicer/club/back)
 "Di" = (
@@ -66983,7 +66984,7 @@ eN
 nL
 pE
 pE
-CT
+lL
 eN
 eN
 kQ

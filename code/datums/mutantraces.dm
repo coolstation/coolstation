@@ -1794,7 +1794,7 @@
 			M.bioHolder.AddEffect("mattereater")
 			M.bioHolder.AddEffect("jumpy")
 			M.bioHolder.AddEffect("vowelitis")
-			M.bioHolder.AddEffect("accent_chav")
+			M.bioHolder.AddEffect("accent_brummie")
 
 
 	disposing()
@@ -1804,7 +1804,7 @@
 				mob.bioHolder.RemoveEffect("mattereater")
 				mob.bioHolder.RemoveEffect("jumpy")
 				mob.bioHolder.RemoveEffect("vowelitis")
-				mob.bioHolder.RemoveEffect("accent_chav")
+				mob.bioHolder.RemoveEffect("accent_brummie")
 		original_blood_color = null
 		..()
 
@@ -2132,14 +2132,14 @@
 		switch (act)
 			if ("dance")
 				if (mob.emote_allowed)
-					mob.emote_allowed = 0
+					if (!(mob.client && mob.client.holder)) mob.emote_allowed = 0
 					if (voluntary)
 						message = "<B>[mob]</B> [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles","weasel-wardances")]!" //public message
-						SPAWN_DBG(6 SECONDS)
+						SPAWN_DBG(4 SECONDS)
 							if (mob) mob.emote_allowed = 1 //finish cooldown
 					else
 						mob.show_message("<span class='alert'>You CAN'T CONTROL YOURSELF AT ALL!!! YOU GOTTA [pick("WOBBLE","WIGGLE","WIG OUT","FREAK OUT","BOUNCE AROUND","GET WOOZED UP")]!!!</span>") //message to only yourself
-						SPAWN_DBG(4 SECONDS) //shorter cooldown for involuntary
+						SPAWN_DBG(2 SECONDS) //shorter cooldown for involuntary
 							if (mob) mob.emote_allowed = 1
 				else
 					return
@@ -2186,9 +2186,14 @@
 				if (mob.emote_allowed)
 					mob.emote_allowed = 0
 					message = "<B>[mob]</B> dooks excitedly!"
+					playsound(mob, 'sound/misc/talk/fert.ogg', 40, 1, 0.3, channel=VOLUME_CHANNEL_EMOTE)
 					SPAWN_DBG(1 SECONDS)
 						if (mob) mob.emote_allowed = 1
 					return message
+			if ("scream")
+				if (mob.emote_check(voluntary, 50))
+					. = "<B>[mob]</B> screams!"
+					playsound(mob, "sound/voice/screams/weaselscream.ogg", 50, 0, 0, mob.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 			else
 				..() //oh right do the rest
 

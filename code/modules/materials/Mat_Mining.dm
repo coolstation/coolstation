@@ -87,6 +87,8 @@
 	icon_state = "pickaxe"
 	item_state = "pick"
 	hit_sound = 'sound/items/mining_pick.ogg'
+	force = 9
+	hit_type = DAMAGE_STAB
 
 	onMaterialChanged()
 		..()

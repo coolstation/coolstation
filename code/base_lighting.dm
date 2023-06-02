@@ -17,6 +17,8 @@
 		force_fullbright = 0
 		ambient_light = null //rgb(0.025 * 255, 0.025 * 255, 0.025 * 255)
 
+// moved to area/New() because we have SO MANY FUCK
+/*
 	New()
 		..()
 		if (force_fullbright)
@@ -25,7 +27,7 @@
 			var/image/I = new /image/ambient
 			I.color = ambient_light
 			overlays += I
-
+*/
 	proc/update_fullbright()
 		if (force_fullbright)
 			overlays += /image/fullbright

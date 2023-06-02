@@ -691,6 +691,7 @@
 	setupProperties()
 		..()
 		setProperty("radprot", 50)
+		setProperty("meleeprot_head", 3)
 		setProperty("exploprot", 10)
 		setProperty("space_movespeed", 0)
 
@@ -705,15 +706,15 @@
 
 /obj/item/clothing/head/helmet/space/mining_combat
 	name = "mining combat helmet"
-	desc = "Goes with Mining Combat Armor. Now with sweet strawberry-scented visor!"
+	desc = "A reinforced industrial mining helmet, perfect for both high risk and less than legal salvage operations."
 	icon_state = "mining_combat"
 	item_state = "mining_combat"
-	mats = 10
+	mats = 30
 
 	setupProperties()
 		..()
 		setProperty("radprot", 25)
-		setProperty("meleeprot_head", 2)
+		setProperty("meleeprot_head", 4)
 		setProperty("disorient_resist_eye", 25)
 		setProperty("disorient_resist_ear", 10)
 		setProperty("space_movespeed", 0)

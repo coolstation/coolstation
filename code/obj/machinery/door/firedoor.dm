@@ -76,7 +76,8 @@
 		if(operating)
 			nextstate = OPEN
 		else
-			open()
+			SPAWN_DBG(rand(1,6))
+				open()
 	return
 
 /obj/machinery/door/firedoor/proc/set_closed()
@@ -84,7 +85,8 @@
 		if(operating)
 			nextstate = CLOSED
 		else
-			close()
+			SPAWN_DBG(rand(1,6))
+				close()
 	return
 
 // listen for fire alert from firealarm

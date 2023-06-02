@@ -211,6 +211,7 @@
 			var/turf/T = get_turf(src)
 			for (var/obj/decal/cleanable/mess in T)
 				qdel(mess)
+			T.clean = 1
 			T.messy = 0
 
 		else // Don't think it should clean doors and the like. Give the detective at least something to work with.
@@ -250,6 +251,7 @@
 				M.blood_DNA = null
 				M.add_forensic_trace("btype", M.blood_type)
 				M.blood_type = null
+				M.cleanhands = 0
 
 			M.add_forensic_trace("fprints", M.fingerprints)
 			M.fingerprints = null // Foreign fingerprints on the mob.

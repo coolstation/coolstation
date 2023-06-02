@@ -15,7 +15,7 @@
 	amount_per_transfer_from_this = 25
 	incompatible_with_chem_dispensers = 1
 	flags = FPRINT | TABLEPASS | OPENCONTAINER
-	rc_flags = RC_SCALE
+	rc_flags = RC_SCALE | RC_SPECTRO
 	initial_volume = 400
 	can_recycle = FALSE
 	can_chug = 0

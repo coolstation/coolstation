@@ -401,6 +401,22 @@ obj/decal/fakeobjects/teleport_pad
 	anchored = 1
 	density = 1
 
+/obj/decal/fakeobjects/nestofmattresses //gross
+	name = "smelly pile of mattresses"
+	desc = "Some kind of foul, horrible creature has piled up a bunch of old mattresses here???"
+	icon = 'icons/misc/96x64.dmi'
+	icon_state = "mattresspile"
+	anchored = 1
+	density = 1
+
+/obj/decal/fakeobjects/hose //gross
+	name = "garden hose"
+	desc = "A garden hose stand, with spigot. You don't feel like touching this."
+	icon = 'icons/obj/decoration.dmi'
+	icon_state = "hose"
+	anchored = 1
+	density = 1
+
 //sealab prefab fakeobjs
 
 /obj/decal/fakeobjects/pcb
@@ -491,7 +507,7 @@ obj/decal/fakeobjects/teleport_pad
 	MouseDrop_T(mob/M as mob, mob/user as mob)
 		if (can_buckle(M,user))
 			M.set_loc(src.loc)
-			user.visible_message("<span class='notice'><b>[M]</b> climbs up on [src]!</span>", "<span class='notice'>You climb up on [src].</span>")
+			user.visible_message("<span class='notice'><b>[M]</b> climbs up on [src], ready to lay down the pain!</span>", "<span class='notice'>You climb up on [src] and prepare to rain destruction!</span>")
 			buckle_in(M, user, 1)
 
 	CanPass(atom/movable/mover, turf/target, height=0, air_group=0) // stolen from window.dm

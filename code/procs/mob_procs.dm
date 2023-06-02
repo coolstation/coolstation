@@ -322,7 +322,7 @@
 	return 1
 
 /mob/living/carbon/human/hearing_check(var/consciousness_check = 0, var/ear_disability_check = 1)
-	if (consciousness_check && (src.stat || src.getStatusDuration("paralysis") || src.sleeping))
+	if (consciousness_check && (isunconscious(src) || src.getStatusDuration("paralysis") || src.sleeping)) //src.stat -> isunconscious(src) to allow ded folks to hear again
 		// you may be physically capable of hearing it, but you're sure as hell not mentally able when you're out cold
 		.= 0
 	else
@@ -338,7 +338,7 @@
 			.= 0
 
 /mob/living/silicon/hearing_check(var/consciousness_check = 0, var/ear_disability_check = 1)
-	if (consciousness_check && (src.getStatusDuration("paralysis") || src.sleeping || src.stat))
+	if (consciousness_check && (src.getStatusDuration("paralysis") || src.sleeping || isunconscious(src)))
 		return 0
 
 	if (ear_disability_check && src.ear_disability)

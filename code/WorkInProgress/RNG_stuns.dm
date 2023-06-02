@@ -87,6 +87,12 @@ their respective object definitions, but for now they are cozy and warm. love u.
 	rng_stun_diso = 0 SECONDS
 	rng_stun_weak = 3 SECONDS
 
+/obj/item/mining_tools/pick
+	rng_stun_rate = 4 //%
+	rng_stun_time = 0 SECOND
+	rng_stun_diso = 0 SECONDS
+	rng_stun_weak = 2 SECONDS
+
 /obj/item/bat
 	rng_stun_rate = 6 //%
 	rng_stun_time = 1 SECOND
