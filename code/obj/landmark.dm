@@ -287,6 +287,14 @@ var/global/list/job_start_locations = list()
 	desc = "Point it at a turf. Stuff that goes there? goes here instead. Got it?"
 	novis = TRUE
 
+/obj/landmark/viscontents_spawn/gehenna // special cases :)
+	New(var/loc, var/man_xOffset, var/man_yOffset, var/man_targetZ, var/man_warptarget_modifier)
+		if(map_currently_very_dusty)
+			..()
+		else
+			qdel(src)
+			return
+
 /obj/landmark/viscontents_spawn/no_warp
 	warptarget_modifier = LANDMARK_VM_WARP_NONE
 /// target turf for projecting its contents elsewhere
