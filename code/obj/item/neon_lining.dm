@@ -137,10 +137,10 @@
 
 	else //Placing neon
 		var/obj/neon_lining/C
+		var/to_line_along = 0 //Direction bitflags we want to go along cause there's walls there or whatever
 		if (!auto_flags) //No autoplacement: just follow user dir
-			C = new /obj/neon_lining(F, user.dir, src.lining_item_color)
+			to_line_along = get_dir(user, F)
 		else //Funky stuff
-			var/to_line_along = 0 //Directions we want to go along cause there's walls there or whatever
 			if (auto_flags & AUTOPLACE_STRUCTURAL)
 				for(var/d in cardinal)
 					var/turf/T = get_turf(get_step(F, d))
@@ -154,36 +154,36 @@
 						to_line_along |= d
 						continue
 
-			//Now to interpret what walls we're lining along
-			if (!to_line_along) //No nearby walls, default to straight & user dir
-				C = new /obj/neon_lining(F, user.dir, src.lining_item_color)
+		//Now to interpret what walls we're lining along
+		if (!to_line_along) //No nearby walls, default to straight & user dir
+			C = new /obj/neon_lining(F, user.dir, src.lining_item_color)
 
-			else if (to_line_along in cardinal) //one wall
-				C = new /obj/neon_lining(F, to_line_along, src.lining_item_color)
+		else if (to_line_along in cardinal) //one wall
+			C = new /obj/neon_lining(F, to_line_along, src.lining_item_color)
 
-			else if (to_line_along == (NORTH | SOUTH)) //Opposite walls, we need to use & spawn 2 pieces for this
-				if (src.amount > 1)
-					C = new /obj/neon_lining(F, NORTH, src.lining_item_color)
-					C.add_fingerprint(user)
-					change_stack_amount(-1)
-				C = new /obj/neon_lining(F, SOUTH, src.lining_item_color)
+		else if (to_line_along == (NORTH | SOUTH)) //Opposite walls, we need to use & spawn 2 pieces for this
+			if (src.amount > 1)
+				C = new /obj/neon_lining(F, NORTH, src.lining_item_color)
+				C.add_fingerprint(user)
+				change_stack_amount(-1)
+			C = new /obj/neon_lining(F, SOUTH, src.lining_item_color)
 
-			else if (to_line_along == (EAST | WEST))  //idem but other walls
-				if (src.amount > 1)
-					C = new /obj/neon_lining(F, EAST, src.lining_item_color)
-					C.add_fingerprint(user)
-					change_stack_amount(-1)
-				C = new /obj/neon_lining(F, WEST, src.lining_item_color)
+		else if (to_line_along == (EAST | WEST))  //idem but other walls
+			if (src.amount > 1)
+				C = new /obj/neon_lining(F, EAST, src.lining_item_color)
+				C.add_fingerprint(user)
+				change_stack_amount(-1)
+			C = new /obj/neon_lining(F, WEST, src.lining_item_color)
 
-			else if (to_line_along == (NORTH | SOUTH | EAST | WEST)) //All walls? hope you like your 1x1 neon cell
-				C = new /obj/neon_lining(F, SOUTH, src.lining_item_color, 1) //shape 1 is circle
+		else if (to_line_along == (NORTH | SOUTH | EAST | WEST)) //All walls? hope you like your 1x1 neon cell
+			C = new /obj/neon_lining(F, SOUTH, src.lining_item_color, 1) //shape 1 is circle
 
-			else
-				var/non_lining = to_line_along ^ (NORTH | SOUTH | EAST | WEST) //xor to maybe get a single dir out
-				if (non_lining in cardinal) //cause if that's the case we've got 3 walls
-					C = new /obj/neon_lining(F, turn(non_lining, 180), src.lining_item_color, 4) //4 is a u piece
-				else //By process of elimination, a corner
-					C = new /obj/neon_lining(F, turn(to_line_along, -45), src.lining_item_color, 5) //5 i a corner
+		else
+			var/non_lining = to_line_along ^ (NORTH | SOUTH | EAST | WEST) //xor to maybe get a single dir out
+			if (non_lining in cardinal) //cause if that's the case we've got 3 walls
+				C = new /obj/neon_lining(F, turn(non_lining, 180), src.lining_item_color, 4) //4 is a u piece
+			else //By process of elimination, a corner
+				C = new /obj/neon_lining(F, turn(to_line_along, -45), src.lining_item_color, 5) //5 i a corner
 
 
 		boutput(user, "You set some neon lining on the floor.")
