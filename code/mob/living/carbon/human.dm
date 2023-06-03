@@ -93,6 +93,8 @@
 	var/italian = 0 // Italiano
 	var/emagged = 0 // What the hell is wrong with me?
 	var/spiders = 0 // SPIDERS
+	var/grubs = 0 // grubse
+	var/grubs_color = null // for grubse variants
 	var/makeup = null // for when you wanna look pretty
 	var/makeup_color = null
 
@@ -135,6 +137,7 @@
 	var/static/image/heart_image = image('icons/mob/human.dmi')
 	var/static/image/heart_emagged_image = image('icons/mob/human.dmi', "layer" = EFFECTS_LAYER_UNDER_1-1)
 	var/static/image/spider_image = image('icons/mob/human.dmi', "layer" = EFFECTS_LAYER_UNDER_1-1)
+	var/static/image/grubs_image = image('icons/mob/human.dmi', "layer" = EFFECTS_LAYER_UNDER_1-1)
 	var/static/image/makeup_image = image('icons/mob/human.dmi') // yeah this is just getting stupider
 	var/static/image/juggle_image = image('icons/mob/human.dmi', "layer" = EFFECTS_LAYER_UNDER_1-1)
 	var/list/juggling = list()
