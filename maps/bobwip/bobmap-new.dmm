@@ -5453,6 +5453,7 @@
 	},
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/door/firedoor/border_only,
+/obj/access_spawn/mining,
 /turf/simulated/floor/plating,
 /area/station/mining/equipment)
 "cHM" = (
@@ -6406,6 +6407,7 @@
 	},
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/door/firedoor/border_only,
+/obj/access_spawn/mining,
 /turf/simulated/floor/plating,
 /area/station/mining/equipment)
 "dee" = (
@@ -10961,10 +10963,13 @@
 /turf/simulated/floor/wood/two,
 /area/station/library)
 "fdh" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/engineering,
-/turf/simulated/floor/plating,
-/area/station/maintenance/outer/nw)
+/obj/machinery/door/airlock/external,
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/access_spawn/engineering_eva,
+/turf/simulated/floor,
+/area/station/maintenance/solar/east)
 "fdM" = (
 /obj/table/wood/auto,
 /turf/simulated/floor/wood/seven,
@@ -12369,6 +12374,7 @@
 	icon_state = "door_locked";
 	locked = 1
 	},
+/obj/access_spawn/janitor,
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/pool)
 "fHv" = (
@@ -13563,6 +13569,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/maintenance,
+/obj/access_spawn/maint,
 /turf/simulated/floor,
 /area/station/maintenance/southwest)
 "giW" = (
@@ -20773,7 +20780,6 @@
 /area/station/medical/robotics)
 "jsU" = (
 /obj/machinery/door/airlock/glass/engineering,
-/obj/access_spawn/cargo,
 /turf/simulated/floor,
 /area/station/quartermaster/cargobay)
 "jsX" = (
@@ -25730,6 +25736,7 @@
 /area/station/medical/medbay/treatment)
 "lEh" = (
 /obj/machinery/door/airlock/engineering,
+/obj/access_spawn/engineering_atmos,
 /turf/simulated/floor,
 /area/station/maintenance/solar/east)
 "lEl" = (
@@ -28132,6 +28139,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/maintenance,
+/obj/access_spawn/engineering_storage,
 /turf/simulated/floor,
 /area/station/mining/refinery)
 "mCg" = (
@@ -33640,6 +33648,7 @@
 	dir = 4
 	},
 /obj/access_spawn/mining,
+/obj/access_spawn/cargo,
 /turf/simulated/bar,
 /area/station/mining/staff_room)
 "oYd" = (
@@ -85183,7 +85192,7 @@ mHX
 czd
 jMd
 jMd
-fdh
+ahv
 jMd
 xYE
 iLI
@@ -117305,7 +117314,7 @@ uad
 dDm
 tRA
 rmy
-bXQ
+fdh
 rmy
 uad
 xzG
