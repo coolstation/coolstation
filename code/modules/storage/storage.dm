@@ -391,7 +391,8 @@
 
 /// return outputtable capacity
 /datum/storage/proc/get_capacity_string()
-	return "<br>Holding [length(src.get_contents())]/[src.slots] objects"
+	if(!src.sneaky)
+		return "<br>Holding [length(src.get_contents())]/[src.slots] objects"
 
 /// storage is full or not
 /datum/storage/proc/is_full()
@@ -421,6 +422,10 @@
 	if (user.s_active == src.hud)
 		user.s_active = null
 		user.detach_hud(src.hud)
+
+/// if user sees the storage hud
+/datum/storage/proc/hud_shown(mob/user)
+	return user in src.hud.mobs
 
 /// emping storage emps everything inside
 /datum/storage/proc/storage_emp_act()

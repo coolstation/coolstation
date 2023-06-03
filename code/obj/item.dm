@@ -1539,31 +1539,6 @@
 	qdel(src.inventory_counter)
 	src.inventory_counter = null
 
-/obj/item/proc/log_firesource(obj/item/O, datum/thrown_thing/thr, mob/user)
-	UnregisterSignal(O, COMSIG_MOVABLE_THROW_END)
-	if (!O?.firesource == FIRESOURCE_OPEN_FLAME) return
-	var/turf/T = get_turf(O)
-	if (!T) return
-	var/mob/M = usr
-	if (user) // throwing doesn't pass user, only usr
-		M = user
-	if (!istype(M)) return
-	var/turf/simulated/simulated = T
-
-	var/msg = "[thr ? "threw" : "dropped"] firesource ([O]) at [log_loc(T)]."
-
-	if (istype(simulated) && (simulated.air.toxins > 0.25))
-		msg += " Turf contains <b>plasma gas</b>."
-	if (T.active_liquid?.group)
-		msg += " Turf contains <b>fluid</b> [log_reagents(T.active_liquid.group)]."
-	if (T.active_airborne_liquid?.group)
-		msg += " Turf contains <b>smoke</b> [log_reagents(T.active_airborne_liquid.group)]."
-	if (locate(/obj/item) in T.contents)
-		var/obj/item/W = locate(/obj/item) in T.contents
-		if (istype(W.material, /datum/material/crystal/plasmastone))
-			msg += " Turf contains <b>plasmastone</b>."
-	logTheThing(LOG_BOMBING, M, "[msg]")
-
 /obj/item/proc/dropped(mob/user)
 	if (user)
 		src.set_dir(user.dir)
