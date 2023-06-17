@@ -2008,7 +2008,6 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 /mob/living/lastgasp(allow_dead=FALSE, grunt=null)
 	set waitfor = FALSE
 	if (!allow_dead && !isalive(src)) return
-	if (src.disposed || !src.client) return // break if it's an npc or a disconnected player
 	if (ON_COOLDOWN(src, "lastgasp", 0.7 SECONDS)) return
 	var/client/client = src.client
 	var/found_text = FALSE
@@ -2042,6 +2041,11 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		logTheThing("say", src, "[logname] SAY: [html_encode(message)] [log_loc(src)]")
 		var/old_stat = src.stat
 		setalive(src) // okay so we need to be temporarily alive for this in case it's happening as we were dying...
+
+		// break if it's an npc or a disconnected player.
+		// this check needs to be here because waitfor = FALSE means that this proc can run as/after the person is deleted.
+		if (src.disposed || !src.client)
+			return
 		if (ishuman(src))
 			var/mob/living/carbon/human/H = src
 			H.say(message, ignore_stamina_winded = 1) // say the thing they were typing and grunt
