@@ -4675,13 +4675,6 @@
 "ciX" = (
 /turf/simulated/floor,
 /area/station/hangar/arrivals)
-"ciZ" = (
-/obj/disposalpipe/segment/mail/vertical,
-/obj/machinery/light/small/auto/neutral,
-/turf/simulated/floor/neutral/side{
-	dir = 8
-	},
-/area/station/hallway/primary/central)
 "cja" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -6098,6 +6091,13 @@
 /obj/access_spawn/head_of_personnel,
 /turf/simulated/floor/wood/six,
 /area/station/crew_quarters/courtroom)
+"cSN" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/light/small/auto/neutral,
+/turf/simulated/floor/neutral/side{
+	dir = 8
+	},
+/area/station/hallway/primary/central)
 "cTb" = (
 /obj/machinery/turret{
 	tag = "modulestorage"
@@ -12267,16 +12267,6 @@
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon8,
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
-"fxw" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/light/small/auto/neutral,
-/turf/simulated/floor/carpet/blue/standard/edge/east,
-/area/station/crew_quarters/quartersA{
-	mail_tag = "Crew Quarters";
-	name = "Crew Quarters"
-	})
 "fxy" = (
 /obj/cable/blue{
 	icon_state = "1-4"
@@ -24806,10 +24796,7 @@
 	},
 /area/station/medical/medbay/surgery)
 "kQv" = (
-/obj/cryotron_spawner,
-/obj/disposalpipe/segment/food{
-	dir = 4
-	},
+/obj/cryotron,
 /turf/simulated/floor/caution/south,
 /area/station/crew_quarters/quartersA{
 	mail_tag = "Crew Quarters";
@@ -26862,12 +26849,6 @@
 	dir = 1
 	},
 /area/station/hallway/primary/northeast)
-"lOD" = (
-/obj/machinery/light/fluorescent/auto/neutral,
-/turf/simulated/floor/blue/side{
-	dir = 4
-	},
-/area/station/hallway/primary/south)
 "lOI" = (
 /obj/cable/conduit/segment/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
@@ -31512,6 +31493,16 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/station/security/brig/genpop)
+"nJz" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/light/small/auto/neutral,
+/turf/simulated/floor/carpet/blue/standard/edge/east,
+/area/station/crew_quarters/quartersA{
+	mail_tag = "Crew Quarters";
+	name = "Crew Quarters"
+	})
 "nJD" = (
 /obj/cabinet/medicalmenders,
 /obj/disposalpipe/segment/quarantine{
@@ -33140,12 +33131,6 @@
 /obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/medical/breakroom)
-"oss" = (
-/obj/machinery/light/small/auto/neutral,
-/turf/simulated/floor/blue/side{
-	dir = 0
-	},
-/area/station/hallway/primary/south)
 "osL" = (
 /obj/machinery/light/small/ceiling/neutral,
 /obj/cable{
@@ -47829,6 +47814,12 @@
 	dir = 6
 	},
 /area/station/bridge)
+"uFa" = (
+/obj/machinery/light/fluorescent/auto/neutral,
+/turf/simulated/floor/blue/side{
+	dir = 4
+	},
+/area/station/hallway/primary/south)
 "uFu" = (
 /obj/machinery/firealarm{
 	pixel_y = 24
@@ -51608,6 +51599,12 @@
 	},
 /turf/simulated/floor,
 /area/station/security/main)
+"wkn" = (
+/obj/machinery/light/fluorescent/auto/neutral,
+/turf/simulated/floor/blue/side{
+	dir = 0
+	},
+/area/station/hallway/primary/south)
 "wkr" = (
 /turf/simulated/floor,
 /area/station/security/main)
@@ -54341,6 +54338,12 @@
 	dir = 1
 	},
 /area/station/medical/medbay/treatment)
+"xkw" = (
+/obj/machinery/light/small/auto/neutral,
+/turf/simulated/floor/blue/side{
+	dir = 0
+	},
+/area/station/hallway/primary/south)
 "xkC" = (
 /obj/disposalpipe/segment/produce{
 	dir = 4
@@ -55732,12 +55735,6 @@
 	icon_state = "wooden"
 	},
 /area/station/crew_quarters/captain)
-"xPb" = (
-/obj/machinery/light/fluorescent/auto/neutral,
-/turf/simulated/floor/blue/side{
-	dir = 0
-	},
-/area/station/hallway/primary/south)
 "xPi" = (
 /obj/cable/blue{
 	icon_state = "1-4"
@@ -92472,7 +92469,7 @@ eyO
 hxG
 eyO
 eyO
-lOD
+uFa
 rMd
 mbV
 xts
@@ -92778,7 +92775,7 @@ pVm
 mbK
 mbV
 xts
-xPb
+wkn
 wiX
 hBz
 azT
@@ -93049,7 +93046,7 @@ pUC
 gXd
 qpi
 qpi
-fxw
+nJz
 tlU
 ggH
 vPj
@@ -94590,7 +94587,7 @@ vPC
 icA
 mbV
 xts
-oss
+xkw
 lDU
 hEX
 cyn
@@ -96369,7 +96366,7 @@ mNn
 nmO
 nmO
 nmO
-ciZ
+cSN
 sMh
 sol
 sol
