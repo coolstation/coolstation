@@ -4139,10 +4139,7 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 5;
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
 /obj/machinery/portable_atmospherics/pump,
 /turf/simulated/floor/purplewhite,
 /area/station/science/lab)
@@ -16382,10 +16379,7 @@
 /area/station/engine/gas)
 "hmO" = (
 /obj/disposalpipe/segment/mail/bent/east,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 5;
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/nw)
 "hmS" = (
@@ -18919,10 +18913,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/ne)
 "ivR" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 5;
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/chapel/funeral_parlor)
 "ivW" = (
@@ -21910,10 +21901,7 @@
 /turf/simulated/floor/engine,
 /area/station/engine/core)
 "jIr" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 5;
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
 /turf/simulated/floor/plating,
 /area/station/engine/substation/west)
 "jIt" = (
@@ -22851,10 +22839,7 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 5;
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
 /turf/simulated/floor/plating,
 /area/station/maintenance/inner/central)
 "kdm" = (
@@ -28331,10 +28316,7 @@
 /obj/cable/blue{
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 5;
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
 /turf/simulated/floor/plating,
 /area/station/maintenance/outer/nw)
 "mrN" = (
@@ -29297,10 +29279,7 @@
 "mNI" = (
 /obj/decal/cleanable/dirt,
 /obj/disposalpipe/segment/mail/bent/west,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 5;
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/chapel/funeral_parlor)
 "mNN" = (
@@ -32531,12 +32510,6 @@
 	},
 /turf/space,
 /area/station/hangar/sec)
-"oeJ" = (
-/obj/machinery/light/small/auto/neutral,
-/turf/simulated/floor/blue/side{
-	dir = 0
-	},
-/area/station/hallway/primary/south)
 "oeQ" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -36733,10 +36706,7 @@
 	},
 /area/station/medical/medbay/surgery/storage)
 "pWJ" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 5;
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
 /turf/simulated/floor/caution/north,
 /area/station/quartermaster/office)
 "pWP" = (
@@ -37105,10 +37075,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/solar/north)
 "qcV" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 5;
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
 /turf/simulated/floor/wood/seven,
 /area/station/crew_quarters/bar)
 "qdh" = (
@@ -40030,10 +39997,7 @@
 	},
 /area/station/security/main)
 "ruV" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 5;
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
 /turf/simulated/floor/neutral/corner{
 	dir = 8
 	},
@@ -40573,6 +40537,12 @@
 	},
 /turf/simulated/floor/grime,
 /area/station/security/brig/genpop)
+"rGh" = (
+/obj/machinery/light/small/auto/neutral,
+/turf/simulated/floor/blue/side{
+	dir = 0
+	},
+/area/station/hallway/primary/south)
 "rGF" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -46334,10 +46304,7 @@
 /turf/simulated/wall,
 /area/station/crew_quarters/kitchen/freezer)
 "tZc" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 5;
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "tZp" = (
@@ -47230,8 +47197,7 @@
 /area/station/science/teleporter)
 "utd" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 5;
-	level = 2
+	dir = 5
 	},
 /turf/simulated/floor/yellow/side{
 	dir = 1
@@ -50111,10 +50077,7 @@
 /obj/landmark{
 	name = "blobstart"
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 5;
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
 /turf/simulated/floor/plating,
 /area/station/maintenance/southwest)
 "vDI" = (
@@ -56214,10 +56177,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/solar/west)
 "ybf" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 5;
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
 /turf/simulated/floor/bot,
 /area/station/quartermaster/cargobay)
 "ybl" = (
@@ -94595,7 +94555,7 @@ vPC
 icA
 mbV
 xts
-oeJ
+rGh
 lDU
 hEX
 cyn
