@@ -190,7 +190,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 
 
 /obj/table/gun_workbench/
-	name = "gunsmithing workbench"
+	name = "I DONT WORK DONT USE ME YET"
 	desc = "lay down a rifle and start swappin bits"
 
 	var/list/obj/item/gun_parts/parts = list()
@@ -268,3 +268,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 		stock.contents = null
 		magazine.contents = null
 		accessory = null
+
+/obj/machinery/vending/gun_safe
+	//this is gonna be uhhhh for persistent's
