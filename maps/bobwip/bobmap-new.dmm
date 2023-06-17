@@ -4675,6 +4675,13 @@
 "ciX" = (
 /turf/simulated/floor,
 /area/station/hangar/arrivals)
+"ciZ" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/light/small/auto/neutral,
+/turf/simulated/floor/neutral/side{
+	dir = 8
+	},
+/area/station/hallway/primary/central)
 "cja" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -12260,6 +12267,16 @@
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon8,
 /turf/simulated/floor,
 /area/station/hallway/primary/central)
+"fxw" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/light/small/auto/neutral,
+/turf/simulated/floor/carpet/blue/standard/edge/east,
+/area/station/crew_quarters/quartersA{
+	mail_tag = "Crew Quarters";
+	name = "Crew Quarters"
+	})
 "fxy" = (
 /obj/cable/blue{
 	icon_state = "1-4"
@@ -22256,12 +22273,6 @@
 	icon_state = "wooden"
 	},
 /area/station/bridge/customs)
-"jOZ" = (
-/obj/machinery/light/fluorescent/auto/neutral,
-/turf/simulated/floor/blue/side{
-	dir = 4
-	},
-/area/station/hallway/primary/south)
 "jPb" = (
 /turf/simulated/wall,
 /area/station/security/main)
@@ -22935,12 +22946,15 @@
 /turf/simulated/floor/carpet/grime,
 /area/listeningpost)
 "keF" = (
-/obj/disposalpipe/segment/crematorium,
+/obj/disposalpipe/segment/mail/vertical,
+/obj/cable/blue{
+	icon_state = "1-2"
+	},
 /obj/machinery/light/small/auto/neutral,
 /turf/simulated/floor/neutral/side{
-	dir = 4
+	dir = 8
 	},
-/area/station/hallway/primary/central)
+/area/station/hallway/secondary/northwest)
 "keH" = (
 /obj/machinery/power/solar,
 /obj/lattice{
@@ -26848,6 +26862,12 @@
 	dir = 1
 	},
 /area/station/hallway/primary/northeast)
+"lOD" = (
+/obj/machinery/light/fluorescent/auto/neutral,
+/turf/simulated/floor/blue/side{
+	dir = 4
+	},
+/area/station/hallway/primary/south)
 "lOI" = (
 /obj/cable/conduit/segment/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
@@ -33120,6 +33140,12 @@
 /obj/disposalpipe/segment/crematorium,
 /turf/simulated/floor/plating,
 /area/station/medical/breakroom)
+"oss" = (
+/obj/machinery/light/small/auto/neutral,
+/turf/simulated/floor/blue/side{
+	dir = 0
+	},
+/area/station/hallway/primary/south)
 "osL" = (
 /obj/machinery/light/small/ceiling/neutral,
 /obj/cable{
@@ -35208,16 +35234,6 @@
 /obj/machinery/light/fluorescent/auto/neutral,
 /turf/simulated/floor/caution/west,
 /area/station/hangar/sec)
-"pkV" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/light/small/auto/neutral,
-/turf/simulated/floor/carpet/blue/standard/edge/east,
-/area/station/crew_quarters/quartersA{
-	mail_tag = "Crew Quarters";
-	name = "Crew Quarters"
-	})
 "pkZ" = (
 /obj/machinery/computer/ordercomp,
 /obj/machinery/light/fluorescent/auto/neutral,
@@ -40839,15 +40855,12 @@
 /turf/simulated/wall,
 /area/station/engine/core)
 "rLW" = (
-/obj/disposalpipe/segment/mail/vertical,
-/obj/cable/blue{
-	icon_state = "1-2"
-	},
 /obj/machinery/light/small/auto/neutral,
-/turf/simulated/floor/neutral/side{
-	dir = 8
-	},
-/area/station/hallway/secondary/northwest)
+/turf/simulated/floor/wood/seven,
+/area/station/crew_quarters/quartersA{
+	mail_tag = "Crew Quarters";
+	name = "Crew Quarters"
+	})
 "rMd" = (
 /obj/cable/conduit/segment/horizontal,
 /turf/simulated/floor/blue/corner{
@@ -42496,12 +42509,12 @@
 /turf/simulated/floor/plating,
 /area/station/engine/engineering)
 "ssw" = (
-/obj/machinery/light/small/auto/neutral,
-/turf/simulated/floor/wood/seven,
-/area/station/crew_quarters/quartersA{
-	mail_tag = "Crew Quarters";
-	name = "Crew Quarters"
-	})
+/obj/disposalpipe/segment/crematorium,
+/obj/machinery/light/fluorescent/auto/neutral,
+/turf/simulated/floor/neutral/side{
+	dir = 4
+	},
+/area/station/hallway/primary/central)
 "ssx" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -43276,12 +43289,6 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/southwest,
 /turf/space,
 /area/station/science/lab)
-"sMK" = (
-/obj/machinery/light/fluorescent/auto/neutral,
-/turf/simulated/floor/blue/side{
-	dir = 0
-	},
-/area/station/hallway/primary/south)
 "sNb" = (
 /obj/submachine/slot_machine,
 /turf/simulated/floor/carpet/blue/standard/edge/east,
@@ -51160,12 +51167,6 @@
 	icon_state = "wooden"
 	},
 /area/station/hos/quarter)
-"wcA" = (
-/obj/machinery/light/small/auto/neutral,
-/turf/simulated/floor/blue/side{
-	dir = 0
-	},
-/area/station/hallway/primary/south)
 "wcD" = (
 /turf/simulated/floor/purplewhite{
 	dir = 9
@@ -55731,6 +55732,12 @@
 	icon_state = "wooden"
 	},
 /area/station/crew_quarters/captain)
+"xPb" = (
+/obj/machinery/light/fluorescent/auto/neutral,
+/turf/simulated/floor/blue/side{
+	dir = 0
+	},
+/area/station/hallway/primary/south)
 "xPi" = (
 /obj/cable/blue{
 	icon_state = "1-4"
@@ -89107,7 +89114,7 @@ gQM
 hIU
 imT
 ycS
-rLW
+keF
 ycS
 rgL
 wML
@@ -90320,7 +90327,7 @@ kQv
 yeP
 mEx
 aCf
-ssw
+rLW
 vvN
 gLI
 ruA
@@ -92129,7 +92136,7 @@ yeP
 gqo
 yeP
 yeP
-ssw
+rLW
 xeP
 kMc
 wOL
@@ -92465,7 +92472,7 @@ eyO
 hxG
 eyO
 eyO
-jOZ
+lOD
 rMd
 mbV
 xts
@@ -92771,7 +92778,7 @@ pVm
 mbK
 mbV
 xts
-sMK
+xPb
 wiX
 hBz
 azT
@@ -93042,7 +93049,7 @@ pUC
 gXd
 qpi
 qpi
-pkV
+fxw
 tlU
 ggH
 vPj
@@ -94583,7 +94590,7 @@ vPC
 icA
 mbV
 xts
-wcA
+oss
 lDU
 hEX
 cyn
@@ -96362,7 +96369,7 @@ mNn
 nmO
 nmO
 nmO
-nmO
+ciZ
 sMh
 sol
 sol
@@ -97569,7 +97576,7 @@ xQJ
 xQJ
 nzD
 owN
-mcN
+fCJ
 yiP
 yiP
 yiP
@@ -97867,8 +97874,8 @@ urN
 gyH
 mqG
 mqG
-keF
 mqG
+ssw
 mqG
 oyS
 wWa
