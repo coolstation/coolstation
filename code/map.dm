@@ -1083,6 +1083,7 @@ var/global/list/mapNames = list(
 	walls = /turf/simulated/wall
 	rwalls = /turf/simulated/wall/r_wall
 	auto_walls = 1
+	qm_supply_type = "shuttle"
 
 	windows = /obj/window
 	windows_thin = /obj/window
