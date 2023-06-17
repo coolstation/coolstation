@@ -25243,7 +25243,6 @@
 /area/station/engine/elect)
 "lbM" = (
 /obj/cable/conduit/segment/horizontal,
-/obj/machinery/light/fluorescent/auto/neutral,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	name = "autoname - SS13";
@@ -26203,6 +26202,7 @@
 "lzC" = (
 /obj/cable/conduit/segment/horizontal,
 /obj/disposalpipe/segment,
+/obj/machinery/light/fluorescent/auto/neutral,
 /turf/simulated/floor/blue/side{
 	dir = 1
 	},
@@ -32531,6 +32531,12 @@
 	},
 /turf/space,
 /area/station/hangar/sec)
+"oeJ" = (
+/obj/machinery/light/small/auto/neutral,
+/turf/simulated/floor/blue/side{
+	dir = 0
+	},
+/area/station/hallway/primary/south)
 "oeQ" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -40855,9 +40861,9 @@
 /turf/simulated/wall,
 /area/station/engine/core)
 "rLW" = (
-/obj/machinery/light/small/auto/neutral,
+/obj/machinery/light/fluorescent/auto/neutral,
 /turf/simulated/floor/blue/side{
-	dir = 0
+	dir = 4
 	},
 /area/station/hallway/primary/south)
 "rMd" = (
@@ -42510,7 +42516,7 @@
 "ssw" = (
 /obj/machinery/light/fluorescent/auto/neutral,
 /turf/simulated/floor/blue/side{
-	dir = 4
+	dir = 0
 	},
 /area/station/hallway/primary/south)
 "ssx" = (
@@ -92173,7 +92179,7 @@ yhb
 cjN
 mbV
 yfr
-rLW
+mQB
 sIf
 lDU
 dPl
@@ -92470,8 +92476,8 @@ vPC
 eyO
 hxG
 eyO
-ssw
 eyO
+rLW
 rMd
 mbV
 xts
@@ -92777,7 +92783,7 @@ pVm
 mbK
 mbV
 xts
-mQB
+ssw
 wiX
 hBz
 azT
@@ -94589,7 +94595,7 @@ vPC
 icA
 mbV
 xts
-mQB
+oeJ
 lDU
 hEX
 cyn
