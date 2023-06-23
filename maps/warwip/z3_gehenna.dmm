@@ -2438,7 +2438,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
 	},
-/obj/machinery/drainage/big,
+/obj/machinery/drainage/stand_pipe,
 /turf/simulated/floor/plating,
 /area/station/engine/coldloop)
 "bpx" = (
@@ -8200,9 +8200,7 @@
 	name = "Sec. Officers Sleeping Quarters"
 	})
 "eLm" = (
-/obj/fluid_spawner/polluted_filth{
-	amount = 7250
-	},
+/obj/machinery/drainage/stand_pipe/septic,
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal/sewage)
 "eLo" = (
@@ -12051,6 +12049,9 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/turret_protected/AIbasecore2)
+"haQ" = (
+/turf/simulated/floor/plating,
+/area/station/engine/coldloop)
 "haX" = (
 /obj/disposalpipe/segment/produce{
 	dir = 4
@@ -17335,7 +17336,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
 "kfD" = (
-/obj/machinery/drainage/big,
+/obj/machinery/drainage/stand_pipe,
 /turf/simulated/floor/plating,
 /area/station/engine/coldloop)
 "kfL" = (
@@ -22012,7 +22013,7 @@
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "mNV" = (
-/obj/machinery/drainage/big,
+/obj/machinery/drainage/big/off_station,
 /turf/simulated/floor/plating{
 	icon_state = "platingdmg3"
 	},
@@ -40297,6 +40298,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
+"xEz" = (
+/obj/machinery/drainage/stand_pipe,
+/turf/simulated/floor/plating/random,
+/area/station/maintenance/inner/west)
 "xEY" = (
 /turf/simulated/floor/grey,
 /area/station/science/gen_storage)
@@ -40370,6 +40375,12 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/grey,
 /area/station/maintenance/disposal)
+"xGE" = (
+/obj/fluid_spawner/polluted_filth{
+	amount = 7250
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/disposal/sewage)
 "xGH" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -67570,7 +67581,7 @@ pdO
 pdO
 pdO
 qZT
-tcK
+xEz
 rNq
 pwK
 xuk
@@ -98395,7 +98406,7 @@ eNs
 eEf
 vIc
 eLm
-xXL
+eLm
 otD
 sye
 vCS
@@ -99608,7 +99619,7 @@ eNa
 qFY
 xXL
 xXL
-xXL
+xGE
 eNa
 vcZ
 iDD
@@ -104421,8 +104432,8 @@ tcM
 tcM
 dAQ
 okQ
-kfD
-kfD
+haQ
+haQ
 okQ
 iUc
 tcM
