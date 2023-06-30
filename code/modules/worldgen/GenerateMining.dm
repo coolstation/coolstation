@@ -157,9 +157,33 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 		//Generate a map full of random 1s and 0s, 1s are dense rock and 0s are loose rock
 		var/map[world.maxx][world.maxy]
-		for(var/x=max(startx - 1,1), x <= min(endx + 1, world.maxx), x++)
-			for(var/y=max(starty - 1,1), y<= min(endy + 1, world.maxy), y++)
-				map[x][y] = pick(90;1,100;0) //Initialize randomly.
+		var/list/vertical_slice = list()
+		var/sine_offset = rand(-60, 60) //degrees
+		var/sine_amplitude = rand(4,5)
+		var/sine_frequency = rand(17,27)/10 //1.7-2.7, can't go too low or the sine wave gets very obviously segmented thanks to rounding
+		var/sine_ramp = rand(-5,5)/10
+		for(var/i = 1, i <= 300, i++)
+			vertical_slice += pick(90;1,100;0)
+		for(var/y=max(starty - 1,1), y<= min(endy + 1, world.maxy), y++)
+			for(var/x=max(startx - 1,1), x <= min(endx + 1, world.maxx), x++)
+				map[x][y] = vertical_slice[x]/*pick(90;1,100;0)*/ //Initialize randomly.
+			/*
+				This mess is basically round(a*sin(bY+c)+dY) plus some randomness
+				where: a = sine_amplitude, b = sine_frequency, c = sine_offset, d = sine_ramp
+				all that modulo 300 because we can't go bigger than the length of vertical_slice (and functionally it'd loop anyway)
+			*/
+			var/jitter = (round(sine_amplitude*(sin(sine_frequency*y + sine_offset)) + y*sine_ramp, 1) + rand(-2,4)) % 300
+			if (jitter > 0)
+				var/list/tempu = vertical_slice.Copy(1, jitter)
+				vertical_slice.Cut(1, jitter)
+				vertical_slice += tempu
+			else if (jitter < 0)
+				var/list/tempd = vertical_slice.Copy(length(vertical_slice) + jitter, 0)
+				vertical_slice.Cut(length(vertical_slice) + jitter,0)
+				vertical_slice = tempd + vertical_slice
+			//if jitter is 0, do nothing
+
+
 
 
 		//Previous version of the smoothing loop, which I figure might be of interest to someone when the code below looks too shit
