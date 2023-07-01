@@ -885,6 +885,14 @@ ABSTRACT_TYPE(/datum/cookingrecipe)
 	output = /obj/item/reagent_containers/food/snacks/fairybread
 
 //Cookies
+/datum/cookingrecipe/stroopwalfel
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_cookie
+	amt1 = 2
+	item2 = /obj/item/reagent_containers/food/snacks/condiment/syrup
+	item3 = /obj/item/reagent_containers/food/snacks/candy/caramel
+	cookbonus = 4
+	output = /obj/item/reagent_containers/food/snacks/stroopwafel/walf
+
 /datum/cookingrecipe/stroopwafel
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_cookie
 	amt1 = 2
