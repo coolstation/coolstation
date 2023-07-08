@@ -40,7 +40,7 @@ datum/pathogeneffects
 	proc/infect_snap(var/mob/M as mob, var/datum/pathogen/origin, var/range = 5)
 		for (var/mob/I in view(range, M.loc))
 			if (I != M && ((isturf(I.loc) && isturf(M.loc) && can_line_airborne(get_turf(M), I, 5)) || I.loc == M.loc))
-				if(istype(M, /mob/living/carbon/human))
+				if(istype(I, /mob/living/carbon/human))
 					var/mob/living/carbon/human/H = I
 					if(prob(100-H.get_disease_protection()))
 						SPAWN_DBG(rand(0.5,2) SECONDS)
