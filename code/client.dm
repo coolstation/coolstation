@@ -108,7 +108,10 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 
 	var/atom/movable/screen/screenHolder //Invisible, holds images that are used as render_sources.
 
+	///intent-test
 	var/experimental_intents = 0
+	///mouseless-test
+	var/experimental_mouseless = 0
 
 	var/admin_intent = 0
 
@@ -1433,6 +1436,21 @@ var/global/curr_day = null
 
 	winset(src, null, "command=\".screenshot auto\"")
 	boutput(src, "<B>Screenshot taken!</B>")
+
+/client/verb/test_experimental_mouseless()
+	set hidden = 1
+	set name = "mouseless-test"
+
+	experimental_mouseless = !experimental_mouseless
+
+	if (experimental_mouseless)
+		boutput(src, "<br><B>Experimental mouseless thingy ON. Turn on numlock to use this.</B>")
+		boutput(src, "Use the numpad to target adjacent things in much the same way as roguelikes do. 5 is where you're standing.")
+		boutput(src, "Default targets mobs, then items. ALT targets objects, and CTRL the turf itself.")
+		boutput(src, "<B>It kinda sucks still and disables the examine and sprint hotkeys. The sucking is partially to that.</B>")
+
+	//Mouseless gets applied if needed in /mob/proc/build_keybind_styles
+	src.mob.reset_keymap()
 
 /client/verb/test_experimental_intents()
 	set hidden = 1

@@ -107,6 +107,9 @@
 					set_dir(WEST)
 
 /mob/proc/hotkey(name) //if this gets laggy, look into adding a small spam cooldown like with resting / eating?
+	if (name in mouseless_dirnames)
+		src.mouseless_interact(mouseless_dirnames[name])
+		return
 	switch (name)
 		if ("look_n")
 			if(!dir_locked)
@@ -159,6 +162,8 @@
 		C.apply_keybind("base_azerty")
 	if (C.tg_controls)
 		C.apply_keybind("base_tg")
+	if (C.experimental_mouseless)
+		C.apply_keybind("mouseless")
 
 /**
 	* Applies the client's custom keybind changelist, fetched from the cloud.
@@ -191,3 +196,70 @@
 			var/datum/movement_controller/controller = src.use_movement_controller.get_movement_controller()
 			if (controller)
 				controller.modify_keymap(src.client)
+
+//I couldn't think of a better way to do this than give it it's own proc,
+//but probably just as well since AFAIK there's no way to specify what you're targeting on a turf like a mouse can.
+
+//
+/mob/proc/mouseless_interact(direction)
+	if (isnull(direction))
+		return
+	if (!src.client)
+		return
+	//Determine the turf we're getting at
+	var/turf/target_turf
+	if (direction == "CENTER")
+		target_turf = get_turf(src)
+	else
+		target_turf = get_step(src, direction)
+
+	var/atom/click_target = null
+
+
+	//Look for modifier keys.
+
+	//The priority stuff here is my best guess and probably better suited by adding a mouseless priority var on /atom/movable
+	if (src.client.keys_modifier & MODIFIER_CTRL) //target the turf itself
+		click_target = target_turf
+
+
+	//else if (src.client.keys_modifier & MODIFIER_SHIFT) //target mobs
+
+				//if (isdead(click_target) && isalive(possible_mob)) //prioritise living folks
+				//	click_target = possible_mob
+
+	else if (src.client.keys_modifier & MODIFIER_ALT) //non-item objects, like closets and shit
+		for(var/obj/possible_object in target_turf)
+			if (istype(possible_object, /obj/overlay))
+				continue
+
+			if (istype(possible_object, /obj/window) && istype(click_target, ))
+			//Machinery is probably the most important crap for folks
+			if (istype(possible_object, /obj/machinery) && !istype(click_target, /obj/machinery))
+				click_target = possible_object
+
+			if (!click_target)
+				click_target = possible_object
+				continue
+
+	else //target items by default
+		//var/list/items = list()
+		if (!isghostdrone(src)) //Only bap ghost friends
+			for(var/mob/possible_mob in target_turf)
+				if (isobserver(possible_mob)) //no targeting ghosts...yet?
+					continue
+				if (iswraith(possible_mob))
+					click_target = possible_mob
+					break //Wraiths probably the highest priority weird mob, so
+				if (!click_target)
+					click_target = possible_mob
+					continue
+
+		if (!click_target)
+			for(var/obj/item/possible_item in target_turf)
+				if (!possible_item.anchored) //Filter out weird things like pianos and wall cabinets
+					click_target = possible_item
+					break
+
+	if (click_target)
+		src.client.Click(click_target, target_turf, params = list("icon-x" = "16", "icon-y" = "16", "left" = "1", "button" = "left"))
