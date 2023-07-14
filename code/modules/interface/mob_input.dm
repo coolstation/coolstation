@@ -236,6 +236,8 @@
 			//if (istype(possible_object, /obj/window) && istype(click_target, ))
 			//Machinery is probably the most important crap for folks
 			if (istype(possible_object, /obj/machinery) && !istype(click_target, /obj/machinery))
+				if(istype(possible_object, /obj/machinery/light))
+					continue
 				click_target = possible_object
 
 			if (!click_target)
@@ -244,22 +246,38 @@
 
 	else //target items by default
 		//var/list/items = list()
-		if (!isghostdrone(src)) //Only bap ghost friends
-			for(var/mob/possible_mob in target_turf)
-				if (isobserver(possible_mob)) //no targeting ghosts...yet?
-					continue
-				if (iswraith(possible_mob))
-					click_target = possible_mob
-					break //Wraiths probably the highest priority weird mob, so
-				if (!click_target)
-					click_target = possible_mob
+		if(src.intent == INTENT_GRAB || src.intent == INTENT_HARM)
+			if (!isghostdrone(src)) //Only bap ghost friends
+				for(var/mob/possible_mob in target_turf)
+					if (isobserver(possible_mob)) //no targeting ghosts...yet?
+						continue
+					if (iswraith(possible_mob))
+						click_target = possible_mob
+						break //Wraiths probably the highest priority weird mob, so
+					if (!click_target)
+						click_target = possible_mob
+						continue
+
+			if (!click_target)
+				for(var/obj/item/possible_item in target_turf)
+					if (!possible_item.anchored) //Filter out weird things like pianos and wall cabinets
+						click_target = possible_item
+						break
+		else
+			for(var/obj/possible_object in target_turf)
+				if (istype(possible_object, /obj/overlay))
 					continue
 
-		if (!click_target)
-			for(var/obj/item/possible_item in target_turf)
-				if (!possible_item.anchored) //Filter out weird things like pianos and wall cabinets
-					click_target = possible_item
-					break
+				//if (istype(possible_object, /obj/window) && istype(click_target, ))
+				//Machinery is probably the most important crap for folks
+				if (istype(possible_object, /obj/machinery) && !istype(click_target, /obj/machinery))
+					if(istype(possible_object, /obj/machinery/light))
+						continue
+					click_target = possible_object
+
+				if (!click_target)
+					click_target = possible_object
+					continue
 
 	if (click_target)
 		src.client.Click(click_target, target_turf, params = list("icon-x" = "16", "icon-y" = "16", "left" = "1", "button" = "left"))
