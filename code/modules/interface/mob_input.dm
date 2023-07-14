@@ -233,7 +233,7 @@
 			if (istype(possible_object, /obj/overlay))
 				continue
 
-			if (istype(possible_object, /obj/window) && istype(click_target, ))
+			//if (istype(possible_object, /obj/window) && istype(click_target, ))
 			//Machinery is probably the most important crap for folks
 			if (istype(possible_object, /obj/machinery) && !istype(click_target, /obj/machinery))
 				click_target = possible_object
