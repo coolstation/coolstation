@@ -988,3 +988,10 @@ proc/FindBankAccountByName(var/nametosearch)
 		if(B.fields["name"] == nametosearch)
 			return B
 	return
+
+proc/FindBankAccountById(var/idtosearch)
+	if(!idtosearch) return
+	for(var/datum/data/record/B in data_core.bank)
+		if(B.fields["id"] == idtosearch)
+			return B
+	return
