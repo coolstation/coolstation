@@ -788,7 +788,7 @@
 					return
 				else
 					src.temp = null
-				if (src.scan.registered in FrozenAccounts)
+				if (src.scan.registered_id in FrozenAccounts)
 					boutput(usr, "<span class='alert'>Your account cannot currently be liquidated due to active borrows.</span>")
 					return
 				var/datum/data/record/account = null

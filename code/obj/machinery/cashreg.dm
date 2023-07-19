@@ -48,7 +48,7 @@
 			var/obj/item/card/id/card = W
 			if (!mainaccount)
 				for (var/datum/data/record/account in data_core.bank)
-					if (ckey(account.fields["name"]) == ckey(card.registered))
+					if (ckey(account.fields["id"]) == ckey(card.registered_id))
 						mainaccount = account
 						break
 
@@ -62,7 +62,7 @@
 
 			if (!servicechgaccount) // For sneaky embezzlement reasons
 				for(var/datum/data/record/account in data_core.bank)
-					if(ckey(account.fields["name"]) == ckey(card.registered))
+					if(ckey(account.fields["id"]) == ckey(card.registered_id))
 						servicechgaccount = account
 						break
 				if(!istype(servicechgaccount))
@@ -73,12 +73,12 @@
 				user.visible_message("<span class='notice'>[user] configures [src] with [W].</span>")
 				return
 
-			if (card.registered in FrozenAccounts)
+			if (card.registered_id in FrozenAccounts)
 				boutput(user, "<span class='alert'>Your account cannot currently be liquidated due to active borrows.</span>")
 				return
 			var/datum/data/record/target_account = null
 			for (var/datum/data/record/account in data_core.bank)
-				if (ckey(account.fields["name"]) == ckey(card.registered))
+				if (ckey(account.fields["id"]) == ckey(card.registered_id))
 					target_account = account
 					break
 			if (!istype(target_account))
@@ -138,5 +138,6 @@
 	demag(var/mob/user)
 		if(user)
 			boutput("You reset the configuration on [src] to factory defaults.")
+			src.mainaccount = null
 			src.servicechgaccount = wagesystem.finserv_budget
 			return 1

@@ -345,7 +345,7 @@
 
 	proc/TryToFindRecord()
 		for(var/datum/data/record/B in data_core.bank)
-			if(src.scan && (B.fields["name"] == src.scan.registered) )
+			if(src.scan && (B.fields["id"] == src.scan.registered_id) )
 				src.accessed_record = B
 				return 1
 		return 0
@@ -380,7 +380,7 @@
 				src.scan = null
 
 			if("withdrawcash")
-				if (scan.registered in FrozenAccounts)
+				if (scan.registered_id in FrozenAccounts)
 					boutput(usr, "<span class='alert'>This account is frozen!</span>")
 					return
 				var/amount = round(input(usr, "How much would you like to withdraw?", "Withdrawal", 0) as num)
@@ -810,7 +810,7 @@
 
 	proc/TryToFindRecord()
 		for(var/datum/data/record/B in data_core.bank)
-			if(src.scan && (B.fields["name"] == src.scan.registered) )
+			if(src.scan && (B.fields["id"] == src.scan.registered_id) )
 				src.accessed_record = B
 				return 1
 		return 0
@@ -845,7 +845,7 @@
 				src.scan = null
 
 			if("withdrawcash")
-				if (scan.registered in FrozenAccounts)
+				if (scan.registered_id in FrozenAccounts)
 					boutput(usr, "<span class='alert'>This account is frozen!</span>")
 					return
 				var/amount = round(input(usr, "How much would you like to withdraw?", "Withdrawal", 0) as num)
