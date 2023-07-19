@@ -101,7 +101,7 @@
 			if (istype(I, /obj/item/device/pda2) && I:ID_card) I = I:ID_card
 			boutput(usr, "<span class='notice'>You swipe the ID card in the card reader.</span>")
 			var/datum/data/record/account = null
-			account = FindBankAccountByName(I:registered)
+			account = FindBankAccountById(I:registered_id)
 			if(account)
 				var/enterpin = input(usr, "Please enter your PIN number.", "Card Reader", 0) as null|num
 				if (enterpin == I:pin)
@@ -166,7 +166,7 @@
 				boutput(usr, "<span class='alert'>Your account cannot currently be liquidated due to active borrows.</span>")
 				return
 			var/datum/data/record/account = null
-			account = FindBankAccountByName(src.scan.registered)
+			account = FindBankAccountById(src.scan.registered_id)
 			if (account)
 				var/quantity = 1
 				quantity = input("How many units do you want to purchase? Maximum: 50", "Trader Purchase", null, null) as num
@@ -312,7 +312,7 @@
 			var/datum/commodity/tradetype = most_applicable_trade(src.goods_buy, src.sellitem)
 			if(tradetype)
 				var/datum/data/record/account = null
-				account = FindBankAccountByName(src.scan.registered)
+				account = FindBankAccountById(src.scan.registered_id)
 				if (!account)
 					src.temp = {" [src] looks slightly agitated when he realizes there is no bank account associated with the ID card.<BR>
 								<BR><A href='?src=\ref[src];sell=1'>OK</A>"}
@@ -344,7 +344,7 @@
 					if (istype(I, /obj/item/device/pda2) && I:ID_card) I = I:ID_card
 					boutput(usr, "<span class='notice'>You swipe the ID card in the card reader.</span>")
 					var/datum/data/record/account = null
-					account = FindBankAccountByName(I:registered)
+					account = FindBankAccountById(I:registered_id)
 					if(account)
 						var/enterpin = input(usr, "Please enter your PIN number.", "Card Reader", 0) as null|num
 						if (enterpin == I:pin)
@@ -392,7 +392,7 @@
 		dat +="<B>Scanned Card:</B> <A href='?src=\ref[src];card=1'>([src.scan])</A><BR>"
 		if(scan)
 			var/datum/data/record/account = null
-			account = FindBankAccountByName(src.scan.registered)
+			account = FindBankAccountById(src.scan.registered_id)
 			if (account)
 				dat+="<B>Current Funds</B>: [account.fields["current_money"]] Credits<HR>"
 			else
@@ -522,7 +522,7 @@
 			boutput(user, "<span class='alert'>[src] is dead!</span>")
 			return
 		var/datum/data/record/account = null
-		account = FindBankAccountByName(src.scan.registered)
+		account = FindBankAccountById(src.scan.registered_id)
 		if(!account)
 			boutput(user, "<span class='alert'>[src]There is no account registered with this card!</span>")
 			return

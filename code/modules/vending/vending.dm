@@ -352,7 +352,7 @@
 		return
 	boutput(user, "<span class='notice'>You swipe [card].</span>")
 	var/datum/data/record/account = null
-	account = FindBankAccountByName(card.registered)
+	account = FindBankAccountById(card.registered_id)
 	if (account)
 		var/enterpin = input(user, "Please enter your PIN number.", "Enter PIN", 0) as null|num
 		if (enterpin == card.pin)
@@ -398,7 +398,7 @@
 				html_parts += "&emsp;[src.paying_for.product_name]<br>"
 				html_parts += "<B>Please swipe your card to authorize payment.</b><br>"
 			var/datum/data/record/account = null
-			account = FindBankAccountByName(src.scan.registered)
+			account = FindBankAccountById(src.scan.registered_id)
 			html_parts += "<B>Current ID:</B> <a href='byond://?src=\ref[src];logout=1'><u>([src.scan])</u></A><BR>"
 			html_parts += "<B>Credits on Account: [account.fields["current_money"]] Credits</B> <BR>"
 		else
@@ -649,7 +649,7 @@
 			var/datum/data/record/account = null
 			if (src.pay)
 				if (src.acceptcard && src.scan)
-					account = FindBankAccountByName(src.scan.registered)
+					account = FindBankAccountById(src.scan.registered_id)
 					if (!account)
 						boutput(usr, "<span class='alert'>No bank account associated with ID found.</span>")
 						flick(src.icon_deny,src)
@@ -2149,7 +2149,7 @@
 				src.generate_HTML(0, 1)
 		else if (href_list["unlock"] && src.panel_open)
 			if (!owner && src.scan?.registered)
-				owneraccount = FindBankAccountByName(src.scan.registered)
+				owneraccount = FindBankAccountById(src.scan.registered_id)
 				owner = src.scan.registered
 				cardname = src.scan.name
 				unlocked = TRUE
@@ -2872,7 +2872,7 @@
 		html += "<b>Current balance: <a href='byond://?src=\ref[src];return_credits=1'>[src.credit] credits</a></b><br>"
 		if (src.scan)
 			var/datum/data/record/account = null
-			account = FindBankAccountByName(src.scan.registered)
+			account = FindBankAccountById(src.scan.registered_id)
 			html += "<b>Current ID:</b> <a href='?src=\ref[src];logout=1'>[src.scan]</a><br />"
 			html += "<b>Credits on Account: [account.fields["current_money"]] Credits</b> <br>"
 		else
@@ -2915,7 +2915,7 @@
 					src.updateUsrDialog()
 					return
 				else if(scan)
-					var/datum/data/record/account = FindBankAccountByName(src.scan.registered)
+					var/datum/data/record/account = FindBankAccountById(src.scan.registered_id)
 					if (account && account.fields["current_money"] >= cost)
 						account.fields["current_money"] -= cost
 						src.fill()

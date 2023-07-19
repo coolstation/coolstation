@@ -333,7 +333,7 @@
 	// at this point selected = the dude we wanna revive.
 
 	if (wagesystem.clones_for_cash)
-		var/datum/data/record/Ba = FindBankAccountByName(C.fields["name"])
+		var/datum/data/record/Ba = FindBankAccountById(C.fields["id"])
 		var/account_credit = 0
 
 		if (Ba?.fields["current_money"])
