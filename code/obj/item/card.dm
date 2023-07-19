@@ -76,6 +76,7 @@ GAUNTLET CARDS
 	wear_layer = MOB_BELT_LAYER
 	var/list/access = list()
 	var/registered = null
+	var/registered_id = null
 	var/assignment = null
 	var/title = null
 	var/emagged = 0
