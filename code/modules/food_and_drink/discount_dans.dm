@@ -179,7 +179,7 @@
 
 /obj/item/reagent_containers/food/snacks/burrito
 	name = "Descuento Danito's Burritos"
-	desc = "A self-heating convenience reinterpretation of Mexican cuisine. The exact mechanism used to heat it is probably best left to speculation."
+	desc = "A flash-frozen convenience reinterpretation of Mexican cuisine. The exact mechanism used to heat it is probably best left to speculation."
 	icon = 'icons/obj/foodNdrink/food_discountdans.dmi'
 	icon_state = "burrito"
 	amount = 3
@@ -219,35 +219,35 @@
 
 			if (4)
 				src.real_name = "Descuento Danito's Burritos - Pancake Sausage Brunch Flavor"
-				src.desc = "A self-heating breakfast burrito with a buttermilk pancake in lieu of a tortilla. A little frightening."
+				src.desc = "A flash-frozen breakfast burrito with a buttermilk pancake in lieu of a tortilla. A little frightening."
 				src.initial_reagents["porktonium"] = 4
 				src.initial_reagents["UGHFCS"] = 2
 				src.initial_reagents["coffee"] = 4
 
 			if (5)
 				src.real_name = "Descuento Danito's Burritos - Homestyle Comfort Flavor"
-				src.desc = "A self-heating burrito just like Mom used to make, if your mother was a souless, automated burrito production line."
+				src.desc = "A flash-frozen burrito just like Mom used to make, if your mother was a souless, automated burrito production line."
 				src.initial_reagents["mashedpotatoes"] = 5
 				src.initial_reagents["gravy"] = 3
 				src.initial_reagents["diethylamine"] = 2
 
 			if (6)
 				src.real_name = "Spooky Dan's BOO-ritos - Texas Toast Chainsaw Massacre Flavor"
-				src.desc = "A self-heating burrito.  Isn't that concept scary enough on its own?"
+				src.desc = "A flash-frozen burrito.  Isn't that concept scary enough on its own?"
 				src.initial_reagents["fakecheese"] = 3
 				src.initial_reagents["space_drugs"] = 3
 				src.initial_reagents["bloodc"] = 4
 
 			if (7)
 				src.real_name = "Spooky Dan's BOO-ritos - Nightmare on Elm Meat Flavor"
-				src.desc = "A self-heating burrito that purports to contain elm-smoked meat. Of some sort. Probably from an animal."
+				src.desc = "A flash-frozen burrito that purports to contain elm-smoked meat. Of some sort. Probably from an animal."
 				src.initial_reagents["beff"] = 3
 				src.initial_reagents["synthflesh"] = 2
 				src.initial_reagents["eyeofnewt"] = 5
 
 			if (8)
 				src.real_name = "Sconto Danilo's Burritos - 50% Real Mozzarella Pepperoni Pizza Party Flavor"
-				src.desc = "A self-heating pizza burrito."
+				src.desc = "A flash-frozen pizza burrito."
 				src.initial_reagents["fakecheese"] = 3
 				src.initial_reagents["cheese"] = 3
 				src.initial_reagents["pepperoni"] = 3
@@ -268,14 +268,16 @@
 		src.name = "[name_prefix(null, 1)][src.real_name][name_suffix(null, 1)]"
 
 	attack_self(mob/user as mob)
+	/*
 		if (activated)
 			return
-
+*/
 		if (prob(10) || user.is_hulk())
 			user.visible_message("<span class='alert'><b>[user]</b> snaps the burrito in half!</span>", "<span class='alert'>You accidentally snap the burrito apart. Fuck!</span>")
 			src.splat()
 			return
-
+		..()
+/*
 		src.activated = 1
 		if (reagents)
 			reagents.add_reagent("thalmerite",2)
@@ -284,6 +286,7 @@
 		boutput(user, "You crack the burrito like a glow stick, activating the heater mechanism.")
 		return
 
+*/
 	throw_impact(atom/A, datum/thrown_thing/thr)
 		var/turf/T = get_turf(A)
 		if (prob(10) && T)
@@ -362,8 +365,8 @@
 				M.emote("choke")*/
 
 /obj/item/tvdinner
-	name = "Hungry Dan's Self-Microwaving Meals"
-	desc = "A box containing a self-heating TV dinner."
+	name = "Hungry Dan's Frozen Meals"
+	desc = "A box containing a flash-frozen TV dinner."
 	icon = 'icons/obj/foodNdrink/food_discountdans.dmi'
 	icon_state = "tvdinnerc"
 	w_class = W_CLASS_TINY
@@ -379,32 +382,32 @@
 		src.traytype = rand(1,9)
 		switch(src.traytype)
 			if (1)
-				src.name = "Hungry Dan's Self-Microwaving Meals - Seven Layer Salisbury Steak Flavor"
-				src.desc = "A box containing a self-heating TV dinner. There's a picture of a tasty steak on the cover."
+				src.name = "Hungry Dan's Frozen Meals - Seven Layer Salisbury Steak Flavor"
+				src.desc = "A box containing a flash-frozen TV dinner. There's a picture of a tasty steak on the cover."
 			if (2)
-				src.name = "Hungry Dan's Self-Microwaving Meals - Partially Baked Spring Chicken Flavor"
-				src.desc = "A box containing a self-heating TV dinner. Is this box shaking, or is it just you?"
+				src.name = "Hungry Dan's Frozen Meals - Partially Baked Spring Chicken Flavor"
+				src.desc = "A box containing a flash-frozen TV dinner. Is this box shaking, or is it just you?"
 			if (3)
-				src.name = "Hungry Dan's Self-Microwaving Meals - Imported Lo Mein Lasagna Flavor"
-				src.desc = "A box containing a self-heating TV dinner. You can't read any of the words on this box!"
+				src.name = "Hungry Dan's Frozen Meals - Imported Lo Mein Lasagna Flavor"
+				src.desc = "A box containing a flash-frozen TV dinner. You can't read any of the words on this box!"
 			if (4)
-				src.name = "Morning Dan's Self-Microwaving Meals - Grand Slam Breakfast Flavor"
-				src.desc = "A box containing a self-heating TV dinner. There's a picture of a tasty looking egg, pancake, and sausage breakfast on it"
+				src.name = "Morning Dan's Frozen Meals - Grand Slam Breakfast Flavor"
+				src.desc = "A box containing a flash-frozen TV dinner. There's a picture of a tasty looking egg, pancake, and sausage breakfast on it"
 			if (5)
-				src.name = "Corporal Dan's Self-Microwaving Meals - Last Meal Flavor"
-				src.desc = "A box containing a self-heating TV dinner. Guaranteed to be your last meal, or else."
+				src.name = "Corporal Dan's Frozen Meals - Last Meal Flavor"
+				src.desc = "A box containing a flash-frozen TV dinner. Guaranteed to be your last meal, or else."
 			if (6)
-				src.name = "Hungry Dan's Self-Microwaving Meals - Macaroni and Cheese Chunks Flavor"
-				src.desc = "A box containing a self-heating TV dinner. The bottom of the box says \"may contain research chemicals.\""
+				src.name = "Hungry Dan's Frozen Meals - Macaroni and Cheese Chunks Flavor"
+				src.desc = "A box containing a flash-frozen TV dinner. The bottom of the box says \"may contain research chemicals.\""
 			if (7)
-				src.name = "Gobbler Dan's Self-Microwaving Meals - Thanksgiving Dinner Flavor"
-				src.desc = "A box containing a self-heating TV dinner. Just like your cloning pod used to make."
+				src.name = "Gobbler Dan's Frozen Meals - Thanksgiving Dinner Flavor"
+				src.desc = "A box containing a flash-frozen TV dinner. Just like your cloning pod used to make."
 			if (8)
-				src.name = "Hungry Dan's Self-Microwaving Meals - \"Pizza\" Party Flavor"
-				src.desc = "A box containing a self-heating TV dinner. There's a picture of a scrumptious pizza on the cover"
+				src.name = "Hungry Dan's Frozen Meals - \"Pizza\" Party Flavor"
+				src.desc = "A box containing a flash-frozen TV dinner. There's a picture of a scrumptious pizza on the cover"
 			if (9)
-				src.name = "Hungry Dan's Self-Microwaving Meals - BBQ Grill Alfredo Noodles Flavor"
-				src.desc = "A box containing a self-heating TV dinner. Have \"fusion\" dishes gone too far?"
+				src.name = "Hungry Dan's Frozen Meals - BBQ Grill Alfredo Noodles Flavor"
+				src.desc = "A box containing a flash-frozen TV dinner. Have \"fusion\" dishes gone too far?"
 		return ..()
 
 	attack_hand(mob/user as mob)
@@ -426,8 +429,8 @@
 
 
 /obj/item/reagent_containers/food/snacks/tvdinner
-	name = "Hungry Dan's Self-Microwaving Meals"
-	desc = "A self-heating TV dinner. You should probably use a fork."
+	name = "Hungry Dan's Tee Vee Dinner"
+	desc = "A microwaved TV dinner. You should probably use a fork."
 	icon = 'icons/obj/foodNdrink/food_discountdans.dmi'
 	icon_state = "tvdinnert"
 	needfork = 1
@@ -452,8 +455,8 @@
 			traytype = rand(1, 9)
 		switch(traytype)
 			if (1)
-				src.name = "Hungry Dan's Self-Microwaving Meals - Seven Layer Salisbury Steak Flavor" //Seven layers of reconsituted meat product
-				src.desc = "A self-heating TV dinner containing a squashed brown mess. You should probably use a fork."
+				src.name = "Hungry Dan's Tee Vee Dinner - Seven Layer Salisbury Steak Flavor" //Seven layers of reconsituted meat product
+				src.desc = "A flash-frozen & radio-cooked TV dinner containing a squashed brown mess. You should probably use a fork."
 				src.initial_reagents["beff"] = 7
 				src.initial_reagents["bread"] = 3
 				src.initial_reagents["juice_tomato"] = 10
@@ -461,8 +464,8 @@
 
 
 			if (2)
-				src.name = "Hungry Dan's Self-Microwaving Meals - Partially Baked Spring Chicken Flavor" //So spring it's an egg
-				src.desc = "A self-heating TV dinner. Is... this still moving? You should probably use a fork."
+				src.name = "Hungry Dan's Tee Vee Dinner - Partially Baked Spring Chicken Flavor" //So spring it's an egg
+				src.desc = "A flash-frozen & radio-cooked TV dinner. Is... this still moving? You should probably use a fork."
 				src.initial_reagents["THC"] = 4.20
 				src.initial_reagents["oil"] = 10
 				if (prob(5))
@@ -474,16 +477,16 @@
 
 
 			if (3)
-				src.name = "Hungry Dan's Self-Microwaving Meals - Imported Lo Mein Lasagna Flavor" //Imported from swede-land
-				src.desc = "A self-heating TV dinner containing a well-travelled chinese lasagna. You should probably use a fork."
+				src.name = "Hungry Dan's Tee Vee Dinner - Imported Lo Mein Lasagna Flavor" //Imported from swede-land
+				src.desc = "A flash-frozen & radio-cooked TV dinner containing a well-travelled chinese lasagna. You should probably use a fork."
 				src.initial_reagents["juice_tomato"] = 5
 				src.initial_reagents["swedium"] = 5
 				src.initial_reagents["bread"] = 10
 				src.initial_reagents["fakecheese"] = 2
 
 			if (4)
-				src.name = "Morning Dan's Self-Microwaving Meals - Grand Slam Breakfast Flavor" //A real knockout
-				desc = "A self-heating TV dinner that'll knock you out of the park. You should probably use a fork."
+				src.name = "Morning Dan's Tee Vee Dinner - Grand Slam Breakfast Flavor" //A real knockout
+				desc = "A flash-frozen & radio-cooked TV dinner that'll knock you out of the park. You should probably use a fork."
 				src.initial_reagents["porktonium"] = 4
 				src.initial_reagents["UGHFCS"] = 2
 				src.initial_reagents["coffee"] = 4
@@ -491,8 +494,8 @@
 				src.initial_reagents["george_melonium"] = 1 //IT'S OUTTA THE PARK
 
 			if (5)
-				src.name = "Corporal Dan's Self-Microwaving Meals - Last Meal Flavor" //Your last meal, or else!
-				src.desc = "A self-heating TV dinner that's guaranteed to be your last meal, or else. You should probably use a fork."
+				src.name = "Corporal Dan's Tee Vee Dinner - Last Meal Flavor" //Your last meal, or else!
+				src.desc = "A flash-frozen & radio-cooked TV dinner that's guaranteed to be your last meal, or else. You should probably use a fork."
 				src.initial_reagents["gravy"] = 10
 				src.initial_reagents["beff"] = 4
 				if (prob(5))
@@ -503,15 +506,15 @@
 
 			if (6)
 				src.name = "Hungry Dan's Self-Microwaving Microwaveable Meals - Macaroni and Cheese Flavor"
-				src.desc = "A self-heating TV dinner containing a multicolored macaroni and cheese. You should probably use a fork."
+				src.desc = "A flash-frozen & radio-cooked TV dinner containing a multicolored macaroni and cheese. You should probably use a fork."
 				src.initial_reagents["fakecheese"] = 4
 				src.initial_reagents["LSD"] = 2
 				src.initial_reagents["bread"] = 3
 
 
 			if (7)
-				src.name = "Gobbler Dan's Self-Microwaving Meals - Thanksgiving Dinner Flavor"
-				src.desc = "A self-heating TV dinner that looks so filling you're yawning just thinking about it. You should probably use a fork."
+				src.name = "Gobbler Dan's Tee Vee Dinner - Thanksgiving Dinner Flavor"
+				src.desc = "A flash-frozen & radio-cooked TV dinner that looks so filling you're yawning just thinking about it. You should probably use a fork."
 				src.initial_reagents["blood"] = 4
 				src.initial_reagents["synthflesh"] = 3
 				src.initial_reagents["ketamine"] = 1
@@ -520,16 +523,16 @@
 				src.initial_reagents["gravy"] = 5
 
 			if (8)
-				src.name = "Hungry Dan's Self-Microwaving Meals - \"Pizza\" Party Flavor"
-				src.desc = "A self-heating TV dinner containing a \"pizza\". You should probably use a fork."
+				src.name = "Hungry Dan's Tee Vee Dinner - \"Pizza\" Party Flavor"
+				src.desc = "A flash-frozen & radio-cooked TV dinner containing a \"pizza\". You should probably use a fork."
 				src.initial_reagents["fakecheese"] = 6
 				src.initial_reagents["pepperoni"] = 3
 				src.initial_reagents["paper"] = 3
 				src.initial_reagents["mercury"] = 1
 
 			if (9)
-				src.name = "Hungry Dan's Self-Microwaving Meals - BBQ Grill Alfredo Noodles Flavor"
-				src.desc = "A self-heating TV dinner saltier than Lot's wife. You should probably use a fork."
+				src.name = "Hungry Dan's Tee Vee Dinner - BBQ Grill Alfredo Noodles Flavor"
+				src.desc = "A flash-frozen & radio-cooked TV dinner saltier than Lot's wife. You should probably use a fork."
 				src.initial_reagents["salt"] = 10
 				src.initial_reagents["ectoplasm"] = 1 //Insert joke about deadchat here
 				src.initial_reagents["bread"] = 3
@@ -539,8 +542,9 @@
 				src.initial_reagents["hydrogen"] = 5
 		..()
 
+/*
+	attack_self(mob/user as mob) // a little overplayed
 
-	attack_self(mob/user as mob)
 		if (activated)
 			return
 
@@ -553,12 +557,13 @@
 		boutput(user, "You twist the tray, activating the heater mechanism.")
 		user.add_karma(-6)
 		return
-
+*/
 	heal(var/mob/M)
 		if (prob(8))
 			if (M.mind && M.mind.ckey)
 				boutput(M, "<span class='notice'>You find a shiny golden ticket in this bite!</span>")
 				new /obj/item/ticket/golden(get_turf(M))
+				M.add_karma(-6)
 			else
 				M.emote("choke")
 

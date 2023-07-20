@@ -15978,6 +15978,14 @@
 	icon_old = "fullblack"
 	},
 /area/station/engine/hotloop)
+"jsH" = (
+/obj/rack,
+/obj/item/storage/box/donkpocket_kit{
+	pixel_x = -6;
+	pixel_y = 7
+	},
+/turf/simulated/floor/plating/random,
+/area/noGenerate)
 "jsO" = (
 /obj/table/reinforced/auto,
 /obj/decal/cleanable/rust/jen,
@@ -17889,6 +17897,10 @@
 "kvq" = (
 /obj/table/auto,
 /obj/random_item_spawner/snacks/one_or_zero,
+/obj/item/wrench{
+	pixel_x = 5;
+	pixel_y = 8
+	},
 /turf/simulated/floor,
 /area/station/medical/basement)
 "kvL" = (
@@ -19071,7 +19083,6 @@
 /area/station/maintenance/southeast)
 "lbl" = (
 /obj/machinery/vending/snack,
-/obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/fitness)
 "lbo" = (
@@ -26459,10 +26470,10 @@
 	},
 /area/station/security/processing)
 "pAg" = (
-/obj/machinery/vending/snack,
 /obj/machinery/light/fluorescent/warm{
 	dir = 8
 	},
+/obj/machinery/vending/snack/freezer,
 /turf/simulated/floor/carpet/grime,
 /area/station/mining/staff_room)
 "pAp" = (
@@ -27369,15 +27380,7 @@
 /turf/simulated/floor/grey,
 /area/station/engine/hotloop)
 "qfV" = (
-/obj/rack,
-/obj/item/storage/box/donkpocket_kit{
-	pixel_x = -6;
-	pixel_y = 7
-	},
-/obj/item/wrench{
-	pixel_x = 5;
-	pixel_y = 8
-	},
+/obj/machinery/vending/snack/freezer,
 /turf/simulated/floor,
 /area/station/medical/basement)
 "qga" = (
@@ -81473,7 +81476,7 @@ uII
 jVr
 pdO
 pdO
-pdO
+jsH
 eCs
 qfV
 tOw

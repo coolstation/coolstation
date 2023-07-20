@@ -987,6 +987,9 @@
 /area/gehenna/south)
 "aLd" = (
 /obj/table/wood/auto,
+/obj/machinery/microwave{
+	pixel_y = 4
+	},
 /turf/simulated/floor/carpet/grime,
 /area/station/security/secoffquarters)
 "aLX" = (
@@ -1390,8 +1393,8 @@
 /turf/simulated/floor,
 /area/station/security/main)
 "bch" = (
-/obj/machinery/vending/coffee,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
+/obj/machinery/vending/snack/freezer,
 /turf/simulated/floor/carpet/grime,
 /area/station/security/secoffquarters)
 "bcD" = (
@@ -4350,7 +4353,7 @@
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
 "dly" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending/snack/freezer,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
 "dlC" = (

@@ -3,6 +3,7 @@
 #define MW_COOK_EGG 3
 #define MW_COOK_DIRTY 4
 #define MW_COOK_EMPTY 5
+#define MW_COOK_FROZEN 6
 
 #define MW_STATE_WORKING 0
 #define MW_STATE_BROKEN_1 1
@@ -47,6 +48,8 @@
 	var/datum/recipe/cooked_recipe = null
 	/// The item to create when finished cooking
 	var/obj/item/reagent_containers/food/snacks/being_cooked = null
+	/// frosen item's for microwaving
+	var/obj/item/reagent_containers/food/snacks/shell/frozen/frozen_item = null
 	/// Single non food item that can be added to the microwave
 	var/obj/item/extra_item
 	mats = 12
@@ -124,6 +127,9 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	else if (isghostdrone(user))
 		boutput(user, "<span class='alert'>\The [src] refuses to interface with you, as you are not a properly trained chef!</span>")
 		return
+	if(src.frozen_item)
+		user.show_text("Best not to overload it.", "red")
+		return
 	else if(istype(O, /obj/item/reagent_containers/food/snacks/ingredient/egg)) // If an egg is used, add it
 		if(src.egg_amount < 5)
 			src.visible_message("<span class='notice'>[user] adds an egg to the microwave.</span>")
@@ -166,6 +172,13 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 			src.donkpocket_amount++
 			user.u_equip(O)
 			O.set_loc(src)
+
+	else if(istype(O, /obj/item/reagent_containers/food/snacks/shell/frozen))
+		frozen_item = O
+		src.visible_message("<span class='notice'>[user] adds a frozen... something to the microwave.</span>")
+		user.u_equip(O)
+		O.set_loc(src)
+
 	else
 		if(!isitem(extra_item)) //Allow one non food item to be added!
 			user.u_equip(O)
@@ -268,7 +281,7 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 						d.set_loc(get_turf(src))
 					return
 				for(var/datum/recipe/R in src.available_recipes) //Look through the recipe list we made above
-					if(src.egg_amount == R.egg_amount && src.flour_amount == R.flour_amount && src.monkeymeat_amount == R.monkeymeat_amount && src.synthmeat_amount == R.synthmeat_amount && src.humanmeat_amount == R.humanmeat_amount && src.donkpocket_amount == R.donkpocket_amount) // Check if it's an accepted recipe
+					if(src.egg_amount == R.egg_amount && src.flour_amount == R.flour_amount && src.monkeymeat_amount == R.monkeymeat_amount && src.synthmeat_amount == R.synthmeat_amount && src.humanmeat_amount == R.humanmeat_amount && src.donkpocket_amount == R.donkpocket_amount && src.frozen_item == null) // Check if it's an accepted recipe
 						if(R.extra_item == null || (src.extra_item && src.extra_item.type == R.extra_item)) // Just in case the recipe doesn't have an extra item in it
 							src.cooked_recipe = R
 							cooked_item = R.creates // Store the item that will be created
@@ -288,6 +301,9 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 								qdel(P)
 								extra_item = new /obj/item/reagent_containers/food/snacks/yuckburn(src)
 						src.cook(MW_COOK_BREAK)
+					else if(src.frozen_item != null) // finally, we defrost.
+						src.cook(MW_COOK_FROZEN)
+						/* */
 					else //Otherwise it was empty, so just turn it on then off again with nothing happening
 						src.visible_message("<span class='notice'>You're grilling nothing!</span>")
 						src.cook(MW_COOK_EMPTY)
@@ -378,6 +394,19 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 				return
 			src.icon_state = "mw"
 			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+		if(MW_COOK_FROZEN)
+			sleep(9 SECONDS)
+			if(isnull(src))
+				return
+			if(isnull(frozen_item))
+				return
+			for(var/atom/movable/A in frozen_item.contents)
+				A.set_loc(get_turf(src))
+				break
+			qdel(frozen_item)
+			src.icon_state = "mw"
+			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+
 	src.clean_up()
 	src.operating = FALSE
 
@@ -396,6 +425,7 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	src.humanmeat_name = ""
 	src.humanmeat_job = ""
 	src.extra_item = null
+	src.frozen_item = null
 	if (length(src.contents))
 		for(var/obj/item/O in src.contents)
 			if(istype(O, /obj/item/reagent_containers/food/snacks/ingredient/egg))
@@ -418,6 +448,7 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 #undef MW_COOK_EGG
 #undef MW_COOK_DIRTY
 #undef MW_COOK_EMPTY
+#undef MW_COOK_FROZEN
 #undef MW_STATE_WORKING
 #undef MW_STATE_BROKEN_1
 #undef MW_STATE_BROKEN_2

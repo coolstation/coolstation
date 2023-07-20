@@ -54,11 +54,23 @@
 	icon = 'icons/obj/foodNdrink/food_yuck.dmi'
 	icon_state = "fried"
 
+/obj/item/reagent_containers/food/snacks/shell/frozen
+	name = "metaphysical condensation of the very concept of frozen dinner"
+	desc = "Oh, the power of the deep chiller."
+	icon = 'icons/obj/foodNdrink/food_yuck.dmi'
+	icon_state = "frozen"
+	food_effects = list("food_cold")
+	heal(var/mob/M)
+		if(M.mind)
+			boutput(M, "Maybe you should warm this thing up[pick(", genius.",", asshole.",", you moron.",".","...","?")]")
+			M.add_karma(-0.5)
+		..()
+
 /obj/item/reagent_containers/food/snacks/shell/grill
 	name = "the charcoal singed essence of grilling itself"
 	desc = "Oh, the magic of a hot grill."
-	icon = 'icons/obj/foodNdrink/food.dmi'
-	icon_state = "fried" // fix this
+	icon = 'icons/obj/foodNdrink/food_yuck.dmi'
+	icon_state = "burnt"
 
 /obj/item/reagent_containers/food/snacks/pizza
 	name = "pizza"
