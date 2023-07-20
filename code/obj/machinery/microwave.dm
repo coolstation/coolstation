@@ -348,6 +348,7 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 					src.being_cooked.reagents.add_reagent("radium", 25)
 				if((src.extra_item && src.extra_item.type == src.cooked_recipe.extra_item))
 					qdel(src.extra_item)
+				src.being_cooked.food_effects |= "food_warm" // warmp it up
 				src.being_cooked.set_loc(get_turf(src)) // Create the new item
 				src.extra_item = null
 				src.cooked_recipe = null
@@ -402,6 +403,9 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 				return
 			for(var/atom/movable/A in frozen_item.contents)
 				A.set_loc(get_turf(src))
+				if(istype(A, /obj/item/reagent_containers/food/snacks))
+					var/obj/item/reagent_containers/food/snacks/S = A
+					S.food_effects |= "food_warm"
 				break
 			qdel(frozen_item)
 			src.icon_state = "mw"

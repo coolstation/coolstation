@@ -224,9 +224,15 @@
 		return
 
 	proc/deep_freeze(atom/movable/thing) // this is for frozen foods, or anything else you wanna freeze. I dont care. -warc
+		if(istype(thing, /obj/item/reagent_containers/food/snacks/))
+			var/obj/item/reagent_containers/food/snacks/S = thing
+			if("food_cold" in S.food_effects)
+				return S // if the dispensed item is meant to be cold, don't treat it as "frozen"
+		if(istype(thing, /obj/item/popsicle))
+			return thing // dont refreeze these. hopefully thats all the exceptions.
+
 		var/obj/item/reagent_containers/food/snacks/shell/frozen/freezie = new(src)
 		freezie.name = "frozen [thing.name]"
-
 
 		var/icon/composite = new(thing.icon, thing.icon_state)
 		for(var/O in thing.underlays + thing.overlays)
@@ -239,7 +245,7 @@
 
 		if(isitem(thing))
 			var/obj/item/item = thing
-			freezie.amount = (item.amount > 1 ? item.amount : item.w_class)
+			freezie.amount = (item.amount > 1 ? item.amount : item.w_class+1)
 		else
 			freezie.amount = 5
 
@@ -1060,7 +1066,8 @@
 			if(src.ai_control_enabled)
 				src.ai_control_enabled = 0
 		if (WIRE_FREEZER)
-			src.freezer = 0
+			if(src.freezer)
+				src.freezer = 0
 	src.generate_HTML(0, 1)
 
 /obj/machinery/vending/proc/mend(var/wireColor)
@@ -1223,14 +1230,17 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/fries, 10, cost=PAY_TRADESMAN/15)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/noodlecup, 10, cost=PAY_UNTRAINED/8)
 		product_list += new/datum/data/vending_product(/obj/item/kitchen/plasticpackage, 10, cost=PAY_UNTRAINED/10)
-		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/fork/plastic, 10, cost=PAY_UNTRAINED/10)
-		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/spoon/plastic, 10, cost=PAY_UNTRAINED/10)
-		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/knife/plastic, 10, cost=PAY_UNTRAINED/10)
+		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/fork/plastic, 10, cost=PAY_UNTRAINED/20)
+		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/spoon/plastic, 10, cost=PAY_UNTRAINED/20)
+		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/knife/plastic, 10, cost=PAY_UNTRAINED/20)
 
 
-/obj/machinery/vending/snack/freezer
+/obj/machinery/vending/snack_freezer
 	name = "snack machine"
 	desc = "Frozen treats for crewman eats."
+	pay = 1
+	icon_state = "snack"
+	icon_panel = "snack-panel"
 	slogan_list = list("Flash Frozen Ferfection!",
 	"Twice the calories for half the price!",
 	"Buy now! Warm later!",
@@ -1238,12 +1248,17 @@
 	"We feature Discount Dan's Tee Vee Dinners!")
 	freezer = TRUE
 	wires = 31 // 1 + 2 + 4 + 8 + 16
+	light_r =1
+	light_g = 0.4
+	light_b = 0.4
 
 	create_products()
 		..()
 		product_list += new/datum/data/vending_product(/obj/item/tvdinner, 8, cost=PAY_UNTRAINED/6)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/burrito, 12, cost=PAY_UNTRAINED/8)
 		product_list += new/datum/data/vending_product(/obj/item/popsicle, 8, cost=PAY_UNTRAINED/8)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ice_cream/goodrandom, 4, cost=PAY_UNTRAINED/7)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/yoghurt/frozen, 4, cost=PAY_UNTRAINED/5)
 
 /obj/machinery/vending/cigarette //eventually wanna make one of these specifically for medbay
 	name = "cigarette machine"

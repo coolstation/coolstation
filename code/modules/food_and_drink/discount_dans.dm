@@ -179,13 +179,14 @@
 
 /obj/item/reagent_containers/food/snacks/burrito
 	name = "Descuento Danito's Burritos"
-	desc = "A flash-frozen convenience reinterpretation of Mexican cuisine. The exact mechanism used to heat it is probably best left to speculation."
+	desc = "A flash-frozen convenience reinterpretation of Mexican cuisine. The exact contents are probably best left to speculation."
 	icon = 'icons/obj/foodNdrink/food_discountdans.dmi'
 	icon_state = "burrito"
 	amount = 3
 	heal_amt = 2
 	doants = 0 //Ants aren't dumb enough to try to eat these.
 	var/activated = 0
+	var/self_heating = 0
 	initial_volume = 50
 	initial_reagents = list("msg"=9)
 	brewable = 1
@@ -268,25 +269,30 @@
 		src.name = "[name_prefix(null, 1)][src.real_name][name_suffix(null, 1)]"
 
 	attack_self(mob/user as mob)
-	/*
-		if (activated)
-			return
-*/
+
+
+
 		if (prob(10) || user.is_hulk())
 			user.visible_message("<span class='alert'><b>[user]</b> snaps the burrito in half!</span>", "<span class='alert'>You accidentally snap the burrito apart. Fuck!</span>")
 			src.splat()
 			return
-		..()
-/*
-		src.activated = 1
-		if (reagents)
-			reagents.add_reagent("thalmerite",2)
-			reagents.add_reagent("oxygen", 2)
-			reagents.handle_reactions()
-		boutput(user, "You crack the burrito like a glow stick, activating the heater mechanism.")
-		return
 
-*/
+		if(self_heating)
+			if (activated)
+				..()
+				return
+
+			src.activated = 1
+			if (reagents)
+				reagents.add_reagent("thalmerite",2)
+				reagents.add_reagent("oxygen", 2)
+				reagents.handle_reactions()
+			boutput(user, "You crack the burrito like a glow stick, activating the heater mechanism.")
+			food_effects += "food_warm"
+			return
+
+		..()
+
 	throw_impact(atom/A, datum/thrown_thing/thr)
 		var/turf/T = get_turf(A)
 		if (prob(10) && T)
@@ -317,6 +323,12 @@
 			filling.set_loc(T)
 
 		qdel(src)
+
+/obj/item/reagent_containers/food/snacks/burrito/self_heating
+	self_heating = 1
+	New()
+		..()
+		desc += " This one's self-heating!"
 
 /obj/item/reagent_containers/food/snacks/snack_cake
 	name = "Little Danny's Snack Cake"
