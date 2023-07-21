@@ -37,7 +37,7 @@
 			boutput(user, "<span class='alert'>Your cooking skills are not up to the legendary Doublefry technique.</span>")
 			return
 
-		if (istype(W, /obj/item/reagent_containers/food/snacks/shell/frozen) || istype(W, /obj/item/raw_material/ice)) // oh no :DDDD
+		if (istype(W, /obj/item/reagent_containers/food/snacks/shell/frozen) || istype(W, /obj/item/raw_material/ice) || istype(W, /obj/item/material_piece/ice)) // oh no :DDDD
 			boutput(user, "<span style='font-size:xx-large;color:red;font-family:cursive;'>OH FUGG OH SHID :DDDD!</span>")
 			fucked_up_now_kid = 1
 

@@ -122,11 +122,20 @@ var/fartcount = 0
 		M.throw_at(get_step(src,dir),1,1)
 		..()
 
-
 /obj/decal/fakeobjects/thrust/flames
 	icon_state = "engineshit"
+	Crossed(atom/movable/M)
+		if(ismob(M))
+			var/mob/F = M
+			F.TakeDamage("All",0,50)
+		..()
 /obj/decal/fakeobjects/thrust/flames2
 	icon_state = "engineshit2"
+	Crossed(atom/movable/M)
+		if(ismob(M))
+			var/mob/F = M
+			F.TakeDamage("All",0,50)
+		..()
 
 /obj/item/paper/tug/invoice
 	name = "Big Yank's Space Tugs, Limited."
