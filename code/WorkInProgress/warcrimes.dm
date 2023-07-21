@@ -116,7 +116,12 @@ var/fartcount = 0
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "sparkle_ions"
 	name = "ionized exhaust"
-	desc = "Thankfully harmless, to registered employees anyway."
+	desc = "no longer harmless."
+
+	Crossed(atom/movable/M)
+		M.throw_at(get_step(src,dir),1,1)
+		..()
+
 
 /obj/decal/fakeobjects/thrust/flames
 	icon_state = "engineshit"

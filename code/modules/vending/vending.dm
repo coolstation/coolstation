@@ -1184,6 +1184,7 @@
 #undef WIRE_SCANID
 #undef WIRE_SHOCK
 #undef WIRE_SHOOTINV
+#undef WIRE_FREEZER
 
 /obj/machinery/vending/coffee
 	name = "coffee machine"

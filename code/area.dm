@@ -5964,3 +5964,22 @@ MAJOR_AST(30)
 /area/centcom/outpost/maintenance/lower
 	name = "Lower Maintenance Tunnel"
 	icon_state = "dk_yellow"
+
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++ *\
+||                                                         ||
+|| _.~**~._Debris Field II: They Debrised It AGAIN_.~**~._ ||
+||                                                         ||
+\* +++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/area/nudebris/horizon
+	name = "Horizon Squat"
+	icon_state = "juicer2"
+
+/area/nudebris/horizon/core
+	name = "Core Squat"
+	icon_state = "juicer3"
+
+/area/nudebris/horizon/power
+	name = "Power Squat"
+	icon_state = "juicer"
