@@ -42,7 +42,7 @@
 	VendIndexToWireColor = list(0, 0, 0, 0, 0)
 	VendWireColorToIndex = list(0, 0, 0, 0, 0)
 	var/flagIndex = 1
-	for (var/flag=1, flag<16, flag+=flag)
+	for (var/flag=1, flag<=16, flag+=flag)
 		var/valid = 0
 		while (!valid)
 			var/colorIndex = rand(1, 5)
