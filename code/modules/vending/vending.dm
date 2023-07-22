@@ -1240,8 +1240,8 @@
 	name = "snack machine"
 	desc = "Frozen treats for crewman eats."
 	pay = 1
-	icon_state = "snack"
-	icon_panel = "snack-panel"
+	icon_state = "frozen"
+	icon_panel = "frozen-panel"
 	slogan_list = list("Flash Frozen Ferfection!",
 	"Twice the calories for half the price!",
 	"Buy now! Warm later!",
