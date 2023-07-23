@@ -328,5 +328,40 @@ Urs' Hauntdog critter
 		src.equip_new_if_possible(/obj/item/clothing/shoes/dress_shoes, slot_shoes)
 		src.equip_new_if_possible(/obj/item/clothing/under/rank/geneticist, slot_w_uniform)
 		src.equip_new_if_possible(/obj/item/clothing/suit/labcoat/pathology, slot_wear_suit)
+		src.equip_new_if_possible(/obj/item/card/id/juicer/gene, slot_wear_id)
 		if(prob(50))
 			src.equip_new_if_possible(/obj/item/clothing/glasses/regular, slot_glasses)
+
+/mob/living/carbon/human/gunsemanne
+	is_npc = 1
+	//uses_mobai = 1
+	real_name = "Pingin' \"Grand\" Thum"
+	gender = NEUTER
+	max_health = 150
+
+	New()
+		gender = pick(NEUTER,MALE,FEMALE,PLURAL)
+		..()
+		src.ai = new /datum/aiHolder/human/yank(src) // todo: replace this (its fine for now)
+		src.equip_new_if_possible(/obj/item/clothing/shoes/swat/knight, slot_shoes)
+		src.equip_new_if_possible(/obj/item/clothing/under/rank/det, slot_w_uniform)
+		src.equip_new_if_possible(/obj/item/clothing/suit/armor/gunsemanne, slot_wear_suit)
+		src.equip_new_if_possible(/obj/item/card/id/juicer/security, slot_wear_id)
+		if(prob(50))
+			src.equip_new_if_possible(/obj/item/clothing/glasses/sunglasses, slot_glasses)
+		else
+			src.equip_new_if_possible(/obj/item/clothing/glasses/nightvision, slot_glasses)
+
+	initializeBioholder()
+		. = ..()
+		bioHolder.mobAppearance.customization_first = new /datum/customization_style/moustache/devil
+		bioHolder.mobAppearance.customization_first_color = "#281400"
+		bioHolder.mobAppearance.customization_second = new /datum/customization_style/hair/hairup/ponytail
+		bioHolder.mobAppearance.customization_second_color = "#311800"
+		bioHolder.mobAppearance.customization_third = new /datum/customization_style/beard/trampstains
+		bioHolder.mobAppearance.customization_third_color = "#663300"
+		bioHolder.age = 43
+		bioHolder.bloodType = "M1"
+		bioHolder.mobAppearance.gender = NEUTER
+		bioHolder.mobAppearance.underwear = "briefs"
+		bioHolder.mobAppearance.u_color = "#7aa668"

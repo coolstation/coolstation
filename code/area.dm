@@ -5983,3 +5983,15 @@ MAJOR_AST(30)
 /area/nudebris/horizon/power
 	name = "Power Squat"
 	icon_state = "juicer"
+
+/area/nudebris/horizon/bar
+	name = "Juice Squat"
+	icon_state = "juicer"
+
+/area/nudebris/horizon/gun // the diner gun range and the "DRM guy" ought to go here.
+	name = "Danger Squat"
+	icon_state = "juicer"
+
+/area/nudebris/horizon/turrets
+	name = "Horizon Squat"
+	icon_state = "juicer3"

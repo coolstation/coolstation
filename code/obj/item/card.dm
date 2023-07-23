@@ -438,3 +438,33 @@ GAUNTLET CARDS
 				message_admins("[key_name(user)] dropped their license to kill")
 			owner = user
 		..()
+
+/obj/item/card/id/juicer
+	name = "clout card"
+	icon_state = "juicer"
+	access = list(access_juicer)
+
+/obj/item/card/id/juicer/engineering
+	name = "tinkerer's clout card"
+	icon_state = "juicer_e"
+	access = list(access_juicer, access_juicer_engineer)
+
+/obj/item/card/id/juicer/security
+	name = "clout cop's card"
+	icon_state = "juicer_r"
+	access = list(access_juicer, access_juicer_prepper)
+
+/obj/item/card/id/juicer/service
+	name = "barguy's clout card"
+	icon_state = "juicer_w"
+	access = list(access_juicer, access_juicer_service)
+
+/obj/item/card/id/juicer/gene
+	name = "geneticist (normal)"
+	icon_state = "juicer_w"
+	access = list(access_juicer, access_juicer_crypto, access_juicer_fraud)
+
+/obj/item/card/id/juicer/john
+	name = "John Bill's clout card"
+	icon_state = "juicer"
+	access = list(access_juicer, access_juicer_fraud, access_juicer_grease)

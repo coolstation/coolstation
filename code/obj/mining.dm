@@ -1430,7 +1430,7 @@
 
 	dark
 		fullbright = 0
-		luminosity = 0
+		luminosity = 1
 
 	lighted
 		fullbright = 1
