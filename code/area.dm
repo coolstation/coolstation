@@ -2332,6 +2332,7 @@ ABSTRACT_TYPE(/area/station/crew_quarters)
 		if(src.name == "Kitchen" && prob(1))
 			for(var/turf/simulated/floor/F in src.contents)
 				F = new /turf/simulated/floor/carpet/grime(F)
+			sound_environment = EAX_CARPETED_HALLWAY
 		..()
 
 /area/station/crew_quarters/kitchen/freezer
