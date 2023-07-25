@@ -2328,6 +2328,12 @@ ABSTRACT_TYPE(/area/station/crew_quarters)
 	mail_tag = "Kitchen"
 	sound_environment = EAX_BATHROOM
 
+	New()
+		if(src.name == "Kitchen" && prob(1))
+			for(var/turf/simulated/floor/F in src.contents)
+				F = new /turf/simulated/floor/carpet/grime(F)
+		..()
+
 /area/station/crew_quarters/kitchen/freezer
 		name = "Freezer"
 		icon_state = "blue"
