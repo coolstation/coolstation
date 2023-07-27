@@ -993,6 +993,7 @@
 	dark
 		fullbright = 0
 		luminosity = 1
+		floor_turf = "/turf/simulated/floor/plating/airless/asteroid/dark"
 
 	lighted
 		fullbright = 1
@@ -1016,12 +1017,14 @@
 
 	comet
 		fullbright = 0
+		luminosity = 1
 		name = "regolith"
 		desc = "It's dusty and cold."
 		stone_color = "#95A1AF"
 		icon_state = "comet"
 		hardness = 1
 		default_ore = /obj/item/raw_material/rock
+		floor_turf = "/turf/simulated/floor/plating/airless/asteroid/dark"
 
 		// varied layers
 
