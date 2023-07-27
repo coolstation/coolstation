@@ -157,6 +157,22 @@
 	amount = 6
 	food_effects = list("food_hp_up_big", "food_explosion_resist")
 
+/obj/item/reagent_containers/food/snacks/sandwich/knuckle
+	name = "knuckle sandwich"
+	desc = "You want some of this, punk?"
+	icon_state = "sandwich_knuckle"
+	initial_reagents = list("blood"=20)
+
+	heal(var/mob/M) //Heal seems to be the de facto thing that folks override for food effects, so who am I to argue?
+		..()
+		playsound(get_turf(M), pick(sounds_punch), 50, 1)
+		random_brute_damage(M, rand(2, 9), FALSE)  //stole these defaults from punch code, but I don't think anyone really cares if the values between here and there end up not matching exactly
+		boutput(M, "<b class='alert'>The [src.name] punches you in [pick(list("your tongue", "your cheek", "the roof of your mouth", "your uvula", "the teeth"))]!</b>" )
+
+	on_finish(mob/eater)
+		boutput(eater, "<b class='alert'>The last of the [src.name] flips you off as it slides down your gullet.</b>" ) //Don't ask me how you'd ever know this
+
+
 /obj/item/reagent_containers/food/snacks/burger
 	name = "burger"
 	desc = "A burger."
