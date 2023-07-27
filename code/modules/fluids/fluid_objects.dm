@@ -23,6 +23,8 @@
 	var/welded = 0 //permanent block
 	var/drain_min = 2
 	var/drain_max = 7
+	var/min_depth = 0 // for stand pipe type stuff.
+	var/external_drain = 0 // drains away from the septic tank.
 	mats = 8
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
 
@@ -33,6 +35,28 @@
 		mats = 12
 		drain_min = 6
 		drain_max = 14
+
+		off_station
+			external_drain = 1
+
+	stand_pipe
+		name = "stand pipe"
+		base_icon = "stand"
+		icon_state = "stand"
+		mats = 12
+		drain_min = 5
+		drain_max = 13
+		min_depth = 4
+		density = 1
+		plane = PLANE_NOSHADOW_ABOVE
+
+	stand_pipe/septic
+		color = "#FFDDBB"
+		external_drain = 1
+
+	off_station
+		external_drain = 1
+
 
 	New()
 		my_turf = get_turf(src)
@@ -55,7 +79,9 @@
 				return
 
 			var/obj/fluid/F = my_turf.active_liquid
-			if (F.group)
+			if (F.group && (F.my_depth_level >= min_depth))
+				if(external_drain)
+					F.group.ignore_drain_exit = 1
 				F.group.queued_drains += rand(drain_min,drain_max)
 				F.group.last_drain = my_turf
 				if (!F.group.draining)

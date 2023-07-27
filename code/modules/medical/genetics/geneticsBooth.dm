@@ -304,14 +304,14 @@
 
 					//subtract from perp bank account
 					var/datum/data/record/account = null
-					account = FindBankAccountByName(perp_id.registered)
+					account = FindBankAccountById(perp_id.registered_id)
 					if (account)
 						if (account.fields["current_money"] >= selected_product.cost)
 							account.fields["current_money"] -= selected_product.cost
 
 							//add to genetecists budget etc
 							if (selected_product.registered_sale_id)
-								account = FindBankAccountByName(selected_product.registered_sale_id)
+								account = FindBankAccountById(selected_product.registered_sale_id)
 								if (account)
 									account.fields["current_money"] += selected_product.cost/2
 									wagesystem.research_budget += selected_product.cost/2

@@ -116,12 +116,26 @@ var/fartcount = 0
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "sparkle_ions"
 	name = "ionized exhaust"
-	desc = "Thankfully harmless, to registered employees anyway."
+	desc = "no longer harmless."
+
+	Crossed(atom/movable/M)
+		M.throw_at(get_step(src,dir),1,1)
+		..()
 
 /obj/decal/fakeobjects/thrust/flames
 	icon_state = "engineshit"
+	Crossed(atom/movable/M)
+		if(ismob(M))
+			var/mob/F = M
+			F.TakeDamage("All",0,50)
+		..()
 /obj/decal/fakeobjects/thrust/flames2
 	icon_state = "engineshit2"
+	Crossed(atom/movable/M)
+		if(ismob(M))
+			var/mob/F = M
+			F.TakeDamage("All",0,50)
+		..()
 
 /obj/item/paper/tug/invoice
 	name = "Big Yank's Space Tugs, Limited."
@@ -314,5 +328,183 @@ Urs' Hauntdog critter
 		src.equip_new_if_possible(/obj/item/clothing/shoes/dress_shoes, slot_shoes)
 		src.equip_new_if_possible(/obj/item/clothing/under/rank/geneticist, slot_w_uniform)
 		src.equip_new_if_possible(/obj/item/clothing/suit/labcoat/pathology, slot_wear_suit)
+		src.equip_new_if_possible(/obj/item/card/id/juicer/gene, slot_wear_id)
 		if(prob(50))
 			src.equip_new_if_possible(/obj/item/clothing/glasses/regular, slot_glasses)
+
+/mob/living/carbon/human/gunsemanne
+	is_npc = 1
+	//uses_mobai = 1
+	real_name = "Pingin' \"Grand\" Thum"
+	gender = NEUTER
+	max_health = 150
+	var/obj/item/part_in_inventory = null
+	var/price_expected = 0
+
+	proc/appraise(obj/item/W, mob/M)
+		M.u_equip(W)
+		W.unequipped(M)
+		W.dropped(M)
+		W.set_loc(src)
+		part_in_inventory = W
+
+		if(istype(W, /obj/item/gun/modular))
+			price_expected = 0
+			var/obj/item/gun/modular/gun = W
+
+			if(!gun.gun_DRM)
+				src.say("This is already cracked, juicer. [pick("Gimme something else.","You easily startled?","You know the drill.","C'mon.","You alright?")]")
+				part_in_inventory.set_loc(src.loc)
+				W.throw_at(M.loc, 10, 2)
+				part_in_inventory = null
+				return
+			else if(gun.gun_DRM & GUN_NANO)
+				price_expected = 1100
+				src.say("Nano tech's kind of tricky. Eleven Hundo. Non-negotiable.")
+
+			else if(gun.gun_DRM & GUN_JUICE)
+				price_expected = 300
+				src.say("Childs play. Three hundred bucks.")
+
+			else if(gun.gun_DRM & GUN_SOVIET)
+				price_expected = 900
+				src.say("Oooh hoo, vintage communist gear. Not easy. Nine hundred?")
+
+			else if(gun.gun_DRM & GUN_ITALIAN)
+				price_expected = 250
+				src.say("Christ these things basically crack themselves. Two-Fifty.")
+
+			else if(gun.gun_DRM & GUN_FOSS)
+				price_expected = 1000
+				src.say("Uhhhh... I mean, a thousand bucks will get you somewhere but I don't think you're getting that past security.")
+
+
+		else if(istype(W, /obj/item/gun_parts))
+			price_expected = 0
+			var/obj/item/gun_parts/part = W
+
+			if(!part.part_DRM)
+				src.say("This is already cracked, juicer. [pick("Gimme something else.","You easily startled?","You know the drill.","C'mon.","You alright?")]")
+				part_in_inventory.set_loc(src.loc)
+				W.throw_at(M.loc, 10, 2)
+				part_in_inventory = null
+				return
+
+			else if(part.part_DRM & GUN_FOSS)
+				price_expected = 500
+				src.say("At this point i'm not even gonna ask. Five hundred, no less.")
+
+			else if(part.part_DRM & GUN_NANO)
+				price_expected = 350
+				src.say("Nanotrasen parts... ugh. Whatever, 350?")
+
+			else if(part.part_DRM & GUN_SOVIET)
+				price_expected = 250
+				src.say("These things are getting scarce. Two-Fifty.")
+
+			else if(part.part_DRM & GUN_JUICE)
+				price_expected = 100
+				src.say("These used to come unregistered, yknow. Hundred bucks.")
+
+
+			else if(part.part_DRM & GUN_ITALIAN)
+				price_expected = 100
+				src.say("Not sure why you'd want that... but alright. Cool hundo.")
+
+
+
+		else
+			src.say("Uhhhh... I guess I can't read this. Call a coder. That's fucked.")
+			return
+
+
+	proc/crack_the_drm(mob/M)
+		price_expected = 0
+		if(!part_in_inventory)
+			src.say("Uhhhh... I guess I lost it. Call a coder. That's fucked.")
+			return
+		else
+			if(istype(part_in_inventory, /obj/item/gun/modular))
+				var/obj/item/gun/modular/gun = part_in_inventory
+				gun.gun_DRM = null
+
+			if(istype(part_in_inventory, /obj/item/gun_parts))
+				var/obj/item/gun_parts/part = part_in_inventory
+				part.part_DRM = null
+
+			src.say("aaaaaall right, there we go.")
+			sleep(1 SECOND)
+			part_in_inventory.set_loc(src.loc)
+			part_in_inventory.throw_at(M.loc, 10, 2)
+			part_in_inventory = null
+
+
+
+	attack_hand(mob/M)
+		if((M.a_intent == INTENT_HELP || M.a_intent == INTENT_DISARM) && part_in_inventory)
+			src.say("Sure, it's yours after all.")
+			part_in_inventory.set_loc(src.loc)
+			part_in_inventory.throw_at(M.loc, 10, 2)
+			part_in_inventory = null
+			price_expected = 0
+		else
+			..()
+
+
+
+	attackby(obj/item/W, mob/M)
+		if(istype(W, /obj/item/gun/modular) || istype(W, /obj/item/gun_parts))
+			if(price_expected && part_in_inventory)
+				src.say("You gonna pay me first? You owe me [price_expected] bucks, or you can have [part_in_inventory] back.")
+				return
+			else
+				appraise(W,M)
+				return
+		else if(istype(W, /obj/item/spacecash))
+			var/obj/item/spacecash/dosh = W
+			if(!price_expected)
+				src.say("You making a donation? I didn't ask you for shit.")
+				return
+			else if(part_in_inventory && (dosh.amount >= price_expected))
+				src.say("Right. [price_expected] septims, numbers filed.")
+				dosh.change_stack_amount(0 - price_expected)
+				SPAWN_DBG(2 SECONDS)
+					crack_the_drm(M)
+				return
+		else
+			..()
+
+	was_harmed(var/mob/M as mob, var/obj/item/weapon = 0, var/special = 0, var/intent = null)
+		. = ..()
+		if(isdead(src))
+			return
+
+		src.ai.target = M
+		src.ai.enabled = 1
+
+	New()
+		gender = pick(NEUTER,MALE,FEMALE,PLURAL)
+		..()
+		src.ai = new /datum/aiHolder/human/yank(src) // todo: replace this (its fine for now)
+		src.equip_new_if_possible(/obj/item/clothing/shoes/swat/knight, slot_shoes)
+		src.equip_new_if_possible(/obj/item/clothing/under/rank/det, slot_w_uniform)
+		src.equip_new_if_possible(/obj/item/clothing/suit/armor/gunsemanne, slot_wear_suit)
+		src.equip_new_if_possible(/obj/item/card/id/juicer/security, slot_wear_id)
+		if(prob(50))
+			src.equip_new_if_possible(/obj/item/clothing/glasses/sunglasses, slot_glasses)
+		else
+			src.equip_new_if_possible(/obj/item/clothing/glasses/nightvision, slot_glasses)
+
+	initializeBioholder()
+		. = ..()
+		bioHolder.mobAppearance.customization_first = new /datum/customization_style/moustache/devil
+		bioHolder.mobAppearance.customization_first_color = "#281400"
+		bioHolder.mobAppearance.customization_second = new /datum/customization_style/hair/hairup/ponytail
+		bioHolder.mobAppearance.customization_second_color = "#311800"
+		bioHolder.mobAppearance.customization_third = new /datum/customization_style/beard/trampstains
+		bioHolder.mobAppearance.customization_third_color = "#663300"
+		bioHolder.age = 43
+		bioHolder.bloodType = "M1"
+		bioHolder.mobAppearance.gender = NEUTER
+		bioHolder.mobAppearance.underwear = "briefs"
+		bioHolder.mobAppearance.u_color = "#7aa668"

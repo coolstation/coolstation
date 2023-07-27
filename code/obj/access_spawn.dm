@@ -348,6 +348,57 @@
 	req_access = list(access_polarisimportant)
 	color = CARGO
 
+
+/obj/access_spawn/juicer
+	name = "juicer access spawn"
+	req_access = list(access_juicer)
+	color = TOXINS
+
+/obj/access_spawn/juicer/engineering
+	name = "juicer engineering access spawn"
+	req_access = list(access_juicer_engineer)
+	color = ENGINEERING
+
+/obj/access_spawn/juicer/service
+	name = "service industry juicer access spawn"
+	req_access = list(access_juicer_service)
+	color = MEDICAL
+
+/obj/access_spawn/juicer/bballer
+	name = "basket-baller juicer access spawn"
+	req_access = list(access_juicer_bballer)
+	color = COMMAND
+
+/obj/access_spawn/juicer/crypto
+	name = "crypto-scammer juicer access spawn"
+	req_access = list(access_juicer_crypto)
+	color = CARGO
+
+/obj/access_spawn/juicer/muscle
+	name = "muscle juicer access spawn"
+	req_access = list(access_juicer_muscle)
+	color = SECURITY
+
+/obj/access_spawn/juicer/prepper
+	name = "doomsday prepper juicer access spawn"
+	req_access = list(access_juicer_prepper)
+	color = SECURITY
+
+/obj/access_spawn/juicer/deejay
+	name = "disco juicer access spawn"
+	req_access = list(access_juicer_deejay)
+	color = MEDICAL
+
+/obj/access_spawn/juicer/fraud
+	name = "tax fraud juicer access spawn"
+	req_access = list(access_juicer_fraud)
+	color = RESEARCH
+
+/obj/access_spawn/juicer/grease
+	name = "greasy juicer access spawn"
+	req_access = list(access_juicer_grease)
+	color = TOXINS
+
 #undef MEDICAL
 #undef SECURITY
 #undef MORGUE_BLACK

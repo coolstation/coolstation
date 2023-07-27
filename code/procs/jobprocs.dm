@@ -660,6 +660,7 @@
 
 	if(C)
 		var/realName = src.real_name
+		var/datum/data/record/B = FindBankAccountByName(src.real_name)
 
 		if(src.traitHolder && src.traitHolder.hasTrait("clericalerror"))
 			realName = replacetext(realName, "a", "o")
@@ -669,11 +670,12 @@
 			if(prob(50)) realName = replacetext(realName, "t", pick("d", "k"))
 			if(prob(50)) realName = replacetext(realName, "p", pick("b", "t"))
 
-			var/datum/data/record/B = FindBankAccountByName(src.real_name)
 			if (B?.fields["name"])
 				B.fields["name"] = realName
 
 		C.registered = realName
+		if(B?.fields["id"])
+			C.registered_id = B?.fields["id"]
 		C.assignment = JOB.name
 		C.name = "[C.registered]'s ID Card ([C.assignment])"
 		C.access = JOB.access.Copy()

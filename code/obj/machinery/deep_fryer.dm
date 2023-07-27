@@ -5,7 +5,7 @@
 	icon_state = "fryer0"
 	anchored = 1
 	density = 1
-	flags = NOSPLASH
+	flags = NOSPLASH | OPENCONTAINER
 	status = REQ_PHYSICAL_ACCESS
 	mats = 20
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_WIRECUTTERS
@@ -17,12 +17,13 @@
 	New()
 		..()
 		UnsubscribeProcess()
-		src.create_reagents(50)
+		src.create_reagents(150)
 
 		reagents.add_reagent("grease", 25)
 		reagents.set_reagent_temp(src.frytemp)
 
 	attackby(obj/item/W as obj, mob/user as mob)
+		var/fucked_up_now_kid = 0
 		if (isghostdrone(user) || isAI(user))
 			boutput(user, "<span class='alert'>The [src] refuses to interface with you, as you are not a properly trained chef!</span>")
 			return
@@ -35,6 +36,11 @@
 		if (istype(W, /obj/item/reagent_containers/food/snacks/shell/deepfry))
 			boutput(user, "<span class='alert'>Your cooking skills are not up to the legendary Doublefry technique.</span>")
 			return
+
+		if (istype(W, /obj/item/reagent_containers/food/snacks/shell/frozen) || istype(W, /obj/item/raw_material/ice) || istype(W, /obj/item/material_piece/ice)) // oh no :DDDD
+			boutput(user, "<span style='font-size:xx-large;color:red;font-family:cursive;'>OH FUGG OH SHID :DDDD!</span>")
+			fucked_up_now_kid = 1
+
 
 		else if (istype(W, /obj/item/reagent_containers/glass/) || istype(W, /obj/item/reagent_containers/food/drinks/))
 			if (!W.reagents.total_volume)
@@ -89,6 +95,24 @@
 		src.cooktime = 0
 		src.fryitem = W
 		src.icon_state = "fryer1"
+		if(fucked_up_now_kid)
+			var/turf/T = get_turf(src)
+			src.visible_message("<span class='alert'>[src] erupts into a disaster of hot oil!</span>")
+			fireflash(T, 2)
+			src.reagents.add_reagent("grease",25,null,T0C+350)
+			T.fluid_react(src.reagents, src.reagents.total_volume/2,1)
+			//src.reagents.remove_any(10) // just in case we dont have room for the surfactant, who cares.
+			//src.reagents.add_reagent("water",5,null,T0C,1) // fuckin hell man water is hard
+			//src.reagents.add_reagent("fluorosurfactant",5)
+			//T.fluid_react(src.reagents, src.reagents.total_volume/2) // not necessary for foam?
+			SPAWN_DBG(5 SECONDS)
+				src.icon_state = "fryer0"
+				qdel(fryitem)
+				src.fryitem = null
+				playsound(src.loc, "sound/machines/ding.ogg", 50, 1)
+			return
+
+
 		SubscribeToProcess()
 		return
 
@@ -131,7 +155,7 @@
 		//DaerenNote: so it turned out hellmixes + self-heating mixes constantly got dragged to the src.frytemp
 		//so i fixed that, heated stuff won't get cooled by the fryer now b/c thats lame + i am not going to thermodynamics this shit to model equilibrium
 		if (src.frytemp >= src.reagents.total_temperature)
-			src.reagents.set_reagent_temp(src.frytemp) // I'd love to have some thermostat logic here to make it heat up / cool down slowly but aaaaAAAAAAAAAAAAA (exposing it to the frytemp is too slow)
+			src.reagents.set_reagent_temp((src.reagents.total_temperature + src.frytemp)/2) // I'd love to have some thermostat logic here to make it heat up / cool down slowly but aaaaAAAAAAAAAAAAA (exposing it to the frytemp is too slow)
 
 		if(!src.fryitem)
 			UnsubscribeProcess()

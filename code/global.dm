@@ -398,6 +398,10 @@ var/global
 	list/APCIndexToFlag
 	list/APCIndexToWireColor
 	list/APCWireColorToIndex
+	list/VendWireColorToFlag = RandomVendWires()
+	list/VendIndexToFlag
+	list/VendIndexToWireColor
+	list/VendWireColorToIndex
 
 	// drsingh global reaction cache to reduce cpu usage in handle_reactions (Chemistry-Holder.dm)
 	list/chemical_reactions_cache = list()

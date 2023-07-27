@@ -2438,7 +2438,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
 	},
-/obj/machinery/drainage/big,
+/obj/machinery/drainage/stand_pipe,
 /turf/simulated/floor/plating,
 /area/station/engine/coldloop)
 "bpx" = (
@@ -8200,9 +8200,7 @@
 	name = "Sec. Officers Sleeping Quarters"
 	})
 "eLm" = (
-/obj/fluid_spawner/polluted_filth{
-	amount = 7250
-	},
+/obj/machinery/drainage/stand_pipe/septic,
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal/sewage)
 "eLo" = (
@@ -12051,6 +12049,9 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/turret_protected/AIbasecore2)
+"haQ" = (
+/turf/simulated/floor/plating,
+/area/station/engine/coldloop)
 "haX" = (
 /obj/disposalpipe/segment/produce{
 	dir = 4
@@ -15977,6 +15978,14 @@
 	icon_old = "fullblack"
 	},
 /area/station/engine/hotloop)
+"jsH" = (
+/obj/rack,
+/obj/item/storage/box/donkpocket_kit{
+	pixel_x = -6;
+	pixel_y = 7
+	},
+/turf/simulated/floor/plating/random,
+/area/noGenerate)
 "jsO" = (
 /obj/table/reinforced/auto,
 /obj/decal/cleanable/rust/jen,
@@ -17335,7 +17344,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
 "kfD" = (
-/obj/machinery/drainage/big,
+/obj/machinery/drainage/stand_pipe,
 /turf/simulated/floor/plating,
 /area/station/engine/coldloop)
 "kfL" = (
@@ -17888,6 +17897,10 @@
 "kvq" = (
 /obj/table/auto,
 /obj/random_item_spawner/snacks/one_or_zero,
+/obj/item/wrench{
+	pixel_x = 5;
+	pixel_y = 8
+	},
 /turf/simulated/floor,
 /area/station/medical/basement)
 "kvL" = (
@@ -19070,7 +19083,6 @@
 /area/station/maintenance/southeast)
 "lbl" = (
 /obj/machinery/vending/snack,
-/obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/fitness)
 "lbo" = (
@@ -22012,7 +22024,7 @@
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "mNV" = (
-/obj/machinery/drainage/big,
+/obj/machinery/drainage/big/off_station,
 /turf/simulated/floor/plating{
 	icon_state = "platingdmg3"
 	},
@@ -26458,10 +26470,10 @@
 	},
 /area/station/security/processing)
 "pAg" = (
-/obj/machinery/vending/snack,
 /obj/machinery/light/fluorescent/warm{
 	dir = 8
 	},
+/obj/machinery/vending/snack_freezer,
 /turf/simulated/floor/carpet/grime,
 /area/station/mining/staff_room)
 "pAp" = (
@@ -27368,15 +27380,7 @@
 /turf/simulated/floor/grey,
 /area/station/engine/hotloop)
 "qfV" = (
-/obj/rack,
-/obj/item/storage/box/donkpocket_kit{
-	pixel_x = -6;
-	pixel_y = 7
-	},
-/obj/item/wrench{
-	pixel_x = 5;
-	pixel_y = 8
-	},
+/obj/machinery/vending/snack_freezer,
 /turf/simulated/floor,
 /area/station/medical/basement)
 "qga" = (
@@ -40297,6 +40301,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
+"xEz" = (
+/obj/machinery/drainage/stand_pipe,
+/turf/simulated/floor/plating/random,
+/area/station/maintenance/inner/west)
 "xEY" = (
 /turf/simulated/floor/grey,
 /area/station/science/gen_storage)
@@ -40370,6 +40378,12 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/grey,
 /area/station/maintenance/disposal)
+"xGE" = (
+/obj/fluid_spawner/polluted_filth{
+	amount = 7250
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/disposal/sewage)
 "xGH" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -67570,7 +67584,7 @@ pdO
 pdO
 pdO
 qZT
-tcK
+xEz
 rNq
 pwK
 xuk
@@ -81462,7 +81476,7 @@ uII
 jVr
 pdO
 pdO
-pdO
+jsH
 eCs
 qfV
 tOw
@@ -98395,7 +98409,7 @@ eNs
 eEf
 vIc
 eLm
-xXL
+eLm
 otD
 sye
 vCS
@@ -99608,7 +99622,7 @@ eNa
 qFY
 xXL
 xXL
-xXL
+xGE
 eNa
 vcZ
 iDD
@@ -104421,8 +104435,8 @@ tcM
 tcM
 dAQ
 okQ
-kfD
-kfD
+haQ
+haQ
 okQ
 iUc
 tcM

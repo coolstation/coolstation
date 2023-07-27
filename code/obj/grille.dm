@@ -64,7 +64,7 @@
 		melted
 			icon_state = "grille-melted"
 
-	classic
+	classic // seems to be missing broken states
 		auto = FALSE
 		icon = 'icons/obj/grille.dmi'
 		icon_state = "grille-0"

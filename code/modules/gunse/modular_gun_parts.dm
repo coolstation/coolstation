@@ -671,6 +671,13 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		light_mode = 0
 		. = ..()
 
+	attack_self(mob/user as mob)
+		user.u_equip(src)
+		user.show_text("You de-militarise the enbrightener, turning it into a normal useless one.", "blue")
+		var/obj/item/device/light/flashlight/H = new()
+		user.put_in_hand_or_drop(H)
+		qdel(src)
+
 // No such thing as a basic magazine! they're all bullshit!!
 /obj/item/gun_parts/magazine/juicer
 	name = "HOTT SHOTTS MAG"

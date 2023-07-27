@@ -114,6 +114,7 @@
 	heal_amt = 2
 	initial_volume = 30
 	initial_reagents = list("cryostylane"=30)
+	food_effects = list("food_cold")
 
 /obj/item/reagent_containers/food/snacks/italian_ice_cup
 	name = "italian ice cup"

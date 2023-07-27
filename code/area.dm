@@ -2328,6 +2328,13 @@ ABSTRACT_TYPE(/area/station/crew_quarters)
 	mail_tag = "Kitchen"
 	sound_environment = EAX_BATHROOM
 
+	New()
+		if(src.name == "Kitchen" && prob(1))
+			for(var/turf/simulated/floor/F in src.contents)
+				F = new /turf/simulated/floor/carpet/grime(F)
+			sound_environment = EAX_CARPETED_HALLWAY
+		..()
+
 /area/station/crew_quarters/kitchen/freezer
 		name = "Freezer"
 		icon_state = "blue"
@@ -5964,3 +5971,34 @@ MAJOR_AST(30)
 /area/centcom/outpost/maintenance/lower
 	name = "Lower Maintenance Tunnel"
 	icon_state = "dk_yellow"
+
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++ *\
+||                                                         ||
+|| _.~**~._Debris Field II: They Debrised It AGAIN_.~**~._ ||
+||                                                         ||
+\* +++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/area/nudebris/horizon
+	name = "Horizon Squat"
+	icon_state = "juicer2"
+
+/area/nudebris/horizon/core
+	name = "Core Squat"
+	icon_state = "juicer3"
+
+/area/nudebris/horizon/power
+	name = "Power Squat"
+	icon_state = "juicer"
+
+/area/nudebris/horizon/bar
+	name = "Juice Squat"
+	icon_state = "juicer"
+
+/area/nudebris/horizon/gun // the diner gun range and the "DRM guy" ought to go here.
+	name = "Danger Squat"
+	icon_state = "juicer"
+
+/area/nudebris/horizon/turrets
+	name = "Horizon Squat"
+	icon_state = "juicer3"
