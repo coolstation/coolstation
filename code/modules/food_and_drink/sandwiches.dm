@@ -172,6 +172,10 @@
 	on_finish(mob/eater)
 		boutput(eater, "<b class='alert'>The last of the [src.name] flips you off as it slides down your gullet.</b>" ) //Don't ask me how you'd ever know this
 
+	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type, allow_anchored, bonus_throwforce, end_throw_callback)
+		..()
+		if (src.throwing)
+			src.throwing = THROW_SANDWICH
 
 /obj/item/reagent_containers/food/snacks/burger
 	name = "burger"
