@@ -224,14 +224,22 @@
 		return
 
 	proc/deep_freeze(atom/movable/thing) // this is for frozen foods, or anything else you wanna freeze. I dont care. -warc
-		if(istype(thing, /obj/item/reagent_containers/food/snacks/))
-			var/obj/item/reagent_containers/food/snacks/S = thing
-			if("food_cold" in S.food_effects)
-				return S // if the dispensed item is meant to be cold, don't treat it as "frozen"
+
 		if(istype(thing, /obj/item/popsicle))
 			return thing // dont refreeze these. hopefully thats all the exceptions.
 
 		var/obj/item/reagent_containers/food/snacks/shell/frozen/freezie = new(src)
+
+		if(istype(thing, /obj/item/reagent_containers/food/snacks/))
+			var/obj/item/reagent_containers/food/snacks/S = thing
+			if("food_cold" in S.food_effects)
+				return S // if the dispensed item is meant to be cold, don't treat it as "frozen"
+			else
+				freezie.food_effects |= S.food_effects
+				freezie.food_effects -= "food_warm"
+
+
+
 		freezie.name = "frozen [thing.name]"
 
 		var/icon/composite = new(thing.icon, thing.icon_state)

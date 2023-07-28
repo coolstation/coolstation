@@ -263,6 +263,9 @@
 			if (istype(src.grillitem, /obj/item/reagent_containers/food/snacks))
 				shittysteak.food_effects += grillitem:food_effects
 
+		shittysteak.food_effects |= "food_warm"
+		shittysteak.food_effects -= "food_cold"
+
 		var/icon/composite = new(src.grillitem.icon, src.grillitem.icon_state)//, src.grillitem.dir, 1)
 		for(var/O in src.grillitem.underlays + src.grillitem.overlays)
 			var/image/I = O
