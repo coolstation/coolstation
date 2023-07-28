@@ -375,7 +375,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle =  13 // jesus christ it's a spread machine
 	scatter = 1
 	jam_frequency_fire = 5 //but very poorly built
-	part_DRM = GUN_JUICE | GUN_NANO
+	part_DRM = GUN_JUICE
 	name_addition = "BLUNDER"
 	icon_state = "juicer_blunderbuss"
 	length = 12
@@ -383,6 +383,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 /obj/item/gun_parts/barrel/juicer/chub
 	name = "\improper BUSTIN Barrel"
+	part_DRM = GUN_JUICE | GUN_NANO
 	spread_angle = 6
 	length = 25
 	icon_state = "juicer_chub"
@@ -391,6 +392,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/juicer/longer
 	name = "\improper SNIPA Barrel"
 	desc = "A cheaply-built extended rifled shotgun barrel. Not good."
+	part_DRM = GUN_JUICE | GUN_NANO
 	spread_angle =  4 // accurate?? ish?
 	jam_frequency_fire = 15 //but very!!!!!!! poorly built
 	name_addition = "BLITZER"
@@ -400,9 +402,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/soviet
 	name = "soviet lenses"
 	desc = "стопка линз для фокусировки вашего пистолета"
-	spread_angle =  5
+	spread_angle =  3
 	lensing = 1.2
-	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
+	part_DRM = GUN_SOVIET | GUN_ITALIAN
 	name_addition = "comrade"
 	icon_state = "soviet_lens"
 	length = 18
@@ -411,7 +413,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/soviet/long
 	name = "long soviet lenses"
 	desc = "стопка линз для фокусировки вашего пистолета"
-	spread_angle = 3
+	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
+	spread_angle = 2
 	lensing = 1.4
 	name_addition = "tovarisch"
 	icon_state = "soviet_lens_long"
@@ -434,7 +437,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "standard grip"
 	desc = "A comfortable NT pistol grip"
 	spread_angle = -3 // basic stabilisation
-	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN
+	part_DRM = GUN_NANO
 	name_addition = "trusty"
 	icon = 'icons/obj/items/modular_guns/grips.dmi'
 	icon_state = "nt_blue"
