@@ -513,7 +513,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/stock/foss/loader
 	name = "\improper FOSS laser loader stock"
 	desc = "An open-sourced laser dynamo, with a multiple-position winding spring. This one's kind of hard to hold."
-	spread_angle = 7 //  O NO
+	spread_angle = 3 // poor stabilisation
 	max_ammo_capacity = 1 // more bulbs in the pocket
 	jam_frequency_reload = 10
 	flash_auto = 1
@@ -623,6 +623,12 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	var/datum/component/holdertargeting/simple_light/light_dim
 	var/datum/component/holdertargeting/simple_light/light_good
 
+	attack_self(mob/user as mob)
+		user.u_equip(src)
+		user.show_text("You de-militarise the emergency flashlight, turning it into a normal, non-tactical one.", "baby shit brown")
+		var/obj/item/device/light/flashlight/H = new()
+		user.put_in_hand_or_drop(H)
+		qdel(src)
 
 	alt_fire()
 		playsound(src, "sound/items/penclick.ogg", 30, 1)
@@ -687,4 +693,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "LARGE"
 	icon_state = "juicer_drum"
 	overlay_y = 8
+
+	four
+		name = "HOTTTT SHOTTS MAG"
+		max_ammo_capacity = 4
 

@@ -136,12 +136,21 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		var/obj/item/stackable_ammo/SA = I
 		SA.reload(src, user)
 		return
+
 	if(istype(I,/obj/item/instrument/bikehorn))
-		boutput(user,"<span class='notice'><b>You first radicalize the bike horn by telling it all about The Man.</b></span>")
+		boutput(user,"<span class='notice'><b>You first radicalize [I] by telling it all about The Man.</b></span>")
 		playsound(src, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, -1)
 		user.u_equip(I)
 		I = new /obj/item/gun_parts/accessory/horn()
 		user.put_in_hand_or_drop(I)
+		return
+
+	if(istype(I,/obj/item/device/light/flashlight))
+		boutput(user,"<span class='notice'><b>You first radicalize [I] telling it all about The Man.</b></span>")
+		user.u_equip(I)
+		I = new /obj/item/gun_parts/accessory/flashlight()
+		user.put_in_hand_or_drop(I)
+		return
 
 	if(istype(I,/obj/item/gun_parts/))
 		if(built)
@@ -592,6 +601,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	return
 
 // BASIC GUN'S
+ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 /obj/item/gun/modular/NT
 	name = "\improper NT pistol"
 	real_name = "\improper NT pistol"
@@ -719,6 +729,22 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	barrel_overlay_y = 4
 	stock_overlay_x = -10
 
+	make_parts()
+		if(prob(50))
+			barrel = new /obj/item/gun_parts/barrel/juicer(src)
+		else
+			barrel = new /obj/item/gun_parts/barrel/juicer/chub(src)
+		if(prob(5))
+			stock = new /obj/item/gun_parts/stock/juicer/trans(src)
+		else if(prob(50))
+			stock = new /obj/item/gun_parts/stock/juicer/stub(src)
+		else
+			stock = new /obj/item/gun_parts/stock/juicer/red(src)
+		if(prob(60))
+			magazine = new /obj/item/gun_parts/magazine/juicer(src)
+		else
+			accessory = new /obj/item/gun_parts/accessory/flashlight(src)
+
 
 /obj/item/gun/modular/juicer/blunder
 	make_parts()
@@ -741,8 +767,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			stock = new /obj/item/gun_parts/stock/italian/bigger(src)
 		if(prob(50))
 			stock2 = new /obj/item/gun_parts/stock/juicer/stub(src)
+			magazine = new /obj/item/gun_parts/magazine/juicer/four(src)
+		else
+			magazine = new /obj/item/gun_parts/magazine/juicer(src)
 
-
+ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 /obj/item/gun/modular/soviet
 	shoot()
 		..()
@@ -770,7 +799,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 
 
-
+ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 /obj/item/gun/modular/italian
 	name = "\improper Italiano"
 	real_name = "\improper Italiano"
