@@ -1861,6 +1861,17 @@
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 2, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2, hidden=1, cost = PAY_UNTRAINED*2)
 
+	debug
+		pay = 0
+		create_products()
+			for(var/types in concrete_typesof(/obj/item/gun/modular))
+				product_list += new/datum/data/vending_product(types, 2)
+			for(var/types in concrete_typesof(/obj/item/gun_parts/))
+				product_list += new/datum/data/vending_product(types, 2)
+			for(var/types in concrete_typesof(/obj/item/stackable_ammo/))
+				product_list += new/datum/data/vending_product(types, 5)
+			product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 5)
+
 
 //The burden of these machinations weighs on my shoulders
 //And thus you will be burdened
