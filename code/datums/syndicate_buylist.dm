@@ -326,20 +326,20 @@ proc/build_syndi_buylist_cache()
 	desc = "This kit contains everything you need to become a great football player! Wearing all of the equipment inside will grant you the ability to rush down and tackle foes. You'll also make amazing throws!"
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
-/datum/syndicate_buylist/traitor/mindslave
-	name = "Mind Slave implant"
-	item = /obj/item/implanter/mindslave
+/datum/syndicate_buylist/traitor/insurgent
+	name = "Insurgency implant"
+	item = /obj/item/implanter/insurgent
 	cost = 3
 	vr_allowed = 0
-	desc = "Temporarily place an injected victim under your complete control! Faster and more effective than hypnotism! Warning: Implant effects are NOT indefinite."
-	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution) // Whatever you do, don't allow mindslave implants in spy or rev.
+	desc = "Temporarily convert an NT asset to your cause! They'll share your objectives and won't hurt you! Warning: Implant effects are NOT permanent."
+	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution) // Whatever you do, don't allow insurgent implants in spy or rev.
 
-/datum/syndicate_buylist/traitor/deluxe_mindslave
-	name = "Deluxe Mind Slave implant"
-	item = /obj/item/implanter/super_mindslave
+/datum/syndicate_buylist/traitor/deluxe_insurgent
+	name = "Deluxe Insurgency implant"
+	item = /obj/item/implanter/super_insurgent
 	cost = 6
 	vr_allowed = 0
-	desc = "Place an injected victim under your complete control! Enhanced neurostimulators make this version last virtually indefinitely!"
+	desc = "Utterly convert an NT asset to your cause! Enhanced neurostimulators make this version last (virtually) indefinitely!"
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/microbomb
@@ -916,24 +916,25 @@ This is basically useless for anyone but miners.
 	desc = "A barrel of bloodthirsty apes. Careful!"
 	job = list("Staff Assistant","Test Subject","Geneticist","Pathologist")
 	blockedmode = list(/datum/game_mode/revolution)
-
-/datum/syndicate_buylist/traitor/mindslave_module
-	name = "Mindslave Cloning Module"
-	item = /obj/item/cloneModule/mindslave_module
+/*
+/datum/syndicate_buylist/traitor/insurgent_module
+	name = "Insurgent Cloning Module"
+	item = /obj/item/cloneModule/insurgent_module
 	cost = 6
 	vr_allowed = 0
 	desc = "An add on to the genetics cloning pod that make anyone cloned loyal to whoever installed it."
 	job = list("Geneticist", "Medical Doctor", "Medical Director")
 	blockedmode = list(/datum/game_mode/revolution)
 
-/datum/syndicate_buylist/traitor/deluxe_mindslave_module
-	name = "Deluxe Mindslave Cloning Module Kit"
-	item = /obj/item/storage/box/mindslave_module_kit
+/datum/syndicate_buylist/traitor/deluxe_insurgent_module
+	name = "Deluxe Insurgent Cloning Module Kit"
+	item = /obj/item/storage/box/insurgent_module_kit
 	cost = 10 //  Always leave them 1tc so they can buy the moustache. Style is key.
 	vr_allowed = 0
-	desc = "A Deluxe Mindslave Cloning Kit. Contains a mindslave cloning module and a cloning lab in a box!"
+	desc = "A Deluxe Insurgent Cloning Kit. Contains an insurgent cloning module and a cloning lab in a box!"
 	job = list("Geneticist", "Medical Doctor", "Medical Director")
 	blockedmode = list(/datum/game_mode/revolution)
+*/
 
 /datum/syndicate_buylist/traitor/buddy_ammofab
 	name = "Guardbuddy Ammo Replicator"

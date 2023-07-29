@@ -150,7 +150,7 @@
 				// this doesn't even make any sense unless you're rayman or some shit
 
 				if (robot_owner.mind && robot_owner.mind.special_role)
-					robot_owner.handle_robot_antagonist_status("death", 1) // Mindslave or rogue (Convair880).
+					robot_owner.handle_robot_antagonist_status("death", 1) // Insurgent or rogue (Convair880).
 
 				robot_owner.visible_message("<b>[owner]</b> falls apart with no chest to keep it together!")
 				logTheThing("combat", robot_owner, null, "was destroyed at [log_loc(robot_owner)].") // Brought in line with carbon mobs (Convair880).
@@ -208,7 +208,7 @@
 				// no head means no brain!!
 
 				if (robot_owner.mind && robot_owner.mind.special_role)
-					robot_owner.handle_robot_antagonist_status("death", 1) // Mindslave or rogue (Convair880).
+					robot_owner.handle_robot_antagonist_status("death", 1) // Insurgent or rogue (Convair880).
 
 				robot_owner.visible_message("<b>[owner]</b> completely stops moving and shuts down...")
 				robot_owner.borg_death_alert()

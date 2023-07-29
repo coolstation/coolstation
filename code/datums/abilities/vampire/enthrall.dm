@@ -10,7 +10,7 @@
 	when_stunned = 0
 	not_when_handcuffed = 1
 	restricted_area_check = 2
-	unlock_message = "You have gained Enthrall. It allows you to enslave dead humans."
+	unlock_message = "You have gained Enthrall. It allows you to convert dead humans."
 
 	cast(mob/target)
 		if (!holder)
@@ -23,7 +23,7 @@
 			return 1
 
 		if (M == target)
-			boutput(M, __red("Why would you want to enslave yourself?"))
+			boutput(M, __red("Why would you want to convert yourself?"))
 			return 1
 
 		if (get_dist(M, target) > src.max_range)
@@ -81,11 +81,11 @@
 	color_success = "#3fb54f"
 	color_failure = "#8d1422"
 	var/mob/living/carbon/human/target
-	var/datum/targetable/vampire/enthrall/enslave
+	var/datum/targetable/vampire/enthrall/convert
 
-	New(Target, Enslave)
+	New(Target, Convert)
 		target = Target
-		enslave = Enslave
+		convert = Convert
 		..()
 
 	onStart()
@@ -93,7 +93,7 @@
 
 		var/mob/living/M = owner
 
-		if (!enslave || get_dist(M, target) > enslave.max_range || target == null || M == null)
+		if (!convert || get_dist(M, target) > convert.max_range || target == null || M == null)
 			interrupt(INTERRUPT_ALWAYS)
 			return
 
@@ -111,7 +111,7 @@
 
 		var/mob/living/M = owner
 
-		if (!enslave || get_dist(M, target) > enslave.max_range || target == null || M == null)
+		if (!convert || get_dist(M, target) > convert.max_range || target == null || M == null)
 			interrupt(INTERRUPT_ALWAYS)
 			return
 
@@ -120,7 +120,7 @@
 		..()
 
 		var/mob/living/M = owner
-		var/datum/abilityHolder/vampire/H = enslave.holder
+		var/datum/abilityHolder/vampire/H = convert.holder
 
 		if (!istype(target.mutantrace, /datum/mutantrace/vampiric_thrall))
 			H.make_thrall(target)

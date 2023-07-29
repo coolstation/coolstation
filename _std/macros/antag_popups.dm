@@ -16,11 +16,11 @@
 #define SHOW_TRAITOR_HARDMODE_TIPS(M) M.Browse(grabResource("html/traitorTips/traitorhardTips.html"), ANTAG_TIPS_WINDOW)
 #define SHOW_TRAITOR_OMNI_TIPS(M) M.Browse(grabResource("html/traitorTips/omniTips.html"), ANTAG_TIPS_WINDOW)
 
-// mindslaves
-#define SHOW_MINDSLAVE_TIPS(M) M.Browse(grabResource("html/mindslave/implanted.html"), ANTAG_TIPS_WINDOW)
-#define SHOW_MINDSLAVE_DEATH_TIPS(M) M.Browse(grabResource("html/mindslave/death.html"), ANTAG_TIPS_WINDOW)
-#define SHOW_MINDSLAVE_OVERRIDE_TIPS(M) M.Browse(grabResource("html/mindslave/override.html"), ANTAG_TIPS_WINDOW)
-#define SHOW_MINDSLAVE_EXPIRED_TIPS(M) M.Browse(grabResource("html/mindslave/expire.html"), ANTAG_TIPS_WINDOW)
+// insurgents
+#define SHOW_INSURGENT_TIPS(M) M.Browse(grabResource("html/insurgent/implanted.html"), ANTAG_TIPS_WINDOW)
+#define SHOW_INSURGENT_DEATH_TIPS(M) M.Browse(grabResource("html/insurgent/death.html"), ANTAG_TIPS_WINDOW)
+#define SHOW_INSURGENT_OVERRIDE_TIPS(M) M.Browse(grabResource("html/insurgent/override.html"), ANTAG_TIPS_WINDOW)
+#define SHOW_INSURGENT_EXPIRED_TIPS(M) M.Browse(grabResource("html/insurgent/expire.html"), ANTAG_TIPS_WINDOW)
 
 // wizard
 #define SHOW_WIZARD_TIPS(M) M.Browse(grabResource("html/traitorTips/wizardTips.html"), ANTAG_TIPS_WINDOW)
@@ -43,15 +43,15 @@
 //gangers
 #define SHOW_GANG_MEMBER_TIPS(M) M.Browse(grabResource("html/traitorTips/gang_member_added.html"), ANTAG_TIPS_WINDOW)
 
-// vampire (thrall uses the mindslave popup)
+// vampire (thrall uses the insurgent popup)
 #define SHOW_VAMPIRE_TIPS(M) M.Browse(grabResource("html/traitorTips/vampireTips.html"), ANTAG_TIPS_WINDOW)
 #define SHOW_VAMPTHRALL_TIPS(M) M.Browse(grabResource("html/traitorTips/vampiricthrallTips.html"), ANTAG_TIPS_WINDOW)
 
 // changeling
 #define SHOW_CHANGELING_TIPS(M) M.Browse(grabResource("html/traitorTips/changelingTips.html"), ANTAG_TIPS_WINDOW)
-#define SHOW_HANDSPIDER_TIPS(M) M.Browse(grabResource("html/mindslave/handspider.html"), ANTAG_TIPS_WINDOW)
-#define SHOW_EYESPIDER_TIPS(M) M.Browse(grabResource("html/mindslave/eyespider.html"), ANTAG_TIPS_WINDOW)
-#define SHOW_LEGWORM_TIPS(M) M.Browse(grabResource("html/mindslave/legworm.html"), ANTAG_TIPS_WINDOW)
+#define SHOW_HANDSPIDER_TIPS(M) M.Browse(grabResource("html/insurgent/handspider.html"), ANTAG_TIPS_WINDOW)
+#define SHOW_EYESPIDER_TIPS(M) M.Browse(grabResource("html/insurgent/eyespider.html"), ANTAG_TIPS_WINDOW)
+#define SHOW_LEGWORM_TIPS(M) M.Browse(grabResource("html/insurgent/legworm.html"), ANTAG_TIPS_WINDOW)
 
 // various others
 #define SHOW_GRINCH_TIPS(M) M.Browse(grabResource("html/traitorTips/grinchTips.html"), ANTAG_TIPS_WINDOW)
@@ -102,11 +102,11 @@
 	<a href='?src=\ref[src];action=traitorhard'>Hard Mode</a> |
 	<a href='?src=\ref[src];action=traitoromni'>Omnitraitor</a>
 </div>
-<div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Mindslave</b>
-	<a href='?src=\ref[src];action=mindslave'>Implanted</a> |
-	<a href='?src=\ref[src];action=mindslavedeath'>Death</a> |
-	<a href='?src=\ref[src];action=mindslaveoverride'>Overriden</a> |
-	<a href='?src=\ref[src];action=mindslaveexpired'>Expired</a>
+<div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Insurgent</b>
+	<a href='?src=\ref[src];action=insurgent'>Implanted</a> |
+	<a href='?src=\ref[src];action=insurgentdeath'>Death</a> |
+	<a href='?src=\ref[src];action=insurgentoverride'>Overriden</a> |
+	<a href='?src=\ref[src];action=insurgentexpired'>Expired</a>
 </div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Wizard</b>
 	<a href='?src=\ref[src];action=wizard'>Wizard</a> |
@@ -185,15 +185,15 @@
 			if ("traitoromni")
 				SHOW_TRAITOR_OMNI_TIPS(M)
 
-			// mindslave
-			if ("mindslave")
-				SHOW_MINDSLAVE_TIPS(M)
-			if ("mindslavedeath")
-				SHOW_MINDSLAVE_DEATH_TIPS(M)
-			if ("mindslaveoverride")
-				SHOW_MINDSLAVE_OVERRIDE_TIPS(M)
-			if ("mindslaveexpired")
-				SHOW_MINDSLAVE_EXPIRED_TIPS(M)
+			// insurgent
+			if ("insurgent")
+				SHOW_INSURGENT_TIPS(M)
+			if ("insurgentdeath")
+				SHOW_INSURGENT_DEATH_TIPS(M)
+			if ("insurgentoverride")
+				SHOW_INSURGENT_OVERRIDE_TIPS(M)
+			if ("insurgentexpired")
+				SHOW_INSURGENT_EXPIRED_TIPS(M)
 
 			// wizard
 			if ("wizard")

@@ -26,7 +26,7 @@
 #define ROLE_VAMPTHRALL "vampthrall"
 #define ROLE_SLEEPER_AGENT "sleeper agent"
 #define ROLE_HARDMODE_TRAITOR "hard-mode traitor"
-#define ROLE_MINDSLAVE "mindslave"
+#define ROLE_INSURGENT "insurgent"
 
 // gimmicks
 #define ROLE_BATTLER "battler"
