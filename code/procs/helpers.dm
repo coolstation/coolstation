@@ -2010,8 +2010,12 @@ proc/countJob(rank)
 			return
 
 	if (removal_type == "death")
-		boutput(M, "<h2><span class='alert'>Since you have died, you are no longer an insurgent! Do not obey your former ally's orders even if you've been brought back to life somehow.</span></h2>")
-		SHOW_INSURGENT_DEATH_TIPS(M)
+		if (recruit_type == "vthrall")
+			boutput(M, "<h2><span class='alert'>Since you have died, you are no longer a vampiric thrall! Do not obey your former ally's orders even if you've been brought back to life somehow.</span></h2>")
+			SHOW_VAMPTHRALL_DEATH_TIPS(M)
+		else
+			boutput(M, "<h2><span class='alert'>Since you have died, you are no longer an insurgent! Do not help your former ally even if you've been brought back to life somehow.</span></h2>")
+			SHOW_INSURGENT_DEATH_TIPS(M)
 	else if (removal_type == "override")
 		boutput(M, "<h2><span class='alert'>Your insurgent implant has been overridden by a new one, cancelling out your former allegiances!</span></h2>")
 		SHOW_INSURGENT_OVERRIDE_TIPS(M)

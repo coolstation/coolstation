@@ -43,9 +43,10 @@
 //gangers
 #define SHOW_GANG_MEMBER_TIPS(M) M.Browse(grabResource("html/traitorTips/gang_member_added.html"), ANTAG_TIPS_WINDOW)
 
-// vampire (thrall uses the insurgent popup)
+// vampire (thrall should no longer use the insurgent popups)
 #define SHOW_VAMPIRE_TIPS(M) M.Browse(grabResource("html/traitorTips/vampireTips.html"), ANTAG_TIPS_WINDOW)
 #define SHOW_VAMPTHRALL_TIPS(M) M.Browse(grabResource("html/traitorTips/vampiricthrallTips.html"), ANTAG_TIPS_WINDOW)
+#define SHOW_VAMPTHRALL_DEATH_TIPS(M) M.Browse(grabResource("html/traitorTips/vampiricthralldeath.html"), ANTAG_TIPS_WINDOW)
 
 // changeling
 #define SHOW_CHANGELING_TIPS(M) M.Browse(grabResource("html/traitorTips/changelingTips.html"), ANTAG_TIPS_WINDOW)
@@ -128,7 +129,7 @@
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Vampire/Changeling</b>
 	<a href='?src=\ref[src];action=vampire'>Vampire</a> |
 	<a href='?src=\ref[src];action=vampthrall'>Vamp Thrall</a> |
-	<a href='?src=\ref[src];action=vampzombie'>Vamp Zombie</a> |
+	<a href='?src=\ref[src];action=vampthrallrip'>Vamp Thrall Death</a> |
 	<br><a href='?src=\ref[src];action=changeling'>Changeling</a> |
 	<a href='?src=\ref[src];action=handspider'>Handspider</a> |
 	<a href='?src=\ref[src];action=eyespider'>Eye/Butt Spider</a> |
@@ -230,6 +231,8 @@
 				SHOW_VAMPIRE_TIPS(M)
 			if ("vampthrall")
 				SHOW_VAMPTHRALL_TIPS(M)
+			if ("vampthrallrip")
+				SHOW_VAMPTHRALL_DEATH_TIPS(M)
 			if ("changeling")
 				SHOW_CHANGELING_TIPS(M)
 			if ("handspider")
