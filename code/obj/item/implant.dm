@@ -1151,7 +1151,7 @@ THROWING DARTS
 	sneaky = 1
 	New()
 		var/obj/item/implant/microbomb/macrobomb/newbomb = new/obj/item/implant/microbomb/macrobomb( src )
-		newbomb.explosionPower = rand(20,30)
+		newbomb.explosionPower = rand(25,31)
 		src.imp = newbomb
 		..()
 		return
