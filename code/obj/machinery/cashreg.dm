@@ -50,6 +50,7 @@
 				for (var/datum/data/record/account in data_core.bank)
 					if (ckey(account.fields["id"]) == ckey(card.registered_id))
 						mainaccount = account
+						boutput(user, "<span class='notice'>Payments will be paid to [card.registered].</span>")
 						break
 
 				if (!istype(mainaccount))
@@ -89,7 +90,7 @@
 				boutput(user, "<span class='alert'>You can't send funds with the host ID to the host ID!</span>")
 				// TAKE SERVICE FEE :3
 				target_account.fields["current_money"] -= min_serv_chg
-				servicechgaccount["current_money"] += min_serv_chg
+				servicechgaccount.fields["current_money"] += min_serv_chg
 				return
 
 			boutput(user, "<span class='notice'>The current host ID is [mainaccount.fields["name"]]. Insert a value less than zero to cancel transaction.</span>")
@@ -97,13 +98,13 @@
 			if (amount <= 0)
 				// Assume the service fee
 				target_account.fields["current_money"] -= min_serv_chg
-				servicechgaccount["current_money"] += min_serv_chg
+				servicechgaccount.fields["current_money"] += min_serv_chg
 				return
 			if (amount > target_account.fields["current_money"])
 				boutput(user, "<span class='alert'>Insufficent funds. [W] only has [target_account.fields["current_money"]] credits.</span>")
 				// But take the service fee anyway~
 				target_account.fields["current_money"] -= min_serv_chg
-				servicechgaccount["current_money"] += min_serv_chg
+				servicechgaccount.fields["current_money"] += min_serv_chg
 				return
 			boutput(user, "<span class='notice'>Sending transaction.</span>")
 			user.visible_message("<span class='notice'>[user] swipes [src] with [W].</span>")
@@ -111,7 +112,7 @@
 			mainaccount.fields["current_money"] += amount
 			var/service_charge = ((amount * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(amount * serv_chg_pct)
 			target_account.fields["current_money"] -= service_charge
-			servicechgaccount["current_money"] += service_charge
+			servicechgaccount.fields["current_money"] += service_charge
 
 			user.visible_message("<b>[src]</b> beeps, \"[mainaccount.fields["name"]] now holds [mainaccount.fields["current_money"]] credits. Thank you for your service!\"")
 			PrintReceipt(mainaccount, target_account, amount, service_charge)

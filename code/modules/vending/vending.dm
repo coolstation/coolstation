@@ -129,7 +129,7 @@
 	var/receipt_count = 20 // TODO: Printer rolls for receipts?
 	var/min_serv_chg = 2 // 2 bux just to use your damn machine? Rasm frasm grumble!
 	var/serv_chg_pct = 0.02
-	var/datum/data/record/servicechgaccount = null
+	var/datum/data/record/servicechgaccount = null // TODO: add a way to set/reset this for miscreants to do an embeezle
 
 	var/HTML = null // guh
 	var/vending_HTML = null // buh
@@ -723,7 +723,7 @@
 					if (account.fields["current_money"] < R.product_cost)
 						boutput(usr, "<span class='alert'>Insufficient funds in account. To use machine credit, log out.</span>")
 						account.fields["current_money"] -= min_serv_chg
-						servicechgaccount["current_money"] += min_serv_chg
+						servicechgaccount.fields["current_money"] += min_serv_chg
 						flick(src.icon_deny,src)
 						src.vend_ready = 1
 						src.paying_for = R
@@ -755,6 +755,7 @@
 				if (src.acceptcard && account)
 					account.fields["current_money"] -= R.product_cost
 					account.fields["current_money"] -= service_charge
+					servicechgaccount.fields["current_money"] += service_charge
 				else
 					src.credit -= R.product_cost
 					service_charge = 0
