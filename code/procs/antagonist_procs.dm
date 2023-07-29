@@ -145,7 +145,7 @@
 			T.setup(traitor_mob.mind, RR)
 			freq = RR.traitor_frequency
 
-			boutput(traitor_mob, "The Syndicate have cunningly disguised a Syndicate Uplink as your [RR.name] [loc]. Simply dial the frequency [format_frequency(freq)] to unlock its hidden features.")
+			boutput(traitor_mob, "The Syndicate have cunningly disguised a Syndicate Uplink as your <span style='color:purple;'>[RR.name] [loc].</span> Simply dial the frequency <span style='color:purple;'>[format_frequency(freq)]</span> to unlock its hidden features.")
 			traitor_mob.mind.store_memory("<B>Radio Freq:</B> [format_frequency(freq)] ([RR.name] [loc]).")
 
 		else if (istype(R, /obj/item/device/pda2))
@@ -154,8 +154,8 @@
 			T.setup(traitor_mob.mind, P)
 			pda_pass = T.lock_code
 
-			boutput(traitor_mob, "The Syndicate have cunningly disguised a Syndicate Uplink as your [P.name] [loc]. Simply enter the code \"[pda_pass]\" into the ring message select to unlock its hidden features.")
-			traitor_mob.mind.store_memory("<B>Set your ring message to:</B> [pda_pass] (In the Messenger menu in the [P.name] [loc]).")
+			boutput(traitor_mob, "The Syndicate have cunningly disguised a Syndicate Uplink as your <span style='color:purple;'>[P.name] [loc].</span> Simply enter the code <span style='color:purple;'>\"[pda_pass]\"</span> into the ring message select to unlock its hidden features.")
+			traitor_mob.mind.store_memory("<B>Set your ring message to:</B> <span style='color:purple;'><b>[pda_pass]</b></span> (In the Messenger menu in the [P.name] [loc]).")
 
 		else
 			var/obj/item/uplink/syndicate/T = new(get_turf(traitor_mob))
@@ -249,8 +249,8 @@
 		pda_pass = T.lock_code
 
 		SHOW_SPY_THIEF_TIPS(traitor_mob)
-		boutput(traitor_mob, "The Syndicate have cunningly disguised a Spy Uplink as your [P.name] [loc]. Simply enter the code \"[pda_pass]\" into the ring message select to unlock its hidden features.")
-		traitor_mob.mind.store_memory("<B>Set your ring message to:</B> [pda_pass] (In the Messenger menu in the [P.name] [loc]).")
+		boutput(traitor_mob, "The Syndicate have cunningly disguised a Spy Uplink as your <span style='color:purple;'>[P.name] [loc].</span> Simply enter the code <span style='color:purple;'>\"[pda_pass]\"</span> into the ring message select to unlock its hidden features.")
+		traitor_mob.mind.store_memory("<B>Set your ring message to:</B> <span style='color:purple;'>[pda_pass]</span> (In the Messenger menu in the [P.name] [loc]).")
 	else
 		boutput(traitor_mob, "Something is BUGGED and we couldn't find you a PDA. Tell a coder.")
 
