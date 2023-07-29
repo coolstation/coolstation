@@ -343,7 +343,8 @@
 					if (!(src.occupant.mind in ticker.mode.Agimmicks))
 						ticker.mode.Agimmicks += src.occupant.mind
 					src.occupant.mind.master = implant_master.ckey
-				boutput(src.occupant, "<h2><span class='alert'>You feel an unwavering loyalty to [implant_master.real_name]! You feel you must obey [his_or_her(implant_master)] every order! Do not tell anyone about this unless your master tells you to!</span></h2>")
+					src.occupant.mind.objectives |= implant_master.mind.objectives
+				boutput(src.occupant, "<h2><span class='alert'>You feel an unwavering loyalty to [implant_master.real_name]! You feel like you should probably help [him_or_her(implant_master)] do some stuff! Do not tell anyone about this unless your pal tells you to!</span></h2>")
 				SHOW_INSURGENT_TIPS(src.occupant)
 		// Someone is having their brain zapped. 75% chance of them being de-antagged if they were one
 		//MBC todo : logging. This shouldn't be an issue thoug because the mindwipe doesn't even appear ingame (yet?)
