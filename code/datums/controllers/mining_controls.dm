@@ -204,7 +204,7 @@ var/list/asteroid_blocked_turfs = list()
 			//ORE TABLE
 			dat += "<b>Z-level: [some_stats.z_level] | Generator: [some_stats.generator]<br>"
 			dat += "Total Ores: [some_stats.total_generated_ores] | Total Events: [some_stats.total_generated_events] | Total Event Calls: [some_stats.total_event_calls]</b><br>"
-			dat += {"<table>
+			dat += {"<p><table>
 				<tr>
 					<th>Ore Name</th>
 					<th>Veins</th>
@@ -227,6 +227,7 @@ var/list/asteroid_blocked_turfs = list()
 
 					<td>[some_stats.ore_total_percentages[an_ore]]%</td>
 				</tr>"}
+			dat += "</table></p><br><p>"
 			//EVENT TABLE
 			dat += {"<table>
 				<tr>
@@ -249,7 +250,7 @@ var/list/asteroid_blocked_turfs = list()
 					<td>[some_stats.event_call_percentages[an_event]]%</td>
 					<td>[some_stats.event_total_percentages[an_event]]%</td>
 				</tr>"}
-			dat += "<br>"
+			dat += "</table></p><br><br>"
 
 
 	dat += "</small></body></html>"
