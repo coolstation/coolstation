@@ -1381,11 +1381,14 @@
 
 		return src
 
-	proc/set_event(var/datum/ore/event/E)
+	proc/set_event(var/datum/ore/event/E, datum/mining_level_stats/level_stats = null) //Adding the stat collection illustrates to me how much recursive bodging is going on here
 		if (!istype(E))
 			return
 		src.event = E
 		E.onGenerate(src)
+		if (level_stats)
+			level_stats.events[E.name] += 1
+			level_stats.total_generated_events += 1
 		if (E.prevent_excavation)
 			src.invincible = 1
 		if (E.nearby_tile_distribution_min > 0 && E.nearby_tile_distribution_max > 0)
@@ -1398,13 +1401,18 @@
 
 			var/turf/simulated/wall/asteroid/AST
 			while (distributions > 0)
-				distributions--
 				if (usable_turfs.len < 1)
+					if (level_stats)
+						level_stats.event_misses[E.name] += distributions
 					break
+				distributions--
 				AST = pick(usable_turfs)
 				AST.event = E
 				E.onGenerate(AST)
 				usable_turfs -= AST
+				if (level_stats)
+					level_stats.events[E.name] += 1
+					level_stats.total_generated_events += 1
 
 /turf/simulated/floor/plating/airless/asteroid
 	name = "asteroid"

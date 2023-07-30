@@ -16,6 +16,7 @@
 		return 0
 
 /datum/ore/event/gem
+	name = "gem"
 	analysis_string = "Small extraneous mineral deposit detected."
 	excavation_string = "Something shiny tumbles out of the collapsing rock!"
 	scan_decal = "scan-gem"
@@ -37,6 +38,7 @@
 		I.name = "[getGemQualityName(I.quality)] [I.name]"
 
 /datum/ore/event/gem/molitz_b
+	name = "molitz B"
 	analysis_string = "Small unusual crystalline deposit detected."
 	excavation_string = "Something unusual tumbles out of the collapsing rock!"
 
@@ -52,6 +54,7 @@
 
 
 /datum/ore/event/rock_worm
+	name = "rock worm"
 	analysis_string = "Caution! Life signs detected!"
 	excavation_string = "A rock worm jumps out of the collapsing rock!"
 	scan_decal = "scan-object"
@@ -63,6 +66,7 @@
 		new /obj/critter/rockworm(AST)
 
 /datum/ore/event/loot_crate
+	name = "loot crate"
 	analysis_string = "Caution! Large object embedded in rock!"
 	excavation_string = "An abandoned crate was unearthed!"
 	scan_decal = "scan-object"
@@ -73,6 +77,7 @@
 		new /obj/storage/crate/loot(AST)
 
 /datum/ore/event/artifact
+	name = "artifact"
 	analysis_string = "Caution! Large object embedded in rock!"
 	excavation_string = "An artifact was unearthed!"
 	scan_decal = "scan-object"
@@ -83,6 +88,7 @@
 		Artifact_Spawn(AST)
 
 /datum/ore/event/soft_rock
+	name = "soft rock"
 	analysis_string = "Caution! Weak rock formation detected!"
 	hardness_mod = -1
 	distribution_range = 4
@@ -96,6 +102,7 @@
 		AST.hardness += hardness_mod
 
 /datum/ore/event/hard_rock
+	name = "hard rock"
 	analysis_string = "Caution! Dense rock formation detected!"
 	hardness_mod = 1
 	distribution_range = 4
@@ -110,6 +117,7 @@
 		AST.amount += rand(1,3)
 
 /datum/ore/event/volatile
+	name = "volatile rock"
 	analysis_string = "Caution! Volatile compounds detected!"
 	scan_decal = "scan-danger"
 	prevent_excavation = 1
@@ -131,6 +139,7 @@
 				explosion(AST, AST, 1, 2, 3, 4, 1)
 
 /datum/ore/event/radioactive
+	name = "radioactive rock"
 	analysis_string = "Caution! Radioactive mineral deposits detected!"
 	nearby_tile_distribution_min = 4
 	nearby_tile_distribution_max = 8
