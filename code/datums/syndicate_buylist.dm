@@ -916,25 +916,7 @@ This is basically useless for anyone but miners.
 	desc = "A barrel of bloodthirsty apes. Careful!"
 	job = list("Staff Assistant","Test Subject","Geneticist","Pathologist")
 	blockedmode = list(/datum/game_mode/revolution)
-/*
-/datum/syndicate_buylist/traitor/insurgent_module
-	name = "Insurgent Cloning Module"
-	item = /obj/item/cloneModule/insurgent_module
-	cost = 6
-	vr_allowed = 0
-	desc = "An add on to the genetics cloning pod that make anyone cloned loyal to whoever installed it."
-	job = list("Geneticist", "Medical Doctor", "Medical Director")
-	blockedmode = list(/datum/game_mode/revolution)
 
-/datum/syndicate_buylist/traitor/deluxe_insurgent_module
-	name = "Deluxe Insurgent Cloning Module Kit"
-	item = /obj/item/storage/box/insurgent_module_kit
-	cost = 10 //  Always leave them 1tc so they can buy the moustache. Style is key.
-	vr_allowed = 0
-	desc = "A Deluxe Insurgent Cloning Kit. Contains an insurgent cloning module and a cloning lab in a box!"
-	job = list("Geneticist", "Medical Doctor", "Medical Director")
-	blockedmode = list(/datum/game_mode/revolution)
-*/
 
 /datum/syndicate_buylist/traitor/buddy_ammofab
 	name = "Guardbuddy Ammo Replicator"
@@ -1107,6 +1089,26 @@ This is basically useless for anyone but miners.
 		tc.name = "[syndicate_currency]"
 
 /////////////////////////////////////////////// Disabled items /////////////////////////////////////////////////////
+
+/* // these are kind of bad rn
+/datum/syndicate_buylist/traitor/insurgent_module
+	name = "Insurgent Cloning Module"
+	item = /obj/item/cloneModule/insurgent_module
+	cost = 6
+	vr_allowed = 0
+	desc = "An add on to the genetics cloning pod that make anyone cloned loyal to whoever installed it."
+	job = list("Geneticist", "Medical Doctor", "Medical Director")
+	blockedmode = list(/datum/game_mode/revolution)
+
+/datum/syndicate_buylist/traitor/deluxe_insurgent_module
+	name = "Deluxe Insurgent Cloning Module Kit"
+	item = /obj/item/storage/box/insurgent_module_kit
+	cost = 10 //  Always leave them 1tc so they can buy the moustache. Style is key.
+	vr_allowed = 0
+	desc = "A Deluxe Insurgent Cloning Kit. Contains an insurgent cloning module and a cloning lab in a box!"
+	job = list("Geneticist", "Medical Doctor", "Medical Director")
+	blockedmode = list(/datum/game_mode/revolution)
+*/
 
 /datum/syndicate_buylist/traitor/fogmaster
 	name = "Fog Machine"
