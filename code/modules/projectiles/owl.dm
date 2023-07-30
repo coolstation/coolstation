@@ -1,3 +1,4 @@
+//Used by: owl gun (safe & unsafe versions)
 /datum/projectile/owl
 	name = "space-time disruption"
 	icon = 'icons/misc/bird.dmi'
@@ -46,7 +47,7 @@
 				M.equip_if_possible(owlmask, M.slot_wear_mask)
 				M.set_clothing_icon_dirty()
 
-
+//Used by: owl gun (unsafe version)
 /datum/projectile/owl/owlate
 	sname = "Owlate"
 

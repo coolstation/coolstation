@@ -385,6 +385,7 @@ proc/Create_Tommyname()
 					activated = 0
 
 ////////////////////////////// Donald Trumpet
+//Used by: Donald Trumpet (uuuuuuuuuuuuugh)
 /datum/projectile/energy_bolt_v/trumpet
 	name = "trumpet bolt"
 	shot_sound = 'sound/musical_instruments/Bikehorn_2.ogg'

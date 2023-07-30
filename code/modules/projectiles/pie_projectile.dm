@@ -1,3 +1,4 @@
+//Used by: guardbuddy pie launcher
 /datum/projectile/pie
 	name = "pie"
 	icon = 'icons/obj/foodNdrink/food_dessert.dmi'

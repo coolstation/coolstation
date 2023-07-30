@@ -20,6 +20,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	on_hit(atom/hit, direction, projectile)
 		return
 
+//Unused
 /datum/projectile/special/kiss
 	name = "kiss"
 	icon_state = "kiss"
@@ -32,6 +33,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 			var/mob/living/carbon/human/H = hit
 			boutput(H, "<span class='alert'><B>You catch the kiss and save it for later.</B></span>")
 
+//Used by: acid drones
 /datum/projectile/special/acid
 	name = "acid"
 	icon_state = "radbolt"
@@ -50,6 +52,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	weak
 		power = 15
 
+//Used by: changeling abomination
 /datum/projectile/special/acidspit
 	name = "acid splash"
 	icon_state = "acidspit"
@@ -70,7 +73,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		var/power = projectile.power
 		hit.damage_corrosive(power)
 
-
+//Unused
 /datum/projectile/special/ice
 	name = "ice"
 	icon_state = "ice"
@@ -85,6 +88,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 			var/mob/living/L = hit
 			L.bodytemperature -= projectile.power
 
+//Unused
 /datum/projectile/special/material_changer
 	name = "transmutation bolt"
 	icon_state = "ice"
@@ -103,6 +107,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	on_hit(var/atom/A)
 		A.setMaterial(getMaterial("gold"))
 
+//Unused
 /datum/projectile/special/piercing
 	name = "focused beam"
 	sname = "focused beam"
@@ -115,6 +120,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	pierces = -1
 	ticks_between_mob_hits = 10
 
+//Unused
 /datum/projectile/special/wallhax
 	name = "phased beam"
 	sname = "phased beam"
@@ -127,7 +133,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	goes_through_walls = 1
 
 // Mildly crazy shit
-
+//Parent type
 /datum/projectile/special/spreader
 	name = "spread shot"
 	sname = "spread shot"
@@ -174,6 +180,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 			new_pellet(P,PT,F)
 		P.die()
 
+//Parent type
 /datum/projectile/special/spreader/uniform_burst
 	name = "uniform spread"
 	sname = "uniform spread"
@@ -223,12 +230,14 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	damage_type = D_SPECIAL
 	power = 32
 
+//Used by: battle bus, stinger grenades (shrapnel)
 /datum/projectile/special/spreader/uniform_burst/circle
 	name = "circular spread"
 	sname = "circular spread"
 	spread_angle = 180
 	pellets_to_fire = 20
 
+//Used by: blaster cannon
 /datum/projectile/special/spreader/uniform_burst/blaster
 	name = "blaster wave"
 	sname = "wave fire"
@@ -238,7 +247,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	spread_projectile_type = /datum/projectile/laser/blaster/blast
 	shot_sound = 'sound/weapons/laser_f.ogg'
 
-
+//Used by: hallucigenia (via limb)
 /datum/projectile/special/spreader/uniform_burst/spikes
 	name = "spike wave"
 	sname = "spike wave"
@@ -251,7 +260,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 
 
 // Really crazy shit
-
+//Unused
 /datum/projectile/special/shock_orb
 	name = "ball lightning"
 	sname = "ball lightning"
@@ -298,7 +307,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 			var/turf/Q = pick(sfloors)
 			arcFlashTurf(A, Q, wattage)
 			sfloors -= Q
-
+	//Unused
 	always_mob
 
 		tick(var/obj/projectile/P)
@@ -313,6 +322,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 					arcFlash(P, Q, wattage)
 					smobs -= Q
 
+//Unused
 /datum/projectile/special/inferno
 	name = "inferno bomb"
 	sname = "inferno bomb"
@@ -335,6 +345,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		playsound(A, "sound/effects/ExplosionFirey.ogg", 100, 1)
 		fireflash_sm(get_turf(A), blast_size, temperature)
 
+//Used by: man-portable plasma howitzer, admins, there's a shuttle gun with this too but IDK the status on that
 /datum/projectile/special/howitzer
 	name = "plasma howitzer"
 	sname = "plasma howitzer"
@@ -390,6 +401,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 			playsound_global(world, 'sound/effects/creaking_metal1.ogg', 40)
 
 // A weapon by Sovexe
+//Used by: Meowitzer (unsafe)
 /datum/projectile/special/meowitzer //what have I done
 	shot_sound = 'sound/misc/boing/6.ogg'
 	name  = "meowitzer"
@@ -421,9 +433,11 @@ ABSTRACT_TYPE(/datum/projectile/special)
 				explosion_new(projectile, T, explosion_power, 1)
 		return
 
+//Used by: Meowitzer (safe)
 /datum/projectile/special/meowitzer/inert
 	explosive_hits = 0
 
+//Unused
 /datum/projectile/special/spewer
 	name = "volatile bolt"
 	sname = "volatile bolt"
@@ -455,6 +469,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		var/obj/projectile/FC = initialize_projectile(PT, F, rand(-projectile_speed,projectile_speed), rand(-projectile_speed,projectile_speed), P.shooter)
 		FC.launch()
 
+//Used by: volatile bolt (spewer) - unused by proxy
 /datum/projectile/laser/spewer_bolt
 	name = "volatile bolt fragment"
 	sname = "volatile bolt fragment"
@@ -464,6 +479,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	dissipation_delay = 15
 	dissipation_rate = 1
 
+//Unused
 /datum/projectile/laser/punch // yep :I
 	name = "punch"
 	window_pass = 0
