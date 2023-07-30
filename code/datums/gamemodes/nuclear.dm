@@ -192,6 +192,7 @@
 			equip_syndicate(synd_mind.current, 0)
 		boutput(synd_mind.current, "<span class='alert'>Your headset allows you to communicate on the syndicate radio channel by prefacing messages with :h, as (say \":h Agent reporting in!\").</span>")
 
+		synd_mind.current.bioHolder?.AddEffect("accent_FOSS", 0, 0, 0, 1)
 		synd_mind.current.antagonist_overlay_refresh(1, 0)
 		SHOW_NUKEOP_TIPS(synd_mind.current)
 
