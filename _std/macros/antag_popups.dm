@@ -21,6 +21,7 @@
 #define SHOW_INSURGENT_DEATH_TIPS(M) M.Browse(grabResource("html/insurgent/death.html"), ANTAG_TIPS_WINDOW)
 #define SHOW_INSURGENT_OVERRIDE_TIPS(M) M.Browse(grabResource("html/insurgent/override.html"), ANTAG_TIPS_WINDOW)
 #define SHOW_INSURGENT_EXPIRED_TIPS(M) M.Browse(grabResource("html/insurgent/expire.html"), ANTAG_TIPS_WINDOW)
+#define SHOW_INSURGENT_BACKFIRE(M) M.Browse(grabResource("html/insurgent/backfire.html"), ANTAG_TIPS_WINDOW)
 
 // wizard
 #define SHOW_WIZARD_TIPS(M) M.Browse(grabResource("html/traitorTips/wizardTips.html"), ANTAG_TIPS_WINDOW)

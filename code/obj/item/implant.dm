@@ -709,6 +709,19 @@ THROWING DARTS
 			alert(M, "You feel utterly strengthened in your resolve! You are the most important person in the universe!", "YOU ARE REALY GREAT!!")
 			return
 
+		if(!I.mind.special_role && M.mind && ticker.mode) // a nonantag? using an implant on ya? well then...
+			old_objectives = M.mind.objectives
+			var/datum/objective/regular/assassinate/kill_implanter = new
+			kill_implanter.target = I
+			kill_implanter.create_objective_string(I)
+			M.mind.objectives += kill_implanter
+			M.mind.special_role = ROLE_INSURGENT
+			SHOW_INSURGENT_BACKFIRE(M)
+			boutput(M, "<h2><span class='alert'>OOOOOOH this one's a BASTARD!!! That [I.real_name], you gotta KILL [him_or_her(I)]! KILL KILL KILL KILL KILL AAAAA KILL!!!!</span></h2>")
+			logTheThing("admin", I, M, "tried to use an insurgent implant as a non-antag.")
+			return
+
+
 		if (M.mind && ticker.mode)
 			old_objectives = M.mind.objectives
 			if (!M.mind.special_role)
@@ -725,7 +738,7 @@ THROWING DARTS
 			boutput(M, "<h2><span class='alert'>You feel an unwavering loyalty to [I.real_name]! You feel you must help [his_or_her(I)] cause! Do not tell anyone about this unless your ally tells you to!</span></h2>")
 			SHOW_INSURGENT_TIPS(M)
 		if (src.custom_orders)
-			boutput(M, "<h2><span class='alert'>[I.real_name]'s will consumes your mind! <b>\"[src.custom_orders]\"</b> It <b>must</b> be done!</span></h2>")
+			boutput(M, "<h2><span class='alert'>[I.real_name]'s plan overwhelms your brain! <b>\"[src.custom_orders]\"</b> It <b>must</b> be done!</span></h2>")
 
 		if (expire)
 			//30 minutes +/- 5
