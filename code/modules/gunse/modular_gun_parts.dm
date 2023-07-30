@@ -423,11 +423,24 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/italian
 	name = "canna di fucile"
 	desc = "una canna di fucile di base e di alta qualità"
-	spread_angle = 9 // "alta qualità"
-	part_DRM = GUN_NANO | GUN_ITALIAN | GUN_SOVIET
+	spread_angle = 7 // "alta qualità"
+	part_DRM = GUN_ITALIAN | GUN_SOVIET
 	name_addition = "paisan"
 	icon_state = "it_revolver_short"
 	length = 13
+
+/obj/item/gun_parts/barrel/italian/accurate
+	name = "buon canna di fucile"
+	desc = "una canna di fucile di base e di bellissima qualità"
+	name_addition = "paisano"
+	spread_angle = 3
+
+/obj/item/gun_parts/barrel/italian/spicy
+	name = "canna di fucile arrabiata"
+	desc = "una canna di fucile di base e di bellissima qualità"
+	name_addition = "paisana"
+	spread_angle = 9
+	length = 16
 
 // BASIC STOCKS
 // Stocks should always have a negative spread angle unless they're particularly cumbersome.

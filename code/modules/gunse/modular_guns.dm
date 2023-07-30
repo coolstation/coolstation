@@ -799,7 +799,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 
 
 
-ABSTRACT_TYPE(/obj/item/gun/modular/italian)
+
 /obj/item/gun/modular/italian
 	name = "\improper Italiano"
 	real_name = "\improper Italiano"
@@ -818,13 +818,17 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 		..()
 		process_ammo()
 
-/obj/item/gun/modular/italian/italiano
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/italian(src)
 		stock = new /obj/item/gun_parts/stock/italian(src)
 
+/obj/item/gun/modular/italian/italiano
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/italian/accurate(src)
+		stock = new /obj/item/gun_parts/stock/juicer(src)
+
 
 /obj/item/gun/modular/italian/big_italiano
 	make_parts()
-		barrel = new /obj/item/gun_parts/barrel/italian/(src)
+		barrel = new /obj/item/gun_parts/barrel/italian/spicy(src)
 		stock = new /obj/item/gun_parts/stock/italian/bigger(src)
