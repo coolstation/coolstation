@@ -1941,31 +1941,31 @@ proc/countJob(rank)
 	return is_immune
 
 // Their antag status is revoked on death/implant removal/expiration, but we still want them to show up in the game over stats (Convair880).
-/proc/remove_mindslave_status(var/mob/M, var/slave_type ="", var/removal_type ="")
-	if (!M || !M.mind || !slave_type || !removal_type)
+/proc/remove_insurgent_status(var/mob/M, var/recruit_type ="", var/removal_type ="")
+	if (!M || !M.mind || !recruit_type || !removal_type)
 		return
 
 	// Find our master's mob reference (if any).
 	var/mob/mymaster = whois_ckey_to_mob_reference(M.mind.master)
 
-	switch (slave_type)
-		if ("mslave")
+	switch (recruit_type)
+		if ("nsurgt")
 			switch (removal_type)
 				if ("expired")
-					logTheThing("combat", M, mymaster, "'s mindslave implant (implanted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) has worn off.")
+					logTheThing("combat", M, mymaster, "'s insurgent implant (implanted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) has worn off.")
 				if ("surgery")
-					logTheThing("combat", M, mymaster, "'s mindslave implant (implanted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) was removed surgically.")
+					logTheThing("combat", M, mymaster, "'s insurgent implant (implanted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) was removed surgically.")
 				if ("override")
-					logTheThing("combat", M, mymaster, "'s mindslave implant (implanted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) was overridden by a different implant.")
+					logTheThing("combat", M, mymaster, "'s insurgent implant (implanted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) was overridden by a different implant.")
 				if ("death")
-					logTheThing("combat", M, mymaster, "(implanted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) has died, removing mindslave status.")
+					logTheThing("combat", M, mymaster, "(implanted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) has died, removing insurgent status.")
 				else
-					logTheThing("combat", M, mymaster, "'s mindslave implant (implanted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) has vanished mysteriously.")
+					logTheThing("combat", M, mymaster, "'s insurgent implant (implanted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) has vanished mysteriously.")
 
 			remove_antag(M, null, 1, 0)
 			if (M.mind && ticker.mode && !(M.mind in ticker.mode.former_antagonists))
-				if (!M.mind.former_antagonist_roles.Find("mindslave"))
-					M.mind.former_antagonist_roles.Add("mindslave")
+				if (!M.mind.former_antagonist_roles.Find("insurgent"))
+					M.mind.former_antagonist_roles.Add("insurgent")
 				ticker.mode.former_antagonists += M.mind
 
 		if ("vthrall")
@@ -1981,43 +1981,47 @@ proc/countJob(rank)
 					M.mind.former_antagonist_roles.Add("vampthrall")
 				ticker.mode.former_antagonists += M.mind
 
-		// This is only used for spy slaves and mindslaved antagonists at the moment.
-		if ("otherslave")
+		// This is only used for spy recruits and insurgentd antagonists at the moment.
+		if ("other_recruit")
 			switch (removal_type)
 				if ("expired")
-					logTheThing("combat", M, mymaster, "'s mindslave implant (implanted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) has worn off.")
+					logTheThing("combat", M, mymaster, "'s insurgent implant (implanted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) has worn off.")
 				if ("surgery")
-					logTheThing("combat", M, mymaster, "'s mindslave implant (implanted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) was removed surgically.")
+					logTheThing("combat", M, mymaster, "'s insurgent implant (implanted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) was removed surgically.")
 				if ("override")
-					logTheThing("combat", M, mymaster, "'s mindslave implant (implanted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) was overridden by a different implant.")
+					logTheThing("combat", M, mymaster, "'s insurgent implant (implanted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) was overridden by a different implant.")
 				if ("death")
-					logTheThing("combat", M, mymaster, "(enslaved by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) has died, removing mindslave status.")
+					logTheThing("combat", M, mymaster, "(converted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) has died, removing insurgent status.")
 				else
-					logTheThing("combat", M, mymaster, "(enslaved by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) has been freed mysteriously, removing mindslave status.")
+					logTheThing("combat", M, mymaster, "(converted by [mymaster ? "[constructTarget(mymaster,"combat")]" : "*NOKEYFOUND*"]) has been freed mysteriously, removing insurgent status.")
 
-			// Fix for mindslaved traitors etc losing their antagonist status.
-			if (M.mind && (M.mind.special_role == "spyslave"))
+			// Fix for insurgentd traitors etc losing their antagonist status.
+			if (M.mind && (M.mind.special_role == "spyrecruit"))
 				remove_antag(M, null, 1, 0)
 			else
 				M.mind.master = null
 			if (M.mind && ticker.mode && !(M.mind in ticker.mode.former_antagonists))
-				if (!M.mind.former_antagonist_roles.Find("mindslave"))
-					M.mind.former_antagonist_roles.Add("mindslave")
+				if (!M.mind.former_antagonist_roles.Find("insurgent"))
+					M.mind.former_antagonist_roles.Add("insurgent")
 				ticker.mode.former_antagonists += M.mind
 
 		else
-			logTheThing("debug", M, null, "<b>Convair880</b>: [M] isn't a mindslave or vampire thrall, can't remove mindslave status.")
+			logTheThing("debug", M, null, "<b>Convair880</b>: [M] isn't an insurgent or vampire thrall, can't remove insurgent status.")
 			return
 
 	if (removal_type == "death")
-		boutput(M, "<h2><span class='alert'>Since you have died, you are no longer a mindslave! Do not obey your former master's orders even if you've been brought back to life somehow.</span></h2>")
-		SHOW_MINDSLAVE_DEATH_TIPS(M)
+		if (recruit_type == "vthrall")
+			boutput(M, "<h2><span class='alert'>Since you have died, you are no longer a vampiric thrall! Do not obey your former ally's orders even if you've been brought back to life somehow.</span></h2>")
+			SHOW_VAMPTHRALL_DEATH_TIPS(M)
+		else
+			boutput(M, "<h2><span class='alert'>Since you have died, you are no longer an insurgent! Do not help your former ally even if you've been brought back to life somehow.</span></h2>")
+			SHOW_INSURGENT_DEATH_TIPS(M)
 	else if (removal_type == "override")
-		boutput(M, "<h2><span class='alert'>Your mindslave implant has been overridden by a new one, cancelling out your former allegiances!</span></h2>")
-		SHOW_MINDSLAVE_OVERRIDE_TIPS(M)
+		boutput(M, "<h2><span class='alert'>Your insurgent implant has been overridden by a new one, cancelling out your former allegiances!</span></h2>")
+		SHOW_INSURGENT_OVERRIDE_TIPS(M)
 	else
-		boutput(M, "<h2><span class='alert'>Your mind is your own again! You no longer feel the need to obey your former master's orders.</span></h2>")
-		SHOW_MINDSLAVE_EXPIRED_TIPS(M)
+		boutput(M, "<h2><span class='alert'>Your mind is your own again! You no longer feel the need to obey your former ally's orders.</span></h2>")
+		SHOW_INSURGENT_EXPIRED_TIPS(M)
 
 	return
 

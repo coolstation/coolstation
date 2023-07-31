@@ -270,7 +270,7 @@
 
 		if (src.mind)
 			if (src.mind.special_role)
-				src.handle_robot_antagonist_status("death", 1) // Mindslave or rogue (Convair880).
+				src.handle_robot_antagonist_status("death", 1) // Insurgent or rogue (Convair880).
 			src.mind.register_death()
 
 #ifdef RESTART_WHEN_ALL_DEAD
@@ -1593,7 +1593,7 @@
 			return
 
 		if (src.mind && src.mind.special_role)
-			src.handle_robot_antagonist_status("brain_removed", 1, user) // Mindslave or rogue (Convair880).
+			src.handle_robot_antagonist_status("brain_removed", 1, user) // Insurgent or rogue (Convair880).
 
 		if (user)
 			src.visible_message("<span class='alert'>[user] removes [src]'s brain!</span>")

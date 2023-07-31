@@ -543,12 +543,12 @@ var/global/list/module_editors = list()
 
 	if (remove == 1)
 		if (src.mind.special_role && src.mind.master) // Synthetic thralls are a thing, somehow.
-			if (src.mind.special_role == ROLE_MINDSLAVE)
-				remove_mindslave_status(src, "mslave", "death")
+			if (src.mind.special_role == ROLE_INSURGENT)
+				remove_insurgent_status(src, "nsurgt", "death")
 			else if (src.mind.special_role == ROLE_VAMPTHRALL)
-				remove_mindslave_status(src, "vthrall", "death")
+				remove_insurgent_status(src, "vthrall", "death")
 			else if (src.mind.master)
-				remove_mindslave_status(src, "otherslave", "death")
+				remove_insurgent_status(src, "other_recruit", "death")
 
 			return
 
