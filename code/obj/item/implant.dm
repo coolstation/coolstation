@@ -655,7 +655,7 @@ THROWING DARTS
 		if (H.mind && ((H.mind.special_role == ROLE_VAMPTHRALL) || (H.mind.special_role == "spyrecruit")))
 			if (ismob(user)) user.show_text("<b>[H] seems to be immune to being converted!</b>", "red")
 			H.show_text("<b>You resist [implant_master]'s attempt to convert you!</b>", "red")
-			logTheThing("combat", H, implant_master, "resists [constructTarget(implant_master,"combat")]'s attempt to insurgent them at [log_loc(H)].")
+			logTheThing("combat", H, implant_master, "resists [constructTarget(implant_master,"combat")]'s attempt to radicalize them at [log_loc(H)].")
 			return 0
 		// Necessary to get those expiration messages to trigger properly if the same mob is implanted again,
 		// since insurgent implants have spawns  going on.
