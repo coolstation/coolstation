@@ -192,9 +192,9 @@ datum/mind
 
 		// Added (Convair880).
 		if (recipient.mind.master)
-			var/mob/mymaster = whois_ckey_to_mob_reference(recipient.mind.master)
-			if (mymaster)
-				output+= "<br><b>Your master:</b> [mymaster.real_name]"
+			var/mob/crimepal = whois_ckey_to_mob_reference(recipient.mind.master)
+			if (crimepal)
+				output+= "<br><b>Your Crimepal:</b> [crimepal.real_name]"
 
 		recipient.Browse(output,"window=memory;title=Memory")
 

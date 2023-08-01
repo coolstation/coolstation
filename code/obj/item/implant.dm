@@ -733,9 +733,9 @@ THROWING DARTS
 				M.mind.objectives |= I.mind.objectives
 
 		if (src.suppress_insurgent_popup)
-			boutput(M, "<h2><span class='alert'>You feel an unwavering loyalty to your new ally, [I.real_name], and their cause! Do not tell anyone about this unless your new ally tells you to!</span></h2>")
+			boutput(M, "<h2><span class='alert'>You feel an unwavering loyalty to your new crimepal, [I.real_name], and their cause! Do not tell anyone about this unless your new crimepal tells you to!</span></h2>")
 		else
-			boutput(M, "<h2><span class='alert'>You feel an unwavering loyalty to [I.real_name]! You feel you must help [his_or_her(I)] cause! Do not tell anyone about this unless your ally tells you to!</span></h2>")
+			boutput(M, "<h2><span class='alert'>You feel an unwavering loyalty to [I.real_name]! You feel you must help [his_or_her(I)] cause! Do not tell anyone about this unless your crimepal tells you to!</span></h2>")
 			SHOW_INSURGENT_TIPS(M)
 		if (src.custom_orders)
 			boutput(M, "<h2><span class='alert'>[I.real_name]'s plan overwhelms your brain! <b>\"[src.custom_orders]\"</b> It <b>must</b> be done!</span></h2>")
