@@ -267,18 +267,16 @@
 				H.sims.affectMotive("fun", 1)
 		spam_flag = 1
 		if (narrator_mode)
-			playsound(user, 'sound/vox/duct.ogg', 50, 1)
+			playsound(user, 'sound/vox/screamsound.ogg', 50, 1)
 		else
 			if (prob (50))
-				playsound(user, 'sound/effects/tunascream01.ogg', 50, 1)
-				user.visible_message("<B>THE TUNA PILLOW SCREAMS!</B>")
+				playsound(user, 'sound/voice/scientist/scream06.ogg', 50, 1)
 			if (prob (50))
-				playsound(user, 'sound/effects/tunascream02.ogg', 50, 1)
-				user.visible_message("<B>THE TUNA PILLOW SCREAMS!</B>")
+				playsound(user, 'sound/voice/scientist/scream02.ogg', 50, 1)
+			user.visible_message("<B>THE TUNA PILLOW SCREAMS!</B>")
 		if(prob(1))
 			user.drop_item()
 			playsound(user, 'sound/effects/ohmygodtuna.ogg', 50, 1)
-			user.visible_message("<B>THE TUNA PILLOW WAILS A OMMINOUS MESSAGE, WHO MADE THIS THING!</B>")
 			var/wacka = 0
 			while (wacka++ < 50)
 				sleep(0.2 SECONDS)
