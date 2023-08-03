@@ -1,3 +1,4 @@
+//Used by: BFG 9000
 /datum/projectile/bfg
 	name = "BFG shot"
 	icon_state = "bfg"

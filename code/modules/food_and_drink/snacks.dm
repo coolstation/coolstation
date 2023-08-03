@@ -54,11 +54,71 @@
 	icon = 'icons/obj/foodNdrink/food_yuck.dmi'
 	icon_state = "fried"
 
+/obj/item/reagent_containers/food/snacks/shell/frozen
+	name = "metaphysical condensation of the very concept of frozen dinner"
+	desc = "Oh, the power of the deep chiller."
+	icon = 'icons/obj/foodNdrink/food_yuck.dmi'
+	icon_state = "frozen"
+	food_effects = list("food_cold")
+	initial_volume = 25
+	initial_reagents = "ice"
+	var/frozenness = 25
+	heal(var/mob/M)
+		if(M.mind)
+			boutput(M, "Maybe you should warm this thing up[pick(", genius.",", asshole.",", you moron.",".","...","?")]")
+			M.add_karma(-0.5)
+		..()
+
+	attackby(obj/item/W, mob/user)
+		if (isweldingtool(W) && W:try_weld(user,0,-1,0,0))
+			frozenness -= 4
+			src.visible_message("[user] warms up their dinner with [W]")
+		else if (istype(W, /obj/item/clothing/head/cakehat) && W:on)
+			frozenness -= 5
+			user.add_karma(0.5)
+			src.visible_message("[user] warms up their dinner with [W]... that's [pick("fuckin rad","weird as hell","extremely normal","unremarkable","wild")].")
+		else if (istype(W, /obj/item/device/light/zippo) && W:on)
+			frozenness -= 3
+			src.visible_message("[user] warms up their dinner with [W], like a tryhard.")
+		else if ((istype(W, /obj/item/match) || istype(W, /obj/item/clothing/mask/cigarette) || istype(W, /obj/item/device/light/candle)) && W:on)
+			frozenness--
+			src.visible_message("[user] warms up their dinner with [W], doesn't look very efficient.")
+		else if (W.burning)
+			frozenness -= W.w_class
+			src.visible_message("[user] warms up their dinner with [W]")
+		else if (W.firesource)
+			frozenness -= W.w_class
+			src.visible_message("[user] warms up their dinner with [W]")
+		else
+			..()
+
+		if(frozenness <= 0)
+			for(var/atom/movable/A in src.contents)
+				A.set_loc(src.loc)
+			src.visible_message("<span class='success'>[src] thaws out completely.]</span>")
+			qdel(src)
+
+
+	temperature_expose(datum/gas_mixture/air, temperature, volume)
+		if (temperature > T0C+25) // try to avoid melting at room temp, warm it up more please.
+			if(frozenness <= 0)
+				for(var/atom/movable/A in src.contents)
+					A.set_loc(src.loc)
+				src.visible_message("<span class='success'>[src] thaws out completely.]</span>")
+				qdel(src)
+			frozenness--
+			if(prob(10))
+				var/turf/T = get_turf(src)
+				T.fluid_react_single("water",2)
+			if (temperature > T0C+100)
+				frozenness--
+
+
 /obj/item/reagent_containers/food/snacks/shell/grill
 	name = "the charcoal singed essence of grilling itself"
 	desc = "Oh, the magic of a hot grill."
-	icon = 'icons/obj/foodNdrink/food.dmi'
-	icon_state = "fried" // fix this
+	icon = 'icons/obj/foodNdrink/food_yuck.dmi'
+	icon_state = "burnt"
 
 /obj/item/reagent_containers/food/snacks/pizza
 	name = "pizza"

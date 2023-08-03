@@ -47,7 +47,7 @@ Fibre wire
 
 		if(ticker?.mode) //Yes, I'm sure my runtimes will matter if the goddamn TICKER is gone.
 			for(var/datum/mind/M in (ticker.mode.Agimmicks | ticker.mode.traitors)) //We want an EVIL ghost
-				if(!M.dnr && M.current && isobserver(M.current) && M.current.client && M.special_role != ROLE_VAMPTHRALL && M.special_role != ROLE_MINDSLAVE)
+				if(!M.dnr && M.current && isobserver(M.current) && M.current.client && M.special_role != ROLE_VAMPTHRALL && M.special_role != ROLE_INSURGENT)
 					priority_targets.Add(M.current)
 
 		if(!priority_targets.len) //Okay, fine. Any ghost. *sigh
@@ -385,6 +385,7 @@ proc/Create_Tommyname()
 					activated = 0
 
 ////////////////////////////// Donald Trumpet
+//Used by: Donald Trumpet (uuuuuuuuuuuuugh)
 /datum/projectile/energy_bolt_v/trumpet
 	name = "trumpet bolt"
 	shot_sound = 'sound/musical_instruments/Bikehorn_2.ogg'

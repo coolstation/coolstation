@@ -375,7 +375,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle =  13 // jesus christ it's a spread machine
 	scatter = 1
 	jam_frequency_fire = 5 //but very poorly built
-	part_DRM = GUN_JUICE | GUN_NANO
+	part_DRM = GUN_JUICE
 	name_addition = "BLUNDER"
 	icon_state = "juicer_blunderbuss"
 	length = 12
@@ -383,6 +383,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 /obj/item/gun_parts/barrel/juicer/chub
 	name = "\improper BUSTIN Barrel"
+	part_DRM = GUN_JUICE | GUN_NANO
 	spread_angle = 6
 	length = 25
 	icon_state = "juicer_chub"
@@ -391,6 +392,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/juicer/longer
 	name = "\improper SNIPA Barrel"
 	desc = "A cheaply-built extended rifled shotgun barrel. Not good."
+	part_DRM = GUN_JUICE | GUN_NANO
 	spread_angle =  4 // accurate?? ish?
 	jam_frequency_fire = 15 //but very!!!!!!! poorly built
 	name_addition = "BLITZER"
@@ -400,9 +402,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/soviet
 	name = "soviet lenses"
 	desc = "стопка линз для фокусировки вашего пистолета"
-	spread_angle =  5
+	spread_angle =  3
 	lensing = 1.2
-	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
+	part_DRM = GUN_SOVIET | GUN_ITALIAN
 	name_addition = "comrade"
 	icon_state = "soviet_lens"
 	length = 18
@@ -411,7 +413,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/soviet/long
 	name = "long soviet lenses"
 	desc = "стопка линз для фокусировки вашего пистолета"
-	spread_angle = 3
+	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
+	spread_angle = 2
 	lensing = 1.4
 	name_addition = "tovarisch"
 	icon_state = "soviet_lens_long"
@@ -420,11 +423,24 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/italian
 	name = "canna di fucile"
 	desc = "una canna di fucile di base e di alta qualità"
-	spread_angle = 9 // "alta qualità"
-	part_DRM = GUN_NANO | GUN_ITALIAN | GUN_SOVIET
+	spread_angle = 7 // "alta qualità"
+	part_DRM = GUN_ITALIAN | GUN_SOVIET
 	name_addition = "paisan"
 	icon_state = "it_revolver_short"
 	length = 13
+
+/obj/item/gun_parts/barrel/italian/accurate
+	name = "buon canna di fucile"
+	desc = "una canna di fucile di base e di bellissima qualità"
+	name_addition = "paisano"
+	spread_angle = 3
+
+/obj/item/gun_parts/barrel/italian/spicy
+	name = "canna di fucile arrabiata"
+	desc = "una canna di fucile di base e di bellissima qualità"
+	name_addition = "paisana"
+	spread_angle = 9
+	length = 16
 
 // BASIC STOCKS
 // Stocks should always have a negative spread angle unless they're particularly cumbersome.
@@ -434,7 +450,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "standard grip"
 	desc = "A comfortable NT pistol grip"
 	spread_angle = -3 // basic stabilisation
-	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN
+	part_DRM = GUN_NANO
 	name_addition = "trusty"
 	icon = 'icons/obj/items/modular_guns/grips.dmi'
 	icon_state = "nt_blue"
@@ -513,7 +529,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/stock/foss/loader
 	name = "\improper FOSS laser loader stock"
 	desc = "An open-sourced laser dynamo, with a multiple-position winding spring. This one's kind of hard to hold."
-	spread_angle = 7 //  O NO
+	spread_angle = 3 // poor stabilisation
 	max_ammo_capacity = 1 // more bulbs in the pocket
 	jam_frequency_reload = 10
 	flash_auto = 1
@@ -623,6 +639,12 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	var/datum/component/holdertargeting/simple_light/light_dim
 	var/datum/component/holdertargeting/simple_light/light_good
 
+	attack_self(mob/user as mob)
+		user.u_equip(src)
+		user.show_text("You de-militarise the emergency flashlight, turning it into a normal, non-tactical one.", "baby shit brown")
+		var/obj/item/device/light/flashlight/H = new()
+		user.put_in_hand_or_drop(H)
+		qdel(src)
 
 	alt_fire()
 		playsound(src, "sound/items/penclick.ogg", 30, 1)
@@ -671,6 +693,13 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		light_mode = 0
 		. = ..()
 
+	attack_self(mob/user as mob)
+		user.u_equip(src)
+		user.show_text("You de-militarise the enbrightener, turning it into a normal useless one.", "blue")
+		var/obj/item/device/light/flashlight/H = new()
+		user.put_in_hand_or_drop(H)
+		qdel(src)
+
 // No such thing as a basic magazine! they're all bullshit!!
 /obj/item/gun_parts/magazine/juicer
 	name = "HOTT SHOTTS MAG"
@@ -680,4 +709,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "LARGE"
 	icon_state = "juicer_drum"
 	overlay_y = 8
+
+	four
+		name = "HOTTTT SHOTTS MAG"
+		max_ammo_capacity = 4
 

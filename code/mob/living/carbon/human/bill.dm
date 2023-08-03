@@ -417,6 +417,7 @@ starting with SHITTY BILL
 		src.equip_new_if_possible(/obj/item/clothing/mask/cigarette/john, slot_wear_mask)
 		src.equip_new_if_possible(/obj/item/clothing/suit/labcoat, slot_wear_suit)
 		src.equip_new_if_possible(/obj/item/clothing/head/paper_hat/john, slot_head)
+		src.equip_new_if_possible(/obj/item/card/id/juicer/john, slot_wear_id)
 
 		var/obj/item/implant/access/infinite/shittybill/implant = new /obj/item/implant/access/infinite/shittybill(src)
 		implant.implanted(src, src)

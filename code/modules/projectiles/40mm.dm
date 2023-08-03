@@ -1,3 +1,4 @@
+//Unused
 /datum/projectile/fourtymm
 	name = "40mm projectile"
 	icon = 'icons/obj/projectiles.dmi'

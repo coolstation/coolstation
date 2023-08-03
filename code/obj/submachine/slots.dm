@@ -140,7 +140,7 @@
 				return TRUE
 			boutput(user, "<span class='notice'>Card authorized.</span>")
 			src.scan = I
-			src.accessed_record = FindBankAccountByName(src.scan.registered)
+			src.accessed_record = FindBankAccountById(src.scan.registered_id)
 			ui_interact(user)
 			. = TRUE
 	else

@@ -1705,7 +1705,7 @@
 	former_role = text("[M.mind.special_role]")
 
 	message_admins("[key_name(M)]'s antagonist status ([former_role]) was removed. Source: [admin ? "[key_name(admin)]" : "*automated*"].")
-	if (admin) // Log entries for automated antag status removal is handled in helpers.dm, remove_mindslave_status().
+	if (admin) // Log entries for automated antag status removal is handled in helpers.dm, remove_insurgent_status().
 		logTheThing("admin", admin, M, "removed the antagonist status of [constructTarget(M,"admin")].")
 		logTheThing("diary", admin, M, "removed the antagonist status of [constructTarget(M,"diary")].", "admin")
 
@@ -1735,7 +1735,7 @@
 		return
 
 	// Then spawn a new mob to delete all mob-/client-bound antagonist verbs.
-	// Complete overkill for mindslaves, though. Blobs and wraiths need special treatment as well.
+	// Complete overkill for insurgents, though. Blobs and wraiths need special treatment as well.
 	// Synthetic mobs aren't really included yet, because it would be a complete pain to account for them properly.
 	if (issilicon(M))
 		var/mob/living/silicon/S = M
@@ -1757,9 +1757,9 @@
 			E << sound('sound/misc/lawnotify.ogg', volume=100, wait=0)
 
 	switch (former_role)
-		if (ROLE_MINDSLAVE) return
+		if (ROLE_INSURGENT) return
 		if (ROLE_VAMPTHRALL) return
-		if ("spyslave") return
+		if ("spyrecruit") return
 		if (ROLE_BLOB) M.humanize(1)
 		if (ROLE_WRAITH) M.humanize(1)
 		else

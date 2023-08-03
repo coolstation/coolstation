@@ -1105,7 +1105,7 @@
 			if (abil.master)
 				abil.master.remove_thrall(mob)
 			else
-				remove_mindslave_status(mob)
+				remove_insurgent_status(mob)
 		..()
 
 /datum/mutantrace/skeleton

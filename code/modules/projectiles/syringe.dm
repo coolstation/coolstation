@@ -1,3 +1,4 @@
+//Used by: syringe gun, guardbuddy medicator module
 /datum/projectile/syringe
 	name = "syringe"
 	icon = 'icons/obj/projectiles.dmi'

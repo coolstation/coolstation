@@ -48,8 +48,9 @@
 			var/obj/item/card/id/card = W
 			if (!mainaccount)
 				for (var/datum/data/record/account in data_core.bank)
-					if (ckey(account.fields["name"]) == ckey(card.registered))
+					if (ckey(account.fields["id"]) == ckey(card.registered_id))
 						mainaccount = account
+						boutput(user, "<span class='notice'>Payments will be paid to [card.registered].</span>")
 						break
 
 				if (!istype(mainaccount))
@@ -60,12 +61,25 @@
 				user.visible_message("<span class='notice'>[user] configures [src] with [W].</span>")
 				return
 
-			if (card.registered in FrozenAccounts)
+			if (!servicechgaccount) // For sneaky embezzlement reasons
+				for(var/datum/data/record/account in data_core.bank)
+					if(ckey(account.fields["id"]) == ckey(card.registered_id))
+						servicechgaccount = account
+						break
+				if(!istype(servicechgaccount))
+					servicechgaccount = null
+					boutput(user, "<span class='alert'>Configuration failure</span>")
+					return
+
+				user.visible_message("<span class='notice'>[user] configures [src] with [W].</span>")
+				return
+
+			if (card.registered_id in FrozenAccounts)
 				boutput(user, "<span class='alert'>Your account cannot currently be liquidated due to active borrows.</span>")
 				return
 			var/datum/data/record/target_account = null
 			for (var/datum/data/record/account in data_core.bank)
-				if (ckey(account.fields["name"]) == ckey(card.registered))
+				if (ckey(account.fields["id"]) == ckey(card.registered_id))
 					target_account = account
 					break
 			if (!istype(target_account))
@@ -76,7 +90,7 @@
 				boutput(user, "<span class='alert'>You can't send funds with the host ID to the host ID!</span>")
 				// TAKE SERVICE FEE :3
 				target_account.fields["current_money"] -= min_serv_chg
-				servicechgaccount["current_money"] += min_serv_chg
+				servicechgaccount.fields["current_money"] += min_serv_chg
 				return
 
 			boutput(user, "<span class='notice'>The current host ID is [mainaccount.fields["name"]]. Insert a value less than zero to cancel transaction.</span>")
@@ -84,13 +98,13 @@
 			if (amount <= 0)
 				// Assume the service fee
 				target_account.fields["current_money"] -= min_serv_chg
-				servicechgaccount["current_money"] += min_serv_chg
+				servicechgaccount.fields["current_money"] += min_serv_chg
 				return
 			if (amount > target_account.fields["current_money"])
 				boutput(user, "<span class='alert'>Insufficent funds. [W] only has [target_account.fields["current_money"]] credits.</span>")
 				// But take the service fee anyway~
 				target_account.fields["current_money"] -= min_serv_chg
-				servicechgaccount["current_money"] += min_serv_chg
+				servicechgaccount.fields["current_money"] += min_serv_chg
 				return
 			boutput(user, "<span class='notice'>Sending transaction.</span>")
 			user.visible_message("<span class='notice'>[user] swipes [src] with [W].</span>")
@@ -98,7 +112,7 @@
 			mainaccount.fields["current_money"] += amount
 			var/service_charge = ((amount * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(amount * serv_chg_pct)
 			target_account.fields["current_money"] -= service_charge
-			servicechgaccount["current_money"] += service_charge
+			servicechgaccount.fields["current_money"] += service_charge
 
 			user.visible_message("<b>[src]</b> beeps, \"[mainaccount.fields["name"]] now holds [mainaccount.fields["current_money"]] credits. Thank you for your service!\"")
 			PrintReceipt(mainaccount, target_account, amount, service_charge)
@@ -114,3 +128,17 @@
 				mainaccount = null
 			if ("No")
 				return
+
+	emag_act(var/mob/user, var/obj/item/card/emag/E)
+		if(user)
+			boutput("You scramble the configuration on [src]!")
+			src.servicechgaccount = null
+			return 1
+		return 0
+
+	demag(var/mob/user)
+		if(user)
+			boutput("You reset the configuration on [src] to factory defaults.")
+			src.mainaccount = null
+			src.servicechgaccount = wagesystem.finserv_budget
+			return 1

@@ -819,6 +819,16 @@
 /obj/machinery/atmospherics/pipe/simple/overfloor/northeast,
 /turf/simulated/floor/specialroom/freezer,
 /area/station/medical/morgue)
+"aGB" = (
+/obj/item/storage/secure/ssafe{
+	spawn_contents = list(/obj/item/gun/modular/italian);
+	code = "1"
+	},
+/turf/simulated/wall/wooden,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "aGL" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 4
@@ -987,6 +997,9 @@
 /area/gehenna/south)
 "aLd" = (
 /obj/table/wood/auto,
+/obj/machinery/microwave{
+	pixel_y = 4
+	},
 /turf/simulated/floor/carpet/grime,
 /area/station/security/secoffquarters)
 "aLX" = (
@@ -1056,6 +1069,19 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
+"aNB" = (
+/obj/shrub{
+	desc = "You suspect that it's just an Earth fern.";
+	icon = 'icons/obj/stationobjs.dmi';
+	icon_state = "plant";
+	name = "space fern";
+	pixel_y = 14
+	},
+/turf/simulated/grimycarpet,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "aNJ" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/wingrille_spawn,
@@ -1264,6 +1290,13 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/floor/darkblue,
 /area/station/bridge/conference)
+"aVZ" = (
+/obj/decal/poster/wallsign/poster_tiger,
+/turf/simulated/wall/wooden,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "aWe" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -1390,8 +1423,8 @@
 /turf/simulated/floor,
 /area/station/security/main)
 "bch" = (
-/obj/machinery/vending/coffee,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
+/obj/machinery/vending/snack_freezer,
 /turf/simulated/floor/carpet/grime,
 /area/station/security/secoffquarters)
 "bcD" = (
@@ -1838,6 +1871,15 @@
 /obj/disposalpipe/segment/bent/east,
 /turf/simulated/floor,
 /area/station/security/main)
+"bxN" = (
+/obj/machinery/door/unpowered/wood/pyro{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "byu" = (
 /obj/disposalpipe/trunk{
 	dir = 1
@@ -1850,6 +1892,15 @@
 	},
 /turf/simulated/floor,
 /area/station/engine/core)
+"byA" = (
+/obj/stool/chair/couch/green{
+	dir = 4
+	},
+/turf/simulated/grimycarpet,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "bAz" = (
 /obj/stool/chair{
 	dir = 1
@@ -2272,6 +2323,20 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/carpet/blue/standard/edge/west,
 /area/station/medical/medbay/lobby)
+"bQU" = (
+/obj/decal/cleanable/dirt/dirt5,
+/obj/blind_switch/area/south{
+	pixel_x = -3
+	},
+/obj/machinery/light_switch/south{
+	pixel_y = -24;
+	pixel_x = 5
+	},
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "bQV" = (
 /turf/simulated/floor/blue,
 /area/station/medical/medbay/lobby)
@@ -2472,6 +2537,9 @@
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
 	})
+"bWu" = (
+/turf/space/gehenna/desert/beaten,
+/area/gehenna/south)
 "bWE" = (
 /obj/ladder/auto,
 /turf/simulated/floor/yellow,
@@ -3171,6 +3239,18 @@
 	},
 /turf/simulated/floor,
 /area/station/bridge)
+"cta" = (
+/obj/machinery/door_control{
+	pixel_y = -10;
+	pixel_x = -24;
+	id = "garage1"
+	},
+/obj/decal/cleanable/oil,
+/turf/simulated/floor/concrete,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "ctc" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/machinery/light/fluorescent,
@@ -3251,6 +3331,11 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor/plating,
 /area/station/engine/engineering)
+"cxG" = (
+/turf/space/gehenna/desert/corner{
+	dir = 8
+	},
+/area/gehenna/south)
 "cxN" = (
 /obj/decal/poster/wallsign/escape_right,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
@@ -3305,6 +3390,14 @@
 	},
 /turf/simulated/floor/carpet/blue/standard/edge/nw,
 /area/station/medical/research)
+"cyX" = (
+/turf/space/gehenna/desert/plating{
+	dir = 4
+	},
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "czc" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /obj/table/wood/auto,
@@ -3535,6 +3628,14 @@
 /turf/simulated/wall,
 /area/station/security/checkpoint/east{
 	name = "Wasteland Security Checkpoint"
+	})
+"cHj" = (
+/obj/wingrille_spawn/reinforced,
+/obj/window_blinds/left,
+/turf/simulated/floor/plating,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
 	})
 "cHp" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
@@ -4350,7 +4451,7 @@
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
 "dly" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending/snack_freezer,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
 "dlC" = (
@@ -4627,6 +4728,22 @@
 	dir = 1
 	},
 /area/gehenna/wasteland)
+"dsm" = (
+/obj/item/reagent_containers/food/snacks/pickle,
+/obj/item/reagent_containers/food/snacks/ice_cream/gross,
+/obj/item/reagent_containers/food/snacks/ingredient/meatpaste,
+/obj/item/reagent_containers/food/snacks/ingredient/egg/critter/swan{
+	name = "Imported swan egg"
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/cheese,
+/obj/item/reagent_containers/food/drinks/cola/random,
+/obj/storage/secure/closet/fridge,
+/obj/item/reagent_containers/food/snacks/tvdinner,
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "dsq" = (
 /obj/iv_stand,
 /turf/simulated/floor,
@@ -4771,6 +4888,16 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/medical/robotics)
+"dyF" = (
+/obj/rack,
+/obj/item/storage/box/lightbox/bulbs,
+/obj/item/device/light/flashlight,
+/obj/item/storage/toolbox/mechanical,
+/turf/simulated/floor/concrete,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "dyP" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/wall,
@@ -9691,6 +9818,13 @@
 	icon_old = "diamondtile"
 	},
 /area/station/maintenance/northeast)
+"hhz" = (
+/obj/machinery/light/small/ceiling,
+/turf/simulated/grimycarpet,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "hhR" = (
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/light/fluorescent/cool/very,
@@ -10546,6 +10680,13 @@
 /obj/cable,
 /turf/simulated/floor/plating,
 /area/station/security/checkpoint/cargo)
+"hOw" = (
+/obj/decal/cleanable/mess/random_litter,
+/turf/simulated/grimycarpet,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "hPd" = (
 /obj/decal/cleanable/dirt/random,
 /obj/mic_stand,
@@ -10568,6 +10709,12 @@
 	},
 /turf/simulated/floor,
 /area/station/security/main)
+"hQd" = (
+/turf/simulated/grimycarpet,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "hQD" = (
 /obj/table/auto,
 /obj/machinery/light/fluorescent{
@@ -10725,6 +10872,15 @@
 	},
 /turf/simulated/floor,
 /area/station/engine/engineering/breakroom)
+"hYS" = (
+/obj/stool/chair/couch/green{
+	dir = 8
+	},
+/turf/simulated/grimycarpet,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "hZl" = (
 /obj/decal/poster/wallsign/escape_left,
 /turf/simulated/wall/r_wall,
@@ -11488,6 +11644,12 @@
 	dir = 9
 	},
 /area/listeningpost)
+"iCD" = (
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "iCV" = (
 /obj/cable/blue{
 	icon_state = "0-8"
@@ -12735,6 +12897,14 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/engine/engineering)
+"jBu" = (
+/obj/wingrille_spawn/reinforced,
+/obj/window_blinds,
+/turf/simulated/floor/plating,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "jCh" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -12906,6 +13076,14 @@
 /obj/machinery/vehicle/tank/car/rusty,
 /turf/simulated/floor/shuttlebay,
 /area/station/hangar/catering)
+"jJU" = (
+/obj/table/wood/round/auto,
+/obj/item/plate,
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "jKJ" = (
 /obj/disposalpipe/segment/brig{
 	dir = 4
@@ -13350,6 +13528,18 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/medical/maintenance)
+"jXQ" = (
+/obj/machinery/shower{
+	dir = 4;
+	pixel_y = 6
+	},
+/obj/machinery/drainage,
+/obj/decal/cleanable/dirt,
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "jYu" = (
 /obj/machinery/light/fluorescent{
 	dir = 1
@@ -14078,6 +14268,13 @@
 /obj/table/auto,
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/farmers)
+"kzI" = (
+/obj/decoration/ceilingfan,
+/turf/simulated/grimycarpet,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "kzJ" = (
 /obj/machinery/atmospherics/pipe/manifold/west,
 /turf/simulated/floor,
@@ -14419,6 +14616,13 @@
 /obj/stool/bench/auto,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/gunsmithing)
+"kKp" = (
+/obj/decal/cleanable/dirt/dirt4,
+/turf/simulated/grimycarpet,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "kKG" = (
 /obj/machinery/atmospherics/unary/vent_pump/west,
 /turf/simulated/floor/blueblack{
@@ -14577,6 +14781,15 @@
 /obj/machinery/light/small/floor/harsh,
 /turf/simulated/floor/shuttlebay,
 /area/station/hangar/catering)
+"kQq" = (
+/obj/machinery/door/unpowered/wood/pyro{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "kQL" = (
 /obj/disposalpipe/junction/middle/north,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -15563,6 +15776,13 @@
 "lBM" = (
 /turf/simulated/wall/asteroid/gehenna/tough,
 /area/gehenna/wasteland/stormy)
+"lCc" = (
+/obj/decal/cleanable/dirt,
+/turf/simulated/grimycarpet,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "lCg" = (
 /obj/cable{
 	d1 = 1;
@@ -16356,6 +16576,9 @@
 	},
 /turf/simulated/floor/black,
 /area/station/engine/engineering)
+"mkB" = (
+/turf/space/gehenna/desert/corner,
+/area/gehenna/south)
 "mlg" = (
 /turf/simulated/floor/red,
 /area/station/security/secwing)
@@ -16490,6 +16713,12 @@
 "msF" = (
 /turf/simulated/wall,
 /area/gehenna)
+"msS" = (
+/turf/simulated/wall/wooden,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "msZ" = (
 /turf/simulated/wall/r_wall,
 /area/station/wc/bridge)
@@ -16640,6 +16869,15 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/white,
 /area/station/medical/robotics)
+"mAj" = (
+/obj/stool/chair/wooden{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "mBi" = (
 /obj/machinery/light/fluorescent,
 /obj/disposalpipe/segment/mail/horizontal,
@@ -17865,6 +18103,18 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/medical/maintenance)
+"nAd" = (
+/obj/machinery/door/poddoor{
+	id = "garage1";
+	name = "garage door"
+	},
+/turf/space/gehenna/desert/plating{
+	dir = 4
+	},
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "nAe" = (
 /obj/table/reinforced/auto,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
@@ -18312,6 +18562,10 @@
 /obj/machinery/r_door_control/podbay/security/new_walls/west,
 /turf/simulated/floor/shuttlebay,
 /area/station/hangar/sec)
+"nSg" = (
+/obj/decal/cleanable/mess/random_litter,
+/turf/space/gehenna/desert,
+/area/gehenna/south)
 "nSq" = (
 /turf/simulated/wall/r_wall,
 /area/station/quartermaster/cargooffice/gunsmithing)
@@ -19673,6 +19927,14 @@
 /obj/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/station/medical/medbay/treatment)
+"oOL" = (
+/obj/table/auto,
+/obj/item/clothing/mask/horse_mask,
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "oPF" = (
 /obj/disposalpipe/segment/food,
 /obj/disposalpipe/segment/food{
@@ -20437,6 +20699,13 @@
 /obj/random_item_spawner/junk/one,
 /turf/space/gehenna/desert/plating,
 /area/pricemaster)
+"pvv" = (
+/obj/decal/cleanable/dirt/dirt3,
+/turf/simulated/grimycarpet,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "pvE" = (
 /obj/lattice,
 /obj/decal/fakeobjects/smallrocks,
@@ -20750,6 +21019,13 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/simulated/floor/grey,
 /area/station/hangar/catering)
+"pJy" = (
+/obj/submachine/chef_oven,
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "pJA" = (
 /obj/table/reinforced/auto,
 /obj/machinery/cashreg,
@@ -20803,6 +21079,14 @@
 	},
 /turf/simulated/floor/wood,
 /area/station/wc/medbay)
+"pLj" = (
+/obj/wingrille_spawn/reinforced,
+/obj/window_blinds/right,
+/turf/simulated/floor/plating,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "pLI" = (
 /obj/table/reinforced/auto,
 /obj/random_item_spawner/junk/one_or_zero,
@@ -20936,6 +21220,14 @@
 /obj/disposalpipe/switch_junction/right/west,
 /turf/simulated/floor,
 /area/station/engine/engineering)
+"pOI" = (
+/obj/table/auto,
+/obj/machinery/microwave,
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "pOQ" = (
 /obj/disposalpipe/segment/bent/west,
 /turf/simulated/floor/carpet/red/fancy/edge/nw,
@@ -21350,6 +21642,13 @@
 	},
 /turf/simulated/floor,
 /area/station/medical/medbay/lobby)
+"qfJ" = (
+/obj/table/auto,
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "qfP" = (
 /obj/rack,
 /obj/mopbucket,
@@ -21694,6 +21993,14 @@
 /obj/access_spawn/syndie_shuttle,
 /turf/simulated/floor/purple,
 /area/listeningpost)
+"qtm" = (
+/obj/table/wood/auto,
+/obj/machinery/computer/security/wooden_tv/small,
+/turf/simulated/grimycarpet,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "qtN" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/landmark/gps_waypoint,
@@ -22015,6 +22322,13 @@
 /obj/machinery/door/airlock/classic,
 /turf/simulated/floor/black,
 /area/station/crew_quarters/info)
+"qCS" = (
+/obj/machinery/vehicle/tank/car/rusty,
+/turf/simulated/floor/concrete,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "qCW" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 10;
@@ -23456,6 +23770,14 @@
 	icon_old = "diamondtile"
 	},
 /area/station/maintenance/northeast)
+"rDK" = (
+/obj/table/auto,
+/obj/machinery/light/lamp,
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "rDL" = (
 /obj/stool/chair/comfy/green{
 	dir = 4
@@ -23579,6 +23901,15 @@
 /turf/simulated/floor/plating,
 /area/station/security/checkpoint/east{
 	name = "Wasteland Security Checkpoint"
+	})
+"rIJ" = (
+/obj/ladder/auto,
+/turf/space/gehenna/desert/plating{
+	dir = 4
+	},
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
 	})
 "rIX" = (
 /turf/space/gehenna/desert/plating{
@@ -24334,6 +24665,10 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/quartermaster/cargooffice/gunsmithing)
+"slJ" = (
+/obj/chainlink_fence,
+/turf/space/gehenna/desert,
+/area/gehenna/south)
 "slM" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	icon_state = "delivery2"
@@ -25355,6 +25690,13 @@
 	dir = 5
 	},
 /area/station/engine/engineering)
+"ted" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor/plating,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "teL" = (
 /obj/machinery/light/fluorescent{
 	dir = 4
@@ -25837,6 +26179,13 @@
 	},
 /turf/simulated/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
+"txn" = (
+/mob/living/critter/small_animal/cockroach,
+/turf/simulated/floor/concrete,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "txu" = (
 /obj/cable{
 	d2 = 8;
@@ -25882,6 +26231,10 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor/darkblue,
 /area/station/bridge/customs)
+"tyT" = (
+/obj/item/instrument/harmonica,
+/turf/space/gehenna/desert,
+/area/gehenna/south)
 "tza" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/machinery/door/airlock/glass,
@@ -26453,6 +26806,14 @@
 /obj/machinery/light/small/floor/red,
 /turf/simulated/floor/industrial,
 /area/shuttle/escape/station/cogmap2)
+"tYL" = (
+/obj/wingrille_spawn/reinforced,
+/obj/window_blinds/middle,
+/turf/simulated/floor/plating,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "tZx" = (
 /obj/disposalpipe/segment/vertical,
 /turf/simulated/floor,
@@ -26886,6 +27247,13 @@
 	dir = 8
 	},
 /area/station/engine/core)
+"upw" = (
+/obj/machinery/light/small/ceiling,
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "upK" = (
 /obj/decal/cleanable/dirt/random,
 /obj/npc/trader/pricemaster,
@@ -29568,6 +29936,12 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/carpet/green/fancy/edge/nw,
 /area/station/crew_quarters/farmers)
+"wvj" = (
+/obj/tree1{
+	dir = 4
+	},
+/turf/space/gehenna/desert,
+/area/gehenna/south)
 "wvz" = (
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/door/firedoor/border_only,
@@ -29625,6 +29999,13 @@
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
 	name = "Cargo Bay"
+	})
+"wwZ" = (
+/obj/machinery/light/small/auto,
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
 	})
 "wxE" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -29905,6 +30286,13 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor/white,
 /area/station/medical/medbay/cloner)
+"wFa" = (
+/obj/decal/sink,
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "wFg" = (
 /obj/machinery/power/apc/autoname_north,
 /obj/cable{
@@ -30196,6 +30584,14 @@
 /obj/item/raw_material/shard/plasmacrystal,
 /turf/space/gehenna/desert/beaten,
 /area/gehenna/wasteland)
+"wSY" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/blue,
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "wTr" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/table/wood/auto,
@@ -30721,6 +31117,13 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
+"xmG" = (
+/obj/item/storage/toilet,
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "xmO" = (
 /turf/simulated/floor/stairs/wide,
 /area/station/quartermaster/cargooffice/idk_another_one{
@@ -30804,6 +31207,14 @@
 	},
 /turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice)
+"xpU" = (
+/obj/table/wood/auto,
+/obj/loudspeaker,
+/turf/simulated/grimycarpet,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "xpW" = (
 /turf/simulated/wall,
 /area/station/hangar/engine)
@@ -31311,6 +31722,25 @@
 /obj/item/storage/toolbox/emergency,
 /turf/simulated/floor,
 /area/station/quartermaster/storage)
+"xLi" = (
+/obj/table/wood/auto,
+/obj/machinery/phone{
+	pixel_y = 7;
+	pixel_x = -5
+	},
+/obj/item/decoration/ashtray{
+	pixel_y = -1;
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/food/drinks/mug{
+	pixel_x = 3;
+	pixel_y = 8
+	},
+/turf/simulated/grimycarpet,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "xLI" = (
 /obj/machinery/light/fluorescent/cool/very,
 /obj/grille/catwalk/jen,
@@ -88632,10 +89062,10 @@ rsr
 rsr
 rsr
 rsr
-rsr
-rsr
-rsr
-rsr
+msS
+msS
+msS
+msS
 rsr
 rsr
 rsr
@@ -88934,17 +89364,17 @@ rsr
 rsr
 rsr
 rsr
+msS
+rDK
+iCD
+cHj
 rsr
 rsr
 rsr
 rsr
 rsr
 rsr
-rsr
-rsr
-rsr
-rsr
-rsr
+slJ
 rsr
 rsr
 rsr
@@ -89236,17 +89666,17 @@ rsr
 rsr
 rsr
 rsr
+msS
+wSY
+iCD
+pLj
 rsr
 rsr
 rsr
 rsr
 rsr
 rsr
-rsr
-rsr
-rsr
-rsr
-rsr
+slJ
 rsr
 rsr
 rsr
@@ -89538,12 +89968,12 @@ sQi
 rsr
 rsr
 rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
+msS
+msS
+kQq
+msS
+jBu
+msS
 rsr
 rsr
 rsr
@@ -89840,16 +90270,16 @@ sQi
 rsr
 rsr
 rsr
+msS
+xLi
+hQd
+hQd
+hQd
+cHj
 rsr
 rsr
 rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
+nSg
 rsr
 rsr
 rsr
@@ -90142,14 +90572,14 @@ sQi
 sQi
 rsr
 rsr
+msS
+hYS
+hOw
+hhz
+xpU
+pLj
 rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
+wvj
 rsr
 rsr
 rsr
@@ -90444,13 +90874,13 @@ sQi
 sQi
 rsr
 rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
+aVZ
+byA
+hQd
+lCc
+qtm
+msS
+bWu
 rsr
 rsr
 rsr
@@ -90746,13 +91176,13 @@ sQi
 sQi
 rsr
 rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
+msS
+aNB
+kzI
+kKp
+pvv
+ted
+bWu
 rsr
 rsr
 rsr
@@ -91048,14 +91478,14 @@ sQi
 rsr
 rsr
 rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
+msS
+pOI
+oOL
+qfJ
+bQU
+msS
+bWu
+nSg
 rsr
 rsr
 rsr
@@ -91350,13 +91780,13 @@ sQi
 rsr
 rsr
 rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
+cHj
+wFa
+iCD
+iCD
+iCD
+msS
+bWu
 rsr
 rsr
 rsr
@@ -91652,17 +92082,17 @@ sQi
 rsr
 rsr
 rsr
+tYL
+pJy
+upw
+jJU
+iCD
+cHj
+bWu
 rsr
 rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
+nSg
+slJ
 rsr
 rsr
 rsr
@@ -91954,17 +92384,17 @@ sQi
 rsr
 rsr
 rsr
+pLj
+dsm
+iCD
+mAj
+iCD
+pLj
+bWu
 rsr
 rsr
 rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
+slJ
 rsr
 rsr
 rsr
@@ -92256,13 +92686,13 @@ sQi
 rsr
 rsr
 rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
+msS
+msS
+bxN
+aGB
+iCD
+msS
+bWu
 rsr
 rsr
 rsr
@@ -92558,14 +92988,14 @@ rsr
 rsr
 rsr
 rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
+msS
+xmG
+wwZ
+msS
+bxN
+msS
+msS
+tyT
 rsr
 rsr
 rsr
@@ -92860,15 +93290,15 @@ rsr
 rsr
 rsr
 rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
+msS
+wFa
+jXQ
+msS
+txn
+cta
+nAd
+bWu
+mkB
 rsr
 rsr
 rsr
@@ -93162,15 +93592,15 @@ rsr
 rsr
 rsr
 rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
+msS
+msS
+msS
+msS
+dyF
+qCS
+nAd
+bWu
+cxG
 rsr
 rsr
 rsr
@@ -93465,12 +93895,12 @@ rsr
 rsr
 rsr
 rsr
-rsr
-rsr
-rsr
-rsr
-rsr
-rsr
+cyX
+rIJ
+msS
+msS
+msS
+msS
 rsr
 rsr
 rsr
