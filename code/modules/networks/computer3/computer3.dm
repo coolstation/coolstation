@@ -272,6 +272,14 @@
 	light.set_brightness(0.4)
 	light.attach(src)
 
+	if(glow_in_dark_screen) //Can't be in that spawn because of a race condition with power_change call in initialize()
+		src.screen_image = image('icons/obj/computer_screens.dmi', src.icon_state, -1)
+		screen_image.plane = PLANE_LIGHTING
+		screen_image.blend_mode = BLEND_ADD
+		screen_image.layer = LIGHTING_LAYER_BASE
+		screen_image.color = list(0.33,0.33,0.33, 0.33,0.33,0.33, 0.33,0.33,0.33)
+		src.UpdateOverlays(screen_image, "screen_image")
+
 	SPAWN_DBG(0.4 SECONDS)
 
 		if(ispath(src.setup_starting_peripheral1))
@@ -317,14 +325,6 @@
 		src.tag = null
 
 		src.base_icon_state = src.icon_state
-
-		if(glow_in_dark_screen)
-			src.screen_image = image('icons/obj/computer_screens.dmi', src.icon_state, -1)
-			screen_image.plane = PLANE_LIGHTING
-			screen_image.blend_mode = BLEND_ADD
-			screen_image.layer = LIGHTING_LAYER_BASE
-			screen_image.color = list(0.33,0.33,0.33, 0.33,0.33,0.33, 0.33,0.33,0.33)
-			src.UpdateOverlays(screen_image, "screen_image")
 
 		src.post_system()
 

@@ -446,6 +446,7 @@
 	icon_state = "swatheavy"
 	magnetic = 1
 	c_flags = NOSLIP
+	contraband = 3
 
 /obj/item/clothing/shoes/fuzzy //not boolean slippers
 	name = "fuzzy slippers"

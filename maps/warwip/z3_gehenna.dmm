@@ -2438,7 +2438,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
 	},
-/obj/machinery/drainage/big,
+/obj/machinery/drainage/stand_pipe,
 /turf/simulated/floor/plating,
 /area/station/engine/coldloop)
 "bpx" = (
@@ -5817,6 +5817,10 @@
 	},
 /turf/simulated/floor/carpet/grime,
 /area/station/medical/staff)
+"dBU" = (
+/obj/item/instrument/harmonica,
+/turf/simulated/floor/plating,
+/area/station/maintenance/southeast)
 "dCv" = (
 /obj/machinery/door/airlock/classic,
 /obj/access_spawn/tox_storage,
@@ -8200,9 +8204,7 @@
 	name = "Sec. Officers Sleeping Quarters"
 	})
 "eLm" = (
-/obj/fluid_spawner/polluted_filth{
-	amount = 7250
-	},
+/obj/machinery/drainage/stand_pipe/septic,
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal/sewage)
 "eLo" = (
@@ -12051,6 +12053,9 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/turret_protected/AIbasecore2)
+"haQ" = (
+/turf/simulated/floor/plating,
+/area/station/engine/coldloop)
 "haX" = (
 /obj/disposalpipe/segment/produce{
 	dir = 4
@@ -12337,6 +12342,10 @@
 /obj/disposalpipe/segment/mineral,
 /turf/simulated/floor/grey,
 /area/station/engine/hotloop)
+"hki" = (
+/obj/ladder/auto,
+/turf/simulated/floor/plating,
+/area/station/maintenance/southeast)
 "hkk" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/east,
 /obj/machinery/meter,
@@ -15977,6 +15986,14 @@
 	icon_old = "fullblack"
 	},
 /area/station/engine/hotloop)
+"jsH" = (
+/obj/rack,
+/obj/item/storage/box/donkpocket_kit{
+	pixel_x = -6;
+	pixel_y = 7
+	},
+/turf/simulated/floor/plating/random,
+/area/noGenerate)
 "jsO" = (
 /obj/table/reinforced/auto,
 /obj/decal/cleanable/rust/jen,
@@ -17335,7 +17352,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/central)
 "kfD" = (
-/obj/machinery/drainage/big,
+/obj/machinery/drainage/stand_pipe,
 /turf/simulated/floor/plating,
 /area/station/engine/coldloop)
 "kfL" = (
@@ -17888,6 +17905,10 @@
 "kvq" = (
 /obj/table/auto,
 /obj/random_item_spawner/snacks/one_or_zero,
+/obj/item/wrench{
+	pixel_x = 5;
+	pixel_y = 8
+	},
 /turf/simulated/floor,
 /area/station/medical/basement)
 "kvL" = (
@@ -19070,7 +19091,6 @@
 /area/station/maintenance/southeast)
 "lbl" = (
 /obj/machinery/vending/snack,
-/obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/fitness)
 "lbo" = (
@@ -22012,7 +22032,7 @@
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "mNV" = (
-/obj/machinery/drainage/big,
+/obj/machinery/drainage/big/off_station,
 /turf/simulated/floor/plating{
 	icon_state = "platingdmg3"
 	},
@@ -23667,6 +23687,10 @@
 "nKo" = (
 /turf/simulated/wall,
 /area/station/janitor/office)
+"nKt" = (
+/obj/item/mining_tools/pick,
+/turf/simulated/floor/plating,
+/area/station/maintenance/southeast)
 "nLa" = (
 /obj/cable{
 	d1 = 4;
@@ -23871,6 +23895,7 @@
 /area/station/mining/refinery)
 "nQD" = (
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/recharger/wall/sticky,
 /turf/simulated/floor/yellow/side{
 	dir = 9
 	},
@@ -26080,7 +26105,7 @@
 "ppc" = (
 /obj/table/wood/auto,
 /obj/displaycase{
-	displayed = new /obj/item/captaingun;
+	displayed = new/obj/item/captaingun;
 	pixel_y = 6
 	},
 /turf/simulated/floor/carpet/arcade/half,
@@ -26458,10 +26483,10 @@
 	},
 /area/station/security/processing)
 "pAg" = (
-/obj/machinery/vending/snack,
 /obj/machinery/light/fluorescent/warm{
 	dir = 8
 	},
+/obj/machinery/vending/snack_freezer,
 /turf/simulated/floor/carpet/grime,
 /area/station/mining/staff_room)
 "pAp" = (
@@ -26481,6 +26506,10 @@
 	dir = 8
 	},
 /area/station/security/processing)
+"pAV" = (
+/obj/item/raw_material/rock,
+/turf/simulated/floor/plating,
+/area/station/maintenance/southeast)
 "pBs" = (
 /obj/decal/poster/wallsign/medbay_left,
 /turf/simulated/wall,
@@ -27368,15 +27397,7 @@
 /turf/simulated/floor/grey,
 /area/station/engine/hotloop)
 "qfV" = (
-/obj/rack,
-/obj/item/storage/box/donkpocket_kit{
-	pixel_x = -6;
-	pixel_y = 7
-	},
-/obj/item/wrench{
-	pixel_x = 5;
-	pixel_y = 8
-	},
+/obj/machinery/vending/snack_freezer,
 /turf/simulated/floor,
 /area/station/medical/basement)
 "qga" = (
@@ -35433,6 +35454,10 @@
 /area/station/science/artifact{
 	name = "Artifact Lounge"
 	})
+"uMq" = (
+/obj/machinery/recharger/wall/sticky,
+/turf/simulated/floor/grey,
+/area/station/mining/equipment)
 "uMu" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -40297,6 +40322,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
+"xEz" = (
+/obj/machinery/drainage/stand_pipe,
+/turf/simulated/floor/plating/random,
+/area/station/maintenance/inner/west)
 "xEY" = (
 /turf/simulated/floor/grey,
 /area/station/science/gen_storage)
@@ -40370,6 +40399,12 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/grey,
 /area/station/maintenance/disposal)
+"xGE" = (
+/obj/fluid_spawner/polluted_filth{
+	amount = 7250
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/disposal/sewage)
 "xGH" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -67570,7 +67605,7 @@ pdO
 pdO
 pdO
 qZT
-tcK
+xEz
 rNq
 pwK
 xuk
@@ -69961,8 +69996,8 @@ udT
 uVu
 pdO
 pdO
-kPQ
-kPQ
+pdO
+pdO
 kPQ
 kPQ
 kPQ
@@ -70263,9 +70298,9 @@ udT
 uVu
 pdO
 pdO
-kPQ
-kPQ
-kPQ
+pdO
+pdO
+pdO
 kPQ
 kPQ
 kPQ
@@ -70565,10 +70600,10 @@ nbY
 uVu
 pdO
 pdO
-kPQ
-kPQ
-kPQ
-kPQ
+pdO
+pdO
+pdO
+pdO
 kPQ
 kPQ
 kPQ
@@ -70867,11 +70902,11 @@ udT
 uVu
 pdO
 pdO
-kPQ
-kPQ
-kPQ
-kPQ
-kPQ
+pdO
+pdO
+pdO
+pdO
+pdO
 kPQ
 kPQ
 kPQ
@@ -71169,12 +71204,12 @@ uVu
 uVu
 pdO
 pdO
-kPQ
-kPQ
-kPQ
-kPQ
-kPQ
-kPQ
+pdO
+pdO
+pdO
+pdO
+pdO
+pdO
 kPQ
 kPQ
 kPQ
@@ -71471,13 +71506,13 @@ pdO
 pdO
 pdO
 pdO
-kPQ
-kPQ
-kPQ
-kPQ
-kPQ
-kPQ
-kPQ
+pdO
+pdO
+pdO
+pdO
+pdO
+pdO
+pdO
 kPQ
 kPQ
 kPQ
@@ -81462,7 +81497,7 @@ uII
 jVr
 pdO
 pdO
-pdO
+jsH
 eCs
 qfV
 tOw
@@ -98395,7 +98430,7 @@ eNs
 eEf
 vIc
 eLm
-xXL
+eLm
 otD
 sye
 vCS
@@ -99608,7 +99643,7 @@ eNa
 qFY
 xXL
 xXL
-xXL
+xGE
 eNa
 vcZ
 iDD
@@ -102345,11 +102380,11 @@ sej
 sej
 hTf
 hTf
-hTf
-twZ
-hTf
-hTf
-twZ
+jrz
+jrz
+jrz
+jrz
+jrz
 hTf
 hTf
 hTf
@@ -102532,7 +102567,7 @@ qRU
 rjO
 xUP
 hAT
-uYw
+uMq
 uYw
 uYw
 uYw
@@ -102647,11 +102682,11 @@ hTf
 sej
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+jrz
+dBU
+uvN
+pAV
+jrz
 twZ
 hTf
 hTf
@@ -102949,11 +102984,11 @@ hTf
 sej
 sej
 hTf
-hTf
-hTf
-hTf
-twZ
-twZ
+buN
+mlf
+hki
+uvN
+jrz
 hTf
 hTf
 hTf
@@ -103251,11 +103286,11 @@ hTf
 hTf
 hTf
 sej
-hTf
-hTf
-hTf
-hTf
-hTf
+qZT
+mlf
+mlf
+nKt
+jrz
 twZ
 twZ
 hTf
@@ -103553,11 +103588,11 @@ hTf
 hTf
 sej
 sej
-hTf
-hTf
-hTf
-hTf
-hTf
+qZT
+kMm
+jrz
+jrz
+jrz
 hTf
 twZ
 hTf
@@ -104421,8 +104456,8 @@ tcM
 tcM
 dAQ
 okQ
-kfD
-kfD
+haQ
+haQ
 okQ
 iUc
 tcM

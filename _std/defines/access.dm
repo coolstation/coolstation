@@ -105,3 +105,15 @@
 
 //pathologist job
 #define access_pathology 84
+
+//juicers and other randos
+#define access_juicer 90
+#define access_juicer_engineer 91
+#define access_juicer_service 92
+#define access_juicer_bballer 93
+#define access_juicer_crypto 94
+#define access_juicer_muscle 95
+#define access_juicer_prepper 96
+#define access_juicer_deejay 97
+#define access_juicer_fraud 98
+#define access_juicer_grease 99

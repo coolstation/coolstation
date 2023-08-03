@@ -526,6 +526,8 @@
 				//backup option - not trying this first because jobs that start with anything in hand will drop 2-handed weapons by default. lame.
 			else
 				src.put_in_hand_or_drop(src.client.persistent_gun)
+			src.client.save_cloud_gun(0) // warc: this sets to None if you spawned the gun, so that we dont need to wipe it at the end of the round.
+										// not wiping at the end is so that you can go put your gun away in a safe place & not lose it if you die.
 	return
 
 /mob/living/carbon/human/proc/Equip_Job_Slots(var/datum/job/JOB)
@@ -660,6 +662,7 @@
 
 	if(C)
 		var/realName = src.real_name
+		var/datum/data/record/B = FindBankAccountByName(src.real_name)
 
 		if(src.traitHolder && src.traitHolder.hasTrait("clericalerror"))
 			realName = replacetext(realName, "a", "o")
@@ -669,11 +672,12 @@
 			if(prob(50)) realName = replacetext(realName, "t", pick("d", "k"))
 			if(prob(50)) realName = replacetext(realName, "p", pick("b", "t"))
 
-			var/datum/data/record/B = FindBankAccountByName(src.real_name)
 			if (B?.fields["name"])
 				B.fields["name"] = realName
 
 		C.registered = realName
+		if(B?.fields["id"])
+			C.registered_id = B?.fields["id"]
 		C.assignment = JOB.name
 		C.name = "[C.registered]'s ID Card ([C.assignment])"
 		C.access = JOB.access.Copy()

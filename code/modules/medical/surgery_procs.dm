@@ -619,13 +619,13 @@ var/global/list/chestitem_whitelist = list(/obj/item/gnomechompski, /obj/item/gn
 			for (var/obj/item/implant/I in patient.implant)
 
 				// This is kinda important (Convair880).
-				if (istype(I, /obj/item/implant/mindslave))
-					if (patient.mind && (patient.mind.special_role == ROLE_MINDSLAVE))
+				if (istype(I, /obj/item/implant/insurgent))
+					if (patient.mind && (patient.mind.special_role == ROLE_INSURGENT))
 						if(surgeon == patient) continue
-						remove_mindslave_status(patient, "mslave", "surgery")
+						remove_insurgent_status(patient, "nsurgt", "surgery")
 					else if (patient.mind && patient.mind.master)
 						if(surgeon == patient) continue
-						remove_mindslave_status(patient, "otherslave", "surgery")
+						remove_insurgent_status(patient, "other_recruit", "surgery")
 
 				patient.tri_message("<span class='alert'><b>[surgeon]</b> cuts out an implant from [patient == surgeon ? "[him_or_her(patient)]self" : "[patient]"] with [src]!</span>",\
 				surgeon, "<span class='alert'>You cut out an implant from [surgeon == patient ? "yourself" : "[patient]"] with [src]!</span>",\

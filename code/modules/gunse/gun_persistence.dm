@@ -10,7 +10,7 @@ Enjoy */
 //idk what im doing.
 
 
-/client/proc/save_cloud_gun(var/save = 1)
+/client/proc/save_cloud_gun(var/save = 1, var/obj/item/gun/modular/gun = null)
 	if(save == 0)
 		if( cloud_available() )
 			cloud_put( "persistent_gun", "none")
@@ -18,10 +18,13 @@ Enjoy */
 	// ok from here on out we assume we wanna save the gun on them, or otherwise we will commute the gun they started with to next round.
 	if(!src.mob)
 		return //we do nothing, so whatever they had they keep..
-	var/obj/item/gun/modular/gun = locate() in src.mob // this will catch the first gun it finds, too bad if you tried getting two.
-	if(!istype(gun)) // well you survived, but empty-handed. sorry.
+	if(!gun)
+		gun = locate() in src.mob // this will catch the first gun it finds, too bad if you tried getting two.
+
+	if(!istype(gun)) // well there's nothing here, sorry
+		/*
 		if( cloud_available() )
-			cloud_put( "persistent_gun", "none")
+			cloud_put( "persistent_gun", "none")*/
 		return
 	if(gun.contraband || gun.no_save)
 		return //okay your gun is illegal, maybe you grabbed a fossie gun, idk - but im not gonna *punish* you for it.
@@ -190,7 +193,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 
 
 /obj/table/gun_workbench/
-	name = "gunsmithing workbench"
+	name = "I DONT WORK DONT USE ME YET"
 	desc = "lay down a rifle and start swappin bits"
 
 	var/list/obj/item/gun_parts/parts = list()
@@ -268,3 +271,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 		stock.contents = null
 		magazine.contents = null
 		accessory = null
+
+/obj/machinery/vending/gun_safe
+	//this is gonna be uhhhh for persistent's

@@ -1139,14 +1139,18 @@ proc/generate_space_color()
 
 	if(A.z == 3) zlevel = 5
 	else if(map_currently_very_dusty)
-		zlevel = 5
+		if(A.z == 6) zlevel = 5
+		else zlevel = 6
 
 	if (world.maxz < zlevel) // if there's less levels than the one we want to go to
 		zlevel = 1 // just boot people back to z1 so the server doesn't lag to fucking death trying to place people on maps that don't exist
 	if (istype(A, /obj/machinery/vehicle))
 		var/obj/machinery/vehicle/V = A
 		if (V.going_home)
-			zlevel = 1
+			if(map_currently_very_dusty)
+				zlevel = 5
+			else
+				zlevel = 1
 			V.going_home = 0
 	if (istype(A, /obj/newmeteor))
 		qdel(A)

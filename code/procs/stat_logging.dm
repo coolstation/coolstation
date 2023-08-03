@@ -155,11 +155,11 @@
 				if (M.master)
 					var/mob/mymaster = whois_ckey_to_mob_reference(M.master)
 					if (mymaster) special = mymaster.real_name
-			if ("spyslave")
+			if ("spyrecruit")
 				if (M.master)
 					var/mob/mymaster = whois_ckey_to_mob_reference(M.master)
 					if (mymaster) special = mymaster.real_name
-			if (ROLE_MINDSLAVE)
+			if (ROLE_INSURGENT)
 				if (M.master)
 					var/mob/mymaster = whois_ckey_to_mob_reference(M.master)
 					if (mymaster) special = mymaster.real_name

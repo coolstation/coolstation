@@ -1,3 +1,4 @@
+//Used by: RD teleport gun
 /datum/projectile/tele_bolt
 	name = "space-time disruption"
 	icon = 'icons/obj/projectiles.dmi'

@@ -170,6 +170,8 @@ var/global/list/job_start_locations = list()
 		"big_yank" = /mob/living/carbon/human/big_yank,
 		"father_jack" = /mob/living/carbon/human/fatherjack,
 		"don_glab" = /mob/living/carbon/human/don_glab,
+		"gunsemanne" = /mob/living/carbon/human/gunsemanne,
+
 		"monkeyspawn_normal" = /mob/living/carbon/human/npc/monkey,
 		"monkeyspawn_albert" = /mob/living/carbon/human/npc/monkey/albert,
 		"monkeyspawn_rathen" = /mob/living/carbon/human/npc/monkey/mr_rathen,

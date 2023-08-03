@@ -3,7 +3,7 @@
 /obj/machinery/bot/skullbot
 	name = "skullbot"
 	desc = "A skull on a leg. Useful, somehow. I guess."
-	icon = 'icons/obj/bots/aibots.dmi'
+	icon = 'icons/obj/bots/skullbots.dmi'
 	icon_state = "skullbot"
 	layer = 5.0 //TODO LAYER
 	density = 0
@@ -13,6 +13,7 @@
 	no_camera = 1
 	bot_voice = 'sound/misc/talk/skelly.ogg'
 	speakverbs = list("rattles", "clacks")
+	var/badbone = 0
 	/// a bonehead on a stick doesnt need to process a million times a sec
 	dynamic_processing = 0
 
@@ -46,10 +47,24 @@
 
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		src.visible_message("<span class='combat'>[user] hits [src] with [W]!</span>")
-		src.health -= W.force * 0.5
-		if (src.health <= 0)
-			src.explode()
+		if(istype(W, /obj/item/clothing/glasses/sunglasses) && !src.badbone)
+			user.visible_message("<b>[user]</b> puts some cool ass sunglasses on [src]. [pick("hell","hel","fuck","fuk","fukk","oh","ohhhh")] [pick("yeah","ya","yes","yah")]", "You put some cool ass sunglasses on [src]. [pick("hell","hel","fuck","fuk","fukk","oh","ohhhh")] [pick("yeah","ya","yes","yah")]")
+			playsound(src.loc, "sound/misc/badbone.ogg", 40, 1)
+			src.icon_state = "skullbot-sunglasses"
+			src.badbone = 1
+			user.u_equip(W)
+			W.dropped()
+			qdel(W)
+		else
+			src.visible_message("<span class='combat'>[user] hits [src] with [W]!</span>")
+			src.health -= W.force * 0.5
+			if (src.health <= 0)
+				if (src.badbone == 1)
+					var/obj/item/shades = new /obj/item/clothing/glasses/sunglasses(src.loc)
+					var/edge = get_edge_target_turf(src, pick(alldirs))
+					shades.throw_at(edge, 10, 2)
+					playsound(src.loc, "sound/misc/badbone.ogg", 50, 1)
+				src.explode()
 
 	hear_talk(var/mob/living/carbon/speaker, messages, real_name, lang_id)
 		if (!messages || !src.on)
@@ -88,27 +103,34 @@
 /obj/machinery/bot/skullbot/crystal
 	name = "crystal skullbot"
 	icon_state = "skullbot-crystal"
+	badbone = 2 //hack for now. i'll eventually get a sloppy sunglasses overlay going but i gotta differentiate between normal skull that have been sunglassed and ones that can't
 
 /obj/machinery/bot/skullbot/strange
 	name = "strange skullbot"
 	icon_state = "skullbot-P"
+	badbone = 2
 
 /obj/machinery/bot/skullbot/peculiar
 	name = "peculiar skullbot"
 	icon_state = "skullbot-strange"
+	badbone = 2
 
 /obj/machinery/bot/skullbot/odd
 	name = "odd skullbot"
 	icon_state = "skullbot-A"
+	badbone = 2
 
 /obj/machinery/bot/skullbot/faceless
 	name = "faceless skullbot"
 	icon_state = "skullbot-noface"
+	badbone = 2
 
 /obj/machinery/bot/skullbot/gold
 	name = "golden skullbot"
 	icon_state = "skullbot-gold"
+	badbone = 2
 
 /obj/machinery/bot/skullbot/ominous
 	name = "ominous skullbot"
 	icon_state = "skullbot-ominous"
+	badbone = 2

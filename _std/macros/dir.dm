@@ -4,6 +4,7 @@ var/global/list
 	alldirs = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, SOUTHEAST, SOUTHWEST, NORTHWEST)
 	modulo_angle_to_dir = list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,SOUTHWEST,WEST,NORTHWEST)
 	dirnames = list("north"=NORTH, "south"=SOUTH, "east"=EAST, "west"=WEST, "northeast"=NORTHEAST, "southeast"=SOUTHEAST, "southwest"=SOUTHWEST, "northwest"=NORTHWEST)
+	mouseless_dirnames = list("mouseless_N"=NORTH, "mouseless_S"=SOUTH, "mouseless_E"=EAST, "mouseless_W"=WEST, "mouseless_NE"=NORTHEAST, "mouseless_SE"=SOUTHEAST, "mouseless_SW"=SOUTHWEST, "mouseless_NW"=NORTHWEST, "mouseless_C"="CENTER")
 
 proc/dir_to_dirname(dir)
 	for(var/name in global.dirnames)

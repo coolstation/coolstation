@@ -1,3 +1,4 @@
+//Used by: crab gun
 /datum/projectile/claw
 
 	name = "crab claw"

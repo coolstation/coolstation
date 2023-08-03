@@ -362,6 +362,7 @@
 		logTheThing("combat", M, target, "uses dissect on [constructTarget(target,"combat")] at [log_loc(M)].")
 		return 0
 
+//Used by: V.I.V.I-SECT-10N (via limb)
 /datum/projectile/syringefilled
 	name = "syringe"
 	icon = 'icons/obj/projectiles.dmi'
