@@ -251,3 +251,42 @@
 		src.add_fingerprint(user)
 		spam_flag = world.time + 2 SECONDS
 	return
+
+/obj/item/screamingtunapillow
+	name = "Tuna Pillow"
+	desc = "It's a pillow that has a tuna on it."
+	icon = 'icons/obj/plushies.dmi'
+	icon_state = "tuna_pillow"
+	var/spam_flag = 0
+
+/obj/item/screamingtunapillow/attack_self(mob/user as mob) //copy and pasted from duck code
+	if (spam_flag < world.time)
+		if (ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if (H.sims)
+				H.sims.affectMotive("fun", 1)
+		spam_flag = 1
+		if (narrator_mode)
+			playsound(user, 'sound/vox/duct.ogg', 50, 1)
+		else
+			if (prob (50))
+				playsound(user, 'sound/effects/tunascream01.ogg', 50, 1)
+				user.visible_message("<B>THE TUNA PILLOW SCREAMS!</B>")
+			if (prob (50))
+				playsound(user, 'sound/effects/tunascream02.ogg', 50, 1)
+				user.visible_message("<B>THE TUNA PILLOW SCREAMS!</B>")
+		if(prob(1))
+			user.drop_item()
+			playsound(user, 'sound/effects/ohmygodtuna.ogg', 50, 1)
+			user.visible_message("<B>THE TUNA PILLOW WAILS A OMMINOUS MESSAGE, WHO MADE THIS THING!</B>")
+			var/wacka = 0
+			while (wacka++ < 50)
+				sleep(0.2 SECONDS)
+				pixel_x = rand(-6,6)
+				pixel_y = rand(-6,6)
+				sleep(0.1 SECONDS)
+				pixel_y = 0
+				pixel_x = 0
+		src.add_fingerprint(user)
+		spam_flag = world.time + 2 SECONDS
+	return
