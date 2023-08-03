@@ -271,7 +271,7 @@
 		else
 			if (prob (50))
 				playsound(user, 'sound/voice/scientist/scream06.ogg', 50, 1)
-			if (prob (50))
+			else
 				playsound(user, 'sound/voice/scientist/scream02.ogg', 50, 1)
 			user.visible_message("<B>THE TUNA PILLOW SCREAMS!</B>")
 		if(prob(1))
