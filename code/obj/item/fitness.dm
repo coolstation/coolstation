@@ -256,7 +256,7 @@
 	name = "Tuna Pillow"
 	desc = "It's a pillow that has a tuna on it."
 	icon = 'icons/obj/plushies.dmi'
-	icon_state = "tuna_pillow"
+	icon_state = "tunapillow"
 	var/spam_flag = 0
 
 /obj/item/screamingtunapillow/attack_self(mob/user as mob) //copy and pasted from duck code
