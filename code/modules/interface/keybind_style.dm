@@ -338,3 +338,18 @@ var/global/list/datum/keybind_style/keybind_styles = null
 		"SPACE" = "fire",
 		"Q" = "cycle"
 	)
+
+/datum/keybind_style/mouseless
+	name = "mouseless"
+	changed_keys = list(
+		"Numpad0" = "mouseless_numzero", //IDK yet
+		"Numpad1" = "mouseless_SW",
+		"Numpad2" = "mouseless_S",
+		"Numpad3" = "mouseless_SE",
+		"Numpad4" = "mouseless_W",
+		"Numpad5" = "mouseless_C", //Center
+		"Numpad6" = "mouseless_E",
+		"Numpad7" = "mouseless_NW",
+		"Numpad8" = "mouseless_N",
+		"Numpad9" = "mouseless_NE"
+	)

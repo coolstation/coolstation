@@ -1231,13 +1231,13 @@
 (-)
 (t)sat aug 18 12
 (u)AngriestIBM
-(*)I should probably clarify that spies can: implant anybody since security implants are no longer A Thing (Even other leaders! whoa!) and that these are super mindslaves that do not wear off after time passes.
+(*)I should probably clarify that spies can: implant anybody since security implants are no longer A Thing (Even other leaders! whoa!) and that these are super insurgents that do not wear off after time passes.
 (*)Implantees should be able to refer to their notes (Not the PDA one, the verb one) to see who their boss is. I guess.
 (*)Also plant pots are secured/unsecured with a wrench now. What a crucial change!
 (-)
 (t)wed aug 15 12
 (u)AngriestIBM
-(*)There is a conspiracy/spy mode in beta. Competing syndicate infiltrators with mindslaves are fighting a shadow war for a promotion.
+(*)There is a conspiracy/spy mode in beta. Competing syndicate infiltrators with insurgents are fighting a shadow war for a promotion.
 (*)Wonton wrappers! Put an egg and some flour in the mixer and stuff the resulting wrappers with small foods. And then fry them.
 (-)
 (t)sat aug 11 12
@@ -1834,7 +1834,7 @@
 (-)
 (t)sun jan 15 12
 (u)Infinite Monkeys
-(*)Horror form isn’t harmed by stepping on glass and can consume with an Agressive grip.
+(*)Horror form isnï¿½t harmed by stepping on glass and can consume with an Agressive grip.
 (*)AI can now make an intercom (VOX) announcement once every two minutes!
 (-)
 (t)fri jan 13 12
@@ -1882,7 +1882,7 @@
 (-)
 (t)sat oct 01 11
 (u)JackMassacre
-(*)Mind Slave implants cost only a little more than a pipe bomb now, and last longer. Let's see how this works out.
+(*)Insurgency implants cost only a little more than a pipe bomb now, and last longer. Let's see how this works out.
 (*)Engineering space suits don't slow you down nearly as much anymore, but still more than originally.
 (*)Mining fabricators now produce engineering space suits and engineering space helmets instead of regular ones.
 (*)Various typo fixes to go along with your re-rebalancing. Delicious.
@@ -1894,7 +1894,7 @@
 (*)Emagging mining explosives now sabotages them so that they blow up in the user's face, rather than unlocking the targets they're usable on.
 (*)Traitor Miners now get special job-based syndicate items: hacked low and high yield mining explosives. These behave as old emagged mining explosives.
 (*)Both hacked and emagged mining explosives now have their own added descriptions upon examine, to vaguely reveal that something is different about them.
-(*)Mind Slave traitor item telecrystal cost has been increased threefold.
+(*)Insurgency traitor item telecrystal cost has been increased threefold.
 (*)RIG suits now actually protect against radiation, as in the blowout random event, and nuclear reactors, etc.
 (*)Engineering space suits are now twice as slow to move around in when walking, and are immensely slower when traveling through space. Examine desc updated to reflect this.
 (-)
@@ -1908,7 +1908,7 @@
 (*)Mind implant use is a lot more obvious to admins in logs now.
 (*)A bunch of additional admin options added for easily spawning human mobs of every job type, both genders.
 (*)Moving inside of the DNA scanner in genetics will now close the console window if you have it open. You should require a partner in Science if you want to alter your own DNA.
-(*)Attempting to Mind Slave implant someone who already has a security implant will fail, giving both target and user a failure message.
+(*)Attempting to Insurgency implant someone who already has a security implant will fail, giving both target and user a failure message.
 (-)
 (t)tue sep 20 11
 (u)JackMassacre
@@ -2699,7 +2699,7 @@
 (*)Russian roulette is now more like its exciting real life counterpart.
 (-)
 (u)ProcitizenSA (kinda)
-(*)<b>ATTENTION STATION SECURITY</b>: The following is a message from SecuTech security. <i>Thank you for trying SecuTech Virtual-Reality (VSPACE) Prisoner Containment Unit™. We hope you enjoyed your trial, but your evaluation copy has expired. Please register and purchase SecuTech Virtual-Reality (VSPACE) Prisoner Containment Unit™ to continue. Thank you and have a secure day. (NT vbrig will keep on keepin on)</i>
+(*)<b>ATTENTION STATION SECURITY</b>: The following is a message from SecuTech security. <i>Thank you for trying SecuTech Virtual-Reality (VSPACE) Prisoner Containment Unitï¿½. We hope you enjoyed your trial, but your evaluation copy has expired. Please register and purchase SecuTech Virtual-Reality (VSPACE) Prisoner Containment Unitï¿½ to continue. Thank you and have a secure day. (NT vbrig will keep on keepin on)</i>
 (-)
 (t)sun dec 19 10
 (u)I Said No

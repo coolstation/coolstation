@@ -1126,6 +1126,79 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 				src.sampled = 1
 				return 1
 
+/obj/decal/cleanable/mess
+	name = "mess"
+	icon = 'icons/obj/decals/cleanables.dmi'
+	icon_state = "mess1"
+	gross = 1
+
+	random_splotch
+		random_icon_states = list("mess1", "mess2", "mess3", "mess4")
+
+	splotch_one
+		icon_state = "mess1"
+
+	splotch_two
+		icon_state = "mess2"
+
+	splotch_three
+		icon_state = "mess3"
+
+	splotch_four
+		icon_state = "mess4"
+
+	random_food
+		icon_state = "messfood"
+		random_icon_states = list("messnoodle1sauce", "messnoodle1meatball", "messnoodle1", "messnoodle2sauce", "messnoodle2meatball", "messnoodle2", "messfries", "messchips", "messburrito", "messmaple")
+
+	random_litter
+		icon_state = "messlitter"
+		random_icon_states = list("messfries", "messchips", "messcan1", "messcan2", "messnougat")
+
+	noodles
+		name = "spilled plain noodles"
+		icon_state = "messnoodle1"
+		random_icon_states = list("messnoodle1", "messnoodle2")
+
+	noodles/random_sauce
+		name = "spilled noodles in sauce"
+		icon_state = "messnoodle1sauce"
+		random_icon_states = list("messnoodle1sauce", "messnoodle2sauce")
+
+	noodles/random_meatballs
+		name = "spilled noodles with meatballs"
+		icon_state = "messnoodle1meatball"
+		random_icon_states = list("messnoodle1meatball", "messnoodle2meatball")
+
+	noodles/random_all
+		icon_state = "messnoodle1sauce"
+		random_icon_states = list("messnoodle1sauce", "messnoodle1meatball", "messnoodle1", "messnoodle2sauce", "messnoodle2meatball", "messnoodle2")
+
+	fries
+		name = "spilled fries"
+		icon_state = "messfries"
+
+	chips
+		name = "spilled chips"
+		icon_state = "messchips"
+
+	sodacan
+		name = "discarded soda can"
+		icon_state = "messcan1"
+		random_icon_states = list("messcan1", "messcan2")
+
+	nougat
+		name = "discarded nougat wrapper"
+		icon_state = "messnougat"
+
+	burrito
+		name = "squashed burrito"
+		icon_state = "messburrito"
+
+	maple
+		name = "shattered maple syrup bottle"
+		icon_state = "messmaple"
+
 /obj/decal/cleanable/tomatosplat
 	name = "ruined tomato"
 	desc = "Gallows humour."

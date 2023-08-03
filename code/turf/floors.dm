@@ -1449,10 +1449,11 @@ DEFINE_FLOORS(techfloor/green,
 	return
 
 /turf/simulated/floor/proc/break_tile_to_plating()
-	if(intact) to_plating()
+	if(intact)
+		to_plating()
+		if(!src.reinforced && prob(25))
+			new /obj/decal/floatingtiles/loose/random(src)
 	break_tile()
-	if(prob(25))
-		new /obj/decal/floatingtiles/loose/random(src)
 
 /turf/simulated/floor/proc/break_tile(var/force_break)
 	if(!force_break)

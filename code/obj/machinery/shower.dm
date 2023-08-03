@@ -21,6 +21,8 @@
 	New()
 		..()
 		src.create_reagents(320)
+		if (src.on)
+			SubscribeToProcess()
 
 	attack_ai(mob/user as mob)
 		. = attack_hand(user)

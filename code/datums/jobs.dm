@@ -253,7 +253,7 @@ ABSTRACT_TYPE(/datum/job/command)
 	cant_spawn_as_rev = 1
 	announce_on_join = 1
 	receives_badge = 1
-	recieves_implant = /obj/item/implant/health/security/anti_mindslave
+	recieves_implant = /obj/item/implant/health/security/anti_insurgent
 	items_in_backpack = list(/obj/item/device/flash)
 
 

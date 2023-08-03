@@ -358,7 +358,7 @@
 				return
 			updatecardprice() //should be updated but just to be sure
 			var/datum/data/record/account = null
-			account = FindBankAccountByName(src.scan.registered)
+			account = FindBankAccountById(src.scan.registered_id)
 			if(!account)
 				src.temp = {"That's odd I can't seem to find your account
 							<BR><A href='?src=\ref[src];purchase=1'>OK</A>"}
@@ -398,11 +398,11 @@
 							<BR><A href='?src=\ref[src];purchase=1'>OK</A>"}
 				src.updateUsrDialog()
 				return
-			if (src.scan.registered in FrozenAccounts)
+			if (src.scan.registered_id in FrozenAccounts)
 				boutput(usr, "<span class='alert'>Your account cannot currently be liquidated due to active borrows.</span>")
 				return
 			var/datum/data/record/account = null
-			account = FindBankAccountByName(src.scan.registered)
+			account = FindBankAccountById(src.scan.registered_id)
 			if (account)
 				var/quantity = 1
 				quantity = input("How many units do you want to purchase? Maximum: 10", "Trader Purchase", null, null) as num
@@ -464,7 +464,7 @@
 					if (istype(I, /obj/item/device/pda2) && I:ID_card) I = I:ID_card
 					boutput(usr, "<span class='notice'>You swipe the ID card in the card reader.</span>")
 					var/datum/data/record/account = null
-					account = FindBankAccountByName(I:registered)
+					account = FindBankAccountById(I:registered_id)
 					if(account)
 						var/enterpin = input(usr, "Please enter your PIN number.", "Card Reader", 0) as null|num
 						if (enterpin == I:pin)
@@ -516,7 +516,7 @@
 		dat +="<B>Scanned Card:</B> <A href='?src=\ref[src];card=1'>([src.scan])</A><BR>"
 		if(scan)
 			var/datum/data/record/account = null
-			account = FindBankAccountByName(src.scan.registered)
+			account = FindBankAccountById(src.scan.registered_id)
 			if (account)
 				dat+="<B>Current Funds</B>: [account.fields["current_money"]] Credits<HR>"
 			else

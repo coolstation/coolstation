@@ -1265,6 +1265,12 @@ var/list/update_body_limbs = list("r_arm" = "stump_arm_right", "l_arm" = "stump_
 				spider_image.pixel_y = body_offset
 				src.body_standing.overlays += spider_image
 
+			if (src.grubs && src.grubs_color)
+				grubs_image.icon_state = "grubs"
+				grubs_image.pixel_y = body_offset
+				grubs_image.color = src.grubs_color
+				src.body_standing.overlays += grubs_image
+
 			if (src.makeup && src.makeup_color)
 				makeup_image.icon_state = "lipstick[src.makeup]" // 1 if normal, 2 if you kinda jacked up your application
 				makeup_image.color = src.makeup_color

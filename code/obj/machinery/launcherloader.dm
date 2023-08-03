@@ -340,7 +340,7 @@
 		if (istype(I, /obj/item/card/id) || (istype(I, /obj/item/device/pda2) && I:ID_card))
 			if (istype(I, /obj/item/device/pda2) && I:ID_card) I = I:ID_card
 			boutput(user, "<span class='notice'>You swipe the ID card.</span>")
-			account = FindBankAccountByName(I:registered)
+			account = FindBankAccountById(I:registered_id)
 			if(account)
 				var/enterpin = input(user, "Please enter your PIN number.", "Order Console", 0) as null|num
 				if (enterpin == I:pin)

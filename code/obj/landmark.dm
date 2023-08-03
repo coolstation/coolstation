@@ -170,6 +170,8 @@ var/global/list/job_start_locations = list()
 		"big_yank" = /mob/living/carbon/human/big_yank,
 		"father_jack" = /mob/living/carbon/human/fatherjack,
 		"don_glab" = /mob/living/carbon/human/don_glab,
+		"gunsemanne" = /mob/living/carbon/human/gunsemanne,
+
 		"monkeyspawn_normal" = /mob/living/carbon/human/npc/monkey,
 		"monkeyspawn_albert" = /mob/living/carbon/human/npc/monkey/albert,
 		"monkeyspawn_rathen" = /mob/living/carbon/human/npc/monkey/mr_rathen,
@@ -286,6 +288,14 @@ var/global/list/job_start_locations = list()
 	name = "instant hole spawn"
 	desc = "Point it at a turf. Stuff that goes there? goes here instead. Got it?"
 	novis = TRUE
+
+/obj/landmark/viscontents_spawn/gehenna // special cases :)
+	New(var/loc, var/man_xOffset, var/man_yOffset, var/man_targetZ, var/man_warptarget_modifier)
+		if(map_currently_very_dusty)
+			..()
+		else
+			qdel(src)
+			return
 
 /obj/landmark/viscontents_spawn/no_warp
 	warptarget_modifier = LANDMARK_VM_WARP_NONE

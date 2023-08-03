@@ -448,7 +448,7 @@
 			if (cryo.exit_prompt(src))
 				return
 
-		if (src.client && src.client.check_key(KEY_EXAMINE))
+		if (src.client && src.client.check_key(KEY_EXAMINE) && !src.client.experimental_mouseless)
 			src.examine_verb(target)
 			return
 
@@ -1663,13 +1663,13 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 /mob/living/critter/keys_changed(keys, changed)
 	..()
-	if (changed & KEY_RUN)
+	if (changed & KEY_RUN && !src.client?.experimental_mouseless)
 		if (hud && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
 			src.hud.set_sprint(keys & KEY_RUN)
 
 /mob/living/carbon/human/keys_changed(keys, changed)
 	..()
-	if (changed & KEY_RUN)
+	if (changed & KEY_RUN && !src.client?.experimental_mouseless)
 		if (hud && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
 			src.hud.set_sprint(keys & KEY_RUN)
 

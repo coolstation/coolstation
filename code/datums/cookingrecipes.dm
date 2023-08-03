@@ -558,6 +558,14 @@ ABSTRACT_TYPE(/datum/cookingrecipe)
 	cookbonus = 9 //IDK what this is exactly
 	output = /obj/item/reagent_containers/food/snacks/sandwich/mitraillette
 
+/datum/cookingrecipe/sandwich_knuckle
+	item1 = /obj/item/reagent_containers/food/snacks/breadslice
+	amt1 = 2
+	item2 = /obj/item/parts/human_parts/arm
+	item3 = /obj/item/reagent_containers/food/snacks/ingredient/cheese //This recipe is a cheesy joke
+	cookbonus = 7
+	output = /obj/item/reagent_containers/food/snacks/sandwich/knuckle
+
 /datum/cookingrecipe/sandwich_custom
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
 	amt1 = 2
@@ -885,6 +893,14 @@ ABSTRACT_TYPE(/datum/cookingrecipe)
 	output = /obj/item/reagent_containers/food/snacks/fairybread
 
 //Cookies
+/datum/cookingrecipe/stroopwalfel
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_cookie
+	amt1 = 2
+	item2 = /obj/item/reagent_containers/food/snacks/condiment/syrup
+	item3 = /obj/item/reagent_containers/food/snacks/candy/caramel
+	cookbonus = 4
+	output = /obj/item/reagent_containers/food/snacks/stroopwafel/walf
+
 /datum/cookingrecipe/stroopwafel
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_cookie
 	amt1 = 2

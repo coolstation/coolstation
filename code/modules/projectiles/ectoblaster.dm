@@ -1,3 +1,4 @@
+//Used by: ectoblaster
 /datum/projectile/ectoblaster
 	name = "ectobolt"
 	icon = 'icons/obj/projectiles.dmi'

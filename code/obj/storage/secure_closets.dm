@@ -354,6 +354,7 @@
 	icon_closed = "medical_medkit"
 	icon_state = "medical_medkit"
 	spawn_contents = list()
+	autosorting = FALSE //looks better with the manual sort
 	make_my_stuff()
 		if (..()) // make_my_stuff is called multiple times due to lazy init, so the parent returns 1 if it actually fired and 0 if it already has
 			var/obj/item/storage/firstaid/regular/B1 = new(src)
@@ -411,6 +412,7 @@
 	icon_state = "medical_restricted"
 	spawn_contents = list()
 	req_access = list(access_medical_director)
+	autosorting = FALSE //looks better with the manual sort
 	make_my_stuff()
 		if (..()) // make_my_stuff is called multiple times due to lazy init, so the parent returns 1 if it actually fired and 0 if it already has
 			// let's organize the SHIT outta this closet too! hot damn
@@ -471,6 +473,7 @@
 /obj/storage/secure/closet/research/chemical
 	name = "chemical storage locker"
 	spawn_contents = list()
+	autosorting = FALSE //looks better with the manual sort
 	make_my_stuff()
 		if (..()) // make_my_stuff is called multiple times due to lazy init, so the parent returns 1 if it actually fired and 0 if it already has
 			// let's organize the SHIT outta this closet hot damn

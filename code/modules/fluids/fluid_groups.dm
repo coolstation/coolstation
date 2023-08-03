@@ -115,6 +115,7 @@
 	var/draining = 0
 	var/queued_drains = 0 // how many tiles to drain on next update?
 	var/turf/last_drain = 0 // tile from which we should try to drain from
+	var/ignore_drain_exit = 0 // marks fluid groups inside the septic tank, which need to be leeched out to the great unseen.
 
 	var/drains_floor = 1
 

@@ -48,7 +48,7 @@
 		<B>Scanned Card:</B> <A href='?src=\ref[src];card=1'>([src.scan])</A><BR><HR>"}
 		if(src.scan != null)
 			var/datum/data/record/account = null
-			account = FindBankAccountByName(src.scan.registered)
+			account = FindBankAccountById(src.scan.registered_id)
 			if(account)
 				dat += "<B>Credits on Account:</B> [account.fields["current_money"]] Credits<BR><HR>"
 		dat += {"<A href='?src=\ref[src];viewrequests=1'>View Requests</A><BR>
@@ -65,7 +65,7 @@
 		if (istype(I, /obj/item/device/pda2) && I:ID_card) I = I:ID_card
 		boutput(user, "<span class='notice'>You swipe the ID card.</span>")
 		var/datum/data/record/account = null
-		account = FindBankAccountByName(I:registered)
+		account = FindBankAccountById(I:registered_id)
 		if(account)
 			var/enterpin = input(user, "Please enter your PIN number.", "Order Console", 0) as null|num
 			if (enterpin == I:pin)
@@ -96,7 +96,7 @@
 
 	if (href_list["order"])
 		var/datum/data/record/account = null
-		if(src.scan) account = FindBankAccountByName(src.scan.registered)
+		if(src.scan) account = FindBankAccountById(src.scan.registered_id)
 		if(account)
 			src.temp = "<B>Credits on Account:</B> [account.fields["current_money"]] Credits<BR><HR>"
 		else
@@ -138,7 +138,7 @@
 
 	else if (href_list["doorder"])
 		var/datum/data/record/account = null
-		if(src.scan) account = FindBankAccountByName(src.scan.registered)
+		if(src.scan) account = FindBankAccountById(src.scan.registered_id)
 		var/datum/supply_order/O = new/datum/supply_order ()
 		var/datum/supply_packs/P = locate(href_list["doorder"])
 		if(istype(P))
@@ -207,7 +207,7 @@
 				if (istype(I, /obj/item/device/pda2) && I:ID_card) I = I:ID_card
 				boutput(usr, "<span class='notice'>You swipe the ID card.</span>")
 				var/datum/data/record/account = null
-				account = FindBankAccountByName(I:registered)
+				account = FindBankAccountById(I:registered_id)
 				if(account)
 					var/enterpin = input(usr, "Please enter your PIN number.", "Order Console", 0) as null|num
 					if (enterpin == I:pin)
@@ -227,7 +227,7 @@
 
 		if (src.scan)
 			var/datum/data/record/account = null
-			account = FindBankAccountByName(src.scan.registered)
+			account = FindBankAccountById(src.scan.registered_id)
 			if (!account)
 				src.temp = {"<B>ERROR:</B> No bank account associated with this ID card found.<BR>
 							<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"}
@@ -243,11 +243,11 @@
 
 	else if (href_list["buy"])
 		if (src.scan)
-			if (src.scan.registered in FrozenAccounts)
+			if (src.scan.registered_id in FrozenAccounts)
 				boutput(usr, "<span class='alert'>Your account cannot currently be liquidated due to active borrows.</span>")
 				return
 			var/datum/data/record/account = null
-			account = FindBankAccountByName(src.scan.registered)
+			account = FindBankAccountById(src.scan.registered_id)
 			if (!account)
 				src.temp = {"<B>ERROR:</B> No bank account associated with this ID card found.<BR>
 							<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"}
