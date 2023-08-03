@@ -10,8 +10,12 @@
 	var/station_budget = 0.0
 	var/shipping_budget = 0.0
 	var/research_budget = 0.0
-	var/finserv_budget = 0.0 // NanoTrasen gets their share of every transaction.
-				 // ... if the channel ever reopens for them to collect it.
+	var/datum/data/record/finserv_budget // NanoTrasen gets their share of every transaction.
+			// ... if the channel ever reopens for them to collect it.
+
+			// Also im sorry for this being a d/d/r in here rather than just an number,
+			// but my embeezlement thing for the cashregs and whatnot just don't work right
+			// otherwise :(
 
 	var/list/jobs = new/list()
 
@@ -66,7 +70,11 @@
 		station_budget = 100000
 		shipping_budget = 30000
 		research_budget = 20000
-		finserv_budget = 20000
+
+		finserv_budget = new // sorry
+		finserv_budget.fields["id"] = "FinServ"
+		finserv_budget.fields["name"] = "NanoTrasen Financial Services"
+		finserv_budget.fields["current_money"] = 20000
 
 		// This is gonna throw up some crazy errors if it isn't done right!
 		// cogwerks - raising all of the paychecks, oh god

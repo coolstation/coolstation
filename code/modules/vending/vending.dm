@@ -129,7 +129,7 @@
 	var/receipt_count = 20 // TODO: Printer rolls for receipts?
 	var/min_serv_chg = 2 // 2 bux just to use your damn machine? Rasm frasm grumble!
 	var/serv_chg_pct = 0.02
-	var/datum/data/record/servicechgaccount = null
+	var/datum/data/record/servicechgaccount = null // TODO: add a way to set/reset this for miscreants to do an embeezle
 
 	var/HTML = null // guh
 	var/vending_HTML = null // buh
@@ -224,14 +224,22 @@
 		return
 
 	proc/deep_freeze(atom/movable/thing) // this is for frozen foods, or anything else you wanna freeze. I dont care. -warc
-		if(istype(thing, /obj/item/reagent_containers/food/snacks/))
-			var/obj/item/reagent_containers/food/snacks/S = thing
-			if("food_cold" in S.food_effects)
-				return S // if the dispensed item is meant to be cold, don't treat it as "frozen"
+
 		if(istype(thing, /obj/item/popsicle))
 			return thing // dont refreeze these. hopefully thats all the exceptions.
 
 		var/obj/item/reagent_containers/food/snacks/shell/frozen/freezie = new(src)
+
+		if(istype(thing, /obj/item/reagent_containers/food/snacks/))
+			var/obj/item/reagent_containers/food/snacks/S = thing
+			if("food_cold" in S.food_effects)
+				return S // if the dispensed item is meant to be cold, don't treat it as "frozen"
+			else
+				freezie.food_effects |= S.food_effects
+				freezie.food_effects -= "food_warm"
+
+
+
 		freezie.name = "frozen [thing.name]"
 
 		var/icon/composite = new(thing.icon, thing.icon_state)
@@ -715,7 +723,7 @@
 					if (account.fields["current_money"] < R.product_cost)
 						boutput(usr, "<span class='alert'>Insufficient funds in account. To use machine credit, log out.</span>")
 						account.fields["current_money"] -= min_serv_chg
-						servicechgaccount["current_money"] += min_serv_chg
+						servicechgaccount.fields["current_money"] += min_serv_chg
 						flick(src.icon_deny,src)
 						src.vend_ready = 1
 						src.paying_for = R
@@ -747,6 +755,7 @@
 				if (src.acceptcard && account)
 					account.fields["current_money"] -= R.product_cost
 					account.fields["current_money"] -= service_charge
+					servicechgaccount.fields["current_money"] += service_charge
 				else
 					src.credit -= R.product_cost
 					service_charge = 0
@@ -1822,6 +1831,21 @@
 	light_g = 0.88
 	light_b = 0.3
 
+	attackby(obj/item/W, mob/user)
+		if(!user?.client)
+			return ..()
+		if(istype(W, /obj/item/gun/modular/))
+			if (alert(user, "Would you like to store your weapon?", "Confirmation", "Yes", "No") == "Yes")
+				user.client.save_cloud_gun(1, gun=W)
+				user.u_equip(W)
+				W.dropped(user)
+				qdel(W)
+			return
+
+		else
+			..()
+
+
 	create_products()
 		..()
 		/*
@@ -1835,31 +1859,46 @@
 */
 		//above this line is for debug and testing only, they'll go in the bin later.
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 2, cost = PAY_TRADESMAN)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long, 2, cost = PAY_TRADESMAN*1.5)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 2, cost = PAY_TRADESMAN*1.5)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long, 2, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long/very, 2, cost = PAY_TRADESMAN*1.2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long, 1, cost = PAY_TRADESMAN*1.5)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 1, cost = PAY_TRADESMAN*1.5)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT, 5, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long, 5, cost = PAY_UNTRAINED*1.1)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long/very, 1, hidden=1, cost = PAY_TRADESMAN*1.2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/short, 2, 2, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/shotty, 2, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 2, cost = PAY_UNTRAINED/5)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/flashlight, 2, cost = PAY_UNTRAINED/4)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 2, cost = PAY_TRADESMAN)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian, 2, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian/bigger, 2, cost = PAY_UNTRAINED*1.1)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 1, cost = PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/flashlight, 3, cost = PAY_UNTRAINED/4)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 1, hidden=1, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian, 1, hidden=1, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian/bigger,  1, hidden=1, cost = PAY_UNTRAINED*1.1)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT, 5, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/guardless, 2, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/arm_brace, 2, cost = PAY_UNTRAINED/1.5)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/shoulder, 2, cost = PAY_UNTRAINED/1.5)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/fancy, 2, cost = PAY_UNTRAINED/2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/ceremonial, 2, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/stub, 2, cost = PAY_UNTRAINED/2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet/long, 1, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet, 1, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/zaubertube/ten, 10, cost = PAY_TRADESMAN)
+		//product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet/long, 1, cost = PAY_UNTRAINED)
+		//product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet, 1, cost = PAY_UNTRAINED)
+		//product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/zaubertube/ten, 10, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/ten, 10, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/ten, 10, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 1, hidden=1, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/basic, 1, hidden=1, cost = PAY_UNTRAINED*2)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 2, hidden=1, cost = PAY_UNTRAINED*2)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2, hidden=1, cost = PAY_UNTRAINED*2)
+		//product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 1, hidden=1, cost = PAY_UNTRAINED)
+		//product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/basic, 1, hidden=1, cost = PAY_UNTRAINED*2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 1, hidden=1, cost = PAY_UNTRAINED*2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 1, hidden=1, cost = PAY_UNTRAINED*2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 1, hidden=1, cost = PAY_UNTRAINED*2)
+
+	debug
+		pay = 0
+		create_products()
+			for(var/types in concrete_typesof(/obj/item/gun/modular))
+				product_list += new/datum/data/vending_product(types, 2)
+			for(var/types in concrete_typesof(/obj/item/gun_parts/))
+				product_list += new/datum/data/vending_product(types, 2)
+			for(var/types in concrete_typesof(/obj/item/stackable_ammo/))
+				product_list += new/datum/data/vending_product(types, 5)
+			product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 5)
 
 
 //The burden of these machinations weighs on my shoulders

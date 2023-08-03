@@ -1,3 +1,4 @@
+//Used by: wavegun
 /datum/projectile/wavegun
 	name = "energy wave"
 	icon = 'icons/obj/projectiles.dmi'
@@ -33,7 +34,7 @@
 	get_power(obj/projectile/P, atom/A)
 		return 12.5 + 2.5 * clamp(get_dist(A, P.orig_turf) - 4, 0, 7)
 
-
+//Used by: wavegun
 /datum/projectile/wavegun/transverse //expensive taser shots that go through /everything/
 	shot_number = 1
 	power = 10 //half the power of a taser at range 1-3, delivers a nasty punch at the 4-tile sweetspot
@@ -55,6 +56,7 @@
 	get_power(obj/projectile/P, atom/A)
 		return 10 + 30 * (P.travelled >= 128)
 
+//Used by: wavegun
 /datum/projectile/wavegun/bouncy
 	sname = "reflection wave"
 	power = 10

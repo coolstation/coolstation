@@ -53,7 +53,7 @@
 	icon_state = "hard_case"
 	desc = "A box containing an italian revolver and ammo."
 	// cogwerks - i think the ammo boxes are dumb, giving the starting box more ammo
-	spawn_contents = list(/obj/item/gun/modular/italian/italiano,\
+	spawn_contents = list(/obj/item/gun/modular/italian/big_italiano,\
 	/obj/item/stackable_ammo/pistol/ten,\
 	/obj/item/stackable_ammo/capacitive/ten)
 

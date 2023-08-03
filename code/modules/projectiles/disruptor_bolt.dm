@@ -1,3 +1,4 @@
+//Used by: Disruptor (the gun), Mk. 3 Disruptor pod weapon
 /datum/projectile/disruptor
 	name = "disruptor"
 	icon = 'icons/obj/projectiles.dmi'
@@ -49,6 +50,7 @@ toxic - poisons
 				hit:smash()
 		return
 
+//Used by: Disruptor gun
 /datum/projectile/disruptor/burst
 	icon_state = "disrupt"
 	shot_sound = 'sound/weapons/rocket.ogg'
@@ -59,6 +61,7 @@ toxic - poisons
 	damage_type = D_ENERGY
 	sname = "burst stun"
 
+//Used by: Heavy disruptor array pod weapon, disruptor
 /datum/projectile/disruptor/high
 	power = 60
 	shot_sound = 'sound/weapons/laserultra.ogg'

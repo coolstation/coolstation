@@ -717,12 +717,12 @@
 
 	if (src.mind) // I think this is kinda important (Convair880).
 		src.mind.register_death()
-		if (src.mind.special_role == ROLE_MINDSLAVE)
-			remove_mindslave_status(src, "mslave", "death")
+		if (src.mind.special_role == ROLE_INSURGENT)
+			remove_insurgent_status(src, "nsurgt", "death")
 		else if (src.mind.special_role == ROLE_VAMPTHRALL)
-			remove_mindslave_status(src, "vthrall", "death")
+			remove_insurgent_status(src, "vthrall", "death")
 		else if (src.mind.master)
-			remove_mindslave_status(src, "otherslave", "death")
+			remove_insurgent_status(src, "other_recruit", "death")
 #ifdef DATALOGGER
 		game_stats.Increment("playerdeaths")
 #endif
@@ -3413,8 +3413,15 @@
 		if (AM.throwing & THROW_CHAIRFLIP)
 			src.visible_message("<span class='alert'>[AM] slams into [src] midair!</span>")
 		else
-			src.visible_message("<span class='alert'>[src] has been hit by [AM].</span>")
-			random_brute_damage(src, AM.throwforce,1)
+			//this if is so shit I'm sorry
+			//but how else am I meant to achieve this?
+			if (AM.throwing & THROW_SANDWICH && thr?.user)
+				. = pick(sounds_punch)
+				src.visible_message("<span class='alert'>[src] takes [thr.user]'s [AM.name] to the face!.</span>")
+				random_brute_damage(src, rand(2, 9),1)
+			else
+				src.visible_message("<span class='alert'>[src] has been hit by [AM].</span>")
+				random_brute_damage(src, AM.throwforce,1)
 			logTheThing("combat", src, null, "is struck by [AM] [AM.is_open_container() ? "[log_reagents(AM)]" : ""] at [log_loc(src)] (likely thrown by [thr?.user ? constructName(thr.user) : "a non-mob"]).")
 			if(thr?.user)
 				src.was_harmed(thr.user, AM)

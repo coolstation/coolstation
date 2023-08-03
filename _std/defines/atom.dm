@@ -36,6 +36,7 @@
 #define THROW_CHAIRFLIP 2
 #define THROW_GUNIMPACT 4
 #define THROW_SLIP 8
+#define THROW_SANDWICH 16 //This is for one single item, because I'm pretty sure this would never have been clean.
 
 //For serialization purposes
 #define DESERIALIZE_ERROR 0
