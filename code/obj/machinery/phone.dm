@@ -333,7 +333,7 @@
 		if(!src.parent)
 			qdel(src)
 			return
-		if(src.parent.answered == 1 && get_dist(src,src.parent) > 1)
+		if(src.parent.answered == 1 && get_dist(src,src.parent) > 2)
 			boutput(src.holder,"<span class='alert'>The phone cord reaches it limit and the handset is yanked back to its base!</span>")
 			src.holder.drop_item(src)
 			src.parent.hang_up()
