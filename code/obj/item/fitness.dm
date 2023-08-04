@@ -267,7 +267,7 @@
 				H.sims.affectMotive("fun", 1)
 		spam_flag = 1
 		if (narrator_mode)
-			playsound(user, 'sound/vox/screamsound.ogg', 50, 1)
+			playsound(user, 'sound/vox/fish.ogg', 50, 1)
 		else
 			if (prob (50))
 				playsound(user, 'sound/voice/scientist/scream06.ogg', 50, 1)
