@@ -1437,7 +1437,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 		if (INTENT_DISARM)
 			if (M.is_mentally_dominated_by(src))
-				boutput(M, "<span class='alert'>You cannot harm your master!</span>")
+				boutput(M, "<span class='alert'>You cannot harm this person!</span>")
 				return
 
 			var/datum/limb/L = M.equipped_limb()
@@ -1459,7 +1459,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 		if (INTENT_HARM)
 			if (M.is_mentally_dominated_by(src))
-				boutput(M, "<span class='alert'>You cannot harm your master!</span>")
+				boutput(M, "<span class='alert'>You cannot harm this person!</span>")
 				return
 
 			if (M != src)
