@@ -25,7 +25,17 @@ ABSTRACT_TYPE(/datum/objective)
 	var/datum/mind/target
 	var/targetname
 
+	New(var/target_this_guy = null)
+		if(target_this_guy)
+			target = target_this_guy
+			target.current.mind.is_target = 1
+			create_objective_string(target)
+		..()
+
 	set_up()
+		if(target)
+			return target
+
 		var/list/possible_targets = list()
 
 		for(var/datum/mind/possible_target in ticker.minds)

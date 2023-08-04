@@ -495,7 +495,7 @@ var/global
 
 	list/cooldowns
 
-	syndicate_currency = "[pick("Flooz","Beenz")]"
+	syndicate_currency = "[pick("Flooz","Beenz","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals")]"
 
 
 /proc/addGlobalRenderSource(var/image/I, var/key)

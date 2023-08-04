@@ -711,9 +711,7 @@ THROWING DARTS
 
 		if(!I.mind.special_role && M.mind && ticker.mode) // a nonantag? using an implant on ya? well then...
 			old_objectives = M.mind.objectives
-			var/datum/objective/regular/assassinate/kill_implanter = new
-			kill_implanter.target = I
-			kill_implanter.create_objective_string(I)
+			var/datum/objective/regular/assassinate/kill_implanter = new(I.mind)
 			M.mind.objectives += kill_implanter
 			M.mind.special_role = ROLE_INSURGENT
 			SHOW_INSURGENT_BACKFIRE(M)
