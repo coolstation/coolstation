@@ -41,14 +41,14 @@ proc/build_syndi_buylist_cache()
 	desc = "You shouldn't see me!"
 
 /datum/syndicate_buylist/generic/revolver
-	name = "Revolver"
+	name = "Revolver (modular)"
 	item = /obj/item/storage/box/revolver
 	cost = 5
 	desc = "The traditional sidearm of an Italian Syndicate field agent. Holds a few rounds and comes with extra ammo."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/generic/fossgun
-	name = "Open-Source Laser Gun"
+	name = "Open-Source Laser Gun (modular)"
 	item = /obj/item/storage/box/foss_gun_kit
 	cost = 6
 	desc = "A FOSS-Licensed hand-cranked open-source laser gun, and a few flashbulbs to boot. Tricky!"
@@ -57,30 +57,30 @@ proc/build_syndi_buylist_cache()
 /datum/syndicate_buylist/generic/fossbulb
 	name = "Open-Source Flashbulbs"
 	item = /obj/item/storage/box/foss_flashbulbs
-	cost = 2
+	cost = 1
 	desc = "FOSS-Licensed hand-crafted open-source flashbulbs, only works with Open-Source Laser Guns!"
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/generic/pistol
-	name = "NT Pistol"
+	name = "NT Pistol (modular)"
 	item = /obj/item/storage/box/pistol
 	cost = 3
 	desc = "A fairly basic single action pistol. Standard issue, so it won't attract attention."
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/generic/shotgun
-	name = "Shotgun"
+	name = "Shotgun (modular)"
 	item = /obj/item/storage/box/shotgun
-	cost = 6
+	cost = 5
 	desc = "Not exactly stealthy, but it'll certainly make an impression."
 	not_in_crates = 1
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/generic/radbow
-	name = "Rad Poison Crossbow"
-	item = /obj/item/gun/energy/crossbow
+	name = "Rad Poison Crossbow Bolts (10)"
+	item = /obj/item/stackable_ammo/radbow/ten
 	cost = 3
-	desc = "Crossbow Model C - Now with safer Niobium core. This ranged weapon is great for hitting someone in a dark corridor! They'll never know what hit em! Will slowly recharge between shots."
+	desc = "Ten highly lethal flechettes that deal large amounts of radiation poisonning. Can be fired from any modular gun. Popular with the NT pistol."
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/generic/garrote
@@ -89,7 +89,6 @@ proc/build_syndi_buylist_cache()
 	cost = 3
 	desc = "Commonly used by special forces for silent removal of isolated targets. Ensure you are out of sight, apply to the target's neck from behind with a firm two-hand grip and wait for death to occur."
 	blockedmode = list(/datum/game_mode/revolution)
-
 
 
 /datum/syndicate_buylist/generic/empgrenades
@@ -158,8 +157,16 @@ proc/build_syndi_buylist_cache()
 /datum/syndicate_buylist/generic/psink
 	name = "Power Sink"
 	item = /obj/item/device/powersink
-	cost = 5
+	cost = 0
 	desc = "Lights too bright? Airlocks too automatic? Alarms too functional? Or maybe just nostalgic about the good ol' days before electricity came along? The XL-100 Power Sink addresses all these ills and more. Simply screw to the nearest exposed wiring and flip the switch, and this little wonder will get to work on draining all of that nasty power."
+	not_in_crates = 1
+	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
+
+/datum/syndicate_buylist/generic/pstink
+	name = "Power Stink"
+	item = /obj/machinery/portable_atmospherics/canister/farts/filled
+	cost = 4
+	desc = "Lights too bright? Airlocks too automatic? Alarms too functional? Or maybe just nostalgic about the good ol' days before electricity came along? Unrelatedly here's a canister of farts. Hope you read the whole description. "
 	not_in_crates = 1
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
@@ -212,12 +219,6 @@ proc/build_syndi_buylist_cache()
 			stabby.bladecolor = "R"
 		return
 
-/datum/syndicate_buylist/generic/katana
-	name = "Katana"
-	item = /obj/item/katana_sheath
-	cost = 7
-	desc = "A Japanese sword created in the fire of a dying star. Comes with a sheath for easier storage"
-	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/generic/wrestling
 	name = "Wrestling Belt"
@@ -270,12 +271,6 @@ proc/build_syndi_buylist_cache()
 	desc = "A pack of sponge capsules that react with water and produce nasty critters."
 	blockedmode = list(/datum/game_mode/revolution)
 
-/datum/syndicate_buylist/traitor/bomb
-	name = "Small angry men in a bomb?"
-	item = /obj/item/pipebomb/bomb/miniature_syndicate
-	cost = 3
-	desc = "A rather volatile pipe bomb packed with miniature syndicate troops."
-	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/bomb_real // the ol standby, standby me.
 	name = "Syndicate Pipebomb"
@@ -312,19 +307,6 @@ proc/build_syndi_buylist_cache()
 	desc = "The ultimate in disguise technology. This will perfectly conceal your identity from any onlookers and leave them stunned at your majestic facial hair."
 	blockedmode = list(/datum/game_mode/revolution)
 
-/datum/syndicate_buylist/traitor/bowling
-	name = "Bowling Kit"
-	item = /obj/item/storage/bowling
-	cost = 7
-	desc = "Comes with several bowling balls and a suit. You won't be able to pluck up the courage to throw them very hard without wearing the suit!"
-	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
-
-/datum/syndicate_buylist/traitor/football
-	name = "Space-American Football Kit"
-	item = /obj/item/storage/football
-	cost = 7
-	desc = "This kit contains everything you need to become a great football player! Wearing all of the equipment inside will grant you the ability to rush down and tackle foes. You'll also make amazing throws!"
-	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/insurgent
 	name = "Insurgency implant"
@@ -1135,6 +1117,35 @@ This is basically useless for anyone but miners.
 	desc = "Three deadly throwing darts that embed themselves into your target."
 	job = list("Assistant","Technical Assistant","Medical Assistant","Staff Assistant","Bartender","Clown")
 	blockedmode = list(/datum/game_mode/revolution)
+
+/datum/syndicate_buylist/generic/katana
+	name = "Katana"
+	item = /obj/item/katana_sheath
+	cost = 0 //7
+	desc = "A Japanese sword created in the fire of a dying star. Comes with a sheath for easier storage"
+	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
+/datum/syndicate_buylist/traitor/bomb
+	name = "Small angry men in a bomb?"
+	item = /obj/item/pipebomb/bomb/miniature_syndicate
+	cost = 0 //3
+	desc = "A rather volatile pipe bomb packed with miniature syndicate troops."
+	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
+/datum/syndicate_buylist/traitor/bowling
+	name = "Bowling Kit"
+	item = /obj/item/storage/bowling
+	cost = 0 //7
+	desc = "Comes with several bowling balls and a suit. You won't be able to pluck up the courage to throw them very hard without wearing the suit!"
+	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
+/datum/syndicate_buylist/traitor/football
+	name = "Space-American Football Kit"
+	item = /obj/item/storage/football
+	cost = 0 //7
+	desc = "This kit contains everything you need to become a great football player! Wearing all of the equipment inside will grant you the ability to rush down and tackle foes. You'll also make amazing throws!"
+	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
 
 // round specific
 

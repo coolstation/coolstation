@@ -238,6 +238,24 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		default_min_amount = 10
 		default_max_amount = 10
 
+/obj/item/stackable_ammo/radbow
+	name = "\improper Syndicate Radioactive Darts"
+	real_name = "Syndicate Radioactive Darts"
+	projectile_type = /datum/projectile/rad_bolt
+	desc = "Stealthy projectiles cause insidious radiation poisonning."
+
+	three
+		default_min_amount = 3
+		default_max_amount = 3
+
+	five
+		default_min_amount = 5
+		default_max_amount = 5
+
+	ten
+		default_min_amount = 10
+		default_max_amount = 10
+
 /obj/item/stackable_ammo/zaubertube/
 	name = "\improper Elektrograd лазерный Zaubertube"
 	real_name = "Elektrograd лазерный Zaubertube"
