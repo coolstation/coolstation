@@ -310,7 +310,7 @@
 	var/dam_low = 3
 	var/dam_high = 9
 	var/custom_msg = null
-	var/miss_prob = 80
+	var/hit_prob = 80 //WHY THE FUCK DID YOU CALL THIS MISS PROB
 	var/stam_damage_mult = 1
 
 	attack_hand(atom/target, var/mob/user, var/reach)
@@ -338,7 +338,7 @@
 		if (!target.melee_attack_test(user))
 			return
 
-		if (prob(src.miss_prob) || is_incapacitated(target)|| target.restrained())
+		if (prob(src.hit_prob) || is_incapacitated(target)|| target.restrained())
 			var/obj/item/affecting = target.get_affecting(user)
 			var/datum/attackResults/msgs = user.calculate_melee_attack(target, affecting, dam_low, dam_high, 0, stam_damage_mult, !isghostcritter(user))
 			user.attack_effects(target, affecting)

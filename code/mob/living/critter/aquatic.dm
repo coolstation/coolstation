@@ -513,7 +513,7 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 	sound_attack = "sound/impact_sounds/Glub_2.ogg"
 	dam_low = 0
 	dam_high = 1
-	miss_prob = 100 // you ever meet those fish that eat the dead skin off of the backs of your feet?
+	hit_prob = 100 // you ever meet those fish that eat the dead skin off of the backs of your feet?
 	stam_damage_mult = 0.2
 
 /datum/limb/king_crab // modified claw limb
