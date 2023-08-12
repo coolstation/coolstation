@@ -12,6 +12,7 @@
 	var/weight = 1 // for weighting the importance of the goal this sequence is in charge of
 	var/max_dist = 5 // the maximum tile distance that we look for targets
 	var/can_be_adjacent_to_target = 1 // do we need to be AT the target specifically, or is being in 1 tile of it fine?
+	var/max_traverse = 40
 
 /datum/aiTask/sequence/goalbased/New(parentHolder, transTask)
 	..(parentHolder, transTask)
@@ -63,7 +64,7 @@
 		if(M && !M.move_target)
 			var/target_turf = get_turf(holder.target)
 			if(can_be_adjacent_to_target)
-				var/list/tempPath = cirrAstar(get_turf(holder.owner), target_turf, 1, 40)
+				var/list/tempPath = cirrAstar(get_turf(holder.owner), target_turf, 1, max_traverse)
 				var/length_of_path = length(tempPath)
 				if(length_of_path) // fix runtime Cannot read length(null)
 					M.move_target = tempPath[length_of_path]
@@ -131,13 +132,14 @@
 	max_fails = 5
 	var/list/found_path = null
 	var/atom/move_target = null
+	var/max_traverse = 60
 
 // use the target from our holder
 /datum/aiTask/succeedable/move/proc/get_path()
 	if(!move_target)
 		fails++
 		return
-	src.found_path = cirrAstar(get_turf(holder.owner), get_turf(move_target), 0, 60)
+	src.found_path = cirrAstar(get_turf(holder.owner), get_turf(move_target), 0, max_traverse)
 	if(!src.found_path) // no path :C
 		fails++
 

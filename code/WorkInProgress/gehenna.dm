@@ -138,6 +138,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	temperature = WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
 
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
+	pathable = TRUE
 
 	var/datum/light/point/light = null
 	var/light_r = 0.5*(sin(GEHENNA_TIME)+1)
