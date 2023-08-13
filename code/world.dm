@@ -772,14 +772,14 @@ var/f_color_selector_handler/F_Color_Selector
 #endif
 	shutdown()
 #endif
+	var/newround = 'sound/misc/NewRound.ogg'
+	if (prob(40))
+		newround = pick('sound/misc/NewRound2.ogg', 'sound/misc/NewRound3.ogg', 'sound/misc/NewRound4.ogg', 'sound/misc/NewRound5.ogg', 'sound/misc/NewRound6.ogg', 'sound/misc/TimeForANewRound.ogg')
 
 	SPAWN_DBG(world.tick_lag)
 		for (var/client/C)
 			if (C.mob)
-				if (prob(40))
-					C.mob << sound(pick('sound/misc/NewRound2.ogg', 'sound/misc/NewRound3.ogg', 'sound/misc/NewRound4.ogg', 'sound/misc/NewRound5.ogg', 'sound/misc/NewRound6.ogg', 'sound/misc/TimeForANewRound.ogg'))
-				else
-					C.mob << sound('sound/misc/NewRound.ogg')
+				C.mob << sound(newround)
 
 #ifdef DATALOGGER
 	SPAWN_DBG(world.tick_lag*2)
