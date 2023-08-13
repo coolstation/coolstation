@@ -1247,6 +1247,12 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	icon = 'icons/obj/dojo.dmi'
 	icon_state = "sakura_overlay"
 
+/obj/decal/cleanable/bigchallenges
+	name = "Big Challenges"
+	desc = "They're really big challenges. They're really consequential challenges."
+	icon = 'icons/obj/decals/graffiti.dmi'
+	icon_state = "bigchallenges"
+
 /obj/decal/cleanable/slime // made by slugs and snails
 	name = "slime"
 	desc = "Eww."
