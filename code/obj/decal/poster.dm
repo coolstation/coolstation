@@ -803,8 +803,8 @@
 						src.name = "Pack Smart"
 						src.icon_state = "pack_smart"
 					if("contest-other2")
-						src.name = "Mindslaver Device Poster"
-						src.icon_state = "mindslaver"
+						src.name = "Insurgentr Device Poster"
+						src.icon_state = "insurgentr"
 					if("contest-other3")
 						src.name = "Edit Wiki"
 						src.icon_state = "edit_wiki"
@@ -827,7 +827,7 @@
 					if("code")
 						user << link("https://github.com/coolstation/coolstation")
 					if("edit_wiki")
-						user << link("https://wiki.ss13.co/")
+						user << link("https://wiki.coolstation.space/")
 
 		fuck1 //do not add this to the random sign rotation, fuck I is a long-lost relic overshadowed entirely by its successor
 			name = "\proper fuck"

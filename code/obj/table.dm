@@ -19,6 +19,7 @@
 	var/obj/item/storage/desk_drawer/desk_drawer = null
 	var/slaps = 0
 	var/colorcache = null
+	var/scrapes_floor = FALSE //if this table moves, and doesn't have wheels, make a scraping noise
 
 	///Moving the table with more than this risks stuff dropping off. Transferred from surgery trays
 	var/max_to_move = 10
@@ -421,8 +422,11 @@
 	Move(NewLoc,Dir)
 		. = ..()
 		if (.)
-			if (prob(75) && src.has_brakes) //gonna assume that anything with brakes also has castors
-				playsound(src, "sound/misc/chair/office/scoot[rand(1,5)].ogg", 40, 1)
+			if (prob(75)) //gonna assume that anything with brakes also has castors
+				if (src.has_brakes)
+					playsound(src, "sound/misc/chair/office/scoot[rand(1,5)].ogg", 40, 1)
+				else if (src.scrapes_floor)
+					playsound(src, "sound/misc/chair/normal/scoot[rand(1,5)].ogg", 40, 1)
 
 			//if we're over the max amount a table can fit, have a chance to drop an item. Chance increases with items on tray
 			if (prob((length(src.attached_objs)-max_to_move)*1.1))
@@ -1221,3 +1225,13 @@
 	has_brakes = TRUE
 	anchored = FALSE
 	p_class = 1.5
+
+/obj/table/folding/bin
+	name = "bin"
+	desc = "A grody looking bin. You can store stuff in it, but it will be difficult to pull around."
+	icon = 'icons/obj/scrap.dmi'
+	icon_state = "hopper0"
+	p_class = 4
+	anchored = FALSE
+	parts_type = /obj/item/furniture_parts/table/bin
+	scrapes_floor = TRUE

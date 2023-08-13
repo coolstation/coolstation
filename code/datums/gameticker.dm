@@ -62,7 +62,11 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 
 	var/did_mapvote = 0
+	#ifdef IM_REALLY_IN_A_FUCKING_HURRY_HERE
+	var/did_lobbymusic = 1
+	#else
 	var/did_lobbymusic = 0
+	#endif
 	if (!player_capa)
 		new /obj/overlay/zamujasa/round_start_countdown/encourage()
 	var/obj/overlay/zamujasa/round_start_countdown/timer/title_countdown = new()

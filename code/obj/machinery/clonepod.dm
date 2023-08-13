@@ -30,7 +30,7 @@
 	var/portable = 0 //Are we part of a port-a-clone?
 	var/id = null
 
-	var/cloneslave = 0 //Is a traitor enslaving the clones?
+	var/clonerecruit = 0 //Is a traitor enslaving the clones?
 	var/mob/implant_master = null // Who controls the clones?
 	var/is_speedy = 0 // Speed module installed?
 	var/is_efficient = 0 // Efficiency module installed?
@@ -164,7 +164,7 @@
 		if (src.mess)
 			src.icon_state = "pod_g"
 		else
-			src.icon_state = "pod_[src.occupant ? "1" : "0"][src.meat_level ? "" : "_lowmeat"][src.cloneslave ? "_mindslave" : "" ][src.connected?.mindwipe ? "_mindwipe" : ""]"
+			src.icon_state = "pod_[src.occupant ? "1" : "0"][src.meat_level ? "" : "_lowmeat"][src.clonerecruit ? "_insurgent" : "" ][src.connected?.mindwipe ? "_mindwipe" : ""]"
 
 
 	proc/start_clone(force = 0)
@@ -331,20 +331,21 @@
 			src.reagents.trans_to(src.occupant, 1000)
 
 			// Oh boy someone is cloning themselves up an army!
-		if(cloneslave && implant_master != null)
+		if(clonerecruit && implant_master != null)
 			// No need to check near as much with a standard implant, as the cloned person is dead and is therefore enslavable upon cloning.
-			// How did this happen. Why is someone cloning you as a slave to yourself. WHO KNOWS?!
+			// How did this happen. Why is someone cloning you as a recruit to yourself. WHO KNOWS?!
 			if(implant_master == src.occupant)
 				boutput(src.occupant, "<span class='alert'>You feel utterly strengthened in your resolve! You are the most important person in the universe!</span>")
 			else
 				if (src.occupant.mind && ticker.mode)
 					if (!src.occupant.mind.special_role)
-						src.occupant.mind.special_role = ROLE_MINDSLAVE
+						src.occupant.mind.special_role = ROLE_INSURGENT
 					if (!(src.occupant.mind in ticker.mode.Agimmicks))
 						ticker.mode.Agimmicks += src.occupant.mind
 					src.occupant.mind.master = implant_master.ckey
-				boutput(src.occupant, "<h2><span class='alert'>You feel an unwavering loyalty to [implant_master.real_name]! You feel you must obey [his_or_her(implant_master)] every order! Do not tell anyone about this unless your master tells you to!</span></h2>")
-				SHOW_MINDSLAVE_TIPS(src.occupant)
+					src.occupant.mind.objectives |= implant_master.mind.objectives
+				boutput(src.occupant, "<h2><span class='alert'>You feel an unshakeable kinship to [implant_master.real_name]! You feel like you should probably help [him_or_her(implant_master)] do some stuff! Do not tell anyone about this unless your pal tells you to!</span></h2>")
+				SHOW_INSURGENT_TIPS(src.occupant)
 		// Someone is having their brain zapped. 75% chance of them being de-antagged if they were one
 		//MBC todo : logging. This shouldn't be an issue thoug because the mindwipe doesn't even appear ingame (yet?)
 		if(src.connected?.mindwipe)
@@ -392,8 +393,8 @@
 				power_usage = 200
 				return ..()
 
-			if (src.cloneslave == 1 && prob(10))
-				// Mindslave cloning modules make obnoxious noises.
+			if (src.clonerecruit == 1 && prob(10))
+				// Insurgent cloning modules make obnoxious noises.
 				playsound(src.loc, pick("sound/machines/glitch1.ogg","sound/machines/glitch2.ogg",
 				"sound/machines/genetics.ogg","sound/machines/shieldoverload.ogg"), 50, 1)
 
@@ -590,12 +591,12 @@
 			qdel(W)
 			return
 
-		else if (istype(W, /obj/item/cloneModule/mindslave_module)) // Time to re enact the clone wars
+		else if (istype(W, /obj/item/cloneModule/insurgent_module)) // Time to re enact the clone wars
 			if (operating && attempting)
 				boutput(user,"<span class='alert'>The cloning pod emits a[pick("n angry", " grumpy", "n annoyed", " cheeky")] [pick("boop","bop", "beep", "blorp", "burp")]!</span>")
 				return
 			logTheThing("combat", src, user, "[user] installed ([W]) to ([src]) at [log_loc(user)].")
-			cloneslave = 1
+			clonerecruit = 1
 			implant_master = user
 			// Clone armies are not allowed to use speed or efficiency modules under article 7.2 p5 of the space geneva convention
 			is_speedy = 1
@@ -608,17 +609,17 @@
 			qdel(W)
 			return
 
-		else if(istype(W, /obj/item/screwdriver) && cloneslave == 1) // Wait nevermind the clone wars were a terrible idea
+		else if(istype(W, /obj/item/screwdriver) && clonerecruit == 1) // Wait nevermind the clone wars were a terrible idea
 			if (src.occupant && src.attempting)
-				boutput(user, "<space class='alert'>You must wait for the current cloning cycle to finish before you can remove the mindslave module.</span>")
+				boutput(user, "<space class='alert'>You must wait for the current cloning cycle to finish before you can remove the insurgent module.</span>")
 				return
-			boutput(user, "<span class='notice'>You begin detatching the mindslave cloning module...</span>")
+			boutput(user, "<span class='notice'>You begin detatching the insurgent cloning module...</span>")
 			playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
-			if (do_after(user, 50) && cloneslave)
-				new /obj/item/cloneModule/mindslave_module( src.loc )
-				cloneslave = 0
+			if (do_after(user, 50) && clonerecruit)
+				new /obj/item/cloneModule/insurgent_module( src.loc )
+				clonerecruit = 0
 				implant_master = null
-				boutput(user,"<span class='alert'>The mindslave cloning module falls to the floor with a dull thunk!</span>")
+				boutput(user,"<span class='alert'>The insurgent cloning module falls to the floor with a dull thunk!</span>")
 				playsound(src.loc, "sound/effects/thunk.ogg", 50, 0)
 				light.disable()
 				src.update_icon()

@@ -258,7 +258,7 @@ datum/teg_transformation/vampire
 		animate(src.teg.circ1)
 		animate(src.teg.circ2)
 		for(var/mob/M in abilityHolder.thralls)
-			remove_mindslave_status(M)
+			remove_insurgent_status(M)
 		. = ..()
 
 	on_grump(mult)
@@ -470,7 +470,7 @@ datum/teg_transformation/vampire
 
 				boutput(target, __red("<b>You awaken filled with purpose - you must serve your master \"vampire\", [src.teg]!</B>"))
 				boutput(target, __red("<b>You are bound to the [src.teg]. It hungers for blood! You must protect it and feed it!</B>"))
-				SHOW_MINDSLAVE_TIPS(target)
+				SHOW_INSURGENT_TIPS(target)
 			else
 				target.full_heal()
 
