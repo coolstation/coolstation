@@ -219,6 +219,16 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	desc = "Barber poles historically were signage used to convey that the barber would perform services such as blood letting and other medical procedures, with the red representing blood, and the white representing the bandaging. In America, long after the time when blood-letting was offered, a third colour was added to bring it in line with the colours of their national flag. This one is in space."
 	layer = OBJ_LAYER
 
+/obj/decal/gehennagrass
+	name = "desert scrub"
+	icon = 'icons/obj/decoration.dmi'
+	icon_state = "gehennagrass1"
+	random_icon_states = list("gehennagrass1", "gehennagrass2", "gehennagrass3")
+	anchored = 1
+	density = 0
+	desc = "This scrub has turned purple from the strain of growing in the desert."
+	layer = FLOOR_EQUIP_LAYER1
+
 /obj/decal/oven
 	name = "Oven"
 	desc = "An old oven."
