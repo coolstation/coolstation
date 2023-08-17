@@ -2,7 +2,6 @@
 #define ROLE_SPY_THIEF "spy_thief"
 #define ROLE_NUKEOP "nukeop"
 #define ROLE_VAMPIRE "vampire"
-#define ROLE_GRIGORI "grigori"
 #define ROLE_GANG_LEADER "gang_leader"
 #define ROLE_WIZARD "wizard"
 #define ROLE_CHANGELING "changeling"
@@ -35,3 +34,4 @@
 #define ROLE_OMNITRAITOR "omnitraitor"
 #define ROLE_GRINCH "grinch"
 #define ROLE_FLOOR_GOBLIN "floor_goblin"
+#define ROLE_GRIGORI "grigori"
