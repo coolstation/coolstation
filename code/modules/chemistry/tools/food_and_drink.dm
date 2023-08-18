@@ -1440,6 +1440,73 @@
 			onRestart()
 		return
 
+/datum/action/bar/icon/chug_pills
+	duration = 0.5 SECONDS
+	id = "chugging"
+	var/mob/pillholder
+	var/mob/target
+	var/obj/item/storage/pill_bottle/pillbottle
+
+	New(mob/Target, obj/item/storage/pill_bottle/PillBottle)
+		..()
+		target = Target
+		pillbottle = PillBottle
+		icon = pillbottle.icon
+		icon_state = pillbottle.icon_state
+
+	proc/checkContinue()
+		if (pillbottle.contents.len <= 0 || !isalive(pillholder) || !pillholder.find_in_hand(pillbottle))
+			return FALSE
+		if ((target.reagents?.maximum_volume-target.reagents?.total_volume) <= 0) // we're fuckin full, slosh slosh,
+			target.visible_message("[target.name] [pick("fucken HURLS.","barfs it back up!","vomits bigtime!","pukes.")]")
+			target.vomit()
+			return FALSE
+		return TRUE
+
+	onStart()
+		..()
+		pillholder = src.owner
+		loopStart()
+		if(pillholder == target)
+			pillholder.visible_message("[pillholder.name] starts chugging the [pillbottle.name]!")
+		else
+			pillholder.visible_message("[pillholder.name] starts forcing [target.name] to chug the [pillbottle.name]!")
+		logTheThing("combat", pillholder, target, "[pillholder == target ? "starts chugging from" : "makes [constructTarget(target,"combat")] chug from"] [pillbottle] [log_reagents(pillbottle)] at [log_loc(target)].")
+		return
+
+	loopStart()
+		..()
+		if(!checkContinue()) interrupt(INTERRUPT_ALWAYS)
+		return
+
+	onUpdate()
+		..()
+		if(!checkContinue()) interrupt(INTERRUPT_ALWAYS)
+		return
+
+	onInterrupt(flag)
+		..()
+		target.visible_message("[target.name] couldn't drink everything in the [pillbottle.name].")
+
+	onEnd()
+
+		if (pillbottle.contents.len) //Take a sip
+			for(var/obj/item/reagent_containers/pill/P in pillbottle)
+				P.attack_self(target)
+				break
+			playsound(target.loc,"sound/items/drink.ogg", rand(10,50), 1)
+
+			eat_twitch(target)
+
+		if(pillbottle.contents.len <= 0)
+			..()
+			target.visible_message("[target.name] chugged everything in the [pillbottle.name]!")
+		else if(!checkContinue())
+			..()
+			target.visible_message("[target.name] stops chugging.")
+		else
+			onRestart()
+		return
 
 /* =================================================== */
 /* -------------------- Sub-Types -------------------- */
