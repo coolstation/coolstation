@@ -103,7 +103,7 @@
 	icon_state = "security_det"
 
 	attackby(obj/item/W, mob/user)
-		if(istool(W,TOOL_WRENCHING))
+		if(istool(W,TOOL_WRENCHING) && src.icon_state == "security_det")
 			boutput(user, "you [src.anchored?"un":""]lock the rolly-feet on the TV")
 			src.anchored = !src.anchored
 			playsound(src, "sound/items/Ratchet.ogg", 69, 1)
