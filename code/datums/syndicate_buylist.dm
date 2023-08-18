@@ -1117,7 +1117,7 @@ This is basically useless for anyone but miners.
 	name = "Artistic Toolbox"
 	item = /obj/item/storage/toolbox/memetic
 	item2 = /obj/item/paper/memetic_manual
-	cost = 0
+	cost = 10 // experimental re-add
 	desc = "Maybe paint a really insulting picture of your foe? To be honest, we have no idea what is even in these or where they came from, a huge crate of them just showed up at our warehouse around a month ago. We're sure it's something very handy, though!"
 	job = list("Chaplain")
 	vr_allowed = 0

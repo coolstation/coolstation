@@ -226,8 +226,25 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	random_icon_states = list("gehennagrass1", "gehennagrass2", "gehennagrass3")
 	anchored = 1
 	density = 0
+	var/seed_prob = 50
 	desc = "This scrub has turned purple from the strain of growing in the desert."
 	layer = FLOOR_EQUIP_LAYER1
+
+	attackby(obj/item/I, mob/user)
+		if(istool(I,TOOL_CUTTING | TOOL_SAWING | TOOL_SNIPPING))
+			src.visible_message("[user] cuts [src].")
+			if(prob(seed_prob))
+				var/seedtype = null
+				if(prob(1))
+					seedtype = /obj/item/seed/alien
+				else
+					seedtype = /obj/item/seed/grass/scrub
+
+				new seedtype(src.loc)
+			qdel(src)
+		else
+			..()
+
 
 /obj/decal/oven
 	name = "Oven"

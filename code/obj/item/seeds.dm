@@ -151,6 +151,13 @@
 	seedcolor = "#00FF00"
 	auxillary_datum = /datum/plant/herb/cannabis
 
+/obj/item/seed/grass/scrub/
+	name = "desert scrub seed"
+	seedcolor = "#087008"
+	New() // ideally i'd like these seeds to have mutations but idk how to get it done lmao.
+		auxillary_datum = pick(/datum/plant/herb/cannabis,/datum/plant/herb/grass,/datum/plant/crop/wheat,/datum/plant/crop/oat,/datum/plant/crop/corn,/datum/plant/crop/rice,/datum/plant/crop/beans,/datum/plant/crop/peas,/datum/plant/crop/soy)
+		..()
+
 // weird alien plants
 
 /obj/item/seed/alien
