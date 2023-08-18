@@ -1976,6 +1976,14 @@
 /area/station/maintenance/outer/north{
 	name = "North Lower Maintenance"
 	})
+"bfL" = (
+/obj/decal/cleanable/dirt/random,
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
+	},
+/turf/simulated/floor/plating,
+/area/station/routing/depot)
 "bga" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/cable{
@@ -3014,6 +3022,13 @@
 /obj/machinery/light/fluorescent/cool/very,
 /turf/simulated/floor/grey,
 /area/station/medical/basement)
+"bNh" = (
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/disposal/sewage)
 "bNC" = (
 /obj/table/auto,
 /obj/bedsheetbin{
@@ -9955,6 +9970,17 @@
 	},
 /turf/simulated/floor,
 /area/station/storage/warehouse)
+"fQU" = (
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
+	},
+/turf/simulated/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/maintenance/outer/east{
+	name = "East Lower Maintenance"
+	})
 "fRd" = (
 /obj/decal/poster/wallsign/medbay,
 /turf/simulated/wall,
@@ -12628,6 +12654,14 @@
 /obj/item/device/radio/beacon,
 /turf/simulated/floor/plating,
 /area/station/storage/warehouse)
+"hyS" = (
+/obj/decal/cleanable/dirt/random,
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/south)
 "hzm" = (
 /obj/disposalpipe/segment/cargo{
 	dir = 4
@@ -20369,6 +20403,10 @@
 	icon_state = "1-4"
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "lTJ" = (
@@ -20716,6 +20754,14 @@
 /area/station/science/artifact{
 	name = "Artifact Lounge"
 	})
+"maO" = (
+/obj/decal/cleanable/dirt,
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
+	},
+/turf/simulated/floor/plating/gehenna,
+/area/station/crew_quarters/clown)
 "maT" = (
 /obj/stool,
 /obj/landmark/start{
@@ -26753,6 +26799,15 @@
 /area/station/maintenance/inner/ne{
 	name = "Northeast Tunnel"
 	})
+"pLo" = (
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
+	},
+/turf/simulated/floor/plating/gehenna,
+/area/station/maintenance/west{
+	name = "West Tunnel"
+	})
 "pLB" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/door/airlock/classic,
@@ -32084,6 +32139,10 @@
 	dir = 8;
 	pixel_x = -24
 	},
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
+	},
 /turf/simulated/floor/plating{
 	icon_old = "diamondtile"
 	},
@@ -34549,6 +34608,13 @@
 /obj/item/stamp/hop,
 /turf/simulated/floor/carpet/blue,
 /area/station/bridge/hos)
+"ulM" = (
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/central)
 "umu" = (
 /obj/decal/cleanable/dirt/jen,
 /obj/machinery/light/small/warm,
@@ -41340,6 +41406,13 @@
 /obj/disposalpipe/segment/vertical,
 /turf/simulated/floor/carpet/blue/standard/edge/sw,
 /area/station/crew_quarters/arcade)
+"yih" = (
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
+	},
+/turf/simulated/floor,
+/area/station/maintenance/disposal)
 "yiL" = (
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/plating,
@@ -65208,7 +65281,7 @@ cQA
 geq
 saN
 ylI
-ylI
+maO
 ylI
 vGA
 vGA
@@ -72119,7 +72192,7 @@ dJa
 dJa
 rlP
 rsb
-eVr
+pLo
 eVr
 rlP
 wKZ
@@ -74570,7 +74643,7 @@ urN
 vxn
 cOx
 unZ
-mDu
+hyS
 dDF
 vZY
 bkn
@@ -86966,7 +87039,7 @@ bNZ
 rUw
 nbd
 rUw
-mDu
+hyS
 rkS
 kpW
 kpW
@@ -87521,7 +87594,7 @@ ldh
 vlE
 eUt
 aZL
-yiL
+bfL
 prO
 loo
 wFV
@@ -89986,7 +90059,7 @@ gam
 fII
 bZu
 agi
-agi
+yih
 agi
 kTw
 kfL
@@ -92037,7 +92110,7 @@ jkQ
 jkQ
 jkQ
 vbd
-lzq
+ulM
 mXA
 kNi
 qIx
@@ -98738,7 +98811,7 @@ uJQ
 hFz
 vIc
 xXL
-xXL
+bNh
 xXL
 aeG
 xXL
@@ -103236,7 +103309,7 @@ oxw
 mRo
 dXT
 uRy
-tVJ
+fQU
 kfg
 qON
 yjp

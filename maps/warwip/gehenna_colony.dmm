@@ -622,6 +622,13 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/floor/black,
 /area/station/quartermaster/storage)
+"azb" = (
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
+	},
+/turf/simulated/floor/black,
+/area/station/crew_quarters/info)
 "azT" = (
 /obj/ladder/auto,
 /turf/simulated/floor/yellow,
@@ -13849,6 +13856,16 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor/darkblue,
 /area/station/bridge/conference)
+"kwY" = (
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
+	},
+/turf/simulated/floor/grey,
+/area/station/crew_quarters/farmers)
 "kxb" = (
 /obj/disposalpipe/segment/morgue,
 /obj/disposalpipe/segment/brig{
@@ -76245,7 +76262,7 @@ nCC
 pho
 rBt
 lEL
-uKX
+kwY
 mBi
 jSg
 xRB
@@ -115413,7 +115430,7 @@ rNY
 rNY
 cft
 pUv
-pUv
+azb
 urX
 dkG
 ufJ
