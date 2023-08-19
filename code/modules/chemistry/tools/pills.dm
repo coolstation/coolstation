@@ -322,6 +322,31 @@
 			adulterants--
 			reagents.add_reagent(pick_string("chemistry_tools.txt", "CYBERPUNK_drug_adulterants"), 3)
 
+		reagents.add_reagent("cloak_juice", 5) //just eat it and find out you coward
+
+/obj/item/reagent_containers/pill/gsb
+	name = "gas station boner pill"
+	desc = "A weird, oversized pill that stinks like chemical-soaked mulch and empty promises."
+	random_icon = 1
+
+	New()
+		..()
+		name = "[pick_string("chemistry_tools.txt", "GSBP_drug_prefixes")] [pick_string("chemistry_tools.txt", "GSBP_drug_suffixes")]"
+
+		var/primaries = rand(1,3)
+		var/adulterants = rand(2,4)
+
+		while(primaries > 0)
+			primaries--
+			reagents.add_reagent(pick_string("chemistry_tools.txt", "CYBERPUNK_drug_primaries"), 6)
+		while(adulterants > 0)
+			adulterants--
+			reagents.add_reagent(pick_string("chemistry_tools.txt", "CYBERPUNK_drug_adulterants"), 3)
+
+		reagents.add_reagent("cloak_juice", 5) //listed ingredients on packaging may differ
+		reagents.add_reagent("grime", 5)
+		reagents.add_reagent("bonerjuice", 20) //active ingredient
+
 /obj/item/reagent_containers/pill/vr
 	icon = 'icons/effects/VR.dmi'
 
