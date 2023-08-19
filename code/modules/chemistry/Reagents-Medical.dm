@@ -197,7 +197,7 @@ datum
 					"You can feel your heart beat loudly in your chest",\
 					"Your head hurts")
 					boutput(M, "<span class='alert'>[msg].</span>")
-					playsound(M, "sound/impact_sounds/heartbeat.ogg", 50, 0)
+					M.playsound_local(M.loc, 'sound/effects/heartbeat.ogg', 50, 1)
 				if (prob(1))
 					M.losebreath += (1 * mult)
 				if (prob(1))
