@@ -2103,7 +2103,7 @@ obj/machinery/embedded_controller/radio/maintpanel/mnx
 				boutput(user, "<span class='alert'>You're out of beans. You feel strangely sad.</span>")
 				return
 			else
-				var/obj/item/reagent_containers/food/snacks/candy/B = new /obj/item/reagent_containers/food/snacks/candy {name = "A Farty Snott's Every Flavour Bean"; desc = "A favorite halloween sweet worldwide!"; icon_state = "bean"; amount = 1; initial_volume = 100;} (user)
+				var/obj/item/reagent_containers/food/snacks/candy/B = new /obj/item/reagent_containers/food/snacks/candy {name = "A WhizzBean"; desc = "Some beardo must have dropped this."; icon_state = "bean"; amount = 1; initial_volume = 100;} (user)
 
 				user.put_in_hand_or_drop(B)
 				src.amount--
@@ -2114,7 +2114,7 @@ obj/machinery/embedded_controller/radio/maintpanel/mnx
 
 				if(src.amount == 0)
 					src.icon_state = "beans-empty"
-					src.name = "An empty Farty Snott's bag."
+					src.name = "An empty WhizzBeans bag."
 		else
 			return ..()
 		return
