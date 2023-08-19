@@ -64,8 +64,9 @@
 		melted
 			icon_state = "grille-melted"
 
-	classic // seems to be missing broken states
+	classic
 		auto = FALSE
+		isperspective = FALSE
 		icon = 'icons/obj/grille.dmi'
 		icon_state = "grille-0"
 		color = "#808080"
