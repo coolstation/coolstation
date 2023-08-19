@@ -162,6 +162,50 @@ datum
 				..()
 				return
 
+
+		medical/bonerjuice //probably moving this to medical
+			name = "siladenafil"
+			id = "bonerjuice"
+			description = "a medication developed to treat angina but it isn't really any good at that so whatever"
+			fluid_r = 90
+			fluid_g = 140
+			fluid_b = 200
+			transparency = 100
+			addiction_prob = 20
+			overdose = 35
+
+			//look into scale up while present in system, bubsium style- that's tracked with flags and i don't really want to add another just for this maybe????
+			on_mob_life(var/mob/living/M, var/mult = 1)
+				if (prob(5))
+					M.emote("flex")
+				if (prob(5))
+					M.emote("smile")
+				..()
+				//maybe something else to do with skeletons idk
+
+			do_overdose(var/severity, var/mob/living/M, var/mult = 1)
+				if(!M) M = holder.my_atom
+
+				if (prob(5))
+					boutput(M, "<span class='alert'>You feel like you should probably consult a doctor!</span>")
+					//M.blood_volume += 20 //blood pressure is fake but i don't know if boner pills overdose = free blood might be too robust (u be the judge)
+					//update: just thought of a vampire stuffing someone full of boner pills prior to biting but also tripping on all the horrible drugs that come with it and i'm thinking "Yes"
+
+				//so for now! copied from mild hypertension effects
+				if (prob(2))
+					var/msg = pick("You feel kinda sweaty",\
+					"You can feel your heart beat loudly in your chest",\
+					"Your head hurts")
+					boutput(M, "<span class='alert'>[msg].</span>")
+					playsound(M, "sound/impact_sounds/heartbeat.ogg", 50, 0)
+				if (prob(1))
+					M.losebreath += (1 * mult)
+				if (prob(1))
+					M.emote("gasp")
+				if (prob(1) && prob(10))
+					M.contract_disease(/datum/ailment/malady/heartdisease,null,null,1)
+				return
+
 		medical/cold_medicine
 			name = "robustissin"
 			id = "cold_medicine"

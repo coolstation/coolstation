@@ -1392,6 +1392,31 @@ datum
 					make_cleanable( /obj/decal/cleanable/greenpuke,M.loc)
 				..()
 
+		harmful/bhjuice
+			name = "bone hurting juice"
+			id = "bhjuice"
+			description = "juice what makes your bones hurt"
+			fluid_r = 200
+			fluid_g = 231
+			fluid_b = 220
+			transparency = 160
+			addiction_prob = 10
+			overdose = 10
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				if (prob(5))
+					boutput(M, "Your bones don't really feel too great...")
+				..()
+
+			do_overdose(var/severity, var/mob/M, var/mult = 1)
+				if(!M) M = holder.my_atom
+
+				if (prob(5))
+					boutput(M, "<span class='alert'>[pick("GAH","Oof","Owie", "Ouch")]! My bones!</span>")
+					M.TakeDamage("All", 5 * mult, 0, 0, DAMAGE_CRUSH)
+
+				return
+
 		harmful/histamine
 			name = "histamine" // cogwerks notes. allergic reaction tests (see. MSG) can metabolize this in the body for allergy simulation, if extracted and mass-produced, it's fairly lethal
 			id = "histamine"
