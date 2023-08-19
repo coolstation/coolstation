@@ -250,7 +250,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/candy/jellybean)
 				src.icon += src.food_color // apparently this is a thing you can do?  neat!
 
 				//fill out the other half of the 100u
-				src.reagents.add_reagent("cloak_juice", 10) //keep it secret, keep it safe: say no 2 reagent scanning glasses wiz. you might as well break into chemistry and mix up your own potions at that point
+				src.reagents.add_reagent("cloak_juice", 5) //keep it secret, keep it safe: say no 2 reagent scanning glasses wiz. you might as well break into chemistry and mix up your own potions at that point
 				src.reagents.add_reagent("sugar", 40) //padding
 
 				if (src.reagents.total_volume <= 60)

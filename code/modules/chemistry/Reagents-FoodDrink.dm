@@ -3627,7 +3627,7 @@ datum
 			bioeffect_id = "accent_tyke"
 
 		fooddrink/sawdust
-			name = "Sawdust"
+			name = "sawdust"
 			id = "sawdust"
 			description = "A byproduct of carpentry, and a source of cellulose filler material in less reputable foods."
 			reagent_state = SOLID
