@@ -3576,6 +3576,7 @@
 #define NT_AUTOMATON (1<<13)
 #define NT_CHEGET (1<<14)
 #define NT_GAFFE (1<<15)
+#define NT_SLOB (1<<16)
 
 #define MAPTEXT_PAUSE (4.5 SECONDS)
 #define FOUND_NEAT(FLAG) src.distracted = TRUE; src.neat_things |= FLAG; SPAWN_DBG(0)
@@ -3886,6 +3887,14 @@
 							insultphrase += "[copytext(insult,3)]!!"
 
 							src.speak_with_maptext(insultphrase)
+							master.point(H)
+							END_NEAT
+						return
+
+					if (!(src.neat_things & NT_SLOB) && (H.client && (!H.wiped || !H.cleanhands) && prob(5)))
+					//add in soiled clothing, sims motive check
+						FOUND_NEAT(NT_SLOB)
+							src.speak_with_maptext("And over here we-- aw, wow, oh no! That's [pick("grody","disgusting","filthy","nasty")]! Go wash yourself up, you slob!")
 							master.point(H)
 							END_NEAT
 						return
