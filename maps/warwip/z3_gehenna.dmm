@@ -9320,7 +9320,8 @@
 /area/station/science/testchamber)
 "fqn" = (
 /obj/machinery/conveyor/west{
-	id = "ghostdrone"
+	id = "";
+	operating = 1
 	},
 /obj/machinery/drone_recharger/factory,
 /turf/simulated/floor/plating/random,
@@ -21807,7 +21808,8 @@
 /area/station/maintenance/central)
 "mwp" = (
 /obj/machinery/conveyor/west{
-	id = "ghostdrone"
+	id = "";
+	operating = 1
 	},
 /obj/machinery/ghostdrone_factory/part3,
 /turf/simulated/floor/plating/random,
@@ -28066,7 +28068,8 @@
 /area/station/crew_quarters/bar)
 "qiF" = (
 /obj/machinery/conveyor/west{
-	id = "ghostdrone"
+	id = "";
+	operating = 1
 	},
 /obj/machinery/ghostdrone_factory/part2,
 /turf/simulated/floor/plating/random,
@@ -29139,7 +29142,7 @@
 /obj/disposalpipe/segment{
 	name = "factory pipe"
 	},
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/station/maintenance/outer/ne{
 	name = "Northeast Lower Maintenance"
 	})
@@ -34216,14 +34219,6 @@
 /obj/disposalpipe/segment/bent/south,
 /turf/simulated/floor/grey,
 /area/station/engine/inner)
-"tIc" = (
-/obj/disposalpipe/segment{
-	name = "factory pipe"
-	},
-/turf/simulated/wall/r_wall,
-/area/station/hallway/secondary/exit{
-	name = "Lower Escape Shuttle Hallway"
-	})
 "tIr" = (
 /obj/machinery/door/airlock{
 	name = "bathroom"
@@ -35794,7 +35789,8 @@
 	})
 "uCJ" = (
 /obj/machinery/conveyor/west{
-	id = "ghostdrone"
+	id = "";
+	operating = 1
 	},
 /obj/machinery/ghostdrone_factory,
 /turf/simulated/floor/plating/random,
@@ -36897,7 +36893,8 @@
 	name = "factory pipe"
 	},
 /obj/machinery/conveyor/west{
-	id = "ghostdrone"
+	id = "";
+	operating = 1
 	},
 /turf/simulated/floor/plating/random,
 /area/ghostdrone_factory)
@@ -38400,7 +38397,8 @@
 	name = "factory pipe"
 	},
 /obj/machinery/conveyor/west{
-	id = "ghostdrone"
+	id = "";
+	operating = 1
 	},
 /obj/machinery/drone_recharger/factory,
 /turf/simulated/floor/plating/random,
@@ -39140,7 +39138,8 @@
 /area/station/maintenance/central)
 "wqD" = (
 /obj/machinery/conveyor/west{
-	id = "ghostdrone"
+	id = "";
+	operating = 1
 	},
 /turf/simulated/floor/plating/random,
 /area/ghostdrone_factory)
@@ -41685,12 +41684,6 @@
 /obj/window/east,
 /turf/simulated/floor,
 /area/station/security/processing)
-"xSy" = (
-/obj/disposalpipe/trunk{
-	dir = 1
-	},
-/turf/simulated/floor,
-/area/station/crew_quarters/info)
 "xTA" = (
 /turf/simulated/wall,
 /area/station/mining/tunnel)
@@ -107041,7 +107034,7 @@ joU
 joU
 joU
 fBf
-tIc
+bSi
 xXW
 jPA
 mvm
@@ -125426,7 +125419,7 @@ hTf
 hTf
 pdO
 fcP
-xSy
+mrJ
 mrJ
 itQ
 itQ
