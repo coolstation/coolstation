@@ -236,7 +236,7 @@ Nanotrasen, Inc.<br>
 
 /datum/numbers_station // This is not a physical entity!
 	var/name = "Space Lincolnshire"
-	var/frequency = 1487
+	var/frequency = FREQ_NUMBERS
 	var/sound_channel = 174
 	var/login_signal = 'sound/misc/lincolnshire.ogg'
 	var/list/numbers = list(0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0)

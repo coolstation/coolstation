@@ -645,7 +645,7 @@ Note: Add new traitor items to syndicate_buylist.dm, not here.
 		if (!src || !istype(src))
 			return
 
-		var/freq = 1441
+		var/freq = 1441 //this is the engineering intercom frequency why are you on there pda uplink thingy
 		var/list/freqlist = list()
 		while (freq <= 1489)
 			if (freq < 1451 || freq > 1459)
