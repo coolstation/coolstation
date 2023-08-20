@@ -3,6 +3,7 @@
 #define RADIOC_INTERCOM "#008BA0"
 #define RADIOC_COMMAND "#4F78A8"
 #define RADIOC_SECURITY "#E00000"
+#define RADIOC_BRIG "#FF5000"
 #define RADIOC_DETECTIVE "#A00000"
 #define RADIOC_ENGINEERING "#A86800"
 #define RADIOC_MEDICAL "#3A88AC"
@@ -24,35 +25,58 @@
 #define RADIOCL_SYNDICATE "rsyndicate"
 #define RADIOCL_OTHER "rother"
 
-// Frequency defines for headsets & intercoms (Convair880).
+// Frequency defines for headsets & intercoms (Originally Convair880)
+
+//alltalk
+#define R_FREQ_DEFAULT 1459 //145.9 is eternal
+#define R_FREQ_MULTI 1451
 /// Minimum "selectable" freq
 #define R_FREQ_MINIMUM 1441
 /// Maximum "selectable" freq
 #define R_FREQ_MAXIMUM 1489
-#define R_FREQ_DEFAULT 1459
-#define R_FREQ_COMMAND 1358
-#define R_FREQ_SECURITY 1359
+
+//secure or out of band channels
+#define R_FREQ_COMMAND 1350
 #define R_FREQ_DETECTIVE 1351
+#define R_FREQ_SECURITY 1352
+#define R_FREQ_RESEARCH 1353
+#define R_FREQ_MEDICAL 1355
 #define R_FREQ_ENGINEERING 1357
-#define R_FREQ_RESEARCH 1354
-#define R_FREQ_MEDICAL 1356
-#define R_FREQ_CIVILIAN 1355
-#define R_FREQ_SYNDICATE 1352 // Randomized for nuke rounds.
-#define R_FREQ_GANG 1400 // Placeholder, it's actually randomized in gang rounds.
-#define R_FREQ_MULTI 1451
-#define R_FREQ_INTERCOM_COLOSSEUM 1403
-#define R_FREQ_INTERCOM_MEDICAL 1445
-#define R_FREQ_INTERCOM_SECURITY 1485
-#define R_FREQ_INTERCOM_BRIG 1489
-#define R_FREQ_INTERCOM_RESEARCH 1443
-#define R_FREQ_LOUDSPEAKERS 1438
-#define R_FREQ_INTERCOM_ENGINEERING 1441
-#define R_FREQ_INTERCOM_CARGO 1455
-#define R_FREQ_INTERCOM_CATERING 1463
-#define R_FREQ_INTERCOM_BOTANY 1446
-#define R_FREQ_INTERCOM_AI 1447
-#define R_FREQ_INTERCOM_BRIDGE 1442
-#define R_FREQ_INTERCOM_TELESCIENCE 1444
+#define R_FREQ_CIVILIAN 1359
+
+//crime channels
+#define R_FREQ_SYNDICATE 1252 // Randomized for nuke rounds. Also used by conspiracy.
+#define R_FREQ_SYNDICATE_MIN 1252 //might raise this back up among 14XX
+#define R_FREQ_SYNDICATE_MAX 1337
+#define R_FREQ_GANG 1360 // Placeholder, it's actually randomized in gang rounds.
+#define R_FREQ_GANG_MIN 1360
+#define R_FREQ_GANG_MAX 1420
+
+//i think this is VR oriented
+#define R_FREQ_INTERCOM_COLOSSEUM 1401
+
+//wireless intercoms (subject to interference but many to many)
+#define R_FREQ_INTERCOM_BRIDGE 1421
+#define R_FREQ_INTERCOM_SECURITY 1422
+#define R_FREQ_INTERCOM_RESEARCH 1423
+#define R_FREQ_INTERCOM_BRIG 1424
+#define R_FREQ_INTERCOM_MEDICAL 1425
+#define R_FREQ_INTERCOM_AI 1426
+#define R_FREQ_INTERCOM_ENGINEERING 1427
+#define R_FREQ_INTERCOM_CARGO 1429
+#define R_FREQ_INTERCOM_CATERING 1431
+#define R_FREQ_INTERCOM_BOTANY 1433
+#define R_FREQ_INTERCOM_TELESCIENCE 1435 //special case for away team radios
+
+//public address (robust interference protection but one to many)
+//also useful for playing stuff from radio programs and loops
+#define R_FREQ_LOUDSPEAKERS 1551 //general hallway PA?
+#define R_FREQ_PA_SECURITY 1552
+#define R_FREQ_PA_RESEARCH 1553 //dr. birdwell report to topside motorpool
+#define R_FREQ_PA_MEDICAL 1555 //code brown in room 3
+#define R_FREQ_PA_ENGINEERING 1557
+#define R_FREQ_PA_CARGO 1559
+#define R_FREQ_PA_BAR 1561 //bar basically
 
 // let's start putting adventure zone factions in here
 #define R_FREQ_WIZARD 1089 // magic number, used in many magic tricks
@@ -64,7 +88,7 @@
 
 // These are for the Syndicate headset randomizer proc.
 #define R_FREQ_BLACKLIST list(R_FREQ_DEFAULT, R_FREQ_COMMAND, R_FREQ_SECURITY, R_FREQ_DETECTIVE, R_FREQ_ENGINEERING, R_FREQ_RESEARCH, R_FREQ_MEDICAL, R_FREQ_CIVILIAN, R_FREQ_SYNDICATE, R_FREQ_GANG, R_FREQ_MULTI,\
-R_FREQ_INTERCOM_COLOSSEUM, R_FREQ_INTERCOM_MEDICAL, R_FREQ_INTERCOM_SECURITY, R_FREQ_INTERCOM_BRIG, R_FREQ_INTERCOM_RESEARCH, R_FREQ_INTERCOM_ENGINEERING, R_FREQ_INTERCOM_CARGO, R_FREQ_INTERCOM_CATERING, R_FREQ_INTERCOM_AI, R_FREQ_INTERCOM_BRIDGE)
+R_FREQ_INTERCOM_COLOSSEUM, R_FREQ_INTERCOM_MEDICAL, R_FREQ_INTERCOM_SECURITY, R_FREQ_INTERCOM_BRIG, R_FREQ_INTERCOM_RESEARCH, R_FREQ_INTERCOM_ENGINEERING, R_FREQ_INTERCOM_CARGO, R_FREQ_INTERCOM_CATERING, R_FREQ_INTERCOM_AI, R_FREQ_INTERCOM_BRIDGE, R_FREQ_INTERCOM_TELESCIENCE, R_FREQ_INTERCOM_WIZARD)
 
 proc/default_frequency_color(freq)
 	switch(freq)
@@ -93,7 +117,7 @@ proc/default_frequency_color(freq)
 		if(R_FREQ_INTERCOM_SECURITY)
 			return RADIOC_SECURITY
 		if(R_FREQ_INTERCOM_BRIG)
-			return "#FF5000"
+			return RADIOC_BRIG
 		if(R_FREQ_INTERCOM_RESEARCH)
 			return RADIOC_RESEARCH
 		if(R_FREQ_INTERCOM_ENGINEERING)
