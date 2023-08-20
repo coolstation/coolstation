@@ -465,7 +465,7 @@
 	. = ..()
 	known_rucks = new
 	ruck_controls = new
-	pda = radio_controller.return_frequency(FREQ_PDA)
+	pda = radio_controller.return_frequency("[FREQ_PDA]")
 
 	if(isnull(mechanic_controls)) mechanic_controls = ruck_controls //For objective tracking and admin
 	if(radio_controller)

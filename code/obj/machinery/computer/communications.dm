@@ -34,7 +34,7 @@
 	light_b = 0.1
 
 	disposing()
-		radio_controller.remove_object(src, status_display_freq)
+		radio_controller.remove_object(src, "[status_display_freq]")
 		..()
 
 /obj/machinery/computer/communications/special_deconstruct(obj/computerframe/frame as obj)
@@ -398,7 +398,7 @@
 
 /obj/machinery/computer/communications/proc/post_status(var/command, var/data1, var/data2)
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(status_display_freq)
+	var/datum/radio_frequency/frequency = radio_controller.return_frequency("[status_display_freq]")
 
 	if(!frequency) return
 

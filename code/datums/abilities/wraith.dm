@@ -470,7 +470,7 @@
 
 	New()
 		..()
-		pda_connection = radio_controller.return_frequency(FREQ_PDA)
+		pda_connection = radio_controller.return_frequency("[FREQ_PDA]")
 		object.contextLayout = new /datum/contextLayout/screen_HUD_default(2, 16, 16)//, -32, -32)
 		if (!object.contextActions)
 			object.contextActions = list()
@@ -480,7 +480,7 @@
 			object.contextActions += newcontext
 
 	disposing()
-		radio_controller.remove_object(src,FREQ_PDA)
+		radio_controller.remove_object(src, "[FREQ_PDA]")
 		..()
 
 	proc/haunt_pda(var/obj/item/device/pda2/pda)

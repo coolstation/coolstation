@@ -21,8 +21,8 @@
 	var/last_safe = 2
 
 	disposing()
-		radio_controller.remove_object(src, alarm_frequency)
-		radio_controller.remove_object(src, control_frequency)
+		radio_controller.remove_object(src, "[alarm_frequency]")
+		radio_controller.remove_object(src, "[control_frequency]")
 		..()
 
 /obj/machinery/alarm/New()
@@ -119,7 +119,7 @@
 	return
 
 /obj/machinery/alarm/proc/post_alert(alert_level)
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(alarm_frequency)
+	var/datum/radio_frequency/frequency = radio_controller.return_frequency("[alarm_frequency]")
 
 	if(!frequency) return
 

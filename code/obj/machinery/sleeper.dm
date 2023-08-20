@@ -746,7 +746,7 @@
 		return
 	if (!occupant)
 		return
-	var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency(FREQ_PDA)
+	var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 	if (!transmit_connection)
 		return
 

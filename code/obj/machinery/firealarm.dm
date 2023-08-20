@@ -39,11 +39,11 @@
 	AddComponent(/datum/component/mechanics_holder)
 	SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"toggle", "toggleinput")
 	SPAWN_DBG(1 SECOND)
-		frequency = radio_controller.return_frequency(alarm_frequency)
+		frequency = radio_controller.return_frequency("[alarm_frequency]")
 
 /obj/machinery/firealarm/disposing()
 		STOP_TRACKING
-		radio_controller.remove_object(src, alarm_frequency)
+		radio_controller.remove_object(src, "[alarm_frequency]")
 		..()
 
 /obj/machinery/firealarm/set_loc(var/newloc)
@@ -169,7 +169,7 @@
 	return
 
 /obj/machinery/firealarm/proc/post_alert(var/alarm, var/specific_target)
-//	var/datum/radio_frequency/frequency = radio_controller.return_frequency(alarm_frequency)
+//	var/datum/radio_frequency/frequency = radio_controller.return_frequency("[alarm_frequency]")
 
 	LAGCHECK(LAG_LOW)
 

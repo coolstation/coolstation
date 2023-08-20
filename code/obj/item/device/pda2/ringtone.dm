@@ -152,7 +152,7 @@
 			else
 				var/datum/ringtone/Rtone = src.ring_list[href_list["previewTone"]]
 				src.master.set_ringtone(Rtone, 1, src.overrideAlertMessage)
-				var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency(FREQ_PDA)
+				var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 				var/datum/signal/signal = get_free_signal()
 				signal.data["command"] = "text_message"
 				signal.data["message"] = "[Rtone.previewMessage]"

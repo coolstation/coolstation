@@ -58,7 +58,7 @@
 		if (!isnum(grump_to_overcome))
 			grump_to_overcome = 100
 
-		pda_connection = radio_controller.return_frequency(FREQ_PDA)
+		pda_connection = radio_controller.return_frequency("[FREQ_PDA]")
 
 		var/list/obj/machinery/station_switches = list()
 		for(var/area_key as() in stationAreas)

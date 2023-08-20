@@ -106,7 +106,7 @@ var/global/datum/rockbox_globals/rockbox_globals = new /datum/rockbox_globals
 					src.analysis_by_uid[uid] = D
 					src.ready_to_analyze += D
 			qdel(sell_crate)
-		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency(FREQ_PDA)
+		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 		var/datum/signal/pdaSignal = get_free_signal()
 		pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT",  "group"=list(MGD_CARGO, MGA_SHIPPING), "sender"="00000000", "message"="Notification: Pathogen sample crate delivered to the CDC.")
 		pdaSignal.transmission_method = TRANSMISSION_RADIO
@@ -140,7 +140,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	light_b = 0.03
 
 	disposing()
-		radio_controller.remove_object(src, FREQ_STATUS)
+		radio_controller.remove_object(src, "[FREQ_STATUS]")
 		..()
 
 /obj/machinery/computer/supplycomp/emag_act(var/mob/user, var/obj/item/card/emag/E)

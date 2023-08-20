@@ -333,7 +333,7 @@
 						M.show_text("No bank account found for [perp_id.registered]!", "blue")
 
 	proc/notify_sale(var/budget_inc, var/split_with = 0)
-		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency(FREQ_PDA)
+		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 		var/datum/signal/pdaSignal = get_free_signal()
 
 		var/string = "Notification: [budget_inc] credits earned from last booth sale."
@@ -348,7 +348,7 @@
 		//playsound BEEP BEEEEEEEEEEP
 
 	proc/notify_empty(var/datum/geneboothproduct/GBP)
-		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency(FREQ_PDA)
+		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 		var/datum/signal/pdaSignal = get_free_signal()
 
 		var/string = "Notification: [GBP.name] has sold out!"
