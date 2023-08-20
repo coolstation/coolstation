@@ -622,13 +622,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/simulated/floor/black,
 /area/station/quartermaster/storage)
-"azb" = (
-/obj/landmark{
-	icon_state = "x3";
-	name = "peststart"
-	},
-/turf/simulated/floor/black,
-/area/station/crew_quarters/info)
 "azT" = (
 /obj/ladder/auto,
 /turf/simulated/floor/yellow,
@@ -5306,6 +5299,21 @@
 	icon_state = "quart";
 	name = "Cargo Bay"
 	})
+"eaL" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 7;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.5;
+	name = "power conduit"
+	},
+/obj/decal/fakeobjects/lighttube_broken{
+	dir = 4
+	},
+/turf/space/gehenna/desert/plating,
+/area/gehenna/south)
 "eaS" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/cable{
@@ -8186,6 +8194,13 @@
 	},
 /turf/simulated/floor,
 /area/station/quartermaster/storage)
+"ggp" = (
+/obj/submachine/record_player,
+/turf/simulated/floor/wood,
+/area/station/abandonedship{
+	name = "Middle of Nowhere";
+	requires_power = 0
+	})
 "ggs" = (
 /obj/rack,
 /obj/item/bandage{
@@ -11601,6 +11616,18 @@
 /obj/machinery/atmospherics/pipe/simple/overfloor/vertical,
 /turf/simulated/floor/plating,
 /area/station/maintenance/northwest)
+"iPp" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 10;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.5;
+	name = "power conduit"
+	},
+/turf/space/gehenna/desert/plating,
+/area/gehenna/south)
 "iPA" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
@@ -13856,16 +13883,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor/darkblue,
 /area/station/bridge/conference)
-"kwY" = (
-/obj/disposalpipe/segment/food{
-	dir = 4
-	},
-/obj/landmark{
-	icon_state = "x3";
-	name = "peststart"
-	},
-/turf/simulated/floor/grey,
-/area/station/crew_quarters/farmers)
 "kxb" = (
 /obj/disposalpipe/segment/morgue,
 /obj/disposalpipe/segment/brig{
@@ -16685,6 +16702,19 @@
 	},
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/gunsmithing)
+"mMT" = (
+/obj/decal/fakeobjects/junction_box,
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 6;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.5;
+	name = "power conduit"
+	},
+/turf/space/gehenna/desert/plating,
+/area/gehenna/south)
 "mMZ" = (
 /obj/landmark/gps_waypoint,
 /turf/simulated/floor/darkblue,
@@ -21526,6 +21556,13 @@
 	dir = 4
 	},
 /area/station/medical/medbay/cloner)
+"qnV" = (
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
+	},
+/turf/simulated/floor/black,
+/area/station/crew_quarters/info)
 "qos" = (
 /obj/cable{
 	d2 = 8;
@@ -24362,6 +24399,16 @@
 	},
 /turf/simulated/floor,
 /area/station/security/main)
+"sqi" = (
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
+/obj/landmark{
+	icon_state = "x3";
+	name = "peststart"
+	},
+/turf/simulated/floor/grey,
+/area/station/crew_quarters/farmers)
 "sqL" = (
 /obj/disposalpipe/segment/bent/south,
 /turf/simulated/floor/wood,
@@ -24426,6 +24473,13 @@
 	dir = 9
 	},
 /area/station/engine/core)
+"ssu" = (
+/obj/decal/fakeobjects/vacuumtape{
+	icon_state = "commstower";
+	name = "broadcast antenna"
+	},
+/turf/space/gehenna/desert/plating,
+/area/gehenna/south)
 "ssS" = (
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -31087,6 +31141,10 @@
 	},
 /turf/simulated/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
+"xiS" = (
+/obj/decal/fakeobjects/smallrocks,
+/turf/space/gehenna/desert,
+/area/gehenna/south)
 "xjj" = (
 /obj/item/cigbutt,
 /turf/simulated/floor/grey,
@@ -76262,7 +76320,7 @@ nCC
 pho
 rBt
 lEL
-kwY
+sqi
 mBi
 jSg
 xRB
@@ -88678,7 +88736,7 @@ rsr
 uaK
 rsr
 rsr
-rsr
+xiS
 rsr
 rsr
 rsr
@@ -88979,9 +89037,9 @@ rsr
 rsr
 rsr
 rsr
-rsr
-rsr
-rsr
+ssu
+eaL
+iPp
 rsr
 rsr
 rsr
@@ -89283,7 +89341,7 @@ msS
 msS
 msS
 msS
-rsr
+mMT
 rsr
 rsr
 rsr
@@ -89583,9 +89641,9 @@ rsr
 rsr
 msS
 cWG
-iCD
+ggp
 wFa
-rsr
+uaK
 rsr
 rsr
 rsr
@@ -115430,7 +115488,7 @@ rNY
 rNY
 cft
 pUv
-azb
+qnV
 urX
 dkG
 ufJ
