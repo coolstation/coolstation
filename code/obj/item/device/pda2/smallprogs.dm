@@ -153,13 +153,13 @@
 			if("alert")
 				status_signal.data["picture_state"] = data1
 
-		src.post_signal(status_signal,"1435")
+		src.post_signal(status_signal,FREQ_STATUS)
 
 //Signaler
 /datum/computer/file/pda_program/signaler
 	name = "Signalix 5"
 	size = 8
-	var/send_freq = 1457 //Frequency signal is sent at, should be kept within normal radio ranges.
+	var/send_freq = FREQ_DEFAULT //Frequency signal is sent at, should be kept within normal radio ranges.
 	var/send_code = 30
 	var/last_transmission = 0 //No signal spamming etc
 
@@ -1161,7 +1161,7 @@ Using electronic "Detomatix" BOMB program is perhaps less simple!<br>
 			// pda alert ////////
 			if (!antispam || (antispam < (ticker.round_elapsed_ticks)) )
 				antispam = ticker.round_elapsed_ticks + SPAM_DELAY
-				var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
+				var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency(FREQ_PDA)
 				var/datum/signal/pdaSignal = get_free_signal()
 				pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT",  "group"=list(MGD_CARGO, MGA_CARGOREQUEST), "sender"="00000000", "message"="Notification: [O.object] requested by [O.orderedby] at [O.console_location].")
 				pdaSignal.transmission_method = TRANSMISSION_RADIO

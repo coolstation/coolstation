@@ -580,7 +580,7 @@
 	var/mailgroup = null
 
 	var/net_id = null
-	var/frequency = 1149
+	var/frequency = FREQ_PDA
 	var/datum/radio_frequency/radio_connection
 
 	New()

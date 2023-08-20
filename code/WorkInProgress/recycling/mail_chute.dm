@@ -8,7 +8,7 @@
 	var/mail_tag = null
 	//var/destination_tag = null // dropped to parent /obj/machinery/disposal
 	var/list/destinations = list()
-	var/frequency = 1475
+	var/frequency = FREQ_MAIL
 	var/datum/radio_frequency/radio_connection
 	var/last_inquire = 0 //No signal spamming etc
 	var/autoname = 0
@@ -18,7 +18,7 @@
 	var/mailgroup = null
 	var/mailgroup2 = null
 	var/net_id = null
-	var/pdafrequency = 1149
+	var/pdafrequency = FREQ_PDA
 	var/datum/radio_frequency/pda_connection
 	var/router_distance = 0 // tracks the highest-yet Count on configuration packets recieved to date.
 	var/list/routerlist = list() // routerlists we got from those packets.

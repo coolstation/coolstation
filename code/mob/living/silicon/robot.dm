@@ -2492,7 +2492,7 @@
 	proc/borg_death_alert(modifier = ROBOT_DEATH_MOD_NONE)
 		var/message = null
 		var/net_id = generate_net_id(src)
-		var/frequency = 1149
+		var/frequency = FREQ_PDA
 		var/datum/radio_frequency/radio_connection = radio_controller.add_object(src, "[frequency]")
 		var/area/myarea = get_area(src)
 
