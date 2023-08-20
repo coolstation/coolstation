@@ -591,7 +591,7 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 
 /obj/machinery/navbeacon/lunar
 	name = "tour beacon"
-	freq = 1441
+	freq = FREQ_BOT_TOUR_LUNA
 
 	tour0
 		name = "tour beacon - start"

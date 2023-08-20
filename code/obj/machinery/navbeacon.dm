@@ -14,7 +14,7 @@
 
 	var/open = 0		// true if cover is open
 	var/locked = 1		// true if controls are locked
-	var/freq = 1445		// radio frequency
+	var/freq = FREQ_BOT_NAV		// radio frequency
 	var/location = ""	// location response text
 	var/list/codes		// assoc. list of transponder codes
 	var/codes_txt = ""	// codes as set on map: "tag1;tag2" or "tag1=value;tag2=value"
@@ -712,7 +712,7 @@ Transponder Codes:<UL>"}
 
 /obj/machinery/navbeacon/tour
 	name = "tour beacon"
-	freq = 1443
+	freq = FREQ_BOT_TOUR
 
 /obj/machinery/navbeacon/tour/cog1
 	tour0

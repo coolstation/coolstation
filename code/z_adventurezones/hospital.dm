@@ -475,8 +475,8 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 	hat_y_offset = 10
 	setup_default_startup_task = /datum/computer/file/guardbot_task/soviet
 
-	beacon_freq = 1440
-	control_freq = 1917
+	beacon_freq = FREQ_BOT_HOSPITAL
+	control_freq = FREQ_SOVBOT
 
 	New()
 		..()
