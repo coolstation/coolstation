@@ -887,6 +887,31 @@ var/global/noir = 0
 			else
 				alert("You need to be at least a Primary Administrator to force players to say things.")
 
+		if ("givepet")
+			var/mob/M = locate(href_list["target"])
+			if (src.level >= LEVEL_PA || isnull(M.client) && src.level >= LEVEL_SA)
+				var/pet_input = input("Enter path of the thing you want to give as a pet or enter a part of the path to search", "Enter Path", pick("/obj/critter/domestic_bee", "/obj/critter/parrot/random", "/obj/critter/cat")) as null|text
+				if (!pet_input)
+					return
+				var/pet_path = get_one_match(pet_input, /obj)
+				if (!pet_path)
+					return
+
+				var/obj/Pet = new pet_path(get_turf(M))
+				Pet.name = "[M]'s pet [Pet.name]"
+
+				//Pets should probably not attack their owner
+				if (istype(Pet, /obj/critter))
+					var/obj/critter/CritterPet = Pet
+					CritterPet.atkcarbon = 0
+					CritterPet.atksilicon = 0
+
+				logTheThing("admin", usr ? usr : src, M, "gave [constructTarget(M,"admin")] a pet [pet_path]!")
+				logTheThing("diary", usr ? usr : src, M, "gave [constructTarget(M,"diary")] a pet [pet_path]!", "admin")
+				message_admins("[key_name(usr ? usr : src)] gave [M] a pet [pet_path]!")
+			else
+				alert("You need to be at least a Primary Administrator to force players to say things.")
+
 		if ("prison")
 			if (src.level >= LEVEL_MOD)
 				var/mob/M = locate(href_list["target"])
