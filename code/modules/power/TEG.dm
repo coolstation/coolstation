@@ -1477,7 +1477,7 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 	icon_state = "computer_generic"
 
 	name = "Pump control computer"
-	frequency = 1225
+	frequency = FREQ_ATMOS
 
 	var/list/pump_infos
 

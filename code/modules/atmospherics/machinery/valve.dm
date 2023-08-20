@@ -356,7 +356,7 @@ obj/machinery/atmospherics/manifold_valve
 	var/datum/pipe_network/network_node2
 	var/datum/pipe_network/network_node3
 
-	var/frequency = "1439"
+	var/frequency = FREQ_ATMOS2
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 

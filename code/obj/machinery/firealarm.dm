@@ -10,7 +10,7 @@
 	deconstruct_flags = DECON_WIRECUTTERS | DECON_MULTITOOL
 	machine_registry_idx = MACHINES_FIREALARMS
 	power_usage = 10
-	var/alarm_frequency = "1437"
+	var/alarm_frequency = FREQ_ALARM
 	var/detecting = 1.0
 	var/working = 1.0
 	var/lockdownbyai = 0
@@ -133,7 +133,7 @@
 
 	if (src.ringlimiter)
 		src.ringlimiter = 0
-		
+
 	src.dont_spam = 1	//hey let's try having the fire alarm reset set protection against alarming again
 	sleep(5 SECONDS)	//maybe then you'll actually be able to reset it for a little without spam clicking a dozen times
 	src.dont_spam = 0	//maybe maybe i dunno im just a big stinky doofus though

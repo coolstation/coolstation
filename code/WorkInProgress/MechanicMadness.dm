@@ -1745,7 +1745,7 @@
 	var/range = 0
 
 	var/noise_enabled = true
-	var/frequency = 1419
+	var/frequency = FREQ_WLNET
 	var/datum/radio_frequency/radio_connection
 
 	get_desc()

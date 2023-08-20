@@ -26,7 +26,7 @@
 
 	security
 		name = "Air Vent (Security)"
-		frequency = 1274
+		frequency = FREQ_ATMOS_SEC
 
 		north
 			dir = NORTH
@@ -68,7 +68,7 @@
 
 		security
 			name = "High-Volume Air Vent (Security)"
-			frequency = 1274
+			frequency = FREQ_ATMOS_SEC
 
 			north
 				dir = NORTH
