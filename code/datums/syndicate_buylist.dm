@@ -41,35 +41,49 @@ proc/build_syndi_buylist_cache()
 	desc = "You shouldn't see me!"
 
 /datum/syndicate_buylist/weapon/revolver
-	name = "Revolver (modular)"
+	name = "Gun: Modular Revolver"
 	item = /obj/item/storage/box/revolver
 	cost = 5
 	desc = "The traditional sidearm of an Italian Syndicate field agent. Holds a few rounds and comes with extra ammo."
-	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+	blockedmode = list(/datum/game_mode/spy)
 
 /datum/syndicate_buylist/weapon/fossgun
-	name = "Open-Source Laser Gun (modular)"
+	name = "Gun: FOSS Laser"
 	item = /obj/item/storage/box/foss_gun_kit
 	cost = 6
 	desc = "A FOSS-Licensed hand-cranked open-source laser gun, and a few flashbulbs to boot. Tricky!"
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/weapon/fossbulb
-	name = "Open-Source Flashbulbs"
+	name = "Ammo: FOSS Laser Flashbulbs"
 	item = /obj/item/storage/box/foss_flashbulbs
 	cost = 1
 	desc = "FOSS-Licensed hand-crafted open-source flashbulbs, only works with Open-Source Laser Guns!"
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
+/datum/syndicate_buylist/weapon/pistolrounds
+	name = "Ammo: Modular Pistol Rounds"
+	item = /obj/item/stackable_ammo/pistol/ten
+	cost = 1
+	desc = "Ten pretty-lethal rounds, in case you run out."
+	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
+/datum/syndicate_buylist/weapon/buckshot
+	name = "Ammo: Modular Shotgun Buckshot"
+	item = /obj/item/stackable_ammo/scatter/buckshot/ten
+	cost = 2
+	desc = "This shit is actually banned by the Geneva Convention. Luckily, those dorks have no jurisdiction here."
+	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
 /datum/syndicate_buylist/weapon/pistol
-	name = "NT Pistol (modular)"
+	name = "Gun: NT Modular Pistol"
 	item = /obj/item/storage/box/pistol
 	cost = 3
 	desc = "A fairly basic single action pistol. Standard issue, so it won't attract attention."
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/weapon/shotgun
-	name = "Shotgun (modular)"
+	name = "Gun: Modular Shotgun"
 	item = /obj/item/storage/box/shotgun
 	cost = 5
 	desc = "Not exactly stealthy, but it'll certainly make an impression."
@@ -77,7 +91,7 @@ proc/build_syndi_buylist_cache()
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/weapon/radbow
-	name = "Rad Poison Crossbow Bolts (10)"
+	name = "Ammo: Rad Poison Crossbow Bolts"
 	item = /obj/item/stackable_ammo/radbow/ten
 	cost = 3
 	desc = "Ten highly lethal flechettes that deal large amounts of radiation poisonning. Can be fired from any modular gun. Popular with the NT pistol."
@@ -110,6 +124,13 @@ proc/build_syndi_buylist_cache()
 	item = /obj/item/voice_changer
 	cost = 1
 	desc = "This voice-modulation device will dynamically disguise your voice to that of whoever is listed on your identification card, via incredibly complex algorithms. Discretely fits inside most masks, and can be removed with wirecutters."
+	blockedmode = list(/datum/game_mode/revolution)
+
+/datum/syndicate_buylist/utility/gunsmith
+	name = "Portable Gunsmithing Anvil"
+	item = /obj/item/gun_exploder/portable
+	cost = 1
+	desc = "A special hollow anvil that you can shove in your pocket, if that's your deal."
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/utility/chamsuit
@@ -148,13 +169,13 @@ proc/build_syndi_buylist_cache()
 	blockedmode = list(/datum/game_mode/revolution)
 
 
-
 /datum/syndicate_buylist/utility/pstink
 	name = "Power Stink"
 	item = /obj/machinery/portable_atmospherics/canister/farts/filled
 	cost = 4
 	desc = "Lights too bright? Airlocks too automatic? Alarms too functional? Or maybe just nostalgic about the good ol' days before electricity came along? Unrelatedly here's a canister of farts. Hope you read the whole description. "
 	not_in_crates = 1
+	job = list("Engineer", "Chief Engineer", "Mechanic", "Atmospheric Technician")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/weapon/detomatix
@@ -179,7 +200,7 @@ proc/build_syndi_buylist_cache()
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/weapon/derringer
-	name = "Derringer"
+	name = "Gun: Derringer"
 	item = /obj/item/gun/kinetic/derringer
 	cost = 2
 	desc = "A small pistol that can be hidden inside worn clothes and retrieved using the wink emote. Comes with two shots and does extreme damage at close range."
@@ -722,14 +743,7 @@ This is basically useless for anyone but miners.
 	job = list("Medical Doctor", "Medical Director", "Research Director", "Scientist", "Bartender")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
-/datum/syndicate_buylist/traitor/chemicompiler
-	name = "Chemicompiler"
-	item = /obj/item/device/chemicompiler
-	cost = 5
-	not_in_crates = 1
-	desc = "A handheld version of the Chemicompiler machine in Chemistry."
-	job = list("Research Director", "Scientist")
-	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
+
 
 /datum/syndicate_buylist/traitor/robosuit
 	name = "Syndicate Robot Frame"
@@ -849,7 +863,7 @@ This is basically useless for anyone but miners.
 /datum/syndicate_buylist/traitor/ammo_38AP // 2 TC for 1 speedloader was very poor value compared to other guns and traitor items in general (Convair880).
 	name = ".38 AP ammo box"
 	item = /obj/item/storage/box/ammo38AP
-	cost = 2
+	cost = 0 //2
 	desc = "Armor-piercing ammo for a .38 Special revolver (not included)."
 	job = list("Detective")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution, /datum/game_mode/spy_theft)
@@ -1122,6 +1136,15 @@ This is basically useless for anyone but miners.
 	job = list("Chaplain")
 	vr_allowed = 0
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
+/datum/syndicate_buylist/traitor/chemicompiler
+	name = "Chemicompiler"
+	item = /obj/item/device/chemicompiler
+	cost = 0 //5
+	not_in_crates = 1
+	desc = "A handheld version of the Chemicompiler machine in Chemistry."
+	job = list("Research Director", "Scientist")
+	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/lawndarts
 	name = "Lawn Darts"

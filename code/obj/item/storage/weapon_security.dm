@@ -55,6 +55,7 @@
 	// cogwerks - i think the ammo boxes are dumb, giving the starting box more ammo
 	spawn_contents = list(/obj/item/gun/modular/italian/big_italiano,\
 	/obj/item/stackable_ammo/pistol/ten,\
+	/obj/item/stackable_ammo/pistol/three,\
 	/obj/item/stackable_ammo/capacitive/ten)
 
 /obj/item/storage/box/detectivegun
@@ -76,7 +77,7 @@
 	/obj/item/ammo/bullets/ak47 = 2)
 
 /obj/item/storage/box/pistol
-	name = "suppressed pistol box"
+	name = "corporate pistol box"
 	icon_state = "hard_case"
 	desc = "A box containing a standard issue pistol and some ammo."
 	// this might be a terrible idea giving them so much ammo, but whatevs
@@ -95,7 +96,7 @@
 	icon_state = "hard_case"
 	desc = "A box containing a low-powered shotgun and some ammo."
 	spawn_contents = list(/obj/item/gun/modular/NT/shotty,\
-	/obj/item/stackable_ammo/scatter/buckshot/ten,\
+	/obj/item/stackable_ammo/scatter/buckshot/five,\
 	/obj/item/stackable_ammo/capacitive_burst/ten,\
 	/obj/item/stackable_ammo/scatter/slug_rubber/ten)
 
