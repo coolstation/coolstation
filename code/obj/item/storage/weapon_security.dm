@@ -48,15 +48,15 @@
 
 /* -------------------- Guns & Ammo -------------------- */
 
-/obj/item/storage/box/revolver
+/obj/item/storage/box/revolver // for traitors
 	name = "italian revolver box"
 	icon_state = "hard_case"
 	desc = "A box containing an italian revolver and ammo."
 	// cogwerks - i think the ammo boxes are dumb, giving the starting box more ammo
 	spawn_contents = list(/obj/item/gun/modular/italian/big_italiano,\
 	/obj/item/stackable_ammo/pistol/ten,\
-	/obj/item/stackable_ammo/pistol/three,\
-	/obj/item/stackable_ammo/capacitive/ten)
+	/obj/item/stackable_ammo/pistol_38AP/five,\
+	/obj/item/stackable_ammo/capacitive/five)
 
 /obj/item/storage/box/detectivegun
 	name = "italian revolver box"
@@ -82,7 +82,8 @@
 	desc = "A box containing a standard issue pistol and some ammo."
 	// this might be a terrible idea giving them so much ammo, but whatevs
 	spawn_contents = list(/obj/item/gun/modular/NT/pistol,\
-	/obj/item/stackable_ammo/pistol/ten = 2)
+	/obj/item/stackable_ammo/pistol/ten = 2,\
+	/obj/item/stackable_ammo/tranq)
 
 /obj/item/storage/box/derringer
 	name = "derringer box"
