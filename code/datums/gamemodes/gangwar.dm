@@ -330,10 +330,10 @@
 
 	tags_used += leaderMind.gang.gang_tag
 
-	leaderMind.gang.gang_frequency = rand(1360,1420)
+	leaderMind.gang.gang_frequency = rand(R_FREQ_GANG_MIN,R_FREQ_GANG_MAX)
 
 	while(leaderMind.gang.gang_frequency in frequencies_used)
-		leaderMind.gang.gang_frequency = rand(1360,1420)
+		leaderMind.gang.gang_frequency = rand(R_FREQ_GANG_MIN,R_FREQ_GANG_MAX)
 
 	frequencies_used += leaderMind.gang.gang_frequency
 

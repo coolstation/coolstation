@@ -458,14 +458,19 @@
 					logTheThing("combat", current_lamp.rigger, null, "'s rigged bulb exploded in [current_lamp.rigger.loc.loc] ([showCoords(src.x, src.y, src.z)])")
 				explode()
 			if(on && prob(current_lamp.breakprob))
-				current_lamp.light_status = LIGHT_BURNED
-				icon_state = "[base_state]-burned"
+				if(prob(10)) //not every light needs to pop violently
+					elecflash(src,radius = 1, power = 2, exclude_center = 0)
+					current_lamp.light_status = LIGHT_BROKEN
+					icon_state = "[base_state]-broken"
+					logTheThing("station", null, null, "Light '[name]' burnt out explosively (breakprob: [current_lamp.breakprob]) at ([showCoords(src.x, src.y, src.z)])")
+				else
+					current_lamp.light_status = LIGHT_BURNED
+					icon_state = "[base_state]-burned"
+					logTheThing("station", null, null, "Light '[name]' burnt out (breakprob: [current_lamp.breakprob]) at ([showCoords(src.x, src.y, src.z)])")
 				on = 0
 				light.disable()
-				elecflash(src,radius = 1, power = 2, exclude_center = 0)
-				logTheThing("station", null, null, "Light '[name]' burnt out (breakprob: [current_lamp.breakprob]) at ([showCoords(src.x, src.y, src.z)])")
 			else
-				current_lamp.breakprob += 0.25 // critical that your "increasing probability" thing actually, yknow, increase. ever.
+				current_lamp.breakprob += 0.15 // critical that your "increasing probability" thing actually, yknow, increase. ever.
 
 	if(ceilingmounted) //and also update the current icon for ceiling lights
 		lightfixtureimage = image(src.icon,src.loc,src.icon_state,PLANE_NOSHADOW_ABOVE -1,src.dir)
