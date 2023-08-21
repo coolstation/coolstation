@@ -381,6 +381,7 @@ obj/machinery/atmospherics/manifold_valve
 			playsound(src.loc, "sound/effects/valve_creak.ogg", 50, 1)
 		else
 			icon_state = "manifold_valve[divert]"
+		desc = "A pipe valve. It is [src.divert?"open":"closed"]."
 
 	New()
 		..()
