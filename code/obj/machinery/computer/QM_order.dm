@@ -178,7 +178,7 @@
 				O.orderedby = usr.name
 				O.console_location = src.console_location
 				shippingmarket.supply_requests += O
-				boutput(usr, "Request for [P.name] sent to Supply Console. The Quartermasters will process your request as soon as possible.")
+				boutput(usr, "Request for [P.name] sent to Supply Console. The Logistics Department will process your request as soon as possible.")
 
 				// pda alert ////////
 				var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
