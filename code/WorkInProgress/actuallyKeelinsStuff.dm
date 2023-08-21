@@ -2939,7 +2939,7 @@ Returns:
 		else
 			if(ishuman(hit_atom))
 				var/mob/living/carbon/human/user = usr
-				var/safari = (istype(user.w_uniform, /obj/item/clothing/under/gimmick/safari) && istype(user.head, /obj/item/clothing/head/safari))
+				/*var/safari = (istype(user.w_uniform, /obj/item/clothing/under/gimmick/safari) && istype(user.head, /obj/item/clothing/head/safari))
 				if(safari)
 					var/mob/living/carbon/human/H = hit_atom
 					H.changeStatus("stunned", 4 SECONDS)
@@ -2947,7 +2947,7 @@ Returns:
 					H.force_laydown_standup()
 					//H.paralysis++
 					playsound(H.loc, "swing_hit", 50, 1)
-
+*/
 				prob_clonk = min(prob_clonk + 5, 40)
 				SPAWN_DBG(2 SECONDS)
 					prob_clonk = max(prob_clonk - 5, 0)

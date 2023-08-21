@@ -1401,7 +1401,7 @@ proc/get_gang_gear(var/mob/living/carbon/human/user)
 	"princess" = /obj/item/clothing/under/gimmick/princess,
 	"merchant" = /obj/item/clothing/under/gimmick/merchant,
 	"birdman" = /obj/item/clothing/under/gimmick/birdman,
-	"safari" = /obj/item/clothing/under/gimmick/safari,
+	//"safari" = /obj/item/clothing/under/gimmick/safari,
 	"det" = /obj/item/clothing/under/rank/det,
 	"red" = /obj/item/clothing/under/shorts/red,
 	"blue" = /obj/item/clothing/under/shorts/blue,

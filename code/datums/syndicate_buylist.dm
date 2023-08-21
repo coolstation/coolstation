@@ -704,7 +704,7 @@ This is basically useless for anyone but miners.
 	name = "Syringe Gun"
 	item = /obj/item/gun/reagent/syringe
 	cost = 3
-	desc = "This stainless-steel, revolving wonder fires needles. Perfect for today's safari-loving Syndicate doctor! Loaded by transferring reagents to the gun's internal reservoir."
+	desc = "This stainless-steel, revolving wonder fires needles. Perfect for today's telehealth-oriented Syndicate doctor! Loaded by transferring reagents to the gun's internal reservoir."
 	job = list("Medical Doctor", "Medical Director", "Research Director", "Scientist", "Bartender")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
@@ -765,18 +765,7 @@ This is basically useless for anyone but miners.
 	not_in_crates = 1
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
-/datum/syndicate_buylist/traitor/safari
-	name = "Safari Kit"
-	item = /obj/item/storage/box/costume/safari
-	cost = 7
-	desc = "Almost everything you need to hunt the most dangerous game. Tranquilizer rifle not included."
-	job = list("Medical Director")
-	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
-	run_on_spawn(obj/item, mob/living/owner, in_surplus_crate)
-		if(in_surplus_crate)
-			new /obj/item/gun/kinetic/dart_rifle(item.loc)
-			new /obj/item/ammo/bullets/tranq_darts(item.loc)
 
 /datum/syndicate_buylist/traitor/pizza_sharpener
 	name = "Pizza Sharpener"
@@ -1181,8 +1170,20 @@ This is basically useless for anyone but miners.
 	cost = 0 //7
 	desc = "This kit contains everything you need to become a great football player! Wearing all of the equipment inside will grant you the ability to rush down and tackle foes. You'll also make amazing throws!"
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+/*
+/datum/syndicate_buylist/traitor/safari
+	name = "Safari Kit"
+	item = /obj/item/storage/box/costume/safari
+	cost = 0 //7 colonialism
+	desc = "Almost everything you need to hunt the most dangerous game. Tranquilizer rifle not included."
+	job = list("Medical Director")
+	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
-
+	run_on_spawn(obj/item, mob/living/owner, in_surplus_crate)
+		if(in_surplus_crate)
+			new /obj/item/gun/kinetic/dart_rifle(item.loc)
+			new /obj/item/ammo/bullets/tranq_darts(item.loc)
+*/
 // round specific
 
 /datum/syndicate_buylist/weapon/revflash

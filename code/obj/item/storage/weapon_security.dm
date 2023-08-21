@@ -343,14 +343,14 @@
 		<BR>
 		<I>/[prob(50)? pick_string_autokey("names/first_male.txt"):pick_string_autokey("names/first_female.txt")]</I>
 		"}
-
+/*
 /obj/item/storage/box/costume/safari
 	name = "safari costume"
 	spawn_contents = list(/obj/item/clothing/head/safari,\
 	/obj/item/clothing/under/gimmick/safari,\
 	/obj/item/boomerang,\
 	/obj/item/ammo/bullets/tranq_darts/syndicate = 4)
-
+*/
 /obj/item/storage/box/poison
 	name = "ordinary box"
 	desc = "Just a regular ordinary box. It smells like almonds a little bit. Probably some chef kept their cooking supplies there."

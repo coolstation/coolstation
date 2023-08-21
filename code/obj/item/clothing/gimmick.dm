@@ -795,17 +795,17 @@
 	desc = "Sick flatbrims m8"
 	icon_state = "brummiecap"
 	item_state = "caphat"
-
+/*
 /obj/item/clothing/under/gimmick/safari
 	name = "safari clothing"
 	desc = "'ello gents! Cracking time to hunt an elephant!"
 	icon_state = "safari"
 	item_state = "safari"
 	item_function_flags = IMMUNE_TO_ACID
-
+*/
 /obj/item/clothing/head/safari
-	name = "safari hat"
-	desc = "Keeps you cool in the hot savannah."
+	name = "pith hat"
+	desc = "Keeps you cool in the hot desert."
 	icon_state = "safari"
 	item_state = "caphat"
 	item_function_flags = IMMUNE_TO_ACID
