@@ -617,3 +617,50 @@ obj/critter/bear/care
 		if(iscarbon(M))
 			if(prob(50)) M.changeStatus("stunned", 3 SECONDS)
 		random_brute_damage(M, rand(4,8),1)
+
+
+// This is probably a good place as any for snake-type multi-tile critters
+
+/obj/critter/linked_critter_head
+	name = "critter head"
+	var/initial_sections = 4
+	icon_state = "clowntipede-body"
+	var/obj/critter_section/first_section = null
+
+	New()
+		..()
+		var/obj/critter_section/last_section = null // the last section spawned links to the newest one
+		var sections_to_make = initial_sections
+		while (sections_to_make > 0)
+			sections_to_make -= 1
+			var/obj/critter_section/new_section = new/obj/critter_section/(get_turf(src))
+			new_section.head = src
+			if (last_section == null) // the head needs to link to the first section
+				last_section = new_section
+				first_section = new_section
+			else
+				last_section.next_section = new_section
+				last_section = new_section
+
+	Move()
+		var/oldloc = src.loc
+		. = ..()
+		if (src.loc == oldloc)
+			return
+		if (first_section)
+			first_section.Move(oldloc)
+
+/obj/critter_section
+	name = "critter body"
+	icon = 'icons/misc/critter.dmi'
+	icon_state = "clowntipede-body"
+	var/obj/critter_section/next_section = null
+	var/obj/critter/linked_critter_head/head = null
+
+	Move()
+		var/oldloc = src.loc
+		. = ..()
+		if (src.loc == oldloc)
+			return
+		if (next_section)
+			next_section.Move(oldloc)
