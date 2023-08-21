@@ -40,20 +40,6 @@ proc/build_syndi_buylist_cache()
 	cost = 0
 	desc = "You shouldn't see me!"
 
-/datum/syndicate_buylist/weapon/revolver
-	name = "Gun: Modular Revolver"
-	item = /obj/item/storage/box/revolver
-	cost = 5
-	desc = "The traditional sidearm of an Italian Syndicate field agent. Holds a few rounds and comes with extra ammo."
-	blockedmode = list(/datum/game_mode/spy)
-
-/datum/syndicate_buylist/weapon/fossgun
-	name = "Gun: FOSS Laser"
-	item = /obj/item/storage/box/foss_gun_kit
-	cost = 6
-	desc = "A FOSS-Licensed hand-cranked open-source laser gun, and a few flashbulbs to boot. Tricky!"
-	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
-
 /datum/syndicate_buylist/weapon/fossbulb
 	name = "Ammo: FOSS Laser Flashbulbs"
 	item = /obj/item/storage/box/foss_flashbulbs
@@ -82,6 +68,13 @@ proc/build_syndi_buylist_cache()
 	desc = "This shit is actually banned by the Geneva Convention. Luckily, those dorks have no jurisdiction here."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
+/datum/syndicate_buylist/weapon/radbow
+	name = "Ammo: Rad Poison Crossbow Bolts"
+	item = /obj/item/stackable_ammo/radbow/ten
+	cost = 3
+	desc = "Ten highly lethal flechettes that deal large amounts of radiation poisonning. Can be fired from any modular gun. Popular with the NT pistol."
+	blockedmode = list(/datum/game_mode/revolution)
+
 /datum/syndicate_buylist/weapon/pistol
 	name = "Gun: NT Modular Pistol"
 	item = /obj/item/storage/box/pistol
@@ -97,12 +90,20 @@ proc/build_syndi_buylist_cache()
 	not_in_crates = 1
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
-/datum/syndicate_buylist/weapon/radbow
-	name = "Ammo: Rad Poison Crossbow Bolts"
-	item = /obj/item/stackable_ammo/radbow/ten
-	cost = 3
-	desc = "Ten highly lethal flechettes that deal large amounts of radiation poisonning. Can be fired from any modular gun. Popular with the NT pistol."
-	blockedmode = list(/datum/game_mode/revolution)
+/datum/syndicate_buylist/weapon/revolver
+	name = "Gun: Modular Revolver"
+	item = /obj/item/storage/box/revolver
+	cost = 5
+	desc = "The traditional sidearm of an Italian Syndicate field agent. Holds a few rounds and comes with extra ammo."
+	blockedmode = list(/datum/game_mode/spy)
+
+/datum/syndicate_buylist/weapon/fossgun
+	name = "Gun: FOSS Laser"
+	item = /obj/item/storage/box/foss_gun_kit
+	cost = 6
+	desc = "A FOSS-Licensed hand-cranked open-source laser gun, and a few flashbulbs to boot. Tricky!"
+	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
 
 /datum/syndicate_buylist/weapon/garrote
 	name = "Fibre Wire"
