@@ -793,7 +793,7 @@ Transponder Codes:<UL>"}
 	tour15
 		name = "tour beacon - 'Quartermasters'"
 		location = "tour15"
-		codes_txt = "tour;next_tour=tour16;desc=Need some new equipment or supplies for your workplace? Come on down to your local Quartermasters' office! If they ain't got it, you probably don't want it anyways."
+		codes_txt = "tour;next_tour=tour16;desc=Need some new equipment or supplies for your workplace? Come on down to your local Logistics office! If they ain't got it, you probably don't want it anyways."
 
 	tour16
 		name = "tour beacon - 'Escape'"
@@ -1026,7 +1026,7 @@ Transponder Codes:<UL>"}
 	tour8
 		name = "tour beacon - 'Supply Lobby'"
 		location = "tour8"
-		codes_txt = "tour;next_tour=tour9;desc=Here, in the supply lobby, you can order whatever you'd like - a home networking kit, a Golden Gannet delivery, a haberdasher's crate - and watch in real time as expert quartermasters process your order and ensure its smooth delivery. It's wonderfully instant gratification."
+		codes_txt = "tour;next_tour=tour9;desc=Here, in the supply lobby, you can order whatever you'd like - a home networking kit, a Golden Gannet delivery, a haberdasher's crate - and watch in real time as expert cargo technicians process your order and ensure its smooth delivery. It's wonderfully instant gratification."
 
 	tour9
 		name = "tour beacon - 'Fitness Room'"
@@ -1102,7 +1102,7 @@ Transponder Codes:<UL>"}
 	tour1
 		name = "tour beacon - 'Cargo'"
 		location = "tour1"
-		codes_txt = "tour;next_tour=tour2;desc=Our first stop is the cargo bay, where our team of quartermasters can requisition any equipment that you might need to fulfill your role aboard ship. For a fair price, of course!"
+		codes_txt = "tour;next_tour=tour2;desc=Our first stop is the cargo bay, where our logistics team can requisition any equipment that you might need to fulfill your role aboard ship. For a fair price, of course!"
 
 	tour2
 		name = "tour beacon - 'Engineering'"
