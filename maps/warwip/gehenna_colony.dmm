@@ -19706,6 +19706,19 @@
 /obj/machinery/atmospherics/unary/vent_pump/south,
 /turf/simulated/floor,
 /area/station/quartermaster/storage)
+"oVF" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	invisibility = 101;
+	name = "autoname - Entertainment";
+	network = "Zeta";
+	tag = ""
+	},
+/turf/space/gehenna/desert/plating{
+	dir = 4
+	},
+/area/gehenna)
 "oVG" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/west,
 /turf/simulated/floor,
@@ -55812,7 +55825,7 @@ wgn
 wgn
 oSy
 wgn
-wgn
+oVF
 iiv
 iiv
 iiv
@@ -84441,7 +84454,7 @@ eLC
 eLC
 jAa
 iiv
-iiv
+pqc
 iiv
 iiv
 aSF
@@ -90764,7 +90777,7 @@ nSq
 cqC
 ljA
 iiv
-pqc
+iiv
 iiv
 iiv
 iiv

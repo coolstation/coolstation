@@ -8996,6 +8996,14 @@
 /obj/machinery/networked/teleconsole{
 	dir = 8
 	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	invisibility = 101;
+	name = "autoname - Entertainment";
+	network = "Zeta";
+	tag = ""
+	},
 /turf/simulated/floor/grey,
 /area/station/science/teleporter)
 "ffL" = (
@@ -35616,7 +35624,13 @@
 	pixel_x = 9
 	},
 /obj/item/clothing/head/helmet/camera,
-/obj/item/device/camera_viewer,
+/obj/item/device/camera_viewer{
+	network = "Zeta";
+	pixel_y = 5
+	},
+/obj/item/device/camera_viewer{
+	network = "Zeta"
+	},
 /turf/simulated/floor/grey,
 /area/station/science/teleporter)
 "uxX" = (
@@ -37298,6 +37312,8 @@
 	color = "#666666"
 	},
 /obj/machinery/computer/security/wooden_tv{
+	name = "Research Cameras";
+	network = "Zeta";
 	pixel_x = 1;
 	pixel_y = 7
 	},
