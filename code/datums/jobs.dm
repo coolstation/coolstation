@@ -187,7 +187,6 @@ ABSTRACT_TYPE(/datum/job/command)
 		..()
 		src.access = get_all_accesses()
 
-
 	derelict
 		//name = "NT-SO Commander"
 		name = null
@@ -435,31 +434,22 @@ ABSTRACT_TYPE(/datum/job/command)
 			return
 		M.traitHolder.addTrait("training_medical")
 
-#ifdef MAP_OVERRIDE_MANTA
-/datum/job/command/comm_officer
-	name = "Communications Officer"
-	limit = 1
+/datum/job/command/quartermaster
+	name = "Quartermaster"
+	limit = 3 //1
 	wages = PAY_IMPORTANT
-	allow_spy_theft = 0
-	cant_spawn_as_rev = 1
-	announce_on_join = 1
-
-	slot_ears = list(/obj/item/device/radio/headset/command/captain)
-	slot_eyes = list(/obj/item/clothing/glasses/sunglasses)
-	slot_jump = list(/obj/item/clothing/under/rank/comm_officer)
-	slot_card = /obj/item/card/id/command
+	slot_glov = list(/obj/item/clothing/gloves/black)
 	slot_foot = list(/obj/item/clothing/shoes/black)
-	slot_back = list(/obj/item/storage/backpack/withO2)
-	slot_belt = list(/obj/item/device/pda2/heads)
-	slot_poc1 = list(/obj/item/pen/fancy)
-	slot_head = list(/obj/item/clothing/head/sea_captain/comm_officer_hat)
-	items_in_backpack = list(/obj/item/device/camera_viewer, /obj/item/device/audio_log, /obj/item/device/flash)
+	slot_jump = list(/obj/item/clothing/under/rank/cargo)
+	slot_belt = list(/obj/item/device/pda2/quartermaster)
+	slot_ears = list(/obj/item/device/radio/headset/shipping)
+	slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/quartermaster)
+	slot_poc2 = list(/obj/item/device/appraisal)
 
 	New()
 		..()
-		src.access = get_access("Communications Officer")
+		src.access = get_access("Quartermaster") //maybe get a little bonus office
 		return
-#endif
 
 // Security Jobs
 
@@ -889,26 +879,13 @@ ABSTRACT_TYPE(/datum/job/engineering)
 		src.access = get_access("Mechanic")
 		return
 
-// Logistics Jobs - create and move to /job/logistics/
+// Logistics Jobs
 
-/datum/job/engineering/quartermaster //if not outright command job, this is still head of department (move later)
-	name = "Quartermaster"
-	limit = 3 //1
-	wages = PAY_IMPORTANT
-	slot_glov = list(/obj/item/clothing/gloves/black)
-	slot_foot = list(/obj/item/clothing/shoes/black)
-	slot_jump = list(/obj/item/clothing/under/rank/cargo)
-	slot_belt = list(/obj/item/device/pda2/quartermaster)
-	slot_ears = list(/obj/item/device/radio/headset/shipping)
-	slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/quartermaster)
-	slot_poc2 = list(/obj/item/device/appraisal)
+ABSTRACT_TYPE(/datum/job/logistics)
 
-	New()
-		..()
-		src.access = get_access("Quartermaster") //maybe get a little bonus office
-		return
+//QM got promoted
 
-/datum/job/engineering/cargotechnician
+/datum/job/logistics/cargotechnician
 	name = "Cargo Technician"
 	limit = 0 //3
 	wages = PAY_TRADESMAN
@@ -926,7 +903,7 @@ ABSTRACT_TYPE(/datum/job/engineering)
 		return
 
 
-/datum/job/engineering/miner
+/datum/job/logistics/miner
 	name = "Miner"
 	limit = 5
 	wages = PAY_TRADESMAN
@@ -951,6 +928,23 @@ ABSTRACT_TYPE(/datum/job/engineering)
 		M.bioHolder.AddEffect("training_miner")
 		if(prob(20))
 			M.bioHolder.AddEffect("dwarf", magical=1)
+
+/datum/job/logistics/mailcarrier
+	name = "Mailcarrier"
+	wages = PAY_TRADESMAN
+	limit = 0
+	slot_jump = list(/obj/item/clothing/under/misc/mail/syndicate)
+	slot_head = list(/obj/item/clothing/head/mailcap)
+	slot_foot = list(/obj/item/clothing/shoes/brown)
+	slot_back = list(/obj/item/storage/backpack/satchel)
+	slot_ears = list(/obj/item/device/radio/headset/mail)
+	items_in_backpack = list(/obj/item/wrapping_paper, /obj/item/paper_bin, /obj/item/scissors, /obj/item/stamp)
+	alt_names = list("Head of Deliverying", "Head of Mailcarrying")
+
+	New()
+		..()
+		src.access = get_access("Mailcarrier")
+		return
 
 // Civilian Jobs
 
@@ -1413,23 +1407,6 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	New()
 		..()
 		src.access = get_access("Barber")
-		return
-
-/datum/job/special/mailman
-	name = "Mailman"
-	wages = PAY_TRADESMAN
-	limit = 0
-	slot_jump = list(/obj/item/clothing/under/misc/mail/syndicate)
-	slot_head = list(/obj/item/clothing/head/mailcap)
-	slot_foot = list(/obj/item/clothing/shoes/brown)
-	slot_back = list(/obj/item/storage/backpack/satchel)
-	slot_ears = list(/obj/item/device/radio/headset/mail)
-	items_in_backpack = list(/obj/item/wrapping_paper, /obj/item/paper_bin, /obj/item/scissors, /obj/item/stamp)
-	alt_names = list("Head of Deliverying", "Head of Mailmanning")
-
-	New()
-		..()
-		src.access = get_access("Mailman")
 		return
 
 /datum/job/special/tourist
@@ -2705,7 +2682,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 		return
 
 /datum/job/daily/wednesday
-	name = "Mailman"
+	name = "Mailcarrier"
 	wages = PAY_TRADESMAN
 	limit = 2
 	slot_jump = list(/obj/item/clothing/under/misc/mail/syndicate)
@@ -2714,11 +2691,11 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	slot_back = list(/obj/item/storage/backpack/satchel)
 	slot_ears = list(/obj/item/device/radio/headset/mail)
 	items_in_backpack = list(/obj/item/wrapping_paper, /obj/item/paper_bin, /obj/item/scissors, /obj/item/stamp)
-	alt_names = list("Head of Deliverying", "Head of Mailmanning")
+	alt_names = list("Head of Deliverying", "Head of Mailcarrying")
 
 	New()
 		..()
-		src.access = get_access("Mailman")
+		src.access = get_access("Mailcarrier")
 		return
 
 /datum/job/daily/thursday

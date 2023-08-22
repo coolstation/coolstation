@@ -1,4 +1,4 @@
-var/list/occupations = list( //determines spawns for jobs and how many slots by default
+var/list/occupations = list( //determines spawns for jobs and how many slots by default? maybe? who knows
 	// Administrative
 	// "Captain", implied and handled
 	"Head of Personnel",

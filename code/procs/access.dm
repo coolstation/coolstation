@@ -339,7 +339,7 @@
 			return list(access_maint_tunnels, access_external_airlocks,
 						access_engineering_eva, access_mining_shuttle, access_mining,
 						access_mining_outpost, access_hangar, access_cargo)
-		if("Mailman") //you've been relocated
+		if("Mailcarrier")
 			return list(access_maint_tunnels, access_mail, access_cargo, access_hangar, //this had access_heads for some reason
 						access_mining_shuttle, access_mining_outpost)
 

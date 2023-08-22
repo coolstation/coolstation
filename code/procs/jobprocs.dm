@@ -85,6 +85,7 @@
 	var/list/medical_staff = list()
 	var/list/engineering_staff = list()
 	var/list/research_staff = list()
+	var/list/logistics_staff = list()
 
 
 	for(var/datum/job/JOB in job_controls.staple_jobs)
@@ -176,7 +177,7 @@
 		if (!JOB.allow_traitors && player.mind.special_role ||  !JOB.allow_spy_theft && player.mind.special_role == ROLE_SPY_THIEF)
 			continue
 		// If there's an open job slot for it, give the player the job and remove them from
-		// the list of unassigned players, hey presto everyone's happy (except clarks probly)
+		// the list of unassigned players, hey presto everyone's happy
 		if (JOB.limit < 0 || !(JOB.assigned >= JOB.limit))
 			if (istype(JOB, /datum/job/engineering/engineer))
 				engineering_staff += player
@@ -184,6 +185,8 @@
 				research_staff += player
 			else if (istype(JOB, /datum/job/research/medical_doctor))
 				medical_staff += player
+			else if (istype(JOB, /datum/job/logistics/cargotechnician))
+				logistics_staff += player
 
 			logTheThing("debug", null, null, "<b>I Said No/Jobs:</b> [player] took [JOB.name] from favorite selector")
 			player.mind.assigned_role = JOB.name
@@ -210,6 +213,8 @@
 				research_staff += candidate
 			else if (istype(JOB, /datum/job/research/medical_doctor))
 				medical_staff += candidate
+			else if (istype(JOB, /datum/job/logistics/cargotechnician))
+				logistics_staff += candidate
 
 			if (JOB.assigned >= JOB.limit || unassigned.len == 0)
 				break
@@ -238,6 +243,8 @@
 				research_staff += candidate
 			else if (istype(JOB, /datum/job/research/medical_doctor))
 				medical_staff += candidate
+			else if (istype(JOB, /datum/job/logistics/cargotechnician))
+				logistics_staff += candidate
 
 			if (JOB.assigned >= JOB.limit || unassigned.len == 0) break
 			logTheThing("debug", null, null, "<b>I Said No/Jobs:</b> [candidate] took [JOB.name] from Level 3 Job Picker")
@@ -277,6 +284,16 @@
 			//Promote Medical Director
 			else if (istype(JOB, /datum/job/command/medical_director))
 				var/list/picks = FindPromotionCandidates(medical_staff, JOB)
+				if (!picks || !length(picks))
+					continue
+				var/mob/new_player/candidate = pick(picks)
+				logTheThing("debug", null, null, "<b>kyle:</b> [candidate] took [JOB.name] from Job Promotion Picker")
+				candidate.mind.assigned_role = JOB.name
+				logTheThing("debug", candidate, null, "reassigned job: [candidate.mind.assigned_role]")
+				JOB.assigned++
+			//Promote Quartermaster
+			else if (istype(JOB, /datum/job/command/quartermaster))
+				var/list/picks = FindPromotionCandidates(logistics_staff, JOB)
 				if (!picks || !length(picks))
 					continue
 				var/mob/new_player/candidate = pick(picks)

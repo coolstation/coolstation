@@ -588,11 +588,11 @@ This is basically useless for anyone but miners.
 			owner.mind.diabolical = 1 //can't sell souls to ourselves now can we?
 
 /datum/syndicate_buylist/traitor/mailsuit
-	name = "Mailman Suit"
+	name = "Mailcarrier Suit"
 	item = /obj/item/clothing/under/misc/mail/syndicate
 	cost = 1
-	desc = "A mailman's uniform that allows the wearer to use mail chutes as a means of transportation."
-	job = list("Mailman")
+	desc = "A mailcarrier's uniform that allows the wearer to use mail chutes as a means of transportation."
+	job = list("Mailcarrier")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/chargehacker
