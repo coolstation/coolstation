@@ -9186,6 +9186,7 @@
 	})
 "fjN" = (
 /obj/table/auto,
+/obj/item/storage/box/grenade_starter_kit,
 /turf/simulated/floor/plating,
 /area/station/science/gen_storage)
 "fjO" = (
@@ -19717,6 +19718,7 @@
 /obj/machinery/light/small/warm{
 	dir = 1
 	},
+/obj/machinery/portable_atmospherics/canister/air/large,
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal)
 "lhr" = (
@@ -22863,8 +22865,10 @@
 	name = "Northeast Tunnel"
 	})
 "mXS" = (
-/turf/simulated/wall/asteroid/gehenna/tough/z3,
-/area/station/engine/hotloop)
+/turf/simulated/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/station/maintenance/disposal)
 "mYd" = (
 /obj/cable{
 	icon_state = "0-4"
@@ -34003,6 +34007,17 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/maintenance/disposal)
+"tzt" = (
+/obj/machinery/conveyor/west{
+	name = "garbo belt";
+	operating = 1
+	},
+/obj/forcefield/energyshield/perma{
+	dir = 4
+	},
+/obj/plasticflaps,
+/turf/simulated/floor/plating,
+/area/station/maintenance/disposal)
 "tzD" = (
 /obj/decal/poster/wallsign/escape_right,
 /turf/simulated/wall/r_wall,
@@ -42033,7 +42048,7 @@
 /turf/simulated/wall,
 /area/station/crew_quarters/quartersC)
 "ybd" = (
-/obj/machinery/portable_atmospherics/canister/air/large,
+/obj/machinery/door/airlock/classic,
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal)
 "ybl" = (
@@ -96021,7 +96036,7 @@ gKf
 lhl
 ldQ
 grX
-ybd
+gKf
 gKf
 gKf
 gKf
@@ -96323,8 +96338,8 @@ gKf
 gKf
 ldQ
 grX
-gKf
-gKf
+ybd
+mXS
 oaN
 oaN
 iqj
@@ -96934,7 +96949,7 @@ oaN
 oaN
 kfL
 str
-kQY
+tzt
 kfL
 kfL
 vcZ
