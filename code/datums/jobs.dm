@@ -213,6 +213,7 @@ ABSTRACT_TYPE(/datum/job/command)
 	limit = 1
 	wages = PAY_IMPORTANT
 	//department = "civilian" //i'm really torn on this
+	// not necessary imo. HoP may have been "intended" for civvie head, but history has shown they are the vice president to the captain. - warc
 
 	allow_spy_theft = 0
 	recieves_miranda = 1
@@ -718,6 +719,7 @@ ABSTRACT_TYPE(/datum/job/medical)
 /datum/job/pathologist // pls no autogenerate list
 #endif
 	name = "Pathologist"
+	department = "research"
 	#ifdef CREATE_PATHOGENS
 	limit = 2
 	#else
@@ -768,6 +770,7 @@ ABSTRACT_TYPE(/datum/job/medical)
 /datum/job/medical/geneticist
 	name = "Geneticist"
 	limit = 2
+	department = "research"
 	wages = PAY_DOCTORATE
 	slot_belt = list(/obj/item/device/pda2/genetics)
 	slot_jump = list(/obj/item/clothing/under/rank/geneticist)

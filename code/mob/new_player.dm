@@ -537,6 +537,9 @@ a.latejoin-card:hover {
 					break //one head per department
 			for(var/datum/job/research/J in job_controls.staple_jobs)
 				dat += LateJoinLink(J)
+			for(var/datum/job/medical/J in job_controls.staple_jobs)
+				if (J.department == "research")
+					dat += LateJoinLink(J)
 			//dat += "</table></td>"
 
 			//dat += {"<td valign="top"><table>"}
@@ -563,6 +566,8 @@ a.latejoin-card:hover {
 					dat += LateJoinLink(J)
 					break
 			for(var/datum/job/medical/J in job_controls.staple_jobs)
+				if (J.department == "research")
+					continue// this is so we can stick genetics and pathology under research without changing *anything* else:)
 				dat += LateJoinLink(J)
 			dat += {"<tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Civilian</th></tr>"}
 			for(var/datum/job/command/J in job_controls.staple_jobs)
