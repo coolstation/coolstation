@@ -1315,7 +1315,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	random
 		New()
 			..()
-			icon_state = pick("dirt","dirt2","dirt3","dirt4","dirt5")
+			icon_state = pick("dirt","dirt2","dirt3","dirt5") //dirt4 is very directional and parses weird on its own, like mulebot blood trails
 
 	jen
 		icon_state = "dirt_jen"
