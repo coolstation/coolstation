@@ -470,7 +470,7 @@ var/global/list/mapNames = list(
 		/datum/job/civilian/janitor = 3,
 		/datum/job/civilian/chaplain = 2,
 		/datum/job/special/lawyer = 1,
-		/datum/job/special/atmospheric_technician = 1
+		/datum/job/engineering/atmospheric_technician = 1
 	)
 
 /datum/map_settings/manta
@@ -659,7 +659,7 @@ var/global/list/mapNames = list(
 
 	job_limits_from_landmarks = 1
 	job_limits_override = list(
-		/datum/job/special/atmospheric_technician = 1,
+		/datum/job/engineering/atmospheric_technician = 1,
 		/datum/job/special/barber = 1,
 		/datum/job/special/research_assistant = 2,
 		/datum/job/special/medical_assistant = 2
@@ -1059,7 +1059,7 @@ var/global/list/mapNames = list(
 		/datum/job/logistics/miner = 6,
 		/datum/job/engineering/engineer = 6,
 		/datum/job/civilian/chaplain = 2,
-		/datum/job/special/atmospheric_technician = 2,
+		/datum/job/engineering/atmospheric_technician = 2,
 		/datum/job/civilian/botanist = 3
 	)
 

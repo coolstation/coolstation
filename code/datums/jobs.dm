@@ -677,9 +677,23 @@ ABSTRACT_TYPE(/datum/job/research)
 		if(prob(20))
 			M.traitHolder.addTrait("scienceteam")
 
+/datum/job/research/chemist //welcome back to the team
+	name = "Chemist"
+	limit = 2
+	wages = PAY_DOCTORATE
+	slot_belt = list(/obj/item/device/pda2/toxins)
+	slot_jump = list(/obj/item/clothing/under/rank/scientist)
+	slot_foot = list(/obj/item/clothing/shoes/white)
+	slot_ears = list(/obj/item/device/radio/headset/research)
+
+	New()
+		..()
+		src.access = get_access("Chemist")
+		return
+
 /datum/job/research/medical_doctor
 	name = "Medical Doctor"
-	limit = 5
+	limit = 4
 	wages = PAY_DOCTORATE
 	slot_back = list(/obj/item/storage/backpack/medic)
 	slot_belt = list(/obj/item/storage/belt/medical)
@@ -691,7 +705,7 @@ ABSTRACT_TYPE(/datum/job/research)
 	slot_eyes = list(/obj/item/clothing/glasses/healthgoggles)
 	slot_poc1 = list(/obj/item/device/pda2/medical)
 	slot_poc2 = list(/obj/item/paper/book/from_file/pocketguide/medical)
-	items_in_backpack = list(/obj/item/crowbar, /obj/item/robodefibrillator) // cogwerks: giving medics a guaranteed air tank, stealing it from roboticists (those fucks)
+	items_in_backpack = list(/obj/item/crowbar) // cogwerks: giving medics a guaranteed air tank, stealing it from roboticists (those fucks)
 	// 2018: guaranteed air tanks now spawn in boxes (depending on backpack type) to save room
 
 	New()
@@ -724,17 +738,18 @@ ABSTRACT_TYPE(/datum/job/research)
 
 /datum/job/research/surgeon //flavor job
 	name = "Surgeon"
-	limit = 0 //1 or 2
+	limit = 1 //1 or 2
 	wages = PAY_DOCTORATE
 	slot_back = list(/obj/item/storage/backpack/medic)
 	slot_jump = list(/obj/item/clothing/under/rank/medical)
 	slot_suit = list(/obj/item/clothing/suit/labcoat)
-	slot_foot = list(/obj/item/clothing/shoes/red)
+	slot_foot = list(/obj/item/clothing/shoes/brown)
 	slot_lhan = list(/obj/item/storage/firstaid/docbag)
 	slot_ears = list(/obj/item/device/radio/headset/medical)
 	slot_eyes = list(/obj/item/clothing/glasses/healthgoggles)
 	slot_poc1 = list(/obj/item/device/pda2/medical)
 	slot_poc2 = list(/obj/item/paper/book/from_file/pocketguide/medical)
+	items_in_backpack = list(/obj/item/clothing/under/scrub/maroon)
 
 	New()
 		..()
@@ -749,45 +764,43 @@ ABSTRACT_TYPE(/datum/job/research)
 
 /datum/job/research/pharmacist //flavor job
 	name = "Pharmacist"
-	limit = 0 //2
+	limit = 2
 	wages = PAY_TRADESMAN
+	slot_card = /obj/item/card/id/research
 	slot_back = list(/obj/item/storage/backpack/medic)
-	slot_jump = list(/obj/item/clothing/under/rank/medical)
+	slot_jump = list(/obj/item/clothing/under/shirt_pants)
 	slot_suit = list(/obj/item/clothing/suit/labcoat)
-	slot_foot = list(/obj/item/clothing/shoes/red)
+	slot_foot = list(/obj/item/clothing/shoes/brown)
 	slot_ears = list(/obj/item/device/radio/headset/medical)
 	slot_poc1 = list(/obj/item/device/pda2/medical)
 	slot_poc2 = list(/obj/item/paper/book/from_file/pocketguide/medical)
+	items_in_backpack = list(/obj/item/storage/box/beakerbox, /obj/item/storage/pill_bottle/cyberpunk) //encourage a little drug dealing, why not
 
 	New()
 		..()
-		src.access = get_access("Medical Doctor")
+		src.access = get_access("Pharmacist")
 		return
 
 /datum/job/research/nurse //flavor job, medical assistant in scrubs
 	name = "Nurse"
-	linkcolor = "#9900FF"
-	limit = 0 //3
+	limit = 4
 	wages = PAY_UNTRAINED
 	low_priority_job = 1
-	slot_jump = list(/obj/item/clothing/under/color/white)
 	slot_foot = list(/obj/item/clothing/shoes/white)
-	slot_jump = list(/obj/item/clothing/under/scrub/maroon) //randomize this imo
+	slot_jump = list(/obj/item/clothing/under/scrub/blue) //randomize this imo
 
 	New()
 		..()
 		src.access = get_access("Nurse")
 		return
 
-/datum/job/research/receptionist //flavor job, medical assistant in scrubs
+/datum/job/research/receptionist //flavor job, medical assistant in scrubs, dispatch pills and basic diagnoses from front desk and try to reduce as many people coming as possible
 	name = "Receptionist"
-	linkcolor = "#9900FF"
-	limit = 0 //3
+	limit = 1 //2 or 3
 	wages = PAY_UNTRAINED
 	low_priority_job = 1
-	slot_jump = list(/obj/item/clothing/under/color/white)
 	slot_foot = list(/obj/item/clothing/shoes/white)
-	slot_jump = list(/obj/item/clothing/under/scrub/maroon) //randomize this imo
+	slot_jump = list(/obj/item/clothing/under/color/white)
 
 	New()
 		..()
@@ -843,7 +856,7 @@ ABSTRACT_TYPE(/datum/job/engineering)
 
 /datum/job/engineering/mechanic //redstone guys should fix doors too and machinery too (yes this includes the microwave)
 	name = "Mechanic"
-	limit = 3
+	limit = 2 //split between them and new department, they have the same toys
 	wages = PAY_TRADESMAN
 
 	slot_back = list(/obj/item/storage/backpack/withO2)
@@ -862,7 +875,7 @@ ABSTRACT_TYPE(/datum/job/engineering)
 
 /datum/job/engineering/electrician //wiring and broken APCs are a pain, give engineers a break. also: fixes small handheld items.
 	name = "Electrician"
-	limit = 0 //2
+	limit = 2
 	wages = PAY_TRADESMAN
 	//need to redo loadout. probably dress them in yellow.
 	slot_back = list(/obj/item/storage/backpack/withO2)
@@ -879,11 +892,31 @@ ABSTRACT_TYPE(/datum/job/engineering)
 		src.access = get_access("Mechanic")
 		return
 
+/datum/job/engineering/atmospheric_technician //you make sure air is in places that air should be and stays in there
+	name = "Atmospheric Technician"
+	limit = 2
+	wages = PAY_TRADESMAN
+	slot_belt = list(/obj/item/device/pda2/atmos)
+	slot_jump = list(/obj/item/clothing/under/misc/atmospheric_technician)
+	slot_foot = list(/obj/item/clothing/shoes/black)
+	slot_lhan = list(/obj/item/storage/toolbox/mechanical)
+	slot_poc1 = list(/obj/item/device/analyzer/atmospheric)
+	slot_ears = list(/obj/item/device/radio/headset/engineer)
+	items_in_backpack = list(/obj/item/tank/emergency_oxygen,/obj/item/crowbar)
+
+	New()
+		..()
+		src.access = get_access("Atmospheric Technician")
+		return
+
 // Logistics Jobs
 
 ABSTRACT_TYPE(/datum/job/logistics)
+/datum/job/logistics
+	linkcolor = "#D6B327"
+	slot_card = /obj/item/card/id/engineering
 
-//QM got promoted
+//QM got promoted, look under /job/command/quartermaster
 
 /datum/job/logistics/cargotechnician
 	name = "Cargo Technician"
@@ -1304,21 +1337,6 @@ ABSTRACT_TYPE(/datum/job/civilian)
 		src.access = get_access("Toxins Researcher")
 		return
 
-/datum/job/special/chemist
-	name = "Chemist"
-	linkcolor = "#9900FF"
-	limit = 0
-	wages = PAY_DOCTORATE
-	slot_belt = list(/obj/item/device/pda2/toxins)
-	slot_jump = list(/obj/item/clothing/under/rank/scientist)
-	slot_foot = list(/obj/item/clothing/shoes/white)
-	slot_ears = list(/obj/item/device/radio/headset/research)
-
-	New()
-		..()
-		src.access = get_access("Chemist")
-		return
-
 /datum/job/special/research_assistant
 	name = "Research Assistant"
 	linkcolor = "#9900FF"
@@ -1345,24 +1363,6 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	New()
 		..()
 		src.access = get_access("Medical Assistant")
-		return
-
-/datum/job/special/atmospheric_technician
-	name = "Atmospheric Technician"
-	linkcolor = "#FF9900"
-	limit = 1
-	wages = PAY_TRADESMAN
-	slot_belt = list(/obj/item/device/pda2/atmos)
-	slot_jump = list(/obj/item/clothing/under/misc/atmospheric_technician)
-	slot_foot = list(/obj/item/clothing/shoes/black)
-	slot_lhan = list(/obj/item/storage/toolbox/mechanical)
-	slot_poc1 = list(/obj/item/device/analyzer/atmospheric)
-	slot_ears = list(/obj/item/device/radio/headset/engineer)
-	items_in_backpack = list(/obj/item/tank/emergency_oxygen,/obj/item/crowbar)
-
-	New()
-		..()
-		src.access = get_access("Atmospheric Technician")
 		return
 
 /datum/job/special/tech_assistant
@@ -1769,28 +1769,6 @@ ABSTRACT_TYPE(/datum/job/civilian)
 		..()
 		src.access = get_access("Waiter")
 		return
-
-/datum/job/special/random/pharmacist
-	name = "Pharmacist"
-	wages = PAY_DOCTORATE
-	slot_card = /obj/item/card/id/research
-	slot_belt = list(/obj/item/device/pda2/medical)
-	slot_foot = list(/obj/item/clothing/shoes/brown)
-	slot_jump = list(/obj/item/clothing/under/shirt_pants)
-	slot_suit = list(/obj/item/clothing/suit/labcoat)
-	slot_ears = list(/obj/item/device/radio/headset/medical)
-	items_in_backpack = list(/obj/item/storage/box/beakerbox, /obj/item/storage/pill_bottle/cyberpunk)
-
-	New()
-		..()
-		src.access = get_access("Pharmacist")
-		return
-
-	special_setup(var/mob/living/carbon/human/M)
-		..()
-		if (!M)
-			return
-		M.traitHolder.addTrait("training_medical")
 
 /datum/job/special/random/radioshowhost
 	name = "Radio Show Host"
@@ -2682,7 +2660,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 		return
 
 /datum/job/daily/wednesday
-	name = "Mailcarrier"
+	name = "Mail Thief"
 	wages = PAY_TRADESMAN
 	limit = 2
 	slot_jump = list(/obj/item/clothing/under/misc/mail/syndicate)
@@ -2691,7 +2669,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	slot_back = list(/obj/item/storage/backpack/satchel)
 	slot_ears = list(/obj/item/device/radio/headset/mail)
 	items_in_backpack = list(/obj/item/wrapping_paper, /obj/item/paper_bin, /obj/item/scissors, /obj/item/stamp)
-	alt_names = list("Head of Deliverying", "Head of Mailcarrying")
+	alt_names = list("Head of Undeliverying", "Head of Mailtheft")
 
 	New()
 		..()
