@@ -183,7 +183,7 @@ proc/build_syndi_buylist_cache()
 	cost = 4
 	desc = "Lights too bright? Airlocks too automatic? Alarms too functional? Or maybe just nostalgic about the good ol' days before electricity came along? Unrelatedly here's a canister of farts. Hope you read the whole description. "
 	not_in_crates = 1
-	job = list("Engineer", "Chief Engineer", "Mechanic", "Atmospheric Technician")
+	job = list("Engineer", "Chief Engineer", "Mechanic", "Electrician", "Atmospheric Technician")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/weapon/detomatix
@@ -588,11 +588,11 @@ This is basically useless for anyone but miners.
 			owner.mind.diabolical = 1 //can't sell souls to ourselves now can we?
 
 /datum/syndicate_buylist/traitor/mailsuit
-	name = "Mailman Suit"
+	name = "Mailcarrier Suit"
 	item = /obj/item/clothing/under/misc/mail/syndicate
 	cost = 1
-	desc = "A mailman's uniform that allows the wearer to use mail chutes as a means of transportation."
-	job = list("Mailman")
+	desc = "A mailcarrier's uniform that allows the wearer to use mail chutes as a means of transportation."
+	job = list("Mailcarrier")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/chargehacker
@@ -879,7 +879,7 @@ This is basically useless for anyone but miners.
 	cost = 3
 	vr_allowed = 0
 	desc = "A modified cargo transporter which teleports containers to a random spot in space and welds them shut."
-	job = list("Quartermaster","Miner","Engineer")
+	job = list("Quartermaster","Miner","Engineer","Cargo Technician")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/telegun

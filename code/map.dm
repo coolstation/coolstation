@@ -463,7 +463,7 @@ var/global/list/mapNames = list(
 		/datum/job/research/scientist = 6,
 		/datum/job/research/medical_doctor = 7,
 		/datum/job/engineering/mechanic = 4,
-		/datum/job/engineering/miner = 4,
+		/datum/job/logistics/miner = 4,
 		/datum/job/engineering/engineer = 6,
 		/datum/job/civilian/chef = 2,
 		/datum/job/civilian/bartender = 2,
@@ -921,10 +921,6 @@ var/global/list/mapNames = list(
 		"the mining staff room" = list(/area/station/mining/staff_room))
 		//"the radio lab" = list(/area/station/crew_quarters/radio))
 
-	job_limits_override = list(
-		/datum/job/special/random/psychiatrist = 1
-	)
-
 /datum/map_settings/wrestlemap
 	name = "WRESTLEMAP"
 	walls = /turf/simulated/wall/auto/supernorn
@@ -1060,7 +1056,7 @@ var/global/list/mapNames = list(
 		/datum/job/security/security_officer = 6,
 		/datum/job/research/scientist = 6,
 		/datum/job/research/medical_doctor = 6,
-		/datum/job/engineering/miner = 6,
+		/datum/job/logistics/miner = 6,
 		/datum/job/engineering/engineer = 6,
 		/datum/job/civilian/chaplain = 2,
 		/datum/job/special/atmospheric_technician = 2,

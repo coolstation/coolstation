@@ -328,18 +328,18 @@
 		name = "Medbay"
 		mail_tag = "medbay"
 		mailgroup = MGD_MEDBAY
-		mailgroup2 = MGD_MEDRESEACH
+		mailgroup2 = MGD_MEDRESEARCH
 		message = 1
 
 		robotics
 			name = "Robotics"
 			mail_tag = "robotics"
-			mailgroup = MGD_MEDRESEACH
+			mailgroup = MGD_MEDRESEARCH
 			mailgroup2 = null
 		genetics
 			name = "Genetics"
 			mail_tag = "genetics"
-			mailgroup = MGD_MEDRESEACH
+			mailgroup = MGD_MEDRESEARCH
 			mailgroup2 = null
 		pathology
 			name = "Pathology"
@@ -712,7 +712,7 @@
 		name = "Medbay"
 		mail_tag = "medbay"
 		mailgroup = MGD_MEDBAY
-		mailgroup2 = MGD_MEDRESEACH
+		mailgroup2 = MGD_MEDRESEARCH
 		message = 1
 
 		north
@@ -728,7 +728,7 @@
 		robotics
 			name = "Robotics"
 			mail_tag = "robotics"
-			mailgroup = MGD_MEDRESEACH
+			mailgroup = MGD_MEDRESEARCH
 			mailgroup2 = null
 
 			north
@@ -744,7 +744,7 @@
 		genetics
 			name = "Genetics"
 			mail_tag = "genetics"
-			mailgroup = MGD_MEDRESEACH
+			mailgroup = MGD_MEDRESEARCH
 			mailgroup2 = null
 
 			north

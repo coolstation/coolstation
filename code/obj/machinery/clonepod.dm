@@ -65,7 +65,7 @@
 	New()
 		..()
 		req_access = list(access_medical_lockers) //For premature unlocking.
-		mailgroups = list(MGD_MEDBAY, MGD_MEDRESEACH)
+		mailgroups = list(MGD_MEDBAY, MGD_MEDRESEARCH)
 
 		src.create_reagents(100)
 

@@ -234,7 +234,7 @@ THROWING DARTS
 	impcolor = "b"
 	var/healthstring = ""
 	uses_radio = 1
-	mailgroups = list(MGD_MEDBAY, MGD_MEDRESEACH, MGD_SPIRITUALAFFAIRS)
+	mailgroups = list(MGD_MEDBAY, MGD_MEDRESEARCH, MGD_SPIRITUALAFFAIRS)
 
 	implanted(mob/M, mob/I)
 		..()

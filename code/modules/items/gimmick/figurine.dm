@@ -173,7 +173,7 @@ var/list/figure_high_rarity = list(\
 /datum/figure_info/boxer,
 /datum/figure_info/lawyer,
 /datum/figure_info/barber,
-/datum/figure_info/mailman,
+/datum/figure_info/mailcarrier,
 /datum/figure_info/tourist,
 /datum/figure_info/vice,
 /datum/figure_info/clown,
@@ -265,8 +265,8 @@ var/list/figure_high_rarity = list(\
 		name = "barber"
 		icon_state = "barber"
 
-	mailman
-		name = "mailman"
+	mailcarrier
+		name = "mailcarrier"
 		icon_state = "mailman"
 
 	atmos

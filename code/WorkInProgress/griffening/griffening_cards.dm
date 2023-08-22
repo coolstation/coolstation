@@ -943,7 +943,7 @@
 
 		cargobay
 			card_name = "Cargo Bay"
-			card_data = "While Cargo Bay is in play, each player may draw one additional card for each Quartermaster in play on their side of the field."
+			card_data = "While Cargo Bay is in play, each player may draw one additional card for each cargo technician in play on their side of the field."
 			field_icon_state = "cargobay"
 
 		customs

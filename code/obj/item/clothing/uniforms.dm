@@ -405,12 +405,6 @@
 		icon_state = "med_director-dress"
 		item_state = "med_director-dress"
 
-/obj/item/clothing/under/rank/comm_officer
-	name = "\improper Communication Officer's suit"
-	desc = "They wanted you as their new recruit and they got what they wanted."
-	icon_state = "comm_officer"
-	item_state = "comm_officer"
-
 // Security
 
 /obj/item/clothing/under/rank/security
@@ -666,7 +660,7 @@
 	item_state = "hydro-senior"
 
 /obj/item/clothing/under/misc/mail
-	name = "mailman's jumpsuit"
+	name = "mailcarrier's jumpsuit"
 	desc = "The crisp threads of a postmaster."
 	icon_state = "mail"
 	item_state = "mail"

@@ -1156,7 +1156,7 @@ Using electronic "Detomatix" BOMB program is perhaps less simple!<br>
 			O.orderedby = src.master.owner
 			O.console_location = get_area(src.master)
 			shippingmarket.supply_requests += O
-			src.temp = "Request sent to Supply Console. The Quartermasters will process your request as soon as possible.<BR>"
+			src.temp = "Request sent to Supply Console. The Logistics Department will process your request as soon as possible.<BR>"
 
 			// pda alert ////////
 			if (!antispam || (antispam < (ticker.round_elapsed_ticks)) )
