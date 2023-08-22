@@ -3,6 +3,7 @@
 	var/list/alias_names = null
 	var/initial_name = null
 	var/linkcolor = "#0FF"
+	var/department = null //are they part of another department? i.e. chief engineer is a head job but is responsible for engineering dept
 	var/wages = 0
 	var/limit = -1
 	var/add_to_manifest = 1
@@ -211,6 +212,7 @@ ABSTRACT_TYPE(/datum/job/command)
 	name = "Head of Personnel"
 	limit = 1
 	wages = PAY_IMPORTANT
+	//department = "civilian" //i'm really torn on this
 
 	allow_spy_theft = 0
 	recieves_miranda = 1
@@ -244,6 +246,7 @@ ABSTRACT_TYPE(/datum/job/command)
 	name = "Head of Security"
 	limit = 1
 	wages = PAY_IMPORTANT
+	department = "security"
 	requires_whitelist = 1
 	recieves_miranda = 1
 	allow_traitors = 0
@@ -255,21 +258,6 @@ ABSTRACT_TYPE(/datum/job/command)
 	recieves_implant = /obj/item/implant/health/security/anti_insurgent
 	items_in_backpack = list(/obj/item/device/flash)
 
-
-#ifdef SUBMARINE_MAP
-	slot_jump = list(/obj/item/clothing/under/rank/head_of_securityold/fancy_alt)
-	slot_suit = list(/obj/item/clothing/suit/armor/vest)
-	slot_back = list(/obj/item/storage/backpack/withO2)
-	slot_belt = list(/obj/item/storage/belt/security/standard)
-	slot_poc1 = list(/obj/item/device/pda2/hos)
-	slot_poc2 = list(/obj/item/storage/security_pouch) //replaces sec starter kit
-	slot_foot = list(/obj/item/clothing/shoes/swat)
-	slot_head = list(/obj/item/clothing/head/hos_hat)
-	slot_ears = list(/obj/item/device/radio/headset/command/hos)
-	slot_eyes = list(/obj/item/clothing/glasses/sunglasses/sechud)
-
-
-#else
 	slot_back = list(/obj/item/storage/backpack/withO2)
 	slot_belt = list(/obj/item/storage/belt/security/standard)
 	slot_poc1 = list(/obj/item/device/pda2/hos)
@@ -280,7 +268,6 @@ ABSTRACT_TYPE(/datum/job/command)
 	slot_head = list(/obj/item/clothing/head/hos_hat)
 	slot_ears = list(/obj/item/device/radio/headset/command/hos)
 	slot_eyes = list(/obj/item/clothing/glasses/sunglasses/sechud)
-#endif
 
 	New()
 		..()
@@ -329,6 +316,7 @@ ABSTRACT_TYPE(/datum/job/command)
 	name = "Chief Engineer"
 	limit = 1
 	wages = PAY_IMPORTANT
+	department = "engineering"
 	cant_spawn_as_rev = 1
 	announce_on_join = 1
 	allow_spy_theft = 0
@@ -376,6 +364,7 @@ ABSTRACT_TYPE(/datum/job/command)
 	name = "Research Director"
 	limit = 1
 	wages = PAY_IMPORTANT
+	department = "research"
 	allow_spy_theft = 0
 	cant_spawn_as_rev = 1
 	announce_on_join = 1
@@ -409,6 +398,7 @@ ABSTRACT_TYPE(/datum/job/command)
 	name = "Medical Director"
 	limit = 1
 	wages = PAY_IMPORTANT
+	department = "medical"
 	allow_spy_theft = 0
 	cant_spawn_as_rev = 1
 	announce_on_join = 1
@@ -438,6 +428,8 @@ ABSTRACT_TYPE(/datum/job/command)
 	name = "Quartermaster"
 	limit = 1
 	wages = PAY_IMPORTANT
+	department = "logistics"
+
 	slot_glov = list(/obj/item/clothing/gloves/black)
 	slot_foot = list(/obj/item/clothing/shoes/black)
 	slot_jump = list(/obj/item/clothing/under/rank/cargo)
@@ -678,6 +670,7 @@ ABSTRACT_TYPE(/datum/job/medical)
 	name = "Surgeon"
 	limit = 1 //1 or 2
 	wages = PAY_DOCTORATE
+	slot_head = list(/obj/item/clothing/head/headmirror) //medical doofus hat
 	slot_back = list(/obj/item/storage/backpack/medic)
 	slot_jump = list(/obj/item/clothing/under/rank/medical)
 	slot_suit = list(/obj/item/clothing/suit/labcoat)
@@ -789,7 +782,7 @@ ABSTRACT_TYPE(/datum/job/medical)
 
 /datum/job/medical/nurse //flavor job, medical assistant in scrubs
 	name = "Nurse"
-	limit = 4
+	limit = 2
 	wages = PAY_UNTRAINED
 	low_priority_job = 1
 	slot_foot = list(/obj/item/clothing/shoes/white)
@@ -802,7 +795,7 @@ ABSTRACT_TYPE(/datum/job/medical)
 
 /datum/job/medical/receptionist //flavor job, medical assistant in scrubs, dispatch pills and basic diagnoses from front desk and try to reduce as many people coming as possible
 	name = "Receptionist"
-	limit = 1 //2 or 3
+	limit = 1 //or 2 maybe
 	wages = PAY_UNTRAINED
 	low_priority_job = 1
 	slot_foot = list(/obj/item/clothing/shoes/white)
@@ -926,7 +919,7 @@ ABSTRACT_TYPE(/datum/job/logistics)
 
 /datum/job/logistics/cargotechnician
 	name = "Cargo Technician"
-	limit = 0 //3
+	limit = 3
 	wages = PAY_TRADESMAN
 	slot_glov = list(/obj/item/clothing/gloves/black)
 	slot_foot = list(/obj/item/clothing/shoes/black)
@@ -971,7 +964,7 @@ ABSTRACT_TYPE(/datum/job/logistics)
 /datum/job/logistics/mailcarrier
 	name = "Mailcarrier"
 	wages = PAY_TRADESMAN
-	limit = 0
+	limit = 1
 	slot_jump = list(/obj/item/clothing/under/misc/mail/syndicate)
 	slot_head = list(/obj/item/clothing/head/mailcap)
 	slot_foot = list(/obj/item/clothing/shoes/brown)

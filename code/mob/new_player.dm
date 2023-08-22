@@ -524,26 +524,51 @@ a.latejoin-card:hover {
 		if (ticker.mode && !istype(ticker.mode, /datum/game_mode/construction) && !istype(ticker.mode,/datum/game_mode/battle_royale) && !istype(ticker.mode,/datum/game_mode/football) )
 			dat += {"<div class='fuck'><table class='latejoin'><tr><th colspan='2'>Command/Security</th></tr>"}
 			for(var/datum/job/command/J in job_controls.staple_jobs)
-				dat += LateJoinLink(J)
+				if (!J.department || J.department == "security")
+					dat += LateJoinLink(J)
 			for(var/datum/job/security/J in job_controls.staple_jobs)
 				dat += LateJoinLink(J)
 			//dat += "</table></td>"
 
 			dat += {"<tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Research</th></tr>"}
+			for(var/datum/job/command/J in job_controls.staple_jobs)
+				if (J.department == "research")
+					dat += LateJoinLink(J)
+					break //one head per department
 			for(var/datum/job/research/J in job_controls.staple_jobs)
 				dat += LateJoinLink(J)
 			//dat += "</table></td>"
 
 			//dat += {"<td valign="top"><table>"}
 			dat += {"<tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Engineering</th></tr>"}
+			for(var/datum/job/command/J in job_controls.staple_jobs)
+				if (J.department == "engineering")
+					dat += LateJoinLink(J)
+					break
 			for(var/datum/job/engineering/J in job_controls.staple_jobs)
+				dat += LateJoinLink(J)
+
+			dat += {"<tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Logistics</th></tr>"}
+			for(var/datum/job/command/J in job_controls.staple_jobs)
+				if (J.department == "logistics")
+					dat += LateJoinLink(J)
+					break
+			for(var/datum/job/logistics/J in job_controls.staple_jobs)
 				dat += LateJoinLink(J)
 
 			//start of next column
 			dat += {"</table></div><div class='fuck'><table class='latejoin'><tr><th colspan='2'>Medical</th></tr>"}
+			for(var/datum/job/command/J in job_controls.staple_jobs)
+				if (J.department == "medical")
+					dat += LateJoinLink(J)
+					break
 			for(var/datum/job/medical/J in job_controls.staple_jobs)
 				dat += LateJoinLink(J)
 			dat += {"<tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2'>Civilian</th></tr>"}
+			for(var/datum/job/command/J in job_controls.staple_jobs)
+				if (J.department == "civilian")
+					dat += LateJoinLink(J)
+					break
 			for(var/datum/job/civilian/J in job_controls.staple_jobs)
 				dat += LateJoinLink(J)
 			for(var/datum/job/daily/J in job_controls.staple_jobs)
@@ -599,7 +624,7 @@ a.latejoin-card:hover {
 					dat += "</td></tr>"
 		dat += "</table></div>"
 
-		src.Browse(dat, "window=latechoices;size=800x666")
+		src.Browse(dat, "window=latechoices;size=800x700")
 		if(!bank_menu)
 			bank_menu = new
 		bank_menu.Subscribe( usr.client )
