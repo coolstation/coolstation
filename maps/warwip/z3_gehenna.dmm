@@ -901,6 +901,9 @@
 /obj/stool/chair{
 	dir = 4
 	},
+/obj/landmark/start{
+	name = "Nurse"
+	},
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "aBv" = (
@@ -4281,7 +4284,7 @@
 	},
 /obj/decal/cleanable/dirt/random,
 /obj/landmark/start{
-	name = "Quartermaster"
+	name = "Cargo Technician"
 	},
 /turf/simulated/floor/grime,
 /area/station/wc/cargo)
@@ -4472,6 +4475,9 @@
 /obj/disposalpipe/segment/mail/vertical,
 /obj/stool/bed/moveable,
 /obj/decal/cleanable/dirt/random,
+/obj/landmark/start{
+	name = "Nurse"
+	},
 /turf/simulated/floor/white,
 /area/station/medical/medbooth)
 "cNj" = (
@@ -5189,7 +5195,7 @@
 	dir = 1
 	},
 /obj/landmark/start{
-	name = "Pathologist"
+	name = "Nurse"
 	},
 /turf/simulated/floor/white,
 /area/station/medical/basement)
@@ -5295,6 +5301,15 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/white,
 /area/station/medical/medbooth)
+"dlb" = (
+/obj/decal/tile_edge/stripe{
+	dir = 1
+	},
+/obj/landmark/start{
+	name = "Quartermaster"
+	},
+/turf/simulated/floor/black,
+/area/station/mining/staff_room)
 "dlg" = (
 /obj/cable/purple{
 	icon_state = "0-2"
@@ -8256,6 +8271,9 @@
 	dir = 8;
 	tag = "icon-xtra_bigstripe-edge (WEST)"
 	},
+/obj/landmark/start{
+	name = "Pharmacist"
+	},
 /turf/simulated/floor/industrial,
 /area/station/medical/basement)
 "eKp" = (
@@ -9331,7 +9349,6 @@
 /area/station/science/testchamber)
 "fqn" = (
 /obj/machinery/conveyor/west{
-	id = "";
 	operating = 1
 	},
 /obj/machinery/drone_recharger/factory,
@@ -10979,7 +10996,7 @@
 	dir = 4
 	},
 /obj/landmark/start{
-	name = "Scientist"
+	name = "Chemist"
 	},
 /turf/simulated/floor/grey,
 /area/station/science/artifact{
@@ -14332,6 +14349,9 @@
 "iph" = (
 /obj/machinery/light/fluorescent/neutral,
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/landmark/start{
+	name = "Chemist"
+	},
 /turf/simulated/floor/black,
 /area/station/science/chemistry)
 "ipp" = (
@@ -15198,6 +15218,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/south,
+/obj/landmark/start{
+	name = "Atmospheric Technician"
+	},
 /turf/simulated/floor/black,
 /area/station/security/secwing{
 	name = "Security Wing Tunnel Level"
@@ -16355,6 +16378,13 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor/black,
 /area/station/ai_monitored/armory)
+"jtW" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/landmark/start{
+	name = "Scientist"
+	},
+/turf/simulated/floor/grey,
+/area/station/science/lobby)
 "juc" = (
 /obj/cable{
 	d1 = 1;
@@ -17004,6 +17034,13 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /turf/simulated/floor/black,
 /area/station/engine/coldloop)
+"jOA" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/landmark/start{
+	name = "Electrician"
+	},
+/turf/simulated/floor/industrial,
+/area/station/engine/storage)
 "jOG" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -18656,11 +18693,11 @@
 	})
 "kIv" = (
 /obj/stool/bed,
-/obj/landmark/start{
-	name = "Medical Doctor"
-	},
 /obj/decal/cleanable/dirt,
 /obj/item/clothing/suit/bedsheet/blue,
+/obj/landmark/start{
+	name = "Surgeon"
+	},
 /turf/simulated/floor/carpet/grime,
 /area/station/medical/staff)
 "kIJ" = (
@@ -20116,6 +20153,9 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/landmark/start{
+	name = "Electrician"
+	},
 /turf/simulated/floor,
 /area/station/engine/elect)
 "lxC" = (
@@ -20207,6 +20247,13 @@
 	},
 /turf/simulated/floor/black,
 /area/station/ai_monitored/armory)
+"lAJ" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/landmark/start{
+	name = "Atmospheric Technician"
+	},
+/turf/simulated/floor,
+/area/station/medical/basement)
 "lBa" = (
 /obj/decal/cleanable/dirt/random,
 /obj/structure/girder,
@@ -20880,10 +20927,10 @@
 /obj/stool/chair/couch/green{
 	dir = 4
 	},
-/obj/landmark/start{
-	name = "Geneticist"
-	},
 /obj/decal/cleanable/dirt/random,
+/obj/landmark/start{
+	name = "Nurse"
+	},
 /turf/simulated/floor/white,
 /area/station/medical/basement)
 "lVm" = (
@@ -21393,6 +21440,13 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/southeast,
 /turf/simulated/floor/plating,
 /area/station/science/gen_storage)
+"mjo" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/landmark/start{
+	name = "Surgeon"
+	},
+/turf/simulated/floor/carpet/grime,
+/area/station/medical/staff)
 "mjr" = (
 /obj/cable/purple{
 	icon_state = "1-8"
@@ -21633,6 +21687,9 @@
 	dir = 8
 	},
 /obj/stool,
+/obj/landmark/start{
+	name = "Scientist"
+	},
 /turf/simulated/floor/grey,
 /area/station/science/artifact{
 	name = "Artifact Lounge"
@@ -21828,7 +21885,6 @@
 /area/station/maintenance/central)
 "mwp" = (
 /obj/machinery/conveyor/west{
-	id = "";
 	operating = 1
 	},
 /obj/machinery/ghostdrone_factory/part3,
@@ -21984,7 +22040,7 @@
 	dir = 8
 	},
 /obj/landmark/start{
-	name = "Scientist"
+	name = "Chemist"
 	},
 /turf/simulated/floor/black,
 /area/station/science/chemistry)
@@ -26870,7 +26926,7 @@
 	dir = 1
 	},
 /obj/landmark/start{
-	name = "Scientist"
+	name = "Chemist"
 	},
 /turf/simulated/floor/black,
 /area/station/science/chemistry)
@@ -28090,7 +28146,6 @@
 /area/station/crew_quarters/bar)
 "qiF" = (
 /obj/machinery/conveyor/west{
-	id = "";
 	operating = 1
 	},
 /obj/machinery/ghostdrone_factory/part2,
@@ -29109,7 +29164,7 @@
 	dir = 8
 	},
 /obj/landmark/start{
-	name = "Quartermaster"
+	name = "Cargo Technician"
 	},
 /turf/simulated/floor/carpet/grime,
 /area/station/mining/barracks)
@@ -30535,6 +30590,9 @@
 	dir = 1;
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/landmark/start{
+	name = "Atmospheric Technician"
 	},
 /turf/simulated/floor/grey,
 /area/station/engine/inner)
@@ -32077,12 +32135,12 @@
 /obj/stool/chair/couch{
 	dir = 8
 	},
-/obj/landmark/start{
-	name = "Scientist"
-	},
 /obj/item/storage/wall/fire{
 	dir = 1;
 	pixel_y = 32
+	},
+/obj/landmark/start{
+	name = "Chemist"
 	},
 /turf/simulated/floor/grey,
 /area/station/science/lobby)
@@ -33017,6 +33075,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/landmark/start{
+	name = "Pharmacist"
 	},
 /turf/simulated/floor,
 /area/station/maintenance/south)
@@ -34711,11 +34772,11 @@
 /obj/stool/chair/couch/blue{
 	dir = 8
 	},
-/obj/landmark/start{
-	name = "Quartermaster"
-	},
 /obj/decal/poster/wallsign/poster_mining{
 	pixel_y = 32
+	},
+/obj/landmark/start{
+	name = "Cargo Technician"
 	},
 /turf/simulated/floor/carpet/grime,
 /area/station/mining/staff_room)
@@ -35816,9 +35877,17 @@
 /area/station/security/armory{
 	name = "Small Arms"
 	})
+"uCF" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/landmark/start{
+	name = "Atmospheric Technician"
+	},
+/turf/simulated/floor/yellowblack{
+	dir = 4
+	},
+/area/station/engine/inner)
 "uCJ" = (
 /obj/machinery/conveyor/west{
-	id = "";
 	operating = 1
 	},
 /obj/machinery/ghostdrone_factory,
@@ -36922,7 +36991,6 @@
 	name = "factory pipe"
 	},
 /obj/machinery/conveyor/west{
-	id = "";
 	operating = 1
 	},
 /turf/simulated/floor/plating/random,
@@ -38185,7 +38253,7 @@
 /obj/item/storage/toilet,
 /obj/decal/cleanable/dirt,
 /obj/landmark/start{
-	name = "Medical Doctor"
+	name = "Nurse"
 	},
 /turf/simulated/floor/white,
 /area/station/medical/cdc)
@@ -38428,7 +38496,6 @@
 	name = "factory pipe"
 	},
 /obj/machinery/conveyor/west{
-	id = "";
 	operating = 1
 	},
 /obj/machinery/drone_recharger/factory,
@@ -39169,7 +39236,6 @@
 /area/station/maintenance/central)
 "wqD" = (
 /obj/machinery/conveyor/west{
-	id = "";
 	operating = 1
 	},
 /turf/simulated/floor/plating/random,
@@ -41197,6 +41263,9 @@
 	dir = 6;
 	name = "autoname - SS13";
 	tag = ""
+	},
+/obj/landmark/start{
+	name = "Receptionist"
 	},
 /turf/simulated/floor/grey,
 /area/station/medical/basement)
@@ -66967,7 +67036,7 @@ idc
 vwY
 amq
 lVP
-hfS
+jtW
 cTl
 omS
 nhs
@@ -77810,7 +77879,7 @@ uFt
 dBr
 uFt
 uFt
-its
+mjo
 uvE
 hEd
 uFt
@@ -82347,7 +82416,7 @@ pdO
 jsH
 eCs
 qfV
-tOw
+lAJ
 veZ
 mUr
 eTC
@@ -95014,7 +95083,7 @@ qgQ
 iau
 vxw
 vxw
-dOB
+jOA
 ufW
 hug
 lXv
@@ -96222,7 +96291,7 @@ qgQ
 lID
 vxw
 vxw
-dOB
+jOA
 clU
 hug
 noy
@@ -97437,7 +97506,7 @@ noy
 dJG
 eho
 jel
-gqb
+uCF
 dOr
 pzs
 dOr
@@ -99187,7 +99256,7 @@ nDp
 dLr
 dLr
 uhR
-uQr
+dlb
 bdu
 bIP
 kPQ
