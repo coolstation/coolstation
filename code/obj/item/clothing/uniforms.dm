@@ -499,7 +499,7 @@
 		item_state = "engine-alt"
 
 /obj/item/clothing/under/rank/cargo
-	name = "quartermaster's jumpsuit"
+	name = "cargo tech's jumpsuit"
 	desc = "What can brown do for you?"
 	icon_state = "qm"
 	item_state = "qm"
@@ -507,6 +507,16 @@
 	april_fools
 		icon_state = "qm-alt"
 		item_state = "qm-alt"
+
+/obj/item/clothing/under/rank/qm
+	name = "quartermaster's jumpsuit"
+	desc = "What can brown do for you?"
+	icon_state = "qm-alt"
+	item_state = "qm-alt"
+
+	april_fools
+		icon_state = "qm"
+		item_state = "qm"
 
 /obj/item/clothing/under/rank/mechanic
 	name = "mechanic's uniform"
