@@ -436,7 +436,7 @@ ABSTRACT_TYPE(/datum/job/command)
 
 /datum/job/command/quartermaster
 	name = "Quartermaster"
-	limit = 3 //1
+	limit = 1
 	wages = PAY_IMPORTANT
 	slot_glov = list(/obj/item/clothing/gloves/black)
 	slot_foot = list(/obj/item/clothing/shoes/black)
@@ -582,75 +582,6 @@ ABSTRACT_TYPE(/datum/job/research)
 	linkcolor = "#9900FF"
 	slot_card = /obj/item/card/id/research
 
-/datum/job/research/geneticist
-	name = "Geneticist"
-	limit = 2
-	wages = PAY_DOCTORATE
-	slot_belt = list(/obj/item/device/pda2/genetics)
-	slot_jump = list(/obj/item/clothing/under/rank/geneticist)
-	slot_foot = list(/obj/item/clothing/shoes/white)
-	slot_suit = list(/obj/item/clothing/suit/labcoat/genetics)
-	slot_ears = list(/obj/item/device/radio/headset/medical)
-
-	New()
-		..()
-		src.access = get_access("Geneticist")
-		return
-
-
-#ifdef CREATE_PATHOGENS
-/datum/job/research/pathologist
-#else
-/datum/job/pathologist // pls no autogenerate list
-#endif
-	name = "Pathologist"
-	#ifdef CREATE_PATHOGENS
-	limit = 2
-	#else
-	limit = 0
-	#endif
-	wages = PAY_DOCTORATE
-	slot_belt = list(/obj/item/device/pda2/genetics)
-	slot_jump = list(/obj/item/clothing/under/rank/pathologist)
-	slot_foot = list(/obj/item/clothing/shoes/white)
-	slot_suit = list(/obj/item/clothing/suit/labcoat/pathology)
-	#ifdef SCIENCE_PATHO_MAP
-	slot_ears = list(/obj/item/device/radio/headset/research)
-	#else
-	slot_ears = list(/obj/item/device/radio/headset/medical)
-	#endif
-
-	New()
-		..()
-		src.access = get_access("Pathologist")
-		return
-
-/datum/job/research/roboticist
-	name = "Roboticist"
-	limit = 2
-	wages = 200
-	slot_belt = list(/obj/item/device/pda2/medical/robotics)
-	slot_jump = list(/obj/item/clothing/under/rank/roboticist)
-	slot_foot = list(/obj/item/clothing/shoes/black)
-	slot_suit = list(/obj/item/clothing/suit/labcoat/robotics)
-	slot_glov = list(/obj/item/clothing/gloves/latex)
-	slot_lhan = list(/obj/item/storage/toolbox/mechanical)
-	slot_eyes = list(/obj/item/clothing/glasses/healthgoggles)
-	slot_ears = list(/obj/item/device/radio/headset/medical)
-	slot_poc1 = list(/obj/item/reagent_containers/mender/brute)
-	items_in_backpack = list(/obj/item/crowbar)
-
-	New()
-		..()
-		src.access = get_access("Roboticist")
-		return
-
-	special_setup(var/mob/living/carbon/human/M)
-		..()
-		if (!M)
-			return
-		M.traitHolder.addTrait("training_medical")
-
 /datum/job/research/scientist
 	name = "Scientist"
 	limit = 5
@@ -691,7 +622,14 @@ ABSTRACT_TYPE(/datum/job/research)
 		src.access = get_access("Chemist")
 		return
 
-/datum/job/research/medical_doctor
+// Medical Jobs
+
+ABSTRACT_TYPE(/datum/job/medical)
+/datum/job/medical
+	linkcolor = "#9900FF" //still the nerd department (medsci)
+	slot_card = /obj/item/card/id/research
+
+/datum/job/medical/medical_doctor
 	name = "Medical Doctor"
 	limit = 4
 	wages = PAY_DOCTORATE
@@ -736,7 +674,7 @@ ABSTRACT_TYPE(/datum/job/research)
 			if (!M) return
 			M.show_text("<b>Something has gone terribly wrong here! Search for survivors and escape together.</b>", "blue")
 
-/datum/job/research/surgeon //flavor job
+/datum/job/medical/surgeon //flavor job
 	name = "Surgeon"
 	limit = 1 //1 or 2
 	wages = PAY_DOCTORATE
@@ -762,7 +700,7 @@ ABSTRACT_TYPE(/datum/job/research)
 			return
 		M.traitHolder.addTrait("training_medical")
 
-/datum/job/research/pharmacist //flavor job
+/datum/job/medical/pharmacist //flavor job
 	name = "Pharmacist"
 	limit = 2
 	wages = PAY_TRADESMAN
@@ -781,7 +719,75 @@ ABSTRACT_TYPE(/datum/job/research)
 		src.access = get_access("Pharmacist")
 		return
 
-/datum/job/research/nurse //flavor job, medical assistant in scrubs
+#ifdef CREATE_PATHOGENS
+/datum/job/medical/pathologist
+#else
+/datum/job/pathologist // pls no autogenerate list
+#endif
+	name = "Pathologist"
+	#ifdef CREATE_PATHOGENS
+	limit = 2
+	#else
+	limit = 0
+	#endif
+	wages = PAY_DOCTORATE
+	slot_belt = list(/obj/item/device/pda2/genetics)
+	slot_jump = list(/obj/item/clothing/under/rank/pathologist)
+	slot_foot = list(/obj/item/clothing/shoes/white)
+	slot_suit = list(/obj/item/clothing/suit/labcoat/pathology)
+	#ifdef SCIENCE_PATHO_MAP
+	slot_ears = list(/obj/item/device/radio/headset/research)
+	#else
+	slot_ears = list(/obj/item/device/radio/headset/medical)
+	#endif
+
+	New()
+		..()
+		src.access = get_access("Pathologist")
+		return
+
+/datum/job/medical/roboticist
+	name = "Roboticist"
+	limit = 2
+	wages = 200
+	slot_belt = list(/obj/item/device/pda2/medical/robotics)
+	slot_jump = list(/obj/item/clothing/under/rank/roboticist)
+	slot_foot = list(/obj/item/clothing/shoes/black)
+	slot_suit = list(/obj/item/clothing/suit/labcoat/robotics)
+	slot_glov = list(/obj/item/clothing/gloves/latex)
+	slot_lhan = list(/obj/item/storage/toolbox/mechanical)
+	slot_eyes = list(/obj/item/clothing/glasses/healthgoggles)
+	slot_ears = list(/obj/item/device/radio/headset/medical)
+	slot_poc1 = list(/obj/item/reagent_containers/mender/brute)
+	items_in_backpack = list(/obj/item/crowbar)
+
+	New()
+		..()
+		src.access = get_access("Roboticist")
+		return
+
+	special_setup(var/mob/living/carbon/human/M)
+		..()
+		if (!M)
+			return
+		M.traitHolder.addTrait("training_medical")
+
+/datum/job/medical/geneticist
+	name = "Geneticist"
+	limit = 2
+	wages = PAY_DOCTORATE
+	slot_belt = list(/obj/item/device/pda2/genetics)
+	slot_jump = list(/obj/item/clothing/under/rank/geneticist)
+	slot_foot = list(/obj/item/clothing/shoes/white)
+	slot_suit = list(/obj/item/clothing/suit/labcoat/genetics)
+	slot_ears = list(/obj/item/device/radio/headset/medical)
+
+	New()
+		..()
+		src.access = get_access("Geneticist")
+		return
+
+/datum/job/medical/nurse //flavor job, medical assistant in scrubs
 	name = "Nurse"
 	limit = 4
 	wages = PAY_UNTRAINED
@@ -794,7 +800,7 @@ ABSTRACT_TYPE(/datum/job/research)
 		src.access = get_access("Nurse")
 		return
 
-/datum/job/research/receptionist //flavor job, medical assistant in scrubs, dispatch pills and basic diagnoses from front desk and try to reduce as many people coming as possible
+/datum/job/medical/receptionist //flavor job, medical assistant in scrubs, dispatch pills and basic diagnoses from front desk and try to reduce as many people coming as possible
 	name = "Receptionist"
 	limit = 1 //2 or 3
 	wages = PAY_UNTRAINED

@@ -183,7 +183,7 @@
 				engineering_staff += player
 			else if (istype(JOB, /datum/job/research/scientist))
 				research_staff += player
-			else if (istype(JOB, /datum/job/research/medical_doctor))
+			else if (istype(JOB, /datum/job/medical/medical_doctor))
 				medical_staff += player
 			else if (istype(JOB, /datum/job/logistics/cargotechnician))
 				logistics_staff += player
@@ -211,7 +211,7 @@
 				engineering_staff += candidate
 			else if (istype(JOB, /datum/job/research/scientist))
 				research_staff += candidate
-			else if (istype(JOB, /datum/job/research/medical_doctor))
+			else if (istype(JOB, /datum/job/medical/medical_doctor))
 				medical_staff += candidate
 			else if (istype(JOB, /datum/job/logistics/cargotechnician))
 				logistics_staff += candidate
@@ -241,7 +241,7 @@
 				engineering_staff += candidate
 			else if (istype(JOB, /datum/job/research/scientist))
 				research_staff += candidate
-			else if (istype(JOB, /datum/job/research/medical_doctor))
+			else if (istype(JOB, /datum/job/medical/medical_doctor))
 				medical_staff += candidate
 			else if (istype(JOB, /datum/job/logistics/cargotechnician))
 				logistics_staff += candidate

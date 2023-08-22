@@ -18,7 +18,7 @@ var/datum/job_controller/job_controls
 			new /datum/job/command/head_of_security/derelict {limit = 1; name = "NT-SO Special Operative";} (),
 			new /datum/job/command/chief_engineer/derelict {limit = 1; name = "Salvage Chief";} (),
 			new /datum/job/security/security_officer/derelict {limit = 6; name = "NT-SO Officer";} (),
-			new /datum/job/research/medical_doctor/derelict {limit = 6; name = "Salvage Medic";} (),
+			new /datum/job/medical/medical_doctor/derelict {limit = 6; name = "Salvage Medic";} (),
 			new /datum/job/engineering/engineer/derelict {limit = 6; name = "Salvage Engineer";} (),
 			new /datum/job/civilian/staff_assistant (),
 			new /datum/job/civilian/chef (),
@@ -29,6 +29,7 @@ var/datum/job_controller/job_controls
 			for (var/A in concrete_typesof(/datum/job/command)) src.staple_jobs += new A(src)
 			for (var/A in concrete_typesof(/datum/job/security)) src.staple_jobs += new A(src)
 			for (var/A in concrete_typesof(/datum/job/research)) src.staple_jobs += new A(src)
+			for (var/A in concrete_typesof(/datum/job/medical)) src.staple_jobs += new A(src)
 			for (var/A in concrete_typesof(/datum/job/engineering)) src.staple_jobs += new A(src)
 			for (var/A in concrete_typesof(/datum/job/civilian)) src.staple_jobs += new A(src)
 			for (var/A in concrete_typesof(/datum/job/special)) src.special_jobs += new A(src)
@@ -57,6 +58,10 @@ var/datum/job_controller/job_controls
 		dat += "<BR>"
 		dat += "<b>Research Jobs</b><BR>"
 		for(var/datum/job/research/JOB in src.staple_jobs)
+			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [countJob("[JOB.name]")]/[JOB.limit]</A><BR>"
+		dat += "<BR>"
+		dat += "<b>Medical Jobs</b><BR>"
+		for(var/datum/job/medical/JOB in src.staple_jobs)
 			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [countJob("[JOB.name]")]/[JOB.limit]</A><BR>"
 		dat += "<BR>"
 		dat += "<b>Engineering Jobs</b><BR>"
