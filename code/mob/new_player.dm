@@ -629,7 +629,7 @@ a.latejoin-card:hover {
 					dat += "</td></tr>"
 		dat += "</table></div>"
 
-		src.Browse(dat, "window=latechoices;size=800x700")
+		src.Browse(dat, "window=latechoices;size=850x700")
 		if(!bank_menu)
 			bank_menu = new
 		bank_menu.Subscribe( usr.client )
