@@ -732,74 +732,84 @@ ABSTRACT_TYPE(/datum/job/research)
 			if (!M) return
 			M.show_text("<b>Something has gone terribly wrong here! Search for survivors and escape together.</b>", "blue")
 
-// Engineering Jobs
-
-ABSTRACT_TYPE(/datum/job/engineering)
-/datum/job/engineering
-	linkcolor = "#FF9900"
-	slot_card = /obj/item/card/id/engineering
-
-/datum/job/engineering/quartermaster
-	name = "Quartermaster"
-	limit = 3
-	wages = PAY_TRADESMAN
-	slot_glov = list(/obj/item/clothing/gloves/black)
-	slot_foot = list(/obj/item/clothing/shoes/black)
-	slot_jump = list(/obj/item/clothing/under/rank/cargo)
-	slot_belt = list(/obj/item/device/pda2/quartermaster)
-	slot_ears = list(/obj/item/device/radio/headset/shipping)
-	slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/quartermaster)
-	slot_poc2 = list(/obj/item/device/appraisal)
+/datum/job/research/surgeon //flavor job
+	name = "Surgeon"
+	limit = 0 //1 or 2
+	wages = PAY_DOCTORATE
+	slot_back = list(/obj/item/storage/backpack/medic)
+	slot_jump = list(/obj/item/clothing/under/rank/medical)
+	slot_suit = list(/obj/item/clothing/suit/labcoat)
+	slot_foot = list(/obj/item/clothing/shoes/red)
+	slot_lhan = list(/obj/item/storage/firstaid/docbag)
+	slot_ears = list(/obj/item/device/radio/headset/medical)
+	slot_eyes = list(/obj/item/clothing/glasses/healthgoggles)
+	slot_poc1 = list(/obj/item/device/pda2/medical)
+	slot_poc2 = list(/obj/item/paper/book/from_file/pocketguide/medical)
 
 	New()
 		..()
-		src.access = get_access("Quartermaster")
-		return
-
-/datum/job/engineering/miner
-	name = "Miner"
-	limit = 5
-	wages = PAY_TRADESMAN
-	slot_back = list(/obj/item/storage/backpack/withO2)
-	slot_belt = list(/obj/item/device/pda2/mining)
-	slot_jump = list(/obj/item/clothing/under/rank/overalls)
-	slot_foot = list(/obj/item/clothing/shoes/orange)
-	slot_glov = list(/obj/item/clothing/gloves/black)
-	slot_ears = list(/obj/item/device/radio/headset/engineer)
-	slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/mining)
-	items_in_backpack = list(/obj/item/crowbar)
-
-	New()
-		..()
-		src.access = get_access("Miner")
+		src.access = get_access("Medical Doctor")
 		return
 
 	special_setup(var/mob/living/carbon/human/M)
 		..()
 		if (!M)
 			return
-		M.bioHolder.AddEffect("training_miner")
-		if(prob(20))
-			M.bioHolder.AddEffect("dwarf", magical=1)
+		M.traitHolder.addTrait("training_medical")
 
-/datum/job/engineering/mechanic
-	name = "Mechanic"
-	limit = 3
-	wages = PAY_DOCTORATE
-
-	slot_back = list(/obj/item/storage/backpack/withO2)
-	slot_belt = list(/obj/item/storage/belt/utility/prepared)
-	slot_jump = list(/obj/item/clothing/under/rank/mechanic)
-	slot_foot = list(/obj/item/clothing/shoes/black)
-	slot_lhan = list(/obj/item/storage/toolbox/electrical/mechanic_spawn)
-	slot_glov = list(/obj/item/clothing/gloves/yellow)
-	slot_poc1 = list(/obj/item/device/pda2/mechanic)
-	slot_ears = list(/obj/item/device/radio/headset/engineer)
+/datum/job/research/pharmacist //flavor job
+	name = "Pharmacist"
+	limit = 0 //2
+	wages = PAY_TRADESMAN
+	slot_back = list(/obj/item/storage/backpack/medic)
+	slot_jump = list(/obj/item/clothing/under/rank/medical)
+	slot_suit = list(/obj/item/clothing/suit/labcoat)
+	slot_foot = list(/obj/item/clothing/shoes/red)
+	slot_ears = list(/obj/item/device/radio/headset/medical)
+	slot_poc1 = list(/obj/item/device/pda2/medical)
+	slot_poc2 = list(/obj/item/paper/book/from_file/pocketguide/medical)
 
 	New()
 		..()
-		src.access = get_access("Mechanic")
+		src.access = get_access("Medical Doctor")
 		return
+
+/datum/job/research/nurse //flavor job, medical assistant in scrubs
+	name = "Nurse"
+	linkcolor = "#9900FF"
+	limit = 0 //3
+	wages = PAY_UNTRAINED
+	low_priority_job = 1
+	slot_jump = list(/obj/item/clothing/under/color/white)
+	slot_foot = list(/obj/item/clothing/shoes/white)
+	slot_jump = list(/obj/item/clothing/under/scrub/maroon) //randomize this imo
+
+	New()
+		..()
+		src.access = get_access("Nurse")
+		return
+
+/datum/job/research/receptionist //flavor job, medical assistant in scrubs
+	name = "Receptionist"
+	linkcolor = "#9900FF"
+	limit = 0 //3
+	wages = PAY_UNTRAINED
+	low_priority_job = 1
+	slot_jump = list(/obj/item/clothing/under/color/white)
+	slot_foot = list(/obj/item/clothing/shoes/white)
+	slot_jump = list(/obj/item/clothing/under/scrub/maroon) //randomize this imo
+
+	New()
+		..()
+		src.access = get_access("Nurse")
+		return
+
+// Engineering Jobs
+
+ABSTRACT_TYPE(/datum/job/engineering)
+/datum/job/engineering
+	linkcolor = "#FF9900"
+	slot_card = /obj/item/card/id/engineering
 
 /datum/job/engineering/engineer
 	name = "Engineer"
@@ -840,6 +850,107 @@ ABSTRACT_TYPE(/datum/job/engineering)
 			if (!M)
 				return
 			M.show_text("<b>Something has gone terribly wrong here! Search for survivors and escape together.</b>", "blue")
+
+/datum/job/engineering/mechanic //redstone guys should fix doors too and machinery too (yes this includes the microwave)
+	name = "Mechanic"
+	limit = 3
+	wages = PAY_TRADESMAN
+
+	slot_back = list(/obj/item/storage/backpack/withO2)
+	slot_belt = list(/obj/item/storage/belt/utility/prepared)
+	slot_jump = list(/obj/item/clothing/under/rank/mechanic)
+	slot_foot = list(/obj/item/clothing/shoes/black)
+	slot_lhan = list(/obj/item/storage/toolbox/electrical/mechanic_spawn)
+	slot_glov = list(/obj/item/clothing/gloves/yellow)
+	slot_poc1 = list(/obj/item/device/pda2/mechanic)
+	slot_ears = list(/obj/item/device/radio/headset/engineer)
+
+	New()
+		..()
+		src.access = get_access("Mechanic")
+		return
+
+/datum/job/engineering/electrician //wiring and broken APCs are a pain, give engineers a break. also: fixes small handheld items.
+	name = "Electrician"
+	limit = 0 //2
+	wages = PAY_TRADESMAN
+	//need to redo loadout. probably dress them in yellow.
+	slot_back = list(/obj/item/storage/backpack/withO2)
+	slot_belt = list(/obj/item/storage/belt/utility/prepared)
+	slot_jump = list(/obj/item/clothing/under/rank/mechanic)
+	slot_foot = list(/obj/item/clothing/shoes/black)
+	slot_lhan = list(/obj/item/storage/toolbox/electrical/mechanic_spawn)
+	slot_glov = list(/obj/item/clothing/gloves/yellow)
+	slot_poc1 = list(/obj/item/device/pda2/mechanic)
+	slot_ears = list(/obj/item/device/radio/headset/engineer)
+
+	New()
+		..()
+		src.access = get_access("Mechanic")
+		return
+
+// Logistics Jobs - create and move to /job/logistics/
+
+/datum/job/engineering/quartermaster //if not outright command job, this is still head of department (move later)
+	name = "Quartermaster"
+	limit = 3 //1
+	wages = PAY_IMPORTANT
+	slot_glov = list(/obj/item/clothing/gloves/black)
+	slot_foot = list(/obj/item/clothing/shoes/black)
+	slot_jump = list(/obj/item/clothing/under/rank/cargo)
+	slot_belt = list(/obj/item/device/pda2/quartermaster)
+	slot_ears = list(/obj/item/device/radio/headset/shipping)
+	slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/quartermaster)
+	slot_poc2 = list(/obj/item/device/appraisal)
+
+	New()
+		..()
+		src.access = get_access("Quartermaster") //maybe get a little bonus office
+		return
+
+/datum/job/engineering/cargotechnician
+	name = "Cargo Technician"
+	limit = 0 //3
+	wages = PAY_TRADESMAN
+	slot_glov = list(/obj/item/clothing/gloves/black)
+	slot_foot = list(/obj/item/clothing/shoes/black)
+	slot_jump = list(/obj/item/clothing/under/rank/cargo)
+	slot_belt = list(/obj/item/device/pda2/quartermaster)
+	slot_ears = list(/obj/item/device/radio/headset/shipping)
+	slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/quartermaster)
+	slot_poc2 = list(/obj/item/device/appraisal)
+
+	New()
+		..()
+		src.access = get_access("Cargo Technician") //same access as QM
+		return
+
+
+/datum/job/engineering/miner
+	name = "Miner"
+	limit = 5
+	wages = PAY_TRADESMAN
+	slot_back = list(/obj/item/storage/backpack/withO2)
+	slot_belt = list(/obj/item/device/pda2/mining)
+	slot_jump = list(/obj/item/clothing/under/rank/overalls)
+	slot_foot = list(/obj/item/clothing/shoes/orange)
+	slot_glov = list(/obj/item/clothing/gloves/black)
+	slot_ears = list(/obj/item/device/radio/headset/engineer)
+	slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/mining)
+	items_in_backpack = list(/obj/item/crowbar)
+
+	New()
+		..()
+		src.access = get_access("Miner")
+		return
+
+	special_setup(var/mob/living/carbon/human/M)
+		..()
+		if (!M)
+			return
+		M.bioHolder.AddEffect("training_miner")
+		if(prob(20))
+			M.bioHolder.AddEffect("dwarf", magical=1)
 
 // Civilian Jobs
 
@@ -1243,7 +1354,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 		return
 
 /datum/job/special/atmospheric_technician
-	name = "Atmospherish Technician"
+	name = "Atmospheric Technician"
 	linkcolor = "#FF9900"
 	limit = 1
 	wages = PAY_TRADESMAN
@@ -1736,26 +1847,6 @@ ABSTRACT_TYPE(/datum/job/civilian)
 		..()
 		limit = 0 //Disables radio host regardless of map settings/the 15% random roll (it's not clean but it works)
 		src.access = get_access("Radio Show Host")
-		return
-
-/datum/job/special/random/psychiatrist
-	name = "Psychiatrist"
-	wages = PAY_DOCTORATE
-	slot_eyes = list(/obj/item/clothing/glasses/regular)
-	slot_card = /obj/item/card/id/research
-	slot_belt = list(/obj/item/device/pda2/medical)
-	slot_foot = list(/obj/item/clothing/shoes/brown)
-	slot_jump = list(/obj/item/clothing/under/shirt_pants)
-	slot_suit = list(/obj/item/clothing/suit/labcoat)
-	slot_ears = list(/obj/item/device/radio/headset/medical)
-	slot_poc1 = list(/obj/item/reagent_containers/food/drinks/tea)
-	slot_poc2 = list(/obj/item/reagent_containers/food/drinks/bottle/gin)
-	items_in_backpack = list(/obj/item/luggable_computer/personal, /obj/item/clipboard/with_pen, /obj/item/paper_bin, /obj/item/stamp)
-	alt_names = list("Psychiatrist", "Psychologist", "Psychotherapist", "Therapist", "Counselor", "Life Coach") // All with slightly different connotations
-
-	New()
-		..()
-		src.access = get_access("Psychiatrist")
 		return
 
 #ifdef HALLOWEEN
@@ -2283,25 +2374,23 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 	slot_poc1 = list()
 // hidden jobs for nt-so vs syndicate spec-ops
 
-/datum/job/special/juicer/ //gotta have a root somewhere
+/datum/job/special/juicer/
 	linkcolor = "#0066ff"
 	name = "Juicer"
 	limit = 0
 	wages = 0
-	slot_back = list()
-	slot_belt = list()
-	slot_jump = list()
-	slot_suit = list()
-	slot_head = list()
-	slot_foot = list()
-	slot_ears = list()
-	slot_mask = list()
 	slot_card = null		///obj/item/card/id/
-	slot_poc1 = list()
-	slot_poc2 = list()
-	slot_lhan = list()
-	slot_rhan = list()
 
+/datum/job/special/juicer/specialist
+	linkcolor = "#cc8899"
+	name = "Juicer Security"
+	allow_traitors = 0
+	allow_spy_theft = 0
+	cant_spawn_as_rev = 1
+
+	slot_back = list(/obj/item/gun/energy/blaster_cannon)
+	slot_belt = list(/obj/item/storage/fanny)
+	//more
 /datum/job/special/juicer/clubfert
 	linkcolor = "#0066ff"
 	name = "Juicer Clubgoer"
@@ -2364,19 +2453,6 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 			return
 		antagify(M, "Syndicate Agent", 0)
 		M.show_text("<b>The assault has begun! Head over to the station and kill any and all Nanotrasen personnel you encounter!</b>", "red")
-
-/datum/job/special/juicer_specialist
-	linkcolor = "#cc8899"
-	name = "Juicer Security"
-	limit = 0
-	wages = 0
-	allow_traitors = 0
-	allow_spy_theft = 0
-	cant_spawn_as_rev = 1
-
-	slot_back = list(/obj/item/gun/energy/blaster_cannon)
-	slot_belt = list(/obj/item/storage/fanny)
-	//more
 
 /datum/job/special/ntso_specialist
 	linkcolor = "#3348ff"

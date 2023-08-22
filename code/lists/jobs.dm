@@ -1,39 +1,48 @@
-var/list/occupations = list(
-
-	"Chief Engineer",
-	"Mechanic","Mechanic",
-	"Engineer","Engineer","Engineer",
-	"Miner","Miner","Miner",
-	"Security Officer", "Security Officer", "Security Officer",
-//	"Vice Officer",
-	"Detective",
-	"Geneticist",
-	"Pathologist",
-	"Scientist","Scientist", "Scientist",
-	"Medical Doctor", "Medical Doctor",
+var/list/occupations = list( //determines spawns for jobs and how many slots by default
+	// Administrative
+	// "Captain", implied and handled
 	"Head of Personnel",
-//	"Head of Security",
-	"Research Director",
-	"Medical Director",
-	"Chaplain",
-	"Roboticist",
+	// Security
+//	"Head of Security", handled elsewhere
+	"Security Officer", "Security Officer", "Security Officer",
+//	"Vice Officer", //lol
+	"Detective",
+	// Engineering
+	"Chief Engineer", //head
+	"Engineer","Engineer","Engineer",
+	"Mechanic","Mechanic",
+//	"Electrician","Electrician", //not ready yet
+//	"Atmospheric Technician","Atmospheric Technician", //not ready yet
 //	"Hangar Mechanic", "Hangar Mechanic",
-	"AI",
-	"Cyborg", "Cyborg",
+	// Logistics
+	"Quartermaster","Quartermaster", //head
+//  "Cargo Technician","Cargo Technician","Cargo Technician" //not ready yet
+	"Miner","Miner","Miner",
+	// Medical
+	"Medical Director",
+	"Medical Doctor", "Medical Doctor",
+	"Geneticist",
+	"Roboticist",
+	"Pathologist",
+	// Research
+	"Research Director",
+	"Scientist","Scientist", "Scientist",
+//	"Chemist","Chemist",
+	// Civilian
+	"Botanist","Botanist",
 	"Bartender",
 	"Chef",
 	"Janitor",
-	"Clown",
-//	"Chemist","Chemist",
-	"Quartermaster","Quartermaster",
-	"Botanist","Botanist")
-//	"Attorney at Space-Law")
+	"Chaplain",
+//	"Attorney at Space-Law"
+	// Silicon
+	"AI",
+	"Cyborg", "Cyborg",
+	// Clown
+	"Clown")
 
 var/list/assistant_occupations = list(
 	"Staff Assistant")
-
-//	"Mechanic",
-//	"Atmospheric Technician","Atmospheric Technician","Atmospheric Technician",
 
 var/list/job_mailgroup_list = list(
 	"Captain" = MGD_COMMAND,
@@ -43,15 +52,21 @@ var/list/job_mailgroup_list = list(
 	"Research Director" = MGD_COMMAND,
 	"Chief Engineer" = MGD_COMMAND,
 	"Quartermaster" = MGD_CARGO,
-	"Mechanic" = MGD_STATIONREPAIR,
+	"Cargo Technician" = MGD_CARGO,
+	"Miner" = MGD_CARGO,
 	"Engineer" = MGD_STATIONREPAIR,
+	"Mechanic" = MGD_STATIONREPAIR,
+	"Electrician" = MGD_STATIONREPAIR,
 	"Janitor" = MGD_STATIONREPAIR,
 	"Botanist" = MGD_BOTANY,
-	"Medical Director" = MGD_MEDRESEACH,
-	"Roboticist" = MGD_MEDRESEACH,
-	"Geneticist" = MGD_MEDRESEACH,
-	"Pathologist" = MGD_MEDRESEACH,
+	"Scientist" = MGD_SCIENCE,
+	"Medical Director" = MGD_MEDRESEARCH,
 	"Medical Doctor" = MGD_MEDBAY,
+	"Surgeon" = MGD_MEDBAY,
+	"Pharmacist" = MGD_MEDBAY,
+	"Roboticist" = MGD_MEDRESEARCH,
+	"Geneticist" = MGD_MEDRESEARCH,
+	"Pathologist" = MGD_MEDRESEARCH,
 	"Chaplain" = MGD_SPIRITUALAFFAIRS)
 
 //Used for PDA department paging.
@@ -59,10 +74,10 @@ var/list/page_departments = list(
 	"Command" = MGD_COMMAND,
 	"Security" = MGD_SECURITY,
 	"Medbay" = MGD_MEDBAY,
-	"Med Research" = MGD_MEDRESEACH,
+	"Med Research" = MGD_MEDRESEARCH,
 	"Research" = MGD_SCIENCE,
 	"Station Repair" = MGD_STATIONREPAIR,
-	"Cargo" = MGD_CARGO,
+	"Logistics" = MGD_CARGO,
 	"Botany" = MGD_BOTANY,
 	"Bar / Kitchen" = MGD_KITCHEN,
 	"Spiritual Affairs" = MGD_SPIRITUALAFFAIRS)
@@ -71,5 +86,5 @@ var/list/page_departments = list(
 	return list("Assistant", "Detective", "Medical Doctor", "Captain", "Security Officer",
 				"Geneticist","Pathologist", "Scientist", "Head of Personnel",
 				"Chaplain", "Bartender", "Janitor", "Chef", "Roboticist", "Quartermaster",
-				"Chief Engineer","Engineer", "Miner", "Mechanic",
+				"Cargo Technician","Chief Engineer","Engineer", "Miner", "Mechanic",
 				"Research Director", "Medical Director", "Botanist", "Clown")

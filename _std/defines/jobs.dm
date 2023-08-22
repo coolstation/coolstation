@@ -5,7 +5,7 @@
 #define MGD_COMMAND "command"
 #define MGD_SECURITY "security"
 #define MGD_MEDBAY "medbay"
-#define MGD_MEDRESEACH "medresearch"
+#define MGD_MEDRESEARCH "medresearch"
 #define MGD_SCIENCE "science"
 #define MGD_CARGO "logistics"
 #define MGD_STATIONREPAIR "stationrepair"

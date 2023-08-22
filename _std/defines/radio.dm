@@ -75,12 +75,12 @@
 #define R_FREQ_PA_RESEARCH 1553 //dr. birdwell report to topside motorpool
 #define R_FREQ_PA_MEDICAL 1555 //code brown in room 3
 #define R_FREQ_PA_ENGINEERING 1557
-#define R_FREQ_PA_CARGO 1559
+#define R_FREQ_PA_CARGO 1559 //especially useful if cargo spans two z-levels
 #define R_FREQ_PA_BAR 1561 //bar basically
 
 // let's start putting adventure zone factions in here
-#define R_FREQ_WIZARD 1089 // magic number, used in many magic tricks
-#define R_FREQ_INTERCOM_WIZARD 1089
+
+#define R_FREQ_INTERCOM_WIZARD 1089 //magic number, gimmick used in many magic tricks
 #define R_FREQ_INTERCOM_OWLERY 1291
 #define R_FREQ_INTERCOM_SYNDCOMMAND 6174 // kaprekar's constant, a unique and weird number
 #define R_FREQ_INTERCOM_TERRA8 1156 // 34 squared, octahedral number, centered pentagonal number, centered hendecagonal number
