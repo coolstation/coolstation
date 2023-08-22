@@ -175,6 +175,13 @@
 	spawn_contents = list(/obj/item/grenade_fuse = 3,\
 	/obj/item/chem_grenade = 3)
 
+/obj/item/storage/box/grenade_starter_kit/traitor
+	name = "grenade starter kit"
+	icon_state = "flashbang"
+	desc = "Contains grenade cases and fuses for creating grenades."
+	spawn_contents = list(/obj/item/grenade_fuse = 3,\
+	/obj/item/chem_grenade/traitor = 3)
+
 /obj/item/storage/box/sonic_grenade_kit
 	name = "sonic grenade kit"
 	icon_state = "flashbang"
