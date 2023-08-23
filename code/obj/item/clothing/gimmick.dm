@@ -974,7 +974,9 @@
 	icon_state = "maid"
 	item_state = "maid"
 
-/obj/item/clothing/under/gimmick/dinerdress_mint
+// These lack sprites in worn_js_gimmick.dmi
+// Post goon resprite additions
+/* /obj/item/clothing/under/gimmick/dinerdress_mint
 	name = "Mint Diner Waitress's Dress"
 	desc = "Can I getcha somethin', sugar?"
 	icon_state = "dinerdress-mint"
@@ -984,7 +986,7 @@
 	name = "Pink Diner Waitress's Dress"
 	desc = "Y'all come back now, ya hear?"
 	icon_state = "dinerdress-pink"
-	item_state = "dinerdress-pink"
+	item_state = "dinerdress-pink" */
 
 /obj/item/clothing/under/gimmick/kilt
 	name = "kilt"
@@ -1511,7 +1513,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring)
 /obj/item/clothing/under/gimmick/elvis
 	name = "bell bottoms"
 	desc = "Pristine white bell bottoms with red kick pleats and a snazzy gold belt."
-	icon_state = "elivissuit"
+	icon_state = "elvissuit"
 
 /obj/item/clothing/under/gimmick/eightiesmens
 	name = "flashy vest"
@@ -1652,7 +1654,6 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring)
 	body_parts_covered = TORSO|LEGS|ARMS
 
 //monkey island reference
-
 /obj/item/clothing/under/gimmick/guybrush
 	name = "wannabe pirate outfit"
 	desc = "It smells like monkeys."
@@ -1660,7 +1661,9 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring)
 	item_state = "guybrush"
 
 //fake lizard stuff
-
+// will need to see if there's an old discount godzilla code ref and also revert functionality
+// this is a cute item tho good job on these and the guybrush on goonstation dimwhat
+/*
 /obj/item/clothing/suit/gimmick/dinosaur
 	name = "dinosaur pajamas"
 	desc = "It has a little hood you can flip up and down. Rawr!"
@@ -1698,3 +1701,4 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring)
 	desc = "What kind of hero would wear this dumb thing?"
 	icon_state = "link"
 	item_state = "link"
+*/

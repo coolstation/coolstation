@@ -629,6 +629,7 @@
 		icon_state = "clown-dress"
 		item_state = "clown-dress"
 
+/* post goon resprite addition, needs to be made
 /obj/item/clothing/under/misc/mimefancy
 	name = "fancy mime suit"
 	desc = "A suit perfect for more sophisticated mimes. Wait... This isn't just a bleached clown suit, is it?"
@@ -644,6 +645,7 @@
 	wear_image_icon = 'icons/mob/jumpsuits/worn_js_misc.dmi'
 	icon_state = "mime-dress"
 	item_state = "mime-dress"
+*/
 
 /obj/item/clothing/under/misc/vice
 	name = "vice officer's suit"
@@ -666,8 +668,8 @@
 /obj/item/clothing/under/misc/hydroponics
 	name = "senior botanist's jumpsuit"
 	desc = "Anyone wearing this has probably grown a LOT of weed in their time."
-	icon_state = "hydro-senior"
-	item_state = "hydro-senior"
+	icon_state = "hydro"
+	item_state = "hydro"
 
 /obj/item/clothing/under/misc/mail
 	name = "mailcarrier's jumpsuit"
