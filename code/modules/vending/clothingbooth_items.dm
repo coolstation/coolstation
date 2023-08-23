@@ -719,10 +719,12 @@ ABSTRACT_TYPE(/datum/clothingbooth_item/head)
 	path = /obj/item/clothing/head/frog_hat
 	cost = PAY_TRADESMAN
 
+/*
 /datum/clothingbooth_item/head/link
 	name = "Hero Hat"
 	path = /obj/item/clothing/head/link
 	cost = PAY_TRADESMAN
+*/
 
 //Sci-Fi
 
