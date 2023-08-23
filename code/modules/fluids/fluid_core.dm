@@ -15,7 +15,18 @@ var/list/ban_stacking_into_fluid = list( //ban these from producing fluid from a
 	"ash",\
 	"blackpowder",\
 	"leaves",\
+	"slime",\
+	"spiders",\
+	"ants",\
 	//"poo",\ // THIS IS WHAT WAS DOINIT.
+)
+
+var/list/stack_into_fluid_but_keep_the_cleanable_ok_thanks = list( //unlike above, empty out whatever reagents can be sampled, and then leave the cleanable
+	"poo",\
+	"vomit",\
+	"gvomit",\
+	"egg",\
+	"juice_tomato",\
 )
 
 ///////////////////
