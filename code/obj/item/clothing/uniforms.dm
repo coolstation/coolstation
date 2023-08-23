@@ -1139,11 +1139,11 @@
 		item_state = "darkred"
 
 	blue
-		icon_state = "scrub-n"
+		icon_state = "scrub-b"
 		item_state = "darkblue"
 
 	purple
-		icon_state = "scrub-v"
+		icon_state = "scrub-p"
 		item_state = "lightpurple"
 
 		New()
