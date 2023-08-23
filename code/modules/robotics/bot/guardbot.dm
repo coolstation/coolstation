@@ -3577,6 +3577,7 @@
 #define NT_CHEGET (1<<14)
 #define NT_GAFFE (1<<15)
 #define NT_SLOB (1<<16)
+#define NT_BLOODY (1<<17)
 
 #define MAPTEXT_PAUSE (4.5 SECONDS)
 #define FOUND_NEAT(FLAG) src.distracted = TRUE; src.neat_things |= FLAG; SPAWN_DBG(0)
@@ -3875,7 +3876,7 @@
 							END_NEAT
 						return
 
-					if (!(src.neat_things & NT_DORK) && (H.client && H.client.IsByondMember() && prob(5)))// || (H.ckey in Dorks))) //If this is too mean to clarks, remove that part I guess
+					if (!(src.neat_things & NT_DORK) && (H.client && H.client.IsByondMember() && prob(5)))// || (H.ckey in Dorks)))
 						FOUND_NEAT(NT_DORK)
 							var/insult = pick("dork","nerd","weenie","doofus","loser","dingus","dorkus")
 							var/insultphrase = "And if you look to--[insult] alert!  [pick("Huge","Total","Mega","Complete")] [insult] detected! Alert! Alert! [capitalize(insult)]! "
@@ -3891,11 +3892,19 @@
 							END_NEAT
 						return
 
-					if (!(src.neat_things & NT_SLOB) && (H.client && (!H.wiped || !H.cleanhands) && prob(5)))
-					//add in soiled clothing, sims motive check
+					if (!(src.neat_things & NT_SLOB) && (H.client && (!H.wiped || !H.cleanhands || ("shit-stained" in H.w_uniform?.stains) || ("piss-soaked" in H.w_uniform?.stains)) && prob(5)))
+					//read sims motive and if it's below -50 Hygiene do this too
 						FOUND_NEAT(NT_SLOB)
 							src.speak_with_maptext("And over here we-- aw, wow, oh no! That's [pick("grody","disgusting","filthy","nasty")]! Go wash yourself up, you slob!")
 							master.point(H)
+							END_NEAT
+						return
+
+					if (!(src.neat_things & NT_BLOODY) && (H.client && (("blood-stained" in H.w_uniform?.stains) || ("blood-stained" in H.gloves?.stains)) && prob(15)))
+						FOUND_NEAT(NT_BLOODY)
+							src.speak_with_maptext("Oh hey, I know [him_or_her(H)], that's-- oh, uh! Wow! *Wow*, that's a lot of blood!")
+							sleep(3 SECOND)
+							src.speak_with_maptext("Uhhhh! I mean, we didn't see a thing, [H.name]! We swear! Just having a normal little tour, and moving on swiftly!")
 							END_NEAT
 						return
 
@@ -3934,6 +3943,9 @@
 
 							if (5)
 								src.speak_with_maptext("Fun fact: The average weight of a domestic space bee is about [pick("10 pounds","4.54 kilograms", "25600 drams", "1.42857143 cloves", "145.833333 troy ounces")].")
+								if (istype(AM, /obj/critter/domestic_bee/bubs))
+									sleep(3)
+									src.speak_with_maptext("...Well, uh, there are a LOT of space bees out there, so, you know. Average.","There are some exceptions...","Maybe not so much this one.")
 						END_NEAT
 
 				else if (istype(AM, /obj/critter/dog/george) && !(src.neat_things & NT_GEORGE))
@@ -4002,12 +4014,37 @@
 								if (istype(otherBuddy, /obj/machinery/bot/guardbot/future))
 									src.speak_with_maptext("The PR line of personal robot has been--wait! Hold the phone! Is that a PR-7? Oh man, I feel old!")
 
-								else if (istype(otherBuddy, /obj/machinery/bot/guardbot/old/tourguide))
-									src.master.visible_message("<b>[master]</b> waves at [otherBuddy].")
-
 								else if (istype(otherBuddy, /obj/machinery/bot/guardbot/soviet))
 									src.speak_with_maptext("That's...that's one of those eastern bloc robuddies.  Um...hello?")
 									src.master.visible_message("<b>[master]</b> gives [otherBuddy] a slow, confused wave.")
+
+								else if (istype(otherBuddy, /obj/machinery/bot/guardbot/bootleg))
+									var/obj/machinery/bot/guardbot/bootleg/dweeb = otherBuddy
+									dweeb.set_emotion(pick("cool","joy","love","smug","look"))
+									master.set_emotion("ugh")
+									if (prob(90))
+										src.speak_with_maptext("Oh no, no, please, don't make eye conta-")
+										sleep(1)
+										dweeb.speak("WOW HEY HELLO HI HI HEY","AAAAAAAAAAAAAAAAAAAAAA","HELLOOOOOOOOOOOO","YOU ARE THANK FOR NOTICE ME","NEW FRIENDS IS TRUE???????")
+										sleep(2 SECONDS)
+										src.speak_with_maptext("No thank you! Not interested! Goodbye!")
+										if(prob(40))
+											sleep(4 SECOND)
+											src.speak_with_maptext(pick("I thought they recalled all of those things...","They'll stick robot arms on anything these days...","Waste of a perfectly good microwave..."))
+									else
+										dweeb.speak("HEYYYYYY GUYSSSSSSSS")
+										sleep(1 SECOND)
+										src.speak_with_maptext("Uegh, not this [pick("clownshoe","doofus","dork","dweeb","copycat")] again...") //DEEP LORE FACTS: they have a history
+										sleep(4 SECOND)
+										src.speak_with_maptext("Gosh dang, what a dummy!")
+									if(prob(30)) //small chance to hear and be offended
+										if (dweeb.emotion == "cool")
+											dweeb.set_emotion("coolugh")
+										else
+											dweeb.set_emotion(pick("sad","angry","ugh"))
+
+								else if (istype(otherBuddy, /obj/machinery/bot/guardbot/old/tourguide))
+									src.master.visible_message("<b>[master]</b> waves at [otherBuddy].")
 
 								else
 									src.speak_with_maptext("The PR line of personal robot has been Thinktronic Data Systems' flagship robot line for over 15 years.  It's easy to see their appeal!")
