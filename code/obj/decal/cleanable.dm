@@ -1308,6 +1308,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 
 	dirt4
 		icon_state = "dirt4"
+		random_dir = 0
 
 	dirt5
 		icon_state = "dirt5"
