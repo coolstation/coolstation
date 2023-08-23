@@ -437,11 +437,11 @@
 	ex_act(severity)
 		switch (severity)
 			if (1)
-				dump_contents()
+				dump_contents(null, FALSE, TRUE) //dump as in delete
 				qdel(src)
 			if (2)
 				if (prob(50))
-					dump_contents()
+					dump_contents(null, FALSE) //Don't lazy init contents (but if the locker's been opened already it'll get dumped anyway)
 					qdel(src)
 			if (3)
 				if (prob(5))
@@ -589,12 +589,16 @@
 		if (!src.intact_frame)
 			return 0
 
-	proc/dump_contents(var/mob/user)
-		if(src.spawn_contents && make_my_stuff()) //Make the stuff when the locker is first opened.
-			spawn_contents = null
+	//Normally contents are dumped on the floor
+	//The do_lazy_init skips spawning default contents if the locker hasn't been opened yet, I'm kinda tired of seeing neat stacks of storage contents in the wake of giant explosions
+	//delete_and_damage deletes objects and hurts mobs, for when a storage blows up so badly that whatever's inside probably shouldn't survive either
+	proc/dump_contents(var/mob/user, do_lazy_init = TRUE, delete_and_damage = FALSE)
+		if (do_lazy_init)
+			if(src.spawn_contents && make_my_stuff()) //Make the stuff when the locker is first opened.
+				spawn_contents = null
 
 		//2023-5-30: Let's trial some auto-sorting QOL on these
-		if (src.autosorting)
+		if (src.autosorting && !delete_and_damage)
 			var/start_py = 10
 			var/start_px = -11
 			var/items = 1
@@ -612,6 +616,9 @@
 
 		var/newloc = get_turf(src)
 		for (var/obj/O in src)
+			if (delete_and_damage)
+				qdel(O)
+				continue
 			O.set_loc(newloc)
 			if(istype(O,/obj/item/mousetrap))
 				var/obj/item/mousetrap/our_trap = O
@@ -620,6 +627,9 @@
 
 		for (var/mob/M in src)
 			M.set_loc(newloc)
+			if (delete_and_damage) //Mobs just get hurt cause no deleting players
+				random_burn_damage(M, 15)
+				random_brute_damage(M, 15) //Mix of burn/brute feels appropriate for explosion, but the numbers are arbitrary picks
 
 	proc/toggle(var/mob/user)
 		if (src.open)
