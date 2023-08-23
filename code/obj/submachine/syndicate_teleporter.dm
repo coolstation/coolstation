@@ -1,6 +1,6 @@
 //two options to run the teleporter now: one way, for sending crap, or two way, for sending a single mob with a remote
 //eventually network this like the regular telepad- still bound to a single pad, but adds nerd opportunities
-//might adapt this for secure two way teleportation to things like, say, i dunno, an AI satellite
+//i made a linked telepad out of this and it is in linked_telepad.dm thanku
 
 /obj/submachine/syndicate_teleporter
 	name = "Syndicate Teleporter"
@@ -12,9 +12,11 @@
 	var/recharging =0
 	var/id = "shuttle" //The main location of the teleporter
 	var/recharge = 20 //A short recharge time between teleports
+	var/image/disconnectedImage
 
 	New()
 		. = ..()
+		disconnectedImage = image('icons/obj/stationobjs.dmi', "pad-noconnect")
 		START_TRACKING
 
 	disposing()
@@ -25,6 +27,7 @@
 	proc/sendme(mob/user)
 		for_by_tcl(S, /obj/submachine/syndicate_teleporter)
 			if(S.id == src.id && S != src)
+				src.overlays.len = 0
 				if(recharging == 1)
 					return 1
 				else
@@ -36,13 +39,18 @@
 					SPAWN_DBG(recharge)
 						S.recharging = 0
 						src.recharging = 0
-				return
+					return 0
+		//couldn't find another pad that isn't itself? it probably blew up sorry
+		src.overlays += src.disconnectedImage
+		return 1
+
 	//send anything on the tile
 	//one way trip with this method, but a mob can come back with a syndicate remote
 	//stolen from telesci.dm's main telepad send
 	proc/sendany()
 		for_by_tcl(S, /obj/submachine/syndicate_teleporter)
 			if(S.id == src.id && S != src)
+				src.overlays.len = 0
 				if(recharging == 1)
 					return 1
 				else
@@ -64,7 +72,10 @@
 						S.recharging = 0
 						src.recharging = 0
 
-		return 0
+					return 0
+		//couldn't find another pad that isn't itself?
+		src.overlays += src.disconnectedImage
+		return 1
 
 /obj/item/remote/syndicate_teleporter
 	name = "Syndicate Teleporter Remote"
@@ -108,7 +119,6 @@
 	if (user.getStatusDuration("stunned") || user.getStatusDuration("weakened") || user.stat)
 		return
 
-	use_power(5)
 	icon_state = "doorctrl1"
 
 	if (!src.id)
