@@ -3,6 +3,7 @@ var/global/list/teleareas
 proc/get_teleareas()
 	if (isnull(teleareas))
 		generate_teleareas()
+		teleareas = sortList(teleareas)
 	return teleareas
 
 proc/get_telearea(var/name)
@@ -41,4 +42,4 @@ proc/generate_teleareas()
 				teleareas[area.name] = area
 		if(istype(area, /area/wizard_station))
 			teleareas[area.name] = area
-	teleareas = sortList(teleareas)
+
