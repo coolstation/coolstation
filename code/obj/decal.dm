@@ -245,7 +245,6 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 		else
 			..()
 
-
 /obj/decal/oven
 	name = "Oven"
 	desc = "An old oven."
@@ -469,6 +468,25 @@ obj/decal/fakeobjects/teleport_pad
 	icon_state = "tele_fuzz"
 	anchored = 1
 	density = 1
+
+//this was the florps statue in keelin's stuff
+//now it's pupkin (simplified)
+/obj/decal/fakeobjects/pupkinstatue
+	name = "Statue of Pupkin"
+	desc = "Thank you for loving Pupkin."
+	var/broken = 0
+	icon ='icons/obj/objects.dmi'
+	icon_state = "statuepupkin"
+	density = 1
+
+	New()
+		..()
+		setMaterial(getMaterial("slag"))
+		name = "Statue of Pupkin"
+
+	attack_hand(mob/user as mob)
+		boutput(user, "You pet \the [src]. You feel really uneasy about it, but thank you anyway.")
+		return
 
 
 /obj/decal/bloodtrace

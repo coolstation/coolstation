@@ -68,20 +68,6 @@
 				var/list/material_varieties = list("steel", "glass", "silver", "quartz", "rosequartz", "plasmaglass", "onyx", "jasper", "malachite", "lapislazuli")
 				src.setMaterial(getMaterial(pick(material_varieties)))
 
-		if (src.icon_state == "fig-floorpills")
-			src.create_reagents(30)
-
-			var/primaries = rand(1,3)
-			var/adulterants = rand(2,4)
-
-			while(primaries > 0)
-				primaries--
-				src.reagents.add_reagent(pick_string("chemistry_tools.txt", "CYBERPUNK_drug_primaries"), 6)
-			while(adulterants > 0)
-				adulterants--
-				src.reagents.add_reagent(pick_string("chemistry_tools.txt", "CYBERPUNK_drug_adulterants"), 3)
-
-
 	custom_suicide = 1
 	suicide(var/mob/user as mob)
 		if (!src.user_can_suicide(user))

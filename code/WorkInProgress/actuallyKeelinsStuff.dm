@@ -1535,6 +1535,7 @@ Returns:
 				M.set_dir(direction)
 				M.color = color_new
 
+/* forging a new legacy
 /obj/floorpillstatue
 	name = "Statue of Dr.Floorpills"
 	desc = "A statue of the most radioactive man alive. Technically alive. Sort of."
@@ -1564,6 +1565,7 @@ Returns:
 			broken = 1
 
 		return ..()
+*/
 
 /proc/mass_proc_arg()
 	var/type = text2path(input(usr,"Type", "", "/obj"))
