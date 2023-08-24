@@ -283,6 +283,7 @@ var/global
 	brigshuttle_location = 0
 	miningshuttle_location = 0
 	researchshuttle_location = 0
+	shoppingshuttle_location = 0
 	researchshuttle_lockdown = 0
 	toggles_enabled = 1
 	announce_banlogin = 1

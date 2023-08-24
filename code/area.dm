@@ -666,6 +666,12 @@ ABSTRACT_TYPE(/area/shuttle)
 /area/shuttle/john/grillnasium
 	icon_state = "shuttle"
 
+/area/shuttle/shopping/station
+	icon_state = "shuttle"
+
+/area/shuttle/shopping/shittymall
+	icon_state = "shuttle"
+
 /area/shuttle/icebase_elevator/upper
 	icon_state = "shuttle"
 	filler_turf = "/turf/simulated/floor/arctic/abyss"

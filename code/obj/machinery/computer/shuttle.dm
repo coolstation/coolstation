@@ -142,6 +142,35 @@
 		dir = WEST
 		pixel_x = -25
 
+/obj/machinery/computer/shopping_shuttle
+	name = "Shuttle Control"
+	icon_state = "shuttle"
+	machine_registry_idx = MACHINES_SHUTTLECOMPS
+	var/active = 0
+	var/net_id = null
+	var/obj/machinery/power/data_terminal/link = null
+
+/obj/machinery/computer/shopping_shuttle/embedded
+	icon_state = "shuttle-embed"
+	density = 0
+	layer = EFFECTS_LAYER_1 // Must appear over cockpit shuttle wall thingy.
+
+	north
+		dir = NORTH
+		pixel_y = 25
+
+	east
+		dir = EAST
+		pixel_x = 25
+
+	south
+		dir = SOUTH
+		pixel_y = -25
+
+	west
+		dir = WEST
+		pixel_x = -25
+
 /obj/machinery/computer/icebase_elevator
 	name = "Elevator Control"
 	icon_state = "shuttle"
@@ -466,6 +495,86 @@
 	for(var/obj/machinery/computer/research_shuttle/C in machine_registry[MACHINES_SHUTTLECOMPS])
 		active = 0
 		C.visible_message("<span class='alert'>The Research Shuttle has Moved!</span>")
+
+	return
+
+/obj/machinery/computer/shopping_shuttle/New()
+	..()
+	SPAWN_DBG(0.5 SECONDS)
+		src.net_id = generate_net_id(src)
+
+		if(!src.link)
+			var/turf/T = get_turf(src)
+			var/obj/machinery/power/data_terminal/test_link = locate() in T
+			if(test_link && !DATA_TERMINAL_IS_VALID_MASTER(test_link, test_link.master))
+				src.link = test_link
+				src.link.master = src
+
+/obj/machinery/computer/shopping_shuttle/attack_hand(mob/user as mob)
+	if(..())
+		return
+	var/dat = "<a href='byond://?src=\ref[src];close=1'>Close</a><BR><BR>"
+
+	if(shoppingshuttle_location)
+		dat += "Shuttle Location: Station"
+	else
+		dat += "Shuttle Location: Starlight Minimall"
+	dat += "<BR>"
+	if(active)
+		dat += "Moving"
+	else
+		dat += "<a href='byond://?src=\ref[src];send=1'>Move Shuttle</a><BR><BR>"
+
+	user.Browse(dat, "window=shuttle")
+	onclose(user, "shuttle")
+	return
+
+/obj/machinery/computer/shopping_shuttle/Topic(href, href_list)
+	if(..())
+		return
+	if ((usr.contents.Find(src) || (isturf(src.loc) && in_interact_range(src, usr))) || (issilicon(usr)))
+		src.add_dialog(usr)
+		if (href_list["send"])
+			for(var/obj/machinery/shuttle/engine/propulsion/eng as anything in machine_registry[MACHINES_SHUTTLEPROPULSION]) // ehh
+				if(eng.stat1 == 0 && eng.stat2 == 0 && eng.id == "shop")
+					boutput(usr, "<span class='alert'>Propulsion thruster damaged. Unable to move shuttle.</span>")
+					return
+				else
+					continue
+
+			if(!active)
+				for(var/obj/machinery/computer/shopping_shuttle/C in machine_registry[MACHINES_SHUTTLECOMPS])
+					active = 1
+					C.visible_message("<span class='alert'>The Shopping Shuttle has been called and will leave shortly!</span>")
+
+				SPAWN_DBG(10 SECONDS)
+					call_shuttle()
+
+		else if (href_list["close"])
+			src.remove_dialog(usr)
+			usr.Browse(null, "window=shuttle")
+
+	src.add_fingerprint(usr)
+	src.updateUsrDialog()
+	return
+
+/obj/machinery/computer/shopping_shuttle/proc/call_shuttle()
+
+	if(shoppingshuttle_location == 0)
+		var/area/start_location = locate(/area/shuttle/shopping/shittymall)
+		var/area/end_location = locate(/area/shuttle/shopping/station)
+		start_location.move_contents_to(end_location)
+		shoppingshuttle_location = 1
+	else
+		if(shoppingshuttle_location == 1)
+			var/area/start_location = locate(/area/shuttle/shopping/station)
+			var/area/end_location = locate(/area/shuttle/shopping/shittymall)
+			start_location.move_contents_to(end_location)
+			shoppingshuttle_location = 0
+
+	for(var/obj/machinery/computer/shopping_shuttle/C in machine_registry[MACHINES_SHUTTLECOMPS])
+		active = 0
+		C.visible_message("<span class='alert'>The Shopping Shuttle has Moved!</span>")
 
 	return
 
