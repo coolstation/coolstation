@@ -66,7 +66,7 @@
 #define R_FREQ_INTERCOM_CARGO 1429
 #define R_FREQ_INTERCOM_CATERING 1431
 #define R_FREQ_INTERCOM_BOTANY 1433
-#define R_FREQ_INTERCOM_TELESCIENCE 1435 //special case for away team radios
+#define R_FREQ_INTERCOM_TELESCIENCE 1535 //special case for away team radios
 
 //public address (robust interference protection but one to many)
 //also useful for playing stuff from radio programs and loops
