@@ -4019,29 +4019,36 @@
 									src.master.visible_message("<b>[master]</b> gives [otherBuddy] a slow, confused wave.")
 
 								else if (istype(otherBuddy, /obj/machinery/bot/guardbot/bootleg))
+									var/emotion
 									var/obj/machinery/bot/guardbot/bootleg/dweeb = otherBuddy
-									dweeb.set_emotion(pick("cool","joy","love","smug","look"))
-									master.set_emotion("ugh")
-									if (prob(90))
+									emotion = desired_emotion //Constant disgust
+									desired_emotion = "ugh"
+									master.set_emotion(desired_emotion)
+									if (prob(95))
 										src.speak_with_maptext("Oh no, no, please, don't make eye conta-")
-										sleep(1)
-										dweeb.speak("WOW HEY HELLO HI HI HEY","AAAAAAAAAAAAAAAAAAAAAA","HELLOOOOOOOOOOOO","YOU ARE THANK FOR NOTICE ME","NEW FRIENDS IS TRUE???????")
-										sleep(2 SECONDS)
+										sleep(3 SECOND)
+										dweeb.speak(pick("WOW HEY HELLO HI HI HEY","AAAAAAAAAAAAAAAAAAAAAA","HELLOOOOOOOOOOOO","YOU ARE THANK FOR NOTICE ME","NEW FRIENDS IS TRUE???????"))
+										dweeb.set_emotion(pick("cool","joy","love","smug","look"))
+										sleep(3 SECONDS)
 										src.speak_with_maptext("No thank you! Not interested! Goodbye!")
-										if(prob(40))
-											sleep(4 SECOND)
+										if(prob(50))
+											sleep(5 SECOND)
 											src.speak_with_maptext(pick("I thought they recalled all of those things...","They'll stick robot arms on anything these days...","Waste of a perfectly good microwave..."))
 									else
 										dweeb.speak("HEYYYYYY GUYSSSSSSSS")
-										sleep(1 SECOND)
+										dweeb.set_emotion(pick("joy","look"))
+										sleep(2 SECONDS)
 										src.speak_with_maptext("Uegh, not this [pick("clownshoe","doofus","dork","dweeb","copycat")] again...") //DEEP LORE FACTS: they have a history
-										sleep(4 SECOND)
+										sleep(5 SECONDS)
 										src.speak_with_maptext("Gosh dang, what a dummy!")
 									if(prob(30)) //small chance to hear and be offended
 										if (dweeb.emotion == "cool")
 											dweeb.set_emotion("coolugh")
 										else
 											dweeb.set_emotion(pick("sad","angry","ugh"))
+									sleep(3 SECONDS)
+									desired_emotion = emotion
+									master.set_emotion(desired_emotion) //back to normal
 
 								else if (istype(otherBuddy, /obj/machinery/bot/guardbot/old/tourguide))
 									src.master.visible_message("<b>[master]</b> waves at [otherBuddy].")
