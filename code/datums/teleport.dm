@@ -8,8 +8,8 @@ proc/get_teleareas()
 proc/get_telearea(var/name)
 	var/list/areas = get_teleareas()
 	return areas[name]
-
-proc/generate_teleareas()
+/*
+proc/generate_teleareas() // holy fucking SHIT this is INSANE
 	var/area/a
 	LAGCHECK(LAG_HIGH)
 	teleareas = list()
@@ -23,4 +23,22 @@ proc/generate_teleareas()
 			teleareas[entry] = a
 			continue
 		teleareas[a.name] = a
+	teleareas = sortList(teleareas)
+*/
+
+
+proc/generate_teleareas()
+	LAGCHECK(LAG_HIGH)
+	teleareas = list()
+	for (var/area/area in world)
+		if (istype(area, /area/station))
+			var/turf/T = area.contents[1]
+			if (T?.z == Z_LEVEL_STATION || (map_currently_very_dusty && T?.z == Z_LEVEL_DEBRIS))
+				teleareas[area.name] = area
+		if (istype(area, /area/diner))
+			var/turf/T = area.contents[1]
+			if (T?.z == Z_LEVEL_MINING)
+				teleareas[area.name] = area
+		if(istype(area, /area/wizard_station))
+			teleareas[area.name] = area
 	teleareas = sortList(teleareas)
