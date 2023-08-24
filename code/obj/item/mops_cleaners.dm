@@ -324,6 +324,7 @@ WET FLOOR SIGN
 		if (U && isturf(U))
 			if(src.reagents.total_volume >= 15)
 				src.reagents.reaction(U,1,5)
+				src.reagents.remove_any(5)
 			else if(src.reagents.has_reagent("blood"))
 				src.reagents.remove_reagent("blood",3)
 				make_cleanable( /obj/decal/cleanable/blood, U)
