@@ -46,6 +46,8 @@
 #define IS_BUBSIUM_SCALED		 (1<<21)
 /// Does not get nuked by the mineral magnet area clear (does not block activating the magnet)
 #define MINERAL_MAGNET_SAFE (1<<22)
+/// Is currently scaled by siladenafil
+#define IS_BONER_SCALED		 (1<<23)
 
 
 //Item function flags

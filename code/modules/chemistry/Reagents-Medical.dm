@@ -174,12 +174,17 @@ datum
 			addiction_prob = 20
 			overdose = 35
 
-			//look into scale up while present in system, bubsium style- that's tracked with flags and i don't really want to add another just for this maybe????
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if (prob(5))
 					M.emote("flex")
 				if (prob(5))
 					M.emote("smile")
+				if (prob(10))
+					if(!holder || !holder.my_atom || istype(holder.my_atom, /turf) || (holder.my_atom.flags & IS_BONER_SCALED))
+						return
+					holder.my_atom.SafeScale(1,1.125)
+					holder.my_atom.flags |= IS_BONER_SCALED
+					M.visible_message("<span class='alert'>[M] seems taller, somehow!</span>")
 				..()
 				//maybe something else to do with skeletons idk
 
@@ -204,7 +209,22 @@ datum
 					M.emote("gasp")
 				if (prob(1) && prob(10))
 					M.contract_disease(/datum/ailment/malady/heartdisease,null,null,1)
+				if (prob(5))
+					if(prob(95))
+						fake_attackEx(M, 'icons/mob/human.dmi', "skeleton", (pick("skeleton", "skellington", "boner", "revenge of boner", "regret", "not sure what you expected")))
+					else
+						fake_attackEx(M, 'icons/obj/vehicles.dmi', "sex", "sex garfield")
 				return
+
+			on_remove()
+				if(!holder || !holder.my_atom  || istype(holder.my_atom, /turf) || !(holder.my_atom.flags & IS_BONER_SCALED))
+					return
+				holder.my_atom.SafeScale(1,1/1.125)
+				holder.my_atom.flags &= ~IS_BONER_SCALED
+				if(ismob(holder?.my_atom))
+					var/mob/M = holder.my_atom
+					M.changeStatus("weakened", 5 SECONDS) //flop
+					M.visible_message("<span class='alert'>[M] suddenly goes limp!</span>")
 
 		medical/cold_medicine
 			name = "robustissin"
