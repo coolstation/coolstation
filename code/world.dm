@@ -795,7 +795,7 @@ var/f_color_selector_handler/F_Color_Selector
 		//game_stats.WriteToFile("data/game_stats.txt")
 #endif
 
-	sleep(5 SECONDS) // wait for sound to play
+	sleep(7 SECONDS) // wait for sound to play
 	if(config.update_check_enabled)
 		world.installUpdate()
 
