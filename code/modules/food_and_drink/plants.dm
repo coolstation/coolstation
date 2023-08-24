@@ -1181,6 +1181,7 @@
 	food_color = "#FF9933"
 	food_effects = list("food_bad_breath")
 	flags = ONBELT | FPRINT | TABLEPASS | SUPPRESSATTACK
+	wear_image_icon = 'icons/mob/belt.dmi'
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/kitchen/utensil/knife) || istype(W,/obj/item/knife/butcher))
