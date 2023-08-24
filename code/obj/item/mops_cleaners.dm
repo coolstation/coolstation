@@ -299,7 +299,7 @@ WET FLOOR SIGN
 /obj/item/mop/afterattack(atom/A, mob/user as mob)
 	if (ismob(A))
 		return
-	if ((src.reagents.total_volume < 1 || mopcount >= 9) && !istype(A, /obj/fluid))
+	if ((src.reagents.total_volume < 1 /*|| mopcount >= 9*/) && !istype(A, /obj/fluid))
 		boutput(user, "<span class='notice'>Your mop is dry!</span>", group = "mop")
 		return
 
@@ -312,39 +312,81 @@ WET FLOOR SIGN
 
 /obj/item/mop/proc/clean(atom/A, mob/user as mob)
 	var/turf/U = get_turf(A)
-	JOB_XP(user, "Janitor", 2)
-	playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 1)
 
 	// Some people use mops for heat-delayed fireballs and stuff.
 	// Mopping the floor with just water isn't of any interest, however (Convair880).
 	if (src.reagents.total_volume && (!src.reagents.has_reagent("water") || (src.reagents.has_reagent("water") && src.reagents.reagent_list.len > 1)))
 		logTheThing("combat", user, null, "mops [U && isturf(U) ? "[U]" : "[A]"] with chemicals [log_reagents(src)] at [log_loc(user)].")
 
+	playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 1)
+
+	if(src.mopcount > 9)
+		if (U && isturf(U))
+			if(src.reagents.total_volume >= 15)
+				src.reagents.reaction(U,1,5)
+			else if(src.reagents.has_reagent("blood"))
+				src.reagents.remove_reagent("blood",3)
+				make_cleanable( /obj/decal/cleanable/blood, U)
+			else
+				src.reagents.remove_any(3)
+				make_cleanable( /obj/decal/cleanable/dirt, U)
+			user.show_text("You make a fucking mess of it with your filthy mop.", "red", group = "mop")
+		else
+			user.show_text("Your mop is way too filthy to be of use.", "red", group = "mop")
+		return
+
+	JOB_XP(user, "Janitor", 2)
+
+/*
 	if (U && isturf(U))
 		src.reagents.reaction(U,1,5)
 		src.reagents.remove_any(5)
 		mopcount++
-
+*/
 	var/obj/fluid/target_fluid = A
 	if (istype(target_fluid))
-		if (src.reagents && target_fluid.group)
+		if (src.reagents && target_fluid.group && (src.reagents.total_volume < src.reagents.maximum_volume))
 			target_fluid.group.drain(target_fluid,1,src)
-		user.show_text("You soak up [target_fluid] with [src].", "blue", group = "mop")
-		if (mopcount > 0)
-			mopcount--
-	else if (U && isturf(U))
-		//U.clean_forensic()
-		user.show_text("You have mopped up [A]!", "blue", group = "mop")
-	else
-		//A.clean_forensic()
-		user.show_text("You have mopped up [A]!", "blue", group = "mop")
+			user.show_text("You soak up [target_fluid] with [src].", "blue", group = "mop")
+			if (mopcount > 0)
+				mopcount--
+		else
+			user.show_text("You just kind of spread [target_fluid] around with [src], which is sopping.", "blue", group = "mop")
+			src.reagents.reaction(target_fluid,1,3)
+			src.reagents.remove_any(3)
+			mopcount++
 
+	else if (U && isturf(U))
+		for(var/obj/decal/cleanable/filth in U)
+			if(!filth.reagents || !filth.reagents.total_volume)
+				continue
+			filth.reagents.trans_to(src,2)
+			break
+		U.clean_forensic()
+		user.show_text("You have mopped up [A]!", "blue", group = "mop")
+		mopcount++
+	else
+		A.clean_forensic()
+		user.show_text("You have mopped up [A]!", "blue", group = "mop")
+		mopcount++
+
+	if(istype(U,/turf/simulated))
+		var/turf/simulated/T = U
+		var/wetoverlay = image('icons/effects/water.dmi',"wet_floor")
+		T.overlays += wetoverlay
+		T.wet = 1
+		src.reagents.remove_any(1)
+		SPAWN_DBG(30 SECONDS)
+			if (istype(T))
+				T.wet = 0
+				T.overlays -= wetoverlay
+/*
 	if (mopcount >= 9) //Okay this stuff is an ugly hack and i feel bad about it.
 		SPAWN_DBG(0.5 SECONDS)
 			if (src?.reagents)
 				src.reagents.clear_reagents()
 				mopcount = 0
-
+*/
 /obj/item/mop/attack_self(mob/user as mob)
 	if (istype(user.loc, /obj/vehicle/segway))
 		var/obj/vehicle/segway/S = user.loc
@@ -360,6 +402,62 @@ WET FLOOR SIGN
 		user.visible_message("[user] pokes [M] with \the [src].", "You poke [M] with \the [src].")
 		return
 	return ..()
+
+
+// Its the old *new* mop. It makes floors .... tedious.
+/obj/item/mop/modern
+	name = "modern mop"
+	desc = "This thing looks normal, but it sure does get the floors.... wet?"
+
+	afterattack(atom/A, mob/user as mob)
+		if (ismob(A))
+			return
+		if ((src.reagents.total_volume < 1 || mopcount >= 9) && !istype(A, /obj/fluid))
+			boutput(user, "<span class='notice'>Your mop is dry!</span>", group = "mop")
+			return
+
+		if(istype(A, /obj/fluid/airborne)) // no mopping up smoke
+			A = get_turf(A)
+		if (istype(A, /turf/simulated) || istype(A, /obj/decal/cleanable) || istype(A, /obj/fluid))
+			//user.visible_message("<span class='alert'><B>[user] begins to clean [A].</B></span>")
+			actions.start(new/datum/action/bar/icon/mop_thing(src,A), user)
+		return
+
+	clean(atom/A, mob/user as mob)
+		var/turf/U = get_turf(A)
+		JOB_XP(user, "Janitor", 2)
+		playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 1)
+
+		// Some people use mops for heat-delayed fireballs and stuff.
+		// Mopping the floor with just water isn't of any interest, however (Convair880).
+		if (src.reagents.total_volume && (!src.reagents.has_reagent("water") || (src.reagents.has_reagent("water") && src.reagents.reagent_list.len > 1)))
+			logTheThing("combat", user, null, "mops [U && isturf(U) ? "[U]" : "[A]"] with chemicals [log_reagents(src)] at [log_loc(user)].")
+
+		if (U && isturf(U))
+			src.reagents.reaction(U,1,5)
+			src.reagents.remove_any(5)
+			mopcount++
+
+		var/obj/fluid/target_fluid = A
+		if (istype(target_fluid))
+			if (src.reagents && target_fluid.group)
+				target_fluid.group.drain(target_fluid,1,src)
+			user.show_text("You soak up [target_fluid] with [src].", "blue", group = "mop")
+			if (mopcount > 0)
+				mopcount--
+		else if (U && isturf(U))
+			//U.clean_forensic()
+			user.show_text("You have mopped up [A]!", "blue", group = "mop")
+		else
+			//A.clean_forensic()
+			user.show_text("You have mopped up [A]!", "blue", group = "mop")
+
+		if (mopcount >= 9) //Okay this stuff is an ugly hack and i feel bad about it.
+			SPAWN_DBG(0.5 SECONDS)
+				if (src?.reagents)
+					src.reagents.clear_reagents()
+					mopcount = 0
+
 
 // Its the old mop. It makes floors slippery
 /obj/item/mop/old
