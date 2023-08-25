@@ -37668,17 +37668,11 @@
 /area/station/mining/barracks)
 "vxn" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
-/obj/machinery/disposal/mail{
-	mail_tag = "arrivals";
-	mailgroup = "command";
-	mailgroup2 = "security";
-	message = "1";
-	name = "mail chute-'Customs Desk'"
-	},
 /obj/decal/cleanable/dirt,
 /obj/disposalpipe/trunk{
 	dir = 8
 	},
+/obj/machinery/disposal/mail/autoname/checkpoint/customs,
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/medical)
 "vxu" = (
