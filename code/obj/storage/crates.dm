@@ -552,7 +552,7 @@
 		spawn_contents = list(/obj/item/heavy_power_sword,
 		/obj/item/clothing/shoes/swat/knight,
 		/obj/item/clothing/gloves/swat/knight,
-		/obj/item/clothing/suit/space/syndicate/knight,
+		//obj/item/clothing/suit/space/syndicate/knight,
 		/obj/item/clothing/head/helmet/space/syndicate/specialist/knight)
 
 	qm //Hi Gannets, I like your crate and wanted to use it for some QM stuff. Come yell at Azungar if this is not ok.

@@ -291,6 +291,10 @@
 	icon_state = "dukeabs"
 	item_state = "dukeabs"
 
+	attack_self(mob/user) //suppress armor vest style toggling
+		return
+
+
 /obj/item/clothing/head/biker_cap
 	name = "Biker Cap"
 	desc = "It looks pretty fabulous, to be honest."
