@@ -49,7 +49,7 @@
 		if (src.reagents.total_volume >= 3)
 			if (W.reagents)
 				W.reagents.trans_to(src,W.reagents.total_volume)
-			src.reagents.trans_to(W, W.reagents ? W.reagents.maximum_volume : 10)
+			src.reagents.trans_to(W, W.reagents ?(W.reagents.maximum_volume-10): 10)
 			var/obj/item/mop/M = W
 			M.mopcount = 0
 
