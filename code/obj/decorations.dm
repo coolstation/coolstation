@@ -1311,3 +1311,19 @@ obj/decoration/floralarrangement
 	anchored = 1
 	density = 1
 
+obj/decoration/windchimes
+	name = "windchimes"
+	desc = "Aside from sounding nice, they also helpfully let you know if there's airflow in a room! Neato!"
+	icon = 'icons/obj/noise_makers.dmi'
+	icon_state = "windchime"
+	anchored = 1
+	density = 1
+	var/times_to_play = 1
+	var/cooldown = 500 //thats around five minutes yeah? -eagle
+
+	// proc/effect_process(var/obj/O)
+	// 	playsound(src loc, "sound/effects/windchimesbamboo.ogg", 50, 1)
+
+	attack_hand(mob/user as mob) //don't know how to make it so it doesn't just chime constantly -eagle
+		playsound (src.loc, (pick("sound/effects/windchimesbamboo.ogg")))
+
