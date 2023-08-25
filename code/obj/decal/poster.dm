@@ -669,7 +669,7 @@
 																"wall_poster_beach",
 																"wall_poster_discount",
 																"wall_poster_octocluwne",
-																"wall_poser_eyetest")
+																"wall_poster_eyetest")
 
 		poster_mining
 			name = "mining poster"
