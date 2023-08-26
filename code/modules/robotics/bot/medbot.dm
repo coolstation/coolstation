@@ -26,7 +26,6 @@
 	var/skin = null // options are brute1/2, burn1/2, toxin1/2, brain1/2, O21/2/3/4, berserk1/2/3, and psyche
 	var/mob/living/carbon/patient = null
 	var/oldloc = null
-	var/static/image/medbot_overlays = image('icons/obj/bots/medbots.dmi', icon_state = "blank")
 	var/last_found = 0
 	/// Time after injecting someone before they'll try to inject them again. Encourages them to spread the love (and poison). Hitting the bot overrides the cooldown
 	var/last_patient_cooldown = 5 SECONDS
@@ -47,7 +46,8 @@
 	var/list/override_reagent = list()
 	/// They'll stop stop injecting that crap if the patient has the per-inject amount
 	var/override_reagent_limit_mult = 0.9
-	var/terrifying = 0 // for making the medbots all super fucked up
+	/// for making the medbots all super fucked up
+	var/terrifying = 0
 	/// List of drugs that terrifying derelist bots will inject
 	var/static/list/terrifying_meds = list("formaldehyde" = 15,
 																				"ketamine" = 25,
@@ -72,10 +72,12 @@
 	desc = "International Medibot of mystery."
 	skin = "berserk"
 
+//These are the humanoid azone ones that fuck you up
 /obj/machinery/bot/medbot/terrifying
 	name = "Medibot"
 	desc = "You don't recognize this model."
-	icon = 'icons/misc/evilreaverstation.dmi'
+	//sprites moved from evilreaverstation.dmi and merged with the rest of the medbots
+	icon_state = "reaverbot"
 	health = 50
 	density = 1
 	emagged = 1
@@ -138,36 +140,27 @@
 			src.overlays += "medibot-arm"
 
 /obj/machinery/bot/medbot/proc/update_icon(var/stun = 0, var/heal = 0)
-	UpdateOverlays(null, "medbot_overlays")
-	medbot_overlays.overlays.len = 0
-
-	if (src.terrifying)
-		src.icon_state = "medibot[src.on]"
-		if (stun)
-			medbot_overlays.overlays += image('icons/obj/bots/medbots.dmi', icon_state = "medibota")
-		if (heal)
-			medbot_overlays.overlays += image('icons/obj/bots/medbots.dmi', icon_state = "medibots")
-		return
-
+	//AFAIK a medbot can never be healing and stunned at the same time so this should work
+	if (stun)
+		UpdateOverlays(image('icons/obj/bots/medbots.dmi', icon_state = "[icon_state]-light-stun"), "light")
+	else if (heal)
+		UpdateOverlays(image('icons/obj/bots/medbots.dmi', icon_state = "[icon_state]-light-flash"), "light")
 	else
-		src.icon_state = "medibot"
-		if (src.skin)
-			medbot_overlays.overlays += image('icons/obj/bots/medbots.dmi', icon_state = "medskin-[src.skin]")
-		medbot_overlays.overlays += image('icons/obj/bots/medbots.dmi', icon_state = "medibot-scanner")
-		if (heal)
-			medbot_overlays.overlays += image('icons/obj/bots/medbots.dmi', icon_state = "medibot-arm-syringe")
-			medbot_overlays.overlays += image('icons/obj/bots/medbots.dmi', icon_state = "medibot-light-flash")
+		if (!src.terrifying)
+			UpdateOverlays(image('icons/obj/bots/medbots.dmi', icon_state = "medibot-light[src.on]"), "light")
 		else
-			medbot_overlays.overlays += image('icons/obj/bots/medbots.dmi', icon_state = "medibot-arm")
-			if (stun)
-				medbot_overlays.overlays += image('icons/obj/bots/medbots.dmi', icon_state = "medibot-light-stun")
-			else
-				medbot_overlays.overlays += image('icons/obj/bots/medbots.dmi', icon_state = "medibot-light[src.on]")
+			UpdateOverlays(null, "light")
+
+	if (!src.terrifying) //arm
+		if (heal)
+			UpdateOverlays(image('icons/obj/bots/medbots.dmi', icon_state = "medibot-arm-syringe"), "arm")
+		else
+			UpdateOverlays(image('icons/obj/bots/medbots.dmi', icon_state = "medibot-arm"), "arm")
+
 		/*
 		if (emagged)
 			src.overlays += "medibot-spark"
 		*/
-	UpdateOverlays(medbot_overlays, "medbot_overlays")
 	return
 
 /obj/machinery/bot/medbot/New()
@@ -175,6 +168,11 @@
 	add_simple_light("medbot", list(220, 220, 255, 0.5*255))
 	SPAWN_DBG(0.5 SECONDS)
 		if (src)
+			if (!src.terrifying) //hi we're assuming only the humanoid ones are ever terrifying, sorry
+				//The scanner and skin never change, so we might as well pull them out of update_icon
+				UpdateOverlays(image('icons/obj/bots/medbots.dmi', icon_state = "medibot-scanner"), "scanner")
+				if (src.skin)
+					UpdateOverlays(image('icons/obj/bots/medbots.dmi', icon_state = "medskin-[src.skin]"), "skin")
 			src.update_icon()
 	return
 
