@@ -830,9 +830,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	jam_frequency_reload = 4
 	contraband = 4
 	stock_overlay_x = -14
-	stock_overlay_y = 1
-	barrel_overlay_x = 22
-	barrel_overlay_y = 1
+	stock_overlay_y = 0
+	barrel_overlay_x = 20
+	barrel_overlay_y = 0
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 	icon_state = "mistfit"
 
