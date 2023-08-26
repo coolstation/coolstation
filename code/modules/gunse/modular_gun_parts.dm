@@ -670,8 +670,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "Kalash Grip"
 	desc = "A Kalash Grip. Now where's the rest of it..."
 	spread_angle = -1
-	overlay_x =
-	overlay_y -
+	overlay_y = -2
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	icon_state = "kalashgrip"
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
