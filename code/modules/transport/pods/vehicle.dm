@@ -37,8 +37,6 @@
 	var/facing = SOUTH // holds the direction the ship is currently facing
 	var/going_home = 0 // set to 1 when the com system locates the station, next z level crossing will head to 1
 	var/fire_delay = 0 // stop people from firing like crazy
-	var/image/fire_overlay = null
-	var/image/damage_overlay = null
 	var/exploding = 0 // don't blow up a bunch of times sheesh
 	var/locked = 0 // todo: stop people from carjacking pods in flight so easily
 	var/owner = null // to use with locked var
@@ -321,7 +319,7 @@
 					m_w_system.deactivate()
 					components -= m_w_system
 					if (uses_weapon_overlays && m_w_system.appearanceString)
-						src.overlays -= image('icons/effects/64x64.dmi', "[m_w_system.appearanceString]")
+						UpdateOverlays(null, "main_weapon")
 					m_w_system.set_loc(src.loc)
 					m_w_system = null
 					src.updateDialog()
@@ -493,7 +491,7 @@
 		if (user)
 			user.show_text("You paint [src].", "blue")
 			user.u_equip(P)
-		src.overlays += image(src.icon, P.pod_skin)
+		UpdateOverlays(image(src.icon, P.pod_skin), "paintjob")
 		qdel(P)
 		return
 
@@ -680,8 +678,6 @@
 		sec_system = null
 		sensors = null
 		intercom = null
-		fire_overlay = null
-		damage_overlay = null
 		ion_trail = null
 		STOP_TRACKING_CAT(TR_CAT_PODS_AND_CRUISERS)
 		STOP_TRACKING
@@ -715,8 +711,7 @@
 					if(damage_overlays != 2)
 						particleMaster.SpawnSystem(new /datum/particleSystem/areaSmoke("#CCCCCC", 50, src))
 						damage_overlays = 2
-						fire_overlay = image('icons/effects/64x64.dmi', "pod_fire")
-						src.overlays += fire_overlay
+						UpdateOverlays(image('icons/effects/64x64.dmi', "pod_fire"), "on_fire")
 						for(var/mob/living/carbon/human/M in src)
 							M.update_burning(35)
 							boutput(M, "<span class='alert'><b>The cabin bursts into flames!</b></span>")
@@ -724,18 +719,12 @@
 				if(25 to 50)
 					if(damage_overlays < 1)
 						damage_overlays = 1
-						damage_overlay = image('icons/effects/64x64.dmi', "pod_damage")
-						src.overlays += damage_overlay
+						UpdateOverlays(image('icons/effects/64x64.dmi', "pod_damage"), "damage")
 				if(50 to INFINITY)
 					if (damage_overlays)
-						if(damage_overlays == 2)
-							src.overlays -= fire_overlay
-							src.overlays -= damage_overlay
-							fire_overlay = null
-						else if(damage_overlays == 1)
-							src.overlays -= damage_overlay
+						UpdateOverlays(null, "on_fire")
+						UpdateOverlays(null, "damage")
 						damage_overlays = 0
-						damage_overlay = null
 
 // if not a big pod, assume it's an old-style one instead
 		else
@@ -799,7 +788,7 @@
 					return
 				m_w_system = S
 				if(uses_weapon_overlays && m_w_system.appearanceString)
-					src.overlays += image('icons/effects/64x64.dmi', "[m_w_system.appearanceString]")
+					UpdateOverlays(image('icons/effects/64x64.dmi', "[m_w_system.appearanceString]"), "main_weapon")
 
 				m_w_system.activate()
 			else
@@ -1729,7 +1718,7 @@
 				var/obj/machinery/vehicle/tank/T = src
 				if (!T.locomotion)
 					T.locomotion = S
-					T.overlays += image('icons/obj/machines/8dirvehicles.dmi', "[body_type]_[locomotion.appearanceString]")
+					UpdateOverlays(image('icons/obj/machines/8dirvehicles.dmi', "[body_type]_[locomotion.appearanceString]"), "locomotion")
 				else
 					if (usr) //Occuring during gameplay
 						boutput(usr, "That system already has a part!")
@@ -1744,7 +1733,7 @@
 		if (src.locomotion)
 			locomotion.deactivate()
 			components -= locomotion
-			src.overlays -= image('icons/obj/machines/8dirvehicles.dmi', "[body_type]_[locomotion.appearanceString]")
+			UpdateOverlays(null, "locomotion")
 			locomotion.set_loc(src.loc)
 			locomotion = null
 
