@@ -748,7 +748,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "trumpet"
 
 	on_fire()
-		playsound(src.my_gun.loc,pick('sound/musical_instruments/saxbonk.ogg', 'sound/musical_instruments/saxbonk2.ogg'))
+		playsound(src.my_gun.loc,pick('sound/musical_instruments/saxbonk.ogg', 'sound/musical_instruments/saxbonk2.ogg') 50, 1, -1)
 
 // /obj/item/gun_parts/accessory/zupressor
 // 	name = "Inba Zupressor" // I am so proud of this pun
