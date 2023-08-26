@@ -782,7 +782,7 @@
 			H.update_colorful_parts()
 
 /obj/item/clothing/under/gimmick/brummie
-	name = "blue tracksuit"
+	name = "tracksuit"
 	desc = "Looks good on yew innit?"
 	icon_state = "brummie1"
 	item_state = "brummie1"
@@ -792,7 +792,7 @@
 		if(prob(50))
 			name = "Burberry plaid jacket"
 			icon_state = "brummie2"
-			item_state = "lb_suit"
+			item_state = "brummie2"
 
 /obj/item/clothing/head/brummie
 	name = "burberry cap"
