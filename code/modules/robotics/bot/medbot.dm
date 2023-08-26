@@ -9,7 +9,7 @@
 	name = "Medibot"
 	desc = "A little medical robot. He looks somewhat underwhelmed."
 	icon = 'icons/obj/bots/medbots.dmi'
-	icon_state = "medibot"
+	icon_state = "medibot" //now includes the health scanner
 	layer = 5.0 //TODO LAYER
 	density = 0
 	anchored = 0
@@ -124,20 +124,17 @@
 	name = "first aid/robot arm assembly"
 	desc = "A first aid kit with a robot arm permanently grafted to it."
 	icon = 'icons/obj/bots/medbots.dmi'
-	icon_state = "medskin-firstaid1"
+	icon_state = "medskin-firstaid1" //now does what the removed skin var did previously, therefore load-bearing in medbot crafting
 	item_state = "firstaid"
 	pixel_y = 4 // so we don't have to have two sets of the skin sprites, we're just gunna bump this up a bit
 	var/build_step = 0
 	var/created_name = "Medibot" //To preserve the name if it's a unique medbot I guess
-	var/skin = null // same as the bots themselves: options are brute1/2, burn1/2, toxin1/2, brain1/2, O21/2/3/4, berserk1/2/3, and psyche
 	w_class = W_CLASS_NORMAL
 
-/obj/item/firstaid_arm_assembly/New()
+/obj/item/firstaid_arm_assembly/New(use_skin = "firstaid1")
 	..()
-	SPAWN_DBG(0.5 SECONDS)
-		if (src.skin)
-			src.overlays += "medskin-[src.skin]"
-			src.overlays += "medibot-arm"
+	icon_state = "medskin-[use_skin]"
+	UpdateOverlays(image('icons/obj/bots/medbots.dmi', icon_state = "medibot-arm"), "arm")
 
 /obj/machinery/bot/medbot/proc/update_icon(var/stun = 0, var/heal = 0)
 	//AFAIK a medbot can never be healing and stunned at the same time so this should work
@@ -163,17 +160,16 @@
 		*/
 	return
 
-/obj/machinery/bot/medbot/New()
+/obj/machinery/bot/medbot/New(use_skin = "medskin-firstaid1")
 	..()
+	src.skin = use_skin
 	add_simple_light("medbot", list(220, 220, 255, 0.5*255))
-	SPAWN_DBG(0.5 SECONDS)
-		if (src)
-			if (!src.terrifying) //hi we're assuming only the humanoid ones are ever terrifying, sorry
-				//The scanner and skin never change, so we might as well pull them out of update_icon
-				UpdateOverlays(image('icons/obj/bots/medbots.dmi', icon_state = "medibot-scanner"), "scanner")
-				if (src.skin)
-					UpdateOverlays(image('icons/obj/bots/medbots.dmi', icon_state = "medskin-[src.skin]"), "skin")
-			src.update_icon()
+	//hi we're assuming only the humanoid ones are ever terrifying, sorry
+	if (!src.terrifying)
+		//The skin never changes, so we might as well pull it out of update_icon
+		//The medbot crafting assembly already compiled the "medskin-[variant]" path so we can reuse that
+		UpdateOverlays(image('icons/obj/bots/medbots.dmi', icon_state = src.skin), "skin")
+	src.update_icon()
 	return
 
 /obj/machinery/bot/medbot/attack_ai(mob/user as mob)
@@ -803,7 +799,7 @@
 	return
 
 /*
- *	Medbot Assembly -- Can be made out of all three medkits.
+ *	Medbot Assembly -- Can be made out of all twenty-five medkits.
  */
 
 /obj/item/storage/firstaid/attackby(var/obj/item/parts/robot_parts/S, mob/user as mob)
@@ -820,21 +816,7 @@
 		boutput(user, "<span class='alert'>You need to empty [src] out first!</span>")
 		return
 	else
-		var/obj/item/firstaid_arm_assembly/A = new /obj/item/firstaid_arm_assembly
-		if (src.icon_state != "firstaid") // fart
-			A.skin = src.icon_state // farto
-/* all of this is kinda needlessly complicated imo
-		if (istype(src, /obj/item/storage/firstaid/fire))
-			A.skin = "ointment"
-		else if (istype(src, /obj/item/storage/firstaid/toxin))
-			A.skin = "tox"
-		else if (istype(src, /obj/item/storage/firstaid/oxygen))
-			A.skin = "o2"
-		else if (istype(src, /obj/item/storage/firstaid/brain))
-			A.skin = "red"
-		else if (istype(src, /obj/item/storage/firstaid/brute))
-			A.skin = "brute"
-*/
+		var/obj/item/firstaid_arm_assembly/A = new /obj/item/firstaid_arm_assembly(src.icon_state)
 		user.u_equip(S)
 		user.put_in_hand_or_drop(A)
 		boutput(user, "You add the robot arm to the first aid kit!")
@@ -846,14 +828,13 @@
 		src.build_step++
 		boutput(user, "You add the health sensor to [src]!")
 		src.name = "First aid/robot arm/health analyzer assembly"
-		src.overlays += "medibot-scanner"
+		UpdateOverlays(image('icons/obj/bots/medbots.dmi', icon_state = "medibot-scanner"), "scanner")
 		qdel(W)
 
 	else if ((istype(W, /obj/item/device/prox_sensor)) && (src.build_step == 1))
 		src.build_step++
 		boutput(user, "You complete the Medibot! Beep boop.")
-		var/obj/machinery/bot/medbot/S = new /obj/machinery/bot/medbot
-		S.skin = src.skin
+		var/obj/machinery/bot/medbot/S = new /obj/machinery/bot/medbot(src.icon_state)
 		S.set_loc(get_turf(src))
 		S.name = src.created_name
 		qdel(W)
