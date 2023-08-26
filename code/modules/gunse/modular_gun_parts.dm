@@ -574,7 +574,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "some kind of knockoff tacticool pistol grip"
 	spread_angle = -3
 	icon = 'icons/obj/items/modular_guns/grips.dmi'
-	icon_state = "white"
+	icon_state = "white_big"
 	name_addition = "strapped"
 	overlay_y = -4
 
@@ -582,7 +582,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		name = "da stub"
 		desc = "some kind of stubbed tacticool pistol grip"
 		spread_angle = -1
-		icon_state = "short_white"
+		icon_state = "white"
 		name_addition = "Fukt UP"
 
 	red
@@ -594,7 +594,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 	trans
 		name = "da brick"
-		icon_state = "trans"
+		icon_state = "trans_big"
 		throwforce = 10 // hehe
 		name_addition = "queer"
 
