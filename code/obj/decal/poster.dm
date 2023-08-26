@@ -546,6 +546,7 @@
 		poster_hair
 			name = "Fabulous Hair!"
 			desc = "There's a bunch of ladies with really fancy hair pictured on this."
+			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "wall_poster_hair"
 
 		poster_idiotbastard
@@ -561,6 +562,7 @@
 		poster_cool
 			name = "cool poster"
 			desc = "There's a couple people pictured on this poster, looking pretty cool."
+			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "wall_poster_cool3"
 			random_icon_states = list("wall_poster_cool", "wall_poster_cool2", "wall_poster_cool3")
 
