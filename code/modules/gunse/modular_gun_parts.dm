@@ -637,7 +637,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 /obj/item/gun_parts/stock/soviet/woodstock
 	name = "Rifle Stock"
-	desc = "A sawn off Three Line rifle stock.
+	desc = "A sawn off Three Line rifle stock. Could be useful"
 	spread_angle = -8
 	stock_overlay_x = -9
 	stock_overlay_y = -3
@@ -748,7 +748,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "trumpet"
 
 	on_fire()
-		playsound(src.my_gun.loc,pick('sound/musical_instruments/saxbonk.ogg', 'sound/musical_instruments/saxbonk2.ogg') 50, 1, -1)
+		playsound(src.my_gun.loc,pick('sound/musical_instruments/saxbonk.ogg', 'sound/musical_instruments/saxbonk2.ogg'), 50, 1, -1)
 
 // /obj/item/gun_parts/accessory/zupressor
 // 	name = "Inba Zupressor" // I am so proud of this pun
