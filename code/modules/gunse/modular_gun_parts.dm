@@ -637,9 +637,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 /obj/item/gun_parts/stock/soviet/woodstock
 	name = "Rifle Stock"
-	desc = "A old Three Line Rifle stock, ready to fight once more"
+	desc = "A sawn off Three Line rifle stock.
 	spread_angle = -8
-	stock_two_handed = 1
 	stock_overlay_x = -9
 	stock_overlay_y = -3
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
@@ -651,25 +650,28 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "Hammered Metal Stock"
 	desc = "Some spare metal hammered into a vaugly stock shape"
 	spread_angle = -2
-	stock_overlay_x = -9
-	stock_overlay_y = -2
+	overlay_x = -9
+	overlay_y = -2
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "Machined"
 	icon_state = "shittyfoldingstock"
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
-/obj/item/gun_parts/stock/soviet/improvplastic
-	name = "Weird Looking Stock"
-	desc = "A strangely familiar stock. You might have had one of these when you were a kid or somethin" //hey wait a second
-	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
-	name_addition = "Wobbly"
-	icon_state = "improvstock"
-	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+// /obj/item/gun_parts/stock/soviet/improvplastic //dummied out for now, want to make this accept FOSS cells if you use the stock, at the cost of it giving you a lot of spread.
+// 	name = "Weird Looking Stock"
+// 	desc = "A strangely familiar stock. You might have had one of these when you were a kid or somethin" //hey wait a second
+// 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
+// 	spread_angle = 2
+// 	name_addition = "Wobbly"
+// 	icon_state = "improvstock"
+// 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
 /obj/item/gun_parts/stock/soviet/akgrip //no name addition
 	name = "Kalash Grip"
 	desc = "A Kalash Grip. Now where's the rest of it..."
 	spread_angle = -1
+	overlay_x =
+	overlay_y -
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	icon_state = "kalashgrip"
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
@@ -854,7 +856,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "the bottom third of a AK magazine"
 	desc = "Some fuckin asshole took the other two thirds!"
 	max_ammo_capacity = 3
-	jam_frequency_reload = 1
+	jam_frequency_reload = 3
 	icon_state = "thirdcapmag"
 	part_DRM = GUN_SOVIET
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
@@ -863,17 +865,16 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "Half a AK mag"
 	desc = "Another sawed in half AK magazine. Bummer."
 	max_ammo_capacity = 5
-	jam_frequency_reload = 5
+	jam_frequency_reload = 7
 	icon_state = "halfcapmag"
 	part_DRM = GUN_SOVIET
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
 /obj/item/gun_parts/magazine/soviet/ak
 	name = "Gunked up magazine"
-	desc = "It's full of gunk and rust. Shit."
+	desc = "It's intact, but full of gunk and rust. Shit."
 	max_ammo_capacity = 8
-	jam_frequency_reload = 10
-	name_addition = "intact"
+	jam_frequency_reload = 11
 	icon_state = "akmag"
 	part_DRM = GUN_SOVIET
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
