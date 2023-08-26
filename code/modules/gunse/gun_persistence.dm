@@ -146,6 +146,15 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	density = 1
 	icon = 'icons/obj/dojo.dmi'
 	icon_state = "anvil"
+	w_class = W_CLASS_BULKY
+
+	portable
+		density = 0
+		anchored = 0
+		w_class = W_CLASS_SMALL
+		contraband = 1
+		name = "portable gunsmithing anvil"
+		desc = "what!! that's so unbalanced!!"
 
 	attackby(obj/item/W as obj, mob/user as mob, params)
 		if(!istype(W,/obj/item/gun/modular/) || prob(70))

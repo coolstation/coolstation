@@ -262,7 +262,7 @@
 				R = record_inside.record_name ? record_inside.record_name : pick("rad tunes","hip jams","cool music","neat sounds","magnificent melodies","fantastic farts")
 			user.client.play_music_radio(record_inside.song, R)
 			/// PDA message ///
-			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
+			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 			var/datum/signal/pdaSignal = get_free_signal()
 			pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="RADIO-STATION", "sender"="00000000", "message"="Now playing: [R].", "group" = MGA_RADIO)
 			pdaSignal.transmission_method = TRANSMISSION_RADIO
@@ -788,7 +788,7 @@ ABSTRACT_TYPE(/obj/item/record/random/notaquario)
 			src.is_playing = 1
 			user.client.play_music_radio(tape_inside.audio)
 			/// PDA message ///
-			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
+			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 			var/datum/signal/pdaSignal = get_free_signal()
 			pdaSignal.data = list("command"="text_message", "sender_name"="RADIO-STATION", "sender"="00000000", "message"="Now playing: [src.tape_inside.audio_type] for [src.tape_inside.name_of_thing].", "group" = MGA_RADIO)
 			pdaSignal.transmission_method = TRANSMISSION_RADIO

@@ -404,7 +404,7 @@
 	blacklisted.Add(R_FREQ_BLACKLIST)
 
 	do
-		. = rand(1352, 1439)
+		. = rand(R_FREQ_SYNDICATE_MIN, R_FREQ_SYNDICATE_MAX)
 
 	while (. in blacklisted)
 

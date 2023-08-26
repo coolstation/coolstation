@@ -1062,7 +1062,7 @@
 	var/time = 180
 	power_usage = 120
 
-	var/status_display_freq = "1435"
+	var/status_display_freq = FREQ_STATUS
 
 
 #define DISARM_CUTOFF 10 //Can't disarm past this point! OH NO!
@@ -1363,7 +1363,7 @@
 
 	proc/post_display_status(var/timeleft)
 
-		var/datum/radio_frequency/frequency = radio_controller.return_frequency(status_display_freq)
+		var/datum/radio_frequency/frequency = radio_controller.return_frequency("[status_display_freq]")
 
 		if(!frequency) return
 
@@ -1388,7 +1388,7 @@
 	density = 1
 	icon_state = "net_radio"
 	device_tag = "PNET_PR6_RADIO"
-	//var/freq = 1219
+	//var/freq = FREQ_ROBUDDY
 	mats = 8
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_WIRECUTTERS | DECON_MULTITOOL | DECON_DESTRUCT
 	var/list/frequencies = list()
@@ -1407,8 +1407,8 @@
 		SPAWN_DBG(0.5 SECONDS)
 
 			if (radio_controller)
-				frequencies["1411"] = radio_controller.add_object(src, "1411")
-				frequencies["1419"] = radio_controller.add_object(src, "1419")
+				frequencies["[FREQ_AIRLOCK_REMOTE]"] = radio_controller.add_object(src, "[FREQ_AIRLOCK_REMOTE]")
+				frequencies["[FREQ_WLNET]"] = radio_controller.add_object(src, "[FREQ_WLNET]")
 
 			if(!src.link)
 				var/turf/T = get_turf(src)
@@ -1418,8 +1418,8 @@
 					src.link.master = src
 
 	disposing()
-		radio_controller.remove_object(src, "1411")
-		radio_controller.remove_object(src, "1419")
+		radio_controller.remove_object(src, "[FREQ_AIRLOCK_REMOTE]")
+		radio_controller.remove_object(src, "[FREQ_WLNET]")
 		..()
 
 	attack_hand(mob/user as mob)

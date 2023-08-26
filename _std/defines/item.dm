@@ -26,8 +26,6 @@
 #define TALK_INTO_HAND 			 (1<<11)
 /// is an open container for chemistry purposes
 #define OPENCONTAINER				 (1<<12)
-/// is an atom spawned in an adventure area
-#define ISADVENTURE 				 (1<<13)
 /// No beaker etc. splashing. For Chem machines etc.
 #define NOSPLASH 						 (1<<13)
 /// No attack when hitting stuff with this item.
@@ -48,6 +46,8 @@
 #define IS_BUBSIUM_SCALED		 (1<<21)
 /// Does not get nuked by the mineral magnet area clear (does not block activating the magnet)
 #define MINERAL_MAGNET_SAFE (1<<22)
+/// Is currently scaled by siladenafil
+#define IS_BONER_SCALED		 (1<<23)
 
 
 //Item function flags

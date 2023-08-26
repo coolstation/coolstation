@@ -349,7 +349,7 @@
 		rebuildOverlays()
 		return ..()
 
-/obj/cabinet/taffy // for psychiatrists to prescribe
+/obj/cabinet/taffy // because you did such a good job in there
 
 	New()
 		slots["1"] = new /obj/item/reagent_containers/food/snacks/candy/taffy/cherry(src)

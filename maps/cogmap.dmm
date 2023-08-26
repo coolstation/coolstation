@@ -23716,7 +23716,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal)
 "bip" = (
-/obj/floorpillstatue,
+/obj/decal/fakeobjects/pupkinstatue,
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal)
 "biq" = (
@@ -61962,6 +61962,7 @@
 	tag = ""
 	},
 /obj/disposalpipe/segment/transport,
+/obj/item/storage/box/grenade_starter_kit,
 /turf/simulated/floor/plating,
 /area/station/science/gen_storage)
 "sVT" = (
@@ -62416,6 +62417,13 @@
 	},
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
+"tUL" = (
+/obj/disposalpipe/segment/mail{
+	dir = 4
+	},
+/obj/table/folding/bin,
+/turf/simulated/floor/plating,
+/area/station/maintenance/east)
 "tWU" = (
 /obj/stool/chair/yellow,
 /obj/landmark/start{
@@ -63390,6 +63398,10 @@
 	},
 /turf/simulated/floor/bot,
 /area/station/security/main)
+"vQS" = (
+/obj/table/folding/bin,
+/turf/simulated/floor/plating,
+/area/station/maintenance/northwest)
 "vRw" = (
 /obj/machinery/light/emergency{
 	dir = 1
@@ -99630,7 +99642,7 @@ aca
 aca
 aca
 aca
-acB
+vQS
 ahw
 ais
 ajA
@@ -118997,7 +119009,7 @@ aXK
 aYL
 aSD
 baB
-bbB
+tUL
 bcF
 bdG
 beD

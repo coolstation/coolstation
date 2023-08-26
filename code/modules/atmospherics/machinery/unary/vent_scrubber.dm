@@ -10,7 +10,7 @@
 	layer = PIPE_MACHINE_LAYER
 
 	var/id = null
-	var/frequency = "1439"
+	var/frequency = FREQ_ATMOS2
 	var/datum/radio_frequency/radio_connection
 
 	var/on = 1

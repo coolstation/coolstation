@@ -458,19 +458,19 @@ var/global/list/mapNames = list(
 		/datum/job/civilian/clown = 2,
 		/datum/job/security/security_officer = 6,
 		/datum/job/security/detective = 3,
-		/datum/job/research/geneticist = 3,
-		/datum/job/research/roboticist = 3,
 		/datum/job/research/scientist = 6,
-		/datum/job/research/medical_doctor = 7,
+		/datum/job/medical/geneticist = 3,
+		/datum/job/medical/roboticist = 3,
+		/datum/job/medical/medical_doctor = 7,
 		/datum/job/engineering/mechanic = 4,
-		/datum/job/engineering/miner = 4,
 		/datum/job/engineering/engineer = 6,
+		/datum/job/logistics/miner = 4,
 		/datum/job/civilian/chef = 2,
 		/datum/job/civilian/bartender = 2,
 		/datum/job/civilian/janitor = 3,
 		/datum/job/civilian/chaplain = 2,
 		/datum/job/special/lawyer = 1,
-		/datum/job/special/atmospheric_technician = 1
+		/datum/job/engineering/atmospheric_technician = 1
 	)
 
 /datum/map_settings/manta
@@ -659,7 +659,7 @@ var/global/list/mapNames = list(
 
 	job_limits_from_landmarks = 1
 	job_limits_override = list(
-		/datum/job/special/atmospheric_technician = 1,
+		/datum/job/engineering/atmospheric_technician = 1,
 		/datum/job/special/barber = 1,
 		/datum/job/special/research_assistant = 2,
 		/datum/job/special/medical_assistant = 2
@@ -921,10 +921,6 @@ var/global/list/mapNames = list(
 		"the mining staff room" = list(/area/station/mining/staff_room))
 		//"the radio lab" = list(/area/station/crew_quarters/radio))
 
-	job_limits_override = list(
-		/datum/job/special/random/psychiatrist = 1
-	)
-
 /datum/map_settings/wrestlemap
 	name = "WRESTLEMAP"
 	walls = /turf/simulated/wall/auto/supernorn
@@ -1059,11 +1055,11 @@ var/global/list/mapNames = list(
 	job_limits_override = list(
 		/datum/job/security/security_officer = 6,
 		/datum/job/research/scientist = 6,
-		/datum/job/research/medical_doctor = 6,
-		/datum/job/engineering/miner = 6,
+		/datum/job/medical/medical_doctor = 6,
+		/datum/job/logistics/miner = 6,
 		/datum/job/engineering/engineer = 6,
 		/datum/job/civilian/chaplain = 2,
-		/datum/job/special/atmospheric_technician = 2,
+		/datum/job/engineering/atmospheric_technician = 2,
 		/datum/job/civilian/botanist = 3
 	)
 

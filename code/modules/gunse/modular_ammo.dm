@@ -174,9 +174,57 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "nt_brass"
 	icon_full  = "nt_brass"
-	icon_empty = "nt_brass_empty"
+	icon_empty = "nt_empty"
 	icon_one   = "bullet_brass"
 	icon_shell = "brass_case"
+
+	three
+		default_min_amount = 3
+		default_max_amount = 3
+
+	five
+		default_min_amount = 5
+		default_max_amount = 5
+
+	ten
+		default_min_amount = 10
+		default_max_amount = 10
+
+/obj/item/stackable_ammo/pistol_38AP
+	name = "armor-piercing pistol round"
+	real_name = "armor-piercing pistol round"
+	desc = "The weak and useless pistol round, finally buffed."
+	projectile_type = /datum/projectile/bullet/revolver_38/AP
+	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
+	icon_state = "nt_red"
+	icon_full  = "nt_red"
+	icon_empty = "nt_empty"
+	icon_one   = "bullet_red"
+	icon_shell = "red_case"
+
+	three
+		default_min_amount = 3
+		default_max_amount = 3
+
+	five
+		default_min_amount = 5
+		default_max_amount = 5
+
+	ten
+		default_min_amount = 10
+		default_max_amount = 10
+
+/obj/item/stackable_ammo/tranq
+	name = "\improper NT Tranq-Will-8-or"
+	real_name = "\improper NT Tranq-Will-8-or"
+	desc = "What the fuck are these even?"
+	projectile_type = /datum/projectile/bullet/tranq_dart
+	ammo_DRM = GUN_NANO
+	icon_state = "nt_white"
+	icon_full  = "nt_white"
+	icon_empty = "nt_empty"
+	icon_one   = "it_what"
+	icon_shell = "white_case"
 
 	three
 		default_min_amount = 3
@@ -225,6 +273,24 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	icon_empty = "nt_stun_empty"
 	icon_one   = "bullet_nerf"
 	icon_shell = "nerf_case"
+
+	three
+		default_min_amount = 3
+		default_max_amount = 3
+
+	five
+		default_min_amount = 5
+		default_max_amount = 5
+
+	ten
+		default_min_amount = 10
+		default_max_amount = 10
+
+/obj/item/stackable_ammo/radbow
+	name = "\improper Syndicate Radioactive Darts"
+	real_name = "Syndicate Radioactive Darts"
+	projectile_type = /datum/projectile/rad_bolt
+	desc = "Stealthy projectiles cause insidious radiation poisonning."
 
 	three
 		default_min_amount = 3

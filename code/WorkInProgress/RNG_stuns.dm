@@ -40,7 +40,14 @@ their respective object definitions, but for now they are cozy and warm. love u.
 
 /obj/item/extinguisher
 	//warc - rng stuns - down and disorient without full stun
-	rng_stun_rate = 6 // %
+	rng_stun_rate = 8 // %
+	rng_stun_time = 0 SECONDS
+	rng_stun_diso = 5 SECONDS
+	rng_stun_weak = 2 SECONDS
+
+/obj/item/crowbar
+	//warc - rng stuns - down and disorient without full stun
+	rng_stun_rate = 8 // %
 	rng_stun_time = 0 SECONDS
 	rng_stun_diso = 5 SECONDS
 	rng_stun_weak = 2 SECONDS

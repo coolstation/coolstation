@@ -448,7 +448,7 @@
 
 	var/processing = 0
 	var/net_id = null
-	var/frequency = 1467
+	var/frequency = FREQ_RUCK
 	var/datum/radio_frequency/radio_connection
 	var/no_print_spam = 1 // In relation to world.time.
 	var/olde = 0
@@ -465,7 +465,7 @@
 	. = ..()
 	known_rucks = new
 	ruck_controls = new
-	pda = radio_controller.return_frequency(FREQ_PDA)
+	pda = radio_controller.return_frequency("[FREQ_PDA]")
 
 	if(isnull(mechanic_controls)) mechanic_controls = ruck_controls //For objective tracking and admin
 	if(radio_controller)

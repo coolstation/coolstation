@@ -472,8 +472,8 @@ proc/filter_trait_hats(var/type)
 	item_state = "chefhat" //TODO: unique inhand sprite?
 
 /obj/item/clothing/head/mailcap
-	name = "Mailman's hat"
-	desc = "The hat of a mailman."
+	name = "Mailcarrier's hat"
+	desc = "The noble but dumpy hat of a mailcarrier."
 	icon_state = "mailcap"
 	item_state = "mailcap"
 

@@ -283,6 +283,7 @@ var/global
 	brigshuttle_location = 0
 	miningshuttle_location = 0
 	researchshuttle_location = 0
+	shoppingshuttle_location = 0
 	researchshuttle_lockdown = 0
 	toggles_enabled = 1
 	announce_banlogin = 1
@@ -495,7 +496,7 @@ var/global
 
 	list/cooldowns
 
-	syndicate_currency = "[pick("Flooz","Beenz")]"
+	syndicate_currency = "[pick("Flooz","Beenz","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals")]"
 
 
 /proc/addGlobalRenderSource(var/image/I, var/key)

@@ -145,7 +145,7 @@ obj/item/rocko
 	get_desc(dist, mob/user)
 		if(ismob(user) &&	user.job == "Chief Engineer")
 			. = "A rock but also [pick(rocko_is)]."
-		else if(ismob(user) && (user.job in list("Engineer", "Mechanic", "Quartermaster", "Captain")))
+		else if(ismob(user) && (user.job in list("Engineer", "Mechanic", "Quartermaster", "Cargo Technician", "Captain")))
 			. = "The Chief Engineer loves this rock.  Maybe it's to make up for their lack of a pet."
 		else
 			. = "A rock with a [src.smile ? "smiley" : "frowny"] face painted on it."

@@ -65,7 +65,7 @@
 	var/list/text_bad_output_adjective = list("janky","crooked","warped","shoddy","shabby","lousy","crappy","shitty")
 	var/obj/item/card/id/scan = null
 	var/temp = null
-	var/frequency = 1149
+	var/frequency = FREQ_PDA
 	var/datum/radio_frequency/transmit_connection = null
 	var/net_id = null
 

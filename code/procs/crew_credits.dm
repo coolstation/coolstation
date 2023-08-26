@@ -17,6 +17,7 @@ var/global/crew_creds = null
 		var/list/datum/mind/round_medical = list()
 		var/list/datum/mind/round_science = list()
 		var/list/datum/mind/round_engineering = list()
+		var/list/datum/mind/round_logistics = list()
 		var/list/datum/mind/round_civilian = list()
 		var/list/datum/mind/round_other = list()
 
@@ -41,12 +42,12 @@ var/global/crew_creds = null
 					continue
 
 				// Medical?
-				if("Medical Director","Medical Doctor","Roboticist","Geneticist","Pharmacist","Psychiatrist","Psychologist","Psychotherapist","Therapist","Counselor","Life Coach")
+				if("Medical Director","Medical Doctor","Surgeon","Roboticist","Geneticist","Pharmacist","Nurse")
 					round_medical.Add(M)
 					continue
 
 				// Science?
-				if("Research Director","Scientist","Test Subject")
+				if("Research Director","Scientist","Chemist","Test Subject")
 					round_science.Add(M)
 					continue
 
@@ -59,19 +60,24 @@ var/global/crew_creds = null
 					#endif
 
 				// Engineering?
-				if("Chief Engineer","Engineer","Quartermaster","Miner","Mechanic","Construction Worker")
+				if("Chief Engineer","Engineer","Mechanic","Electrician","Construction Worker","Atmospheric Technician")
 					round_engineering.Add(M)
 					continue
 
+				// Logistics?
+				if("Quartermaster","Cargo Technician","Miner","Mailcarrier")
+					round_logistics.Add(M)
+					continue
+
 				// Civilian?
-				if("Head of Personnel","Communications Officer","Botanist","Apiculturist","Rancher","Bartender","Chef","Sous-Chef","Waiter","Clown","Mime","Chaplain","Mailman","Musician","Janitor","Coach","Boxer","Barber","Staff Assistant")
+				if("Head of Personnel","Communications Officer","Botanist","Apiculturist","Rancher","Bartender","Chef","Sous-Chef","Waiter","Clown","Mime","Chaplain","Musician","Janitor","Coach","Boxer","Barber","Staff Assistant")
 					round_civilian.Add(M)
 					continue
 
 				else // IDK who the fuck you are so just go here
 					round_other.Add(M)
 
-		logTheThing("debug", null, null, "Zamujasa/CREWCREDITS: [world.timeofday] done processing minds. info: A [round_antags.len] C [round_captains.len] S [round_security.len] M [round_medical.len] R [round_science.len] E [round_engineering.len] Cv [round_civilian.len] X [round_other.len]")
+		logTheThing("debug", null, null, "Zamujasa/CREWCREDITS: [world.timeofday] done processing minds. info: A [round_antags.len] C [round_captains.len] S [round_security.len] M [round_medical.len] R [round_science.len] E [round_engineering.len] L [round_logistics.len] Cv [round_civilian.len] X [round_other.len]")
 
 		logTheThing("debug", null, null, "Zamujasa/CREWCREDITS: [world.timeofday] generating crew list")
 
@@ -166,6 +172,22 @@ var/global/crew_creds = null
 			crew_creds += "<HR>"
 
 		logTheThing("debug", null, null, "Zamujasa/CREWCREDITS: [world.timeofday] done engineering")
+
+		// Logistics Department
+		if(round_logistics.len > 0)
+			crew_creds += "<H3>Logistics Department:</H3>"
+			// QM?
+			for(var/datum/mind/M in round_logistics)
+				if(!M.current) continue
+				if(M.assigned_role == "Quartermaster")
+					crew_creds += "<H4>[M.current.real_name][isdead(M.current) ? " \[[__red("DEAD")]\] " : ""] (played by [M.key]) as the [M.assigned_role]<H4>"
+					round_logistics.Remove(M)
+			for(var/datum/mind/M in round_logistics)
+				if(!M.current) continue
+				crew_creds += "[M.current.real_name][isdead(M.current) ? " \[[__red("DEAD")]\] " : ""] (played by [M.key]) as [M.assigned_role]<BR>"
+			crew_creds += "<HR>"
+
+		logTheThing("debug", null, null, "Zamujasa/CREWCREDITS: [world.timeofday] done logistics")
 
 
 		// Civilian Department

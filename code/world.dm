@@ -99,7 +99,7 @@ var/global/mob/twitch_mob = 0
 			else
 				rules = "<html><head><title>Rules</title><body>There are no rules! Go nuts!</body></html>"
 		else*/
-	rules = {"<meta http-equiv="refresh" content="0; url=http://wiki.ss13.co/Rules">"}
+	rules = {"<meta http-equiv="refresh" content="0; url=https://wiki.coolstation.space/wiki/Rules">"}
 	//if (!rules)
 	//	rules = "<html><head><title>Rules</title><body>There are no rules! Go nuts!</body></html>"
 
@@ -772,14 +772,14 @@ var/f_color_selector_handler/F_Color_Selector
 #endif
 	shutdown()
 #endif
+	var/newround = 'sound/misc/NewRound.ogg'
+	if (prob(40))
+		newround = pick('sound/misc/NewRound2.ogg', 'sound/misc/NewRound3.ogg', 'sound/misc/NewRound4.ogg', 'sound/misc/NewRound5.ogg', 'sound/misc/NewRound6.ogg', 'sound/misc/TimeForANewRound.ogg')
 
 	SPAWN_DBG(world.tick_lag)
 		for (var/client/C)
 			if (C.mob)
-				if (prob(40))
-					C.mob << sound(pick('sound/misc/NewRound2.ogg', 'sound/misc/NewRound3.ogg', 'sound/misc/NewRound4.ogg', 'sound/misc/NewRound5.ogg', 'sound/misc/TimeForANewRound.ogg'))
-				else
-					C.mob << sound('sound/misc/NewRound.ogg')
+				C.mob << sound(newround)
 
 #ifdef DATALOGGER
 	SPAWN_DBG(world.tick_lag*2)
@@ -795,7 +795,7 @@ var/f_color_selector_handler/F_Color_Selector
 		//game_stats.WriteToFile("data/game_stats.txt")
 #endif
 
-	sleep(5 SECONDS) // wait for sound to play
+	sleep(7 SECONDS) // wait for sound to play
 	if(config.update_check_enabled)
 		world.installUpdate()
 

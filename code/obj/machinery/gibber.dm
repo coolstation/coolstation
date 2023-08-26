@@ -24,7 +24,7 @@
 
 /obj/machinery/gibber/New()
 	..()
-	src.overlays += image('icons/obj/kitchen.dmi', "grindnotinuse")
+	//src.overlays += image('icons/obj/kitchen.dmi', "grindnotinuse") what the fuck this isn't an icon
 	UnsubscribeProcess()
 
 /obj/machinery/gibber/custom_suicide = 1

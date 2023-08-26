@@ -495,12 +495,17 @@
 	flags = FPRINT | TABLEPASS | OPENCONTAINER | SUPPRESSATTACK
 	rc_flags = RC_FULLNESS | RC_VISIBLE | RC_SPECTRO
 	var/gulp_size = 5 //This is now officially broken ... need to think of a nice way to fix it.
-	var/splash_all_contents = 1
+	var/splash_all_contents = 0 //making an executive decision to *not* splash everything out by default just because you clicked your beer on something else by accident
 	doants = 0
 	throw_speed = 1
 	var/can_recycle = 1
 	var/can_chug = 1
+	var/shard_amt = 0 //bottles and glasses and other stuff use this var
+	var/alphatest_closecontainer = 0 //don't screw up cap drawing while i start making bottles openable
 
+/*
+//okay well update_gulp_size was already broken when i got here
+//let's not call it when it does nothing, at least for now
 	New()
 		..()
 		update_gulp_size()
@@ -509,9 +514,10 @@
 		//gulp_size = round(reagents.total_volume / 5)
 		//if (gulp_size < 5) gulp_size = 5
 		return
+*/
 
 	on_reagent_change()
-		update_gulp_size()
+		//update_gulp_size() //broken, so commenting it out here too
 		doants = src.reagents && src.reagents.total_volume > 0
 
 	on_spin_emote(var/mob/living/carbon/human/user as mob)
@@ -556,10 +562,10 @@
 	//Wow, we copy+pasted the heck out of this... (Source is chemistry-tools dm)
 	attack_self(mob/user as mob)
 		if (src.splash_all_contents)
-			boutput(user, "<span class='notice'>You tighten your grip on the [src].</span>")
+			boutput(user, "<span class='notice'>You try to be more careful about spilling [src].</span>")
 			src.splash_all_contents = 0
 		else
-			boutput(user, "<span class='notice'>You loosen your grip on the [src].</span>")
+			boutput(user, "<span class='notice'>You get ready to dump all of [src].</span>")
 			src.splash_all_contents = 1
 		return
 
@@ -571,6 +577,10 @@
 				return
 		if (!src.reagents || !src.reagents.total_volume)
 			boutput(user, "<span class='alert'>Nothing left in [src], oh no!</span>")
+			return 0
+
+		if (!src.is_open_container()) //unopened cans, bottles with caps and corks in, etc.
+			user.show_text("This thing isn't even open!", "red")
 			return 0
 
 		if (iscarbon(M) || ismobcritter(M))
@@ -709,6 +719,28 @@
 				can_mousedrop = 1
 			return
 
+	// fluid handling: (accepts /obj/fluid) clickdrag to fill. fill from any fluid you want until full.
+	// called from mousedrop
+	// just putting the code up here in preparation, currently not called by anything
+
+	proc/scoopfluid(var/obj/fluid/F)
+		//check if there's anything to even scoop
+		if (!F.group || !F.group.reagents.total_volume)
+			boutput(usr, "<span class='alert'>[F] is empty. (this is a bug, whooops!)</span>")
+			F.removed()
+			return
+		//check if we're already full
+		if (reagents.total_volume >= reagents.maximum_volume)
+			boutput(usr, "<span class='alert'>[src] is full.</span>")
+			return
+		//prep the fluid
+		F.group.reagents.skip_next_update = 1
+		F.group.update_amt_per_tile()
+		//get safe amount and transfer
+		var/amt = min(F.group.amt_per_tile, reagents.maximum_volume - reagents.total_volume)
+		boutput(usr, "<span class='notice'>You fill [src] with [amt] units of [F].</span>")
+		F.group.drain(F, amt / F.group.amt_per_tile, src) // drain uses weird units
+
 
 	/*
 	afterattack(obj/target, mob/user , flag)
@@ -835,7 +867,9 @@
 	desc = "A stylish bottle for the containment of liquids."
 	var/label = "none" // Look in bottle.dmi for the label names
 	var/labeled = 0 // For writing on the things with a pen
-	var/cap = "none" // same as label names in bottle.dmi- they match
+	var/cap = null // same as label names in bottle.dmi- they match
+	var/cap_type = null	//"cap","cork","screw","champagne" for determining what comes off and what can go back on
+						//also for consideration: "rag"
 	//var/static/image/bottle_image = null
 	var/static/image/image_fluid = null
 	var/static/image/image_label = null
@@ -843,18 +877,24 @@
 	var/static/image/image_ice = null
 	var/ice = null
 	var/unbreakable = 0
-	var/broken = 0
+	var/broken = 0 //stabby edge
+	var/shakes = 0 //for carbonated beverage messes, and champagne opening
+	var/popped = 0 //wine/champagne wrappers
 	var/bottle_style = "clear"
 	var/fluid_style = "bottle"
 	var/alt_filled_state = null // does our icon state gain a 1 if we've got fluid? put that 1 in this here var if so!
 	var/fluid_underlay_shows_volume = FALSE // determines whether this bottle is special and shows reagent volume
-	var/shatter = 0
+	var/weakness = 0 //the weaker the bottle, the greater the risk of shattering completely (was var/shatter)
+	var/sturdiness = 0 //resistance to shattering (i.e. thin drinking glass is 0, thick glass bottle of bojacks is 2, something like a carafe is 1...)
 	initial_volume = 50
 	g_amt = 60
 
 	New()
 		..()
-		src.cap = src.label //quick and dirty
+		if (!src.cap)
+			src.cap = src.label //quick and dirty
+		//if (cap_type)
+			//src.close_container()
 		src.update_icon()
 
 	on_reagent_change()
@@ -863,7 +903,7 @@
 	unpooled()
 		..()
 		src.broken = 0
-		src.shatter = 0
+		src.weakness = 0
 		src.labeled = 0
 		src.update_icon()
 
@@ -931,11 +971,25 @@
 				src.UpdateOverlays(src.image_label, "label")
 			else
 				src.UpdateOverlays(null, "label")
-			if (src.cap)
-				ENSURE_IMAGE(src.image_cap, src.icon, "cap-[src.cap]")
-				src.UpdateOverlays(src.image_cap, "cap")
+			//caps and corks and wrappers oh my
+			if (!src.is_open_container()) //check for seal
+				if (src.popped) //is it popped wine/champagne?
+					ENSURE_IMAGE(src.image_cap, src.icon, "cork-[src.cap]") //hastily recorked, unglamorous
+					src.UpdateOverlays(src.image_cap, "cap")
+				else
+					ENSURE_IMAGE(src.image_cap, src.icon, "cap-[src.cap]") //easy peasy, everyone gets standard cap
+					src.UpdateOverlays(src.image_cap, "cap")
 			else
-				src.UpdateOverlays(null, "cap")
+				if (src.popped)
+					ENSURE_IMAGE(src.image_cap, src.icon, "open-[src.cap]") //torn seal wrapper with no cork
+					src.UpdateOverlays(src.image_cap, "cap")
+				//temporary code check!
+				else if (!src.alphatest_closecontainer) //if this is an open container AND has a cap AND isn't openable, then draw as normal
+					ENSURE_IMAGE(src.image_cap, src.icon, "cap-[src.cap]") //easy peasy, everyone gets standard cap
+					src.UpdateOverlays(src.image_cap, "cap")
+				//end temporary code check!
+				else
+					src.UpdateOverlays(null, "cap")
 			// Ice is implemented below; we just need sprites from whichever poor schmuck that'll be willing to do all that ridiculous sprite work
 			if (src.reagents.has_reagent("ice"))
 				ENSURE_IMAGE(src.image_ice, src.icon, "ice-[src.fluid_style]")
@@ -970,7 +1024,7 @@
 			stamina_crit_chance = 50
 			tooltip_rebuild = 1
 
-			if (src.shatter >= rand(2,12))
+			if (src.weakness >= rand(2,12))
 				var/turf/U = user.loc
 				user.visible_message("<span class='alert'>[src] shatters completely!</span>")
 				playsound(U, "sound/impact_sounds/Glass_Shatter_[rand(1,3)].ogg", 100, 1)
@@ -984,7 +1038,7 @@
 					random_brute_damage(user, damage)
 					take_bleeding_damage(user, null, damage)
 			else
-				src.shatter++
+				src.weakness++
 				user.visible_message("<span class='alert'><b>[user]</b> [pick("shanks","stabs","attacks")] [target] with the broken [src]!</span>")
 				logTheThing("combat", user, target, "attacks [constructTarget(target,"combat")] with a broken [src] at [log_loc(user)].")
 				playsound(target, "sound/impact_sounds/Flesh_Stab_1.ogg", 60, 1)
@@ -1067,7 +1121,7 @@
 	var/obj/item/cocktail_stuff/in_glass = null
 	initial_volume = 50
 	var/smashed = 0
-	var/shard_amt = 1
+	shard_amt = 1
 
 	var/image/fluid_image
 	var/image/image_ice
@@ -1440,6 +1494,73 @@
 			onRestart()
 		return
 
+/datum/action/bar/icon/chug_pills
+	duration = 0.5 SECONDS
+	id = "chugging"
+	var/mob/pillholder
+	var/mob/target
+	var/obj/item/storage/pill_bottle/pillbottle
+
+	New(mob/Target, obj/item/storage/pill_bottle/PillBottle)
+		..()
+		target = Target
+		pillbottle = PillBottle
+		icon = pillbottle.icon
+		icon_state = pillbottle.icon_state
+
+	proc/checkContinue()
+		if (pillbottle.contents.len <= 0 || !isalive(pillholder) || !pillholder.find_in_hand(pillbottle))
+			return FALSE
+		if ((target.reagents?.maximum_volume-target.reagents?.total_volume) <= 0) // we're fuckin full, slosh slosh,
+			target.visible_message("[target.name] [pick("fucken HURLS.","barfs it back up!","vomits bigtime!","pukes.")]")
+			target.vomit()
+			return FALSE
+		return TRUE
+
+	onStart()
+		..()
+		pillholder = src.owner
+		loopStart()
+		if(pillholder == target)
+			pillholder.visible_message("[pillholder.name] starts chugging the [pillbottle.name]!")
+		else
+			pillholder.visible_message("[pillholder.name] starts forcing [target.name] to chug the [pillbottle.name]!")
+		logTheThing("combat", pillholder, target, "[pillholder == target ? "starts chugging from" : "makes [constructTarget(target,"combat")] chug from"] [pillbottle] [log_reagents(pillbottle)] at [log_loc(target)].")
+		return
+
+	loopStart()
+		..()
+		if(!checkContinue()) interrupt(INTERRUPT_ALWAYS)
+		return
+
+	onUpdate()
+		..()
+		if(!checkContinue()) interrupt(INTERRUPT_ALWAYS)
+		return
+
+	onInterrupt(flag)
+		..()
+		target.visible_message("[target.name] couldn't drink everything in the [pillbottle.name].")
+
+	onEnd()
+
+		if (pillbottle.contents.len) //Take a sip
+			for(var/obj/item/reagent_containers/pill/P in pillbottle)
+				P.attack_self(target)
+				break
+			playsound(target.loc,"sound/items/drink.ogg", rand(10,50), 1)
+
+			eat_twitch(target)
+
+		if(pillbottle.contents.len <= 0)
+			..()
+			target.visible_message("[target.name] chugged everything in the [pillbottle.name]!")
+		else if(!checkContinue())
+			..()
+			target.visible_message("[target.name] stops chugging.")
+		else
+			onRestart()
+		return
 
 /* =================================================== */
 /* -------------------- Sub-Types -------------------- */
@@ -1751,7 +1872,7 @@
 	initial_volume = 100
 	can_chug = 1
 	var/smashed = 0
-	var/shard_amt = 1
+	shard_amt = 1
 	var/image/fluid_image
 
 	on_reagent_change()
@@ -1903,7 +2024,6 @@
 	desc = "A small metal lid for a bottled refreshment. It's slightly bent from being pried off."
 	icon = 'icons/obj/foodNdrink/bottle.dmi'
 	icon_state = "bottlecap-red" //eventually i'll
-	var/cap_type = 1
 	w_class = W_CLASS_TINY
 	rand_pos = 1
 
@@ -1912,21 +2032,21 @@
 	desc = "A small cork for a wine bottle."
 	icon = 'icons/obj/foodNdrink/bottle.dmi'
 	icon_state = "cork"
-	cap_type = 2
+	rand_pos = 1
 
 /obj/item/cap/screwtop
 	name = "bottle cap"
 	desc = "A screw-on cap for a bottle." //this can include bottle caps for sodas probably
 	icon = 'icons/obj/foodNdrink/bottle.dmi' //same as standard cap, will apply offsets to image overlay and just use the same
 	icon_state = "screwtop"
-	cap_type = 3
+	rand_pos = 1
 
 /obj/item/cap/champcork
 	name = "champagne cork"
 	desc = "A distinctive cork for a champagne bottle."
 	icon = 'icons/obj/foodNdrink/bottle.dmi'
 	icon_state = "champcork"
-	cap_type = 4
+	rand_pos = 1
 
 /obj/item/bottleopener
 	name = "bottle opener"

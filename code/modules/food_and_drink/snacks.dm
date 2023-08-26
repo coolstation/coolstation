@@ -1145,7 +1145,7 @@
 			if (user.mob_flags & IS_BONER)
 				D = new/obj/item/reagent_containers/food/snacks/spaghetti/sauce/skeletal(W.loc)
 				boutput(user, "<span class='alert'>... whoa, that felt good. Like really good.</span>")
-				user.reagents.add_reagent("bonerjuice",20)
+				user.reagents.add_reagent("satisghetti",20)
 			else
 				D = new/obj/item/reagent_containers/food/snacks/spaghetti/sauce(W.loc)
 			user.u_equip(W)

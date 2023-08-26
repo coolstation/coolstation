@@ -8,7 +8,7 @@
 	heal_amt = 1
 	food_color = "#FFFFCC"
 	real_name = "bread"
-	flags = ONBELT
+	flags = ONBELT | FPRINT | TABLEPASS | SUPPRESSATTACK
 	var/slicetype = /obj/item/reagent_containers/food/snacks/breadslice
 	initial_volume = 30
 	initial_reagents = "bread"

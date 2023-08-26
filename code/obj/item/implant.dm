@@ -32,7 +32,7 @@ THROWING DARTS
 	var/uses_radio = 0
 	var/list/mailgroups = null
 	var/net_id = null
-	var/pda_alert_frequency = 1149
+	var/pda_alert_frequency = FREQ_PDA
 	var/datum/radio_frequency/radio_connection
 
 	New()
@@ -234,7 +234,7 @@ THROWING DARTS
 	impcolor = "b"
 	var/healthstring = ""
 	uses_radio = 1
-	mailgroups = list(MGD_MEDBAY, MGD_MEDRESEACH, MGD_SPIRITUALAFFAIRS)
+	mailgroups = list(MGD_MEDBAY, MGD_MEDRESEARCH, MGD_SPIRITUALAFFAIRS)
 
 	implanted(mob/M, mob/I)
 		..()
@@ -377,7 +377,7 @@ THROWING DARTS
 	uses_radio = 1
 	mailgroups = list(MGD_SECURITY)
 	var/id = 1.0
-	var/frequency = 1451		//This is the nonsense frequency that the implant uses. I guess it was never finished. -kyle
+	var/frequency = FREQ_TRACKING		//This is the nonsense frequency that the implant uses. I guess it was never finished. -kyle
 
 	New()
 		..()
@@ -711,9 +711,7 @@ THROWING DARTS
 
 		if(!I.mind.special_role && M.mind && ticker.mode) // a nonantag? using an implant on ya? well then...
 			old_objectives = M.mind.objectives
-			var/datum/objective/regular/assassinate/kill_implanter = new
-			kill_implanter.target = I
-			kill_implanter.create_objective_string(I)
+			var/datum/objective/regular/assassinate/kill_implanter = new(I.mind)
 			M.mind.objectives += kill_implanter
 			M.mind.special_role = ROLE_INSURGENT
 			SHOW_INSURGENT_BACKFIRE(M)
@@ -733,9 +731,9 @@ THROWING DARTS
 				M.mind.objectives |= I.mind.objectives
 
 		if (src.suppress_insurgent_popup)
-			boutput(M, "<h2><span class='alert'>You feel an unwavering loyalty to your new crimepal, [I.real_name], and their cause! Do not tell anyone about this unless your new crimepal tells you to!</span></h2>")
+			boutput(M, "<h2><span class='alert'>You feel an unshakeable kinship to your new crimepal, [I.real_name], and their cause! Do not tell anyone about this unless your new crimepal tells you to!</span></h2>")
 		else
-			boutput(M, "<h2><span class='alert'>You feel an unwavering loyalty to [I.real_name]! You feel you must help [his_or_her(I)] cause! Do not tell anyone about this unless your crimepal tells you to!</span></h2>")
+			boutput(M, "<h2><span class='alert'>You feel an unshakeable kinship to [I.real_name]! You feel you must help [his_or_her(I)] cause! Do not tell anyone about this unless your crimepal tells you to!</span></h2>")
 			SHOW_INSURGENT_TIPS(M)
 		if (src.custom_orders)
 			boutput(M, "<h2><span class='alert'>[I.real_name]'s plan overwhelms your brain! <b>\"[src.custom_orders]\"</b> It <b>must</b> be done!</span></h2>")

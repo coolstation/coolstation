@@ -591,7 +591,7 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 
 /obj/machinery/navbeacon/lunar
 	name = "tour beacon"
-	freq = 1441
+	freq = FREQ_BOT_TOUR_LUNA
 
 	tour0
 		name = "tour beacon - start"
@@ -2103,7 +2103,7 @@ obj/machinery/embedded_controller/radio/maintpanel/mnx
 				boutput(user, "<span class='alert'>You're out of beans. You feel strangely sad.</span>")
 				return
 			else
-				var/obj/item/reagent_containers/food/snacks/candy/B = new /obj/item/reagent_containers/food/snacks/candy {name = "A Farty Snott's Every Flavour Bean"; desc = "A favorite halloween sweet worldwide!"; icon_state = "bean"; amount = 1; initial_volume = 100;} (user)
+				var/obj/item/reagent_containers/food/snacks/candy/B = new /obj/item/reagent_containers/food/snacks/candy {name = "A WhizzBean"; desc = "Some beardo must have dropped this."; icon_state = "bean"; amount = 1; initial_volume = 100;} (user)
 
 				user.put_in_hand_or_drop(B)
 				src.amount--
@@ -2114,7 +2114,7 @@ obj/machinery/embedded_controller/radio/maintpanel/mnx
 
 				if(src.amount == 0)
 					src.icon_state = "beans-empty"
-					src.name = "An empty Farty Snott's bag."
+					src.name = "An empty WhizzBeans bag."
 		else
 			return ..()
 		return

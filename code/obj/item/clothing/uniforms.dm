@@ -405,12 +405,6 @@
 		icon_state = "med_director-dress"
 		item_state = "med_director-dress"
 
-/obj/item/clothing/under/rank/comm_officer
-	name = "\improper Communication Officer's suit"
-	desc = "They wanted you as their new recruit and they got what they wanted."
-	icon_state = "comm_officer"
-	item_state = "comm_officer"
-
 // Security
 
 /obj/item/clothing/under/rank/security
@@ -505,7 +499,7 @@
 		item_state = "engine-alt"
 
 /obj/item/clothing/under/rank/cargo
-	name = "quartermaster's jumpsuit"
+	name = "cargo tech's jumpsuit"
 	desc = "What can brown do for you?"
 	icon_state = "qm"
 	item_state = "qm"
@@ -513,6 +507,16 @@
 	april_fools
 		icon_state = "qm-alt"
 		item_state = "qm-alt"
+
+/obj/item/clothing/under/rank/qm
+	name = "quartermaster's jumpsuit"
+	desc = "What can brown do for you?"
+	icon_state = "qm-alt"
+	item_state = "qm-alt"
+
+	april_fools
+		icon_state = "qm"
+		item_state = "qm"
 
 /obj/item/clothing/under/rank/mechanic
 	name = "mechanic's uniform"
@@ -625,6 +629,7 @@
 		icon_state = "clown-dress"
 		item_state = "clown-dress"
 
+/* post goon resprite addition, needs to be made
 /obj/item/clothing/under/misc/mimefancy
 	name = "fancy mime suit"
 	desc = "A suit perfect for more sophisticated mimes. Wait... This isn't just a bleached clown suit, is it?"
@@ -640,6 +645,7 @@
 	wear_image_icon = 'icons/mob/jumpsuits/worn_js_misc.dmi'
 	icon_state = "mime-dress"
 	item_state = "mime-dress"
+*/
 
 /obj/item/clothing/under/misc/vice
 	name = "vice officer's suit"
@@ -662,11 +668,11 @@
 /obj/item/clothing/under/misc/hydroponics
 	name = "senior botanist's jumpsuit"
 	desc = "Anyone wearing this has probably grown a LOT of weed in their time."
-	icon_state = "hydro-senior"
-	item_state = "hydro-senior"
+	icon_state = "hydro"
+	item_state = "hydro"
 
 /obj/item/clothing/under/misc/mail
-	name = "mailman's jumpsuit"
+	name = "mailcarrier's jumpsuit"
 	desc = "The crisp threads of a postmaster."
 	icon_state = "mail"
 	item_state = "mail"
@@ -1135,11 +1141,11 @@
 		item_state = "darkred"
 
 	blue
-		icon_state = "scrub-n"
+		icon_state = "scrub-b"
 		item_state = "darkblue"
 
 	purple
-		icon_state = "scrub-v"
+		icon_state = "scrub-p"
 		item_state = "lightpurple"
 
 		New()

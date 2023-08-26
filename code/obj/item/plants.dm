@@ -338,7 +338,7 @@
 /obj/item/plant/herb/aconite
 	name = "aconite"
 	crop_suffix	= ""
-	desc = "A professor once asked, \"What is the difference, Mr. Potter, between monkshood and wolfsbane?\"\n  \"Aconite\", answered Hermione. And all was well."
+	desc = "Also known as wolfsbane. You know, just in case you have any wolves that need baning."
 	icon_state = "aconite"
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 	// module_research_type = /obj/item/plant/herb/cannabis

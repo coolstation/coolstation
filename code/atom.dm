@@ -204,6 +204,16 @@ TYPEINFO(/atom)
 	proc/is_open_container()
 		return flags & OPENCONTAINER
 
+	// and for easy open/close...
+	proc/open_container()
+		flags |= OPENCONTAINER
+
+	proc/close_container()
+		flags &= ~OPENCONTAINER
+
+	proc/toggle_container()
+		flags ^= ~OPENCONTAINER
+
 	proc/transfer_all_reagents(var/atom/A as turf|obj|mob, var/mob/user as mob)
 		// trans from src to A
 		if (!src.reagents || !A.reagents)

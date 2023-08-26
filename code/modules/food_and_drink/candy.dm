@@ -180,8 +180,14 @@ ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/candy/jellybean)
 	var/phrase
 	var/tastesbad = 0
 
+	heal(var/mob/M)
+		if (tastesbad)
+			boutput(M, "<span class='alert'>[phrase]! That tasted like [flavor]...</span>")
+		else
+			boutput(M, "<span class='notice'>[phrase]! That tasted like [flavor]...</span>")
+
 /obj/item/reagent_containers/food/snacks/candy/jellybean/someflavor
-	name = "\improper Mabie Nott's Some Flavor Bean"
+	name = "\improper Jee-Lai Bee-Lai FlavorBean"
 	desc = "Fresh organic jellybeans packed with...something."
 
 	New()
@@ -211,56 +217,72 @@ ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/candy/jellybean)
 				flavor = pick("egg", "strawberry", "raspberry", "snozzberry", "happiness", "popcorn", "buttered popcorn", "cinnamon", "macaroni and cheese", "pepperoni", "cheese", "lasagna", "pina colada", "tutti frutti", "lemon", "margarita", "coconut", "pineapple", "scotch", "vodka", "root beer", "cotton candy", "Lagavulin 18", "toffee", "vanilla", "coffee", "apple pie", "neapolitan", "orange", "lime", "crotch", "mango", "apple", "grape", "Slurm")
 				phrase = pick("Yum", "Wow", "MMM", "Delicious", "Scrumptious", "Fantastic", "Oh yeah")
 				tastesbad = 0
-
-	heal(var/mob/M)
-		if (tastesbad)
-			boutput(M, "<span class='alert'>[phrase]! That tasted like [flavor]...</span>")
-		else
-			boutput(M, "<span class='notice'>[phrase]! That tasted like [flavor]...</span>")
-
 //#ifdef HALLOWEEN
+
+//wizbean with 100u total, high chance to be half of whatever reagent in the game, cloaked from reagent scanner
 /obj/item/reagent_containers/food/snacks/candy/jellybean/everyflavor
-	name = "\improper Farty Snott's Every Flavour Bean"
-	desc = "A favorite halloween sweet worldwide!"
+	name = "\improper WhizzBean"
+	desc = "A favorite halloween sweet worldwide! At least, if you're a wizard."
+	var/trueflavor //real reagent, var/flavor is faked and just for eating
+	var/list/goodflavors = list("egg", "strawberry", "raspberry", "snozzberry", "happiness", "popcorn", "buttered popcorn", "cinnamon", "macaroni and cheese", "pepperoni", "cheese", "lasagna", "pina colada", "tutti frutti", "lemon", "margarita", "coconut", "pineapple", "scotch", "vodka", "root beer", "cotton candy", "Lagavulin 18", "toffee", "vanilla", "coffee", "apple pie", "neapolitan", "orange", "lime", "crotch", "mango", "apple", "grape", "Slurm", "Popecrunch")
+	var/wizdesc
 
 	New()
 		..()
 		SPAWN_DBG(0)
 			if (src.reagents)
 				if (prob(12))
-					src.reagents.add_reagent(pick("milk", "coffee", "VHFCS", "gravy", "fakecheese", "grease"), 10)
+					src.trueflavor = pick("milk", "coffee", "VHFCS", "gravy", "fakecheese", "grease")
+					src.reagents.add_reagent(src.trueflavor, 10) //not sure why only 10 but whatever
 					src.heal_amt = 1
 				else if (prob(12))
-					src.reagents.add_reagent(pick("bilk", "beff", "vomit", "gvomit", "porktonium", "badgrease"), 10)
+					src.trueflavor = pick("bilk", "beff", "vomit", "gvomit", "porktonium", "badgrease")
+					src.reagents.add_reagent(src.trueflavor, 10)
 					src.heal_amt = 0
 				else
-					var/flavor = null
 					if (all_functional_reagent_ids.len > 0)
-						flavor = pick(all_functional_reagent_ids)
+						src.trueflavor = pick(all_functional_reagent_ids)
 					else
-						flavor = "sugar"
-					src.reagents.add_reagent(flavor, 50)
+						src.trueflavor = "sugar"
+					src.reagents.add_reagent(src.flavor, 50)
 
 				src.food_color = src.reagents.get_master_color()
 				src.icon += src.food_color // apparently this is a thing you can do?  neat!
 
-				src.reagents.add_reagent("sugar", 50)
+				//fill out the other half of the 100u
+				src.reagents.add_reagent("cloak_juice", 5) //keep it secret, keep it safe: say no 2 reagent scanning glasses wiz. you might as well break into chemistry and mix up your own potions at that point
+				src.reagents.add_reagent("sugar", 40) //padding
+
 				if (src.reagents.total_volume <= 60)
 					src.reagents.add_reagent("sugar", 40)
 
+				//if there's perfected dracula serum or whatever in this, you may never know. put your faith in thos beans
 				if(prob(50))
-					flavor = pick("egg", "vomit", "snot", "poo", "urine", "earwax", "wet dog", "belly-button lint", "sweat", "congealed farts", "mold", "armpits", "elbow grease", "sour milk", "WD-40", "slime", "blob", "gym sock", "pants", "brussels sprouts", "feet", "litter box", "durian fruit", "asbestos", "corpse flower", "corpse", "cow dung", "rot", "tar", "ham", "gooncode", "quark-gluon plasma", "bee", "heat death")
+					flavor = pick("egg", "vomit", "snot", "poo", "urine", "whizz", "earwax", "wet dog", "belly-button lint", "sweat", "congealed farts", "mold", "armpits", "elbow grease", "sour milk", "WD-40", "slime", "blob", "gym sock", "pants", "brussels sprouts", "feet", "litter box", "durian fruit", "asbestos", "corpse flower", "corpse", "cow dung", "rot", "tar", "ham", "gooncode", "quark-gluon plasma", "bee", "heat death")
 					phrase = pick("Oh god", "Jeez", "Ugh", "Blecch", "Holy crap that's awful", "What the hell?", "*HURP*", "Phoo")
 					tastesbad = 1
 				else
-					flavor = pick("egg", "strawberry", "raspberry", "snozzberry", "happiness", "popcorn", "buttered popcorn", "cinnamon", "macaroni and cheese", "pepperoni", "cheese", "lasagna", "pina colada", "tutti frutti", "lemon", "margarita", "coconut", "pineapple", "scotch", "vodka", "root beer", "cotton candy", "Lagavulin 18", "toffee", "vanilla", "coffee", "apple pie", "neapolitan", "orange", "lime", "crotch", "mango", "apple", "grape", "Slurm", "Popecrunch")
+					flavor = pick(src.goodflavors)
 					phrase = pick("Yum", "Wow", "MMM", "Delicious", "Scrumptious", "Fantastic", "Oh yeah")
+
+				//small wizard insight, since these beardos probably eat this crap all the time
+				if (prob(75))
+					//sorry for the following nested ternary: 25% chance to be wrong, or coin flip on whether you're technically right, or right where it counts. imo it's fine because wizards get ten beans total but there's tweaking to be done
+					wizdesc = pick(" You remember this one to be"," You think this might be", " You're positively sure this one is", " You've had this one before! It's", "If you had to guess, this one is") + " [prob(75) ? "[prob(50) ? "[src.trueflavor]" : "[src.flavor]"]" : "[pick(src.goodflavors)]"]-flavored."
+				else
+					wizdesc = pick(" You have no idea what flavor this one is."," You haven't had this one before.", " Huh, is that a new one?", " It looks unfamiliar to you.")
+
+	get_desc()
+		if (iswizard(usr))
+			. += src.wizdesc
+		else
+			. = ..()
 
 /obj/item/kitchen/everyflavor_box
 	amount = 6
 	icon = 'icons/obj/foodNdrink/food_candy.dmi'
 	icon_state = "beans"
-	name = "bag of Farty Snott's Every Flavour Beans"
+	name = "bag of WhizzBeanz"
 
 /obj/item/kitchen/everyflavor_box/attack_hand(mob/user as mob, unused, flag)
 	if (flag)
@@ -275,7 +297,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/candy/jellybean)
 			src.amount--
 			if(src.amount == 0)
 				src.icon_state = "beans-empty"
-				src.name = "empty Farty Snott's bag"
+				src.name = "empty WhizzBeanz bag"
 	else
 		return ..()
 	return

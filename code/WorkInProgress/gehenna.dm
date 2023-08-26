@@ -239,7 +239,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	requires_power = 0
 	sound_environment = EAX_PLAIN
 	sound_loop_1 = 'sound/ambience/loop/SANDSTORM.ogg' //need something wimdy, maybe overlay a storm sound on this
-	sound_loop_1_vol = 250 //always loud, fukken storming
+	sound_loop_1_vol = 150 //always loud, fukken storming
 	var/list/assholes_to_hurt = list()
 	var/buffeting_assoles = FALSE
 	irradiated = 0.5
@@ -260,12 +260,29 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 				if((istype(jerk:wear_suit, /obj/item/clothing/suit/armor))||(istype(jerk:wear_suit, /obj/item/clothing/suit/space))&&(istype(jerk:head, /obj/item/clothing/head/helmet/space))) return
 				random_brute_damage(jerk, 20)
 				if(prob(50))
-					playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_2.ogg', 50, 1)
+					playsound(O.loc, 'sound/impact_sounds/Flesh_Stab_2.ogg', 50, 1)
 					boutput(jerk, pick("Sand gets caught in your eyes!","The wind blows you off course!","Debris really fucks up your skin!"))
 					jerk.changeStatus("weakened", 13 SECONDS)
 					jerk.change_eye_blurry(15, 30)
 				SPAWN_DBG(10)
 					src.process_some_sand()
+		else
+			if(ismob(O))
+				var/mob/living/M = O
+				if (!isdead(M))
+					assholes_to_hurt |= M //quick and simple, nonhuman mobs are gonna get hurt.
+					src.process_some_sand()
+					return
+			if(istype(O, /obj/vehicle) || istype(O, /obj/machinery/bot) || istype(O, /obj/machinery/vehicle))
+				playsound(O.loc, 'sound/effects/creaking_metal2.ogg', 100, 1)
+				O.ex_act(3)
+				assholes_to_hurt |= O
+				src.process_some_sand()
+				return
+
+
+
+
 
 	Exited(atom/movable/A)
 		..()
@@ -291,6 +308,34 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 					boutput(jerk, pick("Dust gets caught in your eyes!","The wind disorients you!","Debris pierces through your skin!"))
 					jerk.changeStatus("weakened", 7 SECONDS)
 					jerk.change_eye_blurry(10, 20)
+			for(var/obj/vehicle/V in assholes_to_hurt)
+				if(!istype(V))
+					assholes_to_hurt &= ~V
+					continue
+				if((V.rider_visible || !V.sealed_cabin)&&prob(50))
+					V.eject_rider()
+					V.ex_act(1)
+				else
+					V.ex_act(3)
+				playsound(V.loc, 'sound/effects/creaking_metal2.ogg', 100, 1)
+			for(var/obj/machinery/vehicle/pod in assholes_to_hurt)
+				if(!istype(pod) || pod.health <= 0)
+					assholes_to_hurt &= ~pod
+					continue
+				else
+					playsound(pod.loc, 'sound/effects/creaking_metal1.ogg', 100, 1)
+					pod.ex_act(rand(2,3))
+			for(var/obj/machinery/bot/aipod in assholes_to_hurt)
+				if(!istype(aipod) || aipod.health <= 0)
+					assholes_to_hurt &= ~aipod
+					continue
+				else
+					playsound(aipod.loc, 'sound/effects/creaking_metal1.ogg', 100, 1)
+					aipod.ex_act(rand(3))
+
+
+
+
 			sleep(10 SECONDS)
 		buffeting_assoles = FALSE
 

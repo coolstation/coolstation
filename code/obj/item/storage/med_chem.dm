@@ -590,6 +590,12 @@
 	desc = "Huh."
 	spawn_contents = list(/obj/item/reagent_containers/pill/cyberpunk = 5)
 
+/obj/item/storage/pill_bottle/gsbp //this should really be a named cardboard thing with two identical pills and some ad copy but that's next move
+	name = "pill bottle (gas station boner pills)"
+	desc = "oh jesus fuck they come in assorted bulk packs???"
+	//desc = "This greasy cardboard backer touts all kind of herbal remedies, promising everything from gooder love to smarter brains to cooler spin-kicks. There's a label with some kind of animal on it." use this for the backer
+	spawn_contents = list(/obj/item/reagent_containers/pill/gsbp = 4)
+
 /obj/item/storage/pill_bottle/custom_suicide = 1
 /obj/item/storage/pill_bottle/suicide(var/mob/user as mob)
 	if (!src.user_can_suicide(user))

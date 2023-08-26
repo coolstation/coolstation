@@ -646,7 +646,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 			reagents.add_reagent("ketchup", 1000) //closest we got to red sauce right now?
 			return
 		else
-			reagents.add_reagent("water", 1000)
+			reagents.add_reagent("cleaner", 1000)
 			//reagents.add_reagent("cleaner", 250) //don't even need this now that we have fluid, probably. If you want it, add it yer self
 /*
 /obj/ability_button/toggle_buffer

@@ -108,7 +108,7 @@
 	blacklisted.Add(R_FREQ_BLACKLIST)
 
 	do
-		. = rand(1352, 1439)
+		. = rand(R_FREQ_SYNDICATE_MIN, R_FREQ_SYNDICATE_MAX)
 	while (blacklisted.Find(.))
 
 /datum/game_mode/traitor/send_intercept()

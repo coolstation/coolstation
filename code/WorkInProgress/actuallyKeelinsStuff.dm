@@ -1535,6 +1535,7 @@ Returns:
 				M.set_dir(direction)
 				M.color = color_new
 
+/* forging a new legacy
 /obj/floorpillstatue
 	name = "Statue of Dr.Floorpills"
 	desc = "A statue of the most radioactive man alive. Technically alive. Sort of."
@@ -1564,6 +1565,7 @@ Returns:
 			broken = 1
 
 		return ..()
+*/
 
 /proc/mass_proc_arg()
 	var/type = text2path(input(usr,"Type", "", "/obj"))
@@ -2938,7 +2940,7 @@ Returns:
 			return
 		else
 			if(ishuman(hit_atom))
-				var/mob/living/carbon/human/user = usr
+/*				var/mob/living/carbon/human/user = usr
 				var/safari = (istype(user.w_uniform, /obj/item/clothing/under/gimmick/safari) && istype(user.head, /obj/item/clothing/head/safari))
 				if(safari)
 					var/mob/living/carbon/human/H = hit_atom
@@ -2947,7 +2949,7 @@ Returns:
 					H.force_laydown_standup()
 					//H.paralysis++
 					playsound(H.loc, "swing_hit", 50, 1)
-
+*/
 				prob_clonk = min(prob_clonk + 5, 40)
 				SPAWN_DBG(2 SECONDS)
 					prob_clonk = max(prob_clonk - 5, 0)

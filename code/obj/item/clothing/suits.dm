@@ -1124,7 +1124,7 @@
 			setProperty("exploprot", 10)
 			setProperty("meleeprot", 1)
 			setProperty("rangedprot", 3)
-
+	/* never had pre-resprite sprites
 	knight // nukie melee class armor
 		name = "citadel heavy combat cuirass"
 		desc = "A syndicate issue super-heavy combat armor suit, pressurized for space travel and reinforced for superior staying-power in extended battle."
@@ -1138,7 +1138,7 @@
 			setProperty("exploprot", 30)
 			setProperty("space_movespeed", 0.9)
 			setProperty("disorient_resist", 65)
-
+	*/
 	specialist
 		name = "specialist operative combat dress"
 		desc = "A syndicate issue combat dress system, pressurized for space travel."
