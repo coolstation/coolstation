@@ -1840,7 +1840,9 @@
 /area/station/engine/hotloop)
 "bbP" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/light_switch/south,
+/obj/item/device/radio/intercom/science{
+	dir = 1
+	},
 /turf/simulated/floor/black,
 /area/station/science/chemistry)
 "bcp" = (
@@ -3798,13 +3800,12 @@
 	name = "North Lower Maintenance"
 	})
 "cmH" = (
-/obj/item/device/radio/intercom/catering{
-	pixel_x = 28
+/obj/table/reinforced/industrial/auto,
+/obj/item/device/radio/intercom/cargo{
+	dir = 4
 	},
-/obj/rack,
-/obj/disposalpipe/segment/produce,
-/turf/simulated/floor/plating,
-/area/station/crew_quarters/catering)
+/turf/simulated/floor/grey,
+/area/station/mining/equipment)
 "cmR" = (
 /obj/cable{
 	d1 = 4;
@@ -5074,6 +5075,12 @@
 /obj/disposalpipe/segment/configurator,
 /turf/simulated/floor/plating,
 /area/station/routing/depot)
+"ddW" = (
+/obj/landmark{
+	name = "qmdumfall"
+	},
+/turf/simulated/floor/plating,
+/area/transit_vehicle/elevator/qmdum_bot)
 "dec" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -7688,7 +7695,9 @@
 	})
 "eui" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
-/turf/simulated/wall,
+/obj/machinery/door/airlock/maintenance,
+/obj/access_spawn/mining,
+/turf/simulated/floor/grey,
 /area/station/mining/lobby)
 "euE" = (
 /obj/disposalpipe/segment/morgue{
@@ -7755,6 +7764,12 @@
 "exE" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	name = "autoname - SS13";
+	tag = ""
 	},
 /turf/simulated/floor/grey,
 /area/station/mining/lobby)
@@ -8860,7 +8875,7 @@
 	},
 /obj/machinery/light_switch/south,
 /obj/item/device/radio/intercom/catering{
-	pixel_x = 28
+	dir = 8
 	},
 /turf/simulated/floor/black,
 /area/station/crew_quarters/bar)
@@ -10003,6 +10018,9 @@
 	color = "#666666"
 	},
 /obj/item/device/camera_viewer,
+/obj/item/device/radio/intercom/science{
+	dir = 4
+	},
 /turf/simulated/floor/grey,
 /area/station/science/research_director)
 "fKx" = (
@@ -13756,6 +13774,9 @@
 /area/station/quartermaster/automat)
 "hVz" = (
 /obj/decal/cleanable/dirt/random,
+/obj/item/device/radio/intercom/cargo{
+	dir = 4
+	},
 /turf/simulated/floor,
 /area/station/storage/warehouse)
 "hVB" = (
@@ -14353,6 +14374,7 @@
 /obj/landmark/start{
 	name = "Chemist"
 	},
+/obj/machinery/light_switch/south,
 /turf/simulated/floor/black,
 /area/station/science/chemistry)
 "ipp" = (
@@ -15778,6 +15800,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/item/device/radio/intercom/AI{
+	dir = 4
+	},
 /turf/simulated/floor/darkblue,
 /area/station/turret_protected/AIbasecore2)
 "jel" = (
@@ -16180,6 +16205,7 @@
 /obj/machinery/door/airlock/glass,
 /obj/grille/catwalk/jen,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
+/obj/access_spawn/cargo,
 /turf/simulated/floor/plating,
 /area/station/storage/warehouse)
 "joU" = (
@@ -18430,6 +18456,13 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/plating,
 /area/station/wc/cargo)
+"kzN" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/item/device/radio/intercom/medical{
+	dir = 4
+	},
+/turf/simulated/floor/white,
+/area/station/medical/medbooth)
 "kzO" = (
 /obj/disposalpipe/segment/produce{
 	dir = 4
@@ -21588,17 +21621,11 @@
 /turf/simulated/floor/black,
 /area/station/ai_monitored/armory)
 "mmY" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4
+/obj/item/device/radio/intercom/security{
+	dir = 1
 	},
-/obj/grille/catwalk/jen,
-/obj/decal/poster/wallsign/poster_clown{
-	pixel_y = 32
-	},
-/turf/simulated/floor/plating,
-/area/station/maintenance/inner/ne{
-	name = "Northeast Tunnel"
-	})
+/turf/simulated/floor/carpet/red/standard,
+/area/station/security/hos/horizon)
 "mnj" = (
 /obj/cable{
 	d1 = 2;
@@ -22225,6 +22252,12 @@
 /obj/structure/girder,
 /turf/simulated/floor/plating,
 /area/gehenna/underground/staffies_nest)
+"mDY" = (
+/obj/item/device/radio/intercom/science{
+	dir = 4
+	},
+/turf/simulated/floor/grey,
+/area/station/science/lab)
 "mFg" = (
 /obj/submachine/chef_sink{
 	color = "#FFDDAA";
@@ -25245,6 +25278,7 @@
 /obj/disposalpipe/segment/produce,
 /obj/machinery/door/airlock/glass,
 /obj/grille/catwalk/jen,
+/obj/access_spawn/cargo,
 /turf/simulated/floor/plating,
 /area/station/storage/warehouse)
 "orJ" = (
@@ -26404,6 +26438,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/engine/inner)
+"pfn" = (
+/obj/disposalpipe/segment/produce,
+/obj/item/device/radio/intercom/catering{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/station/crew_quarters/catering)
 "pfs" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /obj/machinery/camera{
@@ -29002,6 +29043,7 @@
 	},
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/computer/security/wooden_tv,
+/obj/item/device/radio/intercom/security,
 /turf/simulated/floor,
 /area/station/security/detectives_office)
 "qLv" = (
@@ -32246,12 +32288,6 @@
 /area/station/storage/warehouse)
 "sDP" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 9;
-	name = "autoname - SS13";
-	tag = ""
-	},
 /turf/simulated/floor/grey,
 /area/station/mining/lobby)
 "sDR" = (
@@ -36657,6 +36693,20 @@
 	dir = 1
 	},
 /area/station/engine/inner)
+"uXO" = (
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/obj/grille/catwalk/jen/side{
+	dir = 8
+	},
+/obj/decal/poster/wallsign/poster_clown{
+	pixel_y = 32
+	},
+/turf/simulated/floor/plating,
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
+	})
 "uXT" = (
 /obj/cable{
 	d1 = 4;
@@ -37673,6 +37723,9 @@
 	dir = 8
 	},
 /obj/machinery/disposal/mail/autoname/checkpoint/customs,
+/obj/item/device/radio/intercom/security{
+	dir = 1
+	},
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/medical)
 "vxu" = (
@@ -39314,6 +39367,17 @@
 /obj/item/paper_bin,
 /turf/simulated/floor/grey,
 /area/station/bridge/basement)
+"wrW" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/item/device/radio/intercom/telescience{
+	dir = 1
+	},
+/turf/simulated/floor/grey,
+/area/station/science/teleporter)
 "wsa" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/disposalpipe/segment/cargo{
@@ -40150,6 +40214,9 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/networked/test_apparatus/electrobox,
+/obj/item/device/radio/intercom/science{
+	dir = 4
+	},
 /turf/simulated/floor/black,
 /area/station/science/artifact{
 	name = "Artifact Lounge"
@@ -40450,6 +40517,12 @@
 	},
 /turf/simulated/floor,
 /area/station/mining/barracks)
+"xeK" = (
+/obj/machinery/button/elevator/qmdum,
+/turf/simulated/wall/r_wall,
+/area/station/maintenance/inner/ne{
+	name = "Northeast Tunnel"
+	})
 "xeQ" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -42108,6 +42181,7 @@
 /obj/machinery/door/airlock/glass,
 /obj/grille/catwalk/jen,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/access_spawn/cargo,
 /turf/simulated/floor/plating,
 /area/station/storage/warehouse)
 "yel" = (
@@ -71245,7 +71319,7 @@ pdO
 vld
 dWr
 cNi
-mVf
+kzN
 sVg
 vuN
 dkK
@@ -72180,7 +72254,7 @@ sTS
 fYa
 jZc
 ybt
-hHU
+wrW
 kEu
 naf
 vlV
@@ -72493,7 +72567,7 @@ cJS
 qca
 woV
 woV
-woV
+mDY
 xew
 bwR
 bwR
@@ -89665,10 +89739,10 @@ tBQ
 xWM
 nIS
 cdS
-cmH
+uTJ
 uTJ
 miY
-dcI
+pfn
 dcI
 sZX
 sWI
@@ -94451,7 +94525,7 @@ ajm
 jem
 lap
 jBw
-jBw
+mmY
 eUL
 pdO
 pdO
@@ -95667,7 +95741,7 @@ pdO
 pdO
 pdO
 wSY
-edx
+uXO
 lQg
 whI
 akf
@@ -95967,8 +96041,8 @@ pdO
 pdO
 pdO
 pdO
-pdO
 wSY
+xeK
 oPM
 tnM
 wko
@@ -96269,9 +96343,9 @@ pdO
 pdO
 pdO
 pdO
-pdO
-wSY
-mmY
+akf
+ddW
+euE
 tnM
 wko
 akf
@@ -96571,7 +96645,7 @@ lya
 lya
 lya
 lya
-lya
+akf
 xMJ
 oPM
 tnM
@@ -103196,7 +103270,7 @@ xwd
 lIf
 lIf
 hJv
-foF
+cmH
 foF
 hJv
 pSe

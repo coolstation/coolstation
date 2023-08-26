@@ -87,6 +87,17 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	name		= "Dumbwaiter Lower Level"
 	target_area = /area/transit_vehicle/elevator/dum_bot
 
+/datum/transit_stop/elevator/qmdum_top
+	stop_id 	= "dum_top"
+	name		= "Cargo Dumbwaiter Upper Level"
+	target_area = /area/transit_vehicle/elevator/qmdum_top
+	current_occupant = "dum_elevator"
+
+/datum/transit_stop/elevator/qmdum_bot
+	stop_id 	= "dum_bot"
+	name		= "Cargo Dumbwaiter Lower Level"
+	target_area = /area/transit_vehicle/elevator/qmdum_bot
+
 /datum/transit_stop/elevator/ntfc_top
 	stop_id 	= "ntfc_top"
 	name		= "Major Shuttle Dock Ring"
@@ -153,6 +164,10 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	vehicle_id = "dum_elevator"
 	stop_ids = list("dum_top","dum_bot")
 
+/datum/transit_vehicle/elevator/qmdum
+	vehicle_id = "qmdum_elevator"
+	stop_ids = list("qmdum_top","qmdum_bot")
+
 /datum/transit_vehicle/elevator/ntfc
 	vehicle_id = "ntfc_elevator"
 	stop_ids = list("ntfc_top","ntfc_mid","ntfc_bot")
@@ -177,6 +192,9 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /obj/machinery/computer/transit_terminal/dum
 	vehicle_id = "dum_elevator"
 
+/obj/machinery/computer/transit_terminal/qmdum
+	vehicle_id = "qmdum_elevator"
+
 /obj/machinery/computer/transit_terminal/ntfc
 	vehicle_id = "ntfc_elevator"
 // thins
@@ -198,6 +216,9 @@ _________ _______  _______  _        _______ __________________   _______ ______
 
 /obj/machinery/computer/transit_terminal/thin/dum
 	vehicle_id = "dum_elevator"
+
+/obj/machinery/computer/transit_terminal/thin/qmdum
+	vehicle_id = "qmdum_elevator"
 
 /obj/machinery/computer/transit_terminal/thin/ntfc
 	vehicle_id = "ntfc_elevator"
@@ -232,6 +253,11 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	vehicle_id = "dum_elevator"
 	stop_top_id = "dum_top"
 	stop_bottom_id = "dum_bot"
+
+/obj/machinery/button/elevator/qmdum
+	vehicle_id = "qmdum_elevator"
+	stop_top_id = "qmdum_top"
+	stop_bottom_id = "qmdum_bot"
 
       //|\\
      // | \\
@@ -319,6 +345,16 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	icon_state = "shuttle2"
 	filler_turf = "/turf/simulated/floor/plating"
 
+/area/transit_vehicle/elevator/qmdum_top
+	name = "Cargo Dumbwaiter"
+	icon_state = "shuttle"
+	filler_turf = "/turf/simulated/floor/specialroom/elevator_shaft/qmdum"
+
+/area/transit_vehicle/elevator/qmdum_bot
+	name = "Cargo Dumbwaiter"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/simulated/floor/plating"
+
 /area/transit_vehicle/elevator/ntfc_top
 	name = "Space Elevator"
 	icon_state = "shuttle"
@@ -346,6 +382,8 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	fall_landmark = LANDMARK_FALL_SEC
 /turf/simulated/floor/specialroom/elevator_shaft/dum
 	fall_landmark = LANDMARK_FALL_DUM
+/turf/simulated/floor/specialroom/elevator_shaft/qmdum
+	fall_landmark = LANDMARK_FALL_QMDUM
 /turf/simulated/floor/specialroom/elevator_shaft/ntfcm
 	fall_landmark = LANDMARK_FALL_NTFC
 /turf/simulated/floor/specialroom/elevator_shaft/ntfc
