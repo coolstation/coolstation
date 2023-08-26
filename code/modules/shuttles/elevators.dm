@@ -88,13 +88,13 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	target_area = /area/transit_vehicle/elevator/dum_bot
 
 /datum/transit_stop/elevator/qmdum_top
-	stop_id 	= "dum_top"
+	stop_id 	= "qmdum_top"
 	name		= "Cargo Dumbwaiter Upper Level"
 	target_area = /area/transit_vehicle/elevator/qmdum_top
 	current_occupant = "dum_elevator"
 
 /datum/transit_stop/elevator/qmdum_bot
-	stop_id 	= "dum_bot"
+	stop_id 	= "qmdum_bot"
 	name		= "Cargo Dumbwaiter Lower Level"
 	target_area = /area/transit_vehicle/elevator/qmdum_bot
 
