@@ -117,6 +117,7 @@
 		desc = "These channels seem to mostly be about robuddies. What is this, some kind of reality show?"
 		network = "Zeta"
 		icon_state = "security_tv"
+		glow_in_dark_screen = FALSE
 
 		power_change()
 			return

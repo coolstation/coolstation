@@ -30,6 +30,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "messyfiles"
 	req_access = list(access_forensics_lockers)
+	glow_in_dark_screen = FALSE //This computer looking like a filing cabinet is a complete hack
 
 /obj/machinery/computer/secure_data/attack_hand(mob/user as mob)
 	if (..())

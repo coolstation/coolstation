@@ -62,6 +62,7 @@
 	g_amt = 40
 	bottle_style = "wine"
 	label = "wine"
+	fluid_style = "none"
 	initial_volume = 50
 	initial_reagents = list("wine"=30)
 

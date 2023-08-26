@@ -272,7 +272,6 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 	name = "Vehicle Control"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "mmagnet"
-	glow_in_dark_screen = FALSE
 	circuit_type = /obj/item/circuitboard/transit_terminal
 	/// Transit ID of the Vehicle this terminal controls
 	var/vehicle_id
@@ -284,6 +283,7 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 		icon_state = "comp_buttpanel"
 		circuit_type = null
 		density = FALSE
+		glow_in_dark_screen = FALSE
 
 	New()
 		..()
