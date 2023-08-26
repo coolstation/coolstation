@@ -434,7 +434,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "Improvised Short Barrel"
 	desc = "Some pipe shrouded with the remains of a soviet spacesuit"
 	spread_angle = -2
-	jam_frequency_fire = -3
+	jam_frequency_fire = 4
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "stubby"
 	length = 13
