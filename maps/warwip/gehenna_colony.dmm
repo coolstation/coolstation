@@ -24,6 +24,12 @@
 /obj/decal/cleanable/dirt/random,
 /turf/simulated/floor/stairs/wide,
 /area/station/engine/engineering)
+"abi" = (
+/obj/machinery/button/elevator/macro_test{
+	pixel_y = 25
+	},
+/turf/space/gehenna/desert,
+/area/gehenna)
 "abk" = (
 /obj/machinery/disposal/mail/autoname/checkpoint/sec_foyer,
 /obj/disposalpipe/trunk{
@@ -7165,6 +7171,12 @@
 /obj/machinery/disposal/mail/autoname/chapel,
 /turf/simulated/floor/black,
 /area/station/chapel/sanctuary)
+"frz" = (
+/obj/grille/catwalk/elevator{
+	dir = 6
+	},
+/turf/simulated/floor/carpet/grime,
+/area/transit_vehicle/elevator/macro_test/top)
 "frJ" = (
 /obj/machinery/computer/announcement{
 	dir = 4;
@@ -10129,6 +10141,12 @@
 /obj/machinery/disposal/morgue,
 /turf/simulated/floor,
 /area/station/quartermaster/cargobay)
+"hBV" = (
+/obj/grille/catwalk/elevator{
+	dir = 10
+	},
+/turf/simulated/floor/carpet/grime,
+/area/transit_vehicle/elevator/macro_test/top)
 "hCa" = (
 /obj/cable{
 	d1 = 1;
@@ -20835,6 +20853,10 @@
 	},
 /turf/simulated/floor/red,
 /area/station/engine/core)
+"pEQ" = (
+/obj/machinery/computer/transit_terminal/macro_test,
+/turf/space/gehenna/desert,
+/area/gehenna)
 "pFu" = (
 /obj/table/reinforced/auto,
 /obj/machinery/cashreg,
@@ -28374,6 +28396,12 @@
 /obj/disposalpipe/junction/right/south,
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
+"uWF" = (
+/obj/grille/catwalk/elevator{
+	dir = 5
+	},
+/turf/simulated/floor/carpet/grime,
+/area/transit_vehicle/elevator/macro_test/top)
 "uWM" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/horizontal,
@@ -30651,6 +30679,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/medical/maintenance)
+"wAv" = (
+/obj/machinery/computer/transit_terminal/thin/macro_test{
+	pixel_y = 29
+	},
+/obj/grille/catwalk/elevator{
+	dir = 9
+	},
+/turf/simulated/floor/carpet/grime,
+/area/transit_vehicle/elevator/macro_test/top)
 "wBe" = (
 /obj/machinery/light/fluorescent/cool/very,
 /obj/machinery/disposal/mail/autoname/medbay/robotics,
@@ -120257,7 +120294,7 @@ jEb
 jEb
 cqC
 cqC
-iiv
+pEQ
 iiv
 iiv
 iiv
@@ -120557,8 +120594,8 @@ jEb
 jEb
 jEb
 jEb
-cqC
-cqC
+wAv
+hBV
 iiv
 iiv
 iiv
@@ -120859,8 +120896,8 @@ jEb
 jEb
 jEb
 jEb
-cqC
-cqC
+uWF
+frz
 iiv
 iiv
 iiv
@@ -121163,7 +121200,7 @@ jEb
 cqC
 cqC
 cqC
-iiv
+abi
 iiv
 iiv
 iiv

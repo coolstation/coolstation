@@ -2927,6 +2927,10 @@
 /area/station/science/artifact{
 	name = "Artifact Lounge"
 	})
+"bFR" = (
+/obj/machinery/computer/transit_terminal/macro_test,
+/turf/simulated/floor/plating,
+/area/gehenna/underground)
 "bGa" = (
 /obj/disposalpipe/trunk{
 	dir = 2
@@ -12650,6 +12654,10 @@
 /area/station/maintenance/west{
 	name = "West Tunnel"
 	})
+"hlw" = (
+/obj/machinery/bot/skullbot,
+/turf/simulated/floor/plating,
+/area/gehenna/underground)
 "hlT" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/wall,
@@ -13942,6 +13950,10 @@
 /area/station/security/quarters{
 	name = "Sec. Officers Sleeping Quarters"
 	})
+"ibG" = (
+/obj/machinery/light/small/reddish,
+/turf/simulated/floor/plating,
+/area/gehenna/underground)
 "ibK" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
@@ -32031,6 +32043,12 @@
 /area/station/maintenance/inner/ne{
 	name = "Northeast Tunnel"
 	})
+"stD" = (
+/obj/machinery/button/elevator/macro_test{
+	pixel_y = 25
+	},
+/turf/simulated/floor/plating,
+/area/gehenna/underground)
 "sue" = (
 /obj/decal/cleanable/dirt/random,
 /obj/decal/cleanable/dirt/random,
@@ -35817,6 +35835,9 @@
 	},
 /turf/simulated/floor/grey,
 /area/station/crew_quarters/quartersB)
+"uzN" = (
+/turf/simulated/floor/plating,
+/area/gehenna/underground)
 "uzO" = (
 /obj/machinery/light/fluorescent/cool/very,
 /turf/simulated/floor/grey/side{
@@ -40714,6 +40735,10 @@
 /obj/decal/floatingtiles/loose/random,
 /turf/simulated/floor/plating/random,
 /area/station/medical/basement)
+"xkJ" = (
+/obj/landmark/elevator_fall/macro_test,
+/turf/simulated/floor/plating,
+/area/transit_vehicle/elevator/macro_test/bot)
 "xkK" = (
 /obj/cable{
 	icon_state = "0-4"
@@ -129614,8 +129639,8 @@ hTf
 hTf
 hTf
 hTf
-hTf
-hTf
+bFR
+uzN
 hTf
 twZ
 hTf
@@ -129914,10 +129939,10 @@ hTf
 hTf
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
+xkJ
+xkJ
+uzN
+uzN
 hTf
 hTf
 twZ
@@ -130216,10 +130241,10 @@ hTf
 hTf
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
+xkJ
+xkJ
+uzN
+ibG
 hTf
 twZ
 hTf
@@ -130520,8 +130545,8 @@ hTf
 hTf
 hTf
 hTf
-hTf
-hTf
+stD
+hlw
 hTf
 hTf
 twZ
