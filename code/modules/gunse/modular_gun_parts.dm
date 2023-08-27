@@ -449,6 +449,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	part_DRM = GUN_FOSS | GUN_SOVIET
 	name_addition = "rifled"
 	length = 35
+	overlay_x = 10
 	icon_state = "longimprovbarrel"
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
@@ -459,6 +460,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	jam_frequency_fire = 5
 	part_DRM = GUN_FOSS | GUN_SOVIET
 	length = 35
+	overlay_x = 10
 	icon_state = "improvtransbarrel"
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
@@ -469,6 +471,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "vintage"
 	length = 25
+	overlay_x = 3
 	icon_state = "historicbarrel"
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 
@@ -644,6 +647,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "Hammered Metal Stock"
 	desc = "Some spare metal hammered into a vaugly stock shape"
 	spread_angle = -2
+	overlay_x = -1
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	name_addition = "Machined"
 	icon_state = "shittyfoldingstock"
@@ -662,7 +666,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "Kalash Grip"
 	desc = "A Kalash Grip. Now where's the rest of it..."
 	spread_angle = -1
-	overlay_y = -2
+	overlay_x = -2
+	overlay_y = -4
 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
 	icon_state = "kalashgrip"
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
@@ -848,6 +853,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "Some fuckin asshole took the other two thirds!"
 	max_ammo_capacity = 3
 	jam_frequency_reload = 3
+	overlay_y = -3
+	overlay_x = 4
 	icon_state = "thirdcapmag"
 	part_DRM = GUN_SOVIET
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
@@ -857,6 +864,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "Another sawed in half AK magazine. Bummer."
 	max_ammo_capacity = 5
 	jam_frequency_reload = 7
+	overlay_y = -3
+	overlay_x = 4
 	icon_state = "halfcapmag"
 	part_DRM = GUN_SOVIET
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
@@ -866,6 +875,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "It's intact, but full of gunk and rust. Shit."
 	max_ammo_capacity = 8
 	jam_frequency_reload = 11
+	overlay_y = -3
+	overlay_x = 4
 	icon_state = "akmag"
 	part_DRM = GUN_SOVIET
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
@@ -874,6 +885,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "Intact AK magazine"
 	desc = "One of the few still intact AK mags this side of the frontier! Score!"
 	max_ammo_capacity = 30 //Admin spawn only for Gimmick Fun Times (and cause I want to test stuff with it)
+	overlay_y = -3
+	overlay_x = 4
 	name_addition = "intact"
 	icon_state = "akmag"
 	part_DRM = GUN_SOVIET
