@@ -1847,6 +1847,11 @@ ABSTRACT_TYPE(/area/station/maintenance/outer)
 	icon_state = "fart"
 	mail_tag = "Septic Tank???"
 
+/area/station/maintenance/disposal/crusher
+	name = "Waste Crusher"
+	icon_state = "ranch"
+	mail_tag = "Crusher"
+
 /area/station/maintenance/lowerstarboard
 	name = "Lower Starboard Maintenance"
 	icon_state = "lower_starboard_maintenance"
