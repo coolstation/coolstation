@@ -6,7 +6,8 @@
 //The elevator starts on the top level, map accordingly. The landmark is there for convenience (reading macros bad)
 //The stops will "_id_top"/"_stopname Upper Level" and "_id_bot"/"_stopname Lower Level", whereas _areaname is used verbatim for both areas
 #define MAKE_STANDARD_TWO_STOP_ELEVATOR(__id, _stopname, _areaname, _area_sprite)\
-ABSTACT_TYPE(/datum/transit_stop/elevator/__id);\
+ABSTRACT_TYPE(/datum/transit_stop/elevator/__id);\
+ABSTRACT_TYPE(/area/transit_vehicle/elevator/__id);\
 /datum/transit_stop/elevator/__id/top;\
 /datum/transit_stop/elevator/__id/top/name = _stopname+" Upper Level";\
 /datum/transit_stop/elevator/__id/top/stop_id = ""+#__id+"_top";\
