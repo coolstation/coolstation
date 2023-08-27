@@ -1718,7 +1718,8 @@
 				var/obj/machinery/vehicle/tank/T = src
 				if (!T.locomotion)
 					T.locomotion = S
-					UpdateOverlays(image('icons/obj/machines/8dirvehicles.dmi', "[body_type]_[locomotion.appearanceString]"), "locomotion")
+					if (!istype(src, /obj/machinery/vehicle/tank/car))//sucks but cars don't have wheel & thread sprites
+						UpdateOverlays(image('icons/obj/machines/8dirvehicles.dmi', "[body_type]_[locomotion.appearanceString]"), "locomotion")
 				else
 					if (usr) //Occuring during gameplay
 						boutput(usr, "That system already has a part!")
