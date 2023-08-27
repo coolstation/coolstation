@@ -806,18 +806,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	jam_frequency_reload = 4
 	stock_overlay_x = -9
 	stock_overlay_y = -1
-	barrel_overlay_x = 0
+	barrel_overlay_x = 7
 	barrel_overlay_y = 0
 	contraband = 4
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 	icon_state = "mistfit"
-
-	make_parts()
-		barrel = new/obj/item/gun_parts/barrel/soviet/improvshort (src)
-		stock = new/obj/item/gun_parts/stock/soviet/improvmetal (src)
-		stock2 = new/obj/item/gun_parts/stock/soviet/akgrip (src)
-		magazine = new/obj/item/gun_parts/magazine/soviet/ak/thirdak (src)
-
 
 /obj/item/gun/modular/soviet/misfit //just for loot! Gonna work on probs later so all parts can spawn (aside from the bigger mags)
 	name = "\improper Misfit"
@@ -829,9 +822,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	jam_frequency_fire = 15
 	jam_frequency_reload = 4
 	contraband = 4
-	stock_overlay_x = -14
-	stock_overlay_y = 0
-	barrel_overlay_x = 20
+	stock_overlay_x = -9
+	stock_overlay_y = -1
+	barrel_overlay_x = 7
 	barrel_overlay_y = 0
 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
 	icon_state = "mistfit"
