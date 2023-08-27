@@ -407,6 +407,9 @@
 	},
 /obj/decal/cleanable/dirt/random,
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/light/fluorescent/warm{
+	dir = 1
+	},
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
 "aqK" = (
@@ -4874,7 +4877,6 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
 	},
-/obj/disposalpipe/segment/mail/vertical,
 /obj/cable{
 	d1 = 2;
 	d2 = 8;
@@ -5132,6 +5134,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
 	},
+/obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/red/checker{
 	dir = 4
 	},
@@ -5195,10 +5198,6 @@
 /area/station/crew_quarters/arcade/dungeon)
 "dUE" = (
 /obj/machinery/light/fluorescent/cool/very,
-/obj/disposalpipe/trunk{
-	dir = 8
-	},
-/obj/machinery/disposal/mail/autoname/security/brig,
 /turf/space/gehenna/desert/plating{
 	dir = 8
 	},
@@ -5860,6 +5859,10 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/disposal/mail/autoname/security/brig,
+/obj/disposalpipe/trunk{
+	dir = 2
+	},
 /turf/simulated/floor/sandytile,
 /area/station/security/brig/south_side)
 "etN" = (
@@ -5882,7 +5885,6 @@
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/sec_foyer)
 "euy" = (
-/obj/disposalpipe/segment/mail/vertical,
 /obj/cable{
 	icon_state = "2-4"
 	},
@@ -6655,6 +6657,9 @@
 /obj/item/storage/firstaid/regular,
 /turf/simulated/floor,
 /area/station/security/brig/cell_block_control)
+"eWI" = (
+/turf/simulated/floor/carpet/red/standard/edge/west,
+/area/station/quartermaster/cargooffice/storefront)
 "eWU" = (
 /obj/machinery/drainage/big,
 /turf/simulated/floor/grey,
@@ -9261,13 +9266,11 @@
 /turf/simulated/floor/plating,
 /area/listeningpost)
 "gUs" = (
-/obj/machinery/door/airlock/pyro/external,
-/obj/disposalpipe/segment/mail/vertical,
-/obj/access_spawn/brig,
+/obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/red/checker{
 	dir = 4
 	},
-/area/station/security/brig/north_side)
+/area/station/security/brig/cell_block_control)
 "gUJ" = (
 /obj/cable{
 	icon_state = "2-5"
@@ -10181,9 +10184,16 @@
 /turf/simulated/floor/specialroom/freezer,
 /area/station/medical/crematorium)
 "hCU" = (
-/obj/machinery/disposal/mail/autoname/public/escape,
-/turf/simulated/wall/asteroid/gehenna,
-/area/gehenna)
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/disposalpipe/segment/bent/south,
+/turf/simulated/floor/red/checker{
+	dir = 4
+	},
+/area/station/security/brig/cell_block_control)
 "hCX" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -14492,7 +14502,6 @@
 	},
 /area/station/bridge)
 "kLA" = (
-/obj/disposalpipe/segment/mail/vertical,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 9;
@@ -15307,11 +15316,8 @@
 /turf/simulated/floor/grey,
 /area/station/medical/robotics)
 "lpT" = (
-/obj/disposalpipe/segment/bent/east,
-/turf/space/gehenna/desert/plating{
-	dir = 4
-	},
-/area/station/security/brig/north_side)
+/turf/simulated/floor/carpet/red/standard/edge/nw,
+/area/station/quartermaster/cargooffice/storefront)
 "lpX" = (
 /obj/disposalpipe/junction/left/east,
 /obj/grille/catwalk/jen,
@@ -18085,6 +18091,7 @@
 	dir = 4
 	},
 /obj/access_spawn/brig,
+/obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/red/checker{
 	dir = 4
 	},
@@ -19952,7 +19959,6 @@
 	},
 /area/gehenna)
 "oST" = (
-/obj/machinery/light/fluorescent/warm,
 /obj/decal/cleanable/dirt/random,
 /obj/disposalpipe/segment/bent/north,
 /turf/simulated/floor,
@@ -19970,6 +19976,7 @@
 /obj/disposalpipe/segment/brig{
 	dir = 4
 	},
+/obj/machinery/light/fluorescent/warm,
 /turf/simulated/floor,
 /area/station/quartermaster/cargooffice/storefront)
 "oTn" = (
@@ -20543,7 +20550,8 @@
 /area/listeningpost)
 "prG" = (
 /obj/machinery/door/airlock/glass,
-/turf/simulated/floor,
+/obj/forcefield/energyshield/perma,
+/turf/simulated/floor/black,
 /area/station/quartermaster/cargooffice/storefront)
 "prR" = (
 /obj/grille/catwalk/grey{
@@ -23484,6 +23492,10 @@
 	},
 /turf/space/gehenna/desert,
 /area/gehenna)
+"rvL" = (
+/obj/machinery/light/fluorescent/ceiling,
+/turf/simulated/floor/carpet/red/standard/edge/east,
+/area/station/quartermaster/cargooffice/storefront)
 "rvM" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
@@ -25779,6 +25791,9 @@
 "tgI" = (
 /turf/simulated/wall/r_wall,
 /area/station/security/secwing)
+"tgM" = (
+/turf/simulated/floor/carpet/red/standard/edge/east,
+/area/station/quartermaster/cargooffice/storefront)
 "tgN" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/simulated/floor/wood,
@@ -29712,6 +29727,9 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/simulated/floor/black,
 /area/station/quartermaster/storage)
+"vXq" = (
+/turf/simulated/floor/carpet/red/standard/edge/sw,
+/area/station/quartermaster/cargooffice/storefront)
 "vXw" = (
 /obj/machinery/light/small/cool{
 	dir = 8
@@ -30424,6 +30442,9 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/simulated/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
+"wur" = (
+/turf/simulated/floor/carpet/red/standard/edge/se,
+/area/station/quartermaster/cargooffice/storefront)
 "wuM" = (
 /obj/machinery/light/fluorescent/auto/yellow{
 	dir = 8
@@ -32609,6 +32630,9 @@
 	},
 /turf/simulated/floor/carpet/blue/fancy/innercorner/omni,
 /area/station/bridge)
+"xSf" = (
+/turf/simulated/floor/carpet/red/standard/edge/ne,
+/area/station/quartermaster/cargooffice/storefront)
 "xSr" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -72811,7 +72835,7 @@ qMN
 bTy
 bTy
 etE
-tvt
+fpF
 uAB
 taW
 fpF
@@ -73717,7 +73741,7 @@ jEb
 jEb
 qMN
 kja
-rRI
+gUs
 eOO
 kja
 bTy
@@ -74019,7 +74043,7 @@ tws
 jEb
 jEb
 kja
-rRI
+gUs
 eOO
 kja
 bTy
@@ -74623,7 +74647,7 @@ tws
 cOk
 cOk
 kja
-rRI
+gUs
 eOO
 kja
 bTy
@@ -74925,7 +74949,7 @@ tws
 exj
 ekQ
 kja
-rRI
+gUs
 eOO
 kja
 bTy
@@ -75529,7 +75553,7 @@ eeC
 rRI
 ekZ
 rRI
-rRI
+gUs
 ePk
 nau
 nau
@@ -75826,12 +75850,12 @@ qZl
 qZl
 qZl
 qZl
-lpT
-gUs
+fTB
+eeC
 kLA
 dIk
 euy
-gMM
+hCU
 twl
 gMM
 gMM
@@ -93668,12 +93692,12 @@ kky
 plb
 qiv
 lYz
-qiv
-qiv
-qiv
-qiv
-qiv
-qiv
+lpT
+eWI
+eWI
+eWI
+eWI
+vXq
 prG
 nNZ
 nNZ
@@ -93970,12 +93994,12 @@ koC
 plb
 jtA
 lZW
-qiv
-jtA
-qiv
-qiv
-qiv
-qiv
+xSf
+rvL
+tgM
+tgM
+tgM
+wur
 prG
 nNZ
 nNZ
@@ -115096,7 +115120,7 @@ iiv
 iiv
 cqC
 cqC
-hCU
+cqC
 jEb
 jEb
 jEb
