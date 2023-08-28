@@ -943,16 +943,16 @@
 				src.UpdateOverlays(null, "cap")
 		else
 			if (!src.reagents || src.reagents.total_volume <= 0) //Fix for cannot read null/volume. Also FUCK YOU REAGENT CREATING FUCKBUG!
-				src.icon_state = "bottle-[src.bottle_style]"
-			else if(!src.fluid_underlay_shows_volume)
+				src.icon_state = "bottle-[src.bottle_style]"/*
+			else if(!src.fluid_underlay_shows_volume) // this seems so wrong, if we're NOT underlay volume showing, why are we generating an underlay?
 				src.icon_state = "bottle-[src.bottle_style][src.alt_filled_state]"
 				ENSURE_IMAGE(src.image_fluid, src.icon, "fluid-[src.fluid_style]")
 				//if (!src.image_fluid)
 					//src.image_fluid = image('icons/obj/foodNdrink/bottle.dmi')
 				var/datum/color/average = reagents.get_average_color()
 				image_fluid.color = average.to_rgba()
-				src.underlays += src.image_fluid
-			else
+				src.underlays += src.image_fluid*/
+			else if(src.fluid_underlay_shows_volume)
 				if (reagents.total_volume)
 					var/fluid_state = round(clamp((src.reagents.total_volume / src.reagents.maximum_volume * 3 + 1), 1, 3))
 					if (!src.image_fluid)
