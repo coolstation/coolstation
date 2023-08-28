@@ -1548,7 +1548,8 @@
 			for(var/obj/item/reagent_containers/pill/P in pillbottle)
 				P.attack_self(target)
 				break
-			playsound(target.loc,"sound/items/drink.ogg", rand(10,50), 1)
+			var/clip = rand(1,4)
+			playsound(target.loc,"sound/items/pills_[clip].ogg", 30, 1)
 
 			eat_twitch(target)
 
