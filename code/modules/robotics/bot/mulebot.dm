@@ -17,8 +17,8 @@
 	access_lookup = "Captain"
 	var/atom/movable/load = null		// the loaded crate (usually)
 
-	var/beacon_freq = 1445
-	var/control_freq = 1447
+	var/beacon_freq = FREQ_BOT_NAV
+	var/control_freq = FREQ_BOT_CONTROL
 
 	suffix = ""
 

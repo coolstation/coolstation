@@ -54,11 +54,18 @@
 			src.overlays += "ashtray-smoke"
 			SPAWN_DBG(80 SECONDS)
 				src.overlays -= "ashtray-smoke"
+		else if(istype(W, /obj/item/cigbutt))
+			boutput(user, "You put [W] in [src].")
+			user.u_equip(W)
+			qdel(W)
+			src.butts ++ // hehhh
+			src.update_icon()
+
 		else
 			return ..()
 
-	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
-			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+
+	throw_impact(atom/A, datum/thrown_thing/thr)
 		..()
 		if (src.butts)
 			src.visible_message("[src] spills all over the place.")

@@ -80,3 +80,183 @@ Warc: i am nothing if not a temptress (content production)
 	icon_state = "calendar_rand"
 	amt2spawn = 1
 	items2spawn = list(/obj/decal/poster/wallsign/clown_calendar/slip, /obj/decal/poster/wallsign/clown_calendar/bridge, /obj/decal/poster/wallsign/clown_calendar/honk)
+
+//I have a phobia for spiderwebs why the fuck did I do this
+/obj/spacevine/web //looking at this spread genuinely triggers fear
+	name = "webzu"
+	desc = "Jesus Christ there's so many spiders in there fuck shit fuck."
+	icon_state = "web-light1"
+	base_state = "web"
+	vinepath = /obj/spacevine/web/living
+
+/obj/spacevine/web/living
+	run_life = 1
+//These will make the flower pods like kudzu does, cause kudzu infection is a proc on humans called by their decomposition lifeprocess what the hell am I supposed to do with that
+
+
+///Hell vending machine that stocks itself with every single valid ingredient it finds in the oven recipe list, so you don't have to procure them.
+obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
+	name = "cornucopia of ingredience"
+	desc = "Everything you could ever need, in abundance."
+	req_access_txt = null
+	color = "#CCFFCC"
+
+	create_products()
+		//Fun fact this proc doesn't need to call parent, which is why I can have it be a subtype of the kitchen vendor
+		build_oven_recipes()
+		var/list/all_ingredients_ever = list()
+		for(var/datum/cookingrecipe/recipe as anything in oven_recipes)
+			if (recipe.item1)
+				if(IS_ABSTRACT(recipe.item1))
+					all_ingredients_ever |= pick(concrete_typesof(recipe.item1, cache = FALSE)) //Get something that'll qualify just in case
+				else
+					all_ingredients_ever |= recipe.item1
+			if (recipe.item2)
+				if(IS_ABSTRACT(recipe.item2))
+					all_ingredients_ever |= pick(concrete_typesof(recipe.item2, cache = FALSE))
+				else
+					all_ingredients_ever |= recipe.item2
+			if (recipe.item3)
+				if(IS_ABSTRACT(recipe.item3))
+					all_ingredients_ever |= pick(concrete_typesof(recipe.item3, cache = FALSE))
+				else
+					all_ingredients_ever |= recipe.item3
+			if (recipe.item4)
+				if(IS_ABSTRACT(recipe.item4))
+					all_ingredients_ever |= pick(concrete_typesof(recipe.item4, cache = FALSE))
+				else
+					all_ingredients_ever |= recipe.item4
+		for(var/type in all_ingredients_ever)
+			product_list += new/datum/data/vending_product(type, 50)
+
+//When uncommented, these two together should produce an undecidability crash in insert_recipe
+/*
+/datum/cookingrecipe/undecidable_A
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/egg/bee
+	item2 = /obj/item/reagent_containers/food/snacks/breadslice/
+
+/datum/cookingrecipe/undecidable_B
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/egg
+	item2 = /obj/item/reagent_containers/food/snacks/breadslice/elvis
+*/
+
+/*
+		//MINING GENERATION BITS
+		//Generates a kinda vertical stratified thing (heavily biased to light rock), kinda like ant nests or sand dunes
+		//having randflip pick between 10 and 17 instead creates funky wavy terrain
+
+		var/map[world.maxx][world.maxy]
+		var/randflip = rand(3,7)
+		var/doing_dense = rand(0,1)
+		for(var/y=max(starty - 1,1), y<= min(endy + 1, world.maxy), y++)
+			for(var/x=max(startx - 1,1), x <= min(endx + 1, world.maxx), x++)
+				if (randflip == 0)
+					randflip = rand(3,7)
+					doing_dense = !doing_dense
+				map[x][y] = doing_dense/*pick(90;1,100;0)*/ //Initialize randomly.
+				randflip--
+
+		//Generates a simple marbled look
+		for(var/x=max(startx - 1,1), x <= min(endx + 1, world.maxx), x++)
+			for(var/y=max(starty - 1,1), y<= min(endy + 1, world.maxy), y++)
+				map[x][y] = pick(90;1,100;0) //Initialize randomly.
+
+*/
+
+
+
+//asteroidsDistance plunking a bunch of suspiciously diamond-shaped asteroids on the map is functionally fine and all
+//But it's not really aesthetically pleasing
+/*
+/datum/mapGenerator/asteroid_belts
+	//You can adjust these before generating if you want
+	var/number_of_belts = 3 //
+
+	generate(var/list/miningZ)
+		var/numAsteroidSeed = AST_SEEDS + rand(1, 5)
+		for(var/i=0, i<numAsteroidSeed, i++)
+			var/turf/X = pick(miningZ)
+			//var/quality = rand(-101,101)
+
+			while(!istype(X, /turf/space) || ISDISTEDGE(X, AST_MAPSEEDBORDER) || (X.loc.type != /area/space && !istype(X.loc , /area/allowGenerate)))
+				X = pick(miningZ)
+				LAGCHECK(LAG_REALTIME)
+
+			var/list/solidTiles = list()
+			var/list/edgeTiles = list(X)
+			var/list/visited = list()
+
+			var/sizeMod = rand(-AST_SIZERANGE,AST_SIZERANGE)
+
+			while(edgeTiles.len)
+				var/turf/curr = edgeTiles[1]
+				edgeTiles.Remove(curr)
+
+				if(curr in visited) continue
+				else visited.Add(curr)
+
+				var/turf/north = get_step(curr, NORTH)
+				var/turf/east = get_step(curr, EAST)
+				var/turf/south = get_step(curr, SOUTH)
+				var/turf/west = get_step(curr, WEST)
+				if(decideSolid(north, X, sizeMod))
+					solidTiles.Add(north)
+					edgeTiles.Add(north)
+				if(decideSolid(east, X, sizeMod))
+					solidTiles.Add(east)
+					edgeTiles.Add(east)
+				if(decideSolid(south, X, sizeMod))
+					solidTiles.Add(south)
+					edgeTiles.Add(south)
+				if(decideSolid(west, X, sizeMod))
+					solidTiles.Add(west)
+					edgeTiles.Add(west)
+				LAGCHECK(LAG_REALTIME)
+
+			var/list/placed = list()
+			for(var/turf/T in solidTiles)
+				if((T?.loc?.type == /area/space) || istype(T?.loc , /area/allowGenerate))
+					var/turf/simulated/wall/asteroid/AST = T.ReplaceWith(/turf/simulated/wall/asteroid)
+					placed.Add(AST)
+					//AST.quality = quality
+				LAGCHECK(LAG_REALTIME)
+
+			if(prob(15))
+				Turfspawn_Asteroid_SeedOre(placed, rand(2,6), rand(0,40), TRUE)
+			else
+				Turfspawn_Asteroid_SeedOre(placed, spicy = TRUE)
+
+			Turfspawn_Asteroid_SeedEvents(placed)
+
+			if(placed.len)
+				generated.Add(placed)
+				if(placed.len > 9)
+					seeds.Add(X)
+					seeds[X] = placed
+					var/list/holeList = list()
+					for(var/k=0, k<AST_RNGWALKINST, k++)
+						var/turf/T = pick(placed)
+						for(var/j=0, j<rand(AST_RNGWALKCNT,round(AST_RNGWALKCNT*1.5)), j++)
+							holeList.Add(T)
+							T = get_step(T, pick(NORTH,EAST,SOUTH,WEST))
+							if(!istype(T, /turf/simulated/wall/asteroid)) continue
+							var/turf/simulated/wall/asteroid/ast = T
+							ast.destroy_asteroid(0)
+
+		//So I think it's kinda BS that the funkiest ores are magnet exclusive
+		//but starstone is supposed to be very rare, so how about this:
+		//We try n times picking turfs at random from the entire Z level, and if we happen to hit an unoccupied asteroid turf we plant a starstone
+		//This relies on better-than-chance odds of dud turf picks. By my estimate the asteroid field is generally like 20-30% actual asteroid.
+		for (var/i = 1, i <= 10 ,i++) //10 tries atm, which I think should give a decent chance no starstones spawn.
+			var/turf/simulated/wall/asteroid/TRY = pick(miningZ)
+			if (!istype(TRY))
+				logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] failed - no asteroid.")
+				continue
+			if (TRY.ore)
+				logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] failed - ore present.")
+				continue
+			//asteroid and unoccupied!
+			Turfspawn_Asteroid_SeedSpecificOre(list(TRY),"starstone",1) //This probably makes a coder from 10 years ago cry
+			logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] success!")
+		return miningZ
+*/

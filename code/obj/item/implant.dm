@@ -32,7 +32,7 @@ THROWING DARTS
 	var/uses_radio = 0
 	var/list/mailgroups = null
 	var/net_id = null
-	var/pda_alert_frequency = 1149
+	var/pda_alert_frequency = FREQ_PDA
 	var/datum/radio_frequency/radio_connection
 
 	New()
@@ -234,7 +234,7 @@ THROWING DARTS
 	impcolor = "b"
 	var/healthstring = ""
 	uses_radio = 1
-	mailgroups = list(MGD_MEDBAY, MGD_MEDRESEACH, MGD_SPIRITUALAFFAIRS)
+	mailgroups = list(MGD_MEDBAY, MGD_MEDRESEARCH, MGD_SPIRITUALAFFAIRS)
 
 	implanted(mob/M, mob/I)
 		..()
@@ -315,10 +315,7 @@ THROWING DARTS
 				continue
 			cloner_areas += "[cl_implant.scanned_here]"
 		var/message = "DEATH ALERT: [src.owner][coords] in [myarea], " //youre lucky im not onelining this
-		if (he_or_she(src.owner) == "they")
-			message += "they " + (length(cloner_areas) ? "have been clone-scanned in [jointext(cloner_areas, ", ")]." : "do not have a cloning record.")
-		else
-			message += he_or_she(src.owner) + " " + (length(cloner_areas) ? "has been clone-scanned in [jointext(cloner_areas, ", ")]." : "does not have a cloning record.")
+		message += he_or_she(src.owner) + " " + (length(cloner_areas) ? "[pluralize_or_not(src.owner ? "have" : "has")] been clone-scanned in [jointext(cloner_areas, ", ")]." : "[pluralize_or_not(src.owner ? "do" : "does")] not have a cloning record.")
 
 		src.send_message(message, MGA_DEATH, "HEALTH-MAILBOT")
 
@@ -329,7 +326,7 @@ THROWING DARTS
 		mailgroups.Add(MGD_SECURITY)
 		..()
 
-/obj/item/implant/health/security/anti_mindslave //HoS implant
+/obj/item/implant/health/security/anti_insurgent //HoS implant
 	name = "mind protection health implant"
 	icon_state = "implant-b"
 	impcolor = "b"
@@ -380,7 +377,7 @@ THROWING DARTS
 	uses_radio = 1
 	mailgroups = list(MGD_SECURITY)
 	var/id = 1.0
-	var/frequency = 1451		//This is the nonsense frequency that the implant uses. I guess it was never finished. -kyle
+	var/frequency = FREQ_TRACKING		//This is the nonsense frequency that the implant uses. I guess it was never finished. -kyle
 
 	New()
 		..()
@@ -622,17 +619,18 @@ THROWING DARTS
 	icon_state = "implant-b"
 	impcolor = "b"
 
-/obj/item/implant/mindslave
-	name = "mindslave implant"
+/obj/item/implant/insurgent
+	name = "insurgent implant"
 	icon_state = "implant-r"
 	impcolor = "r"
 	instant = 1
 	var/uses = 1
 	var/expire = 1
 	var/expired = 0
-	var/suppress_mindslave_popup = 0
-	var/mob/implant_master = null // who is the person mindslaving the implanted person
+	var/suppress_insurgent_popup = 0
+	var/mob/implant_master = null // who is the person converting the implanted person
 	var/custom_orders = null // ex: kill the captain, dance constantly, don't speak, etc
+	var/old_objectives = null
 
 	can_implant(var/mob/living/carbon/human/target, var/mob/user)
 		if (!istype(target))
@@ -650,41 +648,41 @@ THROWING DARTS
 		if (src.uses <= 0)
 			if (ismob(user)) user.show_text("[src] has been used up!", "red")
 			return 0
-		for(var/obj/item/implant/health/security/anti_mindslave/AM in H.implant)
+		for(var/obj/item/implant/health/security/anti_insurgent/AM in H.implant)
 			boutput(user, "<span class='alert'>[H] is protected from enslaving by \an [AM.name]!</span>")
 			return 0
 		// It might happen, okay. I don't want to have to adapt the override code to take every possible scenario (no matter how unlikely) into considertion.
-		if (H.mind && ((H.mind.special_role == ROLE_VAMPTHRALL) || (H.mind.special_role == "spyslave")))
-			if (ismob(user)) user.show_text("<b>[H] seems to be immune to being enslaved!</b>", "red")
-			H.show_text("<b>You resist [implant_master]'s attempt to enslave you!</b>", "red")
-			logTheThing("combat", H, implant_master, "resists [constructTarget(implant_master,"combat")]'s attempt to mindslave them at [log_loc(H)].")
+		if (H.mind && ((H.mind.special_role == ROLE_VAMPTHRALL) || (H.mind.special_role == "spyrecruit")))
+			if (ismob(user)) user.show_text("<b>[H] seems to be immune to being converted!</b>", "red")
+			H.show_text("<b>You resist [implant_master]'s attempt to convert you!</b>", "red")
+			logTheThing("combat", H, implant_master, "resists [constructTarget(implant_master,"combat")]'s attempt to radicalize them at [log_loc(H)].")
 			return 0
 		// Necessary to get those expiration messages to trigger properly if the same mob is implanted again,
-		// since mindslave implants have spawns  going on.
+		// since insurgent implants have spawns  going on.
 		if (src.former_implantee == H)
 			if (istype(src.loc, /obj/item/implanter))
 				var/obj/item/implanter/I = src.loc
-				var/obj/item/implant/mindslave/MSnew = new src.type(I)
+				var/obj/item/implant/insurgent/MSnew = new src.type(I)
 				I.imp = MSnew
 				qdel(src)
 			else if (istype(src.loc, /obj/item/gun/implanter))
 				var/obj/item/gun/implanter/I = src.loc
-				var/obj/item/implant/mindslave/MSnew = new src.type(src)
+				var/obj/item/implant/insurgent/MSnew = new src.type(src)
 				I.my_implant = MSnew
 				qdel(src)
 		// Same here, basically. Multiple active implants is just asking for trouble.
-		for (var/obj/item/implant/mindslave/MS in H.implant)
+		for (var/obj/item/implant/insurgent/MS in H.implant)
 			if (!istype(MS))
 				continue
 			if (!MS.expire || (MS.expire && (MS.expired != 1)))
-				if (H.mind && (H.mind.special_role == ROLE_MINDSLAVE))
-					remove_mindslave_status(H, "mslave", "override")
+				if (H.mind && (H.mind.special_role == ROLE_INSURGENT))
+					remove_insurgent_status(H, "nsurgt", "override")
 				else if (H.mind && H.mind.master)
-					remove_mindslave_status(H, "otherslave", "override")
-				var/obj/item/implant/mindslave/Inew = new MS.type(H)
+					remove_insurgent_status(H, "other_recruit", "override")
+				var/obj/item/implant/insurgent/Inew = new MS.type(H)
 				H.implant += Inew
 				qdel(MS)
-				src.suppress_mindslave_popup = 1
+				src.suppress_insurgent_popup = 1
 		return 1
 
 	implanted(var/mob/M, var/mob/I)
@@ -698,8 +696,8 @@ THROWING DARTS
 /*
 		for(var/obj/item/implant/IMP in M:implant)
 			if(IMP.check_access_imp(5))
-				boutput(I, "<span class='alert'><b>[M] seems immune to being enslaved!</b></span>")
-				boutput(M, "<span class='alert'><b>Your security implant prevents you from being enslaved!</b></span>")
+				boutput(I, "<span class='alert'><b>[M] seems immune to being converted!</b></span>")
+				boutput(M, "<span class='alert'><b>Your security implant prevents you from being converted!</b></span>")
 				return
 */
 		boutput(M, "<span class='alert'>A stunning pain shoots through your brain!</span>")
@@ -711,30 +709,44 @@ THROWING DARTS
 			alert(M, "You feel utterly strengthened in your resolve! You are the most important person in the universe!", "YOU ARE REALY GREAT!!")
 			return
 
+		if(!I.mind.special_role && M.mind && ticker.mode) // a nonantag? using an implant on ya? well then...
+			old_objectives = M.mind.objectives
+			var/datum/objective/regular/assassinate/kill_implanter = new(I.mind)
+			M.mind.objectives += kill_implanter
+			M.mind.special_role = ROLE_INSURGENT
+			SHOW_INSURGENT_BACKFIRE(M)
+			boutput(M, "<h2><span class='alert'>OOOOOOH this one's a BASTARD!!! That [I.real_name], you gotta KILL [him_or_her(I)]! KILL KILL KILL KILL KILL AAAAA KILL!!!!</span></h2>")
+			logTheThing("admin", I, M, "tried to use an insurgent implant as a non-antag.")
+			return
+
+
 		if (M.mind && ticker.mode)
+			old_objectives = M.mind.objectives
 			if (!M.mind.special_role)
-				M.mind.special_role = ROLE_MINDSLAVE
+				M.mind.special_role = ROLE_INSURGENT
 			if (!(M.mind in ticker.mode.Agimmicks))
 				ticker.mode.Agimmicks += M.mind
 			M.mind.master = I.ckey
+			if(I.mind.objectives)
+				M.mind.objectives |= I.mind.objectives
 
-		if (src.suppress_mindslave_popup)
-			boutput(M, "<h2><span class='alert'>You feel an unwavering loyalty to your new master, [I.real_name]! Do not tell anyone about this unless your new master tells you to!</span></h2>")
+		if (src.suppress_insurgent_popup)
+			boutput(M, "<h2><span class='alert'>You feel an unshakeable kinship to your new crimepal, [I.real_name], and their cause! Do not tell anyone about this unless your new crimepal tells you to!</span></h2>")
 		else
-			boutput(M, "<h2><span class='alert'>You feel an unwavering loyalty to [I.real_name]! You feel you must obey \his every order! Do not tell anyone about this unless your master tells you to!</span></h2>")
-			SHOW_MINDSLAVE_TIPS(M)
+			boutput(M, "<h2><span class='alert'>You feel an unshakeable kinship to [I.real_name]! You feel you must help [his_or_her(I)] cause! Do not tell anyone about this unless your crimepal tells you to!</span></h2>")
+			SHOW_INSURGENT_TIPS(M)
 		if (src.custom_orders)
-			boutput(M, "<h2><span class='alert'>[I.real_name]'s will consumes your mind! <b>\"[src.custom_orders]\"</b> It <b>must</b> be done!</span></h2>")
+			boutput(M, "<h2><span class='alert'>[I.real_name]'s plan overwhelms your brain! <b>\"[src.custom_orders]\"</b> It <b>must</b> be done!</span></h2>")
 
 		if (expire)
-			//25 minutes +/- 5
-			SPAWN_DBG((25 + rand(-5,5)) MINUTES)
+			//30 minutes +/- 5
+			SPAWN_DBG((30 + rand(-5,5)) MINUTES)
 				if (src && !ishuman(src.loc)) // Drop-all, gibbed etc (Convair880).
 					if (src.expire && (src.expired != 1)) src.expired = 1
 					return
 				if (!src || !owner || (M != owner) || src.expired)
 					return
-				boutput(M, "<span class='alert'>Your will begins to return. What is this strange compulsion [I.real_name] has over you? Yet you must obey.</span>")
+				boutput(M, "<span class='alert'>Your corporate loyalty begins to return. What is this strange compulsion [I.real_name] has over you? Yet you must help.</span>")
 
 				// 1 minute left
 				sleep(1 MINUTE)
@@ -744,16 +756,22 @@ THROWING DARTS
 				if (!src || !owner || (M != owner) || src.expired)
 					return
 				// There's a proc for this now (Convair880).
-				if (M.mind && M.mind.special_role == ROLE_MINDSLAVE)
-					remove_mindslave_status(M, "mslave", "expired")
+				if (M.mind && M.mind.special_role == ROLE_INSURGENT)
+					remove_insurgent_status(M, "nsurgt", "expired")
 				else if (M.mind && M.mind.master)
-					remove_mindslave_status(M, "otherslave", "expired")
+					remove_insurgent_status(M, "other_recruit", "expired")
+				if(old_objectives)
+					M.mind.objectives = old_objectives
+					old_objectives = null
 				src.expired = 1
 		return
 
 	on_remove(var/mob/M)
 		..()
 		src.former_implantee = M
+		if(old_objectives)
+			M.mind.objectives = old_objectives
+			old_objectives = null
 		if (src.expire) src.expired = 1
 		return
 
@@ -761,8 +779,8 @@ THROWING DARTS
 		if (!source || (source != src.loc) || (!isdead(source) ))
 			return
 
-		if(emote == "deathgasp") //The neural shock of some jerk dying wears the implant down. Or some shit.
-			src.uses = max(src.uses - 1, 0)
+		if(emote == "deathgasp" && emote) //The neural shock of some jerk dying wears the implant down. Or some shit.
+			src.uses = max(src.uses - 1, 0) // this is potentially a problem, a savy shitlord could just *deathgasp emote to burn the extra uses on a deluxe implant.
 
 	proc/add_orders(var/orders)
 		if (!orders || !istext(orders))
@@ -771,8 +789,8 @@ THROWING DARTS
 		if (!(copytext(src.custom_orders, -1) in list(".", "?", "!")))
 			src.custom_orders += "!"
 
-/obj/item/implant/mindslave/super
-	name = "mindslave DELUXE implant"
+/obj/item/implant/insurgent/super
+	name = "insurgent DELUXE implant"
 	expire = 0
 	uses = 2
 
@@ -1105,17 +1123,17 @@ THROWING DARTS
 		..()
 		return
 
-/obj/item/implanter/mindslave
+/obj/item/implanter/insurgent
 	icon_state = "implanter1-g"
 	New()
-		src.imp = new /obj/item/implant/mindslave( src )
+		src.imp = new /obj/item/implant/insurgent( src )
 		..()
 		return
 
-/obj/item/implanter/super_mindslave
+/obj/item/implanter/super_insurgent
 	icon_state = "implanter1-g"
 	New()
-		src.imp = new /obj/item/implant/mindslave/super( src )
+		src.imp = new /obj/item/implant/insurgent/super( src )
 		..()
 		return
 
@@ -1144,7 +1162,7 @@ THROWING DARTS
 	sneaky = 1
 	New()
 		var/obj/item/implant/microbomb/macrobomb/newbomb = new/obj/item/implant/microbomb/macrobomb( src )
-		newbomb.explosionPower = rand(20,30)
+		newbomb.explosionPower = rand(25,31)
 		src.imp = newbomb
 		..()
 		return
@@ -1223,13 +1241,13 @@ THROWING DARTS
 	name = "glass case - 'Blood Monitor'"
 	implant_type = "/obj/item/implant/bloodmonitor"
 
-/obj/item/implantcase/mindslave
-	name = "glass case - 'Mindslave'"
-	implant_type = "/obj/item/implant/mindslave"
+/obj/item/implantcase/insurgent
+	name = "glass case - 'Insurgent'"
+	implant_type = "/obj/item/implant/insurgent"
 
-/obj/item/implantcase/super_mindslave
-	name = "glass case - 'Mindslave DELUXE'"
-	implant_type = "/obj/item/implant/mindslave/super"
+/obj/item/implantcase/super_insurgent
+	name = "glass case - 'Insurgent DELUXE'"
+	implant_type = "/obj/item/implant/insurgent/super"
 
 /obj/item/implantcase/robust
 	name = "glass case - 'Robusttec'"
@@ -1490,10 +1508,10 @@ circuitry. As a result neurotoxins can cause massive damage.<BR>
 <b>Zone:</b> Jugular Vein<br>
 <b>Power Source:</b> Nervous System Ion Withdrawl Gradient<br>
 <b>Important Notes:</b> Warns the host of any detected infections or foreign substances in the bloodstream.<BR>"}
-			else if (istype(src.case.imp, /obj/item/implant/mindslave))
+			else if (istype(src.case.imp, /obj/item/implant/insurgent))
 				dat += {"
 <b>Implant Specifications:</b><br>
-<b>Name:</b> Mind Slave<br>
+<b>Name:</b> Insurgency<br>
 <b>Zone:</b> Brain Stem<br>
 <b>Power Source:</b> Nervous System Ion Withdrawl Gradient<br>
 <b>Important Notes:</b> Injects an electrical signal directly into the brain that compels obedience in human subjects for a short time. Most minds fight off the effects after approx. 25 minutes.<BR>"}

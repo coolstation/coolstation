@@ -8,12 +8,13 @@
 	name = "navigation beacon"
 	desc = "A radio beacon used for bot navigation."
 	level = 1		// underfloor
-	layer = 2.5 // TODO layer whatever
+	layer = CABLE_LAYER
+	plane = PLANE_NOSHADOW_BELOW
 	anchored = 1
 
 	var/open = 0		// true if cover is open
 	var/locked = 1		// true if controls are locked
-	var/freq = 1445		// radio frequency
+	var/freq = FREQ_BOT_NAV		// radio frequency
 	var/location = ""	// location response text
 	var/list/codes		// assoc. list of transponder codes
 	var/codes_txt = ""	// codes as set on map: "tag1;tag2" or "tag1=value;tag2=value"
@@ -711,7 +712,7 @@ Transponder Codes:<UL>"}
 
 /obj/machinery/navbeacon/tour
 	name = "tour beacon"
-	freq = 1443
+	freq = FREQ_BOT_TOUR
 
 /obj/machinery/navbeacon/tour/cog1
 	tour0
@@ -792,7 +793,7 @@ Transponder Codes:<UL>"}
 	tour15
 		name = "tour beacon - 'Quartermasters'"
 		location = "tour15"
-		codes_txt = "tour;next_tour=tour16;desc=Need some new equipment or supplies for your workplace? Come on down to your local Quartermasters' office! If they ain't got it, you probably don't want it anyways."
+		codes_txt = "tour;next_tour=tour16;desc=Need some new equipment or supplies for your workplace? Come on down to your local Logistics office! If they ain't got it, you probably don't want it anyways."
 
 	tour16
 		name = "tour beacon - 'Escape'"
@@ -1025,7 +1026,7 @@ Transponder Codes:<UL>"}
 	tour8
 		name = "tour beacon - 'Supply Lobby'"
 		location = "tour8"
-		codes_txt = "tour;next_tour=tour9;desc=Here, in the supply lobby, you can order whatever you'd like - a home networking kit, a Golden Gannet delivery, a haberdasher's crate - and watch in real time as expert quartermasters process your order and ensure its smooth delivery. It's wonderfully instant gratification."
+		codes_txt = "tour;next_tour=tour9;desc=Here, in the supply lobby, you can order whatever you'd like - a home networking kit, a Golden Gannet delivery, a haberdasher's crate - and watch in real time as expert cargo technicians process your order and ensure its smooth delivery. It's wonderfully instant gratification."
 
 	tour9
 		name = "tour beacon - 'Fitness Room'"
@@ -1101,7 +1102,7 @@ Transponder Codes:<UL>"}
 	tour1
 		name = "tour beacon - 'Cargo'"
 		location = "tour1"
-		codes_txt = "tour;next_tour=tour2;desc=Our first stop is the cargo bay, where our team of quartermasters can requisition any equipment that you might need to fulfill your role aboard ship. For a fair price, of course!"
+		codes_txt = "tour;next_tour=tour2;desc=Our first stop is the cargo bay, where our logistics team can requisition any equipment that you might need to fulfill your role aboard ship. For a fair price, of course!"
 
 	tour2
 		name = "tour beacon - 'Engineering'"

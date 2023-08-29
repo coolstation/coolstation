@@ -760,7 +760,7 @@ datum
 					M.changeStatus("weakened", 3 SECONDS)
 					if (prob(25))
 
-						M.visible_message("<span class='alert'>[M] horks all over \himself. Gross!</span>")
+						M.visible_message("<span class='alert'>[M] horks all over [himself_or_herself(M)]. Gross!</span>")
 						M.vomit()
 
 
@@ -1145,7 +1145,7 @@ datum
 					var/mob/living/L = M
 					L.contract_disease(/datum/ailment/disease/food_poisoning, null, null, 1)
 					if (prob(10))
-						M.visible_message("<span class='alert'>[M] horks all over \himself. Gross!</span>")
+						M.visible_message("<span class='alert'>[M] horks all over [himself_or_herself(M)]. Gross!</span>")
 						M.vomit()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -1174,7 +1174,7 @@ datum
 				if(M.health > 10)
 					M.take_toxin_damage(2 * mult)
 				if(probmult(20))
-					M.visible_message("<span class='alert'>[M] pukes all over \himself!</span>")
+					M.visible_message("<span class='alert'>[M] pukes all over [himself_or_herself(M)]!</span>")
 					M.vomit()
 				if(probmult(10))
 					var/mob/living/L = M
@@ -1488,11 +1488,11 @@ datum
 			description = "Patience."
 			reagent_state = LIQUID
 			var/bioeffect_length = 0
-
+/*
 			pooled()
 				..()
 				bioeffect_length = 0
-
+*/
 			on_mob_life(var/mob/living/carbon/human/M, var/mult = 1)
 				if(!M) M = holder.my_atom
 				if(istype(M) && !M.mutantrace)
@@ -2140,6 +2140,10 @@ datum
 				if(M.bodytemperature < M.base_body_temp) // So it doesn't act like supermint
 					M.bodytemperature = min(M.base_body_temp, M.bodytemperature+(5 * mult))
 				M.make_jittery(3)
+				if(prob(50))
+					if(M.getStatusDuration("paralysis")) M.changeStatus("paralysis", -1 SECOND)
+					if(M.getStatusDuration("stunned")) M.changeStatus("stunned", -1 SECOND)
+					if(M.getStatusDuration("weakened")) M.changeStatus("weakened", -1 SECOND)
 
 		fooddrink/coffee/fresh
 			name = "freshly brewed coffee"
@@ -2220,11 +2224,11 @@ datum
 			bladder_value = 0.04
 			energy_value = 1
 			stun_resist = 25
-
+/*
 			pooled()
 				..()
 				tickcounter = 0
-
+*/
 			on_add()
 				if (ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -2243,6 +2247,10 @@ datum
 					tickcounter++
 
 				..()
+				if (prob(50))// basically, make it twice as effective
+					if(M.getStatusDuration("paralysis")) M.changeStatus("paralysis", -1 SECOND)
+					if(M.getStatusDuration("stunned")) M.changeStatus("stunned", -1 SECOND)
+					if(M.getStatusDuration("weakened")) M.changeStatus("weakened", -1 SECOND)
 
 			on_mob_life_complete(var/mob/M)
 				if(M)
@@ -3618,9 +3626,18 @@ datum
 			transparency = 60
 			bioeffect_id = "accent_tyke"
 
-		fooddrink/bonerjuice
+		fooddrink/sawdust
+			name = "sawdust"
+			id = "sawdust"
+			description = "A byproduct of carpentry, and a source of cellulose filler material in less reputable foods."
+			reagent_state = SOLID
+			fluid_r = 220
+			fluid_g = 180
+			fluid_b = 130
+
+		fooddrink/satisghetti //okay that was fun calling this bonerjuice but now we have a real boner joker we have to make room for
 			name = "the satisfaction of making spaghetti"
-			id = "bonerjuice"
+			id = "satisghetti"
 			description = "The congealed essence of cullinary passion."
 			fluid_r = 200
 			fluid_g = 231
@@ -3665,6 +3682,50 @@ datum
 					M.changeStatus("stunned", 2 SECONDS)
 					M.changeStatus("weakened", 2 SECONDS)
 					M.contract_disease(/datum/ailment/disease/food_poisoning, null, null, 1) // path, name, strain, bypass resist
+
+		fooddrink/grime
+			name = "grime"
+			id = "grime"
+			taste = "vile"
+			description = "That non-specific grossness that builds up in uncleaned spaces and mishandled food. Mostly dust and hair, though."
+			fluid_r = 160
+			fluid_g = 110
+			fluid_b = 80
+			overdose = 3 //we don't add a lot of this stuff to anything
+			var/do_tummy = 1
+
+			reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume_passed)
+				. = ..()
+				if(!volume_passed)
+					return
+				if(!ishuman(M))
+					return
+
+				//var/mob/living/carbon/human/H = M
+				if(method == INGEST)
+					boutput(M, "<span class='alert'>There was something [pick("gross", "gritty", "hairy", "slimy")] in that... </span>")
+					if(prob(10))
+						M.vomit()
+					else if(prob(20))
+						M.take_toxin_damage(rand(1,2))
+
+			do_overdose(var/severity, var/mob/M, var/mult = 1)
+				if(!M) M = holder.my_atom
+
+				if (prob(5))
+					boutput(M, "<span class='alert'>You feel like you scrubbed the kitchen floor with your tongue. Ugh!</span>")
+					if(prob(50))
+						M.vomit()
+				else if (prob(5))
+					boutput(M, "<span class='alert'>You [pick("cough up", "spit out")] some [pick("hair", "gristle", "dust", "slime")].</span>")
+					if(prob(20))
+						M.take_toxin_damage(rand(1,2))
+				else if (prob(10) && do_tummy)
+					boutput(M, "<span class='alert'>Your stomach feels so much worse all of a sudden...</span>")
+					if (ishuman(M)) //hey some other overdose did it with contract_disease too, c'mon, it's okay (probably)
+						M:contract_disease(/datum/ailment/disease/food_poisoning, null, null, 0) // path, name, strain, bypass resist
+					do_tummy = 0
+				return
 
 		fooddrink/fakecheese
 			name = "cheese substitute"
@@ -3824,7 +3885,7 @@ datum
 					boutput(M, "<span class='alert'>Your body feels like it's being tickled from the inside out!</span>")
 					M.changeStatus("weakened", 1 SECONDS)
 					M.emote("laugh")
-					M.visible_message("<span class='alert'>[M] sneezes. \His sneeze sounds like a honk!</span>")
+					M.visible_message("<span class='alert'>[M] sneezes. [his_or_her(M)] sneeze sounds like a honk!</span>")
 					playsound(M.loc, "sound/items/bikehorn.ogg", 50, 1)
 				if (probmult(4))
 					//Create an alphabet soup of random phrases and force the mob to say it!
@@ -3928,11 +3989,11 @@ datum
 			fluid_b = 81
 			transparency = 200
 			var/alch_counter = 0 //ripped straight from amantin - moonlol
-
+/*
 			pooled()
 				..()
 				alch_counter = 0
-
+*/
 			on_mob_life(var/mob/M, var/mult = 0)
 
 				if (!M) M = holder.my_atom

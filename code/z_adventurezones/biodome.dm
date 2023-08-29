@@ -106,7 +106,7 @@ SYNDICATE DRONE FACTORY AREAS
 	skip_sims = 1
 	sims_score = 0
 	sound_group = "spooky_swamp"
-	sound_loop = 'sound/ambience/nature/Rain_Heavy.ogg'
+	sound_loop_1 = 'sound/ambience/nature/Rain_Heavy.ogg'
 
 	New()
 		..()
@@ -146,7 +146,7 @@ SYNDICATE DRONE FACTORY AREAS
 /area/crypt/sigma
 	name = "Research Facility Sigma"
 	icon_state = "derelict"
-	sound_loop = 'sound/ambience/spooky/Evilreaver_Ambience.ogg'
+	sound_loop_1 = 'sound/ambience/spooky/Evilreaver_Ambience.ogg'
 
 /area/crypt/sigma/mainhall
 	icon_state = "chapel"
@@ -493,7 +493,7 @@ SYNDICATE DRONE FACTORY AREAS
 				boutput(user, "<span class='alert'>You pull yourself to the stalagtite using the whip.</span>")
 				user.set_loc(T)
 
-			SPAWN_DBG(0.2 SECONDS) pool(O)
+			SPAWN_DBG(0.2 SECONDS) qdel(O)
 
 		if(istype(target_r, /obj/whip_trg_dummy)) qdel(target_r)
 
@@ -786,7 +786,7 @@ SYNDICATE DRONE FACTORY AREAS
 	proc/crumble()
 		src.visible_message("<span class='alert'><b>[src] crumbles!</b></span>")
 		playsound(src.loc, "sound/effects/stoneshift.ogg", 50, 1)
-		var/obj/effects/bad_smoke/smoke = unpool(/obj/effects/bad_smoke)
+		var/obj/effects/bad_smoke/smoke = new()
 		smoke.name = "dust cloud"
 		smoke.set_loc(src.loc)
 		icon_state = "rubble"
@@ -795,7 +795,7 @@ SYNDICATE DRONE FACTORY AREAS
 		SPAWN_DBG(18 SECONDS)
 			if ( smoke )
 				smoke.name = initial(smoke.name)
-				pool(smoke)
+				qdel(smoke)
 		return
 
 /////////////////////////////// ALCHEMY CIRCLE STUFF

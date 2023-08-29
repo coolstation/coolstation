@@ -142,6 +142,35 @@
 		dir = WEST
 		pixel_x = -25
 
+/obj/machinery/computer/shopping_shuttle
+	name = "Shuttle Control"
+	icon_state = "shuttle"
+	machine_registry_idx = MACHINES_SHUTTLECOMPS
+	var/active = 0
+	var/net_id = null
+	var/obj/machinery/power/data_terminal/link = null
+
+/obj/machinery/computer/shopping_shuttle/embedded
+	icon_state = "shuttle-embed"
+	density = 0
+	layer = EFFECTS_LAYER_1 // Must appear over cockpit shuttle wall thingy.
+
+	north
+		dir = NORTH
+		pixel_y = 25
+
+	east
+		dir = EAST
+		pixel_x = 25
+
+	south
+		dir = SOUTH
+		pixel_y = -25
+
+	west
+		dir = WEST
+		pixel_x = -25
+
 /obj/machinery/computer/icebase_elevator
 	name = "Elevator Control"
 	icon_state = "shuttle"
@@ -469,6 +498,86 @@
 
 	return
 
+/obj/machinery/computer/shopping_shuttle/New()
+	..()
+	SPAWN_DBG(0.5 SECONDS)
+		src.net_id = generate_net_id(src)
+
+		if(!src.link)
+			var/turf/T = get_turf(src)
+			var/obj/machinery/power/data_terminal/test_link = locate() in T
+			if(test_link && !DATA_TERMINAL_IS_VALID_MASTER(test_link, test_link.master))
+				src.link = test_link
+				src.link.master = src
+
+/obj/machinery/computer/shopping_shuttle/attack_hand(mob/user as mob)
+	if(..())
+		return
+	var/dat = "<a href='byond://?src=\ref[src];close=1'>Close</a><BR><BR>"
+
+	if(shoppingshuttle_location)
+		dat += "Shuttle Location: Station"
+	else
+		dat += "Shuttle Location: Starlight Minimall"
+	dat += "<BR>"
+	if(active)
+		dat += "Moving"
+	else
+		dat += "<a href='byond://?src=\ref[src];send=1'>Move Shuttle</a><BR><BR>"
+
+	user.Browse(dat, "window=shuttle")
+	onclose(user, "shuttle")
+	return
+
+/obj/machinery/computer/shopping_shuttle/Topic(href, href_list)
+	if(..())
+		return
+	if ((usr.contents.Find(src) || (isturf(src.loc) && in_interact_range(src, usr))) || (issilicon(usr)))
+		src.add_dialog(usr)
+		if (href_list["send"])
+			for(var/obj/machinery/shuttle/engine/propulsion/eng as anything in machine_registry[MACHINES_SHUTTLEPROPULSION]) // ehh
+				if(eng.stat1 == 0 && eng.stat2 == 0 && eng.id == "shop")
+					boutput(usr, "<span class='alert'>Propulsion thruster damaged. Unable to move shuttle.</span>")
+					return
+				else
+					continue
+
+			if(!active)
+				for(var/obj/machinery/computer/shopping_shuttle/C in machine_registry[MACHINES_SHUTTLECOMPS])
+					active = 1
+					C.visible_message("<span class='alert'>The Shopping Shuttle has been called and will leave shortly!</span>")
+
+				SPAWN_DBG(10 SECONDS)
+					call_shuttle()
+
+		else if (href_list["close"])
+			src.remove_dialog(usr)
+			usr.Browse(null, "window=shuttle")
+
+	src.add_fingerprint(usr)
+	src.updateUsrDialog()
+	return
+
+/obj/machinery/computer/shopping_shuttle/proc/call_shuttle()
+
+	if(shoppingshuttle_location == 0)
+		var/area/start_location = locate(/area/shuttle/shopping/shittymall)
+		var/area/end_location = locate(/area/shuttle/shopping/station)
+		start_location.move_contents_to(end_location)
+		shoppingshuttle_location = 1
+	else
+		if(shoppingshuttle_location == 1)
+			var/area/start_location = locate(/area/shuttle/shopping/station)
+			var/area/end_location = locate(/area/shuttle/shopping/shittymall)
+			start_location.move_contents_to(end_location)
+			shoppingshuttle_location = 0
+
+	for(var/obj/machinery/computer/shopping_shuttle/C in machine_registry[MACHINES_SHUTTLECOMPS])
+		active = 0
+		C.visible_message("<span class='alert'>The Shopping Shuttle has Moved!</span>")
+
+	return
+
 /obj/machinery/computer/asylum_shuttle/attack_hand(mob/user as mob)
 	if(..())
 		return
@@ -787,38 +896,40 @@ var/bombini_saved = 0
 /obj/machinery/computer/shuttle_bus/attack_hand(mob/user as mob)
 	if(..())
 		return
-	var/dat = "<a href='byond://?src=\ref[src];close=1'>Close</a><BR><BR>"
+	var/dat = "<a href='byond://?src=\ref[src];close=1'>Close</a><BR><BR><div style=\"background-color:DarkSlateGrey;color:LimeGreen;\"><span style=\"font-family:monospace;font-size:large;\"><b>"
 
 	switch(johnbus_location)
 		if(0)
-			dat += "Shuttle Location: Diner"
+			dat += "Location: Diner"
 		if(1)
-			dat += "Shuttle Location: Frontier Space Owlery"
+			dat += "Location: Frontier Space Owlery"
 		if(2)
-			dat += "Shuttle Location: Old Mining Station"
+			dat += "Location: Old Mining Station"
 		if(3)
-			dat += "Shuttle Location: Juicer Schweet's"
+			dat += "Location: Juicer Schweet's"
 
 
 	dat += "<BR>"
 	switch(johnbus_destination)
 		if(0)
-			dat += "Shuttle Destination: Diner"
+			dat += "Destination: Diner"
 		if(1)
-			dat += "Shuttle Destination: Frontier Space Owlery"
+			dat += "Destination: Frontier Space Owlery"
 		if(2)
-			dat += "Shuttle Destination: Old Mining Station"
+			dat += "Destination: Old Mining Station"
 		if(3)
-			dat += "Shuttle Destination: Juicer Schweet's"
+			dat += "Destination: Juicer Schweet's"
 
-	dat += "<BR><BR>"
+	dat += "</b></span><BR><BR>"
 	if(johnbus_active)
 		dat += "Status: Cruisin"
 	else
 		dat += "<a href='byond://?src=\ref[src];dine=1'>Set Target: Diner</a><BR>"
 		dat += "<a href='byond://?src=\ref[src];owle=1'>Set Target: Owlery</a><BR>"
 #ifndef UNDERWATER_MAP
+#ifndef Z3_IS_A_STATION_LEVEL
 		dat += "<a href='byond://?src=\ref[src];mine=1'>Set Target: Old Mining Station</a><BR>"
+#endif
 #endif
 		if(johnbill_shuttle_fartnasium_active) // here's how you can set conditional locations
 			dat += "<a href='byond://?src=\ref[src];fart=1'>Set Target: Juicer Schweet's</a><BR>"
@@ -827,7 +938,7 @@ var/bombini_saved = 0
 			dat += "<a href='byond://?src=\ref[src];send=1'>Send It</a><BR><BR>"
 		else
 			dat += "Let's go somewhere else, ok?<BR>"
-
+	dat += "</div><BR><img src='[resource("images/kboard.jpg")]'>"
 	user.Browse(dat, "window=shuttle")
 	onclose(user, "shuttle")
 	return

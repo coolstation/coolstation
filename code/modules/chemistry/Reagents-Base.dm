@@ -190,7 +190,7 @@ datum
 							if(prob(4))
 								H.change_misstep_chance(20 * mult)
 							if(probmult(6))
-								H.visible_message("<span class='alert'>[H] pukes all over \himself.</span>")
+								H.visible_message("<span class='alert'>[H] pukes all over [himself_or_herself(H)].</span>")
 								H.vomit()
 							if(prob(15))
 								H.make_dizzy(5 * mult)
@@ -414,11 +414,11 @@ datum
 			transparency = 222
 			minimum_reaction_temperature = T0C + 100
 			var/reacted_to_temp = 0 // prevent infinite loop in a fluid
-
+/*
 			pooled()
 				..()
 				reacted_to_temp = 0
-
+*/
 			reaction_temperature(exposed_temperature, exposed_volume)
 				if(!reacted_to_temp)
 					reacted_to_temp = 1
@@ -931,7 +931,7 @@ datum
 
 			reaction_turf(var/turf/T, var/volume)
 				if (volume >= 5 && !(locate(/obj/item/raw_material/ice) in T))
-					var/obj/item/raw_material/ice/I = unpool(/obj/item/raw_material/ice)
+					var/obj/item/raw_material/ice/I = new()
 					I.set_loc(T)
 				return
 

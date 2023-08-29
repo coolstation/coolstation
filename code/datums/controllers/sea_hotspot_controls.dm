@@ -1,20 +1,30 @@
+//N.B. the ore colours are for a debug setting, the maps on live obviously shouldn't show where ore generates
 #define MAP_COLORS_TRENCH list(\
 		empty = rgb(0, 0, 50),\
-		solid = rgb(0, 0, 255),\
+		solid = rgb(50, 50, 255),\
+		tough = rgb(0, 0, 255),\
 		station = rgb(255, 153, 58),\
-		other = rgb(120, 200, 120))
+		other = rgb(120, 200, 120),\
+		ore = rgb(255,75,125))
 
 #define MAP_COLORS_SPACE list(\
 		empty = rgb(30, 30, 45),\
 		solid = rgb(180,180,180),\
+		tough = rgb(180, 180, 255),\
 		station = rgb(27, 163, 186),\
-		other = rgb(186, 0, 60))
+		other = rgb(186, 0, 60),\
+		ore = rgb(75,255,125))
 
 #define MAP_COLORS_DESERT list(\
 		empty = rgb(211, 167, 84),\
 		solid = rgb(188, 98, 66),\
+		tough = rgb(160, 60, 25),\
 		station = rgb(27, 163, 186),\
-		other = rgb(186, 0, 60))
+		other = rgb(226, 72, 121),\
+		ore = rgb(75,255,125))
+
+//Undef to make turfs with ores on them show on the mining maps
+//#define DEBUG_ORE_GENERATION
 
 /turf/proc/probe_test()
 	return hotspot_controller.probe_turf(src)
@@ -82,9 +92,11 @@
 			for (var/x = 1, x <= world.maxx, x++)
 				for (var/y = 1, y <= world.maxy, y++)
 					var/turf/T = locate(x,y,level)
-					if (T.name == "asteroid" || T.name == "cavern wall" || T.type == /turf/floor/plating/airless/asteroid || istype(T, /turf/wall/asteroid/gehenna/z3))
+					if (T.turf_flags & MINE_MAP_PRESENTS_SOLID)
 						turf_color = "solid"
-					else if (T.name == "trench floor" || T.name == "\proper space" || T.name == "sand")
+					else if (T.turf_flags & MINE_MAP_PRESENTS_TOUGH)
+						turf_color = "tough"
+					else if (T.turf_flags & MINE_MAP_PRESENTS_EMPTY)
 						turf_color = "empty"
 					else
 						if (level == GEH_ZLEVEL) //more hardcoded grossness but IDK this proc just kinda sucks
@@ -97,7 +109,10 @@
 								turf_color = "station"
 							else
 								turf_color = "other"
-
+#ifdef DEBUG_ORE_GENERATION
+					if (istype(T, /turf/simulated/wall/asteroid) && T:ore)
+						turf_color = "ore"
+#endif
 
 					map["[level]"].DrawBox(colors_to_use[turf_color], x * 2, y * 2, x * 2 + 1, y * 2 + 1)
 
@@ -174,8 +189,10 @@
 		}
 		.empty { background-color: [colors_to_use["empty"]]; }
 		.solid { background-color: [colors_to_use["solid"]]; }
+		.tough { background-color: [colors_to_use["tough"]]; }
 		.station { background-color: [colors_to_use["station"]]; }
 		.other { background-color: [colors_to_use["other"]]; }
+		.ore { background-color: [colors_to_use["ore"]]; }
 		.vent { background-color: rgb(255, 120, 120); }
 	</style>
 </head>
@@ -186,6 +203,7 @@
 		</div>
 		<div class='key'>
 			<span><span class='solid'></span> Solid Rock</span>
+			<span><span class='tough'></span> Tough Rock</span>
 			<span><span class='station'></span> NT Asset</span>
 			<span><span class='other'></span> Unknown</span>
 			[map_currently_underwater?"<span><span class='vent'></span> Hotspot</span>":""]

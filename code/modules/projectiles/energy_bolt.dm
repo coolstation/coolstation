@@ -1,3 +1,4 @@
+//Used by: NT Incapacitor ammo (sorry warc I can't be arsed), Mk. 1 Combat Taser pod weapon, taser gun (single shot), egun (stun)
 /datum/projectile/energy_bolt
 	name = "energy bolt"
 	icon = 'icons/obj/projectiles.dmi'
@@ -58,6 +59,7 @@ toxic - poisons
 				H.changeStatus("stunned", power)
 		return*/
 
+//Used by: ricochet taser gun (unused?)
 /datum/projectile/energy_bolt/bouncy
 	name = "ricochet energy bolt"
 	var/max_bounce_count = 1
@@ -69,6 +71,7 @@ toxic - poisons
 				elecflash(get_turf(P),radius=0, power=2, exclude_center = 0)
 		..()
 
+//Used by: heavy ion blaster
 /datum/projectile/heavyion
 	name = "ion bolt"
 	icon = 'icons/obj/projectiles.dmi'
@@ -97,16 +100,18 @@ toxic - poisons
 		impact_image_effect(ie_type, hit)
 		return
 
+//Used by: guardbuddy taser module, AI turret (stun)
 /datum/projectile/energy_bolt/robust
 	power = 45
 	dissipation_rate = 6
 
+//Used by: taser gun (volley)
 /datum/projectile/energy_bolt/burst
 	shot_number = 3
 	cost = 75
 	sname = "burst stun"
 
-
+//Unused
 /datum/projectile/energy_bolt/tiny
 	power = 2.5
 	cost = 10
@@ -126,7 +131,8 @@ toxic - poisons
 			L.emote("twitch_v")
 		return
 
-/datum/projectile/energy_bolt/tasershotgun //Projectile for Azungar's taser shotgun.
+//Used by: taser shotgun (both modes, but spread via a spreader projectile)
+/datum/projectile/energy_bolt/tasershotgun //Projectile for Hatsune Miku's taser shotgun.
 	cost = 10
 	power = 17.5
 	dissipation_delay = 1
@@ -135,6 +141,7 @@ toxic - poisons
 	icon_state = "spark"
 
 //////////// VUVUZELA
+//Used by: amplified vuvuzela
 /datum/projectile/energy_bolt_v
 	name = "vuvuzela bolt"
 	icon = 'icons/obj/projectiles.dmi'
@@ -189,6 +196,7 @@ toxic - poisons
 		impact_image_effect(ie_type, M)
 
 //////////// Ghost Hunting for Halloween
+//Used by: ectoplasmic destabilizer
 /datum/projectile/energy_bolt_antighost
 	name = "ectoplasmic bolt"
 	icon = 'icons/obj/projectiles.dmi'
@@ -223,7 +231,8 @@ toxic - poisons
 	disruption = 0
 
 
-//Projectile for Azungars NT gun.
+//Projectile for Hatsune Miku's NT gun.
+//Used by: Assault laser rifle
 /datum/projectile/energy_bolt/ntburst // fixed overlapping path - /datum/projectile/energy_bolt/burst already exists for taser burst fire
 	shot_number = 1
 	power = 15
@@ -232,7 +241,7 @@ toxic - poisons
 	cost = 5
 	sname = "burst stun"
 
-//lawgiver detain
+//Used by: lawgiver (detain)
 /datum/projectile/energy_bolt/aoe
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "detain-projectile"
@@ -268,7 +277,7 @@ toxic - poisons
 				L.emote("twitch_v")
 
 
-
+//Used by: lawbringer detain projectile (sidetrack: really loving the garbage approach to inheritance and type naming in this file so far)
 /obj/effects/energy_bolt_aoe_burst
 	name = "shockwave"
 	desc = ""
@@ -293,6 +302,7 @@ toxic - poisons
 
 		SPAWN_DBG(7 DECI SECONDS) qdel(src)
 
+//Used by: lawbringer (pulse), pulse rifle
 /datum/projectile/energy_bolt/pulse
 	name = "pulse"
 	icon = 'icons/obj/projectiles.dmi'
@@ -331,7 +341,7 @@ toxic - poisons
 	impact_image_effect(var/type, atom/hit, angle, var/obj/projectile/O)
 		return
 
-
+//Used by: pulse rifle
 /datum/projectile/energy_bolt/electromagnetic_pulse
 	name = "pulse"
 	icon = 'icons/obj/projectiles.dmi'
@@ -362,6 +372,7 @@ toxic - poisons
 			H.do_disorient(stamina_damage = 30, weakened = 0, stunned = 0, disorient = 6 SECONDS, remove_stamina_below_zero = 0)
 		elecflash(T)
 
+//Used by: Signifer II
 /datum/projectile/energy_bolt/signifer_tase
 	name = "signifer spark"
 	icon = 'icons/obj/projectiles.dmi'
@@ -384,6 +395,7 @@ toxic - poisons
 
 	hit_mob_sound = 'sound/effects/sparks6.ogg'
 
+//Used by: Taser SMG (burst)
 /datum/projectile/energy_bolt/smgburst
 	name = "energy bolt"
 	icon = 'icons/obj/projectiles.dmi'
@@ -402,6 +414,7 @@ toxic - poisons
 
 	hit_mob_sound = 'sound/effects/sparks6.ogg'
 
+//Used by: taser SMG (automatic)
 /datum/projectile/energy_bolt/smgauto
 	name = "energy bolt"
 	icon = 'icons/obj/projectiles.dmi'
@@ -421,6 +434,7 @@ toxic - poisons
 
 	hit_mob_sound = 'sound/effects/sparks6.ogg'
 
+//Used by: experimental ray gun
 /datum/projectile/energy_bolt/raybeam
 	name = "energy bolt"
 	icon = 'icons/obj/projectiles.dmi'

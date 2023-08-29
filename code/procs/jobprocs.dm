@@ -85,6 +85,7 @@
 	var/list/medical_staff = list()
 	var/list/engineering_staff = list()
 	var/list/research_staff = list()
+	var/list/logistics_staff = list()
 
 
 	for(var/datum/job/JOB in job_controls.staple_jobs)
@@ -176,14 +177,16 @@
 		if (!JOB.allow_traitors && player.mind.special_role ||  !JOB.allow_spy_theft && player.mind.special_role == ROLE_SPY_THIEF)
 			continue
 		// If there's an open job slot for it, give the player the job and remove them from
-		// the list of unassigned players, hey presto everyone's happy (except clarks probly)
+		// the list of unassigned players, hey presto everyone's happy
 		if (JOB.limit < 0 || !(JOB.assigned >= JOB.limit))
 			if (istype(JOB, /datum/job/engineering/engineer))
 				engineering_staff += player
 			else if (istype(JOB, /datum/job/research/scientist))
 				research_staff += player
-			else if (istype(JOB, /datum/job/research/medical_doctor))
+			else if (istype(JOB, /datum/job/medical/medical_doctor))
 				medical_staff += player
+			else if (istype(JOB, /datum/job/logistics/cargotechnician))
+				logistics_staff += player
 
 			logTheThing("debug", null, null, "<b>I Said No/Jobs:</b> [player] took [JOB.name] from favorite selector")
 			player.mind.assigned_role = JOB.name
@@ -208,8 +211,10 @@
 				engineering_staff += candidate
 			else if (istype(JOB, /datum/job/research/scientist))
 				research_staff += candidate
-			else if (istype(JOB, /datum/job/research/medical_doctor))
+			else if (istype(JOB, /datum/job/medical/medical_doctor))
 				medical_staff += candidate
+			else if (istype(JOB, /datum/job/logistics/cargotechnician))
+				logistics_staff += candidate
 
 			if (JOB.assigned >= JOB.limit || unassigned.len == 0)
 				break
@@ -236,8 +241,10 @@
 				engineering_staff += candidate
 			else if (istype(JOB, /datum/job/research/scientist))
 				research_staff += candidate
-			else if (istype(JOB, /datum/job/research/medical_doctor))
+			else if (istype(JOB, /datum/job/medical/medical_doctor))
 				medical_staff += candidate
+			else if (istype(JOB, /datum/job/logistics/cargotechnician))
+				logistics_staff += candidate
 
 			if (JOB.assigned >= JOB.limit || unassigned.len == 0) break
 			logTheThing("debug", null, null, "<b>I Said No/Jobs:</b> [candidate] took [JOB.name] from Level 3 Job Picker")
@@ -277,6 +284,16 @@
 			//Promote Medical Director
 			else if (istype(JOB, /datum/job/command/medical_director))
 				var/list/picks = FindPromotionCandidates(medical_staff, JOB)
+				if (!picks || !length(picks))
+					continue
+				var/mob/new_player/candidate = pick(picks)
+				logTheThing("debug", null, null, "<b>kyle:</b> [candidate] took [JOB.name] from Job Promotion Picker")
+				candidate.mind.assigned_role = JOB.name
+				logTheThing("debug", candidate, null, "reassigned job: [candidate.mind.assigned_role]")
+				JOB.assigned++
+			//Promote Quartermaster
+			else if (istype(JOB, /datum/job/command/quartermaster))
+				var/list/picks = FindPromotionCandidates(logistics_staff, JOB)
 				if (!picks || !length(picks))
 					continue
 				var/mob/new_player/candidate = pick(picks)
@@ -518,6 +535,16 @@
 		else
 			src.Equip_Bank_Purchase(src.mind?.purchased_bank_item)
 
+		if(src.client && src.client.persistent_gun && !src.mind.do_not_save_gun)
+			if(ishuman(src))
+				var/mob/living/carbon/human/H = src
+				if(!H.equip_if_possible(src.client.persistent_gun, H.slot_in_backpack))
+					src.put_in_hand_or_drop(src.client.persistent_gun)
+				//backup option - not trying this first because jobs that start with anything in hand will drop 2-handed weapons by default. lame.
+			else
+				src.put_in_hand_or_drop(src.client.persistent_gun)
+			src.client.save_cloud_gun(0) // warc: this sets to None if you spawned the gun, so that we dont need to wipe it at the end of the round.
+										// not wiping at the end is so that you can go put your gun away in a safe place & not lose it if you die.
 	return
 
 /mob/living/carbon/human/proc/Equip_Job_Slots(var/datum/job/JOB)
@@ -652,6 +679,7 @@
 
 	if(C)
 		var/realName = src.real_name
+		var/datum/data/record/B = FindBankAccountByName(src.real_name)
 
 		if(src.traitHolder && src.traitHolder.hasTrait("clericalerror"))
 			realName = replacetext(realName, "a", "o")
@@ -661,11 +689,12 @@
 			if(prob(50)) realName = replacetext(realName, "t", pick("d", "k"))
 			if(prob(50)) realName = replacetext(realName, "p", pick("b", "t"))
 
-			var/datum/data/record/B = FindBankAccountByName(src.real_name)
 			if (B?.fields["name"])
 				B.fields["name"] = realName
 
 		C.registered = realName
+		if(B?.fields["id"])
+			C.registered_id = B?.fields["id"]
 		C.assignment = JOB.name
 		C.name = "[C.registered]'s ID Card ([C.assignment])"
 		C.access = JOB.access.Copy()
@@ -690,7 +719,7 @@
 		if (src.traitHolder && src.traitHolder.hasTrait("pawnstar"))
 			cashModifier = 1.25
 
-		var/obj/item/spacecash/S = unpool(/obj/item/spacecash)
+		var/obj/item/spacecash/S = new()
 		S.setup(src,wagesystem.jobs[JOB.name] * cashModifier)
 
 		if (isnull(src.get_slot(slot_r_store)))
@@ -779,7 +808,7 @@ var/list/trinket_safelist = list(/obj/item/basketball,/obj/item/instrument/bikeh
 /obj/item/reagent_containers/food/drinks/drinkingglass, /obj/item/reagent_containers/food/drinks/drinkingglass/shot,/obj/item/storage/pill_bottle/bathsalts,
 /obj/item/storage/pill_bottle/catdrugs, /obj/item/storage/pill_bottle/crank, /obj/item/storage/pill_bottle/cyberpunk, /obj/item/storage/pill_bottle/methamphetamine,
 /obj/item/spraybottle,/obj/item/staple_gun,/obj/item/clothing/head/NTberet,/obj/item/clothing/head/biker_cap, /obj/item/clothing/head/black, /obj/item/clothing/head/blue,
-/obj/item/clothing/head/chav, /obj/item/clothing/head/det_hat, /obj/item/clothing/head/green, /obj/item/clothing/head/helmet/hardhat, /obj/item/clothing/head/merchant_hat,
+/obj/item/clothing/head/brummie, /obj/item/clothing/head/det_hat, /obj/item/clothing/head/green, /obj/item/clothing/head/helmet/hardhat, /obj/item/clothing/head/merchant_hat,
 /obj/item/clothing/head/mj_hat, /obj/item/clothing/head/red, /obj/item/clothing/head/that, /obj/item/clothing/head/wig, /obj/item/clothing/head/turban, /obj/item/dice/magic8ball,
 /obj/item/reagent_containers/food/drinks/mug/random_color, /obj/item/reagent_containers/food/drinks/skull_chalice, /obj/item/pen/marker/random, /obj/item/pen/crayon/random,
 /obj/item/clothing/gloves/yellow/unsulated, /obj/item/reagent_containers/food/snacks/fortune_cookie, /obj/item/instrument/triangle, /obj/item/instrument/tambourine, /obj/item/instrument/cowbell,

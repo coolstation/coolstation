@@ -82,7 +82,7 @@ turf/simulated/floor/plating/airless/ocean_canpass()
 	if (airborne)
 		if (!src.active_airborne_liquid)
 			FG = new /datum/fluid_group/airborne
-			F = unpool(/obj/fluid/airborne)
+			F = new /obj/fluid/airborne()
 			src.active_airborne_liquid = F
 			F.set_up(src)
 			if (react_volume == 0)
@@ -99,7 +99,7 @@ turf/simulated/floor/plating/airless/ocean_canpass()
 	else
 		if (!src.active_liquid)
 			FG = new
-			F = unpool(/obj/fluid)
+			F = new /obj/fluid()
 			src.active_liquid = F
 			F.set_up(src)
 			if (react_volume == 0)
@@ -146,7 +146,7 @@ turf/simulated/floor/plating/airless/ocean_canpass()
 	if (airborne)
 		if (!src.active_airborne_liquid)
 			FG = new /datum/fluid_group/airborne
-			F = unpool(/obj/fluid/airborne)
+			F = new /obj/fluid/airborne()
 			src.active_airborne_liquid = F
 			F.set_up(src)
 			if (react_volume == 0)
@@ -163,7 +163,7 @@ turf/simulated/floor/plating/airless/ocean_canpass()
 	else
 		if (!src.active_liquid)
 			FG = new
-			F = unpool(/obj/fluid)
+			F = new /obj/fluid()
 			src.active_liquid = F
 			F.set_up(src)
 			if (react_volume == 0)
@@ -243,7 +243,8 @@ turf/simulated/floor/plating/airless/ocean_canpass()
 	var/list/cleanables = list()
 	for (var/obj/decal/cleanable/C in src)
 		if (C.qdeled || C.pooled) continue
-		//if (C.dry) continue
+		if (C.dry) continue //this was commented out but i figure why not get crusty with it and see what happens
+		if (C.sampled) continue //beware recursion
 		if (istype(C,/obj/decal/cleanable/blood/dynamic)) continue // handled above
 		if (!C.can_fluid_absorb) continue
 		cleanables += C
@@ -257,12 +258,18 @@ turf/simulated/floor/plating/airless/ocean_canpass()
 				if (reagent_id in ban_stacking_into_fluid) return
 			var/datum/reagents/R = new(C.reagents.maximum_volume) //Store reagents, delete cleanable, and then fluid react. prevents recursion
 			C.reagents.copy_to(R)
-			C.clean_forensic()
+			if (C.sample_reagent in stack_into_fluid_but_keep_the_cleanable_ok_thanks)
+				C.sampled = 1 //empty it
+			else
+				C.clean_forensic()
 			src.fluid_react(R, R.total_volume)
 		else if (C?.can_sample && C.sample_reagent)
 			if ((!grab_any_amount && (C.sample_reagent in ban_stacking_into_fluid)) || (C.sample_reagent in ban_from_fluid)) return
 			var/sample = C.sample_reagent
 			var/amt = C.sample_amt
-			C.clean_forensic()
+			if (C.sample_reagent in stack_into_fluid_but_keep_the_cleanable_ok_thanks)
+				C.sampled = 1
+			else
+				C.clean_forensic()
 			src.fluid_react_single(sample, amt)
 	return 1

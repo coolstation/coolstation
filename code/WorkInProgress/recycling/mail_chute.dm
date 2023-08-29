@@ -8,16 +8,17 @@
 	var/mail_tag = null
 	//var/destination_tag = null // dropped to parent /obj/machinery/disposal
 	var/list/destinations = list()
-	var/frequency = 1475
+	var/frequency = FREQ_MAIL
 	var/datum/radio_frequency/radio_connection
 	var/last_inquire = 0 //No signal spamming etc
 	var/autoname = 0
+	var/autotag = 0 //get mail tag from area it's placed on. 2 goes by area.name
 
 	var/message = null
 	var/mailgroup = null
 	var/mailgroup2 = null
 	var/net_id = null
-	var/pdafrequency = 1149
+	var/pdafrequency = FREQ_PDA
 	var/datum/radio_frequency/pda_connection
 	var/router_distance = 0 // tracks the highest-yet Count on configuration packets recieved to date.
 	var/list/routerlist = list() // routerlists we got from those packets.
@@ -25,8 +26,23 @@
 
 	New()
 		..()
-		if (src.autoname == 1 && !isnull(src.mail_tag))
+		// defers to manual tags, otherwise try to get the tag from area (if enabled)
+		if (src.autotag && isnull(src.mail_tag)) //get tag from area- each area must have a unique mailtag and also should be formatted friendly to mail chute list
+			var/area/A = get_area(src)
+			if (A.mail_tag) //not every area will have a mail tag set, especially off station Z
+				src.mail_tag = "[A.mail_tag]" //politely get mail tag from area.mail_tag
+		if (src.autoname && !isnull(src.mail_tag))
 			src.name = "mail chute ([src.mail_tag])"
+		if (isnull(src.mail_tag)) //no assign, and no autotag? that's a bad time friend
+			if (src.autotag)
+				var/area/A = get_area(src)
+				src.mail_tag = "[A.name]" //rudely get mail tag from area.name (might cause issue/slop but it's probably a better fallback? maybe?)
+			else
+				src.name = "unaddressable mail chute"
+				src.mode = 4 //cycling lights to make it obvious (mode is defined in disposal_chute.dm as "DISPOSAL_CHUTE_NOTAG")
+				logTheThing("debug", src, null, "has no mailtag!")
+
+		//TODO for later: do a datumized lookup for mailgroups/notifications based on mailtags so those can be set automatically too
 
 		SPAWN_DBG(10 SECONDS)
 			if (src)
@@ -111,7 +127,7 @@
 		if (istype(src, /obj/machinery/disposal/mail)) flick("mailchute-flush", src)
 		else flick("disposal-flush", src)
 
-		var/obj/disposalholder/H = unpool(/obj/disposalholder)	// virtual holder object which actually
+		var/obj/disposalholder/H = new()	// virtual holder object which actually
 																// travels through the pipes.
 
 		H.init(src)	// copy the contents of disposer to holder
@@ -159,7 +175,7 @@
 				router_distance = H.count
 				if(H.routers.len)
 					routerlist += H.routers.Copy()
-			pool(H)
+			qdel(H)
 			return
 
 
@@ -196,7 +212,7 @@
 			if (istype(src, /obj/machinery/disposal/mail)) flick("mailchute-flush", src)
 			else flick("disposal-flush", src)
 
-			var/obj/disposalholder/H = unpool(/obj/disposalholder)	// virtual holder object which actually
+			var/obj/disposalholder/H = new()	// virtual holder object which actually
 																	// travels through the pipes.
 
 			H.init(src)	// copy the contents of disposer to holder
@@ -217,6 +233,10 @@
 
 		ex_act(severity)
 			return
+
+/obj/machinery/disposal/mail/autotag //automatically tag and name a mailbox based on area
+	autotag = 1 //check for area.mail_tag and apply it
+	autoname = 1 //then rename
 
 /obj/machinery/disposal/mail/autoname
 	autoname = 1
@@ -308,18 +328,18 @@
 		name = "Medbay"
 		mail_tag = "medbay"
 		mailgroup = MGD_MEDBAY
-		mailgroup2 = MGD_MEDRESEACH
+		mailgroup2 = MGD_MEDRESEARCH
 		message = 1
 
 		robotics
 			name = "Robotics"
 			mail_tag = "robotics"
-			mailgroup = MGD_MEDRESEACH
+			mailgroup = MGD_MEDRESEARCH
 			mailgroup2 = null
 		genetics
 			name = "Genetics"
 			mail_tag = "genetics"
-			mailgroup = MGD_MEDRESEACH
+			mailgroup = MGD_MEDRESEARCH
 			mailgroup2 = null
 		pathology
 			name = "Pathology"
@@ -403,6 +423,20 @@
 	icon = 'icons/obj/disposal_small.dmi'
 	handle_normal_state = "disposal-handle"
 	density = 0
+
+/obj/machinery/disposal/mail/small/autotag //same as before
+	autotag = 1
+	autoname = 1
+
+	north
+		dir = NORTH
+		pixel_y = 32
+	east
+		dir = EAST
+	south
+		dir = SOUTH
+	west
+		dir = WEST
 
 /obj/machinery/disposal/mail/small/autoname
 	autoname = 1
@@ -678,7 +712,7 @@
 		name = "Medbay"
 		mail_tag = "medbay"
 		mailgroup = MGD_MEDBAY
-		mailgroup2 = MGD_MEDRESEACH
+		mailgroup2 = MGD_MEDRESEARCH
 		message = 1
 
 		north
@@ -694,7 +728,7 @@
 		robotics
 			name = "Robotics"
 			mail_tag = "robotics"
-			mailgroup = MGD_MEDRESEACH
+			mailgroup = MGD_MEDRESEARCH
 			mailgroup2 = null
 
 			north
@@ -710,7 +744,7 @@
 		genetics
 			name = "Genetics"
 			mail_tag = "genetics"
-			mailgroup = MGD_MEDRESEACH
+			mailgroup = MGD_MEDRESEARCH
 			mailgroup2 = null
 
 			north

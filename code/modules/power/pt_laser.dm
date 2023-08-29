@@ -202,8 +202,8 @@
 			accounts += t //fuck it
 		else if(t.fields["job"] == "Engineer")
 			accounts += t
-
-	if(abs(generated_moolah) >= accounts.len*2) //otherwise not enough to split evenly so don't bother I guess
+// check we actually have accounts.len, or thats a runtime bucko.
+	if((accounts.len) && (abs(generated_moolah) >= accounts.len*2)) //otherwise not enough to split evenly so don't bother I guess
 		wagesystem.station_budget += round(generated_moolah/2)
 		generated_moolah -= round(generated_moolah/2) //no coming up with $$$ out of air!
 

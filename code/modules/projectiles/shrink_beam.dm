@@ -1,3 +1,4 @@
+//Used by: shrink ray
 /datum/projectile/shrink_beam
 	name = "space-time disruption"
 	icon = 'icons/obj/projectiles.dmi'
@@ -48,6 +49,7 @@
 			hit.Scale(0.75 ** hit.shrunk, 0.75 ** hit.shrunk)
 		return
 
+//Used by: grow ray
 /datum/projectile/shrink_beam/grow
 	name = "time-space disruption"
 	sname = "grow beam"

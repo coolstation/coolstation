@@ -12,7 +12,7 @@
 /// Time the shuttle takes to leave SS13
 #define SHUTTLELEAVETIME (2 MINUTES / (1 SECOND))
 /// Time the shuttle spends in transit away from SS13
-#define SHUTTLETRANSITTIME (3 MINUTES / (1 SECOND))
+#define SHUTTLETRANSITTIME (2.5 MINUTES / (1 SECOND))
 
 // you might be asking "why in seconds?" the answer is that shuttle code uses seconds as a base unit and I'm too tired to refactor it
 

@@ -135,6 +135,35 @@
 		setup_tape_type = /obj/item/disk/data/tape
 		setup_allow_boot = 1
 
+	tape_drive/warm
+		name = "Warm Backup Databank"
+		desc = "A networked tape drive for the backup mainframe."
+		setup_access_click = 1
+		setup_allow_boot = 1
+		net_number = 1 //if someone turns this on accidentally don't interfere with normal networking until it's working right and configured to 0
+	tape_drive/cold
+		name = "Cold Backup Databank"
+		desc = "A networked tape drive for the backup mainframe."
+		setup_access_click = 1
+		setup_allow_boot = 1
+		setup_spawn_with_tape = 0
+		net_number = 1 //see above
+	tape_drive/lab
+		name = "Databank"
+		desc = "A networked tape drive for lab use."
+		setup_access_click = 1
+		setup_allow_boot = 1
+		setup_spawn_with_tape = 0
+		net_number = 3 //nerdnet
+
+	tape_drive/syndie
+		name = "Liberated Databank"
+		desc = "A networked tape drive for software-freedom activities. Gallantly rescued from station 11."
+		setup_access_click = 1
+		setup_allow_boot = 1
+		setup_spawn_with_tape = 0
+		net_number = 2 //syndinet?
+
 	clone()
 		var/obj/machinery/networked/storage/clonestore = ..()
 		if (!clonestore)
@@ -1033,7 +1062,7 @@
 	var/time = 180
 	power_usage = 120
 
-	var/status_display_freq = "1435"
+	var/status_display_freq = FREQ_STATUS
 
 
 #define DISARM_CUTOFF 10 //Can't disarm past this point! OH NO!
@@ -1334,7 +1363,7 @@
 
 	proc/post_display_status(var/timeleft)
 
-		var/datum/radio_frequency/frequency = radio_controller.return_frequency(status_display_freq)
+		var/datum/radio_frequency/frequency = radio_controller.return_frequency("[status_display_freq]")
 
 		if(!frequency) return
 
@@ -1359,7 +1388,7 @@
 	density = 1
 	icon_state = "net_radio"
 	device_tag = "PNET_PR6_RADIO"
-	//var/freq = 1219
+	//var/freq = FREQ_ROBUDDY
 	mats = 8
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_WIRECUTTERS | DECON_MULTITOOL | DECON_DESTRUCT
 	var/list/frequencies = list()
@@ -1378,8 +1407,8 @@
 		SPAWN_DBG(0.5 SECONDS)
 
 			if (radio_controller)
-				frequencies["1411"] = radio_controller.add_object(src, "1411")
-				frequencies["1419"] = radio_controller.add_object(src, "1419")
+				frequencies["[FREQ_AIRLOCK_REMOTE]"] = radio_controller.add_object(src, "[FREQ_AIRLOCK_REMOTE]")
+				frequencies["[FREQ_WLNET]"] = radio_controller.add_object(src, "[FREQ_WLNET]")
 
 			if(!src.link)
 				var/turf/T = get_turf(src)
@@ -1389,8 +1418,8 @@
 					src.link.master = src
 
 	disposing()
-		radio_controller.remove_object(src, "1411")
-		radio_controller.remove_object(src, "1419")
+		radio_controller.remove_object(src, "[FREQ_AIRLOCK_REMOTE]")
+		radio_controller.remove_object(src, "[FREQ_WLNET]")
 		..()
 
 	attack_hand(mob/user as mob)
@@ -1736,7 +1765,7 @@
 				return
 
 			user.drop_item()
-			pool(W)
+			qdel(W)
 			boutput(user, "You load the paper into [src].")
 			if(!src.sheets_remaining && !src.jam)
 				src.clear_alert()
@@ -1759,7 +1788,7 @@
 				boutput(user, "You load [W:amount] sheets into the tray.")
 				src.sheets_remaining += W:amount
 				user.drop_item()
-				pool(W)
+				qdel(W)
 
 			if(!src.jam)
 				src.clear_alert()
@@ -2049,7 +2078,7 @@
 					P.name = IMG.img_name
 					P.desc = IMG.img_desc*/
 				else
-					var/obj/item/paper/P = unpool(/obj/item/paper)
+					var/obj/item/paper/P = new()
 					P.set_loc(src.loc)
 
 

@@ -183,7 +183,7 @@
 				waldo_mob.verbs += /client/proc/invisibility
 				waldo_mob.verbs += /client/proc/mass_teleport
 
-				var/freq = 1441
+				var/freq = 1441 //this is the engineering intercom frequency why are you on there waldo
 				var/list/freqlist = list()
 				while (freq <= 1489)
 					if (freq < 1451 || freq > 1459)

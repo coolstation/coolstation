@@ -7,6 +7,7 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 	"Surprised" = "ai_surprised",\
 	"Sad" = "ai_sad",\
 	"Mad" = "ai_mad",\
+	"Sassy" = "ai_sassy",\
 	"BSOD" = "ai_bsod",\
 	"Text" = "ai_text",\
 	"Blank" = "ai_blank",\
@@ -463,7 +464,7 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 
 /mob/living/silicon/ai/proc/eject_brain(var/mob/user)
 	if (src.mind && src.mind.special_role)
-		src.handle_robot_antagonist_status("brain_removed", 1, user) // Mindslave or rogue (Convair880).
+		src.handle_robot_antagonist_status("brain_removed", 1, user) // Insurgent or rogue (Convair880).
 
 	src.dismantle_stage = 4
 	if (user)
@@ -789,7 +790,7 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 	if (src.mind)
 		src.mind.register_death()
 		if (src.mind.special_role)
-			src.handle_robot_antagonist_status("death", 1) // Mindslave or rogue (Convair880).
+			src.handle_robot_antagonist_status("death", 1) // Insurgent or rogue (Convair880).
 
 #ifdef RESTART_WHEN_ALL_DEAD
 	var/cancel

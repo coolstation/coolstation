@@ -207,6 +207,14 @@
 	name = "Morty"
 	generic = 0
 
+/obj/critter/opossum/donglord
+	name = "stinky weird dog"
+	real_name = "Donglord"
+	desc = "its donglord in disguise"
+	generic = 0
+	icon_state = "possdong"
+	dead_state = "possdong-dead"
+
 // hi I added my childhood cats' names to the list cause I miss em, they aren't really funny names but they were great cats
 // remove em if you want I guess
 // - Haine
@@ -287,7 +295,7 @@
 		if (src.alive && istype(W, /obj/item/plant/herb/catnip))
 			user.visible_message("<b>[user]</b> gives [src.name] the [W]!","You give [src.name] the [W].")
 			src.catnip_effect()
-			pool(W)
+			qdel(W)
 		else
 			..()
 
@@ -1311,7 +1319,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 			src.say(pick("Ha en bra dag!", "Kom igen!"))
 			if (C.amount <= 0) // no mo monay
 				user.u_equip(C)
-				pool(C)
+				qdel(C)
 			else
 				C.update_stack_appearance()
 
@@ -1876,6 +1884,9 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 	pet_text = list("pets", "cuddles", "pats", "snuggles")
 	var/lying = 0
 	var/freakout = 0
+	//var/gotfreaked = 0
+	var/marten = 0
+	var/farten = 0
 	var/base_state = "ferret"
 	var/lazy_state = "ferret-lazy"
 	var/lock_color = 0
@@ -1884,10 +1895,18 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 		..()
 
 		//50% chance to be a dark-colored ferret
-		if (!src.lock_color && prob(50))
+		if (!src.lock_color && prob(50) &&!src.marten)
 			src.icon_state = src.base_state = "ferret-dark"
 			src.dead_state = "ferret-dark-dead"
 			src.lazy_state = "ferret-dark-lazy"
+
+		//10% chance for a mart to fart
+		if ((marten) && (!farten)) //only bother to do this with the regular one
+			if (prob(10))
+				src.farten = 1
+				src.name = "pine farten"
+				src.real_name = "pine farten"
+				src.desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front. This one stinks more than usual."
 
 	ai_think()
 		if (src.alive && src.lying && prob(10))
@@ -1901,16 +1920,51 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 				while (x-- > 0)
 					src.pixel_x = rand(-6,6)
 					src.pixel_y = rand(-6,6)
+					step(src, pick(cardinal), 1)
 					sleep(0.2 SECONDS)
 
 				src.pixel_x = 0
 				src.pixel_y = 0
 
+			if (prob(20)) //romp around, whatever
+				var/takeawalk = pick(cardinal)
+				step(src, takeawalk)
+				if (prob(50))
+					step(src, takeawalk)
+					if (prob(40))
+						step(src, takeawalk)
+						if (prob(35))
+							step(src, takeawalk)
+					else if	(prob(30))
+						step(src, pick(cardinal))
+
+			if (prob(3)) //zoomies
+				SPAWN_DBG(0)
+					src.visible_message("<span class='emote'><b>[src]</b> starts zooming around!</span>")
+					var/zoom = pick(cardinal)
+					walk(src, zoom)
+					var/x = rand(8,12)
+					while (x-- > 0)
+						if(prob(25))
+							zoom = turn(zoom,pick(90, 45, -45, -90))
+							walk(src, zoom)
+						sleep(0.25 SECONDS)
+					walk(src, 0) //okay stop
+
 			if (prob(5))
 				animate_spin(src, pick("L","R"), 1, 0)
 
+			if (prob(15) && src.farten)
+				src.visible_message("<span class='emote'><b>[src]</b> farts wildly!</span>")
+				playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
+
+			if (prob(5))
+				playsound(src, 'sound/misc/talk/fert.ogg', 40, 1, 0.3, 1.5, channel=VOLUME_CHANNEL_EMOTE)
+				return "<span class='emote'><b>[src]</b> dooks wildly!</span>"
+
 			if (prob(10))
 				src.visible_message("\The [src] [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles","dooks")]!")
+				playsound(src, 'sound/misc/talk/fert.ogg', 40, 1, 0.3, 1.5, channel=VOLUME_CHANNEL_EMOTE)
 
 			src.freakout--
 			if (!src.freakout)
@@ -1920,6 +1974,12 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 			..()
 			if (task == "thinking" || task == "wandering")
 				if (src.alive && !src.sleeping && prob(2) && !src.lying && !src.freakout)
+					if (prob(5) && src.farten)
+						src.visible_message("<span class='emote'><b>[src]</b> farts!</span>")
+						playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
+					if (prob(5))
+						playsound(src, 'sound/misc/talk/fert.ogg', 40, 1, 0.3, 1.5, channel=VOLUME_CHANNEL_EMOTE)
+						return "<span class='emote'><b>[src]</b> dooks!</span>"
 					if (prob(50))
 						src.freakout = rand(10,20) //x * 1.6 (critter loop tickrate) = duration in seconds
 						return
@@ -1942,6 +2002,8 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 			M.changeStatus("weakened", toweak SECONDS)
 
 	CritterAttack(mob/M)
+		if (prob(10))
+			playsound(src, 'sound/voice/screams/weaselscream.ogg', 40, 1, 0.3, 1.0, channel=VOLUME_CHANNEL_EMOTE)
 		..()
 
 	attack_hand(mob/user as mob)
@@ -1964,6 +2026,69 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 			return
 		else
 			return ..()
+
+/* // for later
+	proc/contagiousfreakout() //if you think regular ferrets get excited over other regular ferrets just you wait bud
+		if (src.freakout) //boost chance to freak out if they're currently freaking out, but don't add to it
+			if (prob(15))
+				if ((!src.gotfreaked))
+					src.gotfreaked = 1
+					SPAWN_DBG(12)
+						src.gotfreaked = 0
+					src.visible_message("<span class='emote'><b>[src]</b> goes absolutely bonkers!</span>")
+					SPAWN_DBG(0)
+						var/x = rand(20,30)
+						while (x-- > 0)
+							src.pixel_x = rand(-6,6)
+							src.pixel_y = rand(-6,6)
+							src.dir = pick(1,2,4,8)
+							if(prob(4))
+								animate_spin(src, prob(50) ? "L" : "R", 1, 0)
+							if(prob(4))
+								src.emote("laugh")
+							sleep(0.2 SECONDS)
+						src.visible_message("<span class='emote'><b>[src]</b> calms down a little bit.</span>")
+			else
+				return
+		if (prob(5))
+			if ((!src.gotfreaked) || resonance_fertscade)
+				src.gotfreaked = 1
+				SPAWN_DBG(12)
+					src.gotfreaked = 0
+				src.freakout += 10 //from calm, they get a little antsier
+				src.visible_message("<span class='emote'><b>[src]</b> gets riled up!</span>")
+				SPAWN_DBG(0)
+					var/x = rand(10,20)
+					while (x-- > 0)
+						src.pixel_x = rand(-6,6)
+						src.pixel_y = rand(-6,6)
+						src.dir = pick(1,2,4,8)
+						if(prob(3))
+							animate_spin(src, prob(50) ? "L" : "R", 1, 0) //try a rare spin every loop
+						if(prob(3))
+							src.emote("laugh")
+						sleep(0.2 SECONDS)
+					src.visible_message("<span class='emote'><b>[src]</b> calms down again. For now.</span>")
+		else
+			if(prob(10))
+				src.freakout += 5 //just a tiny bit because it happened
+				*/
+
+/obj/critter/meatslinky/pine_marten
+	name = "pine marten"
+	real_name = "pine marten"
+	desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front."
+	icon_state = "farten"
+	dead_state = "farten-dead"
+	base_state = "farten"
+	lazy_state = "farten-lazy"
+	marten = 1
+
+/obj/critter/meatslinky/pine_marten/farten //stink guaranteed!!!! this is the real reason we have pine martens
+	name = "pine farten" //regular martens that fart will still be called pine marten but this one is explicit about it
+	real_name = "pine farten"
+	desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front. This one stinks more than usual."
+	farten = 1
 
 //Wire: special ferret based on my poor dead IRL ferret perhaps paradoxically named Piggy
 //		as a sidenote if you touch this code i may skewer you alive

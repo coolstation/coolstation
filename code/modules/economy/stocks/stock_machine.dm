@@ -3,6 +3,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "QMreq"
 	var/logged_in = null
+	var/logged_id = null
 	var/vmode = 0
 	deconstruct_flags = DECON_MULTITOOL
 	light_r =1
@@ -10,9 +11,9 @@
 	light_b = 0.03
 
 /obj/machinery/computer/stockexchange/proc/balance()
-	if (!logged_in)
+	if (!logged_id)
 		return 0
-	var/datum/data/record/B = FindBankAccountByName(logged_in)
+	var/datum/data/record/B = FindBankAccountById(logged_id)
 	if (B)
 		return B.fields["current_money"]
 	return "--- account not found ---"
@@ -51,8 +52,9 @@
 		dat += "<span class='user'>Welcome, <b>[logged_in]</b></span> <a href='?src=\ref[src];logout=1'>Log out</a><br><span class='balance'><b>Your account balance:</b> [balance()] credits</span><br>"
 		for (var/datum/stock/ticker/S in stockExchange.last_read)
 			var/list/LR = stockExchange.last_read[S]
-			if (!(logged_in in LR))
-				LR[logged_in] = 0
+			if(logged_id)
+				if (!(logged_id in LR))
+					LR[logged_id] = 0
 	dat += "<b>View mode:</b> <a href='?src=\ref[src];cycleview=1'>[vmode ? "compact" : "full"]</a>"
 
 	dat += "<h3>Listed stocks</h3>"
@@ -60,8 +62,8 @@
 	if (vmode == 0)
 		for (var/datum/stock/ticker/S as anything in stockExchange.stocks)
 			var/mystocks = 0
-			if (logged_in && (logged_in in S.shareholders))
-				mystocks = S.shareholders[logged_in]
+			if (logged_id && (logged_id in S.shareholders))
+				mystocks = S.shareholders[logged_id]
 			dat += "<hr /><div class='stock'><span class='company'>[S.name]</span> <span class='s_company'>([S.short_name])</span>[S.bankrupt ? " <b style='color:red'>BANKRUPT</b>" : null]<br>"
 			if (S.last_unification)
 				dat += "<b>Unified shares</b> [(ticker.round_elapsed_ticks - S.last_unification) / 600] minutes ago.<br>"
@@ -86,7 +88,7 @@
 			else
 				dat += "<i>No borrow options available</i><br><br>"
 			for (var/datum/stock/borrow/B in S.borrows)
-				if (B.borrower == logged_in)
+				if (B.borrower == logged_id)
 					dat += "You are borrowing <i>[B.share_amount] shares</i> from <b>[B.broker]</b>.<br>"
 					dat += "Your deposit riding on the deal is <i>[B.deposit] credits</i>.<br>"
 					if (ticker.round_elapsed_ticks < B.lease_expires)
@@ -94,9 +96,9 @@
 					else
 						dat += "The brokering agency is collecting. You still owe them <i>[B.share_debt]</i> shares, which you have [(B.grace_expires - ticker.round_elapsed_ticks) / 600] minutes to present.<br><br>"
 			var/news = 0
-			if (logged_in)
+			if (logged_id)
 				var/list/LR = stockExchange.last_read[S]
-				var/lrt = LR[logged_in]
+				var/lrt = LR[logged_id]
 				for (var/datum/stock/article/A as anything in S.articles)
 					if (A.ticks > lrt)
 						news = 1
@@ -112,16 +114,16 @@
 		dat += "<table class='stable'><tr><th>&nbsp;</th><th>Name</th><th>Value</th><th>Owned/Avail</th><th>Actions</th></tr>"
 		for (var/datum/stock/ticker/S as anything in stockExchange.stocks)
 			var/mystocks = 0
-			if (logged_in && (logged_in in S.shareholders))
-				mystocks = S.shareholders[logged_in]
+			if (logged_id && (logged_id in S.shareholders))
+				mystocks = S.shareholders[logged_id]
 			dat += "<tr><td>[S.disp_value_change > 0 ? "+" : (S.disp_value_change < 0 ? "-" : "=")]</td><td><span class='company'>[S.name] "
 			if (S.bankrupt)
 				dat += "<b style='color:red'>B</b>"
 			dat += "</span> <span class='s_company'>([S.short_name])</span></td><td>[S.current_value]</td><td><b>[mystocks]</b>/[S.available_shares]</td>"
 			var/news = 0
-			if (logged_in)
+			if (logged_id)
 				var/list/LR = stockExchange.last_read[S]
-				var/lrt = LR[logged_in]
+				var/lrt = LR[logged_id]
 				for (var/datum/stock/article/A as anything in S.articles)
 					if (A.ticks > lrt)
 						news = 1
@@ -149,25 +151,28 @@
 		var/obj/item/card/id/ID = I
 		boutput(user, "<span class='notice'>You swipe the ID card.</span>")
 		var/datum/data/record/account = null
-		account = FindBankAccountByName(ID.registered)
+		account = FindBankAccountById(ID.registered_id)
 		if(account)
 			var/enterpin = input(user, "Please enter your PIN number.", "Order Console", 0) as null|num
 			if (enterpin == ID.pin)
 				boutput(user, "<span class='notice'>Card authorized.</span>")
 				src.logged_in = ID.registered
+				src.logged_id = ID.registered_id
 			else
 				boutput(user, "<span class='alert'>Pin number incorrect.</span>")
 				src.logged_in = null
+				src.logged_id = null
 		else
 			boutput(user, "<span class='alert'>No bank account associated with this ID found.</span>")
 			src.logged_in = null
+			src.logged_id = null
 	else ..()
 	return
 
 /obj/machinery/computer/stockexchange/proc/sell_some_shares(datum/stock/ticker/S, mob/user)
 	if (!user || !S)
 		return
-	var/li = logged_in
+	var/li = logged_id
 	if (!li)
 		boutput(user, "<span class='alert'>No active account on the console!</span>")
 		return
@@ -175,7 +180,7 @@
 	if (!isnum(b))
 		boutput(user, "<span class='alert'>No active account on the console!</span>")
 		return
-	var/avail = S.shareholders[logged_in]
+	var/avail = S.shareholders[logged_id]
 	if (!avail)
 		boutput(user, "<span class='alert'>This account does not own any shares of [S.name]!</span>")
 		return
@@ -187,7 +192,7 @@
 		return
 	if (!(user in range(1, src)))
 		return
-	if (li != logged_in)
+	if (li != logged_id)
 		return
 	b = balance()
 	if (!isnum(b))
@@ -197,7 +202,7 @@
 		boutput(user, "<span class='alert'>You do not own that many shares!</span>")
 		return
 	var/total = amt * S.current_value
-	if (!S.sellShares(logged_in, amt))
+	if (!S.sellShares(logged_id, amt))
 		boutput(user, "<span class='alert'>Could not complete transaction.</span>")
 		return
 	boutput(user, "<span class='notice'>Sold [amt] shares of [S.name] for [total] credits.</span>")
@@ -205,7 +210,7 @@
 /obj/machinery/computer/stockexchange/proc/buy_some_shares(datum/stock/ticker/S, mob/user)
 	if (!user || !S)
 		return
-	var/li = logged_in
+	var/li = logged_id
 	if (!li)
 		boutput(user, "<span class='alert'>No active account on the console!</span>")
 		return
@@ -223,7 +228,7 @@
 		return
 	if (!(user in range(1, src)))
 		return
-	if (li != logged_in)
+	if (li != logged_id)
 		return
 	b = balance()
 	if (!isnum(b))
@@ -236,13 +241,13 @@
 	if (total > b)
 		boutput(user, "<span class='alert'>Insufficient funds.</span>")
 		return
-	if (!S.buyShares(logged_in, amt))
+	if (!S.buyShares(logged_id, amt))
 		boutput(user, "<span class='alert'>Could not complete transaction.</span>")
 		return
 	boutput(user, "<span class='notice'>Bought [amt] shares of [S.name] for [total] credits.</span>")
 
 /obj/machinery/computer/stockexchange/proc/do_borrowing_deal(datum/stock/borrow/B, mob/user)
-	if (B.stock.borrow(B, logged_in))
+	if (B.stock.borrow(B, logged_id))
 		boutput(user, "<span class='notice'>You successfully borrowed [B.share_amount] shares. Deposit: [B.deposit].</span>")
 	else
 		boutput(user, "<span class='alert'>Could not complete transaction. Check your account balance.</span>")
@@ -260,7 +265,7 @@
 			S.displayValues(usr)
 
 	if (href_list["logout"])
-		logged_in = null
+		logged_id = null
 
 	if (href_list["buyshares"])
 		var/datum/stock/ticker/S = locate(href_list["buyshares"])
@@ -279,9 +284,9 @@
 
 	if (href_list["archive"])
 		var/datum/stock/ticker/S = locate(href_list["archive"])
-		if (logged_in && logged_in != "")
+		if (logged_id && logged_id != "")
 			var/list/LR = stockExchange.last_read[S]
-			LR[logged_in] = ticker.round_elapsed_ticks
+			LR[logged_id] = ticker.round_elapsed_ticks
 		var/dat = "<html><head><title>News feed for [S.name]</title></head><body><h2>News feed for [S.name]</h2><div><a href='?src=\ref[src];archive=\ref[S]'>Refresh</a></div>"
 		dat += "<div><h3>Events</h3>"
 		var/p = 0

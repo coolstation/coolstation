@@ -50,7 +50,7 @@
 /obj/machinery/atmospherics/binary/circulatorTemp
 	name = "hot gas circulator"
 	desc = "It's the gas circulator of a thermoeletric generator."
-	icon = 'icons/obj/atmospherics/pipes.dmi'
+	icon = 'icons/obj/machines/new_grey_teg.dmi'
 	icon_state = "circ1-off"
 	var/obj/machinery/power/generatorTemp/generator = null
 
@@ -382,10 +382,14 @@
 		else if(src.last_pressure_delta >= src.min_circ_pressure)
 			if(src.last_pressure_delta > ONE_ATMOSPHERE)
 				icon_state = "circ[side]-run"
+				var/image/fan_effect = image(src.icon, icon_state = "circ-faneffect", pixel_x = (src.side == LEFT_CIRCULATOR ? 5 : 14), pixel_y = -7)
+				UpdateOverlays(fan_effect, "fan_effect")
 			else
 				icon_state = "circ[side]-slow"
+				UpdateOverlays(null, "fan_effect")
 		else
 			icon_state = "circ[side]-off"
+			UpdateOverlays(null, "fan_effect")
 
 		if(src.is_open_container())
 			if(src.GetOverlayImage("open")) return 1
@@ -529,16 +533,11 @@ datum/pump_ui/circulator_ui
 		return our_circ
 
 
-/obj/machinery/power/monitor
-	name = "Power Monitoring Computer"
-	icon = 'icons/obj/computer.dmi'
-	icon_state = "power"
-	density = 1
-	anchored = 1
 
 /obj/machinery/power/generatorTemp
 	name = "generator"
 	desc = "A high efficiency thermoelectric generator."
+	icon = 'icons/obj/machines/new_grey_teg.dmi'
 	icon_state = "teg"
 	anchored = 1
 	density = 1
@@ -694,15 +693,15 @@ datum/pump_ui/circulator_ui
 		if(status & (NOPOWER))
 			UpdateOverlays(null, "power")
 		else if(status & (BROKEN))
-			UpdateOverlays(image('icons/obj/power.dmi', "teg-err"), "power")
+			UpdateOverlays(image('icons/obj/machines/new_grey_teg.dmi', "teg-err"), "power")
 		else
 			if(lastgenlev != 0)
-				UpdateOverlays(image('icons/obj/power.dmi', "teg-op[lastgenlev]"), "power")
+				UpdateOverlays(image('icons/obj/machines/new_grey_teg.dmi', "teg-op[lastgenlev]"), "power")
 			else
 				UpdateOverlays(null, "power")
 
 		if(src.variant_b)
-			UpdateOverlays(image('icons/obj/power.dmi', "teg_var"), "variant")
+			UpdateOverlays(image('icons/obj/machines/new_grey_teg.dmi', "teg_var"), "variant")
 		else
 			UpdateOverlays(null, "variant")
 
@@ -721,7 +720,7 @@ datum/pump_ui/circulator_ui
 
 			// Use single light if we are variant b (only has one light) OR if we are ONLY in the APC draining state
 			var/one_light = src.variant_b || ( max_warning == WARNING_APC_DRAINING )
-			var/image/warning = image('icons/obj/power.dmi', one_light ? "tegv_lights" : "teg_lights", dir=warning_side)
+			var/image/warning = image('icons/obj/machines/new_grey_teg.dmi', one_light ? "tegv_lights" : "teg_lights", dir=warning_side)
 			if(max_warning > WARNING_5MIN)
 				warning.color = "#ff0000"
 				warning_light_desc = "<br><span class='alert'>The power emergency lights are flashing.</span>"
@@ -1073,7 +1072,7 @@ datum/pump_ui/circulator_ui
 			var/list/affected = DrawLine(last, target, /obj/line_obj/elec ,'icons/obj/projectiles.dmi',"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",OBJ_LAYER,1,PreloadedIcon='icons/effects/LghtLine.dmi')
 
 			for(var/obj/O in affected)
-				SPAWN_DBG(0.6 SECONDS) pool(O)
+				SPAWN_DBG(0.6 SECONDS) qdel(O)
 
 			//var/turf/currTurf = get_turf(target)
 			//currTurf.hotspot_expose(2000, 400)
@@ -1323,19 +1322,23 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 /obj/item/teg_semiconductor
 	name = "Prototype Semiconductor"
 	desc = "A large rectangulr plate stamped with 'Prototype Thermo-Electric Generator Semiconductor.  If found please return to NanoTrasen.'"
-	icon = 'icons/obj/power.dmi'
+	icon = 'icons/obj/machines/new_grey_teg.dmi'
 	icon_state = "semi"
 
 /obj/machinery/atmospherics/unary/furnace_connector
 	icon = 'icons/obj/atmospherics/heat_reservoir.dmi'
 	icon_state = "intact_off"
-	density = 1
 
 	name = "Furnace Connector"
 	desc = "Used to connect a furnace to a pipe network."
 
 	var/current_temperature = T20C
 	var/current_heat_capacity = 3000
+
+	New()
+		..()
+		var/obj/machinery/power/furnace/thermo/to_connect = locate() in src.loc //This is for building a new connector under a furnace, not so much map load
+		to_connect?.get_connector() //The furnace will try this on New too so we don't really need to give a shit if this fails
 
 	update_icon()
 		if(node)
@@ -1347,6 +1350,14 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 	process()
 		..()
 		return
+
+	disposing()
+		for(var/obj/machinery/power/furnace/thermo/F in src.loc)
+			if (F.f_connector == src)
+				F.f_connector = null
+		..()
+
+
 
 	proc/heat()
 		var/air_heat_capacity = HEAT_CAPACITY(air_contents)
@@ -1414,6 +1425,13 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 
 	*/
 */
+
+	disposing()
+		f_connector = null
+		qdel(heat_filter)
+		heat_filter = null
+		..()
+
 	on_burn()
 		var/datum/gas_mixture/environment = src.loc?.return_air()
 		var/ambient_temp = T20C
@@ -1429,8 +1447,8 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 		// charcoal actual high temp is 2500C
 		var/additional_heat = fuel_burn_scale * (3000)
 
-		src.f_connector.current_temperature = heat_filter.process(ambient_temp + 200 + additional_heat)
-		f_connector.heat()
+		src.f_connector?.current_temperature = heat_filter.process(ambient_temp + 200 + additional_heat)
+		f_connector?.heat()
 
 	on_inactive()
 		var/datum/gas_mixture/environment = src.loc?.return_air()
@@ -1459,7 +1477,7 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 	icon_state = "computer_generic"
 
 	name = "Pump control computer"
-	frequency = 1225
+	frequency = FREQ_ATMOS
 
 	var/list/pump_infos
 

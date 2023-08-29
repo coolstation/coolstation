@@ -1469,3 +1469,30 @@ toxic - poisons
 	max_range = 15
 	dissipation_rate = 0
 	ie_type = null
+
+/datum/projectile/bullet/dueling //Where the magic of dueling happens
+	name = "dueling round"
+	sname = "dueling round"
+
+	dissipation_delay = 20 //Basically you can shoot at one another anywhere on screen I guess
+	power = 450 //die
+	ks_ratio = 1 //die
+	damage_type = D_KINETIC
+	hit_type = DAMAGE_BLUNT //Don't want non-duelists to bleed profusely
+
+	//Do 5 damage to non-duelists and full damage to duelists
+	get_power(obj/projectile/P, atom/A)
+		if (ismob(A))
+			var/mob/victim = A
+			if (victim.find_type_in_hand(/obj/item/gun/kinetic/dueling_pistol) || GET_COOLDOWN(victim, "duel_anticheat"))
+				return ..()
+		return 5
+
+	///Dueling victims also get to bleed out dramatically
+	on_hit(atom/hit, direction, obj/projectile/P)
+		if (ismob(hit))
+			var/mob/victim = hit
+			if (victim.find_type_in_hand(/obj/item/gun/kinetic/dueling_pistol) || GET_COOLDOWN(victim, "duel_anticheat"))
+				take_bleeding_damage(hit, null, 200, DAMAGE_STAB) // oh god no why was the first var set to src what was I thinking
+		..()
+

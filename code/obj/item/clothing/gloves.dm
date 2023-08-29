@@ -17,6 +17,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 	var/punch_damage_modifier = 0
 	var/atom/movable/overlay/overl = null
 	var/activeweapon = 0 // Used for gloves that can be toggled to turn into a weapon (example, bladed gloves)
+	var/clean = 1
 
 	var/hide_prints = 1 // Seems more efficient to do this with one global proc and a couple of vars (Convair880).
 	var/scramble_prints = 0
@@ -509,7 +510,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 				var/list/affected = DrawLine(last, target_r, /obj/line_obj/elec ,'icons/obj/projectiles.dmi',"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",OBJ_LAYER,1,PreloadedIcon='icons/effects/LghtLine.dmi')
 
 				for(var/obj/O in affected)
-					SPAWN_DBG(0.6 SECONDS) pool(O)
+					SPAWN_DBG(0.6 SECONDS) qdel(O)
 
 				if(istype(target_r, /obj/machinery/power/generatorTemp))
 					var/obj/machinery/power/generatorTemp/gen = target_r

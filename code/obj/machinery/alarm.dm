@@ -8,9 +8,9 @@
 	icon_state = "alarm0"
 	anchored = 1.0
 	var/skipprocess = 0 //Experimenting
-	var/alarm_frequency = "1437"
+	var/alarm_frequency = FREQ_ALARM
 	var/alarm_zone = null
-	var/control_frequency = "1439"
+	var/control_frequency = FREQ_ATMOS2
 	var/id
 	var/locked = 1
 
@@ -21,8 +21,8 @@
 	var/last_safe = 2
 
 	disposing()
-		radio_controller.remove_object(src, alarm_frequency)
-		radio_controller.remove_object(src, control_frequency)
+		radio_controller.remove_object(src, "[alarm_frequency]")
+		radio_controller.remove_object(src, "[control_frequency]")
 		..()
 
 /obj/machinery/alarm/New()
@@ -119,7 +119,7 @@
 	return
 
 /obj/machinery/alarm/proc/post_alert(alert_level)
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(alarm_frequency)
+	var/datum/radio_frequency/frequency = radio_controller.return_frequency("[alarm_frequency]")
 
 	if(!frequency) return
 

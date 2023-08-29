@@ -139,6 +139,11 @@
 	name = "silver sulfadiazine reserve tank"
 	initial_reagents = "silver_sulfadiazine"
 
+//always wanted one of these...
+/obj/item/reagent_containers/glass/beaker/large/saline
+	name = "saline-glucose reserve tank"
+	initial_reagents = "saline"
+
 /obj/item/reagent_containers/food/drinks/reserve
 	name = "reserve tank"
 	desc = "A specialized reserve tank."

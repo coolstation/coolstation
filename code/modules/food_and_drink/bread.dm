@@ -8,7 +8,7 @@
 	heal_amt = 1
 	food_color = "#FFFFCC"
 	real_name = "bread"
-	flags = ONBELT
+	flags = ONBELT | FPRINT | TABLEPASS | SUPPRESSATTACK
 	var/slicetype = /obj/item/reagent_containers/food/snacks/breadslice
 	initial_volume = 30
 	initial_reagents = "bread"
@@ -26,7 +26,7 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/axe) || istype(W, /obj/item/circular_saw) || istype(W, /obj/item/kitchen/utensil/knife) || istype(W, /obj/item/scalpel) || istype(W, /obj/item/sword) || istype(W,/obj/item/knife/butcher))
 			if(user.bioHolder.HasEffect("clumsy") && prob(50))
-				user.visible_message("<span class='alert'><b>[user]</b> fumbles and jabs \himself in the eye with [W].</span>")
+				user.visible_message("<span class='alert'><b>[user]</b> fumbles and jabs [himself_or_herself(user)] in the eye with [W].</span>")
 				user.change_eye_blurry(5)
 				user.changeStatus("weakened", 3 SECONDS)
 				JOB_XP(user, "Clown", 2)
@@ -374,7 +374,7 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/axe) || istype(W, /obj/item/circular_saw) || istype(W, /obj/item/kitchen/utensil/knife) || istype(W, /obj/item/scalpel) || istype(W, /obj/item/sword) || istype(W,/obj/item/knife/butcher))
 			if(user.bioHolder.HasEffect("clumsy") && prob(50))
-				user.visible_message("<span class='alert'><b>[user]</b> fumbles and jabs \himself in the eye with [W].</span>")
+				user.visible_message("<span class='alert'><b>[user]</b> fumbles and jabs [himself_or_herself(user)] in the eye with [W].</span>")
 				user.change_eye_blurry(5)
 				user.changeStatus("weakened", 3 SECONDS)
 				JOB_XP(user, "Clown", 2)

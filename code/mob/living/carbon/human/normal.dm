@@ -116,6 +116,12 @@
 		SPAWN_DBG(0)
 			JobEquipSpawned("Mechanic")
 
+/mob/living/carbon/human/normal/electrician
+	New()
+		..()
+		SPAWN_DBG(0)
+			JobEquipSpawned("Electrician")
+
 /mob/living/carbon/human/normal/engineer
 	New()
 		..()
@@ -134,11 +140,23 @@
 		SPAWN_DBG(0)
 			JobEquipSpawned("Quartermaster")
 
+/mob/living/carbon/human/normal/cargotechnician
+	New()
+		..()
+		SPAWN_DBG(0)
+			JobEquipSpawned("Cargo Technician")
+
 /mob/living/carbon/human/normal/medicaldoctor
 	New()
 		..()
 		SPAWN_DBG(0)
 			JobEquipSpawned("Medical Doctor")
+
+/mob/living/carbon/human/normal/surgeon
+	New()
+		..()
+		SPAWN_DBG(0)
+			JobEquipSpawned("Surgeon")
 
 /mob/living/carbon/human/normal/geneticist
 	New()
@@ -157,6 +175,24 @@
 		..()
 		SPAWN_DBG(0)
 			JobEquipSpawned("Roboticist")
+
+/mob/living/carbon/human/normal/pharmacist
+	New()
+		..()
+		SPAWN_DBG(0)
+			JobEquipSpawned("Pharmacist")
+
+/mob/living/carbon/human/normal/nurse
+	New()
+		..()
+		SPAWN_DBG(0)
+			JobEquipSpawned("Nurse")
+
+/mob/living/carbon/human/normal/receptionist
+	New()
+		..()
+		SPAWN_DBG(0)
+			JobEquipSpawned("Receptionist")
 
 /mob/living/carbon/human/normal/chemist
 	New()

@@ -99,6 +99,7 @@
 	var/fitting = "tube"
 	var/wallmounted = 1
 	var/ceilingmounted = 0 //not sure if this is how i'm going to handle ceiling mounts
+	var/image/lightfixtureimage = null //this is what you're supposed to see when you're actively looking up
 	var/nostick = TRUE //If set to true, overrides the autopositioning.
 	var/candismantle = 1
 
@@ -114,6 +115,12 @@
 		if (src.loc.z == 1)
 			stationLights += src
 
+		if(ceilingmounted)
+			//src.invisibility = 101 //the actual object is hidden on start and we rely on clickable images in the group
+			lightfixtureimage = image(src.icon,src,src.icon_state,PLANE_NOSHADOW_ABOVE -1,src.dir)
+			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_image(lightfixtureimage)
+			lightfixtureimage.alpha = 160
+
 		var/area/A = get_area(src)
 		if (A)
 			UnsubscribeProcess()
@@ -127,6 +134,8 @@
 			qdel(inserted_lamp)
 			inserted_lamp = null
 
+		if(ceilingmounted)
+			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_image(lightfixtureimage)
 		var/area/A = get_area(src)
 		if (A)
 			A.remove_light(src)
@@ -238,13 +247,13 @@
 	plane = PLANE_NOSHADOW_ABOVE
 	allowed_type = /obj/item/light/bulb
 	level = 2
-	//invisibility = INVIS_ALWAYS off for now since we need to be able to see and interact before ceilingmode is in
-	invisibility = INVIS_NONE
-	alpha = 100
-	ceilingmounted = 1 //not sure if this is how i'm going to handle it
+	//invisibility = really don't know what to do here. invis removes it from interaction and gets in the way
+	//maybe if i add ceiling invis to 2, move infra to 3, and cloak to 4?
+	//mouse_opacity = see above, images and overlays inherit this clickability toggle and i'm going to eat my own head with my other head
+	alpha = 80
+	ceilingmounted = 1
 
-	New()
-		..()
+//oh no i can't find my bare shitty bulb sprite guess i'll remake it for next time
 
 /obj/machinery/light/emergency
 	icon_state = "ebulb1"
@@ -399,9 +408,8 @@
 	desc = "A lighting fixture, mounted to the ceiling."
 	plane = PLANE_NOSHADOW_ABOVE
 	level = 2
-	//invisibility = INVIS_ALWAYS off for now since we need to be able to see and interact before ceilingmode is in
-	invisibility = INVIS_NONE
-	alpha = 100
+	//see light/small/ceiling for the struggles with invisibility and clicking
+	alpha = 80
 	ceilingmounted = 1 //determines interactibility
 
 	//check something like wiring for how to set direction relative to what tile you place it by hand, since we can freely rotate this thing unlike floor/ceiling lights and wall lights
@@ -450,14 +458,22 @@
 					logTheThing("combat", current_lamp.rigger, null, "'s rigged bulb exploded in [current_lamp.rigger.loc.loc] ([showCoords(src.x, src.y, src.z)])")
 				explode()
 			if(on && prob(current_lamp.breakprob))
-				current_lamp.light_status = LIGHT_BURNED
-				icon_state = "[base_state]-burned"
+				if(prob(10)) //not every light needs to pop violently
+					elecflash(src,radius = 1, power = 2, exclude_center = 0)
+					current_lamp.light_status = LIGHT_BROKEN
+					icon_state = "[base_state]-broken"
+					logTheThing("station", null, null, "Light '[name]' burnt out explosively (breakprob: [current_lamp.breakprob]) at ([showCoords(src.x, src.y, src.z)])")
+				else
+					current_lamp.light_status = LIGHT_BURNED
+					icon_state = "[base_state]-burned"
+					logTheThing("station", null, null, "Light '[name]' burnt out (breakprob: [current_lamp.breakprob]) at ([showCoords(src.x, src.y, src.z)])")
 				on = 0
 				light.disable()
-				elecflash(src,radius = 1, power = 2, exclude_center = 0)
-				logTheThing("station", null, null, "Light '[name]' burnt out (breakprob: [current_lamp.breakprob]) at ([showCoords(src.x, src.y, src.z)])")
 			else
-				current_lamp.breakprob += 0.25 // critical that your "increasing probability" thing actually, yknow, increase. ever.
+				current_lamp.breakprob += 0.15 // critical that your "increasing probability" thing actually, yknow, increase. ever.
+
+	if(ceilingmounted) //and also update the current icon for ceiling lights
+		lightfixtureimage = image(src.icon,src.loc,src.icon_state,PLANE_NOSHADOW_ABOVE -1,src.dir)
 
 
 // attempt to set the light's on/off status
@@ -1264,6 +1280,7 @@
 // called after an attack with a light item
 // shatter light, unless it was an attempt to put it in a light socket
 // now only shatter if the intent was harm
+// WHY THO?
 
 /obj/item/light/afterattack(atom/target, mob/user)
 	if(istype(target, /obj/machinery/light))
@@ -1273,6 +1290,17 @@
 
 	if(light_status == LIGHT_OK || light_status == LIGHT_BURNED)
 		boutput(user, "The [name] shatters!")
+		light_status = LIGHT_BROKEN
+		force = 5
+		playsound(src.loc, "sound/impact_sounds/Glass_Hit_1.ogg", 75, 1)
+		update()
+
+/obj/item/light/throw_impact(atom/A, datum/thrown_thing/thr)
+	..()
+	if(prob(30))
+		return
+	if(light_status == LIGHT_OK || light_status == LIGHT_BURNED)
+		src.visible_message("The [name] shatters!")
 		light_status = LIGHT_BROKEN
 		force = 5
 		playsound(src.loc, "sound/impact_sounds/Glass_Hit_1.ogg", 75, 1)

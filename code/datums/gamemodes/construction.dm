@@ -243,7 +243,7 @@
 		var/datum/ore/ORE = null
 		switch (rand(1,5))
 			if (1 to 2)
-				continue
+				ORE = null // linter :)
 			if (3 to 4)
 				ORE = major_ore
 			if (5)

@@ -54,7 +54,7 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 
 	var/time_lock = 1
 	var/list/special_events = list()
-	var/minimum_population = 15 // Minimum amount of players connected for event to occur
+	var/minimum_population = 5 // Minimum amount of players connected for event to occur
 	var/list/cooldowns
 
 	New()

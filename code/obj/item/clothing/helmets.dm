@@ -207,10 +207,10 @@
 /obj/item/clothing/head/helmet/space/engineer/diving/abilities = list(/obj/ability_button/flashlight_engiehelm)
 
 /obj/item/clothing/head/helmet/space/syndicate
-	name = "red space helmet"
+	name = "FOSS space helmet"
 	icon_state = "syndicate"
 	item_state = "space_helmet_syndicate"
-	desc = "The standard space helmet of the dreaded Syndicate."
+	desc = "The standard space helmet of the dreaded FOSSyndicate."
 	item_function_flags = IMMUNE_TO_ACID
 
 	blocked_from_petasusaphilic = TRUE
@@ -228,7 +228,7 @@
 	commissar_cap
 		name = "commander's cap"
 		icon_state = "syndie_commander"
-		desc = "A terrifyingly tall, black & red cap, typically worn by a Syndicate Nuclear Operative Commander. Maybe they're trying to prove something to the Head of Security?"
+		desc = "A terrifyingly creepy thing to wear. What are you, M. Bison? Get a grip."
 		seal_hair = 0
 		see_face = 1
 
@@ -691,6 +691,7 @@
 	setupProperties()
 		..()
 		setProperty("radprot", 50)
+		setProperty("meleeprot_head", 3)
 		setProperty("exploprot", 10)
 		setProperty("space_movespeed", 0)
 
@@ -705,15 +706,15 @@
 
 /obj/item/clothing/head/helmet/space/mining_combat
 	name = "mining combat helmet"
-	desc = "Goes with Mining Combat Armor. Now with sweet strawberry-scented visor!"
+	desc = "A reinforced industrial mining helmet, perfect for both high risk and less than legal salvage operations."
 	icon_state = "mining_combat"
 	item_state = "mining_combat"
-	mats = 10
+	mats = 30
 
 	setupProperties()
 		..()
 		setProperty("radprot", 25)
-		setProperty("meleeprot_head", 2)
+		setProperty("meleeprot_head", 4)
 		setProperty("disorient_resist_eye", 25)
 		setProperty("disorient_resist_ear", 10)
 		setProperty("space_movespeed", 0)

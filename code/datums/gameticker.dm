@@ -62,7 +62,11 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 
 	var/did_mapvote = 0
+	#ifdef IM_REALLY_IN_A_FUCKING_HURRY_HERE
+	var/did_lobbymusic = 1
+	#else
 	var/did_lobbymusic = 0
+	#endif
 	if (!player_capa)
 		new /obj/overlay/zamujasa/round_start_countdown/encourage()
 	var/obj/overlay/zamujasa/round_start_countdown/timer/title_countdown = new()
@@ -772,6 +776,12 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					if (player_loses_held_item)
 						logTheThing("debug", null, null, "[player.ckey] lost held item")
 						player.client.set_last_purchase(0)
+						/*
+						if(!player.mind.do_not_save_gun)
+							player.client.save_cloud_gun(0)*/
+					else
+						if(!player.mind.do_not_save_gun)
+							player.client.save_cloud_gun(1)
 
 					bank_earnings.pilot_bonus = pilot_bonus
 					bank_earnings.final_payout = earnings

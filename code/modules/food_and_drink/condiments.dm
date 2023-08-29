@@ -167,7 +167,8 @@
 						H, "<span class='alert'>[H == user ? "You [myVerb]" : "[user] [myVerb]s"] some salt into your eyes! <B>FUCK!</B></span>",\
 						user, "<span class='alert'>You [myVerb] some salt into [user == H ? "your" : "[H]'s"] eyes![user == H ? " <B>FUCK!</B>" : null]</span>")
 						H.emote("scream")
-						random_brute_damage(user, 1)
+						random_brute_damage(user, 2) //small buff, need to decide if we're going to use the organ eye-damage/blindness proc. we want old combat but maybe not screwdriver-targeting eyes combat
+						H.change_eye_blurry(15, 30) //good barfight initiator
 						src.shakes ++
 						return
 					if ("pepper")
@@ -180,6 +181,15 @@
 							SPAWN_DBG(50*i)
 								if (H && prob(20)) //Wire: Fix for Cannot execute null.emote().
 									H.emote("sneeze")
+						return
+					if ("redpepper") //a little more dastardly and handles the missing space
+						H.tri_message("<span class='alert'><b>[user]</b> [myVerb]s red pepper flakes into [H]'s eyes!</span>",\
+						H, "<span class='alert'>[H == user ? "You [myVerb]" : "[user] [myVerb]s"] some red pepper flakes into your eyes! <B>ARGH!</B></span>",\
+						user, "<span class='alert'>You [myVerb] some red pepper flakes into [user == H ? "your" : "[H]'s"] eyes![user == H ? " <B>Why?!</B>" : null]</span>")
+						H.emote("scream")
+						random_brute_damage(user, 2)
+						H.change_eye_blurry(10, 20) //less effective for blurriness, doesn't fly like salt
+						src.shakes ++
 						return
 					else
 						H.tri_message("<span class='alert'><b>[user]</b> [myVerb]s some [src.stuff] at [H]'s head!</span>",\
@@ -233,6 +243,21 @@
 		desc = "A little round glass shaker you see at certain restaurants. It has some red pepper flakes in it."
 		icon_state = "shaker-redpepper"
 		stuff = "redpepper" //hacky nonsense is right, sheesh
+
+		afterattack(atom/A, mob/user as mob) //this is just to cut out the "puts some redpepper onto the spagheto" message
+			if (src.shakes >= 15)
+				user.show_text("[src] is empty!", "red") //todo: add the empty sprites for parmesan and red pepper flakes (and also salt and pepper)
+				return
+			if (istype(A, /obj/item/reagent_containers/food))
+				A.reagents.add_reagent("[src.stuff]", 2)
+				src.shakes ++
+				user.show_text("You shake some red pepper flakes onto [A].")
+			else if (istype(A, /obj/item/reagent_containers/glass/beaker))
+				A.reagents.add_reagent("[src.stuff]", 5)
+				src.shakes += 5
+				user.show_text("You [src.myVerb] some red pepper flakes into [A]")
+			else
+				return ..()
 
 	ketchup
 		name = "ketchup bottle"

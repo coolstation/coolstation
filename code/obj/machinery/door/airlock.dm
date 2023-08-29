@@ -1177,6 +1177,9 @@ About the new airlock wires panel:
 	return
 
 /obj/machinery/door/airlock/attack_ai(mob/user as mob)
+	if (isAI(user) && ACTION_GOVERNOR_BLOCKED(AI_GOVERNOR_AIRLOCKS))
+		boutput(user, "<span class='alert'>You have lost the ability to interface with airlocks.</span>" )
+		return
 	ui_interact(user)
 
 /obj/machinery/door/airlock/proc/hack(mob/user as mob)
@@ -1476,7 +1479,7 @@ About the new airlock wires panel:
 // This code allows for airlocks to be controlled externally by setting an id_tag and comm frequency (disables ID access)
 obj/machinery/door/airlock
 	var/id_tag
-	var/frequency = 1411
+	var/frequency = FREQ_AIRLOCK_REMOTE
 	var/last_update_time = 0
 	var/last_radio_login = 0
 	mats = 18
@@ -1748,6 +1751,10 @@ obj/machinery/door/airlock
 	..()
 
 	if (!isAI(user) && !issilicon(user))
+		return
+
+	if (isAI(user) && ACTION_GOVERNOR_BLOCKED(AI_GOVERNOR_AIRLOCKS))
+		boutput(user, "<span class='alert'>You have lost the ability to interface with airlocks.</span>" )
 		return
 
 	if (src.aiControlDisabled) return

@@ -268,6 +268,7 @@ var/global
 	debug_mixed_forced_wraith = 0
 	debug_mixed_forced_blob = 0
 	farting_allowed = 1
+	resonance_fertscade = 0
 	random_emotesounds = 1
 	blood_system = 1
 	bone_system = 0
@@ -282,6 +283,7 @@ var/global
 	brigshuttle_location = 0
 	miningshuttle_location = 0
 	researchshuttle_location = 0
+	shoppingshuttle_location = 0
 	researchshuttle_lockdown = 0
 	toggles_enabled = 1
 	announce_banlogin = 1
@@ -397,6 +399,10 @@ var/global
 	list/APCIndexToFlag
 	list/APCIndexToWireColor
 	list/APCWireColorToIndex
+	list/VendWireColorToFlag = RandomVendWires()
+	list/VendIndexToFlag
+	list/VendIndexToWireColor
+	list/VendWireColorToIndex
 
 	// drsingh global reaction cache to reduce cpu usage in handle_reactions (Chemistry-Holder.dm)
 	list/chemical_reactions_cache = list()
@@ -421,14 +427,14 @@ var/global
 	antag_hunter = image('icons/mob/antag_overlays.dmi', icon_state = "hunter")
 	antag_werewolf = image('icons/mob/antag_overlays.dmi', icon_state = "werewolf")
 	antag_emagged = image('icons/mob/antag_overlays.dmi', icon_state = "emagged")
-	antag_mindslave = image('icons/mob/antag_overlays.dmi', icon_state = "mindslave")
+	antag_insurgent = image('icons/mob/antag_overlays.dmi', icon_state = "insurgent")
 	antag_vampthrall = image('icons/mob/antag_overlays.dmi', icon_state = "vampthrall")
 	antag_head = image('icons/mob/antag_overlays.dmi', icon_state = "head")
 	antag_rev = image('icons/mob/antag_overlays.dmi', icon_state = "rev")
 	antag_revhead = image('icons/mob/antag_overlays.dmi', icon_state = "rev_head")
 	antag_syndicate = image('icons/mob/antag_overlays.dmi', icon_state = "syndicate")
 	antag_spyleader = image('icons/mob/antag_overlays.dmi', icon_state = "spy")
-	antag_spyslave = image('icons/mob/antag_overlays.dmi', icon_state = "spyslave")
+	antag_spyrecruit = image('icons/mob/antag_overlays.dmi', icon_state = "spyrecruit")
 	antag_gang = image('icons/mob/antag_overlays.dmi', icon_state = "gang")
 	antag_gang_leader = image('icons/mob/antag_overlays.dmi', icon_state = "gang_head")
 	antag_grinch = image('icons/mob/antag_overlays.dmi', icon_state = "grinch")
@@ -490,7 +496,7 @@ var/global
 
 	list/cooldowns
 
-	syndicate_currency = "[pick("Syndie","Baddie","Evil","Spooky","Dread","Yee","Murder","Illegal","Totally-Legit","Crime","Awful")][pick("-"," ")][pick("credits","bux","tokens","cash","dollars","tokens","dollarydoos","tickets","souls","doubloons","Pesos","Rubles","Rupees")]"
+	syndicate_currency = "[pick("Flooz","Beenz","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals")]"
 
 
 /proc/addGlobalRenderSource(var/image/I, var/key)

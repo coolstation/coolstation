@@ -304,7 +304,7 @@
 		return
 
 	proc/create_chunk(var/turf/T)
-		var/obj/item/material_piece/wad/BC = unpool(/obj/item/material_piece/wad)
+		var/obj/item/material_piece/wad/BC = new()
 		BC.set_loc(T)
 		BC.setMaterial(copyMaterial(material))
 		BC.name = "chunk of blob"
@@ -1255,6 +1255,63 @@
 
 	update_icon()
 		return
+
+///A pair of blob tiles that take damage & die in tandem
+/obj/blob/linked
+	name = "linked blob"
+	var/obj/blob/linked/linked_blob
+	var/dying = FALSE //Need to prevent these from infinite looping
+	health = 60 //twice that of a regular blob tile
+	health_max = 60
+	special_icon = 1
+
+	//uwu
+	heal_damage(amount)
+		..()
+		if (linked_blob)
+			linked_blob.health = src.health
+			particleMaster.SpawnSystem(new /datum/particleSystem/blobheal(get_turf(linked_blob),linked_blob.color))
+			linked_blob.update_icon()
+			linked_blob.healthbar.onUpdate()
+		else //shouldn't be possible for a linked blob to occur alone, rectify
+			onKilled()
+			qdel(src)
+
+
+	///Transfer damage
+	take_damage(amount, damage_mult, damtype, mob/user)
+		..()
+		if (linked_blob)
+			if (src.health > 0) //don't really care if we're dying anyway
+				linked_blob.health = src.health
+				linked_blob.update_icon()
+				if (linked_blob.healthbar)
+					linked_blob.healthbar.onUpdate()
+		else //shouldn't be possible for a linked blob to occur alone, rectify
+			onKilled()
+			qdel(src)
+
+	///Kill soulmate blob (biggest tragedy of 2053)
+	onKilled()
+		..()
+		dying = TRUE
+		var/obj/ladder/turf_ladder = locate() in get_turf(src)
+
+		if (turf_ladder)
+			turf_ladder.blocked = FALSE
+		if (!linked_blob?.dying)
+			linked_blob.onKilled()
+			qdel(linked_blob)//bypassing onBlobDeath at the moment but I haven't coded the AI to build level transfers anyway
+
+/obj/blob/linked/upper
+	name = "blob level transfer"
+	desc = "Blob is oozing down a hole..."
+	state_overlay = "transfer_upper"
+
+/obj/blob/linked/lower
+	name = "blob level transfer"
+	desc = "More blob is oozing in from above..."
+	state_overlay = "transfer_lower"
 
 /obj/material_deposit
 	name = "material deposit"

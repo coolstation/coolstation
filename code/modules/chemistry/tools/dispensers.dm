@@ -93,6 +93,14 @@
 		src.Scale(scale, scale)
 		src.set_dir(pick(NORTH, SOUTH, EAST, WEST))
 		reagents.add_reagent("ants",20)
+		if (isturf(src.loc))
+			for (var/obj/item/reagent_containers/food/snacks/snack in src.loc)
+				if (!snack.doants)
+					continue //they don't touch the stuff
+				if (src.reagents.total_volume >= 11) //we can lose up to half, and ants get everywhere
+					src.reagents.trans_to(snack,1) //fuck you eat the ants
+				else
+					break
 
 	get_desc(dist, mob/user)
 		return null
@@ -124,6 +132,12 @@
 		src.pixel_x = rand(-8,8)
 		src.pixel_y = rand(-8,8)
 		reagents.add_reagent("spiders", 5)
+		if (isturf(src.loc))
+			for (var/obj/item/reagent_containers/food/snacks/snack in src.loc)
+				if (src.reagents.total_volume >= 4) //up to two lucky winners
+					src.reagents.trans_to(snack,1)
+				else
+					break
 
 	get_desc(dist, mob/user)
 		return null
@@ -418,7 +432,7 @@
 			playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 30, 1)
 			user.u_equip(W)
 			W.dropped()
-			pool( W )
+			qdel( W )
 			return
 		else ..()
 
@@ -451,7 +465,7 @@
 					amount = 15
 				playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 30, 1)
 				src.reagents.add_reagent("poo", amount)
-				pool( P )
+				qdel( P )
 				sleep(0.3 SECONDS)
 			boutput(user, "<span class='notice'>You finish stuffing [O] into [src]!</span>")
 		else ..()
@@ -501,7 +515,7 @@
 			if (load)
 				user.u_equip(W)
 				W.dropped()
-				pool(W)
+				qdel(W)
 				return
 			else  ..()
 		else ..()
@@ -527,7 +541,7 @@
 					break
 				if (src.brew(P))
 					amtload++
-					pool(P)
+					qdel(P)
 				else
 					continue
 			if (amtload)
@@ -546,7 +560,7 @@
 					user.show_text("You were interrupted!", "red")
 					break
 				if (src.brew(O))
-					pool(O)
+					qdel(O)
 				else
 					continue
 			user.visible_message("<span class='notice'><b>[user]</b> finishes stuffing items into [src].</span>",\

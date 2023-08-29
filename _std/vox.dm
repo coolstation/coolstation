@@ -194,7 +194,7 @@ proc/vox_help(var/mob/user)
 
 	vox_reinit_check()
 
-	var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as text
+	var/input = input(usr, "Please enter the terms you want to VOX. Missing terms will proc another popup.", "What?", "") as text
 	if(!input)
 		return
 
@@ -216,7 +216,7 @@ proc/vox_help(var/mob/user)
 
 	vox_reinit_check()
 
-	var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as text
+	var/input = input(usr, "Please enter the terms you want to VOX. Frequency comes next.", "What?", "") as text
 	if(!input)
 		return
 
@@ -412,7 +412,7 @@ proc/hlvox_help(var/mob/user)
 
 	vox_reinit_check()
 
-	var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as text
+	var/input = input(usr, "Please enter the terms you want to VOX. Missing terms will proc another popup.", "What?", "") as text
 	if(!input)
 		return
 
@@ -434,7 +434,7 @@ proc/hlvox_help(var/mob/user)
 
 	hlvox_reinit_check()
 
-	var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as text
+	var/input = input(usr, "Please enter the terms you want to VOX. Frequency comes next.", "What?", "") as text
 	if(!input)
 		return
 

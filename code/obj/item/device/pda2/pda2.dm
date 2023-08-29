@@ -28,9 +28,9 @@
 	var/closed = 1 //Can we insert a module now?
 	var/obj/item/uplink/integrated/pda/uplink = null
 	var/obj/item/device/pda_module/module = null
-	var/frequency = 1149
-	var/bot_freq = 1447 //Bot control frequency
-	var/beacon_freq = 1445 //Beacon frequency for locating beacons (I love beacons)
+	var/frequency = FREQ_PDA
+	var/bot_freq = FREQ_BOT_CONTROL //Bot control frequency
+	var/beacon_freq = FREQ_BOT_NAV //Beacon frequency for locating beacons (I love beacons)
 	var/datum/radio_frequency/radio_connection
 	var/net_id = null //Hello dude intercepting our radio transmissions, here is a number that is not just \ref
 
@@ -55,7 +55,7 @@
 	var/default_muted_mailgroups = list() //What mail groups should the PDA ignore by default
 	var/reserved_mailgroups = list( // Job-specific mailgroups that cannot be joined or left
 		// Departments
-		MGD_COMMAND, MGD_SECURITY, MGD_MEDBAY, MGD_MEDRESEACH, MGD_SCIENCE, MGD_CARGO, MGD_STATIONREPAIR, MGD_BOTANY, MGD_KITCHEN, MGD_SPIRITUALAFFAIRS,
+		MGD_COMMAND, MGD_SECURITY, MGD_MEDBAY, MGD_MEDRESEARCH, MGD_SCIENCE, MGD_CARGO, MGD_STATIONREPAIR, MGD_BOTANY, MGD_KITCHEN, MGD_SPIRITUALAFFAIRS,
 		// Other
 		MGO_STAFF, MGO_AI, MGO_SILICON, MGO_JANITOR, MGO_ENGINEER, MGO_MINING, MGO_MECHANIC,
 		// Alerts
@@ -138,7 +138,7 @@
 		bombproof = 1
 		mailgroups = list( // keep in sync with the list of reserved mail groups
 			// Departments
-			MGD_COMMAND, MGD_SECURITY, MGD_MEDBAY, MGD_MEDRESEACH, MGD_SCIENCE, MGD_CARGO, MGD_STATIONREPAIR, MGD_BOTANY, MGD_KITCHEN, MGD_SPIRITUALAFFAIRS,
+			MGD_COMMAND, MGD_SECURITY, MGD_MEDBAY, MGD_MEDRESEARCH, MGD_SCIENCE, MGD_CARGO, MGD_STATIONREPAIR, MGD_BOTANY, MGD_KITCHEN, MGD_SPIRITUALAFFAIRS,
 			// Other
 			MGO_STAFF, MGO_AI, MGO_SILICON, MGO_JANITOR, MGO_ENGINEER, MGO_MINING, MGO_MECHANIC,
 			// start in party line by default
@@ -170,7 +170,7 @@
 		setup_default_pen = /obj/item/pen/fancy
 		setup_default_cartridge = /obj/item/disk/data/cartridge/medical_director
 		setup_drive_size = 32
-		mailgroups = list(MGD_MEDRESEACH,MGD_MEDBAY,MGD_COMMAND,MGD_PARTY)
+		mailgroups = list(MGD_MEDRESEARCH,MGD_MEDBAY,MGD_COMMAND,MGD_PARTY)
 		alertgroups = list(MGA_MAIL, MGA_RADIO, MGA_DEATH, MGA_MEDCRIT, MGA_CLONER, MGA_CRISIS)
 
 	medical
@@ -180,14 +180,14 @@
 		alertgroups = list(MGA_MAIL, MGA_RADIO, MGA_DEATH, MGA_MEDCRIT, MGA_CLONER, MGA_CRISIS)
 
 		robotics
-			mailgroups = list(MGD_MEDRESEACH,MGD_PARTY)
+			mailgroups = list(MGD_MEDRESEARCH,MGD_PARTY)
 			alertgroups = list(MGA_MAIL, MGA_RADIO, MGA_DEATH, MGA_MEDCRIT, MGA_CLONER, MGA_CRISIS, MGA_SALES)
 			default_muted_mailgroups = list(MGA_SALES)
 
 	genetics
 		icon_state = "pda-gen"
 		setup_default_cartridge = /obj/item/disk/data/cartridge/genetics
-		mailgroups = list(MGD_MEDBAY,MGD_MEDRESEACH,MGD_PARTY)
+		mailgroups = list(MGD_MEDBAY,MGD_MEDRESEARCH,MGD_PARTY)
 		alertgroups = list(MGA_MAIL, MGA_RADIO, MGA_SALES)
 
 	security

@@ -110,7 +110,7 @@
 
 /obj/storage/closet/flock/New()
 	..()
-	setMaterial("gnesis")
+	setMaterial(getMaterial("gnesis"))
 
 /obj/storage/closet/flock/attackby(obj/item/W as obj, mob/user as mob)
 	// handle tools
@@ -143,7 +143,7 @@
 	if (src.health_attack <= 0)
 		var/turf/T = get_turf(src)
 		playsound(T, "sound/impact_sounds/Glass_Shatter_3.ogg", 25, 1)
-		var/obj/item/raw_material/shard/S = unpool(/obj/item/raw_material/shard)
+		var/obj/item/raw_material/shard/S = new()
 		S.set_loc(T)
 		S.setMaterial(getMaterial("gnesisglass"))
 		src.dump_contents()

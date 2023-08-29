@@ -10,7 +10,7 @@
 	layer = PIPE_MACHINE_LAYER
 
 	var/id = null
-	var/frequency = "1439"
+	var/frequency = FREQ_ATMOS2
 	var/datum/radio_frequency/radio_connection
 
 	var/on = 1
@@ -19,7 +19,7 @@
 	APPLY_TO_GASES(_DEF_SCRUBBER_VAR)
 	#undef _DEF_SCRUBBER_VAR
 
-	var/volume_rate = 120
+	var/volume_rate = 150 // was 120 - warc
 //
 	initialize()
 		..()
@@ -65,7 +65,7 @@
 				var/datum/gas_mixture/removed = loc.remove_air(transfer_moles)
 
 				//Filter it
-				var/datum/gas_mixture/filtered_out = unpool(/datum/gas_mixture)
+				var/datum/gas_mixture/filtered_out = new()
 				filtered_out.temperature = removed.temperature
 
 				#define _FILTER_OUT_GAS(GAS, ...) \

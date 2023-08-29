@@ -93,6 +93,8 @@
 	var/italian = 0 // Italiano
 	var/emagged = 0 // What the hell is wrong with me?
 	var/spiders = 0 // SPIDERS
+	var/grubs = 0 // grubse
+	var/grubs_color = null // for grubse variants
 	var/makeup = null // for when you wanna look pretty
 	var/makeup_color = null
 
@@ -135,6 +137,7 @@
 	var/static/image/heart_image = image('icons/mob/human.dmi')
 	var/static/image/heart_emagged_image = image('icons/mob/human.dmi', "layer" = EFFECTS_LAYER_UNDER_1-1)
 	var/static/image/spider_image = image('icons/mob/human.dmi', "layer" = EFFECTS_LAYER_UNDER_1-1)
+	var/static/image/grubs_image = image('icons/mob/human.dmi', "layer" = EFFECTS_LAYER_UNDER_1-1)
 	var/static/image/makeup_image = image('icons/mob/human.dmi') // yeah this is just getting stupider
 	var/static/image/juggle_image = image('icons/mob/human.dmi', "layer" = EFFECTS_LAYER_UNDER_1-1)
 	var/list/juggling = list()
@@ -714,12 +717,12 @@
 
 	if (src.mind) // I think this is kinda important (Convair880).
 		src.mind.register_death()
-		if (src.mind.special_role == ROLE_MINDSLAVE)
-			remove_mindslave_status(src, "mslave", "death")
+		if (src.mind.special_role == ROLE_INSURGENT)
+			remove_insurgent_status(src, "nsurgt", "death")
 		else if (src.mind.special_role == ROLE_VAMPTHRALL)
-			remove_mindslave_status(src, "vthrall", "death")
+			remove_insurgent_status(src, "vthrall", "death")
 		else if (src.mind.master)
-			remove_mindslave_status(src, "otherslave", "death")
+			remove_insurgent_status(src, "other_recruit", "death")
 #ifdef DATALOGGER
 		game_stats.Increment("playerdeaths")
 #endif
@@ -1349,11 +1352,14 @@
 	alert("Go play HellMOO if you wanna do that.")
 
 // called when something steps onto a human
-// this could be made more general, but for now just handle mulebot
+// oh no it's even worse now
 /mob/living/carbon/human/HasEntered(var/atom/movable/AM)
 	var/obj/machinery/bot/mulebot/MB = AM
+	var/obj/vehicle/floorbuffer/reallybigshoe/RBS = AM
 	if (istype(MB))
 		MB.RunOver(src)
+	if (istype(RBS))
+		RBS.StompOn(src)
 
 /mob/living/carbon/human/Topic(href, href_list)
 	if (istype(usr.loc,/obj/dummy/spell_invis/) || isghostdrone(usr))
@@ -2431,7 +2437,7 @@
 			src.cured(PA)
 
 		// and get the new one instead
-		var/datum/pathogen/Q = unpool(/datum/pathogen)
+		var/datum/pathogen/Q = new()
 		Q.setup(0, P, 1)
 		pathogen_controller.mob_infected(Q, src)
 		src.pathogens += Q.pathogen_uid
@@ -2442,12 +2448,12 @@
 	else
 		var/datum/pathogen/C = src.pathogens[P.pathogen_uid]
 		if (C.generation < P.generation)
-			var/datum/pathogen/Q = unpool(/datum/pathogen)
+			var/datum/pathogen/Q = new()
 			Q.setup(0, P, 1)
 			logTheThing("pathology", src, null, "'s pathogen mutation [C] is replaced by mutation [Q] due to a higher generation number.")
 			pathogen_controller.mob_infected(Q, src)
 			Q.stage = min(C.stage, Q.stages)
-			pool(C)
+			qdel(C)
 			src.pathogens[Q.pathogen_uid] = Q
 			Q.infected = src
 			return 1
@@ -2462,7 +2468,7 @@
 		var/datum/microbody/M = P.body_type
 		if (M.auto_immunize)
 			immunity(P)
-		pool(Q)
+		qdel(Q)
 		logTheThing("pathology", src, null, "is cured of [pname].")
 
 /mob/living/carbon/human/remission(var/datum/pathogen/P)
@@ -3407,8 +3413,15 @@
 		if (AM.throwing & THROW_CHAIRFLIP)
 			src.visible_message("<span class='alert'>[AM] slams into [src] midair!</span>")
 		else
-			src.visible_message("<span class='alert'>[src] has been hit by [AM].</span>")
-			random_brute_damage(src, AM.throwforce,1)
+			//this if is so shit I'm sorry
+			//but how else am I meant to achieve this?
+			if (AM.throwing & THROW_SANDWICH && thr?.user)
+				. = pick(sounds_punch)
+				src.visible_message("<span class='alert'>[src] takes [thr.user]'s [AM.name] to the face!.</span>")
+				random_brute_damage(src, rand(2, 9),1)
+			else
+				src.visible_message("<span class='alert'>[src] has been hit by [AM].</span>")
+				random_brute_damage(src, AM.throwforce,1)
 			logTheThing("combat", src, null, "is struck by [AM] [AM.is_open_container() ? "[log_reagents(AM)]" : ""] at [log_loc(src)] (likely thrown by [thr?.user ? constructName(thr.user) : "a non-mob"]).")
 			if(thr?.user)
 				src.was_harmed(thr.user, AM)

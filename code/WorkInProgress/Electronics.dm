@@ -311,17 +311,17 @@
 	if (istype(R))
 		var/looper = round(R.item_amounts[1] / 10)
 		while (looper > 0)
-			var/obj/item/material_piece/mauxite/M = unpool(/obj/item/material_piece/mauxite)
+			var/obj/item/material_piece/mauxite/M = new()
 			M.set_loc(get_turf(src))
 			looper--
 		looper = round(R.item_amounts[2] / 10)
 		while (looper > 0)
-			var/obj/item/material_piece/pharosium/P = unpool(/obj/item/material_piece/pharosium)
+			var/obj/item/material_piece/pharosium/P = new()
 			P.set_loc(get_turf(src))
 			looper--
 		looper = round(R.item_amounts[3] / 10)
 		while (looper > 0)
-			var/obj/item/material_piece/molitz/M = unpool(/obj/item/material_piece/molitz)
+			var/obj/item/material_piece/molitz/M = new()
 			M.set_loc(get_turf(src))
 			looper--
 	else
@@ -448,7 +448,7 @@
 
 	var/processing = 0
 	var/net_id = null
-	var/frequency = 1467
+	var/frequency = FREQ_RUCK
 	var/datum/radio_frequency/radio_connection
 	var/no_print_spam = 1 // In relation to world.time.
 	var/olde = 0
@@ -465,7 +465,7 @@
 	. = ..()
 	known_rucks = new
 	ruck_controls = new
-	pda = radio_controller.return_frequency(FREQ_PDA)
+	pda = radio_controller.return_frequency("[FREQ_PDA]")
 
 	if(isnull(mechanic_controls)) mechanic_controls = ruck_controls //For objective tracking and admin
 	if(radio_controller)

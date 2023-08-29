@@ -18,6 +18,7 @@
 	var/emagged = 0
 	var/dialing = 0
 	var/labelling = 0
+	var/cord_active = FALSE
 	var/unlisted = FALSE
 	var/obj/item/phone_handset/handset = null
 	var/chui/window/phonecall/phonebook
@@ -93,6 +94,10 @@
 
 		src.icon_state = "[answeredicon]"
 		playsound(user, "sound/machines/phones/pick_up.ogg", 50, 0)
+
+		cord_active = TRUE
+		var/atom/movable/cord_line = new /atom/movable(src.loc)
+		draw_cord(handset, cord_line)
 
 		if(src.ringing == 0) // we are making an outgoing call
 			if(src.connected == 1)
@@ -201,6 +206,7 @@
 		src.ringing = 0
 		src.handset = null
 		src.icon_state = "[phoneicon]"
+//		src.cord_active = FALSE
 		playsound(src.loc,"sound/machines/phones/hang_up.ogg" ,50,0)
 
 	// This makes phones do that thing that phones do
@@ -224,6 +230,36 @@
 			src.linked.ringing = 1
 			src.dialing = 0
 			return
+
+	proc/draw_cord(var/obj/item/phone_handset/the_handset, atom/movable/cord_line)
+		cord_line.mouse_opacity = 0
+		cord_line.appearance_flags = 0
+		cord_line.color = src.color
+		cord_line.pixel_x = src.pixel_x
+		cord_line.pixel_y = src.pixel_y
+		cord_line.icon = 'icons/obj/machines/phones.dmi'
+		cord_line.icon_state = "cord"
+		animate(cord_line, alpha=255, time=1 SECOND)
+		while(cord_active)
+			if(src.qdeled || src.handset == null || !the_handset)
+				qdel(cord_line)
+				the_handset = null
+				src.cord_active = FALSE
+				break
+			var/dist = GET_DIST(src,the_handset)
+			src.set_dir(get_dir(src,the_handset))
+			if(cord_line)
+				var/ang = get_angle(get_turf(src), get_turf(the_handset))
+				var/cord_line_dist = 8 + 40 / (1 + 3 ** (3 - dist / 10))
+				var/matrix/M = matrix()
+				var/cord_line_scale = (1.1 * dist)
+//				var/cord_line_scale = (0.9 * dist) + (dist * 0.1 / (1 + 3 ** (3 - dist / 10)))
+				M = M.Scale(1, cord_line_scale * 2)
+				M = M.Turn(ang)
+				M = M.Translate(cord_line_dist * sin(ang), cord_line_dist * cos(ang))
+				animate(cord_line, transform=M, time=0.2 SECONDS, flags=ANIMATION_PARALLEL)
+
+			sleep(0.2 SECONDS)
 
 
 /obj/machinery/phone/custom_suicide = 1
@@ -297,7 +333,7 @@
 		if(!src.parent)
 			qdel(src)
 			return
-		if(src.parent.answered == 1 && get_dist(src,src.parent) > 1)
+		if(src.parent.answered == 1 && get_dist(src,src.parent) > 2)
 			boutput(src.holder,"<span class='alert'>The phone cord reaches it limit and the handset is yanked back to its base!</span>")
 			src.holder.drop_item(src)
 			src.parent.hang_up()

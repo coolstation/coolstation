@@ -23,7 +23,7 @@
 		//SPAWN_DBG(0) check() but why
 
 	remove_air(amount as num)
-		var/datum/gas_mixture/Air = unpool(/datum/gas_mixture)
+		var/datum/gas_mixture/Air = new()
 		Air.oxygen = amount
 		Air.temperature = 310
 		return Air
@@ -32,9 +32,9 @@
 		SPAWN_DBG(0)
 			// Check spawn limits
 			if(limiter.canISpawn(/obj/effects/sparks))
-				var/obj/effects/sparks/O = unpool(/obj/effects/sparks)
+				var/obj/effects/sparks/O = new()
 				O.set_loc(src.loc)
-				SPAWN_DBG(2 SECONDS) if (O) pool(O)
+				SPAWN_DBG(2 SECONDS) if (O) qdel(O)
 
 	relaymove(mob/user, direction)
 
@@ -309,7 +309,7 @@
 					boutput(user, "You can't seem to enter the phone for some reason!")
 					return
 				EXIT = PH.parent.linked.handset
-				user.visible_message("[user] enters the phone line using their [src].", "You enter the phone line using your [src].", "You hear a strange sucking noise.")
+				user.visible_message("[user] enters the phone line using [his_or_her(user)] [src].", "You enter the phone line using your [src].", "You hear a strange sucking noise.")
 				playsound(user.loc, "sound/effects/singsuck.ogg", 40, 1)
 				user.drop_item(PH)
 				user.set_loc(target_loc)

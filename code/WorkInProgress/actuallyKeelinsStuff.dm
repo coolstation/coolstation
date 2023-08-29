@@ -559,9 +559,9 @@ Returns:
 			AM.set_loc(T)
 		else
 			src.visible_message("<span style='color: red; font-weight: bold'>The portal collapses in on itself!</span>")
-			var/obj/sparks = unpool(/obj/effects/sparks)
+			var/obj/sparks = new /obj/effects/sparks()
 			sparks.set_loc(get_turf(src))
-			SPAWN_DBG(2 SECONDS) if (sparks) pool(sparks)
+			SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 			qdel(src)
 		return
 
@@ -572,9 +572,9 @@ Returns:
 			AM.set_loc(T)
 		else
 			src.visible_message("<span style='color: red; font-weight: bold'>The portal collapses in on itself!</span>")
-			var/obj/sparks = unpool(/obj/effects/sparks)
+			var/obj/sparks = new /obj/effects/sparks()
 			sparks.set_loc(get_turf(src))
-			SPAWN_DBG(2 SECONDS) if (sparks) pool(sparks)
+			SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 			qdel(src)
 		return
 	*/
@@ -1535,6 +1535,7 @@ Returns:
 				M.set_dir(direction)
 				M.color = color_new
 
+/* forging a new legacy
 /obj/floorpillstatue
 	name = "Statue of Dr.Floorpills"
 	desc = "A statue of the most radioactive man alive. Technically alive. Sort of."
@@ -1564,6 +1565,7 @@ Returns:
 			broken = 1
 
 		return ..()
+*/
 
 /proc/mass_proc_arg()
 	var/type = text2path(input(usr,"Type", "", "/obj"))
@@ -1644,7 +1646,7 @@ Returns:
 			if(color != null)
 				var/actX = A.pixel_x + x - 1
 				var/actY = A.pixel_y + y - 1
-				var/obj/apixel/P = unpool(/obj/apixel)
+				var/obj/apixel/P = new()
 				P.set_loc(A.loc)
 				P.pixel_x = actX
 				P.pixel_y = actY
@@ -1656,7 +1658,7 @@ Returns:
 	qdel(A)
 	SPAWN_DBG(7 SECONDS)
 		for(var/datum/D in pixels)
-			pool(D)
+			qdel(D)
 
 	return
 
@@ -1668,7 +1670,7 @@ Returns:
 	anchored = 1
 	density = 0
 	opacity = 0
-
+/*
 	unpooled()
 		color = "#ffffff"
 		pixel_x = 0
@@ -1676,7 +1678,7 @@ Returns:
 		alpha = 255
 		transform = matrix()
 		..()
-
+*/
 /datum/admins/proc/turn_off_pixelexplosion()
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
 	set name = "Turn off pixel explosion mode"
@@ -2938,7 +2940,7 @@ Returns:
 			return
 		else
 			if(ishuman(hit_atom))
-				var/mob/living/carbon/human/user = usr
+/*				var/mob/living/carbon/human/user = usr
 				var/safari = (istype(user.w_uniform, /obj/item/clothing/under/gimmick/safari) && istype(user.head, /obj/item/clothing/head/safari))
 				if(safari)
 					var/mob/living/carbon/human/H = hit_atom
@@ -2947,7 +2949,7 @@ Returns:
 					H.force_laydown_standup()
 					//H.paralysis++
 					playsound(H.loc, "swing_hit", 50, 1)
-
+*/
 				prob_clonk = min(prob_clonk + 5, 40)
 				SPAWN_DBG(2 SECONDS)
 					prob_clonk = max(prob_clonk - 5, 0)
@@ -3087,9 +3089,9 @@ Returns:
 			AM.set_loc(target)
 		else
 			src.visible_message("<span style='color: red; font-weight: bold'>The portal collapses in on itself!</span>")
-			var/obj/sparks = unpool(/obj/effects/sparks)
+			var/obj/sparks = new /obj/effects/sparks()
 			sparks.set_loc(get_turf(src))
-			SPAWN_DBG(2 SECONDS) if (sparks) pool(sparks)
+			SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 			qdel(src)
 
 	ex_act()
@@ -3810,8 +3812,8 @@ var/list/lag_list = new/list()
 	luminosity = 1
 	force_fullbright = 1
 	requires_power = 0
-	sound_loop = 'sound/ambience/loop/Shore.ogg'
-	sound_loop_vol = 100
+	sound_loop_1 = 'sound/ambience/loop/Shore.ogg'
+	sound_loop_1_vol = 100
 
 	New()
 		..()

@@ -47,7 +47,7 @@ Fibre wire
 
 		if(ticker?.mode) //Yes, I'm sure my runtimes will matter if the goddamn TICKER is gone.
 			for(var/datum/mind/M in (ticker.mode.Agimmicks | ticker.mode.traitors)) //We want an EVIL ghost
-				if(!M.dnr && M.current && isobserver(M.current) && M.current.client && M.special_role != ROLE_VAMPTHRALL && M.special_role != ROLE_MINDSLAVE)
+				if(!M.dnr && M.current && isobserver(M.current) && M.current.client && M.special_role != ROLE_VAMPTHRALL && M.special_role != ROLE_INSURGENT)
 					priority_targets.Add(M.current)
 
 		if(!priority_targets.len) //Okay, fine. Any ghost. *sigh
@@ -385,6 +385,7 @@ proc/Create_Tommyname()
 					activated = 0
 
 ////////////////////////////// Donald Trumpet
+//Used by: Donald Trumpet (uuuuuuuuuuuuugh)
 /datum/projectile/energy_bolt_v/trumpet
 	name = "trumpet bolt"
 	shot_sound = 'sound/musical_instruments/Bikehorn_2.ogg'
@@ -694,7 +695,7 @@ proc/Create_Tommyname()
 //calculate new px / py
 	if(istype(O, /turf))
 		var/turf/T = O
-		var/obj/movedummy/MD = unpool(/obj/movedummy)
+		var/obj/movedummy/MD = new()
 		MD.mimic_turf(T.type, 0)
 		MD.set_loc(T)
 		T.ReplaceWithSpace()
@@ -717,7 +718,7 @@ proc/Create_Tommyname()
 	animate_slide(O, npx, npy, animtime)
 	sleep(animtime)
 	if(istype(O, /obj/movedummy))
-		pool(O)
+		qdel(O)
 	else
 		qdel(O)
 
@@ -757,7 +758,7 @@ proc/Create_Tommyname()
 				if(!is_turf)
 					O = new t_type(null)
 				else
-					var/obj/movedummy/MD = unpool(/obj/movedummy)
+					var/obj/movedummy/MD = new()
 					MD.mimic_turf(t_type, animtime)
 					O = MD
 
@@ -802,11 +803,11 @@ proc/Create_Tommyname()
 /obj/movedummy
 	name = "Dummy object."
 	invisibility = 101
-
+/*
 /obj/movedummy/pooled()
 	..()
 	invisibility = 101
-
+*/
 /obj/movedummy/proc/mimic_turf(var/turf_type, var/TTL)
 	ASSERT(ispath(turf_type, /turf))
 	var/turf/T = turf_type
@@ -821,7 +822,7 @@ proc/Create_Tommyname()
 	src.invisibility = 0
 	if(TTL)
 		SPAWN_DBG(TTL)
-			pool(src)
+			qdel(src)
 
 #undef STAT_STANDBY
 #undef STAT_MOVING

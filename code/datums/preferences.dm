@@ -1334,7 +1334,7 @@ datum/preferences
 		HTML += {"</td></tr></table>"}
 
 		user.Browse(null, "window=preferences")
-		user.Browse(HTML.Join(), "window=mob_occupation;size=850x580")
+		user.Browse(HTML.Join(), "window=mob_occupation;size=850x666")
 		return
 
 	proc/SetJob(mob/user, occ=1, job="Captain",var/level = 0)

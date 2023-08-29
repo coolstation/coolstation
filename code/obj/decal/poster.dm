@@ -1,5 +1,5 @@
 
-/obj/decal/poster
+/obj/decal/poster //don't use this one (or do, i'm not your dad)
 	desc = "A piece of paper with an image on it. Clearly dealing with incredible technology here."
 	name = "poster"
 	icon = 'icons/obj/items/items.dmi'
@@ -7,16 +7,19 @@
 	anchored = 1
 	opacity = 0
 	density = 0
-	var/imgw = 600
-	var/imgh = 400
-	var/popup_win = 1
+	var/imgw = 600 //set this to around +10 your image's actual size or whatever size you want the window to be
+	var/imgh = 400 //ditto
+	var/img = "images/arts/posters/sweaterferrets.jpg" //fallback image
+	var/resource = null //use html resource instead of quick and dirty html image? ex. "html/traitorTips/wizardTips.html"
+	var/popup_win = 1 //wallsign root is 0 don't worry about it
+	var/cat = "poster" //reuse windows, define differently if you want a separate/persistent category
 	layer = EFFECTS_LAYER_BASE
 	plane = PLANE_NOSHADOW_ABOVE
 
 	examine()
 		if (usr.client && src.popup_win)
 			src.show_popup_win(usr)
-			return list()
+			return list() //someone smarter than me please tell me why we wouldn't also return the name/desc in chatbox like a usual examine
 		else
 			return ..()
 
@@ -24,7 +27,13 @@
 		if (!C || !src.popup_win)
 			return
 		// wtf why is this using wizardtips... with a custom size... fuck it im leaving this one out of the centralization -singh
-		C.Browse(grabResource("html/traitorTips/wizardTips.html"),"window=antagTips;size=[imgw]x[imgh];title=Antagonist Tips")
+		//C.Browse(grabResource("html/traitorTips/wizardTips.html"),"window=antagTips;size=[imgw]x[imgh];title=Antagonist Tips")
+		// miss you lots, buddy
+		if (src.resource) //do we have a resource defined?
+			C.Browse(grabResource("[resource]"),"window=[cat];size=[imgw]x[imgh];title=[name]")
+		else //no? then it's obviously an image
+			C.Browse("<html><title>[name]</title><body style='margin:2px'><img src='[resource("[img]")]'></body></html>","window=[cat];size=[imgw]x[imgh];title=[name]")
+			//C.Browse("<img src=\"[resource("images/pw_map.png")]\">","window=Map;size=[imgw]x[imgh];title=Map") //marginless from pw_map, preserved as curiosity (or if i fucked up and need to put it back)
 
 	wallsign
 		desc = "A sign, on a wall. Wow!"
@@ -525,14 +534,35 @@
 			name = "COLD LOOP"
 			icon_state = "wall_coldloop"
 
+		aarea
+			name = "area information sign"
+			desc = "A sign that lets you know that this is, in fact, a area."
+			icon_state = "wall_area"
+			popup_win = 1
+			imgw = 185
+			imgh = 235
+			img = "images/arts/posters/sign-area.jpg"
+
 		poster_hair
 			name = "Fabulous Hair!"
 			desc = "There's a bunch of ladies with really fancy hair pictured on this."
+			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "wall_poster_hair"
+
+		poster_idiotbastard
+			name = "Strange poster"
+			desc = "You have no idea what the hell this is."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "idiotbastard"
+			popup_win = 1
+			imgw = 645
+			imgh = 545
+			img = "images/arts/posters/idiot-bastard.jpg"
 
 		poster_cool
 			name = "cool poster"
 			desc = "There's a couple people pictured on this poster, looking pretty cool."
+			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "wall_poster_cool3"
 			random_icon_states = list("wall_poster_cool", "wall_poster_cool2", "wall_poster_cool3")
 
@@ -577,6 +607,28 @@
 			desc = "A huge poster that reads 'I want YOU for NT!'"
 			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "you_4_nt"
+			imgw = 365
+			imgh = 450
+
+		poster_y4ntshitty
+			name = "\improper NanoTrasen recruitment poster"
+			desc = "SOMEONE has a passion for graphic design. Fuck..."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "you_4_nt"
+			popup_win = 1
+			imgw = 365
+			imgh = 450
+			img = "images/arts/posters/y4nt-shitty.jpg"
+
+		poster_tiger
+			name = "tiger poster"
+			desc = "Wow, it's free! Totally worth it!"
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "tiger"
+			popup_win = 1
+			imgw = 410
+			imgh = 275
+			img = "images/arts/posters/tiger.png"
 
 		poster_beach
 			name = "beach poster"
@@ -619,7 +671,7 @@
 																"wall_poster_beach",
 																"wall_poster_discount",
 																"wall_poster_octocluwne",
-																"wall_poser_eyetest")
+																"wall_poster_eyetest")
 
 		poster_mining
 			name = "mining poster"
@@ -753,8 +805,8 @@
 						src.name = "Pack Smart"
 						src.icon_state = "pack_smart"
 					if("contest-other2")
-						src.name = "Mindslaver Device Poster"
-						src.icon_state = "mindslaver"
+						src.name = "Insurgentr Device Poster"
+						src.icon_state = "insurgentr"
 					if("contest-other3")
 						src.name = "Edit Wiki"
 						src.icon_state = "edit_wiki"
@@ -777,7 +829,7 @@
 					if("code")
 						user << link("https://github.com/coolstation/coolstation")
 					if("edit_wiki")
-						user << link("https://wiki.ss13.co/")
+						user << link("https://wiki.coolstation.space/")
 
 		fuck1 //do not add this to the random sign rotation, fuck I is a long-lost relic overshadowed entirely by its successor
 			name = "\proper fuck"
@@ -823,7 +875,7 @@
 
 		/* Be gay, do crime */
 		pride
-			name = "Pride"
+			name = "pride poster"
 			icon = 'icons/obj/items/prideflags.dmi'
 			icon_state = "poster_pride1"
 			desc = "Be Gay, Do Crime!"
@@ -902,9 +954,12 @@
 		/*	desc = "Chaos, and rebellion, against an oppressive -- and, quite frankly, \
 				incredibly boring -- status quo! Passion, community, queer history, \
 				... and EVIL! MWAHAHAHA!"*/
+		pride/italian
+			name = "Italian Pride"
+			icon_state = "poster_pride15"
 
 ///////////////////////////////////////
-// AZUNGAR'S HEAD OF DEPARTMENT ITEMS// + FIREBARRAGE HELPED TOO BUT HE SMELLS
+// HATSUNE MIKU'S HEAD OF DEPARTMENT ITEMS// + FIREBARRAGE HELPED TOO BUT HE SMELLS
 ///////////////////////////////////////
 
 		framed_award
@@ -1108,15 +1163,21 @@
 				. += "It says \ [capname] has been awarded a Bachelor of [pick("Farts", "Fards")] Degree for the study of [pick("slipology", "jugglemancy", "pie science", "bicycle horn accoustics", "comic sans calligraphy", "gelotology", "flatology", "nuclear physics", "goonstation coder")]! It appears to be written in faded crayon."
 
 /obj/decal/poster/wallsign/pod_build
-	name = "poster"
+	name = "\improper How to Build a Space Pod"
 	icon = 'icons/obj/decals/posters_64x32.dmi'
 	icon_state = "nt-pod-poster"
 	popup_win = 1
+	resource = "html/how_to_build_a_pod.html"
+	cat = "how_to_build_a_pod"
 
-	show_popup_win(var/client/C)
-		if (!C || !src.popup_win)
-			return
-		C.Browse(grabResource("html/how_to_build_a_pod.html"),"window=how_to_build_a_pod;size=[imgw]x[imgh];title=How to Build a Space Pod")
+/obj/decal/poster/wallsign/hypothermia
+	name = "repulsive public service poster"
+	icon = 'icons/obj/decals/posters.dmi'
+	icon_state = "frostbite"
+	popup_win = 1
+	imgw = 690
+	imgh = 570
+	img = "images/arts/posters/hypothermia.jpg"
 
 /obj/decal/poster/wallsign/pod_build/nt
 	icon_state = "nt-pod-poster"
@@ -1131,12 +1192,8 @@
 	popup_win = 1
 	imgw = 702
 	imgh = 702
-
-	show_popup_win(var/client/C)
-		if (!C || !src.popup_win)
-			return
-
-		C.Browse("<img src=\"[resource("images/pw_map.png")]\">","window=Map;size=[imgw]x[imgh];title=Map")
+	img = "images/pw_map.png"
+	cat = "map"
 
 /obj/decal/poster/banner
 	name = "banner"

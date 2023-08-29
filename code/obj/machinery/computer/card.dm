@@ -92,8 +92,8 @@
 
 			//Jobs organised into sections
 			var/list/civilianjobs = list("Staff Assistant", "Bartender", "Chef", "Botanist", "Rancher", "Chaplain", "Janitor", "Clown")
-			var/list/maintainencejobs = list("Engineer", "Mechanic", "Miner", "Quartermaster")
-			var/list/researchjobs = list("Scientist", "Medical Doctor", "Geneticist", "Roboticist", "Pathologist")
+			var/list/maintainencejobs = list("Engineer", "Mechanic", "Miner", "Quartermaster", "Cargo Technician") //QM move to head...
+			var/list/researchjobs = list("Scientist", "Chemist", "Medical Doctor", "Geneticist", "Roboticist", "Pathologist", "Surgeon", "Nurse", "Receptionist")
 			var/list/securityjobs = list("Security Officer", "Security Assistant", "Detective")
 			var/list/commandjobs = list("Head of Personnel", "Chief Engineer", "Research Director", "Medical Director", "Captain")
 
@@ -310,7 +310,7 @@
 		if (!( src.printing ))
 			src.printing = 1
 			sleep(5 SECONDS)
-			var/obj/item/paper/P = unpool(/obj/item/paper)
+			var/obj/item/paper/P = new()
 			P.set_loc(src.loc)
 
 			var/t1 = "<B>Crew Manifest:</B><BR>"

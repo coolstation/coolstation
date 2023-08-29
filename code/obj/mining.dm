@@ -134,6 +134,7 @@
 	var/scan_range = 7
 	var/turf/magnetic_center
 	alpha = 128
+	flags = MINERAL_MAGNET_SAFE
 
 	small
 		width = 7
@@ -151,7 +152,7 @@
 		var/turf/origin = get_turf(src)
 		for (var/turf/T in block(origin, locate(origin.x + width - 1, origin.y + height - 1, origin.z)))
 			for (var/obj/O in T)
-				if (!(O.type in mining_controls.magnet_do_not_erase) && !istype(O, /obj/magnet_target_marker))
+				if (!(O.flags & MINERAL_MAGNET_SAFE))
 					qdel(O)
 			T.overlays.len = 0 //clear out the astroid edges and scan effects
 			T.ReplaceWithSpace()
@@ -271,7 +272,7 @@
 		if (istype(W, /obj/item/raw_material/plasmastone) && !loaded)
 			loaded = 1
 			boutput(user, "<span class='notice'>You charge the magnetizer with the plasmastone.</span>")
-			pool(W)
+			qdel(W)
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
 		if (!magnet)
@@ -644,7 +645,7 @@
 		build_icon()
 
 		for (var/obj/O in mining_controls.magnet_area.contents)
-			if (!(O.type in mining_controls.magnet_do_not_erase))
+			if (!(O.flags & MINERAL_MAGNET_SAFE))
 				qdel(O)
 		for (var/turf/simulated/T in mining_controls.magnet_area.contents)
 			if (!istype(T,/turf/simulated/floor/airless/plating/catwalk/))
@@ -984,6 +985,7 @@
 #else
 	fullbright = 1
 #endif
+	turf_flags = IS_TYPE_SIMULATED | MINE_MAP_PRESENTS_SOLID
 
 	consider_superconductivity(starting)
 		return FALSE
@@ -991,6 +993,7 @@
 	dark
 		fullbright = 0
 		luminosity = 1
+		floor_turf = "/turf/simulated/floor/plating/airless/asteroid/dark"
 
 	lighted
 		fullbright = 1
@@ -1007,18 +1010,21 @@
 		stone_color = "#575A5E"
 		default_ore = null
 		hardness = 10
+		turf_flags = IS_TYPE_SIMULATED | MINE_MAP_PRESENTS_TOUGH
 
 
 // cogwerks - adding some new wall types for cometmap and whatever else
 
 	comet
 		fullbright = 0
+		luminosity = 1
 		name = "regolith"
 		desc = "It's dusty and cold."
 		stone_color = "#95A1AF"
 		icon_state = "comet"
 		hardness = 1
 		default_ore = /obj/item/raw_material/rock
+		floor_turf = "/turf/simulated/floor/plating/airless/asteroid/dark"
 
 		// varied layers
 
@@ -1334,7 +1340,7 @@
 				O.onExcavate(src)
 			var/makeores
 			for(makeores = src.amount, makeores > 0, makeores--)
-				var/obj/item/raw_material/MAT = unpool(ore_to_create)
+				var/obj/item/raw_material/MAT = new ore_to_create()
 				MAT.set_loc(src)
 
 				if(MAT.material)
@@ -1375,11 +1381,14 @@
 
 		return src
 
-	proc/set_event(var/datum/ore/event/E)
+	proc/set_event(var/datum/ore/event/E, datum/mining_level_stats/level_stats = null) //Adding the stat collection illustrates to me how much recursive bodging is going on here
 		if (!istype(E))
 			return
 		src.event = E
 		E.onGenerate(src)
+		if (level_stats)
+			level_stats.events[E.name] += 1
+			level_stats.total_generated_events += 1
 		if (E.prevent_excavation)
 			src.invincible = 1
 		if (E.nearby_tile_distribution_min > 0 && E.nearby_tile_distribution_max > 0)
@@ -1392,13 +1401,18 @@
 
 			var/turf/simulated/wall/asteroid/AST
 			while (distributions > 0)
-				distributions--
 				if (usable_turfs.len < 1)
+					if (level_stats)
+						level_stats.event_misses[E.name] += distributions
 					break
+				distributions--
 				AST = pick(usable_turfs)
 				AST.event = E
 				E.onGenerate(AST)
 				usable_turfs -= AST
+				if (level_stats)
+					level_stats.events[E.name] += 1
+					level_stats.total_generated_events += 1
 
 /turf/simulated/floor/plating/airless/asteroid
 	name = "asteroid"
@@ -1415,7 +1429,7 @@
 	var/stone_color = "#CCCCCC"
 	var/image/coloration_overlay = null
 	var/list/space_overlays = list()
-	turf_flags = MOB_SLIP | MOB_STEP | IS_TYPE_SIMULATED | FLUID_MOVE
+	turf_flags = MOB_SLIP | MOB_STEP | IS_TYPE_SIMULATED | FLUID_MOVE | MINE_MAP_PRESENTS_SOLID //solid might seem weird, but empty represents space so
 
 #ifdef UNDERWATER_MAP
 	fullbright = 0
@@ -1427,7 +1441,7 @@
 
 	dark
 		fullbright = 0
-		luminosity = 0
+		luminosity = 1
 
 	lighted
 		fullbright = 1
@@ -2134,6 +2148,7 @@ obj/item/clothing/gloves/concussive
 	density = 1
 	opacity = 0
 	anchored = 0
+	processing_tier = PROCESSING_HALF //~0.8Hz
 	var/active = 0
 	var/cell = null
 	var/target = null

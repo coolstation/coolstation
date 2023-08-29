@@ -22,7 +22,7 @@
 /obj/displaycase/ex_act(severity)
 	switch(severity)
 		if (1)
-			var/obj/item/raw_material/shard/glass/G = unpool(/obj/item/raw_material/shard/glass)
+			var/obj/item/raw_material/shard/glass/G = new()
 			G.set_loc(src.loc)
 
 			qdel(src)
@@ -71,7 +71,7 @@
 		if (!( src.destroyed ))
 			src.set_density(0)
 			src.destroyed = 1
-			var/obj/item/raw_material/shard/glass/G = unpool(/obj/item/raw_material/shard/glass)
+			var/obj/item/raw_material/shard/glass/G = new()
 			G.set_loc(src.loc)
 			if (displayed)
 				displayed.set_loc(src.loc)
@@ -258,7 +258,7 @@
 				if (src.quality_counter >= src.q_threshold2)
 					L.setMaterial(getMaterial("gold"), appearance = 0, setname = 0)
 					if (L.material)
-						L.material.owner = L
+						//L.material.owner = L
 						L.material.triggerOnAdd(L)
 						L.name = "show-piece antique laser gun"
 						user.unlock_medal("Tinkerer", 1)

@@ -10,7 +10,7 @@
 	deconstruct_flags = DECON_WIRECUTTERS | DECON_MULTITOOL
 	machine_registry_idx = MACHINES_FIREALARMS
 	power_usage = 10
-	var/alarm_frequency = "1437"
+	var/alarm_frequency = FREQ_ALARM
 	var/detecting = 1.0
 	var/working = 1.0
 	var/lockdownbyai = 0
@@ -39,11 +39,11 @@
 	AddComponent(/datum/component/mechanics_holder)
 	SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"toggle", "toggleinput")
 	SPAWN_DBG(1 SECOND)
-		frequency = radio_controller.return_frequency(alarm_frequency)
+		frequency = radio_controller.return_frequency("[alarm_frequency]")
 
 /obj/machinery/firealarm/disposing()
 		STOP_TRACKING
-		radio_controller.remove_object(src, alarm_frequency)
+		radio_controller.remove_object(src, "[alarm_frequency]")
 		..()
 
 /obj/machinery/firealarm/set_loc(var/newloc)
@@ -133,7 +133,7 @@
 
 	if (src.ringlimiter)
 		src.ringlimiter = 0
-		
+
 	src.dont_spam = 1	//hey let's try having the fire alarm reset set protection against alarming again
 	sleep(5 SECONDS)	//maybe then you'll actually be able to reset it for a little without spam clicking a dozen times
 	src.dont_spam = 0	//maybe maybe i dunno im just a big stinky doofus though
@@ -169,7 +169,7 @@
 	return
 
 /obj/machinery/firealarm/proc/post_alert(var/alarm, var/specific_target)
-//	var/datum/radio_frequency/frequency = radio_controller.return_frequency(alarm_frequency)
+//	var/datum/radio_frequency/frequency = radio_controller.return_frequency("[alarm_frequency]")
 
 	LAGCHECK(LAG_LOW)
 

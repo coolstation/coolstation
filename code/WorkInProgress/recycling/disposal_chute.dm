@@ -8,6 +8,8 @@
 #define DISPOSAL_CHUTE_OFF 0
 #define DISPOSAL_CHUTE_CHARGING 1
 #define DISPOSAL_CHUTE_CHARGED 2
+#define DISPOSAL_CHUTE_NOTRUNK 3
+#define DISPOSAL_CHUTE_NOTAG 4
 
 /obj/machinery/disposal
 	name = "disposal unit"
@@ -41,7 +43,7 @@
 			if (src)
 				trunk = locate() in src.loc
 				if(!trunk)
-					mode = DISPOSAL_CHUTE_OFF
+					mode = DISPOSAL_CHUTE_NOTRUNK
 					flush = 0
 				else
 					trunk.linked = src	// link the pipe trunk to self
@@ -59,12 +61,21 @@
 		trunk = null
 
 		if(air_contents)
-			pool(air_contents)
+			qdel(air_contents)
 			air_contents = null
 		..()
 
+	proc/rechecktrunk() //not called by anything, yet, but if you build/dismantle a trunk, toggle power, or have some sort of explosion act on it, it should try to poke this
+		trunk = locate() in src.loc
+		if(!trunk)
+			mode = DISPOSAL_CHUTE_NOTRUNK
+			flush = 0
+		else
+			trunk.linked = src
+		update()
+
 	proc/initair()
-		air_contents = unpool(/datum/gas_mixture)
+		air_contents = new()
 		air_contents.volume = 255
 		air_contents.nitrogen = 16.5
 		air_contents.oxygen = 4.4
@@ -104,6 +115,23 @@
 				for(var/obj/item/O in S)
 					O.set_loc(src)
 					S.hud.remove_object(O)
+				user.visible_message("<b>[user.name]</b> dumps out [S] into [src].")
+				return
+		if (istype(I,/obj/item/decoration/ashtray/) && I:butts)
+			var/action = input(user, "What do you want to do with [I]?") as null|anything in list("Place it in the Chute","Empty it into the chute","Never Mind")
+			if (!action || action == "Never Mind")
+				return
+			if (!in_interact_range(src, user))
+				boutput(user, "<span class='alert'>You need to be closer to the chute to do that.</span>")
+				return
+			if (action == "Empty it into the chute")
+				var/obj/item/decoration/ashtray/S = I
+				for (var/i = 0, i < S.butts, i++)
+					var/obj/item/cigbutt/butt = new()
+					butt.set_loc(src)
+				S.butts = 0 // pff
+				S.update_icon()
+				S.overlays = null
 				user.visible_message("<b>[user.name]</b> dumps out [S] into [src].")
 				return
 		var/obj/item/magtractor/mag
@@ -274,11 +302,13 @@
 	// update the icon & overlays to reflect mode & status
 	proc/update()
 		if (status & BROKEN)
-			icon_state = "disposal-broken"
+			// icon_state = "disposal-broken" //iconstate does not exist
 			ClearAllOverlays()
 			mode = DISPOSAL_CHUTE_OFF
 			flush = 0
 			power_usage = 0
+			var/image/I = image(src.icon, "disposal-busted") //so we can still use this: permanent red light
+			UpdateOverlays(I, "status", 0, 1)
 			return
 
 		// flush handle
@@ -324,6 +354,10 @@
 				I.icon_state = "[light_style]-charge"
 			if (DISPOSAL_CHUTE_CHARGED)
 				I.icon_state = "[light_style]-ready"
+			if (DISPOSAL_CHUTE_NOTRUNK)
+				I.icon_state = "disposal-notrunk" //common overlay
+			if (DISPOSAL_CHUTE_NOTAG)
+				I.icon_state = "mail-notag" //mail only, but works on all
 			else
 				I = null
 
@@ -362,7 +396,7 @@
 		var/atom/L = loc						// recharging from loc turf
 		var/datum/gas_mixture/env = L.return_air()
 		if (!air_contents)
-			air_contents = unpool(/datum/gas_mixture)
+			air_contents = new()
 		var/pressure_delta = (3.5 * ONE_ATMOSPHERE) - MIXTURE_PRESSURE(air_contents) // purposefully trying to overshoot the target of 2 atmospheres to make it faster
 
 		if(env.temperature > 0)
@@ -389,7 +423,7 @@
 		flushing = 1
 		flick("[icon_style]-flush", src)
 
-		var/obj/disposalholder/H = unpool(/obj/disposalholder)	// virtual holder object which actually
+		var/obj/disposalholder/H = new()	// virtual holder object which actually
 																// travels through the pipes.
 
 		H.init(src)	// copy the contents of disposer to holder
@@ -497,6 +531,24 @@
 	desc = "A pneumatic delivery chute for sending things directly to the morgue."
 	icon_style = "morgue"
 
+/obj/machinery/disposal/morgue
+	name = "morgue chute"
+	icon_state = "morguechute"
+	desc = "A pneumatic delivery chute for sending things directly to genetics."
+	icon_style = "morgue"
+
+/obj/machinery/disposal/crematorium
+	name = "crematorium chute"
+	icon_state = "morguechute"
+	desc = "A pneumatic delivery chute for sending things directly to the crematorium."
+	icon_style = "morgue"
+
+/obj/machinery/disposal/quarantine
+	name = "quarantine chute"
+	icon_state = "morguechute"
+	desc = "A pneumatic delivery chute for sending things directly to quarantine."
+	icon_style = "morgue"
+
 /obj/machinery/disposal/sci
 	name = "research chute"
 	icon_state = "scichute"
@@ -528,7 +580,7 @@
 	var/mailgroup = null
 
 	var/net_id = null
-	var/frequency = 1149
+	var/frequency = FREQ_PDA
 	var/datum/radio_frequency/radio_connection
 
 	New()
@@ -697,3 +749,5 @@
 #undef DISPOSAL_CHUTE_OFF
 #undef DISPOSAL_CHUTE_CHARGING
 #undef DISPOSAL_CHUTE_CHARGED
+#undef DISPOSAL_CHUTE_NOTRUNK
+#undef DISPOSAL_CHUTE_NOTAG

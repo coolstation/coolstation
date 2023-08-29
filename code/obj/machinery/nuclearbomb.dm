@@ -353,14 +353,19 @@
 			area_correct = 1
 		if(istype(ticker?.mode, /datum/game_mode/nuclear) && istype(nuke_area, NUKEMODE.target_location_type))
 			area_correct = 1
+		if(map_currently_very_dusty && nuke_turf.z == 3)
+			area_correct = 1 // this is a dumb hack but its for now ok
 		if ((nuke_turf.z != 1 && !area_correct) && (ticker?.mode && istype(ticker.mode, /datum/game_mode/nuclear)))
 			NUKEMODE.the_bomb = null
 			command_alert("A nuclear explosive has been detonated nearby. The station was not in range of the blast.", "Attention")
 			explosion(src, src.loc, 20, 30, 40, 50)
 			qdel(src)
 			return
-#ifdef MAP_OVERRIDE_MANTA
-		world.showCinematic("manta_nukies")
+#ifdef MAP_OVERRIDE_GEHENNA
+		var/datum/hud/cinematic/cinematic = new
+		for (var/client/C in clients)
+			cinematic.add_client(C)
+		cinematic.play("gehenna_nuke")
 #else
 		var/datum/hud/cinematic/cinematic = new
 		for (var/client/C in clients)

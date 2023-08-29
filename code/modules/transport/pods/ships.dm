@@ -78,10 +78,9 @@
 	checkhealth()
 		..()
 		if(health/maxhealth <= 0.25)
-			damaged = image("icon" = 'icons/obj/ship.dmi', "icon_state" = "saucer_damage", "layer" = MOB_LAYER)
-			overlays += damaged
+			UpdateOverlays(image("icon" = 'icons/obj/ship.dmi', "icon_state" = "saucer_damage", "layer" = MOB_LAYER), "damage")
 		else
-			overlays -=damaged
+			UpdateOverlays(null, "damage")
 
 
 ////// miniputt shuttles
@@ -545,7 +544,7 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 					boutput(user, "<span class='alert'>You were interrupted!</span>", group = "vehicleframe_con")
 					return
 				boutput(user, "You wrench some of the frame parts together.", group = "vehicleframe_con")
-				src.overlays += image(src.icon, "[pick("frame1", "frame2")]")
+				UpdateOverlays(image(src.icon, "[pick("frame1", "frame2")]"), "half_frame")
 				stage = 1
 			else
 				boutput(user, "If only there was some way to secure all this junk together! You should get a wrench.", group = "vehicleframe_con")
@@ -558,8 +557,7 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 					boutput(user, "<span class='alert'>You were interrupted!</span>", group = "vehicleframe_con")
 					return
 				boutput(user, "You finish wrenching the frame parts together.", group = "vehicleframe_con")
-				src.overlays -= image(src.icon, "frame1")
-				src.overlays -= image(src.icon, "frame2")
+				UpdateOverlays(null, "half_frame")
 				icon_state = "frame"
 				stage = 2
 			else
@@ -590,7 +588,7 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 					boutput(user, "<span class='alert'>You were interrupted!</span>", group = "vehicleframe_con")
 					return
 				boutput(user, "You add power cables to the MiniPutt frame.", group = "vehicleframe_con")
-				src.overlays += image(src.icon, "wires")
+				UpdateOverlays(image(src.icon, "wires"), "wires")
 				stage = 4
 			else
 				boutput(user, "You're not gonna get very far without power cables. You should get at least [src.cable_amt] lengths of it.", group = "vehicleframe_con")
@@ -605,7 +603,7 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 				boutput(user, "You install the internal circuitry parts.", group = "vehicleframe_con")
 				user.u_equip(W)
 				qdel(W)
-				src.overlays += image(src.icon, "circuits")
+				UpdateOverlays(image(src.icon, "circuits"), "circuits")
 				stage = 5
 			else
 				boutput(user, "Maybe those wires should be connecting something together. Some kind of circuitry, perhaps.", group = "vehicleframe_con")
@@ -623,7 +621,7 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 						boutput(user, "<span class='alert'>You were interrupted!</span>", group = "vehicleframe_con")
 						return
 					boutput(user, "You construct internal covers over the circuitry systems.", group = "vehicleframe_con")
-					src.overlays += image(src.icon, "covers")
+					UpdateOverlays(image(src.icon, "covers"), "covers")
 					stage = 6
 				else
 					boutput(user, "<span class='alert'>These sheets aren't the right kind of material. You need metal!</span>", group = "vehicleframe_con")
@@ -640,7 +638,7 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 				boutput(user, "You install the engine.", group = "vehicleframe_con")
 				user.u_equip(W)
 				qdel(W)
-				src.overlays += image(src.icon, "thrust")
+				UpdateOverlays(image(src.icon, "thrust"), "thrust")
 				stage = 7
 			else
 				boutput(user, "Having an engine might be nice.", group = "vehicleframe_con")
@@ -659,7 +657,7 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 				boutput(user, "You loosely attach the [W].", group = "vehicleframe_con")
 				user.u_equip(W)
 				qdel(W)
-				src.overlays += image(src.icon, armor.overlay_state)
+				UpdateOverlays(image(src.icon, armor.overlay_state), "armor")
 				stage = 8
 				armor_type = armor.type
 				src.vehicle_type = armor.vehicle_types["[src.type]"]
@@ -691,7 +689,7 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 				boutput(user, "You install the control system.", group = "vehicleframe_con")
 				user.u_equip(W)
 				qdel(W)
-				src.overlays += image(src.icon,"control")
+				UpdateOverlays(image(src.icon,"control"), "control")
 				stage = 10
 			else
 				boutput(user, "It's not gonna get very far without a control system!", group = "vehicleframe_con")
@@ -1445,7 +1443,7 @@ ABSTRACT_TYPE(/obj/item/podarmor)
 
 			playsound(src.loc, "warp", 50, 1, 0.1, 0.7)
 
-			var/obj/portal/P = unpool(/obj/portal)
+			var/obj/portal/P = new()
 			P.set_loc(get_turf(src))
 			var/turf/T = pick_landmark(LANDMARK_ESCAPE_POD_SUCCESS)
 			src.set_dir(map_settings ? map_settings.escape_dir : SOUTH)

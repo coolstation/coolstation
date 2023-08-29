@@ -100,7 +100,7 @@ datum/teg_transformation
 		if(initial(src.mat_id))
 			M = getMaterial(src.mat_id)
 		else
-			M = copyMaterial(src.teg.semiconductor.material)
+			M = src.teg.semiconductor.material
 
 		teg.setMaterial(M)
 		teg.circ1.setMaterial(M)

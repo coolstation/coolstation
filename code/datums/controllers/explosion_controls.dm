@@ -129,13 +129,15 @@ var/datum/explosion_controller/explosions
 		if (exploding)
 			return
 		else if (queued_turfs.len)
-			kaboom()
+			SPAWN_DBG(0)
+				kaboom()
 		else if (queued_explosions.len)
-			var/datum/explosion/E
-			while (queued_explosions.len)
-				E = queued_explosions[1]
-				queued_explosions -= E
-				E.explode()
+			SPAWN_DBG(0)
+				var/datum/explosion/E
+				while (queued_explosions.len)
+					E = queued_explosions[1]
+					queued_explosions -= E
+					E.explode()
 
 /datum/explosion
 	var/atom/source

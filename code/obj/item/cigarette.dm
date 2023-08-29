@@ -113,7 +113,7 @@
 				puffrate = src.reagents.total_volume / numpuffs //40 active cycles (200 total, about 10 minutes)
 			processing_items |= src
 
-			src.rng_stun_rate = 20 //%
+			src.rng_stun_rate = 30 //%
 
 			hit_type = DAMAGE_BURN
 
@@ -242,6 +242,7 @@
 				if (7) message_append = " That's cold."
 				if (8) message_append = " How rude."
 				if (9) message_append = " Wow!"
+				if (10,11,12,13) message_append = ""
 			user.visible_message("<span class='alert'><B>[user]</B> blows smoke right into <B>[target]</B>'s face![message_append]</span>", group = "[user]_blow_smoke_at_[target]")
 
 			var/mob/living/carbon/human/human_target = target
@@ -362,11 +363,6 @@
 	desc = "Blow everyone away with your minty fresh breath!"
 	flavor = "menthol"
 
-/obj/item/clothing/mask/cigarette/dryjoint
-	name = "dried up joint"
-	desc = "An ancient joint, it's paper now resembles the burial shroud of an egyptian king. There's no telling what the roller could have twisted up in here."
-	nic_free = 1
-	flavor = "THC"
 
 /obj/item/clothing/mask/cigarette/random
 	name = "laced cigarette"
@@ -384,6 +380,16 @@
 	name = "greasy cigarette"
 	desc = "A cigarette that appears to have been ... dipped in grease? It's almost dripping!"
 	flavor = "grease"
+
+/obj/item/clothing/mask/cigarette/brute
+	name = "medical cigarette"
+	desc = "A certified prescription cigarette, formulated to treat minor wounds."
+	flavor = "styptic_powder"
+
+/obj/item/clothing/mask/cigarette/burn
+	name = "medical cigarette"
+	desc = "A certified prescription cigarette, formulated to treat minor burns."
+	flavor = "silver_sulfadiazine"
 
 /obj/item/clothing/mask/cigarette/dryjoint
 	name = "dried up joint"
@@ -575,6 +581,20 @@
 	cigtype = /obj/item/clothing/mask/cigarette/greasy
 	icon_state = "cigpacket-g"
 	package_style = "cigpacket-g"
+
+/obj/item/cigpacket/brute
+	name = "Medical cigarette packet - Brute"
+	desc = "For when you're all beat up and need to feel healthier in some ways but maybe not others."
+	cigtype = /obj/item/clothing/mask/cigarette/brute
+	icon_state = "cigpacket-br"
+	package_style = "cigpacket-br"
+
+/obj/item/cigpacket/burn
+	name = "Medical cigarette packet - Burn"
+	desc = "If you're feeling burned, burn one of these! Note: If no lighters are available, try using your own flaming body."
+	cigtype = /obj/item/clothing/mask/cigarette/burn
+	icon_state = "cigpacket-bu"
+	package_style = "cigpacket-bu"
 
 /obj/item/cigpacket/syndicate // cogwerks: made them more sneaky, removed the glaringly obvious name
 // haine: these can just inherit the parent name and description vOv
@@ -1084,7 +1104,6 @@
 	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "zippo"
 	item_state = "zippo"
-	var/item_state_base = "zippo"
 	inhand_image_icon = 'icons/mob/inhand/hand_general.dmi'
 	w_class = W_CLASS_TINY
 	throwforce = 4
@@ -1129,7 +1148,7 @@
 		src.on = 1
 		src.firesource = TRUE
 		set_icon_state(src.icon_on)
-		src.item_state = "[item_state_base]on"
+		src.item_state = "zippoon"
 		light.enable()
 		processing_items |= src
 		if (user != null)
@@ -1141,7 +1160,7 @@
 		src.on = 0
 		src.firesource = FALSE
 		set_icon_state(src.icon_off)
-		src.item_state = "[item_state_base]"
+		src.item_state = "zippo"
 		light.disable()
 		processing_items.Remove(src)
 		if (user != null)
@@ -1292,29 +1311,3 @@
 
 /obj/item/device/light/zippo/borg
 	infinite_fuel = 1
-
-/obj/item/device/light/zippo/syndicate
-	desc = "A sleek black lighter with a red stripe."
-	icon_state = "syndie_zippo"
-	icon_off = "syndie_zippo"
-	icon_on = "syndie_zippoon"
-	item_state = "syndi-zippo"
-	item_state_base = "syndi-zippo"
-	infinite_fuel = 1
-	col_r = 0.298
-	col_g = 0.658
-	col_b = 0
-	is_syndicate = 1
-
-	New()
-		. = ..()
-		RegisterSignal(src, list(COMSIG_MOVABLE_SET_LOC, COMSIG_MOVABLE_MOVED), .proc/update_hotbox_flag)
-
-	proc/update_hotbox_flag(thing, previous_loc, direction)
-		if (!firesource) return
-		if (isturf(src.loc))
-			var/turf/T = src.loc
-			T.allow_unrestricted_hotbox++
-		if (isturf(previous_loc))
-			var/turf/T = previous_loc
-			T.allow_unrestricted_hotbox = max(0, T.allow_unrestricted_hotbox - 1)

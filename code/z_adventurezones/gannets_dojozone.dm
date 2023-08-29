@@ -98,9 +98,8 @@ Contents:
 	skip_sims = 1
 	sims_score = 15
 	sound_group = "dojo"
-	sound_loop = 'sound/ambience/dojo/dojoambi.ogg'
-	sound_loop_vol = 50
-	construction_allowed = FALSE
+	sound_loop_1 = 'sound/ambience/dojo/dojoambi.ogg'
+	sound_loop_1_vol = 50
 
 
 	New()

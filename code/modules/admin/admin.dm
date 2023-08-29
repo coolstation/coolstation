@@ -887,6 +887,31 @@ var/global/noir = 0
 			else
 				alert("You need to be at least a Primary Administrator to force players to say things.")
 
+		if ("givepet")
+			var/mob/M = locate(href_list["target"])
+			if (src.level >= LEVEL_PA || isnull(M.client) && src.level >= LEVEL_SA)
+				var/pet_input = input("Enter path of the thing you want to give as a pet or enter a part of the path to search", "Enter Path", pick("/obj/critter/domestic_bee", "/obj/critter/parrot/random", "/obj/critter/cat")) as null|text
+				if (!pet_input)
+					return
+				var/pet_path = get_one_match(pet_input, /obj)
+				if (!pet_path)
+					return
+
+				var/obj/Pet = new pet_path(get_turf(M))
+				Pet.name = "[M]'s pet [Pet.name]"
+
+				//Pets should probably not attack their owner
+				if (istype(Pet, /obj/critter))
+					var/obj/critter/CritterPet = Pet
+					CritterPet.atkcarbon = 0
+					CritterPet.atksilicon = 0
+
+				logTheThing("admin", usr ? usr : src, M, "gave [constructTarget(M,"admin")] a pet [pet_path]!")
+				logTheThing("diary", usr ? usr : src, M, "gave [constructTarget(M,"diary")] a pet [pet_path]!", "admin")
+				message_admins("[key_name(usr ? usr : src)] gave [M] a pet [pet_path]!")
+			else
+				alert("You need to be at least a Primary Administrator to force players to say things.")
+
 		if ("prison")
 			if (src.level >= LEVEL_MOD)
 				var/mob/M = locate(href_list["target"])
@@ -1153,7 +1178,7 @@ var/global/noir = 0
 					alert("This secret can only be used on human mobs.")
 					return
 				var/mob/living/carbon/human/H = M
-				var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman", "Kudzuman","Ghostdrone","Flubber","Cow")
+				var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Fert","Ghostdrone","Flubber","Cow")
 				if (!which)
 					return
 				. = 0
@@ -1176,6 +1201,9 @@ var/global/noir = 0
 						. = 1
 					if("Flashman")
 						H.set_mutantrace(/datum/mutantrace/flashy)
+						. = 1
+					if("Fert")
+						H.set_mutantrace(/datum/mutantrace/fert)
 						. = 1
 			/*		if("Kudzuman")
 						H.set_mutantrace(/datum/mutantrace/kudzu)
@@ -2364,7 +2392,7 @@ var/global/noir = 0
 							alert("This secret can only be used on human mobs.")
 							return
 						var/mob/living/carbon/human/H = who
-						var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cow")
+						var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cow","Fert")
 						if (!which)
 							return
 						switch(which)
@@ -2382,12 +2410,14 @@ var/global/noir = 0
 								H.set_mutantrace(/datum/mutantrace/flashy)
 							if ("Cow")
 								H.set_mutantrace(/datum/mutantrace/cow)
+							if ("Fert")
+								H.set_mutantrace(/datum/mutantrace/fert)
 						message_admins("<span class='internal'>[key_name(usr)] transformed [H.real_name] into a [which].</span>")
 						logTheThing("admin", usr, null, "transformed [H.real_name] into a [which].")
 						logTheThing("diary", usr, null, "transformed [H.real_name] into a [which].", "admin")
 
 					if("transform_all")
-						var/which = input("Transform everyone into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cow")
+						var/which = input("Transform everyone into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cow","Fert")
 						for(var/mob/living/carbon/human/H in mobs)
 							switch(which)
 								if("Monkey") H.monkeyize()
@@ -2404,6 +2434,8 @@ var/global/noir = 0
 									H.set_mutantrace(/datum/mutantrace/flashy)
 								if("Cow")
 									H.set_mutantrace(/datum/mutantrace/cow)
+								if ("Fert")
+									H.set_mutantrace(/datum/mutantrace/fert)
 							LAGCHECK(LAG_LOW)
 						message_admins("<span class='internal'>[key_name(usr)] transformed everyone into a [which].</span>")
 						logTheThing("admin", usr, null, "transformed everyone into a [which].")
@@ -3071,7 +3103,7 @@ var/global/noir = 0
 
 					if ("command_report_zalgo")
 						if (src.level >= LEVEL_ADMIN)
-							var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as null|text
+							var/input = input(usr, "Please enter anything you want for the body of the message. Headline comes next..", "What?", "") as null|text
 							input = zalgoify(input, rand(0,2), rand(0, 2), rand(0, 2))
 							if(!input)
 								return
@@ -3092,7 +3124,7 @@ var/global/noir = 0
 
 					if ("command_report_void")
 						if (src.level >= LEVEL_ADMIN)
-							var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as null|text
+							var/input = input(usr, "Please enter anything you want for the body of the message. Headline comes next.", "What?", "") as null|text
 							input = voidSpeak(input)
 							if(!input)
 								return
@@ -3441,6 +3473,8 @@ var/global/noir = 0
 						simsController.showControls(usr)
 					if("artifacts")
 						artifact_controls.config()
+					if("miningstats")
+						mining_controls.show_stats()
 					if("ghostnotifier")
 						ghost_notifier.config()
 					if("unelectrify_all")
@@ -4165,6 +4199,7 @@ var/global/noir = 0
 				<A href='?src=\ref[src];action=secretsadmin;type=respawn_panel'>Respawn Panel</A><BR>
 				<A href='?src=\ref[src];action=secretsadmin;type=randomevents'>Random Event Controls</A><BR>
 				<A href='?src=\ref[src];action=secretsadmin;type=artifacts'>Artifact Controls</A><BR>
+				<A href='?src=\ref[src];action=secretsadmin;type=miningstats'>Mining Generation Statistics</A><BR>
 				<A href='?src=\ref[src];action=secretsadmin;type=pathology'>CDC</A><BR>
 				<A href='?src=\ref[src];action=secretsadmin;type=motives'>Motive Control</A><BR>
 				<A href='?src=\ref[src];action=secretsadmin;type=ghostnotifier'>Ghost Notification Controls</A><BR>
@@ -4306,7 +4341,7 @@ var/global/noir = 0
 
 	dat += "</div>"
 
-	usr.Browse(dat, "window=gamepanel")
+	usr.Browse(dat, "window=gamepanel;size=500x750")
 	return
 
 /datum/admins/proc/restart()

@@ -30,7 +30,7 @@
 	opacity = 0
 	density = 0
 	var/nextstate = null
-	var/datum/radio_frequency/control_frequency = "1437"
+	var/datum/radio_frequency/control_frequency = FREQ_ALARM
 	var/zone
 	var/zone2 //mbc hack
 	var/image/welded_image = null
@@ -76,7 +76,8 @@
 		if(operating)
 			nextstate = OPEN
 		else
-			open()
+			SPAWN_DBG(rand(1,6))
+				open()
 	return
 
 /obj/machinery/door/firedoor/proc/set_closed()
@@ -84,7 +85,8 @@
 		if(operating)
 			nextstate = CLOSED
 		else
-			close()
+			SPAWN_DBG(rand(1,6))
+				close()
 	return
 
 // listen for fire alert from firealarm
@@ -105,6 +107,15 @@
 
 /obj/machinery/door/firedoor/bumpopen(mob/user as mob)
 	return
+
+/obj/machinery/door/firedoor/attack_hand(mob/user)
+	if(!src.density)
+		for(var/obj/machinery/door/candidate in src.loc)
+			if(istype(candidate, /obj/machinery/door/firedoor))
+				continue
+			return candidate.attack_hand(user)
+	return ..()
+
 
 /obj/machinery/door/firedoor/isblocked()
 	if (src.blocked)

@@ -32,7 +32,7 @@
 
 	var/content = response.body
 	var/deletelinkpre = "<A href='?src=\ref[src];action=notes2;target=[player];type=del;id="
-	var/deletelinkpost = "'>(DEL)"
+	var/deletelinkpost = "'>(DEL)</A>"
 
 	var/regex/R = new("!!ID(\\d+)", "g")
 	content = R.Replace(content, "[deletelinkpre]$1[deletelinkpost]")

@@ -136,6 +136,127 @@
 
 		return
 
+/obj/item/disk/data/memcard/FOSS //works great when you wanna put some syndie-computers up. create and load with hacking tools, etc (edit freely)
+	file_amount = 4096
+
+	New()
+		..()
+		var/datum/computer/folder/newfolder = new /datum/computer/folder(  )
+		newfolder.name = "sys"
+		newfolder.metadata["permission"] = COMP_HIDDEN
+		src.root.add_file( newfolder )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/os/kernel(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/shell(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/login(src) )
+
+		var/datum/computer/folder/subfolder = new /datum/computer/folder
+		subfolder.name = "drvr" //Driver prototypes.
+		newfolder.add_file( subfolder )
+		//subfolder.add_file ( new FILEPATH GOES HERE )
+		subfolder.add_file( new /datum/computer/file/mainframe_program/driver/mountable/databank(src) )
+		subfolder.add_file( new /datum/computer/file/mainframe_program/driver/mountable/printer(src) )
+		subfolder.add_file( new /datum/computer/file/mainframe_program/driver/mountable/radio(src) )
+		subfolder.add_file( new /datum/computer/file/mainframe_program/driver/mountable/service_terminal(src) )
+		subfolder.add_file( new /datum/computer/file/mainframe_program/driver/mountable/user_terminal(src) )
+		//subfolder.add_file( new /datum/computer/file/mainframe_program/driver/telepad(src) ) //remove or adapt
+		//subfolder.add_file( new /datum/computer/file/mainframe_program/driver/mountable/comm_dish(src) ) //if syndies wanna futz with shuttlecall they can do it on station
+		//subfolder.add_file( new /datum/computer/file/mainframe_program/driver/mountable/logreader(src) )
+		//subfolder.add_file( new /datum/computer/file/mainframe_program/driver/apc(src) ) //remove or adapt
+
+		subfolder = new /datum/computer/folder
+		subfolder.name = "srv"
+		newfolder.add_file( subfolder )
+		subfolder.add_file( new /datum/computer/file/mainframe_program/srv/email(src) ) //spam/flavor opportunity
+		subfolder.add_file( new /datum/computer/file/mainframe_program/srv/print(src) )
+		//subfolder.add_file( new /datum/computer/file/mainframe_program/srv/accesslog(src) )
+		//subfolder.add_file( new /datum/computer/file/mainframe_program/srv/telecontrol(src) ) //remove or adapt
+
+		newfolder = new /datum/computer/folder
+		newfolder.name = "bin" //Applications available to all users.
+		newfolder.metadata["permission"] = COMP_ROWNER|COMP_RGROUP|COMP_ROTHER
+		src.root.add_file( newfolder ) //standard utils
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/cd(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/ls(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/rm(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/cat(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/mkdir(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/ln(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/chmod(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/chown(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/su(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/cp(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/mv(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/mount(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/grep(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/pwd(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/scnt(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/getopt(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/date(src) )
+		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/tar(src) )
+
+		newfolder = new /datum/computer/folder
+		newfolder.name = "var"
+		newfolder.metadata["permission"] = COMP_ROWNER|COMP_RGROUP|COMP_ROTHER
+		src.root.add_file( newfolder )
+
+		newfolder = new /datum/computer/folder
+		newfolder.name = "tmp"
+		newfolder.metadata["permission"] = COMP_ALLACC &~(COMP_DOTHER|COMP_DGROUP)
+		src.root.add_file( newfolder )
+/*
+		subfolder = new /datum/computer/folder
+		subfolder.name = "log"
+		subfolder.metadata["permission"] = COMP_ROWNER|COMP_RGROUP
+		newfolder.add_file( subfolder )
+*/
+		newfolder = new /datum/computer/folder
+		newfolder.name = "etc"
+		newfolder.metadata["permission"] = COMP_ROWNER|COMP_RGROUP|COMP_ROTHER
+		src.root.add_file( newfolder )
+
+		subfolder = new /datum/computer/folder
+		subfolder.name = "mail"
+		newfolder.add_file( subfolder )
+
+		var/datum/computer/file/record/groupRec = new /datum/computer/file/record( )
+		groupRec.name = "groups"
+		subfolder.add_file( groupRec )
+
+		/*var/list/randomMails = get_random_email_list() //make a syndie specific set of mails but also get the same spams as NT/other stations
+		var/typeCount = rand(4,6)
+		while (typeCount-- > 0 && length(randomMails))
+			var/mailName = pick(randomMails)
+			var/datum/computer/file/record/mailfile = new /datum/computer/file/record/random_email(mailName)
+			subfolder.add_file(mailfile)
+			randomMails -= mailName*/
+/*		var/list/randomMailTypes = childrentypesof(/datum/computer/file/record/random_email)
+		var/typeCount = 5
+		while (typeCount-- > 0 && length(randomMailTypes))
+			var/mailType = pick(randomMailTypes)
+			var/datum/computer/file/record/mailfile = new mailType
+			subfolder.add_file( mailfile )
+
+			randomMailTypes -= mailType*/
+
+		newfolder = new /datum/computer/folder
+		newfolder.name = "mnt"
+		newfolder.metadata["permission"] = COMP_ROWNER|COMP_RGROUP|COMP_ROTHER
+		src.root.add_file( newfolder )
+
+		newfolder = new /datum/computer/folder
+		newfolder.name = "conf"
+		newfolder.metadata["permission"] = COMP_ROWNER|COMP_RGROUP|COMP_ROTHER
+		src.root.add_file( newfolder )
+
+		var/datum/computer/file/record/testR = new
+		testR.name = "motd"
+		testR.fields += "Welcome to openDWAINE System 6!"
+		testR.fields += pick("Do you smell that? That's true freedom.",":^)","all your (NT) software to belong us (laff!!)","\[Picture of the NT DWAINE mascot sitting on a toilet\]", "Reminder: Crank it hard.")
+		newfolder.add_file( testR )
+
+		newfolder.add_file( new /datum/computer/file/record/dwaine_help(src) )
+
+		return
 /obj/item/disk/data/tape/master
 	name = "ThinkTape-'Master Tape'"
 	//Not sure what all to put here yet.

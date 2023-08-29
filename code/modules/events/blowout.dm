@@ -2,8 +2,11 @@
 	name = "Radioactive Blowout"
 	required_elapsed_round_time = 40 MINUTES
 	var/space_color = "#ff4646"
+#ifdef MAP_OVERRIDE_GEHENNA
+	disabled = TRUE
+#endif
 
-	event_effect()
+	event_effect() //Mirror changes to blowout_gehenna where applicable. I made that separate cause the alternative was making this proc unreadable with #ifndefs
 		..()
 		var/timetoreachsec = rand(1,9)
 		var/timetoreach = rand(30,60)

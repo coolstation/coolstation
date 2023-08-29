@@ -38,6 +38,8 @@ o+`        `-` ``..-:yooos-..----------..`
 
 //////////// PROFILING OPTIONS
 
+//#define TRACY_PROFILER_HOOK // Enables the hook for the DM Tracy profiler in world/init()
+
 //#define SERVER_SIDE_PROFILING_FULL_ROUND 1 // Generate and save profiler data for the entire round
 //#define SERVER_SIDE_PROFILING_PREGAME 1	// Generate and save profiler data for pregame work (before "Welcome to pregame lobby")
 //#define SERVER_SIDE_PROFILING_INGAME_ONLY 1 // Generate and save profiler data for post-pregame work
@@ -97,7 +99,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_CHIRON			// Chiron by Kusibu
 //#define MAP_OVERRIDE_OSHAN			// Oshan
 //#define MAP_OVERRIDE_HORIZON			// Horizon by Warcrimes
-//#define MAP_OVERRIDE_BOBMAP				//to be renamed map by ReginaldHJ
+//#define MAP_OVERRIDE_BOBMAP				//"to be renamed" map by ReginaldHJ
 //#define MAP_OVERRIDE_SPIRIT			// Hastily Repurposed Shopping Mall - Tamber
 //#define MAP_OVERRIDE_ATLAS			// gannetmap OR IS IT KUBIUSGANNETMAP??
 //#define MAP_OVERRIDE_MANTA			// manta map

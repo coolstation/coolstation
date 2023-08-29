@@ -56,7 +56,7 @@ var/list/ban_from_airborne_fluid = list()
 	turf_remove_cleanup(turf/the_turf)
 		the_turf.active_airborne_liquid = null
 
-	pooled()
+	disposing()
 		src.pooled = 1
 
 		//this is slow, hopefully we can do without
@@ -89,11 +89,11 @@ var/list/ban_from_airborne_fluid = list()
 		blocked_perspective_objects["[dir]"] = 0
 		my_depth_level = 0
 		..()
-
+/*
 	unpooled()
 		..()
 		src.step_sound = 0
-
+*/
 	//ALTERNATIVE to force ingest in life
 	proc/just_do_the_apply_thing(var/mob/M, var/mult = 1, var/hasmask = 0)
 		if (!M) return
@@ -219,7 +219,7 @@ var/list/ban_from_airborne_fluid = list()
 					LAGCHECK(LAG_MED)
 					spawned_any = 1
 					src.icon_state = "airborne"
-					var/obj/fluid/F = unpool(/obj/fluid/airborne)
+					var/obj/fluid/F = new /obj/fluid/airborne()
 					F.set_up(t,0)
 					if (!F || !src.group) continue //set_up may decide to remove F
 

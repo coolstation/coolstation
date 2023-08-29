@@ -1525,13 +1525,13 @@
 			weighted_average = 0
 			#ifdef CREATE_PATHOGENS
 			if(!isdead(L))
-				var/datum/pathogen/P = unpool(/datum/pathogen)
+				var/datum/pathogen/P = new()
 				P.create_weak()
 				P.spread = 0
 				wrap_pathogen(L.reagents, P, 10)
 			#endif
 		if(probmult(puke_prob))
-			L.visible_message("<span class='alert'>[L] pukes all over \himself.</span>", "<span class='alert'>You puke all over yourself!</span>")
+			L.visible_message("<span class='alert'>[L] pukes all over [himself_or_herself(L)].</span>", "<span class='alert'>You puke all over yourself!</span>")
 			L.vomit()
 		return ..(timePassed)
 

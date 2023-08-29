@@ -274,7 +274,7 @@
 				playsound(M, "sound/misc/boing/[rand(1,6)].ogg", 20, 1)
 				user.drop_item_throw()
 				user.tri_message("[M]'s flubbery body flings [user]'s [barbery_type == "haircut" ? "scissors" : "razor"] out of [his_or_her(user)] hand!",\
-											M, "[user] pokes you with [his_or_her(user)] [barbery_type == "haircut" ? "scissors" : "razor"], flinging them out of their hand",\
+											M, "[user] pokes you with [his_or_her(user)] [barbery_type == "haircut" ? "scissors" : "razor"], flinging them out of [his_or_her(user)] hand",\
 									 user, "[M]'s flubbery body flings the [barbery_type == "haircut" ? "scissors" : "razor"] out of your hand!")
 				return 0
 			if("flashy")
@@ -356,7 +356,7 @@
 											M, "[user] [barbery_type == "haircut" ? "snips" : "cuts"] at something on your head.",\
 									 user, "You wave your [barbery_type == "haircut" ? "scissors" : "razor"] around [M]'s fishy head, knocking loose some space barnnacles.")
 				return 0
-			if("monkey" || "sea monkey")
+			if("monkey", "sea monkey")
 				M.emote("scream")
 				playsound(M, "sound/impact_sounds/Slimy_Cut_1.ogg", 100, 1)
 				user.tri_message("[user] [barbery_type == "haircut" ? "snips" : "cuts"] [M]'s ear trying to trim [his_or_her(user)] hair!",\

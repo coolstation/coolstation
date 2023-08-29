@@ -15,14 +15,14 @@
 
 		if (!real_name)
 			real_name = name
-
+/*
 	pooled()
 		..()
 
 
 	unpooled()
 		..()
-
+*/
 	proc/setup(var/L,var/list/viral_list)
 		set_loc(L)
 
@@ -115,6 +115,36 @@
 	anchored = 1
 	icon = 'icons/obj/adventurezones/void.dmi'
 	icon_state = "floattiles1"
+	var/recover = FALSE
+	plane = PLANE_NOSHADOW_BELOW
+
+	attackby(obj/item/C as obj, mob/user as mob)
+		if (ispryingtool(C))
+			if(!recover)
+				return ..()
+			if(prob(33))
+				boutput(user, "<span class='notice'>You are able to salvage the tiles.</span>")
+				var/obj/item/I = new /obj/item/tile()
+				I.set_loc(src.loc)
+				if (src.material)
+					I.setMaterial(src.material)
+				else
+					var/datum/material/M = getMaterial("steel")
+					I.setMaterial(M)
+			else
+				boutput(user, "<span class='notice'>These tiles are too fucked to be of use.</span>")
+			qdel(src)
+
+	loose
+		name = "loose tiles"
+		desc = "These tiles were dislodged by something."
+		recover = TRUE
+
+/obj/decal/floatingtiles/loose/random
+	New()
+		..()
+		icon_state = "floattiles[rand(1,6)]"
+		set_dir(pick(NORTH,EAST,SOUTH,WEST))
 
 /obj/decal/implo
 	name = "implosion"
@@ -188,6 +218,32 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	density = 0
 	desc = "Barber poles historically were signage used to convey that the barber would perform services such as blood letting and other medical procedures, with the red representing blood, and the white representing the bandaging. In America, long after the time when blood-letting was offered, a third colour was added to bring it in line with the colours of their national flag. This one is in space."
 	layer = OBJ_LAYER
+
+/obj/decal/gehennagrass
+	name = "desert scrub"
+	icon = 'icons/obj/decoration.dmi'
+	icon_state = "gehennagrass1"
+	random_icon_states = list("gehennagrass1", "gehennagrass2", "gehennagrass3")
+	anchored = 1
+	density = 0
+	var/seed_prob = 50
+	desc = "This scrub has turned purple from the strain of growing in the desert."
+	layer = FLOOR_EQUIP_LAYER1
+
+	attackby(obj/item/I, mob/user)
+		if(istool(I,TOOL_CUTTING | TOOL_SAWING | TOOL_SNIPPING))
+			src.visible_message("[user] cuts [src].")
+			if(prob(seed_prob))
+				var/seedtype = null
+				if(prob(1))
+					seedtype = /obj/item/seed/alien
+				else
+					seedtype = /obj/item/seed/grass/scrub
+
+				new seedtype(src.loc)
+			qdel(src)
+		else
+			..()
 
 /obj/decal/oven
 	name = "Oven"
@@ -371,6 +427,22 @@ obj/decal/fakeobjects/teleport_pad
 	anchored = 1
 	density = 1
 
+/obj/decal/fakeobjects/nestofmattresses //gross
+	name = "smelly pile of mattresses"
+	desc = "Some kind of foul, horrible creature has piled up a bunch of old mattresses here???"
+	icon = 'icons/misc/96x64.dmi'
+	icon_state = "mattresspile"
+	anchored = 1
+	density = 1
+
+/obj/decal/fakeobjects/hose //gross
+	name = "garden hose"
+	desc = "A garden hose stand, with spigot. You don't feel like touching this."
+	icon = 'icons/obj/decoration.dmi'
+	icon_state = "hose"
+	anchored = 1
+	density = 1
+
 //sealab prefab fakeobjs
 
 /obj/decal/fakeobjects/pcb
@@ -396,6 +468,25 @@ obj/decal/fakeobjects/teleport_pad
 	icon_state = "tele_fuzz"
 	anchored = 1
 	density = 1
+
+//this was the florps statue in keelin's stuff
+//now it's pupkin (simplified)
+/obj/decal/fakeobjects/pupkinstatue
+	name = "Statue of Pupkin"
+	desc = "Thank you for loving Pupkin."
+	var/broken = 0
+	icon ='icons/obj/objects.dmi'
+	icon_state = "statuepupkin"
+	density = 1
+
+	New()
+		..()
+		setMaterial(getMaterial("slag"))
+		name = "Statue of Pupkin"
+
+	attack_hand(mob/user as mob)
+		boutput(user, "You pet \the [src]. You feel really uneasy about it, but thank you anyway.")
+		return
 
 
 /obj/decal/bloodtrace
@@ -461,7 +552,7 @@ obj/decal/fakeobjects/teleport_pad
 	MouseDrop_T(mob/M as mob, mob/user as mob)
 		if (can_buckle(M,user))
 			M.set_loc(src.loc)
-			user.visible_message("<span class='notice'><b>[M]</b> climbs up on [src]!</span>", "<span class='notice'>You climb up on [src].</span>")
+			user.visible_message("<span class='notice'><b>[M]</b> climbs up on [src], ready to lay down the pain!</span>", "<span class='notice'>You climb up on [src] and prepare to rain destruction!</span>")
 			buckle_in(M, user, 1)
 
 	CanPass(atom/movable/mover, turf/target, height=0, air_group=0) // stolen from window.dm
@@ -514,13 +605,13 @@ obj/decal/fakeobjects/teleport_pad
 		src.set_dir(pick(cardinal))
 		if (prob(20))
 			new /obj/decal/alienflower(src.loc)
-
+/*
 	unpooled()
 		..()
 		src.set_dir(pick(cardinal))
 		if (prob(20))
 			new /obj/decal/alienflower(src.loc)
-
+*/
 /obj/decal/icefloor
 	name = "ice"
 	desc = "Slippery!"
@@ -716,3 +807,8 @@ obj/decal/fakeobjects/teleport_pad
 /obj/decal/tile_edge/floorguide/arrow_s
 	name = "Directional Navigation Guide"
 	icon_state = "endpiece_s"
+
+/obj/decal/tile_edge/floorguide/ladder
+	name = "Ladder Navigation Guide"
+	desc = "A ladder is in this direction."
+	icon_state = "guide_ladder"

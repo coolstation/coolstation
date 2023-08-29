@@ -185,7 +185,8 @@
 			var/obj/O = src
 			if (O.tracked_blood)
 				O.tracked_blood = null
-		if (isitem(src) && (src.fingerprints || src.blood_DNA || src.blood_type))
+		if (isitem(src) && (src.fingerprints || src.blood_DNA || src.blood_type || src.mud_stained))
+			src.UpdateOverlays(null, "mud_splatter")
 			src.add_forensic_trace("fprints", src.fingerprints)
 			src.fingerprints = null
 			src.add_forensic_trace("btype", src.blood_type)
@@ -204,12 +205,13 @@
 			C.clean_stains()
 
 		else if (istype(src, /obj/decal/cleanable) || istype(src, /obj/reagent_dispensers/cleanable))
-			pool(src)
+			qdel(src)
 
 		else if (isturf(src))
 			var/turf/T = get_turf(src)
 			for (var/obj/decal/cleanable/mess in T)
-				pool(mess)
+				qdel(mess)
+			T.clean = 1
 			T.messy = 0
 
 		else // Don't think it should clean doors and the like. Give the detective at least something to work with.
@@ -226,6 +228,7 @@
 			var/mob/living/carbon/human/M = src
 			var/list/gear_to_clean = list(M.r_hand, M.l_hand, M.head, M.wear_mask, M.w_uniform, M.wear_suit, M.belt, M.gloves, M.glasses, M.shoes, M.wear_id, M.back)
 			for (var/obj/item/check in gear_to_clean)
+				check.UpdateOverlays(null, "mud_splatter")
 				if (check.fingerprints || check.blood_DNA || check.blood_type)
 					check.add_forensic_trace("fprints", check.fingerprints)
 					check.fingerprints = null
@@ -248,6 +251,7 @@
 				M.blood_DNA = null
 				M.add_forensic_trace("btype", M.blood_type)
 				M.blood_type = null
+				M.cleanhands = 0
 
 			M.add_forensic_trace("fprints", M.fingerprints)
 			M.fingerprints = null // Foreign fingerprints on the mob.
@@ -407,25 +411,30 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 	if (isitem(src))
 		var/obj/item/I = src
 
+#ifdef OLD_BLOOD_OVERLAY
 		var/icon/new_icon
-
 		if (I.uses_multiple_icon_states)
 			new_icon = new /icon(I.icon)
 		else
 			new_icon = new /icon(I.icon, I.icon_state)
-
 		new_icon.Blend(new /icon('icons/effects/blood.dmi', "thisisfuckingstupid"), ICON_ADD)
-
 		new_icon.Blend(DEFAULT_MUD_COLOR, ICON_MULTIPLY)
-
 		new_icon.Blend(new /icon('icons/misc/not_poo.dmi', "itemmud"), ICON_MULTIPLY)
-
 		if (I.uses_multiple_icon_states)
 			new_icon.Blend(new /icon(I.icon), ICON_UNDERLAY)
 		else
 			new_icon.Blend(new /icon(I.icon, I.icon_state), ICON_UNDERLAY)
-
 		I.icon = new_icon
+#else
+		I.appearance_flags |= KEEP_TOGETHER
+		var/image/mud_overlay = image('icons/misc/not_poo.dmi', "itemmud")
+		mud_overlay.appearance_flags = PIXEL_SCALE | RESET_COLOR
+		mud_overlay.color = DEFAULT_MUD_COLOR
+		mud_overlay.alpha = min(mud_overlay.alpha, 200)
+		mud_overlay.blend_mode = BLEND_INSET_OVERLAY
+		src.UpdateOverlays(mud_overlay, "mud_splatter")
+#endif
+
 
 		if (istype(I, /obj/item/clothing))
 			var/obj/item/clothing/C = src

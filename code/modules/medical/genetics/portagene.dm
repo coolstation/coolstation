@@ -4,6 +4,7 @@
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "PAG_0"
 	anchored = 0
+	glow_in_dark_screen = FALSE
 	var/mob/occupant = null
 	var/datum/character_preview/multiclient/occupant_preview = null
 	var/locked = 0
@@ -126,7 +127,7 @@
 				boutput(user, "<span class='notice'>The broken glass falls out.</span>")
 				var/obj/computerframe/A = new /obj/computerframe( src.loc )
 				if(src.material) A.setMaterial(src.material)
-				var/obj/item/raw_material/shard/glass/G = unpool(/obj/item/raw_material/shard/glass)
+				var/obj/item/raw_material/shard/glass/G = new()
 				G.set_loc(src.loc)
 				var/obj/item/circuitboard/genetics/M = new /obj/item/circuitboard/genetics( A )
 				for (var/obj/C in src)

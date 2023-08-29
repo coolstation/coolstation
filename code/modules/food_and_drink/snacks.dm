@@ -54,11 +54,71 @@
 	icon = 'icons/obj/foodNdrink/food_yuck.dmi'
 	icon_state = "fried"
 
+/obj/item/reagent_containers/food/snacks/shell/frozen
+	name = "metaphysical condensation of the very concept of frozen dinner"
+	desc = "Oh, the power of the deep chiller."
+	icon = 'icons/obj/foodNdrink/food_yuck.dmi'
+	icon_state = "frozen"
+	food_effects = list("food_cold")
+	initial_volume = 25
+	initial_reagents = "ice"
+	var/frozenness = 25
+	heal(var/mob/M)
+		if(M.mind)
+			boutput(M, "Maybe you should warm this thing up[pick(", genius.",", asshole.",", you moron.",".","...","?")]")
+			M.add_karma(-0.5)
+		..()
+
+	attackby(obj/item/W, mob/user)
+		if (isweldingtool(W) && W:try_weld(user,0,-1,0,0))
+			frozenness -= 4
+			src.visible_message("[user] warms up their dinner with [W]")
+		else if (istype(W, /obj/item/clothing/head/cakehat) && W:on)
+			frozenness -= 5
+			user.add_karma(0.5)
+			src.visible_message("[user] warms up their dinner with [W]... that's [pick("fuckin rad","weird as hell","extremely normal","unremarkable","wild")].")
+		else if (istype(W, /obj/item/device/light/zippo) && W:on)
+			frozenness -= 3
+			src.visible_message("[user] warms up their dinner with [W], like a tryhard.")
+		else if ((istype(W, /obj/item/match) || istype(W, /obj/item/clothing/mask/cigarette) || istype(W, /obj/item/device/light/candle)) && W:on)
+			frozenness--
+			src.visible_message("[user] warms up their dinner with [W], doesn't look very efficient.")
+		else if (W.burning)
+			frozenness -= W.w_class
+			src.visible_message("[user] warms up their dinner with [W]")
+		else if (W.firesource)
+			frozenness -= W.w_class
+			src.visible_message("[user] warms up their dinner with [W]")
+		else
+			..()
+
+		if(frozenness <= 0)
+			for(var/atom/movable/A in src.contents)
+				A.set_loc(src.loc)
+			src.visible_message("<span class='success'>[src] thaws out completely.]</span>")
+			qdel(src)
+
+
+	temperature_expose(datum/gas_mixture/air, temperature, volume)
+		if (temperature > T0C+25) // try to avoid melting at room temp, warm it up more please.
+			if(frozenness <= 0)
+				for(var/atom/movable/A in src.contents)
+					A.set_loc(src.loc)
+				src.visible_message("<span class='success'>[src] thaws out completely.]</span>")
+				qdel(src)
+			frozenness--
+			if(prob(10))
+				var/turf/T = get_turf(src)
+				T.fluid_react_single("water",2)
+			if (temperature > T0C+100)
+				frozenness--
+
+
 /obj/item/reagent_containers/food/snacks/shell/grill
 	name = "the charcoal singed essence of grilling itself"
 	desc = "Oh, the magic of a hot grill."
-	icon = 'icons/obj/foodNdrink/food.dmi'
-	icon_state = "fried" // fix this
+	icon = 'icons/obj/foodNdrink/food_yuck.dmi'
+	icon_state = "burnt"
 
 /obj/item/reagent_containers/food/snacks/pizza
 	name = "pizza"
@@ -257,6 +317,26 @@
 	amount = 2
 	heal_amt = 2
 	food_effects = list("food_refreshed")
+
+	walf
+	name = "stroopwalfel"
+	initial_reagents = list("tongueofdog"=5)
+	desc = "A traditional cookie from Holland. Oh ew, this one has a hair in it?"
+	heal(var/mob/living/M)
+		..()
+		if(!istype(M))
+			return
+		if (prob(15))
+			boutput(M, "<span class='success'>YOU FEEL WALF NOW</span>")
+			M.sound_scream = pick("sound/voice/animal/werewolf_howl.ogg",\
+									"sound/voice/animal/howl1.ogg",\
+									"sound/voice/animal/howl2.ogg",\
+									"sound/voice/animal/howl3.ogg",\
+									"sound/voice/animal/howl4.ogg",\
+									"sound/voice/animal/howl5.ogg",\
+									"sound/voice/animal/howl6.ogg",\
+									"sound/voice/animal/dogbark.ogg")
+
 
 /obj/item/reagent_containers/food/snacks/cookie
 	name = "sugar cookie"
@@ -1065,7 +1145,7 @@
 			if (user.mob_flags & IS_BONER)
 				D = new/obj/item/reagent_containers/food/snacks/spaghetti/sauce/skeletal(W.loc)
 				boutput(user, "<span class='alert'>... whoa, that felt good. Like really good.</span>")
-				user.reagents.add_reagent("bonerjuice",20)
+				user.reagents.add_reagent("satisghetti",20)
 			else
 				D = new/obj/item/reagent_containers/food/snacks/spaghetti/sauce(W.loc)
 			user.u_equip(W)
@@ -1612,7 +1692,7 @@
 			src.name = "herbal sausage"
 			desc = "A fancy herbal sausage! Spices really make the sausage."
 			W.reagents.trans_to(src,W.reagents.total_volume)
-			pool(W)
+			qdel(W)
 
 		else if (istype(W,/obj/item/kitchen/utensil/knife))
 			if(src.GetOverlayImage("bun"))
@@ -2516,7 +2596,7 @@
 		if (fortune)
 			desc = "Half of a fortune cookie."
 			icon_state = "fortune-bottom"
-			var/obj/item/paper/fortune/B = unpool(/obj/item/paper/fortune)
+			var/obj/item/paper/fortune/B = new()
 			B.set_loc(user)
 
 			user.put_in_hand_or_drop(B)
@@ -2620,3 +2700,23 @@
 	initial_volume = 20
 	initial_reagents = list("THC"=10,"CBD"=10)
 	food_effects = list("food_brute","food_burn")
+
+/*
+	schwick:
+		yknow i was gonna ask "can we eat them" but i feel like i already know the answer to that
+		it wouldn't be ss13 any other way
+
+	Bobskunk:
+		exactly
+*/
+/obj/item/reagent_containers/food/snacks/silica_packet
+	name = "silica packet"
+	desc = "A pouch filled with dessicant. Throw away, do not eat."
+	icon = 'icons/obj/foodNdrink/food_dessert.dmi' //:)
+	icon_state = "silica_packet"
+	amount = 1 //oh yeah we're in the cursed times where amount is also the bites left on food
+	heal_amt = 0
+	initial_volume = 15
+	initial_reagents = list("silicate"=15)
+	rand_pos = TRUE
+	doants = FALSE

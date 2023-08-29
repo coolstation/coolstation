@@ -58,7 +58,7 @@
 		if (!isnum(grump_to_overcome))
 			grump_to_overcome = 100
 
-		pda_connection = radio_controller.return_frequency("1149")
+		pda_connection = radio_controller.return_frequency("[FREQ_PDA]")
 
 		var/list/obj/machinery/station_switches = list()
 		for(var/area_key as() in stationAreas)
@@ -258,7 +258,7 @@ datum/teg_transformation/vampire
 		animate(src.teg.circ1)
 		animate(src.teg.circ2)
 		for(var/mob/M in abilityHolder.thralls)
-			remove_mindslave_status(M)
+			remove_insurgent_status(M)
 		. = ..()
 
 	on_grump(mult)
@@ -331,7 +331,7 @@ datum/teg_transformation/vampire
 					C.reagents.remove_reagent("water_holy", 8)
 					if (!(locate(/datum/effects/system/steam_spread) in C.loc))
 						playsound(C.loc, "sound/effects/bubbles3.ogg", 80, 1, -3, pitch=0.7)
-						var/datum/effects/system/steam_spread/steam = unpool(/datum/effects/system/steam_spread)
+						var/datum/effects/system/steam_spread/steam = new()
 						steam.set_up(1, 0, get_turf(C))
 						steam.attach(C)
 						steam.start(clear_holder=1)
@@ -412,13 +412,13 @@ datum/teg_transformation/vampire
 			return 1
 
 		O.visible_message("<span class='alert'><B>[O] emits a blinding flash at [target]!</B></span>")
-		var/obj/itemspecialeffect/glare/E = unpool(/obj/itemspecialeffect/glare)
+		var/obj/itemspecialeffect/glare/E = new()
 		E.color = "#FFFFFF"
 		E.setup(O.loc)
 		playsound(O.loc,"sound/effects/glare.ogg", 50, 1, pitch = 1, extrarange = -4)
 
 		SPAWN_DBG(1 DECI SECOND)
-			var/obj/itemspecialeffect/glare/EE = unpool(/obj/itemspecialeffect/glare)
+			var/obj/itemspecialeffect/glare/EE = new()
 			EE.color = "#FFFFFF"
 			EE.setup(target.loc)
 			playsound(target.loc,"sound/effects/glare.ogg", 50, 1, pitch = 0.8, extrarange = -4)
@@ -470,7 +470,7 @@ datum/teg_transformation/vampire
 
 				boutput(target, __red("<b>You awaken filled with purpose - you must serve your master \"vampire\", [src.teg]!</B>"))
 				boutput(target, __red("<b>You are bound to the [src.teg]. It hungers for blood! You must protect it and feed it!</B>"))
-				SHOW_MINDSLAVE_TIPS(target)
+				SHOW_INSURGENT_TIPS(target)
 			else
 				target.full_heal()
 

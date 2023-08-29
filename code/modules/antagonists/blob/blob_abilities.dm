@@ -237,6 +237,9 @@
 		owner.add_ability(/datum/blob_ability/repair)
 		owner.add_ability(/datum/blob_ability/absorb)
 		owner.add_ability(/datum/blob_ability/promote)
+	#ifdef Z3_IS_A_STATION_LEVEL
+		owner.add_ability(/datum/blob_ability/blob_level_transfer)
+	#endif
 		owner.add_ability(/datum/blob_ability/build/ribosome)
 		owner.add_ability(/datum/blob_ability/build/lipid)
 		owner.add_ability(/datum/blob_ability/build/mitochondria)
@@ -272,6 +275,39 @@
 		owner.organ_color = hsv2rgb( hsv[1], hsv[2], 100 )
 
 		owner.my_material.color = owner.color
+
+//I don't like doing this but it's less resistance than moving all of blob abilities to the new system
+#ifdef Z3_IS_A_STATION_LEVEL
+/datum/blob_ability/upper_transfer
+	name = "Go To Upper Level"
+	desc = "See what's happening upstairs"
+	icon = 'icons/mob/ghost_observer_abilities.dmi'
+	icon_state = "upper_transfer"
+	targeted = 0
+
+	onUse()
+		if (..())
+			return
+		if (owner.z == Z_LEVEL_STATION)
+			return
+		var/turf/destination = locate(owner.x, owner.y, Z_LEVEL_STATION)
+		owner.set_loc(destination)
+
+/datum/blob_ability/lower_transfer
+	name = "Go To Lower Level"
+	desc = "See what's happening downstairs"
+	icon = 'icons/mob/ghost_observer_abilities.dmi'
+	icon_state = "lower_transfer"
+	targeted = 0
+
+	onUse()
+		if (..())
+			return
+		if (owner.z == Z_LEVEL_DEBRIS)
+			return
+		var/turf/destination = locate(owner.x, owner.y, Z_LEVEL_DEBRIS)
+		owner.set_loc(destination)
+#endif
 
 /datum/blob_ability/tutorial
 	name = "Interactive Tutorial"
@@ -932,7 +968,7 @@
 		src.deduct_bio_points()
 
 		if (do_pool)
-			pool(I)
+			qdel(I)
 		else
 			qdel(I)
 
@@ -1053,6 +1089,78 @@
 	bio_point_cost = 5
 	build_path = /obj/blob/firewall
 	buildname = "firewall"
+
+/datum/blob_ability/blob_level_transfer //Spread up/down ladders & elevators, not the thing that moves the overmind between levels
+	name = "Build Level Transfer"
+	icon_state = "blob-leveltransfer"
+	desc = "This will convert a blob tile into a vertical lever transfer, allowing you to spread across station levels. Only placeable in elevator shafts and on ladders."
+
+	bio_point_cost = 4 //2x that of spread
+	cooldown_time = 4 SECONDS //Idem, though this one doesn't have scaling maths
+
+	onUse(turf/turf_z1)
+		if (..())
+			return 1 //I dunno
+
+	#ifndef Z3_IS_A_STATION_LEVEL
+		logTheThing("debug", src, null, "A blob tried making a level transfer on a map that doesn't support it, what?")
+		return 1
+	#else
+		var/turf/turf_z3
+		if (!turf_z1)
+			turf_z1 = get_turf(owner)
+		turf_z1 = locate(turf_z1.x, turf_z1.y, 1) //I don't care if this ends up being unnecessary
+		turf_z3 = locate(turf_z1.x, turf_z1.y, 3)
+
+		//Do we have a blob in at least one of the two turfs
+		var/obj/blob/B_z1 = locate() in turf_z1
+		var/obj/blob/B_z3 = locate() in turf_z3
+
+		if (!(B_z1) && !(B_z3))
+			boutput(owner, "<span class='alert'>You must spread here first on either level.</span>")
+			return 1
+		if ((B_z1 && B_z1.type != /obj/blob) || (B_z3 && B_z3.type != /obj/blob))
+			boutput(owner, "<span class='alert'>You can't convert special tiles.</span>")
+			return 1
+
+		//This bit is kinda ugly, sorry
+		if (!istype(get_area(turf_z1), /area/transit_vehicle/elevator)) //Just gonna assume that if one isn't on an elevator the other isn't either
+			var/obj/ladder/turf_ladder = locate() in turf_z1
+			if (turf_ladder)
+				turf_ladder.blocked = TRUE //I'd shove this on New() in the blobs but we have to check for these ladders anyway, might as well
+
+				turf_ladder = locate() in turf_z3 //Do the same on Z3
+				if (turf_ladder)
+					turf_ladder.blocked = TRUE
+			else //I'm fine with there just being hald a ladder pair, no doubt some asshat is going to find ways to delete ladders to fight blobs
+				turf_ladder = locate() in turf_z3
+				if (turf_ladder)
+					turf_ladder.blocked = TRUE
+				else //no ladder or elevator, aborte
+					boutput(owner, "<span class='alert'>This must be used at an elevator shaft or ladder.</span>")
+					return 1
+
+		var/obj/blob/linked/up
+		var/obj/blob/linked/down
+		//Remove & replace
+		up = new /obj/blob/linked/upper(turf_z1)
+		if (B_z1)
+			up.setMaterial(B_z1.material)
+			qdel(B_z1)
+
+		down = new /obj/blob/linked/lower(turf_z3)
+		if (B_z3)
+			down.setMaterial(B_z3.material)
+			qdel(B_z3)
+
+		up.linked_blob = down
+		down.linked_blob = up
+		up.setOvermind(owner)
+		down.setOvermind(owner)
+		src.deduct_bio_points()
+		src.do_cooldown()
+		owner.playsound_local(owner.loc, "sound/voice/blob/blobspread[rand(1, 6)].ogg", 80, 1)
+	#endif
 
 //////////////
 // UPGRADES //
@@ -1313,7 +1421,7 @@
 		if (!mats.len)
 			taking = 0
 			return 1
-		var/datum/material/to_merge = copyMaterial(mats[max_id])
+		var/datum/material/to_merge = mats[max_id]
 		owner.my_material = getInterpolatedMaterial(owner.my_material, to_merge, 0.17)
 		for (var/obj/O in deposits)
 			qdel(O)
@@ -1321,10 +1429,7 @@
 		SPAWN_DBG(0)
 			var/wg = 0
 			for (var/obj/blob/O in owner.blobs)
-				if (!O.material)
-					O.setMaterial(copyMaterial(owner.my_material))
-				else
-					O.setMaterial(getInterpolatedMaterial(O.material, to_merge, 0.17))
+				O.setMaterial(owner.my_material)
 				wg++
 				if (wg >= 20)
 					sleep(0.1 SECONDS)

@@ -552,7 +552,7 @@
 		spawn_contents = list(/obj/item/heavy_power_sword,
 		/obj/item/clothing/shoes/swat/knight,
 		/obj/item/clothing/gloves/swat/knight,
-		/obj/item/clothing/suit/space/syndicate/knight,
+		//obj/item/clothing/suit/space/syndicate/knight,
 		/obj/item/clothing/head/helmet/space/syndicate/specialist/knight)
 
 	qm //Hi Gannets, I like your crate and wanted to use it for some QM stuff. Come yell at Azungar if this is not ok.
@@ -654,7 +654,7 @@
 		spawn_contents = list(/obj/item/shipcomponent/mainweapon/mining,
 		/obj/item/shipcomponent/secondary_system/repair,
 		/obj/item/shipcomponent/sensor/mining,
-		/obj/item/shipcomponent/secondary_system/gps)
+		/obj/item/shipcomponent/secondary_system/lock)
 
 	ship2
 		spawn_contents = list(/obj/item/shipcomponent/mainweapon/foamer,

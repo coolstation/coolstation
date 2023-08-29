@@ -100,13 +100,13 @@ var/global/datum/rockbox_globals/rockbox_globals = new /datum/rockbox_globals
 						if (7)
 							df = "an incredibly symptomatic"
 					D.desc = "It is [df] pathogen with a hazard rating of [rating]. We identify it to be a [ds] organism made up of [P.body_type.plural]. [P.suppressant.desc]"
-					var/datum/pathogen/copy = unpool(/datum/pathogen)
+					var/datum/pathogen/copy = new()
 					copy.setup(0, P, 0, null)
 					D.assoc_pathogen = copy
 					src.analysis_by_uid[uid] = D
 					src.ready_to_analyze += D
 			qdel(sell_crate)
-		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
+		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 		var/datum/signal/pdaSignal = get_free_signal()
 		pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT",  "group"=list(MGD_CARGO, MGA_SHIPPING), "sender"="00000000", "message"="Notification: Pathogen sample crate delivered to the CDC.")
 		pdaSignal.transmission_method = TRANSMISSION_RADIO
@@ -140,7 +140,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	light_b = 0.03
 
 	disposing()
-		radio_controller.remove_object(src, "1435")
+		radio_controller.remove_object(src, "[FREQ_STATUS]")
 		..()
 
 /obj/machinery/computer/supplycomp/emag_act(var/mob/user, var/obj/item/card/emag/E)
@@ -364,7 +364,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 		<div style='float: right;'>
 			Market updates in <strong>99:99</strong>
 		</div>
-		Budget: <strong>XXXXXXXX</strong> Credits
+		Budget: <strong>XXXXXXXX</strong> Credits | Like, it's chill.
 		<div style='clear: both; text-align: center; font-weight: bold; padding: 0.2em;'>
 			Requests &middot;
 			Place Order &middot;
@@ -380,7 +380,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 		<div style='float: right;'>
 			Market updates in <strong>[timer ? timer : "...uh"]</strong>
 		</div>
-		Budget: <strong>[wagesystem.shipping_budget]</strong> Credits
+		Budget: <strong>[wagesystem.shipping_budget]</strong> Credits. | [shippingmarket.CSS_at_NTFC ? "All Clear" : "<span style='color:red;'>SHUTTLE NOT IN POSITION</span>"]
 		<div style='clear: both; text-align: center; font-weight: bold; padding: 0.2em;'>
 			<a href='[topicLink("requests")]'>Requests ([shippingmarket.supply_requests.len])</a> &bull;
 			<a href='[topicLink("order")]'>Place Order</a> &bull;
@@ -1189,7 +1189,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 
 /obj/machinery/computer/supplycomp/proc/post_signal(var/command)
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency("1435")
+	var/datum/radio_frequency/frequency = radio_controller.return_frequency(FREQ_STATUS)
 
 	if(!frequency) return
 

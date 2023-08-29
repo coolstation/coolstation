@@ -2,9 +2,9 @@
 #define PLANE_SPACE -115
 #define PLANE_FLOOR -110
 #define PLANE_WALL -105
-#define PLANE_NOSHADOW_BELOW -101
-#define PLANE_DEFAULT -100
-#define PLANE_NOSHADOW_ABOVE -99
+#define PLANE_NOSHADOW_BELOW -101 // always under water
+#define PLANE_DEFAULT -100		// water
+#define PLANE_NOSHADOW_ABOVE -99 //above water (use overlays)
 #define PLANE_EXAMINE -96
 #define PLANE_HIDDENGAME -95
 #define PLANE_LIGHTING -90

@@ -585,6 +585,21 @@ obj/machinery/atmospherics/pipe
 			northwest
 				dir = NORTHWEST
 
+		purge
+			color = "#a16a2f"
+			vertical
+				dir = NORTH
+			northeast
+				dir = NORTHEAST
+			horizontal
+				dir = EAST
+			southeast
+				dir = SOUTHEAST
+			southwest
+				dir = SOUTHWEST
+			northwest
+				dir = NORTHWEST
+
 	simple/junction
 		icon = 'icons/obj/atmospherics/pipes/junction_pipe.dmi'
 		icon_state = "intact"
@@ -698,7 +713,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T20C
 
@@ -720,7 +735,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T20C
 
@@ -730,7 +745,7 @@ obj/machinery/atmospherics/pipe
 
 		oxygen_agent_b
 			icon = 'icons/obj/atmospherics/tanks/red_orange_pipe_tank.dmi'
-			name = "Pressure Tank (Oxygen + Plasma)"
+			name = "Pressure Tank (Oxygen Agent B)"
 
 			north
 				dir = NORTH
@@ -742,7 +757,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T0C
 
@@ -765,7 +780,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T0C
 
@@ -789,7 +804,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T20C
 
@@ -811,7 +826,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T20C
 
@@ -833,7 +848,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T20C
 
@@ -856,7 +871,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T20C
 
@@ -883,7 +898,7 @@ obj/machinery/atmospherics/pipe
 				dir = WEST
 
 			New()
-				air_temporary = unpool(/datum/gas_mixture)
+				air_temporary = new()
 				air_temporary.volume = volume
 				air_temporary.temperature = T20C
 
@@ -1077,7 +1092,7 @@ obj/machinery/atmospherics/pipe
 				for(var/obj/machinery/atmospherics/pipe/vertical_pipe/target_pipe in get_turf(locate(src.x,src.y,target_z)))
 					node2 = target_pipe
 					if(src.z > target_z)
-						new /obj/structure/girder(src.loc) //gotta go up!
+						new /obj/structure/girder/riser(src.loc) //gotta go up!
 					break
 			else if(id)
 				for(var/obj/machinery/atmospherics/pipe/vertical_pipe/target_pipe in by_cat[TR_CAT_ATMOS_MACHINES])
@@ -1143,7 +1158,8 @@ obj/machinery/atmospherics/pipe
 			west
 				dir = WEST
 
-		New()
+		New(loc, specify_direction = null)
+			..()
 			switch(dir)
 				if(NORTH)
 					initialize_directions = EAST|SOUTH|WEST
@@ -1153,8 +1169,6 @@ obj/machinery/atmospherics/pipe
 					initialize_directions = SOUTH|WEST|NORTH
 				if(WEST)
 					initialize_directions = NORTH|EAST|SOUTH
-
-			..()
 
 		hide(var/i)
 			if(level == 1 && issimulatedturf(loc))
@@ -1230,8 +1244,8 @@ obj/machinery/atmospherics/pipe
 
 				icon_state = "manifold_[connected]_[unconnected]"
 
-				if(!connected)
-					qdel(src)
+				//if(!connected) excuse me what the hell
+				//	qdel(src)
 
 			return
 

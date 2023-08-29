@@ -153,6 +153,15 @@ RACK PARTS
 	furniture_name = "folding table"
 	build_duration = 15
 
+/obj/item/furniture_parts/table/bin
+	name = "folded bin"
+	desc = "A collapsed bin that can be deployed quickly."
+	icon = 'icons/obj/scrap.dmi'
+	icon_state = "hopperfolded"
+	furniture_type = /obj/table/folding/bin
+	furniture_name = "bin"
+	build_duration = 15
+
 /* ---------- Glass Table Parts ---------- */
 /obj/item/furniture_parts/table/glass
 	name = "glass table parts"
@@ -299,15 +308,27 @@ RACK PARTS
 	furniture_type = /obj/stool/bar
 	furniture_name = "bar stool"
 
-/obj/item/furniture_parts/stepstool
-	name = "stepstool parts"
+/obj/item/furniture_parts/stepladder
+	name = "stepladder parts"
 	desc = "A collection of parts that can be used to make a stepladder."
 	icon = 'icons/obj/furniture/chairs.dmi'
 	icon_state = "stool_parts"
 	stamina_damage = 15
 	stamina_cost = 15
-	furniture_type = /obj/stool/stepstool
-	furniture_name = "stepstool"
+	furniture_type = /obj/stool/chair/stepladder
+	furniture_name = "stepladder"
+
+/obj/item/furniture_parts/stepladder/wrestling
+	name = "wrestling stepladder parts"
+	desc = "A collection of parts that can be used to make a wrestling stepladder. Like a regular stepladder, but for wrestling."
+	icon = 'icons/obj/furniture/chairs.dmi'
+	icon_state = "stool_parts"
+	stamina_damage = 15
+	stamina_cost = 15
+	furniture_type = /obj/stool/chair/stepladder/wrestling
+	furniture_name = "wrestling stepladder"
+
+
 
 /* ---------- Bench Parts ---------- */
 /obj/item/furniture_parts/bench

@@ -2,7 +2,7 @@
 
 //defines in setup.dm:
 //LACES_NORMAL 0, LACES_TIED 1, LACES_CUT 2, LACES_NONE -1
-
+ABSTRACT_TYPE(/obj/item/clothing/shoes)
 /obj/item/clothing/shoes
 	name = "shoes"
 	icon = 'icons/obj/clothing/item_shoes.dmi'
@@ -446,6 +446,7 @@
 	icon_state = "swatheavy"
 	magnetic = 1
 	c_flags = NOSLIP
+	contraband = 3
 
 /obj/item/clothing/shoes/fuzzy //not boolean slippers
 	name = "fuzzy slippers"

@@ -291,9 +291,9 @@ ABSTRACT_TYPE(/obj/item/parts)
 			if(O == (attacher || attachee))
 				continue
 			if(attacher == attachee)
-				O.show_message("<span class='alert'>[attacher] attaches a [src] to \his own stump[both_legs? "s" : ""]!</span>", 1)
+				O.show_message("<span class='alert'>[attacher] attaches a [src] to [his_or_her(attachee)] own stump[both_legs? "s" : ""]!</span>", 1)
 			else
-				O.show_message("<span class='alert'>[attachee] has a [src] attached to \his stump[both_legs? "s" : ""] by [attacher].</span>", 1)
+				O.show_message("<span class='alert'>[attachee] has a [src] attached to [his_or_her(attachee)] stump[both_legs? "s" : ""] by [attacher].</span>", 1)
 
 		if (src.easy_attach) //No need to make it drop off later if it attaches instantly.
 			if(attachee != attacher)

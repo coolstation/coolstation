@@ -434,3 +434,17 @@
 		setProperty("rangedprot", 0.7)
 		setProperty("coldprot", 5)
 		setProperty("heatprot", 35)
+
+/obj/item/clothing/suit/armor/gunsemanne
+	name = "Bug-Out Suit"
+	desc = "Light armor, high effort."
+	wear_image_icon = 'icons/mob/overcoats/worn_suit_gimmick.dmi'
+	icon_state = "gunsemanne"
+	item_state = "armor" // todo: replace
+	w_class = W_CLASS_NORMAL
+
+	setupProperties()
+		..()
+		setProperty("rangedprot", 3)
+		setProperty("coldprot", 35)
+		setProperty("exploprot", 25)

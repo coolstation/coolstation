@@ -48,24 +48,25 @@
 
 /* -------------------- Guns & Ammo -------------------- */
 
-/obj/item/storage/box/revolver
+/obj/item/storage/box/revolver // for traitors
 	name = "italian revolver box"
 	icon_state = "hard_case"
 	desc = "A box containing an italian revolver and ammo."
 	// cogwerks - i think the ammo boxes are dumb, giving the starting box more ammo
-	spawn_contents = list(/obj/item/gun/modular/italian,\
-	/obj/item/ammo/bullets/a357 = 3,\
-	/obj/item/ammo/bullets/a357/AP = 2)
+	spawn_contents = list(/obj/item/gun/modular/italian/big_italiano,\
+	/obj/item/stackable_ammo/pistol/ten,\
+	/obj/item/stackable_ammo/pistol_38AP/five,\
+	/obj/item/stackable_ammo/capacitive/five)
 
 /obj/item/storage/box/detectivegun
 	name = "italian revolver box"
 	icon_state = "hard_case"
 	desc = "A box containing an italian revolver and ammo."
 	// Reduced the amount of ammo. The detective had four lethal and five stun speedloaders total in his closet, perhaps a bit too much (Convair880).
-	spawn_contents = list(/obj/item/gun/modular/italian,\
+	spawn_contents = list(/obj/item/gun/modular/italian/italiano,\
 	/obj/item/gun_parts/stock/italian/bigger,\
-	/obj/item/stackable_ammo/pistol/ten,\
-	/obj/item/stackable_ammo/pistol/three)
+	/obj/item/stackable_ammo/capacitive/ten,\
+	/obj/item/stackable_ammo/pistol/five)
 
 /obj/item/storage/box/ak47 // cogwerks, terrorism update
 	name = "rifle box"
@@ -76,12 +77,13 @@
 	/obj/item/ammo/bullets/ak47 = 2)
 
 /obj/item/storage/box/pistol
-	name = "suppressed pistol box"
+	name = "corporate pistol box"
 	icon_state = "hard_case"
-	desc = "A box containing a sneaky pistol and some ammo."
+	desc = "A box containing a standard issue pistol and some ammo."
 	// this might be a terrible idea giving them so much ammo, but whatevs
-	spawn_contents = list(/obj/item/gun/kinetic/silenced_22,\
-	/obj/item/ammo/bullets/bullet_22HP = 3)
+	spawn_contents = list(/obj/item/gun/modular/NT/pistol,\
+	/obj/item/stackable_ammo/pistol/ten = 2,\
+	/obj/item/stackable_ammo/tranq)
 
 /obj/item/storage/box/derringer
 	name = "derringer box"
@@ -93,9 +95,11 @@
 /obj/item/storage/box/shotgun
 	name = "shotgun box"
 	icon_state = "hard_case"
-	desc = "A box containing a high-powered shotgun and some ammo."
-	spawn_contents = list(/obj/item/gun/kinetic/spes,\
-	/obj/item/ammo/bullets/a12 = 4)
+	desc = "A box containing a low-powered shotgun and some ammo."
+	spawn_contents = list(/obj/item/gun/modular/NT/shotty,\
+	/obj/item/stackable_ammo/scatter/buckshot/five,\
+	/obj/item/stackable_ammo/capacitive_burst/ten,\
+	/obj/item/stackable_ammo/scatter/slug_rubber/ten)
 
 /obj/item/storage/box/revolver_ammo
 	name = "revolver ammo box"
@@ -170,6 +174,13 @@
 	desc = "Contains grenade cases and fuses for creating grenades."
 	spawn_contents = list(/obj/item/grenade_fuse = 3,\
 	/obj/item/chem_grenade = 3)
+
+/obj/item/storage/box/grenade_starter_kit/traitor
+	name = "grenade starter kit"
+	icon_state = "flashbang"
+	desc = "Contains grenade cases and fuses for creating grenades."
+	spawn_contents = list(/obj/item/grenade_fuse = 3,\
+	/obj/item/chem_grenade/traitor = 3)
 
 /obj/item/storage/box/sonic_grenade_kit
 	name = "sonic grenade kit"
@@ -340,14 +351,14 @@
 		<BR>
 		<I>/[prob(50)? pick_string_autokey("names/first_male.txt"):pick_string_autokey("names/first_female.txt")]</I>
 		"}
-
+/*
 /obj/item/storage/box/costume/safari
 	name = "safari costume"
 	spawn_contents = list(/obj/item/clothing/head/safari,\
 	/obj/item/clothing/under/gimmick/safari,\
 	/obj/item/boomerang,\
 	/obj/item/ammo/bullets/tranq_darts/syndicate = 4)
-
+*/
 /obj/item/storage/box/poison
 	name = "ordinary box"
 	desc = "Just a regular ordinary box. It smells like almonds a little bit. Probably some chef kept their cooking supplies there."

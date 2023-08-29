@@ -678,7 +678,7 @@
 	var/homeloc = null
 	allow_self_service = 0
 	/// Mailgroups it'll try to send PDA notifications to
-	var/list/mailgroups = list(MGD_MEDBAY, MGD_MEDRESEACH)
+	var/list/mailgroups = list(MGD_MEDBAY, MGD_MEDRESEARCH)
 
 	New()
 		..()
@@ -746,7 +746,7 @@
 		return
 	if (!occupant)
 		return
-	var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency(FREQ_PDA)
+	var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 	if (!transmit_connection)
 		return
 

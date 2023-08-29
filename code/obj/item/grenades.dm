@@ -564,7 +564,7 @@ PIPE BOMBS + CONSTRUCTION
 
 	prime()
 		var/turf/simulated/T = ..()
-		var/datum/gas_mixture/GM = unpool(/datum/gas_mixture)
+		var/datum/gas_mixture/GM = new()
 		GM.temperature = T20C + 15
 		GM.oxygen = 1500
 		GM.carbon_dioxide = 100
@@ -587,7 +587,7 @@ PIPE BOMBS + CONSTRUCTION
 					if (count)
 						for (var/turf/simulated/MT as() in T.parent.members)
 							if (GM.disposed)
-								GM = unpool(/datum/gas_mixture)
+								GM = new()
 							GM.temperature = T20C + 15
 							GM.oxygen = 1500 / count
 							GM.carbon_dioxide = 100 / count
@@ -605,7 +605,7 @@ PIPE BOMBS + CONSTRUCTION
 
 			animate(E, alpha=0, time=2.5 SECONDS)
 			playsound(T, "sound/weapons/flashbang.ogg", 30, 1)
-			var/datum/effects/system/steam_spread/steam = unpool(/datum/effects/system/steam_spread)
+			var/datum/effects/system/steam_spread/steam = new()
 			steam.set_up(10, 0, get_turf(src), color="#0ff", plane=PLANE_NOSHADOW_ABOVE)
 			steam.attach(src.loc)
 			steam.start()
@@ -799,7 +799,9 @@ PIPE BOMBS + CONSTRUCTION
 		var/sound/S = sound(soundin)
 		S.frequency = 32000 + ((10-i)*4000)
 		S.wait = 0 //No queue
-		S.channel = 0 //Any channel
+		S.channel = 149 - i //Any channel EDIT: I THINK NOT.
+		//Should be safeish, channels 150-160 until we can pop this back into generate_sound like it oughta be.
+		//seriously i don't think this has been touched since first-codering. buttbombs: a true and beautiful relic.
 		S.volume = vol
 		S.priority = 0
 
@@ -890,6 +892,107 @@ PIPE BOMBS + CONSTRUCTION
 	icon_state = "fartbomb"
 	sound_beep = 'sound/voice/farts/poo2.ogg'
 	sound_explode = 'sound/voice/farts/superfart.ogg'
+	var/splashzone =  2 //calculate effects, can be increased from 5 to 8 (oh no)
+	var/radioactive = 0 //dirty, you say
+
+	prearmed
+		armed = 1
+		anchored = 1
+
+		New()
+			SPAWN_DBG(0)
+				src.beep(10)
+			return ..()
+
+	//this thing used to spread a big grid of poo everywhere
+	//so let's pay tribute in the worst possible way
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (istype(W, /obj/item/reagent_containers/food/snacks/ingredient/mud)) //sigh (i only have myself to blame)
+			if (istype(src, /obj/item/gimmickbomb/butt/dirty))
+				if (src.splashzone < 4)
+					src.splashzone++
+					user.show_text("you fucking make it even worse somehow", "red")
+					qdel(W)
+				else
+					user.show_text("<b>You've gone much too far already. This cannot be permitted.</b>", "red")
+					qdel(W) //lose the poo. consider it poo-nishment for your poo-bris
+			else
+				var/obj/item/gimmickbomb/butt/dirty/DB = new /obj/item/gimmickbomb/butt/dirty //make it dirty
+				DB.set_loc(get_turf(user))
+				user.show_text("You... put the poo in the [src.name]. jesus fucking christ", "blue")
+				qdel(W)
+				qdel(src)
+		//if (istype(W, obj/item/plutonium_core) && istype(src, /obj/item/gimmickbomb/butt/dirty))
+			//src.radioactive = 1 //this is a bad idea but it's a funny one and if they're used for chaos dunks then fuck it, this isn't REALLY so bad
+			//src.name = "Seriously Dirty Bomb"
+			//src.desc = "oh shit this thing is <b>glowing</b>. drop and run!"
+			//src.iconstate = "fartbomb-radio" //green and glowing
+		else
+			return ..()
+
+	dirty
+		name = "Dirty Bomb"
+		desc = "What a crappy grenade. For real this time."
+		//iconstate = "fartbomb-dirty"
+
+		detonate()
+			var/theturf = get_turf(src)
+			var/list/spraybits = new/list()
+			var/direction = NORTH
+
+			for(var/i=0, i<9, i++)
+				var/obj/effects/spray/S = new/obj/effects/spray(theturf) //color this brown
+				SPAWN_DBG(15 SECONDS) qdel(S)
+				S.set_dir(direction)
+				S.color = "#875232"
+				S.original_dir = direction
+				direction = turn(direction,45)
+				spraybits += S
+
+			SPAWN_DBG(0)
+				//Center tile
+				var/obj/effects/spray/S = spraybits[1]
+				make_cleanable(/obj/decal/cleanable/mud,S.loc)
+				if(is_blocked_turf(S.loc))
+					spraybits -= S
+					qdel(S)
+
+				//Distance tiles
+				for(var/i=0, i<src.splashzone, i++)
+					for(var/obj/effects/spray/SP in spraybits)
+						SP.set_loc(get_step(SP.loc, SP.original_dir))
+						make_cleanable(/obj/decal/cleanable/mud,SP.loc)
+						if(is_blocked_turf(SP.loc))
+							make_cleanable(/obj/decal/cleanable/mud,SP.loc)
+							spraybits -= SP
+							qdel(SP)
+
+			//just make sure nobody walks away clean
+			for(var/mob/living/carbon/human/H in range(splashzone, src))
+				if (H.wear_suit)
+					H.wear_suit.add_mud(src)
+					H.set_clothing_icon_dirty()
+				else if (H.w_uniform)
+					H.w_uniform.add_mud(src)
+					H.set_clothing_icon_dirty()
+				if (H.shoes)
+					H.shoes.add_mud(src)
+					H.set_clothing_icon_dirty()
+				if (prob(20))
+					H.vomit() //grody
+			//if (src.radioactive)
+				//do some radioactive stuff i dunno check the radmine. tbd tbd tbd
+
+			..()
+		prearmed
+			armed = 1
+			anchored = 1
+
+			New()
+				SPAWN_DBG(0)
+					src.beep(10)
+				return ..()
 
 /obj/item/gimmickbomb/gold
 	name = "Gold Bomb"
@@ -910,16 +1013,6 @@ PIPE BOMBS + CONSTRUCTION
 			SPAWN_DBG(0)
 				M.become_statue(getMaterial("gold"))
 		..()
-
-
-/obj/item/gimmickbomb/butt/prearmed
-	armed = 1
-	anchored = 1
-
-	New()
-		SPAWN_DBG(0)
-			src.beep(10)
-		return ..()
 
 /obj/item/gimmickbomb/owlgib/prearmed
 	armed = 1
@@ -1683,7 +1776,7 @@ PIPE BOMBS + CONSTRUCTION
 						if(target.parent?.group_processing)
 							target.parent.suspend_group_processing()
 
-						var/datum/gas_mixture/payload = unpool(/datum/gas_mixture)
+						var/datum/gas_mixture/payload = new()
 						payload.toxins = plasma * 100
 						payload.temperature = T20C
 						payload.volume = R_IDEAL_GAS_EQUATION * T20C / 1000

@@ -272,6 +272,14 @@
 	light.set_brightness(0.4)
 	light.attach(src)
 
+	if(glow_in_dark_screen) //Can't be in that spawn because of a race condition with power_change call in initialize()
+		src.screen_image = image('icons/obj/computer_screens.dmi', src.icon_state, -1)
+		screen_image.plane = PLANE_LIGHTING
+		screen_image.blend_mode = BLEND_ADD
+		screen_image.layer = LIGHTING_LAYER_BASE
+		screen_image.color = list(0.33,0.33,0.33, 0.33,0.33,0.33, 0.33,0.33,0.33)
+		src.UpdateOverlays(screen_image, "screen_image")
+
 	SPAWN_DBG(0.4 SECONDS)
 
 		if(ispath(src.setup_starting_peripheral1))
@@ -318,14 +326,6 @@
 
 		src.base_icon_state = src.icon_state
 
-		if(glow_in_dark_screen)
-			src.screen_image = image('icons/obj/computer_screens.dmi', src.icon_state, -1)
-			screen_image.plane = PLANE_LIGHTING
-			screen_image.blend_mode = BLEND_ADD
-			screen_image.layer = LIGHTING_LAYER_BASE
-			screen_image.color = list(0.33,0.33,0.33, 0.33,0.33,0.33, 0.33,0.33,0.33)
-			src.UpdateOverlays(screen_image, "screen_image")
-
 		src.post_system()
 
 		switch(rand(1,3))
@@ -334,7 +334,8 @@
 			if(2)
 				setup_font_color = "#A5A5FF"
 				setup_bg_color = "#4242E7"
-
+			if(3)
+				return // this pleases the linter, that's it. That's fucking it.
 	return
 
 /obj/machinery/computer3/attack_hand(mob/user as mob)
@@ -693,7 +694,7 @@ function lineEnter (ev)
 			A.set_dir(src.dir)
 			if (src.status & BROKEN)
 				boutput(user, "<span class='notice'>The broken glass falls out.</span>")
-				var/obj/item/raw_material/shard/glass/G = unpool(/obj/item/raw_material/shard/glass)
+				var/obj/item/raw_material/shard/glass/G = new()
 				G.set_loc( src.loc )
 				A.state = 3
 				A.icon_state = "3"

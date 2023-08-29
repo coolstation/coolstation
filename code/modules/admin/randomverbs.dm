@@ -458,7 +458,7 @@
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
 	set name = "Create Command Report"
 	admin_only
-	var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as null|message
+	var/input = input(usr, "Please enter anything you want for the body of the message. Headline comes next.", "What?", "") as null|message
 	if(!input)
 		return
 	var/input2 = input(usr, "Add a headline for this alert?", "What?", "") as null|text
@@ -489,7 +489,7 @@
 	set name = "Adv. Command Report"
 	admin_only
 
-	var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as null|message
+	var/input = input(usr, "Please enter anything you want for the body of the message. Headline comes next.", "What?", "") as null|message
 	if (!input)
 		return
 	var/input2 = input(usr, "Add a headline for this alert?", "What?", "") as null|text
@@ -1485,7 +1485,7 @@
 
 	A.reagents.add_reagent("pathogen", amount)
 	var/datum/reagent/blood/pathogen/R = A.reagents.get_reagent("pathogen")
-	var/datum/pathogen/P = unpool(/datum/pathogen)
+	var/datum/pathogen/P = new()
 	P.setup(1)
 	R.pathogens += P.pathogen_uid
 	R.pathogens[P.pathogen_uid] = P
@@ -1705,7 +1705,7 @@
 	former_role = text("[M.mind.special_role]")
 
 	message_admins("[key_name(M)]'s antagonist status ([former_role]) was removed. Source: [admin ? "[key_name(admin)]" : "*automated*"].")
-	if (admin) // Log entries for automated antag status removal is handled in helpers.dm, remove_mindslave_status().
+	if (admin) // Log entries for automated antag status removal is handled in helpers.dm, remove_insurgent_status().
 		logTheThing("admin", admin, M, "removed the antagonist status of [constructTarget(M,"admin")].")
 		logTheThing("diary", admin, M, "removed the antagonist status of [constructTarget(M,"diary")].", "admin")
 
@@ -1735,7 +1735,7 @@
 		return
 
 	// Then spawn a new mob to delete all mob-/client-bound antagonist verbs.
-	// Complete overkill for mindslaves, though. Blobs and wraiths need special treatment as well.
+	// Complete overkill for insurgents, though. Blobs and wraiths need special treatment as well.
 	// Synthetic mobs aren't really included yet, because it would be a complete pain to account for them properly.
 	if (issilicon(M))
 		var/mob/living/silicon/S = M
@@ -1757,9 +1757,9 @@
 			E << sound('sound/misc/lawnotify.ogg', volume=100, wait=0)
 
 	switch (former_role)
-		if (ROLE_MINDSLAVE) return
+		if (ROLE_INSURGENT) return
 		if (ROLE_VAMPTHRALL) return
-		if ("spyslave") return
+		if ("spyrecruit") return
 		if (ROLE_BLOB) M.humanize(1)
 		if (ROLE_WRAITH) M.humanize(1)
 		else
@@ -2177,7 +2177,7 @@ var/global/night_mode_enabled = 0
 			logTheThing("admin", usr, H, "replaced [constructTarget(H,"admin")]'s [lowertext(organ)] with [created_organ]")
 			logTheThing("diary", usr, H, "replaced [constructTarget(H,"diary")]'s [lowertext(organ)] with [created_organ]", "admin")
 		if ("Drop")
-			if (alert(usr, "Are you sure you want [H] to drop their [lowertext(organ)]?", "Confirmation", "Yes", "No") == "Yes")
+			if (alert(usr, "Are you sure you want [H] to drop [his_or_her(H)] [lowertext(organ)]?", "Confirmation", "Yes", "No") == "Yes")
 				H.organHolder.drop_organ(organ)
 				boutput(usr, "<span class='notice'>[H]'s [lowertext(organ)] dropped.</span>")
 				logTheThing("admin", usr, H, "dropped [constructTarget(H,"admin")]'s [lowertext(organ)]")

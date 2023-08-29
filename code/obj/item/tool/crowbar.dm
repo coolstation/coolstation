@@ -11,7 +11,7 @@
 	tool_flags = TOOL_PRYING
 	w_class = W_CLASS_SMALL
 
-	force = 7.0
+	force = 8.0
 	throwforce = 7.0
 	stamina_damage = 35
 	stamina_cost = 12

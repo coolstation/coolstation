@@ -1,3 +1,4 @@
+//Used by: radbow
 /datum/projectile/rad_bolt
 	name = "bolt"
 	icon = 'icons/obj/projectiles.dmi'

@@ -1,3 +1,4 @@
+//Unused (parent type)
 /datum/projectile/pickpocket
 	name = "strange claw thing you shouldn't be able to see"
 	//icon = null
@@ -30,6 +31,7 @@
 	var/obj/item/gun/energy/pickpocket/linkedGun = null
 	var/targetZone = null
 
+//Used by: pickpocket grapple gun
 /datum/projectile/pickpocket/steal
 	sname = "steal"
 	on_hit(atom/hit)
@@ -55,6 +57,7 @@
 				linkedGun.heldItem = stolenItem
 				stolenItem.set_loc(linkedGun)
 
+//Used by: pickpocket grapple gun
 /datum/projectile/pickpocket/plant
 	sname = "plant"
 	var/strikeFlavor = list("How strange.", "Huh.", "That's weird!", "Don't see that every day.", "", "Gosh!", "What will they think up next?")
@@ -105,6 +108,7 @@
 				linkedGun.heldItem.set_loc(get_turf(hit))
 			linkedGun.heldItem = null // One wayor another it's somewhere else now
 
+//Used by: pickpocket grapple gun
 /datum/projectile/pickpocket/harass
 	sname = "harass"
 	on_hit(atom/hit)

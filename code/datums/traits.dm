@@ -332,18 +332,18 @@
 	onAdd(var/mob/owner)
 		owner.bioHolder?.AddEffect("accent_scots", 0, 0, 0, 1)
 
-/obj/trait/chav
-	name = "Chav (0) \[Language\]"
-	cleanName = "Chav"
+/obj/trait/brummie
+	name = "brummie (0) \[Language\]"
+	cleanName = "brummie"
 	desc = "U wot m8? I sware i'll fite u."
-	id = "chav"
+	id = "brummie"
 	icon_state = "ukY"
 	points = 0
 	isPositive = 1
 	category = "language"
 
 	onAdd(var/mob/owner)
-		owner.bioHolder?.AddEffect("accent_chav", 0, 0, 0, 1)
+		owner.bioHolder?.AddEffect("accent_brummie", 0, 0, 0, 1)
 
 /obj/trait/elvis
 	name = "Funky Accent (0) \[Language\]"
@@ -1101,6 +1101,17 @@ obj/trait/pilot
 	isPositive = 1
 	category = "species"
 	mutantRace = /datum/mutantrace/cow
+
+/obj/trait/fert
+	name = "Musteline (-1) \[Species\]"
+	cleanName = "Musteline"
+	icon_state = "fertT"
+	desc = "Now everyone will know your stinky secret."
+	id = "fert"
+	points = -1
+	isPositive = 1
+	category = "species"
+	mutantRace = /datum/mutantrace/fert
 
 /obj/trait/skeleton
 	name = "Skeleton (-2) \[Species\]"

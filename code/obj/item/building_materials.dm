@@ -326,6 +326,7 @@ MATERIAL
 			var/a_icon_state = null
 			var/a_name = null
 			var/a_callback = null
+			var/duration_alt = null
 
 			switch(href_list["make"])
 				if("rods")
@@ -340,6 +341,7 @@ MATERIAL
 					a_icon = 'icons/obj/metal.dmi'
 					a_icon_state = "rods"
 					a_name = "rods"
+					duration_alt = 1.7 SECONDS
 
 				if("fl_tiles")
 					var/maketiles = min(src.amount,20)
@@ -353,6 +355,7 @@ MATERIAL
 					a_icon = 'icons/obj/metal.dmi'
 					a_icon_state = "tile"
 					a_name = "floor tiles"
+					duration_alt = 2 SECONDS
 
 				if("table")
 					if (!amount_check(2,usr)) return
@@ -428,6 +431,7 @@ MATERIAL
 					a_icon = 'icons/obj/metal.dmi'
 					a_icon_state = "rack_parts"
 					a_name = "rack parts"
+					duration_alt = 3.5 SECONDS
 
 				if("closet")
 					if (!amount_check(2,usr)) return
@@ -446,6 +450,7 @@ MATERIAL
 					a_icon = 'icons/obj/clothing/overcoats/item_suit_cardboard.dmi'
 					a_icon_state = "c_box"
 					a_name = "a cardboard box"
+					duration_alt = 1 SECOND
 
 				if("pipef")
 					if (!amount_check(2,usr)) return
@@ -455,10 +460,11 @@ MATERIAL
 					a_icon = 'icons/obj/items/assemblies.dmi'
 					a_icon_state = "Pipe_Frame"
 					a_name = "a pipe frame"
+					duration_alt = 2 SECONDS
 
 				if("pipef_ex")
 					if (!amount_check(2,usr)) return
-					a_type = /obj/item/atmospherics/pipeframe/
+					a_type = /obj/item/atmospherics/pipeframe/exchanger
 					a_amount = 1
 					a_cost = 2
 					a_icon = 'icons/obj/atmospherics/atmos_parts.dmi'
@@ -491,6 +497,7 @@ MATERIAL
 					a_icon = 'icons/obj/computer_frame.dmi'
 					a_icon_state = "0"
 					a_name = "a console frame"
+					duration_alt = 3.5 SECONDS
 
 				if("hcomputer")
 					if (!amount_check(5,usr)) return
@@ -500,6 +507,7 @@ MATERIAL
 					a_icon = 'icons/obj/computer_frame.dmi'
 					a_icon_state = "0"
 					a_name = "a computer frame"
+					duration_alt = 3.5 SECONDS
 
 				if("tcomputer")
 					if (!amount_check(3,usr)) return
@@ -509,6 +517,7 @@ MATERIAL
 					a_icon = 'icons/obj/terminal_frame.dmi'
 					a_icon_state = "0"
 					a_name = "a terminal frame"
+					duration_alt = 3.5 SECONDS
 
 				if("vending")
 					if (!amount_check(3,usr)) return
@@ -518,6 +527,8 @@ MATERIAL
 					a_icon = 'icons/obj/vending.dmi'
 					a_icon_state = "standard-frame"
 					a_name = "a vending machine frame"
+					duration_alt = 3.5 SECONDS
+
 				if("construct")
 					var/turf/T = get_turf(usr)
 					var/area/A = get_area (usr)
@@ -603,7 +614,7 @@ MATERIAL
 					R.amount = 1
 					src.change_stack_amount(-1)
 			if (a_type)
-				actions.start(new /datum/action/bar/icon/build(src, a_type, a_cost, src.material, a_amount, a_icon, a_icon_state, a_name, a_callback), usr)
+				actions.start(new /datum/action/bar/icon/build(src, a_type, a_cost, src.material, a_amount, a_icon, a_icon_state, a_name, a_callback, duration_alt = duration_alt), usr)
 
 
 		return
@@ -1080,14 +1091,13 @@ MATERIAL
 			boutput(user, "<span class='notice'>You must be on the ground!</span>")
 			return
 		else
-			if (!isconstructionturf(T))
-				boutput(user, "You cannot build on or repair this turf!")
+			var/S = T
+			if (!isconstructionturf(S))
+				boutput(user, "<span class='notice'>RIP NERD!</span>")
 				return
-			if (istype(T, /turf/space) || istype(T, /turf/floor/metalfoam))
-				// If this is space or metal foam try to build on top of it
-				src.build(T)
-				tooltip_rebuild = 1
-			else if (istype(T, /turf/floor))
+			if (!( istype(S, /turf/space) || istype(S, /turf/simulated/floor/metalfoam || istype(S, /turf/simulated/floor/plating/gehenna))))
+				// If this isn't space or metal foam...
+				if (istype(T, /turf/simulated/floor))
 					// If it's still a floor, attempt to place or replace the floor tile
 					var/turf/floor/F = T
 					F.attackby(src, user)
@@ -1133,6 +1143,10 @@ MATERIAL
 #else
 		if (src.amount < 1)
 			return FALSE
+		for(var/obj/decal/floatingtiles/loose/L in S)
+			if(istype(L))
+				boutput(usr, "<span class='notice'>you need to clear the existing tile fragments.</span>")
+				return
 		var/turf/floor/W = S.ReplaceWithFloor()
 		if (W) //Wire: Fix for: Cannot read null.icon_old
 			W.inherit_area()

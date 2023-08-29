@@ -170,12 +170,15 @@ var/global/list/job_start_locations = list()
 		"big_yank" = /mob/living/carbon/human/big_yank,
 		"father_jack" = /mob/living/carbon/human/fatherjack,
 		"don_glab" = /mob/living/carbon/human/don_glab,
+		"gunsemanne" = /mob/living/carbon/human/gunsemanne,
+
 		"monkeyspawn_normal" = /mob/living/carbon/human/npc/monkey,
 		"monkeyspawn_albert" = /mob/living/carbon/human/npc/monkey/albert,
 		"monkeyspawn_rathen" = /mob/living/carbon/human/npc/monkey/mr_rathen,
 		"monkeyspawn_mrmuggles" = /mob/living/carbon/human/npc/monkey/mr_muggles,
 		"monkeyspawn_mrsmuggles" = /mob/living/carbon/human/npc/monkey/mrs_muggles,
-		"monkeyspawn_syndicate" = /mob/living/carbon/human/npc/monkey/oppenheimer,
+		"monkeyspawn_syndicate" = /mob/living/carbon/human/npc/monkey/minty,
+		"monkeyspawn_foss" = /mob/living/carbon/human/npc/monkey/trovalds,
 		"monkeyspawn_horse" = /mob/living/carbon/human/npc/monkey/horse,
 		"monkeyspawn_krimpus" = /mob/living/carbon/human/npc/monkey/krimpus,
 		"monkeyspawn_tanhony" = /mob/living/carbon/human/npc/monkey/tanhony,
@@ -286,6 +289,14 @@ var/global/list/job_start_locations = list()
 	desc = "Point it at a turf. Stuff that goes there? goes here instead. Got it?"
 	novis = TRUE
 
+/obj/landmark/viscontents_spawn/gehenna // special cases :)
+	New(var/loc, var/man_xOffset, var/man_yOffset, var/man_targetZ, var/man_warptarget_modifier)
+		if(map_currently_very_dusty)
+			..()
+		else
+			qdel(src)
+			return
+
 /obj/landmark/viscontents_spawn/no_warp
 	warptarget_modifier = LANDMARK_VM_WARP_NONE
 /// target turf for projecting its contents elsewhere
@@ -324,3 +335,6 @@ var/global/list/job_start_locations = list()
 		name = LANDMARK_SHUTTLE_DONUT3
 	destiny
 		name = LANDMARK_SHUTTLE_DESTINY
+
+/obj/landmark/drain_exit
+	name = LANDMARK_DRAIN_EXIT

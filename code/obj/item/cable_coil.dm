@@ -62,7 +62,7 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 	suicide(var/mob/user as mob)
 		if (!src.user_can_suicide(user))
 			return 0
-		user.visible_message("<span class='alert'><b>[user] wraps the cable around \his neck and tightens it.</b></span>")
+		user.visible_message("<span class='alert'><b>[user] wraps the cable around [his_or_her(user)] neck and tightens it.</b></span>")
 		user.take_oxygen_deprivation(160)
 		SPAWN_DBG(50 SECONDS)
 			if (user && !isdead(user))
@@ -254,9 +254,9 @@ obj/item/cable_coil/dropped(mob/user)
 	//	return
 	if (target.intact)		// if floor is intact, complain
 		return
-	if (!isconstructionturf(target))
+	if (!(istype(target,/turf/simulated/floor) || istype(target,/turf/space/fluid) || istype(target,/turf/space/gehenna)))
 		return
-	if (!isconstructionturf(source))
+	if (!(istype(source,/turf/simulated/floor) || istype(source,/turf/space/fluid) || istype(target,/turf/space/gehenna)))
 		return
 	if (get_dist(target, source) > 1)
 		boutput(user, "You can't lay cable at a place that far away.")
