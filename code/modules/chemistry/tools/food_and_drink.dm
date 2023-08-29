@@ -517,6 +517,7 @@
 */
 
 	on_reagent_change()
+		..()
 		//update_gulp_size() //broken, so commenting it out here too
 		doants = src.reagents && src.reagents.total_volume > 0
 

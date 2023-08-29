@@ -604,31 +604,31 @@ var/obj/item/dummy/click_dummy = new
 
 
 
-// return description of how full a container is
-proc/get_fullness(var/percent)
+// return description of how full a container is. The shorthand var minimises string length for reagent container inventory counters
+proc/get_fullness(var/percent, shorthand = FALSE)
 
 	if(percent == 0)
 		return "empty"
 	if(percent < 2)
 		return "nearly empty"
 	if(percent < 24)
-		return "less than a quarter full"
+		return  shorthand? "<1/4" : "less than a quarter full"
 	if(percent < 26)
-		return "a quarter full"
+		return shorthand? "~1/4" : "a quarter full"
 	if(percent < 37)
-		return "more than a quarter full"
+		return shorthand? ">1/4" : "more than a quarter full"
 	if(percent < 49)
-		return "less than half full"
+		return shorthand? "<1/2" : "less than half full"
 	if(percent < 51)
-		return "half full"
+		return shorthand? "~1/2" : "half full"
 	if(percent < 62)
-		return "more than half full"
+		return shorthand? ">1/2" : "more than half full"
 	if(percent < 74)
-		return "less than three-quarters full"
+		return shorthand? "<3/4" : "less than three-quarters full"
 	if(percent < 76)
-		return "three-quarters full"
+		return shorthand? "~3/4" : "three-quarters full"
 	if(percent < 97)
-		return "more than three-quarters full"
+		return shorthand? ">3/4" : "more than three-quarters full"
 	if(percent < 99.5)
 		return "nearly full"
 	return "full"

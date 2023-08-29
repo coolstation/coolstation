@@ -936,8 +936,8 @@ datum
 					. += "<br><span class='alert'>[current_reagent.volume] units of [current_reagent.name]</span>"
 			return
 
-		proc/get_reagents_fullness()
-			.= get_fullness(total_volume / maximum_volume * 100)
+		proc/get_reagents_fullness(shorthand = FALSE)
+			.= get_fullness((total_volume / maximum_volume * 100), shorthand)
 
 		proc/get_inexact_description(var/rc_flags=0)
 			if(rc_flags == 0)
