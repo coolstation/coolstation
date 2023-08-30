@@ -219,7 +219,7 @@ If you're instead looking for something with branching in the messaging, I think
 		list("Oh Hank, isn't it wonderful?", 4 SECONDS, "rachelle", "test-B"),\
 		list("I love saying words like that.", 5 SECONDS, "rachelle", "test-B"),\
 		list("We interrupt this programming for an important announcement:", 7 SECONDS, null, "test-C"),\
-		list("For the owner of the golden pod: your headlights were on so I smashed them. Fuck you.", 7 SECONDS, null, "test-C"),\
+		list("For the owner of the golden pod: I smashed in your windshield. Fuck you.", 7 SECONDS, null, "test-C"),\
 		list("*laugh track*", 4 SECONDS, null, "test-D"),\
 	)//test-D doesn't exist, which is intentional for testing here
 
