@@ -3,16 +3,62 @@
 
 
 /*
+ABOUT (TECHNICAL):
 directed broadcasts loop messages over a list of atoms, think like a radio broadcast
-I've tried to code this in a way that has no references on the atom (chat_text isn't mine so I consider it fair game), which should keep garbage collection issues low
-and also more vars shared by everything everywhere is not ideal. However I haven't designed for supporting more than one broadcast targeting any single object,
-assuming that would just be a confusing mess anyways.
+I've tried to code this in a way that neither the broadcast nor the receivers keep track of each other, which should keep garbage collection issues low,
+while also avoiding more vars on all atoms.
+(chat_text isn't mine so I consider it fair game if that has GC weirdness)
 
-I called them directed mostly to avoid confusion with other broadcasty things in the game, and they kinda target certain objects.
+I called them directed broadcasts mostly to avoid confusion with other broadcasty things in the game, since they target subscribed objects
 
-They'll automatically instantiate chat_text (a maptext controller thing) on atoms that don't have one yet, which should get cleaned up once that atom is disposed of
+They'll automatically instantiate chat_text (a maptext controller thing) on atoms that don't have one yet,
+which should get cleaned up once that atom is disposed of
 
 If you're instead looking for something with branching in the messaging, I think you'll want the dialoguenode/dialoguemaster system.
+
+
+TO USE (PRACTICAL):
+To start a broadcast, call broadcast_controls.broadcast_start() with either a broadcast datum or the id of a broadcast.
+
+
+
+A broadcast is an id, a broadcast_cat an optional list of speakers, and a list of messages
+
+The broadcast_cat is the category in which it will try to find receivers.
+
+The speakers list should be formatted
+	list("id1" = list("Name One", maptext colour code), "id2" = list("Name Two", maptext colour code))
+	et cetera et cetera
+
+	The ids itself should be unique for this broadcast.
+
+	The first part of the inner list is the name that actually gets printed (so you can just write "bot" in the message list instead of "V.I.V.I-SECT-10N" 20 times)
+
+	The second part is the colour of the maptext for this speaker.
+
+The message list can just be a list of strings, or a list of lists each containing the message string and optional data in order:
+	list(message, time displayed, speaker id, video broadcast icon state)
+
+	time displayed dictates how long maptext stays up. Timing is all manual, so you'll have to eyeball it based on message length. Default is 4s
+
+	speaker id is either null or should correspond to an id in the speaker list.
+
+	video icon state is just the string of the icon state. It's up to the receiving objects to specify the dmi used via SUBSCRIBE_BROADCAST
+	and it's up to the spriter/coder to make sure that dmi has appropriate sprites for the occasion. Remember to think about the no-name fallback!
+
+
+
+To get an object to *listen* to a broadcast, use the SUBSCRIBE_BROADCAST(x, value) macro
+	x is the broadcast_cat we're listening in on
+
+	value should be either a dmi to use for video overlays if using, or the number 1 if not (the latter for internal consistency)
+
+To stop listening, use UNSUBSCRIBE_BROADCAST(x). Treat this like category tracking and make sure to unsubscribe when disposing. :3
+
+
+There's more options in the code, but that should get you something working I think.
+Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as an example of what this system is capable of.
+/obj/shitty_radio/shitty_tv is the recipient of that broadcast.
 */
 
 /datum/directed_broadcast
@@ -39,6 +85,8 @@ If you're instead looking for something with branching in the messaging, I think
 
 	///tracking category of which all members receive the broadcast, which would probably be the preferred
 	var/broadcast_cat = null
+	///Toggle to broadcast with "received_broadcast" message group, causing them to collapse in chat. Less spammy, but can't be read back in chat well.
+	var/group_messages = FALSE
 
 	New()
 		..()
@@ -114,7 +162,7 @@ If you're instead looking for something with branching in the messaging, I think
 				if(I != receiver_output)
 					I.bump_up(receiver_output.measured_height)
 		//chucking these all in the same message group for now cause the radios are quite capable of spamming chat to shit
-		receiver.audible_message("<span class='subtle'><span class='game say'><span class='name'>[receiver]</span> receives:</span> \"[islist(current_speaker) ? current_speaker[1]+": " : null][current_entry]\"</span>", 2, assoc_maptext = receiver_output, group = "received_broadcast")
+		receiver.audible_message("<span class='subtle'><span class='game say'><span class='name'>[receiver]</span> receives:</span> \"[islist(current_speaker) ? current_speaker[1]+": " : null][current_entry]\"</span>", 2, assoc_maptext = receiver_output, group = (group_messages ? "received_broadcast" : ""))
 
 		if (!isnull(video_frame))
 			var/which_dmi = by_cat[broadcast_cat][receiver]
@@ -123,7 +171,6 @@ If you're instead looking for something with branching in the messaging, I think
 	ON_COOLDOWN(src, "next_broadcast", delay2use)
 
 
-#undef DEFAULT_BROADCAST_MESSAGE_TIME
 
 /obj/shitty_radio
 	name = "shitty test radio"
@@ -157,36 +204,37 @@ If you're instead looking for something with branching in the messaging, I think
 			icon_state = "transmitter-on"
 		. = ..()
 
-	finite_demo
-		name = "shittier test radio"
-		desc = "god damn this fucking blight on the station (use a multitool to start this)"
-		color = "#541771"
-		station = TR_CAT_FINITE_BROADCAST_RECEIVERS
+/obj/shitty_radio/finite_demo
+	name = "shittier test radio"
+	desc = "god damn this fucking blight on the station (use a multitool to start this)"
+	color = "#541771"
+	station = TR_CAT_FINITE_BROADCAST_RECEIVERS
 
-		attackby(obj/item/I, mob/user)
-			if (istool(I, TOOL_PULSING))
-				broadcast_controls.broadcast_start("demo_finite")
-			..()
+	attackby(obj/item/I, mob/user)
+		if (istool(I, TOOL_PULSING))
+			broadcast_controls.broadcast_start("demo_finite")
+		..()
 
-	shitty_tv
-		name = "shitty test TV"
-		desc = "And you thought those radios were fucking garbage"
-		icon_state = "POCteevee-on"
-		icon = 'icons/misc/broadcastsPOC.dmi'
-		station = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
-		video_dmi = 'icons/misc/broadcastsPOC.dmi'
-		color = null
+/obj/shitty_radio/shitty_tv
+	name = "shitty test TV"
+	desc = "And you thought those radios were fucking garbage"
+	icon_state = "POCteevee-on"
+	icon = 'icons/misc/broadcastsPOC.dmi'
+	station = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
+	video_dmi = 'icons/misc/broadcastsPOC.dmi'
+	color = null
 
-		//shitcode override but it's a demo object so who cares
-		attack_hand(mob/user)
-			..()
-			if (on)
-				icon_state = "POCteevee-on"
-			else
-				icon_state = "POCteevee"
+	//shitcode override but it's a demo object so who cares
+	attack_hand(mob/user)
+		..()
+		if (on)
+			icon_state = "POCteevee-on"
+		else
+			icon_state = "POCteevee"
 
 /datum/directed_broadcast/testing
 	id = "demo"
+	group_messages = TRUE
 	//Mixing entries like this would be bad form I feel, but to demonstrate that it functions
 	messages = list(\
 		list("This is the first message for this test broadcast. It has a longer delay than default.", 9 SECONDS),\
@@ -225,3 +273,4 @@ If you're instead looking for something with branching in the messaging, I think
 
 	broadcast_cat = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 #undef LOOP_INFINITELY
+#undef DEFAULT_BROADCAST_MESSAGE_TIME
