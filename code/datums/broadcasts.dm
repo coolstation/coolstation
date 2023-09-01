@@ -363,6 +363,22 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 
 	broadcast_channel = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
+/datum/directed_broadcast/hotdogs
+	id = "hotdog_ad"
+	priority = 2
+	speakers = list("Frank" = list("Frank", "#d3374c"))
+	messages = list(\
+		list("Hey...", 6 SECONDS, "Frank", "hotdogs-A"),\
+		list("Uh, d'you like hotdogs?", 6 SECONDS, "Frank", "hotdogs-A"),\
+		list("If you like hot dogs come to the mall, we're a restaurant that specializes in hot dogs.", 10 SECONDS, "Frank", "hotdogs-A"),\
+		list("It's pretty much all we got. You'd need to bring your own soda or something to drink.", 10 SECONDS, "Frank", "hotdogs-A"),\
+		list("You're not really supposed to do that either but it's whatever.", 7 SECONDS, "Frank", "hotdogs-A"),\
+		list("Come down and get some dogs in you.", 8 SECONDS, "Frank", "hotdogs-B"),\
+		list("Probably safe!", 4 SECONDS, "Frank", "hotdogs-B"),\
+	)
+
+	broadcast_channel = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
+
 /datum/directed_broadcast/emergency
 	var/station_name
 	var/emergency_situation
