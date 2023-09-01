@@ -2113,6 +2113,8 @@ var/list/fun_images = list()
 			C.cmd_admin_delete(A)
 		if("Copy Here")
 			semi_deep_copy(A, src.loc)
+		if("Make a Radio")
+			C.cmd_make_radio(A)
 		if("Ship to Cargo")
 			C.cmd_admin_ship_movable_to_cargo(A)
 
