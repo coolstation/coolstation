@@ -22,9 +22,9 @@ To start a broadcast, call broadcast_controls.broadcast_start() with either a br
 
 
 
-A broadcast is an id, a broadcast_cat an optional list of speakers, and a list of messages
+A broadcast is an id, a broadcast_channel an optional list of speakers, and a list of messages
 
-The broadcast_cat is the category in which it will try to find receivers.
+The broadcast_channel is the category in which it will try to find receivers.
 
 The speakers list should be formatted
 	list("id1" = list("Name One", maptext colour code), "id2" = list("Name Two", maptext colour code))
@@ -49,7 +49,7 @@ The message list can just be a list of strings, or a list of lists each containi
 
 
 To get an object to *listen* to a broadcast, use the SUBSCRIBE_BROADCAST(x, value) macro
-	x is the broadcast_cat we're listening in on
+	x is the broadcast_channel we're listening in on
 
 	value should be either a dmi to use for video overlays if using, or the number 1 if not (the latter for internal consistency)
 
@@ -69,22 +69,32 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 	//You can omit the list and just have messages (as in the second and third messages), in which case a default time will be used
 	//Messages need to be in the order they're to be broadcast in
 
+	///ID of this broadcast
+	var/id
+	///I guess you can queue up broadcasts now per channel, and higher priority (but within the same priority it's first come first serve)
+	var/priority = 1
+
 	///nested list of messages and the time that they should stay up for.
 	var/list/list/messages = list()
 	///a list of speaker names (optional) and their associated colours.
 	var/list/speakers = list()
 
-	var/index = 1
-	var/id
+	///index of the message list
+	var/index = 0 //OOB technically but gets incremented before reading
+
+
 	///The amount of times this broadcast will loop (the broadcast will stop ticking once it reaches 0, but there's no 0th loop)
 	var/loops_remaining = LOOP_INFINITELY
-	///Toggle to clear the receiving objects list after the broadcast stops. Probably want this to be TRUE to clean up references, but in case you've got a broadca
-	var/clear_receivers_after_loop = TRUE
-	var/dispose_on_end
+	///Delete broadcast datum on end :3
+	var/dispose_on_end = FALSE
+	///If a priority broadcast is playing instead of this one,
+	///TRUE will advance the message index (so messages will be skipped but timing remains intact) while FALSE will effectively pause the broadcast.
+	var/progress_when_silent = TRUE
+
 	var/default_maptext_colour = "#C2BEEE"
 
 	///tracking category of which all members receive the broadcast, which would probably be the preferred
-	var/broadcast_cat = null
+	var/broadcast_channel = null
 	///Toggle to broadcast with "received_broadcast" message group, causing them to collapse in chat. Less spammy, but can't be read back in chat well.
 	var/group_messages = FALSE
 
@@ -100,10 +110,15 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		..()
 
 
-/datum/directed_broadcast/proc/process()
+//silent is when when the broadcast is active, but another
+/datum/directed_broadcast/proc/process(silent = FALSE)
 	if (GET_COOLDOWN(src, "next_broadcast"))
 		return
 	if (!length(messages)) //what
+		return
+
+	//pause
+	if (silent && !progress_when_silent)
 		return
 
 	//advance index
@@ -115,6 +130,8 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 
 		if (loops_remaining == 0)
 			broadcast_controls.broadcast_stop(src)
+			if (dispose_on_end)
+				qdel(src)
 		//	SEND_SIGNAL(broadcast, COMSIG_BROADCAST_ENDED)
 			return
 		//else
@@ -142,10 +159,15 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 					video_frame = current_entry[4]//video icon_state
 		current_entry = current_entry[1] //string
 
+	//pause but with the index advanced
+	if (silent)
+		ON_COOLDOWN(src, "next_broadcast", delay2use)
+		return
+
 	var/image/chat_maptext/receiver_output
 
 	//chuck everything we'll transmit to on a pile
-	var/list/total_shit_broadcasting_to = by_cat[broadcast_cat]
+	var/list/total_shit_broadcasting_to = by_cat[broadcast_channel]
 
 	for (var/atom/movable/receiver in total_shit_broadcasting_to) //not skipping the type check just in case
 		if (receiver.disposed)
@@ -165,7 +187,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		receiver.audible_message("<span class='subtle'><span class='game say'><span class='name'>[receiver]</span> receives:</span> \"[islist(current_speaker) ? current_speaker[1]+": " : null][current_entry]\"</span>", 2, assoc_maptext = receiver_output, group = (group_messages ? "received_broadcast" : ""))
 
 		if (!isnull(video_frame))
-			var/which_dmi = by_cat[broadcast_cat][receiver]
+			var/which_dmi = by_cat[broadcast_channel][receiver]
 			if (which_dmi != 1) //receiver has specified a dmi
 				receiver.UpdateOverlays(image(which_dmi,video_frame),BROADCAST_VIDEO_KEY)
 	ON_COOLDOWN(src, "next_broadcast", delay2use)
@@ -203,7 +225,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 			on = TRUE
 			icon_state = "transmitter-on"
 		. = ..()
-
+/*
 /obj/shitty_radio/finite_demo
 	name = "shittier test radio"
 	desc = "god damn this fucking blight on the station (use a multitool to start this)"
@@ -213,6 +235,27 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 	attackby(obj/item/I, mob/user)
 		if (istool(I, TOOL_PULSING))
 			broadcast_controls.broadcast_start("demo_finite")
+		..()
+*/
+/obj/shitty_radio/queueing_and_interruption_demo //Testing for proper queue behaviour and priority sorting
+	name = "queue test radio"
+	desc = "Wat een verkakt stuk schroot (use a multitool to start this)"
+	color = "#54B771"
+	station = TR_CAT_FINITE_BROADCAST_RECEIVERS
+	var/ignore = FALSE
+
+	attackby(obj/item/I, mob/user)
+		if (istool(I, TOOL_PULSING) && !ignore)
+			ignore = TRUE
+			broadcast_controls.broadcast_start(new /datum/directed_broadcast/queue_test_series/one)
+			broadcast_controls.broadcast_start(new /datum/directed_broadcast/queue_test_series/two)
+			broadcast_controls.broadcast_start(new /datum/directed_broadcast/queue_test_series/three)
+			broadcast_controls.broadcast_start(new /datum/directed_broadcast/queue_test_series/four)
+			SPAWN_DBG(5 SECONDS) //
+				broadcast_controls.broadcast_start(new /datum/directed_broadcast/queue_test_series/priority)
+				broadcast_controls.broadcast_start(new /datum/directed_broadcast/queue_test_series/highpriority)
+				ignore = FALSE
+
 		..()
 
 /obj/shitty_radio/shitty_tv
@@ -243,8 +286,8 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		"After this message, the broadcast should loop.",\
 	)
 
-	broadcast_cat = TR_CAT_RADIO_BROADCAST_RECEIVERS
-
+	broadcast_channel = TR_CAT_RADIO_BROADCAST_RECEIVERS
+/*
 /datum/directed_broadcast/testing_finite
 	id = "demo_finite"
 	loops_remaining = 2
@@ -256,7 +299,41 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		"This is the last message in the loop.",\
 	)
 
-	broadcast_cat = TR_CAT_FINITE_BROADCAST_RECEIVERS
+	broadcast_channel = TR_CAT_FINITE_BROADCAST_RECEIVERS
+*/
+/datum/directed_broadcast/queue_test_series
+	id = "Q"
+	loops_remaining = 1
+	priority = 1
+	broadcast_channel = TR_CAT_FINITE_BROADCAST_RECEIVERS
+	progress_when_silent = FALSE
+	dispose_on_end = TRUE
+/datum/directed_broadcast/queue_test_series/one
+	id = "Q1"
+	default_maptext_colour = "#FF3333"
+	messages = list("First in series.")
+/datum/directed_broadcast/queue_test_series/two
+	id = "Q2"
+	default_maptext_colour = "#AAAA33"
+	messages = list("Second in series.")
+/datum/directed_broadcast/queue_test_series/three
+	id = "Q3"
+	default_maptext_colour = "#33FF33"
+	messages = list("Third in series.")
+/datum/directed_broadcast/queue_test_series/four
+	id = "Q4"
+	default_maptext_colour = "#33AAAA"
+	messages = list("Fourth in series.")
+/datum/directed_broadcast/queue_test_series/priority
+	id = "Q5"
+	default_maptext_colour = "#aaaaaa" //;3
+	priority = 2
+	messages = list("Lower priority interrupt.")
+/datum/directed_broadcast/queue_test_series/highpriority
+	id = "Q6"
+	default_maptext_colour = "#AAAAAA"
+	priority = 3
+	messages = list("High priority interrupt.")
 
 /datum/directed_broadcast/testing_teevee
 	id = "demo_teevee"
@@ -271,7 +348,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		list("*laugh track*", 4 SECONDS, null, "test-D"),\
 	)//test-D doesn't exist, which is intentional for testing here
 
-	broadcast_cat = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
+	broadcast_channel = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
 /datum/directed_broadcast/emergency
 	var/station_name
@@ -297,10 +374,12 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 			)
 
 	id = "emergency"
+	priority = 10 //pulled out of ass, so long as nothing else goes over this it'll be alright :)
+	progress_when_silent = FALSE //just in case :(
 	//speakers = list("hank" = list("Hank", "#A2DD77"), "rachelle" = list("Rachelle", "#DDA277"))
 	messages = list("Please stand by for an emergency broadcast.", 6 SECONDS, null, "emergency-A")
 
-	broadcast_cat = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
+	broadcast_channel = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
 
 #undef LOOP_INFINITELY
