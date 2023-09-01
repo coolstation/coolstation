@@ -350,6 +350,18 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 
 	broadcast_channel = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
+/datum/directed_broadcast/cigarettes
+	id = "cigarette_ad"
+	priority = 2
+	speakers = list("hank" = list("Thank", "#A2DD77"), "rachelle" = list("Grachelle", "#DDA277"))
+	messages = list(\
+		list("Smoke...", 6 SECONDS, "hank", "cigarettes-A"),\
+		list("Smoke cigarettes today!", 6 SECONDS, "hank", "cigarettes-A"),\
+		list("Oh, they're so smooth! I love smoking cigarettes!", 6 SECONDS, "rachelle", "cigarettes-B"),\
+	)
+
+	broadcast_channel = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
+
 /datum/directed_broadcast/emergency
 	var/station_name
 	var/emergency_situation
@@ -376,7 +388,6 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 	id = "emergency"
 	priority = 10 //pulled out of ass, so long as nothing else goes over this it'll be alright :)
 	progress_when_silent = FALSE //just in case :(
-	//speakers = list("hank" = list("Hank", "#A2DD77"), "rachelle" = list("Rachelle", "#DDA277"))
 	messages = list("Please stand by for an emergency broadcast.", 6 SECONDS, null, "emergency-A")
 
 	broadcast_channel = TR_CAT_TEEVEE_BROADCAST_RECEIVERS

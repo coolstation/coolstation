@@ -115,6 +115,9 @@
 
 			src.rng_stun_rate = 30 //%
 
+			if(prob(3))
+				broadcast_controls.broadcast_start(new /datum/directed_broadcast/cigarettes, 1, 1)
+
 			hit_type = DAMAGE_BURN
 
 	proc/put_out(var/mob/user as mob, var/message as text)
