@@ -1864,6 +1864,19 @@
 			..()
 
 	attackby(obj/item/W as obj, mob/user as mob)
+		if (istype(W, /obj/item/reagent_containers/food/snacks/ingredient/mud))
+			if(src.stage)
+				boutput(user, "<span class='alert'>It can't hold any more!</span>")
+				return
+			src.stage = 2 //nothing butt poo
+			src.icon_state = "taco-poo"
+			src.name = "[W.name] taco"
+			src.heal_amt--
+			desc = "A poo taco. Pretty shitty, really."
+			boutput(user, "<span class='notice'>You add [W] to [src]! That's fucking awful!</span>")
+			food_effects += W:food_effects
+			qdel (W)
+
 		if (istype(W, /obj/item/reagent_containers/food/snacks/ingredient/meat))
 			if(src.stage)
 				boutput(user, "<span class='alert'>It can't hold any more!</span>")
