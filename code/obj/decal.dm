@@ -292,12 +292,13 @@ obj/decal/fakeobjects
 	icon_state = "radar"
 	density = 1
 
-obj/decal/fakeobjects/cargopad
+/obj/decal/fakeobjects/cargopad
 	name = "Cargo Pad"
 	desc = "Used to recieve objects transported by a Cargo Transporter."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "cargopad"
 	anchored = 1
+	plane = PLANE_FLOOR
 
 /obj/decal/fakeobjects/robot
 	name = "Inactive Robot"
@@ -342,6 +343,8 @@ obj/decal/fakeobjects/teleport_pad
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-broken"
 	anchored = 1
+	layer = EFFECTS_LAYER_UNDER_1
+	plane = PLANE_NOSHADOW_ABOVE
 
 /obj/decal/fakeobjects/lightbulb_broken
 	name = "shattered light bulb"
@@ -349,6 +352,8 @@ obj/decal/fakeobjects/teleport_pad
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "bulb-broken"
 	anchored = 1
+	layer = EFFECTS_LAYER_UNDER_1
+	plane = PLANE_NOSHADOW_ABOVE
 
 /obj/decal/fakeobjects/airmonitor_broken
 	name = "broken air monitor"
@@ -384,6 +389,8 @@ obj/decal/fakeobjects/teleport_pad
 	icon = 'icons/obj/atmospherics/pipes/regular_pipe.dmi'
 	icon_state = "intact"
 	anchored = 1
+	layer = PIPE_LAYER
+	plane = PLANE_NOSHADOW_BELOW
 
 	heat
 		icon = 'icons/obj/atmospherics/pipes/heat_pipe.dmi'

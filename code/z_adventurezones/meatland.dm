@@ -1669,3 +1669,4 @@ var/list/meatland_fx_sounds = list('sound/ambience/spooky/Meatzone_Squishy.ogg',
 	anchored = 1
 	opacity = 0
 	density = 0
+	plane = PLANE_NOSHADOW_BELOW

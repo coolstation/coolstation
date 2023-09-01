@@ -94,7 +94,7 @@
 	desc = "For me!?"
 	name = "gift"
 	icon = 'icons/obj/items/items.dmi'
-	icon_state = "gift2-p"
+	icon_state = "gift2-1" //was "gift2-p"
 	item_state = "gift"
 	var/size = 3.0
 	var/obj/item/gift = null

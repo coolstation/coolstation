@@ -275,6 +275,7 @@ SYNDICATE DRONE FACTORY AREAS
 	anchored = 1
 	opacity = 0
 	layer = OBJ_LAYER
+	plane = PLANE_NOSHADOW_BELOW
 	icon = 'icons/misc/exploration.dmi'
 	icon_state = "snowbits"
 
