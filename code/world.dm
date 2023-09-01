@@ -677,6 +677,7 @@ var/f_color_selector_handler/F_Color_Selector
 	Z_LOG_DEBUG("World/Init", "Setting up a test transmission...")
 	broadcast_controls.broadcast_start(new /datum/directed_broadcast/testing)
 	new /datum/directed_broadcast/testing_finite //this gets tracked it should be fine :)
+	broadcast_controls.broadcast_start(new /datum/directed_broadcast/testing_teevee)
 
 #ifdef TWITCH_BOT_ALLOWED
 	for (var/client/C)
