@@ -339,15 +339,16 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 	id = "demo_teevee"
 	speakers = list("hank" = list("Hank", "#A2DD77"), "rachelle" = list("Rachelle", "#DDA277"))
 	messages = list(\
-		list("Coolstatio...", 6 SECONDS, "hank", "test-A"),\
-		list("The universe where you can say 'penis' on TV.", 6 SECONDS, "hank", "test-A"),\
-		list("Oh Hank, isn't it wonderful?", 4 SECONDS, "rachelle", "test-B"),\
-		list("I love saying words like that.", 5 SECONDS, "rachelle", "test-B"),\
-		list("We interrupt this programming for an important announcement:", 7 SECONDS, null, "test-C"),\
-		list("For the owner of the golden pod: I smashed in your windshield. Fuck you.", 7 SECONDS, null, "test-C"),\
-		list("*laugh track*", 4 SECONDS, null, "test-D"),\
+		list("Coolstatio...", 10 SECONDS, "hank", "test-A"),\
+		list("The universe where you can say 'penis' on TV.", 10 SECONDS, "hank", "test-A"),\
+		list("Oh Hank, isn't it wonderful?", 8 SECONDS, "rachelle", "test-B"),\
+		list("I love saying words like that.", 8 SECONDS, "rachelle", "test-B"),\
+		list("We interrupt this programming for an important announcement:", 13 SECONDS, null, "test-C"),\
+		list("For the owner of the golden pod: I smashed in your windshield. Fuck you.", 10 SECONDS, null, "test-C"),\
+		list("*laugh track*", 10 SECONDS, null, "test-D"),\
+		list("The following program is brought to you by Cigarettes.", 10 SECONDS, null, "cigarettes-B"),\
 	)//test-D doesn't exist, which is intentional for testing here
-
+	group_messages = TRUE
 	broadcast_channel = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
 /datum/directed_broadcast/cigarettes
@@ -378,11 +379,11 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		messages = list(\
 			list("Please stand by for an emergency broadcast.", 6 SECONDS, null, "emergency-A"),\
 			list("This is not a test. Standby for emergency information.", 6 SECONDS, null, "emergency-A"),\
-			list("An emergency alert has been issued for [src.station_name].", 4 SECONDS, null, "emergency-B"),\
+			list("An emergency alert has been issued for [src.station_name].", 5 SECONDS, null, "emergency-B"),\
 			list("Nanotrasen Command has issued an alert for a [src.emergency_situation].", 5 SECONDS, null, "emergency-B"),\
 			list("Reports indicate potential hazards in: [src.eta]", 5 SECONDS, null, "emergency-B"),\
 			list("[src.additional_info]", 7 SECONDS, null, "emergency-B"),\
-			list("All personnel report to stations or shelter as ordered. This message will repeat.", 4 SECONDS, null, "emergency-A"),\
+			list("All personnel report to stations or shelter as ordered. This message will repeat.", 5 SECONDS, null, "emergency-A"),\
 			)
 
 	id = "emergency"
