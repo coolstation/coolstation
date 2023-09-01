@@ -272,5 +272,36 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 	)//test-D doesn't exist, which is intentional for testing here
 
 	broadcast_cat = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
+
+/datum/directed_broadcast/emergency
+	var/station_name
+	var/emergency_situation
+	var/eta
+	var/additional_info
+
+	New(var/Station_Name, var/Emergency_Situation, var/Eta, var/Additional_Info)
+		..()
+		src.station_name = Station_Name ? Station_Name : "NT13"
+		src.emergency_situation = Emergency_Situation ? Emergency_Situation : "GENERAL EMERGENCY"
+		src.eta = Eta ? Eta : "IMMEDIATE"
+		src.additional_info = Additional_Info ? Additional_Info : "Seek additional information from local chain of command."
+
+		messages = list(\
+			list("Please stand by for an emergency broadcast.", 6 SECONDS, null, "emergency-A"),\
+			list("This is not a test. Standby for emergency information.", 6 SECONDS, null, "emergency-A"),\
+			list("An emergency alert has been issued for [src.station_name].", 4 SECONDS, null, "emergency-B"),\
+			list("Nanotrasen Command has issued an alert for a [src.emergency_situation].", 5 SECONDS, null, "emergency-B"),\
+			list("Reports indicate potential hazards in: [src.eta]", 5 SECONDS, null, "emergency-B"),\
+			list("[src.additional_info]", 7 SECONDS, null, "emergency-B"),\
+			list("All personnel report to stations or shelter as ordered. This message will repeat.", 4 SECONDS, null, "emergency-A"),\
+			)
+
+	id = "emergency"
+	//speakers = list("hank" = list("Hank", "#A2DD77"), "rachelle" = list("Rachelle", "#DDA277"))
+	messages = list("Please stand by for an emergency broadcast.", 6 SECONDS, null, "emergency-A")
+
+	broadcast_cat = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
+
+
 #undef LOOP_INFINITELY
 #undef DEFAULT_BROADCAST_MESSAGE_TIME
