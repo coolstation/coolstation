@@ -11,7 +11,7 @@
 	icon = 'icons/obj/foodNdrink/food_dessert.dmi'
 	icon_state = "cake_batter"
 	inhand_image_icon = 'icons/mob/inhand/hand_food.dmi'
-	amount = 12
+	amount = 10
 	heal_amt = 1
 	var/obj/item/reagent_containers/custom_item
 	initial_volume = 50
@@ -33,7 +33,7 @@
 	icon = 'icons/obj/foodNdrink/food_dessert.dmi'
 	icon_state = "cake1-base_custom"
 	inhand_image_icon = 'icons/mob/inhand/hand_food.dmi'
-	amount = 0
+	amount = 10
 	heal_amt = 2
 	use_bite_mask = 0
 	flags = FPRINT | TABLEPASS | NOSPLASH
@@ -520,6 +520,7 @@
 				if (user.traitHolder.hasTrait("greedy_beast"))
 					boutput(user, "You just shove [src] into your face and take a bite.")
 					user.visible_message("<b>[user]</b> takes a bite out of [src] like some kind of caveman.")
+					..()
 				else
 					user.show_text("You can't just cram that in your mouth, you greedy beast!","red")
 					user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
@@ -631,7 +632,7 @@
 	name = "fruitcake"
 	desc = "The most disgusting dessert ever devised. Legend says there's only one of these in the galaxy, passed from location to location by vengeful deities."
 	icon_state = "cake_fruit"
-	amount = 12
+	amount = 10
 	heal_amt = 3
 	initial_volume = 50
 	initial_reagents = "yuck"

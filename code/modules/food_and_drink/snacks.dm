@@ -210,6 +210,7 @@
 				if (user.traitHolder.hasTrait("greedy_beast"))
 					boutput(user, "You bite at the edge of the whole pizza, probably ruining somebody's day.")
 					user.visible_message("<b>[user]</b> takes a bite out of [src], still completely unsliced.")
+					..()
 				else
 					boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
 					user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
@@ -231,6 +232,7 @@
 			if (user.traitHolder.hasTrait("greedy_beast"))
 				boutput(user, "You bite at the edge of the whole pizza, probably ruining somebody's day.")
 				user.visible_message("<b>[user]</b> takes a bite out of the [src], still completely unsliced.")
+				..()
 			else
 				boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
 				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
@@ -2459,6 +2461,7 @@
 				if (user.traitHolder.hasTrait("greedy_beast"))
 					boutput(user, "It tastes better in long form, anyway.")
 					user.visible_message("<b>[user]</b> takes a bite out of the unsliced [src].")
+					..()
 				else
 					boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
 					user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
@@ -2582,6 +2585,7 @@
 			if (user.traitHolder.hasTrait("greedy_beast"))
 				boutput(user, "It tastes better with the skin on, anyway.")
 				user.visible_message("<b>[user]</b> takes a bite out of [src], still wrapped.")
+				..()
 			else
 				boutput(user, "<span class='alert'>You need to unwrap it first, you greedy beast!</span>")
 				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")

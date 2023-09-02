@@ -577,6 +577,7 @@
 			if (user.traitHolder.hasTrait("greedy_beast"))
 				boutput(user, "It's totally just fine, without tomato or cheese or baking.")
 				user.visible_message("<b>[user]</b> takes a bite out of [src]. Woof.")
+				..()
 			else
 				boutput(user, "<span class='alert'>You need to add tomatoes, you greedy beast!</span>")
 				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
@@ -607,6 +608,7 @@
 			if (user.traitHolder.hasTrait("greedy_beast"))
 				boutput(user, "It's totally just fine without cheese.")
 				user.visible_message("<b>[user]</b> takes a bite out of [src]. Eugh.")
+				..()
 			else
 				boutput(user, "<span class='alert'>You need to add cheese, you greedy beast!</span>")
 				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
@@ -669,6 +671,7 @@
 			if (user.traitHolder.hasTrait("greedy_beast"))
 				boutput(user, "It tastes better raw, anyway. Maybe.")
 				user.visible_message("<b>[user]</b> takes a bite out of [src]. Shameful.")
+				..()
 			else
 				boutput(user, "<span class='alert'>You need to bake it, you greedy beast!</span>")
 				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")

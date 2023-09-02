@@ -141,6 +141,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/candy)
 			if (user.traitHolder.hasTrait("greedy_beast"))
 				boutput(user, "It tastes better with the skin on, anyway.")
 				user.visible_message("<b>[user]</b> takes a bite out of [src], still wrapped.")
+				..()
 			else
 				boutput(user, "<span class='alert'>You need to unwrap them first, you greedy beast!</span>")
 				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
