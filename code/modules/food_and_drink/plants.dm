@@ -50,7 +50,10 @@
 	attack(mob/M as mob, mob/user as mob, def_zone)
 		if (src.edible == 0)
 			if (user == M)
-				boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
+				if (user.traitHolder.hasTrait("greedy_beast"))
+					boutput(user, "<span class='alert'>Even you have to slice this thing! Of course, it's less about manners and more about physics.</span>")
+				else
+					boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
 				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
 			else
 				user.visible_message("<span class='alert'><b>[user]</b> futilely attempts to shove [src] into [M]'s mouth!</span>")

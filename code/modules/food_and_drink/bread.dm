@@ -16,9 +16,13 @@
 
 	attack(mob/M as mob, mob/user as mob, def_zone)
 		if (user == M)
-			boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
-			user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
-			return
+			if(user.traitHolder.hasTrait("greedy_beast"))
+				boutput(user, "You take a bite out of the side of the bread, the way you were always meant to.")
+				user.visible_message("<b>[user]</b> just takes a big gross bite out of [src]!")
+			else
+				boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
+				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
+				return
 		else
 			user.visible_message("<span class='alert'><b>[user]</b> futilely attempts to shove [src] into [M]'s mouth!</span>")
 			return

@@ -138,9 +138,13 @@ ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/candy)
 
 	attack(mob/M as mob, mob/user as mob, def_zone)
 		if (user == M)
-			boutput(user, "<span class='alert'>You need to unwrap them first, you greedy beast!</span>")
-			user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
-			return
+			if (user.traitHolder.hasTrait("greedy_beast"))
+				boutput(user, "It tastes better with the skin on, anyway.")
+				user.visible_message("<b>[user]</b> takes a bite out of [src], still wrapped.")
+			else
+				boutput(user, "<span class='alert'>You need to unwrap them first, you greedy beast!</span>")
+				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
+				return
 		else
 			user.visible_message("<span class='alert'><b>[user]</b> futilely attempts to shove [src] into [M]'s mouth!</span>")
 			return

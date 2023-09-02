@@ -517,9 +517,13 @@
 	attack(mob/M as mob, mob/user as mob, def_zone) //nom nom nom
 		if(!src.sliced)
 			if(user == M)
-				user.show_text("You can't just cram that in your mouth, you greedy beast!","red")
-				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
-				return
+				if (user.traitHolder.hasTrait("greedy_beast"))
+					boutput(user, "You just shove [src] into your face and take a bite.")
+					user.visible_message("<b>[user]</b> takes a bite out of [src] like some kind of caveman.")
+				else
+					user.show_text("You can't just cram that in your mouth, you greedy beast!","red")
+					user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
+					return
 			else
 				user.visible_message("<span class='alert'><b>[user]</b> futilely attempts to shove [src] into [M]'s mouth!</span>")
 				return
