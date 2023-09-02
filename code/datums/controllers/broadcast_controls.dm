@@ -37,6 +37,7 @@
 		broadcast.index = 0 //OOB technically but gets incremented before reading
 
 	//priority sorting
+	var/in_front_somewhere = FALSE
 	for (var/a_channel as anything in broadcast.broadcast_channels)
 		var/queue_index = 1
 		if (!active_broadcasts[a_channel])//first, make list
@@ -51,8 +52,10 @@
 					break
 				queue_index++
 			active_broadcasts[a_channel].Insert(queue_index, broadcast)
+		if (queue_index == 1)
+			in_front_somewhere = TRUE
 
-	if (process_immediately && queue_index == 1) //send out a message as soon as possible but only if it'd do something worthwhile
+	if (process_immediately && in_front_somewhere) //send out a message as soon as possible but only if it'd do something worthwhile
 		broadcast.process()
 	//SEND_SIGNAL(broadcast, COMSIG_BROADCAST_STARTED)
 
