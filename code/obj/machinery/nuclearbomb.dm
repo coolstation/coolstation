@@ -155,6 +155,9 @@
 								src.add_simple_light("nuke", list(255, 127, 127, 127))
 								command_alert("\A [src] has been armed in [A]. It will detonate in [src.get_countdown_timer()] minutes. All personnel must report to [A] to disarm the bomb immediately.", "Nuclear Weapon Detected")
 								world << sound('sound/machines/bomb_planted.ogg')
+								//This is the most straightforward spot to do this, but yes it is silly that the bomb itself is sending out the emergency alert
+								var/datum/directed_broadcast/emergency/broadcast = new(station_name, prob(95) ? "Nuclear Detonation" : "Open-Source Aggression", "Ten Minutes")
+								broadcast_controls.broadcast_start(broadcast, TRUE, -1, 1)
 								nuclear_countdown = new()
 								for (var/client/C in clients)
 									nuclear_countdown.add_client(C)	// New Hud
@@ -334,6 +337,7 @@
 				NUKEMODE.the_bomb = null
 				logTheThing("station", null, null, "The nuclear bomb was destroyed at [log_loc(src)].")
 				message_admins("The nuclear bomb was destroyed at [log_loc(src)].")
+				broadcast_controls.cease_all_broadcasting()
 			qdel(src)
 
 	proc/explode()
