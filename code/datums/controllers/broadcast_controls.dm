@@ -56,7 +56,3 @@
 	if (!(broadcast in active_broadcasts[broadcast.broadcast_channel])) return
 	active_broadcasts[broadcast.broadcast_channel] -= broadcast
 	//SEND_SIGNAL(broadcast, COMSIG_BROADCAST_STOPPED)
-
-///Delete the entire active broadcasts list, not intended for mid-round use
-/datum/broadcast_controller/proc/cease_all_broadcasting() //More "the station blew up lets hide the fact most of the TVs are still there"
-	active_broadcasts = list()

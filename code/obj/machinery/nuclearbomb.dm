@@ -337,7 +337,8 @@
 				NUKEMODE.the_bomb = null
 				logTheThing("station", null, null, "The nuclear bomb was destroyed at [log_loc(src)].")
 				message_admins("The nuclear bomb was destroyed at [log_loc(src)].")
-				broadcast_controls.cease_all_broadcasting()
+				//brick the broadcast controller so radios stop yapping post-round, they're supposed to be blown up
+				broadcast_controls.active_broadcasts = list()
 			qdel(src)
 
 	proc/explode()
