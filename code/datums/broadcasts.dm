@@ -22,9 +22,9 @@ To start a broadcast, call broadcast_controls.broadcast_start() with either a br
 
 
 
-A broadcast is an id, a broadcast_channel an optional list of speakers, and a list of messages
+A broadcast is an id, a broadcast_channels an optional list of speakers, and a list of messages
 
-The broadcast_channel is the category in which it will try to find receivers.
+The broadcast_channels is the category in which it will try to find receivers.
 
 The speakers list should be formatted
 	list("id1" = list("Name One", maptext colour code), "id2" = list("Name Two", maptext colour code))
@@ -49,7 +49,7 @@ The message list can just be a list of strings, or a list of lists each containi
 
 
 To get an object to *listen* to a broadcast, use the SUBSCRIBE_BROADCAST(x, value) macro
-	x is the broadcast_channel we're listening in on
+	x is the broadcast_channels we're listening in on
 
 	value should be either a dmi to use for video overlays if using, or the number 1 if not (the latter for internal consistency)
 
@@ -64,17 +64,12 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 /datum/directed_broadcast
 	var/list/cooldowns //needed for the ON_COOLDOWN macro
 
-
-	//Format: list(list("yer_message_here", 5 SECONDS), "a second message", "message 3" , list("This message is number 4", 10 SECONDS))
-	//You can omit the list and just have messages (as in the second and third messages), in which case a default time will be used
-	//Messages need to be in the order they're to be broadcast in
-
 	///ID of this broadcast
 	var/id
 	///I guess you can queue up broadcasts now per channel, and higher priority (but within the same priority it's first come first serve)
 	var/priority = 1
 
-	///nested list of messages and the time that they should stay up for.
+	///nested list of messages and their settings, see above
 	var/list/list/messages = list()
 	///a list of speaker names (optional) and their associated colours.
 	var/list/speakers = list()
@@ -93,13 +88,16 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 
 	var/default_maptext_colour = "#C2BEEE"
 
-	///tracking category of which all members receive the broadcast, which would probably be the preferred
-	var/broadcast_channel = null
+	///tracking category of which all members receive the broadcast, can be a list of multiple
+	var/list/broadcast_channels = null
 	///Toggle to broadcast with "received_broadcast" message group, causing them to collapse in chat. Less spammy, but can't be read back in chat well.
 	var/group_messages = FALSE
 
 	New()
 		..()
+		//Bit of QOL and code brevity
+		if (!islist(broadcast_channels) && !isnull(broadcast_channels))
+			broadcast_channels = list(broadcast_channels)
 		START_TRACKING
 
 
@@ -166,30 +164,32 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 
 	var/image/chat_maptext/receiver_output
 
-	//chuck everything we'll transmit to on a pile
-	var/list/total_shit_broadcasting_to = by_cat[broadcast_channel]
+	//go through every channel in turn
+	for(var/this_channel in src.broadcast_channels)
+		var/list/total_shit_broadcasting_to = by_cat[this_channel]
 
-	for (var/atom/movable/receiver in total_shit_broadcasting_to) //not skipping the type check just in case
-		if (receiver.disposed)
-			CRASH("Qdeled object ([receiver]) still subscribed to broadcast.")//That thing isn't gonna GC now is it? Nothing we can do in here though
-		if (!isturf(receiver.loc)) continue //can't maptext inside things I think?
-		if (!receiver.chat_text)
-			receiver.chat_text = new
-			receiver.vis_contents += receiver.chat_text
+		for (var/atom/movable/receiver in total_shit_broadcasting_to) //not skipping the type check just in case
+			if (receiver.disposed)
+				CRASH("Qdeled object ([receiver]) still subscribed to broadcast.")//That thing isn't gonna GC now is it? Nothing we can do in here though
+			if (!isturf(receiver.loc)) continue //can't maptext inside things I think?
+			if (!receiver.chat_text)
+				receiver.chat_text = new
+				receiver.vis_contents += receiver.chat_text
+			//build and send maptext
+			receiver_output = make_chat_maptext(receiver, current_entry, "color: [islist(current_speaker) ? current_speaker[2] : default_maptext_colour]", 200, FALSE, delay2use - 0.5 SECONDS)
+			if(receiver_output && length(receiver.chat_text.lines))
+				receiver_output.measure() //This proc asks a client and then doesn't use it?
+				for(var/image/chat_maptext/I in receiver.chat_text.lines) //why is this a manual operation
+					if(I != receiver_output)
+						I.bump_up(receiver_output.measured_height)
 
-		receiver_output = make_chat_maptext(receiver, current_entry, "color: [islist(current_speaker) ? current_speaker[2] : default_maptext_colour]", 200, FALSE, delay2use - 0.5 SECONDS)
-		if(receiver_output && length(receiver.chat_text.lines))
-			receiver_output.measure() //This proc asks a client and then doesn't use it?
-			for(var/image/chat_maptext/I in receiver.chat_text.lines)
-				if(I != receiver_output)
-					I.bump_up(receiver_output.measured_height)
-		//chucking these all in the same message group for now cause the radios are quite capable of spamming chat to shit
-		receiver.audible_message("<span class='subtle'><span class='game say'><span class='name'>[receiver]</span> receives:</span> \"[islist(current_speaker) ? current_speaker[1]+": " : null][current_entry]\"</span>", 2, assoc_maptext = receiver_output, group = (group_messages ? "received_broadcast" : ""))
+			//chucking these all in the same message group for now cause the radios are quite capable of spamming chat to shit
+			receiver.audible_message("<span class='subtle'><span class='game say'><span class='name'>[receiver]</span> receives:</span> \"[islist(current_speaker) ? current_speaker[1]+": " : null][current_entry]\"</span>", 2, assoc_maptext = receiver_output, group = (group_messages ? "received_broadcast" : ""))
 
-		if (!isnull(video_frame))
-			var/which_dmi = by_cat[broadcast_channel][receiver]
-			if (which_dmi != 1) //receiver has specified a dmi
-				receiver.UpdateOverlays(image(which_dmi,video_frame),BROADCAST_VIDEO_KEY)
+			if (!isnull(video_frame))
+				var/which_dmi = by_cat[this_channel][receiver]
+				if (which_dmi != 1) //receiver has specified a dmi
+					receiver.UpdateOverlays(image(which_dmi,video_frame),BROADCAST_VIDEO_KEY)
 	ON_COOLDOWN(src, "next_broadcast", delay2use)
 
 
@@ -286,7 +286,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		"After this message, the broadcast should loop.",\
 	)
 
-	broadcast_channel = TR_CAT_RADIO_BROADCAST_RECEIVERS
+	broadcast_channels = TR_CAT_RADIO_BROADCAST_RECEIVERS
 /*
 /datum/directed_broadcast/testing_finite
 	id = "demo_finite"
@@ -299,13 +299,13 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		"This is the last message in the loop.",\
 	)
 
-	broadcast_channel = TR_CAT_FINITE_BROADCAST_RECEIVERS
+	broadcast_channels = TR_CAT_FINITE_BROADCAST_RECEIVERS
 */
 /datum/directed_broadcast/queue_test_series
 	id = "Q"
 	loops_remaining = 1
 	priority = 1
-	broadcast_channel = TR_CAT_FINITE_BROADCAST_RECEIVERS
+	broadcast_channels = TR_CAT_FINITE_BROADCAST_RECEIVERS
 	progress_when_silent = FALSE
 	dispose_on_end = TRUE
 /datum/directed_broadcast/queue_test_series/one
@@ -349,7 +349,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		list("The following program is brought to you by Cigarettes.", 10 SECONDS, null, "cigarettes-B"),\
 	)//test-D doesn't exist, which is intentional for testing here
 	group_messages = TRUE
-	broadcast_channel = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
+	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
 /datum/directed_broadcast/cigarettes
 	id = "cigarette_ad"
@@ -361,7 +361,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		list("Oh, they're so smooth! I love smoking cigarettes!", 6 SECONDS, "rachelle", "cigarettes-B"),\
 	)
 
-	broadcast_channel = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
+	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
 /datum/directed_broadcast/hotdogs
 	id = "hotdog_ad"
@@ -377,7 +377,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		list("Probably safe!", 4 SECONDS, "Frank", "hotdogs-B"),\
 	)
 
-	broadcast_channel = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
+	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
 /datum/directed_broadcast/emergency
 	var/station_name
@@ -407,7 +407,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 	progress_when_silent = FALSE //just in case :(
 	messages = list("Please stand by for an emergency broadcast.", 6 SECONDS, null, "emergency-A")
 
-	broadcast_channel = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
+	broadcast_channels = list(TR_CAT_TEEVEE_BROADCAST_RECEIVERS, TR_CAT_FINITE_BROADCAST_RECEIVERS , TR_CAT_RADIO_BROADCAST_RECEIVERS)
 
 
 #undef LOOP_INFINITELY

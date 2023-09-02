@@ -27,25 +27,30 @@
 				break
 		if (!istype(broadcast)) return //can't find a valid broadcast
 
-	if (broadcast in active_broadcasts[broadcast.broadcast_channel]) return
+	if (broadcast.loops_remaining == 0) return //don't start a spent broadcast
+	if (!islist(broadcast.broadcast_channels)) return
+
 	//optional settings
 	if (set_loops)
 		broadcast.loops_remaining = set_loops
-	if (broadcast.loops_remaining == 0) return //don't start a spent broadcast
 	if (reset_to_start)
 		broadcast.index = 0 //OOB technically but gets incremented before reading
 
 	//priority sorting
-	var/queue_index = 1
-	if (!active_broadcasts[broadcast.broadcast_channel])//first, make list
-		active_broadcasts[broadcast.broadcast_channel] = list(broadcast)
-	else//also handles empty active_broadcast list
-		//Find the first broadcast with a lower priority than ours (so we're last in our priority bracket)
-		for (var/datum/directed_broadcast/other_broadcast as anything in active_broadcasts[broadcast.broadcast_channel])
-			if (broadcast.priority > other_broadcast.priority)
-				break
-			queue_index++
-		active_broadcasts[broadcast.broadcast_channel].Insert(queue_index, broadcast)
+	for (var/a_channel as anything in broadcast.broadcast_channels)
+		var/queue_index = 1
+		if (!active_broadcasts[a_channel])//first, make list
+			active_broadcasts[a_channel] = list(broadcast)
+		else//also handles empty active_broadcast list
+			//don't duplicate the same broadcast pls
+			if (broadcast in active_broadcasts[a_channel])
+				continue
+			//Find the first broadcast with a lower priority than ours (so we're last in our priority bracket)
+			for (var/datum/directed_broadcast/other_broadcast as anything in active_broadcasts[a_channel])
+				if (broadcast.priority > other_broadcast.priority)
+					break
+				queue_index++
+			active_broadcasts[a_channel].Insert(queue_index, broadcast)
 
 	if (process_immediately && queue_index == 1) //send out a message as soon as possible but only if it'd do something worthwhile
 		broadcast.process()
@@ -53,6 +58,8 @@
 
 /datum/broadcast_controller/proc/broadcast_stop(datum/directed_broadcast/broadcast)
 	if (!istype(broadcast)) return
-	if (!(broadcast in active_broadcasts[broadcast.broadcast_channel])) return
-	active_broadcasts[broadcast.broadcast_channel] -= broadcast
+	if (!islist(broadcast.broadcast_channels)) return
+	for (var/a_channel as anything in broadcast.broadcast_channels)
+		if ((broadcast in active_broadcasts[a_channel]))
+			active_broadcasts[a_channel] -= broadcast
 	//SEND_SIGNAL(broadcast, COMSIG_BROADCAST_STOPPED)
