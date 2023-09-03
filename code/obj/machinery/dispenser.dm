@@ -25,14 +25,14 @@
 
 /obj/machinery/dispenser/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			qdel(src)
 			return
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			if (prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if (prob(25))
 				while (TOTAL_O2_TANKS > 0)
 					pop_o2()

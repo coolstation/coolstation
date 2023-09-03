@@ -1265,7 +1265,7 @@ PIPE BOMBS + CONSTRUCTION
 							src.boom()
 							if (target)
 								if (istype(target, /obj/machinery))
-									target.ex_act(1) // Reliably blasts through doors.
+									target.ex_act(OLD_EX_TOTAL) // Reliably blasts through doors.
 						return
 		return
 
@@ -1314,7 +1314,7 @@ PIPE BOMBS + CONSTRUCTION
 			for (var/obj/grille/GR in range(src.expl_range, location))
 				var/area/a = get_area(GR)
 				if (GR && istype(GR) && GR.ruined != 1 && !a.sanctuary)
-					GR.ex_act(2)
+					GR.ex_act(OLD_EX_HEAVY)
 
 		qdel(src)
 		return

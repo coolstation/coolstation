@@ -796,7 +796,7 @@ toxic - poisons
 				if(istype(hit, /obj/machinery/door))
 					var/obj/machinery/door/D = hit
 					if(!D.cant_emag)
-						D.take_damage(D.health) //fuck up doors without needing ex_act(1)
+						D.take_damage(D.health) //fuck up doors without needing ex_act(OLD_EX_TOTAL)
 
 				else if(istype(hit, /obj/window))
 					var/obj/window/W = hit
@@ -807,7 +807,7 @@ toxic - poisons
 
 			if(hit && isturf(hit))
 				T.throw_shrapnel(T, 1, 1)
-				T.ex_act(2)
+				T.ex_act(OLD_EX_HEAVY)
 
 
 
@@ -849,7 +849,7 @@ toxic - poisons
 			if(istype(hit , /obj/machinery/door))
 				var/obj/machinery/door/D = hit
 				if(!D.cant_emag)
-					D.take_damage(D.health/2) //fuck up doors without needing ex_act(1)
+					D.take_damage(D.health/2) //fuck up doors without needing ex_act(OLD_EX_TOTAL)
 			explosion_new(null, get_turf(hit), 4, 1.75)
 
 	plasma_orb

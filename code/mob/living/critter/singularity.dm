@@ -115,7 +115,7 @@
     if(M && !istype(M, /mob/living/critter/singularity))
       M.gib()
   else if(isobj(A) && A.anchored != 2)
-    A.ex_act(1.0)
+    A.ex_act(OLD_EX_TOTAL)
     if(A)
       qdel(A)
 

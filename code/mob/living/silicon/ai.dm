@@ -602,15 +602,15 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 	var/b_loss = src.bruteloss
 	var/f_loss = src.fireloss
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			if (!isdead(src))
 				b_loss += rand(90,120)
 				f_loss += rand(90,120)
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			if (!isdead(src))
 				b_loss += rand(60,90)
 				f_loss += rand(60,90)
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if (!isdead(src))
 				b_loss += rand(30,60)
 	src.bruteloss = b_loss

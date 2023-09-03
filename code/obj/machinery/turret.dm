@@ -232,7 +232,7 @@
 
 
 /obj/machinery/turret/ex_act(severity)
-	if(severity < 3)
+	if(severity > 3) //old severity 2 and 1
 		SPAWN_DBG(0)
 			src.die()
 

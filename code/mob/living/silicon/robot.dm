@@ -863,12 +863,12 @@
 
 		var/damage = 0
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				SPAWN_DBG(1 DECI SECOND)
 					src.gib(1)
 				return
-			if(2.0) damage = 40
-			if(3.0) damage = 20
+			if(OLD_EX_SEVERITY_2) damage = 40
+			if(OLD_EX_SEVERITY_3) damage = 20
 
 		SPAWN_DBG(0)
 			for (var/obj/item/parts/robot_parts/RP in src.contents)

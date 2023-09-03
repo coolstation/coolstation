@@ -120,9 +120,9 @@ toxic - poisons
 	on_hit(atom/hit)
 		fireflash(get_turf(hit), 0)
 		if((istype(hit, /turf/simulated) || istype(hit, /obj/structure/girder)))
-			hit.ex_act(2)
+			hit.ex_act(OLD_EX_HEAVY)
 		else
-			hit.ex_act(3)
+			hit.ex_act(OLD_EX_LIGHT)
 
 //Used by: Mk 1.45 light phaser pod weapon, light syndicate drone objcritter, phaser guns, syndicate drone mobcritter (via phaser gun limb)
 /datum/projectile/laser/light // for the drones

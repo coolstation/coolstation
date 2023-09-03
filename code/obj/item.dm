@@ -999,7 +999,7 @@
 
 /obj/item/ex_act(severity)
 	switch(severity)
-		if (2.0)
+		if (OLD_EX_SEVERITY_2)
 			if (src.material)
 				src.material.triggerTemp(src ,7500)
 			if (src.burn_possible && !src.burning && src.burn_point <= 7500)
@@ -1008,7 +1008,7 @@
 				if (!src.ArtifactSanityCheck()) return
 				src.ArtifactStimulus("force", 75)
 				src.ArtifactStimulus("heat", 450)
-		if (3.0)
+		if (OLD_EX_SEVERITY_3)
 			if (src.material)
 				src.material.triggerTemp(src, 3500)
 			if (src.burn_possible && !src.burning && src.burn_point <= 3500)

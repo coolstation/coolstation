@@ -98,9 +98,9 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.death()
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.health -= 15
 				healthcheck()
 		return

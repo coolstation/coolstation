@@ -208,7 +208,7 @@
 	G.affecting.lastattackertime = world.time
 	if (iswrestler(src))
 		if (prob(50))
-			G.affecting.ex_act(3) // this is hilariously overpowered, but WHATEVER!!!
+			G.affecting.ex_act(OLD_EX_LIGHT) // this is hilariously overpowered, but WHATEVER!!!
 		else
 			G.affecting.changeStatus("weakened", 5 SECONDS)
 			G.affecting.force_laydown_standup()

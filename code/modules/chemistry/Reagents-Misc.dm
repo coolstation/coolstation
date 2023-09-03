@@ -3225,7 +3225,7 @@ datum
 				if(istype(M, /mob/dead))
 					return
 
-				M.ex_act(1)
+				M.ex_act(OLD_EX_TOTAL)
 
 
 
@@ -3233,14 +3233,14 @@ datum
 				//if (!istype(O, /obj/effects/foam)
 				//	&& !istype(O, /obj/item/reagent_containers)
 				//	&& !istype(O, /obj/item/chem_grenade))
-				O.ex_act(1)
+				O.ex_act(OLD_EX_TOTAL)
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				..()
 
 
 
-				M.ex_act(1)
+				M.ex_act(OLD_EX_TOTAL)
 				M.gib()
 
 				M.reagents.del_reagent(src.id)
@@ -3264,15 +3264,15 @@ datum
 				. = ..()
 				if(istype(M, /mob/dead))
 					return
-				M.ex_act(1)
+				M.ex_act(OLD_EX_TOTAL)
 
 
 			reaction_obj(var/obj/O, var/volume)
-				O.ex_act(1)
+				O.ex_act(OLD_EX_TOTAL)
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				..()
-				M.ex_act(1)
+				M.ex_act(OLD_EX_TOTAL)
 				M.gib()
 				M.reagents.del_reagent(src.id)
 

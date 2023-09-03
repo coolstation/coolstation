@@ -1173,9 +1173,9 @@ proc/generate_space_color()
 //Vr turf is a jerk and pretends to be broken.
 /turf/unsimulated/bombvr/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			src.icon_state = "vrspace"
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			switch(pick(1;75,2))
 				if(1)
 					src.icon_state = "vrspace"
@@ -1183,18 +1183,18 @@ proc/generate_space_color()
 					if(prob(80))
 						src.icon_state = "vrplating"
 
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if (prob(50))
 				src.icon_state = "vrplating"
 	return
 
 /turf/unsimulated/wall/bombvr/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			opacity = 0
 			set_density(0)
 			src.icon_state = "vrspace"
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			switch(pick(1;75,2))
 				if(1)
 					opacity = 0
@@ -1206,7 +1206,7 @@ proc/generate_space_color()
 						set_density(0)
 						src.icon_state = "vrplating"
 
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if (prob(50))
 				src.icon_state = "vrwallbroken"
 				opacity = 0

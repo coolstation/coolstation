@@ -117,11 +117,11 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				SPAWN_DBG(0)
 					src.take_damage(400)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				SPAWN_DBG(0)
 					src.take_damage(150)
 				return

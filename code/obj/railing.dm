@@ -59,14 +59,14 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if (prob(50))
 					railing_deconstruct(src)
 					return
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				if (prob(25))
 					railing_break(src)
 					return

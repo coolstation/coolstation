@@ -389,14 +389,14 @@
 	if (isrestrictedz(src.z))
 		return
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			qdel(src)
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			if(prob(25))
 				qdel(src)
 			else
 				take_damage(health_max/2)
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if(prob(80))
 				elecflash(src,power=2)
 			take_damage(health_max/6)
