@@ -481,16 +481,8 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	is_friend(var/mob/living/C)
 		var/obj/item/card/id/I = C.get_id()
 		if(!istype(I))
-			return 0
-		switch(I.icon_state)
-			if("id_sec")
-				return 1
-			if("id_com")
-				return 1
-			if("gold")
-				return 1
-			else
-				return 0
+			return FALSE
+		. = (access_security in I.access) || (access_heads in I.access)
 
 /obj/deployable_turret/riot/active
 	anchored = 1
