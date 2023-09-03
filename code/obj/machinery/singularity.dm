@@ -211,13 +211,13 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		step(src, dir)
 
 
-/obj/machinery/the_singularity/ex_act(severity, last_touched, power)
+/obj/machinery/the_singularity/ex_act(severity, last_touched)
 	if(!maxboom)
 		SPAWN_DBG(0.1 SECONDS)
-			if(severity == 1 && (maxboom ? prob(maxboom*5) : prob(30))) //need a big bomb (TTV+ sized), but a big enough bomb will always clear it
+			if(severity >= 6 && (maxboom ? prob(maxboom*5) : prob(30))) //need a big bomb (TTV+ sized), but a big enough bomb will always clear it
 				qdel(src)
 			maxboom = 0
-	maxboom = max(power, maxboom)
+	maxboom = max(severity, maxboom)
 
 /obj/machinery/the_singularity/Bumped(atom/A)
 	var/gain = 0
@@ -278,7 +278,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		else
 			var/obj/O = A
 			O.set_loc(src.get_center())
-			O.ex_act(1.0)
+			O.ex_act(OLD_EX_TOTAL)
 			if (O)
 				qdel(O)
 			gain = 2

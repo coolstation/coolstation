@@ -103,13 +103,13 @@
 	ex_act(severity)
 		src.material?.triggerExp(src, severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				changeHealth(-100)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				changeHealth(-70)
 				return
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				changeHealth(-40)
 				return
 			else
@@ -351,13 +351,13 @@
 	ex_act(severity)
 		src.material?.triggerExp(src, severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				qdel(src)
 				return
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				return
 			else
 
@@ -438,11 +438,11 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if(2.0) src.barricade_damage(3)
-			if(3.0) src.barricade_damage(1)
+			if(OLD_EX_SEVERITY_2) src.barricade_damage(3)
+			if(OLD_EX_SEVERITY_3) src.barricade_damage(1)
 		return
 
 	blob_act(var/power)

@@ -427,9 +427,9 @@
 
 /obj/cable/ex_act(severity)
 	switch (severity)
-		if (1)
+		if (OLD_EX_SEVERITY_1)
 			qdel(src)
-		if (2)
+		if (OLD_EX_SEVERITY_2)
 			if (prob(15))
 				var/atom/A = new/obj/item/cable_coil(src.loc, src.d1 ? 2 : 1)
 				applyCableMaterials(A, src.insulator, src.conductor)

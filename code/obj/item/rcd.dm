@@ -1026,9 +1026,9 @@ Broken RCD + Effects
 			else if (istype(A, /obj) && (A != src))
 
 				if ((get_dist(src, A) <= 2) || prob(10))
-					A.ex_act(1)
+					A.ex_act(OLD_EX_TOTAL)
 				else if (prob(5))
-					A.ex_act(3)
+					A.ex_act(OLD_EX_LIGHT)
 
 				continue
 

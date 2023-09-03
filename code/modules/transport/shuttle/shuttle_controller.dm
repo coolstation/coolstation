@@ -124,7 +124,7 @@ datum/shuttle_controller
 
 						for (var/atom/A as obj|mob in end_location)
 							SPAWN_DBG(0)
-								A.ex_act(1)
+								A.ex_act(OLD_EX_TOTAL)
 
 						end_location.color = null //Remove the colored shuttle!
 

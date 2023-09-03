@@ -318,11 +318,11 @@
 			qdel(E)*/
 
 		switch(severity)
-			if(1)
+			if(OLD_EX_SEVERITY_1)
 				explosion(src, src.loc, 1, 2, 3, 4, 1)
-			if(2)
+			if(OLD_EX_SEVERITY_2)
 				explosion(src, src.loc, 0, 1, 2, 3, 1)
-			if(3)
+			if(OLD_EX_SEVERITY_3)
 				explosion(src, src.loc, 0, 0, 1, 2, 1)
 			else
 				return

@@ -315,10 +315,10 @@
 
 	ex_act(severity)
 		switch (severity)
-			if (1)
+			if (OLD_EX_SEVERITY_1)
 				qdel(src)
-			if (2,3)
-				if(!prob(60 + severity*10))
+			else
+				if(prob(10 + severity*10))
 					qdel(src)
 
 	proc/speak(var/message)

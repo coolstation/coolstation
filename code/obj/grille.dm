@@ -382,15 +382,15 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.damage_blunt(40)
 				src.damage_heat(40)
 
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.damage_blunt(15)
 				src.damage_heat(15)
 
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				src.damage_blunt(7)
 				src.damage_heat(7)
 		return

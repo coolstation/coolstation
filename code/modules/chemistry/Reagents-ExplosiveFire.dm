@@ -186,7 +186,7 @@ datum
 					return
 				if (T.material && T.material.mat_id == "steel")
 					//T.visible_message("<span class='alert'>[T] melts!</span>")
-					T.ex_act(2)
+					T.ex_act(OLD_EX_HEAVY)
 
 		combustible/thermite
 			name = "thermite"
@@ -357,7 +357,7 @@ datum
 
 				holder?.del_reagent(id)
 
-			on_mob_life(var/mob/M, var/mult = 1) // fuck you jerk chemists (todo: a thing to self-harm borgs too, maybe ex_act(3) to the holder? I D K
+			on_mob_life(var/mob/M, var/mult = 1) // fuck you jerk chemists (todo: a thing to self-harm borgs too, maybe ex_act(OLD_EX_LIGHT) to the holder? I D K
 				if(!M) M = holder.my_atom
 				if(prob(70))
 					M.take_brain_damage(1 * mult)
@@ -493,10 +493,10 @@ datum
 							if(0 to 15)
 								if(prob(15))
 									//T.visible_message("<span class='alert'>[T] melts!</span>")
-									T.ex_act(2)
+									T.ex_act(OLD_EX_HEAVY)
 							if(16 to INFINITY)
 								//T.visible_message("<span class='alert'>[T] melts!</span>")
-								T.ex_act(2)
+								T.ex_act(OLD_EX_HEAVY)
 				return
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)

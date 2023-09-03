@@ -256,13 +256,13 @@
 
 /turf/simulated/wall/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(OLD_EX_SEVERITY_1)
 			src.ReplaceWithSpace()
 			return
-		if(2)
+		if(OLD_EX_SEVERITY_2)
 			if (prob(66))
 				dismantle_wall(1)
-		if(3)
+		if(OLD_EX_SEVERITY_3)
 			if (prob(40))
 				dismantle_wall(1)
 		else
