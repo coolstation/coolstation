@@ -21,7 +21,7 @@ var/global/list/bible_contents = list()
 	LAZYLISTADDUNIQUE(src.prevent_holding, /obj/item/bible)
 
 /datum/storage/bible/add_contents(obj/item/I, mob/user = null, visible = TRUE)
-	if (user?.equipped() == I)
+	if (I in user?.equipped_list())
 		user.u_equip(I)
 	for_by_tcl(bible, /obj/item/bible)
 		bible.storage.stored_items += I
