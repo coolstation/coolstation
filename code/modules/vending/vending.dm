@@ -1861,11 +1861,11 @@
 /obj/machinery/vending/gunse
 	name = "NanoGunse"
 	desc = "Gunse storage unit."
-	icon_state = "sauce"
+	icon_state = "gunse"
 	icon_panel = "standard-panel"
-	icon_off = "food-off"
-	icon_broken = "food-broken"
-	icon_fallen = "food-fallen"
+	icon_off = "gunse-off"
+	icon_broken = "gunse-broken"
+	icon_fallen = "gunse-fallen"
 	req_access_txt = ""
 	acceptcard = 1
 	pay = 1
