@@ -299,7 +299,7 @@
 						if(count>1)
 							src.air_contents = src.air_contents.remove_ratio(count-1/count)
 						var/datum/gas_mixture/GM
-						for(var/turf/simulated/MT as() in T.parent.members)
+						for(var/turf/MT as() in T.parent.members)
 							GM = new()
 							GM.copy_from(src.air_contents)
 							MT.assume_air(GM)

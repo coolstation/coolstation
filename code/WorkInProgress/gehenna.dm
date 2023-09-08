@@ -43,7 +43,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	special_volume_override = -1
 
 
-/turf/simulated/wall/asteroid/gehenna
+/turf/wall/asteroid/gehenna
 	fullbright = 0
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
@@ -69,10 +69,10 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 				src.damage_asteroid(3)
 		return
 
-/turf/simulated/wall/asteroid/gehenna/z3
-	floor_turf = "/turf/simulated/floor/plating/gehenna"
+/turf/wall/asteroid/gehenna/z3
+	floor_turf = "/turf/floor/plating/gehenna"
 
-/turf/simulated/wall/asteroid/gehenna/tough
+/turf/wall/asteroid/gehenna/tough
 	name = "crimson bedrock"
 	desc = "looks densely packed"
 	icon_state = "gehenna_rock2"
@@ -89,8 +89,8 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 				src.damage_asteroid(1)
 		return
 
-/turf/simulated/wall/asteroid/gehenna/tough/z3
-	floor_turf = "/turf/simulated/floor/plating/gehenna"
+/turf/wall/asteroid/gehenna/tough/z3
+	floor_turf = "/turf/floor/plating/gehenna"
 
 
 /turf/unsimulated/wall/gehenna/
@@ -101,7 +101,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock3"
 
-/turf/simulated/floor/plating/gehenna/
+/turf/floor/plating/gehenna/
 	name = "sand"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "sand"
@@ -118,12 +118,12 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	ex_act(severity) //TODO: cave ins?? people mentioned that repeatedly??
 		return //no plating/lattice thanx
 
-/turf/simulated/floor/plating/gehenna/plasma
+/turf/floor/plating/gehenna/plasma
 	oxygen = MOLES_O2STANDARD * 1.5
 	nitrogen = MOLES_N2STANDARD / 2
 	toxins = MOLES_O2STANDARD // hehh hehh hehhhehhhe
 
-/turf/simulated/floor/plating/gehenna/farts
+/turf/floor/plating/gehenna/farts
 	farts = MOLES_N2STANDARD / 2
 	nitrogen = MOLES_N2STANDARD / 2
 

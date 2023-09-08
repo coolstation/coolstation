@@ -26,7 +26,7 @@
 	*
 	* `_PATH` should be an incomplete typepath like `purple/checker` or `orangeblack/side/white`
 	*
-	* It will automatically be formatted into a correct typepath, like `/turf/simulated/floor/purple/checker`
+	* It will automatically be formatted into a correct typepath, like `/turf/floor/purple/checker`
 	*
 	* `_VARS` should be variables/values that the defined type should have.
 	*
@@ -56,14 +56,10 @@
 	* and turf/floors.dm.
 	*/
 #define DEFINE_FLOORS(_PATH, _VARS) \
-	/turf/simulated/floor/_PATH{_VARS};\
-	/turf/unsimulated/floor/_PATH{_VARS};\
-	/turf/simulated/floor/airless/_PATH{_VARS};\
-	/turf/unsimulated/floor/airless/_PATH{_VARS};
+	/turf/floor/_PATH{_VARS};
 
 
-/// Creates typepaths for a `/turf/simulated/floor/_PATH` and a `/turf/unsimulated/floor/_PATH` with vars from `_VARS`
+/// Creates typepaths for a `/turf/floor/_PATH` and a `/turf/unsimulated/floor/_PATH` with vars from `_VARS`
 #define DEFINE_FLOORS_SIMMED_UNSIMMED(_PATH, _VARS) \
-	/turf/simulated/floor/_PATH{_VARS};\
-	/turf/unsimulated/floor/_PATH{_VARS};\
+	/turf/floor/_PATH{_VARS};
 

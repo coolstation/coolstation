@@ -1008,10 +1008,10 @@ var/global/list/mapNames = list(
 /datum/map_settings/gehenna
 	name = "GEHENNA"
 	goonhub_map = "https://coolstation.space/adults.html"
-	walls = /turf/simulated/wall
-	rwalls = /turf/simulated/wall/r_wall
+	walls = /turf/wall
+	rwalls = /turf/wall/r_wall
 	auto_walls = 0
-	shuttle_map_turf = /turf/simulated/floor/industrial
+	shuttle_map_turf = /turf/floor/industrial
 
 	arrivals_type = MAP_SPAWN_CRYO
 	qm_supply_type = "shuttle"
@@ -1068,16 +1068,16 @@ var/global/list/mapNames = list(
 		SPAWN_DBG(10) // this sucks so much ass but it just- idk.
 			var/area/m_shuttle = locate(/area/shuttle/mining/station)
 			if(m_shuttle)
-				m_shuttle.filler_turf = "/turf/simulated/floor/industrial"
+				m_shuttle.filler_turf = "/turf/floor/industrial"
 			var/area/c_shuttle = locate(/area/shuttle/cargo/station)
 			if(c_shuttle)
-				c_shuttle.filler_turf = "/turf/simulated/floor/industrial"
+				c_shuttle.filler_turf = "/turf/floor/industrial"
 
 /datum/map_settings/bobmap
 	name = "BOBMAP"
 	goonhub_map = "https://coolstation.space/stingray.html"
-	walls = /turf/simulated/wall
-	rwalls = /turf/simulated/wall/r_wall
+	walls = /turf/wall
+	rwalls = /turf/wall/r_wall
 	auto_walls = 1
 	qm_supply_type = "shuttle"
 
@@ -1125,8 +1125,8 @@ var/global/list/mapNames = list(
 /*/datum/map_settings/dockmap //by robert goodsmells age 34 (for shuttle/offstation econony testing)
 	name = "DOCKMAP"
 	goonhub_map = "https://coolstation.space/stingray.html"
-	walls = /turf/simulated/wall
-	rwalls = /turf/simulated/wall/r_wall
+	walls = /turf/wall
+	rwalls = /turf/wall/r_wall
 	auto_walls = 1
 
 	windows = /obj/window

@@ -260,16 +260,16 @@
 /turf/floor/red/checker
 	icon_state = "redchecker"
 
-/turf/simulated/floor/red/redblackchecker
+/turf/floor/red/redblackchecker
 	icon_state = "redblackchecker"
 
-/turf/simulated/floor/redblack
+/turf/floor/redblack
 	icon_state = "redblack"
 
 /turf/floor/redblack/corner
 	icon_state = "redblackcorner"
 
-/turf/simulated/floor/redwhite
+/turf/floor/redwhite
 	icon_state = "redwhite"
 
 /turf/floor/redwhite/corner
@@ -296,7 +296,7 @@
 /turf/floor/blueblack/corner
 	icon_state = "blueblackcorner"
 
-/turf/simulated/floor/bluewhite
+/turf/floor/bluewhite
 	icon_state = "bluewhite"
 
 /turf/floor/bluewhite/corner
@@ -338,13 +338,13 @@
 /turf/floor/green/checker
 	icon_state = "greenchecker"
 
-/turf/simulated/floor/greenblack
+/turf/floor/greenblack
 	icon_state = "greenblack"
 
 /turf/floor/greenblack/corner
 	icon_state = "greenblackcorner"
 
-/turf/simulated/floor/greenwhite
+/turf/floor/greenwhite
 	icon_state = "greenwhite"
 
 /turf/floor/greenwhite/corner
@@ -372,13 +372,13 @@
 /turf/floor/purple/checker
 	icon_state = "purplechecker"
 
-/turf/simulated/floor/purpleblack
+/turf/floor/purpleblack
 	icon_state = "purpleblack"
 
 /turf/floor/purpleblack/corner
 	icon_state = "purpleblackcorner"
 
-/turf/simulated/floor/purplewhite
+/turf/floor/purplewhite
 	icon_state = "purplewhite"
 
 /turf/floor/purplewhite/corner
@@ -715,7 +715,7 @@ DEFINE_FLOORS(marble/border_wb,
 /turf/floor/delivery/caution
 	icon_state = "deliverycaution"
 
-/turf/simulated/floor/bot
+/turf/floor/bot
 	icon_state = "bot"
 
 /turf/floor/bot/white
@@ -1198,7 +1198,7 @@ DEFINE_FLOORS(techfloor/green,
 		..()
 		src.set_dir(pick(cardinal))
 
-/turf/simulated/floor/grass/random/alt
+/turf/floor/grass/random/alt
 	icon_state = "grass_eh" //ya grass
 
 /turf/floor/grasstodirt
@@ -1389,13 +1389,13 @@ DEFINE_FLOORS(techfloor/green,
 /turf/floor/blob_act(var/power)
 	return
 
-//turf/proc/ReplaceWith used to go "istype(src, /turf/simulated/floor)" and IDK if you're gonna check that on every turf maybe just split it off
-/turf/simulated/floor/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0)
+//turf/proc/ReplaceWith used to go "istype(src, /turf/floor)" and IDK if you're gonna check that on every turf maybe just split it off
+/turf/floor/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0)
 	icon_old = icon_state
 	name_old = name
 	. = ..()
 
-/turf/simulated/floor/proc/update_icon()
+/turf/floor/proc/update_icon()
 
 /turf/attack_hand(mob/user as mob)
 	if (src.density == 1)
@@ -1452,7 +1452,7 @@ DEFINE_FLOORS(techfloor/green,
 /turf/floor/proc/take_hit()// can get called due to people crumpling cardboard walls
 	return
 
-/turf/simulated/floor/proc/break_tile_to_plating()
+/turf/floor/proc/break_tile_to_plating()
 	if(intact)
 		to_plating()
 		if(!src.reinforced && prob(25))
