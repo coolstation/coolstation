@@ -251,7 +251,7 @@
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/wall/asteroid, size, 0, area_restriction)
 
 		//var/quality = rand(-101,101)
-		for (var/turf/simulated/wall/asteroid/AST in generated_turfs)
+		for (var/turf/wall/asteroid/AST in generated_turfs)
 			//AST.quality = quality
 			AST.space_overlays()
 			AST.build_icon()
@@ -283,7 +283,7 @@
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/wall/asteroid, size, 0, area_restriction)
 
 		//var/quality = rand(-101,101)
-		for (var/turf/simulated/wall/asteroid/AST in generated_turfs)
+		for (var/turf/wall/asteroid/AST in generated_turfs)
 			//AST.quality = quality
 			AST.space_overlays()
 			AST.build_icon()
@@ -314,7 +314,7 @@
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/wall/asteroid, size, 0, area_restriction)
 
 		//var/quality = rand(-101,101)
-		for (var/turf/simulated/wall/asteroid/AST in generated_turfs)
+		for (var/turf/wall/asteroid/AST in generated_turfs)
 			//AST.quality = quality
 			AST.space_overlays()
 			AST.build_icon()
@@ -345,7 +345,7 @@
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/wall/asteroid, size, 0, area_restriction)
 
 		//var/quality = rand(-101,101)
-		for (var/turf/simulated/wall/asteroid/AST in generated_turfs)
+		for (var/turf/wall/asteroid/AST in generated_turfs)
 			//AST.quality = quality
 			AST.space_overlays()
 			AST.build_icon()
@@ -376,7 +376,7 @@
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/wall/asteroid, size, 0, area_restriction)
 
 		//var/quality = rand(-101,101)
-		for (var/turf/simulated/wall/asteroid/AST in generated_turfs)
+		for (var/turf/wall/asteroid/AST in generated_turfs)
 			//AST.quality = quality
 			AST.space_overlays()
 			AST.build_icon()
@@ -407,7 +407,7 @@
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/wall/asteroid, size, 0, area_restriction)
 
 		//var/quality = rand(-101,101)
-		for (var/turf/simulated/wall/asteroid/AST in generated_turfs)
+		for (var/turf/wall/asteroid/AST in generated_turfs)
 			//AST.quality = quality
 			AST.space_overlays()
 			AST.build_icon()
@@ -437,7 +437,7 @@
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/wall/asteroid, size, 0, area_restriction)
 
 		//var/quality = rand(-101,101)
-		for (var/turf/simulated/wall/asteroid/AST in generated_turfs)
+		for (var/turf/wall/asteroid/AST in generated_turfs)
 			//AST.quality = quality
 			AST.space_overlays()
 			AST.build_icon()
@@ -467,7 +467,7 @@
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/wall/asteroid, size, 0, area_restriction)
 
 		//var/quality = rand(-101,101)
-		for (var/turf/simulated/wall/asteroid/AST in generated_turfs)
+		for (var/turf/wall/asteroid/AST in generated_turfs)
 			//AST.quality = quality
 			AST.space_overlays()
 			AST.build_icon()
@@ -497,7 +497,7 @@
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/wall/asteroid, size, 0, area_restriction)
 
 		//var/quality = rand(-101,101)
-		for (var/turf/simulated/wall/asteroid/AST in generated_turfs)
+		for (var/turf/wall/asteroid/AST in generated_turfs)
 			//AST.quality = quality
 			AST.space_overlays()
 			AST.build_icon()
@@ -527,7 +527,7 @@
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/wall/asteroid, size, 0, area_restriction)
 
 		//var/quality = rand(-101,101)
-		for (var/turf/simulated/wall/asteroid/AST in generated_turfs)
+		for (var/turf/wall/asteroid/AST in generated_turfs)
 			//AST.quality = quality
 			AST.space_overlays()
 			AST.build_icon()
@@ -557,7 +557,7 @@
 		generated_turfs = Turfspawn_Asteroid_Round(magnetic_center, /turf/wall/asteroid, size, 0, area_restriction)
 
 		//var/quality = rand(-101,101)
-		for (var/turf/simulated/wall/asteroid/AST in generated_turfs)
+		for (var/turf/wall/asteroid/AST in generated_turfs)
 			//AST.quality = quality
 			AST.space_overlays()
 			AST.build_icon()
@@ -594,7 +594,7 @@
 		generated_turfs = Turfspawn_Asteroid_DegradeFromCenter(src, roidpath, size, 10)
 
 	//var/quality = rand(-101,101)
-	for (var/turf/simulated/wall/asteroid/AST in generated_turfs)
+	for (var/turf/wall/asteroid/AST in generated_turfs)
 		//AST.quality = quality
 		AST.space_overlays()
 
@@ -873,7 +873,7 @@
 					level_stats.misses[O.name] += ore_tiles //increment amount of missed ores
 				break
 
-			var/turf/simulated/wall/asteroid/AST = pick(turfs)
+			var/turf/wall/asteroid/AST = pick(turfs)
 			if (!istype(AST))
 				turfs -= AST
 				continue
@@ -940,7 +940,7 @@
 					level_stats.misses[O.name] += ore_tiles //increment amount of missed ores
 				break
 
-			var/turf/simulated/wall/asteroid/AST = pick(turfs)
+			var/turf/wall/asteroid/AST = pick(turfs)
 			if (!istype(AST))
 				turfs -= AST
 				continue

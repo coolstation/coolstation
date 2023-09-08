@@ -164,7 +164,7 @@ Shield and graivty well generators
 		else return ..()
 
 	proc/update_nearby_tiles(need_rebuild)
-		var/turf/simulated/source = loc
+		var/turf/source = loc
 		if (istype(source))
 			return source.update_nearby_tiles(need_rebuild)
 

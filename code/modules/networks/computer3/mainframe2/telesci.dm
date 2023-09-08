@@ -386,7 +386,7 @@ proc/is_teleportation_allowed(var/turf/T)
 								var/datum/gas_mixture/GM = scanTurf.return_air()
 								var/burning = 0
 								if(istype(scanTurf, /turf/simulated))
-									var/turf/simulated/T = scanTurf
+									var/turf/T = scanTurf
 									if(T.active_hotspot)
 										burning = 1
 								message_host("command=scan_reply&[MOLES_REPORT_PACKET(GM)]temp=[GM.temperature]&pressure=[MIXTURE_PRESSURE(GM)][(burning)?("&burning=1"):(null)]")

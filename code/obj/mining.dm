@@ -216,7 +216,7 @@
 			if (!T)
 				boutput(usr, "<span class='alert'>Error: magnet area spans over construction area bounds.</span>")
 				return 0
-			if (!istype(T, /turf/space) && !istype(T, /turf/simulated/floor/plating/airless/asteroid) && !istype(T, /turf/simulated/wall/asteroid))
+			if (!istype(T, /turf/space) && !istype(T, /turf/floor/plating/airless/asteroid) && !istype(T, /turf/wall/asteroid))
 				boutput(usr, "<span class='alert'>Error: [T] detected in [width]x[height] magnet area. Cannot magnetize.</span>")
 				return 0
 
@@ -246,7 +246,7 @@
 			borders += S
 
 		magnetic_center = locate(origin.x + round(width/2), origin.y + round(height/2), origin.z)
-		for (var/turf/simulated/floor/T in borders)
+		for (var/turf/floor/T in borders)
 			T.allows_vehicles = 1
 		return 1
 
@@ -647,8 +647,8 @@
 		for (var/obj/O in mining_controls.magnet_area.contents)
 			if (!(O.flags & MINERAL_MAGNET_SAFE))
 				qdel(O)
-		for (var/turf/simulated/T in mining_controls.magnet_area.contents)
-			if (!istype(T,/turf/simulated/floor/airless/plating/catwalk/))
+		for (var/turf/T in mining_controls.magnet_area.contents)
+			if (!istype(T,/turf/floor/airless/plating/catwalk/))
 				T.ReplaceWithSpace()
 				//qdel(T)
 		for (var/turf/space/S in mining_controls.magnet_area.contents)
@@ -945,7 +945,7 @@
 
 // Turf Defines
 
-/turf/simulated/wall/asteroid
+/turf/wall/asteroid
 #ifdef UNDERWATER_MAP
 	name = "cavern wall"
 	desc = "A cavern wall, possibly flowing with mineral deposits."
@@ -972,7 +972,7 @@
 	var/datum/ore/ore = null
 	var/datum/ore/event/event = null
 	var/list/space_overlays = list()
-	var/floor_turf = "/turf/simulated/floor/plating/airless/asteroid"
+	var/floor_turf = "/turf/floor/plating/airless/asteroid"
 
 	//NEW VARS
 	var/mining_health = 120
@@ -993,7 +993,7 @@
 	dark
 		fullbright = 0
 		luminosity = 1
-		floor_turf = "/turf/simulated/floor/plating/airless/asteroid/dark"
+		floor_turf = "/turf/floor/plating/airless/asteroid/dark"
 
 	lighted
 		fullbright = 1
@@ -1024,7 +1024,7 @@
 		icon_state = "comet"
 		hardness = 1
 		default_ore = /obj/item/raw_material/rock
-		floor_turf = "/turf/simulated/floor/plating/airless/asteroid/dark"
+		floor_turf = "/turf/floor/plating/airless/asteroid/dark"
 
 		// varied layers
 
@@ -1366,7 +1366,7 @@
 		src.opacity = 0
 		src.levelupdate()
 
-		for (var/turf/simulated/floor/A in range(src,1))
+		for (var/turf/floor/A in range(src,1))
 			if(istype(A, temp_floor_turf))
 				A.update_icon()
 #ifdef UNDERWATER_MAP
@@ -1394,12 +1394,12 @@
 		if (E.nearby_tile_distribution_min > 0 && E.nearby_tile_distribution_max > 0)
 			var/distributions = rand(E.nearby_tile_distribution_min,E.nearby_tile_distribution_max)
 			var/list/usable_turfs = list()
-			for (var/turf/simulated/wall/asteroid/AST in range(E.distribution_range,src))
+			for (var/turf/wall/asteroid/AST in range(E.distribution_range,src))
 				if (!isnull(AST.event))
 					continue
 				usable_turfs += AST
 
-			var/turf/simulated/wall/asteroid/AST
+			var/turf/wall/asteroid/AST
 			while (distributions > 0)
 				if (usable_turfs.len < 1)
 					if (level_stats)
@@ -1414,7 +1414,7 @@
 					level_stats.events[E.name] += 1
 					level_stats.total_generated_events += 1
 
-/turf/simulated/floor/plating/airless/asteroid
+/turf/floor/plating/airless/asteroid
 	name = "asteroid"
 	icon = 'icons/turf/asteroid.dmi'
 	icon_state = "astfloor1"
@@ -1499,7 +1499,7 @@
 		#endif
 		SPAWN_DBG(0)
 			if (istype(src)) //Wire note: just roll with this ok
-				for (var/turf/simulated/wall/asteroid/A in orange(src,1))
+				for (var/turf/wall/asteroid/A in orange(src,1))
 					src.apply_edge_overlay(get_dir(src, A))
 				for (var/turf/space/A in orange(src,1))
 					src.apply_edge_overlay(get_dir(src, A))
@@ -1839,7 +1839,7 @@ obj/item/clothing/gloves/concussive
 						qdel (src)
 						return
 				else
-					if (istype(target, /turf/simulated/wall/asteroid/) && !src.hacked)
+					if (istype(target, /turf/wall/asteroid/) && !src.hacked)
 						boutput(user, "<span class='alert'>You slap the charge on [target], [det_time/10] seconds!</span>")
 						user.visible_message("<span class='alert'>[user] has attached [src] to [target].</span>")
 						src.icon_state = "bcharge2"
@@ -1901,7 +1901,7 @@ obj/item/clothing/gloves/concussive
 
 	proc/concussive_blast()
 		playsound(src.loc, "sound/weapons/flashbang.ogg", 50, 1)
-		for (var/turf/simulated/wall/asteroid/A in range(src.expl_flash,src))
+		for (var/turf/wall/asteroid/A in range(src.expl_flash,src))
 			if(get_dist(src,A) <= src.expl_heavy)
 				A.damage_asteroid(4)
 			if(get_dist(src,A) <= src.expl_light)
@@ -2086,7 +2086,7 @@ obj/item/clothing/gloves/concussive
 	var/list/ores_found = list()
 	var/datum/ore/O
 	var/datum/ore/event/E
-	for (var/turf/simulated/wall/asteroid/AST in range(T,range))
+	for (var/turf/wall/asteroid/AST in range(T,range))
 		stone++
 		O = AST.ore
 		E = AST.event

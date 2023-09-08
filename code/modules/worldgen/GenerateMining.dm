@@ -22,7 +22,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		if (map_currently_underwater)
 			src.ReplaceWith(/turf/space/fluid/trench, FALSE, TRUE, FALSE, TRUE)
 		else if (map_currently_very_dusty && ((src.z == 3)||(src.z == 1)))
-			src.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
+			src.ReplaceWith(/turf/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
 		else
 			src.ReplaceWith(/turf/space, FALSE, TRUE, FALSE, TRUE)
 
@@ -33,20 +33,20 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			if (map_currently_underwater)
 				src.ReplaceWith(/turf/space/fluid/trench, FALSE, TRUE, FALSE, TRUE)
 			else if (map_currently_very_dusty && ((src.z == 3)||(src.z == 1)))
-				src.ReplaceWith(/turf/simulated/floor/plating/gehenna, FALSE, TRUE, FALSE, TRUE)
+				src.ReplaceWith(/turf/floor/plating/gehenna, FALSE, TRUE, FALSE, TRUE)
 			else
-				src.ReplaceWith(/turf/simulated/floor/plating/airless/asteroid, FALSE, TRUE, FALSE, TRUE)
+				src.ReplaceWith(/turf/floor/plating/airless/asteroid, FALSE, TRUE, FALSE, TRUE)
 
 	wall //Replaced with map appropriate wall tile for mining level (asteroid wall on all maps currently)
 		name = "variable wall"
 		icon_state = "wall"
 		place()
 			if (map_currently_very_dusty && (src.z == 3))
-				src.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/tough/z3, FALSE, TRUE, FALSE, TRUE)
+				src.ReplaceWith(/turf/wall/asteroid/gehenna/tough/z3, FALSE, TRUE, FALSE, TRUE)
 			else if (map_currently_very_dusty && (src.z == 1))
-				src.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/tough, FALSE, TRUE, FALSE, TRUE)
+				src.ReplaceWith(/turf/wall/asteroid/gehenna/tough, FALSE, TRUE, FALSE, TRUE)
 			else
-				src.ReplaceWith(/turf/simulated/wall/asteroid, FALSE, TRUE, FALSE, TRUE)
+				src.ReplaceWith(/turf/wall/asteroid, FALSE, TRUE, FALSE, TRUE)
 
 	clear //Replaced with map appropriate clear tile for mining level (asteroid floor on oshan, space on other maps)
 		name = "variable clear"
@@ -55,7 +55,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			if (map_currently_underwater)
 				src.ReplaceWith(/turf/space/fluid/trench, FALSE, TRUE, FALSE, TRUE)
 			else if (map_currently_very_dusty && ((src.z == 3)||(src.z == 1)))
-				src.ReplaceWith(/turf/simulated/floor/plating/gehenna, FALSE, TRUE, FALSE, TRUE)
+				src.ReplaceWith(/turf/floor/plating/gehenna, FALSE, TRUE, FALSE, TRUE)
 			else
 				src.ReplaceWith(/turf/space, FALSE, TRUE, FALSE, TRUE)
 
@@ -243,10 +243,10 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		for(var/x=startx,x<=endx,x++)
 			for(var/y=starty,y<=endy,y++)
 				var/turf/T = locate(x,y,z_level)
-				if(istype(T, /turf/simulated/floor/plating/gehenna)) continue // do not fill in the existing crevices, leaves the player more room.
+				if(istype(T, /turf/floor/plating/gehenna)) continue // do not fill in the existing crevices, leaves the player more room.
 				//Clobber only the things that are in safe-to-clobber areas. Since we crop the borders off of x and y we don't need to do DISTEDGE anymore.
 				if(map[x][y]/* && !ISDISTEDGE(T, 3) */&& T.loc && ((T.loc.type == /area/gehenna/underground) || istype(T.loc , /area/allowGenerate)) )
-					var/turf/simulated/wall/asteroid/N = T.ReplaceWith(/turf/simulated/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
+					var/turf/wall/asteroid/N = T.ReplaceWith(/turf/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
 					generated.Add(N)
 				if(T.loc.type == /area/gehenna/underground || istype(T.loc, /area/allowGenerate))
 					new/area/allowGenerate/caves(T)
@@ -257,7 +257,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		for(var/s=0, s<20, s++)
 			var/turf/TU = pick(generated - used)
 			var/list/L = list()
-			for(var/turf/simulated/wall/asteroid/A in orange(5,TU))
+			for(var/turf/wall/asteroid/A in orange(5,TU))
 				L.Add(A)
 			seeds.Add(TU)
 			seeds[TU] = L
@@ -270,8 +270,8 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				for(var/j=0, j<rand(2*AST_RNGWALKCNT,round(AST_RNGWALKCNT*4.5)), j++)
 					holeList.Add(T)
 					T = get_step(T, pick(NORTH,EAST,SOUTH,WEST,EAST,SOUTH)) // slight S-E bias
-					if(!istype(T, /turf/simulated/wall/asteroid)) continue
-					var/turf/simulated/wall/asteroid/ast = T
+					if(!istype(T, /turf/wall/asteroid)) continue
+					var/turf/wall/asteroid/ast = T
 					ast.destroy_asteroid(0)
 
 		//For the next bit, you might want to turn on DEBUG_ORE_GENERATION in sea_hotspot_controls.dm so you can see what ore generation looks like at scale
@@ -279,7 +279,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		//This bit seeds random squares of the level with large amounts of ore, densely packed.
 		for(var/i=0, i<80, i++)
 			var/list/L = list()
-			for (var/turf/simulated/wall/asteroid/gehenna/A in range(4,pick(generated)))
+			for (var/turf/wall/asteroid/gehenna/A in range(4,pick(generated)))
 				if(prob(50))
 					L+=A
 
@@ -308,7 +308,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 		//Same deal as on asteroidsDistance, try manually seeding some starstones so they're not magnet exclusive (though there's no magnet available on gehenna, right?)
 		for (var/i = 1, i <= 3 ,i++) //3 tries cause odds of success are much better on gehenna, closer to 2/3rds of the map is eligible
-			var/turf/simulated/wall/asteroid/TRY = pick(miningZ)
+			var/turf/wall/asteroid/TRY = pick(miningZ)
 			if (!istype(TRY))
 				logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] failed - bad turf.")
 				continue
@@ -348,7 +348,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			for(var/y=1,y<=world.maxy,y++)
 				var/turf/T = locate(x,y,z_level)
 				if(map[x][y] && !ISDISTEDGE(T, 3) && T.loc && ((T.loc.type == /area/space) || istype(T.loc , /area/allowGenerate)) )
-					var/turf/simulated/wall/asteroid/N = T.ReplaceWith(/turf/simulated/wall/asteroid/dark, FALSE, TRUE, FALSE, TRUE)
+					var/turf/wall/asteroid/N = T.ReplaceWith(/turf/wall/asteroid/dark, FALSE, TRUE, FALSE, TRUE)
 					generated.Add(N)
 				if(T.loc.type == /area/space || istype(T.loc, /area/allowGenerate))
 					new/area/allowGenerate/trench(T)
@@ -358,7 +358,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		for(var/s=0, s<20, s++)
 			var/turf/TU = pick(generated - used)
 			var/list/L = list()
-			for(var/turf/simulated/wall/asteroid/A in orange(5,TU))
+			for(var/turf/wall/asteroid/A in orange(5,TU))
 				L.Add(A)
 			seeds.Add(TU)
 			seeds[TU] = L
@@ -371,14 +371,14 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				for(var/j=0, j<rand(AST_RNGWALKCNT,round(AST_RNGWALKCNT*1.5)), j++)
 					holeList.Add(T)
 					T = get_step(T, pick(NORTH,EAST,SOUTH,WEST))
-					if(!istype(T, /turf/simulated/wall/asteroid)) continue
-					var/turf/simulated/wall/asteroid/ast = T
+					if(!istype(T, /turf/wall/asteroid)) continue
+					var/turf/wall/asteroid/ast = T
 					ast.destroy_asteroid(0)
 
 
 		for(var/i=0, i<80, i++)
 			var/list/L = list()
-			for (var/turf/simulated/wall/asteroid/dark/A in range(4,pick(generated)))
+			for (var/turf/wall/asteroid/dark/A in range(4,pick(generated)))
 				L+=A
 
 			Turfspawn_Asteroid_SeedOre(L, rand(2,8), rand(1,70), level_stats = our_stats)
@@ -415,7 +415,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 		//I copied this from the desert caves without testing, how often are we gonna run Oshan anyway
 		for (var/i = 1, i <= 3 ,i++)
-			var/turf/simulated/wall/asteroid/TRY = pick(miningZ)
+			var/turf/wall/asteroid/TRY = pick(miningZ)
 			if (!istype(TRY))
 				logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] failed - no wall.")
 				continue
@@ -481,7 +481,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			var/list/placed = list()
 			for(var/turf/T in solidTiles)
 				if((T?.loc?.type == /area/space) || istype(T?.loc , /area/allowGenerate))
-					var/turf/simulated/wall/asteroid/AST = T.ReplaceWith(/turf/simulated/wall/asteroid)
+					var/turf/wall/asteroid/AST = T.ReplaceWith(/turf/wall/asteroid)
 					placed.Add(AST)
 					//AST.quality = quality
 				LAGCHECK(LAG_REALTIME)
@@ -504,8 +504,8 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 						for(var/j=0, j<rand(AST_RNGWALKCNT,round(AST_RNGWALKCNT*1.5)), j++)
 							holeList.Add(T)
 							T = get_step(T, pick(NORTH,EAST,SOUTH,WEST))
-							if(!istype(T, /turf/simulated/wall/asteroid)) continue
-							var/turf/simulated/wall/asteroid/ast = T
+							if(!istype(T, /turf/wall/asteroid)) continue
+							var/turf/wall/asteroid/ast = T
 							ast.destroy_asteroid(0)
 
 		//So I think it's kinda BS that the funkiest ores are magnet exclusive
@@ -513,7 +513,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		//We try n times picking turfs at random from the entire Z level, and if we happen to hit an unoccupied asteroid turf we plant a starstone
 		//This relies on better-than-chance odds of dud turf picks. By my estimate the asteroid field is generally like 20-30% actual asteroid.
 		for (var/i = 1, i <= 10 ,i++) //10 tries atm, which I think should give a decent chance no starstones spawn.
-			var/turf/simulated/wall/asteroid/TRY = pick(miningZ)
+			var/turf/wall/asteroid/TRY = pick(miningZ)
 			if (!istype(TRY))
 				logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] failed - no asteroid.")
 				continue

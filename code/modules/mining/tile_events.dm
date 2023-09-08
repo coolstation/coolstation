@@ -134,7 +134,7 @@
 		AST.overlays += warning_overlay
 		var/timer = rand(3,6) * 10
 		SPAWN_DBG(timer)
-			if (istype(AST)) //Wire note: Fix for Undefined variable /turf/simulated/floor/plating/airless/asteroid/var/invincible
+			if (istype(AST)) //Wire note: Fix for Undefined variable /turf/floor/plating/airless/asteroid/var/invincible
 				AST.invincible = 0
 				explosion(AST, AST, 1, 2, 3, 4, 1)
 

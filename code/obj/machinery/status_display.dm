@@ -404,7 +404,7 @@
 
 
 		if(pixel_y == 0 && pixel_x == 0)
-			if (map_settings.walls ==/turf/simulated/wall/auto/jen)
+			if (map_settings.walls ==/turf/wall/auto/jen)
 				pixel_y = 32
 			else
 				pixel_y = 29
