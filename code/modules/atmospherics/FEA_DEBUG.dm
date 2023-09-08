@@ -8,14 +8,7 @@ datum/gas_mixture
 	var/turf/parent
 	var/debugging
 
-/*
-turf/simulated
-	New()
-		..()
 
-		if(air)
-			air.parent = src
-*/
 obj/machinery/door
 	verb
 		toggle_door()
@@ -376,7 +369,7 @@ mob
 				else
 					V.overlays += icon('icons/Testing/atmos_testing.dmi',"marker0")
 
-turf/simulated
+turf
 	var/fire_verbose = 0
 
 	verb
