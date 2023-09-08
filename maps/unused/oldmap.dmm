@@ -10666,10 +10666,10 @@
 	},
 /area/wizard_station)
 "xZ" = (
-/turf/unsimulated/wall,
+/turf/wall,
 /area/space)
 "ya" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "Wall"
@@ -10680,7 +10680,7 @@
 	sd_lighting = 0
 	})
 "yb" = (
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/toxins/test_area{
 	name = "VR Test Area";
 	requires_power = 0;
@@ -10691,7 +10691,7 @@
 /turf/space,
 /area/space)
 "yd" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/fullscreen.dmi';
 	icon_state = "title";
 	layer = 20;
@@ -10702,7 +10702,7 @@
 /obj/landmark{
 	name = "bombtest-bomb"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/toxins/test_area{
 	name = "VR Test Area";
 	requires_power = 0;
@@ -10712,7 +10712,7 @@
 /obj/landmark{
 	name = "bombtest"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/toxins/test_area{
 	name = "VR Test Area";
 	requires_power = 0;
@@ -10857,7 +10857,7 @@
 	},
 /area/shuttle/escape/centcom)
 "yB" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "outer forcefield";
@@ -10870,21 +10870,21 @@
 /obj/landmark{
 	name = "prisonwarp"
 	},
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 2
 	},
 /area/prison/cell_block/wards{
 	name = "Punishment Dimension"
 	})
 "yD" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 8
 	},
 /area/prison/cell_block/wards{
 	name = "Punishment Dimension"
 	})
 "yE" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "forcefield";
@@ -10894,14 +10894,14 @@
 	name = "Punishment Dimension"
 	})
 "yF" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 4
 	},
 /area/prison/cell_block/wards{
 	name = "Punishment Dimension"
 	})
 "yG" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 1
 	},
 /area/prison/cell_block/wards{
@@ -11196,14 +11196,14 @@
 /turf/simulated/floor/white,
 /area/tdome/tdomea)
 "zv" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand"
 	},
 /area/sim/area2)
 "zw" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand"
 	},
@@ -11235,7 +11235,7 @@
 	require_login = 0;
 	screen = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand"
 	},
@@ -11244,7 +11244,7 @@
 /obj/machinery/computer/arcade{
 	desc = "The VR representation of a popular computer game."
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand"
 	},
@@ -11253,7 +11253,7 @@
 /obj/machinery/computer/security/wooden_tv{
 	desc = "The VR representation of a camera monitoring program."
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand"
 	},
@@ -11306,7 +11306,7 @@
 	icon_state = "coconuts";
 	name = "coconuts"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand"
 	},
@@ -11387,7 +11387,7 @@
 /turf/space,
 /area/meteor/dock)
 "zQ" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetNW"
 	},
 /area/sim/area2)
@@ -11399,7 +11399,7 @@
 	desc = "A data logging utility represented as an audio logger.";
 	name = "Audiolog"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/sim/area2)
@@ -11408,17 +11408,17 @@
 /obj/landmark{
 	name = "det_net"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/sim/area2)
 "zT" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/sim/area2)
 "zU" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetNE"
 	},
 /area/sim/area2)
@@ -11461,7 +11461,7 @@
 	},
 /area/meteor/dock)
 "zZ" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetSW"
 	},
 /area/sim/area2)
@@ -11473,13 +11473,13 @@
 	},
 /obj/item/pen,
 /obj/item/pen,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/sim/area2)
 "Ab" = (
 /obj/table/woodentable,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/sim/area2)
@@ -11490,12 +11490,12 @@
 /obj/item/paper_bin{
 	pixel_y = 9
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/sim/area2)
 "Ad" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetE"
 	},
 /area/sim/area2)
@@ -11563,13 +11563,13 @@
 	layer = 10;
 	name = "palm tree"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand"
 	},
 /area/sim/area2)
 "Ak" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetSE"
 	},
 /area/sim/area2)
@@ -11698,7 +11698,7 @@
 	icon_state = "crab2";
 	name = "crab"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand"
 	},
@@ -11758,14 +11758,14 @@
 /turf/space,
 /area/meteor/dock)
 "AI" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater";
 	name = "water"
 	},
 /area/sim/area2)
 "AJ" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater"
 	},
@@ -11779,7 +11779,7 @@
 	},
 /area/meteor/dock)
 "AL" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'beach.dmi';
 	icon_state = "water"
 	},
@@ -11793,14 +11793,14 @@
 	mouse_opacity = 0;
 	name = "water"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "water";
 	name = "water"
 	},
 /area/sim/area2)
 "AN" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "Wall"

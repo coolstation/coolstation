@@ -12670,7 +12670,7 @@
 /area/station/crew_quarters/pool)
 "azb" = (
 /obj/poolwater,
-/turf/unsimulated/floor/pool,
+/turf/floor/pool,
 /area/station/crew_quarters/pool)
 "azc" = (
 /obj/pool{
@@ -12924,7 +12924,7 @@
 "azF" = (
 /obj/poolwater,
 /obj/landmark/halloween,
-/turf/unsimulated/floor/pool,
+/turf/floor/pool,
 /area/station/crew_quarters/pool)
 "azG" = (
 /obj/pool{
@@ -32410,14 +32410,14 @@
 /turf/space,
 /area/syndicate_station)
 "blU" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/obj/singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "Wall"
 	},
 /area/listeningpost)
 "blV" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	icon_state = "wall"
 	},
 /area/listeningpost)
@@ -32428,7 +32428,7 @@
 	icon_state = "rwindow";
 	dir = 5
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "blX" = (
 /obj/computerframe{
@@ -32438,10 +32438,10 @@
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "blY" = (
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "blZ" = (
 /obj/decal/fakeobjects{
@@ -32452,21 +32452,21 @@
 	icon_state = "smes";
 	name = "defective power storage unit"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bma" = (
 /obj/item/storage/toolbox/electrical,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmb" = (
 /obj/window{
 	dir = 2
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmc" = (
 /obj/machinery/door/window,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmd" = (
 /obj/decal/fakeobjects/apc_broken{
@@ -32475,7 +32475,7 @@
 /obj/window{
 	dir = 2
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bme" = (
 /obj/window/reinforced{
@@ -32484,7 +32484,7 @@
 	dir = 5
 	},
 /obj/grille/steel,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "bmf" = (
 /turf/simulated/shuttle/wall{
@@ -32493,7 +32493,7 @@
 /area/listeningpost)
 "bmg" = (
 /obj/closet,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmh" = (
 /obj/overlay{
@@ -32502,7 +32502,7 @@
 	icon_state = "pdoor0";
 	name = "Riot Doors"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmi" = (
 /obj/overlay{
@@ -32515,7 +32515,7 @@
 	name = "broken door";
 	opacity = 1
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmj" = (
 /obj/decal/fakeobjects{
@@ -32526,7 +32526,7 @@
 	icon_state = "pscrubber:0";
 	name = "Portable Scrubber"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmk" = (
 /obj/decal/fakeobjects{
@@ -32537,7 +32537,7 @@
 	icon_state = "psiphon:0";
 	name = "Portable Siphon"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bml" = (
 /obj/overlay{
@@ -32548,7 +32548,7 @@
 	name = "Riot Doors";
 	opacity = 1
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmm" = (
 /obj/computerframe{
@@ -32600,7 +32600,7 @@
 	},
 /area/listeningpost)
 "bmr" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/listeningpost)
 "bms" = (
 /obj/overlay{
@@ -32613,7 +32613,7 @@
 	name = "broken door";
 	opacity = 1
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -32627,14 +32627,14 @@
 	layer = 6;
 	name = "broken door"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmu" = (
 /obj/decal/cleanable/blood/splatter{
 	tag = "icon-floor5";
 	icon_state = "floor5"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmv" = (
 /obj/decal/cleanable/blood/tracks{
@@ -32642,7 +32642,7 @@
 	icon_state = "tracks";
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmw" = (
 /obj/decal/cleanable/blood/tracks{
@@ -32650,7 +32650,7 @@
 	icon_state = "tracks";
 	dir = 5
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmx" = (
 /obj/stool/chair{
@@ -32684,7 +32684,7 @@
 	},
 /area/listeningpost)
 "bmB" = (
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "bmC" = (
 /obj/decal/fakeobjects{
@@ -32696,7 +32696,7 @@
 	dir = 4;
 	anchored = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "bmD" = (
 /obj/machinery/light/small{
@@ -32711,7 +32711,7 @@
 	dir = 4;
 	anchored = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "bmE" = (
 /obj/decal/fakeobjects{
@@ -32722,7 +32722,7 @@
 	icon_state = "siphon:0";
 	name = "Air Siphon"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmF" = (
 /obj/decal/fakeobjects{
@@ -32733,19 +32733,19 @@
 	icon_state = "scrubber:0";
 	name = "Air Scrubber"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmG" = (
 /obj/machinery/portable_atmospherics/canister/sleeping_agent,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmH" = (
 /obj/machinery/portable_atmospherics/canister/air,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmI" = (
 /obj/decal/cleanable/blood/tracks,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmJ" = (
 /obj/decal/fakeobjects/lightbulb_broken,
@@ -32776,13 +32776,13 @@
 	icon_state = "rwindow";
 	dir = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "bmM" = (
 /obj/stool/chair{
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "bmN" = (
 /obj/decal/fakeobjects/lighttube_broken{
@@ -32790,7 +32790,7 @@
 	icon_state = "tube-broken";
 	dir = 4
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "bmO" = (
 /obj/decal/fakeobjects/lighttube_broken{
@@ -32798,7 +32798,7 @@
 	icon_state = "tube-broken";
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmP" = (
 /obj/overlay{
@@ -32811,7 +32811,7 @@
 	},
 /obj/effect_sparker,
 /obj/decal/cleanable/blood/tracks,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmQ" = (
 /obj/overlay{
@@ -32836,7 +32836,7 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "bmS" = (
 /obj/machinery/power/apc{
@@ -32850,7 +32850,7 @@
 	pixel_y = -24;
 	start_charge = 1e+031
 	},
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/obj/singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "Wall"
@@ -32863,7 +32863,7 @@
 	dir = 1
 	},
 /obj/item/handcuffs,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmU" = (
 /obj/decal/cleanable/blood/splatter{
@@ -32879,19 +32879,19 @@
 	icon_state = "tube-broken";
 	dir = 1
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmV" = (
 /obj/closet/wardrobe/red,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmW" = (
 /obj/decal/cleanable/cobweb2,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bmX" = (
 /obj/securearea,
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	icon_state = "wall"
 	},
 /area/listeningpost)
@@ -32926,17 +32926,17 @@
 	dir = 8
 	},
 /obj/decal/fakeobjects/lightbulb_broken,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "bnb" = (
 /obj/decal/fakeobjects/apc_broken{
 	pixel_x = -24
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnc" = (
 /obj/stool/chair,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnd" = (
 /obj/overlay{
@@ -32954,7 +32954,7 @@
 	tag = "icon-floor2";
 	icon_state = "floor2"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bne" = (
 /obj/machinery/door/airlock,
@@ -32963,7 +32963,7 @@
 	icon_state = "tracks";
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnf" = (
 /obj/decal/cleanable/blood/tracks{
@@ -32971,7 +32971,7 @@
 	icon_state = "tracks";
 	dir = 6
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bng" = (
 /obj/table{
@@ -32983,7 +32983,7 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnh" = (
 /obj/machinery/light{
@@ -32991,7 +32991,7 @@
 	icon_state = "tube1";
 	dir = 1
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bni" = (
 /obj/window/reinforced{
@@ -33006,24 +33006,24 @@
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "bnj" = (
 /obj/decal/fakeobjects/firelock_broken,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnk" = (
 /obj/computerframe{
 	anchored = 1;
 	state = 1
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnl" = (
 /obj/stool/chair{
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnm" = (
 /obj/table{
@@ -33032,21 +33032,21 @@
 	},
 /obj/item/device/flash,
 /obj/item/clothing/glasses/sunglasses,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnn" = (
 /obj/table{
 	dir = 5;
 	icon_state = "tabledir"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bno" = (
 /obj/stool/chair{
 	dir = 8
 	},
 /obj/item/reagent_containers/food/drinks/bottle/beer,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnp" = (
 /obj/stool,
@@ -33054,18 +33054,18 @@
 	tag = "icon-floor7";
 	icon_state = "floor7"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnq" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 8
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnr" = (
 /obj/machinery/door/airlock,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bns" = (
 /obj/machinery/door/unpowered/shuttle,
@@ -33100,7 +33100,7 @@
 "bny" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnz" = (
 /obj/grille/steel,
@@ -33114,7 +33114,7 @@
 	icon_state = "window";
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "bnA" = (
 /obj/decal/fakeobjects{
@@ -33126,31 +33126,31 @@
 	dir = 4;
 	anchored = 1
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnB" = (
 /obj/table,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnC" = (
 /obj/closet/wardrobe/grey,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnD" = (
 /obj/closet/wardrobe/orange,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnE" = (
 /obj/item/storage/toolbox/mechanical,
 /obj/item/device/multitool,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnF" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 10
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnG" = (
 /obj/table{
@@ -33158,13 +33158,13 @@
 	icon_state = "tabledir";
 	dir = 6
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnH" = (
 /obj/stool/chair{
 	dir = 8
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnI" = (
 /obj/table{
@@ -33176,7 +33176,7 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnJ" = (
 /obj/overlay{
@@ -33189,7 +33189,7 @@
 	tag = "icon-floor3";
 	icon_state = "floor3"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnK" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
@@ -33240,13 +33240,13 @@
 /obj/window{
 	dir = 2
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "bnQ" = (
 /obj/decal/fakeobjects/lighttube_broken{
 	dir = 8
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnR" = (
 /obj/grille/steel,
@@ -33265,17 +33265,17 @@
 	icon_state = "window";
 	dir = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "bnS" = (
 /obj/item/storage/toolbox/mechanical,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnT" = (
 /obj/stool/chair{
 	dir = 1
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnU" = (
 /obj/computerframe{
@@ -33283,7 +33283,7 @@
 	state = 1
 	},
 /obj/item/raw_material/shard/glass,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bnV" = (
 /obj/machinery/atmospherics/pipe/simple/insulated,
@@ -33313,7 +33313,7 @@
 	dir = 4;
 	pixel_x = 24
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bob" = (
 /obj/decal/fakeobjects/firealarm_broken{
@@ -33322,16 +33322,16 @@
 	pixel_x = -24;
 	tag = "icon-firex (WEST)"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "boc" = (
 /obj/stool/bed,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bod" = (
 /obj/stool/bed,
 /obj/decal/cleanable/blood/splatter,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "boe" = (
 /obj/overlay{
@@ -33345,7 +33345,7 @@
 	name = "blood";
 	opacity = 0
 	},
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/listeningpost)
 "bof" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -33394,11 +33394,11 @@
 /obj/decal/fakeobjects/lighttube_broken{
 	dir = 8
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bom" = (
 /obj/rack,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bon" = (
 /obj/closet,
@@ -33521,15 +33521,15 @@
 	icon_state = "dispenser";
 	name = "Oxygen Tank Storage Unit"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "boB" = (
 /obj/stool/bed,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "boC" = (
 /obj/decal/fakeobjects/lighttube_broken,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "boD" = (
 /obj/machinery/light{
@@ -33537,7 +33537,7 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "boE" = (
 /obj/decal/fakeobjects/lightbulb_broken{
@@ -33580,11 +33580,11 @@
 /area/station/storage/testroom)
 "boJ" = (
 /obj/item/rods,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "boK" = (
 /obj/structure/girder,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "boL" = (
 /obj/machinery/door/window/eastright,
@@ -33613,7 +33613,7 @@
 	tag = "icon-coatblood";
 	icon_state = "coatblood"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "boP" = (
 /obj/machinery/atmospherics/pipe/simple{
@@ -33623,7 +33623,7 @@
 	layer = 3;
 	level = 2
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33636,14 +33636,14 @@
 	layer = 3;
 	level = 2
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
 /area/listeningpost)
 "boR" = (
 /obj/item/raw_material/shard/glass,
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33657,7 +33657,7 @@
 	pixel_y = 32;
 	tag = "icon-floor6"
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33668,7 +33668,7 @@
 	dir = 10
 	},
 /obj/item/storage/firstaid/regular,
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33680,7 +33680,7 @@
 	dir = 6
 	},
 /obj/item/device/analyzer/healthanalyzer,
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33694,11 +33694,11 @@
 	icon_state = "tube-broken";
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "boW" = (
 /obj/machinery/atmospherics/unary/cold_sink/freezer,
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33708,20 +33708,20 @@
 	icon_state = "intact";
 	level = 2
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
 /area/listeningpost)
 "boY" = (
 /obj/machinery/atmospherics/unary/cryo_cell,
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
 /area/listeningpost)
 "boZ" = (
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33731,7 +33731,7 @@
 	desc = "Notice: Area Under Quarantine!";
 	name = "quarantine sign"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bpb" = (
 /obj/table{
@@ -33740,7 +33740,7 @@
 	dir = 6
 	},
 /obj/item/cable_coil,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bpc" = (
 /obj/closet/wardrobe/orange,
@@ -33755,7 +33755,7 @@
 /obj/decal/fakeobjects/lighttube_broken{
 	dir = 8
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33765,7 +33765,7 @@
 	icon_state = "manifold";
 	level = 2
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33778,17 +33778,17 @@
 	layer = 3;
 	level = 2
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
 /area/listeningpost)
 "bpg" = (
 /obj/item/tile,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "bph" = (
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-vrwhitehall (WEST)";
 	icon_state = "vrwhitehall";
 	dir = 8
@@ -33799,11 +33799,11 @@
 	name = "Storage Closet";
 	req_access_txt = "0"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bpj" = (
 /obj/reagent_dispensers/watertank,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bpk" = (
 /obj/stool/chair,
@@ -33827,7 +33827,7 @@
 	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33837,7 +33837,7 @@
 	desc = "Notice: Area Under Quarantine!";
 	name = "quarantine sign"
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-vrwhitehall (WEST)";
 	icon_state = "vrwhitehall";
 	dir = 8
@@ -33848,13 +33848,13 @@
 	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bpq" = (
 /obj/table,
 /obj/machinery/cell_charger,
 /obj/item/device/multitool,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bpr" = (
 /obj/stool/chair{
@@ -33897,7 +33897,7 @@
 	icon_state = "sleeper_0";
 	name = "broken sleeper"
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33911,14 +33911,14 @@
 	icon_state = "sleeperconsole";
 	name = "broken console"
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
 /area/listeningpost)
 "bpw" = (
 /obj/stool/bed,
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33929,14 +33929,14 @@
 	tag = "icon-floor5";
 	icon_state = "floor5"
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
 /area/listeningpost)
 "bpy" = (
 /obj/secure_closet/medical1,
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33983,7 +33983,7 @@
 	dir = 9
 	},
 /obj/decal/cleanable/blood/tracks,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bpE" = (
 /obj/decal/fakeobjects{
@@ -34000,7 +34000,7 @@
 	icon_state = "tracks";
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bpF" = (
 /obj/overlay{
@@ -34023,7 +34023,7 @@
 	icon_state = "tracks";
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bpG" = (
 /obj/machinery/ignition_switch{
@@ -34042,7 +34042,7 @@
 	tag = "icon-firex (WEST)"
 	},
 /obj/decal/cleanable/blood/tracks,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bpI" = (
 /obj/stool/chair{
@@ -34110,7 +34110,7 @@
 	},
 /area/listeningpost)
 "bpP" = (
-/turf/unsimulated/wall,
+/turf/wall,
 /area/space)
 "bpQ" = (
 /turf/simulated/floor/plating,
@@ -34169,18 +34169,18 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bpZ" = (
 /obj/machinery/door/window/southleft,
 /obj/decal/fakeobjects/lighttube_broken{
 	dir = 8
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bqa" = (
 /obj/machinery/door/window/southright,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bqb" = (
 /obj/stool,
@@ -34217,14 +34217,14 @@
 /area/station/storage/testroom)
 "bqg" = (
 /obj/item/storage/backpack,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bqh" = (
 /obj/decal/cleanable/blood/splatter{
 	tag = "icon-floor3";
 	icon_state = "floor3"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bqi" = (
 /obj/decal/fakeobjects/lighttube_broken{
@@ -34232,7 +34232,7 @@
 	icon_state = "tube-broken";
 	dir = 1
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bqj" = (
 /obj/decal/fakeobjects/shuttlethruster,
@@ -34244,24 +34244,24 @@
 /obj/decal/fakeobjects/apc_broken{
 	pixel_y = -24
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bql" = (
 /obj/machinery/door{
 	icon = 'icons/obj/doors/Door1.dmi';
 	name = "Morgue"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bqm" = (
 /obj/morgue,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bqn" = (
 /obj/decal/fakeobjects/apc_broken{
 	pixel_y = 24
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bqo" = (
 /obj/landmark/start,
@@ -34316,7 +34316,7 @@
 	tag = "icon-medium";
 	icon_state = "medium"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/listeningpost)
 "bqx" = (
 /turf/simulated/shuttle/wall{
@@ -34383,7 +34383,7 @@
 	tag = "icon-brokengrille"
 	},
 /obj/item/rods,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/listeningpost)
 "bqG" = (
 /obj/grille/steel,
@@ -34430,14 +34430,14 @@
 	tag = "icon-small";
 	icon_state = "small"
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
 	},
 /area/listeningpost)
 "bqM" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -34454,21 +34454,21 @@
 	icon_state = "shrub";
 	dir = 1
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
 	},
 /area/listeningpost)
 "bqO" = (
-/turf/unsimulated/grass,
+/turf/grass,
 /area/listeningpost)
 "bqP" = (
 /obj/machinery/computer/shuttle,
 /turf/simulated/floor/shuttle,
 /area/shuttle/escape/centcom)
 "bqQ" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -34480,18 +34480,18 @@
 	icon_state = "grassplug";
 	dir = 6
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/listeningpost)
 "bqS" = (
 /obj/grassplug,
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
 	},
 /area/listeningpost)
 "bqT" = (
-/turf/unsimulated/grass{
+/turf/grass{
 	density = 1;
 	icon_state = "grass";
 	name = "grass.";
@@ -34504,10 +34504,10 @@
 	icon_state = "grassplug";
 	dir = 8
 	},
-/turf/unsimulated/grasstodirt,
+/turf/grasstodirt,
 /area/listeningpost)
 "bqV" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -34540,10 +34540,10 @@
 	icon_state = "stone";
 	dir = 10
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/listeningpost)
 "brb" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/fullscreen.dmi';
 	icon_state = "title";
 	layer = 20;
@@ -34603,7 +34603,7 @@
 	icon_state = "grassplug";
 	dir = 5
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/listeningpost)
 "bri" = (
 /obj/shrub{
@@ -34611,7 +34611,7 @@
 	icon_state = "shrub";
 	dir = 4
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/listeningpost)
 "brj" = (
 /obj/grille/steel,
@@ -34630,11 +34630,11 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "brk" = (
 /obj/machinery/door/airlock,
-/turf/unsimulated/floor/caution/north,
+/turf/floor/caution/north,
 /area/centcom)
 "brl" = (
 /obj/grille/steel,
@@ -34653,7 +34653,7 @@
 	icon_state = "rwindow";
 	dir = 2
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "brm" = (
 /obj/grille/steel,
@@ -34667,7 +34667,7 @@
 	icon_state = "rwindow";
 	dir = 2
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "brn" = (
 /obj/grille/steel,
@@ -34686,7 +34686,7 @@
 	icon_state = "rwindow";
 	dir = 2
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "bro" = (
 /obj/grille/steel,
@@ -34705,7 +34705,7 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "brp" = (
 /obj/grille/steel,
@@ -34724,10 +34724,10 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "brq" = (
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/listeningpost)
 "brr" = (
 /obj/grille/steel,
@@ -34741,10 +34741,10 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "brs" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-floor";
 	icon_state = "floor"
 	},
@@ -34759,7 +34759,7 @@
 	invisibility = 20;
 	name = "deadlight"
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/listeningpost)
 "bru" = (
 /obj/stone{
@@ -34767,14 +34767,14 @@
 	icon_state = "stone";
 	dir = 1
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
 	},
 /area/listeningpost)
 "brv" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-bolts";
 	icon_state = "bolts"
 	},
@@ -34790,10 +34790,10 @@
 	icon_state = "shrub";
 	dir = 10
 	},
-/turf/unsimulated/grasstodirt,
+/turf/grasstodirt,
 /area/listeningpost)
 "brx" = (
-/turf/unsimulated/grasstodirt,
+/turf/grasstodirt,
 /area/listeningpost)
 "bry" = (
 /obj/grassplug{
@@ -34801,7 +34801,7 @@
 	icon_state = "grassplug";
 	dir = 4
 	},
-/turf/unsimulated/grasstodirt,
+/turf/grasstodirt,
 /area/listeningpost)
 "brz" = (
 /obj/grille/steel,
@@ -34815,7 +34815,7 @@
 	icon_state = "rwindow";
 	dir = 2
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "brA" = (
 /obj/grille/steel,
@@ -34829,11 +34829,11 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "brB" = (
 /obj/machinery/door/airlock,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-floor";
 	icon_state = "floor"
 	},
@@ -34850,7 +34850,7 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "brD" = (
 /obj/grille/steel,
@@ -34864,7 +34864,7 @@
 	icon_state = "rwindow";
 	dir = 2
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "brE" = (
 /obj/shrub{
@@ -34872,10 +34872,10 @@
 	icon_state = "shrub";
 	dir = 9
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/listeningpost)
 "brF" = (
-/turf/unsimulated/grass{
+/turf/grass{
 	density = 1;
 	icon_state = "grass";
 	name = "grass.";
@@ -34883,14 +34883,14 @@
 	},
 /area/space)
 "brG" = (
-/turf/unsimulated/floor/specialroom/bar{
+/turf/floor/specialroom/bar{
 	dir = 8
 	},
 /area/centcom)
 "brH" = (
 /obj/table,
 /obj/item/reagent_containers/food/drinks/bottle/bojackson,
-/turf/unsimulated/floor/specialroom/bar{
+/turf/floor/specialroom/bar{
 	dir = 8
 	},
 /area/centcom)
@@ -34900,7 +34900,7 @@
 	dir = 9
 	},
 /obj/item/reagent_containers/food/drinks/bottle/beer,
-/turf/unsimulated/floor/specialroom/bar{
+/turf/floor/specialroom/bar{
 	dir = 8
 	},
 /area/centcom)
@@ -34910,7 +34910,7 @@
 	dir = 5
 	},
 /obj/item/reagent_containers/food/snacks/burger/monkeyburger,
-/turf/unsimulated/floor/specialroom/bar{
+/turf/floor/specialroom/bar{
 	dir = 8
 	},
 /area/centcom)
@@ -34919,7 +34919,7 @@
 	icon_state = "tabledir";
 	dir = 10
 	},
-/turf/unsimulated/floor/specialroom/bar{
+/turf/floor/specialroom/bar{
 	dir = 8
 	},
 /area/centcom)
@@ -34929,7 +34929,7 @@
 	dir = 6
 	},
 /obj/item/reagent_containers/food/drinks/bottle/beer,
-/turf/unsimulated/floor/specialroom/bar{
+/turf/floor/specialroom/bar{
 	dir = 8
 	},
 /area/centcom)
@@ -34938,33 +34938,33 @@
 /obj/item/reagent_containers/food/drinks/bottle/vodka{
 	pixel_y = 11
 	},
-/turf/unsimulated/floor/specialroom/bar{
+/turf/floor/specialroom/bar{
 	dir = 8
 	},
 /area/centcom)
 "brN" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand"
 	},
 /area/beach)
 "brO" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
 /area/beach)
 "brP" = (
 /obj/signpost,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
 /area/beach)
 "brQ" = (
 /obj/closet,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -34977,7 +34977,7 @@
 	layer = 10;
 	name = "palm tree"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -34990,7 +34990,7 @@
 	layer = 10;
 	name = "palm tree"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -35009,7 +35009,7 @@
 	icon_state = "coconuts";
 	name = "coconuts"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -35026,7 +35026,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/beer,
 /obj/item/reagent_containers/food/drinks/bottle/beer,
 /obj/item/reagent_containers/food/drinks/bottle/beer,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -35036,7 +35036,7 @@
 	icon_state = "tabledir";
 	dir = 5
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -35047,7 +35047,7 @@
 	dir = 10
 	},
 /obj/item/reagent_containers/food/snacks/chips,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -35063,21 +35063,21 @@
 /obj/item/reagent_containers/food/drinks/cola,
 /obj/item/reagent_containers/food/drinks/cola,
 /obj/item/reagent_containers/food/drinks/cola,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
 /area/beach)
 "brY" = (
 /obj/item/beach_ball,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
 /area/beach)
 "brZ" = (
 /obj/stool/chair,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -35089,7 +35089,7 @@
 	icon_state = "crab";
 	name = "crab"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -35101,20 +35101,20 @@
 	icon_state = "crab2";
 	name = "crab"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
 /area/beach)
 "bsc" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater";
 	name = "water"
 	},
 /area/beach)
 "bsd" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater"
 	},
@@ -35140,13 +35140,13 @@
 /turf/space,
 /area/meteor/dock)
 "bsh" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "water"
 	},
 /area/beach)
 "bsi" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "water";
 	name = "water"
@@ -35195,7 +35195,7 @@
 	mouse_opacity = 0;
 	name = "water"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "water";
 	name = "water"
@@ -35551,10 +35551,10 @@
 	},
 /area/meteor/dock)
 "btc" = (
-/turf/unsimulated/wall,
+/turf/wall,
 /area/sim/bball)
 "btd" = (
-/turf/unsimulated/wall,
+/turf/wall,
 /area/sim/gunsim)
 "bte" = (
 /turf/simulated/floor/stairs/wide,
@@ -35569,7 +35569,7 @@
 /turf/simulated/floor/stairs,
 /area/sim/bball)
 "bti" = (
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/sim/gunsim)
 "btj" = (
 /obj/table{
@@ -35627,21 +35627,21 @@
 	},
 /area/sim/gunsim)
 "btq" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (SOUTHWEST)";
 	icon_state = "grasstodirt";
 	dir = 10
 	},
 /area/sim/gunsim)
 "btr" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
 	},
 /area/sim/gunsim)
 "bts" = (
-/turf/unsimulated/grass,
+/turf/grass,
 /area/sim/gunsim)
 "btt" = (
 /turf/simulated/floor/black,
@@ -35684,21 +35684,21 @@
 	},
 /area/sim/gunsim)
 "btz" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
 	},
 /area/sim/gunsim)
 "btA" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (NORTHEAST)";
 	icon_state = "grasstodirt";
 	dir = 5
 	},
 /area/sim/gunsim)
 "btB" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -35706,7 +35706,7 @@
 /area/sim/gunsim)
 "btC" = (
 /obj/tree1,
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (NORTHWEST)";
 	icon_state = "grasstodirt";
 	dir = 9
@@ -35739,14 +35739,14 @@
 	},
 /area/sim/gunsim)
 "btH" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (SOUTHEAST)";
 	icon_state = "grasstodirt";
 	dir = 6
 	},
 /area/sim/gunsim)
 "btI" = (
-/turf/unsimulated/grasstodirt,
+/turf/grasstodirt,
 /area/sim/gunsim)
 "btJ" = (
 /obj/machinery/door/unpowered/wood,
@@ -35757,7 +35757,7 @@
 /area/sim/gunsim)
 "btK" = (
 /obj/stone,
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -35793,7 +35793,7 @@
 	pixel_x = 3;
 	pixel_y = -16
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -35805,7 +35805,7 @@
 	icon_state = "stone";
 	dir = 9
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -35821,7 +35821,7 @@
 /obj/landmark{
 	name = "combspawn"
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/sim/gunsim)
 "btR" = (
 /turf/simulated/floor{
@@ -35901,7 +35901,7 @@
 	icon_state = "shrub";
 	dir = 10
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/sim/gunsim)
 "bue" = (
 /turf/simulated/floor{
@@ -36018,7 +36018,7 @@
 /area/sim/bball)
 "buv" = (
 /obj/tree1,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/sim/gunsim)
 "buw" = (
 /turf/simulated/floor{
@@ -36072,7 +36072,7 @@
 /obj/landmark{
 	name = "combspawn"
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -36120,13 +36120,13 @@
 	icon_state = "shrub";
 	dir = 4
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/sim/gunsim)
 "buM" = (
 /obj/landmark{
 	name = "combspawn"
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -36138,7 +36138,7 @@
 /turf/simulated/floor,
 /area/sim/gunsim)
 "buO" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/obj/singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "Wall"
@@ -36153,21 +36153,21 @@
 /area/sim/gunsim)
 "buQ" = (
 /obj/tree1,
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
 	},
 /area/sim/gunsim)
 "buR" = (
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/sim/test_area{
 	name = "VR Test Area";
 	requires_power = 0;
 	sd_lighting = 0
 	})
 "buS" = (
-/turf/unsimulated/wall/bombvr,
+/turf/wall/bombvr,
 /area/sim/test_area{
 	name = "VR Test Area";
 	requires_power = 0;
@@ -36181,7 +36181,7 @@
 /turf/simulated/floor,
 /area/sim/gunsim)
 "buV" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (NORTHWEST)";
 	icon_state = "grasstodirt";
 	dir = 9
@@ -36358,7 +36358,7 @@
 	icon_state = "shrub";
 	dir = 1
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/sim/gunsim)
 "bvA" = (
 /obj/machinery/flasher{
@@ -36412,11 +36412,11 @@
 /obj/landmark{
 	name = "combspawn"
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/sim/gunsim)
 "bvF" = (
 /obj/tree1,
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (NORTHEAST)";
 	icon_state = "grasstodirt";
 	dir = 5
@@ -36568,7 +36568,7 @@
 /obj/landmark{
 	name = "bombtest-bomb"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/sim/test_area{
 	name = "VR Test Area";
 	requires_power = 0;
@@ -36661,14 +36661,14 @@
 /obj/landmark{
 	name = "bombtest"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/sim/test_area{
 	name = "VR Test Area";
 	requires_power = 0;
 	sd_lighting = 0
 	})
 "bwg" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/obj/singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "outer forcefield";
@@ -36681,21 +36681,21 @@
 /obj/landmark{
 	name = "prisonwarp"
 	},
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 2
 	},
 /area/prison/cell_block/wards{
 	name = "Punishment Dimension"
 	})
 "bwi" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 8
 	},
 /area/prison/cell_block/wards{
 	name = "Punishment Dimension"
 	})
 "bwj" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/obj/singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "forcefield";
@@ -36705,21 +36705,21 @@
 	name = "Punishment Dimension"
 	})
 "bwk" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 4
 	},
 /area/prison/cell_block/wards{
 	name = "Punishment Dimension"
 	})
 "bwl" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 1
 	},
 /area/prison/cell_block/wards{
 	name = "Punishment Dimension"
 	})
 "bwm" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/obj/singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "v-space"
@@ -37334,7 +37334,7 @@
 /turf/simulated/floor,
 /area/space)
 "bxI" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand"
@@ -37383,7 +37383,7 @@
 /turf/simulated/floor,
 /area/space)
 "bxN" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -37438,7 +37438,7 @@
 	require_login = 0;
 	screen = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -37447,7 +37447,7 @@
 /obj/machinery/computer/arcade{
 	desc = "The VR representation of a popular computer game."
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -37456,7 +37456,7 @@
 /obj/machinery/computer/security/wooden_tv{
 	desc = "The VR representation of a camera monitoring program."
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -37492,7 +37492,7 @@
 	icon_state = "coconuts";
 	name = "coconuts"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -37516,7 +37516,7 @@
 /turf/simulated/floor/caution/east,
 /area/space)
 "byc" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetNW"
 	},
 /area/sim/area2)
@@ -37528,7 +37528,7 @@
 	desc = "A data logging utility represented as an audio logger.";
 	name = "Audiolog"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/sim/area2)
@@ -37537,17 +37537,17 @@
 /obj/landmark{
 	name = "det_net"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/sim/area2)
 "byf" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/sim/area2)
 "byg" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetNE"
 	},
 /area/sim/area2)
@@ -37584,7 +37584,7 @@
 /turf/simulated/floor,
 /area/space)
 "byn" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetSW"
 	},
 /area/sim/area2)
@@ -37596,13 +37596,13 @@
 	},
 /obj/item/pen,
 /obj/item/pen,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/sim/area2)
 "byp" = (
 /obj/table/woodentable,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/sim/area2)
@@ -37613,12 +37613,12 @@
 /obj/item/paper_bin{
 	pixel_y = 9
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/sim/area2)
 "byr" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetE"
 	},
 /area/sim/area2)
@@ -37642,13 +37642,13 @@
 	layer = 10;
 	name = "palm tree"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
 /area/sim/area2)
 "byu" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetSE"
 	},
 /area/sim/area2)
@@ -37842,7 +37842,7 @@
 	icon_state = "crab2";
 	name = "crab"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -37974,14 +37974,14 @@
 /turf/simulated/floor/plating,
 /area/space)
 "bzj" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater";
 	name = "water"
 	},
 /area/sim/area2)
 "bzk" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater"
 	},
@@ -38074,7 +38074,7 @@
 /turf/simulated/floor/plating,
 /area/space)
 "bzw" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "water"
 	},
@@ -38088,7 +38088,7 @@
 	mouse_opacity = 0;
 	name = "water"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "water";
 	name = "water"
@@ -38750,7 +38750,7 @@
 	},
 /area/space)
 "bAX" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -38760,7 +38760,7 @@
 	dir = 1
 	},
 /obj/machinery/disposal,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -38785,7 +38785,7 @@
 	icon_state = "tabledir"
 	},
 /obj/item/device/key,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -38802,7 +38802,7 @@
 	pixel_x = 4;
 	pixel_y = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -38817,7 +38817,7 @@
 	info = "Journal Log of Bruce Garriott, Medical Assistant for Joe Q Memorial Institute<br><br><i>May 05, 2053:</i><br><p>I need a place to write my thoughts down, not sure if we'll get out of this.  It feels like we've been here for weeks, but it couldn't have been more than a few hours.Administrator Jam came to us all personal-like, anger burning behind his eyes like the fires of hell.  Said Marty had been breaking his contract, couldn't keep personal relations out, had been moving in on Jam's new flame.I thought he was right about to explode, but his face just snapped all back to normal like it was held by wires.  He told us, all of us, even Felix, to clean the crew quarters.  Not a spot missed.  We should've seen something was up, but we went over there like a bunch of rubes.</p><p>We cleaned that room real thorough, not a spot of grease or dirt anywhere, but when we opened the door back up to leave the asylum was gone.  The door went right into a bar or something, windows caked with filth and gazing right at some huge iron sphere.We didn't know what the fuck.  Still don't.  Don't know where Felix has gotten off to.</p><i>May 06, 2053:</i><br><p>Don't quite believe it myself, but this place has a beach.  Tiny thing all wedged into a metal room, water moving from some unseen wave machine.  There's some rusted floodgate in the water, going to see if we can open it up.  As good a chance at being a way out as any, I guess</p><i>May 07, 2053:</i><br><p>Marty is dead.  We were looking for some way to pry the door open and came across some room all made up like a checkerboard.  Marty got too close to the edge and slipped like the floor was made of ice.  He went right through the windows, right into space.</p><p>Worst part is, I saw Felix again.  But it wasn't him, everything was all off, like somebody tried to mold a copy of him out of clay.  He was holding a bloody blue toolbox, but when I looked harder he wasn't holding it, his hand was all twisted around it and all the tendons were fused right to the handle.He gave some guttural shout and seemed to walk right through the walls.</p><i>May 08, 2053:</i><br>Found some dingy office or something, whatever it was it had a terminal controlling the floodgate.  There's some sort of retention cell or something here, looks like somebody set up an office here too.  Not surprised by anything anymore.  It's a good enough place to hide.  I keep looking at my asylum-issue pistol.  That Jam nutjob had them handed out to the whole medical team after a breakout months ago.</p><p>Don't know if I can even bring myself to fire on that Felix-thing, or if it'll even make a dent.  Some deep rumbling keeps coming from the halls outside, can't tell if it's even natural or</p><br><br>The gates just closed.";
 	name = "Paper-'Journal"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -38827,7 +38827,7 @@
 	icon_state = "tabledir";
 	dir = 6
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -38860,7 +38860,7 @@
 /area/space)
 "bBl" = (
 /obj/decal/cleanable/blood/splatter,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -38893,7 +38893,7 @@
 	icon_state = "caplaser25";
 	name = "Bruce's energy gun"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand"
 	},
@@ -38942,14 +38942,14 @@
 /turf/simulated/floor,
 /area/space)
 "bBy" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater"
 	},
 /area/space)
 "bBz" = (
 /obj/item/pen,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater"
 	},
@@ -38984,7 +38984,7 @@
 	mouse_opacity = 0;
 	name = "water"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "water";
 	name = "water"
@@ -39023,7 +39023,7 @@
 	mouse_opacity = 0;
 	name = "water"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "water";
 	name = "water"
@@ -40276,7 +40276,7 @@
 	dir = 5
 	},
 /obj/grille/steel,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/evilreaver)
 "bEY" = (
 /obj/decal/fakeobjects/shuttlethruster{
@@ -55115,10 +55115,10 @@
 	},
 /area/space)
 "clP" = (
-/turf/unsimulated/wall/void/crunch,
+/turf/wall/void/crunch,
 /area/space)
 "clQ" = (
-/turf/unsimulated/wall/void/crunch,
+/turf/wall/void/crunch,
 /area/crunch)
 "clR" = (
 /turf/simulated/wall/ancient,
@@ -55144,14 +55144,14 @@
 /turf/simulated/floor/ancient,
 /area/crunch)
 "clX" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "mf1";
 	name = "asteroid"
 	},
 /area/crunch)
 "clY" = (
 /obj/lattice,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "mf1";
 	name = "asteroid"
 	},
@@ -55979,11 +55979,11 @@
 /turf/simulated/floor/orangeblack,
 /area/crunch)
 "cob" = (
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "coc" = (
 /obj/lattice,
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cod" = (
 /turf/simulated/floor/blue/checker,
@@ -56093,7 +56093,7 @@
 	sd_ColorGreen = 0.07;
 	sd_ColorRed = 0.28
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cos" = (
 /obj/machinery/door/airlock{
@@ -56147,7 +56147,7 @@
 /area/crunch)
 "coy" = (
 /obj/critter/floateye,
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "coA" = (
 /obj/item/relic,
@@ -56250,7 +56250,7 @@
 	icon_state = "floattiles4";
 	dir = 4
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "coP" = (
 /obj/machinery/guardbot_dock{
@@ -56307,7 +56307,7 @@
 /turf/simulated/floor/airless/plating/damaged2,
 /area/crunch)
 "coX" = (
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /turf/simulated/martian/wall{
 	tag = "icon-diagonalWall (WEST)";
 	icon_state = "diagonalWall";
@@ -56322,7 +56322,7 @@
 /turf/simulated/martian/floor,
 /area/crunch)
 "cpa" = (
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /turf/simulated/martian/wall{
 	tag = "icon-diagonalWall (SOUTHEAST)";
 	icon_state = "diagonalWall";
@@ -56373,7 +56373,7 @@
 /area/crunch)
 "cpi" = (
 /obj/decal/floatingtiles,
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cpj" = (
 /turf/simulated/martian/floor,
@@ -56397,7 +56397,7 @@
 	icon_state = "floattiles4";
 	dir = 8
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cpn" = (
 /obj/overlay{
@@ -56460,7 +56460,7 @@
 	tag = "icon-floattiles6";
 	icon_state = "floattiles6"
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cps" = (
 /obj/overlay{
@@ -56594,7 +56594,7 @@
 	icon_state = "floattiles3";
 	dir = 8
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cpI" = (
 /obj/grille/steel,
@@ -56631,7 +56631,7 @@
 	icon_state = "floattiles1";
 	dir = 1
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cpM" = (
 /obj/overlay{
@@ -57154,7 +57154,7 @@
 	icon_state = "floattiles1";
 	dir = 8
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cre" = (
 /obj/decal/floatingtiles{
@@ -57162,7 +57162,7 @@
 	icon_state = "floattiles3";
 	dir = 4
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "crf" = (
 /turf/simulated/wall/r_wall,
@@ -57267,7 +57267,7 @@
 	icon_state = "floattiles2";
 	dir = 4
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "crs" = (
 /obj/decal/cleanable/generic,

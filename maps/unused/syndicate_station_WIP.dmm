@@ -6,7 +6,7 @@
 /turf/cordon,
 /area/space)
 "ac" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/obj/singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "cloaking field"
@@ -20,13 +20,13 @@
 /turf/space,
 /area/syndicate_station/battlecruiser)
 "ae" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3"
 	},
 /area/syndicate_station/battlecruiser)
 "af" = (
 /obj/wingrille_spawn/auto/crystal,
-/turf/simulated/floor/plating/random,
+/turf/floor/plating/random,
 /area/syndicate_station/battlecruiser)
 "ag" = (
 /obj/indestructible/shuttle_corner{
@@ -38,104 +38,104 @@
 "ah" = (
 /obj/decoration/syndiepc/syndiepc5,
 /obj/map/light/dimred,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "ai" = (
 /obj/machinery/computer/announcement/syndie,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "aj" = (
 /obj/decoration/syndiepc/syndiepc9,
 /obj/map/light/dimred,
-/turf/simulated/floor/darkpurple,
+/turf/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
 "ak" = (
 /obj/decoration/syndiepc/syndiepc16,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "al" = (
 /obj/decoration/syndiepc/syndiepc9,
 /obj/map/light/dimred,
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "am" = (
 /obj/decoration/syndiepc/syndiepc8,
 /obj/map/light/dimred,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "an" = (
 /obj/decoration/syndiepc/syndiepc2{
 	pixel_x = 1
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "ao" = (
 /obj/stool/chair/office/syndie{
 	dir = 8
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "ap" = (
 /obj/stool/chair/office/syndie{
 	icon_state = "syndiechair";
 	dir = 1
 	},
-/turf/simulated/floor/darkpurple,
+/turf/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
 "aq" = (
 /obj/stool/chair/office/syndie{
 	icon_state = "syndiechair";
 	dir = 1
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "ar" = (
 /obj/stool/chair/office/syndie{
 	icon_state = "syndiechair";
 	dir = 1
 	},
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "as" = (
 /obj/stool/chair/office/syndie{
 	dir = 4
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "at" = (
 /obj/decoration/syndiepc/syndiepc3,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "au" = (
 /obj/decoration/syndiepc/syndiepc10,
 /obj/map/light/dimred,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "av" = (
-/turf/simulated/floor/darkpurple,
+/turf/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
 "aw" = (
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "ax" = (
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "ay" = (
 /obj/decoration/syndiepc/syndiepc11,
 /obj/map/light/dimred,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "az" = (
-/turf/simulated/floor/stairs/dark/wide,
+/turf/floor/stairs/dark/wide,
 /area/syndicate_station/battlecruiser)
 "aA" = (
-/turf/simulated/floor/stairs/dark{
+/turf/floor/stairs/dark{
 	icon_state = "dark_stairs";
 	dir = 6
 	},
 /area/syndicate_station/battlecruiser)
 "aB" = (
-/turf/simulated/floor/stairs/dark/wide{
+/turf/floor/stairs/dark/wide{
 	icon_state = "dark_stairs2";
 	dir = 6
 	},
@@ -151,19 +151,19 @@
 	layer = 9.1;
 	pixel_x = -10
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "aD" = (
-/turf/simulated/floor/redblack/corner{
+/turf/floor/redblack/corner{
 	dir = 4
 	},
 /area/syndicate_station/battlecruiser)
 "aE" = (
 /obj/machinery/light/small/floor,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "aF" = (
-/turf/simulated/floor/redblack/corner{
+/turf/floor/redblack/corner{
 	dir = 6
 	},
 /area/syndicate_station/battlecruiser)
@@ -173,7 +173,7 @@
 	layer = 9.1;
 	pixel_x = 10
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "aH" = (
 /obj/machinery/door/poddoor/blast{
@@ -186,7 +186,7 @@
 /obj/decal/poster/wallsign/space{
 	pixel_x = -32
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "aI" = (
 /obj/machinery/door/poddoor/blast{
@@ -194,7 +194,7 @@
 	id = "hangar_syndicate";
 	name = "external blast door"
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "aJ" = (
 /obj/machinery/door/poddoor/blast{
@@ -207,36 +207,36 @@
 /obj/decal/poster/wallsign/space{
 	pixel_x = 32
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "aK" = (
 /obj/table/reinforced/auto,
 /obj/machinery/light/lamp,
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "aL" = (
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	dir = 8
 	},
 /area/syndicate_station/battlecruiser)
 "aM" = (
-/turf/simulated/floor/carpet/red/fancy/edge/nw,
+/turf/floor/carpet/red/fancy/edge/nw,
 /area/syndicate_station/battlecruiser)
 "aN" = (
-/turf/simulated/floor/carpet/red/fancy/edge/north,
+/turf/floor/carpet/red/fancy/edge/north,
 /area/syndicate_station/battlecruiser)
 "aO" = (
 /obj/stool/chair/office/red,
 /obj/landmark{
 	name = "SR Syndicate-Spawn"
 	},
-/turf/simulated/floor/carpet/red/fancy/edge/north,
+/turf/floor/carpet/red/fancy/edge/north,
 /area/syndicate_station/battlecruiser)
 "aP" = (
-/turf/simulated/floor/carpet/red/fancy/edge/ne,
+/turf/floor/carpet/red/fancy/edge/ne,
 /area/syndicate_station/battlecruiser)
 "aQ" = (
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	dir = 4
 	},
 /area/syndicate_station/battlecruiser)
@@ -245,11 +245,11 @@
 /obj/item/clipboard/with_pen,
 /obj/item/paper,
 /obj/item/pen/pencil,
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "aS" = (
 /obj/machinery/r_door_control/podbay/syndicate,
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3"
 	},
 /area/syndicate_station/battlecruiser)
@@ -258,13 +258,13 @@
 	icon_state = "xtra_bigstripe-edge";
 	dir = 1
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "aU" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 5
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "aV" = (
 /obj/machinery/computer/security{
@@ -277,13 +277,13 @@
 	pixel_y = 0
 	},
 /obj/machinery/power/data_terminal,
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "aW" = (
 /obj/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	dir = 8
 	},
 /area/syndicate_station/battlecruiser)
@@ -295,24 +295,24 @@
 /obj/landmark{
 	name = "Syndicate-Spawn"
 	},
-/turf/simulated/floor/carpet/red/fancy/edge/west,
+/turf/floor/carpet/red/fancy/edge/west,
 /area/syndicate_station/battlecruiser)
 "aY" = (
 /obj/table/reinforced/auto,
 /obj/item/device/camera_viewer,
-/turf/simulated/floor/carpet/red/decal/outercross,
+/turf/floor/carpet/red/decal/outercross,
 /area/syndicate_station/battlecruiser)
 "aZ" = (
 /obj/table/reinforced/auto,
 /obj/item/cigpacket,
 /obj/item/matchbook,
-/turf/simulated/floor/carpet/red/decal/innercross,
+/turf/floor/carpet/red/decal/innercross,
 /area/syndicate_station/battlecruiser)
 "ba" = (
 /obj/table/reinforced/auto,
 /obj/item/device/audio_log/radioship/small,
 /obj/item/reagent_containers/food/drinks/mug/random_color,
-/turf/simulated/floor/carpet/red/decal/outercross,
+/turf/floor/carpet/red/decal/outercross,
 /area/syndicate_station/battlecruiser)
 "bb" = (
 /obj/stool/chair/red{
@@ -321,7 +321,7 @@
 /obj/landmark{
 	name = "Syndicate-Spawn"
 	},
-/turf/simulated/floor/carpet/red/fancy/edge/east,
+/turf/floor/carpet/red/fancy/edge/east,
 /area/syndicate_station/battlecruiser)
 "bc" = (
 /obj/cable{
@@ -329,7 +329,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	dir = 4
 	},
 /area/syndicate_station/battlecruiser)
@@ -344,14 +344,14 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/data_terminal,
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "be" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 9
 	},
 /obj/machinery/r_door_control/podbay/syndicate/new_walls/west,
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "bf" = (
 /obj/decal/tile_edge/stripe/big{
@@ -361,7 +361,7 @@
 	icon_state = "bigstripe-edge";
 	dir = 4
 	},
-/turf/simulated/floor/plating/random,
+/turf/floor/plating/random,
 /area/syndicate_station/firing_range)
 "bg" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -373,7 +373,7 @@
 	layer = 9.1;
 	pixel_x = -10
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "bh" = (
 /obj/decal/tile_edge/stripe/big{
@@ -383,8 +383,8 @@
 	icon_state = "bigstripe-edge";
 	dir = 4
 	},
-/turf/simulated/floor/plating/random,
-/turf/simulated/wall/target,
+/turf/floor/plating/random,
+/turf/wall/target,
 /area/syndicate_station/firing_range)
 "bi" = (
 /obj/decal/tile_edge/stripe/big{
@@ -395,8 +395,8 @@
 	dir = 4
 	},
 /obj/machinery/light/small/floor,
-/turf/simulated/floor/plating/random,
-/turf/simulated/wall/target,
+/turf/floor/plating/random,
+/turf/wall/target,
 /area/syndicate_station/firing_range)
 "bj" = (
 /obj/rack,
@@ -405,17 +405,17 @@
 	layer = 9.1;
 	pixel_x = -10
 	},
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "bk" = (
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "bl" = (
 /obj/syndi_putt_spawner,
 /obj/decal/tile_edge/stripe/extra_big{
 	icon_state = "delivery2"
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "bm" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -427,7 +427,7 @@
 	layer = 9.1;
 	pixel_x = 10
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "bn" = (
 /obj/machinery/computer3/generic/secure_data{
@@ -440,7 +440,7 @@
 	pixel_y = 0
 	},
 /obj/machinery/power/data_terminal,
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "bo" = (
 /obj/cable{
@@ -449,26 +449,26 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	dir = 8
 	},
 /area/syndicate_station/battlecruiser)
 "bp" = (
 /obj/table/reinforced/auto,
 /obj/item/paper,
-/turf/simulated/floor/carpet/red/decal/innercross,
+/turf/floor/carpet/red/decal/innercross,
 /area/syndicate_station/battlecruiser)
 "bq" = (
 /obj/table/reinforced/auto,
 /obj/item/paper_bin,
-/turf/simulated/floor/carpet/red/decal/outercross,
+/turf/floor/carpet/red/decal/outercross,
 /area/syndicate_station/battlecruiser)
 "br" = (
 /obj/table/reinforced/auto,
 /obj/item/clipboard,
 /obj/item/paper,
 /obj/item/pen/sleepypen,
-/turf/simulated/floor/carpet/red/decal/innercross,
+/turf/floor/carpet/red/decal/innercross,
 /area/syndicate_station/battlecruiser)
 "bs" = (
 /obj/cable{
@@ -479,7 +479,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	dir = 4
 	},
 /area/syndicate_station/battlecruiser)
@@ -493,7 +493,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/data_terminal,
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "bv" = (
 /obj/decal/tile_edge/stripe/big{
@@ -504,7 +504,7 @@
 	dir = 4
 	},
 /obj/machinery/light/small/floor,
-/turf/simulated/floor/plating/random,
+/turf/floor/plating/random,
 /area/syndicate_station/firing_range)
 "bw" = (
 /obj/landmark{
@@ -515,21 +515,21 @@
 	layer = 9.1;
 	pixel_x = 10
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "bx" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	icon_state = "xtra_bigstripe-edge";
 	dir = 8
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "by" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	icon_state = "xtra_bigstripe-edge";
 	dir = 4
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "bz" = (
 /obj/machinery/computer3/generic/med_data{
@@ -543,22 +543,22 @@
 	pixel_y = 0
 	},
 /obj/machinery/power/data_terminal,
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "bA" = (
 /obj/table/reinforced/auto,
 /obj/item/reagent_containers/food/drinks/coffee,
-/turf/simulated/floor/carpet/red/decal/outercross,
+/turf/floor/carpet/red/decal/outercross,
 /area/syndicate_station/battlecruiser)
 "bB" = (
 /obj/table/reinforced/auto,
 /obj/item/decoration/ashtray,
-/turf/simulated/floor/carpet/red/decal/innercross,
+/turf/floor/carpet/red/decal/innercross,
 /area/syndicate_station/battlecruiser)
 "bC" = (
 /obj/table/reinforced/auto,
 /obj/item/reagent_containers/food/drinks/cola/random,
-/turf/simulated/floor/carpet/red/decal/outercross,
+/turf/floor/carpet/red/decal/outercross,
 /area/syndicate_station/battlecruiser)
 "bD" = (
 /obj/machinery/computer3/generic/med_data{
@@ -570,23 +570,23 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/data_terminal,
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "bE" = (
 /obj/table/reinforced/auto,
 /obj/item/device/audio_log/radioship/large,
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "bF" = (
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	dir = 8
 	},
 /area/syndicate_station/battlecruiser)
 "bG" = (
-/turf/simulated/floor/carpet/red/fancy/edge/sw,
+/turf/floor/carpet/red/fancy/edge/sw,
 /area/syndicate_station/battlecruiser)
 "bH" = (
 /obj/stool/chair/red{
@@ -595,30 +595,30 @@
 /obj/landmark{
 	name = "Syndicate-Spawn"
 	},
-/turf/simulated/floor/carpet/red/fancy/edge/south,
+/turf/floor/carpet/red/fancy/edge/south,
 /area/syndicate_station/battlecruiser)
 "bI" = (
-/turf/simulated/floor/carpet/red/fancy/edge/se,
+/turf/floor/carpet/red/fancy/edge/se,
 /area/syndicate_station/battlecruiser)
 "bJ" = (
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	dir = 4
 	},
 /area/syndicate_station/battlecruiser)
 "bK" = (
 /obj/table/reinforced/auto,
 /obj/machinery/networked/printer,
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "bL" = (
 /obj/decal/tile_edge/stripe{
 	icon_state = "bot2";
 	dir = 6
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "bM" = (
 /obj/machinery/computer3/terminal{
@@ -630,7 +630,7 @@
 	icon_state = "0-4";
 	pixel_y = 0
 	},
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/syndicate_station/battlecruiser)
 "bN" = (
 /obj/stool/chair/red{
@@ -649,7 +649,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	icon_state = "redblack";
 	dir = 10
 	},
@@ -667,7 +667,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/redblack,
+/turf/floor/redblack,
 /area/syndicate_station/battlecruiser)
 "bQ" = (
 /obj/cable{
@@ -675,7 +675,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/darkpurple,
+/turf/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
 "bR" = (
 /obj/cable{
@@ -689,7 +689,7 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/light/small/floor,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "bS" = (
 /obj/cable{
@@ -697,7 +697,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "bT" = (
 /obj/stool/chair/red{
@@ -717,7 +717,7 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	icon_state = "redblack";
 	dir = 6
 	},
@@ -732,14 +732,14 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/syndicate_station/battlecruiser)
 "bV" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	icon_state = "xtra_bigstripe-edge";
 	dir = 10
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "bW" = (
 /obj/machinery/vehicle/pod_smooth/syndicate,
@@ -748,7 +748,7 @@
 	icon_state = "bot2";
 	dir = 6
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "bX" = (
 /obj/decal/tile_edge/stripe/extra_big,
@@ -756,11 +756,11 @@
 	icon_state = "bot2";
 	dir = 6
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "bY" = (
 /obj/decal/tile_edge/stripe/extra_big,
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "bZ" = (
 /obj/machinery/light{
@@ -768,7 +768,7 @@
 	layer = 9.1;
 	pixel_x = -10
 	},
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "ca" = (
 /obj/stool/chair/red{
@@ -779,17 +779,17 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "cb" = (
 /obj/machinery/light,
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "cc" = (
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "cd" = (
 /obj/stool/chair/red{
@@ -801,7 +801,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "ce" = (
 /obj/decal/tile_edge/stripe/big{
@@ -813,7 +813,7 @@
 	},
 /obj/decal/tile_edge/stripe/big,
 /obj/machinery/light/small/floor,
-/turf/simulated/floor/plating/random,
+/turf/floor/plating/random,
 /area/syndicate_station/firing_range)
 "cf" = (
 /obj/decal/tile_edge/stripe/big{
@@ -824,22 +824,22 @@
 	dir = 4
 	},
 /obj/decal/tile_edge/stripe/big,
-/turf/simulated/floor/plating/random,
+/turf/floor/plating/random,
 /area/syndicate_station/firing_range)
 "cg" = (
-/turf/simulated/floor/stairs/dark/wide{
+/turf/floor/stairs/dark/wide{
 	icon_state = "dark_stairs2";
 	dir = 10
 	},
 /area/syndicate_station/battlecruiser)
 "ch" = (
-/turf/simulated/floor/stairs/dark{
+/turf/floor/stairs/dark{
 	icon_state = "dark_stairs";
 	dir = 10
 	},
 /area/syndicate_station/battlecruiser)
 "ci" = (
-/turf/simulated/floor/stairs/dark/wide{
+/turf/floor/stairs/dark/wide{
 	icon_state = "dark_stairs2";
 	dir = 1
 	},
@@ -848,7 +848,7 @@
 /obj/machinery/door/airlock/pyro/glass{
 	name = "combat information center"
 	},
-/turf/simulated/floor/darkpurple,
+/turf/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
 "ck" = (
 /obj/cable{
@@ -857,17 +857,17 @@
 /obj/machinery/door/airlock/pyro/glass{
 	name = "combat information center"
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "cl" = (
 /obj/machinery/door/airlock/pyro/glass{
 	name = "combat information center"
 	},
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "cm" = (
 /obj/table/auto,
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/firing_range)
 "cn" = (
 /obj/table/auto,
@@ -878,7 +878,7 @@
 	layer = 9.1;
 	pixel_x = -10
 	},
-/turf/simulated/floor/darkpurple,
+/turf/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
 "co" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -887,14 +887,14 @@
 	layer = 9.1;
 	pixel_x = 10
 	},
-/turf/simulated/floor/bot/darkpurple,
+/turf/floor/bot/darkpurple,
 /area/syndicate_station/battlecruiser)
 "cp" = (
 /obj/indestructible/shuttle_corner{
 	dir = 4;
 	icon_state = "wall3_trans"
 	},
-/turf/simulated/floor/darkpurple,
+/turf/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
 "cq" = (
 /obj/machinery/power/apc/autoname_north,
@@ -902,55 +902,55 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "cr" = (
 /obj/indestructible/shuttle_corner{
 	dir = 5;
 	icon_state = "diagonalWall3"
 	},
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "cs" = (
 /obj/rack,
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "ct" = (
 /obj/decal/tile_edge/stripe{
 	dir = 6;
 	icon_state = "delivery2"
 	},
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/firing_range)
 "cu" = (
 /obj/decal/tile_edge/stripe{
 	icon_state = "bot2";
 	dir = 6
 	},
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/firing_range)
 "cv" = (
 /obj/landmark{
 	name = "Nuclear-Closet"
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "cw" = (
 /obj/table/auto,
 /obj/item/shipcomponent/secondary_system/crash,
 /obj/item/shipcomponent/secondary_system/crash,
-/turf/simulated/floor/darkpurple,
+/turf/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
 "cx" = (
 /obj/decal/tile_edge/stripe{
 	dir = 6;
 	icon_state = "delivery2"
 	},
-/turf/simulated/floor/darkpurple,
+/turf/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
 "cy" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/simulated/floor/bot/darkpurple,
+/turf/floor/bot/darkpurple,
 /area/syndicate_station/battlecruiser)
 "cz" = (
 /obj/machinery/light{
@@ -958,7 +958,7 @@
 	layer = 9.1;
 	pixel_x = -10
 	},
-/turf/simulated/floor/darkpurple,
+/turf/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
 "cA" = (
 /obj/cable{
@@ -966,7 +966,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "cB" = (
 /obj/cable{
@@ -974,7 +974,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "cC" = (
 /obj/cable{
@@ -985,7 +985,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "cD" = (
 /obj/cable{
@@ -996,7 +996,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "cE" = (
 /obj/machinery/light{
@@ -1004,13 +1004,13 @@
 	layer = 9.1;
 	pixel_x = 10
 	},
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "cF" = (
 /obj/landmark{
 	name = "Syndicate-Gear-Closet"
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "cG" = (
 /obj/table/auto,
@@ -1018,14 +1018,14 @@
 /obj/item/shipcomponent/mainweapon/gun,
 /obj/item/shipcomponent/mainweapon/gun,
 /obj/item/shipcomponent/mainweapon/gun,
-/turf/simulated/floor/darkpurple,
+/turf/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
 "cH" = (
 /obj/decal/tile_edge/stripe{
 	icon_state = "bot2";
 	dir = 6
 	},
-/turf/simulated/floor/darkpurple,
+/turf/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
 "cI" = (
 /obj/machinery/door/airlock/pyro/syndicate{
@@ -1033,20 +1033,20 @@
 	icon_state = "airlock_closed";
 	name = "launch bay"
 	},
-/turf/simulated/floor/darkpurple,
+/turf/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
 "cJ" = (
-/turf/simulated/floor/black{
+/turf/floor/black{
 	icon_state = "cairngorm7"
 	},
 /area/syndicate_station/battlecruiser)
 "cK" = (
-/turf/simulated/floor/black{
+/turf/floor/black{
 	icon_state = "cairngorm8"
 	},
 /area/syndicate_station/battlecruiser)
 "cL" = (
-/turf/simulated/floor/black{
+/turf/floor/black{
 	icon_state = "cairngorm9"
 	},
 /area/syndicate_station/battlecruiser)
@@ -1056,27 +1056,27 @@
 	id = "medbay_door";
 	name = "armory & firing range"
 	},
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "cN" = (
 /obj/decal/tile_edge/stripe{
 	icon_state = "bot2";
 	dir = 6
 	},
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "cO" = (
 /obj/landmark{
 	name = "Syndicate-Gear-Closet"
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "cP" = (
 /obj/storage/crate/internals,
-/turf/simulated/floor/bot/darkpurple,
+/turf/floor/bot/darkpurple,
 /area/syndicate_station/battlecruiser)
 "cQ" = (
-/turf/simulated/floor/black{
+/turf/floor/black{
 	icon_state = "cairngorm4"
 	},
 /area/syndicate_station/battlecruiser)
@@ -1084,12 +1084,12 @@
 /obj/landmark{
 	name = "Nuclear-Bomb"
 	},
-/turf/simulated/floor/black{
+/turf/floor/black{
 	icon_state = "cairngorm5"
 	},
 /area/syndicate_station/battlecruiser)
 "cS" = (
-/turf/simulated/floor/black{
+/turf/floor/black{
 	icon_state = "cairngorm6"
 	},
 /area/syndicate_station/battlecruiser)
@@ -1100,7 +1100,7 @@
 	dir = 6;
 	icon_state = "delivery2"
 	},
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "cU" = (
 /obj/table/auto,
@@ -1111,7 +1111,7 @@
 	dir = 6;
 	icon_state = "delivery2"
 	},
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "cV" = (
 /obj/table/auto,
@@ -1123,7 +1123,7 @@
 	dir = 6;
 	icon_state = "delivery2"
 	},
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "cW" = (
 /obj/table/auto,
@@ -1135,43 +1135,43 @@
 /obj/item/old_grenade/stinger,
 /obj/item/old_grenade/stinger,
 /obj/item/old_grenade/stinger,
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "cX" = (
 /obj/machinery/dispenser,
-/turf/simulated/floor/darkpurple,
+/turf/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
 "cY" = (
 /obj/machinery/light,
-/turf/simulated/floor/darkpurple,
+/turf/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
 "cZ" = (
 /obj/rack,
 /obj/item/tank/jetpack/syndicate,
 /obj/item/tank/jetpack/syndicate,
-/turf/simulated/floor/darkpurple,
+/turf/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
 "da" = (
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "db" = (
-/turf/simulated/floor/black{
+/turf/floor/black{
 	icon_state = "cairngorm1"
 	},
 /area/syndicate_station/battlecruiser)
 "dc" = (
-/turf/simulated/floor/black{
+/turf/floor/black{
 	icon_state = "cairngorm2"
 	},
 /area/syndicate_station/battlecruiser)
 "dd" = (
-/turf/simulated/floor/black{
+/turf/floor/black{
 	icon_state = "cairngorm3"
 	},
 /area/syndicate_station/battlecruiser)
 "de" = (
 /obj/machinery/door/airlock/pyro/classic,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "df" = (
 /obj/machinery/light{
@@ -1179,7 +1179,7 @@
 	layer = 9.1;
 	pixel_x = -10
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "dg" = (
 /obj/cable{
@@ -1192,7 +1192,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "dh" = (
 /obj/cable{
@@ -1205,7 +1205,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "di" = (
 /obj/cable{
@@ -1216,7 +1216,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "dj" = (
 /obj/table/auto,
@@ -1227,7 +1227,7 @@
 /obj/landmark{
 	name = "Breaching-Charges"
 	},
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "dk" = (
 /obj/table/auto,
@@ -1239,7 +1239,7 @@
 /obj/item/mine/blast,
 /obj/item/mine/blast,
 /obj/item/mine/blast,
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "dl" = (
 /obj/table/auto,
@@ -1248,11 +1248,11 @@
 	icon_state = "delivery2"
 	},
 /obj/item/device/flash/turbo,
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "dm" = (
 /obj/storage/crate/wooden,
-/turf/simulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/syndicate_station/battlecruiser)
 "dn" = (
 /obj/machinery/light{
@@ -1260,21 +1260,21 @@
 	layer = 9.1;
 	pixel_y = 21
 	},
-/turf/simulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/syndicate_station/battlecruiser)
 "do" = (
-/turf/simulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/syndicate_station/battlecruiser)
 "dp" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "dq" = (
 /obj/indestructible/shuttle_corner{
 	dir = 1;
 	icon_state = "diagonalWall3"
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "dr" = (
 /obj/cable{
@@ -1282,41 +1282,41 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "ds" = (
 /obj/indestructible/shuttle_corner{
 	dir = 8;
 	icon_state = "diagonalWall3"
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "dt" = (
 /obj/storage/crate/packing,
-/turf/simulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/syndicate_station/battlecruiser)
 "du" = (
 /obj/storage/cart,
-/turf/simulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/syndicate_station/battlecruiser)
 "dv" = (
 /obj/storage/crate/wooden,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "dw" = (
 /obj/machinery/light,
 /obj/random_item_spawner/tools,
 /obj/rack,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "dx" = (
 /obj/storage/crate/packing,
 /obj/item/instrument/bagpipe,
-/turf/simulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/syndicate_station/battlecruiser)
 "dy" = (
 /obj/storage/crate/packing,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "dz" = (
 /obj/cable{
@@ -1327,13 +1327,13 @@
 /obj/machinery/door/airlock/pyro/glass{
 	name = "recreation room"
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "dA" = (
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/syndicate_station/battlecruiser)
 "dB" = (
 /obj/decal/tile_edge/stripe{
@@ -1341,14 +1341,14 @@
 	icon_state = "delivery2"
 	},
 /obj/storage/secure/crate/gear/sarin_grenades,
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "dC" = (
 /obj/table/auto,
 /obj/item/clothing/glasses/nightvision,
 /obj/item/clothing/glasses/nightvision,
 /obj/item/clothing/glasses/nightvision,
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "dD" = (
 /obj/table/auto,
@@ -1358,7 +1358,7 @@
 /obj/item/clothing/gloves/yellow,
 /obj/item/clothing/gloves/yellow,
 /obj/item/clothing/gloves/yellow,
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "dE" = (
 /obj/table/auto,
@@ -1368,7 +1368,7 @@
 /obj/item/storage/belt/utility,
 /obj/item/storage/belt/utility,
 /obj/item/storage/belt/utility,
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "dF" = (
 /obj/table/auto,
@@ -1377,12 +1377,12 @@
 /obj/item/storage/fanny/syndie,
 /obj/item/storage/fanny/syndie,
 /obj/item/storage/fanny/syndie,
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "dG" = (
 /obj/table/auto,
 /obj/item/clothing/glasses/thermal,
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "dH" = (
 /obj/table/auto,
@@ -1391,7 +1391,7 @@
 /obj/item/clothing/mask/balaclava,
 /obj/item/clothing/glasses/sunglasses,
 /obj/item/clothing/glasses/sunglasses,
-/turf/simulated/floor/darkblue,
+/turf/floor/darkblue,
 /area/syndicate_station/battlecruiser)
 "dI" = (
 /obj/machinery/vending/coffee,
@@ -1399,7 +1399,7 @@
 	icon_state = "bot2";
 	dir = 6
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "dJ" = (
 /obj/landmark{
@@ -1410,7 +1410,7 @@
 	layer = 9.1;
 	pixel_x = 10
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "dK" = (
 /obj/machinery/vending/cola/blue,
@@ -1418,14 +1418,14 @@
 	icon_state = "bot2";
 	dir = 6
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "dL" = (
 /obj/table/auto,
 /obj/item/bandage,
 /obj/item/bandage,
 /obj/item/reagent_containers/iv_drip/blood,
-/turf/simulated/floor/redwhite{
+/turf/floor/redwhite{
 	icon_state = "redwhite";
 	dir = 9
 	},
@@ -1436,13 +1436,13 @@
 	layer = 9.1;
 	pixel_y = 21
 	},
-/turf/simulated/floor/redwhite{
+/turf/floor/redwhite{
 	icon_state = "redwhite";
 	dir = 1
 	},
 /area/syndicate_station/battlecruiser)
 "dN" = (
-/turf/simulated/floor/redwhite{
+/turf/floor/redwhite{
 	icon_state = "redwhite";
 	dir = 1
 	},
@@ -1457,7 +1457,7 @@
 	},
 /obj/item/parts/robot_parts/leg/left/treads,
 /obj/item/parts/robot_parts/leg/right/treads,
-/turf/simulated/floor/redwhite{
+/turf/floor/redwhite{
 	icon_state = "redwhite";
 	dir = 5
 	},
@@ -1468,7 +1468,7 @@
 	icon_state = "bot2";
 	dir = 6
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "dQ" = (
 /obj/machinery/vending/snack,
@@ -1476,13 +1476,13 @@
 	icon_state = "bot2";
 	dir = 6
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "dR" = (
 /obj/storage/crate{
 	name = "footlocker"
 	},
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	icon_state = "redblack";
 	dir = 9
 	},
@@ -1499,7 +1499,7 @@
 	layer = 9.1;
 	pixel_y = 21
 	},
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	dir = 1
 	},
 /area/syndicate_station/battlecruiser)
@@ -1507,7 +1507,7 @@
 /obj/storage/crate{
 	name = "footlocker"
 	},
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	dir = 1
 	},
 /area/syndicate_station/battlecruiser)
@@ -1518,13 +1518,13 @@
 	icon_state = "bedsheet-red";
 	name = "syndicate bedsheet"
 	},
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	dir = 1
 	},
 /area/syndicate_station/battlecruiser)
 "dV" = (
 /obj/storage/closet/syndicate/personal,
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	icon_state = "redblack";
 	dir = 5
 	},
@@ -1536,13 +1536,13 @@
 /obj/item/reagent_containers/glass/beaker/large/burn,
 /obj/item/reagent_containers/glass/beaker/large/antitox,
 /obj/item/reagent_containers/glass/beaker/large/epinephrine,
-/turf/simulated/floor/redwhite{
+/turf/floor/redwhite{
 	icon_state = "redwhite";
 	dir = 8
 	},
 /area/syndicate_station/battlecruiser)
 "dX" = (
-/turf/simulated/floor/white,
+/turf/floor/white,
 /area/syndicate_station/battlecruiser)
 "dY" = (
 /obj/table/surgery_tray,
@@ -1565,7 +1565,7 @@
 	icon_state = "bot2";
 	dir = 6
 	},
-/turf/simulated/floor/white,
+/turf/floor/white,
 /area/syndicate_station/battlecruiser)
 "dZ" = (
 /obj/table/surgery_tray,
@@ -1584,7 +1584,7 @@
 	icon_state = "bot2";
 	dir = 6
 	},
-/turf/simulated/floor/white,
+/turf/floor/white,
 /area/syndicate_station/battlecruiser)
 "ea" = (
 /obj/storage/crate/medical{
@@ -1597,14 +1597,14 @@
 /obj/item/storage/firstaid/toxin,
 /obj/item/reagent_containers/mender/burn,
 /obj/item/reagent_containers/mender/brute,
-/turf/simulated/floor/redwhite{
+/turf/floor/redwhite{
 	icon_state = "redwhite";
 	dir = 4
 	},
 /area/syndicate_station/battlecruiser)
 "eb" = (
 /obj/decal/poster/wallsign/medbay,
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3"
 	},
 /area/syndicate_station/battlecruiser)
@@ -1617,23 +1617,23 @@
 	layer = 9.1;
 	pixel_x = -10
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "ed" = (
 /obj/stool/chair/couch/red{
 	dir = 8
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "ee" = (
 /obj/stool/chair/couch/red,
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "ef" = (
 /obj/stool/chair/couch/red{
 	dir = 4
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "eg" = (
 /obj/stool/chair/red{
@@ -1645,11 +1645,11 @@
 	layer = 9.1;
 	pixel_x = 10
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "eh" = (
 /obj/storage/closet/syndicate/personal,
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	dir = 4
 	},
 /area/syndicate_station/battlecruiser)
@@ -1657,7 +1657,7 @@
 /obj/stool/chair/red{
 	dir = 4
 	},
-/turf/simulated/floor/redwhite{
+/turf/floor/redwhite{
 	icon_state = "redwhite";
 	dir = 8
 	},
@@ -1668,14 +1668,14 @@
 	dir = 6;
 	icon_state = "delivery2"
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "ek" = (
 /obj/machinery/bot/medbot/no_camera,
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "el" = (
-/turf/simulated/floor/redwhite{
+/turf/floor/redwhite{
 	icon_state = "redwhite";
 	dir = 4
 	},
@@ -1686,13 +1686,13 @@
 	id = "medbay_door";
 	name = "medical center"
 	},
-/turf/simulated/floor/airless/red,
+/turf/floor/airless/red,
 /area/syndicate_station/battlecruiser)
 "en" = (
 /obj/cable{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "eo" = (
 /obj/cable{
@@ -1700,7 +1700,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "ep" = (
 /obj/landmark/spawner{
@@ -1714,7 +1714,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "eq" = (
 /obj/cable{
@@ -1722,7 +1722,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "er" = (
 /obj/machinery/door/airlock/pyro/glass{
@@ -1730,20 +1730,20 @@
 	id = "medbay_door";
 	name = "barracks"
 	},
-/turf/simulated/floor/airless/red,
+/turf/floor/airless/red,
 /area/syndicate_station/battlecruiser)
 "es" = (
 /obj/machinery/manufacturer/uniform,
-/turf/simulated/floor/red/redblackchecker,
+/turf/floor/red/redblackchecker,
 /area/syndicate_station/battlecruiser)
 "et" = (
 /obj/table/auto,
 /obj/bedsheetbin,
-/turf/simulated/floor/red/redblackchecker,
+/turf/floor/red/redblackchecker,
 /area/syndicate_station/battlecruiser)
 "eu" = (
 /obj/table/auto,
-/turf/simulated/floor/red/redblackchecker,
+/turf/floor/red/redblackchecker,
 /area/syndicate_station/battlecruiser)
 "ev" = (
 /obj/machinery/sleep_console,
@@ -1751,17 +1751,17 @@
 	icon_state = "bot2";
 	dir = 6
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "ew" = (
-/turf/simulated/floor/airless/white,
+/turf/floor/airless/white,
 /area/syndicate_station/battlecruiser)
 "ex" = (
 /obj/decal/tile_edge/stripe{
 	icon_state = "bot2";
 	dir = 6
 	},
-/turf/simulated/floor/white,
+/turf/floor/white,
 /area/syndicate_station/battlecruiser)
 "ey" = (
 /obj/shrub{
@@ -1771,23 +1771,23 @@
 	icon_state = "plant";
 	tag = "icon-plant (NORTH)"
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "ez" = (
 /obj/reagent_dispensers/watertank/fountain,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "eA" = (
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "eB" = (
 /obj/table/auto,
 /obj/item/plate,
 /obj/item/reagent_containers/food/snacks/burrito,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "eC" = (
 /obj/table/auto,
@@ -1795,7 +1795,7 @@
 	pixel_x = -2;
 	pixel_y = 7
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "eD" = (
 /obj/machinery/sleeper,
@@ -1803,14 +1803,14 @@
 	icon_state = "bot2";
 	dir = 6
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "eE" = (
 /obj/machinery/light,
-/turf/simulated/floor/redwhite,
+/turf/floor/redwhite,
 /area/syndicate_station/battlecruiser)
 "eF" = (
-/turf/simulated/floor/redwhite,
+/turf/floor/redwhite,
 /area/syndicate_station/battlecruiser)
 "eG" = (
 /obj/machinery/door/airlock/pyro/syndicate{
@@ -1819,13 +1819,13 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/red,
+/turf/floor/red,
 /area/syndicate_station/battlecruiser)
 "eH" = (
 /obj/storage/crate{
 	name = "footlocker"
 	},
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	icon_state = "redblack";
 	dir = 10
 	},
@@ -1838,13 +1838,13 @@
 	name = "syndicate bedsheet"
 	},
 /obj/machinery/light,
-/turf/simulated/floor/redblack,
+/turf/floor/redblack,
 /area/syndicate_station/battlecruiser)
 "eJ" = (
 /obj/storage/crate{
 	name = "footlocker"
 	},
-/turf/simulated/floor/redblack,
+/turf/floor/redblack,
 /area/syndicate_station/battlecruiser)
 "eK" = (
 /obj/stool/bed,
@@ -1853,18 +1853,18 @@
 	icon_state = "bedsheet-red";
 	name = "syndicate bedsheet"
 	},
-/turf/simulated/floor/redblack,
+/turf/floor/redblack,
 /area/syndicate_station/battlecruiser)
 "eL" = (
 /obj/storage/closet/syndicate/personal,
-/turf/simulated/floor/redblack{
+/turf/floor/redblack{
 	icon_state = "redblack";
 	dir = 6
 	},
 /area/syndicate_station/battlecruiser)
 "eM" = (
 /obj/storage/closet/emergency,
-/turf/simulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/syndicate_station/battlecruiser)
 "eN" = (
 /obj/rack,
@@ -1876,11 +1876,11 @@
 	layer = 9.1;
 	pixel_y = 21
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "eO" = (
 /obj/storage/closet/fire,
-/turf/simulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/syndicate_station/battlecruiser)
 "eP" = (
 /obj/machinery/power/smes/magical,
@@ -1891,7 +1891,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating/random,
+/turf/floor/plating/random,
 /area/syndicate_station/battlecruiser)
 "eQ" = (
 /obj/machinery/power/terminal{
@@ -1903,7 +1903,7 @@
 	icon_state = "0-4";
 	pixel_y = 0
 	},
-/turf/simulated/floor/plating/random,
+/turf/floor/plating/random,
 /area/syndicate_station/battlecruiser)
 "eR" = (
 /obj/cable{
@@ -1911,11 +1911,11 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/plating/random,
+/turf/floor/plating/random,
 /area/syndicate_station/battlecruiser)
 "eS" = (
 /obj/decal/poster/wallsign/danger_highvolt,
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3"
 	},
 /area/syndicate_station/battlecruiser)
@@ -1924,7 +1924,7 @@
 	dir = 8;
 	tag = "icon-xtra_bigstripe-edge (WEST)"
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "eU" = (
 /obj/cable{
@@ -1937,7 +1937,7 @@
 	layer = 9.1;
 	pixel_y = 21
 	},
-/turf/simulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/syndicate_station/battlecruiser)
 "eV" = (
 /obj/cable{
@@ -1945,13 +1945,13 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/stairs/dark/wide{
+/turf/floor/stairs/dark/wide{
 	icon_state = "dark_stairs2";
 	dir = 4
 	},
 /area/syndicate_station/battlecruiser)
 "eW" = (
-/turf/simulated/floor/stairs/dark/wide{
+/turf/floor/stairs/dark/wide{
 	icon_state = "dark_stairs2";
 	dir = 9
 	},
@@ -1964,11 +1964,11 @@
 	layer = 9.1;
 	pixel_y = 21
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "eY" = (
 /obj/submachine/laundry_machine,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "eZ" = (
 /obj/submachine/chef_sink/chem_sink{
@@ -1976,11 +1976,11 @@
 	dir = 4;
 	pixel_x = -2
 	},
-/turf/simulated/floor/sanitary,
+/turf/floor/sanitary,
 /area/syndicate_station/battlecruiser)
 "fa" = (
 /obj/machinery/door/unpowered/wood/stall,
-/turf/simulated/floor/sanitary,
+/turf/floor/sanitary,
 /area/syndicate_station/battlecruiser)
 "fb" = (
 /obj/item/storage/toilet{
@@ -1991,7 +1991,7 @@
 	layer = 9.1;
 	pixel_x = 10
 	},
-/turf/simulated/floor/sanitary,
+/turf/floor/sanitary,
 /area/syndicate_station/battlecruiser)
 "fc" = (
 /obj/machinery/power/furnace,
@@ -2004,10 +2004,10 @@
 	layer = 9.1;
 	pixel_x = -10
 	},
-/turf/simulated/floor/plating/random,
+/turf/floor/plating/random,
 /area/syndicate_station/battlecruiser)
 "fd" = (
-/turf/simulated/floor/plating/random,
+/turf/floor/plating/random,
 /area/syndicate_station/battlecruiser)
 "fe" = (
 /obj/cable{
@@ -2015,7 +2015,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/plating/random,
+/turf/floor/plating/random,
 /area/syndicate_station/battlecruiser)
 "ff" = (
 /obj/machinery/door/airlock/pyro/classic{
@@ -2027,7 +2027,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/syndicate_station/battlecruiser)
 "fg" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -2039,22 +2039,22 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/syndicate_station/battlecruiser)
 "fh" = (
 /obj/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/syndicate_station/battlecruiser)
 "fi" = (
-/turf/simulated/floor/stairs/dark/wide{
+/turf/floor/stairs/dark/wide{
 	icon_state = "dark_stairs2";
 	dir = 5
 	},
 /area/syndicate_station/battlecruiser)
 "fj" = (
-/turf/simulated/floor/stairs/dark/wide{
+/turf/floor/stairs/dark/wide{
 	icon_state = "dark_stairs2";
 	dir = 8
 	},
@@ -2064,7 +2064,7 @@
 	dir = 4;
 	name = "bathroom"
 	},
-/turf/simulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/syndicate_station/battlecruiser)
 "fl" = (
 /obj/machinery/light{
@@ -2072,16 +2072,16 @@
 	layer = 9.1;
 	pixel_x = 10
 	},
-/turf/simulated/floor/sanitary,
+/turf/floor/sanitary,
 /area/syndicate_station/battlecruiser)
 "fm" = (
 /obj/machinery/power/furnace,
 /obj/cable,
-/turf/simulated/floor/plating/random,
+/turf/floor/plating/random,
 /area/syndicate_station/battlecruiser)
 "fn" = (
 /obj/storage/crate/furnacefuel,
-/turf/simulated/floor/plating/random,
+/turf/floor/plating/random,
 /area/syndicate_station/battlecruiser)
 "fo" = (
 /obj/grille/catwalk{
@@ -2114,25 +2114,25 @@
 	icon_state = "showerhead";
 	dir = 4
 	},
-/turf/simulated/floor/sanitary,
+/turf/floor/sanitary,
 /area/syndicate_station/battlecruiser)
 "fs" = (
 /obj/decal/fakeobjects/shuttleengine{
 	icon_state = "alt_heater-L"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/syndicate_station/battlecruiser)
 "ft" = (
 /obj/decal/fakeobjects/shuttleengine{
 	icon_state = "alt_heater-M"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/syndicate_station/battlecruiser)
 "fu" = (
 /obj/decal/fakeobjects/shuttleengine{
 	icon_state = "alt_heater-R"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/syndicate_station/battlecruiser)
 "fv" = (
 /obj/decal/fakeobjects/shuttlethruster{
@@ -2145,13 +2145,13 @@
 	dir = 6
 	},
 /obj/machinery/door_control/podbay/syndicate/new_walls/east,
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/syndicate_station/battlecruiser)
 "fy" = (
 /obj/submachine/syndicate_teleporter,
 /obj/cable,
 /obj/machinery/light,
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/syndicate_station/firing_range)
 "ih" = (
 /obj/lattice,

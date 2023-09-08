@@ -12572,7 +12572,7 @@
 /area/crew_quarters/pool)
 "azM" = (
 /obj/poolwater,
-/turf/unsimulated/floor/pool,
+/turf/floor/pool,
 /area/crew_quarters/pool)
 "azN" = (
 /obj/pool{
@@ -12817,7 +12817,7 @@
 "aAp" = (
 /obj/poolwater,
 /obj/landmark/halloween,
-/turf/unsimulated/floor/pool,
+/turf/floor/pool,
 /area/crew_quarters/pool)
 "aAq" = (
 /obj/pool{
@@ -32692,14 +32692,14 @@
 /turf/space,
 /area/syndicate_station)
 "bnP" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "Wall"
 	},
 /area/vr_oldprison)
 "bnQ" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	icon_state = "wall"
 	},
 /area/vr_oldprison)
@@ -32710,7 +32710,7 @@
 	icon_state = "rwindow";
 	dir = 5
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "bnS" = (
 /obj/computerframe{
@@ -32720,10 +32720,10 @@
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bnT" = (
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bnU" = (
 /obj/decal/fakeobjects{
@@ -32734,26 +32734,26 @@
 	icon_state = "smes";
 	name = "defective power storage unit"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bnV" = (
 /obj/item/storage/toolbox/electrical,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bnW" = (
 /obj/window,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bnX" = (
 /obj/machinery/door/window,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bnY" = (
 /obj/window,
 /obj/decal/fakeobjects/apc_broken{
 	pixel_x = 24
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bnZ" = (
 /obj/window/reinforced{
@@ -32762,7 +32762,7 @@
 	dir = 5
 	},
 /obj/grille,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "boa" = (
 /turf/simulated/shuttle/wall{
@@ -32771,7 +32771,7 @@
 /area/vr_oldprison)
 "bob" = (
 /obj/closet,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boc" = (
 /obj/overlay{
@@ -32780,7 +32780,7 @@
 	icon_state = "pdoor0";
 	name = "Riot Doors"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bod" = (
 /obj/overlay{
@@ -32793,7 +32793,7 @@
 	name = "broken door";
 	opacity = 1
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boe" = (
 /obj/decal/fakeobjects{
@@ -32804,7 +32804,7 @@
 	icon_state = "pscrubber:0";
 	name = "Portable Scrubber"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bof" = (
 /obj/decal/fakeobjects{
@@ -32815,7 +32815,7 @@
 	icon_state = "psiphon:0";
 	name = "Portable Siphon"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bog" = (
 /obj/overlay{
@@ -32826,7 +32826,7 @@
 	name = "Riot Doors";
 	opacity = 1
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boh" = (
 /obj/computerframe{
@@ -32878,7 +32878,7 @@
 	},
 /area/vr_oldprison)
 "bom" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/vr_oldprison)
 "bon" = (
 /obj/overlay{
@@ -32891,7 +32891,7 @@
 	name = "broken door";
 	opacity = 1
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -32905,14 +32905,14 @@
 	layer = 6;
 	name = "broken door"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bop" = (
 /obj/decal/cleanable/blood/splatter{
 	tag = "icon-floor5";
 	icon_state = "floor5"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boq" = (
 /obj/decal/cleanable/blood/tracks{
@@ -32920,7 +32920,7 @@
 	icon_state = "tracks";
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bor" = (
 /obj/decal/cleanable/blood/tracks{
@@ -32928,7 +32928,7 @@
 	icon_state = "tracks";
 	dir = 5
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bos" = (
 /obj/stool/chair{
@@ -32962,7 +32962,7 @@
 	},
 /area/vr_oldprison)
 "bow" = (
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "box" = (
 /obj/decal/fakeobjects{
@@ -32974,7 +32974,7 @@
 	dir = 4;
 	anchored = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "boy" = (
 /obj/machinery/light/small{
@@ -32989,7 +32989,7 @@
 	dir = 4;
 	anchored = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "boz" = (
 /obj/decal/fakeobjects{
@@ -33000,7 +33000,7 @@
 	icon_state = "siphon:0";
 	name = "Air Siphon"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boA" = (
 /obj/decal/fakeobjects{
@@ -33011,19 +33011,19 @@
 	icon_state = "scrubber:0";
 	name = "Air Scrubber"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boB" = (
 /obj/machinery/portable_atmospherics/canister/sleeping_agent,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boC" = (
 /obj/machinery/portable_atmospherics/canister/air,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boD" = (
 /obj/decal/cleanable/blood/tracks,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boE" = (
 /obj/decal/fakeobjects/lightbulb_broken,
@@ -33054,13 +33054,13 @@
 	icon_state = "rwindow";
 	dir = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "boH" = (
 /obj/stool/chair{
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "boI" = (
 /obj/decal/fakeobjects/lighttube_broken{
@@ -33068,7 +33068,7 @@
 	icon_state = "tube-broken";
 	dir = 4
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "boJ" = (
 /obj/decal/fakeobjects/lighttube_broken{
@@ -33076,7 +33076,7 @@
 	icon_state = "tube-broken";
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boK" = (
 /obj/overlay{
@@ -33089,7 +33089,7 @@
 	},
 /obj/effect_sparker,
 /obj/decal/cleanable/blood/tracks,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boL" = (
 /obj/overlay{
@@ -33114,7 +33114,7 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "boN" = (
 /obj/machinery/power/apc{
@@ -33128,7 +33128,7 @@
 	pixel_y = -24;
 	start_charge = 1e+031
 	},
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "Wall"
@@ -33141,7 +33141,7 @@
 	dir = 1
 	},
 /obj/item/handcuffs,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boP" = (
 /obj/decal/cleanable/blood/splatter{
@@ -33157,19 +33157,19 @@
 	icon_state = "tube-broken";
 	dir = 1
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boQ" = (
 /obj/closet/wardrobe/red,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boR" = (
 /obj/decal/cleanable/cobweb2,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boS" = (
 /obj/securearea,
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	icon_state = "wall"
 	},
 /area/vr_oldprison)
@@ -33204,17 +33204,17 @@
 	dir = 8
 	},
 /obj/decal/fakeobjects/lightbulb_broken,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "boW" = (
 /obj/decal/fakeobjects/apc_broken{
 	pixel_x = -24
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boX" = (
 /obj/stool/chair,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boY" = (
 /obj/overlay{
@@ -33232,7 +33232,7 @@
 	tag = "icon-floor2";
 	icon_state = "floor2"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "boZ" = (
 /obj/machinery/door/airlock,
@@ -33241,7 +33241,7 @@
 	icon_state = "tracks";
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpa" = (
 /obj/decal/cleanable/blood/tracks{
@@ -33249,7 +33249,7 @@
 	icon_state = "tracks";
 	dir = 6
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpb" = (
 /obj/table{
@@ -33261,7 +33261,7 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpc" = (
 /obj/machinery/light{
@@ -33269,7 +33269,7 @@
 	icon_state = "tube1";
 	dir = 1
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpd" = (
 /obj/window/reinforced{
@@ -33284,24 +33284,24 @@
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "bpe" = (
 /obj/decal/fakeobjects/firelock_broken,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpf" = (
 /obj/computerframe{
 	anchored = 1;
 	state = 1
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpg" = (
 /obj/stool/chair{
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bph" = (
 /obj/table{
@@ -33310,21 +33310,21 @@
 	},
 /obj/item/device/flash,
 /obj/item/clothing/glasses/sunglasses,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpi" = (
 /obj/table{
 	dir = 5;
 	icon_state = "tabledir"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpj" = (
 /obj/stool/chair{
 	dir = 8
 	},
 /obj/item/reagent_containers/food/drinks/beer,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpk" = (
 /obj/stool,
@@ -33332,18 +33332,18 @@
 	tag = "icon-floor7";
 	icon_state = "floor7"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpl" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 8
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpm" = (
 /obj/machinery/door/airlock,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpn" = (
 /obj/machinery/door/unpowered/shuttle,
@@ -33378,7 +33378,7 @@
 "bpt" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpu" = (
 /obj/grille,
@@ -33392,7 +33392,7 @@
 	icon_state = "window";
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "bpv" = (
 /obj/decal/fakeobjects{
@@ -33404,31 +33404,31 @@
 	dir = 4;
 	anchored = 1
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpw" = (
 /obj/table,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpx" = (
 /obj/closet/wardrobe/grey,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpy" = (
 /obj/closet/wardrobe/orange,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpz" = (
 /obj/item/storage/toolbox/mechanical,
 /obj/item/device/multitool,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpA" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 10
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpB" = (
 /obj/table{
@@ -33436,13 +33436,13 @@
 	icon_state = "tabledir";
 	dir = 6
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpC" = (
 /obj/stool/chair{
 	dir = 8
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpD" = (
 /obj/table{
@@ -33454,7 +33454,7 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpE" = (
 /obj/overlay{
@@ -33467,7 +33467,7 @@
 	tag = "icon-floor3";
 	icon_state = "floor3"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpF" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
@@ -33516,13 +33516,13 @@
 	dir = 8
 	},
 /obj/window/basic,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "bpL" = (
 /obj/decal/fakeobjects/lighttube_broken{
 	dir = 8
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpM" = (
 /obj/grille,
@@ -33541,17 +33541,17 @@
 	icon_state = "window";
 	dir = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "bpN" = (
 /obj/item/storage/toolbox/mechanical,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpO" = (
 /obj/stool/chair{
 	dir = 1
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpP" = (
 /obj/computerframe{
@@ -33559,7 +33559,7 @@
 	state = 1
 	},
 /obj/item/shard,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpQ" = (
 /obj/machinery/atmospherics/pipe/simple/insulated,
@@ -33589,7 +33589,7 @@
 	dir = 4;
 	pixel_x = 24
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpW" = (
 /obj/decal/fakeobjects/firealarm_broken{
@@ -33598,16 +33598,16 @@
 	pixel_x = -24;
 	tag = "icon-firex (WEST)"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpX" = (
 /obj/stool/bed,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpY" = (
 /obj/stool/bed,
 /obj/decal/cleanable/blood/splatter,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bpZ" = (
 /obj/overlay{
@@ -33621,7 +33621,7 @@
 	name = "blood";
 	opacity = 0
 	},
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/vr_oldprison)
 "bqa" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -33670,11 +33670,11 @@
 /obj/decal/fakeobjects/lighttube_broken{
 	dir = 8
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bqh" = (
 /obj/rack,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bqi" = (
 /obj/closet,
@@ -33796,7 +33796,7 @@
 	icon_state = "egg_hatched";
 	name = "strange egg"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bqw" = (
 /obj/decal/fakeobjects{
@@ -33807,15 +33807,15 @@
 	icon_state = "dispenser";
 	name = "Oxygen Tank Storage Unit"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bqx" = (
 /obj/stool/bed,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "bqy" = (
 /obj/decal/fakeobjects/lighttube_broken,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bqz" = (
 /obj/machinery/light{
@@ -33823,7 +33823,7 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bqA" = (
 /obj/decal/fakeobjects/lightbulb_broken{
@@ -33866,11 +33866,11 @@
 /area/storage/testroom)
 "bqF" = (
 /obj/item/rods,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "bqG" = (
 /obj/structure/girder,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "bqH" = (
 /obj/machinery/door/window/eastright,
@@ -33895,7 +33895,7 @@
 	icon_state = "weeds";
 	name = "strange weeds"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bqL" = (
 /obj/window/reinforced{
@@ -33908,7 +33908,7 @@
 	tag = "icon-coatblood";
 	icon_state = "coatblood"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "bqM" = (
 /obj/machinery/atmospherics/pipe/simple{
@@ -33918,7 +33918,7 @@
 	layer = 3;
 	level = 2
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33931,14 +33931,14 @@
 	layer = 3;
 	level = 2
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
 /area/vr_oldprison)
 "bqO" = (
 /obj/item/shard,
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33952,7 +33952,7 @@
 	pixel_y = 32;
 	tag = "icon-floor6"
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33963,7 +33963,7 @@
 	dir = 10
 	},
 /obj/item/storage/firstaid/regular,
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33975,7 +33975,7 @@
 	dir = 6
 	},
 /obj/item/device/analyzer/healthanalyzer,
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -33990,7 +33990,7 @@
 	icon_state = "weeds";
 	name = "strange weeds"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bqT" = (
 /obj/decal/fakeobjects/firelock_broken,
@@ -34000,7 +34000,7 @@
 	icon_state = "weeds";
 	name = "strange weeds"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bqU" = (
 /obj/decal/fakeobjects/apc_broken{
@@ -34011,11 +34011,11 @@
 	icon_state = "tube-broken";
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bqV" = (
 /obj/machinery/atmospherics/unary/cold_sink/freezer,
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -34025,20 +34025,20 @@
 	icon_state = "intact";
 	level = 2
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
 /area/vr_oldprison)
 "bqX" = (
 /obj/machinery/atmospherics/unary/cryo_cell,
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
 /area/vr_oldprison)
 "bqY" = (
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -34048,7 +34048,7 @@
 	desc = "Notice: Area Under Quarantine!";
 	name = "quarantine sign"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bra" = (
 /obj/table{
@@ -34057,7 +34057,7 @@
 	dir = 6
 	},
 /obj/item/cable_coil,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "brb" = (
 /obj/closet/wardrobe/orange,
@@ -34072,7 +34072,7 @@
 /obj/decal/fakeobjects/lighttube_broken{
 	dir = 8
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -34082,7 +34082,7 @@
 	icon_state = "manifold";
 	level = 2
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -34095,17 +34095,17 @@
 	layer = 3;
 	level = 2
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
 /area/vr_oldprison)
 "brf" = (
 /obj/item/tile,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "brg" = (
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-vrwhitehall (WEST)";
 	icon_state = "vrwhitehall";
 	dir = 8
@@ -34116,11 +34116,11 @@
 	name = "Storage Closet";
 	req_access_txt = "0"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bri" = (
 /obj/reagent_dispensers/watertank,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "brj" = (
 /obj/stool/chair,
@@ -34148,14 +34148,14 @@
 	icon_state = "weeds";
 	name = "strange weeds"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "brn" = (
 /obj/decal/cleanable/blood/splatter{
 	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -34165,7 +34165,7 @@
 	desc = "Notice: Area Under Quarantine!";
 	name = "quarantine sign"
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-vrwhitehall (WEST)";
 	icon_state = "vrwhitehall";
 	dir = 8
@@ -34176,13 +34176,13 @@
 	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "brq" = (
 /obj/table,
 /obj/machinery/cell_charger,
 /obj/item/device/multitool,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "brr" = (
 /obj/stool/chair{
@@ -34225,7 +34225,7 @@
 	icon_state = "sleeper_0";
 	name = "broken sleeper"
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -34239,14 +34239,14 @@
 	icon_state = "sleeperconsole";
 	name = "broken console"
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
 /area/vr_oldprison)
 "brw" = (
 /obj/stool/bed,
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -34257,14 +34257,14 @@
 	tag = "icon-floor5";
 	icon_state = "floor5"
 	},
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
 /area/vr_oldprison)
 "bry" = (
 /obj/secure_closet/medical1,
-/turf/unsimulated/bombvr{
+/turf/bombvr{
 	tag = "icon-white";
 	icon_state = "white"
 	},
@@ -34317,7 +34317,7 @@
 	icon_state = "weeds";
 	name = "strange weeds"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "brE" = (
 /obj/decal/fakeobjects{
@@ -34340,7 +34340,7 @@
 	icon_state = "weeds";
 	name = "strange weeds"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "brF" = (
 /obj/decal/cleanable/blood/tracks{
@@ -34354,7 +34354,7 @@
 	icon_state = "weeds";
 	name = "strange weeds"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "brG" = (
 /obj/overlay{
@@ -34377,7 +34377,7 @@
 	icon_state = "tracks";
 	dir = 4
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "brH" = (
 /obj/machinery/ignition_switch{
@@ -34400,7 +34400,7 @@
 	icon_state = "egg_hatched";
 	name = "strange egg"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "brJ" = (
 /obj/decal/fakeobjects/firealarm_broken{
@@ -34410,7 +34410,7 @@
 	tag = "icon-firex (WEST)"
 	},
 /obj/decal/cleanable/blood/tracks,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "brK" = (
 /obj/stool/chair{
@@ -34478,7 +34478,7 @@
 	},
 /area/vr_oldprison)
 "brR" = (
-/turf/unsimulated/wall,
+/turf/wall,
 /area/space)
 "brS" = (
 /turf/simulated/floor/plating,
@@ -34543,18 +34543,18 @@
 	icon_state = "weeds";
 	name = "strange weeds"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bsb" = (
 /obj/machinery/door/window/southleft,
 /obj/decal/fakeobjects/lighttube_broken{
 	dir = 8
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bsc" = (
 /obj/machinery/door/window/southright,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bsd" = (
 /obj/stool,
@@ -34591,14 +34591,14 @@
 /area/storage/testroom)
 "bsi" = (
 /obj/item/storage/backpack,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bsj" = (
 /obj/decal/cleanable/blood/splatter{
 	tag = "icon-floor3";
 	icon_state = "floor3"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bsk" = (
 /obj/decal/fakeobjects/lighttube_broken{
@@ -34606,7 +34606,7 @@
 	icon_state = "tube-broken";
 	dir = 1
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bsl" = (
 /obj/decal/fakeobjects/shuttlethruster,
@@ -34618,24 +34618,24 @@
 /obj/decal/fakeobjects/apc_broken{
 	pixel_y = -24
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bsn" = (
 /obj/machinery/door{
 	icon = 'icons/obj/doors/doormorgue.dmi';
 	name = "Morgue"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bso" = (
 /obj/morgue,
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bsp" = (
 /obj/decal/fakeobjects/apc_broken{
 	pixel_y = 24
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bsq" = (
 /obj/landmark/start,
@@ -34690,7 +34690,7 @@
 	tag = "icon-medium";
 	icon_state = "medium"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/vr_oldprison)
 "bsz" = (
 /turf/simulated/shuttle/wall{
@@ -34757,7 +34757,7 @@
 	tag = "icon-brokengrille"
 	},
 /obj/item/rods,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/vr_oldprison)
 "bsI" = (
 /obj/grille,
@@ -34804,14 +34804,14 @@
 	tag = "icon-small";
 	icon_state = "small"
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
 	},
 /area/vr_oldprison)
 "bsO" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -34828,21 +34828,21 @@
 	icon_state = "shrub";
 	dir = 1
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
 	},
 /area/vr_oldprison)
 "bsQ" = (
-/turf/unsimulated/grass,
+/turf/grass,
 /area/vr_oldprison)
 "bsR" = (
 /obj/machinery/computer/shuttle,
 /turf/simulated/floor/shuttle,
 /area/shuttle/escape/centcom)
 "bsS" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -34854,18 +34854,18 @@
 	icon_state = "grassplug";
 	dir = 6
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/vr_oldprison)
 "bsU" = (
 /obj/grassplug,
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
 	},
 /area/vr_oldprison)
 "bsV" = (
-/turf/unsimulated/grass{
+/turf/grass{
 	density = 1;
 	icon_state = "grass";
 	name = "grass.";
@@ -34878,10 +34878,10 @@
 	icon_state = "grassplug";
 	dir = 8
 	},
-/turf/unsimulated/grasstodirt,
+/turf/grasstodirt,
 /area/vr_oldprison)
 "bsX" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -34914,10 +34914,10 @@
 	icon_state = "stone";
 	dir = 10
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/vr_oldprison)
 "btd" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/fullscreen.dmi';
 	icon_state = "title";
 	layer = 20;
@@ -34973,7 +34973,7 @@
 	icon_state = "grassplug";
 	dir = 5
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/vr_oldprison)
 "btk" = (
 /obj/shrub{
@@ -34981,7 +34981,7 @@
 	icon_state = "shrub";
 	dir = 4
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/vr_oldprison)
 "btl" = (
 /obj/grille,
@@ -35000,11 +35000,11 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "btm" = (
 /obj/machinery/door/airlock,
-/turf/unsimulated/floor/caution/north,
+/turf/floor/caution/north,
 /area/centcom)
 "btn" = (
 /obj/grille,
@@ -35019,7 +35019,7 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "bto" = (
 /obj/grille,
@@ -35029,7 +35029,7 @@
 	icon_state = "rwindow";
 	dir = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "btp" = (
 /obj/grille,
@@ -35044,10 +35044,10 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "btq" = (
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/vr_oldprison)
 "btr" = (
 /obj/grille,
@@ -35061,10 +35061,10 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "bts" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-floor";
 	icon_state = "floor"
 	},
@@ -35079,7 +35079,7 @@
 	invisibility = 20;
 	name = "deadlight"
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/vr_oldprison)
 "btu" = (
 /obj/stone{
@@ -35087,14 +35087,14 @@
 	icon_state = "stone";
 	dir = 1
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
 	},
 /area/vr_oldprison)
 "btv" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-bolts";
 	icon_state = "bolts"
 	},
@@ -35110,10 +35110,10 @@
 	icon_state = "shrub";
 	dir = 10
 	},
-/turf/unsimulated/grasstodirt,
+/turf/grasstodirt,
 /area/vr_oldprison)
 "btx" = (
-/turf/unsimulated/grasstodirt,
+/turf/grasstodirt,
 /area/vr_oldprison)
 "bty" = (
 /obj/grassplug{
@@ -35121,7 +35121,7 @@
 	icon_state = "grassplug";
 	dir = 4
 	},
-/turf/unsimulated/grasstodirt,
+/turf/grasstodirt,
 /area/vr_oldprison)
 "btz" = (
 /obj/grille,
@@ -35131,7 +35131,7 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "btA" = (
 /obj/grille,
@@ -35145,11 +35145,11 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "btB" = (
 /obj/machinery/door/airlock,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-floor";
 	icon_state = "floor"
 	},
@@ -35166,7 +35166,7 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "btD" = (
 /obj/grille,
@@ -35176,7 +35176,7 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/centcom)
 "btE" = (
 /obj/shrub{
@@ -35184,10 +35184,10 @@
 	icon_state = "shrub";
 	dir = 9
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/vr_oldprison)
 "btF" = (
-/turf/unsimulated/grass{
+/turf/grass{
 	density = 1;
 	icon_state = "grass";
 	name = "grass.";
@@ -35195,14 +35195,14 @@
 	},
 /area/space)
 "btG" = (
-/turf/unsimulated/floor/specialroom/bar{
+/turf/floor/specialroom/bar{
 	dir = 8
 	},
 /area/centcom)
 "btH" = (
 /obj/table,
 /obj/item/reagent_containers/food/drinks/bojackson,
-/turf/unsimulated/floor/specialroom/bar{
+/turf/floor/specialroom/bar{
 	dir = 8
 	},
 /area/centcom)
@@ -35212,7 +35212,7 @@
 	dir = 9
 	},
 /obj/item/reagent_containers/food/drinks/beer,
-/turf/unsimulated/floor/specialroom/bar{
+/turf/floor/specialroom/bar{
 	dir = 8
 	},
 /area/centcom)
@@ -35222,7 +35222,7 @@
 	dir = 5
 	},
 /obj/item/reagent_containers/food/snacks/burger/monkeyburger,
-/turf/unsimulated/floor/specialroom/bar{
+/turf/floor/specialroom/bar{
 	dir = 8
 	},
 /area/centcom)
@@ -35231,7 +35231,7 @@
 	icon_state = "tabledir";
 	dir = 10
 	},
-/turf/unsimulated/floor/specialroom/bar{
+/turf/floor/specialroom/bar{
 	dir = 8
 	},
 /area/centcom)
@@ -35241,7 +35241,7 @@
 	dir = 6
 	},
 /obj/item/reagent_containers/food/drinks/beer,
-/turf/unsimulated/floor/specialroom/bar{
+/turf/floor/specialroom/bar{
 	dir = 8
 	},
 /area/centcom)
@@ -35250,19 +35250,19 @@
 /obj/item/reagent_containers/food/drinks/vodka{
 	pixel_y = 11
 	},
-/turf/unsimulated/floor/specialroom/bar{
+/turf/floor/specialroom/bar{
 	dir = 8
 	},
 /area/centcom)
 "btN" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand"
 	},
 /area/beach)
 "btO" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -35271,7 +35271,7 @@
 /area/beach)
 "btP" = (
 /obj/signpost,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -35280,7 +35280,7 @@
 /area/beach)
 "btQ" = (
 /obj/closet,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -35295,7 +35295,7 @@
 	layer = 10;
 	name = "palm tree"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -35310,7 +35310,7 @@
 	layer = 10;
 	name = "palm tree"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -35331,7 +35331,7 @@
 	icon_state = "coconuts";
 	name = "coconuts"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -35350,7 +35350,7 @@
 /obj/item/reagent_containers/food/drinks/beer,
 /obj/item/reagent_containers/food/drinks/beer,
 /obj/item/reagent_containers/food/drinks/beer,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -35362,7 +35362,7 @@
 	icon_state = "tabledir";
 	dir = 5
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -35375,7 +35375,7 @@
 	dir = 10
 	},
 /obj/item/reagent_containers/food/snacks/chips,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -35393,7 +35393,7 @@
 /obj/item/reagent_containers/food/drinks/cola,
 /obj/item/reagent_containers/food/drinks/cola,
 /obj/item/reagent_containers/food/drinks/cola,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -35402,7 +35402,7 @@
 /area/beach)
 "btY" = (
 /obj/item/beach_ball,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -35411,7 +35411,7 @@
 /area/beach)
 "btZ" = (
 /obj/stool/chair,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -35425,7 +35425,7 @@
 	icon_state = "crab";
 	name = "crab"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -35439,7 +35439,7 @@
 	icon_state = "crab2";
 	name = "crab"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -35447,14 +35447,14 @@
 	},
 /area/beach)
 "buc" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater";
 	name = "water"
 	},
 /area/beach)
 "bud" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater"
 	},
@@ -35480,13 +35480,13 @@
 /turf/space,
 /area/meteor/dock)
 "buh" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'beach.dmi';
 	icon_state = "water"
 	},
 /area/beach)
 "bui" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "water";
 	name = "water"
@@ -35535,7 +35535,7 @@
 	mouse_opacity = 0;
 	name = "water"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "water";
 	name = "water"
@@ -35891,7 +35891,7 @@
 	},
 /area/meteor/dock)
 "bvc" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "v-space"
@@ -35901,10 +35901,10 @@
 /turf/space,
 /area/racing_track)
 "bve" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/racing_track)
 "bvf" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	density = 1;
 	icon_state = "grass_snow";
 	name = "dense snow";
@@ -35913,7 +35913,7 @@
 	},
 /area/racing_track)
 "bvg" = (
-/turf/unsimulated/grass{
+/turf/grass{
 	density = 1;
 	icon_state = "grass";
 	name = "grass.";
@@ -35922,7 +35922,7 @@
 /area/racing_track)
 "bvh" = (
 /obj/tree1,
-/turf/unsimulated/grass{
+/turf/grass{
 	density = 1;
 	icon_state = "grass";
 	name = "grass.";
@@ -35931,19 +35931,19 @@
 /area/racing_track)
 "bvi" = (
 /obj/tree1,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-grass_snow";
 	icon_state = "grass_snow"
 	},
 /area/racing_track)
 "bvj" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-grass_snow";
 	icon_state = "grass_snow"
 	},
 /area/racing_track)
 "bvk" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	tag = "icon-barrier_blue";
 	name = "barrier";
 	icon = 'racing.dmi';
@@ -35955,13 +35955,13 @@
 /obj/structure/woodwall{
 	opacity = 0
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bvm" = (
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bvn" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (SOUTHWEST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -35969,7 +35969,7 @@
 	},
 /area/racing_track)
 "bvo" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -35977,14 +35977,14 @@
 /area/racing_track)
 "bvp" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
 	},
 /area/racing_track)
 "bvq" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (SOUTHEAST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -35993,11 +35993,11 @@
 /area/racing_track)
 "bvr" = (
 /obj/river,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bvs" = (
 /obj/tree1,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bvt" = (
 /obj/stone{
@@ -36005,10 +36005,10 @@
 	icon_state = "stone";
 	dir = 8
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bvu" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (EAST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -36016,20 +36016,20 @@
 	},
 /area/racing_track)
 "bvv" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_track)
 "bvw" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_track)
 "bvx" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (WEST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -36037,7 +36037,7 @@
 	},
 /area/racing_track)
 "bvy" = (
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/racing_track)
 "bvz" = (
 /obj/racing_boosterstrip{
@@ -36045,7 +36045,7 @@
 	icon_state = "boosterstrip";
 	dir = 4
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/racing_track)
 "bvA" = (
 /obj/river{
@@ -36053,7 +36053,7 @@
 	icon_state = "river";
 	dir = 10
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/racing_track)
 "bvB" = (
 /obj/river{
@@ -36061,11 +36061,11 @@
 	icon_state = "river";
 	dir = 5
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/racing_track)
 "bvC" = (
 /obj/tree1,
-/turf/unsimulated/floor{
+/turf/floor{
 	density = 1;
 	icon_state = "grass_snow";
 	name = "dense snow";
@@ -36079,13 +36079,13 @@
 	icon_state = "boosterstrip";
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_track)
 "bvE" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "Wall"
@@ -36096,14 +36096,14 @@
 	sd_lighting = 0
 	})
 "bvF" = (
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/racing_track)
 "bvG" = (
 /obj/racing_powerup_spawner,
 /turf/space,
 /area/racing_track)
 "bvH" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -36112,7 +36112,7 @@
 /area/racing_track)
 "bvI" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -36120,14 +36120,14 @@
 	},
 /area/racing_track)
 "bvJ" = (
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/toxins/test_area{
 	name = "VR Test Area";
 	requires_power = 0;
 	sd_lighting = 0
 	})
 "bvK" = (
-/turf/unsimulated/wall/bombvr,
+/turf/wall/bombvr,
 /area/toxins/test_area{
 	name = "VR Test Area";
 	requires_power = 0;
@@ -36147,10 +36147,10 @@
 /turf/space,
 /area/racing_track)
 "bvN" = (
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/racing_track)
 "bvO" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 1
 	},
 /area/racing_track)
@@ -36164,13 +36164,13 @@
 	name = "broken door";
 	tag = "icon-eng-open"
 	},
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/racing_track)
 "bvQ" = (
-/turf/unsimulated/floor/damaged2,
+/turf/floor/damaged2,
 /area/racing_track)
 "bvR" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -36181,7 +36181,7 @@
 	icon_state = "river";
 	dir = 10
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bvT" = (
 /obj/river{
@@ -36189,10 +36189,10 @@
 	icon_state = "river";
 	dir = 5
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bvU" = (
-/turf/unsimulated/floor/damaged1,
+/turf/floor/damaged1,
 /area/racing_track)
 "bvV" = (
 /obj/racing_boosterstrip{
@@ -36200,17 +36200,17 @@
 	icon_state = "boosterstrip";
 	dir = 4
 	},
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/racing_track)
 "bvW" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/racing_track)
 "bvX" = (
-/turf/unsimulated/floor/white/side,
+/turf/floor/white/side,
 /area/racing_track)
 "bvY" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTHWEST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -36219,11 +36219,11 @@
 /area/racing_track)
 "bvZ" = (
 /obj/tombstone,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bwa" = (
 /obj/racing_boosterstrip,
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/racing_track)
 "bwb" = (
 /obj/overlay{
@@ -36231,7 +36231,7 @@
 	icon_state = "door_closed";
 	name = "airlock"
 	},
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/racing_track)
 "bwc" = (
 /obj/racing_boosterstrip{
@@ -36239,10 +36239,10 @@
 	icon_state = "boosterstrip";
 	dir = 1
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/racing_track)
 "bwd" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTHEAST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -36253,7 +36253,7 @@
 /obj/structure/woodwall{
 	opacity = 0
 	},
-/turf/unsimulated/grass{
+/turf/grass{
 	density = 1;
 	icon_state = "grass";
 	name = "grass.";
@@ -36264,7 +36264,7 @@
 /obj/landmark{
 	name = "bombtest-bomb"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/toxins/test_area{
 	name = "VR Test Area";
 	requires_power = 0;
@@ -36276,7 +36276,7 @@
 	icon_state = "stone";
 	dir = 9
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bwh" = (
 /obj/racing_trap_banana{
@@ -36284,25 +36284,25 @@
 	icon_state = "snowman";
 	name = "snowman"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-grass_snow";
 	icon_state = "grass_snow"
 	},
 /area/racing_track)
 "bwi" = (
 /obj/racing_boosterstrip,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-grass_snow";
 	icon_state = "grass_snow"
 	},
 /area/racing_track)
 "bwj" = (
 /obj/lattice,
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/racing_track)
 "bwk" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (EAST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -36311,7 +36311,7 @@
 /area/racing_track)
 "bwl" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (WEST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -36322,14 +36322,14 @@
 /obj/landmark{
 	name = "bombtest"
 	},
-/turf/unsimulated/bombvr,
+/turf/bombvr,
 /area/toxins/test_area{
 	name = "VR Test Area";
 	requires_power = 0;
 	sd_lighting = 0
 	})
 "bwn" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 5
 	},
 /area/racing_track)
@@ -36337,7 +36337,7 @@
 /obj/tombstone{
 	desc = "Here lies Richie Mcmullin, eaten by ghosts."
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bwp" = (
 /obj/overlay{
@@ -36348,7 +36348,7 @@
 	layer = 4;
 	name = "skeleton"
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bwq" = (
 /obj/racing_boosterstrip{
@@ -36356,24 +36356,24 @@
 	icon_state = "boosterstrip";
 	dir = 8
 	},
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/racing_track)
 "bwr" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 4
 	},
 /area/racing_track)
 "bws" = (
 /obj/stone,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bwt" = (
-/turf/unsimulated/floor/white/corner{
+/turf/floor/white/corner{
 	dir = 8
 	},
 /area/racing_track)
 "bwu" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -36381,7 +36381,7 @@
 	},
 /area/racing_track)
 "bwv" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	tag = "icon-barrier_green";
 	name = "barrier";
 	icon = 'racing.dmi';
@@ -36390,13 +36390,13 @@
 	},
 /area/racing_track)
 "bww" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 8
 	},
 /area/racing_track)
 "bwx" = (
 /obj/decal/cleanable/oil,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (EAST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -36411,7 +36411,7 @@
 	layer = 10;
 	name = "palm tree"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -36419,7 +36419,7 @@
 	},
 /area/racing_track)
 "bwz" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	tag = "icon-barrier_yellow";
 	name = "barrier";
 	icon = 'racing.dmi';
@@ -36429,25 +36429,25 @@
 /area/racing_track)
 "bwA" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 8
 	},
 /area/racing_track)
 "bwB" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/racing_track)
 "bwC" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 4
 	},
 /area/racing_track)
 "bwD" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	icon = 'racing.dmi';
 	icon_state = "barrier_red";
 	name = "barrier";
@@ -36456,21 +36456,21 @@
 	},
 /area/racing_track)
 "bwE" = (
-/turf/unsimulated/floor/damaged3,
+/turf/floor/damaged3,
 /area/racing_track)
 "bwF" = (
 /obj/tombstone{
 	desc = "Here lies Tango N. Vectif, killed by dat fukken pig."
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bwG" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 9
 	},
 /area/racing_track)
 "bwH" = (
-/turf/unsimulated/floor/white/corner{
+/turf/floor/white/corner{
 	dir = 1
 	},
 /area/racing_track)
@@ -36478,7 +36478,7 @@
 /obj/tombstone{
 	desc = "Here lies Kira Taggart, tragically killed as a result of somebody else's mistakes."
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bwJ" = (
 /obj/overlay{
@@ -36488,7 +36488,7 @@
 	layer = 10;
 	name = "palm tree"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -36496,12 +36496,12 @@
 	},
 /area/racing_track)
 "bwK" = (
-/turf/unsimulated/floor/white/corner{
+/turf/floor/white/corner{
 	dir = 2
 	},
 /area/racing_track)
 "bwL" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 6
 	},
 /area/racing_track)
@@ -36519,7 +36519,7 @@
 	icon_state = "coconuts";
 	name = "coconuts"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -36532,7 +36532,7 @@
 	icon_state = "boosterstrip";
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -36540,7 +36540,7 @@
 /area/racing_track)
 "bwO" = (
 /obj/decal/cleanable/oil,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -36552,7 +36552,7 @@
 	icon_state = "crab2";
 	name = "crab"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -36565,7 +36565,7 @@
 	icon_state = "boosterstrip";
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -36576,7 +36576,7 @@
 	icon_state = "boosterstrip";
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -36597,7 +36597,7 @@
 	icon_state = "coconuts";
 	name = "coconuts"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -36611,7 +36611,7 @@
 	icon_state = "crab";
 	name = "crab"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -36630,7 +36630,7 @@
 /obj/item/reagent_containers/food/drinks/beer,
 /obj/item/reagent_containers/food/drinks/beer,
 /obj/item/reagent_containers/food/drinks/beer,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -36642,7 +36642,7 @@
 	icon_state = "tabledir";
 	dir = 5
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -36655,7 +36655,7 @@
 	dir = 10
 	},
 /obj/item/reagent_containers/food/snacks/chips,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -36673,7 +36673,7 @@
 /obj/item/reagent_containers/food/drinks/cola,
 /obj/item/reagent_containers/food/drinks/cola,
 /obj/item/reagent_containers/food/drinks/cola,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -36681,7 +36681,7 @@
 	},
 /area/racing_track)
 "bwY" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "grass1";
 	name = "dense grass";
 	opacity = 1
@@ -36697,37 +36697,37 @@
 /turf/space,
 /area/racing_track)
 "bxa" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "grass1"
 	},
 /area/racing_track)
 "bxb" = (
 /obj/tree1,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "grass1"
 	},
 /area/racing_track)
 "bxc" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater";
 	name = "water"
 	},
 /area/racing_track)
 "bxd" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater"
 	},
 /area/racing_track)
 "bxe" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'beach.dmi';
 	icon_state = "water"
 	},
 /area/racing_track)
 "bxf" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "water";
 	name = "water"
@@ -36735,7 +36735,7 @@
 /area/racing_track)
 "bxg" = (
 /obj/racing_boosterstrip,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (EAST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -36744,7 +36744,7 @@
 /area/racing_track)
 "bxh" = (
 /obj/racing_boosterstrip,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (WEST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -36752,7 +36752,7 @@
 	},
 /area/racing_track)
 "bxi" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "outer forcefield";
@@ -36760,20 +36760,20 @@
 	},
 /area/space)
 "bxj" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-grass_snow";
 	icon_state = "grass_snow"
 	},
 /area/space)
 "bxk" = (
 /obj/tree1,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-grass_snow";
 	icon_state = "grass_snow"
 	},
 /area/space)
 "bxl" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	density = 1;
 	icon_state = "grass_snow";
 	name = "dense snow";
@@ -36785,17 +36785,17 @@
 /obj/landmark{
 	name = "prisonwarp"
 	},
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 2
 	},
 /area/space)
 "bxn" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 8
 	},
 /area/space)
 "bxo" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "forcefield";
@@ -36803,12 +36803,12 @@
 	},
 /area/space)
 "bxp" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 4
 	},
 /area/space)
 "bxq" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 1
 	},
 /area/space)
@@ -36818,7 +36818,7 @@
 	icon_state = "boosterstrip";
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (WEST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -36838,7 +36838,7 @@
 /turf/space,
 /area/racing_track)
 "bxu" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-rainbow_road";
 	icon = 'racing.dmi';
 	icon_state = "rainbow_road";
@@ -36847,7 +36847,7 @@
 /area/racing_track)
 "bxv" = (
 /obj/decal/cleanable/oil,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -36855,7 +36855,7 @@
 	},
 /area/racing_track)
 "bxw" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-rainbow_road (SOUTHWEST)";
 	icon = 'racing.dmi';
 	icon_state = "rainbow_road";
@@ -36871,7 +36871,7 @@
 /turf/space,
 /area/racing_track)
 "bxy" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-rainbow_road (EAST)";
 	icon = 'racing.dmi';
 	icon_state = "rainbow_road";
@@ -36884,7 +36884,7 @@
 	icon_state = "boosterstrip";
 	dir = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-rainbow_road (EAST)";
 	icon = 'racing.dmi';
 	icon_state = "rainbow_road";
@@ -36892,7 +36892,7 @@
 	},
 /area/racing_track)
 "bxA" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-rainbow_road (SOUTHEAST)";
 	icon = 'racing.dmi';
 	icon_state = "rainbow_road";
@@ -36905,7 +36905,7 @@
 	icon_state = "boosterstrip";
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -36948,7 +36948,7 @@
 	name = "finish line";
 	pixel_x = 6
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -36965,7 +36965,7 @@
 /obj/landmark{
 	name = "kart1"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -36978,7 +36978,7 @@
 	returnpoint = "kart1";
 	tag = "icon-kart_red_u (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -36995,7 +36995,7 @@
 /obj/landmark{
 	name = "kart3"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -37008,7 +37008,7 @@
 	returnpoint = "kart3";
 	tag = "icon-kart_blue_u (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -37025,7 +37025,7 @@
 /obj/landmark{
 	name = "kart6"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -37038,7 +37038,7 @@
 	returnpoint = "kart6";
 	tag = "icon-kart_red_u (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -37050,21 +37050,21 @@
 	icon_state = "boosterstrip";
 	dir = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
 	},
 /area/racing_track)
 "bxQ" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand"
 	},
 /area/sim/area2)
 "bxR" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-rainbow_road (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "rainbow_road";
@@ -37087,7 +37087,7 @@
 	name = "finish line";
 	pixel_x = 6
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -37098,13 +37098,13 @@
 	icon_state = "boosterstrip";
 	dir = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_track)
 "bxU" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -37113,7 +37113,7 @@
 /area/sim/area2)
 "bxV" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-rainbow_road (EAST)";
 	icon = 'racing.dmi';
 	icon_state = "rainbow_road";
@@ -37127,7 +37127,7 @@
 	require_login = 0;
 	screen = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -37138,7 +37138,7 @@
 /obj/machinery/computer/arcade{
 	desc = "The VR representation of a popular computer game."
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -37149,7 +37149,7 @@
 /obj/machinery/computer/security/wooden_tv{
 	desc = "The VR representation of a camera monitoring program."
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -37160,7 +37160,7 @@
 /obj/machinery/vending/cigarette{
 	name = "virtual cigarette machine"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -37198,7 +37198,7 @@
 	name = "finish line";
 	pixel_x = 6
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -37216,7 +37216,7 @@
 /obj/landmark{
 	name = "kart2"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -37230,7 +37230,7 @@
 	returnpoint = "kart2";
 	tag = "icon-kart_blue_u (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -37248,7 +37248,7 @@
 /obj/landmark{
 	name = "kart4"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -37262,7 +37262,7 @@
 	returnpoint = "kart4";
 	tag = "icon-kart_red_u (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -37280,7 +37280,7 @@
 /obj/landmark{
 	name = "kart5"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -37294,7 +37294,7 @@
 	returnpoint = "kart5";
 	tag = "icon-kart_blue_u (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -37307,7 +37307,7 @@
 	icon_state = "boosterstrip";
 	dir = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -37328,7 +37328,7 @@
 	icon_state = "coconuts";
 	name = "coconuts"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -37340,7 +37340,7 @@
 /turf/space,
 /area/space)
 "bym" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	tag = "icon-barrier_green";
 	name = "barrier";
 	icon = 'racing.dmi';
@@ -37353,10 +37353,10 @@
 /turf/simulated/floor,
 /area/racing_entry)
 "byo" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/racing_entry)
 "byp" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	icon = 'racing.dmi';
 	icon_state = "barrier_red";
 	name = "barrier";
@@ -37370,13 +37370,13 @@
 	icon_state = "boosterstrip";
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "byr" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetNW"
 	},
 /area/sim/area2)
@@ -37388,7 +37388,7 @@
 	desc = "A data logging utility represented as an audio logger.";
 	name = "Audiolog"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/sim/area2)
@@ -37397,17 +37397,17 @@
 /obj/landmark{
 	name = "det_net"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/sim/area2)
 "byu" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/sim/area2)
 "byv" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetNE"
 	},
 /area/sim/area2)
@@ -37432,47 +37432,47 @@
 /area/racing_entry)
 "byz" = (
 /obj/item/reagent_containers/glass/oilcan,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "byA" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "byB" = (
 /obj/machinery/vending/coffee,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "byC" = (
 /obj/machinery/vending/snack,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "byD" = (
 /obj/machinery/vending/cola/red,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "byE" = (
 /obj/machinery/vending/cola/blue,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "byF" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetSW"
 	},
 /area/sim/area2)
@@ -37484,13 +37484,13 @@
 	},
 /obj/item/pen,
 /obj/item/pen,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/sim/area2)
 "byH" = (
 /obj/table/woodentable,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/sim/area2)
@@ -37501,12 +37501,12 @@
 /obj/item/paper_bin{
 	pixel_y = 9
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/sim/area2)
 "byJ" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetE"
 	},
 /area/sim/area2)
@@ -37529,7 +37529,7 @@
 	layer = 10;
 	name = "palm tree"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -37537,7 +37537,7 @@
 	},
 /area/sim/area2)
 "byM" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetSE"
 	},
 /area/sim/area2)
@@ -37551,7 +37551,7 @@
 /area/racing_track)
 "byO" = (
 /obj/tree1,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "grass1";
 	name = "dense grass";
 	opacity = 1
@@ -37573,7 +37573,7 @@
 	name = "broken clown car";
 	opacity = 0
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -37583,7 +37583,7 @@
 	icon_state = "tabledir";
 	dir = 9
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -37593,7 +37593,7 @@
 	dir = 5;
 	icon_state = "tabledir"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -37604,14 +37604,14 @@
 	icon_state = "chair";
 	dir = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "byU" = (
 /obj/decal/cleanable/oil,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -37621,7 +37621,7 @@
 	icon_state = "tabledir";
 	dir = 10
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -37631,13 +37631,13 @@
 	icon_state = "tabledir";
 	dir = 6
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "byX" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "v-space"
@@ -37656,7 +37656,7 @@
 	opacity = 0
 	},
 /obj/decal/cleanable/oil,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -37665,7 +37665,7 @@
 /obj/stool/chair{
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -37677,7 +37677,7 @@
 	icon_state = "crab2";
 	name = "crab"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -37689,7 +37689,7 @@
 /turf/simulated/floor,
 /area/racing_track)
 "bzc" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "v-space"
@@ -37700,20 +37700,20 @@
 	desc = "Caution! Construction Zone!";
 	name = "caution sign"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "bze" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater";
 	name = "water"
 	},
 /area/sim/area2)
 "bzf" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater"
 	},
@@ -37810,13 +37810,13 @@
 /turf/simulated/floor/plating/airless,
 /area/space)
 "bzq" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/sim/gunsim)
 "bzr" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'beach.dmi';
 	icon_state = "water"
 	},
@@ -37830,7 +37830,7 @@
 	mouse_opacity = 0;
 	name = "water"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "water";
 	name = "water"
@@ -37902,7 +37902,7 @@
 /turf/simulated/floor/plating,
 /area/space)
 "bzx" = (
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/sim/gunsim)
 "bzy" = (
 /obj/machinery/conveyor{
@@ -37968,7 +37968,7 @@
 /area/space)
 "bzG" = (
 /obj/window/reinforced/southeast,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -37977,7 +37977,7 @@
 /obj/machinery/door/unpowered/wood{
 	autoclose = 0
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/sim/gunsim)
 "bzI" = (
 /turf/space,
@@ -38031,7 +38031,7 @@
 /area/space)
 "bzO" = (
 /obj/closet/wizard,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -38039,7 +38039,7 @@
 "bzP" = (
 /obj/rack,
 /obj/item/SWF_uplink/virtual,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -38047,37 +38047,37 @@
 "bzQ" = (
 /obj/rack,
 /obj/item/uplink/syndicate/virtual,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/sim/gunsim)
 "bzR" = (
 /obj/closet/syndicate/personal,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/sim/gunsim)
 "bzS" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/sim/gunsim)
 "bzT" = (
 /obj/shrub,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/sim/gunsim)
 "bzU" = (
-/turf/unsimulated/grass,
+/turf/grass,
 /area/sim/gunsim)
 "bzV" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "v-space"
 	},
 /area/farm/bball)
 "bzW" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "v-space"
@@ -38085,7 +38085,7 @@
 /area/farm/bballview)
 "bzX" = (
 /obj/machinery/door/airlock/glass,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -38133,19 +38133,19 @@
 /turf/simulated/floor,
 /area/space)
 "bAc" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/farm/bball)
 "bAd" = (
-/turf/unsimulated/floor/stairs/wide,
+/turf/floor/stairs/wide,
 /area/farm/bballview)
 "bAe" = (
-/turf/unsimulated/floor/stairs/wide/middle,
+/turf/floor/stairs/wide/middle,
 /area/farm/bballview)
 "bAf" = (
-/turf/unsimulated/floor/stairs/wide/other,
+/turf/floor/stairs/wide/other,
 /area/farm/bballview)
 "bAg" = (
 /obj/landmark{
@@ -38156,7 +38156,7 @@
 	name = "LOGOUT BUTTON";
 	pixel_y = 24
 	},
-/turf/unsimulated/floor/stairs,
+/turf/floor/stairs,
 /area/farm/bballview)
 "bAh" = (
 /obj/machinery/conveyor{
@@ -38205,25 +38205,25 @@
 /obj/rack,
 /obj/item/gun/kinetic/ak47,
 /obj/item/gun/kinetic/ak47,
-/turf/unsimulated/floor/blue/side,
+/turf/floor/blue/side,
 /area/sim/gunsim)
 "bAm" = (
 /obj/rack,
 /obj/item/gun/energy/egun,
 /obj/item/gun/energy/egun,
-/turf/unsimulated/floor/blue/side,
+/turf/floor/blue/side,
 /area/sim/gunsim)
 "bAn" = (
 /obj/rack,
 /obj/item/gun/energy/laser_gun,
 /obj/item/gun/energy/laser_gun,
-/turf/unsimulated/floor/blue/side,
+/turf/floor/blue/side,
 /area/sim/gunsim)
 "bAo" = (
 /obj/rack,
 /obj/item/gun/kinetic/flaregun,
 /obj/item/gun/kinetic/flaregun,
-/turf/unsimulated/floor/blue/side,
+/turf/floor/blue/side,
 /area/sim/gunsim)
 "bAp" = (
 /obj/decal/boxingrope{
@@ -38231,11 +38231,11 @@
 	icon_state = "ringrope";
 	dir = 9
 	},
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/farm/bball)
 "bAq" = (
 /obj/decal/boxingrope,
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/farm/bball)
 "bAr" = (
 /obj/decal/boxingrope{
@@ -38243,22 +38243,22 @@
 	icon_state = "ringrope";
 	dir = 5
 	},
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/farm/bball)
 "bAs" = (
 /obj/machinery/door/unpowered/wood{
 	autoclose = 0
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/farm/bballview)
 "bAt" = (
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/farm/bballview)
 "bAu" = (
-/turf/unsimulated/floor/stairs,
+/turf/floor/stairs,
 /area/farm/bballview)
 "bAv" = (
 /turf/simulated/wall/false_wall,
@@ -38283,10 +38283,10 @@
 	icon_state = "shrub";
 	dir = 6
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/sim/gunsim)
 "bAA" = (
-/turf/unsimulated/floor/stairs/wide{
+/turf/floor/stairs/wide{
 	dir = 4
 	},
 /area/sim/gunsim)
@@ -38297,7 +38297,7 @@
 	tag = "icon-reinf_tabledir (SOUTHWEST)"
 	},
 /obj/item/clothing/gloves/boxing,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -38308,10 +38308,10 @@
 	icon_state = "ringrope";
 	dir = 8
 	},
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/farm/bball)
 "bAD" = (
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/farm/bball)
 "bAE" = (
 /obj/decal/boxingropeenter{
@@ -38321,7 +38321,7 @@
 	tag = "icon-ringrope (EAST)"
 	},
 /obj/stool,
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/farm/bball)
 "bAF" = (
 /obj/grille,
@@ -38342,10 +38342,10 @@
 /turf/simulated/floor/caution/east,
 /area/space)
 "bAH" = (
-/turf/unsimulated/floor/blue/side,
+/turf/floor/blue/side,
 /area/sim/gunsim)
 "bAI" = (
-/turf/unsimulated/floor/stairs/wide/middle{
+/turf/floor/stairs/wide/middle{
 	dir = 4
 	},
 /area/sim/gunsim)
@@ -38356,14 +38356,14 @@
 	dir = 10
 	},
 /obj/item/clothing/gloves/boxing,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/farm/bball)
 "bAK" = (
 /obj/landmark/halloween,
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/farm/bball)
 "bAL" = (
 /obj/decal/boxingrope{
@@ -38371,7 +38371,7 @@
 	icon_state = "ringrope";
 	dir = 4
 	},
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/farm/bball)
 "bAM" = (
 /obj/cable{
@@ -38386,13 +38386,13 @@
 	},
 /obj/item/clothing/under/shorts/black,
 /obj/item/clothing/gloves/boxing,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/farm/bball)
 "bAN" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/tdome)
 "bAO" = (
 /obj/spresent,
@@ -38434,7 +38434,7 @@
 	pixel_x = 0;
 	tag = "icon-ringrope (WEST)"
 	},
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/farm/bball)
 "bAV" = (
 /obj/table/reinforced{
@@ -38444,7 +38444,7 @@
 	},
 /obj/item/clothing/under/shorts/blue,
 /obj/item/clothing/gloves/boxing,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -38465,48 +38465,48 @@
 	density = 1;
 	name = "blocker (thunderdome)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/farm/bballview)
 "bAX" = (
 /obj/machinery/door/airlock/glass,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/farm/bballview)
 "bAY" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/tdome/tdome1)
 "bAZ" = (
-/turf/unsimulated/floor/green/side{
+/turf/floor/green/side{
 	dir = 9
 	},
 /area/tdome)
 "bBa" = (
-/turf/unsimulated/floor/green/side{
+/turf/floor/green/side{
 	dir = 1
 	},
 /area/tdome)
 "bBb" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 1
 	},
 /area/tdome)
 "bBc" = (
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 1
 	},
 /area/tdome)
 "bBd" = (
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 5
 	},
 /area/tdome)
 "bBe" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/tdome/tdome2)
 "bBf" = (
 /obj/decal/cleanable/blood/tracks{
@@ -38522,10 +38522,10 @@
 /area/space)
 "bBg" = (
 /obj/item/saw/syndie,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/sim/gunsim)
 "bBh" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "0,6"
 	},
 /area/farm/bball)
@@ -38543,21 +38543,21 @@
 /turf/simulated/floor/plating,
 /area/tdome/tdome1)
 "bBl" = (
-/turf/unsimulated/floor/green/side{
+/turf/floor/green/side{
 	dir = 8
 	},
 /area/tdome)
 "bBm" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/tdome)
 "bBn" = (
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/tdome)
 "bBo" = (
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 4
 	},
 /area/tdome)
@@ -38626,7 +38626,7 @@
 /turf/simulated/floor/plating,
 /area/space)
 "bBB" = (
-/turf/unsimulated/floor/stairs/wide/other{
+/turf/floor/stairs/wide/other{
 	dir = 8
 	},
 /area/sim/gunsim)
@@ -38637,25 +38637,25 @@
 	icon_state = "shrub";
 	dir = 8
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/sim/gunsim)
 "bBD" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "0,7"
 	},
 /area/farm/bball)
 "bBE" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "1,7"
 	},
 /area/farm/bball)
 "bBF" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c22"
 	},
 /area/farm/bball)
 "bBG" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c23"
 	},
 /area/farm/bball)
@@ -38707,35 +38707,35 @@
 /turf/simulated/floor/plating,
 /area/space)
 "bBP" = (
-/turf/unsimulated/floor/stairs/wide/middle{
+/turf/floor/stairs/wide/middle{
 	dir = 8
 	},
 /area/sim/gunsim)
 "bBQ" = (
 /obj/item/razor_blade,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/sim/gunsim)
 "bBR" = (
 /obj/item/knife_butcher,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/sim/gunsim)
 "bBS" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "1,6"
 	},
 /area/farm/bball)
 "bBT" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "2,6"
 	},
 /area/farm/bball)
 "bBU" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c20"
 	},
 /area/farm/bball)
 "bBV" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c21"
 	},
 /area/farm/bball)
@@ -38752,7 +38752,7 @@
 	name = "Thunderdome Camera";
 	network = "thunder"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -38857,27 +38857,27 @@
 /turf/simulated/floor/plating,
 /area/space)
 "bCh" = (
-/turf/unsimulated/floor/stairs/wide/other{
+/turf/floor/stairs/wide/other{
 	dir = 4
 	},
 /area/sim/gunsim)
 "bCi" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "2,5"
 	},
 /area/farm/bball)
 "bCj" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "3,5"
 	},
 /area/farm/bball)
 "bCk" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c18"
 	},
 /area/farm/bball)
 "bCl" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c19"
 	},
 /area/farm/bball)
@@ -39013,7 +39013,7 @@
 	icon_state = "shrub";
 	dir = 8
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/sim/gunsim)
 "bCB" = (
 /obj/death_button{
@@ -39021,7 +39021,7 @@
 	name = "LOGOUT BUTTON";
 	pixel_y = 24
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -39029,55 +39029,55 @@
 "bCC" = (
 /obj/rack,
 /obj/item/clothing/under/darkblue,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/sim/gunsim)
 "bCD" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "0,4"
 	},
 /area/farm/bball)
 "bCE" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "1,4"
 	},
 /area/farm/bball)
 "bCF" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "2,4"
 	},
 /area/farm/bball)
 "bCG" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "3,4"
 	},
 /area/farm/bball)
 "bCH" = (
 /obj/item/basketball,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "0,6"
 	},
 /area/farm/bball)
 "bCI" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c14"
 	},
 /area/farm/bball)
 "bCJ" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "c15"
 	},
 /area/farm/bball)
 "bCK" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c16"
 	},
 /area/farm/bball)
 "bCL" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c17"
 	},
 /area/farm/bball)
@@ -39172,7 +39172,7 @@
 	icon_state = "shrub";
 	dir = 6
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/sim/gunsim)
 "bCX" = (
 /obj/machinery/disposal{
@@ -39180,37 +39180,37 @@
 	desc = "This is totally a hoop. Thank god we have such a high budget.";
 	name = "square hoop"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "0,3"
 	},
 /area/farm/bball)
 "bCY" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "1,3"
 	},
 /area/farm/bball)
 "bCZ" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "2,3"
 	},
 /area/farm/bball)
 "bDa" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "3,3"
 	},
 /area/farm/bball)
 "bDb" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c9"
 	},
 /area/farm/bball)
 "bDc" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c11"
 	},
 /area/farm/bball)
 "bDd" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c12"
 	},
 /area/farm/bball)
@@ -39220,28 +39220,28 @@
 	desc = "This is totally a hoop. Thank god we have such a high budget.";
 	name = "square hoop"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c13"
 	},
 /area/farm/bball)
 "bDf" = (
-/turf/unsimulated/floor/green/side{
+/turf/floor/green/side{
 	dir = 10
 	},
 /area/tdome)
 "bDg" = (
-/turf/unsimulated/floor/green/side,
+/turf/floor/green/side,
 /area/tdome)
 "bDh" = (
-/turf/unsimulated/floor/white/side,
+/turf/floor/white/side,
 /area/tdome)
 "bDi" = (
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 2
 	},
 /area/tdome)
 "bDj" = (
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 6
 	},
 /area/tdome)
@@ -39389,37 +39389,37 @@
 /turf/simulated/floor/caution/west,
 /area/space)
 "bDy" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "0,2"
 	},
 /area/farm/bball)
 "bDz" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "1,2"
 	},
 /area/farm/bball)
 "bDA" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "2,2"
 	},
 /area/farm/bball)
 "bDB" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "3,2"
 	},
 /area/farm/bball)
 "bDC" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c5"
 	},
 /area/farm/bball)
 "bDD" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c6"
 	},
 /area/farm/bball)
 "bDE" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c8"
 	},
 /area/farm/bball)
@@ -39429,7 +39429,7 @@
 	density = 1;
 	name = "blocker (thunderdome)"
 	},
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/tdome/tdomea)
 "bDG" = (
 /obj/grille,
@@ -39457,7 +39457,7 @@
 	density = 1;
 	name = "blocker (thunderdome)"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdomea)
 "bDH" = (
 /obj/grille,
@@ -39480,7 +39480,7 @@
 	density = 1;
 	name = "blocker (thunderdome)"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdomea)
 "bDI" = (
 /obj/grille,
@@ -39508,10 +39508,10 @@
 	density = 1;
 	name = "blocker (thunderdome)"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdomea)
 "bDJ" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	icon_state = "wall"
 	},
 /area/space)
@@ -39588,32 +39588,32 @@
 /turf/simulated/floor,
 /area/space)
 "bDS" = (
-/turf/unsimulated/floor/stairs/wide{
+/turf/floor/stairs/wide{
 	dir = 8
 	},
 /area/sim/gunsim)
 "bDT" = (
 /obj/window/crystal/reinforced/northwest,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/sim/gunsim)
 "bDU" = (
 /obj/rack,
 /obj/item/clothing/suit/armor/vest,
 /obj/item/clothing/head/helmet,
-/turf/unsimulated/floor/blue/side,
+/turf/floor/blue/side,
 /area/sim/gunsim)
 "bDV" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "2,1"
 	},
 /area/farm/bball)
 "bDW" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c4"
 	},
 /area/farm/bball)
 "bDX" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "v-space"
@@ -39628,23 +39628,23 @@
 	id = "thunderdome";
 	pixel_x = -24
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdomea)
 "bDZ" = (
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdomea)
 "bEa" = (
 /obj/stool/chair{
 	dir = 1
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdomea)
 "bEb" = (
 /obj/machinery/door_control{
 	id = "thunderdome";
 	pixel_x = 24
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdomea)
 "bEc" = (
 /obj/grille,
@@ -39653,12 +39653,12 @@
 	dir = 10;
 	reinf = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	name = "plating"
 	},
 /area/space)
 "bEd" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-floor";
 	icon_state = "floor"
 	},
@@ -39762,46 +39762,46 @@
 "bEq" = (
 /obj/item/axe,
 /obj/shrub,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/sim/gunsim)
 "bEr" = (
 /obj/item/gun/energy/bfg,
 /obj/window/crystal/reinforced/northwest,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/sim/gunsim)
 "bEs" = (
 /obj/landmark{
 	name = "gunsim"
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/sim/gunsim)
 "bEt" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "0,0"
 	},
 /area/farm/bball)
 "bEu" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "1,0"
 	},
 /area/farm/bball)
 "bEv" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "2,0"
 	},
 /area/farm/bball)
 "bEw" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c1"
 	},
 /area/farm/bball)
 "bEx" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c2"
 	},
 /area/farm/bball)
 "bEy" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c3"
 	},
 /area/farm/bball)
@@ -39830,14 +39830,14 @@
 	dir = 10;
 	reinf = 1
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdomea)
 "bEC" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 4
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdomea)
 "bED" = (
 /obj/decal/cleanable/blood/gibs/body{
@@ -39928,7 +39928,7 @@
 /turf/simulated/floor,
 /area/space)
 "bEO" = (
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 1
 	},
 /area/sim/gunsim)
@@ -39938,33 +39938,33 @@
 	name = "LOGOUT BUTTON";
 	pixel_y = 24
 	},
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 1
 	},
 /area/sim/gunsim)
 "bEQ" = (
 /obj/rack,
 /obj/item/clothing/under/darkred,
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 1
 	},
 /area/sim/gunsim)
 "bER" = (
 /obj/item/storage/toilet,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/sim/area1)
 "bES" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/sim/area1)
 "bET" = (
 /obj/item/device/audio_log,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -39974,11 +39974,11 @@
 	icon_state = "tabledir";
 	dir = 6
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdomea)
 "bEV" = (
 /obj/stool,
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdomea)
 "bEW" = (
 /obj/machinery/computer/security{
@@ -39986,7 +39986,7 @@
 	name = "Thunderdome Cameras";
 	network = "thunder"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdomea)
 "bEX" = (
 /obj/machinery/door_timer{
@@ -39994,7 +39994,7 @@
 	name = "Thunderdome Flash Control";
 	pixel_y = -24
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdomea)
 "bEY" = (
 /turf/simulated/floor{
@@ -40021,7 +40021,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40067,18 +40067,18 @@
 	icon_state = "shrub";
 	dir = 1
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/sim/gunsim)
 "bFh" = (
 /obj/stool/bed,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/sim/area1)
 "bFi" = (
 /obj/stool,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40094,7 +40094,7 @@
 /obj/rack,
 /obj/item/clothing/suit/armor/vest,
 /obj/item/clothing/head/helmet,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40118,7 +40118,7 @@
 	dir = 1;
 	pixel_x = -1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40136,7 +40136,7 @@
 /area/sim/area1)
 "bFo" = (
 /obj/machinery/door/airlock,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40162,7 +40162,7 @@
 	icon_state = "shrub";
 	dir = 6
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/sim/gunsim)
 "bFs" = (
 /obj/decal/boxingrope{
@@ -40170,11 +40170,11 @@
 	icon_state = "ringrope";
 	dir = 9
 	},
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/sim/area1)
 "bFt" = (
 /obj/decal/boxingrope,
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/sim/area1)
 "bFu" = (
 /obj/decal/boxingrope{
@@ -40182,11 +40182,11 @@
 	icon_state = "ringrope";
 	dir = 5
 	},
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/sim/area1)
 "bFv" = (
 /obj/closet/wardrobe/orange,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40196,7 +40196,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40205,20 +40205,20 @@
 /obj/machinery/computer/security/wooden_tv{
 	name = "Virtual TV"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/sim/area1)
 "bFy" = (
 /obj/stool/chair,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/sim/area1)
 "bFz" = (
-/turf/unsimulated/floor/specialroom/bar,
+/turf/floor/specialroom/bar,
 /area/sim/area1)
 "bFA" = (
 /obj/table,
@@ -40227,7 +40227,7 @@
 	pixel_x = -2;
 	pixel_y = 7
 	},
-/turf/unsimulated/floor/specialroom/bar,
+/turf/floor/specialroom/bar,
 /area/sim/area1)
 "bFB" = (
 /obj/disposalpipe/segment,
@@ -40264,7 +40264,7 @@
 	tag = "icon-reinf_tabledir (SOUTHWEST)"
 	},
 /obj/item/clothing/gloves/boxing,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40275,10 +40275,10 @@
 	icon_state = "ringrope";
 	dir = 8
 	},
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/sim/area1)
 "bFG" = (
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/sim/area1)
 "bFH" = (
 /obj/decal/boxingropeenter{
@@ -40288,14 +40288,14 @@
 	tag = "icon-ringrope (EAST)"
 	},
 /obj/stool,
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/sim/area1)
 "bFI" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 9
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40305,7 +40305,7 @@
 	dir = 5;
 	icon_state = "tabledir"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40314,7 +40314,7 @@
 /obj/submachine/chef_oven{
 	name = "Virtual oven"
 	},
-/turf/unsimulated/floor/specialroom/bar,
+/turf/floor/specialroom/bar,
 /area/sim/area1)
 "bFL" = (
 /obj/disposalpipe/segment{
@@ -40364,14 +40364,14 @@
 	dir = 10
 	},
 /obj/item/clothing/gloves/boxing,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/sim/area1)
 "bFR" = (
 /obj/landmark/halloween,
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/sim/area1)
 "bFS" = (
 /obj/decal/boxingrope{
@@ -40379,7 +40379,7 @@
 	icon_state = "ringrope";
 	dir = 4
 	},
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/sim/area1)
 "bFT" = (
 /obj/cable{
@@ -40394,7 +40394,7 @@
 	},
 /obj/item/clothing/under/shorts/black,
 /obj/item/clothing/gloves/boxing,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40403,7 +40403,7 @@
 /obj/landmark{
 	name = "prison"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40411,7 +40411,7 @@
 "bFV" = (
 /obj/table,
 /obj/item/game_kit,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40421,7 +40421,7 @@
 	icon_state = "tabledir";
 	dir = 10
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40431,7 +40431,7 @@
 	icon_state = "tabledir";
 	dir = 6
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40445,7 +40445,7 @@
 /obj/table,
 /obj/item/kitchen/rollingpin,
 /obj/item/storage/cutlery,
-/turf/unsimulated/floor/specialroom/bar,
+/turf/floor/specialroom/bar,
 /area/sim/area1)
 "bFZ" = (
 /obj/grille,
@@ -40471,7 +40471,7 @@
 	pixel_x = 0;
 	tag = "icon-ringrope (WEST)"
 	},
-/turf/unsimulated/floor/specialroom/gym,
+/turf/floor/specialroom/gym,
 /area/sim/area1)
 "bGc" = (
 /obj/table/reinforced{
@@ -40481,7 +40481,7 @@
 	},
 /obj/item/clothing/under/shorts/blue,
 /obj/item/clothing/gloves/boxing,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40490,7 +40490,7 @@
 /obj/stool/chair{
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40499,7 +40499,7 @@
 /obj/secure_closet/meat{
 	locked = 0
 	},
-/turf/unsimulated/floor/specialroom/bar,
+/turf/floor/specialroom/bar,
 /area/sim/area1)
 "bGf" = (
 /turf/simulated/floor/specialroom/bar,
@@ -40584,11 +40584,11 @@
 /area/space)
 "bGp" = (
 /obj/item/sword,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/sim/gunsim)
 "bGq" = (
 /obj/machinery/light,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -40598,7 +40598,7 @@
 	locked = 0;
 	name = "Virtual Refrigerator"
 	},
-/turf/unsimulated/floor/specialroom/bar,
+/turf/floor/specialroom/bar,
 /area/sim/area1)
 "bGs" = (
 /obj/disposalpipe/trunk{
@@ -40616,7 +40616,7 @@
 	},
 /area/space)
 "bGu" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -40628,7 +40628,7 @@
 	dir = 1
 	},
 /obj/machinery/disposal,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -40667,7 +40667,7 @@
 	icon_state = "tabledir"
 	},
 /obj/item/device/key,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -40686,7 +40686,7 @@
 	pixel_x = 4;
 	pixel_y = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -40703,7 +40703,7 @@
 	info = "Journal Log of Bruce Garriott, Medical Assistant for Joe Q Memorial Institute<br><br><i>May 05, 2053:</i><br><p>I need a place to write my thoughts down, not sure if we'll get out of this.  It feels like we've been here for weeks, but it couldn't have been more than a few hours.Administrator Jam came to us all personal-like, anger burning behind his eyes like the fires of hell.  Said Marty had been breaking his contract, couldn't keep personal relations out, had been moving in on Jam's new flame.I thought he was right about to explode, but his face just snapped all back to normal like it was held by wires.  He told us, all of us, even Felix, to clean the crew quarters.  Not a spot missed.  We should've seen something was up, but we went over there like a bunch of rubes.</p><p>We cleaned that room real thorough, not a spot of grease or dirt anywhere, but when we opened the door back up to leave the asylum was gone.  The door went right into a bar or something, windows caked with filth and gazing right at some huge iron sphere.We didn't know what the fuck.  Still don't.  Don't know where Felix has gotten off to.</p><i>May 06, 2053:</i><br><p>Don't quite believe it myself, but this place has a beach.  Tiny thing all wedged into a metal room, water moving from some unseen wave machine.  There's some rusted floodgate in the water, going to see if we can open it up.  As good a chance at being a way out as any, I guess</p><i>May 07, 2053:</i><br><p>Marty is dead.  We were looking for some way to pry the door open and came across some room all made up like a checkerboard.  Marty got too close to the edge and slipped like the floor was made of ice.  He went right through the windows, right into space.</p><p>Worst part is, I saw Felix again.  But it wasn't him, everything was all off, like somebody tried to mold a copy of him out of clay.  He was holding a bloody blue toolbox, but when I looked harder he wasn't holding it, his hand was all twisted around it and all the tendons were fused right to the handle.He gave some guttural shout and seemed to walk right through the walls.</p><i>May 08, 2053:</i><br>Found some dingy office or something, whatever it was it had a terminal controlling the floodgate.  There's some sort of retention cell or something here, looks like somebody set up an office here too.  Not surprised by anything anymore.  It's a good enough place to hide.  I keep looking at my asylum-issue pistol.  That Jam nutjob had them handed out to the whole medical team after a breakout months ago.</p><p>Don't know if I can even bring myself to fire on that Felix-thing, or if it'll even make a dent.  Some deep rumbling keeps coming from the halls outside, can't tell if it's even natural or</p><br><br>The gates just closed.";
 	name = "Paper-'Journal"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -40715,7 +40715,7 @@
 	icon_state = "tabledir";
 	dir = 6
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -40739,7 +40739,7 @@
 /obj/rack,
 /obj/item/gun/kinetic/ak47,
 /obj/item/gun/kinetic/ak47,
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 1
 	},
 /area/sim/gunsim)
@@ -40747,7 +40747,7 @@
 /obj/rack,
 /obj/item/gun/energy/egun,
 /obj/item/gun/energy/egun,
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 1
 	},
 /area/sim/gunsim)
@@ -40755,7 +40755,7 @@
 /obj/rack,
 /obj/item/gun/energy/laser_gun,
 /obj/item/gun/energy/laser_gun,
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 1
 	},
 /area/sim/gunsim)
@@ -40763,7 +40763,7 @@
 /obj/rack,
 /obj/item/gun/kinetic/flaregun,
 /obj/item/gun/kinetic/flaregun,
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 1
 	},
 /area/sim/gunsim)
@@ -40782,7 +40782,7 @@
 /area/space)
 "bGN" = (
 /obj/decal/cleanable/blood/splatter,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -40817,7 +40817,7 @@
 	icon_state = "caplaser25";
 	name = "Bruce's energy gun"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -40868,14 +40868,14 @@
 /turf/simulated/floor,
 /area/space)
 "bHa" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater"
 	},
 /area/space)
 "bHb" = (
 /obj/item/pen,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater"
 	},
@@ -40910,7 +40910,7 @@
 	mouse_opacity = 0;
 	name = "water"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "water";
 	name = "water"
@@ -40949,7 +40949,7 @@
 	mouse_opacity = 0;
 	name = "water"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'beach.dmi';
 	icon_state = "water";
 	name = "water"
@@ -42098,7 +42098,7 @@
 	dir = 5
 	},
 /obj/grille,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/derelict/evilreaver)
 "bKn" = (
 /obj/decal/fakeobjects/shuttlethruster{
@@ -50216,7 +50216,7 @@
 	sd_lighting = 1
 	})
 "cdi" = (
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -50345,7 +50345,7 @@
 	icon_state = "stone";
 	dir = 10
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -50439,7 +50439,7 @@
 /area/turret_protected/aisat)
 "cdy" = (
 /obj/critter/killertomato,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -50568,7 +50568,7 @@
 	icon_state = "shrub";
 	dir = 1
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -50577,7 +50577,7 @@
 	})
 "cdI" = (
 /obj/tree1,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -50713,7 +50713,7 @@
 	icon_state = "grassplug";
 	dir = 1
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -50730,7 +50730,7 @@
 	icon_state = "grassplug";
 	dir = 4
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -50775,7 +50775,7 @@
 "cdZ" = (
 /turf/simulated/floor/yellow/side)
 "cea" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -50787,7 +50787,7 @@
 	sd_lighting = 1
 	})
 "ceb" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (NORTHEAST)";
 	icon_state = "grasstodirt";
 	dir = 5
@@ -50804,7 +50804,7 @@
 	icon_state = "grassplug";
 	dir = 1
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -50891,7 +50891,7 @@
 	})
 "cek" = (
 /obj/item/bananapeel,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -50972,7 +50972,7 @@
 	sd_lighting = 1
 	})
 "cer" = (
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -50980,7 +50980,7 @@
 	sd_lighting = 1
 	})
 "ces" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -50993,7 +50993,7 @@
 	})
 "cet" = (
 /obj/critter/maneater,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51023,7 +51023,7 @@
 	charge = 100;
 	maxcharge = 15000
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51096,7 +51096,7 @@
 	icon_state = "shrub";
 	dir = 10
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51111,7 +51111,7 @@
 /obj/item/fish/carp,
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat,
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51231,7 +51231,7 @@
 	})
 "ceL" = (
 /obj/critter/spacebee,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51244,7 +51244,7 @@
 	icon_state = "shrub";
 	dir = 8
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51253,7 +51253,7 @@
 	})
 "ceN" = (
 /obj/item/shard,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51284,7 +51284,7 @@
 	})
 "ceQ" = (
 /obj/item/rods,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51296,7 +51296,7 @@
 	tag = "icon-small";
 	icon_state = "small"
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51314,7 +51314,7 @@
 	icon_state = "stone";
 	dir = 4
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -51326,7 +51326,7 @@
 	sd_lighting = 1
 	})
 "ceT" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -51338,7 +51338,7 @@
 	sd_lighting = 1
 	})
 "ceU" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (NORTHWEST)";
 	icon_state = "grasstodirt";
 	dir = 9
@@ -51350,7 +51350,7 @@
 	sd_lighting = 1
 	})
 "ceV" = (
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (SOUTHEAST)";
 	icon_state = "grasstodirt";
 	dir = 6
@@ -51368,7 +51368,7 @@
 	icon_state = "shrub";
 	dir = 9
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -51381,7 +51381,7 @@
 	})
 "ceX" = (
 /obj/grille,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51394,7 +51394,7 @@
 	icon_state = "brokengrille";
 	tag = "icon-brokengrille"
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51408,7 +51408,7 @@
 	tag = "icon-brokengrille"
 	},
 /obj/item/rods,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51416,7 +51416,7 @@
 	sd_lighting = 1
 	})
 "cfa" = (
-/turf/unsimulated/grasstodirt,
+/turf/grasstodirt,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51434,7 +51434,7 @@
 	icon_state = "shrub";
 	dir = 4
 	},
-/turf/unsimulated/grasstodirt,
+/turf/grasstodirt,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51453,7 +51453,7 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51467,7 +51467,7 @@
 	icon_state = "stone";
 	dir = 8
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -51480,7 +51480,7 @@
 	})
 "cff" = (
 /obj/item/oldgun/energy/phaser/secure,
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (SOUTHWEST)";
 	icon_state = "grasstodirt";
 	dir = 10
@@ -51496,7 +51496,7 @@
 	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51514,7 +51514,7 @@
 	icon_state = "stone";
 	dir = 1
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -51538,7 +51538,7 @@
 	})
 "cfj" = (
 /obj/decal/fakeobjects/lighttube_broken,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51552,7 +51552,7 @@
 	dir = 4
 	},
 /obj/machinery/light,
-/turf/unsimulated/grasstodirt,
+/turf/grasstodirt,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51561,7 +51561,7 @@
 	})
 "cfl" = (
 /obj/item/rods,
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51574,7 +51574,7 @@
 	icon_state = "shrub";
 	dir = 5
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51589,7 +51589,7 @@
 /obj/item/clothing/under/suit_jacket/purple,
 /obj/item/clothing/head/that/purple,
 /obj/item/clothing/glasses/thermal/orange,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51602,7 +51602,7 @@
 	tag = "icon-gibbl3";
 	icon_state = "gibbl3"
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -51620,7 +51620,7 @@
 	icon_state = "stone";
 	dir = 10
 	},
-/turf/unsimulated/grasstodirt{
+/turf/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -51637,7 +51637,7 @@
 	icon_state = "stone";
 	dir = 9
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -63705,7 +63705,7 @@
 	},
 /area/space)
 "cDh" = (
-/turf/unsimulated/wall/void/crunch,
+/turf/wall/void/crunch,
 /area/crunch)
 "cDi" = (
 /turf/simulated/wall/ancient,
@@ -63731,14 +63731,14 @@
 /turf/simulated/floor/ancient,
 /area/crunch)
 "cDo" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "mf1";
 	name = "asteroid"
 	},
 /area/crunch)
 "cDp" = (
 /obj/lattice,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "mf1";
 	name = "asteroid"
 	},
@@ -64564,11 +64564,11 @@
 /turf/simulated/floor/orangeblack,
 /area/crunch)
 "cFs" = (
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cFt" = (
 /obj/lattice,
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cFu" = (
 /turf/simulated/floor/blue/checker,
@@ -64681,7 +64681,7 @@
 	sd_ColorGreen = 0.07;
 	sd_ColorRed = 0.28
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cFJ" = (
 /obj/machinery/door/airlock{
@@ -64735,7 +64735,7 @@
 /area/crunch)
 "cFP" = (
 /obj/critter/floateye,
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cFR" = (
 /obj/item/relic,
@@ -64838,7 +64838,7 @@
 	icon_state = "floattiles4";
 	dir = 4
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cGg" = (
 /obj/machinery/guardbot_dock{
@@ -64895,7 +64895,7 @@
 /turf/simulated/floor/plating/damaged2,
 /area/crunch)
 "cGo" = (
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /turf/simulated/martian/wall{
 	tag = "icon-diagonalWall (WEST)";
 	icon_state = "diagonalWall";
@@ -64910,7 +64910,7 @@
 /turf/simulated/martian/floor,
 /area/crunch)
 "cGr" = (
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /turf/simulated/martian/wall{
 	tag = "icon-diagonalWall (SOUTHEAST)";
 	icon_state = "diagonalWall";
@@ -64961,7 +64961,7 @@
 /area/crunch)
 "cGz" = (
 /obj/decal/floatingtiles,
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cGA" = (
 /turf/simulated/martian/floor,
@@ -64985,7 +64985,7 @@
 	icon_state = "floattiles4";
 	dir = 8
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cGE" = (
 /obj/overlay{
@@ -65048,7 +65048,7 @@
 	tag = "icon-floattiles6";
 	icon_state = "floattiles6"
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cGJ" = (
 /obj/overlay{
@@ -65178,7 +65178,7 @@
 	icon_state = "floattiles3";
 	dir = 8
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cGY" = (
 /obj/grille,
@@ -65214,7 +65214,7 @@
 	icon_state = "floattiles1";
 	dir = 1
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cHc" = (
 /obj/overlay{
@@ -65739,7 +65739,7 @@
 	icon_state = "floattiles1";
 	dir = 8
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cIv" = (
 /obj/decal/floatingtiles{
@@ -65747,7 +65747,7 @@
 	icon_state = "floattiles3";
 	dir = 4
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cIw" = (
 /turf/simulated/wall/r_wall,
@@ -65852,7 +65852,7 @@
 	icon_state = "floattiles2";
 	dir = 4
 	},
-/turf/unsimulated/floor/void/crunch,
+/turf/floor/void/crunch,
 /area/crunch)
 "cIJ" = (
 /obj/decal/cleanable/generic,

@@ -412,14 +412,14 @@
 /turf/simulated/floor/caution/east,
 /area/space)
 "aX" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/turf/walls.dmi';
 	icon_state = "barrierVR";
 	name = "v-space"
 	},
 /area/sim/area1)
 "aY" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/turf/walls.dmi';
 	icon_state = "barrierVR";
 	name = "v-space"
@@ -458,14 +458,14 @@
 /turf/simulated/floor,
 /area/space)
 "bf" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/turf/walls.dmi';
 	icon_state = "barrierVR";
 	name = "v-space"
 	},
 /area/area_that_kills_you_if_you_enter_it)
 "bg" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/turf/walls.dmi';
 	icon_state = "barrierVR";
 	name = "v-space"
@@ -484,7 +484,7 @@
 /turf/simulated/floor,
 /area/space)
 "bi" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -540,7 +540,7 @@
 /turf/simulated/floor/plating,
 /area/space)
 "br" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR"
 	},
 /area/sim/gunsim)
@@ -593,7 +593,7 @@
 /obj/window/reinforced{
 	icon_state = "rwindowVR"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -602,7 +602,7 @@
 /obj/machinery/door/unpowered/wood{
 	autoclose = 0
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR"
 	},
 /area/sim/gunsim)
@@ -711,7 +711,7 @@
 	icon_opened = "VRopen";
 	icon_state = "VR"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -723,7 +723,7 @@
 /obj/item/SWF_uplink,
 /obj/item/clothing/suit/wizrobe,
 /obj/item/clothing/suit/wizrobe,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -733,37 +733,37 @@
 	icon_state = "rackVR"
 	},
 /obj/item/uplink/syndicate/virtual,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
 /area/sim/gunsim)
 "bP" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	icon_state = "r_wallVR"
 	},
 /area/sim/gunsim)
 "bQ" = (
 /obj/shrub,
-/turf/unsimulated/grass{
+/turf/grass{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "grassVR"
 	},
 /area/sim/gunsim)
 "bR" = (
-/turf/unsimulated/grass{
+/turf/grass{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "grassVR"
 	},
 /area/sim/gunsim)
 "bS" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	icon_state = "r_wallVR"
 	},
 /area/space)
 "bT" = (
 /obj/machinery/door/airlock/glass,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "track_1"
 	},
@@ -899,13 +899,13 @@
 /turf/simulated/floor/plating,
 /area/space)
 "cj" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
 /area/space)
 "ck" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "stairs_middleVR"
 	},
 /area/space)
@@ -918,7 +918,7 @@
 	name = "LOGOUT BUTTON";
 	pixel_y = 24
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "stairs_middleVR"
 	},
 /area/space)
@@ -1015,7 +1015,7 @@
 	},
 /obj/item/gun/kinetic/ak47,
 /obj/item/gun/kinetic/ak47,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-blu"
 	},
 /area/sim/gunsim)
@@ -1025,7 +1025,7 @@
 	},
 /obj/item/gun/energy/egun,
 /obj/item/gun/energy/egun,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-blu"
 	},
 /area/sim/gunsim)
@@ -1035,7 +1035,7 @@
 	},
 /obj/item/gun/energy/laser_gun,
 /obj/item/gun/energy/laser_gun,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-blu"
 	},
 /area/sim/gunsim)
@@ -1045,7 +1045,7 @@
 	},
 /obj/item/gun/kinetic/flaregun,
 /obj/item/gun/kinetic/flaregun,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-blu"
 	},
 /area/sim/gunsim)
@@ -1055,13 +1055,13 @@
 	icon_state = "ringrope";
 	dir = 9
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/space)
 "cC" = (
 /obj/decal/boxingrope,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/space)
@@ -1071,7 +1071,7 @@
 	icon_state = "ringrope";
 	dir = 5
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/space)
@@ -1079,13 +1079,13 @@
 /obj/machinery/door/unpowered/wood{
 	autoclose = 0
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
 /area/space)
 "cF" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR"
 	},
 /area/space)
@@ -1242,7 +1242,7 @@
 /turf/simulated/floor/caution/west,
 /area/space)
 "cV" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-blu"
 	},
 /area/sim/gunsim)
@@ -1252,13 +1252,13 @@
 	icon_state = "shrub";
 	dir = 6
 	},
-/turf/unsimulated/grass{
+/turf/grass{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "grassVR"
 	},
 /area/sim/gunsim)
 "cX" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "stairs_middleVR"
 	},
@@ -1270,7 +1270,7 @@
 	tag = "icon-reinf_tabledir (SOUTHWEST)"
 	},
 /obj/item/clothing/gloves/boxing,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -1282,12 +1282,12 @@
 	icon_state = "ringrope";
 	tag = "icon-ringrope (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/space)
 "da" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/space)
@@ -1299,7 +1299,7 @@
 	tag = "icon-ringrope (EAST)"
 	},
 /obj/stool,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/space)
@@ -1390,14 +1390,14 @@
 	dir = 10
 	},
 /obj/item/clothing/gloves/boxing,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
 /area/space)
 "dm" = (
 /obj/landmark/halloween,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/space)
@@ -1407,7 +1407,7 @@
 	icon_state = "ringrope";
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/space)
@@ -1424,13 +1424,13 @@
 	},
 /obj/item/clothing/under/shorts/black,
 /obj/item/clothing/gloves/boxing,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
 /area/space)
 "dp" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/sim/tdome)
 "dq" = (
 /turf/simulated/floor{
@@ -1536,7 +1536,7 @@
 	pixel_x = 0;
 	tag = "icon-ringrope (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/space)
@@ -1548,7 +1548,7 @@
 	},
 /obj/item/clothing/under/shorts/blue,
 /obj/item/clothing/gloves/boxing,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -1564,7 +1564,7 @@
 	icon_state = "windowVR";
 	tag = "icon-window (NORTHEAST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -1580,48 +1580,48 @@
 	density = 1;
 	name = "blocker (thunderdome)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
 /area/space)
 "dG" = (
 /obj/machinery/door/airlock/glass,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
 /area/space)
 "dH" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/sim/tdome/tdome1)
 "dI" = (
-/turf/unsimulated/floor/green/side{
+/turf/floor/green/side{
 	dir = 9
 	},
 /area/sim/tdome)
 "dJ" = (
-/turf/unsimulated/floor/green/side{
+/turf/floor/green/side{
 	dir = 1
 	},
 /area/sim/tdome)
 "dK" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 1
 	},
 /area/sim/tdome)
 "dL" = (
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 1
 	},
 /area/sim/tdome)
 "dM" = (
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 5
 	},
 /area/sim/tdome)
 "dN" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/sim/tdome/tdome2)
 "dO" = (
 /turf/space,
@@ -1716,60 +1716,60 @@
 /area/space)
 "ea" = (
 /obj/item/saw/syndie,
-/turf/unsimulated/grass{
+/turf/grass{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "grassVR"
 	},
 /area/sim/gunsim)
 "eb" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-bbl"
 	},
 /area/space)
 "ec" = (
 /obj/storage/closet/thunderdome/green,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/sim/tdome/tdome1)
 "ed" = (
 /obj/landmark{
 	name = "tdome1"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/sim/tdome/tdome1)
 "ee" = (
-/turf/unsimulated/floor,
+/turf/floor,
 /area/sim/tdome/tdome1)
 "ef" = (
-/turf/unsimulated/floor/green/side{
+/turf/floor/green/side{
 	dir = 8
 	},
 /area/sim/tdome)
 "eg" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/sim/tdome)
 "eh" = (
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/sim/tdome)
 "ei" = (
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 4
 	},
 /area/sim/tdome)
 "ej" = (
-/turf/unsimulated/floor,
+/turf/floor,
 /area/sim/tdome/tdome2)
 "ek" = (
 /obj/landmark{
 	name = "tdome2"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/sim/tdome/tdome2)
 "el" = (
 /obj/storage/closet/thunderdome/red,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/sim/tdome/tdome2)
 "em" = (
 /turf/simulated/floor{
@@ -1791,7 +1791,7 @@
 /turf/space,
 /area/space)
 "ep" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "stairs_middleVR"
 	},
@@ -1803,7 +1803,7 @@
 	icon_state = "shrub";
 	dir = 8
 	},
-/turf/unsimulated/grass{
+/turf/grass{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "grassVR"
 	},
@@ -1813,14 +1813,14 @@
 	id = "thunderdome";
 	name = "Thunderdome"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/sim/tdome/tdome1)
 "es" = (
 /obj/machinery/door/poddoor{
 	id = "thunderdome";
 	name = "Thunderdome"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/sim/tdome/tdome2)
 "et" = (
 /obj/disposalpipe/junction{
@@ -1859,14 +1859,14 @@
 /area/space)
 "ex" = (
 /obj/item/razor_blade,
-/turf/unsimulated/grass{
+/turf/grass{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "grassVR"
 	},
 /area/sim/gunsim)
 "ey" = (
 /obj/item/knife_butcher,
-/turf/unsimulated/grass{
+/turf/grass{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "grassVR"
 	},
@@ -1884,7 +1884,7 @@
 	name = "Thunderdome Camera";
 	network = "thunder"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1916,7 +1916,7 @@
 	icon_state = "shrub";
 	dir = 8
 	},
-/turf/unsimulated/grass{
+/turf/grass{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "grassVR"
 	},
@@ -1927,7 +1927,7 @@
 	name = "LOGOUT BUTTON";
 	pixel_y = 24
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -1935,14 +1935,14 @@
 "eF" = (
 /obj/rack,
 /obj/item/clothing/under/color/darkblue,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
 /area/sim/gunsim)
 "eG" = (
 /obj/item/basketball,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-bbl"
 	},
 /area/space)
@@ -1977,7 +1977,7 @@
 	icon_state = "shrub";
 	dir = 6
 	},
-/turf/unsimulated/grass{
+/turf/grass{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "grassVR"
 	},
@@ -1988,28 +1988,28 @@
 	desc = "This is totally a hoop. Thank god we have such a high budget.";
 	name = "square hoop"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-bbl"
 	},
 /area/space)
 "eL" = (
-/turf/unsimulated/floor/green/side{
+/turf/floor/green/side{
 	dir = 10
 	},
 /area/sim/tdome)
 "eM" = (
-/turf/unsimulated/floor/green/side,
+/turf/floor/green/side,
 /area/sim/tdome)
 "eN" = (
-/turf/unsimulated/floor/white/side,
+/turf/floor/white/side,
 /area/sim/tdome)
 "eO" = (
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 2
 	},
 /area/sim/tdome)
 "eP" = (
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 6
 	},
 /area/sim/tdome)
@@ -2060,7 +2060,7 @@
 	density = 1;
 	name = "blocker (thunderdome)"
 	},
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/sim/tdome/tdomea)
 "eW" = (
 /obj/grille,
@@ -2088,7 +2088,7 @@
 	density = 1;
 	name = "blocker (thunderdome)"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/sim/tdome/tdomea)
 "eX" = (
 /obj/grille,
@@ -2111,7 +2111,7 @@
 	density = 1;
 	name = "blocker (thunderdome)"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/sim/tdome/tdomea)
 "eY" = (
 /obj/grille,
@@ -2139,7 +2139,7 @@
 	density = 1;
 	name = "blocker (thunderdome)"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/sim/tdome/tdomea)
 "eZ" = (
 /obj/grille,
@@ -2161,7 +2161,7 @@
 /obj/window/crystal/reinforced{
 	icon_state = "cwindowVR"
 	},
-/turf/unsimulated/grass{
+/turf/grass{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "grassVR"
 	},
@@ -2170,7 +2170,7 @@
 /obj/rack,
 /obj/item/clothing/suit/armor/vest,
 /obj/item/clothing/head/helmet,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-blu"
 	},
 /area/sim/gunsim)
@@ -2183,23 +2183,23 @@
 	id = "thunderdome";
 	pixel_x = -24
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/sim/tdome/tdomea)
 "fe" = (
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/sim/tdome/tdomea)
 "ff" = (
 /obj/stool/chair{
 	dir = 1
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/sim/tdome/tdomea)
 "fg" = (
 /obj/machinery/door_control{
 	id = "thunderdome";
 	pixel_x = 24
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/sim/tdome/tdomea)
 "fh" = (
 /turf/simulated/floor/specialroom/bar,
@@ -2285,7 +2285,7 @@
 "fr" = (
 /obj/item/axe,
 /obj/shrub,
-/turf/unsimulated/grass{
+/turf/grass{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "grassVR"
 	},
@@ -2295,7 +2295,7 @@
 /obj/window/crystal/reinforced{
 	icon_state = "cwindowVR"
 	},
-/turf/unsimulated/grass{
+/turf/grass{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "grassVR"
 	},
@@ -2304,12 +2304,12 @@
 /obj/landmark{
 	name = "gunsim"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR"
 	},
 /area/sim/gunsim)
 "fu" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	icon_state = "r_wallVR"
 	},
 /area/sim/area1)
@@ -2325,7 +2325,7 @@
 /obj/window/reinforced{
 	icon_state = "rwindowVR"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR"
 	},
 /area/sim/area1)
@@ -2341,14 +2341,14 @@
 	dir = 10;
 	reinf = 1
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/sim/tdome/tdomea)
 "fx" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 4
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/sim/tdome/tdomea)
 "fy" = (
 /obj/disposalpipe/trunk{
@@ -2366,7 +2366,7 @@
 	},
 /area/space)
 "fA" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -2378,7 +2378,7 @@
 	dir = 1
 	},
 /obj/machinery/disposal,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -2386,7 +2386,7 @@
 	},
 /area/space)
 "fC" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "floorVR-red"
 	},
@@ -2397,7 +2397,7 @@
 	name = "LOGOUT BUTTON";
 	pixel_y = 24
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "floorVR-red"
 	},
@@ -2405,27 +2405,27 @@
 "fE" = (
 /obj/rack,
 /obj/item/clothing/under/color/darkred,
-/turf/unsimulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "floorVR-red"
 	},
 /area/sim/gunsim)
 "fF" = (
 /obj/item/storage/toilet,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
 /area/sim/area1)
 "fG" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
 /area/sim/area1)
 "fH" = (
 /obj/item/device/audio_log,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -2435,11 +2435,11 @@
 	icon_state = "tabledir";
 	dir = 6
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/sim/tdome/tdomea)
 "fJ" = (
 /obj/stool,
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/sim/tdome/tdomea)
 "fK" = (
 /obj/machinery/computer/security{
@@ -2447,7 +2447,7 @@
 	name = "Thunderdome Cameras";
 	network = "thunder"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/sim/tdome/tdomea)
 "fL" = (
 /obj/machinery/door_timer{
@@ -2455,7 +2455,7 @@
 	name = "Thunderdome Flash Control";
 	pixel_y = -24
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/sim/tdome/tdomea)
 "fM" = (
 /obj/item/reagent_containers/food/snacks/plant/melon/george,
@@ -2477,7 +2477,7 @@
 	icon_state = "tabledir"
 	},
 /obj/item/device/key,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -2498,7 +2498,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -2515,7 +2515,7 @@
 	pixel_x = 4;
 	pixel_y = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -2532,7 +2532,7 @@
 	info = "Journal Log of Bruce Garriott, Medical Assistant for Joe Q Memorial Institute<br><br><i>May 05, 2053:</i><br><p>I need a place to write my thoughts down, not sure if we'll get out of this.  It feels like we've been here for weeks, but it couldn't have been more than a few hours.Administrator Jam came to us all personal-like, anger burning behind his eyes like the fires of hell.  Said Marty had been breaking his contract, couldn't keep personal relations out, had been moving in on Jam's new flame.I thought he was right about to explode, but his face just snapped all back to normal like it was held by wires.  He told us, all of us, even Felix, to clean the crew quarters.  Not a spot missed.  We should've seen something was up, but we went over there like a bunch of rubes.</p><p>We cleaned that room real thorough, not a spot of grease or dirt anywhere, but when we opened the door back up to leave the asylum was gone.  The door went right into a bar or something, windows caked with filth and gazing right at some huge iron sphere.We didn't know what the fuck.  Still don't.  Don't know where Felix has gotten off to.</p><i>May 06, 2053:</i><br><p>Don't quite believe it myself, but this place has a beach.  Tiny thing all wedged into a metal room, water moving from some unseen wave machine.  There's some rusted floodgate in the water, going to see if we can open it up.  As good a chance at being a way out as any, I guess</p><i>May 07, 2053:</i><br><p>Marty is dead.  We were looking for some way to pry the door open and came across some room all made up like a checkerboard.  Marty got too close to the edge and slipped like the floor was made of ice.  He went right through the windows, right into space.</p><p>Worst part is, I saw Felix again.  But it wasn't him, everything was all off, like somebody tried to mold a copy of him out of clay.  He was holding a bloody blue toolbox, but when I looked harder he wasn't holding it, his hand was all twisted around it and all the tendons were fused right to the handle.He gave some guttural shout and seemed to walk right through the walls.</p><i>May 08, 2053:</i><br>Found some dingy office or something, whatever it was it had a terminal controlling the floodgate.  There's some sort of retention cell or something here, looks like somebody set up an office here too.  Not surprised by anything anymore.  It's a good enough place to hide.  I keep looking at my asylum-issue pistol.  That Jam nutjob had them handed out to the whole medical team after a breakout months ago.</p><p>Don't know if I can even bring myself to fire on that Felix-thing, or if it'll even make a dent.  Some deep rumbling keeps coming from the halls outside, can't tell if it's even natural or</p><br><br>The gates just closed.";
 	name = "Paper-'Journal"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -2544,7 +2544,7 @@
 	icon_state = "tabledir";
 	dir = 6
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -2570,21 +2570,21 @@
 	icon_state = "shrub";
 	dir = 1
 	},
-/turf/unsimulated/grass{
+/turf/grass{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "grassVR"
 	},
 /area/sim/gunsim)
 "fZ" = (
 /obj/stool/bed,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
 /area/sim/area1)
 "ga" = (
 /obj/stool,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -2604,7 +2604,7 @@
 /area/space)
 "gd" = (
 /obj/decal/cleanable/blood/splatter,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -2613,7 +2613,7 @@
 /area/space)
 "ge" = (
 /obj/critter/bloodling,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -2624,7 +2624,7 @@
 /obj/rack,
 /obj/item/clothing/suit/armor/vest,
 /obj/item/clothing/head/helmet,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -2643,7 +2643,7 @@
 	icon_state = "rwindowVR";
 	tag = "icon-rwindow (EAST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR"
 	},
 /area/sim/area1)
@@ -2652,14 +2652,14 @@
 	dir = 1;
 	pixel_x = -1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
 /area/sim/area1)
 "gi" = (
 /obj/machinery/door/airlock,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -2692,7 +2692,7 @@
 	icon_state = "caplaser25";
 	name = "Bruce's energy gun"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -2727,7 +2727,7 @@
 	icon_state = "shrub";
 	dir = 6
 	},
-/turf/unsimulated/grass{
+/turf/grass{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "grassVR"
 	},
@@ -2738,13 +2738,13 @@
 	icon_state = "ringrope";
 	dir = 9
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/sim/area1)
 "gs" = (
 /obj/decal/boxingrope,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/sim/area1)
@@ -2754,13 +2754,13 @@
 	icon_state = "ringrope";
 	dir = 5
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/sim/area1)
 "gu" = (
 /obj/storage/closet/wardrobe/orange,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -2770,7 +2770,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -2779,14 +2779,14 @@
 /obj/machinery/computer/security/wooden_tv{
 	name = "Virtual TV"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
 /area/sim/area1)
 "gx" = (
 /obj/stool/chair,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -2798,7 +2798,7 @@
 	pixel_x = -2;
 	pixel_y = 7
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -2817,7 +2817,7 @@
 	icon_state = "rwindowVR";
 	tag = "icon-rwindow (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR"
 	},
 /area/sim/area1)
@@ -2840,21 +2840,21 @@
 /turf/simulated/floor,
 /area/space)
 "gE" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater"
 	},
 /area/space)
 "gF" = (
 /obj/item/pen,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater"
 	},
 /area/space)
 "gG" = (
 /obj/item/razor_blade,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR"
 	},
 /area/sim/gunsim)
@@ -2865,7 +2865,7 @@
 	tag = "icon-reinf_tabledir (SOUTHWEST)"
 	},
 /obj/item/clothing/gloves/boxing,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -2877,12 +2877,12 @@
 	icon_state = "ringrope";
 	tag = "icon-ringrope (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/sim/area1)
 "gJ" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/sim/area1)
@@ -2894,7 +2894,7 @@
 	tag = "icon-ringrope (EAST)"
 	},
 /obj/stool,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/sim/area1)
@@ -2903,7 +2903,7 @@
 	icon_state = "tabledir";
 	dir = 9
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -2913,7 +2913,7 @@
 	dir = 5;
 	icon_state = "tabledir"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -2922,7 +2922,7 @@
 /obj/submachine/chef_oven{
 	name = "Virtual oven"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -2957,7 +2957,7 @@
 	mouse_opacity = 0;
 	name = "water"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "water";
 	name = "water"
@@ -2993,14 +2993,14 @@
 	dir = 10
 	},
 /obj/item/clothing/gloves/boxing,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
 /area/sim/area1)
 "gV" = (
 /obj/landmark/halloween,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/sim/area1)
@@ -3010,7 +3010,7 @@
 	icon_state = "ringrope";
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/sim/area1)
@@ -3027,7 +3027,7 @@
 	},
 /obj/item/clothing/under/shorts/black,
 /obj/item/clothing/gloves/boxing,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -3036,7 +3036,7 @@
 /obj/landmark{
 	name = "prison"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -3044,7 +3044,7 @@
 "gZ" = (
 /obj/table,
 /obj/item/game_kit,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -3054,7 +3054,7 @@
 	icon_state = "tabledir";
 	dir = 10
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -3064,7 +3064,7 @@
 	icon_state = "tabledir";
 	dir = 6
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -3078,7 +3078,7 @@
 /obj/table,
 /obj/item/kitchen/rollingpin,
 /obj/item/storage/box/cutlery,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -3093,7 +3093,7 @@
 	mouse_opacity = 0;
 	name = "water"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "water";
 	name = "water"
@@ -3149,7 +3149,7 @@
 	pixel_x = 0;
 	tag = "icon-ringrope (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR-box"
 	},
 /area/sim/area1)
@@ -3161,7 +3161,7 @@
 	},
 /obj/item/clothing/under/shorts/blue,
 /obj/item/clothing/gloves/boxing,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -3170,7 +3170,7 @@
 /obj/stool/chair{
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -3197,14 +3197,14 @@
 /area/space)
 "hp" = (
 /obj/item/sword,
-/turf/unsimulated/grass{
+/turf/grass{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "grassVR"
 	},
 /area/sim/gunsim)
 "hq" = (
 /obj/machinery/light,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -3214,7 +3214,7 @@
 	locked = 0;
 	name = "Virtual Refrigerator"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
@@ -3295,7 +3295,7 @@
 	icon_state = "rwindowVR"
 	},
 /obj/item/device/radio/intercom,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floorVR"
 	},
 /area/sim/area1)
@@ -3416,7 +3416,7 @@
 	},
 /obj/item/gun/kinetic/ak47,
 /obj/item/gun/kinetic/ak47,
-/turf/unsimulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "floorVR-red"
 	},
@@ -3427,7 +3427,7 @@
 	},
 /obj/item/gun/energy/egun,
 /obj/item/gun/energy/egun,
-/turf/unsimulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "floorVR-red"
 	},
@@ -3438,7 +3438,7 @@
 	},
 /obj/item/gun/energy/laser_gun,
 /obj/item/gun/energy/laser_gun,
-/turf/unsimulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "floorVR-red"
 	},
@@ -3449,7 +3449,7 @@
 	},
 /obj/item/gun/kinetic/flaregun,
 /obj/item/gun/kinetic/flaregun,
-/turf/unsimulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "floorVR-red"
 	},
@@ -3541,7 +3541,7 @@
 /obj/machinery/door/unpowered/wood{
 	autoclose = 0
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floorVR2"
 	},
