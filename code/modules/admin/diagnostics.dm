@@ -238,6 +238,12 @@ proc/debug_map_apc_count(delim,zlim)
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
 			img.app.color = is_teleportation_allowed(theTurf) ? "#0f0" : "#f00"
 
+	simmedareas
+		name = "simulated areas"
+		help = "Red tiles are ones that are not simulated, green ones are simulated."
+		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
+			img.app.color = issimulatedturf(theTurf) ? "#0f0" : "#f00"
+
 	blowout
 		name = "radstorm safezones"
 		help = "Green tiles are safe from irradiation, red tiles are ones that are not."

@@ -886,23 +886,24 @@ proc/generate_space_color()
   return AR.sanctuary
 
 //-------------An assortment of random miscellaneous turf definitions below
-/turf/var/default_melt_cap = 30
-/*
-/turf/simulated //ATMOSSIMSTODO - merge into /turf definiton somehow
-	name = "station"
-	allows_vehicles = 0
-	stops_space_move = 1
+
+/turf
+
+	//allows_vehicles = 0
+
 	var/mutable_appearance/wet_overlay = null
 	var/default_melt_cap = 30
 	can_write_on = 1
-	mat_appearances_to_ignore = list("steel")
+
 	text = "<font color=#aaa>."
 	flags = OPENCONTAINER | FPRINT
 
-	oxygen = MOLES_O2STANDARD
-	nitrogen = MOLES_N2STANDARD
 
-	turf_flags = IS_TYPE_SIMULATED
+
+	New()
+		..()
+		if (issimulatedturf(src))
+			turf_flags = IS_TYPE_SIMULATED
 
 	attackby(var/obj/item/W, var/mob/user, params)
 		if (istype(W, /obj/item/pen))
@@ -916,7 +917,7 @@ proc/generate_space_color()
 				if (K)
 					K.Attackby(W, user, params)
 			return ..()
-*/
+
 /turf/aprilfools/grass
 	name = "grass"
 	icon = 'icons/turf/outdoors.dmi'
@@ -982,20 +983,16 @@ proc/generate_space_color()
 /turf/wall/wooden
 	icon_state = "wooden"
 
-/turf/unsimulated // ATMOSSIMSTODO - work into turf definition maybe?
-	name = "command"
-	oxygen = MOLES_O2STANDARD
-	nitrogen = MOLES_N2STANDARD
-	fullbright = 0 // cogwerks changed as a lazy fix for newmap- if this causes problems change back to 1
-	stops_space_move = 1
-	text = "<font color=#aaa>."
-
 /turf/floor
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
-	icon_state = "plating"
+	icon_state = "floor"
 	text = "<font color=#aaa>."
 	plane = PLANE_FLOOR
+	stops_space_move = 1
+	mat_appearances_to_ignore = list("steel")
+	oxygen = MOLES_O2STANDARD
+	nitrogen = MOLES_N2STANDARD
 
 /turf/wall
 	name = "wall"
@@ -1011,6 +1008,7 @@ proc/generate_space_color()
 #else
 	plane = PLANE_FLOOR
 #endif
+	stops_space_move = 1
 
 /turf/wall/solidcolor
 	name = "invisible solid turf"

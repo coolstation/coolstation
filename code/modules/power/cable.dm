@@ -307,7 +307,7 @@
 
 /obj/cable/hide(var/i)
 
-	if(level == 1)// && istype(loc, /turf/simulated))
+	if(level == 1)
 		invisibility = i ? 101 : 0
 	updateicon()
 

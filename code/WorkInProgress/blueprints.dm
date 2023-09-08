@@ -403,7 +403,7 @@
 	"/obj/disposalpipe/loafer",
 	"/obj/submachine/slot_machine/item",
 	"/obj/machinery/portable_atmospherics/canister")
-	var/list/permittedTileTypes = list("/turf/simulated")
+	var/list/permittedTileTypes = list("/turf")
 
 	var/savefile/save = new/savefile("data/blueprints.dat")
 
