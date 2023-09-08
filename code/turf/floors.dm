@@ -994,16 +994,16 @@ DEFINE_FLOORS(marble/border_wb,
 	icon_state = "floor"
 	network = "prison"
 
-/turf/unsimulated/floor/vr
+/turf/floor/vr
 	icon_state = "vrfloor"
 
-/turf/unsimulated/floor/vr/plating
+/turf/floor/vr/plating
 	icon_state = "vrplating"
 
-/turf/unsimulated/floor/vr/space
+/turf/floor/vr/space
 	icon_state = "vrspace"
 
-/turf/unsimulated/floor/vr/white
+/turf/floor/vr/white
 	icon_state = "vrwhitehall"
 
 /turf/floor/airless/vr/flashy
@@ -1105,7 +1105,7 @@ DEFINE_FLOORS(snowrough/border,
 	allows_vehicles = 1
 	permadirty = 1
 
-/turf/unsimulated/floor/industrial
+/turf/floor/industrial
 	icon_state = "diamondtile"
 	step_material = "step_plating"
 	step_priority = STEP_PRIORITY_MED
@@ -1180,7 +1180,7 @@ DEFINE_FLOORS(techfloor/green,
 	step_material = "step_outdoors"
 	step_priority = STEP_PRIORITY_MED
 
-/turf/unsimulated/floor/grassify()
+/turf/floor/grassify()
 	src.icon = 'icons/turf/outdoors.dmi'
 	src.icon_state = "grass"
 	if(prob(30))
@@ -1340,7 +1340,7 @@ DEFINE_FLOORS(techfloor/green,
 		return 0
 	return ..()
 
-/turf/unsimulated/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/turf/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if (!src.allows_vehicles && (istype(mover, /obj/machinery/vehicle) && !istype(mover,/obj/machinery/vehicle/tank)))
 		if (!( locate(/obj/machinery/mass_driver, src) ))
 			return 0
@@ -1803,7 +1803,7 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 
 /////////////////////// cogwerks - setpiece stuff
 
-/turf/unsimulated/wall/setpieces
+/turf/wall/setpieces
 	icon = 'icons/misc/worlds.dmi'
 	fullbright = 0
 
@@ -1901,13 +1901,13 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 
 
 // -------------------- VR --------------------
-/turf/unsimulated/floor/setpieces/gauntlet
+/turf/floor/setpieces/gauntlet
 	name = "Gauntlet Floor"
 	desc = "Artist needs effort badly."
 	icon = 'icons/effects/VR.dmi'
 	icon_state = "gauntfloorDefault"
 
-/turf/unsimulated/wall/setpieces/gauntlet
+/turf/wall/setpieces/gauntlet
 	name = "Gauntlet Wall"
 	desc = "Is this retro? Thank god it's not team ninja."
 	icon = 'icons/effects/VR.dmi'
@@ -1943,7 +1943,7 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 		A.set_loc(T)
 		return
 
-/turf/unsimulated/floor/setpieces
+/turf/floor/setpieces
 	icon = 'icons/misc/worlds.dmi'
 	fullbright = 0
 

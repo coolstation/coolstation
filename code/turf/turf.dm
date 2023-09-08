@@ -176,10 +176,10 @@
 	Move()
 		return 0
 
-/turf/unsimulated/meteorhit(obj/meteor as obj) //ATMOSSIMSTODO
+/turf/meteorhit(obj/meteor as obj) //ATMOSSIMSTODO
 	return
 
-/turf/unsimulated/ex_act(severity) //ATMOSSIMSTODO
+/turf/ex_act(severity) //ATMOSSIMSTODO
 	return
 
 /turf/space
@@ -680,7 +680,7 @@ proc/generate_space_color()
 			else
 				new_turf = new /turf/wall(src)
 		if ("Unsimulated Floor") //AREASIMSTODO
-			new_turf = new /turf/unsimulated/floor(src)
+			new_turf = new /turf/floor(src)
 		if ("Plating")
 			new_turf = new /turf/floor/plating/random(src)
 		else

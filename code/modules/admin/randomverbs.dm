@@ -2326,7 +2326,7 @@ var/global/night_mode_enabled = 0
 		void.name = "shameful void"
 		void.desc = "really is just a shame"
 		new/area/shamecube(get_step(targetLoc, direction))
-	//new/turf/unsimulated/floor/void(targetLoc)
+	//new/turf/floor/void(targetLoc)
 	//new/area/shamecube(targetLoc)
 
 	//Place our sucker into it

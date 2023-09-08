@@ -93,7 +93,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	floor_turf = "/turf/floor/plating/gehenna"
 
 
-/turf/unsimulated/wall/gehenna/
+/turf/wall/gehenna/
 	fullbright = 0
 	luminosity = 1
 	name = "monolithic sulferous rock"

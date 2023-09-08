@@ -59,7 +59,7 @@
 	/turf/floor/_PATH{_VARS};
 
 
-/// Creates typepaths for a `/turf/floor/_PATH` and a `/turf/unsimulated/floor/_PATH` with vars from `_VARS`
+/// Creates typepaths for a `/turf/floor/_PATH` and a `/turf/floor/_PATH` with vars from `_VARS`
 #define DEFINE_FLOORS_SIMMED_UNSIMMED(_PATH, _VARS) \
 	/turf/floor/_PATH{_VARS};
 
