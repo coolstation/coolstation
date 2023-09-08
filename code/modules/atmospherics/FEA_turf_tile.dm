@@ -123,50 +123,48 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 		..()
 
 /turf/proc/high_pressure_movements()
-			if( !loc:sanctuary )
-				for(var/AM in src)
-					var/atom/movable/in_tile = AM
-					in_tile.experience_pressure_difference(pressure_difference, pressure_direction)
+	if( !loc:sanctuary )
+		for(var/AM in src)
+			var/atom/movable/in_tile = AM
+			in_tile.experience_pressure_difference(pressure_difference, pressure_direction)
 
-			pressure_difference = 0
+	pressure_difference = 0
 
 /turf/proc/consider_pressure_difference(connection_difference, connection_direction)
-			if( loc:sanctuary ) return//no atmos updates in sanctuaries
-			if (!issimulatedturf(src))
-				if(connection_difference < 0)
-					connection_difference = -connection_difference
-					connection_direction = turn(connection_direction, 180)
+	if( loc:sanctuary ) return//no atmos updates in sanctuaries
+	if(connection_difference < 0)
+		connection_difference = -connection_difference
+		connection_direction = turn(connection_direction, 180)
 
-				if(connection_difference > pressure_difference)
-					if(!pressure_difference)
-						air_master.high_pressure_delta += src
-					pressure_difference = connection_difference
-					pressure_direction = connection_direction
-			else
-				for(var/direction in cardinal)
-					if(direction&group_border)
-						if(istype(get_step(src,direction),/turf/space))
-							if(!pressure_difference)
-								air_master.high_pressure_delta += src
-							pressure_direction = direction
-							pressure_difference = connection_difference
-							return 1
+	if(connection_difference > pressure_difference)
+		if(!pressure_difference)
+			air_master.high_pressure_delta += src
+		pressure_difference = connection_difference
+		pressure_direction = connection_direction
 
-
+/turf/proc/consider_pressure_difference_space(connection_difference)
+	for(var/direction in cardinal)
+		if(direction&group_border)
+			if(istype(get_step(src,direction),/turf/space))
+				if(!pressure_difference)
+					air_master.high_pressure_delta += src
+				pressure_direction = direction
+				pressure_difference = connection_difference
+				return 1
 
 
-/turf/proc/process_cell()
+
+/*
 /turf/proc/update_air_properties()
 /turf/proc/archive()
 
-/turf/proc/mimic_air_with_tile(turf/model)
-/turf/proc/share_air_with_tile(turf/sharer)
+
 
 /turf/proc/mimic_temperature_with_tile(turf/model)
 /turf/proc/share_temperature_with_tile(turf/sharer)
 
 /turf/proc/super_conduct()
-
+*/
 /turf/proc/update_visuals(datum/gas_mixture/model)
 	if (disposed)
 		return
@@ -190,61 +188,61 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			gas_icon_overlay = null
 
 
-/turf/proc/assume_air(datum/gas_mixture/giver)
-			if(air)
-				if(parent?.group_processing)
-					if(!parent.air.check_then_merge(giver))
-						parent.suspend_group_processing()
-						air.merge(giver)
-				else
-					air.merge(giver)
+/turf/assume_air(datum/gas_mixture/giver)
+	if(air)
+		if(parent?.group_processing)
+			if(!parent.air.check_then_merge(giver))
+				parent.suspend_group_processing()
+				air.merge(giver)
+		else
+			air.merge(giver)
 
-					if(!processing)
-						if(air.check_tile_graphic())
-							update_visuals(air)
+			if(!processing)
+				if(air.check_tile_graphic())
+					update_visuals(air)
 
-				return 1
+		return 1
 
-			else return ..()
+	else return ..()
 
 #ifdef ATMOS_ARCHIVING
 /turf/proc/archive()
-			if(air) //For open space like floors
-				air.archive()
+	if(air) //For open space like floors
+		air.archive()
 
-			ARCHIVED(temperature) = temperature
-			archived_cycle = air_master.current_cycle
+	ARCHIVED(temperature) = temperature
+	archived_cycle = air_master.current_cycle
 #endif
 
 /turf/proc/share_air_with_tile(turf/T)
-			return air.share(T.air)
+	return air.share(T.air)
 
 /turf/proc/mimic_air_with_tile(turf/T)
-			return air.mimic(T)
+	return air.mimic(T)
 
-/turf/proc/return_air()
-			if(air)
-				if(parent?.group_processing)
-					return parent.air
-				else return air
+/turf/return_air()
+	if(air)
+		if(parent?.group_processing)
+			return parent.air
+		else return air
 
-			else
-				//Create gas mixture to hold data for passing
-				// TODO this is returning a new air object, but object_tile returns the existing air
-				//  This is used in a lot of places and thrown away, so it should be pooled,
-				//  But there is no way to tell here if it will be retained or discarded, so
-				//  we can't pool the object returned by return_air. Bad news, man.
-				var/datum/gas_mixture/GM = new()
+	else
+		//Create gas mixture to hold data for passing
+		// TODO this is returning a new air object, but object_tile returns the existing air
+		//  This is used in a lot of places and thrown away, so it should be pooled,
+		//  But there is no way to tell here if it will be retained or discarded, so
+		//  we can't pool the object returned by return_air. Bad news, man.
+		var/datum/gas_mixture/GM = new()
 
-				#define _TRANSFER_GAS_TO_GM(GAS, ...) GM.GAS = GAS;
-				APPLY_TO_GASES(_TRANSFER_GAS_TO_GM)
-				#undef _TRANSFER_GAS_TO_GM
+		#define _TRANSFER_GAS_TO_GM(GAS, ...) GM.GAS = GAS;
+		APPLY_TO_GASES(_TRANSFER_GAS_TO_GM)
+		#undef _TRANSFER_GAS_TO_GM
 
-				GM.temperature = temperature
+		GM.temperature = temperature
 
-				return GM
+		return GM
 
-/turf/proc/remove_air(amount as num)//, remove_water = 0)
+/turf/remove_air(amount as num)//, remove_water = 0)
 	if(air)
 		var/datum/gas_mixture/removed = null
 
@@ -406,10 +404,10 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 	if(blocks_air)
 		//Does not participate in air exchange, so will conduct heat across all four borders at this time
 		conductivity_directions = NORTH|SOUTH|EAST|WEST
-
+#ifdef ATMOS_ARCHIVING
 		if(archived_cycle < air_master.current_cycle)
 			archive()
-
+#endif
 	else
 		//Does particate in air exchange so only consider directions not considered during process_cell()
 		conductivity_directions = ~air_check_directions & (NORTH|SOUTH|EAST|WEST)
@@ -421,13 +419,12 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 				var/turf/neighbor = get_step(src,direction)
 				if (!neighbor) continue
 
-				//if(istype(neighbor, /turf/simulated)) //anything under this subtype will share in the exchange
 				if(neighbor.turf_flags & IS_TYPE_SIMULATED) //blahhh danger
 					var/turf/modeled_neighbor = neighbor
-
+#ifdef ATMOS_ARCHIVING
 					if(modeled_neighbor.archived_cycle < air_master.current_cycle)
 						modeled_neighbor.archive()
-
+#endif
 					if(modeled_neighbor.air)
 						if(air) //Both tiles are open
 

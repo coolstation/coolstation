@@ -23,7 +23,7 @@
 			if(on)
 				icon_state = "[level == 1 && issimulatedturf(loc) ? "h" : "" ]on"
 			else
-				icon_state = "[level == 1 && issimulatedturf(loc)) ? "h" : "" ]off"
+				icon_state = "[level == 1 && issimulatedturf(loc) ? "h" : "" ]off"
 		else
 			icon_state = "exposed"
 			on = 0

@@ -105,7 +105,7 @@
 			if (z != 3) //nono z3
 				for (var/dir in alldirs)
 					var/turf/T = get_step(src,dir)
-					if (istype(T, /turf/simulated))
+					if (issimulatedturf(T))
 						generateLight = 1
 						break
 

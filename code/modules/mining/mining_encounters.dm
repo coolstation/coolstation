@@ -36,7 +36,7 @@
 		for (var/turf/floor/plating/airless/asteroid/AST in generated_turfs)
 			AST.update_icon()
 
-		Turfspawn_Asteroid_SeedOre(generated_turfs,rand(2,6),rand(0,40))return
+		Turfspawn_Asteroid_SeedOre(generated_turfs,rand(2,6),rand(0,40))
 		Turfspawn_Asteroid_SeedEvents(Turfspawn_Asteroid_CheckForModifiableTurfs(generated_turfs),rand(1,6))
 
 /datum/mining_encounter/asteroid

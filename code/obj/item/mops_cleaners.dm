@@ -305,7 +305,7 @@ WET FLOOR SIGN
 
 	if(istype(A, /obj/fluid/airborne)) // no mopping up smoke
 		A = get_turf(A)
-	if (istype(A, /turf/simulated) || istype(A, /obj/decal/cleanable) || istype(A, /obj/fluid))
+	if (issimulatedturf(A) || istype(A, /obj/decal/cleanable) || istype(A, /obj/fluid))
 		//user.visible_message("<span class='alert'><B>[user] begins to clean [A].</B></span>")
 		actions.start(new/datum/action/bar/icon/mop_thing(src,A), user)
 	return
@@ -371,7 +371,7 @@ WET FLOOR SIGN
 		user.show_text("You have mopped up [A]!", "blue", group = "mop")
 		mopcount++
 
-	if(istype(U,/turf/simulated))
+	if(issimulatedturf(U))
 		var/turf/T = U
 		var/wetoverlay = image('icons/effects/water.dmi',"wet_floor")
 		T.overlays += wetoverlay
@@ -419,7 +419,7 @@ WET FLOOR SIGN
 
 		if(istype(A, /obj/fluid/airborne)) // no mopping up smoke
 			A = get_turf(A)
-		if (istype(A, /turf/simulated) || istype(A, /obj/decal/cleanable) || istype(A, /obj/fluid))
+		if (issimulatedturf(A) || istype(A, /obj/decal/cleanable) || istype(A, /obj/fluid))
 			//user.visible_message("<span class='alert'><B>[user] begins to clean [A].</B></span>")
 			actions.start(new/datum/action/bar/icon/mop_thing(src,A), user)
 		return
@@ -495,7 +495,7 @@ WET FLOOR SIGN
 
 			mopcount++
 
-			if(istype(U,/turf/simulated))
+			if(issimulatedturf(U))
 				var/turf/T = U
 				var/wetoverlay = image('icons/effects/water.dmi',"wet_floor")
 				T.overlays += wetoverlay
@@ -637,7 +637,7 @@ WET FLOOR SIGN
 		var/target_is_fluid = istype(target,/obj/fluid)
 		if (target_is_fluid)
 			choices |= "Soak up"
-		else if (istype(target, /turf/simulated))
+		else if (issimulatedturf(target))
 			var/turf/T = target
 			if (T.reagents && T.reagents.total_volume || T.active_liquid)
 				choices |= "Soak up"
@@ -696,7 +696,7 @@ WET FLOOR SIGN
 				return
 
 			if ("Dry")
-				if (!istype(target, /turf/simulated)) // really, how?? :I
+				if (!issimulatedturf(target)) // really, how?? :I
 					return
 				var/turf/T = target
 				user.visible_message("[user] dries up [T] with [src].",\

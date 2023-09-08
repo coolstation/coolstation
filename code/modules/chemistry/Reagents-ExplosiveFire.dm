@@ -220,7 +220,7 @@ datum
 				return
 
 			reaction_turf(var/turf/T, var/volume)
-				if(istype(T, /turf/simulated))
+				if(issimulatedturf(T))
 					var/list/covered = holder.covered_turf()
 					if(length(covered) > 9)
 						volume = volume/length(covered)

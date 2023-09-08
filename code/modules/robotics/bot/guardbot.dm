@@ -2433,7 +2433,7 @@
 				master.remove_current_task()
 				return
 
-			if(istype(src.target, /turf/simulated))
+			if(issimulatedturf(src.target))
 				var/obj/machinery/guardbot_dock/dock = locate() in src.target
 				if(dock && dock.loc == master.loc)
 					if(!isnull(dock.current) && dock.current != src)
@@ -2545,7 +2545,7 @@
 							src.master.remove_current_task()
 							return
 
-					if(istype(src.bar_beacon_turf, /turf/simulated))
+					if(issimulatedturf(src.bar_beacon_turf))
 						if (get_area(src.master) == get_area(bar_beacon_turf))
 							src.state = 2
 							master.moving = 0

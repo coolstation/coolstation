@@ -25,7 +25,7 @@ Important variables:
 		Turfs that are in this list have their border data updated before the next air calculations for a cycle.
 		Place turfs in this list rather than call the proc directly to prevent race conditions
 
-	turf/simulated.archive() and datum/air_group.archive()
+	turf.archive() and datum/air_group.archive()
 		This stores all data for.
 		If you modify, make sure to update the archived_cycle to prevent race conditions and maintain symmetry
 
@@ -185,7 +185,7 @@ datum/controller/air_system
 				for(var/direction in cardinal)
 					var/turf/T = get_step(test,direction)
 					if(T && !(T in members) && test.CanPass(null, T, null,1))
-						if(istype(T,/turf/simulated))
+						if(!issimulatedturf(T))
 							if(!T:parent)
 								possible_members += T
 								members += T

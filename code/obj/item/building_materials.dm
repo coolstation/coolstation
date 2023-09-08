@@ -531,7 +531,7 @@ MATERIAL
 
 				if("construct")
 					var/turf/T = get_turf(usr)
-					var/area/A = get_area (usr)
+					//var/area/A = get_area (usr)
 
 					if (!isconstructionturf(T))
 						boutput(usr, "<span class='alert'>You can't build girders here.</span>")
@@ -1091,7 +1091,7 @@ MATERIAL
 			boutput(user, "<span class='notice'>You must be on the ground!</span>")
 			return
 		else
-			var/S = T
+			var/turf/S = T
 			if (!isconstructionturf(S))
 				boutput(user, "<span class='notice'>RIP NERD!</span>")
 				return

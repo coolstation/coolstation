@@ -268,7 +268,7 @@ var/global/meteor_shower_active = 0
 			shatter()
 			return
 		if (src.loc == last_tile)
-			walk_toturf/et, speed, pix_speed)
+			walk_towards(src, target, speed, pix_speed)
 		last_tile = src.loc
 		SPAWN_DBG(1 SECOND)
 			process()

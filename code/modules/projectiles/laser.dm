@@ -119,7 +119,7 @@ toxic - poisons
 
 	on_hit(atom/hit)
 		fireflash(get_turf(hit), 0)
-		if((istype(hit, /turf/simulated) || istype(hit, /obj/structure/girder)))
+		if((issimulatedturf(hit) || istype(hit, /obj/structure/girder)))
 			hit.ex_act(OLD_EX_HEAVY)
 		else
 			hit.ex_act(OLD_EX_LIGHT)

@@ -76,8 +76,10 @@
 
 /mob/living/intangible/flock/Move(NewLoc, direct)
 	src.set_dir(get_dir(src, NewLoc))
-	if (isturf(NewLoc) && istype(NewLoc, /turf/wall) && !issimulatedturf(NewLoc)) // no getting past these walls, fucko
-		return 0
+	if (isturf(NewLoc))
+		var/turf/T = NewLoc
+		if (istype(T, /turf/wall) && !issimulatedturf(T)) // no getting past these walls, fucko
+			return 0
 	..()
 
 /mob/living/intangible/flock/attack_hand(mob/user as mob)

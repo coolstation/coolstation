@@ -719,7 +719,7 @@
 	if(!isturf(target) && !(istype(target, /obj/storage/closet/flock) || istype(target, /obj/table/flock) || istype(target, /obj/structure/girder) || istype(target, /obj/machinery/door/feather) || istype(target, /obj/flock_structure/ghost)))
 		target = get_turf(target)
 
-	if(istype(target, /turf) && !istype(target, /turf/simulated) && !istype(target, /turf/space))
+	if(issimulatedturf(target))
 		boutput(user, "<span class='alert'>Something about this structure prevents it from being assimilated.</span>")
 	else if(isfeathertile(target))
 		if(istype(target, /turf/floor/feather))

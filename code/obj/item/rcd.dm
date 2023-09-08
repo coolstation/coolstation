@@ -1016,7 +1016,7 @@ Broken RCD + Effects
 	proc/void_shatter()
 		playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 80, 1)
 		for (var/atom/A in range(lifespan, src))
-			if (istype(A, /turf/simulated))
+			if (issimulatedturf(A))
 				A.pixel_x = rand(-4,4)
 				A.pixel_y = rand(-4,4)
 			else if (isliving(A))

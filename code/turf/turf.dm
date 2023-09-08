@@ -10,14 +10,11 @@
 	///If ReplaceWith() actually does a thing or not. Used to be a thing on turf, gets set for unsimmed turfs in New() in base_lighting.dm
 	var/can_replace_with_stuff = 0
 
-	level = 1.0
+	level = 1
 
-	unsimulated
-		var/can_replace_with_stuff = 0	//If ReplaceWith() actually does a thing or not.
 #ifdef RUNTIME_CHECKING
-		can_replace_with_stuff = 1  //Shitty dumb hack bullshit
+	can_replace_with_stuff = 1  //Shitty dumb hack bullshit
 #endif
-		allows_vehicles = 0
 
 	proc/burn_down()
 		return
@@ -326,7 +323,7 @@ proc/generate_space_color()
 /turf/space/ReplaceWithSpace()
 	return
 
-/turf/space/proc/process_cell()
+/turf/space/process_cell()
 	return
 
 /turf/cordon
@@ -342,7 +339,7 @@ proc/generate_space_color()
 	Enter()
 		return 0 // nope
 
-	proc/process_cell()
+	process_cell()
 		return
 
 /turf/New()
@@ -561,8 +558,8 @@ proc/generate_space_color()
 
 /turf/proc/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0)
 
-	if (can_replace_with_stuff || force) //(for unsimmed turfs)
-		return ..(what, keep_old_material = keep_old_material, handle_air = handle_air)
+	if (!can_replace_with_stuff && !force) //(for unsimmed turfs)
+		return //..(what, keep_old_material = keep_old_material, handle_air = handle_air)
 
 	var/turf/new_turf
 	var/old_dir = dir
@@ -742,7 +739,7 @@ proc/generate_space_color()
 	if (handle_air)
 		if (issimulatedturf(src)) //Anything -> Simulated tile
 			var/turf/N = new_turf
-			if (src.oldair) //Simulated tile -> Simulated tile
+			if (oldair) //Simulated tile -> Simulated tile
 				N.air = oldair
 			else if(zero_new_turf_air && istype(N.air)) //Unsimulated tile (likely space) - > Simulated tile  // fix runtime: Cannot execute null.zero() << ever heard of walls you butt???
 				N.air.zero()
@@ -889,7 +886,8 @@ proc/generate_space_color()
   return AR.sanctuary
 
 //-------------An assortment of random miscellaneous turf definitions below
-
+/turf/var/default_melt_cap = 30
+/*
 /turf/simulated //ATMOSSIMSTODO - merge into /turf definiton somehow
 	name = "station"
 	allows_vehicles = 0
@@ -918,7 +916,7 @@ proc/generate_space_color()
 				if (K)
 					K.Attackby(W, user, params)
 			return ..()
-
+*/
 /turf/aprilfools/grass
 	name = "grass"
 	icon = 'icons/turf/outdoors.dmi'

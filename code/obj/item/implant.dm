@@ -903,7 +903,7 @@ THROWING DARTS
 		src.owner = null
 		return
 
-	if (istype(C.loc, /turf/simulated))
+	if (issimulatedturf(C.loc))
 		if(prob(35))
 			random_brute_damage(C, 1)
 		if(prob(1))

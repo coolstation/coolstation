@@ -1017,7 +1017,7 @@ datum/pump_ui/circulator_ui
 						shake_camera(M, 3, 16)
 						M.changeStatus("weakened", 1 SECOND)
 					for (var/atom/A in range(rand(1,3), src.loc))
-						if (istype(A, /turf/simulated))
+						if (issimulatedturf(A))
 							A.pixel_x = rand(-1,1)
 							A.pixel_y = rand(-1,1)
 					grump -= 30

@@ -623,7 +623,7 @@ datum
 			reaction_turf(var/turf/target, var/volume)
 				var/obj/hotspot = (locate(/obj/hotspot) in target)
 				if (hotspot)
-					if (istype(target, /turf/simulated))
+					if(issimulatedturf(target))
 						var/turf/T = target
 						if (T.air)
 							var/datum/gas_mixture/lowertemp = T.remove_air( TOTAL_MOLES(T.air) )
@@ -1049,7 +1049,7 @@ datum
 
 				var/obj/hotspot = (locate(/obj/hotspot) in target)
 				if (hotspot)
-					if (istype(target, /turf/simulated))
+					if(issimulatedturf(target))
 						var/turf/T = target
 						if (!T.air) return //ZeWaka: Fix for TOTAL_MOLES(null)
 						var/datum/gas_mixture/lowertemp = T.remove_air( TOTAL_MOLES(T.air) )

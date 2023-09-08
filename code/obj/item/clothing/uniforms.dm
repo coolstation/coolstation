@@ -1263,7 +1263,7 @@
 			return ..()
 
 	afterattack(atom/target, mob/user, flag)
-		if (target && istype(target, /turf/simulated))
+		if (target && issimulatedturf(target))
 			var/turf/T = target
 			user.drop_from_slot(src, T)
 			if (src.dry_turf(T))

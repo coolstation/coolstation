@@ -162,7 +162,7 @@ proc/debug_map_apc_count(delim,zlim)
 
 		var/datum/gas_mixture/GM = target.return_air()
 		var/burning = 0
-		if(istype(target, /turf/simulated))
+		if(issimulatedturf(target))
 			var/turf/T = target
 			if(T.active_hotspot)
 				burning = 1
@@ -315,7 +315,7 @@ proc/debug_map_apc_count(delim,zlim)
 		help = "Tile colors are based on what air group turf belongs to. Hover over a turf to get its atmos readout"
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
 			var/turf/sim = theTurf
-			if(istype(sim, /turf/simulated))//byondood
+			if(issimulatedturf(sim))//byondood
 				var/datum/air_group/group = sim.parent
 				if(group)
 					img.app.color = debug_color_of(group)
@@ -400,7 +400,7 @@ proc/debug_map_apc_count(delim,zlim)
 			img.app.desc = ""
 			img.app.color = null
 			img.app.maptext = null
-			if (istype(sim, /turf/simulated))
+			if (issimulatedturf(sim))
 				img.app.alpha = 150
 
 				var/datum/air_group/group = sim.parent

@@ -536,7 +536,7 @@
 						path -= next
 						return
 
-					if(istype( next, /turf/simulated))
+					if(issimulatedturf(next))
 						//boutput(world, "at ([x],[y]) moving to ([next.x],[next.y])")
 
 						if(bloodiness)

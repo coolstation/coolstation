@@ -10,7 +10,7 @@
 #define getneighbours(x) (list(get_step(x, NORTH), get_step(x, EAST), get_step(x, SOUTH), get_step(x, WEST)))
 
 /// Returns true if turf x is in a simulated atmos area. Some azone-y stuff also uses this because we haven't split it cleanly (yet)
-#define issimulatedturf(x) (!istype(x, /turf/space) && (x.loc:is_atmos_simulated == TRUE))
+#define issimulatedturf(x) (isturf(x) && !istype(x, /turf/space) && (x.loc:is_atmos_simulated == TRUE))
 
 /// Returns true if turf x is in a construction allowed area
 #define isconstructionturf(x) (x.loc:construction_allowed == TRUE)

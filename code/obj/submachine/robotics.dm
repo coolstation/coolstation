@@ -95,7 +95,7 @@
 			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/item/lamp_manufacturer/proc/remove_light, list(A, user), null, null, null, null)
 
 
-		if (!istype(A, /turf/simulated) && !istype(A, /obj/window) || !check_ammo(user, cost_fitting))
+		if (!issimulatedturf(A) && !istype(A, /obj/window) || !check_ammo(user, cost_fitting))
 			..()
 			return
 

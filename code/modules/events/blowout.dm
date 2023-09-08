@@ -44,7 +44,7 @@
 					continue
 				else
 					if (!A.irradiated)
-						A.irradiated = TRUEturf/
+						A.irradiated = TRUE
 						A.icon_state = "blowout"
 					for (var/turf/T in A)
 						if (rand(0,1000) < 5 && istype(T,/turf/floor))

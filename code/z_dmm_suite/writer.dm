@@ -359,7 +359,7 @@ dmm_suite/prefab_saving/makeTemplate(turf/model as turf, flags as num)
 		else if(istype(model, /turf/floor/plating/airless/asteroid))
 			empty_area = 1
 			turfTemplate += "[/turf/variableTurf/floor],"
-		else if(src.unsimulate && istype(model, /turf/simulated))
+		else if(src.unsimulate && issimulatedturf(model))
 			var/new_path_str = replacetext("[model.type]", "simulated", "unsimulated")
 			var/new_type = text2path(new_path_str)
 			if(isnull(new_type))

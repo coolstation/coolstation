@@ -385,7 +385,7 @@ proc/is_teleportation_allowed(var/turf/T)
 							else if(!istype(scanTurf, /turf/space))
 								var/datum/gas_mixture/GM = scanTurf.return_air()
 								var/burning = 0
-								if(istype(scanTurf, /turf/simulated))
+								if(issimulatedturf(scanTurf))
 									var/turf/T = scanTurf
 									if(T.active_hotspot)
 										burning = 1
