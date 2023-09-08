@@ -74,26 +74,28 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 	New()
 		..()
 
-		if(!blocks_air)
-			air = new()
+		var/area/A = src.loc
+		if (A.is_atmos_simulated)
+			if(!blocks_air)
+				air = new()
 
-			#define _TRANSFER_GAS_TO_AIR(GAS, ...) air.GAS = GAS;
-			APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
-			#undef _TRANSFER_GAS_TO_AIR
+				#define _TRANSFER_GAS_TO_AIR(GAS, ...) air.GAS = GAS;
+				APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
+				#undef _TRANSFER_GAS_TO_AIR
 
-			air.temperature = temperature
+				air.temperature = temperature
 
-			if(air_master)
-				air_master.tiles_to_update |= src
+				if(air_master)
+					air_master.tiles_to_update |= src
 
-				find_group()
+					find_group()
 
-		else
-			if(air_master)
-				for(var/direction in cardinal)
-					var/turf/floor/target = get_step(src,direction)
-					if(istype(target))
-						air_master.tiles_to_update |= target
+			else
+				if(air_master)
+					for(var/direction in cardinal)
+						var/turf/floor/target = get_step(src,direction)
+						if(istype(target))
+							air_master.tiles_to_update |= target
 
 	Del()
 		if(air_master)

@@ -997,7 +997,8 @@ proc/generate_space_color()
 /turf/wall
 	name = "wall"
 	icon = 'icons/turf/walls.dmi'
-	icon_state = "riveted"
+	//IDK where the icon_state is set anymore but this sprite is _old_
+	//icon_state = "riveted"
 	opacity = 1
 	text = "<font color=#aaa>#"
 	density = 1

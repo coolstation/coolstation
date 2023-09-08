@@ -164,9 +164,11 @@ datum/controller/air_system
 
 		//floors should be safe? we'd like to skip space and walls shouldn't form airgroups anyway (though they probably do IDK)
 		for(var/turf/floor/S in world)
-			if(!S.blocks_air && !S.parent)
-				assemble_group_turf(S)
-			S.update_air_properties()
+			if(issimulatedturf(S))
+				if(!S.parent)
+					assemble_group_turf(S)
+				//this is inside the issimulatedturf thing cause otherwise a third of Z2 adds itself to the active singletons list (laggy as shit)
+				S.update_air_properties()
 
 		boutput(world, "<span class='alert'>Geometry processed in [(world.timeofday-start_time)/10] seconds!</span>")
 		#endif
@@ -185,7 +187,7 @@ datum/controller/air_system
 				for(var/direction in cardinal)
 					var/turf/T = get_step(test,direction)
 					if(T && !(T in members) && test.CanPass(null, T, null,1))
-						if(!issimulatedturf(T))
+						if(issimulatedturf(T))
 							if(!T:parent)
 								possible_members += T
 								members += T

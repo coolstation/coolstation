@@ -396,7 +396,20 @@ proc/debug_map_apc_count(delim,zlim)
 				img.app.desc = "-unsimulated-"
 				img.app.color = "#202020"
 
-
+	atmos_singletons
+		name = "atmos active singletons"
+		help = "Green if the turf is an active singleton, red if not but simulated."
+		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
+			if(isfloor(theTurf))//byondood
+				if(theTurf in air_master.active_singletons)
+					img.app.color = "#33ff33"
+					//img.app.desc = "No Atmos Group<br/>[MOLES_REPORT(sim)]Temperature=[sim.temperature]"
+				else
+					img.app.color = "#ff3333"
+					//img.app.desc = "No Atmos Group<br/>[MOLES_REPORT(sim)]Temperature=[sim.temperature]"
+			else
+				img.app.desc = "-unsimulated-"
+				img.app.color = "#202020"
 
 	atmos_status
 		name = "atmos status"
@@ -1259,16 +1272,16 @@ proc/debug_map_apc_count(delim,zlim)
 		if(usr.client.activeOverlay)
 			var/list/lparams = params2list(params)
 			var/offs = splittext(lparams["screen-loc"], ",")
-
-			var/x = text2num(splittext(offs[1], ":")[1])
-			var/y = text2num(splittext(offs[2], ":")[1])
-			var/image/im = usr.client.infoOverlayImages["[x]-[y]"]
-			if(im?.desc)
-				usr.client.tooltipHolder.transient.show(src, list(
-					"params" = params,
-					"title" = "Diagnostics",
-					"content" = (im.desc)
-				))
+			if (offs) //hey guess what screen-loc isn't a guaranteed parameter fuckers
+				var/x = text2num(splittext(offs[1], ":")[1])
+				var/y = text2num(splittext(offs[2], ":")[1])
+				var/image/im = usr.client.infoOverlayImages["[x]-[y]"]
+				if(im?.desc)
+					usr.client.tooltipHolder.transient.show(src, list(
+						"params" = params,
+						"title" = "Diagnostics",
+						"content" = (im.desc)
+					))
 		else
 			.=..()
 	MouseExited()

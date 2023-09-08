@@ -80,6 +80,8 @@
 
 		SPAWN_DBG(5 SECONDS)
 			for(var/turf/T in maintaining_turfs)
+				if(istype(T, /turf/space))
+					continue
 				if(!T.air && T.density)
 					continue
 				ZERO_BASE_GASES(T.air)
