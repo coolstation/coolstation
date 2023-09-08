@@ -36,13 +36,13 @@
 
 /turf/martian/wall/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			src.health -= 40
 			checkhealth()
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			src.health -= 20
 			checkhealth()
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			src.health -= 5
 			checkhealth()
 

@@ -281,7 +281,7 @@
 		for(var/atom/movable/overlay/A in boom_tips)
 			flick("boom_tip", A)
 		for(var/mob/M in affected_mobs)
-			M.ex_act(3)
+			M.ex_act(OLD_EX_LIGHT)
 		for(var/obj/O in affected_objs)
 			// drsingh for Cannot execute null.ex act()
 			if (!isnull(O)) O.ex_act(rand(1,2))

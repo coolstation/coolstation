@@ -61,11 +61,11 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.damage_asteroid(5)
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.damage_asteroid(4)
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				src.damage_asteroid(3)
 		return
 
@@ -81,11 +81,11 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.damage_asteroid(3)
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.damage_asteroid(2)
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				src.damage_asteroid(1)
 		return
 
@@ -275,7 +275,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 					return
 			if(istype(O, /obj/vehicle) || istype(O, /obj/machinery/bot) || istype(O, /obj/machinery/vehicle))
 				playsound(O.loc, 'sound/effects/creaking_metal2.ogg', 100, 1)
-				O.ex_act(3)
+				O.ex_act(OLD_EX_LIGHT)
 				assholes_to_hurt |= O
 				src.process_some_sand()
 				return
@@ -314,9 +314,9 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 					continue
 				if((V.rider_visible || !V.sealed_cabin)&&prob(50))
 					V.eject_rider()
-					V.ex_act(1)
+					V.ex_act(OLD_EX_TOTAL)
 				else
-					V.ex_act(3)
+					V.ex_act(OLD_EX_LIGHT)
 				playsound(V.loc, 'sound/effects/creaking_metal2.ogg', 100, 1)
 			for(var/obj/machinery/vehicle/pod in assholes_to_hurt)
 				if(!istype(pod) || pod.health <= 0)

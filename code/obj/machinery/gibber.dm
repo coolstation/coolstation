@@ -253,6 +253,6 @@
 			else
 				newmeat3.set_loc(T1)
 			if (src.dirty == 1)
-				src.overlays += image('icons/obj/kitchen.dmi', "grindbloody")
+				src.overlays += image('icons/obj/kitchen.dmi', "grbloody")
 
 		src.operating = 0

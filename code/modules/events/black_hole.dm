@@ -131,7 +131,7 @@
 			A:gib()
 		else if(isobj(A))
 			var/obj/O = A
-			O.ex_act(1)
+			O.ex_act(OLD_EX_TOTAL)
 			if(O)
 				qdel(O)
 

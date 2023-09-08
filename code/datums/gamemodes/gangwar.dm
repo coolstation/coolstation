@@ -1065,7 +1065,7 @@
 			src.visible_message("<span class='notice'><b>The door to [src] swings shut and switches back on!<b></span>")
 
 	ex_act(severity)
-		take_damage(250-50*severity)
+		take_damage(75+25*severity)
 		return
 
 	attackby(obj/item/W as obj, mob/user as mob)

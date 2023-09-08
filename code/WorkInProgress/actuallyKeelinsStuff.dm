@@ -766,6 +766,7 @@ Returns:
 	anchored = 1
 	density = 0
 	opacity = 0
+	plane = PLANE_NOSHADOW_BELOW
 
 /obj/decal/valterakWhip
 	name = "???"
@@ -775,6 +776,7 @@ Returns:
 	anchored = 1
 	density = 0
 	opacity = 0
+	plane = PLANE_NOSHADOW_BELOW
 
 /datum/admins/proc/camtest()
 	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)

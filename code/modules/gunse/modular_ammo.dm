@@ -508,7 +508,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 			L.change_misstep_chance(1)
 			L.emote("twitch_v")
 		if(prob(5))
-			hit.ex_act(3)
+			hit.ex_act(OLD_EX_LIGHT)
 		return
 
 /datum/projectile/laser/flashbulb/four
@@ -526,6 +526,5 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 			L.change_misstep_chance(1)
 			L.emote("twitch_v")
 		if(prob(20))
-			hit.ex_act(3)
+			hit.ex_act(OLD_EX_LIGHT)
 		return
-		//hit.ex_act(3)

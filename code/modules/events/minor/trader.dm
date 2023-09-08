@@ -43,7 +43,7 @@
 
 		for(var/atom/A as obj|mob in end_location)
 			SPAWN_DBG(0)
-				A.ex_act(1)
+				A.ex_act(OLD_EX_TOTAL)
 
 		for(var/turf/T in end_location)
 			dstturfs += T

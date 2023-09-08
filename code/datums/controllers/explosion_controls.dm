@@ -10,13 +10,12 @@ var/datum/explosion_controller/explosions
 	proc/explode_at(atom/source, turf/epicenter, power, brisance = 1, angle = 0, width = 360)
 		var/atom/A = epicenter
 		if(istype(A))
-			var/severity = power >= 6 ? 1 : power > 3 ? 2 : 3
 			var/fprint = null
 			if(istype(source))
 				fprint = source.fingerprintslast
 			while(!istype(A, /turf))
 				if(!istype(A, /mob) && A != source)
-					A.ex_act(severity, fprint, power)
+					A.ex_act(power, fprint)
 				A = A.loc
 		if (!istype(epicenter, /turf))
 			epicenter = get_turf(epicenter)
@@ -47,42 +46,20 @@ var/datum/explosion_controller/explosions
 			queued_turfs[T]=sqrt(queued_turfs[T])*2
 			p = queued_turfs[T]
 			last_touched = queued_turfs_blame[T]
-			//boutput(world, "P1 [p]")
-			if (p >= 6)
-				for (var/mob/M in T)
-					M.ex_act(1, last_touched, p)
-			else if (p > 3)
-				for (var/mob/M in T)
-					M.ex_act(2, last_touched, p)
-			else
-				for (var/mob/M in T)
-					M.ex_act(3, last_touched, p)
+			for (var/mob/M in T)
+				M.ex_act(p, last_touched)
 
 		LAGCHECK(LAG_HIGH)
 
 		for (var/turf/T as anything in queued_turfs)
 			p = queued_turfs[T]
 			last_touched = queued_turfs_blame[T]
-			//boutput(world, "P1 [p]")
-			if (p >= 6)
-				for (var/obj/O in T)
-					if(istype(O, /obj/overlay))
-						continue
-					O.ex_act(1, last_touched, p)
-					if (istype(O, /obj/cable)) // these two are hacky, newcables should relieve the need for this
-						needrebuild = 1
-			else if (p > 3)
-				for (var/obj/O in T)
-					if(istype(O, /obj/overlay))
-						continue
-					O.ex_act(2, last_touched, p)
-					if (istype(O, /obj/cable))
-						needrebuild = 1
-			else
-				for (var/obj/O in T)
-					if(istype(O, /obj/overlay))
-						continue
-					O.ex_act(3, last_touched, p)
+			for (var/obj/O in T)
+				if(istype(O, /obj/overlay))
+					continue
+				O.ex_act(p, last_touched)
+				if (istype(O, /obj/cable)) // this is hacky, newcables should relieve the need for this
+					needrebuild = 1
 
 		LAGCHECK(LAG_HIGH)
 
@@ -96,20 +73,15 @@ var/datum/explosion_controller/explosions
 			last_touched = queued_turfs_blame[T]
 			//boutput(world, "P2 [p]")
 #ifdef EXPLOSION_MAPTEXT_DEBUGGING
-			if (p >= 6)
+			if (p >= OLD_EX_TOTAL)
 				T.maptext = "<span style='color: #ff0000;' class='pixel c sh'>[p]</span>"
-			else if (p > 3)
+			else if (p >= OLD_EX_HEAVY)
 				T.maptext = "<span style='color: #ffff00;' class='pixel c sh'>[p]</span>"
 			else
 				T.maptext = "<span style='color: #00ff00;' class='pixel c sh'>[p]</span>"
 
 #else
-			if (p >= 6)
-				T.ex_act(1, last_touched)
-			else if (p > 3)
-				T.ex_act(2, last_touched)
-			else
-				T.ex_act(3, last_touched)
+			T.ex_act(p, last_touched)
 #endif
 		LAGCHECK(LAG_HIGH)
 

@@ -1038,7 +1038,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 				for (var/mob/living/X in range(src,1))
 					if (X == src)
 						continue
-					X.ex_act(3)
+					X.ex_act(OLD_EX_LIGHT)
 					playsound(X.loc, "fleshbr1.ogg", 50, 1, -1)
 				src.transforming = 0
 
@@ -1065,7 +1065,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 					if (M == src)
 						continue
 					playsound(M.loc, "fleshbr1.ogg", 40, 1, -1)
-					M.ex_act(3)
+					M.ex_act(OLD_EX_LIGHT)
 				for (var/turf/T in range(src,3))
 					animate_shake(T,5,rand(3,8),rand(3,8))
 

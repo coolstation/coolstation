@@ -86,13 +86,13 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				src.icon_state = "placeholder-ex1"
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.icon_state = "placeholder-ex2"
 				return
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.icon_state = "placeholder-ex3"
 				return
 		return

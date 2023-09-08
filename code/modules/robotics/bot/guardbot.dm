@@ -1360,10 +1360,10 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.explode(0)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.health -= 15
 				if (src.health <= 0)
 					src.explode(0)

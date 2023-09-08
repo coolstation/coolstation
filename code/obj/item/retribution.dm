@@ -69,7 +69,7 @@
 			stamina_damage = inactive_stamina_dmg
 			stamina_cost = inactive_stamina_cost
 			w_class = W_CLASS_SMALL
-			
+
 			user.show_message("<span class='notice'>You remove the SWORD core from the Syndicate Destruction System!</span>", 1)
 			desc = "After a delay, scans nearby tiles, damaging walls and enemies. The core is missing."
 			tooltip_rebuild = 1
@@ -150,15 +150,15 @@
 				playsound(scan_target.loc, "sound/impact_sounds/burn_sizzle.ogg", 70, 1)
 			else if (istype(scan_target, /obj/structure/girder))
 				create_scan_decal = true
-				scan_target.ex_act(1)
+				scan_target.ex_act(OLD_EX_TOTAL)
 			else if (istype(scan_target, /obj/grille))
 				create_scan_decal = true
 				window_step++
-				scan_target.ex_act(1)
+				scan_target.ex_act(OLD_EX_TOTAL)
 			else if (istype(scan_target, /obj/window))
 				if(window_step == 0)
 					create_scan_decal = true
-					scan_target.ex_act(1)
+					scan_target.ex_act(OLD_EX_TOTAL)
 		if(istype(T, /turf/simulated/wall))
 			create_scan_decal = true
 			T = T.ReplaceWith(/turf/simulated/floor/plating/random)

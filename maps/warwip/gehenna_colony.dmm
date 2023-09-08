@@ -7046,6 +7046,10 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
+/obj/machinery/shipalert{
+	pixel_x = 0;
+	pixel_y = 32
+	},
 /turf/simulated/floor/darkblue,
 /area/station/bridge/conference)
 "fnV" = (
@@ -17390,6 +17394,11 @@
 	},
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
+"ncK" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
+/obj/shitty_radio/shitty_tv,
+/turf/simulated/floor/darkblue,
+/area/station/bridge/conference)
 "ncX" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/cable{
@@ -24983,6 +24992,11 @@
 /obj/decal/tile_edge/stripe/extra_big,
 /turf/simulated/floor,
 /area/station/bridge/customs)
+"sxy" = (
+/obj/table/reinforced/auto,
+/obj/shitty_radio/shitty_tv,
+/turf/simulated/floor,
+/area/station/quartermaster/cargooffice/storefront)
 "sxG" = (
 /obj/machinery/vehicle/tank/car/whitered,
 /turf/simulated/floor/shuttlebay,
@@ -26455,6 +26469,9 @@
 /obj/machinery/light/fluorescent,
 /obj/table/auto,
 /obj/item/saw,
+/obj/item/bee_egg_carton{
+	desc = "what? yeah of course it's always been here, what are you talking about?"
+	},
 /turf/simulated/floor/industrial,
 /area/station/hydroponics/bay)
 "tID" = (
@@ -68320,7 +68337,7 @@ gxt
 ujr
 ujr
 auj
-miK
+ncK
 yax
 iUH
 sUa
@@ -94301,7 +94318,7 @@ plb
 qiv
 lOs
 qiv
-osQ
+sxy
 uCZ
 slE
 rsb

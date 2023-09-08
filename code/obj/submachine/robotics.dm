@@ -389,8 +389,9 @@
 	icon_state = "oilcan"
 	amount_per_transfer_from_this = 15
 	splash_all_contents = 0
+	inventory_counter_enabled = TRUE
 	w_class = W_CLASS_NORMAL
-	rc_flags = RC_FULLNESS
+	rc_flags = RC_FULLNESS | RC_INV_COUNT_AMT
 	initial_volume = 120
 
 	New()

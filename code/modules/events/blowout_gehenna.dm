@@ -21,6 +21,9 @@
 		world << siren
 		command_alert("Extreme levels of radiation detected approaching the planet surface. All personnel have [timetoreach].[timetoreachsec] seconds to reach the tunnel level. This is not a test.", "Anomaly Alert")
 
+		var/datum/directed_broadcast/emergency/broadcast = new(station_name, "Radiation Storm", "[timetoreach] Seconds", "Seek shelter underground immediately. Do not use elevators.")
+		broadcast_controls.broadcast_start(broadcast, TRUE, -1, 1)
+
 		SPAWN_DBG(0)
 			//The normal blowout zeroes out maint airlock access here
 			sleep(actualtime)
@@ -85,7 +88,8 @@
 				A.icon_state = null
 
 			blowout = FALSE
-
+			broadcast_controls.broadcast_stop(broadcast)
+			qdel(broadcast)
 			command_alert("All radiation alerts onboard [station_name(1)] have been cleared. You may now leave the tunnels freely.", "All Clear")
 /*
 	#ifndef UNDERWATER_MAP

@@ -74,12 +74,12 @@
 
 /obj/plasticflaps/ex_act(severity)
 	switch(severity)
-		if (1)
+		if (OLD_EX_SEVERITY_1)
 			qdel(src)
-		if (2)
+		if (OLD_EX_SEVERITY_2)
 			if (prob(50))
 				qdel(src)
-		if (3)
+		if (OLD_EX_SEVERITY_3)
 			if (prob(5))
 				qdel(src)
 

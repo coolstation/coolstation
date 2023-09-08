@@ -53,6 +53,10 @@ var/global/mob/twitch_mob = 0
 #endif
 
 /world/proc/load_mode()
+#ifdef OVERRIDDEN_MODE
+	master_mode = OVERRIDDEN_MODE
+	logDiary("Mode was set from override: '[master_mode]'")
+#else
 	set background = 1
 	var/text = file2text("data/mode.txt")
 	if (text)
@@ -60,11 +64,14 @@ var/global/mob/twitch_mob = 0
 		if (lines[1])
 			master_mode = lines[1]
 			logDiary("Saved mode is '[master_mode]'")
+#endif
 
 /world/proc/save_mode(var/the_mode)
+#ifndef OVERRIDDEN_MODE
 	var/F = file("data/mode.txt")
 	fdel(F)
 	F << the_mode
+#endif
 
 /world/proc/load_intra_round_value(var/field) //Currently for solarium effects, could also be expanded to that pickle jar idea.
 	var/path = "data/intra_round.sav"
@@ -676,7 +683,8 @@ var/f_color_selector_handler/F_Color_Selector
 	//Please delete this once broadcasting code has been proven to work and integrated into shit
 	Z_LOG_DEBUG("World/Init", "Setting up a test transmission...")
 	broadcast_controls.broadcast_start(new /datum/directed_broadcast/testing)
-	new /datum/directed_broadcast/testing_finite //this gets tracked it should be fine :)
+	//new /datum/directed_broadcast/testing_finite //this gets tracked it should be fine :)
+	broadcast_controls.broadcast_start(new /datum/directed_broadcast/testing_teevee)
 
 #ifdef TWITCH_BOT_ALLOWED
 	for (var/client/C)

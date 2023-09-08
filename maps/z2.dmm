@@ -1579,9 +1579,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (EAST)"
+	plane = -101
 	},
 /obj/storage/closet/coffin,
 /turf/unsimulated/floor/plating/damaged1,
@@ -1597,9 +1597,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (EAST)"
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	name = "plating"
@@ -1616,9 +1616,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (EAST)"
+	plane = -101
 	},
 /obj/table/auto,
 /turf/unsimulated/floor{
@@ -2624,7 +2624,8 @@
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor/caution/south,
 /area/hospital/samostrel)
@@ -2654,12 +2655,12 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
-	dir = 10;
+	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (SOUTHWEST)"
+	plane = -101
 	},
 /turf/unsimulated/floor/caution/south,
 /area/hospital/samostrel)
@@ -2671,7 +2672,8 @@
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
-	tag = "icon-conduit (NORTHEAST)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor/caution/corner/misc{
 	dir = 10
@@ -2876,9 +2878,10 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTH)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor/engine,
 /area/hospital/samostrel)
@@ -2899,27 +2902,6 @@
 	dir = 4
 	},
 /turf/unsimulated/floor/engine,
-/area/hospital/samostrel)
-"amW" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "Like conventional cables, but more burly.";
-	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
-	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
-	},
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "Like conventional cables, but more burly.";
-	dir = 9;
-	icon = 'icons/obj/power_cond.dmi';
-	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
-	},
-/turf/unsimulated/floor/caution/west,
 /area/hospital/samostrel)
 "amX" = (
 /obj/decal/fakeobjects{
@@ -3140,12 +3122,14 @@
 	},
 /obj/decal/fakeobjects{
 	anchored = 1;
-	desc = "A broken panel, originally intended to control pod doors.";
-	icon = 'icons/misc/worlds.dmi';
-	icon_state = "door_control_broken";
-	name = "broken pod door control";
-	pixel_x = -24;
-	pixel_y = 8
+	desc = "Like conventional cables, but more burly.";
+	dir = 1;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor/engine,
 /area/hospital/samostrel)
@@ -3169,7 +3153,8 @@
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor/caution/west,
 /area/hospital/samostrel)
@@ -3463,7 +3448,8 @@
 	dir = 5;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor/engine,
 /area/hospital/samostrel)
@@ -3475,7 +3461,8 @@
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /obj/machinery/light/small/iomoon{
 	dir = 4
@@ -3701,9 +3688,9 @@
 	dir = 10;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (SOUTHWEST)"
+	plane = -101
 	},
 /turf/unsimulated/floor/engine,
 /area/hospital/samostrel)
@@ -3714,8 +3701,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor/engine,
 /area/hospital/samostrel)
@@ -3723,20 +3711,21 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
-	dir = 1;
+	dir = 9;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
-	dir = 5;
+	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
+	layer = 2.5;
 	name = "power conduit";
-	tag = "icon-conduit (NORTHEAST)"
+	plane = -101
 	},
 /turf/unsimulated/floor/caution/west,
 /area/hospital/samostrel)
@@ -4325,9 +4314,9 @@
 	dir = 10;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (SOUTHWEST)"
+	plane = -101
 	},
 /turf/unsimulated/floor/caution/corner/misc{
 	dir = 9
@@ -4341,7 +4330,8 @@
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
-	tag = "icon-conduit (NORTHEAST)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor{
 	icon_state = "floor"
@@ -4513,31 +4503,18 @@
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
-	name = "power conduit"
-	},
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "Like conventional cables, but more burly.";
-	dir = 9;
-	icon = 'icons/obj/power_cond.dmi';
-	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
-	},
-/turf/unsimulated/floor{
-	icon_state = "floor"
-	},
-/area/hospital/samostrel)
-"asg" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "Like conventional cables, but more burly.";
-	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
-	icon_state = "conduit";
-	layer = 2.5;
 	name = "power conduit";
-	tag = "icon-conduit (EAST)"
+	plane = -101
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 10;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon_state = "floor"
@@ -4556,9 +4533,10 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTH)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor{
 	icon_state = "floor"
@@ -4880,7 +4858,8 @@
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon_state = "floor"
@@ -4899,9 +4878,9 @@
 	dir = 10;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (SOUTHWEST)"
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon_state = "floor"
@@ -4914,8 +4893,10 @@
 	dir = 5;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTHEAST)"
+	plane = -101;
+	tag = null
 	},
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -4923,8 +4904,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon_state = "floor"
@@ -4937,8 +4919,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon_state = "floor"
@@ -5255,9 +5238,10 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTH)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor/caution/south,
 /area/hospital/samostrel)
@@ -5444,9 +5428,10 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTH)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor{
 	icon = 'icons/turf/shuttle.dmi';
@@ -5654,9 +5639,10 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTH)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor{
 	icon = 'icons/turf/shuttle.dmi';
@@ -5943,9 +5929,9 @@
 	dir = 10;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (SOUTHWEST)"
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon = 'icons/turf/shuttle.dmi';
@@ -5959,8 +5945,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon = 'icons/turf/shuttle.dmi';
@@ -5975,7 +5962,8 @@
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
-	tag = "icon-conduit (NORTHEAST)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor{
 	icon = 'icons/turf/shuttle.dmi';
@@ -6385,9 +6373,10 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTH)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor/caution/northsouth{
 	dir = 8
@@ -6593,9 +6582,10 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTH)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor/black,
 /area/hospital/samostrel)
@@ -6798,9 +6788,9 @@
 	dir = 10;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (SOUTHWEST)"
+	plane = -101
 	},
 /turf/unsimulated/floor/black,
 /area/hospital/samostrel)
@@ -6811,8 +6801,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor/black,
 /area/hospital/samostrel)
@@ -6824,7 +6815,11 @@
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
+	},
+/obj/machinery/light/small/iomoon{
+	dir = 1
 	},
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -6832,11 +6827,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
-	},
-/obj/machinery/light/small/iomoon{
-	dir = 1
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor/engine/caution/corner{
 	dir = 8
@@ -7992,9 +7985,10 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTH)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor{
 	name = "plating"
@@ -8064,9 +8058,10 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTH)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor{
 	name = "plating"
@@ -8082,8 +8077,8 @@
 "aCY" = (
 /obj/table/auto,
 /obj/random_item_spawner/tools,
-/obj/decal/cleanable/writing/postit{
-	desc = "TODO: Fix leaky sink in command section.";
+/obj/item/sticker/postit{
+	icon_state = "postit-writing";
 	pixel_y = 26
 	},
 /turf/unsimulated/floor{
@@ -8479,9 +8474,10 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTH)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor{
 	name = "plating"
@@ -8688,9 +8684,8 @@
 	dir = 9;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
 	name = "power conduit";
-	tag = "icon-conduit (NORTHWEST)"
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	name = "plating"
@@ -8770,16 +8765,6 @@
 /turf/unsimulated/floor/grey/checker,
 /area/moon/museum)
 "aFy" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "Like conventional cables, but more burly.";
-	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
-	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit";
-	tag = "icon-conduit (EAST)"
-	},
 /obj/decal/fakeobjects/lightbulb_broken{
 	desc = "This light is probably broken.  It looks pretty new and ok, though, so it's probably just not wired up.";
 	dir = 1;
@@ -8787,20 +8772,15 @@
 	name = "inactive light bulb";
 	tag = ""
 	},
-/turf/unsimulated/floor{
-	name = "plating"
-	},
-/area/hospital/underground)
-"aFA" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (EAST)"
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	name = "plating"
@@ -9058,9 +9038,9 @@
 	dir = 10;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (SOUTHWEST)"
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	name = "plating"
@@ -9073,9 +9053,9 @@
 	dir = 10;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (SOUTHWEST)"
+	plane = -101
 	},
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -9083,9 +9063,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (EAST)"
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	name = "plating"
@@ -9099,26 +9079,27 @@
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
-	tag = "icon-conduit (NORTHEAST)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor{
 	name = "plating"
 	},
 /area/hospital/underground)
 "aGT" = (
+/obj/decal/fakeobjects/firelock_broken{
+	dir = 8;
+	tag = "icon-door0 (WEST)"
+	},
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (EAST)"
-	},
-/obj/decal/fakeobjects/firelock_broken{
-	dir = 8;
-	tag = "icon-door0 (WEST)"
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	name = "plating"
@@ -9132,7 +9113,7 @@
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
-	tag = "icon-conduit (SOUTHEAST)"
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	name = "plating"
@@ -9204,9 +9185,10 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTH)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor{
 	name = "plating"
@@ -9223,19 +9205,19 @@
 	},
 /area/hospital/underground)
 "aHt" = (
+/obj/machinery/light/small/iomoon{
+	name = "maintenance light";
+	tag = ""
+	},
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (EAST)"
-	},
-/obj/machinery/light/small/iomoon{
-	name = "maintenance light";
-	tag = ""
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	name = "plating"
@@ -10010,8 +9992,9 @@
 	dir = 10;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /obj/decal/cleanable/dirt,
 /turf/unsimulated/floor{
@@ -10025,7 +10008,8 @@
 	dir = 5;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon_state = "plating_dusty1"
@@ -12384,7 +12368,8 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /obj/item/tile/steel,
 /turf/unsimulated/floor{
@@ -13551,9 +13536,14 @@
 	name = "power cable"
 	},
 /obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 9;
 	icon = 'icons/obj/power_cond.dmi';
-	icon_state = "2-8";
-	name = "power cable"
+	icon_state = "conduit";
+	layer = 2.5;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon_state = "plating_dusty1"
@@ -14105,6 +14095,7 @@
 "aWJ" = (
 /obj/securearea{
 	desc = "A poster that reads 'CLEAN HANDS SAVE LIVES'.";
+	icon = 'icons/obj/decals/posters.dmi';
 	icon_state = "chsl";
 	name = "CLEAN HANDS SAVE LIVES";
 	pixel_y = 32
@@ -16286,12 +16277,6 @@
 "bcs" = (
 /obj/decal/fakeobjects{
 	desc = "It's probably broken.";
-	icon = 'icons/obj/power.dmi';
-	icon_state = "sp_base";
-	name = "solar panel"
-	},
-/obj/decal/fakeobjects{
-	desc = "It's probably broken.";
 	dir = 10;
 	icon = 'icons/obj/power.dmi';
 	icon_state = "solar_panel";
@@ -16308,12 +16293,6 @@
 /obj/decal/fakeobjects{
 	desc = "It's probably broken.";
 	icon = 'icons/obj/power.dmi';
-	icon_state = "sp_base";
-	name = "solar panel"
-	},
-/obj/decal/fakeobjects{
-	desc = "It's probably broken.";
-	icon = 'icons/obj/power.dmi';
 	icon_state = "solar_panel-b";
 	name = "solar panel"
 	},
@@ -16325,12 +16304,6 @@
 	},
 /area/marsoutpost/duststorm)
 "bcu" = (
-/obj/decal/fakeobjects{
-	desc = "It's probably broken.";
-	icon = 'icons/obj/power.dmi';
-	icon_state = "sp_base";
-	name = "solar panel"
-	},
 /obj/decal/fakeobjects{
 	desc = "It's probably broken.";
 	dir = 6;
@@ -16686,12 +16659,6 @@
 "bdi" = (
 /obj/decal/fakeobjects{
 	desc = "It's probably broken.";
-	icon = 'icons/obj/power.dmi';
-	icon_state = "sp_base";
-	name = "solar panel"
-	},
-/obj/decal/fakeobjects{
-	desc = "It's probably broken.";
 	dir = 6;
 	icon = 'icons/obj/power.dmi';
 	icon_state = "solar_panel";
@@ -16706,12 +16673,6 @@
 	},
 /area/marsoutpost/duststorm)
 "bdj" = (
-/obj/decal/fakeobjects{
-	desc = "It's probably broken.";
-	icon = 'icons/obj/power.dmi';
-	icon_state = "sp_base";
-	name = "solar panel"
-	},
 /obj/decal/fakeobjects{
 	desc = "It's probably broken.";
 	icon = 'icons/obj/power.dmi';
@@ -16937,7 +16898,7 @@
 /area/lower_arctic/lower)
 "bdE" = (
 /obj/item/raw_material/shard/glass{
-	icon_state = "medium"
+	icon_state = "shard"
 	},
 /turf/unsimulated/floor/arctic/snow/ice,
 /area/lower_arctic/lower)
@@ -17157,7 +17118,8 @@
 	dir = 6;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon_state = "plating_dusty3"
@@ -17257,7 +17219,7 @@
 /area/lower_arctic/lower)
 "beu" = (
 /obj/item/raw_material/shard/glass{
-	icon_state = "medium"
+	icon_state = "shard"
 	},
 /obj/decal/cleanable/ash,
 /turf/unsimulated/floor/arctic/snow/ice,
@@ -17320,7 +17282,8 @@
 	dir = 9;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon_state = "plating_dusty2"
@@ -17437,7 +17400,8 @@
 	dir = 6;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon_state = "plating_dusty1"
@@ -17655,8 +17619,9 @@
 	dir = 10;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /obj/decal/fakeobjects/firelock_broken,
 /turf/unsimulated/floor{
@@ -18014,13 +17979,6 @@
 /obj/machinery/door/airlock,
 /turf/unsimulated/floor/grime,
 /area/marsoutpost)
-"bgA" = (
-/obj/item/raw_material/shard/glass{
-	icon_state = "small"
-	},
-/obj/grille/steel/broken,
-/turf/unsimulated/floor/arctic/snow,
-/area/upper_arctic/exterior/surface)
 "bgB" = (
 /obj/item/sheet/steel,
 /turf/unsimulated/floor/arctic/snow,
@@ -18507,7 +18465,7 @@
 /area/upper_arctic/exterior/surface)
 "bhU" = (
 /obj/item/raw_material/shard/glass{
-	icon_state = "medium"
+	icon_state = "shard"
 	},
 /obj/grille/steel/broken,
 /turf/unsimulated/floor/arctic/snow,
@@ -18518,7 +18476,7 @@
 /area/upper_arctic/exterior/surface)
 "bhW" = (
 /obj/item/raw_material/shard/glass{
-	icon_state = "medium"
+	icon_state = "shard"
 	},
 /turf/unsimulated/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
@@ -18722,7 +18680,8 @@
 	dir = 5;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /obj/item/tile/steel,
 /turf/unsimulated/floor{
@@ -19326,8 +19285,9 @@
 	dir = 10;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor/plating/scorched,
 /area/drone/engineering)
@@ -19338,7 +19298,8 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor/plating/scorched,
 /area/drone/engineering)
@@ -19349,7 +19310,8 @@
 	dir = 9;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -19357,7 +19319,9 @@
 	dir = 5;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor/plating/scorched,
 /area/drone/engineering)
@@ -19368,7 +19332,8 @@
 	dir = 6;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor/plating/scorched,
 /area/drone/engineering)
@@ -20574,7 +20539,8 @@
 	dir = 5;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /obj/decal/fakeobjects/oldcanister/plasma,
 /obj/decal/cleanable/dirt,
@@ -22389,7 +22355,7 @@
 "brJ" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "It seems to have been damaged somehow.";
-	dir = 1;
+	dir = 4;
 	icon = 'icons/obj/atmospherics/retro_filter.dmi';
 	icon_state = "intact_off";
 	name = "filter"
@@ -23381,6 +23347,7 @@
 "bur" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "It seems to have been damaged somehow.";
+	dir = 8;
 	icon = 'icons/obj/atmospherics/retro_filter.dmi';
 	icon_state = "intact_off";
 	name = "filter"
@@ -24236,8 +24203,9 @@
 	dir = 10;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/iomoon/base/underground)
@@ -24248,8 +24216,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/iomoon/base/underground)
@@ -24261,8 +24230,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/iomoon/base/underground)
@@ -24280,8 +24250,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/iomoon/base/underground)
@@ -24306,8 +24277,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/iomoon/base/underground)
@@ -24326,8 +24298,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/iomoon/base/underground)
@@ -24365,8 +24338,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/iomoon/base/underground)
@@ -24380,8 +24354,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/iomoon/base/underground)
@@ -25380,7 +25355,8 @@
 	dir = 6;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/iomoon/base/underground)
@@ -26263,7 +26239,7 @@
 "bBG" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "It seems to have been damaged somehow.";
-	dir = 8;
+	dir = 1;
 	icon = 'icons/obj/atmospherics/retro_filter.dmi';
 	icon_state = "intact_off";
 	name = "filter"
@@ -27237,8 +27213,9 @@
 	dir = 10;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/iomoon/base/underground)
@@ -30193,6 +30170,7 @@
 "bLB" = (
 /obj/securearea{
 	desc = "A poster that reads 'CLEAN HANDS SAVE CASH: Today's unwashed palm is tomorrow's class action suit!'.";
+	icon = 'icons/obj/decals/posters.dmi';
 	icon_state = "chsc";
 	name = "CLEAN HANDS SAVE CASH";
 	pixel_y = 30
@@ -36823,7 +36801,8 @@
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/meat_derelict/entry)
@@ -36834,8 +36813,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/meat_derelict/entry)
@@ -37017,8 +36997,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon_state = "floor"
@@ -37031,7 +37012,8 @@
 	dir = 5;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon_state = "floor"
@@ -37073,8 +37055,9 @@
 	dir = 10;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon_state = "floor"
@@ -37087,8 +37070,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor/orangeblack/side{
 	dir = 4
@@ -37620,8 +37604,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /obj/stool/chair,
 /turf/unsimulated/floor{
@@ -37933,9 +37918,7 @@
 /area/crunch)
 "ciX" = (
 /obj/item/tile/steel,
-/turf/unsimulated/floor/plating{
-	icon_state = ""
-	},
+/turf/unsimulated/floor/plating/damaged3,
 /area/crunch)
 "ciY" = (
 /obj/item/bananapeel,
@@ -38591,8 +38574,9 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 1.9;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/iomoon/base/underground)
@@ -39241,7 +39225,7 @@
 "clX" = (
 /obj/item/rods/steel,
 /obj/item/raw_material/shard/glass{
-	icon_state = "medium"
+	icon_state = "shard"
 	},
 /obj/decal/cleanable/blood{
 	icon_state = "floor6"
@@ -39259,7 +39243,7 @@
 	dir = 1
 	},
 /obj/item/raw_material/shard/glass{
-	icon_state = "small"
+	icon_state = "shard"
 	},
 /obj/grille/steel/broken,
 /turf/unsimulated/floor,
@@ -39296,7 +39280,7 @@
 	},
 /obj/dfissure_from{
 	density = 0;
-	icon_state = "";
+	icon_state = "fuk-u-voidzone";
 	invisibility = 101
 	},
 /turf/unsimulated/floor/delivery,
@@ -40950,7 +40934,9 @@
 /turf/unsimulated/floor/grass/leafy,
 /area/dojo/sakura)
 "crp" = (
-/obj/decal/fakeobjects/falseladder,
+/obj/decal/fakeobjects/falseladder{
+	icon_state = "ladder-square"
+	},
 /turf/unsimulated/floor/black,
 /area/cordon)
 "crq" = (
@@ -42633,8 +42619,9 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 1.9;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/iomoon/base/underground)
@@ -48844,8 +48831,9 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 1.9;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/iomoon/base/underground)
@@ -49070,8 +49058,9 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 1.9;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/iomoon/base/underground)
@@ -55932,8 +55921,9 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 1.9;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/iomoon/base/underground)
@@ -57537,8 +57527,9 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 1.9;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /obj/decal/fakeobjects/lighttube_broken{
 	dir = 4
@@ -57554,8 +57545,9 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 1.9;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon_state = "floor"
@@ -57568,16 +57560,18 @@
 	dir = 5;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
-	dir = 1;
+	dir = 6;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 1.9;
-	name = "power conduit"
+	layer = 2.5;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor,
 /area/meat_derelict/entry)
@@ -57588,8 +57582,9 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 1.9;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /obj/critter/domestic_bee/trauma,
 /turf/unsimulated/floor,
@@ -57607,10 +57602,12 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
-	dir = 5;
+	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon_state = "floor"
@@ -59844,9 +59841,10 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTH)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor/caution/north,
 /area/hospital/underground)
@@ -59913,9 +59911,10 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTH)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor{
 	icon_state = "floor"
@@ -60723,9 +60722,9 @@
 	dir = 10;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (SOUTHWEST)"
+	plane = -101
 	},
 /turf/unsimulated/floor{
 	icon_state = "floor"
@@ -61070,9 +61069,10 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTH)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor/plating/scorched,
 /area/hospital/underground)
@@ -61177,9 +61177,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (EAST)"
+	plane = -101
 	},
 /obj/securearea{
 	desc = "A warning sign which reads 'Radiation hazard'";
@@ -61221,9 +61221,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (EAST)"
+	plane = -101
 	},
 /turf/unsimulated/floor/plating/scorched,
 /area/hospital/underground)
@@ -61436,9 +61436,9 @@
 	dir = 10;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (SOUTHWEST)"
+	plane = -101
 	},
 /obj/decal/cleanable/blood/tracks{
 	dir = 9
@@ -61459,9 +61459,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (EAST)"
+	plane = -101
 	},
 /obj/decal/cleanable/blood/tracks{
 	dir = 6
@@ -61479,7 +61479,8 @@
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
-	tag = "icon-conduit (NORTHEAST)"
+	plane = -101;
+	tag = null
 	},
 /turf/unsimulated/floor/plating/scorched,
 /area/hospital/underground)
@@ -63155,7 +63156,7 @@
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "mhelp conduit";
-	tag = "icon-conduit (EAST)"
+	plane = -101
 	},
 /turf/unsimulated/floor/wood/eight{
 	dir = 4
@@ -64615,8 +64616,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor/circuit,
 /area/centcom/offices{
@@ -72744,9 +72746,10 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTH)"
+	plane = -101;
+	tag = null
 	},
 /turf/space,
 /turf/unsimulated/floor/engine/caution/corner2{
@@ -73382,9 +73385,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (EAST)"
+	plane = -101
 	},
 /turf/space,
 /turf/unsimulated/floor/engine,
@@ -73713,9 +73716,9 @@
 	dir = 10;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (SOUTHWEST)"
+	plane = -101
 	},
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -73723,9 +73726,9 @@
 	dir = 4;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (EAST)"
+	plane = -101
 	},
 /turf/space,
 /turf/unsimulated/floor/engine,
@@ -73949,7 +73952,8 @@
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
-	name = "power conduit"
+	name = "power conduit";
+	plane = -101
 	},
 /turf/space,
 /turf/space,
@@ -74365,9 +74369,10 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTH)"
+	plane = -101;
+	tag = null
 	},
 /turf/space,
 /turf/unsimulated/floor/engine/caution/corner{
@@ -74596,9 +74601,10 @@
 	dir = 1;
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
-	layer = 2.5;
+	layer = 2.1;
 	name = "power conduit";
-	tag = "icon-conduit (NORTH)"
+	plane = -101;
+	tag = null
 	},
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -74607,7 +74613,8 @@
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
-	tag = "icon-conduit (NORTHEAST)"
+	plane = -101;
+	tag = null
 	},
 /turf/space,
 /turf/unsimulated/floor/engine/caution/east,
@@ -74972,6 +74979,21 @@
 	name = "plating"
 	},
 /area/hospital/samostrel)
+"oZu" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/unsimulated/floor{
+	name = "plating"
+	},
+/area/hospital/underground)
 "oZS" = (
 /obj/machinery/light,
 /obj/table/wood/auto/desk,
@@ -76198,7 +76220,8 @@
 	icon = 'icons/obj/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
-	name = "mhelp conduit"
+	name = "mhelp conduit";
+	plane = -101
 	},
 /turf/unsimulated/floor/wood/eight{
 	dir = 4
@@ -77448,6 +77471,25 @@
 /obj/disposalpipe/segment/vertical,
 /turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
+"vVI" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/machinery/light/small/iomoon{
+	name = "maintenance light";
+	tag = ""
+	},
+/turf/unsimulated/floor{
+	name = "plating"
+	},
+/area/hospital/underground)
 "vWb" = (
 /obj/stool/chair/office/purple{
 	dir = 1
@@ -77458,6 +77500,29 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"vWS" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 6;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.5;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 1;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.5;
+	name = "power conduit";
+	plane = -101
+	},
+/turf/unsimulated/floor/caution/west,
+/area/hospital/samostrel)
 "vWX" = (
 /obj/landmark/load_prefab_shuttledmm/cog2,
 /turf/unsimulated/outdoors/grass,
@@ -77516,7 +77581,7 @@
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "mhelp conduit";
-	tag = "icon-conduit (SOUTHWEST)"
+	plane = -101
 	},
 /turf/unsimulated/floor/wood/eight{
 	dir = 4
@@ -82549,7 +82614,7 @@ aKX
 aLq
 aLN
 aLN
-bgA
+bhU
 bgS
 bhd
 bhw
@@ -130755,7 +130820,7 @@ aCq
 aDL
 aEe
 aCK
-aFA
+oZu
 aCK
 doE
 aCr
@@ -131057,7 +131122,7 @@ aBZ
 aBZ
 aCo
 aEU
-aFA
+oZu
 aCK
 doL
 dpy
@@ -131359,7 +131424,7 @@ aBZ
 aBZ
 aCo
 aCK
-aFA
+oZu
 aGx
 aDf
 aCq
@@ -131661,7 +131726,7 @@ aBZ
 aBZ
 aCo
 aCK
-aFA
+oZu
 aCK
 aCo
 aBZ
@@ -132265,7 +132330,7 @@ aBZ
 aCo
 aEg
 aCK
-aFA
+oZu
 aHq
 aCo
 aBZ
@@ -132567,7 +132632,7 @@ aBZ
 aCo
 aEA
 aCK
-aFA
+oZu
 aCK
 aCo
 aBZ
@@ -132869,7 +132934,7 @@ aBZ
 aCo
 aEC
 aCr
-aFA
+oZu
 aCK
 aCp
 aCq
@@ -133171,7 +133236,7 @@ aBZ
 aCp
 aEe
 aCr
-aFA
+oZu
 aCK
 aCK
 dpD
@@ -133473,7 +133538,7 @@ aBZ
 aBZ
 aCo
 aCK
-aFA
+oZu
 aCa
 aCq
 aCq
@@ -134387,7 +134452,7 @@ aCo
 aCo
 aDF
 aGQ
-aFA
+oZu
 aCo
 aBZ
 aaa
@@ -134689,7 +134754,7 @@ aCo
 aCo
 aCo
 dtX
-aFA
+oZu
 aCo
 aBZ
 aaa
@@ -134990,8 +135055,8 @@ aCq
 aCq
 aCq
 aEf
-aFA
-aFA
+oZu
+oZu
 aCo
 aBZ
 aaa
@@ -135292,8 +135357,8 @@ aEc
 dpL
 aCK
 aCK
-aFA
-aFA
+oZu
+oZu
 aCo
 aBZ
 aaa
@@ -135594,8 +135659,8 @@ aCq
 aCq
 aCq
 aEe
-aFA
-aFA
+oZu
+oZu
 aCo
 aBZ
 aaa
@@ -135896,8 +135961,8 @@ aGV
 aGV
 dce
 aDz
-aFA
-aFA
+oZu
+oZu
 aCo
 aBZ
 aaa
@@ -136198,8 +136263,8 @@ dpE
 dsr
 dpw
 dsZ
-aFA
-aHt
+oZu
+vVI
 aCo
 aBZ
 aaa
@@ -136493,15 +136558,15 @@ aaa
 aBZ
 aCo
 aCK
-aFA
+oZu
 aDF
 aEG
 aFR
 aFR
 dpw
 aDF
-aFA
-aFA
+oZu
+oZu
 aCo
 aBZ
 aaa
@@ -136795,7 +136860,7 @@ aaa
 aBZ
 aCo
 aCK
-aFA
+oZu
 aCo
 dpr
 aGW
@@ -136803,7 +136868,7 @@ aGW
 dnX
 aCo
 dtX
-aFA
+oZu
 aCo
 aBZ
 aaa
@@ -137097,7 +137162,7 @@ aBZ
 aBZ
 aCo
 aCK
-aFA
+oZu
 aCp
 aDf
 aCq
@@ -137105,7 +137170,7 @@ aCq
 aDf
 aEf
 dub
-aFA
+oZu
 aCo
 aBZ
 aaa
@@ -137399,7 +137464,7 @@ aCq
 aCq
 aDd
 aCK
-aFA
+oZu
 aHs
 aCo
 aBZ
@@ -138004,7 +138069,7 @@ aDZ
 aDd
 aEZ
 aGU
-aFA
+oZu
 aED
 aCq
 aCq
@@ -138606,9 +138671,9 @@ aCo
 aDb
 aCK
 aEE
-aFA
+oZu
 aCK
-aFA
+oZu
 aDD
 aEG
 dpw
@@ -138908,9 +138973,9 @@ aCo
 aDc
 aCK
 aDF
-aFA
+oZu
 aCK
-aFA
+oZu
 aDF
 dpG
 dnX
@@ -139210,9 +139275,9 @@ aCp
 aCq
 aCq
 aDd
-aFA
+oZu
 aCK
-aFA
+oZu
 aED
 aCq
 aCq
@@ -160561,7 +160626,7 @@ aoH
 anM
 aqz
 agm
-asg
+ate
 atb
 abn
 abn
@@ -161461,10 +161526,10 @@ abn
 agm
 ahg
 amj
-amW
+apy
 anO
 aoJ
-apy
+vWS
 anO
 arw
 ahg

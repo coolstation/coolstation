@@ -182,13 +182,13 @@
 		var/damage = 0
 		var/damage_mult = 1
 		switch(severity)
-			if(1)
+			if(OLD_EX_SEVERITY_1)
 				damage = rand(30,50)
 				damage_mult = 8
-			if(2)
+			if(OLD_EX_SEVERITY_2)
 				damage = rand(25,40)
 				damage_mult = 4
-			if(3)
+			if(OLD_EX_SEVERITY_3)
 				damage = rand(10,20)
 				damage_mult = 2
 				if (prob(5))

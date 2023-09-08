@@ -21,16 +21,16 @@
 
 /obj/displaycase/ex_act(severity)
 	switch(severity)
-		if (1)
+		if (OLD_EX_SEVERITY_1)
 			var/obj/item/raw_material/shard/glass/G = new()
 			G.set_loc(src.loc)
 
 			qdel(src)
-		if (2)
+		if (OLD_EX_SEVERITY_2)
 			if (prob(50))
 				src.health -= 15
 				src.healthcheck()
-		if (3)
+		if (OLD_EX_SEVERITY_3)
 			if (prob(50))
 				src.health -= 5
 				src.healthcheck()

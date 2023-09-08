@@ -218,13 +218,13 @@
 		// Basically, explosions will pop windows real good now.
 
 		switch(severity)
-			if(1)
+			if(OLD_EX_SEVERITY_1)
 				src.damage_blunt(rand(150, 250), 1)
 				src.damage_heat(rand(150, 250), 1)
-			if(2)
+			if(OLD_EX_SEVERITY_2)
 				src.damage_blunt(rand(50, 100))
 				src.damage_heat(rand(50, 100))
-			if(3)
+			if(OLD_EX_SEVERITY_3)
 				src.damage_blunt(rand(10, 25))
 				src.damage_heat(rand(10, 25))
 

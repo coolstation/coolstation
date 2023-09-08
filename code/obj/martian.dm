@@ -4,6 +4,7 @@
 	icon = 'icons/turf/martian.dmi'
 	icon_state = "display_scroll"
 	anchored = 1
+	plane = PLANE_NOSHADOW_BELOW
 
 /obj/crevice
 	name ="Mysterious Crevice"
@@ -13,6 +14,7 @@
 	anchored = 1
 	var/used = 0
 	var/id = null
+	plane = PLANE_NOSHADOW_BELOW
 
 /obj/crevice/attack_hand(var/mob/user as mob)
 	if(..())

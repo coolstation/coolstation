@@ -211,7 +211,7 @@
 							plastic_spoon.break_utensil(M)
 							utensil = null
 
-					if (!utensil && (needfork || needspoon))
+					if (!utensil && (needfork || needspoon) && !user.traitHolder.hasTrait("greedy_beast"))
 						if (needfork && needspoon)
 							boutput(M, "<span class='alert'>You need a fork or spoon to eat [src]!</span>")
 						else if (needfork)
@@ -517,6 +517,7 @@
 */
 
 	on_reagent_change()
+		..()
 		//update_gulp_size() //broken, so commenting it out here too
 		doants = src.reagents && src.reagents.total_volume > 0
 

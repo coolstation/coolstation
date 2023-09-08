@@ -108,6 +108,7 @@
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "river"
 	anchored = 1
+	plane = PLANE_NOSHADOW_BELOW //You'd be amazed at what has depth shadows in space
 
 /obj/stone
 	name = "Stone"

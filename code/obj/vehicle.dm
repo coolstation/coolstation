@@ -78,20 +78,20 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				for(var/atom/movable/A as mob|obj in src)
 					A.set_loc(src.loc)
 					A.ex_act(severity)
 				qdel(src)
 
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if (prob(50))
 					for(var/atom/movable/A as mob|obj in src)
 						A.set_loc(src.loc)
 						A.ex_act(severity)
 					qdel(src)
 
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				if (prob(25))
 					for(var/atom/movable/A as mob|obj in src)
 						A.set_loc(src.loc)
@@ -1981,7 +1981,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 			if(istype(O, /obj/critter))
 				O:CritterDeath()
 			if(!isnull(O) && is_badmin_bus)
-				O:ex_act(2)
+				O:ex_act(OLD_EX_HEAVY)
 			in_bump = 0
 			return
 	in_bump = 0

@@ -962,7 +962,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 					src.visible_message("<span class='alert'>[src] produces a terrifying vibration!</span>")
 					for(var/atom/A in orange(3, src))
 						if(!(ismob(A) || iscritter(A))) //only target inanimate objects mostly
-							A.ex_act(1)
+							A.ex_act(OLD_EX_TOTAL)
 				sleep(1 SECOND)
 				if (health <= 0)
 					set_dir(2)

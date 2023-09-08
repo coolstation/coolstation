@@ -874,7 +874,7 @@
 				else if(prob(64) && !istype(S, /obj/critter))
 					leavescan(get_turf(S), 1)
 					fireflash(locate(point_x,point_y,src.z), 0)
-					S.ex_act(1)
+					S.ex_act(OLD_EX_TOTAL)
 		return
 
 

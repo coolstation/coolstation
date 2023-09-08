@@ -13,9 +13,11 @@
 	initial_volume = 50
 	var/image/fluid_image
 	var/icon_style = "beaker"
-	rc_flags = RC_SCALE | RC_VISIBLE | RC_SPECTRO
+	inventory_counter_enabled = TRUE
+	rc_flags = RC_SCALE | RC_VISIBLE | RC_SPECTRO | RC_INV_COUNT_AMT// | RC_INV_COUNT_USE
 
 	on_reagent_change()
+		..() //FUCK YOU
 		src.update_icon()
 
 	proc/update_icon()

@@ -1239,10 +1239,10 @@
 
 						if (T.density)
 							for (var/atom/A in T)
-								A.ex_act(1)
+								A.ex_act(OLD_EX_TOTAL)
 
 							if (istype(T, /turf/wall) && isconstructionturf(T))
-								T.ex_act(1)
+								T.ex_act(OLD_EX_TOTAL)
 							else
 								T.ReplaceWithSpaceForce()
 						else
@@ -1284,7 +1284,7 @@
 
 	on_hit(atom/hit)
 		if (istype(hit, /turf))
-			hit.ex_act(1 + prob(50))
+			hit.ex_act(prob(50) ? OLD_EX_TOTAL : OLD_EX_HEAVY)
 
 		return
 

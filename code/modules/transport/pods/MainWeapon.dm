@@ -505,10 +505,10 @@
 			playsound(M.loc, "sound/impact_sounds/burn_sizzle.ogg", 70, 1)
 		var/turf/simulated/T = locate(point_x,point_y,ship.loc.z)
 		if(T && prob(100 - (10 * increment)))
-			T.ex_act(1)
+			T.ex_act(OLD_EX_TOTAL)
 		for (var/obj/S in locate(point_x,point_y,ship.loc.z))
 			if(prob(50 - (10 * increment)))
-				S.ex_act(1)
+				S.ex_act(OLD_EX_TOTAL)
 		return
 
 //Used by: Mk. 2 Scout Laser pod weapon

@@ -43,19 +43,19 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				if(prob(50))
 					src.ReplaceWithSpace()
 				else
 					src.ReplaceWithLattice()
 
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if(prob(80))
 					src.break_tile_to_plating()
 				else
 					src.break_tile()
 				src.hotspot_expose(1000,CELL_VOLUME)
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				if (prob(50))
 					src.break_tile()
 					src.hotspot_expose(1000,CELL_VOLUME)

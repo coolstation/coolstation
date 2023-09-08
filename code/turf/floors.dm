@@ -1347,14 +1347,14 @@ DEFINE_FLOORS(techfloor/green,
 	return ..()
 
 /turf/floor/burn_down()
-	src.ex_act(2)
+	src.ex_act(OLD_EX_HEAVY)
 
 /turf/floor/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			src.ReplaceWithSpace()
 
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			switch(pick(1,2;75,3))
 				if (1)
 					if(prob(33))
@@ -1380,7 +1380,7 @@ DEFINE_FLOORS(techfloor/green,
 					else
 						src.break_tile()
 					src.hotspot_expose(1000,CELL_VOLUME)
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if (prob(50))
 				src.break_tile()
 				src.hotspot_expose(1000,CELL_VOLUME)

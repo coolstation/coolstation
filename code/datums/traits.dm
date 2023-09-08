@@ -881,6 +881,15 @@ obj/trait/pilot
 	points = 1
 	isPositive = 0
 
+/obj/trait/addictive_personality // you will just take a bite out of an unsliced pizza or a cigarette
+	name = "Greedy Beast (-1)"
+	cleanName = "Greedy Beast"
+	desc = "You don't really have any qualms about how you eat stuff. And sometimes what you eat."
+	id = "greedy_beast"
+	icon_state = "greedybeast"
+	points = -1
+	isPositive = 0
+
 /obj/trait/clown_disbelief
 	name = "Clown Disbelief (0)"
 	cleanName = "Clown Disbelief"
@@ -1081,57 +1090,57 @@ obj/trait/pilot
 	isPositive = 0
 
 /obj/trait/lizard
-	name = "Reptilian (-1) \[Species\]"
+	name = "Reptilian (0) \[Species\]"
 	cleanName = "Reptilian"
 	icon_state = "lizardT"
-	desc = "You are an abhorrent humanoid reptile, cold-blooded and ssssibilant."
+	desc = "You are a scaly humanoid reptile, cold-blooded and ssssibilant."
 	id = "lizard"
-	points = -1
-	isPositive = 1
+	points = 0
+	isPositive = 0
 	category = "species"
 	mutantRace = /datum/mutantrace/lizard
 
 /obj/trait/cow
-	name = "Bovine (-1) \[Species\]"
+	name = "Bovine (0) \[Species\]"
 	cleanName = "Bovine"
 	icon_state = "cowT"
 	desc = "You are a hummman, always have been, always will be, and any claimmms to the contrary are mmmoooonstrous lies."
 	id = "cow"
-	points = -1
-	isPositive = 1
+	points = 0
+	isPositive = 0
 	category = "species"
 	mutantRace = /datum/mutantrace/cow
 
 /obj/trait/fert
-	name = "Musteline (-1) \[Species\]"
+	name = "Musteline (0) \[Species\]"
 	cleanName = "Musteline"
 	icon_state = "fertT"
 	desc = "Now everyone will know your stinky secret."
 	id = "fert"
-	points = -1
-	isPositive = 1
+	points = 0
+	isPositive = 0
 	category = "species"
 	mutantRace = /datum/mutantrace/fert
 
 /obj/trait/skeleton
-	name = "Skeleton (-2) \[Species\]"
+	name = "Skeleton (-1) \[Species\]"
 	cleanName = "Skeleton"
 	icon_state = "skeletonT"
 	desc = "Compress all of your skin and flesh into your bones, making you resemble a skeleton. Not as uncomfortable as it sounds."
 	id = "skeleton"
-	points = -2
+	points = -1
 	isPositive = 1
 	category = "species"
 	mutantRace = /datum/mutantrace/skeleton
 
 /obj/trait/roach
-	name = "Roach (-1) \[Species\]"
+	name = "Roach (0) \[Species\]"
 	cleanName = "Roach"
 	icon_state = "roachT"
 	desc = "One space-morning, on the shuttle-ride to the station, you found yourself transformed in your seat into a horrible vermin. A cockroach, specifically."
 	id = "roach"
-	points = -1
-	isPositive = 1
+	points = 0
+	isPositive = 0
 	category = "species"
 	mutantRace = /datum/mutantrace/roach
 

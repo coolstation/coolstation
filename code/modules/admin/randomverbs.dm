@@ -2886,3 +2886,16 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 		logTheThing("admin", usr, AM, "has shipped [AM] to cargo.")
 		logTheThing("diary", usr, AM, "has shipped [AM] to cargo.", "admin")
 		message_admins("[key_name(usr)] has shipped [AM] to cargo.")
+
+/client/proc/cmd_make_radio(atom/movable/AM)
+	SET_ADMIN_CAT(ADMIN_CAT_UNUSED)
+	set name = "Make a Radio"
+	set popup_menu = 0
+	admin_only
+
+	if(alert("Make this thing receive radio broadcasts? This can't be undone",,"Yes","No")=="No")
+		return
+	var/channel = input(usr, "Give the id of the channel the thing should be tuned to", "Channel", TR_CAT_TEEVEE_BROADCAST_RECEIVERS) as null|text
+	if (!(channel))
+		return
+	OTHER_SUB_BROADCAST(AM, channel, 1)

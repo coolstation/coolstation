@@ -1445,7 +1445,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 						step_away(N, user)
 						step_away(N, user)
 					else if (isobj(A) || isturf(A))
-						A.ex_act(3)
+						A.ex_act(OLD_EX_LIGHT)
 		else
 			..()
 
