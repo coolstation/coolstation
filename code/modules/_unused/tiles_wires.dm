@@ -95,7 +95,7 @@ TILES
 		boutput(user, "<span class='notice'>You finish stacking tiles.</span>")
 
 	proc/build(turf/S as turf)
-		var/turf/simulated/floor/W = S.ReplaceWithFloor()
+		var/turf/floor/W = S.ReplaceWithFloor()
 		if (!W.icon_old)
 			W.icon_old = "floor"
 		W.to_plating()

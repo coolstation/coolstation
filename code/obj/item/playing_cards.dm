@@ -77,7 +77,7 @@
 			..()
 
 	afterattack(var/atom/A as turf, var/mob/user as mob, reach, params) //handling the ability to place cards on the floor
-		if(istype(A,/turf/simulated/floor) || istype(A,/turf/unsimulated/floor))
+		if(istype(A,/turf/floor) || istype(A,/turf/unsimulated/floor))
 			user.u_equip(src)
 			src.set_loc(A)
 			if(islist(params) && params["icon-y"] && params["icon-x"])
@@ -419,7 +419,7 @@
 			..()
 
 	afterattack(var/atom/A as turf, var/mob/user as mob, reach, params)
-		if(istype(A,/turf/simulated/floor) || istype(A,/turf/unsimulated/floor))
+		if(istype(A,/turf/floor) || istype(A,/turf/unsimulated/floor))
 			user.u_equip(src)
 			src.set_loc(A)
 			if(islist(params) && params["icon-y"] && params["icon-x"])

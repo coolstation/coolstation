@@ -10,7 +10,7 @@
 /turf/proc/CardinalTurfsWithAccessSpace(var/obj/item/card/id/ID)
 	var/L[] = new()
 	for(var/d in cardinal)
-		var/turf/simulated/T = get_step(src, d)
+		var/turf/T = get_step(src, d)
 		if((istype(T) || istype(T,/turf/space))&& !T.density)
 			if(!LinkBlockedWithAccess(src, T, ID))
 				L.Add(T)

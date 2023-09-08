@@ -2213,7 +2213,7 @@ Returns:
 					M.changeStatus("weakened", 2 SECONDS)
 					random_burn_damage(M, 10)
 
-				if(istype(T, /turf/floor)) //ATMOSSIMSTODO - was turf/simulated/floor
+				if(istype(T, /turf/floor)) //ATMOSSIMSTODO - was turf/floor
 					if(!T:broken)
 						if(T:burnt)
 							T:break_tile()

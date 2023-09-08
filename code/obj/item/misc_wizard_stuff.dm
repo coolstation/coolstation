@@ -272,7 +272,7 @@
 
 		/*var/corrupt = 0
 		var/count = 0
-		for(var/turf/simulated/floor/T in world)
+		for(var/turf/floor/T in world)
 			LAGCHECK(LAG_LOW)
 			if(T.z != 1) continue
 			count++

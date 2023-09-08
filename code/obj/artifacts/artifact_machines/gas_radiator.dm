@@ -84,7 +84,7 @@
 			return
 		if(src.gas_amount_current < src.gas_amount)
 			src.gas_amount_current = min(src.gas_amount_current + src.gas_amount_growth, src.gas_amount)
-		var/turf/simulated/L = get_turf(O)
+		var/turf/L = get_turf(O)
 		if(istype(L))
 			var/datum/gas_mixture/gas = new()
 			switch(src.gas_type)

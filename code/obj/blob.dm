@@ -1111,7 +1111,7 @@
 		absorbed_temp += temptemp * 0.25 + 50
 		temptemp *= 0.75
 		temptemp -= 50
-		for (var/turf/simulated/floor/T in range(protect_range,src))
+		for (var/turf/floor/T in range(protect_range,src))
 			var/datum/gas_mixture/air = T.air
 			if (air.temperature > T20C)
 				air.temperature /= 2
@@ -1151,7 +1151,7 @@
 		if (..())
 			return 1
 		var/toxins_consumed = 0
-		for (var/turf/simulated/floor/T in range(protect_range,src))
+		for (var/turf/floor/T in range(protect_range,src))
 			var/datum/gas_mixture/air = T.air
 			if (air.toxins > 0)
 				if (air.temperature > T20C)

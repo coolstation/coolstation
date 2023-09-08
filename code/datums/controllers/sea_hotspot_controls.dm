@@ -110,7 +110,7 @@
 							else
 								turf_color = "other"
 #ifdef DEBUG_ORE_GENERATION
-					if (istype(T, /turf/simulated/wall/asteroid) && T:ore)
+					if (istype(T, /turf/wall/asteroid) && T:ore)
 						turf_color = "ore"
 #endif
 

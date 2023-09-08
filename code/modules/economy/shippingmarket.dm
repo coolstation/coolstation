@@ -263,7 +263,7 @@
 			for(var/turf/T in get_area_turfs(/area/shuttle/cargo/hub))
 				if(T.density)
 					continue
-				if(istype(T, /turf/space/) || istype(T, /turf/simulated/floor/caution))
+				if(istype(T, /turf/space/) || istype(T, /turf/floor/caution))
 					continue
 				else
 					var/dense = 0
@@ -346,8 +346,8 @@
 		var/list/turf/to_clear = block(locate(min_x, min_y, Z_LEVEL_STATION), locate(max_x, max_y, Z_LEVEL_STATION))
 		for(var/turf/T as anything in to_clear)
 			//Wacks asteroids and skip normal turfs that belong
-			if(istype(T, /turf/simulated/wall/asteroid))
-				T.ReplaceWith(/turf/simulated/floor/plating/airless/asteroid, force=TRUE)
+			if(istype(T, /turf/wall/asteroid))
+				T.ReplaceWith(/turf/floor/plating/airless/asteroid, force=TRUE)
 				continue
 			else if(istype(T, /turf/space) issimulatedturf(T)) //used to check for turf/unsimulated, I hope adding the space check was the right thing to do
 				continue

@@ -391,7 +391,7 @@
 		var/extra_spreads = round(owner.multi_spread / 100) + (prob(owner.multi_spread % 100) ? 1 : 0)
 		if (extra_spreads)
 			var/list/spreadability = list()
-			for (var/turf/simulated/floor/Q in view(7, owner))
+			for (var/turf/floor/Q in view(7, owner))
 				if (locate(/obj/blob) in Q)
 					continue
 				var/obj/blob/B3 = Q.can_blob_spread_here(null, null, isadmin(owner))
@@ -835,7 +835,7 @@
 		if (!tutorial_check("bridge", T))
 			return 1
 
-		var/turf/simulated/floor/blob/B = T.ReplaceWith(/turf/simulated/floor/blob, FALSE, TRUE, FALSE)
+		var/turf/floor/blob/B = T.ReplaceWith(/turf/floor/blob, FALSE, TRUE, FALSE)
 		B.setOvermind(owner)
 		src.deduct_bio_points()
 		src.do_cooldown()

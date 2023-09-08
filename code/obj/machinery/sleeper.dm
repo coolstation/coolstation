@@ -725,7 +725,7 @@
 		if (get_dist(over_object, src) > 1)
 			usr.show_text("The [src.name] is too far away from the target!", "red")
 			return
-		if (!istype(over_object,/turf/simulated/floor/))
+		if (!istype(over_object,/turf/floor/))
 			usr.show_text("You can't set this target as the home location.", "red")
 			return
 

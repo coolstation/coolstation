@@ -645,7 +645,7 @@ datum
 				var/mob/M = A
 				M.on_reagent_react(src, method, react_volume)
 
-			var/turf/simulated/floor/fluid_turf
+			var/turf/floor/fluid_turf
 			var/datum/reagents/temp_fluid_reagents
 			if (issimulatedturf(A))
 				fluid_turf = A

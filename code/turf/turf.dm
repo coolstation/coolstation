@@ -678,11 +678,11 @@ proc/generate_space_color()
 			if (map_settings)
 				new_turf = new map_settings.walls (src)
 			else
-				new_turf = new /turf/simulated/wall(src)
+				new_turf = new /turf/wall(src)
 		if ("Unsimulated Floor") //AREASIMSTODO
 			new_turf = new /turf/unsimulated/floor(src)
 		if ("Plating")
-			new_turf = new /turf/simulated/floor/plating/random(src)
+			new_turf = new /turf/floor/plating/random(src)
 		else
 			new_turf = new /turf/space(src)
 

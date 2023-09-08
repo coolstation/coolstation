@@ -596,7 +596,7 @@ var/mutable_appearance/fluid_ma
 		else
 			var/dirs = 0
 			for (var/dir in cardinal)
-				var/turf/simulated/T = get_step(src, dir)
+				var/turf/T = get_step(src, dir)
 				if (T && T.active_liquid && T.active_liquid.group == src.group)
 					dirs |= dir
 			icon_state = num2text(dirs)

@@ -124,7 +124,7 @@
 		return
 
 	attackby(var/obj/item/W as obj, mob/user as mob)
-		//Wire: Fix for: undefined proc or verb /turf/simulated/floor/set loc()
+		//Wire: Fix for: undefined proc or verb /turf/floor/set loc()
 		//		like somehow a dude tried to load a turf? how the fuck? whatever just kill me
 		if (!istype(W))
 			return
@@ -214,7 +214,7 @@
 			src.output_location = O.loc
 			boutput(usr, "<span class='notice'>You set the processor to output on top of [O]!</span>")
 
-		else if (istype(over_object,/turf/simulated/floor/))
+		else if (istype(over_object,/turf/floor/))
 			src.output_location = over_object
 			boutput(usr, "<span class='notice'>You set the processor to output to [over_object]!</span>")
 

@@ -72,7 +72,7 @@ ABSTRACT_TYPE(/datum/fishing_spot)
 	fishing_atom_type = /turf/unsimulated/floor/polarispit
 
 /datum/fishing_spot/test
-	fishing_atom_type = /turf/simulated/floor/ancient
+	fishing_atom_type = /turf/floor/ancient
 	fish_available = list(/obj/item/fish/carp = 40,\
 	/obj/item/fish/bass = 30,\
 	/obj/item/fish/salmon = 20,\
@@ -164,7 +164,7 @@ ABSTRACT_TYPE(/datum/fishing_spot)
 	/obj/item/reagent_containers/food/snacks/haggis = 1) //snake, custard, and haggis are nethack references, haggis is a meat "pudding"
 
 /datum/fishing_spot/pool
-	fishing_atom_type = /turf/simulated/pool
+	fishing_atom_type = /turf/pool
 	fish_available = list(/obj/item/fish/carp = 400,\
 	/obj/item/fish/bass = 300,\
 	/obj/item/fish/salmon = 200,\

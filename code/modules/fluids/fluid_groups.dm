@@ -559,7 +559,7 @@
 				else
 					var/dirs = 0
 					for (var/dir in cardinal)
-						var/turf/simulated/T = get_step(F, dir)
+						var/turf/T = get_step(F, dir)
 						if (T && T.active_liquid && T.active_liquid.group == F.group)
 							dirs |= dir
 					fluid_ma.icon_state = num2text(dirs)

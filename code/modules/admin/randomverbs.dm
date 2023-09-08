@@ -597,7 +597,7 @@
 	set desc = "Resets the air contents of every turf in view to normal."
 	admin_only
 	SPAWN_DBG(0)
-		for(var/turf/simulated/T in view())
+		for(var/turf/T in view())
 			if(!T.air)
 				continue
 			ZERO_BASE_GASES(T.air)
@@ -2662,7 +2662,7 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 	if(holder && src.holder.level >= LEVEL_ADMIN)
 		switch(alert("Holy shit are you sure?! This is going to turn the walls into crushers!",,"Yes","No"))
 			if("Yes")
-				for(var/turf/simulated/wall/W in world)
+				for(var/turf/wall/W in world)
 					if (W.z != 1) continue
 					var/obj/machinery/crusher/O = locate() in W.contents //in case someone presses it again
 					if (O) continue

@@ -343,7 +343,7 @@
 				else
 					return C
 
-		else if (istype(src.output_target,/turf/simulated/floor/))
+		else if (istype(src.output_target,/turf/floor/))
 			return src.output_target
 
 		else

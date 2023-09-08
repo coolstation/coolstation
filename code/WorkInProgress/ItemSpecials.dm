@@ -1755,8 +1755,8 @@
 				afterUse(user)
 
 				if (!hit)
-					if (istype(turf,/turf/simulated/floor))
-						var/turf/simulated/floor/F = turf
+					if (istype(turf,/turf/floor))
+						var/turf/floor/F = turf
 						var/obj/item/tile = F.pry_tile(master, user, params)
 						if (tile)
 							hit = 1

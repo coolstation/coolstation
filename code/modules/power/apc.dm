@@ -180,7 +180,7 @@ var/zapLimiter = 0
 
 			for (var/direction in cardinal)
 				testturf = get_step(ourturf, direction)
-				if (!istype(testturf, /turf/simulated/floor)) //In case we're in-room but the adjacent wall happens to be maint-owned
+				if (!istype(testturf, /turf/floor)) //In case we're in-room but the adjacent wall happens to be maint-owned
 					continue //If we are actually located in maint there should be a maint floor adjactent to us, unless you've mapped a 1 tile wide dead end lined with APCs I guess :p
 				if ((locate(/obj/window) in testturf) || locate(/obj/wingrille_spawn) in testturf)//fuck u destiny
 					continue

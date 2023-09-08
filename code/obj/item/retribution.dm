@@ -159,9 +159,9 @@
 				if(window_step == 0)
 					create_scan_decal = true
 					scan_target.ex_act(OLD_EX_TOTAL)
-		if(istype(T, /turf/simulated/wall))
+		if(istype(T, /turf/wall))
 			create_scan_decal = true
-			T = T.ReplaceWith(/turf/simulated/floor/plating/random)
+			T = T.ReplaceWith(/turf/floor/plating/random)
 		if(create_scan_decal)
 			leavescan(T, 1)
 			playsound(T, "sound/effects/smoke_tile_spread.ogg", 50, 1)

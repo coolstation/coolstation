@@ -2474,7 +2474,7 @@
 				if(!L || !L["x"] || !L["y"]) return
 				var/search_x = text2num(L["x"])
 				var/search_y = text2num(L["y"])
-				var/turf/simulated/new_target = locate(search_x,search_y,master.z)
+				var/turf/new_target = locate(search_x,search_y,master.z)
 				if(!new_target)
 					return
 
@@ -2515,7 +2515,7 @@
 		name = "rumpus"
 		handle_beacons = 1
 		task_id = "RUMPUS"
-		var/tmp/turf/simulated/bar_beacon_turf	//Location of bar beacon
+		var/tmp/turf/bar_beacon_turf	//Location of bar beacon
 		var/tmp/obj/stool/our_seat = null
 		var/tmp/awaiting_beacon = 0
 		var/tmp/nav_delay = 0
@@ -3812,7 +3812,7 @@
 
 		proc/look_for_neat_thing()
 			var/area/spaceArea = get_area(src.master)
-			if (!(src.neat_things & NT_SPACE) && spaceArea && spaceArea.name == "Space" && !istype(get_turf(src.master), /turf/simulated/shuttle))
+			if (!(src.neat_things & NT_SPACE) && spaceArea && spaceArea.name == "Space" && !istype(get_turf(src.master), /turf/shuttle))
 				FOUND_NEAT(NT_SPACE)
 					src.speak_with_maptext(pick("While you find yourself surrounded by space, please try to avoid the temptation to inhale any of it.  That doesn't work.",\
 					"Space: the final frontier.  Oh, except for time travel and any other dimensions.  And frontiers on other planets, including other planets in those other dimensions and times.  Maybe I should stick with \"space: a frontier.\"",\

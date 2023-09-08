@@ -20,11 +20,11 @@ change the direction of created objects.<br>
 				var/turf/T = object
 				T.ReplaceWithFloor()
 				return
-			else if(istype(object,/turf/simulated/floor))
+			else if(istype(object,/turf/floor))
 				var/turf/T = object
 				T.ReplaceWithWall()
 				return
-			else if(istype(object,/turf/simulated/wall))
+			else if(istype(object,/turf/wall))
 				var/turf/T = object
 				T.ReplaceWithRWall()
 				return
@@ -37,15 +37,15 @@ change the direction of created objects.<br>
 			new /obj/grille/steel(get_turf(object))
 
 	click_right(atom/object, var/ctrl, var/alt, var/shift)
-		if(istype(object,/turf/simulated/wall))
+		if(istype(object,/turf/wall))
 			var/turf/T = object
 			T.ReplaceWithFloor()
 			return
-		else if(istype(object,/turf/simulated/floor))
+		else if(istype(object,/turf/floor))
 			var/turf/T = object
 			T.ReplaceWithSpace()
 			return
-		else if(istype(object,/turf/simulated/wall/r_wall) || istype(object, /turf/simulated/wall/auto/reinforced))
+		else if(istype(object,/turf/wall/r_wall) || istype(object, /turf/wall/auto/reinforced))
 			var/turf/T = object
 			T.ReplaceWithWall()
 			return

@@ -99,17 +99,17 @@
 			..()
 			return
 
-		if (istype(A, /turf/simulated/floor))
+		if (istype(A, /turf/floor))
 			boutput(user, "<span class='notice'>Installing a floor bulb...</span>")
 			playsound(user, "sound/machines/click.ogg", 50, 1)
 			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/item/lamp_manufacturer/proc/add_floor_light, list(A, user), null, null, null, null)
 
 
-		else if (istype(A, /turf/simulated/wall) || istype(A, /obj/window))
+		else if (istype(A, /turf/wall) || istype(A, /obj/window))
 			if (!(islist(params) && params["icon-y"] && params["icon-x"]))
 				return
 			var/atom/B = get_adjacent_floor(A, user, text2num(params["icon-x"]), text2num(params["icon-y"]))
-			if (!istype(B, /turf/simulated/floor) && !istype(B, /turf/space))
+			if (!istype(B, /turf/floor) && !istype(B, /turf/space))
 				return
 			if (locate(/obj/window) in B)
 				return

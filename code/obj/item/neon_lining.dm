@@ -128,7 +128,7 @@
 	if (!isturf(user.loc))
 		return
 
-	if (!istype(F,/turf/simulated/floor))
+	if (!istype(F,/turf/floor))
 		return
 
 	if (get_dist(F,user) > 1)

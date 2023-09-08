@@ -179,7 +179,7 @@ datum
 						qdel(O)
 				holder?.del_reagent(id)
 
-			reaction_turf(var/turf/simulated/T, var/volume)
+			reaction_turf(var/turf/T, var/volume)
 				if (!holder)
 					return
 				if (!istype(T) || volume < 5 || holder.total_temperature < T0C + 400)
@@ -201,7 +201,7 @@ datum
 			minimum_reaction_temperature = T0C+100
 
 			reaction_temperature(exposed_temperature, exposed_volume)
-				var/turf/simulated/A = holder.my_atom
+				var/turf/A = holder.my_atom
 				if(!istype(A)) return
 
 				if(holder.get_reagent_amount(id) >= 15) //no more thermiting walls with 1u tyvm

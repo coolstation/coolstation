@@ -372,7 +372,7 @@ WET FLOOR SIGN
 		mopcount++
 
 	if(istype(U,/turf/simulated))
-		var/turf/simulated/T = U
+		var/turf/T = U
 		var/wetoverlay = image('icons/effects/water.dmi',"wet_floor")
 		T.overlays += wetoverlay
 		T.wet = 1
@@ -496,7 +496,7 @@ WET FLOOR SIGN
 			mopcount++
 
 			if(istype(U,/turf/simulated))
-				var/turf/simulated/T = U
+				var/turf/T = U
 				var/wetoverlay = image('icons/effects/water.dmi',"wet_floor")
 				T.overlays += wetoverlay
 				T.wet = 1
@@ -620,9 +620,9 @@ WET FLOOR SIGN
 
 /obj/item/sponge/process()
 	if (!src.reagents) return
-	if (!istype(src.loc,/turf/simulated/floor)) return
+	if (!istype(src.loc,/turf/floor)) return
 	if (src.reagents && src.reagents.total_volume >= src.reagents.maximum_volume) return
-	var/turf/simulated/floor/T = src.loc
+	var/turf/floor/T = src.loc
 	if (T.active_liquid && T.active_liquid.group)
 		T.active_liquid.group.drain(T.active_liquid,1,src)
 
@@ -638,7 +638,7 @@ WET FLOOR SIGN
 		if (target_is_fluid)
 			choices |= "Soak up"
 		else if (istype(target, /turf/simulated))
-			var/turf/simulated/T = target
+			var/turf/T = target
 			if (T.reagents && T.reagents.total_volume || T.active_liquid)
 				choices |= "Soak up"
 			if (T.wet)
@@ -698,7 +698,7 @@ WET FLOOR SIGN
 			if ("Dry")
 				if (!istype(target, /turf/simulated)) // really, how?? :I
 					return
-				var/turf/simulated/T = target
+				var/turf/T = target
 				user.visible_message("[user] dries up [T] with [src].",\
 				"<span class='notice'>You dry up [T] with [src].</span>")
 				JOB_XP(user, "Janitor", 1)

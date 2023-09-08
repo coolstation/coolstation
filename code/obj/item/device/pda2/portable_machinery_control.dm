@@ -67,7 +67,7 @@
 					return 5
 			for (var/obj/machinery/door/D in view(0, test_turf))
 				return 5
-			for (var/turf/simulated/wall/W in view(0, test_turf))
+			for (var/turf/wall/W in view(0, test_turf))
 				return 5
 
 		else
@@ -82,7 +82,7 @@
 					return 4
 			for (var/obj/machinery/door/D in view(0, our_loc))
 				return 4
-			for (var/turf/simulated/wall/W in view(0, our_loc))
+			for (var/turf/wall/W in view(0, our_loc))
 				return 4
 
 		return 1

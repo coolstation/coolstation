@@ -147,7 +147,7 @@
 				src.updateDialog()
 				return
 
-			if (!istype(src.loc, /turf/simulated/floor/))
+			if (!istype(src.loc, /turf/floor/))
 				src.visible_message("<span class='alert'>[src]'s retention bolts fail, triggering an emergency shutdown!</span>")
 				playsound(src.loc, "sound/machines/buzz-two.ogg", 100, 0)
 				src.anchored = 0 // It might have happened, I guess?
@@ -306,7 +306,7 @@
 
 		if (href_list["togglebolts"])
 			if (!src.active)
-				if (!istype(src.loc, /turf/simulated/floor/))
+				if (!istype(src.loc, /turf/floor/))
 					usr.show_text("You can't secure the generator here.", "red")
 					src.anchored = 0 // It might have happened, I guess?
 					src.update_icon()

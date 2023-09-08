@@ -1095,9 +1095,9 @@ MATERIAL
 			if (!isconstructionturf(S))
 				boutput(user, "<span class='notice'>RIP NERD!</span>")
 				return
-			if (!( istype(S, /turf/space) || istype(S, /turf/simulated/floor/metalfoam || istype(S, /turf/simulated/floor/plating/gehenna))))
+			if (!( istype(S, /turf/space) || istype(S, /turf/floor/metalfoam || istype(S, /turf/floor/plating/gehenna))))
 				// If this isn't space or metal foam...
-				if (istype(T, /turf/simulated/floor))
+				if (istype(T, /turf/floor))
 					// If it's still a floor, attempt to place or replace the floor tile
 					var/turf/floor/F = T
 					F.attackby(src, user)
