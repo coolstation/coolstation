@@ -96,19 +96,19 @@ var/global/mob/twitch_mob = 0
 	join_motd = grabResource("html/motd.html")
 
 /world/proc/load_rules()
-	//rules = file2text("config/rules.html")
-	/*SPAWN_DBG(0)
-		rules = world.Export("http://wiki.ss13.co/api.php?action=parse&page=Rules&format=json")
+	rules = file2text("config/rules.html")
+	SPAWN_DBG(0)
+		rules = world.Export("https://wiki.coolstation.space/w/api.php?action=parse&page=Rules&format=json")
 		if(rules && rules["CONTENT"])
 			rules = json_decode(file2text(rules["CONTENT"]))
 			if(rules && rules["parse"] && rules["parse"]["text"] && rules["parse"]["text"]["*"])
 				rules = rules["parse"]["text"]["*"]
 			else
 				rules = "<html><head><title>Rules</title><body>There are no rules! Go nuts!</body></html>"
-		else*/
-	rules = {"<meta http-equiv="refresh" content="0; url=https://wiki.coolstation.space/wiki/Rules">"}
-	//if (!rules)
-	//	rules = "<html><head><title>Rules</title><body>There are no rules! Go nuts!</body></html>"
+		else
+	//rules = {"<meta http-equiv="refresh" content="0; url=https://wiki.coolstation.space/wiki/Rules">"} //this was temporary workaround
+	if (!rules)
+		rules = "<html><head><title>Rules</title><body>There are no rules! Go nuts!</body></html>" //lol sure why not
 
 /world/proc/load_admins()
 	set background = 1
