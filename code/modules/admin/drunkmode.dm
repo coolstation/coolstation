@@ -122,7 +122,7 @@ var/list/dangerousVerbs = list(\
 			src.verbs += /client/proc/enableDrunkMode
 			src.toggleDrunkMode(src)
 		else
-			message_admins("[key_name(src)] tried to disable drunk-mode on himself but failed the puzzle ([num1] + [num2]). Everyone laugh at them.")
+			message_admins("[key_name(src)] tried to disable their drunk-mode but failed the puzzle ([num1] + [num2]). Everyone laugh at them.")
 			alert("WRONG! This highly scientific test has determined that you are still drunk, the mode has not been disabled.")
 	else
 		return
@@ -130,8 +130,8 @@ var/list/dangerousVerbs = list(\
 
 /client/proc/forceDrunkMode(var/client/C in onlineAdmins)
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER)
-	set name = "Force Drunk Mode"
-	set desc = "Is another admin drunk as a skunk? Put them in drunk mode sharpish."
+	set name = "Force Drunk-Mode"
+	set desc = "Is another admin drunktaur as a skunktaur? Put them in drunk-mode, sharpish."
 	set popup_menu = 0
 
 	if (!C) return
