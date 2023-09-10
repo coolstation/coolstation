@@ -103,7 +103,7 @@ SHARDS
 			return
 #endif
 
-		if (!( istype(user.loc, /turf/simulated) ))
+		if (!( istype(user.loc, /turf) ))
 			return
 		switch(alert("Sheet-Glass", "Would you like full tile glass or one direction?", "one direct", "full (2 sheets)", "cancel", null))
 			if("one direct")

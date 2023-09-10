@@ -747,7 +747,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/poddoor/pyro{
-	dir = 2;
 	id = "qm_lift_door";
 	name = "Cargo Lift  Door"
 	},
@@ -7047,7 +7046,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/shipalert{
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/floor/darkblue,
@@ -14655,7 +14653,6 @@
 "kQM" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/machinery/door/poddoor/pyro{
-	dir = 2;
 	id = "qm_lift_door";
 	name = "Cargo Lift  Door"
 	},
@@ -21013,8 +21010,7 @@
 	pixel_x = -3
 	},
 /obj/machinery/light_switch/south{
-	pixel_x = 5;
-	pixel_y = -24
+	pixel_x = 5
 	},
 /turf/floor/wood,
 /area/station/abandonedship{
