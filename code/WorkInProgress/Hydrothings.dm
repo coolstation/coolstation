@@ -289,7 +289,7 @@
 		speakers = list("Robotic voice", "Bombini", "Unknown Owl", "Robotic voice", "???", "Robotic voice", "Unknown Owl", "Robotic voice", "Bombini")
 
 //FUCKABLE TURFS
-/turf/unsimulated/wall/setpieces/fakewindow
+/turf/wall/setpieces/fakewindow
 		name = "Strong Window"
 		desc = "Wow this looks like a tough god damn window, damn."
 		icon = 'icons/obj/window.dmi'

@@ -204,7 +204,7 @@ var/fartcount = 0
 	desc = "eggs"
 	info = "legs"
 
-/turf/simulated/wall/r_wall/afterbar
+/turf/wall/r_wall/afterbar
 	name = "wall"
 	desc = null
 	attackby(obj/item/W as obj, mob/user as mob, params)

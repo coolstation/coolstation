@@ -67,7 +67,7 @@
 		if(integrity_state == 0)
 			boutput(user, "<span class='notice'>Pieces of mangled metal make anchoring impossible!</span>")
 			return
-		if (!istype(src.loc, /turf/simulated/floor/))
+		if (!istype(src.loc, /turf/floor/))
 			boutput(user, "<span class='alert'>Not sure what this floor is made of but you can't seem to wrench a hole for a bolt in it.</span>")
 			return
 		playsound(src.loc, "sound/items/Ratchet.ogg", 100, 1)
@@ -77,7 +77,7 @@
 		else
 			boutput(user, "<span class='notice'>Now unsecuring the SWORD Engine.</span>")
 		sleep(4 SECONDS)
-		if (!istype(src.loc, /turf/simulated/floor/))
+		if (!istype(src.loc, /turf/floor/))
 			boutput(user, "<span class='alert'>You feel like your body is being ripped apart from the inside. Maybe you shouldn't try that again. For your own safety, I mean.</span>")
 			return
 		if(get_turf(user) == T)
@@ -93,7 +93,7 @@
 				//		qdel(temp_term)
 				//		terminal = null
 		updateicon()
-	
+
 	else if (integrity_state == 2 && ispryingtool(W) && core_inserted)
 		if (user.hasStatus(list("weakened", "paralysis", "stunned")) || !isalive(user))
 			user.show_text("Not when you're incapacitated.", "red")

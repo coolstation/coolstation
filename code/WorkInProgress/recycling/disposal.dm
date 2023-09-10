@@ -350,8 +350,8 @@
 			H.active = 0
 			H.set_loc(src)
 			return
-		if(T.intact && istype(T,/turf/simulated/floor)) //intact floor, pop the tile
-			var/turf/simulated/floor/F = T
+		if(T.intact && istype(T,/turf/floor)) //intact floor, pop the tile
+			var/turf/floor/F = T
 			//F.health	= 100
 			F.burnt	= 1
 			F.setIntact(FALSE)

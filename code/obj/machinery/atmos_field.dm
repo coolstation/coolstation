@@ -28,7 +28,7 @@
 				M.throw_at(get_edge_target_turf(M, get_dir(M, OldLoc)), 25, 4)
 
 	proc/update_nearby_tiles(need_rebuild)
-		var/turf/simulated/source = loc
+		var/turf/source = loc
 		if (istype(source))
 			return source.update_nearby_tiles(need_rebuild)
 

@@ -128,10 +128,10 @@
 		playsound(src.loc, "swing_hit", 40, 1)
 		logTheThing("station", src, target, "tackles [target] using football gear [log_loc(src)].")
 	else if(isturf(target))
-		if(istype(target, /turf/simulated/wall/r_wall || istype(target, /turf/simulated/wall/auto/reinforced)) && prob(power / 2))
+		if(istype(target, /turf/wall/r_wall || istype(target, /turf/wall/auto/reinforced)) && prob(power / 2))
 			return
-		if(istype(target, /turf/simulated/wall) && prob(power))
-			var/turf/simulated/wall/T = target
+		if(istype(target, /turf/wall) && prob(power))
+			var/turf/wall/T = target
 			T.dismantle_wall(1)
 			playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 40, 1)
 		logTheThing("combat", src, target, "tackles [target] using football gear [log_loc(src)].")

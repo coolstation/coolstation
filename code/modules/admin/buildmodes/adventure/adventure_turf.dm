@@ -6,23 +6,23 @@
 	var/turftype = null
 	var/obj/marker = null
 
-	var/static/list/turfs = list("Ancient floor" = /turf/unsimulated/iomoon/ancient_floor, \
-	"Ancient wall" = /turf/unsimulated/iomoon/ancient_wall, "Cave floor" = /turf/unsimulated/floor/cave, \
-	"Cave wall" = /turf/unsimulated/wall/cave,  "Data floor: Blue" = /turf/unsimulated/floor/techfloor, \
-	"Data floor: Red" = /turf/unsimulated/floor/techfloor/red, "Data floor: Purple" = /turf/unsimulated/floor/techfloor/purple, \
-	"Data floor: Yellow" = /turf/unsimulated/floor/techfloor/yellow, "Data floor: Green" = /turf/unsimulated/floor/techfloor/green, \
-	"Dirt" = /turf/unsimulated/aprilfools/dirt, "Grass" = /turf/unsimulated/aprilfools/grass, \
-	"Hive floor" = /turf/unsimulated/floor/setpieces/hivefloor, "Hive wall" = /turf/unsimulated/wall/setpieces/hive, \
-	"Ice" = /turf/unsimulated/floor/arctic/snow/ice, "Lava" = /turf/unsimulated/floor/lava, "Martian floor" = /turf/simulated/martian/floor, \
-	"Martian wall" = /turf/simulated/martian/wall, "Normal floor" = /turf/simulated/floor, "Normal wall" = /turf/simulated/wall, \
-	"Reinforced floor" = /turf/simulated/floor/engine, "Reinforced wall" = /turf/simulated/wall/r_wall, "Shielded floor" = /turf/simulated/floor/engine, \
-	"Shielded wall" = /turf/unsimulated/wall/setpieces/leadwall, "Shielded window" = /turf/unsimulated/wall/setpieces/leadwindow, "Showcase" = /turf/unsimulated/floor/wizard/showcase, \
-	"Shuttle floor" = /turf/simulated/floor/shuttle, "Shuttle wall" = /turf/simulated/shuttle/wall, "Snow" = /turf/unsimulated/floor/arctic/snow, \
-	"Void floor" = /turf/unsimulated/floor/void, "Void wall" = /turf/unsimulated/wall/void, "Wizard carpet: Cross" = /turf/unsimulated/floor/wizard/carpet/cross, "Wizard carpet: Edge" = /turf/unsimulated/floor/wizard/carpet/edge, \
-	"Wizard carpet: Inner corners (1-2)" = /turf/unsimulated/floor/wizard/carpet/inner_corner_onetwo, "Wizard carpet: Inner Corners (3-4)" = /turf/unsimulated/floor/wizard/carpet/inner_corner_threefour, \
-	"Wizard carpet: Narrow" = /turf/unsimulated/floor/wizard/carpet/narrow, "Wizard carpet: Narrow crossing" = /turf/unsimulated/floor/wizard/carpet/narrow/crossing, "Wizard carpet: Plain" = /turf/unsimulated/floor/wizard/carpet, \
-	"Wizard false wall" = /turf/unsimulated/wall/adaptive/wizard_fake, "Wizard floor" = /turf/unsimulated/floor/wizard, "Wizard plating" = /turf/unsimulated/floor/wizard/plating,  \
-	"Wizard stairs" = /turf/unsimulated/floor/wizard/stairs, "Wizard wall" = /turf/unsimulated/wall/adaptive/wizard, "Wizard window" = /turf/unsimulated/wall/adaptive/wizard_window)
+	var/static/list/turfs = list("Ancient floor" = /turf/iomoon/ancient_floor, \
+	"Ancient wall" = /turf/iomoon/ancient_wall, "Cave floor" = /turf/floor/cave, \
+	"Cave wall" = /turf/wall/cave,  "Data floor: Blue" = /turf/floor/techfloor, \
+	"Data floor: Red" = /turf/floor/techfloor/red, "Data floor: Purple" = /turf/floor/techfloor/purple, \
+	"Data floor: Yellow" = /turf/floor/techfloor/yellow, "Data floor: Green" = /turf/floor/techfloor/green, \
+	"Dirt" = /turf/aprilfools/dirt, "Grass" = /turf/aprilfools/grass, \
+	"Hive floor" = /turf/floor/setpieces/hivefloor, "Hive wall" = /turf/wall/setpieces/hive, \
+	"Ice" = /turf/floor/arctic/snow/ice, "Lava" = /turf/floor/lava, "Martian floor" = /turf/martian/floor, \
+	"Martian wall" = /turf/martian/wall, "Normal floor" = /turf/floor, "Normal wall" = /turf/wall, \
+	"Reinforced floor" = /turf/floor/engine, "Reinforced wall" = /turf/wall/r_wall, "Shielded floor" = /turf/floor/engine, \
+	"Shielded wall" = /turf/wall/setpieces/leadwall, "Shielded window" = /turf/wall/setpieces/leadwindow, "Showcase" = /turf/floor/wizard/showcase, \
+	"Shuttle floor" = /turf/floor/shuttle, "Shuttle wall" = /turf/shuttle/wall, "Snow" = /turf/floor/arctic/snow, \
+	"Void floor" = /turf/floor/void, "Void wall" = /turf/wall/void, "Wizard carpet: Cross" = /turf/floor/wizard/carpet/cross, "Wizard carpet: Edge" = /turf/floor/wizard/carpet/edge, \
+	"Wizard carpet: Inner corners (1-2)" = /turf/floor/wizard/carpet/inner_corner_onetwo, "Wizard carpet: Inner Corners (3-4)" = /turf/floor/wizard/carpet/inner_corner_threefour, \
+	"Wizard carpet: Narrow" = /turf/floor/wizard/carpet/narrow, "Wizard carpet: Narrow crossing" = /turf/floor/wizard/carpet/narrow/crossing, "Wizard carpet: Plain" = /turf/floor/wizard/carpet, \
+	"Wizard false wall" = /turf/wall/adaptive/wizard_fake, "Wizard floor" = /turf/floor/wizard, "Wizard plating" = /turf/floor/wizard/plating,  \
+	"Wizard stairs" = /turf/floor/wizard/stairs, "Wizard wall" = /turf/wall/adaptive/wizard, "Wizard window" = /turf/wall/adaptive/wizard_window)
 
 	name = "Turf"
 

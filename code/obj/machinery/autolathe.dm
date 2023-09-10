@@ -227,7 +227,7 @@
 
 /obj/machinery/autolathe/proc/get_connection()
 	var/turf/T = src.loc
-	if(!istype(T, /turf/simulated/floor))
+	if(!istype(T, /turf/floor))
 		return
 
 	for(var/obj/cable/C in T)

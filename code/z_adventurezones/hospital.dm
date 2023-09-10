@@ -123,24 +123,24 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 
 				Obj.throw_at(get_edge_target_turf(T, NORTH), 200, 1)
 
-/turf/unsimulated/wall/setpieces/hospital
+/turf/wall/setpieces/hospital
 	name = "panel wall"
 	desc = ""
 	icon = 'icons/misc/hospital.dmi'
 	icon_state = "panelwall"
 
-/turf/unsimulated/wall/setpieces/hospital/window
+/turf/wall/setpieces/hospital/window
 	name = "panel window"
 	desc = ""
 	icon_state = "panelwindow"
 	opacity = 0
 
-/turf/unsimulated/wall/setpieces/hospital/cavern
+/turf/wall/setpieces/hospital/cavern
 	name = "asteroid"
 	desc = ""
 	icon_state = "cavern1"
 
-/turf/unsimulated/floor/setpieces/hospital/cavern
+/turf/floor/setpieces/hospital/cavern
 	name = "asteroid floor"
 	desc = ""
 	icon = 'icons/misc/hospital.dmi'
@@ -448,7 +448,7 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 			last_emote_time = world.time
 
 
-/turf/unsimulated/floor/void/channel
+/turf/floor/void/channel
 	name = "wormhole distortion"
 	desc = "It's a breach in time and space.  Like the inside of the Channel (the wormhole).  Actually it's probably exactly that."
 	fullbright = 0

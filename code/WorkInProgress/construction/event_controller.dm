@@ -234,8 +234,8 @@
 
 		var/area/shuttle/arrival/station/A = locate() in world
 		var/turf/Q = A.find_middle(0)
-		for (var/turf/simulated/floor/F in range(50, Q))
-			if (!(F in A))
+		for (var/turf/floor/F in range(50, Q))
+			if (!(F in A) && isconstructionturf(F))
 				possible_target_turfs += F
 
 		if (method == METHOD_EDGE_WANDER)
@@ -541,8 +541,8 @@
 		possible_target_turfs.len = 0
 		var/area/shuttle/arrival/station/A = locate() in world
 		var/turf/Q = A.find_middle(0)
-		for (var/turf/simulated/floor/F in range(50, Q))
-			if (!(F in A))
+		for (var/turf/floor/F in range(50, Q))
+			if (!(F in A) && issimulatedturf(F))
 				possible_target_turfs += F
 
 	process()

@@ -370,7 +370,7 @@ MATERIAL
 					var/turf/location = usr.loc
 					sleep(2 SECONDS)
 					if ((usr.loc == location))
-						if (!istype(location, /turf/simulated/floor))
+						if (!istype(location, /turf/floor))
 							return
 
 						src.amount -= 2

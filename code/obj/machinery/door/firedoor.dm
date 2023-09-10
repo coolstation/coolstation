@@ -210,8 +210,8 @@
 	update_nearby_tiles(need_rebuild)
 		if(!air_master) return 0
 
-		var/turf/simulated/source = loc
-		var/turf/simulated/destination = get_step(source,dir)
+		var/turf/source = loc
+		var/turf/destination = get_step(source,dir)
 
 		if(need_rebuild)
 			if(istype(source)) //Rebuild/update nearby group geometry

@@ -531,14 +531,14 @@ MATERIAL
 
 				if("construct")
 					var/turf/T = get_turf(usr)
-					var/area/A = get_area (usr)
+					//var/area/A = get_area (usr)
 
-					if (!istype(T, /turf/simulated/floor))
+					if (!isconstructionturf(T))
 						boutput(usr, "<span class='alert'>You can't build girders here.</span>")
 						return
-					if (istype(A, /area/supply/spawn_point || /area/supply/delivery_point || /area/supply/sell_point))
+					/*if (istype(A, /area/supply/spawn_point || /area/supply/delivery_point || /area/supply/sell_point))
 						boutput(usr, "<span class='alert'>You can't build girders here.</span>")
-						return
+						return*/
 					if (!amount_check(2,usr)) return
 					a_type = /obj/structure/girder
 					a_amount = 1
@@ -884,7 +884,7 @@ MATERIAL
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (isweldingtool(W))
-			if(!src.anchored && !istype(src.loc,/turf/simulated/floor) && !istype(src.loc,/turf/unsimulated/floor))
+			if(!src.anchored && !istype(src.loc,/turf/floor))
 				boutput(user, "<span class='alert'>There's nothing to weld that to.</span>")
 				return
 
@@ -1091,21 +1091,18 @@ MATERIAL
 			boutput(user, "<span class='notice'>You must be on the ground!</span>")
 			return
 		else
-			var/S = T
-			if (!( istype(S, /turf/space) || istype(S, /turf/simulated/floor/metalfoam || istype(S, /turf/simulated/floor/plating/gehenna))))
+			var/turf/S = T
+			if (!isconstructionturf(S))
+				boutput(user, "<span class='notice'>RIP NERD!</span>")
+				return
+			if (!( istype(S, /turf/space) || istype(S, /turf/floor/metalfoam || istype(S, /turf/floor/plating/gehenna))))
 				// If this isn't space or metal foam...
-				if (istype(T, /turf/simulated/floor))
+				if (istype(T, /turf/floor))
 					// If it's still a floor, attempt to place or replace the floor tile
-					var/turf/simulated/floor/F = T
+					var/turf/floor/F = T
 					F.attackby(src, user)
 					tooltip_rebuild = 1
-				else
-					boutput(user, "You cannot build on or repair this turf!")
-					return
-			else
-				// Otherwise, try to build on top of it
-				src.build(S)
-				tooltip_rebuild = 1
+
 		src.add_fingerprint(user)
 		return
 
@@ -1150,7 +1147,7 @@ MATERIAL
 			if(istype(L))
 				boutput(usr, "<span class='notice'>you need to clear the existing tile fragments.</span>")
 				return
-		var/turf/simulated/floor/W = S.ReplaceWithFloor()
+		var/turf/floor/W = S.ReplaceWithFloor()
 		if (W) //Wire: Fix for: Cannot read null.icon_old
 			W.inherit_area()
 			if (!W.icon_old)

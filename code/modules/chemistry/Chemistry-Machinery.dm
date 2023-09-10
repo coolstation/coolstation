@@ -278,7 +278,7 @@
 			boutput(usr, "<span class='alert'>You are too far away from the target!</span>")
 			return
 
-		else if (istype(over_object,/turf/simulated/floor/))
+		else if (istype(over_object,/turf/floor/))
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set the Reagent Heater/Cooler to output to [over_object]!</span>")
 
@@ -657,7 +657,7 @@
 			boutput(usr, "<span class='alert'>You are too far away from the target!</span>")
 			return
 
-		else if (istype(over_object,/turf/simulated/floor/))
+		else if (istype(over_object,/turf/floor/))
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set the CheMaster 3000 to output to [over_object]!</span>")
 

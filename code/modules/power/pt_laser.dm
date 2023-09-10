@@ -294,7 +294,7 @@
 	for(var/dist = 0, dist < range, dist += 1)
 		T = get_step(T, dir)
 		if(!T || T.density)
-			if(!istype(T, /turf/unsimulated/wall/trench)) return dist
+			if(!istype(T, /turf/wall/trench)) return dist
 		for(var/obj/O in T)
 			if(!istype(O,/obj/window) && !istype(O,/obj/grille) && !ismob(O) && O.density)
 				blocking_objects += O
@@ -467,7 +467,7 @@
 	for(var/turf/T in laser_turfs)
 		if(power > 5e7)
 			T.hotspot_expose(power/1e5,5) //1000K at 100MW
-		if(istype(T, /turf/simulated/floor) && prob(power/1e5))
+		if(istype(T, /turf/floor) && prob(power/1e5))
 			T:burn_tile()
 
 
@@ -500,7 +500,7 @@
 		if(active)
 			if(istype(src.loc, /turf) && power > 5e7)
 				src.loc:hotspot_expose(power/1e5,5) //1000K at 100MW
-			if(istype(src.loc, /turf/simulated/floor) && prob(power/1e6))
+			if(istype(src.loc, /turf/floor) && prob(power/1e6))
 				src.loc:burn_tile()
 
 			for (var/mob/living/L in src.loc)

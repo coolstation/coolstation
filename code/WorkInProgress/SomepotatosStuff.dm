@@ -372,7 +372,7 @@ world/proc/updateCameraVisibility()
 	icon_state = "table"
 
 
-/turf/unsimulated/floor/wood/two/trap
+/turf/floor/wood/two/trap
 	desc = "It looks strangely clean compared to the rest of the floor."
 
 	proc/open()

@@ -341,9 +341,9 @@
 			for (var/obj/window/W in T)
 				W.health = 0
 				W.smash()
-			if (istype(T, /turf/simulated/wall))
+			if (istype(T, /turf/wall) && isconstructionturf(T))
 				T:dismantle_wall()
-			else if (istype(T, /turf/simulated/floor) && prob(75))
+			else if (istype(T, /turf/floor) && isconstructionturf(T) && prob(75))
 				if (prob(50))
 					T:to_plating()
 				else

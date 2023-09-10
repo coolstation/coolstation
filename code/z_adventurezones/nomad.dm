@@ -11,7 +11,7 @@
 	ambient_light = rgb(42, 40, 45)
 	requires_power = 0
 
-	filler_turf = "/turf/unsimulated/dirt"
+	filler_turf = "/turf/dirt"
 	sound_environment = EAX_BATHROOM
 	skip_sims = 1
 	sims_score = 0

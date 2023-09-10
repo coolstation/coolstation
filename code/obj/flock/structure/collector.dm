@@ -11,7 +11,7 @@
 	/// max range for the thing.
 	var/maxrange = 5
 	/// the tiles its connected to
-	var/list/turf/simulated/floor/feather/connectedto = list()
+	var/list/turf/floor/feather/connectedto = list()
 
 	event_handler_flags = USE_CANPASS //needed for passthrough
 	// drones can pass through this, might change this later, as balance point
@@ -38,19 +38,19 @@
 	src.poweruse = ((length(connectedto) * 5) / -1) //(5 power per tile)
 
 /obj/flock_structure/collector/disposing()
-	for(var/turf/simulated/floor/feather/flocktile as anything in connectedto)
+	for(var/turf/floor/feather/flocktile as anything in connectedto)
 		flocktile.off()
 	connectedto.len = 0
 	..()
 
 /obj/flock_structure/collector/proc/calcconnected()
-	for(var/turf/simulated/floor/feather/flocktile as anything in connectedto)
+	for(var/turf/floor/feather/flocktile as anything in connectedto)
 		flocktile.off()
 		flocktile.connected = 0
 	connectedto.len = 0
 	var/myturf = get_turf(src)
 	var/distance = 0 //how far has it gone already?
-	var/turf/simulated/floor/feather/floor = myturf
+	var/turf/floor/feather/floor = myturf
 	if(!istype(floor)) return//if it aint a flock floor
 
 	if(floor.broken) return
@@ -67,7 +67,7 @@
 			distance++
 			connectedto |= floor
 
-	for(var/turf/simulated/floor/feather/flocktile as anything in connectedto)
+	for(var/turf/floor/feather/flocktile as anything in connectedto)
 		flocktile.connected = 1
 		flocktile.on() //make it glo
 

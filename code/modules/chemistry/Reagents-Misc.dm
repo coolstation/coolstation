@@ -623,8 +623,8 @@ datum
 			reaction_turf(var/turf/target, var/volume)
 				var/obj/hotspot = (locate(/obj/hotspot) in target)
 				if (hotspot)
-					if (istype(target, /turf/simulated))
-						var/turf/simulated/T = target
+					if(issimulatedturf(target))
+						var/turf/T = target
 						if (T.air)
 							var/datum/gas_mixture/lowertemp = T.remove_air( TOTAL_MOLES(T.air) )
 							if (lowertemp)// ZeWaka: Fix for null.temperature
@@ -742,7 +742,7 @@ datum
 
 			reaction_turf(var/turf/target, var/volume)
 				var/list/covered = holder.covered_turf()
-				var/turf/simulated/T = target
+				var/turf/T = target
 				var/volume_mult = 1
 
 				if (length(covered))
@@ -775,7 +775,7 @@ datum
 
 			reaction_turf(var/turf/target, var/volume)
 				var/visible = src.visible
-				var/turf/simulated/T = target
+				var/turf/T = target
 				if (istype(T))
 					if (T.wet >= 3) return
 					if (visible)
@@ -873,7 +873,7 @@ datum
 			proc/remove_stickers(var/atom/target, var/volume)
 				var/can_remove_amt = volume / 10
 				var/removed_count = 0
-				if ((istype(target, /turf/simulated/wall) || istype(target, /turf/unsimulated/wall)))
+				if (istype(target, /turf/wall))
 					target = locate_sticker_wall(target)
 					if (!target)
 						return
@@ -1049,8 +1049,8 @@ datum
 
 				var/obj/hotspot = (locate(/obj/hotspot) in target)
 				if (hotspot)
-					if (istype(target, /turf/simulated))
-						var/turf/simulated/T = target
+					if(issimulatedturf(target))
+						var/turf/T = target
 						if (!T.air) return //ZeWaka: Fix for TOTAL_MOLES(null)
 						var/datum/gas_mixture/lowertemp = T.remove_air( TOTAL_MOLES(T.air) )
 						if (lowertemp) //ZeWaka: Fix for null.temperature
@@ -1182,7 +1182,7 @@ datum
 				return
 
 			reaction_turf(var/turf/target, var/volume)
-				var/turf/simulated/T = target
+				var/turf/T = target
 				if (istype(T)) //Wire: fix for Undefined variable /turf/space/var/wet (&& T.wet)
 					if (T.wet >= 2) return
 					var/wet = image('icons/effects/water.dmi',"wet_floor")
@@ -1637,7 +1637,7 @@ datum
 
 			reaction_turf(var/turf/T, var/volume)
 				CRITTER_REACTION_CHECK(reaction_count)
-				var/turf/simulated/target = T
+				var/turf/target = T
 				if (istype(target) && volume >= 5)
 					if (!locate(/obj/reagent_dispensers/cleanable/spiders) in target)
 						new /obj/reagent_dispensers/cleanable/spiders(target)
@@ -2048,7 +2048,7 @@ datum
 
 			reaction_turf(var/turf/T, var/volume)
 				if (!istype(T, /turf/space))
-					if (volume >= 50 && (istype(T, /turf/simulated/floor) || istype(T, /turf/simulated/wall)))
+					if (volume >= 50 && (istype(T, /turf/floor) || istype(T, /turf/wall)))
 						T.visible_message("<span class='notice'>The substance flows out and sinks into [T], forming new shapes.</span>")
 						flock_convert_turf(T)
 					if (volume >= 10)
@@ -3356,7 +3356,7 @@ datum
 			viscosity = 0.3
 
 			reaction_turf(var/turf/target, var/volume)
-				var/turf/simulated/T = target
+				var/turf/T = target
 				if (istype(T))
 					if (T.wet >= 2) return
 					var/wet = image('icons/effects/water.dmi',"wet_floor")
@@ -3820,7 +3820,7 @@ datum
 			hygiene_value = 0.25
 
 			reaction_turf(var/turf/target, var/volume)
-				var/turf/simulated/floor/T = target
+				var/turf/floor/T = target
 
 				if (istype(T))
 					if (T.broken || T.burnt)

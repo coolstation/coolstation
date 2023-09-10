@@ -11,7 +11,7 @@
 //Puzzle elements
 
 //Turfs
-/turf/unsimulated/iomoon/floor
+/turf/iomoon/floor
 	name = "silicate crust"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "iocrust"
@@ -20,7 +20,7 @@
 	carbon_dioxide = 20
 	temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST-1
 
-/turf/unsimulated/iomoon/floor/arena
+/turf/iomoon/floor/arena
 	name = "silicate crust"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "iocrust"
@@ -30,7 +30,7 @@
 	oxygen = 100
 	temperature = T20C
 
-/turf/unsimulated/iomoon/crustwall
+/turf/iomoon/crustwall
 	name = "silicate crust"
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "iowall1"
@@ -39,7 +39,7 @@
 	carbon_dioxide = 20
 	temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST-1
 
-/turf/unsimulated/iomoon/plating
+/turf/iomoon/plating
 	name = "charred plating"
 	desc = "Any protection this plating once had against the extreme heat appears to have given way."
 	icon = 'icons/turf/floors.dmi'
@@ -55,7 +55,7 @@
 		if (prob(33))
 			src.icon_state = "panelscorched"
 
-/turf/unsimulated/iomoon/ancient_floor
+/turf/iomoon/ancient_floor
 	name = "Ancient Metal Floor"
 	desc = "The floor here is cold and dark.  Far colder than it has any right to be down here."
 	icon = 'icons/misc/worlds.dmi'
@@ -66,7 +66,7 @@
 
 	temperature = 10+T0C
 
-/turf/unsimulated/iomoon/ancient_wall
+/turf/iomoon/ancient_wall
 	name = "strange wall"
 	desc = "It is dark, glassy and foreboding."
 	icon = 'icons/misc/worlds.dmi'
@@ -87,7 +87,7 @@ var/sound/iomoon_alarm_sound = null
 /area/iomoon
 	name = "Lava Moon Surface"
 	icon_state = "red"
-	filler_turf = "/turf/unsimulated/floor/lava"
+	filler_turf = "/turf/floor/lava"
 	requires_power = 0
 	force_fullbright = 0
 	ambient_light = rgb(0.45 * 255, 0.2 * 255, 0.1 * 255)
@@ -190,7 +190,7 @@ var/sound/iomoon_alarm_sound = null
 /area/iomoon/base
 	name = "Power Plant"
 	icon_state = "yellow"
-	filler_turf = "/turf/unsimulated/iomoon/floor"
+	filler_turf = "/turf/iomoon/floor"
 	requires_power = 1
 	force_fullbright = 0
 	ambient_light = rgb(0.3 * 255, 0.3 * 255, 0.3 * 255)
@@ -214,7 +214,7 @@ var/sound/iomoon_alarm_sound = null
 
 /area/iomoon/caves
 	name = "Magma Cavern"
-	filler_turf = "/turf/unsimulated/floor/lava"
+	filler_turf = "/turf/floor/lava"
 	requires_power = 1
 	force_fullbright = 0
 	luminosity = 0
@@ -228,7 +228,7 @@ var/sound/iomoon_alarm_sound = null
 /area/iomoon/robot_ruins
 	name = "Strange Ruins"
 	icon_state = "purple"
-	filler_turf = "/turf/unsimulated/iomoon/ancient_floor"
+	filler_turf = "/turf/iomoon/ancient_floor"
 	requires_power = 1
 	force_fullbright = 0
 	luminosity = 0

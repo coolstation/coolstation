@@ -44,16 +44,16 @@ Ctrl + RMB on buildmode button     = Reset selection<br>
 			boutput(usr, "<span class='notice'>Selection reset.</span>")
 
 	proc/revert(turf/object)
-		if (istype(object, /turf/simulated/floor))
+		if (istype(object, /turf/floor))
 			if (!object.intact)
 				return
-			var/turf/simulated/floor/F = object
+			var/turf/floor/F = object
 			F.icon = initial(F.icon)
 			F.icon_state = F.roundstart_icon_state
 			F.set_dir(F.roundstart_dir)
-		else if (istype(object, /turf/simulated/wall))
+		else if (istype(object, /turf/wall))
 			object.icon = initial(object.icon)
-			if (istype(object, /turf/simulated/wall/auto))
-				var/turf/simulated/wall/auto/W = object
+			if (istype(object, /turf/wall/auto))
+				var/turf/wall/auto/W = object
 				W.update_icon()
 				W.update_neighbors()

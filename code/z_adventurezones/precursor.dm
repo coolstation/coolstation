@@ -14,7 +14,7 @@
 /////////////////// ice moon, hell, and precursor ruins areas
 
 /area/upper_arctic
-	filler_turf = "/turf/unsimulated/floor/arctic/snow"
+	filler_turf = "/turf/floor/arctic/snow"
 	sound_environment = EAX_CAVE
 	skip_sims = 1
 	sims_score = 30
@@ -85,14 +85,14 @@
 /area/upper_arctic/exterior/surface
 	name = "Ice Moon Surface"
 	icon_state = "white"
-	filler_turf = "/turf/unsimulated/floor/arctic/abyss"
+	filler_turf = "/turf/floor/arctic/abyss"
 	skip_sims = 1
 	sims_score = 30
 
 /area/upper_arctic/exterior/abyss
 	name = "Ice Moon Abyss"
 	icon_state = "dk_yellow"
-	filler_turf = "/turf/unsimulated/floor/arctic/snow"
+	filler_turf = "/turf/floor/arctic/snow"
 	skip_sims = 1
 	sims_score = 30
 
@@ -103,7 +103,7 @@
 /area/lower_arctic/lower
 	name = "Glacial Abyss"
 	icon_state = "purple"
-	filler_turf = "/turf/unsimulated/floor/arctic/snow/ice"
+	filler_turf = "/turf/floor/arctic/snow/ice"
 	sound_environment = EAX_CAVE
 	skip_sims = 1
 	sims_score = 30
@@ -111,7 +111,7 @@
 /area/precursor // stole this code from the void definition
 	name = "Peculiar Structure"
 	icon_state = "dk_yellow"
-	filler_turf = "/turf/unsimulated/floor/setpieces/bluefloor"
+	filler_turf = "/turf/floor/setpieces/bluefloor"
 	sound_environment = EAX_STONEROOM
 	skip_sims = 1
 	sims_score = 30
@@ -136,7 +136,7 @@
 	pit
 		name = "Ominous Pit"
 		icon_state = "purple"
-		filler_turf = "/turf/unsimulated/floor/setpieces/bluefloor/pit" // this might fuck something up but it might also be hilarious
+		filler_turf = "/turf/floor/setpieces/bluefloor/pit" // this might fuck something up but it might also be hilarious
 		sound_environment = EAX_DIZZY
 		sound_group = "ominouspit"
 		skip_sims = 1
@@ -147,7 +147,7 @@
 /area/hell
 	name = "????"
 	icon_state = "security"
-	filler_turf = "/turf/unsimulated/floor/setpieces/bloodfloor"
+	filler_turf = "/turf/floor/setpieces/bloodfloor"
 	sound_environment = EAX_DISORDERED
 	skip_sims = 1
 	sims_score = 0
@@ -1241,7 +1241,7 @@
 							for (var/atom/A in T)
 								A.ex_act(OLD_EX_TOTAL)
 
-							if (istype(T, /turf/simulated/wall))
+							if (istype(T, /turf/wall) && isconstructionturf(T))
 								T.ex_act(OLD_EX_TOTAL)
 							else
 								T.ReplaceWithSpaceForce()

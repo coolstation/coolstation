@@ -8,7 +8,7 @@
 	machine_registry_idx = MACHINES_MISC
 	var/obj/machinery/power/turbine/turbine
 	var/datum/gas_mixture/gas_contained
-	var/turf/simulated/inturf
+	var/turf/inturf
 	var/starter = 0
 	var/rpm = 0
 	var/rpmtarget = 0
@@ -24,7 +24,7 @@
 	density = 1
 	var/obj/machinery/compressor/compressor
 	directwired = 1
-	var/turf/simulated/outturf
+	var/turf/outturf
 	var/lastgen
 
 /obj/machinery/computer/turbine_computer

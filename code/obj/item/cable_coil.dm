@@ -254,9 +254,9 @@ obj/item/cable_coil/dropped(mob/user)
 	//	return
 	if (target.intact)		// if floor is intact, complain
 		return
-	if (!(istype(target,/turf/simulated/floor) || istype(target,/turf/space/fluid) || istype(target,/turf/space/gehenna)))
+	if (!(istype(target,/turf/floor) || istype(target,/turf/space/fluid) || istype(target,/turf/space/gehenna)))
 		return
-	if (!(istype(source,/turf/simulated/floor) || istype(source,/turf/space/fluid) || istype(target,/turf/space/gehenna)))
+	if (!(istype(source,/turf/floor) || istype(source,/turf/space/fluid) || istype(target,/turf/space/gehenna)))
 		return
 	if (get_dist(target, source) > 1)
 		boutput(user, "You can't lay cable at a place that far away.")

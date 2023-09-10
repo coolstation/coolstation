@@ -67,7 +67,7 @@ obj/machinery/recharger
 				var/turf/T = null
 				for (var/dir in cardinal)
 					T = get_step(src,dir)
-					if (istype(T,/turf/simulated/wall))
+					if (istype(T,/turf/wall))
 						src.set_dir(dir)
 						switch(src.dir)
 							if(NORTH)

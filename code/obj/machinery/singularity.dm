@@ -286,7 +286,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	else if (isturf(A))
 		var/turf/T = A
 		if (T.turf_flags & IS_TYPE_SIMULATED)
-			if (istype(T, /turf/simulated/floor))
+			if (istype(T, /turf/floor))
 				T.ReplaceWithSpace()
 				gain = 2
 			else
@@ -367,8 +367,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			continue
 		if (T && !(T.turf_flags & CAN_BE_SPACE_SAMPLE) && (get_dist(src.get_center(),T) == radius+1 || get_dist(src.get_center(),T) == radius+2)) // I'm very tired and this is the least dumb thing I can make of what was here for now.   This needs to get updated for the variable size singularity at some point
 			if (T.turf_flags & IS_TYPE_SIMULATED)
-				if (istype(T,/turf/simulated/floor) && !istype(T,/turf/simulated/floor/plating))
-					var/turf/simulated/floor/F = T
+				if (istype(T,/turf/floor) && !istype(T,/turf/floor/plating))
+					var/turf/floor/F = T
 					if (!F.broken)
 						if (prob(80))
 							F.break_tile_to_plating()
@@ -376,9 +376,9 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 								new/obj/item/tile (F)
 						else
 							F.break_tile()
-				else if (istype(T, /turf/simulated/wall))
-					var/turf/simulated/wall/W = T
-					if (istype(W, /turf/simulated/wall/r_wall) || istype(W, /turf/simulated/wall/auto/reinforced))
+				else if (istype(T, /turf/wall))
+					var/turf/wall/W = T
+					if (istype(W, /turf/wall/r_wall) || istype(W, /turf/wall/auto/reinforced))
 						new /obj/structure/girder/reinforced(W)
 					else
 						new /obj/structure/girder(W)

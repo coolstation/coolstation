@@ -606,7 +606,7 @@ Returns:
 		vis_contents += locate(src.x, src.y, src.targetZ)
 		var/turf/T = locate(src.x, src.y+1, src.z)
 		if(T)
-			if(istype(T, /turf/simulated) && !(locate(/obj/hole) in T))
+			if(issimulatedturf(T) && !(locate(/obj/hole) in T))
 				src.overlays += image('icons/effects/effects.dmi',icon_state = "dark", layer=11)
 				src.overlays += image('icons/effects/effects.dmi',icon_state = "wallfade", layer=12)
 			else
@@ -2213,7 +2213,7 @@ Returns:
 					M.changeStatus("weakened", 2 SECONDS)
 					random_burn_damage(M, 10)
 
-				if(istype(T, /turf/simulated/floor))
+				if(istype(T, /turf/floor)) //ATMOSSIMSTODO - was turf/floor
 					if(!T:broken)
 						if(T:burnt)
 							T:break_tile()
@@ -2655,7 +2655,7 @@ Returns:
 
 		for(var/turf/T in range(areasize, src))
 			if(!isturf(T)) continue
-			new/turf/unsimulated/floor(T)
+			new/turf/floor(T)
 
 		usable = 1
 
@@ -3504,10 +3504,10 @@ var/list/lag_list = new/list()
 		if(istype(target, /turf/space))
 			target:ReplaceWithFloor()
 			return
-		if(istype(target, /turf/simulated/floor))
+		if(istype(target, /turf/floor))
 			target:ReplaceWithWall()
 			return
-		if(istype(target, /turf/simulated/wall))
+		if(istype(target, /turf/wall))
 			target:ReplaceWithRWall()
 			return
 		return
@@ -3516,10 +3516,10 @@ var/list/lag_list = new/list()
 	name = "Deconstruct"
 	desc = "Deconstruct walls and floor."
 	used(atom/user, atom/target)
-		if(istype(target, /turf/simulated/floor))
+		if(istype(target, /turf/floor))
 			target:ReplaceWithSpace()
 			return
-		if(istype(target, /turf/simulated/wall))
+		if(istype(target, /turf/wall))
 			target:ReplaceWithFloor()
 			return
 		return
@@ -3568,7 +3568,7 @@ var/list/lag_list = new/list()
 	desc = "Construct a False Wall."
 	used(atom/user, atom/target)
 		var/turf/targ = get_turf(target)
-		new/turf/simulated/wall/false_wall(targ)
+		new/turf/wall/false_wall(targ)
 		return
 
 /datum/engibox_mode/airlock

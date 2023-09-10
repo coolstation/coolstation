@@ -697,7 +697,7 @@
 
 		if (isturf(over_object))
 			if (on_turf && in_interact_range(over_object,src) && !src.anchored) //drag from floor to floor == slide
-				if (istype(over_object,/turf/simulated/floor) || istype(over_object,/turf/unsimulated/floor))
+				if (istype(over_object,/turf/floor) || istype(over_object,/turf/floor))
 					step_to(src,over_object)
 					//this would be cool ha ha h
 					//if (islist(params) && params["icon-y"] && params["icon-x"])

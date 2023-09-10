@@ -155,7 +155,7 @@ var/global/datum/transit_controller/transit_controls = new
 		return TRUE
 
 
-/turf/simulated/floor/specialroom/elevator_shaft
+/turf/floor/specialroom/elevator_shaft
 	name = "elevator shaft"
 	desc = "It looks like it goes down a long ways."
 	icon_state = "moon_shaft"

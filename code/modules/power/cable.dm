@@ -24,7 +24,7 @@
 
 		var/turf/T = user.loc
 
-		if(T.intact || !istype(T, /turf/simulated/floor))
+		if(T.intact || !istype(T, /turf/floor))
 			return
 
 		if(get_dist(src, user) > 1)
@@ -307,7 +307,7 @@
 
 /obj/cable/hide(var/i)
 
-	if(level == 1)// && istype(loc, /turf/simulated))
+	if(level == 1)
 		invisibility = i ? 101 : 0
 	updateicon()
 

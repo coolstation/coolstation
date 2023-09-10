@@ -82,12 +82,12 @@ SYNDICATE DRONE FACTORY AREAS
 	skip_sims = 1
 	sims_score = 30
 
-/turf/unsimulated/floor/cave
+/turf/floor/cave
 	name = "cave floor"
 	icon_state = "cave-medium"
 	fullbright = 0
 
-/turf/unsimulated/wall/cave
+/turf/wall/cave
 	name = "cave wall"
 	icon_state = "cave-dark"
 	fullbright = 0
@@ -101,7 +101,7 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "Graveyard"
 	icon_state = "green"
 	force_fullbright = 0
-	filler_turf = "/turf/unsimulated/dirt"
+	filler_turf = "/turf/dirt"
 	sound_environment = EAX_FOREST
 	skip_sims = 1
 	sims_score = 0
@@ -187,7 +187,7 @@ SYNDICATE DRONE FACTORY AREAS
 
 ////// cogwerks - lava turf
 
-/turf/unsimulated/floor/lava
+/turf/floor/lava
 	name = "Lava"
 	desc = "The floor is lava. Oh no."
 	icon_state = "lava"

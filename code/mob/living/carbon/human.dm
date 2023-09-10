@@ -789,7 +789,7 @@
 
 	var/turf/reappear_turf = get_turf(src)
 	if (!antag_removal && !isrestrictedz(reappear_turf.z))
-		for (var/turf/simulated/floor/S in orange(7))
+		for (var/turf/floor/S in orange(7))
 			if (S == reappear_turf) continue
 			if (prob(50)) //Try to appear on a turf other than the one we die on.
 				reappear_turf = S

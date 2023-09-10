@@ -274,7 +274,7 @@ var/global/meteor_shower_active = 0
 			process()
 
 	proc/check_hits()
-		for(var/turf/simulated/S in range(1,src))
+		for(var/turf/S in range(1,src))
 			if(!S.density) continue
 			hit_object = 1
 			S.meteorhit(src)

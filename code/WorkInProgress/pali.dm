@@ -344,8 +344,8 @@
 		else
 			M.Turn(-90)
 		animate(src, transform=M, time=src.base_move_delay)
-		if(size > 120 && istype(new_turf, /turf/simulated/floor))
-			var/turf/simulated/floor/floor = new_turf
+		if(size > 120 && istype(new_turf, /turf/floor))
+			var/turf/floor/floor = new_turf
 			floor.pry_tile(src.equipped(), src)
 		var/found = 0
 		for(var/obj/O in new_turf)

@@ -34,8 +34,8 @@
 	var/list/obj/machinery/computer/airbr/computers = null
 
 	var/original_turf = /turf/space
-	var/floor_turf = /turf/simulated/floor/airbridge
-	var/wall_turf = /turf/simulated/wall/airbridge
+	var/floor_turf = /turf/floor/airbridge
+	var/wall_turf = /turf/wall/airbridge
 	var/floor_light_type = /obj/machinery/light/small/floor
 
 	var/list/obj/my_lights = null
@@ -44,7 +44,7 @@
 
 	drawbridge
 		name = "Drawbridge Controller"
-		original_turf = /turf/simulated/floor/plating/airless/asteroid
+		original_turf = /turf/floor/plating/airless/asteroid
 
 	New()
 		START_TRACKING
@@ -79,7 +79,9 @@
 		working = 1
 
 		SPAWN_DBG(5 SECONDS)
-			for(var/turf/simulated/T in maintaining_turfs)
+			for(var/turf/T in maintaining_turfs)
+				if(istype(T, /turf/space))
+					continue
 				if(!T.air && T.density)
 					continue
 				ZERO_BASE_GASES(T.air)

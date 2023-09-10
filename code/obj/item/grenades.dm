@@ -119,7 +119,7 @@ PIPE BOMBS + CONSTRUCTION
 			playsound(T, "sound/weapons/flashbang.ogg", 25, 1)
 			new payload(T)
 			for (var/i = 1; i<= 8; i= i*2)
-				if (istype(get_turf(get_step(T,i)),/turf/simulated/floor))
+				if (istype(get_turf(get_step(T,i)),/turf/floor))
 					new payload(get_step(T,i))
 				else
 					new payload(T)
@@ -291,7 +291,7 @@ PIPE BOMBS + CONSTRUCTION
 	proc/build_a_singulo()
 		var/turf/C = get_turf(src)
 		for(var/turf/T in block(locate(C.x - radius, C.y - radius, C.z), locate(C.x + radius, C.y + radius, C.z)))
-			T.ReplaceWith(/turf/simulated/floor/engine, 0, 1, 0, 0)
+			T.ReplaceWith(/turf/floor/engine, 0, 1, 0, 0)
 		new /obj/machinery/the_singularitygen(C)
 		for(var/dir in ordinal)
 			var/turf/T = get_steps(C, dir, radius)
@@ -563,7 +563,7 @@ PIPE BOMBS + CONSTRUCTION
 	icon_state_armed = "oxy1"
 
 	prime()
-		var/turf/simulated/T = ..()
+		var/turf/T = ..()
 		var/datum/gas_mixture/GM = new()
 		GM.temperature = T20C + 15
 		GM.oxygen = 1500
@@ -585,7 +585,7 @@ PIPE BOMBS + CONSTRUCTION
 				else
 					var/count = length(T.parent?.members)
 					if (count)
-						for (var/turf/simulated/MT as() in T.parent.members)
+						for (var/turf/MT as() in T.parent.members)
 							if (GM.disposed)
 								GM = new()
 							GM.temperature = T20C + 15
@@ -1300,7 +1300,7 @@ PIPE BOMBS + CONSTRUCTION
 
 			explosion(src, location, src.expl_devas, src.expl_heavy, src.expl_light, src.expl_flash)
 			// Breaching charges should be, you know, actually be decent at breaching walls and windows (Convair880).
-			for (var/turf/simulated/wall/W in range(src.expl_range, location))
+			for (var/turf/wall/W in range(src.expl_range, location))
 				if (W && istype(W) && !location.loc:sanctuary)
 					W.ReplaceWithFloor()
 			for (var/obj/structure/girder/G in range(src.expl_range, location))
@@ -1383,7 +1383,7 @@ PIPE BOMBS + CONSTRUCTION
 
 			for (var/turf/T in range(src.expl_range, location))
 				if( T?.loc:sanctuary ) continue
-				if (!istype(T, /turf/simulated/wall) && !istype(T, /turf/simulated/floor))
+				if (!istype(T, /turf/wall) && !istype(T, /turf/floor))
 					continue
 
 				T.hotspot_expose(2000, 125)
@@ -1400,19 +1400,19 @@ PIPE BOMBS + CONSTRUCTION
 				light.set_color(0.5, 0.3, 0.0)
 				light.attach(O)
 
-				if (istype(T,/turf/simulated/wall))
+				if (istype(T,/turf/wall))
 					O.set_density(1)
 				else
 					O.set_density(0)
 
 				var/distance = get_dist(T, location)
 				if (distance < 2)
-					var/turf/simulated/floor/F = null
+					var/turf/floor/F = null
 
-					if (istype(T, /turf/simulated/wall))
-						var/turf/simulated/wall/W = T
+					if (istype(T, /turf/wall))
+						var/turf/wall/W = T
 						F = W.ReplaceWithFloor()
-					else if (istype(T, /turf/simulated/floor/))
+					else if (istype(T, /turf/floor/))
 						F = T
 
 					if (F && istype(F))
@@ -1421,8 +1421,8 @@ PIPE BOMBS + CONSTRUCTION
 						O.icon_state = "2"
 				else
 					O.icon_state = "1"
-					if (istype(T, /turf/simulated/floor))
-						var/turf/simulated/floor/F = T
+					if (istype(T, /turf/floor))
+						var/turf/floor/F = T
 						F.burn_tile()
 
 			for (var/obj/structure/girder/G in range(src.expl_range, location))
@@ -1763,7 +1763,7 @@ PIPE BOMBS + CONSTRUCTION
 				playsound(src, "sound/items/Deconstruct.ogg", 70, 1)
 				for (var/turf/T in view(rcd,src.loc))
 					if (istype(T, /turf/space))
-						var/turf/simulated/floor/F = T:ReplaceWithFloor()
+						var/turf/floor/F = T:ReplaceWithFloor()
 						F.setMaterial(getMaterial(rcd_mat))
 				if (rcd > 1)
 					for (var/turf/T in view(3,src.loc))
@@ -1771,7 +1771,7 @@ PIPE BOMBS + CONSTRUCTION
 							new /obj/grille/steel(T)
 
 			if (plasma)
-				for (var/turf/simulated/floor/target in range(1,src.loc))
+				for (var/turf/floor/target in range(1,src.loc))
 					if(!target.blocks_air && target.air)
 						if(target.parent?.group_processing)
 							target.parent.suspend_group_processing()

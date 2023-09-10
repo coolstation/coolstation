@@ -202,12 +202,12 @@
 		if(prob(move_prob))
 			step(src,pick(cardinal))
 
-	proc/shred_terrain(var/turf/simulated/T)
+	proc/shred_terrain(var/turf/T)
 		if (!T)
 			return
 
-		if(istype(T,/turf/simulated/floor))
-			var/turf/simulated/floor/F = T
+		if(istype(T,/turf/floor))
+			var/turf/floor/F = T
 			if(!F.broken)
 				if(prob(80))
 					var/obj/item/tile/TILE = new /obj/item/tile(F)
@@ -222,7 +222,7 @@
 			else
 				F.ReplaceWithSpace()
 
-		else if (istype(T,/turf/simulated/wall))
+		else if (istype(T,/turf/wall))
 			var/atom/A = new /obj/structure/girder/reinforced(T)
 
 			var/atom/movable/B = new /obj/item/raw_material/scrap_metal()

@@ -1,4 +1,4 @@
-/turf/simulated/bowling
+/turf/bowling
 	name = "floor"
 	icon = 'bowling.dmi'
 	icon_state = "bowling_floor"
@@ -107,7 +107,7 @@
 	alter_health()
 		return get_turf(src)
 
-/turf/simulated/floor/pin
+/turf/floor/pin
 	name = "pin"
 	icon = 'bowling.dmi'
 	icon_state = "pin"

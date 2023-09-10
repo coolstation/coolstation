@@ -11,7 +11,7 @@
 			I.layer = src.layer * 0.01
 			src.phantom.overlays += I
 
-/turf/simulated/floor/phantom_test
+/turf/floor/phantom_test
 	fullbright = 1
 
 	New()
@@ -28,7 +28,7 @@
 		A.phantom.loc = locate(src.x+16, src.y, src.z)
 		A.phantom.set_dir(A.dir)
 
-/turf/simulated/floor/phantom_test2
+/turf/floor/phantom_test2
 	fullbright = 1
 	icon = null*/
 

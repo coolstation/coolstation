@@ -597,7 +597,7 @@
 	set desc = "Resets the air contents of every turf in view to normal."
 	admin_only
 	SPAWN_DBG(0)
-		for(var/turf/simulated/T in view())
+		for(var/turf/T in view())
 			if(!T.air)
 				continue
 			ZERO_BASE_GASES(T.air)
@@ -2322,11 +2322,11 @@ var/global/night_mode_enabled = 0
 			R.name = "robust shamecube glass"
 			R.desc = "A pane of robust, yet shameful, glass."
 		var/turf/orig = get_step(targetLoc, direction)
-		var/turf/void = orig.ReplaceWith(/turf/unsimulated/floor/void, FALSE, TRUE, FALSE, TRUE)
+		var/turf/void = orig.ReplaceWith(/turf/floor/void, FALSE, TRUE, FALSE, TRUE)
 		void.name = "shameful void"
 		void.desc = "really is just a shame"
 		new/area/shamecube(get_step(targetLoc, direction))
-	//new/turf/unsimulated/floor/void(targetLoc)
+	//new/turf/floor/void(targetLoc)
 	//new/area/shamecube(targetLoc)
 
 	//Place our sucker into it
@@ -2662,7 +2662,7 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 	if(holder && src.holder.level >= LEVEL_ADMIN)
 		switch(alert("Holy shit are you sure?! This is going to turn the walls into crushers!",,"Yes","No"))
 			if("Yes")
-				for(var/turf/simulated/wall/W in world)
+				for(var/turf/wall/W in world)
 					if (W.z != 1) continue
 					var/obj/machinery/crusher/O = locate() in W.contents //in case someone presses it again
 					if (O) continue
@@ -2761,8 +2761,8 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 				map_generator.generate_terrain(space)
 				for (var/turf/S in space)
 					if(rain)
-						if(istype(S,/turf/unsimulated/floor/auto/swamp))
-							S.ReplaceWith(/turf/unsimulated/floor/auto/swamp/rain, force=TRUE)
+						if(istype(S,/turf/floor/auto/swamp))
+							S.ReplaceWith(/turf/floor/auto/swamp/rain, force=TRUE)
 						if(rain == "Yes")
 							S.UpdateOverlays(weather, "rain")
 						else

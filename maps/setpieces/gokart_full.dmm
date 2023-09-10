@@ -3,7 +3,7 @@
 /turf/space,
 /area/space)
 "ab" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "v-space"
@@ -18,17 +18,17 @@
 	},
 /area/area_that_kills_you_if_you_enter_it)
 "ad" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/racing_track)
 "ae" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "v-space"
 	},
 /area/racing_track)
 "af" = (
-/turf/unsimulated/grass{
+/turf/grass{
 	density = 1;
 	icon_state = "grass";
 	name = "grass.";
@@ -37,7 +37,7 @@
 /area/racing_track)
 "ag" = (
 /obj/tree1,
-/turf/unsimulated/grass{
+/turf/grass{
 	density = 1;
 	icon_state = "grass";
 	name = "grass.";
@@ -48,13 +48,13 @@
 /obj/structure/woodwall{
 	opacity = 0
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "ai" = (
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "aj" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "outer forcefield";
@@ -63,11 +63,11 @@
 /area/area_that_kills_you_if_you_enter_it)
 "ak" = (
 /obj/river,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "al" = (
 /obj/tree1,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "am" = (
 /obj/stone{
@@ -75,10 +75,10 @@
 	icon_state = "stone";
 	dir = 8
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "an" = (
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/racing_track)
 "ao" = (
 /obj/racing_boosterstrip{
@@ -86,7 +86,7 @@
 	icon_state = "boosterstrip";
 	dir = 4
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/racing_track)
 "ap" = (
 /obj/river{
@@ -94,7 +94,7 @@
 	icon_state = "river";
 	dir = 10
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/racing_track)
 "aq" = (
 /obj/river{
@@ -102,13 +102,13 @@
 	icon_state = "river";
 	dir = 5
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/racing_track)
 "ar" = (
 /turf/space,
 /area/racing_track)
 "as" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	density = 1;
 	icon_state = "grass_snow";
 	name = "dense snow";
@@ -117,7 +117,7 @@
 	},
 /area/racing_track)
 "at" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	tag = "icon-barrier_blue";
 	name = "barrier";
 	icon = 'racing.dmi';
@@ -127,19 +127,19 @@
 /area/racing_track)
 "au" = (
 /obj/tree1,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-grass_snow";
 	icon_state = "grass_snow"
 	},
 /area/racing_track)
 "av" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-grass_snow";
 	icon_state = "grass_snow"
 	},
 /area/racing_track)
 "aw" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (SOUTHWEST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -147,7 +147,7 @@
 	},
 /area/racing_track)
 "ax" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -155,14 +155,14 @@
 /area/racing_track)
 "ay" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
 	},
 /area/racing_track)
 "az" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (SOUTHEAST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -170,7 +170,7 @@
 	},
 /area/racing_track)
 "aA" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (EAST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -178,20 +178,20 @@
 	},
 /area/racing_track)
 "aB" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_track)
 "aC" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_track)
 "aD" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (WEST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -204,7 +204,7 @@
 	icon_state = "river";
 	dir = 10
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "aF" = (
 /obj/river{
@@ -212,11 +212,11 @@
 	icon_state = "river";
 	dir = 5
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "aG" = (
 /obj/tree1,
-/turf/unsimulated/floor{
+/turf/floor{
 	density = 1;
 	icon_state = "grass_snow";
 	name = "dense snow";
@@ -230,24 +230,24 @@
 	icon_state = "boosterstrip";
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_track)
 "aI" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/racing_track)
 "aJ" = (
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/racing_track)
 "aK" = (
 /obj/racing_powerup_spawner,
 /turf/space,
 /area/racing_track)
 "aL" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -256,7 +256,7 @@
 /area/racing_track)
 "aM" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -265,11 +265,11 @@
 /area/racing_track)
 "aN" = (
 /obj/tombstone,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "aO" = (
 /obj/racing_boosterstrip,
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/racing_track)
 "aP" = (
 /obj/lattice,
@@ -285,10 +285,10 @@
 /turf/space,
 /area/racing_track)
 "aR" = (
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/racing_track)
 "aS" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 1
 	},
 /area/racing_track)
@@ -302,13 +302,13 @@
 	name = "broken door";
 	tag = "icon-eng-open"
 	},
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/racing_track)
 "aU" = (
-/turf/unsimulated/floor/damaged2,
+/turf/floor/damaged2,
 /area/racing_track)
 "aV" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -319,10 +319,10 @@
 	icon_state = "boosterstrip";
 	dir = 1
 	},
-/turf/unsimulated/dirt,
+/turf/dirt,
 /area/racing_track)
 "aX" = (
-/turf/unsimulated/floor/damaged1,
+/turf/floor/damaged1,
 /area/racing_track)
 "aY" = (
 /obj/racing_boosterstrip{
@@ -330,13 +330,13 @@
 	icon_state = "boosterstrip";
 	dir = 4
 	},
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/racing_track)
 "aZ" = (
-/turf/unsimulated/floor/white/side,
+/turf/floor/white/side,
 /area/racing_track)
 "ba" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTHWEST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -347,7 +347,7 @@
 /obj/structure/woodwall{
 	opacity = 0
 	},
-/turf/unsimulated/grass{
+/turf/grass{
 	density = 1;
 	icon_state = "grass";
 	name = "grass.";
@@ -360,7 +360,7 @@
 	icon_state = "door_closed";
 	name = "airlock"
 	},
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/racing_track)
 "bd" = (
 /obj/stone{
@@ -368,10 +368,10 @@
 	icon_state = "stone";
 	dir = 9
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "be" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTHEAST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -380,7 +380,7 @@
 /area/racing_track)
 "bf" = (
 /obj/racing_boosterstrip,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-grass_snow";
 	icon_state = "grass_snow"
 	},
@@ -391,20 +391,20 @@
 	icon_state = "snowman";
 	name = "snowman"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-grass_snow";
 	icon_state = "grass_snow"
 	},
 /area/racing_track)
 "bh" = (
 /obj/lattice,
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/racing_track)
 "bi" = (
 /obj/tombstone{
 	desc = "Here lies Richie Mcmullin, eaten by ghosts."
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bj" = (
 /obj/overlay{
@@ -415,19 +415,19 @@
 	layer = 4;
 	name = "skeleton"
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bk" = (
 /obj/stone,
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bl" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 5
 	},
 /area/racing_track)
 "bm" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -435,7 +435,7 @@
 	},
 /area/racing_track)
 "bn" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	tag = "icon-barrier_green";
 	name = "barrier";
 	icon = 'racing.dmi';
@@ -449,16 +449,16 @@
 	icon_state = "boosterstrip";
 	dir = 8
 	},
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/racing_track)
 "bp" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 4
 	},
 /area/racing_track)
 "bq" = (
 /obj/decal/cleanable/oil,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (EAST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -473,7 +473,7 @@
 	layer = 10;
 	name = "palm tree"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -481,12 +481,12 @@
 	},
 /area/racing_track)
 "bs" = (
-/turf/unsimulated/floor/white/corner{
+/turf/floor/white/corner{
 	dir = 8
 	},
 /area/racing_track)
 "bt" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	tag = "icon-barrier_yellow";
 	name = "barrier";
 	icon = 'racing.dmi';
@@ -495,12 +495,12 @@
 	},
 /area/racing_track)
 "bu" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 8
 	},
 /area/racing_track)
 "bv" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	icon = 'racing.dmi';
 	icon_state = "barrier_red";
 	name = "barrier";
@@ -512,30 +512,30 @@
 /obj/tombstone{
 	desc = "Here lies Tango N. Vectif, killed by dat fukken pig."
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "bx" = (
 /obj/tombstone{
 	desc = "Here lies Kira Taggart, tragically killed as a result of somebody else's mistakes."
 	},
-/turf/unsimulated/grass,
+/turf/grass,
 /area/racing_track)
 "by" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 8
 	},
 /area/racing_track)
 "bz" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
 /area/racing_track)
 "bA" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 4
 	},
 /area/racing_track)
@@ -547,7 +547,7 @@
 	layer = 10;
 	name = "palm tree"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -555,15 +555,15 @@
 	},
 /area/racing_track)
 "bC" = (
-/turf/unsimulated/floor/damaged3,
+/turf/floor/damaged3,
 /area/racing_track)
 "bD" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 9
 	},
 /area/racing_track)
 "bE" = (
-/turf/unsimulated/floor/white/corner{
+/turf/floor/white/corner{
 	icon_state = "whitecorner";
 	dir = 1
 	},
@@ -582,7 +582,7 @@
 	icon_state = "coconuts";
 	name = "coconuts"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -595,7 +595,7 @@
 	icon_state = "boosterstrip";
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -603,24 +603,24 @@
 /area/racing_track)
 "bH" = (
 /obj/decal/cleanable/oil,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_track)
 "bI" = (
-/turf/unsimulated/floor/white/corner{
+/turf/floor/white/corner{
 	dir = 2
 	},
 /area/racing_track)
 "bJ" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 6
 	},
 /area/racing_track)
 "bK" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (EAST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -629,7 +629,7 @@
 /area/racing_track)
 "bL" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (WEST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -643,7 +643,7 @@
 	icon_state = "crab2";
 	name = "crab"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -656,7 +656,7 @@
 	icon_state = "boosterstrip";
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -669,7 +669,7 @@
 	icon_state = "boosterstrip";
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'floors.dmi';
 	icon_state = "floor"
 	},
@@ -688,7 +688,7 @@
 	icon_state = "coconuts";
 	name = "coconuts"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -702,7 +702,7 @@
 	icon_state = "crab";
 	name = "crab"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -717,7 +717,7 @@
 /obj/item/reagent_containers/food/drinks/beer,
 /obj/item/reagent_containers/food/drinks/beer,
 /obj/item/reagent_containers/food/drinks/beer,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -729,7 +729,7 @@
 	icon_state = "tabledir";
 	dir = 5
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -742,7 +742,7 @@
 	dir = 10
 	},
 /obj/item/reagent_containers/food/snacks/chips,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -756,7 +756,7 @@
 	},
 /obj/item/reagent_containers/food/drinks/cola,
 /obj/item/reagent_containers/food/drinks/cola,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -764,25 +764,25 @@
 	},
 /area/racing_track)
 "bV" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "grass1";
 	name = "dense grass";
 	opacity = 1
 	},
 /area/racing_track)
 "bW" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "grass1"
 	},
 /area/racing_track)
 "bX" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "water"
 	},
 /area/racing_track)
 "bY" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "water";
 	name = "water"
@@ -790,7 +790,7 @@
 /area/racing_track)
 "bZ" = (
 /obj/tree1,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "grass1"
 	},
 /area/racing_track)
@@ -800,7 +800,7 @@
 	icon_state = "boosterstrip";
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (WEST)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -808,12 +808,12 @@
 	},
 /area/racing_track)
 "cb" = (
-/turf/unsimulated/floor/lava{
+/turf/floor/lava{
 	deadly = 0
 	},
 /area/racing_track)
 "cc" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "cloaking field"
@@ -821,12 +821,12 @@
 /area/space)
 "cd" = (
 /obj/decal/cliff,
-/turf/unsimulated/floor/lava{
+/turf/floor/lava{
 	deadly = 0
 	},
 /area/racing_track)
 "ce" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/tdome/tdome1)
 "cf" = (
 /obj/grille,
@@ -849,17 +849,17 @@
 	density = 1;
 	name = "blocker (thunderdome)"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdome1)
 "cg" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/farm/bball)
 "ch" = (
 /obj/securearea{
 	desc = "It looks pretty dangerous in there.";
 	name = "HAZARDOUS AREA"
 	},
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/farm/bball)
 "ci" = (
 /obj/grille,
@@ -882,10 +882,10 @@
 	density = 1;
 	name = "blocker (thunderdome)"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/farm/bball)
 "cj" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/tdome/tdome2)
 "ck" = (
 /obj/grille,
@@ -908,7 +908,7 @@
 	density = 1;
 	name = "blocker (thunderdome)"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdome2)
 "cl" = (
 /turf/space{
@@ -923,7 +923,7 @@
 /turf/space,
 /area/racing_track)
 "cn" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-rainbow_road";
 	icon = 'racing.dmi';
 	icon_state = "rainbow_road";
@@ -932,7 +932,7 @@
 /area/racing_track)
 "co" = (
 /obj/decal/cleanable/oil,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -941,16 +941,16 @@
 /area/racing_track)
 "cp" = (
 /obj/closet/thunderdome/tdgreen,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/tdome/tdome1)
 "cq" = (
 /obj/landmark{
 	name = "tdome1"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/tdome/tdome1)
 "cr" = (
-/turf/unsimulated/floor,
+/turf/floor,
 /area/tdome/tdome1)
 "cs" = (
 /obj/table,
@@ -959,30 +959,30 @@
 /obj/item/stimpack,
 /obj/item/stimpack,
 /obj/item/stimpack,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/tdome/tdome1)
 "ct" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "0,7"
 	},
 /area/farm/bball)
 "cu" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "1,7"
 	},
 /area/farm/bball)
 "cv" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "0,6"
 	},
 /area/farm/bball)
 "cw" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c22"
 	},
 /area/farm/bball)
 "cx" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c23"
 	},
 /area/farm/bball)
@@ -993,20 +993,20 @@
 /obj/item/stimpack,
 /obj/item/stimpack,
 /obj/item/stimpack,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/tdome/tdome2)
 "cz" = (
-/turf/unsimulated/floor,
+/turf/floor,
 /area/tdome/tdome2)
 "cA" = (
 /obj/landmark{
 	name = "tdome2"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/tdome/tdome2)
 "cB" = (
 /obj/closet/thunderdome/tdred,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/tdome/tdome2)
 "cC" = (
 /obj/machinery/door_control{
@@ -1015,7 +1015,7 @@
 	pixel_x = 0;
 	pixel_y = 24
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/tdome/tdome1)
 "cD" = (
 /obj/machinery/door/poddoor{
@@ -1023,25 +1023,25 @@
 	id = "thunderdome";
 	name = "Thunderdome"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/farm/bball)
 "cE" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "1,6"
 	},
 /area/farm/bball)
 "cF" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "2,6"
 	},
 /area/farm/bball)
 "cG" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c20"
 	},
 /area/farm/bball)
 "cH" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c21"
 	},
 /area/farm/bball)
@@ -1052,10 +1052,10 @@
 	pixel_x = 0;
 	pixel_y = 24
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/tdome/tdome2)
 "cJ" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-rainbow_road (SOUTHWEST)";
 	icon = 'racing.dmi';
 	icon_state = "rainbow_road";
@@ -1063,22 +1063,22 @@
 	},
 /area/racing_track)
 "cK" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "2,5"
 	},
 /area/farm/bball)
 "cL" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "3,5"
 	},
 /area/farm/bball)
 "cM" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c18"
 	},
 /area/farm/bball)
 "cN" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c19"
 	},
 /area/farm/bball)
@@ -1091,22 +1091,22 @@
 /turf/space,
 /area/racing_track)
 "cP" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "0,4"
 	},
 /area/farm/bball)
 "cQ" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "1,4"
 	},
 /area/farm/bball)
 "cR" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "2,4"
 	},
 /area/farm/bball)
 "cS" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "3,4"
 	},
 /area/farm/bball)
@@ -1120,34 +1120,34 @@
 	network = "Zeta";
 	tag = ""
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "0,6"
 	},
 /area/farm/bball)
 "cU" = (
 /obj/item/basketball,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "0,6"
 	},
 /area/farm/bball)
 "cV" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c14"
 	},
 /area/farm/bball)
 "cW" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "c15"
 	},
 /area/farm/bball)
 "cX" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c16"
 	},
 /area/farm/bball)
 "cY" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c17"
 	},
 /area/farm/bball)
@@ -1157,7 +1157,7 @@
 /obj/item/gun/kinetic/flaregun,
 /obj/item/sword,
 /obj/item/sword,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/tdome/tdome1)
 "da" = (
 /obj/machinery/disposal{
@@ -1165,37 +1165,37 @@
 	desc = "This is totally a hoop. Thank god we have such a high budget.";
 	name = "square hoop"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "0,3"
 	},
 /area/farm/bball)
 "db" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "1,3"
 	},
 /area/farm/bball)
 "dc" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "2,3"
 	},
 /area/farm/bball)
 "dd" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "3,3"
 	},
 /area/farm/bball)
 "de" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c9"
 	},
 /area/farm/bball)
 "df" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c11"
 	},
 /area/farm/bball)
 "dg" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c12"
 	},
 /area/farm/bball)
@@ -1205,7 +1205,7 @@
 	desc = "This is totally a hoop. Thank god we have such a high budget.";
 	name = "square hoop"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c13"
 	},
 /area/farm/bball)
@@ -1215,7 +1215,7 @@
 /obj/item/gun/kinetic/flaregun,
 /obj/item/sword,
 /obj/item/sword,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/tdome/tdome2)
 "dj" = (
 /obj/disposaloutlet{
@@ -1225,47 +1225,47 @@
 /obj/disposalpipe/trunk{
 	dir = 4
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/tdome/tdome1)
 "dk" = (
 /obj/disposalpipe/segment{
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/tdome/tdome1)
 "dl" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "0,2"
 	},
 /area/farm/bball)
 "dm" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "1,2"
 	},
 /area/farm/bball)
 "dn" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "2,2"
 	},
 /area/farm/bball)
 "do" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "3,2"
 	},
 /area/farm/bball)
 "dp" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c5"
 	},
 /area/farm/bball)
 "dq" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c6"
 	},
 /area/farm/bball)
 "dr" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c8"
 	},
 /area/farm/bball)
@@ -1274,7 +1274,7 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/tdome/tdome2)
 "dt" = (
 /obj/disposaloutlet{
@@ -1284,10 +1284,10 @@
 /obj/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/tdome/tdome2)
 "du" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-rainbow_road (EAST)";
 	icon = 'racing.dmi';
 	icon_state = "rainbow_road";
@@ -1296,50 +1296,50 @@
 /area/racing_track)
 "dv" = (
 /obj/disposalpipe/segment,
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/racing_track)
 "dw" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "2,1"
 	},
 /area/farm/bball)
 "dx" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c4"
 	},
 /area/farm/bball)
 "dy" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "0,0"
 	},
 /area/farm/bball)
 "dz" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "1,0"
 	},
 /area/farm/bball)
 "dA" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "2,0"
 	},
 /area/farm/bball)
 "dB" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c1"
 	},
 /area/farm/bball)
 "dC" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c2"
 	},
 /area/farm/bball)
 "dD" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "c3"
 	},
 /area/farm/bball)
 "dE" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
@@ -1353,7 +1353,7 @@
 	desc = "It looks pretty dangerous in there.";
 	name = "HAZARDOUS AREA"
 	},
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
@@ -1383,7 +1383,7 @@
 	density = 1;
 	name = "blocker (thunderdome)"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
@@ -1408,7 +1408,7 @@
 	density = 1;
 	name = "blocker (thunderdome)"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
@@ -1438,7 +1438,7 @@
 	density = 1;
 	name = "blocker (thunderdome)"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
@@ -1448,7 +1448,7 @@
 	icon_state = "boosterstrip";
 	dir = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -1460,7 +1460,7 @@
 	icon_state = "boosterstrip";
 	dir = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-rainbow_road (EAST)";
 	icon = 'racing.dmi';
 	icon_state = "rainbow_road";
@@ -1468,7 +1468,7 @@
 	},
 /area/racing_track)
 "dL" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-rainbow_road (SOUTHEAST)";
 	icon = 'racing.dmi';
 	icon_state = "rainbow_road";
@@ -1480,14 +1480,14 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/racing_track)
 "dN" = (
 /obj/disposalpipe/segment{
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/racing_track)
 "dO" = (
 /obj/overlay{
@@ -1499,7 +1499,7 @@
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
@@ -1510,7 +1510,7 @@
 /obj/machinery/disposal{
 	name = "GREEN TEAM CHUTE"
 	},
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
@@ -1520,14 +1520,14 @@
 	icon_state = "chair_comfy";
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetNW"
 	},
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
 "dR" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/tdome/tdomea{
@@ -1539,7 +1539,7 @@
 	icon_state = "chair_comfy";
 	dir = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetNE"
 	},
 /area/tdome/tdomea{
@@ -1553,7 +1553,7 @@
 /obj/machinery/computer/security/wooden_tv/small{
 	pixel_y = 8
 	},
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
@@ -1572,7 +1572,7 @@
 	layer = 7;
 	name = "Thunderdome Intercom"
 	},
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
@@ -1580,7 +1580,7 @@
 /obj/stool/chair/comfy{
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetNW"
 	},
 /area/tdome/tdomea{
@@ -1593,7 +1593,7 @@
 /obj/machinery/disposal{
 	name = "RED TEAM CHUTE"
 	},
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
@@ -1602,7 +1602,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/racing_track)
 "dY" = (
 /obj/racing_boosterstrip{
@@ -1610,7 +1610,7 @@
 	icon_state = "boosterstrip";
 	dir = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -1619,7 +1619,7 @@
 /obj/decal/cliff{
 	dir = 4
 	},
-/turf/unsimulated/floor/lava{
+/turf/floor/lava{
 	deadly = 0
 	},
 /area/racing_track)
@@ -1635,31 +1635,31 @@
 	dir = 10;
 	reinf = 1
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
 "eb" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetNW"
 	},
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
 "ec" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
 "ed" = (
-/turf/unsimulated/floor/carpet,
+/turf/floor/carpet,
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
 "ee" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetNE"
 	},
 /area/tdome/tdomea{
@@ -1669,7 +1669,7 @@
 /obj/decal/cliff{
 	dir = 8
 	},
-/turf/unsimulated/floor/lava{
+/turf/floor/lava{
 	deadly = 0
 	},
 /area/racing_track)
@@ -1679,20 +1679,20 @@
 	icon_state = "boosterstrip";
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_track)
 "eh" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetW"
 	},
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
 "ei" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "carpetE"
 	},
@@ -1705,7 +1705,7 @@
 	icon_state = "boosterstrip";
 	dir = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -1718,7 +1718,7 @@
 	icon_state = "chair_comfy";
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetSW"
 	},
 /area/tdome/tdomea{
@@ -1729,7 +1729,7 @@
 /obj/machinery/computer/security/wooden_tv/small{
 	pixel_y = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/tdome/tdomea{
@@ -1741,7 +1741,7 @@
 	icon_state = "chair_comfy";
 	dir = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/tdome/tdomea{
@@ -1749,14 +1749,14 @@
 	})
 "en" = (
 /obj/critter/boogiebot,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
 "eo" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/tdome/tdomea{
@@ -1768,7 +1768,7 @@
 	icon_state = "chair_comfy";
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/tdome/tdomea{
@@ -1780,7 +1780,7 @@
 	icon_state = "chair_comfy";
 	dir = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetSE"
 	},
 /area/tdome/tdomea{
@@ -1790,7 +1790,7 @@
 /obj/machinery/door/unpowered/wood{
 	autoclose = 0
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floor"
 	},
 /area/tdome/tdomea{
@@ -1802,7 +1802,7 @@
 	density = 1;
 	name = "blocker (thunderdome)"
 	},
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/tdome/tdomea{
 	name = "Thunderdome Lounge"
 	})
@@ -1810,42 +1810,42 @@
 /obj/closet/wardrobe{
 	name = "Blue Wardrobe"
 	},
-/turf/unsimulated/floor/stairs/wide/middle,
+/turf/floor/stairs/wide/middle,
 /area/racing_track)
 "eu" = (
 /obj/stool/chair,
-/turf/unsimulated/floor/stairs/wide/middle,
+/turf/floor/stairs/wide/middle,
 /area/racing_track)
 "ev" = (
-/turf/unsimulated/floor/stairs,
+/turf/floor/stairs,
 /area/racing_track)
 "ew" = (
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/racing_track)
 "ex" = (
 /obj/landmark{
 	name = "arcadevr"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/racing_track)
 "ey" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floor"
 	},
 /area/racing_track)
 "ez" = (
 /obj/item/reagent_containers/glass/oilcan,
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/racing_track)
 "eA" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "v-space"
 	},
 /area/sim/area2)
 "eB" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "outer forcefield";
@@ -1855,7 +1855,7 @@
 	name = "Penalty Box"
 	})
 "eC" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "forcefield";
@@ -1866,14 +1866,14 @@
 	})
 "eD" = (
 /obj/stool/chair,
-/turf/unsimulated/floor/stairs/wide,
+/turf/floor/stairs/wide,
 /area/racing_track)
 "eE" = (
 /obj/stool/chair,
-/turf/unsimulated/floor/stairs/wide/other,
+/turf/floor/stairs/wide/other,
 /area/racing_track)
 "eF" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand"
@@ -1883,14 +1883,14 @@
 /obj/landmark{
 	name = "prisonwarp"
 	},
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 2
 	},
 /area/prison/cell_block/wards{
 	name = "Penalty Box"
 	})
 "eH" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 8
 	},
 /area/prison/cell_block/wards{
@@ -1912,7 +1912,7 @@
 	name = "finish line";
 	pixel_x = 6
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -1929,7 +1929,7 @@
 /obj/landmark{
 	name = "kart1"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -1942,7 +1942,7 @@
 	returnpoint = "kart1";
 	tag = "icon-kart_red_u (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -1959,7 +1959,7 @@
 /obj/landmark{
 	name = "kart3"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -1972,7 +1972,7 @@
 	returnpoint = "kart3";
 	tag = "icon-kart_blue_u (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -1989,7 +1989,7 @@
 /obj/landmark{
 	name = "kart6"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
@@ -2002,14 +2002,14 @@
 	returnpoint = "kart6";
 	tag = "icon-kart_red_u (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2";
 	icon = 'racing.dmi';
 	icon_state = "track_2"
 	},
 /area/racing_track)
 "eP" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -2017,7 +2017,7 @@
 	},
 /area/sim/area2)
 "eQ" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-rainbow_road (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "rainbow_road";
@@ -2025,14 +2025,14 @@
 	},
 /area/racing_track)
 "eR" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 4
 	},
 /area/prison/cell_block/wards{
 	name = "Penalty Box"
 	})
 "eS" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 1
 	},
 /area/prison/cell_block/wards{
@@ -2054,7 +2054,7 @@
 	name = "finish line";
 	pixel_x = 6
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -2066,7 +2066,7 @@
 	require_login = 0;
 	screen = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -2077,7 +2077,7 @@
 /obj/machinery/computer/arcade{
 	desc = "The VR representation of a popular computer game."
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -2088,7 +2088,7 @@
 /obj/machinery/computer/security/wooden_tv{
 	desc = "The VR representation of a camera monitoring program."
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -2099,7 +2099,7 @@
 /obj/machinery/vending/cigarette{
 	name = "virtual cigarette machine"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -2108,7 +2108,7 @@
 /area/sim/area2)
 "eY" = (
 /obj/racing_powerup_spawner,
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-rainbow_road (EAST)";
 	icon = 'racing.dmi';
 	icon_state = "rainbow_road";
@@ -2129,7 +2129,7 @@
 	icon_state = "coconuts";
 	name = "coconuts"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -2152,7 +2152,7 @@
 	name = "finish line";
 	pixel_x = 6
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -2170,7 +2170,7 @@
 /obj/landmark{
 	name = "kart2"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -2184,7 +2184,7 @@
 	returnpoint = "kart2";
 	tag = "icon-kart_blue_u (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -2202,7 +2202,7 @@
 /obj/landmark{
 	name = "kart4"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -2216,7 +2216,7 @@
 	returnpoint = "kart4";
 	tag = "icon-kart_red_u (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -2234,7 +2234,7 @@
 /obj/landmark{
 	name = "kart5"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -2248,7 +2248,7 @@
 	returnpoint = "kart5";
 	tag = "icon-kart_blue_u (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-track_2 (NORTH)";
 	icon = 'racing.dmi';
 	icon_state = "track_2";
@@ -2256,7 +2256,7 @@
 	},
 /area/racing_track)
 "fh" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetNW"
 	},
 /area/sim/area2)
@@ -2268,7 +2268,7 @@
 	desc = "A data logging utility represented as an audio logger.";
 	name = "Audiolog"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/sim/area2)
@@ -2277,22 +2277,22 @@
 /obj/landmark{
 	name = "det_net"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/sim/area2)
 "fk" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/sim/area2)
 "fl" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetNE"
 	},
 /area/sim/area2)
 "fm" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	tag = "icon-barrier_green";
 	name = "barrier";
 	icon = 'racing.dmi';
@@ -2302,15 +2302,15 @@
 /area/racing_entry)
 "fn" = (
 /obj/window/reinforced,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floor"
 	},
 /area/racing_entry)
 "fo" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/racing_entry)
 "fp" = (
-/turf/unsimulated/wall/other{
+/turf/wall/other{
 	icon = 'racing.dmi';
 	icon_state = "barrier_red";
 	name = "barrier";
@@ -2324,13 +2324,13 @@
 	icon_state = "boosterstrip";
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "fr" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetSW"
 	},
 /area/sim/area2)
@@ -2345,14 +2345,14 @@
 /obj/machinery/computer/security/wooden_tv/small{
 	pixel_y = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/sim/area2)
 "ft" = (
 /obj/table/woodentable,
 /obj/item/spacecash/hundred,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/sim/area2)
@@ -2363,12 +2363,12 @@
 /obj/item/paper_bin{
 	pixel_y = 9
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/sim/area2)
 "fv" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "carpetE"
 	},
@@ -2379,55 +2379,55 @@
 	icon_state = "chair_comfy";
 	dir = 1
 	},
-/turf/unsimulated/floor/specialroom/bar,
+/turf/floor/specialroom/bar,
 /area/racing_entry)
 "fx" = (
 /obj/table,
 /obj/machinery/computer/security/wooden_tv/small{
 	pixel_y = 8
 	},
-/turf/unsimulated/floor/specialroom/bar,
+/turf/floor/specialroom/bar,
 /area/racing_entry)
 "fy" = (
-/turf/unsimulated/floor/specialroom/bar,
+/turf/floor/specialroom/bar,
 /area/racing_entry)
 "fz" = (
 /obj/item/reagent_containers/glass/oilcan,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "fA" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "fB" = (
 /obj/machinery/vending/coffee,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "fC" = (
 /obj/machinery/vending/snack,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "fD" = (
 /obj/machinery/vending/cola/red,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "fE" = (
 /obj/machinery/vending/cola/blue,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -2440,7 +2440,7 @@
 	layer = 10;
 	name = "palm tree"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -2448,7 +2448,7 @@
 	},
 /area/sim/area2)
 "fG" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetSE"
 	},
 /area/sim/area2)
@@ -2461,11 +2461,11 @@
 /obj/machinery/door/unpowered/wood{
 	autoclose = 0
 	},
-/turf/unsimulated/floor/specialroom/bar,
+/turf/floor/specialroom/bar,
 /area/racing_entry)
 "fI" = (
 /obj/tree1,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "grass1";
 	name = "dense grass";
 	opacity = 1
@@ -2473,13 +2473,13 @@
 /area/racing_track)
 "fJ" = (
 /obj/item/instrument/large/jukebox,
-/turf/unsimulated/floor/specialroom/bar,
+/turf/floor/specialroom/bar,
 /area/racing_entry)
 "fK" = (
 /obj/closet/wardrobe{
 	name = "Blue Wardrobe"
 	},
-/turf/unsimulated/floor/specialroom/bar,
+/turf/floor/specialroom/bar,
 /area/racing_entry)
 "fL" = (
 /obj/overlay{
@@ -2493,7 +2493,7 @@
 	name = "broken clown car";
 	opacity = 0
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -2504,7 +2504,7 @@
 	dir = 9
 	},
 /obj/item/spacecash/hundred,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -2517,7 +2517,7 @@
 /obj/item/spacecash/twenty,
 /obj/item/spacecash/twenty,
 /obj/item/spacecash/twenty,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -2528,14 +2528,14 @@
 	icon_state = "chair";
 	dir = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "fP" = (
 /obj/decal/cleanable/oil,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -2545,7 +2545,7 @@
 	icon_state = "tabledir";
 	dir = 10
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -2556,7 +2556,7 @@
 	dir = 6
 	},
 /obj/item/spacecash/hundred,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -2568,7 +2568,7 @@
 	icon_state = "crab2";
 	name = "crab"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "sand";
 	name = "sand";
@@ -2588,7 +2588,7 @@
 	opacity = 0
 	},
 /obj/decal/cleanable/oil,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -2597,7 +2597,7 @@
 /obj/landmark{
 	name = "arcadevr"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
@@ -2606,20 +2606,20 @@
 /obj/stool/chair{
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "fW" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater";
 	name = "water"
 	},
 /area/sim/area2)
 "fX" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach2.dmi';
 	icon_state = "sandwater"
 	},
@@ -2629,13 +2629,13 @@
 	desc = "Caution! Construction Zone!";
 	name = "caution sign"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},
 /area/racing_entry)
 "fZ" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "water"
 	},
@@ -2649,7 +2649,7 @@
 	mouse_opacity = 0;
 	name = "water"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "water";
 	name = "water"
@@ -2659,7 +2659,7 @@
 /obj/closet/wardrobe{
 	name = "Blue Wardrobe"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'racing.dmi';
 	icon_state = "track_1"
 	},

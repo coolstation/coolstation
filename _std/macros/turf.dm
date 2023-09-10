@@ -9,21 +9,24 @@
 /// returns a list of all neighboring turfs in cardinal directions.
 #define getneighbours(x) (list(get_step(x, NORTH), get_step(x, EAST), get_step(x, SOUTH), get_step(x, WEST)))
 
-/// Returns true if x is a simulated turf
-#define issimulatedturf(x) istype(x, /turf/simulated)
+/// Returns true if turf x is in a simulated atmos area. Some azone-y stuff also uses this because we haven't split it cleanly (yet)
+#define issimulatedturf(x) (isturf(x) && !istype(x, /turf/space) && (x.loc:is_atmos_simulated == TRUE))
+
+/// Returns true if turf x is in a construction allowed area
+#define isconstructionturf(x) (x.loc:construction_allowed == TRUE)
 
 /// Returns true if x is a floor type
-#define isfloor(x) (istype(x, /turf/simulated/floor) || istype(x, /turf/unsimulated/floor))
+#define isfloor(x) (istype(x, /turf/floor))
 
 /// Returns true if x is a reinforced wall
-#define isrwall(x) (istype(x,/turf/simulated/wall/r_wall)||istype(x,/turf/simulated/wall/auto/reinforced)||istype(x,/turf/unsimulated/wall/auto/reinforced)||istype(x,/turf/simulated/wall/false_wall/reinforced))
+#define isrwall(x) (istype(x,/turf/wall/r_wall)||istype(x,/turf/wall/auto/reinforced)||istype(x,/turf/wall/false_wall/reinforced))
 
 /**
 	* Creates typepaths for an unsimulated turf, a simulated turf, an airless simulated turf, and an airless unsimulated turf at compile time.
 	*
 	* `_PATH` should be an incomplete typepath like `purple/checker` or `orangeblack/side/white`
 	*
-	* It will automatically be formatted into a correct typepath, like `/turf/simulated/floor/purple/checker`
+	* It will automatically be formatted into a correct typepath, like `/turf/floor/purple/checker`
 	*
 	* `_VARS` should be variables/values that the defined type should have.
 	*
@@ -53,43 +56,10 @@
 	* and turf/floors.dm.
 	*/
 #define DEFINE_FLOORS(_PATH, _VARS) \
-	/turf/simulated/floor/_PATH{_VARS};\
-	/turf/unsimulated/floor/_PATH{_VARS};\
-	/turf/simulated/floor/airless/_PATH{_VARS};\
-	/turf/unsimulated/floor/airless/_PATH{_VARS};
+	/turf/floor/_PATH{_VARS};
 
-/// Creates typepaths for a `/turf/simulated/floor/_PATH` and a `/turf/simulated/floor/airless/_PATH` with vars from `_VARS`
-#define DEFINE_FLOORS_SIMMED(_PATH, _VARS) \
-	/turf/simulated/floor/_PATH{_VARS};\
-	/turf/simulated/floor/airless/_PATH{_VARS};
 
-/// Creates typepaths for a `/turf/unsimulated/floor/_PATH` and a `/turf/unsimulated/floor/airless/_PATH` with vars from `_VARS`
-#define DEFINE_FLOORS_UNSIMMED(_PATH, _VARS) \
-	/turf/unsimulated/floor/_PATH{_VARS};\
-	/turf/unsimulated/floor/airless/_PATH{_VARS};
-
-/// Creates typepaths for a `/turf/simulated/floor/_PATH` and a `/turf/unsimulated/floor/_PATH` with vars from `_VARS`
+/// Creates typepaths for a `/turf/floor/_PATH` and a `/turf/floor/_PATH` with vars from `_VARS`
 #define DEFINE_FLOORS_SIMMED_UNSIMMED(_PATH, _VARS) \
-	/turf/simulated/floor/_PATH{_VARS};\
-	/turf/unsimulated/floor/_PATH{_VARS};\
+	/turf/floor/_PATH{_VARS};
 
-/// Creates typepaths for a `/turf/simulated/floor/airless/_PATH` and a `/turf/unsimulated/floor/airless/_PATH with vars` from `_VARS`
-#define DEFINE_FLOORS_AIRLESS(_PATH, _VARS) \
-	/turf/simulated/floor/airless/_PATH{_VARS};\
-	/turf/unsimulated/floor/airless/_PATH{_VARS};
-
-/// Creates a typepath for a `/turf/simulated/floor/_PATH` with vars from `_VARS`
-#define DEFINE_FLOOR_SIMMED(_PATH, _VARS) \
-	/turf/simulated/floor/_PATH{_VARS};
-
-/// Creates a typepath for a /turf/unsimulated/floor/_PATH with vars from _VARS
-#define DEFINE_FLOOR_UNSIMMED(_PATH, _VARS) \
-	/turf/unsimulated/floor/_PATH{_VARS};
-
-/// Creates a typepath for a /turf/simulated/floor/airless/_PATH with vars from _VARS
-#define DEFINE_FLOOR_SIMMED_AIRLESS(_PATH, _VARS) \
-	/turf/simulated/floor/airless/_PATH{_VARS};
-
-/// Creates a typepath for a /turf/unsimulated/floor/airless/_PATH with vars from _VARS
-#define DEFINE_FLOOR_UNSIMMED_AIRLESS(_PATH, _VARS) \
-	/turf/unsimulated/floor/airless/_PATH{_VARS};

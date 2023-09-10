@@ -26,11 +26,11 @@
 /datum/flock_tile_group/proc/process()
 	calcpower()
 
-/datum/flock_tile_group/proc/addtile(var/turf/simulated/floor/feather/f)
+/datum/flock_tile_group/proc/addtile(var/turf/floor/feather/f)
 	members |= f
 	size = length(members)
 
-/datum/flock_tile_group/proc/removetile(var/turf/simulated/floor/feather/f)
+/datum/flock_tile_group/proc/removetile(var/turf/floor/feather/f)
 	members -= f
 	size = length(members)
 

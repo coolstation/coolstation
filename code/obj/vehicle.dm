@@ -1928,11 +1928,11 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	..()
 	in_bump = 1
 	if(isturf(AM))
-		if(istype(AM, /turf/simulated/wall/r_wall || istype(AM, /turf/simulated/wall/auto/reinforced)) && prob(40))
+		if(istype(AM, /turf/wall/r_wall || istype(AM, /turf/wall/auto/reinforced)) && prob(40))
 			in_bump = 0
 			return
-		if(istype(AM, /turf/simulated/wall))
-			var/turf/simulated/wall/T = AM
+		if(istype(AM, /turf/wall))
+			var/turf/wall/T = AM
 			T.dismantle_wall(1)
 			playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 40, 1)
 			playsound(src, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 40, 1)

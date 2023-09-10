@@ -13,7 +13,7 @@ datum/shuttle_controller
 	var/list/airbridges = list()
 	var/map_turf = /turf/space //Set in New() by map settings
 	var/transit_turf = /turf/space/no_replace //Not currently modified
-	var/centcom_turf = /turf/unsimulated/outdoors/grass //modified in New() by global var
+	var/centcom_turf = /turf/outdoors/grass //modified in New() by global var
 
 
 	// call the shuttle

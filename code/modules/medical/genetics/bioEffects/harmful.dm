@@ -484,7 +484,7 @@
 
 		if (probmult(tele_prob))
 			var/list/randomturfs = new/list()
-			for(var/turf/simulated/floor/T in orange(L, 10))
+			for(var/turf/floor/T in orange(L, 10))
 				randomturfs.Add(T)
 
 			if (randomturfs.len > 0)
@@ -884,7 +884,7 @@
 						return
 
 					var/list/randomturfs = new/list()
-					for(var/turf/simulated/floor/T in orange(L, 10))
+					for(var/turf/floor/T in orange(L, 10))
 						randomturfs.Add(T)
 
 					if (randomturfs.len > 0)

@@ -2194,7 +2194,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 
 	Move(var/atom/NewLoc, direct)
 		.=..()
-		if (prob(src.slime_chance) && (istype(src.loc, /turf/simulated/floor) || istype(src.loc, /turf/unsimulated/floor)))
+		if (prob(src.slime_chance) && istype(src.loc, /turf/floor))
 			if (locate(/obj/decal/cleanable/slime) in src.loc)
 				return
 			else

@@ -728,14 +728,14 @@
 	if(location == 0) // at bottom
 		var/area/start_location = locate(/area/shuttle/icebase_elevator/lower)
 		var/area/end_location = locate(/area/shuttle/icebase_elevator/upper)
-		start_location.move_contents_to(end_location, /turf/simulated/floor/plating)
+		start_location.move_contents_to(end_location, /turf/floor/plating)
 		location = 1
 	else // at top
 		var/area/start_location = locate(/area/shuttle/icebase_elevator/upper)
 		var/area/end_location = locate(/area/shuttle/icebase_elevator/lower)
 		for(var/mob/M in end_location) // oh dear, stay behind the yellow line kids
 			SPAWN_DBG(1 DECI SECOND) M.gib()
-		start_location.move_contents_to(end_location, /turf/simulated/floor/arctic_elevator_shaft)
+		start_location.move_contents_to(end_location, /turf/floor/arctic_elevator_shaft)
 		location = 0
 
 	for(var/obj/machinery/computer/icebase_elevator/C in machine_registry[MACHINES_ELEVATORCOMPS])
@@ -796,7 +796,7 @@
 	if(location == 0) // at bottom
 		var/area/start_location = locate(/area/shuttle/biodome_elevator/lower)
 		var/area/end_location = locate(/area/shuttle/biodome_elevator/upper)
-		start_location.move_contents_to(end_location, /turf/simulated/floor/plating)
+		start_location.move_contents_to(end_location, /turf/floor/plating)
 		location = 1
 	else // at top
 		var/area/start_location = locate(/area/shuttle/biodome_elevator/upper)
@@ -804,7 +804,7 @@
 		for(var/mob/M in end_location) // oh dear, stay behind the yellow line kids
 			SPAWN_DBG(1 DECI SECOND) M.gib()
 			bioele_accident()
-		start_location.move_contents_to(end_location, /turf/unsimulated/floor/setpieces/ancient_pit/shaft)
+		start_location.move_contents_to(end_location, /turf/floor/setpieces/ancient_pit/shaft)
 		location = 0
 
 	for(var/obj/machinery/computer/biodome_elevator/C in machine_registry[MACHINES_ELEVATORCOMPS])

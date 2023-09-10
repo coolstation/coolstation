@@ -13,7 +13,7 @@ Contents:
 /area/moon
 	name = "moon"
 	icon_state = "blue"
-	filler_turf = "/turf/unsimulated/floor/lunar"
+	filler_turf = "/turf/floor/lunar"
 	requires_power = 0
 	force_fullbright = 0
 	ambient_light = rgb(0.9 * 255, 0.9 * 255, 0.9 * 255)
@@ -132,7 +132,7 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 /area/moon/monorail_station/district
 	icon_state = "shuttle2"
 
-/turf/unsimulated/floor/lunar_shaft
+/turf/floor/lunar_shaft
 	name = "open elevator shaft"
 	icon_state = "moon_shaft"
 	desc = "An elevator shaft.  It's probably a bad idea to try to walk over this, unless you're Wile E. Coyote and don't look down."
@@ -173,7 +173,7 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 		else
 			..()
 
-/turf/unsimulated/floor/lunar
+/turf/floor/lunar
 	name = "lunar surface"
 	desc = "Regolith.  Wait, isn't moon dust actually really sticky, just from how incredibly dry it is?"
 	icon_state = "lunar"
@@ -192,7 +192,7 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 		nitrogen = MOLES_N2STANDARD
 		fullbright = 0
 
-/turf/unsimulated/wall/setpieces/lunar
+/turf/wall/setpieces/lunar
 	name = "moon rock"
 	desc = "More regolith, now in big solid chunk form!"
 	icon = 'icons/turf/walls.dmi'
@@ -204,12 +204,12 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 	fullbright = 1
 
 
-/turf/unsimulated/wall/setpieces/leadwall/white/lunar
+/turf/wall/setpieces/leadwall/white/lunar
 	name = "Shielded Wall"
 	desc = "Painted white, of course."
 
 
-/turf/unsimulated/wall/setpieces/leadwindow/white
+/turf/wall/setpieces/leadwindow/white
 	name = "Shielded Wall"
 	desc = "Painted white, of course."
 	icon_state = "leadwindow_white_1"
