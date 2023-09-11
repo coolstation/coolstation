@@ -349,6 +349,9 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 				id = "vlong"
 				gender = FEMININE
 		hairup
+			afos //if you don't recognise this one, look up A Flock Of Seagulls
+				name = "New Wave"
+				id = "AFOS" //know that I could have picked Sigue Sigue Sputnik
 			bun
 				name = "Bun"
 				id = "bun"
