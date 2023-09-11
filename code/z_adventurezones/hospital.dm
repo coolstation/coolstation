@@ -13,6 +13,7 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 	var/list/fxlist = null
 	var/list/soundSubscribers = null
 	sound_group = "ainley"
+	is_construction_allowed = FALSE
 
 	New()
 		..()

@@ -1350,6 +1350,7 @@ DEFINE_FLOORS(techfloor/green,
 	src.ex_act(OLD_EX_HEAVY)
 
 /turf/floor/ex_act(severity)
+	if (!isconstructionturf(src)) return
 	switch(severity)
 		if(OLD_EX_SEVERITY_1)
 			src.ReplaceWithSpace()

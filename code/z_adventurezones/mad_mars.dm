@@ -594,6 +594,7 @@
 	icon_state = "red"
 	var/sound/mysound = null
 	sound_group = "mars"
+	is_construction_allowed = FALSE
 
 	New()
 		..()

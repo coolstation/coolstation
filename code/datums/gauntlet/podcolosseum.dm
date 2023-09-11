@@ -2,6 +2,7 @@
 	name = "The Colosseum"
 	virtual = 1
 	ambient_light = "#bfbfbf"
+	is_construction_allowed = FALSE
 
 	Entered(var/atom/A)
 		..()

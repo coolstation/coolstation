@@ -13,7 +13,7 @@
 #define issimulatedturf(x) (isturf(x) && !istype(x, /turf/space) && (x.loc:is_atmos_simulated == TRUE))
 
 /// Returns true if turf x is in a construction allowed area
-#define isconstructionturf(x) (x.loc:construction_allowed == TRUE)
+#define isconstructionturf(x) (x.loc:is_construction_allowed == TRUE)
 
 /// Returns true if x is a floor type
 #define isfloor(x) (istype(x, /turf/floor))

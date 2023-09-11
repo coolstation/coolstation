@@ -255,6 +255,7 @@
 	src.ReplaceWithFloor()
 
 /turf/wall/ex_act(severity)
+	if (!isconstructionturf(src)) return
 	switch(severity)
 		if(OLD_EX_SEVERITY_1)
 			src.ReplaceWithSpace()

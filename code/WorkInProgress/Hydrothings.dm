@@ -1288,6 +1288,7 @@ var/list/owlery_sounds = list('sound/voice/animal/hoot.ogg','sound/ambience/owlz
 	sound_group = "owl"
 	teleport_blocked = 1
 	sound_environment = EAX_HALLWAY
+	is_construction_allowed = FALSE
 
 	New()
 		..()

@@ -32,7 +32,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	var/is_atmos_simulated = FALSE
 	// also this bit is now separate :)
 	/// Can you build shit in this area?
-	var/construction_allowed = TRUE
+	var/is_construction_allowed = TRUE
 
 	var/tmp/fire = null
 	var/poweralm = 1
@@ -469,7 +469,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 /area/space // the base area you SHOULD be using for space/ocean/etc.
 	//these are the defaults but just in case someone messes with those
 	is_atmos_simulated = FALSE
-	construction_allowed = TRUE
+	is_construction_allowed = TRUE
 
 // zewaka - adventure/technical/admin areas below //
 
@@ -484,7 +484,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	expandable = 0//oh god i know some fucker would try this
 	requires_power = FALSE
 	is_atmos_simulated = FALSE
-	construction_allowed = FALSE
+	is_construction_allowed = FALSE
 
 	Entered(atom/movable/O) // TODO: make this better and not copy n pasted from area_that_kills_you_if_you_enter_it
 		..()
@@ -512,7 +512,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	ambient_light = rgb(79, 164, 184)
 	// filler_turf = "/turf/floor/setpieces/gauntlet"
 	is_atmos_simulated = FALSE
-	construction_allowed = FALSE
+	is_construction_allowed = FALSE
 
 /area/cavetiny
 	name = "Caves"
@@ -524,7 +524,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	teleport_blocked = 1
 	sound_group = "tinycave"
 	is_atmos_simulated = FALSE
-	construction_allowed = FALSE
+	is_construction_allowed = FALSE
 
 /area/fermented_potato
 	name = "????"
@@ -534,7 +534,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	force_fullbright = 0
 	teleport_blocked = 1
 	is_atmos_simulated = FALSE
-	construction_allowed = FALSE
+	is_construction_allowed = FALSE
 
 /area/area_that_kills_you_if_you_enter_it //People entering VR or exiting VR with stupid exploits are jerks.
 	name = "Invisible energy field that will kill you if you step into it"
@@ -544,7 +544,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	requires_power = 0
 	teleport_blocked = 1
 	is_atmos_simulated = FALSE
-	construction_allowed = FALSE
+	is_construction_allowed = FALSE
 
 	Entered(atom/movable/O)
 		if (isobserver(O))
@@ -567,7 +567,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	requires_power = 0
 	teleport_blocked = 1
 	is_atmos_simulated = FALSE
-	construction_allowed = FALSE
+	is_construction_allowed = FALSE
 
 	Entered(atom/movable/O)
 		var/dest = null
@@ -755,7 +755,7 @@ ABSTRACT_TYPE(/area/shuttle/merchant_shuttle)
 	sound_group = "eshuttle_transit"
 	var/warp_dir = NORTH // fuck you
 	is_atmos_simulated = FALSE
-	construction_allowed = FALSE
+	is_construction_allowed = FALSE
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		..()
@@ -979,7 +979,7 @@ ABSTRACT_TYPE(/area/adventure)
 	teleport_blocked = 1
 	skip_sims = 1
 	sims_score = 100
-	construction_allowed = FALSE
+	is_construction_allowed = FALSE
 
 /area/helldrone
 	name = "Drone Corpse"
@@ -1158,7 +1158,7 @@ ABSTRACT_TYPE(/area/adventure)
 /area/spacehabitat
 	name = "Habitat Dome"
 	icon_state = "green"
-	construction_allowed = FALSE
+	is_construction_allowed = FALSE
 
 /area/spacehabitat/beach
 	name = "Habitat Dome Beach"
@@ -1508,7 +1508,7 @@ ABSTRACT_TYPE(/area/sim)
 	skip_sims = 1
 	sims_score = 100
 	sound_group = "vr"
-	construction_allowed = FALSE
+	is_construction_allowed = FALSE
 
 
 
@@ -1575,7 +1575,7 @@ ABSTRACT_TYPE(/area/sim)
 ABSTRACT_TYPE(/area/station)
 /area/station
 	is_atmos_simulated = TRUE
-	construction_allowed = TRUE
+	is_construction_allowed = TRUE
 	do_not_irradiate = 0
 	sound_fx_1 = 'sound/ambience/station/Station_VocalNoise1.ogg'
 	var/tmp/initial_structure_value = 0
@@ -3594,7 +3594,7 @@ ABSTRACT_TYPE(/area/station/catwalk)
 	icon_state = "blue"
 	do_not_irradiate = 1
 	is_atmos_simulated = TRUE //This is basically station area so
-	construction_allowed = TRUE
+	is_construction_allowed = TRUE
 
 /area/research_outpost/protest
 	name = "Protest Outpost"
@@ -3981,7 +3981,7 @@ ABSTRACT_TYPE(/area/mining)
 	name = "Asylum Wards"
 	icon_state = "brig"
 	requires_power = 0
-	construction_allowed = FALSE
+	is_construction_allowed = FALSE
 
 
 /// Shamecube area, applied on the admin command. Blocks entry.
@@ -3993,7 +3993,7 @@ ABSTRACT_TYPE(/area/mining)
 	mouse_opacity = 1
 	luminosity = 1
 	force_fullbright = 1
-	construction_allowed = FALSE
+	is_construction_allowed = FALSE
 	CanEnter(var/atom/movable/A)
 		if(ismob(A) && A:client && A:client:player && A:client:player:shamecubed)
 			return 1

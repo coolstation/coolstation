@@ -1,5 +1,5 @@
 /area/supply
-	construction_allowed = FALSE //supply areas were blocked from girder building but they should maybe be exempt in general
+	is_construction_allowed = FALSE //supply areas were blocked from girder building but they should maybe be exempt in general
 
 /area/supply/spawn_point //the area supplies are spawned at and fired from
 	name = "supply spawn point"

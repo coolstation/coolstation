@@ -19,6 +19,7 @@ CONTENTS:
 	sound_group = "void"
 	sound_loop_1 = 'sound/ambience/spooky/Void_Song.ogg'
 	ambient_light = rgb(6.9, 4.20, 6.9)
+	is_construction_allowed = FALSE
 
 	New()
 		..()

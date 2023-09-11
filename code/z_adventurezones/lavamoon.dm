@@ -91,6 +91,7 @@ var/sound/iomoon_alarm_sound = null
 	requires_power = 0
 	force_fullbright = 0
 	ambient_light = rgb(0.45 * 255, 0.2 * 255, 0.1 * 255)
+	is_construction_allowed = FALSE
 
 	sound_group = "iomoon"
 

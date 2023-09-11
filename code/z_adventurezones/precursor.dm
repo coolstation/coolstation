@@ -19,6 +19,7 @@
 	skip_sims = 1
 	sims_score = 30
 	sound_group = "ice_moon"
+	is_construction_allowed = FALSE
 
 /area/upper_arctic/pod1
 	name = "Outpost Theta Pod One"
@@ -99,6 +100,7 @@
 /area/lower_arctic
 	icon_state = "dk_yellow"
 	sound_group = "ice_moon"
+	is_construction_allowed = FALSE
 
 /area/lower_arctic/lower
 	name = "Glacial Abyss"
@@ -117,6 +119,7 @@
 	sims_score = 30
 	sound_group = "precursor"  //Differs from the caves it's in, for a mysterious sound-blocking effect.
 	sound_loop_1 = 'sound/ambience/industrial/Precursor_Drone1.ogg'
+	is_construction_allowed = FALSE
 
 	New()
 		..()

@@ -30,6 +30,7 @@ SYNDICATE DRONE FACTORY AREAS
 	skip_sims = 1
 	sims_score = 30
 	sound_group = "biodome"
+	is_construction_allowed = FALSE
 
 /area/crater/biodome
 	name = "Botanical Research Biodome"
@@ -96,6 +97,7 @@ SYNDICATE DRONE FACTORY AREAS
 
 /area/crypt
 	sound_group = "crypt"
+	is_construction_allowed = FALSE
 
 /area/crypt/graveyard
 	name = "Graveyard"

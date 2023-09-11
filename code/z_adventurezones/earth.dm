@@ -26,6 +26,7 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 	sound_group = "centcom"
 	filler_turf = "/turf/nicegrass/random"
 	is_centcom = 1
+	is_construction_allowed = FALSE
 
 /area/centcom/outside
 	name = "Earth"

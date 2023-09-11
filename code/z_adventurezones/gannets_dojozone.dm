@@ -100,6 +100,7 @@ Contents:
 	sound_group = "dojo"
 	sound_loop_1 = 'sound/ambience/dojo/dojoambi.ogg'
 	sound_loop_1_vol = 50
+	is_construction_allowed = FALSE
 
 
 	New()
