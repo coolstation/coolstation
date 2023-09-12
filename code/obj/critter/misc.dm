@@ -1063,6 +1063,7 @@
 	health = 30
 	firevuln = 0
 	brutevuln = 0.5
+	notwitch = 1
 	aggressive = 1
 	defensive = 1
 	wanderer = 0
@@ -1118,6 +1119,8 @@
 				return
 
 			src.visible_message("<span class='combat'><b>In a whirling flurry of tendrils, [src] rends down [src.target]! Holy shit!</b></span>")
+			attack_twitch(src) //since we don't do attack twitches for the measurements, we want to do it now
+			hit_twitch(src.target)
 			logTheThing("combat", M, null, "was gibbed by [src] at [log_loc(src)].") // Some logging for instakill critters would be nice (Convair880).
 			playsound(src.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
 			doomedMob.ghostize()
@@ -1137,6 +1140,86 @@
 		SPAWN_DBG(1.2 SECONDS)
 			src.icon_state = "ancientrobot"
 		return
+
+/obj/critter/small_bart //he's here
+	name = "Small Bart"
+	desc = "Who the hell is that?"
+	icon_state = "smallbart"
+	dead_state = "deadbart"
+	death_text = "%src% mumbles his last \"Small Bart\" and goes to sleep."
+	post_pet_text = " For some reason! Not like that's weird or anything!"
+	health = 100
+	invisibility = 10 //little weirdo
+	generic = 0
+	aggressive = 1
+	defensive = 1
+	notwitch = 1
+	opensdoors = OBJ_CRITTER_OPENS_DOORS_ANY
+	density = 1 //he's never on help intent
+	var/boredom_countdown = 0
+
+	CritterDeath() //go back to your home planet, bart
+		..()
+		sleep(30 SECONDS)
+		flick("ancientrobot-disappear",src)
+		SPAWN_DBG(16)
+			qdel(src)
+
+	seek_target()
+		src.anchored = 0
+		if (src.target)
+			src.task = "chasing"
+			return
+
+		for (var/mob/living/carbon/C in view(src.seekrange,src))
+			if ((C.name == src.oldtarget_name) && (world.time < src.last_found + 3000)) continue //only real fresh fish
+			if (C.stat || C.health < 0) continue
+
+			src.boredom_countdown = rand(5,10)
+			src.target = C
+			if (prob(50)) //but let's do something weird here with the way bart picks targets
+				src.oldtarget_name = C.name //sometimes he'll go with someone else if they wander by in the next 30 seconds
+			else
+				src.oldtarget_name = null //sometimes he'll stick with you no matter what
+			src.task = "chasing" //poor you
+			src.invisibility = 0
+			break
+
+	attackby(obj/item/W as obj, mob/living/user as mob)
+		..()
+		src.boredom_countdown = rand(5,10)
+
+	attack_hand(var/mob/user as mob)
+		..()
+
+	ChaseAttack(mob/M)
+		return
+
+	CritterAttack(mob/M)
+		src.attacking = 1
+
+		if (boredom_countdown-- > 0)
+			if (src.frustration) //just stay still for a while and he'll eventually get bored and wander off toward a new friend maybe?
+				src.boredom_countdown += src.frustration
+				src.frustration = 0 //alright you barted, now settle down (frustration/chase-giving doesn't get reset when you catch your target apparently)
+			if (prob(15))
+				src.visible_message("<B>[src]</B> [pick("says", "grunts", "huffs")], \"[pick("Small Bart!","Small Bart...","small bart","sm br", "Small Bart","Small Bart","Small Bart...")]\"")
+			else if (prob(15))
+				boutput(src.target, "<B>[src]</B> [pick("mutters", "whispers", "murmurs")], \"[pick("Small Bart!","Small Bart...","small bart","sm br", "Small Bart","Small Bart","Small Bart...")]\"")
+			if (prob(10))
+				boutput(src.target, "<span class='combat'>You feel [pick("very ",null,"rather ","fairly ","remarkably ")]uncomfortable.</span>")
+			if (prob(5)) //rare mid-follow target change
+				src.target = null
+				src.oldtarget_name = null
+				src.task = "thinking"
+		else
+			src.visible_message("<B>[src]</B> grumbles and stares into space.")
+			src.task = "sleeping"
+			src.target = null
+			src.seek_target() //find a new friend
+
+		SPAWN_DBG(5 SECONDS)
+			src.attacking = 0
 
 /obj/critter/crunched
 	name = "transposed scientist"

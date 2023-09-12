@@ -42,6 +42,7 @@
 	var/atkintangible = 0
 	var/attack = 0
 	var/attacking = 0
+	var/notwitch = 0
 	var/atk_delay = 25 // how long before a critter will attack again
 	var/crit_chance = 5
 	var/atk_diseases = null // can be a path to a disease or a list (lists will be picked from)
@@ -761,9 +762,9 @@
 							var/turf/t = get_turf(src.target)
 							if( !t.loc:sanctuary || !istype(M) )
 								CritterAttack(src.target)
-								if (src)
+								if (src && !src.notwitch)
 									attack_twitch(src)
-								if (src.target)
+								if (src.target && !src.notwitch)
 									hit_twitch(src.target)
 						if (!src.aggressive)
 							src.task = "thinking"
