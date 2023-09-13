@@ -29,6 +29,9 @@
 	butcherable = 1
 	flags = FPRINT | CONDUCT | USEDELAY | TABLEPASS | FLUID_SUBMERGE | FLUID_SUBMERGE
 
+	classic
+		icon_state = "roach-classic"
+
 	attack_hand(mob/user as mob)
 		if (src.alive && (user.a_intent != INTENT_HARM))
 			src.visible_message("<span class='combat'><b>[user]</b> pets [src]!</span>")
