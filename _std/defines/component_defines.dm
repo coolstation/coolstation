@@ -75,6 +75,8 @@
 #define COMSIG_UPDATE_ICON "atom_update_icon"
 /// When something enters the contents of this atom (i.e. Entered())
 #define COMSIG_ATOM_ENTERED "atom_entered"
+/// when this atom has clean_forensic called, send this signal.
+#define COMSIG_ATOM_CLEANED "atom_cleaned"
 
 // ---- turf signals ----
 

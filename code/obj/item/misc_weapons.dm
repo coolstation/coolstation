@@ -711,6 +711,7 @@
 
 /obj/item/knife/butcher/New()
 	..()
+	src.AddComponent(/datum/component/bloodflick)
 	BLOCK_SETUP(BLOCK_KNIFE)
 
 /obj/item/knife/butcher/throw_impact(atom/A, datum/thrown_thing/thr)
@@ -1011,22 +1012,35 @@
 
 	// pickup_sfx = "sound/items/blade_pull.ogg"
 	custom_suicide = 1
-	var/obj/itemspecialeffect/katana_dash/start/start
-	var/obj/itemspecialeffect/katana_dash/mid/mid1
-	var/obj/itemspecialeffect/katana_dash/mid/mid2
-	var/obj/itemspecialeffect/katana_dash/end/end
-	var/delimb_prob = 100
 
-	New()
-		..()
-		start = new/obj/itemspecialeffect/katana_dash/start(src)
-		mid1 = new/obj/itemspecialeffect/katana_dash/mid(src)
-		mid2 = new/obj/itemspecialeffect/katana_dash/mid(src)
-		end = new/obj/itemspecialeffect/katana_dash/end(src)
-		src.setItemSpecial(/datum/item_special/katana_dash)
-		BLOCK_SETUP(BLOCK_SWORD)
+/obj/item/swords/New()
+	src.AddComponent(/datum/component/bloodflick)
+	..()
 
-/obj/item/katana/attack(mob/target as mob, mob/user as mob, def_zone, is_special = 0)
+/obj/item/swords/proc/handle_parry(mob/target, mob/user)
+	if (target != user && ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if (H.find_type_in_hand(/obj/item/swords, "right") || H.find_type_in_hand(/obj/item/swords, "left"))
+			var/obj/itemspecialeffect/clash/C = new /obj/itemspecialeffect/clash
+			playsound(target, pick('sound/effects/sword_clash1.ogg','sound/effects/sword_clash2.ogg','sound/effects/sword_clash3.ogg'), 70, 0, 0)
+			C.setup(H.loc)
+			var/matrix/m = matrix()
+			m.Turn(rand(0,360))
+			C.transform = m
+			var/matrix/m1 = C.transform
+			m1.Scale(2,2)
+			C.pixel_x = 32*(user.x - target.x)*0.5
+			C.pixel_y = 32*(user.y - target.y)*0.5
+			animate(C,transform=m1,time=8)
+			H.remove_stamina(60)
+			if (ishuman(user))
+				var/mob/living/carbon/human/U = user
+				U.remove_stamina(20)
+
+			return 1
+	return 0
+
+/obj/item/swords/attack(mob/target, mob/user, def_zone, is_special = 0)
 	if(!ishuman(target)) //only humans can currently be dismembered
 		return ..()
 	var/zoney = user.zone_sel.selecting
@@ -1488,6 +1502,8 @@ obj/item/whetstone
 
 	New()
 		..()
+		START_TRACKING_CAT(TR_CAT_NUKE_OP_STYLE)
+		src.AddComponent(/datum/component/bloodflick)
 		src.setItemSpecial(/datum/item_special/swipe)
 		AddComponent(/datum/component/itemblock/saberblock)
 		BLOCK_SETUP(BLOCK_SWORD)
