@@ -127,7 +127,7 @@
 	return 1
 
 
-/mob/living/carbon/human/ex_act(severity, lasttouched)
+/mob/living/carbon/human/ex_act(severity, lasttouched, epicenter)
 	..() // Logs.
 	if (src.nodamage) return
 	// there used to be mining radiation check here which increases severity by one
@@ -202,6 +202,9 @@
 
 	TakeDamage(zone="All", brute=b_loss, burn=f_loss, tox=0, damage_type=0, disallow_limb_loss=1)
 	src.UpdateDamageIcon()
+
+	if (epicenter && severity > 4)
+		src.throw_at(get_edge_cheap(get_turf(src), get_dir(epicenter, get_turf(src))),  round(3 * severity), round(severity/2))
 
 /mob/living/carbon/human/blob_act(var/power)
 	logTheThing("combat", src, null, "is hit by a blob")

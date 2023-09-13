@@ -997,7 +997,7 @@
 /obj/item/dummy/blob_act(var/power)
 	return
 
-/obj/item/ex_act(severity)
+/obj/item/ex_act(severity, last_touched, epicenter)
 	switch(severity)
 		if (OLD_EX_SEVERITY_2)
 			if (src.material)
@@ -1018,7 +1018,10 @@
 				src.ArtifactStimulus("force", 25)
 				src.ArtifactStimulus("heat", 380)
 		else
-	return ..()
+	..() //health changes
+	if (!src.disposed)
+		if (epicenter && severity > 2)
+			src.throw_at(get_edge_cheap(get_turf(src), get_dir(epicenter, get_turf(src))),  round((6 - w_class) * severity), round((severity/w_class)*2))
 
 /obj/item/blob_act(var/power)
 	if (src.artifact)

@@ -1,9 +1,11 @@
 var/datum/explosion_controller/explosions
-
+//When uncommented, turfs don't get destroyed by explosions but show their calculated explosion severity on them.
+//#define EXPLOSION_MAPTEXT_DEBUGGING
 /datum/explosion_controller
 	var/list/queued_explosions = list()
 	var/list/turf/queued_turfs = list()
 	var/list/queued_turfs_blame = list()
+	var/list/queued_turfs_center = list()
 	var/distant_sound = 'sound/effects/explosionfar.ogg'
 	var/exploding = 0
 
@@ -41,23 +43,26 @@ var/datum/explosion_controller/explosions
 		var/needrebuild = 0
 		var/p
 		var/last_touched
+		var/center
 
 		for (var/turf/T as anything in queued_turfs)
 			queued_turfs[T]=sqrt(queued_turfs[T])*2
 			p = queued_turfs[T]
 			last_touched = queued_turfs_blame[T]
+			center = queued_turfs_center[T]
 			for (var/mob/M in T)
-				M.ex_act(p, last_touched)
+				M.ex_act(p, last_touched, center)
 
 		LAGCHECK(LAG_HIGH)
 
 		for (var/turf/T as anything in queued_turfs)
 			p = queued_turfs[T]
 			last_touched = queued_turfs_blame[T]
+			center = queued_turfs_center[T]
 			for (var/obj/O in T)
 				if(istype(O, /obj/overlay))
 					continue
-				O.ex_act(p, last_touched)
+				O.ex_act(p, last_touched, center)
 				if (istype(O, /obj/cable)) // this is hacky, newcables should relieve the need for this
 					needrebuild = 1
 
@@ -71,22 +76,24 @@ var/datum/explosion_controller/explosions
 #endif
 			p = queued_turfs[T]
 			last_touched = queued_turfs_blame[T]
+			center = queued_turfs_center[T]
 			//boutput(world, "P2 [p]")
 #ifdef EXPLOSION_MAPTEXT_DEBUGGING
 			if (p >= OLD_EX_TOTAL)
-				T.maptext = "<span style='color: #ff0000;' class='pixel c sh'>[p]</span>"
+				T.maptext = "<span style='color: #ff0000;' class='pixel c sh'>[round(p, 0.01)]</span>"
 			else if (p >= OLD_EX_HEAVY)
-				T.maptext = "<span style='color: #ffff00;' class='pixel c sh'>[p]</span>"
+				T.maptext = "<span style='color: #ffff00;' class='pixel c sh'>[round(p, 0.01)]</span>"
 			else
-				T.maptext = "<span style='color: #00ff00;' class='pixel c sh'>[p]</span>"
+				T.maptext = "<span style='color: #00ff00;' class='pixel c sh'>[round(p, 0.01)]</span>"
 
 #else
-			T.ex_act(p, last_touched)
+			T.ex_act(p, last_touched, center)
 #endif
 		LAGCHECK(LAG_HIGH)
 
 		queued_turfs.len = 0
 		queued_turfs_blame.len = 0
+		queued_turfs_center.len = 0
 		defer_powernet_rebuild = 0
 		defer_camnet_rebuild = 0
 		exploding = 0
@@ -169,6 +176,7 @@ var/datum/explosion_controller/explosions
 
 		var/list/nodes = list()
 		var/list/blame = list()
+		var/list/center = list()
 		var/list/open = list(epicenter)
 		nodes[epicenter] = radius
 		while (open.len)
@@ -205,6 +213,7 @@ var/datum/explosion_controller/explosions
 			var/p = power / ((radius-nodes[T])**2)
 			nodes[T] = p
 			blame[T] = last_touched
+			center[T] = epicenter
 			p = min(p, 10)
 			if(prob(1))
 				LAGCHECK(LAG_HIGH)
@@ -218,3 +227,8 @@ var/datum/explosion_controller/explosions
 
 		explosions.queue_damage(nodes)
 		explosions.queued_turfs_blame += blame
+		explosions.queued_turfs_center += center
+
+		//GC cleanup thanx zewaka
+		src.epicenter = null
+		src.source = null
