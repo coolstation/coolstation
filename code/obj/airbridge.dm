@@ -42,6 +42,9 @@
 
 	var/slide_delay = 1 SECOND
 
+	var/area/original_area = /area/space
+	var/area/airbridge/airbridge_area// = /area/airbridge
+
 	drawbridge
 		name = "Drawbridge Controller"
 		original_turf = /turf/floor/plating/airless/asteroid
@@ -49,6 +52,8 @@
 	New()
 		START_TRACKING
 		..()
+		original_area = get_area_by_type(original_area)
+		airbridge_area = new
 
 	proc/get_link()
 		for_by_tcl(C, /obj/airbridge_controller)
@@ -164,11 +169,11 @@
 			for(var/turf/T in path)
 				var/dir = path[T]
 				for(var/i = -tunnel_width, i <= tunnel_width, i++)
+					curr = get_steps(T, turn(dir, 90),i)
+					airbridge_area.contents += curr
 					if(abs(i) == tunnel_width) // wall
-						curr = get_steps(T, turn(dir, 90),i)
 						animate_turf_slideout(curr, src.wall_turf, dir, slide_delay)
 					else // floor
-						curr = get_steps(T, turn(dir, 90),i)
 						animate_turf_slideout(curr, src.floor_turf, dir, slide_delay)
 					curr.set_dir(dir)
 					maintaining_turfs.Add(curr)
@@ -225,6 +230,7 @@
 				var/opdir = turn(dir, 180)
 				for(var/i = -tunnel_width, i <= tunnel_width, i++)
 					curr = get_steps(T, turn(dir, 90), i)
+					original_area.contents += curr
 					animate_turf_slidein(curr, src.original_turf, opdir, slide_delay)
 				playsound(T, "sound/effects/airbridge_dpl.ogg", 50, 1)
 				sleep(slide_delay)
@@ -485,3 +491,8 @@
 			boutput(user, "<span class='notice'>[C.toggle_bridge()]</span>")
 			break
 		return
+
+/area/airbridge
+	name = "Airbridge"
+	is_atmos_simulated = TRUE
+	is_construction_allowed = TRUE
