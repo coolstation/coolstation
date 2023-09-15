@@ -34,8 +34,14 @@ proc/generate_teleareas()
 	for (var/area/area in world)
 		if (istype(area, /area/station))
 			var/turf/T = area.contents[1]
+			//why is Z_LEVEL_DEBRIS not a thing on underwater maps?
+			#ifndef UNDERWATER_MAP
 			if (T?.z == Z_LEVEL_STATION || (map_currently_very_dusty && T?.z == Z_LEVEL_DEBRIS))
 				teleareas[area.name] = area
+			#else
+			if (T?.z == Z_LEVEL_STATION)
+				teleareas[area.name] = area
+			#endif
 		if (istype(area, /area/diner))
 			var/turf/T = area.contents[1]
 			if (T?.z == Z_LEVEL_MINING)

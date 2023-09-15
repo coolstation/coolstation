@@ -103,12 +103,13 @@
 			SPAWN_DBG(45)
 				explosion_new(death_loc, death_loc, rand(6, 12))
 				fireflash(death_loc, 2)
-
+			//NT faction rep deprecated
+			/*
 			SPAWN_DBG(50)
 				for(var/board_count = rand(4, 8), board_count > 0, board_count--)
 					new/obj/item/factionrep/ntboard(locate(death_loc_x + rand(-2, 2), death_loc_y + rand(-2, 2), death_loc_z))
 					board_count--
-
+			*/
 			SPAWN_DBG(55)
 				for(var/alloy_count = rand(2, 4), alloy_count > 0, alloy_count--)
 					new/obj/item/material_piece/iridiumalloy(locate(death_loc_x + rand(-1, 1), death_loc_y + rand(-1, 1), death_loc_z))

@@ -1,6 +1,7 @@
 /datum/dialogueMaster/traderGeneric
 	dialogueName = "Trader"
-	start = /datum/dialogueNode/traderStartGeneric
+	//Effetively bypassing this whole dialogue cause it wasn't adding anything of interest.
+	start = /datum/dialogueNode/traderStartTrade//datum/dialogueNode/traderStartGeneric
 	New(var/atom/M)
 		..()
 		dialogueName = master.name

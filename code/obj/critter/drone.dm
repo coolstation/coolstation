@@ -676,7 +676,8 @@
 			health = 100
 			maxhealth = 100
 			score = 10
-			droploot = /obj/item/factionrep/ntboard
+			//NT faction rep deprecated
+			//droploot = /obj/item/factionrep/ntboard
 			projectile_type = /datum/projectile/laser/drill/saw_teeth
 			current_projectile = new/datum/projectile/laser/drill/saw_teeth
 			smashes_shit = 0
@@ -707,7 +708,8 @@
 		dead_state = "gunshark-dead"
 		alertsound1 = 'sound/machines/engine_alert1.ogg'
 		alertsound2 = 'sound/machines/engine_alert1.ogg'
-		droploot = /obj/item/factionrep/ntboard
+		//NT faction rep deprecated
+		//droploot = /obj/item/factionrep/ntboard
 		projectile_type = /datum/projectile/bullet/lmg/weak
 		current_projectile = new/datum/projectile/bullet/lmg/weak
 		attack_cooldown = 20
