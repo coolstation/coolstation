@@ -124,11 +124,11 @@
 			var/turf/thing = get_step(src, dir)
 			var/area/fuck_everything = thing?.loc
 			if(fuck_everything?.expandable && (fuck_everything.type != /area/space))
-				fuck_everything.contents += src
+				fuck_everything.add_turf(src)
 				return
 
 		var/area/built_zone/zone = new//TODO: cache a list of these bad boys because they don't get GC'd because WHY WOULD THEY?!
-		zone.contents += src//get in the ZONE
+		zone.add_turf(src)//get in the ZONE
 
 	proc/setIntact(var/new_intact_value)
 		if (new_intact_value)

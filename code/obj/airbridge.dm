@@ -170,7 +170,7 @@
 				var/dir = path[T]
 				for(var/i = -tunnel_width, i <= tunnel_width, i++)
 					curr = get_steps(T, turn(dir, 90),i)
-					airbridge_area.contents += curr
+					airbridge_area.add_turf(curr)
 					if(abs(i) == tunnel_width) // wall
 						animate_turf_slideout(curr, src.wall_turf, dir, slide_delay)
 					else // floor
@@ -230,7 +230,7 @@
 				var/opdir = turn(dir, 180)
 				for(var/i = -tunnel_width, i <= tunnel_width, i++)
 					curr = get_steps(T, turn(dir, 90), i)
-					original_area.contents += curr
+					original_area.add_turf(curr)
 					animate_turf_slidein(curr, src.original_turf, opdir, slide_delay)
 				playsound(T, "sound/effects/airbridge_dpl.ogg", 50, 1)
 				sleep(slide_delay)

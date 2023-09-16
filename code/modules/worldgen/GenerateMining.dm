@@ -560,17 +560,18 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 	game_start_countdown?.update_status("Setting up mining level...\nGenerating terrain... again...")
 	miningZ = D.generate(miningZ, generate_borders = BORDER_PREBAKED)
+	var/area/desertarea = get_area_by_type(/area/gehenna/underground)
 
 	// remove temporary areas
 	for (var/turf/T in get_area_turfs(/area/noGenerate))
 		if(T.z==3)
-			new /area/gehenna/underground(T)
+			desertarea.add_turf(T)
 		else
 			new /area/space(T)
 
 	for (var/turf/T in get_area_turfs(/area/allowGenerate))
 		if(T.z==3)
-			new /area/gehenna/underground(T)
+			desertarea.add_turf(T)
 		else
 			new /area/space(T)
 

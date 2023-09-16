@@ -187,7 +187,7 @@ var/zapLimiter = 0
 				var/area/testarea = get_area(testturf)
 				if (istype(testarea, /area/station/maintenance))
 					src.areastring = src.area.name //avoids tripping APC count diagnostic
-					testarea.contents += ourturf
+					testarea.add_turf(ourturf)
 					break
 
 

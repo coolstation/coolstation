@@ -465,6 +465,12 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 		if (light_manager)
 			light_manager.lights -= L
 
+///Where you'd previously chuck turfs directly into area contents, please now call this or atmos might crap out
+/area/proc/add_turf(turf/T) //but that aside why wasn't there a proc for turfs entering areas before?
+	if (istype(T)) return
+	contents += T
+	if (src.is_atmos_simulated && !T.air)
+		T.instantiate_air()
 
 /area/space // the base area you SHOULD be using for space/ocean/etc.
 	//these are the defaults but just in case someone messes with those

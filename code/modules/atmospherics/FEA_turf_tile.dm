@@ -76,26 +76,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 
 		var/area/A = src.loc
 		if (A.is_atmos_simulated)
-			if(!blocks_air)
-				air = new()
-
-				#define _TRANSFER_GAS_TO_AIR(GAS, ...) air.GAS = GAS;
-				APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
-				#undef _TRANSFER_GAS_TO_AIR
-
-				air.temperature = temperature
-
-				if(air_master)
-					air_master.tiles_to_update |= src
-
-					find_group()
-
-			else
-				if(air_master)
-					for(var/direction in cardinal)
-						var/turf/floor/target = get_step(src,direction)
-						if(istype(target))
-							air_master.tiles_to_update |= target
+			instantiate_air()
 
 	Del()
 		if(air_master)
@@ -123,6 +104,28 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 		air = null
 		parent = null
 		..()
+
+/turf/proc/instantiate_air()
+	if(!blocks_air)
+		air = new()
+
+		#define _TRANSFER_GAS_TO_AIR(GAS, ...) air.GAS = GAS;
+		APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
+		#undef _TRANSFER_GAS_TO_AIR
+
+		air.temperature = temperature
+
+		if(air_master)
+			air_master.tiles_to_update |= src
+
+			find_group()
+
+	else
+		if(air_master)
+			for(var/direction in cardinal)
+				var/turf/floor/target = get_step(src,direction)
+				if(istype(target) && issimulatedturf(target))
+					air_master.tiles_to_update |= target
 
 /turf/proc/high_pressure_movements()
 	if( !loc:sanctuary )
