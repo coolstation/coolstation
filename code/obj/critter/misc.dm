@@ -1161,8 +1161,8 @@
 	CritterDeath() //go back to your home planet, bart
 		..()
 		sleep(30 SECONDS)
-		flick("ancientrobot-disappear",src)
-		SPAWN_DBG(16)
+		flick("smallbart-disappear",src)
+		SPAWN_DBG(10)
 			qdel(src)
 
 	seek_target()
