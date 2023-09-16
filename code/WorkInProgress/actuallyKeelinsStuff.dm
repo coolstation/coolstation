@@ -1600,10 +1600,10 @@ Returns:
 			call(procpath)(arglist(argcopy))
 
 /datum/admins/proc/enable_pixelexplosion()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	set name = "Enable pixel explosions"
 	set desc = "Click on things to explode them into pixels?"
-	alert("Clicking on things will now explode them into pixels!")
+	alert("Clicking on things will now explode them into pixels! Note: This Actually Destroys The Thing")
 	pixelmagic()
 
 /datum/targetable/pixelpicker
@@ -1682,7 +1682,7 @@ Returns:
 		..()
 */
 /datum/admins/proc/disable_pixelexplosion()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	set name = "Disable pixel explosions"
 	set desc = "Stop exploding things into pixels when you click them."
 

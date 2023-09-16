@@ -1195,7 +1195,7 @@ var/list/fun_images = list()
 /client/proc/cmd_admin_pop_off_all_the_limbs_oh_god()
 	set name = "Pop off everyone's limbs"
 	set desc = "Oh christ no don't do this"
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 
 	if(alert("Really pop off everyone's limbs?", "JESUS CHRIST", "Yes, I'm a crazy bastard", "No") == "Yes, I'm a crazy bastard")
 		logTheThing("admin", src, null, "popped off all limbs.")
@@ -2031,7 +2031,7 @@ var/list/fun_images = list()
 					winshow(C, "pregameBrowser", 1)
 
 /client/proc/implant_all()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	set name = "Implant All"
 	set desc = "Gives everyone a microbomb. You cannot undo this!!"
 

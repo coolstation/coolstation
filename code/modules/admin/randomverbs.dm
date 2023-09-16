@@ -613,9 +613,9 @@
 			LAGCHECK(LAG_LOW)
 
 /client/proc/flip_view()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	set name = "Flip View"
-	set desc = "Rotates a client's viewport"
+	set desc = "Rotates a client's viewport. Potentially nausea inducing!"
 
 	var/list/keys = list()
 	for(var/mob/M in mobs)
@@ -2347,7 +2347,7 @@ var/global/night_mode_enabled = 0
 /client/proc/cmd_makeshittyweapon()
 	set name = "Make Shitty Weapon"
 	set desc = "make some stupid junk, laugh"
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	admin_only
 
 	if (src.holder.level >= LEVEL_PA)
@@ -2536,8 +2536,8 @@ var/global/night_mode_enabled = 0
 
 /client/proc/toggle_text_mode(client/C in clients)
 	set name = "Toggle Text Mode"
-	set desc = "Makes a client see the game in ASCII vision."
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	set desc = "Makes a client see the game in ASCII vision. Probably sucks for the recipient!"
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	admin_only
 
 	var/is_text = winget(C,  "mapwindow.map", "text-mode") == "true"
@@ -2657,8 +2657,9 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 	boutput(src, "You don't seem to have an office, so sad. :(")
 
 /client/proc/cmd_crusher_walls()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	set name = "Crusher Walls"
+	set desc = "Turns every single fucking turfwall into a crusher object"
 	if(holder && src.holder.level >= LEVEL_ADMIN)
 		switch(alert("Holy shit are you sure?! This is going to turn the walls into crushers!",,"Yes","No"))
 			if("Yes")
@@ -2711,7 +2712,8 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 
 /client/proc/cmd_blindfold_monkeys()
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	set name = "See No Evil"
+	set name = "See No Evil (Monkey Blindfold)"
+	set desc = "Blindfold every monkey out there to keep them from getting aggressive. That's what this does. Who knew?"
 	if(holder && src.holder.level >= LEVEL_ADMIN)
 		switch(alert("Really blindfold all monkeys?",,"Yes","No"))
 			if("Yes")
@@ -2735,7 +2737,7 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 
 
 /client/proc/cmd_swampify_station()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	set name = "Swampify"
 	set desc = "Turns space into a swamp"
 	admin_only
@@ -2779,7 +2781,7 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 #endif
 
 /client/proc/cmd_trenchify_station()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	set name = "Trenchify"
 	set desc = "Generates trench caves on the station Z"
 	admin_only
