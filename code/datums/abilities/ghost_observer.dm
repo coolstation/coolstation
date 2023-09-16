@@ -150,7 +150,8 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 		src.addAbility(/datum/targetable/ghost_observer/teleport)
 		src.addAbility(/datum/targetable/ghost_observer/observe)
 		src.addAbility(/datum/targetable/ghost_observer/reenter_corpse)
-		src.addAbility(/datum/targetable/ghost_observer/toggle_lighting)
+		src.addAbility(/datum/targetable/ghost_observer/lighting_options)
+		//src.addAbility(/datum/targetable/ghost_observer/toggle_lighting)
 		// src.addAbility(/datum/targetable/ghost_observer/afterlife_Bar)
 		// src.addAbility(/datum/targetable/ghost_observer/respawn_animal)	//moved to respawn_options menu
 		src.addAbility(/datum/targetable/ghost_observer/respawn_options)
@@ -181,7 +182,8 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 		src.removeAbility(/datum/targetable/ghost_observer/teleport)
 		src.removeAbility(/datum/targetable/ghost_observer/observe)
 		src.removeAbility(/datum/targetable/ghost_observer/reenter_corpse)
-		src.removeAbility(/datum/targetable/ghost_observer/toggle_lighting)
+		src.addAbility(/datum/targetable/ghost_observer/lighting_options)
+		//src.removeAbility(/datum/targetable/ghost_observer/toggle_lighting)
 		// src.removeAbility(/datum/targetable/ghost_observer/afterlife_Bar)
 		// src.removeAbility(/datum/targetable/ghost_observer/respawn_animal)
 		src.removeAbility(/datum/targetable/ghost_observer/respawn_options)
@@ -270,9 +272,35 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 		else
 			boutput(usr, "Oop! Something broke! Just type \"Re-enter Corpse\" (without the quotation marks) into the bottom bar.")
 
+//copy and edit of the Respawn Options
+/datum/targetable/ghost_observer/lighting_options
+	name = "Lighting Options"
+	desc = "Respawn as something."
+	icon_state = "bulb-t"
+	targeted = 0
+	cooldown = 0
+	//special_screen_loc = "NORTH,EAST"
+	tooltip_flags = TOOLTIP_LEFT
+	var/displaying_buttons = 0
 
+	New()
+		..()
+		object.contextLayout = new /datum/contextLayout/screen_HUD_default/click_to_close()
+		if (!object.contextActions)
+			object.contextActions = list()
 
-/datum/targetable/ghost_observer/toggle_lighting
+		object.contextActions += new /datum/contextAction/ghost_respawn/close()
+		object.contextActions += new /datum/contextAction/ghost_respawn/lighting/none()
+		object.contextActions += new /datum/contextAction/ghost_respawn/lighting/dim()
+		object.contextActions += new /datum/contextAction/ghost_respawn/lighting/default()
+		object.contextActions += new /datum/contextAction/ghost_respawn/lighting/fullbright()
+
+	cast(atom/target)
+		displaying_buttons = !displaying_buttons
+		if (!displaying_buttons)
+			holder.owner.closeContextActions()
+//
+/*datum/targetable/ghost_observer/toggle_lighting
 	name = "Toggle Lighting"
 	desc = "Toggle lighting effects on tiles."
 	icon_state = "bulb-t"
@@ -291,7 +319,7 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 			// 		icon_state = "bulb-1"
 			// holder.updateButtons()
 		else
-			boutput(usr, "Oop! Something broke! Just type \"Toggle Lighting\" (without the quotation marks) into the bottom bar.")
+			boutput(usr, "Oop! Something broke! Just type \"Toggle Lighting\" (without the quotation marks) into the bottom bar.")*/
 
 /datum/targetable/ghost_observer/toggle_HUD
 	name = "Hide HUD"
