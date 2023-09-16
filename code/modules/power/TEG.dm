@@ -407,7 +407,7 @@
 			src.UpdateOverlays(null, "open")
 
 		if(src.variant_b_active)
-			UpdateOverlays(image('icons/obj/atmospherics/pipes.dmi', "circ[side]-o1"), "variant")
+			UpdateOverlays(image('icons/obj/machines/new_grey_teg.dmi', "circ[side]-o1"), "variant")
 		else
 			UpdateOverlays(null, "variant")
 
