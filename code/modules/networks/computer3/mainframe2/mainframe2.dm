@@ -252,8 +252,10 @@
 			return
 		use_power(500)
 		if(prob(3))
+			var/area/A = get_area(src)
+			if (!A.played_fx_1) //try not to stack this on
 			SPAWN_DBG(1 DECI SECOND)
-				playsound(src.loc, pick(ambience_computer), 50, 1)
+				playsound(src.loc, pick(ambience_computer), 50, 1, channel = VOLUME_CHANNEL_AMBIENT)
 
 		for (var/progIndex = 1, progIndex <= src.processing.len, progIndex++)
 			var/datum/computer/file/mainframe_program/prog = src.processing[progIndex]

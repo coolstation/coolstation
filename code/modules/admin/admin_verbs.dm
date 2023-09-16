@@ -13,6 +13,7 @@ var/list/admin_verbs = list(
 		/client/proc/admin_changes,
 		/client/proc/admin_play,
 		/client/proc/admin_observe,
+		//client/proc/admin_force_ambience,
 		/client/proc/game_panel,
 		/client/proc/game_panel_but_called_secrets,
 		/client/proc/create_obj,

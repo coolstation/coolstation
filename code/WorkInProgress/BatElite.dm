@@ -128,7 +128,22 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 					all_ingredients_ever |= recipe.item4
 		for(var/type in all_ingredients_ever)
 			product_list += new/datum/data/vending_product(type, 50)
+/*
+/area/proc/Force_Ambience(mob/M)
+		if (M?.client)
+			src.pickAmbience()
+			M.client.playAmbience(src, AMBIENCE_FX_1, 18)
 
+/client/proc/admin_force_ambience()
+	SET_ADMIN_CAT(ADMIN_CAT_SELF)
+	set name = "Debug Force Area Ambience"
+	if(!src.holder)
+		alert("You are not an admin")
+		return
+	if (src.mob)
+		var/area/A = get_area(src.mob)
+		A.Force_Ambience(src.mob)
+*/
 //When uncommented, these two together should produce an undecidability crash in insert_recipe
 /*
 /datum/cookingrecipe/undecidable_A

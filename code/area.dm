@@ -435,8 +435,11 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 			if ("Zen Garden") sound_fx_1 = pick('sound/ambience/station/ZenGarden1.ogg','sound/ambience/station/ZenGarden2.ogg')
 			//if ("Engine Control") sound_fx_1 = pick(ambience_engine)
 			//if ("Atmospherics") sound_fx_1 = pick(ambience_atmospherics)
-			if ("Radio Server", "Server Room", "Computer Lab") sound_fx_1 = pick(ambience_computer) //"Computer Core"
-				//todo: computer ambience only if area's apc is powering equipment
+			if ("Radio Server", "Server Room", "Computer Lab")
+				if (src.area_apc?.equipment > 1) //0 is off, 1 is off(auto) :V
+					sound_fx_1 = pick(ambience_computer) //only beeping if the equipment is running
+				else
+					sound_fx_1 = pick(ambience_general) //general ambience should be fine right?
 			//if ("Engineering Power Room") sound_fx_1 = pick(ambience_power)
 			if ("Ice Moon") sound_fx_1 = pick('sound/ambience/nature/Wind_Cold1.ogg', 'sound/ambience/nature/Wind_Cold2.ogg', 'sound/ambience/nature/Wind_Cold3.ogg')
 			if ("Biodome North") sound_fx_1 = pick('sound/ambience/nature/Biodome_Bugs.ogg', 'sound/ambience/nature/Biodome_Birds1.ogg', 'sound/ambience/nature/Biodome_Birds2.ogg', 'sound/ambience/nature/Biodome_Monkeys.ogg')
