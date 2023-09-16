@@ -80,7 +80,7 @@
 	out(src, msg)
 
 
-/client/proc/toggleResourceCache()
+/client/proc/toggle_resource_cache()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set name = "Toggle Resource Cache"
 	set desc = "Enable or disable the resource cache system"

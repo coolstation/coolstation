@@ -464,7 +464,7 @@ var/global/noir = 0
 
 		if ("sharkban") //Add ban
 			var/mob/M = (href_list["target"] ? locate(href_list["target"]) : null)
-			usr.client.sharkban(M)
+			usr.client.cmd_admin_sharkban(M)
 
 		if("unbane") //Edit ban
 			if (src.level >= LEVEL_SA)
@@ -1111,7 +1111,7 @@ var/global/noir = 0
 			if( src.level >= LEVEL_PA )
 				var/mob/M = locate(href_list["target"])
 				if (!M) return
-				usr.client.sharkgib(M)
+				usr.client.cmd_admin_sharkgib(M)
 			else
 				alert("You need to be at least a Primary Admin to shark gib a dude.")
 
@@ -1587,14 +1587,14 @@ var/global/noir = 0
 			else
 				alert("If you are below the rank of Primary Admin, you need to be observing and at least a Secondary Administrator to affect player reagents.")
 
-		if ("possessmob")
+		if ("possess_mob")
 			if( src.level >= LEVEL_PA )
 				var/mob/M = locate(href_list["target"])
 				if (!M) return
 				if (M == usr)
-					releasemob(M)
+					release_mob(M)
 				else
-					possessmob(M)
+					possess_mob(M)
 			else
 				alert("You need to be at least a Primary Administrator to possess or release mobs.")
 
@@ -5150,7 +5150,7 @@ var/global/noir = 0
 /client/proc/respawn_self()
 	set name = "Respawn Self"
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)
-	set desc = "Respawn yourself"
+	set desc = "Respawn yourself (Go back to Splash Screen)"
 
 	if(!isobserver(usr))
 		boutput(usr, "You can't respawn unless you're dead!")

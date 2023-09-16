@@ -492,7 +492,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 				changes()
 
 			if (src.holder && rank_to_level(src.holder.rank) >= LEVEL_MOD) // No admin changelog for goat farts (Convair880).
-				admin_changes()
+				admin_changelog()
 #endif
 #if ASS_JAM
 				src.verbs += /client/proc/cmd_ass_day_rules

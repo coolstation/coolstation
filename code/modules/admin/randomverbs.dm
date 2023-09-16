@@ -1171,7 +1171,7 @@
 	set popup_menu = 0
 	new /mob/living/object(O, usr)
 
-/proc/possessmob(mob/M as mob in world)
+/proc/possess_mob(mob/M as mob in world)
 	set name = "Possess Mob"
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 	set popup_menu = 0
@@ -1183,7 +1183,7 @@
 	M.mind = usr.mind
 	M.ckey = ckey
 
-/proc/releasemob(mob/M as mob in world)
+/proc/release_mob(mob/M as mob in world)
 	set name = "Release Mob"
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 	set popup_menu = 0

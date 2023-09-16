@@ -1599,10 +1599,10 @@ Returns:
 					argcopy[r] = X
 			call(procpath)(arglist(argcopy))
 
-/datum/admins/proc/pixelexplosion()
+/datum/admins/proc/enable_pixelexplosion()
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	set name = "Pixel explosion mode"
-	set desc = "Enter pixel explosion mode."
+	set name = "Enable pixel explosions"
+	set desc = "Click on things to explode them into pixels?"
 	alert("Clicking on things will now explode them into pixels!")
 	pixelmagic()
 
@@ -1681,10 +1681,10 @@ Returns:
 		transform = matrix()
 		..()
 */
-/datum/admins/proc/turn_off_pixelexplosion()
+/datum/admins/proc/disable_pixelexplosion()
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	set name = "Turn off pixel explosion mode"
-	set desc = "Turns off pixel explosion mode."
+	set name = "Disable pixel explosions"
+	set desc = "Stop exploding things into pixels when you click them."
 
 	var/mob/M = usr
 	if (istype(M.targeting_ability, /datum/targetable/pixelpicker))
