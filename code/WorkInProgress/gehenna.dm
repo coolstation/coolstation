@@ -349,6 +349,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	requires_power = 0
 	luminosity = 0
 	sound_environment = EAX_CAVE
+	is_atmos_simulated = 1
 
 /area/gehenna/underground/staffies_nest
 	name = "the rat's nest"
