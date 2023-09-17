@@ -1015,6 +1015,10 @@ DEFINE_FLOORS(marble/border_wb,
 /turf/floor/setpieces
 	icon = 'icons/misc/worlds.dmi'
 	fullbright = 0
+	has_material = FALSE
+	turf_flags = 0 //following previous behavior at root here
+	thermal_conductivity = 0.05 //taking values from /turf rather than /turf/floor
+	heat_capacity = 1 //since setpieces were made with that default behavior (might be relevant maybe (just in case (but probably not)))
 
 	bloodfloor
 		name = "bloody floor"
@@ -1807,6 +1811,7 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 /turf/wall/setpieces
 	icon = 'icons/misc/worlds.dmi'
 	fullbright = 0
+	material = null
 
 	bloodwall
 		name = "bloody wall"
