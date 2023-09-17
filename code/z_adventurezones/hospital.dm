@@ -114,7 +114,11 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 			..()
 
 			if (Obj)
-				var/turf/T = locate(Obj.x, 4, 1)
+				var/turf/T
+				if(map_currently_very_dusty || map_currently_underwater) //non-space map?
+					T = locate(Obj.x, 4, 5) //dump them out on the diner z-level which is in space since the station is not
+				else
+					T = locate(Obj.x, 4, 1) //put them on the bottom of the station z-level, in space
 				Obj.set_loc(T)
 				playsound(T, pick('sound/effects/elec_bigzap.ogg', 'sound/effects/elec_bzzz.ogg', 'sound/effects/electric_shock.ogg'), 50, 0)
 				var/obj/somesparks = new /obj/effects/sparks()
