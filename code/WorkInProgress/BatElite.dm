@@ -128,6 +128,17 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 					all_ingredients_ever |= recipe.item4
 		for(var/type in all_ingredients_ever)
 			product_list += new/datum/data/vending_product(type, 50)
+
+///Something you can plop down in the map editor as a reference for screen size and what bits will get obscured by the HUD
+/obj/mapping_HUD_template
+	icon = 'icons/map-editing/mapping_HUD_template.dmi'
+	icon_state = "template" //blue is TG HUD, yellow is regular
+	plane = PLANE_HUD
+
+	New()
+		..()
+		qdel(src)
+
 /*
 /area/proc/Force_Ambience(mob/M)
 		if (M?.client)
