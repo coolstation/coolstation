@@ -50,6 +50,7 @@ proc/debug_map_apc_count(delim,zlim)
 
 /client/proc
 	map_debug_panel()
+		set name = "Map Debug Panel"
 		SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
 
 		var/area_txt = "<B>APC LOCATION REPORT</B><HR>"
@@ -59,6 +60,7 @@ proc/debug_map_apc_count(delim,zlim)
 
 
 	general_report()
+		set name = "General Report"
 		SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
 
 		if(!processScheduler)
@@ -79,6 +81,7 @@ proc/debug_map_apc_count(delim,zlim)
 		usr.Browse(output,"window=generalreport")
 
 	air_report()
+		set name = "Air Report"
 		SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
 
 		if(!processScheduler || !air_master)

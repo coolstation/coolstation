@@ -20,7 +20,7 @@
 // cirr here, the amount of code duplication for suicides a) made me sad and b) ought to have been in a parent proc to allow this functionality for everyone anyway
 // the suiciding var is already at the mob level for fuck's sakes
 /mob/verb/suicide()
-
+	set name = "Suicide"
 	if ((!isliving(src) || isdead(src)) && !istype(src, /mob/dead/aieye) && !istype(src, /mob/zoldorf))
 		boutput(src, "You're already dead!")
 		return
@@ -48,8 +48,6 @@
 	if (!suicide_allowed)
 		boutput(src, "You find yourself unable to go through with killing yourself!")
 		return
-
-
 
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
 

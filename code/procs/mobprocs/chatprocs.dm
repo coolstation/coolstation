@@ -5,11 +5,11 @@
 	return
 
 /mob/verb/whisper_verb(message as text)
-	set name = "whisper"
+	set name = "Whisper"
 	return src.whisper(message)
 
 /mob/verb/say_verb(message as text)
-	set name = "say"
+	set name = "Say"
 	//&& !src.client.holder
 
 	if (!message)
@@ -125,7 +125,7 @@
 	else logTheThing("say", src, null, "SAY: [message]")
 */
 /mob/verb/me_verb(message as text)
-	set name = "me"
+	set name = "Me"
 
 	if (src.client && !src.client.holder && url_regex?.Find(message))
 		boutput(src, "<span class='notice'><b>Web/BYOND links are not allowed in ingame chat.</b></span>")
@@ -507,6 +507,7 @@
 			boutput(src, "<span class='notice'>You are no longer listening to messages on the OOC channel.</span>")
 
 /mob/verb/ooc(msg as text)
+	set name = "OOC"
 	if (IsGuestKey(src.key))
 		boutput(src, "You are not authorized to communicate over these channels.")
 		return
@@ -587,6 +588,7 @@
 			boutput(src, "<span class='notice'>You are no longer listening to messages on the LOOC channel.</span>")
 
 /mob/verb/looc(msg as text)
+	set name = "LOOC"
 	if (IsGuestKey(src.key))
 		boutput(src, "You are not authorized to communicate over these channels.")
 		return

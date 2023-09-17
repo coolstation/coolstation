@@ -152,6 +152,7 @@ var/global/admin_sound_channel = 1014 //Ranges from 1014 to 1024
 	return 1
 
 /client/verb/change_volume(channel_name as anything in audio_channel_name_to_id)
+	set name = "Change Volume"
 	var/channel_id = audio_channel_name_to_id[channel_name]
 	if(isnull(channel_id))
 		alert(usr, "Invalid channel.")
