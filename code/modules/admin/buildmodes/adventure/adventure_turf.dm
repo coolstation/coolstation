@@ -6,15 +6,15 @@
 	var/turftype = null
 	var/obj/marker = null
 
-	var/static/list/turfs = list("Ancient floor" = /turf/iomoon/ancient_floor, \
-	"Ancient wall" = /turf/iomoon/ancient_wall, "Cave floor" = /turf/floor/cave, \
+	var/static/list/turfs = list("Ancient floor" = /turf/floor/setpieces/iomoon/ancient, \
+	"Ancient wall" = /turf/wall/setpieces/iomoon/ancient, "Cave floor" = /turf/floor/cave, \
 	"Cave wall" = /turf/wall/cave,  "Data floor: Blue" = /turf/floor/techfloor, \
 	"Data floor: Red" = /turf/floor/techfloor/red, "Data floor: Purple" = /turf/floor/techfloor/purple, \
 	"Data floor: Yellow" = /turf/floor/techfloor/yellow, "Data floor: Green" = /turf/floor/techfloor/green, \
 	"Dirt" = /turf/aprilfools/dirt, "Grass" = /turf/aprilfools/grass, \
 	"Hive floor" = /turf/floor/setpieces/hivefloor, "Hive wall" = /turf/wall/setpieces/hive, \
-	"Ice" = /turf/floor/arctic/snow/ice, "Lava" = /turf/floor/lava, "Martian floor" = /turf/martian/floor, \
-	"Martian wall" = /turf/martian/wall, "Normal floor" = /turf/floor, "Normal wall" = /turf/wall, \
+	"Ice" = /turf/floor/arctic/snow/ice, "Lava" = /turf/floor/lava, "Martian floor" = /turf/floor/setpieces/martian, \
+	"Martian wall" = /turf/wall/setpieces/martian, "Normal floor" = /turf/floor, "Normal wall" = /turf/wall, \
 	"Reinforced floor" = /turf/floor/engine, "Reinforced wall" = /turf/wall/r_wall, "Shielded floor" = /turf/floor/engine, \
 	"Shielded wall" = /turf/wall/setpieces/leadwall, "Shielded window" = /turf/wall/setpieces/leadwindow, "Showcase" = /turf/floor/wizard/showcase, \
 	"Shuttle floor" = /turf/floor/shuttle, "Shuttle wall" = /turf/shuttle/wall, "Snow" = /turf/floor/arctic/snow, \

@@ -54400,7 +54400,7 @@
 	name = "Far Lava";
 	opacity = 1
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge3 (SOUTHWEST)";
 	icon_state = "iowall_edge3";
 	dir = 10
@@ -54413,7 +54413,7 @@
 	name = "Far Lava";
 	opacity = 1
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 7;
 	icon_state = "iowall_edge2";
 	tag = "icon-iowall_edge2 (SOUTHEAST)"
@@ -54426,14 +54426,14 @@
 	name = "Far Lava";
 	opacity = 1
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail1 (SOUTHWEST)";
 	icon_state = "iowall_detail1";
 	dir = 10
 	},
 /area/iomoon)
 "cia" = (
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	icon_state = "iowall2"
 	},
 /area/iomoon)
@@ -54444,14 +54444,14 @@
 	name = "Far Lava";
 	opacity = 1
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail1 (SOUTHEAST)";
 	icon_state = "iowall_detail1";
 	dir = 6
 	},
 /area/iomoon)
 "cic" = (
-/turf/iomoon/crustwall,
+/turf/wall/setpieces/iomoon/crust,
 /area/iomoon)
 "cid" = (
 /turf/wall/setpieces/leadwall/gray,
@@ -54555,7 +54555,7 @@
 /area/iomoon)
 "ciq" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 10;
 	icon_state = "iowall_edge2";
 	tag = "icon-iowall_edge2 (SOUTHEAST)"
@@ -54563,7 +54563,7 @@
 /area/iomoon)
 "cir" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 7;
 	icon_state = "iowall_edge2";
 	tag = "icon-iowall_edge2 (SOUTHEAST)"
@@ -54571,7 +54571,7 @@
 /area/iomoon)
 "cis" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge3 (SOUTHEAST)";
 	icon_state = "iowall_edge3";
 	dir = 6
@@ -54603,7 +54603,7 @@
 /area/iomoon)
 "ciw" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail1 (SOUTHWEST)";
 	icon_state = "iowall_detail1";
 	dir = 10
@@ -54638,8 +54638,8 @@
 	},
 /area/iomoon)
 "ciB" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	dir = 7;
 	icon_state = "iowall_edge2";
 	tag = "icon-iowall_edge2 (SOUTHEAST)"
@@ -54647,7 +54647,7 @@
 /area/iomoon)
 "ciC" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail1 (SOUTHEAST)";
 	icon_state = "iowall_detail1";
 	dir = 6
@@ -54680,7 +54680,7 @@
 	},
 /area/drone/assembly)
 "ciG" = (
-/turf/iomoon/ancient_wall,
+/turf/wall/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "ciH" = (
 /obj/decal/glow{
@@ -54793,15 +54793,15 @@
 /area/iomoon)
 "ciQ" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge3 (SOUTHWEST)";
 	icon_state = "iowall_edge3";
 	dir = 10
 	},
 /area/iomoon)
 "ciR" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge3 (SOUTHEAST)";
 	icon_state = "iowall_edge3";
 	dir = 6
@@ -54835,17 +54835,17 @@
 	},
 /area/iomoon)
 "ciV" = (
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "ciW" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (WEST)";
 	icon_state = "iocrust_edge";
 	dir = 8
 	},
 /area/iomoon)
 "ciX" = (
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall2";
 	name = "silicate cave wall";
@@ -54881,7 +54881,7 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (NORTHWEST)"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
@@ -54899,7 +54899,7 @@
 	anchored = 1;
 	brightness = 3
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
@@ -54917,7 +54917,7 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (NORTHEAST)"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
@@ -54968,7 +54968,7 @@
 /turf/floor/lava,
 /area/iomoon)
 "cji" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (EAST)";
 	icon_state = "iocrust_edge";
 	dir = 4
@@ -54982,14 +54982,14 @@
 	},
 /area/iomoon)
 "cjk" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (SOUTHWEST)";
 	icon_state = "iocrust_edge";
 	dir = 10
 	},
 /area/iomoon)
 "cjl" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_corner (NORTH)";
 	icon_state = "iocrust_corner";
 	dir = 1
@@ -55041,10 +55041,10 @@
 	pads_required = 1;
 	tag = ""
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cjs" = (
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cjt" = (
 /obj/decal/glow{
@@ -55060,12 +55060,12 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (SOUTHEAST)"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
 "cju" = (
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
@@ -55083,7 +55083,7 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (SOUTHWEST)"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
@@ -55133,26 +55133,26 @@
 /turf/floor/lava,
 /area/iomoon)
 "cjB" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_corner"
 	},
 /area/iomoon)
 "cjC" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_corner (EAST)";
 	icon_state = "iocrust_corner";
 	dir = 4
 	},
 /area/iomoon)
 "cjD" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (NORTH)";
 	icon_state = "iocrust_edge";
 	dir = 1
 	},
 /area/iomoon)
 "cjE" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (NORTHEAST)";
 	icon_state = "iocrust_edge";
 	dir = 5
@@ -55160,7 +55160,7 @@
 /area/iomoon)
 "cjF" = (
 /obj/decal/fakeobjects/pipe,
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "cjG" = (
 /obj/lattice{
@@ -55168,7 +55168,7 @@
 	icon_state = "lattice-dir-b";
 	dir = 6
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (WEST)";
 	icon_state = "iocrust_edge";
 	dir = 8
@@ -55188,12 +55188,12 @@
 	icon_state = "lattice-dir-b";
 	dir = 10
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_corner"
 	},
 /area/iomoon)
 "cjJ" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_edge"
 	},
 /area/iomoon)
@@ -55273,7 +55273,7 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (NORTHWEST)"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cjU" = (
 /obj/decal/glow{
@@ -55289,7 +55289,7 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (NORTHEAST)"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cjV" = (
 /turf/wall/setpieces/leadwall/white{
@@ -55325,10 +55325,10 @@
 /area/iomoon)
 "cjZ" = (
 /obj/critter/lavacrab,
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "cka" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (NORTHWEST)";
 	icon_state = "iocrust_edge";
 	dir = 9
@@ -55340,7 +55340,7 @@
 	icon_state = "intact";
 	dir = 6
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "ckc" = (
 /obj/decal/fakeobjects/pipe{
@@ -55348,7 +55348,7 @@
 	icon_state = "intact";
 	tag = "icon-intact-f (NORTHWEST)"
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "ckd" = (
 /obj/lattice{
@@ -55356,7 +55356,7 @@
 	icon_state = "lattice-dir-b";
 	dir = 6
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "cke" = (
 /obj/grille/catwalk{
@@ -55364,7 +55364,7 @@
 	icon_state = "catwalk";
 	dir = 5
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (WEST)";
 	icon_state = "iocrust_edge";
 	dir = 8
@@ -55399,7 +55399,7 @@
 /obj/grille/catwalk{
 	dir = 5
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (EAST)";
 	icon_state = "iocrust_edge";
 	dir = 4
@@ -55418,7 +55418,7 @@
 	icon_state = "lattice-dir-b";
 	dir = 10
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "cki" = (
 /turf/wall/setpieces/leadwall/gray{
@@ -55428,7 +55428,7 @@
 	},
 /area/iomoon/base)
 "ckj" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (SOUTHEAST)";
 	icon_state = "iocrust_edge";
 	dir = 6
@@ -55536,7 +55536,7 @@
 	id = "iomoon_hallrun";
 	timer = 3
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "ckv" = (
 /obj/decal/glow{
@@ -55549,7 +55549,7 @@
 	sd_ColorGreen = 1;
 	sd_ColorRed = 0
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "ckw" = (
 /obj/decal/fakeobjects{
@@ -55562,7 +55562,7 @@
 	name = "ancient window";
 	tag = ""
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "ckx" = (
 /obj/decal/fakeobjects{
@@ -55574,7 +55574,7 @@
 	dir = 8;
 	anchored = 1
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cky" = (
 /obj/decal/glow{
@@ -55590,10 +55590,10 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (SOUTHWEST)"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "ckz" = (
-/turf/iomoon/ancient_wall{
+/turf/wall/setpieces/iomoon/ancient{
 	desc = "Not only is it one hell of a foreboding door, it is also sealed fast.  It has no apparent means of opening.";
 	dir = 2;
 	icon = 'icons/misc/worlds.dmi';
@@ -55625,7 +55625,7 @@
 	icon_state = "intact";
 	dir = 6
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_corner"
 	},
 /area/iomoon)
@@ -55635,7 +55635,7 @@
 	icon_state = "intact";
 	dir = 4
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_edge"
 	},
 /area/iomoon)
@@ -55648,7 +55648,7 @@
 	icon_state = "intact";
 	dir = 9
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_edge"
 	},
 /area/iomoon)
@@ -55658,7 +55658,7 @@
 	icon_state = "intact";
 	dir = 5
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_edge"
 	},
 /area/iomoon)
@@ -55671,14 +55671,14 @@
 	icon_state = "intact";
 	dir = 10
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_corner (NORTH)";
 	icon_state = "iocrust_corner";
 	dir = 1
 	},
 /area/iomoon)
 "ckH" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_corner (WEST)";
 	icon_state = "iocrust_corner";
 	dir = 8
@@ -55690,7 +55690,7 @@
 	icon_state = "lattice-dir-b";
 	dir = 2
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "ckJ" = (
 /obj/lattice{
@@ -55698,11 +55698,11 @@
 	icon_state = "lattice-dir-b";
 	dir = 9
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "ckK" = (
 /obj/lattice,
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (WEST)";
 	icon_state = "iocrust_edge";
 	dir = 8
@@ -55718,7 +55718,7 @@
 	icon_state = "lattice-dir";
 	dir = 10
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_corner"
 	},
 /area/iomoon)
@@ -55728,7 +55728,7 @@
 	icon_state = "lattice-dir-b";
 	dir = 5
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (SOUTHEAST)";
 	icon_state = "iocrust_edge";
 	dir = 6
@@ -55740,7 +55740,7 @@
 	icon_state = "lattice-dir-b";
 	dir = 1
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "ckP" = (
 /turf/wall/setpieces/leadwall/gray{
@@ -55874,7 +55874,7 @@
 	icon_state = "ancient-7";
 	name = "peculiar gizmo"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cld" = (
 /obj/decal/glow{
@@ -55890,7 +55890,7 @@
 	anchored = 1;
 	brightness = 3
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cle" = (
 /obj/decal/glow{
@@ -55907,10 +55907,10 @@
 	brightness = 3
 	},
 /obj/critter/ancient_repairbot/security,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "clf" = (
-/turf/iomoon/ancient_wall{
+/turf/wall/setpieces/iomoon/ancient{
 	tag = "icon-ancientwall (WEST)";
 	icon_state = "ancientwall";
 	dir = 8
@@ -55930,7 +55930,7 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (SOUTHEAST)"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "clh" = (
 /obj/decal/fakeobjects{
@@ -55940,7 +55940,7 @@
 	icon_state = "ancient-1";
 	name = "confounding thing-a-ma-bob"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cli" = (
 /obj/decal/mushrooms/type6,
@@ -55985,7 +55985,7 @@
 	icon_state = "iostone";
 	name = "rock"
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (SOUTHEAST)";
 	icon_state = "iocrust_edge";
 	dir = 6
@@ -56000,7 +56000,7 @@
 	icon_state = "intact";
 	dir = 5
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (EAST)";
 	icon_state = "iocrust_edge";
 	dir = 4
@@ -56015,7 +56015,7 @@
 	icon_state = "intact";
 	dir = 9
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (SOUTHWEST)";
 	icon_state = "iocrust_edge";
 	dir = 10
@@ -56027,7 +56027,7 @@
 	icon_state = "lattice-dir-b";
 	dir = 9
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (NORTH)";
 	icon_state = "iocrust_edge";
 	dir = 1
@@ -56040,7 +56040,7 @@
 	dir = 8
 	},
 /obj/decal/fakeobjects/pipe,
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (NORTH)";
 	icon_state = "iocrust_edge";
 	dir = 1
@@ -56052,7 +56052,7 @@
 	icon_state = "lattice-dir-b";
 	dir = 5
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (NORTHEAST)";
 	icon_state = "iocrust_edge";
 	dir = 5
@@ -56064,7 +56064,7 @@
 	icon_state = "lattice-dir-b";
 	dir = 9
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (SOUTHWEST)";
 	icon_state = "iocrust_edge";
 	dir = 10
@@ -56076,7 +56076,7 @@
 	icon_state = "lattice-dir-b";
 	dir = 5
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_edge"
 	},
 /area/iomoon)
@@ -56194,7 +56194,7 @@
 	dir = 1;
 	tag = "iomoon_hallrun"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "clH" = (
 /obj/decal/fakeobjects{
@@ -56205,14 +56205,14 @@
 	icon_state = "ancientdoor_opened";
 	name = "ancient doorway"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "clI" = (
 /obj/iomoon_puzzle/ancient_robot_door{
 	dir = 4;
 	tag = "iomoon_airlockW"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "clJ" = (
 /obj/lattice{
@@ -56244,7 +56244,7 @@
 	icon_state = "lattice-dir-b";
 	dir = 9
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (SOUTHEAST)";
 	icon_state = "iocrust_edge";
 	dir = 6
@@ -56266,7 +56266,7 @@
 	icon_state = "lattice-dir-b";
 	dir = 5
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "clQ" = (
 /obj/lattice{
@@ -56359,7 +56359,7 @@
 /area/crater/cave/lower)
 "clY" = (
 /obj/critter/ancient_repairbot/security,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "clZ" = (
 /obj/decal/glow{
@@ -56372,12 +56372,12 @@
 	sd_ColorGreen = 1;
 	sd_ColorRed = 0
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
 "cma" = (
-/turf/iomoon/ancient_wall{
+/turf/wall/setpieces/iomoon/ancient{
 	tag = "icon-ancientwall (NORTH)";
 	icon_state = "ancientwall";
 	dir = 1
@@ -56415,7 +56415,7 @@
 	icon_state = "iostone";
 	name = "silicate rock"
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "cmf" = (
 /obj/lattice{
@@ -56423,7 +56423,7 @@
 	icon_state = "lattice-dir";
 	dir = 4
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "cmg" = (
 /obj/lattice{
@@ -56432,7 +56432,7 @@
 	dir = 4
 	},
 /obj/item/bloodbowlball,
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (SOUTHWEST)";
 	icon_state = "iocrust_edge";
 	dir = 10
@@ -56444,7 +56444,7 @@
 	icon_state = "lattice-dir";
 	dir = 4
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_edge"
 	},
 /area/iomoon)
@@ -56460,10 +56460,10 @@
 	},
 /area/iomoon/base)
 "cmj" = (
-/turf/iomoon/crustwall,
+/turf/wall/setpieces/iomoon/crust,
 /area/iomoon/base/underground)
 "cmk" = (
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall2";
 	name = "silicate cave wall";
@@ -56489,7 +56489,7 @@
 	opened = 1;
 	tag = "iomoon_airlockN"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cmn" = (
 /obj/grille/catwalk,
@@ -56549,7 +56549,7 @@
 	icon_state = "lattice-dir";
 	dir = 4
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (EAST)";
 	icon_state = "iocrust_edge";
 	dir = 4
@@ -56561,7 +56561,7 @@
 	icon_state = "lattice-dir";
 	dir = 8
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "cms" = (
 /turf/wall/setpieces/leadwall/gray{
@@ -56690,11 +56690,11 @@
 /turf/floor,
 /area/iomoon/base/underground)
 "cmF" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail3 (SOUTHEAST)";
 	name = "silicate cave wall";
 	icon_state = "iowall_detail3";
@@ -56703,11 +56703,11 @@
 	},
 /area/iomoon/caves)
 "cmG" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1";
 	name = "silicate cave wall";
 	icon_state = "iowall_edge1";
@@ -56716,11 +56716,11 @@
 	},
 /area/iomoon/caves)
 "cmH" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail3 (SOUTHWEST)";
 	name = "silicate cave wall";
 	icon_state = "iowall_detail3";
@@ -56795,7 +56795,7 @@
 	icon_state = "lattice-dir";
 	dir = 4
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_corner (EAST)";
 	icon_state = "iocrust_corner";
 	dir = 4
@@ -56807,7 +56807,7 @@
 	icon_state = "lattice-dir";
 	dir = 10
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (NORTHEAST)";
 	icon_state = "iocrust_edge";
 	dir = 5
@@ -56902,7 +56902,7 @@
 /turf/floor,
 /area/iomoon/base/underground)
 "cnb" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
@@ -56912,17 +56912,17 @@
 	desc = "What does this go to?";
 	name = "hot iron key"
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
 /area/iomoon/caves)
 "cnd" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1 (SOUTHWEST)";
 	name = "silicate cave wall";
 	icon_state = "iowall_edge1";
@@ -56938,7 +56938,7 @@
 	icon_state = "ancient-4";
 	name = "obscene doohickey"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
@@ -56947,11 +56947,11 @@
 	id = "iomoon_airlockN;iomoon_airlockS";
 	timer = 0
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cng" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1 (NORTHWEST)";
 	icon_state = "iowall_edge1";
 	dir = 9
@@ -56959,7 +56959,7 @@
 /area/iomoon)
 "cnh" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge2 (NORTH)";
 	icon_state = "iowall_edge2";
 	dir = 1
@@ -56967,7 +56967,7 @@
 /area/iomoon)
 "cni" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge2 (NORTHEAST)";
 	icon_state = "iowall_edge2";
 	dir = 5
@@ -57134,11 +57134,11 @@
 /turf/floor,
 /area/iomoon/base/underground)
 "cnB" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail1 (EAST)";
 	name = "silicate cave wall";
 	icon_state = "iowall_detail1";
@@ -57150,7 +57150,7 @@
 /obj/decal/stalagmite{
 	icon_state = "iostal2"
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
@@ -57175,13 +57175,13 @@
 /obj/iomoon_puzzle/ancient_robot_door{
 	tag = "iomoon_lavastarN"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
 "cnF" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_detail3";
 	name = "silicate cave wall";
@@ -57190,7 +57190,7 @@
 /area/iomoon)
 "cnG" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge2 (EAST)";
 	icon_state = "iowall_edge2";
 	dir = 4
@@ -57293,7 +57293,7 @@
 /area/iomoon/base/underground)
 "cnV" = (
 /turf/floor,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail1 (SOUTHEAST)";
 	icon_state = "iowall_detail1";
 	dir = 6
@@ -57301,20 +57301,20 @@
 /area/iomoon/base/underground)
 "cnW" = (
 /turf/floor,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail2 (SOUTHWEST)";
 	icon_state = "iowall_detail2";
 	dir = 10
 	},
 /area/iomoon/base/underground)
 "cnX" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	dir = 1;
 	icon_state = "iocrust_edge";
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_detail3";
 	name = "silicate cave wall";
@@ -57330,11 +57330,11 @@
 	sd_ColorGreen = 0.5;
 	sd_ColorRed = 0.7
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_edge3";
 	name = "silicate cave wall";
@@ -57351,7 +57351,7 @@
 	sd_ColorGreen = 0.5;
 	sd_ColorRed = 0.7
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	dir = 1;
 	icon_state = "iocrust_edge";
 	name = "silicate cave floor";
@@ -57367,11 +57367,11 @@
 	sd_ColorGreen = 0.5;
 	sd_ColorRed = 0.7
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 8;
 	icon_state = "iowall_edge2";
 	name = "silicate cave wall";
@@ -57379,7 +57379,7 @@
 	},
 /area/iomoon/caves)
 "cob" = (
-/turf/iomoon/crustwall,
+/turf/wall/setpieces/iomoon/crust,
 /area/iomoon/caves)
 "coc" = (
 /obj/iomoon_puzzle/floor_pad{
@@ -57387,10 +57387,10 @@
 	pads_required = 1;
 	tag = ""
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cod" = (
-/turf/iomoon/ancient_wall{
+/turf/wall/setpieces/iomoon/ancient{
 	desc = "Not only is it one hell of a foreboding door, it's also sealed fast.  It doesn't have any apparent means of opening.";
 	dir = 1;
 	icon = 'icons/misc/worlds.dmi';
@@ -57410,7 +57410,7 @@
 /area/catacombs)
 "cof" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_edge2";
 	name = "silicate cave wall";
@@ -57420,7 +57420,7 @@
 /area/iomoon)
 "cog" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge2 (SOUTHEAST)";
 	icon_state = "iowall_edge2";
 	dir = 6
@@ -57653,7 +57653,7 @@
 /area/iomoon/base/underground)
 "coD" = (
 /turf/floor,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge3 (SOUTHEAST)";
 	icon_state = "iowall_edge3";
 	dir = 6
@@ -57669,7 +57669,7 @@
 	sd_ColorRed = 0.7
 	},
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 4;
 	icon_state = "iowall_edge1";
 	name = "silicate cave wall";
@@ -57698,7 +57698,7 @@
 	sd_ColorRed = 0.7
 	},
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 8;
 	icon_state = "iowall_edge2";
 	name = "silicate cave wall";
@@ -57715,7 +57715,7 @@
 	sd_ColorRed = 0.7
 	},
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail3 (SOUTHEAST)";
 	name = "silicate cave wall";
 	icon_state = "iowall_detail3";
@@ -57733,7 +57733,7 @@
 	sd_ColorRed = 0.7
 	},
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge2";
 	name = "silicate cave wall";
 	icon_state = "iowall_edge2";
@@ -57751,7 +57751,7 @@
 	sd_ColorRed = 0.7
 	},
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail3 (SOUTHWEST)";
 	name = "silicate cave wall";
 	icon_state = "iowall_detail3";
@@ -57763,11 +57763,11 @@
 /obj/iomoon_puzzle/ancient_robot_door{
 	tag = "iomoon_airlockS"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "coL" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1 (SOUTHWEST)";
 	name = "silicate cave wall";
 	icon_state = "iowall_edge1";
@@ -57948,7 +57948,7 @@
 /area/iomoon/base/underground)
 "cph" = (
 /turf/floor,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1 (SOUTHEAST)";
 	icon_state = "iowall_edge1";
 	dir = 6
@@ -57963,11 +57963,11 @@
 /turf/floor,
 /area/iomoon/base/underground)
 "cpj" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail1 (SOUTHEAST)";
 	icon_state = "iowall_detail1";
 	dir = 6
@@ -57982,11 +57982,11 @@
 	sd_ColorGreen = 0.5;
 	sd_ColorRed = 0.7
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_edge1";
 	name = "silicate cave wall";
@@ -58002,7 +58002,7 @@
 	sd_ColorGreen = 0.5;
 	sd_ColorRed = 0.7
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_edge"
 	},
 /area/iomoon/caves)
@@ -58016,7 +58016,7 @@
 	sd_ColorRed = 0.7
 	},
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_edge1";
 	name = "silicate cave wall";
@@ -58033,7 +58033,7 @@
 	sd_ColorRed = 0.7
 	},
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1 (SOUTHWEST)";
 	name = "silicate cave wall";
 	icon_state = "iowall_edge1";
@@ -58043,11 +58043,11 @@
 /area/iomoon/caves)
 "cpo" = (
 /obj/critter/ancient_repairbot,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cpp" = (
 /obj/window/crystal/reinforced/south,
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
@@ -58226,7 +58226,7 @@
 /obj/lattice{
 	icon_state = "lattice-dir"
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "cpH" = (
 /obj/decal/fakeobjects/pipe{
@@ -58410,22 +58410,22 @@
 /turf/floor,
 /area/iomoon/base/underground)
 "cpT" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge2 (EAST)";
 	icon_state = "iowall_edge2";
 	dir = 4
 	},
 /area/iomoon/caves)
 "cpU" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge2";
 	name = "silicate cave wall";
 	icon_state = "iowall_edge2";
@@ -58434,11 +58434,11 @@
 	},
 /area/iomoon/caves)
 "cpV" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_edge1";
 	name = "silicate cave wall";
@@ -58454,7 +58454,7 @@
 	sd_ColorGreen = 0.5;
 	sd_ColorRed = 0.7
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	dir = 8;
 	icon_state = "iocrust_edge";
 	name = "silicate cave floor";
@@ -58470,18 +58470,18 @@
 	sd_ColorGreen = 0.5;
 	sd_ColorRed = 0.7
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (EAST)";
 	icon_state = "iocrust_edge";
 	dir = 4
 	},
 /area/iomoon/caves)
 "cpY" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 10;
 	icon_state = "iowall_detail2";
 	name = "silicate cave wall";
@@ -58490,7 +58490,7 @@
 	},
 /area/iomoon/caves)
 "cpZ" = (
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall2";
 	name = "silicate cave wall";
@@ -58499,7 +58499,7 @@
 	},
 /area/iomoon/robot_ruins)
 "cqa" = (
-/turf/iomoon/ancient_wall{
+/turf/wall/setpieces/iomoon/ancient{
 	tag = "icon-ancientwall (EAST)";
 	icon_state = "ancientwall";
 	dir = 4
@@ -58744,22 +58744,22 @@
 /turf/floor,
 /area/iomoon/base/underground)
 "cqC" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge2 (SOUTHEAST)";
 	icon_state = "iowall_edge2";
 	dir = 6
 	},
 /area/iomoon/caves)
 "cqD" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 8;
 	icon_state = "iowall_edge2";
 	name = "silicate cave wall";
@@ -58767,11 +58767,11 @@
 	},
 /area/iomoon/caves)
 "cqE" = (
-/turf/iomoon/ancient_wall,
+/turf/wall/setpieces/iomoon/ancient,
 /area/iomoon/caves)
 "cqF" = (
-/turf/iomoon/ancient_floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/ancient,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail2 (SOUTHEAST)";
 	name = "silicate cave wall";
 	icon_state = "iowall_detail2";
@@ -58781,32 +58781,32 @@
 "cqG" = (
 /obj/table,
 /obj/item/luggable_computer/personal/iomoon,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cqH" = (
 /obj/stool,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cqI" = (
 /obj/iomoon_puzzle/floor_pad{
 	id = "iomoon_demo"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cqJ" = (
 /obj/crate/loot,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cqK" = (
 /obj/iomoon_puzzle/button{
 	id = "iomoon_demo";
 	timer = 6
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cqL" = (
 /obj/window/crystal/reinforced/east,
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
@@ -58847,7 +58847,7 @@
 /area/iomoon/robot_ruins)
 "cqP" = (
 /obj/window/crystal/reinforced/west,
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
@@ -58866,7 +58866,7 @@
 	brightness = 3
 	},
 /obj/item/iomoon_key/red,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cqR" = (
 /obj/decal/cleanable/fungus,
@@ -59043,7 +59043,7 @@
 	},
 /area/iomoon/base)
 "crg" = (
-/turf/iomoon/plating,
+/turf/floor/setpieces/iomoon/plating/charred,
 /area/iomoon)
 "crh" = (
 /obj/decal/stalagmite{
@@ -59052,7 +59052,7 @@
 	icon_state = "iostone";
 	name = "silicate rock"
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "cri" = (
 /obj/lattice{
@@ -59060,7 +59060,7 @@
 	icon_state = "lattice-dir";
 	dir = 9
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_corner (EAST)";
 	icon_state = "iocrust_corner";
 	dir = 4
@@ -59068,7 +59068,7 @@
 /area/iomoon)
 "crj" = (
 /obj/lattice,
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (NORTH)";
 	icon_state = "iocrust_edge";
 	dir = 1
@@ -59080,7 +59080,7 @@
 	icon_state = "lattice-dir";
 	dir = 1
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (NORTH)";
 	icon_state = "iocrust_edge";
 	dir = 1
@@ -59129,11 +59129,11 @@
 /turf/floor/arctic/plating,
 /area/iomoon/base/underground)
 "crq" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 4;
 	icon_state = "iowall_edge1";
 	name = "silicate cave wall";
@@ -59150,7 +59150,7 @@
 	sd_ColorGreen = 0.5;
 	sd_ColorRed = 0.7
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iocrust_edge";
 	name = "silicate cave floor";
@@ -59166,18 +59166,18 @@
 	sd_ColorGreen = 0.5;
 	sd_ColorRed = 0.7
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_corner (WEST)";
 	icon_state = "iocrust_corner";
 	dir = 8
 	},
 /area/iomoon/caves)
 "crt" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 8;
 	icon_state = "iowall_edge1";
 	name = "silicate cave wall";
@@ -59186,11 +59186,11 @@
 	},
 /area/iomoon/caves)
 "cru" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail2 (SOUTHEAST)";
 	name = "silicate cave wall";
 	icon_state = "iowall_detail2";
@@ -59198,11 +59198,11 @@
 	},
 /area/iomoon/caves)
 "crv" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_edge2";
 	name = "silicate cave wall";
@@ -59211,8 +59211,8 @@
 	},
 /area/iomoon/caves)
 "crw" = (
-/turf/iomoon/ancient_floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/ancient,
+/turf/wall/setpieces/iomoon/crust{
 	dir = 6;
 	icon_state = "iowall_edge1";
 	name = "silicate cave wall";
@@ -59220,8 +59220,8 @@
 	},
 /area/iomoon/robot_ruins)
 "crx" = (
-/turf/iomoon/ancient_floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/ancient,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail2 (WEST)";
 	icon_state = "iowall_detail2";
 	dir = 8
@@ -59232,7 +59232,7 @@
 	dir = 8;
 	tag = "iomoon_demo"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "crz" = (
 /obj/iomoon_puzzle/ancient_robot_door{
@@ -59245,14 +59245,14 @@
 	opened = 1;
 	tag = "iomoon_lavastarW"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "crA" = (
 /obj/iomoon_puzzle/ancient_robot_door{
 	dir = 8;
 	tag = "iomoon_lavastarE"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "crB" = (
 /obj/iomoon_puzzle/floor_pad{
@@ -59260,7 +59260,7 @@
 	pads_required = 1;
 	tag = ""
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "crC" = (
 /obj/decal/cleanable/dirt,
@@ -59446,7 +59446,7 @@
 	health = 60;
 	name = "deep magma crab"
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
@@ -59500,11 +59500,11 @@
 /turf/floor/lava,
 /area/iomoon/caves)
 "csc" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 10;
 	icon_state = "iowall_edge2";
 	name = "silicate cave wall";
@@ -59517,7 +59517,7 @@
 	desc = "A power pick with a dead energy cell, effectively making it once again a regular pick.";
 	name = "exhausted power pick"
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
@@ -59530,11 +59530,11 @@
 	icon_state = "ancientdoor_opened";
 	name = "ancient doorway"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "csf" = (
 /obj/machinery/light/beacon,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "csg" = (
 /obj/decal/mushrooms/type6,
@@ -59604,16 +59604,16 @@
 /turf/floor,
 /area/iomoon/base)
 "cso" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_edge2";
 	tag = "icon-iowall_edge1 (NORTHWEST)"
 	},
 /area/iomoon)
 "csp" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge2 (NORTHEAST)";
 	icon_state = "iowall_edge2";
 	dir = 5
@@ -59621,7 +59621,7 @@
 /area/iomoon)
 "csq" = (
 /obj/decal/cleanable/ash,
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "csr" = (
 /obj/rack,
@@ -59775,7 +59775,7 @@
 /obj/lattice{
 	icon_state = "lattice-dir"
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_corner"
 	},
 /area/iomoon)
@@ -59938,8 +59938,8 @@
 /turf/floor/carpet,
 /area/iomoon/base)
 "csZ" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	dir = 10;
 	icon_state = "iowall_edge2";
 	tag = "icon-iowall_edge2 (SOUTHEAST)"
@@ -59951,7 +59951,7 @@
 	icon_state = "lattice-dir";
 	dir = 6
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_corner (NORTH)";
 	icon_state = "iocrust_corner";
 	dir = 1
@@ -60049,7 +60049,7 @@
 /area/iomoon/base/underground)
 "ctk" = (
 /obj/structure/girder/displaced,
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
@@ -60063,7 +60063,7 @@
 	sd_ColorGreen = 0.5;
 	sd_ColorRed = 0.7
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_corner"
 	},
 /area/iomoon/caves)
@@ -60090,18 +60090,18 @@
 	sd_ColorGreen = 0.5;
 	sd_ColorRed = 0.7
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (SOUTHEAST)";
 	icon_state = "iocrust_edge";
 	dir = 6
 	},
 /area/iomoon/caves)
 "ctp" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail1 (WEST)";
 	name = "silicate cave wall";
 	icon_state = "iowall_detail1";
@@ -60119,7 +60119,7 @@
 	sd_ColorGreen = 1;
 	sd_ColorRed = 0
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor3"
 	},
 /area/iomoon/robot_ruins)
@@ -60129,13 +60129,13 @@
 	timer = 0
 	},
 /turf/space,
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor3"
 	},
 /area/iomoon/robot_ruins)
 "cts" = (
 /obj/window/crystal/reinforced/north,
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
@@ -60155,7 +60155,7 @@
 	icon_state = "lattice-dir-b";
 	dir = 1
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (SOUTHEAST)";
 	icon_state = "iocrust_edge";
 	dir = 6
@@ -60308,7 +60308,7 @@
 	icon_state = "lattice-dir";
 	dir = 10
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_edge"
 	},
 /area/iomoon)
@@ -60318,7 +60318,7 @@
 	icon_state = "lattice-dir";
 	dir = 5
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (SOUTHEAST)";
 	icon_state = "iocrust_edge";
 	dir = 6
@@ -60412,7 +60412,7 @@
 /area/iomoon/base/underground)
 "ctU" = (
 /obj/item/reagent_containers/food/snacks/yuckburn,
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
@@ -60426,7 +60426,7 @@
 	sd_ColorGreen = 0.5;
 	sd_ColorRed = 0.7
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_corner (EAST)";
 	icon_state = "iocrust_corner";
 	dir = 4
@@ -60441,7 +60441,7 @@
 	sd_ColorGreen = 0.5;
 	sd_ColorRed = 0.7
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (NORTHEAST)";
 	icon_state = "iocrust_edge";
 	dir = 5
@@ -60463,14 +60463,14 @@
 /area/iomoon/caves)
 "ctZ" = (
 /obj/item/raw_material/cerenkite,
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
 /area/iomoon/caves)
 "cua" = (
 /obj/machinery/light/beacon,
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
@@ -60487,11 +60487,11 @@
 /obj/item/light/big_bulb,
 /obj/item/wrench,
 /obj/item/storage/pill_bottle/antirad,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cuc" = (
 /obj/item/cell,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cud" = (
 /obj/decal/glow{
@@ -60507,7 +60507,7 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (NORTHWEST)"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor3"
 	},
 /area/iomoon/robot_ruins)
@@ -60525,13 +60525,13 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (SOUTHEAST)"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor3"
 	},
 /area/iomoon/robot_ruins)
 "cuf" = (
 /turf/space,
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor3"
 	},
 /area/iomoon/robot_ruins)
@@ -60549,7 +60549,7 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (SOUTHWEST)"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor3"
 	},
 /area/iomoon/robot_ruins)
@@ -60567,7 +60567,7 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (NORTHEAST)"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor3"
 	},
 /area/iomoon/robot_ruins)
@@ -60581,7 +60581,7 @@
 	icon_state = "lattice-dir-b";
 	dir = 9
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_edge"
 	},
 /area/iomoon)
@@ -60589,7 +60589,7 @@
 /obj/grille/catwalk{
 	dir = 6
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_edge"
 	},
 /turf/floor{
@@ -60607,7 +60607,7 @@
 	icon_state = "lattice-dir";
 	dir = 5
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_edge"
 	},
 /area/iomoon)
@@ -60743,7 +60743,7 @@
 /obj/landmark{
 	name = "telesci"
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "cuy" = (
 /turf/floor/caution/south{
@@ -60829,7 +60829,7 @@
 /obj/decal/fakeobjects/pipe{
 	dir = 4
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
@@ -60847,7 +60847,7 @@
 	icon_state = "lattice-dir-b";
 	dir = 6
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
@@ -60869,7 +60869,7 @@
 	icon_state = "lattice-dir";
 	dir = 8
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	dir = 8;
 	icon_state = "iocrust_edge";
 	name = "silicate cave floor";
@@ -60912,7 +60912,7 @@
 /obj/decal/fakeobjects/pipe{
 	dir = 4
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_corner (EAST)";
 	icon_state = "iocrust_corner";
 	dir = 4
@@ -60935,7 +60935,7 @@
 /obj/decal/fakeobjects/pipe{
 	dir = 4
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (NORTHEAST)";
 	icon_state = "iocrust_edge";
 	dir = 5
@@ -60950,7 +60950,7 @@
 /obj/decal/fakeobjects/pipe{
 	dir = 4
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
@@ -60970,11 +60970,11 @@
 	},
 /area/iomoon/caves)
 "cuQ" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge3 (WEST)";
 	name = "silicate cave wall";
 	icon_state = "iowall_edge3";
@@ -60982,11 +60982,11 @@
 	},
 /area/iomoon/caves)
 "cuR" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_detail1";
 	name = "silicate cave wall";
@@ -60995,11 +60995,11 @@
 	},
 /area/iomoon/caves)
 "cuS" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 1;
 	icon_state = "iowall_edge1";
 	name = "silicate cave wall";
@@ -61008,11 +61008,11 @@
 	},
 /area/iomoon/caves)
 "cuT" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_detail1";
 	name = "silicate cave wall";
@@ -61024,7 +61024,7 @@
 	dir = 1;
 	tag = "iomoon_burntroomN"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cuV" = (
 /obj/iomoon_puzzle/ancient_robot_door/energy{
@@ -61032,12 +61032,12 @@
 	opened = 1;
 	tag = "iomoon_burntpuzzleB"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor3"
 	},
 /area/iomoon/robot_ruins)
 "cuW" = (
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor3"
 	},
 /area/iomoon/robot_ruins)
@@ -61047,11 +61047,11 @@
 	pads_required = 4;
 	tag = "iomoon_lavaexit_pad"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cuY" = (
 /obj/machinery/light/beacon,
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
@@ -61071,7 +61071,7 @@
 	icon_state = "iostone";
 	name = "silicate rock"
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "cvb" = (
 /obj/rack,
@@ -61116,7 +61116,7 @@
 /obj/landmark{
 	name = "telesci"
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "cvi" = (
 /obj/decal/fakeobjects{
@@ -61127,7 +61127,7 @@
 	icon_state = "beacon";
 	name = "boost transmitter"
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "cvj" = (
 /obj/overlay{
@@ -61236,7 +61236,7 @@
 	icon_state = "lattice-dir";
 	dir = 6
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
@@ -61255,7 +61255,7 @@
 	icon_state = "catwalk";
 	dir = 9
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	dir = 8;
 	icon_state = "iocrust_edge";
 	name = "silicate cave floor";
@@ -61307,7 +61307,7 @@
 /obj/grille/catwalk{
 	dir = 5
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (EAST)";
 	icon_state = "iocrust_edge";
 	dir = 4
@@ -61326,7 +61326,7 @@
 	icon_state = "lattice-dir";
 	dir = 1
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
@@ -61337,17 +61337,17 @@
 	icon_state = "intact";
 	dir = 1
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
 /area/iomoon/caves)
 "cvz" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_edge1";
 	name = "silicate cave wall";
@@ -61360,14 +61360,14 @@
 	id = "iomoon_burntroomN";
 	timer = 0
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cvB" = (
 /obj/iomoon_puzzle/ancient_robot_door{
 	dir = 1;
 	tag = "iomoon_lavastarS"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
@@ -61404,7 +61404,7 @@
 	desc = "It seems to be badly corroded.";
 	name = "Silent Robot"
 	},
-/turf/iomoon/plating,
+/turf/floor/setpieces/iomoon/plating/charred,
 /area/iomoon)
 "cvG" = (
 /obj/lattice{
@@ -61412,7 +61412,7 @@
 	icon_state = "lattice-dir";
 	dir = 4
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (NORTHWEST)";
 	icon_state = "iocrust_edge";
 	dir = 9
@@ -61424,7 +61424,7 @@
 	icon_state = "lattice-dir";
 	dir = 4
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_corner (WEST)";
 	icon_state = "iocrust_corner";
 	dir = 8
@@ -61435,7 +61435,7 @@
 	desc = "Who installed this? Why is this here? WHO WOULD PUT THIS HERE";
 	pixel_x = -8
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (EAST)";
 	icon_state = "iocrust_edge";
 	dir = 4
@@ -61610,24 +61610,24 @@
 /turf/floor/carpet,
 /area/iomoon/base)
 "cvY" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge3 (NORTHWEST)";
 	icon_state = "iowall_edge3";
 	dir = 9
 	},
 /area/iomoon)
 "cvZ" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1 (NORTH)";
 	icon_state = "iowall_edge1";
 	dir = 1
 	},
 /area/iomoon)
 "cwa" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_edge3";
 	tag = "icon-iowall_edge1 (NORTHEAST)"
@@ -61694,7 +61694,7 @@
 	icon_state = "valve";
 	name = "rusted valve"
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
@@ -61716,7 +61716,7 @@
 /obj/decal/fakeobjects/pipe{
 	dir = 4
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	dir = 8;
 	icon_state = "iocrust_edge";
 	name = "silicate cave floor";
@@ -61740,7 +61740,7 @@
 /obj/decal/fakeobjects/pipe{
 	dir = 4
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_corner"
 	},
 /area/iomoon/caves)
@@ -61763,7 +61763,7 @@
 	icon_state = "intact";
 	dir = 10
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (SOUTHEAST)";
 	icon_state = "iocrust_edge";
 	dir = 6
@@ -61775,7 +61775,7 @@
 	icon_state = "lattice-dir-b";
 	dir = 5
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
@@ -61786,7 +61786,7 @@
 	length = 4;
 	tag = "iomoon_burntpuzzleD"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cwl" = (
 /obj/iomoon_puzzle/ancient_robot_door/energy{
@@ -61795,7 +61795,7 @@
 	opened = 1;
 	tag = "iomoon_burntpuzzleC"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cwm" = (
 /obj/grille/catwalk{
@@ -61803,7 +61803,7 @@
 	icon_state = "catwalk";
 	dir = 9
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (NORTHWEST)";
 	icon_state = "iocrust_edge";
 	dir = 9
@@ -61821,7 +61821,7 @@
 /obj/grille/catwalk{
 	dir = 4
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_corner (WEST)";
 	icon_state = "iocrust_corner";
 	dir = 8
@@ -62069,29 +62069,29 @@
 /turf/floor/carpet,
 /area/iomoon/base)
 "cwF" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail2 (WEST)";
 	icon_state = "iowall_detail2";
 	dir = 8
 	},
 /area/iomoon)
 "cwG" = (
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	icon_state = "iowall3"
 	},
 /area/iomoon)
 "cwH" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_detail3";
 	tag = "icon-iowall_detail1 (NORTHEAST)"
 	},
 /area/iomoon)
 "cwI" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1 (NORTHEAST)";
 	icon_state = "iowall_edge1";
 	dir = 5
@@ -62159,11 +62159,11 @@
 /turf/floor,
 /area/iomoon/base/underground)
 "cwN" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_edge3";
 	name = "silicate cave wall";
@@ -62177,7 +62177,7 @@
 	icon_state = "intact";
 	tag = "icon-intact-f (NORTHWEST)"
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
@@ -62199,7 +62199,7 @@
 	icon_state = "lattice-dir-b";
 	dir = 1
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_corner (WEST)";
 	icon_state = "iocrust_corner";
 	dir = 8
@@ -62232,7 +62232,7 @@
 	icon_state = "iostone";
 	name = "silicate rock"
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "cwU" = (
 /obj/decal{
@@ -62240,43 +62240,43 @@
 	name = "IOMOON_BOSSDEATH_EXIT";
 	tag = "IOMOON_BOSSDEATH_EXIT"
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "cwV" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge3 (SOUTHWEST)";
 	icon_state = "iowall_edge3";
 	dir = 10
 	},
 /area/iomoon)
 "cwW" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail1 (SOUTHWEST)";
 	icon_state = "iowall_detail1";
 	dir = 10
 	},
 /area/iomoon)
 "cwX" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail1 (SOUTHEAST)";
 	icon_state = "iowall_detail1";
 	dir = 6
 	},
 /area/iomoon)
 "cwY" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge2 (SOUTHEAST)";
 	icon_state = "iowall_edge2";
 	dir = 6
 	},
 /area/iomoon)
 "cwZ" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge3 (NORTH)";
 	icon_state = "iowall_edge3";
 	dir = 1
@@ -62329,7 +62329,7 @@
 	sd_ColorGreen = 0.5;
 	sd_ColorRed = 0.7
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	dir = 8;
 	icon_state = "iocrust_corner";
 	name = "silicate cave floor";
@@ -62342,17 +62342,17 @@
 	icon_state = "intact";
 	dir = 10
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
 /area/iomoon/caves)
 "cxe" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_edge3";
 	name = "silicate cave wall";
@@ -62361,11 +62361,11 @@
 	},
 /area/iomoon/caves)
 "cxf" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_detail3";
 	name = "silicate cave wall";
@@ -62377,13 +62377,13 @@
 	length = 3;
 	tag = "iomoon_burntpuzzleA"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor3"
 	},
 /area/iomoon/robot_ruins)
 "cxh" = (
 /obj/item/storage/pill_bottle/antirad,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cxi" = (
 /obj/decal/fakeobjects/pipe{
@@ -62452,8 +62452,8 @@
 /turf/floor,
 /area/iomoon/base)
 "cxo" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1 (WEST)";
 	icon_state = "iowall_edge1";
 	dir = 8
@@ -62467,19 +62467,19 @@
 	icon_state = "iostone";
 	name = "silicate rock"
 	},
-/turf/iomoon/floor,
+/turf/floor/setpieces/iomoon/crust,
 /area/iomoon)
 "cxq" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1 (NORTHWEST)";
 	icon_state = "iowall_edge1";
 	dir = 9
 	},
 /area/iomoon)
 "cxr" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail3 (NORTHWEST)";
 	icon_state = "iowall_detail3";
 	dir = 9
@@ -62494,11 +62494,11 @@
 	sd_ColorGreen = 0.5;
 	sd_ColorRed = 0.7
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 4;
 	icon_state = "iowall_edge1";
 	name = "silicate cave wall";
@@ -62516,16 +62516,16 @@
 	sd_ColorRed = 0.7
 	},
 /obj/decal/fakeobjects/pipe/heat,
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_corner"
 	},
 /area/iomoon/caves)
 "cxu" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	name = "silicate cave floor";
 	temperature = 313.15
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_edge2";
 	name = "silicate cave wall";
@@ -62536,25 +62536,25 @@
 "cxv" = (
 /obj/rack/iomoon,
 /obj/item/iomoon_key,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cxw" = (
 /obj/critter/domestic_bee{
 	desc = "How did this bee even get here?";
 	name = "incredibly confused space-bee"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cxx" = (
 /obj/iomoon_puzzle/button{
 	id = "iomoon_burntroomW";
 	timer = 6
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cxy" = (
 /obj/decal/cleanable/ash,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cxz" = (
 /obj/iomoon_puzzle/ancient_robot_door{
@@ -62567,14 +62567,14 @@
 	opened = 1;
 	tag = "iomoon_burntroomE"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cxA" = (
 /obj/decal/cleanable/blood/splatter{
 	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
@@ -62583,7 +62583,7 @@
 	tag = "icon-gibbl2";
 	icon_state = "gibbl2"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cxC" = (
 /obj/decal/cleanable/blood/tracks{
@@ -62591,7 +62591,7 @@
 	icon_state = "tracks";
 	dir = 4
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cxD" = (
 /obj/decal/cleanable/blood/tracks{
@@ -62599,11 +62599,11 @@
 	icon_state = "tracks";
 	dir = 5
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cxE" = (
 /obj/item/device/audio_log/iomoon_01,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cxF" = (
 /obj/alchemy/circle,
@@ -62611,7 +62611,7 @@
 /area/catacombs)
 "cxG" = (
 /obj/grille/catwalk,
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_corner"
 	},
 /turf/floor{
@@ -62627,7 +62627,7 @@
 /obj/lattice{
 	icon_state = "lattice-dir"
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_corner (NORTH)";
 	icon_state = "iocrust_corner";
 	dir = 1
@@ -62661,8 +62661,8 @@
 /turf/floor,
 /area/iomoon/base)
 "cxL" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail1 (NORTHWEST)";
 	icon_state = "iowall_detail1";
 	dir = 9
@@ -62682,7 +62682,7 @@
 	icon_state = "intact";
 	dir = 9
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (EAST)";
 	icon_state = "iocrust_edge";
 	dir = 4
@@ -62703,21 +62703,21 @@
 	tag = "icon-default (NORTHEAST)"
 	},
 /obj/item/reagent_containers/food/snacks/cereal_box/honey,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cxO" = (
 /obj/iomoon_puzzle/ancient_robot_door{
 	dir = 4;
 	tag = "iomoon_burntroomW"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cxP" = (
 /obj/iomoon_puzzle/button{
 	id = "iomoon_burntpuzzleC;iomoon_burntpuzzleB;iomoon_burntpuzzleA";
 	timer = 0
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cxQ" = (
 /obj/decal/skeleton{
@@ -62726,14 +62726,14 @@
 	icon_state = "burntnerd";
 	name = "charred corpse"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cxR" = (
 /obj/decal/cleanable/blood/splatter{
 	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cxS" = (
 /obj/decal/cleanable/blood/splatter{
@@ -62746,7 +62746,7 @@
 	icon_state = "nerd";
 	name = "corpse"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cxT" = (
 /obj/lattice{
@@ -62754,7 +62754,7 @@
 	icon_state = "lattice-dir";
 	dir = 9
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	icon_state = "iocrust_corner"
 	},
 /area/iomoon)
@@ -62762,7 +62762,7 @@
 /obj/grille/catwalk{
 	dir = 6
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (SOUTHEAST)";
 	icon_state = "iocrust_edge";
 	dir = 6
@@ -62782,23 +62782,23 @@
 	icon_state = "lattice-dir-b";
 	dir = 5
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (WEST)";
 	icon_state = "iocrust_edge";
 	dir = 8
 	},
 /area/iomoon)
 "cxW" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail1 (NORTHEAST)";
 	icon_state = "iowall_detail1";
 	dir = 5
 	},
 /area/iomoon)
 "cxX" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_edge1";
 	layer = 3;
@@ -62806,36 +62806,36 @@
 	},
 /area/iomoon)
 "cxY" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (NORTHWEST)";
 	icon_state = "iocrust_edge";
 	dir = 9
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_detail3";
 	tag = "icon-iowall_detail1 (NORTHEAST)"
 	},
 /area/iomoon)
 "cxZ" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (NORTH)";
 	icon_state = "iocrust_edge";
 	dir = 1
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge2 (NORTH)";
 	icon_state = "iowall_edge2";
 	dir = 1
 	},
 /area/iomoon)
 "cya" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_corner (WEST)";
 	icon_state = "iocrust_corner";
 	dir = 8
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1 (NORTH)";
 	icon_state = "iowall_edge1";
 	dir = 1
@@ -62843,7 +62843,7 @@
 /area/iomoon)
 "cyb" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1 (NORTH)";
 	icon_state = "iowall_edge1";
 	dir = 1
@@ -62856,7 +62856,7 @@
 	name = "Far Lava";
 	opacity = 1
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_edge3";
 	tag = "icon-iowall_edge1 (NORTHEAST)"
@@ -62869,7 +62869,7 @@
 	name = "Far Lava";
 	opacity = 1
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_detail1";
 	name = "silicate cave wall";
@@ -62884,7 +62884,7 @@
 	name = "Far Lava";
 	opacity = 1
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 1;
 	icon_state = "iowall_edge1";
 	name = "silicate cave wall";
@@ -62916,7 +62916,7 @@
 	icon_state = "lattice-dir";
 	dir = 4
 	},
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (NORTHEAST)";
 	icon_state = "iocrust_edge";
 	dir = 5
@@ -62933,8 +62933,8 @@
 	icon_state = "lattice-dir";
 	dir = 4
 	},
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_edge1";
 	layer = 3;
@@ -62957,7 +62957,7 @@
 	id = "iomoon_boss_door";
 	tag = "bluelock"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
@@ -62976,7 +62976,7 @@
 	id = "bluelock";
 	tag = "redlock"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins)
@@ -62992,7 +62992,7 @@
 	sd_ColorRed = 0
 	},
 /obj/critter/ancient_repairbot/security,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins)
 "cyo" = (
 /obj/decal/cleanable/cobweb,
@@ -63027,16 +63027,16 @@
 /turf/dirt,
 /area/catacombs)
 "cyt" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge2 (NORTH)";
 	icon_state = "iowall_edge2";
 	dir = 1
 	},
 /area/iomoon)
 "cyu" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_detail2";
 	tag = "icon-iowall_detail1 (NORTHWEST)"
@@ -63044,13 +63044,13 @@
 /area/iomoon)
 "cyv" = (
 /turf/space,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	icon_state = "iowall3"
 	},
 /area/iomoon)
 "cyw" = (
-/turf/iomoon/ancient_floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/ancient,
+/turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_detail1";
 	name = "silicate cave wall";
@@ -63059,8 +63059,8 @@
 	},
 /area/iomoon/robot_ruins)
 "cyx" = (
-/turf/iomoon/ancient_floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/ancient,
+/turf/wall/setpieces/iomoon/crust{
 	dir = 1;
 	icon_state = "iowall_edge1";
 	name = "silicate cave wall";
@@ -63070,10 +63070,10 @@
 /area/iomoon/robot_ruins)
 "cyy" = (
 /turf/space,
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor3"
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_edge3";
 	name = "silicate cave wall";
@@ -63082,8 +63082,8 @@
 	},
 /area/iomoon/robot_ruins)
 "cyz" = (
-/turf/iomoon/ancient_floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/ancient,
+/turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_edge2";
 	name = "silicate cave wall";
@@ -63092,27 +63092,27 @@
 	},
 /area/iomoon/robot_ruins)
 "cyA" = (
-/turf/iomoon/ancient_wall,
+/turf/wall/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cyB" = (
 /obj/iomoon_puzzle/ancient_robot_door{
 	tag = "iomoon_boss_door"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins/boss_chamber)
 "cyC" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_edge2";
 	tag = "icon-iowall_edge1 (NORTHWEST)"
 	},
 /area/iomoon)
 "cyD" = (
-/turf/iomoon/floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/crust,
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge2 (WEST)";
 	icon_state = "iowall_edge2";
 	dir = 8
@@ -63139,10 +63139,10 @@
 	},
 /area/crypt/graveyard)
 "cyH" = (
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor3"
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_detail1";
 	name = "silicate cave wall";
@@ -63151,8 +63151,8 @@
 	},
 /area/iomoon/robot_ruins)
 "cyI" = (
-/turf/iomoon/ancient_floor,
-/turf/iomoon/crustwall{
+/turf/floor/setpieces/iomoon/ancient,
+/turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_detail1";
 	name = "silicate cave wall";
@@ -63174,7 +63174,7 @@
 	tag = "icon-default (NORTHWEST)"
 	},
 /obj/iomoon_boss/bot_spawner,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cyK" = (
 /obj/decal/cleanable/ash,
@@ -63191,10 +63191,10 @@
 	anchored = 1;
 	brightness = 3
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cyL" = (
-/turf/iomoon/ancient_wall{
+/turf/wall/setpieces/iomoon/ancient{
 	tag = "icon-ancientwall (EAST)";
 	icon_state = "ancientwall";
 	dir = 4
@@ -63214,10 +63214,10 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (SOUTHEAST)"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cyN" = (
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins/boss_chamber)
@@ -63235,7 +63235,7 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (SOUTHWEST)"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cyP" = (
 /obj/decal/glow{
@@ -63251,7 +63251,7 @@
 	anchored = 1;
 	brightness = 3
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cyQ" = (
 /obj/decal/glow{
@@ -63268,7 +63268,7 @@
 	tag = "icon-default (NORTHEAST)"
 	},
 /obj/iomoon_boss/bot_spawner,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cyR" = (
 /obj/closet/coffin,
@@ -63301,7 +63301,7 @@
 /area/catacombs)
 "cyU" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1 (WEST)";
 	icon_state = "iowall_edge1";
 	dir = 8
@@ -63526,14 +63526,14 @@
 	sd_ColorGreen = 1;
 	sd_ColorRed = 0
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "czj" = (
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "czk" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_detail2";
 	tag = "icon-iowall_detail1 (NORTHWEST)"
@@ -63541,7 +63541,7 @@
 /area/iomoon)
 "czl" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 5;
 	icon_state = "iowall_detail3";
 	tag = "icon-iowall_detail1 (NORTHEAST)"
@@ -63549,7 +63549,7 @@
 /area/iomoon)
 "czm" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1 (NORTHEAST)";
 	icon_state = "iowall_edge1";
 	dir = 5
@@ -63589,12 +63589,12 @@
 	},
 /area/iomoon)
 "czq" = (
-/turf/iomoon/floor{
+/turf/floor/setpieces/iomoon/crust{
 	tag = "icon-iocrust_edge (NORTHEAST)";
 	icon_state = "iocrust_edge";
 	dir = 5
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1 (WEST)";
 	icon_state = "iowall_edge1";
 	dir = 8
@@ -63724,7 +63724,7 @@
 /area/iomoon)
 "czC" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 1;
 	icon_state = "iowall_edge3";
 	tag = "icon-iowall_edge3"
@@ -63732,12 +63732,12 @@
 /area/iomoon)
 "czD" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge2 (NORTH)";
 	icon_state = "iowall_edge2";
 	dir = 1
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1 (NORTH)";
 	icon_state = "iowall_edge1";
 	dir = 1
@@ -63745,7 +63745,7 @@
 /area/iomoon)
 "czE" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail1 (NORTHWEST)";
 	icon_state = "iowall_detail1";
 	dir = 9
@@ -63821,7 +63821,7 @@
 /area/crypt/graveyard)
 "czK" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_detail1 (NORTHEAST)";
 	icon_state = "iowall_detail1";
 	dir = 5
@@ -64051,7 +64051,7 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (SOUTHWEST)"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cAc" = (
 /obj/decal/glow{
@@ -64067,7 +64067,7 @@
 	anchored = 1;
 	brightness = 3
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins/boss_chamber)
@@ -64098,7 +64098,7 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (NORTHWEST)"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins/boss_chamber)
@@ -64117,17 +64117,17 @@
 	anchored = 1;
 	brightness = 3
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins/boss_chamber)
 "cAf" = (
 /obj/spawner/ancient_robot_artifact,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cAg" = (
 /obj/item/reagent_containers/food/snacks/takeout,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cAh" = (
 /obj/item/paper/alchemy/southwest,
@@ -64155,7 +64155,7 @@
 	name = "Far Lava";
 	opacity = 1
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1 (NORTHWEST)";
 	icon_state = "iowall_edge1";
 	dir = 9
@@ -64168,7 +64168,7 @@
 	name = "Far Lava";
 	opacity = 1
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge1 (NORTH)";
 	icon_state = "iowall_edge1";
 	dir = 1
@@ -64181,7 +64181,7 @@
 	name = "Far Lava";
 	opacity = 1
 	},
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	dir = 9;
 	icon_state = "iowall_detail2";
 	tag = "icon-iowall_detail1 (NORTHWEST)"
@@ -64189,7 +64189,7 @@
 /area/iomoon)
 "cAn" = (
 /turf/floor/lava,
-/turf/iomoon/crustwall{
+/turf/wall/setpieces/iomoon/crust{
 	tag = "icon-iowall_edge3 (NORTH)";
 	icon_state = "iowall_edge3";
 	dir = 1
@@ -64306,7 +64306,7 @@
 	},
 /area/crypt/graveyard)
 "cAD" = (
-/turf/iomoon/ancient_wall{
+/turf/wall/setpieces/iomoon/ancient{
 	desc = "Not only is it one hell of a foreboding door, it's also sealed fast.  It doesn't have any apparent means of opening.";
 	dir = 4;
 	icon = 'icons/misc/worlds.dmi';
@@ -64325,7 +64325,7 @@
 	sd_ColorRed = 0.2
 	},
 /obj/iomoon_boss/core,
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins/boss_chamber)
@@ -64334,7 +64334,7 @@
 	dir = 8;
 	tag = "IOMOON_PRIZEDOOR"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cAG" = (
 /obj/decal/glow{
@@ -64350,14 +64350,14 @@
 	desc = "An ancient shield that just appears to be a metal shield with blue LEDs glued to it.";
 	name = "irregular escutcheon"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cAH" = (
 /obj/item/shipcomponent/pod_weapon/disruptor,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cAI" = (
-/turf/iomoon/ancient_wall{
+/turf/wall/setpieces/iomoon/ancient{
 	desc = "Not only is it one hell of a foreboding door, it's also sealed fast.  It doesn't have any apparent means of opening.";
 	dir = 8;
 	icon = 'icons/misc/worlds.dmi';
@@ -64510,7 +64510,7 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (NORTHWEST)"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cAZ" = (
 /obj/decal/glow{
@@ -64539,7 +64539,7 @@
 	pixel_x = 16;
 	pixel_y = 17
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins/boss_chamber)
@@ -64570,7 +64570,7 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (SOUTHEAST)"
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins/boss_chamber)
@@ -64588,11 +64588,11 @@
 	sd_ColorRed = 0;
 	tag = "icon-default (NORTHEAST)"
 	},
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cBc" = (
 /obj/item/yoyo,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cBd" = (
 /obj/closet/coffin,
@@ -64792,7 +64792,7 @@
 /area/crypt/graveyard)
 "cBy" = (
 /obj/decal/cleanable/ash,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cBz" = (
 /obj/overlay{
@@ -64808,7 +64808,7 @@
 	pixel_x = 0;
 	pixel_y = 0
 	},
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins/boss_chamber)
@@ -65009,7 +65009,7 @@
 /area/crypt/mausoleum)
 "cBW" = (
 /obj/iomoon_boss/activation_button,
-/turf/iomoon/ancient_floor{
+/turf/floor/setpieces/iomoon/ancient{
 	icon_state = "ancientfloor2"
 	},
 /area/iomoon/robot_ruins/boss_chamber)
@@ -65380,7 +65380,7 @@
 	tag = "icon-default (SOUTHWEST)"
 	},
 /obj/iomoon_boss/bot_spawner,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cCO" = (
 /obj/decal/glow{
@@ -65397,7 +65397,7 @@
 	tag = "icon-default (SOUTHEAST)"
 	},
 /obj/iomoon_boss/bot_spawner,
-/turf/iomoon/ancient_floor,
+/turf/floor/setpieces/iomoon/ancient,
 /area/iomoon/robot_ruins/boss_chamber)
 "cCP" = (
 /turf/wall/setpieces/rootwall{
@@ -65842,7 +65842,7 @@
 /turf/dirt,
 /area/crypt/graveyard)
 "cDL" = (
-/turf/iomoon/ancient_wall{
+/turf/wall/setpieces/iomoon/ancient{
 	desc = "Not only is it one hell of a foreboding door, it's also sealed fast.  It doesn't have any apparent means of opening.";
 	dir = 1;
 	icon = 'icons/misc/worlds.dmi';
@@ -70098,22 +70098,22 @@
 /area/sim/racing_track)
 "cNM" = (
 /turf/floor/void,
-/turf/martian/wall{
+/turf/wall/setpieces/martian{
 	tag = "icon-diagonalWall (WEST)";
 	icon_state = "diagonalWall";
 	dir = 8
 	},
 /area/crunch)
 "cNN" = (
-/turf/martian/wall,
+/turf/wall/setpieces/martian,
 /area/crunch)
 "cNO" = (
 /obj/machinery/door/unpowered/martian,
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cNP" = (
 /turf/floor/void,
-/turf/martian/wall{
+/turf/wall/setpieces/martian{
 	tag = "icon-diagonalWall (SOUTHEAST)";
 	icon_state = "diagonalWall";
 	dir = 6
@@ -70275,19 +70275,19 @@
 	},
 /area/sim/racing_track)
 "cOg" = (
-/turf/martian/floor,
-/turf/martian/wall{
+/turf/floor/setpieces/martian,
+/turf/wall/setpieces/martian{
 	tag = "icon-diagonalWall (EAST)";
 	icon_state = "diagonalWall";
 	dir = 4
 	},
 /area/crunch)
 "cOh" = (
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cOi" = (
-/turf/martian/floor,
-/turf/martian/wall{
+/turf/floor/setpieces/martian,
+/turf/wall/setpieces/martian{
 	tag = "icon-diagonalWall (NORTHEAST)";
 	icon_state = "diagonalWall";
 	dir = 5
@@ -70360,7 +70360,7 @@
 	dir = 4;
 	anchored = 1
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cOt" = (
 /turf/floor/white,
@@ -70454,8 +70454,8 @@
 	},
 /area/crypt/sigma/mainhall)
 "cOD" = (
-/turf/martian/floor,
-/turf/martian/wall{
+/turf/floor/setpieces/martian,
+/turf/wall/setpieces/martian{
 	tag = "icon-diagonalWall (NORTH)";
 	icon_state = "diagonalWall";
 	dir = 1
@@ -70463,7 +70463,7 @@
 /area/crunch)
 "cOE" = (
 /obj/decal/cleanable/ash,
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cOF" = (
 /obj/critter/crunched,
@@ -70523,7 +70523,7 @@
 	dir = 1;
 	anchored = 1
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cON" = (
 /obj/decal/aliencomputer{
@@ -70541,13 +70541,13 @@
 	dir = 1;
 	anchored = 1
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cOO" = (
 /obj/crevice{
 	pixel_y = 30
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cOP" = (
 /obj/decal/fakeobjects{
@@ -70567,7 +70567,7 @@
 	dir = 8;
 	anchored = 1
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cOQ" = (
 /obj/decal/floatingtiles{
@@ -70659,7 +70659,7 @@
 	dir = 8;
 	anchored = 1
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cPe" = (
 /obj/table,
@@ -70728,11 +70728,11 @@
 	icon_state = "display_broken";
 	pixel_y = 30
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cPo" = (
-/turf/martian/floor,
-/turf/martian/wall{
+/turf/floor/setpieces/martian,
+/turf/wall/setpieces/martian{
 	tag = "icon-diagonalWall (WEST)";
 	icon_state = "diagonalWall";
 	dir = 8
@@ -70828,7 +70828,7 @@
 	sd_ColorGreen = 0.3;
 	sd_ColorRed = 0.42
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cPw" = (
 /obj/table/reinforced/bar{
@@ -70864,13 +70864,13 @@
 	icon_state = "martian-3";
 	name = "martian machine"
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cPB" = (
 /obj/crevice{
 	pixel_x = -28
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cPC" = (
 /obj/computer3frame/terminal{
@@ -71031,7 +71031,7 @@
 	icon_state = "marscorpse";
 	name = "dessicated alien"
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cPX" = (
 /obj/item/instrument/saxophone,
@@ -71043,7 +71043,7 @@
 	icon_state = "martian-2";
 	name = "martian machine"
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cPY" = (
 /obj/decal/aliencomputer{
@@ -71052,7 +71052,7 @@
 	pixel_x = 30;
 	pixel_y = 0
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cPZ" = (
 /turf/wall/setpieces/leadwall/gray{
@@ -71272,7 +71272,7 @@
 	icon_state = "martian-4";
 	name = "martian machine"
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cQD" = (
 /obj/decal/aliencomputer{
@@ -71281,7 +71281,7 @@
 	pixel_x = 0;
 	pixel_y = -30
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cQE" = (
 /obj/graveyard/lightning_trigger,
@@ -71664,11 +71664,11 @@
 	dir = 1;
 	anchored = 1
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cRx" = (
-/turf/martian/floor,
-/turf/martian/wall{
+/turf/floor/setpieces/martian,
+/turf/wall/setpieces/martian{
 	tag = "icon-diagonalWall (SOUTHEAST)";
 	icon_state = "diagonalWall";
 	dir = 6
@@ -71686,7 +71686,7 @@
 	sd_ColorGreen = 0.3;
 	sd_ColorRed = 0.42
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cRz" = (
 /obj/cable{
@@ -72041,7 +72041,7 @@
 	dir = 4;
 	anchored = 1
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cSn" = (
 /obj/decal/aliencomputer{
@@ -72059,7 +72059,7 @@
 	dir = 8;
 	anchored = 1
 	},
-/turf/martian/floor,
+/turf/floor/setpieces/martian,
 /area/crunch)
 "cSo" = (
 /obj/table{
@@ -72512,7 +72512,7 @@
 /area/crunch)
 "cTl" = (
 /turf/floor/plating,
-/turf/martian/wall{
+/turf/wall/setpieces/martian{
 	tag = "icon-diagonalWall (NORTHEAST)";
 	icon_state = "diagonalWall";
 	dir = 5
@@ -72520,7 +72520,7 @@
 /area/crunch)
 "cTm" = (
 /turf/floor/plating,
-/turf/martian/wall{
+/turf/wall/setpieces/martian{
 	tag = "icon-diagonalWall (EAST)";
 	icon_state = "diagonalWall";
 	dir = 4

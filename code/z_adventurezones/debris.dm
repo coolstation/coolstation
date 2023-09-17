@@ -1,14 +1,13 @@
 ////Martian Turf stuff//////////////
-/turf/martian
-	name = "martian"
+/turf/floor/setpieces/martian
+	name = "organic floor"
 	icon = 'icons/turf/martian.dmi'
+	icon_state = "floor1"
 	thermal_conductivity = 0.05
 	heat_capacity = 0
 
-/turf/martian/floor
-	name = "organic floor"
-	icon_state = "floor1"
-
+//2023-9-17 - IDK what's up with this it's never been pathed correctly
+/*
 /turf/floor/martian/attackby(obj/item/C as obj, mob/user as mob, params)
 	if (istype(C, /obj/item/martianSeed))
 		var/obj/item/martianSeed/S = C
@@ -17,14 +16,17 @@
 			logTheThing("station", user, null, "plants a martian biotech seed (<b>Structure:</b> [S.spawn_path]) at [log_loc(src)].")
 			return
 	else
-		..()
+		..()*/
 
-/turf/martian/wall
+/turf/wall/setpieces/martian
 	name = "organic wall"
+	icon = 'icons/turf/martian.dmi'
 	icon_state = "wall1"
 	opacity = 1
 	density = 1
 	blocks_air = 1
+	thermal_conductivity = 0.05
+	heat_capacity = 0
 
 	var/health = 40
 
@@ -34,7 +36,7 @@
 				gib(src.loc)
 				ReplaceWithSpace()
 
-/turf/martian/wall/ex_act(severity)
+/turf/wall/setpieces/martian/ex_act(severity)
 	switch(severity)
 		if(OLD_EX_SEVERITY_1)
 			src.health -= 40
@@ -46,7 +48,7 @@
 			src.health -= 5
 			checkhealth()
 
-/turf/martian/wall/proc/gib(atom/location)
+/turf/wall/setpieces/martian/proc/gib(atom/location)
 	if (!location) return
 
 	var/obj/decal/cleanable/machine_debris/gib = null

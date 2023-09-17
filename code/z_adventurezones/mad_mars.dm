@@ -212,7 +212,7 @@
 // LEGACY STUFF
 // Abandon hope all ye who cross this line
 
-/turf/floor/setpieces/martian
+/turf/floor/setpieces/mars_outpost
 	name = "martian dust"
 	desc = "Someone would've probably paid big money to get a sample of this fifty years ago."
 	icon = 'icons/turf/floors.dmi'
@@ -229,17 +229,17 @@
 		if(src.rocks)
 			icon_state = "[pick("mars1","mars1","mars1","mars2","mars3")]"
 
-/turf/floor/setpieces/martian/cliff
+/turf/floor/setpieces/mars_outpost/cliff
 	icon_state = "mars_cliff1"
 	density = 1
 	rocks = 0
 
-/turf/floor/setpieces/martian/highway
+/turf/floor/setpieces/mars_outpost/highway
 	icon_state = "marshighw1"
 	desc = "highway"
 	rocks = 0
 
-/turf/wall/setpieces/martian
+/turf/wall/setpieces/mars_outpost
 	name = "martian rock"
 	desc = "Hey, it's not red at all!"
 	icon = 'icons/turf/walls.dmi'

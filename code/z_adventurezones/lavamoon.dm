@@ -11,7 +11,7 @@
 //Puzzle elements
 
 //Turfs
-/turf/iomoon/floor
+/turf/floor/setpieces/iomoon/crust
 	name = "silicate crust"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "iocrust"
@@ -20,7 +20,7 @@
 	carbon_dioxide = 20
 	temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST-1
 
-/turf/iomoon/floor/arena
+/turf/floor/setpieces/iomoon/crust/arena
 	name = "silicate crust"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "iocrust"
@@ -30,7 +30,7 @@
 	oxygen = 100
 	temperature = T20C
 
-/turf/iomoon/crustwall
+/turf/wall/setpieces/iomoon/crust
 	name = "silicate crust"
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "iowall1"
@@ -39,11 +39,9 @@
 	carbon_dioxide = 20
 	temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST-1
 
-/turf/iomoon/plating
+/turf/floor/setpieces/iomoon/plating/charred
 	name = "charred plating"
 	desc = "Any protection this plating once had against the extreme heat appears to have given way."
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "plating"
 	opacity = 0
 	density = 0
 
@@ -55,7 +53,14 @@
 		if (prob(33))
 			src.icon_state = "panelscorched"
 
-/turf/iomoon/ancient_floor
+/turf/floor/setpieces/iomoon/plating
+	name = "warm plating"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "plating"
+	carbon_dioxide = 16
+	temperature = 313.15
+
+/turf/floor/setpieces/iomoon/ancient
 	name = "Ancient Metal Floor"
 	desc = "The floor here is cold and dark.  Far colder than it has any right to be down here."
 	icon = 'icons/misc/worlds.dmi'
@@ -66,7 +71,7 @@
 
 	temperature = 10+T0C
 
-/turf/iomoon/ancient_wall
+/turf/wall/setpieces/iomoon/ancient
 	name = "strange wall"
 	desc = "It is dark, glassy and foreboding."
 	icon = 'icons/misc/worlds.dmi'
@@ -191,7 +196,7 @@ var/sound/iomoon_alarm_sound = null
 /area/iomoon/base
 	name = "Power Plant"
 	icon_state = "yellow"
-	filler_turf = "/turf/iomoon/floor"
+	filler_turf = "/turf/floor/setpieces/iomoon/crust"
 	requires_power = 1
 	force_fullbright = 0
 	ambient_light = rgb(0.3 * 255, 0.3 * 255, 0.3 * 255)
@@ -229,7 +234,7 @@ var/sound/iomoon_alarm_sound = null
 /area/iomoon/robot_ruins
 	name = "Strange Ruins"
 	icon_state = "purple"
-	filler_turf = "/turf/iomoon/ancient_floor"
+	filler_turf = "/turf/floor/setpieces/iomoon/ancient"
 	requires_power = 1
 	force_fullbright = 0
 	luminosity = 0
