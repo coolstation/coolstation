@@ -28,7 +28,7 @@
 	thermal_conductivity = 0.05
 	heat_capacity = 0
 
-	var/health = 40
+	health = 40
 
 	proc/checkhealth()
 		if(src.health <= 0)
