@@ -13,18 +13,18 @@
 			for(var/holes = rand(100,200), holes > 0, holes--)
 				holepick = pick(wormholeturfs)
 				targpick = pick(wormholeturfs)
-				var/obj/portal/P = unpool(/obj/portal/wormhole)
+				var/obj/portal/P = new /obj/portal/wormhole()
 				P.set_loc( holepick )
 				P.target = targpick
 				SPAWN_DBG(rand(18 SECONDS,32 SECONDS))
-					pool(P)
+					qdel(P)
 				if (rand(1,1000) == 1)
 					Artifact_Spawn(holepick)
 				sleep(rand(1,15))
 
 /proc/event_wormhole_buildturflist()
 	for(var/turf/T in world)
-		if(T.z == 1 && istype(T,/turf/simulated/floor))
+		if(T.z == 1 && istype(T,/turf/floor))
 			wormholeturfs += T
 
 		LAGCHECK(LAG_LOW)

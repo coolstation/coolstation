@@ -59,8 +59,9 @@ datum
 
 		disposing()
 			holder = null
+			data = null
 			..()
-
+/*
 		pooled()
 			..()
 			transparency = initial(transparency)
@@ -71,11 +72,11 @@ datum
 			data = null
 			volume = 0
 			reacting = 0
-
+*/
 
 		proc/on_add()
 			if (stun_resist > 0)
-				if (ismob(holder.my_atom))
+				if (ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					M.add_stun_resist_mod("reagent_[src.id]", stun_resist)
 			return
@@ -344,9 +345,9 @@ datum
 
 			reaction_turf(var/turf/T, var/volume)
 				if(volume >= 5)
-					if(!locate(/turf/unsimulated/floor/void) in T)
+					if(!locate(/turf/floor/void) in T)
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						new /turf/unsimulated/floor/void(T)
+						new /turf/floor/void(T)
 
 		//	When finished, exposure to or consumption of this drug should basically duplicate the
 		//	player. send their active body to a horrible hellvoid. back on the station,

@@ -11,7 +11,7 @@
 	var/obj/machinery/bot/active 	// the active bot; if null, show bot list
 	var/list/botstatus			// the status signal sent by the bot
 
-	var/control_freq = 1447 //Just for sending, adjust what the actual pda hooks to for receive
+	var/control_freq = FREQ_BOT_CONTROL //Just for sending, adjust what the actual pda hooks to for receive
 
 	proc/post_status(var/freq, var/key, var/value, var/key2, var/value2, var/key3, var/value3)
 		if(!src.master)

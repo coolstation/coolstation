@@ -47,6 +47,8 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 	var/non_admin_dj = 0
 
 	var/last_soundgroup = null
+	var/last_zvol = null
+	var/last_zloop = null
 
 	var/widescreen = 0
 	var/vert_split = 1
@@ -67,6 +69,8 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 	var/persistent_bank_valid = FALSE
 	var/persistent_bank = 0 //cross-round persistent cash value (is increased as a function of job paycheck + station score)
 	var/persistent_bank_item = 0 //Name of a bank item that may have persisted from a previous round. (Using name because I'm assuming saving a string is better than saving a whole datum)
+
+	var/obj/item/gun/modular/persistent_gun = null // :3
 
 	var/datum/reputations/reputations = null
 
@@ -104,7 +108,10 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 
 	var/atom/movable/screen/screenHolder //Invisible, holds images that are used as render_sources.
 
+	///intent-test
 	var/experimental_intents = 0
+	///mouseless-test
+	var/experimental_mouseless = 0
 
 	var/admin_intent = 0
 
@@ -291,7 +298,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 								<body>
 									<h1>You have been banned.</h1>
 									<span class='banreason'>Reason: [isbanned].</span><br>
-									If you believe you were unjustly banned, head to <a href=\"https://forum.ss13.co\">the forums</a> and post an appeal.
+									If you believe you were unjustly banned, head to <a href=\"https://forum.coolstation.space/viewforum.php?f=1">the forums</a> and post an appeal.
 								</body>
 							</html>
 						"}
@@ -467,7 +474,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 				//preferences.randomizeLook()
 				preferences.ShowChoices(src.mob)
 				src.mob.Browse(grabResource("html/tgControls.html"),"window=tgcontrolsinfo;size=600x400;title=TG Controls Help")
-				boutput(src, "<span class='alert'>Welcome! You don't have a character profile saved yet, so please create one. If you're new, check out the <a target='_blank' href='https://wiki.ss13.co/Getting_Started#Fundamentals'>quick-start guide</a> for how to play!</span>")
+				boutput(src, "<span class='alert'>Welcome! You don't have a character profile saved yet, so please create one. If you're new, check out the <a target='_blank' href='https://wiki.coolstation.space/wiki/Tutorial'>quick-start guide</a> for how to play!</span>")
 				//hey maybe put some 'new player mini-instructional' prompt here
 				//ok :)
 				is_newbie = 1
@@ -485,7 +492,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 				changes()
 
 			if (src.holder && rank_to_level(src.holder.rank) >= LEVEL_MOD) // No admin changelog for goat farts (Convair880).
-				admin_changes()
+				admin_changelog()
 #endif
 #if ASS_JAM
 				src.verbs += /client/proc/cmd_ass_day_rules
@@ -766,6 +773,9 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 		if( failed )
 			logTheThing( "debug", src, null, "Failed to store persistent bank item in the ~cloud~: [failed]" )
 
+	persistent_gun = get_cloud_gun()
+	if( !persistent_gun && cloud_available() )
+		logTheThing( "debug", src, null, "persistent gun load failed but that's not necessarilly a bad thing." )
 
 //MBC TODO : PERSISTENTBANK_VERSION_MIN, MAX FOR BANKING SO WE CAN WIPE AWAY EVERYONE'S HARD WORK WITH A SINGLE LINE OF CODE CHANGE
 // defines are already set, just do the checks here ok
@@ -1324,14 +1334,14 @@ var/global/curr_day = null
 		H.hud.master = null
 		qdel(H.hud)
 		qdel(H.zone_sel)
-		qdel(H.stamina_bar)
+		//qdel(H.stamina_bar)
 
 		H.hud = new(H)
 		H.attach_hud(H.hud)
 		H.zone_sel = new(H)
 		H.attach_hud(H.zone_sel)
-		H.stamina_bar = new(H)
-		H.hud.add_object(H.stamina_bar, initial(H.stamina_bar.layer), "EAST-1, NORTH")
+		//H.stamina_bar = new(H)
+		//H.hud.add_object(H.stamina_bar, initial(H.stamina_bar.layer), "EAST-1, NORTH")
 		if(H.sims)
 			H.sims.add_hud()
 
@@ -1426,6 +1436,21 @@ var/global/curr_day = null
 
 	winset(src, null, "command=\".screenshot auto\"")
 	boutput(src, "<B>Screenshot taken!</B>")
+
+/client/verb/test_experimental_mouseless()
+	set hidden = 1
+	set name = "mouseless-test"
+
+	experimental_mouseless = !experimental_mouseless
+
+	if (experimental_mouseless)
+		boutput(src, "<br><B>Experimental mouseless thingy ON. Turn on numlock to use this.</B>")
+		boutput(src, "Use the numpad to target adjacent things in much the same way as roguelikes do. 5 is where you're standing.")
+		boutput(src, "Default targets mobs, then items. ALT targets objects, and CTRL the turf itself.")
+		boutput(src, "<B>It kinda sucks still and disables the examine and sprint hotkeys. The sucking is partially to that.</B>")
+
+	//Mouseless gets applied if needed in /mob/proc/build_keybind_styles
+	src.mob.reset_keymap()
 
 /client/verb/test_experimental_intents()
 	set hidden = 1

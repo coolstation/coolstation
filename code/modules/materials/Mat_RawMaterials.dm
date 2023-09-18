@@ -15,7 +15,7 @@
 			var/datum/material/M = getMaterial(default_material)
 			src.setMaterial(M)
 		setup_material()
-
+/*
 	unpooled()
 		..()
 		if (istext(default_material))
@@ -25,7 +25,7 @@
 
 	pooled()
 		..()
-
+*/
 	proc/setup_material()
 		.=0
 
@@ -36,9 +36,9 @@
 
 	split_stack(var/toRemove)
 		if(toRemove >= amount || toRemove < 1) return 0
-		var/obj/item/material_piece/P = unpool(src.type)
+		var/obj/item/material_piece/P = new src.type()
 		P.set_loc(src.loc)
-		P.setMaterial(copyMaterial(src.material))
+		P.setMaterial(src.material)
 		src.change_stack_amount(-toRemove)
 		P.change_stack_amount(toRemove - P.amount)
 		return P
@@ -177,10 +177,10 @@
 			else
 				return ..()
 
-		afterattack(turf/simulated/A, mob/user)
+		afterattack(turf/A, mob/user)
 			if(locate(/obj/decal/poster/banner, A))
 				return
-			else if(istype(A, /turf/simulated/wall/))
+			else if(istype(A, /turf/wall/))
 				var/obj/decal/poster/banner/B = new(A)
 				if (src.material) B.setMaterial(src.material)
 				logTheThing("station", user, null, "Hangs up a banner (<b>Material:</b> [B.material && B.material.mat_id ? "[B.material.mat_id]" : "*UNKNOWN*"]) in [A] at [log_loc(user)].")

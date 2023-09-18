@@ -623,8 +623,8 @@ datum
 			reaction_turf(var/turf/target, var/volume)
 				var/obj/hotspot = (locate(/obj/hotspot) in target)
 				if (hotspot)
-					if (istype(target, /turf/simulated))
-						var/turf/simulated/T = target
+					if(issimulatedturf(target))
+						var/turf/T = target
 						if (T.air)
 							var/datum/gas_mixture/lowertemp = T.remove_air( TOTAL_MOLES(T.air) )
 							if (lowertemp)// ZeWaka: Fix for null.temperature
@@ -632,15 +632,15 @@ datum
 								lowertemp.toxins = max(lowertemp.toxins-50,0)
 								lowertemp.react()
 								T.assume_air(lowertemp)
-					pool(hotspot)
+					qdel(hotspot)
 
 				var/obj/fire_foam/F = (locate(/obj/fire_foam) in target)
 				if (!F)
-					F = unpool(/obj/fire_foam)
+					F = new()
 					F.set_loc(target)
 					SPAWN_DBG(20 SECONDS)
 						if (F && !F.disposed)
-							pool(F)
+							qdel(F)
 				return
 
 			reaction_obj(var/obj/item/O, var/volume)
@@ -691,7 +691,29 @@ datum
 					var/icon/I = icon(W.icon)
 					I.ColorTone( rgb(165,242,243) )
 					W.icon = I
-				return
+				..() //might as well call parent if we're here :V
+
+			//Bat here, someone mentioned silica gel packets and this chem seems close enough so
+			//gonna give this some new dessicant and poison properties and we're gonna call it a day
+
+			///dessicate turfs
+			reaction_turf(var/turf/T, var/volume)
+				..()
+				qdel(T?.active_liquid)
+
+			reaction_mob(var/mob/M, var/method=TOUCH, var/volume, var/paramslist = 0)
+				..()
+				if (method == TOUCH && (M.material?.material_flags & MATERIAL_CRYSTAL)) //If it works on windows...
+					var/amt = 5*(volume/10)
+					M.HealDamage("All", amt, amt, amt)
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				if (!M) M = holder.my_atom
+				if (!(M.material?.material_flags & MATERIAL_CRYSTAL)) //glass people are immune :)
+					M.take_toxin_damage(0.75 * mult)
+					if (prob(5))
+						boutput(M, "<span class='alert'>You feel dry.</span>")
+				..()
 
 //foam precursor
 
@@ -720,7 +742,7 @@ datum
 
 			reaction_turf(var/turf/target, var/volume)
 				var/list/covered = holder.covered_turf()
-				var/turf/simulated/T = target
+				var/turf/T = target
 				var/volume_mult = 1
 
 				if (length(covered))
@@ -753,7 +775,7 @@ datum
 
 			reaction_turf(var/turf/target, var/volume)
 				var/visible = src.visible
-				var/turf/simulated/T = target
+				var/turf/T = target
 				if (istype(T))
 					if (T.wet >= 3) return
 					if (visible)
@@ -851,7 +873,7 @@ datum
 			proc/remove_stickers(var/atom/target, var/volume)
 				var/can_remove_amt = volume / 10
 				var/removed_count = 0
-				if ((istype(target, /turf/simulated/wall) || istype(target, /turf/unsimulated/wall)))
+				if (istype(target, /turf/wall))
 					target = locate_sticker_wall(target)
 					if (!target)
 						return
@@ -1027,8 +1049,8 @@ datum
 
 				var/obj/hotspot = (locate(/obj/hotspot) in target)
 				if (hotspot)
-					if (istype(target, /turf/simulated))
-						var/turf/simulated/T = target
+					if(issimulatedturf(target))
+						var/turf/T = target
 						if (!T.air) return //ZeWaka: Fix for TOTAL_MOLES(null)
 						var/datum/gas_mixture/lowertemp = T.remove_air( TOTAL_MOLES(T.air) )
 						if (lowertemp) //ZeWaka: Fix for null.temperature
@@ -1036,7 +1058,7 @@ datum
 							lowertemp.toxins = max(lowertemp.toxins-50,0)
 							lowertemp.react()
 							T.assume_air(lowertemp)
-					pool(hotspot)
+					qdel(hotspot)
 				return
 
 		booster_enzyme
@@ -1160,7 +1182,7 @@ datum
 				return
 
 			reaction_turf(var/turf/target, var/volume)
-				var/turf/simulated/T = target
+				var/turf/T = target
 				if (istype(T)) //Wire: fix for Undefined variable /turf/space/var/wet (&& T.wet)
 					if (T.wet >= 2) return
 					var/wet = image('icons/effects/water.dmi',"wet_floor")
@@ -1199,12 +1221,12 @@ datum
 			viscosity = 0.13
 			var/counter = 1
 			var/fakedeathed = 0
-
+/*
 			pooled()
 				..()
 				counter = 1
 				fakedeathed = 0
-
+*/
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
 				if (!counter) counter = 1
@@ -1235,12 +1257,12 @@ datum
 			viscosity = 0.17
 			var/counter = 1
 			var/fakedeathed = 0
-
+/*
 			pooled()
 				..()
 				counter = 1
 				fakedeathed = 0
-
+*/
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
 				if (!counter) counter = 1
@@ -1412,7 +1434,7 @@ datum
 					random_brute_damage(M, 1 * mult)
 				else if (our_amt < 10)
 					if (probmult(8))
-						M.visible_message("<span class='alert'>[M] pukes all over \himself.</span>", "<span class='alert'>You puke all over yourself!</span>")
+						M.visible_message("<span class='alert'>[M] pukes all over [himself_or_herself(M)].</span>", "<span class='alert'>You puke all over yourself!</span>")
 						M.vomit()
 					M.take_toxin_damage(2 * mult)
 					random_brute_damage(M, 2 * mult)
@@ -1452,7 +1474,7 @@ datum
 					random_brute_damage(M, 1 * mult)
 				else if (our_amt < 20)
 					if (probmult(8))
-						M.visible_message("<span class='alert'>[M] hoots all over \himself.</span>", "<span class='alert'>You hoot all over yourself!</span>")
+						M.visible_message("<span class='alert'>[M] hoots all over [himself_or_herself(M)].</span>", "<span class='alert'>You hoot all over yourself!</span>")
 						M.vomit()
 					M.take_toxin_damage(2 * mult)
 					random_brute_damage(M, 2 * mult)
@@ -1615,7 +1637,7 @@ datum
 
 			reaction_turf(var/turf/T, var/volume)
 				CRITTER_REACTION_CHECK(reaction_count)
-				var/turf/simulated/target = T
+				var/turf/target = T
 				if (istype(target) && volume >= 5)
 					if (!locate(/obj/reagent_dispensers/cleanable/spiders) in target)
 						new /obj/reagent_dispensers/cleanable/spiders(target)
@@ -2026,21 +2048,19 @@ datum
 
 			reaction_turf(var/turf/T, var/volume)
 				if (!istype(T, /turf/space))
-					if (volume >= 50 && (istype(T, /turf/simulated/floor) || istype(T, /turf/simulated/wall)))
+					if (volume >= 50 && (istype(T, /turf/floor) || istype(T, /turf/wall)))
 						T.visible_message("<span class='notice'>The substance flows out and sinks into [T], forming new shapes.</span>")
 						flock_convert_turf(T)
 					if (volume >= 10)
 						T.visible_message("<span class='notice'>The substance flows out and takes a solid form.</span>")
 						if(prob(50))
-							var/atom/movable/B = unpool(/obj/item/raw_material/scrap_metal)
+							var/atom/movable/B = new /obj/item/raw_material/scrap_metal()
 							B.set_loc(T)
-							var/datum/material/mat = getMaterial("gnesis")
-							B.setMaterial(mat)
+							B.setMaterial(getMaterial("gnesis"))
 						else
-							var/atom/movable/B = unpool(/obj/item/raw_material/shard)
+							var/atom/movable/B = new /obj/item/raw_material/shard()
 							B.set_loc(T)
-							var/datum/material/mat = getMaterial("gnesisglass")
-							B.setMaterial(mat)
+							B.setMaterial(getMaterial("gnesisglass"))
 						return
 				// otherwise we didn't have enough
 				T.visible_message("<span class='notice'>The substance flows out, spread too thinly.</span>")
@@ -2120,14 +2140,14 @@ datum
 			var/anim_lock = 0
 			var/speed = 3
 			stun_resist = 9
-
+/*
 			pooled()
 				..()
 				direction = null
 				dir_lock = 0
 				anim_lock = 0
 				speed = 3
-
+*/
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M)
@@ -2372,11 +2392,11 @@ datum
 			addiction_min = 15
 			overdose = 30
 			var/effect_length = 0
-
+/*
 			pooled()
 				..()
 				effect_length = 0
-
+*/
 			on_mob_life(var/mob/living/M, var/mult = 1) // humans only! invisible critters would be awful...
 				if(!M)
 					holder.remove_reagent("transparium")
@@ -2425,11 +2445,11 @@ datum
 			fluid_b = 254
 			transparency = 30
 			var/effect_length = 0
-
+/*
 			pooled()
 				..()
 				effect_length = 0
-
+*/
 			on_mob_life(var/mob/M, var/mult = 1) // now this is ok
 				if(!M) M = holder.my_atom
 
@@ -2680,9 +2700,10 @@ datum
 			overdose = 20
 			viscosity = 0.3
 			minimum_reaction_temperature = T0C+100
+/*
 			pooled()
 				..()
-
+*/
 			on_add()
 				..()
 				if(ismob(src.holder?.my_atom))
@@ -2948,7 +2969,7 @@ datum
 			viscosity = 0.4
 			depletion_rate = 0
 
-			pooled()
+			disposing()
 				..()
 				pathogens.Cut()
 				pathogens_processed = 0
@@ -3204,7 +3225,7 @@ datum
 				if(istype(M, /mob/dead))
 					return
 
-				M.ex_act(1)
+				M.ex_act(OLD_EX_TOTAL)
 
 
 
@@ -3212,14 +3233,14 @@ datum
 				//if (!istype(O, /obj/effects/foam)
 				//	&& !istype(O, /obj/item/reagent_containers)
 				//	&& !istype(O, /obj/item/chem_grenade))
-				O.ex_act(1)
+				O.ex_act(OLD_EX_TOTAL)
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				..()
 
 
 
-				M.ex_act(1)
+				M.ex_act(OLD_EX_TOTAL)
 				M.gib()
 
 				M.reagents.del_reagent(src.id)
@@ -3243,15 +3264,15 @@ datum
 				. = ..()
 				if(istype(M, /mob/dead))
 					return
-				M.ex_act(1)
+				M.ex_act(OLD_EX_TOTAL)
 
 
 			reaction_obj(var/obj/O, var/volume)
-				O.ex_act(1)
+				O.ex_act(OLD_EX_TOTAL)
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				..()
-				M.ex_act(1)
+				M.ex_act(OLD_EX_TOTAL)
 				M.gib()
 				M.reagents.del_reagent(src.id)
 
@@ -3335,7 +3356,7 @@ datum
 			viscosity = 0.3
 
 			reaction_turf(var/turf/target, var/volume)
-				var/turf/simulated/T = target
+				var/turf/T = target
 				if (istype(T))
 					if (T.wet >= 2) return
 					var/wet = image('icons/effects/water.dmi',"wet_floor")
@@ -3392,7 +3413,7 @@ datum
 						H.visible_message("<span class='emote'><b>[M]</b> yees.</span>")
 						playsound(H, "sound/misc/yee.ogg", 50, 1)
 
-			pooled()
+			disposing()
 				..()
 				if (src.music_given_to)
 					src.music_given_to << sound(null, channel = 391) // seriously, make sure we don't leave someone with music playing!!  gotta cover our bases
@@ -3461,14 +3482,14 @@ datum
 				hardened = 0
 				reagent_state = LIQUID
 				update_identifiers()
-
+/*
 			pooled()
 				..()
 				contents = null
 				hardened = 0
 				reagent_state = LIQUID
 				update_identifiers()
-
+*/
 			on_add()
 				..()
 				if(hardened)
@@ -3627,11 +3648,11 @@ datum
 			transparency = 255
 			var/counter = 1
 			value = 4
-
+/*
 			pooled()
 				..()
 				counter = 1
-
+*/
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
 				if (!counter) counter = 1
@@ -3799,7 +3820,7 @@ datum
 			hygiene_value = 0.25
 
 			reaction_turf(var/turf/target, var/volume)
-				var/turf/simulated/floor/T = target
+				var/turf/floor/T = target
 
 				if (istype(T))
 					if (T.broken || T.burnt)

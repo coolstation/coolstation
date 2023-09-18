@@ -172,6 +172,14 @@ var/list/list/by_type = list()
 #define OTHER_START_TRACKING_CAT(what, x) if(!by_cat[x]) { by_cat[x] = list() }; by_cat[x][what] = 1
 #define OTHER_STOP_TRACKING_CAT(what, x) by_cat[x].Remove(what)
 
+//Hi sorry for overloading your lovely by_cat stuff and adding stealthy wrapper macros, I just need to store one more thing for video broadcasts and it'd be perfect
+//Value should be the dmi where your video sprites are stored. If you don't have that, set it to 1 please.
+#define SUBSCRIBE_BROADCAST(x, value) OTHER_SUB_BROADCAST(src, x, value)
+#define OTHER_SUB_BROADCAST(what, x, value) if(!by_cat[x]) { by_cat[x] = list() }; by_cat[x][what] = value
+#define UNSUBSCRIBE_BROADCAST(x) STOP_TRACKING_CAT(x); UpdateOverlays(null, BROADCAST_VIDEO_KEY)
+//Overlay key for the broadcast video thingy
+#define BROADCAST_VIDEO_KEY "broadcast_video"
+
 /// contains lists of objects indexed by a category string based on START_TRACKING_CAT / STOP_TRACKING_CAT
 var/list/list/by_cat = list()
 
@@ -194,6 +202,9 @@ var/list/list/by_cat = list()
 #define TR_CAT_CHAPLAINS "chaplains"
 #define TR_CAT_SOUL_TRACKING_ITEMS "soul_tracking_items"
 #define TR_CAT_CLOWN_DISBELIEF_MOBS "clown_disbelief_mobs"
+#define TR_CAT_RADIO_BROADCAST_RECEIVERS "radio_receivers" //demo channel
+#define TR_CAT_FINITE_BROADCAST_RECEIVERS "finite_radio_receivers" //demo channel
+#define TR_CAT_TEEVEE_BROADCAST_RECEIVERS "teevee_broadcast_receivers" //demo channel, but this one gets video blasted at it
 // powernets? processing_items?
 // mobs? ai-mobs?
 

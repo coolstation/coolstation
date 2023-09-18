@@ -19,11 +19,11 @@
 
 // Greek Adventurezone Thingy
 
-/turf/unsimulated/greek/
+/turf/greek/
 	name = "Greek Adventurezone Sprites"
 	icon = 'icons/turf/adventure_gannets.dmi'
 
-/turf/unsimulated/wall/greek/
+/turf/wall/greek/
 	name = "Greek Adventurezone Sprites"
 	icon = 'icons/turf/adventure_gannets.dmi'
 
@@ -37,9 +37,9 @@
 	name = "Strange Beach"
 	icon_state = "yellow"
 	force_fullbright = 1
-	sound_environment = 19
+	sound_environment = EAX_PLAIN
 
-/turf/unsimulated/greek/grass
+/turf/greek/grass
 	name = "grass"
 	desc = "Some bright green grass on the ground."
 	icon_state = "grass"
@@ -55,7 +55,7 @@
 	diag
 		icon_state = "grass-diag"
 
-/turf/unsimulated/greek/beach
+/turf/greek/beach
 	name = "beach"
 	desc = "A very strange beach, almost artificial somehow."
 	icon_state = "sand"
@@ -65,7 +65,7 @@
 	bodge //yes, i needed this
 		icon_state = "island-1"
 
-/turf/unsimulated/greek/water
+/turf/greek/water
 	name = "water"
 	desc = "Splish splash, it's water."
 	icon_state = "water"
@@ -75,15 +75,15 @@
 /area/greek/caves
 	name = "Strange Caves"
 	icon_state = "green"
-	sound_environment = 8
+	sound_environment = EAX_CAVE
 
 /area/greek/cliffs
 	name = "Strange Cliffs"
 	icon_state = "blue"
-	sound_environment = 8
+	sound_environment = EAX_CAVE
 	force_fullbright = 1
 
-/turf/unsimulated/greek/cave
+/turf/greek/cave
 	name = "rock"
 	desc = "A rocky floor, carved from the cave."
 	icon_state = "rock-floor"
@@ -94,7 +94,7 @@
 	rockwall
 		icon_state = "rock-wall"
 
-/turf/unsimulated/wall/greek/cave //flat rock wall
+/turf/wall/greek/cave //flat rock wall
 	name = "rock"
 	desc = "A flat rocky surface."
 	icon_state = "rock"
@@ -184,12 +184,12 @@
 /area/greek/underworld
 	name = "Strange Depths"
 	icon_state = "purple"
-	sound_environment = 25
+	sound_environment = EAX_DISORDERED
 
 /area/greek/underworld/pit
 	icon_state = "white"
 
-/turf/unsimulated/greek/underworld
+/turf/greek/underworld
 	name = "brick"
 	desc = "Some old and strange weathered bricks, with a bit of dust for good measure."
 	icon_state = "under-floor"
@@ -197,12 +197,12 @@
 	half
 		icon_state = "under-halfwall"
 
-/turf/unsimulated/wall/greek/underwall
+/turf/wall/greek/underwall
 	name = "brick"
 	desc = "A sharp wall composed of old funky bricks."
 	icon_state = "under-wall"
 
-/turf/unsimulated/greek/pit
+/turf/greek/pit
 	name = "darkness"
 	desc = "You can't see the bottom."
 	icon_state = "pit"

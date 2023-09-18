@@ -75,7 +75,7 @@ var/list/datum/contextAction/globalContextActions = null
 
 			addButtonToHud(usr, C)
 
-			var/matrix/trans = unpool(/matrix)
+			var/matrix/trans = new()
 			trans = trans.Reset()
 			trans.Translate(offX, offY)
 
@@ -112,7 +112,7 @@ var/list/datum/contextAction/globalContextActions = null
 
 			addButtonToHud(usr, C)
 
-			var/matrix/trans = unpool(/matrix)
+			var/matrix/trans = new()
 			trans = trans.Reset()
 			trans.Translate(offX, offY)
 
@@ -161,7 +161,7 @@ var/list/datum/contextAction/globalContextActions = null
 			var/offX = round(dist * cos(anglePer * count)) + round(sizeX / 2)
 			var/offY = round(dist * sin(anglePer * count)) + round(sizeY / 2)
 
-			var/matrix/trans = unpool(/matrix)
+			var/matrix/trans = new()
 			trans = trans.Reset()
 			trans.Translate(offX, offY)
 
@@ -182,7 +182,7 @@ var/list/datum/contextAction/globalContextActions = null
 
 			addButtonToHud(usr, C)
 
-			var/matrix/trans = unpool(/matrix)
+			var/matrix/trans = new()
 			trans = trans.Reset()
 			trans.Translate(offX, offY)
 
@@ -209,7 +209,7 @@ var/list/datum/contextAction/globalContextActions = null
 
 			addButtonToHud(usr, C)
 
-			var/matrix/trans = unpool(/matrix)
+			var/matrix/trans = new()
 			trans = trans.Reset()
 			trans.Translate(offX, offY + (first ? 16 : 0))
 
@@ -235,6 +235,8 @@ var/list/datum/contextAction/globalContextActions = null
 		// var/atom/screenCenter = usr.client.virtual_eye
 		if (istype(target, /atom/movable/screen))
 			var/atom/movable/screen/T = target
+			var/list/backup = splittext(T.screen_loc, ",")
+
 			var/regex/R1 = regex("(EAST|WEST)((\\-|\\+)\\d+|)")
 			R1.Find(T.screen_loc)
 			if (R1.match)
@@ -250,19 +252,26 @@ var/list/datum/contextAction/globalContextActions = null
 				targety = R2.group[2]
 				if (R2.group[2] == "")
 					targety = 0
+
+			//hack for screen_loc in the form of things like "NORTH-0,5"
+			//screen_loc string handling is fucked up
+			if (isnull(targetx) && !isnull(targety))
+				targetx = (!isnull(text2num(backup[1])) ? backup[1] : backup[2])
+			else if (!isnull(targetx) && isnull(targety))
+				targety = (!isnull(text2num(backup[1])) ? backup[1] : backup[2])
 		else
 			return 0
 
 		var/count = count_start_pos
 		for(var/atom/movable/screen/contextButton/C as anything in buttons)
 			//C.screen_loc = "CENTER[(screenX) < 0 ? ":[screenX]":":[screenX]"],CENTER[(screenY) < 0 ? ":[screenY]":":[screenY]"]"
-			C.screen_loc = "[lattitude_dir][targetx],[longitude_dir][targety]"
+			C.screen_loc = "[longitude_dir][targetx],[lattitude_dir][targety]"
 
 			addButtonToHud(usr, C)
 			var/mob/dead/observer/GO = usr
 			if(istype(GO)) GO.hud.add_screen(C)
 
-			var/matrix/trans = unpool(/matrix)
+			var/matrix/trans = new()
 			trans = trans.Reset()
 			trans.Translate(0, -32*count)
 

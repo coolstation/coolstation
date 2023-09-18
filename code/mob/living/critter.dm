@@ -118,10 +118,10 @@
 		hud = new custom_hud_type(src)
 		src.attach_hud(hud)
 		src.zone_sel = new(src, "CENTER[hud.next_right()], SOUTH")
-
+/*
 		if (src.stamina_bar)
 			hud.add_object(src.stamina_bar, initial(src.stamina_bar.layer), "EAST-1, NORTH")
-
+*/
 
 		health_update_queue |= src
 
@@ -141,8 +141,8 @@
 			organHolder = null
 
 		if(hud)
-			if(src.stamina_bar)
-				hud.remove_object(stamina_bar)
+//			if(src.stamina_bar)
+//				hud.remove_object(stamina_bar)
 
 			hud.dispose()
 			hud = null
@@ -298,7 +298,7 @@
 			if (src.skinresult && max_skins)
 				if (istype(I, /obj/item/circular_saw) || istype(I, /obj/item/kitchen/utensil/knife) || istype(I, /obj/item/scalpel) || istype(I, /obj/item/raw_material/shard) || istype(I, /obj/item/sword) || istype(I, /obj/item/saw) || istype(I, /obj/item/wirecutters))
 					for (var/i, i<rand(1, max_skins), i++)
-						var/obj/item/S = unpool(src.skinresult)
+						var/obj/item/S = new src.skinresult()
 						S.set_loc(src.loc)
 					src.skinresult = null
 					M.visible_message("<span class='alert'>[M] skins [src].</span>","You skin [src].")

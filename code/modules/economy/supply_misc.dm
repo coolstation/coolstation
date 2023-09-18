@@ -1,3 +1,6 @@
+/area/supply
+	is_construction_allowed = FALSE //supply areas were blocked from girder building but they should maybe be exempt in general
+
 /area/supply/spawn_point //the area supplies are spawned at and fired from
 	name = "supply spawn point"
 	icon_state = "shuttle3"
@@ -63,18 +66,20 @@
 			return 1
 		else if (!M.can_lie && isdead(M))
 			return 1
+		else if (ismonkey(M)) // lets be honest here.
+			return 1
 		else if(!M.lying) // or you're lying down
 			return 0
 	return ..()
 
 /obj/plasticflaps/ex_act(severity)
 	switch(severity)
-		if (1)
+		if (OLD_EX_SEVERITY_1)
 			qdel(src)
-		if (2)
+		if (OLD_EX_SEVERITY_2)
 			if (prob(50))
 				qdel(src)
-		if (3)
+		if (OLD_EX_SEVERITY_3)
 			if (prob(5))
 				qdel(src)
 

@@ -4,11 +4,11 @@
 	desc = "I'm loafin' it!"
 	icon = 'icons/obj/foodNdrink/food_bread.dmi'
 	icon_state = "breadloaf"
-	amount = 1
+	amount = 6
 	heal_amt = 1
 	food_color = "#FFFFCC"
 	real_name = "bread"
-	flags = ONBELT
+	flags = ONBELT | FPRINT | TABLEPASS | SUPPRESSATTACK
 	var/slicetype = /obj/item/reagent_containers/food/snacks/breadslice
 	initial_volume = 30
 	initial_reagents = "bread"
@@ -16,9 +16,14 @@
 
 	attack(mob/M as mob, mob/user as mob, def_zone)
 		if (user == M)
-			boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
-			user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
-			return
+			if(user.traitHolder.hasTrait("greedy_beast"))
+				boutput(user, "You take a bite out of the side of the bread, the way you were always meant to.")
+				user.visible_message("<b>[user]</b> just takes a big gross bite out of [src]!")
+				..()
+			else
+				boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
+				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
+				return
 		else
 			user.visible_message("<span class='alert'><b>[user]</b> futilely attempts to shove [src] into [M]'s mouth!</span>")
 			return
@@ -26,7 +31,7 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/axe) || istype(W, /obj/item/circular_saw) || istype(W, /obj/item/kitchen/utensil/knife) || istype(W, /obj/item/scalpel) || istype(W, /obj/item/sword) || istype(W,/obj/item/knife/butcher))
 			if(user.bioHolder.HasEffect("clumsy") && prob(50))
-				user.visible_message("<span class='alert'><b>[user]</b> fumbles and jabs \himself in the eye with [W].</span>")
+				user.visible_message("<span class='alert'><b>[user]</b> fumbles and jabs [himself_or_herself(user)] in the eye with [W].</span>")
 				user.change_eye_blurry(5)
 				user.changeStatus("weakened", 3 SECONDS)
 				JOB_XP(user, "Clown", 2)
@@ -374,7 +379,7 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/axe) || istype(W, /obj/item/circular_saw) || istype(W, /obj/item/kitchen/utensil/knife) || istype(W, /obj/item/scalpel) || istype(W, /obj/item/sword) || istype(W,/obj/item/knife/butcher))
 			if(user.bioHolder.HasEffect("clumsy") && prob(50))
-				user.visible_message("<span class='alert'><b>[user]</b> fumbles and jabs \himself in the eye with [W].</span>")
+				user.visible_message("<span class='alert'><b>[user]</b> fumbles and jabs [himself_or_herself(user)] in the eye with [W].</span>")
 				user.change_eye_blurry(5)
 				user.changeStatus("weakened", 3 SECONDS)
 				JOB_XP(user, "Clown", 2)

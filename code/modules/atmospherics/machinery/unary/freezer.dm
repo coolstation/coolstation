@@ -4,7 +4,9 @@
 	icon_state = "freezer_0"
 	density = 1
 	anchored = 1.0
+	desc = "Demon brand freezer unit. Cools gas in the attached pipe network"
 	current_heat_capacity = 1000
+	mats = list("MET-1" = 8, "CON-1" = 15) //IDK it's something
 	var/pipe_direction = 1
 
 	north
@@ -32,7 +34,7 @@
 
 	kitchen
 		name = "freezer (kitchen)"
-		current_temperature = 150
+		current_temperature = 250
 		on = 1
 
 		north
@@ -71,6 +73,9 @@
 		else
 			icon_state = "freezer_0"
 		return
+/*
+
+	***Old freezer UI code (just in case)***
 
 	attack_ai(mob/user as mob)
 		return src.Attackhand(user)
@@ -117,9 +122,60 @@
 		src.updateUsrDialog()
 		src.add_fingerprint(usr)
 		return
+*/
+
+//ported from Goonstation by SpacingNevada
+	ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+		. = ..()
+		if(.)
+			return
+		switch(action)
+			if("active_toggle")
+				src.on = !src.on
+				update_icon()
+				. = TRUE
+			if("set_target_temperature")
+				src.current_temperature = clamp(params["value"], 73.15, 293.15)
+				. = TRUE
+
+	ui_data(mob/user)
+		. = ..()
+		.["active"] = src.on
+		.["target_temperature"] = src.current_temperature
+		.["air_temperature"] = air_contents.temperature
+		.["air_pressure"] = MIXTURE_PRESSURE(air_contents)
+
+	ui_interact(mob/user, datum/tgui/ui)
+		ui = tgui_process.try_update_ui(user, src, ui)
+		if (!ui)
+			ui = new(user, src, "Freezer")
+			ui.set_autoupdate(TRUE)
+			ui.open()
 
 	process()
 		..()
-		src.updateUsrDialog()
+//		src.updateUsrDialog()
 		if(prob(5) && src.on)
 			playsound(src.loc, ambience_atmospherics, 30, 1)
+
+	was_built_from_frame(mob/user, newly_built)
+		..()
+		initialize_directions = dir
+		initialize()
+
+	//Having one (1) atmos machine that's done via the ruckingenur system instead of pipe frames is probably a great idea that won't cause bugs
+	was_deconstructed_to_frame(mob/user)
+		src.on = FALSE
+		//All of this is basically unary disposing
+		if(node)
+			node.disconnect(src)
+			if (network)
+				network.dispose()
+
+		if(air_contents)
+			qdel(air_contents)
+			air_contents = null
+
+		node = null
+		network = null
+		..()

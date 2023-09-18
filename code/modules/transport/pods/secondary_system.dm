@@ -406,7 +406,7 @@
 					T:ReplaceWithFloor()
 					ammo--
 					return
-				if (istype(T, /turf/simulated/floor) && ammo >= 3)
+				if (istype(T, /turf/floor) && ammo >= 3)
 					playsound(src.loc, "sound/machines/click.ogg", 50, 1)
 					if(after_time(20))
 						T:ReplaceWithWall()
@@ -426,14 +426,14 @@
 
 			if("Deconstruct")
 				var/turf/T = get_turf(get_step(ship.loc, ship.dir))
-				if (istype(T, /turf/simulated/wall) && ammo >= 5)
+				if (istype(T, /turf/wall) && ammo >= 5)
 					playsound(src.loc, "sound/machines/click.ogg", 50, 1)
 					if(after_time(50))
 						ammo -= 5
 						T:ReplaceWithFloor()
 						playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 					return
-				if ((istype(T, /turf/simulated/wall/r_wall) || istype(T, /turf/simulated/wall/auto/reinforced) ) && ammo >= 5)
+				if ((istype(T, /turf/wall/r_wall) || istype(T, /turf/wall/auto/reinforced) ) && ammo >= 5)
 					playsound(src.loc, "sound/machines/click.ogg", 50, 1)
 					if(after_time(50))
 						ammo -= 5
@@ -441,7 +441,7 @@
 						playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 
 					return
-				if (istype(T, /turf/simulated/floor) && ammo >= 5)
+				if (istype(T, /turf/floor) && ammo >= 5)
 					playsound(src.loc, "sound/machines/click.ogg", 50, 1)
 					if(after_time(50))
 						ammo -= 5
@@ -463,6 +463,7 @@
 		onclose(user, "ship_sec_system")
 		return
 
+/* deprecated (sensors do GPS much more thoroughly than this POS)
 /obj/item/shipcomponent/secondary_system/gps
 	name = "Ship's Navigation GPS"
 	desc = "A useful navigation device for those lost in space."
@@ -480,6 +481,7 @@
 			<b>X</b>: [src.ship.x]<BR><b>Y</b>: [src.ship.y]"}
 		user.Browse(dat, "window=ship_sec_system")
 		onclose(user, "ship_sec_system")
+*/
 
 /obj/item/shipcomponent/secondary_system/UFO
 	name = "Abductor"
@@ -844,17 +846,17 @@
 	in_bump = 1
 	crashhits--
 	if(isturf(A))
-		if((istype(A, /turf/simulated/wall/r_wall) || istype(A, /turf/simulated/wall/auto/reinforced)) && prob(40))
+		if((istype(A, /turf/wall/r_wall) || istype(A, /turf/wall/auto/reinforced)) && prob(40))
 			in_bump = 0
 			return
-		if(istype(A, /turf/simulated/wall))
-			var/turf/simulated/wall/T = A
+		if(istype(A, /turf/wall))
+			var/turf/wall/T = A
 			T.dismantle_wall(1)
 			playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 40, 1)
 			playsound(src, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 40, 1)
 			boutput(ship.pilot, "<span class='alert'><B>You crash through the wall!</B></span>")
 			in_bump = 0
-		if(istype(A, /turf/simulated/floor))
+		if(istype(A, /turf/floor))
 			var/turf/T = A
 			if(prob(50))
 				T.ReplaceWithLattice()

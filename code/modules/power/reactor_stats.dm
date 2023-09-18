@@ -76,7 +76,7 @@
 		teg_sample = sample_teg()
 
 		/* sample combustion chamber gasses */
-		for(var/turf/simulated/S in chamber_turfs)
+		for(var/turf/S in chamber_turfs)
 			chamber_samples[++chamber_samples.len] = sample_air(S.air, 0)
 
 		/* sample loop gasses from sensors */
@@ -699,7 +699,7 @@
 		get_chamber_turfs()
 			var/list/ret = new/list()
 
-			for(var/turf/simulated/T in get_area_turfs("/area/station/engine/combustion_chamber"))
+			for(var/turf/T in get_area_turfs("/area/station/engine/combustion_chamber"))
 				if(!istype(T, /turf/space))
 					ret.Add(T)
 

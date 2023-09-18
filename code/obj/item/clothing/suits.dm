@@ -625,7 +625,7 @@
 		return ..()
 
 	ex_act(severity)
-		if (severity <= 2)
+		if (severity >= 3) //old severity 2 and 1
 			if (src.Bed && src.Bed.Sheet == src)
 				src.Bed.Sheet = null
 			qdel(src)
@@ -649,7 +649,7 @@
 					return
 				else
 					for (var/i=3, i>0, i--)
-						var/obj/item/material_piece/cloth/cottonfabric/CF = unpool(/obj/item/material_piece/cloth/cottonfabric)
+						var/obj/item/material_piece/cloth/cottonfabric/CF = new()
 						CF.set_loc(get_turf(src))
 					boutput(user, "You rip up [src].")
 					user.u_equip(src)
@@ -1102,7 +1102,7 @@
 		item_state = "spacecap-red"
 
 /obj/item/clothing/suit/space/syndicate
-	name = "red space suit"
+	name = "FOSS space suit"
 	icon_state = "syndicate"
 	item_state = "space_suit_syndicate"
 	desc = "A suit that protects against low pressure environments. Issued to syndicate operatives."
@@ -1117,14 +1117,14 @@
 	commissar_greatcoat
 		name = "commander's great coat"
 		icon_state = "commissar_greatcoat"
-		desc = "A fear-inspiring, black-leather great coat, typically worn by a Syndicate Nuclear Operative Commander. So scary even the vacuum of space doesn't dare claim the wearer."
+		desc = "The kind of tacky trenchcoat you'd see down at the mall."
 
 		setupProperties()
 			..()
-			setProperty("exploprot", 40)
-			setProperty("meleeprot", 6)
+			setProperty("exploprot", 10)
+			setProperty("meleeprot", 1)
 			setProperty("rangedprot", 3)
-
+	/* never had pre-resprite sprites
 	knight // nukie melee class armor
 		name = "citadel heavy combat cuirass"
 		desc = "A syndicate issue super-heavy combat armor suit, pressurized for space travel and reinforced for superior staying-power in extended battle."
@@ -1138,7 +1138,7 @@
 			setProperty("exploprot", 30)
 			setProperty("space_movespeed", 0.9)
 			setProperty("disorient_resist", 65)
-
+	*/
 	specialist
 		name = "specialist operative combat dress"
 		desc = "A syndicate issue combat dress system, pressurized for space travel."
@@ -1327,12 +1327,12 @@
 
 /obj/item/clothing/suit/space/mining_combat // for fighting z5 critters.
 	name = "mining combat armor"
-	desc = "Heavy armor designed to withstand the rigours of space combat. Less resistant against the elements than industrial armor."
+	desc = "Nanotrasen's take on a old Soviet prototype combat spacesuit. Protective at the cost of everything else."
 	icon_state = "mining_combat"
 	item_state = "mining_combat"
 	c_flags = SPACEWEAR
 	body_parts_covered = TORSO|LEGS|ARMS
-	mats = 60 //should be the most expensive armor.
+	mats = 90 //should be the most expensive armor.
 
 	setupProperties()
 		..()
@@ -1342,6 +1342,7 @@
 		setProperty("exploprot", 20)
 		setProperty("meleeprot", 5)
 		setProperty("rangedprot", 2)
+		setProperty("space_movespeed",1.5) //lumber towards your foe!
 
 //NT pod wars suits
 /obj/item/clothing/suit/space/nanotrasen

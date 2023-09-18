@@ -616,7 +616,7 @@
 		//			var/turf/T = O.loc
 		//			for(var/atom/A in T.contents)
 		//				boutput(src, "There is a [A.name] at this location.")
-					SPAWN_DBG(0.3 SECONDS) pool(O)
+					SPAWN_DBG(0.3 SECONDS) qdel(O)
 
 				if(istype(target_r, /obj/railgun_trg_dummy)) qdel(target_r)
 			return
@@ -676,7 +676,8 @@
 			health = 100
 			maxhealth = 100
 			score = 10
-			droploot = /obj/item/factionrep/ntboard
+			//NT faction rep deprecated
+			//droploot = /obj/item/factionrep/ntboard
 			projectile_type = /datum/projectile/laser/drill/saw_teeth
 			current_projectile = new/datum/projectile/laser/drill/saw_teeth
 			smashes_shit = 0
@@ -707,7 +708,8 @@
 		dead_state = "gunshark-dead"
 		alertsound1 = 'sound/machines/engine_alert1.ogg'
 		alertsound2 = 'sound/machines/engine_alert1.ogg'
-		droploot = /obj/item/factionrep/ntboard
+		//NT faction rep deprecated
+		//droploot = /obj/item/factionrep/ntboard
 		projectile_type = /datum/projectile/bullet/lmg/weak
 		current_projectile = new/datum/projectile/bullet/lmg/weak
 		attack_cooldown = 20
@@ -912,7 +914,7 @@
 			elec_zap()
 
 		/*
-		var/obj/projectile/A = unpool(/obj/projectile)
+		var/obj/projectile/A = new()
 		if(!A)	return
 		A.set_loc(src.loc)
 		A.projectile = new current_projectile.type
@@ -1032,22 +1034,22 @@
 			lineObjs += DrawLine(src, poorPod, /obj/line_obj/elec, 'icons/obj/projectiles.dmi',"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",FLY_LAYER,1,PreloadedIcon='icons/effects/LghtLine.dmi')
 
 			playsound(poorPod.loc, "sound/effects/elec_bigzap.ogg", 40, 0)
-			poorPod.ex_act(3)
+			poorPod.ex_act(OLD_EX_LIGHT)
 
 		for (var/obj/machinery/colosseum_putt/poorPod in range(src, 5))
 			lineObjs += DrawLine(src, poorPod, /obj/line_obj/elec, 'icons/obj/projectiles.dmi',"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",FLY_LAYER,1,PreloadedIcon='icons/effects/LghtLine.dmi')
 
 			playsound(poorPod.loc, "sound/effects/elec_bigzap.ogg", 40, 0)
-			poorPod.ex_act(3)
+			poorPod.ex_act(OLD_EX_LIGHT)
 
 		for (var/obj/machinery/cruiser/C in range(src, 5))
 			lineObjs += DrawLine(src, C, /obj/line_obj/elec, 'icons/obj/projectiles.dmi',"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",FLY_LAYER,1,PreloadedIcon='icons/effects/LghtLine.dmi')
 			playsound(C.loc, "sound/effects/elec_bigzap.ogg", 40, 0)
-			C.ex_act(3)
+			C.ex_act(OLD_EX_LIGHT)
 
 		SPAWN_DBG(0.6 SECONDS)
 			for (var/obj/O in lineObjs)
-				pool(O)
+				qdel(O)
 
 	New()
 		..()
@@ -1164,11 +1166,11 @@
 			lineObjs += DrawLine(src, poorPod, /obj/line_obj/elec, 'icons/obj/projectiles.dmi',"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",FLY_LAYER,1,PreloadedIcon='icons/effects/LghtLine.dmi')
 
 			playsound(poorPod.loc, "sound/effects/elec_bigzap.ogg", 40, 0)
-			poorPod.ex_act(3)
+			poorPod.ex_act(OLD_EX_LIGHT)
 
 		SPAWN_DBG(0.6 SECONDS)
 			for (var/obj/O in lineObjs)
-				pool(O)*/
+				qdel(O)*/
 
 /obj/critter/gunbot/drone/iridium/whydrone/horse
 	name = "Horseman"

@@ -28,10 +28,13 @@
 		var/air_heat_capacity = HEAT_CAPACITY(air_contents)
 		var/combined_heat_capacity = current_heat_capacity + air_heat_capacity
 		var/old_temperature = air_contents.temperature
+		var/datum/gas_mixture/env = src.loc?.return_air()
 
 		if(combined_heat_capacity > 0)
 			var/combined_energy = current_temperature*current_heat_capacity + air_heat_capacity*air_contents.temperature
 			air_contents.temperature = combined_energy/combined_heat_capacity
+			// Maxwell's demon shovelling frantically
+			env.temperature += abs(air_contents.temperature - old_temperature)/current_heat_capacity
 
 		//todo: have current temperature affected. require power to bring down current temperature again
 

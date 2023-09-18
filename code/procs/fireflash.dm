@@ -10,10 +10,10 @@
 		if(locate(/obj/hotspot) in T) continue
 		if(!ignoreUnreachable && !can_line(get_turf(center), T, radius+1)) continue
 		for(var/obj/spacevine/V in T) qdel(V)
-		for(var/obj/kudzu_marker/M in T) qdel(M)
+//		for(var/obj/kudzu_marker/M in T) qdel(M)
 //		for(var/obj/alien/weeds/V in T) qdel(V)
 
-		var/obj/hotspot/h = unpool(/obj/hotspot)
+		var/obj/hotspot/h = new()
 		h.temperature = temp
 		h.volume = 400
 		h.set_real_color()
@@ -27,7 +27,7 @@
 */
 		//SPAWN_DBG(1.5 SECONDS) T.hotspot_expose(2000, 400)
 
-		if(istype(T, /turf/simulated/floor)) T:burn_tile()
+		if(istype(T, /turf/floor)) T:burn_tile()
 		SPAWN_DBG(0)
 			for(var/mob/living/L in T)
 				L.set_burning(33-radius)
@@ -66,7 +66,7 @@
 	SPAWN_DBG(3 SECONDS)
 		for (var/obj/hotspot/A as anything in hotspots)
 			if (!A.pooled)
-				pool(A)
+				qdel(A)
 			//LAGCHECK(LAG_REALTIME)  //MBC : maybe caused lighting bug?
 		hotspots.len = 0
 
@@ -102,7 +102,7 @@
 		var/need_expose = 0
 		var/expose_temp = 0
 		if (!existing_hotspot)
-			var/obj/hotspot/h = unpool(/obj/hotspot)
+			var/obj/hotspot/h = new()
 			need_expose = 1
 			h.temperature = temp - dist * falloff
 			expose_temp = h.temperature
@@ -124,7 +124,7 @@
 /* // experimental thing to let temporary hotspots affect atmos
 			existing_hotspot.perform_exposure()
 */
-		if(istype(T, /turf/simulated/floor)) T:burn_tile()
+		if(istype(T, /turf/floor)) T:burn_tile()
 		for (var/mob/living/L in T)
 			L.update_burning(min(55, max(0, expose_temp - 100 / 550)))
 			L.bodytemperature = (2 * L.bodytemperature + temp) / 3
@@ -165,7 +165,7 @@
 	SPAWN_DBG(3 SECONDS)
 		for(var/obj/hotspot/A in hotspots)
 			if (!A.pooled)
-				pool(A)
+				qdel(A)
 			//LAGCHECK(LAG_REALTIME)  //MBC : maybe caused lighting bug?
 		hotspots.len = 0
 
@@ -175,7 +175,7 @@
 /proc/fireflash_sm(atom/center, radius, temp, falloff, capped = 1, bypass_RNG = 0)
 	var/list/affected = fireflash_s(center, radius, temp, falloff)
 	for (var/turf/T in affected)
-		if (istype(T, /turf/simulated) && !T.loc:sanctuary)
+		if (issimulatedturf(T) && !T.loc:sanctuary)
 			var/mytemp = affected[T]
 			var/melt = 1643.15 // default steel melting point
 			if (T.material && T.material.hasProperty("flammable") && ((T.material.material_flags & MATERIAL_METAL) || (T.material.material_flags & MATERIAL_CRYSTAL) || (T.material.material_flags & MATERIAL_RUBBER)))

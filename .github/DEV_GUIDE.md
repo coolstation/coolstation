@@ -18,7 +18,7 @@ Now, we need to create our own repository to contribute to! :rocket:
 
 ### Step 2: Forking :fork_and_knife: 
 
-Now, visit https://github.com/goonstation/goonstation. You'll want to press the `Fork` button in the top right corner. It looks like this:
+Now, visit https://github.com/coolstation/coolstation. You'll want to press the `Fork` button in the top right corner. It looks like this:
 
 ![](https://i.imgur.com/C3obiAS.png)
 
@@ -72,7 +72,7 @@ Now, let's connect the main goonstation repository to your client.
 
 We need to add the main Goonstation repository as a remote now. :satellite:
 
-To do this, open the command palette and type `Git: Add Remote`. It'll prompt you for a name, which should be `upstream`. Then, put https://github.com/goonstation/goonstation as the URL. Now, you'll have the main Goonstation repository as a remote named upstream: This will let you easily send your pull requests there later.
+To do this, open the command palette and type `Git: Add Remote`. It'll prompt you for a name, which should be `upstream`. Then, put https://github.com/coolstation/coolstation as the URL. Now, you'll have the main Goonstation repository as a remote named upstream: This will let you easily send your pull requests there later.
 
 You're just about done with that! Just one last thing you need to manually do.
 
@@ -300,7 +300,7 @@ A good way to avoid merge conflicts in your PRs is to do this whole process befo
 
 **Git:** The version control system we are using. It lets many people synchronize their versions of a codebase, review and merge each others' changes.
 
-**Repo:** Short for Repository. Contains all the Goonstation code, assets, commits, and other info. This is what you see at https://github.com/goonstation/goonstation.
+**Repo:** Short for Repository. Contains all the Goonstation code, assets, commits, and other info. This is what you see at https://github.com/coolstation/coolstation.
 
 **Fork:** A copy of the repo that belongs to you. It is not synced with the main repo, so you can make changes to it without affecting the main repo, and vice versa.
 
@@ -320,7 +320,7 @@ A good way to avoid merge conflicts in your PRs is to do this whole process befo
 
 **Origin:** In this guide, this refers to your fork of the goonstation repo.
 
-**Upstream:** In this guide, this refers to the master Goonstation repo at https://github.com/goonstation/goonstation
+**Upstream:** In this guide, this refers to the master Goonstation repo at https://github.com/coolstation/coolstation
 
 **Staged files:** Files marked to get commited.
 
@@ -385,7 +385,7 @@ git rebase master
 *[diff]: Difference before and after a commit is made.
 *[PR]: Pull Request - The changes you request to the upstream.
 *[origin]: Your fork of the Goonstation repo
-*[upstream]: The master Goonstation repo at https://github.com/goonstation/goonstation
+*[upstream]: The master Goonstation repo at https://github.com/coolstation/coolstation
 
 ### Credits :clapper: 
 

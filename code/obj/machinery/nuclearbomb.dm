@@ -155,6 +155,9 @@
 								src.add_simple_light("nuke", list(255, 127, 127, 127))
 								command_alert("\A [src] has been armed in [A]. It will detonate in [src.get_countdown_timer()] minutes. All personnel must report to [A] to disarm the bomb immediately.", "Nuclear Weapon Detected")
 								world << sound('sound/machines/bomb_planted.ogg')
+								//This is the most straightforward spot to do this, but yes it is silly that the bomb itself is sending out the emergency alert
+								var/datum/directed_broadcast/emergency/broadcast = new(station_name, prob(95) ? "Nuclear Detonation" : "Open-Source Aggression", "Ten Minutes")
+								broadcast_controls.broadcast_start(broadcast, TRUE, -1, 1)
 								nuclear_countdown = new()
 								for (var/client/C in clients)
 									nuclear_countdown.add_client(C)	// New Hud
@@ -334,6 +337,8 @@
 				NUKEMODE.the_bomb = null
 				logTheThing("station", null, null, "The nuclear bomb was destroyed at [log_loc(src)].")
 				message_admins("The nuclear bomb was destroyed at [log_loc(src)].")
+				//brick the broadcast controller so radios stop yapping post-round, they're supposed to be blown up
+				broadcast_controls.active_broadcasts = list()
 			qdel(src)
 
 	proc/explode()
@@ -353,14 +358,19 @@
 			area_correct = 1
 		if(istype(ticker?.mode, /datum/game_mode/nuclear) && istype(nuke_area, NUKEMODE.target_location_type))
 			area_correct = 1
+		if(map_currently_very_dusty && nuke_turf.z == 3)
+			area_correct = 1 // this is a dumb hack but its for now ok
 		if ((nuke_turf.z != 1 && !area_correct) && (ticker?.mode && istype(ticker.mode, /datum/game_mode/nuclear)))
 			NUKEMODE.the_bomb = null
 			command_alert("A nuclear explosive has been detonated nearby. The station was not in range of the blast.", "Attention")
 			explosion(src, src.loc, 20, 30, 40, 50)
 			qdel(src)
 			return
-#ifdef MAP_OVERRIDE_MANTA
-		world.showCinematic("manta_nukies")
+#ifdef MAP_OVERRIDE_GEHENNA
+		var/datum/hud/cinematic/cinematic = new
+		for (var/client/C in clients)
+			cinematic.add_client(C)
+		cinematic.play("gehenna_nuke")
 #else
 		var/datum/hud/cinematic/cinematic = new
 		for (var/client/C in clients)

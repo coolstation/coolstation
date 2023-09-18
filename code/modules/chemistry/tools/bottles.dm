@@ -12,7 +12,8 @@
 	initial_volume = 30
 	var/image/fluid_image
 	var/bottle_style = null
-	rc_flags = RC_FULLNESS | RC_VISIBLE | RC_SPECTRO
+	inventory_counter_enabled = TRUE
+	rc_flags = RC_FULLNESS | RC_VISIBLE | RC_SPECTRO | RC_INV_COUNT_AMT
 	amount_per_transfer_from_this = 10
 	flags = FPRINT | TABLEPASS | OPENCONTAINER | SUPPRESSATTACK
 
@@ -22,6 +23,7 @@
 		..()
 
 	on_reagent_change()
+		..()
 		if (!(src.icon_state in list("bottle1", "bottle2", "bottle3", "bottle4")))
 			return
 		src.underlays = null
@@ -65,6 +67,21 @@
 	bottle_style = "2"
 	amount_per_transfer_from_this = 5
 	initial_reagents = "saline"
+
+//no longer just in beakers
+/obj/item/reagent_containers/glass/bottle/brute
+	name = "bottle (styptic powder)"
+	desc = "A small bottle. Contains styptic powder - used to control bleeding and heal trauma."
+	bottle_style = "1"
+	amount_per_transfer_from_this = 10
+	initial_reagents = "styptic_powder"
+
+/obj/item/reagent_containers/glass/bottle/burn
+	name = "bottle (silver sulfadiazine)"
+	desc = "A small bottle. Contains silver sulfadiazine - used to heal burns."
+	bottle_style = "1"
+	amount_per_transfer_from_this = 10
+	initial_reagents = "silver_sulfadiazine"
 
 /obj/item/reagent_containers/glass/bottle/aspirin
 	name = "bottle (salicylic acid)"
@@ -213,6 +230,13 @@
 	bottle_style = "1"
 	amount_per_transfer_from_this = 5
 	initial_reagents = "antihistamine"
+
+/obj/item/reagent_containers/glass/bottle/spaceacillin
+	name = "bottle (spaceacillin)"
+	desc = "A small bottle of weak antibacterial agents."
+	bottle_style = "3"
+	amount_per_transfer_from_this = 5
+	initial_reagents = "spaceacillin"
 
 /obj/item/reagent_containers/glass/bottle/eyedrops
 	name = "bottle (oculine)"

@@ -60,10 +60,10 @@
 		return
 	ex_act(severity)
 		switch(severity)
-			if (1.0)
+			if (OLD_EX_SEVERITY_1)
 				src.dispose() // disposing upon being blown up unlike all those decorative rocks on cog2
 				return
-			if (2.0)
+			if (OLD_EX_SEVERITY_2)
 				if(prob(25))
 					src.dispose()
 					return
@@ -71,7 +71,7 @@
 				src.welded=false
 				src.updateIcon()
 				return
-			if (3.0)
+			if (OLD_EX_SEVERITY_3)
 				if(prob(50) && !src.welded)
 					src.open=true
 					src.updateIcon()
@@ -608,7 +608,7 @@
 				current_buffer = 0
 
 				user.drop_item()
-				pool(W)
+				qdel(W)
 
 				SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_DEFAULT_MSG, null)
 				flick("comp_money1", src)
@@ -618,7 +618,7 @@
 
 	proc/ejectmoney()
 		if (collected)
-			var/obj/item/spacecash/S = unpool(/obj/item/spacecash)
+			var/obj/item/spacecash/S = new()
 			S.setup(get_turf(src), collected)
 			collected = 0
 			tooltip_rebuild = 1
@@ -641,7 +641,7 @@
 
 	disposing()
 		if(air_contents)
-			pool(air_contents)
+			qdel(air_contents)
 			air_contents = null
 		trunk = null
 		..()
@@ -652,12 +652,12 @@
 				trunk = locate() in src.loc
 				if(trunk)
 					trunk.linked = src
-					air_contents = unpool(/datum/gas_mixture)
+					air_contents = new()
 			else if (src.level == 2) //loose
 				if (trunk) //ZeWaka: Fix for null.linked
 					trunk.linked = null
 				if(air_contents)
-					pool(air_contents)
+					qdel(air_contents)
 				air_contents = null
 				trunk = null
 			return 1
@@ -675,7 +675,7 @@
 	proc/flushit()
 		if(!trunk) return
 		LIGHT_UP_HOUSING
-		var/obj/disposalholder/H = unpool(/obj/disposalholder)
+		var/obj/disposalholder/H = new()
 
 		H.init(src)
 
@@ -700,7 +700,7 @@
 			AM?.throw_at(target, 5, 1)
 
 		H.vent_gas(loc)
-		pool(H)
+		qdel(H)
 
 /obj/item/mechanics/thprint
 	name = "Thermal printer"
@@ -1745,7 +1745,7 @@
 	var/range = 0
 
 	var/noise_enabled = true
-	var/frequency = 1419
+	var/frequency = FREQ_WLNET
 	var/datum/radio_frequency/radio_connection
 
 	get_desc()

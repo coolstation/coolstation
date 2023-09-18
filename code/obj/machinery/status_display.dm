@@ -37,7 +37,7 @@
 // 	var/lastdisplayline1 = ""		// the cached last displays
 // 	var/lastdisplayline2 = ""
 
-// 	var/frequency = 1435		// radio frequency
+// 	var/frequency = FREQ_STATUS		// radio frequency
 
 // 	var/display_type = 0		// bitmask of messages types to display: 0=normal  1=supply shuttle  2=reseach stn destruct
 
@@ -404,7 +404,7 @@
 
 
 		if(pixel_y == 0 && pixel_x == 0)
-			if (map_settings.walls ==/turf/simulated/wall/auto/jen)
+			if (map_settings.walls ==/turf/wall/auto/jen)
 				pixel_y = 32
 			else
 				pixel_y = 29

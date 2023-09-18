@@ -11,7 +11,7 @@
 	var/lock = 0
 	var/admin_override = 0
 	var/signal_intro = 'sound/misc/sleeper_agent_hello.ogg'
-	var/frequency = 1459
+	var/frequency = R_FREQ_DEFAULT //this was already 1459 so i figured,
 	var/sound_channel = 174
 	var/list/numbers = list(0,0,0,0,0,0)
 	var/list/listeners = null

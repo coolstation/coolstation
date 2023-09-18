@@ -553,25 +553,7 @@
 	return 1
 
 
-/turf/simulated/floor/grab_smash(obj/item/grab/G as obj, mob/user as mob)
-	var/mob/M = G.affecting
-
-	if  (!(ismob(G.affecting)))
-		return 0
-
-	if (get_dist(src, M) > 1)
-		return 0
-
-	if (!G.can_pin)
-		return 0
-
-	if (isliving(G.affecting))
-		G.affecting:was_harmed(G.assailant)
-
-	actions.start(new/datum/action/bar/icon/pin_target(G.affecting, G, src), G.assailant)
-	attack_particle(user,src)
-
-/turf/unsimulated/floor/grab_smash(obj/item/grab/G as obj, mob/user as mob)
+/turf/floor/grab_smash(obj/item/grab/G as obj, mob/user as mob)
 	var/mob/M = G.affecting
 
 	if  (!(ismob(G.affecting)))
@@ -643,7 +625,7 @@
 		for (var/obj/item/clothing/C in clothing)
 			if (C.c_flags & (COVERSMOUTH | MASKINTERNALS))
 				for (var/mob/O in AIviewers(src.assailant, null))
-					O.show_message("<span class='alert'>[src.assailant] fails to choke [src.affecting] with [src.loc] because their [C] is in the way!</span>", 1)
+					O.show_message("<span class='alert'>[src.assailant] fails to choke [src.affecting] with [src.loc] because [his_or_her(affecting)] [C] is in the way!</span>", 1)
 				return 0
 
 		..(msg_overridden = 1)

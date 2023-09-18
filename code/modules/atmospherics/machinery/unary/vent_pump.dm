@@ -4,10 +4,11 @@
 	name = "Air Vent"
 	desc = "Has a valve and pump attached to it"
 	level = 1
-	plane = PLANE_FLOOR
+	plane = PLANE_NOSHADOW_BELOW
+	layer = PIPE_MACHINE_LAYER
 	var/on = 1
 	var/pump_direction = 1 //0 = siphoning, 1 = releasing
-	var/external_pressure_bound = ONE_ATMOSPHERE + 20
+	var/external_pressure_bound = ONE_ATMOSPHERE + 40
 	var/internal_pressure_bound = 0
 	var/pressure_checks = 1
 	//1: Do not pass external_pressure_bound
@@ -25,7 +26,7 @@
 
 	security
 		name = "Air Vent (Security)"
-		frequency = 1274
+		frequency = FREQ_ATMOS_SEC
 
 		north
 			dir = NORTH
@@ -67,7 +68,7 @@
 
 		security
 			name = "High-Volume Air Vent (Security)"
-			frequency = 1274
+			frequency = FREQ_ATMOS_SEC
 
 			north
 				dir = NORTH
@@ -86,11 +87,11 @@
 	update_icon()
 		if(on&&node)
 			if(pump_direction)
-				icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]out"
+				icon_state = "[level == 1 && issimulatedturf(loc) ? "h" : "" ]out"
 			else
-				icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
+				icon_state = "[level == 1 && issimulatedturf(loc) ? "h" : "" ]in"
 		else
-			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
+			icon_state = "[level == 1 && issimulatedturf(loc) ? "h" : "" ]off"
 			on = 0
 
 		return
@@ -242,10 +243,10 @@
 	hide(var/i) //to make the little pipe section invisible, the icon changes.
 		if(on&&node)
 			if(pump_direction)
-				icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]out"
+				icon_state = "[i == 1 && issimulatedturf(loc) ? "h" : "" ]out"
 			else
-				icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
+				icon_state = "[i == 1 && issimulatedturf(loc) ? "h" : "" ]in"
 		else
-			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
+			icon_state = "[i == 1 && issimulatedturf(loc) ? "h" : "" ]off"
 			on = 0
 		return

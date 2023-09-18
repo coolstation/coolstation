@@ -398,7 +398,7 @@
 			PreloadedIcon='icons/effects/LghtLine.dmi')
 
 		for(var/obj/O in affected)
-			SPAWN_DBG(0.6 SECONDS) pool(O)
+			SPAWN_DBG(0.6 SECONDS) qdel(O)
 
 		if(isliving(target)) //Probably unsafe.
 			target:TakeDamage("chest", 0, 20)

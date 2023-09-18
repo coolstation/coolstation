@@ -278,3 +278,21 @@
 #define COMSIG_AREA_DEACTIVATED "area_deactivated"
 
 #define COMSIG_SUSSY_PHRASE "sussy"
+
+// ---- transit vehicle signals ----
+/// vehicle arrives at a stop (sent after turfs & contents transfer but before arrive()/sleeps happen, which means that certain vars *aren't yet updated* by the time this procs)
+#define COMSIG_TRANSIT_VEHICLE_MOVED "transit_arrives"
+/// vehicle goes off of in_transit and is ready to move again (this one's after those vars get updated)
+#define COMSIG_TRANSIT_VEHICLE_READY "transit_ready"
+
+// ---- broadcasting signals ----
+//Uncomment these as you need them
+
+/// broadcast has (re)started from being inactive
+//#define COMSIG_BROADCAST_STARTED "broadcast_start"
+/// broadcast has reached the end of its message list and is looping around
+//#define COMSIG_BROADCAST_LOOPED "broadcast_loop"
+/// broadcast has reached 0 loops
+//#define COMSIG_BROADCAST_ENDED "broadcast_end"
+/// broadcast has stopped, possibly prematurely
+//#define COMSIG_BROADCAST_STOPPED "broadcast_stop"

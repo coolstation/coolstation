@@ -796,7 +796,7 @@ toxic - poisons
 				if(istype(hit, /obj/machinery/door))
 					var/obj/machinery/door/D = hit
 					if(!D.cant_emag)
-						D.take_damage(D.health) //fuck up doors without needing ex_act(1)
+						D.take_damage(D.health) //fuck up doors without needing ex_act(OLD_EX_TOTAL)
 
 				else if(istype(hit, /obj/window))
 					var/obj/window/W = hit
@@ -807,7 +807,7 @@ toxic - poisons
 
 			if(hit && isturf(hit))
 				T.throw_shrapnel(T, 1, 1)
-				T.ex_act(2)
+				T.ex_act(OLD_EX_HEAVY)
 
 
 
@@ -849,7 +849,7 @@ toxic - poisons
 			if(istype(hit , /obj/machinery/door))
 				var/obj/machinery/door/D = hit
 				if(!D.cant_emag)
-					D.take_damage(D.health/2) //fuck up doors without needing ex_act(1)
+					D.take_damage(D.health/2) //fuck up doors without needing ex_act(OLD_EX_TOTAL)
 			explosion_new(null, get_turf(hit), 4, 1.75)
 
 	plasma_orb
@@ -1469,3 +1469,30 @@ toxic - poisons
 	max_range = 15
 	dissipation_rate = 0
 	ie_type = null
+
+/datum/projectile/bullet/dueling //Where the magic of dueling happens
+	name = "dueling round"
+	sname = "dueling round"
+
+	dissipation_delay = 20 //Basically you can shoot at one another anywhere on screen I guess
+	power = 450 //die
+	ks_ratio = 1 //die
+	damage_type = D_KINETIC
+	hit_type = DAMAGE_BLUNT //Don't want non-duelists to bleed profusely
+
+	//Do 5 damage to non-duelists and full damage to duelists
+	get_power(obj/projectile/P, atom/A)
+		if (ismob(A))
+			var/mob/victim = A
+			if (victim.find_type_in_hand(/obj/item/gun/kinetic/dueling_pistol) || GET_COOLDOWN(victim, "duel_anticheat"))
+				return ..()
+		return 5
+
+	///Dueling victims also get to bleed out dramatically
+	on_hit(atom/hit, direction, obj/projectile/P)
+		if (ismob(hit))
+			var/mob/victim = hit
+			if (victim.find_type_in_hand(/obj/item/gun/kinetic/dueling_pistol) || GET_COOLDOWN(victim, "duel_anticheat"))
+				take_bleeding_damage(hit, null, 200, DAMAGE_STAB) // oh god no why was the first var set to src what was I thinking
+		..()
+

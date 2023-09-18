@@ -68,7 +68,7 @@ var/global/datum/ircbot/ircbot = new /datum/ircbot()
 						src.load()
 				return "queued"
 			else
-				if (config.env == "dev" || !apikey) // If we have no API key, why even bother
+				if (!apikey) // If we have no API key, why even bother
 					return 0
 
 				args = (args == null ? list() : args)
@@ -154,7 +154,7 @@ var/global/datum/ircbot/ircbot = new /datum/ircbot()
 			return 1
 
 
-/client/proc/toggleIrcbotDebug()
+/client/proc/toggle_ircbot_debug()
 	set name = "Toggle IRCBot Debug"
 	set desc = "Enables in-depth logging of all IRC Bot exports and returns"
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)

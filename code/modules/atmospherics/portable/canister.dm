@@ -58,6 +58,11 @@
 	name = "Canister: \[O2\]"
 	icon_state = "blue"
 	casecolor = "blue"
+/obj/machinery/portable_atmospherics/canister/oxygen_agent_b
+	name = "Canister: \[Agent B\]"
+	icon_state = "bluish"
+	casecolor = "bluish"
+	volume = 500
 /obj/machinery/portable_atmospherics/canister/toxins
 	name = "Canister \[Plasma\]"
 	icon_state = "orange"
@@ -88,8 +93,6 @@
 	casecolor = "green"
 
 /obj/machinery/portable_atmospherics/canister/farts/filled
-	filled = 1.069
-
 	New()
 		..()
 		src.air_contents.farts = (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
@@ -257,6 +260,8 @@
 								theAPC.updateicon()
 								theAPC.update()
 
+
+
 			else if (src.det.part_fs.time < 10 && src.det.part_fs.time > 7)  //EXPLOSION IMMINENT
 				src.add_simple_light("canister", list(1 * 255, 0.03 * 255, 0.03 * 255, 0.6 * 255))
 				src.visible_message("<span class='alert'>[src] flashes and sparks wildly!</span>")
@@ -321,7 +326,7 @@
 					W.smash()
 
 				for(var/obj/displaycase/D in range(4,T))
-					D.ex_act(1)
+					D.ex_act(OLD_EX_TOTAL)
 
 				for(var/obj/item/reagent_containers/glass/G in range(4,T))
 					G.smash()
@@ -727,6 +732,16 @@
 	..()
 
 	var/datum/gas/sleeping_agent/trace_gas = air_contents.get_or_add_trace_gas_by_type(/datum/gas/sleeping_agent)
+	trace_gas.moles = (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
+
+	src.update_icon()
+	return 1
+
+/obj/machinery/portable_atmospherics/canister/oxygen_agent_b/New()
+
+	..()
+
+	var/datum/gas/oxygen_agent_b/trace_gas = air_contents.get_or_add_trace_gas_by_type(/datum/gas/oxygen_agent_b)
 	trace_gas.moles = (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
 
 	src.update_icon()

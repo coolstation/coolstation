@@ -211,6 +211,11 @@ To remove:
 #define PROP_BREATHLESS(x) x("breathless", APPLY_MOB_PROPERTY_SIMPLE, REMOVE_MOB_PROPERTY_SIMPLE)
 #define PROP_ENCHANT_ARMOR(x) x("enchant_armor", APPLY_MOB_PROPERTY_SUM, REMOVE_MOB_PROPERTY_SUM)
 #define PROP_STAMINA_REGEN_BONUS(x) x("stamina_regen", APPLY_MOB_PROPERTY_SUM, REMOVE_MOB_PROPERTY_SUM)
+//movement properties
+//Look I stole this from goon because swimming needs it, they made em atom instead of mob properties :v
+//Maybe we should too at some point
+#define PROP_ATOM_FLOATING(x) x("floating", APPLY_MOB_PROPERTY_SIMPLE, REMOVE_MOB_PROPERTY_SIMPLE)
+
 
 // In lieu of comments, these are the indexes used for list access in the macros below.
 #define MOB_PROPERTY_ACTIVE_VALUE 1

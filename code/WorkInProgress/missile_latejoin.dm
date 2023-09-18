@@ -24,7 +24,7 @@
 		src.ion_trail = new /datum/effects/system/ion_trail_follow()
 		src.ion_trail.set_up(src)
 		src.ion_trail.yoffset = 13
-
+/*
 	unpooled()
 		moved_on_flooring = 0
 		num_loops = 0
@@ -40,7 +40,7 @@
 		moved_on_flooring = 0
 		target = null
 		..()
-
+*/
 	//disposing()
 	//	ion_trail = null
 	//	passenger = null
@@ -125,7 +125,7 @@
 
 			var/area/AR = get_area(src)
 			var/turf/T = get_turf(src)
-			if (!src.target && istype(T, /turf/simulated/floor) && !AR.teleport_blocked && istype(AR, /area/station) && \
+			if (!src.target && istype(T, /turf/floor) && issimulatedturf(T) && !AR.teleport_blocked && istype(AR, /area/station) && \
 					!istype(AR, /area/station/solar) && !T.density && T.z == 1)
 				var/ok = TRUE
 				for(var/atom/A in T)
@@ -139,7 +139,7 @@
 			if(T.z != 1)
 				src.z = 1
 
-		pool(src)
+		qdel(src)
 
 	proc/reset_to_random_pos()
 		src.reset_to_aim_at(locate(rand(1, world.maxx), rand(1, world.maxy), 1))
@@ -152,7 +152,7 @@
 		src.loc = start
 
 proc/launch_with_missile(atom/movable/thing, turf/target)
-	var/obj/arrival_missile/missile = unpool(/obj/arrival_missile)
+	var/obj/arrival_missile/missile = new()
 	if(!target)
 		missile.reset_to_random_pos()
 	else
@@ -162,7 +162,7 @@ proc/launch_with_missile(atom/movable/thing, turf/target)
 	return missile
 
 proc/latejoin_missile_spawn(var/mob/character)
-	var/obj/arrival_missile/M = unpool(/obj/arrival_missile)
+	var/obj/arrival_missile/M = new()
 	var/turf/T = pick_landmark(LANDMARK_LATEJOIN_MISSILE)
 	var/missile_dir = landmarks[LANDMARK_LATEJOIN_MISSILE][T]
 	M.set_loc(T)

@@ -74,11 +74,11 @@ datum
 			overdose = 20
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
 			value = 5
-
+/*
 			pooled()
 				..()
 				counter = 1
-
+*/
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -126,11 +126,11 @@ datum
 			overdose = 20
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
 			value = 5
-
+/*
 			pooled()
 				..()
 				counter = 1
-
+*/
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -161,6 +161,70 @@ datum
 
 				..()
 				return
+
+
+		medical/bonerjuice //probably moving this to medical
+			name = "siladenafil"
+			id = "bonerjuice"
+			description = "a medication developed to treat angina but it isn't really any good at that so whatever"
+			fluid_r = 90
+			fluid_g = 140
+			fluid_b = 200
+			transparency = 100
+			addiction_prob = 20
+			overdose = 35
+
+			on_mob_life(var/mob/living/M, var/mult = 1)
+				if (prob(5))
+					M.emote("flex")
+				if (prob(5))
+					M.emote("smile")
+				if (prob(10))
+					if(!holder || !holder.my_atom || istype(holder.my_atom, /turf) || (holder.my_atom.flags & IS_BONER_SCALED))
+						return
+					holder.my_atom.SafeScale(1,1.125)
+					holder.my_atom.flags |= IS_BONER_SCALED
+					M.visible_message("<span class='alert'>[M] seems taller, somehow!</span>")
+				..()
+				//maybe something else to do with skeletons idk
+
+			do_overdose(var/severity, var/mob/living/M, var/mult = 1)
+				if(!M) M = holder.my_atom
+
+				if (prob(5))
+					boutput(M, "<span class='alert'>You feel like you should probably consult a doctor!</span>")
+					//M.blood_volume += 20 //blood pressure is fake but i don't know if boner pills overdose = free blood might be too robust (u be the judge)
+					//update: just thought of a vampire stuffing someone full of boner pills prior to biting but also tripping on all the horrible drugs that come with it and i'm thinking "Yes"
+
+				//so for now! copied from mild hypertension effects
+				if (prob(2))
+					var/msg = pick("You feel kinda sweaty",\
+					"You can feel your heart beat loudly in your chest",\
+					"Your head hurts")
+					boutput(M, "<span class='alert'>[msg].</span>")
+					M.playsound_local(M.loc, 'sound/effects/heartbeat.ogg', 50, 1)
+				if (prob(1))
+					M.losebreath += (1 * mult)
+				if (prob(1))
+					M.emote("gasp")
+				if (prob(1) && prob(10))
+					M.contract_disease(/datum/ailment/malady/heartdisease,null,null,1)
+				if (prob(5))
+					if(prob(95))
+						fake_attackEx(M, 'icons/mob/human.dmi', "skeleton", (pick("skeleton", "skellington", "boner", "revenge of boner", "regret", "not sure what you expected")))
+					else
+						fake_attackEx(M, 'icons/obj/vehicles.dmi', "sex", "sex garfield")
+				return
+
+			on_remove()
+				if(!holder || !holder.my_atom  || istype(holder.my_atom, /turf) || !(holder.my_atom.flags & IS_BONER_SCALED))
+					return
+				holder.my_atom.SafeScale(1,1/1.125)
+				holder.my_atom.flags &= ~IS_BONER_SCALED
+				if(ismob(holder?.my_atom))
+					var/mob/M = holder.my_atom
+					M.changeStatus("weakened", 5 SECONDS) //flop
+					M.visible_message("<span class='alert'>[M] suddenly goes limp!</span>")
 
 		medical/cold_medicine
 			name = "robustissin"
@@ -320,7 +384,7 @@ datum
 				if(M.health > 20)
 					M.take_toxin_damage(5 * mult, 1)	//calomel doesn't damage organs.
 				if(probmult(6))
-					M.visible_message("<span class='alert'>[M] pukes all over \himself.</span>")
+					M.visible_message("<span class='alert'>[M] pukes all over [himself_or_herself(M)].</span>")
 					M.vomit()
 				if(probmult(4))
 					M.emote("piss")
@@ -720,18 +784,23 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_haloperidol", -5)
+					APPLY_MOB_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
+					M.change_misstep_chance(25)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_haloperidol")
+					REMOVE_MOB_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
 				return
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if(!M) M = holder.my_atom
 				M.jitteriness = max(M.jitteriness-50,0)
+				M.do_disorient(disorient = src.volume)
+				if(prob(20 + src.volume))
+					M.drowsyness = max(M.drowsyness, src.volume)
+					M.setStatus("weakened", max(M.getStatusDuration("weakened"), src.volume))
 				if (M.druggy > 0)
 					M.druggy -= 3
 					M.druggy = max(0, M.druggy)
@@ -764,7 +833,6 @@ datum
 						if(istype(virus.master,/datum/ailment/disease/space_madness) || istype(virus.master,/datum/ailment/disease/berserker))
 							M.cure_disease(virus)
 				if(prob(20)) M.take_brain_damage(1 * mult)
-				if(probmult(50)) M.drowsyness = max(M.drowsyness, 6)
 				if(probmult(10)) M.emote("drool")
 				..()
 				return
@@ -1076,10 +1144,10 @@ datum
 			value = 9 // 4c + 3c + 1c + 1c
 			var/remove_buff = 0
 			stun_resist = 15
-
+/*
 			pooled()
 				..()
-
+*/
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -1324,11 +1392,11 @@ datum
 			var/remove_buff = 0
 			var/total_misstep = 0
 			value = 18 // 5 4 5 3 1
-
+/*
 			pooled()
 				..()
 				remove_buff = 0
-
+*/
 			on_add()
 				if(istype(holder) && istype(holder.my_atom) && hascall(holder.my_atom,"add_stam_mod_max"))
 					remove_buff = holder.my_atom:add_stam_mod_max("atropine", -30)
@@ -1540,7 +1608,7 @@ datum
 				if(M.health > 25)
 					M.take_toxin_damage(1 * mult)
 				if(probmult(25))
-					M.visible_message("<span class='alert'>[M] pukes all over \himself!</span>")
+					M.visible_message("<span class='alert'>[M] pukes all over [himself_or_herself(M)]!</span>")
 					M.vomit()
 				if(probmult(5))
 					var/mob/living/L = M

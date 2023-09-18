@@ -100,7 +100,7 @@
 			if (!fake)
 				if (falling == 1)
 					if (prob(33) || isdead(target))
-						target.ex_act(3)
+						target.ex_act(OLD_EX_LIGHT)
 					else
 						random_brute_damage(target, 25, 1)
 				else

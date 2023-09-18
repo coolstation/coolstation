@@ -26,7 +26,7 @@
 
 		if (!made_reagents)
 			make_reagents()
-
+/*
 	unpooled()
 		..()
 		if(ispath(src.planttype))
@@ -38,8 +38,8 @@
 
 		if (!made_reagents)
 			make_reagents()
-
-	pooled()
+*/
+	disposing()
 		src.plantgenes = 0
 		src.made_reagents = 0
 		..()
@@ -50,7 +50,10 @@
 	attack(mob/M as mob, mob/user as mob, def_zone)
 		if (src.edible == 0)
 			if (user == M)
-				boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
+				if (user.traitHolder.hasTrait("greedy_beast"))
+					boutput(user, "<span class='alert'>Even you have to slice this thing! Of course, it's less about manners and more about physics.</span>")
+				else
+					boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
 				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
 			else
 				user.visible_message("<span class='alert'><b>[user]</b> futilely attempts to shove [src] into [M]'s mouth!</span>")
@@ -73,7 +76,7 @@
 			if (ispath(src.planttype))
 				src.planttype = new src.planttype(src)
 			else
-				pool(src)
+				qdel(src)
 				return
 
 	/* For potential festivities! */
@@ -108,7 +111,7 @@
 		var/obj/decal/cleanable/tomatosplat/splat = new /obj/decal/cleanable/tomatosplat(T)
 		if(istype(splat) && src.reagents)
 			src.reagents.trans_to(splat,5) //could be deleted immediately
-		pool(src)
+		qdel(src)
 
 /obj/item/reagent_containers/food/snacks/plant/tomato/incendiary
 	name = "tomato"
@@ -131,7 +134,7 @@
 		var/obj/decal/cleanable/tomatosplat/splat = new /obj/decal/cleanable/tomatosplat(T)
 		if(istype(splat) && src.reagents)
 			src.reagents.trans_to(splat,5) //could be deleted immediately
-		pool(src)
+		qdel(src)
 		//..()
 
 /obj/item/reagent_containers/food/snacks/plant/tomato/tomacco
@@ -178,7 +181,7 @@
 		flick("cornsplode", src)
 		SPAWN_DBG(1 SECOND)
 			new /obj/item/reagent_containers/food/snacks/popcorn(get_turf(src))
-			pool(src)
+			qdel(src)
 
 /obj/item/reagent_containers/food/snacks/plant/corn/clear
 	name = "clear corn cob"
@@ -279,7 +282,7 @@
 			if(DNA)
 				HYPpassplantgenes(DNA,PDNA)
 			qdel(W)
-			pool(src)
+			qdel(src)
 		else if (istype(W, /obj/item/axe) || istype(W, /obj/item/circular_saw) || istype(W, /obj/item/kitchen/utensil/knife) || istype(W, /obj/item/scalpel) || istype(W, /obj/item/sword) || istype(W,/obj/item/saw) || istype(W,/obj/item/knife/butcher) && !istype (src, /obj/item/reagent_containers/food/snacks/plant/orange/wedge))
 			if (istype (src, /obj/item/reagent_containers/food/snacks/plant/orange/wedge))
 				boutput(user, "<span class='alert'>You can't cut wedges into wedges! What kind of insanity is that!?</span>")
@@ -287,6 +290,7 @@
 			var/turf/T = get_turf(src)
 			user.visible_message("[user] cuts [src] into slices.", "You cut [src] into slices.")
 			var/makeslices = 6
+			var amount = src.reagents.total_volume / makeslices
 			while (makeslices > 0)
 				var/obj/item/reagent_containers/food/snacks/plant/orange/wedge/P = new(T)
 				P.name = "[src.name] wedge"
@@ -295,8 +299,11 @@
 				var/datum/plantgenes/PDNA = P.plantgenes
 				if(DNA)
 					HYPpassplantgenes(DNA,PDNA)
+				if(amount > 0)
+					P.reagents.remove_any(P.reagents.total_volume)
+					src.reagents.trans_to(P, amount)
 				makeslices -= 1
-			pool (src)
+			qdel(src)
 		..()
 
 /obj/item/reagent_containers/food/snacks/plant/orange/blood
@@ -316,6 +323,11 @@
 	make_reagents()
 		..()
 		reagents.add_reagent("juice_orange",5)
+
+/obj/item/reagent_containers/food/snacks/plant/orange/spawnable
+	make_reagents()
+		src.create_reagents(30)
+		reagents.add_reagent("juice_orange", 30)
 
 /obj/item/reagent_containers/food/snacks/plant/orange/clockwork
 	name = "clockwork orange"
@@ -388,7 +400,7 @@
 				if(DNA)
 					HYPpassplantgenes(DNA,PDNA)
 				makeslices -= 1
-			pool (src)
+			qdel(src)
 		..()
 
 /obj/item/reagent_containers/food/snacks/plant/grapefruit/wedge
@@ -449,7 +461,7 @@
 					src.reagents.trans_to(P, amount_per_slice)
 					P.reagents.inert = 0
 				makeslices -= 1
-			pool (src)
+			qdel(src)
 		..()
 
 /obj/item/reagent_containers/food/snacks/plant/melonslice/
@@ -500,7 +512,7 @@
 					src.reagents.trans_to(P, amount_per_slice)
 					P.reagents.inert = 0
 				makeslices -= 1
-			pool (src)
+			qdel(src)
 		..()
 
 	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
@@ -514,7 +526,7 @@
 				M.changeStatus("paralysis", 3 SECONDS)
 				M.changeStatus("stunned", 6 SECONDS)
 				M.take_brain_damage(15)
-			pool (src)
+			qdel(src)
 
 /obj/item/reagent_containers/food/snacks/plant/melonslice/george
 	name = "rainbow melon slice"
@@ -835,7 +847,7 @@
 			if(!W.amount) qdel(W)
 
 			// Consume apple
-			pool(src)
+			qdel(src)
 		else ..()
 
 /obj/item/reagent_containers/food/snacks/plant/apple/poison
@@ -886,14 +898,14 @@
 		if (src.icon_state == "banana")
 			M.visible_message("<span class='alert'>[M] eats [src] without peeling it. What a dumb beast!</span>")
 			M.take_toxin_damage(5)
-			pool (src)
+			qdel(src)
 		else
 			..()
 
 	attack_self(var/mob/user as mob)
 		if (src.icon_state == "banana")
 			if(user.bioHolder.HasEffect("clumsy") && prob(50))
-				user.visible_message("<span class='alert'><b>[user]</b> fumbles and pokes \himself in the eye with [src].</span>")
+				user.visible_message("<span class='alert'><b>[user]</b> fumbles and pokes [himself_or_herself(user)] in the eye with [src].</span>")
 				user.change_eye_blurry(5)
 				user.changeStatus("weakened", 3 SECONDS)
 				JOB_XP(user, "Clown", 2)
@@ -937,7 +949,7 @@
 			user.visible_message("[user] carefully and creatively carves [src].", "You carefully and creatively carve [src]. Spooky!")
 			var/obj/item/clothing/head/pumpkin/P = new /obj/item/clothing/head/pumpkin(user.loc)
 			P.name = "carved [src.name]"
-			pool (src)
+			qdel(src)
 
 /obj/item/reagent_containers/food/snacks/plant/pumpkin/summon
 	New()
@@ -960,7 +972,7 @@
 			W.icon = 'icons/misc/halloween.dmi'
 			W.icon_state = "flight[W:on]"
 			W.item_state = "pumpkin"
-			pool (src)
+			qdel(src)
 		else
 			..()
 
@@ -984,6 +996,7 @@
 			var/turf/T = get_turf(src)
 			user.visible_message("[user] cuts [src] into slices.", "You cut [src] into slices.")
 			var/makeslices = 6
+			var amount = src.reagents.total_volume / makeslices
 			while (makeslices > 0)
 				var/obj/item/reagent_containers/food/snacks/plant/lime/wedge/P = new(T)
 				P.name = "[src.name] wedge"
@@ -992,8 +1005,11 @@
 				var/datum/plantgenes/PDNA = P.plantgenes
 				if(DNA)
 					HYPpassplantgenes(DNA,PDNA)
+				if(amount > 0)
+					P.reagents.remove_any(P.reagents.total_volume)
+					src.reagents.trans_to(P, amount)
 				makeslices -= 1
-			pool (src)
+			qdel(src)
 		..()
 
 /obj/item/reagent_containers/food/snacks/plant/lime/wedge
@@ -1008,6 +1024,11 @@
 	make_reagents()
 		..()
 		reagents.add_reagent("juice_lime",5)
+
+/obj/item/reagent_containers/food/snacks/plant/lime/spawnable
+	make_reagents()
+		src.create_reagents(30)
+		reagents.add_reagent("juice_lime", 30)
 
 /obj/item/reagent_containers/food/snacks/plant/lemon/
 	name = "lemon"
@@ -1029,6 +1050,7 @@
 			var/turf/T = get_turf(src)
 			user.visible_message("[user] cuts [src] into slices.", "You cut [src] into slices.")
 			var/makeslices = 6
+			var amount = src.reagents.total_volume / makeslices
 			while (makeslices > 0)
 				var/obj/item/reagent_containers/food/snacks/plant/lemon/wedge/P = new(T)
 				P.name = "[src.name] wedge"
@@ -1036,8 +1058,11 @@
 				var/datum/plantgenes/PDNA = P.plantgenes
 				if(DNA)
 					HYPpassplantgenes(DNA,PDNA)
+				if(amount > 0)
+					P.reagents.remove_any(P.reagents.total_volume)
+					src.reagents.trans_to(P, amount)
 				makeslices -= 1
-			pool (src)
+			qdel(src)
 		..()
 
 /obj/item/reagent_containers/food/snacks/plant/lemon/wedge
@@ -1052,6 +1077,11 @@
 	make_reagents()
 		..()
 		reagents.add_reagent("juice_lemon",5)
+
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable
+	make_reagents()
+		src.create_reagents(30)
+		reagents.add_reagent("juice_lemon", 30)
 
 /obj/item/reagent_containers/food/snacks/plant/slurryfruit/
 	name = "slurrypod"
@@ -1099,7 +1129,7 @@
 			else if (src.icon_state == "potato-peeled")
 				user.visible_message("[user] chops up [src].", "You chop up [src].")
 				new /obj/item/reagent_containers/food/snacks/ingredient/chips(get_turf(src))
-				pool (src)
+				qdel(src)
 		else ..()
 	*/
 
@@ -1123,7 +1153,7 @@
 			else if (src.icon_state == "potato-peeled")
 				user.visible_message("[user] chops up [src].", "You chop up [src].")
 				new /obj/item/reagent_containers/food/snacks/ingredient/chips(get_turf(src))
-				pool (src)
+				qdel(src)
 				qdel(src)
 		var/obj/item/cable_coil/C = W
 		if (istype(C)) //kubius potato battery: creation operation
@@ -1153,6 +1183,8 @@
 	planttype = /datum/plant/veg/onion
 	food_color = "#FF9933"
 	food_effects = list("food_bad_breath")
+	flags = ONBELT | FPRINT | TABLEPASS | SUPPRESSATTACK
+	wear_image_icon = 'icons/mob/belt.dmi'
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/kitchen/utensil/knife) || istype(W,/obj/item/knife/butcher))
@@ -1168,9 +1200,15 @@
 				P.name = "[src.name] ring"
 				P.transform = src.transform
 
-			pool(src)
+			qdel(src)
 		else
 			..()
+
+	equipped(mob/user, slot)
+		if(user.mind.ckey && slot == SLOT_BELT)
+			user.unlock_medal("\"With It\"",1)
+		. = ..()
+
 
 /obj/item/reagent_containers/food/snacks/onion_slice
 	name = "onion ring"
@@ -1250,7 +1288,7 @@
 				HYPpassplantgenes(DNA,PDNA)
 			makeslices -= 1
 		new /obj/item/reagent_containers/food/drinks/coconut(T)
-		pool(src)
+		qdel(src)
 
 	proc/someone_landed_on_us(mob/living/L, datum/thrown_thing/thr)
 		src.UnregisterSignal(L, COMSIG_MOVABLE_THROW_END)
@@ -1314,7 +1352,7 @@
 				var/datum/plantgenes/PDNA = P.plantgenes
 				if(DNA)
 					HYPpassplantgenes(DNA,PDNA)
-			pool (src)
+			qdel(src)
 		..()
 
 /obj/item/reagent_containers/food/snacks/plant/pineappleslice

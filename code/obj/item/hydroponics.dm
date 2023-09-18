@@ -403,10 +403,10 @@
 			// 	S = new /obj/item/seed(src.loc,0)
 			// S.generic_seed_setup(selected)
 			if (selected.unique_seed)
-				S = unpool(selected.unique_seed)
+				S = new selected.unique_seed(src.loc)
 				S.set_loc(src.loc)
 			else
-				S = unpool(/obj/item/seed)
+				S = new(src.loc)
 				S.set_loc(src.loc)
 				S.removecolor()
 			S.generic_seed_setup(selected)
@@ -604,7 +604,8 @@
 	amount_per_transfer_from_this = 50
 	w_class = W_CLASS_NORMAL
 	incompatible_with_chem_dispensers = 1
-	rc_flags = RC_SCALE
+	inventory_counter_enabled = TRUE
+	rc_flags = RC_SCALE | RC_INV_COUNT_AMT
 	initial_volume = 250
 	initial_reagents = list("saltpetre"=50, "ammonia"=50, "potash"=50, "poo"=50, "space_fungus"=50)
 

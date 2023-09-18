@@ -349,7 +349,7 @@
 
 
 	proc/remove_thrall(var/mob/victim)
-		remove_mindslave_status(victim)
+		remove_insurgent_status(victim)
 		thralls -= victim
 
 	proc/make_thrall(var/mob/victim)
@@ -408,7 +408,7 @@
 				VZ.master = src
 
 			boutput(M, __red("<b>You awaken filled with purpose - you must serve your master vampire, [owner.real_name]!</B>"))
-			SHOW_MINDSLAVE_TIPS(M)
+			SHOW_INSURGENT_TIPS(M)
 
 			boutput(owner, __blue("[M] has been revived as your thrall."))
 			logTheThing("combat", owner, M, "enthralled [constructTarget(M,"combat")] at [log_loc(owner)].")

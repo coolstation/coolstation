@@ -35,7 +35,7 @@
 			if (prob(50)) Vspread = locate(src.x + rand(-1,1),src.y,src.z)
 			else Vspread = locate(src.x,src.y + rand(-1, 1),src.z)
 			var/dogrowth = 1
-			if (!istype(Vspread, /turf/simulated/floor)) dogrowth = 0
+			if (!istype(Vspread, /turf/floor)) dogrowth = 0
 			for(var/obj/O in Vspread)
 				if (istype(O, /obj/window) || istype(O, /obj/forcefield) || istype(O, /obj/blob) || istype(O, /obj/spacevine) || istype(O, /obj/alien/weeds)) dogrowth = 0
 				if (istype(O, /obj/machinery/door/))
@@ -53,14 +53,14 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if (prob(50))
 					qdel(src)
 					return
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				if (prob(5))
 					qdel(src)
 					return

@@ -68,7 +68,7 @@
 	if (src.move_dir)
 		var/running = 0
 		var/mob/living/carbon/human/H = src
-		if ((keys & KEY_RUN) && H.get_stamina() > STAMINA_SPRINT && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
+		if ((keys & KEY_RUN) && H.get_stamina() > STAMINA_SPRINT && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT) && (H.health > -15))
 			running = 1
 		if (H.pushing && get_dir(H,H.pushing) != H.move_dir) //Stop pushing before calculating move_delay if we've changed direction
 			H.pushing = 0
@@ -166,7 +166,7 @@
 
 					if (!spacemove) // yes, this is dumb
 						// also fuck it.
-						var/obj/effects/ion_trails/I = unpool(/obj/effects/ion_trails)
+						var/obj/effects/ion_trails/I = new()
 						I.set_loc(src.loc)
 						I.set_dir(src.dir)
 						flick("ion_fade", I)
@@ -174,7 +174,7 @@
 						I.pixel_x = src.pixel_x
 						I.pixel_y = src.pixel_y
 						SPAWN_DBG( 20 )
-							if (I && !I.disposed) pool(I)
+							if (I && !I.disposed) qdel(I)
 
 				if (!spacemove) // buh
 					// if the gameticker doesn't exist yet just work with no cooldown

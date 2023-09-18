@@ -158,7 +158,7 @@
 		if (tables.len)
 			default_table = pick(tables)
 		else
-			default_table = locate(/turf/unsimulated/floor) in staging
+			default_table = locate(/turf/floor) in staging
 		for (var/i = 1, i <= mobcount, i++)
 			var/target = default_table
 			if (tables.len)

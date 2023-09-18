@@ -88,6 +88,7 @@
 			message_admins("<span class='internal'>[key_name(usr)] used Who and saw [whoAdmins.len] admins.</span>")
 
 /client/verb/adminwho()
+	set name = "Adminwho"
 	set category = "Commands"
 
 	var/adwnum = 0

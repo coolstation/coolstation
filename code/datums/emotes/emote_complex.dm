@@ -133,10 +133,12 @@
 		else if (user.r_hand)
 			thing = user.r_hand
 	if (thing)
+		animate_spin(thing, prob(50) ? "L" : "R", 1, 0)
+		/*
 		var/trans = thing.transform
 		animate(thing, transform = turn(trans, 120), time = 0.7, loop = 3, flags = ANIMATION_PARALLEL)
 		animate(transform = turn(trans, 240), time = 0.7, flags = ANIMATION_PARALLEL)
-		animate(transform = trans, time = 0.7, flags = ANIMATION_PARALLEL)
+		animate(transform = trans, time = 0.7, flags = ANIMATION_PARALLEL)*/
 		return list(thing.on_spin_emote(user), "<I>twirls [thing]</I>", MESSAGE_VISIBLE)
 	else
 		return list("<B>[user]</B> wiggles [his_or_her(user)] fingers a bit.[prob(10) ? " Weird." : null]", "<I>wiggles [his_or_her(user)] fingers a bit</I>", MESSAGE_VISIBLE)
@@ -403,6 +405,7 @@
 
 
 /datum/emote/deathgasp
+	possible_while_dead = TRUE
 /datum/emote/deathgasp/return_cooldown(mob/user, voluntary = 0)
 	return (voluntary ? 5 SECONDS : 0 SECONDS) //I *think* this replicates [if (!voluntary || user.emote_check(voluntary,50))]
 /datum/emote/deathgasp/enact(mob/user, voluntary = 0, param)
@@ -559,16 +562,23 @@
 					var/turf/terf = get_turf(user)
 					terf.fluid_react_single("miasma", 5, airborne = 1)
 					T.poops++
+					var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new()
+					shit.amount = user.poop_amount
+					T.add_contents(shit)
 				T.clogged += load
 				T.poops++
+				var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new()
+				shit.amount = user.poop_amount
+				T.add_contents(shit)
 				playsound(user, user.sound_fart, 50, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 				break
+			user.wiped = 0
+			user.cleanhands = 0
 		else
-			message = "<B>[src]</B> unzips [his_or_her(src)] pants but, try as [he_or_she(src)] might, [he_or_she(src)] can't shit!"
+			message = "<B>[user]</B> unzips [his_or_her(user)] pants but, try as [he_or_she(user)] might, [he_or_she(user)] can't shit!"
 	else if (user.poops < 1)
-		message = "<B>[src]</B> grunts for a moment. [prob(1)?"something":"nothing"] happens."
+		message = "<B>[user]</B> grunts for a moment. [prob(1)?"something":"nothing"] happens."
 	else
-		user.poops--
 
 		user.poop()
 	return list(message, "<I>grunts</I>", MESSAGE_AUDIBLE)
@@ -580,4 +590,51 @@
 	if (user.mind && (user.mind.assigned_role in list("Captain", "Head of Personnel", "Head of Security", "Security Officer", "Security Assistant", "Detective", "Vice Officer", "Regional Director", "Inspector")))
 		user.recite_miranda()
 
+/datum/emote/suicide
+/datum/emote/suicide/enact(mob/user, voluntary = 0, param)
+	user.do_suicide()
 
+/datum/emote/custom
+/datum/emote/custom/enact(mob/user, voluntary = 0, param)
+	if (IS_TWITCH_CONTROLLED(user)) return
+	var/m_type
+	var/input = sanitize(html_encode(input("Choose an emote to display.")))
+	var/input2 = input("Is this a visible or audible emote?") in list("Visible","Audible")
+	if (input2 == "Visible") m_type = MESSAGE_VISIBLE
+	else if (input2 == "Audible") m_type = MESSAGE_AUDIBLE
+	else
+		alert("Unable to use this emote, must be either audible or visible.")
+		return
+	phrase_log.log_phrase("emote", input)
+	return list("<B>[user]</B> [input]", "<I>[input]</I>", m_type, copytext(input, 1, 10))
+
+/datum/emote/customv //custom visible
+/datum/emote/customv/enact(mob/user, voluntary = 0, param)
+	if (IS_TWITCH_CONTROLLED(user)) return
+	if (!param)
+		param = input("Choose an emote to display.")
+		if(!param) return
+
+	param = sanitize(html_encode(param))
+	phrase_log.log_phrase("emote", param)
+	return list("<b>[user]</b> [param]","<I>[param]</I>",MESSAGE_VISIBLE,copytext(param, 1, 10))
+
+/datum/emote/customh //custom heard
+/datum/emote/customh/enact(mob/user, voluntary = 0, param)
+	if (IS_TWITCH_CONTROLLED(user)) return
+	if (!param)
+		param = input("Choose an emote to display.")
+		if(!param) return
+
+	param = sanitize(html_encode(param))
+	phrase_log.log_phrase("emote", param)
+	return list("<b>[user]</b> [param]","<I>[param]</I>",MESSAGE_AUDIBLE,copytext(param, 1, 10))
+
+/datum/emote/me //AFAIK this exists for me_verb
+/datum/emote/me/enact(mob/user, voluntary = 0, param)
+	if (IS_TWITCH_CONTROLLED(user)) return
+	if (!param)
+		return
+	param = sanitize(html_encode(param))
+	phrase_log.log_phrase("emote", param)
+	return list("<b>[user]</b> [param]","<I>[param]</I>",MESSAGE_VISIBLE,copytext(param, 1, 10))

@@ -447,10 +447,10 @@
 			card_name = "Injector Belt"
 			card_data = "The human equipped with this card can only be killed in battle by mobs with at least 20 higher ATK than its DEF."
 
-		mindslave
+		insurgent
 			card_type = GRIFFENING_TYPE_EQUIP
 			targeting = GRIFFENING_TARGET_OPPONENT_HUMAN
-			card_name = "Mindslave Implant"
+			card_name = "Insurgent Implant"
 			card_data = "This card can only be played if the player has a Traitor or Spy in play. Equip this card to an opponent's human to take control of it. If this card is destroyed, the controlled mob is returned to the opponent."
 
 		motivation
@@ -943,7 +943,7 @@
 
 		cargobay
 			card_name = "Cargo Bay"
-			card_data = "While Cargo Bay is in play, each player may draw one additional card for each Quartermaster in play on their side of the field."
+			card_data = "While Cargo Bay is in play, each player may draw one additional card for each cargo technician in play on their side of the field."
 			field_icon_state = "cargobay"
 
 		customs

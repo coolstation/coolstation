@@ -39,14 +39,14 @@
 
 	ex_act(severity)
 		switch(severity)
-			if (1.0)
+			if (OLD_EX_SEVERITY_1)
 				smash()
 				return
-			if (2.0)
+			if (OLD_EX_SEVERITY_2)
 				if (prob(50))
 					smash()
 					return
-			if (3.0)
+			if (OLD_EX_SEVERITY_3)
 				if (prob(5))
 					smash()
 					return
@@ -93,6 +93,14 @@
 		src.Scale(scale, scale)
 		src.set_dir(pick(NORTH, SOUTH, EAST, WEST))
 		reagents.add_reagent("ants",20)
+		if (isturf(src.loc))
+			for (var/obj/item/reagent_containers/food/snacks/snack in src.loc)
+				if (!snack.doants)
+					continue //they don't touch the stuff
+				if (src.reagents.total_volume >= 11) //we can lose up to half, and ants get everywhere
+					src.reagents.trans_to(snack,1) //fuck you eat the ants
+				else
+					break
 
 	get_desc(dist, mob/user)
 		return null
@@ -124,6 +132,12 @@
 		src.pixel_x = rand(-8,8)
 		src.pixel_y = rand(-8,8)
 		reagents.add_reagent("spiders", 5)
+		if (isturf(src.loc))
+			for (var/obj/item/reagent_containers/food/snacks/snack in src.loc)
+				if (src.reagents.total_volume >= 4) //up to two lucky winners
+					src.reagents.trans_to(snack,1)
+				else
+					break
 
 	get_desc(dist, mob/user)
 		return null
@@ -240,7 +254,7 @@
 	attackby(obj/W as obj, mob/user as mob)
 		if (has_tank)
 			if (iswrenchingtool(W))
-				user.show_text("You disconnect the bottle from [src].", "blue")
+				user.show_text("You disconnect the bottle from [src].", "blue", group = "[user]-watercooler_bottle")
 				var/obj/item/reagent_containers/food/drinks/P = new /obj/item/reagent_containers/food/drinks/coolerbottle(src.loc)
 				P.reagents.maximum_volume = max(P.reagents.maximum_volume, src.reagents.total_volume)
 				src.reagents.trans_to(P, reagents.total_volume)
@@ -249,7 +263,7 @@
 				src.update_icon()
 				return
 		else if (istype(W, /obj/item/reagent_containers/food/drinks/coolerbottle))
-			user.show_text("You connect the bottle to [src].", "blue")
+			user.show_text("You connect the bottle to [src].", "blue", group = "[user]-watercooler_bottle")
 			W.reagents.trans_to(src, W.reagents.total_volume)
 			user.u_equip(W)
 			qdel(W)
@@ -260,37 +274,36 @@
 		if (isscrewingtool(W))
 			if (src.anchored)
 				playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
-				user.show_text("You start unscrewing [src] from the floor.", "blue")
+				user.show_text("You start unscrewing [src] from the floor.", "blue", group = "[user]-(un)fasten_watercooler")
 				if (do_after(user, 3 SECONDS))
-					user.show_text("You unscrew [src] from the floor.", "blue")
+					user.show_text("You unscrew [src] from the floor.", "blue", group = "[user]-(un)fasten_watercooler")
 					src.anchored = 0
 					return
 			else
 				var/turf/T = get_turf(src)
 				if (istype(T, /turf/space))
-					user.show_text("What exactly are you gunna secure [src] to?", "red")
+					user.show_text("What exactly are you gunna secure [src] to?", "red", group = "[user]-(un)fasten_watercooler")
 					return
 				else
 					playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
-					user.show_text("You start securing [src] to [T].", "blue")
+					user.show_text("You start securing [src] to [T].", "blue", group = "[user]-(un)fasten_watercooler")
 					if (do_after(user, 3 SECONDS))
-						user.show_text("You secure [src] to [T].", "blue")
+						user.show_text("You secure [src] to [T].", "blue", group = "[user]-(un)fasten_watercooler")
 						src.anchored = 1
 						return
 		..()
 
 	attack_hand(mob/user as mob)
 		if (src.cup_amount <= 0)
-			user.show_text("\The [src] doesn't have any cups left, damnit.", "red")
+			user.show_text("\The [src] doesn't have any cups left, damnit.", "red", group = "[user]-watercooler_cup")
 			return
 		else
-			src.visible_message("<b>[user]</b> grabs a paper cup from [src].",\
-			"You grab a paper cup from [src].")
+			src.visible_message("<b>[user]</b> grabs [cup_amount == 1 ? "the last" : "a"] paper cup from [src].",\
+			"You grab [cup_amount == 1 ? "the last" : "a"] paper cup from [src].", group = "[user]-watercooler_cup")
 			src.cup_amount --
 			var/obj/item/reagent_containers/food/drinks/paper_cup/P = new /obj/item/reagent_containers/food/drinks/paper_cup(src)
 			user.put_in_hand_or_drop(P)
 			if (src.cup_amount <= 0)
-				user.show_text("That was the last cup!", "red")
 				src.update_icon()
 
 	piss
@@ -419,7 +432,7 @@
 			playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 30, 1)
 			user.u_equip(W)
 			W.dropped()
-			pool( W )
+			qdel( W )
 			return
 		else ..()
 
@@ -452,7 +465,7 @@
 					amount = 15
 				playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 30, 1)
 				src.reagents.add_reagent("poo", amount)
-				pool( P )
+				qdel( P )
 				sleep(0.3 SECONDS)
 			boutput(user, "<span class='notice'>You finish stuffing [O] into [src]!</span>")
 		else ..()
@@ -502,7 +515,7 @@
 			if (load)
 				user.u_equip(W)
 				W.dropped()
-				pool(W)
+				qdel(W)
 				return
 			else  ..()
 		else ..()
@@ -528,7 +541,7 @@
 					break
 				if (src.brew(P))
 					amtload++
-					pool(P)
+					qdel(P)
 				else
 					continue
 			if (amtload)
@@ -547,7 +560,7 @@
 					user.show_text("You were interrupted!", "red")
 					break
 				if (src.brew(O))
-					pool(O)
+					qdel(O)
 				else
 					continue
 			user.visible_message("<span class='notice'><b>[user]</b> finishes stuffing items into [src].</span>",\

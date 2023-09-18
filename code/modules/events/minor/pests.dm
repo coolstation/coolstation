@@ -12,7 +12,10 @@
 		switch (type)
 			if (1)
 				while (spawnamount > 0)
-					new /obj/critter/roach(pestlandmark)
+					if(prob(50))
+						new /obj/critter/roach(pestlandmark)
+					else
+						new /obj/critter/roach/classic(pestlandmark)
 					spawnamount -= 1
 					LAGCHECK(LAG_LOW)
 			if (2)

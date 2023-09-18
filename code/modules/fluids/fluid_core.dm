@@ -15,7 +15,18 @@ var/list/ban_stacking_into_fluid = list( //ban these from producing fluid from a
 	"ash",\
 	"blackpowder",\
 	"leaves",\
+	"slime",\
+	"spiders",\
+	"ants",\
+	//"poo",\ // THIS IS WHAT WAS DOINIT.
+)
+
+var/list/stack_into_fluid_but_keep_the_cleanable_ok_thanks = list( //unlike above, empty out whatever reagents can be sampled, and then leave the cleanable
 	"poo",\
+	"vomit",\
+	"gvomit",\
+	"egg",\
+	"juice_tomato",\
 )
 
 ///////////////////
@@ -75,7 +86,7 @@ var/mutable_appearance/fluid_ma
 	var/touched_channel = 0
 
 	var/list/wall_overlay_images = 0 //overlay bits onto a wall to make the water look deep. This is a cache of those overlays.
-	//var/list/floated_atoms = 0 //list of atoms we triggered a float anim on (cleanup later on pool())
+	//var/list/floated_atoms = 0 //list of atoms we triggered a float anim on (cleanup later on disposing())
 
 	var/is_setup = 0
 	var/blocked_dirs = 0 //amount of cardinal directions that i was blocked by in last update(). Cache this to skip updates on 'inner' fluid tiles of a group
@@ -184,7 +195,7 @@ var/mutable_appearance/fluid_ma
 		my_depth_level = 0
 
 		..()
-
+/*
 	unpooled()
 
 		src.pooled = 0
@@ -196,7 +207,7 @@ var/mutable_appearance/fluid_ma
 		if (isturf(src.loc))
 			turf_remove_cleanup(src.loc)
 		..()
-
+*/
 	get_desc(dist, mob/user)
 		if (dist > 4)
 			return
@@ -310,9 +321,9 @@ var/mutable_appearance/fluid_ma
 
 		if (src.group)
 			if (!src.group.remove(src))
-				pool(src)
+				qdel(src)
 		else
-			pool(src)
+			qdel(src)
 
 		for(var/atom/A as anything in src.loc)
 			if (A && A.flags & FLUID_SUBMERGE)
@@ -384,7 +395,7 @@ var/mutable_appearance/fluid_ma
 				if(suc && src.group) //group went missing? ok im doin a check here lol
 					spawned_any = 1
 					src.icon_state = "15"
-					var/obj/fluid/F = unpool(/obj/fluid)
+					var/obj/fluid/F = new()
 					F.set_up(t,0)
 					if (!F || !src.group) continue //set_up may decide to remove F
 
@@ -581,7 +592,7 @@ var/mutable_appearance/fluid_ma
 		else
 			var/dirs = 0
 			for (var/dir in cardinal)
-				var/turf/simulated/T = get_step(src, dir)
+				var/turf/T = get_step(src, dir)
 				if (T && T.active_liquid && T.active_liquid.group == src.group)
 					dirs |= dir
 			icon_state = num2text(dirs)
@@ -632,7 +643,7 @@ var/mutable_appearance/fluid_ma
 		else
 			overlay = image('icons/obj/fluid.dmi', "blank")
 
-		var/over_obj = !(istype(src.loc, /turf/simulated/wall) || istype(src.loc,/turf/unsimulated/wall/)) //HEY HEY MBC THIS SMELLS THINK ABOUT IT LATER
+		var/over_obj = !(istype(src.loc, /turf/wall)) //HEY HEY MBC THIS SMELLS THINK ABOUT IT LATER
 		overlay.layer = over_obj ? 4 : src.layer
 		overlay.icon_state = "wall_[overlay_key]_[last_depth_level]"
 		overlay.pixel_x = pox

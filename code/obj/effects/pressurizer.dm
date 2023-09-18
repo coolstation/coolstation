@@ -10,7 +10,7 @@
 			qdel(src)
 
 	proc/do_pressurize()
-		var/turf/simulated/T = src.loc
+		var/turf/T = src.loc
 		if (!istype(T))
 			return
 

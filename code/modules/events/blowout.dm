@@ -2,8 +2,11 @@
 	name = "Radioactive Blowout"
 	required_elapsed_round_time = 40 MINUTES
 	var/space_color = "#ff4646"
+#ifdef MAP_OVERRIDE_GEHENNA
+	disabled = TRUE
+#endif
 
-	event_effect()
+	event_effect() //Mirror changes to blowout_gehenna where applicable. I made that separate cause the alternative was making this proc unreadable with #ifndefs
 		..()
 		var/timetoreachsec = rand(1,9)
 		var/timetoreach = rand(30,60)
@@ -17,6 +20,9 @@
 		siren.volume = 50 // wire note: lets not deafen players with an air raid siren
 		world << siren
 		command_alert("Extreme levels of radiation detected approaching the [station_or_ship()]. All personnel have [timetoreach].[timetoreachsec] seconds to enter a maintenance tunnel or radiation safezone. Maintenance doors have temporarily had their access requirements removed. This is not a test.", "Anomaly Alert")
+
+		var/datum/directed_broadcast/emergency/broadcast = new(station_name, "Radiation Storm", "[timetoreach] Seconds", "Seek shelter in maintenance corridors immediately. Interlocks have been released.")
+		broadcast_controls.broadcast_start(broadcast, TRUE, -1, 1)
 
 		SPAWN_DBG(0)
 			for_by_tcl(A, /obj/machinery/door/airlock)
@@ -41,7 +47,7 @@
 						A.irradiated = TRUE
 						A.icon_state = "blowout"
 					for (var/turf/T in A)
-						if (rand(0,1000) < 5 && istype(T,/turf/simulated/floor))
+						if (rand(0,1000) < 5 && istype(T,/turf/floor))
 							Artifact_Spawn(T)
 
 			siren.repeat = FALSE
@@ -87,6 +93,9 @@
 					A.irradiated = FALSE
 				A.icon_state = null
 			blowout = FALSE
+
+			broadcast_controls.broadcast_stop(broadcast)
+			qdel(broadcast)
 
 			command_alert("All radiation alerts onboard [station_name(1)] have been cleared. You may now leave the tunnels freely. Maintenance doors will regain their normal access requirements shortly.", "All Clear")
 

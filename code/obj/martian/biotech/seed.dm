@@ -58,7 +58,7 @@
   if(src.active)
     playsound(T, "sound/impact_sounds/Flesh_Stab_2.ogg", 60, 1)
     T.visible_message("<span style='game'>[src] is planted on [T].</span>")
-    //T = new /turf/simulated/martian/floor(T)
+    //T = new /turf/floor/setpieces/martian(T)
     new /obj/martianBiotech/structureSpawner(T, src.spawn_path)
     qdel(src)
 

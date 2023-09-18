@@ -18,7 +18,7 @@
 	var/list/datum/mind/traitors = list() // enemies assigned at round start
 	var/list/datum/mind/token_players = list() //players redeeming an antag token
 	var/list/datum/mind/Agimmicks = list() // admin assigned and certain gimmick enemies
-	var/list/datum/mind/former_antagonists = list() // For mindslaves and rogue cyborgs we'd want to show in the game over stats (Convair880).
+	var/list/datum/mind/former_antagonists = list() // For insurgents and rogue cyborgs we'd want to show in the game over stats (Convair880).
 
 	var/datum/game_mode/spy_theft/spy_market = 0	//In case any spies are spawned into a round that is NOT spy_theft, we need a place to hold their spy market.
 
@@ -81,9 +81,9 @@
 			else
 				traitor_name = "[traitor.key] (character destroyed)"
 
-			if (traitor.special_role == ROLE_MINDSLAVE)
-				stuff_to_output += "<B>[traitor_name] was a mindslave!</B>"
-				continue // Objectives are irrelevant for mindslaves and thralls.
+			if (traitor.special_role == ROLE_INSURGENT)
+				stuff_to_output += "<B>[traitor_name] was an insurgent!</B>"
+				continue // Objectives are irrelevant for insurgents and thralls.
 			else if (traitor.special_role == ROLE_VAMPTHRALL)
 				stuff_to_output += "<B>[traitor_name] was a vampire's thrall!</B>"
 				continue // Ditto.
@@ -140,14 +140,14 @@
 				if (traitor.special_role == ROLE_TRAITOR)
 					var/purchases = length(traitor.purchased_traitor_items)
 					var/surplus = length(traitor.traitor_crate_items)
-					stuff_to_output += "<b>They purchased [purchases <= 0 ? "nothing" : "[purchases] item[s_es(purchases)]"] with their [syndicate_currency]![purchases <= 0 ? " [pick("Wow", "Dang", "Gosh", "Good work", "Good job")]!" : null]</b>"
+					stuff_to_output += "<b>[he_or_she(traitor)] purchased [purchases <= 0 ? "nothing" : "[purchases] item[s_es(purchases)]"] with [his_or_her(traitor)] [syndicate_currency]![purchases <= 0 ? " [pick("Wow", "Dang", "Gosh", "Good work", "Good job")]!" : null]</b>"
 					if (purchases)
-						var/item_detail = "They purchased: "
+						var/item_detail = "[he_or_she(traitor)] purchased: "
 						for (var/i in traitor.purchased_traitor_items)
 							item_detail += "[bicon(i:item)] [i:name], "
 						item_detail = copytext(item_detail, 1, -2)
 						if (surplus)
-							item_detail += "<br>Their surplus crate contained: "
+							item_detail += "<br>[his_or_her(traitor)] surplus crate contained: "
 							for (var/i in traitor.traitor_crate_items)
 								item_detail += "[bicon(i:item)] [i:name], "
 							item_detail = copytext(item_detail, 1, -2)
@@ -156,12 +156,12 @@
 				if (traitor.special_role == ROLE_SPY_THIEF)
 					var/purchases = length(traitor.purchased_traitor_items)
 					var/stolen = length(traitor.spy_stolen_items)
-					stuff_to_output += "<b>They stole [stolen <= 0 ? "nothing" : "[stolen] items"]!</b>"
+					stuff_to_output += "<b>[he_or_she(traitor)] stole [stolen <= 0 ? "nothing" : "[stolen] items"]!</b>"
 					if (purchases)
 						var/stolen_detail = "Items Thieved: "
 						for (var/i in traitor.spy_stolen_items)
 							stolen_detail += "[i], "
-						var/rewarded_detail = "They Were Rewarded: "
+						var/rewarded_detail = "[he_or_she(traitor)] Were Rewarded: "
 						for (var/i in traitor.purchased_traitor_items)
 							rewarded_detail += "[bicon(i:item)] [i:name], "
 						rewarded_detail = copytext(rewarded_detail, 1, -2)
@@ -220,8 +220,8 @@
 
 			if (traitor.former_antagonist_roles.len)
 				for (var/string in traitor.former_antagonist_roles)
-					if (string == ROLE_MINDSLAVE)
-						stuff_to_output += "<B>[traitor_name] was a mindslave!</B>"
+					if (string == ROLE_INSURGENT)
+						stuff_to_output += "<B>[traitor_name] was an insurgent!</B>"
 					else if (string == ROLE_VAMPTHRALL)
 						stuff_to_output += "<B>[traitor_name] was a vampire's thrall!</B>"
 					else

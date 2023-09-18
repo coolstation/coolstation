@@ -40,7 +40,7 @@ datum/pathogeneffects
 	proc/infect_snap(var/mob/M as mob, var/datum/pathogen/origin, var/range = 5)
 		for (var/mob/I in view(range, M.loc))
 			if (I != M && ((isturf(I.loc) && isturf(M.loc) && can_line_airborne(get_turf(M), I, 5)) || I.loc == M.loc))
-				if(istype(M, /mob/living/carbon/human))
+				if(istype(I, /mob/living/carbon/human))
 					var/mob/living/carbon/human/H = I
 					if(prob(100-H.get_disease_protection()))
 						SPAWN_DBG(rand(0.5,2) SECONDS)
@@ -647,7 +647,7 @@ datum/pathogeneffects/malevolent/serious_paranoia
 
 	proc/floor_in_view(var/mob/M)
 		var/list/ret = list()
-		for (var/turf/simulated/floor/T in view(M, 7))
+		for (var/turf/floor/T in view(M, 7))
 			ret += T
 		return ret
 
@@ -1543,10 +1543,10 @@ datum/pathogeneffects/malevolent/seriouschills
 	rarity = RARITY_RARE
 
 	proc/create_icing(var/mob/M)
-		var/obj/decal/icefloor/I = unpool(/obj/decal/icefloor)
+		var/obj/decal/icefloor/I = new()
 		I.set_loc(get_turf(M))
 		SPAWN_DBG(30 SECONDS)
-			pool(I)
+			qdel(I)
 
 	disease_act(var/mob/M as mob, var/datum/pathogen/origin)
 		if (!origin.symptomatic)
@@ -1730,7 +1730,7 @@ datum/pathogeneffects/malevolent/farts/plasma
 	fart(var/mob/M, var/datum/pathogen/origin, var/voluntary)
 		..()
 		var/turf/T = get_turf(M)
-		var/datum/gas_mixture/gas = unpool(/datum/gas_mixture)
+		var/datum/gas_mixture/gas = new()
 		gas.zero()
 		gas.toxins = origin.stage * (voluntary ? 0.6 : 3) // only a fifth for voluntary farts
 		gas.temperature = T20C
@@ -1759,7 +1759,7 @@ datum/pathogeneffects/malevolent/farts/co2
 	fart(var/mob/M, var/datum/pathogen/origin, var/voluntary)
 		..()
 		var/turf/T = get_turf(M)
-		var/datum/gas_mixture/gas = unpool(/datum/gas_mixture)
+		var/datum/gas_mixture/gas = new()
 		gas.zero()
 		gas.carbon_dioxide = origin.stage * (voluntary ? 1.4 : 7) // only a fifth for voluntary farts
 		gas.temperature = T20C
@@ -1792,7 +1792,7 @@ datum/pathogeneffects/malevolent/farts/o2
 	fart(var/mob/M, var/datum/pathogen/origin, var/voluntary)
 		..()
 		var/turf/T = get_turf(M)
-		var/datum/gas_mixture/gas = unpool(/datum/gas_mixture)
+		var/datum/gas_mixture/gas = new()
 		gas.zero()
 		gas.oxygen = origin.stage * (voluntary ? 20 : 2) // ten times as much for voluntary farts
 		gas.temperature = T20C

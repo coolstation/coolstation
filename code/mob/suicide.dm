@@ -20,7 +20,7 @@
 // cirr here, the amount of code duplication for suicides a) made me sad and b) ought to have been in a parent proc to allow this functionality for everyone anyway
 // the suiciding var is already at the mob level for fuck's sakes
 /mob/verb/suicide()
-
+	set name = "Suicide"
 	if ((!isliving(src) || isdead(src)) && !istype(src, /mob/dead/aieye) && !istype(src, /mob/zoldorf))
 		boutput(src, "You're already dead!")
 		return
@@ -48,8 +48,6 @@
 	if (!suicide_allowed)
 		boutput(src, "You find yourself unable to go through with killing yourself!")
 		return
-
-
 
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
 
@@ -163,7 +161,7 @@
 	src.mainframe.do_suicide()
 
 /mob/living/silicon/ai/do_suicide()
-	src.visible_message("<span class='alert'><b>[src] is powering down. It looks like \he's trying to commit suicide.</b></span>")
+	src.visible_message("<span class='alert'><b>[src] is powering down. It looks like [he_or_she(src)]'s trying to commit suicide.</b></span>")
 	src.unlock_medal("Damned", 1)
 	SPAWN_DBG(3 SECONDS)
 		src.death()
@@ -177,7 +175,7 @@
 		//src.visible_message("<span class='alert'><b>[src] has torn out its head!</b></span>")
 		//playsound(R.loc, "sound/impact_sounds/Machinery_Break_1.ogg", 40, 1)
 		/*
-		var/datum/effects/system/spark_spread/s = unpool(/datum/effects/system/spark_spread)
+		var/datum/effects/system/spark_spread/s = new()
 		s.set_up(5, 1, src)
 		s.start()
 		R.part_head.set_loc(src.loc)

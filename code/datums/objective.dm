@@ -25,7 +25,17 @@ ABSTRACT_TYPE(/datum/objective)
 	var/datum/mind/target
 	var/targetname
 
+	New(var/target_this_guy = null)
+		if(target_this_guy)
+			target = target_this_guy
+			target.current.mind.is_target = 1
+			create_objective_string(target)
+		..()
+
 	set_up()
+		if(target)
+			return target
+
 		var/list/possible_targets = list()
 
 		for(var/datum/mind/possible_target in ticker.minds)
@@ -499,7 +509,7 @@ proc/create_fluff(datum/mind/target)
 
 	set_up()
 		var/list/targets = list("Staff Assistant","Medical Doctor","Engineer","Security Officer",
-		"Geneticist","Scientist","Roboticist","Mechanic","Quartermaster","Miner","Botanist")
+		"Geneticist","Scientist","Roboticist","Mechanic","Electrician","Cargo Technician","Miner","Botanist")
 		target_job = pick(targets)
 		explanation_text = "Kill every [target_job] on the station. You do not need to kill yourself if you are a [target_job]."
 

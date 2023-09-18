@@ -147,9 +147,9 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 			pixel_x = rand(-6, 6)
 			pixel_y = rand(-6, 6)
 			if(prob(5) && limiter.canISpawn(/obj/effects/sparks))
-				var/obj/sparks = unpool(/obj/effects/sparks)
+				var/obj/sparks = new /obj/effects/sparks()
 				sparks.set_loc(src.loc)
-				SPAWN_DBG(2 SECONDS) if (sparks) pool(sparks)
+				SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 			return TRUE
 
 /obj/machinery/bot/guardbot/xmas
@@ -433,7 +433,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 // Throughout December the icon will change!
 /obj/xmastree
 	name = "Spacemas tree"
-	desc = "O Spacemas tree, O Spacemas tree, Much p- Huh, there's a note here with <a target='_blank' href='https://forum.ss13.co/showthread.php?tid=15478'>'https://forum.ss13.co/showthread.php?tid=15478'</a> written on it."
+	desc = "O Spacemas tree, O Spacemas tree, Much p-"
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "xmastree_2020"
 	anchored = 1
@@ -477,7 +477,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 			SPAWN_DBG(1 MINUTE)
 				if (src.on_fire)
 					src.visible_message("<span class='combat'>[src] burns down and collapses into a sad pile of ash. <b><i>Spacemas is ruined!!!</i></b></span>")
-					for (var/turf/simulated/floor/T in range(1,src))
+					for (var/turf/floor/T in range(1,src))
 						make_cleanable( /obj/decal/cleanable/ash,T)
 					modify_christmas_cheer(-33)
 					qdel(src)
@@ -514,7 +514,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 	New()
 		..()
 		SPAWN_DBG(rand(100,500))
-			if (src.loc && (istype(src.loc, /turf/simulated/floor/specialroom/freezer) || src.loc.loc.name == "Space" || src.loc.loc.name == "Ocean"))
+			if (src.loc && (istype(src.loc, /turf/floor/specialroom/freezer) || src.loc.loc.name == "Space" || src.loc.loc.name == "Ocean"))
 				src.visible_message("\The [src] vanishes into thin air, as its subatomic particles decay!")
 			else
 				src.visible_message("\The [src] melts!")
@@ -972,7 +972,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 						O.ex_act(attack_strength)
 			else if(isturf(AM))
 				var/turf/T = AM
-				if(T.density && istype(T,/turf/simulated/wall/))
+				if(T.density && istype(T,/turf/wall/))
 					for (var/mob/C in viewers(src))
 						shake_camera(C, 8, 16)
 						C.show_message("<span class='alert'><B>[src] [attack_text] on [T]!</B></span>", 1)
@@ -1038,7 +1038,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 				for (var/mob/living/X in range(src,1))
 					if (X == src)
 						continue
-					X.ex_act(3)
+					X.ex_act(OLD_EX_LIGHT)
 					playsound(X.loc, "fleshbr1.ogg", 50, 1, -1)
 				src.transforming = 0
 
@@ -1059,13 +1059,13 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 			if(!src.stat && !src.transforming)
 				for (var/mob/C in viewers(src))
 					shake_camera(C, 10, 64)
-					C.show_message("<span class='alert'><B>[src] stomps the ground with \his huge feet!</B></span>", 1)
+					C.show_message("<span class='alert'><B>[src] stomps the ground with [his_or_her(src)] huge feet!</B></span>", 1)
 				playsound(src.loc, "meteorimpact.ogg", 80, 1, 1, 0.6)
 				for (var/mob/living/M in view(src,2))
 					if (M == src)
 						continue
 					playsound(M.loc, "fleshbr1.ogg", 40, 1, -1)
-					M.ex_act(3)
+					M.ex_act(OLD_EX_LIGHT)
 				for (var/turf/T in range(src,3))
 					animate_shake(T,5,rand(3,8),rand(3,8))
 
@@ -1124,7 +1124,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 				for(var/obj/item/grab/G in src)
 					if(G.affecting == M)
 						return
-				src.visible_message("<span class='alert'><B>[src] snatches up [M] in \his huge claws!</B></span>")
+				src.visible_message("<span class='alert'><B>[src] snatches up [M] in [his_or_her(src)] huge claws!</B></span>")
 				var/obj/item/grab/G = new /obj/item/grab(src, src, M)
 				usr.put_in_hand_or_drop(G)
 				M.changeStatus("stunned", 1 SECOND)
@@ -1147,7 +1147,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 				if(ishuman(G.affecting))
 					src.verbs -= /mob/living/carbon/human/krampus/verb/krampus_crush
 					var/mob/living/carbon/human/H = G.affecting
-					src.visible_message("<span class='alert'><B>[src] begins squeezing [H] in \his hand!</B></span>")
+					src.visible_message("<span class='alert'><B>[src] begins squeezing [H] in [his_or_her(src)] hand!</B></span>")
 					H.set_loc(src.loc)
 					while (!isdead(H))
 						if (src.stat || src.transforming || get_dist(src,H) > 1)
@@ -1187,7 +1187,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 			for(var/obj/item/grab/G in src)
 				if(ishuman(G.affecting))
 					var/mob/living/carbon/human/H = G.affecting
-					src.visible_message("<span class='alert'><B>[src] raises [H] up to \his mouth! Oh shit!</B></span>")
+					src.visible_message("<span class='alert'><B>[src] raises [H] up to [his_or_her(src)] mouth! Oh shit!</B></span>")
 					H.set_loc(src.loc)
 					sleep(6 SECONDS)
 					if (src.stat || src.transforming || get_dist(src,H) > 1)

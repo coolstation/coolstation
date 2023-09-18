@@ -155,17 +155,17 @@
 				if (M.master)
 					var/mob/mymaster = whois_ckey_to_mob_reference(M.master)
 					if (mymaster) special = mymaster.real_name
-			if ("spyslave")
+			if ("spyrecruit")
 				if (M.master)
 					var/mob/mymaster = whois_ckey_to_mob_reference(M.master)
 					if (mymaster) special = mymaster.real_name
-			if (ROLE_MINDSLAVE)
+			if (ROLE_INSURGENT)
 				if (M.master)
 					var/mob/mymaster = whois_ckey_to_mob_reference(M.master)
 					if (mymaster) special = mymaster.real_name
 			if (ROLE_NUKEOP)
 				if (istype(ticker.mode, /datum/game_mode/nuclear))
-					special = syndicate_name()
+					special = syndicate_name_foss()
 					if (ticker.mode:nuke_detonated)
 						message["success"] = 1
 			if (ROLE_SPY_THIEF)

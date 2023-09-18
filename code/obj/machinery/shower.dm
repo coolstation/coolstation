@@ -21,6 +21,8 @@
 	New()
 		..()
 		src.create_reagents(320)
+		if (src.on)
+			SubscribeToProcess()
 
 	attack_ai(mob/user as mob)
 		. = attack_hand(user)
@@ -67,7 +69,7 @@
 				if (current_reagent.volume < 0.5)
 					src.reagents.del_reagent(current_reagent.id)
 
-			var/datum/effects/system/steam_spread/steam = unpool(/datum/effects/system/steam_spread)
+			var/datum/effects/system/steam_spread/steam = new()
 			steam.set_up(5, 0, get_turf(src))
 			steam.attach(src)
 			steam.start()

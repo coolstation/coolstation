@@ -53,6 +53,10 @@ var/global/mob/twitch_mob = 0
 #endif
 
 /world/proc/load_mode()
+#ifdef OVERRIDDEN_MODE
+	master_mode = OVERRIDDEN_MODE
+	logDiary("Mode was set from override: '[master_mode]'")
+#else
 	set background = 1
 	var/text = file2text("data/mode.txt")
 	if (text)
@@ -60,11 +64,14 @@ var/global/mob/twitch_mob = 0
 		if (lines[1])
 			master_mode = lines[1]
 			logDiary("Saved mode is '[master_mode]'")
+#endif
 
 /world/proc/save_mode(var/the_mode)
+#ifndef OVERRIDDEN_MODE
 	var/F = file("data/mode.txt")
 	fdel(F)
 	F << the_mode
+#endif
 
 /world/proc/load_intra_round_value(var/field) //Currently for solarium effects, could also be expanded to that pickle jar idea.
 	var/path = "data/intra_round.sav"
@@ -89,19 +96,19 @@ var/global/mob/twitch_mob = 0
 	join_motd = grabResource("html/motd.html")
 
 /world/proc/load_rules()
-	//rules = file2text("config/rules.html")
-	/*SPAWN_DBG(0)
-		rules = world.Export("http://wiki.ss13.co/api.php?action=parse&page=Rules&format=json")
+	rules = file2text("config/rules.html")
+	SPAWN_DBG(0)
+		rules = world.Export("https://wiki.coolstation.space/w/api.php?action=parse&page=Rules&format=json")
 		if(rules && rules["CONTENT"])
 			rules = json_decode(file2text(rules["CONTENT"]))
 			if(rules && rules["parse"] && rules["parse"]["text"] && rules["parse"]["text"]["*"])
 				rules = rules["parse"]["text"]["*"]
 			else
 				rules = "<html><head><title>Rules</title><body>There are no rules! Go nuts!</body></html>"
-		else*/
-	rules = {"<meta http-equiv="refresh" content="0; url=http://wiki.ss13.co/Rules">"}
-	//if (!rules)
-	//	rules = "<html><head><title>Rules</title><body>There are no rules! Go nuts!</body></html>"
+		else
+	//rules = {"<meta http-equiv="refresh" content="0; url=https://wiki.coolstation.space/wiki/Rules">"} //this was temporary workaround
+	if (!rules)
+		rules = "<html><head><title>Rules</title><body>There are no rules! Go nuts!</body></html>" //lol sure why not
 
 /world/proc/load_admins()
 	set background = 1
@@ -210,11 +217,25 @@ var/f_color_selector_handler/F_Color_Selector
 		var/datum/material/M = new mat()
 		material_cache.Add(M.mat_id)
 		material_cache[M.mat_id] = M
-	return
+
+#ifdef TRACY_PROFILER_HOOK
+/proc/prof_init()
+	var/lib
+	switch(world.system_type)
+		if(MS_WINDOWS) lib = "prof.dll"
+		if(UNIX) lib = "libprof.so"
+		else CRASH("unsupported platform")
+
+	var/init = call(lib, "init")()
+	if("0" != init) CRASH("[lib] init error: [init]")
+#endif
 
 //Called BEFORE the map loads. Useful for objects that require certain things be set during init
 /datum/preMapLoad
 	New()
+#ifdef TRACY_PROFILER_HOOK
+		prof_init()
+#endif
 		enable_auxtools_debugger()
 #ifdef REFERENCE_TRACKING
 		enable_reference_tracking()
@@ -315,6 +336,8 @@ var/f_color_selector_handler/F_Color_Selector
 		mining_controls = new /datum/mining_controller()
 		Z_LOG_DEBUG("Preload", "  emote_controls")
 		emote_controls = new /datum/emote_controller()
+		Z_LOG_DEBUG("Preload", "  broadcast_controls")
+		broadcast_controls = new /datum/broadcast_controller()
 		Z_LOG_DEBUG("Preload", "  score_tracker")
 		score_tracker = new /datum/score_tracker()
 		Z_LOG_DEBUG("Preload", "  actions")
@@ -486,6 +509,7 @@ var/f_color_selector_handler/F_Color_Selector
 	Z_LOG_DEBUG("World/Init", "Vox init")
 	init_vox()
 	init_hlvox()
+	init_pmvox()
 	if (load_intra_round_value("solarium_complete") == 1)
 		derelict_mode = 1
 		was_eaten = world.load_intra_round_value("somebody_ate_the_fucking_thing")
@@ -579,12 +603,12 @@ var/f_color_selector_handler/F_Color_Selector
 		bust_lights()
 		master_mode = "disaster" // heh pt. 2
 
-	UPDATE_TITLE_STATUS("Lighting up")
+	UPDATE_TITLE_STATUS("Lighting up 🚬")
 	Z_LOG_DEBUG("World/Init", "RobustLight2 init...")
 	RL_Start()
 
 	//SpyStructures and caches live here
-	UPDATE_TITLE_STATUS("Updating cache")
+	UPDATE_TITLE_STATUS("Updating cache 💰")
 	Z_LOG_DEBUG("World/Init", "Building various caches...")
 	build_chem_structure()
 	build_reagent_cache()
@@ -605,16 +629,16 @@ var/f_color_selector_handler/F_Color_Selector
 	build_qm_categories()
 
 	#if SKIP_Z5_SETUP == 0
-	UPDATE_TITLE_STATUS("Building mining level")
+	UPDATE_TITLE_STATUS("Building mining level 💣")
 	Z_LOG_DEBUG("World/Init", "Setting up mining level...")
 	makeMiningLevel()
 	#endif
 
-	UPDATE_TITLE_STATUS("Building random station rooms")
+	UPDATE_TITLE_STATUS("Building random station rooms 🎲")
 	Z_LOG_DEBUG("World/Init", "Setting up random rooms...")
 	buildRandomRooms()
 
-	UPDATE_TITLE_STATUS("Initializing biomes")
+	UPDATE_TITLE_STATUS("Initializing biomes 🌴")
 	Z_LOG_DEBUG("World/Init", "Setting up biomes...")
 	initialize_biomes()
 
@@ -655,6 +679,12 @@ var/f_color_selector_handler/F_Color_Selector
 	Z_LOG_DEBUG("World/Init", "Making Manta start moving...")
 	mantaSetMove(moving=1, doShake=0)
 #endif
+
+	//Please delete this once broadcasting code has been proven to work and integrated into shit
+	Z_LOG_DEBUG("World/Init", "Setting up a test transmission...")
+	broadcast_controls.broadcast_start(new /datum/directed_broadcast/testing)
+	//new /datum/directed_broadcast/testing_finite //this gets tracked it should be fine :)
+	broadcast_controls.broadcast_start(new /datum/directed_broadcast/testing_teevee)
 
 #ifdef TWITCH_BOT_ALLOWED
 	for (var/client/C)
@@ -750,14 +780,14 @@ var/f_color_selector_handler/F_Color_Selector
 #endif
 	shutdown()
 #endif
+	var/newround = 'sound/misc/NewRound.ogg'
+	if (prob(40))
+		newround = pick('sound/misc/NewRound2.ogg', 'sound/misc/NewRound3.ogg', 'sound/misc/NewRound4.ogg', 'sound/misc/NewRound5.ogg', 'sound/misc/NewRound6.ogg', 'sound/misc/TimeForANewRound.ogg')
 
 	SPAWN_DBG(world.tick_lag)
 		for (var/client/C)
 			if (C.mob)
-				if (prob(40))
-					C.mob << sound(pick('sound/misc/NewRound2.ogg', 'sound/misc/NewRound3.ogg', 'sound/misc/NewRound4.ogg', 'sound/misc/TimeForANewRound.ogg'))
-				else
-					C.mob << sound('sound/misc/NewRound.ogg')
+				C.mob << sound(newround)
 
 #ifdef DATALOGGER
 	SPAWN_DBG(world.tick_lag*2)
@@ -773,7 +803,7 @@ var/f_color_selector_handler/F_Color_Selector
 		//game_stats.WriteToFile("data/game_stats.txt")
 #endif
 
-	sleep(5 SECONDS) // wait for sound to play
+	sleep(7 SECONDS) // wait for sound to play
 	if(config.update_check_enabled)
 		world.installUpdate()
 
@@ -1221,7 +1251,7 @@ var/f_color_selector_handler/F_Color_Selector
 								var/mob/living/carbon/human/H = twitch_mob
 								H.ooc(msg)
 							return 1
-#endif
+#endif /* TWITCH_BOT_ALLOWED */
 
 		if (addr != config.ircbot_ip && addr != config.opengoon_api_ip && addr != config.opengoon2_hostname)
 			return 0 //ip filtering

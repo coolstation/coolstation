@@ -43,7 +43,7 @@
 	var/last_queue_op = 0
 
 	var/category = null
-	var/list/categories = list("Tool","Clothing","Resource","Component","Machinery","Miscellaneous", "Downloaded")
+	var/list/categories = list("Tool","Clothing","Resource","Component","Machinery","Atmospherics","Miscellaneous", "Downloaded")
 	var/search = null
 	var/wires = 15
 	var/image/work_display = null
@@ -65,7 +65,7 @@
 	var/list/text_bad_output_adjective = list("janky","crooked","warped","shoddy","shabby","lousy","crappy","shitty")
 	var/obj/item/card/id/scan = null
 	var/temp = null
-	var/frequency = 1149
+	var/frequency = FREQ_PDA
 	var/datum/radio_frequency/transmit_connection = null
 	var/net_id = null
 
@@ -199,14 +199,14 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				for(var/atom/movable/A as mob|obj in src)
 					A.set_loc(src.loc)
 					A.ex_act(severity)
 				src.take_damage(rand(100,120))
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.take_damage(rand(40,80))
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				src.take_damage(rand(20,40))
 		return
 
@@ -436,11 +436,7 @@
 
 		dat += "<div id='products'>"
 
-		// dat += "<B>Available Schematics</B><br>"
-		// if(istext(src.search))
-		// 	dat += " <small>(Search: \"[html_encode(src.search)]\")</small>"
-		// if(istext(src.category))
-		// 	dat += " <small>(Filter: \"[html_encode(src.category)]\")</small>"
+
 
 		// Get the list of stuff we can print ...
 		var/list/products = src.available + src.download
@@ -504,12 +500,15 @@
 
 		dat += "</div><div id='info'>"
 		dat += build_material_list(user)
-
+		//Search
+		dat += " <A href='?src=\ref[src];search=1'>(Search: \"[istext(src.search) ? html_encode(src.search) : "----"]\")</A><BR>"
+		//Filter
+		dat += " <A href='?src=\ref[src];category=1'>(Filter: \"[istext(src.category) ? html_encode(src.category) : "----"]\")</A>"
 		// This is not re-formatted yet just b/c i don't wanna mess with it
-		dat +="<B>Scanned Card:</B> <A href='?src=\ref[src];card=1'>([src.scan])</A><BR>"
+		dat +="<HR><B>Scanned Card:</B> <A href='?src=\ref[src];card=1'>([src.scan])</A><BR>"
 		if(scan)
 			var/datum/data/record/account = null
-			account = FindBankAccountByName(src.scan.registered)
+			account = FindBankAccountById(src.scan.registered_id)
 			if (account)
 				dat+="<B>Current Funds</B>: [account.fields["current_money"]] Credits<br>"
 		dat+= src.temp
@@ -592,8 +591,8 @@
 							if (ejectamt == O.amount)
 								O.set_loc(get_output_location(O,1))
 							else
-								var/obj/item/material_piece/P = unpool(O.type)
-								P.setMaterial(copyMaterial(O.material))
+								var/obj/item/material_piece/P = new O.type()
+								P.setMaterial(O.material)
 								P.change_stack_amount(ejectamt - P.amount)
 								O.change_stack_amount(-ejectamt)
 								P.set_loc(get_output_location(O,1))
@@ -648,7 +647,8 @@
 					src.search = null
 
 			if (href_list["category"])
-				src.category = input("Select which category to filter by.","Manufacturing Unit") as null|anything in src.categories
+				var/selection = input("Select which category to filter by.","Manufacturing Unit") as null|anything in list("REMOVE FILTER") + src.categories
+				src.category = ((selection == "REMOVE FILTER") ? null : selection)
 
 			if (href_list["continue"])
 				if (src.queue.len < 1)
@@ -788,11 +788,11 @@
 					return
 				else
 					src.temp = null
-				if (src.scan.registered in FrozenAccounts)
+				if (src.scan.registered_id in FrozenAccounts)
 					boutput(usr, "<span class='alert'>Your account cannot currently be liquidated due to active borrows.</span>")
 					return
 				var/datum/data/record/account = null
-				account = FindBankAccountByName(src.scan.registered)
+				account = FindBankAccountById(src.scan.registered_id)
 				if (account)
 					var/quantity = 1
 					quantity = max(0, input("How many units do you want to purchase?", "Ore Purchase", null, null) as num)
@@ -1071,7 +1071,7 @@
 			var/obj/item/card/id/ID = I
 			boutput(usr, "<span class='notice'>You swipe the ID card in the card reader.</span>")
 			var/datum/data/record/account = null
-			account = FindBankAccountByName(ID.registered)
+			account = FindBankAccountById(ID.registered_id)
 			if(account)
 				var/enterpin = input(usr, "Please enter your PIN number.", "Card Reader", 0) as null|num
 				if (enterpin == ID.pin)
@@ -1120,7 +1120,7 @@
 			src.output_target = O.loc
 			boutput(usr, "<span class='notice'>You set the manufacturer to output on top of [O]!</span>")
 
-		else if (istype(over_object,/turf/simulated/floor/) || istype(over_object,/turf/unsimulated/floor/))
+		else if (istype(over_object,/turf/floor/))
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set the manufacturer to output to [over_object]!</span>")
 
@@ -1403,7 +1403,7 @@
 						var/target_amount = round(src.resource_amounts[mat_id] / 10)
 						if (!target_amount)
 							src.contents -= I
-							pool(I)
+							qdel(I)
 						else if (I.amount != target_amount)
 							I.change_stack_amount(-(I.amount - target_amount))
 						break
@@ -1791,7 +1791,7 @@
 				if (istype(M, P) && M.material && isSameMaterial(M.material, P.material))
 					M.change_stack_amount(P.amount)
 					src.update_resource_amount(M.material.mat_id, P.amount * 10)
-					pool(P)
+					qdel(P)
 					return
 			src.update_resource_amount(P.material.mat_id, P.amount * 10)
 
@@ -1834,7 +1834,7 @@
 		else if (free_resources.len && free_resource_amt > 0)
 			for (var/X in src.free_resources)
 				if (ispath(X))
-					var/obj/item/material_piece/P = unpool(X)
+					var/obj/item/material_piece/P = new X()
 					P.set_loc(src)
 					if (free_resource_amt > 1)
 						P.change_stack_amount(free_resource_amt - P.amount)
@@ -1881,7 +1881,7 @@
 			else
 				return M.loc
 
-		else if (istype(src.output_target,/turf/simulated/floor/) || istype(src.output_target,/turf/unsimulated/floor/))
+		else if (istype(src.output_target,/turf/floor/))
 			return src.output_target
 
 		else
@@ -1910,7 +1910,7 @@
 			if (ispath(src.blueprint))
 				src.blueprint = get_schematic_from_path(src.blueprint)
 			else
-				pool(src)
+				qdel(src)
 				return 0
 		else
 			if (istext(schematic))
@@ -2049,6 +2049,34 @@
 		/datum/manufacture/powercellE,
 		/datum/manufacture/powercellC,
 		/datum/manufacture/light_bulb,
+		/datum/manufacture/light_tube,
+		/datum/manufacture/table_folding,
+		/datum/manufacture/hardhat,
+		/datum/manufacture/jumpsuit,
+		/datum/manufacture/shoes,
+		/datum/manufacture/breathmask,
+		/datum/manufacture/fluidcanister,
+		/datum/manufacture/patch)
+	hidden = list(/datum/manufacture/RCDammo,
+		/datum/manufacture/RCDammomedium,
+		/datum/manufacture/RCDammolarge,
+		/datum/manufacture/bottle,
+		/datum/manufacture/vuvuzela,
+		/datum/manufacture/harmonica,
+		/datum/manufacture/bikehorn,
+		//datum/manufacture/bullet_22,
+		//datum/manufacture/bullet_smoke,
+		/datum/manufacture/stapler)
+
+/obj/machinery/manufacturer/glasswares
+	name = "Glass Manufacturer"
+	desc = "A manufacturing unit calibrated to produce specialty glass objects"
+	icon_state = "fab-glass"
+	icon_base = "glass"
+	free_resource_amt = 4
+	free_resources = list(/obj/item/material_piece/glass,
+		/obj/item/material_piece/copper)
+	available = list(/datum/manufacture/light_bulb,
 		/datum/manufacture/red_bulb,
 		/datum/manufacture/yellow_bulb,
 		/datum/manufacture/green_bulb,
@@ -2064,22 +2092,10 @@
 		/datum/manufacture/blue_tube,
 		/datum/manufacture/purple_tube,
 		/datum/manufacture/blacklight_tube,
-		/datum/manufacture/table_folding,
-		/datum/manufacture/jumpsuit,
-		/datum/manufacture/shoes,
-		/datum/manufacture/breathmask,
-		/datum/manufacture/fluidcanister,
-		/datum/manufacture/patch)
-	hidden = list(/datum/manufacture/RCDammo,
-		/datum/manufacture/RCDammomedium,
-		/datum/manufacture/RCDammolarge,
-		/datum/manufacture/bottle,
-		/datum/manufacture/vuvuzela,
-		/datum/manufacture/harmonica,
-		/datum/manufacture/bikehorn,
-		/datum/manufacture/bullet_22,
-		/datum/manufacture/bullet_smoke,
-		/datum/manufacture/stapler)
+		/datum/manufacture/glass,
+		/datum/manufacture/glassR,
+		/datum/manufacture/prodocs,
+		/datum/manufacture/glasses)
 
 /obj/machinery/manufacturer/robotics
 	name = "Robotics Fabricator"
@@ -2269,6 +2285,7 @@
 	/datum/manufacture/breathmask,
 	/datum/manufacture/engspacesuit,
 	/datum/manufacture/industrialarmor,
+	/datum/manufacture/industrialcombatarmor,
 	/datum/manufacture/industrialboots,
 	/datum/manufacture/powercell,
 	/datum/manufacture/powercellE,
@@ -2399,8 +2416,8 @@
 /obj/machinery/manufacturer/gas
 	name = "Gas Extractor"
 	desc = "A manufacturing unit that can produce gas canisters from certain ores."
-	icon_state = "fab-mining"
-	icon_base = "mining"
+	icon_state = "fab-atmos"
+	icon_base = "atmos"
 	accept_blueprints = 0
 	available = list(
 	/datum/manufacture/atmos_can,
@@ -2408,7 +2425,8 @@
 	/datum/manufacture/o2_can,
 	/datum/manufacture/co2_can,
 	/datum/manufacture/n2_can,
-	/datum/manufacture/plasma_can)
+	/datum/manufacture/plasma_can,
+	/datum/manufacture/agent_b_can)
 
 // a blank manufacturer for mechanics
 
@@ -2506,6 +2524,54 @@
 	/datum/manufacture/biohazard)
 
 	hidden = list(/datum/manufacture/classcrate)
+
+/obj/machinery/manufacturer/engineering
+	name = "engineering manufacturer"
+	desc = "A manufacturing unit calibrated to produce gear for engineers."
+	icon_state = "fab-engi"
+	icon_base = "engi"
+	free_resource_amt = 5
+	free_resources = list(/obj/item/material_piece/steel,
+		/obj/item/material_piece/copper,
+		/obj/item/material_piece/glass)
+
+	available = list(/datum/manufacture/screwdriver,
+	/datum/manufacture/wirecutters,
+	/datum/manufacture/wrench,
+	/datum/manufacture/crowbar,
+	/datum/manufacture/extinguisher,
+	/datum/manufacture/welder,
+	/datum/manufacture/soldering,
+	/datum/manufacture/flashlight,
+	/datum/manufacture/weldingmask,
+	/datum/manufacture/multitool,
+	/datum/manufacture/extinguisher,
+	/datum/manufacture/lamp_manufacturer,
+	/datum/manufacture/hardhat,
+	/datum/manufacture/cable,
+	/datum/manufacture/powercell,
+	/datum/manufacture/powercellC,
+	/datum/manufacture/powercellE,
+	/datum/manufacture/atmos_module/connector,
+	/datum/manufacture/atmos_module/digital_valve,
+	/datum/manufacture/atmos_module/dp_vent,
+	/datum/manufacture/atmos_module/filter,
+	/datum/manufacture/atmos_module/furnace_connector,
+	/datum/manufacture/atmos_module/manifold_valve,
+	/datum/manufacture/atmos_module/mixer,
+	/datum/manufacture/atmos_module/outlet_injector,
+	/datum/manufacture/atmos_module/passive_gate,
+	/datum/manufacture/atmos_module/pump,
+	/datum/manufacture/atmos_module/valve,
+	/datum/manufacture/atmos_module/vent,
+	/datum/manufacture/atmos_module/vent_pump,
+	/datum/manufacture/atmos_module/vent_scrubber,
+	/datum/manufacture/atmos_module/volume_pump,
+	/datum/manufacture/RCDammo,
+	/datum/manufacture/RCDammomedium)
+
+	hidden = list(/datum/manufacture/RCDammolarge,
+	/datum/manufacture/RCD)
 
 /obj/machinery/manufacturer/zombie_survival
 	name = "Uber-Extreme Survival Manufacturer"

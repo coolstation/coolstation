@@ -52,7 +52,7 @@
 		return 0
 
 	if (check_target_immunity(target) == 1)
-		target.visible_message("<span class='alert'><B>[M] bites [target], but fails to even pierce their skin!</B></span>")
+		target.visible_message("<span class='alert'><B>[M] bites [target], but fails to even pierce [his_or_her(target)] skin!</B></span>")
 		return 0
 
 	if ((target.mind && target.mind.special_role == ROLE_VAMPTHRALL) && target.is_mentally_dominated_by(M))
@@ -209,7 +209,7 @@
 		return 0
 
 	if (check_target_immunity(target) == 1)
-		target.visible_message("<span class='alert'><B>[M] bites [target], but fails to even pierce their skin!</B></span>")
+		target.visible_message("<span class='alert'><B>[M] bites [target], but fails to even pierce [his_or_her(target)] skin!</B></span>")
 		return 0
 
 	var/mob/master = null
@@ -475,7 +475,7 @@
 		var/mob/living/carbon/human/HH = target
 
 
-		boutput(M, __blue("You bite [HH] and begin to drain them of blood."))
+		boutput(M, __blue("You bite [HH] and begin to drain [his_or_her(target)] of blood."))
 		HH.visible_message("<span class='alert'><B>[M] bites [HH]!</B></span>")
 
 		actions.start(new/datum/action/bar/icon/vamp_blood_suc(M,H,HH,src), M)

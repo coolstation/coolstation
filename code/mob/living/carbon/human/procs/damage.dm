@@ -127,7 +127,7 @@
 	return 1
 
 
-/mob/living/carbon/human/ex_act(severity, lasttouched, power)
+/mob/living/carbon/human/ex_act(severity, lasttouched, epicenter)
 	..() // Logs.
 	if (src.nodamage) return
 	// there used to be mining radiation check here which increases severity by one
@@ -154,15 +154,6 @@
 		qdel(src)
 		return
 
-	if(!power)
-		switch(severity)
-			if(1)
-				power = 9		//gib
-			if(2)
-				power = 5		//100 damage total
-			if(3)
-				power = 3	//50 damage total
-
 	var/exploprot = src.get_explosion_resistance()
 	var/reduction = 0
 	var/shielded = 0
@@ -180,10 +171,10 @@
 		shielded = 1
 		boutput(src, "<span class='alert'><b>Your Spell Shield absorbs some blast!</b></span>")
 
-	power *= clamp(1-exploprot, 0, 1)
-	power -= reduction
-	var/b_loss = clamp(power*15, 0, 120)
-	var/f_loss = clamp((power-2.5)*10, 0, 120)
+	severity *= clamp(1-exploprot, 0, 1)
+	severity -= reduction
+	var/b_loss = clamp(severity*15, 0, 120)
+	var/f_loss = clamp((severity-2.5)*10, 0, 120)
 
 	var/delib_chance = b_loss - 20
 	if(src.bioHolder && src.bioHolder.HasEffect("shoot_limb"))
@@ -195,7 +186,7 @@
 	if (prob(delib_chance) && !shielded)
 		src.sever_limb(pick(list("l_arm","r_arm","l_leg","r_leg"))) //max one delimb at once
 
-	switch (power)
+	switch (severity)
 		if (-INFINITY to 0) //blocked
 			boutput(src, "<span class='alert'><b>You are shielded from the blast!</b></span>")
 			return
@@ -203,7 +194,7 @@
 			SPAWN_DBG(1 DECI SECOND)
 				src.gib(1)
 			return
-	src.apply_sonic_stun(0, 0, 0, 0, 0, round(power*7), round(power*7), power*40)
+	src.apply_sonic_stun(0, 0, 0, 0, 0, round(severity*7), round(severity*7), severity*40)
 
 	if (prob(b_loss) && !shielded && !reduction)
 		src.changeStatus("paralysis", b_loss DECI SECONDS)
@@ -211,6 +202,9 @@
 
 	TakeDamage(zone="All", brute=b_loss, burn=f_loss, tox=0, damage_type=0, disallow_limb_loss=1)
 	src.UpdateDamageIcon()
+
+	if (epicenter && severity > 4)
+		src.throw_at(get_edge_cheap(get_turf(src), get_dir(epicenter, get_turf(src))),  round(3 * severity), round(severity/2))
 
 /mob/living/carbon/human/blob_act(var/power)
 	logTheThing("combat", src, null, "is hit by a blob")

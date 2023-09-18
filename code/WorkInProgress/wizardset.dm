@@ -2,7 +2,7 @@
 	name = "Mage Tower"
 	icon_state = "yellow"
 
-/turf/unsimulated/wall/adaptive
+/turf/wall/adaptive
 	var/base_name = null
 
 	fullbright = 1 // temporary measure
@@ -15,13 +15,13 @@
 		var/turf/S = locate(x, y-1, z)
 		var/turf/W = locate(x-1, y, z)
 		var/turf/E = locate(x+1, y, z)
-		if (istype(N, /turf/unsimulated/wall/adaptive))
+		if (istype(N, /turf/wall/adaptive))
 			N:adapt()
-		if (istype(S, /turf/unsimulated/wall/adaptive))
+		if (istype(S, /turf/wall/adaptive))
 			S:adapt()
-		if (istype(E, /turf/unsimulated/wall/adaptive))
+		if (istype(E, /turf/wall/adaptive))
 			E:adapt()
-		if (istype(W, /turf/unsimulated/wall/adaptive))
+		if (istype(W, /turf/wall/adaptive))
 			W:adapt()
 
 	Del()
@@ -29,13 +29,13 @@
 		var/turf/S = locate(x, y-1, z)
 		var/turf/W = locate(x-1, y, z)
 		var/turf/E = locate(x+1, y, z)
-		if (istype(N, /turf/unsimulated/wall/adaptive))
+		if (istype(N, /turf/wall/adaptive))
 			N:adapt()
-		if (istype(S, /turf/unsimulated/wall/adaptive))
+		if (istype(S, /turf/wall/adaptive))
 			S:adapt()
-		if (istype(E, /turf/unsimulated/wall/adaptive))
+		if (istype(E, /turf/wall/adaptive))
 			E:adapt()
-		if (istype(W, /turf/unsimulated/wall/adaptive))
+		if (istype(W, /turf/wall/adaptive))
 			W:adapt()
 		..()
 
@@ -45,28 +45,28 @@
 		var/turf/S = locate(x, y-1, z)
 		var/turf/W = locate(x-1, y, z)
 		var/turf/E = locate(x+1, y, z)
-		if (istype(N, /turf/unsimulated/wall/adaptive))
+		if (istype(N, /turf/wall/adaptive))
 			D += 1
 		else
 			for (var/obj/O in N)
 				if (O.adaptable)
 					D += 1
 					break
-		if (istype(S, /turf/unsimulated/wall/adaptive))
+		if (istype(S, /turf/wall/adaptive))
 			D += 2
 		else
 			for (var/obj/O in S)
 				if (O.adaptable)
 					D += 2
 					break
-		if (istype(E, /turf/unsimulated/wall/adaptive))
+		if (istype(E, /turf/wall/adaptive))
 			D += 4
 		else
 			for (var/obj/O in E)
 				if (O.adaptable)
 					D += 4
 					break
-		if (istype(W, /turf/unsimulated/wall/adaptive))
+		if (istype(W, /turf/wall/adaptive))
 			D += 8
 		else
 			for (var/obj/O in W)
@@ -84,7 +84,7 @@
 	bullet_act()
 		return
 
-/turf/unsimulated/wall/adaptive/wizard_window
+/turf/wall/adaptive/wizard_window
 	icon = 'icons/turf/adventure.dmi'
 	icon_state = "wizard_window"
 	density = 1
@@ -97,7 +97,7 @@
 	adapt()
 		return
 
-/turf/unsimulated/wall/adaptive/wizard
+/turf/wall/adaptive/wizard
 	icon = 'icons/turf/adventure.dmi'
 	icon_state = "wizard_wall_0"
 	base_name = "wizard_wall_"
@@ -106,7 +106,7 @@
 	icon = 'icons/obj/randompuzzles.dmi'
 	icon_state = "false_wall"
 	name = "false wall triggerable endpoint"
-	var/turf/unsimulated/wall/adaptive/wizard_fake/attached
+	var/turf/wall/adaptive/wizard_fake/attached
 	invisibility = 21
 	anchored = 1
 	density = 0
@@ -157,7 +157,7 @@
 
 var/global/datum/wizard_zone_controller/wizard_zone_controller
 
-/turf/unsimulated/wall/adaptive/wizard_fake
+/turf/wall/adaptive/wizard_fake
 	icon = 'icons/turf/adventure.dmi'
 	icon_state = "wizard_false_wall"
 	density = 1
@@ -217,7 +217,7 @@ var/global/datum/wizard_zone_controller/wizard_zone_controller
 			..()
 			open()
 
-/turf/unsimulated/floor/wizard
+/turf/floor/wizard
 	icon = 'icons/turf/adventure.dmi'
 	icon_state = "wizard_floor"
 
@@ -227,13 +227,13 @@ var/global/datum/wizard_zone_controller/wizard_zone_controller
 		var/turf/S = locate(x, y-1, z)
 		var/turf/W = locate(x-1, y, z)
 		var/turf/E = locate(x+1, y, z)
-		if (istype(N, /turf/unsimulated/wall/adaptive))
+		if (istype(N, /turf/wall/adaptive))
 			N:adapt()
-		if (istype(S, /turf/unsimulated/wall/adaptive))
+		if (istype(S, /turf/wall/adaptive))
 			S:adapt()
-		if (istype(E, /turf/unsimulated/wall/adaptive))
+		if (istype(E, /turf/wall/adaptive))
 			E:adapt()
-		if (istype(W, /turf/unsimulated/wall/adaptive))
+		if (istype(W, /turf/wall/adaptive))
 			W:adapt()
 
 	Del()
@@ -241,13 +241,13 @@ var/global/datum/wizard_zone_controller/wizard_zone_controller
 		var/turf/S = locate(x, y-1, z)
 		var/turf/W = locate(x-1, y, z)
 		var/turf/E = locate(x+1, y, z)
-		if (istype(N, /turf/unsimulated/wall/adaptive))
+		if (istype(N, /turf/wall/adaptive))
 			N:adapt()
-		if (istype(S, /turf/unsimulated/wall/adaptive))
+		if (istype(S, /turf/wall/adaptive))
 			S:adapt()
-		if (istype(E, /turf/unsimulated/wall/adaptive))
+		if (istype(E, /turf/wall/adaptive))
 			E:adapt()
-		if (istype(W, /turf/unsimulated/wall/adaptive))
+		if (istype(W, /turf/wall/adaptive))
 			W:adapt()
 		..()
 
@@ -556,7 +556,7 @@ var/global/datum/wizard_zone_controller/wizard_zone_controller
 		if (!reagent)
 			boutput(user, "<span class='alert'>The potion flask is empty.</span>")
 		if (user == target)
-			user.visible_message("<span class='notice'>[user] uncorks the potion and pours it down \his throat.</span>")
+			user.visible_message("<span class='notice'>[user] uncorks the potion and pours it down [his_or_her(user)] throat.</span>")
 			logTheThing("combat", user, null, "drinks [src] ([potion_name] -- [reagent])")
 			drink(user)
 		else if (ishuman(target))
@@ -857,7 +857,7 @@ ABSTRACT_TYPE(/obj/item/wizard_crystal)
 			if (!pressed)
 				pressed = 1
 				icon_state = "bookcase_full_alone_0"
-				for (var/turf/unsimulated/wall/adaptive/wizard_fake/T in wizard_zone_controller.triggerables)
+				for (var/turf/wall/adaptive/wizard_fake/T in wizard_zone_controller.triggerables)
 					if (T.id == src.id)
 						T.toggle()
 

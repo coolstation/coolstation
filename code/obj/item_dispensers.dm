@@ -101,8 +101,16 @@
 	withdraw_type = /obj/item/clothing/gloves/latex
 
 /obj/item_dispenser/medical_mask
+	name = "surgical mask dispenser"
+	desc = "A storage container that easily dispenses surgical face masks."
+	icon_state = "dispenser_mask"
+	filled_icon_state = "dispenser_mask"
+	deposit_type = /obj/item/clothing/mask/surgical
+	withdraw_type = /obj/item/clothing/mask/surgical
+
+/obj/item_dispenser/medical_mask_internals
 	name = "medical mask dispenser"
-	desc = "A storage container that easily dispenses medical masks."
+	desc = "A storage container that easily dispenses medical masks for administering oxygen or anesthetic."
 	icon_state = "dispenser_mask"
 	filled_icon_state = "dispenser_mask"
 	deposit_type = /obj/item/clothing/mask/medical

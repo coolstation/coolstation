@@ -20,7 +20,7 @@
 	return 0
 
 /mob/living/add_stam_mod_max(var/key, var/value)
-	if (!src.use_stamina) return
+	if (!src.use_stamina) return add_stun_resist_mod(key, value/2)
 	if(!isnum(value)) return
 	if(key in stamina_mods_max)
 		return 0
@@ -33,7 +33,7 @@
 	return 0
 
 /mob/living/remove_stam_mod_max(var/key)
-	if (!src.use_stamina) return
+	if (!src.use_stamina) return remove_stun_resist_mod(key)
 	if(!(key in stamina_mods_max))
 		return 0
 	stamina_mods_max.Remove(key)
@@ -44,7 +44,7 @@
 	. = 0
 
 /mob/living/get_stam_mod_max()
-	if (!src.use_stamina) return
+	if (!src.use_stamina) return get_stun_resist_mod()
 	var/val = 0
 	for(var/x in stamina_mods_max)
 		val += stamina_mods_max[x]
@@ -94,7 +94,7 @@
 	if(!isnum(x)) return
 	if(prob(20) && ishellbanned(src)) return //Stamina regenerates 20% slower for you. RIP
 	stamina = min(stamina_max, stamina + x)
-	if(src.stamina_bar) src.stamina_bar.update_value(src)
+	//if(src.stamina_bar) src.stamina_bar.update_value(src)
 	return
 
 //Removes stamina
@@ -119,13 +119,13 @@
 		percReduction = (x * (stam_mod_items / 100))
 
 	stamina = max(STAMINA_NEG_CAP, stamina - (x - percReduction) )
-	src.stamina_bar?.update_value(src)
+//	src.stamina_bar?.update_value(src)
 	return
 
 /mob/living/carbon/human/remove_stamina(var/x)
 	..()
-	if (x >= 30 && src.hud && src.hud.stamina_back)
-		flick("stamina_back", src.hud.stamina_back)
+//	if (x >= 30 && src.hud && src.hud.stamina_back)
+//		flick("stamina_back", src.hud.stamina_back)
 
 /mob/living/critter/remove_stamina(var/x)
 	..()
@@ -141,7 +141,7 @@
 	if(!src.use_stamina) return
 	if(!isnum(x)) return
 	stamina = max(min(stamina_max, x), STAMINA_NEG_CAP)
-	if(src.stamina_bar) src.stamina_bar.update_value(src)
+//	if(src.stamina_bar) src.stamina_bar.update_value(src)
 	return
 
 //PLEASE ONLY EVER USE THESE TO MODIFY STAMINA. NEVER SET IT DIRECTLY.
@@ -155,7 +155,7 @@
 
 //ddoub le dodbleu
 /mob/living/handle_stamina_crit(var/damage)
-	if(!src.use_stamina) return
+	/*if(!src.use_stamina) return
 	damage = max(damage,10)
 	damage *= 4
 	if(src.stamina >= 1 )
@@ -182,8 +182,10 @@
 		if(!src.getStatusDuration("weakened"))
 			src.visible_message("<span class='alert'>[src] collapses!</span>")
 			src.changeStatus("weakened", (STAMINA_STUN_CRIT_TIME) SECONDS)
-		#endif
-	stamina_stun() //Just in case.
+		#endif*/
+	if(prob(STAMINA_SCALING_KNOCKOUT_BASE))
+		src.changeStatus("stunned", STAMINA_STUN_ON_CRIT_SEV)
+	stamina_stun(damage) //Just in case.
 	return
 
 
@@ -195,19 +197,19 @@
  * For example: You'd put this on a weapon after it removes stamina to make sure the stun applies
  * instantly and not on the next life tick.
  */
-/mob/proc/stamina_stun()
+/mob/proc/stamina_stun(var/chance)
 	return
 
-/mob/living/stamina_stun()
-	if(!src.use_stamina) return
-	if(src.stamina <= 0)
-		var/chance = STAMINA_SCALING_KNOCKOUT_BASE
-		chance += (src.stamina / STAMINA_NEG_CAP) * STAMINA_SCALING_KNOCKOUT_SCALER
-		if(prob(chance))
-			if(!src.getStatusDuration("weakened"))
-				src.visible_message("<span class='alert'>[src] collapses!</span>")
-				src.changeStatus("weakened", (STAMINA_STUN_TIME) SECONDS)
-				src.force_laydown_standup()
+/mob/living/stamina_stun(var/chance)
+	//if(!src.use_stamina) return
+	//if(src.stamina <= 0)
+	//var/chance = STAMINA_SCALING_KNOCKOUT_BASE
+	//chance += (src.stamina / STAMINA_NEG_CAP) * STAMINA_SCALING_KNOCKOUT_SCALER
+	if(prob(chance))
+		if(!src.getStatusDuration("weakened"))
+			src.visible_message("<span class='alert'>[src] collapses!</span>")
+			src.changeStatus("weakened", (STAMINA_STUN_TIME) SECONDS)
+			src.force_laydown_standup()
 
 //new disorient thing
 

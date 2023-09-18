@@ -105,7 +105,7 @@
 			if (z != 3) //nono z3
 				for (var/dir in alldirs)
 					var/turf/T = get_step(src,dir)
-					if (istype(T, /turf/simulated))
+					if (issimulatedturf(T))
 						generateLight = 1
 						break
 
@@ -263,7 +263,7 @@
 		if (captured)
 			return
 
-		if (!prob(severity*20))
+		if (!prob(severity*10))
 			for (var/obj/O in src)
 				if (istype(O, /obj/lattice) || istype(O, /obj/cable/reinforced) || istype(O, /obj/item/heat_dowsing) || istype(O, /obj/machinery/conveyor) || istype(O,/obj/item/cable_coil/reinforced) )
 					return
@@ -310,6 +310,19 @@
 			return
 		if (locate(/obj/lattice) in src)
 			return
+		if (ishuman(AM))
+			var/mob/living/carbon/human/H = AM
+			if (H.back && H.back.c_flags & IS_JETPACK)
+				if (istype(H.back, /obj/item/tank/jetpack)) //currently unnecessary but what if we have IS_JETPACK on clothing items that are not back-wear later on?
+					var/obj/item/tank/jetpack/J = H.back
+					if(J.allow_thrust(0.01, H))
+						return
+		if (isliving(AM))
+			var/mob/living/peep = AM
+			if (!ON_COOLDOWN(AM, "re-swim", 0.5 SECONDS)) //Try swimming, but not if they've just stopped (for a stun or whatever)
+				peep.attempt_swim() //should do nothing if they're already swimming I think?
+			if (HAS_MOB_PROPERTY(peep,PROP_ATOM_FLOATING))
+				return
 		return_if_overlay_or_effect(AM)
 
 		try_build_turf_list()
@@ -370,6 +383,7 @@
 	generateLight = 0
 	allow_hole = 0
 	spawningFlags = SPAWN_DECOR | SPAWN_PLANTS | SPAWN_FISH | SPAWN_LOOT | SPAWN_HALLU
+	turf_flags = FLUID_MOVE | MINE_MAP_PRESENTS_EMPTY
 
 	blow_hole()
 		if(src.z == 5)
@@ -438,7 +452,7 @@
 /turf/space/fluid/manta/nospawn
 	spawningFlags = null
 
-/turf/simulated/floor/specialroom/sea_elevator_shaft
+/turf/floor/specialroom/sea_elevator_shaft
 	name = "elevator shaft"
 	desc = "It looks like it goes down a long ways."
 	icon_state = "moon_shaft"
@@ -554,7 +568,7 @@
 	if(location == 0) // at bottom
 		var/area/start_location = locate(lower)
 		var/area/end_location = locate(upper)
-		start_location.move_contents_to(end_location, /turf/simulated/floor/plating, ignore_fluid = 1)
+		start_location.move_contents_to(end_location, /turf/floor/plating, ignore_fluid = 1)
 		location = 1
 	else // at top
 		var/area/start_location = locate(upper)
@@ -565,7 +579,7 @@
 				M.changeStatus("weakened", 5 SECONDS)
 				M.emote("scream")
 				playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 90, 1)
-		start_location.move_contents_to(end_location, /turf/simulated/floor/specialroom/sea_elevator_shaft, ignore_fluid = 1)
+		start_location.move_contents_to(end_location, /turf/floor/specialroom/sea_elevator_shaft, ignore_fluid = 1)
 		location = 0
 
 	for(var/obj/machinery/computer/sea_elevator/C in machine_registry[MACHINES_ELEVATORCOMPS])

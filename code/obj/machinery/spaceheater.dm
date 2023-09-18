@@ -3,7 +3,7 @@
 	density = 1
 	icon = 'icons/obj/atmospherics/atmos.dmi'
 	icon_state = "sheater0"
-	name = "space HVAC"
+	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this space heater is guaranteed not to set the station on fire."
 	var/emagged = 0
 	var/obj/item/cell/cell
@@ -209,8 +209,8 @@
 		if(on)
 			if(cell?.charge > 0)
 
-				var/turf/simulated/L = loc
-				if(istype(L))
+				var/turf/L = loc
+				if(issimulatedturf(L))
 					var/datum/gas_mixture/env = L.return_air()
 					if(env.temperature < (set_temperature+T0C))
 						heating = 1
@@ -257,7 +257,7 @@
 	icon = 'icons/obj/atmospherics/atmos.dmi'
 	icon_state = "sauna0"
 	name = "space saunastove"
-	desc = "Made by Space Finnish using traditional space techniques, this space saunastove is guaranteed not to set the station on fire."
+	desc = "Swettiböls Dickensmoke."
 	var/obj/item/cell/cell
 	var/on = 0
 	var/heating = 0
@@ -415,8 +415,8 @@
 		if(on)
 			if(cell?.charge > 0)
 
-				var/turf/simulated/L = loc
-				if(istype(L))
+				var/turf/L = loc
+				if(issimulatedturf(L))
 					var/datum/gas_mixture/env = L.return_air()
 					if(env.temperature < (set_temperature+T0C))
 						heating = 1

@@ -559,9 +559,9 @@ Returns:
 			AM.set_loc(T)
 		else
 			src.visible_message("<span style='color: red; font-weight: bold'>The portal collapses in on itself!</span>")
-			var/obj/sparks = unpool(/obj/effects/sparks)
+			var/obj/sparks = new /obj/effects/sparks()
 			sparks.set_loc(get_turf(src))
-			SPAWN_DBG(2 SECONDS) if (sparks) pool(sparks)
+			SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 			qdel(src)
 		return
 
@@ -572,9 +572,9 @@ Returns:
 			AM.set_loc(T)
 		else
 			src.visible_message("<span style='color: red; font-weight: bold'>The portal collapses in on itself!</span>")
-			var/obj/sparks = unpool(/obj/effects/sparks)
+			var/obj/sparks = new /obj/effects/sparks()
 			sparks.set_loc(get_turf(src))
-			SPAWN_DBG(2 SECONDS) if (sparks) pool(sparks)
+			SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 			qdel(src)
 		return
 	*/
@@ -606,7 +606,7 @@ Returns:
 		vis_contents += locate(src.x, src.y, src.targetZ)
 		var/turf/T = locate(src.x, src.y+1, src.z)
 		if(T)
-			if(istype(T, /turf/simulated) && !(locate(/obj/hole) in T))
+			if(issimulatedturf(T) && !(locate(/obj/hole) in T))
 				src.overlays += image('icons/effects/effects.dmi',icon_state = "dark", layer=11)
 				src.overlays += image('icons/effects/effects.dmi',icon_state = "wallfade", layer=12)
 			else
@@ -766,6 +766,7 @@ Returns:
 	anchored = 1
 	density = 0
 	opacity = 0
+	plane = PLANE_NOSHADOW_BELOW
 
 /obj/decal/valterakWhip
 	name = "???"
@@ -775,6 +776,7 @@ Returns:
 	anchored = 1
 	density = 0
 	opacity = 0
+	plane = PLANE_NOSHADOW_BELOW
 
 /datum/admins/proc/camtest()
 	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
@@ -1535,6 +1537,7 @@ Returns:
 				M.set_dir(direction)
 				M.color = color_new
 
+/* forging a new legacy
 /obj/floorpillstatue
 	name = "Statue of Dr.Floorpills"
 	desc = "A statue of the most radioactive man alive. Technically alive. Sort of."
@@ -1564,6 +1567,7 @@ Returns:
 			broken = 1
 
 		return ..()
+*/
 
 /proc/mass_proc_arg()
 	var/type = text2path(input(usr,"Type", "", "/obj"))
@@ -1595,11 +1599,11 @@ Returns:
 					argcopy[r] = X
 			call(procpath)(arglist(argcopy))
 
-/datum/admins/proc/pixelexplosion()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	set name = "Pixel explosion mode"
-	set desc = "Enter pixel explosion mode."
-	alert("Clicking on things will now explode them into pixels!")
+/datum/admins/proc/enable_pixelexplosion()
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
+	set name = "Enable pixel explosions"
+	set desc = "Click on things to explode them into pixels?"
+	alert("Clicking on things will now explode them into pixels! Note: This Actually Destroys The Thing")
 	pixelmagic()
 
 /datum/targetable/pixelpicker
@@ -1644,7 +1648,7 @@ Returns:
 			if(color != null)
 				var/actX = A.pixel_x + x - 1
 				var/actY = A.pixel_y + y - 1
-				var/obj/apixel/P = unpool(/obj/apixel)
+				var/obj/apixel/P = new()
 				P.set_loc(A.loc)
 				P.pixel_x = actX
 				P.pixel_y = actY
@@ -1656,7 +1660,7 @@ Returns:
 	qdel(A)
 	SPAWN_DBG(7 SECONDS)
 		for(var/datum/D in pixels)
-			pool(D)
+			qdel(D)
 
 	return
 
@@ -1668,7 +1672,7 @@ Returns:
 	anchored = 1
 	density = 0
 	opacity = 0
-
+/*
 	unpooled()
 		color = "#ffffff"
 		pixel_x = 0
@@ -1676,11 +1680,11 @@ Returns:
 		alpha = 255
 		transform = matrix()
 		..()
-
-/datum/admins/proc/turn_off_pixelexplosion()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	set name = "Turn off pixel explosion mode"
-	set desc = "Turns off pixel explosion mode."
+*/
+/datum/admins/proc/disable_pixelexplosion()
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
+	set name = "Disable pixel explosions"
+	set desc = "Stop exploding things into pixels when you click them."
 
 	var/mob/M = usr
 	if (istype(M.targeting_ability, /datum/targetable/pixelpicker))
@@ -1842,18 +1846,21 @@ Returns:
 	return tube
 
 /obj/item/ghostboard
-	name = "Ouija board"
+	name = "\improper Ouija board"
 	desc = "A wooden board that allows for communication with spirits and such things. Or that's what the company that makes them claims, at least."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "lboard"
 	inhand_image_icon = 'icons/mob/inhand/hand_books.dmi'
 	item_state = "ouijaboard"
 	w_class = W_CLASS_NORMAL
+	var/list/altnames = list("wega","weegi","oiji","ojo","ooija","\improper OIJA","oujij","ouijs","oueja","wija","ouijo","weegee","luigi","luigi","\improper Luigi","weggy","quiche","\improper Wa weg","quija","\improper WEEGER","wedgie")
 
 	New()
 		. = ..()
 		START_TRACKING
 		BLOCK_SETUP(BLOCK_BOOK)
+		if(prob(2))
+			name = "[pick(altnames)] board"
 
 	disposing()
 		. = ..()
@@ -1964,6 +1971,18 @@ Returns:
 			var/obj/item/clothing/mask/cigarette/C = W
 			if(!C.on)
 				C.light(user, "<span class='alert'>[user] lights the [C] with [src]. That seems appropriate.</span>")
+				return
+		if(W.w_class == W_CLASS_TINY)
+			add_fingerprint(user)
+			W.unequipped(user)
+			W.dropped(user)
+			src.visible_message("<span class='notice'>[user] tosses [W] into [src].</span>")
+			qdel(W)
+			light.set_brightness(1.1)
+			SPAWN_DBG(3 SECONDS)
+				light.set_brightness(1)
+			return
+		..()
 
 /*
 
@@ -2194,7 +2213,7 @@ Returns:
 					M.changeStatus("weakened", 2 SECONDS)
 					random_burn_damage(M, 10)
 
-				if(istype(T, /turf/simulated/floor))
+				if(istype(T, /turf/floor)) //ATMOSSIMSTODO - was turf/floor
 					if(!T:broken)
 						if(T:burnt)
 							T:break_tile()
@@ -2636,7 +2655,7 @@ Returns:
 
 		for(var/turf/T in range(areasize, src))
 			if(!isturf(T)) continue
-			new/turf/unsimulated/floor(T)
+			new/turf/floor(T)
 
 		usable = 1
 
@@ -2923,7 +2942,7 @@ Returns:
 			return
 		else
 			if(ishuman(hit_atom))
-				var/mob/living/carbon/human/user = usr
+/*				var/mob/living/carbon/human/user = usr
 				var/safari = (istype(user.w_uniform, /obj/item/clothing/under/gimmick/safari) && istype(user.head, /obj/item/clothing/head/safari))
 				if(safari)
 					var/mob/living/carbon/human/H = hit_atom
@@ -2932,7 +2951,7 @@ Returns:
 					H.force_laydown_standup()
 					//H.paralysis++
 					playsound(H.loc, "swing_hit", 50, 1)
-
+*/
 				prob_clonk = min(prob_clonk + 5, 40)
 				SPAWN_DBG(2 SECONDS)
 					prob_clonk = max(prob_clonk - 5, 0)
@@ -3072,9 +3091,9 @@ Returns:
 			AM.set_loc(target)
 		else
 			src.visible_message("<span style='color: red; font-weight: bold'>The portal collapses in on itself!</span>")
-			var/obj/sparks = unpool(/obj/effects/sparks)
+			var/obj/sparks = new /obj/effects/sparks()
 			sparks.set_loc(get_turf(src))
-			SPAWN_DBG(2 SECONDS) if (sparks) pool(sparks)
+			SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 			qdel(src)
 
 	ex_act()
@@ -3485,10 +3504,10 @@ var/list/lag_list = new/list()
 		if(istype(target, /turf/space))
 			target:ReplaceWithFloor()
 			return
-		if(istype(target, /turf/simulated/floor))
+		if(istype(target, /turf/floor))
 			target:ReplaceWithWall()
 			return
-		if(istype(target, /turf/simulated/wall))
+		if(istype(target, /turf/wall))
 			target:ReplaceWithRWall()
 			return
 		return
@@ -3497,10 +3516,10 @@ var/list/lag_list = new/list()
 	name = "Deconstruct"
 	desc = "Deconstruct walls and floor."
 	used(atom/user, atom/target)
-		if(istype(target, /turf/simulated/floor))
+		if(istype(target, /turf/floor))
 			target:ReplaceWithSpace()
 			return
-		if(istype(target, /turf/simulated/wall))
+		if(istype(target, /turf/wall))
 			target:ReplaceWithFloor()
 			return
 		return
@@ -3549,7 +3568,7 @@ var/list/lag_list = new/list()
 	desc = "Construct a False Wall."
 	used(atom/user, atom/target)
 		var/turf/targ = get_turf(target)
-		new/turf/simulated/wall/false_wall(targ)
+		new/turf/wall/false_wall(targ)
 		return
 
 /datum/engibox_mode/airlock
@@ -3795,8 +3814,8 @@ var/list/lag_list = new/list()
 	luminosity = 1
 	force_fullbright = 1
 	requires_power = 0
-	sound_loop = 'sound/ambience/loop/Shore.ogg'
-	sound_loop_vol = 100
+	sound_loop_1 = 'sound/ambience/loop/Shore.ogg'
+	sound_loop_1_vol = 100
 
 	New()
 		..()

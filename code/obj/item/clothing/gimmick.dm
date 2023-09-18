@@ -94,6 +94,7 @@
 	desc = "Twoooo!"
 	icon_state = "owl"
 	item_state = "owl"
+	c_flags = SAFE_FALL
 
 	equipped(var/mob/user)
 		..()
@@ -289,6 +290,10 @@
 	icon = 'icons/obj/clothing/overcoats/item_suit_gimmick.dmi'
 	icon_state = "dukeabs"
 	item_state = "dukeabs"
+
+	attack_self(mob/user) //suppress armor vest style toggling
+		return
+
 
 /obj/item/clothing/head/biker_cap
 	name = "Biker Cap"
@@ -776,35 +781,35 @@
 			H.bioHolder.AddEffect("clumsy")
 			H.update_colorful_parts()
 
-/obj/item/clothing/under/gimmick/chav
-	name = "blue tracksuit"
+/obj/item/clothing/under/gimmick/brummie
+	name = "tracksuit"
 	desc = "Looks good on yew innit?"
-	icon_state = "chav1"
-	item_state = "chav1"
+	icon_state = "brummie1"
+	item_state = "brummie1"
 	New()
 		..()
 		desc = pick("Looks good on yew innit?", "Aww yeah that jackets sick m8")
 		if(prob(50))
 			name = "Burberry plaid jacket"
-			icon_state = "chav2"
-			item_state = "lb_suit"
+			icon_state = "brummie2"
+			item_state = "brummie2"
 
-/obj/item/clothing/head/chav
+/obj/item/clothing/head/brummie
 	name = "burberry cap"
 	desc = "Sick flatbrims m8"
-	icon_state = "chavcap"
+	icon_state = "brummiecap"
 	item_state = "caphat"
-
+/*
 /obj/item/clothing/under/gimmick/safari
 	name = "safari clothing"
 	desc = "'ello gents! Cracking time to hunt an elephant!"
 	icon_state = "safari"
 	item_state = "safari"
 	item_function_flags = IMMUNE_TO_ACID
-
+*/
 /obj/item/clothing/head/safari
-	name = "safari hat"
-	desc = "Keeps you cool in the hot savannah."
+	name = "pith hat"
+	desc = "Keeps you cool in the hot desert."
 	icon_state = "safari"
 	item_state = "caphat"
 	item_function_flags = IMMUNE_TO_ACID
@@ -973,7 +978,9 @@
 	icon_state = "maid"
 	item_state = "maid"
 
-/obj/item/clothing/under/gimmick/dinerdress_mint
+// These lack sprites in worn_js_gimmick.dmi
+// Post goon resprite additions
+/* /obj/item/clothing/under/gimmick/dinerdress_mint
 	name = "Mint Diner Waitress's Dress"
 	desc = "Can I getcha somethin', sugar?"
 	icon_state = "dinerdress-mint"
@@ -983,7 +990,7 @@
 	name = "Pink Diner Waitress's Dress"
 	desc = "Y'all come back now, ya hear?"
 	icon_state = "dinerdress-pink"
-	item_state = "dinerdress-pink"
+	item_state = "dinerdress-pink" */
 
 /obj/item/clothing/under/gimmick/kilt
 	name = "kilt"
@@ -1510,7 +1517,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring)
 /obj/item/clothing/under/gimmick/elvis
 	name = "bell bottoms"
 	desc = "Pristine white bell bottoms with red kick pleats and a snazzy gold belt."
-	icon_state = "elivissuit"
+	icon_state = "elvissuit"
 
 /obj/item/clothing/under/gimmick/eightiesmens
 	name = "flashy vest"
@@ -1651,7 +1658,6 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring)
 	body_parts_covered = TORSO|LEGS|ARMS
 
 //monkey island reference
-
 /obj/item/clothing/under/gimmick/guybrush
 	name = "wannabe pirate outfit"
 	desc = "It smells like monkeys."
@@ -1659,7 +1665,9 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring)
 	item_state = "guybrush"
 
 //fake lizard stuff
-
+// will need to see if there's an old discount godzilla code ref and also revert functionality
+// this is a cute item tho good job on these and the guybrush on goonstation dimwhat
+/*
 /obj/item/clothing/suit/gimmick/dinosaur
 	name = "dinosaur pajamas"
 	desc = "It has a little hood you can flip up and down. Rawr!"
@@ -1697,3 +1705,4 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring)
 	desc = "What kind of hero would wear this dumb thing?"
 	icon_state = "link"
 	item_state = "link"
+*/

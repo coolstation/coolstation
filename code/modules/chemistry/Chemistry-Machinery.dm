@@ -1,7 +1,7 @@
 /obj/submachine/chef_sink/chem_sink
 	name = "sink"
 	density = 0
-	layer = 5
+	//layer = 5
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "sink"
 	flags = NOSPLASH
@@ -70,10 +70,10 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if (prob(50))
 					qdel(src)
 					return
@@ -278,7 +278,7 @@
 			boutput(usr, "<span class='alert'>You are too far away from the target!</span>")
 			return
 
-		else if (istype(over_object,/turf/simulated/floor/))
+		else if (istype(over_object,/turf/floor/))
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set the Reagent Heater/Cooler to output to [over_object]!</span>")
 
@@ -313,10 +313,10 @@
 
 	ex_act(severity)
 		switch (severity)
-			if (1.0)
+			if (OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if (2.0)
+			if (OLD_EX_SEVERITY_2)
 				if (prob(50))
 					qdel(src)
 					return
@@ -405,7 +405,7 @@
 			if(input_name && input_name != default)
 				phrase_log.log_phrase("pill", input_name, no_duplicates=TRUE)
 			var/pillname = copytext(html_encode(input_name), 1, 32)
-			if (isnull(pillname) || !src.beaker || !R || !length(pillname) || pillname == " " || get_dist(usr, src) > 1)
+			if (isnull(pillname) || !src.beaker || !R ||  R.total_volume <= CHEM_EPSILON ||  !length(pillname) || pillname == " " || get_dist(usr, src) > 1)
 				return
 			var/obj/item/reagent_containers/pill/P = new/obj/item/reagent_containers/pill(src.output_target)
 			P.name = "[pillname] pill"
@@ -427,7 +427,7 @@
 			var/pillname = copytext(html_encode(input_pillname), 1, 32)
 			if(input_pillname && input_pillname != default)
 				phrase_log.log_phrase("pill", input_pillname, no_duplicates=TRUE)
-			if (isnull(pillname) || !src.beaker || !R || !length(pillname) || pillname == " " || get_dist(usr, src) > 1)
+			if (isnull(pillname) || !src.beaker || !R ||  R.total_volume <= CHEM_EPSILON ||  !length(pillname) || pillname == " " || get_dist(usr, src) > 1)
 				return
 			// get the pill volume from the user
 			var/pillvol = input(usr, "Volume of chemical per pill: (Min/Max 5/100):", "Volume", 5) as null|num
@@ -463,7 +463,7 @@
 			if(input_name && input_name != default)
 				phrase_log.log_phrase("bottle", input_name, no_duplicates=TRUE)
 			var/bottlename = copytext(html_encode(input_name), 1, 32)
-			if (isnull(bottlename) || !src.beaker || !R || !length(bottlename) || bottlename == " " || get_dist(usr, src) > 1)
+			if (isnull(bottlename) || !src.beaker || !R ||  R.total_volume <= CHEM_EPSILON ||  !length(bottlename) || bottlename == " " || get_dist(usr, src) > 1)
 				return
 			var/obj/item/reagent_containers/glass/bottle/B
 			if (R.total_volume <= 30)
@@ -480,7 +480,7 @@
 		else if (href_list["createpatch"])
 			var/input_name = input(usr, "Name the patch:", "Name", R.get_master_reagent_name()) as null|text
 			var/patchname = copytext(html_encode(input_name), 1, 32)
-			if (isnull(patchname) || !src.beaker || !R || !length(patchname) || patchname == " " || get_dist(usr, src) > 1)
+			if (isnull(patchname) || !src.beaker || !R ||  R.total_volume <= CHEM_EPSILON ||  !length(patchname) || patchname == " " || get_dist(usr, src) > 1)
 				return
 			var/med = src.check_whitelist(R)
 			var/obj/item/reagent_containers/patch/P
@@ -522,7 +522,7 @@
 			// get the pill name from the user
 			var/input_name = input(usr, "Name the patch:", "Name", R.get_master_reagent_name()) as null|text
 			var/patchname = copytext(html_encode(input_name), 1, 32)
-			if (isnull(patchname) || !src.beaker || !R || !length(patchname) || patchname == " " || get_dist(usr, src) > 1)
+			if (isnull(patchname) || !src.beaker || !R ||  R.total_volume <= CHEM_EPSILON ||  !length(patchname) || patchname == " " || get_dist(usr, src) > 1)
 				return
 			// get the pill volume from the user
 			var/patchvol = input(usr, "Volume of chemical per patch: (Min/Max 5/30)", "Volume", 5) as null|num
@@ -657,7 +657,7 @@
 			boutput(usr, "<span class='alert'>You are too far away from the target!</span>")
 			return
 
-		else if (istype(over_object,/turf/simulated/floor/))
+		else if (istype(over_object,/turf/floor/))
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set the CheMaster 3000 to output to [over_object]!</span>")
 
@@ -691,10 +691,10 @@ datum/chemicompiler_core/stationaryCore
 
 	ex_act(severity)
 		switch (severity)
-			if (1.0)
+			if (OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if (2.0)
+			if (OLD_EX_SEVERITY_2)
 				if (prob(50))
 					qdel(src)
 					return

@@ -363,10 +363,10 @@
 			var/obj/item/material_piece/D = W
 			var/which = determine_material(D, user)
 			if (which == "metal")
-				pool(W)
+				qdel(W)
 				metal_count += 10
 			else if (which == "glass")
-				pool(W)
+				qdel(W)
 				glass_count += 10
 			else
 				return
@@ -434,7 +434,7 @@
 						metal_count += 10
 					else
 						glass_count += 10
-					pool(M)
+					qdel(M)
 					sleep(0.1 SECONDS)
 			processing = 0
 			user.visible_message("<span class='notice'>[user] finishes stuffing materials into [src].</span>")
@@ -496,18 +496,18 @@
 			return 0
 
 		if (mode == "restore original") //For those who want to undo the carnage
-			if (istype(T, /turf/simulated/floor))
+			if (istype(T, /turf/floor))
 				if (!T.intact)
 					return
-				var/turf/simulated/floor/F = T
+				var/turf/floor/F = T
 				F.icon = initial(F.icon)
 				F.icon_state = F.roundstart_icon_state
 				F.set_dir(F.roundstart_dir)
-			else if (istype(T, /turf/simulated/wall))
+			else if (istype(T, /turf/wall))
 				T.icon = initial(T.icon)
 				//T.icon_state = initial(T.icon_state)
-				if (istype(T, /turf/simulated/wall/auto))
-					var/turf/simulated/wall/auto/W = T
+				if (istype(T, /turf/wall/auto))
+					var/turf/wall/auto/W = T
 					W.update_icon()
 					W.update_neighbors()
 			return
@@ -762,15 +762,15 @@
 		var/turf/T = get_turf(src)
 		// Originally worked only on this type specifically.
 		// Which meant it didn't work with the fancy new auto-walls
-		if (istype(T, /turf/simulated/wall))
+		if (istype(T, /turf/wall))
 			// Only update if the wall should have a different type
 			if (src.icon_state != "* AUTO *")
 				T.icon = src.icon
 				T.icon_state = src.icon_state
 				T.set_dir(src.dir)
 				T:allows_vehicles = src.allows_vehicles
-			else if (istype(T, /turf/simulated/wall/auto))
-				var/turf/simulated/wall/auto/AT = T
+			else if (istype(T, /turf/wall/auto))
+				var/turf/wall/auto/AT = T
 				AT.icon = initial(AT.icon)
 				AT.icon_state = initial(AT.icon_state)
 				AT.set_dir(initial(AT.dir))
@@ -786,7 +786,7 @@
 
 	proc/check()
 		var/turf/T = get_turf(src)
-		if (istype(T, /turf/simulated/floor) && T.intact)
+		if (istype(T, /turf/floor) && T.intact)
 			// Same deal as above, only checked for that specific type of floor
 			// so the various alternate designs weren't able to be converted
 			T.icon = src.icon

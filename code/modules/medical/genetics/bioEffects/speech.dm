@@ -63,10 +63,10 @@
 		message = elvisfy(message)
 		return message
 
-/datum/bioEffect/speech/chav
+/datum/bioEffect/speech/brummie
 	name = "Frontal Gyrus Alteration Type-C"
 	desc = "Forces the language center of the subject's brain to construct sentences in a more rudimentary manner."
-	id = "accent_chav"
+	id = "accent_brummie"
 	effectType = EFFECT_TYPE_DISABILITY
 	isBad = 1
 	msgGain = "Ye feel like a reet prat like, innit?"
@@ -81,7 +81,7 @@
 	OnSpeak(var/message)
 		if (!istext(message))
 			return ""
-		message = chavify(message)
+		message = brummieify(message)
 		return message
 
 /datum/bioEffect/speech/scots
@@ -774,4 +774,31 @@
 		if (!istext(message))
 			return ""
 		message = scoobify(message, 1)
+		return message
+
+//Past-midnight bad code time
+/datum/bioEffect/speech/open_source
+	name = "Frontal Gyrus Alteration Type-OS"
+	desc = "Bludgeons the language centers of the subject's brain indiscriminately with the most distinguished choice of words."
+	id = "accent_FOSS"
+	effectType = EFFECT_TYPE_DISABILITY
+	isBad = 1
+	msgGain = "You feel so goddamn correct about everything."
+	msgLose = "You get over yourself."
+	probability = 0
+	occur_in_genepools = 0
+	scanner_visibility = 0
+	can_research = 0
+	can_make_injector = 0
+	can_copy = 0
+	can_reclaim = 0
+	can_scramble = 0
+	curable_by_mutadone = 0
+	acceptable_in_mutini = TRUE //:3
+
+	//I think it's funniest if this only ever does one thing
+	OnSpeak(var/message)
+		if (!istext(message))
+			return ""
+		message = replacetext(message, "i think", "methinks") //If anyone knows how to fix the case sensitivity for this please
 		return message

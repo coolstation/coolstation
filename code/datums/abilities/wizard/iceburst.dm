@@ -35,11 +35,11 @@
 			if(isdead(M)) continue
 			if (ishuman(M))
 				if (M.traitHolder.hasTrait("training_chaplain"))
-					boutput(holder.owner, "<span class='alert'>[M] has divine protection! The spell refuses to target \him!</span>")
+					boutput(holder.owner, "<span class='alert'>[M] has divine protection! The spell refuses to target [him_or_her(M)]!</span>")
 					JOB_XP(M, "Chaplain", 2)
 					continue
 			if (iswizard(M))
-				boutput(holder.owner, "<span class='alert'>[M] has arcane protection! The spell refuses to target \him!</span>")
+				boutput(holder.owner, "<span class='alert'>[M] has arcane protection! The spell refuses to target [him_or_her(M)]!</span>")
 				continue
 			else if(check_target_immunity( M ))
 				boutput(holder.owner, "<span class='alert'>[M] seems to be warded from the effects!</span>" )
@@ -128,7 +128,7 @@
 
 		if (steam_on_death)
 			if (!(locate(/datum/effects/system/steam_spread) in src.loc))
-				var/datum/effects/system/steam_spread/steam = unpool(/datum/effects/system/steam_spread)
+				var/datum/effects/system/steam_spread/steam = new()
 				steam.set_up(10, 0, get_turf(src))
 				steam.attach(src)
 				steam.start(clear_holder=1)

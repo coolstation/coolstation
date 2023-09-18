@@ -212,7 +212,7 @@
 						access_emergency_storage, access_change_ids, access_eva, access_heads, access_head_of_personnel, access_medical_lockers,
 						access_all_personal_lockers, access_tech_storage, access_maint_tunnels, access_bar, access_janitor,
 						access_crematorium, access_kitchen, access_robotics, access_cargo, access_supply_console,
-						access_research, access_hydro, access_ranch, access_mail, access_ai_upload, access_pathology)
+						access_research, access_hydro, access_ranch, access_mail, access_ai_upload, access_pathology, access_juicer_crypto)
 		if("Head of Security")
 #ifdef RP_MODE
 			var/list/hos_access = get_all_accesses()
@@ -271,7 +271,7 @@
 #else
 			return list(access_security, access_carrypermit, access_contrabandpermit, access_securitylockers, access_brig, access_maint_tunnels,
 			access_medical, access_morgue, access_crematorium, access_research, access_cargo, access_engineering, access_engineering_control,
-			access_chemistry, access_bar, access_kitchen, access_hydro, access_pathology)
+			/*access_chemistry,*/ access_bar, access_kitchen, access_hydro, /*access_pathology*/)
 #endif
 		if("Vice Officer")
 			return list(access_security, access_carrypermit, access_contrabandpermit, access_brig, access_maint_tunnels,access_hydro, access_bar, access_kitchen, access_ranch)
@@ -283,8 +283,8 @@
 			return list(access_maint_tunnels, access_security, access_brig)
 
 		///////////////////////////// Medical
-		if("Medical Doctor")
-			return list(access_medical, access_medical_lockers, access_morgue, access_maint_tunnels)
+		if("Medical Doctor", "Surgeon")
+			return list(access_robotics, access_medical, access_medical_lockers, access_morgue, access_maint_tunnels) //consider adding access_medlab
 		if("Geneticist")
 			return list(access_medical, access_medical_lockers, access_morgue, access_medlab, access_maint_tunnels)
 		if("Pathologist")
@@ -296,42 +296,52 @@
 		if("Roboticist")
 			return list(access_robotics, access_tech_storage, access_medical, access_medical_lockers, access_morgue, access_maint_tunnels)
 		if("Pharmacist")
-			return list(access_research,access_tech_storage, access_maint_tunnels, access_chemistry,
-						access_medical_lockers, access_medical, access_morgue)
+			return list(access_robotics, access_medical, access_medical_lockers, access_chemistry)
+		if("Nurse")
+			return list(access_medical, access_morgue, access_medical_lockers)
+		if("Receptionist")
+			return list(access_medical, access_medical_lockers)
 		if("Medical Assistant")
 			return list(access_maint_tunnels, access_tech_storage, access_medical, access_morgue)
-		if("Psychiatrist")
-			return list(access_medical, access_maint_tunnels)
 
 		///////////////////////////// Science
 		if("Scientist")
 			return list(access_tox, access_tox_storage, access_research, access_chemistry)
 		if("Chemist")
-			return list(access_research, access_chemistry)
+			return list(access_research, access_chemistry, access_maint_tunnels)
 		if("Toxins Researcher")
-			return list(access_research, access_tox, access_tox_storage)
+			return list(access_research, access_tox, access_tox_storage, access_chemistry)
 		if("Research Assistant")
 			return list(access_maint_tunnels, access_tech_storage, access_research)
 
 		//////////////////////////// Engineering
-		if("Mechanic")
+		if("Engineer")
+			return list(access_engineering, access_maint_tunnels, access_external_airlocks, access_engineering_control,
+						access_engineering_storage,access_engineering_atmos,access_engineering_engine,access_engineering_power,access_engineering_mechanic)
+		if("Mechanic", "Electrician") //share a room you two
 			return list(access_maint_tunnels, access_external_airlocks, access_engineering_control,
-						access_tech_storage,access_engineering_mechanic,access_engineering_power)
+						access_tech_storage,access_engineering_mechanic,access_engineering_power, access_engineering, access_engineering_storage)
 		if("Atmospheric Technician")
 			return list(access_maint_tunnels, access_external_airlocks, access_construction, access_engineering_control,
 						access_eva, access_engineering, access_engineering_storage, access_engineering_eva, access_engineering_atmos)
-		if("Engineer")
-			return list(access_engineering,access_maint_tunnels,access_external_airlocks, access_engineering_control,
-						access_engineering_storage,access_engineering_atmos,access_engineering_engine,access_engineering_power)
-		if("Miner")
-			return list(access_maint_tunnels, access_external_airlocks,
-						access_engineering_eva, access_mining_shuttle, access_mining,
-						access_mining_outpost, access_hangar)
-		if("Quartermaster")
-			return list(access_maint_tunnels, access_cargo, access_supply_console, access_hangar)
 		if("Construction Worker")
 			return list(access_engineering,access_maint_tunnels,access_external_airlocks, access_engineering_control,
 						access_engineering_storage,access_engineering_atmos,access_engineering_engine,access_engineering_power)
+
+		//////////////////////////// Logistics
+		if("Quartermaster") //new head, make a QM-exclusive office
+			return list(access_maint_tunnels, access_cargo, access_supply_console, access_hangar, access_mining,
+						access_mining_shuttle, access_mining_outpost, access_external_airlocks) //access_heads when it's one slot and head of department
+		if("Cargo Technician")
+			return list(access_maint_tunnels, access_cargo, access_supply_console, access_hangar,
+						access_mining_shuttle, access_mining_outpost, access_external_airlocks)
+		if("Miner")
+			return list(access_maint_tunnels, access_external_airlocks,
+						access_engineering_eva, access_mining_shuttle, access_mining,
+						access_mining_outpost, access_hangar, access_cargo)
+		if("Mailcarrier")
+			return list(access_maint_tunnels, access_mail, access_cargo, access_hangar, //this had access_heads for some reason
+						access_mining_shuttle, access_mining_outpost)
 
 		///////////////////////////// Civilian
 		if("Chaplain")
@@ -339,21 +349,19 @@
 		if("Janitor")
 			return list(access_janitor, access_maint_tunnels, access_medical, access_morgue, access_crematorium)
 		if("Botanist", "Apiculturist")
-			return list(access_maint_tunnels, access_hydro)
-		if("Rancher")
 			return list(access_maint_tunnels, access_hydro, access_ranch)
+		if("Rancher")
+			return list(access_hydro, access_ranch)
 		if("Chef", "Sous-Chef")
-			return list(access_kitchen)
+			return list(access_bar, access_kitchen)
 		if("Bartender")
-			return list(access_bar)
+			return list(access_bar, access_kitchen)
 		if("Waiter")
 			return list(access_bar, access_kitchen)
 		if("Clown", "Boxer", "Barber", "Mime")
-			return list(access_maint_tunnels)
+			return list(access_maint_tunnels, access_mail)
 		if("Assistant", "Staff Assistant", "Technical Assistant", "Radio Show Host")
 			return list(access_maint_tunnels, access_tech_storage)
-		if("Mailman")
-			return list(access_maint_tunnels, access_mail, access_heads, access_cargo, access_hangar)
 
 		//////////////////////////// Other or gimmick
 		if("VIP")

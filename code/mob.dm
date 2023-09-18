@@ -19,7 +19,7 @@
 	var/last_move_trigger = 0
 
 	var/atom/movable/screen/internals = null
-	var/atom/movable/screen/stamina_bar/stamina_bar = null
+	//var/atom/movable/screen/stamina_bar/stamina_bar = null
 	var/last_overlay_refresh = 1 // In relation to world time. Used for traitor/nuke ops overlays certain mobs can see.
 
 	var/robot_talk_understand = 0
@@ -74,6 +74,7 @@
 	var/can_lie = 0
 	var/canmove = 1.0
 	var/ceilingreach = 0
+	var/lookingup = 0
 	var/incrit = 0
 	var/timeofdeath = 0.0
 	var/fakeloss = 0
@@ -95,6 +96,8 @@
 	var/charges = 0.0
 	var/urine = 0.0
 	var/poops = 0.0
+	var/cleanhands = 1 //wash em before handling food or internal organs
+	var/wiped = 1 //giving new mobs the benefit of the doubt (does nothing, but varediting admins will see your shame)
 	var/nutrition = 100
 	var/losebreath = 0.0
 	var/intent = null
@@ -490,6 +493,8 @@
 		src.addOverlaysClient(src.client)  //ov1
 
 	src.emote_allowed = 1
+	src.ai?.suspended = TRUE
+	src.ai?.stop_move() //In case we possess the mob mid-step (needed at least for anything running wanderer ai)
 
 	if (!src.mind)
 		src.mind = new (src)
@@ -529,6 +534,7 @@
 		for (var/datum/hud/hud in src.huds)
 			hud.remove_client(src.last_client)
 
+	src.ai?.suspended = FALSE
 
 	..()
 
@@ -3041,6 +3047,123 @@
 	if (items.len)
 		var/atom/A = input(usr, "What do you want to pick up?") as anything in items
 		src.client.Click(A, get_turf(A))
+
+//--- Swimming
+#define CAN_SWIM 0
+#define CANT_SWIM_INCAPACITATED 1
+#define CANT_SWIM_LYING 2
+#define CANT_SWIM_NO_GODDAMN_WATER 3
+#define CANT_SWIM_LACK_OF_LIMBS 4
+#define CANT_SWIM_HOLDING_HEAVY_OBJECT 5
+
+///Wrapper around attempt_swim that does failure messages, so other things can go directly to attempt_swim and not worry about spamming up the player's chat
+/mob/living/verb/swim()
+	switch(attempt_swim())
+		if(CANT_SWIM_INCAPACITATED)
+			boutput(src, "<span class='alert'>Not while you're incapacitated.</span>", "swimtime:)")
+		if(CANT_SWIM_LYING)
+			boutput(src, "<span class='alert'>Not while you're lying down.</span>", "swimtime:)")
+		if(CANT_SWIM_NO_GODDAMN_WATER)
+			boutput(src, "<span class='alert'>Swim in what exactly? Air?</span>", "swimtime:)")
+		if(CANT_SWIM_LACK_OF_LIMBS)
+			boutput(src, "<span class='alert'>You lack the limbs to swim.</span>", "swimtime:)")
+		if(CANT_SWIM_HOLDING_HEAVY_OBJECT)
+			boutput(src, "<span class='alert'>You're holding something too large to swim with.</span>", "swimtime:)")
+///Attempts to initiate a swim on the mob, return values indicate success or whatever
+/mob/living/proc/attempt_swim()
+	set name = "Swim"
+	set hidden = 1
+
+	if (!can_act(src, TRUE))
+		return CANT_SWIM_INCAPACITATED
+	if (src.lying)
+		return CANT_SWIM_LYING
+	var/turf/T = get_turf(src)
+	if (!istype(T, /turf/space/fluid) && T.active_liquid?.last_depth_level < 3)
+		return CANT_SWIM_NO_GODDAMN_WATER
+	src.setStatus("swimming", null)
+	return CAN_SWIM
+
+#ifdef UNDERWATER_MAP //Z-traversing swimming isn't a thing in space, I've decided
+///Traverse from mining to station Z
+/mob/living/verb/swim_up()
+	set name = "Swim Up"
+	set hidden = 1
+	var/can_go = hasStatus("swimming")
+	if (ishuman(src)) //let jetpack fans go up and down
+		var/mob/living/carbon/human/H = src
+		if (H.back && H.back.c_flags & IS_JETPACK)
+			if (istype(H.back, /obj/item/tank/jetpack))
+				var/obj/item/tank/jetpack/J = H.back
+				if(J.allow_thrust(0.01, H))
+					can_go = TRUE
+	if (!can_go)
+		boutput(src, "<span class='alert'>You're not currently swimming.</span>", group = "swimtime:)")
+		return
+	if (!isturf(src.loc))
+		return
+	if (src.z == Z_LEVEL_STATION)
+		boutput(src, "<span class='alert'>You're already at the surface.</span>", group = "swimtime:)")
+		return
+	var/turf/space/fluid/trenchfloor = src.loc
+	if (!istype(trenchfloor))
+		boutput(src, "<span class='alert'>There's a ceiling below you, go try again outside.</span>", group = "swimtime:)") //don't give me smartassery about walls
+		return
+	for(var/turf/space/fluid/T in range(5,trenchfloor))
+		if(T.linked_hole)
+			actions.start(new/datum/action/bar/private/swim_cross_z(T.linked_hole), src)
+			//src.set_loc(T.linked_hole)
+			return
+		else if (istype(get_area(T), /area/trench_landing)) //the trench landing is weird, this is seems to be what sea ladders do?
+			actions.start(new/datum/action/bar/private/swim_cross_z(pick(by_type[/turf/space/fluid/warp_z5/edge])), src)
+			//src.set_loc(pick(by_type[/turf/space/fluid/warp_z5/edge]))
+			return
+	//if (!trenchfloor.linked_hole)
+	boutput(src, "<span class='alert'>There's no nearby way up, shit.</span>", group = "swimtime:)") //RIP
+	return
+
+///Traverse from station to mining Z
+/mob/living/verb/swim_down()
+	set name = "Swim Down"
+	set hidden = 1
+	var/can_go = hasStatus("swimming")
+	if (ishuman(src)) //let jetpack fans go up and down
+		var/mob/living/carbon/human/H = src
+		if (H.back && H.back.c_flags & IS_JETPACK)
+			if (istype(H.back, /obj/item/tank/jetpack))
+				var/obj/item/tank/jetpack/J = H.back
+				if(J.allow_thrust(0.01, H))
+					can_go = TRUE
+	if (!can_go)
+		boutput(src, "<span class='alert'>You're not currently swimming.</span>", group = "swimtime:)")
+		return
+	if (!isturf(src.loc))
+		return
+	var/turf/space/fluid/warp_z5/trenchhole = src.loc
+	if (!istype(trenchhole))
+		boutput(src, "<span class='alert'>There's a floor below you.</span>", group = "swimtime:)") //don't give me smartassery about walls
+		return
+	trenchhole.try_build_turf_list()
+	actions.start(new/datum/action/bar/private/swim_cross_z(pick(trenchhole.L)), src)
+	//src.set_loc(pick(trenchhole.L))
+#endif
+
+//Move this out to a human file later
+/mob/living/carbon/human/attempt_swim()
+	if (!limbs.r_arm && !limbs.l_arm) //can't swim without at least one arm
+		return CANT_SWIM_LACK_OF_LIMBS
+	//var/list/in_hands = src.equipped_list(FALSE)
+	for(var/obj/item/thing in src.equipped_list(FALSE))
+		if (thing.w_class > SWIMMING_UPPER_W_CLASS_BOUND || thing.two_handed) //You need your hands fairly free to swim
+			return CANT_SWIM_HOLDING_HEAVY_OBJECT
+	. = ..()
+
+#undef CAN_SWIM
+#undef CANT_SWIM_INCAPACITATED
+#undef CANT_SWIM_LYING
+#undef CANT_SWIM_NO_GODDAMN_WATER
+#undef CANT_SWIM_LACK_OF_LIMBS
+#undef CANT_SWIM_HOLDING_HEAVY_OBJECT
 
 /mob/proc/can_eat(var/atom/A)
 	return 1

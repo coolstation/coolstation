@@ -1,5 +1,4 @@
-#define HERB_SMOKE_TRANSFER_HARDCAP 15
-#define HERB_HOTBOX_MULTIPLIER 1.2
+
 /// Inedible Produce
 /obj/item/plant/
 	name = "plant"
@@ -13,20 +12,21 @@
 
 	New()
 		..()
-		unpooled()
+		make_reagents()
+		//unpooled()
 
 	proc/make_reagents()
 		if (!src.reagents)
 			src.create_reagents(100)
-
+/*
 	unpooled()
 		src.reagents?.clear_reagents()
 		..()
 		make_reagents()
 		// hopefully prevent issues of "jumbo perfect large incredible nice perfect superb strawberry"
 		src.name = initial(name)
-
-	pooled()
+*/
+	disposing()
 		..()
 		if (src.reagents)
 			src.reagents.clear_reagents()
@@ -52,8 +52,8 @@
 			src.reagents.trans_to(P, src.reagents.total_volume)
 			W.force_drop(user)
 			src.force_drop(user)
-			pool (W)
-			pool (src)
+			qdel(W)
+			qdel(src)
 			user.put_in_hand_or_drop(P)
 			JOB_XP(user, "Botanist", 1)
 
@@ -71,19 +71,12 @@
 			W.force_drop(user)
 			src.force_drop(user)
 			qdel(W)
-			pool(src)
+			qdel(src)
 			user.put_in_hand_or_drop(doink)
 			JOB_XP(user, "Botanist", 2)
 
 	combust_ended()
-		var/turf/T = get_turf(src)
-		if (T.allow_unrestricted_hotbox) // traitor hotboxing
-			src.reagents.maximum_volume *= HERB_HOTBOX_MULTIPLIER
-			for (var/reagent_id in reagents.reagent_list)
-				src.reagents.add_reagent(reagent_id, (src.reagents.get_reagent_amount(reagent_id) * (HERB_HOTBOX_MULTIPLIER - 1)))
-			smoke_reaction(src.reagents, 1, get_turf(src), do_sfx = 0)
-		else
-			smoke_reaction(src.reagents.remove_any_to(HERB_SMOKE_TRANSFER_HARDCAP), 1, get_turf(src), do_sfx = 0)
+		smoke_reaction(src.reagents, 1, get_turf(src), do_sfx = 0)
 		..()
 
 	proc/build_name(obj/item/W)
@@ -345,7 +338,7 @@
 /obj/item/plant/herb/aconite
 	name = "aconite"
 	crop_suffix	= ""
-	desc = "A professor once asked, \"What is the difference, Mr. Potter, between monkshood and wolfsbane?\"\n  \"Aconite\", answered Hermione. And all was well."
+	desc = "Also known as wolfsbane. You know, just in case you have any wolves that need baning."
 	icon_state = "aconite"
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 	// module_research_type = /obj/item/plant/herb/cannabis
@@ -454,6 +447,3 @@
 	name = "houttuynia cordata"
 	desc = "Also known as fish mint or heart leaf, used in cuisine for its distinct fishy flavor."
 	icon_state = "hcordata"
-
-#undef HERB_SMOKE_TRANSFER_HARDCAP
-#undef HERB_HOTBOX_MULTIPLIER

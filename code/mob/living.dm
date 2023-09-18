@@ -134,8 +134,8 @@
 	if (can_bleed)
 		src.ensure_bp_list()
 
-	if (src.use_stamina)
-		src.stamina_bar = new(src)
+//	if (src.use_stamina)
+//		src.stamina_bar = new(src)
 		//stamina bar gets added to the hud in subtypes human and critter... im sorry.
 		//eventual hud merger pls
 
@@ -152,14 +152,14 @@
 	ai_target_old.len = 0
 	move_laying = null
 
-	qdel(chat_text)
-	chat_text = null
-
+	//qdel(chat_text) should be on atom now
+	//chat_text = null
+/*
 	if(stamina_bar)
 		for (var/datum/hud/thishud in huds)
 			thishud.remove_object(stamina_bar)
 		stamina_bar = null
-
+*/
 	for (var/atom/A as anything in stomach_process)
 		qdel(A)
 	for (var/atom/A as anything in skin_process)
@@ -448,7 +448,7 @@
 			if (cryo.exit_prompt(src))
 				return
 
-		if (src.client && src.client.check_key(KEY_EXAMINE))
+		if (src.client && src.client.check_key(KEY_EXAMINE) && !src.client.experimental_mouseless)
 			src.examine_verb(target)
 			return
 
@@ -747,14 +747,26 @@
 				if (isAI(src))
 					switch (lowertext(copytext(message, 2, 3))) // One vs. two letter prefix.
 						if ("1")
+							if (ACTION_GOVERNOR_BLOCKED(AI_GOVERNOR_GENRADIO))
+								var/mob/living/silicon/ai/me = src //ugh
+								boutput(me.deployed_to_eyecam ? me.eyecam : src, "<span class='alert'>You have lost the ability to use the general radio.</span>")
+								return
 							message_mode = "internal 1"
 							message = copytext(message, 3)
 
 						if ("2")
+							if (ACTION_GOVERNOR_BLOCKED(AI_GOVERNOR_CORERADIO))
+								var/mob/living/silicon/ai/me = src
+								boutput(me.deployed_to_eyecam ? me.eyecam : src, "<span class='alert'>You have lost the ability to use the AI core radio.</span>")
+								return
 							message_mode = "internal 2"
 							message = copytext(message, 3)
 
 						if ("3")
+							if (ACTION_GOVERNOR_BLOCKED(AI_GOVERNOR_DEPRADIO))
+								var/mob/living/silicon/ai/me = src
+								boutput(me.deployed_to_eyecam ? me.eyecam : src, "<span class='alert'>You have lost the ability to use the departmental radio.</span>")
+								return
 							message_mode = "monitor"
 							var/end = 3
 							if (!lowertext(copytext(message,3,4) == " "))
@@ -1368,6 +1380,9 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		else
 			src.lying = 0
 
+	if (src.lying && src.hasStatus("swimming"))
+		src.delStatus("swimming")
+
 	if (src.lying != src.lying_old)
 		src.lying_old = src.lying
 		src.animate_lying(src.lying)
@@ -1422,7 +1437,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 		if (INTENT_DISARM)
 			if (M.is_mentally_dominated_by(src))
-				boutput(M, "<span class='alert'>You cannot harm your master!</span>")
+				boutput(M, "<span class='alert'>You cannot harm this person!</span>")
 				return
 
 			var/datum/limb/L = M.equipped_limb()
@@ -1444,7 +1459,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 		if (INTENT_HARM)
 			if (M.is_mentally_dominated_by(src))
-				boutput(M, "<span class='alert'>You cannot harm your master!</span>")
+				boutput(M, "<span class='alert'>You cannot harm this person!</span>")
 				return
 
 			if (M != src)
@@ -1525,8 +1540,10 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	if (sustained_moves >= SUSTAINED_RUN_REQ)
 		base_speed = BASE_SPEED_SUSTAINED
 
+
 	. += base_speed
 	. += movement_delay_modifier
+	. *= (1.1 - (max(src.stamina_regen + GET_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS),(2*STAMINA_REGEN))/STAMINA_REGEN)/10) // 1.1 - (0 to 0.2)  // making stam regen do something???
 
 	var/multiplier = 1 // applied before running multiplier
 	var/health_deficiency_adjustment = 0
@@ -1646,13 +1663,13 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 /mob/living/critter/keys_changed(keys, changed)
 	..()
-	if (changed & KEY_RUN)
+	if (changed & KEY_RUN && !src.client?.experimental_mouseless)
 		if (hud && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
 			src.hud.set_sprint(keys & KEY_RUN)
 
 /mob/living/carbon/human/keys_changed(keys, changed)
 	..()
-	if (changed & KEY_RUN)
+	if (changed & KEY_RUN && !src.client?.experimental_mouseless)
 		if (hud && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT))
 			src.hud.set_sprint(keys & KEY_RUN)
 

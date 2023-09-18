@@ -84,14 +84,14 @@
 
 
 ///for the mapgen mountains, temp until we get something better
-/turf/simulated/wall/asteroid/mountain
+/turf/wall/asteroid/mountain
 	name = "mountain"
 	desc = "a rocky mountain"
 	fullbright = 0
 
 	destroy_asteroid(var/dropOre=0)
 		src.RL_SetOpacity(0)
-		src.ReplaceWith(/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor3)
+		src.ReplaceWith(/turf/floor/setpieces/Azarak/cavefloor/floor3)
 		src.opacity = 0
 		src.levelupdate()
 

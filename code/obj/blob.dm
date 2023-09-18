@@ -182,13 +182,13 @@
 		var/damage = 0
 		var/damage_mult = 1
 		switch(severity)
-			if(1)
+			if(OLD_EX_SEVERITY_1)
 				damage = rand(30,50)
 				damage_mult = 8
-			if(2)
+			if(OLD_EX_SEVERITY_2)
 				damage = rand(25,40)
 				damage_mult = 4
-			if(3)
+			if(OLD_EX_SEVERITY_3)
 				damage = rand(10,20)
 				damage_mult = 2
 				if (prob(5))
@@ -304,7 +304,7 @@
 		return
 
 	proc/create_chunk(var/turf/T)
-		var/obj/item/material_piece/wad/BC = unpool(/obj/item/material_piece/wad)
+		var/obj/item/material_piece/wad/BC = new()
 		BC.set_loc(T)
 		BC.setMaterial(copyMaterial(material))
 		BC.name = "chunk of blob"
@@ -1111,7 +1111,7 @@
 		absorbed_temp += temptemp * 0.25 + 50
 		temptemp *= 0.75
 		temptemp -= 50
-		for (var/turf/simulated/floor/T in range(protect_range,src))
+		for (var/turf/floor/T in range(protect_range,src))
 			var/datum/gas_mixture/air = T.air
 			if (air.temperature > T20C)
 				air.temperature /= 2
@@ -1151,7 +1151,7 @@
 		if (..())
 			return 1
 		var/toxins_consumed = 0
-		for (var/turf/simulated/floor/T in range(protect_range,src))
+		for (var/turf/floor/T in range(protect_range,src))
 			var/datum/gas_mixture/air = T.air
 			if (air.toxins > 0)
 				if (air.temperature > T20C)
@@ -1256,6 +1256,63 @@
 	update_icon()
 		return
 
+///A pair of blob tiles that take damage & die in tandem
+/obj/blob/linked
+	name = "linked blob"
+	var/obj/blob/linked/linked_blob
+	var/dying = FALSE //Need to prevent these from infinite looping
+	health = 60 //twice that of a regular blob tile
+	health_max = 60
+	special_icon = 1
+
+	//uwu
+	heal_damage(amount)
+		..()
+		if (linked_blob)
+			linked_blob.health = src.health
+			particleMaster.SpawnSystem(new /datum/particleSystem/blobheal(get_turf(linked_blob),linked_blob.color))
+			linked_blob.update_icon()
+			linked_blob.healthbar.onUpdate()
+		else //shouldn't be possible for a linked blob to occur alone, rectify
+			onKilled()
+			qdel(src)
+
+
+	///Transfer damage
+	take_damage(amount, damage_mult, damtype, mob/user)
+		..()
+		if (linked_blob)
+			if (src.health > 0) //don't really care if we're dying anyway
+				linked_blob.health = src.health
+				linked_blob.update_icon()
+				if (linked_blob.healthbar)
+					linked_blob.healthbar.onUpdate()
+		else //shouldn't be possible for a linked blob to occur alone, rectify
+			onKilled()
+			qdel(src)
+
+	///Kill soulmate blob (biggest tragedy of 2053)
+	onKilled()
+		..()
+		dying = TRUE
+		var/obj/ladder/turf_ladder = locate() in get_turf(src)
+
+		if (turf_ladder)
+			turf_ladder.blocked = FALSE
+		if (!linked_blob?.dying)
+			linked_blob.onKilled()
+			qdel(linked_blob)//bypassing onBlobDeath at the moment but I haven't coded the AI to build level transfers anyway
+
+/obj/blob/linked/upper
+	name = "blob level transfer"
+	desc = "Blob is oozing down a hole..."
+	state_overlay = "transfer_upper"
+
+/obj/blob/linked/lower
+	name = "blob level transfer"
+	desc = "More blob is oozing in from above..."
+	state_overlay = "transfer_lower"
+
 /obj/material_deposit
 	name = "material deposit"
 	desc = "A blob-engulfed chunk of materials."
@@ -1324,7 +1381,7 @@
 		return 0
 
 	if (!admin_overmind) //admins can spread wherever (within reason)
-		if (istype(src,/turf/unsimulated/) && !istype(src,/turf/unsimulated/floor/shuttle))
+		if (!issimulatedturf(src))
 			if (feedback)
 				boutput(feedback, "<span class='alert'>You can't spread the blob onto that kind of tile.</span>")
 			return 0

@@ -782,7 +782,7 @@
 		if(act == "scream")
 			if(mob.emote_allowed)
 				mob.emote_allowed = 0
-				message = "<B>[mob]</B> screams with \his mind! Guh, that's creepy!"
+				message = "<B>[mob]</B> screams with [his_or_her(mob)] mind! Guh, that's creepy!"
 				playsound(mob, "sound/voice/screams/Psychic_Scream_1.ogg", 80, 0, 0, max(0.7, min(1.2, 1.0 + (30 - mob.bioHolder.age)/60)), channel=VOLUME_CHANNEL_EMOTE)
 				SPAWN_DBG(3 SECONDS)
 					mob.emote_allowed = 1
@@ -1105,7 +1105,7 @@
 			if (abil.master)
 				abil.master.remove_thrall(mob)
 			else
-				remove_mindslave_status(mob)
+				remove_insurgent_status(mob)
 		..()
 
 /datum/mutantrace/skeleton
@@ -1268,9 +1268,9 @@
 	special_head = HEAD_WEREWOLF
 	mutant_organs = list("tail" = /obj/item/organ/tail/wolf)
 
-	head_offset = 5
-	hand_offset = 3
-	arm_offset = 3
+	//head_offset = 5
+	//hand_offset = 3
+	//arm_offset = 3
 
 	New()
 		..()
@@ -1502,10 +1502,10 @@
 				if (!muzzled)
 					. = "<B>[mob.name]</B> roars."
 			if("tail")
-				. = "<B>[mob.name]</B> waves \his tail."
+				. = "<B>[mob.name]</B> waves [his_or_her(mob)] tail."
 			if("paw")
 				if (!mob.restrained())
-					. = "<B>[mob.name]</B> flails \his paw."
+					. = "<B>[mob.name]</B> flails [his_or_her(mob)] paw."
 			if("scretch")
 				if (!muzzled)
 					. = "<B>[mob.name]</B> scretches."
@@ -1516,7 +1516,7 @@
 					. = "<B>[src.name]</B> rolls."
 			if("gnarl")
 				if (!muzzled)
-					. = "<B>[mob]</B> gnarls and shows \his teeth.."
+					. = "<B>[mob]</B> gnarls and shows [his_or_her(mob)] teeth.."
 			if("jump")
 				. = "<B>[mob.name]</B> jumps!"
 			if ("scream")
@@ -1794,7 +1794,7 @@
 			M.bioHolder.AddEffect("mattereater")
 			M.bioHolder.AddEffect("jumpy")
 			M.bioHolder.AddEffect("vowelitis")
-			M.bioHolder.AddEffect("accent_chav")
+			M.bioHolder.AddEffect("accent_brummie")
 
 
 	disposing()
@@ -1804,7 +1804,7 @@
 				mob.bioHolder.RemoveEffect("mattereater")
 				mob.bioHolder.RemoveEffect("jumpy")
 				mob.bioHolder.RemoveEffect("vowelitis")
-				mob.bioHolder.RemoveEffect("accent_chav")
+				mob.bioHolder.RemoveEffect("accent_brummie")
 		original_blood_color = null
 		..()
 
@@ -1829,7 +1829,7 @@
 						if (mob) mob.emote_allowed = 1
 					return message
 			else ..()
-
+/*
 /datum/mutantrace/kudzu
 	name = "kudzu"
 	icon = 'icons/mob/kudzu.dmi'
@@ -1954,7 +1954,7 @@
 					mob.changeStatus("weakened", 3 SECONDS)
 
 		return
-
+*/
 /datum/mutantrace/cow
 	name = "cow"
 	icon = 'icons/mob/cow.dmi'
@@ -2080,6 +2080,133 @@
 				if (mob.emote_check(voluntary, 50))
 					. = "<B>[mob]</B> BWAHCAWCKs!"
 					playsound(mob, "sound/voice/screams/chicken_bawk.ogg", 50, 0, 0, mob.get_age_pitch())
+
+/datum/mutantrace/fert
+	name = "ferret"
+	icon = 'icons/mob/fert.dmi'
+	icon_state = "body_m"
+	override_attack = 0
+	mutant_appearance_flags = (NOT_DIMORPHIC | HAS_HUMAN_EYES | BUILT_FROM_PIECES | HAS_EXTRA_DETAILS | FIX_COLORS | SKINTONE_USES_PREF_COLOR_1 | HAS_SPECIAL_HAIR | TORSO_HAS_SKINTONE | WEARS_UNDERPANTS)
+	voice_override = "fert"
+	special_head = HEAD_FERT
+	special_head_state = "head"
+	mutant_organs = list("tail" = /obj/item/organ/tail/fert)
+	mutant_folder = 'icons/mob/fert.dmi'
+	special_hair_1_icon = 'icons/mob/fert.dmi'
+	special_hair_1_state = "head_detail_altcolor"
+	special_hair_1_color = CUST_2 //middle
+	special_hair_2_icon = 'icons/mob/fert.dmi'
+	special_hair_2_state = "head_detail_banditmask"
+	special_hair_2_color = CUST_1 //bottom: base color
+	special_hair_3_icon = 'icons/mob/fert.dmi'
+	special_hair_3_state = "head_detail_noseears"
+	special_hair_3_color = CUST_3 //top
+	detail_1_icon = 'icons/mob/fert.dmi'
+	detail_1_state = "chest_detail_altcolor" //counter-shading
+	detail_1_color = CUST_2 //middle
+	r_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/fert/right
+	l_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/fert/left
+	r_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/fert/right
+	l_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/fert/left
+	race_mutation = /datum/bioEffect/mutantrace/fert
+	clothing_icon_override = 'icons/mob/fert_clothes.dmi'
+	color_channel_names = list("Base Coat", "Alternate Color", "Nose and Ears")
+	dna_mutagen_banned = FALSE
+
+	//thanks for the sprites and hard work, Cet!!
+
+	New(var/mob/living/carbon/human/H)
+		..()
+		if(ishuman(H))
+			H.bioHolder.AddEffect("stinky")
+			//H.bioHolder.AddEffect("clumsy") //better handled with a cooldown power: lets a ferretperson move and act faster for a limited time...
+			//but they're extra clumsy while it's active and they're weakened for a few seconds and a little slow for the duration of the cooldown?
+			H.mob_flags |= SHOULD_HAVE_A_TAIL
+
+			H.update_face()
+			H.update_body()
+			H.update_clothing()
+
+	emote(var/act, var/voluntary=0) //need a weasel-scream, possibly flip variant (unless we move handling of mutantrace variant emotes to The Big Datum Stack, which could be very helpful)
+		var/message = null
+		switch (act)
+			if ("dance")
+				if (mob.emote_allowed)
+					if (!(mob.client && mob.client.holder)) mob.emote_allowed = 0
+					if (voluntary)
+						message = "<B>[mob]</B> [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles","weasel-wardances")]!" //public message
+						SPAWN_DBG(4 SECONDS)
+							if (mob) mob.emote_allowed = 1 //finish cooldown
+					else
+						mob.show_message("<span class='alert'>You CAN'T CONTROL YOURSELF AT ALL!!! YOU GOTTA [pick("WOBBLE","WIGGLE","WIG OUT","FREAK OUT","BOUNCE AROUND","GET WOOZED UP")]!!!</span>") //message to only yourself
+						SPAWN_DBG(2 SECONDS) //shorter cooldown for involuntary
+							if (mob) mob.emote_allowed = 1
+				else
+					return
+
+				//do the actual dance:
+				if (prob(20)) //starts off with a flip
+					animate_spin(mob, prob(50) ? "L" : "R", 1, 0)
+				SPAWN_DBG(0) //commence the wiggling
+					var/x = rand(5,10)
+					while (x-- > 0)
+						if (mob)
+							mob.pixel_x = rand(-6,6)
+							mob.pixel_y = rand(-6,6)
+							mob.dir = pick(1,2,4,8)
+							sleep(0.2 SECONDS)
+							if (x == 0) //it's fine for the critters to be sloppy but not the player, get back to normal position at the end
+								if (mob) //sometimes explosions happen during a freakout
+									mob.pixel_x = 0
+									mob.pixel_y = 0
+									if (prob((voluntary * 3) + 2)) //when done, also a chance to flop
+										mob.changeStatus("weakened", 5 SECONDS)
+										mob.visible_message("<span class='alert'><B>[mob] gets exhausted from prancing about and falls over!</B></span>")
+									else if (prob(20)) //but... maybe just one more flip, for the road
+										animate_spin(mob, prob(50) ? "L" : "R", 1, 0)
+
+				//chance to excite ferts who can see you:
+				if(resonance_fertscade || voluntary) //unless enabled, the chain is one
+					sleep(0.2 SECONDS) //so they don't start fuckin' dancing before you do
+					for (var/mob/M in viewers(mob, null))
+						if (M != mob && isfert(M)) //big ferrets
+							if (prob(15) && M.emote_allowed) //any higher and it's probably too much chaos. jfc
+								for (var/mob/V in viewers(M, null)) //secondary viewers watching this trainwreck unfold
+									if (V == M) //don't view yourself dancing
+										continue
+									V.show_message("<span class='notice'>[M] joins [mob] in these [pick("fuckin'","absolutely","totally","")] [pick("weaselly","toobular","dooked-up","slinky","stinky")] [pick("shenanigans","hijinks","carryings-on","behaviors","wiggles","wobbles")].</span>", 1)
+									M.emote("dance", 0) //involuntary
+						if (istype(M, /mob/living/critter/small_animal/meatslinky)) //small ferrets
+							var/mob/living/critter/small_animal/meatslinky/Frt = M
+							Frt.contagiousfreakout() //this does its own prob + cooldown
+						//we are not doing obj/critters sorry
+				return message
+
+			if ("laugh") //maybe these sometimes just happen. add a random freakout var like the regular ferrets maybe?
+				if (mob.emote_allowed)
+					mob.emote_allowed = 0
+					message = "<B>[mob]</B> dooks excitedly!"
+					playsound(mob, 'sound/misc/talk/fert.ogg', 40, 1, 0.3, channel=VOLUME_CHANNEL_EMOTE)
+					SPAWN_DBG(1 SECONDS)
+						if (mob) mob.emote_allowed = 1
+					return message
+			if ("scream")
+				if (mob.emote_check(voluntary, 50))
+					. = "<B>[mob]</B> screams!"
+					playsound(mob, "sound/voice/screams/weaselscream.ogg", 50, 0, 0, mob.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			else
+				..() //oh right do the rest
+
+	disposing()
+		if(ishuman(mob))
+			//var/mob/living/carbon/human/L = mob
+			//L.bioHolder.RemoveEffect("stinky") //that stink doesn't wash off so easily
+			mob.mob_flags &= ~SHOULD_HAVE_A_TAIL
+			mob.base_body_temp = initial(mob.base_body_temp)
+		. = ..()
+
+	say_verb()
+		return "dooks"
 
 #undef OVERRIDE_ARM_L
 #undef OVERRIDE_ARM_R

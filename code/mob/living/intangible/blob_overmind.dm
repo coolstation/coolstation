@@ -78,6 +78,10 @@
 
 	New()
 		..()
+	#ifdef Z3_IS_A_STATION_LEVEL
+		src.add_ability(/datum/blob_ability/upper_transfer)
+		src.add_ability(/datum/blob_ability/lower_transfer)
+	#endif
 		src.add_ability(/datum/blob_ability/plant_nucleus)
 		src.add_ability(/datum/blob_ability/set_color)
 		src.add_ability(/datum/blob_ability/tutorial)
@@ -109,7 +113,8 @@
 			if (!tutorial.PerformAction("move", NewLoc))
 				return 0
 		if (isturf(NewLoc))
-			if (istype(NewLoc, /turf/unsimulated/wall))
+			var/turf/T = NewLoc
+			if (istype(T, /turf/wall) && !issimulatedturf(T)) //IDK why this gives a shit about not letting blobs go on unsimmed walls
 				return 0
 		..()
 
@@ -356,6 +361,10 @@
 		src.remove_all_abilities()
 		src.remove_all_upgrades()
 
+	#ifdef Z3_IS_A_STATION_LEVEL
+		src.add_ability(/datum/blob_ability/upper_transfer)
+		src.add_ability(/datum/blob_ability/lower_transfer)
+	#endif
 		src.add_ability(/datum/blob_ability/plant_nucleus)
 		src.add_ability(/datum/blob_ability/set_color)
 		src.add_ability(/datum/blob_ability/tutorial)

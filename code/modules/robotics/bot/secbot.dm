@@ -91,8 +91,8 @@
 	var/mode = 0
 
 	var/auto_patrol = 0		// set to make bot automatically patrol
-	var/beacon_freq = 1445		// navigation beacon frequency
-	var/control_freq = 1447		// bot control frequency
+	var/beacon_freq = FREQ_BOT_NAV		// navigation beacon frequency
+	var/control_freq = FREQ_BOT_CONTROL		// bot control frequency
 
 	var/turf/patrol_target	// this is turf to navigate to (location of beacon)
 	var/new_destination		// pending new destination (waiting for beacon response)
@@ -110,6 +110,8 @@
 
 	var/nearest_beacon			// the nearest beacon's tag
 	var/turf/nearest_beacon_loc	// the nearest beacon's location
+
+	var/last_attack = 0 // explanatory
 
 	var/attack_per_step = 0 // Tries to attack every step. 1 = 75% chance to attack, 2 = 25% chance to attack
 	/// One WEEOOWEEOO at a time, please
@@ -157,7 +159,7 @@
 			our_baton.dispose()
 			our_baton = null
 		target = null
-		radio_controller.remove_object(src, FREQ_PDA)
+		radio_controller.remove_object(src, "[FREQ_PDA]")
 		radio_controller.remove_object(src, "[control_freq]")
 		radio_controller.remove_object(src, "[beacon_freq]")
 		..()
@@ -230,7 +232,7 @@
 	var/is_dead_beepsky = 0
 	var/build_step = 0
 	var/created_name = "Securitron" //To preserve the name if it's a unique securitron I guess
-	var/beacon_freq = 1445 //If it's running on another beacon circuit I guess
+	var/beacon_freq = FREQ_BOT_NAV //If it's running on another beacon circuit I guess
 	var/hat = null
 
 
@@ -478,10 +480,10 @@
 	//Generally we want to explode() instead of just deleting the securitron.
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.explode()
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.health -= 15
 				if (src.health <= 0)
 					src.explode()
@@ -500,7 +502,7 @@
 	explode()
 		if (report_arrests)
 			var/bot_location = get_area(src)
-			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency(FREQ_PDA)
+			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 			var/datum/signal/pdaSignal = get_free_signal()
 			var/message2send = "Notification: [src] destroyed in [bot_location]! Officer down!"
 			pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="SECURITY-MAILBOT", "group"=list(MGD_SECURITY, MGA_DEATH), "sender"="00000000", "message"="[message2send]")
@@ -543,7 +545,7 @@
 		qdel(src)
 
 	/// Makes the bot able to baton people, then makes them unable to baton people after a while
-	proc/charge_baton()
+	proc/charge_baton() // UNUSED - WARC
 		src.baton_charged = TRUE
 		UpdateOverlays(chargepic, "secbot_charged")
 		SPAWN_DBG(src.baton_charge_duration)
@@ -552,42 +554,54 @@
 
 	/// Hits someone with our baton, or charges it if it isnt
 	proc/baton_attack(var/mob/living/carbon/M, var/force_attack = 0)
-		if(force_attack || baton_charged)
-			src.baton_charging = 0
-			src.icon_state = "secbot-c[src.emagged >= 2 ? "-wild" : null]"
-			var/maxstuns = 4
-			var/stuncount = (src.emagged >= 2) ? rand(5,10) : 1
-
-			// No need for unnecessary hassle, just make it ignore charges entirely for the time being.
-			if (src.our_baton && istype(src.our_baton))
-				src.our_baton.cost_normal = 0
-			else
-				src.our_baton = new src.our_baton_type(src)
-
-			while (stuncount > 0 && src.target)
-				// they moved while we were sleeping, abort
-				if(!IN_RANGE(src, src.target, 1))
-					src.icon_state = "secbot[src.on][(src.on && src.emagged >= 2) ? "-wild" : null]"
-					src.weeoo()
-					src.process()
-					return
-
-				stuncount--
-				src.our_baton.do_stun(src, M, src.stun_type, 2)
-				if (!stuncount && maxstuns-- <= 0)
-					src.KillPathAndGiveUp(KPAGU_CLEAR_PATH)
-				if (stuncount > 0)
-					sleep(BATON_DELAY_PER_STUN)
-
-			SPAWN_DBG(0.2 SECONDS)
-				src.icon_state = "secbot[src.on][(src.on && src.emagged >= 2) ? "-wild" : null]"
-			if (src.target.getStatusDuration("weakened"))
-				src.anchored = 1
-				src.target_lastloc = M.loc
-				src.KillPathAndGiveUp(KPAGU_CLEAR_PATH)
+		sleep(BATON_INITIAL_DELAY)
+		if(!IN_RANGE(src, src.target, 1))
 			return
+
+		src.icon_state = "secbot-c[src.emagged >= 2 ? "-wild" : null]"
+		var/maxstuns = 4
+		var/stuncount = (src.emagged >= 2) ? rand(5,10) : 1
+
+		last_attack = world.time
+
+		// No need for unnecessary hassle, just make it ignore charges entirely for the time being.
+		if (src.our_baton && istype(src.our_baton))
+			src.our_baton.cost_normal = 0
+			src.our_baton.cost_cyborg = 0
 		else
-			actions.start(new/datum/action/bar/icon/secbot_stun(src, src.target, M, src), src)
+			src.our_baton = new our_baton_type(src)
+
+		while (stuncount > 0 && src.target)
+			// they moved while we were sleeping, abort
+			if(!IN_RANGE(src, src.target, 1))
+				src.icon_state = "secbot[src.on][(src.on && src.emagged >= 2) ? "-wild" : null]"
+				return
+
+			stuncount--
+			src.our_baton.do_stun(src, M, src.stun_type, 2)
+			if (!stuncount && maxstuns-- <= 0)
+				target = null
+			if (stuncount > 0)
+				sleep(BATON_DELAY_PER_STUN)
+
+		SPAWN_DBG(0.2 SECONDS)
+			src.icon_state = "secbot[src.on][(src.on && src.emagged >= 2) ? "-wild" : null]"
+		if (src.target.getStatusDuration("weakened"))
+			mode = SECBOT_AGGRO
+			src.anchored = 1
+			src.target_lastloc = M.loc
+			src.KillPathAndGiveUp(KPAGU_CLEAR_PATH)
+		return
+
+	Move(var/turf/NewLoc, direct)
+		var/oldloc = src.loc
+		..()
+		if (src.attack_per_step && prob(src.attack_per_step == 2 ? 25 : 75))
+			if (oldloc != NewLoc && world.time != last_attack)
+				if (mode == SECBOT_AGGRO && target)
+					if (IN_RANGE(src, src.target, 1))
+						src.baton_attack(src.target)
+
 
 	process()
 		. = ..()
@@ -827,7 +841,7 @@
 
 		if(pda_help && !ON_COOLDOWN(src, SECBOT_HELPME_COOLDOWN, src.helpme_cooldown))
 			// HELPMEPLZ
-			var/datum/radio_frequency/frequency = radio_controller.return_frequency(FREQ_PDA)
+			var/datum/radio_frequency/frequency = radio_controller.return_frequency("[FREQ_PDA]")
 			if(frequency)
 				var/message2send ="ALERT: Unit under attack by [src.target] in [get_area(src)]. Requesting backup."
 
@@ -1308,7 +1322,7 @@
 					LT_loc = get_turf(master)
 
 					//////PDA NOTIFY/////
-				var/datum/radio_frequency/frequency = radio_controller.return_frequency(FREQ_PDA)
+				var/datum/radio_frequency/frequency = radio_controller.return_frequency("[FREQ_PDA]")
 				if(!frequency) return FALSE
 
 				var/message2send ="Notification: [last_target] detained by [master] in [bot_location] at coordinates [LT_loc.x], [LT_loc.y]."
@@ -1340,7 +1354,7 @@
 		if (!isturf(master.loc) || !isturf(master.target?.loc)) // Most often, inside a locker
 			return 1 // cant cuff people through lockers... and not enough room to cuff if both are in that locker
 
-//secbot stunner bar thing
+//secbot stunner bar thing // UNUSED NOW - WARC
 /datum/action/bar/icon/secbot_stun
 	duration = 10
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION

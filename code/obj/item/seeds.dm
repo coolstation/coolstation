@@ -29,7 +29,7 @@
 			docolor()
 		// Colors in the seed packet, if we want to do that. Any seed that doesn't use the
 		// standard seed packet sprite shouldn't do this or it'll end up looking stupid.
-
+/*
 	//kudzumen can analyze seeds via ezamine when close.
 	get_desc(dist, mob/user)
 		if (dist >= 2)
@@ -37,13 +37,13 @@
 
 		if (iskudzuman(user))
 			. = scan_plant(src, user, visible = 0) // Replaced with global proc (Convair880).
-
+*/
 	proc/docolor() //bleh, used when unpooling
 		src.plant_seed_color(src.seedcolor)
 
 	proc/removecolor()
 		src.overlays = 0
-
+/*
 	unpooled()
 		..()
 		src.plantgenes = new /datum/plantgenes(src)
@@ -61,7 +61,7 @@
 		planttype = 0
 		plantgenes = 0
 		seedcolor = "#000000"
-
+*/
 	proc/generic_seed_setup(var/datum/plant/P)
 		// This proc is pretty much entirely for regular seeds you find from the vendor
 		// or harvest, stuff like artifact seeds generally shouldn't be calling this.
@@ -151,6 +151,13 @@
 	seedcolor = "#00FF00"
 	auxillary_datum = /datum/plant/herb/cannabis
 
+/obj/item/seed/grass/scrub/
+	name = "desert scrub seed"
+	seedcolor = "#087008"
+	New() // ideally i'd like these seeds to have mutations but idk how to get it done lmao.
+		auxillary_datum = pick(/datum/plant/herb/cannabis,/datum/plant/herb/grass,/datum/plant/crop/wheat,/datum/plant/crop/oat,/datum/plant/crop/corn,/datum/plant/crop/rice,/datum/plant/crop/beans,/datum/plant/crop/peas,/datum/plant/crop/soy)
+		..()
+
 // weird alien plants
 
 /obj/item/seed/alien
@@ -160,11 +167,11 @@
 	New()
 		..()
 		gen_plant_type()
-
+/*
 	unpooled()
 		..()
 		gen_plant_type()
-
+*/
 	proc/gen_plant_type()
 		if (src.type == /obj/item/seed/alien)
 			// let's make the base seed randomise itself for fun and also for functionality

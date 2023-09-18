@@ -260,7 +260,7 @@
 	attack_hand(mob/user as mob)
 		if (!src.sneaky)
 			playsound(src.loc, "rustle", 50, 1, -2)
-		if (src.loc == user && (!does_not_open_in_pocket || src == user.l_hand || src == user.r_hand))
+		if (src.loc == user && (!does_not_open_in_pocket || src == user.l_hand || src == user.r_hand)) // todo add shift-click exception -warc
 			if (ishuman(user))
 				var/mob/living/carbon/human/H = user
 				if (H.limbs) // this check is probably dumb. BUT YOU NEVER KNOW
@@ -345,6 +345,16 @@
 	max_wclass = 1
 	desc = "A small bottle designed to carry pills. Does not come with a child-proof lock, as that was determined to be too difficult for the crew to open."
 
+	MouseDrop(atom/over_object, src_location, over_location)
+		if(!(usr == over_object)) return ..()
+		if(!istype(usr, /mob/living/carbon)) return ..()
+		var/mob/living/carbon/C = usr
+		if(C.r_hand == src || C.l_hand == src) // inhand? chugg
+			actions.start(new /datum/action/bar/icon/chug_pills(C, src), C)
+		else
+			return ..()
+
+
 /obj/item/storage/briefcase
 	name = "briefcase"
 	icon_state = "briefcase"
@@ -408,6 +418,22 @@
 				boutput(usr, "<span class='alert'>[src] is locked!</span>")
 			return
 		..()
+
+/obj/item/storage/desk_drawer/prepared_tool_cart //boy the tool carts are funky in terms of inheritance
+	//Got some spares just in case, no welders cause I figure these'll be in podbays which have welding closets
+	spawn_contents = list(/obj/item/crowbar,
+	/obj/item/crowbar,
+	/obj/item/wirecutters,
+	/obj/item/wirecutters,
+	/obj/item/screwdriver,
+	/obj/item/screwdriver,
+	/obj/item/wrench,
+	/obj/item/wrench,
+	/obj/item/reagent_containers/glass/oilcan,
+	/obj/item/clothing/gloves/black,
+	/obj/item/cable_coil/white, //approximately the neutral/live/earth wiring colours for the US
+	/obj/item/cable_coil/black, //don't ask why the cart contents reference that of all things, I thought it'd be a cute thing to do :P
+	/obj/item/cable_coil/green) //anyway we got slots to fill, so
 
 /obj/item/storage/rockit
 	name = "\improper Rock-It Launcher"

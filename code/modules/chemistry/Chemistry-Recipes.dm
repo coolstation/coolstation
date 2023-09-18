@@ -3310,6 +3310,15 @@ datum
 			result_amount = 1
 			mix_phrase = "The mixture emits a sickly-sweet smell."
 
+		UGHFCS
+			name = "Ultra-Giga-High-Fructose Corn Syrup"
+			id = "UGHFCS"
+			result = "UGHFCS"
+			required_reagents = list("enriched_msg" = 1, "VHFCS" = 1, "denatured_enzyme" = 0)
+			result_amount = 2
+			required_temperature = T0C + 190
+			mix_phrase = "The mixture emits a terrible savory-sweet smell."
+
 		gravy
 			name = "Gravy"
 			id = "gravy"
@@ -3478,7 +3487,7 @@ datum
 					if(1 to 70)
 						new /mob/living/carbon/cube/meat(location)
 					if(71 to 94)
-						var/critter = pick(/obj/critter/roach,/obj/critter/pig,/obj/critter/cat,/obj/critter/mouse,/obj/critter/spacebee,/obj/critter/owl,/obj/critter/goose,/obj/critter/goose/swan,/obj/critter/domestic_bee,/obj/critter/walrus,/obj/critter/sealpup)
+						var/critter = pick(/obj/critter/roach,/obj/critter/roach/classic,/obj/critter/pig,/obj/critter/cat,/obj/critter/mouse,/obj/critter/spacebee,/obj/critter/owl,/obj/critter/goose,/obj/critter/goose/swan,/obj/critter/domestic_bee,/obj/critter/walrus,/obj/critter/sealpup)
 						new critter(location)
 					if(95 to 97)
 						if (location.density)

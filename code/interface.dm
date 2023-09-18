@@ -22,17 +22,17 @@
 			switch(alert(src, "Is this an abusable exploit or related to secrets?","Secret report?","Yes","No","Cancel"))
 				if("Yes")
 					var/details_body = {"**Describe+the+bug**%0AA+clear+and+concise+description+of+what+the+bug+is.%0A%0A**To+Reproduce**%0ASteps+to+reproduce+the+behavior:%0A1.+Buy+a+Pizza+from+a+vending+machine%0A2.+Eat+the+pizza%0A3.+The+pizza+has+not+disappeared%0A4.+See+error%0A%0A**Expected+behavior**%0AA+clear+and+concise+description+of+what+you+expected+to+happen.%0A%0A**Screenshots**%0AIf+applicable,+add+screenshots+to+help+explain+your+problem.%0A%0A**Additional+context**%0AAdd+any+other+context+about+the+problem+here.%0A%0A"}
-					var/url = {"https://gitreports.com/issue/goonstation/goonstation-secret?email_public=0&name=[src.ckey]&details=[details_body]%0AReported on: [config.server_name]+[time2text(world.realtime, "YYYY-MM-DD")]+[time2text(world.timeofday, "hh:mm:ss")]"}
+					var/url = {"https://gitreports.com/issue/coolstation/coolstation-secret?email_public=0&name=[src.ckey]&details=[details_body]%0AReported on: [config.server_name]+[time2text(world.realtime, "YYYY-MM-DD")]+[time2text(world.timeofday, "hh:mm:ss")]"}
 					src << link(url)
 					return
 				if("Cancel")
 					return
 			switch(alert(src, "Do you have a GitHub account?",,"Yes","No","Cancel"))
 				if("Yes")
-					src << link("https://github.com/goonstation/goonstation/issues/new?template=bug_report.md")
+					src << link("https://github.com/coolstation/coolstation/issues/new?template=bug_report.md")
 				if("No")
 					var/details_body = {"**Describe+the+bug**%0AA+clear+and+concise+description+of+what+the+bug+is.%0A%0A**To+Reproduce**%0ASteps+to+reproduce+the+behavior:%0A1.+Buy+a+Pizza+from+a+vending+machine%0A2.+Eat+the+pizza%0A3.+The+pizza+has+not+disappeared%0A4.+See+error%0A%0A**Expected+behavior**%0AA+clear+and+concise+description+of+what+you+expected+to+happen.%0A%0A**Screenshots**%0AIf+applicable,+add+screenshots+to+help+explain+your+problem.%0A%0A**Additional+context**%0AAdd+any+other+context+about+the+problem+here.%0A%0A"}
-					var/url = {"https://gitreports.com/issue/goonstation/goonstation?email_public=0&name=[src.ckey]&details=[details_body]%0AReported on: [config.server_name]+[time2text(world.realtime, "YYYY-MM-DD")]+[time2text(world.timeofday, "hh:mm:ss")]"}
+					var/url = {"https://gitreports.com/issue/coolstation/coolstation?email_public=0&name=[src.ckey]&details=[details_body]%0AReported on: [config.server_name]+[time2text(world.realtime, "YYYY-MM-DD")]+[time2text(world.timeofday, "hh:mm:ss")]"}
 					src << link(url)
 				if("Cancel")
 					return
@@ -42,14 +42,14 @@
 			set name = "github"
 			set desc = "Opens the github in your browser"
 			set hidden = 1
-			src << link("https://github.com/goonstation/goonstation")
+			src << link("https://github.com/coolstation/coolstation")
 
 		wiki()
 			set category = "Commands"
 			set name = "Wiki"
 			set desc = "Open the Wiki in your browser"
 			set hidden = 1
-			src << link("http://wiki.ss13.co")
+			src << link("https://wiki.coolstation.space/wiki/Main_Page")
 
 		map()
 			set category = "Commands"
@@ -66,7 +66,7 @@
 			set name = "Forum"
 			set desc = "Open the Forum in your browser"
 			set hidden = 1
-			src << link("https://forum.ss13.co")
+			src << link("https://forum.coolstation.space")
 
 		savetraits()
 			set hidden = 1

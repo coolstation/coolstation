@@ -28,6 +28,7 @@
 #define IS_TRINKET 1024 		//used for trinkets GC
 #define IS_FARTABLE 2048
 #define NO_MOUSEDROP_QOL 4096 //overrides the click drag mousedrop pickup QOL kinda stuff
+#define HASENTERED_MAT_PROP 8192 // if the USE_HASENTERED flag is a material property, so we know when to flush it.
 //TBD the rest
 
 //THROW flags (what kind of throw, we can have ddifferent kinds of throws ok)
@@ -35,9 +36,22 @@
 #define THROW_CHAIRFLIP 2
 #define THROW_GUNIMPACT 4
 #define THROW_SLIP 8
+#define THROW_SANDWICH 16 //This is for one single item, because I'm pretty sure this would never have been clean.
 
 //For serialization purposes
 #define DESERIALIZE_ERROR 0
 #define DESERIALIZE_OK 1
 #define DESERIALIZE_NEED_POSTPROCESS 2
 #define DESERIALIZE_NOT_IMPLEMENTED 4
+
+///Old explosion integer severity brackets
+///(cause I'd like to pipe the raw power value into ex_act without rewriting how a couple hundred objects react to explosions)
+///I'm not expecting these to ever go away btw, it's useful to have some baseline for total/heavy/light devastation
+#define OLD_EX_SEVERITY_1 6 to INFINITY
+#define OLD_EX_SEVERITY_2 3 to 6 //note that these defines overlap on round numbers which is technically bad (it happens a lot though)
+#define OLD_EX_SEVERITY_3 0 to 3 //but I believe that you can't put a "X up to but not including Y" type statement into a switch, so
+
+//These go into places where ex_act was called with just the integer, so those evaluate back to the correct old bracket
+#define OLD_EX_TOTAL 6.1 //decimals to avoid the overlap
+#define OLD_EX_HEAVY 3.1
+#define OLD_EX_LIGHT 1

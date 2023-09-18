@@ -72,7 +72,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 					return 5
 			for (var/obj/machinery/door/D in view(0, test_turf))
 				return 5
-			for (var/turf/simulated/wall/W in view(0, test_turf))
+			for (var/turf/wall/W in view(0, test_turf))
 				return 5
 
 		else
@@ -87,7 +87,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 					return 4
 			for (var/obj/machinery/door/D in view(0, our_loc))
 				return 4
-			for (var/turf/simulated/wall/W in view(0, our_loc))
+			for (var/turf/wall/W in view(0, our_loc))
 				return 4
 
 		return 1
@@ -365,7 +365,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 		if (get_dist(over_object, src) > 1)
 			usr.show_text("The [src.name] is too far away from the target!", "red")
 			return
-		if (!istype(over_object,/turf/simulated/floor/))
+		if (!istype(over_object,/turf/floor/))
 			usr.show_text("You can't set this target as the home location.", "red")
 			return
 
@@ -577,7 +577,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 		if (get_dist(over_object, src) > 1)
 			usr.show_text("The [src.name] is too far away from the target!", "red")
 			return
-		if (!istype(over_object,/turf/simulated/floor/))
+		if (!istype(over_object,/turf/floor/))
 			usr.show_text("You can't set this target as the home location.", "red")
 			return
 
@@ -715,7 +715,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 		if (get_dist(over_object, src) > 1)
 			usr.show_text("The [src.name] is too far away from the target!", "red")
 			return
-		if (!istype(over_object,/turf/simulated/floor/))
+		if (!istype(over_object,/turf/floor/))
 			usr.show_text("You can't set this target as the home location.", "red")
 			return
 		var/turf/check_loc = over_object
@@ -771,7 +771,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 					if(81 to INFINITY) //Travel sickness!
 						for(var/mob/living/carbon/M in src.contents)
 							SPAWN_DBG(rand(10,40))
-								M.visible_message("<span class='alert'>[M] pukes all over \himself.</span>", "<span class='alert'>Oh god, that was terrible!</span>", "<span class='alert'>You hear a splat!</span>")
+								M.visible_message("<span class='alert'>[M] pukes all over [himself_or_herself(M)].</span>", "<span class='alert'>Oh god, that was terrible!</span>", "<span class='alert'>You hear a splat!</span>")
 								M.change_misstep_chance(40)
 								M.drowsyness += 2
 								M.vomit()
@@ -902,7 +902,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 		if (get_dist(over_object, src) > 1)
 			usr.show_text("The [src.name] is too far away from the target!", "red")
 			return
-		if (!istype(over_object,/turf/simulated/floor/))
+		if (!istype(over_object,/turf/floor/))
 			usr.show_text("You can't set this target as the home location.", "red")
 			return
 

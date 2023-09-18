@@ -304,14 +304,14 @@
 
 					//subtract from perp bank account
 					var/datum/data/record/account = null
-					account = FindBankAccountByName(perp_id.registered)
+					account = FindBankAccountById(perp_id.registered_id)
 					if (account)
 						if (account.fields["current_money"] >= selected_product.cost)
 							account.fields["current_money"] -= selected_product.cost
 
 							//add to genetecists budget etc
 							if (selected_product.registered_sale_id)
-								account = FindBankAccountByName(selected_product.registered_sale_id)
+								account = FindBankAccountById(selected_product.registered_sale_id)
 								if (account)
 									account.fields["current_money"] += selected_product.cost/2
 									wagesystem.research_budget += selected_product.cost/2
@@ -333,14 +333,14 @@
 						M.show_text("No bank account found for [perp_id.registered]!", "blue")
 
 	proc/notify_sale(var/budget_inc, var/split_with = 0)
-		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
+		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 		var/datum/signal/pdaSignal = get_free_signal()
 
 		var/string = "Notification: [budget_inc] credits earned from last booth sale."
 		if (split_with)
 			string += "Splitting half of profits with [split_with]."
 
-		pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="GENEBOOTH-MAILBOT", "group"=list(MGD_MEDRESEACH, MGA_SALES), "sender"="00000000", "message"=string)
+		pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="GENEBOOTH-MAILBOT", "group"=list(MGD_MEDRESEARCH, MGA_SALES), "sender"="00000000", "message"=string)
 		pdaSignal.transmission_method = TRANSMISSION_RADIO
 		if(transmit_connection != null)
 			transmit_connection.post_signal(src, pdaSignal)
@@ -348,12 +348,12 @@
 		//playsound BEEP BEEEEEEEEEEP
 
 	proc/notify_empty(var/datum/geneboothproduct/GBP)
-		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
+		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 		var/datum/signal/pdaSignal = get_free_signal()
 
 		var/string = "Notification: [GBP.name] has sold out!"
 
-		pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="GENEBOOTH-MAILBOT", "group"=list(MGD_MEDRESEACH, MGA_SALES), "sender"="00000000", "message"=string)
+		pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="GENEBOOTH-MAILBOT", "group"=list(MGD_MEDRESEARCH, MGA_SALES), "sender"="00000000", "message"=string)
 		pdaSignal.transmission_method = TRANSMISSION_RADIO
 		if(transmit_connection != null)
 			transmit_connection.post_signal(src, pdaSignal)

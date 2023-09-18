@@ -3,6 +3,7 @@
 	config_tag = "extended"
 	do_antag_random_spawns = 0
 	latejoin_antag_compatible = 0
+	crew_shortage_enabled = 0 // for testing :)
 
 /datum/game_mode/extended/pre_setup()
 	. = ..()

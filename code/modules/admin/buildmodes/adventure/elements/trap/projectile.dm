@@ -8,7 +8,7 @@
 
 	initialize()
 		..()
-		selection = unpool(/obj/adventurepuzzle/marker)
+		selection = new /obj/adventurepuzzle/marker(src)
 		if ((input("Is this trap invisible?", "Invisibility", "yes") in list("yes", "no")) == "no")
 			invisibility = 0
 		proj_type = input("Projectile type?", "Projectile type", null) in childrentypesof(/datum/projectile)
@@ -19,7 +19,7 @@
 		if (target)
 			target.overlays -= selection
 		if (selection)
-			pool(selection)
+			qdel(selection)
 		..()
 
 	build_click(var/mob/user, var/datum/buildmode_holder/holder, var/list/pa, var/atom/object)

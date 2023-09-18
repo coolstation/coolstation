@@ -179,14 +179,14 @@ datum
 						qdel(O)
 				holder?.del_reagent(id)
 
-			reaction_turf(var/turf/simulated/T, var/volume)
+			reaction_turf(var/turf/T, var/volume)
 				if (!holder)
 					return
 				if (!istype(T) || volume < 5 || holder.total_temperature < T0C + 400)
 					return
 				if (T.material && T.material.mat_id == "steel")
 					//T.visible_message("<span class='alert'>[T] melts!</span>")
-					T.ex_act(2)
+					T.ex_act(OLD_EX_HEAVY)
 
 		combustible/thermite
 			name = "thermite"
@@ -201,7 +201,7 @@ datum
 			minimum_reaction_temperature = T0C+100
 
 			reaction_temperature(exposed_temperature, exposed_volume)
-				var/turf/simulated/A = holder.my_atom
+				var/turf/A = holder.my_atom
 				if(!istype(A)) return
 
 				if(holder.get_reagent_amount(id) >= 15) //no more thermiting walls with 1u tyvm
@@ -220,7 +220,7 @@ datum
 				return
 
 			reaction_turf(var/turf/T, var/volume)
-				if(istype(T, /turf/simulated))
+				if(issimulatedturf(T))
 					var/list/covered = holder.covered_turf()
 					if(length(covered) > 9)
 						volume = volume/length(covered)
@@ -251,11 +251,11 @@ datum
 			transparency = 230
 			minimum_reaction_temperature = T0C+25
 			var/ignited = 0
-
+/*
 			pooled()
 				..()
 				ignited = 0
-
+*/
 			reaction_temperature(exposed_temperature, exposed_volume)
 				var/datum/reagents/myholder = holder
 				if(!holder?.my_atom?.is_open_container())
@@ -280,11 +280,11 @@ datum
 			transparency = 230
 			minimum_reaction_temperature = T0C + 100
 			var/ignited = FALSE
-
+/*
 			pooled()
 				..()
 				ignited = FALSE
-
+*/
 			reaction_temperature(exposed_temperature, exposed_volume)
 				var/datum/reagents/myholder = holder
 				if(!holder?.my_atom?.is_open_container())
@@ -357,7 +357,7 @@ datum
 
 				holder?.del_reagent(id)
 
-			on_mob_life(var/mob/M, var/mult = 1) // fuck you jerk chemists (todo: a thing to self-harm borgs too, maybe ex_act(3) to the holder? I D K
+			on_mob_life(var/mob/M, var/mult = 1) // fuck you jerk chemists (todo: a thing to self-harm borgs too, maybe ex_act(OLD_EX_LIGHT) to the holder? I D K
 				if(!M) M = holder.my_atom
 				if(prob(70))
 					M.take_brain_damage(1 * mult)
@@ -493,10 +493,10 @@ datum
 							if(0 to 15)
 								if(prob(15))
 									//T.visible_message("<span class='alert'>[T] melts!</span>")
-									T.ex_act(2)
+									T.ex_act(OLD_EX_HEAVY)
 							if(16 to INFINITY)
 								//T.visible_message("<span class='alert'>[T] melts!</span>")
-								T.ex_act(2)
+								T.ex_act(OLD_EX_HEAVY)
 				return
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
@@ -729,7 +729,7 @@ datum
 				if((M.health > 20) && (prob(33)))
 					M.take_toxin_damage(1 * mult)
 				if(probmult(1))
-					M.visible_message("<span class='alert'>[M] pukes all over \himself.</span>", "<span class='alert'>You puke all over yourself!</span>")
+					M.visible_message("<span class='alert'>[M] pukes all over [himself_or_herself(M)].</span>", "<span class='alert'>You puke all over yourself!</span>")
 					M.vomit()
 				..()
 
@@ -844,11 +844,11 @@ datum
 			fluid_b = 64
 			minimum_reaction_temperature = T0C+100
 			var/is_dry = 0
-
+/*
 			pooled()
 				..()
 				is_dry = 0
-
+*/
 			proc/bang()
 				if(holder?.my_atom)
 					holder.my_atom.visible_message("<b>The powder detonates!</b>")
@@ -900,14 +900,14 @@ datum
 				..()
 				SPAWN_DBG(200 + rand(10, 600) * rand(1, 4)) //Random time until it becomes HIGHLY VOLATILE
 					dry()
-
+/*
 
 			unpooled()
 				SPAWN_DBG(200 + rand(10, 600) * rand(1, 4)) //Random time until it becomes HIGHLY VOLATILE
 					dry()
 				..()
 
-
+*/
 
 		combustible/nitrogentriiodide/dry
 			id = "nitrotri_dry"
@@ -922,12 +922,12 @@ datum
 				..()
 				SPAWN_DBG(10 * rand(11,600)) //At least 11 seconds, at most 10 minutes
 					bang()
-
+/*
 			unpooled()
 				is_dry = 1
 				SPAWN_DBG(10 * rand(11,600)) //At least 11 seconds, at most 10 minutes
 					bang()
-				..()
+				..()*/
 
 			reaction_turf(var/turf/T, var/volume)
 				var/obj/decal/cleanable/nitrotriiodide/NT = ..()

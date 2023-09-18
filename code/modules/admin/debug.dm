@@ -683,7 +683,7 @@ body
 	switch (selected)
 		if ("Disco Inferno")
 			for (var/turf/T in landmarks[LANDMARK_BLOBSTART])
-				var/datum/gas_mixture/gas = unpool(/datum/gas_mixture)
+				var/datum/gas_mixture/gas = new()
 				gas.toxins = 10000
 				gas.oxygen = 10000
 				gas.temperature = 10000
@@ -695,7 +695,7 @@ body
 				LAGCHECK(LAG_LOW)
 				qdel(door)
 		if ("Chemist's Delight")
-			for (var/turf/simulated/floor/T in world)
+			for (var/turf/floor/T in world)
 				LAGCHECK(LAG_LOW)
 				if ((T.x*T.y) % 50 == 0)
 					T.reagents = new(300)
@@ -707,7 +707,7 @@ body
 					T.reagents.add_reagent("oxygen", 50)
 					T.reagents.handle_reactions()
 		if ("Viscera Cleanup Detail")
-			for (var/turf/simulated/floor/T in world)
+			for (var/turf/floor/T in world)
 				LAGCHECK(LAG_LOW)
 				if ((T.x*T.y) % 10 == 0)
 					gibs(T)

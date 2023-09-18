@@ -1,3 +1,31 @@
+//N.B. the ore colours are for a debug setting, the maps on live obviously shouldn't show where ore generates
+#define MAP_COLORS_TRENCH list(\
+		empty = rgb(0, 0, 50),\
+		solid = rgb(50, 50, 255),\
+		tough = rgb(0, 0, 255),\
+		station = rgb(255, 153, 58),\
+		other = rgb(120, 200, 120),\
+		ore = rgb(255,75,125))
+
+#define MAP_COLORS_SPACE list(\
+		empty = rgb(30, 30, 45),\
+		solid = rgb(180,180,180),\
+		tough = rgb(180, 180, 255),\
+		station = rgb(27, 163, 186),\
+		other = rgb(186, 0, 60),\
+		ore = rgb(75,255,125))
+
+#define MAP_COLORS_DESERT list(\
+		empty = rgb(211, 167, 84),\
+		solid = rgb(188, 98, 66),\
+		tough = rgb(160, 60, 25),\
+		station = rgb(27, 163, 186),\
+		other = rgb(226, 72, 121),\
+		ore = rgb(75,255,125))
+
+//Undef to make turfs with ores on them show on the mining maps
+//#define DEBUG_ORE_GENERATION
+
 /turf/proc/probe_test()
 	return hotspot_controller.probe_turf(src)
 
@@ -6,13 +34,15 @@
 
 	var/groups_to_create = 43
 
-	var/icon/map = 0
-	var/icon/map_html = 0
+	var/list/icon/map
+	var/list/icon/map_html
 
 	var/sound_env_test = 0
 
 	New()
 		..()
+		map = list()
+		map_html = list()
 		#ifdef UNDERWATER_MAP
 		var/datum/sea_hotspot/new_hotspot = 0
 		for (var/i = 1, i <= groups_to_create, i++)
@@ -33,51 +63,71 @@
   		//var/obj/A = new /obj(locate(1,1,1))
   		//A.icon = map
 
-	#ifdef UNDERWATER_MAP
-	var/list/map_colors = list(
-		empty = rgb(0, 0, 50),
-		solid = rgb(0, 0, 255),
-		station = rgb(255, 153, 58),
-		other = rgb(120, 200, 120))
-	#else
-	var/list/map_colors = list(
-		empty = rgb(30, 30, 45),
-		solid = rgb(180,180,180),
-		station = rgb(27, 163, 186),
-		other = rgb(186, 0, 60))
-	#endif
 
-	proc/generate_map()
-		if (!map)
+
+	///Generate a mining map for a specific
+	proc/generate_map(level, color_scheme)
+		var/colors_to_use
+		var/title //gets passed to the HTML generating proc
+		switch (color_scheme)
+			if ("space")
+				colors_to_use = MAP_COLORS_SPACE
+				title = "<title>Mining Map</title>"
+			if ("trench")
+				colors_to_use = MAP_COLORS_TRENCH
+				title = "<title>Trench Map</title>"
+			if ("desert")
+				colors_to_use = MAP_COLORS_DESERT
+				title = "<title>Underground Desert Map</title>"
+			else
+				CRASH("Invalid color scheme for mining map generation.")
+
+		if (!level || level < 1 || level > world.maxz)
+			CRASH("Can't generate a mining map for ["[level]"]: out of bounds")
+
+		if (!map["[level]"]) //I think we can't do numeric associative indices, so strings it is
 			Z_LOG_DEBUG("Hotspot Map", "Generating map ...")
-			map = icon('icons/misc/trenchMapEmpty.dmi', "template")
+			map["[level]"] = icon('icons/misc/trenchMapEmpty.dmi', "template")
 			var/turf_color = null
 			for (var/x = 1, x <= world.maxx, x++)
 				for (var/y = 1, y <= world.maxy, y++)
-					var/turf/T = locate(x,y,5)
-					if (T.name == "asteroid" || T.name == "cavern wall" || T.type == /turf/simulated/floor/plating/airless/asteroid)
+					var/turf/T = locate(x,y,level)
+					if (T.turf_flags & MINE_MAP_PRESENTS_SOLID)
 						turf_color = "solid"
-					else if (T.name == "trench floor" || T.name == "\proper space")
+					else if (T.turf_flags & MINE_MAP_PRESENTS_TOUGH)
+						turf_color = "tough"
+					else if (T.turf_flags & MINE_MAP_PRESENTS_EMPTY)
 						turf_color = "empty"
 					else
-						if (T.loc && (T.loc.type == /area/shuttle/sea_elevator || T.loc.type == /area/shuttle/sea_elevator/lower || T.loc.type == /area/prefab/sea_mining))
-							turf_color = "station"
+						if (level == GEH_ZLEVEL) //more hardcoded grossness but IDK this proc just kinda sucks
+							if (T.loc && (istype(T.loc, /area/station)))
+								turf_color = "station"
+							else
+								turf_color = "other"
 						else
-							turf_color = "other"
+							if (T.loc && (T.loc.type == /area/shuttle/sea_elevator || T.loc.type == /area/shuttle/sea_elevator/lower || T.loc.type == /area/prefab/sea_mining))
+								turf_color = "station"
+							else
+								turf_color = "other"
+#ifdef DEBUG_ORE_GENERATION
+					if (istype(T, /turf/wall/asteroid) && T:ore)
+						turf_color = "ore"
+#endif
 
-					map.DrawBox(map_colors[turf_color], x * 2, y * 2, x * 2 + 1, y * 2 + 1)
+					map["[level]"].DrawBox(colors_to_use[turf_color], x * 2, y * 2, x * 2 + 1, y * 2 + 1)
 
 			for (var/beacon in by_type[/obj/warp_beacon])
 				if (istype(beacon, /obj/warp_beacon/miningasteroidbelt))
 					var/turf/T = get_turf(beacon)
-					map.DrawBox(map_colors["station"], T.x * 2 - 2, T.y * 2 - 2, T.x * 2 + 2, T.y * 2 + 2)
+					if (T.z == level) //Don't slap the mining beacon on gehenna  Z3 thanks
+						map["[level]"].DrawBox(colors_to_use["station"], T.x * 2 - 2, T.y * 2 - 2, T.x * 2 + 2, T.y * 2 + 2)
 
-			Z_LOG_DEBUG("Hotspot Map", "Map generation complete")
-			generate_map_html()
+			Z_LOG_DEBUG("Hotspot Map", "Map generation complete for level ["[level]"]")
+			generate_map_html(level, colors_to_use, title)
 
-	proc/generate_map_html()
+	proc/generate_map_html(level, colors_to_use, title)
 
-		if (!src.map)
+		if (!src.map["[level]"])
 			// what the fuck???
 			return
 
@@ -85,11 +135,11 @@
 		for (var/datum/sea_hotspot/S in hotspot_groups)
 			hotspots += {"<div class='hotspot' style='bottom: [S.center.y * 2]px; left: [S.center.x * 2]px; width: [S.radius * 4 + 2]px; height: [S.radius * 4 + 2]px; margin-left: -[S.radius * 2]px; margin-bottom: -[S.radius * 2]px;'></div>"}
 
-		src.map_html = {"
+		src.map_html["[level]"] = {"
 <!doctype html>
 <html>
 <head>
-	[map_currently_underwater?"<title>Trench Map</title>":"<title>Mining Map</title>"]
+	[title]
 	<meta http-equiv="X-UA-Compatible" content="IE=edge;">
 	<style type="text/css">
 		body {
@@ -137,20 +187,23 @@
 			width: 1em;
 			border: 1px solid white;
 		}
-		.empty { background-color: [map_colors["empty"]]; }
-		.solid { background-color: [map_colors["solid"]]; }
-		.station { background-color: [map_colors["station"]]; }
-		.other { background-color: [map_colors["other"]]; }
+		.empty { background-color: [colors_to_use["empty"]]; }
+		.solid { background-color: [colors_to_use["solid"]]; }
+		.tough { background-color: [colors_to_use["tough"]]; }
+		.station { background-color: [colors_to_use["station"]]; }
+		.other { background-color: [colors_to_use["other"]]; }
+		.ore { background-color: [colors_to_use["ore"]]; }
 		.vent { background-color: rgb(255, 120, 120); }
 	</style>
 </head>
 <body>
 		<div id='map'>
-			<img src="trenchmap.png" height="600">
+			<img src="trenchmap[level].png" height="600">
 			[hotspots.Join("")]
 		</div>
 		<div class='key'>
 			<span><span class='solid'></span> Solid Rock</span>
+			<span><span class='tough'></span> Tough Rock</span>
 			<span><span class='station'></span> NT Asset</span>
 			<span><span class='other'></span> Unknown</span>
 			[map_currently_underwater?"<span><span class='vent'></span> Hotspot</span>":""]
@@ -159,14 +212,14 @@
 </html>
 "}
 
-	proc/show_map(var/client/C)
+	proc/show_map(var/client/C, level)
 		if (!C)
 			return
-		if (!src.map_html || !src.map)
+		if (!src.map_html["[level]"] || !src.map["[level]"])
 			boutput(C, "oh no, map doesnt exist!")
 			return
-		C << browse_rsc(src.map, "trenchmap.png")
-		C << browse(src.map_html, "window=trench_map;size=650x700;title=Trench Map")
+		C << browse_rsc(src.map["[level]"], "trenchmap[level].png")
+		C << browse(src.map_html["[level]"], "window=trench_map[level];size=650x700;title=Trench Map")
 
 	proc/clear()
 		hotspot_groups.len = 0
@@ -245,6 +298,10 @@
 		for (var/datum/sea_hotspot/S in hotspot_groups)
 			if(S.get_tile_heat(T))
 				S.color_ping()
+
+#undef MAP_COLORS_SPACE
+#undef MAP_COLORS_TRENCH
+#undef MAP_COLORS_DESERT
 
 //phenomena flags
 #define PH_QUAKE_WEAK 1
@@ -1123,7 +1180,7 @@
 
 	examine(mob/user)
 		if (user.client && hotspot_controller)
-			hotspot_controller.show_map(user.client)
+			hotspot_controller.show_map(user.client, AST_ZLEVEL)
 			return list()
 		else
 			return ..()
@@ -1137,7 +1194,7 @@
 			return ..()
 		if (user.a_intent != INTENT_HARM)
 			if (user.client && hotspot_controller)
-				hotspot_controller.show_map(user.client)
+				hotspot_controller.show_map(user.client, AST_ZLEVEL)
 			return
 		var/turf/T = src.loc
 		user.visible_message("<span class='alert'><b>[user]</b> rips down [src] from [T]!</span>",\
@@ -1152,7 +1209,7 @@
 		user.put_in_hand_or_drop(src)
 
 	afterattack(var/atom/A as mob|obj|turf, var/mob/user as mob)
-		if (src.can_put_up && (istype(A, /turf/simulated/wall) || istype(A, /turf/simulated/shuttle/wall) || istype(A, /turf/unsimulated/wall) || istype(A, /obj/window)))
+		if (src.can_put_up && (istype(A, /turf/wall) || istype(A, /turf/shuttle/wall) || istype(A, /obj/window)))
 			user.visible_message("<b>[user]</b> attaches [src] to [A].",\
 			"You attach [src] to [A].")
 			user.u_equip(src)

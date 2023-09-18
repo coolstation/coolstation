@@ -456,6 +456,12 @@
 		icon_state = "gold_star"
 		placement = "Voter"
 
+	vorer
+		name = "\improper 'I vored' sticker"
+		desc = "You vored! That means you totally ate someone. Or maybe you got ate? But hey, at least you got a sticker for it!"
+		icon_state = "gold_star"
+		placement = "Vorer"
+
 //	-----------------------------------
 //			v Spy Sticker Stuff v
 //  -----------------------------------
@@ -545,7 +551,7 @@
 
 		..()
 
-		if (istype(A, /turf/simulated/wall) || istype(A, /turf/unsimulated/wall))
+		if (istype(A, /turf/wall))
 			src.set_loc(get_turf(user)) //If sticking to a wall, just set the loc to the user loc. Otherwise the spycam would be able to see through walls.
 
 		if (src.radio)

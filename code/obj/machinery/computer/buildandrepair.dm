@@ -94,6 +94,9 @@ ABSTRACT_TYPE(/obj/item/circuitboard)
 /obj/item/circuitboard/genetics
 	name = "Circuit board (Genetics)"
 	computertype = "/obj/machinery/computer/genetics"
+/obj/item/circuitboard/pathology
+	name = "Circuit board (Pathology)"
+	computertype = "/obj/machinery/computer/pathology"
 /obj/item/circuitboard/tetris
 	name = "Circuit board (Robustris Pro)"
 	computertype = "/obj/machinery/computer/tetris"
@@ -142,6 +145,9 @@ ABSTRACT_TYPE(/obj/item/circuitboard)
 /obj/item/circuitboard/telescope
 	name = "Circuit board (Quantum Telescope)"
 	computertype = "/obj/machinery/computer/telescope"
+/obj/item/circuitboard/transit_terminal
+	name = "Circuit board (Transit Terminal)"
+	computertype = "/obj/machinery/computer/transit_terminal"
 
 /obj/computerframe/meteorhit(obj/O as obj)
 	qdel(src)

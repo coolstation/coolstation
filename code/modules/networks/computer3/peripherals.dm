@@ -122,7 +122,7 @@
 	desc = "A wireless computer card. It has a bit of a limited range."
 	icon_state = "radio_mod"
 	func_tag = "RAD_ADAPTER"
-	var/frequency = 1419
+	var/frequency = FREQ_WLNET
 	var/datum/radio_frequency/radio_connection
 	var/range = 8 //How far can our signal travel?? HOW FAR
 	var/setup_freq_locked = 0 //If set, frequency cannot be adjusted.
@@ -137,13 +137,13 @@
 		setup_freq_locked = 1
 
 		pda
-			frequency = 1149 //Standard PDA comm frequency.
+			frequency = FREQ_PDA //Standard PDA comm frequency.
 			range = 0
 			/*net_mode = 1
 			func_tag = "NET_ADAPTER"*/
 
 		status //This one is for status display control.
-			frequency = 1435
+			frequency = FREQ_STATUS
 			setup_netmode_norange = 0
 
 	New()
@@ -522,7 +522,7 @@
 					src.printing = 0
 					return 1
 				SPAWN_DBG(5 SECONDS)
-					var/obj/item/paper/thermal/P = unpool(/obj/item/paper/thermal)
+					var/obj/item/paper/thermal/P = new()
 					P.set_loc(src.host.loc)
 
 					playsound(src.host.loc, "sound/machines/printer_thermal.ogg", 50, 1)
@@ -580,7 +580,7 @@
 	var/subnet = null
 
 	var/datum/radio_frequency/wireless_link = null
-	var/frequency = 1419
+	var/frequency = FREQ_WLNET
 	var/wireless_range = 8
 
 	New()
@@ -669,7 +669,7 @@
 					src.printing = 0
 					return 1
 				SPAWN_DBG(5 SECONDS)
-					var/obj/item/paper/thermal/P = unpool(/obj/item/paper/thermal)
+					var/obj/item/paper/thermal/P = new()
 					P.set_loc(src.host.loc)
 
 					playsound(src.host.loc, "sound/machines/printer_thermal.ogg", 50, 1)
@@ -869,7 +869,7 @@
 				src.printing = 0
 				return
 			SPAWN_DBG(5 SECONDS)
-				var/obj/item/paper/thermal/P = unpool(/obj/item/paper/thermal)
+				var/obj/item/paper/thermal/P = new()
 				P.set_loc(src.host.loc)
 
 				playsound(src.host.loc, "sound/machines/printer_thermal.ogg", 50, 1)
@@ -937,7 +937,7 @@
 
 		switch(prizeselect)
 			if(1)
-				var/obj/item/spacecash/P = unpool(/obj/item/spacecash)
+				var/obj/item/spacecash/P = new()
 				P.setup(prize_location)
 				prize = P
 				prize.name = "space ticket"

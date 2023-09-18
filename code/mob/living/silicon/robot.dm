@@ -270,7 +270,7 @@
 
 		if (src.mind)
 			if (src.mind.special_role)
-				src.handle_robot_antagonist_status("death", 1) // Mindslave or rogue (Convair880).
+				src.handle_robot_antagonist_status("death", 1) // Insurgent or rogue (Convair880).
 			src.mind.register_death()
 
 #ifdef RESTART_WHEN_ALL_DEAD
@@ -863,12 +863,12 @@
 
 		var/damage = 0
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				SPAWN_DBG(1 DECI SECOND)
 					src.gib(1)
 				return
-			if(2.0) damage = 40
-			if(3.0) damage = 20
+			if(OLD_EX_SEVERITY_2) damage = 40
+			if(OLD_EX_SEVERITY_3) damage = 20
 
 		SPAWN_DBG(0)
 			for (var/obj/item/parts/robot_parts/RP in src.contents)
@@ -1593,7 +1593,7 @@
 			return
 
 		if (src.mind && src.mind.special_role)
-			src.handle_robot_antagonist_status("brain_removed", 1, user) // Mindslave or rogue (Convair880).
+			src.handle_robot_antagonist_status("brain_removed", 1, user) // Insurgent or rogue (Convair880).
 
 		if (user)
 			src.visible_message("<span class='alert'>[user] removes [src]'s brain!</span>")
@@ -2492,7 +2492,7 @@
 	proc/borg_death_alert(modifier = ROBOT_DEATH_MOD_NONE)
 		var/message = null
 		var/net_id = generate_net_id(src)
-		var/frequency = 1149
+		var/frequency = FREQ_PDA
 		var/datum/radio_frequency/radio_connection = radio_controller.add_object(src, "[frequency]")
 		var/area/myarea = get_area(src)
 
@@ -2514,7 +2514,7 @@
 			newsignal.data["sender_name"] = "CYBORG-DAEMON"
 			newsignal.data["message"] = message
 			newsignal.data["address_1"] = "00000000"
-			newsignal.data["group"] = list(MGD_MEDRESEACH, MGO_SILICON, MGA_DEATH)
+			newsignal.data["group"] = list(MGD_MEDRESEARCH, MGO_SILICON, MGA_DEATH)
 			newsignal.data["sender"] = net_id
 
 			radio_connection.post_signal(src, newsignal)

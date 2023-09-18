@@ -5,11 +5,11 @@
 	return
 
 /mob/verb/whisper_verb(message as text)
-	set name = "whisper"
+	set name = "Whisper"
 	return src.whisper(message)
 
 /mob/verb/say_verb(message as text)
-	set name = "say"
+	set name = "Say"
 	//&& !src.client.holder
 
 	if (!message)
@@ -125,7 +125,7 @@
 	else logTheThing("say", src, null, "SAY: [message]")
 */
 /mob/verb/me_verb(message as text)
-	set name = "me"
+	set name = "Me"
 
 	if (src.client && !src.client.holder && url_regex?.Find(message))
 		boutput(src, "<span class='notice'><b>Web/BYOND links are not allowed in ingame chat.</b></span>")
@@ -303,7 +303,7 @@
 	for (var/mob/M in (owner.thralls + owner.owner))
 		if ((M.client?.holder && M.client.deadchat && !M.client.player_mode)) continue
 		boutput(M, rendered)
-
+/*
 //kudzu hivemind say
 /mob/proc/say_kudzu(var/message, var/datum/abilityHolder/kudzu/owner)
 	var/name = src.real_name
@@ -333,7 +333,7 @@
 		if (istype(C.mob.abilityHolder, /datum/abilityHolder/kudzu))
 			boutput(C, rendered)
 		//////////////////////////////////
-
+*/
 /mob/proc/say_understands(var/mob/other, var/forced_language)
 	if (isdead(src))
 		return 1
@@ -434,7 +434,7 @@
 			speechverb = "sings disco style"
 		else if (src.bioHolder?.HasEffect("accent_scots"))
 			speechverb = pick("laments", "sings", "croons", "intones", "sobs", "bemoans")
-		else if (src.bioHolder?.HasEffect("accent_chav"))
+		else if (src.bioHolder?.HasEffect("accent_brummie"))
 			speechverb = "raps"
 		else if (src.singing & SOFT_SINGING)
 			speechverb = pick("hums", "lullabies")
@@ -507,11 +507,12 @@
 			boutput(src, "<span class='notice'>You are no longer listening to messages on the OOC channel.</span>")
 
 /mob/verb/ooc(msg as text)
+	set name = "OOC"
 	if (IsGuestKey(src.key))
 		boutput(src, "You are not authorized to communicate over these channels.")
 		return
 	if (oocban_isbanned(src))
-		boutput(src, "You are currently banned from using OOC and LOOC, you may appeal at https://forum.ss13.co/index.php")
+		boutput(src, "You are currently banned from using OOC and LOOC, you may appeal at https://forum.coolstation.space/index.php")
 		return
 
 	msg = trim(copytext(html_encode(msg), 1, MAX_MESSAGE_LEN))
@@ -587,11 +588,12 @@
 			boutput(src, "<span class='notice'>You are no longer listening to messages on the LOOC channel.</span>")
 
 /mob/verb/looc(msg as text)
+	set name = "LOOC"
 	if (IsGuestKey(src.key))
 		boutput(src, "You are not authorized to communicate over these channels.")
 		return
 	if (oocban_isbanned(src))
-		boutput(src, "You are currently banned from using OOC and LOOC, you may appeal at https://forum.ss13.co/index.php")
+		boutput(src, "You are currently banned from using OOC and LOOC, you may appeal at https://forum.coolstation.space/index.php")
 		return
 
 	msg = trim(copytext(html_encode(sanitize(msg)), 1, MAX_MESSAGE_LEN))

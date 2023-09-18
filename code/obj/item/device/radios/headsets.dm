@@ -278,7 +278,7 @@
 	icon_override = "qm"
 
 /obj/item/device/radio/headset/mail
-	name = "Mailman's Headset"
+	name = "Mailcarrier's Headset"
 	desc = "A radio headset that is also capable of communicating over the Engineering and Command channels."
 	icon_state = "command headset"
 	secure_frequencies = list(

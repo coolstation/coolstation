@@ -19,13 +19,14 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 	name = "Centcom"
 	icon_state = "purple"
 	requires_power = 0
-	sound_environment = 4
+	sound_environment = EAX_LIVINGROOM
 	teleport_blocked = 1
 	skip_sims = 1
 	sims_score = 25
 	sound_group = "centcom"
-	filler_turf = "/turf/unsimulated/nicegrass/random"
+	filler_turf = "/turf/nicegrass/random"
 	is_centcom = 1
+	is_construction_allowed = FALSE
 
 /area/centcom/outside
 	name = "Earth"
@@ -97,36 +98,25 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 	var/ckey = ""
 
 
-	a69
-		ckey = ""
-		name = "Office of Dixon Balls"
-	adhara
-		ckey = "adharainspace"
-		name = "Office of Adhara"
+
 	aibm
 		ckey = "angriestibm"
 		name = "Office of AngriestIBM"
-	aphtonites
-		ckey = ""
-		name = "Office of Aphtonites"
 	atomicthumbs
 		ckey = ""
 		name = "Office of Atomicthumbs"
+	batelite
+		ckey = "roselace"
+		name = "Here Be Bats"
 	bubs
 		ckey = "insanoblan"
 		name = "Office of bubs"
-	burntcornmuffin
-		ckey = ""
-		name = "Office of BurntCornMuffin"
 	cogwerks
 		ckey = "drcogwerks"
 		name = "Office of Cogwerks"
 	crimes
 		ckey = "warc"
 		name = "Office of Warcrimes"
-	darkchis
-		ckey = "darkchis"
-		name = "Office of Walter Poehl"
 	dions
 		ckey = "dionsu"
 		name = "Office of Dions"
@@ -136,147 +126,55 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 	edad
 		ckey = ""
 		name = "Office of Edad"
-	efrem
-		ckey = "captainbravo"
-		name = "Office of Vaughn Moon"
-	enakai
-		ckey = "enakai"
-		name = "Office of Enakai"
-	flaborized
-		ckey = "flaborized"
-		name = "Office of Flaborized"
-	flourish
-		ckey = "flourish"
-		name = "Office of Flourish"
-	freshlemon
-		ckey = ""
-		name = "Office of Belkis Tekeli"
 	gannets
 		ckey = "gannets"
 		name = "Office of Hannah Strawberry"
-	gerhazo
-		ckey = "gerhazo"
-		name = "Office of Casey Spark"
 	gibbed
 		ckey = "gibbed"
 		name = "Office of Rick"
-	grayshift
-		ckey = "grayshift"
-		name = "Office of Grayshift"
-	hazoflabs
-		// ckey = ""
-		name = "Shared Office Space of Gerhazo and Flaborized"
-	hufflaw
-		ckey = "hufflaw"
-		name = "Office of Hufflaw"
-	hukhukhuk
-		ckey = "hukhukhuk"
-		name = "Office of HukHukHuk"
-	hydro
-		ckey = "hydrofloric"
-		name = "Office of HydroFloric"
-	ines
-		ckey = "hokie"
-		name = "Office of Ines"
-	kyle
-		ckey = "kyle2143"
-		name = "Office of Kyle"
-	lyra
-		ckey = "lison"
-		name = "Office of Lyra"
+	donglord
+		ckey = "inquisitorlisica"
+		name = "The Bathroom"
 	maid
 		ckey = "housekeep"
 		name = "Office of Maid"
-	marknstein
-		ckey = "marknstein"
-		name = "Office of MarkNstein"
 	mbc
 		ckey = "mybluecorners"
 		name = "Office of Dotty Spud"
-	mordent
-		ckey = "mordent"
-		name = "Office of Mordent"
-	mrfishstick
-		ckey = "mrfishstick"
-		name = "Office of Mr Fishstick"
-	nakar
-		ckey = ""
-		name = "Office of Nakar"
-	pacra
-		ckey = "pacra"
-		name = "Office of Pacra"
-	pali
-		ckey = "pali6"
-		name = "Office of Pali"
+	nevada
+		ckey = "spacingnevada"
+		name = "Claire's Office of Claire"
 	patrickstar
 		ckey = ""
 		name = "Office of Patrick Star"
-	pope
-		ckey = "popecrunch"
-		name = "Office of Popecrunch"
-	questx
-		ckey = "questx"
-		name = "Office of Boris Bubbleton"
-	reginaldhj
-		ckey = "reginaldhj"
-		name = "Office of ReginaldHJ"
-	rodney
-		ckey = "rodneydick"
-		name = "Office of Lily"
-	sageacrin
-		ckey = "sageacrin"
-		name = "Office of Escha Thermic"
-	shotgunbill
-		ckey = "shotgunbill"
-		name = "Office of Shotgunbill"
-	simianc
-		ckey = "simianc"
-		name = "Office of C.U.T.I.E."
-	sord
-		ckey="sord213"
-		name = "Office of Sord"
-	souricelle
-		ckey = "souricelle"
-		name = "Office of Souricelle"
-	sovexe
-		ckey = "sovexe"
-		name = "Office of Sov Extant"
-	studenterhue
-		ckey = "studenterhue"
-		name = "Office of Studenterhue"
-	supernorn
-		ckey = "supernorn"
-		name = "Office of Supernorn"
-	sydne66
-		ckey = "sydne66"
-		name = "Office of Throrvardr Finvardrardson"
-	tarmunora
-		ckey = "tarmunora"
-		name = "Office of yass"
-	tterc
-		ckey = "tterc"
-		name = "Office of Caroline Audibert"
-	urs
-		ckey = "ursulamajor"
-		name = "Office of UrsulaMajor"
-	varshie
-		ckey = "varshie"
-		name = "Office of Varshie"
-	virvatuli
-		ckey = "virvatuli"
-		name = "Office of Virvatuli"
 		New()
 			..()
 			overlays += image(icon = 'icons/turf/areas.dmi', icon_state = "snowverlay", layer = EFFECTS_LAYER_BASE)
+	pope
+		ckey = "popecrunch"
+		name = "Office of Popecrunch"
+	reginaldhj
+		ckey = "reginaldhj"
+		name = "Office of ReginaldHJ"
+	sheezius
+		ckey = "sheezius"
+		name = "Claire's Office of Claire"
+	schwick
+		ckey = "schwickyschwag"
+		name = "Schwick's Normal Bear Closet"
+	stardust
+		ckey = "stardustskunk"
+		name = "Office of Stardust"
+	tamber
+		ckey = "tamber"
+		name = "Office of Tamber"
 	wire
 		ckey = "wirewraith"
 		name = "Office of Wire"
 	zamujasa
 		ckey = "zamujasa"
 		name = "Office of Zamujasa"
-	zewaka
-		ckey = "zewaka"
-		name = "Office of Shitty Bill Jr."
+
 
 /area/centcom/lobby
 	name = "NT Offices Lobby"
@@ -353,7 +251,7 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 
 ////////////////////////////
 
-/turf/unsimulated/outdoors
+/turf/outdoors
 	icon = 'icons/turf/outdoors.dmi'
 
 	snow

@@ -103,13 +103,13 @@
 	ex_act(severity)
 		src.material?.triggerExp(src, severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				changeHealth(-100)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				changeHealth(-70)
 				return
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				changeHealth(-40)
 				return
 			else
@@ -331,7 +331,10 @@
 	desc = "A lightweight support lattice."
 	name = "lattice"
 	icon = 'icons/obj/structures.dmi'
-	icon_state = "lattice"
+	icon_state = "lattice" //shiny blue-grey (also lattice-dir and lattice-dir-b)
+	//Old-style sprites are also available (icon states lattice_grey, lattice_grey-dir and lattice_grey-dir-b)
+	//Seems like all existing lattices are varedited to get the other icon states
+
 	density = 0
 	stops_space_move = 1
 	anchored = 1.0
@@ -348,13 +351,13 @@
 	ex_act(severity)
 		src.material?.triggerExp(src, severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				qdel(src)
 				return
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				return
 			else
 
@@ -379,6 +382,9 @@
 				new /obj/lattice/barricade(src.loc)
 				qdel(src)
 		return
+
+/obj/lattice/grey //This one's mostly for find/replace purposes of the 4-way lattices. The rest generally can be done by find/replacing the edited icon state
+	icon_state = "lattice_grey"
 
 /obj/lattice/barricade
 	name = "barricade"
@@ -432,11 +438,11 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if(2.0) src.barricade_damage(3)
-			if(3.0) src.barricade_damage(1)
+			if(OLD_EX_SEVERITY_2) src.barricade_damage(3)
+			if(OLD_EX_SEVERITY_3) src.barricade_damage(1)
 		return
 
 	blob_act(var/power)
@@ -452,6 +458,7 @@
 	mat_changedesc = 0
 	event_handler_flags = IMMUNE_MANTA_PUSH
 	density = 0
+	flags = MINERAL_MAGNET_SAFE //This doesn't need the FPRINT that's on /atom right?
 
 	updateHealth()
 		return

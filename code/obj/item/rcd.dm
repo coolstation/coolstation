@@ -171,7 +171,6 @@ Broken RCD + Effects
 					return
 				if (src.matter + R.matter > src.max_matter)
 					R.matter -= (src.max_matter - src.matter)
-					boutput(user, "The cartridge now contains [R.matter] units of matter.")
 					src.matter = src.max_matter
 				else
 					src.matter += R.matter
@@ -180,7 +179,7 @@ Broken RCD + Effects
 				R.tooltip_rebuild = 1
 				src.update_icon()
 				playsound(src, "sound/machines/click.ogg", 50, 1)
-				boutput(user, "\The [src] now holds [src.matter]/[src.max_matter] matter-units.")
+				boutput(user, "\The [src] now holds [src.matter]/[src.max_matter] units of matter.")
 				return
 			else
 				boutput(user, "This cartridge is not made of the proper material to be used in \The [src].")
@@ -193,27 +192,27 @@ Broken RCD + Effects
 
 		switch (mode)
 			if (RCD_MODE_AIRLOCK)
-				boutput(user, "Changed mode to 'Airlock'")
+				boutput(user, "Changed mode to 'Airlock'", group = "RCD_mode_switch")
 
 			if (RCD_MODE_DECONSTRUCT)
-				boutput(user, "Changed mode to 'Deconstruct'")
+				boutput(user, "Changed mode to 'Deconstruct'", group = "RCD_mode_switch")
 
 			if (RCD_MODE_WINDOWS)
-				boutput(user, "Changed mode to 'Windows'")
+				boutput(user, "Changed mode to 'Windows'", group = "RCD_mode_switch")
 
 			if (RCD_MODE_FLOORSWALLS)
-				boutput(user, "Changed mode to 'Floors and Walls'")
+				boutput(user, "Changed mode to 'Floors and Walls'", group = "RCD_mode_switch")
 
-			if (RCD_MODE_PODDOORCONTROL)
+			if (RCD_MODE_PODDOORCONTROL) //unused
 				boutput(user, "Changed mode to 'Pod Door Control'")
 				boutput(user, "<span class='notice'>Place a door control on a wall, then place any amount of pod doors on floors.</span>")
 				boutput(user, "<span class='notice'>You can also select an existing door control by whacking it with \the [src].</span>")
 
 			if (RCD_MODE_LIGHTBULBS)
-				boutput(user, "Changed mode to 'Light Bulb Fixture'")
+				boutput(user, "Changed mode to 'Light Bulb Fixture'", group = "RCD_mode_switch")
 
 			if (RCD_MODE_LIGHTTUBES)
-				boutput(user, "Changed mode to 'Light Tube Fixture'")
+				boutput(user, "Changed mode to 'Light Tube Fixture'", group = "RCD_mode_switch")
 
 		// Gonna change this so it doesn't shit sparks when mode switched
 		// Just that it does it only after actually doing something
@@ -238,25 +237,25 @@ Broken RCD + Effects
 						A = L
 
 					if (do_thing(user, A, "building a floor", matter_create_floor, time_create_floor))
-						var/turf/simulated/floor/T = A:ReplaceWithFloor()
+						var/turf/floor/T = A:ReplaceWithFloor()
 						T.inherit_area()
 						T.setMaterial(getMaterial(material_name))
 						return
 
 
-				if (istype(A, /turf/simulated/floor))
+				if (istype(A, /turf/floor))
 					if (do_thing(user, A, "building a wall", matter_create_wall, time_create_wall))
-						var/turf/simulated/wall/T = A:ReplaceWithWall()
+						var/turf/wall/T = A:ReplaceWithWall()
 						T.inherit_area()
 						T.setMaterial(getMaterial(material_name))
 						log_construction(user, "builds a wall ([T])")
 						return
 
-				if (istype(A, /turf/simulated/wall))
-					if (istype(A, /turf/simulated/wall/r_wall) || istype(A, /turf/simulated/wall/auto/reinforced) || istype(A, /turf/simulated/wall/auto/shuttle))
+				if (istype(A, /turf/wall))
+					if (istype(A, /turf/wall/r_wall) || istype(A, /turf/wall/auto/reinforced) || istype(A, /turf/wall/auto/shuttle))
 						return	// You can't go reinforcing stuff that's already reinforced you dope.
 					if (do_thing(user, A, "reinforcing the wall", matter_reinforce_wall, time_reinforce_wall))
-						var/turf/simulated/wall/T = A:ReplaceWithRWall()
+						var/turf/wall/T = A:ReplaceWithRWall()
 						T.inherit_area()
 						T.setMaterial(getMaterial(material_name))
 						log_construction(user, "reinforces a wall ([T])")
@@ -266,7 +265,7 @@ Broken RCD + Effects
 					if (do_thing(user, A, "turning \the [A] into a wall", matter_create_wall_girder, time_create_wall_girder))
 						var/turf/wallTurf = get_turf(A)
 
-						var/turf/simulated/wall/T
+						var/turf/wall/T
 						if (istype(A, /obj/structure/girder/reinforced))
 							T = wallTurf:ReplaceWithRWall()
 						else
@@ -289,18 +288,18 @@ Broken RCD + Effects
 				if(restricted_materials && !(A.material?.mat_id in restricted_materials))
 					boutput(user, "Target object is not made of a material this RCD can deconstruct.")
 					return
-				if (istype(A, /turf/simulated/wall/r_wall) || istype(A, /turf/simulated/wall/auto/reinforced))
+				if (istype(A, /turf/wall/r_wall) || istype(A, /turf/wall/auto/reinforced))
 					if (do_thing(user, A, "removing the reinforcement from \the [A]", matter_unreinforce_wall, time_unreinforce_wall))
-						var/turf/simulated/wall/T = A:ReplaceWithWall()
+						var/turf/wall/T = A:ReplaceWithWall()
 						T.setMaterial(getMaterial(material_name))
 						log_construction(user, "deconstructs a reinforced wall into a normal wall ([T])")
 						return
 
-				if (istype(A, /turf/simulated/wall))
-					if (istype(A, /turf/simulated/wall/auto/shuttle))
+				if (istype(A, /turf/wall))
+					if (istype(A, /turf/wall/auto/shuttle))
 						return
 					if (do_thing(user, A, "deconstructing \the [A]", matter_remove_wall, time_remove_wall))
-						var/turf/simulated/floor/T = A:ReplaceWithFloor()
+						var/turf/floor/T = A:ReplaceWithFloor()
 						if (!restricted_materials || !safe_deconstruct)
 							T.setMaterial(getMaterial(material_name))
 						else if(!("steel" in restricted_materials))
@@ -310,7 +309,7 @@ Broken RCD + Effects
 						log_construction(user, "deconstructs a wall ([A])")
 						return
 
-				if (istype(A, /turf/simulated/floor))
+				if (istype(A, /turf/floor))
 					if (do_thing(user, A, "removing \the [A]", matter_remove_floor, time_remove_floor))
 						log_construction(user, "removes flooring ([A])")
 						A:ReplaceWithSpace()
@@ -352,11 +351,11 @@ Broken RCD + Effects
 						return
 
 			if (RCD_MODE_WINDOWS)
-				if (istype(A, /turf/simulated/floor) || istype(A, /obj/grille/))
+				if (istype(A, /turf/floor) || istype(A, /obj/grille/))
 					if (istype(A, /obj/grille/))
 						// You can do this with normal windows. So now you can do it with RCD windows. Honke.
 						A = get_turf(A)
-						if (!istype(A, /turf/simulated/floor))
+						if (!istype(A, /turf/floor))
 							return
 					if (do_thing(user, A, "building a window", matter_create_window, time_create_window))
 						// Is /auto always the one to use here? hm.
@@ -364,7 +363,7 @@ Broken RCD + Effects
 						log_construction(user, "builds a window")
 						return
 			if (RCD_MODE_LIGHTBULBS)
-				if (istype(A, /turf/simulated/wall))
+				if (istype(A, /turf/wall))
 					if((locate(/obj/machinery/light) in A) || (locate(/obj/machinery/light) in get_turf(user)))
 						boutput(user, "There's already a lamp there!") // stacking lights simply can't be good for the environment
 						return
@@ -376,18 +375,18 @@ Broken RCD + Effects
 					if(!dir) // lights only apply themselves if standing at a cardinal direction from the wall
 						boutput(user, "You can't seem to reach that part of \the [A]. Try standing right up against it.")
 						return
-					var/turf/simulated/wall/W = A
+					var/turf/wall/W = A
 					if (do_thing(user, W, "attaching a light bulb fixture to \the [W]", matter_create_light_fixture, time_create_light_fixture))
 						var/obj/item/light_parts/bulb/LB = new /obj/item/light_parts/bulb(get_turf(W))
 						LB.setMaterial(getMaterial(material_name))
 						W.attach_light_fixture_parts(user, LB, TRUE)
 						log_construction(user, "built a light fixture to a wall ([W])")
 
-				if (istype(A, /turf/simulated/floor))
+				if (istype(A, /turf/floor))
 					if((locate(/obj/machinery/light) in A)) // Just check the floor, not the user
 						boutput(user, "There's already a light there!") // stacking lights simply can't be good for the environment
 						return
-					var/turf/simulated/floor/F = A
+					var/turf/floor/F = A
 					if (do_thing(user, F, "building a floor lamp on \the [F]", matter_create_light_fixture, time_create_light_fixture))
 						var/obj/item/light_parts/floor/FL = new /obj/item/light_parts/floor(get_turf(F))
 						FL.setMaterial(getMaterial(material_name))
@@ -398,7 +397,7 @@ Broken RCD + Effects
 				if((locate(/obj/machinery/light) in A) || (locate(/obj/machinery/light) in get_turf(user)))
 					boutput(user, "There's already a lamp there!")
 					return
-				if (istype(A, /turf/simulated/wall))
+				if (istype(A, /turf/wall))
 					var/dir
 					for (var/d in cardinal)
 						if (get_step(user,d) == A)
@@ -407,7 +406,7 @@ Broken RCD + Effects
 					if(!dir)
 						boutput(user, "You can't seem to reach that part of \the [A]. Try standing right up against it.")
 						return
-					var/turf/simulated/wall/W = A
+					var/turf/wall/W = A
 					if (do_thing(user, W, "attaching a light bulb fixture to \the [W]", matter_create_light_fixture, time_create_light_fixture))
 						var/obj/item/light_parts/LB = new /obj/item/light_parts(get_turf(W))
 						LB.setMaterial(getMaterial(material_name))
@@ -465,7 +464,7 @@ Broken RCD + Effects
 				S.cell.charge -= checkamt * silicon_cost_multiplier
 		else
 			src.matter -= checkamt
-			boutput(user, "\The [src] now holds [src.matter]/[src.max_matter] matter units.")
+			boutput(user, "\The [src] now holds [src.matter]/[src.max_matter] matter units.", group = "RCD_ammo_consume")
 			src.update_icon()
 
 	proc/do_thing(mob/user as mob, atom/target, var/what, var/ammo, var/delay)
@@ -481,7 +480,7 @@ Broken RCD + Effects
 		src.working_on += target
 
 		playsound(src, "sound/machines/click.ogg", 50, 1)
-		boutput(user, "You start [what]... ([issilicon(user) ? "[ammo * src.silicon_cost_multiplier] charge" : "[ammo] matter units"][delay ? ", [delay / 10] seconds" : ""])")
+		boutput(user, "You start [what]... ([issilicon(user) ? "[ammo * src.silicon_cost_multiplier] charge" : "[ammo] matter units"][delay ? ", [delay / 10] seconds" : ""])", group = "RCD_does_thing")
 
 		if ((!delay || do_after(user, delay)) && ammo_check(user, ammo))
 			ammo_consume(user, ammo)
@@ -645,7 +644,7 @@ Broken RCD + Effects
 					mode = RCD_MODE_PODDOOR
 				else
 					boutput(user, "<span class='alert'>You cannot modify that!</span>")
-			else if (istype(A, /turf/simulated/wall) && ammo_check(user, matter_create_door, 500))
+			else if (istype(A, /turf/wall) && ammo_check(user, matter_create_door, 500))
 				boutput(user, "Creating Door Control ([matter_create_door])")
 				playsound(src, "sound/machines/click.ogg", 50, 1)
 				if(do_after(user, 5 SECONDS))
@@ -665,7 +664,7 @@ Broken RCD + Effects
 						boutput(user, "Now creating pod bay blast doors linked to the new door control.")
 
 		else if (mode == RCD_MODE_PODDOOR)
-			if (istype(A, /turf/simulated/floor) && ammo_check(user, matter_create_door, 500))
+			if (istype(A, /turf/floor) && ammo_check(user, matter_create_door, 500))
 				boutput(user, "Creating Pod Bay Door ([matter_create_door])")
 				playsound(src, "sound/machines/click.ogg", 50, 1)
 				if(do_after(user, 5 SECONDS))
@@ -738,11 +737,11 @@ Broken RCD + Effects
 		if (get_dist(get_turf(src), get_turf(A)) > 1)
 			return
 		if (mode == RCD_MODE_WINDOWS)
-			if (istype(A, /turf/simulated/floor) || istype(A, /obj/grille/))
+			if (istype(A, /turf/floor) || istype(A, /obj/grille/))
 				if (istype(A, /obj/grille/))
 					// You can do this with normal windows. So now you can do it with RCD windows. Honke.
 					A = get_turf(A)
-					if (!istype(A, /turf/simulated/floor))
+					if (!istype(A, /turf/floor))
 						return
 				if (do_thing(user, A, "building a window", matter_create_window, time_create_window))
 					// Is /auto always the one to use here? hm.
@@ -957,7 +956,7 @@ Broken RCD + Effects
 
 		if (!(istype(A, /turf) || istype(A, /obj/machinery/door/airlock)))
 			return
-		if ((istype(A, /turf/space) || istype(A, /turf/simulated/floor)) && mode)
+		if ((istype(A, /turf/space) || istype(A, /turf/floor)) && mode)
 			if (src.broken)
 				boutput(user, "<span class='alert'>Insufficient charge.</span>")
 				return
@@ -1017,7 +1016,7 @@ Broken RCD + Effects
 	proc/void_shatter()
 		playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 80, 1)
 		for (var/atom/A in range(lifespan, src))
-			if (istype(A, /turf/simulated))
+			if (issimulatedturf(A))
 				A.pixel_x = rand(-4,4)
 				A.pixel_y = rand(-4,4)
 			else if (isliving(A))
@@ -1027,9 +1026,9 @@ Broken RCD + Effects
 			else if (istype(A, /obj) && (A != src))
 
 				if ((get_dist(src, A) <= 2) || prob(10))
-					A.ex_act(1)
+					A.ex_act(OLD_EX_TOTAL)
 				else if (prob(5))
-					A.ex_act(3)
+					A.ex_act(OLD_EX_LIGHT)
 
 				continue
 
@@ -1040,11 +1039,11 @@ Broken RCD + Effects
 			qdel(src)
 			return
 
-		for (var/turf/simulated/T in range(src, (rangeout-lifespan)))
+		for (var/turf/T in range(src, (rangeout-lifespan)))
 			if (prob(5 + lifespan) && limiter.canISpawn(/obj/effects/sparks))
-				var/obj/sparks = unpool(/obj/effects/sparks)
+				var/obj/sparks = new /obj/effects/sparks()
 				sparks.set_loc(T)
-				SPAWN_DBG(2 SECONDS) if (sparks) pool(sparks)
+				SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 
 			T.ex_act((rangeout-lifespan) < 2 ? 1 : 2)
 

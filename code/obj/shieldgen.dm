@@ -90,28 +90,28 @@ Shield and graivty well generators
 
 /obj/shieldgen/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			src.health -= 75
 			src.checkhp()
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			src.health -= 30
 			if (prob(15))
 				src.malfunction = 1
 			src.checkhp()
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			src.health -= 10
 			src.checkhp()
 	return
 
 /obj/shield/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			if (prob(75))
 				qdel(src)
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			if (prob(50))
 				qdel(src)
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if (prob(25))
 				qdel(src)
 	return
@@ -164,7 +164,7 @@ Shield and graivty well generators
 		else return ..()
 
 	proc/update_nearby_tiles(need_rebuild)
-		var/turf/simulated/source = loc
+		var/turf/source = loc
 		if (istype(source))
 			return source.update_nearby_tiles(need_rebuild)
 
@@ -194,13 +194,13 @@ Shield and graivty well generators
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				if (prob(75))
 					qdel(src)
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if (prob(50))
 					qdel(src)
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				if (prob(25))
 					qdel(src)
 		return

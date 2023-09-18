@@ -47,7 +47,7 @@ Fibre wire
 
 		if(ticker?.mode) //Yes, I'm sure my runtimes will matter if the goddamn TICKER is gone.
 			for(var/datum/mind/M in (ticker.mode.Agimmicks | ticker.mode.traitors)) //We want an EVIL ghost
-				if(!M.dnr && M.current && isobserver(M.current) && M.current.client && M.special_role != ROLE_VAMPTHRALL && M.special_role != ROLE_MINDSLAVE)
+				if(!M.dnr && M.current && isobserver(M.current) && M.current.client && M.special_role != ROLE_VAMPTHRALL && M.special_role != ROLE_INSURGENT)
 					priority_targets.Add(M.current)
 
 		if(!priority_targets.len) //Okay, fine. Any ghost. *sigh
@@ -385,6 +385,7 @@ proc/Create_Tommyname()
 					activated = 0
 
 ////////////////////////////// Donald Trumpet
+//Used by: Donald Trumpet (uuuuuuuuuuuuugh)
 /datum/projectile/energy_bolt_v/trumpet
 	name = "trumpet bolt"
 	shot_sound = 'sound/musical_instruments/Bikehorn_2.ogg'
@@ -600,7 +601,7 @@ proc/Create_Tommyname()
 
 	//Create the initial padding
 	DEBUG_MESSAGE("Creating stationside padding.")
-	var/list/catwalk = list(/turf/simulated/floor/airless/plating/catwalk, /obj/grille/catwalk)
+	var/list/catwalk = list(/turf/floor/airless/plating/catwalk, /obj/grille/catwalk)
 	for(var/i = 0; i < station_padding;i++)
 		move_create_obj(catwalk, walker, extension_dir, extension_dir) //Then we walk outwards, creating stuff as we go along
 		walker = get_step(walker,extension_dir)
@@ -626,7 +627,7 @@ proc/Create_Tommyname()
 
 
 	DEBUG_MESSAGE("Creating solar panels")
-	var/list/solar_list = list(/turf/simulated/floor/airless/solar, /obj/machinery/power/solar)
+	var/list/solar_list = list(/turf/floor/airless/solar, /obj/machinery/power/solar)
 	for(var/turf/T in panelturfs)
 		SPAWN_DBG(0)
 			var/turf/w1 = T
@@ -639,7 +640,7 @@ proc/Create_Tommyname()
 				w2 = get_step(w2, paneldir2)
 
 	DEBUG_MESSAGE("Creating solar controller")
-	move_create_obj(list(/turf/simulated/floor/plating/airless, /obj/machinery/power/tracker), walker, extension_dir)
+	move_create_obj(list(/turf/floor/plating/airless, /obj/machinery/power/tracker), walker, extension_dir)
 	walker = get_step(walker,extension_dir)
 	SPAWN_DBG(0) move_create_obj(list(new /obj/lattice{icon_state="lattice-dir-b"}), walker, paneldir1, paneldir2)
 	move_create_obj(list(new /obj/lattice{icon_state="lattice-dir-b"}), walker, paneldir2, paneldir1)
@@ -680,7 +681,7 @@ proc/Create_Tommyname()
 	out.len = panel_length //A list containing all the solar panels sorted on distance from centreline
 	for(var/i = created_atoms.len; i > 0; i--)
 		var/atom/A = created_atoms[i]
-		if(istype(A, /obj/machinery/power/solar) || istype(A, /turf/simulated/floor/airless/solar))
+		if(istype(A, /obj/machinery/power/solar) || istype(A, /turf/floor/airless/solar))
 			var/dist = get_dist_from_centreline(A)
 			temp = out[dist]
 			if(!temp)
@@ -694,7 +695,7 @@ proc/Create_Tommyname()
 //calculate new px / py
 	if(istype(O, /turf))
 		var/turf/T = O
-		var/obj/movedummy/MD = unpool(/obj/movedummy)
+		var/obj/movedummy/MD = new()
 		MD.mimic_turf(T.type, 0)
 		MD.set_loc(T)
 		T.ReplaceWithSpace()
@@ -717,7 +718,7 @@ proc/Create_Tommyname()
 	animate_slide(O, npx, npy, animtime)
 	sleep(animtime)
 	if(istype(O, /obj/movedummy))
-		pool(O)
+		qdel(O)
 	else
 		qdel(O)
 
@@ -757,7 +758,7 @@ proc/Create_Tommyname()
 				if(!is_turf)
 					O = new t_type(null)
 				else
-					var/obj/movedummy/MD = unpool(/obj/movedummy)
+					var/obj/movedummy/MD = new()
 					MD.mimic_turf(t_type, animtime)
 					O = MD
 
@@ -802,11 +803,11 @@ proc/Create_Tommyname()
 /obj/movedummy
 	name = "Dummy object."
 	invisibility = 101
-
+/*
 /obj/movedummy/pooled()
 	..()
 	invisibility = 101
-
+*/
 /obj/movedummy/proc/mimic_turf(var/turf_type, var/TTL)
 	ASSERT(ispath(turf_type, /turf))
 	var/turf/T = turf_type
@@ -821,7 +822,7 @@ proc/Create_Tommyname()
 	src.invisibility = 0
 	if(TTL)
 		SPAWN_DBG(TTL)
-			pool(src)
+			qdel(src)
 
 #undef STAT_STANDBY
 #undef STAT_MOVING

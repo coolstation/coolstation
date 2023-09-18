@@ -283,7 +283,7 @@ var/global/icon/wanted_poster_unknown = icon('icons/obj/decals/posters.dmi', "wa
 		user.put_in_hand_or_drop(src)
 
 	afterattack(var/atom/A as mob|obj|turf, var/mob/user as mob)
-		if (src.can_put_up && (istype(A, /turf/simulated/wall) || istype(A, /turf/simulated/shuttle/wall) || istype(A, /turf/unsimulated/wall) || istype(A, /obj/window)))
+		if (src.can_put_up && (istype(A, /turf/wall) || istype(A, /turf/shuttle/wall) || istype(A, /obj/window)))
 			user.visible_message("<b>[user]</b> attaches [src] to [A].",\
 			"You attach [src] to [A].")
 			user.u_equip(src)
@@ -418,7 +418,7 @@ var/global/icon/wanted_poster_unknown = icon('icons/obj/decals/posters.dmi', "wa
 			"You load [W] into [src].")
 			src.papers ++
 			user.u_equip(W)
-			pool(W)
+			qdel(W)
 			return
 
 		else if (istype(W, /obj/item/paper_bin))
@@ -436,7 +436,7 @@ var/global/icon/wanted_poster_unknown = icon('icons/obj/decals/posters.dmi', "wa
 				if (B.amount <= 0)
 					var/obj/item/paper/P = locate(/obj/item/paper) in B
 					if (P)
-						pool(P)
+						qdel(P)
 				else
 					B.amount --
 			B.update()

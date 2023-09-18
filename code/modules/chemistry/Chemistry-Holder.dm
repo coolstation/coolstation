@@ -69,7 +69,7 @@ datum
 				for(var/reagent_id in reagent_list)
 					var/datum/reagent/current_reagent = reagent_list[reagent_id]
 					if(current_reagent)
-						pool(current_reagent)
+						qdel(current_reagent)
 				reagent_list.len = 0
 				reagent_list = null
 			my_atom = null
@@ -226,6 +226,19 @@ datum
 
 			return largest_name
 
+		proc/get_master_reagent_name_except(var/exception)
+			var/largest_name = null
+			var/largest_volume = 0
+
+			for(var/reagent_id in reagent_list)
+				if(reagent_id == "smokepowder") continue
+				if(reagent_id == exception) continue
+				var/datum/reagent/current = reagent_list[reagent_id]
+				if(current.volume > largest_volume)
+					largest_name = current.name
+					largest_volume = current.volume
+
+			return largest_name
 
 		proc/get_master_reagent_id()
 			var/largest_id = null
@@ -304,7 +317,7 @@ datum
 			amount = min(amount, target_reagents.maximum_volume - target_reagents.total_volume)
 
 			if (do_fluid_react && issimulatedturf(target))
-				var/turf/simulated/T = target
+				var/turf/T = target
 				return T.fluid_react(src, amount, index = index)
 
 			return trans_to_direct(target_reagents, amount, multiplier, index = index)
@@ -580,7 +593,7 @@ datum
 
 					reagents_changed()
 
-					pool(current_reagent)
+					qdel(current_reagent)
 
 					return 0
 
@@ -632,7 +645,7 @@ datum
 				var/mob/M = A
 				M.on_reagent_react(src, method, react_volume)
 
-			var/turf/simulated/floor/fluid_turf
+			var/turf/floor/fluid_turf
 			var/datum/reagents/temp_fluid_reagents
 			if (issimulatedturf(A))
 				fluid_turf = A
@@ -772,7 +785,7 @@ datum
 				current_reagent = reagents_cache[reagent]
 
 				if(current_reagent)
-					current_reagent = unpool(current_reagent.type)
+					current_reagent = new current_reagent.type()
 					reagent_list[reagent] = current_reagent
 					current_reagent.holder = src
 					current_reagent.volume = 0
@@ -786,10 +799,11 @@ datum
 			current_reagent.volume = new_amount
 			if(!current_reagent.data) current_reagent.data = sdata
 
+
 			src.last_temp = src.total_temperature
 			var/temp_temperature = src.total_temperature*src.total_volume*src.composite_heat_capacity + temp_new*new_amount*current_reagent.heat_capacity
 
-			var/divison_amount = src.total_volume*src.composite_heat_capacity + new_amount*current_reagent.heat_capacity
+			var/divison_amount = src.total_volume * src.composite_heat_capacity + new_amount * current_reagent.heat_capacity
 			if (divison_amount > 0)
 				src.total_temperature = temp_temperature / divison_amount
 
@@ -922,8 +936,8 @@ datum
 					. += "<br><span class='alert'>[current_reagent.volume] units of [current_reagent.name]</span>"
 			return
 
-		proc/get_reagents_fullness()
-			.= get_fullness(total_volume / maximum_volume * 100)
+		proc/get_reagents_fullness(shorthand = FALSE)
+			.= get_fullness((total_volume / maximum_volume * 100), shorthand)
 
 		proc/get_inexact_description(var/rc_flags=0)
 			if(rc_flags == 0)

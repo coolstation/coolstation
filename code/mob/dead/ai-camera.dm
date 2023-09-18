@@ -122,16 +122,25 @@
 				src.x--
 
 		//boutput(src,"[client.images.len]") //useful for debuggin that one bad bug
-
-		if(src.loc.z != 1)	//you may only move on the station z level!!!
+	#ifdef Z3_IS_A_STATION_LEVEL
+		if(src.loc.z != Z_LEVEL_STATION && src.loc.z != Z_LEVEL_DEBRIS)	//you may only move on the station z level!!!
 			src.cancel_camera()
+	#else
+		if(src.loc.z != Z_LEVEL_STATION)	//you may only move on the station z level!!!
+			src.cancel_camera()
+	#endif
 
 	proc/update_statics()	//update seperate from move(). Mostly same code.
 		return
 
 	set_loc(var/newloc as turf|mob|obj in world)
-		if (isturf(newloc) && newloc:z != 1) // Sorry!
+	#ifdef Z3_IS_A_STATION_LEVEL
+		if (isturf(newloc) && newloc:z != Z_LEVEL_STATION && newloc:z != Z_LEVEL_DEBRIS) // Sorry!
 			src.return_mainframe()
+	#else
+		if (isturf(newloc) && newloc:z != Z_LEVEL_STATION) // Sorry!
+			src.return_mainframe()
+	#endif
 		else
 			last_loc = src.loc
 			..()
@@ -574,8 +583,8 @@ var/list/camImages = list()
 var/aiDirty = 2
 world/proc/updateCameraVisibility()
 	if(!aiDirty) return
-
-#if defined(IM_REALLY_IN_A_FUCKING_HURRY_HERE) && !defined(SPACEMAN_DMM)
+	//Keywords: AI camera camvis cam vis camera visibility camera static
+#if defined(SKIP_CAM_VIS) && !defined(SPACEMAN_DMM)
 	// I don't wanna wait for this camera setup shit just GO
 	return
 #endif
@@ -593,7 +602,12 @@ world/proc/updateCameraVisibility()
 		game_start_countdown?.update_status("Updating cameras...\n(Calculating...)")
 		var/list/turf/cam_candidates = list()
 		for(var/turf/t in world) //ugh x2
-			if( t.z != 1 ) continue
+		#ifdef Z3_IS_A_STATION_LEVEL //oof ouch owie my camera visibility time doubling oof heck
+			//if( t.z != Z_LEVEL_STATION ) continue
+			if( t.z != Z_LEVEL_STATION && t.z != Z_LEVEL_DEBRIS ) continue
+		#else
+			if( t.z != Z_LEVEL_STATION ) continue
+		#endif
 			cam_candidates += t
 
 //pod wars has no AI so this is just a waste of time...
@@ -609,7 +623,11 @@ world/proc/updateCameraVisibility()
 			t.aiImage.dir = pick(alldirs)
 			t.aiImage.loc = t
 
+		#ifdef DESERT_MAP //This isn't strictly necessary but saving desert istype checks on 90k turfs per zlevel processed feels worth it?
+			addAIImage(t.aiImage, "aiImage_\ref[t.aiImage]", low_priority=(istype(t, /turf/wall/asteroid/gehenna) || istype(t, /turf/space/gehenna/desert)))
+		#else //(That works out to 90k of those two desert checks for most maps and 180k space checks for gehenna)
 			addAIImage(t.aiImage, "aiImage_\ref[t.aiImage]", low_priority=istype(t, /turf/space))
+		#endif
 
 			donecount++
 			thispct = round(donecount / cam_candidates.len * 100)

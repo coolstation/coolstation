@@ -5,7 +5,7 @@
 
 // Mars Turfs
 
-/turf/unsimulated/mars
+/turf/mars
 	icon = 'icons/misc/mars_outpost.dmi'
 	name = "Mars"
 	desc = "Get your ass there."
@@ -28,7 +28,7 @@
 	var/has_edges = 0
 	var/randomized = 1
 
-	proc/__needs_edge(var/turf/unsimulated/mars/t)
+	proc/__needs_edge(var/turf/mars/t)
 		if(!t) return 0
 		if(istype(t, type)) return 0
 		if(t.edge_weight > src.edge_weight) return 0
@@ -86,13 +86,13 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				src.icon_state = "placeholder-ex1"
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.icon_state = "placeholder-ex2"
 				return
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.icon_state = "placeholder-ex3"
 				return
 		return
@@ -118,10 +118,10 @@
 		edge_weight = 3
 		icon_state = "t4"
 
-/turf/unsimulated/mars/sets
+/turf/mars/sets
 	randomized = 0
 
-/turf/unsimulated/mars/sets/tarmac
+/turf/mars/sets/tarmac
 	name = "tarmac"
 	icon_state = "marshighw1"
 
@@ -134,7 +134,7 @@
 	irradiated = 1
 	permarads = 1
 	ambient_light = rgb(255*0.9, 211*0.9, 183*0.9)
-	filler_turf = "/turf/unsimulated/mars"
+	filler_turf = "/turf/mars"
 
 
 // """Foliage"""
@@ -212,7 +212,7 @@
 // LEGACY STUFF
 // Abandon hope all ye who cross this line
 
-/turf/unsimulated/floor/setpieces/martian
+/turf/floor/setpieces/mars_outpost
 	name = "martian dust"
 	desc = "Someone would've probably paid big money to get a sample of this fifty years ago."
 	icon = 'icons/turf/floors.dmi'
@@ -229,17 +229,17 @@
 		if(src.rocks)
 			icon_state = "[pick("mars1","mars1","mars1","mars2","mars3")]"
 
-/turf/unsimulated/floor/setpieces/martian/cliff
+/turf/floor/setpieces/mars_outpost/cliff
 	icon_state = "mars_cliff1"
 	density = 1
 	rocks = 0
 
-/turf/unsimulated/floor/setpieces/martian/highway
+/turf/floor/setpieces/mars_outpost/highway
 	icon_state = "marshighw1"
 	desc = "highway"
 	rocks = 0
 
-/turf/unsimulated/wall/setpieces/martian
+/turf/wall/setpieces/mars_outpost
 	name = "martian rock"
 	desc = "Hey, it's not red at all!"
 	icon = 'icons/turf/walls.dmi'
@@ -594,6 +594,7 @@
 	icon_state = "red"
 	var/sound/mysound = null
 	sound_group = "mars"
+	is_construction_allowed = FALSE
 
 	New()
 		..()
@@ -602,7 +603,7 @@
 		S.file = 'sound/ambience/loop/Mars_Interior.ogg'
 		S.repeat = 1
 		S.wait = 0
-		S.channel = 123
+		S.channel = SOUNDCHANNEL_LOOPING_1
 		S.volume = 60
 		S.priority = 255
 		S.status = SOUND_UPDATE

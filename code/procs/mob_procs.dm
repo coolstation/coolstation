@@ -322,7 +322,7 @@
 	return 1
 
 /mob/living/carbon/human/hearing_check(var/consciousness_check = 0, var/ear_disability_check = 1)
-	if (consciousness_check && (src.stat || src.getStatusDuration("paralysis") || src.sleeping))
+	if (consciousness_check && (isunconscious(src) || src.getStatusDuration("paralysis") || src.sleeping)) //src.stat -> isunconscious(src) to allow ded folks to hear again
 		// you may be physically capable of hearing it, but you're sure as hell not mentally able when you're out cold
 		.= 0
 	else
@@ -338,7 +338,7 @@
 			.= 0
 
 /mob/living/silicon/hearing_check(var/consciousness_check = 0, var/ear_disability_check = 1)
-	if (consciousness_check && (src.getStatusDuration("paralysis") || src.sleeping || src.stat))
+	if (consciousness_check && (src.getStatusDuration("paralysis") || src.sleeping || isunconscious(src)))
 		return 0
 
 	if (ear_disability_check && src.ear_disability)
@@ -535,6 +535,18 @@
 		pronouns = get_singleton(/datum/pronouns/theyThem)
 
 	return pronouns.reflexive
+
+/proc/pluralize_or_not(var/mob/subject) //This was the closest to the other pronoun procs I could think of
+	var/datum/pronouns/pronouns
+
+	if (isabomination(subject))
+		pronouns = get_singleton(/datum/pronouns/abomination)
+	else if (subject && subject?.bioHolder?.mobAppearance?.pronouns)
+		pronouns = subject.bioHolder.mobAppearance.pronouns
+	else
+		pronouns = get_singleton(/datum/pronouns/theyThem)
+
+	return pronouns.pluralize
 
 /mob/proc/get_explosion_resistance()
 	return 0
@@ -919,10 +931,10 @@
 						if (M.current)
 							var/I = image(antag_werewolf, loc = M.current)
 							can_see.Add(I)
-				if (ROLE_MINDSLAVE)
+				if (ROLE_INSURGENT)
 					if (see_everything)
 						if (M.current)
-							var/I = image(antag_mindslave, loc = M.current)
+							var/I = image(antag_insurgent, loc = M.current)
 							can_see.Add(I)
 				if (ROLE_VAMPTHRALL)
 					if (see_everything)
@@ -1012,7 +1024,7 @@
 					can_see.Add(I)
 			for (var/datum/mind/M in spies)
 				if (M.current)
-					var/I = image(antag_spyslave, loc = M.current)
+					var/I = image(antag_spyrecruit, loc = M.current)
 					can_see.Add(I)
 
 		else if (src.mind in spies)

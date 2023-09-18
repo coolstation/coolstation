@@ -81,7 +81,7 @@ ABSTRACT_TYPE(/datum/clothingbooth_item/accessory/hbow)
 	navy
 		name = "Navy Hair Bow"
 		path = /obj/item/clothing/head/hairbow/navy
-	
+
 	purple
 		name = "Purple Hair Bow"
 		path = /obj/item/clothing/head/hairbow/purple
@@ -719,10 +719,12 @@ ABSTRACT_TYPE(/datum/clothingbooth_item/head)
 	path = /obj/item/clothing/head/frog_hat
 	cost = PAY_TRADESMAN
 
+/*
 /datum/clothingbooth_item/head/link
 	name = "Hero Hat"
 	path = /obj/item/clothing/head/link
 	cost = PAY_TRADESMAN
+*/
 
 //Sci-Fi
 
@@ -918,7 +920,7 @@ ABSTRACT_TYPE(/datum/clothingbooth_item/costume)
 	slot = SLOT_HEAD
 	cost = PAY_EXECUTIVE/2
 
-/datum/clothingbooth_item/costume/dinerdress_mint
+/* /datum/clothingbooth_item/costume/dinerdress_mint
 	name = "Mint Diner Waitress's Dress"
 	path = /obj/item/clothing/under/gimmick/dinerdress_mint
 
@@ -931,13 +933,15 @@ ABSTRACT_TYPE(/datum/clothingbooth_item/costume)
 	path = /obj/item/clothing/head/waitresshat
 	slot = SLOT_HEAD
 	cost = PAY_TRADESMAN/5
+*/
 
 /datum/clothingbooth_item/costume/guybrush
 	name = "Wannabe Pirate Costume"
 	path = /obj/item/clothing/under/gimmick/guybrush
 
-/datum/clothingbooth_item/costume/dinosuar
+/* /datum/clothingbooth_item/costume/dinosuar
 	name = "Dinosaur Pajamas"
 	path = /obj/item/clothing/suit/gimmick/dinosaur
 	slot = SLOT_WEAR_SUIT
 	cost = PAY_TRADESMAN/2
+*/

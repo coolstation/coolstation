@@ -338,7 +338,7 @@
 				src.resources += C.resources
 				boutput(src, "<span class='notice'>You break down the resource cache, adding <span class='bold'>[C.resources]</span> resources to your own (you now have [src.resources] resource[src.resources == 1 ? "" : "s"]). </span>")
 			if(istype(I, /obj/item/raw_material))
-				pool(I) //gotta pool stuff bruh
+				qdel(I) //gotta pool stuff bruh
 			else
 				qdel(I)
 	// AI ticks are handled in mob_ai.dm, as they ought to be
@@ -358,8 +358,8 @@
 		src.antigrab_counter = 0
 	if(keys & KEY_RUN)
 		if(!src.floorrunning && isfeathertile(src.loc))
-			if(istype(src.loc, /turf/simulated/floor/feather))
-				var/turf/simulated/floor/feather/floor = src.loc
+			if(istype(src.loc, /turf/floor/feather))
+				var/turf/floor/feather/floor = src.loc
 				if(!floor.on)
 					floor.on()
 			src.start_floorrunning()
@@ -551,11 +551,11 @@
 	for(var/i=1 to num_pieces)
 		switch(rand(100))
 			if(0 to 45)
-				B = unpool(/obj/item/raw_material/scrap_metal)
+				B = new /obj/item/raw_material/scrap_metal()
 				B.set_loc(my_turf)
 				B.setMaterial(getMaterial("gnesis"))
 			if(46 to 90)
-				B = unpool(/obj/item/raw_material/shard)
+				B = new /obj/item/raw_material/shard()
 				B.set_loc(my_turf)
 				B.setMaterial(getMaterial("gnesisglass"))
 			if(91 to 100)
@@ -608,8 +608,8 @@
 	if(src.resources < 100)
 		boutput(src, "<span class='alert'>Not enough resources (you need 100).</span>")
 		return
-	var/turf/simulated/floor/feather/nest = get_turf(src)
-	if(!istype(nest, /turf/simulated/floor/feather))
+	var/turf/floor/feather/nest = get_turf(src)
+	if(!istype(nest, /turf/floor/feather))
 		boutput(src, "<span class='alert'>The egg needs to be placed on flock tile.</span>")
 		return
 	actions.start(new/datum/action/bar/flock_egg(), src)
@@ -719,11 +719,11 @@
 	if(!isturf(target) && !(istype(target, /obj/storage/closet/flock) || istype(target, /obj/table/flock) || istype(target, /obj/structure/girder) || istype(target, /obj/machinery/door/feather) || istype(target, /obj/flock_structure/ghost)))
 		target = get_turf(target)
 
-	if(istype(target, /turf) && !istype(target, /turf/simulated) && !istype(target, /turf/space))
+	if(issimulatedturf(target))
 		boutput(user, "<span class='alert'>Something about this structure prevents it from being assimilated.</span>")
 	else if(isfeathertile(target))
-		if(istype(target, /turf/simulated/floor/feather))
-			var/turf/simulated/floor/feather/flocktarget = target
+		if(istype(target, /turf/floor/feather))
+			var/turf/floor/feather/flocktarget = target
 			if(user.a_intent == INTENT_DISARM)
 				if(!locate(/obj/grille/flock) in flocktarget)
 					if(user.resources < 25)
@@ -748,7 +748,7 @@
 			if(/obj/storage/closet/flock)
 				//soap
 				actions.start(new /datum/action/bar/flock_decon(target), user)
-			if(/turf/simulated/wall/auto/feather)
+			if(/turf/wall/auto/feather)
 				actions.start(new /datum/action/bar/flock_decon(target), user)
 			if(/obj/structure/girder)
 				if(target?.material.mat_id == "gnesis")

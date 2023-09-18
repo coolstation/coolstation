@@ -67,7 +67,7 @@
 					return 5
 			for (var/obj/machinery/door/D in view(0, test_turf))
 				return 5
-			for (var/turf/simulated/wall/W in view(0, test_turf))
+			for (var/turf/wall/W in view(0, test_turf))
 				return 5
 
 		else
@@ -82,7 +82,7 @@
 					return 4
 			for (var/obj/machinery/door/D in view(0, our_loc))
 				return 4
-			for (var/turf/simulated/wall/W in view(0, our_loc))
+			for (var/turf/wall/W in view(0, our_loc))
 				return 4
 
 		return 1
@@ -151,6 +151,7 @@
 
 				. += "Location: [get_area(P2)] (Home: [P2.homeloc ? "[get_area(P2.homeloc)]" : "N/A"])"
 
+				. += "<BR>\[<A href='byond://?src=\ref[src];op=summon'>Summon</A>\] "
 				. += "\[<A href='byond://?src=\ref[src];op=return'>Send to home turf</A>\]<BR>"
 				. += "<HR><A href='byond://?src=\ref[src];op=machinerylist'>Return to list</A>"
 

@@ -252,8 +252,10 @@
 			return
 		use_power(500)
 		if(prob(3))
-			SPAWN_DBG(1 DECI SECOND)
-				playsound(src.loc, pick(ambience_computer), 50, 1)
+			var/area/A = get_area(src)
+			if (!A.played_fx_1) //try not to stack this on top of ambient effect
+				SPAWN_DBG(1 DECI SECOND)
+					playsound(src.loc, pick(ambience_computer), 50, 1, channel = VOLUME_CHANNEL_AMBIENT)
 
 		for (var/progIndex = 1, progIndex <= src.processing.len, progIndex++)
 			var/datum/computer/file/mainframe_program/prog = src.processing[progIndex]
@@ -442,14 +444,14 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				//dispose()
 				src.dispose()
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if (prob(50))
 					set_broken()
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				if (prob(25))
 					set_broken()
 			else
@@ -670,6 +672,31 @@
 
 			return
 
+//just some dumb extra things here that might not be useful
+/obj/machinery/networked/mainframe/zeta/warm //intended for roundstart data (but if you still have the main tape you can swap that in)
+	name = "Warm Site Mainframe"
+	desc = "A mainframe computer, designated as the warm backup. It's pretty big, and still real hot!"
+	net_number = 1 //if someone turns this on accidentally don't interfere with normal networking until it's working right and configured to 0
+	//set this to a serverroom/warm area or something similar and configure an APC for that area to start totally off. this is manual turn-on.
+	//use with server room warm area and an apc with equipment set to 0
+/obj/machinery/networked/mainframe/cold //has no data and starts with nothing, needs a tape installed, etc.
+	name = "Cold Site Mainframe"
+	desc = "A mainframe computer, designated as the cold backup. You'd need at least one other person to try to steal it."
+	net_number = 1 //see above
+	//need to define storage with minimum bootstrap (not zeta, should not be immediately ready 2 go)
+	//see above re: area/apc
+/obj/machinery/networked/mainframe/lab //non-administrative, testing mainframe for nerds
+	name = "Lab Mainframe"
+	desc = "A mainframe computer, for enthusiast use and testing."
+	net_number = 3 //nerdnet
+	req_access = list(access_research, access_dwaine_superuser, access_tech_storage) //sure grubby assistants can get to it why not
+	//need to define minimal storage but still have some utilities- load the stuff you want off tapes
+/obj/machinery/networked/mainframe/syndie //FOSSyndie administrative mainframe for nerds
+	name = "Liberated Mainframe"
+	desc = "A mainframe computer relieved of duty from an NT station and given new life and freedom. Runs OpenDWAINE 6."
+	net_number = 2 //syndinet?
+	req_access = list(access_syndicate_shuttle)
+	setup_drive_type = /obj/item/disk/data/memcard/FOSS
 
 /*
  *	Bootstrapping System

@@ -24,7 +24,16 @@
 
 // end debugging stuff
 
-
+//some explosion stuff, for canbomb threshold and stuff like that
+#define CANISTER_BOMB_TEMP_MIN 40000
+#define CANISTER_BOMB_PRESSURE_MIN 5000
+#ifdef DESERT_MAP  // I have to set lower caps for Gehenna because the tile replacement is so expensive. Lets call it atmospheric damping.
+#define CANISTER_BOMB_MAXCAP 4000
+#define CANISTER_BOMB_MINCAP 75
+#else
+#define CANISTER_BOMB_MAXCAP 8000 //THIS IS WHERE TO SET THE CANBOMB POWER MAXCAP
+#define CANISTER_BOMB_MINCAP 100   //THIS IS ACTUALLY THE BANG YOU GET WITH THE ABSOLUTE MINIMUM STATS
+#endif
 
 /// in kPa * L/(K * mol)
 #define R_IDEAL_GAS_EQUATION	8.31
@@ -136,7 +145,7 @@
 #define PLASMA_OXYGEN_FULLBURN				10
 
 /// Hotspot Maximum Temperature without a catalyst
-#define HOTSPOT_MAX_NOCAT_TEMPERATURE (80000)
+#define HOTSPOT_MAX_NOCAT_TEMPERATURE (100000) // increase from 80000
 /// Hotspot Maximum Temperature to maintain maths works to 1e35-sh in practice)
 #define HOTSPOT_MAX_CAT_TEMPERATURE (INFINITY)
 
@@ -166,7 +175,7 @@
 // pipe properties
 
 #define NORMPIPERATE 30					//pipe-insulation rate divisor
-#define HEATPIPERATE 8					//heat-exch pipe insulation
+#define HEATPIPERATE 7					//heat-exch pipe insulation - was 8
 
 #define FLOWFRAC 0.99				// fraction of gas transfered per process
 

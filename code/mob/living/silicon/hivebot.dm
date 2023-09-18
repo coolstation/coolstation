@@ -454,17 +454,17 @@
 	var/b_loss = src.bruteloss
 	var/f_loss = src.fireloss
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			if (!isdead(src))
 				b_loss += 100
 				f_loss += 100
 				src.gib(1)
 				return
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			if (!isdead(src))
 				b_loss += 60
 				f_loss += 60
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if (!isdead(src))
 				b_loss += 30
 	src.bruteloss = b_loss
@@ -677,6 +677,10 @@
 				hud.update_tool_selector()
 				hud.update_tools()
 				break
+		return
+	if (istype(target, /obj/ladder))
+		var/obj/ladder/L = target
+		L.climb(src)
 		return
 	..()
 

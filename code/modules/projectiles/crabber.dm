@@ -1,3 +1,4 @@
+//Used by: crab gun
 /datum/projectile/claw
 
 	name = "crab claw"
@@ -17,7 +18,7 @@
 	damage_type = D_ENERGY
 	tick(var/obj/projectile/P)
 		var/turf/T = get_turf(P)
-		if (istype(T,/turf/simulated/floor))
+		if (istype(T,/turf/floor))
 			T.icon = 'icons/misc/beach.dmi'
 			T.icon_state = "sand"
 			animate(T, time = 10 SECONDS)
@@ -25,7 +26,7 @@
 			animate(icon = initial(T.icon))
 	on_hit(atom/hit)
 		..()
-		var/turf/simulated/T2 = get_turf(hit)
+		var/turf/T2 = get_turf(hit)
 		if (isturf(T2))
 			T2.icon = 'icons/misc/beach.dmi'
 			T2.icon_state = "sand"

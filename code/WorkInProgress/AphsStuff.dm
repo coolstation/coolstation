@@ -320,12 +320,12 @@
 /area/derelict_ai_sat
 	name = "Satellite 29A"
 	icon_state = "AIt"
-	sound_environment = 12
+	sound_environment = EAX_HALLWAY
 
 /area/derelict_ai_sat/core
 	name = "AI Satellite Core"
 	icon_state = "ai_chamber"
-	sound_environment = 0
+	sound_environment = EAX_GENERIC
 
 /area/derelict_ai_sat/solar
 	name = "Satelllite 29A Solar Array"

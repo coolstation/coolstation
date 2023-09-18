@@ -14,23 +14,24 @@
 /////////////////// ice moon, hell, and precursor ruins areas
 
 /area/upper_arctic
-	filler_turf = "/turf/unsimulated/floor/arctic/snow"
-	sound_environment = 8
+	filler_turf = "/turf/floor/arctic/snow"
+	sound_environment = EAX_CAVE
 	skip_sims = 1
 	sims_score = 30
 	sound_group = "ice_moon"
+	is_construction_allowed = FALSE
 
 /area/upper_arctic/pod1
 	name = "Outpost Theta Pod One"
 	icon_state = "green"
-	sound_environment = 3
+	sound_environment = EAX_BATHROOM
 	skip_sims = 1
 	sims_score = 30
 
 /area/lower_arctic/pod1
 	name = "Outpost Theta Pod One"
 	icon_state = "green"
-	sound_environment = 3
+	sound_environment = EAX_BATHROOM
 	skip_sims = 1
 	sims_score = 30
 	sound_group = "arctic_caves"
@@ -38,44 +39,44 @@
 /area/upper_arctic/pod2
 	name = "Outpost Theta Pod Two"
 	icon_state = "purple"
-	sound_environment = 2
+	sound_environment = EAX_ROOM
 	skip_sims = 1
 	sims_score = 30
 
 /area/upper_arctic/hall
 	name = "Outpost Theta Connecting Hall"
 	icon_state = "yellow"
-	sound_environment = 12
-	sound_environment = 2
+	sound_environment = EAX_HALLWAY
+	sound_environment = EAX_ROOM
 	skip_sims = 1
 	sims_score = 30
 
 /area/upper_arctic/comms
 	name = "Communications Hut"
 	icon_state = "storage"
-	sound_environment = 2
-	sound_environment = 2
+	sound_environment = EAX_ROOM
+	sound_environment = EAX_ROOM
 	skip_sims = 1
 	sims_score = 30
 
 /area/upper_arctic/mining
 	name = "Glacier Access"
 	icon_state = "dk_yellow"
-	sound_environment = 2
-	sound_environment = 2
+	sound_environment = EAX_ROOM
+	sound_environment = EAX_ROOM
 	skip_sims = 1
 	sims_score = 30
 
 /area/lower_arctic/mining
 	name = "Glacier Access"
 	icon_state = "dk_yellow"
-	sound_environment = 2
-	sound_environment = 2
+	sound_environment = EAX_ROOM
+	sound_environment = EAX_ROOM
 	skip_sims = 1
 	sims_score = 30
 
 /area/upper_arctic/exterior
-	sound_environment = 15
+	sound_environment = EAX_FOREST
 	skip_sims = 1
 	sims_score = 30
 	New()
@@ -85,38 +86,40 @@
 /area/upper_arctic/exterior/surface
 	name = "Ice Moon Surface"
 	icon_state = "white"
-	filler_turf = "/turf/unsimulated/floor/arctic/abyss"
+	filler_turf = "/turf/floor/arctic/abyss"
 	skip_sims = 1
 	sims_score = 30
 
 /area/upper_arctic/exterior/abyss
 	name = "Ice Moon Abyss"
 	icon_state = "dk_yellow"
-	filler_turf = "/turf/unsimulated/floor/arctic/snow"
+	filler_turf = "/turf/floor/arctic/snow"
 	skip_sims = 1
 	sims_score = 30
 
 /area/lower_arctic
 	icon_state = "dk_yellow"
 	sound_group = "ice_moon"
+	is_construction_allowed = FALSE
 
 /area/lower_arctic/lower
 	name = "Glacial Abyss"
 	icon_state = "purple"
-	filler_turf = "/turf/unsimulated/floor/arctic/snow/ice"
-	sound_environment = 8
+	filler_turf = "/turf/floor/arctic/snow/ice"
+	sound_environment = EAX_CAVE
 	skip_sims = 1
 	sims_score = 30
 
 /area/precursor // stole this code from the void definition
 	name = "Peculiar Structure"
 	icon_state = "dk_yellow"
-	filler_turf = "/turf/unsimulated/floor/setpieces/bluefloor"
-	sound_environment = 5
+	filler_turf = "/turf/floor/setpieces/bluefloor"
+	sound_environment = EAX_STONEROOM
 	skip_sims = 1
 	sims_score = 30
 	sound_group = "precursor"  //Differs from the caves it's in, for a mysterious sound-blocking effect.
-	sound_loop = 'sound/ambience/industrial/Precursor_Drone1.ogg'
+	sound_loop_1 = 'sound/ambience/industrial/Precursor_Drone1.ogg'
+	is_construction_allowed = FALSE
 
 	New()
 		..()
@@ -136,8 +139,8 @@
 	pit
 		name = "Ominous Pit"
 		icon_state = "purple"
-		filler_turf = "/turf/unsimulated/floor/setpieces/bluefloor/pit" // this might fuck something up but it might also be hilarious
-		sound_environment = 24
+		filler_turf = "/turf/floor/setpieces/bluefloor/pit" // this might fuck something up but it might also be hilarious
+		sound_environment = EAX_DIZZY
 		sound_group = "ominouspit"
 		skip_sims = 1
 		sims_score = 300
@@ -147,8 +150,8 @@
 /area/hell
 	name = "????"
 	icon_state = "security"
-	filler_turf = "/turf/unsimulated/floor/setpieces/bloodfloor"
-	sound_environment = 25
+	filler_turf = "/turf/floor/setpieces/bloodfloor"
+	sound_environment = EAX_DISORDERED
 	skip_sims = 1
 	sims_score = 0
 
@@ -589,7 +592,7 @@
 
 					SPAWN_DBG(0.6 SECONDS)
 						for (var/obj/O in lineObjs)
-							pool(O)
+							qdel(O)
 						light.disable()
 
 
@@ -1195,9 +1198,9 @@
 			else
 				T_effect_prob = 100 * (1 - (max(T_dist-1,1) / range))
 			if (prob(8) && limiter.canISpawn(/obj/effects/sparks))
-				var/obj/sparks = unpool(/obj/effects/sparks)
+				var/obj/sparks = new /obj/effects/sparks()
 				sparks.set_loc(T)
-				SPAWN_DBG(2 SECONDS) if (sparks) pool(sparks)
+				SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 
 			for (var/obj/item/I in T)
 				if ( prob(T_effect_prob) )
@@ -1230,19 +1233,19 @@
 				SPAWN_DBG(rand(80, 100))
 					if (T)
 						playsound(T, pick('sound/effects/elec_bigzap.ogg', 'sound/effects/elec_bzzz.ogg', 'sound/effects/electric_shock.ogg'), 50, 0)
-						var/obj/somesparks = unpool(/obj/effects/sparks)
+						var/obj/somesparks = new()
 						somesparks.set_loc(T)
-						SPAWN_DBG(2 SECONDS) if (somesparks) pool(somesparks)
+						SPAWN_DBG(2 SECONDS) if (somesparks) qdel(somesparks)
 						var/list/tempEffect
 						if (temp_effect_limiter-- > 0)
 							tempEffect = DrawLine(src, somesparks, /obj/line_obj/elec, 'icons/obj/projectiles.dmi',"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",FLY_LAYER,1,PreloadedIcon='icons/effects/LghtLine.dmi')
 
 						if (T.density)
 							for (var/atom/A in T)
-								A.ex_act(1)
+								A.ex_act(OLD_EX_TOTAL)
 
-							if (istype(T, /turf/simulated/wall))
-								T.ex_act(1)
+							if (istype(T, /turf/wall) && isconstructionturf(T))
+								T.ex_act(OLD_EX_TOTAL)
 							else
 								T.ReplaceWithSpaceForce()
 						else
@@ -1252,7 +1255,7 @@
 
 						sleep(0.6 SECONDS)
 						for (var/obj/O in tempEffect)
-							pool(O)
+							qdel(O)
 
 
 		sleep (100)
@@ -1284,7 +1287,7 @@
 
 	on_hit(atom/hit)
 		if (istype(hit, /turf))
-			hit.ex_act(1 + prob(50))
+			hit.ex_act(prob(50) ? OLD_EX_TOTAL : OLD_EX_HEAVY)
 
 		return
 
@@ -1330,13 +1333,13 @@
 
 		SPAWN_DBG(0.6 SECONDS)
 			for (var/obj/O in lineObjs)
-				pool(O)
+				qdel(O)
 
 			dispose()
 
 
 	die()
-		pool(src)
+		qdel(src)
 
 /obj/creepy_sound_trigger
 	icon = 'icons/misc/mark.dmi'

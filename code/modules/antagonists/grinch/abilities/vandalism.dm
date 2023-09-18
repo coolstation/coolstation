@@ -41,7 +41,7 @@
 				objects_fucked_up++
 				qdel(D)
 
-		for (var/turf/simulated/wall/T in oview(1, M))
+		for (var/turf/wall/T in oview(1, M))
 			if (locate(/obj/decal/cleanable/grinch_graffiti) in T)
 				continue
 			boutput(M, __blue("You scrawl graffiti all over the wall!"))

@@ -202,8 +202,8 @@
 			accounts += t //fuck it
 		else if(t.fields["job"] == "Engineer")
 			accounts += t
-
-	if(abs(generated_moolah) >= accounts.len*2) //otherwise not enough to split evenly so don't bother I guess
+// check we actually have accounts.len, or thats a runtime bucko.
+	if((accounts.len) && (abs(generated_moolah) >= accounts.len*2)) //otherwise not enough to split evenly so don't bother I guess
 		wagesystem.station_budget += round(generated_moolah/2)
 		generated_moolah -= round(generated_moolah/2) //no coming up with $$$ out of air!
 
@@ -294,7 +294,7 @@
 	for(var/dist = 0, dist < range, dist += 1)
 		T = get_step(T, dir)
 		if(!T || T.density)
-			if(!istype(T, /turf/unsimulated/wall/trench)) return dist
+			if(!istype(T, /turf/wall/trench)) return dist
 		for(var/obj/O in T)
 			if(!istype(O,/obj/window) && !istype(O,/obj/grille) && !ismob(O) && O.density)
 				blocking_objects += O
@@ -447,13 +447,13 @@
 
 /obj/machinery/power/pt_laser/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			qdel(src)
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			if (prob(50))
 				status |= BROKEN
 				updateicon()
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if (prob(25))
 				status |= BROKEN
 				updateicon()
@@ -467,7 +467,7 @@
 	for(var/turf/T in laser_turfs)
 		if(power > 5e7)
 			T.hotspot_expose(power/1e5,5) //1000K at 100MW
-		if(istype(T, /turf/simulated/floor) && prob(power/1e5))
+		if(istype(T, /turf/floor) && prob(power/1e5))
 			T:burn_tile()
 
 
@@ -500,7 +500,7 @@
 		if(active)
 			if(istype(src.loc, /turf) && power > 5e7)
 				src.loc:hotspot_expose(power/1e5,5) //1000K at 100MW
-			if(istype(src.loc, /turf/simulated/floor) && prob(power/1e6))
+			if(istype(src.loc, /turf/floor) && prob(power/1e6))
 				src.loc:burn_tile()
 
 			for (var/mob/living/L in src.loc)

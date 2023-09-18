@@ -2,9 +2,9 @@
 #define PLANE_SPACE -115
 #define PLANE_FLOOR -110
 #define PLANE_WALL -105
-#define PLANE_NOSHADOW_BELOW -101
-#define PLANE_DEFAULT -100
-#define PLANE_NOSHADOW_ABOVE -99
+#define PLANE_NOSHADOW_BELOW -101 // always under water
+#define PLANE_DEFAULT -100		// water
+#define PLANE_NOSHADOW_ABOVE -99 //above water (use overlays)
 #define PLANE_EXAMINE -96
 #define PLANE_HIDDENGAME -95
 #define PLANE_LIGHTING -90
@@ -24,7 +24,8 @@
 
 	// hey you know what would be really cool? if these could be overlays on the same object so we could animate them sanely
 	// haha fuck you of course mouse_opacity on overlays is never gonna work
-	// fucking christ lummox
+	// but there's no reason to talk shit about the engine or its maintainer 'cause like, what are we 15?
+	//
 	New(plane, appearance_flags = 0, blend_mode = BLEND_DEFAULT, color, mouse_opacity = 1, name = "unnamed_plane", is_screen = 0)
 		src.name = name
 		src.plane = plane

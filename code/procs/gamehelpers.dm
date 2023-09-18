@@ -563,6 +563,7 @@ var/obj/item/dummy/click_dummy = new
 	var/list/turfs_src = get_area_turfs(src.type)
 	var/list/turfs_trg = get_area_turfs(A.type)
 
+
 	var/src_min_x = 0
 	var/src_min_y = 0
 	for (var/turf/T as anything in turfs_src)
@@ -581,8 +582,10 @@ var/obj/item/dummy/click_dummy = new
 
 	for (var/turf/S in turfs_src)
 		var/turf/T = locate(S.x - src_min_x + trg_min_x, S.y - src_min_y + trg_min_y, trg_z)
+
 		if(T?.loc != A) continue
-		T.ReplaceWith(S.type, keep_old_material = 0, force=1)
+
+		T.ReplaceWith(S.type, keep_old_material = 0, force=1, handle_air=0)
 		T.appearance = S.appearance
 		T.set_density(S.density)
 		T.set_dir(S.dir)
@@ -591,8 +594,9 @@ var/obj/item/dummy/click_dummy = new
 		var/turf/T = locate(S.x - src_min_x + trg_min_x, S.y - src_min_y + trg_min_y, trg_z)
 		for (var/atom/movable/AM as anything in S)
 			if (istype(AM, /obj/forcefield) || istype(AM, /obj/overlay/tile_effect)) continue
-			if (!ignore_fluid && istype(AM, /obj/fluid)) continue
+			if (ignore_fluid && istype(AM, /obj/fluid)) continue // this previously said "!ignore_fluid" which seems like a mistake? setting ignore_fluid to 1 actually made it move fluids... ~warc
 			AM.set_loc(T)
+
 		if(turftoleave)
 			S.ReplaceWith(turftoleave, keep_old_material = 0, force=1)
 		else
@@ -600,31 +604,31 @@ var/obj/item/dummy/click_dummy = new
 
 
 
-// return description of how full a container is
-proc/get_fullness(var/percent)
+// return description of how full a container is. The shorthand var minimises string length for reagent container inventory counters
+proc/get_fullness(var/percent, shorthand = FALSE)
 
 	if(percent == 0)
 		return "empty"
 	if(percent < 2)
 		return "nearly empty"
 	if(percent < 24)
-		return "less than a quarter full"
+		return  shorthand? "<1/4" : "less than a quarter full"
 	if(percent < 26)
-		return "a quarter full"
+		return shorthand? "~1/4" : "a quarter full"
 	if(percent < 37)
-		return "more than a quarter full"
+		return shorthand? ">1/4" : "more than a quarter full"
 	if(percent < 49)
-		return "less than half full"
+		return shorthand? "<1/2" : "less than half full"
 	if(percent < 51)
-		return "half full"
+		return shorthand? "~1/2" : "half full"
 	if(percent < 62)
-		return "more than half full"
+		return shorthand? ">1/2" : "more than half full"
 	if(percent < 74)
-		return "less than three-quarters full"
+		return shorthand? "<3/4" : "less than three-quarters full"
 	if(percent < 76)
-		return "three-quarters full"
+		return shorthand? "~3/4" : "three-quarters full"
 	if(percent < 97)
-		return "more than three-quarters full"
+		return shorthand? ">3/4" : "more than three-quarters full"
 	if(percent < 99.5)
 		return "nearly full"
 	return "full"

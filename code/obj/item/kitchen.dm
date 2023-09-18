@@ -99,6 +99,7 @@ TRAYS
 	name = "spoon"
 	desc = "A metal object that has a handle and ends in a small concave oval. Used to carry liquid objects from the container to the mouth."
 	icon_state = "spoon"
+	dir = NORTH
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if (user?.bioHolder.HasEffect("clumsy") && prob(50))
@@ -119,6 +120,9 @@ TRAYS
 		user.updatehealth()
 		return 1
 
+	fancy
+		icon_state = "spoon-new"
+
 /obj/item/kitchen/utensil/fork
 	name = "fork"
 	icon_state = "fork"
@@ -131,7 +135,7 @@ TRAYS
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if(user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and stabs \himself.</span>")
+			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and stabs [himself_or_herself(user)].</span>")
 			random_brute_damage(user, 10)
 			JOB_XP(user, "Clown", 1)
 		if(!saw_surgery(M,user)) // it doesn't make sense, no. but hey, it's something.
@@ -146,6 +150,8 @@ TRAYS
 		playsound(user.loc, src.hitsound, 50, 1)
 		user.TakeDamage("chest", 150, 0)
 		return 1
+	fancy
+		icon_state = "fork-new"
 
 /obj/item/kitchen/utensil/knife
 	name = "knife"
@@ -167,7 +173,7 @@ TRAYS
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if(user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and cuts \himself.</span>")
+			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and cuts [himself_or_herself(user)].</span>")
 			random_brute_damage(user, 20)
 			JOB_XP(user, "Clown", 1)
 		if(!scalpel_surgery(M,user))
@@ -182,6 +188,15 @@ TRAYS
 		user.TakeDamage("head", 150, 0)
 		return 1
 
+
+	fancy
+		icon_state = "knife-new"
+
+	steak
+		name = "steak knife"
+		icon_state = "knife-steak"
+		desc = "The proper way to cut up a hot fresh monkey steak."
+
 /obj/item/kitchen/utensil/spoon/plastic
 	name = "plastic spoon"
 	icon_state = "spoon_plastic"
@@ -195,7 +210,7 @@ TRAYS
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if (user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span style=\"color:red\"><b>[user]</b> fumbles [src] and jabs \himself.</span>")
+			user.visible_message("<span style=\"color:red\"><b>[user]</b> fumbles [src] and jabs [himself_or_herself(user)].</span>")
 			random_brute_damage(user, 5)
 		if (prob(20))
 			src.break_utensil(user)
@@ -204,7 +219,7 @@ TRAYS
 			return ..()
 
 	suicide(var/mob/user as mob)
-		user.visible_message("<span style=\"color:red\"><b>[user] tries to jab [src] straight through \his eye and into \his brain!</b></span>")
+		user.visible_message("<span style=\"color:red\"><b>[user] tries to jab [src] straight through [his_or_her(user)] eye and into [his_or_her(user)] brain!</b></span>")
 		src.break_utensil(user)
 		spawn(100)
 			if (user)
@@ -217,6 +232,7 @@ TRAYS
 	desc = "A cheap plastic fork, prone to breaking. Helps with eating some foods."
 	force = 1.0
 	throwforce = 1.0
+	dir = NORTH
 
 	New()
 		..()
@@ -224,7 +240,7 @@ TRAYS
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if (user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span style=\"color:red\"><b>[user]</b> fumbles [src] and stabs \himself.</span>")
+			user.visible_message("<span style=\"color:red\"><b>[user]</b> fumbles [src] and stabs [himself_or_herself(user)].</span>")
 			random_brute_damage(user, 5)
 		if (prob(20))
 			src.break_utensil(user)
@@ -233,7 +249,7 @@ TRAYS
 			return ..()
 
 	suicide(var/mob/user as mob)
-		user.visible_message("<span style=\"color:red\"><b>[user] tries to stab [src] right into \his heart!</b></span>")
+		user.visible_message("<span style=\"color:red\"><b>[user] tries to stab [src] right into [his_or_her(user)] heart!</b></span>")
 		src.break_utensil(user)
 		spawn(100)
 			if (user)
@@ -253,7 +269,7 @@ TRAYS
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if(user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and cuts \himself.</span>")
+			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and cuts [himself_or_herself(user)].</span>")
 			random_brute_damage(user, 5)
 			JOB_XP(user, "Clown", 1)
 		if(prob(20))
@@ -263,7 +279,7 @@ TRAYS
 			return ..()
 
 	suicide(var/mob/user as mob)
-		user.visible_message("<span class='alert'><b>[user] tries to slash  \his own throat with [src]!</b></span>")
+		user.visible_message("<span class='alert'><b>[user] tries to slash  [his_or_her(user)] own throat with [src]!</b></span>")
 		src.break_utensil(user)
 		SPAWN_DBG(10 SECONDS)
 			if(user)
@@ -418,90 +434,169 @@ TRAYS
 
 //420 lol
 /obj/item/kitchen/wineholder //mama mia
-	name = "novelty wine holder"
-	desc = "get it in their"
+	name = "\improper novelty wine holder"
+	desc = "LOOKS NORMAL!!!"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "homph"
 	anchored = 1
 	flags = NOSPLASH
 	var/emagged = FALSE //hoo hoo
-	var/wine = FALSE //generic wine for now, will need to save and remake custom wines later like datums or whatever the hell those are
+	var/wine = null
+	var/launching = 0
 
 	get_desc(dist, mob/user)
 		if (dist <= 3)
-			. += "There's [(src.wine) ? "a" : "no" ] wine bottle inserted in \the [src]."
+			. += " There's [(src.wine) ? "a" : "no" ] wine bottle inserted in \the [src][(src.wine) ? "." : ". get it in their...." ]"
 
-	attackby(obj/item/W as obj, mob/user as mob) //put a wine bottle in FUCK the priority is to pour reagents on it if it's already there
-		if (istype(W,/obj/item/reagent_containers/food/drinks/bottle/wine) && src.wine && !src.emagged)
-			boutput(user, "There's already a wine bottle in \the [src].")
-			return
-		if (istype(W,/obj/item/reagent_containers/food/drinks/bottle/wine) && !src.wine && !src.emagged)
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (istype(W,/obj/item/reagent_containers/food/drinks/bottle/wine)) //need to add hobowine and make bottles breakable when thrown
+			if(src.wine)
+				boutput(user, "There's already a wine bottle in \the [src].")
+				return
+			if (src.launching)
+				boutput(user, "You probably shouldn't put anything else in \the [src] right now...")
+				return
 			user.remove_item(W)
-			src.wine = W
 			W.set_loc(src)
-			boutput(user, "You place \the wine bottle into \the [src].")
-			playsound(src, "sound/misc/tarantella-short.ogg", 50, 1)
-			src.icon_state = "homph-wine"
-		if (istype(W,/obj/item/reagent_containers/food/drinks/bottle/wine) && !src.wine && src.emagged) //risky business
-			boutput(user, "You place \the wine bottle into \the [src]. Take cover!") //you were warned
-			playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1) //this may be a mistake to put this sound here too but lmao i'm doing it
-			user.remove_item(W)
 			src.wine = W
-			W.set_loc(src) //put it in
-			src.launch_wine() //get it flip it set it send it say it
-		else return ..()
-
-	proc/launch_wine() //i don't feel good about any of this but that's okay
-		while (src.wine && src.emagged) //are we loaded and feeling silly
-			var/mob/living/target = locate() in view(7,src) //get it
-			if(!target) //introduce hl snark behavior: target everyone but the emagger within a certain grace period, but after that fair game? upgrade it
-				//find out how to make this spark and shake, this fucker's primed and ready to bust but there's nobody to bust on
-				sleep(50)//can't find anybody
-				return null
+			src.icon_state = "homph-wine"
+			if (src.emagged)
+				boutput(user, "You place \the [W] into \the [src]. Take cover!") //you were warned
+				src.visible_message("<span class='alert'><b> The [src] starts looking around for a target!</b></span>")
+				playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1)
+				src.launch_wine() //launch sequence engaged
 			else
-				var/obj/item/W = src.wine
-				src.wine = null //set it
-				W.set_loc(get_turf(src)) //bring it out
-				src.icon_state = "homph-emag" //flip it
-				W.throw_at(target, 16, 5) //send it
-				src.visible_message("<span class='alert'><b>[src] launches the wine bottle at [target.name]!</b></span>") //say it
-				return 1
-		return 0
+				boutput(user, "You place \the [W] into \the [src].")
+				playsound(src, "sound/misc/tarantella-short.ogg", 50, 1)
+		else
+			..()
+		return
+
+	proc/launch_wine() //some temporary target discrimination
+		if (src.launching)
+			return //already busy
+		if (src.wine && src.emagged) //loaded and ready?
+			src.launching = 1
+			//warm up
+			animate_storage_thump(src)
+			src.dir = turn(src.dir,-180)
+			sleep(2 SECONDS)
+			animate_storage_thump(src)
+			src.dir = turn(src.dir,-180)
+			sleep(3 SECONDS)
+			animate_storage_thump(src)
+			src.dir = turn(src.dir,-180)
+			src.visible_message("<span class='alert'><b>\The [src] lets out [pick("a strange","a weird","an awful","a <b>sexy<b>","a")] [pick("moan","groan","sigh")]!</b></span>")
+			playsound(src, "sound/voice/hoooagh2.ogg", 100, 1)
+			sleep((rand(3,6)) SECONDS)
+			animate_storage_thump(src)
+			src.dir = turn(src.dir,-180)
+			sleep((rand(3,6)) SECONDS)
+			//target selection
+			var/mob/living/target = locate() in view(7,src)
+			//"the search for another target" functionality was broken and laggy as shit
+			//i'll come back later, since it'd be nice to have a projectile landwine
+			//firing
+			if (!src.emagged || !target) //are we still even emagged, or did we even find a target?
+				src.visible_message("<span class='alert'><b>\The [src] stops searching for a target.</b></span>")
+				src.launching = 0
+				return
+			if (src.launching)
+				if (src.wine)
+					var/obj/item/W = src.wine
+					W.set_loc(get_turf(src)) //bring it out
+					src.wine = null //clear it from the holder
+					W.throw_at(target, 16, 5, 49)
+					animate_storage_thump(src)
+					playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1)
+					src.icon_state = "homph-emag"
+					src.visible_message("<span class='alert'><b>\The [src] launches \the [W] at [target]!</b></span>")
+				else
+					src.visible_message("<span class='alert'><b>\The [src] looks incredibly disappointed.</b></span>")
+				src.launching = 0
+				return
 
 	emag_act(var/mob/user, var/obj/item/card/emag/E) //emaggable behavior
 		if (!src.emagged)
-			src.emagged = TRUE
-			if(user)
-				boutput(user, "you make this meatball a little spicier!!! homph omph")
-			playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1)
+			src.emagged = 1
 			if (!src.wine)
-				src.icon_state = "homph-emag" //if it's empty then just do the wiggle. we love the wiggles
-			else //must be something here then
-				src.launch_wine() //attempt to launch your bottle, if you have one, at whoever is nearby. if nobody, just fail. i am still working on this proc
-			sleep(600) //whatever the outcome, wait a little bit because it's reloadable (not sure if this will have Bad Effects while launch_wine is already sprung)
-			src.visible_message("<span class='alert'><b>[src] takes a nap!</b></span>") //chill
-			if(!src.wine) //logic should prevent a wine-holding buddy from turning back/disappearing the bottle
-				src.icon_state = "homph" //wiggles over
-			src.emagged = FALSE //boop, no longer emagged. put a wine bottle back and do it again!
-				/*would be kinda fucked up to add a thing where the emagged wine holder has a small chance to eat the emag w/ crunch noise and then barf it up with meat_plop 15 seconds later
-				i love meat_plop
-				i also love just how grody this thing is
-				also kinda wanna make this thing act like a weird little dense loaf except just harmless and weird. less dangerous and more like, a weird thing to do with an emag. it dopesn't make sense. GOOD.
-				reiterating: not deadly or annoying but just stupid
-				actually no save that kind of behavior for the larger, more awful version of this for admin crimes*/
+				src.icon_state = "homph-emag"
+				if(user)
+					boutput(user, "you make this meatball a little spicier!!! homph omph")
+				src.visible_message("<span class='alert'><b> \The [src] buzzes oddly and gets a wild look in its eyes!</b></span>")
+			else
+				if(user)
+					boutput(user, "you make this meatball a little spicier!!! ...You should probably take cover!")
+				src.visible_message("<span class='alert'><b> \The [src] buzzes oddly and starts looking around for a target!</b></span>")
+				SPAWN_DBG(1 SECOND)
+					src.launch_wine() //otherwise it waits for the whole process to end to return 1
+			playsound(src, "sound/misc/tarantella-emag.ogg", 50, 1)
+			SPAWN_DBG(5 MINUTES) //start the process to un-emag
+				src.visible_message("<b>\The [src] takes a nap!</b>") //chill
+				if(src.wine)
+					src.icon_state = "homph-wine"
+				else
+					src.icon_state = "homph"
+				src.emagged = 0
+				src.launching = 0 //otherwise you can't get the wine back out.
 			return 1
-		return 0
+
+		if (src.emagged && (!src.wine) && user) //double emag, must be empty
+			if (src.launching)
+				src.visible_message("<b>\The [src]</b> looks a little busy at the moment!")
+				return 0
+			if (get_dist(src, user) >= 2)
+				return 0
+			src.launching = 1
+			playsound(src, "sound/items/eatfood.ogg", 100, 1)
+			user.visible_message("<b>[src]</b> eats [user]'s [E]! What the fuck?","Your [E] gets eaten by \the [src]. What the fuck!?")
+			src.icon_state = "homph"
+			qdel(E)
+			SPAWN_DBG(2 SECONDS)
+				playsound(src, "sound/voice/burp.ogg", 100, 1)
+				src.visible_message("<b>[src]</b> burps.")
+				sleep(3 SECOND)
+
+				src.visible_message("<b>[src]</b> gesticulates wildly!")
+				src.icon_state = "homph-emag"
+				sleep(3 SECONDS)
+				src.icon_state = "homph"
+				sleep(3 SECONDS)
+
+				if (get_dist(src, user) <= 7)
+					src.visible_message("<b>\The [src]</b> winks jovially at [user]. Everything about this feels [prob(90)?" wrong.":" right!"]")
+				sleep(3 SECONDS)
+				//yes this is a ripoff of the golden emag
+				var/obj/item/card/emag/EI = new /obj/item/card/emag(src.loc)
+				EI.name = "Carta Elettromagnetica"
+				EI.desc = "È una scheda con una striscia magnetica attaccata a dei circuiti. Comunemente indicato come 'EMAG'. Profuma di vino..."
+				playsound(src, "sound/misc/meat_plop.ogg", 50, 1)
+				if (get_dist(src, user) <= 7)
+					EI.throw_at(user, 16, 5)
+					src.visible_message("<b>\The [src]</b> spits out a [EI] at [user]!")
+				else
+					src.visible_message("<b>\The [src]</b> spits out a [EI]!")
+				src.icon_state = "homph-emag"
+				src.launching = 0
+			return 0
+		else
+			return 0
 
 	attack_hand(mob/user as mob) //take a wine bottle out
 		src.add_fingerprint(user)
 		if (!src.wine)
 			user.show_text("\The [src] doesn't have anything in it.", "red")
+		else if (src.launching)
+			user.show_text("No way! You're not touching that thing right now.", "red")
 		else
-			boutput(user, "You take the wine out of \the [src].")
+			boutput(user, "You take \the [src.wine] out of \the [src].")
 			playsound(src, "sound/misc/tarantella-short.ogg", 50, 1)
 			user.put_in_hand_or_drop(src.wine)
 			src.wine = null
 			src.icon_state= "homph"
+
+	unchained
+		anchored = 0
 
 /obj/item/kitchen/food_box // I came in here just to make donut/egg boxes put the things in your hand when you take one out and I end up doing this instead, kill me. -haine
 	name = "food box"
@@ -694,10 +789,10 @@ TRAYS
 			src.set_loc(shardturf)
 
 		for (var/i in 1 to 2)
-			var/obj/O = unpool(/obj/item/raw_material/shard/glass)
+			var/obj/O = new /obj/item/raw_material/shard/glass()
 			O.set_loc(shardturf)
 			if(src.material)
-				O.setMaterial(copyMaterial(src.material))
+				O.setMaterial(src.material)
 			O.throw_at(get_offset_target_turf(shardturf, rand(-4,4), rand(-4,4)), 7, 1)
 
 		qdel(src)
@@ -1149,20 +1244,6 @@ TRAYS
 				src.roll = null
 		else
 			..()
-
-//kitchen island
-/obj/surgery_tray/kitchen_island
-	name = "kitchen island"
-	desc = "a table! with WHEELS!"
-	icon = 'icons/obj/kitchen.dmi'
-	icon_state = "kitchen_island"
-
-//kitchen island
-/obj/surgery_tray/kitchen_island
-	name = "kitchen island"
-	desc = "a table! with wheels!"
-	icon = 'icons/obj/kitchen.dmi'
-	icon_state = "kitchen_island"
 
 /obj/item/fish/random // used by the Wholetuna Cordata plant
 	New()

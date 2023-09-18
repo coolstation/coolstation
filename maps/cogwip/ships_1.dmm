@@ -6,7 +6,7 @@
 /turf/cordon,
 /area/space)
 "ac" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/obj/singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "cloaking field"
@@ -49,7 +49,7 @@
 /turf/space,
 /area/space)
 "ai" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3"
 	},
 /area/space)
@@ -59,7 +59,7 @@
 	icon_state = "alt_heater-R";
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "ak" = (
 /obj/wingrille_spawn/bulletproof,
@@ -67,7 +67,7 @@
 	icon_state = "alt_heater-M";
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "al" = (
 /obj/wingrille_spawn/bulletproof,
@@ -75,7 +75,7 @@
 	icon_state = "alt_heater-L";
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "am" = (
 /obj/indestructible/shuttle_corner{
@@ -86,7 +86,7 @@
 /turf/space,
 /area/space)
 "an" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3dir"
 	},
 /area/space)
@@ -96,38 +96,38 @@
 	icon_state = "alt_heater";
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "ap" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 4;
 	icon_state = "wall3dir"
 	},
 /area/space)
 "aq" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 8;
 	icon_state = "wall3dir"
 	},
 /area/space)
 "ar" = (
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "as" = (
 /obj/submachine/syndicate_teleporter{
 	id = "ship"
 	},
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "at" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 1;
 	icon_state = "wall3dir"
 	},
 /area/space)
 "au" = (
 /obj/machinery/vending/snack,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/space)
 "av" = (
 /obj/decal/tile_edge/line/grey{
@@ -135,7 +135,7 @@
 	dir = 4
 	},
 /obj/reagent_dispensers/watertank/fountain,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/space)
 "aw" = (
 /obj/machinery/vending/medical,
@@ -143,7 +143,7 @@
 	icon_state = "line-broken1";
 	dir = 8
 	},
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -152,7 +152,7 @@
 	icon_state = "xtra_bigstripe-edge";
 	dir = 1
 	},
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -166,7 +166,7 @@
 /obj/item/hand_tele,
 /obj/item/remote/porter/port_a_medbay,
 /obj/item/remote/porter/port_a_medbay,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -176,34 +176,34 @@
 	dir = 8
 	},
 /obj/machinery/air_vendor,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/space)
 "aA" = (
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/space)
 "aB" = (
 /obj/wingrille_spawn/bulletproof,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "aC" = (
 /obj/decal/tile_edge/line/grey{
 	icon_state = "line-broken1";
 	dir = 4
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/space)
 "aD" = (
 /obj/table/reinforced/auto,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/space)
 "aE" = (
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
 "aF" = (
 /obj/machinery/light/small/floor,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -213,7 +213,7 @@
 	dir = 4
 	},
 /obj/machinery/sleeper/port_a_medbay,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -222,21 +222,21 @@
 	icon_state = "line-broken1";
 	dir = 8
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/space)
 "aI" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	icon_state = "xtra_bigstripe-edge";
 	dir = 4
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/space)
 "aJ" = (
 /obj/machinery/door/airlock/pyro/syndicate{
 	icon_state = "airlock_closed";
 	dir = 4
 	},
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 6;
 	icon_state = "wall3dir"
 	},
@@ -246,29 +246,29 @@
 	icon_state = "glass_closed";
 	dir = 4
 	},
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "aL" = (
-/turf/simulated/floor/stairs/dark{
+/turf/floor/stairs/dark{
 	icon_state = "dark_stairs";
 	dir = 8
 	},
 /area/space)
 "aM" = (
 /obj/machinery/drainage,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
 "aN" = (
-/turf/simulated/floor/stairs/dark{
+/turf/floor/stairs/dark{
 	icon_state = "dark_stairs";
 	dir = 4
 	},
 /area/space)
 "aO" = (
 /obj/stool/bed,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/space)
 "aP" = (
 /obj/decal/tile_edge/line/grey{
@@ -284,7 +284,7 @@
 	icon_state = "line-broken1";
 	dir = 8
 	},
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -295,14 +295,14 @@
 	dir = 4
 	},
 /obj/stool/bed,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/space)
 "aR" = (
 /obj/machinery/optable,
 /obj/machinery/light/fluorescent/cool,
 /obj/item/clothing/gloves/latex,
 /obj/item/clothing/mask/surgical,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -315,7 +315,7 @@
 	icon_state = "line-broken1";
 	dir = 4
 	},
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -326,11 +326,11 @@
 	dir = 8
 	},
 /obj/machinery/manufacturer/uniform,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/space)
 "aU" = (
 /obj/machinery/manufacturer/personnel,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/space)
 "aV" = (
 /obj/indestructible/shuttle_corner{
@@ -340,14 +340,14 @@
 /turf/space,
 /area/space)
 "aW" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 5;
 	icon_state = "wall3dir"
 	},
 /area/space)
 "aX" = (
 /obj/machinery/door/airlock/pyro/syndicate,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -363,7 +363,7 @@
 	icon_state = "line-broken1";
 	dir = 8
 	},
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -372,7 +372,7 @@
 	icon_state = "line-broken1";
 	dir = 4
 	},
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -382,7 +382,7 @@
 	dir = 8
 	},
 /obj/machinery/power/rtg,
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "bd" = (
 /obj/lattice{
@@ -393,18 +393,18 @@
 /area/space)
 "be" = (
 /obj/table/reinforced/auto,
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "bf" = (
 /obj/table/reinforced/auto,
 /obj/machinery/recharger,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
 "bg" = (
 /obj/machinery/computer/announcement,
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "bh" = (
 /obj/wingrille_spawn/bulletproof,
@@ -412,7 +412,7 @@
 	icon_state = "alt_heater";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "bi" = (
 /obj/stool/chair/comfy/shuttle/red{
@@ -430,12 +430,12 @@
 	name = "readout panel";
 	pixel_y = 28
 	},
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "bj" = (
 /obj/table/reinforced/auto,
 /obj/item/baton/cane,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -444,7 +444,7 @@
 	icon_state = "shuttle_chair-red";
 	dir = 4
 	},
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "bl" = (
 /obj/machinery/communications_dish{
@@ -463,7 +463,7 @@
 "bn" = (
 /obj/table/reinforced/auto,
 /obj/item/camera_test/large,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -479,7 +479,7 @@
 	icon_state = "diagonalWall3";
 	dir = 1
 	},
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "bq" = (
 /obj/machinery/light/small,
@@ -487,7 +487,7 @@
 	icon_state = "line-broken1";
 	dir = 8
 	},
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -497,7 +497,7 @@
 	icon_state = "line-broken1";
 	dir = 4
 	},
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -506,7 +506,7 @@
 	icon_state = "diagonalWall3";
 	dir = 8
 	},
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "bt" = (
 /obj/indestructible/shuttle_corner{
@@ -537,14 +537,14 @@
 	icon_state = "line-broken1";
 	dir = 4
 	},
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "bw" = (
-/turf/simulated/floor/stairs/dark,
+/turf/floor/stairs/dark,
 /area/space)
 "bx" = (
 /obj/decal/fakeobjects/broadcastcomputer,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -554,7 +554,7 @@
 	icon_state = "line-broken1";
 	dir = 8
 	},
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "bz" = (
 /obj/machinery/computer/security{
@@ -565,30 +565,30 @@
 	icon_state = "line-broken1";
 	dir = 4
 	},
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "bA" = (
 /obj/decal/tile_edge/line/grey{
 	icon_state = "line-broken1";
 	dir = 8
 	},
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "bB" = (
 /obj/wingrille_spawn/auto,
 /obj/decal/fakeobjects/shuttleweapon/base,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "bC" = (
 /obj/decal/tile_edge/line/grey{
 	icon_state = "line-broken1";
 	dir = 4
 	},
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "bD" = (
 /obj/stool/chair/comfy/shuttle/red,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -603,7 +603,7 @@
 /area/space)
 "bG" = (
 /turf/space,
-/turf/simulated/shuttle/wall/cockpit{
+/turf/shuttle/wall/cockpit{
 	icon_state = "shuttlecock_syndie";
 	dir = 2
 	},
@@ -617,7 +617,7 @@
 /obj/item/material_piece/sphere/plasmaball,
 /obj/item/material_piece/sphere/plasmaball,
 /obj/item/material_piece/sphere/plasmaball,
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "bJ" = (
 /obj/iv_stand,
@@ -626,12 +626,12 @@
 	icon_state = "line-broken1";
 	dir = 8
 	},
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
 "bK" = (
-/obj/surgery_tray,
+/obj/table/surgery_tray,
 /obj/item/circular_saw{
 	pixel_x = 3;
 	pixel_y = 12
@@ -646,7 +646,7 @@
 	dir = 8
 	},
 /obj/machinery/light/fluorescent/cool,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
@@ -659,13 +659,13 @@
 	icon_state = "line-broken1";
 	dir = 4
 	},
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
 "bM" = (
 /obj/machinery/weapon_stand/taser_rack/recharger,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)

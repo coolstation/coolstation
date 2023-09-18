@@ -98,7 +98,7 @@ TYPEINFO(/atom)
 				if (amt_suffixes >= src.num_allowed_suffixes)
 					break
 				suffix += " " + i
-				amt_suffixes ++
+				amt_suffixes++
 			return suffix
 
 	proc/remove_prefixes(var/num = 1)
@@ -112,7 +112,7 @@ TYPEINFO(/atom)
 				if (num <= 0 || !length(src.name_prefixes))
 					return
 				src.name_prefixes -= i
-				num --
+				num--
 
 	proc/remove_suffixes(var/num = 1)
 		if (!num || !name_suffixes)
@@ -125,7 +125,7 @@ TYPEINFO(/atom)
 				if (num <= 0 || !length(src.name_suffixes))
 					return
 				src.name_suffixes -= i
-				num --
+				num--
 
 	proc/UpdateName()
 		src.name = "[name_prefix(null, 1)][initial(src.name)][name_suffix(null, 1)]"
@@ -156,6 +156,12 @@ TYPEINFO(/atom)
 			particleMaster.ClearSystemRefs(src)
 		if (temp_flags & (HAS_BAD_SMOKE))
 			ClearBadsmokeRefs(src)
+
+		//I can't tell if there's actually GC issues with maptext because "chat_text" is also a var name in a dozen different places
+		//but fuck me why isn't this cleared centrally, lads.
+		if (chat_text)
+			qdel(chat_text)
+			chat_text = null
 
 		fingerprintshidden = null
 		tag = null
@@ -198,6 +204,16 @@ TYPEINFO(/atom)
 	proc/is_open_container()
 		return flags & OPENCONTAINER
 
+	// and for easy open/close...
+	proc/open_container()
+		flags |= OPENCONTAINER
+
+	proc/close_container()
+		flags &= ~OPENCONTAINER
+
+	proc/toggle_container()
+		flags ^= ~OPENCONTAINER
+
 	proc/transfer_all_reagents(var/atom/A as turf|obj|mob, var/mob/user as mob)
 		// trans from src to A
 		if (!src.reagents || !A.reagents)
@@ -239,7 +255,7 @@ TYPEINFO(/atom)
 /atom/proc/deserialize_postprocess()
 	return
 
-/atom/proc/ex_act(var/severity=0,var/last_touched=0)
+/atom/proc/ex_act(severity=0,last_touched=0, epicenter = null)
 	return
 
 /atom/proc/reagent_act(var/reagent_id,var/volume)
@@ -405,7 +421,7 @@ TYPEINFO(/atom)
 
 	last_turf = src.loc // instead rely on set_loc to clear last_turf
 	set_loc(null)
-	..()
+	. = ..()
 
 
 /atom/movable/Move(NewLoc, direct)
@@ -919,33 +935,26 @@ TYPEINFO(/atom)
 							T.checkingcanpass = max(T.checkingcanpass-1, 0)
 	..()
 
-//same as above :)
-/atom/movable/setMaterial(var/datum/material/mat1, var/appearance = 1, var/setname = 1, var/copy = 1, var/use_descriptors = 0)
-	var/prev_mat_triggeronentered = (src.material && src.material.triggersOnEntered && length(src.material.triggersOnEntered))
-	var/prev_added_hasentered = src.material?.owner_hasentered_added
-	..(mat1,appearance,setname,copy,use_descriptors)
-	var/cur_mat_triggeronentered = (src.material && src.material.triggersOnEntered && length(src.material.triggersOnEntered))
-	src.material?.owner_hasentered_added = prev_added_hasentered
+///Handle materials giving/removing USE_HASENTERED
+/atom/movable/onMaterialChanged() //Note: this procs when going material->material or none->material. For going material->none see /atom/proc/removeMaterial()
+	if(!src.material)
+		return
+	if (src.material.triggersOnEntered && length(src.material.triggersOnEntered)) //This material needs USE_HASENTERED
+		if (!(src.event_handler_flags & USE_HASENTERED)) //And we don't have it already
+			src.event_handler_flags |= (USE_HASENTERED|HASENTERED_MAT_PROP) //Flag that this is only has the flag because of its material
 
-	if (prev_mat_triggeronentered != cur_mat_triggeronentered)
-		if (isturf(src.loc))
-			// Check if USE_HASENTERED needs to be added if atom is missing the flag and onEnter trigger was added
-			if (!(src.event_handler_flags & USE_HASENTERED) && cur_mat_triggeronentered)
+			if (isturf(src.loc)) //adjust turf if needed
 				var/turf/T = src.loc
-				if (T)
-					T.checkinghasentered++
-				//Slap flag on so moving the atom will properly adjust checkinghasentered
-				src.event_handler_flags |= USE_HASENTERED
-				src.material.owner_hasentered_added = TRUE
-			// Check USE_HASENTERED needs to be removed when current material doesn't have onEnter trigger now and flag was added
-			else
-				if (!cur_mat_triggeronentered && prev_added_hasentered)
-					var/turf/T = src.loc
-					if (T)
-						T.checkinghasentered = max(T.checkinghasentered-1, 0)
+				T.checkinghasentered++
 
-					src.event_handler_flags &= ~USE_HASENTERED
-					src.material.owner_hasentered_added = FALSE
+	else if(src.event_handler_flags & HASENTERED_MAT_PROP) //Previous material did give this atom USE_HASENTERED
+		src.event_handler_flags &= ~(USE_HASENTERED|HASENTERED_MAT_PROP)
+
+		if (isturf(src.loc)) //adjust turf if needed
+			var/turf/T = src.loc
+			T.checkinghasentered = max(T.checkinghasentered-1, 0)
+
+	..()
 
 // standardized damage procs
 

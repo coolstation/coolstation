@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/dmm_suite/clear_area)
 "e" = (
 /obj/shrub{
@@ -8,21 +8,21 @@
 	icon = 'icons/obj/stationobjs.dmi';
 	icon_state = "plant"
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/dmm_suite/clear_area)
 "g" = (
 /obj/stool/chair{
 	dir = 1
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/dmm_suite/clear_area)
 "i" = (
 /obj/machinery/light/small/floor/neutral,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/dmm_suite/clear_area)
 "x" = (
 /obj/stool/chair,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/dmm_suite/clear_area)
 "y" = (
 /obj/table/reinforced/bar/auto,
@@ -32,21 +32,24 @@
 	network = "Zeta";
 	pixel_y = 8
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/dmm_suite/clear_area)
 "C" = (
 /obj/table/reinforced/bar/auto,
-/turf/simulated/floor/black,
+/turf/floor/black,
+/area/dmm_suite/clear_area)
+"D" = (
+/obj/cup_rack{
+	pixel_y = 32
+	},
+/turf/floor/black,
 /area/dmm_suite/clear_area)
 "E" = (
 /obj/table/reinforced/bar/auto,
-/obj/drink_rack/cup{
-	pixel_y = 32
-	},
 /obj/machinery/espresso_machine{
 	pixel_y = 4
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/dmm_suite/clear_area)
 
 (1,1,1) = {"
@@ -65,8 +68,8 @@ a
 "}
 (3,1,1) = {"
 y
-a
-a
+C
+D
 a
 e
 "}

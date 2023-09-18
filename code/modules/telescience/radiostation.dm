@@ -54,7 +54,7 @@
 /area/radiostation/serverroom
 	name = "Radio Server"
 	icon_state = "yellow"
-	sound_environment = 3
+	sound_environment = EAX_BATHROOM
 	workplace = 1
 
 //objects
@@ -262,7 +262,7 @@
 				R = record_inside.record_name ? record_inside.record_name : pick("rad tunes","hip jams","cool music","neat sounds","magnificent melodies","fantastic farts")
 			user.client.play_music_radio(record_inside.song, R)
 			/// PDA message ///
-			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
+			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 			var/datum/signal/pdaSignal = get_free_signal()
 			pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="RADIO-STATION", "sender"="00000000", "message"="Now playing: [R].", "group" = MGA_RADIO)
 			pdaSignal.transmission_method = TRANSMISSION_RADIO
@@ -322,10 +322,10 @@
 		M.TakeDamageAccountArmor("head", force, 0, 0, DAMAGE_BLUNT)
 		M.changeStatus("weakened", 2 SECONDS)
 		playsound(src, "shatter", 70, 1)
-		var/obj/O = unpool (/obj/item/raw_material/shard/glass)
+		var/obj/O = new /obj/item/raw_material/shard/glass()
 		O.set_loc(get_turf(M))
 		if (src.material)
-			O.setMaterial(copyMaterial(src.material))
+			O.setMaterial(src.material)
 		qdel(src)
 	else
 		M.visible_message("<span class='alert'>[user] taps [M] over the head with [src].</span>")
@@ -445,6 +445,11 @@ ABSTRACT_TYPE(/obj/item/record/random)
 /obj/item/record/december
 	record_name = "december"
 	song = "sound/radio_station/music/december.xm"
+
+/obj/item/record/benson
+	name = "crispy recording"
+	record_name = "bensoni arizoni"
+	song = "sound/radio_station/music/bensoni_arizoni.ogg"
 
 /obj/item/record/spacebux // Many thanks to Camryn Buttes!!
 	add_overlay = 0
@@ -783,7 +788,7 @@ ABSTRACT_TYPE(/obj/item/record/random/notaquario)
 			src.is_playing = 1
 			user.client.play_music_radio(tape_inside.audio)
 			/// PDA message ///
-			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
+			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 			var/datum/signal/pdaSignal = get_free_signal()
 			pdaSignal.data = list("command"="text_message", "sender_name"="RADIO-STATION", "sender"="00000000", "message"="Now playing: [src.tape_inside.audio_type] for [src.tape_inside.name_of_thing].", "group" = MGA_RADIO)
 			pdaSignal.transmission_method = TRANSMISSION_RADIO

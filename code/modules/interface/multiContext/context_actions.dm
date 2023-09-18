@@ -274,6 +274,42 @@
 				ghost.go_to_deadbar()
 		..()
 
+//Reckon that putting these under ghost_respawn won't hurt
+/datum/contextAction/ghost_respawn/lighting
+	name = "Set Lighting"
+	desc = "Enter the afterlife Bar"
+
+	tooltip_flags = TOOLTIP_LEFT
+	var/setting
+
+	execute(atom/target, mob/user)
+		if (user && istype(user, /mob/dead/observer))
+			var/mob/dead/observer/ghost = user
+			SPAWN_DBG(1 DECI SECOND)
+				ghost.toggle_lighting(setting)
+		..()
+
+/datum/contextAction/ghost_respawn/lighting/none
+	name = "No Lighting"
+	desc = "Have no passive light, leaving only what's on station."
+	icon_state = "light-none"
+	setting = "none"
+/datum/contextAction/ghost_respawn/lighting/dim
+	name = "Dim Lighting"
+	desc = "Have a small passive light, the same that humans do"
+	icon_state = "light-dim"
+	setting = "dim"
+/datum/contextAction/ghost_respawn/lighting/default
+	name = "Normal Lighting"
+	desc = "Have wide passive light."
+	icon_state = "light-normal"
+	setting = "default"
+/datum/contextAction/ghost_respawn/lighting/fullbright
+	name = "Fullbright"
+	desc = "Disable lighting altogether"
+	icon_state = "light-fullbright"
+	setting = "fullbright"
+
 	// ghost_respawn/blobtutorial
 	// 	name = "Blob Tutorial"
 	// 	desc = "Practice blobbing around"
@@ -708,7 +744,7 @@
 	special
 		icon_background = "key_special"
 
-
+/*
 /datum/contextAction/kudzu
 	icon = 'icons/ui/context16x16.dmi'
 	name = "Deconstruct with Tool"
@@ -750,7 +786,7 @@
 			boutput(user, "Shaping [target] into a plantmaster, please remain still...")
 			extra_time = 5 SECONDS
 			. = ..()
-
+*/
 /datum/contextAction/cake
 	icon = 'icons/ui/context16x16.dmi'
 	name = "Cake action"

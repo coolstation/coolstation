@@ -99,6 +99,7 @@
 	var/fitting = "tube"
 	var/wallmounted = 1
 	var/ceilingmounted = 0 //not sure if this is how i'm going to handle ceiling mounts
+	var/image/lightfixtureimage = null //this is what you're supposed to see when you're actively looking up
 	var/nostick = TRUE //If set to true, overrides the autopositioning.
 	var/candismantle = 1
 
@@ -114,6 +115,12 @@
 		if (src.loc.z == 1)
 			stationLights += src
 
+		if(ceilingmounted)
+			//src.invisibility = 101 //the actual object is hidden on start and we rely on clickable images in the group
+			lightfixtureimage = image(src.icon,src,src.icon_state,PLANE_NOSHADOW_ABOVE -1,src.dir)
+			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_image(lightfixtureimage)
+			lightfixtureimage.alpha = 160
+
 		var/area/A = get_area(src)
 		if (A)
 			UnsubscribeProcess()
@@ -127,6 +134,8 @@
 			qdel(inserted_lamp)
 			inserted_lamp = null
 
+		if(ceilingmounted)
+			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_image(lightfixtureimage)
 		var/area/A = get_area(src)
 		if (A)
 			A.remove_light(src)
@@ -154,16 +163,16 @@
 				directions = cardinal
 			for (var/dir in directions)
 				T = get_step(src,dir)
-				if (istype(T,/turf/simulated/wall) || istype(T,/turf/unsimulated/wall) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window) in T)) //ah this was missing, set dir for every wall and check them later
+				if (istype(T,/turf/wall) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window) in T)) //ah this was missing, set dir for every wall and check them later
 					var/is_perspective = 0 //check if the walls are not flat and classic- special handling needed to make them look nice
 					var/is_jen_wall = 0 // jen walls' ceilings are narrower, so let's move the lights a bit further inward!
-					if (istype(T,/turf/simulated/wall/auto/supernorn) || istype(T,/turf/simulated/wall/auto/marsoutpost) || istype(T,/turf/simulated/wall/auto/supernorn/wood) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window/auto) in T))
+					if (istype(T,/turf/wall/auto/supernorn) || istype(T,/turf/wall/auto/marsoutpost) || istype(T,/turf/wall/auto/supernorn/wood) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window/auto) in T))
 						is_perspective = 1 //basically if it's a perspective autowall or new glass?? let's a go
 					//if ((locate(/obj/wingrille_spawn/classic) in T) || (locate(/obj/wingrille_spawn/reinforced/classic) in T))
 						//is_perspective = 0 //oh no the root of wingrille spawn is perspective but the classic wingrille spawn is not! time to handle and unset (this can surely be done better but whatever)
 						//actually shit how expensive is it to add a variable to turfs that says if they're perspective or classic?? i'm just imcoder enough to wonder but not enough to know
 						//commented out until my new old grilles are readded
-					if (istype(T, /turf/simulated/wall/auto/jen) || istype(T, /turf/simulated/wall/auto/reinforced/jen))
+					if (istype(T, /turf/wall/auto/jen) || istype(T, /turf/wall/auto/reinforced/jen))
 						is_jen_wall = 1 //handling for different offsets in the sprites
 						is_perspective = 1 //these are also perspective and without this it doesn't go
 					src.set_dir(dir) //okay here is the part that actually puts a light against a valid turf how did i accidentally delete this
@@ -238,13 +247,13 @@
 	plane = PLANE_NOSHADOW_ABOVE
 	allowed_type = /obj/item/light/bulb
 	level = 2
-	//invisibility = INVIS_ALWAYS off for now since we need to be able to see and interact before ceilingmode is in
-	invisibility = INVIS_NONE
-	alpha = 100
-	ceilingmounted = 1 //not sure if this is how i'm going to handle it
+	//invisibility = really don't know what to do here. invis removes it from interaction and gets in the way
+	//maybe if i add ceiling invis to 2, move infra to 3, and cloak to 4?
+	//mouse_opacity = see above, images and overlays inherit this clickability toggle and i'm going to eat my own head with my other head
+	alpha = 80
+	ceilingmounted = 1
 
-	New()
-		..()
+//oh no i can't find my bare shitty bulb sprite guess i'll remake it for next time
 
 /obj/machinery/light/emergency
 	icon_state = "ebulb1"
@@ -399,9 +408,8 @@
 	desc = "A lighting fixture, mounted to the ceiling."
 	plane = PLANE_NOSHADOW_ABOVE
 	level = 2
-	//invisibility = INVIS_ALWAYS off for now since we need to be able to see and interact before ceilingmode is in
-	invisibility = INVIS_NONE
-	alpha = 100
+	//see light/small/ceiling for the struggles with invisibility and clicking
+	alpha = 80
 	ceilingmounted = 1 //determines interactibility
 
 	//check something like wiring for how to set direction relative to what tile you place it by hand, since we can freely rotate this thing unlike floor/ceiling lights and wall lights
@@ -450,12 +458,22 @@
 					logTheThing("combat", current_lamp.rigger, null, "'s rigged bulb exploded in [current_lamp.rigger.loc.loc] ([showCoords(src.x, src.y, src.z)])")
 				explode()
 			if(on && prob(current_lamp.breakprob))
-				current_lamp.light_status = LIGHT_BURNED
-				icon_state = "[base_state]-burned"
+				if(prob(10)) //not every light needs to pop violently
+					elecflash(src,radius = 1, power = 2, exclude_center = 0)
+					current_lamp.light_status = LIGHT_BROKEN
+					icon_state = "[base_state]-broken"
+					logTheThing("station", null, null, "Light '[name]' burnt out explosively (breakprob: [current_lamp.breakprob]) at ([showCoords(src.x, src.y, src.z)])")
+				else
+					current_lamp.light_status = LIGHT_BURNED
+					icon_state = "[base_state]-burned"
+					logTheThing("station", null, null, "Light '[name]' burnt out (breakprob: [current_lamp.breakprob]) at ([showCoords(src.x, src.y, src.z)])")
 				on = 0
 				light.disable()
-				elecflash(src,radius = 1, power = 2, exclude_center = 0)
-				logTheThing("station", null, null, "Light '[name]' burnt out (breakprob: [current_lamp.breakprob]) at ([showCoords(src.x, src.y, src.z)])")
+			else
+				current_lamp.breakprob += 0.15 // critical that your "increasing probability" thing actually, yknow, increase. ever.
+
+	if(ceilingmounted) //and also update the current icon for ceiling lights
+		lightfixtureimage = image(src.icon,src.loc,src.icon_state,PLANE_NOSHADOW_ABOVE -1,src.dir)
 
 
 // attempt to set the light's on/off status
@@ -588,11 +606,11 @@
 				boutput(user, "That's not safe with the power on!")
 				return
 			if (candismantle)
-				boutput(user, "You begin to unscrew the fixture from the wall...")
+				boutput(user, "You begin to unscrew the fixture from the wall...", group = "[user]-dismantle_fixture")
 				playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
 				if (!do_after(user, 2 SECONDS))
 					return
-				boutput(user, "You unscrew the fixture from the wall.")
+				boutput(user, "You unscrew the fixture from the wall.", group = "[user]-dismantle_fixture")
 				var/obj/item/light_parts/parts = new /obj/item/light_parts(get_turf(src))
 				parts.copy_light(src)
 				qdel(src)
@@ -725,13 +743,13 @@
 
 /obj/machinery/light/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			qdel(src)
 			return
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			if (prob(75))
 				broken()
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if (prob(50))
 				broken()
 	return
@@ -851,7 +869,7 @@
 	w_class = W_CLASS_SMALL
 	var/light_status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
-	var/breakprob = 0	// number of times switched
+	var/breakprob = 0	// number of times switched //warc: doesnt do ANYTHING anymore???? now it do????
 	m_amt = 60
 	var/rigged = 0		// true if rigged to explode
 	var/mob/rigger = null // mob responsible
@@ -1262,6 +1280,7 @@
 // called after an attack with a light item
 // shatter light, unless it was an attempt to put it in a light socket
 // now only shatter if the intent was harm
+// WHY THO?
 
 /obj/item/light/afterattack(atom/target, mob/user)
 	if(istype(target, /obj/machinery/light))
@@ -1271,6 +1290,17 @@
 
 	if(light_status == LIGHT_OK || light_status == LIGHT_BURNED)
 		boutput(user, "The [name] shatters!")
+		light_status = LIGHT_BROKEN
+		force = 5
+		playsound(src.loc, "sound/impact_sounds/Glass_Hit_1.ogg", 75, 1)
+		update()
+
+/obj/item/light/throw_impact(atom/A, datum/thrown_thing/thr)
+	..()
+	if(prob(30))
+		return
+	if(light_status == LIGHT_OK || light_status == LIGHT_BURNED)
+		src.visible_message("The [name] shatters!")
 		light_status = LIGHT_BROKEN
 		force = 5
 		playsound(src.loc, "sound/impact_sounds/Glass_Hit_1.ogg", 75, 1)

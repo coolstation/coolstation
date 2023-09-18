@@ -17,8 +17,8 @@
 	access_lookup = "Captain"
 	var/atom/movable/load = null		// the loaded crate (usually)
 
-	var/beacon_freq = 1445
-	var/control_freq = 1447
+	var/beacon_freq = FREQ_BOT_NAV
+	var/control_freq = FREQ_BOT_CONTROL
 
 	suffix = ""
 
@@ -536,7 +536,7 @@
 						path -= next
 						return
 
-					if(istype( next, /turf/simulated))
+					if(issimulatedturf(next))
 						//boutput(world, "at ([x],[y]) moving to ([next.x],[next.y])")
 
 						if(bloodiness)

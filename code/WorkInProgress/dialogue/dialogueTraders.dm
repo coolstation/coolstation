@@ -1,6 +1,7 @@
 /datum/dialogueMaster/traderGeneric
 	dialogueName = "Trader"
-	start = /datum/dialogueNode/traderStartGeneric
+	//Effetively bypassing this whole dialogue cause it wasn't adding anything of interest.
+	start = /datum/dialogueNode/traderStartTrade//datum/dialogueNode/traderStartGeneric
 	New(var/atom/M)
 		..()
 		dialogueName = master.name
@@ -74,6 +75,7 @@
 			return nodeText
 
 	onActivate(var/client/C)
+		..()
 		var/atom/A = master.master
 		if(istype(A, /obj/npc/trader) && C.mob != null)
 			var/obj/npc/trader/T = A

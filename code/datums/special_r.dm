@@ -39,7 +39,7 @@ datum/special_respawn
 		for(var/c = 0, c < number, c++)
 			var/player = find_player("a syndicate agent", TRUE)
 			if(player)
-				var/check = spawn_character_human("[syndicate_name()] Operative #[c+1]", player, pick_landmark(LANDMARK_SYNDICATE), "syndie")
+				var/check = spawn_character_human("[syndicate_name_foss()] Operative #[c+1]", player, pick_landmark(LANDMARK_SYNDICATE), "syndie")
 				if(!check)
 					break
 				r_number ++
@@ -364,21 +364,21 @@ EndNote
 /proc/creepify_station()
 	var/counter = 0
 	for(var/turf/T in block(locate(1, 1, Z_LEVEL_STATION), locate(world.maxx, world.maxy, Z_LEVEL_STATION)))
-		if(istype(T, /turf/simulated/floor))
-			var/turf/simulated/floor/F = T
+		if(istype(T, /turf/floor))
+			var/turf/floor/F = T
 			if (was_eaten)
 				F.icon_state = "bloodfloor_2"
 				F.name = "fleshy floor"
 			else
 				F.icon_state = pick("platingdmg1","platingdmg2","platingdmg3")
-		else if(istype(T, /turf/simulated/wall))
-			var/turf/simulated/wall/W = T
+		else if(istype(T, /turf/wall))
+			var/turf/wall/W = T
 			if (was_eaten)
 				W.icon = 'icons/misc/meatland.dmi'
 				W.icon_state = "bloodwall_2"
 				W.name = "meaty wall"
 			else
-				if(!istype(W, /turf/simulated/wall/r_wall) && !istype(W, /turf/simulated/wall/auto/reinforced))
+				if(!istype(W, /turf/wall/r_wall) && !istype(W, /turf/wall/auto/reinforced))
 					W.icon_state = "r_wall-4"
 		if(counter++ % 300 == 0)
 			LAGCHECK(LAG_MED)

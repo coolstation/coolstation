@@ -2,24 +2,24 @@
 // because we all saw it coming
 
 // TURFS
-/turf/unsimulated/floor/feather
+/turf/floor/feather
 	name = "strange floor"
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "floor"
 
-/turf/unsimulated/floor/feather/broken
+/turf/floor/feather/broken
 	name = "strange broken floor"
 	icon_state = "floor-broken"
 
-/turf/unsimulated/floor/feather/online
+/turf/floor/feather/online
 	name = "strange glowing floor"
 	icon_state = "floor-on"
 
-/turf/unsimulated/wall/auto/feather
+/turf/wall/auto/feather
 	name = "strange glowing wall"
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "0"
-	connects_to = list(/turf/unsimulated/wall/auto/feather, /obj/machinery/door/feather)
+	connects_to = list(/turf/wall/auto/feather, /obj/machinery/door/feather)
 
 // DECALS/FAKEOBJS
 

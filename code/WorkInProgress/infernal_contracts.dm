@@ -791,7 +791,7 @@ obj/item/contract/greed
 			return 0
 		SPAWN_DBG(1 DECI SECOND)
 			for(var/i in 1 to number_of_cash_piles)
-				var/obj/item/spacecash/random/tourist/S = unpool(/obj/item/spacecash/random/tourist)
+				var/obj/item/spacecash/random/tourist/S = new()
 				S.setup(user.loc)
 			boutput(user, "<span class='notice'>Some money appears at your feet. What, did you expect some sort of catch or trick?</span>")
 			if (prob(90)) //used to be 50/50, now it's only a 10% chance to get midased
@@ -802,7 +802,7 @@ obj/item/contract/greed
 						playsound(T, "sound/items/coindrop.ogg", 100, 1)
 						new /obj/item/coin(T)
 						for (var/i = 1; i<= 8; i= i*2)
-							if (istype(get_turf(get_step(T,i)),/turf/simulated/floor))
+							if (istype(get_turf(get_step(T,i)),/turf/floor))
 								new /obj/item/coin (get_step(T,i))
 							else
 								new /obj/item/coin(T)

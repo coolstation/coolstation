@@ -7,6 +7,7 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 	var/prefabSizeX = 5
 	var/prefabSizeY = 5
 	var/underwater = 0 //prefab will only be used if this matches map_currently_underwater. I.e. if this is 1 and map_currently_underwater is 1 then the prefab may be used.
+	var/dusty = 0 		// prefab will only be used if this matched map_currently_very_dusty, see above if your so dumb.
 	var/required = 0   //If 1 we will try to always place thing thing no matter what. Required prefabs will only ever be placed once.
 
 	proc/applyTo(var/turf/target)
@@ -475,3 +476,157 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabPath = "assets/maps/prefabs/prefab_water_crashed.dmm"
 		prefabSizeX = 24
 		prefabSizeY = 32
+
+// gehenna's prefabs go here ok.
+
+	cave_spider
+		dusty = 1
+		maxNum = 3
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_spider.dmm"
+		prefabSizeX = 10
+		prefabSizeY = 10
+
+	cave_bread
+		dusty = 1
+		maxNum = 1
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_bread.dmm"
+		prefabSizeX = 10
+		prefabSizeY = 10
+
+	cave_meat
+		dusty = 1
+		maxNum = 2
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_meat.dmm"
+		prefabSizeX = 10
+		prefabSizeY = 10
+
+	cave_long
+		dusty = 1
+		maxNum = 3
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_long.dmm"
+		prefabSizeX = 10
+		prefabSizeY = 25
+
+	cave_wide
+		dusty = 1
+		maxNum = 3
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_wide.dmm"
+		prefabSizeX = 25
+		prefabSizeY = 10
+
+	cave_rockworms
+		dusty = 1
+		maxNum = 3
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_rockworms.dmm"
+		prefabSizeX = 5
+		prefabSizeY = 5
+
+	cave_cannibal
+		dusty = 1
+		maxNum = 1
+		probability = 25
+		prefabPath = "assets/maps/prefabs/prefab_cannibal.dmm"
+		prefabSizeX = 10
+		prefabSizeY = 10
+
+	cave_stash
+		dusty = 1
+		maxNum = 1
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_stash.dmm"
+		prefabSizeX = 30
+		prefabSizeY = 20
+
+	cave_plasma
+		dusty = 1
+		maxNum = 2
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_plasma.dmm"
+		prefabSizeX = 10
+		prefabSizeY = 10
+
+	cave_farts
+		dusty = 1
+		maxNum = 2
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_farts.dmm"
+		prefabSizeX = 10
+		prefabSizeY = 10
+
+	cave_parts
+		dusty = 1
+		maxNum = 1
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_parts.dmm"
+		prefabSizeX = 25
+		prefabSizeY = 25
+
+	cave_parts2
+		dusty = 1
+		maxNum = 1
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_parts2.dmm"
+		prefabSizeX = 35
+		prefabSizeY = 15
+
+	cave_parts3
+		dusty = 1
+		maxNum = 1
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_parts3.dmm"
+		prefabSizeX = 15
+		prefabSizeY = 35
+
+	cave_landmines
+		dusty = 1
+		maxNum = 2
+		probability = 75
+		prefabPath = "assets/maps/prefabs/prefab_cave_landmines.dmm"
+		prefabSizeX = 5
+		prefabSizeY = 5
+
+	cave_landmines2
+		dusty = 1
+		maxNum = 2
+		probability = 75
+		prefabPath = "assets/maps/prefabs/prefab_cave_landmines2.dmm"
+		prefabSizeX = 7
+		prefabSizeY = 7
+
+	cave_jeweler
+		dusty = 1
+		maxNum = 0 //not lore friendly it turns out, RIP
+		probability = 68
+		prefabPath = "assets/maps/prefabs/prefab_cave_jeweler.dmm"
+		prefabSizeX = 20
+		prefabSizeY = 15
+
+	cave_waffle //This one isn't great but the idea amused me, delete whenever you get tired of it :P
+		dusty = 1
+		maxNum = 1
+		probability = 63
+		prefabPath = "assets/maps/prefabs/prefab_cave_waffle.dmm"
+		prefabSizeX = 11
+		prefabSizeY = 9
+
+	cave_closet
+		dusty = 1
+		maxNum = 2
+		probability = 80
+		prefabPath = "assets/maps/prefabs/prefab_cave_closet.dmm"
+		prefabSizeX = 4
+		prefabSizeY = 4
+
+	cave_robotics
+		dusty = 1
+		maxNum = 1
+		probability = 60
+		prefabPath = "assets/maps/prefabs/prefab_cave_robotics.dmm"
+		prefabSizeX = 20
+		prefabSizeY = 12

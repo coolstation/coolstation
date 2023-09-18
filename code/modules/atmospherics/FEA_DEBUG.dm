@@ -8,14 +8,7 @@ datum/gas_mixture
 	var/turf/parent
 	var/debugging
 
-/*
-turf/simulated
-	New()
-		..()
 
-		if(air)
-			air.parent = src
-*/
 obj/machinery/door
 	verb
 		toggle_door()
@@ -29,7 +22,7 @@ turf/space
 	verb
 		create_floor()
 			set src in world
-			new /turf/simulated/floor(src)
+			new /turf/floor(src)
 
 		create_meteor(direction as num)
 			set src in world
@@ -38,11 +31,11 @@ turf/space
 			walk(M, direction,10)
 
 
-turf/simulated/wall
+turf/wall
 	verb
 		create_floor()
 			set src in world
-			new /turf/simulated/floor(src)
+			new /turf/floor(src)
 
 obj/item/tank
 	verb
@@ -56,7 +49,7 @@ obj/item/tank
 			air_contents.oxygen = target_oxygen_pressure*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
 			air_contents.toxins = target_toxin_pressure*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
 
-turf/simulated/floor
+turf/floor
 	verb
 		parent_info()
 			set src in world
@@ -80,7 +73,7 @@ turf/simulated/floor
 	verb
 		create_wall()
 			set src in world
-			new /turf/simulated/wall(src)
+			new /turf/wall(src)
 	verb
 		adjust_mixture(temp as num, tox as num, oxy as num)
 			set src in world
@@ -376,7 +369,7 @@ mob
 				else
 					V.overlays += icon('icons/Testing/atmos_testing.dmi',"marker0")
 
-turf/simulated
+turf
 	var/fire_verbose = 0
 
 	verb
@@ -423,7 +416,7 @@ turf/simulated
 			set category = "Minor"
 
 			if(amount>1)
-				var/datum/gas_mixture/adding = unpool(/datum/gas_mixture)
+				var/datum/gas_mixture/adding = new()
 				var/datum/gas/sleeping_agent/trace_gas = adding.get_or_add_trace_gas_by_type(var/datum/gas/sleeping_agent)
 
 				trace_gas.moles = amount
@@ -540,7 +533,7 @@ mob
 			for(var/datum/air_group/group in air_master.air_groups)
 				group.marker = 0
 
-			for(var/turf/simulated/floor/S in world)
+			for(var/turf/floor/S in world)
 				S.icon = 'icons/Testing/turf_analysis.dmi'
 				if(S.parent)
 					if(S.parent.group_processing)

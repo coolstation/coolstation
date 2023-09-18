@@ -18,36 +18,36 @@
 ////////////////
 // SHUTTLE WALL
 ////////////////
-/turf/simulated/shuttle/wall/flock
+/turf/shuttle/wall/flock
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "shuttle-wall"
 
 /////////////////
 // SHUTTLE FLOORS
 /////////////////
-/turf/simulated/floor/shuttle/flock
+/turf/floor/shuttle/flock
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "shuttle-floor"
 
-/turf/simulated/floor/shuttlebay/flock
+/turf/floor/shuttlebay/flock
 	name = "shuttle bay plating"
 	mat_appearances_to_ignore = list("steel","gnesis")
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "shuttle-bay"
 	allows_vehicles = 1
 
-/turf/simulated/floor/shuttlebay/flock/New()
+/turf/floor/shuttlebay/flock/New()
 	..()
 	setMaterial(getMaterial("gnesis"))
 
-/turf/simulated/floor/shuttlebay/flock/middle
+/turf/floor/shuttlebay/flock/middle
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "shuttle-bay-middle"
 
 ////////////
 // COCKPIT
 ////////////
-/turf/simulated/shuttle/wall/cockpit/flock
+/turf/shuttle/wall/cockpit/flock
 	icon = 'icons/misc/featherzone-160x160.dmi'
 	icon_state = "shuttle-nose"
 	layer = EFFECTS_LAYER_BASE

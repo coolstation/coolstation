@@ -30,11 +30,11 @@
 		src.pixel_x = rand(0 - wiggle, wiggle)
 		src.pixel_y = rand(0 - wiggle, wiggle)
 		setup_material()
-
+/*
 	pooled()
 		..()
 		name = initial(name)
-
+*/
 	proc/setup_material()
 		.= 0
 
@@ -186,7 +186,7 @@
 	setup_material()
 		..()
 		src.icon_state = pick("rock1","rock2","rock3")
-		src.setMaterial(getMaterial("rock"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("rock"), appearance = FALSE, setname = FALSE)
 
 /obj/item/raw_material/mauxite
 	name = "mauxite ore"
@@ -196,7 +196,7 @@
 	metal = 2
 
 	setup_material()
-		src.setMaterial(getMaterial("mauxite"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("mauxite"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/molitz
@@ -207,7 +207,7 @@
 	crystal = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("molitz"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("molitz"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/molitz_beta
@@ -218,7 +218,7 @@
 	crystal = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("molitz_b"), appearance = 1, setname = 0)
+		src.setMaterial(getMaterial("molitz_b"), appearance = TRUE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/pharosium
@@ -230,7 +230,7 @@
 	conductor = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("pharosium"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("pharosium"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/cobryl // relate this to precursors
@@ -241,7 +241,7 @@
 	metal = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("cobryl"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("cobryl"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/char
@@ -256,7 +256,7 @@
 	health = 20
 
 	setup_material()
-		src.setMaterial(getMaterial("char"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("char"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/claretine // relate this to wizardry somehow
@@ -267,7 +267,7 @@
 	conductor = 2
 
 	setup_material()
-		src.setMaterial(getMaterial("claretine"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("claretine"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/bohrum
@@ -279,7 +279,7 @@
 	dense = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("bohrum"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("bohrum"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/syreline
@@ -290,7 +290,7 @@
 	metal = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("syreline"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("syreline"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/erebite
@@ -302,7 +302,7 @@
 	powersource = 2
 
 	setup_material()
-		src.setMaterial(getMaterial("erebite"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("erebite"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 	ex_act(severity)
@@ -318,11 +318,11 @@
 			qdel(E)*/
 
 		switch(severity)
-			if(1)
+			if(OLD_EX_SEVERITY_1)
 				explosion(src, src.loc, 1, 2, 3, 4, 1)
-			if(2)
+			if(OLD_EX_SEVERITY_2)
 				explosion(src, src.loc, 0, 1, 2, 3, 1)
-			if(3)
+			if(OLD_EX_SEVERITY_3)
 				explosion(src, src.loc, 0, 0, 1, 2, 1)
 			else
 				return
@@ -359,7 +359,7 @@
 	powersource = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("cerenkite"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("cerenkite"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/plasmastone
@@ -376,7 +376,7 @@
 	crystal = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("plasmastone"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("plasmastone"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/gemstone
@@ -401,7 +401,7 @@
 				picklist = list("onyx","rosequartz","citrine","jade","aquamarine","iolite")
 
 		var/datum/material/M = getMaterial(pick(picklist))
-		src.setMaterial(M)//, appearance = 0, setname = 0) // why was this set to not update the name/appearance??
+		src.setMaterial(M, appearance = TRUE, setname = TRUE)// why was this set to not update the name/appearance??
 
 /obj/item/raw_material/uqill // relate this to ancients
 	name = "uqill nugget"
@@ -411,7 +411,7 @@
 	dense = 2
 
 	setup_material()
-		src.setMaterial(getMaterial("uqill"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("uqill"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 
@@ -422,7 +422,7 @@
 	material_name = "Fibrilith"
 
 	setup_material()
-		src.setMaterial(getMaterial("fibrilith"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("fibrilith"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/telecrystal
@@ -434,7 +434,7 @@
 	powersource = 2
 
 	setup_material()
-		src.setMaterial(getMaterial("telecrystal"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("telecrystal"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 	attack(mob/M as mob, mob/user as mob, def_zone)//spyguy apologizes in advance -- not somepotato i promise
@@ -467,7 +467,7 @@
 	material_name = "Miracle Matter"
 
 	setup_material()
-		src.setMaterial(getMaterial("miracle"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("miracle"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/starstone
@@ -478,7 +478,7 @@
 	crystal = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("starstone"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("starstone"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/eldritch
@@ -490,7 +490,7 @@
 	dense = 2
 
 	setup_material()
-		src.setMaterial(getMaterial("koshmarite"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("koshmarite"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/martian
@@ -501,7 +501,7 @@
 	dense = 2
 
 	setup_material()
-		src.setMaterial(getMaterial("viscerite"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("viscerite"), appearance = FALSE, setname = FALSE)
 		src.create_reagents(25)
 		src.reagents.add_reagent("synthflesh", 25)
 		return ..()
@@ -514,7 +514,7 @@
 	dense = 2
 
 	setup_material()
-		src.setMaterial(getMaterial("gold"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("gold"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 // Misc building material
@@ -527,7 +527,7 @@
 	scoopable = 0
 
 	setup_material()
-		src.setMaterial(getMaterial("fibrilith"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("fibrilith"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/cotton/
@@ -536,7 +536,7 @@
 	icon_state = "cotton"
 
 	setup_material()
-		src.setMaterial(getMaterial("cotton"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("cotton"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/ice
@@ -548,7 +548,7 @@
 	scoopable = 0
 
 	setup_material()
-		src.setMaterial(getMaterial("ice"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("ice"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 /obj/item/raw_material/scrap_metal
@@ -589,11 +589,11 @@
 		..()
 		icon_state += "[rand(1,3)]"
 		src.setItemSpecial(/datum/item_special/double)
-
+/*
 	unpooled()
 		. = ..()
 		src.setItemSpecial(/datum/item_special/double)
-
+*/
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if(!scalpel_surgery(M,user)) return ..()
 		else return
@@ -604,6 +604,8 @@
 			if(H.getStatusDuration("stunned") || H.getStatusDuration("weakened")) // nerf for dragging a person and a shard to damage them absurdly fast - drsingh
 				return
 			if(isabomination(H))
+				return
+			if(H.throwing || HAS_MOB_PROPERTY(H, PROP_ATOM_FLOATING))
 				return
 			if(H.lying)
 				boutput(H, "<span class='alert'><B>You crawl on [src]! Ouch!</B></span>")
@@ -632,14 +634,12 @@
 	glass
 		setup_material()
 			..()
-			var/datum/material/M = getMaterial("glass")
-			src.setMaterial(M, appearance = 1, setname = 1) // why were these set to 0 and 0, why would you use a glass shard to make some other kind of materialed thing when you could just use the base /obj/item/raw_material/shard
+			src.setMaterial(getMaterial("glass"), appearance = TRUE, setname = TRUE) // why were these set to 0 and 0, why would you use a glass shard to make some other kind of materialed thing when you could just use the base /obj/item/raw_material/shard
 
 	plasmacrystal
 		setup_material()
 			..()
-			var/datum/material/M = getMaterial("plasmaglass")
-			src.setMaterial(M, appearance = 1, setname = 1)
+			src.setMaterial(getMaterial("plasmaglass"), appearance = TRUE, setname = TRUE)
 
 /obj/item/raw_material/shard/proc/step_on(mob/living/carbon/human/H as mob)
 	playsound(src.loc, src.sound_stepped, 50, 1)
@@ -659,7 +659,7 @@
 	dense = 1
 
 	setup_material()
-		src.setMaterial(getMaterial("chitin"), appearance = 0, setname = 0)
+		src.setMaterial(getMaterial("chitin"), appearance = FALSE, setname = FALSE)
 		return ..()
 
 // bars, tied into the new material system
@@ -797,11 +797,11 @@
 
 			else if (istype(M, /obj/item/raw_material/shard))
 				if (output_bar_from_item(M, 10))
-					pool(M)
+					qdel(M)
 
 			else if (istype(M, /obj/item/raw_material))
 				output_bar_from_item(M)
-				pool(M)
+				qdel(M)
 
 			else if (istype(M, /obj/item/sheet))
 				if (output_bar_from_item(M, 10))
@@ -873,7 +873,7 @@
 		var/output_location = src.get_output_location()
 
 		var/bar_type = getProcessedMaterialForm(MAT)
-		var/obj/item/material_piece/BAR = unpool(bar_type)
+		var/obj/item/material_piece/BAR = new bar_type()
 		BAR.quality = quality
 		BAR.name += getQualityName(quality)
 		BAR.setMaterial(MAT)
@@ -972,7 +972,7 @@
 			src.output_location = O.loc
 			boutput(usr, "<span class='notice'>You set the reclaimer to output on top of [O]!</span>")
 
-		else if (istype(over_object,/turf/simulated/floor/))
+		else if (istype(over_object,/turf/floor/))
 			src.output_location = over_object
 			boutput(usr, "<span class='notice'>You set the reclaimer to output to [over_object]!</span>")
 

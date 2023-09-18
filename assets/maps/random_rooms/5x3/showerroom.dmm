@@ -1,63 +1,64 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/floor/sanitary,
+/turf/floor/sanitary,
 /area/dmm_suite/clear_area)
-"C" = (
-/obj/machinery/shower{
-	dir = 4;
-	pixel_x = 8
-	},
-/obj/machinery/drainage,
-/turf/simulated/floor/sanitary,
-/area/dmm_suite/clear_area)
-"F" = (
+"d" = (
 /obj/machinery/light/small/floor/neutral,
-/turf/simulated/floor/sanitary,
+/obj/machinery/shower{
+	dir = 8
+	},
+/turf/floor/sanitary,
 /area/dmm_suite/clear_area)
-"R" = (
+"z" = (
 /obj/rack,
+/obj/item/clothing/under/gimmick/macho,
 /obj/item/sponge{
 	name = "loofah"
 	},
-/obj/item/clothing/under/gimmick/macho,
-/turf/simulated/floor/sanitary,
+/turf/floor/sanitary,
+/area/dmm_suite/clear_area)
+"F" = (
+/obj/machinery/light/small/floor/neutral,
+/obj/machinery/shower{
+	dir = 4
+	},
+/turf/floor/sanitary,
+/area/dmm_suite/clear_area)
+"R" = (
+/obj/machinery/drainage,
+/turf/floor/sanitary,
 /area/dmm_suite/clear_area)
 "S" = (
-/obj/machinery/shower{
-	dir = 8;
-	pixel_x = -8
-	},
-/obj/machinery/drainage,
-/turf/simulated/floor/sanitary,
-/area/dmm_suite/clear_area)
-"W" = (
 /obj/table/auto,
 /obj/towelbin,
-/turf/simulated/floor/sanitary,
+/turf/floor/sanitary,
+/area/dmm_suite/clear_area)
+"W" = (
+/turf/wall/r_wall,
 /area/dmm_suite/clear_area)
 
 (1,1,1) = {"
 S
-a
-S
+R
+z
 "}
 (2,1,1) = {"
-W
+a
 F
-R
+a
 "}
 (3,1,1) = {"
 a
-a
+W
 a
 "}
 (4,1,1) = {"
-W
-F
+a
+d
 a
 "}
 (5,1,1) = {"
-C
 a
-C
+R
+S
 "}

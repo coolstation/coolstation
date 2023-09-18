@@ -26,52 +26,53 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "Cenote"  // renamed, crater doesn't make any sense here
 	icon_state = "yellow"
 	force_fullbright = 0
-	sound_environment = 18
+	sound_environment = EAX_QUARRY
 	skip_sims = 1
 	sims_score = 30
 	sound_group = "biodome"
+	is_construction_allowed = FALSE
 
 /area/crater/biodome
 	name = "Botanical Research Biodome"
 	icon_state = "green"
 	force_fullbright = 0
-	sound_environment = 1
+	sound_environment = EAX_PADDED_CELL
 	skip_sims = 1
 	sims_score = 30
 
 	north
 		name = "Biodome North"
-		sound_environment = 7
+		sound_environment = EAX_CONCERT_HALL
 
 	south
 		name = "Biodome South"
-		sound_environment = 7
+		sound_environment = EAX_CONCERT_HALL
 
 	entry
 		name = "Biodome Entrance"
 		icon_state = "shuttle"
-		sound_environment = 3
+		sound_environment = EAX_BATHROOM
 
 	research
 		name = "Biodome Research Core"
 		icon_state = "toxlab"
-		sound_environment = 2
+		sound_environment = EAX_ROOM
 
 	crew
 		name = "Biodome Staff Wing"
 		icon_state = "crewquarters"
-		sound_environment = 2
+		sound_environment = EAX_ROOM
 
 	maint
 		name = "Biodome Maintenance Wing"
 		icon_state = "yellow"
-		sound_environment = 3
+		sound_environment = EAX_BATHROOM
 
 /area/crater/cave
 	name = "Caves"
 	icon_state = "purple"
 	force_fullbright = 0
-	sound_environment = 8
+	sound_environment = EAX_CAVE
 	skip_sims = 1
 	sims_score = 30
 
@@ -82,12 +83,12 @@ SYNDICATE DRONE FACTORY AREAS
 	skip_sims = 1
 	sims_score = 30
 
-/turf/unsimulated/floor/cave
+/turf/floor/cave
 	name = "cave floor"
 	icon_state = "cave-medium"
 	fullbright = 0
 
-/turf/unsimulated/wall/cave
+/turf/wall/cave
 	name = "cave wall"
 	icon_state = "cave-dark"
 	fullbright = 0
@@ -96,17 +97,18 @@ SYNDICATE DRONE FACTORY AREAS
 
 /area/crypt
 	sound_group = "crypt"
+	is_construction_allowed = FALSE
 
 /area/crypt/graveyard
 	name = "Graveyard"
 	icon_state = "green"
 	force_fullbright = 0
-	filler_turf = "/turf/unsimulated/dirt"
-	sound_environment = 15
+	filler_turf = "/turf/dirt"
+	sound_environment = EAX_FOREST
 	skip_sims = 1
 	sims_score = 0
 	sound_group = "spooky_swamp"
-	sound_loop = 'sound/ambience/nature/Rain_Heavy.ogg'
+	sound_loop_1 = 'sound/ambience/nature/Rain_Heavy.ogg'
 
 	New()
 		..()
@@ -136,7 +138,7 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "Mausoleum"
 	icon_state = "purple"
 	force_fullbright = 0
-	sound_environment = 5
+	sound_environment = EAX_STONEROOM
 	skip_sims = 1
 	sims_score = 0
 
@@ -146,7 +148,7 @@ SYNDICATE DRONE FACTORY AREAS
 /area/crypt/sigma
 	name = "Research Facility Sigma"
 	icon_state = "derelict"
-	sound_loop = 'sound/ambience/spooky/Evilreaver_Ambience.ogg'
+	sound_loop_1 = 'sound/ambience/spooky/Evilreaver_Ambience.ogg'
 
 /area/crypt/sigma/mainhall
 	icon_state = "chapel"
@@ -180,14 +182,14 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "Catacombs"
 	icon_state = "purple"
 	force_fullbright = 0
-	sound_environment = 13
+	sound_environment = EAX_STONE_CORRIDOR
 	skip_sims = 1
 	sims_score = 0
 	sound_group = "catacombs"
 
 ////// cogwerks - lava turf
 
-/turf/unsimulated/floor/lava
+/turf/floor/lava
 	name = "Lava"
 	desc = "The floor is lava. Oh no."
 	icon_state = "lava"
@@ -275,6 +277,7 @@ SYNDICATE DRONE FACTORY AREAS
 	anchored = 1
 	opacity = 0
 	layer = OBJ_LAYER
+	plane = PLANE_NOSHADOW_BELOW
 	icon = 'icons/misc/exploration.dmi'
 	icon_state = "snowbits"
 
@@ -493,7 +496,7 @@ SYNDICATE DRONE FACTORY AREAS
 				boutput(user, "<span class='alert'>You pull yourself to the stalagtite using the whip.</span>")
 				user.set_loc(T)
 
-			SPAWN_DBG(0.2 SECONDS) pool(O)
+			SPAWN_DBG(0.2 SECONDS) qdel(O)
 
 		if(istype(target_r, /obj/whip_trg_dummy)) qdel(target_r)
 
@@ -786,7 +789,7 @@ SYNDICATE DRONE FACTORY AREAS
 	proc/crumble()
 		src.visible_message("<span class='alert'><b>[src] crumbles!</b></span>")
 		playsound(src.loc, "sound/effects/stoneshift.ogg", 50, 1)
-		var/obj/effects/bad_smoke/smoke = unpool(/obj/effects/bad_smoke)
+		var/obj/effects/bad_smoke/smoke = new()
 		smoke.name = "dust cloud"
 		smoke.set_loc(src.loc)
 		icon_state = "rubble"
@@ -795,7 +798,7 @@ SYNDICATE DRONE FACTORY AREAS
 		SPAWN_DBG(18 SECONDS)
 			if ( smoke )
 				smoke.name = initial(smoke.name)
-				pool(smoke)
+				qdel(smoke)
 		return
 
 /////////////////////////////// ALCHEMY CIRCLE STUFF
@@ -1194,7 +1197,7 @@ var/satellite_crash_event_status = -1
 /area/drone
 	name = "Drone Assembly Outpost"
 	icon_state = "red"
-	sound_environment = 10
+	sound_environment = EAX_HANGAR
 	sound_group = "drone_factory"
 
 /area/drone/zone
@@ -1202,12 +1205,12 @@ var/satellite_crash_event_status = -1
 /area/drone/crew_quarters
 	name = "Crew Quarters"
 	icon_state = "showers"
-	sound_environment = 4
+	sound_environment = EAX_LIVINGROOM
 
 /area/drone/engineering
 	name = "Engineering"
 	icon_state = "yellow"
-	sound_environment = 5
+	sound_environment = EAX_STONEROOM
 
 /area/drone/office
 	name = "Design Office"

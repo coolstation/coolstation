@@ -35,6 +35,26 @@
 		src.product_hidden = hidden
 		src.logged_on_vend = logged_on_vend
 
+/proc/RandomVendWires()
+	//to make this not randomize the wires, just set index to 1 and increment it in the flag for loop (after doing everything else).
+	var/list/Vendwires = list(0, 0, 0, 0, 0)
+	VendIndexToFlag = list(0, 0, 0, 0, 0)
+	VendIndexToWireColor = list(0, 0, 0, 0, 0)
+	VendWireColorToIndex = list(0, 0, 0, 0, 0)
+	var/flagIndex = 1
+	for (var/flag=1, flag<=16, flag+=flag)
+		var/valid = 0
+		while (!valid)
+			var/colorIndex = rand(1, 5)
+			if (Vendwires[colorIndex]==0)
+				valid = 1
+				Vendwires[colorIndex] = flag
+				VendIndexToFlag[flagIndex] = flag
+				VendIndexToWireColor[flagIndex] = colorIndex
+				VendWireColorToIndex[colorIndex] = flagIndex
+		flagIndex+=1
+	return Vendwires
+
 /obj/machinery/vending
 	name = "Vendomat"
 	desc = "A generic vending machine."
@@ -90,15 +110,26 @@
 	var/extended_inventory = FALSE //can we access the hidden inventory?
 	var/can_fall = TRUE //Can this machine be knocked over?
 	var/can_hack = TRUE //Can this machine have it's panel open?
+	var/freezer = FALSE // is it one of those machines what has frozen goods lol
 
 	var/panel_open = FALSE //Hacking that vending machine. Gonna get a free candy bar.
-	var/wires = 15
+	var/wires = 15 // flag 1 + 2 + 4 + 8 + !(16)
 
 	// Paid vendor variables
 	var/pay = 0 // Does this vending machine require money?
 	var/acceptcard = 1 // does the machine accept ID swiping?
 	var/credit = 0 //How much money is currently in the machine?
-	var/profit = 0.90 // cogwerks: how much of a cut should the QMs get from the sale, expressed as a percent
+	var/profit = 0.90 // Percentage of item cost that goes to player. Rest goes to QM/shipping budget.
+
+	// Receipts and Service charge! Because this machine provides a useful service to you, the customer,
+	// and we should be compensated for that! uwu
+	// Also, you may need a receipt to take to your department head for expenses reimbursements~
+	var/print_receipts = TRUE
+	var/print_receipts_long = FALSE
+	var/receipt_count = 20 // TODO: Printer rolls for receipts?
+	var/min_serv_chg = 2 // 2 bux just to use your damn machine? Rasm frasm grumble!
+	var/serv_chg_pct = 0.02
+	var/datum/data/record/servicechgaccount = null // TODO: add a way to set/reset this for miscreants to do an embeezle
 
 	var/HTML = null // guh
 	var/vending_HTML = null // buh
@@ -129,12 +160,53 @@
 		light.set_color(light_r, light_g, light_b)
 		..()
 		src.panel_image = image(src.icon, src.icon_panel)
+		if(!servicechgaccount)
+			servicechgaccount = wagesystem.finserv_budget
+
 	var/lastvend = 0
+
+	proc/printReceipt(var/datum/data/record/accountFrom, item, amount, serv_chg_amount)
+		if(!print_receipts)
+			return
+
+		var/receiptText = "<b>Payment Receipt</b><br><i>Please keep this for departmental records.</i><br>"
+		receiptText += "[item]: $[amount]<br>"
+		if(serv_chg_amount > 0 || amount != 0)
+			receiptText += "<b>Service Charge</b>: $[serv_chg_amount]<br>"
+		else
+			receiptText += "<b>-Service Charge Waived-</b><br>"
+			serv_chg_amount = 0
+
+		receiptText += "<hr>"
+
+		if(!istype(accountFrom))
+			receiptText += "<b>Total</b>: $[amount + serv_chg_amount]"
+		else
+			receiptText += "<b>Total</b> (deducted from [accountFrom.fields["name"]]): $[amount + serv_chg_amount]"
+
+		playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 50, 1)
+
+		SPAWN_DBG(3.2 SECONDS)
+			var/obj/item/paper/P = new()
+			P.set_loc(src.loc)
+			if(print_receipts_long)
+				P.icon_state = "thermal_paper_med"
+				P.desc = "Holy crap, how long does a receipt need to be?!"
+			else
+				P.icon_state = "thermal_paper"
+
+			P.name = "'[item]' receipt"
+			P.info = receiptText
+
+		// receipt_count--
+
 
 	proc/vendinput(var/datum/mechanicsMessage/inp)
 		if( world.time < lastvend ) return//aaaaaaa
 		lastvend = world.time + 2
 		var/datum/data/vending_product/R = throw_item()
+		var/service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost * serv_chg_pct)
+		printReceipt(0, R.product_name, R.product_cost, service_charge)
 		if(R?.logged_on_vend)
 			logTheThing("station", usr, null, "randomly vended a logged product ([R.product_name]) using mechcomp from [src] at [log_loc(src)].")
 
@@ -150,6 +222,45 @@
 	// because someone, somewhere, always forgets to use a ..()
 	proc/create_products()
 		return
+
+	proc/deep_freeze(atom/movable/thing) // this is for frozen foods, or anything else you wanna freeze. I dont care. -warc
+
+		if(istype(thing, /obj/item/popsicle))
+			return thing // dont refreeze these. hopefully thats all the exceptions.
+
+		var/obj/item/reagent_containers/food/snacks/shell/frozen/freezie = new(src)
+
+		if(istype(thing, /obj/item/reagent_containers/food/snacks/))
+			var/obj/item/reagent_containers/food/snacks/S = thing
+			if("food_cold" in S.food_effects)
+				return S // if the dispensed item is meant to be cold, don't treat it as "frozen"
+			else
+				freezie.food_effects |= S.food_effects
+				freezie.food_effects -= "food_warm"
+
+
+
+		freezie.name = "frozen [thing.name]"
+
+		var/icon/composite = new(thing.icon, thing.icon_state)
+		for(var/O in thing.underlays + thing.overlays)
+			var/image/I = O
+			composite.Blend(icon(I.icon, I.icon_state, I.dir, 1), ICON_OVERLAY)
+
+		composite.ColorTone("#bbefff")
+		freezie.icon = composite
+		freezie.overlays = thing.overlays
+
+		if(isitem(thing))
+			var/obj/item/item = thing
+			freezie.amount = (item.amount > 1 ? item.amount : item.w_class+1)
+		else
+			freezie.amount = 5
+
+		thing.set_loc(freezie)
+		return freezie
+
+
 
 	MouseDrop(over_object, src_location, over_location)
 		if(!istype(usr,/mob/living/))
@@ -208,7 +319,9 @@
 		src.postvend_effect()
 		sleep(1.5 SECONDS)
 		if(prob(50)) // Additionally, fuck you. *smack*
-			throw_item()
+			var/datum/data/vending_product/R = throw_item()
+			var/service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost* serv_chg_pct)
+			printReceipt(0, R.product_name, R.product_cost, service_charge)
 
 
 	proc/get_output_location()
@@ -230,7 +343,7 @@
 				else
 					return C
 
-		else if (istype(src.output_target,/turf/simulated/floor/))
+		else if (istype(src.output_target,/turf/floor/))
 			return src.output_target
 
 		else
@@ -240,17 +353,18 @@
 #define WIRE_SCANID 2
 #define WIRE_SHOCK 3
 #define WIRE_SHOOTINV 4
+#define WIRE_FREEZER 5
 
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			qdel(src)
 			return
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			if (prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if (prob(25))
 				SPAWN_DBG(0)
 					src.malfunction()
@@ -299,7 +413,7 @@
 		return
 	boutput(user, "<span class='notice'>You swipe [card].</span>")
 	var/datum/data/record/account = null
-	account = FindBankAccountByName(card.registered)
+	account = FindBankAccountById(card.registered_id)
 	if (account)
 		var/enterpin = input(user, "Please enter your PIN number.", "Enter PIN", 0) as null|num
 		if (enterpin == card.pin)
@@ -345,7 +459,7 @@
 				html_parts += "&emsp;[src.paying_for.product_name]<br>"
 				html_parts += "<B>Please swipe your card to authorize payment.</b><br>"
 			var/datum/data/record/account = null
-			account = FindBankAccountByName(src.scan.registered)
+			account = FindBankAccountById(src.scan.registered_id)
 			html_parts += "<B>Current ID:</B> <a href='byond://?src=\ref[src];logout=1'><u>([src.scan])</u></A><BR>"
 			html_parts += "<B>Credits on Account: [account.fields["current_money"]] Credits</B> <BR>"
 		else
@@ -392,12 +506,13 @@
 	src.vendwires = list("Violet" = 1,\
 		"Orange" = 2,\
 		"Goldenrod" = 3,\
-		"Green" = 4)
+		"Green" = 4,\
+		"Broun" = 5)
 	var/list/html_parts = list()
 	html_parts = "<TT><B>The Access Panel is [src.panel_open ? "open" : "closed"]:</B><br>"
 	html_parts += "<table border=\"1\" style=\"width:100%\"><tbody><tr><td><small>"
 	for (var/wiredesc in vendwires)
-		var/is_uncut = src.wires & APCWireColorToFlag[vendwires[wiredesc]]
+		var/is_uncut = src.wires & VendWireColorToFlag[vendwires[wiredesc]]
 		html_parts += "[wiredesc] wire: "
 		if (!is_uncut)
 			html_parts += "<a href='?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Mend</a>"
@@ -412,6 +527,7 @@
 	html_parts += "The green light is [src.extended_inventory ? "on" : "off"].<BR>"
 	html_parts += "The [(src.wires & WIRE_SCANID) ? "purple" : "yellow"] light is on.<BR>"
 	html_parts += "The AI control indicator is [src.ai_control_enabled ? "lit" : "unlit"].<BR>"
+	html_parts += "The compressor is [(!(status & (BROKEN|NOPOWER)) && src.freezer) ? "rumbling softly" : "quiet"].<BR>"
 	html_parts += "</small></td></tr></tbody></table></TT><br>"
 	src.wire_HTML = jointext(html_parts, "")
 
@@ -425,7 +541,7 @@
 			boutput(user, "<span class='notice'>You insert [W].</span>")
 			user.u_equip(W)
 			W.dropped()
-			pool( W )
+			qdel( W )
 			src.generate_HTML(1)
 			return
 		else
@@ -596,7 +712,7 @@
 			var/datum/data/record/account = null
 			if (src.pay)
 				if (src.acceptcard && src.scan)
-					account = FindBankAccountByName(src.scan.registered)
+					account = FindBankAccountById(src.scan.registered_id)
 					if (!account)
 						boutput(usr, "<span class='alert'>No bank account associated with ID found.</span>")
 						flick(src.icon_deny,src)
@@ -606,6 +722,8 @@
 						return
 					if (account.fields["current_money"] < R.product_cost)
 						boutput(usr, "<span class='alert'>Insufficient funds in account. To use machine credit, log out.</span>")
+						account.fields["current_money"] -= min_serv_chg
+						servicechgaccount.fields["current_money"] += min_serv_chg
 						flick(src.icon_deny,src)
 						src.vend_ready = 1
 						src.paying_for = R
@@ -632,11 +750,15 @@
 			src.prevend_effect()
 			if(!src.freestuff) R.product_amount--
 
+			var/service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost* serv_chg_pct)
 			if (src.pay)
 				if (src.acceptcard && account)
 					account.fields["current_money"] -= R.product_cost
+					account.fields["current_money"] -= service_charge
+					servicechgaccount.fields["current_money"] += service_charge
 				else
 					src.credit -= R.product_cost
+					service_charge = 0
 				if (!isplayer)
 					wagesystem.shipping_budget += round(R.product_cost * profit) // cogwerks - maybe money shouldn't just vanish into the aether idk
 				else
@@ -659,10 +781,14 @@
 					var/atom/movable/vended = new product_path(src.get_output_location()) // changed from obj, because it could be a mob, THANKS VALUCHIMP
 					vended.layer = src.layer + 0.1 //So things stop spawning under the fukin thing
 					if(isitem(vended))
+						if(src.freezer)
+							vended = deep_freeze(vended)
 						usr.put_in_hand_or_eject(vended) // try to eject it into the users hand, if we can
 					// else, just let it spawn where it is
 				else if (player_list)
 					playervended.layer = src.layer + 0.3 //To get over the CRT layer
+					if(src.freezer)
+						playervended = deep_freeze(playervended)
 					usr.put_in_hand_or_eject(playervended)
 				else if (isicon(R.product_path))
 					var/icon/welp = icon(R.product_path)
@@ -678,6 +804,7 @@
 					if (S)
 						playsound(src.loc, S, 50, 0)
 				src.postvend_effect()
+				printReceipt(account, R.product_name, R.product_cost, service_charge)
 
 				SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL, "productDispensed=[R.product_name]")
 
@@ -701,7 +828,7 @@
 		if (href_list["return_credits"])
 			SPAWN_DBG(src.vend_delay)
 				if (src.credit > 0)
-					var/obj/item/spacecash/returned = unpool(/obj/item/spacecash)
+					var/obj/item/spacecash/returned = new()
 					returned.setup(src.get_output_location(), src.credit)
 
 					usr.put_in_hand_or_eject(returned) // try to eject it into the users hand, if we can
@@ -908,6 +1035,8 @@
 			return 1
 
 	if (throw_item)
+		if(src.freezer)
+			throw_item = deep_freeze(throw_item)
 		R.product_amount--
 		use_power(10)
 		if (src.icon_vend) //Show the vending animation if needed
@@ -922,16 +1051,16 @@
 
 
 /obj/machinery/vending/proc/isWireColorCut(var/wireColor)
-	var/wireFlag = APCWireColorToFlag[wireColor]
+	var/wireFlag = VendWireColorToFlag[wireColor]
 	return ((src.wires & wireFlag) == 0)
 
 /obj/machinery/vending/proc/isWireCut(var/wireIndex)
-	var/wireFlag = APCIndexToFlag[wireIndex]
+	var/wireFlag = VendIndexToFlag[wireIndex]
 	return ((src.wires & wireFlag) == 0)
 
 /obj/machinery/vending/proc/cut(var/wireColor)
-	var/wireFlag = APCWireColorToFlag[wireColor]
-	var/wireIndex = APCWireColorToIndex[wireColor]
+	var/wireFlag = VendWireColorToFlag[wireColor]
+	var/wireIndex = VendWireColorToIndex[wireColor]
 	src.wires &= ~wireFlag
 	switch(wireIndex)
 		if(WIRE_EXTEND)
@@ -945,11 +1074,14 @@
 		if (WIRE_SCANID) //yeah the scanID wire also controls the AI control FUCK YOU
 			if(src.ai_control_enabled)
 				src.ai_control_enabled = 0
+		if (WIRE_FREEZER)
+			if(src.freezer)
+				src.freezer = 0
 	src.generate_HTML(0, 1)
 
 /obj/machinery/vending/proc/mend(var/wireColor)
-	var/wireFlag = APCWireColorToFlag[wireColor]
-	var/wireIndex = APCWireColorToIndex[wireColor] //not used in this function
+	var/wireFlag = VendWireColorToFlag[wireColor]
+	var/wireIndex = VendWireColorToIndex[wireColor] //not used in this function
 	src.wires |= wireFlag
 	switch(wireIndex)
 		if(WIRE_SCANID)
@@ -958,10 +1090,12 @@
 			src.seconds_electrified = 0
 		if (WIRE_SHOOTINV)
 			src.shoot_inventory = 0
+		if (WIRE_FREEZER)
+			src.freezer = 1
 	src.generate_HTML(0, 1)
 
 /obj/machinery/vending/proc/pulse(var/wireColor)
-	var/wireIndex = APCWireColorToIndex[wireColor]
+	var/wireIndex = VendWireColorToIndex[wireColor]
 	switch (wireIndex)
 		if (WIRE_EXTEND)
 			src.extended_inventory = !src.extended_inventory
@@ -972,6 +1106,9 @@
 			src.seconds_electrified = 30
 		if (WIRE_SHOOTINV)
 			src.shoot_inventory = !src.shoot_inventory
+		if (WIRE_FREEZER)
+			src.freezer = !src.freezer
+
 
 	src.generate_HTML(0, 1)
 
@@ -1056,6 +1193,7 @@
 #undef WIRE_SCANID
 #undef WIRE_SHOCK
 #undef WIRE_SHOOTINV
+#undef WIRE_FREEZER
 
 /obj/machinery/vending/coffee
 	name = "coffee machine"
@@ -1101,16 +1239,38 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/donut, 10, cost=PAY_TRADESMAN/20)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/fries, 10, cost=PAY_TRADESMAN/15)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/noodlecup, 10, cost=PAY_UNTRAINED/8)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/burrito, 10, cost=PAY_UNTRAINED/8)
-		product_list += new/datum/data/vending_product(/obj/item/popsicle, 10, cost=PAY_UNTRAINED/8)
 		product_list += new/datum/data/vending_product(/obj/item/kitchen/plasticpackage, 10, cost=PAY_UNTRAINED/10)
-		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/fork/plastic, 10, cost=PAY_UNTRAINED/10)
-		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/spoon/plastic, 10, cost=PAY_UNTRAINED/10)
-		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/knife/plastic, 10, cost=PAY_UNTRAINED/10)
-		product_list += new/datum/data/vending_product(/obj/item/tvdinner, 10, cost=PAY_UNTRAINED/6)
+		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/fork/plastic, 10, cost=PAY_UNTRAINED/20)
+		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/spoon/plastic, 10, cost=PAY_UNTRAINED/20)
+		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/knife/plastic, 10, cost=PAY_UNTRAINED/20)
 
 
-/obj/machinery/vending/cigarette
+/obj/machinery/vending/snack_freezer
+	name = "snack machine"
+	desc = "Frozen treats for crewman eats."
+	pay = 1
+	icon_state = "frozen"
+	icon_panel = "frozen-panel"
+	slogan_list = list("Flash Frozen Ferfection!",
+	"Twice the calories for half the price!",
+	"Buy now! Warm later!",
+	"A fresh delight is only a microwave away!",
+	"We feature Discount Dan's Tee Vee Dinners!")
+	freezer = TRUE
+	wires = 31 // 1 + 2 + 4 + 8 + 16
+	light_r =1
+	light_g = 0.4
+	light_b = 0.4
+
+	create_products()
+		..()
+		product_list += new/datum/data/vending_product(/obj/item/tvdinner, 8, cost=PAY_UNTRAINED/6)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/burrito, 12, cost=PAY_UNTRAINED/8)
+		product_list += new/datum/data/vending_product(/obj/item/popsicle, 8, cost=PAY_UNTRAINED/8)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ice_cream/goodrandom, 4, cost=PAY_UNTRAINED/7)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/yoghurt/frozen, 4, cost=PAY_UNTRAINED/5)
+
+/obj/machinery/vending/cigarette //eventually wanna make one of these specifically for medbay
 	name = "cigarette machine"
 	desc = "If you want to get cancer, might as well do it in style!"
 	pay = 1
@@ -1130,8 +1290,11 @@
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket, 20, cost=PAY_UNTRAINED/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/nicofree, 10, cost=PAY_UNTRAINED/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/menthol, 10, cost=PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(1,3), cost=PAY_UNTRAINED/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/propuffs, 10, cost=PAY_TRADESMAN/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo, 10, cost=PAY_TRADESMAN/5)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/brute, 5, cost=PAY_TRADESMAN/10)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/burn, 5, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/cigarbox, 1, cost=PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/patch/nicotine, 10, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/matchbook, 10, cost=PAY_UNTRAINED/20)
@@ -1156,6 +1319,7 @@
 	light_r =1
 	light_g = 0.88
 	light_b = 0.88
+	print_receipts_long = TRUE
 
 
 
@@ -1220,6 +1384,7 @@
 	light_r =1
 	light_g = 0.88
 	light_b = 0.88
+	print_receipts_long = TRUE
 
 	create_products()
 		..()
@@ -1270,10 +1435,12 @@
 		product_list += new/datum/data/vending_product(/obj/item/device/flash, 4)
 		product_list += new/datum/data/vending_product(/obj/item/clothing/head/helmet/hardhat/security, 4)
 		product_list += new/datum/data/vending_product(/obj/item/device/pda2/security, 2)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/a38/stun, 2)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/nine_mm_NATO, 2)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/three, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive_burst/three, 2)
 		product_list += new/datum/data/vending_product(/obj/item/implantcase/antirev, 3)
 		product_list += new/datum/data/vending_product(/obj/item/implanter, 1)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 3)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 2)
 #ifdef RP_MODE
 		product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/space_law, 1)
 #endif
@@ -1295,16 +1462,14 @@
 
 	create_products()
 		..()
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/abg, 6)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/a38, 2)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/a38/stun, 3)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/nine_mm_NATO,3)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/flare, 3)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/smoke, 3)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/pbr, 5)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/ten, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/ten, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/slug_rubber/ten, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/buckshot/three, 3)
 		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/tranq_darts, 3)
 		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/tranq_darts/anti_mutant, 3)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/a12/weak, 1, hidden=1) // this may be a bad idea, but it's only one box //Maybe don't put the delimbing version in here
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/zaubertube/three, 1, hidden=1) // this may be a bad idea, but it's only one box //Maybe don't put the delimbing version in here
+
 /obj/machinery/vending/cola
 	name = "soda machine"
 	pay = 1
@@ -1617,7 +1782,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/drinkingglass/icing, 3)
 		product_list += new/datum/data/vending_product(/obj/item/kitchen/chopsticks_package, 5)
 		product_list += new/datum/data/vending_product(/obj/item/plate/tray, 3)
-		product_list += new/datum/data/vending_product(/obj/surgery_tray/kitchen_island, 2)
+		product_list += new/datum/data/vending_product(/obj/table/kitchen_island, 2)
 		product_list += new/datum/data/vending_product(/obj/item/storage/lunchbox, 12)
 		product_list += new/datum/data/vending_product(/obj/item/ladle, 1)
 		product_list += new/datum/data/vending_product(/obj/item/soup_pot, 1)
@@ -1649,16 +1814,15 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/breakfast, rand(2, 4), hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/snack_cake, rand(1, 3), hidden=1)
 
-
-/obj/machinery/vending/gunse
-	name = "NanoGunse"
-	desc = "Gunse storage unit."
-	icon_state = "sauce"
+/obj/machinery/vending/kitchen/lite
+	name = "FoodTech Mini"
+	desc = "Food storage unit."
+	icon_state = "food"
 	icon_panel = "standard-panel"
 	icon_off = "food-off"
 	icon_broken = "food-broken"
 	icon_fallen = "food-fallen"
-	req_access_txt = ""
+	req_access_txt = "28"
 	acceptcard = 0
 
 	light_r =1
@@ -1667,26 +1831,117 @@
 
 	create_products()
 		..()
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet, 2)
+		product_list += new/datum/data/vending_product(/obj/item/storage/lunchbox, 12)
+		product_list += new/datum/data/vending_product(/obj/item/ladle, 1)
+		product_list += new/datum/data/vending_product(/obj/item/soup_pot, 1)
+		product_list += new/datum/data/vending_product(/obj/item/kitchen/rollingpin, 2)
+		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/knife/cleaver, 1)
+		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/knife/pizza_cutter, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/oatmeal, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/peanutbutter, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/flour, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/rice, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/sugar, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/butter, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/spaghetti, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/meatball, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/syrup, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/mayo, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/ketchup, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/tomato, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/apple, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/lettuce, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/potato, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/corn, 10)
 
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/breakfast, rand(2, 4), hidden=1)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/snack_cake, rand(1, 3), hidden=1)
+
+
+/obj/machinery/vending/gunse
+	name = "NanoGunse"
+	desc = "Gunse storage unit."
+	icon_state = "gunse"
+	icon_panel = "standard-panel"
+	icon_off = "gunse-off"
+	icon_broken = "gunse-broken"
+	icon_fallen = "gunse-fallen"
+	req_access_txt = ""
+	acceptcard = 1
+	pay = 1
+
+	light_r =1
+	light_g = 0.88
+	light_b = 0.3
+
+	attackby(obj/item/W, mob/user)
+		if(!user?.client)
+			return ..()
+		if(istype(W, /obj/item/gun/modular/))
+			if (alert(user, "Would you like to store your weapon?", "Confirmation", "Yes", "No") == "Yes")
+				user.client.save_cloud_gun(1, gun=W)
+				user.u_equip(W)
+				W.dropped(user)
+				qdel(W)
+			return
+
+		else
+			..()
+
+
+	create_products()
+		..()
+		/*
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/basic, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss/long, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss/punt, 2)
-		product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs/better, 2)
+*/
 		//above this line is for debug and testing only, they'll go in the bin later.
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian/bigger, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/arm_brace, 2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet/long, 2)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/zaubertube/ten, 10)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/ten, 10)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/ten, 10)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 2, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long, 1, cost = PAY_TRADESMAN*1.5)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 1, cost = PAY_TRADESMAN*1.5)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT, 5, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long, 5, cost = PAY_UNTRAINED*1.1)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long/very, 1, hidden=1, cost = PAY_TRADESMAN*1.2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/short, 2, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/shotty, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 1, cost = PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/flashlight, 3, cost = PAY_UNTRAINED/4)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 1, hidden=1, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian, 1, hidden=1, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/italian/bigger,  1, hidden=1, cost = PAY_UNTRAINED*1.1)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT, 5, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/guardless, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/arm_brace, 2, cost = PAY_UNTRAINED/1.5)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/shoulder, 2, cost = PAY_UNTRAINED/1.5)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/fancy, 2, cost = PAY_UNTRAINED/2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/ceremonial, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/stub, 2, cost = PAY_UNTRAINED/2)
+		//product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet/long, 1, cost = PAY_UNTRAINED)
+		//product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet, 1, cost = PAY_UNTRAINED)
+		//product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/zaubertube/ten, 10, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/ten, 10, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/ten, 10, cost = PAY_UNTRAINED)
+		//product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 1, hidden=1, cost = PAY_UNTRAINED)
+		//product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/basic, 1, hidden=1, cost = PAY_UNTRAINED*2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 1, hidden=1, cost = PAY_UNTRAINED*2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 1, hidden=1, cost = PAY_UNTRAINED*2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 1, hidden=1, cost = PAY_UNTRAINED*2)
+
+	debug
+		pay = 0
+		create_products()
+			for(var/types in concrete_typesof(/obj/item/gun/modular))
+				product_list += new/datum/data/vending_product(types, 2)
+			for(var/types in concrete_typesof(/obj/item/gun_parts/))
+				product_list += new/datum/data/vending_product(types, 2)
+			for(var/types in concrete_typesof(/obj/item/stackable_ammo/))
+				product_list += new/datum/data/vending_product(types, 5)
+			product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 5)
 
 
 //The burden of these machinations weighs on my shoulders
@@ -2068,7 +2323,7 @@
 				src.generate_HTML(0, 1)
 		else if (href_list["unlock"] && src.panel_open)
 			if (!owner && src.scan?.registered)
-				owneraccount = FindBankAccountByName(src.scan.registered)
+				owneraccount = FindBankAccountById(src.scan.registered_id)
 				owner = src.scan.registered
 				cardname = src.scan.name
 				unlocked = TRUE
@@ -2335,8 +2590,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/glass/bottle/powerplant, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/glass/bottle/fruitful, 5)
 		product_list += new/datum/data/vending_product(/obj/decorative_pot, 5)
-		product_list += new/datum/data/vending_product(/obj/chicken_nesting_box,3)
-		product_list += new/datum/data/vending_product(/obj/item/chicken_carrier, 2)
+		product_list += new/datum/data/vending_product(/obj/item/fishing_rod, 3)
 
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/glass/water_pipe, 1, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/seedplanter/hidden, 1, hidden=1)
@@ -2750,7 +3004,7 @@
 
 	New()
 		..()
-		gas_prototype = unpool(/datum/gas_mixture)
+		gas_prototype = new()
 
 	proc/fill_cost()
 		if(!holding) return 0
@@ -2792,7 +3046,7 @@
 		html += "<b>Current balance: <a href='byond://?src=\ref[src];return_credits=1'>[src.credit] credits</a></b><br>"
 		if (src.scan)
 			var/datum/data/record/account = null
-			account = FindBankAccountByName(src.scan.registered)
+			account = FindBankAccountById(src.scan.registered_id)
 			html += "<b>Current ID:</b> <a href='?src=\ref[src];logout=1'>[src.scan]</a><br />"
 			html += "<b>Credits on Account: [account.fields["current_money"]] Credits</b> <br>"
 		else
@@ -2835,7 +3089,7 @@
 					src.updateUsrDialog()
 					return
 				else if(scan)
-					var/datum/data/record/account = FindBankAccountByName(src.scan.registered)
+					var/datum/data/record/account = FindBankAccountById(src.scan.registered_id)
 					if (account && account.fields["current_money"] >= cost)
 						account.fields["current_money"] -= cost
 						src.fill()

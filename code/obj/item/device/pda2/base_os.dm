@@ -110,6 +110,9 @@
 					<li>Scanner: [src.master.scan_program ? "<a href='byond://?src=\ref[src];scanner=1'>[src.master.scan_program.name]</a>" : "None loaded"]</li>"}
 #ifdef UNDERWATER_MAP
 					. += "<li><a href='byond://?src=\ref[src];trenchmap=1'>Trench Map</a></li>"
+#elif defined(DESERT_MAP)
+					. += "<li><a href='byond://?src=\ref[src];desertmap=1'>Underground Desert Map</a></li>"
+					. += "<li><a href='byond://?src=\ref[src];trenchmap=1'>Asteroid Field Map</a></li>"
 #else
 					. += "<li><a href='byond://?src=\ref[src];trenchmap=1'>Mining Map</a></li>"
 #endif
@@ -408,7 +411,11 @@
 
 			else if(href_list["trenchmap"])
 				if (usr.client && hotspot_controller)
-					hotspot_controller.show_map(usr.client)
+					hotspot_controller.show_map(usr.client, AST_ZLEVEL)
+
+			else if(href_list["desertmap"])
+				if (usr.client && hotspot_controller)
+					hotspot_controller.show_map(usr.client, GEH_ZLEVEL)
 
 			else if(href_list["change_backlight_color"])
 				var/new_color = input(usr, "Choose a color", "PDA", src.master.bg_color) as color | null
@@ -1057,7 +1064,7 @@
 
 			src.hosted_files[file_passkey] = file
 
-			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
+			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 			var/datum/signal/signal = get_free_signal()
 			signal.data["command"] = "text_message"
 			signal.data["message"] = "[file.name] hosted on [src.master.owner]'s [src.master]. Text [file_passkey] to this PDA to receive a copy of this file!"

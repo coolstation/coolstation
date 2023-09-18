@@ -30,7 +30,7 @@
 
 	proc/process()
 		if(!src.open) return
-		var/turf/simulated/T = get_turf(src)
+		var/turf/T = get_turf(src)
 		if(T.active_liquid == null) return
 		var/datum/reagents/Removed = T.active_liquid.group.suck(T.active_liquid, src.used_capacity)
 
@@ -73,6 +73,6 @@
 	proc/process()
 		if(!src.open) return
 
-		var/turf/simulated/T = get_turf(src)
+		var/turf/T = get_turf(src)
 		T.fluid_react(src.network.pipe_cont.reagent_list, src.used_capacity)
 		src.network.pipe_cont.remove_any(src.used_capacity)

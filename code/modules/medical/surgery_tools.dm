@@ -954,7 +954,7 @@ CONTAINS:
 
 			else if (istype(tool, /obj/item/material_piece/cloth))
 				ownerMob.u_equip(tool)
-				pool(tool)
+				qdel(tool)
 
 /* =================================================== */
 /* -------------------- Blood Bag -------------------- */
@@ -1517,120 +1517,7 @@ CONTAINS:
 /* -------------------- Surgery Tray -------------------- */
 /* ====================================================== */
 
-/obj/surgery_tray
-	name = "tray"
-	desc = "A lightweight tray with little wheels on it. You can place stuff on this and then move the stuff elsewhere! Isn't that totally amazing??"
-	icon = 'icons/obj/surgery.dmi'
-	icon_state = "tray"
-	density = 1
-	anchored = 0
-	var/max_to_move = 10
-	p_class = 1.5
-
-/* this worked but it kinda scooped things up when the tray passed over them (which was hilarious but also not so great, gameplay-wise)
-keeping this here because I want to make something else with it eventually
-	Move(NewLoc,Dir)
-		var/list/bring_this_stuff
-		if (isturf(src.loc))
-			bring_this_stuff = src.loc.contents.Copy()
-		. = ..()
-		if (.)
-			if (prob(75))
-				playsound(src, "sound/misc/chair/office/scoot[rand(1,5)].ogg", 40, 1)
-			if (islist(bring_this_stuff) && length(bring_this_stuff))
-				var/stuff_moved = 0
-				for (var/obj/item/I in bring_this_stuff)
-					LAGCHECK(LAG_HIGH)
-					if (I.anchored || I.layer < src.layer)
-						continue
-					stuff_moved++
-					I.Move(NewLoc,Dir)
-					if (stuff_moved >= src.max_to_move)
-						break
-*/
-
-	New()
-		..()
-		src.layer -= 0.01
-		if (!islist(src.attached_objs))
-			src.attached_objs = list()
-		if (!ticker) // pre-roundstart, this is a thing made on the map so we want to grab whatever's been placed on top of us automatically
-			SPAWN_DBG(0)
-				var/stuff_added = 0
-				for (var/obj/item/I in src.loc.contents)
-					if (I.anchored || I.layer < src.layer)
-						continue
-					else
-						attach(I)
-						stuff_added++
-						if (stuff_added >= src.max_to_move)
-							break
-
-	Move(NewLoc,Dir)
-		. = ..()
-		if (.)
-			if (prob(75))
-				playsound(src, "sound/misc/chair/office/scoot[rand(1,5)].ogg", 40, 1)
-
-			//if we're over the max amount a table can fit, have a chance to drop an item. Chance increases with items on tray
-			if (prob((src.contents.len-max_to_move)*1.1))
-				var/obj/item/falling = pick(src.attached_objs)
-				detach(falling)
-				// src.visible_message("[falling] falls off of [src]!")
-				var/target = get_offset_target_turf(get_turf(src), rand(5)-rand(5), rand(5)-rand(5))
-				falling.set_loc(get_turf(src))
-
-				falling?.throw_at(target, 1, 1)
-
-
-	attackby(obj/item/W as obj, mob/user as mob, params)
-		if (iswrenchingtool(W))
-			actions.start(new /datum/action/bar/icon/furniture_deconstruct(src, W, 30), user)
-			return
-		else if (src.place_on(W, user, params))
-			user.show_text("You place [W] on [src].")
-			src.attach(W)
-			return
-		else
-			return ..()
-
-	hitby(atom/movable/AM, datum/thrown_thing/thr)
-		..()
-		if (isitem(AM))
-			src.visible_message("[AM] lands on [src]!")
-			AM.set_loc(get_turf(src))
-			attach(AM)
-
-	disposing()
-		for (var/obj/item/I in src.attached_objs)
-			detach(I)
-		..()
-
-	proc/deconstruct()
-		var/obj/item/furniture_parts/surgery_tray/P = new /obj/item/furniture_parts/surgery_tray(src.loc)
-		if (P && src.material)
-			P.setMaterial(src.material)
-		qdel(src)
-		return
-
-	proc/attach(obj/item/I as obj)
-		if(I.anchored) return
-		src.attached_objs.Add(I) // attach the item to the table
-		I.glide_size = 0 // required for smooth movement with the tray
-		// register for pickup, register for being pulled off the table, register for item deletion while attached to table
-		SPAWN_DBG(0)
-			RegisterSignal(I, list(COMSIG_ITEM_PICKUP, COMSIG_MOVABLE_MOVED, COMSIG_PARENT_PRE_DISPOSING), .proc/detach)
-
-	proc/detach(obj/item/I as obj) //remove from the attached items list and deregister signals
-		src.attached_objs.Remove(I)
-		UnregisterSignal(I, list(COMSIG_ITEM_PICKUP, COMSIG_MOVABLE_MOVED, COMSIG_PARENT_PRE_DISPOSING))
-
-	attack_hand(mob/user as mob)
-		if (!anchored)
-			boutput(user, "You apply \the [name]'s brake.")
-		else
-			boutput(user, "You release \the [name]'s brake.")
-		anchored = !anchored
+//Moved to table.dm in the process of merging these into tables
 
 /* ---------- Surgery Tray Parts ---------- */
 /obj/item/furniture_parts/surgery_tray
@@ -1641,7 +1528,7 @@ keeping this here because I want to make something else with it eventually
 	force = 3
 	stamina_damage = 7
 	stamina_cost = 7
-	furniture_type = /obj/surgery_tray
+	furniture_type = /obj/table/surgery_tray
 	furniture_name = "tray"
 	build_duration = 30
 

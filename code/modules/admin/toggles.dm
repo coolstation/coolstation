@@ -50,32 +50,33 @@ var/list/server_toggles_tab_verbs = list(\
 /client/proc/toggle_jobban_announcements,\
 /client/proc/toggle_banlogin_announcements,\
 /client/proc/toggle_literal_disarm,\
-/datum/admins/proc/toggleooc,\
-/datum/admins/proc/togglelooc,\
-/datum/admins/proc/toggleoocdead,\
-/datum/admins/proc/toggletraitorscaling,\
+/datum/admins/proc/toggle_ooc,\
+/datum/admins/proc/toggle_looc,\
+/datum/admins/proc/toggle_ooc_dead,\
+/datum/admins/proc/toggle_traitor_scaling,\
 /datum/admins/proc/pcap,\
-/datum/admins/proc/toggleenter,\
-/datum/admins/proc/toggleAI,\
+/datum/admins/proc/toggle_enter,\
+/datum/admins/proc/toggle_AI,\
 /datum/admins/proc/toggle_soundpref_override,\
 /datum/admins/proc/toggle_respawns,\
 /datum/admins/proc/adsound,\
 /datum/admins/proc/adspawn,\
 /datum/admins/proc/adrev,\
-/datum/admins/proc/toggledeadchat,\
-/datum/admins/proc/togglefarting,\
+/datum/admins/proc/toggle_deadchat,\
+/datum/admins/proc/toggle_farting,\
+/datum/admins/proc/toggle_ferting,\
 /datum/admins/proc/toggle_blood_system,\
 /datum/admins/proc/toggle_bone_system,\
-/datum/admins/proc/togglesuicide,\
-/datum/admins/proc/togglethetoggles,\
-/datum/admins/proc/toggleautoending,\
-/datum/admins/proc/toggleaprilfools,\
-/datum/admins/proc/togglespeechpopups,\
-/datum/admins/proc/togglemonkeyspeakhuman,\
-/datum/admins/proc/togglelatetraitors,\
-/datum/admins/proc/togglesoundwaiting,\
+/datum/admins/proc/toggle_suicide,\
+/datum/admins/proc/toggle_toggles,\
+/datum/admins/proc/toggle_autoending,\
+/datum/admins/proc/toggle_april_fools,\
+/datum/admins/proc/toggle_speech_popups,\
+/datum/admins/proc/toggle_monkey_speak_human,\
+/datum/admins/proc/toggle_late_traitors,\
+/datum/admins/proc/toggle_sound_waiting,\
 /datum/admins/proc/adjump,\
-/datum/admins/proc/togglesimsmode,\
+/datum/admins/proc/toggle_sims_mode,\
 /datum/admins/proc/toggle_pull_slowing,\
 /client/proc/admin_toggle_nightmode,\
 /client/proc/toggle_camera_network_reciprocity,\
@@ -468,7 +469,7 @@ var/global/IP_alerts = 1
 	logTheThing("diary", usr, null, "toggled literal disarming to [literal_disarm].", "admin")
 	message_admins("[key_name(usr)] toggled literal disarming [literal_disarm ? "on" : "off"].")
 
-/datum/admins/proc/toggleooc()
+/datum/admins/proc/toggle_ooc()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc="Toggle dis bitch"
 	set name="Toggle OOC"
@@ -479,7 +480,7 @@ var/global/IP_alerts = 1
 	logTheThing("diary", usr, null, "toggled OOC.", "admin")
 	message_admins("[key_name(usr)] toggled OOC.")
 
-/datum/admins/proc/togglelooc()
+/datum/admins/proc/toggle_looc()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc="Toggle dis bitch"
 	set name="Toggle LOOC"
@@ -490,7 +491,7 @@ var/global/IP_alerts = 1
 	logTheThing("diary", usr, null, "toggled LOOC.", "admin")
 	message_admins("[key_name(usr)] toggled LOOC.")
 
-/datum/admins/proc/toggleoocdead()
+/datum/admins/proc/toggle_ooc_dead()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc="Toggle dis bitch"
 	set name="Toggle Dead OOC"
@@ -500,7 +501,7 @@ var/global/IP_alerts = 1
 	logTheThing("diary", usr, null, "toggled OOC.", "admin")
 	message_admins("[key_name(usr)] toggled Dead OOC.")
 
-/datum/admins/proc/toggletraitorscaling()
+/datum/admins/proc/toggle_traitor_scaling()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc="Toggle traitor scaling"
 	set name="Toggle Traitor Scaling"
@@ -523,7 +524,7 @@ var/global/IP_alerts = 1
 	logTheThing("diary", usr, null, "toggled player cap to [player_cap].", "admin")
 	message_admins("[key_name(usr)] toggled the global player cap [player_cap ? "on" : "off"]")
 
-/datum/admins/proc/toggleenter()
+/datum/admins/proc/toggle_enter()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc="People can't enter"
 	set name="Toggle Entering"
@@ -538,7 +539,7 @@ var/global/IP_alerts = 1
 	message_admins("<span class='internal'>[key_name(usr)] toggled new player game entering.</span>")
 	world.update_status()
 
-/datum/admins/proc/toggleAI()
+/datum/admins/proc/toggle_AI()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc="People can't be AI"
 	set name="Toggle AI"
@@ -625,7 +626,7 @@ var/global/IP_alerts = 1
 	config.allow_admin_rev = !(config.allow_admin_rev)
 	message_admins("<span class='internal'>Toggled reviving to [config.allow_admin_rev].</span>")
 
-/datum/admins/proc/toggledeadchat()
+/datum/admins/proc/toggle_deadchat()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc = "Toggle Deadchat on or off."
 	set name = "Toggle Deadchat"
@@ -639,7 +640,7 @@ var/global/IP_alerts = 1
 	logTheThing("diary", usr, null, "toggled Deadchat [deadchat_allowed ? "on" : "off"].", "admin")
 	message_admins("[key_name(usr)] toggled Deadchat [deadchat_allowed ? "on" : "off"]")
 
-/datum/admins/proc/togglefarting()
+/datum/admins/proc/toggle_farting()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc = "Toggle Farting on or off."
 	set name = "Toggle Farting"
@@ -653,7 +654,21 @@ var/global/IP_alerts = 1
 	logTheThing("diary", usr, null, "toggled Farting [farting_allowed ? "on" : "off"].", "admin")
 	message_admins("[key_name(usr)] toggled Farting [farting_allowed ? "on" : "off"]")
 
-/datum/admins/proc/toggleemoterandom()
+/datum/admins/proc/toggle_ferting()
+	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
+	set desc = "Toggle Cascading Ferret Excitement on or off."
+	set name = "Toggle Ferting"
+	NOT_IF_TOGGLES_ARE_OFF
+	resonance_fertscade = !( resonance_fertscade )
+	if (resonance_fertscade)
+		boutput(world, "<B>Ferret Frenzy has been enabled.</B>")
+	else
+		boutput(world, "<B>Ferret Frenzy has been disabled.</B>")
+	logTheThing("admin", usr, null, "toggled Ferret Frenzy [resonance_fertscade ? "on" : "off"].")
+	logTheThing("diary", usr, null, "toggled Ferret Frenzy [resonance_fertscade ? "on" : "off"].", "admin")
+	message_admins("[key_name(usr)] toggled Ferret Frenzy [resonance_fertscade ? "on" : "off"]")
+
+/datum/admins/proc/toggle_emote_random_pitch()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc = "Toggle slight randomization of emote sounds on or off."
 	set name = "Toggle Randomish Emote Sounds"
@@ -699,7 +714,7 @@ var/global/IP_alerts = 1
 	logTheThing("diary", usr, null, "toggled the bone system [bone_system ? "on" : "off"].", "admin")
 	message_admins("[key_name(usr)] toggled the bone system [bone_system ? "on" : "off"]")
 
-/datum/admins/proc/togglesuicide()
+/datum/admins/proc/toggle_suicide()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc = "Allow/Disallow people to commit suicide."
 	set name = "Toggle Suicide"
@@ -709,7 +724,7 @@ var/global/IP_alerts = 1
 	logTheThing("diary", usr, null, "toggled Suicides [suicide_allowed ? "on" : "off"].", "admin")
 	message_admins("[key_name(usr)] toggled Suicides [suicide_allowed ? "on" : "off"]")
 
-/datum/admins/proc/togglethetoggles()
+/datum/admins/proc/toggle_toggles()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc = "Toggle All Toggles"
 	set name = "Toggle All Toggles"
@@ -735,10 +750,10 @@ var/global/IP_alerts = 1
 	sound_waiting = !( sound_waiting )
 	message_admins("[key_name(usr)] toggled OOC [ooc_allowed ? "on" : "off"], Dead OOC  [dooc_allowed ? "on" : "off"], Global Player Cap  [player_capa ? "on" : "off"], Entering [enter_allowed ? "on" : "off"],Playing as the AI [config.allow_ai ? "on" : "off"], Sound Preference override [soundpref_override ? "on" : "off"], Abandoning [abandon_allowed ? "on" : "off"], Admin Jumping [config.allow_admin_jump ? "on" : "off"], Admin sound playing [config.allow_admin_sounds ? "on" : "off"], Admin Spawning [config.allow_admin_spawning ? "on" : "off"], Admin Reviving [config.allow_admin_rev ? "on" : "off"], Deadchat [deadchat_allowed ? "on" : "off"], Farting [farting_allowed ? "on" : "off"], Blood system [blood_system ? "on" : "off"], Suicide [suicide_allowed ? "on" : "off"], Monkey/Human communication [monkeysspeakhuman ? "on" : "off"], Late Traitors [late_traitors ? "on" : "off"], and Sound Queuing [sound_waiting ? "on" : "off"]   ")
 
-/client/proc/togglepersonaldeadchat()
-	SET_ADMIN_CAT(ADMIN_CAT_SELF)
-	set desc = "Toggle whether you can see deadchat or not"
+/client/proc/toggle_personal_deadchat()
 	set name = "Toggle Your Deadchat"
+	set desc = "Toggle whether you can see deadchat or not"
+	SET_ADMIN_CAT(ADMIN_CAT_SELF)
 	NOT_IF_TOGGLES_ARE_OFF
 	if(deadchatoff == 0)
 		deadchatoff = 1
@@ -747,7 +762,7 @@ var/global/IP_alerts = 1
 		deadchatoff = 0
 		boutput(usr, "<span class='notice'>Now viewing deadchat.</span>")
 
-/datum/admins/proc/toggleaprilfools()
+/datum/admins/proc/toggle_april_fools()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc = "Toggle manual breathing and/or blinking."
 	set name = "Toggle Manual Breathing/Blinking"
@@ -775,7 +790,7 @@ var/global/IP_alerts = 1
 	logTheThing("diary", usr, null, "turned manual breathing [manualbreathing ? "on" : "off"] and manual blinking [manualblinking ? "on" : "off"].", "admin")
 	message_admins("[key_name(usr)] turned manual breathing [manualbreathing ? "on" : "off"] and manual blinking [manualblinking ? "on" : "off"].")
 
-/datum/admins/proc/togglespeechpopups()
+/datum/admins/proc/toggle_speech_popups()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc = "Makes mob chat show up in-game as floating text."
 	set name = "Toggle Global Flying Chat"
@@ -785,7 +800,7 @@ var/global/IP_alerts = 1
 	logTheThing("diary", usr, null, "toggled speech popups [speechpopups ? "on" : "off"].", "admin")
 	message_admins("[key_name(usr)] toggled speech popups [speechpopups ? "on" : "off"]")
 
-/datum/admins/proc/togglemonkeyspeakhuman()
+/datum/admins/proc/toggle_monkey_speak_human()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc = "Toggle monkeys being able to speak human."
 	set name = "Toggle Monkeys Speaking Human"
@@ -799,7 +814,7 @@ var/global/IP_alerts = 1
 	logTheThing("diary", usr, null, "toggled Monkey/Human communication [monkeysspeakhuman ? "on" : "off"].", "admin")
 	message_admins("[key_name(usr)] toggled Monkey/Human communication [monkeysspeakhuman ? "on" : "off"]")
 
-/datum/admins/proc/toggleautoending()
+/datum/admins/proc/toggle_autoending()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc = "Toggle the round automatically ending in invasive round types."
 	set name = "Toggle Automatic Round End"
@@ -809,7 +824,7 @@ var/global/IP_alerts = 1
 	logTheThing("diary", usr, null, "toggled Automatic Round End [no_automatic_ending ? "off" : "on"].", "admin")
 	message_admins("[key_name(usr)] toggled Automatic Round End [no_automatic_ending ? "off" : "on"]")
 
-/datum/admins/proc/togglelatetraitors()
+/datum/admins/proc/toggle_late_traitors()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc = "Toggle late joiners spawning as antagonists if all starting antagonists are dead."
 	set name = "Toggle Late Antagonists"
@@ -819,7 +834,7 @@ var/global/IP_alerts = 1
 	logTheThing("diary", usr, null, "toggled late antagonists [late_traitors ? "on" : "off"].", "admin")
 	message_admins("[key_name(usr)] toggled late antagonists [late_traitors ? "on" : "off"]")
 
-/datum/admins/proc/togglesoundwaiting()
+/datum/admins/proc/toggle_sound_waiting()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc = "Toggle admin-played sounds waiting for previous sounds to finish before playing."
 	set name = "Toggle Admin Sound Queue"
@@ -837,7 +852,7 @@ var/global/IP_alerts = 1
 	config.allow_admin_jump = !(config.allow_admin_jump)
 	message_admins("<span class='internal'>Toggled admin jumping to [config.allow_admin_jump].</span>")
 
-/datum/admins/proc/togglesimsmode()
+/datum/admins/proc/toggle_sims_mode()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc="Enable sims mode for this round."
 	set name = "Toggle Sims Mode"
@@ -872,7 +887,7 @@ var/global/IP_alerts = 1
 
 //Dont need this any more? Player controlled now
 /*
-/client/proc/togglewidescreen()
+/client/proc/toggle_widescreen()
 	set name = "Toggle Widescreen Station"
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc = "SS13, future edition. Toggle widescreen for all clients."
@@ -942,7 +957,7 @@ var/global/IP_alerts = 1
 	logTheThing("diary", usr, null, "toggled map voting [mapSwitcher.votingAllowed ? "on" : "off"].", "admin")
 	message_admins("[key_name(usr)] toggled map voting [mapSwitcher.votingAllowed ? "on" : "off"]")
 
-/client/proc/waddle_walking()
+/client/proc/toggle_waddle_walking()
 	set name = "Toggle Waddle Walking"
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set desc = "Toggle waddle walking on or off."

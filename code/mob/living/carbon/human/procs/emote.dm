@@ -46,7 +46,7 @@
 			if(length(mutantrace_emote_stuff) >= 2)
 				maptext_out = mutantrace_emote_stuff[2]
 	if (!message)
-		//Much of this ideally gets turned into a
+		//Much of this ideally gets turned into a separate proc
 		var/what_to_do = human_emotes.Find(lowertext(act))
 		var/list/what_have_we_done = null
 		if (what_to_do)
@@ -58,82 +58,13 @@
 		if (islist(what_have_we_done))
 			message = what_have_we_done[1]
 			maptext_out = what_have_we_done[2]
-			m_type = what_have_we_done[3]
+			m_type = what_have_we_done[3] //visible or audible emote
+			if (length(what_have_we_done) > 3) //(I'm not changing the returns on ~130 emotes that don't even fucking use it)
+				custom = what_have_we_done[4] //emote grouping 4 custom emotes
 		else
 			src.show_text("Unusable emote '[act]'. 'Me help' for a list.", "blue")
 			return
-		// These still need datumising/looking at but to my count I datumised 129 emotes already (not counting doubles or the bullshit that the middle finger ones are up to)
-		// you can sort these out probably
-		/*
-			if ("custom")
-				if (src.client)
-					if (IS_TWITCH_CONTROLLED(src)) return
-					var/input = sanitize(html_encode(input("Choose an emote to display.")))
-					var/input2 = input("Is this a visible or audible emote?") in list("Visible","Audible")
-					if (input2 == "Visible") m_type = 1
-					else if (input2 == "Audible") m_type = 2
-					else
-						alert("Unable to use this emote, must be either audible or visible.")
-						return
-					phrase_log.log_phrase("emote", input)
-					message = "<B>[src]</B> [input]"
-					maptext_out = "<I>[input]</I>"
-					custom = copytext(input, 1, 10)
 
-			if ("customv")
-				if (IS_TWITCH_CONTROLLED(src)) return
-				if (!param)
-					param = input("Choose an emote to display.")
-					if(!param) return
-
-				param = sanitize(html_encode(param))
-				phrase_log.log_phrase("emote", param)
-				message = "<b>[src]</b> [param]"
-				maptext_out = "<I>[param]</I>"
-				m_type = 1
-				custom = copytext(param, 1, 10)
-
-			if ("customh")
-				if (IS_TWITCH_CONTROLLED(src)) return
-				if (!param)
-					param = input("Choose an emote to display.")
-					if(!param) return
-				param = sanitize(html_encode(param))
-				phrase_log.log_phrase("emote", param)
-				message = "<b>[src]</b> [param]"
-				maptext_out = "<I>[param]</I>"
-				m_type = 2
-				custom = copytext(param, 1, 10)
-
-			if ("me")
-				if (IS_TWITCH_CONTROLLED(src)) return
-				if (!param)
-					return
-				param = sanitize(html_encode(param))
-				phrase_log.log_phrase("emote", param)
-				message = "<b>[src]</b> [param]"
-				maptext_out = "<I>[param]</I>"
-				m_type = 1 // default to visible
-				custom = copytext(param, 1, 10)
-
-			if ("help")
-				src.show_text("To use emotes, simply enter 'me (emote)' in the input bar. Certain emotes can be targeted at other characters - to do this, enter 'me (emote) (name of character)' without the brackets.")
-				src.show_text("For a list of all emotes, use 'me list'. For a list of basic emotes, use 'me listbasic'. For a list of emotes that can be targeted, use 'me listtarget'.")
-
-			if ("listbasic")
-				src.show_text("smile, grin, smirk, frown, scowl, grimace, sulk, pout, nod, blink, drool, shrug, tremble, quiver, shiver, shudder, shake, \
-				think, ponder, clap, wave, salute, flap, aflap, laugh, chuckle, giggle, chortle, guffaw, cough, hiccup, sigh, mumble, grumble, groan, moan, sneeze, \
-				sniff, snore, whimper, yawn, choke, gasp, weep, sob, wail, whine, gurgle, gargle, blush, flinch, blink_r, eyebrow, shakehead, shakebutt, \
-				pale, flipout, rage, shame, raisehand, crackknuckles, stretch, rude, cry, retch, raspberry, tantrum, gesticulate, wgesticulate, smug, \
-				nosepick, flex, facepalm, panic, snap, airquote, twitch, twitch_v, faint, deathgasp, signal, wink, collapse, trip, dance, scream, \
-				burp, fart, monologue, contemplate, custom")
-
-			if ("listtarget")
-				src.show_text("salute, bow, hug, wave, glare, stare, look, leer, nod, flipoff, doubleflip, shakefist, handshake, daps, slap, boggle, highfive, fingerguns")
-
-			if ("suicide")
-				src.show_text("Suicide is a command, not an emote.  Please type 'suicide' in the input bar at the bottom of the game window to kill yourself.", "red")
-	*/
 	//copy paste lol
 
 	if (maptext_out && !ON_COOLDOWN(src, "emote maptext", 0.5 SECONDS))
@@ -187,8 +118,8 @@
 
 /mob/living/carbon/human/proc/expel_fart_gas(var/oxyplasmafart)
 	var/turf/T = get_turf(src)
-	var/datum/gas_mixture/gas = unpool(/datum/gas_mixture)
-	gas.vacuum()
+	var/datum/gas_mixture/gas = new()
+	//gas.vacuum()
 	if(oxyplasmafart == 1)
 		gas.toxins += 1
 	if(oxyplasmafart == 2)
@@ -277,7 +208,7 @@
 	G.affecting.lastattackertime = world.time
 	if (iswrestler(src))
 		if (prob(50))
-			G.affecting.ex_act(3) // this is hilariously overpowered, but WHATEVER!!!
+			G.affecting.ex_act(OLD_EX_LIGHT) // this is hilariously overpowered, but WHATEVER!!!
 		else
 			G.affecting.changeStatus("weakened", 5 SECONDS)
 			G.affecting.force_laydown_standup()

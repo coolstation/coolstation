@@ -117,11 +117,11 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				SPAWN_DBG(0)
 					src.take_damage(400)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				SPAWN_DBG(0)
 					src.take_damage(150)
 				return
@@ -184,7 +184,7 @@
 			boutput(usr, "<span class='alert'>You are too far away from the target!</span>")
 			return
 
-		else if (istype(over_object,/turf/simulated/floor/))
+		else if (istype(over_object,/turf/floor/))
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set the dispenser to output to [over_object]!</span>")
 

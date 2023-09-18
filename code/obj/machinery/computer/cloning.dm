@@ -128,7 +128,7 @@
 		cash.amount = 0
 		user.show_text("<span class='notice'>You add [cash] to the credit in [src].</span>")
 		user.u_equip(W)
-		pool(W)
+		qdel(W)
 	else if (istype(W, /obj/item/disk/data/floppy))
 		if (!src.diskette)
 			user.drop_item()
@@ -203,9 +203,9 @@
 	if (!subject.bioHolder || subject.bioHolder.HasEffect("husk"))
 		show_message("Error: Extreme genetic degredation present.", "danger")
 		return
-	if (istype(subject.mutantrace, /datum/mutantrace/kudzu))
+/*	if (istype(subject.mutantrace, /datum/mutantrace/kudzu))
 		show_message("Error: Incompatible cellular structure.", "danger")
-		return
+		return*/
 	if (istype(subject.mutantrace, /datum/mutantrace/zombie))
 		show_message("Error: Incompatible cellular structure.", "danger")
 		return
@@ -333,7 +333,7 @@
 	// at this point selected = the dude we wanna revive.
 
 	if (wagesystem.clones_for_cash)
-		var/datum/data/record/Ba = FindBankAccountByName(C.fields["name"])
+		var/datum/data/record/Ba = FindBankAccountById(C.fields["id"])
 		var/account_credit = 0
 
 		if (Ba?.fields["current_money"])
@@ -802,13 +802,13 @@ proc/find_ghost_by_key(var/find_key)
 		"geneticAnalysis" = src.gen_analysis,
 		"podNames" = list(),
 		"meatLevels" = list(),
-		"cloneSlave" = list(),
+		"cloneRecruit" = list(),
 		"completion" = list(),
 	)
 	for (var/obj/machinery/clonepod/P in src.linked_pods)
 		.["podNames"] += P.name
 		.["meatLevels"] += P.meat_level
-		.["cloneSlave"] += P.cloneslave
+		.["cloneRecruit"] += P.clonerecruit
 		.["completion"] += P.get_progress()
 	if(!isnull(src.scanner))
 		. += list(

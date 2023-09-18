@@ -306,7 +306,7 @@
 		playsound(src.loc, "sound/effects/spray.ogg", 30, 1, -3)
 
 	for(var/a in 0 to 5)
-		var/obj/effects/water/W = unpool(/obj/effects/water)
+		var/obj/effects/water/W = new()
 		if(!W) return
 		W.set_loc( get_turf(src) )
 		var/turf/my_target = pick(the_targets)
@@ -336,10 +336,10 @@
 
 /obj/machinery/bot/firebot/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			src.explode()
 			return
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			src.health -= 15
 			if (src.health <= 0)
 				src.explode()

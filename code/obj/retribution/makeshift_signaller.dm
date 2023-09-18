@@ -120,6 +120,10 @@ var/sword_summoned_before = false
 		return
 
 	attackby(obj/item/W as obj, mob/user as mob)
+		//NT faction rep deprecated
+		//Now this thing is SWORD related and so commenting this out is collateral damage but the makeshift signaller has never seen use
+		//'cause nobody liked the idea of someone farming fish drones in the trench so they could summon a round-ending threat. Therefore: tough shit
+		/*
 		if (istype(W,/obj/item/factionrep/ntboard) && !is_exploding)	//If a Syndicate Circuit Board is used on this item, turn the former into it's fried version and fill a metadata node.
 			if (metadata < 8)
 				qdel(W)
@@ -135,6 +139,7 @@ var/sword_summoned_before = false
 				user.show_message("<span class='notice'>All 8 metadata nodes have been filled already!</span>", 1)
 			return
 		return
+		*/
 
 	emag_act(mob/user, obj/item/card/emag/E)
 		. = ..()

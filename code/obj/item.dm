@@ -149,8 +149,10 @@
 			. += "<div><img src='[resource("images/tooltips/rare.gif")]' alt='' class='icon' /><span>Rare item</span></div>"
 		//combat stats
 		. += "<div><img src='[resource("images/tooltips/attack.png")]' alt='' class='icon' /><span>Damage: [src.force ? src.force : "0"] dmg[src.force ? "("+DAMAGE_TYPE_TO_STRING(src.hit_type)+")" : ""], [round((1 / (max(src.click_delay,src.combat_click_delay) / 10)), 0.1)] atk/s, [src.throwforce ? src.throwforce : "0"] thrown dmg</span></div>"
-		if (src.stamina_cost || src.stamina_damage)
-			. += "<div><img src='[resource("images/tooltips/stamina.png")]' alt='' class='icon' /><span>Stamina: [src.stamina_damage ? src.stamina_damage : "0"] dmg, [stamina_cost] consumed per swing</span></div>"
+		//if (src.stamina_cost || src.stamina_damage)
+		//	. += "<div><img src='[resource("images/tooltips/stamina.png")]' alt='' class='icon' /><span>Stamina: [src.stamina_damage ? src.stamina_damage : "0"] dmg, [stamina_cost] consumed per swing</span></div>"
+		if(src.rng_stun_rate)
+			. += "<div><img src='[resource("images/tooltips/stun.png")]' alt='' class='icon' /><span>Stun rate: [src.rng_stun_rate] %</span></div>"
 
 		//standard object properties
 		if(src.properties && length(src.properties))
@@ -299,7 +301,7 @@
 			// this is a gross hack to make things not just show "1" by default
 			src.inventory_counter.update_number(src.amount)
 	..()
-
+/*
 /obj/item/unpooled()
 	..()
 	src.amount = initial(src.amount)
@@ -336,11 +338,11 @@
 
 	if (src.inventory_counter)
 		src.vis_contents -= src.inventory_counter
-		pool(src.inventory_counter)
+		qdel(src.inventory_counter)
 		src.inventory_counter = null
 
 	..()
-
+*/
 /obj/item/set_loc(var/newloc as turf|mob|obj in world)
 	if (src.temp_flags & IS_LIMB_ITEM)
 		if (istype(newloc,/obj/item/parts/human_parts/arm/left/item) || istype(newloc,/obj/item/parts/human_parts/arm/right/item))
@@ -578,7 +580,7 @@
 		if(ismob(src.loc))
 			var/mob/holding_mob = src.loc
 			holding_mob.u_equip(src)
-		pool(src)
+		qdel(src)
 	return 1
 
 /obj/item/proc/stack_item(obj/item/other)
@@ -634,7 +636,7 @@
 	var/obj/item/P = new src.type(src.loc)
 
 	if(src.material)
-		P.setMaterial(copyMaterial(src.material))
+		P.setMaterial(src.material)
 
 	src.change_stack_amount(-toRemove)
 	P.change_stack_amount(toRemove - P.amount)
@@ -695,7 +697,7 @@
 
 		if (isturf(over_object))
 			if (on_turf && in_interact_range(over_object,src) && !src.anchored) //drag from floor to floor == slide
-				if (istype(over_object,/turf/simulated/floor) || istype(over_object,/turf/unsimulated/floor))
+				if (istype(over_object,/turf/floor) || istype(over_object,/turf/floor))
 					step_to(src,over_object)
 					//this would be cool ha ha h
 					//if (islist(params) && params["icon-y"] && params["icon-x"])
@@ -897,7 +899,7 @@
 			src.combust_ended()
 
 			if (src.burn_possible == 2)
-				pool(src)
+				qdel(src)
 			else
 				src.overlays.len = 0
 				qdel(src)
@@ -995,9 +997,9 @@
 /obj/item/dummy/blob_act(var/power)
 	return
 
-/obj/item/ex_act(severity)
+/obj/item/ex_act(severity, last_touched, epicenter)
 	switch(severity)
-		if (2.0)
+		if (OLD_EX_SEVERITY_2)
 			if (src.material)
 				src.material.triggerTemp(src ,7500)
 			if (src.burn_possible && !src.burning && src.burn_point <= 7500)
@@ -1006,7 +1008,7 @@
 				if (!src.ArtifactSanityCheck()) return
 				src.ArtifactStimulus("force", 75)
 				src.ArtifactStimulus("heat", 450)
-		if (3.0)
+		if (OLD_EX_SEVERITY_3)
 			if (src.material)
 				src.material.triggerTemp(src, 3500)
 			if (src.burn_possible && !src.burning && src.burn_point <= 3500)
@@ -1016,7 +1018,10 @@
 				src.ArtifactStimulus("force", 25)
 				src.ArtifactStimulus("heat", 380)
 		else
-	return ..()
+	..() //health changes
+	if (!src.disposed)
+		if (epicenter && severity > 2)
+			src.throw_at(get_edge_cheap(get_turf(src), get_dir(epicenter, get_turf(src))),  round((6 - w_class) * severity), round((severity/w_class)*2))
 
 /obj/item/blob_act(var/power)
 	if (src.artifact)
@@ -1179,7 +1184,7 @@
 		return
 
 	if (user.mind && user.mind.special_role == ROLE_VAMPTHRALL && isvampire(M) && user.is_mentally_dominated_by(M))
-		boutput(user, "<span class='alert'>You cannot harm your master!</span>") //This message was previously sent to the attacking item. YEP.
+		boutput(user, "<span class='alert'>You cannot harm this person!</span>") //This message was previously sent to the attacking item. YEP.
 		return
 
 	if(user.traitHolder && !user.traitHolder.hasTrait("glasscannon"))
@@ -1252,7 +1257,7 @@
 		//msgs.visible_message_target("<span class='alert'><B><I>... and lands a devastating hit!</B></I></span>")
 
 #else
-	// rng simple stuns for now - warc
+	// rng simple stuns for now - warc . keywords: rng stuns
 	if (rng_stun_rate && prob(rng_stun_rate))
 		M.do_disorient(weakened = rng_stun_weak, stunned = rng_stun_time, disorient = rng_stun_diso)
 		msgs.stamina_crit = 1
@@ -1432,9 +1437,9 @@
 		if (O == (attacher || attachee))
 			continue
 		if (attacher == attachee)
-			O.show_message("<span class='alert'>[attacher] attaches [src] to \his own stump!</span>", 1)
+			O.show_message("<span class='alert'>[attacher] attaches [src] to [his_or_her(attachee)] own stump!</span>", 1)
 		else
-			O.show_message("<span class='alert'>[attachee] has [src] attached to \his stump by [attacher].</span>", 1)
+			O.show_message("<span class='alert'>[attachee] has [src] attached to [his_or_her(attachee)] stump by [attacher].</span>", 1)
 
 	if (attachee != attacher)
 		boutput(attachee, "<span class='alert'>[attacher] attaches [src] to your stump. It doesn't look very secure!</span>")
@@ -1462,7 +1467,7 @@
 	disposing_abilities()
 	setItemSpecial(null)
 	if (src.inventory_counter)
-		pool(src.inventory_counter)
+		qdel(src.inventory_counter)
 		src.inventory_counter = null
 
 	if(istype(src.loc, /obj/item/storage))
@@ -1541,7 +1546,7 @@
 
 /obj/item/proc/create_inventory_counter()
 	if (!src.inventory_counter)
-		src.inventory_counter = unpool(/obj/overlay/inventory_counter)
+		src.inventory_counter = new /obj/overlay/inventory_counter()
 		src.vis_contents += src.inventory_counter
 
 /obj/item/proc/dropped(mob/user)

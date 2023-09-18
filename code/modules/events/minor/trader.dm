@@ -5,7 +5,7 @@
 	//centcom_message = "A merchant shuttle has docked with the station."
 	var/active = 0
 	var/map_turf = /turf/space //Set in event_effect() by map settings
-	var/centcom_turf = /turf/unsimulated/outdoors/grass //Not currently modified
+	var/centcom_turf = /turf/outdoors/grass //Set in event_effect()
 
 	event_effect()
 		..()
@@ -13,6 +13,8 @@
 			return //This is to prevent admins from fucking up the shuttle arrival/departures by spamming this event.
 		active = 1
 		map_turf = map_settings.shuttle_map_turf
+		if(!channel_open)// go to NTFC
+			centcom_turf = /turf/space
 #ifdef UNDERWATER_MAP // bodge fix for oshan
 		var/shuttle = pick("left","right");
 #else
@@ -41,7 +43,7 @@
 
 		for(var/atom/A as obj|mob in end_location)
 			SPAWN_DBG(0)
-				A.ex_act(1)
+				A.ex_act(OLD_EX_TOTAL)
 
 		for(var/turf/T in end_location)
 			dstturfs += T
@@ -56,9 +58,14 @@
 			for(var/atom/movable/AM as mob|obj in T)
 				if(isobserver(AM))
 					continue
+				if(istype(AM, /obj/overlay))
+					continue
 				AM.Move(D)
-			if(istype(T, /turf/simulated))
-				qdel(T)
+		/*	if(istype(T, /turf/simulated))
+				qdel(T)*/ // wait why the fuck???
+				// DELETING A TURF DESTROYDS ITS LIGHTING OVERLAY PERMANENTLY
+				// DO NOT EVER EVER EVER QDEL A TURF
+				// NOT EVEN IF THERE'S A FIRE
 
 		for (var/turf/P in start_location)
 			if (istype(P, centcom_turf))

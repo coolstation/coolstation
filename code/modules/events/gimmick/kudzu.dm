@@ -126,11 +126,11 @@
 		return "[..()] It looks [flavor]."
 
 	CanPass(atom/A, turf/T)
-		//kudzumen can pass through dense kudzu
+		//maybe come back to this and reuse this exception for another type of mob. maybe botanists????
 		if (current_stage == 3)
-			if (ishuman(A) &&  istype(A:mutantrace, /datum/mutantrace/kudzu))
+/*			if (ishuman(A) &&  istype(A:mutantrace, /datum/mutantrace/kudzu))
 				animate_door_squeeze(A)
-				return 1
+				return 1*/
 			return 0
 		return 1
 
@@ -184,8 +184,8 @@
 			dmg = 3
 		else if (W.hit_type == DAMAGE_STAB)
 			dmg = 2
-		else if (W.hit_type == DAMAGE_BLUNT && istype(W, /obj/item/kudzu/kudzumen_vine))
-			return
+/*		else if (W.hit_type == DAMAGE_BLUNT && istype(W, /obj/item/kudzu/kudzumen_vine))
+			return*/
 
 		dmg *= isnum(W.force) ? min((W.force / 2), 5) : 1
 		DEBUG_MESSAGE("[user] damaging [src] with [W] [log_loc(src)]: dmg is [dmg]")
@@ -236,11 +236,11 @@
 	else
 		Vspread = locate(src.x,src.y + rand(-1, 1),src.z)
 	var/dogrowth = 1
-	if (!istype(Vspread, /turf/simulated/floor))
+	if (!istype(Vspread, /turf/floor))
 		dogrowth = 0
 	for (var/obj/O in Vspread)
 
-		if (istype(O, /obj/window) || istype(O, /obj/forcefield) || istype(O, /obj/blob) || istype(O, /obj/spacevine) || istype(O, /obj/kudzu_marker))
+		if (istype(O, /obj/window) || istype(O, /obj/forcefield) || istype(O, /obj/blob) || istype(O, /obj/spacevine) /*|| istype(O, /obj/kudzu_marker)*/)
 			dogrowth = 0
 			return
 
@@ -302,14 +302,14 @@
 
 /obj/spacevine/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			qdel(src)
 			return
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			if (prob(66))
 				qdel(src)
 				return
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if (prob(33))
 				qdel(src)
 				return
@@ -407,7 +407,7 @@
 					var/mob/living/carbon/human/H = M
 					flick("bulb-open-animation", src)
 					new/obj/decal/opened_kudzu_bulb(get_turf(src.loc))
-
+					/* // warc - removing the kudzou boys, but keeping the rot pod
 					H.full_heal()
 					if (!H.ckey && H.last_client && !H.last_client.mob.mind.dnr)
 						if ((!istype(H.last_client.mob,/mob/living) && !istype(H.last_client.mob,/mob/wraith)) || inafterlifebar(H.last_client.mob))
@@ -418,9 +418,11 @@
 					else if (H.abilityHolder)
 						H.abilityHolder.dispose()
 						H.abilityHolder = null
-					H.set_mutantrace(/datum/mutantrace/kudzu)
+					H.set_mutantrace(/datum/mutantrace/kudzu)*/
+
 					natural_opening = 1
-					SHOW_KUDZU_TIPS(H)
+					H.gib()
+					//SHOW_KUDZU_TIPS(H)
 					qdel(src)
 		else
 			qdel(src)
@@ -428,7 +430,7 @@
 	disposing()
 		destroyed = 1
 		if (natural_opening)
-			src.visible_message("<span class='alert'>[src] puffs and it opens wide revealing what's inside!</span>")
+			src.visible_message("<span class='notice'>[src] puffs and gently opens.</span>")
 		else
 			for (var/mob/M in contents)
 				M.take_toxin_damage(60)
@@ -452,6 +454,59 @@
 			qdel(src)
 		..()
 	//destroy if attacked by wirecutters or something
+
+//technically kudzu, non invasive
+/obj/kudzu_marker
+	name = "benign kudzu"
+	desc = "A flowering subspecies of the kudzu plant that, is a non-invasive plant on space stations."
+	// invisibility = 101
+	anchored = 1
+	density = 0
+	opacity = 0
+	icon = 'icons/misc/kudzu_plus.dmi'
+	icon_state = "kudzu-benign-1"
+	var/health = 10
+
+	New(var/location as turf)
+		..()
+		icon_state = "kudzu-benign-[rand(1,3)]"
+		var/turf/T = get_turf(location)
+		T.temp_flags |= HAS_KUDZU
+
+	set_loc(var/newloc as turf|mob|obj in world)
+		//remove kudzu flag from current turf
+		var/turf/T1 = get_turf(loc)
+		if (T1)
+			T1.temp_flags &= ~HAS_KUDZU
+
+		..()
+		//Add kudzu flag to new turf.
+		var/turf/T2 = get_turf(newloc)
+		if (T2)
+			T2.temp_flags |= HAS_KUDZU
+
+
+	disposing()
+		var/turf/T = get_turf(src)
+		T.temp_flags &= ~HAS_KUDZU
+		..()
+
+	//mostly same as kudzu
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (!W) return
+		if (!user) return
+		var/dmg = 1
+		if (W.hit_type == DAMAGE_CUT || W.hit_type == DAMAGE_BURN)
+			dmg = 3
+		else if (W.hit_type == DAMAGE_STAB)
+			dmg = 2
+		dmg *= isnum(W.force) ? min((W.force / 2), 5) : 1
+		DEBUG_MESSAGE("[user] damaging [src] with [W] [log_loc(src)]: dmg is [dmg]")
+		src.health -= dmg
+		if (src.health < 1)
+			qdel (src)
+		user.lastattacked  = src
+		..()
 
 
 #undef KUDZU_TO_SPREAD_INITIAL

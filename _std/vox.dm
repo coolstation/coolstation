@@ -54,6 +54,7 @@
 	proc/play(var/client/listener)
 		if (src.soundFile)
 			listener << src.soundFile
+
 /datum/hlVOXsound
 	var/id
 	var/ogg
@@ -193,7 +194,7 @@ proc/vox_help(var/mob/user)
 
 	vox_reinit_check()
 
-	var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as text
+	var/input = input(usr, "Please enter the terms you want to VOX. Missing terms will proc another popup.", "What?", "") as text
 	if(!input)
 		return
 
@@ -215,7 +216,7 @@ proc/vox_help(var/mob/user)
 
 	vox_reinit_check()
 
-	var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as text
+	var/input = input(usr, "Please enter the terms you want to VOX. Frequency comes next.", "What?", "") as text
 	if(!input)
 		return
 
@@ -411,7 +412,7 @@ proc/hlvox_help(var/mob/user)
 
 	vox_reinit_check()
 
-	var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as text
+	var/input = input(usr, "Please enter the terms you want to VOX. Missing terms will proc another popup.", "What?", "") as text
 	if(!input)
 		return
 
@@ -433,7 +434,7 @@ proc/hlvox_help(var/mob/user)
 
 	hlvox_reinit_check()
 
-	var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as text
+	var/input = input(usr, "Please enter the terms you want to VOX. Frequency comes next.", "What?", "") as text
 	if(!input)
 		return
 
@@ -3529,6 +3530,13 @@ var/global/ //mirroring above for hl
 	list/hlvoxsounds_flag_sorted = list()
 
 	list/hlvoxsounds = list()
+
+	list/pmvoxnums = list()    //leading numbers
+	list/pmvoxmisc = list()    //random shit
+	list/pmvoxdollars = list() //trailing numbers
+	list/pmvoxthings = list()  //objects he cares to buy (few)
+	list/pmvoxcomplete = list()//full firm prices
+	list/pmvoxend = list()
 
 #undef FX
 #undef NOUN

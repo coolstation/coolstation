@@ -114,6 +114,15 @@
 	initialize()
 		set_frequency(frequency)
 
+/obj/item/device/radio/intercom/telescience
+	name = "Telescience Intercom"
+	frequency = R_FREQ_INTERCOM_TELESCIENCE
+	broadcasting = 1
+	device_color = "#C652CE"
+
+	initialize()
+		set_frequency(frequency)
+
 /obj/item/device/radio/intercom/engineering
 	name = "Engineering Intercom"
 	frequency = R_FREQ_INTERCOM_ENGINEERING

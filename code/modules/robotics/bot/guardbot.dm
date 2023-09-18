@@ -185,8 +185,8 @@
 
 	var/datum/radio_frequency/radio_connection
 	var/datum/radio_frequency/beacon_connection
-	var/control_freq = 1219		// bot control frequency
-	var/beacon_freq = 1445
+	var/control_freq = FREQ_ROBUDDY		// bot control frequency
+	var/beacon_freq = FREQ_BOT_NAV
 	var/net_id = null
 	var/last_comm = 0 //World time of last transmission
 	var/reply_wait = 0
@@ -1360,10 +1360,10 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.explode(0)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.health -= 15
 				if (src.health <= 0)
 					src.explode(0)
@@ -1888,7 +1888,7 @@
 
 			src.add_task(src.model_task.copy_file(),1)
 
-		if(src.task?.disposed || src.task.master != src)
+		if(src.task?.disposed || src.task?.master != src)
 			src.task = null
 		if(istype(src.task))
 			src.task.task_act()
@@ -1993,7 +1993,7 @@
 		if(!LT_loc)
 			LT_loc = get_turf(master)
 		//////PDA NOTIFY/////
-		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency(FREQ_PDA)
+		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 		var/datum/signal/pdaSignal = get_free_signal()
 		var/message2send
 		if (prob(5))
@@ -2273,7 +2273,7 @@
 				var/list/affected = DrawLine(last, target_r, /obj/line_obj/elec ,'icons/obj/projectiles.dmi',"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",OBJ_LAYER,1,PreloadedIcon='icons/effects/LghtLine.dmi')
 
 				for(var/obj/O in affected)
-					SPAWN_DBG(0.6 SECONDS) pool(O)
+					SPAWN_DBG(0.6 SECONDS) qdel(O)
 
 				if(isliving(target_r)) //Probably unsafe.
 					playsound(target_r:loc, "sound/effects/electric_shock.ogg", 50, 1)
@@ -2433,7 +2433,7 @@
 				master.remove_current_task()
 				return
 
-			if(istype(src.target, /turf/simulated))
+			if(issimulatedturf(src.target))
 				var/obj/machinery/guardbot_dock/dock = locate() in src.target
 				if(dock && dock.loc == master.loc)
 					if(!isnull(dock.current) && dock.current != src)
@@ -2474,7 +2474,7 @@
 				if(!L || !L["x"] || !L["y"]) return
 				var/search_x = text2num(L["x"])
 				var/search_y = text2num(L["y"])
-				var/turf/simulated/new_target = locate(search_x,search_y,master.z)
+				var/turf/new_target = locate(search_x,search_y,master.z)
 				if(!new_target)
 					return
 
@@ -2515,7 +2515,7 @@
 		name = "rumpus"
 		handle_beacons = 1
 		task_id = "RUMPUS"
-		var/tmp/turf/simulated/bar_beacon_turf	//Location of bar beacon
+		var/tmp/turf/bar_beacon_turf	//Location of bar beacon
 		var/tmp/obj/stool/our_seat = null
 		var/tmp/awaiting_beacon = 0
 		var/tmp/nav_delay = 0
@@ -2545,7 +2545,7 @@
 							src.master.remove_current_task()
 							return
 
-					if(istype(src.bar_beacon_turf, /turf/simulated))
+					if(issimulatedturf(src.bar_beacon_turf))
 						if (get_area(src.master) == get_area(bar_beacon_turf))
 							src.state = 2
 							master.moving = 0
@@ -2619,8 +2619,8 @@
 						src.master.set_emotion(rumpus_emotion)
 
 					if (party_idle_counter-- <= 0)
-						party_idle_counter = rand(4,14)
-						if (prob(50))
+						party_idle_counter = rand(6,16)
+						if (prob(20))
 							src.master.speak(pick("Yay!", "Woo-hoo!", "Yee-haw!", "Oh boy!", "Oh yeah!", "My favorite color is probably [pick("red","green","mauve","anti-flash white", "aureolin", "coquelicot")].", "I'm glad we have the opportunity to relax like this.", "Imagine if I had two arms. I could hug twice as much!", "I like [pick("tea","coffee","hot chocolate","soda", "diet soda", "milk", "almond milk", "soy milk", "horchata", "hot cocoa with honey mixed in", "green tea", "black tea")]. I have no digestive system or even a mouth, but I'm pretty sure I would like it.", "Sometimes I wonder what it would be like if I could fly."))
 
 						else
@@ -2722,7 +2722,7 @@
 		var/tmp/list/arrested_messages = list("Have a secure day!","Your move, creep.", "God made tomorrow for the crooks we don't catch today.","One riot, one ranger.")
 
 #define ARREST_DELAY 2.5 //Delay between movements when chasing a criminal, slightly faster than usual. (2.5 vs 3)
-#define TIME_BETWEEN_CUTE_ACTIONS 1800 //Tenths of a second between cute actions
+#define TIME_BETWEEN_CUTE_ACTIONS 3800 //Tenths of a second between cute actions
 
 		patrol
 			name = "patrol"
@@ -3576,6 +3576,8 @@
 #define NT_AUTOMATON (1<<13)
 #define NT_CHEGET (1<<14)
 #define NT_GAFFE (1<<15)
+#define NT_SLOB (1<<16)
+#define NT_BLOODY (1<<17)
 
 #define MAPTEXT_PAUSE (4.5 SECONDS)
 #define FOUND_NEAT(FLAG) src.distracted = TRUE; src.neat_things |= FLAG; SPAWN_DBG(0)
@@ -3810,7 +3812,7 @@
 
 		proc/look_for_neat_thing()
 			var/area/spaceArea = get_area(src.master)
-			if (!(src.neat_things & NT_SPACE) && spaceArea && spaceArea.name == "Space" && !istype(get_turf(src.master), /turf/simulated/shuttle))
+			if (!(src.neat_things & NT_SPACE) && spaceArea && spaceArea.name == "Space" && !istype(get_turf(src.master), /turf/shuttle))
 				FOUND_NEAT(NT_SPACE)
 					src.speak_with_maptext(pick("While you find yourself surrounded by space, please try to avoid the temptation to inhale any of it.  That doesn't work.",\
 					"Space: the final frontier.  Oh, except for time travel and any other dimensions.  And frontiers on other planets, including other planets in those other dimensions and times.  Maybe I should stick with \"space: a frontier.\"",\
@@ -3874,7 +3876,7 @@
 							END_NEAT
 						return
 
-					if (!(src.neat_things & NT_DORK) && (H.client && H.client.IsByondMember() && prob(5)))// || (H.ckey in Dorks))) //If this is too mean to clarks, remove that part I guess
+					if (!(src.neat_things & NT_DORK) && (H.client && H.client.IsByondMember() && prob(5)))// || (H.ckey in Dorks)))
 						FOUND_NEAT(NT_DORK)
 							var/insult = pick("dork","nerd","weenie","doofus","loser","dingus","dorkus")
 							var/insultphrase = "And if you look to--[insult] alert!  [pick("Huge","Total","Mega","Complete")] [insult] detected! Alert! Alert! [capitalize(insult)]! "
@@ -3887,6 +3889,22 @@
 
 							src.speak_with_maptext(insultphrase)
 							master.point(H)
+							END_NEAT
+						return
+
+					if (!(src.neat_things & NT_SLOB) && (H.client && (!H.wiped || !H.cleanhands || ("shit-stained" in H.w_uniform?.stains) || ("piss-soaked" in H.w_uniform?.stains)) && prob(5)))
+					//read sims motive and if it's below -50 Hygiene do this too
+						FOUND_NEAT(NT_SLOB)
+							src.speak_with_maptext("And over here we-- aw, wow, oh no! That's [pick("grody","disgusting","filthy","nasty")]! Go wash yourself up, you slob!")
+							master.point(H)
+							END_NEAT
+						return
+
+					if (!(src.neat_things & NT_BLOODY) && (H.client && (("blood-stained" in H.w_uniform?.stains) || ("blood-stained" in H.gloves?.stains)) && prob(15)))
+						FOUND_NEAT(NT_BLOODY)
+							src.speak_with_maptext("Oh hey, I know [him_or_her(H)], that's-- oh, uh! Wow! *Wow*, that's a lot of blood!")
+							sleep(3 SECOND)
+							src.speak_with_maptext("Uhhhh! I mean, we didn't see a thing, [H.name]! We swear! Just having a normal little tour, and moving on swiftly!")
 							END_NEAT
 						return
 
@@ -3925,6 +3943,9 @@
 
 							if (5)
 								src.speak_with_maptext("Fun fact: The average weight of a domestic space bee is about [pick("10 pounds","4.54 kilograms", "25600 drams", "1.42857143 cloves", "145.833333 troy ounces")].")
+								if (istype(AM, /obj/critter/domestic_bee/bubs))
+									sleep(3)
+									src.speak_with_maptext("...Well, uh, there are a LOT of space bees out there, so, you know. Average.","There are some exceptions...","Maybe not so much this one.")
 						END_NEAT
 
 				else if (istype(AM, /obj/critter/dog/george) && !(src.neat_things & NT_GEORGE))
@@ -3993,12 +4014,44 @@
 								if (istype(otherBuddy, /obj/machinery/bot/guardbot/future))
 									src.speak_with_maptext("The PR line of personal robot has been--wait! Hold the phone! Is that a PR-7? Oh man, I feel old!")
 
-								else if (istype(otherBuddy, /obj/machinery/bot/guardbot/old/tourguide))
-									src.master.visible_message("<b>[master]</b> waves at [otherBuddy].")
-
 								else if (istype(otherBuddy, /obj/machinery/bot/guardbot/soviet))
 									src.speak_with_maptext("That's...that's one of those eastern bloc robuddies.  Um...hello?")
 									src.master.visible_message("<b>[master]</b> gives [otherBuddy] a slow, confused wave.")
+
+								else if (istype(otherBuddy, /obj/machinery/bot/guardbot/bootleg))
+									var/emotion
+									var/obj/machinery/bot/guardbot/bootleg/dweeb = otherBuddy
+									emotion = desired_emotion //Constant disgust
+									desired_emotion = "ugh"
+									master.set_emotion(desired_emotion)
+									if (prob(95))
+										src.speak_with_maptext("Oh no, no, please, don't make eye conta-")
+										sleep(3 SECOND)
+										dweeb.speak(pick("WOW HEY HELLO HI HI HEY","AAAAAAAAAAAAAAAAAAAAAA","HELLOOOOOOOOOOOO","YOU ARE THANK FOR NOTICE ME","NEW FRIENDS IS TRUE???????"))
+										dweeb.set_emotion(pick("cool","joy","love","smug","look"))
+										sleep(3 SECONDS)
+										src.speak_with_maptext("No thank you! Not interested! Goodbye!")
+										if(prob(50))
+											sleep(5 SECOND)
+											src.speak_with_maptext(pick("I thought they recalled all of those things...","They'll stick robot arms on anything these days...","Waste of a perfectly good microwave..."))
+									else
+										dweeb.speak("HEYYYYYY GUYSSSSSSSS")
+										dweeb.set_emotion(pick("joy","look"))
+										sleep(2 SECONDS)
+										src.speak_with_maptext("Uegh, not this [pick("clownshoe","doofus","dork","dweeb","copycat")] again...") //DEEP LORE FACTS: they have a history
+										sleep(5 SECONDS)
+										src.speak_with_maptext("Gosh dang, what a dummy!")
+									if(prob(30)) //small chance to hear and be offended
+										if (dweeb.emotion == "cool")
+											dweeb.set_emotion("coolugh")
+										else
+											dweeb.set_emotion(pick("sad","angry","ugh"))
+									sleep(3 SECONDS)
+									desired_emotion = emotion
+									master.set_emotion(desired_emotion) //back to normal
+
+								else if (istype(otherBuddy, /obj/machinery/bot/guardbot/old/tourguide))
+									src.master.visible_message("<b>[master]</b> waves at [otherBuddy].")
 
 								else
 									src.speak_with_maptext("The PR line of personal robot has been Thinktronic Data Systems' flagship robot line for over 15 years.  It's easy to see their appeal!")
@@ -4286,7 +4339,7 @@
 	anchored = 1
 	var/panel_open = 0
 	var/autoeject = 0 //1: Eject fully charged robots automatically. 2: Eject robot when living carbon mob is in view.
-	var/frequency = 1219
+	var/frequency = FREQ_ROBUDDY
 	var/net_id = null //What is our network id???
 	var/net_number = 0
 	var/host_id = null //Who is linked to us?
@@ -5061,13 +5114,13 @@
 	name = "Mary"
 	desc = "A PR-4 Robuddy. These are pretty old, you didn't know there were any still around! This one has a little name tag on the front labeled 'Mary'."
 	access_lookup = "Staff Assistant"
-	beacon_freq = 1443
+	beacon_freq = FREQ_BOT_TOUR
 
 /obj/machinery/bot/guardbot/old/tourguide/oshan
 	name = "Moby"
 	desc = "A PR-4 Robuddy. These are pretty old, you didn't know there were any still around! This one has a little name tag on the front labeled 'Moby'."
 	access_lookup = "Staff Assistant"
-	beacon_freq = 1443
+	beacon_freq = FREQ_BOT_TOUR
 	HatToWear = /obj/item/clothing/head/sea_captain
 
 	New()
@@ -5078,7 +5131,7 @@
 	name = "Mabel"
 	desc = "A PR-4 Robuddy. These are pretty old, you didn't know there were any still around! This one has a little name tag on the front labeled 'Mabel'."
 	access_lookup = "Staff Assistant"
-	beacon_freq = 1443
+	beacon_freq = FREQ_BOT_TOUR
 	HatToWear = /obj/item/clothing/head/NTberet
 
 	New()

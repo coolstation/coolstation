@@ -140,7 +140,7 @@
 				return TRUE
 			boutput(user, "<span class='notice'>Card authorized.</span>")
 			src.scan = I
-			src.accessed_record = FindBankAccountByName(src.scan.registered)
+			src.accessed_record = FindBankAccountById(src.scan.registered_id)
 			ui_interact(user)
 			. = TRUE
 	else
@@ -287,7 +287,7 @@
 				src.play_money += I.amount
 
 			I.amount = 0
-			pool(I)
+			qdel(I)
 
 	attack_hand(var/mob/user as mob)
 		src.add_dialog(user)

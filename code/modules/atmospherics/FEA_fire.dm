@@ -5,7 +5,7 @@
 		src.material.triggerTemp(src, exposed_temperature)
 	return null
 
-/turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh,electric = 0)
+/turf/proc/hotspot_expose(exposed_temperature, exposed_volume, set_own_hotspot, electric = 0)
 	SHOULD_CALL_PARENT(TRUE)
 	if (src.material)
 		src.material.triggerTemp(src, exposed_temperature)
@@ -23,7 +23,7 @@
 
 
 
-/turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh, electric = 0)
+/turf/hotspot_expose(exposed_temperature, exposed_volume, set_own_hotspot, electric = 0)
 	. = ..()
 	var/datum/gas_mixture/air_contents = return_air()
 
@@ -34,10 +34,11 @@
 	if (active_hotspot)
 		if (locate(/obj/fire_foam) in src)
 			active_hotspot.dispose() // have to call this now to force the lighting cleanup
-			pool(active_hotspot)
+			qdel(active_hotspot)
 			active_hotspot = null
+			return 1 //I don't think this fire_foam and the set_own_hotspot bits ever happen in the same call but, just to be safe jeez
 
-		if (soh)
+		if (set_own_hotspot) //This var used to just be "soh" and this is what we think that might have meant
 			if ((air_contents.toxins > 0.5) && (air_contents.oxygen > 0.5))
 				if (active_hotspot.temperature < exposed_temperature)
 					active_hotspot.temperature = exposed_temperature
@@ -61,7 +62,7 @@
 		if (parent?.group_processing)
 			parent.suspend_group_processing()
 
-		active_hotspot = unpool(/obj/hotspot)
+		active_hotspot = new()
 		active_hotspot.temperature = exposed_temperature
 		active_hotspot.volume = exposed_volume
 		active_hotspot.set_loc(src)
@@ -109,7 +110,7 @@
 		if (loc)
 			loc:active_hotspot = null
 		..()
-
+/*
 	pooled()
 		STOP_TRACKING
 		..()
@@ -119,7 +120,7 @@
 		START_TRACKING
 		if (!light.attached_to)
 			light.attach(src)
-
+*/
 	// now this is ss13 level code
 	proc/set_real_color()
 		var/input = temperature / 100
@@ -179,7 +180,7 @@
 			light.enable(queued_run = 1)
 
 	proc/perform_exposure()
-		var/turf/simulated/floor/location = loc
+		var/turf/floor/location = loc
 		if(!istype(location))
 			return 0
 
@@ -226,22 +227,22 @@
 			var/B = min(55, max(0, temperature - 100 / 550))
 			H.update_burning(B)
 
-	proc/process(list/turf/simulated/possible_spread)
+	proc/process(list/turf/possible_spread)
 		if (just_spawned)
 			just_spawned = 0
 			return 0
 
-		var/turf/simulated/floor/location = loc
+		var/turf/floor/location = loc
 		if (!istype(location) || (locate(/obj/fire_foam) in location))
-			pool(src)
+			qdel(src)
 			return 0
 
 		if ((temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST) || (volume <= 1))
-			pool(src)
+			qdel(src)
 			return 0
 
 		if (!location.air || location.air.toxins < 0.5 || location.air.oxygen < 0.5)
-			pool(src)
+			qdel(src)
 			return 0
 
 		for (var/mob/living/L in loc)
@@ -260,7 +261,7 @@
 			if(location.air.temperature > FIRE_MINIMUM_TEMPERATURE_TO_SPREAD)
 				var/radiated_temperature = location.air.temperature*FIRE_SPREAD_RADIOSITY_SCALE
 
-				for(var/turf/simulated/possible_target in possible_spread)
+				for(var/turf/possible_target in possible_spread)
 					if(!possible_target.active_hotspot)
 						possible_target.hotspot_expose(radiated_temperature, CELL_VOLUME/4)
 

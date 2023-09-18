@@ -88,13 +88,13 @@
 		else
 			boutput(user, "<span class='notice'>You need more paper.</span>")
 	else
-		boutput(user, "They're moving around too much.")
+		boutput(user, "[hes_or_shes(target)] moving around too much.")
 
 /obj/item/gift
 	desc = "For me!?"
 	name = "gift"
 	icon = 'icons/obj/items/items.dmi'
-	icon_state = "gift2-p"
+	icon_state = "gift2-1" //was "gift2-p"
 	item_state = "gift"
 	var/size = 3.0
 	var/obj/item/gift = null

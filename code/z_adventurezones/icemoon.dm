@@ -11,7 +11,7 @@ Contents:
 		Cliff Edges
 **/
 
-/turf/simulated/floor/arctic_elevator_shaft
+/turf/floor/arctic_elevator_shaft
 	name = "elevator shaft"
 	desc = "It looks like it goes down a long ways."
 	icon_state = "void_gray"
@@ -39,7 +39,7 @@ Contents:
 			return
 		else ..()
 
-/turf/unsimulated/floor/arctic/snow
+/turf/floor/arctic/snow
 	name = "odd snow"
 	desc = "Frozen carbon dioxide. Neat."
 	icon = 'icons/turf/outdoors.dmi'
@@ -55,7 +55,7 @@ Contents:
 		src.set_dir(pick(cardinal))
 
 //okay these are getting messy as hell, i need to consolidate this shit later
-/turf/unsimulated/floor/arctic/snow/ice
+/turf/floor/arctic/snow/ice
 	name = "ice floor"
 	desc = "A tunnel through the glacier. This doesn't seem to be water ice..."
 	icon = 'icons/turf/floors.dmi'
@@ -66,7 +66,7 @@ Contents:
 		..()
 		icon_state = "[pick("ice1","ice2","ice3","ice4","ice5","ice6")]"
 
-/turf/unsimulated/floor/arctic/snow/lake
+/turf/floor/arctic/snow/lake
 	name = "frozen lake"
 	desc = "You can see the lake bubbling away under the ice. Neat."
 	icon = 'icons/turf/floors.dmi'
@@ -74,7 +74,7 @@ Contents:
 	fullbright = 0
 
 
-/turf/unsimulated/floor/arctic/plating
+/turf/floor/arctic/plating
 	name = "plating"
 	desc = "It's freezing cold."
 	icon_state = "plating"
@@ -85,7 +85,7 @@ Contents:
 	fullbright = 0
 	can_replace_with_stuff = 1
 
-/turf/unsimulated/floor/arctic/abyss
+/turf/floor/arctic/abyss
 	name = "deep abyss"
 	desc = "You can't see the bottom."
 	icon_state = "void_gray"
@@ -113,7 +113,7 @@ Contents:
 			return
 		else ..()
 
-/turf/unsimulated/floor/arctic/cliff
+/turf/floor/arctic/cliff
 	name = "icy cliff"
 	desc = "Looks dangerous."
 	icon_state = "snow_cliff1"
@@ -128,7 +128,7 @@ Contents:
 		..()
 		icon_state = "[pick("snow_cliff1","snow_cliff2","snow_cliff3","snow_cliff4")]"
 
-/turf/unsimulated/floor/arctic/cliff_outsidecorner
+/turf/floor/arctic/cliff_outsidecorner
 	name = "icy cliff"
 	desc = "Looks dangerous."
 	icon_state = "snow_corner"
@@ -142,7 +142,7 @@ Contents:
 
 ///////////////////////////////////////////////////////////////WALLS////////////////////////////////////////////////
 
-/turf/unsimulated/wall/arctic/abyss
+/turf/wall/arctic/abyss
 	name = "deep abyss"
 	desc = "You can't see the bottom."
 	icon_state = "void_gray"
@@ -151,7 +151,7 @@ Contents:
 	density = 1
 	fullbright = 0
 
-/turf/unsimulated/wall/arctic/abyss
+/turf/wall/arctic/abyss
 	name = "deep abyss"
 	desc = "You can't see the bottom."
 	icon_state = "void_gray"
@@ -160,7 +160,7 @@ Contents:
 
 
 //this also sucks and needs to be consolidated, just bugtesting right now
-/turf/unsimulated/wall/arctic/abyss/ice
+/turf/wall/arctic/abyss/ice
 	name = "ice wall"
 	desc = "You're inside a glacier. Wow."
 	icon_state = "ice1"

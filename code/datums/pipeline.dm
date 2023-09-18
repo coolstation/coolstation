@@ -15,7 +15,7 @@ datum/pipeline
 
 		if(air?.volume)
 			temporarily_store_air()
-			pool(air)
+			qdel(air)
 		air = null
 
 		if (members)
@@ -94,11 +94,11 @@ datum/pipeline
 
 		if(base.air_temporary)
 			if(air)
-				pool(air)
+				qdel(air)
 			air = base.air_temporary
 			base.air_temporary = null
 		else
-			air = unpool(/datum/gas_mixture)
+			air = new()
 
 		while(possible_expansions.len>0)
 			for(var/obj/machinery/atmospherics/pipe/borderline in possible_expansions)
@@ -152,14 +152,14 @@ datum/pipeline
 
 		return network
 
-	proc/mingle_with_turf(turf/simulated/target, mingle_volume)
-		if (!target || !air.volume) return
+	proc/mingle_with_turf(turf/target, mingle_volume)
+		if (!target || !issimulatedturf(target) || !air.volume) return
 		var/datum/gas_mixture/air_sample = air.remove_ratio(mingle_volume/air.volume)
 		air_sample.volume = mingle_volume
 
 		if(istype(target) && target.parent && target.parent.group_processing)
 			//Have to consider preservation of group statuses
-			var/datum/gas_mixture/turf_copy = unpool(/datum/gas_mixture)
+			var/datum/gas_mixture/turf_copy = new()
 
 			turf_copy.copy_from(target.parent.air)
 			turf_copy.volume = target.parent.air.volume //Copy a good representation of the turf from parent group
@@ -179,7 +179,7 @@ datum/pipeline
 
 				target.parent.suspend_group_processing()
 				target.air.copy_from(turf_copy)
-				pool(turf_copy) // done with this
+				qdel(turf_copy) // done with this
 
 		else
 			var/datum/gas_mixture/turf_air = target.return_air()
@@ -205,8 +205,8 @@ datum/pipeline
 		var/heat = 0
 		var/delta_temperature = 0
 
-		if(istype(target, /turf/simulated))
-			var/turf/simulated/modeled_location = target
+		if(issimulatedturf(target))
+			var/turf/modeled_location = target
 
 			// Turf with walls or without air
 			if(modeled_location.blocks_air || !modeled_location.air)

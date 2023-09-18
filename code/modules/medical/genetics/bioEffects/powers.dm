@@ -1246,7 +1246,7 @@
 			if (istype(linked_power,/datum/bioEffect/power/midas))
 				var/datum/bioEffect/power/midas/linked = linked_power
 				owner.visible_message("<span class='alert'>[owner] touches [the_item], turning it to [linked.transmute_material]!</span>")
-				the_item.setMaterial(getMaterial(linked.transmute_material))
+				the_item.setMaterial(getMaterial(linked.transmute_material)) //This copy = FALSE wasn't in goon PR 10807 but since it's string-based I think this is safe? (There's only the gold variant anyway, so like)
 			else
 				owner.visible_message("<span class='alert'>[owner] touches [the_item], turning it to gold!</span>")
 				the_item.setMaterial(getMaterial("gold"))

@@ -11,6 +11,7 @@
 	item_state = "flashbang"
 	w_class = W_CLASS_SMALL
 	force = 2.0
+	var/max_beaker_size = 50
 	var/stage = 0
 	var/state = 0
 	var/icon_state_armed = "grenade-chem-armed"
@@ -26,6 +27,8 @@
 	move_triggered = 1
 	var/detonating = 0
 
+	traitor
+		max_beaker_size = 100
 
 	New()
 		..()
@@ -58,7 +61,7 @@
 				boutput(user, "<span class='alert'>The grenade can not hold more containers.</span>")
 				return
 			var/obj/item/reagent_containers/glass/G = W
-			if (G.initial_volume > 50) // anything bigger than a regular beaker, but someone could varedit their reagent holder beyond this for admin nonsense
+			if (G.initial_volume > max_beaker_size) // anything bigger than a regular beaker, but someone could varedit their reagent holder beyond this for admin nonsense
 				boutput(user, "<span class='alert'>This beaker is too large!</span>")
 				return
 			else
@@ -192,7 +195,7 @@
 			G.reagents.trans_to(src, G.reagents.total_volume)
 
 		if (src.reagents.total_volume) //The possible reactions didnt use up all reagents.
-			var/datum/effects/system/steam_spread/steam = unpool(/datum/effects/system/steam_spread)
+			var/datum/effects/system/steam_spread/steam = new()
 			steam.set_up(10, 0, get_turf(src))
 			steam.attach(src)
 			steam.start()

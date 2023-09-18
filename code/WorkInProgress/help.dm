@@ -72,10 +72,9 @@ client/verb/help()
 				The crewmembers must destroy or disarm the nuclear bomb or kill the syndicate operatives.</p>
 				<p><b>PROTIP: IF YOU KILL A MEMBER OF THE SYNDICATE STEAL HIS STUFF.</b></p>
 		<h3>External Links</h3>
-			<ul><a target="_blank" href="http://wiki.ss13.co">Goonstation Wiki</a> (The wiki. Beginner and advanced guides.)<br>
-			<a target="_blank" href="https://forum.ss13.co">Goonstation Forums</a> (The goonstation forums for discussion and ban appeals)</ul>
+			<ul><a target="_blank" href="https://wiki.coolstation.space/">Coolstation Wiki</a> (The wiki. Beginner and advanced guides.)<br>
+			<a target="_blank" href="https://forum.coolstation.space">Coolstation Forums</a> (The goonstation forums for discussion and ban appeals)</ul>
 	</ul>"}, "window=help;title=Help" )
 
-	//src.Browse('browserassets/html/admin/help.html', "window=help")
-	//boutput(src, "<span class='notice'>Please visit the goonstation wiki at <b>http://wiki.ss13.co</b> for more indepth help.</span>")
+
 	return

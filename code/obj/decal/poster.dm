@@ -1,5 +1,5 @@
 
-/obj/decal/poster
+/obj/decal/poster //don't use this one (or do, i'm not your dad)
 	desc = "A piece of paper with an image on it. Clearly dealing with incredible technology here."
 	name = "poster"
 	icon = 'icons/obj/items/items.dmi'
@@ -7,16 +7,19 @@
 	anchored = 1
 	opacity = 0
 	density = 0
-	var/imgw = 600
-	var/imgh = 400
-	var/popup_win = 1
+	var/imgw = 600 //set this to around +10 your image's actual size or whatever size you want the window to be
+	var/imgh = 400 //ditto
+	var/img = "images/arts/posters/sweaterferrets.jpg" //fallback image
+	var/resource = null //use html resource instead of quick and dirty html image? ex. "html/traitorTips/wizardTips.html"
+	var/popup_win = 1 //wallsign root is 0 don't worry about it
+	var/cat = "poster" //reuse windows, define differently if you want a separate/persistent category
 	layer = EFFECTS_LAYER_BASE
 	plane = PLANE_NOSHADOW_ABOVE
 
 	examine()
 		if (usr.client && src.popup_win)
 			src.show_popup_win(usr)
-			return list()
+			return list() //someone smarter than me please tell me why we wouldn't also return the name/desc in chatbox like a usual examine
 		else
 			return ..()
 
@@ -24,7 +27,13 @@
 		if (!C || !src.popup_win)
 			return
 		// wtf why is this using wizardtips... with a custom size... fuck it im leaving this one out of the centralization -singh
-		C.Browse(grabResource("html/traitorTips/wizardTips.html"),"window=antagTips;size=[imgw]x[imgh];title=Antagonist Tips")
+		//C.Browse(grabResource("html/traitorTips/wizardTips.html"),"window=antagTips;size=[imgw]x[imgh];title=Antagonist Tips")
+		// miss you lots, buddy
+		if (src.resource) //do we have a resource defined?
+			C.Browse(grabResource("[resource]"),"window=[cat];size=[imgw]x[imgh];title=[name]")
+		else //no? then it's obviously an image
+			C.Browse("<html><title>[name]</title><body style='margin:2px'><img src='[resource("[img]")]'></body></html>","window=[cat];size=[imgw]x[imgh];title=[name]")
+			//C.Browse("<img src=\"[resource("images/pw_map.png")]\">","window=Map;size=[imgw]x[imgh];title=Map") //marginless from pw_map, preserved as curiosity (or if i fucked up and need to put it back)
 
 	wallsign
 		desc = "A sign, on a wall. Wow!"
@@ -302,6 +311,49 @@
 			name = "Medical Bay"
 			icon_state = "wall_sign_medbay"
 
+		qm
+			name = "Quartermaster's"
+			icon_state = "QM"
+
+		logistics
+			name = "logistics"
+			desc = "If you follow this one, you might find it pretty profitable."
+			icon_state = "wall_logistics"
+
+		logistics_right
+			name = "logistics"
+			icon_state = "wall_logistics_arrow_r"
+
+		logistics_left
+			name = "logistics"
+			icon_state = "wall_logistics_arrow_l"
+
+		bunks
+			name = "bunks"
+			desc = "If you follow this one, you might find it pretty restful."
+			icon_state = "wall_bunks"
+
+		bunks_right
+			name = "bunks"
+			icon_state = "wall_bunks_arrow_r"
+
+		bunks_left
+			name = "bunks"
+			icon_state = "wall_bunks_arrow_l"
+
+		cafeteria
+			name = "cafeteria"
+			desc = "If you follow this one, you might find it pretty delicious."
+			icon_state = "wall_cafeteria"
+
+		cafeteria_right
+			name = "cafeteria"
+			icon_state = "wall_cafeteria_arrow_r"
+
+		cafeteria_left
+			name = "cafeteria"
+			icon_state = "wall_cafeteria_arrow_l"
+
 		security
 			name = "Security"
 			icon_state = "wall_sign_security"
@@ -319,6 +371,14 @@
 			name = "CONSTRUCTION AREA"
 			desc = "A warning sign which reads 'CONSTRUCTION AREA'."
 			icon_state = "wall_sign_danger"
+
+		WC_blue //I tried making some desc jokes for these but I guess I'm not cut out for toilet humour
+			name = "WC"
+			icon_state = "WC_blue"
+
+		WC_black
+			name = "WC"
+			icon_state = "WC_black"
 
 		pool
 			name = "Pool"
@@ -474,14 +534,35 @@
 			name = "COLD LOOP"
 			icon_state = "wall_coldloop"
 
+		aarea
+			name = "area information sign"
+			desc = "A sign that lets you know that this is, in fact, a area."
+			icon_state = "wall_area"
+			popup_win = 1
+			imgw = 185
+			imgh = 235
+			img = "images/arts/posters/sign-area.jpg"
+
 		poster_hair
 			name = "Fabulous Hair!"
 			desc = "There's a bunch of ladies with really fancy hair pictured on this."
+			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "wall_poster_hair"
+
+		poster_idiotbastard
+			name = "Strange poster"
+			desc = "You have no idea what the hell this is."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "idiotbastard"
+			popup_win = 1
+			imgw = 645
+			imgh = 545
+			img = "images/arts/posters/idiot-bastard.jpg"
 
 		poster_cool
 			name = "cool poster"
 			desc = "There's a couple people pictured on this poster, looking pretty cool."
+			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "wall_poster_cool3"
 			random_icon_states = list("wall_poster_cool", "wall_poster_cool2", "wall_poster_cool3")
 
@@ -526,6 +607,28 @@
 			desc = "A huge poster that reads 'I want YOU for NT!'"
 			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "you_4_nt"
+			imgw = 365
+			imgh = 450
+
+		poster_y4ntshitty
+			name = "\improper NanoTrasen recruitment poster"
+			desc = "SOMEONE has a passion for graphic design. Fuck..."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "you_4_nt"
+			popup_win = 1
+			imgw = 365
+			imgh = 450
+			img = "images/arts/posters/y4nt-shitty.jpg"
+
+		poster_tiger
+			name = "tiger poster"
+			desc = "Wow, it's free! Totally worth it!"
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "tiger"
+			popup_win = 1
+			imgw = 410
+			imgh = 275
+			img = "images/arts/posters/tiger.png"
 
 		poster_beach
 			name = "beach poster"
@@ -568,7 +671,7 @@
 																"wall_poster_beach",
 																"wall_poster_discount",
 																"wall_poster_octocluwne",
-																"wall_poser_eyetest")
+																"wall_poster_eyetest")
 
 		poster_mining
 			name = "mining poster"
@@ -629,6 +732,12 @@
 			desc = "Pre-eliminary signing up for Nanotrasen's newest military vessel NSS Manta has now begun. Reach out to your head of personnel or a local Nanotrasen recruiting officer to find out more about new job oppurtunities aboard NSS Manta! "
 			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "mantaposter"
+
+		ritossign
+			name = "Rito's sign"
+			desc = "A sign for Rito's Italian Ices, that water ice place. Didn't they go out of business years ago?"
+			icon = 'icons/obj/decals/wallsigns.dmi'
+			icon_state = "ritoslogo"
 
 		teaparty
 			name = "Weird poster"
@@ -696,8 +805,8 @@
 						src.name = "Pack Smart"
 						src.icon_state = "pack_smart"
 					if("contest-other2")
-						src.name = "Mindslaver Device Poster"
-						src.icon_state = "mindslaver"
+						src.name = "Insurgentr Device Poster"
+						src.icon_state = "insurgentr"
 					if("contest-other3")
 						src.name = "Edit Wiki"
 						src.icon_state = "edit_wiki"
@@ -718,9 +827,9 @@
 				. = ..()
 				switch(src.icon_state)
 					if("code")
-						user << link("https://github.com/goonstation/goonstation")
+						user << link("https://github.com/coolstation/coolstation")
 					if("edit_wiki")
-						user << link("https://wiki.ss13.co/")
+						user << link("https://wiki.coolstation.space/")
 
 		fuck1 //do not add this to the random sign rotation, fuck I is a long-lost relic overshadowed entirely by its successor
 			name = "\proper fuck"
@@ -766,7 +875,7 @@
 
 		/* Be gay, do crime */
 		pride
-			name = "Pride"
+			name = "pride poster"
 			icon = 'icons/obj/items/prideflags.dmi'
 			icon_state = "poster_pride1"
 			desc = "Be Gay, Do Crime!"
@@ -845,9 +954,12 @@
 		/*	desc = "Chaos, and rebellion, against an oppressive -- and, quite frankly, \
 				incredibly boring -- status quo! Passion, community, queer history, \
 				... and EVIL! MWAHAHAHA!"*/
+		pride/italian
+			name = "Italian Pride"
+			icon_state = "poster_pride15"
 
 ///////////////////////////////////////
-// AZUNGAR'S HEAD OF DEPARTMENT ITEMS// + FIREBARRAGE HELPED TOO BUT HE SMELLS
+// HATSUNE MIKU'S HEAD OF DEPARTMENT ITEMS// + FIREBARRAGE HELPED TOO BUT HE SMELLS
 ///////////////////////////////////////
 
 		framed_award
@@ -902,7 +1014,11 @@
 						playsound(src.loc, "sound/machines/click.ogg", 50, 1)
 						var/obj/item/award_item = locate(award_type) in src
 						if(award_item)
-							award_item.desc = src.desc
+							if(award_text)
+								award_item.desc = src.award_text
+							else
+								award_item.desc = src.desc
+
 							user.put_in_hand_or_drop(award_item)
 							user.visible_message("[user] takes the [award_name] from the frame.", "You take the [award_name] out of the frame.")
 							src.icon_state = icon_empty
@@ -1031,16 +1147,37 @@
 					mdname = M.current.client.preferences.name_last
 				. += "It says \ [mdname] has been granted a license as a Physician and Surgeon entitled to practice the profession of medicine in space."
 
+		framed_award/captaindiploma
+			name = "Captain's old clown-college diploma."
+			desc = "A faded clown-college diploma, this must be ancient!"
+			award_type = /obj/item/toy/diploma
+			icon_glass = "capdiploma"
+			icon_award = "capdiploma1"
+			icon_state = "capdiploma1"
+			owner_job  = "Captain"
+
+			get_award_text(var/datum/mind/M)
+				var/capname = "someone, the name has been [pick("smeared quite badly", "erased", "scribbled out")],"
+				if(M?.current?.client?.preferences?.name_last)
+					capname = M.current.client.preferences.name_last
+				. += "It says \ [capname] has been awarded a Bachelor of [pick("Farts", "Fards")] Degree for the study of [pick("slipology", "jugglemancy", "pie science", "bicycle horn accoustics", "comic sans calligraphy", "gelotology", "flatology", "nuclear physics", "goonstation coder")]! It appears to be written in faded crayon."
+
 /obj/decal/poster/wallsign/pod_build
-	name = "poster"
+	name = "\improper How to Build a Space Pod"
 	icon = 'icons/obj/decals/posters_64x32.dmi'
 	icon_state = "nt-pod-poster"
 	popup_win = 1
+	resource = "html/how_to_build_a_pod.html"
+	cat = "how_to_build_a_pod"
 
-	show_popup_win(var/client/C)
-		if (!C || !src.popup_win)
-			return
-		C.Browse(grabResource("html/how_to_build_a_pod.html"),"window=how_to_build_a_pod;size=[imgw]x[imgh];title=How to Build a Space Pod")
+/obj/decal/poster/wallsign/hypothermia
+	name = "repulsive public service poster"
+	icon = 'icons/obj/decals/posters.dmi'
+	icon_state = "frostbite"
+	popup_win = 1
+	imgw = 690
+	imgh = 570
+	img = "images/arts/posters/hypothermia.jpg"
 
 /obj/decal/poster/wallsign/pod_build/nt
 	icon_state = "nt-pod-poster"
@@ -1055,12 +1192,8 @@
 	popup_win = 1
 	imgw = 702
 	imgh = 702
-
-	show_popup_win(var/client/C)
-		if (!C || !src.popup_win)
-			return
-
-		C.Browse("<img src=\"[resource("images/pw_map.png")]\">","window=Map;size=[imgw]x[imgh];title=Map")
+	img = "images/pw_map.png"
+	cat = "map"
 
 /obj/decal/poster/banner
 	name = "banner"

@@ -145,10 +145,10 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if (prob(50))
 					qdel(src)
 					return
@@ -224,6 +224,8 @@
 		return ..()
 
 /obj/cabinet/medical
+	name = "Medical Cabinet"
+	desc = "Contains the full spread of standard medical supplies."
 
 	New()
 		slots["1"] = new/obj/item/storage/firstaid/brain(src)
@@ -232,6 +234,94 @@
 		slots["4"] = new/obj/item/storage/firstaid/toxin(src)
 		slots["5"] = new/obj/item/storage/firstaid/brute(src)
 		slots["6"] = new/obj/item/storage/firstaid/oxygen(src)
+		rebuildOverlays()
+		return ..()
+
+/obj/cabinet/medicalbrute
+	name = "Trauma Cabinet"
+	desc = "Cabinet full of brute-damage-oriented medication."
+
+	New()
+		slots["1"] = new/obj/item/storage/box/salinebox(src) //if you bleed out you need this anyway
+		slots["2"] = new/obj/item/storage/box/bloodbox(src) //bleeding management (promote clotting/stop bleeding with proconvertin and stimulate blood production with filgrastim)
+		slots["3"] = new/obj/item/storage/box/brutebox(src) //liquid brute medication box gosh this is all just a lot of styptic huh (and salicylic)
+		slots["4"] = new/obj/item/storage/box/brutepatchbox(src) //brute patch box
+		slots["5"] = new/obj/item/storage/firstaid/brute(src)
+		slots["6"] = new/obj/item/storage/firstaid/brute(src) //standard brute first aid ready to rock
+		rebuildOverlays()
+		return ..()
+
+/obj/cabinet/medicalburn
+	name = "Burn Cabinet"
+	desc = "Cabinet full of burn-damage-oriented medications."
+
+	New()
+		slots["1"] = new/obj/item/storage/box/salinebox(src) //burns are traumatic
+		slots["2"] = new/obj/item/storage/box/burnbox(src) //liquid burn medication box (with menthol) probably too much but we'll figure out some more medicine or some other drug to stuff in here
+		slots["3"] = new/obj/item/storage/box/burnpatchbox(src) //burn patch box and yet again it's almost all the same chem
+		slots["4"] = new/obj/item/storage/firstaid/fire(src)
+		slots["5"] = new/obj/item/storage/firstaid/fire(src)
+		slots["6"] = new/obj/item/storage/firstaid/fire(src) //standard fire first aid ready to rock
+		rebuildOverlays()
+		return ..()
+
+/obj/cabinet/medicaltoxin
+	name = "Anti-Toxins Cabinet"
+	desc = "Cabinet for anti-toxin and anti-poisoning medication."
+	//should have some better injectable anti-tox thing, instead of just charcoal, calomel, or stuff you have to make
+
+	New()
+		slots["1"] = new/obj/item/storage/box/antiradbox(src) //radsupplies box (potassium iodide)
+		slots["2"] = new/obj/item/storage/box/purgativebox(src) //purgatives box (calomel and ipecac)
+		slots["3"] = new/obj/item/storage/box/antitoxbox(src) //charcoal pills
+		slots["4"] = new/obj/item/storage/firstaid/toxin(src) //standard tox first aid
+		slots["5"] = new/obj/item/storage/firstaid/toxin(src)
+		slots["6"] = new/obj/item/storage/firstaid/toxin(src)
+		rebuildOverlays()
+		return ..()
+
+/obj/cabinet/medicalcritical
+	name = "Critical Care Cabinet"
+	desc = "Cabinet full of medicine intended to stabilize the most critical patients."
+
+	New()
+		slots["1"] = new/obj/item/storage/box/critcardiacbox(src) //critical cardiac box (amostly tropine plus heparin for blood clot/heart attack)
+		slots["2"] = new/obj/item/storage/box/shockbox(src) //critical state recovery (diabetic shock, anaphylactic shock, opiod overdose?,)
+		slots["3"] = new/obj/item/storage/box/salinebox(src)
+		slots["4"] = new/obj/item/storage/box/salinebox(src)
+		slots["5"] = new/obj/item/storage/box/salbutamolbox(src)
+		slots["6"] = new/obj/item/storage/box/epibox(src) //adrenaline box
+		rebuildOverlays()
+		return ..()
+
+//what do we fill this with? not the stuff that the MD has locked up or stuff better cooked up in a chem machine
+//but something that's more involved or unusual? anyway...
+/* /obj/cabinet/medicalspecialist
+	name = "Specialist Drugs Cabinet"
+	desc = "Cabinet full of more obscure or advanced medication."
+
+	New()
+		slots["1"] = box with 5 ampoule smelling salts, 1 30u synaptizine, 1 30u haloperidol //resuscitation/sedative box
+		slots["2"] = new/obj/item/storage/box/bloodbox(src)
+		slots["3"] = morphine, salicylic, naloxone (painkiller box)
+		slots["4"] = oculine (put it in 7 pre-filled single use droppers. fuck it.)
+		slots["5"] = 6 mannitol and 1 salbutamol go together well, considering the circumstance and brain damage mechanic
+		slots["6"] = 4 mutadone pill bottles 3 antirad pill bottle box
+		rebuildOverlays()
+		return ..()
+
+*/
+/obj/cabinet/medicalbulk
+	name = "Bulk Drugs Cabinet"
+	desc = "Cabinet full of bulk medicine reserve beakers."
+
+	New()
+		slots["1"] = new/obj/item/reagent_containers/glass/beaker/large/saline(src)
+		slots["2"] = new/obj/item/reagent_containers/glass/beaker/large/saline(src)
+		slots["3"] = new/obj/item/reagent_containers/glass/beaker/large/antitox(src)
+		slots["4"] = new/obj/item/reagent_containers/glass/beaker/large/epinephrine(src)
+		slots["5"] = new/obj/item/reagent_containers/glass/beaker/large/brute(src)
+		slots["6"] = new/obj/item/reagent_containers/glass/beaker/large/burn(src)
 		rebuildOverlays()
 		return ..()
 
@@ -259,7 +349,7 @@
 		rebuildOverlays()
 		return ..()
 
-/obj/cabinet/taffy // for psychiatrists to prescribe
+/obj/cabinet/taffy // because you did such a good job in there
 
 	New()
 		slots["1"] = new /obj/item/reagent_containers/food/snacks/candy/taffy/cherry(src)
@@ -273,9 +363,9 @@
 
 /obj/cabinet/ammo // for the shooting range prefab
 	New()
-		slots["1"] = new /obj/item/ammo/bullets/foamdarts(src)
-		slots["2"] = new /obj/item/ammo/bullets/foamdarts(src)
-		slots["3"] = new /obj/item/ammo/bullets/foamdarts(src)
-		slots["4"] = new /obj/item/ammo/bullets/bullet_22(src)
+		slots["1"] = new /obj/item/stackable_ammo/capacitive/ten(src)
+		slots["2"] = new /obj/item/stackable_ammo/capacitive/ten(src)
+		slots["3"] = new /obj/item/stackable_ammo/capacitive/ten(src)
+		slots["4"] = new /obj/item/stackable_ammo/pistol/five(src)
 		rebuildOverlays()
 		return ..()

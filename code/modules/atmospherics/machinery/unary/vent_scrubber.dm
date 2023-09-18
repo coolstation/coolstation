@@ -6,9 +6,11 @@
 	desc = "Has a valve and pump attached to it"
 
 	level = 1
+	plane = PLANE_NOSHADOW_BELOW
+	layer = PIPE_MACHINE_LAYER
 
 	var/id = null
-	var/frequency = "1439"
+	var/frequency = FREQ_ATMOS2
 	var/datum/radio_frequency/radio_connection
 
 	var/on = 1
@@ -17,7 +19,7 @@
 	APPLY_TO_GASES(_DEF_SCRUBBER_VAR)
 	#undef _DEF_SCRUBBER_VAR
 
-	var/volume_rate = 120
+	var/volume_rate = 150 // was 120 - warc
 //
 	initialize()
 		..()
@@ -38,11 +40,11 @@
 	update_icon()
 		if(on&&node)
 			if(scrubbing)
-				icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]on"
+				icon_state = "[level == 1 && issimulatedturf(loc) ? "h" : "" ]on"
 			else
-				icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
+				icon_state = "[level == 1 && issimulatedturf(loc) ? "h" : "" ]in"
 		else
-			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
+			icon_state = "[level == 1 && issimulatedturf(loc) ? "h" : "" ]off"
 			on = 0
 
 		return
@@ -63,7 +65,7 @@
 				var/datum/gas_mixture/removed = loc.remove_air(transfer_moles)
 
 				//Filter it
-				var/datum/gas_mixture/filtered_out = unpool(/datum/gas_mixture)
+				var/datum/gas_mixture/filtered_out = new()
 				filtered_out.temperature = removed.temperature
 
 				#define _FILTER_OUT_GAS(GAS, ...) \
@@ -104,11 +106,11 @@
 	hide(var/i) //to make the little pipe section invisible, the icon changes.
 		if(on&&node)
 			if(scrubbing)
-				icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]on"
+				icon_state = "[i == 1 && issimulatedturf(loc) ? "h" : "" ]on"
 			else
-				icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
+				icon_state = "[i == 1 && issimulatedturf(loc) ? "h" : "" ]in"
 		else
-			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
+			icon_state = "[i == 1 && issimulatedturf(loc) ? "h" : "" ]off"
 			on = 0
 		return
 

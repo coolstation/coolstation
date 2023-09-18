@@ -16,10 +16,13 @@
 	make_my_stuff() //Let's spawn the backpack/satchel in random colours!
 		. = ..()
 		if (. == 1) //if we've not spawned stuff before
-			var/backwear = pick(/obj/item/storage/backpack,/obj/item/storage/backpack/blue,/obj/item/storage/backpack/red,/obj/item/storage/backpack/green)
-			new backwear(src)
-			backwear = pick(/obj/item/storage/backpack/satchel,/obj/item/storage/backpack/satchel/blue,/obj/item/storage/backpack/satchel/red,/obj/item/storage/backpack/satchel/green)
-			new backwear(src)
+			var/backwear
+			if(prob(60))
+				backwear = pick(/obj/item/storage/backpack,/obj/item/storage/backpack/blue,/obj/item/storage/backpack/red,/obj/item/storage/backpack/green)
+				new backwear(src)
+			else
+				backwear = pick(/obj/item/storage/backpack/satchel,/obj/item/storage/backpack/satchel/blue,/obj/item/storage/backpack/satchel/red,/obj/item/storage/backpack/satchel/green)
+				new backwear(src)
 
 /obj/storage/secure/closet/personal/empty
 	spawn_contents = list()
@@ -38,7 +41,7 @@
 /obj/storage/secure/closet/command/captain
 	name = "\improper Captain's locker"
 	req_access = list(access_captain)
-	spawn_contents = list(/obj/item/gun/energy/egun,
+	spawn_contents = list(//obj/item/gun/energy/egun,
 	/obj/item/storage/box/id_kit,
 	/obj/item/storage/box/clothing/captain,
 	/obj/item/clothing/suit/armor/capcoat,
@@ -71,7 +74,7 @@
 	/obj/item/clothing/suit/armor/vest,
 	/obj/item/clothing/head/helmet/hardhat/security,
 	/obj/item/clothing/glasses/sunglasses/sechud,
-	/obj/item/gun/energy/egun,
+	//obj/item/gun/energy/egun,
 	/obj/item/device/radio/headset/security,
 	/obj/item/clothing/glasses/thermal,
 	/obj/item/stamp/hos,
@@ -351,6 +354,7 @@
 	icon_closed = "medical_medkit"
 	icon_state = "medical_medkit"
 	spawn_contents = list()
+	autosorting = FALSE //looks better with the manual sort
 	make_my_stuff()
 		if (..()) // make_my_stuff is called multiple times due to lazy init, so the parent returns 1 if it actually fired and 0 if it already has
 			var/obj/item/storage/firstaid/regular/B1 = new(src)
@@ -408,6 +412,7 @@
 	icon_state = "medical_restricted"
 	spawn_contents = list()
 	req_access = list(access_medical_director)
+	autosorting = FALSE //looks better with the manual sort
 	make_my_stuff()
 		if (..()) // make_my_stuff is called multiple times due to lazy init, so the parent returns 1 if it actually fired and 0 if it already has
 			// let's organize the SHIT outta this closet too! hot damn
@@ -468,6 +473,7 @@
 /obj/storage/secure/closet/research/chemical
 	name = "chemical storage locker"
 	spawn_contents = list()
+	autosorting = FALSE //looks better with the manual sort
 	make_my_stuff()
 		if (..()) // make_my_stuff is called multiple times due to lazy init, so the parent returns 1 if it actually fired and 0 if it already has
 			// let's organize the SHIT outta this closet hot damn

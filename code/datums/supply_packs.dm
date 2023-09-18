@@ -67,6 +67,9 @@ ABSTRACT_TYPE(/datum/supply_packs)
 					S.req_access = list()
 					S.req_access += text2num(access)
 
+				if (istype(S, /obj/storage) && prob(20)) //just to be safe
+					new /obj/item/reagent_containers/food/snacks/silica_packet(S) //since these count as food you could sell em on to traders
+
 		if (contains.len)
 			for (var/B in contains)
 				var/thepath = B
@@ -1085,12 +1088,12 @@ ABSTRACT_TYPE(/datum/supply_packs)
 	name = "Bargain Bows and Bands Box"
 	desc = "Headbands for all occasions."
 	cost = 2000
-	contains = list(/obj/item/clothing/head/headband/giraffe = 1,
+	contains = list(//obj/item/clothing/head/headband/giraffe = 1,
 					/obj/item/clothing/head/headband/antlers = 1,
 					/obj/item/clothing/head/headband/nyan/tiger = 1,
 					/obj/item/clothing/head/headband/nyan/leopard = 1,
 					/obj/item/clothing/head/headband/nyan/snowleopard = 1,
-					/obj/item/clothing/head/headband/bee = 2,
+					//obj/item/clothing/head/headband/bee = 2,
 					/obj/item/clothing/head/headband/nyan/random = 1)
 
 /datum/supply_packs/mask

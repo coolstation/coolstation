@@ -18,7 +18,7 @@ var/datum/job_controller/job_controls
 			new /datum/job/command/head_of_security/derelict {limit = 1; name = "NT-SO Special Operative";} (),
 			new /datum/job/command/chief_engineer/derelict {limit = 1; name = "Salvage Chief";} (),
 			new /datum/job/security/security_officer/derelict {limit = 6; name = "NT-SO Officer";} (),
-			new /datum/job/research/medical_doctor/derelict {limit = 6; name = "Salvage Medic";} (),
+			new /datum/job/medical/medical_doctor/derelict {limit = 6; name = "Salvage Medic";} (),
 			new /datum/job/engineering/engineer/derelict {limit = 6; name = "Salvage Engineer";} (),
 			new /datum/job/civilian/staff_assistant (),
 			new /datum/job/civilian/chef (),
@@ -29,7 +29,9 @@ var/datum/job_controller/job_controls
 			for (var/A in concrete_typesof(/datum/job/command)) src.staple_jobs += new A(src)
 			for (var/A in concrete_typesof(/datum/job/security)) src.staple_jobs += new A(src)
 			for (var/A in concrete_typesof(/datum/job/research)) src.staple_jobs += new A(src)
+			for (var/A in concrete_typesof(/datum/job/medical)) src.staple_jobs += new A(src)
 			for (var/A in concrete_typesof(/datum/job/engineering)) src.staple_jobs += new A(src)
+			for (var/A in concrete_typesof(/datum/job/logistics)) src.staple_jobs += new A(src)
 			for (var/A in concrete_typesof(/datum/job/civilian)) src.staple_jobs += new A(src)
 			for (var/A in concrete_typesof(/datum/job/special)) src.special_jobs += new A(src)
 		job_creator = new /datum/job/created(src)
@@ -57,6 +59,10 @@ var/datum/job_controller/job_controls
 		dat += "<BR>"
 		dat += "<b>Research Jobs</b><BR>"
 		for(var/datum/job/research/JOB in src.staple_jobs)
+			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [countJob("[JOB.name]")]/[JOB.limit]</A><BR>"
+		dat += "<BR>"
+		dat += "<b>Medical Jobs</b><BR>"
+		for(var/datum/job/medical/JOB in src.staple_jobs)
 			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [countJob("[JOB.name]")]/[JOB.limit]</A><BR>"
 		dat += "<BR>"
 		dat += "<b>Engineering Jobs</b><BR>"
@@ -822,15 +828,15 @@ var/datum/job_controller/job_controls
 
 		if(href_list["GetAccess"])
 			var/picker = input("Make this job's access comparable to which job?","Job Creator") in list("Captain","Head of Security",
-			"Head of Personnel","Chief Engineer","Research Director","Security Officer","Detective","Geneticist","Pathologist","Roboticist","Scientist",
-			"Medical Doctor","Quartermaster","Miner","Mechanic","Engineer","Chef","Bartender","Botanist","Janitor","Chaplain","Staff Assistant","No Access")
+			"Head of Personnel","Chief Engineer","Research Director","Security Officer","Detective","Geneticist","Pathologist","Surgeon","Nurse","Receptionist","Roboticist","Scientist",
+			"Chemist","Medical Doctor","Quartermaster","Cargo Technician","Miner","Mechanic","Engineer","Chef","Bartender","Botanist","Janitor","Chaplain","Staff Assistant","No Access")
 			src.job_creator.access = get_access(picker)
 			src.job_creator()
 
 		if(href_list["AddAccess"])
 			var/picker = input("Make this job's access comparable to which job?","Job Creator") in list("Captain","Head of Security",
 			"Head of Personnel","Chief Engineer","Research Director","Security Officer","Detective","Geneticist","Pathologist","Roboticist","Scientist",
-			"Medical Doctor","Quartermaster","Miner","Mechanic","Engineer","Chef","Bartender","Botanist","Janitor","Chaplain","Staff Assistant","No Access")
+			"Medical Doctor","Quartermaster","Cargo Technician","Miner","Mechanic","Engineer","Chef","Bartender","Botanist","Janitor","Chaplain","Staff Assistant","No Access")
 			src.job_creator.access |= get_access(picker)
 			src.job_creator()
 

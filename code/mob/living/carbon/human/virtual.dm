@@ -37,9 +37,6 @@
 		return
 
 	death(gibbed)
-		for (var/atom/movable/a in contents)
-			if (a.flags & ISADVENTURE)
-				a.set_loc(get_turf(src))
 
 		Station_VNet.Leave_Vspace(src)
 
@@ -57,7 +54,7 @@
 
 	ex_act(severity)
 		src.flash(3 SECONDS)
-		if(severity == 1)
+		if(severity >= 6) //old severity 1
 			src.death()
 		return
 

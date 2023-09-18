@@ -21,8 +21,8 @@ datum/mind
 	var/late_special_role = 0
 	var/random_event_special_role = 0
 
-	// This used for dead/released/etc mindslaves and rogue robots we still want them to show up
-	// in the game over stats. It's a list because former mindslaves could also end up as an emagged
+	// This used for dead/released/etc insurgents and rogue robots we still want them to show up
+	// in the game over stats. It's a list because former insurgents could also end up as an emagged
 	// cyborg or something. Use strings here, just like special_role (Convair880).
 	var/list/former_antagonist_roles = list()
 
@@ -40,14 +40,15 @@ datum/mind
 
 	var/list/intrinsic_verbs = list()
 
-	// For mindslave/vampthrall/spyslave master references, which are now tracked by ckey.
-	// Mob references are not very reliable and did cause trouble with automated mindslave status removal
+	// For insurgent/vampthrall/spyrecruit master references, which are now tracked by ckey.
+	// Mob references are not very reliable and did cause trouble with automated insurgent status removal
 	// The relevant code snippets call a ckey -> mob reference lookup proc where necessary,
 	// namely whois_ckey_to_mob_reference(mob.mind.master) (Convair880).
 	var/master = null
 
 	var/dnr = 0
 	var/joined_observer = 0 //keep track of whether this player joined round as an observer (blocks them from bank payouts)
+	var/do_not_save_gun = 0 //similarly, there are certain scenarios where we don't want them to be able to save their cloud gun.
 
 	var/luck = 50 // todo:
 	var/sanity = 100 // implement dis
@@ -191,9 +192,9 @@ datum/mind
 
 		// Added (Convair880).
 		if (recipient.mind.master)
-			var/mob/mymaster = whois_ckey_to_mob_reference(recipient.mind.master)
-			if (mymaster)
-				output+= "<br><b>Your master:</b> [mymaster.real_name]"
+			var/mob/crimepal = whois_ckey_to_mob_reference(recipient.mind.master)
+			if (crimepal)
+				output+= "<br><b>Your Crimepal:</b> [crimepal.real_name]"
 
 		recipient.Browse(output,"window=memory;title=Memory")
 

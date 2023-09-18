@@ -464,7 +464,7 @@ var/global/noir = 0
 
 		if ("sharkban") //Add ban
 			var/mob/M = (href_list["target"] ? locate(href_list["target"]) : null)
-			usr.client.sharkban(M)
+			usr.client.cmd_admin_sharkban(M)
 
 		if("unbane") //Edit ban
 			if (src.level >= LEVEL_SA)
@@ -887,6 +887,31 @@ var/global/noir = 0
 			else
 				alert("You need to be at least a Primary Administrator to force players to say things.")
 
+		if ("givepet")
+			var/mob/M = locate(href_list["target"])
+			if (src.level >= LEVEL_PA || isnull(M.client) && src.level >= LEVEL_SA)
+				var/pet_input = input("Enter path of the thing you want to give as a pet or enter a part of the path to search", "Enter Path", pick("/obj/critter/domestic_bee", "/obj/critter/parrot/random", "/obj/critter/cat")) as null|text
+				if (!pet_input)
+					return
+				var/pet_path = get_one_match(pet_input, /obj)
+				if (!pet_path)
+					return
+
+				var/obj/Pet = new pet_path(get_turf(M))
+				Pet.name = "[M]'s pet [Pet.name]"
+
+				//Pets should probably not attack their owner
+				if (istype(Pet, /obj/critter))
+					var/obj/critter/CritterPet = Pet
+					CritterPet.atkcarbon = 0
+					CritterPet.atksilicon = 0
+
+				logTheThing("admin", usr ? usr : src, M, "gave [constructTarget(M,"admin")] a pet [pet_path]!")
+				logTheThing("diary", usr ? usr : src, M, "gave [constructTarget(M,"diary")] a pet [pet_path]!", "admin")
+				message_admins("[key_name(usr ? usr : src)] gave [M] a pet [pet_path]!")
+			else
+				alert("You need to be at least a Primary Administrator to force players to say things.")
+
 		if ("prison")
 			if (src.level >= LEVEL_MOD)
 				var/mob/M = locate(href_list["target"])
@@ -1086,7 +1111,7 @@ var/global/noir = 0
 			if( src.level >= LEVEL_PA )
 				var/mob/M = locate(href_list["target"])
 				if (!M) return
-				usr.client.sharkgib(M)
+				usr.client.cmd_admin_sharkgib(M)
 			else
 				alert("You need to be at least a Primary Admin to shark gib a dude.")
 
@@ -1153,7 +1178,7 @@ var/global/noir = 0
 					alert("This secret can only be used on human mobs.")
 					return
 				var/mob/living/carbon/human/H = M
-				var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman", "Kudzuman","Ghostdrone","Flubber","Cow")
+				var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Fert","Ghostdrone","Flubber","Cow")
 				if (!which)
 					return
 				. = 0
@@ -1177,9 +1202,12 @@ var/global/noir = 0
 					if("Flashman")
 						H.set_mutantrace(/datum/mutantrace/flashy)
 						. = 1
-					if("Kudzuman")
-						H.set_mutantrace(/datum/mutantrace/kudzu)
+					if("Fert")
+						H.set_mutantrace(/datum/mutantrace/fert)
 						. = 1
+			/*		if("Kudzuman")
+						H.set_mutantrace(/datum/mutantrace/kudzu)
+						. = 1*/
 					if("Ghostdrone")
 						droneize(H, 0)
 					if("Flubber")
@@ -1559,14 +1587,14 @@ var/global/noir = 0
 			else
 				alert("If you are below the rank of Primary Admin, you need to be observing and at least a Secondary Administrator to affect player reagents.")
 
-		if ("possessmob")
+		if ("possess_mob")
 			if( src.level >= LEVEL_PA )
 				var/mob/M = locate(href_list["target"])
 				if (!M) return
 				if (M == usr)
-					releasemob(M)
+					release_mob(M)
 				else
-					possessmob(M)
+					possess_mob(M)
 			else
 				alert("You need to be at least a Primary Administrator to possess or release mobs.")
 
@@ -2364,7 +2392,7 @@ var/global/noir = 0
 							alert("This secret can only be used on human mobs.")
 							return
 						var/mob/living/carbon/human/H = who
-						var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cow")
+						var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cow","Fert")
 						if (!which)
 							return
 						switch(which)
@@ -2382,12 +2410,14 @@ var/global/noir = 0
 								H.set_mutantrace(/datum/mutantrace/flashy)
 							if ("Cow")
 								H.set_mutantrace(/datum/mutantrace/cow)
+							if ("Fert")
+								H.set_mutantrace(/datum/mutantrace/fert)
 						message_admins("<span class='internal'>[key_name(usr)] transformed [H.real_name] into a [which].</span>")
 						logTheThing("admin", usr, null, "transformed [H.real_name] into a [which].")
 						logTheThing("diary", usr, null, "transformed [H.real_name] into a [which].", "admin")
 
 					if("transform_all")
-						var/which = input("Transform everyone into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cow")
+						var/which = input("Transform everyone into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cow","Fert")
 						for(var/mob/living/carbon/human/H in mobs)
 							switch(which)
 								if("Monkey") H.monkeyize()
@@ -2404,6 +2434,8 @@ var/global/noir = 0
 									H.set_mutantrace(/datum/mutantrace/flashy)
 								if("Cow")
 									H.set_mutantrace(/datum/mutantrace/cow)
+								if ("Fert")
+									H.set_mutantrace(/datum/mutantrace/fert)
 							LAGCHECK(LAG_LOW)
 						message_admins("<span class='internal'>[key_name(usr)] transformed everyone into a [which].</span>")
 						logTheThing("admin", usr, null, "transformed everyone into a [which].")
@@ -2807,7 +2839,7 @@ var/global/noir = 0
 								else if (P.icon_state == "pool")
 									P.icon_state = "ballpit"
 								LAGCHECK(LAG_LOW)
-							for (var/turf/simulated/pool/P in world)
+							for (var/turf/pool/P in world)
 								if (atom_emergency_stop)
 									message_admins("[key_name(usr)]'s command to replace all Z1 floors and walls with wooden ones was terminated due to the atom emerygency stop!")
 									return
@@ -2828,20 +2860,20 @@ var/global/noir = 0
 						if (src.level >= LEVEL_PA)
 							message_admins("[key_name(usr)] began replacing all Z1 floors and walls with wooden ones.")
 							var/nornwalls = 0
-							if (map_settings?.walls == /turf/simulated/wall/auto/supernorn)
+							if (map_settings?.walls == /turf/wall/auto/supernorn)
 								nornwalls = 1
-							for (var/turf/simulated/wall/W in world)
+							for (var/turf/wall/W in world)
 								if (atom_emergency_stop)
 									message_admins("[key_name(usr)]'s command to replace all Z1 floors and walls with wooden ones was terminated due to the atom emerygency stop!")
 									return
 								if (W.z != 1)
 									break
 								if (nornwalls)
-									var/turf/simulated/wall/auto/AW = W
+									var/turf/wall/auto/AW = W
 									if (istype(AW))
 										if (AW.icon != 'icons/turf/walls_wood.dmi')
 											AW.icon = 'icons/turf/walls_wood.dmi'
-											if (istype(AW, /turf/simulated/wall/auto/reinforced))
+											if (istype(AW, /turf/wall/auto/reinforced))
 												AW.icon_state = copytext(W.icon_state,2)
 											if (AW.connect_image) // I will get you to work you shit fuck butt FART OVERLAY
 												AW.connect_image = image(AW.icon, "connect[AW.connect_overlay_dir]")
@@ -2851,13 +2883,13 @@ var/global/noir = 0
 										W.icon = 'icons/turf/walls.dmi'
 										W.icon_state = "wooden"
 								LAGCHECK(LAG_LOW)
-							for (var/turf/simulated/floor/F in world)
+							for (var/turf/floor/F in world)
 								if (atom_emergency_stop)
 									message_admins("[key_name(usr)]'s command to replace all Z1 floors and walls with wooden ones was terminated due to the atom emerygency stop!")
 									return
 								if (F.z != 1)
 									break
-								if (istype(F, /turf/simulated/floor/carpet))
+								if (istype(F, /turf/floor/carpet))
 									continue
 								if (F.icon_state != "wooden")
 									F.icon_state = "wooden"
@@ -3071,7 +3103,7 @@ var/global/noir = 0
 
 					if ("command_report_zalgo")
 						if (src.level >= LEVEL_ADMIN)
-							var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as null|text
+							var/input = input(usr, "Please enter anything you want for the body of the message. Headline comes next..", "What?", "") as null|text
 							input = zalgoify(input, rand(0,2), rand(0, 2), rand(0, 2))
 							if(!input)
 								return
@@ -3092,7 +3124,7 @@ var/global/noir = 0
 
 					if ("command_report_void")
 						if (src.level >= LEVEL_ADMIN)
-							var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as null|text
+							var/input = input(usr, "Please enter anything you want for the body of the message. Headline comes next.", "What?", "") as null|text
 							input = voidSpeak(input)
 							if(!input)
 								return
@@ -3441,6 +3473,8 @@ var/global/noir = 0
 						simsController.showControls(usr)
 					if("artifacts")
 						artifact_controls.config()
+					if("miningstats")
+						mining_controls.show_stats()
 					if("ghostnotifier")
 						ghost_notifier.config()
 					if("unelectrify_all")
@@ -4165,6 +4199,7 @@ var/global/noir = 0
 				<A href='?src=\ref[src];action=secretsadmin;type=respawn_panel'>Respawn Panel</A><BR>
 				<A href='?src=\ref[src];action=secretsadmin;type=randomevents'>Random Event Controls</A><BR>
 				<A href='?src=\ref[src];action=secretsadmin;type=artifacts'>Artifact Controls</A><BR>
+				<A href='?src=\ref[src];action=secretsadmin;type=miningstats'>Mining Generation Statistics</A><BR>
 				<A href='?src=\ref[src];action=secretsadmin;type=pathology'>CDC</A><BR>
 				<A href='?src=\ref[src];action=secretsadmin;type=motives'>Motive Control</A><BR>
 				<A href='?src=\ref[src];action=secretsadmin;type=ghostnotifier'>Ghost Notification Controls</A><BR>
@@ -4306,7 +4341,7 @@ var/global/noir = 0
 
 	dat += "</div>"
 
-	usr.Browse(dat, "window=gamepanel")
+	usr.Browse(dat, "window=gamepanel;size=500x750")
 	return
 
 /datum/admins/proc/restart()
@@ -5115,7 +5150,7 @@ var/global/noir = 0
 /client/proc/respawn_self()
 	set name = "Respawn Self"
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)
-	set desc = "Respawn yourself"
+	set desc = "Respawn yourself (Go back to Splash Screen)"
 
 	if(!isobserver(usr))
 		boutput(usr, "You can't respawn unless you're dead!")
@@ -5163,6 +5198,31 @@ var/global/noir = 0
 		src.mob.set_dir(direct)
 	else
 		..()
+
+		// this is the time knife gimmick thing i guess? divorced from the marvel shit now?
+proc/timeywimey(var/time)
+	var/list/positions = list()
+	for(var/client/C in clients)
+		if(istype(C.mob, /mob/living))
+			if(C.mob == usr)
+				continue
+			var/mob/living/L = C.mob
+			positions.Add(L)
+			positions[L] = L.loc
+
+//	var/current_time = world.timeofday
+//	while (current_time + 100 > world.timeofday && current_time <= world.timeofday)
+	sleep(time)
+
+	for(var/mob/living/L in positions)
+		if (!L) continue
+		L.flash(3 SECONDS)
+		boutput(L, "<span class='alert'><B>You suddenly feel yourself pulled violently back in time!</B></span>")
+		L.set_loc(positions[L])
+		L.changeStatus("stunned", 6 SECONDS)
+		elecflash(L,power = 2)
+		playsound(L.loc, "sound/effects/mag_warp.ogg", 25, 1, -1)
+	return 1
 
 /*
 /mob/living/carbon/proc/cloak()

@@ -1,4 +1,4 @@
-/turf/simulated/wall
+/turf/wall
 	name = "wall"
 	desc = "Looks like a regular wall."
 	icon = 'icons/turf/walls.dmi'
@@ -79,13 +79,13 @@
 		src.UpdateOverlays(src.proj_image, "projectiles")
 		//src.overlays += src.proj_image
 
-/turf/simulated/wall/New()
+/turf/wall/New()
 	..()
 	if(!ticker && istype(src.loc, /area/station/maintenance) && prob(7))
 		make_cleanable( /obj/decal/cleanable/fungus,src)
 
 // Made this a proc to avoid duplicate code (Convair880).
-/turf/simulated/wall/proc/attach_light_fixture_parts(var/mob/user, var/obj/item/W, var/instantly)
+/turf/wall/proc/attach_light_fixture_parts(var/mob/user, var/obj/item/W, var/instantly)
 	if (!user || !istype(W, /obj/item/light_parts/) || istype(W, /obj/item/light_parts/floor))	//hack, no floor lights on walls
 		return
 
@@ -135,7 +135,7 @@
 	qdel(parts)
 	return
 
-/turf/simulated/wall/proc/take_hit(var/obj/item/I)
+/turf/wall/proc/take_hit(var/obj/item/I)
 	if(src.material)
 		if(I.material)
 			if((I.material.getProperty("hard") ? I.material.getProperty("hard") : (I.throwing ? I.throwforce : I.force)) >= (src.material.getProperty("hard") ? src.material.getProperty("hard") : 60))
@@ -168,8 +168,8 @@
 		dismantle_wall(1)
 	return
 
-/turf/simulated/wall/proc/dismantle_wall(devastated=0, keep_material = 1)
-	if (istype(src, /turf/simulated/wall/r_wall) || istype(src, /turf/simulated/wall/auto/reinforced))
+/turf/wall/proc/dismantle_wall(devastated=0, keep_material = 1)
+	if (istype(src, /turf/wall/r_wall) || istype(src, /turf/wall/auto/reinforced))
 		if (!devastated)
 			playsound(src, "sound/items/Welder.ogg", 100, 1)
 			var/atom/A = new /obj/structure/girder/reinforced(src)
@@ -189,25 +189,22 @@
 				if (src.material)
 					A.setMaterial(src.material)
 				else
-					var/datum/material/M = getMaterial("steel")
-					A.setMaterial(M)
+					A.setMaterial(getMaterial("steel"))
 
 				if (prob(50))
-					var/atom/movable/B = unpool(/obj/item/raw_material/scrap_metal)
+					var/atom/movable/B = new /obj/item/raw_material/scrap_metal()
 					B.set_loc(src)
 					if (src.material)
 						B.setMaterial(src.material)
 					else
-						var/datum/material/M = getMaterial("steel")
-						B.setMaterial(M)
+						B.setMaterial(getMaterial("steel"))
 
 			else if( prob(50))
 				var/atom/A = new /obj/structure/girder(src)
 				if (src.material)
 					A.setMaterial(src.material)
 				else
-					var/datum/material/M = getMaterial("steel")
-					A.setMaterial(M)
+					A.setMaterial(getMaterial("steel"))
 
 	else
 		if (!devastated)
@@ -230,8 +227,7 @@
 				if (src.material)
 					A.setMaterial(src.material)
 				else
-					var/datum/material/M = getMaterial("steel")
-					A.setMaterial(M)
+					A.setMaterial(getMaterial("steel"))
 
 			else if (prob(50))
 				var/atom/B = new /obj/structure/girder(src)
@@ -239,47 +235,45 @@
 				if (src.material)
 					B.setMaterial(src.material)
 				else
-					var/datum/material/M = getMaterial("steel")
-					B.setMaterial(M)
+					B.setMaterial(getMaterial("steel"))
 
 				if (prob(50))
-					var/atom/movable/C = unpool(/obj/item/raw_material/scrap_metal)
+					var/atom/movable/C = new /obj/item/raw_material/scrap_metal()
 					C.set_loc(src)
 					if (src.material)
 						C.setMaterial(src.material)
 					else
-						var/datum/material/M = getMaterial("steel")
-						C.setMaterial(M)
+						C.setMaterial(getMaterial("steel"))
 
 	var/atom/D = ReplaceWithFloor()
 	if (src.material && keep_material)
 		D.setMaterial(src.material)
 	else
-		var/datum/material/M = getMaterial("steel")
-		D.setMaterial(M)
+		D.setMaterial(getMaterial("steel"))
 
-/turf/simulated/wall/burn_down()
+/turf/wall/burn_down()
 	src.ReplaceWithFloor()
 
-/turf/simulated/wall/ex_act(severity)
+/turf/wall/ex_act(severity)
+	if (!isconstructionturf(src)) return
 	switch(severity)
-		if(1)
+		if(OLD_EX_SEVERITY_1)
 			src.ReplaceWithSpace()
 			return
-		if(2)
+		if(OLD_EX_SEVERITY_2)
 			if (prob(66))
 				dismantle_wall(1)
-		if(3)
+		if(OLD_EX_SEVERITY_3)
 			if (prob(40))
 				dismantle_wall(1)
 		else
 	return
 
-/turf/simulated/wall/blob_act(var/power)
+/turf/wall/blob_act(var/power)
 	if(prob(power))
 		dismantle_wall(1)
 
-/turf/simulated/wall/attack_hand(mob/user as mob)
+/turf/wall/attack_hand(mob/user as mob)
 	if (user.is_hulk())
 		if (prob(70))
 			playsound(user.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 50, 1)
@@ -313,7 +307,7 @@
 	interact_particle(user,src)
 	return
 
-/turf/simulated/wall/attackby(obj/item/W as obj, mob/user as mob, params)
+/turf/wall/attackby(obj/item/W as obj, mob/user as mob, params)
 	if(istype(W, /obj/item/spray_paint) || istype(W, /obj/item/gang_flyer))
 		return
 
@@ -335,7 +329,7 @@
 			return
 
 		boutput(user, "<span class='notice'>Now disassembling the outer wall plating.</span>")
-		SETUP_GENERIC_ACTIONBAR(user, src, 10 SECONDS, /turf/simulated/wall/proc/weld_action,\
+		SETUP_GENERIC_ACTIONBAR(user, src, 10 SECONDS, /turf/wall/proc/weld_action,\
 			list(W, user), W.icon, W.icon_state, "[user] finishes disassembling the outer wall plating.", null)
 
 //Spooky halloween key
@@ -347,7 +341,7 @@
 		user.visible_message("<span class='alert'>[user] inserts [W] into [src]!</span>","<span class='alert'>The key seems to phase into the wall.</span>")
 		W:last_use = world.time
 		blink(src)
-		new /turf/simulated/wall/false_wall/temp(src)
+		new /turf/wall/false_wall/temp(src)
 		return
 
 //grabsmash
@@ -356,6 +350,9 @@
 		if  (!grab_smash(G, user))
 			return ..(W, user)
 		else return
+
+	else if (istype(W, /obj/item/rcd))
+		return //STFU with your "uselessly hits wall" messages ffs
 
 	else
 		if(src.material)
@@ -373,11 +370,11 @@
 		src.take_hit(W)
 		//return attack_hand(user)
 
-/turf/simulated/wall/proc/weld_action(obj/item/W, mob/user)
+/turf/wall/proc/weld_action(obj/item/W, mob/user)
 	logTheThing("station", user, null, "deconstructed a wall ([src.name]) using \a [W] at [get_area(user)] ([showCoords(user.x, user.y, user.z)])")
 	dismantle_wall()
 
-/turf/simulated/wall/r_wall
+/turf/wall/r_wall
 	name = "reinforced wall"
 	desc = "Looks a lot tougher than a regular wall."
 	icon = 'icons/turf/walls.dmi'
@@ -397,7 +394,7 @@
 				health /= 2
 		return
 
-/turf/simulated/wall/r_wall/attackby(obj/item/W as obj, mob/user as mob, params)
+/turf/wall/r_wall/attackby(obj/item/W as obj, mob/user as mob, params)
 	if(istype(W, /obj/item/spray_paint) || istype(W, /obj/item/gang_flyer))
 		return
 
@@ -522,7 +519,7 @@
 		user.visible_message("<span class='alert'>[user] inserts [W] into [src]!</span>","<span class='alert'>The key seems to phase into the wall.</span>")
 		W:last_use = world.time
 		blink(src)
-		var/turf/simulated/wall/false_wall/temp/fakewall = new /turf/simulated/wall/false_wall/temp(src)
+		var/turf/wall/false_wall/temp/fakewall = new /turf/wall/false_wall/temp(src)
 		fakewall.was_rwall = 1
 		return
 
@@ -535,8 +532,7 @@
 			if(S.material)
 				src.setMaterial(S.material)
 			else
-				var/datum/material/M = getMaterial("steel")
-				src.setMaterial(M)
+				src.setMaterial(getMaterial("steel"))
 			boutput(user, "<span class='notice'>You repaired the wall.</span>")
 
 //grabsmash
@@ -546,7 +542,10 @@
 			return ..(W, user)
 		else return
 
-	if(istype(src, /turf/simulated/wall/r_wall) && src.d_state > 0)
+	else if (istype(W, /obj/item/rcd))
+		return //STFU with your "uselessly hits wall" messages ffs
+
+	if(istype(src, /turf/wall/r_wall) && src.d_state > 0)
 		src.icon_state = "r_wall-[d_state]"
 
 	if(src.material)
@@ -565,6 +564,6 @@
 	//return attack_hand(user)
 
 
-/turf/simulated/wall/meteorhit(obj/M as obj)
+/turf/wall/meteorhit(obj/M as obj)
 	dismantle_wall()
 	return 0
