@@ -181,7 +181,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 				receiver_output.measure() //This proc asks a client and then doesn't use it?
 				for(var/image/chat_maptext/I in receiver.chat_text.lines) //why is this a manual operation
 					if(I != receiver_output)
-						I.bump_up(receiver_output.measured_height)
+						I.bump_up(receiver_output.measured_height, TRUE)
 
 			//chucking these all in the same message group for now cause the radios are quite capable of spamming chat to shit
 			receiver.audible_message("<span class='subtle'><span class='game say'><span class='name'>[receiver]</span> receives:</span> \"[islist(current_speaker) ? current_speaker[1]+": " : null][current_entry]\"</span>", 2, assoc_maptext = receiver_output, group = (group_messages ? "received_broadcast" : ""))

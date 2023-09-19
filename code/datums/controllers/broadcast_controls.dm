@@ -37,11 +37,13 @@
 		broadcast.index = 0 //OOB technically but gets incremented before reading
 
 	//priority sorting
+	var/max_cooldown = 0
 	var/in_front_somewhere = FALSE
 	for (var/a_channel as anything in broadcast.broadcast_channels)
 		var/queue_index = 1
 		if (!active_broadcasts[a_channel])//first, make list
 			active_broadcasts[a_channel] = list(broadcast)
+			in_front_somewhere = TRUE
 		else//also handles empty active_broadcast list
 			//don't duplicate the same broadcast pls
 			if (broadcast in active_broadcasts[a_channel])
@@ -51,12 +53,19 @@
 				if (broadcast.priority > other_broadcast.priority)
 					break
 				queue_index++
+
+			if (queue_index == 1)
+				in_front_somewhere = TRUE
+				if (length(active_broadcasts[a_channel]))
+					max_cooldown = max(max_cooldown, GET_COOLDOWN(active_broadcasts[a_channel][1], "next_broadcast"))
 			active_broadcasts[a_channel].Insert(queue_index, broadcast)
-		if (queue_index == 1)
-			in_front_somewhere = TRUE
+
+
 
 	if (process_immediately && in_front_somewhere) //send out a message as soon as possible but only if it'd do something worthwhile
-		broadcast.process()
+		broadcast.process() //The I.bump_up call in here will clear out a previous message if it's there
+	else
+		ON_COOLDOWN(broadcast, "next_broadcast", max_cooldown)
 	//SEND_SIGNAL(broadcast, COMSIG_BROADCAST_STARTED)
 
 /datum/broadcast_controller/proc/broadcast_stop(datum/directed_broadcast/broadcast)
