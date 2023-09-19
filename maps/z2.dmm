@@ -27620,11 +27620,19 @@
 	name = "new_player"
 	},
 /obj/decal/cleanable/ketchup{
-	desc = "it all begins right here";
-	name = "the SAUCE"
+	desc = "Everything begins right hear.";
+	name = "\proper the SAUCE"
 	},
-/turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_3"
+/obj/item/shaker/ketchup{
+	desc = "get it on their (looks normal)";
+	name = "\proper the SAUCE bottle";
+	pixel_x = 7
+	},
+/turf/floor/setpieces/gauntlet{
+	desc = "Yuck.";
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "bloodfloor_3";
+	name = "bloody floor"
 	},
 /area/titlescreen)
 "bMW" = (
@@ -67577,6 +67585,13 @@
 /obj/item/matchbook,
 /turf/floor/plating,
 /area/afterlife/bar)
+"ekf" = (
+/obj/item/parts/human_parts/leg/left,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "eln" = (
 /obj/stool/chair{
 	dir = 8
@@ -67861,6 +67876,18 @@
 /obj/storage/secure/closet/security/equipment,
 /turf/floor/neutral,
 /area/upper_arctic/fita/armory)
+"eLI" = (
+/obj/decal/stage_edge/dojo,
+/obj/decal/fakeobjects{
+	desc = "One \"standard-issue\" Nanotrasen cylinder, filled to the brim with a dadly gas";
+	icon = 'icons/obj/atmospherics/atmos.dmi';
+	icon_state = "green";
+	name = "strange canister"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_3"
+	},
+/area/titlescreen)
 "eNs" = (
 /turf/dirt{
 	icon_state = "dirttograss"
@@ -68038,6 +68065,10 @@
 	icon_state = "green";
 	name = "garrys"
 	})
+"fhj" = (
+/obj/item/parts/human_parts/leg/right,
+/turf/floor/setpieces/bloodfloor,
+/area/titlescreen)
 "fhs" = (
 /obj/decal/fakeobjects/shuttlethruster{
 	desc = "A small impulse drive.";
@@ -68395,10 +68426,26 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"fXY" = (
+/obj/decal/cleanable/mess/chips,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "fZr" = (
 /obj/machinery/vending/snack,
 /turf/floor,
 /area/centcom/lounge)
+"gaw" = (
+/obj/item/reagent_containers/food/snacks/ingredient/meat{
+	desc = "delicious and room temperature"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "gaE" = (
 /obj/admin_plaque{
 	name = "Vaughn Moon's Office"
@@ -68481,6 +68528,13 @@
 	dir = 8
 	},
 /area/shuttle/escape/centcom/donut2)
+"gkd" = (
+/obj/item/bottleopener,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "gkp" = (
 /obj/machinery/camera{
 	dir = 10
@@ -68616,6 +68670,10 @@
 	},
 /turf/floor/engine/glow,
 /area/upper_arctic/fita/lobby)
+"gCq" = (
+/obj/decal/cleanable/fungus,
+/turf/floor/setpieces/bloodfloor,
+/area/titlescreen)
 "gCz" = (
 /obj/machinery/light/small/neutral{
 	dir = 1
@@ -69032,17 +69090,6 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
-"hFI" = (
-/obj/storage/crate/bin{
-	desc = "You don't want to think about what this contains.";
-	locked = 1;
-	name = "unspeakable bin"
-	},
-/turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_2";
-	name = "Fleshy Floor"
-	},
-/area/titlescreen)
 "hHg" = (
 /obj/decal/icefloor,
 /obj/machinery/light/small/warm/very{
@@ -69312,6 +69359,10 @@
 	icon_state = "green";
 	name = "garrys"
 	})
+"ipH" = (
+/obj/decal/fakeobjects/firealarm_broken,
+/turf/floor/setpieces/bloodfloor,
+/area/titlescreen)
 "ipM" = (
 /obj/stool/chair/comfy/red,
 /obj/map/light/brightwhite,
@@ -69589,13 +69640,6 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/merchant_shuttle/right_centcom/donut2)
-"iMT" = (
-/obj/machinery/shitty_grill,
-/turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_2";
-	name = "Fleshy Floor"
-	},
-/area/titlescreen)
 "iNq" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -69921,15 +69965,6 @@
 /obj/machinery/light/small/neutral,
 /turf/floor/neutral,
 /area/upper_arctic/fita/armory)
-"jCW" = (
-/obj/decal/cleanable/machine_debris{
-	icon_state = "gib7"
-	},
-/turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_2";
-	name = "Fleshy Floor"
-	},
-/area/titlescreen)
 "jDu" = (
 /obj/grille/catwalk{
 	dir = 9;
@@ -70038,6 +70073,13 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"jNp" = (
+/obj/decal/cleanable/machine_debris,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "jNq" = (
 /obj/decal/fakeobjects{
 	desc = "These jaws look a little buffer than the rest.  That means that either they are important, or somebody just really wanted big jaws here.";
@@ -70582,13 +70624,6 @@
 /obj/map/light/brightwhite,
 /turf/floor/wood/two,
 /area/afterlife/bar)
-"kRG" = (
-/obj/decal/cleanable/machine_debris,
-/turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_2";
-	name = "Fleshy Floor"
-	},
-/area/titlescreen)
 "kRS" = (
 /turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_3"
@@ -70692,7 +70727,13 @@
 	},
 /area/space)
 "lfk" = (
-/obj/decal/cleanable/mess/noodles/random_all,
+/obj/decal/fakeobjects{
+	desc = "There's no getting past these jaws when they're closed.  Ideally, one would not be between them when they close.";
+	dir = 1;
+	icon = 'icons/misc/meatland.dmi';
+	icon_state = "fangdoor0";
+	name = "enormous mandibles"
+	},
 /turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
@@ -70737,6 +70778,17 @@
 	},
 /turf/floor/neutral,
 /area/upper_arctic/fita/hall)
+"lkj" = (
+/obj/storage/crate/bin{
+	desc = "You don't want to think about what this contains.";
+	locked = 1;
+	name = "unspeakable bin"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "lkL" = (
 /obj/machinery/door/airlock/pyro/glass/command,
 /obj/access_spawn/owlcommand,
@@ -70752,6 +70804,19 @@
 	},
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
+"lmp" = (
+/obj/item/storage/toilet{
+	dir = 8
+	},
+/obj/item/cocktail_stuff/drink_umbrella{
+	pixel_y = 8;
+	rand_pos = 0
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "lnd" = (
 /obj/decal/poster/wallsign/stencil/left/s,
 /turf/floor/grass/leafy,
@@ -71071,6 +71136,17 @@
 	name = "not piss"
 	},
 /obj/naval_mine/rusted,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
+"lWd" = (
+/obj/table/wood/round,
+/obj/decal/cleanable/mess/noodles/random_all{
+	layer = 4;
+	plane = -95
+	},
 /turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
@@ -71497,13 +71573,6 @@
 "mZd" = (
 /turf/floor/stairs/wide/middle,
 /area/centcom)
-"mZC" = (
-/mob/living/critter/plasmaspore,
-/turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_2";
-	name = "Fleshy Floor"
-	},
-/area/titlescreen)
 "mZZ" = (
 /turf/floor/wood/eight{
 	dir = 4
@@ -71553,18 +71622,6 @@
 /obj/item/clothing/suit/bedsheet/pink,
 /turf/floor/wood/six,
 /area/upper_arctic/fita/crew)
-"nel" = (
-/obj/decal/fakeobjects{
-	desc = "An improvised explosive made primarily out of two pipes.";
-	icon = 'icons/obj/items/assemblies.dmi';
-	icon_state = "Pipe_Timed";
-	name = "pipe bomb"
-	},
-/turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_2";
-	name = "Fleshy Floor"
-	},
-/area/titlescreen)
 "nfn" = (
 /turf/space,
 /turf/space,
@@ -71637,6 +71694,16 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"nkf" = (
+/obj/item/device/light/candle{
+	icon_state = "candle";
+	on = 1
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "nmG" = (
 /obj/machinery/light/small/red{
 	dir = 8
@@ -71645,13 +71712,6 @@
 	dir = 6
 	},
 /area/upper_arctic/exterior/surface)
-"nnp" = (
-/obj/reagent_dispensers/watertank/fountain/juicer,
-/turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_2";
-	name = "Fleshy Floor"
-	},
-/area/titlescreen)
 "nnN" = (
 /obj/machinery/light{
 	dir = 8
@@ -71703,6 +71763,13 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"nrm" = (
+/obj/machinery/bot/skullbot,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "nsm" = (
 /obj/item/bat,
 /obj/item/ammo/bullets/abg{
@@ -71733,6 +71800,23 @@
 "nuo" = (
 /turf/wall/auto/lead/gray,
 /area/crypt/sigma)
+"nus" = (
+/obj/stomachacid{
+	desc = "it's stomach acid, sheesh.";
+	name = "not piss"
+	},
+/obj/decal/fakeobjects{
+	desc = "Wow, if only they made the whole spacecraft outta the black box!!!!!";
+	icon = 'icons/obj/items/items.dmi';
+	icon_state = "blackbox";
+	layer = 4;
+	name = "flight recorder of NSS Horizon"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "nvp" = (
 /obj/storage/crate/bin{
 	desc = "She'll get around to these. Eventually...";
@@ -71829,6 +71913,19 @@
 	opacity = 0
 	},
 /area/titlescreen)
+"nyB" = (
+/obj/stomachacid{
+	desc = "it's stomach acid, sheesh.";
+	name = "not piss"
+	},
+/obj/dialogueobj/securitycorpse2{
+	desc = "p.e.s."
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "nyQ" = (
 /obj/spacevine,
 /turf/wall/auto/lead/blue,
@@ -71907,6 +72004,13 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"nGa" = (
+/obj/item/fish/bass,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "nGs" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "It won't budge.";
@@ -71982,6 +72086,13 @@
 	},
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/research)
+"nPe" = (
+/mob/living/critter/plasmaspore,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "nQp" = (
 /obj/decal/fakeobjects/firelock_broken{
 	desc = "A pod door.  One that might be stuck, who knows.";
@@ -72190,6 +72301,13 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"obe" = (
+/obj/item/reagent_containers/food/snacks/meatloaf,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "obT" = (
 /obj/stool/chair/comfy/shuttle/red{
 	dir = 1
@@ -72198,6 +72316,18 @@
 	icon_state = "floor3"
 	},
 /area/shuttle/escape/centcom/donut3)
+"odu" = (
+/obj/decal/fakeobjects{
+	desc = "An improvised explosive made primarily out of two pipes.";
+	icon = 'icons/obj/items/assemblies.dmi';
+	icon_state = "Pipe_Timed";
+	name = "pipe bomb"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "odG" = (
 /obj/table/auto,
 /obj/item/decoration/ashtray,
@@ -72507,14 +72637,6 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
-"oIb" = (
-/obj/item/decoration/ashtray,
-/obj/item/cigbutt,
-/turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_2";
-	name = "Fleshy Floor"
-	},
-/area/titlescreen)
 "oJy" = (
 /turf/floor/void/channel,
 /turf/wall{
@@ -72571,6 +72693,14 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"oQR" = (
+/obj/decal/cleanable/gangtag,
+/turf/wall/auto/sengoku{
+	icon_state = "12";
+	name = "wall";
+	opacity = 0
+	},
+/area/titlescreen)
 "oRd" = (
 /obj/stool/chair/comfy/green{
 	dir = 4
@@ -72936,6 +73066,15 @@
 /obj/map/light/brightwhite,
 /turf/floor/damaged5,
 /area/afterlife/bar/barspawn)
+"pyG" = (
+/obj/machinery/shitty_grill{
+	icon_state = "shittygrill_on"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "pyK" = (
 /obj/grille/catwalk{
 	dir = 9;
@@ -73273,13 +73412,6 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/centcom/donut3)
-"qfP" = (
-/obj/decal/cleanable/mess/chips,
-/turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_2";
-	name = "Fleshy Floor"
-	},
-/area/titlescreen)
 "qgj" = (
 /obj/indestructible/shuttle_corner{
 	dir = 1;
@@ -73354,10 +73486,6 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
-"qps" = (
-/obj/decal/cleanable/fungus,
-/turf/floor/setpieces/bloodfloor,
-/area/titlescreen)
 "qqm" = (
 /obj/stool/chair/comfy/shuttle/red{
 	dir = 1
@@ -73375,6 +73503,13 @@
 /obj/wingrille_spawn/auto,
 /turf/floor/engine,
 /area/space)
+"qsY" = (
+/obj/critter/roach,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "qvl" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -73831,7 +73966,9 @@
 	},
 /area/hospital/samostrel)
 "rjU" = (
-/obj/loudspeaker,
+/obj/loudspeaker{
+	pixel_y = 5
+	},
 /turf/floor/dojo/stone,
 /area/titlescreen)
 "rlN" = (
@@ -74592,6 +74729,19 @@
 /obj/machinery/light/small/ceiling/neutral,
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
+"szt" = (
+/obj/decal/fakeobjects{
+	desc = "Wow, if only they made the whole spacecraft outta the black box!!!!!";
+	icon = 'icons/obj/items/items.dmi';
+	icon_state = "blackbox";
+	layer = 4;
+	name = "flight recorder of NSS Horizon"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "szA" = (
 /obj/grille/catwalk{
 	dir = 5;
@@ -74803,10 +74953,15 @@
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster/supplycloset)
 "sQe" = (
-/obj/item/reagent_containers/food/snacks/ingredient/meat,
 /obj/item/cocktail_stuff/cocktail_olive{
+	layer = 4;
 	pixel_x = 3;
-	pixel_y = 5
+	pixel_y = 5;
+	rand_pos = 0
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/meat{
+	desc = "delicious and room temperature";
+	rand_pos = 0
 	},
 /turf/floor/dojo/stone,
 /area/titlescreen)
@@ -74817,6 +74972,13 @@
 	},
 /turf/floor,
 /area/hospital/samostrel)
+"sUF" = (
+/obj/item/reagent_containers/food/snacks/yuck,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "sWb" = (
 /turf/wall/auto/lead/blue,
 /area/centcom/lobby)
@@ -74842,13 +75004,6 @@
 	dir = 4
 	},
 /area/crunch/wtc)
-"tcX" = (
-/obj/item/reagent_containers/food/snacks/ingredient/meat,
-/turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_2";
-	name = "Fleshy Floor"
-	},
-/area/titlescreen)
 "teX" = (
 /turf/floor/shuttle{
 	icon_state = "floor3"
@@ -74991,19 +75146,6 @@
 "txy" = (
 /turf/wall/auto/lead/gray,
 /area/iomoon/caves)
-"tzN" = (
-/obj/decal/fakeobjects{
-	desc = "There's no getting past these jaws when they're closed.  Ideally, one would not be between them when they close.";
-	dir = 1;
-	icon = 'icons/misc/meatland.dmi';
-	icon_state = "fangdoor0";
-	name = "enormous mandibles"
-	},
-/turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_2";
-	name = "Fleshy Floor"
-	},
-/area/titlescreen)
 "tAi" = (
 /turf/shuttle/wall{
 	icon_state = "wall3dir"
@@ -75035,6 +75177,7 @@
 	desc = "They're just happy to be here, folks.";
 	icon = 'icons/misc/critter.dmi';
 	icon_state = "paisano-generic";
+	layer = 4;
 	name = "paisano"
 	},
 /obj/decal/lightshaft,
@@ -75178,10 +75321,6 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
-"uct" = (
-/obj/decal/fakeobjects/firealarm_broken,
-/turf/floor/setpieces/bloodfloor,
-/area/titlescreen)
 "ucy" = (
 /obj/item/toy/plush/small/bunny/mask{
 	anchored = 1;
@@ -75341,6 +75480,13 @@
 	icon_state = "bloodfloor_3"
 	},
 /area/meat_derelict/guts)
+"utr" = (
+/obj/item/beach_ball,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "utS" = (
 /obj/machinery/sleeper/compact{
 	dir = 4
@@ -75663,6 +75809,18 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"uUE" = (
+/obj/item/decoration/ashtray,
+/obj/item/cigbutt,
+/obj/item/cigpacket/greasy{
+	pixel_x = 9;
+	pixel_y = 5
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "uVP" = (
 /turf/wall/auto/virtual,
 /area/sim/racing_track{
@@ -75723,17 +75881,19 @@
 	icon_state = "dirttograss"
 	},
 /area/sim/racing_track)
+"vcl" = (
+/obj/reagent_dispensers/watertank/fountain/juicer,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "vcm" = (
 /obj/disposalpipe/segment{
 	dir = 4
 	},
 /turf/wall/auto/concrete,
 /area/upper_arctic/fita/bathroom)
-"vdE" = (
-/obj/item/cigbutt,
-/obj/item/cigbutt,
-/turf/floor/setpieces/bloodfloor,
-/area/titlescreen)
 "vdG" = (
 /obj/item/saxophone,
 /turf/floor/dojo/stone,
@@ -75838,6 +75998,7 @@
 	icon_state = "hotdogs-A";
 	name = "television"
 	},
+/obj/effect_sparker,
 /turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
@@ -75860,18 +76021,6 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/centcom/donut3)
-"voG" = (
-/obj/decal/stage_edge/dojo,
-/obj/decal/fakeobjects{
-	desc = "One \"standard-issue\" Nanotrasen cylinder, filled to the brim with a dadly gas";
-	icon = 'icons/obj/atmospherics/atmos.dmi';
-	icon_state = "green";
-	name = "strange canister"
-	},
-/turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_3"
-	},
-/area/titlescreen)
 "voQ" = (
 /turf/floor/orangeblack/corner,
 /area/centcom)
@@ -76204,6 +76353,15 @@
 	dir = 4
 	},
 /area/upper_arctic/fita/medsci)
+"wjm" = (
+/obj/decal/cleanable/machine_debris{
+	icon_state = "gib7"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "wku" = (
 /obj/storage/crate/freezer,
 /obj/item/parts/human_parts/arm/left/brullbar,
@@ -76253,14 +76411,6 @@
 /obj/map/light/graveyard,
 /turf/wall/auto/lead/gray,
 /area/crypt/sigma/crew)
-"wmX" = (
-/obj/decal/cleanable/gangtag,
-/turf/wall/auto/sengoku{
-	icon_state = "12";
-	name = "wall";
-	opacity = 0
-	},
-/area/titlescreen)
 "wnu" = (
 /turf/wall/auto/sengoku{
 	icon_state = "10";
@@ -76784,6 +76934,11 @@
 /obj/decal/icefloor,
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
+"xxH" = (
+/obj/item/cigbutt,
+/obj/item/cigbutt,
+/turf/floor/setpieces/bloodfloor,
+/area/titlescreen)
 "xxP" = (
 /obj/grille/catwalk{
 	dir = 10;
@@ -161435,14 +161590,14 @@ xYJ
 xYJ
 xYJ
 xYJ
-xYJ
+nkf
 xYJ
 xYJ
 pLz
 yiP
 xYJ
 xYJ
-jIa
+nGa
 xYJ
 xYJ
 oju
@@ -161734,13 +161889,13 @@ cnw
 aaa
 ajg
 xYJ
-iMT
+pyG
 xYJ
 yiP
 xYJ
 rQC
 xYJ
-lWE
+nus
 yiP
 yiP
 yiP
@@ -162038,7 +162193,7 @@ ajg
 xYJ
 yiP
 xYJ
-mZC
+nPe
 yiP
 xYJ
 vEz
@@ -162047,7 +162202,7 @@ yiP
 xYJ
 jNq
 xYJ
-xYJ
+gkd
 yiP
 xYJ
 ajg
@@ -162339,16 +162494,16 @@ aaa
 ajg
 xYJ
 yiP
-tcX
+gaw
 xYJ
-jCW
+wjm
 yiP
 jKU
 yiP
 xYJ
 jcC
 yiP
-qps
+gCq
 xYJ
 yiP
 xYJ
@@ -162643,7 +162798,7 @@ xYJ
 hXN
 yiP
 mLT
-kRG
+jNp
 yiP
 xYJ
 xYJ
@@ -162945,16 +163100,16 @@ xYJ
 yiP
 xYJ
 yiP
-yiP
+gCq
 xYJ
 xYJ
 abe
 xYJ
-xYJ
+qsY
 xYJ
 wtg
 yiP
-xYJ
+jKU
 yiP
 ajg
 "}
@@ -163245,16 +163400,16 @@ aaa
 ajg
 xYJ
 iBN
-xYJ
+jKU
 xYJ
 pNh
 yiP
 yiP
 yiP
 yiP
-vdE
-oIb
-lWE
+xxH
+uUE
+nyB
 yiP
 yiP
 xYJ
@@ -163545,8 +163700,8 @@ cnw
 cnw
 aaa
 ajg
-tzN
-qps
+lfk
+gCq
 xYJ
 wCN
 xZJ
@@ -163555,11 +163710,11 @@ xZJ
 xZJ
 qgO
 hRD
-vdE
+xxH
 lWE
 yiP
 xYJ
-qfP
+xYJ
 ajg
 "}
 (287,1,1) = {"
@@ -163852,8 +164007,8 @@ yiP
 yiP
 rgr
 rjU
-voG
-yiP
+eLI
+fhj
 kRS
 wnu
 jxX
@@ -163861,7 +164016,7 @@ uAN
 yiP
 xYJ
 xYJ
-xYJ
+nrm
 ajg
 "}
 (288,1,1) = {"
@@ -164152,7 +164307,7 @@ ajg
 xYJ
 jIa
 yiP
-wmX
+oQR
 qDa
 sQe
 iEd
@@ -164163,7 +164318,7 @@ qbr
 xYJ
 xYJ
 yiP
-xYJ
+fXY
 ajg
 "}
 (289,1,1) = {"
@@ -164451,7 +164606,7 @@ cnw
 cnw
 aaa
 ajg
-xYJ
+nkf
 xYJ
 lWE
 rgr
@@ -164767,7 +164922,7 @@ fcJ
 xYJ
 xYJ
 xYJ
-xYJ
+nkf
 ajg
 "}
 (291,1,1) = {"
@@ -165056,11 +165211,11 @@ cnw
 aaa
 ajg
 xYJ
-uct
+ipH
 yiP
 rgr
 rjU
-voG
+eLI
 kRS
 kRS
 wCN
@@ -165359,7 +165514,7 @@ aaa
 ajg
 xYJ
 yiP
-nel
+xYJ
 wnu
 xZJ
 xZJ
@@ -165659,7 +165814,7 @@ cnw
 cnw
 aaa
 ajg
-xYJ
+sUF
 yiP
 xYJ
 xYJ
@@ -165671,7 +165826,7 @@ yiP
 yiP
 yiP
 xYJ
-xYJ
+obe
 yiP
 xYJ
 ajg
@@ -165971,10 +166126,10 @@ xYJ
 kCG
 yiP
 yiP
-qps
+gCq
 xYJ
 xYJ
-xYJ
+ekf
 xYJ
 ajg
 "}
@@ -166263,19 +166418,19 @@ cnw
 cnw
 aaa
 ajg
-yiP
+gCq
 yiP
 yiP
 xYJ
 xYJ
 vmg
-xYJ
+lWd
 ieC
 yiP
-jIa
+xYJ
 xYJ
 yiP
-nnp
+vcl
 xYJ
 xYJ
 ajg
@@ -166567,7 +166722,7 @@ aaa
 ajg
 xYJ
 xYJ
-hFI
+lkj
 yiP
 rQC
 xYJ
@@ -166576,7 +166731,7 @@ vwr
 iBN
 xYJ
 xYJ
-mZC
+nPe
 yiP
 uOU
 uEj
@@ -166869,14 +167024,14 @@ aaa
 ajg
 xYJ
 xYJ
-xYJ
+szt
 qOO
 yiP
 yiP
+lmp
 yiP
-yiP
-xYJ
-xYJ
+odu
+jKU
 xYJ
 xYJ
 rIS
@@ -167174,14 +167329,14 @@ yiP
 xYJ
 xYJ
 slv
+yiP
+yiP
 xYJ
-xYJ
-lfk
 xYJ
 xYJ
 rQC
 xYJ
-yiP
+gCq
 xYJ
 xYJ
 ajg
@@ -167472,14 +167627,14 @@ cnw
 aaa
 ajg
 hqg
-xYJ
-tcX
+utr
+gaw
 xYJ
 yiP
 xYJ
 xYJ
 xYJ
-xYJ
+nkf
 xYJ
 xYJ
 xYJ
