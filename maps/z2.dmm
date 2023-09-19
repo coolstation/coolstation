@@ -5,6 +5,13 @@
 "aab" = (
 /turf/space/no_replace,
 /area/space)
+"abe" = (
+/obj/decal/cleanable/generic,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "abh" = (
 /turf/grass{
 	density = 1;
@@ -13852,6 +13859,11 @@
 	},
 /turf/floor/white,
 /area/upper_arctic/fita/medsci)
+"aZn" = (
+/obj/decal/poster/wallsign/stencil/left/t,
+/obj/decal/poster/wallsign/stencil/right/a,
+/turf/floor/setpieces/bloodfloor,
+/area/titlescreen)
 "aZp" = (
 /obj/grille/steel,
 /obj/window/crystal/reinforced/east,
@@ -27607,10 +27619,12 @@
 /obj/landmark{
 	name = "new_player"
 	},
-/turf/floor/setpieces/gauntlet{
-	desc = "Everything begins right here.";
-	icon_state = "gauntfloorHearts";
-	name = "\proper the source"
+/obj/decal/cleanable/ketchup{
+	desc = "it all begins right here";
+	name = "the SAUCE"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_3"
 	},
 /area/titlescreen)
 "bMW" = (
@@ -67965,8 +67979,17 @@
 	},
 /area/shuttle/escape/centcom/cogmap)
 "eZW" = (
-/obj/decal/fakeobjects/dreambeach/sticks,
-/turf/floor/setpieces/bloodfloor,
+/obj/decal/fakeobjects{
+	desc = "There's no getting past these jaws when they're closed.  Ideally, one would not be between them when they close.";
+	dir = 1;
+	icon = 'icons/misc/meatland.dmi';
+	icon_state = "fangdoor1";
+	name = "enormous mandibles"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
 /area/titlescreen)
 "fah" = (
 /obj/machinery/door/airlock/classic,
@@ -67990,6 +68013,11 @@
 	dir = 1
 	},
 /area/moon/museum)
+"fcJ" = (
+/obj/decal/poster/wallsign/stencil/left/t,
+/obj/decal/poster/wallsign/stencil/right/i,
+/turf/floor/setpieces/bloodfloor,
+/area/titlescreen)
 "fen" = (
 /obj/structure/woodwall,
 /turf/floor/plating,
@@ -68725,6 +68753,13 @@
 	},
 /turf/wall/auto/lead/gray,
 /area/iomoon/base)
+"gUY" = (
+/obj/decal/cleanable/mess/maple,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "gWV" = (
 /obj/decal/fakeobjects{
 	desc = "A series of parallel bars designed to allow for controlled change of elevation.  You know, by climbing it.  You climb it. Except you can't do it with this one for some reason.";
@@ -68873,7 +68908,7 @@
 	},
 /area/titlescreen)
 "hqg" = (
-/obj/decal/fakeobjects/dreambeach/mercury,
+/obj/decal/cleanable/cobweb2,
 /turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
@@ -68997,6 +69032,17 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"hFI" = (
+/obj/storage/crate/bin{
+	desc = "You don't want to think about what this contains.";
+	locked = 1;
+	name = "unspeakable bin"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "hHg" = (
 /obj/decal/icefloor,
 /obj/machinery/light/small/warm/very{
@@ -69097,10 +69143,11 @@
 	},
 /area/hospital/samostrel)
 "hRD" = (
-/obj/decal/stone_lamp{
-	desc = "An incredibly heavy stone lamp. No human could possibly hope to even so much as budge it in the slightest.";
-	name = "lamp of atlas";
-	pixel_y = -5
+/obj/decal/fakeobjects{
+	desc = "One \"standard-issue\" Nanotrasen cylinder, filled to the brim with a dadly gas";
+	icon = 'icons/obj/atmospherics/atmos.dmi';
+	icon_state = "green";
+	name = "strange canister"
 	},
 /turf/floor/setpieces/bloodfloor,
 /area/titlescreen)
@@ -69164,8 +69211,11 @@
 	icon_state = "blue"
 	})
 "hXN" = (
-/obj/critter/blobman/meaty_martha,
-/turf/floor/setpieces/bloodfloor,
+/obj/decal/mushrooms/type3,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
 /area/titlescreen)
 "hXW" = (
 /obj/storage/secure/crate,
@@ -69191,6 +69241,15 @@
 /obj/burning_barrel,
 /turf/floor/setpieces/rootfloor,
 /area/space)
+"ieC" = (
+/obj/stool/chair/couch/red{
+	dir = 10
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "ifR" = (
 /turf/floor/grey,
 /area/afterlife/bar)
@@ -69416,12 +69475,8 @@
 	},
 /area/hospital/samostrel)
 "iBN" = (
-/obj/decal/fakeobjects/dreambeach/seashells,
-/obj/decal/fakeobjects/dreambeach/palm_leaf,
-/turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_2";
-	name = "Fleshy Floor"
-	},
+/obj/crevice,
+/turf/floor/setpieces/bloodfloor,
 /area/titlescreen)
 "iCR" = (
 /obj/decoration/vent/vent2,
@@ -69534,6 +69589,13 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/merchant_shuttle/right_centcom/donut2)
+"iMT" = (
+/obj/machinery/shitty_grill,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "iNq" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -69698,6 +69760,13 @@
 	},
 /turf/floor/neutral,
 /area/upper_arctic/fita/hall)
+"jcC" = (
+/obj/crevice/meatland,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "jdh" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A junction composed of regular pipes";
@@ -69852,6 +69921,15 @@
 /obj/machinery/light/small/neutral,
 /turf/floor/neutral,
 /area/upper_arctic/fita/armory)
+"jCW" = (
+/obj/decal/cleanable/machine_debris{
+	icon_state = "gib7"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "jDu" = (
 /obj/grille/catwalk{
 	dir = 9;
@@ -69894,8 +69972,11 @@
 /turf/floor/engine/glow,
 /area/upper_arctic/fita/shuttlepad)
 "jIa" = (
-/obj/decal/fakeobjects/dreambeach/palm_leaf,
-/turf/floor/setpieces/bloodfloor,
+/obj/item/device/audio_log/meatland_grody,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
 /area/titlescreen)
 "jIO" = (
 /turf/floor/grass/leafy,
@@ -69957,6 +70038,19 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"jNq" = (
+/obj/decal/fakeobjects{
+	desc = "These jaws look a little buffer than the rest.  That means that either they are important, or somebody just really wanted big jaws here.";
+	dir = 8;
+	icon = 'icons/misc/meatland.dmi';
+	icon_state = "fangdoor1";
+	name = "really enormous mandibles"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "jOf" = (
 /obj/table/auto,
 /obj/item/playing_card,
@@ -70358,6 +70452,15 @@
 	},
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster/supplycloset)
+"kCG" = (
+/obj/stool/chair/couch/red{
+	dir = 9
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "kDZ" = (
 /obj/grille/catwalk{
 	dir = 10;
@@ -70479,6 +70582,13 @@
 /obj/map/light/brightwhite,
 /turf/floor/wood/two,
 /area/afterlife/bar)
+"kRG" = (
+/obj/decal/cleanable/machine_debris,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "kRS" = (
 /turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_3"
@@ -70581,6 +70691,13 @@
 	icon_state = "rootfloor_2"
 	},
 /area/space)
+"lfk" = (
+/obj/decal/cleanable/mess/noodles/random_all,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "lfp" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 4
@@ -70949,7 +71066,11 @@
 /turf/floor/white/grime,
 /area/crypt/sigma/kitchen)
 "lUK" = (
-/obj/decal/fakeobjects/dreambeach/seashells,
+/obj/stomachacid{
+	desc = "it's stomach acid, sheesh.";
+	name = "not piss"
+	},
+/obj/naval_mine/rusted,
 /turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
@@ -70959,7 +71080,10 @@
 /turf/wall/auto/lead/blue,
 /area/centcom/garden)
 "lWE" = (
-/obj/decal/fakeobjects/dreambeach/saturn,
+/obj/stomachacid{
+	desc = "it's stomach acid, sheesh.";
+	name = "not piss"
+	},
 /turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
@@ -71272,13 +71396,23 @@
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster)
 "mLT" = (
-/obj/decal/fakeobjects/dreambeach/stones,
-/turf/floor/setpieces/bloodfloor,
+/mob/living/critter/spider/baby,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
 /area/titlescreen)
 "mNe" = (
 /obj/machinery/door/airlock/classic,
 /turf/floor/concrete,
 /area/upper_arctic/fita/crew)
+"mNW" = (
+/obj/decal/poster/wallsign/stencil/left/o{
+	pixel_x = -5;
+	pixel_y = 1
+	},
+/turf/floor/setpieces/bloodfloor,
+/area/titlescreen)
 "mOh" = (
 /obj/decal/cleanable/paper,
 /turf/floor/plating,
@@ -71363,6 +71497,13 @@
 "mZd" = (
 /turf/floor/stairs/wide/middle,
 /area/centcom)
+"mZC" = (
+/mob/living/critter/plasmaspore,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "mZZ" = (
 /turf/floor/wood/eight{
 	dir = 4
@@ -71412,6 +71553,18 @@
 /obj/item/clothing/suit/bedsheet/pink,
 /turf/floor/wood/six,
 /area/upper_arctic/fita/crew)
+"nel" = (
+/obj/decal/fakeobjects{
+	desc = "An improvised explosive made primarily out of two pipes.";
+	icon = 'icons/obj/items/assemblies.dmi';
+	icon_state = "Pipe_Timed";
+	name = "pipe bomb"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "nfn" = (
 /turf/space,
 /turf/space,
@@ -71492,6 +71645,13 @@
 	dir = 6
 	},
 /area/upper_arctic/exterior/surface)
+"nnp" = (
+/obj/reagent_dispensers/watertank/fountain/juicer,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "nnN" = (
 /obj/machinery/light{
 	dir = 8
@@ -71656,10 +71816,17 @@
 	icon_state = "blue"
 	})
 "nyz" = (
-/obj/decal/fakeobjects/dreambeach/big/palm1,
-/turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_2";
-	name = "Fleshy Floor"
+/obj/decal/fakeobjects{
+	desc = "Press this for a good time.";
+	icon = 'icons/obj/monitors.dmi';
+	icon_state = "party";
+	name = "\proper start the game button";
+	pixel_y = -8
+	},
+/turf/wall/auto/sengoku{
+	icon_state = "12";
+	name = "wall";
+	opacity = 0
 	},
 /area/titlescreen)
 "nyQ" = (
@@ -71930,6 +72097,13 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"nTH" = (
+/obj/decal/mushrooms/type2,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "nUc" = (
 /turf/floor/carpet/red/standard/edge/se,
 /area/upper_arctic/fita/crew)
@@ -72333,6 +72507,14 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"oIb" = (
+/obj/item/decoration/ashtray,
+/obj/item/cigbutt,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "oJy" = (
 /turf/floor/void/channel,
 /turf/wall{
@@ -72840,6 +73022,22 @@
 	},
 /turf/wall/auto/lead/gray,
 /area/sim/bball)
+"pLz" = (
+/obj/stomachacid{
+	desc = "it's stomach acid, sheesh.";
+	name = "not piss"
+	},
+/obj/decal/fakeobjects{
+	desc = "Who knows where this leads to.";
+	icon = 'icons/obj/fluid.dmi';
+	icon_state = "stand";
+	name = "seepage standpipe"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "pMs" = (
 /obj/decal/fakeobjects/core{
 	desc = "It looks inactive.  Hope there isn't any fuel left in there...";
@@ -72850,9 +73048,9 @@
 /turf/floor/engine,
 /area/hospital/samostrel)
 "pNh" = (
-/obj/item/reagent_containers/food/snacks/plant/glowfruit/spawnable{
-	pixel_x = -11;
-	pixel_y = -5
+/obj/item/reagent_containers/food/snacks/plant/slurryfruit{
+	pixel_x = -9;
+	pixel_y = -3
 	},
 /turf/floor/setpieces/bloodfloor,
 /area/titlescreen)
@@ -73031,6 +73229,14 @@
 	},
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster/supplycloset)
+"qbr" = (
+/obj/decal/poster/wallsign/stencil/left/l,
+/obj/decal/poster/wallsign/stencil/right/s,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "qbO" = (
 /obj/disposalpipe/segment,
 /turf/wall/auto/lead/gray,
@@ -73067,6 +73273,13 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/centcom/donut3)
+"qfP" = (
+/obj/decal/cleanable/mess/chips,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "qgj" = (
 /obj/indestructible/shuttle_corner{
 	dir = 1;
@@ -73141,6 +73354,10 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"qps" = (
+/obj/decal/cleanable/fungus,
+/turf/floor/setpieces/bloodfloor,
+/area/titlescreen)
 "qqm" = (
 /obj/stool/chair/comfy/shuttle/red{
 	dir = 1
@@ -73270,6 +73487,10 @@
 	},
 /area/space)
 "qDa" = (
+/obj/decal/cleanable/mess/sodacan{
+	pixel_x = -5;
+	pixel_y = 9
+	},
 /turf/floor/carpet/red/fancy/narrow/west,
 /area/titlescreen)
 "qDq" = (
@@ -73394,7 +73615,7 @@
 /turf/floor/carpet/red/standard/edge/sw,
 /area/upper_arctic/fita/crew)
 "qOO" = (
-/obj/decal/fakeobjects/dreambeach/mars,
+/obj/decal/mushrooms/type6,
 /turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
@@ -73610,8 +73831,8 @@
 	},
 /area/hospital/samostrel)
 "rjU" = (
-/obj/decal/fakeobjects/dreambeach/seashells,
-/turf/floor/setpieces/bloodfloor,
+/obj/loudspeaker,
+/turf/floor/dojo/stone,
 /area/titlescreen)
 "rlN" = (
 /obj/decal/tile_edge/line/blue{
@@ -73824,6 +74045,15 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"rIS" = (
+/obj/decal/cleanable/generic{
+	name = "rubbish"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "rJe" = (
 /obj/storage/crate/bin/lostandfound{
 	desc = "Just what it sounds like.";
@@ -73941,14 +74171,10 @@
 /turf/wall/auto/concrete,
 /area/upper_arctic/fita/maintenance/hatch)
 "rQC" = (
-/obj/decal/stage_edge/dojo,
-/obj/decal/stone_lamp{
-	desc = "An incredibly heavy stone lamp. No human could possibly hope to even so much as budge it in the slightest.";
-	name = "lamp of atlas";
-	pixel_y = -5
-	},
+/obj/iomoon_puzzle/meat_ganglion,
 /turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_3"
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
 	},
 /area/titlescreen)
 "rQF" = (
@@ -74211,8 +74437,17 @@
 	icon_state = "blue"
 	})
 "slv" = (
-/obj/decal/fakeobjects/dreambeach/saturn,
-/turf/floor/setpieces/bloodfloor,
+/obj/decal/fakeobjects{
+	desc = "There's no getting past these jaws when they're closed.  Ideally, one would not be between them when they close.";
+	dir = 4;
+	icon = 'icons/misc/meatland.dmi';
+	icon_state = "fangdoor1";
+	name = "enormous mandibles"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
 /area/titlescreen)
 "slL" = (
 /turf/floor/specialroom/freezer{
@@ -74568,8 +74803,12 @@
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster/supplycloset)
 "sQe" = (
-/obj/decal/fakeobjects/dreambeach/biggest/big_palm,
-/turf/floor/setpieces/bloodfloor,
+/obj/item/reagent_containers/food/snacks/ingredient/meat,
+/obj/item/cocktail_stuff/cocktail_olive{
+	pixel_x = 3;
+	pixel_y = 5
+	},
+/turf/floor/dojo/stone,
 /area/titlescreen)
 "sTU" = (
 /obj/decal/fakeobjects/pipe{
@@ -74603,6 +74842,13 @@
 	dir = 4
 	},
 /area/crunch/wtc)
+"tcX" = (
+/obj/item/reagent_containers/food/snacks/ingredient/meat,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "teX" = (
 /turf/floor/shuttle{
 	icon_state = "floor3"
@@ -74745,6 +74991,19 @@
 "txy" = (
 /turf/wall/auto/lead/gray,
 /area/iomoon/caves)
+"tzN" = (
+/obj/decal/fakeobjects{
+	desc = "There's no getting past these jaws when they're closed.  Ideally, one would not be between them when they close.";
+	dir = 1;
+	icon = 'icons/misc/meatland.dmi';
+	icon_state = "fangdoor0";
+	name = "enormous mandibles"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "tAi" = (
 /turf/shuttle/wall{
 	icon_state = "wall3dir"
@@ -74765,8 +75024,20 @@
 /turf/floor/concrete,
 /area/upper_arctic/fita/bathroom)
 "tED" = (
-/obj/stool/bee_bed,
-/obj/dialogueobj/dreambee,
+/obj/decal/residual_energy{
+	pixel_x = -1;
+	pixel_y = -11
+	},
+/obj/stool/bee_bed{
+	pixel_y = -6
+	},
+/obj/decal/fakeobjects{
+	desc = "They're just happy to be here, folks.";
+	icon = 'icons/misc/critter.dmi';
+	icon_state = "paisano-generic";
+	name = "paisano"
+	},
+/obj/decal/lightshaft,
 /turf/floor/carpet/red/fancy/narrow/eastwest,
 /area/titlescreen)
 "tGB" = (
@@ -74907,6 +75178,10 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
+"uct" = (
+/obj/decal/fakeobjects/firealarm_broken,
+/turf/floor/setpieces/bloodfloor,
+/area/titlescreen)
 "ucy" = (
 /obj/item/toy/plush/small/bunny/mask{
 	anchored = 1;
@@ -75164,6 +75439,11 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"uAN" = (
+/obj/decal/poster/wallsign/stencil/left/c,
+/obj/decal/poster/wallsign/stencil/right/o,
+/turf/floor/setpieces/bloodfloor,
+/area/titlescreen)
 "uBs" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A pipe.";
@@ -75449,12 +75729,14 @@
 	},
 /turf/wall/auto/concrete,
 /area/upper_arctic/fita/bathroom)
+"vdE" = (
+/obj/item/cigbutt,
+/obj/item/cigbutt,
+/turf/floor/setpieces/bloodfloor,
+/area/titlescreen)
 "vdG" = (
-/obj/decal/fakeobjects/dreambeach/stones,
-/turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_2";
-	name = "Fleshy Floor"
-	},
+/obj/item/saxophone,
+/turf/floor/dojo/stone,
 /area/titlescreen)
 "vdV" = (
 /obj/stool/chair/comfy/shuttle{
@@ -75544,7 +75826,18 @@
 	},
 /area/shuttle/merchant_shuttle/right_centcom/donut2)
 "vmg" = (
-/obj/decal/fakeobjects/dreambeach/sticks,
+/obj/decal/fakeobjects{
+	desc = "looks like a commercial is looping...";
+	icon = 'icons/misc/broadcastsPOC.dmi';
+	icon_state = "POCteevee-on";
+	name = "television"
+	},
+/obj/decal/fakeobjects{
+	desc = "hot dogs";
+	icon = 'icons/misc/broadcastsPOC.dmi';
+	icon_state = "hotdogs-A";
+	name = "television"
+	},
 /turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
@@ -75567,6 +75860,18 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/centcom/donut3)
+"voG" = (
+/obj/decal/stage_edge/dojo,
+/obj/decal/fakeobjects{
+	desc = "One \"standard-issue\" Nanotrasen cylinder, filled to the brim with a dadly gas";
+	icon = 'icons/obj/atmospherics/atmos.dmi';
+	icon_state = "green";
+	name = "strange canister"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_3"
+	},
+/area/titlescreen)
 "voQ" = (
 /turf/floor/orangeblack/corner,
 /area/centcom)
@@ -75611,6 +75916,15 @@
 	},
 /turf/floor/neutral,
 /area/upper_arctic/fita/hall)
+"vwr" = (
+/obj/stool/chair/couch/red{
+	dir = 5
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "vww" = (
 /turf/space,
 /turf/space,
@@ -75676,8 +75990,12 @@
 	icon_state = "blue"
 	})
 "vEz" = (
-/obj/decal/fakeobjects/dreambeach/biggest/big_palm_with_nuts,
-/turf/floor/setpieces/bloodfloor,
+/obj/item/storage/pill_bottle/gsbp,
+/obj/decal/cleanable/vomit,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
 /area/titlescreen)
 "vFr" = (
 /obj/machinery/light/small/iomoon,
@@ -75751,6 +76069,19 @@
 	},
 /turf/floor/engine/caution/east,
 /area/hospital/samostrel)
+"vUi" = (
+/obj/decal/fakeobjects{
+	desc = "There's no getting past these jaws when they're closed.  Ideally, one would not be between them when they close.";
+	dir = 4;
+	icon = 'icons/misc/meatland.dmi';
+	icon_state = "fangdoor0";
+	name = "enormous mandibles"
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "vUR" = (
 /obj/disposalpipe/segment/vertical,
 /turf/floor/wood/two,
@@ -75922,6 +76253,14 @@
 /obj/map/light/graveyard,
 /turf/wall/auto/lead/gray,
 /area/crypt/sigma/crew)
+"wmX" = (
+/obj/decal/cleanable/gangtag,
+/turf/wall/auto/sengoku{
+	icon_state = "12";
+	name = "wall";
+	opacity = 0
+	},
+/area/titlescreen)
 "wnu" = (
 /turf/wall/auto/sengoku{
 	icon_state = "10";
@@ -75958,6 +76297,17 @@
 /turf/space,
 /turf/floor,
 /area/hospital/samostrel)
+"wtg" = (
+/obj/stomachacid{
+	desc = "it's stomach acid, sheesh.";
+	name = "not piss"
+	},
+/obj/item/rubberduck,
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/titlescreen)
 "wtr" = (
 /turf/space,
 /turf/space,
@@ -76183,7 +76533,7 @@
 /turf/wall/auto/concrete,
 /area/upper_arctic/fita/crew)
 "wRR" = (
-/obj/decal/fakeobjects/dreambeach/earth,
+/obj/decal/cleanable/mess/fries,
 /turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
@@ -76302,6 +76652,10 @@
 /turf/floor/plating,
 /area/afterlife/bar)
 "xgE" = (
+/obj/item/clothing/mask/cigarette/cigarillo/juicer{
+	pixel_x = -9;
+	pixel_y = -7
+	},
 /turf/floor/carpet/red/fancy/narrow/east,
 /area/titlescreen)
 "xia" = (
@@ -161084,11 +161438,11 @@ xYJ
 xYJ
 xYJ
 xYJ
+pLz
+yiP
 xYJ
 xYJ
-xYJ
-xYJ
-xYJ
+jIa
 xYJ
 xYJ
 oju
@@ -161380,18 +161734,18 @@ cnw
 aaa
 ajg
 xYJ
-xYJ
-xYJ
-yiP
-xYJ
-xYJ
-xYJ
+iMT
 xYJ
 yiP
+xYJ
+rQC
+xYJ
+lWE
+yiP
 yiP
 yiP
 xYJ
-xYJ
+yiP
 xYJ
 xYJ
 ajg
@@ -161684,17 +162038,17 @@ ajg
 xYJ
 yiP
 xYJ
-xYJ
+mZC
 yiP
 xYJ
-xYJ
-yiP
-xYJ
-vdG
-xYJ
+vEz
 yiP
 yiP
-lWE
+xYJ
+jNq
+xYJ
+xYJ
+yiP
 xYJ
 ajg
 "}
@@ -161985,16 +162339,16 @@ aaa
 ajg
 xYJ
 yiP
+tcX
 xYJ
-xYJ
-xYJ
-hXN
-xYJ
+jCW
+yiP
+jKU
 yiP
 xYJ
-xYJ
-eZW
-xYJ
+jcC
+yiP
+qps
 xYJ
 yiP
 xYJ
@@ -162286,18 +162640,18 @@ cnw
 aaa
 ajg
 xYJ
-xYJ
+hXN
+yiP
+mLT
+kRG
 yiP
 xYJ
-wRR
-yiP
-yiP
-nyz
-iBN
+xYJ
+xYJ
 xYJ
 xYJ
 yiP
-xYJ
+nTH
 yiP
 xYJ
 ajg
@@ -162591,14 +162945,14 @@ xYJ
 yiP
 xYJ
 yiP
-sQe
-xYJ
-vdG
+yiP
 xYJ
 xYJ
+abe
 xYJ
-qOO
 xYJ
+xYJ
+wtg
 yiP
 xYJ
 yiP
@@ -162890,7 +163244,7 @@ cnw
 aaa
 ajg
 xYJ
-yiP
+iBN
 xYJ
 xYJ
 pNh
@@ -162898,10 +163252,10 @@ yiP
 yiP
 yiP
 yiP
+vdE
+oIb
+lWE
 yiP
-xYJ
-xYJ
-xYJ
 yiP
 xYJ
 ajg
@@ -163191,8 +163545,8 @@ cnw
 cnw
 aaa
 ajg
-xYJ
-yiP
+tzN
+qps
 xYJ
 wCN
 xZJ
@@ -163201,11 +163555,11 @@ xZJ
 xZJ
 qgO
 hRD
+vdE
+lWE
 yiP
 xYJ
-yiP
-xYJ
-xYJ
+qfP
 ajg
 "}
 (287,1,1) = {"
@@ -163495,18 +163849,18 @@ aaa
 ajg
 xYJ
 yiP
-mLT
+yiP
 rgr
-ybJ
-rQC
+rjU
+voG
 yiP
 kRS
 wnu
 jxX
-yiP
+uAN
 yiP
 xYJ
-vmg
+xYJ
 xYJ
 ajg
 "}
@@ -163796,19 +164150,19 @@ cnw
 aaa
 ajg
 xYJ
-xYJ
+jIa
 yiP
-rgr
+wmX
 qDa
-ybJ
+sQe
 iEd
 yiP
 yiP
 kRS
+qbr
+xYJ
 xYJ
 yiP
-vEz
-xYJ
 xYJ
 ajg
 "}
@@ -164099,7 +164453,7 @@ aaa
 ajg
 xYJ
 xYJ
-xYJ
+lWE
 rgr
 tED
 ybJ
@@ -164107,8 +164461,8 @@ nAf
 bMV
 kRS
 yiP
-yiP
-xYJ
+aZn
+eZW
 yiP
 yiP
 yiP
@@ -164402,16 +164756,16 @@ ajg
 xYJ
 xYJ
 lUK
-rgr
+nyz
 xgE
-ybJ
+vdG
 iEd
 kRS
 kRS
 kRS
-yiP
+fcJ
 xYJ
-hqg
+xYJ
 xYJ
 xYJ
 ajg
@@ -164702,19 +165056,19 @@ cnw
 aaa
 ajg
 xYJ
-yiP
+uct
 yiP
 rgr
-ybJ
-rQC
+rjU
+voG
 kRS
 kRS
 wCN
 jxX
-yiP
+mNW
 jKU
 xYJ
-lUK
+gUY
 yiP
 ajg
 "}
@@ -165005,7 +165359,7 @@ aaa
 ajg
 xYJ
 yiP
-xYJ
+nel
 wnu
 xZJ
 xZJ
@@ -165316,7 +165670,7 @@ yiP
 yiP
 yiP
 yiP
-vdG
+xYJ
 xYJ
 yiP
 xYJ
@@ -165611,13 +165965,13 @@ xYJ
 xYJ
 xYJ
 jKU
-nyz
 xYJ
 xYJ
 xYJ
-jIa
+kCG
 yiP
 yiP
+qps
 xYJ
 xYJ
 xYJ
@@ -165913,15 +166267,15 @@ yiP
 yiP
 yiP
 xYJ
-qOO
 xYJ
+vmg
 xYJ
-xYJ
-sQe
-lUK
+ieC
+yiP
+jIa
 xYJ
 yiP
-xYJ
+nnp
 xYJ
 xYJ
 ajg
@@ -166213,16 +166567,16 @@ aaa
 ajg
 xYJ
 xYJ
-xYJ
+hFI
 yiP
+rQC
+xYJ
+wRR
+vwr
+iBN
 xYJ
 xYJ
-xYJ
-xYJ
-yiP
-xYJ
-vmg
-xYJ
+mZC
 yiP
 uOU
 uEj
@@ -166516,17 +166870,17 @@ ajg
 xYJ
 xYJ
 xYJ
-xYJ
+qOO
 yiP
 yiP
-rjU
+yiP
 yiP
 xYJ
 xYJ
 xYJ
 xYJ
-xYJ
-slv
+rIS
+yiP
 xYJ
 ajg
 "}
@@ -166819,13 +167173,13 @@ xYJ
 yiP
 xYJ
 xYJ
+slv
 xYJ
 xYJ
+lfk
 xYJ
 xYJ
-xYJ
-xYJ
-xYJ
+rQC
 xYJ
 yiP
 xYJ
@@ -167117,6 +167471,11 @@ cnw
 cnw
 aaa
 ajg
+hqg
+xYJ
+tcX
+xYJ
+yiP
 xYJ
 xYJ
 xYJ
@@ -167124,12 +167483,7 @@ xYJ
 xYJ
 xYJ
 xYJ
-xYJ
-xYJ
-xYJ
-xYJ
-xYJ
-xYJ
+vUi
 xYJ
 xYJ
 ajg
