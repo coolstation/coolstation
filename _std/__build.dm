@@ -38,17 +38,11 @@ o+`        `-` ``..-:yooos-..----------..`
 
 //////////// PROFILING OPTIONS
 
-<<<<<<< HEAD
-//#define SERVER_SIDE_PROFILING_FULL_ROUND 1 // Generate and save profiler data for the entire round
-//#define SERVER_SIDE_PROFILING_PREGAME 1	// Generate and save profiler data for pregame work (before "Welcome to pregame lobby")
-//#define SERVER_SIDE_PROFILING_INGAME_ONLY 1 // Generate and save profiler data for post-pregame work
-=======
 //#define TRACY_PROFILER_HOOK 					// Enables the hook for the DM Tracy profiler in world/init()
 
 //#define SERVER_SIDE_PROFILING_FULL_ROUND 1  	// Generate and save profiler data for the entire round
 //#define SERVER_SIDE_PROFILING_PREGAME 1 		// Generate and save profiler data for pregame work (before "Welcome to pregame lobby")
 //#define SERVER_SIDE_PROFILING_INGAME_ONLY 1 	// Generate and save profiler data for post-pregame work
->>>>>>> 0c8e914d943f6927e45b6730b8d4567ae54fcea8
 
 
 //////////// DEBUGGING TOGGLES
