@@ -78,7 +78,8 @@
 #define LANDMARK_FALL_DEEP "deepfall" // locations for people to fall into the precursor pit area
 #define LANDMARK_FALL_ANCIENT "ancientfall" // locations for people to fall into the ancient pit area
 #define LANDMARK_FALL_GREEK "greekfall" // locations for people to fall into the greek pit area
-#define LANDMARK_FALL_ICE_ELE "iceelefall" // locations for people to fall if they enter the ice moon elevator shaft
+#define LANDMARK_FALL_ICE_CREW_ELE "icecrewelefall" // locations for people to fall if they enter the ice moon crew elevator shaft
+#define LANDMARK_FALL_ICE_MINE_ELE "icemineelefall" // locations for people to fall if they enter the ice moon mineral elevator shaft
 #define LANDMARK_FALL_BIO_ELE "bioelefall" // biodome elevator shaft
 #define LANDMARK_FALL_MOON_HEMERA "moonfall_hemera" // Hemera lunar office elevator shaft
 #define LANDMARK_FALL_MOON_MUSEUM "moonfall_museum" // Lunar museum elevator shaft

@@ -703,13 +703,25 @@ ABSTRACT_TYPE(/area/shuttle)
 /area/shuttle/shopping/shittymall
 	icon_state = "shuttle"
 
-/area/shuttle/icebase_elevator/upper
+/area/shuttle/icebase_crew_elevator/upper
 	icon_state = "shuttle"
 	filler_turf = "/turf/floor/arctic/abyss"
 	force_fullbright = 0
 	sound_group = "ice_moon"
 
-/area/shuttle/icebase_elevator/lower
+/area/shuttle/icebase_crew_elevator/lower
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/arctic/snow/ice"
+	force_fullbright = 0
+	sound_group = "ice_moon"
+
+/area/shuttle/icebase_mine_elevator/upper
+	icon_state = "shuttle"
+	filler_turf = "/turf/floor/arctic/abyss"
+	force_fullbright = 0
+	sound_group = "ice_moon"
+
+/area/shuttle/icebase_mine_elevator/lower
 	icon_state = "shuttle2"
 	filler_turf = "/turf/floor/arctic/snow/ice"
 	force_fullbright = 0
