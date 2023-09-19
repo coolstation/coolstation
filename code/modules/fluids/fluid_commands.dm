@@ -100,7 +100,7 @@ client/proc/replace_space()
 client/proc/replace_space_exclusive()
 	set name = "Oceanify"
 	set desc = "This is the safer one."
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	admin_only
 
 	var/list/L = list()
@@ -180,7 +180,7 @@ client/proc/update_ocean_lighting()
 client/proc/dereplace_space()
 	set name = "Unoceanify"
 	set desc = "uh oh."
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	admin_only
 
 	var/answer = alert("Replace Z1 only?",,"Yes","No")

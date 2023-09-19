@@ -91,8 +91,8 @@
 	var/mode = 0
 
 	var/auto_patrol = 0		// set to make bot automatically patrol
-	var/beacon_freq = 1445		// navigation beacon frequency
-	var/control_freq = 1447		// bot control frequency
+	var/beacon_freq = FREQ_BOT_NAV		// navigation beacon frequency
+	var/control_freq = FREQ_BOT_CONTROL		// bot control frequency
 
 	var/turf/patrol_target	// this is turf to navigate to (location of beacon)
 	var/new_destination		// pending new destination (waiting for beacon response)
@@ -159,7 +159,7 @@
 			our_baton.dispose()
 			our_baton = null
 		target = null
-		radio_controller.remove_object(src, FREQ_PDA)
+		radio_controller.remove_object(src, "[FREQ_PDA]")
 		radio_controller.remove_object(src, "[control_freq]")
 		radio_controller.remove_object(src, "[beacon_freq]")
 		..()
@@ -232,7 +232,7 @@
 	var/is_dead_beepsky = 0
 	var/build_step = 0
 	var/created_name = "Securitron" //To preserve the name if it's a unique securitron I guess
-	var/beacon_freq = 1445 //If it's running on another beacon circuit I guess
+	var/beacon_freq = FREQ_BOT_NAV //If it's running on another beacon circuit I guess
 	var/hat = null
 
 
@@ -480,10 +480,10 @@
 	//Generally we want to explode() instead of just deleting the securitron.
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.explode()
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.health -= 15
 				if (src.health <= 0)
 					src.explode()
@@ -502,7 +502,7 @@
 	explode()
 		if (report_arrests)
 			var/bot_location = get_area(src)
-			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency(FREQ_PDA)
+			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 			var/datum/signal/pdaSignal = get_free_signal()
 			var/message2send = "Notification: [src] destroyed in [bot_location]! Officer down!"
 			pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="SECURITY-MAILBOT", "group"=list(MGD_SECURITY, MGA_DEATH), "sender"="00000000", "message"="[message2send]")
@@ -841,7 +841,7 @@
 
 		if(pda_help && !ON_COOLDOWN(src, SECBOT_HELPME_COOLDOWN, src.helpme_cooldown))
 			// HELPMEPLZ
-			var/datum/radio_frequency/frequency = radio_controller.return_frequency(FREQ_PDA)
+			var/datum/radio_frequency/frequency = radio_controller.return_frequency("[FREQ_PDA]")
 			if(frequency)
 				var/message2send ="ALERT: Unit under attack by [src.target] in [get_area(src)]. Requesting backup."
 
@@ -1322,7 +1322,7 @@
 					LT_loc = get_turf(master)
 
 					//////PDA NOTIFY/////
-				var/datum/radio_frequency/frequency = radio_controller.return_frequency(FREQ_PDA)
+				var/datum/radio_frequency/frequency = radio_controller.return_frequency("[FREQ_PDA]")
 				if(!frequency) return FALSE
 
 				var/message2send ="Notification: [last_target] detained by [master] in [bot_location] at coordinates [LT_loc.x], [LT_loc.y]."

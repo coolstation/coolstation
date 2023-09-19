@@ -80,16 +80,16 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 					T.clean = 0
 				last_turf = T
 
-			if (istype(src.loc, /turf/simulated/floor))
-				var/turf/simulated/T = src.loc
+			if (istype(src.loc, /turf/floor))
+				var/turf/T = src.loc
 				T.cleanable_fluid_react()
 
 	disposing()
 		if (can_dry)
 			processing_items.Remove(src)
 
-		if (istype(src.loc, /turf/simulated/floor))
-			var/turf/simulated/T = src.loc
+		if (istype(src.loc, /turf/floor))
+			var/turf/T = src.loc
 			T.messy = max(T.messy-1, 0)
 			if (!T.messy) //no mess left at all?
 				T.clean	= 1 //we're probably being cleaned
@@ -508,7 +508,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 
 		src.reagents.add_reagent(reagent_id, amount)
 
-		var/turf/simulated/floor/T = src.loc
+		var/turf/floor/T = src.loc
 		if (istype(T) && do_fluid_react)
 			if (T.cleanable_fluid_react(src))
 				return
@@ -1247,6 +1247,12 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	icon = 'icons/obj/dojo.dmi'
 	icon_state = "sakura_overlay"
 
+/obj/decal/cleanable/bigchallenges
+	name = "Big Challenges"
+	desc = "They're really big challenges. They're really consequential challenges."
+	icon = 'icons/obj/decals/graffiti.dmi'
+	icon_state = "bigchallenges"
+
 /obj/decal/cleanable/slime // made by slugs and snails
 	name = "slime"
 	desc = "Eww."
@@ -1302,6 +1308,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 
 	dirt4
 		icon_state = "dirt4"
+		random_dir = 0
 
 	dirt5
 		icon_state = "dirt5"
@@ -1309,7 +1316,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	random
 		New()
 			..()
-			icon_state = pick("dirt","dirt2","dirt3","dirt4","dirt5")
+			icon_state = pick("dirt","dirt2","dirt3","dirt5") //dirt4 is very directional and parses weird on its own, like mulebot blood trails
 
 	jen
 		icon_state = "dirt_jen"
@@ -2244,7 +2251,7 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 	// vis_amount should only be 1-5 if you want anything to happen
 		src.reagents.add_reagent(reagent_id, amount)
 
-		var/turf/simulated/floor/T = src.loc
+		var/turf/floor/T = src.loc
 		if (istype(T) && do_fluid_react)
 			if (T.cleanable_fluid_react(src))
 				return

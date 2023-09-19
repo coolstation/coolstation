@@ -26,7 +26,7 @@
 	disposing()
 		processing_items -= src
 		..()
-		
+
 	CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
 		if(istype(mover, /mob))
 			var/mob/M = mover
@@ -83,11 +83,11 @@
 
 	ex_act(severity)
 		switch(severity)
-			if (3)
+			if (OLD_EX_SEVERITY_3)
 				changeHealth(-40)
-			if (2)
+			if (OLD_EX_SEVERITY_2)
 				changeHealth(-60)
-			if (1)
+			if (OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
 
@@ -115,7 +115,7 @@
 		..()
 
 	proc/update_nearby_tiles(need_rebuild)
-		var/turf/simulated/source = loc
+		var/turf/source = loc
 		if (istype(source))
 			return source.update_nearby_tiles(need_rebuild)
 

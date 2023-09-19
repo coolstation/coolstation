@@ -99,6 +99,7 @@ TRAYS
 	name = "spoon"
 	desc = "A metal object that has a handle and ends in a small concave oval. Used to carry liquid objects from the container to the mouth."
 	icon_state = "spoon"
+	dir = NORTH
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if (user?.bioHolder.HasEffect("clumsy") && prob(50))
@@ -118,6 +119,9 @@ TRAYS
 		user.TakeDamage("head", 150, 0)
 		user.updatehealth()
 		return 1
+
+	fancy
+		icon_state = "spoon-new"
 
 /obj/item/kitchen/utensil/fork
 	name = "fork"
@@ -146,6 +150,8 @@ TRAYS
 		playsound(user.loc, src.hitsound, 50, 1)
 		user.TakeDamage("chest", 150, 0)
 		return 1
+	fancy
+		icon_state = "fork-new"
 
 /obj/item/kitchen/utensil/knife
 	name = "knife"
@@ -182,6 +188,15 @@ TRAYS
 		user.TakeDamage("head", 150, 0)
 		return 1
 
+
+	fancy
+		icon_state = "knife-new"
+
+	steak
+		name = "steak knife"
+		icon_state = "knife-steak"
+		desc = "The proper way to cut up a hot fresh monkey steak."
+
 /obj/item/kitchen/utensil/spoon/plastic
 	name = "plastic spoon"
 	icon_state = "spoon_plastic"
@@ -217,6 +232,7 @@ TRAYS
 	desc = "A cheap plastic fork, prone to breaking. Helps with eating some foods."
 	force = 1.0
 	throwforce = 1.0
+	dir = NORTH
 
 	New()
 		..()

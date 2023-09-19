@@ -9,14 +9,14 @@
 /turf/space/fluid/manta,
 /area/space)
 "ad" = (
-/turf/simulated/martian/wall,
+/turf/wall/setpieces/martian,
 /area/evilreaver/security)
 "ae" = (
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "af" = (
-/turf/simulated/martian/floor,
-/turf/simulated/martian/wall{
+/turf/floor/setpieces/martian,
+/turf/wall/setpieces/martian{
 	dir = 4;
 	icon_state = "diagonalWall"
 	},
@@ -25,7 +25,7 @@
 /obj/crevice{
 	pixel_y = 30
 	},
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "ah" = (
 /obj/overlay{
@@ -35,32 +35,32 @@
 	icon_state = "sideWall";
 	name = "organic wall"
 	},
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "ai" = (
 /obj/landmark/artifact,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aj" = (
 /obj/decal/cleanable/blood/gibs{
 	icon_state = "gib3"
 	},
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "ak" = (
-/turf/simulated/martian/floor,
-/turf/simulated/martian/wall{
+/turf/floor/setpieces/martian,
+/turf/wall/setpieces/martian{
 	dir = 5;
 	icon_state = "diagonalWall"
 	},
 /area/evilreaver/security)
 "al" = (
 /obj/storage/crate/loot,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "am" = (
 /obj/npc/trader/martian,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "an" = (
 /turf/space/fluid/manta,
@@ -68,7 +68,7 @@
 "ao" = (
 /obj/map/light/dimred,
 /obj/portalmartian,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "ap" = (
 /obj/storage/crate,
@@ -76,48 +76,48 @@
 /obj/item/storage/rockit,
 /obj/item/raw_material/miracle,
 /obj/item/clothing/suit/space/suv,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aq" = (
 /obj/critter/martian/soldier,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "ar" = (
 /obj/martianBiotech,
 /obj/decal/cleanable/blood,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "as" = (
 /obj/decal/cleanable/blood{
 	icon_state = "floor5"
 	},
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "at" = (
 /obj/critter/martian/soldier/dead,
 /obj/decal/cleanable/martian_viscera,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "au" = (
 /obj/decal/cleanable/martian_viscera,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "av" = (
 /obj/decal/aliencomputer{
 	pixel_x = 32
 	},
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aw" = (
 /obj/map/light/white,
-/turf/simulated/martian/wall,
+/turf/wall/setpieces/martian,
 /area/evilreaver/security)
 "ax" = (
 /turf/cordon,
 /area/space)
 "ay" = (
-/turf/simulated/martian/floor,
-/turf/simulated/martian/wall{
+/turf/floor/setpieces/martian,
+/turf/wall/setpieces/martian{
 	dir = 6;
 	icon_state = "diagonalWall"
 	},
@@ -134,23 +134,23 @@
 	icon_state = "sideWall";
 	name = "organic wall"
 	},
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aA" = (
 /obj/decal/cleanable/blood{
 	icon_state = "floor6"
 	},
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aB" = (
 /obj/critter/martian/warrior,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aC" = (
 /obj/decal/cleanable/blood/gibs{
 	icon_state = "gib1"
 	},
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aD" = (
 /obj/overlay{
@@ -164,7 +164,7 @@
 /obj/marker/supplymarker,
 /obj/decal/fakeobjects/teleport_pad,
 /obj/map/light/dimred,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aE" = (
 /obj/overlay{
@@ -175,23 +175,23 @@
 	icon_state = "sideWall";
 	name = "organic wall"
 	},
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aF" = (
 /obj/decal/cleanable/blood/gibs{
 	icon_state = "gibdown1"
 	},
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aG" = (
 /obj/martianBiotech,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aH" = (
 /obj/crevice{
 	pixel_x = -28
 	},
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aI" = (
 /obj/decal/fakeobjects{
@@ -202,7 +202,7 @@
 	icon_state = "martian-2";
 	name = "martian machine"
 	},
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aJ" = (
 /obj/overlay{
@@ -213,7 +213,7 @@
 	icon_state = "sideWall";
 	name = "organic wall"
 	},
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aK" = (
 /obj/crevice{
@@ -230,46 +230,46 @@
 /obj/decal/cleanable/blood/gibs{
 	icon_state = "gibmid2"
 	},
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aL" = (
 /obj/machinery/door/unpowered/martian,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aM" = (
 /obj/machinery/martianbomb,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aN" = (
-/turf/simulated/martian/floor,
-/turf/simulated/martian/wall{
+/turf/floor/setpieces/martian,
+/turf/wall/setpieces/martian{
 	dir = 8;
 	icon_state = "diagonalWall"
 	},
 /area/evilreaver/security)
 "aO" = (
 /obj/item/reagent_containers/glass/bottle/holywater,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aP" = (
 /obj/item/paper/courtroom{
 	name = "paper- 'A Crash Course in Legal SOP"
 	},
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aQ" = (
 /obj/decal/aliencomputer{
 	pixel_x = 0;
 	pixel_y = 32
 	},
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aR" = (
 /obj/item/device/infra_sensor,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aS" = (
-/turf/unsimulated/wall/trench,
+/turf/wall/trench,
 /area/space)
 "aT" = (
 /obj/overlay{
@@ -281,18 +281,18 @@
 	name = "organic wall"
 	},
 /obj/critter/martian/psychic,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aU" = (
 /obj/portrait_sneaky,
-/turf/simulated/martian/wall,
+/turf/wall/setpieces/martian,
 /area/evilreaver/security)
 "aV" = (
 /obj/item/clothing/suit/cardboard_box/captain,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aW" = (
-/turf/unsimulated/wall/trench/side,
+/turf/wall/trench/side,
 /area/space)
 "aX" = (
 /obj/overlay{
@@ -304,13 +304,13 @@
 	name = "organic wall"
 	},
 /obj/item/paper/sop,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aY" = (
 /obj/storage/crate,
 /obj/item/aiboss_tape/martian,
 /obj/item/clothing/head/XComHair,
-/turf/simulated/martian/floor,
+/turf/floor/setpieces/martian,
 /area/evilreaver/security)
 "aZ" = (
 /turf/space/fluid/noexplosion,
@@ -342,19 +342,19 @@
 /area/wrecknsspolaris/outside)
 "bg" = (
 /obj/item/sheet/glass,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "bh" = (
 /obj/item/raw_material/shard/glass,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "bi" = (
 /obj/grille,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "bj" = (
 /obj/wingrille_spawn/auto,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "bk" = (
 /obj/item/scrap,
@@ -362,54 +362,54 @@
 /area/wrecknsspolaris/outside)
 "bl" = (
 /obj/decoration/bustedmantapc/bustedmantapc3,
-/turf/unsimulated/floor/longtile,
+/turf/floor/longtile,
 /area/wrecknsspolaris)
 "bm" = (
 /obj/dialogueobj/bustedmantapc,
-/turf/unsimulated/floor/longtile,
+/turf/floor/longtile,
 /area/wrecknsspolaris)
 "bn" = (
 /obj/item/raw_material/shard/glass,
 /obj/grille,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "bo" = (
 /obj/decoration/bustedmantapc/bustedmantapc2,
-/turf/unsimulated/floor/longtile,
+/turf/floor/longtile,
 /area/wrecknsspolaris)
 "bp" = (
 /obj/decoration/bustedmantapc{
 	dir = 1
 	},
-/turf/unsimulated/floor/longtile,
+/turf/floor/longtile,
 /area/wrecknsspolaris)
 "bq" = (
 /obj/decoration/damagedchair{
 	dir = 4
 	},
-/turf/unsimulated/floor/longtile,
+/turf/floor/longtile,
 /area/wrecknsspolaris)
 "br" = (
-/turf/unsimulated/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced/supernorn,
 /area/wrecknsspolaris)
 "bs" = (
 /obj/decoration/bustedmantapc/bustedmantapc2{
 	dir = 8
 	},
-/turf/unsimulated/floor/longtile,
+/turf/floor/longtile,
 /area/wrecknsspolaris)
 "bt" = (
-/turf/unsimulated/wall/auto/reinforced,
+/turf/wall/auto/reinforced,
 /area/wrecknsspolaris)
 "bu" = (
-/turf/simulated/floor/stairs,
+/turf/floor/stairs,
 /area/wrecknsspolaris)
 "bv" = (
 /obj/decal/stage_edge/alt,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris)
 "bw" = (
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "bx" = (
 /obj/decal/cleanable/machine_debris,
@@ -429,14 +429,14 @@
 /obj/decal/cleanable/machine_debris{
 	icon_state = "gib7"
 	},
-/turf/unsimulated/floor/longtile,
+/turf/floor/longtile,
 /area/wrecknsspolaris)
 "bA" = (
 /obj/decal/fakeobjects/lighttube_broken{
 	dir = 4
 	},
 /obj/dialogueobj/securitycorpse2,
-/turf/unsimulated/floor/longtile,
+/turf/floor/longtile,
 /area/wrecknsspolaris)
 "bB" = (
 /obj/shrub/dead,
@@ -444,11 +444,11 @@
 	dir = 8;
 	icon_state = "tube-broken"
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris)
 "bC" = (
 /obj/decoration/collapsedwall,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "bD" = (
 /obj/item/pen/fancy,
@@ -456,20 +456,20 @@
 	dir = 8;
 	icon_state = "tube-broken"
 	},
-/turf/unsimulated/floor/wood/two,
+/turf/floor/wood/two,
 /area/wrecknsspolaris)
 "bE" = (
 /obj/item/paper_bin,
 /obj/decoration/clock/frozen{
 	pixel_y = 32
 	},
-/turf/unsimulated/floor/wood/two,
+/turf/floor/wood/two,
 /area/wrecknsspolaris)
 "bF" = (
-/turf/unsimulated/floor/wood/two,
+/turf/floor/wood/two,
 /area/wrecknsspolaris)
 "bG" = (
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris)
 "bH" = (
 /obj/shrub/dead,
@@ -481,34 +481,34 @@
 	name = "inactive light tube";
 	tag = "icon-tube-broken (NORTH)"
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris)
 "bI" = (
 /obj/table/wood/auto,
 /obj/item/camera,
-/turf/unsimulated/floor/carpet/arcade,
+/turf/floor/carpet/arcade,
 /area/wrecknsspolaris)
 "bJ" = (
-/turf/unsimulated/floor/carpet/arcade,
+/turf/floor/carpet/arcade,
 /area/wrecknsspolaris)
 "bK" = (
 /obj/decal/cleanable/blood/gibs{
 	icon_state = "gib1"
 	},
-/turf/unsimulated/floor/longtile,
+/turf/floor/longtile,
 /area/wrecknsspolaris)
 "bL" = (
 /obj/decal/fakeobjects/creepytv{
 	desc = "Only creepy static here."
 	},
 /obj/map/light/screen,
-/turf/unsimulated/floor/wood/two,
+/turf/floor/wood/two,
 /area/wrecknsspolaris)
 "bM" = (
 /obj/storage/secure/closet/command/captain/fake{
 	name = "Sergeant's locker"
 	},
-/turf/unsimulated/floor/carpet/arcade,
+/turf/floor/carpet/arcade,
 /area/wrecknsspolaris)
 "bN" = (
 /obj/table/reinforced/bar/auto{
@@ -518,7 +518,7 @@
 	name = "sergeant's private computer"
 	},
 /obj/map/light/screen,
-/turf/unsimulated/floor/wood/two,
+/turf/floor/wood/two,
 /area/wrecknsspolaris)
 "bO" = (
 /obj/stool/chair/comfy/blue{
@@ -526,22 +526,22 @@
 	icon_state = "chair_comfy-blue";
 	tag = "icon-chair_comfy-blue (EAST)"
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris)
 "bP" = (
 /obj/table/wood/auto,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris)
 "bQ" = (
 /obj/stool/chair/comfy/blue{
 	dir = 8
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris)
 "bR" = (
 /obj/item/raw_material/shard/glass,
 /obj/fluid_spawner/shortdelaybig,
-/turf/unsimulated/floor/wood/two,
+/turf/floor/wood/two,
 /area/wrecknsspolaris)
 "bS" = (
 /obj/decal/fakeobjects/lighttube_broken{
@@ -552,7 +552,7 @@
 	name = "sergeant's lockbox";
 	pixel_y = 32
 	},
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fblue6"
 	},
@@ -563,7 +563,7 @@
 	icon_state = "chair_comfy-blue";
 	tag = "icon-chair_comfy-blue (EAST)"
 	},
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fblue2"
 	},
@@ -578,26 +578,26 @@
 	pixel_y = 4;
 	switchon = 1
 	},
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fblue6"
 	},
 /area/wrecknsspolaris)
 "bV" = (
 /obj/item/stamp/cap,
-/turf/unsimulated/floor/wood/two,
+/turf/floor/wood/two,
 /area/wrecknsspolaris)
 "bW" = (
 /obj/decal/cleanable/blood/tracks{
 	dir = 9;
 	icon_state = "tracks"
 	},
-/turf/unsimulated/floor/carpet/arcade,
+/turf/floor/carpet/arcade,
 /area/wrecknsspolaris)
 "bX" = (
 /obj/item/furniture_parts/table/wood,
 /obj/fluid_spawner/shortdelaybig,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris)
 "bY" = (
 /obj/decal/fakeobjects/lighttube_broken{
@@ -609,7 +609,7 @@
 	pixel_x = -32;
 	pixel_y = 0
 	},
-/turf/unsimulated/floor/carpet/arcade,
+/turf/floor/carpet/arcade,
 /area/wrecknsspolaris)
 "bZ" = (
 /obj/decal/fakeobjects{
@@ -622,17 +622,17 @@
 	},
 /obj/item/casing/small,
 /obj/decal/cleanable/blood/tracks,
-/turf/unsimulated/floor/carpet/arcade,
+/turf/floor/carpet/arcade,
 /area/wrecknsspolaris)
 "ca" = (
 /obj/decoration/toiletholder{
 	pixel_y = 32
 	},
 /obj/fluid_spawner/shortdelaybig,
-/turf/unsimulated/floor/sanitary/blue,
+/turf/floor/sanitary/blue,
 /area/wrecknsspolaris)
 "cb" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fblue6"
 	},
@@ -645,21 +645,21 @@
 	last_throw_y = 0;
 	pixel_y = -24
 	},
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 2;
 	icon_state = "fblue2"
 	},
 /area/wrecknsspolaris)
 "cd" = (
 /obj/item/sheet/steel,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris)
 "ce" = (
 /obj/stool/chair{
 	anchored = 0;
 	dir = 8
 	},
-/turf/unsimulated/floor/wood/two,
+/turf/floor/wood/two,
 /area/wrecknsspolaris)
 "cf" = (
 /obj/dialogueobj/syndiecorpse1,
@@ -672,11 +672,11 @@
 	icon_state = "tube0";
 	name = "inactive light tube"
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris)
 "ch" = (
 /obj/item/raw_material/scrap_metal,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris)
 "ci" = (
 /obj/stool/chair/comfy/blue{
@@ -686,21 +686,21 @@
 	last_throw_y = 0;
 	pixel_y = -24
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris)
 "cj" = (
 /obj/decal/fakeobjects/lighttube_broken{
 	dir = 4
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris)
 "ck" = (
 /obj/item/storage/toilet,
-/turf/unsimulated/floor/sanitary/blue,
+/turf/floor/sanitary/blue,
 /area/wrecknsspolaris)
 "cl" = (
 /obj/decal/cleanable/dirt,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris)
 "cm" = (
 /obj/stool/bed,
@@ -709,7 +709,7 @@
 	last_throw_y = 0;
 	pixel_y = -24
 	},
-/turf/unsimulated/floor/carpet/arcade,
+/turf/floor/carpet/arcade,
 /area/wrecknsspolaris)
 "cn" = (
 /obj/machinery/door/airlock/pyro/command{
@@ -719,7 +719,7 @@
 	req_access = null
 	},
 /obj/firedoor_spawn,
-/turf/simulated/floor/wood/two,
+/turf/floor/wood/two,
 /area/wrecknsspolaris)
 "co" = (
 /obj/machinery/door/airlock/pyro/command{
@@ -729,7 +729,7 @@
 	req_access = null
 	},
 /obj/firedoor_spawn,
-/turf/simulated/floor/wood/two,
+/turf/floor/wood/two,
 /area/wrecknsspolaris)
 "cq" = (
 /obj/submachine/chef_sink/chem_sink{
@@ -742,23 +742,23 @@
 	icon_state = "tube0";
 	name = "inactive light tube"
 	},
-/turf/unsimulated/floor/sanitary/blue,
+/turf/floor/sanitary/blue,
 /area/wrecknsspolaris)
 "cr" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/wrecknsspolaris)
 "cs" = (
-/turf/unsimulated/floor/damaged3,
+/turf/floor/damaged3,
 /area/wrecknsspolaris)
 "ct" = (
 /obj/machinery/door/airlock/pyro/glass/brig{
 	dir = 4;
 	req_access_txt = null
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -768,7 +768,7 @@
 	dir = 4;
 	req_access_txt = null
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/wrecknsspolaris)
 "cv" = (
 /obj/shrub/dead{
@@ -782,25 +782,25 @@
 	name = "inactive light tube";
 	tag = "icon-tube-broken (NORTH)"
 	},
-/turf/unsimulated/floor/wood/two,
+/turf/floor/wood/two,
 /area/wrecknsspolaris)
 "cw" = (
 /obj/item/storage/wall/fire,
-/turf/unsimulated/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced/supernorn,
 /area/wrecknsspolaris)
 "cx" = (
 /obj/fluid_spawner/shortdelaybig,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/wrecknsspolaris)
 "cy" = (
-/turf/unsimulated/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced/supernorn,
 /area/wrecknsspolaris/vault)
 "cz" = (
 /obj/decal/cleanable/machine_debris,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -814,7 +814,7 @@
 	icon_state = "coffee-fallen";
 	name = "broken vending machine"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "cB" = (
 /obj/decal/fakeobjects{
@@ -824,7 +824,7 @@
 	name = "broken vending machine"
 	},
 /obj/fluid_spawner/shortdelaybig,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -835,7 +835,7 @@
 /area/wrecknsspolaris/outside)
 "cD" = (
 /obj/stool/bench,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -847,21 +847,21 @@
 /area/wrecknsspolaris/outside/back)
 "cF" = (
 /obj/item/scrap,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/wrecknsspolaris)
 "cG" = (
 /obj/item/furniture_parts/bench,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/wrecknsspolaris)
 "cH" = (
 /obj/shrub/dead,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -870,11 +870,11 @@
 /obj/machinery/door/firedoor/pyro{
 	dir = 4
 	},
-/turf/unsimulated/floor/sanitary/blue,
+/turf/floor/sanitary/blue,
 /area/wrecknsspolaris)
 "cJ" = (
 /obj/decal/cleanable/dirt,
-/turf/unsimulated/floor/carpet/arcade,
+/turf/floor/carpet/arcade,
 /area/wrecknsspolaris)
 "cK" = (
 /obj/machinery/shower{
@@ -883,11 +883,11 @@
 	pixel_y = 6
 	},
 /obj/decal/cleanable/blood/tracks,
-/turf/unsimulated/floor/sanitary/blue,
+/turf/floor/sanitary/blue,
 /area/wrecknsspolaris)
 "cL" = (
 /obj/item/scrap,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "cM" = (
 /obj/table/reinforced/bar/auto{
@@ -906,7 +906,7 @@
 	icon_state = "camerax";
 	name = "security camera"
 	},
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fblue6"
 	},
@@ -916,7 +916,7 @@
 	pixel_y = -32
 	},
 /obj/decal/cleanable/dirt,
-/turf/unsimulated/floor/wood/two,
+/turf/floor/wood/two,
 /area/wrecknsspolaris)
 "cO" = (
 /obj/decal/fakeobjects/lighttube_broken{
@@ -925,20 +925,20 @@
 	icon_state = "tube0";
 	name = "inactive light tube"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "cP" = (
 /obj/storage/crate/classcrate{
 	name = "secure crate"
 	},
 /obj/item/cell/supercell/charged,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "cQ" = (
 /obj/decoration/ntcratesmall{
 	dir = 4
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "cR" = (
 /obj/table/wood/auto,
@@ -953,7 +953,7 @@
 	icon_state = "camerax";
 	name = "security camera"
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris)
 "cS" = (
 /obj/machinery/door/airlock/pyro/command{
@@ -961,7 +961,7 @@
 	req_access = null
 	},
 /obj/firedoor_spawn,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris)
 "cT" = (
 /obj/decal/fakeobjects{
@@ -971,11 +971,11 @@
 	icon_state = "conduit";
 	name = "power conduit"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "cU" = (
 /obj/item/raw_material/scrap_metal,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -988,7 +988,7 @@
 	icon_state = "camerax";
 	name = "security camera"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "cW" = (
 /obj/item/storage/toolbox/mechanical,
@@ -998,7 +998,7 @@
 	icon_state = "tube0";
 	name = "inactive light tube"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "cX" = (
 /obj/decal/fakeobjects{
@@ -1009,7 +1009,7 @@
 	icon_state = "engineoff";
 	name = "motor"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "cY" = (
 /obj/decal/fakeobjects{
@@ -1022,7 +1022,7 @@
 	name = "power conduit";
 	tag = "icon-conduit (NORTHWEST)"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "cZ" = (
 /obj/decal/fakeobjects{
@@ -1043,11 +1043,11 @@
 	name = "power conduit";
 	tag = "icon-conduit (EAST)"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "da" = (
 /obj/decal/cleanable/blood/tracks,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1080,7 +1080,7 @@
 	layer = 2.5;
 	name = "power conduit"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "dc" = (
 /obj/decal/fakeobjects{
@@ -1101,7 +1101,7 @@
 	layer = 2.5;
 	name = "power conduit"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "dd" = (
 /obj/decoration/bookcase{
@@ -1109,7 +1109,7 @@
 	},
 /obj/decal/cleanable/dirt,
 /obj/dialogueobj/syndiecorpse7,
-/turf/unsimulated/floor/carpet/arcade,
+/turf/floor/carpet/arcade,
 /area/wrecknsspolaris)
 "de" = (
 /obj/decal/fakeobjects{
@@ -1121,7 +1121,7 @@
 	layer = 2.5;
 	name = "power conduit"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "df" = (
 /obj/decal/fakeobjects{
@@ -1133,7 +1133,7 @@
 	layer = 2.5;
 	name = "power conduit"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "dg" = (
 /obj/decal/fakeobjects{
@@ -1154,7 +1154,7 @@
 	layer = 2.5;
 	name = "power conduit"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "dh" = (
 /obj/decal/fakeobjects{
@@ -1184,7 +1184,7 @@
 	layer = 2.5;
 	name = "power conduit"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "di" = (
 /obj/decal/fakeobjects{
@@ -1214,7 +1214,7 @@
 	layer = 2.5;
 	name = "power conduit"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "dj" = (
 /obj/decal/fakeobjects{
@@ -1226,16 +1226,16 @@
 	name = "power conduit";
 	tag = "icon-conduit (NORTHEAST)"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "dk" = (
 /obj/fluid_spawner/shortdelaybig,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "dl" = (
 /obj/item/scrap,
 /obj/decal/cleanable/dirt,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1245,7 +1245,7 @@
 	dir = 8;
 	icon_state = "tube-broken"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1259,18 +1259,18 @@
 /area/wrecknsspolaris/outside/back)
 "do" = (
 /obj/item/storage/wall/emergency,
-/turf/unsimulated/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced/supernorn,
 /area/wrecknsspolaris)
 "dp" = (
 /obj/decal/cleanable/rust,
-/turf/unsimulated/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced/supernorn,
 /area/wrecknsspolaris)
 "dq" = (
 /obj/storage/crate/classcrate{
 	name = "secure crate"
 	},
 /obj/item/clothing/head/helmet/hardhat/security/improved,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "dr" = (
 /obj/lattice,
@@ -1340,11 +1340,11 @@
 /turf/space/fluid/noexplosion,
 /area/wrecknsspolaris/outside/back)
 "dD" = (
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "dE" = (
 /obj/table/reinforced/auto,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "dF" = (
 /obj/lattice,
@@ -1357,12 +1357,12 @@
 "dG" = (
 /obj/fluid_spawner/shortdelaybig,
 /obj/item/raw_material/scrap_metal,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "dH" = (
 /obj/dialogueobj/engineeringcomputer,
 /obj/map/light/screen,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "dI" = (
 /obj/lattice,
@@ -1378,35 +1378,35 @@
 	icon_state = "circ2-broken";
 	name = "old gas circulator"
 	},
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "dK" = (
 /obj/fluid_spawner/shortdelaybig,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "dL" = (
 /obj/machinery/shuttle/engine/heater{
 	icon_state = "alt_heater-R"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "dM" = (
 /obj/item/sheet/steel,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/wrecknsspolaris)
 "dN" = (
 /obj/decal/fakeobjects/lighttube_broken,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/wrecknsspolaris)
 "dO" = (
 /obj/decal/cleanable/dirt,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1421,7 +1421,7 @@
 	icon_state = "camerax";
 	name = "security camera"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1433,7 +1433,7 @@
 	icon_state = "tube0";
 	name = "inactive light tube"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1446,7 +1446,7 @@
 	layer = 4;
 	name = "inactive light tube"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1458,7 +1458,7 @@
 	pixel_y = 32
 	},
 /obj/map/light/green,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "dT" = (
 /obj/decal/fakeobjects/apc_broken{
@@ -1466,7 +1466,7 @@
 	},
 /obj/dialogueobj/polariscrate,
 /obj/map/light/screen,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "dU" = (
 /obj/stool/bench,
@@ -1476,13 +1476,13 @@
 	icon_state = "tube0";
 	name = "inactive light tube"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/wrecknsspolaris)
 "dV" = (
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "dW" = (
 /obj/stool/bench,
@@ -1491,7 +1491,7 @@
 	dir = 4;
 	icon_state = "tube-broken"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1499,7 +1499,7 @@
 "dX" = (
 /obj/item/scrap,
 /obj/item/raw_material/scrap_metal,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1509,18 +1509,18 @@
 	name = "secure crate"
 	},
 /obj/item/paper/manufacturer_blueprint/thrusters,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "dZ" = (
 /obj/decoration/ntcratesmall,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "ea" = (
 /obj/storage/crate/classcrate{
 	name = "secure crate"
 	},
 /obj/item/paper/manufacturer_blueprint/alastor,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "eb" = (
 /obj/decal/fakeobjects/lighttube_broken{
@@ -1529,7 +1529,7 @@
 	icon_state = "tube0";
 	name = "inactive light tube"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1538,7 +1538,7 @@
 /obj/decal/fakeobjects/lighttube_broken{
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1547,14 +1547,14 @@
 /obj/decal/cleanable/machine_debris{
 	icon_state = "gib7"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/wrecknsspolaris)
 "ef" = (
 /obj/decal/cleanable/dirt/dirt2,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1568,7 +1568,7 @@
 	pixel_x = 23;
 	pixel_y = -8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1582,7 +1582,7 @@
 	pixel_x = 6;
 	pixel_y = -3
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1596,7 +1596,7 @@
 	pixel_x = 10;
 	pixel_y = -8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1609,15 +1609,15 @@
 /obj/decoration/vent{
 	pixel_y = 32
 	},
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "el" = (
 /obj/decal/cleanable/dirt,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "em" = (
 /obj/item/raw_material/scrap_metal,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "en" = (
 /obj/decal/fakeobjects{
@@ -1628,7 +1628,7 @@
 	icon_state = "camerax";
 	name = "security camera"
 	},
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "eo" = (
 /obj/decal/cleanable/dirt/dirt5,
@@ -1640,7 +1640,7 @@
 	icon_state = "camerax";
 	name = "security camera"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1652,18 +1652,18 @@
 	icon_state = "tube0";
 	name = "inactive light tube"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/wrecknsspolaris)
 "eq" = (
 /obj/decal/cleanable/dirt/dirt2,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "er" = (
 /obj/item/tile/steel,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1676,7 +1676,7 @@
 	icon_state = "tube0";
 	name = "inactive light tube"
 	},
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "et" = (
 /obj/decal/fakeobjects/lighttube_broken{
@@ -1687,7 +1687,7 @@
 	dir = 5;
 	icon_state = "xtra_bigstripe-corner2"
 	},
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "eu" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
@@ -1697,7 +1697,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "ev" = (
 /obj/machinery/atmospherics/pipe/manifold{
@@ -1709,14 +1709,14 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "ew" = (
 /obj/decal/cleanable/oil/streak,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "ex" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
@@ -1725,7 +1725,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "ey" = (
 /obj/decal/fakeobjects/apc_broken{
@@ -1740,22 +1740,22 @@
 	icon_state = "xtra_bigstripe-corner2"
 	},
 /obj/dialogueobj/syndiecorpse8,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "ez" = (
 /obj/storage/secure/closet/engineering/engineer,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "eA" = (
 /obj/stool/chair{
 	dir = 4;
 	icon_state = "chair"
 	},
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "eB" = (
 /obj/item/sheet/steel,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "eC" = (
 /obj/decal/fakeobjects{
@@ -1766,32 +1766,32 @@
 	icon_state = "camerax";
 	name = "security camera"
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "eD" = (
 /obj/machinery/atmospherics/valve,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "eE" = (
 /obj/decal/cleanable/machine_debris,
 /obj/item/reagent_containers/food/drinks/carafe,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "eF" = (
 /obj/item/scrap,
 /obj/item/sheet/steel,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "eG" = (
 /obj/stool/chair{
 	dir = 8;
 	icon_state = "chair"
 	},
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "eH" = (
 /obj/decal/cleanable/dirt/dirt5,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1800,19 +1800,19 @@
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
 	},
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "eJ" = (
 /obj/decal/cleanable/oil/streak,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "eK" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "eL" = (
 /obj/fluid_spawner/shortdelaybig,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "eM" = (
 /obj/decal/fakeobjects{
@@ -1827,7 +1827,7 @@
 /obj/decal/fakeobjects/apc_broken{
 	pixel_y = 32
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "eN" = (
 /obj/decal/cleanable/machine_debris,
@@ -1837,7 +1837,7 @@
 	icon_state = "tube0";
 	name = "inactive light tube"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1847,7 +1847,7 @@
 /obj/decal/fakeobjects/apc_broken{
 	pixel_y = 32
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "eP" = (
 /obj/decal/fakeobjects{
@@ -1860,7 +1860,7 @@
 	name = "power conduit"
 	},
 /obj/decal/cleanable/dirt/dirt2,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "eQ" = (
 /obj/decal/fakeobjects{
@@ -1871,23 +1871,23 @@
 	icon_state = "camerax";
 	name = "security camera"
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "eR" = (
 /obj/item/scrap,
 /obj/decal/cleanable/dirt/dirt5,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/wrecknsspolaris)
 "eS" = (
 /obj/decal/cleanable/dirt/dirt2,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "eT" = (
 /obj/decal/cleanable/dirt/dirt5,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "eU" = (
 /obj/lattice,
@@ -1917,7 +1917,7 @@
 	icon_state = "floor5"
 	},
 /obj/dialogueobj/syndiecorpse5,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1933,20 +1933,20 @@
 /area/wrecknsspolaris/outside/back)
 "fb" = (
 /obj/wingrille_spawn/auto,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "fc" = (
 /obj/machinery/door/airlock/pyro/weapons/noemag,
 /obj/access_spawn/polariscargo,
 /obj/firedoor_spawn,
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "fd" = (
 /obj/dialogueobj/securitycorpse7,
 /obj/decal/cleanable/blood/splatter{
 	icon_state = "floor5"
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "fe" = (
 /obj/decal/cleanable/blood{
@@ -1985,7 +1985,7 @@
 "fk" = (
 /obj/item/scrap,
 /obj/fluid_spawner/shortdelaybig,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "fl" = (
 /obj/lattice,
@@ -1996,7 +1996,7 @@
 /area/wrecknsspolaris/outside/back)
 "fm" = (
 /obj/item/tile/steel,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "fn" = (
 /obj/grille/catwalk{
@@ -2014,7 +2014,7 @@
 	icon_state = "tube-broken"
 	},
 /obj/item/raw_material/scrap_metal,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "fp" = (
 /obj/grille/catwalk{
@@ -2036,25 +2036,25 @@
 	dir = 5;
 	icon_state = "tracks"
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "fs" = (
 /obj/item/tile/steel,
 /obj/decoration/vent{
 	pixel_y = 32
 	},
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "ft" = (
 /obj/item/scrap,
 /obj/decoration/vent{
 	pixel_y = 32
 	},
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "fu" = (
 /obj/map/light/screen,
-/turf/unsimulated/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced/supernorn,
 /area/wrecknsspolaris/vault)
 "fv" = (
 /obj/lattice,
@@ -2066,13 +2066,13 @@
 	},
 /obj/table/wood/auto,
 /obj/dialogueobj/plantoflosthope,
-/turf/unsimulated/floor/carpet/arcade,
+/turf/floor/carpet/arcade,
 /area/wrecknsspolaris)
 "fx" = (
 /obj/decal/cleanable/blood/tracks{
 	icon_state = "drip5"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -2082,7 +2082,7 @@
 	dir = 4
 	},
 /obj/firedoor_spawn,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "fz" = (
 /obj/item/scrap,
@@ -2094,7 +2094,7 @@
 	icon_state = "circ1-broken";
 	name = "old gas turbine"
 	},
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "fA" = (
 /obj/machinery/door/airlock/pyro/weapons/noemag{
@@ -2103,37 +2103,37 @@
 	},
 /obj/access_spawn/polarisimportant,
 /obj/firedoor_spawn,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "fB" = (
 /obj/decal/cleanable/dirt/dirt4,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "fC" = (
 /obj/dialogueobj/syndiecorpse10,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "fD" = (
 /obj/decal/cleanable/blood/splatter{
 	icon_state = "floor2"
 	},
 /obj/dialogueobj/securitycorpse6,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "fE" = (
-/turf/unsimulated/floor/damaged5,
+/turf/floor/damaged5,
 /area/wrecknsspolaris)
 "fF" = (
-/turf/unsimulated/floor/damaged1,
+/turf/floor/damaged1,
 /area/wrecknsspolaris)
 "fG" = (
 /obj/machinery/handscanner{
 	pixel_y = 32
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "fH" = (
-/turf/unsimulated/floor/damaged2,
+/turf/floor/damaged2,
 /area/wrecknsspolaris)
 "fI" = (
 /obj/decoration/weirdmark{
@@ -2142,30 +2142,30 @@
 	pixel_y = 28
 	},
 /obj/map/light/green,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/wrecknsspolaris)
 "fJ" = (
-/turf/unsimulated/floor/damaged4,
+/turf/floor/damaged4,
 /area/wrecknsspolaris)
 "fK" = (
 /obj/decal/cleanable/dirt/dirt5,
 /obj/item/parts/human_parts/arm/right/polaris,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/wrecknsspolaris)
 "fL" = (
 /obj/dialogueobj/engineerscorpse,
-/turf/unsimulated/floor/yellow,
+/turf/floor/yellow,
 /area/wrecknsspolaris)
 "fM" = (
 /obj/machinery/door/airlock/pyro/maintenance,
 /obj/firedoor_spawn,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -2177,14 +2177,14 @@
 	name = "Maintenance"
 	},
 /obj/firedoor_spawn,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/wrecknsspolaris)
 "fO" = (
 /obj/machinery/door/airlock/pyro/maintenance{
 	name = "NSS Polaris"
 	},
 /obj/firedoor_spawn,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -2229,7 +2229,7 @@
 /obj/decoration/bullethole{
 	pixel_y = 26
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -2239,7 +2239,7 @@
 /obj/decoration/bullethole{
 	pixel_y = 32
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -2249,14 +2249,14 @@
 /obj/decoration/bullethole{
 	pixel_y = 27
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/wrecknsspolaris)
 "fX" = (
 /obj/decal/cleanable/blood/tracks,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "fY" = (
 /obj/decoration/weirdmark{
@@ -2264,7 +2264,7 @@
 	pixel_y = 32
 	},
 /obj/map/light/green,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "fZ" = (
 /obj/decal/cleanable/dirt/dirt4,
@@ -2276,34 +2276,34 @@
 	icon_state = "camerax";
 	name = "security camera"
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "ga" = (
 /obj/decoration/ntcrate/ntcrate2,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "gb" = (
 /obj/decal/cleanable/dirt/dirt4,
 /obj/storage/crate/wooden,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "gc" = (
 /obj/decal/cleanable/dirt/dirt2,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "gd" = (
 /obj/storage/crate/wooden,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "ge" = (
 /obj/item/broken_egun,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris)
 "gf" = (
 /obj/decoration/ntcrate{
 	desc = "Assortment of two metal crates, both of them sealed shut."
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "gg" = (
 /obj/machinery/door/airlock/pyro/weapons/noemag{
@@ -2311,7 +2311,7 @@
 	},
 /obj/access_spawn/polariscargo,
 /obj/firedoor_spawn,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/wrecknsspolaris/vault)
 "gh" = (
 /obj/grille/catwalk{
@@ -2423,31 +2423,31 @@
 /turf/space/fluid/noexplosion,
 /area/wrecknsspolaris/outside)
 "gx" = (
-/turf/unsimulated/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced/supernorn,
 /area/mantavault)
 "gy" = (
-/turf/unsimulated/floor/special/fogofcheating,
+/turf/floor/special/fogofcheating,
 /area/mantavault)
 "gz" = (
 /obj/vaultdoor,
-/turf/unsimulated/floor/longtile/black,
+/turf/floor/longtile/black,
 /area/mantavault)
 "gA" = (
-/turf/unsimulated/floor/longtile/black,
+/turf/floor/longtile/black,
 /area/mantavault)
 "gB" = (
 /obj/decoration/ntcratesmall{
 	dir = 4
 	},
-/turf/unsimulated/floor/longtile/black,
+/turf/floor/longtile/black,
 /area/mantavault)
 "gC" = (
 /obj/decoration/ntcrate/ntcrate2,
-/turf/unsimulated/floor/longtile/black,
+/turf/floor/longtile/black,
 /area/mantavault)
 "gD" = (
 /obj/machinery/light/fluorescent/neutral,
-/turf/unsimulated/floor/longtile/black,
+/turf/floor/longtile/black,
 /area/mantavault)
 "gE" = (
 /obj/ladder{
@@ -2455,17 +2455,17 @@
 	id = "vault";
 	pixel_y = 0
 	},
-/turf/unsimulated/floor/longtile/black,
+/turf/floor/longtile/black,
 /area/mantavault)
 "gF" = (
 /obj/decoration/ntcrate{
 	desc = "Assortment of two metal crates, both of them sealed shut."
 	},
-/turf/unsimulated/floor/longtile/black,
+/turf/floor/longtile/black,
 /area/mantavault)
 "gG" = (
 /obj/decoration/ntcratesmall,
-/turf/unsimulated/floor/longtile/black,
+/turf/floor/longtile/black,
 /area/mantavault)
 "gH" = (
 /obj/decal/cleanable/gangtag{
@@ -2476,23 +2476,23 @@
 	pixel_x = 0;
 	pixel_y = 32
 	},
-/turf/unsimulated/floor/longtile/black,
+/turf/floor/longtile/black,
 /area/mantavault)
 "gI" = (
 /obj/dialogueobj/keyhole{
 	pixel_y = 32
 	},
-/turf/unsimulated/floor/longtile/black,
+/turf/floor/longtile/black,
 /area/mantavault)
 "gJ" = (
-/turf/unsimulated/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced/supernorn,
 /area/space)
 "gK" = (
 /obj/wingrille_spawn/auto,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "gL" = (
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "gM" = (
 /obj/map/light/green,
@@ -2500,33 +2500,33 @@
 /area/mantavault)
 "gN" = (
 /obj/decal/cleanable/dirt,
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/dank_trench)
 "gP" = (
 /obj/indestructible/invisible_block/opaque,
-/turf/unsimulated/floor/longtile/black,
+/turf/floor/longtile/black,
 /area/mantavault)
 "gQ" = (
 /turf/space/fluid/noexplosion,
 /area/space)
 "gR" = (
-/turf/unsimulated/floor/stairs/wide{
+/turf/floor/stairs/wide{
 	dir = 4
 	},
 /area/space)
 "gS" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/space)
 "gT" = (
-/turf/unsimulated/floor/stairs/wide/middle{
+/turf/floor/stairs/wide/middle{
 	dir = 4
 	},
 /area/space)
 "gU" = (
-/turf/unsimulated/floor/stairs/wide/other{
+/turf/floor/stairs/wide/other{
 	dir = 4
 	},
 /area/space)
@@ -2538,13 +2538,13 @@
 	dir = 8;
 	pixel_x = -12
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "gW" = (
 /turf/space,
 /area/space)
 "gX" = (
-/turf/simulated/floor/white,
+/turf/floor/white,
 /area/space)
 "gY" = (
 /obj/decal/tile_edge/line/black{
@@ -2555,52 +2555,52 @@
 	dir = 1;
 	icon_state = "line2"
 	},
-/turf/simulated/floor/darkblue/checker/other,
+/turf/floor/darkblue/checker/other,
 /area/space)
 "gZ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "green5"
 	},
 /area/space)
 "ha" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "green5"
 	},
 /area/space)
 "hb" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fgreen5"
 	},
 /area/space)
 "hc" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fgreen5"
 	},
 /area/space)
 "hd" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "purple5"
 	},
 /area/space)
 "he" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "purple5"
 	},
 /area/space)
 "hf" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fpurple5"
 	},
 /area/space)
 "hg" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fpurple5"
 	},
@@ -2614,7 +2614,7 @@
 	dir = 8;
 	icon_state = "line2"
 	},
-/turf/simulated/floor/specialroom/arcade,
+/turf/floor/specialroom/arcade,
 /area/space)
 "hi" = (
 /obj/decal/tile_edge/line/black{
@@ -2637,7 +2637,7 @@
 	dir = 10;
 	icon_state = "line1"
 	},
-/turf/simulated/floor/specialroom/bar,
+/turf/floor/specialroom/bar,
 /area/space)
 "hj" = (
 /obj/decal/tile_edge/line/black{
@@ -2648,73 +2648,73 @@
 	dir = 4;
 	icon_state = "line2"
 	},
-/turf/simulated/floor/orangeblack,
+/turf/floor/orangeblack,
 /area/space)
 "hk" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "green3"
 	},
 /area/space)
 "hl" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "green5"
 	},
 /area/space)
 "hm" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "green5"
 	},
 /area/space)
 "hn" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fgreen5"
 	},
 /area/space)
 "ho" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fgreen5"
 	},
 /area/space)
 "hp" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "fgreen3"
 	},
 /area/space)
 "hq" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "purple3"
 	},
 /area/space)
 "hr" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "purple5"
 	},
 /area/space)
 "hs" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "purple5"
 	},
 /area/space)
 "ht" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fpurple5"
 	},
 /area/space)
 "hu" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fpurple5"
 	},
 /area/space)
 "hv" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "fpurple3"
 	},
 /area/space)
@@ -2727,4617 +2727,4617 @@
 	dir = 2;
 	icon_state = "line2"
 	},
-/turf/simulated/floor/bluegreen,
+/turf/floor/bluegreen,
 /area/space)
 "hx" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "green3"
 	},
 /area/space)
 "hy" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "green5"
 	},
 /area/space)
 "hz" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "green5"
 	},
 /area/space)
 "hA" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fgreen5"
 	},
 /area/space)
 "hB" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fgreen5"
 	},
 /area/space)
 "hC" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fgreen3"
 	},
 /area/space)
 "hD" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "purple3"
 	},
 /area/space)
 "hE" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "purple5"
 	},
 /area/space)
 "hF" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "purple5"
 	},
 /area/space)
 "hG" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fpurple5"
 	},
 /area/space)
 "hH" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fpurple5"
 	},
 /area/space)
 "hI" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fpurple3"
 	},
 /area/space)
 "hJ" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "blugreen"
 	},
 /area/space)
 "hK" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "blugreen"
 	},
 /area/space)
 "hL" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "blugreencorner"
 	},
 /area/space)
 "hM" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "blugreencorner"
 	},
 /area/space)
 "hN" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "blugreen"
 	},
 /area/space)
 "hO" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "blugreen"
 	},
 /area/space)
 "hP" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "green3"
 	},
 /area/space)
 "hQ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "green5"
 	},
 /area/space)
 "hR" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "green5"
 	},
 /area/space)
 "hS" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fgreen5"
 	},
 /area/space)
 "hT" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "fgreen5"
 	},
 /area/space)
 "hU" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fgreen3"
 	},
 /area/space)
 "hV" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "purple3"
 	},
 /area/space)
 "hW" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "purple5"
 	},
 /area/space)
 "hX" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "purple5"
 	},
 /area/space)
 "hY" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fpurple5"
 	},
 /area/space)
 "hZ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "fpurple5"
 	},
 /area/space)
 "ia" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fpurple3"
 	},
 /area/space)
 "ib" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "blugreenfull"
 	},
 /area/space)
 "ic" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "blugreen"
 	},
 /area/space)
 "id" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "blugreen"
 	},
 /area/space)
 "ie" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "blugreencorner"
 	},
 /area/space)
 "if" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "blugreencorner"
 	},
 /area/space)
 "ig" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "blugreen"
 	},
 /area/space)
 "ih" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "blugreen"
 	},
 /area/space)
 "ii" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "green4"
 	},
 /area/space)
 "ij" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "green4"
 	},
 /area/space)
 "ik" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fgreen4"
 	},
 /area/space)
 "il" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fgreen4"
 	},
 /area/space)
 "im" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fgreen3"
 	},
 /area/space)
 "in" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "purple4"
 	},
 /area/space)
 "io" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "purple4"
 	},
 /area/space)
 "ip" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fpurple4"
 	},
 /area/space)
 "iq" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fpurple4"
 	},
 /area/space)
 "ir" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fpurple3"
 	},
 /area/space)
 "is" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "toxshuttle"
 	},
 /area/space)
 "it" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "toxshuttle"
 	},
 /area/space)
 "iu" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "toxshuttlecorner"
 	},
 /area/space)
 "iv" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "toxshuttlecorner"
 	},
 /area/space)
 "iw" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "toxshuttle"
 	},
 /area/space)
 "ix" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "toxshuttle"
 	},
 /area/space)
 "iy" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "green4"
 	},
 /area/space)
 "iz" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "green4"
 	},
 /area/space)
 "iA" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fgreen4"
 	},
 /area/space)
 "iB" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fgreen4"
 	},
 /area/space)
 "iC" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "purple4"
 	},
 /area/space)
 "iD" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "purple4"
 	},
 /area/space)
 "iE" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fpurple4"
 	},
 /area/space)
 "iF" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fpurple4"
 	},
 /area/space)
 "iG" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "toxshuttle"
 	},
 /area/space)
 "iH" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "toxshuttle"
 	},
 /area/space)
 "iI" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "toxshuttlecorner"
 	},
 /area/space)
 "iJ" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "toxshuttlecorner"
 	},
 /area/space)
 "iK" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "toxshuttle"
 	},
 /area/space)
 "iL" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "toxshuttle"
 	},
 /area/space)
 "iM" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "green1"
 	},
 /area/space)
 "iN" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "green3"
 	},
 /area/space)
 "iO" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "green3"
 	},
 /area/space)
 "iP" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fgreen3"
 	},
 /area/space)
 "iQ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fgreen3"
 	},
 /area/space)
 "iR" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fgreen1"
 	},
 /area/space)
 "iS" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "purple1"
 	},
 /area/space)
 "iT" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "purple3"
 	},
 /area/space)
 "iU" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "purple3"
 	},
 /area/space)
 "iV" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fpurple3"
 	},
 /area/space)
 "iW" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fpurple3"
 	},
 /area/space)
 "iX" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fpurple1"
 	},
 /area/space)
 "iY" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "escape"
 	},
 /area/space)
 "iZ" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "escape"
 	},
 /area/space)
 "ja" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "escapecorner"
 	},
 /area/space)
 "jb" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "escapecorner"
 	},
 /area/space)
 "jc" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "escape"
 	},
 /area/space)
 "jd" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "escape"
 	},
 /area/space)
 "je" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fgreen1"
 	},
 /area/space)
 "jf" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "green1"
 	},
 /area/space)
 "jg" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "green3"
 	},
 /area/space)
 "jh" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "green3"
 	},
 /area/space)
 "ji" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fgreen3"
 	},
 /area/space)
 "jj" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fgreen3"
 	},
 /area/space)
 "jk" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fgreen1"
 	},
 /area/space)
 "jl" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fpurple1"
 	},
 /area/space)
 "jm" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "purple1"
 	},
 /area/space)
 "jn" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "purple3"
 	},
 /area/space)
 "jo" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "purple3"
 	},
 /area/space)
 "jp" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fpurple3"
 	},
 /area/space)
 "jq" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fpurple3"
 	},
 /area/space)
 "jr" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fpurple1"
 	},
 /area/space)
 "js" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "escape"
 	},
 /area/space)
 "jt" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "escape"
 	},
 /area/space)
 "ju" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "escapecorner"
 	},
 /area/space)
 "jv" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "escapecorner"
 	},
 /area/space)
 "jw" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "escape"
 	},
 /area/space)
 "jx" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "escape"
 	},
 /area/space)
 "jy" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fgreen4"
 	},
 /area/space)
 "jz" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "green4"
 	},
 /area/space)
 "jA" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "green1"
 	},
 /area/space)
 "jB" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "green4"
 	},
 /area/space)
 "jC" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fgreen4"
 	},
 /area/space)
 "jD" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fgreen1"
 	},
 /area/space)
 "jE" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fgreen4"
 	},
 /area/space)
 "jF" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fpurple4"
 	},
 /area/space)
 "jG" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "purple4"
 	},
 /area/space)
 "jH" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "purple1"
 	},
 /area/space)
 "jI" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "purple4"
 	},
 /area/space)
 "jJ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fpurple4"
 	},
 /area/space)
 "jK" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fpurple1"
 	},
 /area/space)
 "jL" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fpurple4"
 	},
 /area/space)
 "jM" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "arrival"
 	},
 /area/space)
 "jN" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "arrival"
 	},
 /area/space)
 "jO" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "arrivalcorner"
 	},
 /area/space)
 "jP" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "arrivalcorner"
 	},
 /area/space)
 "jQ" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "arrival"
 	},
 /area/space)
 "jR" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "arrival"
 	},
 /area/space)
 "jS" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fgreen1"
 	},
 /area/space)
 "jT" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "green6"
 	},
 /area/space)
 "jU" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "green6"
 	},
 /area/space)
 "jV" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "green6"
 	},
 /area/space)
 "jW" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fgreen6"
 	},
 /area/space)
 "jX" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fgreen6"
 	},
 /area/space)
 "jY" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fgreen6"
 	},
 /area/space)
 "jZ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fpurple1"
 	},
 /area/space)
 "ka" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "purple6"
 	},
 /area/space)
 "kb" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "purple6"
 	},
 /area/space)
 "kc" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "purple6"
 	},
 /area/space)
 "kd" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fpurple6"
 	},
 /area/space)
 "ke" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fpurple6"
 	},
 /area/space)
 "kf" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fpurple6"
 	},
 /area/space)
 "kg" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "arrival"
 	},
 /area/space)
 "kh" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "arrival"
 	},
 /area/space)
 "ki" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "arrivalcorner"
 	},
 /area/space)
 "kj" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "arrivalcorner"
 	},
 /area/space)
 "kk" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "arrival"
 	},
 /area/space)
 "kl" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "arrival"
 	},
 /area/space)
 "km" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "fgreen4"
 	},
 /area/space)
 "kn" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "green6"
 	},
 /area/space)
 "ko" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "green1"
 	},
 /area/space)
 "kp" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "green6"
 	},
 /area/space)
 "kq" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fgreen6"
 	},
 /area/space)
 "kr" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fgreen1"
 	},
 /area/space)
 "ks" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fgreen6"
 	},
 /area/space)
 "kt" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "fpurple4"
 	},
 /area/space)
 "ku" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "purple6"
 	},
 /area/space)
 "kv" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "purple1"
 	},
 /area/space)
 "kw" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "purple6"
 	},
 /area/space)
 "kx" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fpurple6"
 	},
 /area/space)
 "ky" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fpurple1"
 	},
 /area/space)
 "kz" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fpurple6"
 	},
 /area/space)
 "kA" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "caution"
 	},
 /area/space)
 "kB" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "caution"
 	},
 /area/space)
 "kC" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "cautioncorner"
 	},
 /area/space)
 "kD" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "cautioncorner"
 	},
 /area/space)
 "kE" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "caution"
 	},
 /area/space)
 "kF" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "caution"
 	},
 /area/space)
 "kG" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "cautionwhite"
 	},
 /area/space)
 "kH" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "cautionwhite"
 	},
 /area/space)
 "kI" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "cautionwhitecorner"
 	},
 /area/space)
 "kJ" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "cautionwhitecorner"
 	},
 /area/space)
 "kK" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "cautionwhite"
 	},
 /area/space)
 "kL" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "cautionwhite"
 	},
 /area/space)
 "kM" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "white"
 	},
 /area/space)
 "kN" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "nt_logo"
 	},
 /area/space)
 "kO" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "green1"
 	},
 /area/space)
 "kP" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "green6"
 	},
 /area/space)
 "kQ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "green6"
 	},
 /area/space)
 "kR" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "green6"
 	},
 /area/space)
 "kS" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fgreen6"
 	},
 /area/space)
 "kT" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "fgreen6"
 	},
 /area/space)
 "kU" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fgreen6"
 	},
 /area/space)
 "kV" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "purple1"
 	},
 /area/space)
 "kW" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "purple6"
 	},
 /area/space)
 "kX" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "purple6"
 	},
 /area/space)
 "kY" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "purple6"
 	},
 /area/space)
 "kZ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fpurple6"
 	},
 /area/space)
 "la" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "fpurple6"
 	},
 /area/space)
 "lb" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fpurple6"
 	},
 /area/space)
 "lc" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "fullcaution"
 	},
 /area/space)
 "ld" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "caution"
 	},
 /area/space)
 "le" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "caution"
 	},
 /area/space)
 "lf" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "cautioncorner"
 	},
 /area/space)
 "lg" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "cautioncorner"
 	},
 /area/space)
 "lh" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "caution"
 	},
 /area/space)
 "li" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "caution"
 	},
 /area/space)
 "lj" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "cautionwhite"
 	},
 /area/space)
 "lk" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "cautionwhite"
 	},
 /area/space)
 "ll" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "cautionwhitecorner"
 	},
 /area/space)
 "lm" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "cautionwhitecorner"
 	},
 /area/space)
 "ln" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "cautionwhite"
 	},
 /area/space)
 "lo" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "cautionwhite"
 	},
 /area/space)
 "lp" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "green4"
 	},
 /area/space)
 "lq" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "green2"
 	},
 /area/space)
 "lr" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "green2"
 	},
 /area/space)
 "ls" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "green2"
 	},
 /area/space)
 "lt" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fgreen2"
 	},
 /area/space)
 "lu" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fgreen2"
 	},
 /area/space)
 "lv" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fgreen2"
 	},
 /area/space)
 "lw" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "purple4"
 	},
 /area/space)
 "lx" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "purple2"
 	},
 /area/space)
 "ly" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "purple2"
 	},
 /area/space)
 "lz" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "purple2"
 	},
 /area/space)
 "lA" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fpurple2"
 	},
 /area/space)
 "lB" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fpurple2"
 	},
 /area/space)
 "lC" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fpurple2"
 	},
 /area/space)
 "lD" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "purple"
 	},
 /area/space)
 "lE" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "purple"
 	},
 /area/space)
 "lF" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "purplecorner"
 	},
 /area/space)
 "lG" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "purplecorner"
 	},
 /area/space)
 "lH" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "purple"
 	},
 /area/space)
 "lI" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "purple"
 	},
 /area/space)
 "lJ" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "whitecheck"
 	},
 /area/space)
 "lK" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "purplewhite"
 	},
 /area/space)
 "lL" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "purplewhite"
 	},
 /area/space)
 "lM" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "purplewhitecorner"
 	},
 /area/space)
 "lN" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "purplewhitecorner"
 	},
 /area/space)
 "lO" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "purplewhite"
 	},
 /area/space)
 "lP" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "purplewhite"
 	},
 /area/space)
 "lQ" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "purpleblack"
 	},
 /area/space)
 "lR" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "purpleblack"
 	},
 /area/space)
 "lS" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "purpleblackcorner"
 	},
 /area/space)
 "lT" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "purpleblackcorner"
 	},
 /area/space)
 "lU" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "purpleblack"
 	},
 /area/space)
 "lV" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "purpleblack"
 	},
 /area/space)
 "lW" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "green1"
 	},
 /area/space)
 "lX" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "green2"
 	},
 /area/space)
 "lY" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "green1"
 	},
 /area/space)
 "lZ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "green2"
 	},
 /area/space)
 "ma" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fgreen2"
 	},
 /area/space)
 "mb" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fgreen1"
 	},
 /area/space)
 "mc" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fgreen2"
 	},
 /area/space)
 "md" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "purple1"
 	},
 /area/space)
 "me" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "purple2"
 	},
 /area/space)
 "mf" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "purple1"
 	},
 /area/space)
 "mg" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "purple2"
 	},
 /area/space)
 "mh" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fpurple2"
 	},
 /area/space)
 "mi" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fpurple1"
 	},
 /area/space)
 "mj" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fpurple2"
 	},
 /area/space)
 "mk" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "fullpurple"
 	},
 /area/space)
 "ml" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "purple"
 	},
 /area/space)
 "mm" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "purple"
 	},
 /area/space)
 "mn" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "purplecorner"
 	},
 /area/space)
 "mo" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "purplecorner"
 	},
 /area/space)
 "mp" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "purple"
 	},
 /area/space)
 "mq" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "purple"
 	},
 /area/space)
 "mr" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "whitecheck"
 	},
 /area/space)
 "ms" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "purplewhite"
 	},
 /area/space)
 "mt" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "purplewhite"
 	},
 /area/space)
 "mu" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "purplewhitecorner"
 	},
 /area/space)
 "mv" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "purplewhitecorner"
 	},
 /area/space)
 "mw" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "purplewhite"
 	},
 /area/space)
 "mx" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "purplewhite"
 	},
 /area/space)
 "my" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "purpleblack"
 	},
 /area/space)
 "mz" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "purpleblack"
 	},
 /area/space)
 "mA" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "purpleblackcorner"
 	},
 /area/space)
 "mB" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "purpleblackcorner"
 	},
 /area/space)
 "mC" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "purpleblack"
 	},
 /area/space)
 "mD" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "purpleblack"
 	},
 /area/space)
 "mE" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "green4"
 	},
 /area/space)
 "mF" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "green2"
 	},
 /area/space)
 "mG" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 2;
 	icon_state = "green2"
 	},
 /area/space)
 "mH" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "green2"
 	},
 /area/space)
 "mI" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fgreen2"
 	},
 /area/space)
 "mJ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 2;
 	icon_state = "fgreen2"
 	},
 /area/space)
 "mK" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fgreen2"
 	},
 /area/space)
 "mL" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "purple4"
 	},
 /area/space)
 "mM" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "purple2"
 	},
 /area/space)
 "mN" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 2;
 	icon_state = "purple2"
 	},
 /area/space)
 "mO" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "purple2"
 	},
 /area/space)
 "mP" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fpurple2"
 	},
 /area/space)
 "mQ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 2;
 	icon_state = "fpurple2"
 	},
 /area/space)
 "mR" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fpurple2"
 	},
 /area/space)
 "mS" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "orange"
 	},
 /area/space)
 "mT" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "orange"
 	},
 /area/space)
 "mU" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "orangecorner"
 	},
 /area/space)
 "mV" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "orangecorner"
 	},
 /area/space)
 "mW" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "orange"
 	},
 /area/space)
 "mX" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "orange"
 	},
 /area/space)
 "mY" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "whitecheck2"
 	},
 /area/space)
 "mZ" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 10;
 	icon_state = "quiltystair2"
 	},
 /area/space)
 "na" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 10;
 	icon_state = "quiltystair"
 	},
 /area/space)
 "nb" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1;
 	icon_state = "quiltystair2"
 	},
 /area/space)
 "nc" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 10;
 	icon_state = "dark_stairs2"
 	},
 /area/space)
 "nd" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 10;
 	icon_state = "dark_stairs"
 	},
 /area/space)
 "ne" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1;
 	icon_state = "dark_stairs2"
 	},
 /area/space)
 "nf" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "red5"
 	},
 /area/space)
 "ng" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "red5"
 	},
 /area/space)
 "nh" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fred5"
 	},
 /area/space)
 "ni" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fred5"
 	},
 /area/space)
 "nj" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "blue5"
 	},
 /area/space)
 "nk" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "blue5"
 	},
 /area/space)
 "nl" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fblue5"
 	},
 /area/space)
 "nm" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fblue5"
 	},
 /area/space)
 "nn" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "fullorange"
 	},
 /area/space)
 "no" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "orange"
 	},
 /area/space)
 "np" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "orange"
 	},
 /area/space)
 "nq" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "orangecorner"
 	},
 /area/space)
 "nr" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "orangecorner"
 	},
 /area/space)
 "ns" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "orange"
 	},
 /area/space)
 "nt" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "orange"
 	},
 /area/space)
 "nu" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "whitecheck2"
 	},
 /area/space)
 "nv" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 9;
 	icon_state = "quiltystair2"
 	},
 /area/space)
 "nw" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1;
 	icon_state = "quiltystair"
 	},
 /area/space)
 "nx" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 5;
 	icon_state = "quiltystair2"
 	},
 /area/space)
 "ny" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 4;
 	icon_state = "dark_stairs2"
 	},
 /area/space)
 "nz" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1;
 	icon_state = "dark_stairs"
 	},
 /area/space)
 "nA" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 9;
 	icon_state = "dark_stairs2"
 	},
 /area/space)
 "nB" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "red3"
 	},
 /area/space)
 "nC" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "red5"
 	},
 /area/space)
 "nD" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "red5"
 	},
 /area/space)
 "nE" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fred5"
 	},
 /area/space)
 "nF" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fred5"
 	},
 /area/space)
 "nG" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "fred3"
 	},
 /area/space)
 "nH" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "blue3"
 	},
 /area/space)
 "nI" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "blue5"
 	},
 /area/space)
 "nJ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "blue5"
 	},
 /area/space)
 "nK" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fblue5"
 	},
 /area/space)
 "nL" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fblue5"
 	},
 /area/space)
 "nM" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "fblue3"
 	},
 /area/space)
 "nN" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "yellow"
 	},
 /area/space)
 "nO" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "yellow"
 	},
 /area/space)
 "nP" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "yellowcorner"
 	},
 /area/space)
 "nQ" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "yellowcorner"
 	},
 /area/space)
 "nR" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "yellow"
 	},
 /area/space)
 "nS" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "yellow"
 	},
 /area/space)
 "nT" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "whitecheck2"
 	},
 /area/space)
 "nU" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "yellowblack"
 	},
 /area/space)
 "nV" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "yellowblack"
 	},
 /area/space)
 "nW" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "yellowblackcorner"
 	},
 /area/space)
 "nX" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "yellowblackcorner"
 	},
 /area/space)
 "nY" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "yellowblack"
 	},
 /area/space)
 "nZ" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "yellowblack"
 	},
 /area/space)
 "oa" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 9;
 	icon_state = "quiltystair"
 	},
 /area/space)
 "ob" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 8;
 	icon_state = "quiltystair"
 	},
 /area/space)
 "oc" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 4;
 	icon_state = "quiltystair"
 	},
 /area/space)
 "od" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 5;
 	icon_state = "quiltystair"
 	},
 /area/space)
 "oe" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 5;
 	icon_state = "dark_stairs"
 	},
 /area/space)
 "of" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 4;
 	icon_state = "dark_stairs"
 	},
 /area/space)
 "og" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 8;
 	icon_state = "dark_stairs"
 	},
 /area/space)
 "oh" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 9;
 	icon_state = "dark_stairs"
 	},
 /area/space)
 "oi" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "red3"
 	},
 /area/space)
 "oj" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "red5"
 	},
 /area/space)
 "ok" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "red5"
 	},
 /area/space)
 "ol" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fred5"
 	},
 /area/space)
 "om" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fred5"
 	},
 /area/space)
 "on" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fred3"
 	},
 /area/space)
 "oo" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "blue3"
 	},
 /area/space)
 "op" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "blue5"
 	},
 /area/space)
 "oq" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "blue5"
 	},
 /area/space)
 "or" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fblue5"
 	},
 /area/space)
 "os" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fblue5"
 	},
 /area/space)
 "ot" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fblue3"
 	},
 /area/space)
 "ou" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "fullyellow"
 	},
 /area/space)
 "ov" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "yellow"
 	},
 /area/space)
 "ow" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "yellow"
 	},
 /area/space)
 "ox" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "yellowcorner"
 	},
 /area/space)
 "oy" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "yellowcorner"
 	},
 /area/space)
 "oz" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "yellow"
 	},
 /area/space)
 "oA" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "yellow"
 	},
 /area/space)
 "oB" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "whitecheck2"
 	},
 /area/space)
 "oC" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "yellowblack"
 	},
 /area/space)
 "oD" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "yellowblack"
 	},
 /area/space)
 "oE" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "yellowblackcorner"
 	},
 /area/space)
 "oF" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "yellowblackcorner"
 	},
 /area/space)
 "oG" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "yellowblack"
 	},
 /area/space)
 "oH" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "yellowblack"
 	},
 /area/space)
 "oI" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 8;
 	icon_state = "quiltystair2"
 	},
 /area/space)
 "oJ" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	icon_state = "quiltystair"
 	},
 /area/space)
 "oK" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 4;
 	icon_state = "quiltystair2"
 	},
 /area/space)
 "oL" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 5;
 	icon_state = "dark_stairs2"
 	},
 /area/space)
 "oM" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	icon_state = "dark_stairs"
 	},
 /area/space)
 "oN" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 8;
 	icon_state = "dark_stairs2"
 	},
 /area/space)
 "oO" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "red3"
 	},
 /area/space)
 "oP" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "red5"
 	},
 /area/space)
 "oQ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "red5"
 	},
 /area/space)
 "oR" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fred5"
 	},
 /area/space)
 "oS" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "fred5"
 	},
 /area/space)
 "oT" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fred3"
 	},
 /area/space)
 "oU" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "blue3"
 	},
 /area/space)
 "oV" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "blue5"
 	},
 /area/space)
 "oW" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "blue5"
 	},
 /area/space)
 "oX" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fblue5"
 	},
 /area/space)
 "oY" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "fblue5"
 	},
 /area/space)
 "oZ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fblue3"
 	},
 /area/space)
 "pa" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "green"
 	},
 /area/space)
 "pb" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "green"
 	},
 /area/space)
 "pc" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "greencorner"
 	},
 /area/space)
 "pd" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "greencorner"
 	},
 /area/space)
 "pe" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "green"
 	},
 /area/space)
 "pf" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "green"
 	},
 /area/space)
 "pg" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "whitecheck2"
 	},
 /area/space)
 "ph" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "greenwhite"
 	},
 /area/space)
 "pi" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "greenwhite"
 	},
 /area/space)
 "pj" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "greenwhitecorner"
 	},
 /area/space)
 "pk" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "greenwhitecorner"
 	},
 /area/space)
 "pl" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "greenwhite"
 	},
 /area/space)
 "pm" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "greenwhite"
 	},
 /area/space)
 "pn" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "greenblack"
 	},
 /area/space)
 "po" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "greenblack"
 	},
 /area/space)
 "pp" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "greenblackcorner"
 	},
 /area/space)
 "pq" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "greenblackcorner"
 	},
 /area/space)
 "pr" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "greenblack"
 	},
 /area/space)
 "ps" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "greenblack"
 	},
 /area/space)
 "pt" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	icon_state = "quiltystair2"
 	},
 /area/space)
 "pu" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 6;
 	icon_state = "quiltystair"
 	},
 /area/space)
 "pv" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 6;
 	icon_state = "quiltystair2"
 	},
 /area/space)
 "pw" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	icon_state = "dark_stairs2"
 	},
 /area/space)
 "px" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 6;
 	icon_state = "dark_stairs"
 	},
 /area/space)
 "py" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 6;
 	icon_state = "dark_stairs2"
 	},
 /area/space)
 "pz" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "red4"
 	},
 /area/space)
 "pA" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "red4"
 	},
 /area/space)
 "pB" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fred4"
 	},
 /area/space)
 "pC" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fred4"
 	},
 /area/space)
 "pD" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fred3"
 	},
 /area/space)
 "pE" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "blue4"
 	},
 /area/space)
 "pF" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "blue4"
 	},
 /area/space)
 "pG" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fblue4"
 	},
 /area/space)
 "pH" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fblue4"
 	},
 /area/space)
 "pI" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fblue3"
 	},
 /area/space)
 "pJ" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "fullgreen"
 	},
 /area/space)
 "pK" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "green"
 	},
 /area/space)
 "pL" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "green"
 	},
 /area/space)
 "pM" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "greencorner"
 	},
 /area/space)
 "pN" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "greencorner"
 	},
 /area/space)
 "pO" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "green"
 	},
 /area/space)
 "pP" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "green"
 	},
 /area/space)
 "pQ" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "whitecheck2"
 	},
 /area/space)
 "pR" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "greenwhite"
 	},
 /area/space)
 "pS" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "greenwhite"
 	},
 /area/space)
 "pT" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "greenwhitecorner"
 	},
 /area/space)
 "pU" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "greenwhitecorner"
 	},
 /area/space)
 "pV" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "greenwhite"
 	},
 /area/space)
 "pW" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "greenwhite"
 	},
 /area/space)
 "pX" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "greenblack"
 	},
 /area/space)
 "pY" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "greenblack"
 	},
 /area/space)
 "pZ" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "greenblackcorner"
 	},
 /area/space)
 "qa" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "greenblackcorner"
 	},
 /area/space)
 "qb" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "greenblack"
 	},
 /area/space)
 "qc" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "greenblack"
 	},
 /area/space)
 "qd" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 10;
 	icon_state = "wood2_stairs2"
 	},
 /area/space)
 "qe" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 10;
 	icon_state = "wood2_stairs"
 	},
 /area/space)
 "qf" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1;
 	icon_state = "wood2_stairs2"
 	},
 /area/space)
 "qg" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 10;
 	icon_state = "wood_stairs2"
 	},
 /area/space)
 "qh" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 10;
 	icon_state = "wood_stairs"
 	},
 /area/space)
 "qi" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1;
 	icon_state = "wood_stairs2"
 	},
 /area/space)
 "qj" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "red4"
 	},
 /area/space)
 "qk" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "red4"
 	},
 /area/space)
 "ql" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fred4"
 	},
 /area/space)
 "qm" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fred4"
 	},
 /area/space)
 "qn" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "blue4"
 	},
 /area/space)
 "qo" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "blue4"
 	},
 /area/space)
 "qp" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fblue4"
 	},
 /area/space)
 "qq" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fblue4"
 	},
 /area/space)
 "qr" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "blue"
 	},
 /area/space)
 "qs" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "blue"
 	},
 /area/space)
 "qt" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "bluecorner"
 	},
 /area/space)
 "qu" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "bluecorner"
 	},
 /area/space)
 "qv" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "blue"
 	},
 /area/space)
 "qw" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "blue"
 	},
 /area/space)
 "qx" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "whitecheck"
 	},
 /area/space)
 "qy" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "bluewhite"
 	},
 /area/space)
 "qz" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "bluewhite"
 	},
 /area/space)
 "qA" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "bluewhitecorner"
 	},
 /area/space)
 "qB" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "bluewhitecorner"
 	},
 /area/space)
 "qC" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "bluewhite"
 	},
 /area/space)
 "qD" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "bluewhite"
 	},
 /area/space)
 "qE" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "blueblack"
 	},
 /area/space)
 "qF" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "blueblack"
 	},
 /area/space)
 "qG" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "blueblackcorner"
 	},
 /area/space)
 "qH" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "blueblackcorner"
 	},
 /area/space)
 "qI" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "blueblack"
 	},
 /area/space)
 "qJ" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "blueblack"
 	},
 /area/space)
 "qK" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 4;
 	icon_state = "wood2_stairs2"
 	},
 /area/space)
 "qL" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1;
 	icon_state = "wood2_stairs"
 	},
 /area/space)
 "qM" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 9;
 	icon_state = "wood2_stairs2"
 	},
 /area/space)
 "qN" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 4;
 	icon_state = "wood_stairs2"
 	},
 /area/space)
 "qO" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1;
 	icon_state = "wood_stairs"
 	},
 /area/space)
 "qP" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 9;
 	icon_state = "wood_stairs2"
 	},
 /area/space)
 "qQ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "red1"
 	},
 /area/space)
 "qR" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "red3"
 	},
 /area/space)
 "qS" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "red3"
 	},
 /area/space)
 "qT" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fred3"
 	},
 /area/space)
 "qU" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fred3"
 	},
 /area/space)
 "qV" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fred1"
 	},
 /area/space)
 "qW" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "blue1"
 	},
 /area/space)
 "qX" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "blue3"
 	},
 /area/space)
 "qY" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "blue3"
 	},
 /area/space)
 "qZ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fblue3"
 	},
 /area/space)
 "ra" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fblue3"
 	},
 /area/space)
 "rb" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fblue1"
 	},
 /area/space)
 "rc" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "fullblue"
 	},
 /area/space)
 "rd" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "blue"
 	},
 /area/space)
 "re" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "blue"
 	},
 /area/space)
 "rf" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "bluecorner"
 	},
 /area/space)
 "rg" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "bluecorner"
 	},
 /area/space)
 "rh" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "blue"
 	},
 /area/space)
 "ri" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "blue"
 	},
 /area/space)
 "rj" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "whitecheck"
 	},
 /area/space)
 "rk" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "bluewhite"
 	},
 /area/space)
 "rl" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "bluewhite"
 	},
 /area/space)
 "rm" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "bluewhitecorner"
 	},
 /area/space)
 "rn" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "bluewhitecorner"
 	},
 /area/space)
 "ro" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "bluewhite"
 	},
 /area/space)
 "rp" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "bluewhite"
 	},
 /area/space)
 "rq" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "blueblack"
 	},
 /area/space)
 "rr" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "blueblack"
 	},
 /area/space)
 "rs" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "blueblackcorner"
 	},
 /area/space)
 "rt" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "blueblackcorner"
 	},
 /area/space)
 "ru" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "blueblack"
 	},
 /area/space)
 "rv" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "blueblack"
 	},
 /area/space)
 "rw" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 5;
 	icon_state = "wood2_stairs"
 	},
 /area/space)
 "rx" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 4;
 	icon_state = "wood2_stairs"
 	},
 /area/space)
 "ry" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 8;
 	icon_state = "wood2_stairs"
 	},
 /area/space)
 "rz" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 9;
 	icon_state = "wood2_stairs"
 	},
 /area/space)
 "rA" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 5;
 	icon_state = "wood_stairs"
 	},
 /area/space)
 "rB" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 4;
 	icon_state = "wood_stairs"
 	},
 /area/space)
 "rC" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 8;
 	icon_state = "wood_stairs"
 	},
 /area/space)
 "rD" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 9;
 	icon_state = "wood_stairs"
 	},
 /area/space)
 "rE" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fred1"
 	},
 /area/space)
 "rF" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "red1"
 	},
 /area/space)
 "rG" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "red3"
 	},
 /area/space)
 "rH" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "red3"
 	},
 /area/space)
 "rI" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fred3"
 	},
 /area/space)
 "rJ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fred3"
 	},
 /area/space)
 "rK" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fred1"
 	},
 /area/space)
 "rL" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fblue1"
 	},
 /area/space)
 "rM" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "blue1"
 	},
 /area/space)
 "rN" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "blue3"
 	},
 /area/space)
 "rO" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "blue3"
 	},
 /area/space)
 "rP" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fblue3"
 	},
 /area/space)
 "rQ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fblue3"
 	},
 /area/space)
 "rR" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fblue1"
 	},
 /area/space)
 "rS" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "red"
 	},
 /area/space)
 "rT" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "red"
 	},
 /area/space)
 "rU" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "redcorner"
 	},
 /area/space)
 "rV" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "redcorner"
 	},
 /area/space)
 "rW" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "red"
 	},
 /area/space)
 "rX" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "red"
 	},
 /area/space)
 "rY" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "whitecheck"
 	},
 /area/space)
 "rZ" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "redwhite"
 	},
 /area/space)
 "sa" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "redwhite"
 	},
 /area/space)
 "sb" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "redwhitecorner"
 	},
 /area/space)
 "sc" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "redwhitecorner"
 	},
 /area/space)
 "sd" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "redwhite"
 	},
 /area/space)
 "se" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "redwhite"
 	},
 /area/space)
 "sf" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "redblack"
 	},
 /area/space)
 "sg" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "redblack"
 	},
 /area/space)
 "sh" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "redblackcorner"
 	},
 /area/space)
 "si" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "redblackcorner"
 	},
 /area/space)
 "sj" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "redblack"
 	},
 /area/space)
 "sk" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "redblack"
 	},
 /area/space)
 "sl" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 5;
 	icon_state = "wood2_stairs2"
 	},
 /area/space)
 "sm" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	icon_state = "wood2_stairs"
 	},
 /area/space)
 "sn" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 8;
 	icon_state = "wood2_stairs2"
 	},
 /area/space)
 "so" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 5;
 	icon_state = "wood_stairs2"
 	},
 /area/space)
 "sp" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	icon_state = "wood_stairs"
 	},
 /area/space)
 "sq" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 8;
 	icon_state = "wood_stairs2"
 	},
 /area/space)
 "sr" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fred4"
 	},
 /area/space)
 "ss" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "red4"
 	},
 /area/space)
 "st" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "red1"
 	},
 /area/space)
 "su" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "red4"
 	},
 /area/space)
 "sv" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fred4"
 	},
 /area/space)
 "sw" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fred1"
 	},
 /area/space)
 "sx" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fred4"
 	},
 /area/space)
 "sy" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fblue4"
 	},
 /area/space)
 "sz" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "blue4"
 	},
 /area/space)
 "sA" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "blue1"
 	},
 /area/space)
 "sB" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "blue4"
 	},
 /area/space)
 "sC" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fblue4"
 	},
 /area/space)
 "sD" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fblue1"
 	},
 /area/space)
 "sE" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fblue4"
 	},
 /area/space)
 "sF" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "fullred"
 	},
 /area/space)
 "sG" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "red"
 	},
 /area/space)
 "sH" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "red"
 	},
 /area/space)
 "sI" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "redcorner"
 	},
 /area/space)
 "sJ" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "redcorner"
 	},
 /area/space)
 "sK" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "red"
 	},
 /area/space)
 "sL" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "red"
 	},
 /area/space)
 "sM" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "whitecheck"
 	},
 /area/space)
 "sN" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "redwhite"
 	},
 /area/space)
 "sO" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "redwhite"
 	},
 /area/space)
 "sP" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "redwhitecorner"
 	},
 /area/space)
 "sQ" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "redwhitecorner"
 	},
 /area/space)
 "sR" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "redwhite"
 	},
 /area/space)
 "sS" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "redwhite"
 	},
 /area/space)
 "sT" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "redblack"
 	},
 /area/space)
 "sU" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "redblack"
 	},
 /area/space)
 "sV" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "redblackcorner"
 	},
 /area/space)
 "sW" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "redblackcorner"
 	},
 /area/space)
 "sX" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "redblack"
 	},
 /area/space)
 "sY" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "redblack"
 	},
 /area/space)
 "sZ" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	icon_state = "wood2_stairs2"
 	},
 /area/space)
 "ta" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 6;
 	icon_state = "wood2_stairs"
 	},
 /area/space)
 "tb" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 6;
 	icon_state = "wood2_stairs2"
 	},
 /area/space)
 "tc" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	icon_state = "wood_stairs2"
 	},
 /area/space)
 "td" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 6;
 	icon_state = "wood_stairs"
 	},
 /area/space)
 "te" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 6;
 	icon_state = "wood_stairs2"
 	},
 /area/space)
 "tf" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fred1"
 	},
 /area/space)
 "tg" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "red6"
 	},
 /area/space)
 "th" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "red6"
 	},
 /area/space)
 "ti" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "red6"
 	},
 /area/space)
 "tj" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fred6"
 	},
 /area/space)
 "tk" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fred6"
 	},
 /area/space)
 "tl" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fred6"
 	},
 /area/space)
 "tm" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fblue1"
 	},
 /area/space)
 "tn" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "blue6"
 	},
 /area/space)
 "to" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "blue6"
 	},
 /area/space)
 "tp" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "blue6"
 	},
 /area/space)
 "tq" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fblue6"
 	},
 /area/space)
 "tr" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fblue6"
 	},
 /area/space)
 "ts" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fblue6"
 	},
 /area/space)
 "tt" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "black"
 	},
 /area/space)
 "tu" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "black"
 	},
 /area/space)
 "tv" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "blackcorner"
 	},
 /area/space)
 "tw" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "blackcorner"
 	},
 /area/space)
 "tx" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "black"
 	},
 /area/space)
 "ty" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "black"
 	},
 /area/space)
 "tz" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "whitecheck2"
 	},
 /area/space)
 "tA" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "darkwhite"
 	},
 /area/space)
 "tB" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "darkwhite"
 	},
 /area/space)
 "tC" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "darkwhitecorner"
 	},
 /area/space)
 "tD" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "darkwhitecorner"
 	},
 /area/space)
 "tE" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "darkwhite"
 	},
 /area/space)
 "tF" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "darkwhite"
 	},
 /area/space)
 "tG" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "greyblack"
 	},
 /area/space)
 "tH" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "greyblack"
 	},
 /area/space)
 "tI" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "greyblackcorner"
 	},
 /area/space)
 "tJ" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "greyblackcorner"
 	},
 /area/space)
 "tK" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "greyblack"
 	},
 /area/space)
 "tL" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "greyblack"
 	},
 /area/space)
 "tM" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1;
 	icon_state = "Stairs2_wide"
 	},
 /area/space)
 "tN" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1;
 	icon_state = "stairs_middle"
 	},
 /area/space)
 "tO" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1;
 	icon_state = "Stairs_wide"
 	},
 /area/space)
 "tP" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1;
 	icon_state = "medstairs_wide"
 	},
 /area/space)
 "tQ" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1;
 	icon_state = "medstairs_middle"
 	},
 /area/space)
 "tR" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1;
 	icon_state = "medstairs2_wide"
 	},
 /area/space)
 "tS" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "fred4"
 	},
 /area/space)
 "tT" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "red6"
 	},
 /area/space)
 "tU" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "red1"
 	},
 /area/space)
 "tV" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "red6"
 	},
 /area/space)
 "tW" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fred6"
 	},
 /area/space)
 "tX" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fred1"
 	},
 /area/space)
 "tY" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fred6"
 	},
 /area/space)
 "tZ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "fblue4"
 	},
 /area/space)
 "ua" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "blue6"
 	},
 /area/space)
 "ub" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "blue1"
 	},
 /area/space)
 "uc" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "blue6"
 	},
 /area/space)
 "ud" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fblue6"
 	},
 /area/space)
 "ue" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fblue1"
 	},
 /area/space)
 "uf" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fblue6"
 	},
 /area/space)
 "ug" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "dark"
 	},
 /area/space)
 "uh" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "black"
 	},
 /area/space)
 "ui" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "black"
 	},
 /area/space)
 "uj" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "blackcorner"
 	},
 /area/space)
 "uk" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "blackcorner"
 	},
 /area/space)
 "ul" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "black"
 	},
 /area/space)
 "um" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "black"
 	},
 /area/space)
 "un" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 2;
 	icon_state = "whitecheck2"
 	},
 /area/space)
 "uo" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "darkwhite"
 	},
 /area/space)
 "up" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "darkwhite"
 	},
 /area/space)
 "uq" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "darkwhitecorner"
 	},
 /area/space)
 "ur" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "darkwhitecorner"
 	},
 /area/space)
 "us" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "darkwhite"
 	},
 /area/space)
 "ut" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "darkwhite"
 	},
 /area/space)
 "uu" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "greyblack"
 	},
 /area/space)
 "uv" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "greyblack"
 	},
 /area/space)
 "uw" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "greyblackcorner"
 	},
 /area/space)
 "ux" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "greyblackcorner"
 	},
 /area/space)
 "uy" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "greyblack"
 	},
 /area/space)
 "uz" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "greyblack"
 	},
 /area/space)
 "uA" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 4;
 	icon_state = "Stairs_wide"
 	},
 /area/space)
 "uB" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1
 	},
 /area/space)
 "uC" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 8;
 	icon_state = "Stairs2_wide"
 	},
 /area/space)
 "uD" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 4;
 	icon_state = "medstairs_wide"
 	},
 /area/space)
 "uE" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1;
 	icon_state = "medstairs_alone"
 	},
 /area/space)
 "uF" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 8;
 	icon_state = "medstairs2_wide"
 	},
 /area/space)
 "uG" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "red1"
 	},
 /area/space)
 "uH" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "red6"
 	},
 /area/space)
 "uI" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "red6"
 	},
 /area/space)
 "uJ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "red6"
 	},
 /area/space)
 "uK" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fred6"
 	},
 /area/space)
 "uL" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "fred6"
 	},
 /area/space)
 "uM" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fred6"
 	},
 /area/space)
 "uN" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "blue1"
 	},
 /area/space)
 "uO" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "blue6"
 	},
 /area/space)
 "uP" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "blue6"
 	},
 /area/space)
 "uQ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "blue6"
 	},
 /area/space)
 "uR" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fblue6"
 	},
 /area/space)
 "uS" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "fblue6"
 	},
 /area/space)
 "uT" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fblue6"
 	},
 /area/space)
 "uU" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "neutral"
 	},
 /area/space)
 "uV" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "neutral"
 	},
 /area/space)
 "uW" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "neutralcorner"
 	},
 /area/space)
 "uX" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "neutralcorner"
 	},
 /area/space)
 "uY" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "neutral"
 	},
 /area/space)
 "uZ" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "neutral"
 	},
 /area/space)
 "va" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 4;
 	icon_state = "stairs_middle"
 	},
 /area/space)
 "vb" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 4
 	},
 /area/space)
 "vc" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 8
 	},
 /area/space)
 "vd" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 8;
 	icon_state = "stairs_middle"
 	},
 /area/space)
 "ve" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 4;
 	icon_state = "medstairs_middle"
 	},
 /area/space)
 "vf" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 4;
 	icon_state = "medstairs_alone"
 	},
 /area/space)
 "vg" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 8;
 	icon_state = "medstairs_alone"
 	},
 /area/space)
 "vh" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 8;
 	icon_state = "medstairs_middle"
 	},
 /area/space)
 "vi" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "red4"
 	},
 /area/space)
 "vj" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "red2"
 	},
 /area/space)
 "vk" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "red2"
 	},
 /area/space)
 "vl" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "red2"
 	},
 /area/space)
 "vm" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fred2"
 	},
 /area/space)
 "vn" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fred2"
 	},
 /area/space)
 "vo" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fred2"
 	},
 /area/space)
 "vp" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "blue4"
 	},
 /area/space)
 "vq" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "blue2"
 	},
 /area/space)
 "vr" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "blue2"
 	},
 /area/space)
 "vs" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "blue2"
 	},
 /area/space)
 "vt" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 9;
 	icon_state = "fblue2"
 	},
 /area/space)
 "vu" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fblue2"
 	},
 /area/space)
 "vv" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 5;
 	icon_state = "fblue2"
 	},
 /area/space)
 "vw" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "fullneutral"
 	},
 /area/space)
 "vx" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "neutral"
 	},
 /area/space)
 "vy" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "neutral"
 	},
 /area/space)
 "vz" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "neutralcorner"
 	},
 /area/space)
 "vA" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "neutralcorner"
 	},
 /area/space)
 "vB" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "neutral"
 	},
 /area/space)
 "vC" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "neutral"
 	},
 /area/space)
 "vD" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 4;
 	icon_state = "Stairs2_wide"
 	},
 /area/space)
 "vE" = (
-/turf/simulated/floor/stairs,
+/turf/floor/stairs,
 /area/space)
 "vF" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 8;
 	icon_state = "Stairs_wide"
 	},
 /area/space)
 "vG" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 4;
 	icon_state = "medstairs2_wide"
 	},
 /area/space)
 "vH" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	icon_state = "medstairs_alone"
 	},
 /area/space)
 "vI" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 8;
 	icon_state = "medstairs_wide"
 	},
 /area/space)
 "vJ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "red1"
 	},
 /area/space)
 "vK" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "red2"
 	},
 /area/space)
 "vL" = (
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/space)
 "vM" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "red2"
 	},
 /area/space)
 "vN" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fred2"
 	},
 /area/space)
 "vO" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fred1"
 	},
 /area/space)
 "vP" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fred2"
 	},
 /area/space)
 "vQ" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "blue1"
 	},
 /area/space)
 "vR" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "blue2"
 	},
 /area/space)
 "vS" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "blue1"
 	},
 /area/space)
 "vT" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "blue2"
 	},
 /area/space)
 "vU" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 8;
 	icon_state = "fblue2"
 	},
 /area/space)
 "vV" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 1;
 	icon_state = "fblue1"
 	},
 /area/space)
 "vW" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 4;
 	icon_state = "fblue2"
 	},
 /area/space)
 "vX" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "whitehall"
 	},
 /area/space)
 "vY" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "whitehall"
 	},
 /area/space)
 "vZ" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "whitecorner"
 	},
 /area/space)
 "wa" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 8;
 	icon_state = "whitecorner"
 	},
 /area/space)
 "wb" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 9;
 	icon_state = "whitehall"
 	},
 /area/space)
 "wc" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 5;
 	icon_state = "whitehall"
 	},
 /area/space)
 "wd" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "whitecheck"
 	},
 /area/space)
 "we" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	icon_state = "Stairs_wide"
 	},
 /area/space)
 "wf" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	icon_state = "stairs_middle"
 	},
 /area/space)
 "wg" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	icon_state = "Stairs2_wide"
 	},
 /area/space)
 "wh" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	icon_state = "medstairs_wide"
 	},
 /area/space)
 "wi" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	icon_state = "medstairs_middle"
 	},
 /area/space)
 "wj" = (
-/turf/simulated/floor/stairs{
+/turf/floor/stairs{
 	icon_state = "medstairs2_wide"
 	},
 /area/space)
 "wk" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "red4"
 	},
 /area/space)
 "wl" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "red2"
 	},
 /area/space)
 "wm" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 2;
 	icon_state = "red2"
 	},
 /area/space)
 "wn" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "red2"
 	},
 /area/space)
 "wo" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fred2"
 	},
 /area/space)
 "wp" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 2;
 	icon_state = "fred2"
 	},
 /area/space)
 "wq" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fred2"
 	},
 /area/space)
 "wr" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	icon_state = "blue4"
 	},
 /area/space)
 "ws" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "blue2"
 	},
 /area/space)
 "wt" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 2;
 	icon_state = "blue2"
 	},
 /area/space)
 "wu" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "blue2"
 	},
 /area/space)
 "wv" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 10;
 	icon_state = "fblue2"
 	},
 /area/space)
 "ww" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 2;
 	icon_state = "fblue2"
 	},
 /area/space)
 "wx" = (
-/turf/simulated/floor/carpet{
+/turf/floor/carpet{
 	dir = 6;
 	icon_state = "fblue2"
 	},
 /area/space)
 "wy" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "white"
 	},
 /area/space)
 "wz" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "whitehall"
 	},
 /area/space)
 "wA" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "whitehall"
 	},
 /area/space)
 "wB" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 4;
 	icon_state = "whitecorner"
 	},
 /area/space)
 "wC" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 1;
 	icon_state = "whitecorner"
 	},
 /area/space)
 "wD" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 10;
 	icon_state = "whitehall"
 	},
 /area/space)
 "wE" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "whitehall"
 	},
 /area/space)
 "wF" = (
-/turf/simulated/floor{
+/turf/floor{
 	dir = 6;
 	icon_state = "whitecheck"
 	},
@@ -9327,96 +9327,96 @@
 /turf/space,
 /area/space)
 "xf" = (
-/turf/simulated/floor/wood{
+/turf/floor/wood{
 	icon_state = "wooden"
 	},
 /area/space)
 "xg" = (
 /obj/submachine/slot_machine,
-/turf/simulated/floor/carpet/green/fancy/edge/nw,
+/turf/floor/carpet/green/fancy/edge/nw,
 /area/space)
 "xh" = (
 /obj/table/wood/round/auto,
 /obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled/sane,
-/turf/simulated/floor/carpet/green/fancy/edge/north,
+/turf/floor/carpet/green/fancy/edge/north,
 /area/space)
 "xi" = (
 /obj/submachine/slot_machine,
-/turf/simulated/floor/carpet/green/fancy/edge/north,
+/turf/floor/carpet/green/fancy/edge/north,
 /area/space)
 "xj" = (
 /obj/table/wood/round/auto,
 /obj/item/decoration/ashtray,
-/turf/simulated/floor/carpet/green/fancy/edge/north,
+/turf/floor/carpet/green/fancy/edge/north,
 /area/space)
 "xk" = (
 /obj/submachine/slot_machine,
-/turf/simulated/floor/carpet/green/fancy/edge/ne,
+/turf/floor/carpet/green/fancy/edge/ne,
 /area/space)
 "xl" = (
 /obj/storage/crate/bin{
 	desc = "A large bin, for trash.";
 	name = "Trash bin"
 	},
-/turf/simulated/floor/wood{
+/turf/floor/wood{
 	icon_state = "wooden"
 	},
 /area/space)
 "xm" = (
 /obj/table/reinforced/bar/auto,
 /obj/machinery/glass_recycler,
-/turf/simulated/floor/wood{
+/turf/floor/wood{
 	icon_state = "wooden"
 	},
 /area/space)
 "xn" = (
 /obj/machinery/vending/alcohol,
-/turf/simulated/floor/wood{
+/turf/floor/wood{
 	icon_state = "wooden"
 	},
 /area/space)
 "xo" = (
 /obj/stool/bar,
-/turf/simulated/floor/carpet/green/fancy/edge/west,
+/turf/floor/carpet/green/fancy/edge/west,
 /area/space)
 "xp" = (
-/turf/simulated/floor/carpet/green/fancy,
+/turf/floor/carpet/green/fancy,
 /area/space)
 "xq" = (
 /obj/stool/bar,
-/turf/simulated/floor/carpet/green/fancy,
+/turf/floor/carpet/green/fancy,
 /area/space)
 "xr" = (
 /obj/stool/bar,
-/turf/simulated/floor/carpet/green/fancy/edge/east,
+/turf/floor/carpet/green/fancy/edge/east,
 /area/space)
 "xs" = (
 /obj/stool/bar,
-/turf/simulated/floor/wood{
+/turf/floor/wood{
 	icon_state = "wooden"
 	},
 /area/space)
 "xt" = (
 /obj/table/reinforced/bar/auto,
-/turf/simulated/floor/wood{
+/turf/floor/wood{
 	icon_state = "wooden"
 	},
 /area/space)
 "xu" = (
-/turf/simulated/floor/carpet/green/fancy/edge/west,
+/turf/floor/carpet/green/fancy/edge/west,
 /area/space)
 "xv" = (
-/turf/simulated/floor/carpet/green/fancy/edge/east,
+/turf/floor/carpet/green/fancy/edge/east,
 /area/space)
 "xw" = (
 /obj/machinery/chem_dispenser/soda,
-/turf/simulated/floor/wood{
+/turf/floor/wood{
 	icon_state = "wooden"
 	},
 /area/space)
 "xx" = (
 /obj/machinery/chem_dispenser,
-/turf/simulated/floor/wood{
+/turf/floor/wood{
 	icon_state = "wooden"
 	},
 /area/space)
@@ -9425,30 +9425,30 @@
 /obj/machinery/cashreg{
 	name = "Gambling credit transfer device"
 	},
-/turf/simulated/floor/carpet/green/fancy,
+/turf/floor/carpet/green/fancy,
 /area/space)
 "xz" = (
 /obj/roulette_table_w,
-/turf/simulated/floor/carpet/green/fancy,
+/turf/floor/carpet/green/fancy,
 /area/space)
 "xA" = (
 /obj/table/reinforced/roulette,
-/turf/simulated/floor/carpet/green/fancy,
+/turf/floor/carpet/green/fancy,
 /area/space)
 "xB" = (
 /obj/machinery/chem_dispenser/alcohol,
-/turf/simulated/floor/wood{
+/turf/floor/wood{
 	icon_state = "wooden"
 	},
 /area/space)
 "xC" = (
-/turf/simulated/floor/carpet/green/fancy/edge/sw,
+/turf/floor/carpet/green/fancy/edge/sw,
 /area/space)
 "xD" = (
-/turf/simulated/floor/carpet/green/fancy/edge,
+/turf/floor/carpet/green/fancy/edge,
 /area/space)
 "xE" = (
-/turf/simulated/floor/carpet/green/fancy/edge/se,
+/turf/floor/carpet/green/fancy/edge/se,
 /area/space)
 "xF" = (
 /obj/submachine/chef_sink/chem_sink{
@@ -9456,21 +9456,21 @@
 	pixel_x = -4;
 	pixel_y = 0
 	},
-/turf/unsimulated/floor/purple,
+/turf/floor/purple,
 /area/space)
 "xG" = (
 /obj/machinery/light/fluorescent/neutral{
 	dir = 1;
 	icon_state = "tube1"
 	},
-/turf/unsimulated/floor/purple,
+/turf/floor/purple,
 /area/space)
 "xH" = (
 /obj/machinery/door/unpowered/wood/pyro{
 	dir = 4;
 	name = "Toilet"
 	},
-/turf/simulated/floor/sanitary,
+/turf/floor/sanitary,
 /area/space)
 "xI" = (
 /obj/item/storage/toilet/random{
@@ -9483,32 +9483,32 @@
 /obj/decoration/toiletholder{
 	pixel_y = 32
 	},
-/turf/simulated/floor/sanitary,
+/turf/floor/sanitary,
 /area/space)
 "xJ" = (
-/turf/unsimulated/floor/stairs/wide,
+/turf/floor/stairs/wide,
 /area/space)
 "xK" = (
-/turf/simulated/floor/stairs/wide/middle,
+/turf/floor/stairs/wide/middle,
 /area/space)
 "xL" = (
-/turf/simulated/floor/stairs/wide/other,
+/turf/floor/stairs/wide/other,
 /area/space)
 "xM" = (
 /obj/machinery/door/airlock/pyro{
 	dir = 4
 	},
-/turf/unsimulated/floor/purple,
+/turf/floor/purple,
 /area/space)
 "xN" = (
-/turf/unsimulated/floor/purple,
+/turf/floor/purple,
 /area/space)
 "xO" = (
-/turf/simulated/floor/specialroom/clown,
+/turf/floor/specialroom/clown,
 /area/space)
 "xP" = (
 /obj/machinery/light/fluorescent/neutral,
-/turf/unsimulated/floor/purple,
+/turf/floor/purple,
 /area/space)
 "xQ" = (
 /obj/item/storage/toilet/random{
@@ -9520,7 +9520,7 @@
 /obj/decoration/toiletholder{
 	pixel_y = 32
 	},
-/turf/simulated/floor/sanitary,
+/turf/floor/sanitary,
 /area/space)
 "xR" = (
 /obj/submachine/chef_sink/chem_sink{
@@ -9528,27 +9528,27 @@
 	pixel_x = -4;
 	pixel_y = 0
 	},
-/turf/unsimulated/floor/blue,
+/turf/floor/blue,
 /area/space)
 "xS" = (
 /obj/machinery/light/fluorescent/neutral{
 	dir = 1;
 	icon_state = "tube1"
 	},
-/turf/unsimulated/floor/blue,
+/turf/floor/blue,
 /area/space)
 "xT" = (
 /obj/machinery/door/airlock/pyro{
 	dir = 4
 	},
-/turf/unsimulated/floor/blue,
+/turf/floor/blue,
 /area/space)
 "xU" = (
-/turf/unsimulated/floor/blue,
+/turf/floor/blue,
 /area/space)
 "xV" = (
 /obj/machinery/light/fluorescent/neutral,
-/turf/unsimulated/floor/blue,
+/turf/floor/blue,
 /area/space)
 "yi" = (
 /obj/landmark{
@@ -9561,7 +9561,7 @@
 /obj/item/plant/herb/cannabis/spawnable,
 /obj/decal/cleanable/dirt/jen,
 /obj/item/reagent_containers/glass/wateringcan,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "yY" = (
 /obj/sea_plant/seaweed,
@@ -9576,7 +9576,7 @@
 	dir = 4;
 	pixel_x = 10
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "zz" = (
 /obj/machinery/light/small{
@@ -9585,399 +9585,399 @@
 	},
 /obj/decal/cleanable/dirt/jen,
 /obj/item/furniture_parts/office_chair/green,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "zL" = (
 /obj/decal/cleanable/dirt,
 /obj/machinery/drainage,
-/turf/unsimulated/floor/sanitary/blue,
+/turf/floor/sanitary/blue,
 /area/dank_trench)
 "AA" = (
 /obj/decal/cleanable/dirt,
 /obj/random_item_spawner/junk/one_or_zero,
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/dank_trench)
 "AC" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/underwalls,
-/turf/unsimulated/wall/setpieces/Azarak/cavewall/edges{
+/turf/floor/setpieces/Azarak/cavefloor/underwalls,
+/turf/wall/setpieces/Azarak/cavewall/edges{
 	dir = 9
 	},
 /area/mantavault)
 "AD" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor3,
+/turf/floor/setpieces/Azarak/cavefloor/floor3,
 /area/mantavault)
 "AE" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/underwalls,
-/turf/unsimulated/wall/setpieces/Azarak/cavewall/edges{
+/turf/floor/setpieces/Azarak/cavefloor/underwalls,
+/turf/wall/setpieces/Azarak/cavewall/edges{
 	dir = 5
 	},
 /area/mantavault)
 "AF" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/underwalls,
-/turf/unsimulated/wall/setpieces/Azarak/cavewall/edges{
+/turf/floor/setpieces/Azarak/cavefloor/underwalls,
+/turf/wall/setpieces/Azarak/cavewall/edges{
 	dir = 8
 	},
 /area/mantavault)
 "AG" = (
 /obj/decal/fakeobjects/bigrocks,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor3,
+/turf/floor/setpieces/Azarak/cavefloor/floor3,
 /area/mantavault)
 "AH" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/underwalls,
-/turf/unsimulated/wall/setpieces/Azarak/cavewall/edges{
+/turf/floor/setpieces/Azarak/cavefloor/underwalls,
+/turf/wall/setpieces/Azarak/cavewall/edges{
 	dir = 4
 	},
 /area/mantavault)
 "AI" = (
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor,
-/turf/unsimulated/wall/setpieces/Azarak/cavewall/edges{
+/turf/floor/setpieces/Azarak/rockyfloor,
+/turf/wall/setpieces/Azarak/cavewall/edges{
 	dir = 8
 	},
 /area/mantavault)
 "AJ" = (
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor,
+/turf/floor/setpieces/Azarak/rockyfloor,
 /area/mantavault)
 "AK" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/underwalls,
-/turf/unsimulated/wall/setpieces/Azarak/cavewall/corners{
+/turf/floor/setpieces/Azarak/cavefloor/underwalls,
+/turf/wall/setpieces/Azarak/cavewall/corners{
 	dir = 1
 	},
 /area/mantavault)
 "AL" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/underwalls,
-/turf/unsimulated/wall/setpieces/Azarak/cavewall/edges,
+/turf/floor/setpieces/Azarak/cavefloor/underwalls,
+/turf/wall/setpieces/Azarak/cavewall/edges,
 /area/mantavault)
 "AM" = (
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor,
-/turf/unsimulated/wall/setpieces/Azarak/cavewall/edges{
+/turf/floor/setpieces/Azarak/rockyfloor,
+/turf/wall/setpieces/Azarak/cavewall/edges{
 	dir = 6
 	},
 /area/mantavault)
 "AN" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/underwalls,
-/turf/unsimulated/wall/setpieces/Azarak/cavewall/edges{
+/turf/floor/setpieces/Azarak/cavefloor/underwalls,
+/turf/wall/setpieces/Azarak/cavewall/edges{
 	dir = 10
 	},
 /area/mantavault)
 "AO" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/underwalls,
-/turf/unsimulated/wall/setpieces/Azarak/cavewall/corners,
+/turf/floor/setpieces/Azarak/cavefloor/underwalls,
+/turf/wall/setpieces/Azarak/cavewall/corners,
 /area/mantavault)
 "AP" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava/corners{
+/turf/floor/setpieces/Azarak/lava/corners{
 	dir = 4
 	},
 /area/mantavault)
 "AQ" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava{
+/turf/floor/setpieces/Azarak/lava{
 	dir = 3
 	},
 /area/mantavault)
 "AR" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava/bubbling_edges,
+/turf/floor/setpieces/Azarak/lava/bubbling_edges,
 /area/mantavault)
 "AS" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava/corners{
+/turf/floor/setpieces/Azarak/lava/corners{
 	dir = 1
 	},
 /area/mantavault)
 "AT" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor,
+/turf/floor/setpieces/Azarak/rockyfloor,
 /area/mantavault)
 "AU" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava{
+/turf/floor/setpieces/Azarak/lava{
 	dir = 4
 	},
 /area/mantavault)
 "AV" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lavalethal,
+/turf/floor/setpieces/Azarak/lavalethal,
 /area/mantavault)
 "AW" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lavalethal/bubbling,
+/turf/floor/setpieces/Azarak/lavalethal/bubbling,
 /area/mantavault)
 "AX" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava{
+/turf/floor/setpieces/Azarak/lava{
 	dir = 8
 	},
 /area/mantavault)
 "AY" = (
-/turf/unsimulated/floor/setpieces/Azarak/lava{
+/turf/floor/setpieces/Azarak/lava{
 	dir = 6
 	},
 /area/mantavault)
 "AZ" = (
-/turf/unsimulated/floor/setpieces/Azarak/lava{
+/turf/floor/setpieces/Azarak/lava{
 	dir = 1
 	},
 /area/mantavault)
 "Ba" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava{
+/turf/floor/setpieces/Azarak/lava{
 	dir = 1
 	},
 /area/mantavault)
 "Bb" = (
 /obj/map/light/lava,
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava{
+/turf/floor/setpieces/Azarak/lava{
 	dir = 1
 	},
 /area/mantavault)
 "Bc" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava/corners,
+/turf/floor/setpieces/Azarak/lava/corners,
 /area/mantavault)
 "Be" = (
 /obj/decal/fakeobjects/bigrocks,
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor,
+/turf/floor/setpieces/Azarak/rockyfloor,
 /area/mantavault)
 "Bf" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava,
+/turf/floor/setpieces/Azarak/lava,
 /area/mantavault)
 "Bg" = (
-/turf/unsimulated/floor/setpieces/Azarak/lava/corners{
+/turf/floor/setpieces/Azarak/lava/corners{
 	dir = 1
 	},
 /area/mantavault)
 "Bh" = (
 /obj/decal/fakeobjects/azarakrocks,
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor,
+/turf/floor/setpieces/Azarak/rockyfloor,
 /area/mantavault)
 "Bi" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava/bubbling_edges{
+/turf/floor/setpieces/Azarak/lava/bubbling_edges{
 	dir = 4
 	},
 /area/mantavault)
 "Bj" = (
 /obj/map/light/lava,
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lavalethal/bubbling,
+/turf/floor/setpieces/Azarak/lavalethal/bubbling,
 /area/mantavault)
 "Bk" = (
 /obj/map/light/lava,
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lavalethal,
+/turf/floor/setpieces/Azarak/lavalethal,
 /area/mantavault)
 "Bl" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava{
+/turf/floor/setpieces/Azarak/lava{
 	dir = 5
 	},
 /area/mantavault)
 "Bm" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lavalethal/bubbling2,
+/turf/floor/setpieces/Azarak/lavalethal/bubbling2,
 /area/mantavault)
 "Bn" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava/bubbling_edges{
+/turf/floor/setpieces/Azarak/lava/bubbling_edges{
 	dir = 8
 	},
 /area/mantavault)
 "Bo" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava{
+/turf/floor/setpieces/Azarak/lava{
 	dir = 6
 	},
 /area/mantavault)
 "Bp" = (
 /obj/decal/cleanable/ash,
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava{
+/turf/floor/setpieces/Azarak/lava{
 	dir = 8
 	},
 /area/mantavault)
 "Bq" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava/corners{
+/turf/floor/setpieces/Azarak/lava/corners{
 	dir = 8
 	},
 /area/mantavault)
 "Br" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava{
+/turf/floor/setpieces/Azarak/lava{
 	dir = 10
 	},
 /area/mantavault)
 "Bs" = (
 /obj/decal/fakeobjects/azarakrocks/rock9,
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor,
+/turf/floor/setpieces/Azarak/rockyfloor,
 /area/mantavault)
 "Bt" = (
 /obj/map/light/lava,
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava{
+/turf/floor/setpieces/Azarak/lava{
 	dir = 4
 	},
 /area/mantavault)
 "Bu" = (
 /obj/decal/fakeobjects/azarakrocks/rock2,
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor,
+/turf/floor/setpieces/Azarak/rockyfloor,
 /area/mantavault)
 "Bv" = (
 /obj/decal/cleanable/ash,
-/turf/unsimulated/floor/setpieces/Azarak/lava/corners{
+/turf/floor/setpieces/Azarak/lava/corners{
 	dir = 8
 	},
 /area/mantavault)
 "Bw" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava{
+/turf/floor/setpieces/Azarak/lava{
 	dir = 9
 	},
 /area/mantavault)
 "Bx" = (
 /obj/decal/fakeobjects/smallrocks,
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor,
+/turf/floor/setpieces/Azarak/rockyfloor,
 /area/mantavault)
 "By" = (
 /obj/decal/fakeobjects/smallrocks,
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava/corners{
+/turf/floor/setpieces/Azarak/lava/corners{
 	dir = 8
 	},
 /area/mantavault)
 "Bz" = (
 /obj/map/light/lava,
 /obj/decal/fakeobjects/biggerrock,
-/turf/unsimulated/floor/setpieces/Azarak/lavalethal,
+/turf/floor/setpieces/Azarak/lavalethal,
 /area/mantavault)
 "BA" = (
 /obj/map/light/lava,
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lavalethal/bubbling2,
+/turf/floor/setpieces/Azarak/lavalethal/bubbling2,
 /area/mantavault)
 "BB" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/underwalls,
-/turf/unsimulated/wall/setpieces/Azarak/cavewall/edges{
+/turf/floor/setpieces/Azarak/cavefloor/underwalls,
+/turf/wall/setpieces/Azarak/cavewall/edges{
 	dir = 1
 	},
 /area/mantavault)
 "BC" = (
-/turf/unsimulated/wall/setpieces/Azarak/cavewall,
+/turf/wall/setpieces/Azarak/cavewall,
 /area/mantavault)
 "BD" = (
 /obj/decal/fakeobjects/smallrocks,
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava/corners{
+/turf/floor/setpieces/Azarak/lava/corners{
 	dir = 4
 	},
 /area/mantavault)
 "BE" = (
 /obj/decal/cleanable/cobweb,
-/turf/unsimulated/wall/setpieces/Azarak/cavewall,
+/turf/wall/setpieces/Azarak/cavewall,
 /area/mantavault)
 "BF" = (
 /obj/decal/cleanable/cobweb2,
-/turf/unsimulated/wall/setpieces/Azarak/cavewall,
+/turf/wall/setpieces/Azarak/cavewall,
 /area/mantavault)
 "BG" = (
 /obj/decal/cleanable/ash,
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor,
+/turf/floor/setpieces/Azarak/rockyfloor,
 /area/mantavault)
 "BH" = (
 /obj/item/clothing/head/helmet/hardhat,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/edges{
+/turf/floor/setpieces/Azarak/cavefloor/edges{
 	dir = 4
 	},
 /area/mantavault)
 "BI" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/edges{
+/turf/floor/setpieces/Azarak/cavefloor/edges{
 	dir = 10
 	},
 /area/mantavault)
 "BJ" = (
 /obj/decal/fakeobjects/bigrocks,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/edges{
+/turf/floor/setpieces/Azarak/cavefloor/edges{
 	dir = 10
 	},
 /area/mantavault)
 "BK" = (
 /obj/decal/cleanable/ash,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/edges{
+/turf/floor/setpieces/Azarak/cavefloor/edges{
 	dir = 1
 	},
 /area/mantavault)
 "BL" = (
 /obj/decal/fakeobjects/azarakrocks/rock6,
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor,
+/turf/floor/setpieces/Azarak/rockyfloor,
 /area/mantavault)
 "BM" = (
 /obj/decal/fakeobjects/azarakrocks/rock3,
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor,
+/turf/floor/setpieces/Azarak/rockyfloor,
 /area/mantavault)
 "BN" = (
 /obj/map/light/lava,
 /obj/decal/fakeobjects/smallrocks,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor3,
+/turf/floor/setpieces/Azarak/cavefloor/floor3,
 /area/mantavault)
 "BO" = (
 /obj/map/light/lava,
 /obj/decal/fakeobjects/bigrocks,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor3,
+/turf/floor/setpieces/Azarak/cavefloor/floor3,
 /area/mantavault)
 "BP" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor,
+/turf/floor/setpieces/Azarak/cavefloor,
 /area/mantavault)
 "BQ" = (
 /obj/item/device/light/flashlight,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/mantavault)
 "BR" = (
 /obj/decal/cleanable/ash,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor3,
+/turf/floor/setpieces/Azarak/cavefloor/floor3,
 /area/mantavault)
 "BS" = (
 /obj/decal/fakeobjects/bigrocks,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/mantavault)
 "BT" = (
 /obj/decal/cleanable/ash,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/mantavault)
 "BU" = (
 /obj/decal/fakeobjects/smallrocks,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/edges{
+/turf/floor/setpieces/Azarak/cavefloor/edges{
 	dir = 5
 	},
 /area/mantavault)
 "BV" = (
 /obj/decal/fakeobjects/azarakrocks/rock6,
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor,
+/turf/floor/setpieces/Azarak/rockyfloor,
 /area/mantavault)
 "BW" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor,
+/turf/floor/setpieces/Azarak/cavefloor,
 /area/mantavault)
 "BX" = (
 /obj/decal/fakeobjects/smallrocks,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor3,
+/turf/floor/setpieces/Azarak/cavefloor/floor3,
 /area/mantavault)
 "BY" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/mantavault)
 "BZ" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/edges{
+/turf/floor/setpieces/Azarak/cavefloor/edges{
 	dir = 5
 	},
 /area/mantavault)
 "Ca" = (
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor3,
+/turf/floor/setpieces/Azarak/cavefloor/floor3,
 /area/mantavault)
 "Cb" = (
 /obj/machinery/power/lgenerator{
@@ -9987,20 +9987,20 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/edges{
+/turf/floor/setpieces/Azarak/cavefloor/edges{
 	dir = 5
 	},
 /area/mantavault)
 "Cc" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/edges{
+/turf/floor/setpieces/Azarak/cavefloor/edges{
 	dir = 10
 	},
-/turf/unsimulated/wall/setpieces/Azarak/cavewall/edges{
+/turf/wall/setpieces/Azarak/cavewall/edges{
 	dir = 1
 	},
 /area/mantavault)
 "Cd" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/edges{
+/turf/floor/setpieces/Azarak/cavefloor/edges{
 	dir = 9
 	},
 /area/mantavault)
@@ -10008,43 +10008,43 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/edges{
+/turf/floor/setpieces/Azarak/cavefloor/edges{
 	dir = 5
 	},
 /area/mantavault)
 "Cf" = (
 /obj/map/light/lava,
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava/corners{
+/turf/floor/setpieces/Azarak/lava/corners{
 	dir = 8
 	},
 /area/mantavault)
 "Cg" = (
 /obj/map/light/lava,
 /obj/map/light/lava,
-/turf/unsimulated/floor/setpieces/Azarak/lava{
+/turf/floor/setpieces/Azarak/lava{
 	dir = 5
 	},
 /area/mantavault)
 "Ch" = (
 /obj/decal/fakeobjects/smallrocks,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/edges,
+/turf/floor/setpieces/Azarak/cavefloor/edges,
 /area/mantavault)
 "Ci" = (
 /obj/decal/cleanable/ash,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/edges{
+/turf/floor/setpieces/Azarak/cavefloor/edges{
 	dir = 6
 	},
 /area/mantavault)
 "Cj" = (
 /obj/decal/fakeobjects/smallrocks,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/edges{
+/turf/floor/setpieces/Azarak/cavefloor/edges{
 	dir = 6
 	},
 /area/mantavault)
 "Ck" = (
 /obj/decal/fakeobjects/bigrocks,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/edges{
+/turf/floor/setpieces/Azarak/cavefloor/edges{
 	dir = 6
 	},
 /area/mantavault)
@@ -10055,7 +10055,7 @@
 	icon_state = "0-4";
 	pixel_y = 0
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/edges{
+/turf/floor/setpieces/Azarak/cavefloor/edges{
 	dir = 6
 	},
 /area/mantavault)
@@ -10065,7 +10065,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/edges{
+/turf/floor/setpieces/Azarak/cavefloor/edges{
 	dir = 6
 	},
 /area/mantavault)
@@ -10074,43 +10074,43 @@
 	icon_state = "1-8"
 	},
 /obj/decal/fakeobjects/smallrocks,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/edges{
+/turf/floor/setpieces/Azarak/cavefloor/edges{
 	dir = 8
 	},
 /area/mantavault)
 "Co" = (
 /obj/decal/cleanable/ash,
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor,
+/turf/floor/setpieces/Azarak/rockyfloor,
 /area/mantavault)
 "Cp" = (
 /obj/decal/fakeobjects/shrooms,
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor,
+/turf/floor/setpieces/Azarak/rockyfloor,
 /area/mantavault)
 "Cq" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/underwalls,
-/turf/unsimulated/wall/setpieces/Azarak/cavewall/corners{
+/turf/floor/setpieces/Azarak/cavefloor/underwalls,
+/turf/wall/setpieces/Azarak/cavewall/corners{
 	dir = 4
 	},
 /area/mantavault)
 "Cr" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/underwalls,
-/turf/unsimulated/wall/setpieces/Azarak/cavewall/corners{
+/turf/floor/setpieces/Azarak/cavefloor/underwalls,
+/turf/wall/setpieces/Azarak/cavewall/corners{
 	dir = 8
 	},
 /area/mantavault)
 "Cs" = (
 /obj/decal/fakeobjects/bigrocks,
 /obj/critter/bat/hellbat,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor3,
+/turf/floor/setpieces/Azarak/cavefloor/floor3,
 /area/mantavault)
 "Ct" = (
 /obj/decal/cleanable/ash,
 /obj/critter/bat/hellbat,
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor,
+/turf/floor/setpieces/Azarak/rockyfloor,
 /area/mantavault)
 "Cu" = (
 /obj/critter/bat/hellbat,
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor,
+/turf/floor/setpieces/Azarak/rockyfloor,
 /area/mantavault)
 "CB" = (
 /obj/decal/cleanable/dirt,
@@ -10126,7 +10126,7 @@
 	dir = 8;
 	pixel_x = -12
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "CD" = (
 /obj/decoration/toiletholder{
@@ -10145,11 +10145,11 @@
 	pixel_x = 3;
 	pixel_y = -9
 	},
-/turf/unsimulated/floor/sanitary/blue,
+/turf/floor/sanitary/blue,
 /area/dank_trench)
 "CE" = (
 /obj/machinery/drainage,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "CG" = (
 /obj/item/storage/toilet{
@@ -10160,11 +10160,11 @@
 	dir = 8;
 	pixel_x = -12
 	},
-/turf/unsimulated/floor/sanitary/blue,
+/turf/floor/sanitary/blue,
 /area/dank_trench)
 "CR" = (
 /obj/item/clothing/mask/breath,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "CU" = (
 /obj/machinery/light/small{
@@ -10176,14 +10176,14 @@
 	},
 /obj/decal/cleanable/dirt/jen,
 /obj/decal/cleanable/paper,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "Da" = (
 /obj/machinery/door/airlock/pyro/classic{
 	dir = 4
 	},
 /obj/decal/cleanable/dirt/jen,
-/turf/unsimulated/floor/sanitary/blue,
+/turf/floor/sanitary/blue,
 /area/dank_trench)
 "Dn" = (
 /obj/decal/cleanable/dirt,
@@ -10192,14 +10192,14 @@
 	dir = 8;
 	pixel_x = -10
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Dr" = (
 /obj/random_item_spawner/junk/one_or_zero,
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "DF" = (
 /obj/decal/cleanable/machine_debris,
@@ -10209,7 +10209,7 @@
 /obj/rack,
 /obj/item/clothing/head/emerg,
 /obj/decal/cleanable/dirt/jen,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "EK" = (
 /obj/item/cable_coil,
@@ -10217,7 +10217,7 @@
 	dir = 4;
 	pixel_x = 12
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "EM" = (
 /turf/space/fluid/noexplosion/nospawn,
@@ -10236,28 +10236,28 @@
 	dir = 4;
 	pixel_x = 10
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "FZ" = (
 /obj/cable{
 	icon_state = "1-2"
 	},
 /obj/decal/cleanable/dirt/jen,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "Gc" = (
 /obj/decal/cleanable/dirt/jen,
 /obj/cable{
 	icon_state = "2-4"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "Gg" = (
 /obj/decal/fakeobjects/creepytv{
 	desc = "There's a gummy layer of dust over the controls."
 	},
 /obj/map/light/screen,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Gm" = (
 /obj/item/reagent_containers/food/snacks/chips,
@@ -10265,7 +10265,7 @@
 	dir = 8;
 	pixel_x = -12
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Gq" = (
 /obj/table/reinforced/auto,
@@ -10274,14 +10274,14 @@
 	dir = 8;
 	pixel_x = -12
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Gt" = (
 /obj/machinery/door/airlock/pyro/classic{
 	dir = 4
 	},
 /obj/decal/cleanable/dirt/jen,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "HY" = (
 /obj/decal/cleanable/dirt,
@@ -10289,7 +10289,7 @@
 	dir = 1;
 	icon_state = "chair_comfy"
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Id" = (
 /obj/random_item_spawner/junk/one_or_zero,
@@ -10297,19 +10297,19 @@
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/black,
 /obj/machinery/light_switch/west,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Il" = (
 /obj/sea_plant/seaweed,
 /turf/space/fluid/noexplosion/nospawn,
 /area/dank_trench)
 "Ip" = (
-/turf/unsimulated/wall/trench,
+/turf/wall/trench,
 /area/dank_trench)
 "IF" = (
 /obj/machinery/door/airlock/pyro/external,
 /obj/decal/cleanable/dirt/jen,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "IY" = (
 /obj/table/reinforced/auto,
@@ -10333,7 +10333,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Jq" = (
 /obj/landmark{
@@ -10343,7 +10343,7 @@
 /area/dank_trench)
 "Ju" = (
 /obj/item/seed/cannabis,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Jx" = (
 /obj/machinery/door/airlock/pyro/classic{
@@ -10353,7 +10353,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "JA" = (
 /obj/item/scissors,
@@ -10365,7 +10365,7 @@
 	dir = 4;
 	pixel_x = 12
 	},
-/turf/unsimulated/floor/damaged3,
+/turf/floor/damaged3,
 /area/dank_trench)
 "JD" = (
 /obj/item/scrap,
@@ -10376,7 +10376,7 @@
 /obj/machinery/door/airlock/pyro/glass{
 	dir = 4
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "JK" = (
 /obj/stool/chair/office/green{
@@ -10386,14 +10386,14 @@
 	desc = "Smells vaguely of eggs and mint.";
 	name = "weird flakes"
 	},
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/dank_trench)
 "JL" = (
 /obj/decal/cleanable/dirt,
 /obj/rack,
 /obj/item/tank/air,
 /obj/item/clothing/suit/space/emerg,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "JX" = (
 /obj/decal/cleanable/dirt/jen,
@@ -10401,33 +10401,33 @@
 /obj/item/reagent_containers/glass/bottle/diethylamine{
 	pixel_x = 6
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Ki" = (
 /obj/machinery/power/furnace,
 /obj/cable{
 	icon_state = "0-8"
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Kl" = (
 /obj/machinery/door/airlock/pyro/classic{
 	dir = 4
 	},
 /obj/decal/cleanable/dirt/jen,
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/dank_trench)
 "KD" = (
 /obj/machinery/light/small{
 	dir = 1;
 	pixel_y = 21
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Lh" = (
 /obj/reagent_dispensers/still,
 /obj/decal/cleanable/dirt/jen,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Ll" = (
 /obj/random_item_spawner/junk/one_or_zero,
@@ -10441,14 +10441,14 @@
 	name = "dirty bag of swedish fisk";
 	open = 1
 	},
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/dank_trench)
 "Lr" = (
 /obj/decal/cleanable/dirt,
 /obj/storage/crate,
 /obj/item/bee_egg_carton,
 /obj/item/hand_labeler,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "Lv" = (
 /obj/cable{
@@ -10463,7 +10463,7 @@
 /obj/item/bluntwrap{
 	pixel_y = -3
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "Ly" = (
 /obj/decal/cleanable/vomit,
@@ -10471,7 +10471,7 @@
 	pixel_x = 6;
 	pixel_y = 6
 	},
-/turf/unsimulated/floor/sanitary/blue,
+/turf/floor/sanitary/blue,
 /area/dank_trench)
 "LN" = (
 /obj/rack,
@@ -10481,7 +10481,7 @@
 /obj/item/sheet/glass{
 	amount = 10
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "LR" = (
 /obj/stool/chair/comfy{
@@ -10489,30 +10489,30 @@
 	icon_state = "chair_comfy"
 	},
 /obj/decal/cleanable/dirt/jen,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "LU" = (
 /obj/storage/crate/furnacefuel,
 /obj/decal/cleanable/dirt/jen,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "Mr" = (
 /obj/stool/chair{
 	dir = 8
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "My" = (
 /obj/decal/cleanable/fungus,
-/turf/unsimulated/wall/auto/supernorn,
+/turf/wall/auto/supernorn,
 /area/dank_trench)
 "Mz" = (
 /obj/machinery/door/airlock/pyro/external,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "MJ" = (
 /obj/decal/cleanable/dirt,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "NS" = (
 /obj/submachine/seed_manipulator{
@@ -10523,7 +10523,7 @@
 	pixel_y = 28
 	},
 /obj/decal/cleanable/dirt/dirt3,
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/dank_trench)
 "Oc" = (
 /obj/decal/cleanable/dirt,
@@ -10531,7 +10531,7 @@
 /obj/item/reagent_containers/patch/LSD{
 	pixel_x = 5
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "ON" = (
 /obj/ladder{
@@ -10554,11 +10554,11 @@
 	pixel_x = 12
 	},
 /obj/decal/cleanable/dirt/dirt5,
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/dank_trench)
 "Pp" = (
 /obj/machinery/plantpot,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "PA" = (
 /obj/item/device/light/glowstick{
@@ -10571,18 +10571,18 @@
 	pixel_y = -11
 	},
 /obj/decal/cleanable/dirt/jen,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "PB" = (
 /obj/wingrille_spawn/auto,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "PK" = (
 /obj/storage/crate/bin,
 /obj/item/reagent_containers/food/snacks/pickle/trash{
 	pixel_y = 3
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "PS" = (
 /obj/item/device/light/flashlight{
@@ -10591,7 +10591,7 @@
 	},
 /obj/random_item_spawner/junk/one_or_zero,
 /obj/decal/cleanable/dirt/jen,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "PX" = (
 /obj/table/auto,
@@ -10618,7 +10618,7 @@
 	pixel_x = -4;
 	pixel_y = 3
 	},
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/dank_trench)
 "Qr" = (
 /obj/decal/cleanable/dirt,
@@ -10628,7 +10628,7 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Qs" = (
 /obj/machinery/plantpot,
@@ -10637,12 +10637,12 @@
 	dir = 8;
 	pixel_x = -12
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Qx" = (
 /obj/decal/cleanable/dirt,
 /obj/item/mop,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "Qz" = (
 /obj/item/raw_material/rock,
@@ -10666,7 +10666,7 @@
 	dir = 4;
 	pixel_x = 12
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "QX" = (
 /obj/table/auto,
@@ -10684,14 +10684,14 @@
 	pixel_x = -2;
 	pixel_y = -10
 	},
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/dank_trench)
 "Rc" = (
 /obj/decal/cleanable/dirt/jen,
 /obj/stool/chair{
 	dir = 8
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "Rd" = (
 /obj/storage/crate/trench_loot/drug,
@@ -10699,11 +10699,11 @@
 /area/dank_trench)
 "Rs" = (
 /obj/machinery/hydro_growlamp,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "RJ" = (
 /obj/reagent_dispensers/watertank,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "RX" = (
 /obj/random_item_spawner/junk/one_or_zero,
@@ -10712,7 +10712,7 @@
 "Sb" = (
 /obj/decal/cleanable/dirt/jen,
 /obj/mopbucket,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "Sg" = (
 /obj/table/reinforced/auto,
@@ -10721,7 +10721,7 @@
 	pixel_x = -6;
 	pixel_y = 7
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Sm" = (
 /obj/decal/cleanable/dirt/jen,
@@ -10729,7 +10729,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "Tu" = (
 /obj/decal/cleanable/machine_debris{
@@ -10746,11 +10746,11 @@
 	icon_state = "0-4"
 	},
 /obj/cable,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "UV" = (
 /obj/item/satchel/hydro,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Vg" = (
 /obj/decal/cleanable/dirt,
@@ -10758,18 +10758,18 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Vh" = (
 /obj/machinery/door/airlock/pyro/classic,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Vl" = (
 /obj/stool/chair/comfy,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Vx" = (
-/turf/unsimulated/wall/auto/supernorn,
+/turf/wall/auto/supernorn,
 /area/dank_trench)
 "Vy" = (
 /obj/machinery/plantpot,
@@ -10778,7 +10778,7 @@
 	dir = 4;
 	pixel_x = 12
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "VA" = (
 /obj/machinery/light/small{
@@ -10788,7 +10788,7 @@
 /turf/space/fluid/noexplosion,
 /area/dank_trench)
 "VQ" = (
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Wh" = (
 /obj/machinery/chem_master,
@@ -10796,10 +10796,10 @@
 	dir = 1;
 	pixel_y = 21
 	},
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/dank_trench)
 "Ws" = (
-/turf/unsimulated/wall/trench/side,
+/turf/wall/trench/side,
 /area/dank_trench)
 "WG" = (
 /obj/item/paper{
@@ -10809,7 +10809,7 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "WU" = (
 /obj/decal/cleanable/dirt/jen,
@@ -10817,7 +10817,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Xt" = (
 /obj/storage/crate,
@@ -10831,12 +10831,12 @@
 	pixel_x = -6;
 	pixel_y = -4
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "Xx" = (
 /obj/machinery/portable_reclaimer,
 /obj/decal/cleanable/dirt/jen,
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "YJ" = (
 /obj/decal/cleanable/machine_debris{
@@ -10860,11 +10860,11 @@
 	pixel_x = -32;
 	pixel_y = 0
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Zn" = (
 /obj/decal/cleanable/dirt/jen,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "Zo" = (
 /obj/decal/cleanable/dirt,
@@ -10872,11 +10872,11 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 "ZN" = (
 /obj/decal/cleanable/rust,
-/turf/unsimulated/wall/auto/supernorn,
+/turf/wall/auto/supernorn,
 /area/dank_trench)
 "ZU" = (
 /obj/storage/crate{
@@ -10886,14 +10886,14 @@
 /obj/item/plant/herb/cannabis/omega/spawnable,
 /obj/item/plant/herb/cannabis/omega/spawnable,
 /obj/item/plant/herb/cannabis/omega/spawnable,
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/dank_trench)
 "ZX" = (
 /obj/decal/cleanable/dirt/jen,
 /obj/cable{
 	icon_state = "2-8"
 	},
-/turf/unsimulated/floor/plating,
+/turf/floor/plating,
 /area/dank_trench)
 
 (1,1,1) = {"

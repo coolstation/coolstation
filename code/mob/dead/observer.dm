@@ -597,13 +597,27 @@
 	//We don't need to worry about resetting view size when the player is revived or somesuch. The widescreen funcs will do that for us.
 */
 
-/mob/dead/observer/verb/toggle_lighting()
+/mob/dead/observer/verb/toggle_lighting(var/setting as text)
 	set name = "Toggle Lighting"
 	set category = null
 
 	var/atom/plane = client.get_plane(PLANE_LIGHTING)
 	if (plane)
-		switch(plane.alpha)
+		switch(setting)
+			//looking at set_centerlight_icon, these calls have been a hack since forever but I don't have to change em so :)
+			if ("none")
+				render_special.set_centerlight_icon("")
+				plane.alpha = 255
+			if ("dim")
+				render_special.set_centerlight_icon("default") //as in default for humans, not ghosts
+				plane.alpha = 255
+			if ("default")
+				render_special.set_centerlight_icon("nightvision", rgb(0.5 * 255, 0.5 * 255, 0.5 * 255))
+				plane.alpha = 255
+			if ("fullbright")
+				plane.alpha = 0
+
+		/*switch(plane.alpha)
 			if(255)
 				render_special.set_centerlight_icon("")
 				plane.alpha = 254 // I'm sorry
@@ -611,7 +625,7 @@
 				plane.alpha = 0
 			if(0)
 				plane.alpha = 255
-				render_special.set_centerlight_icon("nightvision", rgb(0.5 * 255, 0.5 * 255, 0.5 * 255))
+				render_special.set_centerlight_icon("nightvision", rgb(0.5 * 255, 0.5 * 255, 0.5 * 255))*/
 	else
 		boutput( usr, "Well, I want to, but you don't have any lights to fix!" )
 

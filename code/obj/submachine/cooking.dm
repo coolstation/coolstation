@@ -38,6 +38,8 @@
 				fill -= W.reagents.total_volume
 				W.reagents.add_reagent("water", fill)
 				user.show_text("You wet [W].", "blue")
+				var/obj/item/mop/M = W
+				M.mopcount = 0
 				playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 1)
 		else if (istype(W, /obj/item/grab))
 			playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 1)

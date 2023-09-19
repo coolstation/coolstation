@@ -129,6 +129,32 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 		for(var/type in all_ingredients_ever)
 			product_list += new/datum/data/vending_product(type, 50)
 
+///Something you can plop down in the map editor as a reference for screen size and what bits will get obscured by the HUD
+/obj/mapping_HUD_template
+	icon = 'icons/map-editing/mapping_HUD_template.dmi'
+	icon_state = "template" //blue is TG HUD, yellow is regular
+	plane = PLANE_HUD
+
+	New()
+		..()
+		qdel(src)
+
+/*
+/area/proc/Force_Ambience(mob/M)
+		if (M?.client)
+			src.pickAmbience()
+			M.client.playAmbience(src, AMBIENCE_FX_1, 18)
+
+/client/proc/admin_force_ambience()
+	SET_ADMIN_CAT(ADMIN_CAT_SELF)
+	set name = "Debug Force Area Ambience"
+	if(!src.holder)
+		alert("You are not an admin")
+		return
+	if (src.mob)
+		var/area/A = get_area(src.mob)
+		A.Force_Ambience(src.mob)
+*/
 //When uncommented, these two together should produce an undecidability crash in insert_recipe
 /*
 /datum/cookingrecipe/undecidable_A
@@ -216,7 +242,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 			var/list/placed = list()
 			for(var/turf/T in solidTiles)
 				if((T?.loc?.type == /area/space) || istype(T?.loc , /area/allowGenerate))
-					var/turf/simulated/wall/asteroid/AST = T.ReplaceWith(/turf/simulated/wall/asteroid)
+					var/turf/wall/asteroid/AST = T.ReplaceWith(/turf/wall/asteroid)
 					placed.Add(AST)
 					//AST.quality = quality
 				LAGCHECK(LAG_REALTIME)
@@ -239,8 +265,8 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 						for(var/j=0, j<rand(AST_RNGWALKCNT,round(AST_RNGWALKCNT*1.5)), j++)
 							holeList.Add(T)
 							T = get_step(T, pick(NORTH,EAST,SOUTH,WEST))
-							if(!istype(T, /turf/simulated/wall/asteroid)) continue
-							var/turf/simulated/wall/asteroid/ast = T
+							if(!istype(T, /turf/wall/asteroid)) continue
+							var/turf/wall/asteroid/ast = T
 							ast.destroy_asteroid(0)
 
 		//So I think it's kinda BS that the funkiest ores are magnet exclusive
@@ -248,7 +274,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 		//We try n times picking turfs at random from the entire Z level, and if we happen to hit an unoccupied asteroid turf we plant a starstone
 		//This relies on better-than-chance odds of dud turf picks. By my estimate the asteroid field is generally like 20-30% actual asteroid.
 		for (var/i = 1, i <= 10 ,i++) //10 tries atm, which I think should give a decent chance no starstones spawn.
-			var/turf/simulated/wall/asteroid/TRY = pick(miningZ)
+			var/turf/wall/asteroid/TRY = pick(miningZ)
 			if (!istype(TRY))
 				logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] failed - no asteroid.")
 				continue

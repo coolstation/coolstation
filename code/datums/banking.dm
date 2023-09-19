@@ -10,8 +10,12 @@
 	var/station_budget = 0.0
 	var/shipping_budget = 0.0
 	var/research_budget = 0.0
-	var/finserv_budget = 0.0 // NanoTrasen gets their share of every transaction.
-				 // ... if the channel ever reopens for them to collect it.
+	var/datum/data/record/finserv_budget // NanoTrasen gets their share of every transaction.
+			// ... if the channel ever reopens for them to collect it.
+
+			// Also im sorry for this being a d/d/r in here rather than just an number,
+			// but my embeezlement thing for the cashregs and whatnot just don't work right
+			// otherwise :(
 
 	var/list/jobs = new/list()
 
@@ -66,46 +70,64 @@
 		station_budget = 100000
 		shipping_budget = 30000
 		research_budget = 20000
-		finserv_budget = 20000
+
+		finserv_budget = new // sorry
+		finserv_budget.fields["id"] = "FinServ"
+		finserv_budget.fields["name"] = "NanoTrasen Financial Services"
+		finserv_budget.fields["current_money"] = 20000
 
 		// This is gonna throw up some crazy errors if it isn't done right!
 		// cogwerks - raising all of the paychecks, oh god
-
-		jobs["Engineer"] = PAY_TRADESMAN
-		jobs["Miner"] = PAY_TRADESMAN
-		jobs["Mechanic"] = PAY_DOCTORATE
-		jobs["Atmospheric Technician"] = PAY_TRADESMAN
+		// double definition? here and in var/wages in jobs.dm
+		// administrative
+		jobs["Captain"] = PAY_EXECUTIVE
+		jobs["Head of Personnel"] = PAY_IMPORTANT
+		// security
+		jobs["Head of Security"] = PAY_IMPORTANT // more like PAY_DUMBCLOWN
+//		jobs["Elite Security"] = PAY_TRADESMAN // pfft
 		jobs["Security Officer"] = PAY_TRADESMAN
 //		jobs["Vice Officer"] = PAY_TRADESMAN
 		jobs["Detective"] = PAY_TRADESMAN
-		jobs["Geneticist"] = PAY_DOCTORATE
-		jobs["Pathologist"] = PAY_DOCTORATE
-		jobs["Scientist"] = PAY_DOCTORATE
-		jobs["Medical Doctor"] = PAY_DOCTORATE
-		jobs["Medical Director"] = PAY_IMPORTANT
-		jobs["Head of Personnel"] = PAY_IMPORTANT
-		jobs["Head of Security"] = PAY_IMPORTANT
-//		jobs["Head of Security"] = PAY_DUMBCLOWN
-		jobs["Chief Engineer"] = PAY_IMPORTANT
+		// research
 		jobs["Research Director"] = PAY_IMPORTANT
-		jobs["Chaplain"] = PAY_UNTRAINED
+		jobs["Scientist"] = PAY_DOCTORATE
+		jobs["Chemist"] = PAY_DOCTORATE
+		// medical
+		jobs["Medical Director"] = PAY_IMPORTANT
+		jobs["Surgeon"] = PAY_DOCTORATE
+		jobs["Medical Doctor"] = PAY_DOCTORATE
+		jobs["Geneticist"] = PAY_DOCTORATE
 		jobs["Roboticist"] = PAY_DOCTORATE
+		jobs["Pathologist"] = PAY_DOCTORATE
+		jobs["Pharmacist"] = PAY_TRADESMAN
+		jobs["Nurse"] = PAY_UNTRAINED
+		jobs["Receptionist"] = PAY_UNTRAINED
+		// engineering
+		jobs["Chief Engineer"] = PAY_IMPORTANT
+		jobs["Engineer"] = PAY_TRADESMAN
+		jobs["Mechanic"] = PAY_TRADESMAN
+		jobs["Electrician"] = PAY_TRADESMAN
+		jobs["Atmospheric Technician"] = PAY_TRADESMAN
 //		jobs["Hangar Mechanic"]= PAY_TRADESMAN
-//		jobs["Elite Security"] = PAY_TRADESMAN
+		// logistics
+		jobs["Quartermaster"] = PAY_IMPORTANT
+		jobs["Cargo Technician"] = PAY_TRADESMAN
+		jobs["Miner"] = PAY_TRADESMAN
+		// civilian
+		jobs["Chaplain"] = PAY_UNTRAINED
 		jobs["Bartender"] = PAY_UNTRAINED
 		jobs["Chef"] = PAY_UNTRAINED
 		jobs["Janitor"] = PAY_TRADESMAN
-		jobs["Clown"] = PAY_DUMBCLOWN
-//		jobs["Chemist"] = PAY_DOCTORATE
-		jobs["Quartermaster"] = PAY_TRADESMAN
 		jobs["Botanist"] = PAY_TRADESMAN
 		jobs["Rancher"] = PAY_TRADESMAN
 //		jobs["Attorney at Space-Law"] = PAY_DOCTORATE
+		// assistance
 		jobs["Staff Assistant"] = PAY_UNTRAINED
 		jobs["Medical Assistant"] = PAY_UNTRAINED
 		jobs["Technical Assistant"] = PAY_UNTRAINED
 		jobs["Security Assistant"] = PAY_UNTRAINED
-		jobs["Captain"] = PAY_EXECUTIVE
+		// clown
+		jobs["Clown"] = PAY_DUMBCLOWN
 
 		src.time_until_lotto = ( ticker ? ticker.round_elapsed_ticks : 0 ) + time_between_lotto
 		src.time_until_payday = ( ticker ? ticker.round_elapsed_ticks : 0 ) + time_between_paydays

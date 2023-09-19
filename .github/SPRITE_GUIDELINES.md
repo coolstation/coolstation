@@ -73,7 +73,7 @@ So, you want to contribute sprite art to Goonstation. Great! This set of guideli
 * Try to keep scale in mind in general. Things don’t need to be actually proportional, they just need to “feel” right in the game.  :arrow_up_down: 
 * It’s good (but not mandated) to distinguish different objects by more than just color if possible, to accommodate the colorblind. :traffic_light:
 * Avoid violently flashing lights in large spaces when making animations.
-* If you just shrink a jpeg and submit that, you're fired. ![](https://wiki.ss13.co/images/a/af/FoodPancakes.png)
+* If you just shrink a jpeg and submit that, you're fired. ![](https://wiki.coolstation.space/wiki/images/a/af/FoodPancakes.png)
 
 # Implementation 🔧
 

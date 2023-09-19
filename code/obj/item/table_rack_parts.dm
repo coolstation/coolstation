@@ -153,6 +153,15 @@ RACK PARTS
 	furniture_name = "folding table"
 	build_duration = 15
 
+/obj/item/furniture_parts/table/bin
+	name = "folded bin"
+	desc = "A collapsed bin that can be deployed quickly."
+	icon = 'icons/obj/scrap.dmi'
+	icon_state = "hopperfolded"
+	furniture_type = /obj/table/folding/bin
+	furniture_name = "bin"
+	build_duration = 15
+
 /* ---------- Glass Table Parts ---------- */
 /obj/item/furniture_parts/table/glass
 	name = "glass table parts"

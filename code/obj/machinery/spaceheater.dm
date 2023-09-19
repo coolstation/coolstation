@@ -209,8 +209,8 @@
 		if(on)
 			if(cell?.charge > 0)
 
-				var/turf/simulated/L = loc
-				if(istype(L))
+				var/turf/L = loc
+				if(issimulatedturf(L))
 					var/datum/gas_mixture/env = L.return_air()
 					if(env.temperature < (set_temperature+T0C))
 						heating = 1
@@ -415,8 +415,8 @@
 		if(on)
 			if(cell?.charge > 0)
 
-				var/turf/simulated/L = loc
-				if(istype(L))
+				var/turf/L = loc
+				if(issimulatedturf(L))
 					var/datum/gas_mixture/env = L.return_air()
 					if(env.temperature < (set_temperature+T0C))
 						heating = 1

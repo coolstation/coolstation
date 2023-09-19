@@ -9,7 +9,7 @@ obj/machinery/access_button
 	anchored = 1
 
 	var/master_tag
-	var/frequency = 1449
+	var/frequency = FREQ_AIRLOCK
 	var/command = "cycle"
 
 	var/datum/radio_frequency/radio_connection

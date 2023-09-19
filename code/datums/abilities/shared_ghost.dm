@@ -33,3 +33,33 @@
 			var/turf/destination = locate(holder.owner.x, holder.owner.y, Z_LEVEL_DEBRIS)
 			holder.owner.set_loc(destination)
 #endif
+/datum/targetable/ghost_observer/goto_escape
+	name = "Go To Escape"
+	desc = "See what's happening at the exit?"
+	icon_state = "escape"
+	targeted = 0
+	cooldown = 0
+
+	cast(atom/target)
+		var/turf/destination
+		if (ismob(holder?.owner) && map_settings)
+			if(!emergency_shuttle)
+				destination = locate(map_settings.escape_station)
+			else
+				switch(emergency_shuttle.location)
+					if(SHUTTLE_LOC_CENTCOM)
+						destination = locate(map_settings.escape_station)
+					if(SHUTTLE_LOC_STATION)
+						destination = locate(map_settings.escape_station)
+					if(SHUTTLE_LOC_TRANSIT)
+						destination = locate(map_settings.escape_transit)
+					if(SHUTTLE_LOC_RETURNED)
+						if(channel_open)
+							destination = locate(map_settings.escape_centcom)
+						else
+							destination = locate(map_settings.escape_outpost)
+
+		if(destination)
+			holder.owner.set_loc(destination)
+		else(boutput(holder.owner, "someone fucked up lmao call a coder"))
+

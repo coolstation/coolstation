@@ -81,8 +81,8 @@ var/global/list/mapNames = list(
 	var/arrivals_type = MAP_SPAWN_SHUTTLE
 	var/dir_fore = null
 
-	var/walls = /turf/simulated/wall/auto
-	var/rwalls = /turf/simulated/wall/r_wall
+	var/walls = /turf/wall/auto
+	var/rwalls = /turf/wall/r_wall
 	var/auto_walls = 0
 
 	var/windows = /obj/window
@@ -144,8 +144,8 @@ var/global/list/mapNames = list(
 	name = "DONUT2"
 	goonhub_map = "https://goonhub.com/maps/donut2"
 	airlock_style = "pyro"
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/wall/auto/supernorn
+	rwalls = /turf/wall/auto/reinforced/supernorn
 
 	escape_centcom = /area/shuttle/escape/centcom/donut2
 	escape_outpost = /area/shuttle/escape/outpost/donut2
@@ -174,8 +174,8 @@ var/global/list/mapNames = list(
 	name = "DONUT3"
 	goonhub_map = "http://goonhub.com/maps/donut3"
 	airlock_style = "pyro"
-	walls = /turf/simulated/wall/auto/jen
-	rwalls = /turf/simulated/wall/auto/reinforced/jen
+	walls = /turf/wall/auto/jen
+	rwalls = /turf/wall/auto/reinforced/jen
 
 	escape_centcom = /area/shuttle/escape/centcom/donut3
 	escape_outpost = /area/shuttle/escape/outpost/donut3
@@ -268,8 +268,8 @@ var/global/list/mapNames = list(
 /datum/map_settings/cogmap
 	name = "COGMAP"
 	goonhub_map = "https://goonhub.com/maps/cogmap"
-	walls = /turf/simulated/wall/
-	rwalls = /turf/simulated/wall/r_wall/
+	walls = /turf/wall/
+	rwalls = /turf/wall/r_wall/
 	auto_walls = 0
 
 	windows = /obj/window/auto
@@ -317,8 +317,8 @@ var/global/list/mapNames = list(
 /datum/map_settings/cogmap2
 	name = "COGMAP2"
 	goonhub_map = "https://goonhub.com/maps/cogmap2"
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/wall/auto/supernorn
+	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
 
 	windows = /obj/window/auto
@@ -372,8 +372,8 @@ var/global/list/mapNames = list(
 	arrivals_type = MAP_SPAWN_CRYO
 	dir_fore = NORTH
 
-	walls = /turf/simulated/wall/auto/gannets
-	rwalls = /turf/simulated/wall/auto/reinforced/gannets
+	walls = /turf/wall/auto/gannets
+	rwalls = /turf/wall/auto/reinforced/gannets
 	auto_walls = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
@@ -410,8 +410,8 @@ var/global/list/mapNames = list(
 	display_name = "NSS Clarion"
 	goonhub_map = "https://goonhub.com/maps/clarion"
 
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/wall/auto/supernorn
+	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
 
 	windows = /obj/window/auto
@@ -445,8 +445,8 @@ var/global/list/mapNames = list(
 	display_name = "NSS Horizon"
 	style = "ship"
 	goonhub_map = "https://goonhub.com/maps/horizon"
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/wall/auto/supernorn
+	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
 
 	windows = /obj/window/auto
@@ -494,27 +494,27 @@ var/global/list/mapNames = list(
 		/datum/job/civilian/clown = 2,
 		/datum/job/security/security_officer = 6,
 		/datum/job/security/detective = 3,
-		/datum/job/research/geneticist = 3,
-		/datum/job/research/roboticist = 3,
 		/datum/job/research/scientist = 6,
-		/datum/job/research/medical_doctor = 7,
+		/datum/job/medical/geneticist = 3,
+		/datum/job/medical/roboticist = 3,
+		/datum/job/medical/medical_doctor = 7,
 		/datum/job/engineering/mechanic = 4,
-		/datum/job/engineering/miner = 4,
 		/datum/job/engineering/engineer = 6,
+		/datum/job/logistics/miner = 4,
 		/datum/job/civilian/chef = 2,
 		/datum/job/civilian/bartender = 2,
 		/datum/job/civilian/janitor = 3,
 		/datum/job/civilian/chaplain = 2,
 		/datum/job/special/lawyer = 1,
-		/datum/job/special/atmospheric_technician = 1
+		/datum/job/engineering/atmospheric_technician = 1
 	)
 
 /datum/map_settings/manta
 	name = "MANTA"
 	display_name = "NSS Manta"
 	goonhub_map = "https://goonhub.com/maps/manta"
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/wall/auto/supernorn
+	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
 	style = "ship"
 	arrivals_type = MAP_SPAWN_CRYO
@@ -561,8 +561,8 @@ var/global/list/mapNames = list(
 	name = "MUSHROOM"
 	goonhub_map = "https://goonhub.com/maps/mushroom"
 
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/wall/auto/supernorn
+	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
 	airlock_style = "pyro"
 
@@ -607,8 +607,8 @@ var/global/list/mapNames = list(
 	arrivals_type = MAP_SPAWN_CRYO
 	dir_fore = NORTH
 
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/wall/auto/supernorn
+	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
 	airlock_style = "pyro"
 
@@ -636,8 +636,8 @@ var/global/list/mapNames = list(
 /datum/map_settings/kondaru
 	name = "KONDARU"
 	goonhub_map = "https://goonhub.com/maps/kondaru"
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/wall/auto/supernorn
+	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
 
 	arrivals_type = MAP_SPAWN_CRYO
@@ -689,13 +689,13 @@ var/global/list/mapNames = list(
 /datum/map_settings/ozymandias
 	name = "OZYMANDIAS"
 	goonhub_map = "https://i.imgur.com/COYgNvN.jpg"
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/wall/auto/supernorn
+	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
 
 	job_limits_from_landmarks = 1
 	job_limits_override = list(
-		/datum/job/special/atmospheric_technician = 1,
+		/datum/job/engineering/atmospheric_technician = 1,
 		/datum/job/special/barber = 1,
 		/datum/job/special/research_assistant = 2,
 		/datum/job/special/medical_assistant = 2
@@ -743,8 +743,8 @@ var/global/list/mapNames = list(
 	display_name = "Bellerophon Fleet"
 	style = "ship"
 	goonhub_map = "https://goonhub.com/maps/bellerophon fleet"
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/wall/auto/supernorn
+	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
 	arrivals_type = MAP_SPAWN_CRYO
 	dir_fore = NORTH
@@ -787,8 +787,8 @@ var/global/list/mapNames = list(
 	display_name = "Icarus"
 	style = "ship"
 	goonhub_map = "https://i.imgur.com/SiI3RC9.png"
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/wall/auto/supernorn
+	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
 	arrivals_type = MAP_SPAWN_CRYO
 	dir_fore = NORTH
@@ -827,8 +827,8 @@ var/global/list/mapNames = list(
 /datum/map_settings/density // I just copied cog2 for now, ok????
 	name = "density"
 	goonhub_map = "https://goonhub.com/maps/density"
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/wall/auto/supernorn
+	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
 
 	windows = /obj/window/auto
@@ -871,8 +871,8 @@ var/global/list/mapNames = list(
 /datum/map_settings/pamgoc
 	name = "PAMGOC"
 	goonhub_map = "https://goonhub.com/maps/cogmap"
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/wall/auto/supernorn
+	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
 
 	windows = /obj/window/auto
@@ -911,8 +911,8 @@ var/global/list/mapNames = list(
 
 	arrivals_type = MAP_SPAWN_MISSILE
 
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/wall/auto/supernorn
+	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
 
 	windows = /obj/window/auto
@@ -957,14 +957,10 @@ var/global/list/mapNames = list(
 		"the mining staff room" = list(/area/station/mining/staff_room))
 		//"the radio lab" = list(/area/station/crew_quarters/radio))
 
-	job_limits_override = list(
-		/datum/job/special/random/psychiatrist = 1
-	)
-
 /datum/map_settings/wrestlemap
 	name = "WRESTLEMAP"
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/wall/auto/supernorn
+	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
 
 	arrivals_type = MAP_SPAWN_CRYO
@@ -1010,8 +1006,8 @@ var/global/list/mapNames = list(
 	name = "POD_WARS"
 	default_gamemode = "pod_wars"
 	goonhub_map = "https://goonhub.com/maps/pod_wars"
-	walls = /turf/simulated/wall/auto/supernorn
-	rwalls = /turf/simulated/wall/auto/reinforced/supernorn
+	walls = /turf/wall/auto/supernorn
+	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
 	style = "spess"
 
@@ -1048,10 +1044,10 @@ var/global/list/mapNames = list(
 /datum/map_settings/gehenna
 	name = "GEHENNA"
 	goonhub_map = "https://coolstation.space/adults.html"
-	walls = /turf/simulated/wall
-	rwalls = /turf/simulated/wall/r_wall
+	walls = /turf/wall
+	rwalls = /turf/wall/r_wall
 	auto_walls = 0
-	shuttle_map_turf = /turf/simulated/floor/industrial
+	shuttle_map_turf = /turf/floor/industrial
 
 	arrivals_type = MAP_SPAWN_CRYO
 	qm_supply_type = "shuttle"
@@ -1095,11 +1091,11 @@ var/global/list/mapNames = list(
 	job_limits_override = list(
 		/datum/job/security/security_officer = 6,
 		/datum/job/research/scientist = 6,
-		/datum/job/research/medical_doctor = 6,
-		/datum/job/engineering/miner = 6,
+		/datum/job/medical/medical_doctor = 6,
+		/datum/job/logistics/miner = 6,
 		/datum/job/engineering/engineer = 6,
 		/datum/job/civilian/chaplain = 2,
-		/datum/job/special/atmospheric_technician = 2,
+		/datum/job/engineering/atmospheric_technician = 2,
 		/datum/job/civilian/botanist = 3
 	)
 
@@ -1108,16 +1104,16 @@ var/global/list/mapNames = list(
 		SPAWN_DBG(10) // this sucks so much ass but it just- idk.
 			var/area/m_shuttle = locate(/area/shuttle/mining/station)
 			if(m_shuttle)
-				m_shuttle.filler_turf = "/turf/simulated/floor/industrial"
+				m_shuttle.filler_turf = "/turf/floor/industrial"
 			var/area/c_shuttle = locate(/area/shuttle/cargo/station)
 			if(c_shuttle)
-				c_shuttle.filler_turf = "/turf/simulated/floor/industrial"
+				c_shuttle.filler_turf = "/turf/floor/industrial"
 
 /datum/map_settings/bobmap
 	name = "BOBMAP"
 	goonhub_map = "https://coolstation.space/stingray.html"
-	walls = /turf/simulated/wall
-	rwalls = /turf/simulated/wall/r_wall
+	walls = /turf/wall
+	rwalls = /turf/wall/r_wall
 	auto_walls = 1
 	qm_supply_type = "shuttle"
 
@@ -1165,8 +1161,8 @@ var/global/list/mapNames = list(
 /*/datum/map_settings/dockmap //by robert goodsmells age 34 (for shuttle/offstation econony testing)
 	name = "DOCKMAP"
 	goonhub_map = "https://coolstation.space/stingray.html"
-	walls = /turf/simulated/wall
-	rwalls = /turf/simulated/wall/r_wall
+	walls = /turf/wall
+	rwalls = /turf/wall/r_wall
 	auto_walls = 1
 
 	windows = /obj/window
@@ -1200,8 +1196,8 @@ var/global/list/mapNames = list(
 /datum/map_settings/spirit
 	name = "SPIRIT"
 	goonhub_map = "https://goonhub.com/maps/cogmap"
-	walls = /turf/simulated/wall/auto/jen/dark2
-	rwalls = /turf/simulated/wall/auto/reinforced/jen/dark2
+	walls = /turf/wall/auto/jen/dark2
+	rwalls = /turf/wall/auto/reinforced/jen/dark2
 	auto_walls = 1
 
 	windows = /obj/window/auto

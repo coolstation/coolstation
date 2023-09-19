@@ -18,7 +18,7 @@
 	var/list/datum/mind/traitors = list() // enemies assigned at round start
 	var/list/datum/mind/token_players = list() //players redeeming an antag token
 	var/list/datum/mind/Agimmicks = list() // admin assigned and certain gimmick enemies
-	var/list/datum/mind/former_antagonists = list() // For mindslaves and rogue cyborgs we'd want to show in the game over stats (Convair880).
+	var/list/datum/mind/former_antagonists = list() // For insurgents and rogue cyborgs we'd want to show in the game over stats (Convair880).
 
 	var/datum/game_mode/spy_theft/spy_market = 0	//In case any spies are spawned into a round that is NOT spy_theft, we need a place to hold their spy market.
 
@@ -81,9 +81,9 @@
 			else
 				traitor_name = "[traitor.key] (character destroyed)"
 
-			if (traitor.special_role == ROLE_MINDSLAVE)
-				stuff_to_output += "<B>[traitor_name] was a mindslave!</B>"
-				continue // Objectives are irrelevant for mindslaves and thralls.
+			if (traitor.special_role == ROLE_INSURGENT)
+				stuff_to_output += "<B>[traitor_name] was an insurgent!</B>"
+				continue // Objectives are irrelevant for insurgents and thralls.
 			else if (traitor.special_role == ROLE_VAMPTHRALL)
 				stuff_to_output += "<B>[traitor_name] was a vampire's thrall!</B>"
 				continue // Ditto.
@@ -220,8 +220,8 @@
 
 			if (traitor.former_antagonist_roles.len)
 				for (var/string in traitor.former_antagonist_roles)
-					if (string == ROLE_MINDSLAVE)
-						stuff_to_output += "<B>[traitor_name] was a mindslave!</B>"
+					if (string == ROLE_INSURGENT)
+						stuff_to_output += "<B>[traitor_name] was an insurgent!</B>"
 					else if (string == ROLE_VAMPTHRALL)
 						stuff_to_output += "<B>[traitor_name] was a vampire's thrall!</B>"
 					else

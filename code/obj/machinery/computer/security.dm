@@ -102,11 +102,22 @@
 	name = "Security Cameras"
 	icon_state = "security_det"
 
+	attackby(obj/item/W, mob/user)
+		if(istool(W,TOOL_WRENCHING) && src.icon_state == "security_det")
+			boutput(user, "you [src.anchored?"un":""]lock the rolly-feet on the TV")
+			src.anchored = !src.anchored
+			playsound(src, "sound/items/Ratchet.ogg", 69, 1)
+		else
+			..()
+
+
+
 	small
 		name = "Television"
 		desc = "These channels seem to mostly be about robuddies. What is this, some kind of reality show?"
 		network = "Zeta"
 		icon_state = "security_tv"
+		glow_in_dark_screen = FALSE
 
 		power_change()
 			return

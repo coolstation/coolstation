@@ -51,7 +51,7 @@
 
 /datum/aiTask/sequence/goalbased/replicate/get_targets()
 	. = list()
-	for(var/turf/simulated/floor/feather/F in view(max_dist, holder.owner))
+	for(var/turf/floor/feather/F in view(max_dist, holder.owner))
 		// let's not spam eggs all the time
 		if(isnull(locate(/obj/flock_structure/egg) in F))
 			// if we can get a valid path to the target, include it for consideration
@@ -70,7 +70,7 @@
 		return 1
 	if(F && !F.can_afford(100))
 		return 1
-	var/turf/simulated/floor/feather/N = get_turf(holder.owner)
+	var/turf/floor/feather/N = get_turf(holder.owner)
 	if(!N)
 		return 1
 
@@ -109,7 +109,7 @@
 	var/had_target = holder.target
 	. = ..()
 	if (!had_target && holder.target)
-		var/turf/simulated/T = get_turf(holder.target)
+		var/turf/T = get_turf(holder.target)
 		var/mob/living/critter/flock/F = holder.owner
 		if (F.flock?.isTurfFree(T, F.real_name))
 			F.flock.reserveTurf(T, F.real_name)
@@ -120,22 +120,22 @@
 
 	if(F?.flock)
 		// if we can go for a tile we already have reserved, go for it
-		var/turf/simulated/reserved = F.flock.busy_tiles[F.real_name]
+		var/turf/reserved = F.flock.busy_tiles[F.real_name]
 		if(istype(reserved) && !isfeathertile(reserved) && cirrAstar(get_turf(holder.owner), reserved, 1, 20))
 			. += reserved
 			return
 		// if there's a priority tile we can go for, do it
 		var/list/priority_turfs = F.flock.getPriorityTurfs(F)
 		if(length(priority_turfs))
-			for(var/turf/simulated/PT in priority_turfs)
+			for(var/turf/PT in priority_turfs)
 				// if we can get a valid path to the target, include it for consideration
 				if(cirrAstar(get_turf(holder.owner), PT, 1, 80))
 					. += PT
 
 	// else just go for one nearby
-	for(var/turf/simulated/T in view(max_dist, holder.owner))
-		if(istype(T, /turf/simulated/floor) && !istype(T, /turf/simulated/floor/feather) || \
-			istype(T, /turf/simulated/wall) && !istype(T, /turf/simulated/wall/auto/feather))
+	for(var/turf/T in view(max_dist, holder.owner))
+		if(istype(T, /turf/floor) && !istype(T, /turf/floor/feather) || \
+			istype(T, /turf/wall) && !istype(T, /turf/wall/auto/feather))
 			if(F?.flock && !F.flock.isTurfFree(T, F.real_name))
 				continue // this tile's been claimed by someone else
 			// if we can get a valid path to the target, include it for consideration
@@ -149,7 +149,7 @@
 	var/has_started = 0
 
 /datum/aiTask/succeedable/build/failed()
-	var/turf/simulated/floor/build_target = holder.target
+	var/turf/floor/build_target = holder.target
 	if(!build_target || get_dist(holder.owner, build_target) > 1)
 		return 1
 	var/mob/living/critter/flock/F = holder.owner

@@ -216,7 +216,7 @@
 			if (!T)
 				boutput(usr, "<span class='alert'>Error: magnet area spans over construction area bounds.</span>")
 				return 0
-			if (!istype(T, /turf/space) && !istype(T, /turf/simulated/floor/plating/airless/asteroid) && !istype(T, /turf/simulated/wall/asteroid))
+			if (!istype(T, /turf/space) && !istype(T, /turf/floor/plating/airless/asteroid) && !istype(T, /turf/wall/asteroid))
 				boutput(usr, "<span class='alert'>Error: [T] detected in [width]x[height] magnet area. Cannot magnetize.</span>")
 				return 0
 
@@ -246,7 +246,7 @@
 			borders += S
 
 		magnetic_center = locate(origin.x + round(width/2), origin.y + round(height/2), origin.z)
-		for (var/turf/simulated/floor/T in borders)
+		for (var/turf/floor/T in borders)
 			T.allows_vehicles = 1
 		return 1
 
@@ -522,11 +522,11 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1)
+			if(OLD_EX_SEVERITY_1)
 				src.damage(rand(75,120))
-			if(2)
+			if(OLD_EX_SEVERITY_2)
 				src.damage(rand(25,75))
-			if(3)
+			if(OLD_EX_SEVERITY_3)
 				src.damage(rand(10,25))
 
 	meteorhit()
@@ -647,8 +647,8 @@
 		for (var/obj/O in mining_controls.magnet_area.contents)
 			if (!(O.flags & MINERAL_MAGNET_SAFE))
 				qdel(O)
-		for (var/turf/simulated/T in mining_controls.magnet_area.contents)
-			if (!istype(T,/turf/simulated/floor/airless/plating/catwalk/))
+		for (var/turf/T in mining_controls.magnet_area.contents)
+			if (!istype(T,/turf/floor/airless/plating/catwalk/))
 				T.ReplaceWithSpace()
 				//qdel(T)
 		for (var/turf/space/S in mining_controls.magnet_area.contents)
@@ -945,7 +945,7 @@
 
 // Turf Defines
 
-/turf/simulated/wall/asteroid
+/turf/wall/asteroid
 #ifdef UNDERWATER_MAP
 	name = "cavern wall"
 	desc = "A cavern wall, possibly flowing with mineral deposits."
@@ -972,7 +972,7 @@
 	var/datum/ore/ore = null
 	var/datum/ore/event/event = null
 	var/list/space_overlays = list()
-	var/floor_turf = "/turf/simulated/floor/plating/airless/asteroid"
+	var/floor_turf = "/turf/floor/plating/airless/asteroid"
 
 	//NEW VARS
 	var/mining_health = 120
@@ -993,7 +993,7 @@
 	dark
 		fullbright = 0
 		luminosity = 1
-		floor_turf = "/turf/simulated/floor/plating/airless/asteroid/dark"
+		floor_turf = "/turf/floor/plating/airless/asteroid/dark"
 
 	lighted
 		fullbright = 1
@@ -1024,7 +1024,7 @@
 		icon_state = "comet"
 		hardness = 1
 		default_ore = /obj/item/raw_material/rock
-		floor_turf = "/turf/simulated/floor/plating/airless/asteroid/dark"
+		floor_turf = "/turf/floor/plating/airless/asteroid/dark"
 
 		// varied layers
 
@@ -1105,11 +1105,11 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.damage_asteroid(7)
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.damage_asteroid(5)
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				src.damage_asteroid(3)
 		return
 
@@ -1366,7 +1366,7 @@
 		src.opacity = 0
 		src.levelupdate()
 
-		for (var/turf/simulated/floor/A in range(src,1))
+		for (var/turf/floor/A in range(src,1))
 			if(istype(A, temp_floor_turf))
 				A.update_icon()
 #ifdef UNDERWATER_MAP
@@ -1381,32 +1381,40 @@
 
 		return src
 
-	proc/set_event(var/datum/ore/event/E)
+	proc/set_event(var/datum/ore/event/E, datum/mining_level_stats/level_stats = null) //Adding the stat collection illustrates to me how much recursive bodging is going on here
 		if (!istype(E))
 			return
 		src.event = E
 		E.onGenerate(src)
+		if (level_stats)
+			level_stats.events[E.name] += 1
+			level_stats.total_generated_events += 1
 		if (E.prevent_excavation)
 			src.invincible = 1
 		if (E.nearby_tile_distribution_min > 0 && E.nearby_tile_distribution_max > 0)
 			var/distributions = rand(E.nearby_tile_distribution_min,E.nearby_tile_distribution_max)
 			var/list/usable_turfs = list()
-			for (var/turf/simulated/wall/asteroid/AST in range(E.distribution_range,src))
+			for (var/turf/wall/asteroid/AST in range(E.distribution_range,src))
 				if (!isnull(AST.event))
 					continue
 				usable_turfs += AST
 
-			var/turf/simulated/wall/asteroid/AST
+			var/turf/wall/asteroid/AST
 			while (distributions > 0)
-				distributions--
 				if (usable_turfs.len < 1)
+					if (level_stats)
+						level_stats.event_misses[E.name] += distributions
 					break
+				distributions--
 				AST = pick(usable_turfs)
 				AST.event = E
 				E.onGenerate(AST)
 				usable_turfs -= AST
+				if (level_stats)
+					level_stats.events[E.name] += 1
+					level_stats.total_generated_events += 1
 
-/turf/simulated/floor/plating/airless/asteroid
+/turf/floor/plating/airless/asteroid
 	name = "asteroid"
 	icon = 'icons/turf/asteroid.dmi'
 	icon_state = "astfloor1"
@@ -1491,7 +1499,7 @@
 		#endif
 		SPAWN_DBG(0)
 			if (istype(src)) //Wire note: just roll with this ok
-				for (var/turf/simulated/wall/asteroid/A in orange(src,1))
+				for (var/turf/wall/asteroid/A in orange(src,1))
 					src.apply_edge_overlay(get_dir(src, A))
 				for (var/turf/space/A in orange(src,1))
 					src.apply_edge_overlay(get_dir(src, A))
@@ -1831,7 +1839,7 @@ obj/item/clothing/gloves/concussive
 						qdel (src)
 						return
 				else
-					if (istype(target, /turf/simulated/wall/asteroid/) && !src.hacked)
+					if (istype(target, /turf/wall/asteroid/) && !src.hacked)
 						boutput(user, "<span class='alert'>You slap the charge on [target], [det_time/10] seconds!</span>")
 						user.visible_message("<span class='alert'>[user] has attached [src] to [target].</span>")
 						src.icon_state = "bcharge2"
@@ -1893,7 +1901,7 @@ obj/item/clothing/gloves/concussive
 
 	proc/concussive_blast()
 		playsound(src.loc, "sound/weapons/flashbang.ogg", 50, 1)
-		for (var/turf/simulated/wall/asteroid/A in range(src.expl_flash,src))
+		for (var/turf/wall/asteroid/A in range(src.expl_flash,src))
 			if(get_dist(src,A) <= src.expl_heavy)
 				A.damage_asteroid(4)
 			if(get_dist(src,A) <= src.expl_light)
@@ -2078,7 +2086,7 @@ obj/item/clothing/gloves/concussive
 	var/list/ores_found = list()
 	var/datum/ore/O
 	var/datum/ore/event/E
-	for (var/turf/simulated/wall/asteroid/AST in range(T,range))
+	for (var/turf/wall/asteroid/AST in range(T,range))
 		stone++
 		O = AST.ore
 		E = AST.event
@@ -2403,7 +2411,7 @@ var/global/list/cargopads = list()
 
 ////// Shit that goes in the asteroid belt, might split it into an exploring.dm later i guess
 
-/turf/simulated/wall/ancient
+/turf/wall/ancient
 	name = "strange wall"
 	desc = "A weird jet black metal wall indented with strange grooves and lines."
 	icon_state = "ancient"
@@ -2413,7 +2421,7 @@ var/global/list/cargopads = list()
 		return
 
 	ex_act(severity)
-		if (severity == 1.0)
+		if (severity >= 6) //old severity 1
 			if (prob(8))
 				src.RL_SetOpacity(0)
 				src.set_density(0)
@@ -2421,21 +2429,7 @@ var/global/list/cargopads = list()
 				return
 		else return
 
-/turf/simulated/floor/ancient
-	name = "strange surface"
-	desc = "A strange jet black metal floor. There are odd lines carved into it."
-	icon_state = "ancient"
-	step_material = "step_plating"
-	step_priority = STEP_PRIORITY_MED
-
-	attackby(obj/item/W as obj, mob/user as mob)
-		boutput(user, "<span class='combat'>You attack [src] with [W] but fail to even make a dent!</span>")
-		return
-
-	ex_act(severity)
-		return
-
-/turf/unsimulated/floor/ancient
+/turf/floor/ancient
 	name = "strange surface"
 	desc = "A strange jet black metal floor. There are odd lines carved into it."
 	icon_state = "ancient"

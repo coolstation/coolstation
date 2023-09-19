@@ -39,17 +39,17 @@
 
 	ex_act(severity)
 		switch(severity)
-			if (1)
+			if (OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if (2)
+			if (OLD_EX_SEVERITY_2)
 				if (prob(50))
 					if (src.deconstructable)
 						src.deconstruct()
 					else
 						qdel(src)
 					return
-			if (3)
+			if (OLD_EX_SEVERITY_3)
 				if (prob(5))
 					if (src.deconstructable)
 						src.deconstruct()
@@ -882,14 +882,14 @@
 				M.buckled = null
 				src.buckled_guy = null
 		switch (severity)
-			if (1.0)
+			if (OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if (2.0)
+			if (OLD_EX_SEVERITY_2)
 				if (prob(50))
 					qdel(src)
 					return
-			if (3.0)
+			if (OLD_EX_SEVERITY_3)
 				if (prob(5))
 					qdel(src)
 					return
@@ -1550,7 +1550,7 @@
 	// (Convair880)  2) on top of a powered wire (scales with engine output).
 	proc/get_connection()
 		var/turf/T = get_turf(src)
-		if (!istype(T, /turf/simulated/floor))
+		if (!istype(T, /turf/floor))
 			return 0
 
 		for (var/obj/cable/C in T)

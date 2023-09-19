@@ -155,7 +155,7 @@ var/global/datum/transit_controller/transit_controls = new
 		return TRUE
 
 
-/turf/simulated/floor/specialroom/elevator_shaft
+/turf/floor/specialroom/elevator_shaft
 	name = "elevator shaft"
 	desc = "It looks like it goes down a long ways."
 	icon_state = "moon_shaft"
@@ -271,7 +271,7 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 /obj/machinery/computer/transit_terminal
 	name = "Vehicle Control"
 	icon = 'icons/obj/computer.dmi'
-	icon_state = "turret1"
+	icon_state = "mmagnet"
 	circuit_type = /obj/item/circuitboard/transit_terminal
 	/// Transit ID of the Vehicle this terminal controls
 	var/vehicle_id
@@ -283,6 +283,7 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 		icon_state = "comp_buttpanel"
 		circuit_type = null
 		density = FALSE
+		glow_in_dark_screen = FALSE
 
 	New()
 		..()

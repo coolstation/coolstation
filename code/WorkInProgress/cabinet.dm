@@ -145,10 +145,10 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if (prob(50))
 					qdel(src)
 					return
@@ -349,7 +349,7 @@
 		rebuildOverlays()
 		return ..()
 
-/obj/cabinet/taffy // for psychiatrists to prescribe
+/obj/cabinet/taffy // because you did such a good job in there
 
 	New()
 		slots["1"] = new /obj/item/reagent_containers/food/snacks/candy/taffy/cherry(src)

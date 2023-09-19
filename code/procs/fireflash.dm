@@ -27,7 +27,7 @@
 */
 		//SPAWN_DBG(1.5 SECONDS) T.hotspot_expose(2000, 400)
 
-		if(istype(T, /turf/simulated/floor)) T:burn_tile()
+		if(istype(T, /turf/floor)) T:burn_tile()
 		SPAWN_DBG(0)
 			for(var/mob/living/L in T)
 				L.set_burning(33-radius)
@@ -124,7 +124,7 @@
 /* // experimental thing to let temporary hotspots affect atmos
 			existing_hotspot.perform_exposure()
 */
-		if(istype(T, /turf/simulated/floor)) T:burn_tile()
+		if(istype(T, /turf/floor)) T:burn_tile()
 		for (var/mob/living/L in T)
 			L.update_burning(min(55, max(0, expose_temp - 100 / 550)))
 			L.bodytemperature = (2 * L.bodytemperature + temp) / 3
@@ -175,7 +175,7 @@
 /proc/fireflash_sm(atom/center, radius, temp, falloff, capped = 1, bypass_RNG = 0)
 	var/list/affected = fireflash_s(center, radius, temp, falloff)
 	for (var/turf/T in affected)
-		if (istype(T, /turf/simulated) && !T.loc:sanctuary)
+		if (issimulatedturf(T) && !T.loc:sanctuary)
 			var/mytemp = affected[T]
 			var/melt = 1643.15 // default steel melting point
 			if (T.material && T.material.hasProperty("flammable") && ((T.material.material_flags & MATERIAL_METAL) || (T.material.material_flags & MATERIAL_CRYSTAL) || (T.material.material_flags & MATERIAL_RUBBER)))

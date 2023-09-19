@@ -16,6 +16,11 @@
 	slots = 13 // these can't move so I guess we may as well let them store more stuff?
 	mechanics_type_override = /obj/item/storage/wall
 
+	var/datum/light/light
+	var/light_r =1
+	var/light_g = 1
+	var/light_b = 1
+
 	attack_hand(mob/user as mob)
 		return MouseDrop(user)
 
@@ -23,9 +28,18 @@
 	name = "emergency supplies"
 	desc = "A wall-mounted storage container that has a few emergency supplies in it."
 	icon_state = "miniO2"
+	light_r = 0
+	light_g = 0.5
+	light_b = 1
 
 	make_my_stuff()
 		..()
+		light = new /datum/light/point
+		light.attach(src)
+		light.set_brightness(0.5)
+		light.set_height(1.5)
+		light.set_color(light_r, light_g, light_b)
+		light.enable()
 		if (prob(40))
 			new /obj/item/storage/toolbox/emergency(src)
 		if (prob(33))
@@ -49,9 +63,18 @@
 	name = "firefighting supplies"
 	desc = "A wall-mounted storage container that has a few firefighting supplies in it."
 	icon_state = "minifire"
+	light_r =1
+	light_g = 0.2
+	light_b = 0.2
 
 	make_my_stuff()
 		..()
+		light = new /datum/light/point
+		light.attach(src)
+		light.set_brightness(0.5)
+		light.set_height(1.5)
+		light.set_color(light_r, light_g, light_b)
+		light.enable()
 		if (prob(80))
 			new /obj/item/extinguisher(src)
 		if (prob(30))

@@ -99,6 +99,7 @@ var/list/governor_registry = list()
 			elecflash(src,power=2) //
 
 	ex_act(severity)
+		//TODO adjust for new severity
 		take_damage(160 + rand(-10, 10) - (50*(severity-1))) //150-170 for severity 1 (a guaranteed robogib), 100-120 for severity 2 (only unharmed governors survive), 50-70 for severity 3
 
 

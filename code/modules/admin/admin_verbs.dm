@@ -7,24 +7,40 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_admin_gib_self,
 		),
 
-
 	2 = list(
 		// LEVEL_MOD, moderator
-		/client/proc/admin_changes,
-		/client/proc/admin_play,
-		/client/proc/admin_observe,
-		/client/proc/game_panel,
-		/client/proc/game_panel_but_called_secrets,
+		//reference
+		/client/proc/cmd_admin_antag_popups,
+		/client/proc/admin_changelog, //changelog, i might rename this
+
+		//quickly make a thing without buildmode (thanks delari)
 		/client/proc/create_obj,
 		/client/proc/create_mob,
 		/client/proc/create_turf,
+
+		//self management
+		/client/proc/change_admin_prefs,
+		/client/proc/removeSelf,
+		/client/proc/admin_play,
+		/client/proc/admin_observe,
+		/client/proc/retreat_to_office,
+		/client/proc/summon_office,
+		/client/proc/cmd_admin_playermode,
+
+		//player management/investigation
 		/client/proc/player_panel,
-		/client/proc/cmd_admin_view_playernotes,
-		/client/proc/toggle_pray,
 		/client/proc/cmd_whois,
 		/client/proc/cmd_whodead,
-
+		/client/proc/cmd_admin_view_playernotes,
 		/client/proc/cmd_admin_pm,
+		/client/proc/cmd_admin_prison_unprison,
+		/client/proc/cmd_unshame_cube,
+		/client/proc/cmd_shame_cube,
+		/client/proc/cmd_admin_check_vehicle,
+		//client/proc/cmd_boot,
+
+		//communication
+		/client/proc/toggle_pray,
 		/client/proc/dsay,
 		/client/proc/blobsay,
 		/client/proc/dronesay,
@@ -33,20 +49,27 @@ var/list/admin_verbs = list(
 		/client/proc/flocksay,
 		/client/proc/silisay,
 		/client/proc/toggle_hearing_all_looc,
-		/client/proc/cmd_admin_prison_unprison,
-		/client/proc/cmd_admin_playermode,
+		/client/proc/cmd_admin_alert,
+		/client/proc/cmd_admin_subtle_message,
+		/client/proc/cmd_admin_plain_message,
 
+		//gamerunning
 		/datum/admins/proc/announce,
-		/datum/admins/proc/toggleooc,
-		/datum/admins/proc/togglelooc,
-		/datum/admins/proc/toggleoocdead,
+		/datum/admins/proc/toggle_ooc,
+		/datum/admins/proc/toggle_looc,
+		/datum/admins/proc/toggle_ooc_dead,
+		/datum/admins/proc/toggle_AI,
 		/datum/admins/proc/startnow,
-		/datum/admins/proc/toggleAI,
 		/datum/admins/proc/delay_start,
 		/datum/admins/proc/delay_end,
 
-		/client/proc/cmd_admin_subtle_message,
-		/client/proc/cmd_admin_alert,
+		/client/proc/toggle_station_name_changing,
+		/client/proc/cmd_admin_remove_all_labels,
+		/client/proc/game_panel,
+		/client/proc/game_panel_but_called_secrets,
+		//client/proc/admin_force_ambience,
+
+		//toggles
 		/client/proc/toggle_banlogin_announcements,
 		/client/proc/toggle_jobban_announcements,
 		/client/proc/toggle_popup_verbs,
@@ -54,84 +77,54 @@ var/list/admin_verbs = list(
 		/client/proc/toggle_attack_messages,
 		/client/proc/toggle_rp_word_filtering,
 		/client/proc/toggle_hear_prayers,
-		/client/proc/cmd_admin_plain_message,
-		/client/proc/cmd_admin_check_vehicle,
-		/client/proc/change_admin_prefs,
-		//client/proc/cmd_boot,
 
+		//admin safeguarding
 		/client/proc/enableDrunkMode,
 		/client/proc/forceDrunkMode,
-
-		/client/proc/cmd_unshame_cube,
-		/client/proc/cmd_shame_cube,
-		/client/proc/removeSelf,
-		/client/proc/toggle_station_name_changing,
-		/client/proc/cmd_admin_remove_all_labels,
-		/client/proc/cmd_admin_antag_popups,
-		/client/proc/retreat_to_office,
-		/client/proc/summon_office,
-
 		),
-
 
 	3 = list(
 		// LEVEL_SA, secondary administrator
+		//self management
 		/client/proc/stealth,
-		/datum/admins/proc/pixelexplosion,
-		/datum/admins/proc/turn_off_pixelexplosion,
-		/datum/admins/proc/camtest,
 		/client/proc/alt_key,
+		/client/proc/respawn_self, //go back to spawn/splash screen
+		/client/proc/respawn_as_self, //take your existing slot and make a new self right where your ghost is
+
+
+
 		/client/proc/create_portal,
-		/datum/admins/proc/togglefarting,
-		/datum/admins/proc/toggleemoterandom,
-		/client/proc/cmd_admin_show_ai_laws,
-		/client/proc/cmd_admin_reset_ai,
-		/verb/restart_the_fucking_server_i_mean_it,
-		/client/proc/cmd_admin_forceallsay,
-		/client/proc/cmd_admin_murraysay,
-		/client/proc/cmd_admin_hssay,
-		/client/proc/cmd_admin_bradsay,
-		/client/proc/cmd_admin_beepsay,
-		/datum/admins/proc/restart,
-		/datum/admins/proc/toggleenter,
-		/client/proc/respawn_self,
-		/client/proc/cmd_admin_check_reagents,
-		/client/proc/cmd_admin_check_health,
+
+		//player management
 		/client/proc/cmd_admin_polymorph,
-		/client/proc/revive_all_bees,
-		/client/proc/revive_all_cats,
-		/client/proc/revive_all_parrots,
-		/datum/admins/proc/toggle_blood_system,
-		/client/proc/narrator_mode,
 		/client/proc/admin_pick_random_player,
-		/client/proc/fix_powernets,
-		/datum/admins/proc/delay_start,
-		/datum/admins/proc/delay_end,
-		/client/proc/cmd_admin_create_centcom_report,
-		/client/proc/cmd_admin_create_advanced_centcom_report,
-		/client/proc/cmd_admin_advanced_centcom_report_help,
 		/client/proc/warn,
 		/client/proc/cmd_admin_playeropt,
+		/client/proc/cmd_admin_managebioeffect,
 		/client/proc/popt_key,
 		/client/proc/POK,
 		/client/proc/POM,
 		/client/proc/show_rules_to_player,
-		/client/proc/view_fingerprints,
-		/client/proc/cmd_admin_intercom_announce,
-		/client/proc/cmd_admin_intercom_announce_freq,
-		/client/proc/cmd_admin_intercom_help,
-		/client/proc/cmd_admin_hlvox_announce,
-		/client/proc/cmd_admin_hlvox_announce_freq,
-		/client/proc/cmd_admin_hlvox_help,
-		/client/proc/cmd_dectalk,
-		/client/proc/cmd_admin_remove_plasma,
-		/client/proc/toggle_death_confetti,
 		/client/proc/cmd_admin_unhandcuff,
-		/client/proc/admin_toggle_lighting,
-		/client/proc/cmd_admin_managebioeffect,
+		/client/proc/vpn_whitelist_add,
+		/client/proc/vpn_whitelist_remove,
+		/client/proc/cmd_admin_mute,
+		/client/proc/cmd_admin_mute_temp,
+		/client/proc/cmd_admin_admindamn,
+		/client/proc/cmd_admin_adminundamn,
 
-		/client/proc/debug_deletions,
+		//investigation
+		/client/proc/cmd_admin_check_reagents,
+		/client/proc/cmd_admin_check_health,
+		/client/proc/view_fingerprints,
+		/client/proc/display_bomb_monitor,
+		/client/proc/admin_follow_mobject,
+		/client/proc/cmd_antag_history,
+		/client/proc/cmd_admin_show_player_stats,
+		/client/proc/cmd_admin_show_player_ips,
+		/client/proc/cmd_admin_show_player_compids,
 
+		//movement
 		/client/proc/Jump,
 		/client/proc/jumptomob,
 		/client/proc/jtm,
@@ -141,10 +134,71 @@ var/list/admin_verbs = list(
 		/client/proc/jtt,
 		/client/proc/jumptocoord,
 		/client/proc/jtc,
-		/client/proc/admin_follow_mobject,
+
+		//toggles
+		/datum/admins/proc/toggle_farting,
+		/datum/admins/proc/toggle_emote_random_pitch,
+		/datum/admins/proc/toggle_blood_system,
+		/datum/admins/proc/toggle_traitor_scaling,
+
+		/client/proc/toggle_waddle_walking,
+		/client/proc/admin_toggle_lighting,
+		/client/proc/toggle_death_confetti,
+		/client/proc/toggle_flourish,
+		/client/proc/toggle_respawn_arena,
+
+		//gamerunning
+		/verb/restart_the_fucking_server_i_mean_it,
+
+		/datum/admins/proc/toggle_enter,
+		/datum/admins/proc/delay_start,
+		/datum/admins/proc/delay_end,
+		/datum/admins/proc/restart,
+
+		/client/proc/give_mass_medals,
+		/client/proc/copy_medals,
+		/client/proc/narrator_mode,
+		/client/proc/cmd_dispatch_observe_to_ghosts,
+
+		//silicon
+		/client/proc/cmd_admin_show_ai_laws,
+		/client/proc/cmd_admin_reset_ai,
+		/client/proc/cmd_admin_add_freeform_ai_law,
+		/client/proc/cmd_admin_bulk_law_change,
+
+		//debug/repair
+		/datum/admins/proc/camtest,
+
+		/client/proc/cmd_view_runtimes,
+		/client/proc/fix_powernets,
 		/client/proc/main_loop_context,
 		/client/proc/main_loop_tick_detail,
-		/client/proc/display_bomb_monitor,
+		/client/proc/cmd_admin_remove_plasma,
+		/client/proc/debug_deletions,
+		/client/proc/clear_area_overlays,
+
+		//communication
+		/client/proc/cmd_admin_forceallsay,
+		/client/proc/cmd_admin_murraysay,
+		/client/proc/cmd_admin_hssay,
+		/client/proc/cmd_admin_bradsay,
+		/client/proc/cmd_admin_beepsay,
+		/client/proc/cmd_admin_intercom_announce,
+		/client/proc/cmd_admin_intercom_announce_freq,
+		/client/proc/cmd_admin_intercom_help,
+		/client/proc/cmd_admin_hlvox_announce,
+		/client/proc/cmd_admin_hlvox_announce_freq,
+		/client/proc/cmd_admin_hlvox_help,
+		/client/proc/cmd_admin_create_centcom_report,
+		/client/proc/cmd_admin_create_advanced_centcom_report,
+		/client/proc/cmd_admin_advanced_centcom_report_help,
+		/client/proc/cmd_dectalk,
+
+		//revive all
+		/client/proc/revive_all_bees,
+		/client/proc/revive_all_cats,
+		/client/proc/revive_all_parrots,
+
 		//Ban verbs
 		/client/proc/openBanPanel,
 		/client/proc/banooc,
@@ -152,30 +206,7 @@ var/list/admin_verbs = list(
 		/client/proc/modify_parts,
 		/client/proc/jobbans,
 
-		// moved down from admin
-		/client/proc/cmd_admin_add_freeform_ai_law,
-		/client/proc/cmd_admin_bulk_law_change,
-		/client/proc/cmd_admin_mute,
-		/client/proc/cmd_admin_mute_temp,
-		/client/proc/respawn_as_self,
-		/datum/admins/proc/toggletraitorscaling,
-		/client/proc/toggle_flourish,
-
-		/client/proc/cmd_view_runtimes,
-		/client/proc/cmd_antag_history,
-		/client/proc/cmd_admin_show_player_stats,
-		/client/proc/cmd_admin_show_player_ips,
-		/client/proc/cmd_admin_show_player_compids,
-		/client/proc/give_mass_medals,
-		/client/proc/copy_medals,
-
-		/client/proc/cmd_dispatch_observe_to_ghosts,
-		/client/proc/waddle_walking,
-		/client/proc/clear_area_overlays,
-		/client/proc/cmd_admin_adminundamn,
-		/client/proc/cmd_admin_admindamn,
-		/client/proc/toggle_respawn_arena,
-
+		//atom fuckery
 		/client/proc/cmd_emag_all,
 		/client/proc/cmd_scale_all,
 		/client/proc/cmd_rotate_all,
@@ -186,10 +217,7 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_scale_type,
 		/client/proc/cmd_rotate_type,
 		/client/proc/cmd_spin_type,
-		/client/proc/cmd_get_type,
-
-		/client/proc/vpn_whitelist_add,
-		/client/proc/vpn_whitelist_remove
+		/client/proc/cmd_get_type
 		),
 
 	4 = list(
@@ -205,98 +233,116 @@ var/list/admin_verbs = list(
 		/client/proc/addpathogens,
 		/client/proc/addreagents,
 		/client/proc/respawn_as_self,
-		/datum/admins/proc/toggletraitorscaling,
-		/datum/admins/proc/togglerandomaiblobs,
+		/datum/admins/proc/toggle_traitor_scaling,
+		/datum/admins/proc/toggle_random_ai_blobs,
 		*/
 		),
 
 	5 = list(
 		// LEVEL_PA, primary administrator
-		/datum/admins/proc/togglesuicide,
-		/datum/admins/proc/pixelexplosion,
-		/client/proc/open_dj_panel,
-		/client/proc/cmd_admin_clownify,
-		/client/proc/toggle_toggles,
-		/client/proc/cmd_admin_plain_message_all,
-		/client/proc/cmd_admin_fake_medal,
-		/datum/admins/proc/togglespeechpopups,
-		/datum/admins/proc/togglemonkeyspeakhuman,
-		/datum/admins/proc/toggleautoending,
-		/datum/admins/proc/togglelatetraitors,
-		/datum/admins/proc/toggle_pull_slowing,
-		/client/proc/togglebuildmode,
+
+		//investigation
+		/client/proc/SetInfoOverlay,
+		/client/proc/SetInfoOverlayAlias,
+		/client/proc/count_all_of,
+
+		//self management
+		/client/proc/noclip,
+		/client/proc/idclip,
+		/client/proc/respawn_as_self,
+		/client/proc/respawn_heavenly,
+		/client/proc/respawn_demonically,
+
+		//atom management
+		/datum/admins/proc/spawn_atom,
+		/datum/admins/proc/heavenly_spawn_obj,
+		/datum/admins/proc/supplydrop_spawn_obj,
+		/datum/admins/proc/demonically_spawn_obj,
+		/client/proc/toggle_buildmode,
 		/client/proc/toggle_buildmode_view,
-		/client/proc/cmd_admin_rejuvenate_all,
-		/client/proc/toggle_force_mixed_blob,
-		/client/proc/toggle_force_mixed_wraith,
-		///proc/possess,
-		/proc/possessmob,
-		/proc/releasemob,
-		/client/proc/critter_creator_debug,
-		/client/proc/cmd_cat_county,
+		//client/proc/cmd_admin_delete,
+
+		//player management
+		/client/proc/toggle_vpn_blacklist,
+
+		//mob management
+		/proc/possess_mob,
+		/proc/release_mob,
+		/client/proc/cmd_swap_minds,
+		/client/proc/cmd_transfer_client,
 		/client/proc/find_thing,
 		/client/proc/find_one_of,
 		/client/proc/cmd_admin_advview,
-		/client/proc/cmd_swap_minds,
-		/client/proc/cmd_transfer_client,
-		/client/proc/edit_module,
+		/client/proc/cmd_admin_rejuvenate_all,
+		// /proc/possess,
 		// /client/proc/modify_organs,
-		/client/proc/toggle_atom_verbs,
+
+		//communication
+		/client/proc/cmd_admin_plain_message_all,
+
+		//toggles
+		/datum/admins/proc/toggle_suicide,
+		/client/proc/toggle_toggles,
+		/client/proc/toggle_atom_verbs, //might make this a self thing (also investigate why it's not sticking)
+		/client/proc/toggle_force_mixed_blob,
+		/client/proc/toggle_force_mixed_wraith,
+		/client/proc/toggle_map_voting,
 		/client/proc/toggle_camera_network_reciprocity,
-		///client/proc/generate_poster,
-		/client/proc/count_all_of,
-		/client/proc/admin_set_ai_vox,
-		/client/proc/cmd_makeshittyweapon,
+
+		/datum/admins/proc/toggle_speech_popups,
+		/datum/admins/proc/toggle_monkey_speak_human,
+		/datum/admins/proc/toggle_autoending,
+		/datum/admins/proc/toggle_late_traitors,
+		/datum/admins/proc/toggle_pull_slowing,
+
+		//unsure
+		/client/proc/edit_module,
 		/client/proc/rspawn_panel,
 		/client/proc/cmd_admin_manageabils,
-		/client/proc/create_all_wizard_rings,
-		/client/proc/toggle_vpn_blacklist,
+		/client/proc/removeOther,
+		/client/proc/show_admin_lag_hacks,
 
-		// moved up from admin
-		//client/proc/cmd_admin_delete,
-		/client/proc/noclip,
-		/client/proc/idclip,
-		///client/proc/addpathogens,
-		/client/proc/respawn_as_self,
+		//fun
+		/datum/admins/proc/enable_pixelexplosion,
+		/datum/admins/proc/disable_pixelexplosion,
+
+		/client/proc/sega_bass_fishing,
+		/client/proc/cmd_customgrenade,
+		/client/proc/open_dj_panel,
+		/client/proc/cmd_admin_clownify,
+		/client/proc/cmd_cat_county,
 		/client/proc/cmd_give_pet,
 		/client/proc/cmd_give_pets,
 		/client/proc/cmd_give_player_pets,
-		/client/proc/sega_bass_fishing,
-		/client/proc/cmd_customgrenade,
+		/client/proc/cmd_makeshittyweapon,
+		/client/proc/create_all_wizard_rings,
+		/client/proc/admin_set_ai_vox,
+		/client/proc/critter_creator_debug,
+		/client/proc/cmd_admin_fake_medal,
+		/client/proc/spawn_survival_shit,
+		///client/proc/addpathogens,
+		///client/proc/generate_poster,
+
+		//gibs
 		/client/proc/cmd_admin_gib,
 		/client/proc/cmd_admin_partygib,
 		/client/proc/cmd_admin_owlgib,
 		/client/proc/cmd_admin_firegib,
 		/client/proc/cmd_admin_elecgib,
-		/client/proc/sharkgib,
+		/client/proc/cmd_admin_sharkgib,
 		/client/proc/cmd_admin_icegib,
 		/client/proc/cmd_admin_goldgib,
 		/client/proc/cmd_admin_spidergib,
 		/client/proc/cmd_admin_implodegib,
 		/client/proc/cmd_admin_cluwnegib,
 		/client/proc/cmd_admin_buttgib,
-		/client/proc/cmd_admin_tysongib,
-		/client/proc/removeOther,
-		/client/proc/toggle_map_voting,
-		/client/proc/show_admin_lag_hacks,
-		/client/proc/spawn_survival_shit,
-		/client/proc/respawn_heavenly,
-		/client/proc/respawn_demonically,
-		/datum/admins/proc/spawn_atom,
-		/datum/admins/proc/heavenly_spawn_obj,
-		/datum/admins/proc/supplydrop_spawn_obj,
-		/datum/admins/proc/demonically_spawn_obj,
-
-		// moved down from coder. shows artists, atmos etc
-		/client/proc/SetInfoOverlay,
-		/client/proc/SetInfoOverlayAlias,
-
+		/client/proc/cmd_admin_tysongib
 		),
 
 
 	6 = list(
 		// LEVEL_ADMIN, Administrator
-		/datum/admins/proc/togglesoundwaiting,
+		/datum/admins/proc/toggle_sound_waiting,
 		/client/proc/debug_variables,
 		/verb/adminCreateBlueprint,
 		/client/proc/toggle_text_mode,
@@ -339,7 +385,7 @@ var/list/admin_verbs = list(
 
 		/client/proc/flip_view,
 		/client/proc/show_image_to_all,
-		/client/proc/sharkban,
+		/client/proc/cmd_admin_sharkban,
 		/client/proc/toggle_literal_disarm,
 		/datum/admins/proc/toggle_emote_cooldowns,
 		/client/proc/implant_all,
@@ -350,10 +396,10 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_trenchify_station,
 		/client/proc/cmd_special_shuttle,
 
-		/datum/admins/proc/toggleaprilfools,
+		/datum/admins/proc/toggle_april_fools,
 		/client/proc/cmd_admin_pop_off_all_the_limbs_oh_god,
-		/datum/admins/proc/togglethetoggles,
-		/datum/admins/proc/togglesimsmode,
+		/datum/admins/proc/toggle_toggles,
+		/datum/admins/proc/toggle_sims_mode,
 		/client/proc/admin_toggle_nightmode,
 		/client/proc/toggle_ip_alerts,
 		/client/proc/upload_custom_hud,
@@ -380,68 +426,81 @@ var/list/admin_verbs = list(
 
 	7 = list(
 		// LEVEL_CODER, coder
-		/client/proc/cmd_job_controls,
-		/client/proc/cmd_modify_market_variables,
-		/client/proc/BK_finance_debug,
-		/client/proc/BK_alter_funds,
-		/client/proc/debug_pools,
-		/client/proc/debug_variables,
-		/client/proc/debug_global_variable,
-		/client/proc/get_admin_state,
-		/client/proc/call_proc,
-		/client/proc/call_proc_all,
-		/datum/admins/proc/adsound,
-		/datum/admins/proc/pcap,
+
+		//self management
 		/client/proc/toggle_extra_verbs,
 		/client/proc/cmd_randomize_look,
-		/client/proc/toggle_numbers_station_messages,
+		/client/proc/temporary_deadmin_self,
+
+		//player management
 		// /client/proc/export_banlist,
 		// /client/proc/import_banlist,
 
-
-		/client/proc/ticklag,
-		/client/proc/cmd_debug_vox,
-		/client/proc/cmd_debug_hlvox,
-		/client/proc/check_gang_scores,
-		/client/proc/mapWorld,
-		/client/proc/haine_blood_debug,
-		/client/proc/debug_messages,
-		/client/proc/toggle_next_click,
-		/client/proc/debug_reaction_list,
-		/client/proc/debug_reagents_cache,
-		///client/proc/debug_check_possible_reactions,
+		//team management
 		/client/proc/set_admin_level,
-		/client/proc/show_camera_paths,
-		///client/proc/dbg_itemspecial,
-		///client/proc/dbg_objectprop,
-		// /client/proc/remove_camera_paths_verb,
-		// /client/proc/show_runtime_window,
-		/client/proc/cmd_chat_debug,
-		/client/proc/toggleIrcbotDebug,
-		/datum/admins/proc/toggle_bone_system,
+		/client/proc/get_admin_state,
+
+		//gamerunning
+		/datum/admins/proc/pcap,
+
+		/client/proc/cmd_job_controls,
+		/client/proc/cmd_modify_market_variables,
+		/client/proc/toggle_numbers_station_messages,
 		/client/proc/cmd_randomize_handwriting,
-		/client/proc/wireTest,
-		/client/proc/toggleResourceCache,
-		/client/proc/debugResourceCache,
-		/client/proc/debug_profiler,
-		/client/proc/cmd_tooltip_debug,
-		/client/proc/deleteJsLogFile,
-		/client/proc/deleteAllJsLogFiles,
-		/client/proc/random_color_matrix,
-		/client/proc/clear_string_cache,
-		/client/proc/edit_color_matrix,
-		/client/proc/test_mass_flock_convert,
-		/client/proc/test_flock_panel,
-		/client/proc/temporary_deadmin_self,
-		/verb/rebuild_flow_networks,
-		/verb/print_flow_networks,
+		/client/proc/check_gang_scores,
 		/client/proc/toggle_hard_reboot,
 		/client/proc/cmd_modify_respawn_variables,
+		/client/proc/BK_alter_funds,
 		//client/proc/set_nukie_score,
 		//client/proc/set_pod_wars_score,
 		//client/proc/set_pod_wars_deaths,
 
-		/client/proc/player_panel_tgui,
+		//debug/repair
+		/verb/rebuild_flow_networks,
+		/verb/print_flow_networks,
+
+		/client/proc/call_proc,
+		/client/proc/call_proc_all,
+		/client/proc/BK_finance_debug,
+		/client/proc/ticklag,
+		/client/proc/cmd_debug_vox,
+		/client/proc/cmd_debug_hlvox,
+		/client/proc/haine_blood_debug,
+		/client/proc/debug_reaction_list,
+		/client/proc/debug_reagents_cache,
+		/client/proc/show_camera_paths,
+		/client/proc/wireTest,
+		/client/proc/debugResourceCache,
+		/client/proc/deleteJsLogFile,
+		/client/proc/deleteAllJsLogFiles,
+		/client/proc/debug_messages,
+		/client/proc/mapWorld,
+		/client/proc/cmd_chat_debug,
+		/client/proc/debug_profiler,
+		/client/proc/cmd_tooltip_debug,
+		/client/proc/clear_string_cache,
+		/client/proc/edit_color_matrix,
+		/client/proc/random_color_matrix,
+		/client/proc/debug_pools,
+		/client/proc/debug_variables,
+		/client/proc/debug_global_variable,
+		/client/proc/test_mass_flock_convert,
+		/client/proc/test_flock_panel,
+		/client/proc/player_panel_tgui, //testing
+		// /client/proc/debug_check_possible_reactions,
+		// /client/proc/show_runtime_window,
+		// /client/proc/remove_camera_paths_verb,
+		// /client/proc/dbg_itemspecial,
+		// /client/proc/dbg_objectprop,
+
+		//toggles
+		/datum/admins/proc/toggle_bone_system,
+		/datum/admins/proc/adsound,
+
+		/client/proc/toggle_next_click,
+		/client/proc/toggle_ircbot_debug,
+		/client/proc/toggle_resource_cache,
+
 
 #ifdef MACHINE_PROCESSING_DEBUG
 		/client/proc/cmd_display_detailed_machine_stats,
@@ -460,15 +519,15 @@ var/list/admin_verbs = list(
 
 	8 = list(
 		// LEVEL_HOST, host
-		/datum/admins/proc/toggle_soundpref_override
+		/datum/admins/proc/toggle_soundpref_override //really? that's all?
 		),
 	)
 
 // verbs that SAs and As get while observing. PA+ get these all the time
 var/list/special_admin_observing_verbs = list(
 	/datum/admins/proc/toggle_respawns,
-	/datum/admins/proc/toggledeadchat,
-	/client/proc/togglepersonaldeadchat,
+	/datum/admins/proc/toggle_deadchat,
+	/client/proc/toggle_personal_deadchat,
 	/client/proc/Getmob,
 	)
 
@@ -660,6 +719,7 @@ var/list/special_pa_observing_verbs = list(
 		boutput(src, "<span class='notice'>You are already playing!</span>")
 
 /client/proc/get_admin_state()
+	set name = "Get Admin State"
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER)
 	for(var/client/C)
 		if(C.holder)
@@ -680,7 +740,7 @@ var/list/special_pa_observing_verbs = list(
 	return
 
 /client/proc/player_panel_tgui()
-	set name = "Player Panel TGUI"
+	set name = "Player Panel (TGUI)"
 	SET_ADMIN_CAT(ADMIN_CAT_PLAYERS)
 	admin_only
 	if (src.holder.tempmin)
@@ -722,6 +782,13 @@ var/list/special_pa_observing_verbs = list(
 		src.holder.create_mob(usr)
 	return
 
+/client/proc/create_turf_but_called_create_turf() //solely for clarity, fuck terfs panel is eternal
+	set name = "Create Turf Panel"
+	SET_ADMIN_CAT(ADMIN_CAT_SERVER)
+	if (src.holder)
+		src.holder.create_turf(usr)
+	return
+
 /client/proc/create_turf()
 	set name = "Fuck Terfs Panel"
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER)
@@ -738,7 +805,9 @@ var/list/special_pa_observing_verbs = list(
 
 /client/proc/stealth()
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)
-	set name = "Stealth Mode"
+	set name = "Toggle Stealth Mode"
+	set desc = ""
+
 	admin_only
 
 	//fuck u
@@ -786,8 +855,8 @@ var/list/special_pa_observing_verbs = list(
 
 /client/proc/alt_key()
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)
-	set name = "Alternate Key"
-	set desc = "Shows your key as something else!"
+	set name = "Set Alternate Key"
+	set desc = "Shows your key as something else! Whether because Stealth, or because you've had the same key for 10 years but go by something else now."
 	admin_only
 
 	src.holder.set_alt_key(null, 0)
@@ -829,7 +898,7 @@ var/list/special_pa_observing_verbs = list(
 */
 /client/proc/banooc()
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
-	set name = "OOC (Un)Ban"
+	set name = "Player OOC Ban Toggle"
 	set desc = "Ban or unban a player from using OOC"
 	admin_only
 	var/mob/target
@@ -851,8 +920,8 @@ var/list/special_pa_observing_verbs = list(
 /client/proc/warn(var/mob/M in world)
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 	set popup_menu = 0
-	set name = "Warn"
-	set desc = "Warn a player"
+	set name = "Warn Player"
+	set desc = "Create a warning for a player"
 	admin_only
 	if(M.client && M.client.holder && (M.client.holder.level >= src.holder.level))
 		alert("You cannot perform this action. You must be of a higher administrative rank!", null, null, null, null, null)
@@ -882,6 +951,7 @@ var/list/special_pa_observing_verbs = list(
 var/list/fun_images = list()
 /client/proc/show_image_to_all()
 	set name = "Show Image to All"
+	set desc = "Upload any fun image to show in the lower left portion of everyone's viewport"
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
 
 	if(fun_images.len)
@@ -907,6 +977,7 @@ var/list/fun_images = list()
 
 /client/proc/show_rules_to_player(mob/M as mob in world)
 	set name = "Show Rules to Player"
+	set desc = "Force the rules to pop up for a given player, with two levels of severity"
 	set popup_menu = 0
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 
@@ -933,6 +1004,7 @@ var/list/fun_images = list()
 //"gonna add a specific button that shows a player a boilerplate "Your gimmick sucks ass and if you don't think so so do you" popup" - Warc 2022
 /client/proc/berate_player_gimmick(mob/M as mob in world) //(But it's actually Bat who did this)
 	set name = "Berate Player Gimmick"
+	set desc = "Create an anonymous pop up on a player's screen telling them whatever they're doing sucks and they should stop"
 	set popup_menu = 0
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 
@@ -959,6 +1031,7 @@ var/list/fun_images = list()
 
 /client/proc/view_fingerprints(obj/O as obj in world)
 	set name = "View Object Fingerprints"
+	set desc = "See all the chumps whose grubby hands touched a thing"
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 	set popup_menu = 0
 
@@ -975,9 +1048,9 @@ var/list/fun_images = list()
 	return
 
 /client/proc/respawn_heavenly()
-	set name = "Respawn Heavenly"
+	set name = "Respawn As Self (Heavenly)"
+	set desc = "Respawn yourself (currently loaded character) from the heavens"
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)
-	set desc = "Respawn yourself from the heavens"
 	set popup_menu = 0
 	admin_only
 
@@ -988,9 +1061,9 @@ var/list/fun_images = list()
 	heavenly_spawn(M)
 
 /client/proc/respawn_demonically()
-	set name = "Respawn Demonically"
+	set name = "Respawn As Self (Demonically)"
+	set desc = "Respawn yourself (currently loaded character) from the depths of the underfloor."
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)
-	set desc = "Respawn yourself from the depths of the underfloor."
 	set popup_menu = 0
 	admin_only
 
@@ -1001,8 +1074,8 @@ var/list/fun_images = list()
 	demonic_spawn(M)
 
 /client/proc/respawn_as(var/client/cli in clients)
-	set name = "Respawn As"
-	set desc = "Respawn yourself as the currenly loaded character of a player. Instantly. Right where you stand."
+	set name = "Respawn As Existing Player"
+	set desc = "Respawn yourself as the currenly loaded character of any player seen in the round. Instantly. Right where you stand."
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)
 	set popup_menu = 0
 	admin_only
@@ -1063,9 +1136,10 @@ var/list/fun_images = list()
 			M.apply_flash(animation_duration = 30, weak = 5, uncloak_prob = 0, stamina_damage = 250)
 
 /client/proc/cmd_admin_humanize(var/mob/M in world)
-	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 	set name = "Humanize"
+	set desc = "Turn most mobs (player controlled or not) into a standard human"
 	set popup_menu = 0
+	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 
 	if (!ticker)
 		SPAWN_DBG(0)
@@ -1119,9 +1193,9 @@ var/list/fun_images = list()
 		return M.humanize(0)
 
 /client/proc/cmd_admin_pop_off_all_the_limbs_oh_god()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
 	set name = "Pop off everyone's limbs"
 	set desc = "Oh christ no don't do this"
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 
 	if(alert("Really pop off everyone's limbs?", "JESUS CHRIST", "Yes, I'm a crazy bastard", "No") == "Yes, I'm a crazy bastard")
 		logTheThing("admin", src, null, "popped off all limbs.")
@@ -1139,11 +1213,11 @@ var/list/fun_images = list()
 
 //Special proc to set up the server for mapping via screenshots
 /client/proc/mapWorld()
-	set name = "Map World"
-	set desc = "Takes a series of screenshots for mapping"
+	set name = "Full Map Autoscreenshot"
+	set desc = "Wizard for automated full map screenshots (Do Not Use On Live Server)"
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 
-	//Gotta prevent dummies
+	//Warning in the description now, but we still want a confirm dialog
 	var/confirm = alert("WARNING: This proc should absolutely not be run on a live server! Make sure you know what you are doing!", "WARNING", "Cancel", "Proceed")
 	if(confirm == "Cancel")
 		return
@@ -1151,7 +1225,7 @@ var/list/fun_images = list()
 	//Viewport size
 	var/viewport_width
 	var/viewport_height
-	var/inputView = input(src, "Set your desired viewport size. (30 for 300x300 maps, 50 for 200x200)", "Viewport Size", 30) as num //used to be 60 then lummox broke it
+	var/inputView = input(src, "Set your desired viewport size. (30 for 300x300 maps, 50 for 200x200)", "Viewport Size", 30) as num
 	if (inputView < 1)
 		return
 	else
@@ -1271,7 +1345,7 @@ var/list/fun_images = list()
 
 /client/proc/view_cid_list(var/C as text)
 	set name = "View CompID List"
-	set desc = "View the list of observed computer IDs belonging to a key"
+	set desc = "View the list of observed computer IDs belonging to a BYOND key"
 	SET_ADMIN_CAT(ADMIN_CAT_PLAYERS)
 
 	admin_only
@@ -1646,7 +1720,7 @@ var/list/fun_images = list()
 	logTheThing("diary", src, null, "spawned a custom grenade at [usr.loc]", "admin")
 	message_admins("[key_name(src)] spawned a custom grenade at [usr.loc].")
 
-/client/proc/admin_changes()
+/client/proc/admin_changelog()
 	set category = "Commands"
 	set name = "Admin Changelog"
 	set desc = "Show or hide the admin changelog"
@@ -1957,7 +2031,7 @@ var/list/fun_images = list()
 					winshow(C, "pregameBrowser", 1)
 
 /client/proc/implant_all()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	set name = "Implant All"
 	set desc = "Gives everyone a microbomb. You cannot undo this!!"
 
@@ -2113,6 +2187,8 @@ var/list/fun_images = list()
 			C.cmd_admin_delete(A)
 		if("Copy Here")
 			semi_deep_copy(A, src.loc)
+		if("Make a Radio")
+			C.cmd_make_radio(A)
 		if("Ship to Cargo")
 			C.cmd_admin_ship_movable_to_cargo(A)
 
@@ -2160,7 +2236,7 @@ var/list/fun_images = list()
 
 		if ("Possess")
 			if(istype(A, /mob))
-				possessmob(A)
+				possess_mob(A)
 			else
 				possess(A)
 		if ("Create Poster")

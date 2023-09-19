@@ -315,7 +315,7 @@
 
 // TURFS
 
-/datum/flock/proc/reserveTurf(var/turf/simulated/T, var/name)
+/datum/flock/proc/reserveTurf(var/turf/T, var/name)
 	if(T in all_owned_tiles)
 		return
 	src.busy_tiles[name] = T
@@ -325,12 +325,12 @@
 	src.busy_tiles -= name
 	src.updateAnnotations()
 
-/datum/flock/proc/claimTurf(var/turf/simulated/T)
+/datum/flock/proc/claimTurf(var/turf/T)
 	src.all_owned_tiles |= T
 	src.priority_tiles -= T // we have it now, it's no longer priority
 	src.updateAnnotations()
 
-/datum/flock/proc/isTurfFree(var/turf/simulated/T, var/queryName) // provide the drone's name here: if they own the turf it's free _to them_
+/datum/flock/proc/isTurfFree(var/turf/T, var/queryName) // provide the drone's name here: if they own the turf it's free _to them_
 	for(var/name in src.busy_tiles)
 		if(name == queryName)
 			continue
@@ -338,7 +338,7 @@
 			return 0
 	return 1
 
-/datum/flock/proc/togglePriorityTurf(var/turf/simulated/T)
+/datum/flock/proc/togglePriorityTurf(var/turf/T)
     if(!T)
         return 1 // error!!
     if(T in priority_tiles)
@@ -364,7 +364,7 @@
 /datum/flock/proc/process()
 	var/list/floors_no_longer_existing = list()
 	// check all active floors
-	for(var/turf/simulated/floor/feather/T in src.all_owned_tiles)
+	for(var/turf/floor/feather/T in src.all_owned_tiles)
 		if(!T || T.loc == null || T.broken)
 			// tile got killed, remove it
 			floors_no_longer_existing |= T
@@ -372,7 +372,7 @@
 		// check adjacent tiles to see if we've been surrounded and can start generating, or if we're no longer surrounded and can't generate
 		// var/validNeighbors = 0
 		// var/list/neighbors = getNeighbors(T, cardinal)
-		// for(var/turf/simulated/floor/feather/F in neighbors)
+		// for(var/turf/floor/feather/F in neighbors)
 		// 	validNeighbors += 1
 		// if(validNeighbors < 4 && T.generating)
 		// 	T.off()
@@ -448,17 +448,17 @@
 					animate_flock_convert_complete(converted)
 
 	// if floor, turn to floor, if wall, turn to wall
-	if(istype(T, /turf/simulated/floor))
-		if(istype(T, /turf/simulated/floor/feather))
+	if(istype(T, /turf/floor))
+		if(istype(T, /turf/floor/feather))
 			// fix instead of replace
-			var/turf/simulated/floor/feather/TF = T
+			var/turf/floor/feather/TF = T
 			TF.repair()
 			animate_flock_convert_complete(T)
 		else
-			T.ReplaceWith("/turf/simulated/floor/feather", 0)
+			T.ReplaceWith("/turf/floor/feather", 0)
 			animate_flock_convert_complete(T)
-	if(istype(T, /turf/simulated/wall))
-		T.ReplaceWith("/turf/simulated/wall/auto/feather", 0)
+	if(istype(T, /turf/wall))
+		T.ReplaceWith("/turf/wall/auto/feather", 0)
 		animate_flock_convert_complete(T)
 
 
@@ -467,7 +467,7 @@
 		var/obj/lattice/flock/FL = locate(/obj/lattice/flock) in T
 		if(istype(FL))
 			qdel(FL)
-			T.ReplaceWith("/turf/simulated/floor/feather", 0)
+			T.ReplaceWith("/turf/floor/feather", 0)
 			animate_flock_convert_complete(T)
 		// if we have no fibrenet, make one
 		else
@@ -502,7 +502,7 @@
 		var/list/turfs = circular_range(T, radius)
 		LAGCHECK(LAG_LOW)
 		for(var/turf/tile in turfs)
-			if(istype(tile, /turf/simulated) && !isfeathertile(tile))
+			if(istype(tile, /turf) && !isfeathertile(tile))
 				flock_convert_turf(tile)
 				sleep(0.5)
 		LAGCHECK(LAG_LOW)
@@ -525,7 +525,7 @@
 	var/temp = 0
 
 	while(isturf(T))
-		if(istype(T, /turf/simulated) && !isfeathertile(T))
+		if(istype(T, /turf) && !isfeathertile(T))
 			// do stuff to turf
 			flock_convert_turf(T)
 			sleep(0.2 SECONDS)

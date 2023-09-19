@@ -91,8 +91,8 @@
 	icon_state = "alert:0"
 	var/list/priority_alarms = list()
 	var/list/minor_alarms = list()
-	var/receive_frequency = "1437"
-	var/respond_frequency = "1149"
+	var/receive_frequency = FREQ_ALARM
+	var/respond_frequency = FREQ_PDA
 
 /obj/machinery/computer/hangar
 	name = "Hangar"
@@ -122,16 +122,16 @@
 
 /obj/machinery/computer/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			//gib(src.loc) NO.
 			qdel(src)
 			return
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			if (prob(50))
 				for(var/x in src.verbs)
 					src.verbs -= x
 				set_broken()
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if (prob(25))
 				for(var/x in src.verbs)
 					src.verbs -= x

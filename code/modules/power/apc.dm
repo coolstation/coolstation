@@ -180,14 +180,14 @@ var/zapLimiter = 0
 
 			for (var/direction in cardinal)
 				testturf = get_step(ourturf, direction)
-				if (!istype(testturf, /turf/simulated/floor)) //In case we're in-room but the adjacent wall happens to be maint-owned
+				if (!istype(testturf, /turf/floor)) //In case we're in-room but the adjacent wall happens to be maint-owned
 					continue //If we are actually located in maint there should be a maint floor adjactent to us, unless you've mapped a 1 tile wide dead end lined with APCs I guess :p
 				if ((locate(/obj/window) in testturf) || locate(/obj/wingrille_spawn) in testturf)//fuck u destiny
 					continue
 				var/area/testarea = get_area(testturf)
 				if (istype(testarea, /area/station/maintenance))
 					src.areastring = src.area.name //avoids tripping APC count diagnostic
-					testarea.contents += ourturf
+					testarea.add_turf(ourturf)
 					break
 
 
@@ -1383,14 +1383,14 @@ var/zapLimiter = 0
 			qdel(src)
 	else
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				set_broken()
 				qdel(src)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if (prob(50))
 					set_broken()
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				if (prob(25))
 					set_broken()
 			else return

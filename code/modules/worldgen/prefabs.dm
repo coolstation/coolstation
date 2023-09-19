@@ -622,3 +622,11 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabPath = "assets/maps/prefabs/prefab_cave_closet.dmm"
 		prefabSizeX = 4
 		prefabSizeY = 4
+
+	cave_robotics
+		dusty = 1
+		maxNum = 1
+		probability = 60
+		prefabPath = "assets/maps/prefabs/prefab_cave_robotics.dmm"
+		prefabSizeX = 20
+		prefabSizeY = 12

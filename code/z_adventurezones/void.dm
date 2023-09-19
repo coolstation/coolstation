@@ -12,13 +12,14 @@ CONTENTS:
 /area/crunch
 	name = "somewhere"
 	icon_state = "purple"
-	filler_turf = "/turf/unsimulated/floor/void"
+	filler_turf = "/turf/floor/void"
 	sound_environment = EAX_SEWER_PIPE
 	skip_sims = 1
 	sims_score = 15
 	sound_group = "void"
 	sound_loop_1 = 'sound/ambience/spooky/Void_Song.ogg'
 	ambient_light = rgb(6.9, 4.20, 6.9)
+	is_construction_allowed = FALSE
 
 	New()
 		..()
@@ -35,7 +36,7 @@ CONTENTS:
 						if (M.client)
 							M.client.playAmbience(src, AMBIENCE_FX_2, 50)
 
-/turf/unsimulated/wall/void
+/turf/wall/void
 	name = "dense void"
 	icon = 'icons/turf/floors.dmi'
 	desc = "It seems solid..."
@@ -48,20 +49,20 @@ CONTENTS:
 	icon_state = "darkvoid"
 #endif
 
-/turf/unsimulated/wall/void/crunch //putting these here for now
+/turf/wall/void/crunch //putting these here for now
 	fullbright = 0
 
-/turf/unsimulated/floor/void
+/turf/floor/void
 	name = "void"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "void"
 	desc = "A strange shifting void ..."
 	mat_appearances_to_ignore = list("steel")
 
-/turf/unsimulated/floor/void/crunch
+/turf/floor/void/crunch
 	fullbright = 0
 
-/turf/simulated/wall/void
+/turf/wall/void
 	name = "dense void"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "darkvoid"
@@ -86,7 +87,7 @@ CONTENTS:
 		return
 
 
-/turf/simulated/floor/void
+/turf/floor/void
 	name = "void"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "void"

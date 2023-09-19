@@ -4,7 +4,7 @@
 
 
 ////////////////////////////////////////////////////////////////TURFS
-/turf/simulated/shuttle
+/turf/shuttle
 	name = "shuttle wall"
 	icon = 'icons/turf/shuttle.dmi'
 	thermal_conductivity = 0.05
@@ -33,7 +33,7 @@
 		..()
 		if (icon_state == "tplaceholder") icon_state = (channel_open ? "near_blank" : "[rand(1,25)]" )
 
-/turf/simulated/floor/shuttle_noprotections
+/turf/floor/shuttle_noprotections
 	name = "shuttle floor"
 	icon_state = "floord"
 	icon = 'icons/turf/shuttle.dmi'
@@ -43,25 +43,25 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				if(prob(50))
 					src.ReplaceWithSpace()
 				else
 					src.ReplaceWithLattice()
 
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if(prob(80))
 					src.break_tile_to_plating()
 				else
 					src.break_tile()
 				src.hotspot_expose(1000,CELL_VOLUME)
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				if (prob(50))
 					src.break_tile()
 					src.hotspot_expose(1000,CELL_VOLUME)
 		return
 
-/turf/simulated/wall/r_wall/shuttle_noprotections
+/turf/wall/r_wall/shuttle_noprotections
 	name = "shuttle wall"
 	icon = 'icons/turf/shuttle.dmi'
 	icon_state = "wall"
@@ -79,7 +79,7 @@
 					src.icon_state = "[src.icon_style]_void"
 		return
 
-/turf/simulated/floor/shuttle // theres a bug with the crowbar special attack here. not great.
+/turf/floor/shuttle // theres a bug with the crowbar special attack here. not great.
 	name = "shuttle floor"
 	icon_state = "floor"
 	icon = 'icons/turf/shuttle.dmi'
@@ -102,34 +102,12 @@
 	damage_slashing()
 	damage_blunt()
 
-/turf/unsimulated/floor/shuttle
-	name = "shuttle floor"
-	icon_state = "floor"
-	icon = 'icons/turf/shuttle.dmi'
-	turf_flags = MOB_STEP
-
-	attackby()
-	attack_hand()
-	hitby()
-		. = ..()
-	reagent_act()
-	bullet_act()
-	ex_act()
-	blob_act()
-	meteorhit()
-	damage_heat()
-	damage_corrosive()
-	damage_piercing()
-	damage_slashing()
-	damage_blunt()
-
-
-/turf/simulated/wall/auto/shuttle
+/turf/wall/auto/shuttle
 	icon = 'icons/turf/walls_shuttle.dmi'
 	light_mod = "wall-"
 	connect_overlay = 1
-	connects_to = list(/turf/simulated/wall/auto/shuttle, /turf/simulated/wall/false_wall, /obj/machinery/door, /obj/window)
-	connects_with_overlay = list(/turf/simulated/wall/false_wall/reinforced, /obj/machinery/door, /obj/window)
+	connects_to = list(/turf/wall/auto/shuttle, /turf/wall/false_wall, /obj/machinery/door, /obj/window)
+	connects_with_overlay = list(/turf/wall/false_wall/reinforced, /obj/machinery/door, /obj/window)
 /*
 	update_neighbors()
 		..()
@@ -171,7 +149,7 @@
 		return list()
 
 
-/turf/simulated/shuttle/wall/cockpit
+/turf/shuttle/wall/cockpit
 	name = "shuttle cockpit"
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "shuttlecock"
@@ -181,7 +159,7 @@
 	opacity = 0
 	plane = PLANE_DEFAULT
 
-/turf/simulated/shuttle/wall/cockpit/window
+/turf/shuttle/wall/cockpit/window
 	name = "shuttle wall"
 	icon_state = "wall1"
 	icon = 'icons/turf/shuttle.dmi'
@@ -201,7 +179,7 @@
 	layer = EFFECTS_LAYER_BASE - 1
 	flags = ALWAYS_SOLID_FLUID | IS_PERSPECTIVE_FLUID
 
-/turf/simulated/wall/auto/shuttle
+/turf/wall/auto/shuttle
 	name = "shuttle wall"
 	desc = "A shuttle wall. Pretty reinforced."
 	icon = 'icons/turf/walls_shuttle.dmi'
@@ -209,9 +187,9 @@
 	opacity = 0
 	flags = ALWAYS_SOLID_FLUID | IS_PERSPECTIVE_FLUID
 	connect_overlay = 1
-	connects_to = list(/turf/simulated/wall/auto/supernorn, /turf/simulated/wall/auto/reinforced/supernorn, /turf/simulated/wall/auto/supernorn/wood,
-	/turf/simulated/wall/false_wall, /obj/machinery/door, /obj/window, /obj/wingrille_spawn, /turf/simulated/wall/auto/shuttle, /obj/indestructible/shuttle_corner)
-	connects_with_overlay = list(/turf/simulated/wall/auto/supernorn/wood, /turf/simulated/wall/false_wall/reinforced, /obj/machinery/door, /obj/window, /obj/wingrille_spawn)
+	connects_to = list(/turf/wall/auto/supernorn, /turf/wall/auto/reinforced/supernorn, /turf/wall/auto/supernorn/wood,
+	/turf/wall/false_wall, /obj/machinery/door, /obj/window, /obj/wingrille_spawn, /turf/wall/auto/shuttle, /obj/indestructible/shuttle_corner)
+	connects_with_overlay = list(/turf/wall/auto/supernorn/wood, /turf/wall/false_wall/reinforced, /obj/machinery/door, /obj/window, /obj/wingrille_spawn)
 
 	attackby()
 	attack_hand()
@@ -229,7 +207,7 @@
 	damage_blunt()
 
 //TODO: CLEAN UP
-/turf/simulated/shuttle/wall
+/turf/shuttle/wall
 	name = "shuttle wall"
 	icon_state = "wall"
 	var/icon_style = "wall"
@@ -246,10 +224,10 @@
 					src.icon_state = "[src.icon_style]_void"
 		return
 
-/turf/simulated/shuttle/wall/escape
+/turf/shuttle/wall/escape
 	opacity = 0
 
-/turf/simulated/shuttle/wall/corner
+/turf/shuttle/wall/corner
 	icon_state = "wall_space"
 	opacity = 0
 //END TODO

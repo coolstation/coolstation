@@ -50,7 +50,10 @@
 	attack(mob/M as mob, mob/user as mob, def_zone)
 		if (src.edible == 0)
 			if (user == M)
-				boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
+				if (user.traitHolder.hasTrait("greedy_beast"))
+					boutput(user, "<span class='alert'>Even you have to slice this thing! Of course, it's less about manners and more about physics.</span>")
+				else
+					boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
 				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
 			else
 				user.visible_message("<span class='alert'><b>[user]</b> futilely attempts to shove [src] into [M]'s mouth!</span>")
@@ -1180,6 +1183,8 @@
 	planttype = /datum/plant/veg/onion
 	food_color = "#FF9933"
 	food_effects = list("food_bad_breath")
+	flags = ONBELT | FPRINT | TABLEPASS | SUPPRESSATTACK
+	wear_image_icon = 'icons/mob/belt.dmi'
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/kitchen/utensil/knife) || istype(W,/obj/item/knife/butcher))
@@ -1198,6 +1203,12 @@
 			qdel(src)
 		else
 			..()
+
+	equipped(mob/user, slot)
+		if(user.mind.ckey && slot == SLOT_BELT)
+			user.unlock_medal("\"With It\"",1)
+		. = ..()
+
 
 /obj/item/reagent_containers/food/snacks/onion_slice
 	name = "onion ring"

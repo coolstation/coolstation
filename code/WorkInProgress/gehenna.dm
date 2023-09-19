@@ -43,7 +43,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	special_volume_override = -1
 
 
-/turf/simulated/wall/asteroid/gehenna
+/turf/wall/asteroid/gehenna
 	fullbright = 0
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
@@ -61,18 +61,18 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.damage_asteroid(5)
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.damage_asteroid(4)
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				src.damage_asteroid(3)
 		return
 
-/turf/simulated/wall/asteroid/gehenna/z3
-	floor_turf = "/turf/simulated/floor/plating/gehenna"
+/turf/wall/asteroid/gehenna/z3
+	floor_turf = "/turf/floor/plating/gehenna"
 
-/turf/simulated/wall/asteroid/gehenna/tough
+/turf/wall/asteroid/gehenna/tough
 	name = "crimson bedrock"
 	desc = "looks densely packed"
 	icon_state = "gehenna_rock2"
@@ -81,19 +81,19 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.damage_asteroid(3)
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.damage_asteroid(2)
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				src.damage_asteroid(1)
 		return
 
-/turf/simulated/wall/asteroid/gehenna/tough/z3
-	floor_turf = "/turf/simulated/floor/plating/gehenna"
+/turf/wall/asteroid/gehenna/tough/z3
+	floor_turf = "/turf/floor/plating/gehenna"
 
 
-/turf/unsimulated/wall/gehenna/
+/turf/wall/gehenna/
 	fullbright = 0
 	luminosity = 1
 	name = "monolithic sulferous rock"
@@ -101,7 +101,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock3"
 
-/turf/simulated/floor/plating/gehenna/
+/turf/floor/plating/gehenna/
 	name = "sand"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "sand"
@@ -118,12 +118,12 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	ex_act(severity) //TODO: cave ins?? people mentioned that repeatedly??
 		return //no plating/lattice thanx
 
-/turf/simulated/floor/plating/gehenna/plasma
+/turf/floor/plating/gehenna/plasma
 	oxygen = MOLES_O2STANDARD * 1.5
 	nitrogen = MOLES_N2STANDARD / 2
 	toxins = MOLES_O2STANDARD // hehh hehh hehhhehhhe
 
-/turf/simulated/floor/plating/gehenna/farts
+/turf/floor/plating/gehenna/farts
 	farts = MOLES_N2STANDARD / 2
 	nitrogen = MOLES_N2STANDARD / 2
 
@@ -239,7 +239,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	requires_power = 0
 	sound_environment = EAX_PLAIN
 	sound_loop_1 = 'sound/ambience/loop/SANDSTORM.ogg' //need something wimdy, maybe overlay a storm sound on this
-	sound_loop_1_vol = 250 //always loud, fukken storming
+	sound_loop_1_vol = 150 //always loud, fukken storming
 	var/list/assholes_to_hurt = list()
 	var/buffeting_assoles = FALSE
 	irradiated = 0.5
@@ -260,12 +260,29 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 				if((istype(jerk:wear_suit, /obj/item/clothing/suit/armor))||(istype(jerk:wear_suit, /obj/item/clothing/suit/space))&&(istype(jerk:head, /obj/item/clothing/head/helmet/space))) return
 				random_brute_damage(jerk, 20)
 				if(prob(50))
-					playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_2.ogg', 50, 1)
+					playsound(O.loc, 'sound/impact_sounds/Flesh_Stab_2.ogg', 50, 1)
 					boutput(jerk, pick("Sand gets caught in your eyes!","The wind blows you off course!","Debris really fucks up your skin!"))
 					jerk.changeStatus("weakened", 13 SECONDS)
 					jerk.change_eye_blurry(15, 30)
 				SPAWN_DBG(10)
 					src.process_some_sand()
+		else
+			if(ismob(O))
+				var/mob/living/M = O
+				if (!isdead(M))
+					assholes_to_hurt |= M //quick and simple, nonhuman mobs are gonna get hurt.
+					src.process_some_sand()
+					return
+			if(istype(O, /obj/vehicle) || istype(O, /obj/machinery/bot) || istype(O, /obj/machinery/vehicle))
+				playsound(O.loc, 'sound/effects/creaking_metal2.ogg', 100, 1)
+				O.ex_act(OLD_EX_LIGHT)
+				assholes_to_hurt |= O
+				src.process_some_sand()
+				return
+
+
+
+
 
 	Exited(atom/movable/A)
 		..()
@@ -291,6 +308,34 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 					boutput(jerk, pick("Dust gets caught in your eyes!","The wind disorients you!","Debris pierces through your skin!"))
 					jerk.changeStatus("weakened", 7 SECONDS)
 					jerk.change_eye_blurry(10, 20)
+			for(var/obj/vehicle/V in assholes_to_hurt)
+				if(!istype(V))
+					assholes_to_hurt &= ~V
+					continue
+				if((V.rider_visible || !V.sealed_cabin)&&prob(50))
+					V.eject_rider()
+					V.ex_act(OLD_EX_TOTAL)
+				else
+					V.ex_act(OLD_EX_LIGHT)
+				playsound(V.loc, 'sound/effects/creaking_metal2.ogg', 100, 1)
+			for(var/obj/machinery/vehicle/pod in assholes_to_hurt)
+				if(!istype(pod) || pod.health <= 0)
+					assholes_to_hurt &= ~pod
+					continue
+				else
+					playsound(pod.loc, 'sound/effects/creaking_metal1.ogg', 100, 1)
+					pod.ex_act(rand(2,3))
+			for(var/obj/machinery/bot/aipod in assholes_to_hurt)
+				if(!istype(aipod) || aipod.health <= 0)
+					assholes_to_hurt &= ~aipod
+					continue
+				else
+					playsound(aipod.loc, 'sound/effects/creaking_metal1.ogg', 100, 1)
+					aipod.ex_act(rand(3))
+
+
+
+
 			sleep(10 SECONDS)
 		buffeting_assoles = FALSE
 
@@ -304,6 +349,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	requires_power = 0
 	luminosity = 0
 	sound_environment = EAX_CAVE
+	is_atmos_simulated = TRUE
 
 /area/gehenna/underground/staffies_nest
 	name = "the rat's nest"

@@ -4,6 +4,7 @@
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "PAG_0"
 	anchored = 0
+	glow_in_dark_screen = FALSE
 	var/mob/occupant = null
 	var/datum/character_preview/multiclient/occupant_preview = null
 	var/locked = 0
@@ -45,7 +46,7 @@
 		if (get_dist(over_object, src) > 1)
 			usr.show_text("The [src.name] is too far away from the target!", "red")
 			return
-		if (!istype(over_object,/turf/simulated/floor/))
+		if (!istype(over_object,/turf/floor/))
 			usr.show_text("You can't set this target as the home location.", "red")
 			return
 		var/turf/check_loc = over_object

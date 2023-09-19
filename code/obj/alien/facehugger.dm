@@ -10,7 +10,7 @@
 /turf/proc/CardinalTurfsWithAccessSpace(var/obj/item/card/id/ID)
 	var/L[] = new()
 	for(var/d in cardinal)
-		var/turf/simulated/T = get_step(src, d)
+		var/turf/T = get_step(src, d)
 		if((istype(T) || istype(T,/turf/space))&& !T.density)
 			if(!LinkBlockedWithAccess(src, T, ID))
 				L.Add(T)
@@ -98,9 +98,9 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.death()
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.health -= 15
 				healthcheck()
 		return

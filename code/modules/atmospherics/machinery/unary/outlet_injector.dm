@@ -21,9 +21,9 @@
 	update_icon()
 		if(node)
 			if(on)
-				icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]on"
+				icon_state = "[level == 1 && issimulatedturf(loc) ? "h" : "" ]on"
 			else
-				icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
+				icon_state = "[level == 1 && issimulatedturf(loc) ? "h" : "" ]off"
 		else
 			icon_state = "exposed"
 			on = 0
@@ -130,10 +130,10 @@
 	hide(var/i) //to make the little pipe section invisible, the icon changes.
 		if(node)
 			if(on)
-				icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]on"
+				icon_state = "[i == 1 && issimulatedturf(loc) ? "h" : "" ]on"
 			else
-				icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
+				icon_state = "[i == 1 && issimulatedturf(loc) ? "h" : "" ]off"
 		else
-			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]exposed"
+			icon_state = "[i == 1 && issimulatedturf(loc) ? "h" : "" ]exposed"
 			on = 0
 		return

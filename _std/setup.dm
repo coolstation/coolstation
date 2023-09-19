@@ -8,15 +8,17 @@
 #endif
 
 #ifdef IM_REALLY_IN_A_FUCKING_HURRY_HERE
-#define SKIP_FEA_SETUP 1
-#define SKIP_Z5_SETUP 1
+#define SKIP_FEA_SETUP 1 //Skip atmos setup
+#define SKIP_Z5_SETUP 1 //Skip z5 gen
+#define SKIP_CAM_VIS 1 //Skip the AI cam static generation
 #define IM_TESTING_SHIT_STOP_BARFING_CHANGELOGS_AT_ME 1 //Skip changelogs
 #define I_DONT_WANNA_WAIT_FOR_THIS_PREGAME_SHIT_JUST_GO 1 //Automatically ready up and start the game ASAP. No input required.
 #endif
 
 #ifndef IM_REALLY_IN_A_FUCKING_HURRY_HERE
-#define SKIP_FEA_SETUP 0 //Skip atmos setup
-#define SKIP_Z5_SETUP 0 //Skip z5 gen
+#define SKIP_FEA_SETUP 0
+#define SKIP_Z5_SETUP 0
+//#define SKIP_CAM_VIS 1 //Uncomment if you want atmos/mining but not waiting on this crap
 #endif
 
 // Server side profiler stuff for when you want to profile how laggy the game is
@@ -141,3 +143,50 @@ var/ZLOG_START_TIME
 
 //do we want to check incoming clients to see if theyre using a vpn?
 #define DO_VPN_CHECKS 1
+
+//Here's brick of shit to automate gamemode overrides, so that the bit in load_mode can be short
+#if defined(MODE_OVERRIDE_EXTENDED)
+	#define OVERRIDDEN_MODE "extended"
+#elif defined(MODE_OVERRIDE_TRAITOR)
+	#define OVERRIDDEN_MODE "traitor"
+#elif defined(MODE_OVERRIDE_MIXED_ACTION)
+	#define OVERRIDDEN_MODE "mixed"
+#elif defined(MODE_OVERRIDE_MIXED_MILD)
+	#define OVERRIDDEN_MODE "mixed_rp"
+#elif defined(MODE_OVERRIDE_VAMPIRE)
+	#define OVERRIDDEN_MODE "vampire"
+#elif defined(MODE_OVERRIDE_CHANGELING)
+	#define OVERRIDDEN_MODE "changeling"
+#elif defined(MODE_OVERRIDE_SPY_THEFT)
+	#define OVERRIDDEN_MODE "spy_theft"
+#elif defined(MODE_OVERRIDE_WIZARD)
+	#define OVERRIDDEN_MODE "wizard"
+#elif defined(MODE_OVERRIDE_NUCLEAR)
+	#define OVERRIDDEN_MODE "nuclear"
+#elif defined(MODE_OVERRIDE_REVOLUTION)
+	#define OVERRIDDEN_MODE "revolution"
+#elif defined(MODE_OVERRIDE_REVOLUTION_EX)
+	#define OVERRIDDEN_MODE "revolution_extended"
+#elif defined(MODE_OVERRIDE_BLOB)
+	#define OVERRIDDEN_MODE "blob"
+#elif defined(MODE_OVERRIDE_GANG)
+	#define OVERRIDDEN_MODE "gang"
+#elif defined(MODE_OVERRIDE_CONSPIRACY)
+	#define OVERRIDDEN_MODE "conspiracy"
+#elif defined(MODE_OVERRIDE_DISASTER)
+	#define OVERRIDDEN_MODE "disaster"
+#elif defined(MODE_OVERRIDE_FOOTBALL)
+	#define OVERRIDDEN_MODE "football"
+#elif defined(MODE_OVERRIDE_BATTLE_ROYALE)
+	#define OVERRIDDEN_MODE "battle_royale"
+
+
+#elif defined(MODE_OVERRIDE_SPY)
+	#define OVERRIDDEN_MODE "spy"
+#elif defined(MODE_OVERRIDE_FLOCK)
+	#define OVERRIDDEN_MODE "flock"
+#elif defined(MODE_OVERRIDE_CONSTRUCTION)
+	#define OVERRIDDEN_MODE "construction"
+#elif defined(MODE_OVERRIDE_ASS_DAY)
+	#define OVERRIDDEN_MODE "everyone-is-a-traitor"
+#endif

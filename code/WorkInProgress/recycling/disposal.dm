@@ -350,8 +350,8 @@
 			H.active = 0
 			H.set_loc(src)
 			return
-		if(T.intact && istype(T,/turf/simulated/floor)) //intact floor, pop the tile
-			var/turf/simulated/floor/F = T
+		if(T.intact && istype(T,/turf/floor)) //intact floor, pop the tile
+			var/turf/floor/F = T
 			//F.health	= 100
 			F.burnt	= 1
 			F.setIntact(FALSE)
@@ -451,14 +451,14 @@
 	ex_act(severity)
 
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				broken(0)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				health -= rand(5,15)
 				healthcheck()
 				return
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				health -= rand(0,15)
 				healthcheck()
 				return
@@ -1902,7 +1902,7 @@
 	var/mailgroup = null
 	var/mailgroup2 = null //Do not refactor into a list, maps override these properties
 	var/net_id = null
-	var/frequency = 1149
+	var/frequency = FREQ_PDA
 	var/datum/radio_frequency/radio_connection
 	throw_speed = 1
 

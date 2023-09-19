@@ -150,8 +150,8 @@
 				O.bullet_act(src)
 			T = A
 			if ((sigreturn & PROJ_ATOM_CANNOT_PASS) || (T.density && !goes_through_walls && !(sigreturn & PROJ_PASSWALL) && !(sigreturn & PROJ_ATOM_PASSTHROUGH)))
-				if (proj_data?.icon_turf_hit && istype(A, /turf/simulated/wall))
-					var/turf/simulated/wall/W = A
+				if (proj_data?.icon_turf_hit && istype(A, /turf/wall))
+					var/turf/wall/W = A
 					if (src.forensic_ID)
 						W.forensic_impacts += src.forensic_ID
 

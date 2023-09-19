@@ -1,3 +1,5 @@
+//Used by: antique laser gun (normal parts), pod colloseum, empowered laser eyes,
+//Zaubertubes, Mk.2 CQ Laser pod wars pod weapon, laser drone objcritters, laser gun, egun on kill
 /datum/projectile/laser
 	name = "laser"
 	icon = 'icons/obj/projectiles.dmi'
@@ -57,6 +59,7 @@ toxic - poisons
 			var/turf/T = P.loc
 			T.hotspot_expose(power*20, 5)
 
+//Used by: pod colloseum quad laser
 /datum/projectile/laser/quad
 	name = "4 lasers"
 	icon_state = "laser"
@@ -84,7 +87,7 @@ toxic - poisons
 		P4.launch()
 		P.die()
 
-
+//Used by: singularity engine emitters, AI turrets on lethal, UFO pod weapon
 /datum/projectile/laser/heavy
 	name = "heavy laser"
 	icon_state = "u_laser"
@@ -98,6 +101,7 @@ toxic - poisons
 	color_green = 0
 	color_blue = 1
 
+//Used by: Mk 4 assault laser pod weapon, a couple of unused drone critters (search assdrone)
 /datum/projectile/laser/asslaser // heh
 	name = "assault laser"
 	icon_state = "u_laser"
@@ -115,11 +119,12 @@ toxic - poisons
 
 	on_hit(atom/hit)
 		fireflash(get_turf(hit), 0)
-		if((istype(hit, /turf/simulated) || istype(hit, /obj/structure/girder)))
-			hit.ex_act(2)
+		if((issimulatedturf(hit) || istype(hit, /obj/structure/girder)))
+			hit.ex_act(OLD_EX_HEAVY)
 		else
-			hit.ex_act(3)
+			hit.ex_act(OLD_EX_LIGHT)
 
+//Used by: Mk 1.45 light phaser pod weapon, light syndicate drone objcritter, phaser guns, syndicate drone mobcritter (via phaser gun limb)
 /datum/projectile/laser/light // for the drones
 	name = "phaser bolt"
 	icon_state = "phaser_energy"
@@ -144,8 +149,8 @@ toxic - poisons
 		color_blue = 1
 
 		on_hit(atom/hit)
-			if (istype(hit, /turf/simulated/wall/asteroid))
-				var/turf/simulated/wall/asteroid/T = hit
+			if (istype(hit, /turf/wall/asteroid))
+				var/turf/wall/asteroid/T = hit
 				if (power <= 0)
 					return
 				T.damage_asteroid(0,allow_zero = 1)
@@ -158,11 +163,13 @@ toxic - poisons
 					C.CritterDeath()
 			..()
 
+	//Used by: cruisers
 	longrange
 		icon_state = "red_bolt"
 		dissipation_delay = 10
 		shot_sound = 'sound/weapons/laser_b.ogg'
 
+	//Used by: pod colloseum
 	split
 		dissipation_rate = 100
 		power = 120
@@ -184,6 +191,7 @@ toxic - poisons
 			P3.launch()
 			P.die()
 
+	//Unused
 	curver
 		tick(var/obj/projectile/P)
 			if (!P)
@@ -191,6 +199,7 @@ toxic - poisons
 			P.rotateDirection(20)
 			..()
 
+	//Used by: bullethell (WTF is that?)
 	spiral
 		tick(var/obj/projectile/P)
 			if (!P)
@@ -205,6 +214,7 @@ toxic - poisons
 				P.special_data["angle"] = 0
 			..()
 
+	//Used by: pod colloseum
 	upgradeable
 		icon_state = "phaser_light"
 		var/datum/projectile/laser/light/launched = new/datum/projectile/laser/light
@@ -243,6 +253,7 @@ toxic - poisons
 			else
 				icon_state = "phaser_light"
 
+//Used by: Svet-Oruzhiye Mk.4 pod weapon
 /datum/projectile/laser/glitter // for the russian pod
 	name = "prismatic laser"
 	icon_state = "eyebeam"
@@ -257,6 +268,7 @@ toxic - poisons
 	icon_turf_hit = "burn2"
 	projectile_speed = 42
 
+//Used by: IRIDIUM Spheroid Projector pod weapon, Ydrone and derivatives, ice moon zone
 /datum/projectile/laser/precursor // for precursor traps
 	name = "energy bolt"
 	icon_state = "disrupt"
@@ -270,6 +282,7 @@ toxic - poisons
 	color_blue = 1
 	ks_ratio = 0.8
 
+//Used by: Hunter's laser rifle
 /datum/projectile/laser/pred //mostly just a reskin
 	icon_state = "phaser_med"
 	name = "plasma bolt"
@@ -299,6 +312,7 @@ toxic - poisons
 	color_green = 0.3
 	color_blue = 0
 
+//Used by: antique laser gun (top-quality components)
 /datum/projectile/laser/old_burst
 	icon = 'icons/obj/items/gun.dmi'
 	icon_state = "proj_sing"
@@ -313,7 +327,8 @@ toxic - poisons
 	color_blue = 0.7
 
 
-//Projectile for Azungars NT gun.
+//Projectile for Hatsune Miku's NT gun.
+//Used by: laser assault rifle
 /datum/projectile/laser/ntburst
 	icon_state = "miniphaser_med"
 	name = "plasma bolt"
@@ -331,7 +346,7 @@ toxic - poisons
 
 // blaster projectiles
 
-
+//Used by: blaster pistol (an older, unused modular gun concept by the looks of it)
 /datum/projectile/laser/blaster
 	icon_state = "modproj"
 	name = "blaster bolt"
@@ -346,14 +361,14 @@ toxic - poisons
 	color_blue = 0.1
 	shot_number = 1
 	ks_ratio = 1
-
+	//Used by: blaster SMG
 	burst
 		power = 25
 		cost = 50
 		shot_number = 4
 		icon_state = "modproj2"
 		shot_sound = 'sound/weapons/laser_c.ogg'
-
+	//Used by: blaster cannon projectiles (blaster wave)
 	blast
 		shot_sound = 'sound/weapons/laser_e.ogg'
 		power = 66
@@ -361,6 +376,7 @@ toxic - poisons
 		icon_state = "crescent"
 		shot_number = 1
 
+//Unused
 /datum/projectile/laser/blaster/pod_pilot
 	cost = 20
 	power = 33
@@ -387,6 +403,7 @@ toxic - poisons
 			mult = 0.5
 		return ..(P, A) * mult
 
+//Unused
 /datum/projectile/laser/blaster/pod_pilot/blue_NT
 	name = "blue blaster bolt"
 	color_icon = "#3d9cff"
@@ -399,6 +416,7 @@ toxic - poisons
 		turret = 1
 		power = 15
 
+//Unused
 /datum/projectile/laser/blaster/pod_pilot/red_SY
 	name = "red blaster bolt"
 	color_icon = "#ff4043"
@@ -416,7 +434,7 @@ toxic - poisons
 
 
 
-
+//Used by: plasma cutter pod weapon/tool, plasma cutter drones
 /datum/projectile/laser/mining
 	name = "Plasma Cutter Bolt"
 	icon_state = "40mmgatling"
@@ -435,12 +453,13 @@ toxic - poisons
 	color_blue = 0
 
 	on_hit(atom/hit)
-		if (istype(hit, /turf/simulated/wall/asteroid))
-			var/turf/simulated/wall/asteroid/T = hit
+		if (istype(hit, /turf/wall/asteroid))
+			var/turf/wall/asteroid/T = hit
 			if (power <= 0)
 				return
 			T.damage_asteroid(round(power / 5))
 
+//Used by: pod colloseum, Rock Drilling Rig pod weapon
 /datum/projectile/laser/drill
 	name = "drill bit"
 	window_pass = 0
@@ -460,8 +479,8 @@ toxic - poisons
 	var/hit_human_sound = "sound/impact_sounds/Slimy_Splat_1.ogg"
 	on_hit(atom/hit)
 		//playsound(hit.loc, "sound/machines/engine_grump1.ogg", 45, 1)
-		if (istype(hit, /turf/simulated/wall/asteroid))
-			var/turf/simulated/wall/asteroid/T = hit
+		if (istype(hit, /turf/wall/asteroid))
+			var/turf/wall/asteroid/T = hit
 			if (power <= 0)
 				return
 			T.damage_asteroid(round(power / 7),1)
@@ -474,12 +493,14 @@ toxic - poisons
 			playsound(M.loc, hit_human_sound, 50, 1)
 			take_bleeding_damage(M, null, 1, damtype)
 
+	//Used by: salvage drones (both obj and mob, latter via limb), industrial utility arms pod weapon, syndicate purge system pod weapon (apparently?)
 	cutter
 		name = "cutter blade"
 		power = 30
 		dissipation_rate = 30
 		sname = "scrap cutter"
 
+	//Used by: syndie fish drones
 	saw_teeth
 		name = "saw teeth"
 		power = 5
@@ -496,6 +517,7 @@ toxic - poisons
 				V.health -= power * 1.8
 				V.checkhealth()
 
+//Used by: alastor pattern laser rifle
 /datum/projectile/laser/alastor
 	name = "laser"
 	icon = 'icons/obj/projectiles.dmi'
@@ -517,6 +539,7 @@ toxic - poisons
 		else
 			L.changeStatus("burning", 3.5 SECONDS)
 
+//Used by: Signifer II
 /datum/projectile/laser/signifer_lethal
 	name = "signifer bolt"
 	icon = 'icons/obj/projectiles.dmi'
@@ -542,7 +565,7 @@ toxic - poisons
 	on_hit(atom/hit, angle, var/obj/projectile/O)
 		hit.setStatus("signified")
 		..()
-
+	//Used by: Signifer II
 	brute
 		icon_state = "signifer2_brute"
 		damage_type = D_KINETIC

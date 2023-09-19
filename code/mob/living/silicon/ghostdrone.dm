@@ -1115,16 +1115,16 @@
 		if (src.nodamage) return
 		src.flash(3 SECONDS)
 		switch (severity)
-			if (1.0)
+			if (OLD_EX_SEVERITY_1)
 				SPAWN_DBG(0)
 					src.gib(1)
 
-			if (2.0)
+			if (OLD_EX_SEVERITY_2)
 				SPAWN_DBG(0)
 					src.TakeDamage(null, round(src.health / 2, 1.0))
 					src.changeStatus("stunned", 10 SECONDS)
 
-			if (3.0)
+			if (OLD_EX_SEVERITY_3)
 				SPAWN_DBG(0)
 					src.TakeDamage(null, round(src.health / 3, 1.0))
 					src.changeStatus("stunned", 5 SECONDS)

@@ -14,11 +14,12 @@
 /////////////////// ice moon, hell, and precursor ruins areas
 
 /area/upper_arctic
-	filler_turf = "/turf/unsimulated/floor/arctic/snow"
+	filler_turf = "/turf/floor/arctic/snow"
 	sound_environment = EAX_CAVE
 	skip_sims = 1
 	sims_score = 30
 	sound_group = "ice_moon"
+	is_construction_allowed = FALSE
 
 /area/upper_arctic/pod1
 	name = "Outpost Theta Pod One"
@@ -85,25 +86,26 @@
 /area/upper_arctic/exterior/surface
 	name = "Ice Moon Surface"
 	icon_state = "white"
-	filler_turf = "/turf/unsimulated/floor/arctic/abyss"
+	filler_turf = "/turf/floor/arctic/abyss"
 	skip_sims = 1
 	sims_score = 30
 
 /area/upper_arctic/exterior/abyss
 	name = "Ice Moon Abyss"
 	icon_state = "dk_yellow"
-	filler_turf = "/turf/unsimulated/floor/arctic/snow"
+	filler_turf = "/turf/floor/arctic/snow"
 	skip_sims = 1
 	sims_score = 30
 
 /area/lower_arctic
 	icon_state = "dk_yellow"
 	sound_group = "ice_moon"
+	is_construction_allowed = FALSE
 
 /area/lower_arctic/lower
 	name = "Glacial Abyss"
 	icon_state = "purple"
-	filler_turf = "/turf/unsimulated/floor/arctic/snow/ice"
+	filler_turf = "/turf/floor/arctic/snow/ice"
 	sound_environment = EAX_CAVE
 	skip_sims = 1
 	sims_score = 30
@@ -111,12 +113,13 @@
 /area/precursor // stole this code from the void definition
 	name = "Peculiar Structure"
 	icon_state = "dk_yellow"
-	filler_turf = "/turf/unsimulated/floor/setpieces/bluefloor"
+	filler_turf = "/turf/floor/setpieces/bluefloor"
 	sound_environment = EAX_STONEROOM
 	skip_sims = 1
 	sims_score = 30
 	sound_group = "precursor"  //Differs from the caves it's in, for a mysterious sound-blocking effect.
 	sound_loop_1 = 'sound/ambience/industrial/Precursor_Drone1.ogg'
+	is_construction_allowed = FALSE
 
 	New()
 		..()
@@ -136,7 +139,7 @@
 	pit
 		name = "Ominous Pit"
 		icon_state = "purple"
-		filler_turf = "/turf/unsimulated/floor/setpieces/bluefloor/pit" // this might fuck something up but it might also be hilarious
+		filler_turf = "/turf/floor/setpieces/bluefloor/pit" // this might fuck something up but it might also be hilarious
 		sound_environment = EAX_DIZZY
 		sound_group = "ominouspit"
 		skip_sims = 1
@@ -147,7 +150,7 @@
 /area/hell
 	name = "????"
 	icon_state = "security"
-	filler_turf = "/turf/unsimulated/floor/setpieces/bloodfloor"
+	filler_turf = "/turf/floor/setpieces/bloodfloor"
 	sound_environment = EAX_DISORDERED
 	skip_sims = 1
 	sims_score = 0
@@ -1239,10 +1242,10 @@
 
 						if (T.density)
 							for (var/atom/A in T)
-								A.ex_act(1)
+								A.ex_act(OLD_EX_TOTAL)
 
-							if (istype(T, /turf/simulated/wall))
-								T.ex_act(1)
+							if (istype(T, /turf/wall) && isconstructionturf(T))
+								T.ex_act(OLD_EX_TOTAL)
 							else
 								T.ReplaceWithSpaceForce()
 						else
@@ -1284,7 +1287,7 @@
 
 	on_hit(atom/hit)
 		if (istype(hit, /turf))
-			hit.ex_act(1 + prob(50))
+			hit.ex_act(prob(50) ? OLD_EX_TOTAL : OLD_EX_HEAVY)
 
 		return
 

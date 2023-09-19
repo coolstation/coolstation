@@ -697,7 +697,7 @@
 
 		if (isturf(over_object))
 			if (on_turf && in_interact_range(over_object,src) && !src.anchored) //drag from floor to floor == slide
-				if (istype(over_object,/turf/simulated/floor) || istype(over_object,/turf/unsimulated/floor))
+				if (istype(over_object,/turf/floor) || istype(over_object,/turf/floor))
 					step_to(src,over_object)
 					//this would be cool ha ha h
 					//if (islist(params) && params["icon-y"] && params["icon-x"])
@@ -997,9 +997,9 @@
 /obj/item/dummy/blob_act(var/power)
 	return
 
-/obj/item/ex_act(severity)
+/obj/item/ex_act(severity, last_touched, epicenter)
 	switch(severity)
-		if (2.0)
+		if (OLD_EX_SEVERITY_2)
 			if (src.material)
 				src.material.triggerTemp(src ,7500)
 			if (src.burn_possible && !src.burning && src.burn_point <= 7500)
@@ -1008,7 +1008,7 @@
 				if (!src.ArtifactSanityCheck()) return
 				src.ArtifactStimulus("force", 75)
 				src.ArtifactStimulus("heat", 450)
-		if (3.0)
+		if (OLD_EX_SEVERITY_3)
 			if (src.material)
 				src.material.triggerTemp(src, 3500)
 			if (src.burn_possible && !src.burning && src.burn_point <= 3500)
@@ -1018,7 +1018,10 @@
 				src.ArtifactStimulus("force", 25)
 				src.ArtifactStimulus("heat", 380)
 		else
-	return ..()
+	..() //health changes
+	if (!src.disposed)
+		if (epicenter && severity > 2)
+			src.throw_at(get_edge_cheap(get_turf(src), get_dir(epicenter, get_turf(src))),  round((6 - w_class) * severity), round((severity/w_class)*2))
 
 /obj/item/blob_act(var/power)
 	if (src.artifact)
@@ -1181,7 +1184,7 @@
 		return
 
 	if (user.mind && user.mind.special_role == ROLE_VAMPTHRALL && isvampire(M) && user.is_mentally_dominated_by(M))
-		boutput(user, "<span class='alert'>You cannot harm your master!</span>") //This message was previously sent to the attacking item. YEP.
+		boutput(user, "<span class='alert'>You cannot harm this person!</span>") //This message was previously sent to the attacking item. YEP.
 		return
 
 	if(user.traitHolder && !user.traitHolder.hasTrait("glasscannon"))

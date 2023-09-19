@@ -43,10 +43,10 @@
 
 	ex_act(severity)
 		switch (severity)
-			if (1.0)
+			if (OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if (2.0)
+			if (OLD_EX_SEVERITY_2)
 				if (prob(50))
 					qdel(src)
 					return
@@ -297,20 +297,20 @@
 
 	ex_act(severity)
 		switch (severity)
-			if (1.0)
+			if (OLD_EX_SEVERITY_1)
 				for (var/atom/movable/A as mob|obj in src)
 					A.set_loc(src.loc)
 					A.ex_act(severity)
 				qdel(src)
 				return
-			if (2.0)
+			if (OLD_EX_SEVERITY_2)
 				if (prob(50))
 					for (var/atom/movable/A as mob|obj in src)
 						A.set_loc(src.loc)
 						A.ex_act(severity)
 					qdel(src)
 					return
-			if (3.0)
+			if (OLD_EX_SEVERITY_3)
 				if (prob(25))
 					for (var/atom/movable/A as mob|obj in src)
 						A.set_loc(src.loc)
@@ -678,7 +678,7 @@
 	var/homeloc = null
 	allow_self_service = 0
 	/// Mailgroups it'll try to send PDA notifications to
-	var/list/mailgroups = list(MGD_MEDBAY, MGD_MEDRESEACH)
+	var/list/mailgroups = list(MGD_MEDBAY, MGD_MEDRESEARCH)
 
 	New()
 		..()
@@ -725,7 +725,7 @@
 		if (get_dist(over_object, src) > 1)
 			usr.show_text("The [src.name] is too far away from the target!", "red")
 			return
-		if (!istype(over_object,/turf/simulated/floor/))
+		if (!istype(over_object,/turf/floor/))
 			usr.show_text("You can't set this target as the home location.", "red")
 			return
 
@@ -746,7 +746,7 @@
 		return
 	if (!occupant)
 		return
-	var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency(FREQ_PDA)
+	var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 	if (!transmit_connection)
 		return
 

@@ -5,7 +5,7 @@
 	//centcom_message = "A merchant shuttle has docked with the station."
 	var/active = 0
 	var/map_turf = /turf/space //Set in event_effect() by map settings
-	var/centcom_turf = /turf/unsimulated/outdoors/grass //Set in event_effect()
+	var/centcom_turf = /turf/outdoors/grass //Set in event_effect()
 
 	event_effect()
 		..()
@@ -43,7 +43,7 @@
 
 		for(var/atom/A as obj|mob in end_location)
 			SPAWN_DBG(0)
-				A.ex_act(1)
+				A.ex_act(OLD_EX_TOTAL)
 
 		for(var/turf/T in end_location)
 			dstturfs += T

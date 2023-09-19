@@ -13,7 +13,7 @@ datum/shuttle_controller
 	var/list/airbridges = list()
 	var/map_turf = /turf/space //Set in New() by map settings
 	var/transit_turf = /turf/space/no_replace //Not currently modified
-	var/centcom_turf = /turf/unsimulated/outdoors/grass //modified in New() by global var
+	var/centcom_turf = /turf/outdoors/grass //modified in New() by global var
 
 
 	// call the shuttle
@@ -124,7 +124,7 @@ datum/shuttle_controller
 
 						for (var/atom/A as obj|mob in end_location)
 							SPAWN_DBG(0)
-								A.ex_act(1)
+								A.ex_act(OLD_EX_TOTAL)
 
 						end_location.color = null //Remove the colored shuttle!
 

@@ -214,18 +214,18 @@
 
 			// Search for incomplete/damaged floor
 			if (src.improvefloors)
-				for (var/turf/simulated/floor/F in view(src.search_range, src.scan_origin))
+				for (var/turf/floor/F in view(src.search_range, src.scan_origin))
 					var/coord = turf2coordinates(F)
 					if((coord in floorbottargets) || (coord in targets_invalid))
 						continue
 					else if (F == src.oldtarget || should_ignore_tile(F))
 						continue
-					else if (!F.intact || F.burnt || F.broken || istype(F, /turf/simulated/floor/metalfoam))
+					else if (!F.intact || F.burnt || F.broken || istype(F, /turf/floor/metalfoam))
 						src.floorbottargets |= coord
 						return F
 
 	if (src.emagged)
-		for (var/turf/simulated/floor/F in view(src.search_range, src.scan_origin))
+		for (var/turf/floor/F in view(src.search_range, src.scan_origin))
 			var/coord = turf2coordinates(F)
 			if((coord in floorbottargets) || (coord in targets_invalid))
 				continue
@@ -257,7 +257,7 @@
 						continue
 					else if (M == src.oldtarget || should_ignore_tile(M))
 						continue
-					else if (M.amount >= 1 && !(istype(M.loc, /turf/simulated/wall)) && !should_ignore_tile(get_turf(M)))
+					else if (M.amount >= 1 && !(istype(M.loc, /turf/wall)) && !should_ignore_tile(get_turf(M)))
 						src.floorbottargets |= coord
 						return M
 
@@ -353,7 +353,7 @@
 			return
 		actions.start(new/datum/action/bar/icon/floorbot_repair(src, target), src)
 
-	else if (src.emagged && istype(target, /turf/simulated/floor))
+	else if (src.emagged && istype(target, /turf/floor))
 		// Emagged "repair"
 		actions.start(new/datum/action/bar/icon/floorbot_disrepair(src, target), src)
 
@@ -484,11 +484,11 @@
 		master.repairing = 1
 		src.new_tile = 0
 
-		if (istype(master.target, /turf/space/) || istype(master.target, /turf/simulated/floor/metalfoam))
+		if (istype(master.target, /turf/space/) || istype(master.target, /turf/floor/metalfoam))
 			master.visible_message("<span class='notice'>[master] begins building flooring.</span>")
 			src.new_tile = 1
 
-		else if (istype(master.target, /turf/simulated/floor))
+		else if (istype(master.target, /turf/floor))
 			master.visible_message("<span class='notice'>[master] begins to fix the floor.</span>")
 
 		else
@@ -525,7 +525,7 @@
 			T.build(get_turf(master.target))
 		else
 			// Fix yo shit
-			var/turf/simulated/floor/F = master.target
+			var/turf/floor/F = master.target
 			if (F.intact)
 				F.to_plating()
 			F.restore_tile()
@@ -559,7 +559,7 @@
 		if (!master.on)
 			interrupt(INTERRUPT_ALWAYS)
 			return
-		var/turf/simulated/floor/T = master.target
+		var/turf/floor/T = master.target
 		if(!istype(T))
 			interrupt(INTERRUPT_ALWAYS)
 			return
@@ -579,7 +579,7 @@
 	onEnd()
 		..()
 		playsound(master, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
-		var/turf/simulated/floor/T = master.target
+		var/turf/floor/T = master.target
 		if(!istype(T))
 			interrupt(INTERRUPT_ALWAYS)
 			return

@@ -27,6 +27,7 @@ datum/controller/radio
 	var/list/datum/radio_frequency/frequencies = list()
 	var/list/active_jammers = list()
 
+	//frequencies passed here must be strings
 	proc/add_object(obj/device, new_frequency)
 		var/datum/radio_frequency/frequency = frequencies[new_frequency]
 
@@ -111,7 +112,7 @@ datum/radio_frequency
 			for(var/obj/device in devices)
 				if(!istype(device))
 					continue
-					
+
 				if(device != source)
 
 					//MBC : Do checks here and call check_for_jammer_bare instead. reduces proc calls.

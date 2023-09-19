@@ -10,7 +10,7 @@
 	layer = PIPE_MACHINE_LAYER
 
 	var/id = null
-	var/frequency = "1439"
+	var/frequency = FREQ_ATMOS2
 	var/datum/radio_frequency/radio_connection
 
 	var/on = 1
@@ -40,11 +40,11 @@
 	update_icon()
 		if(on&&node)
 			if(scrubbing)
-				icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]on"
+				icon_state = "[level == 1 && issimulatedturf(loc) ? "h" : "" ]on"
 			else
-				icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
+				icon_state = "[level == 1 && issimulatedturf(loc) ? "h" : "" ]in"
 		else
-			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
+			icon_state = "[level == 1 && issimulatedturf(loc) ? "h" : "" ]off"
 			on = 0
 
 		return
@@ -106,11 +106,11 @@
 	hide(var/i) //to make the little pipe section invisible, the icon changes.
 		if(on&&node)
 			if(scrubbing)
-				icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]on"
+				icon_state = "[i == 1 && issimulatedturf(loc) ? "h" : "" ]on"
 			else
-				icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
+				icon_state = "[i == 1 && issimulatedturf(loc) ? "h" : "" ]in"
 		else
-			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
+			icon_state = "[i == 1 && issimulatedturf(loc) ? "h" : "" ]off"
 			on = 0
 		return
 

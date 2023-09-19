@@ -138,6 +138,7 @@
 			src.eject_user()
 		else
 			boutput(user, "<span class='notice'>You pull the plug.</span>")
+			playsound(src, 'sound/effects/toilet_flush.ogg', 100, 1)
 			src.reagents.clear_reagents()
 			src.on_reagent_change()
 			var/count = 0
@@ -154,6 +155,8 @@
 			src.myuser.set_loc(get_turf(src))
 			src.myuser = null
 			src.on_reagent_change()
+			playsound(src, 'sound/misc/splash_2.ogg', 100, 1)
+
 
 			for (var/obj/O in src)
 				O.set_loc(get_turf(src))
@@ -191,10 +194,12 @@
 		if(target == user && !user.stat)	// if drop self, then climbed in
 			msg = "[user.name] climbs into [src]."
 			boutput(user, "<span class='notice'>You climb into [src].</span>")
+			playsound(src, 'sound/misc/splash_2.ogg', 100, 1)
 
 		else if(target != user && !user.restrained())
 			msg = "[user.name] push [target.name] into the [src]!"
 			boutput(user, "<span class='notice'>You push [target.name] into the [src]!</span>")
+			playsound(src, 'sound/misc/splash_2.ogg', 100, 1)
 
 		else
 			return
@@ -231,7 +236,7 @@
 				src.visible_message("<span class='alert'>[src] begins to twitch and move!</span>")
 				var/moveto = locate(M.x + rand(-1,1),M.y + rand(-1, 1),src.z)
 				//make the mops move
-				if (istype(moveto, /turf/simulated/floor) || istype(moveto, /turf/simulated/floor/shuttle) || istype(moveto, /turf/simulated/aprilfools/floor) || istype(moveto, /turf/unsimulated/floor) || istype(moveto, /turf/unsimulated/aprilfools)) step_towards(M, moveto)
+				if (istype(moveto, /turf/floor) || istype(moveto, /turf/floor/shuttle) || istype(moveto, /turf/aprilfools/floor) || istype(moveto, /turf/aprilfools)) step_towards(M, moveto)
 				SPAWN_DBG(5 SECONDS)
 					src.visible_message("<span class='notice'>Thankfully, [src] settles down.</span>")
 		else

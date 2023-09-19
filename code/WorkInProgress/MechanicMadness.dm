@@ -60,10 +60,10 @@
 		return
 	ex_act(severity)
 		switch(severity)
-			if (1.0)
+			if (OLD_EX_SEVERITY_1)
 				src.dispose() // disposing upon being blown up unlike all those decorative rocks on cog2
 				return
-			if (2.0)
+			if (OLD_EX_SEVERITY_2)
 				if(prob(25))
 					src.dispose()
 					return
@@ -71,7 +71,7 @@
 				src.welded=false
 				src.updateIcon()
 				return
-			if (3.0)
+			if (OLD_EX_SEVERITY_3)
 				if(prob(50) && !src.welded)
 					src.open=true
 					src.updateIcon()
@@ -1745,7 +1745,7 @@
 	var/range = 0
 
 	var/noise_enabled = true
-	var/frequency = 1419
+	var/frequency = FREQ_WLNET
 	var/datum/radio_frequency/radio_connection
 
 	get_desc()

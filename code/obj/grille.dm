@@ -15,7 +15,7 @@
 	var/shock_when_entered = 1
 	var/auto = FALSE
 	var/isperspective = TRUE
-	var/list/connects_to_turf = list(/turf/simulated/wall/auto, /turf/simulated/wall/auto/reinforced, /turf/simulated/shuttle/wall, /turf/unsimulated/wall)
+	var/list/connects_to_turf = list(/turf/wall/auto, /turf/wall/auto/reinforced, /turf/shuttle/wall, /turf/wall)
 	var/list/connects_to_obj = list(/obj/indestructible/shuttle_corner,	/obj/grille/, /obj/machinery/door, /obj/window)
 	text = "<font color=#aaa>+"
 	anchored = 1
@@ -64,8 +64,9 @@
 		melted
 			icon_state = "grille-melted"
 
-	classic // seems to be missing broken states
+	classic
 		auto = FALSE
+		isperspective = FALSE
 		icon = 'icons/obj/grille.dmi'
 		icon_state = "grille-0"
 		color = "#808080"
@@ -381,15 +382,15 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.damage_blunt(40)
 				src.damage_heat(40)
 
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.damage_blunt(15)
 				src.damage_heat(15)
 
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				src.damage_blunt(7)
 				src.damage_heat(7)
 		return
@@ -533,7 +534,7 @@
 			src.visible_message("<span class='alert'><b>[usr]</b> cuts apart the [src] with [W].</span>")
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 
-		else if (isscrewingtool(W) && (istype(src.loc, /turf/simulated) || src.anchored))
+		else if (isscrewingtool(W) && (isconstructionturf(src.loc) || src.anchored))
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 			src.anchored = !( src.anchored )
 			src.stops_space_move = !(src.stops_space_move)
@@ -637,7 +638,7 @@
 	proc/get_connection()
 		//returns the netnum of a stub cable at this grille loc, or 0 if none
 		var/turf/T = src.loc
-		if(!istype(T, /turf/simulated/floor))
+		if(!istype(T, /turf/floor))
 			return
 
 		for(var/obj/cable/C in T)

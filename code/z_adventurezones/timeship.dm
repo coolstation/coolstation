@@ -17,6 +17,8 @@ var/list/timewarp_interior_sounds = list('sound/ambience/industrial/Timeship_Gon
 	force_fullbright = 1
 	name = "Strange Place"
 	icon_state = "shuttle2"
+	is_atmos_simulated = FALSE
+	is_construction_allowed = FALSE
 	var/sound/ambientSound = 'sound/ambience/industrial/Timeship_Atmospheric.ogg'
 	var/list/fxlist = null
 	var/list/soundSubscribers = null
@@ -434,7 +436,7 @@ var/list/timewarp_interior_sounds = list('sound/ambience/industrial/Timeship_Gon
 			icon_state += pick("", "1","2")
 
 ////////////////////////////////////// turfs
-/turf/unsimulated/floor/void/timewarp
+/turf/floor/void/timewarp
 	name = "time-space breach"
 	desc = "Uhh.  UHHHH.  uh."
 	fullbright = 0

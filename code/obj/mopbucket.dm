@@ -49,10 +49,13 @@
 		if (src.reagents.total_volume >= 3)
 			if (W.reagents)
 				W.reagents.trans_to(src,W.reagents.total_volume)
-			src.reagents.trans_to(W, W.reagents ? W.reagents.maximum_volume : 10)
+			src.reagents.trans_to(W, W.reagents ?(W.reagents.maximum_volume-10): 10)
+			var/obj/item/mop/M = W
+			M.mopcount = 0
 
 			boutput(user, "<span class='notice'>You dunk the mop into [src].</span>")
 			playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 1)
+
 		if (src.reagents.total_volume < 1)
 			boutput(user, "<span class='notice'>[src] is empty!</span>")
 	else
@@ -118,14 +121,14 @@
 
 /obj/mopbucket/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			qdel(src)
 			return
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			if (prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if (prob(5))
 				qdel(src)
 				return

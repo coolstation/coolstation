@@ -52,7 +52,9 @@
 		air_contents.merge(filtered_out)
 	return removed
 
-/obj/machinery/portable_atmospherics/scrubber/proc/scrub_turf(turf/simulated/T, flow)
+/obj/machinery/portable_atmospherics/scrubber/proc/scrub_turf(turf/T, flow)
+	if (!issimulatedturf(T))
+		return
 	var/datum/gas_mixture/environment = T.return_air()
 	var/datum/gas_mixture/removed = T.remove_air(TOTAL_MOLES(environment) * flow / 100)
 	T.assume_air(src.scrub(removed))

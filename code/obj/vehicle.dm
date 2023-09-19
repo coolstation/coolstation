@@ -78,20 +78,20 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				for(var/atom/movable/A as mob|obj in src)
 					A.set_loc(src.loc)
 					A.ex_act(severity)
 				qdel(src)
 
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if (prob(50))
 					for(var/atom/movable/A as mob|obj in src)
 						A.set_loc(src.loc)
 						A.ex_act(severity)
 					qdel(src)
 
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				if (prob(25))
 					for(var/atom/movable/A as mob|obj in src)
 						A.set_loc(src.loc)
@@ -646,7 +646,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 			reagents.add_reagent("ketchup", 1000) //closest we got to red sauce right now?
 			return
 		else
-			reagents.add_reagent("water", 1000)
+			reagents.add_reagent("cleaner", 1000)
 			//reagents.add_reagent("cleaner", 250) //don't even need this now that we have fluid, probably. If you want it, add it yer self
 /*
 /obj/ability_button/toggle_buffer
@@ -1928,11 +1928,11 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	..()
 	in_bump = 1
 	if(isturf(AM))
-		if(istype(AM, /turf/simulated/wall/r_wall || istype(AM, /turf/simulated/wall/auto/reinforced)) && prob(40))
+		if(istype(AM, /turf/wall/r_wall || istype(AM, /turf/wall/auto/reinforced)) && prob(40))
 			in_bump = 0
 			return
-		if(istype(AM, /turf/simulated/wall))
-			var/turf/simulated/wall/T = AM
+		if(istype(AM, /turf/wall))
+			var/turf/wall/T = AM
 			T.dismantle_wall(1)
 			playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 40, 1)
 			playsound(src, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 40, 1)
@@ -1981,7 +1981,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 			if(istype(O, /obj/critter))
 				O:CritterDeath()
 			if(!isnull(O) && is_badmin_bus)
-				O:ex_act(2)
+				O:ex_act(OLD_EX_HEAVY)
 			in_bump = 0
 			return
 	in_bump = 0

@@ -1566,7 +1566,7 @@
 /datum/computer/file/mainframe_program/guardbot_interface
 	name = "prman"
 	size = 4
-	var/const/buddyFreq = 1219
+	var/const/buddyFreq = FREQ_ROBUDDY
 
 	initialize(var/initparams)
 		if (..())

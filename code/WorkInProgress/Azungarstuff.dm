@@ -6,7 +6,7 @@
 /area/azarak/cave
 	name = "azarak cave"
 	icon_state = "azarak_cave"
-	filler_turf = "/turf/unsimulated/floor/setpieces/Azarak/lavalethal"
+	filler_turf = "/turf/floor/setpieces/Azarak/lavalethal"
 	sound_environment = EAX_SEWER_PIPE
 	skip_sims = 1
 	sims_score = 15
@@ -15,7 +15,7 @@
 /area/azarak/retreat
 	name = "azarak retreat"
 	icon_state = "azarak_lava"
-	filler_turf = "/turf/unsimulated/floor/setpieces/Azarak/lavalethal"
+	filler_turf = "/turf/floor/setpieces/Azarak/lavalethal"
 	sound_environment = EAX_SEWER_PIPE
 	skip_sims = 1
 	sims_score = 15
@@ -25,7 +25,7 @@
 
 //FLOORS//
 
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor
+/turf/floor/setpieces/Azarak/cavefloor
 	name = "cave floor"
 	desc = "Just some cave flooring. Wonder who was the last person to step on this..?."
 	icon = 'icons/misc/AzungarAdventure.dmi'
@@ -44,7 +44,7 @@
 	underwalls
 		icon_state = "lava_rockfloor"
 
-/turf/unsimulated/floor/setpieces/Azarak/lavalethal
+/turf/floor/setpieces/Azarak/lavalethal
 	name = "Lava"
 	desc = "Some very very hot, dense liquid. Do not step on it."
 	icon = 'icons/misc/AzungarAdventure.dmi'
@@ -100,7 +100,7 @@
 	bubbling2
 		icon_state = "lava_floor_bubbling2"
 
-/turf/unsimulated/floor/setpieces/Azarak/lava
+/turf/floor/setpieces/Azarak/lava
 	name = "lava edge"
 	desc = "That is some seriously warm liquid.. Might not want to get too close to the edge."
 	icon = 'icons/misc/AzungarAdventure.dmi'
@@ -187,19 +187,19 @@
 	bubbling_edges
 		icon_state = "lava_edges_bubbling"
 
-/turf/unsimulated/floor/setpieces/Azarak/rockyfloor
+/turf/floor/setpieces/Azarak/rockyfloor
 	name = "rocky floor"
 	desc = "Some rocky floor.."
 	icon = 'icons/misc/AzungarAdventure.dmi'
 	icon_state = "lava_rockfloor"
 	temperature = 10+T0C
 
-/turf/unsimulated/floor/carpet/purple
+/turf/floor/carpet/purple
 	icon = 'icons/turf/carpet.dmi'
 	icon_state = "purple1"
 
 
-/turf/unsimulated/floor/carpet/purple/decal
+/turf/floor/carpet/purple/decal
 	icon = 'icons/turf/carpet.dmi'
 	icon_state = "fpurple1"
 	innercross
@@ -207,7 +207,7 @@
 	outercross
 		dir = 4
 
-/turf/unsimulated/floor/carpet/purple/standard/edge
+/turf/floor/carpet/purple/standard/edge
 	icon = 'icons/turf/carpet.dmi'
 	icon_state = "purple2"
 
@@ -228,7 +228,7 @@
 	sw
 		dir = 10
 
-/turf/unsimulated/floor/carpet/purple/standard/innercorner
+/turf/floor/carpet/purple/standard/innercorner
 	icon = 'icons/turf/carpet.dmi'
 	icon_state = "purple3"
 
@@ -270,7 +270,7 @@
 		icon_state = "purple1"
 		dir = 8
 
-/turf/unsimulated/floor/carpet/purple/standard/narrow
+/turf/floor/carpet/purple/standard/narrow
 	icon = 'icons/turf/carpet.dmi'
 	icon_state = "purple6"
 
@@ -312,7 +312,7 @@
 		icon_state = "purple1"
 		dir = 10
 
-/turf/unsimulated/floor/carpet/purple/standard/junction
+/turf/floor/carpet/purple/standard/junction
 	icon = 'icons/turf/carpet.dmi'
 	icon_state = "purple5"
 
@@ -335,7 +335,7 @@
 
 //fancy subvariant///////////////////////
 
-/turf/unsimulated/floor/carpet/purple/fancy/edge
+/turf/floor/carpet/purple/fancy/edge
 	icon = 'icons/turf/carpet.dmi'
 	icon_state = "fpurple2"
 
@@ -356,7 +356,7 @@
 	sw
 		dir = 10
 
-/turf/unsimulated/floor/carpet/purple/fancy/innercorner
+/turf/floor/carpet/purple/fancy/innercorner
 	icon = 'icons/turf/carpet.dmi'
 	icon_state = "fpurple3"
 
@@ -398,7 +398,7 @@
 		icon_state = "fpurple1"
 		dir = 8
 
-/turf/unsimulated/floor/carpet/purple/fancy/narrow
+/turf/floor/carpet/purple/fancy/narrow
 	icon = 'icons/turf/carpet.dmi'
 	icon_state = "fpurple6"
 
@@ -437,7 +437,7 @@
 		icon_state = "fpurple1"
 		dir = 10
 
-/turf/unsimulated/floor/carpet/purple/fancy/junction
+/turf/floor/carpet/purple/fancy/junction
 	icon = 'icons/turf/carpet.dmi'
 	icon_state = "fpurple5"
 
@@ -458,7 +458,7 @@
 	se_w
 		dir = 10
 
-/turf/unsimulated/wall/setpieces/Azarak/cavewall
+/turf/wall/setpieces/Azarak/cavewall
 	name = "rock wall"
 	desc = "TEMP"
 	icon = 'icons/misc/AzungarAdventure.dmi'

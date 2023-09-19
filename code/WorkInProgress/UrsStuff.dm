@@ -14,9 +14,9 @@
 
 /obj/dialogueobj/dreambee
 
-/turf/unsimulated/floor/dream/beach
+/turf/floor/dream/beach
 
-/turf/unsimulated/floor/dream/space
+/turf/floor/dream/space
 
 /obj/decal/fakeobjects/dreambeach/earth
 

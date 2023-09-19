@@ -676,7 +676,8 @@
 			health = 100
 			maxhealth = 100
 			score = 10
-			droploot = /obj/item/factionrep/ntboard
+			//NT faction rep deprecated
+			//droploot = /obj/item/factionrep/ntboard
 			projectile_type = /datum/projectile/laser/drill/saw_teeth
 			current_projectile = new/datum/projectile/laser/drill/saw_teeth
 			smashes_shit = 0
@@ -707,7 +708,8 @@
 		dead_state = "gunshark-dead"
 		alertsound1 = 'sound/machines/engine_alert1.ogg'
 		alertsound2 = 'sound/machines/engine_alert1.ogg'
-		droploot = /obj/item/factionrep/ntboard
+		//NT faction rep deprecated
+		//droploot = /obj/item/factionrep/ntboard
 		projectile_type = /datum/projectile/bullet/lmg/weak
 		current_projectile = new/datum/projectile/bullet/lmg/weak
 		attack_cooldown = 20
@@ -1032,18 +1034,18 @@
 			lineObjs += DrawLine(src, poorPod, /obj/line_obj/elec, 'icons/obj/projectiles.dmi',"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",FLY_LAYER,1,PreloadedIcon='icons/effects/LghtLine.dmi')
 
 			playsound(poorPod.loc, "sound/effects/elec_bigzap.ogg", 40, 0)
-			poorPod.ex_act(3)
+			poorPod.ex_act(OLD_EX_LIGHT)
 
 		for (var/obj/machinery/colosseum_putt/poorPod in range(src, 5))
 			lineObjs += DrawLine(src, poorPod, /obj/line_obj/elec, 'icons/obj/projectiles.dmi',"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",FLY_LAYER,1,PreloadedIcon='icons/effects/LghtLine.dmi')
 
 			playsound(poorPod.loc, "sound/effects/elec_bigzap.ogg", 40, 0)
-			poorPod.ex_act(3)
+			poorPod.ex_act(OLD_EX_LIGHT)
 
 		for (var/obj/machinery/cruiser/C in range(src, 5))
 			lineObjs += DrawLine(src, C, /obj/line_obj/elec, 'icons/obj/projectiles.dmi',"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",FLY_LAYER,1,PreloadedIcon='icons/effects/LghtLine.dmi')
 			playsound(C.loc, "sound/effects/elec_bigzap.ogg", 40, 0)
-			C.ex_act(3)
+			C.ex_act(OLD_EX_LIGHT)
 
 		SPAWN_DBG(0.6 SECONDS)
 			for (var/obj/O in lineObjs)
@@ -1164,7 +1166,7 @@
 			lineObjs += DrawLine(src, poorPod, /obj/line_obj/elec, 'icons/obj/projectiles.dmi',"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",FLY_LAYER,1,PreloadedIcon='icons/effects/LghtLine.dmi')
 
 			playsound(poorPod.loc, "sound/effects/elec_bigzap.ogg", 40, 0)
-			poorPod.ex_act(3)
+			poorPod.ex_act(OLD_EX_LIGHT)
 
 		SPAWN_DBG(0.6 SECONDS)
 			for (var/obj/O in lineObjs)

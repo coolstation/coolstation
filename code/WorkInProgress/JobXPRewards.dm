@@ -597,7 +597,7 @@ mob/verb/checkrewards()
 		boutput(C.mob, "You look away for a second and the shaker turns into golden from top to bottom!")
 
 /////////////Mime////////////////
-
+/*
 /datum/jobXpReward/mime/mimefancy
 	name = "Fancy Mime Suit"
 	desc = "A suit perfect for more sophisticated mimes. Wait... This isn't just a bleached clown suit, is it?"
@@ -627,3 +627,4 @@ mob/verb/checkrewards()
 		I.set_loc(get_turf(C.mob))
 		C.mob.put_in_hand(I)
 		return
+*/

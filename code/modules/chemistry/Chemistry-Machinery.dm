@@ -1,7 +1,7 @@
 /obj/submachine/chef_sink/chem_sink
 	name = "sink"
 	density = 0
-	layer = 5
+	//layer = 5
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "sink"
 	flags = NOSPLASH
@@ -70,10 +70,10 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if (prob(50))
 					qdel(src)
 					return
@@ -278,7 +278,7 @@
 			boutput(usr, "<span class='alert'>You are too far away from the target!</span>")
 			return
 
-		else if (istype(over_object,/turf/simulated/floor/))
+		else if (istype(over_object,/turf/floor/))
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set the Reagent Heater/Cooler to output to [over_object]!</span>")
 
@@ -313,10 +313,10 @@
 
 	ex_act(severity)
 		switch (severity)
-			if (1.0)
+			if (OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if (2.0)
+			if (OLD_EX_SEVERITY_2)
 				if (prob(50))
 					qdel(src)
 					return
@@ -657,7 +657,7 @@
 			boutput(usr, "<span class='alert'>You are too far away from the target!</span>")
 			return
 
-		else if (istype(over_object,/turf/simulated/floor/))
+		else if (istype(over_object,/turf/floor/))
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set the CheMaster 3000 to output to [over_object]!</span>")
 
@@ -691,10 +691,10 @@ datum/chemicompiler_core/stationaryCore
 
 	ex_act(severity)
 		switch (severity)
-			if (1.0)
+			if (OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if (2.0)
+			if (OLD_EX_SEVERITY_2)
 				if (prob(50))
 					qdel(src)
 					return

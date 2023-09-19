@@ -18,6 +18,7 @@
 	animate_movement = 0
 	var/metal = 0
 	var/foam_id = null
+	var/transferred_contents = FALSE
 	var/repeated_applications = 0 //bandaid for foam being abuseable by spamming chem group... diminishing returns. only works if the repeated application is on the same tile (chem dispensers!!)
 
 /*
@@ -91,7 +92,7 @@
 // on delete, transfer any reagents to the floor & surrounding tiles
 /obj/effects/foam/proc/die()
 	expand = 0
-	if(!metal && reagents) //We don't want a foam that's done the transfer to do it's own thing
+	if(!metal && reagents && !transferred_contents) //We don't want a foam that's done the transfer to do it's own thing
 		reagents.inert = 0 //It's go time!
 		reagents.postfoam = 1
 		reagents.handle_reactions()
@@ -137,6 +138,14 @@
 						break
 
 				if(no_merge) continue
+				//If we haven't, then transfer our reagents to the new one.
+				//But only if we aren't a metal foam and we haven't dumped our contents already... or the other one is.
+				if(!(F.transferred_contents || src.transferred_contents || F.metal || src.metal))
+
+					if (src.reagents) src.reagents.copy_to(F.reagents)
+					F.update_icon()
+
+					src.transferred_contents = TRUE
 
 			F = new()
 			F.set_up(T, metal)
@@ -169,7 +178,7 @@
 
 
 /obj/effects/foam/HasEntered(var/atom/movable/AM)
-	if (metal) //If we've transferred our contents then there's another foam tile that can do it thing.
+	if (metal || transferred_contents) //If we've transferred our contents then there's another foam tile that can do it's thing.
 		return
 
 	if (ishuman(AM))

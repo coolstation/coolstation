@@ -113,7 +113,7 @@
 			signal.data["command"] = "add"
 
 			signal.data_file = theScan
-			post_signal(signal, 1467)
+			post_signal(signal, FREQ_RUCK)
 
 	medrecord_scan
 		name = "MedTrak Scanner"

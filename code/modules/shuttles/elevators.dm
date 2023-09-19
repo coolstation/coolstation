@@ -1,6 +1,50 @@
 // This file contains individual elevator definitions.
 // also areas and stuff for each instance.
 
+//Automatically defines an elevator with the following:
+//vehicle datum, upper and lower level stops, upper and lower level areas, filler turf, large and small terminals, elevator button, fall landmark
+//The elevator starts on the top level, map accordingly. The landmark is there for convenience (reading macros bad)
+//The stops will "_id_top"/"_stopname Upper Level" and "_id_bot"/"_stopname Lower Level", whereas _areaname is used verbatim for both areas
+#define MAKE_STANDARD_TWO_STOP_ELEVATOR(__id, _stopname, _areaname, _area_sprite)\
+ABSTRACT_TYPE(/datum/transit_stop/elevator/__id);\
+ABSTRACT_TYPE(/area/transit_vehicle/elevator/__id);\
+/datum/transit_stop/elevator/__id/top;\
+/datum/transit_stop/elevator/__id/top/name = _stopname+" Upper Level";\
+/datum/transit_stop/elevator/__id/top/stop_id = ""+#__id+"_top";\
+/datum/transit_stop/elevator/__id/top/target_area = /area/transit_vehicle/elevator/__id/top;\
+/datum/transit_stop/elevator/__id/top/current_occupant = ""+#__id+"_elevator";\
+/datum/transit_stop/elevator/__id/bot;\
+/datum/transit_stop/elevator/__id/bot/name = _stopname+" Lower Level";\
+/datum/transit_stop/elevator/__id/bot/stop_id = ""+#__id+"_bot";\
+/datum/transit_stop/elevator/__id/bot/target_area = /area/transit_vehicle/elevator/__id/bot;\
+/datum/transit_vehicle/elevator/__id;\
+/datum/transit_vehicle/elevator/__id/vehicle_id = ""+#__id+"_elevator";\
+/datum/transit_vehicle/elevator/__id/stop_ids = list(""+#__id+"_top", ""+#__id+"_bot");\
+/obj/machinery/computer/transit_terminal/__id;\
+/obj/machinery/computer/transit_terminal/__id/vehicle_id = ""+#__id+"_elevator";\
+/obj/machinery/computer/transit_terminal/thin/__id;\
+/obj/machinery/computer/transit_terminal/thin/__id/vehicle_id = ""+#__id+"_elevator";\
+/obj/machinery/button/elevator/__id;\
+/obj/machinery/button/elevator/__id/vehicle_id = ""+#__id+"_elevator";\
+/obj/machinery/button/elevator/__id/stop_top_id = ""+#__id+"_top";\
+/obj/machinery/button/elevator/__id/stop_bottom_id = ""+#__id+"_bot";\
+/area/transit_vehicle/elevator/__id/top;\
+/area/transit_vehicle/elevator/__id/top/name = _areaname;\
+/area/transit_vehicle/elevator/__id/top/icon_state = _area_sprite;\
+/area/transit_vehicle/elevator/__id/top/filler_turf = "/turf/floor/specialroom/elevator_shaft/"+#__id+"";\
+/area/transit_vehicle/elevator/__id/bot;\
+/area/transit_vehicle/elevator/__id/bot/name = _areaname;\
+/area/transit_vehicle/elevator/__id/bot/icon_state = _area_sprite;\
+/area/transit_vehicle/elevator/__id/bot/filler_turf = "/turf/floor/plating";\
+/turf/floor/specialroom/elevator_shaft/__id;\
+/turf/floor/specialroom/elevator_shaft/__id/fall_landmark = ""+#__id+"fall";\
+/obj/landmark/elevator_fall/__id;\
+/obj/landmark/elevator_fall/__id/name =""+#__id+"fall"
+//I'm not sure if the double underscore in __id ended up necessary but too much effort to change
+
+//Example usage
+MAKE_STANDARD_TWO_STOP_ELEVATOR(macro_test, "Mystery Fun", "Mystery Fun Elevator", "funeralparlor")
+
 /*
 _________ _______  _______  _        _______ __________________   _______ _________ _______  _______  _______
 \__   __/(  ____ )(  ___  )( (    /|(  ____ \\__   __/\__   __/  (  ____ \\__   __/(  ___  )(  ____ )(  ____ \
@@ -87,6 +131,17 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	name		= "Dumbwaiter Lower Level"
 	target_area = /area/transit_vehicle/elevator/dum_bot
 
+/datum/transit_stop/elevator/qmdum_top
+	stop_id 	= "qmdum_top"
+	name		= "Cargo Dumbwaiter Upper Level"
+	target_area = /area/transit_vehicle/elevator/qmdum_top
+	current_occupant = "qmdum_elevator"
+
+/datum/transit_stop/elevator/qmdum_bot
+	stop_id 	= "qmdum_bot"
+	name		= "Cargo Dumbwaiter Lower Level"
+	target_area = /area/transit_vehicle/elevator/qmdum_bot
+
 /datum/transit_stop/elevator/ntfc_top
 	stop_id 	= "ntfc_top"
 	name		= "Major Shuttle Dock Ring"
@@ -153,6 +208,10 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	vehicle_id = "dum_elevator"
 	stop_ids = list("dum_top","dum_bot")
 
+/datum/transit_vehicle/elevator/qmdum
+	vehicle_id = "qmdum_elevator"
+	stop_ids = list("qmdum_top","qmdum_bot")
+
 /datum/transit_vehicle/elevator/ntfc
 	vehicle_id = "ntfc_elevator"
 	stop_ids = list("ntfc_top","ntfc_mid","ntfc_bot")
@@ -177,6 +236,9 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /obj/machinery/computer/transit_terminal/dum
 	vehicle_id = "dum_elevator"
 
+/obj/machinery/computer/transit_terminal/qmdum
+	vehicle_id = "qmdum_elevator"
+
 /obj/machinery/computer/transit_terminal/ntfc
 	vehicle_id = "ntfc_elevator"
 // thins
@@ -198,6 +260,9 @@ _________ _______  _______  _        _______ __________________   _______ ______
 
 /obj/machinery/computer/transit_terminal/thin/dum
 	vehicle_id = "dum_elevator"
+
+/obj/machinery/computer/transit_terminal/thin/qmdum
+	vehicle_id = "qmdum_elevator"
 
 /obj/machinery/computer/transit_terminal/thin/ntfc
 	vehicle_id = "ntfc_elevator"
@@ -233,6 +298,11 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	stop_top_id = "dum_top"
 	stop_bottom_id = "dum_bot"
 
+/obj/machinery/button/elevator/qmdum
+	vehicle_id = "qmdum_elevator"
+	stop_top_id = "qmdum_top"
+	stop_bottom_id = "qmdum_bot"
+
       //|\\
      // | \\
     //  |  \\
@@ -262,91 +332,105 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/qm_top
 	name = "Quartermaster's Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/simulated/floor/specialroom/elevator_shaft/qm"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/qm"
 
 /area/transit_vehicle/elevator/qm_bot
 	name = "Quartermaster's Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/simulated/floor/plating"
+	filler_turf = "/turf/floor/plating"
 
 /area/transit_vehicle/elevator/med_top
 	name = "Hospital Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/simulated/floor/specialroom/elevator_shaft/med"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/med"
 
 /area/transit_vehicle/elevator/med_bot
 	name = "Hospital Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/simulated/floor/plating"
+	filler_turf = "/turf/floor/plating"
 
 /area/transit_vehicle/elevator/eng_top
 	name = "Engineering Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/simulated/floor/specialroom/elevator_shaft/eng"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/eng"
 
 /area/transit_vehicle/elevator/eng_bot
 	name = "Engineering Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/simulated/floor/plating"
+	filler_turf = "/turf/floor/plating"
 
 /area/transit_vehicle/elevator/com_top
 	name = "Command Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/simulated/floor/specialroom/elevator_shaft/com"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/com"
 
 /area/transit_vehicle/elevator/com_bot
 	name = "Command Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/simulated/floor/plating"
+	filler_turf = "/turf/floor/plating"
 
 /area/transit_vehicle/elevator/sec_top
 	name = "Security Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/simulated/floor/specialroom/elevator_shaft/sec"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/sec"
 
 /area/transit_vehicle/elevator/sec_bot
 	name = "Security Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/simulated/floor/plating"
+	filler_turf = "/turf/floor/plating"
 
 /area/transit_vehicle/elevator/dum_top
 	name = "Dumbwaiter"
 	icon_state = "shuttle"
-	filler_turf = "/turf/simulated/floor/specialroom/elevator_shaft/dum"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/dum"
 
 /area/transit_vehicle/elevator/dum_bot
 	name = "Dumbwaiter"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/simulated/floor/plating"
+	filler_turf = "/turf/floor/plating"
+
+/area/transit_vehicle/elevator/qmdum_top
+	name = "Cargo Dumbwaiter"
+	icon_state = "shuttle"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/qmdum"
+
+/area/transit_vehicle/elevator/qmdum_bot
+	name = "Cargo Dumbwaiter"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/plating"
 
 /area/transit_vehicle/elevator/ntfc_top
 	name = "Space Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/simulated/floor/specialroom/elevator_shaft/ntfc"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/ntfc"
 
 /area/transit_vehicle/elevator/ntfc_mid
 	name = "Space Elevator"
 	icon_state = "dither_r"
-	filler_turf = "/turf/simulated/floor/specialroom/elevator_shaft/ntfcm"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/ntfcm"
 
 /area/transit_vehicle/elevator/ntfc_bot
 	name = "Space Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/simulated/floor/plating"
+	filler_turf = "/turf/floor/plating"
 
-/turf/simulated/floor/specialroom/elevator_shaft/qm
+/turf/floor/specialroom/elevator_shaft/qm
 	fall_landmark = LANDMARK_FALL_QM
-/turf/simulated/floor/specialroom/elevator_shaft/med
+/turf/floor/specialroom/elevator_shaft/med
 	fall_landmark = LANDMARK_FALL_MED
-/turf/simulated/floor/specialroom/elevator_shaft/eng
+/turf/floor/specialroom/elevator_shaft/eng
 	fall_landmark = LANDMARK_FALL_ENG
-/turf/simulated/floor/specialroom/elevator_shaft/com
+/turf/floor/specialroom/elevator_shaft/com
 	fall_landmark = LANDMARK_FALL_COM
-/turf/simulated/floor/specialroom/elevator_shaft/sec
+/turf/floor/specialroom/elevator_shaft/sec
 	fall_landmark = LANDMARK_FALL_SEC
-/turf/simulated/floor/specialroom/elevator_shaft/dum
+/turf/floor/specialroom/elevator_shaft/dum
 	fall_landmark = LANDMARK_FALL_DUM
-/turf/simulated/floor/specialroom/elevator_shaft/ntfcm
+/turf/floor/specialroom/elevator_shaft/qmdum
+	fall_landmark = LANDMARK_FALL_QMDUM
+/turf/floor/specialroom/elevator_shaft/ntfcm
 	fall_landmark = LANDMARK_FALL_NTFC
-/turf/simulated/floor/specialroom/elevator_shaft/ntfc
+/turf/floor/specialroom/elevator_shaft/ntfc
 	fall_landmark = LANDMARK_FALL_NTFCM
+
+#undef MAKE_STANDARD_TWO_STOP_ELEVATOR

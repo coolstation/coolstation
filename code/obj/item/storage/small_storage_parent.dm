@@ -345,6 +345,16 @@
 	max_wclass = 1
 	desc = "A small bottle designed to carry pills. Does not come with a child-proof lock, as that was determined to be too difficult for the crew to open."
 
+	MouseDrop(atom/over_object, src_location, over_location)
+		if(!(usr == over_object)) return ..()
+		if(!istype(usr, /mob/living/carbon)) return ..()
+		var/mob/living/carbon/C = usr
+		if(C.r_hand == src || C.l_hand == src) // inhand? chugg
+			actions.start(new /datum/action/bar/icon/chug_pills(C, src), C)
+		else
+			return ..()
+
+
 /obj/item/storage/briefcase
 	name = "briefcase"
 	icon_state = "briefcase"

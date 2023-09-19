@@ -3626,9 +3626,18 @@ datum
 			transparency = 60
 			bioeffect_id = "accent_tyke"
 
-		fooddrink/bonerjuice
+		fooddrink/sawdust
+			name = "sawdust"
+			id = "sawdust"
+			description = "A byproduct of carpentry, and a source of cellulose filler material in less reputable foods."
+			reagent_state = SOLID
+			fluid_r = 220
+			fluid_g = 180
+			fluid_b = 130
+
+		fooddrink/satisghetti //okay that was fun calling this bonerjuice but now we have a real boner joker we have to make room for
 			name = "the satisfaction of making spaghetti"
-			id = "bonerjuice"
+			id = "satisghetti"
 			description = "The congealed essence of cullinary passion."
 			fluid_r = 200
 			fluid_g = 231

@@ -36,14 +36,14 @@ obj/structure
 
 obj/structure/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			qdel(src)
 			return
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			if(prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			return
 	return
 
@@ -97,7 +97,7 @@ obj/structure/ex_act(severity)
 		actions.start(new /datum/action/bar/icon/girder_tool_interact(src, W, GIRDER_DISLODGE), user)
 
 	else if (iswrenchingtool(W) && state == 0 && !anchored )
-		if (!istype(src.loc, /turf/simulated/floor/))
+		if (!istype(src.loc, /turf/floor/))
 			boutput(user, "<span class='alert'>Not sure what this floor is made of but you can't seem to wrench a hole for a bolt in it.</span>")
 			return
 		actions.start(new /datum/action/bar/icon/girder_tool_interact(src, W, GIRDER_SECURE), user)
@@ -218,7 +218,7 @@ obj/structure/ex_act(severity)
 					A.setMaterial(M)
 				qdel(the_girder)
 			if (GIRDER_SECURE)
-				if (!istype(the_girder.loc, /turf/simulated/floor/))
+				if (!istype(the_girder.loc, /turf/floor/))
 					owner.visible_message("<span class='alert'>You feel like your body is being ripped apart from the inside. Maybe you shouldn't try that again. For your own safety, I mean.</span>")
 					return
 				verbens = "secured"
@@ -229,7 +229,7 @@ obj/structure/ex_act(severity)
 				verbens = "finishes plating"
 				logTheThing("station", owner, null, "builds a Wall in [owner.loc.loc] ([showCoords(owner.x, owner.y, owner.z)])")
 				var/turf/Tsrc = get_turf(the_girder)
-				var/turf/simulated/wall/WALL
+				var/turf/wall/WALL
 				var/obj/item/sheet/S = the_tool
 				if (S.reinforcement)
 					WALL = Tsrc.ReplaceWithRWall()
@@ -267,12 +267,12 @@ obj/structure/ex_act(severity)
 /obj/structure/girder/displaced/attackby(obj/item/W as obj, mob/user as mob)
 
 	if (istype(W, /obj/item/sheet))
-		if (!istype(src.loc, /turf/simulated/floor/))
+		if (!istype(src.loc, /turf/floor/))
 			boutput(user, "<span class='alert'>You can't build a false wall there.</span>")
 			return
 
 		var/obj/item/sheet/S = W
-		var/turf/simulated/floor/T = src.loc
+		var/turf/floor/T = src.loc
 
 		var/FloorIcon = T.icon
 		var/FloorState = T.icon_state
@@ -281,7 +281,7 @@ obj/structure/ex_act(severity)
 		var/FloorName = T.name
 		var/oldmat = src.material
 
-		var/target_type = S.reinforcement ? /turf/simulated/wall/false_wall/reinforced : /turf/simulated/wall/false_wall
+		var/target_type = S.reinforcement ? /turf/wall/false_wall/reinforced : /turf/wall/false_wall
 
 		T.ReplaceWith(target_type, FALSE, FALSE, FALSE)
 		var/atom/A = src.loc
@@ -291,7 +291,7 @@ obj/structure/ex_act(severity)
 			var/datum/material/M = getMaterial("steel")
 			A.setMaterial(M)
 
-		var/turf/simulated/wall/false_wall/FW = A
+		var/turf/wall/false_wall/FW = A
 		FW.inherit_area()
 
 		FW.setFloorUnderlay(FloorIcon, FloorState, FloorIntact, 0, FloorBurnt, FloorName)

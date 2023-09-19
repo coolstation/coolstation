@@ -219,6 +219,32 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	desc = "Barber poles historically were signage used to convey that the barber would perform services such as blood letting and other medical procedures, with the red representing blood, and the white representing the bandaging. In America, long after the time when blood-letting was offered, a third colour was added to bring it in line with the colours of their national flag. This one is in space."
 	layer = OBJ_LAYER
 
+/obj/decal/gehennagrass
+	name = "desert scrub"
+	icon = 'icons/obj/decoration.dmi'
+	icon_state = "gehennagrass1"
+	random_icon_states = list("gehennagrass1", "gehennagrass2", "gehennagrass3")
+	anchored = 1
+	density = 0
+	var/seed_prob = 50
+	desc = "This scrub has turned purple from the strain of growing in the desert."
+	layer = FLOOR_EQUIP_LAYER1
+
+	attackby(obj/item/I, mob/user)
+		if(istool(I,TOOL_CUTTING | TOOL_SAWING | TOOL_SNIPPING))
+			src.visible_message("[user] cuts [src].")
+			if(prob(seed_prob))
+				var/seedtype = null
+				if(prob(1))
+					seedtype = /obj/item/seed/alien
+				else
+					seedtype = /obj/item/seed/grass/scrub
+
+				new seedtype(src.loc)
+			qdel(src)
+		else
+			..()
+
 /obj/decal/oven
 	name = "Oven"
 	desc = "An old oven."
@@ -266,12 +292,13 @@ obj/decal/fakeobjects
 	icon_state = "radar"
 	density = 1
 
-obj/decal/fakeobjects/cargopad
+/obj/decal/fakeobjects/cargopad
 	name = "Cargo Pad"
 	desc = "Used to recieve objects transported by a Cargo Transporter."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "cargopad"
 	anchored = 1
+	plane = PLANE_FLOOR
 
 /obj/decal/fakeobjects/robot
 	name = "Inactive Robot"
@@ -316,6 +343,8 @@ obj/decal/fakeobjects/teleport_pad
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-broken"
 	anchored = 1
+	layer = EFFECTS_LAYER_UNDER_1
+	plane = PLANE_NOSHADOW_ABOVE
 
 /obj/decal/fakeobjects/lightbulb_broken
 	name = "shattered light bulb"
@@ -323,6 +352,8 @@ obj/decal/fakeobjects/teleport_pad
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "bulb-broken"
 	anchored = 1
+	layer = EFFECTS_LAYER_UNDER_1
+	plane = PLANE_NOSHADOW_ABOVE
 
 /obj/decal/fakeobjects/airmonitor_broken
 	name = "broken air monitor"
@@ -358,6 +389,8 @@ obj/decal/fakeobjects/teleport_pad
 	icon = 'icons/obj/atmospherics/pipes/regular_pipe.dmi'
 	icon_state = "intact"
 	anchored = 1
+	layer = PIPE_LAYER
+	plane = PLANE_NOSHADOW_BELOW
 
 	heat
 		icon = 'icons/obj/atmospherics/pipes/heat_pipe.dmi'
@@ -442,6 +475,25 @@ obj/decal/fakeobjects/teleport_pad
 	icon_state = "tele_fuzz"
 	anchored = 1
 	density = 1
+
+//this was the florps statue in keelin's stuff
+//now it's pupkin (simplified)
+/obj/decal/fakeobjects/pupkinstatue
+	name = "Statue of Pupkin"
+	desc = "Thank you for loving Pupkin."
+	var/broken = 0
+	icon ='icons/obj/objects.dmi'
+	icon_state = "statuepupkin"
+	density = 1
+
+	New()
+		..()
+		setMaterial(getMaterial("slag"))
+		name = "Statue of Pupkin"
+
+	attack_hand(mob/user as mob)
+		boutput(user, "You pet \the [src]. You feel really uneasy about it, but thank you anyway.")
+		return
 
 
 /obj/decal/bloodtrace

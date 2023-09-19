@@ -146,7 +146,7 @@
 			if(!src.artifact_resupply_amount)
 				SPAWN_DBG(rand(1,5) MINUTES)
 					// message
-					var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
+					var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 					var/datum/signal/pdaSignal = get_free_signal()
 					pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT",  "group"=list(MGD_CARGO, MGD_SCIENCE), "sender"="00000000", "message"="Notification: Incoming artifact resupply crate. ([artifact_resupply_amount] objects)")
 					pdaSignal.transmission_method = TRANSMISSION_RADIO
@@ -166,7 +166,7 @@
 		qdel(sell_art)
 
 		// give PDA group messages
-		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
+		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 		var/datum/signal/pdaSignal = get_free_signal()
 		var/message = "Notification: [price] credits earned from outgoing artifact \'[sell_art.name]\'. "
 		if(pap)
@@ -242,7 +242,7 @@
 
 		qdel(sell_crate)
 
-		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
+		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 		var/datum/signal/pdaSignal = get_free_signal()
 		if(scan && account)
 			wagesystem.shipping_budget += duckets / 2
@@ -263,7 +263,7 @@
 			for(var/turf/T in get_area_turfs(/area/shuttle/cargo/hub))
 				if(T.density)
 					continue
-				if(istype(T, /turf/space/) || istype(T, /turf/simulated/floor/caution))
+				if(istype(T, /turf/space/) || istype(T, /turf/floor/caution))
 					continue
 				else
 					var/dense = 0
@@ -274,7 +274,7 @@
 					if(!dense)
 						free_turf = T
 						break
-			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
+			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 			var/datum/signal/pdaSignal = get_free_signal()
 			pdaSignal.transmission_method = TRANSMISSION_RADIO
 			if(free_turf)
@@ -309,7 +309,7 @@
 
 			shipped_thing.set_loc(spawnpoint)
 
-			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
+			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 			var/datum/signal/pdaSignal = get_free_signal()
 			pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT", "group"=list(MGD_CARGO, MGA_SHIPPING), "sender"="00000000", "message"="Shipment arriving to Cargo Bay: [shipped_thing.name].")
 			pdaSignal.transmission_method = TRANSMISSION_RADIO
@@ -346,10 +346,10 @@
 		var/list/turf/to_clear = block(locate(min_x, min_y, Z_LEVEL_STATION), locate(max_x, max_y, Z_LEVEL_STATION))
 		for(var/turf/T as anything in to_clear)
 			//Wacks asteroids and skip normal turfs that belong
-			if(istype(T, /turf/simulated/wall/asteroid))
-				T.ReplaceWith(/turf/simulated/floor/plating/airless/asteroid, force=TRUE)
+			if(istype(T, /turf/wall/asteroid))
+				T.ReplaceWith(/turf/floor/plating/airless/asteroid, force=TRUE)
 				continue
-			else if(!istype(T, /turf/unsimulated))
+			else if(istype(T, /turf/space) || !issimulatedturf(T)) //used to check for turf/unsimulated, I hope adding the space check was the right thing to do
 				continue
 
 			//Uh, make sure we don't block the shipping lanes!

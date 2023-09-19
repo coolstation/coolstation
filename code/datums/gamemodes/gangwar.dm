@@ -330,10 +330,10 @@
 
 	tags_used += leaderMind.gang.gang_tag
 
-	leaderMind.gang.gang_frequency = rand(1360,1420)
+	leaderMind.gang.gang_frequency = rand(R_FREQ_GANG_MIN,R_FREQ_GANG_MAX)
 
 	while(leaderMind.gang.gang_frequency in frequencies_used)
-		leaderMind.gang.gang_frequency = rand(1360,1420)
+		leaderMind.gang.gang_frequency = rand(R_FREQ_GANG_MIN,R_FREQ_GANG_MAX)
 
 	frequencies_used += leaderMind.gang.gang_frequency
 
@@ -1065,7 +1065,7 @@
 			src.visible_message("<span class='notice'><b>The door to [src] swings shut and switches back on!<b></span>")
 
 	ex_act(severity)
-		take_damage(250-50*severity)
+		take_damage(75+25*severity)
 		return
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -1202,7 +1202,7 @@
 			return ..()
 
 	afterattack(var/atom/A as mob|obj|turf, var/mob/user as mob)
-		if (istype(A, /turf/simulated/wall) || istype(A, /turf/simulated/shuttle/wall) || istype(A, /turf/unsimulated/wall) || istype(A, /obj/window))
+		if (istype(A, /turf/wall) || istype(A, /turf/shuttle/wall) || istype(A, /obj/window))
 			user.visible_message("<b>[user]</b> attaches [src] to [A].","You attach [src] to [A].")
 			user.u_equip(src)
 			src.set_loc(A)
@@ -1401,7 +1401,7 @@ proc/get_gang_gear(var/mob/living/carbon/human/user)
 	"princess" = /obj/item/clothing/under/gimmick/princess,
 	"merchant" = /obj/item/clothing/under/gimmick/merchant,
 	"birdman" = /obj/item/clothing/under/gimmick/birdman,
-	"safari" = /obj/item/clothing/under/gimmick/safari,
+	//"safari" = /obj/item/clothing/under/gimmick/safari,
 	"det" = /obj/item/clothing/under/rank/det,
 	"red" = /obj/item/clothing/under/shorts/red,
 	"blue" = /obj/item/clothing/under/shorts/blue,

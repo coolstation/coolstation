@@ -227,6 +227,9 @@
 		if (istype(thing, /obj/item/reagent_containers/food/snacks))
 			fryholder.food_effects += thing:food_effects
 
+		fryholder.food_effects |= "food_warm"
+		fryholder.food_effects -= "food_cold"
+
 		var/icon/composite = new(thing.icon, thing.icon_state)
 		for(var/O in thing.underlays + thing.overlays)
 			var/image/I = O

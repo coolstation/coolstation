@@ -150,7 +150,7 @@
 		self_text(var/message)
 			if(!message)
 				message = "Confirmed."
-			var/datum/radio_frequency/frequency = radio_controller.return_frequency(FREQ_PDA)
+			var/datum/radio_frequency/frequency = radio_controller.return_frequency("[FREQ_PDA]")
 			if(frequency)
 
 				var/datum/signal/signal = get_free_signal()

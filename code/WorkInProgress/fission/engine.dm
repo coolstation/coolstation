@@ -216,7 +216,7 @@ REACTOR
 				// Get the turf
 				var/turf/T = get_turf(src)
 				// If it has air in it:
-				if(istype(T, /turf/simulated) && T:air)
+				if(issimulatedturf(T) && T:air)
 					// This count to see if there already exists
 					// a radiation trace gas
 					var/count = 0
@@ -290,7 +290,7 @@ REACTOR
 		// Get the turf
 		var/turf/T = get_turf(src)
 		// If it has air in it:
-		if(istype(T, /turf/simulated) && T:air)
+		if(issimulatedturf(T) && T:air)
 			// This count to see if there already exists
 			// a radiation trace gas
 			var/count = 0
@@ -371,14 +371,14 @@ REACTOR
 		// Called when an object is in an explosion
 		// Higher "severity" means the object was further from the centre of the explosion
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				status |= BROKEN
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if (prob(50))
 					status |= BROKEN
 					return
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				if (prob(25))
 					status |= BROKEN
 					return

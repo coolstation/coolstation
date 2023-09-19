@@ -259,7 +259,7 @@ obj/machinery/atmospherics/pipe
 						dir = NORTHWEST
 
 		hide(var/i)
-			if(level == 1 && istype(loc, /turf/simulated))
+			if(level == 1 && issimulatedturf(src.loc))
 				invisibility = i ? 101 : 0
 			update_icon()
 
@@ -291,7 +291,7 @@ obj/machinery/atmospherics/pipe
 			else if(parent)
 				var/environment_temperature = 0
 
-				if(istype(loc, /turf/simulated/))
+				if(issimulatedturf(loc))
 					if(loc:blocks_air)
 						environment_temperature = loc:temperature
 					else
@@ -366,17 +366,17 @@ obj/machinery/atmospherics/pipe
 
 		ex_act(severity) // cogwerks - adding an override so pda bombs aren't quite so ruinous in the engine
 			switch(severity)
-				if(1.0)
+				if(OLD_EX_SEVERITY_1)
 					if(prob(5))
 						qdel(src)
 					else
 						rupture(destroy=TRUE)
-				if(2.0)
+				if(OLD_EX_SEVERITY_2)
 					if(prob(10))
 						rupture(destroy=TRUE)
 					else
 						rupture()
-				if(3.0)
+				if(OLD_EX_SEVERITY_3)
 					if (prob(50))
 						rupture()
 			return
@@ -1021,7 +1021,7 @@ obj/machinery/atmospherics/pipe
 
 		hide(var/i) //to make the little pipe section invisible, the icon changes.
 			if(node1)
-				icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]intact"
+				icon_state = "[i == 1 && issimulatedturf(loc) ? "h" : "" ]intact"
 				dir = get_dir(src, node1)
 			else
 				icon_state = "exposed"
@@ -1121,12 +1121,7 @@ obj/machinery/atmospherics/pipe
 			return null
 
 		hide(var/i) //to make the little pipe section invisible, the icon changes.
-			return /*
-			if(node1)
-				icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]intact"
-				dir = get_dir(src, node1)
-			else
-				icon_state = "exposed"*/
+			return
 
 	manifold
 		icon = 'icons/obj/atmospherics/pipes/manifold_pipe.dmi'
@@ -1176,7 +1171,7 @@ obj/machinery/atmospherics/pipe
 					initialize_directions = NORTH|EAST|SOUTH
 
 		hide(var/i)
-			if(level == 1 && istype(loc, /turf/simulated))
+			if(level == 1 && issimulatedturf(loc))
 				invisibility = i ? 101 : 0
 			update_icon()
 

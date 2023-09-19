@@ -14,8 +14,9 @@
 	w_class = W_CLASS_NORMAL
 	amount_per_transfer_from_this = 25
 	incompatible_with_chem_dispensers = 1
+	inventory_counter_enabled = TRUE
 	flags = FPRINT | TABLEPASS | OPENCONTAINER
-	rc_flags = RC_SCALE | RC_SPECTRO
+	rc_flags = RC_SCALE | RC_SPECTRO | RC_INV_COUNT_AMT
 	initial_volume = 400
 	can_recycle = FALSE
 	can_chug = 0

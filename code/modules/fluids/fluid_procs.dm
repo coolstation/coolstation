@@ -17,7 +17,7 @@
 			return 0 // && !istype(thing,/obj/grille) && !istype(thing,/obj/table) && !istype(thing,/obj/structure/girder)) return 0
 	return 1
 
-turf/simulated/floor/plating/airless/ocean_canpass()
+turf/floor/plating/airless/ocean_canpass()
 	.= 0
 
 /turf/selftilenotify()
@@ -118,7 +118,7 @@ turf/simulated/floor/plating/airless/ocean_canpass()
 	FG.add(F, react_volume, guarantee_is_member = fluid_and_group_already_exist)
 
 	if (!airborne)
-		var/turf/simulated/floor/T = src
+		var/turf/floor/T = src
 		if (T.messy <= 0) return
 		if (istype(T))
 			var/found_cleanable = 0
@@ -185,7 +185,7 @@ turf/simulated/floor/plating/airless/ocean_canpass()
 	.= F
 
 	if (!airborne)
-		var/turf/simulated/floor/T = src
+		var/turf/floor/T = src
 		if (T.messy <= 0) return
 		if (istype(T))
 			var/found_cleanable = 0
@@ -199,7 +199,7 @@ turf/simulated/floor/plating/airless/ocean_canpass()
 
 /turf/proc/react_all_cleanables() //Same procedure called in fluid_react and fluid_react_single. copypasted cause i dont wanna proc call overhead up in hea
 
-/turf/simulated/floor/react_all_cleanables() //Same procedure called in fluid_react and fluid_react_single. copypasted cause i dont wanna proc call overhead up in hea
+/turf/floor/react_all_cleanables() //Same procedure called in fluid_react and fluid_react_single. copypasted cause i dont wanna proc call overhead up in hea
 	if (src.messy <= 0) return //hey this is CLEAN so don't even bother looping through contents, thanks!!
 	var/found_cleanable = 0
 	for (var/obj/decal/cleanable/C in src)
@@ -210,7 +210,7 @@ turf/simulated/floor/plating/airless/ocean_canpass()
 
 //called whenever a cleanable is spawned. Returns 1 on success
 //grab_any_amount will be True when a fluid spreads onto a tile that may have cleanables on it
-/turf/simulated/proc/cleanable_fluid_react(var/obj/decal/cleanable/possible_cleanable = 0, var/grab_any_amount = 0)
+/turf/proc/cleanable_fluid_react(var/obj/decal/cleanable/possible_cleanable = 0, var/grab_any_amount = 0)
 	if (!IS_VALID_FLUIDREACT_TURF(src)) return
 	//if possible_cleanable has a value, handle exclusively this decal. don't search thru the turf.
 	if (possible_cleanable)
@@ -243,7 +243,8 @@ turf/simulated/floor/plating/airless/ocean_canpass()
 	var/list/cleanables = list()
 	for (var/obj/decal/cleanable/C in src)
 		if (C.qdeled || C.pooled) continue
-		//if (C.dry) continue
+		if (C.dry) continue //this was commented out but i figure why not get crusty with it and see what happens
+		if (C.sampled) continue //beware recursion
 		if (istype(C,/obj/decal/cleanable/blood/dynamic)) continue // handled above
 		if (!C.can_fluid_absorb) continue
 		cleanables += C
@@ -257,12 +258,18 @@ turf/simulated/floor/plating/airless/ocean_canpass()
 				if (reagent_id in ban_stacking_into_fluid) return
 			var/datum/reagents/R = new(C.reagents.maximum_volume) //Store reagents, delete cleanable, and then fluid react. prevents recursion
 			C.reagents.copy_to(R)
-			C.clean_forensic()
+			if (C.sample_reagent in stack_into_fluid_but_keep_the_cleanable_ok_thanks)
+				C.sampled = 1 //empty it
+			else
+				C.clean_forensic()
 			src.fluid_react(R, R.total_volume)
 		else if (C?.can_sample && C.sample_reagent)
 			if ((!grab_any_amount && (C.sample_reagent in ban_stacking_into_fluid)) || (C.sample_reagent in ban_from_fluid)) return
 			var/sample = C.sample_reagent
 			var/amt = C.sample_amt
-			C.clean_forensic()
+			if (C.sample_reagent in stack_into_fluid_but_keep_the_cleanable_ok_thanks)
+				C.sampled = 1
+			else
+				C.clean_forensic()
 			src.fluid_react_single(sample, amt)
 	return 1

@@ -173,7 +173,7 @@ var/maniac_previous_victim = "Unknown"
 
 
 ////////////
-/area/evilreaver
+/area/evilreaver //AKA martian derelict
 	name = "Forgotten Station"
 	icon_state = "derelict"
 	teleport_blocked = 1
@@ -181,6 +181,7 @@ var/maniac_previous_victim = "Unknown"
 #ifdef MAP_OVERRIDE_OSHAN
 	requires_power = FALSE
 #endif
+	is_construction_allowed = FALSE
 
 /area/evilreaver/medical
 	icon_state = "medbay"

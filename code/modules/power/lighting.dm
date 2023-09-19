@@ -163,16 +163,16 @@
 				directions = cardinal
 			for (var/dir in directions)
 				T = get_step(src,dir)
-				if (istype(T,/turf/simulated/wall) || istype(T,/turf/unsimulated/wall) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window) in T)) //ah this was missing, set dir for every wall and check them later
+				if (istype(T,/turf/wall) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window) in T)) //ah this was missing, set dir for every wall and check them later
 					var/is_perspective = 0 //check if the walls are not flat and classic- special handling needed to make them look nice
 					var/is_jen_wall = 0 // jen walls' ceilings are narrower, so let's move the lights a bit further inward!
-					if (istype(T,/turf/simulated/wall/auto/supernorn) || istype(T,/turf/simulated/wall/auto/marsoutpost) || istype(T,/turf/simulated/wall/auto/supernorn/wood) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window/auto) in T))
+					if (istype(T,/turf/wall/auto/supernorn) || istype(T,/turf/wall/auto/marsoutpost) || istype(T,/turf/wall/auto/supernorn/wood) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window/auto) in T))
 						is_perspective = 1 //basically if it's a perspective autowall or new glass?? let's a go
 					//if ((locate(/obj/wingrille_spawn/classic) in T) || (locate(/obj/wingrille_spawn/reinforced/classic) in T))
 						//is_perspective = 0 //oh no the root of wingrille spawn is perspective but the classic wingrille spawn is not! time to handle and unset (this can surely be done better but whatever)
 						//actually shit how expensive is it to add a variable to turfs that says if they're perspective or classic?? i'm just imcoder enough to wonder but not enough to know
 						//commented out until my new old grilles are readded
-					if (istype(T, /turf/simulated/wall/auto/jen) || istype(T, /turf/simulated/wall/auto/reinforced/jen))
+					if (istype(T, /turf/wall/auto/jen) || istype(T, /turf/wall/auto/reinforced/jen))
 						is_jen_wall = 1 //handling for different offsets in the sprites
 						is_perspective = 1 //these are also perspective and without this it doesn't go
 					src.set_dir(dir) //okay here is the part that actually puts a light against a valid turf how did i accidentally delete this
@@ -458,14 +458,19 @@
 					logTheThing("combat", current_lamp.rigger, null, "'s rigged bulb exploded in [current_lamp.rigger.loc.loc] ([showCoords(src.x, src.y, src.z)])")
 				explode()
 			if(on && prob(current_lamp.breakprob))
-				current_lamp.light_status = LIGHT_BURNED
-				icon_state = "[base_state]-burned"
+				if(prob(10)) //not every light needs to pop violently
+					elecflash(src,radius = 1, power = 2, exclude_center = 0)
+					current_lamp.light_status = LIGHT_BROKEN
+					icon_state = "[base_state]-broken"
+					logTheThing("station", null, null, "Light '[name]' burnt out explosively (breakprob: [current_lamp.breakprob]) at ([showCoords(src.x, src.y, src.z)])")
+				else
+					current_lamp.light_status = LIGHT_BURNED
+					icon_state = "[base_state]-burned"
+					logTheThing("station", null, null, "Light '[name]' burnt out (breakprob: [current_lamp.breakprob]) at ([showCoords(src.x, src.y, src.z)])")
 				on = 0
 				light.disable()
-				elecflash(src,radius = 1, power = 2, exclude_center = 0)
-				logTheThing("station", null, null, "Light '[name]' burnt out (breakprob: [current_lamp.breakprob]) at ([showCoords(src.x, src.y, src.z)])")
 			else
-				current_lamp.breakprob += 0.25 // critical that your "increasing probability" thing actually, yknow, increase. ever.
+				current_lamp.breakprob += 0.15 // critical that your "increasing probability" thing actually, yknow, increase. ever.
 
 	if(ceilingmounted) //and also update the current icon for ceiling lights
 		lightfixtureimage = image(src.icon,src.loc,src.icon_state,PLANE_NOSHADOW_ABOVE -1,src.dir)
@@ -738,13 +743,13 @@
 
 /obj/machinery/light/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			qdel(src)
 			return
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			if (prob(75))
 				broken()
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if (prob(50))
 				broken()
 	return

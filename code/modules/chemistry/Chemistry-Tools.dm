@@ -127,6 +127,25 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 
 		src.transfer_all_reagents(over_object, usr)
 
+	//I hope doing this doesn't like, fuck up chemistry performance to shit
+	on_reagent_change(add)
+		..()
+		if (inventory_counter_enabled && src.rc_flags & (RC_INV_COUNT_AMT/* | RC_INV_COUNT_USE*/)) //
+			var/text = null
+			if (src.rc_flags & RC_INV_COUNT_AMT)
+				if (src.rc_flags & RC_SCALE)
+					text = "[round(src.reagents.total_volume,1)]/[src.reagents.maximum_volume]"
+				else if (src.rc_flags & RC_FULLNESS)
+					text = src.reagents.get_reagents_fullness(TRUE)
+			/*if (src.rc_flags & RC_INV_COUNT_USE)
+				if (text) //Add a divider :3
+					text += "|"
+				text += "pour [amount_per_transfer_from_this]u"*/
+			inventory_counter.update_text(text)
+
+
+
+
 /* ====================================================== */
 /* -------------------- Glass Parent -------------------- */
 /* ====================================================== */
@@ -450,7 +469,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 	amount_per_transfer_from_this = 10
 	initial_volume = 120
 	flags = FPRINT | OPENCONTAINER | SUPPRESSATTACK
-	rc_flags = RC_FULLNESS | RC_VISIBLE | RC_SPECTRO
+	rc_flags = RC_FULLNESS | RC_VISIBLE | RC_SPECTRO | RC_INV_COUNT_AMT
 	can_recycle = FALSE
 	var/helmet_bucket_type = /obj/item/clothing/head/helmet/bucket
 	var/hat_bucket_type = /obj/item/clothing/head/helmet/bucket/hat
@@ -469,6 +488,8 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 			if (src.reagents.total_volume >= 2)
 				src.reagents.trans_to(D, 2)
 				user.show_text("You wet the mop", "blue")
+				var/obj/item/mop/M = D
+				M.mopcount = 0
 				playsound(src.loc, 'sound/impact_sounds/Liquid_Slosh_1.ogg', 25, 1)
 			else
 				user.show_text("Out of water!", "blue")

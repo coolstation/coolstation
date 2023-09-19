@@ -24,7 +24,7 @@
 
 		//Verify that you are not in control of your master's body.
 		if(H.master && H.owner != H.master)
-			boutput(holder.owner, __red("A slave cannot release a sub-form!."))
+			boutput(holder.owner, __red("A component cannot release a sub-form!."))
 			return 1
 
 		var/list/eligible = list()
@@ -81,7 +81,7 @@
 			spider.icon_prefix = "robo"
 			spider.update_icon()
 
-		spider.Browse(grabResource("html/mindslave/handspider.html"),"window=antagTips;size=600x400;title=Antagonist Tips")
+		spider.Browse(grabResource("html/insurgent/handspider.html"),"window=antagTips;size=600x400;title=Antagonist Tips")
 		boutput(spider, "<h2><font color=red>You have reawakened to serve your host [holder.owner]! You must follow their commands!</font></h2>")
 		boutput(spider, "<font color=red>You are a very small and weak creature that can fit into tight spaces. You are still connected to the hivemind.</font>")
 
@@ -126,7 +126,7 @@
 
 		//Verify that you are not in control of your master's body.
 		if(H.master && H.owner != H.master)
-			boutput(holder.owner, __red("A slave cannot release a sub-form!."))
+			boutput(holder.owner, __red("A component cannot release a sub-form!."))
 			return 1
 
 		var/list/eligible = list()
@@ -173,7 +173,7 @@
 		spider.real_name = use_mob.real_name
 		spider.hivemind_owner = H
 
-		spider.Browse(grabResource("html/mindslave/eyespider.html"),"window=antagTips;size=600x400;title=Antagonist Tips")
+		spider.Browse(grabResource("html/insurgent/eyespider.html"),"window=antagTips;size=600x400;title=Antagonist Tips")
 		boutput(spider, "<h2><font color=red>You have reawakened to serve your host [holder.owner]! You must follow their commands!</font></h2>")
 		boutput(spider, "<font color=red>You are a very small and weak creature that can fit into tight spaces, and see through walls. You are still connected to the hivemind.</font>")
 
@@ -219,7 +219,7 @@
 
 		//Verify that you are not in control of your master's body.
 		if(H.master && H.owner != H.master)
-			boutput(holder.owner, __red("A slave cannot release a sub-form!."))
+			boutput(holder.owner, __red("A component cannot release a sub-form!."))
 			return 1
 
 		var/list/eligible = list()
@@ -266,7 +266,7 @@
 		spider.real_name = use_mob.real_name
 		spider.hivemind_owner = H
 
-		spider.Browse(grabResource("html/mindslave/legworm.html"),"window=antagTips;size=600x400;title=Antagonist Tips")
+		spider.Browse(grabResource("html/insurgent/legworm.html"),"window=antagTips;size=600x400;title=Antagonist Tips")
 		boutput(spider, "<h2><font color=red>You have reawakened to serve your host [holder.owner]! You must follow their commands!</font></h2>")
 		boutput(spider, "<font color=red>You are a small creature that can deliver powerful kicks and fit into tight spaces. You are still connected to the hivemind.</font>")
 
@@ -311,7 +311,7 @@
 
 		//Verify that you are not in control of your master's body.
 		if(H.master && H.owner != H.master)
-			boutput(holder.owner, __red("A slave cannot release a sub-form!."))
+			boutput(holder.owner, __red("A component cannot release a sub-form!."))
 			return 1
 
 		var/list/eligible = list()
@@ -350,7 +350,7 @@
 		crab.real_name = use_mob.real_name
 		crab.hivemind_owner = H
 
-		crab.Browse(grabResource("html/mindslave/eyespider.html"),"window=antagTips;size=600x400;title=Antagonist Tips")
+		crab.Browse(grabResource("html/insurgent/eyespider.html"),"window=antagTips;size=600x400;title=Antagonist Tips")
 		boutput(crab, "<h2><font color=red>You have reawakened to serve your host [holder.owner]! You must follow their commands!</font></h2>")
 		boutput(crab, "<font color=red>You are a very small, very smelly, and weak creature. You are still connected to the hivemind.</font>")
 
@@ -423,7 +423,7 @@
 
 		//Verify that you are not in control of your master's body.
 		if(H.master && H.owner != H.master)
-			boutput(holder.owner, __red("A slave cannot boot other members of the hivemind!."))
+			boutput(holder.owner, __red("A component cannot boot other members of the hivemind!."))
 			return 1
 
 		var/list/eligible = list()
@@ -475,7 +475,7 @@
 
 		//Verify that you are not in control of your master's body.
 		if(H.master && H.owner != H.master)
-			boutput(holder.owner, __red("A slave cannot relinquish control of the shared form!."))
+			boutput(holder.owner, __red("A component cannot relinquish control of the shared form!."))
 			return 1
 
 		var/list/eligible = list()

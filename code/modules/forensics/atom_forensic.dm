@@ -157,7 +157,7 @@
 			if (istype(I, /obj/item/clothing))
 				var/obj/item/clothing/C = src
 				C.add_stain("blood-stained")
-		else if (istype(src, /turf/simulated))
+		else if (issimulatedturf(L))
 			if(istype(L))
 				bleed(L, amount, 5, rand(1,3), src)
 		else if (ishuman(src)) // this will add the blood to their hands or something?
@@ -445,7 +445,7 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 
 
 
-	else if (istype(src, /turf/simulated))
+	else if (issimulatedturf(src))
 		muddy(M, amount, rand(1,3), src)
 
 	else

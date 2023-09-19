@@ -583,8 +583,8 @@ var/list/camImages = list()
 var/aiDirty = 2
 world/proc/updateCameraVisibility()
 	if(!aiDirty) return
-
-#if defined(IM_REALLY_IN_A_FUCKING_HURRY_HERE) && !defined(SPACEMAN_DMM)
+	//Keywords: AI camera camvis cam vis camera visibility camera static
+#if defined(SKIP_CAM_VIS) && !defined(SPACEMAN_DMM)
 	// I don't wanna wait for this camera setup shit just GO
 	return
 #endif
@@ -624,7 +624,7 @@ world/proc/updateCameraVisibility()
 			t.aiImage.loc = t
 
 		#ifdef DESERT_MAP //This isn't strictly necessary but saving desert istype checks on 90k turfs per zlevel processed feels worth it?
-			addAIImage(t.aiImage, "aiImage_\ref[t.aiImage]", low_priority=(istype(t, /turf/simulated/wall/asteroid/gehenna) || istype(t, /turf/space/gehenna/desert)))
+			addAIImage(t.aiImage, "aiImage_\ref[t.aiImage]", low_priority=(istype(t, /turf/wall/asteroid/gehenna) || istype(t, /turf/space/gehenna/desert)))
 		#else //(That works out to 90k of those two desert checks for most maps and 180k space checks for gehenna)
 			addAIImage(t.aiImage, "aiImage_\ref[t.aiImage]", low_priority=istype(t, /turf/space))
 		#endif

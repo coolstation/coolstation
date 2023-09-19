@@ -231,7 +231,7 @@
 				HH.make_wrestler(0, 1, 1)
 				return 0
 
-		if (fake && !istype(get_turf(M), /turf/simulated/floor/specialroom/gym))
+		if (fake && !istype(get_turf(M), /turf/floor/specialroom/gym))
 			boutput(M, __red("You cannot use your \"powers\" outside of The Ring!"))
 			return 0
 

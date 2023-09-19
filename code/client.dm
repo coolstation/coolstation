@@ -474,7 +474,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 				//preferences.randomizeLook()
 				preferences.ShowChoices(src.mob)
 				src.mob.Browse(grabResource("html/tgControls.html"),"window=tgcontrolsinfo;size=600x400;title=TG Controls Help")
-				boutput(src, "<span class='alert'>Welcome! You don't have a character profile saved yet, so please create one. If you're new, check out the <a target='_blank' href='https://wiki.ss13.co/Getting_Started#Fundamentals'>quick-start guide</a> for how to play!</span>")
+				boutput(src, "<span class='alert'>Welcome! You don't have a character profile saved yet, so please create one. If you're new, check out the <a target='_blank' href='https://wiki.coolstation.space/wiki/Tutorial'>quick-start guide</a> for how to play!</span>")
 				//hey maybe put some 'new player mini-instructional' prompt here
 				//ok :)
 				is_newbie = 1
@@ -492,7 +492,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 				changes()
 
 			if (src.holder && rank_to_level(src.holder.rank) >= LEVEL_MOD) // No admin changelog for goat farts (Convair880).
-				admin_changes()
+				admin_changelog()
 #endif
 #if ASS_JAM
 				src.verbs += /client/proc/cmd_ass_day_rules

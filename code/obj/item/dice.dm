@@ -682,7 +682,7 @@ var/list/rollList = list()
 		src.dicelist = list()
 
 	proc/pourout(atom/target,mob/living/user as mob) //requires the target and user to be passed to the proc
-		if((src.dicelist.len)&&(istype(target, /turf/simulated/floor)) || length(src.dicelist) && (istype(target, /turf/unsimulated/floor)))
+		if(length(src.dicelist) && (istype(target, /turf/floor)))
 			hiddenroll()
 			src.ClearAllOverlays()
 			src.diceinchatstring = src.dicelist[1].diceInChat(1,src.localRollList)

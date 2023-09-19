@@ -305,7 +305,7 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 	execute(var/obj/item/owner, var/mob/attacker, var/mob/attacked)
 		var/turf/T = get_turf(attacked)
 		if(prob(33))
-			if(istype(attacked) && !isrestrictedz(T.z)) // Haine fix for undefined proc or verb /turf/simulated/floor/set loc()
+			if(istype(attacked) && !isrestrictedz(T.z)) // Haine fix for undefined proc or verb /turf/floor/set loc()
 				. = get_offset_target_turf(get_turf(attacked), rand(-8, 8), rand(-8, 8))
 				var/fail_msg = ""
 				if (prob(25) && attacker == attacked)
@@ -342,7 +342,7 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 				src.owner.owner.visible_message("<span class='alert>[src.owner.owner] dissipates.</span>")
 				qdel(src.owner.owner)
 			return*/
-		for (var/turf/simulated/floor/target in range(1,location))
+		for (var/turf/floor/target in range(1,location))
 			if(ON_COOLDOWN(target, "plasmastone_plasma_generate", 10 SECONDS)) continue
 			if(!target.blocks_air && target.air)
 				if(target.parent?.group_processing)
@@ -582,8 +582,8 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 			owner.visible_message("<span class='alert'>[owner] crumples!</span>", "<span class='alert'>You hear a crumpling sound.</span>")
 			qdel(owner)
 		else if (istype(owner, /turf))
-			if (istype(owner, /turf/simulated/wall))
-				var/turf/simulated/wall/wall_owner = owner
+			if (istype(owner, /turf/wall))
+				var/turf/wall/wall_owner = owner
 				owner.visible_message("<span class='alert'>Part of [owner] shears off under the blobby force! </span>")
 				wall_owner.dismantle_wall(1)
 
@@ -619,14 +619,14 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 					S.dump_contents()
 				qdel(owner)
 			else if (istype(owner, /turf))
-				if (istype(owner, /turf/simulated/wall))
-					var/turf/simulated/wall/wall_owner = owner
+				if (istype(owner, /turf/wall))
+					var/turf/wall/wall_owner = owner
 					owner.visible_message("<span class='alert'>[owner] shears apart under the force of [attackobj]! </span>","<span class='alert'>You hear a crumpling sound.</span>")
 					logTheThing("station", attacker ? attacker : null, null, "bashed apart a cardboard wall ([owner.name]) using \a [attackobj] at [attacker ? get_area(attacker) : get_area(owner)] ([attacker ? showCoords(attacker.x, attacker.y, attacker.z) : showCoords(owner.x, owner.y, owner.z)])[attacker ? null : ", attacker is unknown, shown location is of the wall"][meleeorthrow == 1 ? ", this was a thrown item" : null]")
 					wall_owner.dismantle_wall(1, 0)
 
-				else if (istype(owner, /turf/simulated/floor))
-					var/turf/simulated/floor/floor_owner = owner
+				else if (istype(owner, /turf/floor))
+					var/turf/floor/floor_owner = owner
 					if (floor_owner.broken && floor_owner.intact)
 						floor_owner.to_plating()
 						owner.visible_message("The top layer of [owner] breaks away!","<span class='alert'>You hear a crumpling sound.</span>")
@@ -648,16 +648,16 @@ triggerOnEntered(var/atom/owner, var/atom/entering)
 		createdsheet.setMaterial(owner.material)
 		qdel(owner)
 	else if (istype(owner, /turf))
-		if (istype(owner, /turf/simulated/wall))
-			var/turf/simulated/wall/wall_owner = owner
-			if (istype(owner, /turf/simulated/wall/r_wall) || istype(owner, /turf/simulated/wall/auto/reinforced))
+		if (istype(owner, /turf/wall))
+			var/turf/wall/wall_owner = owner
+			if (istype(owner, /turf/wall/r_wall) || istype(owner, /turf/wall/auto/reinforced))
 				attacker.visible_message("<span class='alert'>[attacker] cuts the reinforcment off [owner].</span>","You cut the reinforcement off [owner].","The sound of cutting cardboard stops.")
 			else
 				attacker.visible_message("<span class='alert'>[attacker] cuts apart the outer cover of [owner]</span>.","<span class='notice'>You cut apart the outer cover of [owner]</span>.","The sound of cutting cardboard stops.")
 				logTheThing("station", attacker, null, "cut apart a cardboard wall ([owner.name]) using \a [attackobj] at [get_area(attacker)] ([showCoords(attacker.x, attacker.y, attacker.z)])")
 			wall_owner.dismantle_wall(0, 0)
-		else if (istype(owner, /turf/simulated/floor))
-			var/turf/simulated/floor/floor_owner = owner
+		else if (istype(owner, /turf/floor))
+			var/turf/floor/floor_owner = owner
 			if (floor_owner.intact)
 				if (!(floor_owner.broken || floor_owner.burnt))
 					var/atom/A = new /obj/item/tile(floor_owner)

@@ -45,7 +45,7 @@
 /obj/machinery/bot/duckbot/New()
 	. = ..()
 	if(radio_controller)
-		radio_controller.add_object(src, FREQ_PDA)
+		radio_controller.add_object(src, "[FREQ_PDA]")
 
 /// Makes the duckbot mill around aimlessly, or chase people if emagged
 /obj/machinery/bot/duckbot/proc/wakka_wakka()
@@ -183,7 +183,7 @@
 		var/A = pick(stationAreas)
 		src.duck_migration_target = stationAreas[A]
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(FREQ_PDA)
+	var/datum/radio_frequency/frequency = radio_controller.return_frequency("[FREQ_PDA]")
 	if(!frequency) return FALSE
 
 	var/datum/signal/signal = get_free_signal()
@@ -233,7 +233,7 @@
 /*
 /obj/machinery/bot/duckbot/proc/send_confirm_signal(var/msg, var/target)
 	if(!ON_COOLDOWN(global, "duckbot_antispam_[target]", 1 SECOND))
-		var/datum/radio_frequency/frequency = radio_controller.return_frequency(FREQ_PDA)
+		var/datum/radio_frequency/frequency = radio_controller.return_frequency("[FREQ_PDA]")
 		if(!frequency) return FALSE
 		var/datum/signal/sigsend = get_free_signal()
 		sigsend.source = src

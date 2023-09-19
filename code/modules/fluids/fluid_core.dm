@@ -15,7 +15,18 @@ var/list/ban_stacking_into_fluid = list( //ban these from producing fluid from a
 	"ash",\
 	"blackpowder",\
 	"leaves",\
+	"slime",\
+	"spiders",\
+	"ants",\
 	//"poo",\ // THIS IS WHAT WAS DOINIT.
+)
+
+var/list/stack_into_fluid_but_keep_the_cleanable_ok_thanks = list( //unlike above, empty out whatever reagents can be sampled, and then leave the cleanable
+	"poo",\
+	"vomit",\
+	"gvomit",\
+	"egg",\
+	"juice_tomato",\
 )
 
 ///////////////////
@@ -585,7 +596,7 @@ var/mutable_appearance/fluid_ma
 		else
 			var/dirs = 0
 			for (var/dir in cardinal)
-				var/turf/simulated/T = get_step(src, dir)
+				var/turf/T = get_step(src, dir)
 				if (T && T.active_liquid && T.active_liquid.group == src.group)
 					dirs |= dir
 			icon_state = num2text(dirs)
@@ -636,7 +647,7 @@ var/mutable_appearance/fluid_ma
 		else
 			overlay = image('icons/obj/fluid.dmi', "blank")
 
-		var/over_obj = !(istype(src.loc, /turf/simulated/wall) || istype(src.loc,/turf/unsimulated/wall/)) //HEY HEY MBC THIS SMELLS THINK ABOUT IT LATER
+		var/over_obj = !(istype(src.loc, /turf/wall)) //HEY HEY MBC THIS SMELLS THINK ABOUT IT LATER
 		overlay.layer = over_obj ? 4 : src.layer
 		overlay.icon_state = "wall_[overlay_key]_[last_depth_level]"
 		overlay.pixel_x = pox

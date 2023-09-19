@@ -433,7 +433,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 // Throughout December the icon will change!
 /obj/xmastree
 	name = "Spacemas tree"
-	desc = "O Spacemas tree, O Spacemas tree, Much p- Huh, there's a note here with <a target='_blank' href='https://forum.ss13.co/showthread.php?tid=15478'>'https://forum.ss13.co/showthread.php?tid=15478'</a> written on it."
+	desc = "O Spacemas tree, O Spacemas tree, Much p-"
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "xmastree_2020"
 	anchored = 1
@@ -477,7 +477,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 			SPAWN_DBG(1 MINUTE)
 				if (src.on_fire)
 					src.visible_message("<span class='combat'>[src] burns down and collapses into a sad pile of ash. <b><i>Spacemas is ruined!!!</i></b></span>")
-					for (var/turf/simulated/floor/T in range(1,src))
+					for (var/turf/floor/T in range(1,src))
 						make_cleanable( /obj/decal/cleanable/ash,T)
 					modify_christmas_cheer(-33)
 					qdel(src)
@@ -514,7 +514,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 	New()
 		..()
 		SPAWN_DBG(rand(100,500))
-			if (src.loc && (istype(src.loc, /turf/simulated/floor/specialroom/freezer) || src.loc.loc.name == "Space" || src.loc.loc.name == "Ocean"))
+			if (src.loc && (istype(src.loc, /turf/floor/specialroom/freezer) || src.loc.loc.name == "Space" || src.loc.loc.name == "Ocean"))
 				src.visible_message("\The [src] vanishes into thin air, as its subatomic particles decay!")
 			else
 				src.visible_message("\The [src] melts!")
@@ -972,7 +972,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 						O.ex_act(attack_strength)
 			else if(isturf(AM))
 				var/turf/T = AM
-				if(T.density && istype(T,/turf/simulated/wall/))
+				if(T.density && istype(T,/turf/wall/))
 					for (var/mob/C in viewers(src))
 						shake_camera(C, 8, 16)
 						C.show_message("<span class='alert'><B>[src] [attack_text] on [T]!</B></span>", 1)
@@ -1038,7 +1038,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 				for (var/mob/living/X in range(src,1))
 					if (X == src)
 						continue
-					X.ex_act(3)
+					X.ex_act(OLD_EX_LIGHT)
 					playsound(X.loc, "fleshbr1.ogg", 50, 1, -1)
 				src.transforming = 0
 
@@ -1065,7 +1065,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 					if (M == src)
 						continue
 					playsound(M.loc, "fleshbr1.ogg", 40, 1, -1)
-					M.ex_act(3)
+					M.ex_act(OLD_EX_LIGHT)
 				for (var/turf/T in range(src,3))
 					animate_shake(T,5,rand(3,8),rand(3,8))
 

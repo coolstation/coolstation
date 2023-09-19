@@ -182,9 +182,9 @@
 			enter_shell()
 
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.health -= shell_count ? 75 : 200
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.health -= shell_count ? 25 : 75
 			else
 				src.health -= shell_count ? 0 : 25

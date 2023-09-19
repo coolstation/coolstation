@@ -258,7 +258,7 @@
 		actions.start(new/datum/action/bar/icon/cleanbotclean(src, src.target), src)
 
 	proc/find_target()
-		for (var/turf/simulated/floor/F in view(src.search_range, src.scan_origin))
+		for (var/turf/floor/F in view(src.search_range, src.scan_origin))
 			var/coord = turf2coordinates(F)
 			if ((coord in src.cleanbottargets) || (coord in src.targets_invalid))
 				continue
@@ -271,7 +271,7 @@
 			src.cleanbottargets += coord
 			return F
 
-	proc/is_it_invalid(var/turf/simulated/floor/F)
+	proc/is_it_invalid(var/turf/floor/F)
 		var/coords = turf2coordinates(F)
 		for (var/atom/A in F.contents)
 			if (A.density && !(A.flags & ON_BORDER) && !istype(A, /obj/machinery/door) && !ismob(A))
@@ -306,10 +306,10 @@
 
 	ex_act(severity)
 		switch (severity)
-			if (1.0)
+			if (OLD_EX_SEVERITY_1)
 				src.explode()
 				return
-			if (2.0)
+			if (OLD_EX_SEVERITY_2)
 				src.health -= 15
 				if (src.health <= 0)
 					src.explode()

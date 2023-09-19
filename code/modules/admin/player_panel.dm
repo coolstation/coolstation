@@ -189,7 +189,8 @@
 					</div>
 					<div class='l'>Misc</div>
 					<div class='r'>
-						<a href='[playeropt_link(M, "forcespeech")]'>Force Say</a>
+						<a href='[playeropt_link(M, "forcespeech")]'>Force Say</a> &bull;
+						<a href='[playeropt_link(M, "givepet")]'>Give Pet</a>
 					</div>
 				</div>
 			</div>
@@ -351,7 +352,7 @@
 				<div>
 					<div class='l'>Administrator</div>
 					<div class='r'>
-						<a href='[playeropt_link(M, "possessmob")]'>[M == usr ? "Release" : "Possess"] mob</a> &bull;
+						<a href='[playeropt_link(M, "possess_mob")]'>[M == usr ? "Release" : "Possess"] mob</a> &bull;
 						<a href='[playeropt_link(M, "viewvars")]'>Edit Variables</a> &bull;
 						<a href='[playeropt_link(M, "modcolor")]'>Modify Icon</a>
 					</div>

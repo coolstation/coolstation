@@ -179,14 +179,14 @@ datum
 						qdel(O)
 				holder?.del_reagent(id)
 
-			reaction_turf(var/turf/simulated/T, var/volume)
+			reaction_turf(var/turf/T, var/volume)
 				if (!holder)
 					return
 				if (!istype(T) || volume < 5 || holder.total_temperature < T0C + 400)
 					return
 				if (T.material && T.material.mat_id == "steel")
 					//T.visible_message("<span class='alert'>[T] melts!</span>")
-					T.ex_act(2)
+					T.ex_act(OLD_EX_HEAVY)
 
 		combustible/thermite
 			name = "thermite"
@@ -201,7 +201,7 @@ datum
 			minimum_reaction_temperature = T0C+100
 
 			reaction_temperature(exposed_temperature, exposed_volume)
-				var/turf/simulated/A = holder.my_atom
+				var/turf/A = holder.my_atom
 				if(!istype(A)) return
 
 				if(holder.get_reagent_amount(id) >= 15) //no more thermiting walls with 1u tyvm
@@ -220,7 +220,7 @@ datum
 				return
 
 			reaction_turf(var/turf/T, var/volume)
-				if(istype(T, /turf/simulated))
+				if(issimulatedturf(T))
 					var/list/covered = holder.covered_turf()
 					if(length(covered) > 9)
 						volume = volume/length(covered)
@@ -357,7 +357,7 @@ datum
 
 				holder?.del_reagent(id)
 
-			on_mob_life(var/mob/M, var/mult = 1) // fuck you jerk chemists (todo: a thing to self-harm borgs too, maybe ex_act(3) to the holder? I D K
+			on_mob_life(var/mob/M, var/mult = 1) // fuck you jerk chemists (todo: a thing to self-harm borgs too, maybe ex_act(OLD_EX_LIGHT) to the holder? I D K
 				if(!M) M = holder.my_atom
 				if(prob(70))
 					M.take_brain_damage(1 * mult)
@@ -493,10 +493,10 @@ datum
 							if(0 to 15)
 								if(prob(15))
 									//T.visible_message("<span class='alert'>[T] melts!</span>")
-									T.ex_act(2)
+									T.ex_act(OLD_EX_HEAVY)
 							if(16 to INFINITY)
 								//T.visible_message("<span class='alert'>[T] melts!</span>")
-								T.ex_act(2)
+								T.ex_act(OLD_EX_HEAVY)
 				return
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)

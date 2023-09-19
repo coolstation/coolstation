@@ -205,7 +205,7 @@ proc/equip_battler(mob/living/carbon/human/battler)
 		/obj/item/clothing/under/gimmick/birdman,
 		/obj/item/clothing/under/gimmick/dawson,
 		/obj/item/clothing/under/gimmick/brummie,
-		/obj/item/clothing/under/gimmick/safari,
+		//obj/item/clothing/under/gimmick/safari,
 		/obj/item/clothing/under/gimmick/utena,
 		/obj/item/clothing/under/gimmick/anthy,
 		/obj/item/clothing/under/gimmick/butler,

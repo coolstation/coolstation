@@ -13,7 +13,7 @@ var/list/dangerousVerbs = list(\
 /client/proc/openBanPanel,\
 /client/proc/cmd_admin_addban,\
 /client/proc/banooc,\
-/client/proc/sharkban,\
+/client/proc/cmd_admin_sharkban,\
 
 //This is a little involved for a drunk person huh
 /client/proc/main_loop_context,\
@@ -66,15 +66,15 @@ var/list/dangerousVerbs = list(\
 /client/proc/toggle_toggles,\
 /client/proc/toggle_popup_verbs,\
 /client/proc/toggle_server_toggles_tab,\
-/datum/admins/proc/toggleenter,\
+/datum/admins/proc/toggle_enter,\
 /datum/admins/proc/toggle_blood_system,\
 /datum/admins/proc/toggle_bone_system,\
-/client/proc/togglebuildmode,\
+/client/proc/toggle_buildmode,\
 /client/proc/toggle_atom_verbs,\
 /client/proc/toggle_camera_network_reciprocity, \
 /client/proc/toggle_atom_verbs,\
 /client/proc/toggle_extra_verbs,\
-/datum/admins/proc/togglethetoggles,\
+/datum/admins/proc/toggle_toggles,\
 
 /client/proc/forceDrunkMode\
 )
@@ -93,7 +93,7 @@ var/list/dangerousVerbs = list(\
 		if (src)
 			src.verbs -= /client/proc/enableDrunkMode
 			src.verbs += /client/proc/disableDrunkMode
-			src.toggleDrunkMode(src, not_drunk_but_high)
+			src.toggle_drunkmode(src, not_drunk_but_high)
 	return
 
 /client/proc/disableDrunkMode()
@@ -120,9 +120,9 @@ var/list/dangerousVerbs = list(\
 		if (puzzle == answer)
 			src.verbs -= /client/proc/disableDrunkMode
 			src.verbs += /client/proc/enableDrunkMode
-			src.toggleDrunkMode(src)
+			src.toggle_drunkmode(src)
 		else
-			message_admins("[key_name(src)] tried to disable drunk-mode on himself but failed the puzzle ([num1] + [num2]). Everyone laugh at them.")
+			message_admins("[key_name(src)] tried to disable their drunk-mode but failed the puzzle ([num1] + [num2]). Everyone laugh at them.")
 			alert("WRONG! This highly scientific test has determined that you are still drunk, the mode has not been disabled.")
 	else
 		return
@@ -130,8 +130,8 @@ var/list/dangerousVerbs = list(\
 
 /client/proc/forceDrunkMode(var/client/C in onlineAdmins)
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER)
-	set name = "Force Drunk Mode"
-	set desc = "Is another admin drunk as a skunk? Put them in drunk mode sharpish."
+	set name = "Force Drunk-Mode"
+	set desc = "Is another admin drunktaur as a skunktaur? Put them in drunk-mode, sharpish."
 	set popup_menu = 0
 
 	if (!C) return
@@ -143,10 +143,10 @@ var/list/dangerousVerbs = list(\
 		alert("There are no other admins online besides you")
 		return
 
-	src.toggleDrunkMode(C)
+	src.toggle_drunkmode(C)
 
 
-/client/proc/toggleDrunkMode(var/client/C, var/is_actually_high = 0)
+/client/proc/toggle_drunkmode(var/client/C, var/is_actually_high = 0)
 	if (!C) return
 
 	admin_only

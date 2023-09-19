@@ -95,21 +95,21 @@
 			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/item/lamp_manufacturer/proc/remove_light, list(A, user), null, null, null, null)
 
 
-		if (!istype(A, /turf/simulated) && !istype(A, /obj/window) || !check_ammo(user, cost_fitting))
+		if (!issimulatedturf(A) && !istype(A, /obj/window) || !check_ammo(user, cost_fitting))
 			..()
 			return
 
-		if (istype(A, /turf/simulated/floor))
+		if (istype(A, /turf/floor))
 			boutput(user, "<span class='notice'>Installing a floor bulb...</span>")
 			playsound(user, "sound/machines/click.ogg", 50, 1)
 			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/item/lamp_manufacturer/proc/add_floor_light, list(A, user), null, null, null, null)
 
 
-		else if (istype(A, /turf/simulated/wall) || istype(A, /obj/window))
+		else if (istype(A, /turf/wall) || istype(A, /obj/window))
 			if (!(islist(params) && params["icon-y"] && params["icon-x"]))
 				return
 			var/atom/B = get_adjacent_floor(A, user, text2num(params["icon-x"]), text2num(params["icon-y"]))
-			if (!istype(B, /turf/simulated/floor) && !istype(B, /turf/space))
+			if (!istype(B, /turf/floor) && !istype(B, /turf/space))
 				return
 			if (locate(/obj/window) in B)
 				return
@@ -389,8 +389,9 @@
 	icon_state = "oilcan"
 	amount_per_transfer_from_this = 15
 	splash_all_contents = 0
+	inventory_counter_enabled = TRUE
 	w_class = W_CLASS_NORMAL
-	rc_flags = RC_FULLNESS
+	rc_flags = RC_FULLNESS | RC_INV_COUNT_AMT
 	initial_volume = 120
 
 	New()

@@ -7,7 +7,7 @@
 	var/list/authorized_registered
 	var/datum/radio_frequency/radio_connection = null
 	var/net_id = null
-	var/datum/radio_frequency/control_frequency = "1461"
+	var/datum/radio_frequency/control_frequency = FREQ_ARMORY
 	var/radiorange = 3
 	desc = "Use this computer to authorize security access to the Armory. You need an ID with security access to do so."
 

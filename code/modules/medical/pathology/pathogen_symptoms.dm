@@ -647,7 +647,7 @@ datum/pathogeneffects/malevolent/serious_paranoia
 
 	proc/floor_in_view(var/mob/M)
 		var/list/ret = list()
-		for (var/turf/simulated/floor/T in view(M, 7))
+		for (var/turf/floor/T in view(M, 7))
 			ret += T
 		return ret
 

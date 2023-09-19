@@ -37,6 +37,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	icon_state = "tranq_pistol"
 	contraband = 0
 	inventory_counter_enabled = 1
+	var/bulk = 1
 	var/barrel_overlay_x = 0
 	var/barrel_overlay_y = 0
 	var/bullpup_stock = 0 // this one's fucky. some guns i guess will want a single pistol grip to be forward, but dual or shoulder at the back. this is that offset i guess.
@@ -126,6 +127,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(jam_frequency_fire || jam_frequency_reload)
 		. += "<div><img src='[resource("images/tooltips/jamjarrd.png")]' alt='' class='icon' /><span>Jammin: [src.jam_frequency_reload + src.jam_frequency_fire] </span></div>"
 
+	. += "<div><span>Bulk: [src.bulk][pick("kg","lb","0%"," finger")] </span></div>"
 	. += "<div> <span>Maxcap: [src.max_ammo_capacity] </span></div>"
 	. += "<div> <span>Loaded: [src.ammo_list.len + (src.current_projectile?1:0)] </span></div>"
 
@@ -136,12 +138,21 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		var/obj/item/stackable_ammo/SA = I
 		SA.reload(src, user)
 		return
+
 	if(istype(I,/obj/item/instrument/bikehorn))
-		boutput(user,"<span class='notice'><b>You first radicalize the bike horn by telling it all about The Man.</b></span>")
+		boutput(user,"<span class='notice'><b>You first radicalize [I] by telling it all about The Man.</b></span>")
 		playsound(src, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, -1)
 		user.u_equip(I)
 		I = new /obj/item/gun_parts/accessory/horn()
 		user.put_in_hand_or_drop(I)
+		return
+
+	if(istype(I,/obj/item/device/light/flashlight))
+		boutput(user,"<span class='notice'><b>You first radicalize [I] telling it all about The Man.</b></span>")
+		user.u_equip(I)
+		I = new /obj/item/gun_parts/accessory/flashlight()
+		user.put_in_hand_or_drop(I)
+		return
 
 	if(istype(I,/obj/item/gun_parts/))
 		if(built)
@@ -157,7 +168,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				barrel = I
 			if (istype(I, /obj/item/gun_parts/stock/))
 				if(stock) //occupado
-					if(!stock.stock_two_handed && !I:stock_two_handed)// i know i know, :, but we *JUST* checked, cmon.
+					if(!I:stock_shoulder)// i know i know, :, but we *JUST* checked, cmon.
 						if(stock2)
 							boutput(user,"<span class='notice'>...and knock [stock2] out of the way.</span>")
 							stock2.set_loc(get_turf(src))
@@ -513,6 +524,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	for(var/obj/item/gun_parts/part as anything in parts)
 		part.add_part_to_gun(src)
 
+	if(bulk >= 6)
+		src.two_handed = 1
+		if(!stock2)
+			spread_angle += GRIP_PENALTY/2
+
+	src.force = 2 + bulk
+	src.throwforce = bulk
 
 	buildTooltipContent()
 	built = 1
@@ -525,6 +543,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	stock = null
 	magazine = null
 	accessory = null
+	stock2 = null
 
 	name = real_name
 
@@ -538,6 +557,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	accessory_on_fire = 0
 	accessory_on_cycle = 0
 	flash_auto = 0
+	bulk = 0
 
 	spread_angle = initial(spread_angle)
 	max_ammo_capacity = initial(max_ammo_capacity)
@@ -592,6 +612,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	return
 
 // BASIC GUN'S
+ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 /obj/item/gun/modular/NT
 	name = "\improper NT pistol"
 	real_name = "\improper NT pistol"
@@ -719,6 +740,22 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	barrel_overlay_y = 4
 	stock_overlay_x = -10
 
+	make_parts()
+		if(prob(50))
+			barrel = new /obj/item/gun_parts/barrel/juicer(src)
+		else
+			barrel = new /obj/item/gun_parts/barrel/juicer/chub(src)
+		if(prob(5))
+			stock = new /obj/item/gun_parts/stock/juicer/trans(src)
+		else if(prob(50))
+			stock = new /obj/item/gun_parts/stock/juicer/stub(src)
+		else
+			stock = new /obj/item/gun_parts/stock/juicer/red(src)
+		if(prob(60))
+			magazine = new /obj/item/gun_parts/magazine/juicer(src)
+		else
+			accessory = new /obj/item/gun_parts/accessory/flashlight(src)
+
 
 /obj/item/gun/modular/juicer/blunder
 	make_parts()
@@ -741,8 +778,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			stock = new /obj/item/gun_parts/stock/italian/bigger(src)
 		if(prob(50))
 			stock2 = new /obj/item/gun_parts/stock/juicer/stub(src)
+			magazine = new /obj/item/gun_parts/magazine/juicer/four(src)
+		else
+			magazine = new /obj/item/gun_parts/magazine/juicer(src)
 
-
+ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 /obj/item/gun/modular/soviet
 	shoot()
 		..()
@@ -789,13 +829,17 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		..()
 		process_ammo()
 
-/obj/item/gun/modular/italian/italiano
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/italian(src)
 		stock = new /obj/item/gun_parts/stock/italian(src)
 
+/obj/item/gun/modular/italian/italiano
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/italian/accurate(src)
+		stock = new /obj/item/gun_parts/stock/juicer(src)
+
 
 /obj/item/gun/modular/italian/big_italiano
 	make_parts()
-		barrel = new /obj/item/gun_parts/barrel/italian/(src)
+		barrel = new /obj/item/gun_parts/barrel/italian/spicy(src)
 		stock = new /obj/item/gun_parts/stock/italian/bigger(src)
