@@ -245,6 +245,13 @@
 
 		src.take_hit(W)
 
+/turf/wall/auto/concrete
+	icon = 'icons/turf/walls_concrete.dmi' //thank you Arborinus!!!
+	connects_to = list(/turf/wall/auto/concrete) //probably just fine like this
+	flags = ALWAYS_SOLID_FLUID
+
+	explosion_resistance = 7 //tuff by default
+
 /turf/wall/auto/jen
 	icon = 'icons/turf/walls_jen.dmi'
 	light_mod = "wall-jen-"
