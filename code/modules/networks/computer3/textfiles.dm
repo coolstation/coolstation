@@ -238,7 +238,7 @@
 /datum/computer/file/text/icemoon_log1
 	name = "Log 001"
 
-	data = {"File ID: THETA-001
+	data = {"File ID: FITA-001
 			<br>User: *SYSTEM
 			<br>Timestamp: 000001
 			<br>
@@ -249,47 +249,102 @@
 			<br>###########################
 			<br>"}
 
-/datum/computer/file/text/icemoon_log2
+/datum/computer/file/text/icemoon_log2 //hi im new
 	name = "Log 002"
 
-	data = {"File ID: THETA-002
-			<br>User: B.FREDRICKKSEN \[DIRECTOR]
+	data = {"File ID: FITA-002
+			<br>User: O.MIRONOV \[RESEARCH DIRECTOR]
 			<br>Timestamp: 000006
 			<br>
-			<br>Looks like the engineering boys did a pretty good job setting this place up. I don't much care for the lack of decor, but it's not like we're on vacation.
-			It's dark as hell out there from the cloud cover and the atmosphere isn't even breathable, not to mention the freezing temperatures and constant high winds.
-			A wonder they ever managed to build this little piece of home in the first place.
-			<br>
-			<br>Tomorrow we'll begin taking ice core samples from the glacial interior. NT wants us to check out some sort of biological scans that their last probe picked up.
+			<br>Error: Encrypted log, encryption key not provided.
 			<br>"}
 
-/datum/computer/file/text/icemoon_log3
+/datum/computer/file/text/icemoon_log3 //foreshadowing
 	name = "Log 003"
 
-	data = {"File ID: THETA-003
-			<br>User: R.BROWN \[TECHNICIAN]
-			<br>Timestamp: 000006
+	data = {"File ID: FITA-003
+			<br>User: O.MIRONOV \[RESEARCH DIRECTOR]
+			<br>Timestamp: 000009
 			<br>
-			<br>god what a hellhole
-			<br>stuck on this shitty little ice station with 4 other guys and no ladies for six months, oh well at least were being paid creds hand over fist for being here
-			<br>plus i managed to smuggle some wiskey in hahaha gonna need it
+			<br>Error: Encrypted log, encryption key not provided.
 			<br>"}
 
-/datum/computer/file/text/icemoon_log4
+/datum/computer/file/text/icemoon_log4 //spider encounter
 	name = "Log 004"
 
-	data = {"File ID: THETA-004
-			<br>User: B.FREDRICKKSEN \[DIRECTOR]
-			<br>Timestamp: 000008
+	data = {"File ID: FITA-004
+			<br>User: O.MIRONOV \[RESEARCH DIRECTOR]
+			<br>Timestamp: 000013
 			<br>
-			<br>We discovered some sort of indigenous arachnid lifeform today. Technician Brown's hazard suit is a total loss and he's sustained major frostbite around several puncture wounds,
-			but we've managed to recover something that was caught in his suit. It looks to be a broken-off leg of whatever attacked him, some sort of spider-like creature.
-			<br>
-			<br>Microscopic analysis reveals a crystalline matrix of living cells, functioning together as a colony instead of a single organism. Not unlike a slime mold.
-			<br>They are clearly adapted for living in this environment - they show an extreme tolerance for low temperature environments, though will recoil very quickly from any source of significant heat.
-			The genetic structure of these cells is unlike anything we've ever seen before - we're still trying to figure out what exactly to call them.
-			<br>Further tests will commence soon. We are planning to separate the cells into various cultures for further research."}
+			<br>Error: Encrypted log, encryption key not provided.
+			<br>"}
 
+/datum/computer/file/text/icemoon_log5 //spidergib, no more spiders
+	name = "Log 005"
+
+	data = {"File ID: FITA-005
+			<br>User: O.MIRONOV \[RESEARCH DIRECTOR]
+			<br>Timestamp: 000013
+			<br>
+			<br>Error: Encrypted log, encryption key not provided.
+			<br>"}
+
+/datum/computer/file/text/icemoon_log6 //breach precursor
+	name = "Log 006"
+
+	data = {"File ID: FITA-006
+			<br>User: O.MIRONOV \[RESEARCH DIRECTOR]
+			<br>Timestamp: 000014
+			<br>
+			<br>Error: Encrypted log, encryption key not provided.
+			<br>"}
+
+/datum/computer/file/text/icemoon_log7 //anton is found
+	name = "Log 007"
+
+	data = {"File ID: FITA-007
+			<br>User: O.MIRONOV \[RESEARCH DIRECTOR]
+			<br>Timestamp: 000015
+			<br>
+			<br>Error: Encrypted log, encryption key not provided.
+			<br>"}
+
+/datum/computer/file/text/icemoon_log8 //anton is found... again
+	name = "Log 008"
+
+	data = {"File ID: FITA-008
+			<br>User: O.MIRONOV \[RESEARCH DIRECTOR]
+			<br>Timestamp: 000015
+			<br>
+			<br>Error: Encrypted log, encryption key not provided.
+			<br>"}
+
+/datum/computer/file/text/icemoon_log9 //antontopsy
+	name = "Log 009"
+
+	data = {"File ID: FITA-009
+			<br>User: O.MIRONOV \[RESEARCH DIRECTOR]
+			<br>Timestamp: 000015
+			<br>
+			<br>My nerves.
+			<br>
+			<br>It has been brought in and they put it on the table. Time to find who or what this miserable entity is. No identifiable face or features, no ID. But that is our mining uniform, alright.
+			<br>This will be my first actual attempt at an autopsy for a death at this posting, as is my obligation as the sole station \"doctor.\"
+			<br>The others were just chunks or ash, but this is some kind of dessicated mummy corpse?
+			<br>
+			<br>I have no idea what I'm even doing and of course it's right as my fucking gloves run out.
+			<br>
+			<br>OK. Here we go.
+			<br>
+			<br>/bin/COMMrade
+			<br>
+			<br>exit
+			<br>exit
+			<br>:q
+			<br>q!
+			<br>
+			<br>
+			<br>"}
 
 /datum/computer/file/record/dronefact_log1
 	name = "SR0210A"
