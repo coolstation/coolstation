@@ -33774,8 +33774,6 @@
 /area/crunch)
 "cgf" = (
 /obj/rack,
-/obj/item/clothing/suit/rad,
-/obj/item/clothing/head/rad_hood,
 /turf/floor/caution/north{
 	dir = 8
 	},
@@ -35999,18 +35997,24 @@
 /area/crunch)
 "clI" = (
 /obj/decal/cleanable/generic,
-/turf/floor,
+/turf/floor/void,
 /area/crunch)
 "clJ" = (
-/turf/floor/orangeblack/corner,
-/area/crunch)
-"clK" = (
-/turf/floor/orangeblack/side,
-/area/crunch)
-"clL" = (
-/turf/floor/orangeblack/corner{
-	dir = 8
+/obj/decoration/vent/vent2{
+	desc = "A portable, non-wearable radio for communicating over a specified frequency. This one isn't working.";
+	icon = 'icons/obj/items/device.dmi';
+	icon_state = "walkietalkie"
 	},
+/turf/floor/concrete,
+/area/upper_arctic/fita/quartermaster/supplycloset)
+"clK" = (
+/obj/reagent_dispensers/watertank/fountain,
+/turf/floor/concrete,
+/area/upper_arctic/fita/lobby)
+"clL" = (
+/obj/lattice,
+/obj/item/cable_coil/cut/small,
+/turf/wall/void,
 /area/crunch)
 "clM" = (
 /obj/death_button/VR_logout_button{
@@ -36155,15 +36159,11 @@
 /turf/floor/void,
 /area/crunch)
 "cme" = (
-/obj/decal/fakeobjects/teleport_pad{
-	name = "experiment pad"
+/obj/cable{
+	icon_state = "1-8"
 	},
-/obj/dfissure_from{
-	density = 0;
-	icon_state = "fuk-u-voidzone";
-	invisibility = 101
-	},
-/turf/floor/delivery,
+/obj/map/light/graveyard,
+/turf/floor,
 /area/crunch)
 "cmf" = (
 /obj/item/device/radio/intercom/virtual,
@@ -36710,12 +36710,25 @@
 /turf/space,
 /area/space)
 "cnx" = (
-/turf/wall/void,
-/area/crunch/wtc)
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 5;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	name = "power conduit";
+	plane = -101
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
 "cnz" = (
-/obj/map/light/void,
+/obj/decal/floatingtiles{
+	dir = 1;
+	icon_state = "floattiles3"
+	},
 /turf/floor/void,
-/area/crunch/wtc)
+/area/crunch)
 "cnA" = (
 /obj/cable{
 	d2 = 8;
@@ -36725,14 +36738,24 @@
 /turf/floor/airless/solar,
 /area/owlery/solars)
 "cnB" = (
-/turf/wall/auto/reinforced/supernorn,
-/area/crunch/wtc)
+/obj/lattice,
+/turf/wall/void,
+/area/crunch)
 "cnC" = (
-/obj/decal/floatingtiles{
-	icon_state = "floattiles4"
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "The goods inside the machine probably expired before you were even born.";
+	icon = 'icons/obj/vending.dmi';
+	icon_state = "coffee-fallen";
+	name = "broken vending machine"
 	},
-/turf/floor/void,
-/area/crunch/wtc)
+/obj/decal/fakeobjects/lighttube_broken{
+	dir = 1
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
 "cnD" = (
 /obj/storage/crate,
 /obj/item/clothing/head/flatcap,
@@ -36781,9 +36804,10 @@
 /turf/wall/auto/sengoku,
 /area/dojo)
 "cnK" = (
-/obj/decal/floatingtiles,
-/turf/floor/void,
-/area/crunch/wtc)
+/obj/item/furniture_parts/table,
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
 "cnL" = (
 /turf/floor/wood/two,
 /area/dojo)
@@ -37822,55 +37846,66 @@
 /turf/floor/black,
 /area/dojo)
 "crr" = (
-/obj/storage/secure/filing_cabinet,
-/turf/floor/black/side{
-	dir = 1
+/obj/cable{
+	icon_state = "4-8"
 	},
-/area/crunch/wtc)
+/obj/overlay{
+	density = 1;
+	desc = null;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "dterm";
+	name = "data terminal"
+	},
+/obj/decal/fakeobjects/robotpedestal{
+	pixel_y = 6
+	},
+/obj/decal/cleanable/ash{
+	desc = "Whatever this was, it got zapped pretty good.";
+	layer = 4;
+	pixel_y = 8;
+	plane = -100
+	},
+/obj/map/light/graveyard,
+/turf/floor/plating/scorched,
+/area/crunch)
 "crs" = (
-/obj/storage/secure/filing_cabinet,
-/turf/floor/black/side{
-	dir = 5
+/obj/cable{
+	icon_state = "1-2"
 	},
-/area/crunch/wtc)
+/obj/map/light/graveyard,
+/turf/floor/airless/caution/north,
+/area/crunch)
 "crt" = (
-/obj/table/reinforced/auto,
-/obj/item/spacecash/million,
-/obj/item/spacecash/bag,
-/obj/item/ticket/golden,
-/turf/floor/black/side{
-	dir = 9
-	},
-/area/crunch/wtc)
+/obj/item/clipboard,
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
 "cru" = (
-/obj/table/reinforced/auto,
-/obj/item/spacecash/million,
-/obj/item/spacecash/bag,
-/obj/item/device/light/zippo/gold,
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 21
+/obj/cable{
+	icon_state = "1-2"
 	},
-/turf/floor/black/side{
-	dir = 1
-	},
-/area/crunch/wtc)
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
 "crv" = (
-/obj/table/reinforced/auto,
-/obj/item/spacecash/million,
-/obj/item/spacecash/bag,
-/obj/item/raw_material/gold,
-/obj/item/clothing/head/that/gold,
-/turf/floor/black/side{
-	dir = 5
-	},
-/area/crunch/wtc)
+/obj/storage/closet/radiation,
+/obj/item/clothing/head/rad_hood,
+/obj/item/clothing/suit/rad,
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
 "crw" = (
-/obj/storage/secure/filing_cabinet,
-/turf/floor/black/side{
-	dir = 9
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "This conduit is all burned and melty.";
+	dir = 8;
+	icon = 'icons/misc/hospital.dmi';
+	icon_state = "broken_powerline";
+	layer = 2.5;
+	name = "power conduit"
 	},
-/area/crunch/wtc)
+/turf/floor/void,
+/area/crunch)
 "crx" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "It won't budge.";
@@ -37883,12 +37918,14 @@
 /turf/floor/shuttlebay,
 /area/diner/tug)
 "cry" = (
-/obj/decal/floatingtiles{
-	dir = 1
-	},
 /obj/lattice,
+/obj/decal/floatingtiles{
+	dir = 1;
+	icon_state = "floattiles2"
+	},
+/obj/map/light/graveyard,
 /turf/floor/void,
-/area/crunch/wtc)
+/area/crunch)
 "crz" = (
 /obj/decal/floatingtiles{
 	dir = 4;
@@ -37898,69 +37935,104 @@
 	dir = 1;
 	icon_state = "lattice-dir"
 	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "This conduit is all burned and melty.";
+	dir = 1;
+	icon = 'icons/misc/hospital.dmi';
+	icon_state = "broken_powerline";
+	layer = 2.5;
+	name = "power conduit"
+	},
 /turf/floor/void,
-/area/crunch/wtc)
+/area/crunch)
 "crA" = (
-/turf/floor/black/side{
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/machinery/door/airlock/classic,
+/obj/machinery/door/firedoor/border_only,
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"crB" = (
+/obj/item/tile,
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"crC" = (
+/obj/decal/fakeobjects/apc_broken,
+/turf/wall,
+/area/crunch)
+"crD" = (
+/obj/decal/fakeobjects/airmonitor_broken,
+/turf/wall,
+/area/crunch)
+"crG" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/map/light/graveyard,
+/turf/floor/scorched,
+/area/crunch)
+"crH" = (
+/obj/decal/floatingtiles,
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "This conduit is all burned and melty.";
+	dir = 8;
+	icon = 'icons/misc/hospital.dmi';
+	icon_state = "broken_powerline";
+	layer = 2.5;
+	name = "power conduit"
+	},
+/turf/floor/void,
+/area/crunch)
+"crI" = (
+/obj/overlay{
+	density = 1;
+	desc = null;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "dterm";
+	name = "data terminal"
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
+	dir = 4;
+	icon = 'icons/obj/computer.dmi';
+	icon_state = "offbroken";
+	name = "broken computer";
+	tag = "icon-offbroken (EAST)"
+	},
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/decal/fakeobjects/lighttube_broken{
 	dir = 8
 	},
-/area/crunch/wtc)
-"crB" = (
-/obj/map/light/void,
-/turf/floor/black{
-	dir = 1
-	},
-/area/crunch/wtc)
-"crC" = (
-/turf/floor/black/side{
-	dir = 4
-	},
-/area/crunch/wtc)
-"crD" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 4;
-	req_access_txt = "12"
-	},
-/turf/floor/grey,
-/area/crunch/wtc)
-"crE" = (
-/turf/floor/black/side{
-	dir = 10
-	},
-/area/crunch/wtc)
-"crF" = (
-/turf/floor/black/side,
-/area/crunch/wtc)
-"crG" = (
-/turf/floor/black/side{
-	dir = 6
-	},
-/area/crunch/wtc)
-"crH" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 4;
-	req_access_txt = "12"
-	},
-/turf/floor/neutral,
-/area/crunch/wtc)
-"crI" = (
-/turf/floor/black,
-/area/crunch/wtc)
-"crJ" = (
-/obj/machinery/light{
-	dir = 4;
-	layer = 9.1;
-	pixel_x = 10
-	},
-/obj/rack,
-/obj/item/paper/blueprint/mushroom,
-/obj/item/paper/blueprint/donut2,
-/obj/item/paper/blueprint/cog1,
-/obj/item/paper/blueprint/cog2,
-/turf/floor/black/side{
-	dir = 4
-	},
-/area/crunch/wtc)
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
 "crK" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -37974,334 +38046,291 @@
 /turf/floor/shuttlebay,
 /area/diner/tug)
 "crL" = (
-/obj/table/reinforced/auto,
-/obj/item/spacecash/million,
-/obj/item/spacecash/bag,
-/obj/machinery/light{
-	dir = 8;
-	layer = 9.1;
-	pixel_x = -10
+/obj/stool,
+/obj/item/tile,
+/obj/cable{
+	icon_state = "1-4"
 	},
-/turf/floor/black/side{
-	dir = 8
-	},
-/area/crunch/wtc)
+/obj/map/light/graveyard,
+/turf/floor/damaged2,
+/area/crunch)
 "crM" = (
-/turf/floor/black{
-	dir = 1
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
 	},
-/area/crunch/wtc)
-"crN" = (
-/obj/table/reinforced/auto,
-/obj/item/spacecash/million,
-/obj/item/spacecash/bag,
-/turf/floor/black/side{
-	dir = 4
+/obj/overlay{
+	density = 1;
+	desc = null;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "dterm";
+	name = "data terminal"
 	},
-/area/crunch/wtc)
-"crO" = (
-/turf/floor/grey,
-/area/crunch/wtc)
-"crP" = (
-/obj/table/reinforced/auto,
-/obj/item/spacecash/million,
-/obj/item/clothing/gloves/ring/gold,
-/obj/item/sticker/gold_star,
-/turf/floor/black/side{
-	dir = 8
-	},
-/area/crunch/wtc)
-"crQ" = (
-/obj/machinery/light{
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 4;
-	layer = 9.1;
-	pixel_x = 10
+	icon = 'icons/obj/computer.dmi';
+	icon_state = "offbroken";
+	name = "broken computer";
+	tag = "icon-offbroken (EAST)"
 	},
-/turf/floor/black/side{
-	dir = 4
-	},
-/area/crunch/wtc)
-"crS" = (
-/obj/decal/floatingtiles{
-	dir = 8;
-	icon_state = "floattiles4"
-	},
-/obj/lattice,
-/turf/floor/void,
-/area/crunch/wtc)
-"crT" = (
-/turf/floor/black/side{
-	dir = 9
-	},
-/area/crunch/wtc)
-"crU" = (
-/turf/floor/neutral/side{
-	dir = 1
-	},
-/area/crunch/wtc)
-"crV" = (
-/turf/floor/black/side{
-	dir = 5
-	},
-/area/crunch/wtc)
-"crW" = (
-/obj/table/reinforced/auto,
-/obj/item/spacecash/million,
-/obj/item/clothing/gloves/ring/gold,
-/obj/item/toy/figure,
-/obj/item/raw_material/gold,
-/turf/floor/black/side{
-	dir = 8
-	},
-/area/crunch/wtc)
-"crX" = (
-/obj/stool/chair/office/blue{
-	dir = 4
-	},
-/turf/floor/black/side{
-	dir = 8
-	},
-/area/crunch/wtc)
-"crY" = (
-/obj/table/reinforced/auto,
-/obj/machinery/computer3/generic/personal,
-/turf/floor/black/side{
-	dir = 4
-	},
-/area/crunch/wtc)
-"csa" = (
-/turf/floor/neutral/side{
-	dir = 8
-	},
-/area/crunch/wtc)
-"csb" = (
-/obj/table/reinforced/auto,
-/obj/item/gun/bling_blaster,
-/turf/floor/grey,
-/area/crunch/wtc)
-"csc" = (
-/turf/floor/neutral/side{
-	dir = 4
-	},
-/area/crunch/wtc)
-"csd" = (
-/obj/table/reinforced/auto,
-/obj/item/spacecash/million,
-/obj/item/clothing/gloves/ring/gold,
-/obj/item/skull/gold,
-/obj/item/sticker/gold_star,
-/turf/floor/black/side{
-	dir = 8
-	},
-/area/crunch/wtc)
-"cse" = (
-/obj/decal/cleanable/oil/streak{
-	name = "ink"
-	},
-/turf/floor/black/side{
-	dir = 8
-	},
-/area/crunch/wtc)
-"csf" = (
-/obj/table/reinforced/auto,
-/obj/machinery/light{
-	dir = 4;
-	layer = 9.1;
-	pixel_x = 10
-	},
-/obj/item/paper/blueprint/sealab,
-/obj/item/pen/pencil,
-/obj/item/pen/marker,
-/obj/decal/cleanable/oil/streak{
-	name = "ink"
-	},
-/turf/floor/black/side{
-	dir = 4
-	},
-/area/crunch/wtc)
-"csg" = (
-/obj/table/reinforced/auto,
-/obj/item/spacecash/million,
-/obj/item/spacecash/bag,
-/turf/floor/black/side{
-	dir = 10
-	},
-/area/crunch/wtc)
-"csh" = (
-/obj/table/reinforced/auto,
-/obj/item/spacecash/million,
-/obj/item/spacecash/bag,
-/obj/machinery/light{
-	dir = 4;
-	layer = 9.1;
-	pixel_x = 10
-	},
-/turf/floor/black/side{
-	dir = 6
-	},
-/area/crunch/wtc)
-"csi" = (
-/obj/machinery/light,
-/turf/floor/neutral/side,
-/area/crunch/wtc)
-"csj" = (
-/obj/table/reinforced/auto,
-/obj/item/spacecash/million,
-/obj/item/clothing/gloves/ring/gold,
-/obj/item/clothing/head/laurels/gold,
-/obj/machinery/light{
-	dir = 8;
-	layer = 9.1;
-	pixel_x = -10
-	},
-/turf/floor/black/side{
-	dir = 10
-	},
-/area/crunch/wtc)
-"csk" = (
-/turf/floor/black/corner{
-	dir = 4
-	},
-/area/crunch/wtc)
-"csl" = (
-/obj/stool/chair/office/blue{
-	dir = 4
-	},
-/obj/decal/cleanable/oil/streak{
-	name = "ink"
-	},
-/turf/floor/black/side{
-	dir = 10
-	},
-/area/crunch/wtc)
-"csm" = (
-/obj/table/reinforced/auto,
-/obj/machinery/computer3/generic/personal,
-/turf/floor/black/side{
-	dir = 6
-	},
-/area/crunch/wtc)
-"csn" = (
-/turf/floor/neutral,
-/area/crunch/wtc)
-"cso" = (
-/obj/faint_shimmer,
-/obj/grille,
-/turf/floor/plating,
-/area/crunch/wtc)
-"csp" = (
-/obj/securearea,
-/turf/wall/auto/reinforced/supernorn,
-/area/crunch/wtc)
-"csq" = (
-/obj/machinery/door/airlock/pyro/classic,
-/turf/floor/black/side{
-	dir = 8
-	},
-/area/crunch/wtc)
-"csr" = (
-/obj/machinery/door/airlock/pyro/classic,
-/turf/floor/black/side{
-	dir = 4
-	},
-/area/crunch/wtc)
-"css" = (
-/obj/nerd_trap_door/voidoor,
+/obj/map/light/graveyard,
 /turf/floor,
-/area/crunch/wtc)
-"cst" = (
-/obj/table/reinforced/auto,
-/obj/item/spacecash/million,
-/obj/item/material_piece/gold,
-/obj/item/raw_material/gemstone,
-/obj/item/spacecash/bag,
-/turf/floor/black/side{
-	dir = 9
+/area/crunch)
+"crN" = (
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/area/crunch/wtc)
-"csu" = (
-/turf/floor/black/corner{
-	dir = 1
+/obj/overlay{
+	density = 1;
+	desc = null;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "dterm";
+	name = "data terminal"
 	},
-/area/crunch/wtc)
-"csv" = (
-/turf/floor/black/corner{
-	dir = 8
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"crO" = (
+/obj/table,
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"crP" = (
+/obj/cable{
+	icon_state = "2-8"
 	},
-/area/crunch/wtc)
-"csw" = (
-/obj/table/reinforced/auto,
-/obj/item/spacecash/million,
-/obj/item/material_piece/gold,
-/obj/item/raw_material/gemstone,
-/obj/item/spacecash/bag,
-/turf/floor/black/side{
-	dir = 5
+/obj/cable{
+	icon_state = "1-2"
 	},
-/area/crunch/wtc)
-"csx" = (
-/obj/window/reinforced/west,
-/obj/window/reinforced/east,
-/obj/grille/steel,
-/obj/decal/fakeobjects/shuttleengine{
-	dir = 4
+/obj/cable{
+	icon_state = "2-4"
 	},
-/turf/floor/shuttlebay,
-/area/diner/tug)
-"csy" = (
-/obj/table/reinforced/auto,
-/obj/item/spacecash/million,
-/obj/item/material_piece/gold,
-/obj/item/raw_material/gemstone,
-/turf/floor/black/side{
-	dir = 8
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"crQ" = (
+/obj/cable{
+	icon_state = "4-8"
 	},
-/area/crunch/wtc)
-"csz" = (
-/turf/floor/black/corner,
-/area/crunch/wtc)
-"csA" = (
-/obj/table/reinforced/auto,
-/obj/item/spacecash/million,
-/obj/item/material_piece/gold,
-/obj/item/raw_material/gemstone,
-/turf/floor/black/side{
-	dir = 4
+/obj/map/light/graveyard,
+/turf/floor/grime,
+/area/crunch)
+"crS" = (
+/obj/cable{
+	icon_state = "4-8"
 	},
-/area/crunch/wtc)
-"csB" = (
+/obj/map/light/graveyard,
+/turf/floor/scorched,
+/area/crunch)
+"crT" = (
+/obj/machinery/door/airlock/glass,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"crU" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/overlay{
+	density = 1;
+	desc = "The lights are off, but this thing's bolted.";
+	icon = 'icons/obj/doors/Doorsec.dmi';
+	icon_state = "door_closed";
+	name = "Security Checkpoint"
+	},
+/turf/floor,
+/area/crunch)
+"crV" = (
+/mob/living/critter/small_animal/floateye,
+/turf/floor/void,
+/area/crunch)
+"crW" = (
 /obj/decal/floatingtiles{
 	icon_state = "floattiles6"
 	},
-/turf/floor/void,
-/area/crunch/wtc)
-"csC" = (
-/turf/floor/purple/side{
-	dir = 1
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "This conduit is all burned and melty.";
+	icon = 'icons/misc/hospital.dmi';
+	icon_state = "broken_powerline";
+	layer = 2.5;
+	name = "power conduit"
 	},
-/area/crunch/wtc)
-"csD" = (
-/turf/floor/plating/damaged3,
-/area/crunch/wtc)
-"csE" = (
-/turf/wall/other,
-/area/crunch/wtc)
-"csF" = (
-/obj/wingrille_spawn/reinforced,
-/turf/floor/plating,
-/area/crunch/wtc)
-"csG" = (
-/obj/decal/floatingtiles{
+/turf/floor/void,
+/area/crunch)
+"crX" = (
+/obj/map/light/graveyard,
+/turf/floor/damaged4,
+/area/crunch)
+"csb" = (
+/obj/machinery/door/airlock/glass,
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csc" = (
+/obj/overlay{
+	density = 1;
+	desc = "The lights are off, but this thing's bolted.";
+	icon = 'icons/obj/doors/Doorsec.dmi';
+	icon_state = "door_closed";
+	name = "Security Checkpoint"
+	},
+/turf/floor,
+/area/crunch)
+"csd" = (
+/obj/item/tile,
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "This conduit is all burned and melty.";
+	dir = 1;
+	icon = 'icons/misc/hospital.dmi';
+	icon_state = "broken_powerline";
+	layer = 2.5;
+	name = "power conduit"
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"cse" = (
+/obj/storage/closet/radiation{
+	open = 1
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csf" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 1;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/decal/fakeobjects/lighttube_broken{
 	dir = 4
 	},
-/obj/lattice{
-	dir = 10;
-	icon_state = "lattice-dir"
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csh" = (
+/obj/cable{
+	icon_state = "1-2"
 	},
-/obj/lattice,
-/turf/floor/void,
-/area/crunch/wtc)
-"csH" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csi" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/map/light/graveyard,
+/turf/floor/plating/scorched,
+/area/crunch)
+"csj" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "This conduit is all burned and melty.";
+	dir = 8;
+	icon = 'icons/misc/hospital.dmi';
+	icon_state = "broken_powerline";
+	layer = 2.5;
+	name = "power conduit"
+	},
+/obj/map/light/graveyard,
+/turf/floor/plating/scorched,
+/area/crunch)
+"csk" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/decal/fakeobjects/lighttube_broken{
+	dir = 1
+	},
+/obj/map/light/graveyard,
+/turf/floor/grime,
+/area/crunch)
+"csl" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csm" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 6;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.5;
+	name = "power conduit";
+	plane = -101
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csn" = (
+/obj/item/tile,
+/obj/map/light/graveyard,
+/turf/floor/damaged1,
+/area/crunch)
+"cso" = (
+/obj/table/reinforced/bar/auto,
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "This microwave does not look well.";
+	icon = 'icons/misc/hstation.dmi';
+	icon_state = "hmicro";
+	name = "broken microwave oven";
+	pixel_y = 8
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csp" = (
 /obj/decal/floatingtiles{
 	dir = 4;
 	icon_state = "floattiles4"
@@ -38314,133 +38343,330 @@
 	dir = 1;
 	icon_state = "lattice-dir"
 	},
-/turf/floor/void,
-/area/crunch/wtc)
-"csI" = (
+/turf/wall/void,
+/area/crunch)
+"csq" = (
 /obj/decal/floatingtiles{
-	dir = 4;
-	icon_state = "floattiles4"
-	},
-/obj/lattice,
-/turf/floor/void,
-/area/crunch/wtc)
-"csJ" = (
-/obj/decal/fakeobjects/teleport_pad,
-/turf/floor/damaged4,
-/area/crunch/wtc)
-"csK" = (
-/turf/floor/plating,
-/area/crunch/wtc)
-"csL" = (
-/obj/table/reinforced/auto,
-/obj/item/spacecash/million,
-/obj/item/material_piece/gold,
-/obj/item/raw_material/gemstone,
-/obj/item/spacecash/bag,
-/turf/floor/black/side{
 	dir = 8
 	},
-/area/crunch/wtc)
-"csM" = (
-/obj/map/light/dimred,
-/turf/floor/circuit/red,
-/area/crunch/wtc)
-"csN" = (
-/obj/map/light/dimred,
-/obj/item/paper/gauntlet_note{
-	pixel_x = -10;
-	pixel_y = -10
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "This conduit is all burned and melty.";
+	icon = 'icons/misc/hospital.dmi';
+	icon_state = "broken_powerline";
+	layer = 2.5;
+	name = "power conduit"
 	},
-/turf/floor/circuit/red,
-/area/crunch/wtc)
-"csO" = (
-/obj/decal/floatingtiles{
+/turf/floor/void,
+/area/crunch)
+"csr" = (
+/obj/item/tile,
+/obj/cable{
+	icon_state = "2-8"
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"css" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/map/light/graveyard,
+/turf/floor/damaged3,
+/area/crunch)
+"cst" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/overlay{
+	density = 1;
+	desc = null;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "dterm";
+	name = "data terminal"
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "It's some sort of teleporter part.  In all likelihood.  It might just be an industrial arcade cabinet.";
+	icon = 'icons/obj/networked.dmi';
+	icon_state = "pathmanip-p";
+	name = "strange machine"
+	},
+/obj/map/light/graveyard,
+/turf/floor/scorched,
+/area/crunch)
+"csv" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/light/emergency{
 	dir = 1
 	},
-/turf/floor/void,
-/area/crunch/wtc)
-"csP" = (
-/obj/decal/floatingtiles{
-	dir = 1;
-	icon_state = "floattiles3"
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csw" = (
+/obj/cable{
+	icon_state = "4-8"
 	},
-/turf/floor/void,
-/area/crunch/wtc)
-"csQ" = (
-/obj/decal/floatingtiles,
-/obj/lattice,
-/turf/floor/void,
-/area/crunch/wtc)
-"csR" = (
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csx" = (
+/obj/window/reinforced/west,
+/obj/window/reinforced/east,
+/obj/grille/steel,
+/obj/decal/fakeobjects/shuttleengine{
+	dir = 4
+	},
+/turf/floor/shuttlebay,
+/area/diner/tug)
+"csy" = (
+/obj/decal/fakeobjects/lighttube_broken{
+	dir = 1
+	},
+/obj/map/light/graveyard,
+/turf/floor/grime,
+/area/crunch)
+"csz" = (
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csA" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/overlay{
+	density = 1;
+	desc = "This thing is stuck fast.";
+	icon = 'icons/obj/doors/Doorclassic.dmi';
+	icon_state = "door_closed";
+	name = "large airlock"
+	},
+/turf/floor,
+/area/crunch)
+"csB" = (
+/obj/item/cable_coil/cut/small,
+/obj/map/light/graveyard,
 /turf/floor/damaged2,
-/area/crunch/wtc)
-"csS" = (
+/area/crunch)
+"csC" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/map/light/graveyard,
+/turf/floor/plating/damaged3,
+/area/crunch)
+"csD" = (
+/obj/cable{
+	icon_state = "2-8"
+	},
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csE" = (
+/obj/grille/steel/broken,
+/obj/item/raw_material/shard/glass,
+/obj/map/light/graveyard,
+/turf/floor/plating/scorched,
+/area/crunch)
+"csF" = (
+/obj/item/raw_material/shard/glass,
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csG" = (
+/obj/table/reinforced/bar/auto,
+/obj/deskclutter,
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csH" = (
+/obj/decal/sink{
+	desc = "The sink doesn't appear to be connected to a waterline at the moment...";
+	dir = 8
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csI" = (
+/obj/item/raw_material/shard/glass,
+/turf/floor,
+/area/crunch)
+"csJ" = (
+/obj/item/cable_coil/cut/small,
+/obj/overlay{
+	density = 1;
+	desc = null;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "dterm";
+	name = "data terminal"
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
+	dir = 4;
+	icon = 'icons/obj/computer.dmi';
+	icon_state = "offbroken";
+	name = "broken computer";
+	tag = "icon-offbroken (EAST)"
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csK" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/cable{
+	icon_state = "2-8"
+	},
+/obj/stool,
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csL" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/floor/plating/damaged3,
+/area/crunch)
+"csM" = (
+/obj/table/reinforced/bar/auto,
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "It's busted and everything dried up long ago.";
+	icon = 'icons/obj/chemical.dmi';
+	icon_state = "alc_dispenser";
+	name = "alcohol dispenser";
+	pixel_y = 8
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csN" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "A security camera that is not on but, instead, off.";
+	icon = 'icons/obj/monitors.dmi';
+	icon_state = "camerax";
+	name = "security camera"
+	},
+/turf/floor/grime,
+/area/crunch)
+"csO" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csP" = (
 /obj/decal/floatingtiles{
 	dir = 4
 	},
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir"
+	},
+/obj/lattice,
 /turf/floor/void,
-/area/crunch/wtc)
+/area/crunch)
+"csQ" = (
+/obj/decal/floatingtiles,
+/obj/item/cable_coil/cut/small,
+/turf/floor/void,
+/area/crunch)
+"csR" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/item/tile,
+/obj/decal/fakeobjects/lighttube_broken,
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
+"csS" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
 "csT" = (
-/obj/table/reinforced/auto,
-/obj/item/spacecash/million,
-/obj/item/material_piece/gold,
-/obj/item/raw_material/gemstone,
-/turf/floor/black/side{
-	dir = 10
+/obj/cable{
+	icon_state = "4-8"
 	},
-/area/crunch/wtc)
+/obj/decal/fakeobjects/lighttube_broken,
+/obj/map/light/graveyard,
+/turf/floor/grime,
+/area/crunch)
 "csU" = (
-/obj/machinery/bot/cambot{
-	desc = "A little camera robot! Smile, criminal!";
-	name = "Security Cambot";
-	no_camera = 1;
-	on = 0
-	},
-/turf/floor/black/side{
-	dir = 6
-	},
-/area/crunch/wtc)
+/obj/decal/cleanable/paper,
+/obj/stool,
+/obj/map/light/graveyard,
+/turf/floor/grime,
+/area/crunch)
 "csV" = (
-/obj/item/mechanics/triplaser,
-/obj/wingrille_spawn/reinforced,
-/turf/floor/plating,
-/area/crunch/wtc)
+/obj/table/reinforced/bar/auto,
+/obj/item/raw_material/shard/glass,
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
 "csW" = (
-/obj/table/reinforced/auto{
-	pixel_x = 15;
-	pixel_y = 15
-	},
-/obj/map/light/dimred,
-/turf/floor/circuit/red)
+/obj/map/light/graveyard,
+/turf/floor)
 "csX" = (
-/obj/machinery/guardbot_dock,
-/obj/machinery/bot/guardbot{
-	no_camera = 1
+/obj/cable{
+	icon_state = "4-8"
 	},
-/turf/floor/black/side{
-	dir = 10
-	},
-/area/crunch/wtc)
+/obj/item/crowbar,
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
 "csY" = (
-/obj/item/device/key,
-/turf/floor/void,
-/area/crunch/wtc)
-"csZ" = (
 /obj/decal/floatingtiles{
-	dir = 8
+	dir = 1
 	},
+/obj/lattice,
 /turf/floor/void,
-/area/crunch/wtc)
+/area/crunch)
+"csZ" = (
+/obj/grille/steel/broken,
+/obj/map/light/graveyard,
+/turf/floor/plating/scorched,
+/area/crunch)
 "cta" = (
 /turf/wall/void,
 /area/crunch)
 "ctb" = (
-/turf/floor/void,
-/area/crunch/wtc)
+/obj/decal/skeleton,
+/obj/map/light/graveyard,
+/turf/floor/grime,
+/area/crunch)
 "ctc" = (
-/mob/living/critter/small_animal/floateye,
-/turf/floor/void,
-/area/crunch/wtc)
+/obj/overlay{
+	density = 1;
+	desc = "You probably can't squeeze through, and it's totally jammed.";
+	icon = 'icons/misc/hstation.dmi';
+	icon_state = "stuck_partway";
+	name = "broken door"
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
 "ctd" = (
 /obj/lattice,
 /obj/decal/floatingtiles,
@@ -38474,15 +38700,9 @@
 /turf/floor/void,
 /area/crunch)
 "ctj" = (
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 21
-	},
-/obj/decal/vault/gold_nerd_statue,
-/turf/floor/black/side{
-	dir = 1
-	},
-/area/crunch/wtc)
+/obj/map/light/graveyard,
+/turf/floor/airless/caution/north,
+/area/crunch)
 "ctk" = (
 /obj/decal/fakeobjects/shuttlethruster{
 	dir = 8
@@ -67478,6 +67698,14 @@
 /obj/item/clothing/glasses/regular,
 /turf/floor/carpet/grime,
 /area/crypt/sigma/rd)
+"dWw" = (
+/obj/map/light/lava,
+/obj/critter/small_bart,
+/turf/floor/setpieces/iomoon/crust{
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/afterlife/hell)
 "dWx" = (
 /obj/decal/fakeobjects/apc_broken,
 /turf/wall/auto/lead/gray,
@@ -67508,6 +67736,10 @@
 /obj/spacevine,
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/south)
+"dYW" = (
+/obj/map/light/graveyard,
+/turf/floor/plating/scorched,
+/area/crunch)
 "dZF" = (
 /obj/machinery/door/airlock/pyro/security,
 /turf/floor/shuttle,
@@ -67926,6 +68158,17 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"ePn" = (
+/obj/decal/skeleton{
+	desc = "50% of a rotten corpse.";
+	dir = 8;
+	icon = 'icons/misc/hstation.dmi';
+	icon_state = "body5";
+	name = "pair of legs";
+	pixel_x = 14
+	},
+/turf/floor/void,
+/area/crunch)
 "ePs" = (
 /turf/wall{
 	dir = 4;
@@ -68231,6 +68474,17 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
+"fuW" = (
+/obj/decal/skeleton{
+	desc = "He hasn't got a leg to stand on.";
+	dir = 4;
+	icon = 'icons/misc/hstation.dmi';
+	icon_state = "body5";
+	name = "half corpse";
+	pixel_x = -10
+	},
+/turf/floor/void,
+/area/crunch)
 "fwA" = (
 /obj/item/storage/wall/fire{
 	dir = 4;
@@ -68391,6 +68645,10 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"fPa" = (
+/obj/map/light/graveyard,
+/turf/floor/grime,
+/area/crunch)
 "fQO" = (
 /obj/machinery/light/small/iomoon{
 	dir = 4
@@ -68751,6 +69009,11 @@
 "gGM" = (
 /turf/floor/void/channel,
 /area/adventure/channel/teleport)
+"gGO" = (
+/obj/table/auto,
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
 "gHe" = (
 /obj/rail{
 	dir = 9
@@ -70867,6 +71130,11 @@
 /obj/machinery/door/airlock/gannets/maintenance,
 /turf/floor/plating,
 /area/retentioncenter)
+"llk" = (
+/obj/stool,
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
 "lls" = (
 /obj/rail/cap{
 	dir = 8
@@ -70932,6 +71200,11 @@
 	},
 /turf/floor/carpet/grime,
 /area/afterlife/bar)
+"lrA" = (
+/obj/machinery/light/emergency,
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
 "lrI" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 1;
@@ -71363,6 +71636,13 @@
 /obj/machinery/light/runway_light/delay3,
 /turf/floor/engine/glow,
 /area/upper_arctic/fita/shuttlepad)
+"mlC" = (
+/obj/table/auto,
+/obj/item/clipboard,
+/obj/item/raw_material/shard/glass,
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
 "mlK" = (
 /obj/machinery/door/unpowered/shuttle,
 /turf/space,
@@ -71563,6 +71843,10 @@
 /obj/decal/cleanable/paper,
 /turf/floor/plating,
 /area/afterlife/bar)
+"mOQ" = (
+/obj/critter/pig,
+/turf/floor/void,
+/area/crunch)
 "mPz" = (
 /turf/space,
 /turf/space,
@@ -71834,7 +72118,12 @@
 	icon_state = "blue"
 	})
 "nrm" = (
-/obj/machinery/bot/skullbot,
+/obj/decal/fakeobjects{
+	desc = "A skull on a leg. Useful, somehow. I guess.";
+	icon = 'icons/obj/bots/skullbots.dmi';
+	icon_state = "skullbot";
+	name = "skullbot"
+	},
 /turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
@@ -72232,6 +72521,10 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"nRv" = (
+/obj/item/raw_material/shard/glass,
+/turf/floor/grime,
+/area/crunch)
 "nRD" = (
 /obj/indestructible/shuttle_corner{
 	dir = 4
@@ -74079,6 +74372,10 @@
 	},
 /turf/floor/scorched,
 /area/afterlife/bar/barspawn)
+"rlQ" = (
+/obj/map/light/graveyard,
+/turf/floor/scorched2,
+/area/crunch)
 "rlX" = (
 /obj/decal/fakeobjects/lightbulb_broken{
 	dir = 8
@@ -74372,6 +74669,19 @@
 	icon_state = "rootfloor_2"
 	},
 /area/space)
+"rMd" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "This conduit is all burned and melty.";
+	dir = 4;
+	icon = 'icons/misc/hospital.dmi';
+	icon_state = "broken_powerline";
+	layer = 2.5;
+	name = "power conduit"
+	},
+/obj/map/light/graveyard,
+/turf/floor/plating/scorched,
+/area/crunch)
 "rMe" = (
 /turf/wall/auto/concrete,
 /area/upper_arctic/fita/quartermaster)
@@ -74507,6 +74817,14 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"rYm" = (
+/obj/storage/secure/closet/fridge{
+	locked = 0;
+	open = 1
+	},
+/obj/map/light/graveyard,
+/turf/floor/grime,
+/area/crunch)
 "rZo" = (
 /obj/landmark/load_prefab_shuttledmm/manta,
 /turf/wall/auto/lead/blue,
@@ -74774,6 +75092,24 @@
 	},
 /turf/floor/shuttle,
 /area/shuttle/escape/centcom/destiny)
+"ssi" = (
+/obj/lattice,
+/obj/decal/floatingtiles{
+	dir = 8;
+	icon_state = "floattiles2"
+	},
+/obj/map/light/void,
+/turf/floor/void,
+/area/crunch)
+"ssU" = (
+/obj/decal/fakeobjects/teleport_pad,
+/obj/cable,
+/obj/decal/fakeobjects/brokenportal{
+	density = 0
+	},
+/obj/dfissure_from,
+/turf/floor/damaged4,
+/area/crunch)
 "suO" = (
 /obj/machinery/shuttle/engine/heater{
 	dir = 1;
@@ -75086,6 +75422,10 @@
 /obj/decal/poster/wallsign/stencil/right/o,
 /turf/floor/grass/leafy,
 /area/sim/racing_track)
+"sXQ" = (
+/obj/map/light/graveyard,
+/turf/floor/scorched,
+/area/crunch)
 "sYF" = (
 /obj/stool/bench/auto,
 /obj/machinery/light/small/cool{
@@ -75094,15 +75434,19 @@
 /turf/floor/concrete,
 /area/upper_arctic/fita/lobby)
 "tck" = (
-/obj/table/reinforced/auto,
-/obj/item/paper/blueprint/destiny,
-/obj/item/paper/blueprint/clarion,
-/obj/item/paper/book/from_file/moby_dick,
-/obj/item/paper/book/from_file/deep_blue_sea,
-/turf/floor/black/side{
-	dir = 4
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 1;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.1;
+	name = "power conduit";
+	plane = -101
 	},
-/area/crunch/wtc)
+/obj/map/light/graveyard,
+/turf/floor,
+/area/crunch)
 "teX" = (
 /turf/floor/shuttle{
 	icon_state = "floor3"
@@ -75194,10 +75538,6 @@
 	icon_state = "Stairs_wide"
 	},
 /area/centcom)
-"tqV" = (
-/obj/reagent_dispensers/watertank/fountain,
-/turf/floor/concrete,
-/area/upper_arctic/fita/lobby)
 "ttO" = (
 /obj/critter/zombie/meatmonaut{
 	desc = "That suit is decidedly not Juicer, but then again who knows what you can salvage in the fleshier parts of the frontier.";
@@ -75424,6 +75764,12 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
+"ubB" = (
+/obj/decal/fakeobjects/lighttube_broken{
+	dir = 8
+	},
+/turf/floor/damaged3,
+/area/crunch)
 "ucy" = (
 /obj/item/toy/plush/small/bunny/mask{
 	anchored = 1;
@@ -75851,13 +76197,13 @@
 /turf/wall/auto/lead/gray,
 /area/sim/bball)
 "uRu" = (
-/obj/decoration/vent/vent2{
-	desc = "A portable, non-wearable radio for communicating over a specified frequency. This one isn't working.";
-	icon = 'icons/obj/items/device.dmi';
-	icon_state = "walkietalkie"
+/obj/lattice,
+/obj/decal/floatingtiles{
+	icon_state = "floattiles6"
 	},
-/turf/floor/concrete,
-/area/upper_arctic/fita/quartermaster/supplycloset)
+/obj/item/cable_coil/cut/small,
+/turf/floor/void,
+/area/crunch)
 "uTj" = (
 /obj/table/wood/auto/desk,
 /obj/machinery/computer3/generic/personal,
@@ -75935,6 +76281,12 @@
 	icon_state = "blue";
 	name = "garrys dark room"
 	})
+"uZs" = (
+/obj/decal/fakeobjects/lighttube_broken{
+	dir = 4
+	},
+/turf/floor/plating,
+/area/crunch)
 "uZY" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A pipe.";
@@ -81519,7 +81871,7 @@ iId
 sYF
 ukx
 pZL
-tqV
+clK
 ewz
 sIF
 xAe
@@ -85292,7 +85644,7 @@ bKw
 bKw
 bKw
 bKw
-bKw
+ePn
 bKw
 bKw
 cta
@@ -85593,7 +85945,7 @@ cta
 bKw
 bKw
 bKw
-bKw
+cta
 cta
 cta
 cta
@@ -85892,12 +86244,12 @@ bJE
 bJE
 bJE
 cta
-bKw
-bKw
-bKw
 cta
 cta
 cta
+cta
+fuW
+bKw
 cta
 cta
 cta
@@ -86197,9 +86549,9 @@ cta
 cta
 cta
 cta
-cta
-cta
-cta
+bKw
+bKw
+bKw
 cta
 cta
 cta
@@ -86349,7 +86701,7 @@ uHS
 fxB
 bbg
 rUY
-uRu
+clJ
 onP
 olp
 bcY
@@ -86499,10 +86851,10 @@ cta
 cta
 cta
 bKw
-cta
-cta
-cta
-cta
+bKw
+bKw
+bKw
+bKw
 cta
 cta
 cta
@@ -88923,10 +89275,10 @@ bLe
 bLn
 cgh
 bKw
-bLd
-clJ
-bLU
-bNd
+bKw
+bKw
+bKw
+bKw
 bKw
 bKw
 cta
@@ -89225,11 +89577,11 @@ bLn
 bLn
 bLn
 bKB
-bLn
-clK
-cme
-bMB
-bLy
+bKw
+mOQ
+bKw
+bKw
+bKw
 bKw
 cta
 cta
@@ -89528,9 +89880,9 @@ bLy
 bLd
 bKw
 bKB
-clL
-bPo
-bLy
+bKw
+bKw
+bKw
 bKB
 bKw
 cta
@@ -89831,7 +90183,7 @@ bKB
 bKB
 bKw
 cjY
-bLn
+bKw
 bKw
 bKw
 bKw
@@ -90714,13 +91066,13 @@ cta
 cta
 cta
 cta
-cta
-cta
-cta
-cta
-cta
-cta
-cta
+bKw
+bKw
+bKw
+bKw
+bKw
+bKw
+bKw
 cta
 cta
 cta
@@ -91014,17 +91366,17 @@ cta
 cta
 cta
 cta
-cta
-cta
-cta
-cta
-cta
-cta
-cta
-cta
-cta
-cta
-cta
+bKw
+bKw
+bKw
+bKw
+bKw
+bRa
+bKw
+bKw
+bKw
+bKw
+bKw
 cta
 cta
 bKw
@@ -91316,17 +91668,17 @@ cta
 cta
 cta
 cta
-cta
-cta
-cta
-cta
-cta
-cta
-cta
-cta
-cta
-cta
-cta
+bKw
+bKB
+bKw
+bKw
+bVj
+crV
+bKw
+bKw
+cnz
+bKw
+bKw
 bKw
 bKw
 bVj
@@ -91617,19 +91969,19 @@ aaa
 cta
 cta
 cta
-cta
-cta
-cta
-cta
-cta
-cta
-cta
-cta
-cta
-cta
-cta
-cta
 bKw
+bRa
+bKw
+bKw
+bKw
+crH
+bKw
+bYD
+cgh
+bKw
+bKw
+bRa
+crV
 bKw
 bKw
 ctf
@@ -91916,20 +92268,20 @@ ccF
 ccF
 cbu
 aaa
+cta
+cta
+cta
+bKw
+bKw
+bKw
+crw
+bUY
 cnx
-cnx
-cnx
-cnB
-cnx
-cnx
-cnB
-cnB
-cnx
-cnx
-cnx
-cnx
-cnx
-ctb
+crW
+csd
+tck
+csq
+bKw
 bKw
 bKw
 bKw
@@ -92218,26 +92570,26 @@ cfq
 ccX
 cbu
 aaa
-cnx
-cnK
-crA
-crL
-crS
-csQ
-csg
-cnB
-cnB
-cnB
-csB
-csI
-csQ
-ctb
-bKw
-bRa
-bKw
-bKw
-bKw
 cta
+cta
+bLl
+bLl
+cte
+csQ
+csl
+csB
+crL
+crX
+csB
+dYW
+bLl
+bLl
+bLl
+bLl
+bLl
+bLl
+bKw
+bKw
 cta
 cta
 cta
@@ -92520,25 +92872,25 @@ ceX
 ceX
 cbu
 aaa
-cnx
-crr
-crB
+cta
+cta
+bLl
+csz
 crM
-crM
-crM
-crF
-csn
+csz
+csl
+bLF
 css
 csn
 csC
 csJ
-csR
+csz
 csZ
+csI
+ubB
+ssi
+bLl
 bKw
-bKw
-bKw
-bKw
-cta
 cta
 cta
 cta
@@ -92822,24 +93174,24 @@ deZ
 ceY
 cbu
 aaa
-cnB
-crs
+cta
+cta
 crC
 crN
-crN
-crN
+csK
+cru
 csh
-cnB
-cnB
-cnB
+crB
+crP
+cru
 csD
 csK
 csS
-cnx
-cta
-cta
-cta
-cta
+csA
+csL
+ssU
+bLe
+bLl
 cta
 cta
 cta
@@ -93124,24 +93476,24 @@ deZ
 ceY
 cbu
 aaa
-cnB
-cnB
+cta
+cta
 crD
-cnB
-cnB
-cnB
-cnB
-cnB
-cnB
-cnB
-cnB
-cnB
-cnB
-cnB
-cta
-cta
-cta
-cta
+csz
+csz
+csz
+csl
+csz
+csw
+csz
+fPa
+fPa
+csC
+csE
+csN
+uZs
+nRv
+bLl
 cta
 cta
 cta
@@ -93426,24 +93778,24 @@ ceX
 ceX
 cbu
 aaa
-cnB
-crt
-crE
-cnB
-crT
-csa
-crE
-cso
-cnB
-cnx
-cnx
-cnx
-cnx
-cnx
 cta
 cta
-cta
-cta
+bLl
+cnC
+csz
+csz
+csl
+fPa
+csw
+csz
+fPa
+csz
+csw
+bLl
+bLl
+bLl
+bLl
+bLl
 cta
 cta
 cta
@@ -93728,22 +94080,22 @@ cfq
 ccX
 cbu
 aaa
-cnB
-cru
-crF
+cta
+cta
+bLl
 crO
-crU
-csb
+csz
+csz
 csi
-cnB
-cnB
-cnB
-cnB
-cnB
-cnB
-cnB
-aaa
-aaa
+sXQ
+crQ
+sXQ
+cnK
+csz
+csr
+cru
+csO
+bLl
 aaa
 aaa
 aaa
@@ -94030,22 +94382,22 @@ ccF
 ccF
 cbu
 aaa
-cnB
-crv
+cta
+cta
+bLl
+crt
+csF
+gGO
 crG
-cnB
-crV
-csc
-crG
-cnB
+dYW
 cst
-csy
-crA
-csL
-csT
-cnB
-aaa
-aaa
+dYW
+sXQ
+csz
+fPa
+csz
+csR
+bLl
 aaa
 ctn
 ctn
@@ -94332,22 +94684,22 @@ cfP
 cgi
 cbu
 aaa
-cnB
-cnB
-crH
-cnB
-cnB
-cnB
-cnB
-cnB
-crr
+cta
+cta
+bLl
+cnK
 csz
-crC
-crC
+mlC
+rMd
+dYW
+crr
+rlQ
+fPa
+llk
 csU
-cnB
-aaa
-aaa
+llk
+csw
+bLl
 aaa
 ctn
 cto
@@ -94635,21 +94987,21 @@ cbu
 cbu
 aaa
 cnB
-crw
-crA
-crP
-crW
-csd
+bLl
+bLl
+bLl
+bLl
+bLl
 csj
-csp
-crr
-crF
-csE
-csF
+sXQ
+crS
+sXQ
+rlQ
+cso
 csV
-cnB
-aaa
-aaa
+csG
+csw
+bLl
 aaa
 ctn
 ctp
@@ -94939,19 +95291,19 @@ aaa
 cnB
 ctj
 crI
-crI
-crI
-crI
+csz
+csz
+bLl
 csk
-csq
-csu
-crF
-csF
+llk
+csw
+sXQ
+csz
 csM
 csW
-cnB
-aaa
-aaa
+csz
+csw
+bLl
 aaa
 ctn
 ctp
@@ -95237,23 +95589,23 @@ cnw
 cnw
 cnw
 aaa
-cnx
-cnB
+cta
+clL
 crs
-crC
-crQ
-crC
-crC
-crC
-csr
+cme
+csz
+bLl
+bLl
+crA
+bLl
 csv
-crF
-csF
-csN
-csM
-cnB
-aaa
-aaa
+lrA
+bLl
+bLl
+csy
+csz
+csT
+bLl
 aaa
 ctn
 ctq
@@ -95539,23 +95891,23 @@ cnw
 cnw
 cnw
 aaa
-ctb
-cnB
-cnB
-crD
-cnB
-cnB
-cnB
-cnB
-csp
-crr
-crF
-csE
-csF
-csV
-cnB
-aaa
-aaa
+cta
+cth
+ctj
+csz
+csz
+bLl
+crv
+csl
+bLl
+crT
+csb
+bLl
+rYm
+csz
+csH
+csX
+bLl
 aaa
 ctn
 ctp
@@ -95841,23 +96193,23 @@ cnw
 cnw
 cnw
 aaa
-ctb
-ctb
+cta
+bKw
 cry
-crA
-crA
-crX
+csz
+csz
+bLl
 cse
 csl
-cnB
-crr
-csk
-csG
-csO
-csX
-cnB
-cnx
-cnx
+bLl
+csw
+csz
+bLl
+bLl
+bLl
+bLl
+ctc
+bLl
 aaa
 ctn
 ctp
@@ -96143,23 +96495,23 @@ cnw
 cnw
 cnw
 aaa
-cnz
-cnC
+cta
+bRa
 crz
-crJ
+csf
 tck
-crY
+tck
 csf
 csm
-cnB
+bLl
 csw
-csA
-csH
+csz
+bLl
 csP
 csY
 ctb
-ctb
-cnx
+uRu
+cta
 aaa
 ctn
 ctp
@@ -96445,23 +96797,23 @@ cnw
 cnw
 cnw
 aaa
-cnx
-cnx
-cnx
-cnB
-cnB
-cnB
-cnB
-cnB
-cnB
-cnB
-cnB
-cnx
-cnx
+cta
+cta
+cta
+bLl
+bLl
+bLl
+bLl
+bLl
+bLl
+crU
+csc
+bLl
+csp
 cnz
-ctb
-ctc
-cnx
+bRa
+bKw
+cta
 aaa
 ctn
 ctp
@@ -96759,11 +97111,11 @@ aaa
 aaa
 aaa
 aaa
-cnx
-cnx
-cnx
-cnx
-cnx
+cta
+cta
+cta
+cta
+cta
 aaa
 ctn
 ctp
@@ -97976,7 +98328,7 @@ aaa
 ctn
 ctp
 ctB
-ctB
+dWw
 ctB
 ctA
 ctB
