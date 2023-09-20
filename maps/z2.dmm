@@ -8829,6 +8829,18 @@
 /obj/machinery/light/small/cool{
 	dir = 1
 	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "An electrical junction box is an enclosure housing electrical connections, to protect the connections and provide a safety barrier.";
+	dir = 1;
+	icon = 'icons/obj/decoration.dmi';
+	icon_state = "junctionbox2";
+	layer = 2.1;
+	name = "junction box";
+	pixel_x = 1;
+	pixel_y = 32;
+	plane = -101
+	},
 /turf/floor/white,
 /area/upper_arctic/fita/medsci)
 "aJi" = (
@@ -8955,18 +8967,6 @@
 /area/marsoutpost)
 "aJD" = (
 /obj/table/surgery_tray,
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "An electrical junction box is an enclosure housing electrical connections, to protect the connections and provide a safety barrier.";
-	dir = 1;
-	icon = 'icons/obj/decoration.dmi';
-	icon_state = "junctionbox2";
-	layer = 2.1;
-	name = "junction box";
-	pixel_x = 1;
-	pixel_y = 32;
-	plane = -101
-	},
 /turf/floor/white,
 /area/upper_arctic/fita/medsci)
 "aJE" = (
@@ -11155,16 +11155,14 @@
 /obj/item/clothing/under/rank/overalls,
 /obj/item/clothing/under/rank/overalls,
 /obj/item/dice/magic8ball,
-/turf/floor/wood/six,
-/area/upper_arctic/fita/crew)
-"aQn" = (
-/obj/stool/bed,
-/obj/item/clothing/suit/bedsheet/orange,
 /obj/decal/poster/wallsign/poster_clown{
 	pixel_y = 28
 	},
 /turf/floor/wood/six,
 /area/upper_arctic/fita/crew)
+"aQn" = (
+/turf/wall/auto/concrete/window/porthole,
+/area/upper_arctic/fita/medsci)
 "aQo" = (
 /obj/machinery/camera,
 /obj/decal/fakeobjects/pipe{
@@ -11857,6 +11855,9 @@
 	interesting = "large number of bites and scratches";
 	name = "mangled corpse"
 	},
+/obj/decal/cleanable/blood/splatter{
+	icon_state = "floor2"
+	},
 /turf/floor/wood/six,
 /area/upper_arctic/fita/crew)
 "aSL" = (
@@ -12138,10 +12139,6 @@
 /area/upper_arctic/fita/medsci)
 "aTJ" = (
 /obj/machinery/light/emergency,
-/obj/item/plate/tray{
-	desc = "Clearly this is a panel meant to cover up the quarantine controls. Clearly.";
-	name = "control panel cover"
-	},
 /obj/decal/fakeobjects{
 	desc = "Should be able to talk to someone through this. Except it looks busted...";
 	dir = 1;
@@ -12675,6 +12672,9 @@
 	dir = 1
 	},
 /obj/machinery/drainage/big/off_station,
+/obj/decal/cleanable/blood/splatter{
+	icon_state = "floor4"
+	},
 /turf/floor/engine/caution/west,
 /area/upper_arctic/fita/hall)
 "aVi" = (
@@ -12682,6 +12682,9 @@
 	dir = 1;
 	icon = 'icons/obj/doors/sovblastdoor.dmi';
 	icon_state = "bdoorleft0"
+	},
+/obj/decal/cleanable/blood/splatter{
+	icon_state = "gibbl2"
 	},
 /turf/floor/engine/caution,
 /area/upper_arctic/fita/hall)
@@ -12850,6 +12853,9 @@
 "aVQ" = (
 /obj/machinery/light/emergency,
 /obj/machinery/drainage/big/off_station,
+/obj/decal/cleanable/blood/splatter{
+	icon_state = "floor5"
+	},
 /turf/floor/engine/caution/west,
 /area/upper_arctic/fita/hall)
 "aVR" = (
@@ -12867,6 +12873,12 @@
 	icon_state = "elev_broken";
 	name = "elevator call button";
 	pixel_y = -26
+	},
+/obj/decoration/bullethole{
+	icon_state = "burn1";
+	name = "zauberhole";
+	pixel_x = 23;
+	pixel_y = -3
 	},
 /turf/floor/engine/caution,
 /area/upper_arctic/fita/hall)
@@ -13247,8 +13259,8 @@
 /obj/decal/fakeobjects/pipe{
 	desc = "A pipe valve. It seems stuck.";
 	dir = 4;
-	icon = 'icons/obj/atmospherics/valve.dmi';
-	icon_state = "valve0";
+	icon = 'icons/obj/atmospherics/digital_valve.dmi';
+	icon_state = "valve1";
 	name = "manual valve"
 	},
 /turf/floor/neutral,
@@ -14451,13 +14463,13 @@
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster)
 "bbG" = (
-/obj/machinery/light/small/cool{
-	dir = 1
-	},
 /turf/floor/carpet/red/standard/edge/north,
 /area/upper_arctic/fita/quartermaster)
 "bbH" = (
 /obj/machinery/space_heater,
+/obj/machinery/light/small/cool{
+	dir = 1
+	},
 /turf/floor/carpet/red/standard/edge/ne,
 /area/upper_arctic/fita/quartermaster)
 "bbJ" = (
@@ -67844,6 +67856,11 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"eDr" = (
+/obj/item/casing,
+/obj/item/casing,
+/turf/floor/neutral,
+/area/upper_arctic/fita/hall)
 "eER" = (
 /obj/burning_barrel,
 /turf/floor/arctic/snow,
@@ -68514,6 +68531,14 @@
 /obj/item/clothing/suit/wintercoat/research,
 /obj/item/clothing/under/rank/research_director,
 /obj/item/clothing/under/rank/medical_director,
+/obj/item/paper{
+	desc = "This doesn't seem to be signed. How impersonal.";
+	icon_state = "paper";
+	info = "Welcome, doctor. I hope you settle in well. Since you are pulling more than double duty, you are entitled to both uniforms of your rank. I look forward to working with you.";
+	name = "hastily scribbled welcome";
+	pixel_x = 8;
+	pixel_y = 8
+	},
 /turf/floor/wood/six,
 /area/upper_arctic/fita/crew)
 "gjz" = (
@@ -68550,6 +68575,20 @@
 	dir = 8;
 	icon = 'icons/obj/atmospherics/pipe_vent.dmi';
 	name = "vent"
+	},
+/obj/decal/cleanable/blood/splatter{
+	icon_state = "floor2"
+	},
+/obj/decoration/bullethole{
+	icon_state = "burn2";
+	name = "zauberhole";
+	pixel_x = -7;
+	pixel_y = -4
+	},
+/obj/decoration/bullethole{
+	icon_state = "burn2";
+	name = "zauberhole";
+	pixel_y = -8
 	},
 /turf/floor/neutral,
 /area/upper_arctic/fita/hall)
@@ -68625,6 +68664,24 @@
 /obj/table/auto/desk,
 /obj/item/electronics/soldering,
 /obj/deskclutter,
+/obj/item/screwdriver/yellow,
+/obj/item/electronics/capacitor{
+	rand_pos = 1
+	},
+/obj/item/electronics/relay{
+	rand_pos = 1
+	},
+/obj/item/electronics/fuse{
+	rand_pos = 1
+	},
+/obj/decal/fakeobjects{
+	desc = "A handheld radio communication device. This one is in mid-repair but seems to have been given up on.";
+	icon = 'icons/obj/items/device.dmi';
+	icon_state = "walkietalkie";
+	name = "walkie talkie";
+	pixel_x = 6;
+	pixel_y = 4
+	},
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster/supplycloset)
 "gxj" = (
@@ -68818,6 +68875,16 @@
 	name = "Fleshy Floor"
 	},
 /area/titlescreen)
+"gWD" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "A pipe.";
+	dir = 4;
+	name = "pipe"
+	},
+/obj/item/casing,
+/obj/item/casing,
+/turf/floor/neutral,
+/area/upper_arctic/fita/hall)
 "gWV" = (
 /obj/decal/fakeobjects{
 	desc = "A series of parallel bars designed to allow for controlled change of elevation.  You know, by climbing it.  You climb it. Except you can't do it with this one for some reason.";
@@ -69530,9 +69597,8 @@
 /turf/floor/setpieces/bloodfloor,
 /area/titlescreen)
 "iCR" = (
-/obj/decoration/vent/vent2,
-/turf/wall/auto/concrete,
-/area/upper_arctic/fita/mining)
+/turf/wall/auto/concrete/window/frosted,
+/area/upper_arctic/fita/crew)
 "iEd" = (
 /obj/decal/stage_edge/dojo,
 /turf/floor/setpieces/bloodfloor{
@@ -70607,7 +70673,7 @@
 /area/upper_arctic/fita/hall)
 "kPL" = (
 /obj/decal/cleanable/fungus,
-/turf/outdoors/concrete,
+/turf/wall/auto/concrete,
 /area/upper_arctic/fita/quartermaster/supplycloset)
 "kPT" = (
 /turf/floor/stairs{
@@ -70700,6 +70766,9 @@
 	},
 /turf/floor/neutral,
 /area/upper_arctic/fita/hall)
+"kZu" = (
+/turf/wall/auto/concrete/window/porthole,
+/area/upper_arctic/fita/mining)
 "laC" = (
 /obj/item/paper/book/from_file/mechanicbook,
 /obj/table/round/auto,
@@ -70984,6 +71053,7 @@
 /area/upper_arctic/fita/messhall)
 "lDS" = (
 /obj/decal/fakeobjects/pipe{
+	density = 1;
 	desc = "Large vessel containing a pressurized air mixture for emergency purposes.";
 	dir = 4;
 	icon = 'icons/obj/atmospherics/tanks/whitered_pipe_tank.dmi';
@@ -72308,6 +72378,9 @@
 	name = "Fleshy Floor"
 	},
 /area/titlescreen)
+"obN" = (
+/turf/wall/auto/concrete/window/icy_barred,
+/area/upper_arctic/fita/director)
 "obT" = (
 /obj/stool/chair/comfy/shuttle/red{
 	dir = 1
@@ -72757,6 +72830,19 @@
 	},
 /turf/floor/engine,
 /area/hospital/samostrel)
+"oUZ" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "A pipe.";
+	dir = 4;
+	name = "pipe"
+	},
+/obj/machinery/light/small/neutral,
+/obj/item/casing,
+/obj/item/casing,
+/obj/item/casing,
+/obj/item/casing,
+/turf/floor/neutral,
+/area/upper_arctic/fita/hall)
 "oVn" = (
 /obj/storage/crate,
 /turf/floor/concrete,
@@ -73114,6 +73200,13 @@
 	dir = 1
 	},
 /area/hospital/samostrel)
+"pGe" = (
+/obj/item/plate/tray{
+	desc = "Clearly this is a panel meant to cover up the quarantine controls. Clearly.";
+	name = "control panel cover"
+	},
+/turf/floor/white,
+/area/upper_arctic/fita/medsci)
 "pGM" = (
 /obj/landmark/load_prefab_shuttledmm/donut2,
 /turf/outdoors/grass,
@@ -73445,6 +73538,9 @@
 	},
 /turf/floor/shuttle,
 /area/shuttle/escape/centcom/destiny)
+"qju" = (
+/turf/wall/auto/concrete/window/icy_barred,
+/area/upper_arctic/fita/armory)
 "qkF" = (
 /obj/machinery/light/emergency,
 /obj/decal/fakeobjects/pipe{
@@ -74712,6 +74808,9 @@
 	},
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster/supplycloset)
+"sxE" = (
+/turf/wall/auto/concrete/window/porthole,
+/area/upper_arctic/fita/hall)
 "sxQ" = (
 /obj/machinery/light/small/floor,
 /turf/floor/shuttle{
@@ -75095,6 +75194,10 @@
 	icon_state = "Stairs_wide"
 	},
 /area/centcom)
+"tqV" = (
+/obj/reagent_dispensers/watertank/fountain,
+/turf/floor/concrete,
+/area/upper_arctic/fita/lobby)
 "ttO" = (
 /obj/critter/zombie/meatmonaut{
 	desc = "That suit is decidedly not Juicer, but then again who knows what you can salvage in the fleshier parts of the frontier.";
@@ -75748,9 +75851,13 @@
 /turf/wall/auto/lead/gray,
 /area/sim/bball)
 "uRu" = (
-/obj/reagent_dispensers/watertank/fountain,
+/obj/decoration/vent/vent2{
+	desc = "A portable, non-wearable radio for communicating over a specified frequency. This one isn't working.";
+	icon = 'icons/obj/items/device.dmi';
+	icon_state = "walkietalkie"
+	},
 /turf/floor/concrete,
-/area/upper_arctic/fita/lobby)
+/area/upper_arctic/fita/quartermaster/supplycloset)
 "uTj" = (
 /obj/table/wood/auto/desk,
 /obj/machinery/computer3/generic/personal,
@@ -76411,6 +76518,9 @@
 /obj/map/light/graveyard,
 /turf/wall/auto/lead/gray,
 /area/crypt/sigma/crew)
+"wmY" = (
+/turf/wall/auto/concrete/window/icy_barred,
+/area/upper_arctic/fita/lobby)
 "wnu" = (
 /turf/wall/auto/sengoku{
 	icon_state = "10";
@@ -76920,6 +77030,7 @@
 	icon_state = "crateopen";
 	open = 1
 	},
+/obj/item/ammo/bullets/flare/single,
 /turf/floor/carpet/red/standard/edge/south,
 /area/upper_arctic/fita/director)
 "xuB" = (
@@ -81101,11 +81212,11 @@ aLN
 vGL
 iId
 iId
+obN
 iId
-iId
 ewz
-ewz
-ewz
+wmY
+wmY
 ewz
 ewz
 ewz
@@ -81396,7 +81507,7 @@ aRE
 aWC
 aWC
 aWC
-aWC
+qju
 aWC
 aWC
 aLN
@@ -81408,12 +81519,12 @@ iId
 sYF
 ukx
 pZL
-ukx
+tqV
 ewz
 sIF
 xAe
 tNI
-ewz
+wmY
 aLN
 aLN
 pyK
@@ -81695,7 +81806,7 @@ aLN
 aLN
 aLN
 aRE
-aWC
+qju
 aTC
 aUm
 bMs
@@ -82003,7 +82114,7 @@ aUm
 bMs
 jCL
 aWC
-faP
+sxE
 iId
 xjT
 aZL
@@ -82017,7 +82128,7 @@ ewz
 vbv
 uLV
 tNI
-ewz
+wmY
 aLQ
 aLN
 vyn
@@ -82314,7 +82425,7 @@ iId
 jdn
 bce
 fiV
-uRu
+bcf
 ewz
 ewz
 ewz
@@ -82619,7 +82730,7 @@ fiV
 bcf
 bcf
 ukx
-ewz
+wmY
 aLN
 aLN
 aLN
@@ -83223,7 +83334,7 @@ fiV
 bcf
 bcf
 ukx
-ewz
+wmY
 aLN
 aLN
 aLN
@@ -85614,7 +85725,7 @@ aLr
 aMy
 aMy
 aLS
-aLN
+bhv
 aTF
 aPt
 aQb
@@ -85916,8 +86027,8 @@ aKX
 aKX
 aKX
 aLq
-bhv
-aTF
+aLN
+iCR
 aQa
 aQb
 bfy
@@ -86238,7 +86349,7 @@ uHS
 fxB
 bbg
 rUY
-bcY
+uRu
 onP
 olp
 bcY
@@ -86521,7 +86632,7 @@ aKX
 aLq
 aLN
 aLN
-aTF
+iCR
 aQa
 aQb
 bfz
@@ -87428,7 +87539,7 @@ aLq
 aRE
 aRE
 aLN
-aTF
+iCR
 aRT
 bhd
 gxj
@@ -87738,8 +87849,8 @@ vxA
 tTw
 aTF
 aTF
-aYl
-vvb
+aMC
+gWD
 vmh
 vmh
 vmh
@@ -88040,8 +88151,8 @@ vxA
 aQb
 xbp
 aTF
-aYl
-uBs
+eDr
+oUZ
 vmh
 moP
 aYq
@@ -88333,8 +88444,8 @@ aKX
 aLq
 aLN
 aLN
-aTF
-aQn
+iCR
+aQQ
 aQb
 bhb
 dnO
@@ -88646,7 +88757,7 @@ tHo
 aTF
 kXE
 vvb
-iCR
+vmh
 ehJ
 ehJ
 wCo
@@ -88937,7 +89048,7 @@ aLq
 aRE
 aLN
 bhv
-aTF
+iCR
 aQQ
 aQb
 bhw
@@ -90446,7 +90557,7 @@ aKX
 aLr
 aLS
 aLN
-bhB
+aQn
 aJD
 oHu
 hUj
@@ -91050,14 +91161,14 @@ aKX
 aKX
 aLq
 aLN
-bhB
+aQn
 aJF
 oHu
 oHu
 bhz
 fme
 oHu
-oHu
+pGe
 aTJ
 bhB
 aVk
@@ -91066,7 +91177,7 @@ vmh
 vmh
 vmh
 vmh
-vmh
+kZu
 vmh
 vmh
 vmh
@@ -91375,7 +91486,7 @@ vmh
 vmh
 vmh
 vmh
-vmh
+kZu
 vmh
 vmh
 aRC
@@ -92262,10 +92373,10 @@ aLN
 bhB
 bhB
 bhB
+aQn
 bhB
 bhB
-bhB
-bhB
+aQn
 bhB
 mBB
 mBB
@@ -92563,8 +92674,8 @@ aMy
 aMy
 aMy
 aMy
-aMy
 iaz
+aMy
 aMy
 aMy
 aLS
