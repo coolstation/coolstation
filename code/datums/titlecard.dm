@@ -4,6 +4,8 @@
 
 	#if defined(MAP_OVERRIDE_OSHAN)
 	var/image_url = "images/oshan_titlecard.png"
+	#elif defined(MAP_OVERRIDE_BOBMAP)
+	var/image_url = "images/bob_titlecard_dev.gif"
 	#elif defined(SECRETS_ENABLED)
 	var/image_url = "images/coolstation_title_dev_alt.gif"
 	#else
@@ -33,6 +35,9 @@
 	battleroyale
 		overlay_image_url = "images/battleroyale_titlecard.png"
 		is_game_mode = TRUE
+
+	thebadgif
+		image_url = "images/main_titlecard_dev.gif"
 
 /datum/titlecard/proc/set_pregame_html()
 	last_pregame_html = {"<html><head><meta http-equiv='X-UA-Compatible' content='IE=edge'><style>@font-face{font-family:'PxPlus IBM VGA9';src:url([resource("misc/ibmvga9.ttf")]);}body,#overlay{margin:0;padding:0;background:url([resource(src.image_url)]) black;background-size:contain;background-repeat:no-repeat;overflow:hidden;background-position:center center;background-attachment:fixed;image-rendering:pixelated;}"}
