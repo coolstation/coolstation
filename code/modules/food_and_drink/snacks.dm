@@ -1972,6 +1972,28 @@
 	initial_reagents = list("cholesterol"=2)
 	food_effects = list("food_hp_up", "food_brute")
 
+/obj/item/reagent_containers/food/snacks/beffjerky
+	name = "beff jerky"
+	desc = "A hunk of some kind of dehydrated salted flesh."
+	icon = 'icons/obj/foodNdrink/food_ingredient.dmi'
+	icon_state = "meat-old"
+	color = "#884466"
+	heal_amt = 1
+	amount = 2
+	initial_volume = 25
+	initial_reagents = list("beff"=10,"salt"=5)
+
+/obj/item/reagent_containers/food/snacks/beffjerky/quivering //inspired by the debug meat item where i got the old meat
+	name = "quivering beff jerky"
+	desc = "A hunk of some kind of dehydrated salted flesh. ...Oh. It's still alive."
+	icon = 'icons/obj/foodNdrink/food_ingredient.dmi'
+	icon_state = "meat_shake"
+	color = "#884466"
+	heal_amt = 2
+	amount = 2
+	initial_volume = 25
+	initial_reagents = list("beff"=20,"salt"=5) //couldn't think of anything better, will revisit (hello to you reading this in 2026, do bees still exist? like irl i mean)
+
 /obj/item/reagent_containers/food/snacks/fish_fingers
 	name = "fish fingers"
 	desc = "What kind of fish did it start out as? Who knows!"
