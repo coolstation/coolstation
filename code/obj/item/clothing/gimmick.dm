@@ -640,7 +640,7 @@
 
 // Italian Spiderman
 
-/obj/item/clothing/mask/italianspiderman
+/obj/item/clothing/glasses/italianspiderman
 	name = "italian spiderman mask"
 	desc = "Pairs well with Il Gallo Super Quiet cigarettes."
 	icon_state = "italianspiderman"
