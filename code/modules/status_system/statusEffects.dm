@@ -1675,3 +1675,45 @@
 	clicked(list/params)
 		owner.delStatus("swimming")
 		..()
+
+// Causes hallucinated objects to spawn just out of sight
+/datum/statusEffect/hallucination_fakeobject
+	id = "hallucination_fakeobject"
+	visible = 0
+	maxDuration = 30 SECONDS
+	var/obj/obj_to_see
+	var/mob/living/carbon/human/H
+
+	onAdd(optional)
+		..()
+		obj_to_see = optional
+
+	onRemove()
+		. = ..()
+		// remove all hallucinations here somehow
+
+	onUpdate(timePassed)
+		if(ishuman(owner))
+			H = owner
+			if (prob(10))
+				if(obj_to_see == null)
+					return
+				var/nsew = rand(0, 1)
+				var/line_coords
+				var/list/turf_line
+				if(nsew == 0) // north/south
+					line_coords = list(10, pick(-9, 9))
+					turf_line = getline(get_offset_target_turf(H, line_coords[1], line_coords[2]), get_offset_target_turf(H, -line_coords[1], line_coords[2]))
+				else // east/west
+					line_coords = list(pick(-12, 12), 7)
+					turf_line = getline(get_offset_target_turf(H, line_coords[1], line_coords[2]), get_offset_target_turf(H, line_coords[1], -line_coords[2]))
+				for (var/turf/T in turf_line)
+					if(T.density)
+						turf_line.Remove(T)
+				if(turf_line.len == 0)
+					return
+				var/item = obj_to_see
+				var/obj/item_inst = new item()
+				var/obj/hallucinated_item/O = new /obj/hallucinated_item(pick(turf_line), H, item_inst)
+				var/image/hallucinated_image = image(item_inst, O)
+				H << hallucinated_image
