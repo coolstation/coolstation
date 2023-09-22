@@ -710,7 +710,7 @@
 	limb_type = /datum/limb/brullbar
 	handlistPart = "l_hand_brullbar"
 	show_on_examine = 1
-	/// Wendigeese are pretty unnatural, and most people'd miss em if they suddenly turned into a lizard arm
+	/// Brullsbar are pretty unnatural, and most people'd miss em if they suddenly turned into a lizard arm
 	limb_is_unnatural = TRUE
 	kind_of_limb = (LIMB_BRULLBAR)
 
@@ -738,7 +738,7 @@
 	limb_type = /datum/limb/brullbar
 	handlistPart = "r_hand_brullbar"
 	show_on_examine = 1
-	/// If you went through the trouble to get yourself a wendy arm, you should keep it no matter how inhuman you become
+	/// If you went through the trouble to get yourself a brullbarm, you should keep it no matter how inhuman you become
 	limb_is_unnatural = TRUE
 	kind_of_limb = (LIMB_BRULLBAR)
 
