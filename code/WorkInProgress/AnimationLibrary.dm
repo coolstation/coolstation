@@ -1512,3 +1512,25 @@ var/global/icon/scanline_icon = icon('icons/effects/scanning.dmi', "scanline")
 		filter = A.filters[A.filters.len]
 		animate(filter, size=size, time=0, loop=-1, radius=0, flags=ANIMATION_PARALLEL)
 		animate(size=0, radius=rand()*10+10, time=rand()*20+10)
+
+//This one's a bodge
+/proc/animate_wiggle(var/atom/A, severity = 1) //no relation to animate_wiggle_then_reset
+	var/timing = rand(4,8)/10//severity
+	var/deg
+	while (!deg)
+		deg = rand(-10,10)*severity
+	var/scaleY = rand(1,4)
+	scaleY = (scaleY + severity - 1)/10
+	var/matrix/M = matrix()
+	var/matrix/MD = matrix()
+	M.Turn(deg)
+	MD.Turn(-deg)
+	M.Scale(1/* + scaleX*/,1 + scaleY)
+	//MD.Scale(1 - scaleX,1 - scaleY)
+	//M.Scale(1 + (rand(0,2)/10),1 + (rand(1,4)/10))
+	MD.Scale(1 + (rand(0,2)/10),1 + (rand(1,4)/10))
+	//MD.Subtract(M)
+
+	SPAWN_DBG(0)
+		animate(A, transform = M, time = timing, loop = -1, easing = LINEAR_EASING)
+		animate(transform = MD, time = timing, loop = -1, easing = LINEAR_EASING)
