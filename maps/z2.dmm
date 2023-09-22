@@ -30455,6 +30455,8 @@
 	words = "Jenkins: abort abort abort... No job found 'abort abort'"
 	},
 /obj/decal/cleanable/mess/noodles/random_all,
+/obj/item/clothing/under/gimmick/italianspiderman,
+/obj/item/clothing/glasses/italianspiderman,
 /turf/floor/white,
 /area/crunch)
 "bWb" = (
@@ -30731,7 +30733,6 @@
 /turf/floor/setpieces/martian,
 /area/crunch)
 "bWS" = (
-/obj/item/instrument/saxophone,
 /obj/decal/fakeobjects{
 	anchored = 1;
 	density = 1;
@@ -30740,6 +30741,7 @@
 	icon_state = "martian-2";
 	name = "martian machine"
 	},
+/obj/item/saxophone,
 /turf/floor/setpieces/martian,
 /area/crunch)
 "bWT" = (
@@ -35956,6 +35958,7 @@
 /obj/item/cable_coil/cut{
 	color = "#DD0000"
 	},
+/obj/item/reagent_containers/food/snacks/beffjerky/quivering,
 /turf/floor/void,
 /area/crunch)
 "clI" = (
@@ -36116,9 +36119,11 @@
 /turf/floor/cave,
 /area/cavetiny)
 "cmd" = (
-/obj/grille/catwalk,
-/obj/item/aiboss_tape/void,
-/turf/floor/void,
+/obj/table/auto,
+/obj/item/reagent_containers/food/snacks/beffjerky,
+/turf/floor/carpet{
+	icon_state = "fred1"
+	},
 /area/crunch)
 "cme" = (
 /obj/map/light/graveyard,
@@ -37896,6 +37901,7 @@
 	name = "charred corpse"
 	},
 /obj/map/light/graveyard,
+/obj/creepy_sound_trigger,
 /turf/floor,
 /area/crunch)
 "crw" = (
@@ -38559,6 +38565,7 @@
 	icon_state = "body6";
 	name = "decomposed corpse"
 	},
+/obj/creepy_sound_trigger,
 /turf/floor/plating/damaged3,
 /area/crunch)
 "csU" = (
@@ -72786,6 +72793,7 @@
 	plane = -101
 	},
 /obj/map/light/graveyard,
+/obj/creepy_sound_trigger,
 /turf/floor/caution/corner/sw,
 /area/crunch)
 "nYa" = (
@@ -83656,7 +83664,7 @@ wwy
 bKw
 bKw
 clH
-cmd
+cmo
 cmo
 cmo
 cmW
@@ -88121,7 +88129,7 @@ bLn
 bLn
 bNT
 bOs
-bOL
+cmd
 bOs
 bOq
 bPN
