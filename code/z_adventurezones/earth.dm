@@ -28,6 +28,7 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 	is_centcom = 1
 	is_construction_allowed = FALSE
 
+
 /area/centcom/outside
 	name = "Earth"
 	icon_state = "nothing_earth"
