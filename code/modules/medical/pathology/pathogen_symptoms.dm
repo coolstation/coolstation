@@ -600,13 +600,13 @@ obj/hallucinated_item
 		myowner = owner
 		name = prototype.name
 		desc = prototype.desc
+		SPAWN_DBG(30 SECONDS)	qdel(src)
 
 	attack_hand(var/mob/M)
-		if (M == owner)
-			M.show_message("<span class='alert'>[src] slips through your hands!</span>")
-			if (prob(10))
-				M.show_message("<span class='alert'>[src] disappears!</span>")
-				qdel(src)
+		M.show_message("<span class='alert'>[src] slips through your hands!</span>")
+		if (prob(30))
+			M.show_message("<span class='alert'>[src] disappears!</span>")
+			qdel(src)
 
 datum/pathogeneffects/malevolent/serious_paranoia
 	name = "Serious Paranoia"

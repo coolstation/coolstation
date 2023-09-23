@@ -195,6 +195,11 @@
 			src.amount += 1
 		else return ..()
 
+	temptation
+		heal(var/mob/M)
+			..()
+			M.changeStatus("hallucination_fakeobject", 15 SECONDS, /obj/item/reagent_containers/food/snacks/burger)
+
 /obj/item/reagent_containers/food/snacks/burger/buttburger
 	name = "buttburger"
 	desc = "This burger's all buns."
@@ -364,6 +369,11 @@
 
 		else
 			..()
+
+	temptation
+		heal(var/mob/M)
+			..()
+			M.changeStatus("hallucination_fakeobject", 15 SECONDS, /obj/item/reagent_containers/food/snacks/burger/sloppyjoe)
 
 /obj/item/reagent_containers/food/snacks/burger/mysteryburger
 	name = "dubious burger"
