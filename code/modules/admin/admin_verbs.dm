@@ -91,8 +91,8 @@ var/list/admin_verbs = list(
 		/client/proc/respawn_self, //go back to spawn/splash screen
 		/client/proc/respawn_as_self, //take your existing slot and make a new self right where your ghost is
 #ifdef SECRETS_ENABLED
-		///client/proc/respawn_as_adminsona,
-		///client/proc/toggle_adminsona_serious,
+		/client/proc/respawn_as_adminsona,
+		/client/proc/toggle_adminsona_serious,
 #endif
 
 
@@ -257,8 +257,8 @@ var/list/admin_verbs = list(
 		/client/proc/respawn_heavenly,
 		/client/proc/respawn_demonically,
 #ifdef SECRETS_ENABLED
-		///client/proc/respawn_as_adminsona,
-		///client/proc/toggle_adminsona_serious,
+		/client/proc/respawn_as_adminsona,
+		/client/proc/toggle_adminsona_serious,
 #endif
 
 		//atom management
