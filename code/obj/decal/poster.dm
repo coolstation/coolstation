@@ -559,6 +559,16 @@
 			imgh = 545
 			img = "images/arts/posters/idiot-bastard.jpg"
 
+		poster_delari
+			name = "Framed portrait"
+			desc = "Thanks for the fun, friend."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "delari"
+			popup_win = 1
+			imgw = 360
+			imgh = 410
+			img = "images/arts/posters/delari-by-killfrenzy.jpg"
+
 		poster_cool
 			name = "cool poster"
 			desc = "There's a couple people pictured on this poster, looking pretty cool."

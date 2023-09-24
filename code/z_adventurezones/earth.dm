@@ -145,6 +145,7 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 	nevada
 		ckey = "spacingnevada"
 		name = "Claire's Office of Claire"
+		is_atmos_simulated = 1 //gotta light that POO
 	patrickstar
 		ckey = ""
 		name = "Office of Patrick Star"
