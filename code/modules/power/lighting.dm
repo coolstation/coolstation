@@ -424,7 +424,10 @@
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update()
 	if (!inserted_lamp)
-		icon_state = "[base_state]-empty"
+		if (ceilingmounted)
+			lightfixtureimage.icon_state = "[base_state]-empty"
+		else
+			icon_state = "[base_state]-empty"
 		on = 0
 	else
 		switch(current_lamp.light_status) // set icon_states
