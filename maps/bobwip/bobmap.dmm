@@ -1796,6 +1796,12 @@
 	dir = 4
 	},
 /area/station/engine/inner)
+"aNP" = (
+/obj/table/reinforced/bar{
+	icon_state = "3"
+	},
+/turf/floor/wood/seven,
+/area/station/crew_quarters/bar)
 "aNS" = (
 /obj/machinery/phone,
 /obj/table/reinforced/bar/auto,
@@ -3827,7 +3833,7 @@
 	},
 /area/station/security/main)
 "bKw" = (
-/obj/critter/bear,
+/obj/critter/small_bart,
 /turf/floor/plating,
 /area/station/maintenance/inner/ne)
 "bKC" = (
@@ -6586,10 +6592,12 @@
 /turf/wall/r_wall,
 /area/station/security/checkpoint/arrivals)
 "dbh" = (
-/obj/table/reinforced/bar/auto,
 /obj/machinery/cashreg,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 4
+	},
+/obj/table/reinforced/bar{
+	icon_state = "3"
 	},
 /turf/floor/wood/seven,
 /area/station/crew_quarters/bar)
@@ -6931,7 +6939,6 @@
 /turf/space,
 /area/space)
 "dkR" = (
-/obj/storage/crate/bin,
 /obj/machinery/power/apc/autoname_east,
 /obj/cable{
 	icon_state = "0-8"
@@ -11193,9 +11200,11 @@
 /turf/floor/engine,
 /area/station/engine/hotloop)
 "eZn" = (
-/obj/table/reinforced/bar/auto,
 /obj/shitty_radio{
 	pixel_y = 7
+	},
+/obj/table/reinforced/bar{
+	icon_state = "12"
 	},
 /turf/floor/wood/seven,
 /area/station/crew_quarters/bar)
@@ -13575,6 +13584,11 @@
 /obj/machinery/disposal/mail/autotag,
 /turf/grass,
 /area/station/garden/owlery)
+"fWr" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/vending/crash_cart,
+/turf/floor/bluewhite,
+/area/station/medical/medbay/surgery)
 "fWs" = (
 /obj/machinery/manufacturer/robotics,
 /obj/machinery/light/fluorescent/auto/neutral,
@@ -19617,10 +19631,12 @@
 	},
 /area/station/hallway/primary/northeast)
 "iDZ" = (
-/obj/table/reinforced/bar/auto,
 /obj/item/platestack,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 4
+	},
+/obj/table/reinforced/bar{
+	icon_state = "3"
 	},
 /turf/floor/wood/seven,
 /area/station/crew_quarters/bar)
@@ -28750,13 +28766,6 @@
 	dir = 1
 	},
 /area/station/bridge)
-"mtx" = (
-/obj/critter/bear,
-/obj/machinery/light/emergencyflashing{
-	dir = 8
-	},
-/turf/floor/plating,
-/area/station/maintenance/inner/ne)
 "mtC" = (
 /obj/cable{
 	icon_state = "0-8"
@@ -29792,8 +29801,8 @@
 /turf/floor/white,
 /area/station/science/gen_storage)
 "mPx" = (
-/obj/storage/secure/closet/personal/empty,
 /obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/vending/crash_cart,
 /turf/floor/bluewhite{
 	dir = 1
 	},
@@ -42446,6 +42455,7 @@
 /obj/machinery/light/emergencyflashing{
 	dir = 8
 	},
+/obj/critter/small_bart,
 /turf/floor/plating,
 /area/station/maintenance/inner/ne)
 "sgk" = (
@@ -45906,7 +45916,7 @@
 /obj/machinery/door/airlock/maintenance{
 	icon_state = "door_locked";
 	locked = 1;
-	name = "WATCH OUT THERES BEARS IN HERE"
+	name = "WATCH OUT THERES BARTS IN HERE"
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/floor/plating,
@@ -95220,7 +95230,7 @@ ehP
 wwz
 faE
 jlV
-coK
+aNP
 nrP
 kja
 dbh
@@ -101646,7 +101656,7 @@ esY
 nSr
 kiL
 wgi
-nJR
+fWr
 lla
 dmL
 wgX
@@ -104904,10 +104914,10 @@ iGX
 xjo
 bbg
 plf
-mtx
+sgb
 plf
 sgb
-bKw
+plf
 bbg
 nnd
 akd
@@ -105207,7 +105217,7 @@ myr
 bbg
 lpE
 plf
-bKw
+plf
 plf
 tGt
 bbg
@@ -105509,7 +105519,7 @@ jPq
 bbg
 bKw
 nWH
-plf
+bKw
 sQl
 bKw
 bbg
