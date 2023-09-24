@@ -924,3 +924,56 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 
 	power_change()
 		return
+
+//non-teleporting nanomed, for close at hand emergency surgery consumables
+/obj/machinery/vending/crash_cart
+	name = "Crash Cart"
+	desc = "An emergency lifesaving supply cart on wheels. It floats because there's no new sprite yet and eventually there will be a not-vending-machine-version."
+	icon = 'icons/obj/porters.dmi'
+	icon_state = "vend"
+	icon_deny = "vend-deny"
+	layer = FLOOR_EQUIP_LAYER1
+	acceptcard = 0
+	anchored = 0
+	p_class = 1.2
+	can_fall = 0
+	mats = 30
+	ai_control_enabled = 0
+
+	New()
+		..()
+
+		//Products - will futz with
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/patch/bruise, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/patch/burn, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/epinephrine, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/charcoal, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/saline, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/atropine, 4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/mannitol, 8)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/salbutamol, 8)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/antihistamine, 6)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/anti_rad, 8)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/spaceacillin, 4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/insulin, 4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/synaptizine, 4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/calomel, 4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/heparin, 4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/proconvertin, 4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/filgrastim, 4)
+		product_list += new/datum/data/vending_product(/obj/item/bandage, 10)
+		product_list += new/datum/data/vending_product(/obj/item/device/analyzer/healthanalyzer, 2)
+		product_list += new/datum/data/vending_product(/obj/item/device/analyzer/healthanalyzer_upgrade, 1)
+		product_list += new/datum/data/vending_product(/obj/item/device/analyzer/healthanalyzer_organ_upgrade, 1)
+
+	allow_drop()
+		return 0
+
+	powered()
+		return
+
+	use_power()
+		return
+
+	power_change()
+		return
