@@ -1025,6 +1025,7 @@ DEFINE_FLOORS(marble/border_wb,
 		desc = "Yuck."
 		icon_state = "bloodfloor_1"
 		permadirty = 1
+		reinforced = 1
 
 	hivefloor
 		name = "hive floor"
@@ -1987,6 +1988,7 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 	fullbright = 0
 
 	ancient_pit
+		reinforced = 1
 		name = "broken staircase"
 		desc = "You can't see the bottom."
 		icon_state = "black"
