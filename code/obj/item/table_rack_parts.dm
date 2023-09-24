@@ -244,6 +244,13 @@ RACK PARTS
 	furniture_type = /obj/table/reinforced/chemistry/auto
 	furniture_name = "chemistry countertop"
 
+/obj/item/furniture_parts/table/reinforced/medical
+	name = "medical cabinet parts"
+	desc = "A collection of parts that can be used to make a chemistry table."
+	icon = 'icons/obj/furniture/table_medical.dmi'
+	furniture_type = /obj/table/reinforced/medical/auto
+	furniture_name = "medical cabinet"
+
 /* ---------- Rack Parts ---------- */
 /obj/item/furniture_parts/rack
 	name = "rack parts"

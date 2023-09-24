@@ -654,6 +654,17 @@
 		for (var/B=0, B<=7, B++)
 			new /obj/item/reagent_containers/glass/beaker(src.desk_drawer)
 
+/obj/table/reinforced/medical
+	name = "medical cabinet"
+	desc = "A stain-resistant counter which may or may not have medical supplies in it."
+	icon = 'icons/obj/furniture/table_medical.dmi'
+	auto_type = /obj/table/reinforced/medical/auto
+	parts_type = /obj/item/furniture_parts/table/reinforced/medical
+	has_storage = 1
+
+	auto
+		auto = 1
+
 /obj/table/reinforced/industrial
 	name = "industrial table"
 	desc = "An industrial table that looks like it has been made out of a scaffolding."
