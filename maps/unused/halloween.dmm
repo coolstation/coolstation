@@ -32603,7 +32603,7 @@
 	name = "Punishment Dimension"
 	})
 "blM" = (
-/turf/grass{
+/turf/floor/grass{
 	density = 1;
 	icon_state = "grass";
 	name = "grass.";
@@ -32611,7 +32611,7 @@
 	},
 /area/space)
 "blN" = (
-/turf/grass,
+/turf/floor/grass,
 /area/space)
 "blO" = (
 /obj/stone{
@@ -32619,11 +32619,11 @@
 	icon_state = "stone";
 	dir = 6
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/space)
 "blP" = (
 /obj/tree1,
-/turf/grass,
+/turf/floor/grass,
 /area/space)
 "blQ" = (
 /obj/stone{
@@ -32631,7 +32631,7 @@
 	icon_state = "stone";
 	dir = 10
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/space)
 "blR" = (
 /obj/shrub{
@@ -32639,7 +32639,7 @@
 	icon_state = "shrub";
 	dir = 4
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/space)
 "blS" = (
 /obj/grassplug{
@@ -32647,7 +32647,7 @@
 	icon_state = "grassplug";
 	dir = 8
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -32655,7 +32655,7 @@
 /area/space)
 "blT" = (
 /obj/stone,
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -32667,7 +32667,7 @@
 	icon_state = "grassplug";
 	dir = 4
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -32679,7 +32679,7 @@
 	icon_state = "stone";
 	dir = 5
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/space)
 "blW" = (
 /obj/grassplug{
@@ -32687,7 +32687,7 @@
 	icon_state = "grassplug";
 	dir = 1
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -32699,24 +32699,24 @@
 	icon_state = "shrub";
 	dir = 9
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
 	},
 /area/space)
 "blY" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTHWEST)";
 	icon_state = "grasstodirt";
 	dir = 9
 	},
 /area/space)
 "blZ" = (
-/turf/dirt,
+/turf/floor/dirt,
 /area/space)
 "bma" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTHEAST)";
 	icon_state = "grasstodirt";
 	dir = 5
@@ -32729,14 +32729,14 @@
 	dir = 1
 	},
 /obj/shrub,
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
 	},
 /area/space)
 "bmc" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -32751,10 +32751,10 @@
 	icon_state = "well";
 	name = "Well"
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/space)
 "bme" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -32766,7 +32766,7 @@
 	icon_state = "shrub";
 	dir = 5
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/space)
 "bmg" = (
 /obj/machinery/light/small{
@@ -32775,7 +32775,7 @@
 	invisibility = 20;
 	name = "deadlight"
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/space)
 "bmh" = (
 /obj/shrub{
@@ -32783,7 +32783,7 @@
 	icon_state = "shrub";
 	dir = 8
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/space)
 "bmi" = (
 /obj/machinery/camera{
@@ -32792,10 +32792,10 @@
 	name = "Spooky Camera";
 	network = "Spooky"
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/space)
 "bmj" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (SOUTHEAST)";
 	icon_state = "grasstodirt";
 	dir = 6
@@ -32807,7 +32807,7 @@
 	icon_state = "stone";
 	dir = 10
 	},
-/turf/grasstodirt,
+/turf/floor/grasstodirt,
 /area/space)
 "bml" = (
 /obj/grassplug{
@@ -32820,7 +32820,7 @@
 	icon_state = "shrub";
 	dir = 5
 	},
-/turf/grasstodirt,
+/turf/floor/grasstodirt,
 /area/space)
 "bmm" = (
 /obj/stone{
@@ -32828,7 +32828,7 @@
 	icon_state = "stone";
 	dir = 1
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/space)
 "bmn" = (
 /obj/grassplug,
@@ -32837,17 +32837,17 @@
 	icon_state = "stone";
 	dir = 5
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
 	},
 /area/space)
 "bmo" = (
-/turf/grasstodirt,
+/turf/floor/grasstodirt,
 /area/space)
 "bmp" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (SOUTHWEST)";
 	icon_state = "grasstodirt";
 	dir = 10
@@ -32859,7 +32859,7 @@
 	icon_state = "shrub";
 	dir = 9
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/space)
 "bmr" = (
 /obj/grassplug{
@@ -32867,7 +32867,7 @@
 	icon_state = "grassplug";
 	dir = 1
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -32898,7 +32898,7 @@
 /area/meteor/dock)
 "bmw" = (
 /obj/grassplug,
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -32910,7 +32910,7 @@
 	icon_state = "shrub";
 	dir = 10
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/space)
 "bmy" = (
 /obj/shieldwall{
@@ -32950,7 +32950,7 @@
 /area/meteor/dock)
 "bmD" = (
 /obj/stone,
-/turf/grass,
+/turf/floor/grass,
 /area/space)
 "bmE" = (
 /turf/shuttle/wall{
@@ -33084,7 +33084,7 @@
 /area/meteor/dock)
 "bmS" = (
 /obj/tree1,
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -34539,7 +34539,7 @@
 	icon_state = "grassplug";
 	dir = 1
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -34549,7 +34549,7 @@
 	requires_power = 1
 	})
 "bpu" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -34560,7 +34560,7 @@
 	})
 "bpv" = (
 /obj/item/clothing/shoes/magnetic,
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -34575,7 +34575,7 @@
 	icon_state = "grassplug";
 	dir = 1
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -34621,7 +34621,7 @@
 /turf/floor/plating/airless,
 /area/space)
 "bpA" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -34632,20 +34632,20 @@
 	})
 "bpB" = (
 /obj/tombstone,
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
 	})
 "bpC" = (
 /obj/item/brick,
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
 	})
 "bpD" = (
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -34654,7 +34654,7 @@
 /obj/tombstone{
 	desc = "Here lies Gertrude Jam, thrown into a comically-oversized meat grinder.  RIP."
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -34663,13 +34663,13 @@
 /obj/tombstone{
 	desc = "Here lies Thor Odinson, struck down by Ragnarok.  RIP."
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
 	})
 "bpG" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -34694,7 +34694,7 @@
 /obj/tombstone{
 	desc = "Here lies Ruford F. Jam, taken from us before his time by GBS.  RIP."
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -34703,7 +34703,7 @@
 /obj/tombstone{
 	desc = "Here lies Andrew K. Jam, crushed to death by a mulebot.  RIP."
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -34716,7 +34716,7 @@
 	punch_damage_max = 20;
 	punch_damage_min = 11
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -34725,7 +34725,7 @@
 /obj/tombstone{
 	desc = "Here lies Garry Jam, beaten to death by an assistant.  RIP."
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -34734,14 +34734,14 @@
 /obj/tombstone{
 	desc = "Here lies Dr. Von Overdose, simultaneously punched in the dick by every person on the station.  RIP."
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
 	})
 "bpO" = (
 /obj/grassplug,
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -34752,19 +34752,19 @@
 	})
 "bpP" = (
 /obj/critter/spirit,
-/turf/grasstodirt,
+/turf/floor/grasstodirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
 	})
 "bpQ" = (
-/turf/grasstodirt,
+/turf/floor/grasstodirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
 	})
 "bpR" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (SOUTHWEST)";
 	icon_state = "grasstodirt";
 	dir = 10
@@ -34879,14 +34879,14 @@
 	icon_state = "grassplug";
 	dir = 8
 	},
-/turf/grasstodirt,
+/turf/floor/grasstodirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
 	})
 "bqf" = (
 /obj/machinery/light/small,
-/turf/grasstodirt,
+/turf/floor/grasstodirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -34897,7 +34897,7 @@
 	icon_state = "grassplug";
 	dir = 4
 	},
-/turf/grasstodirt,
+/turf/floor/grasstodirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -35419,7 +35419,7 @@
 	requires_power = 1
 	})
 "bri" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (SOUTHEAST)";
 	icon_state = "grasstodirt";
 	dir = 6
@@ -35525,7 +35525,7 @@
 	})
 "brr" = (
 /obj/grassplug,
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -35561,7 +35561,7 @@
 	requires_power = 1
 	})
 "brv" = (
-/turf/grass,
+/turf/floor/grass,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -35609,7 +35609,7 @@
 	requires_power = 1
 	})
 "brA" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTHEAST)";
 	icon_state = "grasstodirt";
 	dir = 5
@@ -35651,7 +35651,7 @@
 	icon_state = "stone";
 	dir = 10
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -35660,7 +35660,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -35860,7 +35860,7 @@
 	tag = "icon-small";
 	icon_state = "small"
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTHEAST)";
 	icon_state = "grasstodirt";
 	dir = 5
@@ -35907,7 +35907,7 @@
 	icon_state = "tracks";
 	dir = 9
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -35918,7 +35918,7 @@
 	icon_state = "tracks";
 	dir = 6
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -35946,7 +35946,7 @@
 	icon_state = "tracks";
 	dir = 1
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -35957,7 +35957,7 @@
 	icon_state = "stone";
 	dir = 8
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -35983,7 +35983,7 @@
 	dir = 10
 	},
 /obj/decal/cleanable/blood/tracks,
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -35994,7 +35994,7 @@
 	icon_state = "tracks";
 	dir = 4
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -36005,7 +36005,7 @@
 	icon_state = "tracks";
 	dir = 5
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -36067,7 +36067,7 @@
 	tag = "icon-gibbl2";
 	icon_state = "gibbl2"
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -36078,7 +36078,7 @@
 	icon_state = "tracks";
 	dir = 10
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -36090,7 +36090,7 @@
 	dir = 4
 	},
 /obj/decal/cleanable/blood/splatter,
-/turf/dirt,
+/turf/floor/dirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -36185,7 +36185,7 @@
 	})
 "bsC" = (
 /obj/shrub,
-/turf/grass,
+/turf/floor/grass,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -36196,13 +36196,13 @@
 	icon_state = "shrub";
 	dir = 4
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
 	})
 "bsE" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTHWEST)";
 	icon_state = "grasstodirt";
 	dir = 9
@@ -36213,7 +36213,7 @@
 	})
 "bsF" = (
 /obj/stone,
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -36229,7 +36229,7 @@
 	icon_state = "stone";
 	dir = 1
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -36245,7 +36245,7 @@
 	icon_state = "shrub";
 	dir = 5
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -36256,7 +36256,7 @@
 	})
 "bsI" = (
 /obj/tree1,
-/turf/grass,
+/turf/floor/grass,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -36267,7 +36267,7 @@
 	icon_state = "shrub";
 	dir = 5
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -36278,7 +36278,7 @@
 	icon_state = "grassplug";
 	dir = 8
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -36294,7 +36294,7 @@
 	dir = 4
 	},
 /obj/stone,
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -36305,7 +36305,7 @@
 	})
 "bsM" = (
 /obj/landmark/spawner/loot,
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -36320,7 +36320,7 @@
 	icon_state = "shrub";
 	dir = 8
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -36335,7 +36335,7 @@
 	icon_state = "shrub";
 	dir = 9
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -36350,7 +36350,7 @@
 	icon_state = "stone";
 	dir = 10
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -36361,7 +36361,7 @@
 	icon_state = "shrub";
 	dir = 8
 	},
-/turf/grasstodirt,
+/turf/floor/grasstodirt,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
@@ -36372,7 +36372,7 @@
 	icon_state = "stone";
 	dir = 9
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (SOUTHWEST)";
 	icon_state = "grasstodirt";
 	dir = 10
@@ -36383,7 +36383,7 @@
 	})
 "bsS" = (
 /obj/machinery/light/small,
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -36398,14 +36398,14 @@
 	icon_state = "shrub";
 	dir = 9
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/crypt{
 	name = "Jam Mansion";
 	requires_power = 1
 	})
 "bsU" = (
 /obj/machinery/light/small,
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8

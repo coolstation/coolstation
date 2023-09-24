@@ -958,28 +958,6 @@ proc/generate_space_color()
 	opacity = 0
 	density = 0
 
-/turf/bar
-	name = "bar"
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "bar"
-
-/turf/grimycarpet
-	name = "grimy carpet"
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "grimy"
-
-/turf/grimycarpet
-	name = "grimy carpet"
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "grimy"
-
-/turf/grass
-	name = "grass"
-	icon = 'icons/misc/worlds.dmi'
-	icon_state = "grass"
-	step_material = "step_outdoors"
-	step_priority = STEP_PRIORITY_MED
-
 /turf/wall/wooden
 	icon_state = "wooden"
 
@@ -1248,53 +1226,6 @@ proc/generate_space_color()
 	New()
 		..()
 		src.set_dir(pick(NORTH,SOUTH))
-
-/turf/grasstodirt
-	name = "grass"
-	icon = 'icons/misc/worlds.dmi'
-	icon_state = "grasstodirt"
-
-/turf/grass
-	name = "grass"
-	icon = 'icons/misc/worlds.dmi'
-	icon_state = "grass"
-
-/turf/dirt
-	name = "Dirt"
-	icon = 'icons/misc/worlds.dmi'
-	icon_state = "dirt"
-
-	attackby(obj/item/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/shovel))
-			if (src.icon_state == "dirt-dug")
-				boutput(user, "<span class='alert'>That is already dug up! Are you trying to dig through to China or something?  That would be even harder than usual, seeing as you are in space.</span>")
-				return
-
-			user.visible_message("<b>[user]</b> begins to dig!", "You begin to dig!")
-			//todo: A digging sound effect.
-			if (do_after(user, 4 SECONDS) && src.icon_state != "dirt-dug")
-				src.icon_state = "dirt-dug"
-				user.visible_message("<b>[user]</b> finishes digging.", "You finish digging.")
-				for (var/obj/tombstone/grave in orange(src, 1))
-					if (istype(grave) && !grave.robbed)
-						grave.robbed = 1
-						//idea: grave robber medal.
-						if (grave.special)
-							new grave.special (src)
-						else
-							switch (rand(1,3))
-								if (1)
-									new /obj/item/skull {desc = "A skull.  That was robbed.  From a grave.";} ( src )
-								if (2)
-									new /obj/item/plank {name = "rotted coffin wood"; desc = "Just your normal, everyday rotten wood.  That was robbed.  From a grave.";} ( src )
-								if (3)
-									new /obj/item/clothing/under/suit/pinstripe {name = "old pinstripe suit"; desc  = "A pinstripe suit.  That was stolen.  Off of a buried corpse.";} ( src )
-								if(4,5)
-									break
-						break
-
-		else
-			return ..()
 
 /turf/nicegrass
 	name = "grass"

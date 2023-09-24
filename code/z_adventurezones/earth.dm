@@ -255,6 +255,9 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 
 /turf/outdoors
 	icon = 'icons/turf/outdoors.dmi'
+	//this is fine for now
+	oxygen = MOLES_O2STANDARD
+	nitrogen = MOLES_N2STANDARD
 
 	snow
 		name = "snow"

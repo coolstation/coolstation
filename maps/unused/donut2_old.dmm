@@ -34804,14 +34804,14 @@
 	tag = "icon-small";
 	icon_state = "small"
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
 	},
 /area/vr_oldprison)
 "bsO" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -34828,21 +34828,21 @@
 	icon_state = "shrub";
 	dir = 1
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
 	},
 /area/vr_oldprison)
 "bsQ" = (
-/turf/grass,
+/turf/floor/grass,
 /area/vr_oldprison)
 "bsR" = (
 /obj/machinery/computer/shuttle,
 /turf/floor/shuttle,
 /area/shuttle/escape/centcom)
 "bsS" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -34854,18 +34854,18 @@
 	icon_state = "grassplug";
 	dir = 6
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/vr_oldprison)
 "bsU" = (
 /obj/grassplug,
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
 	},
 /area/vr_oldprison)
 "bsV" = (
-/turf/grass{
+/turf/floor/grass{
 	density = 1;
 	icon_state = "grass";
 	name = "grass.";
@@ -34878,10 +34878,10 @@
 	icon_state = "grassplug";
 	dir = 8
 	},
-/turf/grasstodirt,
+/turf/floor/grasstodirt,
 /area/vr_oldprison)
 "bsX" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -34914,7 +34914,7 @@
 	icon_state = "stone";
 	dir = 10
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/vr_oldprison)
 "btd" = (
 /turf/wall{
@@ -34973,7 +34973,7 @@
 	icon_state = "grassplug";
 	dir = 5
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/vr_oldprison)
 "btk" = (
 /obj/shrub{
@@ -34981,7 +34981,7 @@
 	icon_state = "shrub";
 	dir = 4
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/vr_oldprison)
 "btl" = (
 /obj/grille,
@@ -35047,7 +35047,7 @@
 /turf/floor,
 /area/centcom)
 "btq" = (
-/turf/dirt,
+/turf/floor/dirt,
 /area/vr_oldprison)
 "btr" = (
 /obj/grille,
@@ -35079,7 +35079,7 @@
 	invisibility = 20;
 	name = "deadlight"
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/vr_oldprison)
 "btu" = (
 /obj/stone{
@@ -35087,7 +35087,7 @@
 	icon_state = "stone";
 	dir = 1
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -35110,10 +35110,10 @@
 	icon_state = "shrub";
 	dir = 10
 	},
-/turf/grasstodirt,
+/turf/floor/grasstodirt,
 /area/vr_oldprison)
 "btx" = (
-/turf/grasstodirt,
+/turf/floor/grasstodirt,
 /area/vr_oldprison)
 "bty" = (
 /obj/grassplug{
@@ -35121,7 +35121,7 @@
 	icon_state = "grassplug";
 	dir = 4
 	},
-/turf/grasstodirt,
+/turf/floor/grasstodirt,
 /area/vr_oldprison)
 "btz" = (
 /obj/grille,
@@ -35184,10 +35184,10 @@
 	icon_state = "shrub";
 	dir = 9
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/vr_oldprison)
 "btF" = (
-/turf/grass{
+/turf/floor/grass{
 	density = 1;
 	icon_state = "grass";
 	name = "grass.";
@@ -35913,7 +35913,7 @@
 	},
 /area/racing_track)
 "bvg" = (
-/turf/grass{
+/turf/floor/grass{
 	density = 1;
 	icon_state = "grass";
 	name = "grass.";
@@ -35922,7 +35922,7 @@
 /area/racing_track)
 "bvh" = (
 /obj/tree1,
-/turf/grass{
+/turf/floor/grass{
 	density = 1;
 	icon_state = "grass";
 	name = "grass.";
@@ -35955,10 +35955,10 @@
 /obj/structure/woodwall{
 	opacity = 0
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/racing_track)
 "bvm" = (
-/turf/grass,
+/turf/floor/grass,
 /area/racing_track)
 "bvn" = (
 /turf/floor{
@@ -35993,11 +35993,11 @@
 /area/racing_track)
 "bvr" = (
 /obj/river,
-/turf/grass,
+/turf/floor/grass,
 /area/racing_track)
 "bvs" = (
 /obj/tree1,
-/turf/grass,
+/turf/floor/grass,
 /area/racing_track)
 "bvt" = (
 /obj/stone{
@@ -36005,7 +36005,7 @@
 	icon_state = "stone";
 	dir = 8
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/racing_track)
 "bvu" = (
 /turf/floor{
@@ -36037,7 +36037,7 @@
 	},
 /area/racing_track)
 "bvy" = (
-/turf/dirt,
+/turf/floor/dirt,
 /area/racing_track)
 "bvz" = (
 /obj/racing_boosterstrip{
@@ -36045,7 +36045,7 @@
 	icon_state = "boosterstrip";
 	dir = 4
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/racing_track)
 "bvA" = (
 /obj/river{
@@ -36053,7 +36053,7 @@
 	icon_state = "river";
 	dir = 10
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/racing_track)
 "bvB" = (
 /obj/river{
@@ -36061,7 +36061,7 @@
 	icon_state = "river";
 	dir = 5
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/racing_track)
 "bvC" = (
 /obj/tree1,
@@ -36181,7 +36181,7 @@
 	icon_state = "river";
 	dir = 10
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/racing_track)
 "bvT" = (
 /obj/river{
@@ -36189,7 +36189,7 @@
 	icon_state = "river";
 	dir = 5
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/racing_track)
 "bvU" = (
 /turf/floor/damaged1,
@@ -36204,7 +36204,7 @@
 /area/racing_track)
 "bvW" = (
 /obj/racing_powerup_spawner,
-/turf/dirt,
+/turf/floor/dirt,
 /area/racing_track)
 "bvX" = (
 /turf/floor/white/side,
@@ -36219,11 +36219,11 @@
 /area/racing_track)
 "bvZ" = (
 /obj/tombstone,
-/turf/grass,
+/turf/floor/grass,
 /area/racing_track)
 "bwa" = (
 /obj/racing_boosterstrip,
-/turf/dirt,
+/turf/floor/dirt,
 /area/racing_track)
 "bwb" = (
 /obj/overlay{
@@ -36239,7 +36239,7 @@
 	icon_state = "boosterstrip";
 	dir = 1
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/racing_track)
 "bwd" = (
 /turf/floor{
@@ -36253,7 +36253,7 @@
 /obj/structure/woodwall{
 	opacity = 0
 	},
-/turf/grass{
+/turf/floor/grass{
 	density = 1;
 	icon_state = "grass";
 	name = "grass.";
@@ -36276,7 +36276,7 @@
 	icon_state = "stone";
 	dir = 9
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/racing_track)
 "bwh" = (
 /obj/racing_trap_banana{
@@ -36337,7 +36337,7 @@
 /obj/tombstone{
 	desc = "Here lies Richie Mcmullin, eaten by ghosts."
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/racing_track)
 "bwp" = (
 /obj/overlay{
@@ -36348,7 +36348,7 @@
 	layer = 4;
 	name = "skeleton"
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/racing_track)
 "bwq" = (
 /obj/racing_boosterstrip{
@@ -36365,7 +36365,7 @@
 /area/racing_track)
 "bws" = (
 /obj/stone,
-/turf/grass,
+/turf/floor/grass,
 /area/racing_track)
 "bwt" = (
 /turf/floor/white/corner{
@@ -36462,7 +36462,7 @@
 /obj/tombstone{
 	desc = "Here lies Tango N. Vectif, killed by dat fukken pig."
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/racing_track)
 "bwG" = (
 /turf/floor/white/side{
@@ -36478,7 +36478,7 @@
 /obj/tombstone{
 	desc = "Here lies Kira Taggart, tragically killed as a result of somebody else's mistakes."
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/racing_track)
 "bwJ" = (
 /obj/overlay{
@@ -37425,10 +37425,10 @@
 	icon_state = "chair_comfy";
 	dir = 1
 	},
-/turf/bar,
+/turf/floor/specialroom/bar,
 /area/racing_entry)
 "byy" = (
-/turf/bar,
+/turf/floor/specialroom/bar,
 /area/racing_entry)
 "byz" = (
 /obj/item/reagent_containers/glass/oilcan,
@@ -37519,7 +37519,7 @@
 /obj/machinery/door/unpowered/wood{
 	autoclose = 0
 	},
-/turf/bar,
+/turf/floor/specialroom/bar,
 /area/racing_entry)
 "byL" = (
 /obj/overlay{
@@ -37559,7 +37559,7 @@
 /area/racing_track)
 "byP" = (
 /obj/item/instrument/large/jukebox,
-/turf/bar,
+/turf/floor/specialroom/bar,
 /area/racing_entry)
 "byQ" = (
 /obj/overlay{
@@ -38064,10 +38064,10 @@
 /area/sim/gunsim)
 "bzT" = (
 /obj/shrub,
-/turf/grass,
+/turf/floor/grass,
 /area/sim/gunsim)
 "bzU" = (
-/turf/grass,
+/turf/floor/grass,
 /area/sim/gunsim)
 "bzV" = (
 /turf/wall{
@@ -38283,7 +38283,7 @@
 	icon_state = "shrub";
 	dir = 6
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/sim/gunsim)
 "bAA" = (
 /turf/floor/stairs/wide{
@@ -38522,7 +38522,7 @@
 /area/space)
 "bBg" = (
 /obj/item/saw/syndie,
-/turf/grass,
+/turf/floor/grass,
 /area/sim/gunsim)
 "bBh" = (
 /turf/floor{
@@ -38637,7 +38637,7 @@
 	icon_state = "shrub";
 	dir = 8
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/sim/gunsim)
 "bBD" = (
 /turf/floor{
@@ -38717,7 +38717,7 @@
 /area/sim/gunsim)
 "bBR" = (
 /obj/item/knife_butcher,
-/turf/grass,
+/turf/floor/grass,
 /area/sim/gunsim)
 "bBS" = (
 /turf/floor{
@@ -39013,7 +39013,7 @@
 	icon_state = "shrub";
 	dir = 8
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/sim/gunsim)
 "bCB" = (
 /obj/death_button{
@@ -39172,7 +39172,7 @@
 	icon_state = "shrub";
 	dir = 6
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/sim/gunsim)
 "bCX" = (
 /obj/machinery/disposal{
@@ -39762,12 +39762,12 @@
 "bEq" = (
 /obj/item/axe,
 /obj/shrub,
-/turf/grass,
+/turf/floor/grass,
 /area/sim/gunsim)
 "bEr" = (
 /obj/item/gun/energy/bfg,
 /obj/window/crystal/reinforced/northwest,
-/turf/grass,
+/turf/floor/grass,
 /area/sim/gunsim)
 "bEs" = (
 /obj/landmark{
@@ -40067,7 +40067,7 @@
 	icon_state = "shrub";
 	dir = 1
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/sim/gunsim)
 "bFh" = (
 /obj/stool/bed,
@@ -40162,7 +40162,7 @@
 	icon_state = "shrub";
 	dir = 6
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/sim/gunsim)
 "bFs" = (
 /obj/decal/boxingrope{
@@ -40584,7 +40584,7 @@
 /area/space)
 "bGp" = (
 /obj/item/sword,
-/turf/grass,
+/turf/floor/grass,
 /area/sim/gunsim)
 "bGq" = (
 /obj/machinery/light,
@@ -42528,7 +42528,7 @@
 	icon_state = "shrub";
 	dir = 8
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/derelict/evilreaver)
 "bLl" = (
 /turf/floor/green/side{
@@ -42551,7 +42551,7 @@
 	icon_state = "shrub";
 	dir = 1
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/derelict/evilreaver)
 "bLo" = (
 /turf/floor/grime,
@@ -50216,7 +50216,7 @@
 	sd_lighting = 1
 	})
 "cdi" = (
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -50345,7 +50345,7 @@
 	icon_state = "stone";
 	dir = 10
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -50439,7 +50439,7 @@
 /area/turret_protected/aisat)
 "cdy" = (
 /obj/critter/killertomato,
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -50568,7 +50568,7 @@
 	icon_state = "shrub";
 	dir = 1
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -50577,7 +50577,7 @@
 	})
 "cdI" = (
 /obj/tree1,
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -50713,7 +50713,7 @@
 	icon_state = "grassplug";
 	dir = 1
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -50730,7 +50730,7 @@
 	icon_state = "grassplug";
 	dir = 4
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -50775,7 +50775,7 @@
 "cdZ" = (
 /turf/floor/yellow/side)
 "cea" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -50787,7 +50787,7 @@
 	sd_lighting = 1
 	})
 "ceb" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTHEAST)";
 	icon_state = "grasstodirt";
 	dir = 5
@@ -50804,7 +50804,7 @@
 	icon_state = "grassplug";
 	dir = 1
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -50891,7 +50891,7 @@
 	})
 "cek" = (
 /obj/item/bananapeel,
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -50972,7 +50972,7 @@
 	sd_lighting = 1
 	})
 "cer" = (
-/turf/dirt,
+/turf/floor/dirt,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -50980,7 +50980,7 @@
 	sd_lighting = 1
 	})
 "ces" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -50993,7 +50993,7 @@
 	})
 "cet" = (
 /obj/critter/maneater,
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51023,7 +51023,7 @@
 	charge = 100;
 	maxcharge = 15000
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51096,7 +51096,7 @@
 	icon_state = "shrub";
 	dir = 10
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51111,7 +51111,7 @@
 /obj/item/fish/carp,
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat,
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat,
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51231,7 +51231,7 @@
 	})
 "ceL" = (
 /obj/critter/spacebee,
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51244,7 +51244,7 @@
 	icon_state = "shrub";
 	dir = 8
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51253,7 +51253,7 @@
 	})
 "ceN" = (
 /obj/item/shard,
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51284,7 +51284,7 @@
 	})
 "ceQ" = (
 /obj/item/rods,
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51296,7 +51296,7 @@
 	tag = "icon-small";
 	icon_state = "small"
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51314,7 +51314,7 @@
 	icon_state = "stone";
 	dir = 4
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -51326,7 +51326,7 @@
 	sd_lighting = 1
 	})
 "ceT" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTH)";
 	icon_state = "grasstodirt";
 	dir = 1
@@ -51338,7 +51338,7 @@
 	sd_lighting = 1
 	})
 "ceU" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTHWEST)";
 	icon_state = "grasstodirt";
 	dir = 9
@@ -51350,7 +51350,7 @@
 	sd_lighting = 1
 	})
 "ceV" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (SOUTHEAST)";
 	icon_state = "grasstodirt";
 	dir = 6
@@ -51368,7 +51368,7 @@
 	icon_state = "shrub";
 	dir = 9
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -51381,7 +51381,7 @@
 	})
 "ceX" = (
 /obj/grille,
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51394,7 +51394,7 @@
 	icon_state = "brokengrille";
 	tag = "icon-brokengrille"
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51408,7 +51408,7 @@
 	tag = "icon-brokengrille"
 	},
 /obj/item/rods,
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51416,7 +51416,7 @@
 	sd_lighting = 1
 	})
 "cfa" = (
-/turf/grasstodirt,
+/turf/floor/grasstodirt,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51434,7 +51434,7 @@
 	icon_state = "shrub";
 	dir = 4
 	},
-/turf/grasstodirt,
+/turf/floor/grasstodirt,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51453,7 +51453,7 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51467,7 +51467,7 @@
 	icon_state = "stone";
 	dir = 8
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -51480,7 +51480,7 @@
 	})
 "cff" = (
 /obj/item/oldgun/energy/phaser/secure,
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (SOUTHWEST)";
 	icon_state = "grasstodirt";
 	dir = 10
@@ -51496,7 +51496,7 @@
 	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51514,7 +51514,7 @@
 	icon_state = "stone";
 	dir = 1
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -51538,7 +51538,7 @@
 	})
 "cfj" = (
 /obj/decal/fakeobjects/lighttube_broken,
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51552,7 +51552,7 @@
 	dir = 4
 	},
 /obj/machinery/light,
-/turf/grasstodirt,
+/turf/floor/grasstodirt,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51561,7 +51561,7 @@
 	})
 "cfl" = (
 /obj/item/rods,
-/turf/dirt,
+/turf/floor/dirt,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51574,7 +51574,7 @@
 	icon_state = "shrub";
 	dir = 5
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51589,7 +51589,7 @@
 /obj/item/clothing/under/suit_jacket/purple,
 /obj/item/clothing/head/that/purple,
 /obj/item/clothing/glasses/thermal/orange,
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";
@@ -51602,7 +51602,7 @@
 	tag = "icon-gibbl3";
 	icon_state = "gibbl3"
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (WEST)";
 	icon_state = "grasstodirt";
 	dir = 8
@@ -51620,7 +51620,7 @@
 	icon_state = "stone";
 	dir = 10
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (EAST)";
 	icon_state = "grasstodirt";
 	dir = 4
@@ -51637,7 +51637,7 @@
 	icon_state = "stone";
 	dir = 9
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/forest{
 	icon_state = "yellow";
 	name = "Strange Asteroid";

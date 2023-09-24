@@ -118,15 +118,15 @@
 /turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/nomad/inside)
 "ar" = (
-/turf/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "as" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 8
 	},
 /area/nomad/outside)
 "at" = (
-/turf/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "au" = (
 /obj/stone{
@@ -135,7 +135,7 @@
 	pixel_x = 17;
 	pixel_y = 15
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "av" = (
 /obj/stone{
@@ -143,16 +143,16 @@
 	pixel_x = 29;
 	pixel_y = 22
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "aw" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	icon_state = "grasstodirt";
 	dir = 10
 	},
 /area/nomad/outside)
 "ax" = (
-/turf/grasstodirt,
+/turf/floor/grasstodirt,
 /area/nomad/outside)
 "ay" = (
 /obj/item/shovel,
@@ -180,10 +180,10 @@
 	pixel_x = 6;
 	pixel_y = -3
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "aB" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 8;
 	icon_state = "grasstodirt";
 	name = "mossy dirt"
@@ -212,7 +212,7 @@
 	pixel_x = 4;
 	pixel_y = 9
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "aF" = (
 /obj/stone{
@@ -220,7 +220,7 @@
 	pixel_x = 14;
 	pixel_y = 5
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "aG" = (
 /obj/stone{
@@ -229,7 +229,7 @@
 	pixel_x = 5;
 	pixel_y = 23
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "aH" = (
 /turf/floor/stairs{
@@ -254,10 +254,10 @@
 	pixel_x = 0;
 	pixel_y = -6
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "aK" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	icon_state = "grasstodirt";
 	dir = 9
 	},
@@ -417,7 +417,7 @@
 /obj/tree1{
 	dir = 4
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "bh" = (
 /obj/stone{
@@ -428,7 +428,7 @@
 	pixel_x = 2;
 	pixel_y = 20
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "bi" = (
 /turf/floor/stairs/dark,
@@ -508,7 +508,7 @@
 	pixel_x = 1;
 	pixel_y = 5
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "bt" = (
 /obj/stone{
@@ -516,7 +516,7 @@
 	pixel_x = 18;
 	pixel_y = 21
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "bu" = (
 /turf/wall/nothing,
@@ -614,7 +614,7 @@
 	icon_state = "grtransNW";
 	name = "\proper collapsed ground"
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 8
 	},
 /area/nomad/outside)
@@ -625,7 +625,7 @@
 	icon_state = "grtransS";
 	dir = 1
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "bG" = (
 /obj/decal/cliff{
@@ -634,7 +634,7 @@
 	icon_state = "grtransNE";
 	dir = 1
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "bH" = (
 /obj/decal/cliff{
@@ -643,7 +643,7 @@
 	icon_state = "grtransW";
 	dir = 1
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 8
 	},
 /area/nomad/outside)
@@ -654,7 +654,7 @@
 	icon_state = "aground_inner3";
 	dir = 1
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "bJ" = (
 /obj/decal/cliff{
@@ -663,7 +663,7 @@
 	icon_state = "grtransE";
 	dir = 1
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "bK" = (
 /obj/decal/cliff{
@@ -672,7 +672,7 @@
 	icon_state = "grtransSW";
 	dir = 1
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "bL" = (
 /obj/decal/cliff{
@@ -681,7 +681,7 @@
 	icon_state = "grtransN";
 	dir = 1
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "bM" = (
 /obj/decal/cliff{
@@ -690,7 +690,7 @@
 	icon_state = "grtransSE";
 	dir = 1
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "bN" = (
 /obj/stool/bed,
