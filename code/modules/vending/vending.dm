@@ -2502,6 +2502,25 @@
 		product_list += new/datum/data/vending_product(/obj/item/clothing/mask/monkey_translator, rand(1,2), hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/banana, rand(1,20), hidden=1)
 
+/obj/machinery/vending/grub //remove this once there's literally any other method of generating grubs
+	name = "Grub Hub"
+	desc = "There's bugs in this here box!"
+	icon_state = "monkey"
+	icon_panel = "standard-panel"
+	// monkey vendor has slightly special broken/etc sprites so it doesn't just inherit the standard set  :)
+	acceptcard = 0
+	mats = 0 // >:I
+	slogan_list = list("Free bug for your de bug!")
+	slogan_chance = 1
+
+	light_r =1
+	light_g = 0.88
+	light_b = 0.3
+
+	create_products()
+		..()
+		product_list += new/datum/data/vending_product(/mob/living/critter/grub/wildgrub, rand(10, 15), logged_on_vend=TRUE)
+
 
 /obj/machinery/vending/magivend
 	name = "MagiVend"
