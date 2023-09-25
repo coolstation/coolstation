@@ -27,6 +27,11 @@
 //SUPPLY PACKS
 //NOTE: only secure crate types use the access var (and are lockable)
 //NOTE: hidden packs only show up when the computer has been hacked.
+//Todo: Shit is sold by a bunch of different people, and if you have a supply shuttle, you gotta do your ordering in related batches!
+//If you don't want to or cannot wait, for a fee, non-NT traders will send a delivery (mass-drive from a passing ship that may or may not line up with your delivery port)
+//In dockmap, these supply packs will be enumerated for counterside pickup
+//Instant travel, but you gotta load it yourself.
+
 ABSTRACT_TYPE(/datum/supply_packs)
 /datum/supply_packs
 	var/name = null
@@ -531,10 +536,11 @@ ABSTRACT_TYPE(/datum/supply_packs/engineering)
 		containertype = /obj/storage/crate/packing
 		containername = "Utility Belt Crate"
 
-//Construction - Also a Space Soviet front
+//Construction and Tools - Also a Space Soviet front
+//logo crossed hammer and RCD? not doing the fake cyrillic thing
 ABSTRACT_TYPE(/datum/supply_packs/construction)
 /datum/supply_packs/construction
-	category = "Construction Comrades"
+	category = "Construction Comrade"
 	metal50
 		name = "50 Metal Sheets"
 		desc = "x50 Metal Sheets"
@@ -818,10 +824,10 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 		containername = "Compost Bin crate"
 		hidden = 1
 
-//Heavy Equipment
+//Hafgan Heavy Equipment - hi cogs (Space Quebecois Front)
 ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 /datum/supply_packs/heavy_equipment
-	category = "Heavy Equipment"
+	category = "Hafgan Heavy Industries"
 
 	mulebot
 		name = "Replacement Mulebot"
@@ -884,9 +890,18 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 
 //Vending machine servicing
 //Kyle2143 originally
+//Maybe split these the hell up + order one at a time??? Have you SEEN how big a vending machine is????
+//For desc flavor consideration (do not move them out of here or put mechanical significance on who sells what beyond how it arrives)
+//Vendtech services -Tech vending machines
+//Giuseppi's services food and drink and kitchen
+//Juicers do meat??? (through partnership with Giuseppi's)
+//NT services Nano- (Med, Guns) and Pathology (also software)
+//1312 services Bubs' Booze and Pizza (Italians would never)
+
+//NOTE: Not actually in the Bonk-Tek Consortium (maybe)
 ABSTRACT_TYPE(/datum/supply_packs/vending)
 /datum/supply_packs/vending
-	category = "Vending Services"
+	category = "Vend-tek Vending Services"
 
 	restock
 		name = "Necessities Vending Machine Restocking Pack"
