@@ -840,7 +840,6 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 	generator
 		name = "Experimental Local Generator"
 		desc = "x1 Experimental Local Generator"
-		category = "Heavy Equipment"
 		contains = list(/obj/machinery/power/lgenerator)
 		cost = 2500
 		containertype = /obj/storage/crate
