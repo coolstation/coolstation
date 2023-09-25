@@ -278,45 +278,45 @@
 
 /datum/supply_control/crate
 	maximum_stock = 0
-	supply_packs = list(/datum/supply_packs/emptycrate)
+	supply_packs = list(/datum/supply_packs/nanotrasen/emptycrate)
 
 /datum/supply_control/glass_kit
 	maximum_stock = 3
-	supply_packs = list(/datum/supply_packs/glass50)
+	supply_packs = list(/datum/supply_packs/construction/glass50)
 
 /datum/supply_control/metal_kit
 	maximum_stock = 3
-	supply_packs = list(/datum/supply_packs/metal50)
+	supply_packs = list(/datum/supply_packs/construction/metal50)
 
 /datum/supply_control/cable_kit
 	maximum_stock = 3
-	supply_packs = list(/datum/supply_packs/electrical)
+	supply_packs = list(/datum/supply_packs/engineering/electrical)
 
 /datum/supply_control/homing_kit
 	maximum_stock = 3
 	replenishment_time = 18000
-	supply_packs = list(/datum/supply_packs/homing_kit)
+	supply_packs = list(/datum/supply_packs/constructionmode/homing_kit)
 
 /datum/supply_control/cargo_kit
 	maximum_stock = 2
 	replenishment_time = 18000
-	supply_packs = list(/datum/supply_packs/complex/cargo_kit)
+	supply_packs = list(/datum/supply_packs/complex/nanotrasen/cargo)
 
 /datum/supply_control/manufacturer_kit
 	maximum_stock = 2
 	replenishment_time = 18000
-	supply_packs = list(/datum/supply_packs/complex/manufacturer_kit)
+	supply_packs = list(/datum/supply_packs/complex/nanotrasen/manufacturer)
 
 /datum/supply_control/pod_kit
 	maximum_stock = 2
 	replenishment_time = 9000
-	supply_packs = list(/datum/supply_packs/complex/pod_kit)
+	supply_packs = list(/datum/supply_packs/complex/nanotrasen/pod_kit)
 	workstation_grade = 2
 
 /datum/supply_control/ai_kit
 	maximum_stock = 2
 	replenishment_time = 36000
-	supply_packs = list(/datum/supply_packs/complex/ai_kit)
+	supply_packs = list(/datum/supply_packs/complex/nanotrasen/ai_kit)
 	workstation_grade = 2
 
 /datum/supply_control/security_camera
@@ -327,40 +327,35 @@
 /datum/supply_control/mainframe_kit
 	maximum_stock = 2
 	replenishment_time = 36000
-	supply_packs = list(/datum/supply_packs/complex/mainframe_kit)
+	supply_packs = list(/datum/supply_packs/complex/nanotrasen/mainframe_kit)
 	workstation_grade = 2
-
-/datum/supply_control/manufacturer_kit
-	maximum_stock = 1
-	replenishment_time = 6000
-	supply_packs = list(/datum/supply_packs/complex/manufacturer_kit)
 
 /datum/supply_control/elec_kit
 	maximum_stock = 1
-	supply_packs = list(/datum/supply_packs/complex/electronics_kit)
+	supply_packs = list(/datum/supply_packs/complex/nanotrasen/electronics_kit)
 
 #ifndef UNDERWATER_MAP
 /datum/supply_control/mini_magnet_kit
 	maximum_stock = 2
 	replenishment_time = 9000
-	supply_packs = list(/datum/supply_packs/complex/mini_magnet_kit)
+	supply_packs = list(/datum/supply_packs/complex/mini_magnet)
 
 /datum/supply_control/magnet_kit
 	maximum_stock = 2
 	replenishment_time = 36000
-	supply_packs = list(/datum/supply_packs/complex/magnet_kit)
+	supply_packs = list(/datum/supply_packs/complex/magnet)
 	workstation_grade = 2
 #endif
 
 /datum/supply_control/medkits
 	maximum_stock = 1
 	replenishment_time = 6000
-	supply_packs = list(/datum/supply_packs/medicalfirstaid)
+	supply_packs = list(/datum/supply_packs/medsci/firstaid)
 
 /datum/supply_control/bathroom
 	maximum_stock = 5
 	replenishment_time = 3000
-	supply_packs = list(/datum/supply_packs/medicalfirstaid)
+	supply_packs = list(/datum/supply_packs/medsci/firstaid)
 /*
 /datum/supply_control/arc_smelter
 	required = /datum/progress/rooms/cargo_bay
@@ -373,25 +368,25 @@
 	maximum_stock = 3
 	initial_stock = 1
 	replenishment_time = 36000
-	supply_packs = list(/datum/supply_packs/weapons2)
+	supply_packs = list(/datum/supply_packs/security/weapons2)
 
 /datum/supply_control/stun_baton
 	maximum_stock = 3
 	initial_stock = 2
 	replenishment_time = 6000
-	supply_packs = list(/datum/supply_packs/baton)
+	supply_packs = list(/datum/supply_packs/constructionmode/baton)
 
 /datum/supply_control/administrative_id
 	maximum_stock = 3
 	initial_stock = 2
 	replenishment_time = 6000
-	supply_packs = list(/datum/supply_packs/administrative_id)
+	supply_packs = list(/datum/supply_packs/constructionmode/administrative_id)
 
 /datum/supply_control/plasmastone
 	maximum_stock = 3
 	initial_stock = 2
 	replenishment_time = 18000
-	supply_packs = list(/datum/supply_packs/plasmastone)
+	supply_packs = list(/datum/supply_packs/constructionmode/plasmastone)
 
 /datum/supply_control/banking
 	required = /datum/progress/rooms/cargo_bay
@@ -399,7 +394,7 @@
 	initial_stock = 2
 	workstation_grade = 2
 	replenishment_time = 18000
-	supply_packs = list(/datum/supply_packs/banking_kit)
+	supply_packs = list(/datum/supply_packs/constructionmode/banking_kit)
 
 /datum/supply_control/basic_power
 	required = /datum/progress/rooms/cargo_bay
@@ -407,7 +402,7 @@
 	initial_stock = 2
 	workstation_grade = 2
 	replenishment_time = 18000
-	supply_packs = list(/datum/supply_packs/complex/basic_power_kit)
+	supply_packs = list(/datum/supply_packs/complex/basic_power)
 
 /datum/supply_control/id_computer
 	required = /datum/progress/rooms/cargo_bay
@@ -415,7 +410,7 @@
 	initial_stock = 2
 	workstation_grade = 2
 	replenishment_time = 18000
-	supply_packs = list(/datum/supply_packs/id_computer)
+	supply_packs = list(/datum/supply_packs/constructionmode/id_computer)
 
 /datum/supply_control/medical
 	required = /datum/progress/rooms/cargo_bay
@@ -423,7 +418,7 @@
 	initial_stock = 2
 	workstation_grade = 2
 	replenishment_time = 18000
-	supply_packs = list(/datum/supply_packs/complex/medical_kit)
+	supply_packs = list(/datum/supply_packs/complex/medical/medbay)
 
 /datum/supply_control/robotics
 	required = /datum/progress/rooms/medbay
@@ -431,7 +426,7 @@
 	initial_stock = 2
 	workstation_grade = 2
 	replenishment_time = 18000
-	supply_packs = list(/datum/supply_packs/complex/robotics_kit)
+	supply_packs = list(/datum/supply_packs/complex/medical/robotics)
 
 /datum/supply_control/genetics
 	required = /datum/progress/rooms/medbay
@@ -439,63 +434,63 @@
 	initial_stock = 2
 	workstation_grade = 2
 	replenishment_time = 18000
-	supply_packs = list(/datum/supply_packs/complex/genetics_kit)
+	supply_packs = list(/datum/supply_packs/complex/medical/genetics)
 
 /datum/supply_control/artlab
 	maximum_stock = 2
 	initial_stock = 2
 	workstation_grade = 2
 	replenishment_time = 18000
-	supply_packs = list(/datum/supply_packs/complex/artlab_kit)
+	supply_packs = list(/datum/supply_packs/complex/nanotrasen/artlab)
 
 /datum/supply_control/telesci
 	maximum_stock = 2
 	initial_stock = 2
 	workstation_grade = 2
 	replenishment_time = 18000
-	supply_packs = list(/datum/supply_packs/complex/telescience_kit)
+	supply_packs = list(/datum/supply_packs/complex/nanotrasen/telescience)
 
 /datum/supply_control/defense
 	maximum_stock = 5
 	initial_stock = 0
 	replenishment_time = 18000
-	supply_packs = list(/datum/supply_packs/complex/turret_kit)
+	supply_packs = list(/datum/supply_packs/complex/turret)
 
 /datum/supply_control/fueltank
 	maximum_stock = 1
 	initial_stock = 1
 	replenishment_time = 18000
-	supply_packs = list(/datum/supply_packs/fueltank)
+	supply_packs = list(/datum/supply_packs/engineering/fueltank)
 
 /datum/supply_control/watertank
 	maximum_stock = 1
 	initial_stock = 1
 	replenishment_time = 18000
-	supply_packs = list(/datum/supply_packs/watertank)
+	supply_packs = list(/datum/supply_packs/grocery/watertank)
 
 /datum/supply_control/compostbin
 	maximum_stock = 1
 	initial_stock = 1
 	replenishment_time = 18000
-	supply_packs = list(/datum/supply_packs/compostbin)
+	supply_packs = list(/datum/supply_packs/grocery/compostbin)
 
 /datum/supply_control/telecrystal
 	maximum_stock = 6
 	initial_stock = 4
 	replenishment_time = 18000
-	supply_packs = list(/datum/supply_packs/telecrystal)
+	supply_packs = list(/datum/supply_packs/constructionmode/telecrystal)
 
 /datum/supply_control/telecrystal_bulk
 	maximum_stock = 3
 	initial_stock = 2
 	replenishment_time = 36000
-	supply_packs = list(/datum/supply_packs/telecrystal_bulk)
+	supply_packs = list(/datum/supply_packs/constructionmode/telecrystal_bulk)
 
 /datum/supply_control/janitor
 	maximum_stock = 2
 	initial_stock = 2
 	replenishment_time = 2500
-	supply_packs = list(/datum/supply_packs/janitor)
+	supply_packs = list(/datum/supply_packs/nanotrasen/janitor_starter)
 
 /obj/supply_pad
 	icon = 'icons/obj/stationobjs.dmi'
