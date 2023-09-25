@@ -7,7 +7,7 @@
 	icon_state_dead = "grub-dead"
 	speechverb_say = "slobbers"
 	speechverb_exclaim = "squelches"
-	speechverb_ask = "squrims"
+	speechverb_ask = "squirms"
 	density = 0
 	custom_gib_handler = /proc/gibs
 	can_help = 1
@@ -15,7 +15,7 @@
 	can_grab = 1
 	can_disarm = 1
 	lie_on_death = 0
-	butcherable = 1 //leftover from critter copy-paste. There's independent grubmeat sprites in the dmi
+	butcherable = 1 //leftover from critter copy-paste. There's independent grubmeat sprites in the dmi but again I don't have the expertise to add custom butchering
 	name_the_meat = 1
 	max_skins = 1
 	var/health_brute = 20 // these values are unchanged from critter base. Do I still need these???? I don't know
@@ -24,6 +24,8 @@
 	var/health_burn_vuln = 1
 	health_brute = 8 // these values are unchanged from critter base
 	health_burn = 8
+	flags = TABLEPASS
+	fits_under_table = 1
 	hand_count = 1
 	var/body_color = 0
 	var/head_color = 0
@@ -32,6 +34,9 @@
 	var/antenna = 0
 	var/hair = 0
 	var/eyes2 = 0
+
+	base_move_delay = 2.3
+	base_walk_delay = 4
 
 	var/is_pet = null // null = autodetect
 
