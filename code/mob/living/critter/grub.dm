@@ -14,6 +14,7 @@
 	can_throw = 1
 	can_grab = 1
 	can_disarm = 1
+	lie_on_death = 0
 	butcherable = 1 //leftover from critter copy-paste. There's independent grubmeat sprites in the dmi
 	name_the_meat = 1
 	max_skins = 1
