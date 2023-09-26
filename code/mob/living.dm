@@ -300,6 +300,16 @@
 			src.apply_camera(observer.client)
 	..()
 
+/mob/living/show_ceiling()
+	if (!src.ceiling_shown)
+		src.ceiling_shown = 1
+		get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_mob(src)
+		boutput(src, "You look up at the ceiling.")
+	else
+		ceiling_shown = 0
+		get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_mob(src)
+		boutput(src, "You stop looking at the ceiling.")
+
 /mob/living/attach_hud(datum/hud/hud)
 	for (var/mob/dead/target_observer/observer in observers)
 		observer.attach_hud(hud)
@@ -636,6 +646,13 @@
 				src.l_hand.talk_into(src, messages, param, src.real_name, lang_id)
 			else
 				src.emote("handpuppet")
+
+/mob/living/Logout()
+	..()
+	//cover the ceiling view too
+	if(ceiling_shown)
+		ceiling_shown = 0
+		get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_mob(src)
 
 /mob/living/say(var/message, ignore_stamina_winded)
 	message = strip_html(trim(copytext(sanitize_noencode(message), 1, MAX_MESSAGE_LEN)))

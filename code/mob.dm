@@ -57,6 +57,7 @@
 	var/next_click = 0
 	var/transforming = null
 	var/hand = 0
+	var/ceiling_shown = 0
 	var/eye_blind = null
 	var/eye_blurry = null
 	var/eye_damage = null
@@ -97,7 +98,7 @@
 	var/urine = 0.0
 	var/poops = 0.0
 	var/cleanhands = 1 //wash em before handling food or internal organs
-	var/wiped = 1 //giving new mobs the benefit of the doubt (does nothing, but varediting admins will see your shame)
+	var/wiped = 1 //giving new mobs the benefit of the doubt (does nothing, but varediting admins (and Murray) will see your shame)
 	var/nutrition = 100
 	var/losebreath = 0.0
 	var/intent = null
@@ -1482,6 +1483,10 @@
 	src.remove_dialogs()
 	if (!isliving(src))
 		src.sight = SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF | SEE_BLACKNESS
+
+/mob/verb/show_ceiling()
+	set category = "Commands"
+	set name = "Toggle Ceiling Visibility"
 
 /mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if (air_group || (height==0)) return 1
