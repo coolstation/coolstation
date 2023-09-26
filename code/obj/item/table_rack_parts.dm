@@ -47,6 +47,8 @@ RACK PARTS
 		if (newThing)
 			if (src.material)
 				newThing.setMaterial(src.material)
+			if (src.color)
+				newThing.color = src.color
 			if (user)
 				newThing.add_fingerprint(user)
 				logTheThing("station", user, null, "builds \a [newThing] (<b>Material:</b> [newThing.material && newThing.material.mat_id ? "[newThing.material.mat_id]" : "*UNKNOWN*"]) at [log_loc(T)].")

@@ -148,6 +148,8 @@
 			var/obj/item/furniture_parts/P = new src.parts_type(src.loc)
 			if (P && src.material)
 				P.setMaterial(src.material)
+			if (P && src.color)
+				P.color = src.color
 		else
 			playsound(src.loc, "sound/items/Ratchet.ogg", 50, 1)
 			var/obj/item/sheet/S = new (src.loc)

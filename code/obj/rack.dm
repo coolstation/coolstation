@@ -101,6 +101,8 @@
 	var/obj/item/furniture_parts/P = new /obj/item/furniture_parts/rack(src.loc)
 	if (P && src.material)
 		P.setMaterial(src.material)
+	if (P && src.color)
+		P.color = src.color
 	qdel(src)
 
 /obj/rack/meteorhit(obj/O as obj)

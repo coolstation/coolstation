@@ -28,7 +28,8 @@
 	//Also important for the moving-shit-with is attached_objs
 
 	New(loc, obj/a_drawer)
-		colorcache = src.color
+		if(src.color)
+			colorcache = src.color
 		..()
 		if (src.has_storage)
 			if (a_drawer)
@@ -84,7 +85,8 @@
 			if (locate(src.auto_type) in T)
 				dirs |= direction
 		icon_state = num2text(dirs)
-		src.color = colorcache
+		if(src.colorcache)
+			src.color = colorcache
 
 
 		//christ this is ugly
@@ -164,6 +166,8 @@
 			src.desk_drawer = null
 		if (P && src.material)
 			P.setMaterial(src.material)
+		if (P && src.color)
+			P.color = src.color
 		var/oldloc = src.loc
 		qdel(src)
 		for (var/obj/table/T in orange(1,oldloc))
