@@ -136,6 +136,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	var/temp = null
 	var/last_cdc_message = null
 	var/hacked = 0
+	var/updatelist = 1
 	var/tradeamt = 1
 	var/in_dialogue_box = 0
 	var/obj/item/card/id/scan = null
@@ -640,32 +641,53 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 		switch (subaction)
 			// Build list of possible packages to order for currently active vendor
 			if (null, "list")
-				var/ordershit = ""
-				ordershit += {"
-					<table class='qmtable'>
-						<thead>
-							<tr>
-								<th style='width: 80%;'>Item</th>
-								<th style='width: 20%;'>Cost</th>
-							</tr>
-						</thead>
-						<tbody>
+				//will turn this into a list of ~all vendors~ + bool whether it should be updated (syndicate items, specials, etc) or simply dragged in from a perfectly good cache instead of rebuilding what is basically a static list every time
+				if(updatelist) //but for now it's 1 across the board
+					var/ordershit = ""
+					ordershit += {"
+						<table class='qmtable'>
+							<thead>
+								<tr>
+									<th colspan='2'>The Goods</th>
+								</tr>
+							</thead>
+							<tbody>
+								"}
+					var/rownum = 0
+					var/itemcount = 0
+					for (var/datum/supply_packs/S in qm_vendor_info(vendor,"cache")) //it does'nt smell good, but it smells better than it used to
+						//i will be adding categories back to it eventually but since for right now they're each former categories it doesn't make sense
+						if((S.syndicate && !src.hacked) || S.hidden) continue
+						if (!(itemcount % 2)) //left if even or zero, which is where we start out
+							//doing self contained table cells because it's so much fucking easier
+							ordershit += {"
+							<tr class='row[rownum % 2]'>
+								<td class='noborder itemtop' style='width: 50%;'>
+									item image (just pick from a dmi) here<br>contents tooltip on image after 1s delay or click?<br>will need to create S.contents with info<br>
+									<a href='?src=\ref[src];action=order;subaction=buy;what=\ref[S]'>[S.name] &bull; [S.cost] Credits</a><br>
+									[S.desc]
+								</td>
 							"}
-				var/rownum = 0
-				for (var/datum/supply_packs/S in qm_vendor_info(vendor,"cache")) //it does'nt smell good, but it smells better than it used to
-					if((S.syndicate && !src.hacked) || S.hidden) continue
-						ordershit += {"
-						<tr class='row[rownum % 2]'>
-							<th class='noborder itemtop'><a href='?src=\ref[src];action=order;subaction=buy;what=\ref[S]'>[S.name]</a></td>
-							<th class='noborder itemtop' style='text-align: right;'>[S.cost]</td>
-						</tr>
-						<tr class='row[rownum % 2]'>
-							<td colspan='2' class='itemdesc'>[S.desc]</td>
-						</tr>
-						"}
-				ordershit += "</tbody></table>"
-				. += "</div>[ordershit]"
-				return .
+						else //alternate so it's nice on the right side
+							ordershit += {"
+								<td class='noborder itemtop' style='width: 50%;'>
+									item image (just pick from a dmi) here<br>contents tooltip on image after 1s delay or click?<br>will need to create S.contents with info<br>
+									<a href='?src=\ref[src];action=order;subaction=buy;what=\ref[S]'>[S.name] &bull; [S.cost] Credits</a><br>
+									[S.desc]
+								</td>
+							</tr>
+							"}
+							rownum++
+						itemcount++
+
+					if (!(itemcount % 2)) //if even, we're on the left, so we need to clean this up
+						ordershit += "<td class='noborder itemtop' style='width: 50%;'></tr></tbody></table>"
+					else //right side gets a clean break
+						ordershit += "</tbody></table>"
+
+					//add the completed table to the whole html blob
+					. += "</div>[ordershit]"
+					return .
 
 
 			if ("buy")

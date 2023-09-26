@@ -147,7 +147,11 @@ ABSTRACT_TYPE(/datum/supply_packs)
 /datum/supply_packs
 	var/name = null
 	var/desc = null
+	var/contents = null //could I interpret the contains list? sure. will i? fuck no
 	var/list/contains = list()
+	var/image = null //if you want to explicitly provide an image go ahead, this is mostly for placeholders
+	var/icon = null //but for items, a specified icon and icon_state should take precedence over image
+	var/icon_state = null //when refreshing item lists, look these up and store them in image and reference image from that point on
 	var/amount = null
 	var/cost = null
 	var/containertype = null
@@ -218,7 +222,8 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen)
 	vendor_name = "Nanotrasen Corporate"
 	emptycrate
 		name = "Empty Crate"
-		desc = "Nothing (crate only)"
+		desc = "Absolutely nothing, packed inside a crate. For reuse."
+		contents = "Nothing (crate only)"
 		contains = list()
 		cost = 10
 		containertype = /obj/storage/crate
@@ -226,7 +231,8 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen)
 
 	office
 		name = "Office Supply Crate"
-		desc = "x4 Paper Bins, x2 Clipboards, x1 Sticky Note Box, x5 Writing Implement Sets, x1 Stapler, x1 Scissors, x2 Canvas"
+		desc = "Replenish your paperwork supplies. You are doing the paperwork, right?"
+		contents = "x4 Paper Bins, x2 Clipboards, x1 Sticky Note Box, x5 Writing Implement Sets, x1 Stapler, x1 Scissors, x2 Canvas"
 		contains = list(/obj/item/paper_bin = 4,
 			/obj/item/clipboard = 2,
 			/obj/item/item_box/postit,
@@ -245,16 +251,28 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen)
 	ID_gear
 		name = "Identity Kit"
 		desc = "For HOP use only. Certainly not for identity fraud."
+		contents = "1x PDA box (x4 PDA, some software carts), 1x ID Kit"
 		contains = list(/obj/item/storage/box/PDAbox,
 						/obj/item/storage/box/id_kit)
 		cost = 1500
 		containertype = /obj/storage/secure/crate
-		containername = "Identity Kit"
+		containername = "ID/PDA Kit"
+		access = access_heads
+
+	cloth_box
+		name = "DIY Uniform Kit"
+		desc = "Fiber supplies for HoP uniform manufacture."
+		contents = "x5 sheets of cotton"
+		contains = list(/obj/item/material_piece/cloth/cottonfabric = 5)
+		cost = 1500
+		containertype = /obj/storage/secure/crate
+		containername = "Uniform Material Kit"
 		access = access_heads
 
 	janitor_starter
 		name = "Janitorial Supplies"
-		desc = "x3 Buckets, x3 Mop, x3 Wet Floor Signs, x3 Cleaning Grenades, x1 Mop Bucket, x1 Rubber Gloves"
+		desc = "Initial supplies to outfit reinforcements against the scourge of station filth."
+		contents = "x3 Buckets, x3 Mop, x3 Wet Floor Signs, x3 Cleaning Grenades, x1 Mop Bucket, x1 Rubber Gloves"
 		contains = list(/obj/item/reagent_containers/glass/bucket = 3,
 						/obj/item/mop = 3,
 						/obj/item/caution = 3,
@@ -267,7 +285,8 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen)
 
 	janitor_refill
 		name = "Janitorial Supplies Refill"
-		desc = "Supplies to restock your hard-working Janitor."
+		desc = "Janitor consumables and one-time use items that see a lot of use."
+		contents = "4x Cleaner Grenades, 2x Cleaner-Filled Spray Bottle, 2x Jugs of Cleaner, 1x Trash Bags, 1x Biohazard Bags"
 		contains = list(/obj/item/chem_grenade/cleaner = 4,
 						/obj/item/spraybottle/cleaner = 2,
 						/obj/item/reagent_containers/glass/bottle/cleaner = 2,
@@ -275,24 +294,26 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen)
 						/obj/item/storage/box/biohazard_bags)
 		cost = 500
 		containertype = /obj/storage/crate/packing
-		containername = "Janitorial Supplies Refill"
+		containername = "Janitorial Consumables"
 
 //NT Emergency
 ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/emergency)
 /datum/supply_packs/nanotrasen/emergency
-	category = "NT Emergency"
+	category = "Emergency"
 
 	meteor
 		name = "Meteor Shield System"
 		desc = "It'll do in a pinch but your ship should really have it's own shields."
+		contents = "x4 Meteor Shields"
 		contains = list(/obj/machinery/shieldgenerator/meteorshield = 4)
 		cost = 2500
 		containertype = /obj/storage/crate/wooden
 		containername = "Meteor Shield System"
 
 	evacuation
-		name = "Emergency Equipment"
-		desc = "x4 Floor Bot, x4 Gas Tanks, x4 Gas Mask, x4 Emergency Space Suit Set"
+		name = "Station Breach Equipment"
+		desc = "Robotic repair and protection against the vacuum of space."
+		contents = "x4 Floor Bot, x4 Gas Tanks, x4 Gas Mask, x4 Emergency Space Suit Set"
 		contains = list(/obj/machinery/bot/floorbot = 4,
 		/obj/item/clothing/mask/gas = 4,
 		/obj/item/tank/emergency_oxygen = 2,
@@ -301,11 +322,12 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/emergency)
 		/obj/item/clothing/suit/space/emerg = 4)
 		cost = 1500
 		containertype = /obj/storage/crate/internals
-		containername = "Emergency Equipment"
+		containername = "Station Breach Equipment"
 
 	atmos
 		name = "Atmospherics Supplies"
 		desc = "For when you need to be breathing."
+		contents = "x1 Air Tank, x1 Oxygen Tank, x2 Portable Scrubbers, 1x Atmos Tech Uniform"
 		contains = list(/obj/item/tank/air,
 						/obj/item/tank/oxygen,
 						/obj/machinery/portable_atmospherics/scrubber = 2,
@@ -316,7 +338,8 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/emergency)
 
 	firefighting
 		name = "Firefighting Supplies Crate"
-		desc = "x3 Extinguisher, x3 Firefighting Grenade, x2 Firesuit, x2 Firefighter Helmets"
+		desc = "Fire extinguishers and grenades and fire-resistant outerwear."
+		contents = "x3 Extinguisher, x3 Firefighting Grenade, x2 Firesuit, x2 Firefighter Helmets"
 		contains = list(/obj/item/extinguisher = 3,
 		/obj/item/chem_grenade/firefighting = 3,
 		/obj/item/clothing/suit/fire = 2,
@@ -326,16 +349,18 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/emergency)
 		containername = "Firefighting Supplies Crate"
 
 	engineering_grenades
-		name = "Station Pressurization Crate"
-		desc = "4x Red Oxygen Grenades, x4 Metal Foam Grenades"
+		name = "Breach Grenade Crate"
+		desc = "Grenades for sealing breaches and replenishing minimum breathable atmosphere."
+		contents = "4x Red Oxygen Grenades, x4 Metal Foam Grenades"
 		contains = list(/obj/item/old_grenade/oxygen = 4, /obj/item/chem_grenade/metalfoam = 4)
 		cost = 1200
 		containertype = /obj/storage/crate
-		containername = "Station Pressurization Crate"
+		containername = "Breach Grenade Crate"
 
 	radiation_emergency
 		name = "Radioactive Emergency Supplies"
 		desc = "Equipment for dealing with a radioactive emergency. No, the crate itself is not radioactive."
+		contents = "4x Complete Rad Suits, 2x Bottles Potassium Iodide, 4x Potassium Iodide Autoinjectors, 2x Geiger Counter"
 		contains = list(/obj/item/clothing/suit/rad = 4,
 						/obj/item/clothing/head/rad_hood = 4,
 						/obj/item/storage/pill_bottle/antirad = 2,
@@ -348,6 +373,7 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/emergency)
 	antisingularity
 		name = "Anti-Singularity Pack"
 		desc = "Everything that the crew needs to take down a rogue singularity."
+		contents = "1x Singularity Busting Thingy, 5x Singularity Busting Thingy Bullets, 1x Instruction Pamphlet"
 		contains = list(/obj/item/paper/antisingularity,/obj/item/ammo/bullets/antisingularity = 5,/obj/item/gun/kinetic/antisingularity)
 		cost = 10000
 		containertype = /obj/storage/crate/classcrate/qm
@@ -355,7 +381,8 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/emergency)
 
 	emergency_lighting
 		name = "Emergency Lighting Crate"
-		desc = "x4 Flashlights, x2 Glowsticks Box (14 glowsticks total)"
+		desc = "Flashlights and glowsticks, for visibility in low power environments and marking paths."
+		contents = "x4 Flashlights, x2 Glowsticks Box (14 glowsticks total)"
 		contains = list(/obj/item/device/light/flashlight = 4, /obj/item/storage/box/glowstickbox = 2)
 		cost = 500
 		containertype = /obj/storage/crate
@@ -364,10 +391,11 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/emergency)
 //NT Security
 ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/security)
 /datum/supply_packs/nanotrasen/security
-	category = "NT Security"
+	category = "Security"
 	basic_gear
 		name = "Armour Crate - Security Equipment (Cardlocked \[Security Equipment])"
-		desc = "1x Armoured Vest, 1x Helmet, x1 Handcuff Kit"
+		desc = "Everything a newly arrived or conscripted security officer needs to suffer less damage from being shot."
+		contents = "1x Armoured Vest, 1x Helmet, x1 Handcuff Kit"
 		contains = list(/obj/item/clothing/suit/armor/vest,
 						/obj/item/clothing/head/helmet/hardhat/security,
 						/obj/item/storage/box/handcuff_kit)
@@ -378,7 +406,8 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/security)
 
 	upgrade
 		name = "Weapons Crate - Experimental Security Equipment (Cardlocked \[Security Equipment])"
-		desc = "1x Clock 180, x1 Elite Security Helmet, x1 Lethal Grenade Kit, 1x Experimental Grenade Kit"
+		desc = "Some alternate history magic plastic guns and grenades that fell out of some kind of portal into our warehouse. Get them while supplies last."
+		contents = "1x Clock 180, x1 Elite Security Helmet, x1 Lethal Grenade Kit, 1x Experimental Grenade Kit"
 		contains = list(/obj/item/gun/kinetic/clock_188/boomerang,
 						/obj/item/storage/box/QM_grenadekit_security,
 						/obj/item/storage/box/QM_grenadekit_experimentalweapons,
@@ -391,7 +420,8 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/security)
 
 	brig_resupply
 		name = "Security Containment Crate - Security Equipment (Cardlocked \[Security Equipment])"
-		desc = "x1 Port-a-Brig and Remote"
+		desc = "Has your Port-a-Brig been stolen and/or run into the crusher, or do you have so much crime you need a second one? What are you even doing over there?"
+		contents = "x1 Port-a-Brig and Remote"
 		contains = list(/obj/machinery/port_a_brig,
 						/obj/item/remote/porter/port_a_brig)
 		cost = 1000
@@ -402,7 +432,8 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/security)
 
 	weapons2
 		name = "Weapons Crate - Phasers (Cardlocked \[Security Equipment])"
-		desc = "x2 Phaser Gun"
+		desc = "Some future space guns that fell out of some kind of portal into our warehouse. Get them while supplies last."
+		contents = "x2 Phaser Gun"
 		contains = list(/obj/item/gun/energy/phaser_gun = 2)
 		cost = 5000
 		containertype = /obj/storage/secure/crate/weapon
@@ -413,6 +444,7 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/security)
 	antibio
 		name = "Anti-Biological Hazard Supplies"
 		desc = " A couple of tools for combatting rogue biological lifeforms."
+		contents = "1x Complete and Loaded Flamethrower, 1x Flare Gun and Flares"
 		category = "Security Department"
 		contains = list(/obj/item/gun/flamethrower/assembled/loaded,
 						/obj/item/storage/box/flaregun)
@@ -425,6 +457,7 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/security)
 	loyaltyimplant
 		name = "Loyalty Kit"
 		desc = "To ensure unflinching loyalty towards Nanotrasen."
+		contents = "4x Loyalty Implants, 2x Implanters"
 		category = "Security Department"
 		contains = list(/obj/item/implantcase/antirev = 4,
 						/obj/item/implanter = 2)
@@ -437,11 +470,12 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/security)
 //NT Medsci //split this up if there's ever enough science stuff to warrant
 ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/medsci)
 /datum/supply_packs/nanotrasen/medsci
-	category = "NT Med-Sci"
+	category = "Medical/Research"
 
 	chemical
 		name = "Chemistry Resupply Crate"
-		desc = "x6 Reagent Bottles, x1 Beaker Box, x1 Mechanical Dropper, x1 Spectroscopic Goggles, x1 Reagent Scanner"
+		desc = "Various chemistry supplies, including reagent precursors that cannot easily be produced."
+		contents = "x6 Reagent Bottles, x1 Beaker Box, x1 Mechanical Dropper, x1 Spectroscopic Goggles, x1 Reagent Scanner"
 		contains = list(/obj/item/storage/box/beakerbox,
 						/obj/item/reagent_containers/glass/bottle/oil,
 						/obj/item/reagent_containers/glass/bottle/phenol,
@@ -458,7 +492,8 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/medsci)
 
 	firstaid
 		name = "First Aid Crate"
-		desc = "x10 Assorted First Aid Kits"
+		desc = "Medbay ransacked? Buy these to replenish your supplies, but know this: it will happen again."
+		contents = "x10 Assorted First Aid Kits"
 		contains = list(/obj/item/storage/firstaid/regular = 2,
 						/obj/item/storage/firstaid/brute = 2,
 						/obj/item/storage/firstaid/fire = 2,
@@ -471,7 +506,8 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/medsci)
 
 	chems
 		name = "Medical Reservoir Crate"
-		desc = "x4 Assorted reservoir tanks, x2 Sedative bottles, x2 Hyposprays, x1 Auto-mender, x2 Brute Auto-mender Refill Cartridges, x2 Burn Auto-mender Refill Cartridges, x1 Syringe Kit"
+		desc = "Bulk loose medicine and the means to apply it."
+		contents = "x4 Assorted reservoir tanks, x2 Sedative bottles, x2 Hyposprays, x1 Auto-mender, x2 Brute Auto-mender Refill Cartridges, x2 Burn Auto-mender Refill Cartridges, x1 Syringe Kit"
 		contains = list(/obj/item/reagent_containers/glass/beaker/large/antitox,
 						/obj/item/reagent_containers/glass/beaker/large/epinephrine,
 						/obj/item/reagent_containers/food/drinks/reserve/brute,
@@ -489,6 +525,7 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/medsci)
 	bloodbags
 		name = "Blood Bank"
 		desc = "An emergency supply of blood."
+		contents = "4x O- Blood IV Bag"
 		contains = list (/obj/item/reagent_containers/iv_drip/blood = 4)
 		cost = 3000
 		containertype = /obj/storage/crate/medical
@@ -497,6 +534,7 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/medsci)
 	restricted_medicine
 		name = "Restricted Medicine Shipment"
 		desc = "A shipment of specialised medicines. Card-locked to medical access."
+		contents = "2x Bottle of Perfluorodecalin, 1x each Bottle of Omnizine, Pentetic Acid, Haloperidol, Ether"
 		contains = list(/obj/item/reagent_containers/glass/bottle/omnizine,
 						/obj/item/reagent_containers/glass/bottle/pfd = 2,
 						/obj/item/reagent_containers/glass/bottle/pentetic,
@@ -510,6 +548,7 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/medsci)
 	morgue
 		name = "Morgue Supplies"
 		desc = "The morgue can only fit so many clowns."
+		contents = "10x Body Bags, 1x each Formaldehyde Bottle, Syringe, Bible"
 		contains = list(/obj/item/body_bag = 10,
 						/obj/item/reagent_containers/glass/bottle/formaldehyde,
 						/obj/item/reagent_containers/syringe,
@@ -520,7 +559,8 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/medsci)
 
 	monkey4
 		name = "Lab Monkey Crate - 4 pack"
-		desc = "x4 Monkey, x1 Monkey Translator"
+		desc = "You can never get enough of these delicious, self-table-flinging bastards. It's vegan,"
+		contents = "x4 Monkey, x1 Monkey Translator"
 		contains = list(/mob/living/carbon/human/npc/monkey = 4,
 							/obj/item/clothing/mask/monkey_translator)
 		cost = 2500
@@ -541,50 +581,50 @@ ABSTRACT_TYPE(/datum/supply_packs/engineering)
 	vendor = "engineering"
 	vendor_name = "Juicy Engineering"
 	supplies
-		name = "Engineering Crate"
-		desc = "x2 Mechanical Toolbox, x2 Welding Mask, x2 Insulated Coat"
+		name = "Mechanical Tools Crate"
+		desc = "Some toolboxes, some welding masks, and some nerdy coats we hate and are throwing in to give you the best possible deal!"
+		contents = "x2 Mechanical Toolbox, x2 Welding Mask, x2 Insulated Coat"
 		contains = list(/obj/item/storage/toolbox/mechanical = 2,
 						/obj/item/clothing/head/helmet/welding = 2,
 						/obj/item/clothing/suit/wintercoat/engineering = 2)
 		cost = 1000
 		containertype = /obj/storage/crate
-		containername = "Engineering Crate"
+		containername = "Mechanical Tools Crate"
 
 	electool
-		name = "Electrical Maintenance Crate"
-		desc = "x2 Electrical Toolbox, x2 Multi-Tool, x2 Insulated Gloves"
+		name = "Electrical Tools Crate"
+		desc = "Hey, remember when these will get rarer??? Me too thanks"
+		contents = "x2 Electrical Toolbox, x2 Multi-Tool, x2 Insulated Gloves"
 		contains = list(/obj/item/storage/toolbox/electrical = 2,
 						/obj/item/device/multitool = 2,
 						/obj/item/clothing/gloves/yellow = 2)
 		cost = 2500
 		containertype = /obj/storage/crate
-		containername = "Electrical Maintenance Crate"
+		containername = "Electrical Tools Crate"
 
 	electrical
 		name = "Electrical Supplies Crate (red) - 2 pack"
+		contents = "A whole load of cables, packed in a too-big crate."
 		desc = "x2 Cabling Box (14 cable coils total)"
 		contains = list(/obj/item/storage/box/cablesbox = 2)
 		containername = "Electrical Supplies Crate - 2 pack"
 		cost = 2000
 		containertype = /obj/storage/crate
 
-	mining
-		name = "Mining Equipment"
-		desc = "x1 Powered Pickaxe, x1 Power Hammer, x1 Optical Meson Scanner, x1 Geological Scanner, x2 Mining Satchel, x3 Mining Explosives"
-		contains = list(/obj/item/mining_tool/power_pick,
-						/obj/item/mining_tool/powerhammer,
-						/obj/item/clothing/glasses/meson,
-						/obj/item/oreprospector,
-						/obj/item/satchel/mining = 2,
-						/obj/item/breaching_charge/mining = 3)
-		cost = 500
-		containertype = /obj/storage/secure/crate/plasma
-		containername = "Mining Equipment Crate"
-		access = null
+	toolbelts
+		name = "Utility Belt Crate"
+		desc = "Belts and tools to fill them to appease the staff assistant masses."
+		contents = "2x Utility Belts, 2x Full Mechanical Toolboxes"
+		contains = list(/obj/item/storage/belt/utility = 2,
+						/obj/item/storage/toolbox/mechanical = 2)
+		cost = 750
+		containertype = /obj/storage/crate/packing
+		containername = "Utility Belt Crate"
 
 	reclaimer
 		name = "Reclaimed Reclaimer"
-		desc = "Jeez, be more careful with it next time!"
+		desc = "You wouldn't believe what you find in dumpsters these days, man."
+		contents = "1x Portable Reclaimer"
 		contains = list(/obj/machinery/portable_reclaimer)
 		cost = 1000
 		containertype = /obj/storage/crate/packing
@@ -593,6 +633,7 @@ ABSTRACT_TYPE(/datum/supply_packs/engineering)
 	eva
 		name = "EVA Equipment Crate"
 		desc = "Gear for enabling mobility in major hull damage scenarios."
+		contents = "1x each of Complete Spacesuit, Emergency Gas Mask, Jetpack, Magboots"
 		contains = list(/obj/item/clothing/head/helmet/space,
 						/obj/item/clothing/suit/space,
 						/obj/item/clothing/mask/gas/emergency,
@@ -604,24 +645,27 @@ ABSTRACT_TYPE(/datum/supply_packs/engineering)
 
 	fueltank
 		name = "Welding Fuel Tank"
-		desc = "1x Welding Fuel Tank"
+		desc = "Welding tools need lots of fuel, and we have it! Best stored in areas of high heat, chance of sparks, and assistant access."
+		contents = "1x Welding Fuel Tank"
 		contains = list(/obj/reagent_dispensers/fueltank)
 		cost = 4000
 		containertype = /obj/storage/crate
-		containername = "Welding Fuel Tank crate"
+		containername = "Welding Tank crate"
 
 	foamtank
 		name = "Firefighting Foam tank"
-		desc = "1x Firefighting Foam Tank"
+		desc = "Fill up those empty extinguishers before the next fire breaks out!"
+		contents = "1x Firefighting Foam Tank"
 		contains = list(/obj/reagent_dispensers/foamtank)
 		cost = 1000
 		containertype = /obj/storage/crate
-		containername = "Firefighting Foamtank crate"
+		containername = "Firefighting Foam crate"
 
 	//will probably move canisters
 	XL_air_canister
 		name = "Extra Large Air Mix Canister"
 		desc = "Spare canister filled with a mix of nitrogen, oxygen and minimal amounts of carbon dioxide. Used for emergency re-pressurisation efforts."
+		contents = "1x High Capacity Air Canister"
 		contains = list(/obj/machinery/portable_atmospherics/canister/air/large)
 		cost = 5000
 		containertype = /obj/storage/crate/wooden
@@ -630,19 +674,11 @@ ABSTRACT_TYPE(/datum/supply_packs/engineering)
 	oxygen_canister
 		name = "Spare Oxygen Canister"
 		desc = "Spare oxygen canister, for resupplying Engineering's fuel or refilling oxygen tanks."
+		contents = "1x Standard Oxygen Canister"
 		contains = list(/obj/machinery/portable_atmospherics/canister/oxygen)
 		cost = 10000
 		containertype = /obj/storage/crate/wooden
 		containername = "Spare Oxygen Canister Crate"
-
-	toolbelts
-		name = "Utility Belt Crate"
-		desc = "Belts and tools to fill them to appease the staff assistant masses."
-		contains = list(/obj/item/storage/belt/utility = 2,
-						/obj/item/storage/toolbox/mechanical = 2)
-		cost = 750
-		containertype = /obj/storage/crate/packing
-		containername = "Utility Belt Crate"
 
 //Construction and Tools - Also a Space Soviet front
 //logo crossed hammer and RCD? not doing the fake cyrillic thing
@@ -653,7 +689,8 @@ ABSTRACT_TYPE(/datum/supply_packs/construction)
 	vendor_name = "Construction Comrade"
 	metal50
 		name = "50 Metal Sheets"
-		desc = "x50 Metal Sheets"
+		desc = "Metal sheets, for construction or repair."
+		contents = "x50 Metal Sheets"
 		contains = list(/obj/item/sheet/steel)
 		amount = 50
 		cost = 500
@@ -662,7 +699,8 @@ ABSTRACT_TYPE(/datum/supply_packs/construction)
 
 	metal200
 		name = "200 Metal Sheets"
-		desc = "x200 Metal Sheets"
+		desc = "Has the tin can you're living in been totally ruptured? We have you covered."
+		contents = "x200 Metal Sheets"
 		contains = list(/obj/item/sheet/steel)
 		amount = 200
 		cost = 2000
@@ -671,7 +709,8 @@ ABSTRACT_TYPE(/datum/supply_packs/construction)
 
 	glass50
 		name = "50 Glass Sheets"
-		desc = "x50 Glass Sheets"
+		desc = "Glass sheets, for construction or repair."
+		contents = "x50 Glass Sheets"
 		contains = list(/obj/item/sheet/glass)
 		amount = 50
 		cost = 500
@@ -680,7 +719,8 @@ ABSTRACT_TYPE(/datum/supply_packs/construction)
 
 	glass200
 		name = "200 Glass Sheets"
-		desc = "x200 Glass Sheets"
+		desc = "Got a lot of windows to fix in your glass house? We have you covered."
+		contents = "x200 Glass Sheets"
 		contains = list(/obj/item/sheet/glass)
 		amount = 200
 		cost = 2000
@@ -690,14 +730,30 @@ ABSTRACT_TYPE(/datum/supply_packs/construction)
 	paint
 		name = "Paint Cans"
 		desc = "A selection of random paints."
+		contents = "4x Random Color Paint Cans"
 		contains = list(/obj/item/paint_can/random = 4)
 		cost = 1000
 		containertype = /obj/storage/crate
 		containername = "Paint Crate"
 
+	mining
+		name = "Mining Equipment"
+		desc = "We may not be able to strike the earth any more, but asteroids and desert planets mine just fine."
+		contents = "x1 Powered Pickaxe, x1 Power Hammer, x1 Optical Meson Scanner, x1 Geological Scanner, x2 Mining Satchel, x3 Mining Explosives"
+		contains = list(/obj/item/mining_tool/power_pick,
+						/obj/item/mining_tool/powerhammer,
+						/obj/item/clothing/glasses/meson,
+						/obj/item/oreprospector,
+						/obj/item/satchel/mining = 2,
+						/obj/item/breaching_charge/mining = 3)
+		cost = 500
+		containertype = /obj/storage/secure/crate/plasma
+		containername = "Mining Equipment Crate"
+		access = null
 	rcd
 		name = "Rapid-construction-device Replacement"
 		desc = "Contains one empty rapid-construction-device."
+		contents = "1x Rapid Construction Device (No Cartridge)"
 		contains = list(/obj/item/rcd)
 		cost = 60000
 		containertype = /obj/storage/crate/wooden
@@ -706,6 +762,7 @@ ABSTRACT_TYPE(/datum/supply_packs/construction)
 	abcu
 		name = "ABCU Unit Crate"
 		desc = "An additional ABCU Unit, for large construction projects."
+		contents = "1x ABCU and Blueprint Marker"
 		contains = list(/obj/machinery/abcu, /obj/item/blueprint_marker)
 		cost = 5000
 		containertype = /obj/storage/secure/crate
@@ -715,6 +772,7 @@ ABSTRACT_TYPE(/datum/supply_packs/construction)
 	conworksupplies
 		name = "Construction Equipment"
 		desc = "The mothballed tools of our former Construction Workers, in a crate, for you!"
+		contents = "construction stuff whatever"
 		contains = list(/obj/item/lamp_manufacturer/organic,/obj/item/material_shaper,/obj/item/room_planner,/obj/item/clothing/under/rank/orangeoveralls)
 		cost = 8000
 		containertype = /obj/storage/secure/crate
@@ -730,7 +788,8 @@ ABSTRACT_TYPE(/datum/supply_packs/electronics)
 
 	powercell
 		name = "Power Cell Crate"
-		desc = "x3 Power Cell"
+		desc = "You'll have the power with these charged up and ready-to-use power cells!"
+		contents = "x3 Power Cell"
 		contains = list(/obj/item/cell/charged = 3)
 		cost = 2500
 		containertype = /obj/storage/crate
@@ -739,6 +798,7 @@ ABSTRACT_TYPE(/datum/supply_packs/electronics)
 	computer
 		name = "Home Networking Kit"
 		desc = "Build your own state of the art computer system! (Contents may vary.)"
+		contents = "1x each stack of metal and glass, 3x cable coil, 1x motherboard, and assorted peripherals and boards."
 		contains = list(/obj/item/sheet/glass/fullstack,
 						/obj/item/sheet/steel/fullstack,
 						/obj/item/cable_coil = 3,
@@ -750,8 +810,9 @@ ABSTRACT_TYPE(/datum/supply_packs/electronics)
 		containername = "Home Networking Kit"
 
 	robot
-		name = "Robotics Crate"
-		desc = "x1 Securitron, x1 Floorbot, x1 Cleanbot, x1 Medibot, x1 Firebot"
+		name = "Drone Crate"
+		desc = "An assortment of single-minded drones? What a perfect addition to your station!"
+		contents = "x1 Securitron, x1 Floorbot, x1 Cleanbot, x1 Medibot, x1 Firebot"
 		contains = list(/obj/machinery/bot/secbot,
 						/obj/machinery/bot/floorbot,
 						/obj/machinery/bot/cleanbot,
@@ -759,11 +820,12 @@ ABSTRACT_TYPE(/datum/supply_packs/electronics)
 						/obj/machinery/bot/firebot)
 		cost = 7500
 		containertype = /obj/storage/crate
-		containername = "Robotics Crate"
+		containername = "Drone Crate"
 
 	cyborg
 		name = "Cyborg Component Crate"
 		desc = "Build your very own walking science nightmare! (Brain not included.)"
+		contents = "1x each of Robot Frame, Head (Sturdy), Chest, and 2x each Arm (Sturdy) and Leg"
 		contains = list(/obj/item/parts/robot_parts/robot_frame,
 						/obj/item/parts/robot_parts/head/sturdy,
 						/obj/item/parts/robot_parts/chest,
@@ -779,6 +841,7 @@ ABSTRACT_TYPE(/datum/supply_packs/electronics)
 	prosthetics
 		name = "Prosthetic Augmentation Kit"
 		desc = "Replace your feeble flesh with these mechanical substitutes."
+		contents = "Assorted and random prosthetics."
 		contains = list(/obj/random_item_spawner/prosthetics)
 		cost = 2000
 		containertype = /obj/storage/crate
@@ -787,6 +850,7 @@ ABSTRACT_TYPE(/datum/supply_packs/electronics)
 	buddy
 		name = "Thinktronic Build Your Own Buddy Kit"
 		desc = "Assemble your very own working Robuddy, one part per week."
+		contents = "1x Robuddy Frame, 1x Robuddy Core, 1x Robuddy Tool Module 1x Power Cell, 1x Robot Arm"
 		contains = list(/obj/item/guardbot_frame,
 						/obj/item/guardbot_core,
 						/obj/item/cell,
@@ -798,7 +862,8 @@ ABSTRACT_TYPE(/datum/supply_packs/electronics)
 
 	specialops
 		name = "GNU/Special Ops Supplies"
-		desc = "x1 Sleepy Pen, x1 Holographic Disguiser, x1 Signal Jammer, x1 Agent Card, x1 EMP Grenade Kit, x1 Tactical Grenades Kit"
+		desc = "If you are reading this, then we are authorized to ship you some additional assistance!"
+		contents = "x1 Sleepy Pen, x1 Holographic Disguiser, x1 Signal Jammer, x1 Agent Card, x1 EMP Grenade Kit, x1 Tactical Grenades Kit"
 		contains = list(/obj/item/card/id/syndicate,
 						/obj/item/storage/box/emp_kit,
 						/obj/item/storage/box/tactical_kit,
@@ -819,7 +884,8 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 
 	produce
 		name = "Fresh Produce Crate"
-		desc = "x20 Assorted Cooking Ingredients"
+		desc = "Assorted fruits and vegetables for the kitchen."
+		contents = "x20 Assorted Cooking Ingredients"
 		contains = list(/obj/item/reagent_containers/food/snacks/plant/apple = 2,
 						/obj/item/reagent_containers/food/snacks/plant/banana = 2,
 						/obj/item/reagent_containers/food/snacks/plant/carrot = 2,
@@ -838,7 +904,8 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 
 	meateggdairy
 		name = "Meat, Eggs & Dairy Crate"
-		desc = "x25 Assorted Cooking Ingredients"
+		desc = "Assorted proteins for the kitchen."
+		contents = "x25 Assorted Cooking Ingredients"
 		contains = list(/obj/item/reagent_containers/food/snacks/hotdog = 4,
 						/obj/item/reagent_containers/food/snacks/ingredient/cheese = 4,
 						/obj/item/reagent_containers/food/drinks/milk = 4,
@@ -854,7 +921,8 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 
 	dryfoods
 		name = "Dry Goods Crate"
-		desc = "x25 Assorted Cooking Ingredients"
+		desc = "Dry goods like flour, sugar, pasta and oatmeal as bases for the kitchen."
+		contents = "x25 Assorted Cooking Ingredients"
 		contains = list(/obj/item/reagent_containers/food/snacks/ingredient/flour = 6,
 						/obj/item/reagent_containers/food/snacks/ingredient/rice_sprig = 4,
 						/obj/item/reagent_containers/food/snacks/ingredient/spaghetti = 3,
@@ -868,7 +936,8 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 
 	condiment
 		name = "Condiment Crate"
-		desc = "x25 Assorted Cooking Ingredients"
+		desc = "Bulk pack of condiments and other ingredients."
+		contents = "x25 Assorted Cooking Ingredients"
 		contains = list(/obj/item/reagent_containers/food/snacks/condiment/chocchips = 3,
 						/obj/item/reagent_containers/food/snacks/condiment/cream = 2,
 						/obj/item/reagent_containers/food/snacks/condiment/custard,
@@ -884,7 +953,8 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 
 	hydrostarter
 		name = "Hydroponics: Starter Crate"
-		desc = "x2 Watering Cans, x4 Compost Bags, x2 Weedkiller bottles, x2 Plant Analyzers, x4 Plant Trays"
+		desc = "Basic supplies for growing your own produce."
+		contents = "x2 Watering Cans, x4 Compost Bags, x2 Weedkiller bottles, x2 Plant Analyzers, x4 Plant Trays"
 		category = "Agriculture"
 		contains = list(/obj/item/reagent_containers/glass/wateringcan = 2,
 						/obj/item/reagent_containers/glass/compostbag = 4,
@@ -897,7 +967,8 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 
 	hydronutrient
 		name = "Hydroponics: Nutrient Pack"
-		desc = "x15 Nutrient Formulas"
+		desc = "Assorted hydroponics formulae."
+		contents = "x15 Nutrient Formulas"
 		category = "Agriculture"
 		contains = list(/obj/item/reagent_containers/glass/bottle/fruitful = 3,
 						/obj/item/reagent_containers/glass/bottle/mutriant = 3,
@@ -911,6 +982,7 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 	bee
 		name = "Honey Production Kit"
 		desc = "For use with existing hydroponics bay."
+		contents = "5x Bee Egg Cartons"
 		category = "Agriculture"
 		contains = list(/obj/item/bee_egg_carton = 5)
 		cost = 450
@@ -924,23 +996,23 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 
 	watertank
 		name = "High Capacity Watertank"
-		desc = "1x High Capacity Watertank"
+		desc = "Pre-filled water tank for agricultural activity."
+		contents = "1x High Capacity Watertank"
 		category = "Agriculture"
 		contains = list(/obj/reagent_dispensers/watertank/big)
 		cost = 2500
 		containertype = /obj/storage/crate
 		containername = "High Capacity Watertank crate"
-		hidden = 1
 
 	compostbin
 		name = "Compost Bin"
-		desc = "1x Compost Bin"
+		desc = "Fertilizing compost bin. Not for use as an outhouse."
+		contents = "1x Compost Bin"
 		category = "Agriculture"
 		contains = list(/obj/reagent_dispensers/compostbin)
 		cost = 1000
 		containertype = /obj/storage/crate
 		containername = "Compost Bin crate"
-		hidden = 1
 
 //Hafgan Heavy Equipment - hi cogs (Space Quebecois Front)
 ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
@@ -951,7 +1023,8 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 
 	mulebot
 		name = "Replacement Mulebot"
-		desc = "x1 Mulebot"
+		desc = "For bolstering logistics delivery capacity, or if you joyrode the last one into space and lost it."
+		contents = "x1 Mulebot"
 		contains = list("/obj/machinery/bot/mulebot")
 		cost = 750
 		containertype = /obj/storage/crate
@@ -959,7 +1032,8 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 
 	generator
 		name = "Experimental Local Generator"
-		desc = "x1 Experimental Local Generator"
+		desc = "I think this thing wires into your grid and runs on plasma. For emergency backup use."
+		contents = "x1 Experimental Local Generator"
 		contains = list(/obj/machinery/power/lgenerator)
 		cost = 2500
 		containertype = /obj/storage/crate
@@ -978,6 +1052,7 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 	field_generator
 		name = "Field Generator Crate"
 		desc = "The four goal-posts needed to contain a singularity."
+		contents = "4x Field Generators"
 		contains = list(/obj/machinery/field_generator = 4)
 		cost = 40000
 		containertype = /obj/storage/secure/crate
@@ -988,6 +1063,7 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 	emitter
 		name = "Emitter Crate"
 		desc = "Contains one emitter, for energizing field generators. You'll need a few of these."
+		contents = "1x Emitter"
 		contains = list(/obj/machinery/emitter)
 		cost = 15000
 		containertype = /obj/storage/secure/crate
@@ -998,6 +1074,7 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 	rad_collector
 		name = "Radiation Collector Crate"
 		desc = "Four collector arrays and one controller, to harvest radiation from the singularity."
+		contents = "4x Collector Arrays, 1x Collector Control, 1x Soldering Iron (Courtesy Item)"
 		contains = list(/obj/item/electronics/frame/collector_array = 4,
 						/obj/item/electronics/frame/collector_control,
 						/obj/item/electronics/soldering)
