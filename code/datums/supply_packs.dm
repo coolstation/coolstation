@@ -1,8 +1,119 @@
-
 /proc/build_supply_pack_cache()
+	//hjalp pls
+
+	//clear all lists before start the manual way
 	qm_supply_cache.Cut()
+	nanotrasen_supply_cache.Cut()
+	engineering_supply_cache.Cut()
+	construction_supply_cache.Cut()
+	electronics_supply_cache.Cut()
+	grocery_supply_cache.Cut()
+	heavy_supply_cache.Cut()
+	party_supply_cache.Cut()
+	vending_supply_cache.Cut()
+	misc_supply_cache.Cut()
+
+
+
+	//start adding items to their respective lists
 	for(var/S in concrete_typesof(/datum/supply_packs))
+		//fill old list just in case (definitely wanna boot this guy out tho)
 		qm_supply_cache += new S()
+		//and do it again for specific vendor lists because
+		var/datum/supply_packs/SP = S //because fuck me that's why
+		switch(initial(SP.vendor))
+			if ("nanotrasen")
+				nanotrasen_supply_cache += new S()
+			if ("engineering")
+				engineering_supply_cache += new S()
+			if ("construction")
+				construction_supply_cache += new S()
+			if ("electronics")
+				electronics_supply_cache += new S()
+			if ("grocery")
+				grocery_supply_cache += new S()
+			if ("heavy")
+				heavy_supply_cache += new S()
+			if ("vending")
+				vending_supply_cache += new S()
+			if ("party")
+				party_supply_cache += new S()
+			else
+				misc_supply_cache += new S()
+
+//return info for different qm vendors
+//use alone for friendly name
+/proc/qm_vendor_info(var/vendor,var/info)
+	if (!info)
+		info = "name"
+	else if (info != "name" && info != "desc" && info != "cache")
+		return "error!!!!! fuick"
+	switch(vendor)
+		if ("nanotrasen")
+			if (info == "name")
+				return "Nanotrasen Corporate"
+			if (info == "desc")
+				return "Economic powerhouse of the Frontier and your (yes, you!) employer."
+			if (info == "cache")
+				return nanotrasen_supply_cache
+		if ("engineering")
+			if (info == "name")
+				return "Juicy Engineering"
+			if (info == "desc")
+				return "Eclectic mechanical design shop. Safety not guaranteed."
+			if (info == "cache")
+				return engineering_supply_cache
+		if ("construction")
+			if (info == "name")
+				return "Construction Comrade"
+			if (info == "desc")
+				return "Worker co-op construction supply and hardware depot."
+			if (info == "cache")
+				return construction_supply_cache
+		if ("electronics")
+			if (info == "name")
+				return "Electronics Libre"
+			if (info == "desc")
+				return "High variety, low service electronics outlet."
+			if (info == "cache")
+				return electronics_supply_cache
+		if ("grocery")
+			if (info == "name")
+				return "Giuseppe's Grocery"
+			if (info == "desc")
+				return "Friendly local neighborhood megasupermarket."
+			if (info == "cache")
+				return grocery_supply_cache
+		if ("heavy")
+			if (info == "name")
+				return "Hafgan Heavy Industries"
+			if (info == "desc")
+				return "Long-running heavy manufacturing outfit, under contract with Nanotrasen."
+			if (info == "cache")
+				return heavy_supply_cache
+		if ("vending")
+			if (info == "name")
+				return "Vend-tech"
+			if (info == "desc")
+				return "Vending machine servicing company, under contract with Nanotrasen."
+			if (info == "cache")
+				return vending_supply_cache
+		if ("party")
+			if (info == "name")
+				return "All Celebrations Are Beautiful"
+			if (info == "desc")
+				return "Non-hierarchical party and bar supply store."
+			if (info == "cache")
+				return party_supply_cache
+		if ("misc")
+			if (info == "name")
+				return "Odds & Ends"
+			if (info == "desc")
+				return "Pawn shop, takeout restaurant and pet store."
+			if (info == "cache")
+				return misc_supply_cache
+		else
+			return "Erorrrrrrr"
 
 /datum/supply_order
 	var/datum/supply_packs/object = null
@@ -41,7 +152,9 @@ ABSTRACT_TYPE(/datum/supply_packs)
 	var/cost = null
 	var/containertype = null
 	var/containername = null
-	var/category = "Error Department - Call a Coder!"
+	var/vendor = null //who's selling this (for order grouping, the shuttle can only go to one place at a time)
+	var/vendor_name = null //the friendly name shown when referencing the vendor
+	var/category = "Error Department - Call a Coder!" //for segmentation by page
 	var/access = null
 	var/hidden = 0	//So as it turns out this is used in construction mode hardyhar
 	var/syndicate = 0 //If this is one the crate will only show up when the console is emagged
@@ -100,7 +213,9 @@ ABSTRACT_TYPE(/datum/supply_packs)
 //NT Administrative - Because that's Priority #1
 ABSTRACT_TYPE(/datum/supply_packs/nanotrasen)
 /datum/supply_packs/nanotrasen
-	category = "Nanotrasen Corporate"
+	category = "Administrative"
+	vendor = "nanotrasen"
+	vendor_name = "Nanotrasen Corporate"
 	emptycrate
 		name = "Empty Crate"
 		desc = "Nothing (crate only)"
@@ -163,8 +278,8 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen)
 		containername = "Janitorial Supplies Refill"
 
 //NT Emergency
-ABSTRACT_TYPE(/datum/supply_packs/emergency)
-/datum/supply_packs/emergency
+ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/emergency)
+/datum/supply_packs/nanotrasen/emergency
 	category = "NT Emergency"
 
 	meteor
@@ -247,8 +362,8 @@ ABSTRACT_TYPE(/datum/supply_packs/emergency)
 		containername = "Emergency Glowsticks Crate - 4 pack"
 
 //NT Security
-ABSTRACT_TYPE(/datum/supply_packs/security)
-/datum/supply_packs/security
+ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/security)
+/datum/supply_packs/nanotrasen/security
 	category = "NT Security"
 	basic_gear
 		name = "Armour Crate - Security Equipment (Cardlocked \[Security Equipment])"
@@ -285,15 +400,6 @@ ABSTRACT_TYPE(/datum/supply_packs/security)
 		access = access_securitylockers
 		hidden = 1
 
-	vending_restock
-		name = "Security Vending Machine Restocking Pack"
-		desc = "Various Vending Machine Restock Cartridges for security"
-		contains = list(/obj/item/vending/restock_cartridge/security,
-						/obj/item/vending/restock_cartridge/security_ammo)
-		cost = 5000
-		containertype = /obj/storage/crate
-		containername = "Security Vending Machine Restocking Pack"
-
 	weapons2
 		name = "Weapons Crate - Phasers (Cardlocked \[Security Equipment])"
 		desc = "x2 Phaser Gun"
@@ -329,8 +435,8 @@ ABSTRACT_TYPE(/datum/supply_packs/security)
 		hidden = 1
 
 //NT Medsci //split this up if there's ever enough science stuff to warrant
-ABSTRACT_TYPE(/datum/supply_packs/medsci)
-/datum/supply_packs/medsci
+ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/medsci)
+/datum/supply_packs/nanotrasen/medsci
 	category = "NT Med-Sci"
 
 	chemical
@@ -423,15 +529,17 @@ ABSTRACT_TYPE(/datum/supply_packs/medsci)
 		hidden = 1
 /*
 //NT Research
-ABSTRACT_TYPE(/datum/supply_packs/research)
-/datum/supply_packs/research
+ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/research)
+/datum/supply_packs/nanotrasen/research
 	category = "NT Research"
 */
 
 //Engineering - Also a juicer front
 ABSTRACT_TYPE(/datum/supply_packs/engineering)
 /datum/supply_packs/engineering
-	category = "Juicy Engineering"
+	category = "Engineering"
+	vendor = "engineering"
+	vendor_name = "Juicy Engineering"
 	supplies
 		name = "Engineering Crate"
 		desc = "x2 Mechanical Toolbox, x2 Welding Mask, x2 Insulated Coat"
@@ -540,7 +648,9 @@ ABSTRACT_TYPE(/datum/supply_packs/engineering)
 //logo crossed hammer and RCD? not doing the fake cyrillic thing
 ABSTRACT_TYPE(/datum/supply_packs/construction)
 /datum/supply_packs/construction
-	category = "Construction Comrade"
+	category = "Construction"
+	vendor = "construction"
+	vendor_name = "Construction Comrade"
 	metal50
 		name = "50 Metal Sheets"
 		desc = "x50 Metal Sheets"
@@ -614,7 +724,9 @@ ABSTRACT_TYPE(/datum/supply_packs/construction)
 //Electronics - Also a FOSSyndie front
 ABSTRACT_TYPE(/datum/supply_packs/electronics)
 /datum/supply_packs/electronics
-	category = "Electronics Libre"
+	category = "Electronics"
+	vendor = "electronics"
+	vendor_name = "Electronics Libre"
 
 	powercell
 		name = "Power Cell Crate"
@@ -701,7 +813,9 @@ ABSTRACT_TYPE(/datum/supply_packs/electronics)
 //Grocery - Also an Italian front
 ABSTRACT_TYPE(/datum/supply_packs/grocery)
 /datum/supply_packs/grocery
-	category = "Giuseppi's Grocery"
+	category = "Grocery"
+	vendor = "grocery"
+	vendor_name = "Giuseppe's Grocery"
 
 	produce
 		name = "Fresh Produce Crate"
@@ -723,7 +837,7 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 		containername = "Fresh Produce Crate"
 
 	meateggdairy
-		name = "Meat, Eggs and Dairy Crate"
+		name = "Meat, Eggs & Dairy Crate"
 		desc = "x25 Assorted Cooking Ingredients"
 		contains = list(/obj/item/reagent_containers/food/snacks/hotdog = 4,
 						/obj/item/reagent_containers/food/snacks/ingredient/cheese = 4,
@@ -736,7 +850,7 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 						/obj/item/storage/box/bacon_kit = 2)
 		cost = 1500
 		containertype = /obj/storage/crate/freezer
-		containername = "Meat, Eggs and Dairy Crate"
+		containername = "Meat, Eggs & Dairy Crate"
 
 	dryfoods
 		name = "Dry Goods Crate"
@@ -771,6 +885,7 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 	hydrostarter
 		name = "Hydroponics: Starter Crate"
 		desc = "x2 Watering Cans, x4 Compost Bags, x2 Weedkiller bottles, x2 Plant Analyzers, x4 Plant Trays"
+		category = "Agriculture"
 		contains = list(/obj/item/reagent_containers/glass/wateringcan = 2,
 						/obj/item/reagent_containers/glass/compostbag = 4,
 						/obj/item/reagent_containers/glass/bottle/weedkiller = 2,
@@ -783,6 +898,7 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 	hydronutrient
 		name = "Hydroponics: Nutrient Pack"
 		desc = "x15 Nutrient Formulas"
+		category = "Agriculture"
 		contains = list(/obj/item/reagent_containers/glass/bottle/fruitful = 3,
 						/obj/item/reagent_containers/glass/bottle/mutriant = 3,
 						/obj/item/reagent_containers/glass/bottle/groboost = 3,
@@ -795,6 +911,7 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 	bee
 		name = "Honey Production Kit"
 		desc = "For use with existing hydroponics bay."
+		category = "Agriculture"
 		contains = list(/obj/item/bee_egg_carton = 5)
 		cost = 450
 		containertype = /obj/storage/crate/bee
@@ -808,6 +925,7 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 	watertank
 		name = "High Capacity Watertank"
 		desc = "1x High Capacity Watertank"
+		category = "Agriculture"
 		contains = list(/obj/reagent_dispensers/watertank/big)
 		cost = 2500
 		containertype = /obj/storage/crate
@@ -817,7 +935,7 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 	compostbin
 		name = "Compost Bin"
 		desc = "1x Compost Bin"
-		category = "Civilian Department"
+		category = "Agriculture"
 		contains = list(/obj/reagent_dispensers/compostbin)
 		cost = 1000
 		containertype = /obj/storage/crate
@@ -827,7 +945,9 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 //Hafgan Heavy Equipment - hi cogs (Space Quebecois Front)
 ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 /datum/supply_packs/heavy_equipment
-	category = "Hafgan Heavy Industries"
+	category = "Heavy Equipment"
+	vendor = "heavy"
+	vendor_name = "Hafgan Heavy Industries"
 
 	mulebot
 		name = "Replacement Mulebot"
@@ -900,7 +1020,9 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 //NOTE: Not actually in the Bonk-Tek Consortium (maybe)
 ABSTRACT_TYPE(/datum/supply_packs/vending)
 /datum/supply_packs/vending
-	category = "Vend-tek Vending Services"
+	category = "Vending Services"
+	vendor = "vending"
+	vendor_name = "Vend-tech"
 
 	restock
 		name = "Necessities Vending Machine Restocking Pack"
@@ -941,10 +1063,22 @@ ABSTRACT_TYPE(/datum/supply_packs/vending)
 		containertype = /obj/storage/crate
 		containername = "Electronics Vending Machine Restocking Pack"
 
-//Party and Bar equipment - Also an Anarchist front
+	vending_restock
+		name = "Security Vending Machine Restocking Pack"
+		desc = "Various Vending Machine Restock Cartridges for security"
+		contains = list(/obj/item/vending/restock_cartridge/security,
+						/obj/item/vending/restock_cartridge/security_ammo)
+		cost = 5000
+		containertype = /obj/storage/crate
+		containername = "Security Vending Machine Restocking Pack"
+
+//Party & Bar equipment - Also an Anarchist front
 ABSTRACT_TYPE(/datum/supply_packs/party)
 /datum/supply_packs/party
-	category = "1312 Party & Bar Supplies"
+	category = "Party & Bar Supplies"
+	vendor = "party"
+	vendor_name = "All Celebrations Are Beautiful"
+	//all celebrations are beautiful :)))))
 
 //seasonal party - listing these first
 #ifdef HALLOWEEN
@@ -1168,7 +1302,7 @@ ABSTRACT_TYPE(/datum/supply_packs/clothing)
 		containername = "Cold Weather Gear"
 
 	headbands
-		name = "Bargain Bows and Bands Box"
+		name = "Bargain Bows & Bands Box"
 		desc = "Headbands for all occasions."
 		cost = 2000
 		contains = list(//obj/item/clothing/head/headband/giraffe = 1,
@@ -1262,10 +1396,11 @@ ABSTRACT_TYPE(/datum/supply_packs/stationary)
 
 //Misc Stuff
 //hidden for now
-ABSTRACT_TYPE(/datum/supply_packs/pawn_shop)
-/datum/supply_packs/pawn_shop
+ABSTRACT_TYPE(/datum/supply_packs/misc)
+/datum/supply_packs/misc
 	category = "Pawn Shop, Pet Store & Takeout"
-	hidden = 1
+	vendor = "misc"
+	vendor_name = "Odds & Ends"
 
 	percussion_band_kit
 		name = "Percussion Band Kit"
@@ -1464,7 +1599,7 @@ ABSTRACT_TYPE(/datum/supply_packs/complex)
 	basic_power
 		name = "Basic Power Kit"
 		desc = "Frames: 1x SMES cell, 2x Furnace"
-		category = "Heavy Equipment"
+		category = "Hafgan Heavy Industries"
 		frames = list(/obj/smes_spawner,
 						/obj/machinery/power/furnace = 2)
 		cost = 20000
@@ -1476,6 +1611,7 @@ ABSTRACT_TYPE(/datum/supply_packs/complex)
 	mini_magnet
 		name = "Small Magnet Kit"
 		desc = "1x Magnetizer, 1x Low Performance Magnet Kit, 1x Magnet Chassis Frame"
+		category = "Hafgan Heavy Industries"
 		contains = list(/obj/item/magnetizer,
 						/obj/item/magnet_parts/construction/small)
 		frames = list(/obj/machinery/magnet_chassis,
@@ -1488,6 +1624,7 @@ ABSTRACT_TYPE(/datum/supply_packs/complex)
 	magnet
 		name = "Magnet Kit"
 		desc = "1x Magnetizer, 1x High Performance Magnet Kit, 1x Magnet Chassis Frame"
+		category = "Hafgan Heavy Industries"
 		contains = list(/obj/item/magnetizer,
 						/obj/item/magnet_parts/construction)
 		frames = list(/obj/machinery/magnet_chassis,

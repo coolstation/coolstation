@@ -8,9 +8,9 @@ var/global/datum/rockbox_globals/rockbox_globals = new /datum/rockbox_globals
 
 /proc/build_qm_categories()
 	QM_CategoryList.Cut()
-	if (!global.qm_supply_cache)
+	if (!global.nanotrasen_supply_cache)
 		message_coders("ZeWaka/QMCategories: QM Supply Cache was not found!")
-	for(var/datum/supply_packs/S in qm_supply_cache )
+	for(var/datum/supply_packs/S in nanotrasen_supply_cache )
 		if(S.syndicate || S.hidden) continue //They don't have their own categories anyways.
 		if (S.category)
 			if (!(global.QM_CategoryList.Find(S.category)))
@@ -18,6 +18,16 @@ var/global/datum/rockbox_globals/rockbox_globals = new /datum/rockbox_globals
 				// gonna be real here it seems more useful to have the oft-used stuff at the top.
 				//global.QM_CategoryList.Insert(1,S.category) //So Misc. is not #1, reverse ordering.
 
+//every supplier has an abstract so this might just be faster than going through the full list
+/proc/build_qm_suppliers()
+	QM_SupplierList.Cut()
+	for(var/datum/supply_packs/S in abstract_typesof(/datum/supply_packs))
+		if (S.vendor)
+			if (!(global.QM_SupplierList.Find(S.vendor)))
+				if(S.vendor_name) //they should all have both, but just in case
+					QM_SupplierList += list(S.vendor,S.vendor_name,"[S.vendor].png") //shortname, friendlyname, logo
+				else
+					QM_SupplierList += list(S.vendor,S.vendor,"[S.vendor].png") //shortname, shortname, logo
 /datum/cdc_contact_analysis
 	var/uid = 0
 	var/time_factor = 0
@@ -383,7 +393,8 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 		Budget: <strong>[wagesystem.shipping_budget]</strong> Credits. | [shippingmarket.CSS_at_NTFC ? "All Clear" : "<span style='color:red;'>SHUTTLE NOT IN POSITION</span>"]
 		<div style='clear: both; text-align: center; font-weight: bold; padding: 0.2em;'>
 			<a href='[topicLink("requests")]'>Requests ([shippingmarket.supply_requests.len])</a> &bull;
-			<a href='[topicLink("order")]'>Place Order</a> &bull;
+			<a href='[topicLink("order")]'>Place NT Order</a> &bull;
+			<a href='[topicLink("order_vendors")]'>Contact Suppliers</a> &bull;
 			<a href='[topicLink("order_history")]'>Order History</a> &bull;
 			<a href='[topicLink("viewmarket")]'>Shipping Market</a>
 			<br>
@@ -403,7 +414,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	// which as [src] turns into ... location = '.chui onclose Quartermaster's Console'
 	// which as you can probably guess is a syntax error. i have no idea why this only started
 	// happening halfway into this but: chui!!!!!!!!!!!!!!!!!!
-	user.Browse(HTML, "window=qmComputer_\ref[src];title=Quartermaster Console;size=575x625;")
+	user.Browse(HTML, "window=qmComputer_\ref[src];title=Quartermaster Console;size=750x750;")
 	onclose(user, "qmComputer_\ref[src]")
 	return
 
@@ -467,6 +478,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 
 /obj/machinery/computer/supplycomp/proc
 
+	//standard NT supply
 	order_menu(subaction, href_list)
 		. = ""
 
@@ -474,18 +486,32 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 
 			// Build list of possible packages to order.
 			if (null, "list")
-
-				. += "<h2>Order Supplies</h2><div style='text-align: center;' id='qmquickjump'>"
+				//header
+				. += {"
+				<table class='qmtable'>
+					<thead>
+						<tr>
+							<th style='width: 60%;'><h2>Order Supplies</h2></th>
+							<th style='width: 40%;'><h2>[qm_vendor_info("nanotrasen","name")]</h2></th>
+						</tr>
+					</thead>
+					<tr>
+						<td style='text-align: center;'>
+							<img src='[resource("images/vendors/nanotrasen.png")]'/><br>
+							[qm_vendor_info("nanotrasen","desc")]
+						</td>
+						<td style='text-align: left;'>
+						"}
+						//so this gets tacked onto by every inventory item and then spit out
 				var/ordershit = ""
 				var/catnum = 0
 				if (!global.QM_CategoryList)
 					message_coders("ZeWaka/QMCategories: QMcategoryList was not found for [src]!")
 				for (var/foundCategory in global.QM_CategoryList)
 					//var/categorycolor = random_color() //I must say, I simply love the colors this generates.
-
 					. += "[catnum ? " &middot; " : ""] <a href='javascript:are_you_fucking_shitting_me(\"category-[catnum]\");' style='white-space: nowrap; display: inline-block; margin: 0 0.2em;'>[foundCategory]</a> "
-
-					ordershit += {"
+					//quickly close out the above div and table and start a new one because oops
+					ordershit += {"</div></td></tr></table><div style='text-align: left;' id='qmquickjump'>
 			<a name='category-[catnum]' id='category-[catnum]'></a><h3>[foundCategory]</h3>
 				<table class='qmtable'>
 					<thead>
@@ -499,7 +525,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 					catnum++
 
 					var/rownum = 0
-					for (var/datum/supply_packs/S in qm_supply_cache) //yes I know what this is doing, feel free to make it more perf-friendly
+					for (var/datum/supply_packs/S in nanotrasen_supply_cache)
 						if((S.syndicate && !src.hacked) || S.hidden) continue
 						if (S.category == foundCategory)
 							ordershit += {"
@@ -516,6 +542,128 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 
 					ordershit += "</tbody></table>"
 
+				. += "</div>[ordershit]"
+				return .
+
+
+			if ("buy")
+				// Handles purchasing items...
+
+				if(istype(locate(href_list["what"]), /datum/supply_order))
+					//If this is a supply order we came from the request approval form
+					var/datum/supply_order/O = locate(href_list["what"])
+					var/datum/supply_packs/P = O.object
+					shippingmarket.supply_requests -= O
+					if(wagesystem.shipping_budget >= P.cost)
+						wagesystem.shipping_budget -= P.cost
+						O.object = P
+						O.orderedby = usr.name
+						O.comment = copytext(html_encode(input(usr,"Comment:","Enter comment","")), 1, MAX_MESSAGE_LEN)
+						var/obj/storage/S = O.create(usr)
+						shippingmarket.receive_crate(S)
+						logTheThing("station", usr, null, "ordered a [P.name] at [log_loc(src)].")
+						shippingmarket.supply_history += "[O.object.name] ordered by [O.orderedby] for [P.cost] credits. Comment: [O.comment]<br>"
+						. = {"<strong>Thanks for your order.</strong>"}
+					else
+						. = {"<strong>Insufficient funds in shipping budget.</strong>"}
+				else
+					//Comes from the orderform
+
+					var/datum/supply_order/O = new/datum/supply_order ()
+					var/datum/supply_packs/P = locate(href_list["what"])
+					if(P)
+
+						// The order computer has no emagged / other ability to display hidden or syndicate packs.
+						// It follows that someone's being clever if trying to order either of these items
+						if((P.syndicate && !src.hacked) || P.hidden)
+							// Get that jerk
+							if (usr in range(1))
+								//Check that whoever's doing this is nearby - otherwise they could gib any old scrub
+								trigger_anti_cheat(usr, "tried to href exploit order packs on [src]")
+
+							return
+
+						if(wagesystem.shipping_budget >= P.cost)
+							wagesystem.shipping_budget -= P.cost
+							O.object = P
+							O.orderedby = usr.name
+							O.comment = copytext(html_encode(input(usr,"Comment:","Enter comment","")), 1, MAX_MESSAGE_LEN)
+							var/obj/storage/S = O.create(usr)
+							shippingmarket.receive_crate(S)
+							logTheThing("station", usr, null, "ordered a [P.name] at [log_loc(src)].")
+							shippingmarket.supply_history += "[O.object.name] ordered by [O.orderedby] for [P.cost] credits. Comment: [O.comment]<br>"
+							. = {"<strong>Thanks for your order.</strong>"}
+						else
+							. = {"<strong>Insufficient funds in shipping budget.</strong>"}
+
+
+				return . + .("list")
+
+	//from third party vendors
+	//departments will have ordering consoles that are limited to their department and maybe takeout
+	order_vendors(subaction, href_list)
+		var/vendor = href_list["vendor"]
+		if (isnull(href_list ["vendor"]))
+			vendor = "engineering" //fallback to first in list
+
+				//little navbar thingy
+				//followed by a currently-selected-vendor infobox
+
+		. = {"<table class='qmtable'>
+				<thead>
+					<tr>
+						<th style='width: 60%;'><h2>[qm_vendor_info(vendor,"name")]</h2></th>
+						<th style='width: 40%;'><h2>Other Vendors</h2></th>
+					</tr>
+				</thead>
+				<tr>
+					<td style='text-align: center;'>
+						<img src='[resource("images/vendors/[vendor].png")]'/><br>
+						[qm_vendor_info(vendor,"desc")]
+					</td>
+					<td>
+						<div style='clear: both; text-align: left; font-weight: bold; padding: 0.2em;'>
+							<a href='[topicLink("order_vendors", "list", list(vendor = "engineering"))]'>&bull; Juicy Engineering</a><br>
+							<a href='[topicLink("order_vendors", "list", list(vendor = "construction"))]'>&bull; Construction Comrade</a><br>
+							<a href='[topicLink("order_vendors", "list", list(vendor = "electronics"))]'>&bull; Electronics Libre</a><br>
+							<a href='[topicLink("order_vendors", "list", list(vendor = "grocery"))]'>&bull; Guiseppe&apos;s Grocery</a><br>
+							<a href='[topicLink("order_vendors", "list", list(vendor = "heavy"))]'>&bull; Hafgan Heavy Industries</a><br>
+							<a href='[topicLink("order_vendors", "list", list(vendor = "vending"))]'>&bull; Vend-Tech</a><br>
+							<a href='[topicLink("order_vendors", "list", list(vendor = "party"))]'>&bull; All Celebrations Are Beautiful</a><br>
+							<a href='[topicLink("order_vendors", "list", list(vendor = "misc"))]'>&bull; Odds & Ends</a>
+						<div>
+					</td>
+				</tr>
+			</table>
+			<div style='text-align: center;' id='qmquickjump'>"} //
+
+		switch (subaction)
+			// Build list of possible packages to order for currently active vendor
+			if (null, "list")
+				var/ordershit = ""
+				ordershit += {"
+					<table class='qmtable'>
+						<thead>
+							<tr>
+								<th style='width: 80%;'>Item</th>
+								<th style='width: 20%;'>Cost</th>
+							</tr>
+						</thead>
+						<tbody>
+							"}
+				var/rownum = 0
+				for (var/datum/supply_packs/S in qm_vendor_info(vendor,"cache")) //it does'nt smell good, but it smells better than it used to
+					if((S.syndicate && !src.hacked) || S.hidden) continue
+						ordershit += {"
+						<tr class='row[rownum % 2]'>
+							<th class='noborder itemtop'><a href='?src=\ref[src];action=order;subaction=buy;what=\ref[S]'>[S.name]</a></td>
+							<th class='noborder itemtop' style='text-align: right;'>[S.cost]</td>
+						</tr>
+						<tr class='row[rownum % 2]'>
+							<td colspan='2' class='itemdesc'>[S.desc]</td>
+						</tr>
+						"}
+				ordershit += "</tbody></table>"
 				. += "</div>[ordershit]"
 				return .
 
@@ -657,6 +805,9 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	switch (href_list["action"])
 		if ("order")
 			src.temp = order_menu(subaction, href_list)
+
+		if ("order_vendors")
+			src.temp = order_vendors(subaction, href_list)
 
 		if ("order_history")
 			src.temp = order_history(subaction, href_list)

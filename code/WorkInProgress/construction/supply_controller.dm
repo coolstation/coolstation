@@ -350,12 +350,12 @@
 /datum/supply_control/medkits
 	maximum_stock = 1
 	replenishment_time = 6000
-	supply_packs = list(/datum/supply_packs/medsci/firstaid)
+	supply_packs = list(/datum/supply_packs/nanotrasen/medsci/firstaid)
 
 /datum/supply_control/bathroom
 	maximum_stock = 5
 	replenishment_time = 3000
-	supply_packs = list(/datum/supply_packs/medsci/firstaid)
+	supply_packs = list(/datum/supply_packs/nanotrasen/medsci/firstaid)
 /*
 /datum/supply_control/arc_smelter
 	required = /datum/progress/rooms/cargo_bay
@@ -368,7 +368,7 @@
 	maximum_stock = 3
 	initial_stock = 1
 	replenishment_time = 36000
-	supply_packs = list(/datum/supply_packs/security/weapons2)
+	supply_packs = list(/datum/supply_packs/nanotrasen/security/weapons2)
 
 /datum/supply_control/stun_baton
 	maximum_stock = 3

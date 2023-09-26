@@ -72,6 +72,23 @@ proc/concrete_typesof(type, cache=TRUE)
 	if(cache)
 		cached_concrete_types[type] = .
 
+//fucked up but if you use abstracts as categories this might be helpful (or not)
+//is this dumb? probably. if it is tell me so i can not do it ok thansk
+
+var/global/list/cached_abstract_types
+
+proc/abstract_typesof(type, cache=TRUE)
+	if(isnull(cached_abstract_types))
+		cached_abstract_types = list()
+	if(type in cached_abstract_types)
+		return cached_abstract_types[type]
+	. = list()
+	for(var/subtype in typesof(type))
+		if(IS_ABSTRACT(subtype))
+			. += subtype
+	if(cache)
+		cached_abstract_types[type] = .
+
 var/global/list/cached_filtered_types
 
 /**
