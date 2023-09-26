@@ -40,6 +40,11 @@
 // misc and unused
 #define LANDMARK_CHARACTER_PREVIEW_SPAWN "character preview"
 
+// club juice
+#define LANDMARK_CLUB_JUICE_DANCE "Juice-Dance"
+#define LANDMARK_CLUB_JUICE_DRINK "Juice-Drink"
+#define LANDMARK_CLUB_JUICE_DJ "Juice-DJ"
+
 /// Twitch Plays Shitty Bill respawn points
 #define LANDMARK_TWITCHY_BILL_RESPAWN "shitty_bill_respawn"
 #define LANDMARK_PRISONWARP "prisonwarp"

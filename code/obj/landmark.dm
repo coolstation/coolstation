@@ -137,6 +137,18 @@ var/global/list/job_start_locations = list()
 	name = LANDMARK_ASS_ARENA_SPAWN
 	icon_state = "x"
 
+/obj/landmark/club_juice_dance
+	name = LANDMARK_CLUB_JUICE_DANCE
+	icon_state = "x"
+
+/obj/landmark/club_juice_drink
+	name = LANDMARK_CLUB_JUICE_DRINK
+	icon_state = "x2"
+
+/obj/landmark/club_juice_dj
+	name = LANDMARK_CLUB_JUICE_DJ
+	icon_state = "x3"
+
 /obj/landmark/interesting
 	// Use this to place cryptic clues to be picked up by the T-ray, because trying to remember which floortile you varedited is shit. For objects and mobs, just varedit.
 	name = "Interesting turf spawner"
