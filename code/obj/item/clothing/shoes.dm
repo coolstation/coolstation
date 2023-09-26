@@ -679,3 +679,8 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	icon_state = "mjwhite"
 	desc = "Dainty and formal. This pair is white."
 	step_sound = "footstep"
+
+//I sproted these with the soviet mining gear but you can use em generally. Kinda weird we didn't have any metal-toed boots all this time.
+/obj/item/clothing/shoes/work_boots
+	name = "work boots"
+	icon_state = "work_boots"
