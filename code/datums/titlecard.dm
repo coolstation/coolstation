@@ -13,18 +13,21 @@
 
 	//should make a static fallback for videos....
 	#if defined(MAP_OVERRIDE_BOBMAP)
-	var/image_url = "images/titlecards/console.png"
+	var/image_url = "images/titlecards/console.gif"
 	var/video_url = "images/titlecards/console.mp4"
-	var/is_video = TRUE
-	#elif defined(SECRETS_ENABLED) //quick and easy signifier to see if your secrets submodule is active and working
+	var/is_video = FALSE
+	#elif defined(MAP_OVERRIDE_GEHENNA) //quick and easy signifier to see if your secrets submodule is active and working
 	var/image_url = "images/titlecards/coolstation.gif"
 	var/video_url = "images/titlecards/coolstation.mp4"
-	var/is_video = TRUE
-	add_html = "<span style=\"position:absolute;bottom:3px;right:3px;color:white;opacity:0.7;\">Secrets enabled!</span>"
+	var/is_video = FALSE
 	#else
 	var/image_url = "images/titlecards/classic.gif"
 	var/video_url = null
 	var/is_video = FALSE
+	#endif
+
+	#if defined(SECRETS_ENABLED) //quick and easy signifier to see if your secrets submodule is active and working
+	add_html = "<span style=\"position:absolute;bottom:3px;right:3px;color:white;opacity:0.7;\">Secrets enabled!</span>"
 	#endif
 
 	//add a permanent disclaimer to the top
