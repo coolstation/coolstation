@@ -82,7 +82,6 @@
 			src.go = 0
 			//then the duck lay an egg as open it's buttocks
 			flick("duckbot-lay",src)
-			sleep(4)
 			var/obj/item/a_gift/easter/E = new /obj/item/a_gift/easter(src.loc)
 			E.name = "duck egg"
 			src.layegg--
