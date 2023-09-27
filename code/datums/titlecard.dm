@@ -5,31 +5,43 @@
 	var/global/list/maptext_areas = list()
 	var/global/last_pregame_html = ""
 
-	//add a permanent disclaimer to the top
-	var/disclaimer_text = {"This game contains violence, suicide, gun's, drugs, alcohol, spiders, all depicted in a non-serious or relatively non-graphic way.<br>
-							This game also contains farting, screaming, gibs, <font color="#7B3F00">poo</font>, explosions, gas station boner pills, and <font color="red">It</font>ali<font color="green">ans</font>.<br>
-							<span style="font-size:120%;"><b>PHOTOSENSITIVITY WARNING</b>: This game has sudden flashing lights and rapidly cycling colors that cannot be disabled.</span><br>
-							<br>
-							This server is in development and has not launched yet. Do not expect everything to work.<br>"}
-
-	#if defined(MAP_OVERRIDE_BOBMAP)
-	var/image_url = "images/titlecards/console.png"
-	var/video_name = "console"
-	var/is_video = FALSE
-	#elif defined(SECRETS_ENABLED) //quick and easy signifier to see if your secrets submodule is active and working
-	var/image_url = null //should make a static fallback
-	var/video_name = "coolstation_dev_alt"
-	var/is_video = TRUE
-	#else
-	var/image_url = null
-	var/video_name = "coolstation_dev"
-	var/is_video = TRUE
-	#endif
 	var/is_game_mode = FALSE //tied to a game mode modifier?
 	//var/notice = "" //anything a map or situation should announce?
 	var/add_html = "" //any little bonus stuff you need to stick in the middle (like credits)
 
 	var/overlay_image_url = null
+
+	//should make a static fallback for videos....
+	#if defined(MAP_OVERRIDE_BOBMAP)
+	var/image_url = "images/titlecards/console.png"
+	var/video_url = "images/titlecards/console.mp4"
+	var/is_video = TRUE
+	#elif defined(SECRETS_ENABLED) //quick and easy signifier to see if your secrets submodule is active and working
+	var/image_url = "images/titlecards/coolstation.gif"
+	var/video_url = "images/titlecards/coolstation.mp4"
+	var/is_video = TRUE
+	add_html = "<span style=\"position:absolute;bottom:3px;right:3px;color:white;opacity:0.7;\">Secrets enabled!</span>"
+	#else
+	var/image_url = "images/titlecards/classic.gif"
+	var/video_url = null
+	var/is_video = FALSE
+	#endif
+
+	//add a permanent disclaimer to the top
+	var/disclaimer_text = {"This game contains violence, suicide, gun's, drugs, alcohol and spiders, all depicted in a non-serious or relatively non-graphic way.<br>
+							This game also contains farting, screaming, gibs, <font color="#7B3F00">poo</font>, explosions, gas station boner pills, and <font color="red">It</font>ali<font color="green">ans</font>.<br>
+							<span style="font-size:120%;"><b>PHOTOSENSITIVITY WARNING</b>: This game has sudden flashing lights and rapidly cycling colors that cannot be disabled.</span><br>
+							<br>
+							This server is in development and has not launched yet. Do not expect everything to work.<br>"}
+
+	//basic ground rules for new players
+	var/agreement_text = {"
+							<span style="font-size:bigger"><b>PHOTOSENSITIVITY WARNING</b>: This game has sudden flashing lights and rapidly cycling colors that cannot be disabled.
+							If you are sensitive to motion graphics or certain patterns, please use discretion or do not play this game.</span>
+							<br><br>
+							Also this is an 18+ server. You must be at least 18 years old to play here. Not for erotic themes, but because this is a space station for adults.
+							<br><br>
+							To play on this server you must abide by the <a href=\"byond://winset?command=Rules\">Rules</a>.<br>"}
 
 	//novelty items
 	var/agreement_background_url = "images/titlecards/agreement/bg-combo.png" //background
@@ -40,17 +52,11 @@
 	var/agreement_nobutton_url = "images/titlecards/agreement/comicsans-no.png" //disagree button
 	var/agreement_buttonspacer_url = "images/titlecards/agreement/honk.gif" //button spacer
 
-	//basic ground rules
-	var/agreement_text = {"
-					<span style="font-size:bigger"><b>PHOTOSENSITIVITY WARNING</b>: This game has sudden flashing lights and rapidly cycling colors that cannot be disabled.
-					If you are sensitive to motion graphics or certain patterns, please use discretion or do not play this game.</span>
-					<br><br>
-					Also this is an 18+ server. You must be at least 18 years old to play here. Not for erotic themes, but because this is a space station for adults.
-					<br><br>
-					To play on this server you must abide by the <a href=\"byond://winset?command=Rules\">Rules</a>.<br>"}
 
-	prod //starfield
-		video_name = "coolstation"
+	//a few assorted titlescreens (TODO: expand and make selectable)
+	dev //starfield
+		image_url = "images/titlecards/coolstation_dev_alt.gif"
+		video_url = "images/titlecards/coolstation_dev.mp4"
 		is_video = TRUE
 
 	classic //signpost
@@ -108,7 +114,7 @@
 	else
 		last_pregame_html += {"
 					#overlay{
-						background-image:url([resource(src.overlay_image_url)]);
+						background-image:url(src.overlay_image_url)]);
 						background-color:transparent;
 						left:0;
 						top:0;
@@ -130,13 +136,34 @@
 						text-align:center;
 						color:#fff;
 						text-shadow: -1px -1px 0 #777, 1px -1px 0 #777, -1px 1px 0 #777, 1px 1px 0 #777;
-						font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", "Marker Felt", "Purisa", "URW Chancery L", cursive, sans-serif;
+						font:1em 'PxPlus IBM VGA9';
 						font-size:60%;
 						margin-top:10px;
 						top:0;
 						height:12%;
 						width:100%;
 						z-index:10;
+					}
+		"}
+	if (src.is_video)
+		last_pregame_html += {"
+					.pregamevideo{
+						position: absolute;
+						right: 0;
+						bottom: 0;
+						min-width: 100%;
+						min-height: 100%;
+						width: auto;
+						height: auto;
+						z-index: -100;
+						background-size: cover;
+						overflow: hidden;
+					}
+		"}
+	else
+		last_pregame_html += {"
+					#video{
+						display:none;
 					}
 		"}
 	//The rest of the structure of the browser overlay including content spaces
@@ -176,20 +203,25 @@
 					onresize=function(){document.body.style.fontSize=Math.min(innerWidth/672,innerHeight/480)*16+"px";};
 					onload=function(){onresize();location="byond://winset?command=.send-lobby-text";};
 				</script>
+				<div id="video">
+		"}
+
+	if (src.is_video)
+		last_pregame_html += {"
+					<video autoplay loop class="pregamevideo">
+						<source src="[resource(src.video_url)]" type="video/mp4">
+					</video>
+		"}
+
+	last_pregame_html += {"
+				</div>
 				<div id="disclaimer">
 				[src.disclaimer_text]
 				<div id="overlay">
 				</div>
 		"}
 
-	if (src.is_video)
-		last_pregame_html += {"
-				<video autoplay style="position:fixed;top:0px;right:0px;left:0px;bottom:0px;z-index:1">
-					<source src="[config.cdn]/titlecards/[video_name].mp4" type="video/mp4">
-				</video>
-		"}
 	last_pregame_html += {"
-
 				<div id="status" class="area">
 				</div>
 				<div id="timer" class="area">
