@@ -26,13 +26,13 @@
 	var/overlay_image_url = null
 
 	//novelty items
-	var/agreement_background_url = "images/titlecards/bg-combo.png" //background
-	var/agreement_headerleft_url = "images/titlecards/toot.gif" //thing what floats on the left side of the header
-	var/agreement_headerright_url = "images/titlecards/bwomp.gif" //thing what floats on the right side of the header
-	var/agreement_overlay_url = "images/titlecards/handshake.png" //overlay to the whole thing (use an alpha-transparent png)
-	var/agreement_yesbutton_url = "images/titlecards/comicsans-yes.png" //agree button
-	var/agreement_nobutton_url = "images/titlecards/comicsans-no.png" //disagree button
-	var/agreement_buttonspacer_url = "images/titlecards/honk.gif"
+	var/agreement_background_url = "images/titlecards/agreement/bg-combo.png" //background
+	var/agreement_headerleft_url = "images/titlecards/agreement/toot.gif" //thing what floats on the left side of the header
+	var/agreement_headerright_url = "images/titlecards/agreement/bwomp.gif" //thing what floats on the right side of the header
+	var/agreement_overlay_url = "images/titlecards/agreement/handshake.png" //overlay to the whole thing (use an alpha-transparent png)
+	var/agreement_yesbutton_url = "images/titlecards/agreement/comicsans-yes.png" //agree button
+	var/agreement_nobutton_url = "images/titlecards/agreement/comicsans-no.png" //disagree button
+	var/agreement_buttonspacer_url = "images/titlecards/agreement/honk.gif" //button spacer
 
 	//basic ground rules
 	var/agreement_text = {"
