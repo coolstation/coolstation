@@ -119,7 +119,7 @@
 			icon_state = "blank"
 			lightfixtureimage = image(src.icon,src,initial(src.icon_state),PLANE_NOSHADOW_ABOVE -1,src.dir)
 			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_image(lightfixtureimage)
-			lightfixtureimage.alpha = 160
+			lightfixtureimage.alpha = 200
 
 		var/area/A = get_area(src)
 		if (A)
@@ -405,7 +405,7 @@
 	plane = PLANE_NOSHADOW_ABOVE
 	level = 2
 	//see light/small/ceiling for the struggles with invisibility and clicking
-	alpha = 80
+	alpha = 200
 	ceilingmounted = 1 //determines interactibility
 
 	//check something like wiring for how to set direction relative to what tile you place it by hand, since we can freely rotate this thing unlike floor/ceiling lights and wall lights
