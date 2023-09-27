@@ -1,58 +1,304 @@
+//new titlecard, which uses a fancy HTML overlay kinda deal
+//this is shown to the client as a browser window instead of an in-world object or turf overlay like the classic way
+
 /datum/titlecard
 	var/global/list/maptext_areas = list()
 	var/global/last_pregame_html = ""
 
-	#if defined(MAP_OVERRIDE_OSHAN)
-	var/image_url = "images/oshan_titlecard.png"
-	#elif defined(MAP_OVERRIDE_BOBMAP)
-	var/image_url = "images/bob_titlecard_dev.gif"
-	#elif defined(SECRETS_ENABLED)
-	var/image_url = "images/coolstation_title_dev_alt.gif"
+	//add a permanent disclaimer to the top
+	var/disclaimer_text = {"Content Warning: This game has violence, suicide, gun's, drugs, alcohol, spiders, all depicted in a non-serious or relatively non-graphic way.<br>
+							Content Warning Continued: This game also has farting, screaming, gibs, <font color="brown">poo</font>, explosions, gas station boner pills, and <font color="red">It</font>ali<font color="green">ans</font>.<br>
+							<span style="font-size:120%;"><b>PHOTOSENSITIVITY WARNING</b>: This game has sudden flashing lights and rapidly cycling colors that cannot be disabled.</span><br>
+							<br>
+							This server is in development and has not launched yet.<br>"}
+
+	#if defined(MAP_OVERRIDE_BOBMAP)
+	var/image_url = "images/titlecards/bob_dev.gif"
+	#elif defined(SECRETS_ENABLED) //quick and easy signifier to see if your secrets submodule is active and working
+	var/image_url = "images/titlecards/coolstation_dev_alt.gif"
 	#else
-	var/image_url = "images/coolstation_title.gif"
+	var/image_url = "images/titlecards/coolstation_dev.gif"
 	#endif
-	var/is_game_mode = FALSE
-	var/add_html = ""
+	var/is_game_mode = FALSE //tied to a game mode modifier?
+	//var/notice = "" //anything a map or situation should announce?
+	var/add_html = "" //any little bonus stuff you need to stick in the middle (like credits)
+
 	var/overlay_image_url = null
 
-	heisenbee
-		image_url = "images/heisenbee_titlecard.png"
-		add_html = {"<a href="https://www.deviantart.com/alexbluebird" target="_blank" style="position:absolute;bottom:3px;right:3px;color:white;opacity:0.7;">by AlexBlueBird</a>"}
+	//novelty items
+	var/agreement_background_url = "images/titlecards/bg-combo.png" //background
+	var/agreement_headerleft_url = "images/titlecards/toot.gif" //thing what floats on the left side of the header
+	var/agreement_headerright_url = "images/titlecards/bwomp.gif" //thing what floats on the right side of the header
+	var/agreement_overlay_url = "images/titlecards/handshake.png" //overlay to the whole thing (use an alpha-transparent png)
+	var/agreement_yesbutton_url = "images/titlecards/comicsans-yes.png" //agree button
+	var/agreement_nobutton_url = "images/titlecards/comicsans-no.png" //disagree button
+	var/agreement_buttonspacer_url = "images/titlecards/honk.gif"
 
-	hehe
-		image_url = "images/hehe_titlecard.png"
+	//basic ground rules
+	var/agreement_text = {"
+					<span style="font-size:bigger"><b>PHOTOSENSITIVITY WARNING</b>: This game has sudden flashing lights and rapidly cycling colors that cannot be disabled.
+					If you are sensitive to motion graphics or certain patterns, please use discretion or do not play this game.</span>
+					<br><br>
+					Also this is an 18+ server. You must be at least 18 years old to play here. Not for erotic themes, but because this is a space station for adults.
+					<br><br>
+					To play on this server you must abide by the <a href=\"byond://winset?command=Rules\">Rules</a>.<br>"}
 
-	s
-		image_url = "images/s_titlecard.png"
+	prod //starfield
+		image_url = "images/titlecards/coolstation_dev.gif"
 
-	nightshade
-		image_url = "images/nightshade_titlecard.png"
+	classic //signpost
+		image_url = "images/titlecards/classic.gif"
 
 	disaster
-		overlay_image_url = "images/disaster_titlecard.gif"
+		overlay_image_url = "images/titlecards/disaster.gif"
 		is_game_mode = TRUE
 
-	battleroyale
-		overlay_image_url = "images/battleroyale_titlecard.png"
+	heisenbee //cute illustration of sleeping heisenbee with carnage in the background
+		image_url = "images/titlecards/heisenbee.png"
+		//clickable credit line
+		add_html = {"<a href="https://www.deviantart.com/alexbluebird" target="_blank" style="position:absolute;bottom:3px;right:3px;color:white;opacity:0.7;">by AlexBlueBird</a>"}
+
+	battleroyale //overlays a battle royal edition thing in addition to the standard titlecard
+		overlay_image_url = "images/titlecards/battleroyale_overlay.png"
 		is_game_mode = TRUE
 
-	thebadgif
-		image_url = "images/main_titlecard_dev.gif"
+	thebadgif //the really bad stock gifs one bob made
+		image_url = "images/titlecards/bob.gif"
 
 /datum/titlecard/proc/set_pregame_html()
-	last_pregame_html = {"<html><head><meta http-equiv='X-UA-Compatible' content='IE=edge'><style>@font-face{font-family:'PxPlus IBM VGA9';src:url([resource("misc/ibmvga9.ttf")]);}body,#overlay{margin:0;padding:0;background:url([resource(src.image_url)]) black;background-size:contain;background-repeat:no-repeat;overflow:hidden;background-position:center center;background-attachment:fixed;image-rendering:pixelated;}"}
+	//fuck u i'm breaking this out so you can actually read it
+	//Set styles + fill page with image as background
+	//The actual overlay image you see isn't called as an explicit item, but visible due to the absence of items
+	//What a concept, huh?
+	last_pregame_html =	{"
+		<html>
+			<head>
+				<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+				<style>@font-face{
+					font-family:'PxPlus IBM VGA9';
+					src:url([resource("misc/ibmvga9.ttf")]);
+					}
+					body,#overlay{
+						margin:0;
+						padding:0;
+						background:url([resource(src.image_url)]) black;
+						background-size:contain;
+						background-repeat:no-repeat;
+						overflow:hidden;
+						background-position:center center;
+						background-attachment:fixed;
+						image-rendering:pixelated;
+					}
+		"}
+	//Add an overlay by defining an image for the otherwise empty and ever-present overlay-ID'd div
+	//(or not, in this case, because null is first)
 	if (isnull(src.overlay_image_url))
-		last_pregame_html += {"#overlay{display:none;}"}
+		last_pregame_html += {"
+					#overlay{
+						display:none;
+					}
+		"}
 	else
-		last_pregame_html += {"#overlay{background-image:url([resource(src.overlay_image_url)]);background-color:transparent;left:0;top:0;right:0;bottom:0;position:fixed;}"}
-	last_pregame_html += {".area{white-space:pre;color:#fff;text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;font:1em 'PxPlus IBM VGA9';-webkit-text-stroke:0.083em black;}a{text-decoration:none;}#leftside{position:fixed;left:0;bottom:0;}#status,#timer{text-align:center;position:fixed;right:0;bottom:0;height:12%;width:40%;}#timer{bottom:15%;}</style></head><body><script>document.onclick=function(){location="byond://winset?id=mapwindow.map&focus=true";};function set_area(id,text){document.getElementById(id).innerHTML=text||"";};onresize=function(){document.body.style.fontSize=Math.min(innerWidth/672,innerHeight/480)*16+"px";};onload=function(){onresize();location="byond://winset?command=.send-lobby-text";};</script><div id="overlay"></div><div id="status" class="area"></div><div id="timer" class="area"></div><div id="leftside" class="area"></div>[src.add_html]</body></html>"}
+		last_pregame_html += {"
+					#overlay{
+						background-image:url([resource(src.overlay_image_url)]);
+						background-color:transparent;
+						left:0;
+						top:0;
+						right:0;
+						bottom:0;
+						position:fixed;
+					}
+		"}
+	//add content and photosensitivity warnings
+	if (isnull(src.disclaimer_text))
+		last_pregame_html += {"
+					#disclaimer{
+						display:none;
+					}
+		"}
+	else
+		last_pregame_html += {"
+					#disclaimer{
+						text-align:center;
+						text-shadow: -1px -1px 0 #777, 1px -1px 0 #777, -1px 1px 0 #777, 1px 1px 0 #777;
+						font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", "Marker Felt", "Purisa", "URW Chancery L", cursive, sans-serif;
+						font-size:60%;
+						margin-top:10px;
+						top:0;
+						height:12%;
+						width:100%;
+						z-index:10;
+					}
+		"}
+	//The rest of the structure of the browser overlay including content spaces
+	last_pregame_html += {"
+					.area{
+						white-space:pre;
+						color:#fff;
+						text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+						font:1em 'PxPlus IBM VGA9';
+						-webkit-text-stroke:0.083em black;
+					}
+					a{
+						text-decoration:none;
+					}
+					#leftside{
+						position:fixed;
+						left:0;
+						bottom:0;
+					}
+					#status,#timer{
+						text-align:center;
+						position:fixed;
+						right:0;
+						bottom:0;
+						height:12%;
+						width:40%;
+					}
+					#timer{
+						bottom:15%;
+					}
+				</style>
+			</head>
+			<body>
+				<script>
+					document.onclick=function(){location="byond://winset?id=mapwindow.map&focus=true";};
+					function set_area(id,text){document.getElementById(id).innerHTML=text||"";};
+					onresize=function(){document.body.style.fontSize=Math.min(innerWidth/672,innerHeight/480)*16+"px";};
+					onload=function(){onresize();location="byond://winset?command=.send-lobby-text";};
+				</script>
+				<div id="overlay">
+				</div>
+				<div id="status" class="area">
+				</div>
+				<div id="timer" class="area">
+				</div>
+				<div id="leftside" class="area">
+				</div>
+				[src.add_html]
+			</body>
+		</html>
+		"}
 	pregameHTML = last_pregame_html
+
+	//now that it's ready, let's show it to everybody
 	for(var/client/C)
 		if(istype(C.mob, /mob/new_player))
+			//if(C.player.rounds_participated > 5 || C.holder)
+			//	C << browse(pregameHTML, "window=pregameBrowser")
+			//else
+			//	C << browse(newplayerHTML, "window=pregameBrowser")
 			C << browse(pregameHTML, "window=pregameBrowser")
 			if(C)
 				winshow(C, "pregameBrowser", 1)
 
+/datum/titlecard/proc/set_agreement_html()
+	//basically one big "hey are you 18+ and will you follow the rules + yes no buttons"
+	//not contextual or overlaid or anything and will not display game info until clicked through
+	//but i will probably move this to its own separate file and load from that later
+	//keeps but hides the status/countdown divs so maptext doesn't barf errors
+	//overlay is set up but hidden because we need either CSS4 or some Javascript to do clickthrough (add it back with a named div at the top of the divs)
+	newplayerHTML =	{"
+		<html>
+			<head>
+				<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+				<style>
+					body{
+						margin:0;
+						padding:0;
+						background:url([resource(src.agreement_background_url)]) black;
+						background-size:100% auto;
+						background-repeat:no-repeat;
+						background-attachment:fixed;
+						image-rendering:pixelated;
+						color:#fff;
+						font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", "Marker Felt", "Purisa", "URW Chancery L", cursive, sans-serif;
+						font-size:small;
+						text-align:center;
+					}
+					#overlay{
+						background:url([resource(src.agreement_overlay_url)]);
+						background-color:transparent;
+						background-size:100% auto;
+						background-repeat:no-repeat;
+						background-attachment:fixed;
+						margin:0;
+						padding:0;
+						left:0;
+						top:0;
+						right:0;
+						bottom:0;
+						position:fixed;
+						overflow:hidden;
+						image-rendering:pixelated;
+						z-index:1;
+					}
+					.area{
+						white-space:pre;
+						color:#fff;
+						text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+						font:1em 'PxPlus IBM VGA9';
+						-webkit-text-stroke:0.083em black;
+					}
+					a{
+						text-decoration:none;
+					}
+					h1{
+						color:red;
+						text-shadow: -2px -2px 0 #700, 2px -2px 0 #700, -2px 2px 0 #700, 2px 2px 0 #700;
+					}
+					#disclaimer{
+						text-shadow: -1px -1px 0 #777, 1px -1px 0 #777, -1px 1px 0 #777, 1px 1px 0 #777;
+						margin-top:10px;
+						height:12%;
+						width:100%;
+						font-size:60%;
+						z-index:10;
+					}
+					#agreement{
+						text-shadow: -1px -1px 0 #777, 1px -1px 0 #777, -1px 1px 0 #777, 1px 1px 0 #777;
+						z-index:9;
+						width:60%;
+						margin:auto;
+					}
+					#leftside{
+						display:none;
+					}
+					#status,#timer{
+						display:none;
+					}
+					#timer{
+						display:none;
+					}
+				</style>
+			</head>
+			<body>
+				<script>
+					document.onclick=function(){location="byond://winset?id=mapwindow.map&focus=true";};
+					function set_area(id,text){document.getElementById(id).innerHTML=text||"";};
+					onresize=function(){document.body.style.fontSize=Math.min(innerWidth/672,innerHeight/480)*16+"px";};
+					onload=function(){onresize();location="byond://winset?command=.send-lobby-text";};
+				</script>
+				<div id="disclaimer">
+					[src.disclaimer_text]
+				</div>
+				<h1><img src="[resource(src.agreement_headerleft_url)]">HEY LISTEN UP<img src="[resource(src.agreement_headerright_url)]"></h1>
+				<div id="agreement">
+					[src.agreement_text]
+				</div>
+				<a href=\"byond://?action=pregameHTML\"><img src="[resource(src.agreement_yesbutton_url)]"></a><img src="[resource(src.agreement_buttonspacer_url)]"><a href=\"byond://winset?command=.quit\"><img src="[resource(src.agreement_nobutton_url)]"></a>
+				<div id="status" class="area">
+				</div>
+				<div id="timer" class="area">
+				</div>
+				<div id="leftside" class="area">
+				</div>
+			</body>
+		</html>
+		"}
+
+//update the timers and notices within the HTML and such
 /datum/titlecard/proc/set_maptext(id, text)
 	maptext_areas[id] = text
 	if(isnull(pregameHTML))
@@ -80,7 +326,7 @@
 	for (var/id in maptext_areas)
 		C << output(list2params(list(id, maptext_areas[id])), "pregameBrowser:set_area")
 
-///old title card turf
+//old title card turf
 /obj/titlecard
 	appearance_flags = TILE_BOUND
 	icon = null //set in New()
@@ -101,7 +347,7 @@
 	New()
 		..()
 		icon = file("assets/icons/widescreen.dmi")
-	#if defined(MAP_OVERRIDE_OSHAN)
+	#if defined(MAP_OVERRIDE_OSHAN) //we might do an underwater station later but for now i'm leaving this as an example even if we basically won't go back to these
 		icon_state = "title_oshan"
 		name = "Oshan Laboratory"
 		desc = "An underwater laboratory on the planet Abzu."
