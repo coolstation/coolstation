@@ -2005,29 +2005,42 @@ var/list/fun_images = list()
 
 	admin_only
 	if(pregameHTML)
-		if(alert("There's already some HTML shown. Do you want to remove or replace it?", "HTML clear?", "Remove", "Replace") == "Remove")
-			pregameHTML = null
-			message_admins("[key_name(src)] cleared the pre-game HTML.")
-			logTheThing("admin", src, null, "cleared the pre-game HTML.")
-			for(var/client/C)
-				try
-					C<< browse("", "window=pregameBrowser")
-					if(C)
-						winshow(C, "pregameBrowser", 0)
-				catch()
-			var/turf/T = landmarks[LANDMARK_LOBBY_LEFTSIDE][1]
-			T = locate(T.x + 3, T.y, T.z)
-			if (locate(/obj/titlecard) in T) return
-			if (alert("Replace with a title card turf?",, "Yes", "No") == "Yes")
-				new /obj/titlecard(T)
-			return
+		switch(alert("There's already some HTML shown. Do you want to clear it (and show map) or replace it with new HTML?", "Pre-game HTML Clear?", "Clear", "Replace", "Cancel"))
+			if("Clear")
+				pregameHTML = null
+				message_admins("[key_name(src)] cleared the pre-game HTML.")
+				logTheThing("admin", src, null, "cleared the pre-game HTML.")
+				for(var/client/C)
+					try
+						C<< browse("", "window=pregameBrowser")
+						if(C)
+							winshow(C, "pregameBrowser", 0)
+					catch()
+				var/turf/T = landmarks[LANDMARK_LOBBY_LEFTSIDE][1]
+				T = locate(T.x + 3, T.y, T.z)
+				if (locate(/obj/titlecard) in T) return
+				if (alert("Cover the map area with an old-school titlescreen turf?",, "Yes", "No") == "Yes")
+					new /obj/titlecard(T)
+				return
+			if("Cancel")
+				return
 	var/newHTML = null
-	if(alert("Do you want to upload an HTML file, or type it in?", "HTML Source", "Here", "Upload") == "Here")
-		newHTML = input("Gib HTML, then.", "FEED ME HTML", "<b>memes</b>") as message
-	else
-		newHTML = input("Upload that file!", "Upload that file!") as file
-		if(newHTML)
-			newHTML = file2text(newHTML)
+	switch(alert("Do you want to upload an HTML file, type/paste it into a dialog box, or restore the default pregame HTML?", "HTML Source", "Upload", "Type", "Default", "Cancel"))
+		if("Upload")
+			newHTML = input("Upload that file!", "Upload that file!") as file|null //added the ability to cancel an upload
+			if(newHTML)
+				newHTML = file2text(newHTML)
+		if("Type")
+			newHTML = input("Gib HTML, then.", "FEED ME HTML", "<b>memes</b>") as message
+		if("Default")
+			if (lobby_titlecard)
+				lobby_titlecard = new /datum/titlecard()
+			lobby_titlecard.set_pregame_html()
+			message_admins("[key_name(src)] reset the pre-game HTML.")
+			logTheThing("admin", src, null, "reset the pre-game HTML.")
+			return
+		else
+			return
 	if(newHTML)
 		pregameHTML = newHTML
 		message_admins("[key_name(src)] changed the pre-game HTML.")
