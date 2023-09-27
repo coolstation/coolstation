@@ -121,13 +121,13 @@ mob/new_player
 					src.last_client << browse("", "window=pregameBrowser")
 		return
 
-			verb/show_newnewplayer_screen
-				set hidden = 0
-				set name = "Show Warning Splash"
-				set category = "Commands"
-				usr << browse(newplayerHTML, "window=pregameBrowser")
+	verb/show_newnewplayer_screen()
+		set hidden = 0
+		set name = "Show Warning Splash"
+		set category = "Commands"
+		usr << browse(newplayerHTML, "window=pregameBrowser")
 
-			verb/new_player_panel()
+	verb/new_player_panel()
 
 		set src = usr
 		if(client)
