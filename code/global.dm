@@ -507,6 +507,7 @@ var/global
 	transparentColor = "#ff00e4"
 
 	pregameHTML = null
+	newplayerHTML = null
 
 	list/cooldowns
 

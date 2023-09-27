@@ -1113,6 +1113,10 @@ var/global/curr_day = null
 				if ("aialerts")
 					usr:viewalerts = 0
 
+		//for clicking through disclaimer
+		if ("pregameHTML")
+			usr << browse(pregameHTML, "window=pregameBrowser")
+
 		//A thing for the chat output to call so that links open in the user's default browser, rather than IE
 		if ("openLink")
 			src << link(href_list["link"])
@@ -1452,9 +1456,11 @@ var/global/curr_day = null
 	//Mouseless gets applied if needed in /mob/proc/build_keybind_styles
 	src.mob.reset_keymap()
 
+//Making this command visible will make it easier to test and experiment with this. We are a dev server after all!
 /client/verb/test_experimental_intents()
-	set hidden = 1
+	set hidden = 0
 	set name = "intent-test"
+	set category = "Commands"
 
 	if (preferences)
 		if (!src.preferences.use_wasd)
