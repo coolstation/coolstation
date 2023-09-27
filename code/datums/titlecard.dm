@@ -27,15 +27,18 @@
 	#endif
 
 	#if defined(SECRETS_ENABLED) //quick and easy signifier to see if your secrets submodule is active and working
-	add_html = "<span style=\"position:absolute;bottom:3px;right:3px;color:white;opacity:0.7;\">Secrets enabled!</span>"
+	add_html = "<span style=\"position:absolute;bottom:3px;right:3px;color:white;opacity:0.5;\">Secrets enabled!</span>"
 	#endif
 
 	//add a permanent disclaimer to the top
-	var/disclaimer_text = {"This game contains violence, suicide, gun's, drugs, alcohol and spiders, all depicted in a non-serious or relatively non-graphic way.<br>
-							This game also contains farting, screaming, gibs, <font color="#7B3F00">poo</font>, explosions, gas station boner pills, and <font color="red">It</font>ali<font color="green">ans</font>.<br>
-							<span style="font-size:120%;"><b>PHOTOSENSITIVITY WARNING</b>: This game has sudden flashing lights and rapidly cycling colors that cannot be disabled.</span><br>
+	var/disclaimer_text = {"<span style="font-size:120%;"><b>PHOTOSENSITIVITY WARNING</b>: <br>
+							This game has sudden flashing lights and rapidly cycling colors which cannot be disabled.</span><br>
 							<br>
-							This server is in development and has not launched yet. Do not expect everything to work.<br>"}
+							<font color="#4F5FFF">content warning:</font><br>
+							This game contains violence, suicide, gun's, drugs, alcohol and spiders,<br>
+							all depicted in a non-serious or (relatively) non-graphic way.<br>
+							This game also contains farting, screaming, gibs, <font color="#7B3F00">poo</font>,<br>
+							explosions, gas station boner pills, and <font color="red">It</font>ali<font color="green">ans</font>, in a super serious way."}
 
 	//basic ground rules for new players
 	var/agreement_text = {"
@@ -335,9 +338,7 @@
 					onresize=function(){document.body.style.fontSize=Math.min(innerWidth/672,innerHeight/480)*16+"px";};
 					onload=function(){onresize();location="byond://winset?command=.send-lobby-text";};
 				</script>
-				<div id="disclaimer">
-					[src.disclaimer_text]
-				</div>
+
 				<h1><img src="[resource(src.agreement_headerleft_url)]">HEY LISTEN UP<img src="[resource(src.agreement_headerright_url)]"></h1>
 				<div id="agreement">
 					[src.agreement_text]
