@@ -1152,13 +1152,15 @@
 	post_pet_text = " This is probably a <i>bad idea</i>!"
 	health = 100
 	invisibility = 10 //little weirdo
+	slow_chase = 1
+	butcherable = 0
 	generic = 0
 	aggressive = 1
 	defensive = 0 //should avoid any kind of reaction/charging at
 	notwitch = 1
 	anchored = 1
 	opensdoors = OBJ_CRITTER_OPENS_DOORS_PUBLIC
-	density = 1 //he's never on help intent
+	density = 1
 	var/boredom_countdown = 0
 
 	CritterDeath() //go back to your home planet, bart
@@ -1183,6 +1185,8 @@
 
 			src.boredom_countdown = rand(5,10)
 			src.target = C
+			src.dir = get_dir(src, C)
+			C.visible_message("<span class='notice'>[src] turns and stares blankly at you. Huh?</B></span>","<span class='notice'>[src] turns and stares blankly at [C].</span>")
 			if (prob(50)) //but let's do something weird here with the way bart picks targets
 				src.oldtarget_name = C.name //sometimes he'll go with someone else if they wander by in the next 30 seconds
 			else
@@ -1190,13 +1194,36 @@
 			src.task = "chasing" //poor you
 			src.invisibility = 0
 			break
-
+	//bad idea
 	attackby(obj/item/W as obj, mob/living/user as mob)
 		..()
-		src.boredom_countdown = rand(5,10)
+		if(prob(60))
+			if (src.target)
+				src.oldtarget_name = null
+			src.target = user
+			src.frustration = 0
+			src.dir = get_dir(src,user)
+			user.visible_message("<span class='alert'>Small Bart quickly turns and locks eyes with you. <B>Oh God!</B></span>","<span class='alert'>[src] quickly turns and stares intensely at [user]!</span>")
+			src.boredom_countdown = rand(10,15)
+			if (src.slow_chase)
+				src.slow_chase = 0
+				SPAWN_DBG(10 SECONDS)
+					src.slow_chase = 1
 
 	attack_hand(var/mob/user as mob)
 		..()
+		if(prob(30))
+			if (src.target)
+				src.oldtarget_name = null
+			src.target = user
+			src.frustration = 0
+			src.dir = get_dir(src,user)
+			user.visible_message("<span class='alert'>Small Bart quickly turns and locks eyes with you. <B>Oh God!</B></span>","<span class='alert'>[src] quickly turns and stares intensely at [user]!</span>")
+			src.boredom_countdown = rand(10,15)
+			if (src.slow_chase)
+				src.slow_chase = 0
+				SPAWN_DBG(10 SECONDS)
+					src.slow_chase = 1
 
 	ChaseAttack(mob/M)
 		return
