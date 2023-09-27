@@ -4962,10 +4962,11 @@
 /turf/floor/green/checker,
 /area/diner/arcade)
 "po" = (
-/obj/table/reinforced/chemistry/auto,
 /obj/neon_lining{
-	color = "#FF00FF"
+	color = "#FF00FF";
+	dir = 1
 	},
+/obj/landmark/club_juice_drink,
 /turf/floor/black,
 /area/juicer/club)
 "pv" = (
@@ -5066,6 +5067,10 @@
 	},
 /turf/floor/darkpurple,
 /area/juicer/club/outside)
+"ry" = (
+/obj/table/reinforced/chemistry/auto,
+/turf/floor/black,
+/area/juicer/club)
 "sa" = (
 /obj/decal/tile_edge/stripe{
 	dir = 1
@@ -5752,6 +5757,10 @@
 /obj/window/reinforced/south,
 /turf/floor/plating,
 /area/juicer/club/outside)
+"Iy" = (
+/obj/reagent_dispensers/beerkeg,
+/turf/floor/grime,
+/area/juicer/club/back)
 "II" = (
 /obj/window/bulletproof/west,
 /obj/neon_lining{
@@ -6589,16 +6598,12 @@
 /turf/space,
 /area/noGenerate)
 "YQ" = (
-/obj/table/reinforced/chemistry/auto,
-/obj/neon_lining{
-	color = "#FF00FF";
+/obj/machinery/light/fluorescent/neutral{
 	dir = 8
 	},
-/obj/neon_lining{
-	color = "#FF00FF"
-	},
-/turf/floor/black,
-/area/juicer/club)
+/obj/reagent_dispensers/beerkeg,
+/turf/floor/grime,
+/area/juicer/club/back)
 "YU" = (
 /obj/railing/purple/reinforced{
 	dir = 4
@@ -65421,7 +65426,7 @@ FA
 BC
 AU
 BC
-BC
+Od
 Zf
 xm
 Hs
@@ -65723,7 +65728,7 @@ Tj
 VC
 kW
 Tj
-YQ
+Ki
 Od
 Od
 Od
@@ -66016,7 +66021,7 @@ eN
 BX
 pE
 pE
-BX
+YQ
 eN
 kx
 OZ
@@ -66024,7 +66029,7 @@ OZ
 OZ
 OZ
 OZ
-OZ
+ry
 po
 ND
 Tv
@@ -66318,7 +66323,7 @@ eN
 pE
 pE
 pE
-pE
+Iy
 eN
 KB
 OZ
@@ -66326,7 +66331,7 @@ OZ
 OZ
 OZ
 Zo
-OZ
+ry
 Tv
 Lm
 Px
@@ -66620,7 +66625,7 @@ eN
 nu
 pE
 pE
-pE
+Iy
 eN
 kx
 Pf
@@ -66922,7 +66927,7 @@ eN
 nL
 pE
 pE
-pE
+Iy
 eN
 eN
 kQ
