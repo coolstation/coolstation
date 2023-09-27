@@ -112,7 +112,7 @@
 		..()
 		inserted_lamp = new light_type()
 		current_lamp = inserted_lamp
-		if (src.loc.z == 1)
+		if (src.loc.z == 1 ||(map_currently_very_dusty && src.loc.z == 3))
 			stationLights += src
 
 		if(ceilingmounted)

@@ -3295,15 +3295,12 @@
 /obj/submachine/chef_sink/chem_sink{
 	dir = 8
 	},
-/obj/securearea{
-	desc = "A poster that reads 'CLEAN HANDS SAVE LIVES'.";
-	icon_state = "chsl";
-	name = "CLEAN HANDS SAVE LIVES";
-	pixel_x = 32
-	},
 /obj/item/cigbutt,
 /obj/cable{
 	icon_state = "1-10"
+	},
+/obj/decal/poster/wallsign/chsl{
+	pixel_x = 32
 	},
 /turf/floor/scorched,
 /area/diner/bathroom)
@@ -5805,6 +5802,9 @@
 	},
 /obj/submachine/chef_sink{
 	dir = 4
+	},
+/obj/decal/poster/wallsign/chsc{
+	pixel_x = -32
 	},
 /turf/floor/grime,
 /area/juicer/club/back)
