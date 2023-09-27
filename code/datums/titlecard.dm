@@ -6,11 +6,11 @@
 	var/global/last_pregame_html = ""
 
 	//add a permanent disclaimer to the top
-	var/disclaimer_text = {"Content Warning: This game has violence, suicide, gun's, drugs, alcohol, spiders, all depicted in a non-serious or relatively non-graphic way.<br>
-							Content Warning Continued: This game also has farting, screaming, gibs, <font color="brown">poo</font>, explosions, gas station boner pills, and <font color="red">It</font>ali<font color="green">ans</font>.<br>
+	var/disclaimer_text = {"This game contains violence, suicide, gun's, drugs, alcohol, spiders, all depicted in a non-serious or relatively non-graphic way.<br>
+							This game also contains farting, screaming, gibs, <font color="brown">poo</font>, explosions, gas station boner pills, and <font color="red">It</font>ali<font color="green">ans</font>.<br>
 							<span style="font-size:120%;"><b>PHOTOSENSITIVITY WARNING</b>: This game has sudden flashing lights and rapidly cycling colors that cannot be disabled.</span><br>
 							<br>
-							This server is in development and has not launched yet.<br>"}
+							This server is in development and has not launched yet. Do not expect everything to work.<br>"}
 
 	#if defined(MAP_OVERRIDE_BOBMAP)
 	var/image_url = "images/titlecards/bob_dev.gif"
@@ -288,7 +288,7 @@
 					[src.agreement_text]
 					<br>
 				</div>
-				<a href=\"byond://?action=pregameHTML\"><img src="[resource(src.agreement_yesbutton_url)]"></a><img src="[resource(src.agreement_buttonspacer_url)]"><a href=\"byond://winset?command=.quit\"><img src="[resource(src.agreement_nobutton_url)]"></a>
+				<a href=\"byond://?action=pregameHTML\"><img src="[resource(src.agreement_yesbutton_url)]"></a>&nbsp;&nbsp;<img src="[resource(src.agreement_buttonspacer_url)]">&nbsp;&nbsp;<a href=\"byond://winset?command=.quit\"><img src="[resource(src.agreement_nobutton_url)]"></a>
 				<div id="status" class="area">
 				</div>
 				<div id="timer" class="area">
