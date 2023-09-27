@@ -286,6 +286,7 @@
 				<h1><img src="[resource(src.agreement_headerleft_url)]">HEY LISTEN UP<img src="[resource(src.agreement_headerright_url)]"></h1>
 				<div id="agreement">
 					[src.agreement_text]
+					<br>
 				</div>
 				<a href=\"byond://?action=pregameHTML\"><img src="[resource(src.agreement_yesbutton_url)]"></a><img src="[resource(src.agreement_buttonspacer_url)]"><a href=\"byond://winset?command=.quit\"><img src="[resource(src.agreement_nobutton_url)]"></a>
 				<div id="status" class="area">
