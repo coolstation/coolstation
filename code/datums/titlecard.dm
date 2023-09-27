@@ -7,17 +7,23 @@
 
 	//add a permanent disclaimer to the top
 	var/disclaimer_text = {"This game contains violence, suicide, gun's, drugs, alcohol, spiders, all depicted in a non-serious or relatively non-graphic way.<br>
-							This game also contains farting, screaming, gibs, <font color="brown">poo</font>, explosions, gas station boner pills, and <font color="red">It</font>ali<font color="green">ans</font>.<br>
+							This game also contains farting, screaming, gibs, <font color="#7B3F00">poo</font>, explosions, gas station boner pills, and <font color="red">It</font>ali<font color="green">ans</font>.<br>
 							<span style="font-size:120%;"><b>PHOTOSENSITIVITY WARNING</b>: This game has sudden flashing lights and rapidly cycling colors that cannot be disabled.</span><br>
 							<br>
 							This server is in development and has not launched yet. Do not expect everything to work.<br>"}
 
 	#if defined(MAP_OVERRIDE_BOBMAP)
-	var/image_url = "images/titlecards/bob_dev.gif"
+	var/image_url = "images/titlecards/console.png"
+	var/video_name = "console"
+	var/is_video = FALSE
 	#elif defined(SECRETS_ENABLED) //quick and easy signifier to see if your secrets submodule is active and working
-	var/image_url = "images/titlecards/coolstation_dev_alt.gif"
+	var/image_url = null //should make a static fallback
+	var/video_name = "coolstation_dev_alt"
+	var/is_video = TRUE
 	#else
-	var/image_url = "images/titlecards/coolstation_dev.gif"
+	var/image_url = null
+	var/video_name = "coolstation_dev"
+	var/is_video = TRUE
 	#endif
 	var/is_game_mode = FALSE //tied to a game mode modifier?
 	//var/notice = "" //anything a map or situation should announce?
@@ -44,7 +50,8 @@
 					To play on this server you must abide by the <a href=\"byond://winset?command=Rules\">Rules</a>.<br>"}
 
 	prod //starfield
-		image_url = "images/titlecards/coolstation_dev.gif"
+		video_name = "coolstation"
+		is_video = TRUE
 
 	classic //signpost
 		image_url = "images/titlecards/classic.gif"
@@ -121,6 +128,7 @@
 		last_pregame_html += {"
 					#disclaimer{
 						text-align:center;
+						color:#fff;
 						text-shadow: -1px -1px 0 #777, 1px -1px 0 #777, -1px 1px 0 #777, 1px 1px 0 #777;
 						font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", "Marker Felt", "Purisa", "URW Chancery L", cursive, sans-serif;
 						font-size:60%;
@@ -168,8 +176,20 @@
 					onresize=function(){document.body.style.fontSize=Math.min(innerWidth/672,innerHeight/480)*16+"px";};
 					onload=function(){onresize();location="byond://winset?command=.send-lobby-text";};
 				</script>
+				<div id="disclaimer">
+				[src.disclaimer_text]
 				<div id="overlay">
 				</div>
+		"}
+
+	if (src.is_video)
+		last_pregame_html += {"
+				<video autoplay style="position:fixed;top:0px;right:0px;left:0px;bottom:0px;z-index:1">
+					<source src="[config.cdn]/titlecards/[video_name].mp4" type="video/mp4">
+				</video>
+		"}
+	last_pregame_html += {"
+
 				<div id="status" class="area">
 				</div>
 				<div id="timer" class="area">
