@@ -231,6 +231,10 @@ datum/shuttle_controller
 						for (var/atom/A in start_location)
 							if(istype( A, /obj/stool ))
 								var/obj/stool/O = A
+								if(istype( A, /obj/stool/chair/comfy/shuttle))
+									var/obj/stool/chair/comfy/shuttle/S = A
+									//keeps you on your toes
+									S.seatbelt_snap()
 								if( !O.anchored )
 									var/atom/target = get_edge_target_turf(O, pick(alldirs))
 									if( O.stool_user )

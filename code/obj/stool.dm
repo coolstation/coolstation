@@ -1129,6 +1129,14 @@
 	green
 		icon_state = "shuttle_chair-green"
 
+	//these seatbelts are getting pretty old huh
+	proc/seatbelt_snap(var/probobo)
+		if (!probobo)
+			probobo = 1
+		if(prob(probobo) && src.stool_user) //isstoolbuckled(src)
+			src.unbuckle()
+			src.stool_user.visible_message("[src.stool_user]'s seatbelt snaps off on launch! Holy shit!","Your seatbelt snaps on launch! Uh oh!")
+
 /obj/stool/chair/comfy/shuttle/pilot
 	name = "pilot's seat"
 	desc = "Only the most important crew member gets to sit here. Everyone is super envious of whoever sits in this chair."
