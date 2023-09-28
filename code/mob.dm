@@ -106,7 +106,9 @@
 	var/a_intent = "help"
 	var/m_intent = "run"
 	var/lastKnownIP = null
-	var/obj/stool/buckled = null
+	var/stool_flags = null
+	var/obj/stool/stool_used = null
+	var/obj/stool/buckled = null //too much uses this
 	var/obj/item/handcuffs/handcuffs = null
 	var/obj/item/l_hand = null
 	var/obj/item/r_hand = null
