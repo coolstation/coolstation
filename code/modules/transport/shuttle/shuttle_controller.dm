@@ -233,8 +233,8 @@ datum/shuttle_controller
 								var/obj/stool/O = A
 								if( !O.anchored )
 									var/atom/target = get_edge_target_turf(O, pick(alldirs))
-									if( O.buckled_guy )
-										boutput( O.buckled_guy, "<span class='alert'>The [O] shoots off due to being unsecured!</span>" )
+									if( O.stool_user )
+										boutput( O.stool_user, "<span class='alert'>The [O] shoots off due to being unsecured!</span>" )
 										O.unbuckle()
 										you_did_it = FALSE
 									if( target )
