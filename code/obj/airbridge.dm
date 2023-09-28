@@ -263,7 +263,7 @@
 	desc = "Used to control the airbridge."
 	id = "noodles"
 	icon_state = "airbr0"
-
+	glow_in_dark_screen = FALSE
 	// set this var to 1 in the map editor if you want the airbridge to establish and pressurize when the round starts
 	// only do it to ONE of the computers for the airbridge ID or they will both try to do it and get confused
 	var/starts_established = 0
