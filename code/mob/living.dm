@@ -300,15 +300,24 @@
 			src.apply_camera(observer.client)
 	..()
 
+// Toggles the visibility of ceiling images, or can be passed explicit values (stepladders, for example)
 /mob/living/show_ceiling()
-	if (!src.ceiling_shown)
+	if (src.ceiling_shown)
+		src.ceiling_shown = 0
+		get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_mob(src)
+	else
 		src.ceiling_shown = 1
 		get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_mob(src)
-		boutput(src, "You look up at the ceiling.")
-	else
-		ceiling_shown = 0
+	boutput(src, "You [src.ceiling_shown ? "look up at" : "stop looking"] at the ceiling.")
+
+/mob/living/proc/force_ceiling(var/state)
+	set hidden = TRUE
+	if (!state)
+		src.ceiling_shown = 0
 		get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_mob(src)
-		boutput(src, "You stop looking at the ceiling.")
+	else
+		src.ceiling_shown = 1
+		get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_mob(src)
 
 /mob/living/attach_hud(datum/hud/hud)
 	for (var/mob/dead/target_observer/observer in observers)
