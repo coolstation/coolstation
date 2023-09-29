@@ -709,7 +709,7 @@
 		boutput(user, "You can't seem to reach that high.")
 		return
 
-	if((!ceilingmounted) && (user.ceilingreach))
+	if((!ceilingmounted) && (!wallmounted) && (user.ceilingreach))
 		boutput(user, "You'll need to get back down on the ground for that.")
 		return
 
