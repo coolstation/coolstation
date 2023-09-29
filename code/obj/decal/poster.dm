@@ -567,7 +567,7 @@
 			popup_win = 1
 			imgw = 360
 			imgh = 410
-			img = "images/arts/posters/delari-by-killfrenzy.jpg"
+			img = "images/arts/posters/delari-by-killfrenzy.png"
 
 		poster_cool
 			name = "cool poster"
