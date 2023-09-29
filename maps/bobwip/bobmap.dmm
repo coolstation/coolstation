@@ -70,6 +70,7 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
+/obj/machinery/light/small/ceiling/neutral,
 /turf/floor/green,
 /area/station/hydroponics/bay)
 "acC" = (
@@ -33604,6 +33605,13 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal)
+"nUR" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/light/small/ceiling/neutral,
+/turf/floor/green,
+/area/station/hydroponics/bay)
 "nUY" = (
 /obj/cable/blue{
 	icon_state = "2-4"
@@ -34704,9 +34712,6 @@
 /area/station/medical/breakroom)
 "osL" = (
 /obj/machinery/light/small/ceiling/neutral,
-/obj/cable{
-	icon_state = "1-2"
-	},
 /turf/floor/green,
 /area/station/hydroponics/bay)
 "osW" = (
@@ -56768,8 +56773,11 @@
 	},
 /area/station/hallway/secondary/exit)
 "xhi" = (
+/obj/machinery/plantpot{
+	anchored = 1
+	},
 /obj/machinery/light/small/ceiling/neutral,
-/turf/floor/green,
+/turf/floor/grass,
 /area/station/hydroponics/bay)
 "xhn" = (
 /obj/machinery/atmospherics/portables_connector{
@@ -83626,7 +83634,7 @@ gdR
 gdR
 gdR
 gdR
-mzU
+osL
 gdR
 gdR
 gdR
@@ -84227,13 +84235,13 @@ iPM
 gdR
 iEs
 iEs
-iEs
-iEs
-iEs
 xhi
 iEs
 iEs
+mzU
 iEs
+iEs
+xhi
 iEs
 iEs
 gdR
@@ -84532,7 +84540,7 @@ gdR
 tdH
 gdR
 gdR
-mzU
+osL
 gdR
 gdR
 tdH
@@ -85131,16 +85139,16 @@ tmO
 aAi
 mzU
 mzU
-mzU
+osL
 vXt
-xhi
 mzU
+osL
 mzU
 koV
 lrR
 acA
-osL
 iRW
+nUR
 iRW
 iRW
 npy
@@ -85740,7 +85748,7 @@ oPG
 gdR
 gdR
 gdR
-mzU
+osL
 gdR
 tJJ
 tdH
@@ -86039,13 +86047,13 @@ nQx
 gdR
 iEs
 air
-iEs
-iEs
-iEs
 xhi
 iEs
-mMO
 iEs
+mzU
+iEs
+mMO
+xhi
 iEs
 iEs
 gdR
@@ -86646,7 +86654,7 @@ oPG
 gdR
 gdR
 gdR
-mzU
+osL
 gdR
 tJJ
 gdR
