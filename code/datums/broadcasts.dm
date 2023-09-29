@@ -237,6 +237,27 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 			broadcast_controls.broadcast_start("demo_finite")
 		..()
 */
+
+//little test but also might be a good candidate for maptext-free as an option for certain broadcasts (Mall loops and such)
+/obj/shitty_radio/ceiling
+	name = "shitty ceiling loudspeaker"
+	desc = "they're putting these things on the ceiling now???"
+	mouse_opacity = FALSE //just don't click
+	alpha = 50
+
+	icon_state = "loudspeaker-ceiling"
+	color = "#765af3"
+	var/image/speakerimage = null
+
+	New()
+		..()
+
+		//make it show up better when actually looking up
+		speakerimage = image(src.icon,src,initial(src.icon_state),PLANE_NOSHADOW_ABOVE -1,src.dir)
+		//i think this is loaded before the CLIENT_IMAGE_GROUP_CEILING_ICONS define is so, oh well,
+		get_image_group("ceiling_icons").add_image(speakerimage)
+		speakerimage.alpha = 100
+
 /obj/shitty_radio/queueing_and_interruption_demo //Testing for proper queue behaviour and priority sorting
 	name = "queue test radio"
 	desc = "Wat een verkakt stuk schroot (use a multitool to start this)"
