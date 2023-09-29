@@ -1073,12 +1073,15 @@ obj/item/device/radio/signaler/attackby(obj/item/W as obj, mob/user as mob)
 			icon_state = "blank"
 			speakerimage = image(src.icon,src,initial(src.icon_state),PLANE_NOSHADOW_ABOVE -1,src.dir)
 			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_image(speakerimage)
-			speakerimage.alpha = 200
+			speakerimage.alpha = 100
 
 	ceiling
 		desc = "A ceiling mounted loudspeaker."
 		icon_state = "loudspeaker-ceiling"
 		ceilingmounted = TRUE
+		alpha = 50
+		plane = PLANE_NOSHADOW_ABOVE
+
 	north
 		dir = NORTH
 	south

@@ -244,9 +244,10 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 	desc = "they're putting these things on the ceiling now???"
 	mouse_opacity = FALSE //just don't click
 	alpha = 50
+	plane = PLANE_NOSHADOW_ABOVE
 
 	icon_state = "loudspeaker-ceiling"
-	color = "#765af3"
+	color = "#c3bddb"
 	var/image/speakerimage = null
 
 	New()
