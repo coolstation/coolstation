@@ -1043,6 +1043,7 @@ obj/item/device/radio/signaler/attackby(obj/item/W as obj, mob/user as mob)
 /obj/item/device/radio/intercom/loudspeaker/speaker
 	name = "Loudspeaker"
 	icon_state = "loudspeaker"
+	desc = "A Loudspeaker."
 	anchored = 1.0
 	speaker_range = 7
 	mats = 0
@@ -1052,7 +1053,8 @@ obj/item/device/radio/signaler/attackby(obj/item/W as obj, mob/user as mob)
 	frequency = R_FREQ_LOUDSPEAKERS
 	rand_pos = 0
 	density = 0
-	desc = "A Loudspeaker."
+	var/image/speakerimage = null
+	var/ceilingmounted = FALSE
 
 	New()
 		..()
@@ -1067,6 +1069,16 @@ obj/item/device/radio/signaler/attackby(obj/item/W as obj, mob/user as mob)
 				if(WEST)
 					pixel_x = 21
 
+		if(ceilingmounted)
+			icon_state = "blank"
+			speakerimage = image(src.icon,src,initial(src.icon_state),PLANE_NOSHADOW_ABOVE -1,src.dir)
+			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_image(speakerimage)
+			speakerimage.alpha = 200
+
+	ceiling
+		desc = "A ceiling mounted loudspeaker."
+		icon_state = "loudspeaker-ceiling"
+		ceilingmounted = TRUE
 	north
 		dir = NORTH
 	south
@@ -1076,21 +1088,20 @@ obj/item/device/radio/signaler/attackby(obj/item/W as obj, mob/user as mob)
 	west
 		dir = WEST
 
-//You can't talk into it to send a message
-/obj/item/device/radio/intercom/loudspeaker/speaker/hear_talk()
-	return
+	//You can't talk into it to send a message
+	hear_talk()
+		return
 
 	//listening seems to refer to the device listening to the signals, not listening to voice
+	send_hear()
+		var/list/hear = ..()
 
-/obj/item/device/radio/intercom/loudspeaker/speaker/send_hear()
-	var/list/hear = ..()
+		for (var/mob/M in hear)
 
-	for (var/mob/M in hear)
-
-		flick("loudspeaker-transmitting",src)
-		playsound(src.loc, 'sound/misc/talk/speak_1.ogg', 50, 1)
-	return hear
+			flick("loudspeaker-transmitting",src)
+			playsound(src.loc, 'sound/misc/talk/speak_1.ogg', 50, 1)
+		return hear
 
 
-/obj/item/device/radio/intercom/loudspeaker/speaker/attack_hand(mob/user as mob)
-	return
+	attack_hand(mob/user as mob)
+		return
