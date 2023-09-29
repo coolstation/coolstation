@@ -5121,10 +5121,6 @@
 /obj/machinery/light/fluorescent/auto/neutral,
 /turf/floor/caution/north,
 /area/station/crew_quarters/fitness)
-"coK" = (
-/obj/table/reinforced/bar/auto,
-/turf/floor/wood/seven,
-/area/station/crew_quarters/bar)
 "coS" = (
 /obj/lattice,
 /obj/grille/catwalk,
@@ -15401,8 +15397,10 @@
 /turf/floor/plating,
 /area/station/maintenance/inner/ne)
 "gAu" = (
-/obj/table/reinforced/bar/auto,
 /obj/machinery/cashreg,
+/obj/table/reinforced/bar{
+	icon_state = "12"
+	},
 /turf/floor/wood/seven,
 /area/station/crew_quarters/bar)
 "gAA" = (
@@ -19876,8 +19874,10 @@
 /turf/floor,
 /area/station/hallway/primary/north)
 "iwh" = (
-/obj/table/reinforced/bar/auto,
 /obj/item/clothing/head/cakehat,
+/obj/table/reinforced/bar{
+	icon_state = "5"
+	},
 /turf/floor/wood/seven,
 /area/station/crew_quarters/bar)
 "iwj" = (
@@ -20244,8 +20244,10 @@
 /turf/floor/airless/engine/vacuum,
 /area/station/engine/combustion_chamber)
 "iCN" = (
-/obj/table/reinforced/bar/auto,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe,
+/obj/table/reinforced/bar{
+	icon_state = "12"
+	},
 /turf/floor/wood/seven,
 /area/station/crew_quarters/bar)
 "iCV" = (
@@ -21070,10 +21072,12 @@
 /turf/floor,
 /area/station/hydroponics/lobby)
 "iTJ" = (
-/obj/table/reinforced/bar/auto,
 /obj/item/decoration/ashtray,
 /obj/item/decoration/flower_vase/vase7{
 	pixel_x = 13
+	},
+/obj/table/reinforced/bar{
+	icon_state = "12"
 	},
 /turf/floor/wood/seven,
 /area/station/crew_quarters/bar)
@@ -24307,11 +24311,13 @@
 /turf/floor,
 /area/station/hallway/primary/central)
 "kja" = (
-/obj/table/reinforced/bar/auto,
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
 /obj/item/decoration/ashtray,
+/obj/table/reinforced/bar{
+	icon_state = "3"
+	},
 /turf/floor/wood/seven,
 /area/station/crew_quarters/bar)
 "kjg" = (
@@ -32148,7 +32154,6 @@
 	},
 /area/station/engine/substation/west)
 "nrP" = (
-/obj/table/reinforced/bar/auto,
 /obj/item/game_kit,
 /obj/item/implant/projectile/bardart{
 	pixel_x = -5;
@@ -32160,6 +32165,9 @@
 	pixel_y = 3
 	},
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/table/reinforced/bar{
+	icon_state = "3"
+	},
 /turf/floor/wood/seven,
 /area/station/crew_quarters/bar)
 "nsb" = (
@@ -51855,8 +51863,10 @@
 /turf/floor/white,
 /area/station/science/lobby)
 "vou" = (
-/obj/table/reinforced/bar/auto,
 /obj/item/decoration/ashtray,
+/obj/table/reinforced/bar{
+	icon_state = "12"
+	},
 /turf/floor/wood/seven,
 /area/station/crew_quarters/bar)
 "vow" = (
@@ -94816,7 +94826,7 @@ iVN
 iVN
 bTx
 pWf
-coK
+cnW
 vRQ
 jJD
 jgZ
@@ -96024,7 +96034,7 @@ baH
 fwX
 hOX
 fex
-coK
+cnW
 qqa
 jJD
 iVN
