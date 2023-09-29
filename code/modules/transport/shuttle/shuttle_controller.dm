@@ -173,6 +173,8 @@ datum/shuttle_controller
 						boutput(world, "<B>The Emergency Shuttle has docked with the station! You have [timeleft()/60] minutes to board the Emergency Shuttle.</B>")
 						ircbot.event("shuttledock")
 						world << csound("sound/misc/shuttle_arrive1.ogg")
+						for(var/obj/machinery/light/emergency/shuttle/L in world)
+							L.power_change()
 
 						processScheduler.enableProcess("Fluid_Turfs")
 
@@ -294,6 +296,8 @@ datum/shuttle_controller
 						settimeleft(SHUTTLETRANSITTIME)
 						boutput(world, "<B>The Emergency Shuttle has left for CentCom! It will arrive in [timeleft()/60] minute[s_es(timeleft()/60)]!</B>")
 						world << csound("sound/misc/shuttle_enroute.ogg")
+						for(var/obj/machinery/light/emergency/shuttle/L in world)
+							L.power_change()
 						//online = 0
 
 						SPAWN_DBG(1 SECOND)
