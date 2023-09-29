@@ -1004,7 +1004,7 @@
 //special handling for lights that should only be on when the shuttle has docked with the station
 
 /obj/machinery/light/emergency/shuttle/power_change()
-	if(emergency_shuttle.online)
+	if(emergency_shuttle?.online)
 		if(emergency_shuttle.location == SHUTTLE_LOC_STATION)
 			src.on = TRUE
 			src.icon_state = "[on_state]"
