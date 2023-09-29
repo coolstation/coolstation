@@ -1039,9 +1039,14 @@
 /turf/floor/plating,
 /area/station/maintenance/outer/nw)
 "auI" = (
-/obj/decal/poster/wallsign/escape_right,
-/turf/floor/neutral/side,
-/area/station/hallway/primary/northwest)
+/obj/machinery/light/emergency{
+	dir = 8
+	},
+/turf/floor/wood/seven,
+/area/station/crew_quarters/quartersA{
+	mail_tag = "Crew Quarters";
+	name = "Crew Quarters"
+	})
 "auU" = (
 /obj/machinery/atmospherics/pipe/manifold{
 	dir = 4
@@ -1962,10 +1967,14 @@
 /turf/floor/plating,
 /area/station/chapel/sanctuary)
 "aQi" = (
-/obj/disposalpipe/segment/mail/horizontal,
-/obj/decal/poster/wallsign/escape_right,
-/turf/floor,
-/area/station/hallway/primary/west)
+/obj/machinery/light/fluorescent/neutral{
+	dir = 8
+	},
+/turf/floor/wood/seven,
+/area/station/crew_quarters/quartersA{
+	mail_tag = "Crew Quarters";
+	name = "Crew Quarters"
+	})
 "aQl" = (
 /turf/floor/engine/caution/west,
 /area/station/engine/core)
@@ -4449,7 +4458,9 @@
 	pixel_y = 2
 	},
 /obj/window/reinforced/north,
-/obj/table/reinforced/medical/auto,
+/obj/table/reinforced/medical{
+	icon_state = "13"
+	},
 /turf/floor/white,
 /area/station/medical/medbay/lobby)
 "bXe" = (
@@ -7471,6 +7482,7 @@
 "drg" = (
 /obj/table/wood/auto/desk,
 /obj/item/clothing/under/misc/lawyer/red,
+/obj/machinery/light/small/ceiling/reddish,
 /turf/floor/carpet/red/standard/narrow/north,
 /area/station/crew_quarters/courtroom)
 "drj" = (
@@ -8133,7 +8145,9 @@
 "dDY" = (
 /obj/machinery/door/window/northleft,
 /obj/machinery/cashreg,
-/obj/table/reinforced/medical/auto,
+/obj/table/reinforced/medical{
+	icon_state = "13"
+	},
 /turf/floor/white,
 /area/station/medical/medbay/lobby)
 "dEe" = (
@@ -9954,7 +9968,7 @@
 /turf/floor/plating,
 /area/station/engine/elect)
 "esw" = (
-/obj/machinery/light/small/neutral{
+/obj/machinery/light/fluorescent/neutral{
 	dir = 4
 	},
 /turf/floor/wood/seven,
@@ -10468,10 +10482,10 @@
 /turf/floor,
 /area/station/hallway/primary/south)
 "eDX" = (
-/obj/machinery/light/fluorescent/auto/cool/very,
 /obj/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/light/fluorescent/cool/very,
 /turf/floor/sanitary,
 /area/station/crew_quarters/showers)
 "eEb" = (
@@ -13180,7 +13194,7 @@
 /turf/floor/plating,
 /area/station/crewquarters/fuq3)
 "fFc" = (
-/obj/machinery/light/small/neutral{
+/obj/machinery/light/fluorescent/neutral{
 	dir = 1
 	},
 /turf/floor/carpet/blue/standard/narrow/north,
@@ -13656,7 +13670,7 @@
 /area/station/storage/secure)
 "fPy" = (
 /obj/table/auto/desk,
-/obj/machinery/light/small/neutral{
+/obj/machinery/light/fluorescent/neutral{
 	dir = 1
 	},
 /turf/floor/carpet/green/standard,
@@ -15617,8 +15631,7 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 5
 	},
-/obj/machinery/light_switch/auto,
-/obj/machinery/disposal/mail/autotag,
+/obj/machinery/disposal/mail/small/autotag/north,
 /turf/floor/purple,
 /area/station/science/research_director)
 "gEO" = (
@@ -18590,7 +18603,7 @@
 /area/station/science/lab)
 "hSe" = (
 /obj/table/auto/desk,
-/obj/machinery/light/small/neutral{
+/obj/machinery/light/fluorescent/neutral{
 	dir = 1
 	},
 /turf/floor/carpet/red,
@@ -18651,11 +18664,10 @@
 /turf/floor/carpet/blue/fancy,
 /area/station/bridge)
 "hTV" = (
-/obj/machinery/light/emergency{
+/obj/machinery/light/fluorescent/neutral{
 	dir = 8
 	},
-/obj/machinery/light/fluorescent/auto/neutral,
-/turf/floor/wood/seven,
+/turf/floor/carpet/blue/standard/edge/west,
 /area/station/crew_quarters/quartersA{
 	mail_tag = "Crew Quarters";
 	name = "Crew Quarters"
@@ -24391,15 +24403,19 @@
 /turf/floor/white,
 /area/station/science/server_room/warm)
 "kkh" = (
-/obj/disposalpipe/segment{
+/obj/railing/yellow{
 	dir = 4
 	},
-/obj/cable{
-	icon_state = "4-8"
+/obj/stool/chair/wooden{
+	dir = 4
 	},
-/obj/decal/poster/wallsign/escape_left,
-/turf/floor/plating,
-/area/station/maintenance/outer/south)
+/obj/machinery/light/fluorescent/ceiling/neutral{
+	dir = 4
+	},
+/turf/floor/carpet/purple/fancy/edge{
+	dir = 4
+	},
+/area/station/crew_quarters/courtroom)
 "klc" = (
 /obj/machinery/power/data_terminal,
 /obj/machinery/networked/radio,
@@ -25657,19 +25673,14 @@
 /turf/space,
 /area/station/solar/north)
 "kJe" = (
-/obj/cable/blue{
-	icon_state = "4-8"
+/obj/disposalpipe/segment/morgue{
+	dir = 4
 	},
-/obj/disposalpipe/segment/mail/horizontal,
-/obj/decal/poster/wallsign/escape_left,
-/obj/machinery/atmospherics/pipe/simple/insulated/cold{
-	can_rupture = 0;
-	dir = 4;
-	level = 1;
-	name = "cold loop purge pipe"
+/obj/decal/poster/wallsign/escape_left{
+	pixel_y = 30
 	},
-/turf/floor/purple/side,
-/area/station/hallway/primary/southeast)
+/turf/floor/plating,
+/area/station/maintenance/outer/south)
 "kJo" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -26067,6 +26078,9 @@
 /area/station/medical/medbay/surgery)
 "kQv" = (
 /obj/cryotron,
+/obj/machinery/light/fluorescent/neutral{
+	dir = 8
+	},
 /turf/floor/caution/south,
 /area/station/crew_quarters/quartersA{
 	mail_tag = "Crew Quarters";
@@ -28819,7 +28833,7 @@
 /turf/floor/shuttlebay,
 /area/station/mining/refinery)
 "maR" = (
-/obj/machinery/light/small/neutral,
+/obj/machinery/light/fluorescent/neutral,
 /turf/floor/wood/seven,
 /area/station/crew_quarters/quartersA{
 	mail_tag = "Crew Quarters";
@@ -29809,7 +29823,9 @@
 /area/station/quartermaster/cargobay)
 "muU" = (
 /obj/stool/chair/comfy,
-/obj/machinery/light/fluorescent/auto/warm,
+/obj/machinery/light/fluorescent/warm{
+	dir = 1
+	},
 /turf/floor/carpet/green/fancy/narrow{
 	dir = 9
 	},
@@ -36942,7 +36958,9 @@
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "pmX" = (
-/obj/machinery/light/fluorescent/auto/cool/very,
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 1
+	},
 /turf/floor/sanitary,
 /area/station/crew_quarters/showers)
 "pnd" = (
@@ -38130,15 +38148,6 @@
 	},
 /turf/floor/shuttlebay,
 /area/station/hangar/main)
-"pPI" = (
-/obj/stool/chair/wooden{
-	dir = 4
-	},
-/obj/machinery/light/fluorescent/auto/neutral,
-/turf/floor/carpet/purple/fancy{
-	icon_state = "fpurple1"
-	},
-/area/station/crew_quarters/courtroom)
 "pPJ" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -38993,9 +39002,11 @@
 /area/station/crew_quarters/baroffice)
 "qfj" = (
 /obj/stool/chair/comfy,
-/obj/machinery/light/fluorescent/auto/warm,
 /obj/item/clothing/head/powdered_wig,
 /obj/item/clothing/suit/judgerobe,
+/obj/machinery/light/fluorescent/warm{
+	dir = 1
+	},
 /turf/floor/carpet/green/fancy/narrow{
 	dir = 5
 	},
@@ -39586,7 +39597,7 @@
 /area/station/crew_quarters/barber_shop)
 "qsQ" = (
 /obj/table/auto/desk,
-/obj/machinery/light/small/neutral{
+/obj/machinery/light/fluorescent/neutral{
 	dir = 1
 	},
 /turf/floor/carpet/purple/standard,
@@ -41524,7 +41535,9 @@
 /turf/floor,
 /area/station/crew_quarters/fitness)
 "rkJ" = (
-/obj/decal/poster/wallsign/escape_left,
+/obj/decal/poster/wallsign/escape_left{
+	pixel_y = 30
+	},
 /turf/floor/plating,
 /area/station/maintenance/southeast)
 "rll" = (
@@ -44085,8 +44098,10 @@
 	desc = "A remote control switch for a series of heavy doors because medbay's outta control.";
 	id = "lockdown_mgrudge";
 	name = "medbay grudge button";
+	pixel_x = -9;
 	pixel_y = 24
 	},
+/obj/machinery/light_switch/auto,
 /turf/floor/purplewhite{
 	dir = 1
 	},
@@ -44389,7 +44404,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/light/small/neutral{
+/obj/machinery/light/fluorescent/neutral{
 	dir = 4
 	},
 /turf/floor/carpet/blue/standard/edge/east,
@@ -45964,7 +45979,9 @@
 "tbb" = (
 /obj/item/paper/book/from_file/pocketguide/medical,
 /obj/machinery/door/window/northright,
-/obj/table/reinforced/medical/auto,
+/obj/table/reinforced/medical{
+	icon_state = "13"
+	},
 /turf/floor/white,
 /area/station/medical/medbay/lobby)
 "tbk" = (
@@ -47467,7 +47484,9 @@
 /obj/machinery/door/window/westright,
 /obj/window/reinforced/north,
 /obj/machinery/phone,
-/obj/table/reinforced/medical/auto,
+/obj/table/reinforced/medical{
+	icon_state = "6"
+	},
 /turf/floor/white,
 /area/station/medical/medbay/lobby)
 "tEg" = (
@@ -47708,7 +47727,6 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/decal/poster/wallsign/escape_left,
 /obj/machinery/light/emergency,
 /turf/floor/blue/side{
 	dir = 0
@@ -49898,11 +49916,6 @@
 	dir = 1
 	},
 /area/station/medical/head)
-"uAS" = (
-/obj/decal/poster/wallsign/escape_left,
-/obj/disposalpipe/segment/mail/horizontal,
-/turf/floor/yellow/side,
-/area/station/hallway/primary/northeast)
 "uBe" = (
 /obj/shitty_radio/shitty_tv,
 /turf/floor,
@@ -56543,6 +56556,7 @@
 "xcX" = (
 /obj/table/wood/auto/desk,
 /obj/item/clothing/under/misc/lawyer,
+/obj/machinery/light/small/ceiling/blueish,
 /turf/floor/carpet/blue/standard/narrow/north,
 /area/station/crew_quarters/courtroom)
 "xda" = (
@@ -87015,7 +87029,7 @@ fZT
 uRf
 oYQ
 wwn
-aQi
+rnz
 eKq
 xzG
 xzG
@@ -89702,7 +89716,7 @@ xZu
 vMA
 jMx
 wYU
-auI
+bYd
 erf
 wlo
 cLL
@@ -91549,10 +91563,10 @@ uoo
 xQj
 uoo
 lxP
-pPI
 bHo
 bHo
-pPI
+bHo
+bHo
 uQr
 jVG
 jVG
@@ -91851,10 +91865,10 @@ uoo
 dRb
 rtu
 igt
+kkh
 lBT
 lBT
-lBT
-lBT
+kkh
 xaL
 jVG
 pyf
@@ -94244,10 +94258,10 @@ ykB
 xZY
 fCN
 gle
+auI
 yeP
-hTV
 gle
-yeP
+aQi
 yeP
 yeP
 yeP
@@ -94848,7 +94862,7 @@ ykB
 xZY
 fCN
 gqo
-yeP
+esw
 yeP
 yeP
 gqo
@@ -95463,7 +95477,7 @@ xeP
 sXL
 pSd
 pSd
-pSd
+hTV
 pSd
 sEq
 fOb
@@ -98848,8 +98862,8 @@ jXT
 wXN
 kxd
 gml
-xPx
-kkh
+kJe
+fzU
 qqj
 mAe
 aWc
@@ -110538,7 +110552,7 @@ xbw
 qFi
 lye
 ylI
-uAS
+woT
 nSM
 kyP
 inK
@@ -116333,7 +116347,7 @@ xyI
 meS
 onb
 lYK
-kJe
+tmT
 xav
 oTO
 wdt
