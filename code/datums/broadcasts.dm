@@ -381,7 +381,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		list("Smoke cigarettes today!", 6 SECONDS, "hank", "cigarettes-A"),\
 		list("Oh, they're so smooth! I love smoking cigarettes!", 6 SECONDS, "rachelle", "cigarettes-B"),\
 	)
-
+	group_messages = TRUE
 	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
 /datum/directed_broadcast/hotdogs
@@ -397,7 +397,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		list("Come down and get some dogs in you.", 8 SECONDS, "Frank", "hotdogs-B"),\
 		list("Probably safe!", 4 SECONDS, "Frank", "hotdogs-B"),\
 	)
-
+	group_messages = TRUE
 	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
 /datum/directed_broadcast/emergency
@@ -429,6 +429,23 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 	messages = list("Please stand by for an emergency broadcast.", 6 SECONDS, null, "emergency-A")
 
 	broadcast_channels = list(TR_CAT_TEEVEE_BROADCAST_RECEIVERS, TR_CAT_FINITE_BROADCAST_RECEIVERS , TR_CAT_RADIO_BROADCAST_RECEIVERS)
+
+/datum/directed_broadcast/signoff
+	id = "signoff"
+
+	New()
+		..()
+
+		messages = list(\
+			list("That is it for our programming schedule.", 6 SECONDS, null, "emergency-A"),\
+			list("This is CoolTV, signing off.", 6 SECONDS, null, "emergency-A"),\
+			list("*shitty corporate jingle*", 6 SECONDS, null, "emergency-A"),\
+			)
+
+	priority = 1 //last one to play
+	progress_when_silent = FALSE
+
+	broadcast_channels = list(TR_CAT_TEEVEE_BROADCAST_RECEIVERS)
 
 
 #undef LOOP_INFINITELY
