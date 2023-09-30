@@ -58,6 +58,24 @@
 						//shift half a tile south
 						pixel_y -= 16
 
+	//this thing does two things: turn on, and turn off
+	proc/shuttle_pathlights()
+		if(emergency_shuttle?.online)
+			if(emergency_shuttle.location == SHUTTLE_LOC_STATION)
+				src.icon_state = "[on_state]"
+				glow_cutout = image('icons/obj/pathlights.dmi', src.icon_state, -1)
+				glow_cutout.plane = PLANE_LIGHTING
+				glow_cutout.blend_mode = BLEND_ADD
+				glow_cutout.layer = LIGHTING_LAYER_BASE
+				glow_cutout.color = list(0.33,0.33,0.33, 0.33,0.33,0.33, 0.33,0.33,0.33)
+				src.UpdateOverlays(glow_cutout, "on_state")
+				return
+			else
+				src.icon_state = "blank"
+				src.ClearAllOverlays()
+				src.glow_cutout = null
+
+		return
 //the first half of the full light sequence, for building corners and intersections. direction is direction of light path
 //for example, first half dir north + second half dir north = just a normal full light sequence dir north
 	firsthalf
@@ -143,22 +161,3 @@
 
 			alt
 				pixel_x = -16
-
-	//this thing does two things: turn on, and turn off
-	proc/shuttle_pathlights()
-		if(emergency_shuttle?.online)
-			if(emergency_shuttle.location == SHUTTLE_LOC_STATION)
-				src.icon_state = "[on_state]"
-				glow_cutout = image('icons/obj/pathlights.dmi', src.icon_state, -1)
-				glow_cutout.plane = PLANE_LIGHTING
-				glow_cutout.blend_mode = BLEND_ADD
-				glow_cutout.layer = LIGHTING_LAYER_BASE
-				glow_cutout.color = list(0.33,0.33,0.33, 0.33,0.33,0.33, 0.33,0.33,0.33)
-				src.UpdateOverlays(glow_cutout, "on_state")
-				return
-			else
-				src.icon_state = "blank"
-				src.ClearAllOverlays()
-				src.glow_cutout = null
-
-		return
