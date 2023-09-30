@@ -742,9 +742,9 @@
 		setMaterial(getMaterial("coral"))
 
 //Tsela walls!
-/turf/unsimulated/wall/auto/snow
+/turf/wall/auto/snow
 	icon = 'icons/turf/walls_snow.dmi'
-	connects_to = list(/turf/unsimulated/wall/auto/snow)
+	connects_to = list(/turf/wall/auto/snow)
 	name = "Thickly Packed Snow"
 	desc = "How this withstands the insane winds of this world, you'll never know"
 	mod = "snow-"
