@@ -174,7 +174,9 @@ datum/shuttle_controller
 						ircbot.event("shuttledock")
 						world << csound("sound/misc/shuttle_arrive1.ogg")
 						for(var/obj/machinery/light/emergency/shuttle/L in world)
-							L.power_change()
+							L.power_change() //this is the old heavy bad one but it works right now
+						for(var/obj/pathlights/shuttle/L in world)
+							L.shuttle_pathlights() //this will be the new one and doesn't work
 
 						processScheduler.enableProcess("Fluid_Turfs")
 
@@ -297,7 +299,9 @@ datum/shuttle_controller
 						boutput(world, "<B>The Emergency Shuttle has left for CentCom! It will arrive in [timeleft()/60] minute[s_es(timeleft()/60)]!</B>")
 						world << csound("sound/misc/shuttle_enroute.ogg")
 						for(var/obj/machinery/light/emergency/shuttle/L in world)
-							L.power_change()
+							L.power_change() //old bad working
+						for(var/obj/pathlights/shuttle/L in world)
+							L.shuttle_pathlights() //new good wip
 						//online = 0
 
 						SPAWN_DBG(1 SECOND)
