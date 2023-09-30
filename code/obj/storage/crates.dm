@@ -206,38 +206,57 @@
 	name = "dumpster"
 	desc = "A regular sized dumpster."
 	icon = 'icons/obj/items/storage.dmi'
+	density = 1
 	icon_state = "dumpster"
 	icon_opened = "dumpsteropen"
 	icon_closed = "dumpster"
-
-	icon_state = "dumpster"
-	icon_opened = "dumpsteropen"
-	icon_closed = "dumpsteropen"
 
 	close()
 		return
 
 	/obj/storage/crate/dumpster/full
 		desc = "A regular sized dumpster with a non regular smell. Holy shit, what IS that?"
+		icon_state = "dumpster"
+		icon_opened = "dumpsteropen-trash"
+		icon_closed = "dumpster"
+
+		open(var/entangleLogic, var/mob/user)
+			..()
+			//someone is making a mistake
+			//i should make this take a crowbar. and also make it a fakeobject...
+			if(user)
+				boutput(user,"<span class='alert'>You manage to pry open the dumpster and... Oh fuck, what have you done? [src] will never close again with all that, and it smells SO AWFUL.</span>")
+				if(prob(70))
+					boutput(user,"<span class='alert'>God, and you stirred up all the absolute filth in there!</span>")
+					user.emote(pick("cry","cough"))
+				else
+					boutput(user,"<span class='alert'><B>SOME OF THE JUICES GOT IN YOUR MOUTH.<B></span>")
+					user.emote("scream")
+					user.vomit()//add reagents after they barf
+					switch(rand(1-3))
+						if (1) user.reagents.add_reagent("grime",5)
+						if (2) user.reagents.add_reagent("slime",5)
+						if (3) user.reagents.add_reagent("yuck",5)
 
 		toggle(var/mob/user)
-			if (src.open)
-				boutput(user,"<span class='alert'>Try as you might, that \the [src] is way too full for you to try to close again!</span>")
-				if(prob(70))
-					boutput(user,"<span class='alert'>Oh fuck, you only managed to stir up even more of the stink and garbage juice!</span>")
-					user.emote(pick("cough","gag"))
-					if (prob(30))
+			//someone is making another mistake
+			if(user)
+				if (src.open)
+					boutput(user,"<span class='alert'>Try as you might, that \the [src] is way too full for you to try to close again!</span>")
+					if(prob(70)) //get off lucky
+						boutput(user,"<span class='alert'>Oh fuck, you only managed to stir up even more of the stink and garbage juice!</span>")
+						user.emote(pick("cough","gag"))
+					else //have a bad time
 						boutput(user,"<span class='alert'><B>SOME OF THE JUICES GOT IN YOUR MOUTH.<B></span>")
 						user.emote("scream")
 						user.vomit()
-						//add reagents after they barf
 						switch(rand(1,3)) //congratulations you lose
 							if (1) user.reagents.add_reagent("grime",5)
 							if (2) user.reagents.add_reagent("slime",5)
 							if (3) user.reagents.add_reagent("yuck",5)
-			if (user)
-				return src.open(null,user)
-			return src.open()
+				else return src.open(user)
+			else
+				return src.open()
 
 		hitby(atom/movable/MO, datum/thrown_thing/thr)
 			if(isitem(MO))
@@ -249,7 +268,6 @@
 				var/mob/living/carbon/human/H = MO
 				H.set_loc(get_turf(src)) //ignore density
 				logTheThing("combat", H, null, "is thrown into a FULL [src.name] at [log_loc(src)].")
-
 
 				if(prob(30))
 					H.visible_message("<span class='alert'><B>[H] gets tossed <i>into</i> [src]!</B></span>","<span class='alert'>Oh, hey, all this garbage cushioned your fall...</span>")
@@ -274,22 +292,6 @@
 
 			else
 				return ..()
-
-		open(var/entangleLogic, var/mob/user)
-			..()
-			boutput(user,"<span class='alert'>Oh fuck, what have you done? [src] will never close again with all that, and it smells SO AWFUL.</span>")
-			if(prob(70))
-				boutput(user,"<span class='alert'>God, and you stirred up all the absolute filth in there!</span>")
-				user.emote(pick("cry","cough"))
-				if (prob(30))
-					boutput(user,"<span class='alert'><B>SOME OF THE JUICES GOT IN YOUR MOUTH.<B></span>")
-					user.emote("scream")
-					user.vomit()
-					switch(rand(1-3)) //add this after they barf
-						if (1) user.reagents.add_reagent("grime",5)
-						if (2) user.reagents.add_reagent("slime",5)
-						if (3) user.reagents.add_reagent("yuck",5)
-
 
 /obj/storage/crate/adventure
 	name = "adventure crate"
