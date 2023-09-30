@@ -828,6 +828,8 @@
 	if (pow_stat && wire_powered)
 		return 1
 	var/area/A = get_area(src)
+	if (A.type == /area/space) //exact match, shouldn't bother the fixes done for /space/gehenna blowouts
+		return 1
 	return A ? A.lightswitch && A.power_light : 0
 
 // ai attack - do nothing
@@ -964,6 +966,8 @@
 	if(src.loc) //TODO fix the dispose proc for this so that when it is sent into the delete queue it doesn't try and exec this
 		var/area/A = get_area(src)
 		var/state = A.lightswitch && A.power_light
+		if (A.type == "/area/space") //oh hm, okay,
+			state =  1 //sure
 		//if (shipAlertState == SHIP_ALERT_BAD) state = 0
 		seton(state)
 

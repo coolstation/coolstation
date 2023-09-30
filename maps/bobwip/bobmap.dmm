@@ -3773,7 +3773,7 @@
 	areastring = "Monkey Dome"
 	},
 /turf/floor/plating,
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/fitness)
 "bGZ" = (
 /obj/disposalpipe/segment,
 /obj/cable/white{
@@ -5270,7 +5270,7 @@
 	name = "southeast hallway repressurization tank"
 	},
 /turf/floor/plating,
-/area/station/maintenance/inner/central)
+/area/station/maintenance/outer/se)
 "csn" = (
 /obj/wingrille_spawn/fakethindow/reinforced,
 /turf/floor/shuttle,
@@ -6323,9 +6323,6 @@
 /obj/disposalpipe/segment/brig,
 /obj/cable{
 	icon_state = "1-2"
-	},
-/obj/machinery/light/emergency{
-	dir = 8
 	},
 /obj/machinery/light/fluorescent/auto/harsh/very,
 /turf/floor/red/side{
@@ -13083,9 +13080,6 @@
 "fBY" = (
 /turf/floor/shuttlebay,
 /area/listeningpost/power)
-"fCA" = (
-/turf/wall,
-/area/station/maintenance/inner/central)
 "fCC" = (
 /turf/floor/blue/checker,
 /area/station/medical/dome)
@@ -16694,7 +16688,7 @@
 	name = "Air Reserve (Southeast Hallway)"
 	},
 /turf/floor/plating,
-/area/station/maintenance/inner/central)
+/area/station/maintenance/outer/se)
 "hct" = (
 /obj/storage/secure/filing_cabinet,
 /obj/cable/blue{
@@ -18667,14 +18661,17 @@
 /turf/floor/carpet/blue/fancy,
 /area/station/bridge)
 "hTV" = (
-/obj/machinery/light/fluorescent/neutral{
+/obj/disposalpipe/segment/brig,
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/light/emergency{
 	dir = 8
 	},
-/turf/floor/carpet/blue/standard/edge/west,
-/area/station/crew_quarters/quartersA{
-	mail_tag = "Crew Quarters";
-	name = "Crew Quarters"
-	})
+/turf/floor/red/side{
+	dir = 8
+	},
+/area/station/security/main)
 "hUA" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 4
@@ -24406,19 +24403,14 @@
 /turf/floor/white,
 /area/station/science/server_room/warm)
 "kkh" = (
-/obj/railing/yellow{
-	dir = 4
+/obj/machinery/light/fluorescent/neutral{
+	dir = 8
 	},
-/obj/stool/chair/wooden{
-	dir = 4
-	},
-/obj/machinery/light/fluorescent/ceiling/neutral{
-	dir = 4
-	},
-/turf/floor/carpet/purple/fancy/edge{
-	dir = 4
-	},
-/area/station/crew_quarters/courtroom)
+/turf/floor/carpet/blue/standard/edge/west,
+/area/station/crew_quarters/quartersA{
+	mail_tag = "Crew Quarters";
+	name = "Crew Quarters"
+	})
 "klc" = (
 /obj/machinery/power/data_terminal,
 /obj/machinery/networked/radio,
@@ -25676,14 +25668,19 @@
 /turf/space,
 /area/station/solar/north)
 "kJe" = (
-/obj/disposalpipe/segment/morgue{
+/obj/railing/yellow{
 	dir = 4
 	},
-/obj/decal/poster/wallsign/escape_left{
-	pixel_y = 30
+/obj/stool/chair/wooden{
+	dir = 4
 	},
-/turf/floor/plating,
-/area/station/maintenance/outer/south)
+/obj/machinery/light/fluorescent/ceiling/neutral{
+	dir = 4
+	},
+/turf/floor/carpet/purple/fancy/edge{
+	dir = 4
+	},
+/area/station/crew_quarters/courtroom)
 "kJo" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -38151,6 +38148,15 @@
 	},
 /turf/floor/shuttlebay,
 /area/station/hangar/main)
+"pPI" = (
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/obj/decal/poster/wallsign/escape_left{
+	pixel_y = 30
+	},
+/turf/floor/plating,
+/area/station/maintenance/outer/south)
 "pPJ" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -43075,7 +43081,7 @@
 "rQH" = (
 /obj/disposalpipe/segment/crematorium,
 /turf/wall,
-/area/station/medical/dome)
+/area/station/crew_quarters/fitness)
 "rQJ" = (
 /obj/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
@@ -44252,7 +44258,7 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/engineering_atmos,
 /turf/floor/plating,
-/area/station/atmos/hookups/southwest)
+/area/station/maintenance/outer/south)
 "snp" = (
 /turf/floor/blue/checker,
 /area/station/medical/research)
@@ -50930,6 +50936,9 @@
 	icon_state = "2-4"
 	},
 /obj/disposalpipe/segment/mail/bent/north,
+/obj/machinery/light/emergency{
+	dir = 8
+	},
 /turf/floor/red,
 /area/station/security/main)
 "uVX" = (
@@ -57279,10 +57288,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/light/emergency{
+/obj/machinery/light/small/harsh/very{
 	dir = 8
 	},
-/obj/machinery/light/small/harsh/very,
 /turf/floor/red/side{
 	dir = 8
 	},
@@ -82796,7 +82804,7 @@ eIC
 swe
 swe
 cQF
-swe
+hTV
 gSg
 xka
 dFb
@@ -91868,10 +91876,10 @@ uoo
 dRb
 rtu
 igt
-kkh
+kJe
 lBT
 lBT
-kkh
+kJe
 xaL
 jVG
 pyf
@@ -95480,7 +95488,7 @@ xeP
 sXL
 pSd
 pSd
-hTV
+kkh
 pSd
 sEq
 fOb
@@ -98865,7 +98873,7 @@ jXT
 wXN
 kxd
 gml
-kJe
+pPI
 fzU
 qqj
 mAe
@@ -100031,7 +100039,7 @@ dbP
 xaN
 cOQ
 bGT
-xmy
+xaN
 foB
 tDI
 yhs
@@ -100329,11 +100337,11 @@ mSE
 mbm
 whC
 whC
-whC
-fCA
+xaN
+xaN
 eeA
 eTo
-xmy
+xaN
 fCC
 crE
 yhs
@@ -100981,7 +100989,7 @@ xvG
 iBB
 xPx
 fzU
-rYf
+aWc
 rYf
 rYf
 xzG
@@ -101283,7 +101291,7 @@ iBB
 iBB
 xPx
 fzU
-oYH
+xBG
 mAg
 rYf
 xzG
@@ -102189,7 +102197,7 @@ paI
 iBB
 aXP
 dYD
-oYH
+xBG
 liW
 ajh
 rYf
@@ -102491,7 +102499,7 @@ cmf
 sCO
 uRm
 gRV
-oYH
+xBG
 ydY
 ajh
 rYf
@@ -102793,7 +102801,7 @@ iBB
 iBB
 tub
 hqA
-rYf
+aWc
 rYf
 rYf
 rYf

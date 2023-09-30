@@ -4094,9 +4094,9 @@ ABSTRACT_TYPE(/area/mining)
 
 	SPAWN_DBG(1.5 SECONDS)
 		src.power_change()		// all machines set to current power level, also updates lighting icon
-
-	if(area_space_nopower(src))
-		power_equip = power_light = power_environ = 0
+		//now that that's done, do the 687a405 blowout fix
+		if(area_space_nopower(src))
+			power_equip = power_light = power_environ = 0
 
 	if (force_fullbright)
 		overlays += /image/fullbright
