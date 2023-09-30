@@ -460,7 +460,7 @@
 /turf/floor/white,
 /area/station/science/lobby)
 "ajx" = (
-/obj/table/wood/auto/desk,
+/obj/table/wood/auto,
 /turf/floor/wood,
 /area/station/chapel/sanctuary)
 "ajz" = (
@@ -2671,7 +2671,9 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/obj/table/reinforced/auto,
+/obj/table/reinforced{
+	icon_state = "3"
+	},
 /obj/machinery/cashreg,
 /obj/machinery/door/firedoor/border_only,
 /turf/floor,
@@ -4518,7 +4520,7 @@
 /turf/floor/plating,
 /area/station/maintenance/outer/nw)
 "bXA" = (
-/obj/table/wood/auto/desk,
+/obj/table/wood/auto,
 /obj/item/device/light/candle{
 	pixel_y = 17
 	},
@@ -5471,7 +5473,7 @@
 	},
 /area/station/hallway/secondary/exit)
 "cuR" = (
-/obj/table/auto/desk,
+/obj/table/auto,
 /obj/machinery/cashreg,
 /obj/machinery/door/window/southleft{
 	autoclose = 0
@@ -7890,7 +7892,7 @@
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
 "dyx" = (
-/obj/table/wood/auto,
+/obj/table/wood/auto/desk,
 /turf/floor/wood/seven,
 /area/station/crew_quarters/jazz)
 "dyy" = (
@@ -9410,7 +9412,7 @@
 /area/station/turret_protected/ai_module_storage)
 "efA" = (
 /obj/item/device/microphone,
-/obj/table/wood/auto/desk,
+/obj/table/wood/auto,
 /turf/floor/carpet/red/standard,
 /area/station/chapel/sanctuary)
 "efK" = (
@@ -11077,7 +11079,7 @@
 /turf/floor,
 /area/station/crew_quarters/fitness)
 "eNF" = (
-/obj/table/auto/desk,
+/obj/table/auto,
 /obj/machinery/networked/printer{
 	name = "RD's Printer"
 	},
@@ -12789,7 +12791,7 @@
 /turf/floor/plating,
 /area/station/medical/cdc)
 "fvb" = (
-/obj/table/wood/auto/desk,
+/obj/table/wood/auto,
 /obj/machinery/phone,
 /obj/disposalpipe/segment/mail/bent/south,
 /turf/floor/carpet/red/fancy/edge/ne,
@@ -15739,6 +15741,13 @@
 	},
 /turf/floor/plating,
 /area/station/engine/combustion_chamber)
+"gFN" = (
+/obj/machinery/light/emergency/shuttle,
+/obj/item/storage/wall/fire{
+	pixel_x = -32
+	},
+/turf/floor,
+/area/station/hallway/primary/south)
 "gFO" = (
 /obj/disposalpipe/segment/mail/bent/north,
 /turf/floor/yellow/side,
@@ -16026,9 +16035,7 @@
 /turf/wall/r_wall,
 /area/station/science/server_room/warm)
 "gNc" = (
-/obj/table/auto/desk{
-	pixel_x = 3
-	},
+/obj/table/auto,
 /obj/item/device/audio_log{
 	pixel_x = 5;
 	pixel_y = 7
@@ -16193,7 +16200,7 @@
 /turf/space,
 /area/station/hangar/science)
 "gRQ" = (
-/obj/table/auto/desk,
+/obj/table/auto,
 /obj/machinery/cashreg,
 /obj/machinery/door/window/southright,
 /obj/machinery/door/firedoor/border_only,
@@ -16512,7 +16519,9 @@
 /turf/wall/r_wall,
 /area/station/hydroponics/lobby)
 "gXA" = (
-/obj/table/auto/desk,
+/obj/table/reinforced{
+	icon_state = "3"
+	},
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -16562,7 +16571,7 @@
 /turf/floor/wood,
 /area/station/bridge)
 "gYz" = (
-/obj/table/auto/desk,
+/obj/table/gun_workbench,
 /obj/item/pinpointer/disk,
 /turf/floor/wood{
 	icon_state = "wooden"
@@ -19368,7 +19377,7 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
-/obj/table/auto/desk,
+/obj/table/gun_workbench,
 /obj/cable/blue{
 	icon_state = "0-8"
 	},
@@ -20734,6 +20743,13 @@
 	dir = 8
 	},
 /area/station/hydroponics/bay)
+"iLt" = (
+/obj/machinery/light/emergency/shuttle,
+/obj/machinery/light/small/red{
+	dir = 8
+	},
+/turf/floor,
+/area/station/hallway/primary/south)
 "iLA" = (
 /obj/disposalpipe/segment/crematorium,
 /obj/machinery/light/small/warm{
@@ -21547,7 +21563,9 @@
 	},
 /area/station/science/computer_lab)
 "jdr" = (
-/obj/table/auto/desk,
+/obj/table/reinforced{
+	icon_state = "3"
+	},
 /obj/machinery/cashreg,
 /obj/machinery/door/window/eastright,
 /turf/floor/green,
@@ -22649,7 +22667,9 @@
 /area/station/hallway/primary/southeast)
 "jyb" = (
 /obj/disposalpipe/segment/mail/vertical,
-/obj/machinery/light/small/harsh/very,
+/obj/machinery/light/small/harsh/very{
+	dir = 8
+	},
 /turf/floor/red/side{
 	dir = 8
 	},
@@ -24553,7 +24573,7 @@
 /turf/floor,
 /area/station/hallway/primary/west)
 "kmr" = (
-/obj/table/wood/auto/desk,
+/obj/table/wood/auto,
 /obj/item/decoration/ashtray{
 	butts = 5;
 	name = "grubby old ashtray"
@@ -29284,7 +29304,7 @@
 /area/station/maintenance/inner/ne)
 "mgw" = (
 /obj/item/disk/data/tape/master,
-/obj/table/auto/desk,
+/obj/table/auto,
 /obj/item/stamp/rd,
 /turf/floor/purplewhite{
 	dir = 10
@@ -29924,7 +29944,7 @@
 /area/station/hallway/primary/north)
 "mvW" = (
 /obj/machinery/networked/printer,
-/obj/table/auto/desk,
+/obj/table/auto,
 /obj/item/reagent_containers/food/drinks/cola,
 /obj/cable/blue{
 	icon_state = "0-2"
@@ -35662,7 +35682,7 @@
 /turf/wall/r_wall,
 /area/station/engine/coldloop)
 "oLb" = (
-/obj/table/wood/auto/desk,
+/obj/table/wood/auto,
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -36551,7 +36571,7 @@
 /turf/floor/wood,
 /area/station/bridge/captain)
 "peN" = (
-/obj/table/wood/auto/desk,
+/obj/table/wood/auto,
 /obj/item/spraybottle/detective,
 /obj/item/clothing/head/det_hat,
 /obj/disposalpipe/segment/mail/vertical,
@@ -41401,7 +41421,7 @@
 /turf/floor/plating,
 /area/station/storage/eva)
 "rcp" = (
-/obj/table/wood/auto/desk,
+/obj/table/wood/auto,
 /obj/item/device/light/candle{
 	pixel_y = 16
 	},
@@ -41647,7 +41667,9 @@
 /turf/space,
 /area/station/catwalk/east)
 "rjd" = (
-/obj/table/reinforced/auto,
+/obj/table/reinforced{
+	icon_state = "3"
+	},
 /obj/machinery/door/firedoor/border_only,
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor,
@@ -47142,7 +47164,7 @@
 /turf/floor/neutral/side,
 /area/station/hallway/primary/northeast)
 "tvM" = (
-/obj/table/auto/desk,
+/obj/table/auto,
 /turf/floor/purplewhite{
 	dir = 1
 	},
@@ -51245,8 +51267,10 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/light/small/harsh/very,
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/light/small/harsh/very{
+	dir = 1
+	},
 /turf/floor/red/side{
 	dir = 1
 	},
@@ -51934,7 +51958,7 @@
 /turf/floor/yellow,
 /area/station/engine/elect)
 "vki" = (
-/obj/table/auto/desk,
+/obj/table/auto,
 /obj/disposalpipe/segment/mail/vertical,
 /obj/random_item_spawner/desk_stuff/maybe_few,
 /obj/window/reinforced/south,
@@ -53121,7 +53145,7 @@
 "vMf" = (
 /obj/item/disk/data/floppy/read_only/communications,
 /obj/item/disk/data/floppy/read_only/terminal_os,
-/obj/table/auto,
+/obj/table/auto/desk,
 /turf/floor/purplewhite{
 	dir = 1
 	},
@@ -57715,7 +57739,7 @@
 /area/space)
 "xue" = (
 /obj/machinery/networked/storage/scanner,
-/obj/table/auto/desk,
+/obj/table/auto,
 /obj/cable/blue{
 	icon_state = "0-2"
 	},
@@ -58724,7 +58748,7 @@
 /turf/floor,
 /area/station/hallway/primary/north)
 "xOV" = (
-/obj/table/auto/desk,
+/obj/table/gun_workbench,
 /obj/machinery/light/small/auto,
 /turf/floor/wood{
 	icon_state = "wooden"
@@ -90680,8 +90704,8 @@ jzW
 jzW
 mbz
 xWF
-jzW
-jzW
+iLt
+gFN
 jzW
 rup
 rzi
