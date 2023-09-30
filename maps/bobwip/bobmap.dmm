@@ -85,9 +85,7 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 10
 	},
-/obj/table/kitchen_island{
-	anchored = 1
-	},
+/obj/stove,
 /turf/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "acR" = (
@@ -2622,6 +2620,7 @@
 	icon = 'icons/obj/furniture/table_kitchen_solid.dmi';
 	icon_state = "8"
 	},
+/obj/item/soup_pot,
 /turf/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "bhk" = (
@@ -45492,6 +45491,7 @@
 	pixel_x = 10;
 	pixel_y = 13
 	},
+/obj/item/soup_pot,
 /turf/floor/grey/blackgrime,
 /area/station/crew_quarters/kitchen)
 "sLV" = (
