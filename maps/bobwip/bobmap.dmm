@@ -14166,7 +14166,7 @@
 /turf/floor,
 /area/station/janitor/office)
 "fYF" = (
-/obj/table/glass,
+/obj/table/glass/auto,
 /obj/machinery/light/emergency,
 /turf/floor/neutral/side,
 /area/station/hangar/escape)
@@ -23461,7 +23461,7 @@
 /turf/wall,
 /area/station/security/main)
 "jPk" = (
-/obj/table/glass,
+/obj/table/glass/auto,
 /obj/machinery/light/fluorescent/auto/neutral,
 /turf/floor/blue/side{
 	dir = 4
@@ -30444,6 +30444,15 @@
 	mail_tag = "Crew Quarters";
 	name = "Crew Quarters"
 	})
+"mEW" = (
+/obj/decal/poster/wallsign/medbay{
+	pixel_x = 26;
+	pixel_y = 3
+	},
+/turf/floor/blue/side{
+	dir = 4
+	},
+/area/station/hallway/secondary/exit)
 "mFg" = (
 /turf/floor/carpet/blue/standard/innercorner/north,
 /area/station/crew_quarters/quartersA{
@@ -41161,15 +41170,6 @@
 /obj/machinery/light/emergency/shuttle,
 /turf/floor,
 /area/station/hallway/primary/northwest)
-"qYx" = (
-/obj/decal/poster/wallsign/medbay{
-	pixel_x = 26;
-	pixel_y = 3
-	},
-/turf/floor/blue/side{
-	dir = 4
-	},
-/area/station/hallway/secondary/exit)
 "qYL" = (
 /obj/storage/secure/closet/personal{
 	anchored = 1;
@@ -55507,7 +55507,7 @@
 /turf/floor/specialroom/gym,
 /area/station/crew_quarters/fitness)
 "wEv" = (
-/obj/table/glass,
+/obj/table/glass/auto,
 /obj/machinery/light/fluorescent/auto/neutral,
 /turf/floor/neutral/side{
 	dir = 10
@@ -94953,7 +94953,7 @@ veq
 rlW
 vIk
 xtA
-qYx
+mEW
 rlW
 yfn
 uzr
