@@ -1058,7 +1058,14 @@ obj/item/device/radio/signaler/attackby(obj/item/W as obj, mob/user as mob)
 
 	New()
 		..()
-		if(src.pixel_x == 0 && src.pixel_y == 0)
+
+		if(ceilingmounted)
+			icon_state = "blank"
+			speakerimage = image(src.icon,src,initial(src.icon_state),PLANE_NOSHADOW_ABOVE -1,src.dir)
+			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_image(speakerimage)
+			speakerimage.alpha = 100
+
+		else if(src.pixel_x == 0 && src.pixel_y == 0)
 			switch(src.dir)
 				if(NORTH)
 					pixel_y = -14
@@ -1068,12 +1075,6 @@ obj/item/device/radio/signaler/attackby(obj/item/W as obj, mob/user as mob)
 					pixel_x = -21
 				if(WEST)
 					pixel_x = 21
-
-		if(ceilingmounted)
-			icon_state = "blank"
-			speakerimage = image(src.icon,src,initial(src.icon_state),PLANE_NOSHADOW_ABOVE -1,src.dir)
-			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_image(speakerimage)
-			speakerimage.alpha = 100
 
 	ceiling
 		desc = "A ceiling mounted loudspeaker."
@@ -1100,8 +1101,8 @@ obj/item/device/radio/signaler/attackby(obj/item/W as obj, mob/user as mob)
 		var/list/hear = ..()
 
 		for (var/mob/M in hear)
-
-			flick("loudspeaker-transmitting",src)
+			if (!ceilingmounted)
+				flick("loudspeaker-transmitting",src)
 			playsound(src.loc, 'sound/misc/talk/speak_1.ogg', 50, 1)
 		return hear
 
