@@ -669,6 +669,39 @@
 	auto
 		auto = 1
 
+	solid
+		name = "medical cabinet"
+		desc = "A stain-resistant counter which does not have medical supplies in it."
+		icon = 'icons/obj/furniture/table_medical_solid.dmi'
+		auto_type = /obj/table/reinforced/medical/auto
+		parts_type = /obj/item/furniture_parts/table/reinforced/medical
+		has_storage = 1
+
+		auto
+			auto = 1
+
+/obj/table/reinforced/kitchen
+	name = "kitchen cabinet"
+	desc = "A stainless steel commercial kitchen counter which won't stay stainless for long."
+	icon = 'icons/obj/furniture/table_medical.dmi'
+	auto_type = /obj/table/reinforced/medical/auto
+	parts_type = /obj/item/furniture_parts/table/reinforced/medical
+	has_storage = 1
+
+	auto
+		auto = 1
+
+	solid
+		name = "kitchen cabinet"
+		desc = "A stainless steel commercial kitchen counter which won't stay stainless for long."
+		icon = 'icons/obj/furniture/table_medical_solid.dmi'
+		auto_type = /obj/table/reinforced/medical/auto
+		parts_type = /obj/item/furniture_parts/table/reinforced/medical
+		has_storage = 0
+
+		auto
+			auto = 1
+
 /obj/table/reinforced/industrial
 	name = "industrial table"
 	desc = "An industrial table that looks like it has been made out of a scaffolding."
