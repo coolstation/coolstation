@@ -252,11 +252,12 @@
 /turf/floor/wood,
 /area/station/bridge)
 "aeV" = (
-/obj/decal/poster/wallsign/medbay_right,
-/turf/floor/blue/side{
-	dir = 4
+/obj/machinery/light/emergency/shuttle,
+/obj/machinery/light/small/red{
+	dir = 8
 	},
-/area/station/hallway/secondary/exit)
+/turf/floor,
+/area/station/hallway/primary/south)
 "afq" = (
 /obj/stool/chair/pew/fancy/left{
 	dir = 1
@@ -10561,12 +10562,12 @@
 /turf/floor/blue,
 /area/station/medical/medbay/cloner)
 "eFn" = (
-/obj/decal/poster/wallsign/medbay{
-	pixel_x = 26;
-	pixel_y = 3
+/obj/machinery/light/emergency/shuttle,
+/obj/item/storage/wall/fire{
+	pixel_x = -32
 	},
-/turf/wall,
-/area/station/medical/medbay/recovery)
+/turf/floor,
+/area/station/hallway/primary/south)
 "eFq" = (
 /obj/cable{
 	icon_state = "0-4"
@@ -20623,13 +20624,6 @@
 	},
 /turf/floor/plating,
 /area/station/science/gen_storage)
-"iJE" = (
-/obj/machinery/light/emergency/shuttle,
-/obj/machinery/light/small/red{
-	dir = 8
-	},
-/turf/floor,
-/area/station/hallway/primary/south)
 "iJS" = (
 /obj/machinery/light/small/neutral,
 /obj/storage/crate/bin{
@@ -41167,6 +41161,15 @@
 /obj/machinery/light/emergency/shuttle,
 /turf/floor,
 /area/station/hallway/primary/northwest)
+"qYx" = (
+/obj/decal/poster/wallsign/medbay{
+	pixel_x = 26;
+	pixel_y = 3
+	},
+/turf/floor/blue/side{
+	dir = 4
+	},
+/area/station/hallway/secondary/exit)
 "qYL" = (
 /obj/storage/secure/closet/personal{
 	anchored = 1;
@@ -58366,13 +58369,6 @@
 /obj/lattice,
 /turf/space,
 /area/station/engine/coldloop)
-"xFx" = (
-/obj/machinery/light/emergency/shuttle,
-/obj/item/storage/wall/fire{
-	pixel_x = -32
-	},
-/turf/floor,
-/area/station/hallway/primary/south)
 "xFF" = (
 /turf/shuttle/wall{
 	icon_state = "wall3"
@@ -90705,8 +90701,8 @@ jzW
 jzW
 mbz
 xWF
-iJE
-xFx
+aeV
+eFn
 jzW
 rup
 rzi
@@ -94957,8 +94953,8 @@ veq
 rlW
 vIk
 xtA
+qYx
 rlW
-aeV
 yfn
 uzr
 yit
@@ -95259,7 +95255,7 @@ xth
 kay
 bax
 xvR
-eFn
+ppJ
 nbc
 ppJ
 mhR
