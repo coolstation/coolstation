@@ -32,21 +32,20 @@
 
 	//add a permanent disclaimer to the top
 	var/disclaimer_text = {"<span style="font-size:120%;"><b>PHOTOSENSITIVITY WARNING</b>: <br>
-							This game has sudden flashing lights and rapidly cycling colors which cannot be disabled.</span><br>
-							<br>
-							<font color="#4F5FFF">content warning:</font><br>
-							This game contains violence, suicide, gun's, drugs, alcohol and spiders,<br>
-							all depicted in a non-serious or (relatively) non-graphic way.<br>
-							This game also contains farting, screaming, gibs, <font color="#7B3F00">poo</font>,<br>
-							explosions, gas station boner pills, and <font color="red">It</font>ali<font color="green">ans</font>, in a super serious way."}
+							This game has sudden flashing lights and rapidly cycling colors which cannot be disabled.</span><br>"}
 
 	//basic ground rules for new players
 	var/agreement_text = {"
 							<span style="font-size:bigger"><b>PHOTOSENSITIVITY WARNING</b>: This game has sudden flashing lights and rapidly cycling colors that cannot be disabled.
 							If you are sensitive to motion graphics or certain patterns, please use discretion or do not play this game.</span>
-							<br><br>
-							Also this is an 18+ server. You must be at least 18 years old to play here. Not for erotic themes, but because this is a space station for adults.
-							<br><br>
+							<br>
+							<font color="#4F5FFF">content warning:</font><br>
+							This game contains violence, suicide, gun's, drugs, alcohol and spiders,<br>
+							all depicted in a non-serious or (relatively) non-graphic way.<br>
+							This game also contains farting, screaming, gibs, <font color="#7B3F00">poo</font>,<br>
+							explosions, gas station boner pills, and <font color="red">It</font>ali<font color="green">ans</font>, in a super serious way.<br>
+							Also this is an 18+ server. You must be at least 18 years old to play here. Not for erotic themes, but because this is a space station for adults.<br>
+
 							To play on this server you must abide by the <a href=\"byond://winset?command=Rules\">Rules</a>.<br>"}
 
 	//novelty items
