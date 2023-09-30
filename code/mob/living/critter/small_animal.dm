@@ -1611,7 +1611,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	real_name = "pine marten"
 	desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front."
 	icon_state = "marten"
-	lazy_state = "marten-lazy"
+	//lazy_state = "marten-lazy"
 	icon_state_dead = "marten-dead"
 	marten = 1
 
@@ -1641,7 +1641,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 		desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front. This one stinks more than usual."
 		farten = 1
 		icon_state = "farten"
-		lazy_state = "farten-lazy"
+		//lazy_state = "farten-lazy"
 		icon_state_dead = "farten-dead"
 
 /* ================================================ */
