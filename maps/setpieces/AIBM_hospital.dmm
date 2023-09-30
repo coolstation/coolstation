@@ -3,7 +3,7 @@
 /turf/space,
 /area/space)
 "ab" = (
-/turf/grass{
+/turf/floor/grass{
 	density = 1;
 	icon_state = "grass";
 	name = "grass.";
@@ -11,14 +11,14 @@
 	},
 /area/hospital/somewhere)
 "ac" = (
-/turf/grass,
+/turf/floor/grass,
 /area/hospital/somewhere)
 "ad" = (
 /turf/wall/setpieces/hospital/cavern,
 /area/hospital)
 "ae" = (
 /obj/tree1,
-/turf/grass,
+/turf/floor/grass,
 /area/hospital/somewhere)
 "af" = (
 /turf/wall/setpieces/hospital{
@@ -40,13 +40,13 @@
 	dir = 1;
 	icon_state = "stone"
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/hospital/somewhere)
 "aj" = (
 /obj/tree1{
 	dir = 1
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/hospital/somewhere)
 "ak" = (
 /turf/floor/setpieces/hospital/cavern,
@@ -114,12 +114,12 @@
 /obj/grassplug{
 	dir = 8
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 1
 	},
 /area/hospital/somewhere)
 "av" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 1
 	},
 /area/hospital/somewhere)
@@ -127,7 +127,7 @@
 /obj/grassplug{
 	dir = 4
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 1
 	},
 /area/hospital/somewhere)
@@ -135,7 +135,7 @@
 /obj/stone{
 	dir = 4
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/hospital/somewhere)
 "ay" = (
 /turf/floor/setpieces/hospital/cavern,
@@ -185,22 +185,22 @@
 /obj/grassplug{
 	dir = 1
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	icon_state = "grasstodirt";
 	dir = 8
 	},
 /area/hospital/somewhere)
 "aH" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	icon_state = "grasstodirt";
 	dir = 9
 	},
 /area/hospital/somewhere)
 "aI" = (
-/turf/dirt,
+/turf/floor/dirt,
 /area/hospital/somewhere)
 "aJ" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 5
 	},
 /area/hospital/somewhere)
@@ -208,7 +208,7 @@
 /obj/grassplug{
 	dir = 1
 	},
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	icon_state = "grasstodirt";
 	dir = 4
 	},
@@ -254,10 +254,10 @@
 /obj/tree1{
 	dir = 8
 	},
-/turf/grass,
+/turf/floor/grass,
 /area/hospital/somewhere)
 "aS" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	icon_state = "grasstodirt";
 	dir = 8
 	},
@@ -280,10 +280,10 @@
 	invisibility = 100;
 	network = "spooky"
 	},
-/turf/dirt,
+/turf/floor/dirt,
 /area/hospital/somewhere)
 "aU" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	icon_state = "grasstodirt";
 	dir = 4
 	},
@@ -378,24 +378,24 @@
 /area/hospital)
 "bj" = (
 /obj/grassplug,
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	icon_state = "grasstodirt";
 	dir = 8
 	},
 /area/hospital/somewhere)
 "bk" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 10
 	},
 /area/hospital/somewhere)
 "bl" = (
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 6
 	},
 /area/hospital/somewhere)
 "bm" = (
 /obj/grassplug,
-/turf/grasstodirt{
+/turf/floor/grasstodirt{
 	icon_state = "grasstodirt";
 	dir = 4
 	},
@@ -458,7 +458,7 @@
 /area/hospital)
 "bw" = (
 /obj/shrub,
-/turf/grass,
+/turf/floor/grass,
 /area/hospital/somewhere)
 "bx" = (
 /obj/decal/cleanable/cobweb,

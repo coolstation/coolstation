@@ -384,6 +384,11 @@
 	desc = "A cigarette that appears to have been ... dipped in grease? It's almost dripping!"
 	flavor = "grease"
 
+/obj/item/clothing/mask/cigarette/ilgallo
+	name = "Il Gallo cigarette"
+	desc = "A cigarette that appears to have been infused with genuine space parmesan."
+	flavor = "parmesan"
+
 /obj/item/clothing/mask/cigarette/brute
 	name = "medical cigarette"
 	desc = "A certified prescription cigarette, formulated to treat minor wounds."
@@ -584,6 +589,13 @@
 	cigtype = /obj/item/clothing/mask/cigarette/greasy
 	icon_state = "cigpacket-g"
 	package_style = "cigpacket-g"
+
+/obj/item/cigpacket/ilgallo
+	name = "Il Gallo cigarette packet"
+	desc = "The preferred cigarette of Italian Spiderman, fresh from the chicken."
+	cigtype = /obj/item/clothing/mask/cigarette/ilgallo
+	icon_state = "cigpacket-ig"
+	package_style = "cigpacket-ig"
 
 /obj/item/cigpacket/brute
 	name = "Medical cigarette packet - Brute"

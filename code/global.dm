@@ -449,11 +449,25 @@ var/global
 	pod_wars_SY = image('icons/mob/antag_overlays.dmi', icon_state = "syndicate")
 	pod_wars_SY_CMDR = image('icons/mob/antag_overlays.dmi', icon_state = "syndcomm")
 
-	//SpyGuy: Oh my fucking god the QM shit. *cry *wail *sob *weep *vomit *scream
-	list/datum/supply_packs/qm_supply_cache = list()
+	//QM Caches: It's Fine Don't Worry About It
+	list/datum/supply_packs/qm_supply_cache = list() //the big fucker that i want to replace with the below list of lists
+	//QM Vendor-Specific Lists
+	list/datum/supply_packs/vendor_supply_caches = list() //this fucko needs to contain all the below fuckos
+	//but i don't know how
+	list/datum/supply_packs/nanotrasen_supply_cache = list() //nanotrasen direct order
+	list/datum/supply_packs/engineering_supply_cache = list() //juicy engineering
+	list/datum/supply_packs/construction_supply_cache = list() //construction comrade
+	list/datum/supply_packs/electronics_supply_cache = list() //electronics libre
+	list/datum/supply_packs/grocery_supply_cache = list() //giuseppe's grocery
+	list/datum/supply_packs/heavy_supply_cache = list() //hafgan heavy equipment
+	list/datum/supply_packs/vending_supply_cache = list() //vend-tech
+	list/datum/supply_packs/party_supply_cache = list() //all celebrations are beautiful
+	list/datum/supply_packs/misc_supply_cache = list() //anything that doesn't fit, pawn/junk shop (move to roaming trader imo)
+	//need furniture, clothing, stationary, misc, but we're not doing that yet
 
 	//Used for QM Ordering Categories
 	list/QM_CategoryList = list()
+	list/QM_SupplierList = list()
 
 	//Okay, I guess this was getting constructed every time someone wanted something from it
 	list/datum/syndicate_buylist/syndi_buylist_cache = list()
@@ -493,6 +507,7 @@ var/global
 	transparentColor = "#ff00e4"
 
 	pregameHTML = null
+	newplayerHTML = null
 
 	list/cooldowns
 

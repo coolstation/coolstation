@@ -42,15 +42,15 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		src.amount = max(amt,default_amount) //take higher
 		..(loc)
 		src.update_stack_appearance()
-
+	/*
 	proc/setup(var/atom/L, var/amt = 1 as num)
-		set_loc(L)
+	set_loc(L)
 		set_amt(amt)
 
 	proc/set_amt(var/amt = 1 as num)
 		var/default_amount = default_min_amount == default_max_amount ? default_min_amount : rand(default_min_amount, default_max_amount)
 		src.amount = max(amt,default_amount)
-		src.update_stack_appearance()
+		src.update_stack_appearance()*/
 /*
 	unpooled()
 		..()
@@ -91,11 +91,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		boutput(user, "<span class='alert'>You need another stack!</span>")
 
 	attackby(var/obj/item/I as obj, mob/user as mob)
-		if (istype(I, /obj/item/stackable_ammo) && (src.amount < src.max_stack) && (src.type == I.type))
+		/*if (istype(I, /obj/item/stackable_ammo) && (src.amount < src.max_stack) && (src.type == I.type))
 
 			user.visible_message("<span class='notice'>[user] stacks some rounds.</span>")
-			stack_item(I)
-		else
+			stack_item(I)*/
+		if(!stack_item(I))
 			if(istype(I, /obj/item/gun/modular/))
 				src.reload(I, user)
 			else
@@ -103,6 +103,12 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 
 	attack_hand(mob/user as mob)
 		if ((user.l_hand == src || user.r_hand == src) && user.equipped() != src)
+			var/obj/item/stackable_ammo/A = split_stack(round(input("How many rounds do you want to take from the stack?") as null|num))
+			if (istype(A))
+				user.put_in_hand_or_drop(A)
+			else
+				boutput(user, "<span class='alert'>You wish!</span>")
+			/*
 			var/amt = round(input("How many rounds do you want to take from the stack?") as null|num)
 			if (amt && src.loc == user && !user.equipped())
 				if (amt > src.amount || amt < 1)
@@ -111,7 +117,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 				change_stack_amount( 0 - amt )
 				var/obj/item/stackable_ammo/young_money = new src.type()
 				young_money.setup(user.loc, amt)
-				young_money.Attackhand(user)
+				young_money.Attackhand(user)*/
 		else
 			..(user)
 
@@ -171,6 +177,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	real_name = "standardised pistol round"
 	desc = "The ubiquitous pistol round, finally standardized."
 	projectile_type = /datum/projectile/bullet/bullet_22
+	stack_type = /obj/item/stackable_ammo/pistol
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "nt_brass"
 	icon_full  = "nt_brass"
@@ -195,6 +202,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	real_name = "armor-piercing pistol round"
 	desc = "The weak and useless pistol round, finally buffed."
 	projectile_type = /datum/projectile/bullet/revolver_38/AP
+	stack_type = /obj/item/stackable_ammo/pistol_38AP
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "nt_red"
 	icon_full  = "nt_red"
@@ -219,6 +227,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	real_name = "\improper NT Tranq-Will-8-or"
 	desc = "What the fuck are these even?"
 	projectile_type = /datum/projectile/bullet/tranq_dart
+	stack_type = /obj/item/stackable_ammo/tranq
 	ammo_DRM = GUN_NANO
 	icon_state = "nt_white"
 	icon_full  = "nt_white"
@@ -243,6 +252,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	real_name = "\improper NT In-Capacit-8-or"
 	desc = "A less-than-lethal solution to declining asset values."
 	projectile_type = /datum/projectile/energy_bolt
+	stack_type = /obj/item/stackable_ammo/capacitive
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "nt_stun"
 	icon_full  = "nt_stun"
@@ -267,6 +277,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	real_name = "\improper NT In-Capacit-8-or MAX"
 	desc = "A lot of problems? A lot of solutions."
 	projectile_type = /datum/projectile/energy_bolt/three
+	stack_type = /obj/item/stackable_ammo/capacitive_burst
 	ammo_DRM = GUN_NANO
 	icon_state = "nt_stun"
 	icon_full  = "nt_stun"
@@ -290,7 +301,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	name = "\improper Syndicate Radioactive Darts"
 	real_name = "Syndicate Radioactive Darts"
 	projectile_type = /datum/projectile/rad_bolt
-	desc = "Stealthy projectiles cause insidious radiation poisonning."
+	stack_type = /obj/item/stackable_ammo/radbow
+	desc = "Stealthy projectiles that cause insidious radiation poisoning."
 
 	three
 		default_min_amount = 3
@@ -309,10 +321,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	real_name = "Elektrograd лазерный Zaubertube"
 	desc = "A small glass bulb filled with hypergolic incandescent chemicals."
 	projectile_type = /datum/projectile/laser
+	stack_type = /obj/item/stackable_ammo/zaubertube
 	ammo_DRM = GUN_SOVIET | GUN_FOSS
 	icon_state = "zaubertubes"
 	icon_full  = "zaubertubes"
-	icon_empty = "xaubertubes_empty"
+	icon_empty = "zaubertubes_empty"
 	icon_one   = "zauber_tube"
 	icon_shell = "zauber_spent"
 
@@ -351,6 +364,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	real_name = "\improper Hot Pocketz"
 	desc = "Ecologically and economically hand-packed by local Juicer children."
 	projectile_type = /datum/projectile/bullet/a12
+	stack_type = /obj/item/stackable_ammo/scatter/buckshot
 
 	three
 		default_min_amount = 3
@@ -369,6 +383,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	real_name = "standard rubber slug"
 	desc = "An allegedly less-than-lethal riot deterrent slug, at least in low doses."
 	projectile_type = /datum/projectile/bullet/abg
+	stack_type = /obj/item/stackable_ammo/scatter/slug_rubber
 
 	three
 		default_min_amount = 3

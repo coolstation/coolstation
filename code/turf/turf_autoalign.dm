@@ -245,6 +245,54 @@
 
 		src.take_hit(W)
 
+/turf/wall/auto/concrete
+	icon = 'icons/turf/walls_concrete.dmi' //thank you Arborinus!!!
+	connects_to = list(/turf/wall/auto/concrete, /turf/wall/auto/concrete/window) //probably just fine like this
+	flags = ALWAYS_SOLID_FLUID
+
+	explosion_resistance = 7 //tuff by default
+
+	window
+		name = "window"
+#ifdef IN_MAP_EDITOR
+		icon_state = "window-map"
+#endif
+		opacity = 0
+		var/panel_icon = "window"
+		var/overlay1 = null
+		var/overlay2 = null
+
+		New()
+			..()
+			src.overlays += image('icons/turf/walls_concrete.dmi', panel_icon)
+			if(overlay1 != null)
+				src.overlays += image('icons/turf/walls_concrete.dmi', overlay1)
+			if(overlay2 != null)
+				src.overlays += image('icons/turf/walls_concrete.dmi', overlay2)
+
+	window/porthole
+		name = "porthole"
+		panel_icon = "porthole"
+
+	window/barred
+		overlay1 = "bars"
+
+	window/frosted
+		panel_icon = "window-frosted"
+
+	window/frosted_barred
+		panel_icon = "window-frosted"
+		overlay1 = "bars"
+
+	window/icy
+		panel_icon = "window-frosted"
+		overlay1 = "icicle"
+
+	window/icy_barred
+		panel_icon = "window-frosted"
+		overlay1 = "bars"
+		overlay2 = "icicle"
+
 /turf/wall/auto/jen
 	icon = 'icons/turf/walls_jen.dmi'
 	light_mod = "wall-jen-"

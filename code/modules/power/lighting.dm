@@ -80,46 +80,59 @@
 /obj/machinery/light //basic root of lighting, currently hosts fluorescent/tube/large lights, maybe move that to /obj/machinery/light/large for clarity
 	name = "light fixture"
 	icon = 'icons/obj/lighting.dmi'
-	var/base_state = "tube"		// base description and icon_state
 	icon_state = "tube1"
 	desc = "A lighting fixture."
 	anchored = 1
 	layer = EFFECTS_LAYER_UNDER_1
 	plane = PLANE_NOSHADOW_ABOVE
 	text = ""
-	var/on = 0 // 1 if on, 0 if off
-	var/brightness = 1.6 // luminosity when on, also used in power calculation
-
-	var/obj/item/light/light_type = /obj/item/light/tube // the type of the inserted light item
-	var/allowed_type = /obj/item/light/tube // the type of allowed light items
-
-	var/inserted_lamp = null // Reference for the actual lamp item inside
-	var/obj/item/light/current_lamp = null // For easily accessing inserted_lamp's variables, which we do often enough. Don't desync these two!
-
-	var/fitting = "tube"
-	var/wallmounted = 1
-	var/ceilingmounted = 0 //not sure if this is how i'm going to handle ceiling mounts
-	var/image/lightfixtureimage = null //this is what you're supposed to see when you're actively looking up
-	var/nostick = TRUE //If set to true, overrides the autopositioning.
-	var/candismantle = 1
-
 	power_usage = 0
 	power_channel = LIGHT
+	// base description and icon_state
+	var/base_state = "tube"
+	//toggles the actual state of giving off light
+	var/on = 0
+	// luminosity when on, also used in power calculation
+	var/brightness = 1.6
+	// the type of the inserted light item
+	var/obj/item/light/light_type = /obj/item/light/tube
+	// the type of allowed light items
+	var/allowed_type = /obj/item/light/tube
+	// Reference for the actual lamp item inside
+	var/inserted_lamp = null
+	// For easily accessing inserted_lamp's variables, which we do often enough. Don't desync these two!
+	var/obj/item/light/current_lamp = null
+	//the style of bulb
+	var/fitting = "tube"
+	//1 for normal, 0 for not (i.e. floor or ceiling)
+	var/wallmounted = TRUE
+	//0 for normal, 1 for ceiling
+	var/ceilingmounted = FALSE
+	//the icon we update for the image overlay below
+	var/ceiling_icon = null
+	//the actual image representing "thing on the ceiling"
+	var/image/lightfixtureimage = null // i'm going to eat my own head with my other head
+	//If set to true, overrides the autopositioning.
+	var/nostick = TRUE
+	//Possible to remove this fixture with a screwdriver
+	var/candismantle = 1
+	//Possible to remove the bulb (emergency light, etc.)
 	var/removable_bulb = 1
+	//The actual thing that illuminates the world
 	var/datum/light/point/light
 
 	New()
 		..()
 		inserted_lamp = new light_type()
 		current_lamp = inserted_lamp
-		if (src.loc.z == 1)
+		if (src.loc.z == 1 ||(map_currently_very_dusty && src.loc.z == 3))
 			stationLights += src
 
 		if(ceilingmounted)
-			//src.invisibility = 101 //the actual object is hidden on start and we rely on clickable images in the group
-			lightfixtureimage = image(src.icon,src,src.icon_state,PLANE_NOSHADOW_ABOVE -1,src.dir)
+			icon_state = "blank"
+			lightfixtureimage = image(src.icon,src,initial(src.icon_state),PLANE_NOSHADOW_ABOVE -1,src.dir)
 			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_image(lightfixtureimage)
-			lightfixtureimage.alpha = 160
+			lightfixtureimage.alpha = 200
 
 		var/area/A = get_area(src)
 		if (A)
@@ -136,6 +149,7 @@
 
 		if(ceilingmounted)
 			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_image(lightfixtureimage)
+
 		var/area/A = get_area(src)
 		if (A)
 			A.remove_light(src)
@@ -143,11 +157,12 @@
 			light.dispose()
 		..()
 
+	//auto position these lights so i don't have to mess with dirs in the map editor that's annoying!!!
 	proc/autoposition(setdir = null)
-		//auto position these lights so i don't have to mess with dirs in the map editor that's annoying!!!
+
 		if(nostick)
 			return // we shouldn'a been here!! adding this for legacy uses (i dont feel like chasing them down right now im old and im tired and im back hurts)
-		if(ceilingmounted)
+		if(!wallmounted || ceilingmounted) //floor or ceiling
 			return //some ceiling lights can be rotated but that will be by hand or map placement, not by this
 		//if (map_settings)
 		//	if (!map_settings.auto_walls)
@@ -209,7 +224,7 @@
 	var/state
 	base_state = "flamp"
 	icon_state = "flamp1"
-	wallmounted = 0
+	wallmounted = FALSE
 
 //regular light bulbs
 /obj/machinery/light/small
@@ -235,9 +250,7 @@
 	desc = "A small lighting fixture, embedded in the floor."
 	plane = PLANE_FLOOR
 	allowed_type = /obj/item/light/bulb
-
-	New()
-		..()
+	wallmounted = FALSE
 
 //ceiling lights!!
 /obj/machinery/light/small/ceiling
@@ -247,14 +260,17 @@
 	plane = PLANE_NOSHADOW_ABOVE
 	allowed_type = /obj/item/light/bulb
 	level = 2
-	//invisibility = really don't know what to do here. invis removes it from interaction and gets in the way
-	//maybe if i add ceiling invis to 2, move infra to 3, and cloak to 4?
-	//mouse_opacity = see above, images and overlays inherit this clickability toggle and i'm going to eat my own head with my other head
-	alpha = 80
-	ceilingmounted = 1
+	wallmounted = FALSE
+	ceilingmounted = TRUE
 
-//oh no i can't find my bare shitty bulb sprite guess i'll remake it for next time
+//finally redid these sprites
+//good for shitty areas like maint
+/obj/machinery/light/small/ceiling/bare
+	icon_state = "overbulb1"
+	base_state = "overbulb"
+	desc = "A small bare-bulb lighting fixture, embedded in the ceiling."
 
+//emergency lights that turn on when either the power is out or an alert is triggered on the bridge
 /obj/machinery/light/emergency
 	icon_state = "ebulb1"
 	base_state = "ebulb"
@@ -266,11 +282,7 @@
 	on = 0
 	removable_bulb = 0
 
-	exitsign
-		name = "illuminated exit sign"
-		desc = "This sign points the way to the escape shuttle."
-		brightness = 1.3
-
+//Same as the above but starts on and stays on
 /obj/machinery/light/emergencyflashing
 	icon_state = "ebulb1"
 	base_state = "ebulb"
@@ -283,6 +295,160 @@
 	on = 1
 	removable_bulb = 0
 
+	//repurpose for actual exit signs per room that flash when the shuttle's here
+	exitsign
+		name = "illuminated exit sign"
+		desc = "This sign points the way to the escape shuttle."
+		brightness = 1.3
+
+	alertonly
+		name = "alert status light"
+		desc = "A small light that illuminates during alerts."
+		brightness = 1.3
+
+/* -------------------------------------------------------------------------- */
+/*                         Shuttle Escape Route Lights                        */
+/* -------------------------------------------------------------------------- */
+// first draft
+// is set off by shuttle arriving on station and shuts off again when shuttle leaves
+// intended for use in the middle of all main hallways to guide crew to departure
+// alternates for going down the middle of 2 or 4 tile hallways or perhaps along walls
+// build corners by using two of them, or intersections by using 3 or 4
+// cardinal directions only
+
+/obj/machinery/light/emergency/shuttle
+	name = "shuttle evacuation light"
+	desc = "A small light that directs the way to the departing shuttle bay."
+	#ifdef IN_MAP_EDITOR
+	icon_state = "shuttle-egress-map"
+	#else
+	icon_state = "blank"
+	#endif IN_MAP_EDITOR
+	brightness = 0.3
+	wallmounted = FALSE
+	plane = PLANE_FLOOR
+	mouse_opacity = 1 //you can't click this because that'd kinda suck
+	var/halves = 3 //1 for first, 2 for second, 3 for both
+	var/even = FALSE // false for centered, true for offset to north or east line (for even-tile hallways)
+	var/evenalt = FALSE //normally center to north or east, this will center to south or west
+	var/on_state = "shuttle-egress" //when this turns on, what iconstate to load
+
+	//this can all be done so much better but i'm doing it this way for now so i have something to show
+	//everything is cardinal and basic, if you want compound lights and intersections just plop down more
+
+	New()
+		..()
+		//initial slight offset due to the 32x32 cutoff
+		//if unspecified, go with the default intended offsets
+		if (!pixel_y || !pixel_x)
+			if(dir & (NORTH | SOUTH))
+				pixel_y = -4
+			else
+				pixel_x = 4
+
+			if(even)
+				//bonus nudge for horizontal or vertical instances
+				if(dir & (NORTH | SOUTH))
+					//if normal even handling
+					if (!evenalt)
+						//shift half a tile east
+						pixel_x += 16
+					else
+						//shift half a tile west
+						pixel_x -= 16
+				else
+					//if normal even handling
+					if (!evenalt)
+						//shift half a tile north
+						pixel_y += 16
+					else
+						//shift half a tile south
+						pixel_y -= 16
+
+//the first half of the full light sequence, for building corners and intersections. direction is direction of light path
+//for example, first half dir north + second half dir north = just a normal full light sequence dir north
+/obj/machinery/light/emergency/shuttle/firsthalf
+	name = "shuttle evacuation light"
+	#ifdef IN_MAP_EDITOR
+	icon_state = "shuttle-egress-1-map"
+	#else
+	icon_state = "blank"
+	#endif IN_MAP_EDITOR
+	on_state = "shuttle-egress-1"
+
+//the second half of the full light sequence, for building corners and intersections. direction is direction of light path
+/obj/machinery/light/emergency/shuttle/secondhalf
+	name = "shuttle evacuation light"
+	#ifdef IN_MAP_EDITOR
+	icon_state = "shuttle-egress-2-map"
+	#else
+	icon_state = "blank"
+	#endif IN_MAP_EDITOR
+	on_state = "shuttle-egress-2"
+
+//if you have a hallway where this will be off center scootch this by 16 to the right if NS or 16 down if EW
+//the timing is also off by half because so is the positioning
+/obj/machinery/light/emergency/shuttle/even
+	name = "shuttle evacuation light"
+	#ifdef IN_MAP_EDITOR
+	icon_state = "shuttle-egress-map"
+	#else
+	icon_state = "blank"
+	#endif IN_MAP_EDITOR
+	even = TRUE
+	on_state = "shuttle-egress-centered"
+
+	//these are purely here as mapping aids but may help with buildmode/spawn stuff
+	horizontal
+		pixel_x = 4
+		pixel_y = 16
+		alt
+			pixel_y = -16
+	vertical
+		pixel_x = 16
+		pixel_y = -4
+		alt
+			pixel_x = -16
+
+//the first half offset for even-tile hallways, with altered timing
+/obj/machinery/light/emergency/shuttle/firsthalf/even
+	even = TRUE
+	on_state = "shuttle-egress-1-centered"
+
+	horizontal
+		pixel_x = 4
+		pixel_y = 16
+
+		alt
+			pixel_y = -16
+
+	vertical
+		pixel_x = 16
+		pixel_y = -4
+
+		alt
+			pixel_x = -16
+
+//the second half offset for even-tile hallways, with altered timing
+/obj/machinery/light/emergency/shuttle/secondhalf/even
+	pixel_y = 12
+	even = TRUE
+	on_state = "shuttle-egress-2-centered"
+
+	horizontal
+		pixel_x = 4
+		pixel_y = 16
+
+		alt
+			pixel_y = -16
+
+	vertical
+		pixel_x = 16
+		pixel_y = -4
+
+		alt
+			pixel_x = -16
+
 /obj/machinery/light/runway_light
 	name = "runway light"
 	desc = "A small light used to guide pods into hangars."
@@ -294,8 +460,8 @@
 	allowed_type = /obj/item/light/bulb
 	plane = PLANE_NOSHADOW_BELOW
 	on = 1
-	wallmounted = 0
-	removable_bulb = 0
+	wallmounted = FALSE
+	removable_bulb = FALSE
 
 	delay2
 		icon_state = "runway20"
@@ -318,7 +484,7 @@
 	icon_state = "tripod1"
 	base_state = "tripod"
 	fitting = "bulb"
-	wallmounted = 0
+	wallmounted = FALSE
 	brightness = 1.5
 	light_type = /obj/item/light/big_bulb
 	allowed_type = /obj/item/light/big_bulb
@@ -367,7 +533,7 @@
 	desc = "A desk lamp"
 	light_type = /obj/item/light/bulb
 	allowed_type = /obj/item/light/bulb
-	wallmounted = 0
+	wallmounted = FALSE
 	deconstruct_flags = DECON_SIMPLE
 	plane = PLANE_DEFAULT
 
@@ -408,10 +574,9 @@
 	desc = "A lighting fixture, mounted to the ceiling."
 	plane = PLANE_NOSHADOW_ABOVE
 	level = 2
-	//see light/small/ceiling for the struggles with invisibility and clicking
-	alpha = 80
-	ceilingmounted = 1 //determines interactibility
-
+	alpha = 200
+	wallmounted = FALSE
+	ceilingmounted = TRUE
 	//check something like wiring for how to set direction relative to what tile you place it by hand, since we can freely rotate this thing unlike floor/ceiling lights and wall lights
 
 // create a new lighting fixture
@@ -428,17 +593,29 @@
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update()
 	if (!inserted_lamp)
-		icon_state = "[base_state]-empty"
+		if (ceilingmounted)
+			src.lightfixtureimage.icon_state = "[src.base_state]-empty"
+		else
+			icon_state = "[base_state]-empty"
 		on = 0
 	else
 		switch(current_lamp.light_status) // set icon_states
 			if(LIGHT_OK)
-				icon_state = "[base_state][on]"
+				if (ceilingmounted)
+					lightfixtureimage = image(src.icon,src.loc,"[src.base_state][on]",PLANE_NOSHADOW_ABOVE -1,src.dir)
+				else
+					icon_state = "[base_state][on]"
 			if(LIGHT_BURNED)
-				icon_state = "[base_state]-burned"
+				if (ceilingmounted)
+					lightfixtureimage = image(src.icon,src.loc,"[src.base_state]-burned",PLANE_NOSHADOW_ABOVE -1,src.dir)
+				else
+					icon_state = "[base_state]-burned"
 				on = 0
 			if(LIGHT_BROKEN)
-				icon_state = "[base_state]-broken"
+				if (ceilingmounted)
+					lightfixtureimage = image(src.icon,src.loc,"[base_state]-broken",PLANE_NOSHADOW_ABOVE -1,src.dir)
+				else
+					icon_state = "[base_state]-broken"
 				on = 0
 
 	// if the state changed, inc the switching counter
@@ -471,9 +648,6 @@
 				light.disable()
 			else
 				current_lamp.breakprob += 0.15 // critical that your "increasing probability" thing actually, yknow, increase. ever.
-
-	if(ceilingmounted) //and also update the current icon for ceiling lights
-		lightfixtureimage = image(src.icon,src.loc,src.icon_state,PLANE_NOSHADOW_ABOVE -1,src.dir)
 
 
 // attempt to set the light's on/off status
@@ -535,7 +709,7 @@
 		boutput(user, "You can't seem to reach that high.")
 		return
 
-	if((!ceilingmounted) && (user.ceilingreach))
+	if((!ceilingmounted) && (!wallmounted) && (user.ceilingreach))
 		boutput(user, "You'll need to get back down on the ground for that.")
 		return
 
@@ -654,6 +828,8 @@
 	if (pow_stat && wire_powered)
 		return 1
 	var/area/A = get_area(src)
+	if (A.type == /area/space) //exact match, shouldn't bother the fixes done for /space/gehenna blowouts
+		return 1
 	return A ? A.lightswitch && A.power_light : 0
 
 // ai attack - do nothing
@@ -674,11 +850,13 @@
 		if (!istype(mag) || mag.holding) // they aren't holding a magtractor or the magtractor already has something in it
 			return // so there's no room for a bulb
 
+	//check if you're reaching a ceiling mounted light from down low
 	if((ceilingmounted) && (!user.ceilingreach))
 		boutput(user, "You can't seem to reach that high.")
 		return
 
-	if((!ceilingmounted) && (user.ceilingreach))
+	//check if you're reaching a floor mounted light from up high
+	if((!ceilingmounted) && (!wallmounted) && (user.ceilingreach))
 		boutput(user, "You'll need to get back down on the ground for that.")
 		return
 
@@ -693,7 +871,7 @@
 		boutput(user, "The bulb is firmly locked into place and cannot be removed.")
 		return
 
-	// make it burn hands if not wearing fire-insulated gloves
+	// make it burn hands if not wearing modestly heat-insulated gloves
 	if(on)
 		var/prot = 0
 		var/mob/living/carbon/human/H = user
@@ -702,10 +880,9 @@
 
 			if(H.gloves)
 				var/obj/item/clothing/gloves/G = H.gloves
-
-				prot = (G.getProperty("heatprot") >= 7)	// *** TODO: better handling of glove heat protection
+				prot = (G.getProperty("heatprot") >= 5)	// Moved this to include janitor gloves instead of just black/SWAT (which is wild)
 		else
-			prot = 1
+			prot = 1 //other mobs get a free pass huh
 
 		if (!in_interact_range(src, user))
 			return
@@ -715,7 +892,7 @@
 			boutput(user, "You try to remove the light [fitting], but you burn your hand on it!")
 			H.UpdateDamageIcon()
 			H.TakeDamage(user.hand == 1 ? "l_arm" : "r_arm", 0, 5)
-			return				// if burned, don't remove the light
+			return // if burned, don't remove the light
 
 	// create a light tube/bulb item and put it in the user's hand
 	replace(user)
@@ -789,6 +966,8 @@
 	if(src.loc) //TODO fix the dispose proc for this so that when it is sent into the delete queue it doesn't try and exec this
 		var/area/A = get_area(src)
 		var/state = A.lightswitch && A.power_light
+		if (A.type == /area/space) //oh hm, okay,
+			state =  1 //sure
 		//if (shipAlertState == SHIP_ALERT_BAD) state = 0
 		seton(state)
 
@@ -821,9 +1000,29 @@
 		var/state = !A.power_light || shipAlertState == SHIP_ALERT_BAD
 		seton(state)
 
+//special handling for lights that should only be on in an alert situation
+
+/obj/machinery/light/emergency/alertonly/power_change()
+	seton(shipAlertState)
+
+//special handling for lights that should only be on when the shuttle has docked with the station
+
+/obj/machinery/light/emergency/shuttle/power_change()
+	if(emergency_shuttle?.online)
+		if(emergency_shuttle.location == SHUTTLE_LOC_STATION)
+			src.on = TRUE
+			src.icon_state = "[on_state]"
+			light.enable()
+		else
+			src.on = FALSE
+			src.icon_state = "blank"
+			light.disable()
+
+/obj/machinery/light/emergency/shuttle/update()
+	return //don't do shit ok
+
 
 // special handling for desk lamps
-
 
 // if attack with hand, only "grab" attacks are an attempt to remove bulb
 // otherwise, switch the lamp on/off

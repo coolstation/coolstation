@@ -470,7 +470,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 ///Where you'd previously chuck turfs directly into area contents, please now call this or atmos might crap out
 /area/proc/add_turf(turf/T) //but that aside why wasn't there a proc for turfs entering areas before?
-	if (istype(T)) return
+	if (!istype(T)) return
 	contents += T
 	if (src.is_atmos_simulated && !T.air)
 		T.instantiate_air()
@@ -703,13 +703,25 @@ ABSTRACT_TYPE(/area/shuttle)
 /area/shuttle/shopping/shittymall
 	icon_state = "shuttle"
 
-/area/shuttle/icebase_elevator/upper
+/area/shuttle/icebase_crew_elevator/upper
 	icon_state = "shuttle"
 	filler_turf = "/turf/floor/arctic/abyss"
 	force_fullbright = 0
 	sound_group = "ice_moon"
 
-/area/shuttle/icebase_elevator/lower
+/area/shuttle/icebase_crew_elevator/lower
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/arctic/snow/ice"
+	force_fullbright = 0
+	sound_group = "ice_moon"
+
+/area/shuttle/icebase_mine_elevator/upper
+	icon_state = "shuttle"
+	filler_turf = "/turf/floor/arctic/abyss"
+	force_fullbright = 0
+	sound_group = "ice_moon"
+
+/area/shuttle/icebase_mine_elevator/lower
 	icon_state = "shuttle2"
 	filler_turf = "/turf/floor/arctic/snow/ice"
 	force_fullbright = 0
@@ -4082,9 +4094,9 @@ ABSTRACT_TYPE(/area/mining)
 
 	SPAWN_DBG(1.5 SECONDS)
 		src.power_change()		// all machines set to current power level, also updates lighting icon
-
-	if(area_space_nopower(src))
-		power_equip = power_light = power_environ = 0
+		//now that that's done, do the 687a405 blowout fix
+		if(area_space_nopower(src))
+			power_equip = power_light = power_environ = 0
 
 	if (force_fullbright)
 		overlays += /image/fullbright

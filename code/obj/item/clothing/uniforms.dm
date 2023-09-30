@@ -1714,3 +1714,11 @@
     item_state = "racing_jump_prp"
     icon = 'icons/obj/clothing/uniforms/item_js_misc.dmi'
     wear_image_icon = 'icons/mob/jumpsuits/worn_js_misc.dmi'
+
+/obj/item/clothing/under/soviet_miner
+	name = "soviet mining overalls"
+	desc = "Stiffer than wood, but will outlive your grandchildren."
+	icon = 'icons/obj/clothing/uniforms/item_js_misc.dmi'
+	wear_image_icon = 'icons/mob/jumpsuits/worn_js_misc.dmi'
+	icon_state = "soviet_miner"
+	item_state = "soviet_miner"

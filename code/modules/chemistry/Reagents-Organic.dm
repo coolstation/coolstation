@@ -154,24 +154,25 @@ ABSTRACT_TYPE(/datum/reagent/organic)
 		transparency = 100
 		viscosity = 0.3
 		depletion_rate = 0.05
-		overdose = 2 //very small overdose threshold, but really it just makes you puke it all up
+		overdose = 7 //very small overdose threshold, but really it just makes you puke it all up
 		var/other_purgative = "hambrinol"
 
 		do_overdose(severity, mob/M, mult)
-			boutput(M, "<span class='alert'>You feel overwhelmed by the powerful fragrance.</span>")
-			M.setStatus("stunned", max(M.getStatusDuration("stunned"), 2 SECONDS))
-			M.setStatus("weakened", max(M.getStatusDuration("weakened"), 2 SECONDS))
 			if(prob(25*severity))
-				var/amount = holder.get_reagent_amount(src.id)
-				var/other_amount = holder.get_reagent_amount(src.other_purgative)
-				for(var/mob/O in viewers(M, null))
-					O.show_message(text("<span class='alert'>[] vomits on the floor profusely!</span>", M), 1)
-				playsound(M.loc, "sound/effects/splat.ogg", 50, 1)
-				var/obj/decal/cleanable/C = make_cleanable(/obj/decal/cleanable/vomit,M.loc)
-				C.reagents.add_reagent("[src.id]", amount)
-				C.reagents.add_reagent("[other_purgative]", other_amount)
-				holder.remove_reagent("[src.id]", amount)
-				holder.remove_reagent("[other_purgative]", other_amount)
+				boutput(M, "<span class='alert'>You feel overwhelmed by the powerful fragrance.</span>")
+				M.setStatus("stunned", max(M.getStatusDuration("stunned"), 2 SECONDS))
+				M.setStatus("weakened", max(M.getStatusDuration("weakened"), 2 SECONDS))
+				if(prob(25*severity))
+					var/amount = holder.get_reagent_amount(src.id)
+					var/other_amount = holder.get_reagent_amount(src.other_purgative)
+					for(var/mob/O in viewers(M, null))
+						O.show_message(text("<span class='alert'>[] vomits on the floor profusely!</span>", M), 1)
+					playsound(M.loc, "sound/effects/splat.ogg", 50, 1)
+					var/obj/decal/cleanable/C = make_cleanable(/obj/decal/cleanable/vomit,M.loc)
+					C.reagents.add_reagent("[src.id]", amount)
+					C.reagents.add_reagent("[other_purgative]", other_amount)
+					holder.remove_reagent("[src.id]", amount)
+					holder.remove_reagent("[other_purgative]", other_amount)
 			..()
 
 		on_mob_life(var/mob/M, var/mult = 1)

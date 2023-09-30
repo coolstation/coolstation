@@ -173,6 +173,10 @@ datum/shuttle_controller
 						boutput(world, "<B>The Emergency Shuttle has docked with the station! You have [timeleft()/60] minutes to board the Emergency Shuttle.</B>")
 						ircbot.event("shuttledock")
 						world << csound("sound/misc/shuttle_arrive1.ogg")
+						for(var/obj/machinery/light/emergency/shuttle/L in world)
+							L.power_change() //this is the old heavy bad one but it works right now
+						for(var/obj/pathlights/shuttle/L in world)
+							L.shuttle_pathlights() //this will be the new one and doesn't work
 
 						processScheduler.enableProcess("Fluid_Turfs")
 
@@ -226,14 +230,21 @@ datum/shuttle_controller
 								D.locked = 1
 								D.update_icon()
 						*/
+						var/you_did_it = TRUE
+						var/list/good_eggs = list()
 						for (var/atom/A in start_location)
 							if(istype( A, /obj/stool ))
 								var/obj/stool/O = A
+								if(istype( A, /obj/stool/chair/comfy/shuttle))
+									var/obj/stool/chair/comfy/shuttle/S = A
+									//keeps you on your toes
+									S.seatbelt_snap()
 								if( !O.anchored )
 									var/atom/target = get_edge_target_turf(O, pick(alldirs))
-									if( O.buckled_guy )
-										boutput( O.buckled_guy, "<span class='alert'>The [O] shoots off due to being unsecured!</span>" )
+									if( O.stool_user )
+										boutput( O.stool_user, "<span class='alert'>The [O] shoots off due to being unsecured!</span>" )
 										O.unbuckle()
+										you_did_it = FALSE
 									if( target )
 										O.throw_at( target, 25, 1 )//dear god I am sorry in advance for doing this
 							else if(istype( A, /mob ))
@@ -252,6 +263,7 @@ datum/shuttle_controller
 									if (!M.buckled || bonus_stun)
 										M.changeStatus("stunned", 2 SECONDS)
 										M.changeStatus("weakened", 2 SECONDS)
+										you_did_it = FALSE
 
 										if (prob(50) || bonus_stun)
 											var/atom/target = get_edge_target_turf(M, pick(alldirs))
@@ -265,6 +277,8 @@ datum/shuttle_controller
 
 										if (!bonus_stun)
 											M.show_text("You are thrown about as the shuttle launches due to not being securely buckled in!", "red")
+									else
+										good_eggs += M
 
 						for(var/area/shuttle_particle_spawn/particle_spawn /*= locate(/area/shuttle_particle_spawn) */in world)
 							if (particle_spawn)
@@ -284,7 +298,18 @@ datum/shuttle_controller
 						settimeleft(SHUTTLETRANSITTIME)
 						boutput(world, "<B>The Emergency Shuttle has left for CentCom! It will arrive in [timeleft()/60] minute[s_es(timeleft()/60)]!</B>")
 						world << csound("sound/misc/shuttle_enroute.ogg")
+						for(var/obj/machinery/light/emergency/shuttle/L in world)
+							L.power_change() //old bad working
+						for(var/obj/pathlights/shuttle/L in world)
+							L.shuttle_pathlights() //new good wip
 						//online = 0
+
+						SPAWN_DBG(1 SECOND)
+							if(you_did_it && (length(good_eggs) >= 5))
+								for(var/mob/living/player in good_eggs)
+									if(player.client)
+										player.unlock_medal("Fasten your meatbelt")
+
 
 						return 1
 

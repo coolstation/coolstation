@@ -323,6 +323,7 @@ var/global/meteor_shower_active = 0
 			else type = pick(oredrops)
 			var/atom/movable/A = new type()
 			A.set_loc(T)
+			A.throw_at(target, 10, 2) //what if
 			A.name = "meteor chunk"
 
 		var/atom/source = src

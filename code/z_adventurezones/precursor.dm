@@ -20,60 +20,7 @@
 	sims_score = 30
 	sound_group = "ice_moon"
 	is_construction_allowed = FALSE
-
-/area/upper_arctic/pod1
-	name = "Outpost Theta Pod One"
-	icon_state = "green"
-	sound_environment = EAX_BATHROOM
-	skip_sims = 1
-	sims_score = 30
-
-/area/lower_arctic/pod1
-	name = "Outpost Theta Pod One"
-	icon_state = "green"
-	sound_environment = EAX_BATHROOM
-	skip_sims = 1
-	sims_score = 30
-	sound_group = "arctic_caves"
-
-/area/upper_arctic/pod2
-	name = "Outpost Theta Pod Two"
-	icon_state = "purple"
-	sound_environment = EAX_ROOM
-	skip_sims = 1
-	sims_score = 30
-
-/area/upper_arctic/hall
-	name = "Outpost Theta Connecting Hall"
-	icon_state = "yellow"
-	sound_environment = EAX_HALLWAY
-	sound_environment = EAX_ROOM
-	skip_sims = 1
-	sims_score = 30
-
-/area/upper_arctic/comms
-	name = "Communications Hut"
-	icon_state = "storage"
-	sound_environment = EAX_ROOM
-	sound_environment = EAX_ROOM
-	skip_sims = 1
-	sims_score = 30
-
-/area/upper_arctic/mining
-	name = "Glacier Access"
-	icon_state = "dk_yellow"
-	sound_environment = EAX_ROOM
-	sound_environment = EAX_ROOM
-	skip_sims = 1
-	sims_score = 30
-
-/area/lower_arctic/mining
-	name = "Glacier Access"
-	icon_state = "dk_yellow"
-	sound_environment = EAX_ROOM
-	sound_environment = EAX_ROOM
-	skip_sims = 1
-	sims_score = 30
+	requires_power = FALSE
 
 /area/upper_arctic/exterior
 	sound_environment = EAX_FOREST
@@ -97,6 +44,73 @@
 	skip_sims = 1
 	sims_score = 30
 
+/area/upper_arctic/fita
+	name = "Outpost Fita"
+	icon_state = "green"
+	sound_environment = EAX_STONEROOM //concrete bunker, unless otherwise
+	skip_sims = 1
+	sims_score = 30
+
+/area/upper_arctic/fita/armory
+	name = "Outpost Fita Armory"
+
+/area/upper_arctic/fita/crew
+	name = "Outpost Fita Crew Quarters"
+	sound_environment = EAX_LIVINGROOM //carpets
+
+/area/upper_arctic/fita/bathroom
+	name = "Outpost Fita Bathroom"
+	sound_environment = EAX_BATHROOM
+
+/area/upper_arctic/fita/director
+	name = "Outpost Fita Director's Office"
+	sound_environment = EAX_ROOM //carpets
+
+/area/upper_arctic/fita/hall
+	name = "Outpost Fita Hall"
+	sound_environment = EAX_STONE_CORRIDOR
+
+/area/upper_arctic/fita/lobby
+	name = "Outpost Fita Lobby"
+
+/area/upper_arctic/fita/messhall
+	name = "Outpost Fita Mess Hall"
+	sound_environment = EAX_ROOM //carpets
+
+/area/upper_arctic/fita/medsci
+	name = "Outpost Fita Medical Dept"
+
+/area/upper_arctic/fita/medsci/hellevator
+	name = "Outpost Fita Crew Elevator"
+
+/area/upper_arctic/fita/mining
+	name = "Outpost Fita Mining Department"
+	sound_environment = EAX_CAVE
+	sound_group = "arctic_caves"
+
+/area/upper_arctic/fita/mining/elevator
+	name = "Outpost Fita Mineral Elevator"
+/area/upper_arctic/fita/maintenance
+	sound_environment = EAX_SEWER_PIPE
+
+/area/upper_arctic/fita/maintenance/hatch
+	name = "Outpost Fita Maintenance Hatch"
+
+/area/upper_arctic/fita/maintenance/septic
+	name = "Outpost Fita Water System Hatch"
+
+/area/upper_arctic/fita/maintenance/furnace
+	name = "Outpost Fita Furnace Shed"
+
+/area/upper_arctic/fita/quartermaster
+	name = "Outpost Fita Quartermaster's Department"
+
+/area/upper_arctic/fita/quartermaster/supplycloset
+	name = "Outpost Fita Supply Closet"
+
+/area/upper_arctic/fita/shuttlepad
+	name = "Outpost Fita Shuttle Pad"
+
 /area/lower_arctic
 	icon_state = "dk_yellow"
 	sound_group = "ice_moon"
@@ -109,6 +123,18 @@
 	sound_environment = EAX_CAVE
 	skip_sims = 1
 	sims_score = 30
+
+/area/lower_arctic/mining
+	name = "Glacier Access"
+	icon_state = "dk_yellow"
+	sound_environment = EAX_STONEROOM
+	skip_sims = 1
+	sims_score = 30
+
+/area/lower_arctic/septic
+	name = "Outpost Fita Water System Hatch"
+	icon_state = "green"
+	sound_environment = EAX_STONEROOM
 
 /area/precursor // stole this code from the void definition
 	name = "Peculiar Structure"
@@ -975,6 +1001,11 @@
 		src.root.add_file( new /datum/computer/file/text/icemoon_log2(src))
 		src.root.add_file( new /datum/computer/file/text/icemoon_log3(src))
 		src.root.add_file( new /datum/computer/file/text/icemoon_log4(src))
+		src.root.add_file( new /datum/computer/file/text/icemoon_log5(src))
+		src.root.add_file( new /datum/computer/file/text/icemoon_log6(src))
+		src.root.add_file( new /datum/computer/file/text/icemoon_log7(src))
+		src.root.add_file( new /datum/computer/file/text/icemoon_log8(src))
+		src.root.add_file( new /datum/computer/file/text/icemoon_log9(src))
 
 // these aren't precursor things but fuck it, i don't feel like making another dm file right now
 
@@ -1158,7 +1189,7 @@
 		CritterDeath()
 			if (!alive)
 				return
-			new /obj/item/paper/otp(get_turf(src))
+			//new /obj/item/paper/otp(get_turf(src)) //wrong neighborhood
 			..()
 
 	am_research

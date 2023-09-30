@@ -759,7 +759,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					else
 						M = player
 					var/obj/stool/chair/comfy/shuttle/pilot/O = locate() in M.loc
-					if (O && !O.buckled_guy) //no double piloting
+					if (O && !O.stool_user) //no double piloting
 						bank_earnings.pilot = 1
 						earnings += pilot_bonus
 

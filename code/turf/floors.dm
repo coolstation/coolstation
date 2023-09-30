@@ -909,7 +909,7 @@ DEFINE_FLOORS(marble/border_wb,
 		if (istype(A, /obj/stool/chair/comfy/wheelchair))
 			var/obj/stool/chair/comfy/wheelchair/W = A
 			if (!W.lying && prob(40))
-				if (W.buckled_guy && W.buckled_guy.m_intent == "walk")
+				if (W.stool_user && W.stool_user.m_intent == "walk")
 					return ..()
 				else
 					W.fall_over(src)
@@ -1025,6 +1025,7 @@ DEFINE_FLOORS(marble/border_wb,
 		desc = "Yuck."
 		icon_state = "bloodfloor_1"
 		permadirty = 1
+		reinforced = 1
 
 	hivefloor
 		name = "hive floor"
@@ -1223,6 +1224,39 @@ DEFINE_FLOORS(techfloor/green,
 	mat_changedesc = 0
 	permadirty = 1 //its dirt.............
 	var/stone_color // runtime?????????? -warc
+
+	//This is inherited from turf/dirt which is dead now, IDK if it's gonna be bad on here but
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (istype(W, /obj/item/shovel))
+			if (src.icon_state == "dirt-dug")
+				boutput(user, "<span class='alert'>That is already dug up! Are you trying to dig through to China or something?  That would be even harder than usual, seeing as you are in space.</span>")
+				return
+
+			user.visible_message("<b>[user]</b> begins to dig!", "You begin to dig!")
+			//todo: A digging sound effect.
+			if (do_after(user, 4 SECONDS) && src.icon_state != "dirt-dug")
+				src.icon_state = "dirt-dug"
+				user.visible_message("<b>[user]</b> finishes digging.", "You finish digging.")
+				for (var/obj/tombstone/grave in orange(src, 1))
+					if (istype(grave) && !grave.robbed)
+						grave.robbed = 1
+						//idea: grave robber medal.
+						if (grave.special)
+							new grave.special (src)
+						else
+							switch (rand(1,3))
+								if (1)
+									new /obj/item/skull {desc = "A skull.  That was robbed.  From a grave.";} ( src )
+								if (2)
+									new /obj/item/plank {name = "rotted coffin wood"; desc = "Just your normal, everyday rotten wood.  That was robbed.  From a grave.";} ( src )
+								if (3)
+									new /obj/item/clothing/under/suit/pinstripe {name = "old pinstripe suit"; desc  = "A pinstripe suit.  That was stolen.  Off of a buried corpse.";} ( src )
+								if(4,5)
+									break
+						break
+
+		else
+			return ..()
 
 /////////////////////////////////////////
 
@@ -1954,6 +1988,7 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 	fullbright = 0
 
 	ancient_pit
+		reinforced = 1
 		name = "broken staircase"
 		desc = "You can't see the bottom."
 		icon_state = "black"

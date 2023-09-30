@@ -47,6 +47,8 @@ RACK PARTS
 		if (newThing)
 			if (src.material)
 				newThing.setMaterial(src.material)
+			if (src.color)
+				newThing.color = src.color
 			if (user)
 				newThing.add_fingerprint(user)
 				logTheThing("station", user, null, "builds \a [newThing] (<b>Material:</b> [newThing.material && newThing.material.mat_id ? "[newThing.material.mat_id]" : "*UNKNOWN*"]) at [log_loc(T)].")
@@ -243,6 +245,34 @@ RACK PARTS
 	icon = 'icons/obj/furniture/table_chemistry.dmi'
 	furniture_type = /obj/table/reinforced/chemistry/auto
 	furniture_name = "chemistry countertop"
+
+/obj/item/furniture_parts/table/reinforced/medical
+	name = "medical cabinet parts"
+	desc = "A collection of parts that can be used to make a medical cabinet."
+	icon = 'icons/obj/furniture/table_medical.dmi'
+	furniture_type = /obj/table/reinforced/medical/auto
+	furniture_name = "medical cabinet"
+
+	solid
+		name = "medical table parts"
+		desc = "A collection of parts that can be used to make a medical table."
+		icon = 'icons/obj/furniture/table_medical_solid.dmi'
+		furniture_type = /obj/table/reinforced/medical/solid/auto
+		furniture_name = "medical table"
+
+/obj/item/furniture_parts/table/reinforced/kitchen
+	name = "kitchen cabinet parts"
+	desc = "A collection of parts that can be used to make a kitchen cabinet."
+	icon = 'icons/obj/furniture/table_kitchen.dmi'
+	furniture_type = /obj/table/reinforced/kitchen/auto
+	furniture_name = "kitchen cabinet"
+
+	solid
+		name = "kitchen counter parts"
+		desc = "A collection of parts that can be used to make a kitchen counter."
+		icon = 'icons/obj/furniture/table_kitchen_solid.dmi'
+		furniture_type = /obj/table/reinforced/kitchen/solid/auto
+		furniture_name = "kitchen counter"
 
 /* ---------- Rack Parts ---------- */
 /obj/item/furniture_parts/rack

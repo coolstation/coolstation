@@ -442,6 +442,7 @@ var/f_color_selector_handler/F_Color_Selector
 
 	lobby_titlecard = new /datum/titlecard()
 
+	lobby_titlecard.set_agreement_html() //only need to do this here i think, it's otherwise pretty static
 	lobby_titlecard.set_pregame_html()
 
 	diary = file("data/logs/[time2text(world.realtime, "YYYY/MM-Month/DD-Day")].log")
@@ -782,7 +783,7 @@ var/f_color_selector_handler/F_Color_Selector
 #endif
 	var/newround = 'sound/misc/NewRound.ogg'
 	if (prob(40))
-		newround = pick('sound/misc/NewRound2.ogg', 'sound/misc/NewRound3.ogg', 'sound/misc/NewRound4.ogg', 'sound/misc/NewRound5.ogg', 'sound/misc/NewRound6.ogg', 'sound/misc/TimeForANewRound.ogg')
+		newround = pick('sound/misc/NewRound2.ogg', 'sound/misc/NewRound3.ogg', 'sound/misc/NewRound4.ogg', 'sound/misc/NewRound5.ogg', 'sound/misc/NewRound6.ogg', 'sound/misc/NewRound7.ogg', 'sound/misc/TimeForANewRound.ogg')
 
 	SPAWN_DBG(world.tick_lag)
 		for (var/client/C)

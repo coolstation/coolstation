@@ -1147,23 +1147,31 @@
 	icon_state = "smallbart"
 	dead_state = "deadbart"
 	death_text = "%src% mumbles his last \"Small Bart\" and goes to sleep."
-	post_pet_text = " For some reason! Not like that's weird or anything!"
+	angertext = "barts grumpily at"
+	pet_text = "encourages"
+	post_pet_text = " This is probably a <i>bad idea</i>!"
 	health = 100
 	invisibility = 10 //little weirdo
+	slow_chase = 1
+	butcherable = 0
 	generic = 0
 	aggressive = 1
-	defensive = 1
+	defensive = 0 //should avoid any kind of reaction/charging at
 	notwitch = 1
-	opensdoors = OBJ_CRITTER_OPENS_DOORS_ANY
-	density = 1 //he's never on help intent
+	anchored = 1
+	opensdoors = OBJ_CRITTER_OPENS_DOORS_PUBLIC
+	density = 1
 	var/boredom_countdown = 0
 
 	CritterDeath() //go back to your home planet, bart
 		..()
+		playsound(src.loc, "sound/voice/bartsay.ogg", 25, 1, -3) // one last bart...
 		sleep(30 SECONDS)
 		flick("smallbart-disappear",src)
+		playsound(src.loc, "sound/voice/deadbart.ogg", 50, 0, 2) // ...or is it?
 		SPAWN_DBG(10)
 			qdel(src)
+			//there's still one last impact sound as he disappears which i don't like but whatever
 
 	seek_target()
 		src.anchored = 0
@@ -1177,6 +1185,8 @@
 
 			src.boredom_countdown = rand(5,10)
 			src.target = C
+			src.dir = get_dir(src, C)
+			C.visible_message("<span class='notice'>[src] turns and stares blankly at you. Huh?</B></span>","<span class='notice'>[src] turns and stares blankly at [C].</span>")
 			if (prob(50)) //but let's do something weird here with the way bart picks targets
 				src.oldtarget_name = C.name //sometimes he'll go with someone else if they wander by in the next 30 seconds
 			else
@@ -1184,13 +1194,36 @@
 			src.task = "chasing" //poor you
 			src.invisibility = 0
 			break
-
+	//bad idea
 	attackby(obj/item/W as obj, mob/living/user as mob)
 		..()
-		src.boredom_countdown = rand(5,10)
+		if(prob(60))
+			if (src.target)
+				src.oldtarget_name = null
+			src.target = user
+			src.frustration = 0
+			src.dir = get_dir(src,user)
+			user.visible_message("<span class='alert'>Small Bart quickly turns and locks eyes with you. <B>Oh God!</B></span>","<span class='alert'>[src] quickly turns and stares intensely at [user]!</span>")
+			src.boredom_countdown = rand(10,15)
+			if (src.slow_chase)
+				src.slow_chase = 0
+				SPAWN_DBG(10 SECONDS)
+					src.slow_chase = 1
 
 	attack_hand(var/mob/user as mob)
 		..()
+		if(prob(30))
+			if (src.target)
+				src.oldtarget_name = null
+			src.target = user
+			src.frustration = 0
+			src.dir = get_dir(src,user)
+			user.visible_message("<span class='alert'>Small Bart quickly turns and locks eyes with you. <B>Oh God!</B></span>","<span class='alert'>[src] quickly turns and stares intensely at [user]!</span>")
+			src.boredom_countdown = rand(10,15)
+			if (src.slow_chase)
+				src.slow_chase = 0
+				SPAWN_DBG(10 SECONDS)
+					src.slow_chase = 1
 
 	ChaseAttack(mob/M)
 		return
@@ -1204,8 +1237,10 @@
 				src.frustration = 0 //alright you barted, now settle down (frustration/chase-giving doesn't get reset when you catch your target apparently)
 			if (prob(15))
 				src.visible_message("<B>[src]</B> [pick("says", "grunts", "huffs")], \"[pick("Small Bart!","Small Bart...","small bart","sm br", "Small Bart","Small Bart","Small Bart...")]\"")
+				playsound(src.loc, "sound/voice/bartsay.ogg", 50, 1, -2)
 			else if (prob(15))
-				boutput(src.target, "<B>[src]</B> [pick("mutters", "whispers", "murmurs")], \"[pick("Small Bart!","Small Bart...","small bart","sm br", "Small Bart","Small Bart","Small Bart...")]\"")
+				boutput(src.target, "<B>[src]</B> [pick("mutters", "whispers", "murmurs")], \"[pick("Small Bart...","small bart","sm br", "Small Bart","Small Bart","Small Bart...")]\"")
+				M.playsound_local(M.loc, "sound/voice/bartsay.ogg", 50, 1)
 			if (prob(10))
 				boutput(src.target, "<span class='combat'>You feel [pick("very ",null,"rather ","fairly ","remarkably ")]uncomfortable.</span>")
 			if (prob(5)) //rare mid-follow target change
@@ -1215,6 +1250,7 @@
 		else
 			src.visible_message("<B>[src]</B> grumbles and stares into space.")
 			src.task = "sleeping"
+			src.wanderer = 1 //wander aboot
 			src.target = null
 			src.seek_target() //find a new friend
 

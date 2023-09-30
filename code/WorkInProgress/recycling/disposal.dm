@@ -1916,6 +1916,11 @@
 			if(3)
 				if(prob(25))
 					qdel(src)
+
+	small
+		icon = 'icons/obj/disposal_small.dmi'
+		density = 0
+
 	north
 		dir = NORTH
 	east

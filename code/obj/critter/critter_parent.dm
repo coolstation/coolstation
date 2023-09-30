@@ -30,6 +30,7 @@
 	var/aggressive = 0
 	var/defensive = 0
 	var/wanderer = 1
+	var/slow_chase = 0
 	var/opensdoors = OBJ_CRITTER_OPENS_DOORS_NONE
 	var/frustration = 0
 	var/last_found = null
@@ -667,10 +668,14 @@
 					else
 						if (mobile)
 							var/turf/olddist = get_dist(src, current_target)
-							walk_to(src, current_target,1,4)
+							if (src.slow_chase)
+								walk_to(src, current_target, 3, 4)
+							else
+								walk_to(src, current_target, 1, 4)
 							if ((get_dist(src, current_target)) >= (olddist))
 								src.frustration++
-								step_towards(src, current_target, 4)
+								if (!src.slow_chase)
+									step_towards(src, current_target, 4)
 							else
 								src.frustration = 0
 						else

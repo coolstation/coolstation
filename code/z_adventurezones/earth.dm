@@ -28,6 +28,7 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 	is_centcom = 1
 	is_construction_allowed = FALSE
 
+
 /area/centcom/outside
 	name = "Earth"
 	icon_state = "nothing_earth"
@@ -144,6 +145,7 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 	nevada
 		ckey = "spacingnevada"
 		name = "Claire's Office of Claire"
+		is_atmos_simulated = 1 //gotta light that POO
 	patrickstar
 		ckey = ""
 		name = "Office of Patrick Star"
@@ -253,6 +255,9 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 
 /turf/outdoors
 	icon = 'icons/turf/outdoors.dmi'
+	//this is fine for now
+	oxygen = MOLES_O2STANDARD
+	nitrogen = MOLES_N2STANDARD
 
 	snow
 		name = "snow"

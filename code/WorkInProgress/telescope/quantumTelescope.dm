@@ -13,7 +13,12 @@ TODO: Enforce ping rate limit here as well in case someone futzes with the javas
 	var/tracking_id = "" //id of the event we're tracking/targeting.
 
 	New()
-		processing_items.Add(src)
+		processing_items.Add(src) //???????????? wtf
+		START_TRACKING
+		..()
+
+	disposing()
+		STOP_TRACKING
 		..()
 
 	process()

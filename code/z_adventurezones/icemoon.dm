@@ -11,7 +11,7 @@ Contents:
 		Cliff Edges
 **/
 
-/turf/floor/arctic_elevator_shaft
+/turf/floor/arctic_crew_elevator_shaft
 	name = "elevator shaft"
 	desc = "It looks like it goes down a long ways."
 	icon_state = "void_gray"
@@ -24,7 +24,35 @@ Contents:
 	Entered(atom/movable/A as mob|obj)
 		if (istype(A, /obj/overlay/tile_effect) || istype(A, /mob/dead) || istype(A, /mob/wraith) || istype(A, /mob/living/intangible))
 			return ..()
-		var/turf/T = pick_landmark(LANDMARK_FALL_ICE_ELE)
+		var/turf/T = pick_landmark(LANDMARK_FALL_ICE_CREW_ELE)
+		if (isturf(T))
+			visible_message("<span class='alert'>[A] falls down [src]!</span>")
+			if (ismob(A))
+				var/mob/M = A
+				if(!M.stat && ishuman(M))
+					var/mob/living/carbon/human/H = M
+					if(H.gender == MALE) playsound(H.loc, "sound/voice/screams/male_scream.ogg", 100, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+					else playsound(H.loc, "sound/voice/screams/female_scream.ogg", 100, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+				random_brute_damage(M, 33)
+				M.changeStatus("stunned", 10 SECONDS)
+			A.set_loc(T)
+			return
+		else ..()
+
+/turf/floor/arctic_mine_elevator_shaft
+	name = "elevator shaft"
+	desc = "It looks like it goes down a long ways."
+	icon_state = "void_gray"
+	step_material = "step_lattice"
+	step_priority = STEP_PRIORITY_MED
+
+	ex_act(severity)
+		return
+
+	Entered(atom/movable/A as mob|obj)
+		if (istype(A, /obj/overlay/tile_effect) || istype(A, /mob/dead) || istype(A, /mob/wraith) || istype(A, /mob/living/intangible))
+			return ..()
+		var/turf/T = pick_landmark(LANDMARK_FALL_ICE_MINE_ELE)
 		if (isturf(T))
 			visible_message("<span class='alert'>[A] falls down [src]!</span>")
 			if (ismob(A))

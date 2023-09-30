@@ -638,6 +638,29 @@
 	item_state = "spiderman"
 	see_face = 0.0
 
+// Italian Spiderman
+
+/obj/item/clothing/glasses/italianspiderman
+	name = "italian spiderman mask"
+	desc = "Pairs well with Il Gallo Super Quiet cigarettes."
+	icon_state = "italianspiderman"
+	item_state = "blindfold"
+	see_face = 0.0
+
+/obj/item/clothing/under/gimmick/italianspiderman
+	name = "spiderman Suit"
+	desc = "Now you're ready to take on Captain Maximum!"
+	icon_state = "italianspiderman"
+	item_state = "italianspiderman"
+	see_face = 0.0
+
+/obj/item/clothing/glasses/bandit
+	name = "bandit mask"
+	desc = "For the wannabe dastard swordsfighter."
+	icon_state = "bandit"
+	item_state = "blindfold"
+	see_face = 0.0
+
 /obj/item/clothing/mask/horse_mask
 	name = "horse mask"
 	desc = "Neigh."

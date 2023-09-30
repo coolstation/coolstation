@@ -448,3 +448,10 @@
 		setProperty("rangedprot", 3)
 		setProperty("coldprot", 35)
 		setProperty("exploprot", 25)
+
+/obj/item/clothing/suit/soviet_coat
+	name = "soviet expedition coat"
+	icon = 'icons/obj/clothing/overcoats/item_suit_hazard.dmi'
+	wear_image_icon = 'icons/mob/overcoats/worn_suit_hazard.dmi'
+	icon_state = "soviet_coat"
+	item_state = "soviet_coat"

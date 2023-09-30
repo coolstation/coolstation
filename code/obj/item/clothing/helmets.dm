@@ -401,6 +401,7 @@
 	icon_state = "hardhat0"
 	uses_multiple_icon_states = 1
 	item_state = "hardhat0"
+	var/sprot_base = "hardhat"
 	desc = "Protects your head from falling objects, and comes with a flashlight. Safety first!"
 	var/on = 0
 	var/datum/component/holdertargeting/simple_light/light_dir
@@ -422,8 +423,8 @@
 
 	proc/flashlight_toggle(var/mob/user, var/force_on = 0)
 		on = !on
-		src.icon_state = "hardhat[on]"
-		src.item_state = "hardhat[on]"
+		src.icon_state = "[sprot_base][on]"
+		src.item_state = "[sprot_base][on]"
 		user.update_clothing()
 		if (on)
 			light_dir.update(1)
@@ -440,6 +441,17 @@
 			return
 		else
 			..()
+
+/obj/item/clothing/head/helmet/hardhat/soviet //probably mostly indoors?
+	name = "red hard hat"
+	icon_state = "soviet_hardhat0"
+	item_state = "soviet_hardhat0"
+	sprot_base = "soviet_hardhat"
+/obj/item/clothing/head/helmet/hardhat/soviet/lined //has the black liner so your ears don't freeze off
+	name = "lined red hard hat"
+	icon_state = "soviet_hardhatB0"
+	item_state = "soviet_hardhatB0"
+	sprot_base = "soviet_hardhatB"
 
 /obj/item/clothing/head/helmet/hardhat/security // Okay it's not actually a HARDHAT but why write extra code?
 	name = "helmet"

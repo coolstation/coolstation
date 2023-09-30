@@ -2808,6 +2808,7 @@ Returns:
 	opacity = 0
 	density = 1
 	anchored = 1
+	alpha = 200
 	icon = 'icons/obj/adventurezones/void.dmi'
 	icon_state = "fissure"
 
@@ -2815,10 +2816,11 @@ Returns:
 		var/area/srcar = AM.loc.loc
 		srcar.Exited(AM)
 
-		var/obj/source = locate(/obj/dfissure_from)
+		var/obj/source = locate(/obj/dfissure_from) //if there are ever any more than one to or from portal this thing shits bad so i'd like to revamp this for Void Improvement Project (VIP)
 		if (!istype(source))
 			qdel(src)
 			return
+		source.alpha = 200
 		var/turf/trg = source.loc
 
 		var/area/trgar = trg.loc
@@ -2832,6 +2834,7 @@ Returns:
 	opacity = 0
 	density = 1
 	anchored = 1
+	alpha = 200
 	icon = 'icons/obj/adventurezones/void.dmi'
 	icon_state = "fissure"
 

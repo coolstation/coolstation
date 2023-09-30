@@ -1479,3 +1479,63 @@
 		pickupdialogue = "heres the goods"
 
 		pickupdialoguefailure = "yeah that works too"
+
+/obj/npc/trader/katya //lone human survivor of ice station fita, has been stuck for days warming donk pockets on a space heater
+	icon = 'icons/misc/critter.dmi'
+	icon_state = "welder"
+	picture = "nio.png"
+	name = "Comrade Katya"
+	trader_area = "/area/diner/hallway"
+	angrynope = "Get real! Get out!"
+	whotext = "I am quartermaster and trading liason for Glacial Mining Outpost Fita. Right now there is nothing I need but a hot meal."
+	hiketolerance = 0
+
+	New()
+		..()
+		//generic ore until i come up with a list
+		/////////////////////////////////////////////////////////
+		//// sell list //////////////////////////////////////////
+		/////////////////////////////////////////////////////////
+		src.goods_sell += new /datum/commodity/ore/uqill(src)
+		src.goods_sell += new /datum/commodity/ore/plasmastone(src)
+		src.goods_sell += new /datum/commodity/ore/bohrum(src)
+		src.goods_sell += new /datum/commodity/ore/cerenkite(src)
+		src.goods_sell += new /datum/commodity/ore/telecrystal(src)
+		/////////////////////////////////////////////////////////
+
+		//generic diner food until i come up with a list
+		/////////////////////////////////////////////////////////
+		//// buy list ///////////////////////////////////////////
+		/////////////////////////////////////////////////////////
+		src.goods_buy += new /datum/commodity/diner/sloppyjoe(src)
+		src.goods_buy += new /datum/commodity/diner/mashedpotatoes(src)
+		src.goods_buy += new /datum/commodity/diner/waffles(src)
+		src.goods_buy += new /datum/commodity/diner/pancake(src)
+		src.goods_buy += new /datum/commodity/diner/meatloaf(src)
+		/////////////////////////////////////////////////////////
+
+		src.whotext += " [pick( "What do you have for me?", "It is a very awful few days.", "Would you care for a donk pocket?", "Please do not open the can.", "Somehow, the lights are still on.")]"
+
+		greeting= {"Good day to you."}
+
+		portrait_setup = "<img src='[resource("images/traders/[src.picture]")]'><HR><B>[src.name]</B><HR>"
+
+		sell_dialogue = "What do you have for me?"
+
+		buy_dialogue = "Please take a look."
+
+		successful_purchase_dialogue = list("I hope this helps you in some way.",
+			"Please come back any time.")
+
+		failed_purchase_dialogue = list("I am sorry, full payment is required for all purchases.",
+			"Maybe you should ask your employer for, hmh, cash advance?")
+
+		failed_sale_dialogue = list("I cannot use this. Just hot food for now.",
+			"Not interested, sorry!")
+
+		successful_sale_dialogue = list("This works. This works. Thank you.",
+			"I can make use of this.")
+
+		pickupdialogue = "Here is what you requested."
+
+		pickupdialoguefailure = "You need to make some kind of purchase first."

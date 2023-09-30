@@ -884,7 +884,7 @@
 /obj/item/reagent_containers/food/snacks/plant/banana
 	name = "unpeeled banana"
 	crop_prefix = "unpeeled "
-	desc = "Cavendish, of course."
+	desc = "Gros Michel, of course."
 	icon_state = "banana"
 	planttype = /datum/plant/fruit/banana
 	amount = 2

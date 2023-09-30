@@ -464,6 +464,11 @@ GAUNTLET CARDS
 	icon_state = "juicer_w"
 	access = list(access_juicer, access_juicer_crypto, access_juicer_fraud)
 
+/obj/item/card/id/juicer/fert
+	name = "club access pass"
+	icon_state = "juicer_w"
+	access = list(access_juicer)
+
 /obj/item/card/id/juicer/john
 	name = "John Bill's clout card"
 	icon_state = "juicer"

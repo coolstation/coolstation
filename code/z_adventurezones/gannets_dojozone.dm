@@ -80,7 +80,7 @@ Contents:
 /area/dojo/sakura
 	name = "sakura"
 	icon_state = "red"
-	filler_turf = "/turf/dirt"
+	filler_turf = "/turf/floor/dirt"
 	sound_environment = EAX_FOREST
 	skip_sims = 1
 	sims_score = 0
@@ -93,7 +93,7 @@ Contents:
 /area/dojo
 	name = "dojo"
 	icon_state = "blue"
-	filler_turf = "/turf/dirt"
+	filler_turf = "/turf/floor/dirt"
 	sound_environment = EAX_SEWER_PIPE
 	skip_sims = 1
 	sims_score = 15

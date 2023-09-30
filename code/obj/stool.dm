@@ -26,7 +26,7 @@
 	throwforce = 10
 	pressure_resistance = 3*ONE_ATMOSPHERE
 	var/allow_unbuckle = 1
-	var/mob/living/buckled_guy = null
+	var/mob/living/stool_user = null
 	var/deconstructable = 1
 	var/securable = 0
 	var/list/scoot_sounds = null
@@ -88,7 +88,7 @@
 			return 0
 		if (( !isalive(user) || is_incapacitated(user) ))
 			return 0
-		if(src.buckled_guy && src.buckled_guy.buckled == src)
+		if(src.stool_user && src.stool_user.buckled == src)
 			user.show_text("There's already someone in [src]!", "red")
 			return 0
 		if (M.buckled)
@@ -123,15 +123,15 @@
 		return
 
 	proc/unbuckle() //Ditto but for unbuckling
-		if (src.buckled_guy)
-			src.buckled_guy.end_chair_flip_targeting()
+		if (src.stool_user)
+			src.stool_user.end_chair_flip_targeting()
 
 	proc/can_stand(var/mob/M, var/mob/user)
 		.= 0
 
 	proc/unstand() //Ditto but for unstanding
-		if (src.buckled_guy)
-			src.buckled_guy.end_chair_flip_targeting()
+		if (src.stool_user)
+			src.stool_user.end_chair_flip_targeting()
 
 	proc/toggle_secure(mob/user as mob)
 		if (user)
@@ -148,6 +148,8 @@
 			var/obj/item/furniture_parts/P = new src.parts_type(src.loc)
 			if (P && src.material)
 				P.setMaterial(src.material)
+			if (P && src.color)
+				P.color = src.color
 		else
 			playsound(src.loc, "sound/items/Ratchet.ogg", 50, 1)
 			var/obj/item/sheet/S = new (src.loc)
@@ -386,11 +388,11 @@
 		scoot_sounds = list( 'sound/misc/chair/office/scoot1.ogg', 'sound/misc/chair/office/scoot2.ogg', 'sound/misc/chair/office/scoot3.ogg', 'sound/misc/chair/office/scoot4.ogg', 'sound/misc/chair/office/scoot5.ogg' )
 
 	Move()
-		if(src.buckled_guy?.loc != src.loc)
+		if(src.stool_user?.loc != src.loc)
 			src.unbuckle()
 		. = ..()
-		if (. && src.buckled_guy)
-			var/mob/living/carbon/C = src.buckled_guy
+		if (. && src.stool_user)
+			var/mob/living/carbon/C = src.stool_user
 			C.buckled = null
 			C.Move(src.loc)
 			C.buckled = src
@@ -421,7 +423,7 @@
 			user.show_text("[src] is too far away!", "red")
 			return 0
 
-		if(src.buckled_guy && src.buckled_guy.buckled == src)
+		if(src.stool_user && src.stool_user.buckled == src)
 			user.show_text("There's already someone buckled in [src]!", "red")
 			return 0
 
@@ -456,7 +458,7 @@
 			src.add_fingerprint(user)
 
 	buckle_in(mob/living/to_buckle, mob/living/user)
-		if(src.buckled_guy && src.buckled_guy.buckled == src)
+		if(src.stool_user && src.stool_user.buckled == src)
 			return
 		if (!can_buckle(to_buckle,user))
 			return
@@ -470,7 +472,7 @@
 		if (src.anchored)
 			to_buckle.anchored = 1
 		to_buckle.buckled = src
-		src.buckled_guy = to_buckle
+		src.stool_user = to_buckle
 		to_buckle.set_loc(src.loc)
 
 		to_buckle.set_clothing_icon_dirty()
@@ -479,11 +481,11 @@
 
 	unbuckle()
 		..()
-		if(src.buckled_guy && src.buckled_guy.buckled == src)
-			reset_anchored(buckled_guy)
-			buckled_guy.buckled = null
-			buckled_guy.force_laydown_standup()
-			src.buckled_guy = null
+		if(src.stool_user && src.stool_user.buckled == src)
+			reset_anchored(stool_user)
+			stool_user.buckled = null
+			stool_user.force_laydown_standup()
+			src.stool_user = null
 			playsound(src, "sound/misc/belt_click.ogg", 50, 1)
 
 	proc/tuck_sheet(var/obj/item/clothing/suit/bedsheet/newSheet as obj, var/mob/user as mob)
@@ -507,8 +509,8 @@
 			mutual_attach(src, newSheet)
 
 			var/mob/somebody
-			if (src.buckled_guy)
-				somebody = src.buckled_guy
+			if (src.stool_user)
+				somebody = src.stool_user
 			else
 				somebody = locate(/mob/living/carbon) in get_turf(src)
 			if (somebody?.lying)
@@ -530,8 +532,8 @@
 
 		if (user)
 			var/mob/somebody
-			if (src.buckled_guy)
-				somebody = src.buckled_guy
+			if (src.stool_user)
+				somebody = src.stool_user
 			else
 				somebody = locate(/mob/living/carbon) in get_turf(src)
 			if (somebody?.lying)
@@ -575,7 +577,7 @@
 		for (var/mob/M in src.loc)
 			if (M.buckled == src)
 				M.buckled = null
-				src.buckled_guy = null
+				src.stool_user = null
 				M.lying = 0
 				reset_anchored(M)
 		if (src.Sheet && src.Sheet.Bed == src)
@@ -646,8 +648,8 @@
 			else
 				src.layer = OBJ_LAYER
 
-			if (src.buckled_guy)
-				var/mob/living/carbon/C = src.buckled_guy
+			if (src.stool_user)
+				var/mob/living/carbon/C = src.stool_user
 				C.buckled = null
 				C.Move(src.loc)
 				C.buckled = src
@@ -786,7 +788,7 @@
 			return 0
 		if (!( iscarbon(M) ) || get_dist(src, user) > 1 || M.loc != src.loc || user.restrained() || !isalive(user))
 			return 0
-		if(src.buckled_guy && src.buckled_guy.buckled == src && src.buckled_guy != M)
+		if(src.stool_user && src.stool_user.buckled == src && src.stool_user != M)
 			user.show_text("There's already someone buckled in [src]!", "red")
 			return 0
 		return 1
@@ -796,7 +798,7 @@
 			return
 		if(user.hasStatus("weakened"))
 			return
-		if(src.buckled_guy && src.buckled_guy.buckled == src && to_buckle != src.buckled_guy) return
+		if(src.stool_user && src.stool_user.buckled == src && to_buckle != src.stool_user) return
 
 		if (!can_buckle(to_buckle,user))
 			return
@@ -816,7 +818,7 @@
 					to_buckle.anchored = 1
 				H.on_chair = src
 				to_buckle.buckled = src
-				src.buckled_guy = to_buckle
+				src.stool_user = to_buckle
 				src.buckledIn = 1
 				to_buckle.setStatus("buckled", duration = INFINITE_STATUS)
 				H.start_chair_flip_targeting()
@@ -829,7 +831,7 @@
 			if (src.anchored)
 				to_buckle.anchored = 1
 			to_buckle.buckled = src
-			src.buckled_guy = to_buckle
+			src.stool_user = to_buckle
 			to_buckle.set_loc(src.loc)
 			src.buckledIn = 1
 			to_buckle.setStatus("buckled", duration = INFINITE_STATUS)
@@ -841,17 +843,17 @@
 
 	proc/maybe_unbuckle(source, turf/oldloc)
 		// unbuckle if the guy is not on a turf, or if their chair is out of range and it's not a shuttle situation
-		if(!isturf(buckled_guy.loc) || (!IN_RANGE(src, oldloc, 1) && (!istype(get_area(src), /area/shuttle || !istype(get_area(oldloc), /area/shuttle)))))
-			UnregisterSignal(buckled_guy, COMSIG_MOVABLE_SET_LOC)
+		if(!isturf(stool_user.loc) || (!IN_RANGE(src, oldloc, 1) && (!istype(get_area(src), /area/shuttle || !istype(get_area(oldloc), /area/shuttle)))))
+			UnregisterSignal(stool_user, COMSIG_MOVABLE_SET_LOC)
 			unbuckle()
 
 	unbuckle()
 		..()
-		if(!src.buckled_guy) return
-		UnregisterSignal(buckled_guy, COMSIG_MOVABLE_SET_LOC)
+		if(!src.stool_user) return
+		UnregisterSignal(stool_user, COMSIG_MOVABLE_SET_LOC)
 
-		var/mob/living/M = src.buckled_guy
-		var/mob/living/carbon/human/H = src.buckled_guy
+		var/mob/living/M = src.stool_user
+		var/mob/living/carbon/human/H = src.stool_user
 
 		M.end_chair_flip_targeting()
 
@@ -861,16 +863,16 @@
 			H.lookingup = 0
 			reset_anchored(M)
 			M.buckled = null
-			buckled_guy.force_laydown_standup()
-			src.buckled_guy = null
+			stool_user.force_laydown_standup()
+			src.stool_user = null
 			SPAWN_DBG(0.5 SECONDS)
 				H.on_chair = 0
 				src.buckledIn = 0
 		else if ((M.buckled))
 			reset_anchored(M)
 			M.buckled = null
-			buckled_guy.force_laydown_standup()
-			src.buckled_guy = null
+			stool_user.force_laydown_standup()
+			src.stool_user = null
 			SPAWN_DBG(0.5 SECONDS)
 				src.buckledIn = 0
 
@@ -880,7 +882,7 @@
 		for (var/mob/M in src.loc)
 			if (M.buckled == src)
 				M.buckled = null
-				src.buckled_guy = null
+				src.stool_user = null
 		switch (severity)
 			if (OLD_EX_SEVERITY_1)
 				qdel(src)
@@ -900,14 +902,14 @@
 			for (var/mob/M in src.loc)
 				if (M.buckled == src)
 					M.buckled = null
-					src.buckled_guy = null
+					src.stool_user = null
 			qdel(src)
 
 	disposing()
 		for (var/mob/M in src.loc)
 			if (M.buckled == src)
 				M.buckled = null
-				src.buckled_guy = null
+				src.stool_user = null
 		if (has_butt)
 			has_butt.set_loc(loc)
 		has_butt = null
@@ -915,10 +917,10 @@
 		return
 
 	Move(atom/target)
-		if(src.buckled_guy?.loc != src.loc)
+		if(src.stool_user?.loc != src.loc)
 			src.unbuckle()
 		. = ..()
-		if(src.buckled_guy?.loc != src.loc)
+		if(src.stool_user?.loc != src.loc)
 			src.unbuckle()
 
 	Click(location,control,params)
@@ -941,8 +943,8 @@
 				src.set_dir(face_dir)
 
 			update_icon()
-			if (buckled_guy)
-				var/mob/living/carbon/C = src.buckled_guy
+			if (stool_user)
+				var/mob/living/carbon/C = src.stool_user
 				C.set_dir(dir)
 		return
 
@@ -1127,6 +1129,14 @@
 	green
 		icon_state = "shuttle_chair-green"
 
+	//these seatbelts are getting pretty old huh
+	proc/seatbelt_snap(var/probobo)
+		if (!probobo)
+			probobo = 1
+		if(prob(probobo) && src.stool_user) //isstoolbuckled(src)
+			src.unbuckle()
+			src.stool_user.visible_message("[src.stool_user]'s seatbelt snaps off on launch! Holy shit!","Your seatbelt snaps on launch! Uh oh!")
+
 /obj/stool/chair/comfy/shuttle/pilot
 	name = "pilot's seat"
 	desc = "Only the most important crew member gets to sit here. Everyone is super envious of whoever sits in this chair."
@@ -1167,10 +1177,10 @@
 	proc/fall_over(var/turf/T)
 		if (src.lying)
 			return
-		if (src.buckled_guy)
-			var/mob/living/M = src.buckled_guy
+		if (src.stool_user)
+			var/mob/living/M = src.stool_user
 			src.unbuckle()
-			if (M && !src.buckled_guy)
+			if (M && !src.stool_user)
 				M.visible_message("<span class='alert'>[M] is tossed out of [src] as it tips [T ? "while rolling over [T]" : "over"]!</span>",\
 				"<span class='alert'>You're tossed out of [src] as it tips [T ? "while rolling over [T]" : "over"]!</span>")
 				var/turf/target = get_edge_target_turf(src, src.dir)
@@ -1202,12 +1212,12 @@
 		if (src.lying)
 			return
 		..()
-		if (src.buckled_guy == to_buckle)
+		if (src.stool_user == to_buckle)
 			APPLY_MOVEMENT_MODIFIER(to_buckle, /datum/movement_modifier/wheelchair, src.type)
 
 	unbuckle()
-		if(src.buckled_guy)
-			REMOVE_MOVEMENT_MODIFIER(src.buckled_guy, /datum/movement_modifier/wheelchair, src.type)
+		if(src.stool_user)
+			REMOVE_MOVEMENT_MODIFIER(src.stool_user, /datum/movement_modifier/wheelchair, src.type)
 		return ..()
 
 	set_loc(newloc)
@@ -1344,7 +1354,7 @@
 
 	attack_hand(mob/user as mob)
 		if (!user) return
-		if (damaged || buckled_guy) return ..()
+		if (damaged || stool_user) return ..()
 
 		user.lastattacked = src
 
@@ -1518,9 +1528,9 @@
 		else if (href_list["lethal"])
 			toggle_lethal()
 		else if (href_list["shock"])
-			if (src.buckled_guy)
+			if (src.stool_user)
 				// The log entry for remote signallers can be found in item/assembly/shock_kit.dm (Convair880).
-				logTheThing("combat", usr, src.buckled_guy, "activated an electric chair (setting: [src.lethal ? "lethal" : "non-lethal"]), shocking [constructTarget(src.buckled_guy,"combat")] at [log_loc(src)].")
+				logTheThing("combat", usr, src.stool_user, "activated an electric chair (setting: [src.lethal ? "lethal" : "non-lethal"]), shocking [constructTarget(src.stool_user,"combat")] at [log_loc(src)].")
 			shock(lethal)
 
 		src.control_interface(usr)
@@ -1592,8 +1602,8 @@
 			else
 				playsound(src.loc, "sound/effects/sparks4.ogg", 50, 0)
 
-		if (src.buckled_guy && ishuman(src.buckled_guy))
-			var/mob/living/carbon/human/H = src.buckled_guy
+		if (src.stool_user && ishuman(src.stool_user))
+			var/mob/living/carbon/human/H = src.stool_user
 
 			if (src.lethal)
 				var/net = src.get_connection() // Are we wired-powered (Convair880)?
@@ -1670,7 +1680,7 @@
 	can_stand(var/mob/user)
 		if (!( iscarbon(user) ) || get_dist(src, user) > 2 || user.restrained() || !isalive(user))
 			return 0 //wrong type, too far, or dead maybe
-		if(src.buckled_guy && src.buckled_guy.buckled == src && src.buckled_guy != user)
+		if(src.stool_user && src.stool_user.buckled == src && src.stool_user != user)
 			user.show_text("There's already someone up on the [src]!", "red")
 			return 0
 		return 1
@@ -1683,7 +1693,7 @@
 	proc/stand_on(mob/living/user)
 		if(!istype(user)) return
 		if(user.hasStatus("weakened")) return
-		if(src.buckled_guy && src.buckled_guy.buckled == src && user != src.buckled_guy) return
+		if(src.stool_user && src.stool_user.buckled == src && user != src.stool_user) return
 		if(!can_stand(user)) return
 
 		if(ishuman(user))
@@ -1693,7 +1703,7 @@
 			user.visible_message("<span class='notice'><b>[user]</b> climbs up on [src][wrestling ? ", ready to bring the pain!" : "."]</span>","<span class='notice'>You climb up on [src][wrestling ? " and get ready to fly!" : "."]</span>")
 			//set statuses and refs
 			H.on_chair = src
-			src.buckled_guy = user
+			src.stool_user = user
 			src.buckledIn = 1
 			user.buckled = src
 			user.setStatus("buckled", duration = INFINITE_STATUS)
@@ -1717,8 +1727,8 @@
 
 	proc/maybe_unstand(source, turf/oldloc)
 		// unstand if the guy is not on a turf, or if their ladder is out of range
-		if(!isturf(buckled_guy.loc) || (!IN_RANGE(src, oldloc, 1)))
-			UnregisterSignal(buckled_guy, COMSIG_MOVABLE_SET_LOC)
+		if(!isturf(stool_user.loc) || (!IN_RANGE(src, oldloc, 1)))
+			UnregisterSignal(stool_user, COMSIG_MOVABLE_SET_LOC)
 			unbuckle()
 
 /obj/stool/chair/stepladder/wrestling //this can be cleaned up from some lingering buckle stuffs and other checks. also forces looking up

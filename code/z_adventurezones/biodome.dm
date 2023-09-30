@@ -103,7 +103,7 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "Graveyard"
 	icon_state = "green"
 	force_fullbright = 0
-	filler_turf = "/turf/dirt"
+	filler_turf = "/turf/floor/dirt"
 	sound_environment = EAX_FOREST
 	skip_sims = 1
 	sims_score = 0

@@ -304,8 +304,7 @@
 /area/bee_trader)
 "aR" = (
 /obj/stool/chair/couch/yellow{
-	dir = 8;
-	icon_state = "chair_couch-yellow"
+	dir = 8
 	},
 /obj/item/reagent_containers/food/snacks/condiment/mayo{
 	desc = "All congealed and dusty. Ugh!";
@@ -318,8 +317,7 @@
 /area/bee_trader)
 "aS" = (
 /obj/stool/chair/couch/yellow{
-	dir = 4;
-	icon_state = "chair_couch-yellow"
+	dir = 4
 	},
 /obj/critter/domestic_bee/bubs,
 /obj/machinery/light/small{
@@ -334,7 +332,6 @@
 /obj/table/wood/auto,
 /obj/item/paper/bombininote/postgame,
 /obj/indestructible/shuttle_corner{
-	dir = 2;
 	icon_state = "wall3_trans"
 	},
 /turf/floor{
@@ -483,7 +480,6 @@
 "bl" = (
 /turf/floor/shuttlebay,
 /turf/shuttle/wall{
-	dir = 2;
 	icon_state = "diagonalWall3"
 	},
 /area/bee_trader)
@@ -918,16 +914,12 @@
 /turf/floor/shuttlebay,
 /area/diner/tug)
 "cz" = (
-/obj/lattice{
-	dir = 2;
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/area/noGenerate)
+/obj/landmark/club_juice_dance,
+/turf/floor/purpleblack/corner,
+/area/juicer/club)
 "cA" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /turf/floor/yellow/checker,
 /area/diner/arcade)
@@ -1064,8 +1056,7 @@
 	dir = 10
 	},
 /obj/machinery/light/small/cool/very{
-	dir = 1;
-	icon_state = "bulb1"
+	dir = 1
 	},
 /turf/floor/plating,
 /area/diner/tug)
@@ -1316,7 +1307,6 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "A vent.  A rather decrepit one, at that.";
-	dir = 2;
 	icon = 'icons/obj/atmospherics/pipe_vent.dmi';
 	icon_state = "intact";
 	name = "crusty vent"
@@ -1331,7 +1321,6 @@
 	},
 /obj/machinery/light/small/iomoon{
 	dir = 4;
-	icon_state = "bulb1";
 	name = "maintenance light";
 	tag = ""
 	},
@@ -1794,7 +1783,6 @@
 /area/diner/backroom)
 "eK" = (
 /obj/indestructible/shuttle_corner{
-	dir = 2;
 	icon_state = "wall3_trans"
 	},
 /turf/space,
@@ -1957,7 +1945,6 @@
 /area/shuttle/mining/space)
 "fi" = (
 /obj/indestructible/shuttle_corner{
-	dir = 2;
 	icon_state = "wall3_trans"
 	},
 /turf/floor/shuttle{
@@ -2214,8 +2201,7 @@
 /area/diner/dining)
 "fW" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /obj/cable{
 	d1 = 1;
@@ -2528,8 +2514,7 @@
 /area/diner/dining)
 "gK" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/floor/carpet/blue/fancy/edge/east,
 /area/diner/hallway)
@@ -2548,8 +2533,7 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/power/solar_control/diner{
-	dir = 4;
-	icon_state = "solar"
+	dir = 4
 	},
 /turf/floor/airless/plating,
 /area/diner/solar)
@@ -2789,8 +2773,7 @@
 /area/diner/hangar)
 "hs" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/decal/cleanable/dirt,
 /turf/floor/carpet/blue/fancy/edge/east,
@@ -2823,7 +2806,6 @@
 	},
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/indestructible/shuttle_corner{
-	dir = 2;
 	icon_state = "wall3_trans"
 	},
 /turf/floor/plating,
@@ -2847,7 +2829,6 @@
 "hz" = (
 /obj/stool/chair/couch/green{
 	dir = 4;
-	icon_state = "chair_couch-green";
 	tag = "icon-chair_couch-green (EAST)"
 	},
 /turf/floor/carpet/grime,
@@ -2888,8 +2869,7 @@
 	},
 /obj/machinery/drainage/big/off_station,
 /obj/machinery/shower{
-	dir = 4;
-	icon_state = "showerhead"
+	dir = 4
 	},
 /turf/floor/sanitary,
 /area/diner/motel)
@@ -3072,8 +3052,7 @@
 /area/diner/hallway)
 "ie" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /turf/floor/grime,
 /area/diner/hallway)
@@ -3141,8 +3120,7 @@
 "ip" = (
 /obj/decal/cleanable/dirt,
 /obj/stool/chair/wooden{
-	dir = 8;
-	icon_state = "chair_wooden"
+	dir = 8
 	},
 /turf/floor/carpet/green/fancy/edge/north,
 /area/diner/motel/observatory)
@@ -3177,8 +3155,7 @@
 /area/diner/motel)
 "iu" = (
 /obj/machinery/light/small{
-	dir = 4;
-	icon_state = "bulb1"
+	dir = 4
 	},
 /turf/floor/darkblue,
 /area/diner/hallway)
@@ -3305,8 +3282,7 @@
 /area/diner/motel)
 "iJ" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/cable{
 	d1 = 1;
@@ -3319,15 +3295,12 @@
 /obj/submachine/chef_sink/chem_sink{
 	dir = 8
 	},
-/obj/securearea{
-	desc = "A poster that reads 'CLEAN HANDS SAVE LIVES'.";
-	icon_state = "chsl";
-	name = "CLEAN HANDS SAVE LIVES";
-	pixel_x = 32
-	},
 /obj/item/cigbutt,
 /obj/cable{
 	icon_state = "1-10"
+	},
+/obj/decal/poster/wallsign/chsl{
+	pixel_x = 32
 	},
 /turf/floor/scorched,
 /area/diner/bathroom)
@@ -3343,8 +3316,7 @@
 /area/diner/hangar)
 "iM" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/floor/grime,
 /area/diner/dining)
@@ -3376,8 +3348,7 @@
 	},
 /obj/machinery/drainage/big/off_station,
 /obj/machinery/shower{
-	dir = 4;
-	icon_state = "showerhead"
+	dir = 4
 	},
 /turf/floor/sanitary,
 /area/diner/motel)
@@ -3701,16 +3672,14 @@
 /area/diner/motel)
 "jz" = (
 /obj/stool/chair/couch/yellow{
-	dir = 8;
-	icon_state = "chair_couch-yellow"
+	dir = 8
 	},
 /turf/floor/carpet/grime,
 /area/diner/motel)
 "jA" = (
 /obj/decal/cleanable/dirt,
 /obj/stool/chair/couch/yellow{
-	dir = 4;
-	icon_state = "chair_couch-yellow"
+	dir = 4
 	},
 /turf/floor/carpet/grime,
 /area/diner/motel)
@@ -3751,12 +3720,9 @@
 /turf/space,
 /area/noGenerate)
 "jG" = (
-/obj/lattice{
-	dir = 2;
-	icon_state = "lattice-dir-b"
-	},
-/turf/space,
-/area/noGenerate)
+/obj/landmark/club_juice_dance,
+/turf/floor/black,
+/area/juicer/club)
 "jH" = (
 /obj/window/reinforced/east,
 /obj/window/reinforced/south,
@@ -3852,8 +3818,7 @@
 "jU" = (
 /obj/decal/cleanable/dirt,
 /obj/stool/chair/wooden{
-	dir = 4;
-	icon_state = "chair_wooden"
+	dir = 4
 	},
 /turf/floor/carpet/green/fancy/edge/north,
 /area/diner/motel/observatory)
@@ -3880,8 +3845,7 @@
 /area/diner/hallway)
 "jY" = (
 /obj/stool/chair/wooden{
-	dir = 8;
-	icon_state = "chair_wooden"
+	dir = 8
 	},
 /turf/floor/carpet/green/fancy,
 /area/diner/motel/observatory)
@@ -3961,11 +3925,9 @@
 /area/noGenerate)
 "ki" = (
 /obj/lattice{
-	dir = 2;
 	icon_state = "lattice-dir"
 	},
 /obj/lattice{
-	dir = 2;
 	icon_state = "lattice-dir"
 	},
 /turf/space,
@@ -3983,8 +3945,7 @@
 /area/diner/hallway)
 "kk" = (
 /obj/stool/chair/wooden{
-	dir = 4;
-	icon_state = "chair_wooden"
+	dir = 4
 	},
 /turf/floor/carpet/green/fancy,
 /area/diner/motel/observatory)
@@ -4082,8 +4043,7 @@
 /area/diner/hallway)
 "kz" = (
 /obj/stool/chair/office{
-	dir = 1;
-	icon_state = "office_chair"
+	dir = 1
 	},
 /obj/cable{
 	icon_state = "4-8"
@@ -4270,7 +4230,6 @@
 /area/diner/hallway)
 "kZ" = (
 /obj/lattice{
-	dir = 2;
 	icon_state = "lattice-dir"
 	},
 /turf/space,
@@ -4279,13 +4238,9 @@
 "lb" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/machinery/light/fluorescent/warm/very{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
-/obj/storage/cart/trash{
-	anchored = 1;
-	desc = "the trademark has expired.";
-	name = "dumpster";
+/obj/storage/crate/dumpster/full{
 	pixel_y = 5
 	},
 /turf/floor/black/grime,
@@ -4322,8 +4277,7 @@
 /area/noGenerate)
 "lk" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/random_item_spawner/junk/one_or_zero,
 /turf/floor/carpet/arcade,
@@ -4354,8 +4308,7 @@
 	dir = 4
 	},
 /obj/neon_lining{
-	color = "#FF00FF";
-	dir = 2
+	color = "#FF00FF"
 	},
 /turf/floor/black,
 /area/juicer/club)
@@ -4373,6 +4326,11 @@
 /obj/decal/poster/wallsign/stencil/right/b,
 /turf/floor/plating,
 /area/diner/hallway)
+"lD" = (
+/obj/landmark/club_juice_dance,
+/mob/living/carbon/human/clubfert,
+/turf/floor/black,
+/area/juicer/club)
 "lI" = (
 /obj/machinery/door/airlock/external,
 /turf/floor/carpet/purple/standard/edge/north,
@@ -4564,8 +4522,7 @@
 "my" = (
 /obj/table/reinforced/auto,
 /obj/decal/tile_edge/stripe/extra_big{
-	dir = 1;
-	icon_state = "xtra_bigstripe-edge"
+	dir = 1
 	},
 /turf/floor/black/grime,
 /area/diner/hallway)
@@ -4575,8 +4532,7 @@
 "mB" = (
 /obj/machinery/light/small,
 /obj/decal/tile_edge/stripe/extra_big{
-	dir = 1;
-	icon_state = "xtra_bigstripe-edge"
+	dir = 1
 	},
 /turf/floor/black/grime,
 /area/diner/hallway)
@@ -4586,8 +4542,7 @@
 /area/diner/arcade)
 "mD" = (
 /obj/decal/tile_edge/stripe/extra_big{
-	dir = 1;
-	icon_state = "xtra_bigstripe-edge"
+	dir = 1
 	},
 /obj/item/paper{
 	info = "please don't toe me i'll be right back i sware"
@@ -4596,8 +4551,7 @@
 /area/diner/hallway)
 "mE" = (
 /obj/decal/tile_edge/stripe/extra_big{
-	dir = 1;
-	icon_state = "xtra_bigstripe-edge"
+	dir = 1
 	},
 /obj/machinery/light/small,
 /turf/floor/black/grime,
@@ -4617,8 +4571,7 @@
 	icon_state = "delivery2"
 	},
 /obj/decal/tile_edge/stripe/extra_big{
-	dir = 1;
-	icon_state = "xtra_bigstripe-edge"
+	dir = 1
 	},
 /turf/floor/black/grime,
 /area/diner/hallway)
@@ -4661,8 +4614,7 @@
 /area/juicer/club/outside)
 "mN" = (
 /obj/decal/tile_edge/stripe/extra_big{
-	dir = 1;
-	icon_state = "xtra_bigstripe-edge"
+	dir = 1
 	},
 /obj/cable{
 	icon_state = "1-4"
@@ -4674,8 +4626,7 @@
 /area/juicer/club/back)
 "mP" = (
 /obj/decal/tile_edge/stripe/extra_big{
-	dir = 1;
-	icon_state = "xtra_bigstripe-edge"
+	dir = 1
 	},
 /obj/cable{
 	d2 = 8;
@@ -4917,7 +4868,6 @@
 /area/diner/solar)
 "nm" = (
 /obj/decal/fakeobjects/shuttleengine{
-	dir = 2;
 	icon_state = "alt_heater-L"
 	},
 /turf/space,
@@ -4932,8 +4882,7 @@
 /area/juicer/club/back)
 "ny" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/floor/carpet/arcade,
 /area/diner/arcade)
@@ -4972,7 +4921,6 @@
 /area/diner/arcade)
 "oA" = (
 /obj/decal/fakeobjects/shuttleengine{
-	dir = 2;
 	icon_state = "alt_heater"
 	},
 /turf/shuttle/wall{
@@ -4998,8 +4946,7 @@
 "oR" = (
 /obj/storage/secure/filing_cabinet,
 /obj/machinery/light/fluorescent/neutral{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/floor/green/checker,
 /area/diner/arcade)
@@ -5012,11 +4959,11 @@
 /turf/floor/green/checker,
 /area/diner/arcade)
 "po" = (
-/obj/table/reinforced/chemistry/auto,
 /obj/neon_lining{
 	color = "#FF00FF";
-	dir = 2
+	dir = 1
 	},
+/obj/landmark/club_juice_drink,
 /turf/floor/black,
 /area/juicer/club)
 "pv" = (
@@ -5053,8 +5000,7 @@
 /area/juicer/club/back)
 "pF" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/floor/grime,
 /area/juicer/club/back)
@@ -5063,8 +5009,7 @@
 /area/juicer/club/outside)
 "pS" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /turf/floor/grime,
 /area/diner/arcade)
@@ -5077,8 +5022,7 @@
 "qr" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/machinery/light/fluorescent/neutral{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/floor/black/grime,
 /area/diner/hallway)
@@ -5099,7 +5043,6 @@
 /area/diner/arcade)
 "qU" = (
 /obj/decal/fakeobjects/shuttlethruster{
-	dir = 2;
 	icon_state = "alt_propulsion"
 	},
 /turf/space,
@@ -5115,6 +5058,16 @@
 /obj/item/reagent_containers/food/drinks/bottle/hobo_wine/safe,
 /turf/floor/grime,
 /area/juicer/club/back)
+"rv" = (
+/obj/stool/chair/couch/purple{
+	dir = 8
+	},
+/turf/floor/darkpurple,
+/area/juicer/club/outside)
+"ry" = (
+/obj/table/reinforced/chemistry/auto,
+/turf/floor/black,
+/area/juicer/club)
 "sa" = (
 /obj/decal/tile_edge/stripe{
 	dir = 1
@@ -5163,8 +5116,7 @@
 "te" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/machinery/light/fluorescent/neutral{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/floor/black/grime,
 /area/diner/hallway)
@@ -5190,11 +5142,9 @@
 /area/juicer/club/outside)
 "ty" = (
 /obj/decal/fakeobjects/shuttleengine{
-	dir = 2;
 	icon_state = "alt_heater"
 	},
 /turf/shuttle/wall{
-	dir = 2;
 	icon_state = "wall3_space"
 	},
 /area/diner/jucer_trader)
@@ -5221,6 +5171,12 @@
 "uf" = (
 /turf/floor/carpet/green/standard/edge/west,
 /area/diner/jucer_trader)
+"uk" = (
+/obj/stool/chair/couch/purple{
+	dir = 4
+	},
+/turf/floor/darkpurple,
+/area/juicer/club/outside)
 "un" = (
 /obj/machinery/light/fluorescent/neutral,
 /turf/floor/grime,
@@ -5278,6 +5234,10 @@
 /obj/machinery/light/runway_light/delay4,
 /turf/space,
 /area/noGenerate)
+"wA" = (
+/obj/landmark/club_juice_dj,
+/turf/floor/black,
+/area/juicer/club)
 "wH" = (
 /turf/shuttle/wall{
 	dir = 8;
@@ -5312,7 +5272,6 @@
 /area/diner/jucer_trader)
 "xf" = (
 /obj/decal/fakeobjects/shuttleengine{
-	dir = 2;
 	icon_state = "alt_heater"
 	},
 /turf/shuttle/wall{
@@ -5331,8 +5290,7 @@
 	dir = 8
 	},
 /obj/neon_lining{
-	color = "#FF00FF";
-	dir = 2
+	color = "#FF00FF"
 	},
 /turf/floor/black,
 /area/juicer/club)
@@ -5344,8 +5302,7 @@
 /area/diner/jucer_trader)
 "xz" = (
 /obj/neon_lining{
-	color = "#FF00FF";
-	dir = 2
+	color = "#FF00FF"
 	},
 /turf/floor/carpet/purple/standard/edge/south,
 /area/juicer/club/outside)
@@ -5362,11 +5319,19 @@
 /area/diner/backroom)
 "xU" = (
 /obj/decal/tile_edge/stripe/extra_big{
-	dir = 1;
-	icon_state = "xtra_bigstripe-edge"
+	dir = 1
 	},
 /turf/floor/black/grime,
 /area/diner/hallway)
+"xZ" = (
+/obj/machinery/light/fluorescent/purpleish{
+	dir = 1
+	},
+/obj/table/round/auto{
+	color = "#6F00FF"
+	},
+/turf/floor/darkpurple,
+/area/juicer/club/outside)
 "yq" = (
 /obj/window/reinforced/south,
 /obj/table/reinforced/auto,
@@ -5376,13 +5341,11 @@
 /turf/floor/carpet/purple/standard/innercorner/sw,
 /area/juicer/club/outside)
 "yE" = (
-/obj/lattice{
-	dir = 2;
-	icon_state = "lattice-dir"
+/obj/landmark/club_juice_dance,
+/turf/floor/purpleblack/corner{
+	dir = 4
 	},
-/obj/machinery/light/runway_light/delay4,
-/turf/space,
-/area/noGenerate)
+/area/juicer/club)
 "yN" = (
 /obj/machinery/light/fluorescent/warm{
 	dir = 8
@@ -5405,8 +5368,7 @@
 "yX" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/machinery/light/fluorescent/neutral{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /turf/floor/black/grime,
 /area/diner/hallway)
@@ -5511,6 +5473,11 @@
 /obj/table/regal/auto,
 /turf/floor/darkpurple,
 /area/juicer/club/outside)
+"AU" = (
+/obj/machinery/light/small/floor/purple,
+/obj/landmark/club_juice_drink,
+/turf/floor/black,
+/area/juicer/club)
 "Bf" = (
 /obj/machinery/door/airlock/glass/engineering{
 	name = "cockpit airlock"
@@ -5524,8 +5491,7 @@
 /area/diner/jucer_trader)
 "Bj" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/table/reinforced/auto,
 /obj/item/paper/book/from_file/pocketguide/gunsmith,
@@ -5546,10 +5512,13 @@
 	},
 /turf/floor/carpet/purple/standard/edge/west,
 /area/juicer/club/outside)
+"BC" = (
+/obj/landmark/club_juice_drink,
+/turf/floor/black,
+/area/juicer/club)
 "BX" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/floor/grime,
 /area/juicer/club/back)
@@ -5600,8 +5569,7 @@
 /area/diner/jucer_trader)
 "CN" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/table/reinforced/auto,
 /turf/floor/carpet/arcade,
@@ -5673,6 +5641,16 @@
 	},
 /turf/floor/darkpurple,
 /area/juicer/club/outside)
+"FA" = (
+/obj/landmark/club_juice_drink,
+/mob/living/carbon/human/clubfert,
+/turf/floor/black,
+/area/juicer/club)
+"FV" = (
+/obj/machinery/light/small/floor/purple,
+/obj/landmark/club_juice_dance,
+/turf/floor/black,
+/area/juicer/club)
 "FY" = (
 /obj/table/reinforced/auto,
 /obj/machinery/glass_recycler{
@@ -5776,6 +5754,10 @@
 /obj/window/reinforced/south,
 /turf/floor/plating,
 /area/juicer/club/outside)
+"Iy" = (
+/obj/reagent_dispensers/beerkeg,
+/turf/floor/grime,
+/area/juicer/club/back)
 "II" = (
 /obj/window/bulletproof/west,
 /obj/neon_lining{
@@ -5822,11 +5804,13 @@
 /area/diner/arcade)
 "Kb" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/submachine/chef_sink{
 	dir = 4
+	},
+/obj/decal/poster/wallsign/chsc{
+	pixel_x = -32
 	},
 /turf/floor/grime,
 /area/juicer/club/back)
@@ -5858,7 +5842,6 @@
 /area/juicer/club/back)
 "KX" = (
 /obj/decal/fakeobjects/shuttleengine{
-	dir = 2;
 	icon_state = "alt_heater-R"
 	},
 /turf/space,
@@ -5874,6 +5857,7 @@
 /turf/floor/black/grime,
 /area/diner/hallway)
 "Li" = (
+/mob/living/carbon/human/clubfert,
 /turf/floor/purpleblack/corner{
 	dir = 8
 	},
@@ -5902,8 +5886,7 @@
 /area/juicer/club)
 "ML" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/floor/green/checker,
 /area/diner/arcade)
@@ -5931,8 +5914,7 @@
 /area/juicer/club/outside)
 "Nf" = (
 /obj/decal/tile_edge/stripe/extra_big{
-	dir = 1;
-	icon_state = "xtra_bigstripe-edge"
+	dir = 1
 	},
 /obj/machinery/light/fluorescent/purpleish,
 /turf/floor/black/grime,
@@ -5953,8 +5935,7 @@
 /area/juicer/club/outside)
 "NB" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/window/reinforced/west,
 /obj/window/reinforced/south,
@@ -5985,6 +5966,10 @@
 /obj/window/reinforced/south,
 /turf/floor/plating,
 /area/diner/arcade)
+"NN" = (
+/mob/living/carbon/human/clubfert,
+/turf/floor/black,
+/area/juicer/club)
 "NS" = (
 /obj/decal/cleanable/dirt/jen,
 /turf/floor/carpet/green/standard/edge/west,
@@ -6030,6 +6015,7 @@
 	color = "#FF00FF";
 	dir = 1
 	},
+/obj/landmark/club_juice_dance,
 /turf/floor/black,
 /area/juicer/club)
 "Oz" = (
@@ -6073,8 +6059,7 @@
 /area/juicer/club)
 "Pk" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/storage/secure/closet/fridge/kitchen{
 	locked = 0
@@ -6133,13 +6118,14 @@
 /turf/floor/plating,
 /area/juicer/club)
 "PF" = (
-/obj/lattice{
-	dir = 2;
-	icon_state = "lattice-dir"
+/obj/window/bulletproof/west,
+/obj/neon_lining{
+	color = "#FF00FF";
+	dir = 8
 	},
-/obj/machinery/light/runway_light/delay2,
-/turf/space,
-/area/noGenerate)
+/obj/landmark/club_juice_dance,
+/turf/floor/black,
+/area/juicer/club)
 "PS" = (
 /obj/grille/steel,
 /obj/window/reinforced/east,
@@ -6168,7 +6154,6 @@
 /area/diner/jucer_trader)
 "Qx" = (
 /obj/indestructible/shuttle_corner{
-	dir = 2;
 	icon_state = "wall3_trans"
 	},
 /obj/grille/catwalk,
@@ -6324,7 +6309,6 @@
 /area/diner/jucer_trader)
 "TV" = (
 /obj/decal/fakeobjects/shuttleengine{
-	dir = 2;
 	icon_state = "alt_heater-M"
 	},
 /turf/space,
@@ -6494,6 +6478,12 @@
 	},
 /turf/floor/carpet/arcade,
 /area/diner/arcade)
+"Wf" = (
+/obj/table/round/auto{
+	color = "#6F00FF"
+	},
+/turf/floor/darkpurple,
+/area/juicer/club/outside)
 "Wi" = (
 /obj/machinery/light/fluorescent/purpleish,
 /turf/floor/black,
@@ -6515,8 +6505,7 @@
 /area/juicer/club/back)
 "WQ" = (
 /obj/machinery/light/fluorescent/neutral{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/storage/cart/trash,
 /turf/floor/grime,
@@ -6575,6 +6564,7 @@
 /area/juicer/club/outside)
 "Yc" = (
 /obj/machinery/light/small/floor/purple,
+/mob/living/carbon/human/clubfert,
 /turf/floor/black,
 /area/juicer/club)
 "Yi" = (
@@ -6605,17 +6595,12 @@
 /turf/space,
 /area/noGenerate)
 "YQ" = (
-/obj/table/reinforced/chemistry/auto,
-/obj/neon_lining{
-	color = "#FF00FF";
+/obj/machinery/light/fluorescent/neutral{
 	dir = 8
 	},
-/obj/neon_lining{
-	color = "#FF00FF";
-	dir = 2
-	},
-/turf/floor/black,
-/area/juicer/club)
+/obj/reagent_dispensers/beerkeg,
+/turf/floor/grime,
+/area/juicer/club/back)
 "YU" = (
 /obj/railing/purple/reinforced{
 	dir = 4
@@ -6631,8 +6616,7 @@
 "Ze" = (
 /obj/window/reinforced/south,
 /obj/machinery/light/fluorescent/neutral{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/window/reinforced/west,
 /obj/window/reinforced/north,
@@ -50007,7 +49991,7 @@ ab
 ab
 ab
 ab
-jG
+ac
 ah
 aF
 aZ
@@ -50611,7 +50595,7 @@ ab
 ab
 ab
 ab
-jG
+ac
 ai
 aF
 bb
@@ -51517,7 +51501,7 @@ ab
 ab
 ab
 ab
-jG
+ac
 aJ
 aF
 aZ
@@ -57580,11 +57564,11 @@ jm
 vo
 eX
 aJ
-cz
-cz
-cz
+aF
+aF
+aF
 aJ
-cz
+aF
 aG
 ab
 ab
@@ -58149,25 +58133,25 @@ aa
 ab
 ab
 aG
-cz
-cz
-cz
-cz
-cz
-cz
-cz
+aF
+aF
+aF
+aF
+aF
+aF
+aF
 aJ
 aJ
 bX
 ki
-cz
-cz
-cz
-cz
-cz
-cz
-cz
-cz
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
 bX
 bX
 bX
@@ -58455,21 +58439,21 @@ ab
 ab
 ab
 ab
-jG
-cz
-cz
+ac
+aF
+aF
 aJ
 aJ
 gC
-cz
-cz
-cz
-cz
-cz
-cz
-cz
-cz
-cz
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
 gC
 eP
 eP
@@ -60593,7 +60577,7 @@ kH
 kz
 im
 mf
-cz
+aF
 lO
 fh
 fG
@@ -62117,18 +62101,18 @@ RJ
 Nu
 uo
 kD
-cz
-cz
+aF
+aF
 bX
-cz
-cz
-cz
+aF
+aF
+aF
 bX
-cz
+aF
 kZ
-cz
+aF
 bX
-PF
+hK
 ab
 aa
 aa
@@ -62721,18 +62705,18 @@ Ss
 AJ
 Tl
 Ij
-cz
-cz
+aF
+aF
 gC
-cz
-cz
-cz
+aF
+aF
+aF
 gC
-cz
-cz
-cz
+aF
+aF
+aF
 gC
-yE
+hD
 ab
 aa
 aa
@@ -63589,21 +63573,21 @@ ab
 ab
 ab
 ab
-jG
-cz
-cz
+ac
+aF
+aF
 aJ
 aJ
 bX
-cz
-cz
-cz
-cz
-cz
-cz
-cz
-cz
-cz
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
 bX
 hv
 hv
@@ -63615,7 +63599,7 @@ mM
 mM
 mM
 mL
-mz
+Wf
 tg
 xz
 Bo
@@ -63625,7 +63609,7 @@ NW
 nH
 II
 II
-II
+PF
 DT
 Td
 Lm
@@ -63887,25 +63871,25 @@ aa
 ab
 ab
 aG
-cz
-cz
-cz
-cz
-cz
-cz
-cz
+aF
+aF
+aF
+aF
+aF
+aF
+aF
 aJ
 aJ
 gC
-cz
-cz
-cz
-cz
-cz
-cz
-cz
-cz
-cz
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
 gC
 gC
 gC
@@ -63917,19 +63901,19 @@ ab
 ab
 ab
 mL
-mz
+rv
 tg
 xz
 AR
 mz
 Gf
 Ki
-Od
-Od
+NN
+jG
 Qb
 Od
-Od
-Od
+jG
+NN
 ND
 Td
 Lm
@@ -64219,7 +64203,7 @@ ab
 ab
 ab
 mL
-mz
+uk
 tg
 xz
 Bo
@@ -64227,11 +64211,11 @@ Fn
 Gf
 On
 Qb
-Od
+jG
 Yc
 Od
-Qy
-Od
+cz
+jG
 Qb
 Od
 Od
@@ -64521,7 +64505,7 @@ am
 ab
 ab
 mL
-mz
+xZ
 tg
 xz
 AR
@@ -64531,8 +64515,8 @@ Nh
 Od
 SL
 Od
-Yc
-Od
+FV
+NN
 Od
 Zf
 lu
@@ -64823,7 +64807,7 @@ am
 ab
 ab
 mL
-mX
+rv
 tg
 yC
 Bp
@@ -64831,14 +64815,14 @@ Bp
 HB
 Od
 Od
+NN
 Od
-Od
-Od
-Od
+NN
+jG
 Qy
 Od
 zG
-Od
+wA
 Od
 uW
 HM
@@ -65125,22 +65109,22 @@ am
 bX
 bX
 mL
-mz
+uk
 tU
 mt
 mt
 mt
 IJ
 Od
-Qy
+cz
 Od
-SL
+yE
 Od
 Li
-Od
+lD
 Od
 Hp
-Od
+wA
 Od
 uW
 HM
@@ -65427,7 +65411,7 @@ am
 gC
 gC
 mL
-mz
+Wf
 mz
 zS
 mz
@@ -65435,10 +65419,10 @@ mz
 Gf
 Nh
 Od
-Od
-Od
-Yc
-Od
+FA
+BC
+AU
+BC
 Od
 Zf
 xm
@@ -65741,7 +65725,7 @@ Tj
 VC
 kW
 Tj
-YQ
+Ki
 Od
 Od
 Od
@@ -66034,7 +66018,7 @@ eN
 BX
 pE
 pE
-BX
+YQ
 eN
 kx
 OZ
@@ -66042,7 +66026,7 @@ OZ
 OZ
 OZ
 OZ
-OZ
+ry
 po
 ND
 Tv
@@ -66315,7 +66299,7 @@ EB
 ny
 EB
 qB
-cz
+aF
 qB
 qB
 qB
@@ -66336,7 +66320,7 @@ eN
 pE
 pE
 pE
-pE
+Iy
 eN
 KB
 OZ
@@ -66344,7 +66328,7 @@ OZ
 OZ
 OZ
 Zo
-OZ
+ry
 Tv
 Lm
 Px
@@ -66638,7 +66622,7 @@ eN
 nu
 pE
 pE
-pE
+Iy
 eN
 kx
 Pf
@@ -66940,7 +66924,7 @@ eN
 nL
 pE
 pE
-pE
+Iy
 eN
 eN
 kQ
@@ -67251,18 +67235,18 @@ pE
 Wq
 Kb
 eN
-cz
-cz
+aF
+aF
 bX
-cz
-cz
-cz
+aF
+aF
+aF
 bX
-cz
-cz
-cz
+aF
+aF
+aF
 bX
-PF
+hK
 ab
 aa
 aa
@@ -67511,10 +67495,10 @@ aa
 ab
 ab
 aG
-cz
-cz
-cz
-cz
+aF
+aF
+aF
+aF
 qB
 cA
 zX
@@ -67855,18 +67839,18 @@ pF
 WK
 rp
 eN
-cz
-cz
+aF
+aF
 gC
-cz
-cz
-cz
+aF
+aF
+aF
 gC
-cz
-cz
-cz
+aF
+aF
+aF
 gC
-yE
+hD
 ab
 aa
 aa
@@ -68731,7 +68715,7 @@ Ze
 We
 EB
 qB
-cz
+aF
 qB
 qB
 qB
@@ -72055,26 +72039,26 @@ ab
 ab
 ab
 cV
-cz
-cz
-cz
-cz
-cz
-cz
-cz
+aF
+aF
+aF
+aF
+aF
+aF
+aF
 aJ
 ab
 ab
 ab
 ab
 aJ
-cz
-cz
-cz
-cz
-cz
-cz
-cz
+aF
+aF
+aF
+aF
+aF
+aF
+aF
 cV
 ab
 ab

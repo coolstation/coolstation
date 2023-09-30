@@ -1641,7 +1641,7 @@
 
 //cogwerks- adding a floppy disk vendor
 /obj/machinery/vending/floppy
-	name = "SoftTech"
+	name = "Software On-The-Go!" //NT Branding
 	desc = "A computer software vendor."
 	icon_state = "software"
 	icon_panel = "standard-panel"
@@ -1670,9 +1670,37 @@
 		product_list += new/datum/data/vending_product(/obj/item/storage/box/diskbox, rand(2,3), cost=PAY_UNTRAINED/2)
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/floppy, rand(5,8), cost=PAY_UNTRAINED/5)
 
+//for the GNU/Battleship
+//general crimer software + a couple PDA bomb carts/emags maybe??? imo
+/*
+/obj/machinery/vending/floppy/syndicate
+	name = "Free AND Legal Software"
+	desc = "A dubious computer software vendor."
+	icon_state = "software"
+	icon_panel = "standard-panel"
+	icon_off = "standard-off"
+	icon_broken = "standard-broken"
+	icon_fallen = "standard-fallen"
+	pay = 1
+	acceptcard = 1
+
+	slogan_list = list("Remember to read the licensing agreement! Carefully! All of it!",
+	"Copy that floppy!",
+	"Welcome to the age of free and open-source software!",
+	"Death to DWAINE! Long Live OpenDWAINE!")
+
+	light_r =0.03
+	light_g = 1
+	light_b = 0.2
+
+	create_products()
+		..()
+		product_list += new/datum/data/vending_product(/obj/item/storage/box/diskbox, rand(2,3), cost=PAY_UNTRAINED/2)
+		product_list += new/datum/data/vending_product(/obj/item/disk/data/floppy, rand(5,8), cost=PAY_UNTRAINED/5)
+*/
 
 /obj/machinery/vending/pda //cogwerks: vendor to clean up the pile of PDA carts a bit
-	name = "CartyParty"
+	name = "CartyParty" //We'll also just say that's NT Branding
 	desc = "A PDA cartridge vendor."
 	icon_state = "pda"
 	icon_panel = "standard-panel"
@@ -1713,7 +1741,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/clown, 1, cost=PAY_DUMBCLOWN, hidden=1)
 
 /obj/machinery/vending/book //cogwerks: eventually this oughta have some of the wiki job guides available in it
-	name = "Books4u"
+	name = "Books4u" //NT branding for guidebooks and such
 	desc = "A printed text vendor."
 	icon_state = "books"
 	icon_panel = "standard-panel"
