@@ -157,10 +157,139 @@
 	icon_opened = "largebinopen"
 	icon_closed = "largebin"
 
+	//stealing this chunk from disposal_chute.dm for literally throwing nerds in the fuckeiing GARBAGE CAN
+	hitby(atom/movable/MO, datum/thrown_thing/thr)
+		if(isitem(MO))
+			var/obj/item/I = MO
+			I.set_loc(get_turf(src))
+			if(prob(60))
+				//you can only sink it if it's open
+				if(src.open)
+					if(prob(70)) //It landed cleanly!
+						if (I.w_class >= 3)
+							src.visible_message("<span class='alert'>\The [I] bangs right into \the [src] and closes the lid!</span>")
+							src.close()
+							I.set_loc(src)
+						else
+							src.visible_message("<span class='alert'>\The [I] lands cleanly in \the [src]!</span>")
+					else	//Aaaa the tension!
+						src.visible_message("<span class='alert'>\The [I] bounces off the side of \the [src]!</span>")
+				//really, what did you expect
+				else
+					src.visible_message("<span class='alert'>\The [I] bounces off the lid of \the [src]!</span>")
+
+		else if (ishuman(MO))
+			var/mob/living/carbon/human/H = MO
+			H.set_loc(get_turf(src)) //ignore density
+			H.visible_message("<span class='alert'><B>[H] gets tossed into a trash can!</B></span>")
+			logTheThing("combat", H, null, "is thrown into a [src.name] at [log_loc(src)].")
+			playsound(src.loc,'sound/impact_sounds/Metal_Clang_1.ogg', 55, 0)
+			H.changeStatus("stunned", 1 SECONDS)
+			H.changeStatus("weakened", 1 SECONDS)
+			if(prob(75))
+				SPAWN_DBG(1 SECOND)
+					src.close()
+					H.set_loc(src)
+					src.visible_message("<span class='alert'><B><I>...with the lid slamming shut right after!</I></B></span>")
+					boutput(H,"<span class='alert'><B><I>...with the lid slamming shut right after! Geeeeeeet dunked on!</I></B></span>")
+					playsound(src.loc,'sound/musical_instruments/Airhorn_1.ogg', 55, 0)
+		else
+			return ..()
+
 /obj/storage/crate/bin/lostandfound
 	name = "\improper Lost and Found bin"
 	desc = "Theoretically, items that are lost by a person are placed here so that the person may come and find them. This never happens."
 	spawn_contents = list(/obj/item/gnomechompski)
+
+//finally, a respectable business site for dealings with No-Money Nio
+/obj/storage/crate/dumpster
+	name = "dumpster"
+	desc = "A regular sized dumpster."
+	icon = 'icons/obj/items/storage.dmi'
+	icon_state = "dumpster"
+	icon_opened = "dumpsteropen"
+	icon_closed = "dumpster"
+
+	icon_state = "dumpster"
+	icon_opened = "dumpsteropen"
+	icon_closed = "dumpsteropen"
+
+	close()
+		return
+
+	/obj/storage/crate/dumpster/full
+		desc = "A regular sized dumpster with a non regular smell. Holy shit, what IS that?"
+
+		toggle(var/mob/user)
+			if (src.open)
+				boutput(user,"<span class='alert'>Try as you might, that \the [src] is way too full for you to try to close again!</span>")
+				if(prob(70))
+					boutput(user,"<span class='alert'>Oh fuck, you only managed to stir up even more of the stink and garbage juice!</span>")
+					user.emote(pick("cough","gag"))
+					if (prob(30))
+						boutput(user,"<span class='alert'><B>SOME OF THE JUICES GOT IN YOUR MOUTH.<B></span>")
+						user.emote("scream")
+						user.vomit()
+						//add reagents after they barf
+						switch(rand(1,3)) //congratulations you lose
+							if (1) user.reagents.add_reagent("grime",5)
+							if (2) user.reagents.add_reagent("slime",5)
+							if (3) user.reagents.add_reagent("yuck",5)
+			if (user)
+				return src.open(null,user)
+			return src.open()
+
+		hitby(atom/movable/MO, datum/thrown_thing/thr)
+			if(isitem(MO))
+				var/obj/item/I = MO
+				src.visible_message("<span class='alert'>\The [I] bounces off [pick("the side of","the rim of","the load of trash inside")] \the [src]!</span>")
+				I.set_loc(get_turf(src))
+
+			else if (ishuman(MO))
+				var/mob/living/carbon/human/H = MO
+				H.set_loc(get_turf(src)) //ignore density
+				logTheThing("combat", H, null, "is thrown into a FULL [src.name] at [log_loc(src)].")
+
+
+				if(prob(30))
+					H.visible_message("<span class='alert'><B>[H] gets tossed <i>into</i> [src]!</B></span>","<span class='alert'>Oh, hey, all this garbage cushioned your fall...</span>")
+					boutput(H,"<span class='alert'>Oh, hey, all this garbage cushioned your fall...</span>")
+					H.emote(pick("cough","gag"))
+					if (prob(66))
+						boutput(H,"<span class='alert'><B>...ALL THIS GARBAGE GOT IN YOUR MOUTH.<B></span>")
+						H.emote("scream")
+						H.vomit()
+						//add reagents after they barf
+						switch(rand(1,3)) //congratulations you lose
+							if (1) H.reagents.add_reagent("grime",5)
+							if (2) H.reagents.add_reagent("slime",5)
+							if (3) H.reagents.add_reagent("yuck",5)
+						H.changeStatus("stunned", 1 SECONDS)
+						H.changeStatus("weakened", 1 SECONDS)
+						playsound(src.loc,'sound/impact_sounds/Slimy_Splat_1.ogg', 55, 0)
+				else
+					H.visible_message("<span class='alert'><B>[H] gets tossed <i>into</i> [src] and bounces off!</B></span>","<span class='alert'>Ow, fuck! You hit \the [src] and bounced off!</span>")
+					H.TakeDamage("All", 2, 0, 0, DAMAGE_BLUNT)
+					playsound(src.loc,'sound/impact_sounds/Metal_Clang_1.ogg', 55, 0)
+
+			else
+				return ..()
+
+		open(var/entangleLogic, var/mob/user)
+			..()
+			boutput(user,"<span class='alert'>Oh fuck, what have you done? [src] will never close again with all that, and it smells SO AWFUL.</span>")
+			if(prob(70))
+				boutput(user,"<span class='alert'>God, and you stirred up all the absolute filth in there!</span>")
+				user.emote(pick("cry","cough"))
+				if (prob(30))
+					boutput(user,"<span class='alert'><B>SOME OF THE JUICES GOT IN YOUR MOUTH.<B></span>")
+					user.emote("scream")
+					user.vomit()
+					switch(rand(1-3)) //add this after they barf
+						if (1) user.reagents.add_reagent("grime",5)
+						if (2) user.reagents.add_reagent("slime",5)
+						if (3) user.reagents.add_reagent("yuck",5)
+
 
 /obj/storage/crate/adventure
 	name = "adventure crate"
