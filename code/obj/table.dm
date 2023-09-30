@@ -637,6 +637,7 @@
 	auto_type = null
 	parts_type = /obj/item/furniture_parts/table/reinforced/roulette
 
+/* ---------------------------- Chemistry Counter --------------------------- */
 /obj/table/reinforced/chemistry
 	name = "lab counter"
 	desc = "A labratory countertop made from a paper composite, which is very heat resistant."
@@ -658,9 +659,10 @@
 		for (var/B=0, B<=7, B++)
 			new /obj/item/reagent_containers/glass/beaker(src.desk_drawer)
 
+/* ---------------------- Medical Cabinets and Counters --------------------- */
 /obj/table/reinforced/medical
 	name = "medical cabinet"
-	desc = "A stain-resistant counter which may or may not have medical supplies in it."
+	desc = "A stain-resistant cabinet which may or may not have medical supplies in it."
 	icon = 'icons/obj/furniture/table_medical.dmi'
 	auto_type = /obj/table/reinforced/medical/auto
 	parts_type = /obj/item/furniture_parts/table/reinforced/medical
@@ -670,38 +672,40 @@
 		auto = 1
 
 	solid
-		name = "medical cabinet"
+		name = "medical counter"
 		desc = "A stain-resistant counter which does not have medical supplies in it."
 		icon = 'icons/obj/furniture/table_medical_solid.dmi'
 		auto_type = /obj/table/reinforced/medical/auto
-		parts_type = /obj/item/furniture_parts/table/reinforced/medical
-		has_storage = 1
-
-		auto
-			auto = 1
-
-/obj/table/reinforced/kitchen
-	name = "kitchen cabinet"
-	desc = "A stainless steel commercial kitchen counter which won't stay stainless for long."
-	icon = 'icons/obj/furniture/table_medical.dmi'
-	auto_type = /obj/table/reinforced/medical/auto
-	parts_type = /obj/item/furniture_parts/table/reinforced/medical
-	has_storage = 1
-
-	auto
-		auto = 1
-
-	solid
-		name = "kitchen cabinet"
-		desc = "A stainless steel commercial kitchen counter which won't stay stainless for long."
-		icon = 'icons/obj/furniture/table_medical_solid.dmi'
-		auto_type = /obj/table/reinforced/medical/auto
-		parts_type = /obj/item/furniture_parts/table/reinforced/medical
+		parts_type = /obj/item/furniture_parts/table/reinforced/medical/solid
 		has_storage = 0
 
 		auto
 			auto = 1
 
+/* ---------------------- Kitchen Cabinets and Counters --------------------- */
+/obj/table/reinforced/kitchen
+	name = "kitchen cabinet"
+	desc = "A stainless steel commercial kitchen cabinet which won't stay stainless for long."
+	icon = 'icons/obj/furniture/table_kitchen.dmi'
+	auto_type = /obj/table/reinforced/kitchen/auto
+	parts_type = /obj/item/furniture_parts/table/reinforced/kitchen
+	has_storage = 1
+
+	auto
+		auto = 1
+
+	solid
+		name = "kitchen counter"
+		desc = "A stainless steel commercial kitchen counter which won't stay stainless for long."
+		icon = 'icons/obj/furniture/table_kitchen_solid.dmi'
+		auto_type = /obj/table/reinforced/kitchen/solid/auto
+		parts_type = /obj/item/furniture_parts/table/reinforced/kitchen/solid
+		has_storage = 0
+
+		auto
+			auto = 1
+
+/* ---------------------------- Industrial Table ---------------------------- */
 /obj/table/reinforced/industrial
 	name = "industrial table"
 	desc = "An industrial table that looks like it has been made out of a scaffolding."

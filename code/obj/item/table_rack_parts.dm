@@ -248,10 +248,31 @@ RACK PARTS
 
 /obj/item/furniture_parts/table/reinforced/medical
 	name = "medical cabinet parts"
-	desc = "A collection of parts that can be used to make a chemistry table."
+	desc = "A collection of parts that can be used to make a medical cabinet."
 	icon = 'icons/obj/furniture/table_medical.dmi'
 	furniture_type = /obj/table/reinforced/medical/auto
 	furniture_name = "medical cabinet"
+
+	solid
+		name = "medical table parts"
+		desc = "A collection of parts that can be used to make a medical table."
+		icon = 'icons/obj/furniture/table_medical_solid.dmi'
+		furniture_type = /obj/table/reinforced/medical/solid/auto
+		furniture_name = "medical table"
+
+/obj/item/furniture_parts/table/reinforced/kitchen
+	name = "kitchen cabinet parts"
+	desc = "A collection of parts that can be used to make a kitchen cabinet."
+	icon = 'icons/obj/furniture/table_kitchen.dmi'
+	furniture_type = /obj/table/reinforced/kitchen/auto
+	furniture_name = "kitchen cabinet"
+
+	solid
+		name = "kitchen counter parts"
+		desc = "A collection of parts that can be used to make a kitchen counter."
+		icon = 'icons/obj/furniture/table_kitchen_solid.dmi'
+		furniture_type = /obj/table/reinforced/kitchen/solid/auto
+		furniture_name = "kitchen counter"
 
 /* ---------- Rack Parts ---------- */
 /obj/item/furniture_parts/rack
