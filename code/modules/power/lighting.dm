@@ -966,7 +966,7 @@
 	if(src.loc) //TODO fix the dispose proc for this so that when it is sent into the delete queue it doesn't try and exec this
 		var/area/A = get_area(src)
 		var/state = A.lightswitch && A.power_light
-		if (A.type == "/area/space") //oh hm, okay,
+		if (A.type == /area/space) //oh hm, okay,
 			state =  1 //sure
 		//if (shipAlertState == SHIP_ALERT_BAD) state = 0
 		seton(state)
