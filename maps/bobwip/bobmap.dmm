@@ -4396,8 +4396,8 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
 /obj/machinery/portable_atmospherics/pump,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/northeast,
 /turf/floor/purplewhite,
 /area/station/science/lab)
 "bUx" = (
@@ -15741,13 +15741,6 @@
 	},
 /turf/floor/plating,
 /area/station/engine/combustion_chamber)
-"gFN" = (
-/obj/machinery/light/emergency/shuttle,
-/obj/item/storage/wall/fire{
-	pixel_x = -32
-	},
-/turf/floor,
-/area/station/hallway/primary/south)
 "gFO" = (
 /obj/disposalpipe/segment/mail/bent/north,
 /turf/floor/yellow/side,
@@ -20630,6 +20623,13 @@
 	},
 /turf/floor/plating,
 /area/station/science/gen_storage)
+"iJE" = (
+/obj/machinery/light/emergency/shuttle,
+/obj/machinery/light/small/red{
+	dir = 8
+	},
+/turf/floor,
+/area/station/hallway/primary/south)
 "iJS" = (
 /obj/machinery/light/small/neutral,
 /obj/storage/crate/bin{
@@ -20743,13 +20743,6 @@
 	dir = 8
 	},
 /area/station/hydroponics/bay)
-"iLt" = (
-/obj/machinery/light/emergency/shuttle,
-/obj/machinery/light/small/red{
-	dir = 8
-	},
-/turf/floor,
-/area/station/hallway/primary/south)
 "iLA" = (
 /obj/disposalpipe/segment/crematorium,
 /obj/machinery/light/small/warm{
@@ -40061,7 +40054,8 @@
 /obj/machinery/atmospherics/pipe/manifold{
 	dir = 8
 	},
-/turf/floor/white,
+/obj/grille/catwalk/bob,
+/turf/floor/plating,
 /area/station/science/lab)
 "qAM" = (
 /obj/decal/cleanable/dirt/dirt3,
@@ -58372,6 +58366,13 @@
 /obj/lattice,
 /turf/space,
 /area/station/engine/coldloop)
+"xFx" = (
+/obj/machinery/light/emergency/shuttle,
+/obj/item/storage/wall/fire{
+	pixel_x = -32
+	},
+/turf/floor,
+/area/station/hallway/primary/south)
 "xFF" = (
 /turf/shuttle/wall{
 	icon_state = "wall3"
@@ -90704,8 +90705,8 @@ jzW
 jzW
 mbz
 xWF
-iLt
-gFN
+iJE
+xFx
 jzW
 rup
 rzi
