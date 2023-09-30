@@ -828,8 +828,6 @@
 	if (pow_stat && wire_powered)
 		return 1
 	var/area/A = get_area(src)
-	if A = /area/space //fuck it
-		return 1
 	return A ? A.lightswitch && A.power_light : 0
 
 // ai attack - do nothing
