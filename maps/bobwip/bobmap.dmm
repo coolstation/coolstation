@@ -29786,6 +29786,15 @@
 /obj/disposalpipe/segment/crematorium,
 /turf/floor/wood/seven,
 /area/station/crew_quarters/bar)
+"mrD" = (
+/obj/decal/poster/wallsign/medbay{
+	pixel_x = 26;
+	pixel_y = 3
+	},
+/turf/floor/blue/side{
+	dir = 4
+	},
+/area/station/hallway/secondary/exit)
 "mrK" = (
 /obj/machinery/plantpot,
 /obj/cable/blue{
@@ -29931,7 +29940,7 @@
 /area/station/hallway/primary/north)
 "mvW" = (
 /obj/machinery/networked/printer,
-/obj/table/auto,
+/obj/table/auto/desk,
 /obj/item/reagent_containers/food/drinks/cola,
 /obj/cable/blue{
 	icon_state = "0-2"
@@ -30236,7 +30245,7 @@
 /area/station/security/main)
 "mAN" = (
 /obj/machinery/computer3/generic/personal,
-/obj/table/auto/desk,
+/obj/table/auto,
 /obj/cable/blue{
 	icon_state = "0-2"
 	},
@@ -30444,15 +30453,6 @@
 	mail_tag = "Crew Quarters";
 	name = "Crew Quarters"
 	})
-"mEW" = (
-/obj/decal/poster/wallsign/medbay{
-	pixel_x = 26;
-	pixel_y = 3
-	},
-/turf/floor/blue/side{
-	dir = 4
-	},
-/area/station/hallway/secondary/exit)
 "mFg" = (
 /turf/floor/carpet/blue/standard/innercorner/north,
 /area/station/crew_quarters/quartersA{
@@ -94953,7 +94953,7 @@ veq
 rlW
 vIk
 xtA
-mEW
+mrD
 rlW
 yfn
 uzr
