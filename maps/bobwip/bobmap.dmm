@@ -12778,6 +12778,7 @@
 /area/station/medical/breakroom)
 "fvK" = (
 /obj/disposalpipe/segment/mail/bent/west,
+/obj/machinery/light/fluorescent/auto/neutral,
 /turf/floor/yellow/side,
 /area/station/hallway/primary/northeast)
 "fvM" = (
@@ -14331,6 +14332,17 @@
 	},
 /turf/floor,
 /area/station/communications/office)
+"gdr" = (
+/obj/disposalpipe/segment/mineral{
+	dir = 4
+	},
+/obj/machinery/light/fluorescent/neutral{
+	dir = 1
+	},
+/turf/floor/neutral/side{
+	dir = 1
+	},
+/area/station/hallway/primary/northeast)
 "gdu" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor,
@@ -14941,6 +14953,14 @@
 	mail_tag = "Crew Quarters";
 	name = "Crew Quarters"
 	})
+"gqq" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
+	dir = 4
+	},
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/light/fluorescent/auto/neutral,
+/turf/floor/purple/side,
+/area/station/hallway/primary/southeast)
 "gqB" = (
 /obj/cable/blue{
 	icon_state = "0-2"
@@ -17766,9 +17786,6 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/obj/machinery/light/small/neutral{
-	dir = 1
-	},
 /turf/floor/neutral/side{
 	dir = 1
 	},
@@ -20172,6 +20189,10 @@
 	},
 /turf/floor/caution/north,
 /area/station/quartermaster/cargobay)
+"iDv" = (
+/obj/machinery/light/fluorescent/auto/neutral,
+/turf/floor,
+/area/station/hallway/primary/central)
 "iDA" = (
 /obj/landmark/start{
 	name = "Roboticist"
@@ -25820,6 +25841,7 @@
 /obj/machinery/disposal/transport{
 	name = "PROBABLY A FINE IDEA TO GET IN HERE"
 	},
+/obj/machinery/light/fluorescent/auto/neutral,
 /turf/floor/neutral/side,
 /area/station/hallway/primary/northeast)
 "kPw" = (
@@ -26784,7 +26806,9 @@
 /turf/floor,
 /area/station/quartermaster/office)
 "lme" = (
-/obj/machinery/light/fluorescent/auto/neutral,
+/obj/machinery/light/fluorescent/neutral{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 1
 	},
@@ -30215,6 +30239,7 @@
 "mFm" = (
 /obj/decal/tile_edge/floorguide/medbay,
 /obj/machinery/light/small/neutral,
+/obj/machinery/light/fluorescent/auto/neutral,
 /turf/floor/blue/side{
 	dir = 8
 	},
@@ -31000,7 +31025,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/light/fluorescent/neutral{
+/obj/machinery/light/small/neutral{
 	dir = 1
 	},
 /turf/floor,
@@ -36719,7 +36744,9 @@
 /area/station/hangar/sec)
 "pkZ" = (
 /obj/machinery/computer/ordercomp,
-/obj/machinery/light/fluorescent/auto/neutral,
+/obj/machinery/light/fluorescent/neutral{
+	dir = 1
+	},
 /turf/floor/orangeblack,
 /area/station/hallway/primary/northeast)
 "plf" = (
@@ -50520,6 +50547,17 @@
 /obj/railing/yellow,
 /turf/floor/carpet/purple/fancy/edge,
 /area/station/crew_quarters/courtroom)
+"uQK" = (
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/obj/machinery/light/fluorescent/neutral{
+	dir = 1
+	},
+/turf/floor/neutral/side{
+	dir = 1
+	},
+/area/station/hallway/primary/northeast)
 "uQL" = (
 /obj/machinery/light/fluorescent/auto/neutral,
 /turf/floor/plating,
@@ -50841,6 +50879,7 @@
 	},
 /area/station/crew_quarters/courtroom)
 "uWC" = (
+/obj/machinery/light/small/neutral,
 /turf/floor/neutral/side{
 	dir = 6
 	},
@@ -52272,6 +52311,7 @@
 /obj/disposalpipe/junction/left{
 	dir = 4
 	},
+/obj/machinery/light/small/ceiling/cool,
 /turf/floor{
 	icon_state = "nt_logo"
 	},
@@ -55230,6 +55270,9 @@
 "wIx" = (
 /obj/disposalpipe/segment/mineral{
 	dir = 4
+	},
+/obj/machinery/light/small/neutral{
+	dir = 1
 	},
 /turf/floor/caution/corner/misc{
 	dir = 9
@@ -92795,7 +92838,7 @@ uRi
 rHD
 oSB
 mcN
-mcN
+iDv
 oyF
 wVE
 aNS
@@ -93399,7 +93442,7 @@ jOy
 wiM
 qnQ
 mcN
-fCJ
+mcN
 dDd
 uCS
 uCS
@@ -94603,7 +94646,7 @@ wOL
 spi
 hoO
 bFI
-pTF
+nSv
 pQy
 oSB
 lKS
@@ -94905,7 +94948,7 @@ wOL
 srs
 wOL
 bFI
-nSv
+pTF
 pQy
 uyC
 uWC
@@ -105744,7 +105787,7 @@ qXQ
 teK
 fHk
 nSM
-hso
+uQK
 wra
 izR
 qqB
@@ -107556,7 +107599,7 @@ sfP
 sfP
 sfP
 sfP
-qTQ
+gdr
 vgN
 izR
 hUA
@@ -108462,7 +108505,7 @@ bfl
 bfl
 oEk
 sfP
-pUZ
+uFu
 vgN
 nBj
 tvG
@@ -111787,7 +111830,7 @@ lOs
 xRF
 vgN
 aco
-fHF
+woT
 nSM
 kqX
 oog
@@ -111845,7 +111888,7 @@ hnF
 oJm
 szY
 tCF
-kuE
+gqq
 oyb
 oyb
 xcu
@@ -112995,7 +113038,7 @@ tsS
 hGA
 vgN
 izR
-hZV
+gbV
 nSM
 oZW
 oZW
