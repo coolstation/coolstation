@@ -22159,7 +22159,7 @@
 /turf/floor/plating,
 /area/station/hallway/primary/northeast)
 "jvc" = (
-/obj/stool/bed/moveable/hospital,
+/obj/stool/bed/moveable,
 /turf/floor/blue/checker,
 /area/station/medical/medbay/recovery)
 "jvg" = (
@@ -24162,6 +24162,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/autoname_south,
+/obj/machinery/bot/medbot/head_surgeon,
 /turf/floor/bluewhite{
 	dir = 10
 	},
@@ -24928,11 +24929,7 @@
 /turf/floor/white,
 /area/station/medical/medbay/lobby)
 "kCd" = (
-/obj/item/device/reagentscanner,
-/obj/item/device/analyzer/healthanalyzer,
-/obj/table/reinforced/medical{
-	icon_state = "2"
-	},
+/obj/machinery/vending/medical,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
 "kCk" = (
@@ -32623,6 +32620,7 @@
 /area/station/science/testchamber)
 "nJR" = (
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/manufacturer/medical,
 /turf/floor/bluewhite,
 /area/station/medical/medbay/surgery)
 "nJW" = (
@@ -40535,7 +40533,7 @@
 /turf/floor/plating,
 /area/station/maintenance/inner/central)
 "qXp" = (
-/obj/stool/bed/moveable/hospital,
+/obj/stool/bed/moveable,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
 "qXu" = (
@@ -43928,8 +43926,10 @@
 	pixel_y = 13
 	},
 /obj/table/reinforced/medical{
-	icon_state = "3"
+	icon_state = "2"
 	},
+/obj/item/device/analyzer/healthanalyzer,
+/obj/item/device/reagentscanner,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
 "spu" = (
@@ -45072,12 +45072,12 @@
 /area/listeningpost/power)
 "sPt" = (
 /obj/machinery/light/fluorescent/auto/cool/very,
-/obj/machinery/manufacturer/medical,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/vending/medical,
 /turf/floor/bluewhite{
 	dir = 1
 	},
@@ -58729,10 +58729,6 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
-"yiA" = (
-/obj/machinery/bot/medbot/head_surgeon,
-/turf/floor/white,
-/area/station/medical/medbay/treatment)
 "yiL" = (
 /obj/disposalpipe/segment/morgue,
 /obj/cable{
@@ -97354,7 +97350,7 @@ kCa
 wiX
 fhp
 pKS
-qXp
+mNX
 mNX
 qXp
 uoe
@@ -97958,8 +97954,8 @@ fqU
 wiX
 mAx
 pKS
-qXp
-yiA
+mNX
+mNX
 qXp
 wWT
 jpg
