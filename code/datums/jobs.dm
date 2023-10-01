@@ -1882,6 +1882,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 			return
 		M.bioHolder.AddEffect("quiet_voice", magical=1)
 
+/*
 /datum/job/special/halloween/wanna_bee
 	name = "WannaBEE"
 	wages = PAY_UNTRAINED
@@ -1907,6 +1908,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 		if (!M)
 			return
 		M.bioHolder.AddEffect("drunk_bee", magical=1)
+*/
 
 /datum/job/special/halloween/dracula
 	name = "Discount Dracula"
@@ -1998,6 +2000,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 		src.access = get_access("Staff Assistant")
 		return
 
+/*
 /datum/job/special/halloween/godzilla
 	name = "Discount Godzilla"
 	wages = PAY_UNTRAINED
@@ -2022,6 +2025,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 			return
 		M.bioHolder.AddEffect("lizard", magical=1)
 		M.bioHolder.AddEffect("loud_voice", magical=1)
+*/
 
 /datum/job/special/halloween/macho
 	name = "Discount Macho Man"
