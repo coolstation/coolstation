@@ -2622,9 +2622,6 @@
 	id = "qm_outgoing"
 	},
 /obj/window/reinforced/south,
-/obj/machinery/light/small/neutral{
-	dir = 4
-	},
 /turf/floor,
 /area/station/quartermaster/cargobay)
 "bhY" = (
@@ -3269,7 +3266,6 @@
 	name = "Door-linked Atmospheric Forcefield";
 	powerlevel = 1
 	},
-/obj/plasticflaps,
 /obj/machinery/conveyor/east{
 	id = "qmincoming";
 	move_lag = 8
@@ -7277,8 +7273,8 @@
 /obj/table/reinforced/bar{
 	icon_state = "12"
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/pitcher{
-	rand_pos = 1
+/obj/candle_light{
+	pixel_y = 10
 	},
 /turf/floor/wood/seven,
 /area/station/crew_quarters/bar)
@@ -13201,7 +13197,8 @@
 /area/station/engine/monitoring)
 "fFo" = (
 /obj/machinery/mass_driver{
-	dir = 8
+	dir = 8;
+	id = "qm_incoming
 	},
 /turf/floor/airless/plating,
 /area/space)
@@ -16030,6 +16027,14 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/bluewhite,
 /area/station/medical/medbay/surgery)
+"gPF" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
+	dir = 4
+	},
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/light/fluorescent/auto/neutral,
+/turf/floor/purple/side,
+/area/station/hallway/primary/southeast)
 "gQa" = (
 /obj/item/device/radio/intercom/loudspeaker/speaker/south{
 	pixel_y = 11
@@ -17852,14 +17857,6 @@
 	},
 /turf/floor,
 /area/station/mining/lobby)
-"hBO" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 4
-	},
-/obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/light/fluorescent/auto/neutral,
-/turf/floor/purple/side,
-/area/station/hallway/primary/southeast)
 "hCB" = (
 /obj/disposalpipe/segment/crematorium,
 /turf/wall,
@@ -20161,6 +20158,9 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe,
 /obj/table/reinforced/bar{
 	icon_state = "12"
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/pitcher{
+	rand_pos = 1
 	},
 /turf/floor/wood/seven,
 /area/station/crew_quarters/bar)
@@ -22711,6 +22711,17 @@
 	icon_state = "L13"
 	},
 /area/station/hallway/primary/north)
+"jDt" = (
+/obj/disposalpipe/segment/mineral{
+	dir = 4
+	},
+/obj/machinery/light/fluorescent/neutral{
+	dir = 1
+	},
+/turf/floor/neutral/side{
+	dir = 1
+	},
+/area/station/hallway/primary/northeast)
 "jDD" = (
 /obj/storage/closet/emergency,
 /turf/floor/plating,
@@ -26876,17 +26887,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/floor/plating,
 /area/station/crewquarters/fuq3)
-"lou" = (
-/obj/disposalpipe/segment/morgue{
-	dir = 4
-	},
-/obj/machinery/light/fluorescent/neutral{
-	dir = 1
-	},
-/turf/floor/neutral/side{
-	dir = 1
-	},
-/area/station/hallway/primary/northeast)
 "loy" = (
 /obj/stool/bar,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe,
@@ -29802,17 +29802,6 @@
 	},
 /turf/floor/plating,
 /area/station/security/hos)
-"mxq" = (
-/obj/disposalpipe/segment/mineral{
-	dir = 4
-	},
-/obj/machinery/light/fluorescent/neutral{
-	dir = 1
-	},
-/turf/floor/neutral/side{
-	dir = 1
-	},
-/area/station/hallway/primary/northeast)
 "myc" = (
 /obj/table/auto,
 /obj/item/cigarbox{
@@ -32452,6 +32441,12 @@
 /obj/disposalpipe/segment/mail/bent/west,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
+"nAy" = (
+/obj/machinery/light/small/neutral{
+	dir = 4
+	},
+/turf/floor/caution/south,
+/area/station/quartermaster/cargobay)
 "nAz" = (
 /obj/cable{
 	icon_state = "2-4"
@@ -38556,6 +38551,17 @@
 /obj/access_spawn/engineering_power,
 /turf/floor/yellow,
 /area/station/engine/substation/east)
+"pZo" = (
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/obj/machinery/light/fluorescent/neutral{
+	dir = 1
+	},
+/turf/floor/neutral/side{
+	dir = 1
+	},
+/area/station/hallway/primary/northeast)
 "pZr" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -46003,10 +46009,6 @@
 	dir = 1
 	},
 /area/station/hallway/primary/southeast)
-"tcV" = (
-/obj/machinery/light/fluorescent/auto/neutral,
-/turf/floor,
-/area/station/hallway/primary/central)
 "tdd" = (
 /obj/machinery/door/airlock/glass,
 /obj/access_spawn/research,
@@ -59142,6 +59144,10 @@
 	},
 /turf/floor,
 /area/station/communications/office)
+"ylf" = (
+/obj/machinery/light/fluorescent/auto/neutral,
+/turf/floor,
+/area/station/hallway/primary/central)
 "yli" = (
 /obj/cable{
 	icon_state = "2-8"
@@ -92838,7 +92844,7 @@ uRi
 rHD
 oSB
 mcN
-tcV
+ylf
 oyF
 wVE
 aNS
@@ -105787,7 +105793,7 @@ qXQ
 teK
 fHk
 nSM
-lou
+pZo
 wra
 izR
 qqB
@@ -107599,7 +107605,7 @@ sfP
 sfP
 sfP
 sfP
-mxq
+jDt
 vgN
 izR
 hUA
@@ -111888,7 +111894,7 @@ hnF
 oJm
 szY
 tCF
-hBO
+gPF
 oyb
 oyb
 xcu
@@ -115742,7 +115748,7 @@ xzG
 xzG
 wTK
 wTK
-ygM
+akk
 dQC
 ddy
 eoY
@@ -116044,7 +116050,7 @@ xzG
 xzG
 xzG
 wTK
-akk
+ygM
 atl
 oqa
 dZk
@@ -117555,7 +117561,7 @@ xzG
 xzG
 wTK
 bhX
-atl
+nAy
 oqa
 xfS
 wTK
