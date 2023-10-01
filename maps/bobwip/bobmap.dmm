@@ -25603,6 +25603,7 @@
 /obj/machinery/door/airlock/engineering,
 /obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/engineering_storage,
+/obj/access_spawn/cargo,
 /turf/floor,
 /area/station/storage/tools)
 "kGp" = (
@@ -29786,15 +29787,6 @@
 /obj/disposalpipe/segment/crematorium,
 /turf/floor/wood/seven,
 /area/station/crew_quarters/bar)
-"mrD" = (
-/obj/decal/poster/wallsign/medbay{
-	pixel_x = 26;
-	pixel_y = 3
-	},
-/turf/floor/blue/side{
-	dir = 4
-	},
-/area/station/hallway/secondary/exit)
 "mrK" = (
 /obj/machinery/plantpot,
 /obj/cable/blue{
@@ -30438,6 +30430,15 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/northwest)
+"mDG" = (
+/obj/decal/poster/wallsign/medbay{
+	pixel_x = 26;
+	pixel_y = 3
+	},
+/turf/floor/blue/side{
+	dir = 4
+	},
+/area/station/hallway/secondary/exit)
 "mEm" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -42561,12 +42562,14 @@
 	},
 /area/station/medical/dome)
 "rCQ" = (
-/obj/machinery/light/fluorescent/auto/neutral,
 /obj/submachine/slot_machine{
 	density = 0;
 	pixel_y = 20
 	},
 /obj/stool/bar,
+/obj/machinery/light/fluorescent/warm{
+	dir = 8
+	},
 /turf/floor/wood/seven,
 /area/station/crew_quarters/bar)
 "rCR" = (
@@ -56781,6 +56784,7 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/disposalpipe/segment/mail/vertical,
 /obj/access_spawn/engineering_storage,
+/obj/access_spawn/cargo,
 /turf/floor,
 /area/station/storage/tools)
 "xbz" = (
@@ -94953,7 +94957,7 @@ veq
 rlW
 vIk
 xtA
-mrD
+mDG
 rlW
 yfn
 uzr
