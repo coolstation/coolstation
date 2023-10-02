@@ -1012,7 +1012,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 
 	animate(A, pixel_x = px, pixel_y = py, time = T, easing = ease, flags=ANIMATION_PARALLEL)
 
-/proc/animate_rest(var/atom/A, var/stand)
+/proc/animate_rest(var/atom/A, var/stand, var/direction)
 	if(!istype(A))
 		return
 	if(stand)
@@ -1020,6 +1020,14 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 		A.rest_mult = 0
 	else
 		var/fall_left_or_right = pick(1, -1) //A multiplier of one makes the atom rotate to the right, negative makes them fall to the left.
+
+		//add a pickable direction (for example, moving onto operating tables and beds) and validate input checking
+		switch (direction)
+			if (-1,"left","l")
+				fall_left_or_right = -1
+			if (1,"right","r")
+				fall_left_or_right = 1
+
 		animate(A, pixel_x = 0, pixel_y = -4, transform = A.transform.Turn(fall_left_or_right * 90), time = 2, easing = LINEAR_EASING, flags=ANIMATION_PARALLEL)
 		A.rest_mult = fall_left_or_right
 
