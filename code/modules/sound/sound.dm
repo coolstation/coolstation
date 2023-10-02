@@ -59,8 +59,12 @@ var/global/ECHO_AFAR = list(0,0,0,0,0,0,-10000,1.0,1.5,1.0,0,1.0,0,0,0,0,1.0,7)
 var/global/ECHO_CLOSE = list(0,0,0,0,0,0,0,0.25,1.5,1.0,0,1.0,0,0,0,0,1.0,7)
 var/global/list/falloff_cache = list()
 
-//default volumes
-var/global/list/default_channel_volumes = list(1, 1, 0.1, 0.5, 0.5, 1, 1)
+//default volumes, 0 = 0, 1 = 100
+//in order: master, game, ambient, radio, admin, emote, mentorpm
+//bumping up ambient to 50% from 10%, with the eventual idea of doing ambient 100%
+//target mixing for 100% and let people reduce from there!
+//admin sounds/radio music should fuckin' stay at 50% though, they're always loud
+var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 
 //volumous hair with l'orial paris
 /client/var/list/volumes
