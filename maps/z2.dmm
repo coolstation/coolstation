@@ -33448,13 +33448,7 @@
 	},
 /area/sim/bball)
 "cfp" = (
-/obj/overlay{
-	density = 1;
-	desc = "This thing is stuck fast.";
-	icon = 'icons/obj/doors/Doorclassic.dmi';
-	icon_state = "door_closed";
-	name = "large airlock"
-	},
+/obj/machinery/door/airlock/classic,
 /turf/floor/specialroom/bar,
 /area/crunch)
 "cfq" = (
@@ -63762,7 +63756,6 @@
 "dKt" = (
 /obj/stool/chair{
 	desc = "";
-	foldable = 0;
 	icon_state = "chair_pool"
 	},
 /obj/decal/tile_edge/line/blue{
@@ -65424,7 +65417,6 @@
 "dOr" = (
 /obj/stool/chair{
 	desc = "";
-	foldable = 0;
 	icon_state = "chair_pool"
 	},
 /turf/floor{
@@ -76864,7 +76856,8 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/overlay{
+/obj/decal/fakeobjects{
+	anchored = 1;
 	density = 1;
 	desc = "This thing is stuck fast.";
 	icon = 'icons/obj/doors/Doorclassic.dmi';
