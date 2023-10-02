@@ -4,16 +4,17 @@
 //okay yeah i cheated here with the name but whatever
 #define isseat(x) istype(x, /obj/stool)
 
-#define canstool(x,y) (isseat(x), && (x:cando_flags & (y)))
-#define isstool(x,y) (isseat(x), && (x:stool_flags & (y)))
+//capability (stools only)
+#define canstool(x,y) (isseat(x) && (x:cando_flags & (y)))
 
-//capability
 #define canstoolsit(x) (canstool(x, STOOL_SIT))
 #define canstoolbuckle(x) (canstool(x, STOOL_BUCKLE))
 #define canstoolstand(x) (canstool(x, STOOL_STAND))
 #define canstoolsecure(x) (canstool(x, STOOL_SECURE))
 
-//status
+//status (stools AND mobs)
+#define isstool(x,y) (isseat(x) || ismob(x) && (x:stool_flags & (y)))
+
 #define isstoolsat(x) (isstool(x, STOOL_SIT))
 #define isstoolbuckled(x) (isstool(x, STOOL_BUCKLE))
 #define isstoolstood(x) (isstool(x, STOOL_STAND))
