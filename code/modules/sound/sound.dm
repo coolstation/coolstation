@@ -2,6 +2,8 @@
 #define SPACE_ATTEN_MIN 0.5
 #define EARLY_RETURN_IF_QUIET(v) if (v < TOO_QUIET) return
 #define EARLY_CONTINUE_IF_QUIET(v) if (v < TOO_QUIET) continue
+//I ripped this rand straight out of generate_sound if you wanna fiddle with the random pitch variance
+#define DO_RANDOM_PITCH (rand(725, 1250) / 1000)
 
 #define SOURCE_ATTEN(A) do {\
 	if (A <= SPACE_ATTEN_MIN){\
@@ -158,6 +160,10 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	var/scaled_dist
 	var/storedVolume
 
+	var/pitch_var = 0
+	if (vary)
+		pitch_var = DO_RANDOM_PITCH
+
 	for (var/mob/M in GET_NEARBY(source_turf, MAX_SOUND_RANGE + extrarange))
 		var/client/C = M.client
 		if (!C)
@@ -216,7 +222,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 			EARLY_CONTINUE_IF_QUIET(ourvolume)
 
 			//sadly, we must generate
-			if (!S) S = generate_sound(source, soundin, vol, vary, extrarange, pitch)
+			if (!S) S = generate_sound(source, soundin, vol, pitch_var, extrarange, pitch)
 			if (!S) CRASH("Did not manage to generate sound \"[soundin]\" with source [source].")
 			C.sound_playing[ S.channel ][1] = storedVolume
 			C.sound_playing[ S.channel ][2] = channel
@@ -290,7 +296,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	atten_temp = attenuate_for_location(get_turf(src))
 	LISTENER_ATTEN(atten_temp)
 
-	var/sound/S = generate_sound(source, soundin, ourvolume, vary, extrarange, pitch)
+	var/sound/S = generate_sound(source, soundin, ourvolume, vary ? DO_RANDOM_PITCH : FALSE, extrarange, pitch)
 	client.sound_playing[ S.channel ][1] = ourvolume
 	client.sound_playing[ S.channel ][2] = channel
 
@@ -354,6 +360,9 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	var/sound/S
 	var/ourvolume
 	var/storedVolume
+	var/pitch_var = 0
+	if (vary)
+		pitch_var = DO_RANDOM_PITCH
 
 	for(var/client/C as anything in clients)
 		if (!C)
@@ -369,7 +378,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 
 		EARLY_CONTINUE_IF_QUIET(ourvolume)
 
-		if (!S) S = generate_sound(source, soundin, vol, vary, extrarange=0, pitch=pitch)
+		if (!S) S = generate_sound(source, soundin, vol, pitch_var, extrarange=0, pitch=pitch)
 		if (!S) CRASH("Did not manage to generate sound \"[soundin]\" with source [source].")
 		C.sound_playing[ S.channel ][1] = storedVolume
 		C.sound_playing[ S.channel ][2] = channel
@@ -469,7 +478,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 		S.environment = sound_area.sound_environment
 
 	if (vary)
-		S.frequency = rand(725, 1250) / 1000 * pitch
+		S.frequency = vary * pitch
 	else
 		S.frequency = pitch
 
@@ -753,3 +762,15 @@ sound
 		environment = initial(environment)
 		echo = initial(echo)
 */
+
+//hey what if we undefined all this crap too?
+#undef TOO_QUIET
+#undef DO_RANDOM_PITCH
+#undef SPACE_ATTEN_MIN
+#undef EARLY_RETURN_IF_QUIET
+#undef EARLY_CONTINUE_IF_QUIET
+#undef MAX_SOUND_RANGE
+#undef MAX_SPACED_RANGE
+#undef CLIENT_IGNORES_SOUND
+#undef SOURCE_ATTEN
+#undef LISTENER_ATTEN
