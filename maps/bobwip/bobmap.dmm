@@ -5437,7 +5437,9 @@
 /obj/landmark/start{
 	name = "Quartermaster"
 	},
-/obj/machinery/light/fluorescent/auto/neutral,
+/obj/machinery/light/fluorescent/auto/neutral{
+	dir = 1
+	},
 /turf/floor/specialroom/bar,
 /area/station/mining/staff_room)
 "cwk" = (
@@ -7827,8 +7829,8 @@
 	},
 /area/station/hallway/primary/central)
 "dyT" = (
-/obj/machinery/vending/medical_public,
 /obj/machinery/light/small/neutral,
+/obj/rack,
 /turf/floor/neutral/side,
 /area/station/hallway/primary/central)
 "dzk" = (
@@ -13220,6 +13222,9 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
+/obj/machinery/light/fluorescent/auto/neutral{
+	dir = 8
+	},
 /turf/floor/neutral/side{
 	dir = 8
 	},
@@ -14990,7 +14995,9 @@
 /obj/disposalpipe/segment/crematorium{
 	dir = 4
 	},
-/obj/machinery/light/fluorescent/auto/neutral,
+/obj/machinery/light/fluorescent/neutral{
+	dir = 1
+	},
 /turf/floor/neutral/side{
 	dir = 1
 	},
@@ -17435,6 +17442,12 @@
 "htK" = (
 /turf/floor/white,
 /area/station/science/chemistry)
+"huj" = (
+/obj/stool/chair{
+	dir = 8
+	},
+/turf/floor/neutral/corner,
+/area/station/hallway/primary/central)
 "hur" = (
 /obj/cable/conduit/segment/horizontal,
 /turf/wall,
@@ -18718,7 +18731,9 @@
 	name = "Crew Quarters"
 	})
 "hXP" = (
-/obj/machinery/light/fluorescent/auto/neutral,
+/obj/machinery/light/fluorescent/neutral{
+	dir = 1
+	},
 /obj/disposalpipe/segment/crematorium{
 	dir = 4
 	},
@@ -25994,7 +26009,9 @@
 	})
 "kSy" = (
 /obj/machinery/vending/cola/blue,
-/obj/machinery/light/fluorescent/auto/neutral,
+/obj/machinery/light/fluorescent/auto/neutral{
+	dir = 1
+	},
 /turf/floor/specialroom/bar,
 /area/station/mining/staff_room)
 "kSE" = (
@@ -28276,14 +28293,13 @@
 /turf/floor/plating,
 /area/station/security/hos)
 "lSr" = (
-/obj/disposalpipe/segment/food,
-/obj/machinery/light/small/neutral{
+/obj/machinery/light/fluorescent/auto/neutral{
 	dir = 8
 	},
 /turf/floor/neutral/side{
 	dir = 8
 	},
-/area/station/hallway/secondary/northwest)
+/area/station/hallway/primary/central)
 "lSx" = (
 /obj/cable/brown{
 	icon_state = "2-8"
@@ -28830,8 +28846,10 @@
 /turf/floor/plating,
 /area/station/maintenance/solar/east)
 "mdf" = (
-/obj/machinery/light/fluorescent/auto/neutral,
 /obj/cable/conduit/segment/vertical,
+/obj/machinery/light/fluorescent/auto/neutral{
+	dir = 4
+	},
 /turf/floor/red/side{
 	dir = 4
 	},
@@ -30788,7 +30806,6 @@
 	},
 /area/station/medical/medbay/treatment)
 "mSj" = (
-/obj/machinery/light/fluorescent/auto/neutral,
 /obj/item/device/radio/intercom/loudspeaker/speaker/east{
 	pixel_x = -11
 	},
@@ -31472,14 +31489,11 @@
 	},
 /area/station/bridge)
 "nhv" = (
-/obj/machinery/light/fluorescent/auto/neutral,
-/obj/disposalpipe/segment/crematorium{
+/obj/stool/chair{
 	dir = 4
 	},
-/turf/floor/neutral/side{
-	dir = 1
-	},
-/area/station/hallway/primary/northwest)
+/turf/floor,
+/area/station/hallway/primary/central)
 "nhD" = (
 /obj/disposalpipe/segment/genetics,
 /turf/wall,
@@ -36861,7 +36875,9 @@
 /turf/floor/neutral/side,
 /area/station/hallway/primary/south)
 "poh" = (
-/obj/machinery/light/fluorescent/auto/neutral,
+/obj/machinery/light/fluorescent/auto/neutral{
+	dir = 8
+	},
 /turf/floor/neutral/side{
 	dir = 8
 	},
@@ -39751,6 +39767,9 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
+/obj/machinery/light/fluorescent/neutral{
+	dir = 1
+	},
 /turf/floor/neutral/side{
 	dir = 1
 	},
@@ -41544,6 +41563,10 @@
 	},
 /turf/space,
 /area/space)
+"rov" = (
+/obj/machinery/vending/medical_public,
+/turf/floor/neutral/side,
+/area/station/hallway/primary/central)
 "roz" = (
 /obj/machinery/door/airlock/command,
 /obj/access_spawn/captain,
@@ -54071,6 +54094,11 @@
 	},
 /turf/floor/wood,
 /area/station/crew_quarters/barber_shop)
+"wnc" = (
+/obj/table/glass/auto,
+/obj/item/paper/postcard/mushroom,
+/turf/floor,
+/area/station/hallway/primary/central)
 "wnf" = (
 /obj/disposalpipe/segment/mail/bent/south,
 /obj/cable{
@@ -91606,14 +91634,14 @@ tNu
 wYU
 xmm
 tJH
-ifn
+tJH
 myW
 rav
 hdU
 tJH
 tJH
 fFC
-lSr
+joP
 joP
 joP
 gQM
@@ -92507,7 +92535,7 @@ iVN
 iVN
 iVN
 vsL
-nhv
+gSc
 tNu
 wYU
 cdG
@@ -93715,7 +93743,7 @@ jkG
 iVN
 iVN
 vsL
-gSc
+grp
 vBq
 bvM
 cmH
@@ -94017,7 +94045,7 @@ iVN
 iVN
 vyT
 vsL
-grp
+gSc
 tNu
 lPI
 hOo
@@ -96137,7 +96165,7 @@ lfD
 tet
 oSB
 pQy
-mcN
+fCJ
 bFI
 ykB
 ebM
@@ -96439,7 +96467,7 @@ uow
 tet
 oSB
 pQy
-prk
+nhv
 bFI
 dOa
 sGn
@@ -96741,7 +96769,7 @@ lfD
 huZ
 oSB
 pQy
-mcN
+wnc
 bFI
 xPy
 sGn
@@ -97043,7 +97071,7 @@ eov
 fiH
 kUI
 pQy
-lKS
+huj
 bFI
 sGn
 sGn
@@ -98251,7 +98279,7 @@ uow
 tet
 oSB
 pQy
-whN
+rov
 bFI
 dSu
 dNj
@@ -99133,7 +99161,7 @@ cYj
 nMn
 dCr
 qIR
-iiT
+poh
 mSj
 oBx
 drP
@@ -99453,7 +99481,7 @@ abk
 irX
 irX
 irX
-xnc
+lSr
 nWN
 irX
 nSu
