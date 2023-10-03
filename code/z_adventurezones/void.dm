@@ -18,7 +18,7 @@ CONTENTS:
 	sims_score = 15
 	sound_group = "void"
 	sound_loop_1 = 'sound/ambience/spooky/Void_Song.ogg'
-	ambient_light = rgb(6.9, 4.20, 6.9)
+	ambient_light = "#B098E0" //formerly rgb(6.9, 4.20, 6.9), leaving this in appreciation
 	is_construction_allowed = FALSE
 
 	New()
@@ -57,6 +57,7 @@ CONTENTS:
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "void"
 	desc = "A strange shifting void ..."
+	has_material = FALSE
 	mat_appearances_to_ignore = list("steel")
 
 /turf/floor/void/crunch
@@ -389,8 +390,8 @@ CONTENTS:
 				update_icons()
 
 				//We're not going to allow you to unbuckle during the process
-				chair1.allow_unbuckle = 0
-				chair2.allow_unbuckle = 0
+				chair1.locked = 1
+				chair2.locked = 1
 
 				var/mob/living/carbon/human/A = chair1.stool_user
 				var/mob/living/carbon/human/B = chair2.stool_user
@@ -457,8 +458,8 @@ CONTENTS:
 
 				//We're now going to allow you to unbuckle
 
-				if(chair1) chair1.allow_unbuckle = 1
-				if(chair2) chair2.allow_unbuckle = 1
+				if(chair1) chair1.locked = 0
+				if(chair2) chair2.locked = 0
 			else //Failure.
 				success = 0
 

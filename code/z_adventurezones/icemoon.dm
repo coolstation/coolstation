@@ -67,6 +67,10 @@ Contents:
 			return
 		else ..()
 
+/turf/floor/arctic
+	name = "arctic thingy don't use ok"
+	has_material = FALSE
+
 /turf/floor/arctic/snow
 	name = "odd snow"
 	desc = "Frozen carbon dioxide. Neat."
@@ -112,6 +116,7 @@ Contents:
 	temperature = 100
 	fullbright = 0
 	can_replace_with_stuff = 1
+	has_material = TRUE
 
 /turf/floor/arctic/abyss
 	name = "deep abyss"
