@@ -1023,10 +1023,11 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 
 		//add a pickable direction (for example, moving onto operating tables and beds) and validate input checking
 		switch (direction)
-			if (-1,"left","l")
-				fall_left_or_right = -1
-			if (1,"right","r")
+			//im sorry
+			if (2,"left","l")
 				fall_left_or_right = 1
+			if (3,"right","r")
+				fall_left_or_right = -1
 
 		animate(A, pixel_x = 0, pixel_y = -4, transform = A.transform.Turn(fall_left_or_right * 90), time = 2, easing = LINEAR_EASING, flags=ANIMATION_PARALLEL)
 		A.rest_mult = fall_left_or_right
