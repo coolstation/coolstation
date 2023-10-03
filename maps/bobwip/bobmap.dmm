@@ -4926,6 +4926,7 @@
 	frequency = 1229;
 	icon_state = "intact_on";
 	id = "Chamber One Outlet";
+	name = "chamber one outlet pump";
 	on = 1;
 	target_pressure = 1000
 	},
@@ -6382,11 +6383,8 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 8;
-	level = 2
-	},
 /obj/machinery/portable_atmospherics/scrubber,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/horizontal,
 /turf/floor/purplewhite,
 /area/station/science/lab)
 "cTl" = (
@@ -6697,6 +6695,10 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/outer/nw)
+"cYe" = (
+/obj/machinery/atmospherics/pipe/simple/overfloor/horizontal,
+/turf/wall/r_wall,
+/area/station/science/lab)
 "cYj" = (
 /obj/cable/conduit/segment/horizontal,
 /turf/floor,
@@ -25306,6 +25308,7 @@
 	frequency = 1225;
 	icon_state = "intact_on";
 	id = "Cold Loop Gas Supply 1";
+	name = "cold loop gas supply one pump";
 	on = 1;
 	target_pressure = 1000
 	},
@@ -29361,10 +29364,7 @@
 /obj/cable/blue{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 8;
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/horizontal,
 /turf/floor/purplewhite/corner{
 	dir = 4
 	},
@@ -30634,6 +30634,7 @@
 	frequency = 1225;
 	icon_state = "intact_on";
 	id = "Cold Loop Gas Supply 2";
+	name = "cold loop gas supply two pump";
 	on = 1;
 	target_pressure = 1000
 	},
@@ -31044,13 +31045,10 @@
 /turf/floor,
 /area/station/hallway/primary/northeast)
 "mWv" = (
-/obj/machinery/atmospherics/pipe/manifold{
-	dir = 1;
-	level = 2
-	},
 /obj/machinery/light/small/harsh{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/manifold/overfloor/north,
 /turf/floor/shuttlebay,
 /area/station/science/lab)
 "mWH" = (
@@ -35260,10 +35258,7 @@
 /obj/landmark/start{
 	name = "Scientist"
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 9;
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/northwest,
 /turf/floor/white,
 /area/station/science/lab)
 "oGA" = (
@@ -38292,6 +38287,7 @@
 	frequency = 1229;
 	icon_state = "intact_on";
 	id = "Chamber One Inlet";
+	name = "chamber one inlet pump";
 	on = 1;
 	target_pressure = 1000
 	},
@@ -42683,10 +42679,7 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 8;
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/horizontal,
 /turf/floor/purplewhite,
 /area/station/science/lab)
 "rLq" = (
@@ -43556,12 +43549,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 8;
-	level = 2
-	},
 /obj/machinery/portable_atmospherics/scrubber,
 /obj/machinery/light/small/neutral,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/horizontal,
 /turf/floor/purplewhite,
 /area/station/science/lab)
 "saH" = (
@@ -44082,9 +44072,7 @@
 	name = "Mounted Igniter";
 	pixel_x = -17
 	},
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/simple/overfloor/horizontal,
 /turf/floor/shuttlebay,
 /area/station/science/lab)
 "skk" = (
@@ -45676,9 +45664,7 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/vertical,
 /turf/floor/white,
 /area/station/science/lab)
 "sWD" = (
@@ -47542,6 +47528,7 @@
 	frequency = 1229;
 	icon_state = "intact_on";
 	id = "Chamber Two Outlet";
+	name = "chamber two outlet pump";
 	on = 1;
 	target_pressure = 1000
 	},
@@ -47830,9 +47817,7 @@
 /turf/floor/blue/checker,
 /area/station/medical/medbay/pharmacy)
 "tMH" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	level = 2
-	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/vertical,
 /turf/floor/white,
 /area/station/science/lab)
 "tMQ" = (
@@ -54820,6 +54805,7 @@
 	frequency = 1229;
 	icon_state = "intact_on";
 	id = "Chamber Two Inlet";
+	name = "chamber two inlet pump";
 	on = 1;
 	target_pressure = 1000
 	},
@@ -119473,7 +119459,7 @@ cbr
 dxE
 afN
 wlV
-cHx
+cYe
 cHx
 aYy
 cHx
