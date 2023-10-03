@@ -27,7 +27,7 @@
 	#endif
 
 	#if defined(SECRETS_ENABLED) //quick and easy signifier to see if your secrets submodule is active and working
-	add_html = "<span style=\"position:absolute;bottom:3px;right:3px;color:white;opacity:0.5;\">Secrets enabled!</span>"
+	add_html = "<span style=\"position:fixed;bottom:3px;right:3px;color:white;opacity:0.5;font-size:75%;\">Secrets enabled!</span>"
 	#endif
 
 	//add a permanent disclaimer to the top
@@ -141,8 +141,8 @@
 						text-align:center;
 						color:#fff;
 						text-shadow: -1px -1px 0 #777, 1px -1px 0 #777, -1px 1px 0 #777, 1px 1px 0 #777;
-						font:1em 'PxPlus IBM VGA9';
-						font-size:60%;
+						font:1.2em 'PxPlus IBM VGA9';
+						font-size:75%;
 						margin-top:10px;
 						top:0;
 						height:12%;
@@ -177,7 +177,7 @@
 						white-space:pre;
 						color:#fff;
 						text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
-						font:1em 'PxPlus IBM VGA9';
+						font:1.2em 'PxPlus IBM VGA9';
 						-webkit-text-stroke:0.083em black;
 					}
 					a{
@@ -185,19 +185,24 @@
 					}
 					#leftside{
 						position:fixed;
-						left:0;
-						bottom:0;
+						left:2%;
+						bottom:2%;
+						text-align:center;
 					}
 					#status,#timer{
-						text-align:center;
+						right:5%;
 						position:fixed;
-						right:0;
-						bottom:0;
-						height:12%;
-						width:40%;
+						right:5%;
+
+						width:auto;
+						text-align:center;
+					}
+					#status{
+						bottom:2%;
 					}
 					#timer{
-						bottom:15%;
+						text-align:center;
+						bottom: 8%;
 					}
 				</style>
 			</head>
@@ -218,22 +223,23 @@
 					</video>
 		"}
 
-	last_pregame_html += {"
-				</div>
-				<div id="disclaimer">
-				[src.disclaimer_text]
-				<div id="overlay">
-				</div>
-		"}
+	if (src.disclaimer_text)
+		last_pregame_html += {"
+					</div>
+					<div id="disclaimer">
+					[src.disclaimer_text]
+					<div id="overlay">
+					</div>
+			"}
 
 	last_pregame_html += {"
+				[src.add_html]
 				<div id="status" class="area">
 				</div>
 				<div id="timer" class="area">
 				</div>
 				<div id="leftside" class="area">
 				</div>
-				[src.add_html]
 			</body>
 		</html>
 		"}
