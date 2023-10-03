@@ -473,3 +473,28 @@ GAUNTLET CARDS
 	name = "John Bill's clout card"
 	icon_state = "juicer"
 	access = list(access_juicer, access_juicer_fraud, access_juicer_grease)
+
+/obj/item/card/id/soviet
+	name = "identification pass"
+	icon_state = "soviet_gen"
+	access = list(access_soviet_public, access_soviet_private)
+
+	miner
+		name = "mining identification pass"
+		icon_state = "soviet_min"
+		access = list(access_soviet_public, access_soviet_private, access_soviet_mining)
+
+	engineering
+		name = "engineering identification pass"
+		icon_state = "soviet_eng"
+		access = list(access_soviet_public, access_soviet_private, access_soviet_engineering)
+
+	security
+		name = "security identification pass"
+		icon_state = "soviet_sec"
+		access = list(access_soviet_public, access_soviet_private, access_soviet_security, access_soviet_security_lockers)
+
+	research
+		name = "security identification pass"
+		icon_state = "soviet_medres"
+		access = list(access_soviet_public, access_soviet_private, access_soviet_research, access_soviet_medical)
