@@ -26,6 +26,7 @@
 /area/radiostation/
 	name = "Radio Station"
 	icon_state = "purple"
+	requires_power = FALSE
 
 /area/radiostation/studio
 	name = "Radio Studio"
