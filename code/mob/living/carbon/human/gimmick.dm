@@ -209,7 +209,7 @@ mob/living/carbon/human/cluwne/satan/megasatan //someone can totally use this fo
 			return 1
 
 		if(prob(1) && !src.stat)
-			SPAWN_DBG(0) src.say(pick("My wife left me.","My wife left me!","MY WIFE LEFT ME."))
+			SPAWN_DBG(0) src.say(pick("My wife left me.","My wife left me!","MY WIFE LEFT ME.", "I'm not mad about it. STOP SAYING I'M MAD ABOUT IT!", "I'm just really out of steam right now..."))
 
 	/*
 	attackby(obj/item/W, mob/M)
