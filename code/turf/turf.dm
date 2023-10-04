@@ -1025,6 +1025,28 @@ proc/generate_space_color()
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "vrwall"
 
+//vr shit
+/turf/wall/virtual
+	name = "virtual wall"
+	desc = "A state of the art computer-generated image of a wall."
+	icon_state = "wallVR"
+
+	light
+		icon_state = "wallVR-light"
+
+/turf/wall/virtual/reinforced
+	name = "reinforced virtual wall"
+	desc = "...Or is that virtual reinforced wall?"
+	icon_state = "r_wallVR"
+
+	light
+		icon_state = "r_wallVR-light"
+
+/turf/wall/virtual/barrier
+	name = "virtual barrier"
+	desc = "Some kind of force field?"
+	icon_state = "barrierVR"
+
 /turf/attack_hand(var/mob/user as mob)
 	if (src.density == 1)
 		return

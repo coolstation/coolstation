@@ -997,14 +997,26 @@ DEFINE_FLOORS(marble/border_wb,
 /turf/floor/vr
 	icon_state = "vrfloor"
 
+	fourbit
+		icon_state = "vrfloor16"
+
 /turf/floor/vr/plating
 	icon_state = "vrplating"
+
+	fourbit
+		icon_state = "vrplating16"
 
 /turf/floor/vr/space
 	icon_state = "vrspace"
 
+	fourbit
+		icon_state = "vrspace16"
+
 /turf/floor/vr/white
 	icon_state = "vrwhitehall"
+
+	fourbit
+		icon_state = "vrwhitehall16"
 
 /turf/floor/airless/vr/flashy
 	name = "Vspace"

@@ -26045,6 +26045,7 @@
 /area/owlery/staffhall)
 "bIp" = (
 /obj/storage/secure/closet/personal,
+/obj/critter/small_bart,
 /turf/floor/carpet{
 	dir = 1;
 	icon_state = "fred2"
@@ -30168,7 +30169,7 @@
 /area/crypt/sigma/mainhall)
 "bVo" = (
 /obj/stagebutton/colosseum,
-/turf/wall/auto/virtual,
+/turf/wall/virtual/reinforced,
 /area/gauntlet/viewing)
 "bVp" = (
 /obj/cable{
@@ -30269,10 +30270,6 @@
 /obj/map/light/brightwhite,
 /turf/floor/grass/random,
 /area/afterlife/heaven)
-"bVE" = (
-/obj/item/device/radio/intercom/virtual,
-/turf/wall/auto/virtual,
-/area/gauntlet/viewing)
 "bVF" = (
 /obj/death_button/VR_logout_button{
 	dir = 4;
@@ -30381,16 +30378,16 @@
 	},
 /area/gauntlet/viewing)
 "bVT" = (
-/turf/wall/auto/virtual,
+/turf/wall/virtual,
 /area/sim/racing_track)
 "bVU" = (
-/turf/floor/setpieces/gauntlet,
+/turf/floor/vr/fourbit,
 /area/sim/racing_track)
 "bVV" = (
 /obj/chessbutton{
 	pixel_x = 12
 	},
-/turf/wall/auto/virtual,
+/turf/wall/virtual,
 /area/sim/racing_track)
 "bVW" = (
 /obj/decal/tile_edge/line/black{
@@ -31055,24 +31052,15 @@
 /area/sim/racing_entry)
 "bXZ" = (
 /obj/machinery/vending/coffee,
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_1"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/racing_entry)
 "bYa" = (
 /obj/machinery/vending/snack,
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_1"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/racing_entry)
 "bYb" = (
 /obj/machinery/vending/cola/red,
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_1"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/racing_entry)
 "bYc" = (
 /obj/racing_powerup_spawner,
@@ -32263,16 +32251,16 @@
 /area/crunch)
 "cbN" = (
 /obj/storage/closet/thunderdome/green,
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome1)
 "cbO" = (
 /obj/landmark{
 	name = "tdome1"
 	},
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome1)
 "cbP" = (
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome1)
 "cbQ" = (
 /obj/table/auto,
@@ -32281,7 +32269,7 @@
 /obj/item/stimpack,
 /obj/item/stimpack,
 /obj/item/stimpack,
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome1)
 "cbT" = (
 /obj/death_button/VR_logout_button{
@@ -32318,20 +32306,20 @@
 /obj/item/stimpack,
 /obj/item/stimpack,
 /obj/item/stimpack,
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome2)
 "ccb" = (
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome2)
 "ccc" = (
 /obj/landmark{
 	name = "tdome2"
 	},
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome2)
 "ccd" = (
 /obj/storage/closet/thunderdome/red,
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome2)
 "ccf" = (
 /obj/map/light/dimreddish,
@@ -32469,7 +32457,7 @@
 	name = "TEAM ROOMS";
 	pixel_y = 24
 	},
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome1)
 "ccy" = (
 /obj/machinery/door/poddoor{
@@ -32512,7 +32500,7 @@
 	name = "TEAM ROOMS";
 	pixel_y = 24
 	},
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome2)
 "ccF" = (
 /obj/decal/boxingropeenter{
@@ -32584,7 +32572,7 @@
 /area/afterlife/bar)
 "ccS" = (
 /obj/adventurepuzzle/triggerable/light/gauntlet,
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome1)
 "ccT" = (
 /turf/floor{
@@ -32810,7 +32798,7 @@
 /area/sim/bball)
 "cdz" = (
 /obj/adventurepuzzle/triggerable/light/gauntlet,
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome2)
 "cdA" = (
 /obj/overlay{
@@ -32912,7 +32900,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome1)
 "cdN" = (
 /obj/table/auto,
@@ -32920,7 +32908,7 @@
 /obj/item/gun/kinetic/flaregun,
 /obj/item/sword,
 /obj/item/sword,
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome1)
 "cdP" = (
 /obj/item/bballbasket{
@@ -32978,7 +32966,7 @@
 /obj/item/gun/kinetic/flaregun,
 /obj/item/sword,
 /obj/item/sword,
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome2)
 "cdZ" = (
 /obj/landmark{
@@ -32988,7 +32976,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome2)
 "cea" = (
 /obj/decal/fakeobjects{
@@ -33122,7 +33110,7 @@
 /obj/disposalpipe/trunk{
 	dir = 4
 	},
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome1)
 "cex" = (
 /turf/floor{
@@ -33167,7 +33155,7 @@
 /obj/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/floor,
+/turf/floor/vr/fourbit,
 /area/sim/tdome/tdome2)
 "ceH" = (
 /obj/storage/secure/closet/engineering/mining,
@@ -34528,10 +34516,10 @@
 	},
 /area/sim/racing_track)
 "cil" = (
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/virtual/reinforced,
 /area/sim/racing_track)
 "cim" = (
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/virtual/reinforced,
 /area/sim/gunsim)
 "cin" = (
 /obj/racing_boosterstrip{
@@ -34591,27 +34579,18 @@
 	},
 /area/sim/racing_entry)
 "civ" = (
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/virtual/reinforced,
 /area/sim/racing_entry)
 "ciw" = (
-/turf/floor/setpieces/gauntlet{
-	desc = "This place is going to be a fucking mess.";
-	name = "\proper the murderbox"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/gunsim)
 "cix" = (
 /obj/fitness/speedbag/syndie,
-/turf/floor/setpieces/gauntlet{
-	desc = "This place is going to be a fucking mess.";
-	name = "\proper the murderbox"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/gunsim)
 "ciy" = (
 /obj/fitness/speedbag/wizard,
-/turf/floor/setpieces/gauntlet{
-	desc = "This place is going to be a fucking mess.";
-	name = "\proper the murderbox"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/gunsim)
 "ciz" = (
 /turf/wall{
@@ -34682,17 +34661,11 @@
 /area/crunch)
 "ciM" = (
 /obj/fitness/speedbag/captain,
-/turf/floor/setpieces/gauntlet{
-	desc = "This place is going to be a fucking mess.";
-	name = "\proper the murderbox"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/gunsim)
 "ciN" = (
 /obj/fitness/speedbag,
-/turf/floor/setpieces/gauntlet{
-	desc = "This place is going to be a fucking mess.";
-	name = "\proper the murderbox"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/gunsim)
 "ciO" = (
 /turf/wall{
@@ -35483,17 +35456,11 @@
 /area/cavetiny)
 "ckD" = (
 /obj/fitness/stacklifter,
-/turf/floor/setpieces/gauntlet{
-	desc = "This place is going to be a fucking mess.";
-	name = "\proper the murderbox"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/gunsim)
 "ckE" = (
 /obj/fitness/weightlifter,
-/turf/floor/setpieces/gauntlet{
-	desc = "This place is going to be a fucking mess.";
-	name = "\proper the murderbox"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/gunsim)
 "ckF" = (
 /obj/item/instrument/large/jukebox,
@@ -35627,26 +35594,19 @@
 /obj/invisible_teleporter/receive_only{
 	id = "murderbox"
 	},
-/turf/floor/setpieces/gauntlet{
-	desc = "Today is a good day to die.";
-	icon_state = "gauntfloorSkulls";
-	name = "\proper THE MURDERBOX"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/gunsim)
 "ckY" = (
 /obj/decal/poster/wallsign/poster_nt,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/virtual,
 /area/sim/racing_entry)
 "ckZ" = (
 /obj/decal/poster/wallsign/poster_sol,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/virtual,
 /area/sim/racing_entry)
 "clb" = (
 /obj/machinery/vending/cola/blue,
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_1"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/racing_entry)
 "clc" = (
 /obj/overlay{
@@ -35803,10 +35763,7 @@
 /obj/invisible_teleporter/receive_only{
 	id = "murderentry"
 	},
-/turf/floor/setpieces/gauntlet{
-	desc = "This place is going to be a fucking mess.";
-	name = "\proper the murderbox"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/gunsim)
 "cls" = (
 /obj/literal_firewall{
@@ -35964,10 +35921,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/turf/floor/setpieces/gauntlet{
-	desc = "This place is going to be a fucking mess.";
-	name = "\proper the murderbox"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/gunsim)
 "clN" = (
 /obj/decal/poster/wallsign/stencil/left/g,
@@ -35986,20 +35940,22 @@
 	},
 /area/sim/racing_entry)
 "clP" = (
-/obj/table/reinforced/auto,
-/obj/traitorifier/virtual,
-/turf/floor/setpieces/gauntlet{
-	desc = "This place is going to be a fucking mess.";
-	name = "\proper the murderbox"
+/obj/traitorifier/virtual{
+	pixel_x = -3
 	},
+/obj/table/virtual{
+	dir = 4;
+	icon_state = "tabledir"
+	},
+/turf/floor/vr/fourbit,
 /area/sim/gunsim)
 "clQ" = (
-/obj/table/reinforced/auto,
 /obj/traitorifier/virtual/wizard,
-/turf/floor/setpieces/gauntlet{
-	desc = "This place is going to be a fucking mess.";
-	name = "\proper the murderbox"
+/obj/table/virtual{
+	dir = 5;
+	icon_state = "tabledir"
 	},
+/turf/floor/vr/fourbit,
 /area/sim/gunsim)
 "clR" = (
 /obj/stool/chair/wooden{
@@ -36013,15 +35969,12 @@
 /area/sim/racing_entry)
 "clS" = (
 /obj/item/device/radio/intercom/virtual,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/virtual/reinforced,
 /area/sim/gunsim)
 "clT" = (
 /obj/table/auto,
 /obj/item/spacecash/hundred,
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_1"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/racing_entry)
 "clU" = (
 /obj/table/auto,
@@ -36029,19 +35982,13 @@
 /obj/item/spacecash/twenty,
 /obj/item/spacecash/twenty,
 /obj/item/spacecash/five,
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_1"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/racing_entry)
 "clV" = (
 /obj/stool/chair{
 	dir = 8
 	},
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_1"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/racing_entry)
 "clW" = (
 /obj/machinery/light/small/iomoon{
@@ -36102,21 +36049,15 @@
 /area/afterlife/bar)
 "cmf" = (
 /obj/item/device/radio/intercom/virtual,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/virtual/reinforced,
 /area/sim/racing_entry)
 "cmg" = (
 /obj/decal/cleanable/oil,
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_1"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/racing_entry)
 "cmh" = (
 /obj/table/auto,
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_1"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/racing_entry)
 "cmi" = (
 /obj/overlay{
@@ -36230,21 +36171,21 @@
 	},
 /area/sim/racing_entry)
 "cmw" = (
-/obj/table/reinforced/auto,
-/obj/traitorifier/virtual/werewolf,
-/turf/floor/setpieces/gauntlet{
-	desc = "This place is going to be a fucking mess.";
-	name = "\proper the murderbox"
+/obj/traitorifier/virtual/werewolf{
+	pixel_x = -2;
+	pixel_y = 13
 	},
+/obj/table/virtual{
+	dir = 6;
+	icon_state = "tabledir"
+	},
+/turf/floor/vr/fourbit,
 /area/sim/gunsim)
 "cmx" = (
 /obj/stool/chair{
 	dir = 1
 	},
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_1"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/racing_entry)
 "cmy" = (
 /turf/wall{
@@ -36316,12 +36257,15 @@
 /turf/floor/grey,
 /area/afterlife/bar)
 "cmG" = (
-/obj/table/reinforced/auto,
-/obj/traitorifier/virtual/wrestler,
-/turf/floor/setpieces/gauntlet{
-	desc = "This place is going to be a fucking mess.";
-	name = "\proper the murderbox"
+/obj/traitorifier/virtual/wrestler{
+	pixel_x = 2;
+	pixel_y = 7
 	},
+/obj/table/virtual{
+	dir = 10;
+	icon_state = "tabledir"
+	},
+/turf/floor/vr/fourbit,
 /area/sim/gunsim)
 "cmH" = (
 /obj/item/reagent_containers/food/snacks/spaghetti,
@@ -36353,10 +36297,7 @@
 	desc = "Caution! Construction Zone!";
 	name = "caution sign"
 	},
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_1"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/racing_entry)
 "cmN" = (
 /turf/wall{
@@ -36480,17 +36421,11 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_1"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/racing_entry)
 "cng" = (
 /obj/storage/closet/wardrobe/blue,
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_1"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/racing_entry)
 "cnh" = (
 /obj/stone{
@@ -38899,11 +38834,7 @@
 	},
 /obj/decal/residual_energy,
 /obj/decal/swirlthing,
-/turf/floor/setpieces/gauntlet{
-	desc = "Stepping on this will take you into THE MURDERBOX.";
-	icon_state = "gauntfloorSkulls";
-	name = "\proper THE MURDERBOX entry"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/gunsim)
 "cvj" = (
 /obj/lattice{
@@ -53076,14 +53007,14 @@
 	dir = 4;
 	level = -1
 	},
-/turf/wall/auto/virtual,
+/turf/wall/virtual/reinforced,
 /area/gauntlet/viewing)
 "deh" = (
 /obj/disposalpipe/trunk{
 	dir = 8
 	},
 /obj/machinery/disposal/mail/colosseum,
-/turf/wall/auto/virtual,
+/turf/wall/virtual/reinforced,
 /area/gauntlet/viewing)
 "del" = (
 /turf/floor/lava,
@@ -53482,7 +53413,7 @@
 /area/sim/racing_track)
 "dfm" = (
 /obj/death_button/clean_gunsim,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/virtual/reinforced,
 /area/sim/gunsim)
 "dfr" = (
 /obj/decal/fakeobjects{
@@ -66131,8 +66062,10 @@
 /turf/space/fluid/noexplosion,
 /area/afterlife/bar)
 "dSQ" = (
-/obj/death_button/create_dummy,
-/turf/wall/auto/reinforced/supernorn,
+/obj/death_button/create_dummy{
+	color = "#C00000"
+	},
+/turf/wall/virtual/reinforced,
 /area/sim/gunsim)
 "dSS" = (
 /obj/storage/closet/wardrobe/pride,
@@ -66804,6 +66737,10 @@
 "eFa" = (
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/south)
+"eFK" = (
+/obj/item/device/radio/intercom/virtual,
+/turf/wall/virtual/reinforced,
+/area/gauntlet/viewing)
 "eHC" = (
 /obj/machinery/light{
 	dir = 4
@@ -67337,6 +67274,9 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"fON" = (
+/turf/floor/vr/fourbit,
+/area/sim/racing_entry)
 "fQO" = (
 /obj/machinery/light/small/iomoon{
 	dir = 4
@@ -68770,6 +68710,9 @@
 	},
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/research)
+"iYH" = (
+/turf/wall/virtual,
+/area/gauntlet/viewing)
 "iZw" = (
 /obj/ladder{
 	id = "marksoffice";
@@ -69469,6 +69412,9 @@
 	},
 /turf/floor/void,
 /area/crunch)
+"kwI" = (
+/turf/wall/virtual/reinforced,
+/area/gauntlet/viewing)
 "kxa" = (
 /turf/wall/auto/lead/gray,
 /area/crypt/sigma/storage)
@@ -69964,6 +69910,14 @@
 "lDH" = (
 /turf/floor/carpet/red/standard/edge/north,
 /area/upper_arctic/fita/messhall)
+"lDQ" = (
+/obj/machinery/door/poddoor{
+	autoclose = 1;
+	id = "thunderdome";
+	name = "Thunderdome"
+	},
+/turf/floor/vr/fourbit,
+/area/sim/bball)
 "lDS" = (
 /obj/decal/fakeobjects/pipe{
 	density = 1;
@@ -70392,12 +70346,14 @@
 /turf/floor/specialroom/cafeteria,
 /area/iomoon/base)
 "mIR" = (
-/obj/table/reinforced/auto,
-/obj/traitorifier/virtual/nuclear,
-/turf/floor/setpieces/gauntlet{
-	desc = "This place is going to be a fucking mess.";
-	name = "\proper the murderbox"
+/obj/traitorifier/virtual/nuclear{
+	pixel_x = 3
 	},
+/obj/table/virtual{
+	dir = 9;
+	icon_state = "tabledir"
+	},
+/turf/floor/vr/fourbit,
 /area/sim/gunsim)
 "mJF" = (
 /obj/chainlink_fence{
@@ -73478,10 +73434,7 @@
 /area/hospital/samostrel)
 "sfP" = (
 /obj/submachine/weapon_vendor/syndicate,
-/turf/floor/setpieces/gauntlet{
-	desc = "This place is going to be a fucking mess.";
-	name = "\proper the murderbox"
-	},
+/turf/floor/vr/fourbit,
 /area/sim/gunsim)
 "sfZ" = (
 /obj/admin_plaque{
@@ -73583,6 +73536,10 @@
 	},
 /turf/floor/shuttle,
 /area/shuttle/escape/centcom/manta)
+"snb" = (
+/obj/item/device/radio/intercom/virtual,
+/turf/wall/auto/virtual,
+/area/gauntlet/viewing)
 "soS" = (
 /obj/securearea{
 	desc = "It looks pretty dangerous in there.";
@@ -76200,6 +76157,9 @@
 "ybJ" = (
 /turf/floor/dojo/stone,
 /area/titlescreen)
+"yca" = (
+/turf/wall/virtual,
+/area/sim/racing_entry)
 "ycl" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 8
@@ -81357,7 +81317,7 @@ wwy
 wwy
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -81659,7 +81619,7 @@ wwy
 wwy
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -81961,7 +81921,7 @@ wwy
 wwy
 bKw
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -82262,8 +82222,8 @@ aaa
 wwy
 wwy
 bKw
-bKw
-bKw
+wwy
+wwy
 bKw
 bKw
 bKw
@@ -82564,7 +82524,7 @@ aaa
 wwy
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -82866,7 +82826,7 @@ aaa
 wwy
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -83168,7 +83128,7 @@ aaa
 wwy
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -83470,7 +83430,7 @@ aaa
 wwy
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -83772,7 +83732,7 @@ aaa
 wwy
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -84074,7 +84034,7 @@ aaa
 wwy
 bKw
 bKw
-bKw
+wwy
 bKw
 bTU
 bKw
@@ -84375,8 +84335,8 @@ wwy
 aaa
 wwy
 bKw
-bKw
-bKw
+wwy
+wwy
 bKw
 bKw
 bKw
@@ -84677,7 +84637,7 @@ wwy
 aaa
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -84979,7 +84939,7 @@ wwy
 aaa
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -85281,7 +85241,7 @@ wwy
 aaa
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -85583,7 +85543,7 @@ wwy
 aaa
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -85885,7 +85845,7 @@ wwy
 aaa
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -86187,7 +86147,7 @@ wwy
 aaa
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -86489,7 +86449,7 @@ aaa
 aaa
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -86791,7 +86751,7 @@ wwy
 aaa
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -87093,7 +87053,7 @@ wwy
 aaa
 wwy
 bKw
-bKw
+wwy
 bKw
 bTU
 bKw
@@ -87392,10 +87352,10 @@ wwy
 wwy
 wwy
 wwy
-aaa
+wwy
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -87691,13 +87651,13 @@ bKw
 bKw
 bKw
 bKw
+bKw
 wwy
 wwy
 wwy
-aaa
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -87993,14 +87953,14 @@ bKw
 bKw
 bKw
 bKw
-wwy
-wwy
-wwy
-aaa
-wwy
 bKw
 bKw
 bKw
+bKw
+bKw
+bKw
+wwy
+wwy
 bKw
 caF
 bKw
@@ -88295,14 +88255,14 @@ bQL
 bQL
 bKw
 bKw
+bKw
 wwy
 wwy
 wwy
-aaa
 wwy
 bKw
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -88600,11 +88560,11 @@ bKw
 wwy
 wwy
 wwy
-aaa
+wwy
 wwy
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -88906,8 +88866,8 @@ aaa
 wwy
 tiH
 bKw
-bKw
-bKw
+wwy
+wwy
 bKw
 bKw
 bKw
@@ -89209,7 +89169,7 @@ wwy
 wwy
 bKw
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -89511,7 +89471,7 @@ wwy
 wwy
 wwy
 bKw
-bKw
+wwy
 bKw
 bKw
 bKw
@@ -89813,8 +89773,8 @@ wwy
 wwy
 wwy
 bKw
-bKw
-bKw
+wwy
+wwy
 bKw
 bKw
 bKw
@@ -90116,7 +90076,7 @@ wwy
 wwy
 bKw
 bKw
-bKw
+wwy
 bTU
 bKw
 bKw
@@ -90418,8 +90378,8 @@ wwy
 wwy
 wwy
 bKw
-bKw
-bKw
+wwy
+wwy
 bKw
 bKw
 bKw
@@ -90721,9 +90681,9 @@ wwy
 wwy
 bKw
 bKw
-bKw
-bKw
-bKw
+wwy
+wwy
+wwy
 bKw
 bKw
 bTU
@@ -91025,9 +90985,9 @@ wwy
 bKw
 bKw
 bKw
-bKw
-bKw
-bKw
+wwy
+wwy
+wwy
 bKw
 bKw
 bKw
@@ -112794,9 +112754,9 @@ bOB
 bPy
 uQX
 uQX
-ccy
-ccy
-ccy
+lDQ
+lDQ
+lDQ
 uQX
 uQX
 uQX
@@ -113422,7 +113382,7 @@ ciu
 ciu
 ckt
 ciu
-civ
+yca
 ciu
 cmL
 ciu
@@ -113724,7 +113684,7 @@ ciu
 cka
 ckr
 ckF
-civ
+yca
 doZ
 cmq
 cmq
@@ -114328,7 +114288,7 @@ ciu
 ckb
 ckr
 ckr
-civ
+yca
 cmr
 cmI
 cmI
@@ -114630,7 +114590,7 @@ ciu
 ckr
 cku
 ckr
-civ
+yca
 cmr
 cmJ
 cmI
@@ -114932,7 +114892,7 @@ ciu
 cka
 ckr
 ckG
-civ
+yca
 cmr
 cmK
 cmI
@@ -115536,7 +115496,7 @@ ciu
 ckr
 cku
 ckT
-civ
+yca
 cmq
 cmq
 cmq
@@ -115838,7 +115798,7 @@ ciu
 ckb
 ckr
 ckU
-civ
+yca
 cms
 cmq
 cmq
@@ -116140,7 +116100,7 @@ ciu
 cka
 cku
 ckV
-civ
+yca
 cmt
 cmq
 cmq
@@ -116442,7 +116402,7 @@ ciu
 cka
 ckr
 ckW
-civ
+yca
 cmu
 cmq
 cmq
@@ -116744,7 +116704,7 @@ ciu
 ciu
 ckv
 ciu
-civ
+yca
 ciu
 cmL
 ciu
@@ -117044,13 +117004,13 @@ bOB
 bPy
 cin
 ckH
-ckH
-ckH
-ckH
-ckH
-ckH
-ckH
-ckH
+fON
+fON
+fON
+fON
+fON
+fON
+fON
 civ
 "}
 (136,1,1) = {"
@@ -117324,7 +117284,7 @@ bOB
 bPy
 uQX
 uQX
-ccy
+lDQ
 ccy
 ccy
 uQX
@@ -117346,13 +117306,13 @@ bOB
 bPy
 cin
 ckH
-ckH
-ckH
-ckH
-ckH
-ckH
-ckH
-ckH
+fON
+fON
+fON
+fON
+fON
+fON
+fON
 civ
 "}
 (137,1,1) = {"
@@ -117648,13 +117608,13 @@ bOB
 bPy
 cin
 cjZ
-ckH
-ckH
-ckH
-ckH
-ckH
-ckH
-ckH
+fON
+fON
+fON
+fON
+fON
+fON
+fON
 civ
 "}
 (138,1,1) = {"
@@ -117950,13 +117910,13 @@ bOB
 bPy
 cin
 ckH
-ckH
-ckH
-ckH
-ckH
-ckH
-ckH
-ckH
+fON
+fON
+fON
+fON
+fON
+fON
+fON
 civ
 "}
 (139,1,1) = {"
@@ -118252,12 +118212,12 @@ bOB
 bPy
 cin
 cjZ
-ckH
-ckH
-ckH
-ckH
-ckH
-ckH
+fON
+fON
+fON
+fON
+fON
+fON
 cnf
 civ
 "}
@@ -118554,13 +118514,13 @@ bOB
 bPy
 cin
 ckH
-ckH
-ckH
-ckH
-ckH
-ckH
-ckH
-ckH
+fON
+fON
+fON
+fON
+fON
+fON
+fON
 civ
 "}
 (141,1,1) = {"
@@ -118856,13 +118816,13 @@ bOB
 bPy
 ckI
 bXZ
-ckH
-ckH
-ckH
-ckH
-ckH
-ckH
-ckH
+fON
+fON
+fON
+fON
+fON
+fON
+fON
 civ
 "}
 (142,1,1) = {"
@@ -119158,12 +119118,12 @@ bOB
 bPy
 ckI
 bYa
-ckH
+fON
 clT
 cmh
 cmx
-ckH
-ckH
+fON
+fON
 cmM
 civ
 "}
@@ -119460,11 +119420,11 @@ bOD
 bRT
 ckI
 bYb
-ckH
+fON
 clU
 clT
 cmx
-ckH
+fON
 cmg
 cng
 civ
@@ -119762,12 +119722,12 @@ bXs
 bXs
 ckI
 clb
-ckH
+fON
 clV
 clV
-ckH
+fON
 cmM
-ckH
+fON
 cng
 civ
 "}
@@ -123023,12 +122983,12 @@ dvn
 dTX
 eyM
 aaa
-bVE
+snb
 deb
 bOn
-bUU
-bUU
-bUU
+kwI
+kwI
+kwI
 bVH
 bVH
 bVH
@@ -123038,9 +122998,9 @@ bVH
 bVH
 bVH
 bVH
-bUU
-bUU
-bUU
+kwI
+kwI
+kwI
 bTD
 bOn
 bOn
@@ -123328,7 +123288,7 @@ aaa
 bUU
 deb
 bOn
-bUU
+kwI
 bPf
 bPg
 bPg
@@ -123342,7 +123302,7 @@ bPg
 bPg
 bPg
 bPf
-bUU
+kwI
 bTE
 bOn
 bOn
@@ -123630,7 +123590,7 @@ aaa
 bUU
 deb
 bOn
-bUU
+kwI
 bPg
 bPg
 bPg
@@ -123644,13 +123604,13 @@ bPg
 bPg
 bPg
 bPg
-bUU
-bUU
+kwI
+iYH
 bVH
 bVH
 bVH
-bUU
-bUU
+iYH
+iYH
 bOn
 bOn
 bOn
@@ -123932,7 +123892,7 @@ aaa
 bUU
 deb
 bOn
-bUU
+kwI
 bPg
 bPg
 bPg
@@ -123946,13 +123906,13 @@ bPg
 bPg
 bPg
 bPg
-bUU
+kwI
 bUN
 dfG
 dfG
 bUN
 dfG
-bUU
+iYH
 bOn
 bOn
 bOn
@@ -124234,7 +124194,7 @@ aaa
 bUU
 deb
 bOn
-bUU
+kwI
 bPg
 bPg
 bPg
@@ -124248,13 +124208,13 @@ bPg
 bPg
 bPg
 bPg
-bUU
+kwI
 bUN
 bTF
 bTF
 bUN
 bTF
-bUU
+iYH
 bVS
 bOn
 bOn
@@ -124536,7 +124496,7 @@ aaa
 bUU
 deb
 bOn
-bUU
+kwI
 bPf
 bPg
 bPg
@@ -124550,13 +124510,13 @@ bPg
 bPg
 bPg
 bPf
-bUU
+kwI
 dfF
 bTF
 bTF
 dfF
 bTF
-bUU
+iYH
 bOn
 bOn
 bOn
@@ -124838,7 +124798,7 @@ aaa
 bUU
 deb
 bOn
-bUU
+kwI
 bPg
 bPg
 bPg
@@ -125128,19 +125088,19 @@ bFS
 aaa
 aaa
 aaa
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
 deb
 bOo
-bUU
+kwI
 bPg
 bPg
 bPg
@@ -125430,7 +125390,7 @@ bFS
 aaa
 aaa
 aaa
-bUU
+kwI
 bLM
 bLM
 bLM
@@ -125439,10 +125399,10 @@ bLM
 bLM
 bLM
 bLM
-bUU
+kwI
 deb
 bOn
-bUU
+kwI
 bPg
 bPg
 bPg
@@ -125732,7 +125692,7 @@ bFS
 aaa
 aaa
 aaa
-bUU
+kwI
 bLM
 bLM
 bLM
@@ -125741,10 +125701,10 @@ bLM
 bLM
 bLM
 bLM
-bUU
+kwI
 deb
 bOn
-bUU
+kwI
 bPf
 bPg
 bPg
@@ -125758,13 +125718,13 @@ bPg
 bPg
 bPg
 bPf
-bUU
+kwI
 bUM
 bTF
 bTF
 bUM
 bTF
-bUU
+iYH
 bOn
 bOn
 bOn
@@ -126034,7 +125994,7 @@ bFS
 aaa
 aaa
 aaa
-bUU
+kwI
 bLM
 bLM
 bLM
@@ -126046,7 +126006,7 @@ bLM
 bNM
 deb
 bOn
-bUU
+kwI
 bPg
 bPg
 bPg
@@ -126060,13 +126020,13 @@ bPg
 bPg
 bPg
 bPg
-bUU
+kwI
 bUN
 bTF
 bTF
 bUN
 bTF
-bUU
+iYH
 bOn
 bOn
 bOn
@@ -126336,7 +126296,7 @@ bFS
 aaa
 aaa
 aaa
-bUU
+kwI
 dbr
 bLM
 bLM
@@ -126348,7 +126308,7 @@ bLM
 bNM
 deb
 bOn
-bUU
+kwI
 bPg
 bPg
 bPg
@@ -126362,13 +126322,13 @@ bPg
 bPg
 bPg
 bPg
-bUU
+kwI
 bUN
 dfG
 dfG
 bUN
 dfG
-bUU
+iYH
 bOn
 bOn
 bOn
@@ -126638,7 +126598,7 @@ aaa
 aaa
 aaa
 aaa
-bUU
+kwI
 bLM
 bLM
 bLM
@@ -126647,10 +126607,10 @@ bLM
 bLM
 bLM
 bLM
-bUU
+kwI
 deb
 bOn
-bUU
+kwI
 bPg
 bPg
 bPg
@@ -126664,13 +126624,13 @@ bPg
 bPg
 bPg
 bPg
-bUU
-bUU
+kwI
+iYH
 bVH
 bVH
 bVH
-bUU
-bUU
+iYH
+iYH
 bOn
 bOn
 bOn
@@ -126949,10 +126909,10 @@ bLM
 bLM
 bLM
 bLM
-bUU
+kwI
 deb
 bOn
-bUU
+kwI
 bPf
 bPg
 bPg
@@ -126966,7 +126926,7 @@ bPg
 bPg
 bSy
 bPf
-bUU
+kwI
 bTE
 bOn
 bOn
@@ -127242,7 +127202,7 @@ aaa
 aaa
 aaa
 aaa
-bUU
+kwI
 bLM
 bLM
 bLM
@@ -127251,12 +127211,12 @@ bLM
 bLM
 bLM
 bLM
-bVE
+eFK
 deb
 bOn
-bUU
-bUU
-bUU
+kwI
+kwI
+kwI
 bVH
 bVH
 bVH
@@ -127266,9 +127226,9 @@ bVH
 bVH
 bVH
 bVH
-bUU
-bUU
-bUU
+kwI
+kwI
+kwI
 bTH
 bOn
 bOn
@@ -127544,7 +127504,7 @@ aaa
 aaa
 aaa
 aaa
-bVE
+eFK
 bLM
 bLM
 bLM
@@ -127553,7 +127513,7 @@ bLM
 bLM
 bLM
 bLM
-bUU
+kwI
 deb
 bOn
 bOn
@@ -127846,7 +127806,7 @@ aaa
 aaa
 aaa
 aaa
-bUU
+kwI
 bLM
 bLM
 bLM
@@ -127855,7 +127815,7 @@ bLM
 bLM
 bLM
 bLM
-bUU
+kwI
 dec
 ded
 dee
@@ -128146,28 +128106,28 @@ aaa
 aaa
 aaa
 aaa
-bUU
-bUU
-bUU
-bUU
+kwI
+kwI
+kwI
+kwI
 bLu
 bLu
 bLu
 bLu
 bLu
 bLu
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
 deg
 bUU
 bUU
@@ -128448,7 +128408,7 @@ bFN
 aaa
 aaa
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -128750,7 +128710,7 @@ bFN
 aaa
 aaa
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -128772,7 +128732,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -129052,7 +129012,7 @@ bFN
 aaa
 aaa
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -129074,7 +129034,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -129354,7 +129314,7 @@ bFN
 aaa
 aaa
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -129376,7 +129336,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -129656,7 +129616,7 @@ bFN
 aaa
 aaa
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -129678,7 +129638,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -129958,7 +129918,7 @@ aaa
 aaa
 aaa
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -129980,7 +129940,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -130260,7 +130220,7 @@ aaa
 aaa
 aaa
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -130282,7 +130242,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -130562,7 +130522,7 @@ aaa
 aaa
 aaa
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -130584,7 +130544,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -130864,7 +130824,7 @@ aaa
 aaa
 aaa
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -130886,7 +130846,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -131166,7 +131126,7 @@ aaa
 aaa
 aaa
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -131188,7 +131148,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -131468,7 +131428,7 @@ aaa
 aaa
 aaa
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -131490,7 +131450,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -131770,7 +131730,7 @@ aaa
 aaa
 aaa
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -131792,7 +131752,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -132072,7 +132032,7 @@ bJQ
 bJQ
 bJQ
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -132094,7 +132054,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -132374,7 +132334,7 @@ bKr
 bKK
 bJQ
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -132396,7 +132356,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -132676,7 +132636,7 @@ bKr
 bKL
 bJQ
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -132698,7 +132658,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -132978,7 +132938,7 @@ bKr
 bKL
 bJQ
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -133000,7 +132960,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -133280,7 +133240,7 @@ dvE
 bJU
 bJD
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -133302,7 +133262,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -133582,7 +133542,7 @@ bFD
 bKN
 bJU
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -133604,7 +133564,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -133884,7 +133844,7 @@ bFD
 bJD
 bJD
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -133906,7 +133866,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -134186,7 +134146,7 @@ bFD
 bKO
 bJD
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -134208,7 +134168,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -134488,7 +134448,7 @@ bFD
 bJD
 bJD
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -134510,7 +134470,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -134790,7 +134750,7 @@ bFD
 bKP
 bJU
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -134812,7 +134772,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -135092,7 +135052,7 @@ bFD
 bJD
 bJD
 aaa
-bUU
+kwI
 bFd
 bFd
 bFd
@@ -135114,7 +135074,7 @@ bFd
 bFd
 bFd
 bFd
-bUU
+kwI
 aaa
 aaa
 aaa
@@ -135394,29 +135354,29 @@ bFD
 bKQ
 bJD
 aaa
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
-bUU
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
+kwI
 aaa
 aaa
 aaa
