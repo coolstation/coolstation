@@ -79,13 +79,11 @@
 		extrarange = 0
 
 
-		if (istype(M.buckled,/obj/stool/chair))
-			var/obj/stool/chair/C = M.buckled
-			M.buckled.unbuckle()
-			C.buckledIn = 0
-			C.stool_user = null
+		if (istype(M.stool_used,/obj/stool))
+			var/obj/stool/S = M.stool_used
+			S.unstand()
 		M.pixel_y = 0
-		M.buckled = null
+
 		reset_anchored(M)
 
 		M.targeting_ability = null

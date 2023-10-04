@@ -75,6 +75,7 @@
 	if (istype(W, /obj/item/grab))
 		if(ismob(W:affecting))
 			var/mob/M = W:affecting
+			M.lying = 3 //always lie to the right
 			M.setStatus("resting", INFINITE_STATUS)
 			M.force_laydown_standup()
 			if (ishuman(M))

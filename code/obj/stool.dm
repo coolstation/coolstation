@@ -1,21 +1,217 @@
+/*
+
+  ______     ______   ______     ______     __         ______
+ /\  ___\   /\__  _\ /\  __ \   /\  __ \   /\ \       /\  ___\
+ \ \___  \  \/_/\ \/ \ \ \/\ \  \ \ \/\ \  \ \ \____  \ \___  \
+  \/\_____\    \ \_\  \ \_____\  \ \_____\  \ \_____\  \/\_____\
+   \/_____/     \/_/   \/_____/   \/_____/   \/_____/   \/_____/
+
+
+*/
+
+//Big fuckin' interaction system rewrite by Bobskunk
+//stools and benches live here
+
 // CONTENTS:
+// - Intro
+// - HowTo
+// - Flag Bullshit
+// - Base Object
+// - CanDo Checks
+// - CantDo Checks
+// - Actions
+// - Interactions
+// - Construction/Deconstruction
+// - Special Procs
+
+// THE STOOLS THEMSELVES:
+
+// Moved to /furniture/stool.dm
 // - Stools
 // - Benches
-// - Beds
+// - Pews
+
+// Moved to /furniture/bed.dm
 // - Chairs
 // - Syndicate Chairs (will trip you up)
-// - Folded Chairs
 // - Comfy Chairs
 // - Shuttle Chairs
 // - Wheelchairs
-// - Wooden Chairs
-// - Pews
 // - Office Chairs
+// - Wooden Chairs
 // - Electric Chairs
+// - Folded Chairs
 
-/* ================================================ */
-/* -------------------- Stools -------------------- */
-/* ================================================ */
+// Moved to /furniture/stepladder.dm
+// - Stepladders
+// - Wrestling Stepladders
+// - Folded Stepladders
+
+// Moved to /furniture/bed.dm
+// - Beds
+
+/* -------------------------------------------------------------------------- */
+/*                                    Intro                                   */
+/* -------------------------------------------------------------------------- */
+
+/* ------ Whoa What The Fuck Everything's Different Bob What Did You Do ----- */
+
+//  I got tired of weird terminology and things being all over the place so I
+// rewrote the shit out of all this okay. It was hard to extend and do fun
+// things with chairs and beds like pushing them over and changing lightbulbs
+// on the ceiling. Now you can stand on stools (and eventually, tables).
+//
+// At least with tables I won't do that until we have a good means of securing
+// certain areas- give them a bustable plexi/bpglass window that allows items?
+//
+// Now there's a distinction between sitting on, standing on, buckled in, and
+// secured to (bucklecuffs).
+//
+//  There's also a means of changing that! For example, it would be easy to
+// implement cutting off the seatbelts on the shuttle with scissors.
+// Kinda preparing to move beds into its own thing, and hopefully get lots of
+// stuff moved under obj/furniture. easier to find, sensible to work with.
+
+/* -------------------------------------------------------------------------- */
+/*                                    HowTo                                   */
+/* -------------------------------------------------------------------------- */
+
+/* --------------------- Okay so how do you interact now -------------------- */
+
+// Wow it's So Easy!!!!
+
+/*
+ * Sit down?
+ * ---------
+ * Click a seat next to you
+ * If it's not in use, you will move to it and sit down!
+ * To stop sitting, just move away.
+ *
+ * If it's a special chair (office chair on wheels, wheelchair), click the chair to get up. Just like old buckling!
+ *
+ * If it's a bed, you lie in it.
+ *
+ * Buckle in?
+ * ----------
+ * Help/Disarm Mousedrop yourself (or someone else) onto the seat! Just like before!
+ * You must be on the same turf and the stool must not be used.
+ * If it does not have seatbelts, it will not buckle, but will attempt to sit you normally.
+ *
+ * If you are cuffed, you will not be able to do this.
+ * If your target is cuffed, you will either secure them, buckle them, or sit them, depending on what options the stools have.
+ * Securing is just a new context but it's the same old buckling: it just lets you do it on a thing that doesn't have buckles but does have a spot for
+ * something like handcuffs: chairs, beds, benches, but for example not stools
+ *
+ * If it's a bed, you tuck in and try to sleep.
+ * If they have handcuffs and it is a bed that allows it I guess that's tucklecuffing.
+ *
+ * TODO: If you drag yourself onto a chair that is already being used (by you or someone else) AND it swivels (office chair, barstool), spin it around 3 times.
+ * Chance of tipping over/barfing. Fun!
+ *
+ * Unbuckle?
+ * ---------
+ * Click your chair (or yourself?) with any intent to unbuckle and get up!
+ *
+ * If you are cuffed, you will not be able to do this.
+ * If your target is cuffed and secured, you will unsecure, unbuckle, and unsit them.
+ *
+ * If you remove your cuffs while buckled/secured, the next time you try to unbuckle or move it will automatically check and update.
+ * For example, if you're buckled on the shuttle and manage to slip your cuffs right before launch, you will not be thrown about.
+ * So that just means click yourself or your chair to get up and throw the captain out the airlock!
+ *
+ * Stand on?
+ * ---------
+ * Grab/Harm Mousedrop yourself onto the seat!
+ * You must be on the same turf and the stool must not be used by someone else, and you must not be buckled or secured to it.
+ *
+ * Grab intent is for ceiling access. You will automatically look at the ceiling.
+ * Harm intent is for flying piledrivers. You will not automatically look at the ceiling.
+ * It is possible to toggle between the two by clicking the status effect icon in the upper right, without having to get off the chair! wow!
+ *
+ * Pro-Tipping: Some stools are much less stable than others and may collapse or be pushed!
+ * Unanchored stools are much more likely to fall over.
+ *
+ * Unseat?
+ * -------
+ * Help click on a chair occupied by someone else who isn't buckled to stand them up relatively politely.
+ * Disarm click on a someone sitting in a chair to shove them out of it rudely.
+ * If they're fastened to the chair in some way, this might topple the chair over!
+ * OR: Disarm click on the chair to push it over!
+ * If they're buckled or secured to it, it's gonna be even worse for them! Fuckin' ow!
+ *
+ * Folding chairs?
+ * ---------------
+ * Drag a foldable chair onto itself to fold it.
+ * If someone's sitting on it, they will fall on they ass.
+ * If someone's standing on it, they will fall on they ass harder.
+ *
+ * On wheels?
+ * ----------
+ * If it doesn't fold, this same move can be used to toggle caster locks.
+ * This is a weaker anchoring than screwing or welding seats to the floor.
+ * The exception is the standard stepladder, which is wheeled and folds.
+ *
+ * Stepladders are special!
+ * ------------------------
+ * You can climb onto them by dragging with any intent.
+ * Standard ones will make you look up at the ceiling by default.
+ * If it is a wrestling stepladder, you automatically are in targetting intent and do not look up.
+ * Those modes are still toggleable.
+ *
+ * The non-wrestling one has casters that can be toggled with a click, as long as nobody's on it.
+ * Being on a stepladder with unlocked casters can be risky! This is because you can't sit on them!
+ *
+ * Also, you can still fold 'em by dragging it onto itself!
+ *
+ * okay that's it
+*/
+
+//The cool news with this is a lot of this shit will become portable so if it ever comes to it you won't have to think of a bed as a type of stool
+//Possibly even everything can become a type of......... gasp, FURNITURE??? along with tables, etc.
+
+/* -------------------------------------------------------------------------- */
+/*                                Flag Bullshit                               */
+/* -------------------------------------------------------------------------- */
+
+//These live in _std/defines/stool.dm and _std/macro/stool.dm but it's good to know.
+/*
+ * flags
+  STOOL_SIT		(1)  click help or disarm on non-buckle chair //also will be used for beds
+  STOOL_BUCKLE	(2)  mousedrop help or disarm on buckle chair
+  STOOL_STAND	(4)  mousedrop grab (or click grab+harm for wrestling ladder)
+  STOOL_SECURE	(8)  disarm
+  BED_TUCK		(16) bedsheets secured, comfort delivered
+
+stools only:
+ * capability
+  cansit(x)
+  canbuckle(x)
+  canstand(x)
+  cansecure(x)
+
+stools and mobs:
+ * status
+  issit(x)
+  isbuckle(x)
+  isstand(x)
+  issecure(x)
+ * setting
+  setsit(x)
+  setbuckle(x)
+  setstand(x)
+  setsecure(x)
+  settuck(x)
+ * unsetting
+  setunsit(x)
+  setunbuckle(x)
+  setunstand(x)
+  setunsecure(x)
+  setuntuck(x)
+*/
+
+/* -------------------------------------------------------------------------- */
+/*                                 Base Object                                */
+/* -------------------------------------------------------------------------- */
 
 /obj/stool
 	name = "stool"
@@ -25,18 +221,719 @@
 	flags = FPRINT | FLUID_SUBMERGE
 	throwforce = 10
 	pressure_resistance = 3*ONE_ATMOSPHERE
-	var/allow_unbuckle = 1
+	p_class = 2.5
+	//because whoopie cushions are for amateurs
+	var/obj/item/clothing/head/butt/has_butt = null // time for mature humour
+	var/image/butt_img
+	//are you temporarily locked in place? (mindswap)
+	var/locked = 0
+	//what can this seat do or not do, innately
+	var/cando_flags = STOOL_SIT | STOOL_STAND
+	//what is this seat doing presently (name shared with mob var and its sitting statuses)
+	var/stool_flags = 0
+	//who's using this thing anyway
 	var/mob/living/stool_user = null
+	//can it be disassembled into portable parts
 	var/deconstructable = 1
+	//can anchoring be toggled
 	var/securable = 0
+	//is it a bit more firmly installed in place
+	var/detachable = 0
+	//can you fold it up and take it with you
+	var/foldable = 0
+	//is this thing on wheels
+	var/casters = 0
+	//do you have to click to stop sitting instead of just moving?
+	var/sticky = 0
+	//does it rotate easily even while attached and secured?
+	var/swivels = 0
+	//can you rotate it at all? chairs are directional for example but a stool can swivel too
+	var/rotatable = 0 //the base state will be yes maybe but it will be 0 for beds and such
+	//is it stable for standing on
+	var/unstable = 0
+	//is it okay to just stand on this thing while it's moving? no safety probs?
+	var/standsafe = 0
+	//has it been detached from the floor without being fully unsecured
+	var/loose = 0
+	//has it been knocked over somehow
+	var/lying = 0
+	//when you drag it does it make noise
 	var/list/scoot_sounds = null
+	//if you're strapped in, delay your movement
+	var/buckle_move_delay = 6 // this should have been a var somepotato WHY WASN'T IT A VAR
+	//what does a foldable stool fold into (should be in /obj/item/chair/folded/)
+	var/folds_type = null
+	//what does it break into when you deconstruct it (should be in /obj/item/furniture_parts/)
 	var/parts_type = /obj/item/furniture_parts/stool
+
+	/*
+
+	____
+	|  _ \ _ __ ___   ___ ___
+	| |_) | '__/ _ \ / __/ __|
+	|  __/| | | (_) | (__\__ \
+	|_|   |_|  \___/ \___|___/
+
+
+	*/
+
+	/* -------------------------------------------------------------------------- */
+	/*                                CanDo Checks                                */
+	/* -------------------------------------------------------------------------- */
+
+	// - Checks if there's any reason why you could NOT do an action
+	// - Broken up into specific checks
+	// - Handles messaging if user is provided (a specific, intended act)
+	// - Returns 1 if you can, 0 if you can't, 2+ for special cases
+
+	/* ------------------------------ Basic Checks ------------------------------ */
+
+	proc/stool_checks(mob/M, mob/user)
+		if (!M || !ismob(M)) return //can't buckle nothing or a not-mob
+		if (get_dist(src, user) > 1) return //user must be next to chair
+		if (M != user) //stooling someone else?
+			if (get_dist(M, user) > 1 || get_dist(M, src) > 1) return //target not in reach of user or chair
+		if ((!isalive(user) || is_incapacitated(user))) return //too unconscious
+		if (!ticker) //game not started
+			user.show_text("You can't mess with stools before the game starts!", "red")
+			return
+		if (src.lying) return //this is flopped over on its side. no
+		if (src.locked)
+			if (user)
+				boutput(user, "[src] is occupied and the straps are locked tight!")
+			return
+		//little debug action for now
+		if (src.stool_flags || M.stool_flags)
+			if (!src.stool_user)
+				src.visible_message("fart")
+			if (!M.stool_used)
+				M.visible_message("piss")
+		if (src.stool_user || M.stool_used)
+			if (!src.stool_flags)
+				src.visible_message("ass")
+			if (!M.stool_flags)
+				M.visible_message("shit")
+
+		//cleared
+		return 1
+
+	/* ------------------------------- Sit Checks ------------------------------- */
+
+	proc/can_sit(mob/M, mob/user)
+		//standard checks
+		if (!src.stool_checks(M,user)) return
+
+		//check if in use (i.e. any flags set at all) since standing is mutually exclusive and buckling/securing includes sitting
+		if (src.stool_flags || src.stool_user || M.stool_flags || M.stool_used)
+			return //silently, because clicking to sit is also clicking to unsit and that can get weird
+
+		//check if this is not a sittable stool
+		if (!cansit(src))
+			if (M == user)
+				boutput(user, "You can't see a way to sit on [src].")
+			else
+				boutput(user, "You can't see a way to sit [him_or_her(M)] on [src].")
+			return
+
+		return 1
+
+	/* ------------------------------ Buckle Checks ----------------------------- */
+
+	//returns 2 if you can't buckle but can sit
+
+	proc/can_buckle(mob/M, mob/user)
+		//standard checks
+		if (!src.stool_checks(M,user)) return
+		//special case: if has no seatbelt but can sit, allow a silent case for handling sitting instead (will require can_sit check)
+		if (!canbuckle(src) && cansit(src)) return 2
+		//target must be on the chair
+		if (M.loc != src.loc) return
+		//is target already on a different stool??? get outta here
+		if (M.stool_used && (M.stool_used != src)) return
+
+		//if someone (or you) is already standing on it
+		if (isstand(src) || isstand(M))
+			if (M == user)
+				if (M == src.stool_user)
+					boutput(user, "You can't buckle into [src] while standing on it!", "red")
+				else
+					boutput(user, "You can't buckle into [src] while someone else is standing on it!", "red")
+			else if (user)
+				if (M == src.stool_user)
+					boutput(user, "You can't buckle [M] into [src] while [hes_or_shes(M)] standing on it!", "red")
+				else
+					boutput(user, "You can't buckle [M] into [src] while someone else is standing on it!", "red")
+			return
+
+		//if someone (or you) is already buckled/secured to it
+		if (isbuckle(src) || isbuckle(M))
+			if (M == user)
+				if (M == src.stool_user)
+					boutput(user, "You're already buckled into [src]!", "red")
+				else
+					boutput(user, "You can't buckle into [src] because someone else is already buckled!", "red")
+			else
+				if (M == src.stool_user)
+					boutput(user, "[hes_or_shes(M)] already buckled into [src]!", "red")
+				else
+					boutput(user, "You can't buckle [M] into [src] because someone else is already buckled!", "red")
+			return
+		//if someone is already standing on it
+		//it's okay to buckle if you're sitting on it tho
+		if (issit(src) || issit(M))
+			if (M != src.stool_user)
+				if (M == user)
+					boutput(user, "You can't buckle into [src] because someone else is already sitting on it!", "red")
+				else
+					boutput(user, "You can't buckle [M] into [src] because someone else is already sitting on it!", "red")
+			return
+
+		//does this have a seatbelt?
+		if (!canbuckle(src))
+			if (M == user)
+				boutput(user, "You can't buckle into [src] because it doesn't have a seatbelt!")
+			else
+				boutput(user, "You can't buckle [M] into [src] because it doesn't have a seatbelt!")
+			return
+
+		if (canbuckle(src))
+			if (M == user && M.hasStatus("handcuffed"))
+				boutput(user, "You can't buckle into [src] while handcuffed!")
+				return
+
+		return 1
+
+	/* ------------------------------ Stand Checks ------------------------------ */
+
+	//returns 2 if user can potentially hop from one chair to another
+
+	proc/can_stand(mob/M, mob/user)
+		//standard checks
+		if (!src.stool_checks(M,user)) return
+
+		//check if stool is available
+		if (src.stool_user && (src.stool_user != M))
+			boutput(user, "Someone else is already on [src]!")
+			return
+
+		//check if target is available or already doing something
+		if (isstand(M))
+			if (M.stool_used)
+				//standing on this stool?
+				if (M.stool_used == src)
+					if (M == user)
+						boutput(user, "You're already standing on [M.stool_used]!", "red")
+					else
+						boutput(user, "[hes_or_shes(M)] already standing on [M.stool_used]!", "red")
+					return
+				//standing on another stool in range?
+				else if (M.stool_flags == STOOL_STAND)
+					if (M == user)
+						//handle a case to hop across chairs and you can present it here (the floor is lava)
+						//but for now it's 0
+						//return 2
+					else
+						boutput(user, "[hes_or_shes(M)] already standing on something else!", "red")
+					return
+
+		//if (isstand(M) || isstand(src))
+
+		return 1
+
+	//checks if the mob can be secured to the stool, handles distance, status, handcuffs-having humanity, etc.
+	//returns 1 if can secure restraints, 2 if it can't but can buckle, 3 if it can neither secure nor buckle, and 0 if it can't
+	//gives feedback if user is provided
+	proc/can_secure(mob/M, mob/user)
+		//standard checks
+		if (!src.stool_checks(M,user)) return
+		if (M.loc != src.loc) return
+
+		if (src.stool_user && src.stool_user != M)
+			boutput(user, "Someone else is already on [src]!")
+			return
+
+		if (issecure(src) == M || issecure(src))
+			if (M == user)
+				boutput(user, "You're already secured to [M.stool_used]! Also you shouldn't see this this is genuinely an error please notify a coder.")
+				return
+			if (M.stool_used == src)
+				boutput(user, "They're already secured to [M.stool_used]!")
+				return
+			boutput(user, "Someone else is already secured to [src]!", "red")
+			return
+
+		if (!cansecure(src))
+			//scootching in special case handling for securing:
+			//can't secure but it does have a buckle
+			if (canbuckle(src))
+				return 2
+			else if (cansit(src))
+				return 2
+			if (M == user)
+				boutput(user, "[src] doesn't have any place to attach your restraints, and doesn't have seatbelts either! Also you shouldn't see this this is genuinely an error please notify a coder.")
+			else
+				boutput(user, "[src] doesn't have a seatbelt or a place to attach [M]'s restraints!")
+			return
+
+		//fourth stage check for any weird exceptions or edge cases
+		if (cansecure(src))
+			//gotta be right on the chair
+			if (M.loc != src.loc) return
+			//gotta have cuffs + not be you + sitting
+			if (M.hasStatus("handcuffed"))
+				if (M == user)
+					boutput(user, "You can't secure your own restraints to [src], you bonehead![isstand(M) ? " That goes double if you're standing on it!" : ""]")
+					return
+				if (isstand(src))
+					boutput(user, "You can't secure someone into [src] while they're standing on it!")
+					return
+			else
+				boutput(user, "You can only secure handcuffs to [src] if there are handcuffs to secure! How did you even get here.")
+				return
+
+		return 1
+
+	/* -------------------------------------------------------------------------- */
+	/*                                CantDo Checks                               */
+	/* -------------------------------------------------------------------------- */
+
+	// - Same as before but undone. should be smaller
+
+	proc/unstool_checks(mob/M, mob/user)
+		if (!M) return //can't unbuckle what's not there
+		if (get_dist(src, user) > 1) return //user must be next to chair at most
+		if (get_dist(src, M) > 1) return //target must be ON chair
+		if ((!isalive(user) || is_incapacitated(user))) return //too unconscious
+		if (M.stool_used != src) return //who the hell are you sitting on
+		if (!ticker) //game not started
+			if (user)
+				boutput(user, "You can't mess with stools before the game starts!")
+			return
+		if (src.locked)
+			if (user)
+				boutput(user, "[src]'s straps are locked tight and escape is impossible!")
+			return
+		//cleared
+		return 1
+
+	proc/can_unsit(mob/M, mob/user)
+		//standard checks
+		if (!src.unstool_checks(M, user)) return 0
+
+		//is the mob/stool even sitting?
+		if (!issit(M) || !issit(src)) return 0
+
+		//doing anything other than sitting?
+		if (cansit(src))
+			if (src.stool_flags != STOOL_SIT || M.stool_flags != STOOL_SIT) return 0
+
+		return 1
+
+	proc/can_unbuckle(mob/M, mob/user)
+		//standard checks
+		if (!src.unstool_checks(M, user)) return 0
+
+		//preempting something potentially fucked up with restraints not existing
+		if (!M.hasStatus("handcuffed") && issecure(M))
+			//delete any securing relationship to whatever stool they are unsecured to because something's fucked
+			M.stool_used.unsecure(M)
+
+		//check if anyone is buckled
+		if (!isbuckle(M) || !isbuckle(src)) return 0
+
+		//check if this thing has buckles (maybe they got deleted while you were on?)
+		if (!canbuckle(src))
+			//there's probably nothing actually stopping you from just getting up
+			if (src.can_unsit())
+				//fuck it
+				src.sit_on(M)
+				return 2
+			//...but just in case you're buckled to something you can't and aren't sitting on
+			return
+
+		if (canbuckle(src))
+			if (M.hasStatus("handcuffed"))
+				boutput(user, "You can't unbuckle from [src] while restrained, you're gonna have to slip 'em.")
+				return
+
+		return 1
+
+	proc/can_unstand(mob/M, mob/user)
+		//standard checks
+		if (!src.unstool_checks(M, user)) return 0
+		//check if anyone is standing on it
+		if (!isstand(M) || !isstand(src)) return 0
+		//real easy
+		return 1
+
+	//checks if the mob can be unsecured, with user context, edge case handling, and correcting bad states
+	//returns 0 if can't, returns 1 if can, returns 2 if can't but you can unbuckle, returns -1 if there was some issue
+	proc/can_unsecure(mob/M, mob/user)
+		//standard checks
+		if (!src.unstool_checks(M, user)) return 0
+
+		//preempting something potentially fucked up with restraints not existing
+		if (!M.hasStatus("handcuffed") && issecure(M))
+			//delete any securing relationship to whatever stool they are unsecured to because something's fucked
+			M.stool_used.unsecure(M)
+
+		//check if anyone is secured
+		if (!issecure(M) || !issecure(src)) return 0
+
+		//seat doesn't have a place for restraints but is secured and you're trying to call unsecure? try unbuckles-unsit
+		if (!cansecure(src))
+			if (canbuckle(src))
+				if(M == user && user.hasStatus("handcuffed"))
+					boutput(user, "You can't unbuckle from [src] while restrained, you're gonna have to slip 'em.")
+					return
+				//just unbuckle
+				return 2
+			else if (cansit(src))
+				//just unsit
+				return 3
+
+			else
+				boutput(M, "Congrats! You did something really weird. Let a coder know what you or someone else did with the [src] in order to get yourself tangled up like this.")
+				reset_stool(M, TRUE)
+				return -1
+
+		if (cansecure(src))
+			if (M.loc != src.loc) return
+			if(M == user && user.hasStatus("handcuffed"))
+				boutput(user, "You can't unbuckle from [src] while restrained, you're gonna have to slip 'em.")
+				return
+
+		return 1
+
+	/* -------------------------------------------------------------------------- */
+	/*                                 Basic Procs                                */
+	/* -------------------------------------------------------------------------- */
 
 	New()
 		if (!src.anchored && src.securable) // we're able to toggle between being secured to the floor or not, and we started unsecured
 			src.p_class = 2 // so make us easy to move
 		..()
+		if (src.lying)
+			animate_rest(src, !src.lying)
+			src.p_class = initial(src.p_class) + src.lying // 2.5 while standing, 3.5 while lying
 
+	/* ------------------------------ Basic Clicks ------------------------------ */
+	// - Basic sit, unsecure-unstand-unbuckle, righting a fallen stool
+	attack_hand(mob/user as mob)
+		//TODO: if stool upright, disarm to push stool over, harm to kick it
+		var/mob/M = null
+
+		//Stool Occupied Tasks
+		if (src.stool_user)
+			M = src.stool_user
+
+			//you or someone else on there, in handcuffs?
+			if (issecure(src))
+				var/try_unsecure = can_unsecure(M,user)
+				if (!try_unsecure || (user == M)) return
+				switch (user.a_intent)
+					if (INTENT_HELP)
+						//help them out on help intent
+						switch (try_unsecure)
+							if (1)
+								unsecure(user)
+							if (2)
+								unbuckle(user)
+							if (3)
+								unsit(user)
+						return
+					if (INTENT_DISARM)
+						//shove chump, possibly over
+						if(!src.lying)
+							M.visible_message("<span class='alert'><b>[user]</b> gives [src] a good shove!</span>","<span class='alert'>Your [src] gets shoved recklessly by [user]!</span>")
+							if(prob(75))
+								fall_over(M,user,TRUE)
+						//pick them up and dust them off (just to shove them over again of course)
+						else
+							pick_up(user)
+						return
+					if (INTENT_GRAB)
+						//handle roughly
+						if (src.lying && (user != M))
+							pick_up(user)
+						else if (try_unsecure == 3)
+							user.Attackhand(M)
+							unsit(M)
+						else
+							M.visible_message("<span class='alert'><b>[user]</b> vigorously shakes the [src] with [M] on it!","<span class='alert'>You're banged around a bit from [user] shaking the [src]!</span>")
+							animate_storage_thump(M)
+							animate_storage_thump(src)
+						return
+					if (INTENT_HARM)
+						//just do a hit (until we all come up with something more interesting)
+						user.Attackhand(M)
+						return
+
+			//you or someone else on there, buckled in but not cuffed?
+			else if (isbuckle(src))
+				var/try_unbuckle = can_unbuckle(M,user)
+				if (!try_unbuckle) return
+				if (user.a_intent == INTENT_HELP)
+					//no seatbelt?
+					if (try_unbuckle == 2)
+						unsit(M, user)
+					else
+						unbuckle(M, user)
+					return
+				if (src.lying)
+					if (user.a_intent == INTENT_HARM)
+						user.Attackhand(M)
+					else
+						pick_up(user)
+					return
+				else
+					if (user.a_intent == INTENT_DISARM)
+						switch(try_unbuckle)
+							if(2)
+								if (M == user)
+									unsit(M, user)
+								else
+									unsit(M, user, TRUE)
+							if(1)
+								if (M == user)
+									unbuckle(M, user)
+								else
+									M.visible_message("<span class='alert'><b>[user]</b> shoves the [src]!","<span class='alert'>You're smashed right into [src], but there's already somebody on it!</span>")
+									if (prob(75))
+										src.fall_over(M,user,TRUE,FALSE)
+						return
+					if (user.a_intent == INTENT_GRAB)
+						switch (try_unbuckle)
+							if (2)
+								unsit(M, user, TRUE)
+								//probably see if you can make you grab the person
+								//user.attackhand(M)?
+						if (try_unbuckle == 1)
+							M.visible_message("<span class='alert'><b>[user]</b> vigorously shakes the [src] with [M] on it!","<span class='alert'>You're banged around a bit from [user] shaking the [src]!</span>")
+							animate_storage_thump(M)
+							animate_storage_thump(src)
+						return
+					if (user.a_intent == INTENT_HARM)
+						user.Attackhand(M)
+						return
+
+			//Standing?
+			if (isstand(src) && can_unstand(M,user))
+				var/aggressive = 0
+				if (M != user)
+					if (user.a_intent == INTENT_DISARM)
+						aggressive = 1
+				//if disarm, push 'em (make this an "attempt to knock over chair")
+				unstand(M, user, aggressive)
+				return
+
+		//Unoccupied Chair
+
+		//If the chair is still down
+		if (src.lying)
+			pick_up(user)
+			return
+
+		//Sit (only on help intent: we don't want to sit down in the middle of a fight, right?)
+		if (user.a_intent == INTENT_HELP)
+			if (can_sit(user,user))
+				sit_on(user,user)
+				return
+			if (can_unsit(user,user))
+				unsit(user,user)
+				return
+			//and finally, rotating seats if there's nothing else you can do
+			src.rotate()
+
+		return ..()
+
+	/* ------------------ MouseDrops (Complicated Interactions) ----------------- */
+	// - Handles buckling, securing, standing, as a destination
+	MouseDrop_T(mob/M as mob, mob/user as mob)
+		if (!ismob(M)) return //fuck u
+		var/buckle = src.can_buckle(M, user)
+		//secure (M is handcuffed, all intents but help)
+		if (M.hasStatus("handcuffed") && user.a_intent != INTENT_HELP)
+			switch(src.can_secure(M, user))
+				//normal state
+				if (1)
+					src.secure_to(M,user)
+				//can't secure but can buckle
+				if (2)
+					src.buckle_in(M,user)
+				//can't secure or buckle but can sit
+				if (3)
+					//handle "you're sitting while handcuffed" in this proc
+					src.sit_on(M,user)
+			return
+		//buckle in: help or disarm
+		else if (user.a_intent == INTENT_HELP)
+			if(buckle == 1)
+				src.buckle_in(M, user)
+			//can't buckle but can sit
+			else if(buckle == 2)
+				//handle "you're sitting without being buckled" in this proc
+				src.sit_on(M,user)
+			return
+
+		else if (user.a_intent == INTENT_DISARM)
+			if(buckle == 1)
+				src.buckle_in(M, user)
+			//can't buckle but can sit
+			else if(buckle == 2)
+				//handle "you're sitting without being buckled" in this proc
+				src.sit_on(M,user)
+			return
+
+		//stand on: grab
+		else if (user.a_intent == INTENT_GRAB)
+			switch(can_stand(M, user))
+				if (1)
+					//free chairflips for wrestlers
+					if(iswrestler(user))
+						stand_on(M, user, TRUE)
+					//get it on their
+					else
+						stand_on(M, user)
+				if (2)
+					stand_on(M, user, TRUE) //the floor is lava
+			return
+
+		//stand on: harm (aggressive, wrestling)
+		else if (user.a_intent == INTENT_HARM && can_stand(M, user)) //harm intent, or are some kinda wrestler
+			//aggressive stand on (i.e. starts on chairflip)
+			stand_on(M, user, TRUE)
+			return
+
+		else
+			return ..()
+
+	//If you drop it onto itself, fold or toggle casters
+	MouseDrop(obj/C as obj)
+		if (C == src)
+			if (src.foldable)
+				src.fold_up(usr)
+			else if (src.casters)
+				src.toggle_casters(usr)
+
+	/* ---------------------------- Item Interactions --------------------------- */
+
+	attackby(obj/item/W as obj, mob/user as mob)
+	//construction
+		if (iswrenchingtool(W) && src.deconstructable)
+			actions.start(new /datum/action/bar/icon/furniture_deconstruct(src, W, 30), user)
+			return
+		else if (isscrewingtool(W) && src.securable)
+			src.toggle_secured(user)
+			return
+		else if (isweldingtool(W) && src.detachable)
+			src.toggle_attached(user)
+			return
+
+	//pranks
+		//put a bangin' *fart* on it
+		if (istype(W, /obj/item/clothing/head/butt) && !has_butt && src.butt_img)
+			has_butt = W
+			user.u_equip(has_butt)
+			has_butt.set_loc(src)
+			boutput(user, "<span class='notice'>You place [has_butt.name] on [name].</span>")
+			butt_img.icon_state = "chair_[has_butt.icon_state]"
+			UpdateOverlays(butt_img, "chairbutt")
+			return
+
+		//take the butt off
+		if (ispryingtool(W) && has_butt)
+			user.put_in_hand_or_drop(has_butt)
+			boutput(user, "<span class='notice'>You pry [has_butt.name] from [name].</span>")
+			has_butt = null
+			UpdateOverlays(null, "chairbutt")
+			return
+
+	//shoving someone into a chair
+		if (istype(W, /obj/item/grab))
+			var/obj/item/grab/grab = W
+			var/mob/target = grab.affecting
+			if (can_sit(target))
+				if(prob(85))
+					//shove them in, intimidatingly
+					src.sit_on(target,user,TRUE)
+				else
+					//overdid it a bit
+					src.fall_over(target,user,TRUE)
+			else
+				//someone's already on it and you just smashed them into it so make them fall too
+				logTheThing("combat", user, target, "shoved [constructTarget(target,"combat")] into a chair at [log_loc(src)].")
+				target.visible_message("<span class='alert'><b>[user]</b> slams [target] right into [src], with somebody on it!</span>","<span class='alert'>You're smashed right into [src], but there's already somebody on it!</span>")
+				src.fall_over(null,user,TRUE)
+
+	//that's all
+		return ..()
+
+	Move(atom/target)
+		//if someone moves this stool while someone's standing on it
+		if (src.stool_user)
+			var/mob/M = stool_user
+			if (M.loc != src.loc)
+				if (isstand(src) && (!src.sticky))
+					if(can_unstand(M)) //silent
+						if(!src.standsafe)
+							src.fall_off(M,M)
+						else
+							src.unstand(M,M)
+
+		//do movement
+		. = ..()
+
+		//handle special post-movement cases for someone using this seat
+		if (. && src.stool_user)
+
+			//really it's only if someone's standing on the thing
+			if (isstand(src) && !src.standsafe)
+				//eventually add push force to this (like imagine standing on a chair and a really big shoe slams into you)
+				var/risk = 1
+				risk += src.unstable
+				risk += src.swivels
+				risk += src.casters
+				if (prob((100 * risk) / 5))
+					if (risk > 3)
+						//hard fall
+						fall_over(stool_user,TRUE)
+						return
+					if (risk > 1)
+						//less hard fall
+						fall_over(stool_user)
+					else
+						//graceful dismount
+						src.unstand(stool_user)
+						return
+
+			//temporary set no stool use to avoid tripping up the on-move automatic loc-mismatch check above
+			src.stool_user.stool_used = null
+			src.stool_user.Move(src.loc)
+			src.stool_user.stool_used = src
+
+		//and then the scoot sounds
+		if (. && islist(scoot_sounds) && scoot_sounds.len && prob(75))
+			playsound( get_turf(src), pick( scoot_sounds ), 50, 1 )
+
+	//find what the fuck proc acts when something tries to throw the chair
+
+	/*
+	aw shit see if we can get out of sitting or standing if we move
+	Move()
+			//see if someone should get down
+		if (src.stool_user == target)
+			//standing?
+			if (isstand(src) && src.anchored)
+				//would love it if sprinting in a direction just flung you in that direction while standing on a chair
+				src.unstand(target) //just step off
+			//not buckled or secured?
+			if (!isbuckle(src) && !issecure(src) && !src.sticky)
+				src.unsit(target) //just stand up
+
+	*/
+
+	// --- Damage ------------------------
 	ex_act(severity)
 		switch(severity)
 			if (OLD_EX_SEVERITY_1)
@@ -50,6 +947,14 @@
 						qdel(src)
 					return
 			if (OLD_EX_SEVERITY_3)
+				if (src.detachable)
+					if (prob(50))
+						src.loose = 1
+						if (prob(20))
+							src.anchored = 0
+				else if (src.securable)
+					if (prob(40))
+						src.anchored = 0
 				if (prob(5))
 					if (src.deconstructable)
 						src.deconstruct()
@@ -71,76 +976,451 @@
 				I.setMaterial(M)
 			qdel(src)
 
-	attackby(obj/item/W as obj, mob/user as mob)
-		if (iswrenchingtool(W) && src.deconstructable)
-			actions.start(new /datum/action/bar/icon/furniture_deconstruct(src, W, 30), user)
-			return
-		else if (isscrewingtool(W) && src.securable)
-			src.toggle_secure(user)
-			return
-		else
-			return ..()
-
-	proc/can_sit(var/mob/M, var/mob/user) //less stringent checks that can apply to every stool, including if the stool is a chair or bed
-		if (!M)
-			return 0
-		if (get_dist(src, user) > 1)
-			return 0
-		if (( !isalive(user) || is_incapacitated(user) ))
-			return 0
-		if(src.stool_user && src.stool_user.buckled == src)
-			user.show_text("There's already someone in [src]!", "red")
-			return 0
-		if (M.buckled)
-			boutput(user, "[M] is already buckled into something!", "red")
-			return 0
-		return 1
-
-	//but sometimes you want to definitively sit on things that don't have buckles???
-	proc/sit_down(mob/living/to_sit, mob/living/user, var/stand = 0) //Handles the actual sitting down
-		if (!can_sit(to_sit,user)) return
-
-		if (to_sit == user)
-			user.visible_message("<span class='notice'><b>[to_sit]</b> sits down!</span>", "<span class='notice'>You sit down.</span>")
-		else
-			user.visible_message("<span class='notice'><b>[to_sit]</b> is sat down by [user].</span>", "<span class='notice'>You sit [to_sit] down.</span>")
-
-		//to_sit.setStatus("sitting", duration = INFINITE_STATUS) //just move to get up
+	disposing()
+		for (var/mob/M in src.loc)
+			if (M.stool_used == src)
+				M.stool_used = null
+				M.buckled = null
+				M.stool_flags = 0
+				M.ceilingreach = initial(M.ceilingreach)
+				M.pixel_y = initial(M.pixel_y)
+		src.stool_user = null
+		if (has_butt)
+			has_butt.set_loc(loc)
+		has_butt = null
+		..()
 		return
 
-	proc/can_buckle(var/mob/M, var/mob/user)
-		.= 0
+	/* -------------------------------- Use Procs ------------------------------- */
+	//Sitting: Implies an unused chair.
+	//sometimes you want to definitively sit on things that don't have buckles- this could be useful for some contexts
+	//can pass an aggressive intent to the flavor text or handling
+	proc/sit_on(mob/living/M, mob/living/user, var/aggressive)
+		if (!ismob(M)) return //type protection (what the fuck)
+		//spam protection
+		if(ON_COOLDOWN(user, "chair_sit", 1 SECOND)) return
+		//if we're here that means we can sit and we should be the only sitter (so let's clear the flags)
+		src.stool_flags = 0
+		M.stool_flags = 0
 
-	proc/buckle_in(mob/living/to_buckle, mob/living/user, var/stand = 0) //Handles the actual buckling in
-		if (!can_buckle(to_buckle,user)) return
+		//pranked
+		if (src.loose)
+			if (prob(66))
+				src.fall_over(M, user)
 
-		if (to_buckle == user)
-			user.visible_message("<span class='notice'><b>[to_buckle]</b> buckles in!</span>", "<span class='notice'>You buckle yourself in.</span>")
-		else
-			user.visible_message("<span class='notice'><b>[to_buckle]</b> is buckled in by [user].</span>", "<span class='notice'>You buckle in [to_buckle].</span>")
+		//visible action (with handcuff handling)
+		if (user)
+			if (M == user)
+				M.visible_message("<span class='notice'><b>[M]</b> sits down on [src].</span>", "<span class='notice'>You sit down on [src].</span>")
+			else if (M.hasStatus("handcuffed"))
+				M.visible_message("<span class='alert'><b>[user]</b> sits [M] firmly down on [src], but has nothing to secure [him_or_her(M)] to!","<span class='alert'>You're pushed down into [src] by [user], but your restraints aren't secured to anything!</span>")
+			else
+				M.visible_message("<span class='notice'><b>[user]</b> [aggressive ? "shoves" : "sits"] [M] down [aggressive ? "onto" : "on"] [src]!</span>", "<span class='notice'>You [aggressive ? "shove" : "sit"] [M] down [aggressive ? "onto" : "on"] [src].</span>")
 
-		to_buckle.setStatus("buckled", duration = INFINITE_STATUS)
+		//move target onto stool and sit them
+		M.set_loc(src.loc)
+		setsit(src)
+		setsit(M)
+		src.stool_user = src
+		M.stool_used = src
+		if (src.sticky)
+			M.anchored = 1
+			M.buckled = src
+		//set statuses
+		M.setStatus("sitting", duration = INFINITE_STATUS) //just move to get up from this
+		RegisterSignal(M, COMSIG_MOVABLE_SET_LOC, .proc/maybe_unseat)
 		return
 
-	proc/unbuckle() //Ditto but for unbuckling
+	//Buckling: Implies either an unused or already seated chair.
+	//classic buckling in space, where everything has seatbelts: even the beds
+
+	proc/buckle_in(mob/living/M, mob/living/user) //Handles the actual buckling in (and for chairs, standing)
+		if (!ismob(M)) return //i do not want to buckle ceiling tiles to a shuttle seat, or another shuttle seat to a shuttle seat, or a shuttle seat to itself
+		if(ON_COOLDOWN(user, "chair_buckle", 1 SECOND)) return
+		if (user)
+			if (M == user)
+				M.visible_message("<span class='notice'><b>[M]</b> buckles in!</span>", "<span class='notice'>You buckle yourself in.</span>")
+			else
+				M.visible_message("<span class='notice'><b>[M]</b> is buckled in by [user].</span>", "<span class='notice'>You are buckled in by [user].</span>")
+
+		//link flags
+		setbuckle(src)
+		setbuckle(M)
+		//link refs
+		src.stool_user = M
+		M.stool_used = src
+		M.buckled = src
+		//and for good measure, if this is a sittable bucklething
+		if (cansit(src))
+			setsit(src)
+			setsit(M)
+			M.setStatus("sitting", duration = INFINITE_STATUS)
+
+		//additional handling
+		if (src.anchored)
+			M.anchored = 1
+		M.setStatus("buckled", duration = INFINITE_STATUS)
+		RegisterSignal(M, COMSIG_MOVABLE_SET_LOC, .proc/maybe_unseat)
+		M.set_clothing_icon_dirty()
+		playsound(src, "sound/misc/belt_click.ogg", 50, 1)
+		return
+
+	//secures a mob to a stool via restraints
+	//only call if you're sure you can do this
+	proc/stand_on(mob/living/M, mob/living/user, var/aggressive, var/hop)
+		if(ON_COOLDOWN(user, "chair_stand", 1 SECOND)) return
+		if (user)
+			if (hop)
+				user.visible_message("<span class='notice'><b>[M]</b> hops from [M.stool_used] to [src]!", "<span class='notice'>You successfully hop from M.stool_used] to [src]!</span>")
+			else if (M == user)
+				user.visible_message("<span class='notice'><b>[M]</b> stands up on [src][aggressive ? "! They look pretty serious!" : "."]</span>", "<span class='notice'>You climb up on [src][aggressive ? " and get ready to fly!" : "."]</span>")
+			else
+				user.visible_message("<span class='notice'><b>[M]</b> is helped onto [src] by [user][aggressive ? "! What are they going to do??" : "."]</span>", "<span class='notice'>You help [M] up onto [src][aggressive ? "! Let's go!" : "."]</span>")
+
+		//if we're here that means we can stand and that's the only state
+		//clear_stool_states(M,TRUE) //so, start with clean slate (including any previous stool, just in case we're hopping)
+
+		//set positioning and movement
+		M.set_loc(src.loc)
+		M.pixel_y = 10
+		if (src.anchored)
+			M.anchored = 1
+
+		//link flags
+		setstand(src)
+		setstand(M)
+		//link refs
+		src.stool_user = M
+		M.stool_used = src
+		M.buckled = src
+
+		//set statuses
+		if (aggressive)
+			M.start_chair_flip_targeting()
+			M.ceilingreach = 1
+			M.setStatus("standing-aggro", duration = INFINITE_STATUS)
+		else
+			M.ceiling_shown = 1
+			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_mob(M)
+			M.ceilingreach = 1
+			M.setStatus("standing", duration = INFINITE_STATUS)
+		RegisterSignal(M, COMSIG_MOVABLE_SET_LOC, .proc/maybe_unseat)
+		playsound(src, "sound/misc/belt_click.ogg", 50, 1) //classic noise
+		return
+
+	//secures a mob to a stool via restraints
+	//also sets buckling because 'securing' is just abstracted buckles
+	proc/secure_to(mob/living/M, mob/living/user)
+		if (user)
+			if (M == user)
+				user.visible_message("<span class='notice'><b>[user]</b> secures [his_or_her(M)] restraints to [src]! <b>This is a bug!</b></span>")
+			else
+				user.visible_message("<span class='notice'><b>[user]</b> secures [M]'s restraints to [src].</span>","<span class='notice'>You have your restraints secured to [src] by [user]!</span>")
+
+		//secure stool
+		setsecure(src)
+		setbuckle(src)
+		src.stool_user = M
+
+		//secure mob
+		setsecure(M)
+		setbuckle(M)
+		M.stool_used = src
+		M.buckled = src //lots of stuff still check this but it can be updated later
+
+		//misc handling
+		if (cansit(src))
+			setsit(src)
+			setsit(M)
+			M.setStatus("sitting", duration = INFINITE_STATUS)
+		if (src.anchored)
+			M.anchored = 1
+
+		//set status
+		M.setStatus("bucklecuffed", duration = INFINITE_STATUS)
+		RegisterSignal(M, COMSIG_MOVABLE_SET_LOC, .proc/maybe_unseat)
+
+		return
+
+	/* ------------------------------- UnUse Procs ------------------------------ */
+	// Does not check if it can or should, so check that before calling
+	// Does nothing but the bare minimum- if you want someone to fall over, do that before or after you call these too
+	// If no user is provided, it does not provide visible messages (or deeper contextual checks)
+
+	// stand up by clicking the seat, or simply moving: yeah that's right if it seats, hit the breats
+	/* ---------------------------------- Unsit --------------------------------- */
+	proc/unsit(mob/living/user as mob, var/aggressive, var/indirect)
+		var/mob/living/M = null
 		if (src.stool_user)
-			src.stool_user.end_chair_flip_targeting()
+			M = src.stool_user
+		else
+			return
 
-	proc/can_stand(var/mob/M, var/mob/user)
-		.= 0
+		if (user)
+			if (M == user)
+				M.visible_message("<span class='notice'><b>[M]</b> gets up from [src].</span>", "<span class='notice'>You get up from [src].</span>")
+			else if (indirect)
+				M.visible_message("<span class='notice'><b>[M]</b> is knocked off of [src]!</span>", "<span class='notice'>You are knocked off of [src]!</span>")
+			else
+				M.visible_message("<span class='notice'><b>[user]</b> [aggressive ? "drags" : "helps"] [M] [aggressive ? "off of" : "up from"] [src]!</span>", "<span class='notice'>You [aggressive ? "drag" :"help"] [M] off of [src]!</span>")
 
-	proc/unstand() //Ditto but for unstanding
+		//clear all stool and mob relationships
+		src.stool_flags = 0
+		src.stool_user = null
+		M.stool_flags = 0
+		M.stool_used = null
+		M.buckled = null
+		M.delStatus("sitting")
+		return
+
+	/* -------------------------------- Unbuckle -------------------------------- */
+	//unbuckle and get off
+	proc/unbuckle(mob/living/user as mob)
+		var/mob/living/M = null
 		if (src.stool_user)
-			src.stool_user.end_chair_flip_targeting()
+			M = src.stool_user
+		else
+			return
 
-	proc/toggle_secure(mob/user as mob)
+		//notify witnesses
+		if (user)
+			if (M == user)
+				M.visible_message("<span class='notice'><b>[M]</b> unbuckles from [src]!</span>", "<span class='notice'>You unbuckle from [src].</span>")
+			else
+				M.visible_message("<span class='notice'><b>[M]</b> is unbuckled  from [src] by [user]!</span>", "<span class='notice'>You are unbuckled from [src] by [user].</span>")
+
+		//clear all stool and mob relationships
+		src.stool_flags = 0
+		src.stool_user = null
+		M.stool_flags = 0
+		M.stool_used = null
+		M.buckled = null
+		//clear related statuses
+		M.delStatus("buckled")
+		M.delStatus("sitting")
+		M.delStatus("stooled")
+		playsound(src, "sound/misc/belt_click.ogg", 50, 1)
+		return
+
+	/* --------------------------------- Unstand -------------------------------- */
+	//Can also include an aggressive context
+
+	proc/unstand(mob/living/user as mob, var/aggressive)
+		var/mob/living/M = null
+		if (src.stool_user)
+			M = src.stool_user
+		else
+			return
+
+		if (user)
+			if (M == user)
+				M.visible_message("<span class='notice'><b>[M]</b> steps down from [src][aggressive ? ". What a relief!" :"!"]</span>", "<span class='notice'>You step down from [src].</span>")
+			else
+				M.visible_message("<span class='notice'><b>[M]</b> is [aggressive ? "knocked" : "helped"] down from [src] by [user]!</span>", "<span class='notice'>You are [aggressive ? "knocked" :"helped"] down from [src] by [user]!</span>")
+
+		//undo all mob shifting/reaching/looking/flipping stuff
+		M.pixel_y = 0
+		M.ceilingreach = 0
+		if (M.hasStatus("standing"))
+			M.delStatus("standing")
+			M.ceiling_shown = 0
+			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_mob(M)
+		else
+			M.delStatus("standing-aggro")
+			M.end_chair_flip_targeting()
+
+		//clear all stool and mob relationships
+		src.stool_flags = 0
+		src.stool_user = null
+		M.stool_flags = 0
+		M.stool_used = null
+		M.buckled = null
+		return
+
+	/* -------------------------------- Unsecure -------------------------------- */
+
+	proc/unsecure(mob/living/user as mob)
+		var/mob/living/M = null
+		if (src.stool_user)
+			M = src.stool_user
+		else
+			return
+
+		if (user)
+			if (M == user)
+				M.visible_message("<span class='notice'><b>[M]</b> unsecures [his_or_her(M)] restraints from [src] which is 100% a bug, please tell a coder.</span>")
+			else if (isbuckle(M))
+			else
+				M.visible_message("<span class='notice'><b>[M]'s</b> restraints are detached from [src] by [user]!</span>", "<span class='notice'>Your restraints are detached from [src] by [user]!</span>")
+
+		//were we secured to a buckle-less stool?
+		if(!canbuckle(src))
+			setunbuckle(src)
+			setunbuckle(M)
+			M.delStatus("stooled")
+
+		//otherwise, stay buckled
+		setunsecure(src)
+		setunsecure(M)
+		M.delStatus("bucklecuffed")
+		M.changeStatus("buckled")
+		//you're still possibly buckled and possibly sat in the stool, though!
+		return
+
+/* -------------------------------------------------------------------------- */
+/*                       Movement, Construction, Pranks                       */
+/* -------------------------------------------------------------------------- */
+
+	//restrict movement
+	proc/toggle_casters(mob/user as mob)
+		//mousedrop onto self for stuff that doesn't fold but has wheels
+		//doesn't move when you push on it
+		//still pushed around by explosions and fluids
 		if (user)
 			user.visible_message("<b>[user]</b> [src.anchored ? "loosens" : "tightens"] the casters of [src].[istype(src.loc, /turf/space) ? " It doesn't do much, though, since [src] is in space and all." : null]")
 		playsound(src, "sound/items/Screwdriver.ogg", 100, 1)
 		src.anchored = !(src.anchored)
 		src.p_class = src.anchored ? initial(src.p_class) : 2
+		src.buckle_move_delay = src.anchored ? initial(src.buckle_move_delay) * 2 : initial(src.buckle_move_delay)
 		return
 
+	//fix it in place with screws or caster locks, sets anchored
+	proc/toggle_secured(mob/user as mob)
+		//screwed to the ground
+		//doesn't move when you push on it
+		//resistant to explosions and fluids unless it's really powerful
+		if (istype(get_turf(src), /turf/space))
+			if (user)
+				user.show_text("What exactly are you gunna secure [src] to?", "red")
+			return
+		if (detachable && !src.anchored)
+			if (user)
+				boutput(user, "[src]'s floor supports aren't attached to anything.")
+				return
+		if (user)
+			if (detachable)
+				user.visible_message("<b>[user]</b> [src.loose ? "tightens" : "loosens"] the floor supports to the rest of [src]. [src.anchored ? null : "The connection to the floor still looks pretty loose..."]")
+				src.loose = !(src.loose)
+			else
+				user.visible_message("<b>[user]</b> [src.anchored ? "unscrews [src] from" : "secures [src] to"] the floor.")
+				src.anchored = !(src.anchored)
+				src.p_class = src.anchored ? initial(src.p_class) : 2
+			playsound(src, "sound/items/Screwdriver.ogg", 100, 1)
+		return
+
+	//weld this thing to the ground for beefier securing
+	proc/toggle_attached(mob/user as mob)
+		//welded to the ground
+		//doesn't move when you push on it
+		//not getting pushed by explosions or fluids or anything
+		if (!src.loose)
+			if (user)
+				boutput(user, "[src] is still screwed into the floor support.")
+			return
+		if (user)
+			user.visible_message("<b>[user]</b> [src.anchored ? "unwelds" : "welds"] the floor supports of [src] securely in place. [src.loose ? "The rest of it still looks pretty loose..." : null]")
+			src.anchored ? playsound(src, "sound/items/Welder2.ogg", 100, 1) : playsound(src, "sound/items/Welder.ogg", 100, 1)
+			src.fall_over()
+		src.anchored = !(src.anchored)
+		return
+
+	//make it a hand-portable item
+	proc/fold_up(mob/user as mob)
+		if (!src.foldable)
+			return
+		if (!ispath(src.folds_type))
+			return
+		//self handling
+		if (user)
+			if (src == user.stool_used)
+				src.visible_message("<span class='alert'><b>[src.stool_user] gets down from [src] and folds it.</b></span>")
+			else
+				user.visible_message("<b>[user.name] folds [src].</b>")
+		//chump detected
+		if ((src.stool_user) && (src.stool_user != user))
+			//should be a fall_off proc
+			unstand(src.stool_user)
+			//bonus hurt
+			if (prob(75))
+				src.stool_user.changeStatus("weakened", 1 SECOND)
+				src.stool_user.changeStatus("stunned", 2 SECONDS)
+				random_brute_damage(src.stool_user, 15)
+				playsound(src.stool_user.loc, "swing_hit", 50, 1)
+				src.stool_user.visible_message("<span class='alert'><b>[src.stool_user] falls off of [src]!</b></span>")
+				//TODO: prob(30) to throw chump 1 tile in any direction
+			else
+				src.stool_user.visible_message("<span class='alert'><b>[src.stool_user] deftly hops off of [src] as it's folded up!</b></span>")
+		//fold it up
+		var/obj/item/chair/folded/F = new src.folds_type(src.loc)
+		if (F && src.material)
+			F.setMaterial(src.material)
+		if (F && src.color)
+			F.color = src.color
+		qdel(src)
+
+	//rotato
+	proc/rotate(var/face_dir = 0)
+		if (rotatable)
+			if (!face_dir)
+				src.set_dir(turn(src.dir, 90))
+			else
+				src.set_dir(face_dir)
+			if (stool_user)
+				var/mob/living/carbon/C = src.stool_user
+				C.set_dir(dir)
+		return
+
+	//speeeeen
+	proc/swivelspin()
+		if(ON_COOLDOWN(src, "chair_swivelspin", 10 SECONDS)) return //not too much
+		if (swivels)
+			var/spins = 0
+			var/barfed = 0
+			var/standing = (isstand(src))
+			if (standing)
+				standing = 5
+			while(spins < 10)
+				src.dir = turn(src.dir,90)
+				if (prob(3 + standing))
+					src.fall_over(TRUE)
+				spins++
+			while(spins < 17)
+				src.dir = turn(src.dir,90)
+				if (prob(1) && !barfed)
+					src.stool_user.vomit()
+					barfed = 1
+				if (prob(3 + standing))
+					src.fall_over(TRUE)
+				sleep(1)
+				spins++
+			while(spins < 22)
+				src.dir = turn(src.dir,90)
+				if (prob(1) && !barfed)
+					src.stool_user.vomit()
+					barfed = 1
+				if (prob(3 + standing))
+					src.fall_over(TRUE)
+				sleep(2)
+				spins++
+			while(spins < 25)
+				src.dir = turn(src.dir,90)
+				sleep(4)
+				if (prob(3) && !barfed)
+					src.stool_user.vomit()
+					barfed = 1
+				spins++
+			while(spins < 27)
+				src.dir = turn(src.dir,90)
+				sleep(6)
+				if (prob(1) && !barfed)
+					src.stool_user.vomit()
+					barfed = 1
+				spins++
+			sleep (10)
+			src.dir = turn(src.dir,90)
+		return
+
+	//disassemble to parts
 	proc/deconstruct()
 		if (!src.deconstructable)
 			return
@@ -161,1617 +1441,208 @@
 		qdel(src)
 		return
 
-	Move(atom/target)
-		. = ..()
-		if (. && islist(scoot_sounds) && scoot_sounds.len && prob(75))
-			playsound( get_turf(src), pick( scoot_sounds ), 50, 1 )
-
-/obj/stool/bee_bed
-	// idk. Not a bed proper since humans can't lay in it. Weirdos.
-	// would also be cool to make these work with bees.
-	// it's hip to tuck bees!
-	name = "bee bed"
-	icon = 'icons/misc/critter.dmi'
-	icon_state = "beebed"
-	desc = "A soft little bed the general size and shape of a space bee."
-	parts_type = /obj/item/furniture_parts/stool/bee_bed
-
-/obj/stool/bar
-	name = "bar stool"
-	icon_state = "bar-stool"
-	desc = "Like a stool, but in a bar."
-	parts_type = /obj/item/furniture_parts/stool/bar
-	anchored = 1
-	var/loose = 0 //hee hee
-	var/lying = 0
-
-	attackby(obj/item/W as obj, mob/user as mob)
-		if (isscrewingtool(W))
-			src.toggle_loose(user)
-			return
-		if (isweldingtool(W))
-			src.toggle_secure(user)
-			return
-		else
-			return ..()
-
-	attack_hand(mob/user as mob)
-		if (src.lying)
-			user.visible_message("[user] sets [src] back upright. It still doesn't look secure...",\
-			"You set [src] upright again. It still doesn't look secure...")
-			src.lying = 0
-			animate_rest(src, !src.lying)
-			return
-		else
-			return ..()
-
-	//setting up for a later prank when i unfuckle the rest
-	//should really adjust the desc but i'm lazy at the moment
-	proc/toggle_loose(mob/user as mob)
-		if (user)
-			user.visible_message("<b>[user]</b> [src.loose ? "tightens" : "loosens"] the floor supports to the rest of [src]. [src.anchored ? null : "The connection to the floor still looks pretty loose..."]")
-		playsound(src, "sound/items/Screwdriver.ogg", 100, 1)
-		src.loose = !(src.loose)
-		return
-
-	//setting up for a later prank when i unfuckle the rest
-	toggle_secure(mob/user as mob)
-		if (istype(get_turf(src), /turf/space))
-			if (user)
-				user.show_text("What exactly are you gunna secure [src] to?", "red")
-			return
-		if (user)
-			user.visible_message("<b>[user]</b> [src.anchored ? "unwelds" : "welds"] the floor supports of [src] securely in place. [src.loose ? "The rest of it still looks pretty loose..." : null]")
-		src.anchored ? playsound(src, "sound/items/Welder2.ogg", 100, 1) : playsound(src, "sound/items/Welder.ogg", 100, 1)
-		src.anchored = !(src.anchored)
-		return
-
-	/* //like this: just plum fuckled. everything else works though
-	HasEntered(atom/movable/AM as mob|obj)
-		if (!src.loose && src.anchored)
-			return //it's stable, do nothing
-		if (src.lying)
-			return //it's already fallen down
-		if (ishuman(AM))
-			var/mob/living/carbon/human/H = AM
-			H.visible_message("<span class='alert'>[H] tries to sit on [src], but it tips right over!</span>",\
-			"<span class='alert'>You're knocked on your ass as [src] tips over! Looks like it wasn't screwed down right.</span>",\
-			"<span class='alert'>You hear someone's been knocked right down on they are ass.</span>")
-			H.changeStatus("stunned", 5 SECONDS)
-			H.changeStatus("weakened", 3 SECONDS)
-		src.fall_over()
-	*/
-
-	proc/fall_over()
+	//handles a chair tipping over while someone is sitting in it or empty. can be called on its own (say, an explosion)
+	//basically figures out what to do with the person and how hard to hurt them or, say, to throw them
+	proc/fall_over(var/mob/living/user as mob, var/aggressive)
+		//if we already fell over, don't do anything
 		if (src.lying)
 			return
-		src.lying = 1
-		animate_rest(src, !src.lying)
 
-/obj/stool/wooden
-	name = "wooden stool"
-	icon_state = "wstool"
-	desc = "Like a stool, but just made out of wood."
-	parts_type = /obj/item/furniture_parts/woodenstool
-/* ================================================= */
-/* -------------------- Benches -------------------- */
-/* ================================================= */
+		//pick a side to fall, for animation and damage purposes
+		var/side = pick(2,3) //(2L 3R)
+		//TODO: handling of throwforce and direction imparted on this thing
 
-/obj/stool/bench
-	name = "bench"
-	desc = "It's a bench! You can sit on it!"
-	icon = 'icons/obj/furniture/bench.dmi'
-	icon_state = "0"
-	anchored = 1
-	var/auto = 0
-	var/auto_path = null
-	parts_type = /obj/item/furniture_parts/bench
+		//tip the icon over and make it harder to move until it's pick_up()'d
+		animate_rest(src, 0, side)
+		src.p_class = initial(src.p_class) + 1
+		src.lying = side
 
-	New()
-		..()
-		SPAWN_DBG(0)
-			if (src.auto && ispath(src.auto_path))
-				src.set_up(1)
-
-	proc/set_up(var/setup_others = 0)
-		if (!src.auto || !ispath(src.auto_path))
-			return
-		var/dirs = 0
-		for (var/dir in cardinal)
-			var/turf/T = get_step(src, dir)
-			if (locate(src.auto_path) in T)
-				dirs |= dir
-		icon_state = num2text(dirs)
-		if (setup_others)
-			for (var/obj/stool/bench/B in orange(1,src))
-				if (istype(B, src.auto_path))
-					B.set_up()
-
-	//todo: add buckle/stand climb up proc without any of the buckling
-
-	deconstruct()
-		if (!src.deconstructable)
-			return
-		var/oldloc = src.loc
-		..()
-		for (var/obj/stool/bench/B in orange(1,oldloc))
-			if (B.auto)
-				B.set_up()
-		return
-
-/obj/stool/bench/auto
-	auto = 1
-	auto_path = /obj/stool/bench/auto
-
-/* ---------- Red ---------- */
-
-/obj/stool/bench/red
-	icon = 'icons/obj/furniture/bench_red.dmi'
-	parts_type = /obj/item/furniture_parts/bench/red
-
-/obj/stool/bench/red/auto
-	auto = 1
-	auto_path = /obj/stool/bench/red/auto
-
-/* ---------- Blue ---------- */
-
-/obj/stool/bench/blue
-	icon = 'icons/obj/furniture/bench_blue.dmi'
-	parts_type = /obj/item/furniture_parts/bench/blue
-
-/obj/stool/bench/blue/auto
-	auto = 1
-	auto_path = /obj/stool/bench/blue/auto
-
-/* ---------- Green ---------- */
-
-/obj/stool/bench/green
-	icon = 'icons/obj/furniture/bench_green.dmi'
-	parts_type = /obj/item/furniture_parts/bench/green
-
-/obj/stool/bench/green/auto
-	auto = 1
-	auto_path = /obj/stool/bench/green/auto
-
-/* ---------- Yellow ---------- */
-
-/obj/stool/bench/yellow
-	icon = 'icons/obj/furniture/bench_yellow.dmi'
-	parts_type = /obj/item/furniture_parts/bench/yellow
-
-/obj/stool/bench/yellow/auto
-	auto = 1
-	auto_path = /obj/stool/bench/yellow/auto
-
-/* ---------- Wooden ---------- */
-
-/obj/stool/bench/wooden
-	icon = 'icons/obj/furniture/bench_wood.dmi'
-	parts_type = /obj/item/furniture_parts/bench/wooden
-
-/obj/stool/bench/wooden/auto
-	auto = 1
-	auto_path = /obj/stool/bench/wooden/auto
-
-/* ---------- Sauna ---------- */
-
-/obj/stool/bench/sauna
-	icon = 'icons/obj/furniture/chairs.dmi'
-	icon_state = "saunabench"
-
-/* ============================================== */
-/* -------------------- Beds -------------------- */
-/* ============================================== */
-
-/obj/stool/bed
-	name = "bed"
-	desc = "A solid metal frame with some padding on it, useful for sleeping on."
-	icon_state = "bed"
-	anchored = 1
-	var/security = 0
-	var/obj/item/clothing/suit/bedsheet/Sheet = null
-	parts_type = /obj/item/furniture_parts/bed
-
-	brig
-		name = "brig cell bed"
-		desc = "It doesn't look very comfortable. Fortunately there's no way to be buckled to it."
-		security = 1
-		parts_type = null
-
-	moveable
-		name = "roller bed"
-		desc = "A solid metal frame with some padding on it, useful for sleeping on. This one has little wheels on it, neat!"
-		anchored = 0
-		securable = 1
-		icon_state = "rollerbed"
-		parts_type = /obj/item/furniture_parts/bed/roller
-		scoot_sounds = list( 'sound/misc/chair/office/scoot1.ogg', 'sound/misc/chair/office/scoot2.ogg', 'sound/misc/chair/office/scoot3.ogg', 'sound/misc/chair/office/scoot4.ogg', 'sound/misc/chair/office/scoot5.ogg' )
-
-	Move()
-		if(src.stool_user?.loc != src.loc)
-			src.unbuckle()
-		. = ..()
-		if (. && src.stool_user)
-			var/mob/living/carbon/C = src.stool_user
-			C.buckled = null
-			C.Move(src.loc)
-			C.buckled = src
-
-	attackby(obj/item/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/clothing/suit/bedsheet))
-			src.tuck_sheet(W, user)
-			return
-		if (iswrenchingtool(W) && !src.deconstructable)
-			boutput(user, "<span class='alert'>You briefly ponder how to go about disassembling a featureless slab using a wrench. You quickly give up.</span>")
-			return
-		else
-			return ..()
-
-	attack_hand(mob/user as mob)
-		..()
-		if (src.Sheet)
-			src.untuck_sheet(user)
-		for (var/mob/M in src.loc)
-			src.unbuckle_mob(M, user)
-		return
-
-	can_buckle(var/mob/living/carbon/C, var/mob/user)
-		if (!C || (C.loc != src.loc))
-			return 0// yeesh
-
-		if (get_dist(src, user) > 1)
-			user.show_text("[src] is too far away!", "red")
-			return 0
-
-		if(src.stool_user && src.stool_user.buckled == src)
-			user.show_text("There's already someone buckled in [src]!", "red")
-			return 0
-
-		if (!ticker)
-			user.show_text("You can't buckle anyone in before the game starts.", "red")
-			return 0
-		if (C.buckled)
-			boutput(user, "[hes_or_shes(C)] already buckled into something!", "red")
-			return 0
-		if (src.security)
-			user.show_text("There's nothing you can buckle them to!", "red")
-			return 0
-		if (get_dist(src, user) > 1)
-			user.show_text("[src] is too far away!", "red")
-			return 0
-		if ((!(iscarbon(C)) || C.loc != src.loc || user.restrained() || is_incapacitated(user) ))
-			return 0
-
-		return 1
-
-	proc/unbuckle_mob(var/mob/M as mob, var/mob/user as mob)
-		if (M.buckled && !user.restrained())
-			if (allow_unbuckle)
-				if (M != user)
-					user.visible_message("<span class='notice'><b>[M]</b> is unbuckled by [user].</span>", "<span class='notice'>You unbuckle [M].</span>")
-				else
-					user.visible_message("<span class='notice'><b>[M]</b> unbuckles.</span>", "<span class='notice'>You unbuckle.</span>")
-				unbuckle()
-			else
-				user.show_text("Seems like the buckle is firmly locked into place.", "red")
-
-			src.add_fingerprint(user)
-
-	buckle_in(mob/living/to_buckle, mob/living/user)
-		if(src.stool_user && src.stool_user.buckled == src)
-			return
-		if (!can_buckle(to_buckle,user))
-			return
-
-		if (to_buckle == user)
-			user.visible_message("<span class='notice'><b>[to_buckle]</b> lies down on [src], fastening the buckles!</span>", "<span class='notice'>You lie down and buckle yourself in.</span>")
-		else
-			user.visible_message("<span class='notice'><b>[to_buckle]</b> is buckled in by [user].</span>", "<span class='notice'>You buckle in [to_buckle].</span>")
-
-		to_buckle.lying = 1
-		if (src.anchored)
-			to_buckle.anchored = 1
-		to_buckle.buckled = src
-		src.stool_user = to_buckle
-		to_buckle.set_loc(src.loc)
-
-		to_buckle.set_clothing_icon_dirty()
-		playsound(src, "sound/misc/belt_click.ogg", 50, 1)
-		to_buckle.setStatus("buckled", duration = INFINITE_STATUS)
-
-	unbuckle()
-		..()
-		if(src.stool_user && src.stool_user.buckled == src)
-			reset_anchored(stool_user)
-			stool_user.buckled = null
-			stool_user.force_laydown_standup()
-			src.stool_user = null
-			playsound(src, "sound/misc/belt_click.ogg", 50, 1)
-
-	proc/tuck_sheet(var/obj/item/clothing/suit/bedsheet/newSheet as obj, var/mob/user as mob)
-		if (!newSheet || newSheet.cape || (src.Sheet == newSheet && newSheet.loc == src.loc)) // if we weren't provided a new bedsheet, the new bedsheet we got is tied into a cape, or the new bedsheet is actually the one we already have and is still in the same place as us...
-			return // nevermind
-
-		if (src.Sheet && src.Sheet.loc != src.loc) // a safety check: do we have a sheet and is it not where we are?
-			if (src.Sheet.Bed && src.Sheet.Bed == src) // does our sheet have us listed as its bed?
-				src.Sheet.Bed = null // set its bed to null
-			src.Sheet = null // then set our sheet to null: it's not where we are!
-
-		if (src.Sheet && src.Sheet != newSheet) // do we have a sheet, and is the new sheet we've been given not our sheet?
-			user.show_text("You try to kinda cram [newSheet] into the edges of [src], but there's not enough room with [src.Sheet] tucked in already!", "red")
-			return // they're crappy beds, okay?  there's not enough space!
-
-		if (!src.Sheet && (newSheet.loc == src.loc || user.find_in_hand(newSheet))) // finally, do we have room for the new sheet, and is the sheet where we are or in the hand of the user?
-			src.Sheet = newSheet // let's get this shit DONE!
-			newSheet.Bed = src
-			user.u_equip(newSheet)
-			newSheet.set_loc(src.loc)
-			mutual_attach(src, newSheet)
-
-			var/mob/somebody
-			if (src.stool_user)
-				somebody = src.stool_user
-			else
-				somebody = locate(/mob/living/carbon) in get_turf(src)
-			if (somebody?.lying)
-				user.tri_message("<span class='notice'><b>[user]</b> tucks [somebody == user ? "[him_or_her(user)]self" : "[somebody]"] into bed.</span>",\
-				user, "<span class='notice'>You tuck [somebody == user ? "yourself" : "[somebody]"] into bed.</span>",\
-				somebody, "<span class='notice'>[somebody == user ? "You tuck yourself" : "<b>[user]</b> tucks you"] into bed.</span>")
-				newSheet.layer = EFFECTS_LAYER_BASE-1
-				return
-			else
-				user.visible_message("<span class='notice'><b>[user]</b> tucks [newSheet] into [src].</span>",\
-				"<span class='notice'>You tuck [newSheet] into [src].</span>")
-				return
-
-	proc/untuck_sheet(var/mob/user as mob)
-		if (!src.Sheet) // vOv
-			return // there's nothing to do here, everyone go home
-
-		var/obj/item/clothing/suit/bedsheet/oldSheet = src.Sheet
-
-		if (user)
-			var/mob/somebody
-			if (src.stool_user)
-				somebody = src.stool_user
-			else
-				somebody = locate(/mob/living/carbon) in get_turf(src)
-			if (somebody?.lying)
-				user.tri_message("<span class='notice'><b>[user]</b> untucks [somebody == user ? "[him_or_her(user)]self" : "[somebody]"] from bed.</span>",\
-				user, "<span class='notice'>You untuck [somebody == user ? "yourself" : "[somebody]"] from bed.</span>",\
-				somebody, "<span class='notice'>[somebody == user ? "You untuck yourself" : "<b>[user]</b> untucks you"] from bed.</span>")
-				oldSheet.layer = initial(oldSheet.layer)
-			else
-				user.visible_message("<span class='notice'><b>[user]</b> untucks [oldSheet] from [src].</span>",\
-				"<span class='notice'>You untuck [oldSheet] from [src].</span>")
-
-		if (oldSheet.Bed == src) // just in case it's somehow not us
-			oldSheet.Bed = null
-		mutual_detach(src, oldSheet)
-		src.Sheet = null
-		return
-
-	MouseDrop_T(atom/A as mob|obj, mob/user as mob)
-		if (get_dist(src, user) > 1 || A.loc != src.loc || user.restrained() || !isalive(user))
-			..()
-		else if (istype(A, /obj/item/clothing/suit/bedsheet))
-			if ((!src.Sheet || (src.Sheet && src.Sheet.loc != src.loc)) && A.loc == src.loc)
-				src.tuck_sheet(A, user)
-				return
-			if (src.Sheet && A == src.Sheet)
-				src.untuck_sheet(user)
-				return
-
-		else if (ismob(A))
-			src.buckle_in(A, user)
-			var/mob/M = A
-			if (isdead(M) && M != user && emergency_shuttle?.location == SHUTTLE_LOC_STATION) // 1 should be SHUTTLE_LOC_STATION
-				var/area/shuttle/escape/station/area = get_area(M)
-				if (istype(area))
-					user.unlock_medal("Leave no man behind!", 1)
-			src.add_fingerprint(user)
-		else
-			return ..()
-
-	disposing()
-		for (var/mob/M in src.loc)
-			if (M.buckled == src)
-				M.buckled = null
-				src.stool_user = null
-				M.lying = 0
-				reset_anchored(M)
-		if (src.Sheet && src.Sheet.Bed == src)
-			src.Sheet.Bed = null
-			src.Sheet = null
-		..()
-		return
-
-	proc/sleep_in(var/mob/M)
-		if (!ishuman(M))
-			return
-
-		var/mob/living/carbon/user = M
-
-		if (isdead(user))
-			boutput(user, "<span class='alert'>Some would say that death is already the big sleep.</span>")
-			return
-
-		if ((get_turf(user) != src.loc) || (!user.lying))
-			boutput(user, "<span class='alert'>You must be lying down on [src] to sleep on it.</span>")
-			return
-
-		user.setStatus("resting", INFINITE_STATUS)
-		user.sleeping = 4
-		if (ishuman(user))
-			var/mob/living/carbon/human/H = user
-			H.hud.update_resting()
-		return
-
-/* ================================================ */
-/* -------------------- Chairs -------------------- */
-/* ================================================ */
-
-/obj/stool/chair
-	name = "chair"
-	desc = "A four-legged metal chair, rigid and slightly uncomfortable. Helpful when you don't want to use your legs at the moment."
-	icon_state = "chair"
-	var/comfort_value = 3
-	var/buckledIn = 0
-	var/status = 0
-	var/rotatable = 1
-	var/foldable = 1
-	var/climbable = 1
-	var/buckle_move_delay = 6 // this should have been a var somepotato WHY WASN'T IT A VAR
-	var/obj/item/clothing/head/butt/has_butt = null // time for mature humour
-	var/image/butt_img
-	securable = 1
-	anchored = 1
-	scoot_sounds = list( 'sound/misc/chair/normal/scoot1.ogg', 'sound/misc/chair/normal/scoot2.ogg', 'sound/misc/chair/normal/scoot3.ogg', 'sound/misc/chair/normal/scoot4.ogg', 'sound/misc/chair/normal/scoot5.ogg' )
-	parts_type = null
-
-	moveable
-		anchored = 0
-
-	New()
-		if (src.dir == NORTH)
-			src.layer = FLY_LAYER+1
-		butt_img = image('icons/obj/furniture/chairs.dmi')
-		butt_img.layer = OBJ_LAYER + 0.5 //In between OBJ_LAYER and MOB_LAYER
-		..()
-		return
-
-	Move()
-		. = ..()
-		if (.)
-			if (src.dir == NORTH)
-				src.layer = FLY_LAYER+1
-			else
-				src.layer = OBJ_LAYER
-
-			if (src.stool_user)
-				var/mob/living/carbon/C = src.stool_user
-				C.buckled = null
-				C.Move(src.loc)
-				C.buckled = src
-
-	toggle_secure(mob/user as mob)
-		if (istype(get_turf(src), /turf/space))
-			if (user)
-				user.show_text("What exactly are you gunna secure [src] to?", "red")
-			return
-		if (user)
-			user.visible_message("<b>[user]</b> [src.anchored ? "unscrews [src] from" : "secures [src] to"] the floor.")
-		playsound(src, "sound/items/Screwdriver.ogg", 100, 1)
-		src.anchored = !(src.anchored)
-		src.p_class = src.anchored ? initial(src.p_class) : 2
-		return
-
-	attackby(obj/item/W as obj, mob/user as mob)
-		if (ispryingtool(W) && has_butt)
-			user.put_in_hand_or_drop(has_butt)
-			boutput(user, "<span class='notice'>You pry [has_butt.name] from [name].</span>")
-			has_butt = null
-			UpdateOverlays(null, "chairbutt")
-			return
-		if (istype(W, /obj/item/clothing/head/butt) && !has_butt)
-			has_butt = W
-			user.u_equip(has_butt)
-			has_butt.set_loc(src)
-			boutput(user, "<span class='notice'>You place [has_butt.name] on [name].</span>")
-			butt_img.icon_state = "chair_[has_butt.icon_state]"
-			UpdateOverlays(butt_img, "chairbutt")
-			return
-		if (istype(W, /obj/item/assembly/shock_kit))
-			var/obj/stool/chair/e_chair/E = new /obj/stool/chair/e_chair(src.loc)
-			if (src.material)
-				E.setMaterial(src.material)
-			playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
-			E.set_dir(src.dir)
-			E.part1 = W
-			W.set_loc(E)
-			W.master = E
-			user.u_equip(W)
-			W.layer = initial(W.layer)
-			qdel(src)
-			return
-		else
-			return ..()
-
-	attack_hand(mob/user as mob)
-		if (!ishuman(user)) return
-		var/mob/living/carbon/human/H = user
-		var/mob/living/carbon/human/chump = null
-		for (var/mob/M in src.loc)
-
-			if (ishuman(M))
-				chump = M
-			if (!chump || !chump.on_chair)// == 1)
-				chump = null
-			if (H.on_chair)// == 1)
-				if (M == user)
-					user.visible_message("<span class='notice'><b>[M]</b> steps off [H.on_chair].</span>", "<span class='notice'>You step off [src].</span>")
-					src.add_fingerprint(user)
-					unbuckle()
-					return
-
-			if ((M.buckled) && (!H.on_chair))
-				if (allow_unbuckle)
-					if(user.restrained())
-						return
-					if (M != user)
-						user.visible_message("<span class='notice'><b>[M]</b> is unbuckled by [user].</span>", "<span class='notice'>You unbuckle [M].</span>")
-					else
-						user.visible_message("<span class='notice'><b>[M]</b> unbuckles.</span>", "<span class='notice'>You unbuckle.</span>")
-					src.add_fingerprint(user)
-					unbuckle()
-					return
-				else
-					user.show_text("Seems like the buckle is firmly locked into place.", "red")
-					return
-
-		if (!src.buckledIn)
-			if (src.foldable)
-				user.visible_message("<b>[user.name] folds [src].</b>")
-				if ((chump) && (chump != user))
-					chump.visible_message("<span class='alert'><b>[chump.name] falls off of [src]!</b></span>")
-					chump.on_chair = 0
-					chump.pixel_y = 0
-					chump.ceilingreach = 0
-					chump.lookingup = 0
-					chump.changeStatus("weakened", 1 SECOND)
-					chump.changeStatus("stunned", 2 SECONDS)
-					random_brute_damage(chump, 15)
-					playsound(chump.loc, "swing_hit", 50, 1)
-
-				var/obj/item/chair/folded/C = new/obj/item/chair/folded(src.loc)
-				if (src.material)
-					C.setMaterial(src.material)
-				if (src.icon_state)
-					C.c_color = src.icon_state
-					C.icon_state = "folded_[src.icon_state]"
-					C.item_state = C.icon_state
-
-				qdel(src)
-			else
-				src.rotate()
-		return
-
-	MouseDrop_T(mob/M as mob, mob/user as mob)
-		..()
-		if (M == user)
-			if (user.a_intent == INTENT_GRAB)
-				if(climbable)
-					buckle_in(M, user, 1)
-				else
-					boutput(user, "<span class='alert'>[src] isn't climbable.</span>")
-			else
-				buckle_in(M,user)
-		else
-			buckle_in(M,user)
-			if (isdead(M) && M != user && emergency_shuttle?.location == SHUTTLE_LOC_STATION) // 1 should be SHUTTLE_LOC_STATION
-				var/area/shuttle/escape/station/A = get_area(M)
-				if (istype(A))
-					user.unlock_medal("Leave no man behind!", 1)
-		return
-
-	MouseDrop(atom/over_object as mob|obj)
-		if(get_dist(src,usr) <= 1)
-			src.rotate(get_dir(get_turf(src),get_turf(over_object)))
-		..()
-
-	can_buckle(var/mob/M, var/mob/user)
-		if (!ticker)
-			boutput(user, "You can't buckle anyone in before the game starts.")
-			return 0
-		if (M.buckled)
-			boutput(user, "They're already buckled into something!", "red")
-			return 0
-		if (!( iscarbon(M) ) || get_dist(src, user) > 1 || M.loc != src.loc || user.restrained() || !isalive(user))
-			return 0
-		if(src.stool_user && src.stool_user.buckled == src && src.stool_user != M)
-			user.show_text("There's already someone buckled in [src]!", "red")
-			return 0
-		return 1
-
-	buckle_in(mob/living/to_buckle, mob/living/user, var/stand = 0)
-		if(!istype(to_buckle))
-			return
-		if(user.hasStatus("weakened"))
-			return
-		if(src.stool_user && src.stool_user.buckled == src && to_buckle != src.stool_user) return
-
-		if (!can_buckle(to_buckle,user))
-			return
-
-		if(stand)
-			if(ishuman(to_buckle))
-				if(ON_COOLDOWN(to_buckle, "chair_stand", 1 SECOND))
-					return
-				user.visible_message("<span class='notice'><b>[to_buckle]</b> climbs up on [src]!</span>", "<span class='notice'>You climb up on [src].</span>")
-
-				var/mob/living/carbon/human/H = to_buckle
-				to_buckle.set_loc(src.loc)
-				to_buckle.pixel_y = 10
-				H.ceilingreach = 1
-				H.lookingup = 1
-				if (src.anchored)
-					to_buckle.anchored = 1
-				H.on_chair = src
-				to_buckle.buckled = src
-				src.stool_user = to_buckle
-				src.buckledIn = 1
-				to_buckle.setStatus("buckled", duration = INFINITE_STATUS)
-				H.start_chair_flip_targeting()
-		else
-			if (to_buckle == user)
-				user.visible_message("<span class='notice'><b>[to_buckle]</b> buckles in!</span>", "<span class='notice'>You buckle yourself in.</span>")
-			else
-				user.visible_message("<span class='notice'><b>[to_buckle]</b> is buckled in by [user].</span>", "<span class='notice'>You buckle in [to_buckle].</span>")
-
-			if (src.anchored)
-				to_buckle.anchored = 1
-			to_buckle.buckled = src
-			src.stool_user = to_buckle
-			to_buckle.set_loc(src.loc)
-			src.buckledIn = 1
-			to_buckle.setStatus("buckled", duration = INFINITE_STATUS)
-		if (has_butt)
-			playsound(src, (has_butt.sound_fart ? has_butt.sound_fart : 'sound/voice/farts/fart1.ogg'), 50, 1)
-		else
-			playsound(src, "sound/misc/belt_click.ogg", 50, 1)
-		RegisterSignal(to_buckle, COMSIG_MOVABLE_SET_LOC, .proc/maybe_unbuckle)
-
-	proc/maybe_unbuckle(source, turf/oldloc)
-		// unbuckle if the guy is not on a turf, or if their chair is out of range and it's not a shuttle situation
-		if(!isturf(stool_user.loc) || (!IN_RANGE(src, oldloc, 1) && (!istype(get_area(src), /area/shuttle || !istype(get_area(oldloc), /area/shuttle)))))
-			UnregisterSignal(stool_user, COMSIG_MOVABLE_SET_LOC)
-			unbuckle()
-
-	unbuckle()
-		..()
-		if(!src.stool_user) return
-		UnregisterSignal(stool_user, COMSIG_MOVABLE_SET_LOC)
-
-		var/mob/living/M = src.stool_user
-		var/mob/living/carbon/human/H = src.stool_user
-
-		M.end_chair_flip_targeting()
-
-		if (istype(H) && H.on_chair)// == 1)
-			M.pixel_y = 0
-			H.ceilingreach = 0
-			H.lookingup = 0
-			reset_anchored(M)
-			M.buckled = null
-			stool_user.force_laydown_standup()
-			src.stool_user = null
-			SPAWN_DBG(0.5 SECONDS)
-				H.on_chair = 0
-				src.buckledIn = 0
-		else if ((M.buckled))
-			reset_anchored(M)
-			M.buckled = null
-			stool_user.force_laydown_standup()
-			src.stool_user = null
-			SPAWN_DBG(0.5 SECONDS)
-				src.buckledIn = 0
-
-		playsound(src, "sound/misc/belt_click.ogg", 50, 1)
-
-	ex_act(severity)
-		for (var/mob/M in src.loc)
-			if (M.buckled == src)
-				M.buckled = null
-				src.stool_user = null
-		switch (severity)
-			if (OLD_EX_SEVERITY_1)
-				qdel(src)
-				return
-			if (OLD_EX_SEVERITY_2)
-				if (prob(50))
-					qdel(src)
-					return
-			if (OLD_EX_SEVERITY_3)
-				if (prob(5))
-					qdel(src)
-					return
-		return
-
-	blob_act(var/power)
-		if (prob(power * 2.5))
-			for (var/mob/M in src.loc)
-				if (M.buckled == src)
-					M.buckled = null
-					src.stool_user = null
-			qdel(src)
-
-	disposing()
-		for (var/mob/M in src.loc)
-			if (M.buckled == src)
-				M.buckled = null
-				src.stool_user = null
-		if (has_butt)
-			has_butt.set_loc(loc)
-		has_butt = null
-		..()
-		return
-
-	Move(atom/target)
-		if(src.stool_user?.loc != src.loc)
-			src.unbuckle()
-		. = ..()
-		if(src.stool_user?.loc != src.loc)
-			src.unbuckle()
-
-	Click(location,control,params)
-		var/lpm = params2list(params)
-		if(istype(usr, /mob/dead/observer) && !lpm["ctrl"] && !lpm["shift"] && !lpm["alt"])
-			rotate()
-
-#ifdef HALLOWEEN
-			if (istype(usr.abilityHolder, /datum/abilityHolder/ghost_observer))
-				var/datum/abilityHolder/ghost_observer/GH = usr.abilityHolder
-				GH.change_points(3)
-#endif
-		else return ..()
-
-	proc/rotate(var/face_dir = 0)
-		if (rotatable)
-			if (!face_dir)
-				src.set_dir(turn(src.dir, 90))
-			else
-				src.set_dir(face_dir)
-
-			update_icon()
-			if (stool_user)
-				var/mob/living/carbon/C = src.stool_user
-				C.set_dir(dir)
-		return
-
-	proc/update_icon()
-		if (src.dir == NORTH)
-			src.layer = FLY_LAYER+1
-		else
-			src.layer = OBJ_LAYER
-
-	blue
-		icon_state = "chair-b"
-
-	yellow
-		icon_state = "chair-y"
-
-	red
-		icon_state = "chair-r"
-
-	green
-		icon_state = "chair-g"
-
-/* ========================================================== */
-/* -------------------- Syndicate Chairs -------------------- */
-/* ========================================================== */
-
-/obj/stool/chair/syndicate
-	desc = "That chair is giving off some bad vibes."
-	comfort_value = -5
-	event_handler_flags = USE_PROXIMITY | USE_FLUID_ENTER
-
-	HasProximity(atom/movable/AM as mob|obj)
-		if (ishuman(AM) && prob(40))
-			src.visible_message("<span class='alert'>[src] trips [AM]!</span>", "<span class='alert'>You hear someone fall.</span>")
-			AM:changeStatus("weakened", 2 SECONDS)
-		return
-
-/* ======================================================= */
-/* -------------------- Folded Chairs -------------------- */
-/* ======================================================= */
-
-/obj/item/chair/folded
-	name = "chair"
-	desc = "A folded chair. Good for smashing noggin-shaped things."
-	icon = 'icons/obj/furniture/chairs.dmi'
-	icon_state = "folded_chair"
-	item_state = "folded_chair"
-	w_class = W_CLASS_BULKY
-	throwforce = 10
-	flags = FPRINT | TABLEPASS | CONDUCT
-	force = 5
-	stamina_damage = 45
-	stamina_cost = 21
-	stamina_crit_chance = 10
-	var/c_color = null
-
-	New()
-		..()
-		src.setItemSpecial(/datum/item_special/swipe)
-		BLOCK_SETUP(BLOCK_LARGE)
-
-/obj/item/chair/folded/attack_self(mob/user as mob)
-	if(cant_drop == 1)
-		boutput(user, "You can't unfold the [src] when its attached to your arm!")
-		return
-	else
-		var/obj/stool/chair/C = new/obj/stool/chair(user.loc)
-		if (src.material)
-			C.setMaterial(src.material)
-		if (src.c_color)
-			C.icon_state = src.c_color
-		C.set_dir(user.dir)
-		boutput(user, "You unfold [C].")
-		user.drop_item()
-		qdel(src)
-		return
-
-/obj/item/chair/folded/attack(atom/target, mob/user as mob)
-	var/oldcrit = src.stamina_crit_chance
-	if(iswrestler(user))
-		src.stamina_crit_chance = 100
-	if (ishuman(target))
-		playsound(src.loc, pick(sounds_punch), 100, 1)
-	..()
-	src.stamina_crit_chance = oldcrit
-
-/* ====================================================== */
-/* -------------------- Comfy Chairs -------------------- */
-/* ====================================================== */
-
-/obj/stool/chair/comfy
-	name = "comfy brown chair"
-	desc = "This advanced seat commands authority and respect. Everyone is super envious of whoever sits in this chair."
-	icon_state = "chair_comfy"
-	comfort_value = 7
-	foldable = 0
-	deconstructable = 1
-//	var/atom/movable/overlay/overl = null
-	var/image/arm_image = null
-	var/arm_icon_state = "arm"
-	parts_type = /obj/item/furniture_parts/comfy_chair
-
-	New()
-		..()
-		update_icon()
-/* what in the unholy mother of god was this about
-		src.overl = new /atom/movable/overlay( src.loc )
-		src.overl.icon = 'icons/obj/objects.dmi'
-		src.overl.icon_state = "arm"
-		src.overl.layer = 6// TODO Layer wtf
-		src.overl.name = "chair arm"
-		src.overl.master = src
-		src.overl.set_dir(src.dir)
-*/
-
-	update_icon()
-		if (src.dir == NORTH)
-			src.layer = FLY_LAYER+1
-		else
-			src.layer = OBJ_LAYER
-			if ((src.dir == WEST || src.dir == EAST) && !src.arm_image)
-				src.arm_image = image(src.icon, src.arm_icon_state)
-				src.arm_image.layer = FLY_LAYER+1
-				src.UpdateOverlays(src.arm_image, "arm")
-
-	blue
-		name = "comfy blue chair"
-		icon_state = "chair_comfy-blue"
-		arm_icon_state = "arm-blue"
-		parts_type = /obj/item/furniture_parts/comfy_chair/blue
-
-	red
-		name = "comfy red chair"
-		icon_state = "chair_comfy-red"
-		arm_icon_state = "arm-red"
-		parts_type = /obj/item/furniture_parts/comfy_chair/red
-
-	green
-		name = "comfy green chair"
-		icon_state = "chair_comfy-green"
-		arm_icon_state = "arm-green"
-		parts_type = /obj/item/furniture_parts/comfy_chair/green
-
-	yellow
-		name = "comfy yellow chair"
-		icon_state = "chair_comfy-yellow"
-		arm_icon_state = "arm-yellow"
-		parts_type = /obj/item/furniture_parts/comfy_chair/yellow
-
-	purple
-		name = "comfy purple chair"
-		icon_state = "chair_comfy-purple"
-		arm_icon_state = "arm-purple"
-		parts_type = /obj/item/furniture_parts/comfy_chair/purple
-
-/obj/stool/chair/comfy/throne_gold
-	name = "golden throne"
-	desc = "This throne commands authority and respect. Everyone is super envious of whoever sits in this chair."
-	icon_state = "thronegold"
-	arm_icon_state = "thronegold-arm"
-	comfort_value = 7
-	anchored = 0
-	deconstructable = 1
-	parts_type = /obj/item/furniture_parts/throne_gold
-
-/* ======================================================== */
-/* -------------------- Shuttle Chairs -------------------- */
-/* ======================================================== */
-
-/obj/stool/chair/comfy/shuttle
-	name = "shuttle seat"
-	desc = "Equipped with a safety buckle and a tray on the back for the person behind you to use!"
-	icon_state = "shuttle_chair"
-	arm_icon_state = "shuttle_chair-arm"
-	comfort_value = 5
-	deconstructable = 0
-	parts_type = null
-
-	red
-		icon_state = "shuttle_chair-red"
-	brown
-		icon_state = "shuttle_chair-brown"
-	green
-		icon_state = "shuttle_chair-green"
-
-	//these seatbelts are getting pretty old huh
-	proc/seatbelt_snap(var/probobo)
-		if (!probobo)
-			probobo = 1
-		if(prob(probobo) && src.stool_user) //isstoolbuckled(src)
-			src.unbuckle()
-			src.stool_user.visible_message("[src.stool_user]'s seatbelt snaps off on launch! Holy shit!","Your seatbelt snaps on launch! Uh oh!")
-
-/obj/stool/chair/comfy/shuttle/pilot
-	name = "pilot's seat"
-	desc = "Only the most important crew member gets to sit here. Everyone is super envious of whoever sits in this chair."
-	icon_state = "shuttle_chair-pilot"
-	arm_icon_state = "shuttle_chair-pilot-arm"
-	comfort_value = 7
-
-/* ===================================================== */
-/* -------------------- Wheelchairs -------------------- */
-/* ===================================================== */
-
-/obj/stool/chair/comfy/wheelchair
-	name = "wheelchair"
-	desc = "It's a chair that has wheels attached to it. Do I really have to explain this to you? Can you not figure this out on your own? Wheelchair. Wheel, chair. Chair that has wheels."
-	icon_state = "wheelchair"
-	arm_icon_state = "arm-wheelchair"
-	anchored = 0
-	comfort_value = 3
-	buckle_move_delay = 1
-	p_class = 2
-	scoot_sounds = list("sound/misc/chair/office/scoot1.ogg", "sound/misc/chair/office/scoot2.ogg", "sound/misc/chair/office/scoot3.ogg", "sound/misc/chair/office/scoot4.ogg", "sound/misc/chair/office/scoot5.ogg")
-	var/lying = 0 // didja get knocked over? fall down some stairs?
-	parts_type = /obj/item/furniture_parts/wheelchair
-	mat_appearances_to_ignore = list("steel")
-	mats = 15
-
-	New()
-		..()
-		if (src.lying)
-			animate_rest(src, !src.lying)
-			src.p_class = initial(src.p_class) + src.lying // 2 while standing, 3 while lying
-
-	update_icon()
-		ENSURE_IMAGE(src.arm_image, src.icon, src.arm_icon_state)
-		src.arm_image.layer = FLY_LAYER+1
-		src.UpdateOverlays(src.arm_image, "arm")
-
-	proc/fall_over(var/turf/T)
-		if (src.lying)
-			return
+		//deal damage to victim
 		if (src.stool_user)
-			var/mob/living/M = src.stool_user
-			src.unbuckle()
-			if (M && !src.stool_user)
-				M.visible_message("<span class='alert'>[M] is tossed out of [src] as it tips [T ? "while rolling over [T]" : "over"]!</span>",\
-				"<span class='alert'>You're tossed out of [src] as it tips [T ? "while rolling over [T]" : "over"]!</span>")
-				var/turf/target = get_edge_target_turf(src, src.dir)
-				M.throw_at(target, 5, 1)
-				M.changeStatus("stunned", 8 SECONDS)
-				M.changeStatus("weakened", 5 SECONDS)
+			var/mob/living/chump = src.stool_user
+			//could handle this better but this is a fun way to see it without getting it fully figured out
+			var/throw_em
+			if (aggressive)
+				throw_em = TRUE
+			//if they're standing on the thing, deal with them separately
+			if (isstand(chump))
+				src.fall_off(chump,user,aggressive)
+			//otherwise, they're sitting or attempting to sit
 			else
-				src.visible_message("<span class='alert'>[src] tips [T ? "as it rolls over [T]" : "over"]!</span>")
-		else
-			src.visible_message("<span class='alert'>[src] tips [T ? "as it rolls over [T]" : "over"]!</span>")
-		src.lying = 1
-		animate_rest(src, !src.lying)
-		src.p_class = initial(src.p_class) + src.lying // 2 while standing, 3 while lying
-		src.scoot_sounds = list("sound/misc/chair/normal/scoot1.ogg", "sound/misc/chair/normal/scoot2.ogg", "sound/misc/chair/normal/scoot3.ogg", "sound/misc/chair/normal/scoot4.ogg", "sound/misc/chair/normal/scoot5.ogg")
-
-	attack_hand(mob/user as mob)
-		if (src.lying)
-			user.visible_message("[user] sets [src] back on its wheels.",\
-			"You set [src] back on its wheels.")
-			src.lying = 0
-			animate_rest(src, !src.lying)
-			src.p_class = initial(src.p_class) + src.lying // 2 while standing, 3 while lying
-			src.scoot_sounds = scoot_sounds = list("sound/misc/chair/office/scoot1.ogg", "sound/misc/chair/office/scoot2.ogg", "sound/misc/chair/office/scoot3.ogg", "sound/misc/chair/office/scoot4.ogg", "sound/misc/chair/office/scoot5.ogg")
-			return
-		else
-			return ..()
-
-	buckle_in(mob/living/to_buckle, mob/living/user, var/stand = 0)
-		if (src.lying)
-			return
-		..()
-		if (src.stool_user == to_buckle)
-			APPLY_MOVEMENT_MODIFIER(to_buckle, /datum/movement_modifier/wheelchair, src.type)
-
-	unbuckle()
-		if(src.stool_user)
-			REMOVE_MOVEMENT_MODIFIER(src.stool_user, /datum/movement_modifier/wheelchair, src.type)
-		return ..()
-
-	set_loc(newloc)
-		. = ..()
-		unbuckle()
-
-/* ======================================================= */
-/* -------------------- Wooden Chairs -------------------- */
-/* ======================================================= */
-
-/obj/stool/chair/wooden
-	name = "wooden chair"
-	icon_state = "chair_wooden" // this sprite is bad I will fix it at some point
-	comfort_value = 3
-	foldable = 0
-	anchored = 0
-	//deconstructable = 0
-	parts_type = /obj/item/furniture_parts/wood_chair
-
-	regal
-		name = "regal chair"
-		desc = "Much more comfortable than the average dining chair, and much more expensive."
-		icon_state = "regalchair"
-		comfort_value = 7
-		parts_type = /obj/item/furniture_parts/wood_chair/regal
-
-/* ============================================== */
-/* -------------------- Pews -------------------- */
-/* ============================================== */
-
-/obj/stool/chair/pew // pew pew
-	name = "pew"
-	desc = "It's like a bench, but more holy. No, not <i>holey</i>, <b>holy</b>. Like, godly, divine. That kinda thing.<br>Okay, it's actually kind of holey, too, now that you look at it closer."
-	icon_state = "pew"
-	anchored = 1
-	rotatable = 0
-	foldable = 0
-	comfort_value = 2
-	deconstructable = TRUE
-	securable = 0
-	parts_type = /obj/item/furniture_parts/bench/pew
-	var/image/arm_image = null
-	var/arm_icon_state = null
-
-	New()
-		..()
-		if (arm_icon_state)
-			src.update_icon()
-
-	update_icon()
-		if (src.dir == NORTH)
-			src.layer = FLY_LAYER+1
-		else
-			src.layer = OBJ_LAYER
-			if ((src.dir == WEST || src.dir == EAST) && !src.arm_image)
-				src.arm_image = image(src.icon, src.arm_icon_state)
-				src.arm_image.layer = FLY_LAYER+1
-				src.UpdateOverlays(src.arm_image, "arm")
-
-	left
-		icon_state = "pewL"
-	center
-		icon_state = "pewC"
-	right
-		icon_state = "pewR"
-
-/obj/stool/chair/pew/fancy
-	icon_state = "fpew"
-	arm_icon_state = "arm-fpew"
-
-	left
-		icon_state = "fpewL"
-		arm_icon_state = "arm-fpewL"
-	center
-		icon_state = "fpewC"
-		arm_icon_state = null
-	right
-		icon_state = "fpewR"
-		arm_icon_state = "arm-fpewR"
-
-/* ================================================= */
-/* -------------------- Couches -------------------- */
-/* ================================================= */
-
-/obj/stool/chair/couch
-	name = "comfy brown couch"
-	desc = "You've probably lost some space credits in these things before."
-	icon_state = "chair_couch-brown"
-	rotatable = 0
-	foldable = 0
-	var/damaged = 0
-	comfort_value = 5
-	deconstructable = 0
-	securable = 0
-	var/max_uses = 0 // The maximum amount of time one can try to look under the cushions for items.
-	var/spawn_chance = 0 // How likely is this couch to spawn something?
-	var/last_use = 0 // To prevent spam.
-	var/time_between_uses = 400 // The default time between uses.
-	var/list/items = list (/obj/item/device/light/zippo,
-	/obj/item/wrench,
-	/obj/item/device/multitool,
-	/obj/item/toy/plush/small/buddy,
-	/obj/item/toy/plush/small/stress_ball,
-	/obj/item/paper/lunchbox_note,
-	/obj/item/plant/herb/cannabis/spawnable,
-	/obj/item/reagent_containers/food/snacks/candy/candyheart,
-	/obj/item/bananapeel,
-	/obj/item/reagent_containers/food/snacks/lollipop/random_medical,
-	/obj/item/spacecash/random/small,
-	/obj/item/spacecash/random/tourist,
-	/obj/item/spacecash/buttcoin)
-
-	New()
-		..()
-		max_uses = rand(0, 2) // Losing things in a couch is hard.
-		spawn_chance = rand(1, 20)
-
-		if (prob(10)) //time to flail
-			items.Add(/obj/critter/meatslinky)
-
-		if (prob(1))
-			desc = "A vague feeling of loss emanates from this couch, as if it is missing a part of itself. A global list of couches, perhaps."
-
-	disposing()
-		..()
-
-	proc/damage(severity)
-		if(severity > 1 && damaged < 2)
-			damaged += 2
-			overlays += image('icons/obj/objects.dmi', "couch-tear")
-		else if(damaged < 1)
-			damaged += 1
-			overlays += image('icons/obj/objects.dmi', "couch-rip")
-
-	attack_hand(mob/user as mob)
-		if (!user) return
-		if (damaged || stool_user) return ..()
-
-		user.lastattacked = src
-
-		playsound(src.loc, "rustle", 66, 1, -5) // todo: find a better sound.
-
-		if (max_uses > 0 && ((last_use + time_between_uses) < world.time) && prob(spawn_chance))
-
-			var/something = pick(items)
-
-			if (ispath(something))
-				var/thing = new something(src.loc)
-				user.put_in_hand_or_drop(thing)
-				if (istype(thing, /obj/critter/meatslinky)) //slink slink
-					user.emote("scream")
-					random_brute_damage(user, 10)
-					user.visible_message("<span class='notice'><b>[user.name]</b> rummages through the seams and behind the cushions of [src] and pulls [his_or_her(user)] hand out in pain! \An [thing] slithers out of \the [src]!</span>",\
-					"<span class='notice'>You rummage through the seams and behind the cushions of [src] and your hand gets bit by \an [thing]!</span>")
+				chump.lying = side
+				//high chance to damage
+				if (prob(90))
+					chump.TakeDamage("head", rand(1,3), 0, 0, DAMAGE_BLUNT)
+					chump.TakeDamage("chest", rand(1,3), 0, 0, DAMAGE_BLUNT)
+					chump.TakeDamage("All", rand(0,1), 0, 0, DAMAGE_BLUNT)
+					chump.changeStatus("stunned", 3 SECONDS)
+					chump.changeStatus("weakened", 2 SECONDS)
+				//set side back to string for limb damage now that anims are over
+				if (side == 2 )
+					side = "l"
 				else
-					user.visible_message("<span class='notice'><b>[user.name]</b> rummages through the seams and behind the cushions of [src] and pulls \an [thing] out of it!</span>",\
-					"<span class='notice'>You rummage through the seams and behind the cushions of [src] and you find \an [thing]!</span>")
-				last_use = world.time
-				max_uses--
+					side = "r"
+				//if you're strapped in, you go down with it and probably hit your head
+				if (isbuckle(chump) || issecure(chump))
+					//and are stuck there until you unbuckle or unsecure
+					chump.changeStatus("stooled", INFINITE_STATUS)
+					//was this knocked over hard?
+					if (aggressive)
+						//greater bonus damage
+						chump.TakeDamage("head", rand(1,3), 0, 0, DAMAGE_BLUNT)
+						chump.TakeDamage("chest", rand(0,2), 0, 0, DAMAGE_BLUNT)
+						chump.TakeDamage("[side]_arm", rand(0,3), 0, 0, DAMAGE_BLUNT)
+						chump.TakeDamage("[side]_leg", rand(0,3), 0, 0, DAMAGE_BLUNT)
+						chump.changeStatus("stunned", 5 SECONDS)
+						chump.changeStatus("weakened", 3 SECONDS)
+					//or just regular style
+					else
+						//lesser bonus damage damage
+						chump.TakeDamage("head", rand(1,2), 0, 0, DAMAGE_BLUNT)
+						chump.TakeDamage("chest", rand(1,2), 0, 0, DAMAGE_BLUNT)
+						chump.TakeDamage("[side]_arm", rand(0,2), 0, 0, DAMAGE_BLUNT)
+						chump.TakeDamage("[side]_leg", rand(0,2), 0, 0, DAMAGE_BLUNT)
+						chump.changeStatus("stunned", 2 SECONDS)
+						chump.changeStatus("weakened", 1 SECONDS)
+				//gotta toss a chump?
+				if (throw_em)
+					//how hard? which direction? etc.? these are mysterys, too me
+					var/throwdir = null
+					if (user)
+						throwdir = get_dir(user,chump)
+					else
+						if (side == "l")
+							throwdir = turn(src.dir, -90)
+						else
+							throwdir = turn(src.dir, 90)
+					var/turf/target = get_edge_target_turf(src, throwdir)
+					chump.throw_at(target, 1, 1)
 
-		else if (max_uses <= 0)
-			user.visible_message("<span class='notice'><b>[user.name]</b> rummages through the seams and behind the cushions of [src] and pulls out absolutely nothing!</span>",\
-			"<span class='notice'>You rummage through the seams and behind the cushions of [src] and pull out absolutely nothing!</span>")
+		//but after all that? if nobody's on it, the chair just falls over
 		else
-			user.visible_message("<span class='notice'><b>[user.name]</b> rummages through the seams and behind the cushions of [src]!</span>",\
-			"<span class='notice'>You rummage through the seams and behind the cushions of [src]!</span>")
+			src.visible_message("<span class='alert'>[src] tips over!</span>")
 
-	blue
-		name = "comfy blue couch"
-		icon_state = "chair_couch-blue"
+	//handles people falling off folded ladders and chairs
+	proc/fall_off(var/mob/living/chump as mob, var/mob/living/user as mob, var/aggressive)
+		var/throw_em = 0
+		if (aggressive && !isbuckle(chump))
+			throw_em = TRUE
+		src.unstand(chump)
 
-	red
-		name = "comfy red couch"
-		icon_state = "chair_couch-red"
+		//pick a side to fall, for animation and damage purposes
+		var/side = pick(2,3) //(2L 3R)
+		chump.lying = side
+		//set it back for limbs
+		if (side == 2 )
+			side = "l"
+		else
+			side = "r"
+		//TODO: handling of throwforce and direction imparted on this thing
 
-	green
-		name = "comfy green couch"
-		icon_state = "chair_couch-green"
+		//deal some damage
+		if (prob(25))
+			chump.TakeDamage("head", rand(2,5), 0, 0, DAMAGE_BLUNT)
+			chump.TakeDamage("chest", rand(2,5), 0, 0, DAMAGE_BLUNT)
+			chump.TakeDamage("[side]_arm", rand(2,4), 0, 0, DAMAGE_BLUNT)
+			chump.TakeDamage("[side]_leg", rand(2,4), 0, 0, DAMAGE_BLUNT)
+			chump.changeStatus("stunned", 5 SECONDS)
+			chump.changeStatus("weakened", 3 SECONDS)
 
-	yellow
-		name = "comfy yellow couch"
-		icon_state = "chair_couch-yellow"
+		else //bigger hit
+			chump.TakeDamage("head", rand(1,2), 0, 0, DAMAGE_BLUNT)
+			chump.TakeDamage("chest", rand(1,3), 0, 0, DAMAGE_BLUNT)
+			chump.TakeDamage("All", rand(0,1), 0, 0, DAMAGE_BLUNT)
+			chump.changeStatus("stunned", 3 SECONDS)
+			chump.changeStatus("weakened", 2 SECONDS)
 
-	purple
-		name = "comfy purple couch"
-		icon_state = "chair_couch-purple"
 
-/* ======================================================= */
-/* -------------------- Office Chairs -------------------- */
-/* ======================================================= */
+		if (throw_em)
+			//how hard? which direction? etc.? these are mysterys, too me
+			var/throwdir = null
+			if (user)
+				throwdir = get_dir(user,chump)
+			else
+				if (side == "l")
+					throwdir = turn(src.dir, -90)
+				else
+					throwdir = turn(src.dir, 90)
+			var/turf/target = get_edge_target_turf(src, throwdir)
+			//bigger throw than just falling over while seated
+			chump.throw_at(target, 2, 1)
+		return
 
-/obj/stool/chair/office
-	name = "office chair"
-	desc = "Hey, you remember spinning around on one of these things as a kid!"
-	icon_state = "office_chair"
-	comfort_value = 4
-	foldable = 0
-	anchored = 0
-	buckle_move_delay = 3
-	//deconstructable = 0
-	parts_type = /obj/item/furniture_parts/office_chair
-	scoot_sounds = list( 'sound/misc/chair/office/scoot1.ogg', 'sound/misc/chair/office/scoot2.ogg', 'sound/misc/chair/office/scoot3.ogg', 'sound/misc/chair/office/scoot4.ogg', 'sound/misc/chair/office/scoot5.ogg' )
-
-	red
-		icon_state = "office_chair_red"
-		parts_type = /obj/item/furniture_parts/office_chair/red
-
-	green
-		icon_state = "office_chair_green"
-		parts_type = /obj/item/furniture_parts/office_chair/green
-
-	blue
-		icon_state = "office_chair_blue"
-		parts_type = /obj/item/furniture_parts/office_chair/blue
-
-	yellow
-		icon_state = "office_chair_yellow"
-		parts_type = /obj/item/furniture_parts/office_chair/yellow
-
-	purple
-		icon_state = "office_chair_purple"
-		parts_type = /obj/item/furniture_parts/office_chair/purple
-
-	syndie
-		icon_state = "syndiechair"
-		parts_type = null
-
-	toggle_secure(mob/user as mob)
+	//for uprighting a stool that has fallen over
+	proc/pick_up(var/mob/user)
+		//if we're already up, don't do this
+		if (!src.lying)
+			return
 		if (user)
-			user.visible_message("<b>[user]</b> [src.anchored ? "loosens" : "tightens"] the casters of [src].[istype(src.loc, /turf/space) ? " It doesn't do much, though, since [src] is in space and all." : null]")
-		playsound(src, "sound/items/Screwdriver.ogg", 100, 1)
-		src.anchored = !(src.anchored)
-		return
+			user.visible_message("[user] sets [src] back upright.","You set [src] back upright.")
+		src.lying = 0
+		animate_rest(src, 1)
+		//is some poor bastard still on here? lift them up too
+		if (src.stool_user)
+			src.stool_user.lying = 0
+		src.p_class = initial(src.p_class)
+		src.scoot_sounds = initial(src.scoot_sounds)
 
-/* ========================================================= */
-/* -------------------- Electric Chairs -------------------- */
-/* ========================================================= */
+/* ------------------------------ A Little Help ----------------------------- */
+	//nuclear option to reset stool (and standing/ceiling) shit entirely
+	//clears flags and refs and statuses for both stool and optional provided mob
+	//now they are free of each other entirely (and if there's another stool involved, clean that up too)
+	//this is debug shit mostly and will go away when all edge cases are accounted for (he says, writing ss13 code)
 
-/obj/stool/chair/e_chair
-	name = "electrified chair"
-	desc = "A chair that has been modified to conduct current with over 2000 volts, enough to kill a human nearly instantly."
-	icon_state = "e_chair0"
-	foldable = 0
-	var/on = 0
-	var/obj/item/assembly/shock_kit/part1 = null
-	var/last_time = 1
-	var/lethal = 0
-	var/image/image_belt = null
-	comfort_value = -3
-	securable = 0
+	proc/reset_stool(mob/M, extra)
+		src.clear_flags(M)
+		src.clear_refs(M)
+		//if you pass TRUE along with a mob, see if there's some other stool they're possibly still fucking attached to, for deep cleaning
+		if (M)
+			//remove any benefits that come from standing on a stool
+			clear_standing(M)
+			//clear any stool-related statuses
+			clear_status(M)
+			//clear any lingering unintended anchoring
+			reset_anchored(M)
+			//clear the "this fucker moved, what now" signal
+			UnregisterSignal(M, COMSIG_MOVABLE_SET_LOC)
+			//clear the other stool
+			if (!isnull(M.stool_used) && M.stool_used != src && extra)
+				M.stool_used.reset_stool()
 
-	New()
-		..()
-		SPAWN_DBG(2 SECONDS)
-			if (src)
-				if (!(src.part1 && istype(src.part1)))
-					src.part1 = new /obj/item/assembly/shock_kit(src)
-					src.part1.master = src
-				src.update_icon()
-		return
+	proc/clear_flags(mob/M)
+		src.stool_flags = 0
+		if(M)
+			M.stool_flags = 0
 
-	attackby(obj/item/W as obj, mob/user as mob)
-		if (iswrenchingtool(W))
-			var/obj/stool/chair/C = new /obj/stool/chair(get_turf(src))
-			if (src.material)
-				C.setMaterial(src.material)
-			playsound(src.loc, "sound/items/Ratchet.ogg", 50, 1)
-			C.set_dir(src.dir)
-			if (src.part1)
-				src.part1.set_loc(get_turf(src))
-				src.part1.master = null
-				src.part1 = null
-			qdel(src)
-			return
+	proc/clear_refs(mob/M)
+		src.stool_user = null
+		if(M)
+			M.stool_used = null
+			M.buckled = null
 
-	verb/controls()
-		set src in oview(1)
-		set category = "Local"
+	proc/clear_standing(mob/M)
+		if (M)
+			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_mob(M)
+			M.ceilingreach = initial(M.ceilingreach) //just in case there's a really tall mob that somehow stood or sat
+			M.ceiling_shown = 0
+			M.pixel_y =  0
+			M.end_chair_flip_targeting()
 
-		src.control_interface(usr)
+	proc/clear_status(mob/M)
+		if (M)
+			M.delStatus("sitting")
+			M.delStatus("buckled")
+			M.delStatus("bucklecuffed")
+			M.delStatus("standing")
+			M.delStatus("standing-aggro")
+			M.delStatus("stooled")
 
-	// Seems to be the only way to get this stuff to auto-refresh properly, sigh (Convair880).
-	proc/control_interface(mob/user as mob)
-		if (!user.hasStatus("handcuffed") && isalive(user))
-			src.add_dialog(user)
+	//this will continue to exist though
 
-			var/dat = ""
+	//proc for handling wrongly movements while using
+	proc/maybe_unseat(source, turf/oldloc)
+		// unseat if they're not on a turf, or if their chair is out of range and it's not a shuttle situation
+		if(!isturf(stool_user.loc) || (!IN_RANGE(src, oldloc, 1) && (!istype(get_area(src), /area/shuttle || !istype(get_area(oldloc), /area/shuttle)))))
 
-			var/area/A = get_area(src)
-			if (!isarea(A) || !A.powered(EQUIP))
-				dat += "\n<font color='red'>ERROR:</font> No power source detected!</b>"
-			else
-				dat += {"<A href='?src=\ref[src];on=1'>[on ? "Switch Off" : "Switch On"]</A><BR>
-				<A href='?src=\ref[src];lethal=1'>[lethal ? "<font color='red'>Lethal</font>" : "Nonlethal"]</A><BR><BR>
-				<A href='?src=\ref[src];shock=1'>Shock</A><BR>"}
-
-			user.Browse("<TITLE>Electric Chair</TITLE><b>Electric Chair</b><BR>[dat]", "window=e_chair;size=180x180")
-
-			onclose(user, "e_chair")
-		return
-
-	Topic(href, href_list)
-		if (usr.getStatusDuration("stunned") || usr.getStatusDuration("weakened") || usr.stat || usr.restrained()) return
-		if (!in_interact_range(src, usr)) return
-
-		if (href_list["on"])
-			toggle_active()
-		else if (href_list["lethal"])
-			toggle_lethal()
-		else if (href_list["shock"])
-			if (src.stool_user)
-				// The log entry for remote signallers can be found in item/assembly/shock_kit.dm (Convair880).
-				logTheThing("combat", usr, src.stool_user, "activated an electric chair (setting: [src.lethal ? "lethal" : "non-lethal"]), shocking [constructTarget(src.stool_user,"combat")] at [log_loc(src)].")
-			shock(lethal)
-
-		src.control_interface(usr)
-		src.add_fingerprint(usr)
-		return
-
-	proc/toggle_active()
-		src.on = !(src.on)
-		src.update_icon()
-		return src.on
-
-	proc/toggle_lethal()
-		src.lethal = !(src.lethal)
-		src.update_icon()
-		return
-
-	update_icon()
-		src.icon_state = "e_chair[src.on]"
-		if (!src.image_belt)
-			src.image_belt = image(src.icon, "e_chairo[src.on][src.lethal]", layer = FLY_LAYER + 1)
-			src.UpdateOverlays(src.image_belt, "belts")
-			return
-		src.image_belt.icon_state = "e_chairo[src.on][src.lethal]"
-		src.UpdateOverlays(src.image_belt, "belts")
-
-	// Options:      1) place the chair anywhere in a powered area (fixed shock values),
-	// (Convair880)  2) on top of a powered wire (scales with engine output).
-	proc/get_connection()
-		var/turf/T = get_turf(src)
-		if (!istype(T, /turf/floor))
-			return 0
-
-		for (var/obj/cable/C in T)
-			return C.netnum
-
-		return 0
-
-	proc/get_gridpower()
-		var/netnum = src.get_connection()
-
-		if (netnum)
-			var/datum/powernet/PN
-			if (powernets && powernets.len >= netnum)
-				PN = powernets[netnum]
-				return PN.avail
-
-		return 0
-
-	proc/shock(lethal)
-		if (!src.on)
-			return
-		if ((src.last_time + 50) > world.time)
-			return
-		src.last_time = world.time
-
-		// special power handling
-		var/area/A = get_area(src)
-		if (!isarea(A))
-			return
-		if (!A.powered(EQUIP))
-			return
-		A.use_power(EQUIP, 5000)
-		A.updateicon()
-
-		for (var/mob/M in AIviewers(src, null))
-			M.show_message("<span class='alert'>The electric chair went off!</span>", 3)
-			if (lethal)
-				playsound(src.loc, "sound/effects/electric_shock.ogg", 50, 0)
-			else
-				playsound(src.loc, "sound/effects/sparks4.ogg", 50, 0)
-
-		if (src.stool_user && ishuman(src.stool_user))
-			var/mob/living/carbon/human/H = src.stool_user
-
-			if (src.lethal)
-				var/net = src.get_connection() // Are we wired-powered (Convair880)?
-				var/power = src.get_gridpower()
-				if (!net || (net && (power < 2000000)))
-					H.shock(src, 2000000, "chest", 0.3, 1) // Nope or not enough juice, use fixed values instead (around 80 BURN per shock).
-				else
-					//DEBUG_MESSAGE("Shocked [H] with [power]")
-					src.electrocute(H, 100, net, 1) // We are, great. Let that global proc calculate the damage.
-			else
-				H.shock(src, 2500, "chest", 1, 1)
-				H.changeStatus("stunned", 10 SECONDS)
-
-			if (ticker?.mode && istype(ticker.mode, /datum/game_mode/revolution))
-				if ((H.mind in ticker.mode:revolutionaries) && !(H.mind in ticker.mode:head_revolutionaries) && prob(66))
-					ticker.mode:remove_revolutionary(H.mind)
-
-		A.updateicon()
-		return
-
-/* stepladder */
-/obj/stool/chair/stepladder //this can be cleaned up from some lingering buckle stuffs and other checks. also forces looking up
-	name = "stepladder"
-	desc = "A small freestanding ladder that lets you peek your head up at the ceiling. Mostly for changing lightbulbs. Maybe for wrestling."
-	icon = 'icons/obj/fluid.dmi'
-	icon_state = "ladder"
-	anchored = 0
-	density = 0
-	var/wrestling = 0
-	parts_type = /obj/item/furniture_parts/stepladder
-
-	attack_hand(mob/user as mob)
-		if (!ishuman(user)) return
-		var/mob/living/carbon/human/H = user
-		var/mob/living/carbon/human/chump = null
-		for (var/mob/M in src.loc)
-			if (ishuman(M)) //right now only humans can be on chairs/stepladder, will investigate later
-				chump = M
-			if (!chump || !chump.on_chair)
-				chump = null
-			if (H.on_chair)// == 1)
-				if (M == user)
-					user.visible_message("<span class='notice'><b>[M]</b> steps off [H.on_chair].</span>", "<span class='notice'>You step off [src].</span>")
-					src.add_fingerprint(user)
-					unbuckle()
-					return
-		if (src.foldable)
-			user.visible_message("<b>[user.name] folds [src].</b>")
-			if ((chump) && (chump != user))
-				chump.visible_message("<span class='alert'><b>[chump.name] falls off of [src]!</b></span>")
-				unbuckle()
-				//bonus hurt
-				chump.changeStatus("weakened", 1 SECOND)
-				chump.changeStatus("stunned", 2 SECONDS)
-				random_brute_damage(chump, 15)
-				playsound(chump.loc, "swing_hit", 50, 1)
-			if (wrestling)
-				new /obj/item/chair/folded/stepladder/wrestling(src.loc)
-			else
-				new /obj/item/chair/folded/stepladder(src.loc)
-
-			qdel(src)
-
-	MouseDrop_T(mob/M as mob, mob/user as mob)
-		if (M == user) //don't care intents, only mousedrop
-			stand_on(M, user)
-			return
-		if (M != user) //don't care intents, only mousedrop
-			user.show_text("You can't lift someone else up on [src]! ...Yet!", "red")
-			return
-		else
-			return ..()
-
-	can_stand(var/mob/user)
-		if (!( iscarbon(user) ) || get_dist(src, user) > 2 || user.restrained() || !isalive(user))
-			return 0 //wrong type, too far, or dead maybe
-		if(src.stool_user && src.stool_user.buckled == src && src.stool_user != user)
-			user.show_text("There's already someone up on the [src]!", "red")
-			return 0
-		return 1
-
-	can_buckle(var/mob/M, var/mob/user)
-		.= 0 //just in case
-
-	//should be stand_on but let's just supersede it for now since stepladders don't have buckles
-	//this will eventually go to stool/chair and possibly just stool
-	proc/stand_on(mob/living/user)
-		if(!istype(user)) return
-		if(user.hasStatus("weakened")) return
-		if(src.stool_user && src.stool_user.buckled == src && user != src.stool_user) return
-		if(!can_stand(user)) return
-
-		if(ishuman(user))
-			if(ON_COOLDOWN(user, "chair_stand", 1 SECOND))
-				return
-			var/mob/living/carbon/human/H = user
-			user.visible_message("<span class='notice'><b>[user]</b> climbs up on [src][wrestling ? ", ready to bring the pain!" : "."]</span>","<span class='notice'>You climb up on [src][wrestling ? " and get ready to fly!" : "."]</span>")
-			//set statuses and refs
-			H.on_chair = src
-			src.stool_user = user
-			src.buckledIn = 1
-			user.buckled = src
-			user.setStatus("buckled", duration = INFINITE_STATUS)
-			//user.setStatus("standingon", duration = INFINITE_STATUS) //click to get down
-			RegisterSignal(user, COMSIG_MOVABLE_SET_LOC, .proc/maybe_unstand)
-			//set special effects
-			if (src.wrestling)
-				H.start_chair_flip_targeting()
-				//user.setStatus("aggressivestand", duration = INFINITE_STATUS) //click to not flying-tackle (if possible)
-			else
-				H.ceilingreach = 1
-				H.lookingup = 1
-				get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_mob(user)
-				//user.setStatus("passivestand", duration = INFINITE_STATUS) //click to flying-tackle (if possible)
-			//set positioning
-			user.set_loc(src.loc)
-			user.pixel_y = 10
-			if (src.anchored)
-				user.anchored = 1
-			return 1
-
-	proc/maybe_unstand(source, turf/oldloc)
-		// unstand if the guy is not on a turf, or if their ladder is out of range
-		if(!isturf(stool_user.loc) || (!IN_RANGE(src, oldloc, 1)))
+			reset_stool(src.stool_user) //clean them both up
 			UnregisterSignal(stool_user, COMSIG_MOVABLE_SET_LOC)
-			unbuckle()
-
-/obj/stool/chair/stepladder/wrestling //this can be cleaned up from some lingering buckle stuffs and other checks. also forces looking up
-	name = "wrestling stepladder"
-	desc = "A small freestanding ladder that lets you lay the smack down on your enemies. Mostly for wrestling. Not for changing lightbulbs."
-	icon = 'icons/obj/fluid.dmi'
-	icon_state = "ladder"
-	anchored = 0 //no wheels, can be tipped over
-	density = 1 //can be pushed around, which may make the user fall
-	wrestling = 1
-	parts_type = /obj/item/furniture_parts/stepladder/wrestling
-
-/obj/item/chair/folded/stepladder
-	name = "stepladder"
-	desc = "A folded stepladder. Definitely beats dragging it."
-	icon = 'icons/obj/fluid.dmi'
-	icon_state = "ladder"
-	item_state = "folded_chair"
-
-	attack_self(mob/user as mob)
-		if(cant_drop == 1)
-			boutput(user, "You can't unfold the [src] when its attached to your arm!")
-			return
-		else
-			var/obj/stool/chair/stepladder/C = new/obj/stool/chair/stepladder(user.loc)
-			C.set_dir(user.dir)
-			boutput(user, "You unfold [C].")
-			user.drop_item()
-			qdel(src)
-		return
-
-/obj/item/chair/folded/stepladder/wrestling
-	name = "stepladder"
-	desc = "A folded stepladder. Definitely beats people."
-
-	attack_self(mob/user as mob)
-		if(cant_drop == 1)
-			boutput(user, "You can't unfold the [src] when its attached to your arm!")
-			return
-		else
-			var/obj/stool/chair/stepladder/wrestling/C = new/obj/stool/chair/stepladder/wrestling(user.loc)
-			C.set_dir(user.dir)
-			boutput(user, "You unfold [C].")
-			user.drop_item()
-			qdel(src)
-		return

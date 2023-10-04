@@ -70,6 +70,7 @@
 	var/blinded = null
 	var/druggy = 0
 	var/sleeping = 0.0
+	//if mob is currently flopped on the ground. for animate_rest purposes: 1: random. 2: right. 3: left. mostly for beds/optable but also for handling falls and shovedown maybe
 	var/lying = 0.0
 	var/lying_old = 0
 	var/can_lie = 0
