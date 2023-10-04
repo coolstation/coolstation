@@ -673,7 +673,7 @@
 		onRemove()
 			..()
 			if(!owner) return
-			if (!owner.hasStatus(list("stunned", "weakened", "paralysis", "pinned")))
+			if (!owner.hasStatus(list("stunned", "weakened", "paralysis", "pinned", "stooled")))
 				if (isliving(owner))
 					var/mob/living/L = owner
 					L.force_laydown_standup()
@@ -758,6 +758,56 @@
 
 						. = ..()
 
+			stooled
+				id = "stooled"
+				name = "Stooled"
+				desc = "You are strapped to a stool or chair that has fallen over. Click this status effect to try to deal with that.<br>Unable to take any actions, prone."
+				icon_state = "pin"
+				unique = 1
+				maxDuration = null
+				move_triggered = 1
+
+				move_trigger(mob/user, ev)
+					. = src.attempt_unstool(user)
+
+				clicked(list/params)
+					. = src.attempt_unstool(owner)
+
+				proc/attempt_unstool(mob/user)
+					//some basic "have you tried turning it off and on again" stuff
+					if (user.stool_used.can_unsit(user))
+						user.stool_used.unsit(user)
+						owner.delStatus("stooled")
+						return 1
+					if (user.stool_used.can_unstand(user))
+						user.stool_used.unstand(user)
+						owner.delStatus("stooled")
+						return 1
+
+					//are you cuffed?
+					if (user.hasStatus("handcuffed"))
+						//check for something going wrong (just in case)
+						if (user.stool_used.can_unsecure(user,user))
+							user.stool_used.unsecure(user)
+							boutput(user,"<span class='alert'>You realize your handcuffs aren't actually secured to [src]!")
+							owner.delStatus("stooled")
+							. = 1
+						//don't need to check anything, just resist
+						var/mob/living/carbon/human/H = user
+						H.resist()
+						. = 1
+
+					//are you buckled?
+					switch(user.stool_used.can_unbuckle(user,user))
+						if(1)
+							user.stool_used.unbuckle(user,user)
+							owner.delStatus("stooled")
+							. = 1
+						if(2)
+							user.stool_used.unsit(user)
+							owner.delStatus("stooled")
+							. = 1
+					return
 
 
 		paralysis
@@ -1062,6 +1112,131 @@
 							B.sleep_in(H)
 						else
 							sleepcount = 3 SECONDS
+
+			.=..()
+
+	bucklecuffed
+		id = "bucklecuffed"
+		name = "Secured"
+		desc = "Your restraints are secured to something.<br>You cannot walk. Click this status effect to attempt to break out."
+		icon_state = "buckled"
+		unique = 1
+		duration = INFINITE_STATUS
+		maxDuration = null
+		var/mob/living/carbon/human/H
+
+		onAdd(optional=null)
+			. = ..()
+			if (ishuman(owner))
+				H = owner
+			else
+				owner.delStatus("buckledcuffed")
+
+		clicked(list/params)
+			H.resist()
+
+		onUpdate(timePassed)
+			if (H && !issecure(H))
+				owner.delStatus("buckledcuffed")
+
+			.=..()
+
+
+	//standing on stools for lightbulb changing
+	standing
+		id = "standing"
+		name = "Standing"
+		desc = "You are standing on some kind of furniture.<br>Click this status effect to get aggressive."
+		icon_state = "standing"
+		unique = 1
+		duration = INFINITE_STATUS
+		maxDuration = null
+		var/mob/M = null
+
+		onAdd(optional=null)
+			. = ..()
+			if (ismob(owner))
+				M = owner
+			else
+				owner.delStatus("standing")
+
+		clicked(list/params)
+			if (M)
+				owner.setStatus("standing-aggro", duration = INFINITE_STATUS)
+				M.ceiling_shown = 0
+				get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_mob(M)
+				M.start_chair_flip_targeting()
+				owner.delStatus("standing")
+				return
+			else
+				owner.delStatus("standing")
+
+		onUpdate(timePassed)
+			if (M && !isstand(M))
+				owner.delStatus("standing")
+			.=..()
+
+	//standing on stools for flipping onto other people
+	standing_aggro
+		id = "standing-aggro"
+		name = "Standing (Aggressive)"
+		desc = "You are standing on some kind of furniture and are about to flying tackle some chump.<br>Click this status effect to chill out."
+		icon_state = "standing-aggro"
+		unique = 1
+		duration = INFINITE_STATUS
+		maxDuration = null
+		var/mob/M = null
+
+		onAdd(optional=null)
+			. = ..()
+			if (ismob(owner))
+				M = owner
+			else
+				owner.delStatus("standing")
+
+		clicked(list/params)
+			if (M)
+				owner.setStatus("standing", duration = INFINITE_STATUS)
+				M.ceiling_shown = 1
+				get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_mob(M)
+				M.end_chair_flip_targeting()
+				owner.delStatus("standing-aggro")
+				return
+			else
+				owner.delStatus("standing-aggro")
+
+		onUpdate(timePassed)
+			if (M && !isstand(M))
+				owner.delStatus("standing-aggro")
+
+			.=..()
+
+	sitting
+		id = "sitting"
+		name = "Sitting"
+		desc = "You are sitting down.<br>Move around (if possible) or click this status effect to stand up."
+		icon_state = "sitting"
+		unique = 1
+		duration = INFINITE_STATUS
+		maxDuration = null
+		var/mob/living/M = null
+
+		onAdd(optional=null)
+			. = ..()
+			if (ismob(owner))
+				M = owner
+				if (!isseat(M.stool_used) || !issit(M))
+					owner.delStatus("standing")
+			else
+				owner.delStatus("standing")
+
+		clicked(list/params)
+			if(issit(M))
+				M.stool_used.Attackhand(M)
+
+		onUpdate(timePassed)
+			if (M && !issit(M))
+				owner.delStatus("sitting")
 
 			.=..()
 

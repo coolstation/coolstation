@@ -373,53 +373,6 @@ obj/decal/fakeobjects
 			return 0
 		return 1
 
-/obj/stool/chair/boxingrope_corner
-	name = "Boxing Ropes"
-	desc = "Do not exit the ring."
-	density = 1
-	anchored = 1
-	icon = 'icons/obj/decoration.dmi'
-	icon_state = "ringrope"
-	layer = OBJ_LAYER
-	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT | USE_CANPASS
-
-	rotatable = 0
-	foldable = 0
-	climbable = 2
-	buckle_move_delay = 6 // this should have been a var somepotato WHY WASN'T IT A VAR
-	securable = 0
-
-	can_buckle(var/mob/M as mob, var/mob/user as mob)
-		if (M != user)
-			return 0
-		if ((!( iscarbon(M) ) || get_dist(src, user) > 1 || user.restrained() || user.stat || !user.canmove))
-			return 0
-		return 1
-
-	MouseDrop_T(mob/M as mob, mob/user as mob)
-		if (can_buckle(M,user))
-			M.set_loc(src.loc)
-			user.visible_message("<span class='notice'><b>[M]</b> climbs up on [src], ready to lay down the pain!</span>", "<span class='notice'>You climb up on [src] and prepare to rain destruction!</span>")
-			buckle_in(M, user, 1)
-
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0) // stolen from window.dm
-		if (mover && mover.throwing & THROW_CHAIRFLIP)
-			return 1
-		if (src.dir == SOUTHWEST || src.dir == SOUTHEAST || src.dir == NORTHWEST || src.dir == NORTHEAST || src.dir == SOUTH || src.dir == NORTH)
-			return 0
-		if(get_dir(loc, target) == dir)
-
-			return !density
-		else
-			return 1
-
-	CheckExit(atom/movable/O as mob|obj, target as turf)
-		if (!src.density)
-			return 1
-		if (get_dir(O.loc, target) == src.dir)
-			return 0
-		return 1
-
 /obj/decal/boxingropeenter
 	name = "Ring entrance"
 	desc = "Do not exit the ring."

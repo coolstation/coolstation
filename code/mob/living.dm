@@ -1402,8 +1402,15 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	if (src.buckled)
 		if (src.buckled == src.loc)
 			src.lying = 1
+		//has the thing you're strapped to fallen over?
+		if (src.buckled.lying)
+			src.lying = src.buckled.lying //lie down in the same direction
 		else if (istype(src.buckled, /obj/stool/bed))
-			src.lying = 1
+			if (!src.lying) //only set lying = yes once so you don't flip left and right in bed like a ffffffucking weirdo
+				if (prob(90))
+					src.lying = 3 //lie to the right like a normal person
+				else
+					src.lying = 2 //lie to the left like a weirdo
 		else
 			src.lying = 0
 
@@ -1412,11 +1419,12 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 	if (src.lying != src.lying_old)
 		src.lying_old = src.lying
-		src.animate_lying(src.lying)
+		src.animate_lying(src.lying, src.lying) //second param is direction, 1 rand 2 left 3 right
 		src.p_class = initial(src.p_class) + src.lying // 2 while standing, 3 while lying
 
-/mob/living/proc/animate_lying(lying)
-	animate_rest(src, !lying)
+//pass lying as a direction as well- 1: random. 2: left. 3: right. mostly for beds/optable
+/mob/living/proc/animate_lying(lying, direction)
+	animate_rest(src, !lying, direction)
 
 
 /mob/living/attack_hand(mob/living/M as mob, params, location, control)

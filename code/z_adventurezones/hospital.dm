@@ -156,13 +156,14 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 /obj/stool/bed/moveable/hospital
 	name = "gurney"
 	desc = "A sturdy hospital gurney."
+	cando_flags = STOOL_SIT | STOOL_BUCKLE | STOOL_STAND
 	density = 1
 	p_class = 1.5
 
 /obj/stool/bed/moveable/hospital/halloween
 	desc = "A sturdy hospital gurney.  With skeletal remains in a straightjacket tied to it.  And tooth marks on the straps.   u h h"
-	security = 1
 	icon = 'icons/misc/hospital.dmi'
+	cando_flags = 0
 	icon_state = "gurney"
 
 /obj/chaser/hospital_trigger

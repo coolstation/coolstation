@@ -56,7 +56,7 @@
 	arm_icon_state = "chair_flock-arm"
 	comfort_value = 6
 	deconstructable = 1
-	climbable = 0
+	cando_flags = STOOL_SIT
 	parts_type = /obj/item/furniture_parts/flock_chair
 	scoot_sounds = list( 'sound/misc/chair/glass/scoot1.ogg', 'sound/misc/chair/glass/scoot2.ogg', 'sound/misc/chair/glass/scoot3.ogg', 'sound/misc/chair/glass/scoot4.ogg', 'sound/misc/chair/glass/scoot5.ogg' )
 
