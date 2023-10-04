@@ -919,6 +919,8 @@
 				if (!HH.item.qdeled && !HH.item.disposed && istype(HH.item, /obj/item/grab))
 					qdel(HH.item)
 					continue
+				if (HH.item.cant_drop) //Excuse me >:(
+					continue
 				var/obj/item/I = HH.item
 				I.set_loc(src.loc)
 				I.master = null

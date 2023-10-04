@@ -129,3 +129,12 @@
 	..()
 	if(status & (NOPOWER|BROKEN))	return
 	use_power(500)
+
+/obj/machinery/crusher/throw_impact(atom/hit_atom, datum/thrown_thing/thr)
+	..()
+	if (!hit_atom)
+		return
+	var/area/AR = get_area(hit_atom)
+	if(AR?.sanctuary)
+		return
+	Bumped(hit_atom)
