@@ -11,7 +11,7 @@
 	var/range = 5
 	var/emote_onself
 	var/no_out_of_range = FALSE
-	var/target_type = "mob"
+	var/target_type = "chumps"
 	nodat
 		emote_string = "nods at"
 		action_phrase = "nod at"
@@ -75,13 +75,13 @@
 
 	//So previously I coded up this group of emotes into using an abomination of a return statement, because everything's output differed very slightly in 5 ways. It was horrible
 	//But here's a few custom procs instead
-	proc/on_other(mob/user, mob/target)
+	proc/on_other(mob/user, target)
 		return "OH FUCK THIS EMOTE ISN'T CODED PROPERLY"
 
 	proc/on_self(mob/user)
 		return "OH FUCK THIS EMOTE ISN'T CODED PROPERLY"
 
-	proc/maptext_on_other(mob/user, mob/target)
+	proc/maptext_on_other(mob/user, target)
 		return "OH FUCK THIS EMOTE ISN'T CODED PROPERLY"
 
 	proc/maptext_on_self(mob/user)
@@ -91,30 +91,36 @@
 		action_phrase = "salute"
 		inaction_phrase = "saluting"
 
-		on_other(mob/user, mob/target)
+		on_other(mob/user, target)
 			return "<B>[user]</B> salutes [target]."
 
-		maptext_on_other(mob/user, mob/target)
+		maptext_on_other(mob/user, target)
 			return "<I>salutes [target]</I>"
 
 	waveto
 		action_phrase = "wave"
 		inaction_phrase = "waving"
 
-		on_other(mob/user, mob/target)
+		on_other(mob/user, target)
+			if(istype(target,/obj/machinery/bot/guardbot))
+				var/obj/machinery/bot/guardbot/GB = target
+				if(user != GB.arrest_target && prob(66))
+					SPAWN_DBG(1 SECOND)
+						GB.visible_message("<b>[GB]</b> waves back at [user.name].")
+						GB.set_emotion("happy")
 			return "<B>[user]</B> waves to [target]."
 
-		maptext_on_other(mob/user, mob/target)
+		maptext_on_other(mob/user, target)
 			return "<I>waves to [target]</I>"
 
 	bow
 		action_phrase = "bow before"
 		inaction_phrase = list("bowing" = 99, "prostration" = 1) //IDK why the error message of all things is weighted on this one
 
-		on_other(mob/user, mob/target)
+		on_other(mob/user, target)
 			return "<B>[user]</B> bows to [target]."
 
-		maptext_on_other(mob/user, mob/target)
+		maptext_on_other(mob/user, target)
 			return "<I>bows to [target]</I>"
 
 	blowkiss
@@ -122,10 +128,14 @@
 		inaction_phrase = list("kissing" = 99, "smooching" = 1)
 		emote_onself = TRUE
 
-		on_other(mob/user, mob/target)
+		on_other(mob/user, target)
+			if(istype(target,/obj/machinery/bot/guardbot))
+				var/obj/machinery/bot/guardbot/GB = target
+				if(user != GB.arrest_target)
+					GB.set_emotion("love")
 			return "<B>[user]</B> blows a kiss to [target]."
 
-		maptext_on_other(mob/user, mob/target)
+		maptext_on_other(mob/user, target)
 			return "<I>blows a kiss to [target]</I>"
 
 		on_self(mob/user)
@@ -140,10 +150,14 @@
 		inaction_phrase = "hugging"
 		emote_onself = TRUE
 
-		on_other(mob/user, mob/target)
+		on_other(mob/user, target)
+			if(istype(target,/obj/machinery/bot/guardbot))
+				var/obj/machinery/bot/guardbot/GB = target
+				if(user != GB.arrest_target)
+					GB.set_emotion("love")
 			return "<B>[user]</B> hugs [target]."
 
-		maptext_on_other(mob/user, mob/target)
+		maptext_on_other(mob/user, target)
 			return "<I>hugs [target]</I>"
 
 		on_self(mob/user)
@@ -158,10 +172,10 @@
 		inaction_phrase = "sidehugging"
 		emote_onself = TRUE //HOW
 
-		on_other(mob/user, mob/target)
+		on_other(mob/user, target)
 			return "<B>[user]</B> awkwardly side-hugs [target]."
 
-		maptext_on_other(mob/user, mob/target)
+		maptext_on_other(mob/user, target)
 			return "<I>awkwardly side-hugs [target]</I>"
 
 		on_self(mob/user)
@@ -175,10 +189,17 @@
 		inaction_phrase = "finger warfare" //fingerguns didn't have this but I had to
 		emote_onself = TRUE
 
-		on_other(mob/user, mob/target)
+		on_other(mob/user, target)
+			if(istype(target,/obj/machinery/bot/guardbot))
+				var/obj/machinery/bot/guardbot/GB = target
+				if(user != GB.arrest_target)
+					SPAWN_DBG(1 SECOND)
+						if(prob(50))
+							GB.speak(pick("Ayyyyy...","Back at you! Well, I mean, if I could.","Heyyyy buddy!"))
+						GB.set_emotion("cool")
 			return "<B>[user]</B> points finger guns at [target]!"
 
-		maptext_on_other(mob/user, mob/target)
+		maptext_on_other(mob/user, target)
 			return "<I>points finger guns at [target]!</I>"
 
 		on_self(mob/user)
@@ -195,17 +216,29 @@
 		emote_fail_trailing = "arm"
 		pronoun_proc = /proc/his_or_her
 
-		on_other(mob/user, mob/target)
+		on_other(mob/user, target)
+			if (istype(target,/obj/machinery/bot/secbot))
+				var/obj/machinery/bot/secbot/SB = target
+				SB.EngageTarget(user,0,0,1) //pig can't help itself
+			if(istype(target,/obj/machinery/bot/guardbot))
+				var/obj/machinery/bot/guardbot/GB = target
+				if(user != GB.arrest_target)
+					SPAWN_DBG(1 SECOND)
+						if(prob(50))
+							GB.speak(pick("Hey... Come on...","Aw, what? Why?","What was that for?"))
+						GB.set_emotion("sad")
+				else
+					GB.set_emotion("angry")
 			return "<B>[user]</B> flips off [target]!"
 
-		maptext_on_other(mob/user, mob/target)
+		maptext_on_other(mob/user, target)
 			return "<I>flips off [target]!</I>"
 
 		on_self(mob/user)
 			return "<B>[user]</B> raises [his_or_her(user)] middle finger."
 
 		maptext_on_self(mob/user)
-			return "<I>raises [himself_or_herself(user)]middle finger</I>"
+			return "<I>raises [his_or_her(user)]middle finger</I>"
 
 		flipoff
 			action_phrase = "flip off"
@@ -224,10 +257,23 @@
 		emote_fail_trailing = "arms"
 		pronoun_proc = /proc/his_or_her
 
-		on_other(mob/user, mob/target)
+		on_other(mob/user, target)
+			if (istype(target,/obj/machinery/bot/secbot))
+				var/obj/machinery/bot/secbot/SB = target
+				SB.EngageTarget(user,0,0,1) //pig can't help itself
+			if(istype(target,/obj/machinery/bot/guardbot))
+				//buddies won't arrest you for this but they will make you feel bad
+				var/obj/machinery/bot/guardbot/GB = target
+				if(user != GB.arrest_target)
+					SPAWN_DBG(1 SECOND)
+						if(prob(50))
+							GB.speak(pick("Now that's just extra mean...","How could you?","Oh, to be so hated..."))
+						GB.set_emotion("sad")
+				else
+					GB.set_emotion("angry")
 			return "<B>[user]</B> gives [target] the double deuce!"
 
-		maptext_on_other(mob/user, mob/target)
+		maptext_on_other(mob/user, target)
 			return "<I>gives [target] the double deuce!</I>"
 
 		on_self(mob/user)
@@ -252,10 +298,14 @@
 		emote_fail = "wriggles around a bit"
 		emote_onself = TRUE
 
-		on_other(mob/user, mob/target)
+		on_other(mob/user, target)
+			if(istype(target,/obj/machinery/bot/guardbot))
+				var/obj/machinery/bot/guardbot/GB = target
+				if(user != GB.arrest_target)
+					GB.set_emotion("cool")
 			return "<B>[user]</B> gives daps [target]."
 
-		maptext_on_other(mob/user, mob/target)
+		maptext_on_other(mob/user, target)
 			return "<I>gives daps to [target]</I>"
 
 		on_self(mob/user)
@@ -277,10 +327,16 @@
 
 		pronoun_proc = /proc/his_or_her
 
-		on_other(mob/user, mob/target)
+		on_other(mob/user, target)
+			if(istype(target,/obj/machinery/bot/guardbot))
+				var/obj/machinery/bot/guardbot/GB = target
+				if(user == GB.arrest_target)
+					GB.set_emotion("smug")
+				else
+					GB.set_emotion("look")
 			return "<B>[user]</B> angrily shakes [his_or_her(user)] fist at [target]!"
 
-		maptext_on_other(mob/user, mob/target)
+		maptext_on_other(mob/user, target)
 			return "<I>angrily shakes [his_or_her(user)] fist at [target]!</I>"
 
 		on_self(mob/user)
@@ -301,7 +357,7 @@
 				M = A
 				break
 	else //set up a cruddy list to pick from
-		var/list/target_list = user.get_targets(range, "mob")
+		var/list/target_list = user.get_targets(range, "chumps")
 		if(length(target_list))
 			M = tgui_input_list(user, "Pick something to [islist(action_phrase) ? weighted_pick(action_phrase) : action_phrase]!", "EmotiConsole v1.1.3", target_list, (20 SECONDS)) //why 20 seconds?
 			if (!no_out_of_range && M && (range > 1 && !IN_RANGE(get_turf(user), get_turf(M), range)) || (range == 1 && !in_interact_range(user, M)) )
