@@ -1488,7 +1488,8 @@
 		"A Dr. Pubber a day keeps the boredom away!",
 		"Cool, refreshing Lime-Aid - it's good for you!",
 		"Grones Soda! Where has your bottle been today?",
-		"Decirprevo. The sophisticate's bottled water.")
+		"Decirprevo. The sophisticate's bottled water.",
+		"Tell your friends! Mountain Poo is back!")
 
 		light_r =1
 		light_g = 0.4
@@ -1499,6 +1500,7 @@
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/red, 10, cost=PAY_UNTRAINED/10)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/pink, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/lime, 10, cost=PAY_UNTRAINED/6)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/poo, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/grones, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/bottledwater, 10, cost=PAY_UNTRAINED/4)
 			product_list += new/datum/data/vending_product("/obj/item/reagent_containers/food/drinks/cola/random", 10, cost=PAY_UNTRAINED/10) //does this even work??
@@ -1510,7 +1512,8 @@
 		"The taste of nature!",
 		"Spooky Dan's - it's altogether ooky!",
 		"Everyone can see Orange-Aid is best!",
-		"Decirprevo. The sophisticate's bottled water.")
+		"Decirprevo. The sophisticate's bottled water.",
+		"Mr. Piss - Tastes normal!")
 
 		light_r =0.5
 		light_g = 0.5
@@ -1522,6 +1525,7 @@
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/orange, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/spooky, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/spooky2,10, cost=PAY_UNTRAINED/6)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/pee, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/bottledwater, 10, cost=PAY_UNTRAINED/4)
 			product_list += new/datum/data/vending_product("/obj/item/reagent_containers/food/drinks/cola/random", 10, cost=PAY_UNTRAINED/10)
 
