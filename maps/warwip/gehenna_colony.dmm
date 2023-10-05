@@ -2183,11 +2183,7 @@
 /area/station/medical/medbay/lobby)
 "bMb" = (
 /obj/table/wood/auto,
-/obj/machinery/computer/security/wooden_tv{
-	desc = "These channels seem to mostly be about robuddies. What is this, some kind of reality show?";
-	name = "Television";
-	network = "Zeta"
-	},
+/obj/shitty_radio/shitty_tv,
 /turf/floor/carpet/red/fancy/edge/south,
 /area/radiostation)
 "bMH" = (
@@ -2865,6 +2861,7 @@
 /turf/floor/green/side,
 /area/station/hydroponics/bay)
 "cls" = (
+/obj/shitty_radio,
 /turf/floor/carpet/red/fancy/edge/sw,
 /area/radiostation)
 "clZ" = (
@@ -28591,8 +28588,8 @@
 "vdx" = (
 /obj/table/wood/auto,
 /obj/item/audio_tape{
-	pixel_y = 3;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 3
 	},
 /obj/item/decoration/ashtray{
 	pixel_x = 5;

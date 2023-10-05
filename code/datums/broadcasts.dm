@@ -176,7 +176,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 				receiver.chat_text = new
 				receiver.vis_contents += receiver.chat_text
 			//build and send maptext
-			receiver_output = make_chat_maptext(receiver, current_entry, "color: [islist(current_speaker) ? current_speaker[2] : default_maptext_colour]", 200, FALSE, delay2use - 0.5 SECONDS)
+			receiver_output = make_chat_maptext(receiver, current_entry, "color: [islist(current_speaker) ? current_speaker[2] : default_maptext_colour]", 150, FALSE, delay2use - 0.5 SECONDS)
 			if(receiver_output && length(receiver.chat_text.lines))
 				receiver_output.measure() //This proc asks a client and then doesn't use it?
 				for(var/image/chat_maptext/I in receiver.chat_text.lines) //why is this a manual operation
@@ -197,18 +197,20 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 /obj/shitty_radio
 	name = "shitty test radio"
 	desc = "fuck me that's one shitty radio"
-	var/on = TRUE
+	var/on = FALSE
 	var/station = TR_CAT_RADIO_BROADCAST_RECEIVERS
 	var/video_dmi = null //Optional:
 
-	icon_state = "transmitter-on"
+	icon_state = "transmitter"
 	icon = 'icons/obj/loudspeakers.dmi'
 	color = "#AAAAAA"
 
 	New()
 		..()
 		//The 1 is there for consistency with what by_cat was doing before I did my hack.
-		SUBSCRIBE_BROADCAST(station, (video_dmi ? video_dmi : 1))
+		if(on)
+			SUBSCRIBE_BROADCAST(station, (video_dmi ? video_dmi : 1))
+			icon_state = "transmitter-on"
 
 	disposing()
 		UNSUBSCRIBE_BROADCAST(station)
@@ -283,7 +285,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 /obj/shitty_radio/shitty_tv
 	name = "shitty test TV"
 	desc = "And you thought those radios were fucking garbage"
-	icon_state = "POCteevee-on"
+	icon_state = "POCteevee"
 	icon = 'icons/misc/broadcastsPOC.dmi'
 	station = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 	video_dmi = 'icons/misc/broadcastsPOC.dmi'
@@ -359,16 +361,23 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 
 /datum/directed_broadcast/testing_teevee
 	id = "demo_teevee"
-	speakers = list("hank" = list("Hank", "#A2DD77"), "rachelle" = list("Rachelle", "#DDA277"))
+	speakers = list("hank" = list("Hank", "#A2DD77"), "rachelle" = list("Rachelle", "#DDA277"), "administrator" = list("NT Administrator", "#6969BF"))
 	messages = list(\
-		list("Coolstatio...", 10 SECONDS, "hank", "test-A"),\
+		list("Colstatio...", 10 SECONDS, "hank", "test-A"),\
 		list("The universe where you can say 'penis' on TV.", 10 SECONDS, "hank", "test-A"),\
 		list("Oh Hank, isn't it wonderful?", 8 SECONDS, "rachelle", "test-B"),\
 		list("I love saying words like that.", 8 SECONDS, "rachelle", "test-B"),\
 		list("We interrupt this programming for an important announcement:", 13 SECONDS, null, "test-C"),\
-		list("For the owner of the golden pod: I smashed in your windshield. Fuck you.", 10 SECONDS, null, "test-C"),\
+		list("To the owner of the golden pod: I smashed in your windshield. Fuck you.", 10 SECONDS, null, "test-C"),\
 		list("*laugh track*", 10 SECONDS, null, "test-D"),\
-		list("The following program is brought to you by Cigarettes.", 10 SECONDS, null, "cigarettes-B"),\
+		list("The following program is brought to you by Cigarettes.", 6 SECONDS, null, "cigarettes-B"),\
+		list("Do you know where the fire exists are located?", 10 SECONDS, "administrator", "emergency-B"),\
+		list("Often, ten seconds is all it takes to make the difference...", 10 SECONDS, "administrator", "emergency-B"),\
+		list("Between life and death.", 5 SECONDS, "administrator", "emergency-B"),\
+		list("Speak to your safety officer today.", 10 SECONDS, "administrator", "emergency-B"),\
+		list("*static*", 4 SECONDS, null, "test-D"),\
+		list("The tape will now rewind.", 7 SECONDS, "administrator", "emergency-A"),\
+		list("*static*", 10 SECONDS, null, "test-D"),\
 	)//test-D doesn't exist, which is intentional for testing here
 	group_messages = TRUE
 	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
@@ -378,9 +387,12 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 	priority = 2
 	speakers = list("hank" = list("Thank", "#A2DD77"), "rachelle" = list("Grachelle", "#DDA277"))
 	messages = list(\
+		list("*static*", 2 SECONDS, null, "test-D"),\
 		list("Smoke...", 6 SECONDS, "hank", "cigarettes-A"),\
 		list("Smoke cigarettes today!", 6 SECONDS, "hank", "cigarettes-A"),\
-		list("Oh, they're so smooth! I love smoking cigarettes!", 6 SECONDS, "rachelle", "cigarettes-B"),\
+		list("Oh, they're so smooth! I love smoking cigarettes!", 8 SECONDS, "rachelle", "cigarettes-B"),\
+		list("Cigarettes- available at your nearest cigarette vending machine.", 10 SECONDS, "hank", "cigarettes-B"),\
+		list("*static*", 2 SECONDS, null, "test-D"),\
 	)
 	group_messages = TRUE
 	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
@@ -390,6 +402,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 	priority = 2
 	speakers = list("Frank" = list("Frank", "#d3374c"))
 	messages = list(\
+		list("*static*", 2 SECONDS, null, "test-D"),\
 		list("Hey...", 6 SECONDS, "Frank", "hotdogs-A"),\
 		list("Uh, d'you like hotdogs?", 6 SECONDS, "Frank", "hotdogs-A"),\
 		list("If you like hot dogs come to the mall, we're a restaurant that specializes in hot dogs.", 10 SECONDS, "Frank", "hotdogs-A"),\
@@ -397,6 +410,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		list("You're not really supposed to do that either but it's whatever.", 7 SECONDS, "Frank", "hotdogs-A"),\
 		list("Come down and get some dogs in you.", 8 SECONDS, "Frank", "hotdogs-B"),\
 		list("Probably safe!", 4 SECONDS, "Frank", "hotdogs-B"),\
+		list("*static*", 2 SECONDS, null, "test-D"),\
 	)
 	group_messages = TRUE
 	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
@@ -415,6 +429,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		src.additional_info = Additional_Info ? Additional_Info : "Seek additional information from local chain of command."
 
 		messages = list(\
+			list("*static*", 2 SECONDS, null, "test-D"),\
 			list("Please stand by for an emergency broadcast.", 6 SECONDS, null, "emergency-A"),\
 			list("This is not a test. Standby for emergency information.", 6 SECONDS, null, "emergency-A"),\
 			list("An emergency alert has been issued for [src.station_name].", 5 SECONDS, null, "emergency-B"),\
