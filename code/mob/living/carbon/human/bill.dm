@@ -321,17 +321,7 @@ starting with SHITTY BILL
 			SPAWN_DBG(1 SECOND)
 				say("Yep, can't wait to go on that trip! That [pick_string("johnbill.txt", "insults")] oughta be here soon!")
 			return
-		if (istype(W, /obj/item/ursium/U))
-			say("These things are everywhere. Got anything more exotic?")
-			return
-		if (istype(W, /obj/item/ursium/antiU))
-			var/obj/item/ursium/antiU/aU = W
-			boutput(M, "<span class='notice'><b>You show [W] to [src]</b> </span>")
-			say("Whoa nelly! Mind if i have a taste?")
-			SPAWN_DBG(1 SECOND)
-				M.visible_message("<span class='alert'>[src] touches the [W]! Something isnt right! </span>")
-				aU:annihilation(2 * aU.ursium)
-			return
+
 		..()
 
 
@@ -389,8 +379,7 @@ starting with SHITTY BILL
 /area/flock_trader/john_talk = list("Woah, what's with these teal chickens? Must be good grillin'.","I feel like this was revealed to me in a fever dream once.","Dang, that's a mighty fine chair.")
 /area/timewarp/ship/john_talk = list("I wonder if my ol' compadre Murray is around.","Did ya see those clocks outside? Time just flies by.","I swear I saw a ship just like this years ago, but somewhere else.","Didn't they use to haul some strange stuff on these gals?")
 /area/derelict_ai_sat/core/john_talk = list("Hello, Daddy.","You should probably start writing down the shit I say, I certainly can't remember any of it.")
-/area/adventure/urs_dungeon/john_talk = list("This place smells like my bro.","Huh, Always wondered what those goggles did.","Huh, Always wondered what those goggles did.","Your hubris will be punished. Will you kill your fellow man to save yourself? Who harvests the harvestmen? What did it feel like when you lost your mind?")
-/area/grillnasium/grill_chamber/john_talk = list("You better know what you've started.","This is where it happens.")
+
 
 
 
