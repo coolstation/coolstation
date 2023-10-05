@@ -17,7 +17,8 @@
 	var/video_url = "images/titlecards/console.mp4"
 	var/is_video = FALSE
 	#elif defined(MAP_OVERRIDE_GEHENNA) //quick and easy signifier to see if your secrets submodule is active and working
-	var/image_url = "images/titlecards/coolstation.gif"
+	//var/image_url = "images/titlecards/coolstation.gif"
+	var/image_url = "images/titlecards/console.gif"
 	var/video_url = "images/titlecards/coolstation.mp4"
 	var/is_video = FALSE
 	#else
