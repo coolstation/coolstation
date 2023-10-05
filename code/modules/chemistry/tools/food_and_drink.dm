@@ -534,6 +534,12 @@
 
 	MouseDrop(atom/over_object)
 		..()
+
+		// fluid handling : clickdrag to fill. fill from any fluid you want until full.
+		if (istype(over_object, /obj/fluid))
+			//proc accepts as /obj/fluid
+			scoopfluid(over_object)
+
 		if(!(usr == over_object)) return
 		if(!istype(usr, /mob/living/carbon)) return
 		var/mob/living/carbon/C = usr
@@ -643,21 +649,7 @@
 		if (istype(target, /obj/fluid)) // fluid handling : If src is empty, fill from fluid. otherwise add to the fluid.
 			var/obj/fluid/F = target
 			if (!src.reagents.total_volume)
-				if (!F.group || !F.group.reagents.total_volume)
-					boutput(user, "<span class='alert'>[target] is empty. (this is a bug, whooops!)</span>")
-					F.removed()
-					return
-
-				if (reagents.total_volume >= reagents.maximum_volume)
-					boutput(user, "<span class='alert'>[src] is full.</span>")
-					return
-				//var/transferamt = min(src.reagents.maximum_volume - src.reagents.total_volume, F.amt)
-
-				F.group.reagents.skip_next_update = 1
-				F.group.update_amt_per_tile()
-				var/amt = min(F.group.amt_per_tile, reagents.maximum_volume - reagents.total_volume)
-				boutput(user, "<span class='notice'>You fill [src] with [amt] units of [target].</span>")
-				F.group.drain(F, amt / F.group.amt_per_tile, src) // drain uses weird units
+				scoopfluid(F)
 
 			else //trans_to to the FLOOR of the liquid, not the liquid itself. will call trans_to() for turf which has a little bit that handles turf application -> fluids
 				var/turf/T = get_turf(F)
