@@ -24,7 +24,7 @@ var/global/gehenna_time = GEHENNA_TIME
 var/global/gehenna_surface_loop = 'sound/ambience/loop/Gehenna_Surface.ogg' //Z1
 var/global/gehenna_underground_loop = 'sound/ambience/loop/Gehenna_Surface.ogg' //Z3
 // volume curve so wind stuff is loudest in the cold, cold night
-var/global/gehenna_surface_loop_vol = (110 + ((0.5*sin(GEHENNA_TIME-135)+0.5)*(200))) //volume meant for outside, min 110 max 310
+var/global/gehenna_surface_loop_vol = (30 + ((0.5*sin(GEHENNA_TIME-135)+0.5)*(60))) //volume meant for outside, min 30 max 90
 var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just have it the same but quiet i guess (with a proper cave soundscape, increase to like 100 or something)
 
 // Gehenna shit tho
