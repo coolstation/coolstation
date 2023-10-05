@@ -380,11 +380,14 @@
 			if (istype(src,/obj/machinery/bot/guardbot/bootleg))
 				src.costume_icon = image(src.icon, "bcostume-bootleg", , FLY_LAYER)
 			else
-				src.costume_icon = image(src.icon, "bcostume-[pick("xcom","clown","horse","moustache","owl","pirate","skull", "wizard", "wizardred","devil")]", , FLY_LAYER)
+				src.costume_icon = image(src.icon, "bcostume-[pick("xcom","clown","horse","moustache","owl","pirate","skull", "wizard", "devil")]", , FLY_LAYER)
 				src.costume_icon.pixel_x = src.hat_x_offset
 				src.costume_icon.pixel_y = src.hat_y_offset
 				if (src.costume_icon && src.costume_icon:icon_state == "bcostume-wizard")
-					src.hat = new /obj/item/clothing/head/wizard
+					if (prob(50))
+						src.hat = new /obj/item/clothing/head/wizard
+					else
+						src.hat = new /obj/item/clothing/head/wizard/red
 #endif
 		src.update_icon()
 
