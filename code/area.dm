@@ -480,6 +480,10 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	is_atmos_simulated = FALSE
 	is_construction_allowed = TRUE
 
+/area/space/solariumjoke
+	sound_loop_1 = 'sound/machines/lavamoon_plantalarm.ogg'
+	ambient_light = "#FF7B07"
+
 // zewaka - adventure/technical/admin areas below //
 
 /// Unless you are an admin, you may not pass GO nor collect $200
