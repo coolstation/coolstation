@@ -390,7 +390,7 @@
 		if (M == user)
 			M = null
 		if(!M)
-			var/list/target_list = user.get_targets(1, "mob") // Bobby Boblord shakes hands with grody spacemouse!
+			var/list/target_list = user.get_targets(1, "chumps") // Bobby Boblord shakes hands with grody spacemouse!
 			if(length(target_list))
 				M = tgui_input_list(user, "Pick someone with whom to shake hands!", "EmotiConsole v1.1.3", target_list, (20 SECONDS))
 				if (M && !in_interact_range(user, M))
@@ -419,7 +419,7 @@
 					M = A
 					break
 		else
-			var/list/target_list = user.get_targets(1, "mob") // Funche Arnchlnm slaps shambling abomination across the face!
+			var/list/target_list = user.get_targets(1, "chumps") // Funche Arnchlnm slaps shambling abomination across the face!
 			if(length(target_list))
 				M = tgui_input_list(user, "Pick someone to smack!", "EmotiConsole v1.1.3", target_list, (20 SECONDS))
 				if (M && !in_interact_range(user, M))
@@ -451,7 +451,7 @@
 				return
 			#endif
 		else
-			var/list/target_list = user.get_targets(1, "mob") // Chrunb Erbrbt and Scales To Lizard highfive!
+			var/list/target_list = user.get_targets(1, "chumps") // Chrunb Erbrbt and Scales To Lizard highfive!
 			if(length(target_list))
 				M = tgui_input_list(user, "Pick someone to high-five!", "EmotiConsole v1.1.3", target_list, (20 SECONDS))
 				if (M && !in_interact_range(user, M))

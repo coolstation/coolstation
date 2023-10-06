@@ -289,6 +289,6 @@
 			for(var/C as anything in everything_around)
 				if(C == src)
 					continue
-				if(istype(C,/obj/machinery/bot/) || istype(C,/obj/critter/ || istype(C,/mob/ )))
+				if(istype(C,/obj/machinery/bot/) || istype(C,/obj/critter/) || istype(C,/mob/))
 					. |= C
 
