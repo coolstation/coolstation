@@ -604,7 +604,7 @@
 /*                    Gas Station Boner Pills Backer Cards                    */
 /* -------------------------------------------------------------------------- */
 
-/obj/item/gasstationbonerpill
+/obj/item/gsbp
 	name = "gas station boner pill card"
 	desc = "This greasy cardboard backer touts all kind of herbal remedies, promising everything from gooder love to smarter brains to cooler spin-kicks. There's a label with some kind of animal on it."
 	icon = 'icons/obj/items/pills.dmi'
@@ -613,6 +613,7 @@
 	var/image/boneroverlay = null
 
 	New()
+		..()
 		icon_state = "gsbp[rand(1,3)]"
 		name = "[bonerpill.name]"
 		ENSURE_IMAGE(src.boneroverlay, src.icon, "gsbp-intact")
