@@ -137,4 +137,6 @@
 	var/area/AR = get_area(hit_atom)
 	if(AR?.sanctuary)
 		return
+	if(istype(hit_atom, /obj/machinery/crusher))
+		return
 	Bumped(hit_atom)
