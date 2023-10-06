@@ -135,42 +135,42 @@
 		name = "rocks"
 		density = 0
 		icon_state = "lava1"
-	rocks2
+	lava2
 		name = "rocks"
 		density = 0
 		icon_state = "lava2"
 
-	rock3
+	lava3
 		name = "rocks"
 		density = 0
 		icon_state = "lava3"
 
-	rock4
+	lava4
 		name = "rocks"
 		density = 0
 		icon_state = "lava4"
 
-	rock5
+	lava5
 		name = "rocks"
 		density = 0
 		icon_state = "lava5"
 
-	rock6
+	lava6
 		name = "rocks"
 		density = 0
 		icon_state = "lava6"
 
-	rock7
+	lava7
 		name = "rocks"
 		density = 0
 		icon_state = "lava7"
 
-	rock8
+	lava8
 		name = "rocks"
 		density = 1
 		icon_state = "lava8"
 
-	rock9
+	lava9
 		name = "rocks"
 		density = 0
 		icon_state = "lava9"
