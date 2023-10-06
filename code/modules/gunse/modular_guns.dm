@@ -649,7 +649,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 	desc = "A simple, reliable rifled bored weapon."
 
 	make_parts()
-		barrel = new /obj/item/gun_parts/barrel/NT/long(src)
+		if(prob(90))
+			barrel = new /obj/item/gun_parts/barrel/NT/long(src)
+		else
+			barrel = new /obj/item/gun_parts/barrel/NT/long/padded(src)
 		stock = new /obj/item/gun_parts/stock/NT/shoulder(src)
 		if(prob(10))
 			accessory = new /obj/item/gun_parts/accessory/flashlight(src)
@@ -744,7 +747,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 		if(prob(50))
 			barrel = new /obj/item/gun_parts/barrel/juicer(src)
 		else
-			barrel = new /obj/item/gun_parts/barrel/juicer/chub(src)
+			if(prob(50))
+				barrel = new /obj/item/gun_parts/barrel/juicer/chub(src)
+			else
+				barrel = new /obj/item/gun_parts/barrel/juicer/ribbed(src)
 		if(prob(5))
 			stock = new /obj/item/gun_parts/stock/juicer/trans(src)
 		else if(prob(50))
