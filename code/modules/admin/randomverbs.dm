@@ -2555,7 +2555,11 @@ var/global/night_mode_enabled = 0
 	admin_only
 
 	//it's a mess, sue me
-	var/list/areas = get_areas(/area/centcom/offices)
+	var/list/areas = null
+	//if channel open (for much later)
+	//	areas = get_areas(/area/centcom/earth/offices)
+	//else
+	areas = get_areas(/area/centcom/offices)
 	for (var/area/centcom/offices/office in areas)
 		//search all offices for an office with the same ckey variable as the usr.
 		if (office.ckey == src.ckey)
