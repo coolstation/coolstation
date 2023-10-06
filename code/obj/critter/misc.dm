@@ -1173,6 +1173,7 @@
 			qdel(src)
 			//there's still one last impact sound as he disappears which i don't like but whatever
 
+	//find friend
 	seek_target()
 		src.anchored = 0
 		if (src.target)
@@ -1194,21 +1195,20 @@
 			src.task = "chasing" //poor you
 			src.invisibility = 0
 			break
-	//bad idea
+
+	//bad ideas
 	attackby(obj/item/W as obj, mob/living/user as mob)
 		..()
 		if(prob(60))
 			if (src.target)
 				src.oldtarget_name = null
 			src.target = user
-			src.frustration = 0
 			src.dir = get_dir(src,user)
-			user.visible_message("<span class='alert'>[src] quickly turns and stares intensely at [user]!</span>","<span class='alert'>Small Bart quickly turns and locks eyes with you. <B>Oh God!</B></span>")
+			src.frustration = 0
 			src.boredom_countdown = rand(10,15)
 			if (src.slow_chase)
+				user.visible_message("<span class='alert'>[src] quickly turns and stares intensely at [user]!</span>","<span class='alert'>Small Bart quickly turns and locks eyes with you. <B>Oh God!</B></span>")
 				src.slow_chase = 0
-				SPAWN_DBG(10 SECONDS)
-					src.slow_chase = 1
 
 	attack_hand(var/mob/user as mob)
 		..()
@@ -1216,18 +1216,17 @@
 			if (src.target)
 				src.oldtarget_name = null
 			src.target = user
-			src.frustration = 0
 			src.dir = get_dir(src,user)
-			user.visible_message("<span class='alert'>Small Bart quickly turns and locks eyes with you. <B>Oh God!</B></span>","<span class='alert'>[src] quickly turns and stares intensely at [user]!</span>")
+			src.frustration = 0
 			src.boredom_countdown = rand(10,15)
 			if (src.slow_chase)
+				user.visible_message("<span class='alert'>[src] quickly turns and stares intensely at [user]!</span>","<span class='alert'>Small Bart quickly turns and locks eyes with you. <B>Oh God!</B></span>")
 				src.slow_chase = 0
-				SPAWN_DBG(10 SECONDS)
-					src.slow_chase = 1
 
 	ChaseAttack(mob/M)
 		return
 
+	//less of an attack than it is, uh,
 	CritterAttack(mob/M)
 		src.attacking = 1
 
@@ -1250,6 +1249,7 @@
 		else
 			src.visible_message("<B>[src]</B> grumbles and stares into space.")
 			src.task = "sleeping"
+			src.slow_chase = 1
 			src.wanderer = 1 //wander aboot
 			src.target = null
 			src.seek_target() //find a new friend
