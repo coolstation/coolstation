@@ -29,12 +29,16 @@ var/datum/score_tracker/score_tracker
 	var/mob/richest_escapee = null
 	var/richest_total = 0
 	var/mob/most_damaged_escapee = null
+	var/damage_total = 0
 	var/acula_blood = null
 	var/beepsky_alive = null
 	var/clown_beatings = null
 	var/list/pets_escaped = null
 	var/list/command_pets_escaped = null
 
+/* -------------------------------------------------------------------------- */
+/*                                Station Score                               */
+/* -------------------------------------------------------------------------- */
 
 	proc/calculate_score()
 		if (score_calculated != 0)
@@ -225,25 +229,36 @@ var/datum/score_tracker/score_tracker
 #endif
 		return
 
-	/////////////////////////////////////
-	/////////Escapee stuff///////////////
-	/////////////////////////////////////
+/* -------------------------------------------------------------------------- */
+/*                                Escapee Stuff                               */
+/* -------------------------------------------------------------------------- */
+
 	proc/calculate_escape_stats()
 		//set the global total to zero on proc start, just in cases.
 		richest_total = 0
+		damage_total = null
+		var/current_damage //from -whatever to 100%
 		//search mobs in centcom
 		for (var/mob/M in mobs)
-			if(in_centcom(M))
-				if (!most_damaged_escapee)
-					most_damaged_escapee = M
-				else if (M.get_damage() < most_damaged_escapee.get_damage())
-					most_damaged_escapee = M
+			if(in_centcom_shuttle(M)) //only shuttle escapees
+				//see who's most hurt
+				if (!most_damaged_escapee) //if we don't have someone, look for anyone with damage
 
+					current_damage = ( M.health / M.max_health) * 100
+					if (current_damage) //any damage at all?
+						most_damaged_escapee = M
+						damage_total = current_damage
+				else //compare damages
+					current_damage = ( M.health / M.max_health) * 100
+					if (current_damage < damage_total)
+						damage_total = current_damage
+						most_damaged_escapee = M
+				//see who's most stacked
 				var/cash_total = get_cash_in_thing(M)
 				if (richest_total < cash_total)
 					richest_total = cash_total
 					richest_escapee = M
-
+		/*
 		command_pets_escaped = list()
 		pets_escaped = list()
 
@@ -267,6 +282,7 @@ var/datum/score_tracker/score_tracker
 			else if(istype(pet, /obj/item/rocko))
 				if(in_centcom(pet))
 					command_pets_escaped += pet
+		*/
 
 		if (length(by_type[/obj/machinery/bot/secbot/beepsky]))
 			beepsky_alive = 1
@@ -285,6 +301,8 @@ var/datum/score_tracker/score_tracker
 				var/obj/item/card/id/ID = I
 				. += ID.amount
 
+	//stop with the bee hats
+	/*
 	proc/heisenhat_stats()
 		. = list()
 		. += "<B>Heisenbee's hat:</B> "
@@ -329,11 +347,25 @@ var/datum/score_tracker/score_tracker
 		. += "<BR>"
 		return jointext(., "")
 
+	*/
+
 	proc/escapee_facts()
 		. = list()
 		//Richest Escapee | Most Damaged Escapee | Dr. Acula Blood Total | Clown Beatings
-		if (richest_escapee)		. += "<B>Richest Escapee:</B> [richest_escapee.real_name] : $[richest_total]<BR>"
-		if (most_damaged_escapee) 	. += "<B>Most Damaged Escapee:</B> [most_damaged_escapee.real_name] : [most_damaged_escapee.get_damage()]%<BR>"		//it'll be kinda different from when it's calculated, but whatever.
+		if (richest_escapee)
+			if (richest_escapee.real_name == "cockroach")
+				. += "<B>Richest Escapee:</B> A cockroach???? : what the fuck<BR>"
+			else
+				. += "<B>Richest Escapee:</B> [richest_escapee.real_name] : $[richest_total]<BR>"
+		else
+			. += "<B>Richest Escapee:</B> No-Money Nio : $0<BR>"
+		if (most_damaged_escapee)
+			. += "<B>Most Damaged Escapee:</B> [most_damaged_escapee.real_name] : [damage_total]%<BR>"
+		else
+			. += "<B>Most Damaged Escapee:</B>Probably some grody busted cockroach somewhere!<BR>"
+
+		//whocare about pets
+		/*
 		if (length(command_pets_escaped))
 			var/list/who_escaped = list()
 			for (var/atom/A in command_pets_escaped)
@@ -344,9 +376,13 @@ var/datum/score_tracker/score_tracker
 			for (var/atom/A in pets_escaped)
 				who_escaped += "[A.name] [bicon(A)]"
 			. += "<B>Other Pets Escaped:</B> [who_escaped.Join(" ")]<BR><BR>"
+		*/
 
-		if (acula_blood) 			. += "<B>Dr. Acula Blood Total:</B> [acula_blood]p<BR>"
-		if (beepsky_alive) 			. += "<B>Beepsky?:</B> Yes<BR>"
+		//if (acula_blood) 			. += "<B>Dr. Acula Blood Total:</B> [acula_blood]p<BR>"
+		. += "<B>Officer Beepsky:</B> [beepsky_alive ? "Survived" : "Ate Shit"] Survived<BR>"
+		. += "<B>Number of times a clown was abused:</B> dunno yet but soon ok<BR>"
+		. += "<B>Shots Fired:</B> dunno yet but soon ok<BR>"
+		. += "<B>Farts Blasted:</B> dunno yet but soon ok<BR>"
 
 		return jointext(., "")
 
@@ -391,11 +427,17 @@ var/datum/score_tracker/score_tracker
 		*/
 		score_tracker.score_text += "<B><U>STATISTICS</U></B><BR>"
 		score_tracker.score_text += score_tracker.escapee_facts()
-		score_tracker.score_text += score_tracker.heisenhat_stats()
+		//score_tracker.score_text += score_tracker.heisenhat_stats()
 
 		score_tracker.score_text += "<HR>"
 
 	src.Browse(score_tracker.score_text, "window=roundscore;size=500x700;title=Round Statistics")
+
+/* -------------------------------------------------------------------------- */
+/*                              Security Tickets                              */
+/* -------------------------------------------------------------------------- */
+
+//We need to lighten this up
 
 /mob/proc/showtickets()
 	if(!data_core.tickets.len && !length(data_core.fines)) return
