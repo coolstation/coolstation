@@ -131,15 +131,6 @@ toxic - poisons
 			L.emote("twitch_v")
 		return
 
-//Used by: taser shotgun (both modes, but spread via a spreader projectile)
-/datum/projectile/energy_bolt/tasershotgun //Projectile for Hatsune Miku's taser shotgun.
-	cost = 10
-	power = 17.5
-	dissipation_delay = 1
-	dissipation_rate = 2
-	max_range = 6
-	icon_state = "spark"
-
 //////////// VUVUZELA
 //Used by: amplified vuvuzela
 /datum/projectile/energy_bolt_v

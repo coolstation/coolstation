@@ -135,8 +135,7 @@
 
 	////////////////////// GUN STUFF -V
 	// Lifted from secbot!
-	var/global/list/budgun_whitelist = list(/obj/item/gun/energy/tasershotgun,\
-											/obj/item/gun/energy/taser_gun,\
+	var/global/list/budgun_whitelist = list(/obj/item/gun/energy/taser_gun,\
 											/obj/item/gun/energy/vuvuzela_gun,\
 											/obj/item/gun/energy/wavegun,\
 											/obj/item/gun/energy/pulse_rifle,
@@ -152,8 +151,7 @@
 											/obj/item/gun/energy/glitch_gun,\
 											/obj/item/gun/energy/lawbringer)
 	// List of guns that arent wierd gimmicks or traitor weapons
-	var/global/list/budgun_actualguns = list(/obj/item/gun/energy/tasershotgun,\
-											/obj/item/gun/energy/taser_gun,\
+	var/global/list/budgun_actualguns = list(/obj/item/gun/energy/taser_gun,\
 											/obj/item/gun/energy/wavegun,\
 											/obj/item/gun/energy/pulse_rifle,\
 											/obj/item/gun/energy/egun,\
