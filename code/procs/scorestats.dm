@@ -362,7 +362,7 @@ var/datum/score_tracker/score_tracker
 		if (most_damaged_escapee)
 			. += "<B>Most Damaged Escapee:</B> [most_damaged_escapee.real_name] : [damage_total]%<BR>"
 		else
-			. += "<B>Most Damaged Escapee:</B>Probably some grody busted cockroach somewhere!<BR>"
+			. += "<B>Most Damaged Escapee:</B> Probably some grody busted cockroach somewhere!<BR>"
 
 		//whocare about pets
 		/*
@@ -379,8 +379,12 @@ var/datum/score_tracker/score_tracker
 		*/
 
 		//if (acula_blood) 			. += "<B>Dr. Acula Blood Total:</B> [acula_blood]p<BR>"
-		. += "<B>Officer Beepsky:</B> [beepsky_alive ? "Survived" : "Ate Shit"] Survived<BR>"
+		. += "<B>Officer Beepsky:</B> [beepsky_alive ? "Survived" : "Ate Shit"] This Round<BR>"
 		. += "<B>Number of times a clown was abused:</B> dunno yet but soon ok<BR>"
+		. += "<B>Ores Mined:</B> dunno yet but soon ok<BR>"
+		. += "<B>Things Sold:</B> dunno yet but soon ok<BR>"
+		. += "<B>Food Produced:</B> dunno yet but soon ok<BR>"
+		. += "<B>Food Eaten:</B> dunno yet but soon ok<BR>"
 		. += "<B>Shots Fired:</B> dunno yet but soon ok<BR>"
 		. += "<B>Farts Blasted:</B> dunno yet but soon ok<BR>"
 
