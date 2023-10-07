@@ -5460,6 +5460,10 @@
 	layer = 2.9;
 	name = "lab counter"
 	},
+/obj/machinery/glass_recycler{
+	glass_amt = 100;
+	name = "Glassware Recycler"
+	},
 /turf/floor/black,
 /area/juicer/club)
 "zX" = (
@@ -6514,7 +6518,7 @@
 /turf/floor/plating,
 /area/diner/jucer_trader)
 "Wc" = (
-/obj/table/reinforced/chemistry/auto,
+/obj/table/reinforced/auto,
 /obj/machinery/espresso_machine{
 	pixel_y = 4
 	},
@@ -6693,11 +6697,7 @@
 /obj/machinery/light/small/warm{
 	dir = 4
 	},
-/obj/table/reinforced/chemistry/auto,
-/obj/machinery/glass_recycler{
-	glass_amt = 100;
-	name = "Glassware Recycler"
-	},
+/obj/table/reinforced/auto,
 /turf/floor/darkpurple,
 /area/juicer/club)
 "ZK" = (
@@ -40689,7 +40689,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 ab
 ab
 ab
@@ -40990,14 +40990,14 @@ aa
 aa
 aa
 aa
-aa
 ab
 ab
 ab
 ab
 ab
 ab
-aa
+ab
+ab
 aa
 aa
 aa
@@ -41291,7 +41291,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 ab
 ab
 ab
@@ -41300,7 +41300,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -41592,7 +41592,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 ab
 ab
 ab
@@ -41603,7 +41603,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -41906,7 +41906,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -42209,7 +42209,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -42512,7 +42512,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -43120,7 +43120,7 @@ ab
 ab
 ab
 ab
-ab
+aa
 aa
 aa
 aa
@@ -43423,7 +43423,7 @@ ab
 ab
 ab
 ab
-ab
+aa
 aa
 aa
 aa
@@ -44028,7 +44028,7 @@ ab
 ab
 ab
 ab
-ab
+aa
 aa
 aa
 aa
@@ -45517,7 +45517,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 ab
 ab
 ab
@@ -45819,7 +45819,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 ab
 ab
 ac
@@ -46120,7 +46120,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 ab
 ab
 ab
@@ -46421,7 +46421,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 ab
 ab
 ab
@@ -46721,8 +46721,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+ab
+ab
 ab
 ab
 ab
@@ -47020,10 +47020,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -47049,7 +47049,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -47320,11 +47320,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -47352,7 +47352,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -47620,10 +47620,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ab
+ab
+ab
+ab
 ab
 aX
 ab
@@ -47655,7 +47655,7 @@ ab
 aX
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -47958,7 +47958,7 @@ aG
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -52801,7 +52801,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -53102,7 +53102,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -53403,8 +53403,8 @@ ab
 ab
 ab
 ab
-aa
-aa
+ab
+ab
 aa
 aa
 aa
@@ -53705,7 +53705,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -54007,7 +54007,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -56380,7 +56380,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 ab
 ab
 ab
@@ -56681,7 +56681,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 ab
 ab
 ab
@@ -56982,7 +56982,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 ab
 ab
 ab
@@ -63973,7 +63973,7 @@ ab
 ab
 ab
 ab
-ab
+aa
 aa
 aa
 aa
@@ -64274,8 +64274,8 @@ ab
 ab
 ab
 ab
-ab
-ab
+aa
+aa
 aa
 aa
 aa
@@ -64576,8 +64576,8 @@ MH
 ab
 ab
 ab
-ab
-ab
+aa
+aa
 aa
 aa
 aa
@@ -64878,8 +64878,8 @@ HM
 ab
 ab
 ab
-ab
-ab
+aa
+aa
 aa
 aa
 aa
@@ -65180,8 +65180,8 @@ HM
 ab
 ab
 ab
-ab
-ab
+aa
+aa
 aa
 aa
 aa
@@ -65482,8 +65482,8 @@ Px
 ab
 ab
 ab
-ab
-ab
+aa
+aa
 aa
 aa
 aa
@@ -65784,8 +65784,8 @@ ab
 ab
 ab
 ab
-ab
-ab
+aa
+aa
 aa
 aa
 aa
@@ -66087,7 +66087,7 @@ ab
 ab
 ab
 ab
-ab
+aa
 aa
 aa
 aa
@@ -69403,7 +69403,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -69705,7 +69705,7 @@ qU
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -70007,7 +70007,7 @@ qU
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -70309,7 +70309,7 @@ qU
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -70611,7 +70611,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -70912,7 +70912,7 @@ ab
 ab
 ab
 ab
-aa
+ab
 aa
 aa
 aa
@@ -71213,8 +71213,8 @@ ab
 ab
 ab
 ab
-aa
-aa
+ab
+ab
 aa
 aa
 aa
@@ -71476,8 +71476,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+ab
+ab
 ab
 ab
 ab
@@ -71512,10 +71512,10 @@ ab
 ab
 ab
 ab
-aa
-aa
-aa
-aa
+ab
+ab
+ab
+ab
 aa
 aa
 aa
@@ -71780,7 +71780,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 ab
 ab
 ab
@@ -71814,9 +71814,9 @@ ab
 ab
 ab
 ab
-aa
-aa
-aa
+ab
+ab
+ab
 aa
 aa
 aa
@@ -72083,7 +72083,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 ab
 ab
 ab
@@ -72386,7 +72386,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 ab
 ab
 bU
@@ -72689,7 +72689,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 ab
 ab
 ab
@@ -72992,7 +72992,7 @@ aa
 aa
 aa
 aa
-aa
+ab
 ab
 ab
 ab
