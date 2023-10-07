@@ -6766,8 +6766,11 @@
 	desc = "A 12-gauge flaregun. It looks like the back of it exploded when it was fired...";
 	icon = 'icons/obj/items/gun.dmi';
 	icon_state = "flaregun-exploded";
+	interesting = "The inside of the barrel is obstructed by melted plastic and an unidentifiable substance.";
 	name = "destroyed flare gun"
 	},
+/obj/decal/cleanable/dirt/random,
+/obj/decal/cleanable/dirt/random,
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
 "aRM" = (
@@ -11101,6 +11104,8 @@
 /obj/landmark{
 	name = "telesci"
 	},
+/obj/decal/cleanable/dirt/random,
+/obj/decal/cleanable/dirt/random,
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
 "bhw" = (
@@ -47152,6 +47157,7 @@
 	name = "Connector Port"
 	},
 /obj/decal/fakeobjects/pipe{
+	density = 1;
 	desc = "For connecting portables devices related to atmospherics control. The interconnects on this one are sheared off...";
 	dir = 8;
 	icon = 'icons/obj/Cryogenic2.dmi';
@@ -47250,7 +47256,8 @@
 	icon_state = "door_locked";
 	locked = 1
 	},
-/obj/access_spawn/soviet/private,
+/obj/access_spawn/soviet/private/security,
+/obj/access_spawn/soviet/private/command,
 /turf/floor/concrete,
 /area/upper_arctic/fita/hall)
 "deK" = (
@@ -49202,6 +49209,7 @@
 /obj/decal/cleanable/blood/tracks,
 /obj/decal/cleanable/blood/dynamic/tracks,
 /obj/access_spawn/soviet/private/research,
+/obj/access_spawn/soviet/private/medical,
 /turf/floor/concrete,
 /area/upper_arctic/fita/medsci)
 "dpy" = (
@@ -52668,6 +52676,7 @@
 /area/titlescreen)
 "eln" = (
 /obj/storage/secure/closet/security/equipment,
+/obj/access_spawn/soviet/private/security,
 /turf/floor/neutral,
 /area/upper_arctic/fita/armory)
 "emX" = (
@@ -52679,6 +52688,7 @@
 "epx" = (
 /obj/storage/secure/closet/security/equipment,
 /obj/machinery/light/small/neutral,
+/obj/access_spawn/soviet/private/security,
 /turf/floor/neutral,
 /area/upper_arctic/fita/armory)
 "esY" = (
@@ -52933,6 +52943,7 @@
 	name = "telesci"
 	},
 /obj/decal/cleanable/oil,
+/obj/decal/cleanable/dirt/random,
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
 "eYQ" = (
@@ -55233,6 +55244,10 @@
 	icon_state = "wall3dir"
 	},
 /area/diner/tug)
+"nDx" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/arctic/snow,
+/area/upper_arctic/exterior/surface)
 "nEc" = (
 /obj/decal/poster/wallsign/stencil/left/e,
 /obj/decal/poster/wallsign/stencil/right/e,
@@ -55938,6 +55953,17 @@
 	name = "space GLONASS"
 	},
 /obj/item/card/id/soviet/security,
+/obj/decal/cleanable/dirt/random,
+/obj/decal/cleanable/dirt/random,
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Looks like this exploded... I wonder what happened here?";
+	dir = 1;
+	icon = 'icons/obj/items/tank.dmi';
+	icon_state = "oxygen-b";
+	interesting = "The one-way flow regulator has been severely tampered with.";
+	name = "blown oxygen tank"
+	},
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
 "qkF" = (
@@ -57520,6 +57546,13 @@
 	},
 /turf/floor/plating,
 /area/shuttle/escape/transit/battle_shuttle)
+"vVn" = (
+/obj/landmark{
+	name = "telesci"
+	},
+/obj/decal/cleanable/dirt/random,
+/turf/floor/arctic/snow,
+/area/upper_arctic/exterior/surface)
 "vVI" = (
 /turf/floor/void/channel,
 /area/adventure/channel/teleport)
@@ -61625,7 +61658,7 @@ aLN
 aLN
 aLN
 aLN
-aLN
+nDx
 aLN
 vmh
 aIo
@@ -61923,12 +61956,12 @@ mJF
 aLN
 aLN
 aLN
-aLN
-aLN
-aLN
-aLN
-aLN
-aLN
+nDx
+nDx
+nDx
+nDx
+nDx
+nDx
 vmh
 aIo
 aIo
@@ -62225,12 +62258,12 @@ mph
 hvh
 aLN
 aLN
-aLN
-aLN
+nDx
+nDx
 aRE
 bhv
 bhv
-aLN
+nDx
 vmh
 aIo
 aIo
@@ -62528,11 +62561,11 @@ xeO
 aLN
 aLN
 aLN
-aLN
+nDx
 eYz
 qju
 bhv
-aLN
+nDx
 vmh
 aIo
 aIo
@@ -62830,11 +62863,11 @@ iCK
 aLN
 aLN
 aLN
-aLN
+nDx
 bhv
 bhv
-bhv
-aLN
+vVn
+nDx
 vmh
 aIo
 aIo
@@ -63131,12 +63164,12 @@ mJF
 aLN
 aLN
 aLN
-aLN
-aLN
-aLN
-aLN
-aLN
-aLN
+nDx
+nDx
+nDx
+nDx
+nDx
+nDx
 vmh
 aIo
 aIo
@@ -63436,9 +63469,9 @@ aLN
 aLN
 aLN
 aLN
+nDx
 aLN
-aLN
-aLN
+aVj
 wqp
 boL
 ugn

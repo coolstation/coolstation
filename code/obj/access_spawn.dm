@@ -401,47 +401,47 @@
 
 /obj/access_spawn/soviet
 	name = "soviet public access spawn"
-	req_access = list(access_juicer)
+	req_access = list(access_soviet_public)
 	color = SECURITY
 
 /obj/access_spawn/soviet/private
 	name = "soviet private access spawn"
-	req_access = list(access_juicer)
+	req_access = list(access_soviet_private)
 	color = SECURITY
 
 /obj/access_spawn/soviet/private/mining
 	name = "soviet mining access spawn"
-	req_access = list(access_juicer)
+	req_access = list(access_soviet_mining)
 	color = ENGINEERING
 
 /obj/access_spawn/soviet/private/engineering
 	name = "soviet engineering access spawn"
-	req_access = list(access_juicer)
+	req_access = list(access_soviet_engineering)
 	color = ENGINEERING
 
 /obj/access_spawn/soviet/private/cargo
 	name = "soviet cargo access spawn"
-	req_access = list(access_juicer)
+	req_access = list(access_soviet_cargo)
 	color = CARGO
 
 /obj/access_spawn/soviet/private/medical
 	name = "soviet medical access spawn"
-	req_access = list(access_juicer)
+	req_access = list(access_soviet_medical)
 	color = MEDICAL
 
 /obj/access_spawn/soviet/private/research
 	name = "soviet research access spawn"
-	req_access = list(access_juicer)
+	req_access = list(access_soviet_research)
 	color = RESEARCH
 
 /obj/access_spawn/soviet/private/security
 	name = "soviet security access spawn"
-	req_access = list(access_juicer)
+	req_access = list(access_soviet_security)
 	color = SECURITY
 
 /obj/access_spawn/soviet/private/command
 	name = "soviet command access spawn"
-	req_access = list(access_juicer)
+	req_access = list(access_soviet_command)
 	color = SECURITY
 
 #undef MEDICAL
