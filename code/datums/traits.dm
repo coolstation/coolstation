@@ -476,7 +476,6 @@
 	onAdd(var/mob/owner)
 		if(owner.bioHolder)
 			if(istype(owner, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = owner
 				owner.bioHolder.AddEffect("protanopia", 0, 0, 0, 1)
 
 	onLife(var/mob/owner) //Just to be safe.
@@ -495,7 +494,6 @@
 	onAdd(var/mob/owner)
 		if(owner.bioHolder)
 			if(istype(owner, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = owner
 				owner.bioHolder.AddEffect("deuteranopia", 0, 0, 0, 1)
 
 	onLife(var/mob/owner) //Just to be safe.
@@ -514,7 +512,6 @@
 	onAdd(var/mob/owner)
 		if(owner.bioHolder)
 			if(istype(owner, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = owner
 				owner.bioHolder.AddEffect("tritanopia", 0, 0, 0, 1)
 
 	onLife(var/mob/owner) //Just to be safe.

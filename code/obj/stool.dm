@@ -1648,13 +1648,14 @@
 				if (M == user)
 					user.visible_message("<span class='notice'><b>[M]</b> steps off [H.on_chair].</span>", "<span class='notice'>You step off [src].</span>")
 					src.add_fingerprint(user)
-					unbuckle()
+					step_off()
 					return
+
 		if (src.foldable)
 			user.visible_message("<b>[user.name] folds [src].</b>")
 			if ((chump) && (chump != user))
 				chump.visible_message("<span class='alert'><b>[chump.name] falls off of [src]!</b></span>")
-				unbuckle()
+				step_off()
 				//bonus hurt
 				chump.changeStatus("weakened", 1 SECOND)
 				chump.changeStatus("stunned", 2 SECONDS)
@@ -1707,7 +1708,6 @@
 			src.buckledIn = 1
 			user.buckled = src
 			user.setStatus("buckled", duration = INFINITE_STATUS)
-			//user.setStatus("standingon", duration = INFINITE_STATUS) //click to get down
 			RegisterSignal(user, COMSIG_MOVABLE_SET_LOC, .proc/maybe_unstand)
 			//set special effects
 			if (src.wrestling)
@@ -1725,11 +1725,38 @@
 				user.anchored = 1
 			return 1
 
+	proc/step_off(mob/living/user)
+		if(!istype(user)) return
+		if(src.stool_user && src.stool_user.buckled == src && user != src.stool_user) return
+
+		if(ishuman(user))
+			if(ON_COOLDOWN(user, "chair_stand", 1 SECOND))
+				return
+			var/mob/living/carbon/human/H = user
+			user.visible_message("<span class='notice'><b>[user]</b> steps off of [src].","<span class='notice'>You step off of [src].</span>")
+			//set statuses and refs
+			H.on_chair = null
+			src.stool_user = null
+			src.buckledIn = 0
+			user.buckled = null
+			user.delStatus("buckled")
+			UnregisterSignal(user, COMSIG_MOVABLE_SET_LOC)
+			if (src.wrestling)
+				H.end_chair_flip_targeting()
+			else
+				H.lookingup = 0
+				get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_mob(user)
+			user.ceilingreach = 0
+			user.set_loc(src.loc)
+			user.pixel_y = 0
+			user.anchored = 0
+			return 1
+
 	proc/maybe_unstand(source, turf/oldloc)
 		// unstand if the guy is not on a turf, or if their ladder is out of range
 		if(!isturf(stool_user.loc) || (!IN_RANGE(src, oldloc, 1)))
 			UnregisterSignal(stool_user, COMSIG_MOVABLE_SET_LOC)
-			unbuckle()
+			step_off()
 
 /obj/stool/chair/stepladder/wrestling //this can be cleaned up from some lingering buckle stuffs and other checks. also forces looking up
 	name = "wrestling stepladder"
