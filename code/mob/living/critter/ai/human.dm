@@ -354,37 +354,33 @@
 	var/speakprob = 1
 	var/danceprob = 75
 	var/moveprob = 50
-	//var/stopprob = 20
+	var/stopprob = 20
+	var/target_landmark = null
+	var/on_three = 1
 	name = "dancing"
 
 	on_tick()
 		..()
 		if(holder.owner)
 			var/area/A = get_area(holder.owner)
+			holder.owner.dir = pick(cardinal)
+			if (on_three == 3)
+				if(A && A.population && A.population.len) //don't do shit unless someone's around
+					if(prob(speakprob))
+						//if (bioholder whatever has fert)
+						var/list/stuff_to_say = strings("gimmick_speech.txt", "fert") //just one thing in here for now though
 
-			if(A && A.population && A.population.len) //don't do shit unless someone's around
-				if(prob(speakprob))
-					//if (bioholder whatever has fert)
-					var/list/stuff_to_say = strings("gimmick_speech.txt", "fert") //just one thing in here for now though
-
-					//var/list/stuff_to_say = strings("gimmick_speech.txt", "fert")
-						//else human speech
-					holder.owner.say(pick(stuff_to_say))
-				if(prob(danceprob))
-					if (prob(50)) holder.owner.emote(pick("dance", "laugh"))
-					else if (prob(50)) holder.owner.emote(pick("flip", "laugh","twerk","twitch"))
-					else if (prob(5)) holder.owner.emote("snap") //watch those ferret fongers, friends, you might snap 'em off
-				//if(prob(stopprob))
-				//	walk_to(holder.owner,0) //stop for a bit
-				if(prob(moveprob))
-					step(holder.owner,pick(alldirs))
-					if(prob(25))
-						step(holder.owner,SOUTH) //stay down in the club
-					//This is to keep them on task and from dancing out of the club
-					//but lol i don't know, it's not working. ok i'm done laterssssssssssssssssss
-					//for(var/obj/landmark/club_juice_dance/D in orange(5,holder.owner)) //i'll make this better but it's late
-					//	D = pick_landmark(LANDMARK_CLUB_JUICE_DANCE) //like seriously
-					//	walk_to(holder.owner,D.loc,1,1,0) //take it slow on the dance floor
-					//	break
-
-
+						//var/list/stuff_to_say = strings("gimmick_speech.txt", "fert")
+							//else human speech
+						holder.owner.say(pick(stuff_to_say))
+					if(prob(danceprob))
+						if (prob(80)) holder.owner.emote(pick("dance", "laugh"))
+						else if (prob(75)) holder.owner.emote(pick("flip", "laugh","twerk","twitch"))
+						else if (prob(5)) holder.owner.emote("snap") //watch those ferret fongers, friends, you might snap 'em off
+					if(prob(moveprob))
+						//This is to keep them on task and from dancing out of the club
+						step(holder.owner,pick(alldirs))
+						target_landmark = pick_landmark(LANDMARK_CLUB_JUICE_DANCE) //like seriously
+						walk_to(holder.owner,target_landmark,1,12,0) //take it slow on the dance floor
+				on_three = 1
+			on_three++
