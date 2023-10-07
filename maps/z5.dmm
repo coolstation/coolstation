@@ -4202,10 +4202,12 @@
 /turf/floor/darkpurple,
 /area/juicer/club/outside)
 "kW" = (
-/obj/table/reinforced/chemistry/auto,
 /obj/neon_lining{
 	color = "#FF00FF";
 	dir = 8
+	},
+/obj/table/reinforced/chemistry{
+	icon_state = "3"
 	},
 /turf/space,
 /turf/floor/black,
@@ -5065,7 +5067,9 @@
 /turf/floor/darkpurple,
 /area/juicer/club/outside)
 "ry" = (
-/obj/table/reinforced/chemistry/auto,
+/obj/table/reinforced/chemistry{
+	icon_state = "12"
+	},
 /turf/floor/black,
 /area/juicer/club)
 "sa" = (
@@ -6077,13 +6081,15 @@
 /turf/floor/black,
 /area/juicer/club/outside)
 "OQ" = (
-/obj/table/reinforced/chemistry/auto,
 /obj/machinery/light/fluorescent/purpleish{
 	dir = 1
 	},
 /obj/neon_lining{
 	color = "#FF00FF";
 	dir = 8
+	},
+/obj/table/reinforced/chemistry{
+	icon_state = "3"
 	},
 /turf/floor/black,
 /area/juicer/club)
@@ -6298,11 +6304,13 @@
 /turf/space,
 /area/diner/jucer_trader)
 "Tj" = (
-/obj/table/reinforced/chemistry/auto,
 /obj/machinery/cashreg,
 /obj/neon_lining{
 	color = "#FF00FF";
 	dir = 8
+	},
+/obj/table/reinforced/chemistry{
+	icon_state = "3"
 	},
 /turf/floor/black,
 /area/juicer/club)
@@ -6489,10 +6497,12 @@
 /turf/floor/plating,
 /area/diner/jucer_trader)
 "VC" = (
-/obj/table/reinforced/chemistry/auto,
 /obj/neon_lining{
 	color = "#FF00FF";
 	dir = 8
+	},
+/obj/table/reinforced/chemistry{
+	icon_state = "3"
 	},
 /turf/floor/black,
 /area/juicer/club)
