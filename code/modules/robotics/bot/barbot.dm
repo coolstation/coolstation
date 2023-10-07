@@ -63,6 +63,9 @@
 		if (!length(src.homeTables))
 			for (var/obj/table/reinforced/bar/T in view(5, src.home))
 				src.homeTables += T
+			//and for the juicer bar
+			for (var/obj/table/reinforced/chemistry/T in view(5, src.home))
+				src.homeTables += T
 
 	proc/setEmotion(var/set_emotion)
 		if(src.emotion == set_emotion)
@@ -75,9 +78,11 @@
 		if (!length(src.homeTables))
 			for (var/obj/table/reinforced/bar/T in view(5, src.home))
 				src.homeTables += T
+			for (var/obj/table/reinforced/chemistry/T in view(5, src.home))
+				src.homeTables += T
 			if (!length(src.homeTables))
 				explode()
-		for (var/obj/table/reinforced/bar/T in src.homeTables)
+		for (var/obj/table/reinforced/T in src.homeTables)
 			var/glasses = 0
 			for (var/obj/item/reagent_containers/food/drinks/drinkingglass in view(0, T))
 				glasses++
@@ -139,7 +144,7 @@
 			moveTowards.icon_state = "alc_dispenser[rand(1,5)]"
 			hasDrink = 1
 			moveTowards = null
-		else if (istype(moveTowards, /obj/table/reinforced/bar)) // If it's a table, so let's generate a drink.
+		else if (istype(moveTowards, /obj/table/reinforced)) // If it's a table, so let's generate a drink.
 			var/pickedVessel = pick(possible_vessels)
 			var/obj/item/reagent_containers/food/drinks/drinkingglass/W = new pickedVessel(moveTowards.loc)
 			if (src.emagged)

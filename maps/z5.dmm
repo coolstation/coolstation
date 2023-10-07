@@ -5236,6 +5236,13 @@
 /area/noGenerate)
 "wA" = (
 /obj/landmark/club_juice_dj,
+/obj/indestructible/invisible_block,
+/obj/decal/fakeobjects{
+	desc = "Seriously, this isn't Flexx. Quit bothering the DJ.";
+	icon = 'icons/mob/64.dmi';
+	icon_state = "djnotflexx";
+	name = "DJ Not Flexx"
+	},
 /turf/floor/black,
 /area/juicer/club)
 "wH" = (
@@ -5391,6 +5398,10 @@
 /obj/access_spawn/owlmaint,
 /turf/floor/grime,
 /area/juicer/club/back)
+"zn" = (
+/obj/machinery/bot/barbuddy,
+/turf/floor/darkpurple,
+/area/juicer/club)
 "zA" = (
 /obj/decal/cleanable/dirt/jen,
 /turf/floor/carpet/green/standard/edge/ne,
@@ -5435,6 +5446,18 @@
 /obj/npc/trader/nio,
 /turf/floor/black/grime,
 /area/diner/hallway)
+"zV" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "A labratory countertop made from a paper composite, which is very heat resistant.";
+	icon = 'icons/obj/furniture/table_chemistry.dmi';
+	icon_state = "12";
+	layer = 2.9;
+	name = "lab counter"
+	},
+/turf/floor/black,
+/area/juicer/club)
 "zX" = (
 /turf/floor/yellow/checker,
 /area/diner/arcade)
@@ -6015,7 +6038,23 @@
 	color = "#FF00FF";
 	dir = 1
 	},
-/obj/landmark/club_juice_dance,
+/turf/floor/black,
+/area/juicer/club)
+"Op" = (
+/obj/machinery/cashreg,
+/obj/neon_lining{
+	color = "#FF00FF";
+	dir = 8
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "A labratory countertop made from a paper composite, which is very heat resistant.";
+	icon = 'icons/obj/furniture/table_chemistry.dmi';
+	icon_state = "5";
+	layer = 2.9;
+	name = "lab counter"
+	},
 /turf/floor/black,
 /area/juicer/club)
 "Oz" = (
@@ -6118,12 +6157,7 @@
 /turf/floor/plating,
 /area/juicer/club)
 "PF" = (
-/obj/window/bulletproof/west,
-/obj/neon_lining{
-	color = "#FF00FF";
-	dir = 8
-	},
-/obj/landmark/club_juice_dance,
+/obj/decal/fakeobjects/barbuddy_dispenser,
 /turf/floor/black,
 /area/juicer/club)
 "PS" = (
@@ -6374,6 +6408,11 @@
 	icon_state = "floor2"
 	},
 /area/diner/jucer_trader)
+"UP" = (
+/obj/landmark/club_juice_dj,
+/obj/indestructible/invisible_block,
+/turf/floor/black,
+/area/juicer/club)
 "UR" = (
 /obj/submachine/ATM{
 	pixel_x = 32
@@ -63609,7 +63648,7 @@ NW
 nH
 II
 II
-PF
+II
 DT
 Td
 Lm
@@ -63912,7 +63951,7 @@ NN
 jG
 Qb
 Od
-jG
+Od
 NN
 ND
 Td
@@ -65124,7 +65163,7 @@ Li
 lD
 Od
 Hp
-wA
+UP
 Od
 uW
 HM
@@ -65724,7 +65763,7 @@ QI
 Tj
 VC
 kW
-Tj
+Op
 Ki
 Od
 Od
@@ -66325,10 +66364,10 @@ eN
 KB
 OZ
 OZ
-OZ
+zn
 OZ
 Zo
-ry
+zV
 Tv
 Lm
 Px
@@ -66624,7 +66663,7 @@ pE
 pE
 Iy
 eN
-kx
+PF
 Pf
 QJ
 Ua
