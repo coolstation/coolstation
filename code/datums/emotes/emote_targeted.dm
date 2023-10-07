@@ -238,8 +238,9 @@
 			return "<I>flips off [target]!</I>"
 
 		on_self(mob/user)
-			return "<B>[user]</B> raises [his_or_her(user)] middle finger."
 			user.add_karma(rand(-1,1))
+			return "<B>[user]</B> raises [his_or_her(user)] middle finger."
+
 
 		maptext_on_self(mob/user)
 			return "<I>raises [his_or_her(user)]middle finger</I>"
