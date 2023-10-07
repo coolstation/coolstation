@@ -129,4 +129,4 @@
 #define access_soviet_research 107
 #define access_soviet_security 108
 #define access_soviet_security_lockers 109
-#define access_soviet_captain 110 //or outpost director
+#define access_soviet_command 110 //or outpost director
