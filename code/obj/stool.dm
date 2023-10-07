@@ -1725,10 +1725,12 @@
 				user.anchored = 1
 			return 1
 
-	proc/step_off(mob/living/user)
-		if(!istype(user)) return
-		if(src.stool_user && src.stool_user.buckled == src && user != src.stool_user) return
+	proc/step_off()
+		var/mob/user = null
+		if(!istype(src.stool_user)) return
+		if(!src.stool_user && src.stool_user.buckled != src) return
 
+		user = src.stool_user
 		if(ishuman(user))
 			if(ON_COOLDOWN(user, "chair_stand", 1 SECOND))
 				return
