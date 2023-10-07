@@ -1955,6 +1955,7 @@
 /obj/decal/poster/wallsign/pride{
 	pixel_y = 30
 	},
+/obj/random_item_spawner/vendor,
 /turf/floor/darkpurple,
 /area/juicer/club/outside)
 "fk" = (
@@ -5021,6 +5022,16 @@
 	},
 /turf/floor/carpet/purple/standard/edge/north,
 /area/juicer/club/outside)
+"qc" = (
+/obj/neon_lining{
+	color = "#FF00FF";
+	dir = 1
+	},
+/obj/decal/poster/wallsign/pride/random{
+	pixel_y = 30
+	},
+/turf/floor/black,
+/area/juicer/club)
 "qr" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/machinery/light/fluorescent/neutral{
@@ -63956,7 +63967,7 @@ xz
 AR
 mz
 Gf
-Ki
+qc
 NN
 jG
 Qb
