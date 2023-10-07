@@ -3509,6 +3509,7 @@ ABSTRACT_TYPE(/area/station/hangar)
 	icon_state = "hydro"
 	mail_tag = "Hydroponics"
 	workplace = 1
+	no_ants = 1
 
 /area/station/hydroponics/bay
   name = "Hydroponics Bay"

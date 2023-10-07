@@ -1591,6 +1591,8 @@ DEFINE_FLOORS(techfloor/green,
 	return
 
 /turf/floor/proc/pry_tile(obj/item/C as obj, mob/user as mob, params)
+	if(!isconstructionturf(src))
+		return
 	if (!intact)
 		return
 	if(src.reinforced)
