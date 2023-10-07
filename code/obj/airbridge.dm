@@ -496,3 +496,4 @@
 	name = "Airbridge"
 	is_atmos_simulated = TRUE
 	is_construction_allowed = TRUE
+	requires_power = FALSE //>:(

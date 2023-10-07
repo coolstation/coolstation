@@ -590,7 +590,7 @@
 					if(vehicular_manslaughter && ishuman(M))
 						src.pilot.unlock_medal("Vehicular Manslaughter", 1)
 
-			else if(isturf(target) && power > 20)
+			else if(isturf(target) && power > 20 && isconstructionturf(target))
 				if(istype(target, /turf/wall/r_wall || istype(target, /turf/wall/auto/reinforced)) && prob(power / 2))
 					return
 				if(istype(target, /turf/wall) && prob(power))
