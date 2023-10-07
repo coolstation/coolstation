@@ -1224,7 +1224,7 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
 	sound_loop_1_vol = -1
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 10
+	sound_loop_2_vol = 15
 	sound_group = "diner" //the music's kind of everywhere isn't it
 	sound_group_varied = 1
 	//check shuttles.dm for the diner
@@ -1252,7 +1252,7 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
 	sound_loop_1_vol = 20
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 70
+	sound_loop_2_vol = 65
 	sound_group_varied = 1
 
 /area/diner/hallway/docking
@@ -1262,6 +1262,8 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner/backroom
 	name = "Space Diner Backroom"
 	icon_state = "green"
+	sound_loop_1_vol = 20
+	sound_loop_2_vol = 50
 
 /area/diner/solar
 	name = "Space Diner Solar Control"
@@ -1270,6 +1272,7 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner/motel
 	name = "Space Motel"
 	icon_state = "orange"
+	sound_loop_2_vol = 25
 
 /area/diner/motel/observatory
 	name = "Motel Observatory"
@@ -1286,6 +1289,7 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner/arcade
 	name = "Temporary Gun Range"
 	icon_state = "red"
+	sound_loop_2_vol = 25
 
 /area/tech_outpost
 	name = "Tech Outpost"
