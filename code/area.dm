@@ -46,6 +46,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	// To help decided objective difficulty for spy thieves
 	var/spy_secure_area = 0
 
+	//fucking ANTS getting EVERYWHERE
+	var/no_ants = 0
+
 	/// for escape checks
 	var/is_centcom = 0
 
@@ -880,6 +883,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	icon_state = "donutbridge"
 	sound_environment = EAX_ALLEY
 	do_not_irradiate = 1
+	no_ants = 1
 
 /area/otherdimesion //moved from actuallyKeelinsStuff.dm
 	requires_power = 0
@@ -887,6 +891,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	force_fullbright = 1
 	name = "Somewhere"
 	icon_state = "shuttle2"
+	no_ants = 1
 
 /area/someplace
 	name = "some place"
@@ -900,6 +905,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	expandable = 0
 	sound_group = "some place"
 	sound_loop_1 = 'sound/ambience/spooky/Somewhere_Tone.ogg'
+	no_ants = 1
 
 /area/someplacehot
 	name = "some place"
@@ -913,6 +919,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	sound_group = "some place hot"
 	sound_loop_1 = 'sound/ambience/loop/Fire_Medium.ogg'
 	sound_loop_1_vol = 75
+	no_ants = 1
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		..()
@@ -933,6 +940,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	sound_environment = EAX_LIVINGROOM
 	teleport_blocked = 1
 	expandable = 0
+	no_ants = 1
 
 /*/area/factory
 	name = "Derelict Robot Factory"
@@ -981,6 +989,7 @@ ABSTRACT_TYPE(/area/adventure)
 	sims_score = 30
 	virtual = 1
 	expandable = 0
+	no_ants = 1
 
 
 // zewaka - debris field areas/Spacejunk //
@@ -990,6 +999,7 @@ ABSTRACT_TYPE(/area/adventure)
 	icon_state = "yellow"
 	expandable = 0
 	is_atmos_simulated = TRUE
+	no_ants = 1
 
 /area/buddyfactory/mainframe
 	name = "Old Computer Core"
@@ -1005,6 +1015,7 @@ ABSTRACT_TYPE(/area/adventure)
 	skip_sims = 1
 	sims_score = 100
 	is_construction_allowed = FALSE
+	no_ants = 1
 
 /area/helldrone
 	name = "Drone Corpse"
@@ -1014,6 +1025,7 @@ ABSTRACT_TYPE(/area/adventure)
 	skip_sims = 1
 	sims_score = 50
 	is_atmos_simulated = TRUE
+	no_ants = 1
 
 	var/list/soundSubscribers = list()
 
@@ -1105,6 +1117,7 @@ ABSTRACT_TYPE(/area/adventure)
 #ifdef MAP_OVERRIDE_OSHAN
 	requires_power = FALSE
 #endif
+	no_ants = 1
 
 /area/abandonedmedicalship
 	name = "Abandoned Medical ship"
@@ -1119,6 +1132,7 @@ ABSTRACT_TYPE(/area/adventure)
 	name = "Denton, Texas"
 	icon_state = "yellow"
 	requires_power = FALSE
+	no_ants = 1
 
 /area/abandonedmedicalship/robot_trader
 	name ="Robot Trade Outpost"
@@ -1179,6 +1193,7 @@ ABSTRACT_TYPE(/area/adventure)
 	icon_state = "yellow"
 	requires_power = FALSE
 	is_atmos_simulated = FALSE //These used to be simmed but the area seems to only comprise bits of airless wreckage so why bother
+	no_ants = 1
 
 /area/spacehabitat
 	name = "Habitat Dome"
@@ -1195,6 +1210,7 @@ ABSTRACT_TYPE(/area/adventure)
 	icon_state = "yellow"
 	requires_power = FALSE
 	is_atmos_simulated = TRUE
+	no_ants = 1
 
 /area/hollowasteroid/ //evilderelict.dm
 	name = "Forgotten Subterranean Wreckage"
@@ -1202,6 +1218,7 @@ ABSTRACT_TYPE(/area/adventure)
 	sound_loop_1 = 'sound/ambience/spooky/Evilreaver_Ambience.ogg'
 	requires_power = FALSE
 	is_atmos_simulated = TRUE
+	no_ants = 1
 
 
 ABSTRACT_TYPE(/area/diner)
@@ -1218,6 +1235,7 @@ ABSTRACT_TYPE(/area/diner)
 	sound_group = "diner" //the music's kind of everywhere isn't it
 	sound_group_varied = 1
 	//check shuttles.dm for the diner
+	no_ants = 1 //only the ants we specifically put there
 
 /area/diner/hangar
 	name = "Space Diner Parking"
@@ -1285,6 +1303,7 @@ ABSTRACT_TYPE(/area/diner)
 	name = "Juicin' Grounds"
 	icon_state = "green"
 	sound_group = "diner"
+	no_ants = 1
 
 /area/juicer/club
 	name = "The Juice"
@@ -1321,6 +1340,7 @@ ABSTRACT_TYPE(/area/prefab)
 	name = "Prefab"
 	icon_state = "orange"
 	requires_power = FALSE
+	no_ants = 1
 
 /area/prefab/discount_dans_asteroid
 	name = "Discount Dan's Delivery Asteroid"
@@ -1534,6 +1554,7 @@ ABSTRACT_TYPE(/area/sim)
 	sims_score = 100
 	sound_group = "vr"
 	is_construction_allowed = FALSE
+	no_ants = 1
 
 
 
@@ -6030,6 +6051,7 @@ MAJOR_AST(30)
 	name = "Nanotrasen Temporary Frontier Command"
 	icon_state = "yellow"
 	filler_turf = "/turf/space"
+	no_ants = 1
 
 /area/centcom/outpost/lower
 	name = "Nanotrasen Temporary Frontier Command Subdeck"
@@ -6065,6 +6087,7 @@ MAJOR_AST(30)
 /area/nudebris/horizon
 	name = "Horizon Squat"
 	icon_state = "juicer2"
+	no_ants = 1
 
 /area/nudebris/horizon/core
 	name = "Core Squat"
