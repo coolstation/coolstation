@@ -220,6 +220,7 @@
 			if (istype(target,/obj/machinery/bot/secbot))
 				var/obj/machinery/bot/secbot/SB = target
 				SB.EngageTarget(user,0,0,1) //pig can't help itself
+				user.add_karma(5)
 			if(istype(target,/obj/machinery/bot/guardbot))
 				var/obj/machinery/bot/guardbot/GB = target
 				if(user != GB.arrest_target)
@@ -227,8 +228,10 @@
 						if(prob(50))
 							GB.speak(pick("Hey... Come on...","Aw, what? Why?","What was that for?"))
 						GB.set_emotion("sad")
+						user.add_karma(-5)
 				else
 					GB.set_emotion("angry")
+					user.add_karma(1)
 			return "<B>[user]</B> flips off [target]!"
 
 		maptext_on_other(mob/user, target)
@@ -236,6 +239,7 @@
 
 		on_self(mob/user)
 			return "<B>[user]</B> raises [his_or_her(user)] middle finger."
+			user.add_karma(rand(-1,1))
 
 		maptext_on_self(mob/user)
 			return "<I>raises [his_or_her(user)]middle finger</I>"

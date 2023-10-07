@@ -518,7 +518,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	name_addition = "sturdy"
 	icon_state = "nt_blue"
-	overlay_x = 0
+	overlay_x = -10
 	overlay_y = 1
 	stock_shoulder = 1
 
