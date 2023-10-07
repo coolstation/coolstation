@@ -1929,6 +1929,9 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	..()
 	in_bump = 1
 	if(isturf(AM))
+		if (!isconstructionturf(AM))
+			in_bump = 0
+			return
 		if(istype(AM, /turf/wall/r_wall || istype(AM, /turf/wall/auto/reinforced)) && prob(40))
 			in_bump = 0
 			return

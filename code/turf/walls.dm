@@ -282,7 +282,7 @@
 			for (var/mob/N in AIviewers(usr, null))
 				if (N.client)
 					shake_camera(N, 4, 8, 0.5)
-		if (prob(40))
+		if (prob(40) && isconstructionturf(src))
 			boutput(user, text("<span class='notice'>You smash through the [src.name].</span>"))
 			logTheThing("combat", usr, null, "uses hulk to smash a wall at [log_loc(src)].")
 			dismantle_wall(1)
@@ -320,7 +320,7 @@
 		src.attach_light_fixture_parts(user, W) // Made this a proc to avoid duplicate code (Convair880).
 		return
 
-	else if (isweldingtool(W))
+	else if (isweldingtool(W) && isconstructionturf(src))
 		var/turf/T = user.loc
 		if (!( istype(T, /turf) ))
 			return
@@ -407,133 +407,135 @@
 		src.attach_light_fixture_parts(user, W) // Made this a proc to avoid duplicate code (Convair880).
 		return
 
-	else if (isweldingtool(W))
-		var/turf/T = user.loc
-		if (!( istype(T, /turf) ))
-			return
+	else if (isconstructionturf(src))
 
-		if (src.d_state == 2)
-			if(!W:try_weld(user,1,-1,1,1))
+		if (isweldingtool(W))
+			var/turf/T = user.loc
+			if (!( istype(T, /turf) ))
 				return
-			boutput(user, "<span class='notice'>Slicing metal cover.</span>")
-			sleep(6 SECONDS)
-			if ((user.loc == T && user.equipped() == W))
-				src.d_state = 3
-				boutput(user, "<span class='notice'>You removed the metal cover.</span>")
-			else if((isrobot(user) && (user.loc == T)))
-				src.d_state = 3
-				boutput(user, "<span class='notice'>You removed the metal cover.</span>")
 
-		else if (src.d_state == 5)
-			if(!W:try_weld(user,1,-1,1,1))
-				return
-			boutput(user, "<span class='notice'>Removing support rods.</span>")
-			sleep(10 SECONDS)
-			if ((user.loc == T && user.equipped() == W))
-				src.d_state = 6
+			if (src.d_state == 2)
+				if(!W:try_weld(user,1,-1,1,1))
+					return
+				boutput(user, "<span class='notice'>Slicing metal cover.</span>")
+				sleep(6 SECONDS)
+				if ((user.loc == T && user.equipped() == W))
+					src.d_state = 3
+					boutput(user, "<span class='notice'>You removed the metal cover.</span>")
+				else if((isrobot(user) && (user.loc == T)))
+					src.d_state = 3
+					boutput(user, "<span class='notice'>You removed the metal cover.</span>")
+
+			else if (src.d_state == 5)
+				if(!W:try_weld(user,1,-1,1,1))
+					return
+				boutput(user, "<span class='notice'>Removing support rods.</span>")
+				sleep(10 SECONDS)
+				if ((user.loc == T && user.equipped() == W))
+					src.d_state = 6
+					var/atom/A = new /obj/item/rods( src )
+					if (src.material)
+						A.setMaterial(src.material)
+					else
+						A.setMaterial(getMaterial("steel"))
+					boutput(user, "<span class='notice'>You removed the support rods.</span>")
+				else if((isrobot(user) && (user.loc == T)))
+					src.d_state = 6
+					var/atom/A = new /obj/item/rods( src )
+					if (src.material)
+						A.setMaterial(src.material)
+					else
+						A.setMaterial(getMaterial("steel"))
+					boutput(user, "<span class='notice'>You removed the support rods.</span>")
+
+		else if (iswrenchingtool(W))
+			if (src.d_state == 4)
+				var/turf/T = user.loc
+				boutput(user, "<span class='notice'>Detaching support rods.</span>")
+				playsound(src, "sound/items/Ratchet.ogg", 100, 1)
+				sleep(4 SECONDS)
+				if ((user.loc == T && user.equipped() == W))
+					src.d_state = 5
+					boutput(user, "<span class='notice'>You detach the support rods.</span>")
+				else if((isrobot(user) && (user.loc == T)))
+					src.d_state = 5
+					boutput(user, "<span class='notice'>You detach the support rods.</span>")
+
+		else if (issnippingtool(W))
+			if (src.d_state == 0)
+				playsound(src, "sound/items/Wirecutter.ogg", 100, 1)
+				src.d_state = 1
 				var/atom/A = new /obj/item/rods( src )
 				if (src.material)
 					A.setMaterial(src.material)
 				else
 					A.setMaterial(getMaterial("steel"))
-				boutput(user, "<span class='notice'>You removed the support rods.</span>")
-			else if((isrobot(user) && (user.loc == T)))
-				src.d_state = 6
-				var/atom/A = new /obj/item/rods( src )
-				if (src.material)
-					A.setMaterial(src.material)
-				else
-					A.setMaterial(getMaterial("steel"))
-				boutput(user, "<span class='notice'>You removed the support rods.</span>")
 
-	else if (iswrenchingtool(W))
-		if (src.d_state == 4)
-			var/turf/T = user.loc
-			boutput(user, "<span class='notice'>Detaching support rods.</span>")
-			playsound(src, "sound/items/Ratchet.ogg", 100, 1)
-			sleep(4 SECONDS)
-			if ((user.loc == T && user.equipped() == W))
-				src.d_state = 5
-				boutput(user, "<span class='notice'>You detach the support rods.</span>")
-			else if((isrobot(user) && (user.loc == T)))
-				src.d_state = 5
-				boutput(user, "<span class='notice'>You detach the support rods.</span>")
+		else if (isscrewingtool(W))
+			if (src.d_state == 1)
+				var/turf/T = user.loc
+				playsound(src, "sound/items/Screwdriver.ogg", 100, 1)
+				boutput(user, "<span class='notice'>Removing support lines.</span>")
+				sleep(4 SECONDS)
+				if ((user.loc == T && user.equipped() == W))
+					src.d_state = 2
+					boutput(user, "<span class='notice'>You removed the support lines.</span>")
+				else if((isrobot(user) && (user.loc == T)))
+					src.d_state = 2
+					boutput(user, "<span class='notice'>You removed the support lines.</span>")
 
-	else if (issnippingtool(W))
-		if (src.d_state == 0)
-			playsound(src, "sound/items/Wirecutter.ogg", 100, 1)
-			src.d_state = 1
-			var/atom/A = new /obj/item/rods( src )
-			if (src.material)
-				A.setMaterial(src.material)
-			else
-				A.setMaterial(getMaterial("steel"))
+		else if (ispryingtool(W))
+			if (src.d_state == 3)
+				var/turf/T = user.loc
+				boutput(user, "<span class='notice'>Prying cover off.</span>")
+				playsound(src, "sound/items/Crowbar.ogg", 100, 1)
+				sleep(10 SECONDS)
+				if ((user.loc == T && user.equipped() == W))
+					src.d_state = 4
+					boutput(user, "<span class='notice'>You removed the cover.</span>")
+				else if((isrobot(user) && (user.loc == T)))
+					src.d_state = 4
+					boutput(user, "<span class='notice'>You removed the cover.</span>")
+			else if (src.d_state == 6)
+				var/turf/T = user.loc
+				boutput(user, "<span class='notice'>Prying outer sheath off.</span>")
+				playsound(src, "sound/items/Crowbar.ogg", 100, 1)
+				sleep(10 SECONDS)
+				if ((user.loc == T && user.equipped() == W))
+					boutput(user, "<span class='notice'>You removed the outer sheath.</span>")
+					dismantle_wall()
+					logTheThing("station", user, null, "dismantles a reinforced wall at [log_loc(user)].")
+					return
+				else if((isrobot(user) && (user.loc == T)))
+					boutput(user, "<span class='notice'>You removed the outer sheath.</span>")
+					dismantle_wall()
+					logTheThing("station", user, null, "dismantles a reinforced wall at [log_loc(user)].")
+					return
 
-	else if (isscrewingtool(W))
-		if (src.d_state == 1)
-			var/turf/T = user.loc
-			playsound(src, "sound/items/Screwdriver.ogg", 100, 1)
-			boutput(user, "<span class='notice'>Removing support lines.</span>")
-			sleep(4 SECONDS)
-			if ((user.loc == T && user.equipped() == W))
-				src.d_state = 2
-				boutput(user, "<span class='notice'>You removed the support lines.</span>")
-			else if((isrobot(user) && (user.loc == T)))
-				src.d_state = 2
-				boutput(user, "<span class='notice'>You removed the support lines.</span>")
-
-	else if (ispryingtool(W))
-		if (src.d_state == 3)
-			var/turf/T = user.loc
-			boutput(user, "<span class='notice'>Prying cover off.</span>")
-			playsound(src, "sound/items/Crowbar.ogg", 100, 1)
-			sleep(10 SECONDS)
-			if ((user.loc == T && user.equipped() == W))
-				src.d_state = 4
-				boutput(user, "<span class='notice'>You removed the cover.</span>")
-			else if((isrobot(user) && (user.loc == T)))
-				src.d_state = 4
-				boutput(user, "<span class='notice'>You removed the cover.</span>")
-		else if (src.d_state == 6)
-			var/turf/T = user.loc
-			boutput(user, "<span class='notice'>Prying outer sheath off.</span>")
-			playsound(src, "sound/items/Crowbar.ogg", 100, 1)
-			sleep(10 SECONDS)
-			if ((user.loc == T && user.equipped() == W))
-				boutput(user, "<span class='notice'>You removed the outer sheath.</span>")
-				dismantle_wall()
-				logTheThing("station", user, null, "dismantles a reinforced wall at [log_loc(user)].")
+		//More spooky halloween key
+		else if(istype(W,/obj/item/device/key/haunted))
+			//Okay, create a temporary false wall.
+			if(W:last_use && ((W:last_use + 300) >= world.time))
+				boutput(user, "<span class='alert'>The key won't fit in all the way!</span>")
 				return
-			else if((isrobot(user) && (user.loc == T)))
-				boutput(user, "<span class='notice'>You removed the outer sheath.</span>")
-				dismantle_wall()
-				logTheThing("station", user, null, "dismantles a reinforced wall at [log_loc(user)].")
-				return
-
-	//More spooky halloween key
-	else if(istype(W,/obj/item/device/key/haunted))
-		//Okay, create a temporary false wall.
-		if(W:last_use && ((W:last_use + 300) >= world.time))
-			boutput(user, "<span class='alert'>The key won't fit in all the way!</span>")
+			user.visible_message("<span class='alert'>[user] inserts [W] into [src]!</span>","<span class='alert'>The key seems to phase into the wall.</span>")
+			W:last_use = world.time
+			blink(src)
+			var/turf/wall/false_wall/temp/fakewall = new /turf/wall/false_wall/temp(src)
+			fakewall.was_rwall = 1
 			return
-		user.visible_message("<span class='alert'>[user] inserts [W] into [src]!</span>","<span class='alert'>The key seems to phase into the wall.</span>")
-		W:last_use = world.time
-		blink(src)
-		var/turf/wall/false_wall/temp/fakewall = new /turf/wall/false_wall/temp(src)
-		fakewall.was_rwall = 1
-		return
 
-	else if ((istype(W, /obj/item/sheet)) && (src.d_state))
-		var/obj/item/sheet/S = W
-		boutput(user, "<span class='notice'>Repairing wall.</span>")
-		if (do_after(user, 10 SECONDS) && S.change_stack_amount(-1))
-			src.d_state = 0
-			src.icon_state = initial(src.icon_state)
-			if(S.material)
-				src.setMaterial(S.material)
-			else
-				src.setMaterial(getMaterial("steel"))
-			boutput(user, "<span class='notice'>You repaired the wall.</span>")
+		else if ((istype(W, /obj/item/sheet)) && (src.d_state))
+			var/obj/item/sheet/S = W
+			boutput(user, "<span class='notice'>Repairing wall.</span>")
+			if (do_after(user, 10 SECONDS) && S.change_stack_amount(-1))
+				src.d_state = 0
+				src.icon_state = initial(src.icon_state)
+				if(S.material)
+					src.setMaterial(S.material)
+				else
+					src.setMaterial(getMaterial("steel"))
+				boutput(user, "<span class='notice'>You repaired the wall.</span>")
 
 //grabsmash
 	else if (istype(W, /obj/item/grab/))

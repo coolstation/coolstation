@@ -846,6 +846,9 @@
 	in_bump = 1
 	crashhits--
 	if(isturf(A))
+		if (!isconstructionturf(A))
+			in_bump = 0
+			return
 		if((istype(A, /turf/wall/r_wall) || istype(A, /turf/wall/auto/reinforced)) && prob(40))
 			in_bump = 0
 			return
