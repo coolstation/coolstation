@@ -2,7 +2,7 @@
 
 /obj/machinery/disposal/mail
 	name = "mail chute"
-	icon_state = "mailchute"
+	icon_state = "mail"
 	desc = "A pneumatic mail-delivery chute."
 	icon_style = "mail"
 	var/mail_tag = null
