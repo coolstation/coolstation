@@ -1493,8 +1493,8 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 
 			//chance to excite other ferts? probably not smart but
 			if (prob(1))
-				for (var/mob/O in viewers(src, null)) //most viewers don't care, but,
-					if (istype(O, /mob/living/critter/small_animal/meatslinky)) //only small ferrets
+				for (var/mob/O in viewers(src, null))
+					if (istype(O, /mob/living/critter/small_animal/meatslinky))
 						var/mob/living/critter/small_animal/meatslinky/F = O
 						F.contagiousfreakout()
 
@@ -1544,9 +1544,9 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 						return "<span class='emote'><b>[src]</b> farts!</span>"
 		return null
 
-	proc/contagiousfreakout() //if you think regular ferrets get excited over other regular ferrets just you wait bud
+	proc/contagiousfreakout(var/frombig) //if you think regular ferrets get excited over other regular ferrets just you wait bud
 		if (src.freakout) //boost chance to freak out if they're currently freaking out, but don't add to it
-			if (prob(15))
+			if (prob(15 + (frombig * 15)))
 				if ((!src.gotfreaked))
 					src.gotfreaked = 1
 					SPAWN_DBG(12)
@@ -1567,7 +1567,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 			else
 				return
 		if (prob(5))
-			if ((!src.gotfreaked) || resonance_fertscade)
+			if ((!src.gotfreaked) || resonance_fertscade) //if they're already riled don't do anything, unless you choose violence
 				src.gotfreaked = 1
 				SPAWN_DBG(12)
 					src.gotfreaked = 0

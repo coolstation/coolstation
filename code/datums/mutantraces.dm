@@ -2127,20 +2127,16 @@
 			H.update_body()
 			H.update_clothing()
 
-	emote(var/act, var/voluntary=0) //need a weasel-scream, possibly flip variant (unless we move handling of mutantrace variant emotes to The Big Datum Stack, which could be very helpful)
+	emote(var/act, var/voluntary=0)
 		var/message = null
 		switch (act)
 			if ("dance")
-				if (mob.emote_allowed)
-					if (!(mob.client && mob.client.holder)) mob.emote_allowed = 0
+				//basic emote handling
+				if (mob.emote_check(voluntary, 30))
 					if (voluntary)
 						message = "<B>[mob]</B> [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles","weasel-wardances")]!" //public message
-						SPAWN_DBG(4 SECONDS)
-							if (mob) mob.emote_allowed = 1 //finish cooldown
 					else
 						mob.show_message("<span class='alert'>You CAN'T CONTROL YOURSELF AT ALL!!! YOU GOTTA [pick("WOBBLE","WIGGLE","WIG OUT","FREAK OUT","BOUNCE AROUND","GET WOOZED UP")]!!!</span>") //message to only yourself
-						SPAWN_DBG(2 SECONDS) //shorter cooldown for involuntary
-							if (mob) mob.emote_allowed = 1
 				else
 					return
 
@@ -2156,39 +2152,39 @@
 							mob.dir = pick(1,2,4,8)
 							sleep(0.2 SECONDS)
 							if (x == 0) //it's fine for the critters to be sloppy but not the player, get back to normal position at the end
-								if (mob) //sometimes explosions happen during a freakout
+								if (mob) //sometimes explosions happen during a freakout and we don't want to animate a dead body
 									mob.pixel_x = 0
 									mob.pixel_y = 0
-									if (prob((voluntary * 3) + 2)) //when done, also a chance to flop
-										mob.changeStatus("weakened", 5 SECONDS)
+									if (prob((voluntary * 3) + 2)) //when done, also a chance to flop (5% if you did it, 2% if you were compelled)
+										mob.changeStatus("weakened", 3 SECONDS)
 										mob.visible_message("<span class='alert'><B>[mob] gets exhausted from prancing about and falls over!</B></span>")
 									else if (prob(20)) //but... maybe just one more flip, for the road
 										animate_spin(mob, prob(50) ? "L" : "R", 1, 0)
 
-				//chance to excite ferts who can see you:
-				if(resonance_fertscade || voluntary) //unless enabled, the chain is one
+				//chance to excite (big and small) ferts who can see you:
+				if(resonance_fertscade || voluntary) //unless A Really Bad Idea is enabled, the chain is one
 					sleep(0.2 SECONDS) //so they don't start fuckin' dancing before you do
-					for (var/mob/M in viewers(mob, null))
-						if (M != mob && isfert(M)) //big ferrets
-							if (prob(15) && M.emote_allowed) //any higher and it's probably too much chaos. jfc
-								for (var/mob/V in viewers(M, null)) //secondary viewers watching this trainwreck unfold
+					for (var/mob/M in viewers(mob))
+						if (M != mob && isfert(M)) //get big ferrets to join in
+							if (prob(25) && M.emote_allowed) //test this with the slower and more reliable cooldown
+								for (var/mob/V in viewers(M)) //secondary viewers watching this trainwreck unfold
 									if (V == M) //don't view yourself dancing
 										continue
 									V.show_message("<span class='notice'>[M] joins [mob] in these [pick("fuckin'","absolutely","totally","")] [pick("weaselly","toobular","dooked-up","slinky","stinky")] [pick("shenanigans","hijinks","carryings-on","behaviors","wiggles","wobbles")].</span>", 1)
 									M.emote("dance", 0) //involuntary
-						if (istype(M, /mob/living/critter/small_animal/meatslinky)) //small ferrets
-							var/mob/living/critter/small_animal/meatslinky/Frt = M
-							Frt.contagiousfreakout() //this does its own prob + cooldown
-						//we are not doing obj/critters sorry
+						if (istype(M, /mob/living/critter/small_animal/meatslinky)) //small ferrets (mobs only)
+							var/mob/living/critter/small_animal/meatslinky/frrt = M
+							frrt.contagiousfreakout(1) //this does its own prob + cooldown
+					for (var/obj/O in viewers(mob))
+						if (istype(O, /obj/critter/meatslinky)) //small ferrets (critter...)
+							var/obj/critter/meatslinky/toob = O
+							toob.contagiousfreakout(1) //just a response, cannot force further freakouts
 				return message
 
 			if ("laugh") //maybe these sometimes just happen. add a random freakout var like the regular ferrets maybe?
-				if (mob.emote_allowed)
-					mob.emote_allowed = 0
+				if (mob.emote_check(voluntary, 30))
 					message = "<B>[mob]</B> dooks excitedly!"
 					playsound(mob, 'sound/misc/talk/fert.ogg', 40, 1, 0.3, channel=VOLUME_CHANNEL_EMOTE)
-					SPAWN_DBG(1 SECONDS)
-						if (mob) mob.emote_allowed = 1
 					return message
 			if ("scream")
 				if (mob.emote_check(voluntary, 50))
