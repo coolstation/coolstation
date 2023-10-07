@@ -486,6 +486,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 /area/space/solariumjoke
 	sound_loop_1 = 'sound/machines/lavamoon_plantalarm.ogg'
 	ambient_light = "#FF7B07"
+	is_construction_allowed = FALSE
 
 // zewaka - adventure/technical/admin areas below //
 
@@ -884,6 +885,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	sound_environment = EAX_ALLEY
 	do_not_irradiate = 1
 	no_ants = 1
+	is_construction_allowed = FALSE
 
 /area/otherdimesion //moved from actuallyKeelinsStuff.dm
 	requires_power = 0
@@ -892,6 +894,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	name = "Somewhere"
 	icon_state = "shuttle2"
 	no_ants = 1
+	is_construction_allowed = FALSE
 
 /area/someplace
 	name = "some place"
@@ -906,6 +909,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	sound_group = "some place"
 	sound_loop_1 = 'sound/ambience/spooky/Somewhere_Tone.ogg'
 	no_ants = 1
+	is_construction_allowed = FALSE
 
 /area/someplacehot
 	name = "some place"
@@ -920,6 +924,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	sound_loop_1 = 'sound/ambience/loop/Fire_Medium.ogg'
 	sound_loop_1_vol = 75
 	no_ants = 1
+	is_construction_allowed = FALSE
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		..()
@@ -941,6 +946,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	teleport_blocked = 1
 	expandable = 0
 	no_ants = 1
+	is_construction_allowed = FALSE
 
 /*/area/factory
 	name = "Derelict Robot Factory"
@@ -1000,6 +1006,7 @@ ABSTRACT_TYPE(/area/adventure)
 	expandable = 0
 	is_atmos_simulated = TRUE
 	no_ants = 1
+	is_construction_allowed = FALSE
 
 /area/buddyfactory/mainframe
 	name = "Old Computer Core"
@@ -1016,6 +1023,7 @@ ABSTRACT_TYPE(/area/adventure)
 	sims_score = 100
 	is_construction_allowed = FALSE
 	no_ants = 1
+	is_construction_allowed = FALSE
 
 /area/helldrone
 	name = "Drone Corpse"
@@ -1026,6 +1034,7 @@ ABSTRACT_TYPE(/area/adventure)
 	sims_score = 50
 	is_atmos_simulated = TRUE
 	no_ants = 1
+	is_construction_allowed = FALSE
 
 	var/list/soundSubscribers = list()
 
