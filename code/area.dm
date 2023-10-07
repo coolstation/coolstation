@@ -1204,7 +1204,7 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
 	sound_loop_1_vol = -1
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 15
+	sound_loop_2_vol = 16
 	sound_group = "diner" //the music's kind of everywhere isn't it
 	sound_group_varied = 1
 	//check shuttles.dm for the diner
@@ -1230,9 +1230,9 @@ ABSTRACT_TYPE(/area/diner)
 	icon_state = "blue"
 	sound_environment = EAX_HALLWAY
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
-	sound_loop_1_vol = 20
+	sound_loop_1_vol = 5
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 65
+	sound_loop_2_vol = 30
 	sound_group_varied = 1
 
 /area/diner/hallway/docking
@@ -1242,8 +1242,8 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner/backroom
 	name = "Space Diner Backroom"
 	icon_state = "green"
-	sound_loop_1_vol = 20
-	sound_loop_2_vol = 50
+	sound_loop_1_vol = 5
+	sound_loop_2_vol = 25
 
 /area/diner/solar
 	name = "Space Diner Solar Control"
@@ -1252,11 +1252,12 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner/motel
 	name = "Space Motel"
 	icon_state = "orange"
-	sound_loop_2_vol = 25
+	sound_loop_2_vol = 15
 
 /area/diner/motel/observatory
 	name = "Motel Observatory"
 	icon_state = "blue"
+	sound_loop_2_vol = 10
 
 /area/diner/motel/pool
 	name = "Motel Pool"
@@ -1269,7 +1270,7 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner/arcade
 	name = "Temporary Gun Range"
 	icon_state = "red"
-	sound_loop_2_vol = 25
+	sound_loop_2_vol = 20
 
 /area/tech_outpost
 	name = "Tech Outpost"
@@ -1285,7 +1286,7 @@ ABSTRACT_TYPE(/area/diner)
 	icon_state = "juicer"
 	sound_environment = EAX_CONCERT_HALL
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
-	sound_loop_1_vol = 240
+	sound_loop_1_vol = 100
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
 	sound_loop_2_vol = 20
 	sound_group_varied = 1
@@ -1297,7 +1298,7 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
 	sound_loop_1_vol = 20
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 140
+	sound_loop_2_vol = 80
 	sound_group_varied = 1
 
 /area/juicer/club/back
