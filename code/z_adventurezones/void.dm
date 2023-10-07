@@ -93,8 +93,7 @@ CONTENTS:
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "void"
 	desc = "A strange shifting void ..."
-	step_material = "step_lattice"
-	step_priority = STEP_PRIORITY_MED
+	step_material = 0
 	mat_appearances_to_ignore = list("steel")
 
 	ex_act()

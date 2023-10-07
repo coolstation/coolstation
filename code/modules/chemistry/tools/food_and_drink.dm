@@ -136,7 +136,7 @@
 		if (world.time - create_time >= 3 MINUTES)
 			create_time = world.time
 			if (!src.pooled && isturf(src.loc) && !on_table())
-				var/A = get_area(src)
+				var/area/A = get_area(src)
 				if (istype(A,/area/station/hydroponics) || A.no_ants) //or else we'd never ever ever get clean food from hydro
 					return //that astroturf is thoroughly covered in insecticide
 				if (prob(25))
