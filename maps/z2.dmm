@@ -49934,9 +49934,11 @@
 /area/shuttle/escape/transit/battle_shuttle)
 "duA" = (
 /obj/machinery/door/poddoor/blast{
+	density = 0;
 	dir = 1;
 	icon = 'icons/obj/doors/sovblastdoor.dmi';
-	icon_state = "bdoorleft0"
+	icon_state = "bdoorleft0";
+	opacity = 0
 	},
 /obj/decal/cleanable/blood/splatter{
 	icon_state = "gibbl2"
@@ -52872,10 +52874,12 @@
 /area/diner/tug)
 "eNS" = (
 /obj/machinery/door/poddoor/blast{
+	density = 0;
 	dir = 1;
 	icon = 'icons/obj/doors/sovblastdoor.dmi';
 	icon_state = "bdoorright0";
-	id = "iomoon_genroom"
+	id = "iomoon_genroom";
+	opacity = 0
 	},
 /obj/decal/cleanable/oil,
 /turf/floor/engine/caution,
@@ -74085,11 +74089,11 @@ izT
 izT
 boH
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+vww
+vww
+vww
+vww
+vww
 aaa
 wwy
 wwy
@@ -74387,11 +74391,11 @@ izT
 boH
 boH
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+vww
+vww
+vww
+vww
+vww
 aaa
 aaa
 aaa

@@ -32,7 +32,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	var/is_atmos_simulated = FALSE
 	// also this bit is now separate :)
 	/// Can you build shit in this area?
-	var/is_construction_allowed = TRUE
+	var/is_construction_allowed = FALSE
 
 	var/tmp/fire = null
 	var/poweralm = 1
@@ -501,7 +501,6 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	expandable = 0//oh god i know some fucker would try this
 	requires_power = FALSE
 	is_atmos_simulated = FALSE
-	is_construction_allowed = FALSE
 
 	Entered(atom/movable/O) // TODO: make this better and not copy n pasted from area_that_kills_you_if_you_enter_it
 		..()
@@ -529,7 +528,6 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	ambient_light = rgb(79, 164, 184)
 	// filler_turf = "/turf/floor/setpieces/gauntlet"
 	is_atmos_simulated = FALSE
-	is_construction_allowed = FALSE
 
 /area/cavetiny
 	name = "Caves"
@@ -541,17 +539,6 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	teleport_blocked = 1
 	sound_group = "tinycave"
 	is_atmos_simulated = FALSE
-	is_construction_allowed = FALSE
-
-/area/fermented_potato
-	name = "????"
-	icon_state = "purple"
-	skip_sims = 1
-	sims_score = 50
-	force_fullbright = 0
-	teleport_blocked = 1
-	is_atmos_simulated = FALSE
-	is_construction_allowed = FALSE
 
 /area/area_that_kills_you_if_you_enter_it //People entering VR or exiting VR with stupid exploits are jerks.
 	name = "Invisible energy field that will kill you if you step into it"
@@ -561,7 +548,6 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	requires_power = 0
 	teleport_blocked = 1
 	is_atmos_simulated = FALSE
-	is_construction_allowed = FALSE
 
 	Entered(atom/movable/O)
 		if (isobserver(O))
@@ -584,7 +570,6 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	requires_power = 0
 	teleport_blocked = 1
 	is_atmos_simulated = FALSE
-	is_construction_allowed = FALSE
 
 	Entered(atom/movable/O)
 		var/dest = null
@@ -615,6 +600,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	teleport_blocked = 1
 	force_fullbright = 1
 	filler_turf = "/turf/nicegrass/random"
+	is_construction_allowed = TRUE
 
 /** Shuttle Areas
   *
@@ -892,7 +878,6 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	force_fullbright = 1
 	name = "Somewhere"
 	icon_state = "shuttle2"
-	is_construction_allowed = FALSE
 
 /area/someplace
 	name = "some place"
@@ -906,7 +891,6 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	expandable = 0
 	sound_group = "some place"
 	sound_loop_1 = 'sound/ambience/spooky/Somewhere_Tone.ogg'
-	is_construction_allowed = FALSE
 
 /area/someplacehot
 	name = "some place"
@@ -920,7 +904,6 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	sound_group = "some place hot"
 	sound_loop_1 = 'sound/ambience/loop/Fire_Medium.ogg'
 	sound_loop_1_vol = 75
-	is_construction_allowed = FALSE
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		..()
@@ -941,7 +924,6 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	sound_environment = EAX_LIVINGROOM
 	teleport_blocked = 1
 	expandable = 0
-	is_construction_allowed = FALSE
 
 /*/area/factory
 	name = "Derelict Robot Factory"
@@ -999,7 +981,6 @@ ABSTRACT_TYPE(/area/adventure)
 	icon_state = "yellow"
 	expandable = 0
 	is_atmos_simulated = TRUE
-	is_construction_allowed = FALSE
 
 /area/buddyfactory/mainframe
 	name = "Old Computer Core"
@@ -1014,7 +995,6 @@ ABSTRACT_TYPE(/area/adventure)
 	teleport_blocked = 1
 	skip_sims = 1
 	sims_score = 100
-	is_construction_allowed = FALSE
 
 /area/helldrone
 	name = "Drone Corpse"
@@ -1024,7 +1004,6 @@ ABSTRACT_TYPE(/area/adventure)
 	skip_sims = 1
 	sims_score = 50
 	is_atmos_simulated = TRUE
-	is_construction_allowed = FALSE
 
 	var/list/soundSubscribers = list()
 
@@ -1130,6 +1109,7 @@ ABSTRACT_TYPE(/area/adventure)
 	name = "Denton, Texas"
 	icon_state = "yellow"
 	requires_power = FALSE
+	is_construction_allowed = TRUE //why not
 
 /area/abandonedmedicalship/robot_trader
 	name ="Robot Trade Outpost"
@@ -1543,7 +1523,6 @@ ABSTRACT_TYPE(/area/sim)
 	skip_sims = 1
 	sims_score = 100
 	sound_group = "vr"
-	is_construction_allowed = FALSE
 
 /area/sim/area1
 	name = "Vspace area 1"
@@ -4029,7 +4008,6 @@ ABSTRACT_TYPE(/area/mining)
 	mouse_opacity = 1
 	luminosity = 1
 	force_fullbright = 1
-	is_construction_allowed = FALSE
 	CanEnter(var/atom/movable/A)
 		if(ismob(A) && A:client && A:client:player && A:client:player:shamecubed)
 			return 1
