@@ -527,37 +527,37 @@
 
 /obj/machinery/disposal/morgue
 	name = "morgue chute"
-	icon_state = "morguechute"
+	icon_state = "morgue"
 	desc = "A pneumatic delivery chute for sending things directly to the morgue."
 	icon_style = "morgue"
 
-/obj/machinery/disposal/morgue
+/obj/machinery/disposal/genetics
 	name = "morgue chute"
-	icon_state = "morguechute"
+	icon_state = "morgue"
 	desc = "A pneumatic delivery chute for sending things directly to genetics."
 	icon_style = "morgue"
 
 /obj/machinery/disposal/crematorium
 	name = "crematorium chute"
-	icon_state = "morguechute"
+	icon_state = "morgue"
 	desc = "A pneumatic delivery chute for sending things directly to the crematorium."
 	icon_style = "morgue"
 
 /obj/machinery/disposal/quarantine
 	name = "quarantine chute"
-	icon_state = "morguechute"
+	icon_state = "morgue"
 	desc = "A pneumatic delivery chute for sending things directly to quarantine."
 	icon_style = "morgue"
 
 /obj/machinery/disposal/sci
 	name = "research chute"
-	icon_state = "scichute"
+	icon_state = "sci"
 	desc = "A pneumatic delivery chute for sending completed research to the public."
 	icon_style = "sci"
 
 /obj/machinery/disposal/ore
 	name = "ore chute"
-	icon_state = "orechute"
+	icon_state = "ore"
 	desc = "A pneumatic delivery chute for ferrying ore around the station."
 	icon_style = "ore"
 
