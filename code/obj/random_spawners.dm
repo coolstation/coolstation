@@ -1810,6 +1810,15 @@
 		if (S)
 			K.set_loc(S)
 
+/obj/random_item_spawner/vendor
+	name = "wierd vending machine spawner"
+	icon_state = "rand_vend"
+	amt2spawn = 1
+	items2spawn = list(/obj/machinery/vending/juice,
+					/obj/machinery/vending/meat,
+					/obj/machinery/vending/chem,
+					/obj/machinery/vending/sause)
+
 /obj/random_item_spawner/organs
 	name = "random organ spawner"
 	icon_state = "rand_organ"
