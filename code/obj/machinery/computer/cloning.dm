@@ -45,6 +45,8 @@
 		linked_pods = list()
 		diskette = null
 		records = null
+		if ((object_flags & ROUNDSTART_CLONER_PART) && !score_tracker.cloner_broken_timestamp)
+			score_tracker.cloner_broken_timestamp = ticker.round_elapsed_ticks
 		STOP_TRACKING
 		..()
 
@@ -86,6 +88,8 @@
 	START_TRACKING
 	SPAWN_DBG(0.7 SECONDS)
 		connection_scan()
+	if (current_state <= GAME_STATE_PREGAME && src.z == Z_LEVEL_STATION)
+		object_flags |= ROUNDSTART_CLONER_PART
 	return
 
 /obj/machinery/computer/cloning/connection_scan()
@@ -419,6 +423,8 @@ proc/find_ghost_by_key(var/find_key)
 	New()
 		..()
 		src.create_reagents(100)
+		if (current_state <= GAME_STATE_PREGAME && src.z == Z_LEVEL_STATION)
+			object_flags |= ROUNDSTART_CLONER_PART
 
 	relaymove(mob/user as mob, dir)
 		eject_occupant(user)
@@ -430,6 +436,8 @@ proc/find_ghost_by_key(var/find_key)
 		if(occupant)
 			occupant.set_loc(get_turf(src.loc))
 			occupant = null
+		if ((object_flags & ROUNDSTART_CLONER_PART) && !score_tracker.cloner_broken_timestamp)
+			score_tracker.cloner_broken_timestamp = ticker.round_elapsed_ticks
 		..()
 
 	MouseDrop_T(mob/living/target, mob/user)

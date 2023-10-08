@@ -38,6 +38,7 @@ var/datum/score_tracker/score_tracker
 	var/score_structural_damage = 0
 	var/final_score_eng = 0
 	//Health
+	var/cloner_broken_timestamp = 0 //ticks since roundstart until one of the 4 roundstart cloner parts is destroyed
 
 	//Food
 	//var/food_prepared = 0 //how productive is the chef

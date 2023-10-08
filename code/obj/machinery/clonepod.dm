@@ -84,6 +84,9 @@
 			if (!src.net_id)
 				src.net_id = generate_net_id(src)
 
+		if (current_state <= GAME_STATE_PREGAME && src.z == Z_LEVEL_STATION)
+			object_flags |= ROUNDSTART_CLONER_PART
+
 	disposing()
 		mailgroups.len = 0
 		radio_controller.remove_object(src, "[pdafrequency]")
@@ -94,6 +97,8 @@
 		connected = null
 		occupant?.set_loc(get_turf(src.loc))
 		occupant = null
+		if ((object_flags & ROUNDSTART_CLONER_PART) && !score_tracker.cloner_broken_timestamp)
+			score_tracker.cloner_broken_timestamp = ticker.round_elapsed_ticks
 		..()
 
 	was_deconstructed_to_frame(mob/user)
@@ -832,12 +837,16 @@
 		UnsubscribeProcess()
 		src.create_reagents(100)
 		src.update_icon(1)
+		if (current_state <= GAME_STATE_PREGAME && src.z == Z_LEVEL_STATION)
+			object_flags |= ROUNDSTART_CLONER_PART
 		SPAWN_DBG(0)
 			src.find_pods()
 
 	disposing()
 		occupant?.set_loc(get_turf(src.loc))
 		occupant = null
+		if ((object_flags & ROUNDSTART_CLONER_PART) && !score_tracker.cloner_broken_timestamp)
+			score_tracker.cloner_broken_timestamp = ticker.round_elapsed_ticks
 		..()
 
 
