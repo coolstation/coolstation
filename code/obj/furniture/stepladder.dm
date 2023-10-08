@@ -151,6 +151,8 @@
 	wrestling = 1
 	parts_type = /obj/item/furniture_parts/stepladder/wrestling
 
+//duplicate for now, it's still in stool.dm
+/*
 /obj/item/chair/folded/stepladder
 	name = "stepladder"
 	desc = "A folded stepladder. Definitely beats dragging it."
@@ -185,3 +187,4 @@
 			user.drop_item()
 			qdel(src)
 		return
+*/
