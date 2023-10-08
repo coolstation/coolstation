@@ -2163,6 +2163,8 @@
 
 				//chance to excite (big and small) ferts who can see you:
 				if(resonance_fertscade || voluntary) //unless A Really Bad Idea is enabled, the chain is one
+					if (!mob.client)
+						return message //npcs don't cause other freakouts
 					sleep(0.2 SECONDS) //so they don't start fuckin' dancing before you do
 					for (var/mob/M in viewers(mob))
 						if (M != mob && isfert(M)) //get big ferrets to join in
