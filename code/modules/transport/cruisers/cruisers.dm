@@ -268,7 +268,7 @@
 	proc/handleLifeSupport()
 		if(src.hasPower() && life_support)
 			atmos_fail_count = min(atmos_fail_count+1, 5)
-			for(var/turf/simulated/T in interior_area)
+			for(var/turf/T in interior_area)
 				if(T.density) continue
 				if(T.air)
 					T.air.temperature = life_support.tempreg
@@ -282,7 +282,7 @@
 
 			atmos_fail_count = max(atmos_fail_count-1, 0)
 			if(!atmos_fail_count)
-				for(var/turf/simulated/T in interior_area)
+				for(var/turf/T in interior_area)
 					if(T.density) continue
 					if(T.air) T.air.temperature = T0C - 100
 					T.remove_air(100)

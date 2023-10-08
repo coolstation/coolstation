@@ -207,9 +207,14 @@
 			take_bleeding_damage(user, null, 15, DAMAGE_CUT)
 		if (!src.sliced)
 			if (user == M)
-				boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
-				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
-				return
+				if (user.traitHolder.hasTrait("greedy_beast"))
+					boutput(user, "You bite at the edge of the whole pizza, probably ruining somebody's day.")
+					user.visible_message("<b>[user]</b> takes a bite out of [src], still completely unsliced.")
+					..()
+				else
+					boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
+					user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
+					return
 			else
 				user.visible_message("<span class='alert'><b>[user]</b> futilely attempts to shove [src] into [M]'s mouth!</span>")
 				return
@@ -224,9 +229,14 @@
 			boutput(user, "<span class='alert'>The pizza was sharp!</span>")
 			take_bleeding_damage(user, null, 15, DAMAGE_CUT)
 		if (!src.sliced)
-			boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
-			user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
-			return
+			if (user.traitHolder.hasTrait("greedy_beast"))
+				boutput(user, "You bite at the edge of the whole pizza, probably ruining somebody's day.")
+				user.visible_message("<b>[user]</b> takes a bite out of the [src], still completely unsliced.")
+				..()
+			else
+				boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
+				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
+				return
 		else
 			if (sharpened)
 				boutput(user, "<span class='alert'>The pizza was too pointy!</span>")
@@ -979,7 +989,10 @@
 	attack(mob/M as mob, mob/user as mob, def_zone)
 		if (src.icon_state == "surs")
 			if (user == M)
-				boutput(user, "<span class='alert'>You need to take the lid off first, you greedy beast!</span>")
+				if (user.traitHolder.hasTrait("greedy_beast"))
+					boutput(user, "<span class='alert'>Even you need to take the lid off first!</span>")
+				else
+					boutput(user, "<span class='alert'>You need to take the lid off first, you greedy beast!</span>")
 				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
 				return
 			else
@@ -1864,6 +1877,19 @@
 			..()
 
 	attackby(obj/item/W as obj, mob/user as mob)
+		if (istype(W, /obj/item/reagent_containers/food/snacks/ingredient/mud))
+			if(src.stage)
+				boutput(user, "<span class='alert'>It can't hold any more!</span>")
+				return
+			src.stage = 2 //nothing butt poo
+			src.icon_state = "taco-poo"
+			src.name = "[W.name] taco"
+			src.heal_amt--
+			desc = "A poo taco. Pretty shitty, really."
+			boutput(user, "<span class='notice'>You add [W] to [src]! That's fucking awful!</span>")
+			food_effects += W:food_effects
+			qdel (W)
+
 		if (istype(W, /obj/item/reagent_containers/food/snacks/ingredient/meat))
 			if(src.stage)
 				boutput(user, "<span class='alert'>It can't hold any more!</span>")
@@ -1945,6 +1971,28 @@
 	initial_volume = 50
 	initial_reagents = list("cholesterol"=2)
 	food_effects = list("food_hp_up", "food_brute")
+
+/obj/item/reagent_containers/food/snacks/beffjerky
+	name = "beff jerky"
+	desc = "A hunk of some kind of dehydrated salted flesh."
+	icon = 'icons/obj/foodNdrink/food_ingredient.dmi'
+	icon_state = "meat-old"
+	color = "#884466"
+	heal_amt = 1
+	amount = 2
+	initial_volume = 25
+	initial_reagents = list("beff"=10,"salt"=5)
+
+/obj/item/reagent_containers/food/snacks/beffjerky/quivering //inspired by the debug meat item where i got the old meat
+	name = "quivering beff jerky"
+	desc = "A hunk of some kind of dehydrated salted flesh. ...Oh. It's still alive."
+	icon = 'icons/obj/foodNdrink/food_ingredient.dmi'
+	icon_state = "meat_shake"
+	color = "#884466"
+	heal_amt = 2
+	amount = 2
+	initial_volume = 25
+	initial_reagents = list("beff"=20,"salt"=5) //couldn't think of anything better, will revisit (hello to you reading this in 2026, do bees still exist? like irl i mean)
 
 /obj/item/reagent_containers/food/snacks/fish_fingers
 	name = "fish fingers"
@@ -2432,9 +2480,14 @@
 	attack(mob/M as mob, mob/user as mob, def_zone)
 		if (!src.cut)
 			if (user == M)
-				boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
-				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
-				return
+				if (user.traitHolder.hasTrait("greedy_beast"))
+					boutput(user, "It tastes better in long form, anyway.")
+					user.visible_message("<b>[user]</b> takes a bite out of the unsliced [src].")
+					..()
+				else
+					boutput(user, "<span class='alert'>You can't just cram that in your mouth, you greedy beast!</span>")
+					user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
+					return
 			else
 				user.visible_message("<span class='alert'><b>[user]</b> futilely attempts to shove [src] into [M]'s mouth!</span>")
 				return
@@ -2551,9 +2604,14 @@
 		if (unwrapped)
 			..()
 		else if (user == M)
-			boutput(user, "<span class='alert'>You need to unwrap it first, you greedy beast!</span>")
-			user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
-			return
+			if (user.traitHolder.hasTrait("greedy_beast"))
+				boutput(user, "It tastes better with the skin on, anyway.")
+				user.visible_message("<b>[user]</b> takes a bite out of [src], still wrapped.")
+				..()
+			else
+				boutput(user, "<span class='alert'>You need to unwrap it first, you greedy beast!</span>")
+				user.visible_message("<b>[user]</b> stares at [src] in a confused manner.")
+				return
 		else
 			user.visible_message("<span class='alert'><b>[user]</b> futilely attempts to shove [src] into [M]'s mouth!</span>")
 			return

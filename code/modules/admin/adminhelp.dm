@@ -2,7 +2,7 @@
 ////////////////////////////////
 /mob/verb/adminhelp()
 	set category = "Commands"
-	set name = "adminhelp"
+	set name = "Adminhelp"
 
 	var/client/client = src.client
 
@@ -71,7 +71,7 @@
 
 /mob/verb/mentorhelp()
 	set category = "Commands"
-	set name = "mentorhelp"
+	set name = "Mentorhelp"
 
 	var/client/client = src.client
 
@@ -147,7 +147,7 @@
 
 /mob/verb/pray(msg as text)
 	set category = "Commands"
-	set name = "pray"
+	set name = "Pray"
 	set desc = "Attempt to gain the attention of a divine being. Note that it's not necessarily the kind of attention you want."
 
 	var/client/client = src.client

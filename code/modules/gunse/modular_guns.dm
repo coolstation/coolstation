@@ -37,6 +37,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	icon_state = "tranq_pistol"
 	contraband = 0
 	inventory_counter_enabled = 1
+	var/bulk = 1
 	var/barrel_overlay_x = 0
 	var/barrel_overlay_y = 0
 	var/bullpup_stock = 0 // this one's fucky. some guns i guess will want a single pistol grip to be forward, but dual or shoulder at the back. this is that offset i guess.
@@ -126,6 +127,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(jam_frequency_fire || jam_frequency_reload)
 		. += "<div><img src='[resource("images/tooltips/jamjarrd.png")]' alt='' class='icon' /><span>Jammin: [src.jam_frequency_reload + src.jam_frequency_fire] </span></div>"
 
+	. += "<div><span>Bulk: [src.bulk][pick("kg","lb","0%"," finger")] </span></div>"
 	. += "<div> <span>Maxcap: [src.max_ammo_capacity] </span></div>"
 	. += "<div> <span>Loaded: [src.ammo_list.len + (src.current_projectile?1:0)] </span></div>"
 
@@ -166,7 +168,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				barrel = I
 			if (istype(I, /obj/item/gun_parts/stock/))
 				if(stock) //occupado
-					if(!stock.stock_two_handed && !I:stock_two_handed)// i know i know, :, but we *JUST* checked, cmon.
+					if(!I:stock_shoulder)// i know i know, :, but we *JUST* checked, cmon.
 						if(stock2)
 							boutput(user,"<span class='notice'>...and knock [stock2] out of the way.</span>")
 							stock2.set_loc(get_turf(src))
@@ -522,6 +524,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	for(var/obj/item/gun_parts/part as anything in parts)
 		part.add_part_to_gun(src)
 
+	if(bulk >= 6)
+		src.two_handed = 1
+		if(!stock2)
+			spread_angle += GRIP_PENALTY/2
+
+	src.force = 2 + bulk
+	src.throwforce = bulk
 
 	buildTooltipContent()
 	built = 1
@@ -534,6 +543,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	stock = null
 	magazine = null
 	accessory = null
+	stock2 = null
 
 	name = real_name
 
@@ -547,6 +557,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	accessory_on_fire = 0
 	accessory_on_cycle = 0
 	flash_auto = 0
+	bulk = 0
 
 	spread_angle = initial(spread_angle)
 	max_ammo_capacity = initial(max_ammo_capacity)
@@ -638,7 +649,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 	desc = "A simple, reliable rifled bored weapon."
 
 	make_parts()
-		barrel = new /obj/item/gun_parts/barrel/NT/long(src)
+		if(prob(90))
+			barrel = new /obj/item/gun_parts/barrel/NT/long(src)
+		else
+			barrel = new /obj/item/gun_parts/barrel/NT/long/padded(src)
 		stock = new /obj/item/gun_parts/stock/NT/shoulder(src)
 		if(prob(10))
 			accessory = new /obj/item/gun_parts/accessory/flashlight(src)
@@ -733,7 +747,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 		if(prob(50))
 			barrel = new /obj/item/gun_parts/barrel/juicer(src)
 		else
-			barrel = new /obj/item/gun_parts/barrel/juicer/chub(src)
+			if(prob(50))
+				barrel = new /obj/item/gun_parts/barrel/juicer/chub(src)
+			else
+				barrel = new /obj/item/gun_parts/barrel/juicer/ribbed(src)
 		if(prob(5))
 			stock = new /obj/item/gun_parts/stock/juicer/trans(src)
 		else if(prob(50))

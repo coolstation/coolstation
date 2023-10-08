@@ -321,17 +321,7 @@ starting with SHITTY BILL
 			SPAWN_DBG(1 SECOND)
 				say("Yep, can't wait to go on that trip! That [pick_string("johnbill.txt", "insults")] oughta be here soon!")
 			return
-		if (istype(W, /obj/item/ursium/U))
-			say("These things are everywhere. Got anything more exotic?")
-			return
-		if (istype(W, /obj/item/ursium/antiU))
-			var/obj/item/ursium/antiU/aU = W
-			boutput(M, "<span class='notice'><b>You show [W] to [src]</b> </span>")
-			say("Whoa nelly! Mind if i have a taste?")
-			SPAWN_DBG(1 SECOND)
-				M.visible_message("<span class='alert'>[src] touches the [W]! Something isnt right! </span>")
-				aU:annihilation(2 * aU.ursium)
-			return
+
 		..()
 
 
@@ -368,7 +358,8 @@ starting with SHITTY BILL
 /area/diner/motel/observatory/john_talk = list("What a goddamn view.","Never thought I'd have a place like this.")
 /area/diner/motel/pool/john_talk = list("Hey brungo, got any water? Like ten to twenty tonnes, eh?","It's a shame I can't swim, on account of the pirate's code.","I've seen this place in a video.")
 /area/diner/motel/chemstorage/john_talk = list("Good a time as any to learn chemistry, I guess.","Think I can sell any of this juice?")
-/area/lower_arctic/lower/john_talk = list("I ain't a fan of wendibros, they steal my meat.","Chilly eh?")
+/area/upper_arctic/exterior/surface/john_talk = list("Aw damn, isn't this the place where that... that fuckin', uh, Denmarkish guy ended up?","Chilly eh?","Woah that's cold!")
+/area/upper_arctic/fita/lobby/john_talk = list("A concrete bunker? They're really committed to the bit.")
 /area/moon/museum/west/john_talk = list("Got lost here once. More than once. Every time.","You got a map, beardo?","Can we go home yet?")
 /area/jones/bar/john_talk = list("When the heck am I gonna get some service here, I'm parched!","What do I gotta start purrin' to get a drink here?","What's the holdup, catscratch? Let's get this party started!")
 /area/solarium/john_talk = list("You kids will try anything, wontcha?","Nice sun, dorkus.","So it's a star? Big deal.","I betcha my bus coulda got us here faster, dork.","All righty, now let's grill a steak on that thing!","You bring any snacks?")
@@ -388,8 +379,7 @@ starting with SHITTY BILL
 /area/flock_trader/john_talk = list("Woah, what's with these teal chickens? Must be good grillin'.","I feel like this was revealed to me in a fever dream once.","Dang, that's a mighty fine chair.")
 /area/timewarp/ship/john_talk = list("I wonder if my ol' compadre Murray is around.","Did ya see those clocks outside? Time just flies by.","I swear I saw a ship just like this years ago, but somewhere else.","Didn't they use to haul some strange stuff on these gals?")
 /area/derelict_ai_sat/core/john_talk = list("Hello, Daddy.","You should probably start writing down the shit I say, I certainly can't remember any of it.")
-/area/adventure/urs_dungeon/john_talk = list("This place smells like my bro.","Huh, Always wondered what those goggles did.","Huh, Always wondered what those goggles did.","Your hubris will be punished. Will you kill your fellow man to save yourself? Who harvests the harvestmen? What did it feel like when you lost your mind?")
-/area/grillnasium/grill_chamber/john_talk = list("You better know what you've started.","This is where it happens.")
+
 
 
 

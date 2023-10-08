@@ -214,7 +214,7 @@ ABSTRACT_TYPE(/datum/buildmode)
 	var/atom/movable/screen/buildmode/buildmode/button_mode
 	var/atom/movable/screen/buildmode/buildquit/button_quit
 
-/client/proc/togglebuildmode()
+/client/proc/toggle_buildmode()
 	set name = "Build Mode"
 	set desc = "Toggle build Mode on/off."
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)
@@ -314,7 +314,7 @@ ABSTRACT_TYPE(/datum/buildmode)
 		holder = H
 
 	clicked(location, control, params)
-		holder.owner.togglebuildmode()
+		holder.owner.toggle_buildmode()
 
 /atom/movable/screen/buildmode/buildmode
 	name = "Click to select mode"

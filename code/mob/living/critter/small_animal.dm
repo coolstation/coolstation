@@ -1610,8 +1610,9 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	name = "pine marten"
 	real_name = "pine marten"
 	desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front."
-	icon_state = "farten"
-	icon_state_dead = "farten-dead"
+	icon_state = "marten"
+	//lazy_state = "marten-lazy"
+	icon_state_dead = "marten-dead"
 	marten = 1
 
 	New()
@@ -1635,10 +1636,13 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 				src.visible_message("<span class='emote'><b>[src]</b> farts along!</span>")
 
 	farten //stink guaranteed!!!! this is the real reason we have pine martens
-		name = "pine farten" //regular martens that fart will still be called pine marten but this one is explicit about it
+		name = "pine farten" //regular martens that fart will still be called pine marten but this one is explicit about it (and looks janky on purpose)
 		real_name = "pine farten"
 		desc = "Looks like a bigger ferret with brown fur and a tawny patch on its front. This one stinks more than usual."
 		farten = 1
+		icon_state = "farten"
+		//lazy_state = "farten-lazy"
+		icon_state_dead = "farten-dead"
 
 /* ================================================ */
 /* -------------------- Frog ---------------------- */
@@ -2131,7 +2135,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 
 	Move(var/atom/NewLoc, direct)
 		.=..()
-		if (prob(src.slime_chance) && (istype(src.loc, /turf/simulated/floor) || istype(src.loc, /turf/unsimulated/floor)))
+		if (prob(src.slime_chance) && (istype(src.loc, /turf/floor)))
 			if (locate(/obj/decal/cleanable/slime) in src.loc)
 				return
 			else

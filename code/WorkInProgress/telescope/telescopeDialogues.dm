@@ -2,7 +2,7 @@
 /* VALIANT DIALOGUE BELOW */
 
 /datum/dialogueMaster/telescopeValiant
-	dialogueName = "SS Valiant"
+	dialogueName = "RV Valiant"
 	start = /datum/dialogueNode/valiant/telValiantStart
 	visibleDialogue = 0
 	var/signal = 100
@@ -23,7 +23,7 @@
 	telValiantStart
 		links = list(/datum/dialogueNode/valiant/telValiantWhatNow, /datum/dialogueNode/valiant/telValiantEmergency, /datum/dialogueNode/valiant/telValiantStatic)
 		nodeImage = "valiant.png"
-		nodeText = "Greetings. You are connected to the assistant A.I. of the <i>SS Valiant</i>."
+		nodeText = "Greetings. You are connected to the assistant A.I. of the <i>RV Valiant</i>."
 		linkText = @"[Return]"
 
 		getNodeText(var/client/C)
@@ -39,7 +39,7 @@
 				if(10 to M.corruptionThreshold)
 					return "S_gn__icant data _oss d_tecte_. You might experi___e intermittent l_ss of connecti____"
 				if(-INFINITY to M.disconnectThreshold)
-					return "<i>The connection to the SS Valiant has been lost. There is nothing left to do here.</i>"
+					return "<i>The connection to the RV Valiant has been lost. There is nothing left to do here.</i>"
 
 		getNodeImage(var/client/C)
 			var/datum/dialogueMaster/telescopeValiant/M = master
@@ -71,7 +71,7 @@
 		links = list(/datum/dialogueNode/valiant/telValiantFunctions)
 		nodeImage = "valiant.png"
 		linkText = "The what now?"
-		nodeText = {"I am the ship-wide A.I. of the <i>SS Valiant</i>.
+		nodeText = {"I am the ship-wide A.I. of the <i>RV Valiant</i>.
 		<br>My purpose is to aid the crew of the ship in both active, as well as advisory functions."}
 
 		onActivate(var/client/C)
@@ -103,7 +103,7 @@
 		links = list()
 		nodeImage = "valiant.png"
 		linkText = "What happened to the ship?"
-		nodeText = {"At 1352.5 the <i>SS Valiant</i> sustained critical damage due to an unspecified class-C incursion event.
+		nodeText = {"At 1352.5 the <i>RV Valiant</i> sustained critical damage due to an unspecified class-C incursion event.
 		<br>The stern section of the ship has been severed from the rest of the ship.
 		<br>Due to significant sensor failure, survival of the ship's crew can not be accurately assessed.
 		"}

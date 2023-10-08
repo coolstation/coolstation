@@ -327,19 +327,16 @@
 /obj/item/reagent_containers/pill/gsbp
 	name = "gas station boner pill"
 	desc = "A weird, oversized pill that stinks like chemical-soaked mulch and empty promises."
-	random_icon = 1
+	icon_state = "gsbp" //yes i know it's a clear plastic holder but it's way funnier to think you swallow the whole thing
+	random_icon = 0
 
 	New()
 		..()
 		name = "[pick_string("chemistry_tools.txt", "GSBP_drug_prefixes")] [pick_string("chemistry_tools.txt", "GSBP_drug_suffixes")]"
 
-		//maybe make this just adulterants?
-		var/primaries = rand(1,2)
+		//this isn't a get high pill, it is a horrible thing for poisoning and novelty purposes only
 		var/adulterants = rand(3,5)
 
-		while(primaries > 0)
-			primaries--
-			reagents.add_reagent(pick_string("chemistry_tools.txt", "CYBERPUNK_drug_primaries"), 3)
 		while(adulterants > 0)
 			adulterants--
 			reagents.add_reagent(pick_string("chemistry_tools.txt", "CYBERPUNK_drug_adulterants"), 3)
@@ -348,7 +345,7 @@
 		reagents.add_reagent("grime", 5)
 		reagents.add_reagent("bonerjuice", 30) //active ingredient
 		reagents.add_reagent("bhjuice", 10) //also active ingredient
-		reagents.add_reagent("sawdust", 100) //padding
+		reagents.add_reagent("sawdust", 50) //padding
 
 		SafeScale(1.5,1.5) //they're big pills and an extremely bad idea to take
 

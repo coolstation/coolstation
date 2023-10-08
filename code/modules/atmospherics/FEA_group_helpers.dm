@@ -1,12 +1,12 @@
-/turf/simulated/proc/find_group()
+/turf/proc/find_group()
 	//Basically, join any nearby valid groups
 	//	If more than one, pick one with most members at my borders
 	// If can not find any but there was an ungrouped at border with me, call for group assembly
 
-	var/turf/simulated/floor/north = get_step(src,NORTH)
-	var/turf/simulated/floor/south = get_step(src,SOUTH)
-	var/turf/simulated/floor/east = get_step(src,EAST)
-	var/turf/simulated/floor/west = get_step(src,WEST)
+	var/turf/floor/north = get_step(src,NORTH)
+	var/turf/floor/south = get_step(src,SOUTH)
+	var/turf/floor/east = get_step(src,EAST)
+	var/turf/floor/west = get_step(src,WEST)
 
 	//Clear those we do not have access to
 	if(!CanPass(null, north, null, 1) || !istype(north))

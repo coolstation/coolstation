@@ -28,8 +28,13 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	/// List of all dudes who are here
 	var/list/population = list()
 
+	/// Instead of simulated/unsimulated turfs it's now on area
+	var/is_atmos_simulated = FALSE
+	// also this bit is now separate :)
+	/// Can you build shit in this area?
+	var/is_construction_allowed = TRUE
+
 	var/tmp/fire = null
-	var/atmos = 1
 	var/poweralm = 1
 	var/skip_sims = 0
 	var/tmp/sims_score = 100
@@ -40,6 +45,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 	// To help decided objective difficulty for spy thieves
 	var/spy_secure_area = 0
+
+	//fucking ANTS getting EVERYWHERE
+	var/no_ants = 1
 
 	/// for escape checks
 	var/is_centcom = 0
@@ -370,7 +378,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 	proc/calculate_area_value()
 		var/value = 0
-		for (var/turf/simulated/floor/F in src.contents)
+		for (var/turf/floor/F in src.contents)
 			if (F.broken || F.burnt || F.icon_state == "plating")
 				continue
 			value++
@@ -384,9 +392,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 	proc/calculate_structure_value()
 		var/value = 0
-		for (var/turf/simulated/wall/W in src.contents)
+		for (var/turf/wall/W in src.contents)
 			value++
-		for (var/turf/simulated/floor/F in src.contents)
+		for (var/turf/floor/F in src.contents)
 			if (F.broken || F.burnt)
 				continue
 			value++
@@ -405,7 +413,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 		var/dirty = 0
 		var/list/dirtyStuff = list(/obj/decal/cleanable,/obj/fluid)
 
-		for (var/turf/simulated/T in src.contents)
+		for (var/turf/T in src.contents)
+			if (istype(T, /turf/space))
+				continue
 			dirty = 0
 			total_count++
 			for (var/thing in T.contents)
@@ -428,8 +438,11 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 			if ("Zen Garden") sound_fx_1 = pick('sound/ambience/station/ZenGarden1.ogg','sound/ambience/station/ZenGarden2.ogg')
 			//if ("Engine Control") sound_fx_1 = pick(ambience_engine)
 			//if ("Atmospherics") sound_fx_1 = pick(ambience_atmospherics)
-			if ("Radio Server", "Server Room", "Computer Lab") sound_fx_1 = pick(ambience_computer) //"Computer Core"
-				//todo: computer ambience only if area's apc is powering equipment
+			if ("Radio Server", "Server Room", "Computer Lab")
+				if (src.area_apc?.equipment > 1) //0 is off, 1 is off(auto) :V
+					sound_fx_1 = pick(ambience_computer) //only beeping if the equipment is running
+				else
+					sound_fx_1 = pick(ambience_general) //general ambience should be fine right?
 			//if ("Engineering Power Room") sound_fx_1 = pick(ambience_power)
 			if ("Ice Moon") sound_fx_1 = pick('sound/ambience/nature/Wind_Cold1.ogg', 'sound/ambience/nature/Wind_Cold2.ogg', 'sound/ambience/nature/Wind_Cold3.ogg')
 			if ("Biodome North") sound_fx_1 = pick('sound/ambience/nature/Biodome_Bugs.ogg', 'sound/ambience/nature/Biodome_Birds1.ogg', 'sound/ambience/nature/Biodome_Birds2.ogg', 'sound/ambience/nature/Biodome_Monkeys.ogg')
@@ -458,8 +471,22 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 		if (light_manager)
 			light_manager.lights -= L
 
+///Where you'd previously chuck turfs directly into area contents, please now call this or atmos might crap out
+/area/proc/add_turf(turf/T) //but that aside why wasn't there a proc for turfs entering areas before?
+	if (!istype(T)) return
+	contents += T
+	if (src.is_atmos_simulated && !T.air)
+		T.instantiate_air()
 
 /area/space // the base area you SHOULD be using for space/ocean/etc.
+	//these are the defaults but just in case someone messes with those
+	is_atmos_simulated = FALSE
+	is_construction_allowed = TRUE
+
+/area/space/solariumjoke
+	sound_loop_1 = 'sound/machines/lavamoon_plantalarm.ogg'
+	ambient_light = "#FF7B07"
+	is_construction_allowed = FALSE
 
 // zewaka - adventure/technical/admin areas below //
 
@@ -473,6 +500,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	force_fullbright = 1
 	expandable = 0//oh god i know some fucker would try this
 	requires_power = FALSE
+	is_atmos_simulated = FALSE
+	is_construction_allowed = FALSE
 
 	Entered(atom/movable/O) // TODO: make this better and not copy n pasted from area_that_kills_you_if_you_enter_it
 		..()
@@ -498,7 +527,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	force_fullbright = 0
 	expandable = 0
 	ambient_light = rgb(79, 164, 184)
-	// filler_turf = "/turf/unsimulated/floor/setpieces/gauntlet"
+	// filler_turf = "/turf/floor/setpieces/gauntlet"
+	is_atmos_simulated = FALSE
+	is_construction_allowed = FALSE
 
 /area/cavetiny
 	name = "Caves"
@@ -509,6 +540,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	sound_environment = EAX_CAVE
 	teleport_blocked = 1
 	sound_group = "tinycave"
+	is_atmos_simulated = FALSE
+	is_construction_allowed = FALSE
 
 /area/fermented_potato
 	name = "????"
@@ -517,6 +550,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	sims_score = 50
 	force_fullbright = 0
 	teleport_blocked = 1
+	is_atmos_simulated = FALSE
+	is_construction_allowed = FALSE
 
 /area/area_that_kills_you_if_you_enter_it //People entering VR or exiting VR with stupid exploits are jerks.
 	name = "Invisible energy field that will kill you if you step into it"
@@ -525,6 +560,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	icon_state = "death"
 	requires_power = 0
 	teleport_blocked = 1
+	is_atmos_simulated = FALSE
+	is_construction_allowed = FALSE
 
 	Entered(atom/movable/O)
 		if (isobserver(O))
@@ -546,6 +583,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	icon_state = "battle_spawn"
 	requires_power = 0
 	teleport_blocked = 1
+	is_atmos_simulated = FALSE
+	is_construction_allowed = FALSE
 
 	Entered(atom/movable/O)
 		var/dest = null
@@ -575,7 +614,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	requires_power = 0
 	teleport_blocked = 1
 	force_fullbright = 1
-	filler_turf = "/turf/unsimulated/nicegrass/random"
+	filler_turf = "/turf/nicegrass/random"
 
 /** Shuttle Areas
   *
@@ -672,15 +711,27 @@ ABSTRACT_TYPE(/area/shuttle)
 /area/shuttle/shopping/shittymall
 	icon_state = "shuttle"
 
-/area/shuttle/icebase_elevator/upper
+/area/shuttle/icebase_crew_elevator/upper
 	icon_state = "shuttle"
-	filler_turf = "/turf/simulated/floor/arctic/abyss"
+	filler_turf = "/turf/floor/arctic/abyss"
 	force_fullbright = 0
 	sound_group = "ice_moon"
 
-/area/shuttle/icebase_elevator/lower
+/area/shuttle/icebase_crew_elevator/lower
 	icon_state = "shuttle2"
-	filler_turf = "/turf/simulated/floor/arctic/snow/ice"
+	filler_turf = "/turf/floor/arctic/snow/ice"
+	force_fullbright = 0
+	sound_group = "ice_moon"
+
+/area/shuttle/icebase_mine_elevator/upper
+	icon_state = "shuttle"
+	filler_turf = "/turf/floor/arctic/abyss"
+	force_fullbright = 0
+	sound_group = "ice_moon"
+
+/area/shuttle/icebase_mine_elevator/lower
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/arctic/snow/ice"
 	force_fullbright = 0
 	sound_group = "ice_moon"
 
@@ -732,6 +783,8 @@ ABSTRACT_TYPE(/area/shuttle/merchant_shuttle)
 	icon_state = "eshuttle_transit"
 	sound_group = "eshuttle_transit"
 	var/warp_dir = NORTH // fuck you
+	is_atmos_simulated = FALSE
+	is_construction_allowed = FALSE
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		..()
@@ -831,6 +884,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	icon_state = "donutbridge"
 	sound_environment = EAX_ALLEY
 	do_not_irradiate = 1
+	is_construction_allowed = FALSE
 
 /area/otherdimesion //moved from actuallyKeelinsStuff.dm
 	requires_power = 0
@@ -838,11 +892,12 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	force_fullbright = 1
 	name = "Somewhere"
 	icon_state = "shuttle2"
+	is_construction_allowed = FALSE
 
 /area/someplace
 	name = "some place"
 	icon_state = "purple"
-	filler_turf = "/turf/unsimulated/floor/void"
+	filler_turf = "/turf/floor/void"
 	requires_power = 0
 	luminosity = 1
 	force_fullbright = 1
@@ -851,11 +906,12 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	expandable = 0
 	sound_group = "some place"
 	sound_loop_1 = 'sound/ambience/spooky/Somewhere_Tone.ogg'
+	is_construction_allowed = FALSE
 
 /area/someplacehot
 	name = "some place"
 	icon_state = "atmos"
-	filler_turf = "/turf/unsimulated/floor/void"
+	filler_turf = "/turf/floor/void"
 	requires_power = 0
 	luminosity = 1
 	force_fullbright = 1
@@ -864,6 +920,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	sound_group = "some place hot"
 	sound_loop_1 = 'sound/ambience/loop/Fire_Medium.ogg'
 	sound_loop_1_vol = 75
+	is_construction_allowed = FALSE
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		..()
@@ -884,6 +941,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	sound_environment = EAX_LIVINGROOM
 	teleport_blocked = 1
 	expandable = 0
+	is_construction_allowed = FALSE
 
 /*/area/factory
 	name = "Derelict Robot Factory"
@@ -940,10 +998,13 @@ ABSTRACT_TYPE(/area/adventure)
 	name = "Factory V"
 	icon_state = "yellow"
 	expandable = 0
+	is_atmos_simulated = TRUE
+	is_construction_allowed = FALSE
 
 /area/buddyfactory/mainframe
 	name = "Old Computer Core"
 	icon_state = "purple"
+	is_atmos_simulated = TRUE
 
 /area/space_hive
 	name = "Space Bee Hive"
@@ -953,6 +1014,7 @@ ABSTRACT_TYPE(/area/adventure)
 	teleport_blocked = 1
 	skip_sims = 1
 	sims_score = 100
+	is_construction_allowed = FALSE
 
 /area/helldrone
 	name = "Drone Corpse"
@@ -961,6 +1023,8 @@ ABSTRACT_TYPE(/area/adventure)
 	teleport_blocked = 1
 	skip_sims = 1
 	sims_score = 50
+	is_atmos_simulated = TRUE
+	is_construction_allowed = FALSE
 
 	var/list/soundSubscribers = list()
 
@@ -1056,6 +1120,7 @@ ABSTRACT_TYPE(/area/adventure)
 /area/abandonedmedicalship
 	name = "Abandoned Medical ship"
 	icon_state = "yellow"
+	is_atmos_simulated = TRUE
 
 /area/abandonedoutpostthing
 	name = "Abandoned Outpost"
@@ -1106,6 +1171,7 @@ ABSTRACT_TYPE(/area/adventure)
 /area/iss
 	name = "Derelict Space Station"
 	icon_state = "derelict"
+	is_atmos_simulated = TRUE
 #ifdef SUBMARINE_MAP
 	force_fullbright = 1
 #endif
@@ -1117,15 +1183,18 @@ ABSTRACT_TYPE(/area/adventure)
 	name = "Pool Room"
 	icon_state = "yellow"
 	requires_power = FALSE
+	is_atmos_simulated = TRUE
 
 /area/abandonedship
 	name = "Abandoned ship"
 	icon_state = "yellow"
 	requires_power = FALSE
+	is_atmos_simulated = FALSE //These used to be simmed but the area seems to only comprise bits of airless wreckage so why bother
 
 /area/spacehabitat
 	name = "Habitat Dome"
 	icon_state = "green"
+	is_construction_allowed = FALSE
 
 /area/spacehabitat/beach
 	name = "Habitat Dome Beach"
@@ -1136,24 +1205,26 @@ ABSTRACT_TYPE(/area/adventure)
 	name = "Soviet derelict"
 	icon_state = "yellow"
 	requires_power = FALSE
+	is_atmos_simulated = TRUE
 
 /area/hollowasteroid/ //evilderelict.dm
 	name = "Forgotten Subterranean Wreckage"
 	icon_state = "derelict"
 	sound_loop_1 = 'sound/ambience/spooky/Evilreaver_Ambience.ogg'
 	requires_power = FALSE
-
+	is_atmos_simulated = TRUE
 
 ABSTRACT_TYPE(/area/diner)
 /area/diner
 	sound_environment = EAX_HALLWAY
+	is_atmos_simulated = TRUE
 #ifdef UNDERWATER_MAP
 	requires_power = FALSE
 #endif
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
 	sound_loop_1_vol = -1
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 10
+	sound_loop_2_vol = 15
 	sound_group = "diner" //the music's kind of everywhere isn't it
 	sound_group_varied = 1
 	//check shuttles.dm for the diner
@@ -1181,7 +1252,7 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
 	sound_loop_1_vol = 20
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 70
+	sound_loop_2_vol = 65
 	sound_group_varied = 1
 
 /area/diner/hallway/docking
@@ -1191,6 +1262,8 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner/backroom
 	name = "Space Diner Backroom"
 	icon_state = "green"
+	sound_loop_1_vol = 20
+	sound_loop_2_vol = 50
 
 /area/diner/solar
 	name = "Space Diner Solar Control"
@@ -1199,6 +1272,7 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner/motel
 	name = "Space Motel"
 	icon_state = "orange"
+	sound_loop_2_vol = 25
 
 /area/diner/motel/observatory
 	name = "Motel Observatory"
@@ -1215,6 +1289,7 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner/arcade
 	name = "Temporary Gun Range"
 	icon_state = "red"
+	sound_loop_2_vol = 25
 
 /area/tech_outpost
 	name = "Tech Outpost"
@@ -1350,12 +1425,12 @@ ABSTRACT_TYPE(/area/prefab)
 /area/shuttle/sea_elevator/lower
 	name = "Sea Elevator Shaft"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/simulated/floor/plating"
+	filler_turf = "/turf/floor/plating"
 
 /area/shuttle/sea_elevator/upper
 	name = "Sea Elevator Shaft"
 	icon_state = "shuttle"
-	filler_turf = "/turf/simulated/floor/specialroom/sea_elevator_shaft"
+	filler_turf = "/turf/floor/specialroom/sea_elevator_shaft"
 
 /area/dank_trench
 	name = "marijuana trench 2" //this is lowercase on purpose
@@ -1472,8 +1547,7 @@ ABSTRACT_TYPE(/area/sim)
 	skip_sims = 1
 	sims_score = 100
 	sound_group = "vr"
-
-
+	is_construction_allowed = FALSE
 
 /area/sim/area1
 	name = "Vspace area 1"
@@ -1537,11 +1611,14 @@ ABSTRACT_TYPE(/area/sim)
 /// Base station area
 ABSTRACT_TYPE(/area/station)
 /area/station
+	is_atmos_simulated = TRUE
+	is_construction_allowed = TRUE
 	do_not_irradiate = 0
 	sound_fx_1 = 'sound/ambience/station/Station_VocalNoise1.ogg'
 	var/tmp/initial_structure_value = 0
 #ifdef MOVING_SUB_MAP
 	filler_turf = "/turf/space/fluid/manta"
+	no_ants = 0
 
 	New()
 		..()
@@ -2341,8 +2418,8 @@ ABSTRACT_TYPE(/area/station/crew_quarters)
 
 	New()
 		if(src.name == "Kitchen" && prob(1))
-			for(var/turf/simulated/floor/F in src.contents)
-				F = new /turf/simulated/floor/carpet/grime(F)
+			for(var/turf/floor/F in src.contents)
+				F = new /turf/floor/carpet/grime(F)
 			sound_environment = EAX_CARPETED_HALLWAY
 		..()
 
@@ -3415,6 +3492,7 @@ ABSTRACT_TYPE(/area/station/hangar)
 	icon_state = "hydro"
 	mail_tag = "Hydroponics"
 	workplace = 1
+	no_ants = 1
 
 /area/station/hydroponics/bay
   name = "Hydroponics Bay"
@@ -3424,6 +3502,7 @@ ABSTRACT_TYPE(/area/station/hangar)
 	name = "Hydroponics Lobby"
 	icon_state = "green"
 	mail_tag = "Hydroponics Lobby"
+	no_ants = 0
 
 /area/station/ranch
 	name = "Ranch"
@@ -3554,6 +3633,8 @@ ABSTRACT_TYPE(/area/station/catwalk)
 	name = "Research Outpost"
 	icon_state = "blue"
 	do_not_irradiate = 1
+	is_atmos_simulated = TRUE //This is basically station area so
+	is_construction_allowed = TRUE
 
 /area/research_outpost/protest
 	name = "Protest Outpost"
@@ -3823,6 +3904,7 @@ ABSTRACT_TYPE(/area/mining)
 	name = "Mining Outpost"
 	icon_state = "abstract"
 	workplace = 1
+	is_atmos_simulated = TRUE //comment up there what are you on about the mining outpost is alive and well
 
 /area/mining/power
 	name = "Outpost Power Room"
@@ -3888,6 +3970,7 @@ ABSTRACT_TYPE(/area/mining)
 	icon_state = "red"
 	sound_environment = EAX_BATHROOM
 	workplace = 1
+	is_atmos_simulated = TRUE
 
 /area/prefab/tunnelsnake/toilet
 	name = "Toilet"
@@ -3938,6 +4021,7 @@ ABSTRACT_TYPE(/area/mining)
 	name = "Asylum Wards"
 	icon_state = "brig"
 	requires_power = 0
+	is_construction_allowed = FALSE
 
 
 /// Shamecube area, applied on the admin command. Blocks entry.
@@ -3949,6 +4033,7 @@ ABSTRACT_TYPE(/area/mining)
 	mouse_opacity = 1
 	luminosity = 1
 	force_fullbright = 1
+	is_construction_allowed = FALSE
 	CanEnter(var/atom/movable/A)
 		if(ismob(A) && A:client && A:client:player && A:client:player:shamecubed)
 			return 1
@@ -3963,6 +4048,7 @@ ABSTRACT_TYPE(/area/mining)
 	mouse_opacity = 0
 	luminosity = 0
 	force_fullbright = 0
+	is_atmos_simulated = TRUE
 	CanEnter()
 		return 1
 
@@ -3975,6 +4061,7 @@ ABSTRACT_TYPE(/area/mining)
 	power_equip = 0
 	power_light = 0
 	power_environ = 0
+	is_atmos_simulated = TRUE
 
 	proc/SetName(var/name)
 		src.name = name
@@ -4026,9 +4113,9 @@ ABSTRACT_TYPE(/area/mining)
 
 	SPAWN_DBG(1.5 SECONDS)
 		src.power_change()		// all machines set to current power level, also updates lighting icon
-
-	if(area_space_nopower(src))
-		power_equip = power_light = power_environ = 0
+		//now that that's done, do the 687a405 blowout fix
+		if(area_space_nopower(src))
+			power_equip = power_light = power_environ = 0
 
 	if (force_fullbright)
 		overlays += /image/fullbright

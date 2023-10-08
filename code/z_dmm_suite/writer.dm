@@ -353,17 +353,17 @@ dmm_suite/prefab_saving/makeTemplate(turf/model as turf, flags as num)
 		if(istype(model, /turf/space))
 			empty_area = 1
 			turfTemplate += "[/turf/variableTurf/clear],"
-		else if(istype(model, /turf/simulated/wall/asteroid))
+		else if(istype(model, /turf/wall/asteroid))
 			empty_area = 1
 			turfTemplate += "[/turf/variableTurf/wall],"
-		else if(istype(model, /turf/simulated/floor/plating/airless/asteroid))
+		else if(istype(model, /turf/floor/plating/airless/asteroid))
 			empty_area = 1
 			turfTemplate += "[/turf/variableTurf/floor],"
-		else if(src.unsimulate && istype(model, /turf/simulated))
+		else if(src.unsimulate && issimulatedturf(model))
 			var/new_path_str = replacetext("[model.type]", "simulated", "unsimulated")
 			var/new_type = text2path(new_path_str)
 			if(isnull(new_type))
-				new_type = model.density ? /turf/unsimulated/wall : /turf/unsimulated/floor
+				new_type = model.density ? /turf/wall : /turf/floor //ATMOSSIMSTODO - figure out what we need to do to have unsimulate work in the new system (maybe nothing?)
 				turfTemplate += "[new_type][checkAttributes(model, force_vars=unsimulate_reskinning_vars)],"
 			else
 				turfTemplate += "[new_type][checkAttributes(model, force_vars=unsimulate_mild_reskinning_vars)],"

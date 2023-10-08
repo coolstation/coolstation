@@ -43,10 +43,10 @@
 
 	ex_act(severity)
 		switch (severity)
-			if (1.0)
+			if (OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if (2.0)
+			if (OLD_EX_SEVERITY_2)
 				if (prob(50))
 					qdel(src)
 					return
@@ -297,20 +297,20 @@
 
 	ex_act(severity)
 		switch (severity)
-			if (1.0)
+			if (OLD_EX_SEVERITY_1)
 				for (var/atom/movable/A as mob|obj in src)
 					A.set_loc(src.loc)
 					A.ex_act(severity)
 				qdel(src)
 				return
-			if (2.0)
+			if (OLD_EX_SEVERITY_2)
 				if (prob(50))
 					for (var/atom/movable/A as mob|obj in src)
 						A.set_loc(src.loc)
 						A.ex_act(severity)
 					qdel(src)
 					return
-			if (3.0)
+			if (OLD_EX_SEVERITY_3)
 				if (prob(25))
 					for (var/atom/movable/A as mob|obj in src)
 						A.set_loc(src.loc)
@@ -725,7 +725,7 @@
 		if (get_dist(over_object, src) > 1)
 			usr.show_text("The [src.name] is too far away from the target!", "red")
 			return
-		if (!istype(over_object,/turf/simulated/floor/))
+		if (!istype(over_object,/turf/floor/))
 			usr.show_text("You can't set this target as the home location.", "red")
 			return
 

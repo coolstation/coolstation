@@ -182,13 +182,13 @@
 		var/damage = 0
 		var/damage_mult = 1
 		switch(severity)
-			if(1)
+			if(OLD_EX_SEVERITY_1)
 				damage = rand(30,50)
 				damage_mult = 8
-			if(2)
+			if(OLD_EX_SEVERITY_2)
 				damage = rand(25,40)
 				damage_mult = 4
-			if(3)
+			if(OLD_EX_SEVERITY_3)
 				damage = rand(10,20)
 				damage_mult = 2
 				if (prob(5))
@@ -1111,7 +1111,7 @@
 		absorbed_temp += temptemp * 0.25 + 50
 		temptemp *= 0.75
 		temptemp -= 50
-		for (var/turf/simulated/floor/T in range(protect_range,src))
+		for (var/turf/floor/T in range(protect_range,src))
 			var/datum/gas_mixture/air = T.air
 			if (air.temperature > T20C)
 				air.temperature /= 2
@@ -1151,7 +1151,7 @@
 		if (..())
 			return 1
 		var/toxins_consumed = 0
-		for (var/turf/simulated/floor/T in range(protect_range,src))
+		for (var/turf/floor/T in range(protect_range,src))
 			var/datum/gas_mixture/air = T.air
 			if (air.toxins > 0)
 				if (air.temperature > T20C)
@@ -1381,7 +1381,7 @@
 		return 0
 
 	if (!admin_overmind) //admins can spread wherever (within reason)
-		if (istype(src,/turf/unsimulated/) && !istype(src,/turf/unsimulated/floor/shuttle))
+		if (!issimulatedturf(src))
 			if (feedback)
 				boutput(feedback, "<span class='alert'>You can't spread the blob onto that kind of tile.</span>")
 			return 0

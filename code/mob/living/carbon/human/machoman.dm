@@ -350,7 +350,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					M.changeStatus("weakened", 8 SECONDS)
 				SPAWN_DBG(0)
 					shake_camera(M, 4, 16)
-			if (istype(src.loc, /turf/simulated/floor))
+			if (istype(src.loc, /turf/floor) && isconstructionturf(src.loc))
 				src.loc:break_tile()
 			if (H)
 				src.visible_message("<span class='alert'><B>[src] ultra atomic piledrives [H]!!</B></span>")
@@ -485,7 +485,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 						animate_buff_out(T)
 						SPAWN_DBG(1 SECOND)
 							var/floor_type = T.type
-							var/turf/unsimulated/floor/specialroom/gym/macho_arena/new_turf = T.ReplaceWith("/turf/unsimulated/floor/specialroom/gym/macho_arena/new_turf", 1)
+							var/turf/floor/specialroom/gym/macho_arena/new_turf = T.ReplaceWith("/turf/floor/specialroom/gym/macho_arena/new_turf", 1)
 							new_turf.previous_turf_type = floor_type
 							new_turf.alpha = 0
 							arenaropes += new_turf
@@ -530,7 +530,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 				sleep(1.4 SECONDS)
 				macho_arena_turfs = arenaropes
 				/*   // too many issues with canpass and/or lights breaking, maybe sometime in the future?
-				for (var/turf/unsimulated/floor/specialroom/gym/macho_arena/F in arenaropes)
+				for (var/turf/floor/specialroom/gym/macho_arena/F in arenaropes)
 					animate_buff_in(F)
 				*/
 				for (var/obj/decal/boxingrope/F in arenaropes)
@@ -540,7 +540,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 				var/list/arenaropes = macho_arena_turfs
 				macho_arena_turfs = null
 				/*   // too many issues with canpass and/or lights breaking, maybe sometime in the future?
-				for (var/turf/unsimulated/floor/specialroom/gym/macho_arena/F in arenaropes)
+				for (var/turf/floor/specialroom/gym/macho_arena/F in arenaropes)
 					SPAWN_DBG(0)
 						arenaropes -= F
 						animate_buff_out(F)
@@ -1205,7 +1205,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 				src.pixel_y -= 1
 				src.set_dir(turn(src.dir, -90))
 				sleep(0.1 SECONDS)
-			if (istype(src.loc, /turf/simulated/floor))
+			if (istype(src.loc, /turf/floor))
 				src.loc:break_tile()
 			for (var/mob/M in viewers(src, 5))
 				if (M != src)
@@ -1245,7 +1245,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 				..()
 
 /*   // too many issues with canpass and/or lights breaking, maybe sometime in the future?
-/turf/unsimulated/floor/specialroom/gym/macho_arena
+/turf/floor/specialroom/gym/macho_arena
 	var/previous_turf_type
 
 	New(var/loc,var/turf_type)
@@ -1445,7 +1445,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 						step_away(N, user)
 						step_away(N, user)
 					else if (isobj(A) || isturf(A))
-						A.ex_act(3)
+						A.ex_act(OLD_EX_LIGHT)
 		else
 			..()
 
@@ -1588,7 +1588,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					M.changeStatus("weakened", 8 SECONDS)
 				SPAWN_DBG(0)
 					shake_camera(M, 4, 16)
-			if (istype(holder.owner.loc, /turf/simulated/floor))
+			if (istype(holder.owner.loc, /turf/floor) && isconstructionturf(holder.owner.loc))
 				holder.owner.loc:break_tile()
 			if (H)
 				holder.owner.visible_message("<span class='alert'><B>[holder.owner] ultra atomic piledrives [H]!!</B></span>")
@@ -1836,7 +1836,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 						animate_buff_out(T)
 						SPAWN_DBG(1 SECOND)
 							var/floor_type = T.type
-							var/turf/unsimulated/floor/specialroom/gym/macho_arena/new_turf = T.ReplaceWith("/turf/unsimulated/floor/specialroom/gym/macho_arena/new_turf", 1)
+							var/turf/floor/specialroom/gym/macho_arena/new_turf = T.ReplaceWith("/turf/floor/specialroom/gym/macho_arena/new_turf", 1)
 							new_turf.previous_turf_type = floor_type
 							new_turf.alpha = 0
 							arenaropes += new_turf
@@ -1881,7 +1881,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 				sleep(1.4 SECONDS)
 				macho_arena_turfs = arenaropes
 				/*   // too many issues with canpass and/or lights breaking, maybe sometime in the future?
-				for (var/turf/unsimulated/floor/specialroom/gym/macho_arena/F in arenaropes)
+				for (var/turf/floor/specialroom/gym/macho_arena/F in arenaropes)
 					animate_buff_in(F)
 				*/
 				for (var/obj/decal/boxingrope/F in arenaropes)
@@ -1891,7 +1891,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 				var/list/arenaropes = macho_arena_turfs
 				macho_arena_turfs = null
 				/*   // too many issues with canpass and/or lights breaking, maybe sometime in the future?
-				for (var/turf/unsimulated/floor/specialroom/gym/macho_arena/F in arenaropes)
+				for (var/turf/floor/specialroom/gym/macho_arena/F in arenaropes)
 					SPAWN_DBG(0)
 						arenaropes -= F
 						animate_buff_out(F)

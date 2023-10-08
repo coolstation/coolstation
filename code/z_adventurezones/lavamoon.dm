@@ -11,7 +11,7 @@
 //Puzzle elements
 
 //Turfs
-/turf/unsimulated/iomoon/floor
+/turf/floor/setpieces/iomoon/crust
 	name = "silicate crust"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "iocrust"
@@ -20,7 +20,7 @@
 	carbon_dioxide = 20
 	temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST-1
 
-/turf/unsimulated/iomoon/floor/arena
+/turf/floor/setpieces/iomoon/crust/arena
 	name = "silicate crust"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "iocrust"
@@ -30,7 +30,7 @@
 	oxygen = 100
 	temperature = T20C
 
-/turf/unsimulated/iomoon/crustwall
+/turf/wall/setpieces/iomoon/crust
 	name = "silicate crust"
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "iowall1"
@@ -39,11 +39,9 @@
 	carbon_dioxide = 20
 	temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST-1
 
-/turf/unsimulated/iomoon/plating
+/turf/floor/setpieces/iomoon/plating/charred
 	name = "charred plating"
 	desc = "Any protection this plating once had against the extreme heat appears to have given way."
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "plating"
 	opacity = 0
 	density = 0
 
@@ -55,7 +53,14 @@
 		if (prob(33))
 			src.icon_state = "panelscorched"
 
-/turf/unsimulated/iomoon/ancient_floor
+/turf/floor/setpieces/iomoon/plating
+	name = "warm plating"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "plating"
+	carbon_dioxide = 16
+	temperature = 313.15
+
+/turf/floor/setpieces/iomoon/ancient
 	name = "Ancient Metal Floor"
 	desc = "The floor here is cold and dark.  Far colder than it has any right to be down here."
 	icon = 'icons/misc/worlds.dmi'
@@ -66,7 +71,7 @@
 
 	temperature = 10+T0C
 
-/turf/unsimulated/iomoon/ancient_wall
+/turf/wall/setpieces/iomoon/ancient
 	name = "strange wall"
 	desc = "It is dark, glassy and foreboding."
 	icon = 'icons/misc/worlds.dmi'
@@ -87,10 +92,11 @@ var/sound/iomoon_alarm_sound = null
 /area/iomoon
 	name = "Lava Moon Surface"
 	icon_state = "red"
-	filler_turf = "/turf/unsimulated/floor/lava"
+	filler_turf = "/turf/floor/lava"
 	requires_power = 0
 	force_fullbright = 0
 	ambient_light = rgb(0.45 * 255, 0.2 * 255, 0.1 * 255)
+	is_construction_allowed = FALSE
 
 	sound_group = "iomoon"
 
@@ -190,7 +196,7 @@ var/sound/iomoon_alarm_sound = null
 /area/iomoon/base
 	name = "Power Plant"
 	icon_state = "yellow"
-	filler_turf = "/turf/unsimulated/iomoon/floor"
+	filler_turf = "/turf/floor/setpieces/iomoon/crust"
 	requires_power = 1
 	force_fullbright = 0
 	ambient_light = rgb(0.3 * 255, 0.3 * 255, 0.3 * 255)
@@ -214,7 +220,7 @@ var/sound/iomoon_alarm_sound = null
 
 /area/iomoon/caves
 	name = "Magma Cavern"
-	filler_turf = "/turf/unsimulated/floor/lava"
+	filler_turf = "/turf/floor/lava"
 	requires_power = 1
 	force_fullbright = 0
 	luminosity = 0
@@ -228,7 +234,7 @@ var/sound/iomoon_alarm_sound = null
 /area/iomoon/robot_ruins
 	name = "Strange Ruins"
 	icon_state = "purple"
-	filler_turf = "/turf/unsimulated/iomoon/ancient_floor"
+	filler_turf = "/turf/floor/setpieces/iomoon/ancient"
 	requires_power = 1
 	force_fullbright = 0
 	luminosity = 0
@@ -962,7 +968,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 					src.visible_message("<span class='alert'>[src] produces a terrifying vibration!</span>")
 					for(var/atom/A in orange(3, src))
 						if(!(ismob(A) || iscritter(A))) //only target inanimate objects mostly
-							A.ex_act(1)
+							A.ex_act(OLD_EX_TOTAL)
 				sleep(1 SECOND)
 				if (health <= 0)
 					set_dir(2)

@@ -12,7 +12,8 @@
 	initial_volume = 30
 	var/image/fluid_image
 	var/bottle_style = null
-	rc_flags = RC_FULLNESS | RC_VISIBLE | RC_SPECTRO
+	inventory_counter_enabled = TRUE
+	rc_flags = RC_FULLNESS | RC_VISIBLE | RC_SPECTRO | RC_INV_COUNT_AMT
 	amount_per_transfer_from_this = 10
 	flags = FPRINT | TABLEPASS | OPENCONTAINER | SUPPRESSATTACK
 
@@ -22,6 +23,7 @@
 		..()
 
 	on_reagent_change()
+		..()
 		if (!(src.icon_state in list("bottle1", "bottle2", "bottle3", "bottle4")))
 			return
 		src.underlays = null

@@ -4,7 +4,7 @@
 /area/space)
 "ab" = (
 /turf/space,
-/turf/unsimulated/wall{
+/turf/wall{
 	tag = "icon-diagonalWall (WEST)";
 	icon = 'shuttle.dmi';
 	icon_state = "diagonalWall";
@@ -12,14 +12,14 @@
 	},
 /area/h7/space_hive)
 "ac" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'shuttle.dmi';
 	icon_state = "wall1"
 	},
 /area/h7/space_hive)
 "ad" = (
 /turf/space,
-/turf/unsimulated/wall{
+/turf/wall{
 	tag = "icon-diagonalWall (NORTH)";
 	icon = 'shuttle.dmi';
 	icon_state = "diagonalWall";
@@ -30,7 +30,7 @@
 /obj/decal/fakeobjects/shuttleengine{
 	dir = 4
 	},
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'shuttle.dmi';
 	icon_state = "wall1"
 	},
@@ -58,7 +58,7 @@
 /turf/space,
 /area/space)
 "ai" = (
-/turf/unsimulated/wall/setpieces/hive,
+/turf/wall/setpieces/hive,
 /area/h7/space_hive)
 "aj" = (
 /obj/lattice,
@@ -73,7 +73,7 @@
 /turf/space,
 /area/space)
 "al" = (
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "am" = (
 /obj/lattice{
@@ -85,7 +85,7 @@
 /area/space)
 "an" = (
 /turf/space,
-/turf/unsimulated/wall{
+/turf/wall{
 	tag = "icon-diagonalWall (SOUTHEAST)";
 	icon = 'shuttle.dmi';
 	icon_state = "diagonalWall";
@@ -94,7 +94,7 @@
 /area/h7/space_hive)
 "ao" = (
 /obj/item,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "ap" = (
 /obj/lattice{
@@ -106,7 +106,7 @@
 /area/space)
 "aq" = (
 /obj/item/reagent_containers/food/snacks/ingredient/honey,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "ar" = (
 /obj/lattice{
@@ -115,14 +115,14 @@
 /turf/space,
 /area/space)
 "as" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'shuttle.dmi';
 	icon_state = "wall3"
 	},
 /area/h7/space_hive)
 "at" = (
 /turf/space,
-/turf/unsimulated/wall{
+/turf/wall{
 	tag = "icon-diagonalWall (SOUTHWEST)";
 	icon = 'shuttle.dmi';
 	icon_state = "diagonalWall";
@@ -131,7 +131,7 @@
 /area/h7/space_hive)
 "au" = (
 /turf/space,
-/turf/unsimulated/wall{
+/turf/wall{
 	tag = "icon-diagonalWall (NORTHWEST)";
 	icon = 'shuttle.dmi';
 	icon_state = "diagonalWall";
@@ -140,18 +140,18 @@
 /area/h7/space_hive)
 "av" = (
 /obj/machinery/door/unpowered/shuttle,
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/h7/space_hive)
 "aw" = (
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/h7/space_hive)
 "ax" = (
-/turf/unsimulated/floor/caution/east{
+/turf/floor/caution/east{
 	dir = 1
 	},
 /area/h7/space_hive)
 "ay" = (
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/h7/space_hive)
 "az" = (
 /obj/stool/chair/couch{
@@ -159,12 +159,12 @@
 	icon_state = "chair_couch-brown";
 	dir = 8
 	},
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "aA" = (
 /obj/stool/chair/couch,
 /obj/critter/domestic_bee,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "aB" = (
 /obj/stool/chair/couch{
@@ -172,7 +172,7 @@
 	icon_state = "chair_couch-brown";
 	dir = 4
 	},
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "aC" = (
 /obj/decal/fakeobjects{
@@ -182,7 +182,7 @@
 	icon_state = "conduit";
 	name = "power conduit"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "aD" = (
 /obj/stool/chair/couch{
@@ -191,7 +191,7 @@
 	name = "ratty blue couch";
 	tag = "icon-chair_couch-brown (WEST)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "aE" = (
 /obj/stool/chair/couch{
@@ -200,7 +200,7 @@
 	icon_state = "chair_couch-blue";
 	dir = 2
 	},
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/h7/space_hive)
 "aF" = (
 /obj/stool/chair/couch{
@@ -209,7 +209,7 @@
 	name = "ratty blue couch";
 	tag = "icon-chair_couch-brown (EAST)"
 	},
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "aG" = (
 /obj/grille/steel{
@@ -217,23 +217,23 @@
 	icon_state = "brokengrille";
 	tag = "icon-brokengrille"
 	},
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "aH" = (
 /obj/table/woodentable{
 	dir = 4
 	},
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "aI" = (
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "aJ" = (
 /obj/table/woodentable{
 	desc = "A 100% really olde table, or so claims the sticker on the underside.";
 	name = "ye olde table"
 	},
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "aK" = (
 /obj/table/woodentable{
@@ -241,7 +241,7 @@
 	icon_state = "woodentable";
 	dir = 6
 	},
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "aL" = (
 /obj/decal/fakeobjects/firelock_broken{
@@ -250,7 +250,7 @@
 	icon_state = "door0";
 	name = "rusted hatch"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/h7/space_hive)
 "aM" = (
 /obj/machinery/computer/security/wooden_tv{
@@ -258,7 +258,7 @@
 	name = "Television";
 	network = "Zeta"
 	},
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "aN" = (
 /obj/decal/fakeobjects{
@@ -271,7 +271,7 @@
 	name = "power conduit";
 	tag = "icon-conduit (SOUTHWEST)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "aO" = (
 /obj/decal/fakeobjects{
@@ -293,7 +293,7 @@
 	name = "power conduit";
 	tag = "icon-conduit (EAST)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "aP" = (
 /obj/decal/fakeobjects{
@@ -305,22 +305,22 @@
 	name = "power conduit";
 	tag = "icon-conduit (SOUTHEAST)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "aQ" = (
 /obj/structure/girder,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "aR" = (
 /obj/critter/domestic_bee/buddy,
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/h7/space_hive)
 "aS" = (
 /obj/machinery/light{
 	dir = 1;
 	name = "light fixture"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/h7/space_hive)
 "aT" = (
 /obj/table{
@@ -328,7 +328,7 @@
 	icon_state = "tabledir";
 	dir = 8
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/h7/space_hive)
 "aU" = (
 /obj/decal/fakeobjects{
@@ -339,26 +339,26 @@
 	icon_state = "intact";
 	name = "defunct vent"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "aV" = (
 /obj/machinery/light/small,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "aW" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'shuttle.dmi';
 	icon_state = "door1";
 	name = "broken door"
 	},
 /area/h7/space_hive)
 "aX" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 9
 	},
 /area/h7/space_hive)
 "aY" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 1
 	},
 /area/h7/space_hive)
@@ -368,7 +368,7 @@
 	dir = 10
 	},
 /obj/item/plate,
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 5
 	},
 /area/h7/space_hive)
@@ -377,29 +377,29 @@
 	icon_state = "tabledir";
 	dir = 2
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/h7/space_hive)
 "bb" = (
 /obj/item/scrap,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "bc" = (
 /obj/critter/domestic_bee,
-/turf/unsimulated/floor/caution/north,
+/turf/floor/caution/north,
 /area/h7/space_hive)
 "bd" = (
-/turf/unsimulated/floor/caution/north,
+/turf/floor/caution/north,
 /area/h7/space_hive)
 "be" = (
 /obj/item/plant/herb/cannabis/spawnable,
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/h7/space_hive)
 "bf" = (
 /obj/item/plate,
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/h7/space_hive)
 "bg" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 8
 	},
 /area/h7/space_hive)
@@ -412,22 +412,22 @@
 	icon_state = "pod_0";
 	name = "egg generator pod"
 	},
-/turf/unsimulated/floor/bot,
+/turf/floor/bot,
 /area/h7/space_hive)
 "bi" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floor"
 	},
 /area/h7/space_hive)
 "bj" = (
-/turf/unsimulated/floor/grime{
+/turf/floor/grime{
 	carbon_dioxide = 16;
 	name = "warm floor";
 	temperature = 313.15
 	},
 /area/h7/space_hive)
 "bk" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 4
 	},
 /area/h7/space_hive)
@@ -439,7 +439,7 @@
 /obj/window{
 	dir = 4
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "bm" = (
 /obj/table{
@@ -453,7 +453,7 @@
 	icon_state = "old0";
 	name = "broken computer"
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/h7/space_hive)
 "bn" = (
 /obj/decal/fakeobjects/pipe{
@@ -464,11 +464,11 @@
 	dir = 4;
 	pixel_y = 6
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "bo" = (
 /obj/stool/bed,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floor"
 	},
 /area/h7/space_hive)
@@ -478,7 +478,7 @@
 	icon_state = "bulb1";
 	dir = 8
 	},
-/turf/unsimulated/wall/setpieces/hive,
+/turf/wall/setpieces/hive,
 /area/h7/space_hive)
 "bq" = (
 /obj/lattice{
@@ -490,7 +490,7 @@
 /area/space)
 "br" = (
 /obj/critter/domestic_bee,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "bs" = (
 /obj/decal/fakeobjects/lighttube_broken{
@@ -498,14 +498,14 @@
 	icon_state = "tube-broken";
 	dir = 8
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/h7/space_hive)
 "bt" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 4
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/h7/space_hive)
 "bu" = (
 /obj/stool/chair/office{
@@ -518,7 +518,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/h7/space_hive)
 "bv" = (
 /obj/grille/steel{
@@ -531,7 +531,7 @@
 	dir = 8;
 	reinf = 1
 	},
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/h7/space_hive)
 "bw" = (
 /obj/grille/steel,
@@ -541,7 +541,7 @@
 	dir = 2;
 	reinf = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "bx" = (
 /obj/grille/steel,
@@ -561,11 +561,11 @@
 	dir = 2;
 	reinf = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "by" = (
 /obj/critter/domestic_bee/mutant,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floor"
 	},
 /area/h7/space_hive)
@@ -580,7 +580,7 @@
 	icon_state = "bulb1";
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floor"
 	},
 /area/h7/space_hive)
@@ -590,19 +590,19 @@
 	icon_state = "bulb1";
 	dir = 4
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "bB" = (
 /obj/grille/steel,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "bC" = (
 /obj/structure/girder/displaced,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "bD" = (
 /obj/item/rods,
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/h7/space_hive)
 "bE" = (
 /obj/machinery/light{
@@ -610,7 +610,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/h7/space_hive)
 "bF" = (
 /obj/table{
@@ -623,15 +623,15 @@
 	icon_state = "tube-broken";
 	dir = 8
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/h7/space_hive)
 "bG" = (
 /obj/item/raw_material/shard/glass,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "bH" = (
 /obj/item/plant/herb/cannabis/spawnable,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "floor"
 	},
 /area/h7/space_hive)
@@ -649,7 +649,7 @@
 	dir = 4;
 	pixel_y = 6
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "bJ" = (
 /obj/decal/fakeobjects/pipe{
@@ -667,18 +667,18 @@
 	icon_state = "valve";
 	name = "rusted valve"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "bK" = (
 /obj/submachine/chef_oven,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "bL" = (
 /obj/critter/domestic_bee{
 	desc = "Please do not think too hard about the circumstances that would result in a bee chef.";
 	icon_state = "chefbee"
 	},
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "bM" = (
 /obj/table{
@@ -687,34 +687,34 @@
 	dir = 8
 	},
 /obj/item/reagent_containers/food/snacks/ingredient/honey,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "bN" = (
 /turf/space,
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'shuttle.dmi';
 	icon_state = "diagonalWall"
 	},
 /area/space)
 "bO" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 2
 	},
 /area/h7/space_hive)
 "bP" = (
-/turf/unsimulated/floor/white/side{
+/turf/floor/white/side{
 	dir = 6
 	},
 /area/h7/space_hive)
 "bQ" = (
-/turf/unsimulated/floor/caution/south{
+/turf/floor/caution/south{
 	dir = 1
 	},
 /area/h7/space_hive)
 "bR" = (
 /obj/submachine/chef_sink,
 /obj/item/kitchen/utensil/spoon,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "bS" = (
 /obj/table{
@@ -722,17 +722,17 @@
 	dir = 10
 	},
 /obj/item/kitchen/utensil/knife,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "bT" = (
 /obj/machinery/door/unpowered/shuttle,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "bU" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "bV" = (
 /obj/decal/fakeobjects/pipe{
@@ -746,7 +746,7 @@
 	pixel_x = -9;
 	tag = "icon-intact (NORTH)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "bW" = (
 /obj/decal/fakeobjects/pipe{
@@ -757,19 +757,19 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "bX" = (
 /obj/item/wirecutters,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "bY" = (
 /obj/structure/girder/reinforced,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "ca" = (
 /obj/item/scrap,
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/h7/space_hive)
 "cb" = (
 /obj/decal/fakeobjects/pipe{
@@ -785,18 +785,18 @@
 	icon_state = "valve";
 	name = "rusted valve"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "cc" = (
 /obj/critter/domestic_bee,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "cd" = (
 /obj/machinery/deep_fryer,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "ce" = (
-/turf/unsimulated/floor/arctic,
+/turf/floor/arctic,
 /area/h7/space_hive)
 "cf" = (
 /obj/decal/fakeobjects/pipe,
@@ -806,7 +806,7 @@
 	pixel_x = -9;
 	tag = "icon-intact (NORTH)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "cg" = (
 /obj/lattice{
@@ -831,7 +831,7 @@
 	icon_state = "door0";
 	name = "rusted hatch"
 	},
-/turf/unsimulated/floor/arctic,
+/turf/floor/arctic,
 /area/h7/space_hive)
 "cj" = (
 /obj/decal/fakeobjects/pipe{
@@ -839,7 +839,7 @@
 	icon_state = "intact";
 	dir = 6
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "ck" = (
 /obj/lattice{
@@ -853,7 +853,7 @@
 /obj/item/clothing/suit/bedsheet{
 	icon_state = "bedsheet-pink"
 	},
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "cm" = (
 /obj/decal/fakeobjects{
@@ -864,7 +864,7 @@
 	name = "power conduit"
 	},
 /obj/machinery/light/small,
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/h7/space_hive)
 "cn" = (
 /obj/decal/fakeobjects/firelock_broken{
@@ -873,18 +873,18 @@
 	icon_state = "door0";
 	name = "rusted hatch"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/h7/space_hive)
 "co" = (
 /obj/item/rods,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "cp" = (
 /obj/item/clothing/suit/bedsheet{
 	tag = "icon-bedsheet-yellow";
 	icon_state = "bedsheet-yellow"
 	},
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "cq" = (
 /obj/item/clothing/suit/bedsheet{
@@ -892,7 +892,7 @@
 	icon_state = "bedsheet-yellow"
 	},
 /obj/critter/domestic_bee,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "cr" = (
 /obj/lattice{
@@ -907,12 +907,12 @@
 	tag = "icon-bedsheet-red";
 	icon_state = "bedsheet-red"
 	},
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "ct" = (
 /obj/item/clothing/suit/labcoat/genetics,
 /obj/item/clothing/shoes/white,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "cu" = (
 /obj/item/reagent_containers/food/snacks/ingredient/honey{
@@ -931,52 +931,52 @@
 	desc = "An offering?  A memorial?";
 	name = "old honey"
 	},
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "cv" = (
 /obj/item/clothing/suit/bedsheet{
 	icon_state = "bedsheet-blue"
 	},
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "cw" = (
 /obj/tombstone{
 	desc = "It looks to be made out of beeswax. There's a little stick figure scientist on it. Huhh";
 	icon_state = "tombstone-bee"
 	},
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "cx" = (
 /obj/item/reagent_containers/food/snacks/ingredient/honey{
 	desc = "An offering?  A memorial?";
 	name = "old honey"
 	},
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "cy" = (
 /obj/item/clothing/suit/labcoat/genetics,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "cz" = (
 /obj/item/clothing/suit/bedsheet,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "cA" = (
 /obj/item/clothing/suit/bedsheet{
 	icon_state = "bedsheet-pink"
 	},
 /obj/critter/domestic_bee,
-/turf/unsimulated/floor/setpieces/hivefloor,
+/turf/floor/setpieces/hivefloor,
 /area/h7/space_hive)
 "cB" = (
 /turf/space,
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'shuttle.dmi';
 	icon_state = "diagonalWall"
 	},
 /area/h7/space_hive)
 "cC" = (
-/turf/unsimulated/wall,
+/turf/wall,
 /area/space)
 "cD" = (
 /obj/decal/fakeobjects/shuttleengine{
@@ -984,13 +984,13 @@
 	dir = 4;
 	name = "sensor array"
 	},
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 8;
 	icon_state = "wall3_space"
 	},
 /area/space)
 "cE" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3"
 	},
 /area/space)
@@ -1009,19 +1009,19 @@
 	density = 1;
 	anchored = 1
 	},
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 4;
 	icon_state = "wall3_space"
 	},
 /area/space)
 "cG" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 8;
 	icon_state = "wall3_space"
 	},
 /area/space)
 "cH" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 1;
 	icon_state = "wall3_space"
 	},
@@ -1032,7 +1032,7 @@
 	dir = 2;
 	name = "sensor array"
 	},
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 8;
 	icon_state = "wall3_space"
 	},
@@ -1047,7 +1047,7 @@
 	density = 1;
 	anchored = 1
 	},
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 4;
 	icon_state = "wall3_space"
 	},
@@ -1063,7 +1063,7 @@
 	icon_state = "lattice-dir";
 	dir = 9
 	},
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3_space"
 	},
 /area/space)
@@ -1073,7 +1073,7 @@
 	icon_state = "lattice-dir";
 	dir = 4
 	},
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3"
 	},
 /area/space)
@@ -1083,7 +1083,7 @@
 	icon_state = "lattice-dir";
 	dir = 8
 	},
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3"
 	},
 /area/space)
@@ -1103,7 +1103,7 @@
 /turf/space,
 /area/space)
 "cP" = (
-/turf/simulated/floor/airless/circuit,
+/turf/floor/airless/circuit,
 /area/space)
 "cQ" = (
 /obj/lattice{
@@ -1145,7 +1145,7 @@
 	icon_state = "lattice-dir";
 	dir = 6
 	},
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3"
 	},
 /area/space)
@@ -1167,7 +1167,7 @@
 	icon_state = "lattice-dir";
 	dir = 1
 	},
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3"
 	},
 /area/space)
@@ -1180,7 +1180,7 @@
 /area/space)
 "cW" = (
 /obj/ydrone_panel,
-/turf/simulated/floor/airless/circuit,
+/turf/floor/airless/circuit,
 /area/space)
 "cX" = (
 /obj/lattice{
@@ -1217,12 +1217,12 @@
 /turf/space,
 /area/space)
 "cZ" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3_space"
 	},
 /area/space)
 "da" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 4;
 	icon_state = "wall3_space"
 	},
@@ -1233,7 +1233,7 @@
 	icon_state = "lattice-dir";
 	dir = 10
 	},
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3"
 	},
 /area/space)
@@ -1243,7 +1243,7 @@
 	icon_state = "lattice-dir";
 	dir = 5
 	},
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 1;
 	icon_state = "wall3_space"
 	},
@@ -1258,7 +1258,7 @@
 	density = 1;
 	anchored = 1
 	},
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 8;
 	icon_state = "wall3_space"
 	},
@@ -1269,7 +1269,7 @@
 	dir = 1;
 	name = "sensor array"
 	},
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 4;
 	icon_state = "wall3_space"
 	},
@@ -1289,7 +1289,7 @@
 	density = 1;
 	anchored = 1
 	},
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 8;
 	icon_state = "wall3_space"
 	},
@@ -1300,13 +1300,13 @@
 	dir = 8;
 	name = "sensor array"
 	},
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 4;
 	icon_state = "wall3_space"
 	},
 /area/space)
 "dh" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/fullscreen.dmi';
 	icon_state = "title";
 	layer = 20;
@@ -1314,25 +1314,25 @@
 	},
 /area/space)
 "di" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/station/science/artifact)
 "dj" = (
-/turf/simulated/floor/orangeblack,
+/turf/floor/orangeblack,
 /area/station/science/artifact)
 "dk" = (
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/science/artifact)
 "dl" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/science/artifact)
 "dm" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 4
 	},
 /area/station/science/artifact)
@@ -1340,29 +1340,29 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 8
 	},
 /area/station/science/artifact)
 "do" = (
-/turf/simulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 4
 	},
 /area/station/science/artifact)
 "dp" = (
-/turf/simulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 8
 	},
 /area/station/science/artifact)
 "dq" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 4
 	},
 /area/station/science/artifact)
 "dr" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 8
 	},
 /area/station/science/artifact)
@@ -1371,41 +1371,41 @@
 	name = "S light switch";
 	pixel_y = -24
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/science/artifact)
 "dt" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/science/artifact)
 "du" = (
 /obj/machinery/door/airlock,
-/turf/simulated/floor,
+/turf/floor,
 /area/station/science/artifact)
 "dv" = (
 /turf/space,
 /area/shuttle/escape/station)
 "dw" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/solarium)
 "dx" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetNW"
 	},
 /area/solarium)
 "dy" = (
 /obj/machinery/chem_dispenser,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/solarium)
 "dz" = (
 /obj/machinery/chem_heater,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/solarium)
 "dA" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/solarium)
@@ -1414,7 +1414,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/solarium)
@@ -1423,12 +1423,12 @@
 /obj/stocking{
 	pixel_y = 28
 	},
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/solarium)
 "dD" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetNE"
 	},
 /area/solarium)
@@ -1439,7 +1439,7 @@
 	d2 = 4
 	},
 /obj/machinery/communications_dish,
-/turf/simulated/floor/plating/airless,
+/turf/floor/plating/airless,
 /area/shuttle/escape/station)
 "dF" = (
 /obj/cable{
@@ -1447,7 +1447,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/simulated/wall,
+/turf/wall,
 /area/solarium)
 "dG" = (
 /obj/machinery/power/data_terminal,
@@ -1461,25 +1461,25 @@
 	},
 /obj/machinery/computer3/generic/communications,
 /obj/item/disk/data/floppy/devkit,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetNW"
 	},
 /area/solarium)
 "dH" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/solarium)
 "dI" = (
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "dJ" = (
 /obj/item/reagent_containers/food/snacks/plant/banana,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "dK" = (
 /obj/item/paper,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "dL" = (
 /obj/machinery/power/terminal{
@@ -1491,13 +1491,13 @@
 	tag = "icon-0-2";
 	icon_state = "0-2"
 	},
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/solarium)
 "dM" = (
 /obj/machinery/power/smes/magical,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetNE"
 	},
 /area/solarium)
@@ -1508,7 +1508,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/networked/radio,
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/solarium)
 "dO" = (
 /obj/machinery/power/data_terminal,
@@ -1517,7 +1517,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/networked/printer,
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/solarium)
 "dP" = (
 /obj/machinery/power/data_terminal,
@@ -1526,7 +1526,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/networked/nuclear_charge,
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/solarium)
 "dQ" = (
 /obj/cable{
@@ -1535,7 +1535,7 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/networked/test_apparatus/pitching_machine,
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/solarium)
 "dR" = (
 /obj/cable{
@@ -1544,7 +1544,7 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/networked/test_apparatus/heater,
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/solarium)
 "dS" = (
 /obj/cable{
@@ -1553,14 +1553,14 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/networked/test_apparatus/electrobox,
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/solarium)
 "dT" = (
 /obj/item/luggable_computer,
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/solarium)
 "dU" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/station/science/lobby)
 "dV" = (
 /obj/cable{
@@ -1573,7 +1573,7 @@
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetW"
 	},
 /area/solarium)
@@ -1583,7 +1583,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "dX" = (
 /obj/cable{
@@ -1592,7 +1592,7 @@
 	d2 = 8
 	},
 /obj/machinery/computerx,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "dY" = (
 /obj/cable{
@@ -1604,7 +1604,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "dZ" = (
 /obj/cable{
@@ -1621,7 +1621,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetE"
 	},
 /area/solarium)
@@ -1640,7 +1640,7 @@
 	name = "Control Room";
 	req_access_txt = "0"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "eb" = (
 /obj/cable{
@@ -1648,7 +1648,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "ec" = (
 /obj/cable{
@@ -1660,27 +1660,27 @@
 	d1 = 2;
 	d2 = 8
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "ed" = (
 /obj/cable{
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "ee" = (
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/solarium)
 "ef" = (
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/station/science/lobby)
 "eg" = (
 /obj/machinery/power/data_terminal,
 /obj/cable,
 /obj/table,
 /obj/machinery/computer3/generic/personal/gui_test,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetW"
 	},
 /area/solarium)
@@ -1691,31 +1691,31 @@
 /obj/item/device/flash/turbo,
 /obj/item/device/flash/turbo,
 /obj/item/device/flash/turbo,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "ei" = (
 /obj/machinery/clone_scanner,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "ej" = (
 /obj/machinery/computer/cloning,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "ek" = (
 /obj/machinery/clonepod,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "el" = (
 /obj/machinery/clonegrinder,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "em" = (
 /obj/machinery/atmospherics/pipe/vent,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "en" = (
 /obj/item/paper/book/from_file/monster_manual,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetE"
 	},
 /area/solarium)
@@ -1733,7 +1733,7 @@
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "ep" = (
 /obj/cable{
@@ -1744,7 +1744,7 @@
 	tag = "icon-4-8";
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "eq" = (
 /obj/cable{
@@ -1756,7 +1756,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "er" = (
 /obj/cable{
@@ -1768,14 +1768,14 @@
 	d1 = 2;
 	d2 = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "es" = (
 /obj/cable{
 	tag = "icon-4-8";
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "et" = (
 /obj/machinery/door/firedoor/border_only{
@@ -1788,46 +1788,46 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/command,
-/turf/simulated/floor,
+/turf/floor,
 /area/station/science/lobby)
 "eu" = (
 /obj/cable{
 	tag = "icon-4-8";
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/science/lobby)
 "ev" = (
 /obj/cable{
 	tag = "icon-2-8";
 	icon_state = "2-8"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/science/lobby)
 "ew" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetW"
 	},
 /area/solarium)
 "ex" = (
 /obj/item/extinguisher,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "ey" = (
 /obj/landmark{
 	name = "JoinLate"
 	},
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "ez" = (
 /obj/machinery/atmospherics/pipe/simple{
 	icon_state = "intact";
 	level = 2
 	},
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "eA" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetE"
 	},
 /area/solarium)
@@ -1848,7 +1848,7 @@
 	icon_state = "rwindow";
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/solarium)
 "eC" = (
 /obj/machinery/power/data_terminal,
@@ -1856,7 +1856,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/solarium)
 "eD" = (
 /obj/cable{
@@ -1867,10 +1867,10 @@
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "eE" = (
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "eF" = (
 /obj/cable,
@@ -1882,7 +1882,7 @@
 /obj/machinery/computer3/terminal/zeta{
 	setup_os_string = "ZETA_MAINFRAME"
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/solarium)
 "eG" = (
 /obj/machinery/light{
@@ -1890,14 +1890,14 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/solarium)
 "eH" = (
 /obj/cable{
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/science/lobby)
 "eI" = (
 /obj/machinery/light/small{
@@ -1906,31 +1906,31 @@
 	dir = 8
 	},
 /obj/secure_closet/engineering_elect,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetW"
 	},
 /area/solarium)
 "eJ" = (
 /obj/item/device/flash,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "eK" = (
 /obj/item/reagent_containers/glass/vial,
 /obj/item/reagent_containers/glass/vial,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "eL" = (
 /obj/landmark{
 	name = "Observer-Start"
 	},
 /obj/item/broken_rcd,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "eM" = (
 /obj/machinery/optable,
 /obj/item/circular_saw,
 /obj/item/scalpel,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetE"
 	},
 /area/solarium)
@@ -1946,11 +1946,11 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/solarium)
 "eO" = (
 /obj/item/storage/toolbox/electrical,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/solarium)
 "eP" = (
 /obj/item/card/id/syndicate,
@@ -1959,7 +1959,7 @@
 	icon_state = "0-2";
 	d2 = 2
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "eQ" = (
 /obj/grille/steel,
@@ -1979,11 +1979,11 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/science/lobby)
 "eR" = (
 /obj/item/disk/data/memcard,
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/station/science/lobby)
 "eS" = (
 /obj/machinery/power/data_terminal,
@@ -1995,7 +1995,7 @@
 /obj/machinery/networked/mainframe/zeta{
 	tag = "ZETA_MAINFRAME"
 	},
-/turf/simulated/floor/delivery,
+/turf/floor/delivery,
 /area/station/science/lobby)
 "eT" = (
 /obj/machinery/light{
@@ -2003,11 +2003,11 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/station/science/lobby)
 "eU" = (
 /obj/item/reagent_containers/food/snacks/ingredient/egg/bee,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "eV" = (
 /obj/item/disk/data/cartridge/diagnostics,
@@ -2016,7 +2016,7 @@
 	icon_state = "intact";
 	dir = 1
 	},
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "eW" = (
 /obj/grille/steel,
@@ -2031,7 +2031,7 @@
 	dir = 8
 	},
 /obj/window/reinforced,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/solarium)
 "eX" = (
 /obj/machinery/power/data_terminal,
@@ -2040,7 +2040,7 @@
 	d2 = 4
 	},
 /obj/item/device/net_sniffer,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/solarium)
 "eY" = (
 /obj/cable{
@@ -2052,11 +2052,11 @@
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "eZ" = (
 /obj/item/storage/toolbox/mechanical,
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "fa" = (
 /obj/item/card/id{
@@ -2064,17 +2064,17 @@
 	name = "Test Card";
 	registered = "Seth Butte"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "fb" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Airlock"
 	},
-/turf/simulated/floor/caution/north,
+/turf/floor/caution/north,
 /area/solarium)
 "fc" = (
 /obj/machinery/vending/electronics,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetW"
 	},
 /area/solarium)
@@ -2083,23 +2083,23 @@
 /obj/item/reagent_containers/syringe,
 /obj/item/cable_coil,
 /obj/item/reagent_containers/food/snacks/ingredient/egg/bee,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "fe" = (
 /obj/item/device/light/zippo,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "ff" = (
 /obj/machinery/plantpot,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "fg" = (
 /obj/item/gun/kinetic/spes,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "fh" = (
 /obj/critter/domestic_bee,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "fi" = (
 /obj/machinery/light/small{
@@ -2107,7 +2107,7 @@
 	icon_state = "bulb1";
 	dir = 4
 	},
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetE"
 	},
 /area/solarium)
@@ -2126,7 +2126,7 @@
 	icon_state = "1-2"
 	},
 /obj/item/disk/data/tape/test,
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "fk" = (
 /obj/cable{
@@ -2137,7 +2137,7 @@
 	tag = "icon-4-8";
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "fl" = (
 /obj/cable{
@@ -2149,7 +2149,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "fm" = (
 /obj/cable{
@@ -2161,7 +2161,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "fn" = (
 /obj/cable{
@@ -2172,7 +2172,7 @@
 	tag = "icon-2-4";
 	icon_state = "2-4"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "fo" = (
 /obj/cable{
@@ -2184,7 +2184,7 @@
 	d1 = 2;
 	d2 = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/science/lobby)
 "fp" = (
 /obj/cable{
@@ -2195,37 +2195,37 @@
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/science/lobby)
 "fq" = (
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/solarium)
 "fr" = (
 /obj/reagent_dispensers/foamtank,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetW"
 	},
 /area/solarium)
 "fs" = (
 /obj/item/cable_coil,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "ft" = (
 /obj/item/reagent_containers/glass/beaker,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "fu" = (
 /obj/item/device/radio/beacon,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "fv" = (
 /obj/item/reagent_containers/glass/beaker,
 /obj/item/ammo/bullets/a12,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "fw" = (
 /obj/machinery/sleeper,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetE"
 	},
 /area/solarium)
@@ -2241,7 +2241,7 @@
 	read_only = 1;
 	setup_drive_type = /obj/item/disk/data/tape/boot2
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/solarium)
 "fy" = (
 /obj/cable{
@@ -2253,7 +2253,7 @@
 	tag = "icon-1-8";
 	icon_state = "1-8"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "fz" = (
 /obj/cable{
@@ -2261,7 +2261,7 @@
 	icon_state = "1-2"
 	},
 /obj/item/screwdriver,
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "fA" = (
 /obj/cable,
@@ -2271,7 +2271,7 @@
 	name = "S Test APC";
 	pixel_y = -24
 	},
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/solarium)
 "fB" = (
 /obj/cable{
@@ -2279,7 +2279,7 @@
 	d1 = 1;
 	d2 = 2
 	},
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/station/science/lobby)
 "fC" = (
 /obj/machinery/power/apc{
@@ -2289,7 +2289,7 @@
 	pixel_y = -24
 	},
 /obj/cable,
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/station/science/lobby)
 "fD" = (
 /obj/item/paint_can/random,
@@ -2297,26 +2297,26 @@
 /obj/item/paint_can/random,
 /obj/item/paint_can/random,
 /obj/item/paint_can/random,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetSW"
 	},
 /area/solarium)
 "fE" = (
 /obj/item/cable_coil,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/solarium)
 "fF" = (
 /obj/item/storage/toolbox/mechanical,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "fG" = (
 /obj/machinery/bot/firebot,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/solarium)
 "fH" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetSE"
 	},
 /area/solarium)
@@ -2333,7 +2333,7 @@
 	tag = "icon-0-2";
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/solarium)
 "fJ" = (
 /obj/machinery/power/data_terminal,
@@ -2344,51 +2344,51 @@
 	setup_drive_type = /obj/item/disk/data/tape/test;
 	setup_spawn_with_tape = 1
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/solarium)
 "fK" = (
 /obj/machinery/power/data_terminal,
 /obj/cable,
 /obj/machinery/guardbot_dock,
 /obj/machinery/bot/guardbot,
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/solarium)
 "fL" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/sim/area1)
 "fM" = (
 /obj/machinery/vending/monkey,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetSW"
 	},
 /area/solarium)
 "fN" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/solarium)
 "fO" = (
 /obj/machinery/vending/paint/broken,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/solarium)
 "fP" = (
 /obj/machinery/light/small,
 /obj/machinery/genetics_scanner,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/solarium)
 "fQ" = (
 /obj/machinery/computer/genetics,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/solarium)
 "fR" = (
 /obj/submachine/seed_vendor,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetSE"
 	},
 /area/solarium)
@@ -2397,26 +2397,26 @@
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/wall,
+/turf/wall,
 /area/solarium)
 "fT" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "fU" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 5
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "fV" = (
 /obj/submachine/ice_cream_dispenser,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "fW" = (
 /obj/submachine/chef_sink,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "fX" = (
 /obj/submachine/chef_oven,
@@ -2425,18 +2425,18 @@
 	icon_state = "tube1";
 	dir = 1
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "fY" = (
 /obj/submachine/foodprocessor,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "fZ" = (
 /obj/machinery/deep_fryer,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "ga" = (
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "gb" = (
 /obj/machinery/vending/kitchen,
@@ -2445,68 +2445,68 @@
 	icon_state = "tube1";
 	dir = 1
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "gc" = (
 /obj/secure_closet/fridge{
 	icon_state = "fridge";
 	locked = 0
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "gd" = (
 /obj/secure_closet/meat{
 	locked = 0
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "ge" = (
 /obj/machinery/door/airlock,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/solarium)
 "gf" = (
 /obj/machinery/atmospherics/pipe/vent,
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "gg" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 4
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "gh" = (
 /obj/stool,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "gi" = (
 /obj/disposalpipe/trunk{
 	dir = 4
 	},
 /obj/machinery/floorflusher/industrial,
-/turf/simulated/floor/caution/corner/nw,
+/turf/floor/caution/corner/nw,
 /area/solarium)
 "gj" = (
 /obj/disposalpipe/segment{
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/caution/north,
+/turf/floor/caution/north,
 /area/solarium)
 "gk" = (
-/turf/simulated/floor/caution/north,
+/turf/floor/caution/north,
 /area/solarium)
 "gl" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/caution/north,
+/turf/floor/caution/north,
 /area/solarium)
 "gm" = (
-/turf/simulated/floor/caution/corner/ne,
+/turf/floor/caution/corner/ne,
 /area/solarium)
 "gn" = (
-/turf/simulated/floor/orangeblack,
+/turf/floor/orangeblack,
 /area/solarium)
 "go" = (
 /obj/machinery/atmospherics/portables_connector{
@@ -2514,7 +2514,7 @@
 	icon_state = "intact";
 	dir = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "gp" = (
 /obj/machinery/atmospherics/pipe/simple{
@@ -2527,7 +2527,7 @@
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "gq" = (
 /obj/machinery/atmospherics/retrofilter{
@@ -2537,7 +2537,7 @@
 	name = "Test Gas Filter";
 	tag = ""
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "gr" = (
 /obj/machinery/atmospherics/pipe/simple{
@@ -2546,7 +2546,7 @@
 	dir = 4;
 	level = 2
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "gs" = (
 /obj/machinery/atmospherics/pipe/simple{
@@ -2566,7 +2566,7 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/solarium)
 "gt" = (
 /obj/machinery/atmospherics/pipe/simple{
@@ -2575,7 +2575,7 @@
 	dir = 9;
 	level = 2
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "gu" = (
 /obj/table{
@@ -2583,7 +2583,7 @@
 	dir = 4
 	},
 /obj/machinery/computer/tour_console,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "gv" = (
 /obj/machinery/guardbot_dock{
@@ -2597,7 +2597,7 @@
 	name = "Murray";
 	req_access_txt = ""
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "gw" = (
 /obj/machinery/door/firedoor/border_only{
@@ -2606,7 +2606,7 @@
 /obj/machinery/door/airlock{
 	name = "Test Kitchen"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/sim/area1)
 "gx" = (
 /obj/machinery/conveyor{
@@ -2615,29 +2615,29 @@
 	name = "test conveyor belt";
 	pixel_y = 2
 	},
-/turf/simulated/floor/caution/west,
+/turf/floor/caution/west,
 /area/solarium)
 "gy" = (
 /obj/disposalpipe/segment,
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "gz" = (
 /obj/machinery/conveyor_switch{
 	id = "test"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "gA" = (
 /obj/disposalpipe/trunk,
 /obj/machinery/disposal,
-/turf/simulated/floor/caution/east,
+/turf/floor/caution/east,
 /area/solarium)
 "gB" = (
 /obj/machinery/atmospherics/pipe/simple{
 	icon_state = "intact";
 	level = 2
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "gC" = (
 /obj/grille/steel,
@@ -2651,7 +2651,7 @@
 	icon_state = "rwindow";
 	dir = 2
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/solarium)
 "gD" = (
 /obj/grille/steel,
@@ -2665,7 +2665,7 @@
 	icon_state = "rwindow";
 	dir = 2
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/solarium)
 "gE" = (
 /obj/grille/steel,
@@ -2684,7 +2684,7 @@
 	icon_state = "rwindow";
 	dir = 2
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/solarium)
 "gF" = (
 /obj/machinery/light{
@@ -2697,7 +2697,7 @@
 	dir = 6
 	},
 /obj/submachine/mixer,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "gG" = (
 /obj/machinery/navbeacon{
@@ -2706,14 +2706,14 @@
 	location = "tour1";
 	name = "station tour beacon"
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "gH" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol";
 	location = "bar"
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "gI" = (
 /obj/machinery/light{
@@ -2721,28 +2721,28 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "gJ" = (
 /obj/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/caution/west,
+/turf/floor/caution/west,
 /area/solarium)
 "gK" = (
 /obj/disposalpipe/junction{
 	dir = 4;
 	icon_state = "pipe-j2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "gL" = (
 /obj/disposalpipe/segment{
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "gM" = (
 /obj/disposalpipe/loafer{
@@ -2750,14 +2750,14 @@
 	icon_state = "pipe-loaf0";
 	dir = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "gN" = (
 /obj/disposalpipe/segment{
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/caution/east,
+/turf/floor/caution/east,
 /area/solarium)
 "gO" = (
 /obj/disposalpipe/trunk{
@@ -2769,21 +2769,21 @@
 	mailgroup = "medresearch";
 	message = "yo there's a body here"
 	},
-/turf/simulated/floor/caution/west,
+/turf/floor/caution/west,
 /area/solarium)
 "gP" = (
 /obj/iomoon_puzzle/floor_pad{
 	id = "test1;test2";
 	name = "test floor pad"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "gQ" = (
 /obj/iomoon_puzzle/ancient_robot_door{
 	name = "test door";
 	tag = "test1"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "gR" = (
 /obj/iomoon_puzzle/ancient_robot_door{
@@ -2795,7 +2795,7 @@
 	opened = 1;
 	tag = "test2"
 	},
-/turf/simulated/floor/caution/east,
+/turf/floor/caution/east,
 /area/solarium)
 "gS" = (
 /obj/cable{
@@ -2807,24 +2807,24 @@
 /obj/machinery/computer3/terminal/zeta{
 	setup_os_string = "ZETA_MAINFRAME"
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/solarium)
 "gT" = (
 /obj/machinery/plantpot,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "gU" = (
-/turf/simulated/floor/caution/corner/sw,
+/turf/floor/caution/corner/sw,
 /area/solarium)
 "gV" = (
-/turf/simulated/floor/caution/south,
+/turf/floor/caution/south,
 /area/solarium)
 "gW" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/caution/south,
+/turf/floor/caution/south,
 /area/solarium)
 "gX" = (
-/turf/simulated/floor{
+/turf/floor{
 	tag = "icon-corner_east";
 	icon_state = "corner_east"
 	},
@@ -2841,7 +2841,7 @@
 	icon_state = "rwindow";
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/solarium)
 "gZ" = (
 /obj/grille/steel,
@@ -2859,7 +2859,7 @@
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/solarium)
 "ha" = (
 /obj/machinery/atmospherics/pipe/simple{
@@ -2877,7 +2877,7 @@
 	icon_state = "rwindow";
 	dir = 2
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/solarium)
 "hb" = (
 /obj/grille/steel,
@@ -2891,14 +2891,14 @@
 	icon_state = "rwindow";
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/solarium)
 "hc" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 9
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "hd" = (
 /obj/table{
@@ -2907,7 +2907,7 @@
 	icon_state = "tabledir"
 	},
 /obj/item/kitchen/utensil/fork,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "he" = (
 /obj/table{
@@ -2916,7 +2916,7 @@
 	icon_state = "tabledir"
 	},
 /obj/item/kitchen/utensil/knife,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "hf" = (
 /obj/machinery/light,
@@ -2926,7 +2926,7 @@
 	icon_state = "tabledir"
 	},
 /obj/item/kitchen/utensil/spoon,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "hg" = (
 /obj/table{
@@ -2936,7 +2936,7 @@
 	},
 /obj/item/reagent_containers/food/snacks/wonton_wrapper,
 /obj/item/reagent_containers/food/snacks/wonton_wrapper,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "hh" = (
 /obj/table{
@@ -2945,7 +2945,7 @@
 	icon_state = "tabledir"
 	},
 /obj/item/reagent_containers/food/snacks/cereal_box,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "hi" = (
 /obj/table{
@@ -2954,7 +2954,7 @@
 	icon_state = "tabledir"
 	},
 /obj/item/clothing/head/void_crown,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "hj" = (
 /obj/machinery/light,
@@ -2965,7 +2965,7 @@
 	},
 /obj/item/reagent_containers/food/drinks/bowl,
 /obj/item/clothing/suit/armor/ancient,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "hk" = (
 /obj/table{
@@ -2974,7 +2974,7 @@
 	icon_state = "tabledir"
 	},
 /obj/item/reagent_containers/food/drinks/bowl,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "hl" = (
 /obj/table{
@@ -2986,7 +2986,7 @@
 /obj/item/reagent_containers/food/snacks/burrito,
 /obj/item/reagent_containers/food/snacks/burrito,
 /obj/item/reagent_containers/food/snacks/burrito,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "hm" = (
 /obj/grille/steel,
@@ -3005,7 +3005,7 @@
 	icon_state = "rwindow";
 	dir = 2
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/solarium)
 "hn" = (
 /obj/machinery/atmospherics/pipe/vent{
@@ -3013,14 +3013,14 @@
 	icon_state = "intact";
 	dir = 1
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "ho" = (
 /obj/cable{
 	tag = "icon-1-4";
 	icon_state = "1-4"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/solarium)
 "hp" = (
 /obj/machinery/power/data_terminal,
@@ -3031,7 +3031,7 @@
 /obj/machinery/networked/test_apparatus/gas_sensor{
 	setup_tag = "BOTTOM"
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/solarium)
 "hq" = (
 /obj/grille/steel,
@@ -3054,7 +3054,7 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "hs" = (
 /obj/grille/steel,
@@ -3073,16 +3073,16 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "ht" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 4;
 	icon_state = "wall3"
 	},
 /area/space)
 "hu" = (
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "hv" = (
 /obj/decal/fakeobjects{
@@ -3095,7 +3095,7 @@
 	layer = 2.5;
 	anchored = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "hw" = (
 /obj/decal/fakeobjects{
@@ -3108,7 +3108,7 @@
 	name = "power conduit";
 	tag = "icon-conduit (EAST)"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "hx" = (
 /obj/decal/fakeobjects{
@@ -3118,7 +3118,7 @@
 	icon_state = "conduit";
 	name = "power conduit"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "hy" = (
 /obj/decal/fakeobjects/shuttlethruster{
@@ -3147,7 +3147,7 @@
 	name = "power conduit";
 	tag = "icon-conduit (EAST)"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "hA" = (
 /obj/decal/fakeobjects{
@@ -3160,16 +3160,16 @@
 	layer = 2.5;
 	anchored = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "hB" = (
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/space)
 "hC" = (
-/turf/simulated/floor,
+/turf/floor,
 /area/space)
 "hD" = (
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/space)
 "hE" = (
 /obj/machinery/door/poddoor/blast{
@@ -3180,10 +3180,10 @@
 	name = "Hangar";
 	tag = "icon-bdoorleft1 (NORTH)"
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/space)
 "hF" = (
-/turf/simulated/floor/caution/north,
+/turf/floor/caution/north,
 /area/space)
 "hG" = (
 /obj/machinery/door/poddoor/blast{
@@ -3194,7 +3194,7 @@
 	name = "Hangar";
 	tag = "icon-bdoormid1 (NORTH)"
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/space)
 "hH" = (
 /obj/decal/fakeobjects{
@@ -3209,12 +3209,12 @@
 /turf/space,
 /area/space)
 "hI" = (
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor4"
 	},
 /area/space)
 "hJ" = (
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "hK" = (
 /obj/decal/fakeobjects{
@@ -3225,7 +3225,7 @@
 	icon_state = "server0";
 	name = "downed server"
 	},
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "hL" = (
 /obj/decal/fakeobjects{
@@ -3235,7 +3235,7 @@
 	icon_state = "hvent";
 	name = "defunct vent"
 	},
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "hM" = (
 /obj/machinery/door/poddoor/blast{
@@ -3246,10 +3246,10 @@
 	name = "Hangar";
 	tag = "icon-bdoorright1 (NORTH)"
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/space)
 "hN" = (
-/turf/simulated/floor/orangeblack,
+/turf/floor/orangeblack,
 /area/space)
 "hO" = (
 /obj/decal/fakeobjects{
@@ -3260,7 +3260,7 @@
 	icon_state = "server0";
 	name = "idle server"
 	},
-/turf/simulated/floor/circuit/red,
+/turf/floor/circuit/red,
 /area/space)
 "hP" = (
 /obj/grille/steel,
@@ -3274,7 +3274,7 @@
 	icon_state = "rwindow";
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "hQ" = (
 /obj/decal/fakeobjects{
@@ -3307,7 +3307,7 @@
 	icon_state = "hvent";
 	name = "defunct vent"
 	},
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/space)
 "hT" = (
 /obj/decal/fakeobjects{
@@ -3319,7 +3319,7 @@
 	name = "power conduit";
 	tag = "icon-conduit (SOUTHEAST)"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "hU" = (
 /obj/decal/fakeobjects{
@@ -3339,11 +3339,11 @@
 	icon_state = "conduit";
 	name = "power conduit"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "hV" = (
 /obj/decal/fakeobjects/tallsmes,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "hW" = (
 /obj/decal/fakeobjects{
@@ -3356,7 +3356,7 @@
 	layer = 2.5;
 	anchored = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "hX" = (
 /obj/decal/fakeobjects{
@@ -3379,7 +3379,7 @@
 	layer = 2.5;
 	anchored = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "hY" = (
 /obj/decal/fakeobjects{
@@ -3392,7 +3392,7 @@
 	layer = 2.5;
 	anchored = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "hZ" = (
 /obj/decal/fakeobjects{
@@ -3405,7 +3405,7 @@
 	name = "power conduit";
 	tag = "icon-conduit (SOUTHWEST)"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "ia" = (
 /obj/decal/fakeobjects{
@@ -3428,30 +3428,30 @@
 	layer = 2.5;
 	anchored = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "ib" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/buddyfactory)
 "ic" = (
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "id" = (
 /obj/stool/chair/syndicate,
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "ie" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/r_wall,
 /area/buddyfactory/mainframe)
 "if" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/r_wall,
 /area/buddyfactory)
 "ig" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 9
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "ih" = (
 /obj/table{
@@ -3459,14 +3459,14 @@
 	dir = 1;
 	icon_state = "tabledir"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "ii" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 5
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "ij" = (
 /obj/cable{
@@ -3474,7 +3474,7 @@
 	d1 = 2;
 	d2 = 4
 	},
-/turf/simulated/floor/circuit/green,
+/turf/floor/circuit/green,
 /area/buddyfactory/mainframe)
 "ik" = (
 /obj/machinery/power/data_terminal,
@@ -3486,7 +3486,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/buddyfactory/mainframe)
 "il" = (
 /obj/machinery/power/data_terminal,
@@ -3494,17 +3494,17 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/buddyfactory/mainframe)
 "im" = (
-/turf/simulated/floor/circuit/green,
+/turf/floor/circuit/green,
 /area/buddyfactory/mainframe)
 "in" = (
 /obj/cable{
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/wall/r_wall,
+/turf/wall/r_wall,
 /area/buddyfactory)
 "io" = (
 /obj/grille/steel,
@@ -3518,10 +3518,10 @@
 	icon_state = "window";
 	dir = 2
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/buddyfactory)
 "ip" = (
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/buddyfactory)
 "iq" = (
 /obj/cable{
@@ -3529,17 +3529,17 @@
 	d1 = 1;
 	d2 = 2
 	},
-/turf/simulated/floor/circuit/green,
+/turf/floor/circuit/green,
 /area/buddyfactory/mainframe)
 "ir" = (
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory/mainframe)
 "is" = (
 /obj/cable{
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "it" = (
 /obj/machinery/power/data_terminal,
@@ -3552,7 +3552,7 @@
 	d2 = 4
 	},
 /obj/cable,
-/turf/simulated/floor/delivery,
+/turf/floor/delivery,
 /area/buddyfactory/mainframe)
 "iu" = (
 /obj/cable{
@@ -3565,7 +3565,7 @@
 	d1 = 2;
 	d2 = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory/mainframe)
 "iv" = (
 /obj/cable{
@@ -3573,7 +3573,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory/mainframe)
 "iw" = (
 /obj/cable{
@@ -3584,7 +3584,7 @@
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "ix" = (
 /obj/lattice{
@@ -3600,7 +3600,7 @@
 	d1 = 1;
 	d2 = 2
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory/mainframe)
 "iz" = (
 /obj/machinery/conveyor{
@@ -3610,7 +3610,7 @@
 	pixel_x = 4;
 	pixel_y = 2
 	},
-/turf/simulated/floor/caution/corner/nw,
+/turf/floor/caution/corner/nw,
 /area/buddyfactory)
 "iA" = (
 /obj/machinery/conveyor{
@@ -3620,15 +3620,15 @@
 	pixel_x = 4;
 	pixel_y = 2
 	},
-/turf/simulated/floor/caution/northsouth,
+/turf/floor/caution/northsouth,
 /area/buddyfactory)
 "iB" = (
-/turf/simulated/floor/grime,
+/turf/floor/grime,
 /area/buddyfactory)
 "iC" = (
 /obj/machinery/power/data_terminal,
 /obj/cable,
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/buddyfactory/mainframe)
 "iD" = (
 /obj/decal/fakeobjects{
@@ -3643,7 +3643,7 @@
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "iE" = (
 /obj/machinery/conveyor{
@@ -3652,27 +3652,27 @@
 	name = "factory conveyor belt";
 	pixel_y = 2
 	},
-/turf/simulated/floor/caution/westeast,
+/turf/floor/caution/westeast,
 /area/buddyfactory)
 "iF" = (
 /obj/rack,
 /obj/item/guardbot_core/old,
 /obj/item/guardbot_core/old,
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "iG" = (
 /obj/machinery/buddyfactory{
 	dir = 1;
 	input_stage = 2
 	},
-/turf/simulated/floor/orangeblack,
+/turf/floor/orangeblack,
 /area/buddyfactory)
 "iH" = (
 /obj/machinery/buddyfactory{
 	dir = 1;
 	input_stage = 3
 	},
-/turf/simulated/floor/orangeblack,
+/turf/floor/orangeblack,
 /area/buddyfactory)
 "iI" = (
 /obj/rack,
@@ -3688,7 +3688,7 @@
 	desc = "A metal arm for a robuddy.";
 	name = "Robuddy Arm"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "iJ" = (
 /obj/overlay{
@@ -3699,7 +3699,7 @@
 	icon_state = "fab_robot";
 	name = "janky machine"
 	},
-/turf/simulated/floor/orangeblack,
+/turf/floor/orangeblack,
 /area/buddyfactory)
 "iK" = (
 /obj/decal{
@@ -3710,11 +3710,11 @@
 	icon_state = "fab";
 	name = "PCB constructor"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "iM" = (
 /obj/rack,
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "iN" = (
 /obj/decal{
@@ -3725,23 +3725,23 @@
 	icon_state = "factory_arm_broken";
 	name = "broken robot arm"
 	},
-/turf/simulated/floor/orangeblack,
+/turf/floor/orangeblack,
 /area/buddyfactory)
 "iO" = (
 /obj/machinery/buddyfactory{
 	dir = 2;
 	input_stage = 2
 	},
-/turf/simulated/floor/orangeblack,
+/turf/floor/orangeblack,
 /area/buddyfactory)
 "iP" = (
 /obj/rack,
 /obj/item/device/guardbot_tool/flash,
 /obj/item/device/guardbot_tool/flash,
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "iQ" = (
-/turf/simulated/floor/orangeblack,
+/turf/floor/orangeblack,
 /area/buddyfactory)
 "iR" = (
 /obj/machinery/power/data_terminal,
@@ -3749,7 +3749,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "iS" = (
 /obj/cable{
@@ -3757,7 +3757,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "iT" = (
 /obj/cable{
@@ -3765,7 +3765,7 @@
 	d1 = 2;
 	d2 = 8
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "iU" = (
 /obj/cable{
@@ -3773,7 +3773,7 @@
 	d1 = 1;
 	d2 = 2
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "iV" = (
 /obj/machinery/conveyor{
@@ -3782,7 +3782,7 @@
 	name = "factory conveyor belt";
 	pixel_y = 2
 	},
-/turf/simulated/floor/caution/corner/sw,
+/turf/floor/caution/corner/sw,
 /area/buddyfactory)
 "iW" = (
 /obj/machinery/conveyor{
@@ -3793,7 +3793,7 @@
 	pixel_x = -4;
 	pixel_y = 2
 	},
-/turf/simulated/floor/caution/northsouth,
+/turf/floor/caution/northsouth,
 /area/buddyfactory)
 "iX" = (
 /obj/machinery/conveyor{
@@ -3804,7 +3804,7 @@
 	pixel_x = -4;
 	pixel_y = 2
 	},
-/turf/simulated/floor/caution/corner/ne,
+/turf/floor/caution/corner/ne,
 /area/buddyfactory)
 "iY" = (
 /obj/grille/steel,
@@ -3818,7 +3818,7 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/buddyfactory)
 "iZ" = (
 /obj/table/woodentable{
@@ -3826,7 +3826,7 @@
 	icon_state = "woodentable";
 	dir = 9
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "ja" = (
 /obj/stool/chair/office{
@@ -3834,7 +3834,7 @@
 	icon_state = "office_chair";
 	dir = 8
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "jb" = (
 /obj/cable{
@@ -3842,7 +3842,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "jc" = (
 /obj/cable{
@@ -3855,7 +3855,7 @@
 	d1 = 1;
 	d2 = 2
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "jd" = (
 /obj/overlay{
@@ -3866,7 +3866,7 @@
 	icon_state = "fab_robot";
 	name = "janky machine"
 	},
-/turf/simulated/floor/grime,
+/turf/floor/grime,
 /area/buddyfactory)
 "je" = (
 /obj/decal{
@@ -3878,7 +3878,7 @@
 	icon_state = "factory_arm_broken";
 	name = "broken robot arm"
 	},
-/turf/simulated/floor/orangeblack,
+/turf/floor/orangeblack,
 /area/buddyfactory)
 "jf" = (
 /obj/lattice{
@@ -3894,7 +3894,7 @@
 	icon_state = "woodentable";
 	dir = 10
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "jh" = (
 /obj/table/woodentable{
@@ -3902,17 +3902,17 @@
 	icon_state = "woodentable";
 	dir = 6
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "ji" = (
 /obj/rack,
 /obj/item/cell,
 /obj/item/cell,
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "jj" = (
 /obj/machinery/buddyfactory,
-/turf/simulated/floor/orangeblack,
+/turf/floor/orangeblack,
 /area/buddyfactory)
 "jk" = (
 /obj/decal/fakeobjects{
@@ -3923,7 +3923,7 @@
 	name = "emergency stop button'";
 	pixel_x = 24
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "jl" = (
 /obj/machinery/conveyor{
@@ -3934,7 +3934,7 @@
 	pixel_y = 2
 	},
 /obj/item/guardbot_frame/old,
-/turf/simulated/floor/caution/northsouth,
+/turf/floor/caution/northsouth,
 /area/buddyfactory)
 "jm" = (
 /obj/machinery/conveyor{
@@ -3943,7 +3943,7 @@
 	name = "factory conveyor belt";
 	pixel_y = 2
 	},
-/turf/simulated/floor{
+/turf/floor{
 	tag = "icon-corner_east (WEST)";
 	icon_state = "corner_east";
 	dir = 8
@@ -3959,11 +3959,11 @@
 	icon_state = "0-2";
 	d2 = 2
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "jo" = (
 /obj/stool/chair/office,
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "jp" = (
 /obj/cable{
@@ -3971,26 +3971,26 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "jq" = (
 /obj/machinery/conveyor_switch{
 	id = "robot_factory"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "jr" = (
 /obj/cable{
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/wall,
+/turf/wall,
 /area/buddyfactory)
 "js" = (
 /obj/machinery/door/airlock/external{
 	dir = 8
 	},
-/turf/simulated/floor/orangeblack,
+/turf/floor/orangeblack,
 /area/buddyfactory)
 "jt" = (
 /obj/decal/fakeobjects{
@@ -4004,61 +4004,61 @@
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "ju" = (
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/buddyfactory)
 "jv" = (
 /obj/machinery/power/data_terminal,
 /obj/cable,
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "jw" = (
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/buddyfactory)
 "jx" = (
 /obj/machinery/vending/cola/red,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/buddyfactory)
 "jy" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 2
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "jz" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 9
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/buddyfactory)
 "jA" = (
 /obj/machinery/door/airlock/external{
 	dir = 8;
 	name = "Pod Bay"
 	},
-/turf/simulated/floor/caution/west,
+/turf/floor/caution/west,
 /area/buddyfactory)
 "jB" = (
 /obj/machinery/door/airlock/external{
 	dir = 8;
 	name = "Pod Bay"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/buddyfactory)
 "jC" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 10
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/buddyfactory)
 "jD" = (
 /obj/stool/chair,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/buddyfactory)
 "jE" = (
 /obj/stool/chair{
@@ -4066,11 +4066,11 @@
 	icon_state = "chair";
 	dir = 4
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/buddyfactory)
 "jF" = (
 /obj/table,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/buddyfactory)
 "jG" = (
 /obj/grille/steel,
@@ -4089,7 +4089,7 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/buddyfactory)
 "jH" = (
 /obj/grille/steel,
@@ -4103,7 +4103,7 @@
 	icon_state = "rwindow";
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/buddyfactory)
 "jI" = (
 /obj/grille/steel,
@@ -4122,16 +4122,16 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/buddyfactory)
 "jJ" = (
-/turf/simulated/floor/white,
+/turf/floor/white,
 /area/buddyfactory)
 "jK" = (
 /obj/chem_sink{
 	dir = 8
 	},
-/turf/simulated/floor/white,
+/turf/floor/white,
 /area/buddyfactory)
 "jL" = (
 /obj/lattice{
@@ -4143,7 +4143,7 @@
 /area/space)
 "jM" = (
 /obj/item/storage/toilet,
-/turf/simulated/floor/white,
+/turf/floor/white,
 /area/buddyfactory)
 
 (1,1,1) = {"

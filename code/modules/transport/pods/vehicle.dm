@@ -537,15 +537,15 @@
 		severity += sevmod
 
 		switch (severity)
-			if (1.0)
+			if (OLD_EX_SEVERITY_1)
 				src.health -= round(src.maxhealth / 3)
 				src.health -= 65
 				checkhealth()
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.health -= round(src.maxhealth / 4)
 				src.health -= 40
 				checkhealth()
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				src.health -= round(src.maxhealth / 5)
 				src.health -= 25
 				checkhealth()
@@ -591,10 +591,10 @@
 						src.pilot.unlock_medal("Vehicular Manslaughter", 1)
 
 			else if(isturf(target) && power > 20)
-				if(istype(target, /turf/simulated/wall/r_wall || istype(target, /turf/simulated/wall/auto/reinforced)) && prob(power / 2))
+				if(istype(target, /turf/wall/r_wall || istype(target, /turf/wall/auto/reinforced)) && prob(power / 2))
 					return
-				if(istype(target, /turf/simulated/wall) && prob(power))
-					var/turf/simulated/wall/T = target
+				if(istype(target, /turf/wall) && prob(power))
+					var/turf/wall/T = target
 					T.dismantle_wall(1)
 
 				logTheThing("combat", src, target, "(piloted by [constructTarget(src.pilot,"combat")]) crashes into [constructTarget(target,"combat")] [log_loc(src)].")

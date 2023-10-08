@@ -566,8 +566,8 @@
 			if(G.forensic_ID)
 				forensic_data += "<br><span class='notice'>Forensic profile of [G]:</span> [G.forensic_ID]"
 
-		if (istype(A, /turf/simulated/wall))
-			var/turf/simulated/wall/W = A
+		if (istype(A, /turf/wall))
+			var/turf/wall/W = A
 			if (W.forensic_impacts && islist(W.forensic_impacts) && length(W.forensic_impacts))
 				for(var/i in W.forensic_impacts)
 					forensic_data += "<br><span class='notice'>Forensic signature found:</span> [i]"

@@ -119,10 +119,10 @@ toxic - poisons
 
 	on_hit(atom/hit)
 		fireflash(get_turf(hit), 0)
-		if((istype(hit, /turf/simulated) || istype(hit, /obj/structure/girder)))
-			hit.ex_act(2)
+		if((issimulatedturf(hit) || istype(hit, /obj/structure/girder)))
+			hit.ex_act(OLD_EX_HEAVY)
 		else
-			hit.ex_act(3)
+			hit.ex_act(OLD_EX_LIGHT)
 
 //Used by: Mk 1.45 light phaser pod weapon, light syndicate drone objcritter, phaser guns, syndicate drone mobcritter (via phaser gun limb)
 /datum/projectile/laser/light // for the drones
@@ -149,8 +149,8 @@ toxic - poisons
 		color_blue = 1
 
 		on_hit(atom/hit)
-			if (istype(hit, /turf/simulated/wall/asteroid))
-				var/turf/simulated/wall/asteroid/T = hit
+			if (istype(hit, /turf/wall/asteroid))
+				var/turf/wall/asteroid/T = hit
 				if (power <= 0)
 					return
 				T.damage_asteroid(0,allow_zero = 1)
@@ -453,8 +453,8 @@ toxic - poisons
 	color_blue = 0
 
 	on_hit(atom/hit)
-		if (istype(hit, /turf/simulated/wall/asteroid))
-			var/turf/simulated/wall/asteroid/T = hit
+		if (istype(hit, /turf/wall/asteroid))
+			var/turf/wall/asteroid/T = hit
 			if (power <= 0)
 				return
 			T.damage_asteroid(round(power / 5))
@@ -479,8 +479,8 @@ toxic - poisons
 	var/hit_human_sound = "sound/impact_sounds/Slimy_Splat_1.ogg"
 	on_hit(atom/hit)
 		//playsound(hit.loc, "sound/machines/engine_grump1.ogg", 45, 1)
-		if (istype(hit, /turf/simulated/wall/asteroid))
-			var/turf/simulated/wall/asteroid/T = hit
+		if (istype(hit, /turf/wall/asteroid))
+			var/turf/wall/asteroid/T = hit
 			if (power <= 0)
 				return
 			T.damage_asteroid(round(power / 7),1)

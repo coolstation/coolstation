@@ -113,7 +113,8 @@
 			if (!tutorial.PerformAction("move", NewLoc))
 				return 0
 		if (isturf(NewLoc))
-			if (istype(NewLoc, /turf/unsimulated/wall))
+			var/turf/T = NewLoc
+			if (istype(T, /turf/wall) && !issimulatedturf(T)) //IDK why this gives a shit about not letting blobs go on unsimmed walls
 				return 0
 		..()
 

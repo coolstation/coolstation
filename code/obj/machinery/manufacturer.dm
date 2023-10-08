@@ -199,14 +199,14 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				for(var/atom/movable/A as mob|obj in src)
 					A.set_loc(src.loc)
 					A.ex_act(severity)
 				src.take_damage(rand(100,120))
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.take_damage(rand(40,80))
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				src.take_damage(rand(20,40))
 		return
 
@@ -1120,7 +1120,7 @@
 			src.output_target = O.loc
 			boutput(usr, "<span class='notice'>You set the manufacturer to output on top of [O]!</span>")
 
-		else if (istype(over_object,/turf/simulated/floor/) || istype(over_object,/turf/unsimulated/floor/))
+		else if (istype(over_object,/turf/floor/))
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set the manufacturer to output to [over_object]!</span>")
 
@@ -1881,7 +1881,7 @@
 			else
 				return M.loc
 
-		else if (istype(src.output_target,/turf/simulated/floor/) || istype(src.output_target,/turf/unsimulated/floor/))
+		else if (istype(src.output_target,/turf/floor/))
 			return src.output_target
 
 		else

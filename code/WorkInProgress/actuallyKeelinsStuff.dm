@@ -606,7 +606,7 @@ Returns:
 		vis_contents += locate(src.x, src.y, src.targetZ)
 		var/turf/T = locate(src.x, src.y+1, src.z)
 		if(T)
-			if(istype(T, /turf/simulated) && !(locate(/obj/hole) in T))
+			if(issimulatedturf(T) && !(locate(/obj/hole) in T))
 				src.overlays += image('icons/effects/effects.dmi',icon_state = "dark", layer=11)
 				src.overlays += image('icons/effects/effects.dmi',icon_state = "wallfade", layer=12)
 			else
@@ -766,6 +766,7 @@ Returns:
 	anchored = 1
 	density = 0
 	opacity = 0
+	plane = PLANE_NOSHADOW_BELOW
 
 /obj/decal/valterakWhip
 	name = "???"
@@ -775,6 +776,7 @@ Returns:
 	anchored = 1
 	density = 0
 	opacity = 0
+	plane = PLANE_NOSHADOW_BELOW
 
 /datum/admins/proc/camtest()
 	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
@@ -1597,11 +1599,11 @@ Returns:
 					argcopy[r] = X
 			call(procpath)(arglist(argcopy))
 
-/datum/admins/proc/pixelexplosion()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	set name = "Pixel explosion mode"
-	set desc = "Enter pixel explosion mode."
-	alert("Clicking on things will now explode them into pixels!")
+/datum/admins/proc/enable_pixelexplosion()
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
+	set name = "Enable pixel explosions"
+	set desc = "Click on things to explode them into pixels?"
+	alert("Clicking on things will now explode them into pixels! Note: This Actually Destroys The Thing")
 	pixelmagic()
 
 /datum/targetable/pixelpicker
@@ -1679,10 +1681,10 @@ Returns:
 		transform = matrix()
 		..()
 */
-/datum/admins/proc/turn_off_pixelexplosion()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	set name = "Turn off pixel explosion mode"
-	set desc = "Turns off pixel explosion mode."
+/datum/admins/proc/disable_pixelexplosion()
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
+	set name = "Disable pixel explosions"
+	set desc = "Stop exploding things into pixels when you click them."
 
 	var/mob/M = usr
 	if (istype(M.targeting_ability, /datum/targetable/pixelpicker))
@@ -2211,7 +2213,7 @@ Returns:
 					M.changeStatus("weakened", 2 SECONDS)
 					random_burn_damage(M, 10)
 
-				if(istype(T, /turf/simulated/floor))
+				if(istype(T, /turf/floor)) //ATMOSSIMSTODO - was turf/floor
 					if(!T:broken)
 						if(T:burnt)
 							T:break_tile()
@@ -2653,7 +2655,7 @@ Returns:
 
 		for(var/turf/T in range(areasize, src))
 			if(!isturf(T)) continue
-			new/turf/unsimulated/floor(T)
+			new/turf/floor(T)
 
 		usable = 1
 
@@ -2806,6 +2808,7 @@ Returns:
 	opacity = 0
 	density = 1
 	anchored = 1
+	alpha = 200
 	icon = 'icons/obj/adventurezones/void.dmi'
 	icon_state = "fissure"
 
@@ -2813,10 +2816,11 @@ Returns:
 		var/area/srcar = AM.loc.loc
 		srcar.Exited(AM)
 
-		var/obj/source = locate(/obj/dfissure_from)
+		var/obj/source = locate(/obj/dfissure_from) //if there are ever any more than one to or from portal this thing shits bad so i'd like to revamp this for Void Improvement Project (VIP)
 		if (!istype(source))
 			qdel(src)
 			return
+		source.alpha = 200
 		var/turf/trg = source.loc
 
 		var/area/trgar = trg.loc
@@ -2830,6 +2834,7 @@ Returns:
 	opacity = 0
 	density = 1
 	anchored = 1
+	alpha = 200
 	icon = 'icons/obj/adventurezones/void.dmi'
 	icon_state = "fissure"
 
@@ -3502,10 +3507,10 @@ var/list/lag_list = new/list()
 		if(istype(target, /turf/space))
 			target:ReplaceWithFloor()
 			return
-		if(istype(target, /turf/simulated/floor))
+		if(istype(target, /turf/floor))
 			target:ReplaceWithWall()
 			return
-		if(istype(target, /turf/simulated/wall))
+		if(istype(target, /turf/wall))
 			target:ReplaceWithRWall()
 			return
 		return
@@ -3514,10 +3519,10 @@ var/list/lag_list = new/list()
 	name = "Deconstruct"
 	desc = "Deconstruct walls and floor."
 	used(atom/user, atom/target)
-		if(istype(target, /turf/simulated/floor))
+		if(istype(target, /turf/floor))
 			target:ReplaceWithSpace()
 			return
-		if(istype(target, /turf/simulated/wall))
+		if(istype(target, /turf/wall))
 			target:ReplaceWithFloor()
 			return
 		return
@@ -3566,7 +3571,7 @@ var/list/lag_list = new/list()
 	desc = "Construct a False Wall."
 	used(atom/user, atom/target)
 		var/turf/targ = get_turf(target)
-		new/turf/simulated/wall/false_wall(targ)
+		new/turf/wall/false_wall(targ)
 		return
 
 /datum/engibox_mode/airlock

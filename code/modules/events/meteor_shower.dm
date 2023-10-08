@@ -68,6 +68,9 @@ var/global/meteor_shower_active = 0
 			for (var/obj/machinery/shield_generator/S as anything in machine_registry[MACHINES_SHIELDGENERATORS])
 				S.update_icon()
 
+		var/datum/directed_broadcast/emergency/broadcast = new(station_name, "[comsev] Meteor Shower", "[commins] Seconds", "Deploy meteor shielding and seek cover immediately. Stay away from windows.")
+		broadcast_controls.broadcast_start(broadcast, TRUE, -1, 1)
+
 		SPAWN_DBG(warning_delay)
 			if (random_events.announce_events)
 				command_alert("The [shower_name] has reached the [station_or_ship()]. Brace for impact.", "Meteor Alert")
@@ -118,6 +121,9 @@ var/global/meteor_shower_active = 0
 				var/obj/newmeteor/M = new meteor_type(pickedstart,target)
 				M.pix_speed = meteor_speed + rand(0 - meteor_speed_variance,meteor_speed_variance)
 				sleep(delay_between_meteors)
+
+			broadcast_controls.broadcast_stop(broadcast)
+			qdel(broadcast)
 
 			meteor_shower_active = 0
 			for (var/obj/machinery/shield_generator/S as anything in machine_registry[MACHINES_SHIELDGENERATORS])
@@ -268,7 +274,7 @@ var/global/meteor_shower_active = 0
 			process()
 
 	proc/check_hits()
-		for(var/turf/simulated/S in range(1,src))
+		for(var/turf/S in range(1,src))
 			if(!S.density) continue
 			hit_object = 1
 			S.meteorhit(src)
@@ -317,6 +323,7 @@ var/global/meteor_shower_active = 0
 			else type = pick(oredrops)
 			var/atom/movable/A = new type()
 			A.set_loc(T)
+			A.throw_at(target, 10, 2) //what if
 			A.name = "meteor chunk"
 
 		var/atom/source = src

@@ -1263,8 +1263,8 @@
 			return ..()
 
 	afterattack(atom/target, mob/user, flag)
-		if (target && istype(target, /turf/simulated))
-			var/turf/simulated/T = target
+		if (target && issimulatedturf(target))
+			var/turf/T = target
 			user.drop_from_slot(src, T)
 			if (src.dry_turf(T))
 				user.visible_message("[user] dries [T] with [src].",\
@@ -1272,7 +1272,7 @@
 		else
 			return ..()
 
-	proc/dry_turf(var/turf/simulated/T as turf)
+	proc/dry_turf(var/turf/T as turf)
 		if (!istype(T))
 			return
 		var/dried = 0
@@ -1714,3 +1714,11 @@
     item_state = "racing_jump_prp"
     icon = 'icons/obj/clothing/uniforms/item_js_misc.dmi'
     wear_image_icon = 'icons/mob/jumpsuits/worn_js_misc.dmi'
+
+/obj/item/clothing/under/soviet_miner
+	name = "soviet mining overalls"
+	desc = "Stiffer than wood, but will outlive your grandchildren."
+	icon = 'icons/obj/clothing/uniforms/item_js_misc.dmi'
+	wear_image_icon = 'icons/mob/jumpsuits/worn_js_misc.dmi'
+	icon_state = "soviet_miner"
+	item_state = "soviet_miner"

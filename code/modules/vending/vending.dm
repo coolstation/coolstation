@@ -343,7 +343,7 @@
 				else
 					return C
 
-		else if (istype(src.output_target,/turf/simulated/floor/))
+		else if (istype(src.output_target,/turf/floor/))
 			return src.output_target
 
 		else
@@ -357,14 +357,14 @@
 
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			qdel(src)
 			return
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			if (prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if (prob(25))
 				SPAWN_DBG(0)
 					src.malfunction()
@@ -1488,7 +1488,8 @@
 		"A Dr. Pubber a day keeps the boredom away!",
 		"Cool, refreshing Lime-Aid - it's good for you!",
 		"Grones Soda! Where has your bottle been today?",
-		"Decirprevo. The sophisticate's bottled water.")
+		"Decirprevo. The sophisticate's bottled water.",
+		"Tell your friends! Mountain Poo is back!")
 
 		light_r =1
 		light_g = 0.4
@@ -1499,6 +1500,7 @@
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/red, 10, cost=PAY_UNTRAINED/10)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/pink, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/lime, 10, cost=PAY_UNTRAINED/6)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/poo, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/grones, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/bottledwater, 10, cost=PAY_UNTRAINED/4)
 			product_list += new/datum/data/vending_product("/obj/item/reagent_containers/food/drinks/cola/random", 10, cost=PAY_UNTRAINED/10) //does this even work??
@@ -1510,7 +1512,8 @@
 		"The taste of nature!",
 		"Spooky Dan's - it's altogether ooky!",
 		"Everyone can see Orange-Aid is best!",
-		"Decirprevo. The sophisticate's bottled water.")
+		"Decirprevo. The sophisticate's bottled water.",
+		"Mr. Piss - Tastes normal!")
 
 		light_r =0.5
 		light_g = 0.5
@@ -1522,6 +1525,7 @@
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/orange, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/spooky, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/spooky2,10, cost=PAY_UNTRAINED/6)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/pee, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/bottledwater, 10, cost=PAY_UNTRAINED/4)
 			product_list += new/datum/data/vending_product("/obj/item/reagent_containers/food/drinks/cola/random", 10, cost=PAY_UNTRAINED/10)
 
@@ -1641,7 +1645,7 @@
 
 //cogwerks- adding a floppy disk vendor
 /obj/machinery/vending/floppy
-	name = "SoftTech"
+	name = "Software On-The-Go!" //NT Branding
 	desc = "A computer software vendor."
 	icon_state = "software"
 	icon_panel = "standard-panel"
@@ -1670,9 +1674,37 @@
 		product_list += new/datum/data/vending_product(/obj/item/storage/box/diskbox, rand(2,3), cost=PAY_UNTRAINED/2)
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/floppy, rand(5,8), cost=PAY_UNTRAINED/5)
 
+//for the GNU/Battleship
+//general crimer software + a couple PDA bomb carts/emags maybe??? imo
+/*
+/obj/machinery/vending/floppy/syndicate
+	name = "Free AND Legal Software"
+	desc = "A dubious computer software vendor."
+	icon_state = "software"
+	icon_panel = "standard-panel"
+	icon_off = "standard-off"
+	icon_broken = "standard-broken"
+	icon_fallen = "standard-fallen"
+	pay = 1
+	acceptcard = 1
+
+	slogan_list = list("Remember to read the licensing agreement! Carefully! All of it!",
+	"Copy that floppy!",
+	"Welcome to the age of free and open-source software!",
+	"Death to DWAINE! Long Live OpenDWAINE!")
+
+	light_r =0.03
+	light_g = 1
+	light_b = 0.2
+
+	create_products()
+		..()
+		product_list += new/datum/data/vending_product(/obj/item/storage/box/diskbox, rand(2,3), cost=PAY_UNTRAINED/2)
+		product_list += new/datum/data/vending_product(/obj/item/disk/data/floppy, rand(5,8), cost=PAY_UNTRAINED/5)
+*/
 
 /obj/machinery/vending/pda //cogwerks: vendor to clean up the pile of PDA carts a bit
-	name = "CartyParty"
+	name = "CartyParty" //We'll also just say that's NT Branding
 	desc = "A PDA cartridge vendor."
 	icon_state = "pda"
 	icon_panel = "standard-panel"
@@ -1713,7 +1745,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/clown, 1, cost=PAY_DUMBCLOWN, hidden=1)
 
 /obj/machinery/vending/book //cogwerks: eventually this oughta have some of the wiki job guides available in it
-	name = "Books4u"
+	name = "Books4u" //NT branding for guidebooks and such
 	desc = "A printed text vendor."
 	icon_state = "books"
 	icon_panel = "standard-panel"
@@ -1814,15 +1846,58 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/breakfast, rand(2, 4), hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/snack_cake, rand(1, 3), hidden=1)
 
-
-/obj/machinery/vending/gunse
-	name = "NanoGunse"
-	desc = "Gunse storage unit."
-	icon_state = "sauce"
+/obj/machinery/vending/kitchen/lite
+	name = "FoodTech Mini"
+	desc = "Food storage unit."
+	icon_state = "food"
 	icon_panel = "standard-panel"
 	icon_off = "food-off"
 	icon_broken = "food-broken"
 	icon_fallen = "food-fallen"
+	req_access_txt = "28"
+	acceptcard = 0
+
+	light_r =1
+	light_g = 0.88
+	light_b = 0.3
+
+	create_products()
+		..()
+		product_list += new/datum/data/vending_product(/obj/item/storage/lunchbox, 12)
+		product_list += new/datum/data/vending_product(/obj/item/ladle, 1)
+		product_list += new/datum/data/vending_product(/obj/item/soup_pot, 1)
+		product_list += new/datum/data/vending_product(/obj/item/kitchen/rollingpin, 2)
+		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/knife/cleaver, 1)
+		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/knife/pizza_cutter, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/oatmeal, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/peanutbutter, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/flour, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/rice, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/sugar, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/butter, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/spaghetti, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/meatball, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/syrup, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/mayo, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/ketchup, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/tomato, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/apple, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/lettuce, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/potato, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/corn, 10)
+
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/breakfast, rand(2, 4), hidden=1)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/snack_cake, rand(1, 3), hidden=1)
+
+
+/obj/machinery/vending/gunse
+	name = "NanoGunse"
+	desc = "Gunse storage unit."
+	icon_state = "gunse"
+	icon_panel = "standard-panel"
+	icon_off = "gunse-off"
+	icon_broken = "gunse-broken"
+	icon_fallen = "gunse-fallen"
 	req_access_txt = ""
 	acceptcard = 1
 	pay = 1
@@ -3059,6 +3134,108 @@
 			else
 				boutput(usr, "<span class='alert'>There is no tank to fill up!</span>")
 
+
+//Let me add some garbage
+/obj/machinery/vending/juice
+	name = "\improper JuiceSluice 10000"
+	desc = "Surprisingly, unrelated to Juicerdom."
+	icon_state = "juice"
+	//I know these don't match I can't be arsed right this moment
+	icon_panel = "standard-panel"
+	icon_off = "standard-off"
+	icon_broken = "standard-broken"
+	icon_fallen = "standard-fallen"
+	deconstruct_flags = DECON_CROWBAR | DECON_WRENCH | DECON_MULTITOOL
+	can_hack = FALSE
+	pay = TRUE
+	acceptcard = TRUE
+	vend_delay = 0
+	slogan_list = list("JUICE! JUICE! JUICE!",
+	"Quench thine thirst!",
+	"Get your daily deluge going!",
+	"Not the worst you've ever tasted!")
+	var/reagent_id
+
+	//var/reservoir = 10000 //units
+
+	var/target_deluge = 100 //units
+
+	var/cost_per_unit = 1 //in credittes
+
+	light_r =0.4
+	light_g = 0.4
+	light_b = 1
+
+	New()
+		..()
+		if (!reagent_id)
+			reagent_id = pick("juice_lime", "juice_lemon", "juice_orange","juice_cran", "juice_cherry", "juice_pineapple", "juice_tomato")
+			reagents = new(10000)
+			reagents.add_reagent(reagent_id, reagents.maximum_volume)
+			cost_per_unit = rand(1,5)
+
+	proc/fill() //for a sense of the word :)
+		var/turf/T = get_turf(src)
+		reagents.reaction(T, TOUCH, target_deluge)
+		//reservoir -= target_deluge
+		target_deluge = clamp(target_deluge, 0, reagents.total_volume)
+
+	attack_hand(mob/user as mob)
+		if (status & (BROKEN|NOPOWER))
+			return
+		if (usr.stat || usr.restrained())
+			return
+
+		src.add_dialog(user)
+		var/html = ""
+		html += "<TT><b>Welcome to the sluice!<i> BUY SOME JUICE!</i></b><br>"
+		//credits
+		html += "<b>Current balance: <a href='byond://?src=\ref[src];return_credits=1'>[src.credit] credits</a></b><br>"
+		//bank balance
+		if (src.scan)
+			var/datum/data/record/account = null
+			account = FindBankAccountById(src.scan.registered_id)
+			html += "<b>Current ID:</b> <a href='?src=\ref[src];logout=1'>[src.scan]</a><br />"
+			html += "<b>Credits on Account: [account.fields["current_money"]] Credits</b> <br>"
+		else
+			html += "<b>Current ID:</b> None<br>"
+
+		//reservoir
+		html += "We have <font color = 'blue'><b>[reagents.total_volume]</b></font> units of <font color = 'blue'><b>[reagents.get_master_reagent_name()]</b></font> available for <br><font color = 'blue'><b>[cost_per_unit] [cost_per_unit == 1 ? "credit" : "credits"]</b></font> per unit!!<br /><br>"
+
+		html += "<font color = 'red'>\"Gimme <a href='?src=\ref[src];adjust_target=1'>[target_deluge] units</a> of that juice, my friend.\"</font><br>"
+		html += "<a href='?src=\ref[src];JUICE=1'>OPEN THE SLUICE ([cost_per_unit * target_deluge] credits)</a>"
+
+		user.Browse(html, "window=juice_vending")
+		onclose(user, "vending")
+
+	Topic(href, href_list)
+		..()
+
+
+		if(href_list["adjust_target"])
+			var/change = input(usr,"Target Amount:","Enter thirst",target_deluge) as num
+			if(isnum(change))
+				target_deluge = clamp(change, 0, reagents.total_volume)
+				src.updateUsrDialog()
+
+		if(href_list["JUICE"]) //open the floodgates
+			var/cost = cost_per_unit * target_deluge
+			if(credit >= cost)
+				src.credit -= cost
+				src.fill()
+				boutput(usr, "<span class='notice'>Thank you for your purchase.</span>")
+				src.updateUsrDialog()
+				return
+			else if(scan)
+				var/datum/data/record/account = FindBankAccountById(src.scan.registered_id)
+				if (account && account.fields["current_money"] >= cost)
+					account.fields["current_money"] -= cost
+					src.fill()
+					boutput(usr, "<span class='notice'>Thank you for your purchase.</span>")
+					src.updateUsrDialog()
+					return
+			boutput(usr, "<span class='alert'>Insufficient funds.</span>")
 
 /datum/action/bar/icon/shoveMobIntoVendomat
 	duration = 0.2 SECONDS

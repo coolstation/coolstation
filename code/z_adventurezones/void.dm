@@ -12,13 +12,14 @@ CONTENTS:
 /area/crunch
 	name = "somewhere"
 	icon_state = "purple"
-	filler_turf = "/turf/unsimulated/floor/void"
+	filler_turf = "/turf/floor/void"
 	sound_environment = EAX_SEWER_PIPE
 	skip_sims = 1
 	sims_score = 15
 	sound_group = "void"
 	sound_loop_1 = 'sound/ambience/spooky/Void_Song.ogg'
-	ambient_light = rgb(6.9, 4.20, 6.9)
+	ambient_light = "#B098E0" //formerly rgb(6.9, 4.20, 6.9), leaving this in appreciation
+	is_construction_allowed = FALSE
 
 	New()
 		..()
@@ -35,7 +36,7 @@ CONTENTS:
 						if (M.client)
 							M.client.playAmbience(src, AMBIENCE_FX_2, 50)
 
-/turf/unsimulated/wall/void
+/turf/wall/void
 	name = "dense void"
 	icon = 'icons/turf/floors.dmi'
 	desc = "It seems solid..."
@@ -48,20 +49,21 @@ CONTENTS:
 	icon_state = "darkvoid"
 #endif
 
-/turf/unsimulated/wall/void/crunch //putting these here for now
+/turf/wall/void/crunch //putting these here for now
 	fullbright = 0
 
-/turf/unsimulated/floor/void
+/turf/floor/void
 	name = "void"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "void"
 	desc = "A strange shifting void ..."
+	has_material = FALSE
 	mat_appearances_to_ignore = list("steel")
 
-/turf/unsimulated/floor/void/crunch
+/turf/floor/void/crunch
 	fullbright = 0
 
-/turf/simulated/wall/void
+/turf/wall/void
 	name = "dense void"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "darkvoid"
@@ -86,13 +88,12 @@ CONTENTS:
 		return
 
 
-/turf/simulated/floor/void
+/turf/floor/void
 	name = "void"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "void"
 	desc = "A strange shifting void ..."
-	step_material = "step_lattice"
-	step_priority = STEP_PRIORITY_MED
+	step_material = 0
 	mat_appearances_to_ignore = list("steel")
 
 	ex_act()
@@ -195,12 +196,12 @@ CONTENTS:
 			UpdateOverlays(overlays_list["lscreen[operating]"], "lscreen")
 			UpdateOverlays(overlays_list["rscreen[operating]"], "rscreen")
 
-			if(chair1?.buckled_guy)
+			if(chair1?.stool_user)
 				UpdateOverlays(overlays_list["l_dial_[operating]"], "l_dial")
 			else
 				UpdateOverlays(overlays_list["l_dial_idle"], "l_dial")
 
-			if(chair2?.buckled_guy)
+			if(chair2?.stool_user)
 				UpdateOverlays(overlays_list["r_dial_[operating]"], "r_dial")
 			else
 				UpdateOverlays(overlays_list["r_dial_idle"], "r_dial")
@@ -236,8 +237,8 @@ CONTENTS:
 					<A HREF='?src=\ref[src];refresh_chair_connection=1'>Re-establish</A>
 					<h3>Mental Interfaces</h3>
 					<table border=1><tr>
-						<th>Interface #1<td><B>[chair1?.buckled_guy ? "<font color=green>Connected</font>" : "<font color=red>Disconnected</font>"]</B><tr>
-						<th>Interface #2<td><B>[chair2?.buckled_guy ? "<font color=green>Connected</font>" : "<font color=red>Disconnected</font>"]</B><tr>
+						<th>Interface #1<td><B>[chair1?.stool_user ? "<font color=green>Connected</font>" : "<font color=red>Disconnected</font>"]</B><tr>
+						<th>Interface #2<td><B>[chair2?.stool_user ? "<font color=green>Connected</font>" : "<font color=red>Disconnected</font>"]</B><tr>
 					</table>
 					<A HREF='?src=\ref[src];refresh_mind_connection=1'>Re-establish</A><BR><BR>
 					<A HREF='?src=\ref[src];execute_swap=1'><B><font bold=5 size=7>Activate</font></B></A></span>"}
@@ -372,7 +373,7 @@ CONTENTS:
 		update_icons()
 
 	proc/can_operate()
-		return chair1 && ishuman(chair1.buckled_guy) && !chair1.buckled_guy:on_chair && chair2 && ishuman(chair2.buckled_guy) && !chair2.buckled_guy:on_chair
+		return chair1 && ishuman(chair1.stool_user) && !chair1.stool_user:on_chair && chair2 && ishuman(chair2.stool_user) && !chair2.stool_user:on_chair
 
 	proc/do_swap()
 
@@ -388,11 +389,11 @@ CONTENTS:
 				update_icons()
 
 				//We're not going to allow you to unbuckle during the process
-				chair1.allow_unbuckle = 0
-				chair2.allow_unbuckle = 0
+				chair1.allow_unbuckle = 1
+				chair2.allow_unbuckle = 1
 
-				var/mob/living/carbon/human/A = chair1.buckled_guy
-				var/mob/living/carbon/human/B = chair2.buckled_guy
+				var/mob/living/carbon/human/A = chair1.stool_user
+				var/mob/living/carbon/human/B = chair2.stool_user
 
 				if(istype(A, /mob/living/carbon/human/future))
 					A:death_countdown = 20 //Don't die on us mid-process
@@ -456,8 +457,8 @@ CONTENTS:
 
 				//We're now going to allow you to unbuckle
 
-				if(chair1) chair1.allow_unbuckle = 1
-				if(chair2) chair2.allow_unbuckle = 1
+				if(chair1) chair1.allow_unbuckle = 0
+				if(chair2) chair2.allow_unbuckle = 0
 			else //Failure.
 				success = 0
 

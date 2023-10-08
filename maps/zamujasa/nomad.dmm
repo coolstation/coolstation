@@ -6,16 +6,16 @@
 /turf/cordon,
 /area/cordon)
 "ac" = (
-/turf/unsimulated/wall/solidcolor/black{
+/turf/wall/solidcolor/black{
 	name = "rock wall"
 	},
 /area/nomad/inside)
 "ad" = (
-/turf/unsimulated/wall/setpieces/Azarak/cavewall,
+/turf/wall/setpieces/Azarak/cavewall,
 /area/nomad/inside)
 "ae" = (
 /obj/map/light/void,
-/turf/unsimulated/wall/setpieces/Azarak/cavewall,
+/turf/wall/setpieces/Azarak/cavewall,
 /area/nomad/inside)
 "af" = (
 /turf/space/no_replace,
@@ -24,19 +24,19 @@
 /obj/decal/fakeobjects/cpucontroller{
 	desc = "Probably powers some vast archive, if you had to guess. Definitely not related to the computer upstairs, since. Do you see any wires? I sure don't. Maybe they're invisible or something."
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor3,
+/turf/floor/setpieces/Azarak/cavefloor/floor3,
 /area/nomad/inside)
 "ah" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor3,
+/turf/floor/setpieces/Azarak/cavefloor/floor3,
 /area/nomad/inside)
 "ai" = (
 /obj/decal/fakeobjects/vacuumtape{
 	desc = "This is probably the storage for said archives. Probably. Maybe it's just a bunch of tapes. Shame Bradbury II's data tapes are way too big for this thing."
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/nomad/inside)
 "aj" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/nomad/inside)
 "ak" = (
 /obj/stone{
@@ -56,7 +56,7 @@
 	layer = 0;
 	pixel_y = 20
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor,
+/turf/floor/setpieces/Azarak/cavefloor,
 /area/nomad/inside)
 "al" = (
 /obj/stone{
@@ -82,24 +82,24 @@
 	name = "to the finder";
 	pixel_x = -2
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor3,
+/turf/floor/setpieces/Azarak/cavefloor/floor3,
 /area/nomad/inside)
 "am" = (
 /obj/decal/cleanable/writing/infrared{
 	desc = "Something's written here...";
 	words = "It is not too late to put the keys back."
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/nomad/inside)
 "an" = (
 /obj/decal/cleanable/writing/infrared{
 	desc = "...";
 	words = "Stop. Do not make the same mistake you have made so, so many times before."
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/nomad/inside)
 "ao" = (
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor,
+/turf/floor/setpieces/Azarak/cavefloor,
 /area/nomad/inside)
 "ap" = (
 /obj/ladder{
@@ -108,25 +108,25 @@
 	pixel_y = 20
 	},
 /obj/map/light/void,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor,
+/turf/floor/setpieces/Azarak/cavefloor,
 /area/nomad/inside)
 "aq" = (
 /obj/decal/cleanable/writing/infrared{
 	desc = "Something's written here...";
 	words = "You're making a mistake."
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/nomad/inside)
 "ar" = (
-/turf/unsimulated/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "as" = (
-/turf/unsimulated/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 8
 	},
 /area/nomad/outside)
 "at" = (
-/turf/unsimulated/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "au" = (
 /obj/stone{
@@ -135,7 +135,7 @@
 	pixel_x = 17;
 	pixel_y = 15
 	},
-/turf/unsimulated/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "av" = (
 /obj/stone{
@@ -143,23 +143,23 @@
 	pixel_x = 29;
 	pixel_y = 22
 	},
-/turf/unsimulated/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "aw" = (
-/turf/unsimulated/grasstodirt{
+/turf/floor/grasstodirt{
 	icon_state = "grasstodirt";
 	dir = 10
 	},
 /area/nomad/outside)
 "ax" = (
-/turf/unsimulated/grasstodirt,
+/turf/floor/grasstodirt,
 /area/nomad/outside)
 "ay" = (
 /obj/item/shovel,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor,
+/turf/floor/setpieces/Azarak/cavefloor,
 /area/nomad/inside)
 "az" = (
-/turf/unsimulated/wall/auto/reinforced/supernorn{
+/turf/wall/auto/reinforced/supernorn{
 	desc = "You can see through it for aesthetic reasons. Trust me on this one.";
 	name = "reinforced wall";
 	opacity = 0
@@ -180,17 +180,17 @@
 	pixel_x = 6;
 	pixel_y = -3
 	},
-/turf/unsimulated/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "aB" = (
-/turf/unsimulated/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 8;
 	icon_state = "grasstodirt";
 	name = "mossy dirt"
 	},
 /area/nomad/outside)
 "aC" = (
-/turf/unsimulated/floor/wood,
+/turf/floor/wood,
 /area/nomad/inside)
 "aD" = (
 /obj/item/clothing/suit/bedsheet{
@@ -203,7 +203,7 @@
 	layer = 0;
 	words = "There is nothing for you here."
 	},
-/turf/unsimulated/floor/wood,
+/turf/floor/wood,
 /area/nomad/inside)
 "aE" = (
 /obj/stone{
@@ -212,7 +212,7 @@
 	pixel_x = 4;
 	pixel_y = 9
 	},
-/turf/unsimulated/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "aF" = (
 /obj/stone{
@@ -220,7 +220,7 @@
 	pixel_x = 14;
 	pixel_y = 5
 	},
-/turf/unsimulated/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "aG" = (
 /obj/stone{
@@ -229,10 +229,10 @@
 	pixel_x = 5;
 	pixel_y = 23
 	},
-/turf/unsimulated/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "aH" = (
-/turf/unsimulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1
 	},
 /area/nomad/inside)
@@ -246,7 +246,7 @@
 /obj/storage/closet/emergency{
 	desc = "This one looks somewhat out of place. Less dust on it. A little dinged up. Probably still has goodies in it."
 	},
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/nomad/inside)
 "aJ" = (
 /obj/tree1{
@@ -254,10 +254,10 @@
 	pixel_x = 0;
 	pixel_y = -6
 	},
-/turf/unsimulated/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "aK" = (
-/turf/unsimulated/grasstodirt{
+/turf/floor/grasstodirt{
 	icon_state = "grasstodirt";
 	dir = 9
 	},
@@ -267,10 +267,10 @@
 /obj/deskclutter,
 /obj/random_item_spawner/tableware,
 /obj/item/storage/pill_bottle/antirad,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/nomad/inside)
 "aM" = (
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/nomad/inside)
 "aN" = (
 /obj/shrub{
@@ -282,17 +282,17 @@
 	name = "space ficus";
 	pixel_y = 0
 	},
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/nomad/inside)
 "aO" = (
 /obj/storage/secure/closet/fridge/kitchen{
 	pixel_y = 4
 	},
-/turf/unsimulated/floor/black/corner,
+/turf/floor/black/corner,
 /area/nomad/inside)
 "aP" = (
 /obj/submachine/chef_oven,
-/turf/unsimulated/floor/black/side,
+/turf/floor/black/side,
 /area/nomad/inside)
 "aQ" = (
 /obj/table/wood/auto,
@@ -300,14 +300,14 @@
 	pixel_y = 10
 	},
 /obj/item/storage/box/cutlery,
-/turf/unsimulated/floor/black/side,
+/turf/floor/black/side,
 /area/nomad/inside)
 "aR" = (
 /obj/table/wood/auto,
 /obj/machinery/microwave{
 	pixel_y = 5
 	},
-/turf/unsimulated/floor/black/corner{
+/turf/floor/black/corner{
 	icon_state = "greyblackcorner";
 	dir = 4
 	},
@@ -319,27 +319,27 @@
 	pixel_y = 12
 	},
 /obj/random_item_spawner/tools,
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/nomad/inside)
 "aT" = (
 /obj/stool/chair/office/purple{
 	dir = 8
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/nomad/inside)
 "aU" = (
-/turf/unsimulated/floor/black/side{
+/turf/floor/black/side{
 	dir = 4
 	},
 /area/nomad/inside)
 "aV" = (
-/turf/unsimulated/floor/white/grime,
+/turf/floor/white/grime,
 /area/nomad/inside)
 "aW" = (
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/nomad/inside)
 "aX" = (
-/turf/unsimulated/floor/black/side{
+/turf/floor/black/side{
 	dir = 8
 	},
 /area/nomad/inside)
@@ -349,14 +349,14 @@
 	icon_state = "shrub";
 	pixel_y = 10
 	},
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/nomad/inside)
 "aZ" = (
 /obj/decal/cleanable/paper,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/nomad/inside)
 "ba" = (
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/nomad/inside)
 "bb" = (
 /obj/item/tripod{
@@ -365,25 +365,25 @@
 	pixel_x = -7;
 	pixel_y = -7
 	},
-/turf/unsimulated/floor/black/side{
+/turf/floor/black/side{
 	dir = 8
 	},
 /area/nomad/inside)
 "bc" = (
-/turf/unsimulated/floor/black/corner{
+/turf/floor/black/corner{
 	icon_state = "greyblackcorner";
 	dir = 8
 	},
 /area/nomad/inside)
 "bd" = (
-/turf/unsimulated/floor/black/side{
+/turf/floor/black/side{
 	icon_state = "greyblack";
 	dir = 1
 	},
 /area/nomad/inside)
 "be" = (
 /obj/storage/closet/wardrobe/black,
-/turf/unsimulated/floor/black/side{
+/turf/floor/black/side{
 	icon_state = "greyblack";
 	dir = 1
 	},
@@ -403,7 +403,7 @@
 /obj/rack{
 	layer = 0
 	},
-/turf/unsimulated/floor/black/corner{
+/turf/floor/black/corner{
 	icon_state = "greyblackcorner";
 	dir = 1
 	},
@@ -417,7 +417,7 @@
 /obj/tree1{
 	dir = 4
 	},
-/turf/unsimulated/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "bh" = (
 /obj/stone{
@@ -428,10 +428,10 @@
 	pixel_x = 2;
 	pixel_y = 20
 	},
-/turf/unsimulated/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "bi" = (
-/turf/unsimulated/floor/stairs/dark,
+/turf/floor/stairs/dark,
 /area/nomad/inside)
 "bj" = (
 /obj/decal/stage_edge,
@@ -441,7 +441,7 @@
 	icon_state = "gib7";
 	layer = 0
 	},
-/turf/unsimulated/floor/purple,
+/turf/floor/purple,
 /area/nomad/inside)
 "bk" = (
 /obj/decal/stage_edge{
@@ -458,33 +458,33 @@
 	pixel_y = -2
 	},
 /obj/random_item_spawner/desk_stuff,
-/turf/unsimulated/floor/purple,
+/turf/floor/purple,
 /area/nomad/inside)
 "bl" = (
-/turf/unsimulated/wall/auto/reinforced/supernorn{
+/turf/wall/auto/reinforced/supernorn{
 	name = "reinforced window that definitely is not actually a wall";
 	opacity = 0
 	},
 /area/nomad/inside)
 "bm" = (
-/turf/unsimulated/floor/purple,
+/turf/floor/purple,
 /area/nomad/inside)
 "bn" = (
 /obj/stool/chair/office/purple{
 	dir = 4
 	},
-/turf/unsimulated/floor/purple,
+/turf/floor/purple,
 /area/nomad/inside)
 "bo" = (
 /obj/decal/cleanable/paper,
-/turf/unsimulated/floor/purple,
+/turf/floor/purple,
 /area/nomad/inside)
 "bp" = (
 /obj/decal/cleanable/writing/infrared{
 	desc = "Something's been written here. Some kind of warning?";
 	words = "You shouldn't be here..."
 	},
-/turf/unsimulated/floor/purple,
+/turf/floor/purple,
 /area/nomad/inside)
 "bq" = (
 /obj/rack{
@@ -497,18 +497,18 @@
 	name = "well-seasoned backpack"
 	},
 /obj/item/storage/firstaid,
-/turf/unsimulated/floor/purple,
+/turf/floor/purple,
 /area/nomad/inside)
 "br" = (
 /obj/dummy_pad,
-/turf/unsimulated/floor/purple,
+/turf/floor/purple,
 /area/nomad/inside)
 "bs" = (
 /obj/stone{
 	pixel_x = 1;
 	pixel_y = 5
 	},
-/turf/unsimulated/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "bt" = (
 /obj/stone{
@@ -516,10 +516,10 @@
 	pixel_x = 18;
 	pixel_y = 21
 	},
-/turf/unsimulated/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "bu" = (
-/turf/unsimulated/wall/nothing,
+/turf/wall/nothing,
 /area/space)
 "bv" = (
 /obj/decal/cleanable/dirt,
@@ -528,7 +528,7 @@
 	},
 /obj/decal/cleanable/machine_debris,
 /obj/decal/cleanable/blood/drip/high,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/nomad/inside)
 "bw" = (
 /obj/decal/cleanable/machine_debris{
@@ -536,7 +536,7 @@
 	layer = 0
 	},
 /obj/decal/cleanable/ash,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/nomad/inside)
 "bx" = (
 /obj/decal/cleanable/dirt/dirt4,
@@ -548,7 +548,7 @@
 	name = "destroyed Electromagnetic Card"
 	},
 /obj/decal/cleanable/blood/splatter,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/nomad/inside)
 "by" = (
 /obj/decal/cleanable/dirt/dirt3,
@@ -562,7 +562,7 @@
 	desc = "It looks like the tunnel collapsed.";
 	dir = 6
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/nomad/inside)
 "bz" = (
 /obj/decal/cleanable/dirt/dirt5,
@@ -582,30 +582,30 @@
 	icon_state = "gib7";
 	layer = 0
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/nomad/inside)
 "bA" = (
 /obj/decal/cleanable/dirt/dirt5,
 /obj/decal/cleanable/blood/drip/low,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/nomad/inside)
 "bB" = (
 /obj/decal/cleanable/blood/drip/low,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/nomad/inside)
 "bC" = (
 /obj/decal/fakeobjects/cpucontroller{
 	desc = "It looks to be in pretty bad shape.";
 	icon_state = "gannets_machine10"
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor3,
+/turf/floor/setpieces/Azarak/cavefloor/floor3,
 /area/nomad/inside)
 "bD" = (
 /obj/decal/cleanable/blood/tracks{
 	icon_state = "tracks";
 	dir = 9
 	},
-/turf/unsimulated/floor/wood,
+/turf/floor/wood,
 /area/nomad/inside)
 "bE" = (
 /obj/decal/cliff{
@@ -614,7 +614,7 @@
 	icon_state = "grtransNW";
 	name = "\proper collapsed ground"
 	},
-/turf/unsimulated/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 8
 	},
 /area/nomad/outside)
@@ -625,7 +625,7 @@
 	icon_state = "grtransS";
 	dir = 1
 	},
-/turf/unsimulated/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "bG" = (
 /obj/decal/cliff{
@@ -634,7 +634,7 @@
 	icon_state = "grtransNE";
 	dir = 1
 	},
-/turf/unsimulated/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "bH" = (
 /obj/decal/cliff{
@@ -643,7 +643,7 @@
 	icon_state = "grtransW";
 	dir = 1
 	},
-/turf/unsimulated/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 8
 	},
 /area/nomad/outside)
@@ -654,7 +654,7 @@
 	icon_state = "aground_inner3";
 	dir = 1
 	},
-/turf/unsimulated/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "bJ" = (
 /obj/decal/cliff{
@@ -663,7 +663,7 @@
 	icon_state = "grtransE";
 	dir = 1
 	},
-/turf/unsimulated/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "bK" = (
 /obj/decal/cliff{
@@ -672,7 +672,7 @@
 	icon_state = "grtransSW";
 	dir = 1
 	},
-/turf/unsimulated/grass,
+/turf/floor/grass,
 /area/nomad/outside)
 "bL" = (
 /obj/decal/cliff{
@@ -681,7 +681,7 @@
 	icon_state = "grtransN";
 	dir = 1
 	},
-/turf/unsimulated/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "bM" = (
 /obj/decal/cliff{
@@ -690,7 +690,7 @@
 	icon_state = "grtransSE";
 	dir = 1
 	},
-/turf/unsimulated/dirt,
+/turf/floor/dirt,
 /area/nomad/outside)
 "bN" = (
 /obj/stool/bed,
@@ -700,7 +700,7 @@
 	interesting = "Approximate time since death: 2 hours<br>No external injuries. Cause of death unknown.";
 	name = "body"
 	},
-/turf/unsimulated/floor/wood,
+/turf/floor/wood,
 /area/nomad/inside)
 "bO" = (
 /obj/decal/stage_edge{
@@ -709,14 +709,14 @@
 /obj/table/auto/desk,
 /obj/item/paper_bin,
 /obj/random_item_spawner/desk_stuff,
-/turf/unsimulated/floor/purple,
+/turf/floor/purple,
 /area/nomad/inside)
 "bP" = (
 /obj/decal/cleanable/blood/tracks{
 	icon_state = "tracks";
 	dir = 1
 	},
-/turf/unsimulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 1
 	},
 /area/nomad/inside)
@@ -725,7 +725,7 @@
 	desc = "There are no numbers or markings on this clock. The hands are not moving.";
 	interesting = "The internal mechanisms are running, but the hands are not moving."
 	},
-/turf/unsimulated/wall/auto/reinforced/supernorn{
+/turf/wall/auto/reinforced/supernorn{
 	desc = "You can see through it for aesthetic reasons. Trust me on this one.";
 	name = "reinforced wall";
 	opacity = 0
@@ -738,7 +738,7 @@
 	icon_state = "tracks";
 	dir = 1
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/nomad/inside)
 "bS" = (
 /obj/decal/cleanable/blood/drip/low,
@@ -746,7 +746,7 @@
 	icon_state = "tracks";
 	dir = 10
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/nomad/inside)
 "bT" = (
 /obj/shrub{
@@ -762,14 +762,14 @@
 	icon_state = "tracks";
 	dir = 8
 	},
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/nomad/inside)
 "bU" = (
 /obj/stool/chair/office/purple{
 	dir = 8
 	},
 /obj/decal/cleanable/blood/tracks,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/nomad/inside)
 "bV" = (
 /obj/item/paper/empty_bloody{
@@ -780,36 +780,36 @@
 	},
 /obj/map/light/dimred,
 /obj/map/light/dimred,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/nomad/inside)
 "bW" = (
 /obj/decal/cleanable/dirt/dirt5,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/nomad/inside)
 "bX" = (
 /obj/decal/cleanable/blood/tracks,
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/nomad/inside)
 "bY" = (
 /obj/decal/cleanable/blood/drip/low,
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/nomad/inside)
 "bZ" = (
 /obj/decal/cleanable/dirt/dirt3,
-/turf/unsimulated/floor/black/side{
+/turf/floor/black/side{
 	dir = 4
 	},
 /area/nomad/inside)
 "ca" = (
 /obj/decal/cleanable/dirt,
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/nomad/inside)
 "cb" = (
 /obj/decal/cleanable/blood/tracks{
 	icon_state = "tracks";
 	dir = 10
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/nomad/inside)
 "cc" = (
 /obj/decal/cleanable/dirt/dirt5,
@@ -817,7 +817,7 @@
 	icon_state = "tracks";
 	dir = 4
 	},
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/nomad/inside)
 "cd" = (
 /obj/decal/cleanable/blood/drip/low,
@@ -825,18 +825,18 @@
 	icon_state = "tracks";
 	dir = 5
 	},
-/turf/unsimulated/floor/black/grime,
+/turf/floor/black/grime,
 /area/nomad/inside)
 "ce" = (
 /obj/decal/cleanable/blood/tracks{
 	icon_state = "tracks";
 	dir = 1
 	},
-/turf/unsimulated/floor/stairs/dark,
+/turf/floor/stairs/dark,
 /area/nomad/inside)
 "cf" = (
 /obj/decal/cleanable/ash,
-/turf/unsimulated/floor/purple,
+/turf/floor/purple,
 /area/nomad/inside)
 "cg" = (
 /obj/decal/cleanable/blood/drip/low,
@@ -845,42 +845,42 @@
 	icon_state = "tracks";
 	dir = 1
 	},
-/turf/unsimulated/floor/purple,
+/turf/floor/purple,
 /area/nomad/inside)
 "ch" = (
 /obj/decal/cleanable/blood/drip/low,
 /obj/item/mine/stun/armed,
-/turf/unsimulated/floor/purple,
+/turf/floor/purple,
 /area/nomad/inside)
 "ci" = (
 /obj/decal/cleanable/blood/splatter{
 	icon_state = "gibbl2"
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor3,
+/turf/floor/setpieces/Azarak/cavefloor/floor3,
 /area/nomad/inside)
 "cj" = (
 /obj/decal/cleanable/blood/tracks{
 	icon_state = "u_ketchup"
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor3,
+/turf/floor/setpieces/Azarak/cavefloor/floor3,
 /area/nomad/inside)
 "ck" = (
 /obj/decal/cleanable/blood/splatter{
 	icon_state = "gibbl2"
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/nomad/inside)
 "cl" = (
 /obj/decal/cleanable/blood/tracks{
 	icon_state = "u_ketchup"
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor/floor2,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/nomad/inside)
 "cm" = (
 /obj/decal/cleanable/blood/tracks{
 	icon_state = "u_ketchup"
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor,
+/turf/floor/setpieces/Azarak/cavefloor,
 /area/nomad/inside)
 "cn" = (
 /obj/decal/fakeobjects{
@@ -892,7 +892,7 @@
 	name = "\improper Key of \"D\""
 	},
 /obj/map/light/dimred,
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor,
+/turf/floor/setpieces/Azarak/cavefloor,
 /area/nomad/inside)
 "co" = (
 /obj/ladder{
@@ -900,36 +900,36 @@
 	id = "nomad";
 	pixel_y = 20
 	},
-/turf/unsimulated/floor/setpieces/Azarak/cavefloor,
+/turf/floor/setpieces/Azarak/cavefloor,
 /area/nomad/inside)
 "cp" = (
 /obj/decal/fakeobjects/carcosa/carcosa_plant/three,
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt_inner,
+/turf/floor/setpieces/carcosa/carcosa_dirt_inner,
 /area/nomad/outside)
 "cq" = (
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt_inner,
+/turf/floor/setpieces/carcosa/carcosa_dirt_inner,
 /area/nomad/outside)
 "cr" = (
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt,
+/turf/floor/setpieces/carcosa/carcosa_dirt,
 /area/nomad/outside)
 "cs" = (
 /obj/decal/fakeobjects/carcosa/carcosa_plant/five,
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt_inner,
+/turf/floor/setpieces/carcosa/carcosa_dirt_inner,
 /area/nomad/outside)
 "ct" = (
 /obj/decal/fakeobjects/carcosa/carcosa_plant/one,
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt,
+/turf/floor/setpieces/carcosa/carcosa_dirt,
 /area/nomad/outside)
 "cu" = (
 /obj/decal/fakeobjects/carcosa/tree/five,
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt,
+/turf/floor/setpieces/carcosa/carcosa_dirt,
 /area/nomad/outside)
 "cv" = (
 /obj/decal/fakeobjects/carcosa/carcosa_plant/six,
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt_inner,
+/turf/floor/setpieces/carcosa/carcosa_dirt_inner,
 /area/nomad/outside)
 "cw" = (
-/turf/unsimulated/wall/setpieces{
+/turf/wall/setpieces{
 	desc = "Or at least, it sort of looks like one. Weird.";
 	icon = 'icons/obj/adventurezone/3dimension.dmi';
 	icon_state = "wall";
@@ -938,17 +938,17 @@
 /area/nomad/inside)
 "cx" = (
 /obj/decal/fakeobjects/carcosa/carcosa_plant/four,
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt_inner,
+/turf/floor/setpieces/carcosa/carcosa_dirt_inner,
 /area/nomad/outside)
 "cy" = (
-/turf/unsimulated/floor/setpieces{
+/turf/floor/setpieces{
 	icon = 'icons/obj/adventurezone/3dimension.dmi';
 	icon_state = "floor"
 	},
 /area/nomad/inside)
 "cz" = (
 /obj/decal/fakeobjects/carcosa/carcosa_plant/one,
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt_inner,
+/turf/floor/setpieces/carcosa/carcosa_dirt_inner,
 /area/nomad/outside)
 "cA" = (
 /obj/decal/stage_edge,
@@ -957,7 +957,7 @@
 	layer = 0;
 	pixel_y = -2
 	},
-/turf/unsimulated/floor/setpieces{
+/turf/floor/setpieces{
 	color = "#bbbbbb";
 	desc = "Yeah, probably a floor.";
 	icon = 'icons/obj/adventurezone/3dimension.dmi';
@@ -969,10 +969,10 @@
 /obj/decal/fakeobjects/carcosa/rubble/one{
 	pixel_x = -12
 	},
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt,
+/turf/floor/setpieces/carcosa/carcosa_dirt,
 /area/nomad/outside)
 "cC" = (
-/turf/unsimulated/floor/setpieces{
+/turf/floor/setpieces{
 	color = "#bbbbbb";
 	desc = "Yeah, probably a floor.";
 	icon = 'icons/obj/adventurezone/3dimension.dmi';
@@ -987,7 +987,7 @@
 	name = "area power controller";
 	pixel_y = 32
 	},
-/turf/unsimulated/floor/setpieces{
+/turf/floor/setpieces{
 	color = "#bbbbbb";
 	desc = "Yeah, probably a floor.";
 	icon = 'icons/obj/adventurezone/3dimension.dmi';
@@ -1009,7 +1009,7 @@
 	layer = 4;
 	name = "\improper Key of \"N\""
 	},
-/turf/unsimulated/floor/setpieces{
+/turf/floor/setpieces{
 	color = "#bbbbbb";
 	desc = "Yeah, probably a floor.";
 	icon = 'icons/obj/adventurezone/3dimension.dmi';
@@ -1031,7 +1031,7 @@
 	layer = 4;
 	name = "\improper Key of \"O\""
 	},
-/turf/unsimulated/floor/setpieces{
+/turf/floor/setpieces{
 	color = "#bbbbbb";
 	desc = "Yeah, probably a floor.";
 	icon = 'icons/obj/adventurezone/3dimension.dmi';
@@ -1045,7 +1045,7 @@
 	pixel_x = 5;
 	pixel_y = 14
 	},
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt,
+/turf/floor/setpieces/carcosa/carcosa_dirt,
 /area/nomad/outside)
 "cH" = (
 /obj/item/paper{
@@ -1055,7 +1055,7 @@
 	name = "sheet of paper";
 	pixel_x = -2
 	},
-/turf/unsimulated/floor/setpieces{
+/turf/floor/setpieces{
 	icon = 'icons/obj/adventurezone/3dimension.dmi';
 	icon_state = "floor"
 	},
@@ -1075,7 +1075,7 @@
 	layer = 4;
 	name = "\improper Key of \"M\""
 	},
-/turf/unsimulated/floor/setpieces{
+/turf/floor/setpieces{
 	color = "#bbbbbb";
 	desc = "Yeah, probably a floor.";
 	icon = 'icons/obj/adventurezone/3dimension.dmi';
@@ -1097,7 +1097,7 @@
 	layer = 4;
 	name = "\improper Key of \"A\""
 	},
-/turf/unsimulated/floor/setpieces{
+/turf/floor/setpieces{
 	color = "#bbbbbb";
 	desc = "Yeah, probably a floor.";
 	icon = 'icons/obj/adventurezone/3dimension.dmi';
@@ -1106,11 +1106,11 @@
 /area/nomad/inside)
 "cL" = (
 /obj/decal/fakeobjects/carcosa/tree/three,
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt,
+/turf/floor/setpieces/carcosa/carcosa_dirt,
 /area/nomad/outside)
 "cM" = (
 /obj/decal/fakeobjects/carcosa/carcosa_plant/two,
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt,
+/turf/floor/setpieces/carcosa/carcosa_dirt,
 /area/nomad/outside)
 "cN" = (
 /obj/decal/stage_edge,
@@ -1120,7 +1120,7 @@
 	icon_state = "computer";
 	name = "computer"
 	},
-/turf/unsimulated/floor/setpieces{
+/turf/floor/setpieces{
 	color = "#888888";
 	desc = "Hopefully. It's hard to tell.";
 	icon = 'icons/obj/adventurezone/3dimension.dmi';
@@ -1135,7 +1135,7 @@
 	icon_state = "table";
 	layer = 3.1
 	},
-/turf/unsimulated/floor/setpieces{
+/turf/floor/setpieces{
 	color = "#888888";
 	desc = "Hopefully. It's hard to tell.";
 	icon = 'icons/obj/adventurezone/3dimension.dmi';
@@ -1143,7 +1143,7 @@
 	},
 /area/nomad/inside)
 "cP" = (
-/turf/unsimulated/floor/setpieces{
+/turf/floor/setpieces{
 	color = "#888888";
 	desc = "Hopefully. It's hard to tell.";
 	icon = 'icons/obj/adventurezone/3dimension.dmi';
@@ -1155,7 +1155,7 @@
 	desc = "Is it safe to sit on this? It looks a little jagged. Or mabye aliased.";
 	icon = 'icons/obj/adventurezone/3dimension.dmi'
 	},
-/turf/unsimulated/floor/setpieces{
+/turf/floor/setpieces{
 	color = "#888888";
 	desc = "Hopefully. It's hard to tell.";
 	icon = 'icons/obj/adventurezone/3dimension.dmi';
@@ -1164,19 +1164,19 @@
 /area/nomad/inside)
 "cR" = (
 /obj/decal/fakeobjects/carcosa/carcosa_plant/five,
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt,
+/turf/floor/setpieces/carcosa/carcosa_dirt,
 /area/nomad/outside)
 "cS" = (
 /obj/decal/fakeobjects/carcosa/carcosa_plant/four,
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt,
+/turf/floor/setpieces/carcosa/carcosa_dirt,
 /area/nomad/outside)
 "cT" = (
 /obj/decal/fakeobjects/carcosa/carcosa_plant/three,
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt,
+/turf/floor/setpieces/carcosa/carcosa_dirt,
 /area/nomad/outside)
 "cU" = (
 /obj/dummy_pad,
-/turf/unsimulated/floor/setpieces{
+/turf/floor/setpieces{
 	color = "#888888";
 	desc = "Hopefully. It's hard to tell.";
 	icon = 'icons/obj/adventurezone/3dimension.dmi';
@@ -1185,11 +1185,11 @@
 /area/nomad/inside)
 "cV" = (
 /obj/decal/fakeobjects/carcosa/tree/two,
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt,
+/turf/floor/setpieces/carcosa/carcosa_dirt,
 /area/nomad/outside)
 "cW" = (
 /obj/decal/fakeobjects/carcosa/tree/four,
-/turf/unsimulated/floor/setpieces/carcosa/carcosa_dirt,
+/turf/floor/setpieces/carcosa/carcosa_dirt,
 /area/nomad/outside)
 
 (1,1,1) = {"

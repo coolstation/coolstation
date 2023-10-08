@@ -436,14 +436,14 @@
 
 	ex_act(severity)
 		switch (severity)
-			if (1)
+			if (OLD_EX_SEVERITY_1)
 				dump_contents(null, FALSE, TRUE) //dump as in delete
 				qdel(src)
-			if (2)
+			if (OLD_EX_SEVERITY_2)
 				if (prob(50))
 					dump_contents(null, FALSE) //Don't lazy init contents (but if the locker's been opened already it'll get dumped anyway)
 					qdel(src)
-			if (3)
+			if (OLD_EX_SEVERITY_3)
 				if (prob(5))
 					dump_contents()
 					qdel(src)

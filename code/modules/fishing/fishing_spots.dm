@@ -60,7 +60,7 @@ ABSTRACT_TYPE(/datum/fishing_spot)
 	/obj/item/fish/red_herring = 5)
 
 /datum/fishing_spot/sea/dojo
-	fishing_atom_type = /turf/unsimulated/wall/water
+	fishing_atom_type = /turf/wall/water
 
 /datum/fishing_spot/sea/river
 	fishing_atom_type = /obj/river
@@ -69,10 +69,10 @@ ABSTRACT_TYPE(/datum/fishing_spot)
 	fishing_atom_type = /obj/reagent_dispensers/watertank
 
 /datum/fishing_spot/sea/deeptrench
-	fishing_atom_type = /turf/unsimulated/floor/polarispit
+	fishing_atom_type = /turf/floor/polarispit
 
 /datum/fishing_spot/test
-	fishing_atom_type = /turf/simulated/floor/ancient
+	fishing_atom_type = /turf/floor/ancient
 	fish_available = list(/obj/item/fish/carp = 40,\
 	/obj/item/fish/bass = 30,\
 	/obj/item/fish/salmon = 20,\
@@ -100,8 +100,7 @@ ABSTRACT_TYPE(/datum/fishing_spot)
 	/obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat = 25,\
 	/obj/item/reagent_containers/food/snacks/ingredient/meatpaste = 25,\
 	/mob/living/carbon/human/biker = 1,\
-	/mob/living/carbon/human/fatherted = 1,\
-	/mob/living/carbon/human/fatherjack = 1,\
+	/mob/living/carbon/human/fathergraham = 1,\
 	/mob/living/carbon/human/don_glab = 1,\
 	/mob/living/carbon/human/spacer = 1,\
 	/mob/living/carbon/human/tommy = 1,\
@@ -164,7 +163,7 @@ ABSTRACT_TYPE(/datum/fishing_spot)
 	/obj/item/reagent_containers/food/snacks/haggis = 1) //snake, custard, and haggis are nethack references, haggis is a meat "pudding"
 
 /datum/fishing_spot/pool
-	fishing_atom_type = /turf/simulated/pool
+	fishing_atom_type = /turf/pool
 	fish_available = list(/obj/item/fish/carp = 400,\
 	/obj/item/fish/bass = 300,\
 	/obj/item/fish/salmon = 200,\
@@ -180,7 +179,7 @@ ABSTRACT_TYPE(/datum/fishing_spot)
 	/obj/storage/crate/chest/coins = 1)
 
 /datum/fishing_spot/pool/unsimulated
-	fishing_atom_type = /turf/unsimulated/floor/pool
+	fishing_atom_type = /turf/floor/pool
 
 /datum/fishing_spot/bathtub
 	fishing_atom_type = /obj/machinery/bathtub
@@ -228,7 +227,7 @@ ABSTRACT_TYPE(/datum/fishing_spot)
 			. = fryer.fryify(.)
 
 /datum/fishing_spot/acid
-	fishing_atom_type = /turf/unsimulated/floor/setpieces/bloodfloor/stomach
+	fishing_atom_type = /turf/floor/setpieces/bloodfloor/stomach
 	fish_available = list(/obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat = 4000,\
 	/obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat/nugget = 3000,\
 	/obj/item/reagent_containers/food/snacks/bite = 3000,\
@@ -246,7 +245,7 @@ ABSTRACT_TYPE(/datum/fishing_spot)
 	fishing_atom_type = /obj/stomachacid
 
 /datum/fishing_spot/lava
-	fishing_atom_type = /turf/unsimulated/floor/lava
+	fishing_atom_type = /turf/floor/lava
 	fish_available = list(/obj/item/reagent_containers/food/snacks/yuckburn = 900,\
 	/obj/item/reagent_containers/food/snacks/shell = 100,\
 	/obj/item/reagent_containers/food/snacks/strudel = 75,\

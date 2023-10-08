@@ -294,7 +294,7 @@ proc/create_random_station()
 						if(T.density)
 							new T.type(C.loc)
 							continue filling_holes
-					new/turf/simulated/wall(C.loc)
+					new/turf/wall(C.loc)
 				else
 					new/obj/machinery/door/airlock/external(C.loc)
 			else

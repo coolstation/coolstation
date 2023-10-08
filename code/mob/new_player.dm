@@ -121,7 +121,14 @@ mob/new_player
 					src.last_client << browse("", "window=pregameBrowser")
 		return
 
+	verb/show_newnewplayer_screen()
+		set hidden = 0
+		set name = "Show Warning Splash"
+		set category = "Commands"
+		usr << browse(newplayerHTML, "window=pregameBrowser")
+
 	verb/new_player_panel()
+
 		set src = usr
 		if(client)
 			winset(src, "joinmenu.button_charsetup", "is-disabled=false")
@@ -145,9 +152,15 @@ mob/new_player
 			if (client) winset(src, "joinmenu.button_ready", "is-disabled=true;is-visible=false")
 			if (client) winset(src, "joinmenu.button_cancel", "is-disabled=false;is-visible=true")
 			if (client) winset(src, "joinmenu.button_ready_antag", "is-disabled=true")
-		if(pregameHTML && client)
+		//show new player disclaimer to new players
+		if (client.player.rounds_participated < 10)
+			winshow(client, "pregameBrowser", 1)
+			client << browse(newplayerHTML, "window=pregameBrowser")
+		//show pregameHTML if it's available
+		else if(pregameHTML && client)
 			winshow(client, "pregameBrowser", 1)
 			client << browse(pregameHTML, "window=pregameBrowser")
+		//if pregameHTML is not available, show blank screen until pregameHTML is generated (which will send a new command to browse upon completion)
 		else if(client)
 			winshow(src.last_client, "pregameBrowser", 0)
 			src.last_client << browse("", "window=pregameBrowser")

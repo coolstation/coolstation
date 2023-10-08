@@ -802,7 +802,7 @@ obj/item/contract/greed
 						playsound(T, "sound/items/coindrop.ogg", 100, 1)
 						new /obj/item/coin(T)
 						for (var/i = 1; i<= 8; i= i*2)
-							if (istype(get_turf(get_step(T,i)),/turf/simulated/floor))
+							if (istype(get_turf(get_step(T,i)),/turf/floor))
 								new /obj/item/coin (get_step(T,i))
 							else
 								new /obj/item/coin(T)

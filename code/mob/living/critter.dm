@@ -33,6 +33,8 @@
 	var/can_throw = 0
 	var/can_choke = 0
 	var/in_throw_mode = 0
+	//this is probably crap but I can't be arsed to refactor
+	var/lie_on_death = TRUE
 
 	var/can_help = 0
 	var/can_grab = 0
@@ -917,6 +919,8 @@
 				if (!HH.item.qdeled && !HH.item.disposed && istype(HH.item, /obj/item/grab))
 					qdel(HH.item)
 					continue
+				if (HH.item.cant_drop) //Excuse me >:(
+					continue
 				var/obj/item/I = HH.item
 				I.set_loc(src.loc)
 				I.master = null
@@ -1317,3 +1321,9 @@
 
 	src.TakeDamage("All", damage, 0)
 	return
+
+//crummy hack but I'm not the one leaving critters visually broken for years
+/mob/living/critter/animate_lying()
+	if (!lie_on_death && isdead(src))
+		return
+	..()

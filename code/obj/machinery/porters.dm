@@ -72,7 +72,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 					return 5
 			for (var/obj/machinery/door/D in view(0, test_turf))
 				return 5
-			for (var/turf/simulated/wall/W in view(0, test_turf))
+			for (var/turf/wall/W in view(0, test_turf))
 				return 5
 
 		else
@@ -87,7 +87,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 					return 4
 			for (var/obj/machinery/door/D in view(0, our_loc))
 				return 4
-			for (var/turf/simulated/wall/W in view(0, our_loc))
+			for (var/turf/wall/W in view(0, our_loc))
 				return 4
 
 		return 1
@@ -365,7 +365,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 		if (get_dist(over_object, src) > 1)
 			usr.show_text("The [src.name] is too far away from the target!", "red")
 			return
-		if (!istype(over_object,/turf/simulated/floor/))
+		if (!istype(over_object,/turf/floor/))
 			usr.show_text("You can't set this target as the home location.", "red")
 			return
 
@@ -577,7 +577,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 		if (get_dist(over_object, src) > 1)
 			usr.show_text("The [src.name] is too far away from the target!", "red")
 			return
-		if (!istype(over_object,/turf/simulated/floor/))
+		if (!istype(over_object,/turf/floor/))
 			usr.show_text("You can't set this target as the home location.", "red")
 			return
 
@@ -715,7 +715,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 		if (get_dist(over_object, src) > 1)
 			usr.show_text("The [src.name] is too far away from the target!", "red")
 			return
-		if (!istype(over_object,/turf/simulated/floor/))
+		if (!istype(over_object,/turf/floor/))
 			usr.show_text("You can't set this target as the home location.", "red")
 			return
 		var/turf/check_loc = over_object
@@ -902,7 +902,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 		if (get_dist(over_object, src) > 1)
 			usr.show_text("The [src.name] is too far away from the target!", "red")
 			return
-		if (!istype(over_object,/turf/simulated/floor/))
+		if (!istype(over_object,/turf/floor/))
 			usr.show_text("You can't set this target as the home location.", "red")
 			return
 
@@ -912,6 +912,59 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 			// The crusher, hell fires etc. This feature enables quite a bit of mischief...well, if it wouldn't be the NanoMed.
 			//logTheThing("station", usr, null, "sets [src.name]'s home turf to [log_loc(src.homeloc)].")
 		return
+
+	allow_drop()
+		return 0
+
+	powered()
+		return
+
+	use_power()
+		return
+
+	power_change()
+		return
+
+//non-teleporting nanomed, for close at hand emergency surgery consumables
+/obj/machinery/vending/crash_cart
+	name = "Crash Cart"
+	desc = "An emergency lifesaving supply cart on wheels. It floats because there's no new sprite yet and eventually there will be a not-vending-machine-version."
+	icon = 'icons/obj/porters.dmi'
+	icon_state = "crash_cart"
+	icon_deny = "crash_cart"
+	layer = FLOOR_EQUIP_LAYER1
+	acceptcard = 0
+	anchored = 0
+	p_class = 1.2
+	can_fall = 0
+	mats = 30
+	ai_control_enabled = 0
+
+	New()
+		..()
+
+		//Products - will futz with
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/patch/bruise, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/patch/burn, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/epinephrine, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/charcoal, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/saline, 10)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/atropine, 4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/mannitol, 8)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/salbutamol, 8)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/antihistamine, 6)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/anti_rad, 8)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/spaceacillin, 4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/insulin, 4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/synaptizine, 4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/calomel, 4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/heparin, 4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/proconvertin, 4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/emergency_injector/filgrastim, 4)
+		product_list += new/datum/data/vending_product(/obj/item/bandage, 10)
+		product_list += new/datum/data/vending_product(/obj/item/device/analyzer/healthanalyzer, 2)
+		product_list += new/datum/data/vending_product(/obj/item/device/analyzer/healthanalyzer_upgrade, 1)
+		product_list += new/datum/data/vending_product(/obj/item/device/analyzer/healthanalyzer_organ_upgrade, 1)
 
 	allow_drop()
 		return 0

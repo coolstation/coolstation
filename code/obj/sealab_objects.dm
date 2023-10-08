@@ -173,12 +173,12 @@
 	database_id = "sea_plant_tubesponge-small"
 
 //TURFS
-/turf/unsimulated/wall/trench
+/turf/wall/trench
 	name = "trench wall"
 	icon_state = "trench-top"
 	fullbright = 0
 
-/turf/unsimulated/wall/trench/side
+/turf/wall/trench/side
 	name = "trench wall"
 	icon_state = "trench-side"
 	fullbright = 0

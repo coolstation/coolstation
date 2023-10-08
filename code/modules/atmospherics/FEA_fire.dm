@@ -23,7 +23,7 @@
 
 
 
-/turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, set_own_hotspot, electric = 0)
+/turf/hotspot_expose(exposed_temperature, exposed_volume, set_own_hotspot, electric = 0)
 	. = ..()
 	var/datum/gas_mixture/air_contents = return_air()
 
@@ -180,7 +180,7 @@
 			light.enable(queued_run = 1)
 
 	proc/perform_exposure()
-		var/turf/simulated/floor/location = loc
+		var/turf/floor/location = loc
 		if(!istype(location))
 			return 0
 
@@ -227,12 +227,12 @@
 			var/B = min(55, max(0, temperature - 100 / 550))
 			H.update_burning(B)
 
-	proc/process(list/turf/simulated/possible_spread)
+	proc/process(list/turf/possible_spread)
 		if (just_spawned)
 			just_spawned = 0
 			return 0
 
-		var/turf/simulated/floor/location = loc
+		var/turf/floor/location = loc
 		if (!istype(location) || (locate(/obj/fire_foam) in location))
 			qdel(src)
 			return 0
@@ -261,7 +261,7 @@
 			if(location.air.temperature > FIRE_MINIMUM_TEMPERATURE_TO_SPREAD)
 				var/radiated_temperature = location.air.temperature*FIRE_SPREAD_RADIOSITY_SCALE
 
-				for(var/turf/simulated/possible_target in possible_spread)
+				for(var/turf/possible_target in possible_spread)
 					if(!possible_target.active_hotspot)
 						possible_target.hotspot_expose(radiated_temperature, CELL_VOLUME/4)
 

@@ -135,8 +135,7 @@
 
 	////////////////////// GUN STUFF -V
 	// Lifted from secbot!
-	var/global/list/budgun_whitelist = list(/obj/item/gun/energy/tasershotgun,\
-											/obj/item/gun/energy/taser_gun,\
+	var/global/list/budgun_whitelist = list(/obj/item/gun/energy/taser_gun,\
 											/obj/item/gun/energy/vuvuzela_gun,\
 											/obj/item/gun/energy/wavegun,\
 											/obj/item/gun/energy/pulse_rifle,
@@ -152,8 +151,7 @@
 											/obj/item/gun/energy/glitch_gun,\
 											/obj/item/gun/energy/lawbringer)
 	// List of guns that arent wierd gimmicks or traitor weapons
-	var/global/list/budgun_actualguns = list(/obj/item/gun/energy/tasershotgun,\
-											/obj/item/gun/energy/taser_gun,\
+	var/global/list/budgun_actualguns = list(/obj/item/gun/energy/taser_gun,\
 											/obj/item/gun/energy/wavegun,\
 											/obj/item/gun/energy/pulse_rifle,\
 											/obj/item/gun/energy/egun,\
@@ -377,11 +375,17 @@
 			src.warm_boot = 1
 #ifdef HALLOWEEN
 		if (!setup_no_costumes)
-			src.costume_icon = image(src.icon, "bcostume-[pick("xcom","clown","horse","moustache","owl","pirate","skull", "wizard", "wizardred","devil")]", , FLY_LAYER)
-			src.costume_icon.pixel_x = src.hat_x_offset
-			src.costume_icon.pixel_y = src.hat_y_offset
-			if (src.costume_icon && src.costume_icon:icon_state == "bcostume-wizard")
-				src.hat = new /obj/item/clothing/head/wizard
+			if (istype(src,/obj/machinery/bot/guardbot/bootleg))
+				src.costume_icon = image(src.icon, "bcostume-bootleg", , FLY_LAYER)
+			else
+				src.costume_icon = image(src.icon, "bcostume-[pick("xcom","clown","horse","moustache","owl","pirate","skull", "wizard", "devil")]", , FLY_LAYER)
+				src.costume_icon.pixel_x = src.hat_x_offset
+				src.costume_icon.pixel_y = src.hat_y_offset
+				if (src.costume_icon && src.costume_icon:icon_state == "bcostume-wizard")
+					if (prob(50))
+						src.hat = new /obj/item/clothing/head/wizard
+					else
+						src.hat = new /obj/item/clothing/head/wizard/red
 #endif
 		src.update_icon()
 
@@ -1360,10 +1364,10 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.explode(0)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.health -= 15
 				if (src.health <= 0)
 					src.explode(0)
@@ -2433,7 +2437,7 @@
 				master.remove_current_task()
 				return
 
-			if(istype(src.target, /turf/simulated))
+			if(issimulatedturf(src.target))
 				var/obj/machinery/guardbot_dock/dock = locate() in src.target
 				if(dock && dock.loc == master.loc)
 					if(!isnull(dock.current) && dock.current != src)
@@ -2474,7 +2478,7 @@
 				if(!L || !L["x"] || !L["y"]) return
 				var/search_x = text2num(L["x"])
 				var/search_y = text2num(L["y"])
-				var/turf/simulated/new_target = locate(search_x,search_y,master.z)
+				var/turf/new_target = locate(search_x,search_y,master.z)
 				if(!new_target)
 					return
 
@@ -2515,7 +2519,7 @@
 		name = "rumpus"
 		handle_beacons = 1
 		task_id = "RUMPUS"
-		var/tmp/turf/simulated/bar_beacon_turf	//Location of bar beacon
+		var/tmp/turf/bar_beacon_turf	//Location of bar beacon
 		var/tmp/obj/stool/our_seat = null
 		var/tmp/awaiting_beacon = 0
 		var/tmp/nav_delay = 0
@@ -2545,7 +2549,7 @@
 							src.master.remove_current_task()
 							return
 
-					if(istype(src.bar_beacon_turf, /turf/simulated))
+					if(issimulatedturf(src.bar_beacon_turf))
 						if (get_area(src.master) == get_area(bar_beacon_turf))
 							src.state = 2
 							master.moving = 0
@@ -3812,7 +3816,7 @@
 
 		proc/look_for_neat_thing()
 			var/area/spaceArea = get_area(src.master)
-			if (!(src.neat_things & NT_SPACE) && spaceArea && spaceArea.name == "Space" && !istype(get_turf(src.master), /turf/simulated/shuttle))
+			if (!(src.neat_things & NT_SPACE) && spaceArea && spaceArea.name == "Space" && !istype(get_turf(src.master), /turf/shuttle))
 				FOUND_NEAT(NT_SPACE)
 					src.speak_with_maptext(pick("While you find yourself surrounded by space, please try to avoid the temptation to inhale any of it.  That doesn't work.",\
 					"Space: the final frontier.  Oh, except for time travel and any other dimensions.  And frontiers on other planets, including other planets in those other dimensions and times.  Maybe I should stick with \"space: a frontier.\"",\

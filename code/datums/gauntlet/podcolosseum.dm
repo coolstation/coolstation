@@ -2,6 +2,7 @@
 	name = "The Colosseum"
 	virtual = 1
 	ambient_light = "#bfbfbf"
+	is_construction_allowed = FALSE
 
 	Entered(var/atom/A)
 		..()
@@ -155,7 +156,7 @@
 		players = mobn
 		difficulty = 1
 		var/list/possibles = list()
-		for (var/turf/unsimulated/floor/T in staging)
+		for (var/turf/floor/T in staging)
 			possibles += T
 		var/list/myicons = icons.Copy()
 		for (var/i = 1, i <= mobn, i++)
@@ -475,12 +476,12 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 	src.debug_variables(colosseum_controller)
 
-/turf/unsimulated/floor/setpieces/gauntlet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/turf/floor/setpieces/gauntlet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if (istype(mover, /obj/machinery/colosseum_putt))
 		return 0
 	return ..()
 
-/turf/unsimulated/floor/setpieces/gauntlet/pod
+/turf/floor/setpieces/gauntlet/pod
 	name = "Colosseum Hangar Floor"
 	desc = "You wonder if that little flashing white thing is a pod or a butt."
 	icon_state = "gauntfloorPod"

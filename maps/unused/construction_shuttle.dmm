@@ -17,7 +17,7 @@
 /area/space)
 "ad" = (
 /obj/warp_beacon,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "ae" = (
 /obj/lattice{
@@ -39,13 +39,13 @@
 /turf/space,
 /area/space)
 "ah" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 8;
 	icon_state = "wall_space"
 	},
 /area/shuttle/arrival/station)
 "ai" = (
-/turf/simulated/shuttle/wall,
+/turf/shuttle/wall,
 /area/shuttle/arrival/station)
 "aj" = (
 /obj/machinery/shuttle/engine/heater{
@@ -56,10 +56,10 @@
 	icon_state = "rwindow";
 	dir = 2
 	},
-/turf/simulated/floor/plating/airless,
+/turf/floor/plating/airless,
 /area/shuttle/arrival/station)
 "ak" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 1;
 	icon_state = "wall_space"
 	},
@@ -72,13 +72,13 @@
 /obj/item/fuel_pellet/cerenkite,
 /obj/item/fuel_pellet/cerenkite,
 /obj/item/fuel_pellet/cerenkite,
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/shuttle/arrival/station)
 "am" = (
 /obj/rack,
 /obj/item/clothing/suit/rad,
 /obj/item/clothing/head/rad_hood,
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/shuttle/arrival/station)
 "an" = (
 /obj/cable{
@@ -90,7 +90,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/shuttle/arrival/station)
 "ao" = (
 /obj/cable{
@@ -102,22 +102,22 @@
 	name = "N APC";
 	pixel_y = 24
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/shuttle/arrival/station)
 "ap" = (
 /obj/machinery/manufacturer/mining,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aq" = (
 /obj/landmark/start/latejoin,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "ar" = (
 /obj/machinery/manufacturer/gas,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "as" = (
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/shuttle/arrival/station)
 "at" = (
 /obj/landmark/start/latejoin,
@@ -126,7 +126,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/shuttle/arrival/station)
 "au" = (
 /obj/cable{
@@ -134,18 +134,18 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/shuttle/arrival/station)
 "av" = (
 /obj/machinery/manufacturer/general,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aw" = (
 /obj/machinery/portable_reclaimer,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "ax" = (
-/turf/simulated/shuttle/wall/cockpit/window{
+/turf/shuttle/wall/cockpit/window{
 	icon_state = "wall_space";
 	name = "window";
 	tag = "icon-wall_space"
@@ -158,18 +158,18 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/shuttle/arrival/station)
 "az" = (
 /obj/reagent_dispensers/fueltank,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aA" = (
 /obj/machinery/manufacturer/mechanic,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aB" = (
-/turf/simulated/shuttle/wall/cockpit/window{
+/turf/shuttle/wall/cockpit/window{
 	tag = "icon-wall_space (EAST)";
 	name = "window";
 	icon_state = "wall_space";
@@ -178,7 +178,7 @@
 /area/shuttle/arrival/station)
 "aC" = (
 /obj/machinery/atmospherics/pipe/tank/air,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aD" = (
 /obj/machinery/atmospherics/portables_connector,
@@ -190,7 +190,7 @@
 	pixel_y = 32;
 	tag = "icon-shock"
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aE" = (
 /obj/cable{
@@ -198,24 +198,24 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aF" = (
 /obj/machinery/vending/floppy{
 	profit = 0
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aG" = (
 /obj/window/reinforced/west,
 /obj/table/reinforced/auto,
 /obj/item/device/matanalyzer,
 /obj/item/extinguisher,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aH" = (
 /obj/machinery/rkit,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aI" = (
 /obj/grille/steel,
@@ -224,11 +224,11 @@
 /obj/window/reinforced/south,
 /obj/window/reinforced/north,
 /obj/window/reinforced,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aJ" = (
 /obj/machinery/atmospherics/valve,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aK" = (
 /obj/machinery/atmospherics/binary/pump{
@@ -240,13 +240,13 @@
 	tag = "icon-intact_on (NORTH)";
 	target_pressure = 2000
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aL" = (
 /obj/machinery/vending/computer3{
 	profit = 0
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aM" = (
 /obj/window/reinforced/west,
@@ -256,7 +256,7 @@
 /obj/item/device/gps,
 /obj/item/device/gps,
 /obj/item/device/gps,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aN" = (
 /obj/table/reinforced/auto,
@@ -268,7 +268,7 @@
 /obj/item/mining_tool/power_pick{
 	pixel_x = 7
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aO" = (
 /obj/machinery/atmospherics/pipe/simple{
@@ -277,14 +277,14 @@
 	level = 2;
 	tag = "icon-intact (NORTHEAST)"
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aP" = (
 /obj/machinery/atmospherics/pipe/manifold{
 	icon_state = "manifold";
 	level = 2
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aQ" = (
 /obj/machinery/atmospherics/pipe/simple{
@@ -293,30 +293,30 @@
 	level = 2;
 	tag = "icon-intact (NORTHWEST)"
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aR" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aS" = (
 /obj/window/reinforced/west,
 /obj/table/reinforced/auto,
 /obj/machinery/cell_charger,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aT" = (
 /obj/table/reinforced/auto,
 /obj/item/electronics/scanner,
 /obj/item/electronics/scanner,
 /obj/item/storage/box/cablesbox,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aU" = (
 /obj/storage/crate,
 /obj/item/storage/box/cablesbox,
 /obj/item/storage/box/cablesbox,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aV" = (
 /obj/window/reinforced/west{
@@ -328,18 +328,18 @@
 /obj/item/device/gps,
 /obj/item/device/gps,
 /obj/item/device/gps,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aW" = (
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aX" = (
 /obj/machinery/nanofab/refining,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aY" = (
 /obj/machinery/nanofab/mining,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aZ" = (
 /obj/storage/crate,
@@ -356,7 +356,7 @@
 /obj/item/tripod,
 /obj/item/tripod,
 /obj/item/tripod,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "ba" = (
 /obj/window/reinforced/west{
@@ -371,7 +371,7 @@
 /obj/item/electronics/scanner,
 /obj/item/electronics/scanner,
 /obj/item/device/matanalyzer,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bb" = (
 /obj/landmark/start/latejoin,
@@ -380,10 +380,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bc" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	tag = "icon-wall_floor (WEST)";
 	icon_state = "wall_floor";
 	dir = 8
@@ -391,7 +391,7 @@
 /area/shuttle/arrival/station)
 "bd" = (
 /obj/reagent_dispensers/watertank/big,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "be" = (
 /obj/window/reinforced/west{
@@ -406,11 +406,11 @@
 /obj/item/device/light/glowstick,
 /obj/item/device/light/glowstick,
 /obj/item/device/light/glowstick,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bf" = (
 /obj/reagent_dispensers/foamtank,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bg" = (
 /obj/window/reinforced/west{
@@ -420,31 +420,31 @@
 	},
 /obj/storage/crate,
 /obj/item/shipcomponent/mainweapon/phaser,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bh" = (
 /obj/machinery/vehicle/pod_smooth/light,
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/shuttle/arrival/station)
 "bi" = (
 /obj/machinery/r_door_control{
 	id = "construction";
 	pixel_x = 0
 	},
-/turf/simulated/shuttle/wall,
+/turf/shuttle/wall,
 /area/shuttle/arrival/station)
 "bj" = (
 /obj/supply_pad/outgoing{
 	has_crystal = 30
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bk" = (
 /obj/machinery/door/unpowered/shuttle,
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/shuttle/arrival/station)
 "bl" = (
-/turf/simulated/floor/shuttlebay{
+/turf/floor/shuttlebay{
 	icon_state = "engine_caution_north"
 	},
 /area/shuttle/arrival/station)
@@ -457,20 +457,20 @@
 	name = "Hangar Door";
 	tag = "icon-bdoorleft1 (NORTH)"
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/shuttle/arrival/station)
 "bn" = (
 /obj/machinery/computer/special_supply{
 	dir = 4
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bo" = (
 /obj/machinery/vending/cigarette,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bp" = (
-/turf/simulated/floor/shuttlebay{
+/turf/floor/shuttlebay{
 	icon_state = "engine_caution_south"
 	},
 /area/shuttle/arrival/station)
@@ -483,29 +483,29 @@
 	name = "Hangar Door";
 	tag = "icon-bdoorright1 (NORTH)"
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/shuttle/arrival/station)
 "br" = (
 /obj/supply_pad/incoming{
 	has_crystal = 30
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bs" = (
 /obj/machinery/vending/cola,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bt" = (
 /obj/machinery/vehicle/miniputt{
 	dir = 1
 	},
-/turf/simulated/floor/shuttlebay,
+/turf/floor/shuttlebay,
 /area/shuttle/arrival/station)
 "bu" = (
 /obj/machinery/vending/pizza{
 	anchored = 1
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bv" = (
 /obj/securearea{
@@ -517,17 +517,17 @@
 	tag = "icon-space"
 	},
 /obj/storage/closet/emergency,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bw" = (
 /obj/storage/closet/emergency,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bx" = (
 /obj/table/reinforced/auto,
 /obj/item/kitchen/utensil/knife,
 /obj/item/kitchen/utensil/knife,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "by" = (
 /obj/securearea{
@@ -539,14 +539,14 @@
 	tag = "icon-space"
 	},
 /obj/storage/closet/emergency,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bz" = (
 /obj/cable{
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "bA" = (
 /obj/machinery/door/airlock/external,
@@ -555,7 +555,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bB" = (
 /obj/cable{
@@ -563,7 +563,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bC" = (
 /obj/cable{
@@ -576,26 +576,26 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bD" = (
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "bE" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall_space"
 	},
 /area/shuttle/arrival/station)
 "bF" = (
 /obj/machinery/door/unpowered/shuttle,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bG" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 4;
 	icon_state = "wall_space"
 	},
@@ -604,14 +604,14 @@
 /obj/machinery/computer3/generic{
 	dir = 4
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bI" = (
 /obj/stool/chair{
 	dir = 8
 	},
 /obj/landmark/start/latejoin,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bJ" = (
 /obj/stool/chair{
@@ -620,47 +620,47 @@
 	dir = 4
 	},
 /obj/landmark/start/latejoin,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bK" = (
 /obj/machinery/computer3/generic{
 	dir = 8
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bL" = (
 /obj/table/reinforced/auto,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bM" = (
 /obj/item/device/radio/beacon,
 /obj/landmark{
 	name = "Observer-Start"
 	},
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bN" = (
 /obj/table/reinforced/auto,
 /obj/item/device/radio,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bO" = (
 /obj/table/reinforced/auto,
 /obj/item/storage/toolbox/emergency,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bP" = (
 /obj/stool/chair,
 /obj/landmark/start/latejoin,
-/turf/simulated/floor/shuttle,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "bQ" = (
-/turf/simulated/shuttle/wall/cockpit/window{
+/turf/shuttle/wall/cockpit/window{
 	name = "window"
 	},
 /area/shuttle/arrival/station)
 "bR" = (
-/turf/simulated/shuttle/wall/cockpit{
+/turf/shuttle/wall/cockpit{
 	tag = "icon-shuttlecock (NORTH)";
 	icon_state = "shuttlecock";
 	dir = 1

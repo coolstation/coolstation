@@ -2206,7 +2206,7 @@ var/global/list/allowed_restricted_z_areas
 
 		if (S == "displaycase")
 			for (var/obj/displaycase/D in view(CT, range))
-				D.ex_act(1)
+				D.ex_act(OLD_EX_TOTAL)
 
 		if (S == "glassware")
 			for (var/obj/item/reagent_containers/glass/G in view(CT, range))

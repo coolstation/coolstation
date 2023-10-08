@@ -83,7 +83,7 @@
 			var/obj/stool/chair/C = M.buckled
 			M.buckled.unbuckle()
 			C.buckledIn = 0
-			C.buckled_guy = null
+			C.stool_user = null
 		M.pixel_y = 0
 		M.buckled = null
 		reset_anchored(M)
@@ -134,7 +134,7 @@
 
 			if (iswrestler(src))
 				if (prob(33))
-					M.ex_act(3)
+					M.ex_act(OLD_EX_LIGHT)
 				else
 					random_brute_damage(M, 20 * effect_mult)
 					M.changeStatus("weakened", 7 SECONDS * effect_mult)

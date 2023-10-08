@@ -34,21 +34,26 @@
 	var/list/obj/machinery/computer/airbr/computers = null
 
 	var/original_turf = /turf/space
-	var/floor_turf = /turf/simulated/floor/airbridge
-	var/wall_turf = /turf/simulated/wall/airbridge
+	var/floor_turf = /turf/floor/airbridge
+	var/wall_turf = /turf/wall/airbridge
 	var/floor_light_type = /obj/machinery/light/small/floor
 
 	var/list/obj/my_lights = null
 
 	var/slide_delay = 1 SECOND
 
+	var/area/original_area = /area/space
+	var/area/airbridge/airbridge_area// = /area/airbridge
+
 	drawbridge
 		name = "Drawbridge Controller"
-		original_turf = /turf/simulated/floor/plating/airless/asteroid
+		original_turf = /turf/floor/plating/airless/asteroid
 
 	New()
 		START_TRACKING
 		..()
+		original_area = get_area_by_type(original_area)
+		airbridge_area = new
 
 	proc/get_link()
 		for_by_tcl(C, /obj/airbridge_controller)
@@ -79,7 +84,9 @@
 		working = 1
 
 		SPAWN_DBG(5 SECONDS)
-			for(var/turf/simulated/T in maintaining_turfs)
+			for(var/turf/T in maintaining_turfs)
+				if(istype(T, /turf/space))
+					continue
 				if(!T.air && T.density)
 					continue
 				ZERO_BASE_GASES(T.air)
@@ -162,11 +169,11 @@
 			for(var/turf/T in path)
 				var/dir = path[T]
 				for(var/i = -tunnel_width, i <= tunnel_width, i++)
+					curr = get_steps(T, turn(dir, 90),i)
+					airbridge_area.add_turf(curr)
 					if(abs(i) == tunnel_width) // wall
-						curr = get_steps(T, turn(dir, 90),i)
 						animate_turf_slideout(curr, src.wall_turf, dir, slide_delay)
 					else // floor
-						curr = get_steps(T, turn(dir, 90),i)
 						animate_turf_slideout(curr, src.floor_turf, dir, slide_delay)
 					curr.set_dir(dir)
 					maintaining_turfs.Add(curr)
@@ -223,6 +230,7 @@
 				var/opdir = turn(dir, 180)
 				for(var/i = -tunnel_width, i <= tunnel_width, i++)
 					curr = get_steps(T, turn(dir, 90), i)
+					original_area.add_turf(curr)
 					animate_turf_slidein(curr, src.original_turf, opdir, slide_delay)
 				playsound(T, "sound/effects/airbridge_dpl.ogg", 50, 1)
 				sleep(slide_delay)
@@ -255,7 +263,7 @@
 	desc = "Used to control the airbridge."
 	id = "noodles"
 	icon_state = "airbr0"
-
+	glow_in_dark_screen = FALSE
 	// set this var to 1 in the map editor if you want the airbridge to establish and pressurize when the round starts
 	// only do it to ONE of the computers for the airbridge ID or they will both try to do it and get confused
 	var/starts_established = 0
@@ -483,3 +491,8 @@
 			boutput(user, "<span class='notice'>[C.toggle_bridge()]</span>")
 			break
 		return
+
+/area/airbridge
+	name = "Airbridge"
+	is_atmos_simulated = TRUE
+	is_construction_allowed = TRUE

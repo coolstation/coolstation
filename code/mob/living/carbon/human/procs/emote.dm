@@ -208,7 +208,7 @@
 	G.affecting.lastattackertime = world.time
 	if (iswrestler(src))
 		if (prob(50))
-			G.affecting.ex_act(3) // this is hilariously overpowered, but WHATEVER!!!
+			G.affecting.ex_act(OLD_EX_LIGHT) // this is hilariously overpowered, but WHATEVER!!!
 		else
 			G.affecting.changeStatus("weakened", 5 SECONDS)
 			G.affecting.force_laydown_standup()
@@ -246,7 +246,7 @@
 					src.force_laydown_standup()
 
 /// Looks for the kind_of_target movables within range, and throws the user an input
-/// Valid kinds: "mob", "obj", "both"
+/// Valid kinds: "mob", "obj", "both", "critter", "bot", "chumps"
 /mob/living/proc/get_targets(range = 1, kind_of_target = "mob")
 	if(!isturf(get_turf(src))) return
 
@@ -272,3 +272,23 @@
 				if(O == src)
 					continue
 				. |= O
+		if("critter")
+			. = list()
+			for(var/obj/critter/C in everything_around)
+				if(C == src)
+					continue
+				. |= C
+		if("bot")
+			. = list()
+			for(var/obj/machinery/bot/B in everything_around)
+				if(B == src)
+					continue
+				. |= B
+		if("chumps")
+			. = list()
+			for(var/C as anything in everything_around)
+				if(C == src)
+					continue
+				if(istype(C,/obj/machinery/bot/) || istype(C,/obj/critter/) || istype(C,/mob/))
+					. |= C
+

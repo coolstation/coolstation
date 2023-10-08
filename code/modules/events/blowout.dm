@@ -21,6 +21,9 @@
 		world << siren
 		command_alert("Extreme levels of radiation detected approaching the [station_or_ship()]. All personnel have [timetoreach].[timetoreachsec] seconds to enter a maintenance tunnel or radiation safezone. Maintenance doors have temporarily had their access requirements removed. This is not a test.", "Anomaly Alert")
 
+		var/datum/directed_broadcast/emergency/broadcast = new(station_name, "Radiation Storm", "[timetoreach] Seconds", "Seek shelter in maintenance corridors immediately. Interlocks have been released.")
+		broadcast_controls.broadcast_start(broadcast, TRUE, -1, 1)
+
 		SPAWN_DBG(0)
 			for_by_tcl(A, /obj/machinery/door/airlock)
 				LAGCHECK(LAG_LOW)
@@ -44,7 +47,7 @@
 						A.irradiated = TRUE
 						A.icon_state = "blowout"
 					for (var/turf/T in A)
-						if (rand(0,1000) < 5 && istype(T,/turf/simulated/floor))
+						if (rand(0,1000) < 5 && istype(T,/turf/floor))
 							Artifact_Spawn(T)
 
 			siren.repeat = FALSE
@@ -90,6 +93,9 @@
 					A.irradiated = FALSE
 				A.icon_state = null
 			blowout = FALSE
+
+			broadcast_controls.broadcast_stop(broadcast)
+			qdel(broadcast)
 
 			command_alert("All radiation alerts onboard [station_name(1)] have been cleared. You may now leave the tunnels freely. Maintenance doors will regain their normal access requirements shortly.", "All Clear")
 

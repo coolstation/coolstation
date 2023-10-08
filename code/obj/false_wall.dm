@@ -1,4 +1,4 @@
-/turf/simulated/wall/false_wall
+/turf/wall/false_wall
 	name = "wall"
 	icon = 'icons/obj/doors/Doorf.dmi'
 	icon_state = "door1"
@@ -38,7 +38,7 @@
 			// so that if it's getting created by the map it works, and if it isn't this will just return
 			src.setFloorUnderlay('icons/turf/floors.dmi', "plating", 0, 100, 0, "plating")
 			if (src.can_be_auto)
-				for (var/turf/simulated/wall/auto/W in orange(1,src))
+				for (var/turf/wall/auto/W in orange(1,src))
 					W.update_icon()
 				for (var/obj/grille/G in orange(1,src))
 					G.update_icon()
@@ -122,7 +122,7 @@
 				src.update_nearby_tiles()
 				if (src.floor_underlay)
 					qdel(src.floor_underlay)
-				var/turf/simulated/floor/F = src.ReplaceWithFloor()
+				var/turf/floor/F = src.ReplaceWithFloor()
 				F.name = floorname1
 				F.icon = flooricon1
 				F.icon_state = flooricon_state1
@@ -199,24 +199,24 @@
 		if (!map_settings)
 			return
 
-		var/turf/wall_path = ispath(map_settings.walls) ? map_settings.walls : /turf/simulated/wall/auto
-		var/turf/r_wall_path = ispath(map_settings.rwalls) ? map_settings.rwalls : /turf/simulated/wall/auto/reinforced
+		var/turf/wall_path = ispath(map_settings.walls) ? map_settings.walls : /turf/wall/auto
+		var/turf/r_wall_path = ispath(map_settings.rwalls) ? map_settings.rwalls : /turf/wall/auto/reinforced
 		src.icon = initial(wall_path.icon)
 		if (src.can_be_auto)
 			var/dirs = 0
 			for (var/dir in cardinal)
 				var/turf/T = get_step(src, dir)
-				if (istype(T, /turf/simulated/wall/auto))
-					var/turf/simulated/wall/auto/W = T
+				if (istype(T, /turf/wall/auto))
+					var/turf/wall/auto/W = T
 					// neither of us are reinforced
-					if (!istype(W, r_wall_path) && !istype(src, /turf/simulated/wall/false_wall/reinforced))
+					if (!istype(W, r_wall_path) && !istype(src, /turf/wall/false_wall/reinforced))
 						dirs |= dir
 					// both of us are reinforced
-					else if (istype(W, r_wall_path) && istype(src, /turf/simulated/wall/false_wall/reinforced))
+					else if (istype(W, r_wall_path) && istype(src, /turf/wall/false_wall/reinforced))
 						dirs |= dir
 					if (W.light_mod) //If the walls have a special light overlay, apply it.
 						src.RL_SetSprite("[W.light_mod][num2text(dirs)]")
-			var/turf/simulated/wall/auto/T = wall_path
+			var/turf/wall/auto/T = wall_path
 			mod = initial(T.mod)
 			src.icon_state = "[mod][num2text(dirs)]"
 		return src.icon_state
@@ -253,7 +253,7 @@
 			src.ReplaceWithWall()
 		return 1
 
-/turf/simulated/wall/false_wall/hive
+/turf/wall/false_wall/hive
 	name = "strange hive wall"
 	desc = "Looking more closely, these are actually really squat octagons, not hexagons! What!!"
 	icon = 'icons/turf/walls.dmi'
@@ -263,7 +263,7 @@
 	find_icon_state()
 		return
 
-/turf/simulated/wall/false_wall/centcom
+/turf/wall/false_wall/centcom
 	desc = "There seems to be markings on one of the edges, huh."
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "leadwall"
@@ -272,7 +272,7 @@
 	find_icon_state()
 		return
 
-/turf/simulated/wall/false_wall/tempus
+/turf/wall/false_wall/tempus
 	desc = "The pattern on the wall seems to have a seam on it"
 	icon = 'icons/turf/walls_tempus-green.dmi'
 	icon_state = "0"

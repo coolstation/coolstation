@@ -27,15 +27,15 @@
 
 /obj/rack/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			//src.deconstruct()
 			qdel(src)
 			return
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			if (prob(50))
 				src.deconstruct()
 				return
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if (prob(25))
 				rackbreak()
 		else
@@ -101,6 +101,8 @@
 	var/obj/item/furniture_parts/P = new /obj/item/furniture_parts/rack(src.loc)
 	if (P && src.material)
 		P.setMaterial(src.material)
+	if (P && src.color)
+		P.color = src.color
 	qdel(src)
 
 /obj/rack/meteorhit(obj/O as obj)

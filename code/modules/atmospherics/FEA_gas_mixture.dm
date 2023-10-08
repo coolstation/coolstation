@@ -720,7 +720,7 @@ What are the archived variables for?
 	return 1
 	//Logic integrated from: temperature_share(sharer, conduction_coefficient) for efficiency
 
-/datum/gas_mixture/proc/check_me_then_temperature_turf_share(turf/simulated/sharer, conduction_coefficient)
+/datum/gas_mixture/proc/check_me_then_temperature_turf_share(turf/sharer, conduction_coefficient)
 	var/delta_temperature = (ARCHIVED(temperature) - sharer.temperature)
 
 	var/self_temperature_delta = 0
@@ -797,7 +797,7 @@ What are the archived variables for?
 			else
 				temperature -= heat/(self_heat_capacity*group_multiplier)
 
-/datum/gas_mixture/proc/temperature_turf_share(turf/simulated/sharer, conduction_coefficient)
+/datum/gas_mixture/proc/temperature_turf_share(turf/sharer, conduction_coefficient)
 	var/delta_temperature = (ARCHIVED(temperature) - sharer.temperature)
 	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
 		var/self_heat_capacity = HEAT_CAPACITY(src)

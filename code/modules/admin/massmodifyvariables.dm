@@ -1,5 +1,5 @@
 /client/proc/cmd_mass_modify_object_variables(obj/O as obj|mob|turf|area in world)
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	set name = "Mass Edit Variables"
 	set desc="(target) Edit all instances of a target item's variables"
 	set popup_menu = 0 // goddamn we have view variables already we don't need this in the damned right click menu FUCK'S SAKE

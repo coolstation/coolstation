@@ -136,7 +136,10 @@
 		if (world.time - create_time >= 3 MINUTES)
 			create_time = world.time
 			if (!src.pooled && isturf(src.loc) && !on_table())
-				if (prob(50))
+				var/area/A = get_area(src)
+				if (A.no_ants) //or else we'd never ever ever get clean food from hydro
+					return //that astroturf is thoroughly covered in insecticide
+				if (prob(25))
 					made_ants = 1
 					processing_items -= src
 					if (!(locate(/obj/reagent_dispensers/cleanable/ants) in src.loc))
@@ -211,7 +214,7 @@
 							plastic_spoon.break_utensil(M)
 							utensil = null
 
-					if (!utensil && (needfork || needspoon))
+					if (!utensil && (needfork || needspoon) && !user.traitHolder.hasTrait("greedy_beast"))
 						if (needfork && needspoon)
 							boutput(M, "<span class='alert'>You need a fork or spoon to eat [src]!</span>")
 						else if (needfork)
@@ -517,6 +520,7 @@
 */
 
 	on_reagent_change()
+		..()
 		//update_gulp_size() //broken, so commenting it out here too
 		doants = src.reagents && src.reagents.total_volume > 0
 
@@ -561,6 +565,14 @@
 
 	//Wow, we copy+pasted the heck out of this... (Source is chemistry-tools dm)
 	attack_self(mob/user as mob)
+		if (istype(src, /obj/item/reagent_containers/food/drinks/bottle))
+			var/obj/item/reagent_containers/food/drinks/bottle/W = src
+			if (!W.is_open_container())
+				boutput(user, "<span class='notice'>You open the [W].</span>")
+				W.open_container()
+				playsound(user, "sound/items/Screwdriver.ogg", 35, 1)
+				W.update_icon()
+				return 0
 		if (src.splash_all_contents)
 			boutput(user, "<span class='notice'>You try to be more careful about spilling [src].</span>")
 			src.splash_all_contents = 0
@@ -571,10 +583,17 @@
 
 	attack(mob/M as mob, mob/user as mob, def_zone)
 		// in this case m is the consumer and user is the one holding it
-		if (istype(src, /obj/item/reagent_containers/food/drinks/bottle/soda))
+		if (istype(src, /obj/item/reagent_containers/food/drinks/bottle))
 			var/obj/item/reagent_containers/food/drinks/bottle/W = src
-			if (W.broken)
+			if (istype(src, /obj/item/reagent_containers/food/drinks/bottle/soda) && W.broken)
 				return
+			if (!W.is_open_container())
+				boutput(user, "<span class='notice'>You open the [W].</span>")
+				W.open_container()
+				playsound(user, "sound/items/Screwdriver.ogg", 35, 1)
+				W.update_icon()
+				return 0
+
 		if (!src.reagents || !src.reagents.total_volume)
 			boutput(user, "<span class='alert'>Nothing left in [src], oh no!</span>")
 			return 0
@@ -893,8 +912,8 @@
 		..()
 		if (!src.cap)
 			src.cap = src.label //quick and dirty
-		//if (cap_type)
-			//src.close_container()
+		if (cap_type)
+			src.close_container()
 		src.update_icon()
 
 	on_reagent_change()
@@ -943,16 +962,16 @@
 				src.UpdateOverlays(null, "cap")
 		else
 			if (!src.reagents || src.reagents.total_volume <= 0) //Fix for cannot read null/volume. Also FUCK YOU REAGENT CREATING FUCKBUG!
-				src.icon_state = "bottle-[src.bottle_style]"
-			else if(!src.fluid_underlay_shows_volume)
+				src.icon_state = "bottle-[src.bottle_style]"/*
+			else if(!src.fluid_underlay_shows_volume) // this seems so wrong, if we're NOT underlay volume showing, why are we generating an underlay?
 				src.icon_state = "bottle-[src.bottle_style][src.alt_filled_state]"
 				ENSURE_IMAGE(src.image_fluid, src.icon, "fluid-[src.fluid_style]")
 				//if (!src.image_fluid)
 					//src.image_fluid = image('icons/obj/foodNdrink/bottle.dmi')
 				var/datum/color/average = reagents.get_average_color()
 				image_fluid.color = average.to_rgba()
-				src.underlays += src.image_fluid
-			else
+				src.underlays += src.image_fluid*/
+			else if(src.fluid_underlay_shows_volume)
 				if (reagents.total_volume)
 					var/fluid_state = round(clamp((src.reagents.total_volume / src.reagents.maximum_volume * 3 + 1), 1, 3))
 					if (!src.image_fluid)
@@ -983,11 +1002,6 @@
 				if (src.popped)
 					ENSURE_IMAGE(src.image_cap, src.icon, "open-[src.cap]") //torn seal wrapper with no cork
 					src.UpdateOverlays(src.image_cap, "cap")
-				//temporary code check!
-				else if (!src.alphatest_closecontainer) //if this is an open container AND has a cap AND isn't openable, then draw as normal
-					ENSURE_IMAGE(src.image_cap, src.icon, "cap-[src.cap]") //easy peasy, everyone gets standard cap
-					src.UpdateOverlays(src.image_cap, "cap")
-				//end temporary code check!
 				else
 					src.UpdateOverlays(null, "cap")
 			// Ice is implemented below; we just need sprites from whichever poor schmuck that'll be willing to do all that ridiculous sprite work
@@ -1100,6 +1114,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/soda //for soda bottles and bottles from the glass recycler specifically
 	fluid_underlay_shows_volume = TRUE
+	cap_type = "cap"
 
 
 /* ========================================================== */
@@ -1548,7 +1563,8 @@
 			for(var/obj/item/reagent_containers/pill/P in pillbottle)
 				P.attack_self(target)
 				break
-			playsound(target.loc,"sound/items/drink.ogg", rand(10,50), 1)
+			var/clip = rand(1,4)
+			playsound(target.loc,"sound/items/pills_[clip].ogg", 30, 1)
 
 			eat_twitch(target)
 

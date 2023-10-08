@@ -1141,6 +1141,12 @@ as it may become compromised.
 		print_icon_state = "sstv_13"
 		desc = "Oh god."
 
+	smallbart
+		name = "Mysterious Image"
+		print_icon = 'icons/obj/decals/misc.dmi'
+		print_icon_state = "smallbart"
+		desc = "what the hell is this"
+
 /obj/item/paper_bin
 	name = "paper bin"
 	icon = 'icons/obj/writing.dmi'

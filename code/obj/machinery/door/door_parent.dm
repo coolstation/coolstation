@@ -137,7 +137,7 @@
 	return !density
 
 /obj/machinery/door/proc/update_nearby_tiles(need_rebuild)
-	var/turf/simulated/source = loc
+	var/turf/source = loc
 	if (istype(source))
 		return source.update_nearby_tiles(need_rebuild)
 
@@ -162,7 +162,7 @@
 		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"toggle", "toggleinput")
 		update_nearby_tiles(need_rebuild=1)
 		START_TRACKING
-		for (var/turf/simulated/wall/auto/T in orange(1))
+		for (var/turf/wall/auto/T in orange(1))
 			T.update_icon()
 
 	disposing()
@@ -389,14 +389,14 @@
 	if (isrestrictedz(src.z))
 		return
 	switch(severity)
-		if(1.0)
+		if(OLD_EX_SEVERITY_1)
 			qdel(src)
-		if(2.0)
+		if(OLD_EX_SEVERITY_2)
 			if(prob(25))
 				qdel(src)
 			else
 				take_damage(health_max/2)
-		if(3.0)
+		if(OLD_EX_SEVERITY_3)
 			if(prob(80))
 				elecflash(src,power=2)
 			take_damage(health_max/6)
@@ -626,7 +626,7 @@
 			return 0
 	return 1
 
-/turf/simulated/wall/proc/checkForMultipleDoors()
+/turf/wall/proc/checkForMultipleDoors()
 	if(!src.loc)
 		return 0
 	for(var/obj/machinery/door/D in locate(src.x,src.y,src.z))

@@ -24,7 +24,7 @@
 
 /proc/event_wormhole_buildturflist()
 	for(var/turf/T in world)
-		if(T.z == 1 && istype(T,/turf/simulated/floor))
+		if(T.z == 1 && istype(T,/turf/floor))
 			wormholeturfs += T
 
 		LAGCHECK(LAG_LOW)

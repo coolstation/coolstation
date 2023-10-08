@@ -288,8 +288,8 @@
 		var/volume = clamp(pressure KILO PASCALS / 206 MEGA PASCAL * 35, 15, 70)
 		playsound(src, "sound/effects/exlow.ogg", volume, 1)
 
-		var/turf/simulated/T = get_turf(src)
-		if(T && istype(T))
+		var/turf/T = get_turf(src)
+		if(T && issimulatedturf(T))
 			if(T.air)
 				if(T.parent?.group_processing)
 					T.parent.air.merge(src.air_contents)
@@ -299,7 +299,7 @@
 						if(count>1)
 							src.air_contents = src.air_contents.remove_ratio(count-1/count)
 						var/datum/gas_mixture/GM
-						for(var/turf/simulated/MT as() in T.parent.members)
+						for(var/turf/MT as() in T.parent.members)
 							GM = new()
 							GM.copy_from(src.air_contents)
 							MT.assume_air(GM)

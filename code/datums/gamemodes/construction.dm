@@ -108,9 +108,9 @@
 			var/turf/T = locate(cx, cy, 1)
 			var/holds_items = 0
 			if ((cx == bx || cy == by || cx == bx + 10 || cy == by + 10) && !(cx == doorx && cy == doory))
-				T = new /turf/simulated/wall(T)
+				T = new /turf/wall(T)
 			else
-				T = new /turf/simulated/floor/plating(T)
+				T = new /turf/floor/plating(T)
 				if (!(cx == doorx && cy == doory))
 					holds_items = 1
 				else
@@ -238,7 +238,7 @@
 		tiles -= marker
 		var/turf/T = locate(marker.x, marker.y, marker.z)
 		processing -= T
-		var/turf/simulated/wall/asteroid/AST = new /turf/simulated/wall/asteroid(T)
+		var/turf/wall/asteroid/AST = new /turf/wall/asteroid(T)
 		processing += T
 		var/datum/ore/ORE = null
 		switch (rand(1,5))
@@ -309,7 +309,7 @@
 				M.z = marker.z
 				M.probability = marker.probability * 0.75
 				tiles += M
-	for (var/turf/simulated/wall/asteroid/AST in processing)
+	for (var/turf/wall/asteroid/AST in processing)
 		AST.space_overlays()
 
 

@@ -426,7 +426,7 @@ Buildable meters
 	set src in usr
 	src.control = input("Enter the name of the control?.", "Control", "") as text
 
-/obj/item/weapon/filter_control/proc/wall_place(turf/simulated/F, mob/user)
+/obj/item/weapon/filter_control/proc/wall_place(turf/F, mob/user)
 
 	if(!isturf(user.loc))
 		return

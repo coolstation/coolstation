@@ -253,13 +253,13 @@ var/obj/manta_speed_lever/mantaLever = null
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				change_health(-maxhealth)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				change_health(-50)
 				return
-			if(3 to INFINITY)
+			if(OLD_EX_SEVERITY_3)
 				change_health(-35)
 				return
 
@@ -504,13 +504,13 @@ var/obj/manta_speed_lever/mantaLever = null
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				change_health(-maxhealth)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				change_health(-50)
 				return
-			if(3 to INFINITY)
+			if(OLD_EX_SEVERITY_3)
 				change_health(-35)
 				return
 
@@ -549,13 +549,13 @@ var/obj/manta_speed_lever/mantaLever = null
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				change_health(-maxhealth)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				change_health(-50)
 				return
-			if(3 to INFINITY)
+			if(OLD_EX_SEVERITY_3)
 				change_health(-35)
 				return
 
@@ -1509,7 +1509,7 @@ var/obj/manta_speed_lever/mantaLever = null
 	item_state = "electropack"
 	force = 5.0
 
-/turf/unsimulated/floor/polarispit
+/turf/floor/polarispit
 	name = "deep abyss"
 	desc = "You can't see the bottom."
 	icon = 'icons/turf/outdoors.dmi'
@@ -1556,7 +1556,7 @@ var/obj/manta_speed_lever/mantaLever = null
 	bound_width = 96
 	appearance_flags = TILE_BOUND
 
-/turf/unsimulated/floor/special/fogofcheating
+/turf/floor/special/fogofcheating
 	name = "fog of cheating prevention"
 	desc = "Yeah, nice try."
 	icon_state = "void_gray"

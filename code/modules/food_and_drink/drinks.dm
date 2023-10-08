@@ -26,6 +26,22 @@
 	initial_volume = 50
 	initial_reagents = list("haloperidol"=4,"morphine"=4,"VHFCS"=10,"cola"=12)
 
+/obj/item/reagent_containers/food/drinks/bottle/soda/pee
+	name = "Mr. Piss"
+	desc = "Originally a knockoff of Dr. Pubber. Still unpopular despite the reformulation and rebrand."
+	label = "piss"
+	labeled = 1
+	initial_volume = 50
+	initial_reagents = list("urine"=6,"haloperidol"=2,"morphine"=2,"VHFCS"=10,"cola"=12)
+
+/obj/item/reagent_containers/food/drinks/bottle/soda/poo
+	name = "Mountain Poo"
+	desc = "Fuck, wasn't this stuff banned over a decade ago? Looks like someone took over the copyright and made up a new recipe."
+	label = "poo"
+	labeled = 1
+	initial_volume = 50
+	initial_reagents = list("poo"=5,"cocktail_citrus" = 5,"VHFCS"=10,"cola"=10)
+
 /obj/item/reagent_containers/food/drinks/bottle/soda/lime
 	name = "Lime-Aid"
 	desc = "Antihol mixed with lime juice. A well-known cure for hangovers."

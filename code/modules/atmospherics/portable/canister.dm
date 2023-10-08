@@ -326,7 +326,7 @@
 					W.smash()
 
 				for(var/obj/displaycase/D in range(4,T))
-					D.ex_act(1)
+					D.ex_act(OLD_EX_TOTAL)
 
 				for(var/obj/item/reagent_containers/glass/G in range(4,T))
 					G.smash()

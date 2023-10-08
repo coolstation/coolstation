@@ -326,7 +326,7 @@
 			return
 		else
 			var/obj/machinery/bot/duckbot/D = new /obj/machinery/bot/duckbot
-			D.eggs = rand(2,5) // LAY EGG IS TRUE!!!
+			D.action = rand(2,5) // LAY EGG IS TRUE!!!
 			boutput(user, "<span class='notice'>You add [W] to [src].</span>")
 			D.set_loc(get_turf(user))
 			qdel(W)

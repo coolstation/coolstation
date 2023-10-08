@@ -71,7 +71,7 @@
 #define MACHINES_PORTALGENERATORS	15 // /obj/machinery/teleport/portal_generator
 #define MACHINES_MASSDRIVERS			16 // /obj/machinery/mass_driver
 #define MACHINES_MAINFRAMES				17 // /obj/machinery/networked/mainframe
-#define MACHINES_ELEVATORCOMPS		18 // /obj/machinery/computer/sea_elevator, /obj/machinery/computer/icebase_elevator, /obj/machinery/computer/biodome_elevator
+#define MACHINES_ELEVATORCOMPS		18 // /obj/machinery/computer/sea_elevator, /obj/machinery/computer/icebase_crew_elevator, /obj/machinery/computer/icebase_mine_elevator, /obj/machinery/computer/biodome_elevator
 #define MACHINES_SHUTTLECOMPS			19 // /obj/machinery/computer/mining_shuttle, /obj/machinery/computer/research_shuttle, /obj/machinery/computer/prison_shuttle, /obj/machinery/computer/shuttle_bus
 #define MACHINES_SHUTTLEPROPULSION 20 // /obj/machinery/shuttle/engine/propulsion
 #define MACHINES_TURRETS					21	// /obj/machinery/turret

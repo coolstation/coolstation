@@ -318,11 +318,11 @@
 			qdel(E)*/
 
 		switch(severity)
-			if(1)
+			if(OLD_EX_SEVERITY_1)
 				explosion(src, src.loc, 1, 2, 3, 4, 1)
-			if(2)
+			if(OLD_EX_SEVERITY_2)
 				explosion(src, src.loc, 0, 1, 2, 3, 1)
-			if(3)
+			if(OLD_EX_SEVERITY_3)
 				explosion(src, src.loc, 0, 0, 1, 2, 1)
 			else
 				return
@@ -972,7 +972,7 @@
 			src.output_location = O.loc
 			boutput(usr, "<span class='notice'>You set the reclaimer to output on top of [O]!</span>")
 
-		else if (istype(over_object,/turf/simulated/floor/))
+		else if (istype(over_object,/turf/floor/))
 			src.output_location = over_object
 			boutput(usr, "<span class='notice'>You set the reclaimer to output to [over_object]!</span>")
 

@@ -13,6 +13,7 @@ Obsidian Crown
 	teleport_blocked = 1
 	skip_sims = 1
 	sims_score = 30
+	is_atmos_simulated = TRUE
 
 /area/h7/computer_core
 	name = "Aged Computer Core"

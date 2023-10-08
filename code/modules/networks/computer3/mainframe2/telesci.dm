@@ -385,8 +385,8 @@ proc/is_teleportation_allowed(var/turf/T)
 							else if(!istype(scanTurf, /turf/space))
 								var/datum/gas_mixture/GM = scanTurf.return_air()
 								var/burning = 0
-								if(istype(scanTurf, /turf/simulated))
-									var/turf/simulated/T = scanTurf
+								if(issimulatedturf(scanTurf))
+									var/turf/T = scanTurf
 									if(T.active_hotspot)
 										burning = 1
 								message_host("command=scan_reply&[MOLES_REPORT_PACKET(GM)]temp=[GM.temperature]&pressure=[MIXTURE_PRESSURE(GM)][(burning)?("&burning=1"):(null)]")
@@ -741,13 +741,16 @@ proc/is_teleportation_allowed(var/turf/T)
 						new /obj/critter/pig(src.loc)
 					if("mouse")
 						for(var/i = 1 to rand(3,8))
-							new/obj/critter/mouse(src.loc)
+							new /obj/critter/mouse(src.loc)
 					if("roach")
 						for(var/i = 1 to rand(3,8))
-							new/obj/critter/roach(src.loc)
+							if(prob(75))
+								new /obj/critter/roach(src.loc)
+							else
+								new /obj/critter/roach/classic(src.loc)
 					if("rockworm")
 						for(var/i = 1 to rand(3,8))
-							new/obj/critter/rockworm(src.loc)
+							new /obj/critter/rockworm(src.loc)
 				return
 			if("tinyfire")
 				fireflash(src.loc, 3)

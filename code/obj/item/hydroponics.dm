@@ -604,7 +604,8 @@
 	amount_per_transfer_from_this = 50
 	w_class = W_CLASS_NORMAL
 	incompatible_with_chem_dispensers = 1
-	rc_flags = RC_SCALE
+	inventory_counter_enabled = TRUE
+	rc_flags = RC_SCALE | RC_INV_COUNT_AMT
 	initial_volume = 250
 	initial_reagents = list("saltpetre"=50, "ammonia"=50, "potash"=50, "poo"=50, "space_fungus"=50)
 

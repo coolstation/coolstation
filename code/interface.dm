@@ -49,7 +49,7 @@
 			set name = "Wiki"
 			set desc = "Open the Wiki in your browser"
 			set hidden = 1
-			src << link("https://wiki.coolstation.space/index.php/Main_Page")
+			src << link("https://wiki.coolstation.space/wiki/Main_Page")
 
 		map()
 			set category = "Commands"

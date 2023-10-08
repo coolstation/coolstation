@@ -153,8 +153,8 @@
 			boutput(holder.owner, __red("That is too far away to trip."))
 			return 1
 		var/mob/MT = target
-		var/tostun = rand(0,3)
-		var/toweak = rand(0,3)
+		var/tostun = rand(1,4)
+		var/toweak = rand(0,5)
 		MT.changeStatus("stunned", tostun SECONDS)
 		MT.changeStatus("weakened", toweak SECONDS)
 		holder.owner.visible_message("<span class='combat'><B>[holder.owner]</B> weaves around [MT]'s legs!</span>",\

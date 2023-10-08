@@ -166,7 +166,7 @@
 		alert("Admin jumping disabled")
 
 /client/proc/sendhmobs(var/area/A in world)
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	set name = "Send all Human Mobs"
 	set popup_menu = 0
 
@@ -182,7 +182,7 @@
 		alert("Admin jumping disabled")
 
 /client/proc/sendmobs(var/area/A in world)
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	set name = "Send all Mobs"
 	set popup_menu = 0
 
@@ -198,8 +198,9 @@
 		alert("Admin jumping disabled")
 
 /client/proc/gethmobs()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	set name = "Get all Human Mobs"
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
+	set name = "Get all Mobs (Humans)"
+	set desc = "Teleport all human mobs, player and non, to your location!"
 	set popup_menu = 0
 
 	admin_only
@@ -218,8 +219,8 @@
 		alert("Admin jumping disabled")
 
 /client/proc/getmobs()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	set name = "Get all Mobs"
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
+	set name = "Get all Mobs (All)"
 	set popup_menu = 0
 
 	admin_only
@@ -238,8 +239,8 @@
 		alert("Admin jumping disabled")
 
 /client/proc/getclients()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	set name = "Get all Clients"
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
+	set name = "Get all Mobs (Players)"
 	set desc = "Teleports any mob with a client to you."
 	set popup_menu = 0
 
@@ -261,8 +262,9 @@
 		alert("Admin jumping disabled")
 
 /client/proc/gettraitors()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	set name = "Get all Traitors"
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
+	set name = "Get all Mobs (Traitors)"
+	set desc = "Teleports any crimers to you. (Not just playermobs!)"
 	set popup_menu = 0
 
 	admin_only
@@ -282,8 +284,9 @@
 		alert("Admin jumping disabled")
 
 /client/proc/getnontraitors()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	set name = "Get all Non-Traitors"
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
+	set name = "Get all Mobs (Non-Traitors)"
+	set desc = "Teleports any non-crimers to you. (Not just playermobs!)"
 	set popup_menu = 0
 
 	admin_only

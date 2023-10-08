@@ -464,7 +464,7 @@ var/global/noir = 0
 
 		if ("sharkban") //Add ban
 			var/mob/M = (href_list["target"] ? locate(href_list["target"]) : null)
-			usr.client.sharkban(M)
+			usr.client.cmd_admin_sharkban(M)
 
 		if("unbane") //Edit ban
 			if (src.level >= LEVEL_SA)
@@ -1111,7 +1111,7 @@ var/global/noir = 0
 			if( src.level >= LEVEL_PA )
 				var/mob/M = locate(href_list["target"])
 				if (!M) return
-				usr.client.sharkgib(M)
+				usr.client.cmd_admin_sharkgib(M)
 			else
 				alert("You need to be at least a Primary Admin to shark gib a dude.")
 
@@ -1587,14 +1587,14 @@ var/global/noir = 0
 			else
 				alert("If you are below the rank of Primary Admin, you need to be observing and at least a Secondary Administrator to affect player reagents.")
 
-		if ("possessmob")
+		if ("possess_mob")
 			if( src.level >= LEVEL_PA )
 				var/mob/M = locate(href_list["target"])
 				if (!M) return
 				if (M == usr)
-					releasemob(M)
+					release_mob(M)
 				else
-					possessmob(M)
+					possess_mob(M)
 			else
 				alert("You need to be at least a Primary Administrator to possess or release mobs.")
 
@@ -2839,7 +2839,7 @@ var/global/noir = 0
 								else if (P.icon_state == "pool")
 									P.icon_state = "ballpit"
 								LAGCHECK(LAG_LOW)
-							for (var/turf/simulated/pool/P in world)
+							for (var/turf/pool/P in world)
 								if (atom_emergency_stop)
 									message_admins("[key_name(usr)]'s command to replace all Z1 floors and walls with wooden ones was terminated due to the atom emerygency stop!")
 									return
@@ -2860,20 +2860,20 @@ var/global/noir = 0
 						if (src.level >= LEVEL_PA)
 							message_admins("[key_name(usr)] began replacing all Z1 floors and walls with wooden ones.")
 							var/nornwalls = 0
-							if (map_settings?.walls == /turf/simulated/wall/auto/supernorn)
+							if (map_settings?.walls == /turf/wall/auto/supernorn)
 								nornwalls = 1
-							for (var/turf/simulated/wall/W in world)
+							for (var/turf/wall/W in world)
 								if (atom_emergency_stop)
 									message_admins("[key_name(usr)]'s command to replace all Z1 floors and walls with wooden ones was terminated due to the atom emerygency stop!")
 									return
 								if (W.z != 1)
 									break
 								if (nornwalls)
-									var/turf/simulated/wall/auto/AW = W
+									var/turf/wall/auto/AW = W
 									if (istype(AW))
 										if (AW.icon != 'icons/turf/walls_wood.dmi')
 											AW.icon = 'icons/turf/walls_wood.dmi'
-											if (istype(AW, /turf/simulated/wall/auto/reinforced))
+											if (istype(AW, /turf/wall/auto/reinforced))
 												AW.icon_state = copytext(W.icon_state,2)
 											if (AW.connect_image) // I will get you to work you shit fuck butt FART OVERLAY
 												AW.connect_image = image(AW.icon, "connect[AW.connect_overlay_dir]")
@@ -2883,13 +2883,13 @@ var/global/noir = 0
 										W.icon = 'icons/turf/walls.dmi'
 										W.icon_state = "wooden"
 								LAGCHECK(LAG_LOW)
-							for (var/turf/simulated/floor/F in world)
+							for (var/turf/floor/F in world)
 								if (atom_emergency_stop)
 									message_admins("[key_name(usr)]'s command to replace all Z1 floors and walls with wooden ones was terminated due to the atom emerygency stop!")
 									return
 								if (F.z != 1)
 									break
-								if (istype(F, /turf/simulated/floor/carpet))
+								if (istype(F, /turf/floor/carpet))
 									continue
 								if (F.icon_state != "wooden")
 									F.icon_state = "wooden"
@@ -5150,7 +5150,7 @@ var/global/noir = 0
 /client/proc/respawn_self()
 	set name = "Respawn Self"
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)
-	set desc = "Respawn yourself"
+	set desc = "Respawn yourself (Go back to Splash Screen)"
 
 	if(!isobserver(usr))
 		boutput(usr, "You can't respawn unless you're dead!")

@@ -157,11 +157,11 @@
 						if (2)
 							random_brute_damage(HH, 25, 1)
 						if (3)
-							HH.ex_act(3)
+							HH.ex_act(OLD_EX_LIGHT)
 						else
 							random_brute_damage(HH, 15, 1)
 				else
-					HH.ex_act(3)
+					HH.ex_act(OLD_EX_LIGHT)
 
 			qdel(G)
 			logTheThing("combat", M, HH, "uses the [fake ? "fake " : ""]slam wrestling move on [constructTarget(HH,"combat")] at [log_loc(M)].")

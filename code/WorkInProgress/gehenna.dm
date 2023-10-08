@@ -24,7 +24,7 @@ var/global/gehenna_time = GEHENNA_TIME
 var/global/gehenna_surface_loop = 'sound/ambience/loop/Gehenna_Surface.ogg' //Z1
 var/global/gehenna_underground_loop = 'sound/ambience/loop/Gehenna_Surface.ogg' //Z3
 // volume curve so wind stuff is loudest in the cold, cold night
-var/global/gehenna_surface_loop_vol = (110 + ((0.5*sin(GEHENNA_TIME-135)+0.5)*(200))) //volume meant for outside, min 110 max 310
+var/global/gehenna_surface_loop_vol = (30 + ((0.5*sin(GEHENNA_TIME-135)+0.5)*(60))) //volume meant for outside, min 30 max 90
 var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just have it the same but quiet i guess (with a proper cave soundscape, increase to like 100 or something)
 
 // Gehenna shit tho
@@ -43,7 +43,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	special_volume_override = -1
 
 
-/turf/simulated/wall/asteroid/gehenna
+/turf/wall/asteroid/gehenna
 	fullbright = 0
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
@@ -61,18 +61,18 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.damage_asteroid(5)
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.damage_asteroid(4)
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				src.damage_asteroid(3)
 		return
 
-/turf/simulated/wall/asteroid/gehenna/z3
-	floor_turf = "/turf/simulated/floor/plating/gehenna"
+/turf/wall/asteroid/gehenna/z3
+	floor_turf = "/turf/floor/plating/gehenna"
 
-/turf/simulated/wall/asteroid/gehenna/tough
+/turf/wall/asteroid/gehenna/tough
 	name = "crimson bedrock"
 	desc = "looks densely packed"
 	icon_state = "gehenna_rock2"
@@ -81,19 +81,19 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				src.damage_asteroid(3)
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				src.damage_asteroid(2)
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				src.damage_asteroid(1)
 		return
 
-/turf/simulated/wall/asteroid/gehenna/tough/z3
-	floor_turf = "/turf/simulated/floor/plating/gehenna"
+/turf/wall/asteroid/gehenna/tough/z3
+	floor_turf = "/turf/floor/plating/gehenna"
 
 
-/turf/unsimulated/wall/gehenna/
+/turf/wall/gehenna/
 	fullbright = 0
 	luminosity = 1
 	name = "monolithic sulferous rock"
@@ -101,7 +101,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock3"
 
-/turf/simulated/floor/plating/gehenna/
+/turf/floor/plating/gehenna/
 	name = "sand"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "sand"
@@ -118,12 +118,12 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	ex_act(severity) //TODO: cave ins?? people mentioned that repeatedly??
 		return //no plating/lattice thanx
 
-/turf/simulated/floor/plating/gehenna/plasma
+/turf/floor/plating/gehenna/plasma
 	oxygen = MOLES_O2STANDARD * 1.5
 	nitrogen = MOLES_N2STANDARD / 2
 	toxins = MOLES_O2STANDARD // hehh hehh hehhhehhhe
 
-/turf/simulated/floor/plating/gehenna/farts
+/turf/floor/plating/gehenna/farts
 	farts = MOLES_N2STANDARD / 2
 	nitrogen = MOLES_N2STANDARD / 2
 
@@ -239,7 +239,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	requires_power = 0
 	sound_environment = EAX_PLAIN
 	sound_loop_1 = 'sound/ambience/loop/SANDSTORM.ogg' //need something wimdy, maybe overlay a storm sound on this
-	sound_loop_1_vol = 150 //always loud, fukken storming
+	sound_loop_1_vol = 100 //always loud, fukken storming
 	var/list/assholes_to_hurt = list()
 	var/buffeting_assoles = FALSE
 	irradiated = 0.5
@@ -275,7 +275,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 					return
 			if(istype(O, /obj/vehicle) || istype(O, /obj/machinery/bot) || istype(O, /obj/machinery/vehicle))
 				playsound(O.loc, 'sound/effects/creaking_metal2.ogg', 100, 1)
-				O.ex_act(3)
+				O.ex_act(OLD_EX_LIGHT)
 				assholes_to_hurt |= O
 				src.process_some_sand()
 				return
@@ -314,9 +314,9 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 					continue
 				if((V.rider_visible || !V.sealed_cabin)&&prob(50))
 					V.eject_rider()
-					V.ex_act(1)
+					V.ex_act(OLD_EX_TOTAL)
 				else
-					V.ex_act(3)
+					V.ex_act(OLD_EX_LIGHT)
 				playsound(V.loc, 'sound/effects/creaking_metal2.ogg', 100, 1)
 			for(var/obj/machinery/vehicle/pod in assholes_to_hurt)
 				if(!istype(pod) || pod.health <= 0)
@@ -349,6 +349,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	requires_power = 0
 	luminosity = 0
 	sound_environment = EAX_CAVE
+	is_atmos_simulated = TRUE
 
 /area/gehenna/underground/staffies_nest
 	name = "the rat's nest"

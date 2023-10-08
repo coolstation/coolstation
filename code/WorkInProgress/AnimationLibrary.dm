@@ -1012,7 +1012,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 
 	animate(A, pixel_x = px, pixel_y = py, time = T, easing = ease, flags=ANIMATION_PARALLEL)
 
-/proc/animate_rest(var/atom/A, var/stand)
+/proc/animate_rest(var/atom/A, var/stand, var/direction)
 	if(!istype(A))
 		return
 	if(stand)
@@ -1020,6 +1020,15 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 		A.rest_mult = 0
 	else
 		var/fall_left_or_right = pick(1, -1) //A multiplier of one makes the atom rotate to the right, negative makes them fall to the left.
+
+		//add a pickable direction (for example, moving onto operating tables and beds) and validate input checking
+		switch (direction)
+			//im sorry
+			if (2,"left","l")
+				fall_left_or_right = 1
+			if (3,"right","r")
+				fall_left_or_right = -1
+
 		animate(A, pixel_x = 0, pixel_y = -4, transform = A.transform.Turn(fall_left_or_right * 90), time = 2, easing = LINEAR_EASING, flags=ANIMATION_PARALLEL)
 		A.rest_mult = fall_left_or_right
 
@@ -1512,3 +1521,25 @@ var/global/icon/scanline_icon = icon('icons/effects/scanning.dmi', "scanline")
 		filter = A.filters[A.filters.len]
 		animate(filter, size=size, time=0, loop=-1, radius=0, flags=ANIMATION_PARALLEL)
 		animate(size=0, radius=rand()*10+10, time=rand()*20+10)
+
+//This one's a bodge
+/proc/animate_wiggle(var/atom/A, severity = 1) //no relation to animate_wiggle_then_reset
+	var/timing = rand(4,8)/10//severity
+	var/deg
+	while (!deg)
+		deg = rand(-10,10)*severity
+	var/scaleY = rand(1,4)
+	scaleY = (scaleY + severity - 1)/10
+	var/matrix/M = matrix()
+	var/matrix/MD = matrix()
+	M.Turn(deg)
+	MD.Turn(-deg)
+	M.Scale(1/* + scaleX*/,1 + scaleY)
+	//MD.Scale(1 - scaleX,1 - scaleY)
+	//M.Scale(1 + (rand(0,2)/10),1 + (rand(1,4)/10))
+	MD.Scale(1 + (rand(0,2)/10),1 + (rand(1,4)/10))
+	//MD.Subtract(M)
+
+	SPAWN_DBG(0)
+		animate(A, transform = M, time = timing, loop = -1, easing = LINEAR_EASING)
+		animate(transform = MD, time = timing, loop = -1, easing = LINEAR_EASING)

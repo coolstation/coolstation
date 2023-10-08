@@ -597,7 +597,7 @@
 	set desc = "Resets the air contents of every turf in view to normal."
 	admin_only
 	SPAWN_DBG(0)
-		for(var/turf/simulated/T in view())
+		for(var/turf/T in view())
 			if(!T.air)
 				continue
 			ZERO_BASE_GASES(T.air)
@@ -613,9 +613,9 @@
 			LAGCHECK(LAG_LOW)
 
 /client/proc/flip_view()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	set name = "Flip View"
-	set desc = "Rotates a client's viewport"
+	set desc = "Rotates a client's viewport. Potentially nausea inducing!"
 
 	var/list/keys = list()
 	for(var/mob/M in mobs)
@@ -1171,7 +1171,7 @@
 	set popup_menu = 0
 	new /mob/living/object(O, usr)
 
-/proc/possessmob(mob/M as mob in world)
+/proc/possess_mob(mob/M as mob in world)
 	set name = "Possess Mob"
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 	set popup_menu = 0
@@ -1183,7 +1183,7 @@
 	M.mind = usr.mind
 	M.ckey = ckey
 
-/proc/releasemob(mob/M as mob in world)
+/proc/release_mob(mob/M as mob in world)
 	set name = "Release Mob"
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 	set popup_menu = 0
@@ -2322,11 +2322,11 @@ var/global/night_mode_enabled = 0
 			R.name = "robust shamecube glass"
 			R.desc = "A pane of robust, yet shameful, glass."
 		var/turf/orig = get_step(targetLoc, direction)
-		var/turf/void = orig.ReplaceWith(/turf/unsimulated/floor/void, FALSE, TRUE, FALSE, TRUE)
+		var/turf/void = orig.ReplaceWith(/turf/floor/void, FALSE, TRUE, FALSE, TRUE)
 		void.name = "shameful void"
 		void.desc = "really is just a shame"
 		new/area/shamecube(get_step(targetLoc, direction))
-	//new/turf/unsimulated/floor/void(targetLoc)
+	//new/turf/floor/void(targetLoc)
 	//new/area/shamecube(targetLoc)
 
 	//Place our sucker into it
@@ -2347,7 +2347,7 @@ var/global/night_mode_enabled = 0
 /client/proc/cmd_makeshittyweapon()
 	set name = "Make Shitty Weapon"
 	set desc = "make some stupid junk, laugh"
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	admin_only
 
 	if (src.holder.level >= LEVEL_PA)
@@ -2536,8 +2536,8 @@ var/global/night_mode_enabled = 0
 
 /client/proc/toggle_text_mode(client/C in clients)
 	set name = "Toggle Text Mode"
-	set desc = "Makes a client see the game in ASCII vision."
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	set desc = "Makes a client see the game in ASCII vision. Probably sucks for the recipient!"
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	admin_only
 
 	var/is_text = winget(C,  "mapwindow.map", "text-mode") == "true"
@@ -2555,7 +2555,11 @@ var/global/night_mode_enabled = 0
 	admin_only
 
 	//it's a mess, sue me
-	var/list/areas = get_areas(/area/centcom/offices)
+	var/list/areas = null
+	//if channel open (for much later)
+	//	areas = get_areas(/area/centcom/earth/offices)
+	//else
+	areas = get_areas(/area/centcom/offices)
 	for (var/area/centcom/offices/office in areas)
 		//search all offices for an office with the same ckey variable as the usr.
 		if (office.ckey == src.ckey)
@@ -2657,12 +2661,13 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 	boutput(src, "You don't seem to have an office, so sad. :(")
 
 /client/proc/cmd_crusher_walls()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	set name = "Crusher Walls"
+	set desc = "Turns every single fucking turfwall into a crusher object"
 	if(holder && src.holder.level >= LEVEL_ADMIN)
 		switch(alert("Holy shit are you sure?! This is going to turn the walls into crushers!",,"Yes","No"))
 			if("Yes")
-				for(var/turf/simulated/wall/W in world)
+				for(var/turf/wall/W in world)
 					if (W.z != 1) continue
 					var/obj/machinery/crusher/O = locate() in W.contents //in case someone presses it again
 					if (O) continue
@@ -2711,7 +2716,8 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 
 /client/proc/cmd_blindfold_monkeys()
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	set name = "See No Evil"
+	set name = "See No Evil (Monkey Blindfold)"
+	set desc = "Blindfold every monkey out there to keep them from getting aggressive. That's what this does. Who knew?"
 	if(holder && src.holder.level >= LEVEL_ADMIN)
 		switch(alert("Really blindfold all monkeys?",,"Yes","No"))
 			if("Yes")
@@ -2735,7 +2741,7 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 
 
 /client/proc/cmd_swampify_station()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	set name = "Swampify"
 	set desc = "Turns space into a swamp"
 	admin_only
@@ -2761,8 +2767,8 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 				map_generator.generate_terrain(space)
 				for (var/turf/S in space)
 					if(rain)
-						if(istype(S,/turf/unsimulated/floor/auto/swamp))
-							S.ReplaceWith(/turf/unsimulated/floor/auto/swamp/rain, force=TRUE)
+						if(istype(S,/turf/floor/auto/swamp))
+							S.ReplaceWith(/turf/floor/auto/swamp/rain, force=TRUE)
 						if(rain == "Yes")
 							S.UpdateOverlays(weather, "rain")
 						else
@@ -2779,7 +2785,7 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 #endif
 
 /client/proc/cmd_trenchify_station()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
 	set name = "Trenchify"
 	set desc = "Generates trench caves on the station Z"
 	admin_only
@@ -2886,3 +2892,16 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 		logTheThing("admin", usr, AM, "has shipped [AM] to cargo.")
 		logTheThing("diary", usr, AM, "has shipped [AM] to cargo.", "admin")
 		message_admins("[key_name(usr)] has shipped [AM] to cargo.")
+
+/client/proc/cmd_make_radio(atom/movable/AM)
+	SET_ADMIN_CAT(ADMIN_CAT_UNUSED)
+	set name = "Make a Radio"
+	set popup_menu = 0
+	admin_only
+
+	if(alert("Make this thing receive radio broadcasts? This can't be undone",,"Yes","No")=="No")
+		return
+	var/channel = input(usr, "Give the id of the channel the thing should be tuned to", "Channel", TR_CAT_TEEVEE_BROADCAST_RECEIVERS) as null|text
+	if (!(channel))
+		return
+	OTHER_SUB_BROADCAST(AM, channel, 1)

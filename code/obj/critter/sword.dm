@@ -103,12 +103,13 @@
 			SPAWN_DBG(45)
 				explosion_new(death_loc, death_loc, rand(6, 12))
 				fireflash(death_loc, 2)
-
+			//NT faction rep deprecated
+			/*
 			SPAWN_DBG(50)
 				for(var/board_count = rand(4, 8), board_count > 0, board_count--)
 					new/obj/item/factionrep/ntboard(locate(death_loc_x + rand(-2, 2), death_loc_y + rand(-2, 2), death_loc_z))
 					board_count--
-
+			*/
 			SPAWN_DBG(55)
 				for(var/alloy_count = rand(2, 4), alloy_count > 0, alloy_count--)
 					new/obj/item/material_piece/iridiumalloy(locate(death_loc_x + rand(-1, 1), death_loc_y + rand(-1, 1), death_loc_z))
@@ -224,10 +225,10 @@
 								stuck_timer = null
 								for(var/stuck_increment in 1 to 3)
 									SPAWN_DBG(stuck_increment SECONDS)
-										for (var/turf/simulated/OV in oview(get_center(),stuck_increment))
+										for (var/turf/OV in oview(get_center(),stuck_increment))
 											tile_purge(OV.loc.x,OV.loc.y,3)
 
-							for (var/turf/simulated/wall/WT in range(2,get_center()))
+							for (var/turf/wall/WT in range(2,get_center()))
 								if(IS_ARRIVALS(WT.loc)) continue
 								leavescan(WT, 1)
 								new /obj/item/raw_material/scrap_metal(WT)
@@ -845,8 +846,8 @@
 			M.changeStatus("weakened", 4 SECOND)
 			M.changeStatus("stunned", 1 SECOND)
 			INVOKE_ASYNC(M, /mob.proc/emote, "scream")
-		var/turf/simulated/T = locate(point_x,point_y,src.z)
-		if(dam_type == 2 && istype(T, /turf/simulated/wall))
+		var/turf/T = locate(point_x,point_y,src.z)
+		if(dam_type == 2 && istype(T, /turf/wall))
 			leavescan(T, 1)
 			fireflash(locate(point_x,point_y,src.z), 0)
 			if(prob(64))
@@ -874,7 +875,7 @@
 				else if(prob(64) && !istype(S, /obj/critter))
 					leavescan(get_turf(S), 1)
 					fireflash(locate(point_x,point_y,src.z), 0)
-					S.ex_act(1)
+					S.ex_act(OLD_EX_TOTAL)
 		return
 
 

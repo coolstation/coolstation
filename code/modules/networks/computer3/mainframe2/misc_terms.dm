@@ -950,9 +950,9 @@
 
 			var/area/to_reset = get_area(vrbomb) //Reset the magic vr turf.
 			if(to_reset && to_reset.name != "Space")
-				for(var/turf/unsimulated/bombvr/VT in to_reset)
+				for(var/turf/bombvr/VT in to_reset)
 					VT.icon_state = initial(VT.icon_state)
-				for(var/turf/unsimulated/wall/bombvr/VT in to_reset)
+				for(var/turf/wall/bombvr/VT in to_reset)
 					VT.icon_state = initial(VT.icon_state)
 					VT.opacity = 1
 					VT.set_density(1)
@@ -2675,14 +2675,14 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				qdel(src)
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if (prob(50))
 					src.status |= BROKEN
 					src.update_icon(0)
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				if (prob(25))
 					src.status |= BROKEN
 					src.update_icon(0)
@@ -3182,15 +3182,15 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				//dispose()
 				src.dispose()
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if (prob(50))
 					src.status |= BROKEN
 					src.update_icon()
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				if (prob(25))
 					src.status |= BROKEN
 					src.update_icon()
@@ -3657,15 +3657,15 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				//dispose()
 				src.dispose()
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if (prob(50))
 					src.status |= BROKEN
 					src.update_icon()
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				if (prob(25))
 					src.status |= BROKEN
 					src.update_icon()

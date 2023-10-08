@@ -62,6 +62,7 @@
 			"Possess",\
 			"Create Poster",\
 			"Copy Here",\
+			"Make a Radio",\
 			"Ship to Cargo"\
 			)
 			admin_interact_verbs["mob"] = list(\
@@ -92,6 +93,7 @@
 			"Transfer Client To",\
 			"Shamecube",\
 			"Create Poster",\
+			"Make a Radio",\
 			"Ship to Cargo"\
 			)
 			admin_interact_verbs["turf"] = list(\

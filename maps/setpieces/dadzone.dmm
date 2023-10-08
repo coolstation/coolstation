@@ -3,24 +3,24 @@
 /turf/space,
 /area/space)
 "ab" = (
-/turf/unsimulated/wall/setpieces/bloodwall{
+/turf/wall/setpieces/bloodwall{
 	icon_state = "bloodwall_2";
 	name = "Meaty Wall"
 	},
 /area/space)
 "ac" = (
-/turf/unsimulated/wall/setpieces/bloodwall{
+/turf/wall/setpieces/bloodwall{
 	icon_state = "bloodwall_2";
 	name = "Meaty Wall"
 	},
 /area/meat_derelict/main)
 "ad" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon_state = ""
 	},
 /area/meat_derelict/main)
 "ae" = (
-/turf/unsimulated/wall/setpieces/bloodwall,
+/turf/wall/setpieces/bloodwall,
 /area/meat_derelict/main)
 "af" = (
 /obj/decal/fakeobjects/pipe{
@@ -28,7 +28,7 @@
 	icon_state = "intact";
 	tag = "icon-intact-f (EAST)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/main)
 "ag" = (
 /obj/decal/fakeobjects/pipe{
@@ -36,16 +36,16 @@
 	icon_state = "intact";
 	dir = 10
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/main)
 "ah" = (
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/main)
 "ai" = (
-/turf/simulated/wall/false_wall,
+/turf/wall/false_wall,
 /area/meat_derelict/main)
 "aj" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon_state = "scorched";
 	name = "burnt wall"
 	},
@@ -53,7 +53,7 @@
 "ak" = (
 /obj/stool/bed,
 /obj/item/device/audio_log/meatland_03,
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/meat_derelict/main)
 "al" = (
 /obj/machinery/light/small{
@@ -61,29 +61,29 @@
 	icon_state = "bulb1";
 	dir = 4
 	},
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/meat_derelict/main)
 "am" = (
 /obj/decal/cleanable/dirt,
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/meat_derelict/main)
 "an" = (
-/turf/unsimulated/floor/white,
+/turf/floor/white,
 /area/meat_derelict/main)
 "ao" = (
-/turf/unsimulated/wall/setpieces/bloodwall{
+/turf/wall/setpieces/bloodwall{
 	icon_state = "bloodwall_3"
 	},
 /area/meat_derelict/main)
 "ap" = (
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/main)
 "aq" = (
 /obj/critter/blobman/meaty_martha,
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -92,38 +92,38 @@
 /obj/critter/monster_door{
 	name = "isolation cell"
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor,
+/turf/floor/setpieces/bloodfloor,
 /area/meat_derelict/main)
 "as" = (
-/turf/unsimulated/floor/setpieces/bloodfloor,
+/turf/floor/setpieces/bloodfloor,
 /area/meat_derelict/main)
 "at" = (
 /obj/machinery/door/unpowered/martian/meat,
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/main)
 "au" = (
-/turf/unsimulated/wall/setpieces/bloodwall{
+/turf/wall/setpieces/bloodwall{
 	icon_state = "bloodwall_2";
 	name = "Meaty Wall"
 	},
 /area/meat_derelict/guts)
 "av" = (
 /obj/crevice/meatland,
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/main)
 "aw" = (
-/turf/unsimulated/wall/setpieces/bloodwall{
+/turf/wall/setpieces/bloodwall{
 	icon_state = "bloodwall_3"
 	},
 /area/meat_derelict/guts)
 "ax" = (
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -138,7 +138,7 @@
 	icon_state = "meatlumps";
 	name = "swollen pile"
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -155,7 +155,7 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "aA" = (
 /obj/grille,
@@ -169,7 +169,7 @@
 	icon_state = "rwindow";
 	dir = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "aB" = (
 /obj/grille,
@@ -183,10 +183,10 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "aC" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon_state = ""
 	},
 /area/meat_derelict/entry)
@@ -202,7 +202,7 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "aE" = (
 /obj/table{
@@ -210,7 +210,7 @@
 	icon_state = "tabledir";
 	dir = 10
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -220,7 +220,7 @@
 	dir = 2;
 	icon_state = "tabledir"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -237,7 +237,7 @@
 	icon_state = "old0";
 	name = "broken computer"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -251,7 +251,7 @@
 	info = "Taco nights have been canceled for the immediate future, due to the misuse of the meat supply.<br><br>On that note, the specimen container holding the beff appears to have been emptied.  Though it is spoiled meat, all transported objects are to be disposed of by lab procedure and ONLY with the authorization of the science team.  The responsible party has not yet been located, but they do face reprimand for their dismissal of protocol.";
 	name = "Paper-'memo'"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -261,7 +261,7 @@
 	icon_state = "tabledir";
 	dir = 6
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -278,7 +278,7 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "aK" = (
 /obj/decal/fakeobjects/firelock_broken{
@@ -290,20 +290,20 @@
 	opacity = 1;
 	tag = "icon-bloodydoor"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "aL" = (
 /obj/iomoon_puzzle/ancient_robot_door/meat{
 	tag = "meatland_maze1"
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/main)
 "aM" = (
 /obj/item/mine/gibs,
-/turf/unsimulated/floor/setpieces/bloodfloor,
+/turf/floor/setpieces/bloodfloor,
 /area/meat_derelict/main)
 "aN" = (
 /obj/grille,
@@ -317,7 +317,7 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "aO" = (
 /obj/table{
@@ -325,13 +325,13 @@
 	dir = 6
 	},
 /obj/machinery/computer3/generic/personal/meatland_medical,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/guts)
 "aP" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -340,7 +340,7 @@
 /obj/stool/chair{
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -358,26 +358,26 @@
 	icon_state = "oldb";
 	name = "broken computer"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/guts)
 "aS" = (
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "aT" = (
 /obj/iomoon_puzzle/meat_ganglion{
 	id = "meatland_maze1";
 	timer = 2
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/main)
 "aU" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon_state = ""
 	},
 /area/meat_derelict/guts)
@@ -385,7 +385,7 @@
 /obj/stool/chair{
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -396,7 +396,7 @@
 	icon_state = "intact";
 	dir = 6
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "aX" = (
 /obj/decal/fakeobjects/pipe{
@@ -406,7 +406,7 @@
 	icon_state = "intact_off";
 	name = "filter"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "aY" = (
 /obj/decal/fakeobjects/pipe{
@@ -414,7 +414,7 @@
 	icon_state = "intact";
 	tag = "icon-intact-f (EAST)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "aZ" = (
 /obj/decal/fakeobjects/pipe{
@@ -422,14 +422,14 @@
 	icon_state = "intact";
 	dir = 10
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "ba" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 5
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -440,7 +440,7 @@
 	dir = 9
 	},
 /obj/item/paper_bin,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -453,7 +453,7 @@
 	opacity = 1;
 	tag = "icon-door0 (WEST)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "bd" = (
 /obj/decal/fakeobjects/pipe{
@@ -463,7 +463,7 @@
 	icon_state = "intact_off";
 	name = "filter"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "be" = (
 /obj/decal/fakeobjects/pipe{
@@ -471,7 +471,7 @@
 	icon_state = "intact";
 	dir = 9
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "bf" = (
 /obj/decal/fakeobjects/pipe{
@@ -481,11 +481,11 @@
 	icon_state = "intact_off";
 	name = "pump"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "bg" = (
 /obj/item/device/audio_log/meatland_grody,
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -502,7 +502,7 @@
 	icon_state = "old0";
 	name = "broken computer"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -513,18 +513,18 @@
 	icon_state = "chair";
 	dir = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/guts)
 "bj" = (
 /obj/critter/monster_door/floor,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "bk" = (
 /obj/machinery/light/worn,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -535,7 +535,7 @@
 	name = "Dead plant";
 	pixel_y = 5
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -545,18 +545,18 @@
 	name = "S light switch";
 	pixel_y = -24
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/guts)
 "bn" = (
 /obj/decal/fakeobjects/lighttube_broken,
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/meat_derelict/guts)
 "bo" = (
 /obj/stool/chair,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -573,7 +573,7 @@
 	force = 1;
 	name = "clotted pen"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -581,7 +581,7 @@
 "bq" = (
 /obj/decal/fakeobjects/firelock_broken,
 /obj/machinery/door/airlock/maintenance,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "br" = (
 /obj/decal/fakeobjects/pipe{
@@ -591,11 +591,11 @@
 	icon_state = "intact_off";
 	name = "filter"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "bs" = (
 /obj/item/device/audio_log/meatland_02,
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -610,20 +610,20 @@
 	opacity = 0;
 	tag = "icon-bloodydoor"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/guts)
 "bu" = (
 /obj/decal/fakeobjects/firelock_broken,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/guts)
 "bv" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -637,7 +637,7 @@
 	icon_state = "server0";
 	name = "downed server"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -655,7 +655,7 @@
 	icon_state = "meter";
 	name = "meter"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "by" = (
 /obj/decal/fakeobjects/pipe{
@@ -663,14 +663,14 @@
 	icon_state = "intact";
 	dir = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "bz" = (
 /obj/item/table_parts,
-/turf/unsimulated/floor/setpieces/bloodfloor,
+/turf/floor/setpieces/bloodfloor,
 /area/meat_derelict/guts)
 "bA" = (
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_3"
 	},
 /area/meat_derelict/guts)
@@ -680,14 +680,14 @@
 	tag = "icon-bedsheet-red";
 	icon_state = "bedsheet-red"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/guts)
 "bC" = (
 /obj/decal/cleanable/cobweb,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -709,7 +709,7 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "bE" = (
 /obj/overlay{
@@ -720,7 +720,7 @@
 	icon_state = "tapedrive-p";
 	name = "broken databank"
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/meat_derelict/entry)
 "bF" = (
 /obj/overlay{
@@ -731,21 +731,21 @@
 	icon_state = "tapedrive-p";
 	name = "broken databank"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/entry)
 "bG" = (
 /obj/stool/chair/office,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/entry)
 "bH" = (
 /obj/machinery/portable_atmospherics/scrubber,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "bI" = (
 /obj/decal/fakeobjects/firelock_broken{
@@ -755,10 +755,10 @@
 	opacity = 1;
 	tag = "icon-door0 (WEST)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "bJ" = (
-/turf/unsimulated/floor/setpieces/bloodfloor,
+/turf/floor/setpieces/bloodfloor,
 /area/meat_derelict/guts)
 "bK" = (
 /obj/decal/fakeobjects/lighttube_broken{
@@ -766,7 +766,7 @@
 	icon_state = "tube-broken";
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -777,7 +777,7 @@
 	icon_state = "intact";
 	dir = 10
 	},
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/meat_derelict/guts)
 "bM" = (
 /obj/stool/chair,
@@ -790,7 +790,7 @@
 	tag = "icon-gibbl2";
 	icon_state = "gibbl2"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -801,7 +801,7 @@
 	dir = 9
 	},
 /obj/item/gun/russianrevolver,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -823,7 +823,7 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "bP" = (
 /obj/decal/fakeobjects{
@@ -838,7 +838,7 @@
 	icon_state = "bulb1";
 	dir = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -852,7 +852,7 @@
 	info = "<center>ADVISORY</center><br><br>Under no circumstance are unauthorized materials to be inserted into the test chamber.<br>Any more incidents like the recent transportation of this facility's canned protein supplies will be punished.<br><br><font size=3><i>No really, we get it, you don't like the food.  We can't serve it if it's used in tests and all of that meat costs money.</i></font>";
 	name = "Paper-'advisory'"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -862,7 +862,7 @@
 	icon_state = "tabledir";
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -879,7 +879,7 @@
 	icon_state = "old0";
 	name = "broken computer"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -892,7 +892,7 @@
 	name = "rusted vent";
 	tag = "icon-vent (NORTH)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "bU" = (
 /obj/decal/fakeobjects/pipe{
@@ -900,7 +900,7 @@
 	icon_state = "intact";
 	tag = "icon-intact-f (NORTHEAST)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "bV" = (
 /obj/decal/fakeobjects/pipe{
@@ -915,20 +915,20 @@
 	icon_state = "meter";
 	name = "meter"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "bW" = (
 /obj/item/table_parts,
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/guts)
 "bX" = (
-/turf/unsimulated/wall/setpieces/bloodwall,
+/turf/wall/setpieces/bloodwall,
 /area/meat_derelict/guts)
 "bY" = (
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "bZ" = (
 /obj/decal/fakeobjects/pipe{
@@ -936,7 +936,7 @@
 	icon_state = "intact";
 	tag = "icon-intact-f (NORTHEAST)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "ca" = (
 /obj/machinery/light/worn{
@@ -944,7 +944,7 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -956,7 +956,7 @@
 	dir = 10
 	},
 /obj/item/device/audio_log/meatland_02,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -972,7 +972,7 @@
 	icon = 'icons/misc/hstation.dmi';
 	icon_state = "body7"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -985,7 +985,7 @@
 	pixel_y = -24;
 	tag = "icon-firex (NORTH)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1007,7 +1007,7 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "cf" = (
 /obj/grille,
@@ -1021,7 +1021,7 @@
 	icon_state = "rwindow";
 	dir = 2
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "cg" = (
 /obj/grille,
@@ -1040,14 +1040,14 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "ch" = (
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/meat_derelict/guts)
 "ci" = (
 /obj/closet/emcloset,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1058,7 +1058,7 @@
 	name = "Receiver Control";
 	req_access_txt = ""
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1079,7 +1079,7 @@
 	icon_state = "tube-broken";
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1092,33 +1092,33 @@
 	pixel_x = 0;
 	tag = "icon-shock"
 	},
-/turf/unsimulated/wall{
+/turf/wall{
 	icon_state = ""
 	},
 /area/meat_derelict/entry)
 "cm" = (
 /obj/item/mine/gibs,
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/main)
 "cn" = (
 /obj/critter/blobman/meaty_martha,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/guts)
 "co" = (
 /obj/decal/cleanable/dirt,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/guts)
 "cp" = (
-/turf/unsimulated/floor/stairs/wide{
+/turf/floor/stairs/wide{
 	dir = 4
 	},
 /area/meat_derelict/entry)
@@ -1126,7 +1126,7 @@
 /obj/landmark{
 	name = "telesci"
 	},
-/turf/unsimulated/floor/orangeblack/corner{
+/turf/floor/orangeblack/corner{
 	dir = 2
 	},
 /area/meat_derelict/entry)
@@ -1134,7 +1134,7 @@
 /obj/landmark{
 	name = "telesci"
 	},
-/turf/unsimulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 2
 	},
 /area/meat_derelict/entry)
@@ -1142,7 +1142,7 @@
 /obj/landmark{
 	name = "telesci"
 	},
-/turf/unsimulated/floor/orangeblack/corner{
+/turf/floor/orangeblack/corner{
 	dir = 8
 	},
 /area/meat_derelict/entry)
@@ -1157,18 +1157,18 @@
 	name = "power conduit";
 	tag = "icon-conduit (NORTH)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/entry)
 "cu" = (
-/turf/unsimulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 4
 	},
 /area/meat_derelict/entry)
 "cv" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	desc = "It's sealed shut.";
 	dir = 1;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -1178,13 +1178,13 @@
 /area/meat_derelict/entry)
 "cw" = (
 /obj/item/reagent_containers/food/drinks/water,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "cx" = (
 /obj/decal/fakeobjects/lightbulb_broken{
 	dir = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "cy" = (
 /obj/decal/fakeobjects{
@@ -1198,7 +1198,7 @@
 /obj/decal/fakeobjects/lightbulb_broken{
 	dir = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "cz" = (
 /obj/decal/fakeobjects{
@@ -1210,7 +1210,7 @@
 	name = "strange machine"
 	},
 /obj/decal/cleanable/cobweb2,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "cA" = (
 /obj/decal/fakeobjects/firelock_broken{
@@ -1220,23 +1220,23 @@
 	opacity = 1;
 	tag = "icon-door0 (WEST)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/main)
 "cB" = (
 /obj/meatlight,
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/main)
 "cC" = (
-/turf/unsimulated/wall/setpieces/bloodwall{
+/turf/wall/setpieces/bloodwall{
 	icon_state = "bloodwall_2";
 	name = "Meaty Wall"
 	},
 /area/meat_derelict/boss)
 "cD" = (
-/turf/unsimulated/floor/stairs/wide/middle{
+/turf/floor/stairs/wide/middle{
 	dir = 4
 	},
 /area/meat_derelict/entry)
@@ -1244,7 +1244,7 @@
 /obj/landmark{
 	name = "telesci"
 	},
-/turf/unsimulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 4
 	},
 /area/meat_derelict/entry)
@@ -1265,18 +1265,18 @@
 /obj/landmark{
 	name = "telesci"
 	},
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/meat_derelict/entry)
 "cG" = (
 /obj/landmark{
 	name = "telesci"
 	},
-/turf/unsimulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 8
 	},
 /area/meat_derelict/entry)
 "cH" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	desc = "It's sealed shut.";
 	dir = 1;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -1295,7 +1295,7 @@
 	name = "power conduit";
 	tag = "icon-conduit (SOUTHWEST)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "cJ" = (
 /obj/decal/fakeobjects{
@@ -1308,20 +1308,20 @@
 	name = "power conduit";
 	tag = "icon-conduit (EAST)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "cK" = (
-/turf/unsimulated/wall/setpieces/bloodwall,
+/turf/wall/setpieces/bloodwall,
 /area/meat_derelict/boss)
 "cL" = (
-/turf/unsimulated/wall/setpieces/bloodwall{
+/turf/wall/setpieces/bloodwall{
 	desc = "Is it looking at you?";
 	icon_state = "bloodwall_4";
 	name = "Grody Wall"
 	},
 /area/meat_derelict/boss)
 "cM" = (
-/turf/unsimulated/wall/setpieces/bloodwall{
+/turf/wall/setpieces/bloodwall{
 	desc = "Is it looking at you?";
 	icon_state = "bloodwall_5";
 	name = "Grody Wall"
@@ -1338,7 +1338,7 @@
 	name = "power conduit";
 	tag = "icon-conduit (EAST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1353,13 +1353,13 @@
 	dir = 5;
 	anchored = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/entry)
 "cP" = (
-/turf/unsimulated/floor/stairs/wide/other{
+/turf/floor/stairs/wide/other{
 	dir = 4
 	},
 /area/meat_derelict/entry)
@@ -1367,7 +1367,7 @@
 /obj/landmark{
 	name = "telesci"
 	},
-/turf/unsimulated/floor/orangeblack/corner{
+/turf/floor/orangeblack/corner{
 	dir = 4
 	},
 /area/meat_derelict/entry)
@@ -1375,7 +1375,7 @@
 /obj/landmark{
 	name = "telesci"
 	},
-/turf/unsimulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 1
 	},
 /area/meat_derelict/entry)
@@ -1383,7 +1383,7 @@
 /obj/landmark{
 	name = "telesci"
 	},
-/turf/unsimulated/floor/orangeblack/corner{
+/turf/floor/orangeblack/corner{
 	dir = 1
 	},
 /area/meat_derelict/entry)
@@ -1398,7 +1398,7 @@
 	name = "power conduit";
 	tag = "icon-conduit (SOUTHWEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1414,12 +1414,12 @@
 	name = "power conduit";
 	tag = "icon-conduit (EAST)"
 	},
-/turf/unsimulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 4
 	},
 /area/meat_derelict/entry)
 "cV" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	desc = "It's sealed shut.";
 	dir = 1;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -1447,7 +1447,7 @@
 	name = "power conduit";
 	tag = "icon-conduit (NORTH)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "cX" = (
 /obj/machinery/door_control/oneshot{
@@ -1458,7 +1458,7 @@
 	pixel_x = 24;
 	pixel_y = 8
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "cY" = (
 /obj/decal/fakeobjects{
@@ -1469,21 +1469,21 @@
 	icon_state = "meatlumps";
 	name = "slimy whatsit"
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor,
+/turf/floor/setpieces/bloodfloor,
 /area/meat_derelict/main)
 "cZ" = (
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_3"
 	},
 /area/meat_derelict/main)
 "da" = (
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/boss)
 "db" = (
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_3"
 	},
 /area/meat_derelict/boss)
@@ -1493,14 +1493,14 @@
 	icon_state = "chair_couch-brown";
 	dir = 8
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/boss)
 "dd" = (
 /obj/stool/chair/couch,
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -1511,7 +1511,7 @@
 	icon_state = "chair_couch-brown";
 	dir = 4
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_3"
 	},
 /area/meat_derelict/boss)
@@ -1521,7 +1521,7 @@
 	icon_state = "tube-broken";
 	dir = 8
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1538,7 +1538,7 @@
 	tag = "icon-conduit (NORTH)"
 	},
 /obj/critter/domestic_bee/trauma,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "dh" = (
 /obj/decal/fakeobjects{
@@ -1549,7 +1549,7 @@
 	icon_state = "offbroken";
 	name = "broken computer"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "di" = (
 /obj/overlay{
@@ -1560,7 +1560,7 @@
 	icon_state = "lavamachine_10";
 	name = "huge machine"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "dj" = (
 /obj/overlay{
@@ -1571,19 +1571,19 @@
 	icon_state = "lavamachine_11";
 	name = "huge machine"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/entry)
 "dk" = (
 /obj/meatlight{
 	brightness = 4
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/boss)
 "dl" = (
-/turf/unsimulated/floor/setpieces/bloodfloor,
+/turf/floor/setpieces/bloodfloor,
 /area/meat_derelict/boss)
 "dm" = (
 /obj/critter/monster_door/meat_head,
@@ -1596,45 +1596,45 @@
 	sd_ColorRed = 0.5
 	},
 /obj/decal/fakeobjects/core,
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_3"
 	},
 /area/meat_derelict/boss)
 "dn" = (
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/meat_derelict/boss)
 "do" = (
 /obj/item/luggable_computer/cheget,
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_3"
 	},
 /area/meat_derelict/boss)
 "dp" = (
-/turf/unsimulated/floor/stairs/wide,
+/turf/floor/stairs/wide,
 /area/meat_derelict/entry)
 "dq" = (
-/turf/unsimulated/floor/stairs/wide/middle,
+/turf/floor/stairs/wide/middle,
 /area/meat_derelict/entry)
 "dr" = (
-/turf/unsimulated/floor/stairs/wide/other,
+/turf/floor/stairs/wide/other,
 /area/meat_derelict/entry)
 "ds" = (
 /obj/securearea{
 	desc = "Careless use of experimental teleportation technology may be hazardous to your health.";
 	name = "Molecular Integrity Hazard"
 	},
-/turf/unsimulated/wall{
+/turf/wall{
 	icon_state = ""
 	},
 /area/meat_derelict/entry)
 "dt" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/boss)
 "du" = (
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/meat_derelict/entry)
 "dv" = (
 /obj/decal/fakeobjects{
@@ -1644,7 +1644,7 @@
 	icon_state = "hvent";
 	name = "defunct vent"
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/meat_derelict/entry)
 "dw" = (
 /obj/decal/fakeobjects{
@@ -1654,13 +1654,13 @@
 	name = "broken vending machine";
 	tag = "icon-coffee-broken"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/main)
 "dx" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1670,13 +1670,13 @@
 	id = "meatland_shortcut";
 	timer = 0
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/main)
 "dz" = (
-/turf/unsimulated/wall/setpieces/bloodwall{
+/turf/wall/setpieces/bloodwall{
 	icon_state = "bloodwall_3"
 	},
 /area/meat_derelict/boss)
@@ -1684,7 +1684,7 @@
 /obj/meatlight{
 	brightness = 4
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor,
+/turf/floor/setpieces/bloodfloor,
 /area/meat_derelict/boss)
 "dB" = (
 /obj/decal/fakeobjects{
@@ -1698,7 +1698,7 @@
 	tag = "icon-conduit (EAST)"
 	},
 /obj/stool/chair,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1723,7 +1723,7 @@
 	dir = 5;
 	anchored = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1733,7 +1733,7 @@
 	dir = 4;
 	pixel_x = 24
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1744,18 +1744,18 @@
 	name = "Dead plant";
 	pixel_y = 0
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/main)
 "dF" = (
 /obj/critter/monster_door/floor,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/main)
 "dG" = (
 /obj/item/gun/gibgun,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1766,7 +1766,7 @@
 	dir = 1
 	},
 /obj/machinery/computer3/generic/personal/meatland,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1776,7 +1776,7 @@
 	icon_state = "tabledir";
 	dir = 5
 	},
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/meat_derelict/entry)
 "dJ" = (
 /obj/decal/fakeobjects/firelock_broken{
@@ -1790,7 +1790,7 @@
 	id = "meatstation1";
 	name = "Safety Interlock"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1799,7 +1799,7 @@
 /obj/meatlight{
 	brightness = 4
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor,
+/turf/floor/setpieces/bloodfloor,
 /area/meat_derelict/main)
 "dL" = (
 /obj/decal/glow{
@@ -1810,7 +1810,7 @@
 	sd_ColorGreen = 0.35;
 	sd_ColorRed = 0.5
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -1820,24 +1820,24 @@
 	icon_state = "tabledir";
 	dir = 6
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/entry)
 "dN" = (
 /obj/machinery/light,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
 /area/meat_derelict/entry)
 "dO" = (
-/turf/unsimulated/floor/grime,
+/turf/floor/grime,
 /area/meat_derelict/entry)
 "dP" = (
 /obj/decal/cleanable/blood,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -1847,14 +1847,14 @@
 	dir = 4;
 	tag = "meatland_shortcut"
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/guts)
 "dR" = (
 /obj/machinery/door/unpowered/martian/meat,
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -1863,18 +1863,18 @@
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = ""
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/main)
 "dT" = (
 /obj/decal/cleanable/blood{
 	tag = "icon-floor5";
 	icon_state = "floor5"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "dU" = (
 /obj/decal/fakeobjects/pipe,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "dV" = (
 /obj/decal/fakeobjects/pipe{
@@ -1882,7 +1882,7 @@
 	icon_state = "intact";
 	dir = 6
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "dW" = (
 /obj/decal/fakeobjects/pipe{
@@ -1890,7 +1890,7 @@
 	icon_state = "intact";
 	tag = "icon-intact-f (EAST)"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "dX" = (
 /obj/decal/fakeobjects/pipe{
@@ -1900,7 +1900,7 @@
 	icon_state = "intact_off";
 	name = "filter"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "dY" = (
 /obj/decal/fakeobjects/pipe{
@@ -1908,25 +1908,25 @@
 	icon_state = "intact";
 	dir = 10
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "dZ" = (
 /obj/decal/cleanable/blood{
 	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "ea" = (
 /obj/critter/monster_door,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "eb" = (
 /obj/iomoon_puzzle/meat_ganglion{
 	id = "meatboss_door_control";
 	timer = 6
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -1941,7 +1941,7 @@
 	name = "Fleshy Floor"
 	},
 /obj/stomachacid,
-/turf/unsimulated/floor/setpieces/bloodfloor/stomach,
+/turf/floor/setpieces/bloodfloor/stomach,
 /area/meat_derelict/guts)
 "ed" = (
 /obj/grassplug{
@@ -1952,7 +1952,7 @@
 	name = "Fleshy Floor"
 	},
 /obj/stomachacid,
-/turf/unsimulated/floor/setpieces/bloodfloor/stomach,
+/turf/floor/setpieces/bloodfloor/stomach,
 /area/meat_derelict/guts)
 "ee" = (
 /obj/decal/glow{
@@ -1963,7 +1963,7 @@
 	sd_ColorGreen = 0.35;
 	sd_ColorRed = 0.5
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -1975,7 +1975,7 @@
 	output_ids = "meatland_bossdoor";
 	tag = "meatboss_door_control"
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -1986,11 +1986,11 @@
 	icon_state = "intact";
 	dir = 9
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "eh" = (
 /obj/item/device/audio_log/meatland_01,
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "ei" = (
 /obj/decal/fakeobjects/pipe{
@@ -2005,7 +2005,7 @@
 	icon_state = "meter";
 	name = "meter"
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/guts)
 "ej" = (
 /obj/decal/fakeobjects{
@@ -2017,14 +2017,14 @@
 	icon_state = "meatlumps";
 	name = "globby recliner"
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/guts)
 "ek" = (
 /obj/stomachacid,
-/turf/unsimulated/floor/setpieces/bloodfloor/stomach,
+/turf/floor/setpieces/bloodfloor/stomach,
 /area/meat_derelict/guts)
 "el" = (
 /obj/stomachacid,
@@ -2036,7 +2036,7 @@
 	sd_ColorGreen = 0.35;
 	sd_ColorRed = 0.5
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor/stomach,
+/turf/floor/setpieces/bloodfloor/stomach,
 /area/meat_derelict/guts)
 "em" = (
 /obj/decal/fakeobjects{
@@ -2048,21 +2048,21 @@
 	icon_state = "fang1";
 	name = "really big fang"
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/guts)
 "en" = (
 /obj/critter/blobman/meaty_martha,
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/guts)
 "eo" = (
 /obj/meatlight,
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -2076,7 +2076,7 @@
 	icon_state = "acid_corners";
 	name = "Fleshy Floor"
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor/stomach,
+/turf/floor/setpieces/bloodfloor/stomach,
 /area/meat_derelict/guts)
 "eq" = (
 /obj/decal/fakeobjects{
@@ -2088,13 +2088,13 @@
 	icon_state = "fang1";
 	name = "quite large fang"
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/guts)
 "er" = (
-/turf/unsimulated/wall/setpieces/bloodwall{
+/turf/wall/setpieces/bloodwall{
 	desc = "Is it looking at you?";
 	icon_state = "bloodwall_4";
 	name = "Grody Wall"
@@ -2107,7 +2107,7 @@
 	name = "really enormous mandibles";
 	tag = "meatland_bossdoor"
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -2117,26 +2117,26 @@
 	id = "meatland_bossdoor";
 	timer = 0
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/guts)
 "eu" = (
-/turf/unsimulated/wall/setpieces/bloodwall{
+/turf/wall/setpieces/bloodwall{
 	icon_state = "bloodwall_2";
 	name = "Meaty Wall"
 	},
 /area/meat_derelict/soviet)
 "ev" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "wall1"
 	},
 /area/meat_derelict/soviet)
 "ew" = (
 /obj/item/mine/gibs,
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -2149,13 +2149,13 @@
 	icon_state = "acid_corners";
 	name = "Fleshy Floor"
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/guts)
 "ey" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "door1";
 	name = "broken door"
@@ -2170,7 +2170,7 @@
 	icon_state = "sovbot";
 	name = "Soviet Commu-bot"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -2181,20 +2181,20 @@
 	icon_state = "key_bone";
 	name = "literal skeleton key"
 	},
-/turf/unsimulated/floor/caution/east{
+/turf/floor/caution/east{
 	dir = 1
 	},
 /area/meat_derelict/soviet)
 "eB" = (
 /obj/decal/cleanable/cobweb2,
 /obj/critter/zombie/meatmonaut,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
 	},
 /area/meat_derelict/soviet)
 "eC" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	dir = 8;
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "wall"
@@ -2220,7 +2220,7 @@
 	name = "soviet shuttle doodad";
 	tag = "icon-neutinj"
 	},
-/turf/unsimulated/floor/caution/south{
+/turf/floor/caution/south{
 	dir = 1
 	},
 /area/meat_derelict/soviet)
@@ -2234,7 +2234,7 @@
 	dir = 4;
 	pixel_y = -6
 	},
-/turf/unsimulated/floor/caution/south{
+/turf/floor/caution/south{
 	dir = 1
 	},
 /area/meat_derelict/soviet)
@@ -2244,7 +2244,7 @@
 	icon_state = "intact";
 	dir = 10
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
 	},
@@ -2253,17 +2253,17 @@
 /obj/decal/fakeobjects/lightbulb_broken{
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
 	},
 /area/meat_derelict/soviet)
 "eH" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
 	},
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "diagonalWall"
 	},
@@ -2277,7 +2277,7 @@
 	icon_state = "meatlumps";
 	name = "slimy whatsit"
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -2290,19 +2290,19 @@
 	icon_state = "acid_corners";
 	name = "Fleshy Floor"
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor/stomach,
+/turf/floor/setpieces/bloodfloor/stomach,
 /area/meat_derelict/guts)
 "eK" = (
 /obj/stomachacid,
 /obj/meatland_obelisk,
-/turf/unsimulated/floor/setpieces/bloodfloor/stomach,
+/turf/floor/setpieces/bloodfloor/stomach,
 /area/meat_derelict/guts)
 "eL" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
-/turf/unsimulated/wall{
+/turf/wall{
 	tag = "icon-diagonalWall (SOUTHEAST)";
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "diagonalWall";
@@ -2311,19 +2311,19 @@
 /area/meat_derelict/soviet)
 "eM" = (
 /obj/decal/fakeobjects/lightbulb_broken,
-/turf/unsimulated/floor/caution/east{
+/turf/floor/caution/east{
 	dir = 1
 	},
 /area/meat_derelict/soviet)
 "eN" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
 	},
 /area/meat_derelict/soviet)
 "eO" = (
 /obj/machinery/door/unpowered/shuttle,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
 	},
@@ -2334,7 +2334,7 @@
 	icon_state = "intact";
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
 	},
@@ -2344,13 +2344,13 @@
 	tag = "icon-floor5";
 	icon_state = "floor5"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
 	},
 /area/meat_derelict/soviet)
 "eR" = (
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -2360,7 +2360,7 @@
 	info = "This is ridiculous.<br>Corporate is sending out test pads to selected stations already.  They are NOT READY.  They are NOT SAFE.<br>PEOPLE. WILL. DIE. FULL STOP.";
 	name = "Paper-'angry scrawl'"
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -2372,7 +2372,7 @@
 	dir = 8
 	},
 /obj/critter/zombie/meatmonaut,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
 	},
@@ -2383,7 +2383,7 @@
 	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
 	},
@@ -2400,10 +2400,10 @@
 /obj/window{
 	dir = 1
 	},
-/turf/unsimulated/floor,
+/turf/floor,
 /area/meat_derelict/soviet)
 "eW" = (
-/turf/unsimulated/wall/setpieces/bloodwall{
+/turf/wall/setpieces/bloodwall{
 	desc = "Is it looking at you?";
 	icon_state = "bloodwall_5";
 	name = "Grody Wall"
@@ -2420,7 +2420,7 @@
 	sd_ColorGreen = 0.35;
 	sd_ColorRed = 0.5
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor/stomach,
+/turf/floor/setpieces/bloodfloor/stomach,
 /area/meat_derelict/guts)
 "eY" = (
 /obj/decal/fakeobjects/firelock_broken{
@@ -2429,7 +2429,7 @@
 	icon_state = "door0";
 	name = "rusted hatch"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
 	},
@@ -2440,7 +2440,7 @@
 	icon_state = "intact";
 	tag = "icon-intact-f (NORTHEAST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
 	},
@@ -2451,7 +2451,7 @@
 	icon_state = "intact";
 	tag = "icon-intact-f (EAST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
 	},
@@ -2461,7 +2461,7 @@
 	id = "meatland_maze1";
 	timer = 30
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -2476,7 +2476,7 @@
 	dir = 4;
 	pixel_y = -6
 	},
-/turf/unsimulated/floor/caution/north,
+/turf/floor/caution/north,
 /area/meat_derelict/soviet)
 "fd" = (
 /obj/decal/fakeobjects/pipe{
@@ -2490,7 +2490,7 @@
 	},
 /obj/rack,
 /obj/item/clothing/suit/space/soviet,
-/turf/unsimulated/floor/caution/north,
+/turf/floor/caution/north,
 /area/meat_derelict/soviet)
 "fe" = (
 /obj/decal/fakeobjects/pipe{
@@ -2500,24 +2500,24 @@
 	name = "rusted vent";
 	tag = "icon-vent (WEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
 	},
 /area/meat_derelict/soviet)
 "ff" = (
 /obj/machinery/light/small/iomoon,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
 	},
 /area/meat_derelict/soviet)
 "fg" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "floor3"
 	},
-/turf/unsimulated/wall{
+/turf/wall{
 	tag = "icon-diagonalWall (WEST)";
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "diagonalWall";
@@ -2526,7 +2526,7 @@
 /area/meat_derelict/soviet)
 "fh" = (
 /obj/item/device/audio_log/meatland_04,
-/turf/unsimulated/floor/setpieces/bloodfloor,
+/turf/floor/setpieces/bloodfloor,
 /area/meat_derelict/guts)
 "fi" = (
 /obj/grassplug{
@@ -2535,11 +2535,11 @@
 	icon_state = "acid_corners";
 	name = "Fleshy Floor"
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor/stomach,
+/turf/floor/setpieces/bloodfloor/stomach,
 /area/meat_derelict/guts)
 "fj" = (
 /obj/crevice/meatland,
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
@@ -2554,108 +2554,108 @@
 	icon_state = "meatlumps";
 	name = "swollen pile"
 	},
-/turf/unsimulated/floor/setpieces/bloodfloor{
+/turf/floor/setpieces/bloodfloor{
 	icon_state = "bloodfloor_2";
 	name = "Fleshy Floor"
 	},
 /area/meat_derelict/guts)
 "fl" = (
 /turf/space,
-/turf/unsimulated/floor/void{
+/turf/floor/void{
 	icon = 'icons/misc/worlds.dmi';
 	icon_state = "timehole"
 	},
 /area/space)
 "fm" = (
-/turf/unsimulated/wall/setpieces/leadwall{
+/turf/wall/setpieces/leadwall{
 	dir = 9
 	},
 /area/space)
 "fn" = (
-/turf/unsimulated/wall/setpieces/leadwall{
+/turf/wall/setpieces/leadwall{
 	dir = 4
 	},
 /area/space)
 "fo" = (
-/turf/unsimulated/wall/setpieces/leadwall{
+/turf/wall/setpieces/leadwall{
 	dir = 5
 	},
 /area/space)
 "fp" = (
-/turf/unsimulated/wall/setpieces/leadwall{
+/turf/wall/setpieces/leadwall{
 	tag = "icon-leadwall (WEST)";
 	icon_state = "leadwall";
 	dir = 8
 	},
 /area/space)
 "fq" = (
-/turf/unsimulated/wall/setpieces/leadwall,
+/turf/wall/setpieces/leadwall,
 /area/space)
 "fr" = (
-/turf/unsimulated/floor/caution/corner/nw{
+/turf/floor/caution/corner/nw{
 	dir = 1
 	},
 /area/space)
 "fs" = (
-/turf/unsimulated/floor/caution/north,
+/turf/floor/caution/north,
 /area/space)
 "ft" = (
-/turf/unsimulated/floor/caution/corner/ne,
+/turf/floor/caution/corner/ne,
 /area/space)
 "fu" = (
 /obj/decal/fakeobjects/shuttlethruster{
 	dir = 4
 	},
 /turf/space,
-/turf/unsimulated/floor/void{
+/turf/floor/void{
 	icon = 'icons/misc/worlds.dmi';
 	icon_state = "timehole"
 	},
 /area/space)
 "fv" = (
-/turf/unsimulated/wall/setpieces/leadwall{
+/turf/wall/setpieces/leadwall{
 	dir = 6
 	},
 /area/space)
 "fw" = (
-/turf/unsimulated/floor/caution/corner/sw{
+/turf/floor/caution/corner/sw{
 	dir = 1
 	},
 /area/space)
 "fx" = (
-/turf/unsimulated/floor/caution/south{
+/turf/floor/caution/south{
 	dir = 1
 	},
 /area/space)
 "fy" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-corner_east";
 	icon_state = "corner_east"
 	},
 /area/space)
 "fz" = (
-/turf/unsimulated/floor/black,
+/turf/floor/black,
 /area/space)
 "fA" = (
-/turf/unsimulated/wall/setpieces/leadwall{
+/turf/wall/setpieces/leadwall{
 	dir = 10
 	},
 /area/space)
 "fB" = (
-/turf/unsimulated/floor,
+/turf/floor,
 /area/space)
 "fC" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 2
 	},
 /area/space)
 "fD" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 8
 	},
 /area/space)
 "fE" = (
-/turf/unsimulated/floor/void{
+/turf/floor/void{
 	icon = 'icons/misc/worlds.dmi';
 	icon_state = "timehole"
 	},
@@ -2669,92 +2669,92 @@
 /turf/space,
 /area/space)
 "fG" = (
-/turf/unsimulated/floor/plating/scorched,
+/turf/floor/plating/scorched,
 /area/space)
 "fH" = (
-/turf/unsimulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 4
 	},
 /area/space)
 "fI" = (
-/turf/unsimulated/floor/stairs{
+/turf/floor/stairs{
 	dir = 8
 	},
 /area/space)
 "fJ" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 1
 	},
 /area/space)
 "fK" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 4
 	},
 /area/space)
 "fL" = (
-/turf/unsimulated/wall/setpieces/leadwindow{
+/turf/wall/setpieces/leadwindow{
 	icon_state = "leadwindow_2"
 	},
 /area/space)
 "fM" = (
-/turf/unsimulated/floor/stairs/wide{
+/turf/floor/stairs/wide{
 	dir = 4
 	},
 /area/space)
 "fN" = (
-/turf/unsimulated/floor/stairs/wide/other{
+/turf/floor/stairs/wide/other{
 	dir = 4
 	},
 /area/space)
 "fO" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-carpetNW";
 	icon_state = "carpetNW"
 	},
 /area/space)
 "fP" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/space)
 "fQ" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetNE"
 	},
 /area/space)
 "fR" = (
-/turf/unsimulated/floor/caution/corner/nw,
+/turf/floor/caution/corner/nw,
 /area/space)
 "fS" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-carpetSW";
 	icon_state = "carpetSW"
 	},
 /area/space)
 "fT" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	tag = "icon-carpetS";
 	icon_state = "carpetS"
 	},
 /area/space)
 "fU" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetSE"
 	},
 /area/space)
 "fV" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 8;
 	icon_state = "wall3_space"
 	},
 /area/wizard_station)
 "fW" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3"
 	},
 /area/wizard_station)
 "fX" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 1;
 	icon_state = "wall3_space"
 	},
@@ -2770,29 +2770,29 @@
 	dir = 8
 	},
 /obj/window/crystal/reinforced/east,
-/turf/simulated/floor/plating/airless,
+/turf/floor/plating/airless,
 /area/wizard_station)
 "ga" = (
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
 "gb" = (
 /obj/table,
 /obj/machinery/light/lamp,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
 "gc" = (
 /obj/closet/wizard,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
 "gd" = (
 /obj/machinery/vending/magivend,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
@@ -2802,25 +2802,25 @@
 /area/space)
 "gf" = (
 /obj/magicmirror,
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3"
 	},
 /area/wizard_station)
 "gg" = (
 /obj/closet,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
 "gh" = (
-/turf/unsimulated/wall,
+/turf/wall,
 /area/space)
 "gi" = (
 /obj/table/woodentable{
 	dir = 10
 	},
 /obj/item/instrument/harmonica,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
@@ -2833,7 +2833,7 @@
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
@@ -2843,7 +2843,7 @@
 /obj/window/crystal/reinforced/north,
 /obj/window/crystal/reinforced/west,
 /obj/window/crystal/reinforced/south,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
@@ -2853,7 +2853,7 @@
 /obj/window/crystal/reinforced/north,
 /obj/window/crystal/reinforced/south,
 /obj/window/crystal/reinforced/west,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
@@ -2869,7 +2869,7 @@
 	desc = "Enchanted to write in several shades of grey!";
 	name = "magic pen"
 	},
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
@@ -2878,13 +2878,13 @@
 	id = "wizard";
 	name = "Outer Airlock"
 	},
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
 "go" = (
 /obj/machinery/door/airlock/external,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
@@ -2892,7 +2892,7 @@
 /obj/landmark{
 	name = "VR"
 	},
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
@@ -2900,13 +2900,13 @@
 /obj/landmark/start{
 	name = "wizard"
 	},
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
 "gr" = (
 /obj/machinery/door/airlock/glass,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
@@ -2914,7 +2914,7 @@
 /obj/stool/chair{
 	dir = 4
 	},
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
@@ -2932,7 +2932,7 @@
 	desc = "Enchanted to write in several shades of grey!";
 	name = "magic pen"
 	},
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
@@ -2941,23 +2941,23 @@
 	dir = 10
 	},
 /obj/item/reagent_containers/food/drinks/tea/mugwort,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
 "gv" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3_space"
 	},
 /area/wizard_station)
 "gw" = (
 /obj/stool/chair,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
 "gx" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	dir = 4;
 	icon_state = "wall3_space"
 	},
@@ -2970,7 +2970,7 @@
 	},
 /obj/item/kitchen/everyflavor_box,
 /obj/item/kitchen/everyflavor_box,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
@@ -2979,18 +2979,18 @@
 	dir = 5
 	},
 /obj/item/reagent_containers/food/drinks/cola,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
 "gA" = (
 /obj/stool/bed,
-/turf/simulated/floor/shuttle{
+/turf/floor/shuttle{
 	icon_state = "floor5"
 	},
 /area/wizard_station)
 "gB" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/station/science/artifact)
 "gC" = (
 /obj/landmark/start,
@@ -3000,22 +3000,22 @@
 /turf/space,
 /area/space)
 "gD" = (
-/turf/simulated/floor/orangeblack,
+/turf/floor/orangeblack,
 /area/station/science/artifact)
 "gE" = (
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/science/artifact)
 "gF" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/science/artifact)
 "gG" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 4
 	},
 /area/station/science/artifact)
@@ -3023,29 +3023,29 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 8
 	},
 /area/station/science/artifact)
 "gI" = (
-/turf/simulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 4
 	},
 /area/station/science/artifact)
 "gJ" = (
-/turf/simulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 8
 	},
 /area/station/science/artifact)
 "gK" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 4
 	},
 /area/station/science/artifact)
 "gL" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/orangeblack/side{
+/turf/floor/orangeblack/side{
 	dir = 8
 	},
 /area/station/science/artifact)
@@ -3054,18 +3054,18 @@
 	name = "S light switch";
 	pixel_y = -24
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/science/artifact)
 "gN" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/science/artifact)
 "gO" = (
 /obj/machinery/door/airlock,
-/turf/simulated/floor,
+/turf/floor,
 /area/station/science/artifact)
 "gP" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/misc/fullscreen.dmi';
 	icon_state = "title";
 	layer = 20;
@@ -3076,28 +3076,28 @@
 /turf/space,
 /area/shuttle/escape/station)
 "gR" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/station/crew_quarters/kitchen)
 "gS" = (
 /obj/machinery/computer3/generic/radio,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetNW"
 	},
 /area/station/crew_quarters/kitchen)
 "gT" = (
 /obj/machinery/chem_dispenser,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/station/crew_quarters/kitchen)
 "gU" = (
 /obj/machinery/chem_heater,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/station/crew_quarters/kitchen)
 "gV" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/station/crew_quarters/kitchen)
@@ -3106,7 +3106,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/station/crew_quarters/kitchen)
@@ -3115,17 +3115,17 @@
 /obj/stocking{
 	pixel_y = 28
 	},
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/station/crew_quarters/kitchen)
 "gY" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetNE"
 	},
 /area/station/crew_quarters/kitchen)
 "gZ" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/space)
 "ha" = (
 /obj/machinery/power/data_terminal,
@@ -3134,7 +3134,7 @@
 	d2 = 4
 	},
 /obj/machinery/communications_dish,
-/turf/simulated/floor/plating/airless,
+/turf/floor/plating/airless,
 /area/shuttle/escape/station)
 "hb" = (
 /obj/cable{
@@ -3142,7 +3142,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/simulated/wall,
+/turf/wall,
 /area/station/crew_quarters/kitchen)
 "hc" = (
 /obj/machinery/power/data_terminal,
@@ -3156,30 +3156,30 @@
 	},
 /obj/machinery/computer3/generic/communications,
 /obj/item/disk/data/floppy/devkit,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetNW"
 	},
 /area/station/crew_quarters/kitchen)
 "hd" = (
 /obj/item/disk/data/floppy/read_only/network_progs,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/station/crew_quarters/kitchen)
 "he" = (
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "hf" = (
 /obj/item/reagent_containers/food/snacks/plant/banana,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "hg" = (
 /obj/item/pen,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "hh" = (
 /obj/item/paper,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "hi" = (
 /obj/machinery/power/terminal{
@@ -3191,13 +3191,13 @@
 	tag = "icon-0-2";
 	icon_state = "0-2"
 	},
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/station/crew_quarters/kitchen)
 "hj" = (
 /obj/machinery/power/smes/magical,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetNE"
 	},
 /area/station/crew_quarters/kitchen)
@@ -3208,7 +3208,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/networked/radio,
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/station/crew_quarters/kitchen)
 "hl" = (
 /obj/machinery/power/data_terminal,
@@ -3217,7 +3217,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/networked/printer,
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/station/crew_quarters/kitchen)
 "hm" = (
 /obj/machinery/power/data_terminal,
@@ -3226,7 +3226,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/networked/storage/scanner,
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/station/crew_quarters/kitchen)
 "hn" = (
 /obj/cable{
@@ -3235,7 +3235,7 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/networked/test_apparatus/pitching_machine,
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/station/crew_quarters/kitchen)
 "ho" = (
 /obj/cable{
@@ -3246,7 +3246,7 @@
 /obj/machinery/networked/printer{
 	print_id = "Joe"
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/station/crew_quarters/kitchen)
 "hp" = (
 /obj/cable{
@@ -3255,14 +3255,14 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/networked/test_apparatus/electrobox,
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/station/crew_quarters/kitchen)
 "hq" = (
 /obj/item/luggable_computer,
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/station/crew_quarters/kitchen)
 "hr" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/station/crew_quarters/fitness)
 "hs" = (
 /obj/cable{
@@ -3275,7 +3275,7 @@
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetW"
 	},
 /area/station/crew_quarters/kitchen)
@@ -3285,7 +3285,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "hu" = (
 /obj/cable{
@@ -3294,7 +3294,7 @@
 	d2 = 8
 	},
 /obj,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "hv" = (
 /obj/cable{
@@ -3306,7 +3306,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "hw" = (
 /obj/cable{
@@ -3323,7 +3323,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetE"
 	},
 /area/station/crew_quarters/kitchen)
@@ -3342,7 +3342,7 @@
 	name = "Control Room";
 	req_access_txt = "0"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "hy" = (
 /obj/cable{
@@ -3350,7 +3350,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "hz" = (
 /obj/cable{
@@ -3362,26 +3362,26 @@
 	d1 = 2;
 	d2 = 8
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "hA" = (
 /obj/cable{
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "hB" = (
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/station/crew_quarters/kitchen)
 "hC" = (
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/station/crew_quarters/fitness)
 "hD" = (
 /obj/machinery/power/data_terminal,
 /obj/cable,
 /obj/table,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetW"
 	},
 /area/station/crew_quarters/kitchen)
@@ -3392,27 +3392,27 @@
 /obj/item/device/flash/turbo,
 /obj/item/device/flash/turbo,
 /obj/item/device/flash/turbo,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "hF" = (
 /obj/machinery/clone_scanner,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "hG" = (
 /obj/machinery/computer/cloning,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "hH" = (
 /obj/machinery/clonepod,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "hI" = (
 /obj/machinery/clonegrinder,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "hJ" = (
 /obj/machinery/atmospherics/pipe/vent,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "hK" = (
 /obj/item/paper/book/from_file/monster_manual,
@@ -3421,7 +3421,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetE"
 	},
 /area/station/crew_quarters/kitchen)
@@ -3439,7 +3439,7 @@
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "hM" = (
 /obj/cable{
@@ -3450,7 +3450,7 @@
 	tag = "icon-4-8";
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "hN" = (
 /obj/cable{
@@ -3462,7 +3462,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "hO" = (
 /obj/cable{
@@ -3477,7 +3477,7 @@
 	tag = "icon-2-4";
 	icon_state = "2-4"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "hP" = (
 /obj/cable{
@@ -3489,14 +3489,14 @@
 	d1 = 2;
 	d2 = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "hQ" = (
 /obj/cable{
 	tag = "icon-4-8";
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "hR" = (
 /obj/machinery/door/firedoor/border_only{
@@ -3509,46 +3509,46 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/command,
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/fitness)
 "hS" = (
 /obj/cable{
 	tag = "icon-4-8";
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/fitness)
 "hT" = (
 /obj/cable{
 	tag = "icon-2-8";
 	icon_state = "2-8"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/fitness)
 "hU" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetW"
 	},
 /area/station/crew_quarters/kitchen)
 "hV" = (
 /obj/item/extinguisher,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "hW" = (
 /obj/landmark{
 	name = "JoinLate"
 	},
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "hX" = (
 /obj/machinery/atmospherics/pipe/simple{
 	icon_state = "intact";
 	level = 2
 	},
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "hY" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetE"
 	},
 /area/station/crew_quarters/kitchen)
@@ -3569,7 +3569,7 @@
 	icon_state = "rwindow";
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "ia" = (
 /obj/machinery/power/data_terminal,
@@ -3577,7 +3577,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "ib" = (
 /obj/cable{
@@ -3588,10 +3588,10 @@
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "ic" = (
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "id" = (
 /obj/cable{
@@ -3599,7 +3599,7 @@
 	d1 = 2;
 	d2 = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "ie" = (
 /obj/cable{
@@ -3616,14 +3616,14 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "if" = (
 /obj/cable{
 	tag = "icon-2-8";
 	icon_state = "2-8"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "ig" = (
 /obj/cable,
@@ -3635,7 +3635,7 @@
 /obj/machinery/computer3/terminal/zeta{
 	setup_os_string = "ZETA_MAINFRAME"
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/station/crew_quarters/kitchen)
 "ih" = (
 /obj/machinery/light{
@@ -3643,14 +3643,14 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/station/crew_quarters/kitchen)
 "ii" = (
 /obj/cable{
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/fitness)
 "ij" = (
 /obj/secure_closet/engineering_elect,
@@ -3659,37 +3659,37 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetW"
 	},
 /area/station/crew_quarters/kitchen)
 "ik" = (
 /obj/item/device/flash,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "il" = (
 /obj/item/reagent_containers/glass/vial,
 /obj/item/reagent_containers/glass/vial,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "im" = (
 /obj/landmark{
 	name = "Observer-Start"
 	},
 /obj/item/broken_rcd,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "in" = (
 /obj/item/clothing/glasses/vr{
 	network = "VR"
 	},
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "io" = (
 /obj/machinery/optable,
 /obj/item/circular_saw,
 /obj/item/scalpel,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetE"
 	},
 /area/station/crew_quarters/kitchen)
@@ -3705,11 +3705,11 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "iq" = (
 /obj/item/storage/toolbox/electrical,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "ir" = (
 /obj/item/card/id/syndicate,
@@ -3722,7 +3722,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "is" = (
 /obj/machinery/power/data_terminal,
@@ -3733,13 +3733,13 @@
 /obj/machinery/networked/test_apparatus/gas_sensor{
 	setup_tag = "BOTTOM"
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/station/crew_quarters/kitchen)
 "it" = (
 /obj/machinery/power/data_terminal,
 /obj/cable,
 /obj/machinery/networked/teleconsole,
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "iu" = (
 /obj/cable,
@@ -3747,13 +3747,13 @@
 /obj/machinery/networked/telepad{
 	layer = 3
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "iv" = (
 /obj/machinery/power/data_terminal,
 /obj/cable,
 /obj/machinery/networked/artifact_console,
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "iw" = (
 /obj/grille,
@@ -3773,11 +3773,11 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/fitness)
 "ix" = (
 /obj/item/disk/data/memcard,
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/station/crew_quarters/fitness)
 "iy" = (
 /obj/machinery/power/data_terminal,
@@ -3789,7 +3789,7 @@
 /obj/machinery/networked/mainframe/zeta{
 	tag = "ZETA_MAINFRAME"
 	},
-/turf/simulated/floor/delivery,
+/turf/floor/delivery,
 /area/station/crew_quarters/fitness)
 "iz" = (
 /obj/machinery/light{
@@ -3797,20 +3797,20 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/station/crew_quarters/fitness)
 "iA" = (
 /obj/machinery/optable,
 /obj/item/circular_saw,
 /obj/item/staple_gun,
 /obj/item/scalpel,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetW"
 	},
 /area/station/crew_quarters/kitchen)
 "iB" = (
 /obj/item/reagent_containers/food/snacks/ingredient/egg/bee,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "iC" = (
 /obj/item/disk/data/cartridge/diagnostics,
@@ -3819,7 +3819,7 @@
 	icon_state = "intact";
 	dir = 1
 	},
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "iD" = (
 /obj/grille,
@@ -3834,7 +3834,7 @@
 	dir = 8
 	},
 /obj/window/reinforced,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "iE" = (
 /obj/machinery/power/data_terminal,
@@ -3843,7 +3843,7 @@
 	d2 = 4
 	},
 /obj/item/device/net_sniffer,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "iF" = (
 /obj/cable{
@@ -3855,11 +3855,11 @@
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "iG" = (
 /obj/item/storage/toolbox/mechanical,
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "iH" = (
 /obj/item/card/id{
@@ -3867,17 +3867,17 @@
 	name = "Test Card";
 	registered = "Seth Butte"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "iI" = (
 /obj/machinery/door/airlock/external{
 	name = "Escape Airlock"
 	},
-/turf/simulated/floor/caution/north,
+/turf/floor/caution/north,
 /area/station/crew_quarters/kitchen)
 "iJ" = (
 /obj/machinery/vending/electronics,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetW"
 	},
 /area/station/crew_quarters/kitchen)
@@ -3886,23 +3886,23 @@
 /obj/item/reagent_containers/syringe,
 /obj/item/cable_coil,
 /obj/item/reagent_containers/food/snacks/ingredient/egg/bee,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "iL" = (
 /obj/item/device/light/zippo,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "iM" = (
 /obj/machinery/plantpot,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "iN" = (
 /obj/item/gun/kinetic/spes,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "iO" = (
 /obj/critter/domestic_bee,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "iP" = (
 /obj/machinery/light{
@@ -3910,7 +3910,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetE"
 	},
 /area/station/crew_quarters/kitchen)
@@ -3929,7 +3929,7 @@
 	icon_state = "1-2"
 	},
 /obj/item/disk/data/tape/test,
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "iR" = (
 /obj/cable{
@@ -3940,7 +3940,7 @@
 	tag = "icon-4-8";
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "iS" = (
 /obj/cable{
@@ -3952,7 +3952,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "iT" = (
 /obj/cable{
@@ -3963,7 +3963,7 @@
 	tag = "icon-2-4";
 	icon_state = "2-4"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "iU" = (
 /obj/cable{
@@ -3975,7 +3975,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "iV" = (
 /obj/cable{
@@ -3987,7 +3987,7 @@
 	d1 = 2;
 	d2 = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/fitness)
 "iW" = (
 /obj/cable{
@@ -3998,37 +3998,37 @@
 	tag = "icon-1-2";
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/fitness)
 "iX" = (
-/turf/simulated/floor/black,
+/turf/floor/black,
 /area/station/crew_quarters/kitchen)
 "iY" = (
 /obj/reagent_dispensers/foamtank,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetW"
 	},
 /area/station/crew_quarters/kitchen)
 "iZ" = (
 /obj/item/cable_coil,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "ja" = (
 /obj/item/reagent_containers/glass/beaker,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "jb" = (
 /obj/item/device/radio/beacon,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "jc" = (
 /obj/item/reagent_containers/glass/beaker,
 /obj/item/ammo/bullets/a12,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "jd" = (
 /obj/machinery/sleeper,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetE"
 	},
 /area/station/crew_quarters/kitchen)
@@ -4044,7 +4044,7 @@
 	read_only = 1;
 	setup_drive_type = /obj/item/disk/data/tape/boot2
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/station/crew_quarters/kitchen)
 "jf" = (
 /obj/cable{
@@ -4056,7 +4056,7 @@
 	tag = "icon-1-8";
 	icon_state = "1-8"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "jg" = (
 /obj/cable{
@@ -4064,7 +4064,7 @@
 	icon_state = "1-2"
 	},
 /obj/item/screwdriver,
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "jh" = (
 /obj/cable{
@@ -4072,7 +4072,7 @@
 	d1 = 1;
 	d2 = 2
 	},
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/station/crew_quarters/kitchen)
 "ji" = (
 /obj/cable,
@@ -4082,7 +4082,7 @@
 	name = "S Test APC";
 	pixel_y = -24
 	},
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/station/crew_quarters/kitchen)
 "jj" = (
 /obj/cable{
@@ -4090,7 +4090,7 @@
 	d1 = 1;
 	d2 = 2
 	},
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/station/crew_quarters/fitness)
 "jk" = (
 /obj/machinery/power/apc{
@@ -4100,7 +4100,7 @@
 	pixel_y = -24
 	},
 /obj/cable,
-/turf/simulated/floor/circuit,
+/turf/floor/circuit,
 /area/station/crew_quarters/fitness)
 "jl" = (
 /obj/item/paint_can/random,
@@ -4108,31 +4108,31 @@
 /obj/item/paint_can/random,
 /obj/item/paint_can/random,
 /obj/item/paint_can/random,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetSW"
 	},
 /area/station/crew_quarters/kitchen)
 "jm" = (
 /obj/item/cable_coil,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/station/crew_quarters/kitchen)
 "jn" = (
 /obj/item/storage/toolbox/mechanical,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "jo" = (
 /obj/machinery/bot/firebot,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/station/crew_quarters/kitchen)
 "jp" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/station/crew_quarters/kitchen)
 "jq" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetSE"
 	},
 /area/station/crew_quarters/kitchen)
@@ -4145,7 +4145,7 @@
 	read_only = 0;
 	setup_drive_type = /obj/item/disk/data/tape/master
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/station/crew_quarters/kitchen)
 "js" = (
 /obj/machinery/power/data_terminal,
@@ -4156,14 +4156,14 @@
 	setup_drive_type = /obj/item/disk/data/tape/test;
 	setup_spawn_with_tape = 1
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/station/crew_quarters/kitchen)
 "jt" = (
 /obj/machinery/power/data_terminal,
 /obj/cable,
 /obj/machinery/guardbot_dock,
 /obj/machinery/bot/guardbot,
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/station/crew_quarters/kitchen)
 "ju" = (
 /obj/cable{
@@ -4171,43 +4171,43 @@
 	d1 = 1;
 	d2 = 2
 	},
-/turf/simulated/wall,
+/turf/wall,
 /area/station/crew_quarters/kitchen)
 "jv" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/sim/area1)
 "jw" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetSW"
 	},
 /area/station/crew_quarters/kitchen)
 "jx" = (
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/station/crew_quarters/kitchen)
 "jy" = (
 /obj/machinery/vending/paint/broken,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/station/crew_quarters/kitchen)
 "jz" = (
 /obj/machinery/light/small,
 /obj/machinery/genetics_scanner,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/station/crew_quarters/kitchen)
 "jA" = (
 /obj/machinery/computer/genetics,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/station/crew_quarters/kitchen)
 "jB" = (
 /obj/submachine/seed_vendor,
-/turf/simulated/floor{
+/turf/floor{
 	icon_state = "carpetSE"
 	},
 /area/station/crew_quarters/kitchen)
@@ -4221,7 +4221,7 @@
 /obj/machinery/networked/printer{
 	print_id = "Stan"
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/station/crew_quarters/kitchen)
 "jD" = (
 /obj/machinery/power/data_terminal,
@@ -4236,7 +4236,7 @@
 /obj/machinery/networked/printer{
 	print_id = "Ted"
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/station/crew_quarters/kitchen)
 "jE" = (
 /obj/machinery/power/data_terminal,
@@ -4251,7 +4251,7 @@
 /obj/machinery/networked/printer{
 	print_id = "Mary"
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/station/crew_quarters/kitchen)
 "jF" = (
 /obj/machinery/power/data_terminal,
@@ -4266,7 +4266,7 @@
 /obj/machinery/networked/printer{
 	print_id = "Janet"
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/station/crew_quarters/kitchen)
 "jG" = (
 /obj/machinery/power/data_terminal,
@@ -4277,22 +4277,22 @@
 /obj/machinery/networked/printer{
 	print_id = "Kim"
 	},
-/turf/simulated/floor/bot,
+/turf/floor/bot,
 /area/station/crew_quarters/kitchen)
 "jH" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 5
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "jI" = (
 /obj/submachine/ice_cream_dispenser,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "jJ" = (
 /obj/submachine/chef_sink,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "jK" = (
 /obj/submachine/chef_oven,
@@ -4301,18 +4301,18 @@
 	icon_state = "tube1";
 	dir = 1
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "jL" = (
 /obj/submachine/foodprocessor,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "jM" = (
 /obj/machinery/deep_fryer,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "jN" = (
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "jO" = (
 /obj/machinery/vending/kitchen,
@@ -4321,40 +4321,40 @@
 	icon_state = "tube1";
 	dir = 1
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "jP" = (
 /obj/secure_closet/fridge{
 	icon_state = "fridge";
 	locked = 0
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "jQ" = (
 /obj/secure_closet/meat{
 	locked = 0
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "jR" = (
 /obj/machinery/door/airlock,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "jS" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 4
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "jT" = (
 /obj/item/reagent_containers/food/snacks/breadslice/banana,
 /obj/item/reagent_containers/food/snacks/breadslice/banana,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "jU" = (
 /obj/stool,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "jV" = (
 /obj/cable{
@@ -4362,7 +4362,7 @@
 	d2 = 4
 	},
 /obj/machinery/power/data_terminal,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "jW" = (
 /obj/cable{
@@ -4370,7 +4370,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "jX" = (
 /obj/cable{
@@ -4383,7 +4383,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/networked/radio,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "jY" = (
 /obj/machinery/power/data_terminal,
@@ -4397,7 +4397,7 @@
 	icon_state = "tube1";
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "jZ" = (
 /obj/npc/trader/robot{
@@ -4406,14 +4406,14 @@
 	productset = 2;
 	trader_area = "/area/diner/dining"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/diner/dining)
 "ka" = (
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "kb" = (
 /obj/machinery/light,
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "kc" = (
 /obj/table{
@@ -4421,7 +4421,7 @@
 	dir = 4
 	},
 /obj/machinery/computer/tour_console,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "kd" = (
 /obj/machinery/guardbot_dock{
@@ -4435,7 +4435,7 @@
 	name = "Murray";
 	req_access_txt = ""
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "ke" = (
 /obj/machinery/door/firedoor/border_only{
@@ -4444,20 +4444,20 @@
 /obj/machinery/door/airlock{
 	name = "Test Kitchen"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/sim/area1)
 "kf" = (
 /obj/marker/supplymarker,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/diner/dining)
 "kg" = (
 /obj/disposalpipe/trunk,
 /obj/machinery/disposal,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "kh" = (
 /obj/machinery/door/airlock,
-/turf/simulated/floor,
+/turf/floor,
 /area/station/crew_quarters/kitchen)
 "ki" = (
 /obj/machinery/light{
@@ -4470,7 +4470,7 @@
 	dir = 6
 	},
 /obj/submachine/mixer,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "kj" = (
 /obj/machinery/navbeacon{
@@ -4479,14 +4479,14 @@
 	location = "tour1";
 	name = "station tour beacon"
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "kk" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol";
 	location = "bar"
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "kl" = (
 /obj/machinery/navbeacon{
@@ -4495,7 +4495,7 @@
 	location = "tour0";
 	name = "tour beacon - start"
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "km" = (
 /obj/machinery/light{
@@ -4503,21 +4503,21 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "kn" = (
 /obj/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "ko" = (
 /obj/disposalpipe/segment{
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "kp" = (
 /obj/disposalpipe/mechanics_switch{
@@ -4525,7 +4525,7 @@
 	icon_state = "pipe-mech0";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "kq" = (
 /obj/disposalpipe/mechanics_sensor{
@@ -4533,14 +4533,14 @@
 	icon_state = "pipe-mechsense";
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "kr" = (
 /obj/disposalpipe/segment{
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "ks" = (
 /obj/disposalpipe/trunk{
@@ -4549,11 +4549,11 @@
 	dir = 1
 	},
 /obj/machinery/disposal,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "kt" = (
 /obj/disposalpipe/segment,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "ku" = (
 /obj/disposalpipe/trunk{
@@ -4562,11 +4562,11 @@
 	dir = 8
 	},
 /obj/machinery/disposal,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "kv" = (
 /obj/machinery/plantpot,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "kw" = (
 /obj/disposalpipe/segment{
@@ -4575,14 +4575,14 @@
 	dir = 1
 	},
 /obj/machinery/light,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "kx" = (
 /obj/table{
 	icon_state = "tabledir";
 	dir = 9
 	},
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "ky" = (
 /obj/table{
@@ -4591,7 +4591,7 @@
 	icon_state = "tabledir"
 	},
 /obj/item/kitchen/utensil/fork,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "kz" = (
 /obj/table{
@@ -4600,7 +4600,7 @@
 	icon_state = "tabledir"
 	},
 /obj/item/kitchen/utensil/knife,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "kA" = (
 /obj/machinery/light,
@@ -4610,7 +4610,7 @@
 	icon_state = "tabledir"
 	},
 /obj/item/kitchen/utensil/spoon,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "kB" = (
 /obj/table{
@@ -4620,7 +4620,7 @@
 	},
 /obj/item/reagent_containers/food/snacks/wonton_wrapper,
 /obj/item/reagent_containers/food/snacks/wonton_wrapper,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "kC" = (
 /obj/table{
@@ -4629,7 +4629,7 @@
 	icon_state = "tabledir"
 	},
 /obj/item/reagent_containers/food/snacks/cereal_box,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "kD" = (
 /obj/table{
@@ -4638,7 +4638,7 @@
 	icon_state = "tabledir"
 	},
 /obj/item/clothing/head/void_crown,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "kE" = (
 /obj/machinery/light,
@@ -4649,7 +4649,7 @@
 	},
 /obj/item/reagent_containers/food/drinks/bowl,
 /obj/item/clothing/suit/armor/ancient,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "kF" = (
 /obj/table{
@@ -4658,7 +4658,7 @@
 	icon_state = "tabledir"
 	},
 /obj/item/reagent_containers/food/drinks/bowl,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "kG" = (
 /obj/table{
@@ -4670,82 +4670,82 @@
 /obj/item/reagent_containers/food/snacks/burrito,
 /obj/item/reagent_containers/food/snacks/burrito,
 /obj/item/reagent_containers/food/snacks/burrito,
-/turf/simulated/floor/specialroom/cafeteria,
+/turf/floor/specialroom/cafeteria,
 /area/sim/area1)
 "kH" = (
-/turf/unsimulated/wall{
+/turf/wall{
 	icon = 'icons/obj/singularity.dmi';
 	icon_state = "TheSingMain";
 	name = "v-space"
 	},
 /area/area_that_kills_you_if_you_enter_it)
 "kI" = (
-/turf/unsimulated/wall/setpieces/rootwall{
+/turf/wall/setpieces/rootwall{
 	desc = "The foliage is too thick to see through here.";
 	icon_state = "grass";
 	name = "deep brush"
 	},
 /area/crypt/graveyard)
 "kJ" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadwall_gray (NORTHWEST)";
 	icon_state = "leadwall_gray";
 	dir = 9
 	},
 /area/crypt/sigma/crew)
 "kK" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	icon_state = "leadjunction_gray"
 	},
 /area/crypt/sigma/crew)
 "kL" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadwall_gray (EAST)";
 	icon_state = "leadwall_gray";
 	dir = 4
 	},
 /area/crypt/sigma/crew)
 "kM" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadjunction_gray (NORTH)";
 	icon_state = "leadjunction_gray";
 	dir = 1
 	},
 /area/crypt/sigma/crew)
 "kN" = (
-/turf/unsimulated/wall/setpieces/rootwall{
+/turf/wall/setpieces/rootwall{
 	desc = "The foliage is too thick to see through here.";
 	icon_state = "grass";
 	name = "deep brush"
 	},
 /area/crypt/graveyard/swamp)
 "kO" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray,
+/turf/wall/setpieces/leadwall/gray,
 /area/crypt/sigma/crew)
 "kP" = (
 /obj/machinery/vending/coffee,
-/turf/unsimulated/floor/wood{
+/turf/floor/wood{
 	dir = 2
 	},
 /area/crypt/sigma/crew)
 "kQ" = (
-/turf/unsimulated/floor/wood{
+/turf/floor/wood{
 	dir = 2
 	},
 /area/crypt/sigma/crew)
 "kR" = (
-/turf/unsimulated/dirt,
+/turf/floor/dirt,
 /area/crypt/graveyard/swamp)
 "kS" = (
-/turf/unsimulated/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 4
 	},
 /area/crypt/graveyard/swamp)
 "kT" = (
-/turf/unsimulated/grass,
+/turf/floor/grass,
 /area/crypt/graveyard/swamp)
 "kU" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadcap_gray (WEST)";
 	icon_state = "leadcap_gray";
 	dir = 8
@@ -4753,7 +4753,7 @@
 /area/crypt/sigma/crew)
 "kV" = (
 /obj/machinery/vending/snack,
-/turf/unsimulated/floor/wood{
+/turf/floor/wood{
 	dir = 2
 	},
 /area/crypt/sigma/crew)
@@ -4770,37 +4770,37 @@
 	name = "decomposed corpse";
 	tag = "icon-body6"
 	},
-/turf/unsimulated/floor/specialroom/freezer,
+/turf/floor/specialroom/freezer,
 /area/crypt/sigma/crew)
 "kX" = (
 /obj/closet/wardrobe/white,
-/turf/unsimulated/floor/specialroom/freezer,
+/turf/floor/specialroom/freezer,
 /area/crypt/sigma/crew)
 "kY" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadjunction_gray (EAST)";
 	icon_state = "leadjunction_gray";
 	dir = 4
 	},
 /area/crypt/sigma/crew)
 "kZ" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadwall_gray (NORTHEAST)";
 	icon_state = "leadwall_gray";
 	dir = 5
 	},
 /area/crypt/sigma/crew)
 "la" = (
-/turf/unsimulated/floor/specialroom/freezer,
+/turf/floor/specialroom/freezer,
 /area/crypt/sigma/crew)
 "lb" = (
 /obj/machinery/door/airlock{
 	name = "Restroom"
 	},
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/crypt/sigma/crew)
 "lc" = (
-/turf/unsimulated/floor/black{
+/turf/floor/black{
 	intact = 1
 	},
 /area/crypt/sigma/crew)
@@ -4811,7 +4811,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/glass,
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/crypt/sigma/crew)
 "le" = (
 /obj/machinery/shower{
@@ -4825,10 +4825,10 @@
 	icon_state = "cubicle";
 	dir = 1
 	},
-/turf/unsimulated/floor/specialroom/freezer,
+/turf/floor/specialroom/freezer,
 /area/crypt/sigma/crew)
 "lf" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadjunction_gray (EAST)";
 	icon_state = "leadjunction_gray";
 	dir = 4
@@ -4849,15 +4849,15 @@
 	name = "graffiti";
 	pixel_x = -32
 	},
-/turf/unsimulated/floor/specialroom/freezer,
+/turf/floor/specialroom/freezer,
 /area/crypt/sigma/crew)
 "lh" = (
 /obj/chem_sink,
 /obj/item/sponge,
-/turf/unsimulated/floor/specialroom/freezer,
+/turf/floor/specialroom/freezer,
 /area/crypt/sigma/crew)
 "li" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray,
+/turf/wall/setpieces/leadwall/gray,
 /area/crypt/sigma/lab)
 "lj" = (
 /obj/decal/glow{
@@ -4869,17 +4869,17 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/grass,
+/turf/floor/grass,
 /area/crypt/graveyard/swamp)
 "lk" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadjunction_gray";
 	icon_state = "leadjunction_gray";
 	dir = 1
 	},
 /area/crypt/sigma/crew)
 "ll" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadjunction_gray (WEST)";
 	icon_state = "leadjunction_gray";
 	dir = 8
@@ -4893,7 +4893,7 @@
 	name = "BIOHAZARD";
 	tag = "icon-bio"
 	},
-/turf/unsimulated/wall/setpieces/leadwall/gray,
+/turf/wall/setpieces/leadwall/gray,
 /area/crypt/sigma/lab)
 "ln" = (
 /obj/decal/glow{
@@ -4910,7 +4910,7 @@
 	icon_state = "office_chair";
 	dir = 4
 	},
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/crew)
 "lo" = (
 /obj/decal/fakeobjects{
@@ -4922,16 +4922,16 @@
 	density = 1;
 	anchored = 1
 	},
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/crew)
 "lp" = (
 /obj/decal/cleanable/cobweb2,
 /obj/closet/l3closet,
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/crew)
 "lq" = (
 /obj/machinery/door/airlock/medical,
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/crypt/sigma/lab)
 "lr" = (
 /obj/decal/glow{
@@ -4943,7 +4943,7 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/wall/setpieces/leadwindow/gray,
+/turf/wall/setpieces/leadwindow/gray,
 /area/crypt/sigma/crew)
 "ls" = (
 /obj/graveyard/lightning_trigger,
@@ -4956,7 +4956,7 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/crew)
 "lt" = (
 /obj/decal/glow{
@@ -4968,16 +4968,16 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/crew)
 "lu" = (
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/crew)
 "lv" = (
 /obj/machinery/door/airlock{
 	name = "Crew Quarters"
 	},
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/crypt/sigma/crew)
 "lw" = (
 /obj/rack,
@@ -4990,7 +4990,7 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/crew)
 "lx" = (
 /obj/stool/bed,
@@ -4999,14 +4999,14 @@
 	icon_state = "bedsheet-yellow"
 	},
 /obj/critter/zombie/scientist,
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/crew)
 "ly" = (
 /obj/table/woodentable/single{
 	name = "antique table"
 	},
 /obj/machinery/light/lamp,
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/crew)
 "lz" = (
 /obj/decal/glow{
@@ -5018,17 +5018,17 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 4
 	},
 /area/crypt/graveyard/swamp)
 "lA" = (
 /obj/closet/l3closet,
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/crew)
 "lB" = (
 /obj/decal/cleanable/oil,
-/turf/unsimulated/floor/black{
+/turf/floor/black{
 	intact = 1
 	},
 /area/crypt/sigma/crew)
@@ -5042,7 +5042,7 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/dirt,
+/turf/floor/dirt,
 /area/crypt/graveyard/swamp)
 "lD" = (
 /obj/stool/bed,
@@ -5050,43 +5050,43 @@
 	tag = "icon-bedsheet-yellow";
 	icon_state = "bedsheet-yellow"
 	},
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/crew)
 "lE" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadwall_gray (NORTHWEST)";
 	icon_state = "leadwall_gray";
 	dir = 9
 	},
 /area/crypt/sigma)
 "lF" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadwall_gray (EAST)";
 	icon_state = "leadwall_gray";
 	dir = 4
 	},
 /area/crypt/sigma)
 "lG" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadjunction_gray";
 	icon_state = "leadjunction_gray";
 	dir = 1
 	},
 /area/crypt/sigma)
 "lH" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	icon_state = "leadjunction_gray"
 	},
 /area/crypt/sigma)
 "lI" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadwall_gray (EAST)";
 	icon_state = "leadwall_gray";
 	dir = 4
 	},
 /area/crypt/sigma/mainhall)
 "lJ" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadjunction_gray";
 	icon_state = "leadjunction_gray";
 	dir = 1
@@ -5095,7 +5095,7 @@
 "lK" = (
 /obj/decal/fakeobjects/firelock_broken,
 /obj/machinery/door/airlock/glass,
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/crypt/sigma/mainhall)
 "lL" = (
 /obj/decal/glow{
@@ -5107,7 +5107,7 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/wall/setpieces/leadwindow/gray,
+/turf/wall/setpieces/leadwindow/gray,
 /area/crypt/sigma)
 "lM" = (
 /obj/decal/fakeobjects{
@@ -5128,13 +5128,13 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 8
 	},
 /area/crypt/sigma)
 "lN" = (
 /obj/secure_closet/hos,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -5147,26 +5147,26 @@
 	tag = "icon-bar (SOUTHWEST)"
 	},
 /obj/decal/cleanable/ash,
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 4
 	},
 /area/crypt/sigma)
 "lP" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray,
+/turf/wall/setpieces/leadwall/gray,
 /area/crypt/sigma)
 "lQ" = (
 /obj/shrub/dead,
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 4
 	},
 /area/crypt/sigma/mainhall)
 "lR" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 1
 	},
 /area/crypt/sigma/mainhall)
 "lS" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 4
 	},
 /area/crypt/sigma/mainhall)
@@ -5176,7 +5176,7 @@
 	icon_state = "ebulb1";
 	dir = 1
 	},
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 1
 	},
 /area/crypt/sigma/mainhall)
@@ -5193,12 +5193,12 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 8
 	},
 /area/crypt/sigma)
 "lV" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "floor"
 	},
@@ -5212,29 +5212,29 @@
 	},
 /obj/item/chem_grenade/pepper,
 /obj/item/chem_grenade/pepper,
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 4
 	},
 /area/crypt/sigma)
 "lX" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 2
 	},
 /area/crypt/sigma/mainhall)
 "lY" = (
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 8
 	},
 /area/crypt/sigma/mainhall)
 "lZ" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadjunction_gray (EAST)";
 	icon_state = "leadjunction_gray";
 	dir = 4
 	},
 /area/crypt/sigma)
 "ma" = (
-/turf/unsimulated/wall/setpieces/leadwindow/gray{
+/turf/wall/setpieces/leadwindow/gray{
 	tag = "icon-leadwindow_gray_2 (EAST)";
 	icon_state = "leadwindow_gray_2";
 	dir = 4
@@ -5245,10 +5245,10 @@
 	name = "Lab Security";
 	req_access_txt = ""
 	},
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/crypt/sigma)
 "mc" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadjunction_gray (WEST)";
 	icon_state = "leadjunction_gray";
 	dir = 8
@@ -5264,7 +5264,7 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (SOUTHEAST)";
 	icon_state = "grasstodirt";
 	dir = 6
@@ -5283,7 +5283,7 @@
 /obj/tree1{
 	dir = 1
 	},
-/turf/unsimulated/grasstodirt,
+/turf/floor/grasstodirt,
 /area/crypt/graveyard/swamp)
 "mf" = (
 /obj/decal/glow{
@@ -5295,7 +5295,7 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/grasstodirt,
+/turf/floor/grasstodirt,
 /area/crypt/graveyard/swamp)
 "mg" = (
 /obj/decal/glow{
@@ -5310,18 +5310,18 @@
 /obj/tree1{
 	dir = 8
 	},
-/turf/unsimulated/grasstodirt,
+/turf/floor/grasstodirt,
 /area/crypt/graveyard/swamp)
 "mh" = (
 /obj/securearea,
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadcap_gray (WEST)";
 	icon_state = "leadcap_gray";
 	dir = 8
 	},
 /area/crypt/sigma/mainhall)
 "mi" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadwall_gray (SOUTHEAST)";
 	icon_state = "leadwall_gray";
 	dir = 6
@@ -5337,33 +5337,33 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/floor/black{
+/turf/floor/black{
 	intact = 1
 	},
 /area/crypt/sigma/mainhall)
 "mk" = (
-/turf/unsimulated/floor/black{
+/turf/floor/black{
 	intact = 1
 	},
 /area/crypt/sigma/mainhall)
 "ml" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	icon_state = "leadcap_gray"
 	},
 /area/crypt/sigma/mainhall)
 "mm" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetNW"
 	},
 /area/crypt/sigma/mainhall)
 "mn" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/crypt/sigma/mainhall)
 "mo" = (
 /obj/stool/chair,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetN"
 	},
 /area/crypt/sigma/mainhall)
@@ -5377,7 +5377,7 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/floor/setpieces/rootfloor{
+/turf/floor/setpieces/rootfloor{
 	icon_state = "rootfloor_2"
 	},
 /area/crypt/graveyard/swamp)
@@ -5392,7 +5392,7 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/floor/setpieces/rootfloor{
+/turf/floor/setpieces/rootfloor{
 	icon_state = "rootfloor_2"
 	},
 /area/crypt/graveyard/swamp)
@@ -5406,7 +5406,7 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/floor/stairs/wide{
+/turf/floor/stairs/wide{
 	dir = 4
 	},
 /area/crypt/graveyard/swamp)
@@ -5434,20 +5434,20 @@
 	opacity = 0;
 	tag = "icon-bloodydoor"
 	},
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/crypt/sigma/mainhall)
 "mt" = (
-/turf/unsimulated/floor/stairs/wide/other{
+/turf/floor/stairs/wide/other{
 	dir = 8
 	},
 /area/crypt/sigma/mainhall)
 "mu" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetW"
 	},
 /area/crypt/sigma/mainhall)
 "mv" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/crypt/sigma/mainhall)
@@ -5458,7 +5458,7 @@
 	name = "old oak table";
 	tag = "icon-bar (SOUTHWEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/crypt/sigma/mainhall)
@@ -5472,7 +5472,7 @@
 	name = "antique plate"
 	},
 /obj/item/reagent_containers/food/snacks/burger/moldy,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/crypt/sigma/mainhall)
@@ -5486,7 +5486,7 @@
 	name = "antique plate"
 	},
 /obj/item/reagent_containers/food/snacks/snack_cake,
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/crypt/sigma/mainhall)
@@ -5500,12 +5500,12 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/floor/stairs/wide/other{
+/turf/floor/stairs/wide/other{
 	dir = 4
 	},
 /area/crypt/graveyard/swamp)
 "mA" = (
-/turf/unsimulated/floor/stairs/wide{
+/turf/floor/stairs/wide{
 	dir = 8
 	},
 /area/crypt/sigma/mainhall)
@@ -5513,7 +5513,7 @@
 /obj/stool/chair{
 	dir = 4
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/crypt/sigma/mainhall)
@@ -5524,7 +5524,7 @@
 	name = "old oak table";
 	tag = "icon-bar (SOUTHWEST)"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/crypt/sigma/mainhall)
@@ -5536,7 +5536,7 @@
 	desc = "You bet your grandma would like this.";
 	name = "antique plate"
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpet2"
 	},
 /area/crypt/sigma/mainhall)
@@ -5550,7 +5550,7 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/grasstodirt{
+/turf/floor/grasstodirt{
 	tag = "icon-grasstodirt (NORTHEAST)";
 	icon_state = "grasstodirt";
 	dir = 5
@@ -5569,7 +5569,7 @@
 /obj/tree1{
 	dir = 1
 	},
-/turf/unsimulated/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 1
 	},
 /area/crypt/graveyard/swamp)
@@ -5583,7 +5583,7 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 1
 	},
 /area/crypt/graveyard/swamp)
@@ -5600,31 +5600,31 @@
 /obj/tree1{
 	dir = 8
 	},
-/turf/unsimulated/grasstodirt{
+/turf/floor/grasstodirt{
 	dir = 1
 	},
 /area/crypt/graveyard/swamp)
 "mI" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadwall_gray (NORTHEAST)";
 	icon_state = "leadwall_gray";
 	dir = 5
 	},
 /area/crypt/sigma/mainhall)
 "mJ" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadcap_gray (NORTH)";
 	icon_state = "leadcap_gray";
 	dir = 1
 	},
 /area/crypt/sigma/mainhall)
 "mK" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetSW"
 	},
 /area/crypt/sigma/mainhall)
 "mL" = (
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/crypt/sigma/mainhall)
@@ -5632,7 +5632,7 @@
 /obj/stool/chair{
 	dir = 1
 	},
-/turf/unsimulated/floor{
+/turf/floor{
 	icon_state = "carpetS"
 	},
 /area/crypt/sigma/mainhall)
@@ -5653,13 +5653,13 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 8
 	},
 /area/crypt/sigma)
 "mO" = (
 /obj/secure_closet/security1,
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 4
 	},
 /area/crypt/sigma)
@@ -5680,7 +5680,7 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/floor/red/side{
+/turf/floor/red/side{
 	dir = 8
 	},
 /area/crypt/sigma)
@@ -5688,25 +5688,25 @@
 /obj/shrub/dead{
 	dir = 4
 	},
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 2
 	},
 /area/crypt/sigma/mainhall)
 "mR" = (
 /obj/machinery/light/emergency,
-/turf/unsimulated/floor/specialroom/chapel{
+/turf/floor/specialroom/chapel{
 	dir = 8
 	},
 /area/crypt/sigma/mainhall)
 "mS" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadwall_gray (SOUTHWEST)";
 	icon_state = "leadwall_gray";
 	dir = 10
 	},
 /area/crypt/sigma)
 "mT" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	icon_state = "leadjunction_gray"
 	},
 /area/crypt/sigma/mainhall)
@@ -5717,32 +5717,32 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/glass,
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/crypt/sigma/mainhall)
 "mV" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray,
+/turf/wall/setpieces/leadwall/gray,
 /area/crypt/sigma/rd)
 "mW" = (
-/turf/unsimulated/floor/black{
+/turf/floor/black{
 	intact = 1
 	},
 /area/crypt/sigma/rd)
 "mX" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadwall_gray (SOUTHWEST)";
 	icon_state = "leadwall_gray";
 	dir = 10
 	},
 /area/crypt/sigma/rd)
 "mY" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadcap_gray (WEST)";
 	icon_state = "leadcap_gray";
 	dir = 8
 	},
 /area/crypt/sigma/rd)
 "mZ" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadjunction_gray (WEST)";
 	icon_state = "leadjunction_gray";
 	dir = 8
@@ -5756,7 +5756,7 @@
 	},
 /obj/decal/cleanable/cobweb2,
 /obj/item/clothing/glasses/regular,
-/turf/unsimulated/floor/black{
+/turf/floor/black{
 	intact = 1
 	},
 /area/crypt/sigma/rd)
@@ -5770,7 +5770,7 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/wall/setpieces/leadwindow/gray,
+/turf/wall/setpieces/leadwindow/gray,
 /area/crypt/sigma/rd)
 "nc" = (
 /obj/graveyard/lightning_trigger,
@@ -5783,7 +5783,7 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/floor/black{
+/turf/floor/black{
 	intact = 1
 	},
 /area/crypt/sigma/rd)
@@ -5795,7 +5795,7 @@
 	},
 /obj/item/paper_bin,
 /obj/item/pen,
-/turf/unsimulated/floor/black{
+/turf/floor/black{
 	intact = 1
 	},
 /area/crypt/sigma/rd)
@@ -5806,7 +5806,7 @@
 	dir = 8
 	},
 /obj/item/paper/book/from_file/monster_manual,
-/turf/unsimulated/floor/black{
+/turf/floor/black{
 	intact = 1
 	},
 /area/crypt/sigma/rd)
@@ -5822,31 +5822,31 @@
 	icon_state = "pictureframe";
 	pixel_y = 8
 	},
-/turf/unsimulated/floor/black{
+/turf/floor/black{
 	intact = 1
 	},
 /area/crypt/sigma/rd)
 "ng" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadwall_gray (NORTHWEST)";
 	icon_state = "leadwall_gray";
 	dir = 9
 	},
 /area/crypt/sigma/rd)
 "nh" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	icon_state = "leadjunction_gray"
 	},
 /area/crypt/sigma/rd)
 "ni" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadwall_gray (EAST)";
 	icon_state = "leadwall_gray";
 	dir = 4
 	},
 /area/crypt/sigma/rd)
 "nj" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadjunction_gray";
 	icon_state = "leadjunction_gray";
 	dir = 1
@@ -5857,7 +5857,7 @@
 	name = "Research Director's Office";
 	req_access_txt = "19"
 	},
-/turf/unsimulated/floor/delivery,
+/turf/floor/delivery,
 /area/crypt/sigma/rd)
 "nl" = (
 /obj/table/reinforced/bar{
@@ -5874,7 +5874,7 @@
 	name = "broken computer"
 	},
 /obj/decal/cleanable/cobweb,
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/rd)
 "nm" = (
 /obj/table/reinforced/bar{
@@ -5894,10 +5894,10 @@
 	sd_ColorGreen = 0.33;
 	sd_ColorRed = 0.3
 	},
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/rd)
 "nn" = (
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/rd)
 "no" = (
 /obj/graveyard/lightning_trigger,
@@ -5915,14 +5915,14 @@
 	icon_state = "office_chair";
 	dir = 4
 	},
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/rd)
 "np" = (
 /obj/item{
 	pixel_x = 32;
 	pixel_y = 0
 	},
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/rd)
 "nq" = (
 /obj/graveyard/lightning_trigger,
@@ -5935,7 +5935,7 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/rd)
 "nr" = (
 /obj/stool/bed,
@@ -5951,11 +5951,11 @@
 	tag = "icon-body6"
 	},
 /obj/item/oldgun/energy/phaser/secure,
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/rd)
 "ns" = (
 /obj/secure_closet/research_director,
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/rd)
 "nt" = (
 /obj/shrub{
@@ -5964,18 +5964,18 @@
 	icon_state = "plant";
 	tag = "icon-shrub (WEST)"
 	},
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/rd)
 "nu" = (
 /obj/closet/l3closet,
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/rd)
 "nv" = (
 /obj/table/woodentable/single{
 	name = "antique table"
 	},
 /obj/machinery/light/lamp,
-/turf/unsimulated/floor/carpet/grime,
+/turf/floor/carpet/grime,
 /area/crypt/sigma/rd)
 "nw" = (
 /obj/decal/glow{
@@ -5987,43 +5987,43 @@
 	sd_ColorGreen = 0.15;
 	sd_ColorRed = 0.15
 	},
-/turf/unsimulated/wall/setpieces/rootwall{
+/turf/wall/setpieces/rootwall{
 	desc = "The foliage is too thick to see through here.";
 	icon_state = "grass";
 	name = "deep brush"
 	},
 /area/crypt/graveyard/swamp)
 "nx" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadjunction_gray (NORTH)";
 	icon_state = "leadjunction_gray";
 	dir = 1
 	},
 /area/crypt/sigma/rd)
 "ny" = (
-/turf/unsimulated/wall/other,
+/turf/wall/other,
 /area/sim/racing_track)
 "nz" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadwall_gray (NORTHWEST)";
 	icon_state = "leadwall_gray";
 	dir = 9
 	},
 /area/sim/racing_track)
 "nA" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadwall_gray (EAST)";
 	icon_state = "leadwall_gray";
 	dir = 4
 	},
 /area/sim/racing_track)
 "nB" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	icon_state = "leadjunction_gray"
 	},
 /area/sim/racing_track)
 "nC" = (
-/turf/unsimulated/wall/setpieces/leadwall/gray{
+/turf/wall/setpieces/leadwall/gray{
 	tag = "icon-leadwall_gray (NORTHEAST)";
 	icon_state = "leadwall_gray";
 	dir = 5

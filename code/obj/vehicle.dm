@@ -78,20 +78,20 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				for(var/atom/movable/A as mob|obj in src)
 					A.set_loc(src.loc)
 					A.ex_act(severity)
 				qdel(src)
 
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if (prob(50))
 					for(var/atom/movable/A as mob|obj in src)
 						A.set_loc(src.loc)
 						A.ex_act(severity)
 					qdel(src)
 
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				if (prob(25))
 					for(var/atom/movable/A as mob|obj in src)
 						A.set_loc(src.loc)
@@ -796,7 +796,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 		M.throw_at(target, 5, 1) //kicks them out of the way so we don't get slowed down, stomps are when you enter same turf
 		M.changeStatus("stunned", 4 SECONDS)
 		M.changeStatus("weakened", 2 SECONDS)
-		M.TakeDamage("chest", 12.5, 0, 0, DAMAGE_BLUNT) //halved for now
+		M.TakeDamage("chest", 8, 0, 0, DAMAGE_BLUNT) //reduced because it hits twice
 		playsound(src.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 25, 1)
 		playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 25, 1) //placeholder sounds
 		var/mob/living/carbon/human/R = src.rider
@@ -877,7 +877,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 	//TODO: pro-italian discrimination for the big shoe?
 	if(target == user && !user.stat)	// if drop self, then climbed in
 		if(src.bigshoe)
-			msg = "[user.name] gets into [his_or_her(user)] [src] about it!"
+			msg = "[user.name] gets into [his_or_her(user)] [src.name] about it!"
 			boutput(user, "<span class='notice'>You hop into \the [src]!</span>")
 			src.log_rider(user, 0)
 		else
@@ -1034,14 +1034,15 @@ ABSTRACT_TYPE(/obj/vehicle)
 	if (R.traitHolder.hasTrait("italian"))
 		R.say(pick("Wahoo!", "Mama Mia!", "Let's-a Go!", "Ha ha!")) //there it is
 
-	var/damage = rand(2,6) //a little less rough because it can easily happen multiple times
+	var/damage = rand(1,3) //a little less rough because it can easily happen multiple times
 	H.TakeDamage("head", 2*damage, 0) //same damage allocation as mulebot, for now
 	H.TakeDamage("chest",2*damage, 0)
 	H.TakeDamage("l_leg",0.5*damage, 0)
 	H.TakeDamage("r_leg",0.5*damage, 0)
 	H.TakeDamage("l_arm",0.5*damage, 0)
 	H.TakeDamage("r_arm",0.5*damage, 0)
-	H.changeStatus("stunned", 5 SECONDS)
+	if(prob(30))
+		H.changeStatus("stunned", 3 SECONDS)
 
 	boutput(rider, "<span class='alert'><B>You stomp on [H]!</B></span>")
 	for (var/mob/C in AIviewers(src))
@@ -1060,7 +1061,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 	//take_bleeding_damage(H, null, 2 * damage, DAMAGE_BLUNT)
 
-	//bloodiness += 4 //red footprints, eventually
+	//bloodiness += 4 //giant red footprints, eventually
 
 /////////////////////////////////////////////////////// Clown car ////////////////////////////////////////
 
@@ -1928,11 +1929,11 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	..()
 	in_bump = 1
 	if(isturf(AM))
-		if(istype(AM, /turf/simulated/wall/r_wall || istype(AM, /turf/simulated/wall/auto/reinforced)) && prob(40))
+		if(istype(AM, /turf/wall/r_wall || istype(AM, /turf/wall/auto/reinforced)) && prob(40))
 			in_bump = 0
 			return
-		if(istype(AM, /turf/simulated/wall))
-			var/turf/simulated/wall/T = AM
+		if(istype(AM, /turf/wall))
+			var/turf/wall/T = AM
 			T.dismantle_wall(1)
 			playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 40, 1)
 			playsound(src, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 40, 1)
@@ -1981,7 +1982,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 			if(istype(O, /obj/critter))
 				O:CritterDeath()
 			if(!isnull(O) && is_badmin_bus)
-				O:ex_act(2)
+				O:ex_act(OLD_EX_HEAVY)
 			in_bump = 0
 			return
 	in_bump = 0

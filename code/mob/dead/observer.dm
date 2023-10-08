@@ -14,7 +14,6 @@
 	var/observe_round = 0
 	var/health_shown = 0
 	var/arrest_shown = 0
-	var/ceiling_shown = 0
 	var/delete_on_logout = 1
 	var/delete_on_logout_reset = 1
 	var/obj/item/clothing/head/wig/wig = null
@@ -234,7 +233,10 @@
 		src.corpse = corpse
 		src.set_loc(get_turf(corpse))
 		if(corpse.acid_name == null)
-			src.real_name = corpse.real_name
+			if (corpse.real_name)
+				src.real_name = corpse.real_name
+			else
+				src.real_name = corpse.name
 		else
 			src.real_name = corpse.acid_name
 
@@ -409,18 +411,6 @@
 		get_image_group(CLIENT_IMAGE_GROUP_HEALTH_MON_ICONS).remove_mob(src)
 		boutput(src, "Health status toggled off.")
 
-/mob/dead/observer/verb/show_ceiling()
-	set category = "Ghost"
-	set name = "Toggle Ceiling Objects"
-	if (!ceiling_shown)
-		ceiling_shown = 1
-		get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_mob(src)
-		boutput(src, "Ceiling objects toggled on.")
-	else
-		ceiling_shown = 0
-		get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_mob(src)
-		boutput(src, "Ceiling objects toggled off.")
-
 /mob/dead/observer/verb/show_arrest()
 	set category = "Ghost"
 	set name = "Toggle Arrest Status"
@@ -432,6 +422,16 @@
 		arrest_shown = 0
 		get_image_group(CLIENT_IMAGE_GROUP_ARREST_ICONS).remove_mob(src)
 		boutput(src, "Arrest status toggled off.")
+
+/mob/dead/observer/show_ceiling()
+	if (!src.ceiling_shown)
+		src.ceiling_shown = 1
+		get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_mob(src)
+		boutput(src, "Ceiling objects visibility toggled on.")
+	else
+		ceiling_shown = 0
+		get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_mob(src)
+		boutput(src, "Ceiling objects visibility toggled off.")
 
 /mob/dead/observer/verb/ai_laws()
 	set name = "AI Laws"
@@ -454,6 +454,7 @@
 	..()
 
 	if(last_client)
+		//clear image overlay
 		if(health_shown)
 			health_shown = 0
 			get_image_group(CLIENT_IMAGE_GROUP_HEALTH_MON_ICONS).remove_mob(src)
@@ -597,13 +598,27 @@
 	//We don't need to worry about resetting view size when the player is revived or somesuch. The widescreen funcs will do that for us.
 */
 
-/mob/dead/observer/verb/toggle_lighting()
+/mob/dead/observer/verb/toggle_lighting(var/setting as text)
 	set name = "Toggle Lighting"
 	set category = null
 
 	var/atom/plane = client.get_plane(PLANE_LIGHTING)
 	if (plane)
-		switch(plane.alpha)
+		switch(setting)
+			//looking at set_centerlight_icon, these calls have been a hack since forever but I don't have to change em so :)
+			if ("none")
+				render_special.set_centerlight_icon("")
+				plane.alpha = 255
+			if ("dim")
+				render_special.set_centerlight_icon("default") //as in default for humans, not ghosts
+				plane.alpha = 255
+			if ("default")
+				render_special.set_centerlight_icon("nightvision", rgb(0.5 * 255, 0.5 * 255, 0.5 * 255))
+				plane.alpha = 255
+			if ("fullbright")
+				plane.alpha = 0
+
+		/*switch(plane.alpha)
 			if(255)
 				render_special.set_centerlight_icon("")
 				plane.alpha = 254 // I'm sorry
@@ -611,7 +626,7 @@
 				plane.alpha = 0
 			if(0)
 				plane.alpha = 255
-				render_special.set_centerlight_icon("nightvision", rgb(0.5 * 255, 0.5 * 255, 0.5 * 255))
+				render_special.set_centerlight_icon("nightvision", rgb(0.5 * 255, 0.5 * 255, 0.5 * 255))*/
 	else
 		boutput( usr, "Well, I want to, but you don't have any lights to fix!" )
 

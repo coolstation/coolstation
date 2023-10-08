@@ -559,6 +559,16 @@
 			imgh = 545
 			img = "images/arts/posters/idiot-bastard.jpg"
 
+		poster_delari
+			name = "Framed portrait"
+			desc = "Thanks for the fun, friend."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "delari"
+			popup_win = 1
+			imgw = 360
+			imgh = 410
+			img = "images/arts/posters/delari-by-killfrenzy.png"
+
 		poster_cool
 			name = "cool poster"
 			desc = "There's a couple people pictured on this poster, looking pretty cool."
@@ -754,20 +764,20 @@
 					10;"tea2",
 					10;"tea3",
 					// the fuck II poster
-					30;"fuckII",
+					50;"fuckII",
 					// new contest winners
 					//50;"contest1",
-					50;"contest2",
-					//50;"contest3",
-					50;"contest4",
+					//50;"contest2",
+					30;"contest3",
+					30;"contest4",
 					//50;"contest5",
 					// new contest not-winners but cool nonetheless
-					//5 ;"contest-other1",
-					//5 ;"contest-other2",
+					15 ;"contest-other1",
+					10 ;"contest-other2",
 					15 ;"contest-other3",
-					//5 ;"contest-other4",
-					//5 ;"contest-other5",
-					//5 ;"contest-other6",
+					15 ;"contest-other4",
+					15 ;"contest-other5",
+					15 ;"contest-other6",
 					15 ;"contest-other7"
 					)
 				switch(which)
@@ -785,28 +795,28 @@
 					if("fuckII")
 						src.name = "\proper fuck II"
 						src.desc = "A poster for \"<em>fuck II: Plumb Fuckled.\"</em>"
-						src.icon_state = "fuckII"
+						src.icon_state = "fuckII"/*
 					if("contest1")
 						src.name = "Explore the Trench"
 						src.icon_state = "explore_the_trench"
 					if("contest2")
 						src.name = "🐟"
-						src.icon_state = "fish_hook"
+						src.icon_state = "fish_hook"*/
 					if("contest3")
 						src.name = "Bird Up!"
 						src.icon_state = "bird_up"
 					if("contest4")
 						src.name = "A New You"
-						src.icon_state = "a_new_you"
+						src.icon_state = "a_new_you"/*
 					if("contest5")
 						src.name = "Work! Ranch"
-						src.icon_state = "work_ranch"
+						src.icon_state = "work_ranch"*/
 					if("contest-other1")
 						src.name = "Pack Smart"
 						src.icon_state = "pack_smart"
 					if("contest-other2")
-						src.name = "Insurgentr Device Poster"
-						src.icon_state = "insurgentr"
+						src.name = "Grow 420 Weed"
+						src.icon_state = "grow_weed"
 					if("contest-other3")
 						src.name = "Edit Wiki"
 						src.icon_state = "edit_wiki"

@@ -1,4 +1,4 @@
-/client/proc/sharkban(mob/sharktarget as mob in world)
+/client/proc/cmd_admin_sharkban(mob/sharktarget as mob in world)
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 	set name = "Shark Ban"
 	set popup_menu = 0
@@ -33,7 +33,7 @@
 			Q.sharkspeed = speed
 
 
-/client/proc/sharkgib(mob/sharktarget as mob in world)
+/client/proc/cmd_admin_sharkgib(mob/sharktarget as mob in world)
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 	set name = "Shark Gib"
 	set popup_menu = 0

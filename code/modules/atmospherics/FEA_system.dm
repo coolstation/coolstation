@@ -25,7 +25,7 @@ Important variables:
 		Turfs that are in this list have their border data updated before the next air calculations for a cycle.
 		Place turfs in this list rather than call the proc directly to prevent race conditions
 
-	turf/simulated.archive() and datum/air_group.archive()
+	turf.archive() and datum/air_group.archive()
 		This stores all data for.
 		If you modify, make sure to update the archived_cycle to prevent race conditions and maintain symmetry
 
@@ -85,11 +85,11 @@ var/global/total_gas_mixtures = 0
 datum/controller/air_system
 	//Geoemetry lists
 	var/list/datum/air_group/air_groups = list()
-	var/list/turf/simulated/active_singletons = list()
+	var/list/turf/active_singletons = list()
 
 	//Special functions lists
 	var/list/turf/active_super_conductivity = list() //gets space in here somehow ZEWAKA/ATMOS
-	var/list/turf/simulated/high_pressure_delta = list()
+	var/list/turf/high_pressure_delta = list()
 
 	//Geometry updates lists
 	var/list/turf/tiles_to_update = list()
@@ -107,7 +107,7 @@ datum/controller/air_system
 		//Call this at the start to setup air groups geometry
 		//Warning: Very processor intensive but only must be done once per round
 
-	proc/assemble_group_turf(turf/simulated/base)
+	proc/assemble_group_turf(turf/base)
 		//Call this to try to construct a group starting from base and merging with neighboring unparented tiles
 		//Expands the group until all valid borders explored
 
@@ -162,29 +162,32 @@ datum/controller/air_system
 
 		var/start_time = world.timeofday
 
-		for(var/turf/simulated/S in world)
-			if(!S.blocks_air && !S.parent)
-				assemble_group_turf(S)
-			S.update_air_properties()
+		//floors should be safe? we'd like to skip space and walls shouldn't form airgroups anyway (though they probably do IDK)
+		for(var/turf/floor/S in world)
+			if(issimulatedturf(S))
+				if(!S.parent)
+					assemble_group_turf(S)
+				//this is inside the issimulatedturf thing cause otherwise a third of Z2 adds itself to the active singletons list (laggy as shit)
+				S.update_air_properties()
 
 		boutput(world, "<span class='alert'>Geometry processed in [(world.timeofday-start_time)/10] seconds!</span>")
 		#endif
 
-	assemble_group_turf(turf/simulated/base)
+	assemble_group_turf(turf/base)
 		set waitfor = 0
-		var/list/turf/simulated/members = list(base) // Confirmed group members
-		var/list/turf/simulated/possible_members = list(base) // Possible places for group expansion
-		var/list/turf/simulated/possible_borders
-		var/list/turf/simulated/possible_space_borders
+		var/list/turf/members = list(base) // Confirmed group members
+		var/list/turf/possible_members = list(base) // Possible places for group expansion
+		var/list/turf/possible_borders
+		var/list/turf/possible_space_borders
 		var/possible_space_length = 0
 
 		while(possible_members.len > 0) //Keep expanding, looking for new members
-			for(var/turf/simulated/test as anything in possible_members)
+			for(var/turf/test as anything in possible_members)
 				test.length_space_border = 0
 				for(var/direction in cardinal)
 					var/turf/T = get_step(test,direction)
 					if(T && !(T in members) && test.CanPass(null, T, null,1))
-						if(istype(T,/turf/simulated))
+						if(issimulatedturf(T))
 							if(!T:parent)
 								possible_members += T
 								members += T
@@ -208,7 +211,7 @@ datum/controller/air_system
 				group.space_borders = possible_space_borders
 				group.length_space_border = possible_space_length
 
-			for(var/turf/simulated/test as anything in members)
+			for(var/turf/test as anything in members)
 				test.parent = group
 				test.processing = 0
 				active_singletons -= test
@@ -216,7 +219,7 @@ datum/controller/air_system
 				test.dist_to_space = null
 				var/dist
 				for(var/P in possible_space_borders)
-					var/turf/simulated/b = P
+					var/turf/b = P
 					if (b == test)
 						test.dist_to_space = 1
 						break
@@ -282,7 +285,7 @@ datum/controller/air_system
 			tiles_to_space.len = 0
 
 	process_update_tiles()
-		for(var/turf/simulated/T in tiles_to_update) // ZEWAKA-ATMOS SPACE + SPACE FLUID LEAKAGE
+		for(var/turf/T in tiles_to_update) // ZEWAKA-ATMOS SPACE + SPACE FLUID LEAKAGE
 			T.update_air_properties()
 		tiles_to_update.len = 0
 
@@ -292,19 +295,19 @@ datum/controller/air_system
 		for(var/datum/air_group/turf_AG in groups_to_rebuild) // Deconstruct groups, gathering their old members
 			if(turf_AG.group_processing)	// Ensure correct air is used for reconstruction, otherwise parent is destroyed
 				turf_AG.suspend_group_processing()
-			for(var/turf/simulated/T as anything in turf_AG.members)
+			for(var/turf/T as anything in turf_AG.members)
 				T.parent = null
 				turf_list += T
 			air_master.air_groups -= turf_AG
 			turf_AG.members.len = 0
 		LAGCHECK(LAG_REALTIME)
 
-		for(var/turf/simulated/S as anything in turf_list) // Have old members try to form new groups
+		for(var/turf/S as anything in turf_list) // Have old members try to form new groups
 			if(!S.parent)
 				assemble_group_turf(S)
 		LAGCHECK(LAG_REALTIME)
 
-		for(var/turf/simulated/S as anything in turf_list)
+		for(var/turf/S as anything in turf_list)
 			S.update_air_properties()
 		LAGCHECK(LAG_REALTIME)
 
@@ -316,17 +319,17 @@ datum/controller/air_system
 			LAGCHECK(LAG_REALTIME)
 
 	process_singletons()
-		for(var/turf/simulated/loner as anything in active_singletons)
+		for(var/turf/loner as anything in active_singletons)
 			loner.process_cell()
 			LAGCHECK(LAG_REALTIME)
 
 	process_super_conductivity()
-		for(var/turf/simulated/hot_potato as anything in active_super_conductivity)
+		for(var/turf/hot_potato as anything in active_super_conductivity)
 			hot_potato.super_conduct()
 			LAGCHECK(LAG_REALTIME)
 
 	process_high_pressure_delta()
-		for(var/turf/simulated/pressurized as anything in high_pressure_delta)
+		for(var/turf/pressurized as anything in high_pressure_delta)
 			pressurized.high_pressure_movements()
 			LAGCHECK(LAG_REALTIME)
 

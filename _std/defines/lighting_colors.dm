@@ -86,6 +86,9 @@ ENUMERATE_FIXTURES(small/floor, bulb)
 /obj/machinery/light/small/ceiling
 ENUMERATE_FIXTURES(small/ceiling, bulb)
 
+/obj/machinery/light/small/ceiling/bare
+ENUMERATE_FIXTURES(small/ceiling, bulb)
+
 // orphan types
 /obj/machinery/light/small/frostedred
 	name = "frosted red fluorescent light fixture"

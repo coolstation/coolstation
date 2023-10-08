@@ -108,6 +108,7 @@
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "river"
 	anchored = 1
+	plane = PLANE_NOSHADOW_BELOW //You'd be amazed at what has depth shadows in space
 
 /obj/stone
 	name = "Stone"
@@ -121,6 +122,60 @@
 		New()
 			. = ..()
 			src.dir = pick(alldirs)
+
+/obj/rock/
+	name = "rock"
+	desc = "Some lil' rocks."
+	icon = 'icons/misc/rocks.dmi'
+	icon_state = "other"
+	anchored = 1
+	density = 0
+
+	lava1
+		name = "rocks"
+		density = 0
+		icon_state = "lava1"
+	lava2
+		name = "rocks"
+		density = 0
+		icon_state = "lava2"
+
+	lava3
+		name = "rocks"
+		density = 0
+		icon_state = "lava3"
+
+	lava4
+		name = "rocks"
+		density = 0
+		icon_state = "lava4"
+
+	lava5
+		name = "rocks"
+		density = 0
+		icon_state = "lava5"
+
+	lava6
+		name = "rocks"
+		density = 0
+		icon_state = "lava6"
+
+	lava7
+		name = "rocks"
+		density = 0
+		icon_state = "lava7"
+
+	lava8
+		name = "rocks"
+		density = 1
+		icon_state = "lava8"
+
+	lava9
+		name = "rocks"
+		density = 0
+		icon_state = "lava9"
+
+
 
 /obj/shrub
 	name = "shrub"
@@ -303,6 +358,32 @@
 		src.update_icon()
 		src.interesting = "Looks like it was blown to pieces by some sort of explosive."
 		return
+
+	broccoliss
+		name = "bonsai \"broccoliss\" tree"
+		desc = "I don't think that Jeff guy knows what broccoli even is..."
+		anchored = 0
+		density = 1
+		anchored = 0
+
+		attackby(obj/item/W as obj, mob/user as mob)
+			if (!W) return
+			if (!user) return
+			if (src.destroyed) return
+			if (issnippingtool(W))
+				boutput(user, "<span class='notice'>You aimlessly snip the broccoliss tree. Whatever.</span>")
+			else
+				src.update_icon()
+				src.visible_message("<b><span class='alert'>[user] ravages the [src] with [W].</span></b>", 1)
+			return
+
+		update_icon()
+			if (!src) return
+			src.set_dir(NORTHEAST)
+			src.destroyed = 1
+			src.set_density(0)
+			src.desc = "Broccoliss no more."
+			playsound(src.loc, "sound/impact_sounds/Slimy_Hit_3.ogg", 100, 0)
 
 /obj/captain_bottleship
 	name = "\improper Captain's ship in a bottle"
@@ -1291,6 +1372,8 @@ obj/decoration/ceilingfan
 			var/obj/item/furniture_parts/P = new src.parts_type(src.loc)
 			if (P && src.material)
 				P.setMaterial(src.material)
+			if (P && src.color)
+				P.color = src.color
 		else
 			playsound(src.loc, "sound/items/Ratchet.ogg", 50, 1)
 			var/obj/item/sheet/S = new (src.loc)

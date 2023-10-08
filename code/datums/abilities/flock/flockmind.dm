@@ -75,8 +75,8 @@
 	if(..())
 		return 1
 	var/mob/living/intangible/flock/flockmind/F = holder.owner
-	var/turf/simulated/T = get_turf(target)
-	if(!istype(T))
+	var/turf/T = get_turf(target)
+	if(!issimulatedturf(T))
 		boutput(holder.owner, "<span class='alert'>The flock can't convert this.</span>")
 		return 1
 	if(isfeathertile(T))
@@ -320,7 +320,7 @@
 	var/resourcecost = null
 	var/structurewantedtype = null
 	var/turf/T = get_turf(holder.owner)
-	if(!istype(T, /turf/simulated/floor/feather))
+	if(!istype(T, /turf/floor/feather))
 		boutput(holder.owner, "<span class='alert'>You aren't above a flocktile.</span>")//todo maybe make this flock themed?
 		return 1
 	if(locate(/obj/flock_structure) in T)

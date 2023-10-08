@@ -24,7 +24,7 @@
 
 		var/turf/T = user.loc
 
-		if(T.intact || !istype(T, /turf/simulated/floor))
+		if(T.intact || !istype(T, /turf/floor))
 			return
 
 		if(get_dist(src, user) > 1)
@@ -307,7 +307,7 @@
 
 /obj/cable/hide(var/i)
 
-	if(level == 1)// && istype(loc, /turf/simulated))
+	if(level == 1)
 		invisibility = i ? 101 : 0
 	updateicon()
 
@@ -427,9 +427,9 @@
 
 /obj/cable/ex_act(severity)
 	switch (severity)
-		if (1)
+		if (OLD_EX_SEVERITY_1)
 			qdel(src)
-		if (2)
+		if (OLD_EX_SEVERITY_2)
 			if (prob(15))
 				var/atom/A = new/obj/item/cable_coil(src.loc, src.d1 ? 2 : 1)
 				applyCableMaterials(A, src.insulator, src.conductor)

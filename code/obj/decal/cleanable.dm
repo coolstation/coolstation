@@ -80,16 +80,16 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 					T.clean = 0
 				last_turf = T
 
-			if (istype(src.loc, /turf/simulated/floor))
-				var/turf/simulated/T = src.loc
+			if (istype(src.loc, /turf/floor))
+				var/turf/T = src.loc
 				T.cleanable_fluid_react()
 
 	disposing()
 		if (can_dry)
 			processing_items.Remove(src)
 
-		if (istype(src.loc, /turf/simulated/floor))
-			var/turf/simulated/T = src.loc
+		if (istype(src.loc, /turf/floor))
+			var/turf/T = src.loc
 			T.messy = max(T.messy-1, 0)
 			if (!T.messy) //no mess left at all?
 				T.clean	= 1 //we're probably being cleaned
@@ -508,7 +508,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 
 		src.reagents.add_reagent(reagent_id, amount)
 
-		var/turf/simulated/floor/T = src.loc
+		var/turf/floor/T = src.loc
 		if (istype(T) && do_fluid_react)
 			if (T.cleanable_fluid_react(src))
 				return
@@ -2251,7 +2251,7 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 	// vis_amount should only be 1-5 if you want anything to happen
 		src.reagents.add_reagent(reagent_id, amount)
 
-		var/turf/simulated/floor/T = src.loc
+		var/turf/floor/T = src.loc
 		if (istype(T) && do_fluid_react)
 			if (T.cleanable_fluid_react(src))
 				return

@@ -16,6 +16,20 @@ CONTENTS:
 	skip_sims = 1
 	sims_score = 100
 	sound_group = "solarium"
+	is_construction_allowed = FALSE
+
+/area/solariumjoke
+	name = "Solarium"
+	icon_state = "yellow"
+	force_fullbright = 0
+	sound_environment = EAX_STONEROOM
+	may_eat_here_in_restricted_z = 1
+	skip_sims = 1
+	sims_score = 100
+	sound_group = "solarium"
+	is_construction_allowed = FALSE
+	sound_loop_1 = 'sound/machines/lavamoon_plantalarm.ogg'
+	ambient_light = "#FF7B07"
 
 // it's about time this was an object I think
 var/global/the_sun = null

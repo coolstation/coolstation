@@ -131,7 +131,7 @@
 		SPAWN_DBG(1 DECI SECOND)
 			for (var/dir in cardinal)
 				T = get_step(src,dir)
-				if (istype(T,/turf/simulated/wall) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window) in T))
+				if (istype(T,/turf/wall) || (locate(/obj/wingrille_spawn) in T) || (locate(/obj/window) in T))
 					if (dir == EAST)
 						src.pixel_x = 24
 					else if (dir == WEST)

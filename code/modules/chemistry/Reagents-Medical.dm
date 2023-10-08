@@ -182,8 +182,8 @@ datum
 				if (prob(10))
 					if(!holder || !holder.my_atom || istype(holder.my_atom, /turf) || (holder.my_atom.flags & IS_BONER_SCALED))
 						return
-					holder.my_atom.SafeScale(1,1.125)
-					holder.my_atom.flags |= IS_BONER_SCALED
+					M.SafeScale(1,1.125)
+					M.flags |= IS_BONER_SCALED
 					M.visible_message("<span class='alert'>[M] seems taller, somehow!</span>")
 				..()
 				//maybe something else to do with skeletons idk

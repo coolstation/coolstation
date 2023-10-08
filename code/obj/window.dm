@@ -218,13 +218,13 @@
 		// Basically, explosions will pop windows real good now.
 
 		switch(severity)
-			if(1)
+			if(OLD_EX_SEVERITY_1)
 				src.damage_blunt(rand(150, 250), 1)
 				src.damage_heat(rand(150, 250), 1)
-			if(2)
+			if(OLD_EX_SEVERITY_2)
 				src.damage_blunt(rand(50, 100))
 				src.damage_heat(rand(50, 100))
-			if(3)
+			if(OLD_EX_SEVERITY_3)
 				src.damage_blunt(rand(10, 25))
 				src.damage_heat(rand(10, 25))
 
@@ -460,8 +460,8 @@
 	proc/update_nearby_tiles(need_rebuild, var/selfnotify = 0)
 		if(!air_master) return 0
 
-		var/turf/simulated/source = loc
-		var/turf/simulated/target = get_step(source,dir)
+		var/turf/source = loc
+		var/turf/target = get_step(source,dir)
 
 		if(need_rebuild)
 			if(istype(source)) //Rebuild/update nearby group geometry
@@ -621,7 +621,7 @@
 		set hidden = 1
 
 	New()
-		for (var/turf/simulated/wall/auto/T in orange(1))
+		for (var/turf/wall/auto/T in orange(1))
 			T.update_icon()
 */
 /obj/window/north
@@ -694,11 +694,11 @@
 	flags = FPRINT | USEDELAY | ON_BORDER | ALWAYS_SOLID_FLUID | IS_PERSPECTIVE_FLUID
 
 	var/mod = null
-	var/list/connects_to = list(/turf/simulated/wall/auto/supernorn, /turf/simulated/wall/auto/reinforced/supernorn, /turf/simulated/wall/auto/supernorn/wood, /turf/simulated/wall/auto/marsoutpost,
-		/turf/simulated/shuttle/wall, /turf/unsimulated/wall, /turf/simulated/wall/auto/shuttle, /obj/indestructible/shuttle_corner,
-		/obj/machinery/door, /obj/window, /turf/simulated/wall/auto/reinforced/supernorn/yellow, /turf/simulated/wall/auto/reinforced/supernorn/blackred, /turf/simulated/wall/auto/reinforced/supernorn/orange, /turf/simulated/wall/auto/reinforced/paper,
-		/turf/simulated/wall/auto/jen, /turf/simulated/wall/auto/jen/red, /turf/simulated/wall/auto/jen/green, /turf/simulated/wall/auto/jen/yellow, /turf/simulated/wall/auto/jen/cyan, /turf/simulated/wall/auto/jen/purple,  /turf/simulated/wall/auto/jen/blue,
-		/turf/simulated/wall/auto/reinforced/jen, /turf/simulated/wall/auto/reinforced/jen/red, /turf/simulated/wall/auto/reinforced/jen/green, /turf/simulated/wall/auto/reinforced/jen/yellow, /turf/simulated/wall/auto/reinforced/jen/cyan, /turf/simulated/wall/auto/reinforced/jen/purple, /turf/simulated/wall/auto/reinforced/jen/blue)
+	var/list/connects_to = list(/turf/wall/auto/supernorn, /turf/wall/auto/reinforced/supernorn, /turf/wall/auto/supernorn/wood, /turf/wall/auto/marsoutpost,
+		/turf/shuttle/wall, /turf/wall, /turf/wall/auto/shuttle, /obj/indestructible/shuttle_corner,
+		/obj/machinery/door, /obj/window, /turf/wall/auto/reinforced/supernorn/yellow, /turf/wall/auto/reinforced/supernorn/blackred, /turf/wall/auto/reinforced/supernorn/orange, /turf/wall/auto/reinforced/paper,
+		/turf/wall/auto/jen, /turf/wall/auto/jen/red, /turf/wall/auto/jen/green, /turf/wall/auto/jen/yellow, /turf/wall/auto/jen/cyan, /turf/wall/auto/jen/purple,  /turf/wall/auto/jen/blue,
+		/turf/wall/auto/reinforced/jen, /turf/wall/auto/reinforced/jen/red, /turf/wall/auto/reinforced/jen/green, /turf/wall/auto/reinforced/jen/yellow, /turf/wall/auto/reinforced/jen/cyan, /turf/wall/auto/reinforced/jen/purple, /turf/wall/auto/reinforced/jen/blue)
 	alpha = 160
 	the_tuff_stuff
 		explosion_resistance = 3
@@ -747,7 +747,7 @@
 			src.update_icon()
 
 	proc/update_neighbors()
-		for (var/turf/simulated/wall/auto/T in orange(1,src))
+		for (var/turf/wall/auto/T in orange(1,src))
 			T.update_icon()
 		for (var/obj/window/auto/O in orange(1,src))
 			O.update_icon()

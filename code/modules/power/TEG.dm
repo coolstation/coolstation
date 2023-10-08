@@ -407,7 +407,7 @@
 			src.UpdateOverlays(null, "open")
 
 		if(src.variant_b_active)
-			UpdateOverlays(image('icons/obj/atmospherics/pipes.dmi', "circ[side]-o1"), "variant")
+			UpdateOverlays(image('icons/obj/machines/new_grey_teg.dmi', "circ[side]-o1"), "variant")
 		else
 			UpdateOverlays(null, "variant")
 
@@ -1017,7 +1017,7 @@ datum/pump_ui/circulator_ui
 						shake_camera(M, 3, 16)
 						M.changeStatus("weakened", 1 SECOND)
 					for (var/atom/A in range(rand(1,3), src.loc))
-						if (istype(A, /turf/simulated))
+						if (issimulatedturf(A))
 							A.pixel_x = rand(-1,1)
 							A.pixel_y = rand(-1,1)
 					grump -= 30

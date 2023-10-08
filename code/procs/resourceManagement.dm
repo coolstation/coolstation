@@ -80,7 +80,7 @@
 	out(src, msg)
 
 
-/client/proc/toggleResourceCache()
+/client/proc/toggle_resource_cache()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	set name = "Toggle Resource Cache"
 	set desc = "Enable or disable the resource cache system"
@@ -164,12 +164,11 @@
 			if (copytext(newPath, -1) != "/" && fexists(newPath)) //"server" already has this file? apparently that causes ~problems~
 				fdel(newPath)
 			if (text2file(parsedFile, newPath)) //make a new file with the parsed text because byond fucking sucks at sending text as anything besides html
-				src << browse(file(newPath), "file=[r];display=0")
+				src << browse_rsc(file(newPath), r)
 			else
 				world.log << "RESOURCE ERROR: Failed to convert text in '[r]' to a temporary file"
 		else //file is binary just throw it at the client as is
-			src << browse(fileRef, "file=[r];display=0")
-
+			src << browse_rsc(fileRef, r)
 	return 1
 
 

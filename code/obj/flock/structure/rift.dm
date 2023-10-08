@@ -38,11 +38,11 @@
 			eject += e
 			e.flock = mainflock
 		var/list/candidate_turfs = list()
-		for(var/turf/simulated/floor/S in orange(src, 4))
+		for(var/turf/floor/S in orange(src, 4))
 			candidate_turfs += S
 		for(var/i=1, i<11, i++)
 			for(var/S in candidate_turfs)
-				if(istype(S, /turf/simulated/floor/feather))
+				if(istype(S, /turf/floor/feather))
 					candidate_turfs -= S
 					continue
 				if(prob(25))

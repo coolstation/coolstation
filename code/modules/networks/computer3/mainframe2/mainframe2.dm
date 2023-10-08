@@ -252,8 +252,10 @@
 			return
 		use_power(500)
 		if(prob(3))
-			SPAWN_DBG(1 DECI SECOND)
-				playsound(src.loc, pick(ambience_computer), 50, 1)
+			var/area/A = get_area(src)
+			if (!A.played_fx_1) //try not to stack this on top of ambient effect
+				SPAWN_DBG(1 DECI SECOND)
+					playsound(src.loc, pick(ambience_computer), 50, 1, channel = VOLUME_CHANNEL_AMBIENT)
 
 		for (var/progIndex = 1, progIndex <= src.processing.len, progIndex++)
 			var/datum/computer/file/mainframe_program/prog = src.processing[progIndex]
@@ -442,14 +444,14 @@
 
 	ex_act(severity)
 		switch(severity)
-			if(1.0)
+			if(OLD_EX_SEVERITY_1)
 				//dispose()
 				src.dispose()
 				return
-			if(2.0)
+			if(OLD_EX_SEVERITY_2)
 				if (prob(50))
 					set_broken()
-			if(3.0)
+			if(OLD_EX_SEVERITY_3)
 				if (prob(25))
 					set_broken()
 			else

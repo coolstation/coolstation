@@ -25,7 +25,7 @@
 	/// what group are we connected to?
 	var/datum/flock_tile_group/group = null
 	/// the tile which its "connected to" and handles the group
-	var/turf/simulated/floor/feather/grouptile = null
+	var/turf/floor/feather/grouptile = null
 
 /obj/flock_structure/New(var/atom/location, var/datum/flock/F=null)
 	..()
@@ -34,8 +34,8 @@
 	processing_items |= src
 	if(F)
 		src.flock = F
-	if(usesgroups && istype(get_turf(src), /turf/simulated/floor/feather))
-		var/turf/simulated/floor/feather/f = get_turf(src)
+	if(usesgroups && istype(get_turf(src), /turf/floor/feather))
+		var/turf/floor/feather/f = get_turf(src)
 		grouptile = f
 		group = f.group
 		f.group.addstructure(src)
@@ -68,8 +68,8 @@
 
 /obj/flock_structure/proc/groupcheck() //rechecks if the tile under's group matches its own
 	if(!usesgroups) return
-	if(istype(get_turf(src), /turf/simulated/floor/feather))
-		var/turf/simulated/floor/feather/undertile = get_turf(src)
+	if(istype(get_turf(src), /turf/floor/feather))
+		var/turf/floor/feather/undertile = get_turf(src)
 		if(src.grouptile == undertile && grouptile.group == src.group) return//no changes its all good
 		else if(src.grouptile != undertile && undertile.group == src.group)//if the grouptile is different but the groups the same
 			src.grouptile = undertile//just move the connected tile, this should really rarely happen if the structure is moved somehow
@@ -159,13 +159,13 @@
 	var/damage = 0
 	var/damage_mult = 1
 	switch(severity)
-		if(1)
+		if(OLD_EX_SEVERITY_1)
 			damage = rand(30,50)
 			damage_mult = 8
-		if(2)
+		if(OLD_EX_SEVERITY_2)
 			damage = rand(25,40)
 			damage_mult = 4
-		if(3)
+		if(OLD_EX_SEVERITY_3)
 			damage = rand(10,20)
 			damage_mult = 2
 	src.takeDamage("mixed", damage * damage_mult)
