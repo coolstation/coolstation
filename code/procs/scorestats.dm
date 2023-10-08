@@ -439,8 +439,12 @@ var/datum/score_tracker/score_tracker
 		. += "<B>Things Sold:</B> dunno yet but soon ok<BR>"
 		. += "<B>Food Produced:</B> dunno yet but soon ok<BR>"
 		. += "<B>Food Eaten:</B> dunno yet but soon ok<BR>"
-		. += "<B>Shots Fired:</B> dunno yet but soon ok<BR>"
 		. += "<B>Farts Blasted:</B> dunno yet but soon ok<BR>"
+		. += "<B>Shots Fired:</B> dunno yet but soon ok<BR>"
+		. += "<B>Weade Growne:</B> dunno yet but soon ok<BR>"
+		. += "<B>Doinks Sparked:</B> dunno yet but soon ok<BR>"
+		. += "<B>Time To Cloner Destruction:</B> dunno yet but soon ok<BR>"
+		. += "<BR><B>COOL FACT:</B> all the space bees are gay<BR>"
 
 		return jointext(., "")
 
