@@ -609,18 +609,18 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
   */
 ABSTRACT_TYPE(/area/shuttle)
 /area/shuttle //DO NOT TURN THE RL_Lighting STUFF ON FOR SHUTTLES. IT BREAKS THINGS.
-#ifdef HALLOWEEN
+/*#ifdef HALLOWEEN
 	alpha = 128
 	icon = 'icons/effects/dark.dmi'
-#elif defined(UNDERWATER_MAP)
-	requires_power = 0
+#el*/ //sue me
+#if defined(UNDERWATER_MAP)
 	force_fullbright = 0
 	luminosity = 0
 #else
-	requires_power = 0
 	luminosity = 1
 	force_fullbright = 0
 #endif
+	requires_power = 0
 	icon_state = "abstract"
 	sound_environment = EAX_ROOM
 	expandable = 0
