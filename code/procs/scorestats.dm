@@ -2,39 +2,93 @@ var/datum/score_tracker/score_tracker
 
 /datum/score_tracker
 	// Nice to have somewhere to centralize this shit so w/e
+	//Overall
 	var/score_calculated = 0
 	var/final_score_all = 0
 	var/grade = "The Aristocrats!"
-	// SECURITY DEPARTMENT
-	// var/score_crew_evacuation_rate = 0 save this for later to keep categories balanced
+	//Antagonists
+	var/score_enemy_failure_rate = 0 //replace with success rate
+	//var/score_enemy_success_rate = 0
+
+	//nuke
+	//var/operatives_killed = 0
+	//var/auth_disk_location = 0
+
+	//wizard
+	/*
+	var/spells_cast = 0
+	var/total_corrupted_terrain = 0
+	var/total_corruptible_terrain = 0
+	*/
+
+	//Station condition
+	var/score_cleanliness = 0 //janitor
+	//var/outpost_destroyed = 0 //if we have a zeta-like,
+	//Safety
+	var/score_crew_evacuation_rate = 0 //save this for later to keep categories balanced
 	var/score_crew_survival_rate = 0
-	var/score_enemy_failure_rate = 0
+	//Security
+	//var/tickets_written = 0
 	var/final_score_sec = 0
-	// ENGINEERING DEPARTMENT
+	var/tickets_text = null
+	//Financial
+	var/score_expenses = 0
+	//Power
 	var/score_power_outages = 0
 	var/score_structural_damage = 0
 	var/final_score_eng = 0
-	// RESEARCH DEPARTMENT
-	var/artifacts_analyzed = 0
+	//Health
+
+	//Food
+	//var/food_prepared = 0 //how productive is the chef
+	//var/food_eaten = 0 //how hungry is the crew
+	//var/food_eaten_ratio = 0 //how sad is the chef
+	//var/food_lost = 0 //barf
+
+	//Science
+	//var/chemical_reactions = 0 //ONLY counted in chemistry's area
+	//var/teleports = 0
+	//var/bombs_tested = 0 //counts for VR but also counts for bombs set off on station. test successful!
+	var/artifacts_analyzed = 0 //maybe....
 	var/artifacts_correctly_analyzed = 0
 	var/score_artifact_analysis = 0
 	var/final_score_res = 0
-	// CIVILIAN DEPARTMENT
-	var/score_cleanliness = 0
-	var/score_expenses = 0
-	var/final_score_civ = 0
-	var/most_xp = "OH NO THIS IS BROKEN"
-	var/score_text = null
-	var/tickets_text = null
+
+	//Mining
+	//var/ores_mined = 0
+	//var/gems_mined = 0
+	//var/mining_explosions = 0 //'what exploded' 'oh it's just mining'
+
+	//Administrative
+	//var/payroll_met = 0
+	//var/paychecks_given = 0
+	//var/ids_changed = 0 //hop
+	var/final_score_civ = 0 //might not have department scores
+
+	//Misc
+	//var/clown_beatings = null
+	//var/farts_busted = 0
+	//var/shots_fired = 0
+	//var/total_karma = 0 //pascal's over/under
+	//var/total_orgone = 0 //orgone accumulated
+	//var/average_drunkenness = 0
+
+	//individual achievements
 	var/mob/richest_escapee = null
 	var/richest_total = 0
 	var/mob/most_damaged_escapee = null
 	var/damage_total = 0
-	var/acula_blood = null
+	var/most_xp = "OH NO THIS IS BROKEN"
+	var/score_text = null
+
+	//chumps survived
 	var/beepsky_alive = null
-	var/clown_beatings = null
-	var/list/pets_escaped = null
-	var/list/command_pets_escaped = null
+	//var/ai_alive = null
+
+	//who cares
+	//var/acula_blood = null
+	//var/list/pets_escaped = null
+	//var/list/command_pets_escaped = null
 
 /* -------------------------------------------------------------------------- */
 /*                                Station Score                               */
