@@ -2122,6 +2122,10 @@
 /area/mining/dock)
 "agq" = (
 /obj/machinery/door/airlock/external,
+/obj/decal/tile_edge/check/white{
+	dir = 8;
+	icon_state = "check1"
+	},
 /turf/floor/grime,
 /area/gas_station/schweewa)
 "agu" = (
@@ -25173,6 +25177,13 @@
 /obj/item/reagent_containers/food/snacks/ingredient/mud,
 /turf/floor/airless/engine/caution,
 /area/gas_station)
+"hgy" = (
+/obj/decal/tile_edge/check/white{
+	dir = 4;
+	icon_state = "check1"
+	},
+/turf/floor/grime,
+/area/gas_station/schweewa)
 "hkh" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
@@ -25305,6 +25316,13 @@
 	},
 /turf/space,
 /area/space)
+"iwZ" = (
+/obj/decal/tile_edge/check/white{
+	dir = 8;
+	icon_state = "check1"
+	},
+/turf/floor/grime,
+/area/gas_station/schweewa)
 "iAS" = (
 /obj/neon_lining{
 	color = "#AF0000";
@@ -25515,6 +25533,13 @@
 	dir = 8
 	},
 /area/space)
+"kRs" = (
+/obj/decal/tile_edge/check/white{
+	dir = 1;
+	icon_state = "check1"
+	},
+/turf/floor/grime,
+/area/gas_station/schweewa)
 "kSh" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -25600,6 +25625,10 @@
 "lWc" = (
 /obj/machinery/vending/snack{
 	acceptcard = 0
+	},
+/obj/decal/tile_edge/check/white{
+	dir = 1;
+	icon_state = "check1"
 	},
 /turf/floor/grime,
 /area/gas_station/schweewa)
@@ -25712,6 +25741,14 @@
 	},
 /turf/floor,
 /area/radiostation/studio)
+"nxY" = (
+/obj/machinery/door/airlock/external,
+/obj/decal/tile_edge/check/white{
+	dir = 4;
+	icon_state = "check1"
+	},
+/turf/floor/grime,
+/area/gas_station/schweewa)
 "nAP" = (
 /turf/floor/airless/engine/caution/north,
 /area/gas_station)
@@ -25886,6 +25923,18 @@
 	},
 /turf/floor/plating/airless,
 /area/gas_station)
+"psi" = (
+/obj/machinery/vending/cigarette/schweewa,
+/obj/decal/tile_edge/check/white{
+	dir = 1;
+	icon_state = "check1"
+	},
+/obj/decal/tile_edge/check/white{
+	dir = 4;
+	icon_state = "check1"
+	},
+/turf/floor/grime,
+/area/gas_station/schweewa)
 "psl" = (
 /obj/item/raw_material/shard/glass,
 /obj/lattice{
@@ -25905,8 +25954,19 @@
 /obj/machinery/light/fluorescent/warm,
 /turf/floor/airless/engine/caution/west,
 /area/space)
+"pSU" = (
+/obj/decal/tile_edge/check/white{
+	dir = 5;
+	icon_state = "check1"
+	},
+/turf/floor/grime,
+/area/gas_station/schweewa)
 "qdH" = (
 /obj/decal/cleanable/mess/random_litter,
+/obj/decal/tile_edge/check/white{
+	dir = 4;
+	icon_state = "check1"
+	},
 /turf/floor/grime,
 /area/gas_station/schweewa)
 "qeU" = (
@@ -25962,6 +26022,10 @@
 /area/gas_station/schweewa)
 "rbe" = (
 /obj/machinery/door/airlock/external,
+/obj/decal/tile_edge/check/white{
+	dir = 1;
+	icon_state = "check1"
+	},
 /turf/space,
 /turf/floor/grime,
 /area/gas_station/schweewa)
@@ -26051,6 +26115,14 @@
 	},
 /turf/floor/grime,
 /area/gas_station/schweewa)
+"sDg" = (
+/obj/machinery/door/airlock/external,
+/obj/decal/tile_edge/check/white{
+	icon_state = "check1"
+	},
+/turf/space,
+/turf/floor/grime,
+/area/gas_station/schweewa)
 "sDC" = (
 /obj/lattice{
 	dir = 8;
@@ -26100,9 +26172,23 @@
 /obj/reagent_dispensers/still,
 /turf/floor/longtile/black,
 /area/space)
+"tmI" = (
+/obj/decal/tile_edge/check/white{
+	dir = 6;
+	icon_state = "check1"
+	},
+/turf/floor/grime,
+/area/gas_station/schweewa)
 "tnr" = (
 /obj/wingrille_spawn/auto,
 /turf/floor/plating,
+/area/gas_station/schweewa)
+"tsV" = (
+/obj/machinery/door/airlock/external,
+/obj/decal/tile_edge/check/white{
+	icon_state = "check1"
+	},
+/turf/floor/grime,
 /area/gas_station/schweewa)
 "txH" = (
 /obj/critter/gunbot/drone/cutterdrone,
@@ -26110,6 +26196,13 @@
 	stone_color = "#D1E6FF"
 	},
 /area/space)
+"tEc" = (
+/obj/machinery/light/fluorescent/warm,
+/obj/decal/tile_edge/check/white{
+	icon_state = "check1"
+	},
+/turf/floor/grime,
+/area/gas_station/schweewa)
 "tEo" = (
 /obj/neon_lining{
 	color = "#FF0000";
@@ -26241,11 +26334,19 @@
 /obj/machinery/light/fluorescent/warm{
 	dir = 4
 	},
+/obj/decal/tile_edge/check/white{
+	dir = 4;
+	icon_state = "check1"
+	},
 /turf/floor/grime,
 /area/gas_station/schweewa)
 "vNX" = (
 /obj/machinery/light/small/warm/very{
 	dir = 8
+	},
+/obj/decal/tile_edge/check/white{
+	dir = 5;
+	icon_state = "check1"
 	},
 /turf/floor/grime,
 /area/gas_station/schweewa)
@@ -26349,6 +26450,14 @@
 /obj/rack,
 /turf/floor/grime,
 /area/gas_station/schweewa)
+"xzD" = (
+/obj/machinery/door/airlock/external,
+/obj/decal/tile_edge/check/white{
+	dir = 1;
+	icon_state = "check1"
+	},
+/turf/floor/grime,
+/area/gas_station/schweewa)
 "xCe" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -26403,6 +26512,12 @@
 	},
 /turf/space,
 /area/space)
+"yla" = (
+/obj/decal/tile_edge/check/white{
+	icon_state = "check1"
+	},
+/turf/floor/grime,
+/area/gas_station/schweewa)
 
 (1,1,1) = {"
 aaa
@@ -65109,9 +65224,9 @@ dQX
 dLL
 dQX
 eMY
-agq
+xzD
 eMY
-agq
+tsV
 eMY
 dQX
 dQX
@@ -65411,9 +65526,9 @@ iBz
 iBz
 iBz
 tnr
+kRs
 sAB
-sAB
-sAB
+yla
 tnr
 iBz
 iBz
@@ -65713,9 +65828,9 @@ aaa
 aaa
 aaa
 tnr
-sAB
+kRs
 ioI
-sAB
+yla
 tnr
 aaa
 aaa
@@ -66015,9 +66130,9 @@ ceK
 ceK
 sGI
 sGI
-agq
+xzD
 sGI
-agq
+tsV
 sGI
 sGI
 ceK
@@ -66913,8 +67028,8 @@ hJN
 fbl
 fbl
 agq
-sAB
-sAB
+iwZ
+iwZ
 agq
 sAB
 sAB
@@ -67214,10 +67329,10 @@ weI
 hJN
 fbl
 fbl
-agq
-sAB
-sAB
-agq
+nxY
+hgy
+hgy
+nxY
 sAB
 sAB
 sAB
@@ -67522,14 +67637,14 @@ tnr
 sGI
 lnE
 sAB
-sAB
-sAB
-sAB
+hgy
+hgy
+hgy
 vMb
-sAB
-sAB
-sAB
-sAB
+hgy
+hgy
+hgy
+hgy
 vNX
 sAB
 sAB
@@ -67832,7 +67947,7 @@ eMY
 iPq
 kLH
 kLH
-sAB
+kRs
 sAB
 sAB
 sAB
@@ -68134,7 +68249,7 @@ wjV
 sAB
 sAB
 kLH
-sAB
+kRs
 sAB
 sAB
 wNl
@@ -68738,8 +68853,8 @@ sAB
 sAB
 eGG
 eMY
-hrk
-sAB
+psi
+pSU
 sAB
 hVf
 rkq
@@ -69041,7 +69156,7 @@ uLF
 eMY
 eMY
 eMY
-sAB
+kRs
 sAB
 vGg
 rkq
@@ -69343,7 +69458,7 @@ sAB
 liM
 xqY
 eMY
-sAB
+kRs
 sAB
 kzY
 rkq
@@ -69645,7 +69760,7 @@ sAB
 sAB
 ieM
 eMY
-sAB
+kRs
 sAB
 hVf
 rkq
@@ -69947,7 +70062,7 @@ sAB
 sAB
 sbZ
 eMY
-sAB
+kRs
 sAB
 vGg
 rkq
@@ -70249,7 +70364,7 @@ sAB
 liM
 xqY
 eMY
-sAB
+kRs
 sAB
 wNl
 sGI
@@ -70551,8 +70666,8 @@ cEP
 sAB
 eMY
 eMY
-sAB
-sAB
+kRs
+tmI
 qdH
 sGI
 aaa
@@ -70853,8 +70968,8 @@ uZy
 sAB
 uLF
 sAB
-sAB
-sAB
+kRs
+yla
 sGI
 sGI
 lDI
@@ -71155,8 +71270,8 @@ sGI
 sGI
 sGI
 sGI
-sAB
-sAB
+kRs
+yla
 sGI
 aaa
 aaa
@@ -71458,7 +71573,7 @@ aaa
 aaa
 sGI
 rbe
-rbe
+sDg
 sGI
 aaa
 aaa
@@ -71759,8 +71874,8 @@ aaa
 aaa
 atN
 tnr
-sAB
-wNl
+kRs
+tEc
 tnr
 kvN
 aaa
@@ -72061,8 +72176,8 @@ aaa
 atN
 atN
 tnr
-sAB
-sAB
+kRs
+yla
 tnr
 nlZ
 jxo
@@ -72363,8 +72478,8 @@ aaa
 aaa
 aaa
 eMY
-agq
-agq
+xzD
+tsV
 eMY
 boP
 lDI
