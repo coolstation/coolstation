@@ -158,7 +158,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 	name = "dragon wings"
 	icon_state = "dragon_blue"
 	item_state = "dragon_blue"
-	inhand_image_icon = 'icons/mob/inhand/suit/hand_suit_gimmick.dmi'
+	inhand_image_icon = 'icons/mob/inhand/overcoat/hand_suit_gimmick.dmi'
 /obj/item/clothing/suit/gimmick/dragon/red
 	icon_state = "dragon_red"
 	item_state = "dragon_red"
