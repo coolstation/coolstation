@@ -290,7 +290,7 @@ obj/decal/fakeobjects
 	anchored = 1
 	density = 1
 
-	/obj/decal/fakeobjects/hose //gross
+/obj/decal/fakeobjects/hose //gross
 	name = "garden hose"
 	desc = "A garden hose stand, with spigot."
 	icon = 'icons/obj/decoration.dmi'
