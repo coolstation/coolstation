@@ -755,6 +755,14 @@
 	},
 /turf/floor/grime,
 /area/mining/magnet_control)
+"eU" = (
+/obj/machinery/light/small/warm/very{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 5
+	},
+/turf/floor/grime,
+/area/gas_station/schweewa)
 "eV" = (
 /turf/floor/damaged2,
 /area/mining/magnet_control)
@@ -2234,10 +2242,6 @@
 	},
 /turf/floor/airless/engine/caution/west,
 /area/gas_station)
-"mo" = (
-/obj/random_pod_spawner,
-/turf/floor/airless/engine/caution/south,
-/area/gas_station)
 "mq" = (
 /obj/stool/chair/red,
 /obj/machinery/light/fluorescent/auto/warm{
@@ -2736,6 +2740,10 @@
 /obj/item/paper/empty_bloody,
 /turf/floor/plating/damaged3,
 /area/spyshack)
+"si" = (
+/obj/machinery/vending/air_vendor,
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "sn" = (
 /obj/stool/chair/couch{
 	dir = 8;
@@ -3167,6 +3175,10 @@
 /obj/item/clothing/head/helmet/hardhat,
 /turf/floor/plating,
 /area/tech_outpost)
+"wx" = (
+/obj/random_pod_spawner,
+/turf/floor/airless/engine/caution/south,
+/area/gas_station)
 "wy" = (
 /obj/decal/cleanable/dirt,
 /obj/machinery/computer/shuttle_bus,
@@ -4590,12 +4602,6 @@
 "Ma" = (
 /turf/floor/airless/engine/caution/south,
 /area/gas_station)
-"Mj" = (
-/obj/random_pod_spawner/random_putt_spawner,
-/turf/floor/airless/engine/caution/corner{
-	dir = 4
-	},
-/area/gas_station)
 "Ml" = (
 /obj/lattice{
 	icon_state = "lattice-broken"
@@ -4706,6 +4712,12 @@
 /obj/access_spawn/mining_outpost,
 /turf/floor,
 /area/mining/miningoutpost)
+"Nv" = (
+/obj/random_pod_spawner/random_putt_spawner,
+/turf/floor/airless/engine/caution/corner{
+	dir = 4
+	},
+/area/gas_station)
 "NB" = (
 /obj/lattice{
 	dir = 4;
@@ -5462,10 +5474,6 @@
 /obj/cable,
 /turf/floor,
 /area/mining/manufacturing)
-"UU" = (
-/obj/machinery/vending/air_vendor,
-/turf/floor/airless/engine/caution,
-/area/gas_station)
 "UV" = (
 /obj/cable{
 	d1 = 4;
@@ -5869,14 +5877,6 @@
 /obj/item/raw_material/shard,
 /turf/space,
 /area/noGenerate)
-"Zc" = (
-/obj/machinery/light/small/warm/very{
-	dir = 4;
-	pixel_x = 9;
-	pixel_y = 5
-	},
-/turf/floor/grime,
-/area/gas_station/schweewa)
 "Ze" = (
 /turf/floor,
 /area/mining/exit_west)
@@ -40802,7 +40802,7 @@ hP
 bT
 bT
 bT
-UU
+si
 bT
 bT
 bT
@@ -42911,7 +42911,7 @@ ae
 aE
 aE
 fb
-Mj
+Nv
 cz
 iy
 cz
@@ -42919,10 +42919,10 @@ jO
 cz
 aE
 aE
-Mj
+Nv
 dt
 aE
-Mj
+Nv
 HM
 dt
 Lm
@@ -43232,7 +43232,7 @@ bT
 bT
 bT
 aj
-mo
+wx
 Xv
 ab
 ab
@@ -44730,14 +44730,14 @@ dD
 dD
 dD
 dD
-Zc
+eU
 dD
 dD
 Bf
 FA
 Ij
 aj
-mo
+wx
 bT
 bT
 bT
