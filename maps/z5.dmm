@@ -34,6 +34,12 @@
 "aj" = (
 /turf/floor/airless/engine/caution/north,
 /area/gas_station)
+"aq" = (
+/obj/table/reinforced/bar/auto,
+/obj/item/shaker/parmesan,
+/obj/item/shaker/redpepper,
+/turf/floor/grey/blackgrime,
+/area/gas_station/schweewa)
 "aA" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -91,6 +97,9 @@
 "bq" = (
 /turf/floor/shuttlebay,
 /area/mining/hangar)
+"by" = (
+/turf/floor/white,
+/area/gas_station/schweewa)
 "bA" = (
 /turf/wall/auto/reinforced/supernorn,
 /area/mining/hangar)
@@ -235,6 +244,10 @@
 /area/gas_station)
 "cu" = (
 /obj/machinery/light/fluorescent/auto/warm,
+/obj/storage/crate/bin{
+	anchored = 1;
+	desc = "A large bin. Perfect for eating off of."
+	},
 /turf/floor/airless/engine/caution/east,
 /area/gas_station)
 "cv" = (
@@ -251,7 +264,7 @@
 /obj/machinery/door/airlock/pyro/external{
 	dir = 1
 	},
-/turf/floor/grime,
+/turf/floor/red/checker,
 /area/gas_station/schweewa)
 "cC" = (
 /obj/decal/tile_edge/check/white{
@@ -261,7 +274,7 @@
 /obj/machinery/door/airlock/pyro/external{
 	dir = 1
 	},
-/turf/floor/grime,
+/turf/floor/red/checker,
 /area/gas_station/schweewa)
 "cD" = (
 /obj/machinery/power/data_terminal,
@@ -299,14 +312,16 @@
 	dir = 8;
 	icon_state = "check1"
 	},
-/turf/floor/grime,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/red/checker,
 /area/gas_station/schweewa)
 "cL" = (
 /obj/decal/tile_edge/check/white{
 	dir = 4;
 	icon_state = "check1"
 	},
-/turf/floor/grime,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/red/checker,
 /area/gas_station/schweewa)
 "cN" = (
 /turf/wall/auto/reinforced/supernorn,
@@ -342,7 +357,7 @@
 /area/mining/mainasteroid)
 "cS" = (
 /obj/submachine/slot_machine/cash,
-/turf/floor/grime,
+/turf/floor/white/grime,
 /area/gas_station/schweewa)
 "cT" = (
 /obj/disposalpipe/segment/sewage{
@@ -409,28 +424,27 @@
 /obj/machinery/vending/cigarette{
 	acceptcard = 0
 	},
-/turf/floor/grime,
+/turf/floor/white/grime,
 /area/gas_station/schweewa)
 "dh" = (
 /obj/random_item_spawner/vendor,
-/turf/floor/grime,
+/turf/floor/white/grime,
 /area/gas_station/schweewa)
 "di" = (
 /obj/machinery/vending/cigarette/schweewa,
-/turf/floor/grime,
+/turf/floor/white/grime,
 /area/gas_station/schweewa)
 "dk" = (
 /obj/stool/bar,
-/turf/floor/grime,
+/turf/floor/white/grime,
 /area/gas_station/schweewa)
 "dl" = (
 /obj/stool/bar,
 /obj/machinery/light/small/warm/very{
 	dir = 4;
-	pixel_x = 9;
-	pixel_y = 0
+	pixel_x = 9
 	},
-/turf/floor/grime,
+/turf/floor/white,
 /area/gas_station/schweewa)
 "dm" = (
 /obj/disposalpipe/segment/sewage{
@@ -488,7 +502,7 @@
 /area/gas_station/schweewa)
 "dB" = (
 /obj/table/auto,
-/turf/floor/grime,
+/turf/floor/white/grime,
 /area/gas_station/schweewa)
 "dC" = (
 /obj/stool/bar,
@@ -496,7 +510,9 @@
 	dir = 1;
 	pixel_y = 18
 	},
-/turf/floor/grime,
+/turf/floor/redwhite{
+	dir = 4
+	},
 /area/gas_station/schweewa)
 "dD" = (
 /turf/floor/grime,
@@ -506,7 +522,9 @@
 	dir = 1;
 	pixel_y = 18
 	},
-/turf/floor/grime,
+/turf/floor/redwhite{
+	dir = 8
+	},
 /area/gas_station/schweewa)
 "dH" = (
 /obj/machinery/door/airlock/pyro/alt{
@@ -644,6 +662,11 @@
 	},
 /turf/floor/black,
 /area/mining/quarters)
+"el" = (
+/obj/railing/red,
+/obj/machinery/atmospherics/pipe/tank/toxins/north,
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "em" = (
 /obj/table/auto,
 /obj/machinery/light/lamp/bright,
@@ -665,6 +688,13 @@
 /obj/item/magnet_parts/construction,
 /turf/floor/grime,
 /area/mining/magnet_control)
+"ep" = (
+/obj/lattice{
+	dir = 5;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space,
+/area/gas_station/schweewa)
 "eq" = (
 /obj/machinery/light/emergency{
 	dir = 4
@@ -683,11 +713,11 @@
 "et" = (
 /obj/table/auto,
 /obj/item/reagent_containers/food/snacks/chips,
-/turf/floor/grime,
+/turf/floor/white/grime,
 /area/gas_station/schweewa)
 "ez" = (
 /obj/machinery/light/fluorescent/auto/warm,
-/turf/floor/grime,
+/turf/floor/white,
 /area/gas_station/schweewa)
 "eA" = (
 /obj/machinery/light/fluorescent/auto/blue{
@@ -755,13 +785,18 @@
 	},
 /turf/floor/grime,
 /area/mining/magnet_control)
+"eO" = (
+/turf/floor/redwhite{
+	dir = 6
+	},
+/area/gas_station/schweewa)
 "eU" = (
 /obj/machinery/light/small/warm/very{
 	dir = 4;
 	pixel_x = 9;
 	pixel_y = 5
 	},
-/turf/floor/grime,
+/turf/floor/red/checker,
 /area/gas_station/schweewa)
 "eV" = (
 /turf/floor/damaged2,
@@ -901,29 +936,36 @@
 /obj/machinery/vending/cola/red{
 	acceptcard = 0
 	},
-/turf/floor/grime,
+/turf/floor/white/grime,
 /area/gas_station/schweewa)
 "fB" = (
 /obj/machinery/vending/cola/blue{
 	acceptcard = 0
 	},
-/turf/floor/grime,
+/turf/floor/redwhite{
+	dir = 4
+	},
 /area/gas_station/schweewa)
 "fC" = (
 /obj/table/reinforced/bar/auto,
-/turf/floor/grime,
+/obj/item/reagent_containers/food/snacks/sandwich/meatball,
+/obj/item/reagent_containers/food/snacks/sandwich/meatball,
+/obj/item/reagent_containers/food/snacks/sandwich/meatball,
+/turf/floor/grey/blackgrime,
 /area/gas_station/schweewa)
 "fE" = (
 /obj/machinery/light/fluorescent/auto/warm{
 	dir = 1
 	},
-/turf/floor/grime,
+/obj/machinery/deep_fryer,
+/turf/floor/grey/blackgrime,
 /area/gas_station/schweewa)
 "fJ" = (
 /obj/cup_rack{
 	pixel_y = 30
 	},
-/turf/floor/grime,
+/obj/submachine/chef_sink,
+/turf/floor/grey/blackgrime,
 /area/gas_station/schweewa)
 "fV" = (
 /obj/neon_lining{
@@ -932,7 +974,7 @@
 	},
 /obj/table/auto,
 /obj/machinery/espresso_machine,
-/turf/floor/grime,
+/turf/floor/grey/blackgrime,
 /area/gas_station/schweewa)
 "fX" = (
 /obj/machinery/light/fluorescent/auto/blue{
@@ -960,8 +1002,7 @@
 /obj/grille/catwalk/jen,
 /obj/machinery/light/small/warm/very{
 	dir = 4;
-	pixel_x = 9;
-	pixel_y = 0
+	pixel_x = 9
 	},
 /turf/floor/plating,
 /area/gas_station)
@@ -1083,6 +1124,12 @@
 	},
 /turf/floor/plating,
 /area/tech_outpost)
+"hg" = (
+/obj/machinery/light/fluorescent/auto/warm,
+/turf/floor/redwhite{
+	dir = 1
+	},
+/area/gas_station/schweewa)
 "hi" = (
 /turf/wall/asteroid{
 	dir = 1
@@ -1247,7 +1294,10 @@
 /obj/machinery/light/fluorescent/auto/cool/very{
 	dir = 4
 	},
-/obj/decal/cleanable/mess/chips,
+/obj/storage/crate/bin{
+	anchored = 1;
+	desc = "A large bin. Perfect for eating off of."
+	},
 /turf/floor/airless/engine/caution/corner{
 	dir = 8
 	},
@@ -1255,7 +1305,8 @@
 "hS" = (
 /obj/table/reinforced/bar/auto,
 /obj/machinery/cashreg,
-/turf/floor/grime,
+/obj/item/reagent_containers/food/snacks/garlicbread_ch,
+/turf/floor/grey/blackgrime,
 /area/gas_station/schweewa)
 "hU" = (
 /obj/lattice{
@@ -1269,8 +1320,10 @@
 /obj/neon_lining{
 	dir = 4
 	},
-/obj/table/auto,
-/turf/floor/grime,
+/obj/submachine/chef_oven{
+	dir = 8
+	},
+/turf/floor/grey/blackgrime,
 /area/gas_station/schweewa)
 "ia" = (
 /obj/item/storage/toilet{
@@ -1284,6 +1337,12 @@
 	name = "stale urine"
 	},
 /turf/floor/grime,
+/area/gas_station/schweewa)
+"ib" = (
+/obj/stool/bar,
+/turf/floor/redwhite{
+	dir = 4
+	},
 /area/gas_station/schweewa)
 "id" = (
 /obj/submachine/chef_sink/chem_sink{
@@ -1412,14 +1471,14 @@
 /obj/machinery/door/airlock/pyro/external{
 	dir = 4
 	},
-/turf/floor/grime,
+/turf/floor/red/checker,
 /area/gas_station/schweewa)
 "iz" = (
 /obj/decal/tile_edge/check/white{
 	dir = 1;
 	icon_state = "check1"
 	},
-/turf/floor/grime,
+/turf/floor/red/checker,
 /area/gas_station/schweewa)
 "iA" = (
 /obj/machinery/light/fluorescent/auto/warm{
@@ -1429,26 +1488,24 @@
 	dir = 4;
 	icon_state = "check1"
 	},
-/turf/floor/grime,
+/turf/floor/redwhite{
+	dir = 8
+	},
 /area/gas_station/schweewa)
 "iB" = (
 /obj/table/auto,
 /obj/machinery/coffeemaker/security{
 	desc = "It's top of the line  Schweewa drip coffeemaker! Always dripping, always brown!"
 	},
-/turf/floor/grime,
+/turf/floor/grey/blackgrime,
 /area/gas_station/schweewa)
 "iC" = (
 /obj/neon_lining{
 	color = "#00FF00";
 	dir = 4
 	},
-/obj/table/auto,
-/obj/item/kitchen/food_box/donut_box{
-	desc = "It appears to be a Martian brand of donuts.";
-	name = "Robust Donuts"
-	},
-/turf/floor/grime,
+/obj/stove,
+/turf/floor/grey/blackgrime,
 /area/gas_station/schweewa)
 "iD" = (
 /obj/machinery/door/airlock/pyro/alt,
@@ -1595,10 +1652,9 @@
 "jg" = (
 /obj/machinery/light/small/warm/very{
 	dir = 4;
-	pixel_x = 9;
-	pixel_y = 0
+	pixel_x = 9
 	},
-/turf/floor/grime,
+/turf/floor/red,
 /area/gas_station/schweewa)
 "jh" = (
 /obj/lattice{
@@ -1790,13 +1846,14 @@
 /obj/machinery/door/airlock/pyro/external{
 	dir = 4
 	},
-/turf/floor/grime,
+/turf/floor/red/checker,
 /area/gas_station/schweewa)
 "jQ" = (
 /obj/decal/tile_edge/check/white{
 	icon_state = "check1"
 	},
-/turf/floor/grime,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/red/checker,
 /area/gas_station/schweewa)
 "jR" = (
 /obj/machinery/door/airlock/pyro/alt{
@@ -1837,6 +1894,13 @@
 	dir = 9
 	},
 /area/noGenerate)
+"kh" = (
+/obj/storage/crate/bin{
+	anchored = 1;
+	desc = "A large bin. Perfect for eating off of."
+	},
+/turf/floor/airless/engine/caution/north,
+/area/gas_station)
 "ki" = (
 /obj/machinery/conveyor{
 	id = "MINSouth"
@@ -1853,18 +1917,16 @@
 	},
 /area/mining/mainasteroid)
 "kn" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+/obj/decal/tile_edge/check/white{
+	dir = 8;
+	icon_state = "check1"
 	},
-/turf/floor/grime,
+/turf/floor/red/checker,
 /area/gas_station/schweewa)
 "ko" = (
-/obj/machinery/power/apc/autoname_east/nopoweralert,
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/item/paper/ACNote{
+	icon_state = "paper";
+	info = "don't go out the back, there's a big pissed off goose"
 	},
 /turf/floor/grime,
 /area/gas_station/schweewa)
@@ -2055,6 +2117,10 @@
 /obj/machinery/light/fluorescent/auto/cool/very{
 	dir = 4
 	},
+/obj/storage/crate/bin{
+	anchored = 1;
+	desc = "A large bin. Perfect for eating off of."
+	},
 /turf/floor/airless/engine/caution/west,
 /area/gas_station)
 "lr" = (
@@ -2074,8 +2140,8 @@
 /obj/machinery/light/fluorescent/auto/warm{
 	dir = 4
 	},
-/obj/table/auto,
-/turf/floor/grime,
+/obj/storage/secure/closet/fridge,
+/turf/floor/grey/blackgrime,
 /area/gas_station/schweewa)
 "lu" = (
 /obj/rack,
@@ -2247,7 +2313,7 @@
 /obj/machinery/light/fluorescent/auto/warm{
 	dir = 8
 	},
-/turf/floor/grime,
+/turf/floor/white/grime,
 /area/gas_station/schweewa)
 "mu" = (
 /obj/machinery/light/fluorescent/auto/cool/very,
@@ -2341,6 +2407,10 @@
 	},
 /turf/floor/grime,
 /area/mining/power)
+"mU" = (
+/obj/machinery/atmospherics/valve/digital/vertical,
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "mV" = (
 /turf/space,
 /turf/wall/asteroid,
@@ -2439,6 +2509,15 @@
 /obj/reagent_dispensers/fueltank,
 /turf/floor/caution/east,
 /area/tech_outpost)
+"nS" = (
+/obj/decal/tile_edge/check/white{
+	dir = 4;
+	icon_state = "check1"
+	},
+/turf/floor/redwhite{
+	dir = 8
+	},
+/area/gas_station/schweewa)
 "nT" = (
 /obj/item/satchel/mining/large,
 /turf/floor/plating/airless/asteroid,
@@ -2481,6 +2560,21 @@
 	icon_state = "old_rwall"
 	},
 /area/spyshack)
+"ot" = (
+/obj/rack,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
+/turf/floor/red,
+/area/gas_station/schweewa)
 "oA" = (
 /turf/wall/auto/reinforced/supernorn,
 /area/mining/power)
@@ -2521,7 +2615,9 @@
 	pixel_x = -9;
 	pixel_y = 5
 	},
-/turf/floor/grime,
+/turf/floor/redwhite{
+	dir = 10
+	},
 /area/gas_station/schweewa)
 "oY" = (
 /obj/machinery/vending/snack{
@@ -2531,7 +2627,7 @@
 	dir = 1;
 	icon_state = "check1"
 	},
-/turf/floor/grime,
+/turf/floor/redwhite,
 /area/gas_station/schweewa)
 "pa" = (
 /obj/machinery/conveyor{
@@ -2559,7 +2655,7 @@
 	dir = 4;
 	icon_state = "check1"
 	},
-/turf/floor/grime,
+/turf/floor/redwhite,
 /area/gas_station/schweewa)
 "pv" = (
 /obj/machinery/light/small/warm/very{
@@ -2588,6 +2684,10 @@
 /obj/wingrille_spawn/auto,
 /turf/floor/plating,
 /area/mining/dock)
+"pI" = (
+/obj/decal/cleanable/mess/chips,
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "pS" = (
 /turf/wall/auto/reinforced/supernorn,
 /area/mining/dock)
@@ -2602,6 +2702,9 @@
 "qd" = (
 /turf/floor,
 /area/tech_outpost)
+"qk" = (
+/turf/floor/red,
+/area/gas_station/schweewa)
 "qm" = (
 /turf/space,
 /area/shuttle/john/mining)
@@ -2634,6 +2737,13 @@
 /obj/item/satchel/mining/large,
 /turf/floor/plating/airless/asteroid,
 /area/noGenerate)
+"qG" = (
+/obj/decal/tile_edge/check/white{
+	dir = 1;
+	icon_state = "check1"
+	},
+/turf/floor/redwhite,
+/area/gas_station/schweewa)
 "qN" = (
 /obj/table/reinforced/auto,
 /obj/item/shipcomponent/sensor/mining,
@@ -2685,6 +2795,19 @@
 	dir = 8
 	},
 /area/tech_outpost)
+"rm" = (
+/turf/floor/redwhite{
+	dir = 4
+	},
+/area/gas_station/schweewa)
+"ro" = (
+/obj/rack,
+/obj/item/reagent_containers/food/snacks/beffjerky,
+/obj/item/reagent_containers/food/snacks/beffjerky,
+/obj/item/reagent_containers/food/snacks/beffjerky,
+/obj/item/reagent_containers/food/snacks/beffjerky,
+/turf/floor/red,
+/area/gas_station/schweewa)
 "rp" = (
 /turf/wall/asteroid,
 /area/space)
@@ -2740,8 +2863,16 @@
 /obj/item/paper/empty_bloody,
 /turf/floor/plating/damaged3,
 /area/spyshack)
+"rL" = (
+/obj/decal/tile_edge/stripe/big{
+	icon_state = "delivery2"
+	},
+/obj/reagent_dispensers/fueltank,
+/obj/railing/red,
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "si" = (
-/obj/machinery/vending/air_vendor,
+/obj/machinery/atmospherics/pipe/tank/toxins/north,
 /turf/floor/airless/engine/caution,
 /area/gas_station)
 "sn" = (
@@ -2881,6 +3012,11 @@
 	},
 /turf/floor/plating/scorched,
 /area/spyshack)
+"th" = (
+/obj/critter/goose,
+/obj/decal/cleanable/blood/splatter,
+/turf/floor/airless/engine/caution,
+/area/gas_station/schweewa)
 "tl" = (
 /obj/machinery/light_switch{
 	name = "N light switch";
@@ -2960,7 +3096,7 @@
 /obj/stool/chair/red{
 	dir = 1
 	},
-/turf/floor/grime,
+/turf/floor/white/grime,
 /area/gas_station/schweewa)
 "ua" = (
 /obj/cable,
@@ -2972,7 +3108,7 @@
 	dir = 5;
 	icon_state = "check1"
 	},
-/turf/floor/grime,
+/turf/floor/red/checker,
 /area/gas_station/schweewa)
 "ui" = (
 /obj/stool/chair{
@@ -3034,6 +3170,12 @@
 	},
 /turf/wall/auto/reinforced/supernorn,
 /area/mining/hangar)
+"uL" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/redwhite{
+	dir = 5
+	},
+/area/gas_station/schweewa)
 "uN" = (
 /turf/floor/plating,
 /area/tech_outpost)
@@ -3154,6 +3296,11 @@
 	},
 /turf/floor/plating/airless/asteroid,
 /area/noGenerate)
+"vR" = (
+/obj/table/auto,
+/obj/item/reagent_containers/food/snacks/sandwich/meatball,
+/turf/floor/white/grime,
+/area/gas_station/schweewa)
 "vV" = (
 /obj/machinery/conveyor{
 	id = "MINSouth"
@@ -3175,6 +3322,10 @@
 /obj/item/clothing/head/helmet/hardhat,
 /turf/floor/plating,
 /area/tech_outpost)
+"wm" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/red/checker,
+/area/gas_station/schweewa)
 "wx" = (
 /obj/random_pod_spawner,
 /turf/floor/airless/engine/caution/south,
@@ -3314,6 +3465,13 @@
 	},
 /turf/floor/delivery,
 /area/mining/power)
+"xg" = (
+/obj/decal/tile_edge/check/white{
+	dir = 4;
+	icon_state = "check1"
+	},
+/turf/floor/red/checker,
+/area/gas_station/schweewa)
 "xi" = (
 /obj/item/tile/steel,
 /turf/floor/plating,
@@ -3340,6 +3498,13 @@
 	},
 /turf/space,
 /area/noGenerate)
+"xA" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/gas_station/schweewa)
 "xG" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -3377,6 +3542,10 @@
 	dir = 8
 	},
 /area/mining/exit_west)
+"xT" = (
+/obj/machinery/atmospherics/portables_connector/south,
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "xU" = (
 /obj/lattice{
 	dir = 5;
@@ -3396,6 +3565,13 @@
 /obj/machinery/light/runway_light,
 /turf/space,
 /area/noGenerate)
+"yd" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir-b"
+	},
+/turf/space,
+/area/gas_station/schweewa)
 "ye" = (
 /obj/wingrille_spawn/auto,
 /turf/floor/plating,
@@ -3457,11 +3633,18 @@
 	},
 /turf/floor/airless/engine/caution/north,
 /area/gas_station)
+"yD" = (
+/obj/machinery/door/airlock/pyro/external{
+	dir = 4;
+	icon_state = "airlock_locked";
+	locked = 1
+	},
+/turf/floor/grime,
+/area/gas_station/schweewa)
 "yE" = (
 /obj/wingrille_spawn/auto,
 /obj/neon_lining{
-	color = "#AF0000";
-	dir = 2
+	color = "#AF0000"
 	},
 /obj/neon_lining{
 	color = "#AF0000";
@@ -3474,14 +3657,14 @@
 	dir = 6;
 	icon_state = "check1"
 	},
-/turf/floor/grime,
+/turf/floor/red/checker,
 /area/gas_station/schweewa)
 "yX" = (
 /obj/machinery/light/fluorescent/auto/warm,
 /obj/decal/tile_edge/check/white{
 	icon_state = "check1"
 	},
-/turf/floor/grime,
+/turf/floor/red/checker,
 /area/gas_station/schweewa)
 "yZ" = (
 /obj/decal/cleanable/dirt,
@@ -3619,6 +3802,10 @@
 	},
 /turf/floor/plating,
 /area/spyshack)
+"At" = (
+/obj/machinery/atmospherics/pipe/tank/toxins/south,
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "Aw" = (
 /obj/storage/closet/welding_supply,
 /turf/floor/caution/east,
@@ -3628,6 +3815,9 @@
 /obj/machinery/light/small,
 /turf/floor/yellow/side,
 /area/tech_outpost)
+"AC" = (
+/turf/floor/white/grime,
+/area/gas_station/schweewa)
 "AG" = (
 /obj/item/tile/steel,
 /obj/item/caution{
@@ -3673,31 +3863,51 @@
 	},
 /turf/floor/plating/scorched,
 /area/spyshack)
+"Be" = (
+/obj/table/auto,
+/obj/item/kitchen/food_box/donut_box{
+	desc = "It appears to be a Martian brand of donuts.";
+	name = "Robust Donuts"
+	},
+/turf/floor/grey/blackgrime,
+/area/gas_station/schweewa)
 "Bf" = (
 /obj/stool/chair/red{
 	dir = 4
 	},
 /obj/decal/cleanable/mess/chips,
-/turf/floor/grime,
+/turf/floor/redwhite{
+	dir = 1
+	},
 /area/gas_station/schweewa)
 "Bj" = (
 /obj/stool/chair/red{
 	dir = 8
 	},
-/turf/floor/grime,
+/turf/floor/redwhite{
+	dir = 1
+	},
 /area/gas_station/schweewa)
 "Bk" = (
 /obj/stool/chair/red{
 	dir = 4
 	},
-/turf/floor/grime,
+/turf/floor/redwhite{
+	dir = 1
+	},
+/area/gas_station/schweewa)
+"Bo" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/red,
 /area/gas_station/schweewa)
 "Bp" = (
 /obj/stool/chair/red{
 	dir = 4
 	},
 /obj/decal/cleanable/mess/random_food,
-/turf/floor/grime,
+/turf/floor/redwhite{
+	dir = 1
+	},
 /area/gas_station/schweewa)
 "Bv" = (
 /obj/cable{
@@ -3707,13 +3917,21 @@
 	},
 /turf/floor/grime,
 /area/tech_outpost)
+"By" = (
+/obj/rack,
+/obj/item/reagent_containers/food/snacks/eggsalad,
+/obj/item/reagent_containers/food/snacks/soup/chili,
+/turf/floor/red,
+/area/gas_station/schweewa)
 "BC" = (
 /obj/decal/cleanable/mess/random_litter,
 /obj/decal/tile_edge/check/white{
 	dir = 4;
 	icon_state = "check1"
 	},
-/turf/floor/grime,
+/turf/floor/redwhite{
+	dir = 1
+	},
 /area/gas_station/schweewa)
 "BI" = (
 /obj/machinery/door/airlock,
@@ -3891,6 +4109,12 @@
 /obj/machinery/door/airlock/pyro/external,
 /turf/floor/delivery,
 /area/mining/hangar)
+"Ds" = (
+/obj/table/auto,
+/turf/floor/redwhite{
+	dir = 1
+	},
+/area/gas_station/schweewa)
 "Dz" = (
 /obj/machinery/light,
 /turf/floor/shuttlebay,
@@ -3965,6 +4189,10 @@
 /obj/decal/cleanable/dirt,
 /turf/floor,
 /area/mining/power)
+"EC" = (
+/obj/decal/cleanable/mess/sodacan,
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "EQ" = (
 /obj/grille/catwalk{
 	dir = 1;
@@ -4105,6 +4333,9 @@
 /obj/disposalpipe/segment/transport,
 /turf/floor,
 /area/mining/miningoutpost)
+"FZ" = (
+/turf/floor/grey/blackgrime,
+/area/gas_station/schweewa)
 "Gb" = (
 /obj/table/auto,
 /obj/machinery/recharger,
@@ -4158,7 +4389,20 @@
 	dir = 1;
 	pixel_y = 18
 	},
-/turf/floor/grime,
+/turf/floor/red/checker,
+/area/gas_station/schweewa)
+"GB" = (
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/gas_station/schweewa)
+"GC" = (
+/obj/table/reinforced/bar/auto,
+/obj/item/shaker/pepper,
+/obj/item/shaker/salt,
+/turf/floor/grey/blackgrime,
 /area/gas_station/schweewa)
 "GE" = (
 /obj/grille/catwalk{
@@ -4181,6 +4425,13 @@
 /obj/item/electronics/soldering,
 /turf/floor/plating,
 /area/tech_outpost)
+"GN" = (
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/gas_station/schweewa)
 "GO" = (
 /obj/machinery/r_door_control{
 	id = "hangar_mechoutpost"
@@ -4262,6 +4513,11 @@
 	},
 /turf/floor/plating,
 /area/tech_outpost)
+"HG" = (
+/obj/table/reinforced/bar/auto,
+/obj/item/reagent_containers/food/snacks/omelette,
+/turf/floor/grey/blackgrime,
+/area/gas_station/schweewa)
 "HM" = (
 /obj/decal/cleanable/mess/random_litter,
 /turf/floor/airless/engine/caution/corner{
@@ -4322,6 +4578,10 @@
 /obj/railing/red,
 /turf/space,
 /area/noGenerate)
+"IA" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/white/grime,
+/area/gas_station/schweewa)
 "IG" = (
 /obj/machinery/manufacturer/general,
 /obj/machinery/light/fluorescent/auto{
@@ -4398,6 +4658,10 @@
 	dir = 4
 	},
 /area/tech_outpost)
+"Jx" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/white,
+/area/gas_station/schweewa)
 "JE" = (
 /obj/machinery/door/airlock/external,
 /turf/floor/shuttlebay,
@@ -4463,6 +4727,9 @@
 /obj/item/reagent_containers/food/snacks/ingredient/mud,
 /turf/floor/airless/engine/caution,
 /area/gas_station)
+"Km" = (
+/turf/floor/red/checker,
+/area/gas_station/schweewa)
 "Ko" = (
 /turf/floor/delivery,
 /area/mining/exit_south)
@@ -4541,6 +4808,10 @@
 	},
 /turf/floor,
 /area/mining/miningoutpost)
+"Le" = (
+/obj/machinery/atmospherics/pipe/tank/toxins/south,
+/turf/floor/airless/engine/caution/north,
+/area/gas_station)
 "Lh" = (
 /obj/cable{
 	d1 = 1;
@@ -4590,6 +4861,16 @@
 	},
 /turf/floor/plating/airless/asteroid,
 /area/mining/mainasteroid)
+"LU" = (
+/obj/decal/tile_edge/check/white{
+	dir = 4;
+	icon_state = "check1"
+	},
+/obj/decal/cleanable/dirt/random,
+/turf/floor/redwhite{
+	dir = 8
+	},
+/area/gas_station/schweewa)
 "LX" = (
 /obj/storage/closet/welding_supply,
 /turf/floor/orangeblack/side{
@@ -4627,6 +4908,13 @@
 	},
 /turf/floor/plating,
 /area/tech_outpost)
+"MG" = (
+/obj/storage/crate/bin{
+	anchored = 1;
+	desc = "A large bin. Perfect for eating off of."
+	},
+/turf/floor/airless/engine/caution/south,
+/area/gas_station)
 "MK" = (
 /obj/cable{
 	d1 = 1;
@@ -4700,6 +4988,10 @@
 "Nh" = (
 /turf/wall/auto/reinforced/supernorn,
 /area/mining/manufacturing)
+"Ns" = (
+/obj/machinery/vending/air_vendor,
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "Nu" = (
 /obj/cable{
 	d1 = 1;
@@ -4719,6 +5011,12 @@
 	dir = 4
 	},
 /area/gas_station)
+"Nz" = (
+/obj/table/reinforced/bar/auto,
+/obj/machinery/cashreg,
+/obj/item/reagent_containers/food/snacks/biscuit,
+/turf/floor/grey/blackgrime,
+/area/gas_station/schweewa)
 "NB" = (
 /obj/lattice{
 	dir = 4;
@@ -4893,6 +5191,9 @@
 	},
 /turf/floor/caution/south,
 /area/mining/manufacturing)
+"OW" = (
+/turf/floor/redwhite,
+/area/gas_station/schweewa)
 "OZ" = (
 /obj/machinery/ai_status_display{
 	pixel_y = 28
@@ -4971,6 +5272,14 @@
 	icon_state = "catwalk_cross"
 	},
 /area/noGenerate)
+"Py" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/floor/grime,
+/area/gas_station/schweewa)
 "PF" = (
 /obj/machinery/door/poddoor{
 	density = 0;
@@ -5152,6 +5461,14 @@
 	},
 /turf/floor/plating,
 /area/mining/manufacturing)
+"QP" = (
+/obj/decal/tile_edge/check/white{
+	dir = 1;
+	icon_state = "check1"
+	},
+/obj/decal/cleanable/dirt/random,
+/turf/floor/red/checker,
+/area/gas_station/schweewa)
 "QR" = (
 /obj/grille/steel,
 /obj/window/reinforced{
@@ -5243,6 +5560,17 @@
 	},
 /turf/floor/grime,
 /area/tech_outpost)
+"Sd" = (
+/obj/item/gsbp,
+/obj/item/gsbp,
+/obj/item/gsbp,
+/obj/item/gsbp,
+/obj/item/gsbp,
+/obj/rack,
+/turf/floor/redwhite{
+	dir = 1
+	},
+/area/gas_station/schweewa)
 "Sh" = (
 /obj/rail{
 	dir = 10;
@@ -5275,6 +5603,15 @@
 	name = "solar paneling"
 	},
 /area/noGenerate)
+"SC" = (
+/obj/item/reagent_containers/food/snacks/sandwich/meatball,
+/obj/decal/cleanable/mess/splotch_three,
+/turf/floor/airless/engine/caution,
+/area/gas_station)
+"SF" = (
+/obj/machinery/atmospherics/portables_connector/north,
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "SI" = (
 /turf/floor/plating/airless/asteroid,
 /area/noGenerate)
@@ -5326,6 +5663,12 @@
 	},
 /turf/floor/caution/north,
 /area/mining/manufacturing)
+"Tl" = (
+/obj/rack,
+/obj/item/reagent_containers/food/snacks/salad,
+/obj/item/reagent_containers/food/snacks/soup/chili,
+/turf/floor/red,
+/area/gas_station/schweewa)
 "To" = (
 /obj/item/caution{
 	desc = "Caution! Construction Zone!";
@@ -5379,6 +5722,9 @@
 /obj/machinery/light/small,
 /turf/floor/grime,
 /area/tech_outpost)
+"TY" = (
+/turf/floor/airless/engine/caution,
+/area/gas_station/schweewa)
 "TZ" = (
 /obj/grille/catwalk/dubious{
 	icon_state = "catwalk_cross-2"
@@ -5418,6 +5764,12 @@
 	icon_state = "aplaceholder"
 	},
 /area/space)
+"Uo" = (
+/obj/table/reinforced/bar/auto,
+/obj/item/shaker/ketchup,
+/obj/item/shaker/mustard,
+/turf/floor/grey/blackgrime,
+/area/gas_station/schweewa)
 "Up" = (
 /obj/cable{
 	d1 = 4;
@@ -5701,6 +6053,11 @@
 	},
 /turf/floor/grime,
 /area/mining/manufacturing)
+"WY" = (
+/turf/floor/redwhite{
+	dir = 1
+	},
+/area/gas_station/schweewa)
 "WZ" = (
 /obj/cable{
 	d1 = 4;
@@ -5759,6 +6116,10 @@
 	dir = 4
 	},
 /area/tech_outpost)
+"XO" = (
+/obj/railing/red,
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "XS" = (
 /obj/cable{
 	d1 = 4;
@@ -5870,6 +6231,11 @@
 /obj/machinery/light/runway_light/delay5,
 /turf/space,
 /area/noGenerate)
+"YX" = (
+/turf/floor/redwhite{
+	dir = 8
+	},
+/area/gas_station/schweewa)
 "Za" = (
 /obj/lattice{
 	dir = 6;
@@ -5878,6 +6244,12 @@
 /obj/item/raw_material/shard,
 /turf/space,
 /area/noGenerate)
+"Zd" = (
+/obj/decal/tile_edge/check/white{
+	icon_state = "check1"
+	},
+/turf/floor/red/checker,
+/area/gas_station/schweewa)
 "Ze" = (
 /turf/floor,
 /area/mining/exit_west)
@@ -5887,6 +6259,10 @@
 /obj/machinery/power/apc/autoname_east,
 /turf/floor/grime,
 /area/mining/exit_west)
+"Zj" = (
+/obj/item/bluntwrap,
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "Zk" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -5923,6 +6299,10 @@
 "Zt" = (
 /turf/floor/grime,
 /area/mining/manufacturing)
+"ZA" = (
+/obj/storage/crate/bin/dumpster,
+/turf/floor/airless/engine/caution,
+/area/gas_station/schweewa)
 "ZK" = (
 /obj/disposalpipe/segment/bent/north,
 /turf/floor,
@@ -5934,6 +6314,14 @@
 "ZO" = (
 /turf/floor/stairs/wide/other,
 /area/mining/hangar)
+"ZP" = (
+/obj/machinery/power/apc/autoname_east/nopoweralert,
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/floor/grime,
+/area/gas_station/schweewa)
 "ZQ" = (
 /turf/floor/airless{
 	icon_state = "solarbase";
@@ -39005,7 +39393,7 @@ bT
 bT
 bT
 bT
-Ma
+MG
 Xv
 ab
 ab
@@ -40207,7 +40595,7 @@ bT
 bT
 bT
 bT
-KB
+rL
 Ma
 bT
 bT
@@ -40495,7 +40883,7 @@ ab
 cZ
 dt
 er
-bT
+EC
 bT
 hN
 bT
@@ -40801,17 +41189,17 @@ bT
 bT
 hP
 bT
-bT
-bT
+xT
+mU
 si
 bT
 bT
 bT
 hP
 bT
-bT
-bT
-KB
+xT
+mU
+el
 Ma
 bT
 bT
@@ -41105,7 +41493,7 @@ hN
 bT
 bT
 bT
-bT
+Ns
 bT
 bT
 bT
@@ -41113,7 +41501,7 @@ hN
 bT
 bT
 bT
-KB
+XO
 Ma
 bT
 bT
@@ -41399,23 +41787,23 @@ ab
 ab
 ab
 ae
-aj
+Le
+mU
+SF
 bT
+hN
 bT
+SC
+bT
+At
+mU
+SF
 bT
 hN
 bT
 bT
 bT
-bT
-bT
-bT
-bT
-hN
-bT
-bT
-bT
-KB
+XO
 Ma
 bT
 bT
@@ -42017,7 +42405,7 @@ bT
 bT
 bT
 bT
-bT
+EC
 bT
 bT
 Ma
@@ -42309,7 +42697,7 @@ aj
 bT
 bT
 bT
-bT
+pI
 bT
 bT
 bT
@@ -43217,7 +43605,7 @@ du
 du
 cH
 iz
-dD
+Bo
 jQ
 cH
 du
@@ -43518,9 +43906,9 @@ ab
 ab
 ab
 cH
-iz
+QP
 jg
-jQ
+Zd
 cH
 ab
 ab
@@ -44119,15 +44507,15 @@ ab
 de
 dB
 et
-dB
+vR
 fz
-dD
-dD
-dD
-dD
-dD
+OW
+Km
+qk
+Km
+Sd
 mq
-dB
+vR
 tU
 cH
 yE
@@ -44420,18 +44808,18 @@ cH
 cH
 cN
 dC
-dk
-dk
+ib
+ib
 fB
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
+eO
+wm
+qk
+Km
+uL
+rm
+rm
+rm
+rm
 cH
 yE
 Ij
@@ -44719,21 +45107,21 @@ bT
 bT
 cB
 cK
-cK
+kn
 cB
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
+Km
+wm
+Km
+Km
+Km
+Km
+Km
+Km
+Km
+Km
 eU
-dD
-dD
+wm
+Km
 Bf
 FA
 Ij
@@ -45021,29 +45409,29 @@ bT
 bT
 cC
 cL
-cL
+xg
 cC
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
-dD
+Km
+Km
+ot
+ro
+Km
+Km
+Km
+Km
+By
+Tl
 cz
-dD
-dD
-dB
+Km
+Km
+Ds
 FA
 Ij
 aj
 Ma
 bT
 bT
-bT
+Zj
 aj
 Ma
 Xv
@@ -45326,18 +45714,18 @@ cH
 cH
 cN
 dE
-dD
-cL
-cL
-cL
+YX
+nS
+nS
+nS
 iA
-cL
-cL
-cL
-cL
+nS
+LU
+nS
+nS
 oU
-dD
-dD
+Km
+Km
 Bj
 FA
 Iy
@@ -45627,23 +46015,23 @@ ab
 ab
 ab
 cN
-dD
-dD
+by
+AC
 cH
 fC
 hS
 cz
 cz
-hS
-fC
-fC
-iz
-dD
-dD
-dD
+Nz
+HG
+Uo
+qG
+wm
+Km
+WY
 cN
 Ij
-aj
+kh
 bT
 bT
 bT
@@ -45929,20 +46317,20 @@ ab
 ab
 cN
 cN
-dD
-dD
+by
+IA
 cH
-dD
-dD
+FZ
+FZ
 iB
 iB
-dD
-dD
-fC
-iz
-dD
-dD
-ez
+FZ
+FZ
+GC
+qG
+Km
+Km
+hg
 cN
 Ij
 aE
@@ -46231,19 +46619,19 @@ ab
 ab
 cN
 df
-dD
-dD
+AC
+AC
 cz
 fE
-dD
-dD
-dD
-dD
-dD
-fC
+FZ
+FZ
+FZ
+FZ
+FZ
+aq
 oY
-dD
-dD
+Km
+wm
 Bk
 FA
 ab
@@ -46533,20 +46921,20 @@ ab
 ab
 cN
 dh
-dD
-dD
+Jx
+AC
 cz
 fJ
-dD
-dD
-dD
-dD
+FZ
+FZ
+Be
+FZ
 ls
 cz
 po
 uf
-dD
-dB
+Km
+Ds
 FA
 ab
 ab
@@ -46835,7 +47223,7 @@ ab
 ab
 cN
 di
-dD
+AC
 ez
 cz
 fV
@@ -46847,7 +47235,7 @@ cz
 cz
 cz
 iz
-dD
+Km
 Bj
 FA
 IJ
@@ -47137,8 +47525,8 @@ ab
 cN
 cN
 cN
-dD
-dD
+AC
+AC
 cz
 cz
 cz
@@ -47149,7 +47537,7 @@ lu
 mu
 cz
 Gv
-dD
+Km
 Bp
 FA
 ab
@@ -47439,8 +47827,8 @@ ab
 cN
 cS
 dk
-dD
-dD
+Jx
+AC
 fc
 dD
 ia
@@ -47451,8 +47839,8 @@ dD
 mw
 cz
 iz
-dD
-dB
+Km
+Ds
 FA
 ab
 ab
@@ -47741,8 +48129,8 @@ ab
 cN
 cS
 dl
-dD
-dD
+AC
+AC
 cz
 fX
 id
@@ -47753,7 +48141,7 @@ dD
 my
 cz
 iz
-dD
+Km
 Bj
 FA
 ab
@@ -48055,8 +48443,8 @@ lu
 mu
 cz
 iz
-dD
-ez
+Km
+hg
 cN
 ab
 ab
@@ -48352,8 +48740,8 @@ fY
 ii
 iD
 jk
-kn
-dD
+jk
+Py
 cz
 cz
 iz
@@ -48655,11 +49043,11 @@ ij
 cz
 jl
 ko
-dD
+ZP
 mB
 pv
-iz
-jQ
+QP
+Zd
 cN
 cN
 Jj
@@ -48956,12 +49344,12 @@ gj
 gj
 cN
 cN
-cN
+yD
 cN
 cN
 cN
 iz
-jQ
+Zd
 cN
 ab
 ab
@@ -49255,11 +49643,11 @@ kp
 ab
 fg
 ab
-ab
-ab
-ab
-ab
-ab
+GN
+ZA
+ZA
+th
+xA
 ab
 cN
 iy
@@ -49557,11 +49945,11 @@ kp
 ab
 fg
 ab
-ab
-ab
-ab
-ab
-ab
+GN
+TY
+TY
+TY
+xA
 ab
 cH
 iz
@@ -49859,14 +50247,14 @@ kp
 ab
 fg
 ab
-ab
-ab
-ab
-ab
-ab
+yd
+GB
+GB
+GB
+ep
 ab
 cH
-iz
+QP
 jQ
 cH
 kU
