@@ -2661,6 +2661,14 @@ ABSTRACT_TYPE(/area/station/engine)
 	name = "Mining Outpost"
 	icon_state = "engine"
 
+/area/gas_station
+	name = "Gas Station"
+	icon_state = "green"
+
+/area/gas_station/schweewa
+	name = "Schweewa"
+	icon_state = "red"
+
 /area/station/engine/storage
 	name = "Engineering Storage"
 	icon_state = "engine_hallway"

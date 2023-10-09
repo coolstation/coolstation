@@ -1290,7 +1290,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket, 20, cost=PAY_UNTRAINED/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/nicofree, 10, cost=PAY_UNTRAINED/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/menthol, 10, cost=PAY_UNTRAINED/5)
-		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(1,3), cost=PAY_UNTRAINED/5)
+
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/propuffs, 10, cost=PAY_TRADESMAN/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo, 10, cost=PAY_TRADESMAN/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/brute, 5, cost=PAY_TRADESMAN/10)
@@ -1305,6 +1305,35 @@
 		product_list += new/datum/data/vending_product(/obj/item/device/igniter, rand(1, 6), hidden=1, cost=PAY_UNTRAINED/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/random, rand(0, 1), hidden=1, cost=420)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo/juicer, rand(6, 9), hidden=1, cost=69)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(1,3),hidden=1, cost=PAY_UNTRAINED/5)
+
+/obj/machinery/vending/cigarette/schweewa
+	acceptcard = 0
+	desc = "Who still smokes these?"
+	slogan_list = list("Juicer Schweet's Original Rowdy Rillos, Quality you can crave.",
+	"Fresh Fine Flamable Farmaceuticals.",
+	"Smoke!",
+	"Watch out! You're cravin one now!")
+
+	create_products()
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo/juicer, rand(6, 9), cost=PAY_UNTRAINED/6)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo/juicer, rand(6, 9), cost=PAY_UNTRAINED/6)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo/juicer, rand(6, 9), cost=PAY_UNTRAINED/6)
+
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo, rand(6, 9), cost=PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo, rand(6, 9), cost=PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo, rand(6, 9), cost=PAY_UNTRAINED/5)
+
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(6, 9), cost=PAY_UNTRAINED/6)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(6, 9), cost=PAY_UNTRAINED/6)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(6, 9), cost=PAY_UNTRAINED/6)
+
+		product_list += new/datum/data/vending_product(/obj/item/device/light/zippo, 5, cost=PAY_UNTRAINED/4)
+
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/random, rand(1,3), hidden=1, cost=420)
+
+
+
 
 /obj/machinery/vending/medical
 	name = "NanoMed Plus"
