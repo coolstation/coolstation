@@ -425,8 +425,10 @@
 /area/gas_station/schweewa)
 "dl" = (
 /obj/stool/bar,
-/obj/machinery/light/small/auto/warm/very{
-	dir = 4
+/obj/machinery/light/small/warm/very{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 0
 	},
 /turf/floor/grime,
 /area/gas_station/schweewa)
@@ -932,9 +934,6 @@
 /turf/floor/grime,
 /area/gas_station/schweewa)
 "fY" = (
-/obj/machinery/light/fluorescent/auto/warm{
-	dir = 8
-	},
 /obj/disposalpipe/segment/sewage{
 	dir = 1
 	},
@@ -951,6 +950,11 @@
 	dir = 1
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/light/small/warm/very{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 0
+	},
 /turf/floor/plating,
 /area/gas_station)
 "gi" = (
@@ -1581,8 +1585,10 @@
 /turf/floor/plating/airless/asteroid,
 /area/noGenerate)
 "jg" = (
-/obj/machinery/light/small/auto/warm/very{
-	dir = 4
+/obj/machinery/light/small/warm/very{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 0
 	},
 /turf/floor/grime,
 /area/gas_station/schweewa)
@@ -2228,6 +2234,10 @@
 	},
 /turf/floor/airless/engine/caution/west,
 /area/gas_station)
+"mo" = (
+/obj/random_pod_spawner,
+/turf/floor/airless/engine/caution/south,
+/area/gas_station)
 "mq" = (
 /obj/stool/chair/red,
 /obj/machinery/light/fluorescent/auto/warm{
@@ -2498,12 +2508,14 @@
 /turf/floor/grime,
 /area/mining/magnet_control)
 "oU" = (
-/obj/machinery/light/small/auto/warm/very{
-	dir = 8
-	},
 /obj/decal/tile_edge/check/white{
 	dir = 5;
 	icon_state = "check1"
+	},
+/obj/machinery/light/small/warm/very{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 5
 	},
 /turf/floor/grime,
 /area/gas_station/schweewa)
@@ -2546,8 +2558,10 @@
 /turf/floor/grime,
 /area/gas_station/schweewa)
 "pv" = (
-/obj/machinery/light/small/auto/warm/very{
-	dir = 8
+/obj/machinery/light/small/warm/very{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 5
 	},
 /turf/floor/grime,
 /area/gas_station/schweewa)
@@ -4576,6 +4590,12 @@
 "Ma" = (
 /turf/floor/airless/engine/caution/south,
 /area/gas_station)
+"Mj" = (
+/obj/random_pod_spawner/random_putt_spawner,
+/turf/floor/airless/engine/caution/corner{
+	dir = 4
+	},
+/area/gas_station)
 "Ml" = (
 /obj/lattice{
 	icon_state = "lattice-broken"
@@ -5442,6 +5462,10 @@
 /obj/cable,
 /turf/floor,
 /area/mining/manufacturing)
+"UU" = (
+/obj/machinery/vending/air_vendor,
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "UV" = (
 /obj/cable{
 	d1 = 4;
@@ -5845,6 +5869,14 @@
 /obj/item/raw_material/shard,
 /turf/space,
 /area/noGenerate)
+"Zc" = (
+/obj/machinery/light/small/warm/very{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 5
+	},
+/turf/floor/grime,
+/area/gas_station/schweewa)
 "Ze" = (
 /turf/floor,
 /area/mining/exit_west)
@@ -40770,7 +40802,7 @@ hP
 bT
 bT
 bT
-bT
+UU
 bT
 bT
 bT
@@ -42879,7 +42911,7 @@ ae
 aE
 aE
 fb
-aE
+Mj
 cz
 iy
 cz
@@ -42887,10 +42919,10 @@ jO
 cz
 aE
 aE
-aE
+Mj
 dt
 aE
-aE
+Mj
 HM
 dt
 Lm
@@ -43200,7 +43232,7 @@ bT
 bT
 bT
 aj
-Ma
+mo
 Xv
 ab
 ab
@@ -44698,14 +44730,14 @@ dD
 dD
 dD
 dD
-jg
+Zc
 dD
 dD
 Bf
 FA
 Ij
 aj
-Ma
+mo
 bT
 bT
 bT
