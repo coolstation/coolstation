@@ -139,6 +139,99 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 		..()
 		qdel(src)
 
+//fursuits (they were designed as "dragon costumes" but let's be honest, they're fursuits)
+/obj/item/clothing/under/gimmick/dragon
+	name = "dragon suit"
+	icon_state = "dragon_blue"
+	item_state = "dragon_blue"
+/obj/item/clothing/under/gimmick/dragon/red
+	icon_state = "dragon_red"
+	item_state = "dragon_red"
+/obj/item/clothing/under/gimmick/dragon/green
+	icon_state = "dragon_green"
+	item_state = "dragon_green"
+/obj/item/clothing/under/gimmick/dragon/white
+	icon_state = "dragon_white"
+	item_state = "dragon_white"
+
+/obj/item/clothing/suit/gimmick/dragon
+	name = "dragon wings"
+	icon_state = "dragon_blue"
+	item_state = "dragon_blue"
+	inhand_image_icon = 'icons/mob/inhand/suit/hand_suit_gimmick.dmi'
+/obj/item/clothing/suit/gimmick/dragon/red
+	icon_state = "dragon_red"
+	item_state = "dragon_red"
+/obj/item/clothing/suit/gimmick/dragon/green
+	icon_state = "dragon_green"
+	item_state = "dragon_green"
+/obj/item/clothing/suit/gimmick/dragon/white
+	icon_state = "dragon_white"
+	item_state = "dragon_white"
+
+//AFAIK we don't have a generic "trash worn on belt" thing
+/obj/item/dragon_tail
+	name = "dragon tail"
+	flags = FPRINT | ONBELT
+	icon = 'icons/obj/items/belts.dmi'
+	wear_image_icon = 'icons/mob/belt.dmi'
+	inhand_image_icon = 'icons/mob/inhand/hand_general.dmi'
+	icon_state = "dragon_blue"
+	item_state = "dragon_blue"
+/obj/item/dragon_tail/red
+	icon_state = "dragon_red"
+	item_state = "dragon_red"
+/obj/item/dragon_tail/green
+	icon_state = "dragon_green"
+	item_state = "dragon_green"
+/obj/item/dragon_tail/white
+	icon_state = "dragon_white"
+	item_state = "dragon_white"
+
+/obj/item/clothing/shoes/dragon
+	name = "dragon shoes"
+	icon_state = "dragon_blue"
+	item_state = "dragon_blue"
+/obj/item/clothing/shoes/dragon/red
+	icon_state = "dragon_red"
+	item_state = "dragon_red"
+/obj/item/clothing/shoes/dragon/green
+	icon_state = "dragon_green"
+	item_state = "dragon_green"
+/obj/item/clothing/shoes/dragon/white
+	icon_state = "dragon_white"
+	item_state = "dragon_white"
+
+/obj/item/clothing/head/dragon
+	name = "dragon hood"
+	icon_state = "dragon_blue"
+	item_state = "dragon_blue"
+/obj/item/clothing/head/dragon/red
+	icon_state = "dragon_red"
+	item_state = "dragon_red"
+/obj/item/clothing/head/dragon/green
+	icon_state = "dragon_green"
+	item_state = "dragon_green"
+/obj/item/clothing/head/dragon/white
+	icon_state = "dragon_white"
+	item_state = "dragon_white"
+/*
+/obj/spawn_all_the_dragon_shit
+	New()
+		..()
+		var/turf/T = get_turf(src)
+		for(var/derg_type in concrete_typesof(/obj/item/clothing/under/gimmick/dragon))
+			new derg_type(T)
+		for(var/derg_type in concrete_typesof(/obj/item/clothing/suit/gimmick/dragon))
+			new derg_type(T)
+		for(var/derg_type in concrete_typesof(/obj/item/dragon_tail))
+			new derg_type(T)
+		for(var/derg_type in concrete_typesof(/obj/item/clothing/shoes/dragon))
+			new derg_type(T)
+		for(var/derg_type in concrete_typesof(/obj/item/clothing/head/dragon))
+			new derg_type(T)
+		qdel(src)
+*/
 /*
 /area/proc/Force_Ambience(mob/M)
 		if (M?.client)
