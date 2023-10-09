@@ -875,6 +875,7 @@
 	food_color = "#790c0c"
 	plant_reagent = "capulettium"
 	initial_volume = 100
+	doants = FALSE //ants have standards
 
 	make_reagents()
 		..()
@@ -905,6 +906,7 @@
 	name = "bullshit apple on a stick"
 	desc = "A bullshit apple on a stick."
 	icon_state = "apple-poison-stick"
+	doants = FALSE
 
 	make_reagents()
 		..()

@@ -1596,9 +1596,9 @@ ABSTRACT_TYPE(/area/station)
 	do_not_irradiate = 0
 	sound_fx_1 = 'sound/ambience/station/Station_VocalNoise1.ogg'
 	var/tmp/initial_structure_value = 0
+	no_ants = 0
 #ifdef MOVING_SUB_MAP
 	filler_turf = "/turf/space/fluid/manta"
-	no_ants = 0
 
 	New()
 		..()

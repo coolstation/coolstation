@@ -93,6 +93,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/candy)
 		name = "bullshit candy apple"
 		desc = "A bullshit apple covered in a hard sugar coating, still tastes about as bad."
 		icon_state = "candy-poison"
+		doants = FALSE
 
 
 		New()
