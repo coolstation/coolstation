@@ -128,6 +128,7 @@
 	name_prefix = "Sour "
 	crop = /obj/item/reagent_containers/food/snacks/plant/apple/sour
 	iconmod = "AppleSour"
+	assoc_reagents = list("sour")
 	ENrange = list(40,null)
 	chance = 20
 

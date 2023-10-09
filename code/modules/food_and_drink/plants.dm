@@ -859,7 +859,13 @@
 	desc = "There's a rumor that these are nicknamed after a longtime crew member from another station."
 	icon_state = "apple-sour"
 	food_color = "#40C100"
+	plant_reagent = "sour"
 	initial_volume = 100
+
+	make_reagents()
+		..()
+		var/datum/plantgenes/DNA = src.plantgenes
+		reagents.add_reagent("sour", DNA.potency)
 
 /obj/item/reagent_containers/food/snacks/plant/apple/poison
 	name = "bullshit apple"
@@ -889,6 +895,11 @@
 	icon_state = "apple-sour-stick"
 	validforhat = 0
 
+	make_reagents()
+		..()
+		reagents.add_reagent("sour", 5)
+		return
+
 
 /obj/item/reagent_containers/food/snacks/plant/apple/stick/poison
 	name = "bullshit apple on a stick"
@@ -898,6 +909,7 @@
 	make_reagents()
 		..()
 		reagents.add_reagent("capulettium", 10)
+		reagents.add_reagent("yuck", 5)
 		return
 
 /obj/item/reagent_containers/food/snacks/plant/banana

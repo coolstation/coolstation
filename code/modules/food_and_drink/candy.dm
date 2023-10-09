@@ -84,6 +84,11 @@ ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/candy)
 		desc = "A sour apple covered in a hard sugar coating."
 		icon_state = "candy-sour"
 
+		New()
+			..()
+			reagents.add_reagent("sour", 5)
+			return
+
 	poison
 		name = "bullshit candy apple"
 		desc = "A bullshit apple covered in a hard sugar coating, still tastes about as bad."
