@@ -41750,15 +41750,12 @@
 /turf/floor/sanitary,
 /area/station/crew_quarters/toilets)
 "cba" = (
-/obj/securearea{
-	desc = "A poster that reads 'CLEAN HANDS SAVE LIVES'.";
-	icon_state = "chsl";
-	name = "CLEAN HANDS SAVE LIVES";
-	pixel_x = 32
-	},
 /obj/submachine/chef_sink/chem_sink{
 	dir = 8;
 	pixel_x = 6
+	},
+/obj/decal/poster/wallsign/chsl{
+	pixel_x = 32
 	},
 /turf/floor/sanitary,
 /area/station/crew_quarters/toilets)
@@ -52244,10 +52241,7 @@
 /turf/floor/airless/plating/damaged3,
 /area/abandonedship)
 "cBd" = (
-/obj/item/raw_material/shard/glass{
-	icon_state = "small"
-	},
-/obj/decal/cleanable/dirt,
+/obj/item/raw_material/shard/glass,
 /turf/floor/airless/plating/damaged3,
 /area/abandonedship)
 "cBe" = (
@@ -52298,6 +52292,7 @@
 	pixel_x = 6;
 	pixel_y = -28
 	},
+/obj/item/raw_material/shard/glass,
 /turf/floor/airless/plating/scorched,
 /area/abandonedship)
 "cBm" = (
