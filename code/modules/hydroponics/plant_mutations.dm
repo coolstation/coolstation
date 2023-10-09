@@ -123,12 +123,20 @@
 
 // Apple Mutations
 
+/datum/plantmutation/apple/sour
+	name = "Sour Apple"
+	name_prefix = "Sour "
+	crop = /obj/item/reagent_containers/food/snacks/plant/apple/sour
+	iconmod = "AppleSour"
+	ENrange = list(40,null)
+	chance = 20
+
 /datum/plantmutation/apple/poison
-	name = "Delicious Apple"
-	name_prefix = "Delicious "
+	name = "Bullshit Apple"
+	name_prefix = "Bullshit "
 	crop = /obj/item/reagent_containers/food/snacks/plant/apple/poison
 	iconmod = "ApplePoison"
-	assoc_reagents = list("capulettium")
+	assoc_reagents = list("capulettium","yuck")
 	ENrange = list(40,null)
 	chance = 10
 

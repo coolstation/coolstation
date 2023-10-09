@@ -1346,6 +1346,12 @@ ABSTRACT_TYPE(/datum/cookingrecipe)
 	cookbonus = 6
 	output = /obj/item/reagent_containers/food/snacks/candy/candy_apple
 
+/datum/cookingrecipe/candy_apple_sour
+	item1 = /obj/item/reagent_containers/food/snacks/plant/apple/stick/sour
+	item2 = /obj/item/reagent_containers/food/snacks/ingredient/sugar
+	cookbonus = 6
+	output = /obj/item/reagent_containers/food/snacks/candy/candy_apple/sour
+
 /datum/cookingrecipe/candy_apple_poison
 	item1 = /obj/item/reagent_containers/food/snacks/plant/apple/stick/poison
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/sugar

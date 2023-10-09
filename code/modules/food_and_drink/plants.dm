@@ -799,12 +799,12 @@
 
 /obj/item/reagent_containers/food/snacks/plant/apple/
 	name = "apple"
-	desc = "Implied by folklore to repel medical staff."
+	desc = "Implied by folklore to repel medical staff, this variety was bred in space for crispy deliciousness."
 	icon_state = "apple"
 	planttype = /datum/plant/fruit/apple
 	amount = 3
 	heal_amt = 1
-	food_color = "#40C100"
+	food_color = "#AC1515"
 	brewable = 1
 	brew_result = "cider"
 	validforhat = 1
@@ -833,8 +833,11 @@
 
 			// Create apple on a stick
 			if(istype(src,/obj/item/reagent_containers/food/snacks/plant/apple/poison))
-				boutput(user, "<span class='notice'>You create an apple on a stick...</span>")
+				boutput(user, "<span class='notice'>You create a bullshit apple on a stick...</span>")
 				new/obj/item/reagent_containers/food/snacks/plant/apple/stick/poison(get_turf(src))
+			if(istype(src,/obj/item/reagent_containers/food/snacks/plant/apple/sour))
+				boutput(user, "<span class='notice'>You create a sour apple on a stick...</span>")
+				new/obj/item/reagent_containers/food/snacks/plant/apple/stick/sour(get_turf(src))
 			else
 				boutput(user, "<span class='notice'>You create a delicious apple on a stick...</span>")
 				new/obj/item/reagent_containers/food/snacks/plant/apple/stick(get_turf(src))
@@ -850,12 +853,20 @@
 			qdel(src)
 		else ..()
 
+/obj/item/reagent_containers/food/snacks/plant/apple/sour
+	name = "sour apple"
+	crop_prefix = "sour "
+	desc = "There's a rumor that these are nicknamed after a longtime crew member from another station."
+	icon_state = "apple-sour"
+	food_color = "#40C100"
+	initial_volume = 100
+
 /obj/item/reagent_containers/food/snacks/plant/apple/poison
-	name = "delicious-looking apple"
-	crop_prefix = "delicious-looking "
-	desc = "Woah. This looks absolutely delicious."
-	icon_state = "poison"
-	food_color = "#AC1515"
+	name = "bullshit apple"
+	crop_prefix = "bullshit "
+	desc = "Well, it's red, but it sure isn't delicious."
+	icon_state = "apple-poison"
+	food_color = "#790c0c"
 	plant_reagent = "capulettium"
 	initial_volume = 100
 
@@ -863,18 +874,26 @@
 		..()
 		var/datum/plantgenes/DNA = src.plantgenes
 		reagents.add_reagent("capulettium", DNA.potency)
+		reagents.add_reagent("yuck", 5)
 
 //Apple on a stick
 /obj/item/reagent_containers/food/snacks/plant/apple/stick
 	name = "apple on a stick"
 	desc = "An apple on a stick."
-	icon_state = "apple stick"
+	icon_state = "apple-stick"
 	validforhat = 0
 
+/obj/item/reagent_containers/food/snacks/plant/apple/stick/sour
+	name = "sour apple on a stick"
+	desc = "A sour apple on a stick."
+	icon_state = "apple-sour-stick"
+	validforhat = 0
+
+
 /obj/item/reagent_containers/food/snacks/plant/apple/stick/poison
-	name = "delicious apple on a stick"
-	desc = "A delicious apple on a stick."
-	icon_state = "poison stick"
+	name = "bullshit apple on a stick"
+	desc = "A bullshit apple on a stick."
+	icon_state = "apple-poison-stick"
 
 	make_reagents()
 		..()
