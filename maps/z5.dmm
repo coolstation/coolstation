@@ -964,7 +964,7 @@
 /obj/cup_rack{
 	pixel_y = 30
 	},
-/obj/submachine/chef_sink,
+/obj/submachine/chef_oven,
 /turf/floor/grey/blackgrime,
 /area/gas_station/schweewa)
 "fV" = (
@@ -1320,7 +1320,7 @@
 /obj/neon_lining{
 	dir = 4
 	},
-/obj/submachine/chef_oven{
+/obj/submachine/chef_sink{
 	dir = 8
 	},
 /turf/floor/grey/blackgrime,
@@ -3919,8 +3919,12 @@
 /area/tech_outpost)
 "By" = (
 /obj/rack,
-/obj/item/reagent_containers/food/snacks/eggsalad,
-/obj/item/reagent_containers/food/snacks/soup/chili,
+/obj/item/reagent_containers/food/snacks/eggsalad{
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/food/snacks/soup/chili{
+	pixel_x = 5
+	},
 /turf/floor/red,
 /area/gas_station/schweewa)
 "BC" = (
@@ -5665,8 +5669,12 @@
 /area/mining/manufacturing)
 "Tl" = (
 /obj/rack,
-/obj/item/reagent_containers/food/snacks/salad,
-/obj/item/reagent_containers/food/snacks/soup/chili,
+/obj/item/reagent_containers/food/snacks/salad{
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/food/snacks/soup/chili{
+	pixel_x = -7
+	},
 /turf/floor/red,
 /area/gas_station/schweewa)
 "To" = (

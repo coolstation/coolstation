@@ -123,7 +123,7 @@ var/fartcount = 0
 	icon_broken = "monkey-broken"
 	icon_fallen = "monkey-fallen"
 	pay = 1
-	acceptcard = 1
+	acceptcard = 0
 	slogan_list = list("It's meat you can buy!",
 	"Trade your money for meat!",
 	"Buy the meat! It's meat!",

@@ -1817,7 +1817,8 @@
 	items2spawn = list(/obj/machinery/vending/juice,
 					/obj/machinery/vending/meat,
 					/obj/machinery/vending/chem,
-					/obj/machinery/vending/sause)
+					/obj/machinery/vending/sause,
+					/obj/machinery/vending/cigarette/schweewa)
 
 /obj/random_item_spawner/organs
 	name = "random organ spawner"
