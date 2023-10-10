@@ -36,8 +36,14 @@
 /area/gas_station)
 "aq" = (
 /obj/table/reinforced/bar/auto,
-/obj/item/shaker/parmesan,
-/obj/item/shaker/redpepper,
+/obj/item/shaker/parmesan{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/shaker/redpepper{
+	pixel_x = 5;
+	pixel_y = 4
+	},
 /turf/floor/grey/blackgrime,
 /area/gas_station/schweewa)
 "aA" = (
@@ -213,14 +219,9 @@
 /turf/floor/delivery,
 /area/mining/exit_east)
 "co" = (
-/obj/grille/catwalk{
-	dir = 9;
-	icon_state = "catwalk_cross"
-	},
-/turf/floor/airless/plating/catwalk{
-	dir = 9
-	},
-/area/noGenerate)
+/obj/grille/classic,
+/turf/floor/plating/airless,
+/area/mining/mainasteroid)
 "cq" = (
 /obj/grille/catwalk{
 	dir = 4
@@ -230,14 +231,11 @@
 	},
 /area/noGenerate)
 "cs" = (
-/obj/grille/catwalk{
-	dir = 5;
-	icon_state = "catwalk_cross"
+/obj/grille/classic,
+/turf/wall/asteroid{
+	dir = 1
 	},
-/turf/floor/airless/plating/catwalk{
-	dir = 5
-	},
-/area/noGenerate)
+/area/mining/mainasteroid)
 "ct" = (
 /obj/machinery/light/fluorescent/auto/warm,
 /turf/floor/airless/engine/caution/west,
@@ -471,11 +469,18 @@
 /turf/floor/plating,
 /area/mining/quarters)
 "dr" = (
-/turf/wall/auto/supernorn,
-/area/mining/magnet_control)
+/obj/decal/cleanable/cobweb,
+/obj/machinery/shower{
+	dir = 1
+	},
+/turf/floor/sanitary,
+/area/mining/quarters)
 "ds" = (
-/turf/wall/auto/reinforced/supernorn,
-/area/mining/magnet_control)
+/obj/machinery/shower{
+	dir = 1
+	},
+/turf/floor/sanitary,
+/area/mining/quarters)
 "dt" = (
 /turf/wall/auto/supernorn,
 /area/gas_station)
@@ -617,28 +622,26 @@
 	},
 /turf/wall/auto/supernorn,
 /area/mining/comms)
-"eb" = (
-/obj/rack,
-/turf/floor/black,
-/area/mining/quarters)
 "ec" = (
-/obj/storage/closet/wardrobe/green,
+/obj/machinery/camera,
 /turf/floor/caution/west,
 /area/mining/quarters)
 "ee" = (
-/obj/stool/bed,
+/obj/table/auto,
 /turf/floor,
 /area/mining/quarters)
 "ef" = (
 /turf/floor/grime,
 /area/mining/quarters)
 "eg" = (
-/obj/stool/bed,
-/obj/item/clothing/suit/bedsheet,
+/obj/table/auto,
+/obj/item/reagent_containers/food/snacks/breakfast,
 /turf/floor/grime,
 /area/mining/quarters)
 "eh" = (
-/turf/floor/caution/east,
+/obj/table/auto,
+/obj/item/reagent_containers/food/snacks/breakfast,
+/turf/floor,
 /area/mining/quarters)
 "ei" = (
 /obj/disposalpipe/segment/transport{
@@ -649,19 +652,6 @@
 "ej" = (
 /turf/floor/black,
 /area/mining/quarters)
-"ek" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 6;
-	name = "autoname -  Mining";
-	network = "Mining";
-	tag = ""
-	},
-/obj/stool/chair{
-	dir = 4
-	},
-/turf/floor/black,
-/area/mining/quarters)
 "el" = (
 /obj/railing/red,
 /obj/machinery/atmospherics/pipe/tank/toxins/north,
@@ -669,25 +659,15 @@
 /area/gas_station)
 "em" = (
 /obj/table/auto,
-/obj/machinery/light/lamp/bright,
-/turf/floor/black,
+/turf/floor/grime,
 /area/mining/quarters)
 "en" = (
-/obj/table/auto,
-/obj/item/magnetizer{
-	desc = "Some kind of old mining tool.  Looks like there's a big coil on it, maybe?";
-	loaded = 1;
-	name = "old mining gizmo";
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/turf/floor/grime,
-/area/mining/magnet_control)
+/obj/machinery/drainage/big/off_station,
+/turf/floor/sanitary,
+/area/mining/quarters)
 "eo" = (
-/obj/table/auto,
-/obj/item/magnet_parts/construction,
-/turf/floor/grime,
-/area/mining/magnet_control)
+/turf/floor/sanitary,
+/area/mining/quarters)
 "ep" = (
 /obj/lattice{
 	dir = 5;
@@ -696,14 +676,12 @@
 /turf/space,
 /area/gas_station/schweewa)
 "eq" = (
-/obj/machinery/light/emergency{
-	dir = 4
+/obj/decal/cleanable/dirt,
+/obj/stool/chair{
+	dir = 1
 	},
-/obj/table/auto,
-/obj/decal/cleanable/cobweb2,
-/obj/item/circuitboard/telescope,
 /turf/floor/grime,
-/area/mining/magnet_control)
+/area/mining/quarters)
 "er" = (
 /obj/machinery/light/fluorescent/auto/cool/very{
 	dir = 1
@@ -771,20 +749,15 @@
 	},
 /turf/wall/auto/supernorn,
 /area/mining/comms)
-"eI" = (
-/obj/storage/closet/wardrobe/orange,
-/turf/floor/black,
-/area/mining/quarters)
 "eJ" = (
 /turf/floor/caution/west,
 /area/mining/quarters)
 "eM" = (
-/obj/machinery/light/fluorescent/auto{
-	dir = 8;
-	tag = ""
+/obj/stool/chair{
+	dir = 1
 	},
 /turf/floor/grime,
-/area/mining/magnet_control)
+/area/mining/quarters)
 "eO" = (
 /turf/floor/redwhite{
 	dir = 6
@@ -799,33 +772,36 @@
 /turf/floor/red/checker,
 /area/gas_station/schweewa)
 "eV" = (
-/turf/floor/damaged2,
-/area/mining/magnet_control)
+/obj/machinery/door/airlock,
+/turf/floor/sanitary,
+/area/mining/quarters)
 "eW" = (
-/turf/floor/grime,
-/area/mining/magnet_control)
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet,
+/turf/floor,
+/area/mining/quarters)
 "eY" = (
-/obj/wingrille_spawn/auto,
-/turf/floor/plating,
-/area/mining/magnet_control)
+/obj/decal/cleanable/dirt,
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet,
+/turf/floor/grime,
+/area/mining/quarters)
 "eZ" = (
-/obj/grille/catwalk{
-	dir = 9
+/obj/item/storage/toilet{
+	dir = 8
 	},
-/turf/floor/airless/plating/catwalk{
-	dir = 8;
-	icon_state = "catwalk_cross"
-	},
-/area/noGenerate)
+/turf/floor/sanitary,
+/area/mining/quarters)
 "fa" = (
-/obj/grille/catwalk{
-	dir = 5
+/obj/machinery/light/small{
+	dir = 1;
+	status = 2
 	},
-/turf/floor/airless/plating/catwalk{
-	dir = 4;
-	icon_state = "catwalk_cross"
+/obj/item/storage/toilet{
+	dir = 4
 	},
-/area/noGenerate)
+/turf/floor/sanitary,
+/area/mining/quarters)
 "fb" = (
 /obj/decal/cleanable/mess/sodacan,
 /turf/floor/airless/engine/caution/corner{
@@ -897,38 +873,21 @@
 	dir = 10
 	},
 /area/mining/mainasteroid)
-"fl" = (
-/obj/storage/closet/wardrobe/blue,
-/turf/floor/black,
-/area/mining/quarters)
 "fm" = (
 /turf/wall/asteroid{
 	dir = 8
 	},
 /area/mining/mainasteroid)
 "fs" = (
-/obj/stool/bed,
-/obj/item/clothing/suit/bedsheet,
-/turf/floor,
-/area/mining/quarters)
+/obj/machinery/light/fluorescent/auto/warm,
+/obj/decal/cleanable/mess/random_litter,
+/turf/floor/redwhite{
+	dir = 1
+	},
+/area/gas_station/schweewa)
 "ft" = (
 /turf/floor,
 /area/mining/quarters)
-"fu" = (
-/obj/item/storage/toilet,
-/turf/floor/black,
-/area/mining/quarters)
-"fv" = (
-/turf/wall/auto/reinforced/supernorn,
-/area/mining/refinery)
-"fx" = (
-/obj/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc/autoname_west,
-/turf/floor/grime,
-/area/mining/magnet_control)
 "fz" = (
 /obj/machinery/light/fluorescent/auto/warm{
 	dir = 8
@@ -1018,10 +977,6 @@
 "gj" = (
 /turf/wall/auto/reinforced/supernorn,
 /area/gas_station)
-"gm" = (
-/obj/storage/closet/wardrobe/yellow,
-/turf/floor/black,
-/area/mining/quarters)
 "go" = (
 /obj/lattice{
 	dir = 1;
@@ -1060,26 +1015,21 @@
 /turf/wall/auto/supernorn,
 /area/mining/manufacturing)
 "gK" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet,
 /turf/floor/damaged2,
-/area/mining/quarters)
-"gM" = (
-/obj/machinery/door/unpowered/wood/stall,
-/turf/floor/black,
 /area/mining/quarters)
 "gO" = (
 /obj/decal/cleanable/cobweb,
-/turf/floor/shuttlebay{
-	name = "reinforced plating"
-	},
-/area/mining/refinery)
+/obj/storage/closet/radiation,
+/turf/floor/grime,
+/area/mining/power)
 "gR" = (
 /obj/machinery/light/fluorescent/auto{
 	dir = 1
 	},
-/turf/floor/shuttlebay{
-	name = "reinforced plating"
-	},
-/area/mining/refinery)
+/turf/wall/asteroid,
+/area/mining/quarters)
 "gS" = (
 /obj/cable{
 	d2 = 4;
@@ -1112,10 +1062,8 @@
 /turf/floor/plating/airless/asteroid,
 /area/noGenerate)
 "he" = (
-/turf/floor/shuttlebay{
-	name = "reinforced plating"
-	},
-/area/mining/refinery)
+/turf/wall/asteroid,
+/area/mining/quarters)
 "hf" = (
 /obj/cable,
 /obj/machinery/power/furnace{
@@ -1135,26 +1083,6 @@
 	dir = 1
 	},
 /area/noGenerate)
-"hj" = (
-/obj/machinery/light_switch{
-	name = "W light switch";
-	on = 0;
-	pixel_x = -24
-	},
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 4;
-	name = "autoname - Mining";
-	network = "Mining";
-	tag = ""
-	},
-/turf/floor/grime,
-/area/mining/magnet_control)
 "hk" = (
 /obj/securearea{
 	desc = "";
@@ -1176,33 +1104,9 @@
 /obj/reagent_dispensers/watertank,
 /turf/floor/grime,
 /area/tech_outpost)
-"hq" = (
-/obj/stool/chair{
-	dir = 4
-	},
-/turf/floor/grime,
-/area/mining/magnet_control)
-"hs" = (
-/obj/machinery/computer/magnet{
-	dir = 8
-	},
-/turf/floor/scorched2,
-/area/mining/magnet_control)
 "ht" = (
 /turf/floor/shuttlebay,
 /area/tech_outpost)
-"hu" = (
-/obj/grille/catwalk{
-	dir = 9
-	},
-/obj/machinery/magnet_chassis{
-	dir = 4
-	},
-/turf/floor/airless/plating/catwalk{
-	dir = 8;
-	icon_state = "catwalk_cross"
-	},
-/area/noGenerate)
 "hw" = (
 /obj/neon_lining{
 	color = "#AF0000";
@@ -1393,17 +1297,11 @@
 /turf/floor/plating,
 /area/gas_station)
 "il" = (
-/obj/stool/chair,
-/turf/floor/black,
-/area/mining/quarters)
-"im" = (
-/obj/decal/cleanable/dirt,
-/turf/floor/caution/west,
-/area/mining/quarters)
-"in" = (
-/obj/machinery/door/airlock/pyro{
-	dir = 4
-	},
+/obj/rack,
+/obj/item/tank/jetpack,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/suit/space/engineer,
+/obj/item/clothing/head/helmet/space/engineer,
 /turf/floor/black,
 /area/mining/quarters)
 "ip" = (
@@ -1414,55 +1312,11 @@
 	icon_state = "gangtag22";
 	pixel_x = 28
 	},
-/obj/machinery/light/small{
-	dir = 1;
-	status = 2
-	},
-/turf/floor/black,
+/turf/wall/auto/supernorn,
 /area/mining/quarters)
 "ir" = (
 /turf/space,
 /area/mining/mainasteroid)
-"it" = (
-/obj/securearea{
-	desc = "";
-	icon_state = "shock";
-	name = "Danger: High Voltage"
-	},
-/turf/wall/auto/reinforced/supernorn,
-/area/mining/refinery)
-"iu" = (
-/obj/machinery/light/emergency{
-	dir = 8
-	},
-/turf/floor/shuttlebay{
-	name = "reinforced plating"
-	},
-/area/mining/refinery)
-"iv" = (
-/obj/machinery/light/emergency{
-	dir = 4
-	},
-/turf/floor/shuttlebay{
-	name = "reinforced plating"
-	},
-/area/mining/refinery)
-"iw" = (
-/obj/machinery/light/fluorescent/auto{
-	dir = 8;
-	tag = ""
-	},
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/floor/grime,
-/area/mining/magnet_control)
-"ix" = (
-/obj/item/raw_material/shard,
-/turf/floor/grime,
-/area/mining/magnet_control)
 "iy" = (
 /obj/decal/tile_edge/check/white{
 	dir = 1;
@@ -1519,29 +1373,13 @@
 /turf/floor/grime,
 /area/gas_station/schweewa)
 "iE" = (
-/obj/table/auto,
+/obj/storage/secure/closet/engineering/mining,
 /turf/floor/black,
 /area/mining/quarters)
 "iF" = (
 /obj/decal/cleanable/dirt,
-/obj/table/auto,
-/obj/item/reagent_containers/food/snacks/breakfast,
 /turf/floor/caution/west,
 /area/mining/quarters)
-"iH" = (
-/obj/decal/cleanable/dirt,
-/obj/stool/chair{
-	dir = 8
-	},
-/turf/floor,
-/area/mining/quarters)
-"iI" = (
-/obj/lattice{
-	dir = 4;
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/area/mining/mainasteroid)
 "iK" = (
 /obj/cable{
 	d2 = 4;
@@ -1556,11 +1394,6 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /turf/floor,
 /area/mining/quarters)
 "iO" = (
@@ -1568,79 +1401,11 @@
 	name = "S light switch";
 	pixel_y = -24
 	},
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/floor/caution/east,
-/area/mining/quarters)
-"iT" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/storage/closet,
-/turf/floor/black,
+/turf/floor/grime,
 /area/mining/quarters)
 "iV" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/wall/auto/supernorn,
+/turf/floor/caution/east,
 /area/mining/quarters)
-"iW" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/submachine/chef_sink/chem_sink{
-	desc = "A water-filled unit intended for hand-washing purposes.";
-	dir = 1
-	},
-/turf/floor/black,
-/area/mining/quarters)
-"iZ" = (
-/obj/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/machinery/shower{
-	dir = 4;
-	pixel_y = 6
-	},
-/obj/machinery/drainage/big/off_station,
-/turf/floor/black,
-/area/mining/quarters)
-"ja" = (
-/obj/machinery/neosmelter,
-/turf/floor/shuttlebay{
-	name = "reinforced plating"
-	},
-/area/mining/refinery)
-"jb" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
-	},
-/turf/floor/grime,
-/area/mining/magnet_control)
-"jc" = (
-/obj/machinery/light/emergency{
-	dir = 4
-	},
-/turf/floor/grime,
-/area/mining/magnet_control)
 "je" = (
 /obj/grille/catwalk,
 /obj/rail{
@@ -1739,30 +1504,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/pyro/alt,
+/obj/machinery/door/airlock,
 /turf/floor,
 /area/mining/miningoutpost)
-"jz" = (
-/obj/cable{
-	icon_state = "1-4"
-	},
-/turf/wall/auto/reinforced/supernorn,
-/area/mining/quarters)
-"jA" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/wall/auto/reinforced/supernorn,
-/area/mining/refinery)
 "jB" = (
 /obj/decal/cleanable/dirt,
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 4;
@@ -1770,28 +1516,12 @@
 	network = "Mining";
 	tag = ""
 	},
-/turf/floor/caution/north,
-/area/mining/refinery)
+/turf/floor/grime,
+/area/mining/power)
 "jC" = (
 /obj/decal/cleanable/dirt,
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/floor/caution/north,
-/area/mining/refinery)
-"jD" = (
-/obj/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/floor/caution/north,
-/area/mining/refinery)
-"jE" = (
-/turf/floor/caution/north,
-/area/mining/refinery)
+/turf/floor/grime,
+/area/mining/power)
 "jF" = (
 /obj/rail{
 	dir = 8;
@@ -1802,27 +1532,6 @@
 "jH" = (
 /turf/wall/asteroid,
 /area/mining/mainasteroid)
-"jI" = (
-/obj/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc/autoname_east,
-/turf/floor/caution/north,
-/area/mining/refinery)
-"jK" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/pyro/engineering{
-	dir = 1
-	},
-/obj/access_spawn/mining_outpost,
-/turf/floor/grime,
-/area/mining/magnet_control)
 "jL" = (
 /obj/cable{
 	d1 = 2;
@@ -1995,98 +1704,30 @@
 /turf/floor/grime,
 /area/mining/miningoutpost)
 "kA" = (
-/obj/storage/closet/radiation,
-/turf/floor/plating/airless/asteroid,
-/area/mining/mainasteroid)
+/obj/submachine/chef_sink/chem_sink{
+	desc = "A water-filled unit intended for hand-washing purposes.";
+	dir = 1
+	},
+/obj/machinery/drainage/off_station,
+/turf/floor/sanitary,
+/area/mining/quarters)
 "kB" = (
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -24
 	},
-/obj/machinery/processor,
 /turf/floor/grime,
-/area/mining/refinery)
-"kC" = (
-/turf/floor/grime,
-/area/mining/refinery)
+/area/mining/power)
 "kD" = (
-/obj/cable{
-	icon_state = "1-4"
-	},
 /obj/machinery/light,
-/obj/machinery/nanofab/refining,
 /turf/floor/grime,
-/area/mining/refinery)
+/area/mining/power)
 "kE" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/nanofab/mining,
-/turf/floor/grime,
-/area/mining/refinery)
+/turf/wall/auto/reinforced/supernorn,
+/area/mining/power)
 "kH" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/table/auto,
-/obj/item/slag_shovel,
-/obj/item/device/matanalyzer,
-/turf/floor/grime,
-/area/mining/refinery)
-"kK" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/wall/auto/supernorn,
-/area/mining/magnet_control)
-"kM" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/storage/secure/closet/engineering/mining,
-/turf/floor/grime,
-/area/mining/magnet_control)
-"kN" = (
-/obj/storage/secure/closet/engineering/mining,
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/floor/grime,
-/area/mining/magnet_control)
-"kO" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/floor/damaged2,
-/area/mining/magnet_control)
-"kR" = (
-/obj/machinery/light/emergency{
-	dir = 4
-	},
-/obj/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/floor/grime,
-/area/mining/magnet_control)
+/turf/wall/asteroid,
+/area/mining/power)
 "kS" = (
 /obj/machinery/conveyor{
 	id = "MINSouth"
@@ -2240,9 +1881,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/cable{
-	icon_state = "2-4"
-	},
 /turf/floor{
 	icon_state = "nt_logo"
 	},
@@ -2256,12 +1894,8 @@
 /turf/floor,
 /area/mining/miningoutpost)
 "mf" = (
-/obj/machinery/power/monitor{
-	dir = 8
-	},
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/machinery/dispenser{
+	pltanks = 0
 	},
 /turf/floor/caution/west,
 /area/mining/miningoutpost)
@@ -2269,37 +1903,11 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/pyro,
 /turf/floor,
-/area/mining/refinery)
-"mh" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 4;
-	name = "autoname - Mining";
-	network = "Mining";
-	tag = ""
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
-	},
-/turf/floor/grime,
-/area/mining/magnet_control)
-"mi" = (
-/obj/machinery/light/fluorescent/auto{
-	dir = 4
-	},
-/turf/floor/grime,
-/area/mining/magnet_control)
+/area/mining/power)
 "ml" = (
 /obj/lattice,
 /turf/space{
 	icon_state = "aplaceholder"
-	},
-/area/noGenerate)
-"mm" = (
-/obj/grille/catwalk,
-/turf/floor/airless/plating/catwalk{
-	dir = 4
 	},
 /area/noGenerate)
 "mn" = (
@@ -2388,8 +1996,7 @@
 /turf/floor,
 /area/mining/miningoutpost)
 "mO" = (
-/obj/table/auto,
-/obj/random_item_spawner/tools,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/floor/caution/west,
 /area/mining/miningoutpost)
 "mP" = (
@@ -2401,7 +2008,6 @@
 /turf/floor/grime,
 /area/mining/power)
 "mT" = (
-/obj/storage/crate/furnacefuel,
 /obj/machinery/light/fluorescent/auto{
 	dir = 1
 	},
@@ -2575,36 +2181,17 @@
 /obj/item/reagent_containers/food/snacks/chips,
 /turf/floor/red,
 /area/gas_station/schweewa)
-"oA" = (
-/turf/wall/auto/reinforced/supernorn,
-/area/mining/power)
 "oC" = (
 /turf/floor/yellow/side{
 	dir = 1
 	},
 /area/tech_outpost)
-"oF" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/pyro/external{
-	dir = 4
-	},
-/turf/floor/grime,
-/area/mining/magnet_control)
 "oG" = (
 /obj/rack,
 /obj/item/satchel/mining/large,
 /obj/item/satchel/mining/large,
 /turf/floor/plating/airless/asteroid,
 /area/mining/mainasteroid)
-"oJ" = (
-/turf/floor/caution/east,
-/area/mining/magnet_control)
-"oR" = (
-/obj/machinery/door/airlock/pyro/external{
-	dir = 4
-	},
-/turf/floor/grime,
-/area/mining/magnet_control)
 "oU" = (
 /obj/decal/tile_edge/check/white{
 	dir = 5;
@@ -2762,15 +2349,10 @@
 	icon_state = "0-2"
 	},
 /obj/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
 	},
 /obj/cable,
-/obj/decal/cleanable/dirt,
 /turf/floor,
 /area/mining/miningoutpost)
 "qY" = (
@@ -2812,10 +2394,6 @@
 /turf/wall/asteroid,
 /area/space)
 "rv" = (
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = 26;
@@ -2998,14 +2576,6 @@
 	},
 /turf/floor/plating/scorched,
 /area/spyshack)
-"te" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/pyro/engineering{
-	dir = 4
-	},
-/obj/access_spawn/mining_outpost,
-/turf/floor/grime,
-/area/mining/magnet_control)
 "tf" = (
 /obj/decal/cleanable/blood/tracks{
 	dir = 4
@@ -3017,14 +2587,6 @@
 /obj/decal/cleanable/blood/splatter,
 /turf/floor/airless/engine/caution,
 /area/gas_station/schweewa)
-"tl" = (
-/obj/machinery/light_switch{
-	name = "N light switch";
-	pixel_y = 24
-	},
-/obj/machinery/light,
-/turf/floor/delivery,
-/area/mining/magnet_control)
 "tm" = (
 /obj/cable{
 	d1 = 2;
@@ -3041,19 +2603,6 @@
 	},
 /turf/wall/auto/supernorn,
 /area/mining/exit_west)
-"to" = (
-/obj/machinery/light/emergency,
-/turf/floor/grime,
-/area/mining/magnet_control)
-"ty" = (
-/obj/grille/catwalk{
-	dir = 10;
-	icon_state = "catwalk_cross"
-	},
-/turf/floor/airless/plating/catwalk{
-	dir = 10
-	},
-/area/noGenerate)
 "tz" = (
 /obj/effects/background_objects/x4,
 /turf/space,
@@ -3075,15 +2624,6 @@
 	icon_state = "corner_east"
 	},
 /area/tech_outpost)
-"tL" = (
-/obj/grille/catwalk{
-	dir = 6;
-	icon_state = "catwalk_cross"
-	},
-/turf/floor/airless/plating/catwalk{
-	dir = 6
-	},
-/area/noGenerate)
 "tT" = (
 /obj/table/auto,
 /obj/item/storage/toolbox/electrical,
@@ -3520,13 +3060,6 @@
 	},
 /turf/floor/plating,
 /area/noGenerate)
-"xJ" = (
-/obj/lattice{
-	dir = 9;
-	icon_state = "lattice-dir-b"
-	},
-/turf/space,
-/area/noGenerate)
 "xN" = (
 /obj/disposalpipe/segment/bent/north,
 /obj/cable{
@@ -3928,11 +3461,11 @@
 /turf/floor/red,
 /area/gas_station/schweewa)
 "BC" = (
-/obj/decal/cleanable/mess/random_litter,
 /obj/decal/tile_edge/check/white{
 	dir = 4;
 	icon_state = "check1"
 	},
+/obj/machinery/vending/coffee,
 /turf/floor/redwhite{
 	dir = 1
 	},
@@ -4171,13 +3704,6 @@
 	},
 /turf/floor/stairs/wide,
 /area/mining/hangar)
-"Ej" = (
-/obj/lattice{
-	dir = 1;
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/area/mining/mainasteroid)
 "El" = (
 /obj/disposalpipe/segment/transport{
 	dir = 4
@@ -4222,8 +3748,8 @@
 /turf/floor/plating/airless/asteroid,
 /area/noGenerate)
 "EV" = (
-/obj/machinery/vending/cigarette,
-/turf/floor/bot,
+/obj/storage/closet/radiation,
+/turf/floor/caution/south,
 /area/mining/manufacturing)
 "EY" = (
 /obj/grille/catwalk{
@@ -4404,8 +3930,20 @@
 /area/gas_station/schweewa)
 "GC" = (
 /obj/table/reinforced/bar/auto,
-/obj/item/shaker/pepper,
-/obj/item/shaker/salt,
+/obj/item/shaker/mustard{
+	pixel_x = 6;
+	pixel_y = 11
+	},
+/obj/item/shaker/ketchup{
+	pixel_x = -3;
+	pixel_y = 12
+	},
+/obj/item/shaker/pepper{
+	pixel_x = -6
+	},
+/obj/item/shaker/salt{
+	pixel_x = 6
+	},
 /turf/floor/grey/blackgrime,
 /area/gas_station/schweewa)
 "GE" = (
@@ -5565,12 +5103,15 @@
 /turf/floor/grime,
 /area/tech_outpost)
 "Sd" = (
-/obj/item/gsbp,
-/obj/item/gsbp,
-/obj/item/gsbp,
-/obj/item/gsbp,
-/obj/item/gsbp,
 /obj/rack,
+/obj/item/gsbp,
+/obj/item/gsbp,
+/obj/item/gsbp,
+/obj/item/gsbp,
+/obj/item/gsbp,
+/obj/item/gsbp,
+/obj/item/gsbp,
+/obj/item/gsbp,
 /turf/floor/redwhite{
 	dir = 1
 	},
@@ -5774,8 +5315,6 @@
 /area/space)
 "Uo" = (
 /obj/table/reinforced/bar/auto,
-/obj/item/shaker/ketchup,
-/obj/item/shaker/mustard,
 /turf/floor/grey/blackgrime,
 /area/gas_station/schweewa)
 "Up" = (
@@ -6279,8 +5818,7 @@
 	network = "Mining";
 	tag = ""
 	},
-/obj/machinery/vending/coffee,
-/turf/floor/bot,
+/turf/floor,
 /area/mining/manufacturing)
 "Zl" = (
 /obj/machinery/r_door_control/podbay/miningoutpost,
@@ -48452,7 +47990,7 @@ mu
 cz
 iz
 Km
-hg
+fs
 cN
 ab
 ab
@@ -52964,10 +52502,10 @@ ab
 ab
 ab
 ab
-cv
-cv
-cv
-cE
+co
+co
+co
+cs
 jH
 dO
 jH
@@ -53266,7 +52804,7 @@ ab
 ab
 ab
 ab
-cv
+co
 cD
 cP
 cP
@@ -53568,10 +53106,10 @@ ab
 ab
 ab
 ab
-cv
-cv
-cv
-cE
+co
+co
+co
+cs
 jH
 jH
 eF
@@ -55687,10 +55225,10 @@ ir
 ir
 cV
 dp
-eb
-eI
-fl
-gm
+il
+iE
+il
+iE
 il
 iE
 jq
@@ -55993,7 +55531,7 @@ ec
 eJ
 eJ
 eJ
-im
+eJ
 iF
 aF
 aF
@@ -56293,10 +55831,10 @@ jw
 dq
 ee
 ef
-fs
+ft
+eW
 ft
 ft
-iH
 aF
 aF
 lJ
@@ -56593,8 +56131,8 @@ ab
 ab
 jw
 dq
-ef
-ef
+eg
+eq
 ft
 ft
 ft
@@ -56896,8 +56434,8 @@ ab
 jw
 dq
 eg
+eM
 ef
-eg
 gK
 ft
 iN
@@ -57196,16 +56734,16 @@ ab
 ab
 ab
 jw
-do
+dq
 eh
-eh
-eh
-eh
-eh
+eq
+ft
+ef
+ft
 iO
 js
 kz
-me
+mc
 mc
 rv
 wV
@@ -57498,13 +57036,13 @@ ab
 ab
 ab
 jw
-dp
-ej
-eb
-eb
-ej
-ej
-iT
+dq
+em
+ft
+ft
+eY
+ft
+ft
 aF
 aF
 mf
@@ -57801,14 +57339,14 @@ ab
 ab
 cV
 do
-ek
-dp
-dp
-dp
-in
 iV
-aF
-aF
+iV
+iV
+iV
+iV
+iV
+dp
+fa
 js
 js
 js
@@ -58103,13 +57641,13 @@ ab
 ir
 cV
 dp
-em
-dp
-fu
-gM
 ej
-iW
-dp
+ej
+ej
+ej
+ej
+ej
+eV
 kA
 bU
 mP
@@ -58403,16 +57941,16 @@ ab
 ab
 ir
 cR
-cU
+do
 do
 dp
+eV
 dp
-dp
-dp
+eV
 iq
-iZ
-jz
-jU
+dp
+dp
+dp
 bU
 mT
 sy
@@ -58436,8 +57974,8 @@ jH
 jH
 jH
 jH
-Ej
-Ej
+Wf
+Wf
 Wf
 Wf
 Wf
@@ -58705,17 +58243,17 @@ ab
 ab
 ir
 jH
-jH
-jH
-jH
-jH
-jH
-fv
-fv
-fv
-jA
-fv
-fv
+do
+dr
+en
+eo
+dp
+kA
+kE
+kE
+kE
+kE
+kE
 mP
 sA
 sy
@@ -58737,9 +58275,9 @@ jH
 jH
 jH
 jH
-iI
-ir
-ir
+kp
+ab
+ab
 ab
 We
 ab
@@ -59007,18 +58545,18 @@ ab
 ab
 cE
 jH
-jH
-jH
-jH
-jH
-fv
-fv
-it
+dp
+ds
+eo
+eo
+dp
+eZ
+kE
 gO
 jB
 kB
-fv
-nm
+kE
+Ad
 sy
 xm
 Ad
@@ -59038,10 +58576,10 @@ kf
 jH
 jH
 jH
-ir
-iI
-ir
-ir
+ab
+kp
+ab
+ab
 ab
 ab
 ab
@@ -59309,16 +58847,16 @@ ab
 ab
 cE
 jH
-jH
-jH
-jH
-jH
-fv
-gO
-iu
-ja
+dp
+ds
+en
+eo
+dp
+dp
+kE
+nm
 jC
-kC
+Ad
 mg
 nu
 sy
@@ -59340,9 +58878,9 @@ jH
 jH
 jH
 jH
-ir
-iI
-ir
+ab
+kp
+ab
 ab
 ab
 ab
@@ -59611,17 +59149,17 @@ ab
 ab
 cG
 cG
-jH
-jH
-jH
-jH
-fv
+dp
+dp
+dp
+dp
+dp
 gR
-he
-he
-jD
+kE
+nm
+Ad
 kD
-fv
+kE
 ny
 sD
 sy
@@ -59642,8 +59180,8 @@ jH
 jH
 jH
 jU
-ir
-iI
+ab
+kp
 ab
 ab
 ab
@@ -59917,14 +59455,14 @@ cG
 jH
 jH
 jH
-fv
 he
-iv
 he
-jE
 kE
-fv
-nm
+kE
+kE
+kE
+kE
+Ad
 sy
 xw
 Ap
@@ -59944,7 +59482,7 @@ jH
 jH
 jU
 jU
-ir
+ab
 kp
 ab
 ab
@@ -60219,13 +59757,13 @@ cE
 jH
 jH
 jH
-fv
-fv
-it
 he
-jI
+he
 kH
-fv
+kH
+kH
+kH
+kE
 nL
 sI
 xG
@@ -60245,7 +59783,7 @@ kf
 jH
 jU
 jU
-ir
+ab
 ab
 kp
 ab
@@ -60523,14 +60061,14 @@ jH
 jH
 jH
 jH
-fv
-fv
-fv
-jA
-fv
-oA
-nu
-oA
+kH
+kH
+kH
+kH
+bU
+bU
+bU
+bU
 bU
 bU
 bU
@@ -60547,7 +60085,7 @@ jU
 jU
 jU
 jU
-ir
+ab
 ab
 kp
 ab
@@ -60828,11 +60366,11 @@ jH
 jH
 jH
 jH
-kK
 jH
-dr
-te
-dr
+jH
+jH
+jH
+jH
 jH
 jH
 jH
@@ -60849,7 +60387,7 @@ jU
 jU
 jU
 jU
-ir
+ab
 ab
 KD
 ab
@@ -61129,12 +60667,12 @@ jH
 jH
 jH
 jH
-dr
-kK
-dr
-dr
-tl
-dr
+jH
+jH
+jH
+jH
+jH
+jH
 jH
 jH
 jH
@@ -61431,12 +60969,12 @@ jH
 jH
 jH
 jH
-dr
-kM
-mh
-eW
-eW
-dr
+jH
+jH
+jH
+jH
+jH
+jH
 jH
 jH
 jH
@@ -61733,12 +61271,12 @@ jH
 jH
 jH
 jH
-dr
-kN
-eW
-eW
-to
-dr
+jH
+jH
+jH
+jH
+jH
+jH
 jH
 jH
 jH
@@ -62028,19 +61566,19 @@ ab
 ab
 jH
 jH
-dr
-dr
-dr
-dr
-dr
-dr
-dr
-dr
-kO
-mi
-eW
-eW
-dr
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+ab
+jH
+jH
 jH
 jH
 Hs
@@ -62330,19 +61868,19 @@ ab
 ab
 ab
 jH
-ds
-en
-eM
-fx
-hj
-iw
-jb
-jK
-kR
-ds
-oF
-ds
-dr
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+ab
+ab
+jH
 jH
 jH
 Hs
@@ -62632,18 +62170,18 @@ ab
 ab
 ab
 jH
-ds
-eo
-eV
-eW
-hq
-eW
-eW
-ds
-ds
-ds
-oJ
-ds
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+ab
+jH
 jH
 jH
 jH
@@ -62934,19 +62472,19 @@ We
 ab
 ab
 ab
-ds
-eq
-eW
-eW
-hs
-ix
-jc
-ds
 jH
-ds
-oR
-ds
-cG
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+ab
+ab
+ab
+jH
+jH
 jH
 jH
 Hs
@@ -63236,18 +62774,18 @@ ab
 ab
 ab
 ab
-ds
-ds
-eY
-eY
-eY
-eY
-ds
-ds
-hE
-ml
-cq
-kU
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+ab
+ab
+ab
+ab
 cG
 hE
 hE
@@ -63532,25 +63070,25 @@ aa
 aa
 ab
 ab
-bF
-xz
-xz
-xz
-xz
-xz
-xz
-ds
-eZ
-eZ
-hu
-eZ
-ds
-xz
-xz
-kU
-cq
-kU
-xJ
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+jH
+jH
+jH
+jH
+jH
+jH
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 cG
@@ -63834,25 +63372,25 @@ aa
 aa
 aa
 ab
-jw
-co
-ke
-ke
-ke
-ke
-ke
-ke
-fa
-fa
-fa
-fa
-ke
-ke
-ke
-mm
-fa
-ty
-kv
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+jH
+jH
+jH
+jH
+jH
+jH
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -64136,8 +63674,6 @@ aa
 aa
 aa
 ab
-jw
-cq
 ab
 ab
 ab
@@ -64149,12 +63685,14 @@ ab
 ab
 ab
 ab
+jH
+jH
+jH
+jH
 ab
 ab
 ab
 ab
-cq
-kv
 ab
 ab
 ab
@@ -64438,8 +63976,6 @@ aa
 aa
 aa
 ab
-jw
-cq
 ab
 ab
 ab
@@ -64455,8 +63991,10 @@ ab
 ab
 ab
 ab
-cq
-kv
+ab
+ab
+ab
+ab
 ab
 kg
 Ne
@@ -64740,8 +64278,6 @@ aa
 aa
 aa
 ab
-jw
-cq
 ab
 ab
 ab
@@ -64757,8 +64293,10 @@ ab
 ab
 ab
 ab
-cq
-kv
+ab
+ab
+ab
+ab
 ab
 hi
 YB
@@ -65042,8 +64580,6 @@ aa
 aa
 aa
 ab
-jw
-cq
 ab
 ab
 ab
@@ -65059,8 +64595,10 @@ ab
 ab
 ab
 ab
-cq
-kv
+ab
+ab
+ab
+ab
 ab
 hi
 YB
@@ -65344,8 +64882,6 @@ aa
 aa
 aa
 ab
-jw
-cq
 ab
 ab
 ab
@@ -65361,8 +64897,10 @@ ab
 ab
 ab
 ab
-cq
-kv
+ab
+ab
+ab
+ab
 ab
 Gf
 Gf
@@ -65646,8 +65184,6 @@ aa
 aa
 aa
 ab
-gi
-cq
 ab
 ab
 ab
@@ -65663,8 +65199,10 @@ ab
 ab
 ab
 ab
-cq
-kv
+ab
+ab
+ab
+ab
 ab
 ab
 hi
@@ -65948,8 +65486,6 @@ aa
 aa
 aa
 ab
-jw
-cq
 ab
 ab
 ab
@@ -65965,8 +65501,10 @@ ab
 ab
 ab
 ab
-cq
-kv
+ab
+ab
+ab
+ab
 ab
 ab
 Gf
@@ -66250,8 +65788,6 @@ aa
 aa
 aa
 ab
-jw
-cq
 ab
 ab
 ab
@@ -66267,8 +65803,10 @@ ab
 ab
 ab
 ab
-cq
-kv
+ab
+ab
+ab
+ab
 We
 ab
 ab
@@ -66552,8 +66090,6 @@ aa
 aa
 aa
 ab
-jw
-cq
 ab
 ab
 ab
@@ -66569,8 +66105,10 @@ ab
 ab
 ab
 ab
-cq
-kv
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -66854,8 +66392,6 @@ aa
 aa
 aa
 ab
-jw
-cq
 ab
 ab
 ab
@@ -66871,8 +66407,10 @@ ab
 ab
 ab
 ab
-cq
-kv
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -67156,8 +66694,6 @@ aa
 aa
 aa
 ab
-jw
-cq
 ab
 ab
 ab
@@ -67173,8 +66709,10 @@ ab
 ab
 ab
 ab
-cq
-kv
+ab
+ab
+ab
+ab
 ab
 We
 ab
@@ -67458,8 +66996,6 @@ aa
 aa
 ab
 ab
-jw
-cq
 ab
 ab
 ab
@@ -67475,8 +67011,10 @@ ab
 ab
 ab
 ab
-cq
-kv
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -67760,8 +67298,6 @@ aa
 aa
 ab
 ab
-jw
-cq
 ab
 ab
 ab
@@ -67777,8 +67313,10 @@ ab
 ab
 ab
 ab
-cq
-kv
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -68062,8 +67600,6 @@ aa
 aa
 ab
 ab
-jw
-cq
 ab
 ab
 ab
@@ -68079,8 +67615,10 @@ ab
 ab
 ab
 ab
-cq
-kv
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -68364,8 +67902,6 @@ aa
 aa
 ab
 ab
-jw
-cq
 ab
 ab
 ab
@@ -68381,8 +67917,10 @@ ab
 ab
 ab
 ab
-cq
-kv
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -68666,25 +68204,25 @@ aa
 aa
 ab
 ab
-jw
-cs
-ke
-ke
-ke
-ke
-ke
-ke
-ke
-ke
-ke
-ke
-ke
-ke
-ke
-ke
-ke
-tL
-kv
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -68968,25 +68506,25 @@ aa
 aa
 ab
 ab
-bN
-Wf
-Wf
-Wf
-Wf
-Wf
-Wf
-Wf
-Wf
-Wf
-Wf
-Wf
-Wf
-Wf
-Wf
-Wf
-Wf
-Wf
-xU
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
