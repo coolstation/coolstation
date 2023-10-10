@@ -645,11 +645,6 @@
 	},
 /turf/floor/bot,
 /area/space_hive)
-"abZ" = (
-/turf/floor{
-	icon_state = "floor"
-	},
-/area/space_hive)
 "aca" = (
 /turf/floor/grime{
 	carbon_dioxide = 16;
@@ -698,9 +693,7 @@
 /area/space_hive)
 "acf" = (
 /obj/stool/bed,
-/turf/floor{
-	icon_state = "floor"
-	},
+/turf/floor,
 /area/space_hive)
 "acg" = (
 /turf/floor/red/side{
@@ -813,9 +806,7 @@
 /area/space_hive)
 "acx" = (
 /obj/critter/domestic_bee/overbee,
-/turf/floor{
-	icon_state = "floor"
-	},
+/turf/floor,
 /area/space_hive)
 "acy" = (
 /obj/stool/chair/comfy{
@@ -824,9 +815,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/floor{
-	icon_state = "floor"
-	},
+/turf/floor,
 /area/space_hive)
 "acz" = (
 /obj/machinery/light/small{
@@ -934,9 +923,7 @@
 /area/space_hive)
 "acQ" = (
 /obj/item/plant/herb/cannabis/spawnable,
-/turf/floor{
-	icon_state = "floor"
-	},
+/turf/floor,
 /area/space_hive)
 "acR" = (
 /turf/floor/plating/airless/asteroid/lighted,
@@ -6820,9 +6807,6 @@
 	dir = 6
 	},
 /area/space)
-"avc" = (
-/turf/space,
-/area/diner/tug)
 "avd" = (
 /obj/decal/cleanable/dirt,
 /turf/space,
@@ -6851,12 +6835,6 @@
 /obj/item/weldingtool,
 /turf/floor/plating,
 /area/buddyfactory)
-"avh" = (
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
-/area/diner/tug)
 "avn" = (
 /obj/decal/cleanable/dirt,
 /obj/item/electronics/capacitor,
@@ -6901,66 +6879,6 @@
 /turf/space,
 /turf/wall/asteroid,
 /area/space)
-"avt" = (
-/turf/shuttle/wall{
-	dir = 5;
-	icon_state = "wall3dir"
-	},
-/area/diner/tug)
-"avu" = (
-/obj/machinery/door/airlock/external,
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/diner/tug)
-"avv" = (
-/turf/shuttle/wall{
-	dir = 1;
-	icon_state = "wall3_space"
-	},
-/area/diner/tug)
-"avw" = (
-/obj/decal/poster/wallsign/stencil/left/b,
-/obj/decal/poster/wallsign/stencil/left/i{
-	pixel_x = 5
-	},
-/obj/decal/poster/wallsign/stencil/right/g,
-/turf/shuttle/wall{
-	dir = 5;
-	icon_state = "wall3dir"
-	},
-/area/diner/tug)
-"avx" = (
-/obj/decal/poster/wallsign/stencil/left/y{
-	pixel_x = -1
-	},
-/obj/decal/poster/wallsign/stencil/right/a,
-/turf/shuttle/wall{
-	dir = 5;
-	icon_state = "wall3dir"
-	},
-/area/diner/tug)
-"avy" = (
-/obj/decal/poster/wallsign/stencil/left/n{
-	pixel_x = -7
-	},
-/obj/decal/poster/wallsign/stencil/right/k{
-	pixel_x = 5
-	},
-/obj/decal/poster/wallsign/stencil/right/s{
-	pixel_x = 15
-	},
-/turf/shuttle/wall{
-	dir = 5;
-	icon_state = "wall3dir"
-	},
-/area/diner/tug)
-"avz" = (
-/turf/shuttle/wall{
-	dir = 6;
-	icon_state = "diagonalWall3"
-	},
-/area/diner/tug)
 "avA" = (
 /obj/machinery/door/poddoor/blast{
 	dir = 1;
@@ -7212,148 +7130,12 @@
 	},
 /turf/space,
 /area/space)
-"awy" = (
-/obj/window/reinforced/east,
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/diner/tug)
-"awB" = (
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/diner/tug)
 "awC" = (
 /obj/item/storage/toilet{
 	dir = 4
 	},
 /turf/floor/white,
 /area/buddyfactory)
-"awD" = (
-/obj/decal/fakeobjects/pipe{
-	dir = 8;
-	icon = 'icons/obj/atmospherics/pipes/manifold_pipe.dmi';
-	icon_state = "manifold"
-	},
-/obj/decal/cleanable/dirt,
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/diner/tug)
-"awE" = (
-/obj/decal/fakeobjects/pipe{
-	dir = 4
-	},
-/obj/decal/cleanable/dirt,
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/diner/tug)
-"awF" = (
-/obj/decal/fakeobjects/pipe{
-	dir = 4
-	},
-/obj/decal/fakeobjects{
-	anchored = 1;
-	density = 1;
-	desc = "A large rack of server modules.  It appears to be in a low-power idle state.";
-	icon = 'icons/obj/networked.dmi';
-	icon_state = "server0";
-	name = "idle server"
-	},
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 10
-	},
-/obj/machinery/light/small/cool/very{
-	dir = 1
-	},
-/turf/floor/plating,
-/area/diner/tug)
-"awG" = (
-/obj/decal/fakeobjects/pipe{
-	dir = 4
-	},
-/obj/decal/tile_edge/stripe/extra_big,
-/obj/indestructible/shuttle_corner{
-	icon_state = "wall3_trans"
-	},
-/turf/floor/plating,
-/area/diner/tug)
-"awH" = (
-/obj/decal/fakeobjects/pipe{
-	dir = 4
-	},
-/obj/indestructible/shuttle_corner{
-	dir = 4;
-	icon_state = "wall3_trans"
-	},
-/turf/shuttle/wall{
-	dir = 6;
-	icon_state = "wall3"
-	},
-/area/diner/tug)
-"awM" = (
-/obj/decal/fakeobjects/pipe{
-	dir = 4
-	},
-/obj/decal/fakeobjects/pipe{
-	dir = 1
-	},
-/obj/decal/cleanable/dirt,
-/obj/storage/crate{
-	desc = "A small, cuboid object with a hinged top and empty interior. It smells kinda bad and seems to have an odd stain on it.";
-	icon = 'icons/misc/halloween.dmi';
-	name = "dented crate"
-	},
-/obj/item/paper/tug/invoice,
-/obj/item/card_group/stg,
-/obj/item/pen/fancy,
-/obj/item/raw_material/fabric,
-/obj/item/raw_material/fibrilith,
-/obj/item/raw_material/fibrilith,
-/obj/item/raw_material/fibrilith,
-/obj/item/raw_material/shard/plasmacrystal,
-/obj/item/reagent_containers/food/drinks/cola/random,
-/obj/item/reagent_containers/food/drinks/fueltank,
-/obj/item/device/audio_log/ht_3,
-/turf/floor/shuttlebay,
-/area/diner/tug)
-"awN" = (
-/obj/decal/fakeobjects/pipe{
-	desc = "It won't budge.";
-	dir = 4;
-	icon = 'icons/obj/pipe-item.dmi';
-	icon_state = "valve";
-	name = "rusted valve"
-	},
-/turf/floor/shuttlebay,
-/area/diner/tug)
-"awO" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	density = 1;
-	desc = "An engine part.  Looks like it's cooling down!";
-	icon = 'icons/obj/atmospherics/pipes.dmi';
-	icon_state = "old_circ1-slow";
-	name = "old engine bits"
-	},
-/turf/floor/shuttlebay,
-/area/diner/tug)
-"awP" = (
-/obj/window/reinforced/west,
-/obj/window/reinforced/east,
-/obj/grille/steel,
-/obj/decal/fakeobjects/shuttleengine{
-	dir = 4
-	},
-/turf/floor/shuttlebay,
-/area/diner/tug)
-"awQ" = (
-/obj/decal/fakeobjects/shuttlethruster{
-	dir = 8
-	},
-/turf/space,
-/area/diner/tug)
 "awR" = (
 /obj/machinery/door/poddoor/blast{
 	dir = 1;
@@ -8597,50 +8379,12 @@
 	},
 /turf/floor/grime,
 /area/diner/hallway)
-"azM" = (
-/obj/lattice{
-	dir = 9;
-	icon_state = "lattice-dir"
-	},
-/obj/machinery/light/runway_light/delay2,
-/turf/space,
-/area/diner/tug)
-"azN" = (
-/obj/lattice{
-	dir = 4;
-	icon_state = "lattice-dir-b";
-	tag = "icon-lattice-dir-b (EAST)"
-	},
-/turf/space,
-/area/diner/tug)
 "azO" = (
 /obj/machinery/hydro_growlamp,
 /turf/floor/shuttle{
 	icon_state = "floor3"
 	},
 /area/salyut)
-"azP" = (
-/obj/lattice{
-	dir = 4;
-	icon_state = "lattice-dir-b";
-	tag = "icon-lattice-dir-b (EAST)"
-	},
-/turf/shuttle/wall/cockpit{
-	dir = 8;
-	icon_state = "shuttlecock_mining"
-	},
-/area/diner/tug)
-"azQ" = (
-/obj/stool/chair/comfy{
-	dir = 8
-	},
-/obj/landmark/spawner{
-	name = "big_yank"
-	},
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/diner/tug)
 "azR" = (
 /obj/decal/fakeobjects/lightbulb_broken,
 /obj/reagent_dispensers/watertank/big,
@@ -8740,39 +8484,12 @@
 	icon_state = "wall_space"
 	},
 /area/salyut)
-"aAi" = (
-/obj/decal/fakeobjects/pipe{
-	desc = "It won't budge.";
-	icon = 'icons/obj/pipe-item.dmi';
-	icon_state = "valve";
-	name = "rusted valve"
-	},
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/diner/tug)
 "aAj" = (
 /turf/shuttle/wall{
 	dir = 4;
 	icon_state = "wall_space"
 	},
 /area/salyut)
-"aAk" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "Like conventional cables, but more burly.";
-	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
-	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit"
-	},
-/obj/decal/cleanable/dirt,
-/obj/decal/cleanable/dirt,
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/diner/tug)
 "aAl" = (
 /obj/critter/gunbot/drone/cutterdrone,
 /turf/floor/plating/airless/asteroid,
@@ -11719,48 +11436,12 @@
 /obj/map/light/white,
 /turf/floor/airless/plating/damaged1,
 /area/abandonedmedicalship)
-"aIh" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "Like conventional cables, but more burly.";
-	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
-	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit";
-	tag = "icon-conduit (EAST)"
-	},
-/obj/decal/cleanable/dirt,
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/diner/tug)
 "aIi" = (
 /obj/table/auto,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/storage/box/grenade_starter_kit,
 /turf/floor/airless/damaged2,
 /area/abandonedmedicalship)
-"aIj" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "Like conventional cables, but more burly.";
-	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
-	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit";
-	tag = "icon-conduit (EAST)"
-	},
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 4
-	},
-/obj/decal/cleanable/dirt,
-/obj/machinery/light/small/cool/very,
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/diner/tug)
 "aIk" = (
 /obj/decal/cleanable/dirt,
 /obj/table/auto,
@@ -11983,27 +11664,6 @@
 	icon_state = "fred2"
 	},
 /area/radiostation/bedroom)
-"aIS" = (
-/obj/machinery/door/airlock/external{
-	name = "Compartment Hatch"
-	},
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "Like conventional cables, but more burly.";
-	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
-	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit";
-	tag = "icon-conduit (EAST)"
-	},
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 4
-	},
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/diner/tug)
 "aIT" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 5
@@ -12241,23 +11901,6 @@
 /obj/lattice,
 /turf/space,
 /area/abandonedmedicalship)
-"aJA" = (
-/obj/decal/fakeobjects/pipe{
-	icon = 'icons/obj/atmospherics/pipe_vent.dmi'
-	},
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "Like conventional cables, but more burly.";
-	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
-	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit";
-	tag = "icon-conduit (EAST)"
-	},
-/obj/decal/cleanable/dirt,
-/turf/floor/shuttlebay,
-/area/diner/tug)
 "aJB" = (
 /obj/table/flock/auto,
 /obj/machinery/light/flock{
@@ -12267,25 +11910,6 @@
 /obj/item/device/flockblocker,
 /turf/floor/shuttle/flock,
 /area/flock_trader)
-"aJC" = (
-/obj/decal/fakeobjects/pipe{
-	desc = "It won't budge.";
-	icon = 'icons/obj/pipe-item.dmi';
-	icon_state = "valve";
-	name = "rusted valve"
-	},
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "Like conventional cables, but more burly.";
-	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
-	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit";
-	tag = "icon-conduit (EAST)"
-	},
-/turf/floor/shuttlebay,
-/area/diner/tug)
 "aJD" = (
 /turf/shuttle/wall{
 	dir = 4;
@@ -12443,42 +12067,6 @@
 /turf/space,
 /turf/floor/airless/plating/catwalk,
 /area/derelict_ai_sat/solar)
-"aJX" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "Like conventional cables, but more burly.";
-	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
-	icon_state = "conduit";
-	layer = 2.5;
-	name = "power conduit";
-	tag = "icon-conduit (EAST)"
-	},
-/turf/floor/shuttlebay,
-/area/diner/tug)
-"aJY" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	desc = "A vent.  A rather decrepit one, at that.";
-	icon = 'icons/obj/atmospherics/pipe_vent.dmi';
-	icon_state = "intact";
-	name = "crusty vent"
-	},
-/obj/decal/fakeobjects{
-	anchored = 1;
-	density = 1;
-	desc = "It's some sort of command repeater.";
-	icon = 'icons/obj/machines/nuclear.dmi';
-	icon_state = "neutinj";
-	name = "old machine"
-	},
-/obj/machinery/light/small/iomoon{
-	dir = 4;
-	name = "maintenance light";
-	tag = ""
-	},
-/turf/floor/shuttlebay,
-/area/diner/tug)
 "aJZ" = (
 /obj/storage/crate/loot,
 /turf/floor/plating/airless,
@@ -15164,7 +14752,6 @@
 "aQD" = (
 /obj/table/reinforced/auto,
 /obj/item/device/radio/intercom{
-	broadcasting = 0;
 	dir = 4;
 	frequency = 1489;
 	name = "Prison Ship Intercom"
@@ -23544,12 +23131,6 @@
 	},
 /turf/floor/grime,
 /area/iss)
-"bmC" = (
-/turf/shuttle/wall{
-	dir = 10;
-	icon_state = "diagonalWall3"
-	},
-/area/diner/tug)
 "bmF" = (
 /obj/decal/cleanable/robot_debris{
 	icon_state = "gib2"
@@ -23593,77 +23174,12 @@
 /obj/machinery/shuttle/engine/propulsion,
 /turf/space,
 /area/space)
-"bmO" = (
-/obj/machinery/light/small/cool/very,
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/diner/tug)
-"bmR" = (
-/obj/decal/fakeobjects/pipe{
-	dir = 1;
-	tag = "icon-intact (NORTH)"
-	},
-/obj/decal/cleanable/dirt,
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/diner/tug)
-"bmU" = (
-/obj/decal/cleanable/dirt,
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/diner/tug)
-"bmX" = (
-/obj/table/auto,
-/obj/item/decoration/ashtray{
-	butts = 5;
-	name = "grubby old ashtray"
-	},
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 9
-	},
-/turf/floor/plating,
-/area/diner/tug)
-"bmY" = (
-/obj/table/auto,
-/obj/item/storage/toolbox/mechanical,
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 1
-	},
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
-	},
-/turf/floor/plating,
-/area/diner/tug)
-"bna" = (
-/obj/decal/fakeobjects/pipe{
-	icon = 'icons/obj/atmospherics/pipes/manifold_pipe.dmi';
-	icon_state = "manifold"
-	},
-/turf/shuttle/wall{
-	dir = 6;
-	icon_state = "diagonalWall3"
-	},
-/area/diner/tug)
 "bng" = (
 /obj/item/storage/secure/ssafe/pilot_cargo2{
 	pixel_x = 32
 	},
 /turf/floor/airless/plating/damaged1,
 /area/abandonedship)
-"bni" = (
-/obj/decal/fakeobjects/pipe{
-	dir = 4
-	},
-/obj/decal/fakeobjects/pipe{
-	icon = 'icons/obj/atmospherics/pipes/manifold_pipe.dmi';
-	icon_state = "manifold"
-	},
-/turf/floor/shuttlebay,
-/area/diner/tug)
 "bnk" = (
 /obj/machinery/door/poddoor/blast{
 	dir = 1;
@@ -24191,63 +23707,10 @@
 /obj/machinery/light/runway_light/delay5,
 /turf/space,
 /area/space)
-"dLJ" = (
-/obj/machinery/door/airlock/external,
-/obj/decal/cleanable/dirt,
-/turf/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/diner/tug)
-"dLL" = (
-/turf/shuttle/wall{
-	dir = 4;
-	icon_state = "wall3_space"
-	},
-/area/diner/tug)
-"dNe" = (
-/obj/decal/poster/wallsign/stencil/left/c{
-	pixel_x = -5
-	},
-/obj/decal/poster/wallsign/stencil/left/h{
-	pixel_x = 5
-	},
-/obj/decal/poster/wallsign/stencil/right/e{
-	pixel_x = 16
-	},
-/turf/shuttle/wall{
-	dir = 5;
-	icon_state = "wall3dir"
-	},
-/area/diner/tug)
 "dOj" = (
 /obj/decal/cleanable/dirt/jen,
 /turf/floor/carpet/green/standard/edge/ne,
 /area/diner/jucer_trader)
-"dQX" = (
-/obj/decal/poster/wallsign/stencil/right/t{
-	pixel_x = 19
-	},
-/obj/decal/poster/wallsign/stencil/left/a{
-	pixel_x = -5
-	},
-/obj/decal/poster/wallsign/stencil/right/p{
-	pixel_x = 5
-	},
-/turf/shuttle/wall{
-	dir = 5;
-	icon_state = "wall3dir"
-	},
-/area/diner/tug)
-"dSk" = (
-/obj/decal/poster/wallsign/stencil/right/g,
-/obj/decal/poster/wallsign/stencil/left/u{
-	pixel_x = 0
-	},
-/turf/shuttle/wall{
-	dir = 5;
-	icon_state = "wall3dir"
-	},
-/area/diner/tug)
 "dSY" = (
 /obj/neon_lining{
 	color = "#FF00FF";
@@ -25147,8 +24610,7 @@
 /area/diner/jucer_trader)
 "ivG" = (
 /obj/noticeboard{
-	pixel_x = 10;
-	pixel_y = 32
+	pixel_x = 10
 	},
 /turf/floor/wood/two,
 /area/radiostation/bedroom)
@@ -45491,8 +44953,8 @@ abm
 aaW
 abH
 abY
-abZ
-abZ
+abk
+abk
 abk
 abk
 aed
@@ -45792,8 +45254,8 @@ aaf
 aaf
 abw
 abH
-abZ
-abZ
+abk
+abk
 abk
 abk
 abk
@@ -46095,7 +45557,7 @@ abm
 aaW
 abH
 aca
-abZ
+abk
 abY
 adi
 abk
@@ -49719,7 +49181,7 @@ abo
 abk
 aaO
 acf
-abZ
+abk
 acQ
 aaO
 abk
@@ -50020,9 +49482,9 @@ abk
 abp
 aba
 abL
-abZ
-abZ
-abZ
+abk
+abk
+abk
 adk
 abk
 abk
@@ -50322,9 +49784,9 @@ abk
 abq
 aba
 abM
-abZ
+abk
 acx
-abZ
+abk
 adk
 aba
 aba
@@ -50624,9 +50086,9 @@ aed
 abk
 abk
 aaO
-abZ
+abk
 acy
-abZ
+abk
 aaO
 adC
 aef
@@ -63044,7 +62506,7 @@ aaa
 aaa
 aaa
 aaa
-azM
+aaa
 aaa
 aaa
 aaa
@@ -63346,7 +62808,7 @@ aaa
 aaa
 aaa
 aaa
-azN
+aaa
 aaa
 aaa
 aaa
@@ -63647,9 +63109,9 @@ aaa
 aaa
 aaa
 aaa
-avc
-azN
-avc
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -63948,11 +63410,11 @@ aaa
 aaa
 aaa
 aaa
-avc
-avh
-azP
-bmC
-avc
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -64250,11 +63712,11 @@ aaa
 aaa
 aaa
 aaa
-avh
-awy
-awy
-awy
-bmC
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -64552,11 +64014,11 @@ aaa
 aaa
 aaa
 aaa
-avt
-awB
-azQ
-bmO
-avt
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -64853,13 +64315,13 @@ aaa
 aaa
 aaa
 aaa
-adF
-avt
-awD
-aAi
-bmR
-avt
-agV
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -65155,13 +64617,13 @@ aaa
 aaa
 aaa
 aaa
-aoJ
-avu
-awE
-awB
-bmU
-dLJ
-aoJ
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -65457,13 +64919,13 @@ aaa
 aaa
 aaa
 aaa
-aax
-avt
-awF
-aAk
-bmX
-avt
-aeH
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -65760,11 +65222,11 @@ aaa
 aaa
 aaa
 aaa
-avv
-awG
-aIh
-bmY
-dLL
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -66062,11 +65524,11 @@ aaa
 aaa
 aaa
 aaa
-afs
-avt
-aIj
-avt
-aeZ
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -66364,11 +65826,11 @@ aaa
 aaa
 aaa
 aaa
-afs
-avt
-aIS
-avt
-aeZ
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -66666,11 +66128,11 @@ aaa
 aaa
 aaa
 aaa
-avh
-awH
-aJA
-bna
-bmC
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -66967,13 +66429,13 @@ aaa
 aaa
 aaa
 aaa
-afs
-avw
-awM
-aJC
-bni
-dNe
-aeZ
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaj
 aaa
@@ -67270,11 +66732,11 @@ aaa
 aaa
 aaa
 aaa
-avx
-awN
-aJX
-awN
-dQX
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 afs
 tnr
@@ -67571,13 +67033,13 @@ aaa
 aaa
 aaa
 aaa
-afs
-avy
-awO
-aJY
-awO
-dSk
-aeZ
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 ahe
 aaa
@@ -67874,11 +67336,11 @@ aaa
 aaa
 aaa
 aaa
-avz
-awP
-awP
-awP
-dLL
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aao
@@ -68177,9 +67639,9 @@ aaa
 aaa
 aaa
 aaa
-awQ
-awQ
-awQ
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa

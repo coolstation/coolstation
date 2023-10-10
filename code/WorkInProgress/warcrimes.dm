@@ -28,7 +28,7 @@ var/fartcount = 0
 		desc += " The only thing you can make out is the consecration date:<br><span style='color:green;'>Erected on this [BUILD_TIME_DAY]th day of the [BUILD_TIME_MONTH]th orbit, 2047, at pretty much exactly [BUILD_TIME_HOUR]:[BUILD_TIME_MINUTE]:[BUILD_TIME_SECOND].</span><br>That's disturbingly specific."
 
 /area/diner/tug
-	icon_state = "green"
+	icon_state = "yellow"
 	name = "Big Yank's Cheap Tug"
 
 /area/diner/jucer_trader

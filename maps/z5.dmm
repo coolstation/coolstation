@@ -228,6 +228,17 @@
 "cv" = (
 /turf/floor/plating/airless,
 /area/mining/mainasteroid)
+"cy" = (
+/obj/decal/fakeobjects/pipe{
+	icon = 'icons/obj/atmospherics/pipes/manifold_pipe.dmi';
+	icon_state = "manifold"
+	},
+/obj/indestructible/shuttle_corner{
+	dir = 1;
+	icon_state = "wall3_trans"
+	},
+/turf/floor/engine/glow,
+/area/diner/tug)
 "cz" = (
 /turf/wall/auto/supernorn,
 /area/gas_station/schweewa)
@@ -961,6 +972,12 @@
 	},
 /turf/floor/plating,
 /area/gas_station)
+"ge" = (
+/obj/decal/cleanable/dirt,
+/turf/floor/shuttle{
+	icon_state = "floor2"
+	},
+/area/diner/tug)
 "gi" = (
 /obj/lattice{
 	dir = 8;
@@ -995,6 +1012,16 @@
 	},
 /turf/floor/plating,
 /area/tech_outpost)
+"gy" = (
+/obj/decal/fakeobjects/pipe{
+	dir = 4
+	},
+/obj/decal/fakeobjects/pipe{
+	icon = 'icons/obj/atmospherics/pipes/manifold_pipe.dmi';
+	icon_state = "manifold"
+	},
+/turf/floor/engine/glow,
+/area/diner/tug)
 "gA" = (
 /obj/grille/catwalk{
 	dir = 4
@@ -1582,6 +1609,17 @@
 /obj/item/reagent_containers/food/snacks/snack_cake,
 /turf/floor/grime,
 /area/gas_station/schweewa)
+"jn" = (
+/obj/decal/fakeobjects/pipe{
+	dir = 8;
+	icon = 'icons/obj/atmospherics/pipes/manifold_pipe.dmi';
+	icon_state = "manifold"
+	},
+/obj/decal/cleanable/dirt,
+/turf/floor/shuttle{
+	icon_state = "floor2"
+	},
+/area/diner/tug)
 "jq" = (
 /turf/wall,
 /area/mining/comms)
@@ -1710,6 +1748,15 @@
 /obj/machinery/power/apc/autoname_west,
 /turf/floor,
 /area/mining/exit_east)
+"kc" = (
+/obj/decal/fakeobjects/pipe{
+	dir = 4
+	},
+/obj/decal/cleanable/dirt,
+/turf/floor/shuttle{
+	icon_state = "floor2"
+	},
+/area/diner/tug)
 "ke" = (
 /obj/grille/catwalk,
 /turf/floor/airless/plating/catwalk,
@@ -2000,6 +2047,23 @@
 	},
 /turf/floor/grime,
 /area/mining/comms)
+"lH" = (
+/obj/machinery/door/airlock/external,
+/obj/decal/cleanable/dirt,
+/turf/floor/shuttle{
+	icon_state = "floor2"
+	},
+/area/diner/tug)
+"lI" = (
+/obj/decal/poster/wallsign/stencil/left/y{
+	pixel_x = -1
+	},
+/obj/decal/poster/wallsign/stencil/right/a,
+/turf/shuttle/wall{
+	dir = 5;
+	icon_state = "wall3dir"
+	},
+/area/diner/tug)
 "lJ" = (
 /obj/machinery/dispenser{
 	pltanks = 0
@@ -2121,6 +2185,22 @@
 /turf/space,
 /turf/space,
 /area/noGenerate)
+"mk" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.5;
+	name = "power conduit";
+	tag = "icon-conduit (EAST)"
+	},
+/obj/decal/cleanable/dirt,
+/turf/floor/shuttle{
+	icon_state = "floor2"
+	},
+/area/diner/tug)
 "ml" = (
 /turf/space,
 /area/mining/magnet)
@@ -2219,6 +2299,14 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/floor/caution/east,
 /area/mining/miningoutpost)
+"mK" = (
+/obj/lattice{
+	dir = 9;
+	icon_state = "lattice-dir"
+	},
+/obj/machinery/light/runway_light/delay2,
+/turf/floor/airless/engine/caution,
+/area/diner/tug)
 "mN" = (
 /obj/cable{
 	d1 = 1;
@@ -2239,6 +2327,16 @@
 	},
 /turf/floor/grime,
 /area/mining/power)
+"mQ" = (
+/obj/decal/poster/wallsign/stencil/right/g,
+/obj/decal/poster/wallsign/stencil/left/u{
+	pixel_x = 0
+	},
+/turf/shuttle/wall{
+	dir = 5;
+	icon_state = "wall3dir"
+	},
+/area/diner/tug)
 "mT" = (
 /obj/machinery/light/fluorescent/auto{
 	dir = 1
@@ -2344,6 +2442,16 @@
 	},
 /turf/floor/grime,
 /area/mining/power)
+"nP" = (
+/obj/decal/fakeobjects/pipe{
+	dir = 1;
+	tag = "icon-intact (NORTH)"
+	},
+/obj/decal/cleanable/dirt,
+/turf/floor/shuttle{
+	icon_state = "floor2"
+	},
+/area/diner/tug)
 "nQ" = (
 /obj/reagent_dispensers/fueltank,
 /turf/floor/caution/east,
@@ -2369,6 +2477,23 @@
 	},
 /turf/floor/plating/damaged3,
 /area/spyshack)
+"ob" = (
+/obj/decal/fakeobjects/pipe{
+	icon = 'icons/obj/atmospherics/pipe_vent.dmi'
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.5;
+	name = "power conduit";
+	tag = "icon-conduit (EAST)"
+	},
+/obj/decal/cleanable/dirt,
+/turf/floor/engine/glow,
+/area/diner/tug)
 "oe" = (
 /obj/item/cable_coil/cut,
 /turf/floor/plating,
@@ -2388,6 +2513,13 @@
 	icon_state = "old_rwall"
 	},
 /area/spyshack)
+"oo" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/turf/floor/airless/engine/caution/north,
+/area/gas_station)
 "ot" = (
 /obj/rack,
 /obj/item/reagent_containers/food/snacks/chips,
@@ -2436,9 +2568,34 @@
 	},
 /turf/floor/plating/airless,
 /area/mining/magnet_control)
+"oQ" = (
+/obj/decal/poster/wallsign/stencil/right/t{
+	pixel_x = 19
+	},
+/obj/decal/poster/wallsign/stencil/left/a{
+	pixel_x = -5
+	},
+/obj/decal/poster/wallsign/stencil/right/p{
+	pixel_x = 5
+	},
+/turf/shuttle/wall{
+	dir = 5;
+	icon_state = "wall3dir"
+	},
+/area/diner/tug)
 "oR" = (
 /turf/wall/asteroid,
 /area/mining/magnet_control)
+"oT" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "It won't budge.";
+	dir = 4;
+	icon = 'icons/obj/pipe-item.dmi';
+	icon_state = "valve";
+	name = "rusted valve"
+	},
+/turf/floor/engine/glow,
+/area/diner/tug)
 "oU" = (
 /obj/decal/tile_edge/check/white{
 	dir = 5;
@@ -2469,6 +2626,30 @@
 	},
 /turf/floor/plating/airless,
 /area/mining/manufacturing)
+"pj" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 10;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.5;
+	name = "power conduit"
+	},
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/dirt,
+/obj/indestructible/shuttle_corner{
+	dir = 8;
+	icon_state = "wall3_trans"
+	},
+/obj/indestructible/shuttle_corner{
+	dir = 8;
+	icon_state = "wall3_trans"
+	},
+/turf/floor/shuttle{
+	icon_state = "floor2"
+	},
+/area/diner/tug)
 "pn" = (
 /obj/cable{
 	d1 = 1;
@@ -2587,6 +2768,21 @@
 "qu" = (
 /turf/floor/plating/damaged3,
 /area/spyshack)
+"qw" = (
+/obj/table/auto,
+/obj/item/decoration/ashtray{
+	butts = 5;
+	name = "grubby old ashtray"
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9
+	},
+/obj/indestructible/shuttle_corner{
+	dir = 8;
+	icon_state = "wall3_trans"
+	},
+/turf/floor/plating,
+/area/diner/tug)
 "qy" = (
 /obj/cable{
 	d2 = 4;
@@ -2725,6 +2921,27 @@
 /obj/railing/red,
 /turf/floor/airless/engine/caution,
 /area/gas_station)
+"rU" = (
+/obj/machinery/door/airlock/external{
+	name = "Compartment Hatch"
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.5;
+	name = "power conduit";
+	tag = "icon-conduit (EAST)"
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/turf/floor/shuttle{
+	icon_state = "floor2"
+	},
+/area/diner/tug)
 "si" = (
 /obj/machinery/atmospherics/pipe/tank/toxins/north,
 /turf/floor/airless/engine/caution,
@@ -2741,6 +2958,21 @@
 /obj/machinery/manufacturer/hangar,
 /turf/floor/caution/east,
 /area/tech_outpost)
+"sq" = (
+/obj/decal/poster/wallsign/stencil/left/c{
+	pixel_x = -5
+	},
+/obj/decal/poster/wallsign/stencil/left/h{
+	pixel_x = 5
+	},
+/obj/decal/poster/wallsign/stencil/right/e{
+	pixel_x = 16
+	},
+/turf/shuttle/wall{
+	dir = 5;
+	icon_state = "wall3dir"
+	},
+/area/diner/tug)
 "sy" = (
 /obj/cable{
 	d1 = 4;
@@ -2816,6 +3048,23 @@
 	},
 /turf/floor/delivery,
 /area/tech_outpost)
+"sS" = (
+/obj/stool/chair/comfy{
+	dir = 8
+	},
+/obj/landmark/spawner{
+	name = "big_yank"
+	},
+/turf/floor/shuttle{
+	icon_state = "floor2"
+	},
+/area/diner/tug)
+"sV" = (
+/turf/shuttle/wall{
+	dir = 5;
+	icon_state = "wall3dir"
+	},
+/area/diner/tug)
 "tb" = (
 /turf/wall/asteroid{
 	dir = 4
@@ -2946,6 +3195,13 @@
 /obj/machinery/door/airlock/external,
 /turf/floor/delivery,
 /area/mining/exit_south)
+"ud" = (
+/obj/neon_lining{
+	color = "#FF0000";
+	dir = 1
+	},
+/turf/space,
+/area/noGenerate)
 "uf" = (
 /obj/decal/tile_edge/check/white{
 	dir = 5;
@@ -3029,6 +3285,17 @@
 	},
 /turf/floor/plating,
 /area/spyshack)
+"uQ" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "An engine part.  Looks like it's cooling down!";
+	icon = 'icons/obj/atmospherics/pipes.dmi';
+	icon_state = "old_circ1-slow";
+	name = "old engine bits"
+	},
+/turf/floor/engine/glow,
+/area/diner/tug)
 "uW" = (
 /turf/floor/yellow/side{
 	dir = 1
@@ -3055,6 +3322,16 @@
 	dir = 5
 	},
 /area/noGenerate)
+"vk" = (
+/obj/decal/fakeobjects/pipe{
+	dir = 4
+	},
+/obj/indestructible/shuttle_corner{
+	dir = 4;
+	icon_state = "wall3_trans"
+	},
+/turf/floor/engine/glow,
+/area/diner/tug)
 "vm" = (
 /obj/machinery/light/small{
 	dir = 1;
@@ -3158,6 +3435,18 @@
 	},
 /turf/floor/plating/airless/asteroid,
 /area/noGenerate)
+"vN" = (
+/obj/neon_lining{
+	color = "#FF0000";
+	dir = 1
+	},
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir-b"
+	},
+/obj/machinery/light/runway_light/delay5,
+/turf/space,
+/area/noGenerate)
 "vR" = (
 /obj/table/auto,
 /obj/item/reagent_containers/food/snacks/sandwich/meatball,
@@ -3173,6 +3462,32 @@
 	},
 /turf/floor,
 /area/mining/manufacturing)
+"wa" = (
+/obj/decal/fakeobjects/pipe{
+	dir = 4
+	},
+/obj/decal/fakeobjects/pipe{
+	dir = 1
+	},
+/obj/decal/cleanable/dirt,
+/obj/storage/crate{
+	desc = "A small, cuboid object with a hinged top and empty interior. It smells kinda bad and seems to have an odd stain on it.";
+	icon = 'icons/misc/halloween.dmi';
+	name = "dented crate"
+	},
+/obj/item/paper/tug/invoice,
+/obj/item/card_group/stg,
+/obj/item/pen/fancy,
+/obj/item/raw_material/fabric,
+/obj/item/raw_material/fibrilith,
+/obj/item/raw_material/fibrilith,
+/obj/item/raw_material/fibrilith,
+/obj/item/raw_material/shard/plasmacrystal,
+/obj/item/reagent_containers/food/drinks/cola/random,
+/obj/item/reagent_containers/food/drinks/fueltank,
+/obj/item/device/audio_log/ht_3,
+/turf/floor/engine/glow,
+/area/diner/tug)
 "we" = (
 /obj/table/auto,
 /obj/item/sheet/glass{
@@ -3196,9 +3511,12 @@
 /turf/space,
 /area/noGenerate)
 "wx" = (
-/obj/random_pod_spawner,
-/turf/floor/airless/engine/caution/south,
-/area/gas_station)
+/obj/indestructible/shuttle_corner{
+	dir = 4;
+	icon_state = "wall3_trans"
+	},
+/turf/floor/airless/engine/caution,
+/area/diner/tug)
 "wy" = (
 /obj/decal/cleanable/dirt,
 /obj/machinery/computer/shuttle_bus,
@@ -3516,6 +3834,19 @@
 	},
 /turf/floor/plating,
 /area/gas_station/schweewa)
+"yM" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.5;
+	name = "power conduit";
+	tag = "icon-conduit (EAST)"
+	},
+/turf/floor/engine/glow,
+/area/diner/tug)
 "yN" = (
 /obj/decal/tile_edge/check/white{
 	dir = 6;
@@ -3597,6 +3928,25 @@
 "zG" = (
 /turf/floor/scorched2,
 /area/mining/miningoutpost)
+"zI" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "It won't budge.";
+	icon = 'icons/obj/pipe-item.dmi';
+	icon_state = "valve";
+	name = "rusted valve"
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.5;
+	name = "power conduit";
+	tag = "icon-conduit (EAST)"
+	},
+/turf/floor/engine/glow,
+/area/diner/tug)
 "zS" = (
 /obj/cable{
 	d1 = 1;
@@ -3628,6 +3978,13 @@
 "Ad" = (
 /turf/floor/grime,
 /area/mining/power)
+"Aj" = (
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir-b"
+	},
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "Am" = (
 /turf/floor/yellow/side{
 	dir = 8
@@ -3673,6 +4030,12 @@
 /obj/machinery/light/small,
 /turf/floor/yellow/side,
 /area/tech_outpost)
+"Ay" = (
+/obj/machinery/light/small/cool/very,
+/turf/floor/shuttle{
+	icon_state = "floor2"
+	},
+/area/diner/tug)
 "AC" = (
 /turf/floor/white/grime,
 /area/gas_station/schweewa)
@@ -3712,6 +4075,16 @@
 	},
 /turf/floor/grime,
 /area/mining/power)
+"AY" = (
+/obj/machinery/light/fluorescent/auto/cool/very{
+	dir = 1
+	},
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir-b"
+	},
+/turf/floor/airless/engine/caution/south,
+/area/gas_station)
 "AZ" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -3961,6 +4334,18 @@
 	},
 /turf/floor/caution/south,
 /area/mining/manufacturing)
+"Db" = (
+/obj/table/auto,
+/obj/item/storage/toolbox/mechanical,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/obj/indestructible/shuttle_corner{
+	dir = 8;
+	icon_state = "wall3_trans"
+	},
+/turf/floor/plating,
+/area/diner/tug)
 "Dg" = (
 /obj/grille/steel,
 /obj/window/reinforced{
@@ -4072,6 +4457,17 @@
 /obj/decal/cleanable/mess/sodacan,
 /turf/floor/airless/engine/caution,
 /area/gas_station)
+"EF" = (
+/obj/decal/fakeobjects/pipe{
+	desc = "It won't budge.";
+	icon = 'icons/obj/pipe-item.dmi';
+	icon_state = "valve";
+	name = "rusted valve"
+	},
+/turf/floor/shuttle{
+	icon_state = "floor2"
+	},
+/area/diner/tug)
 "EQ" = (
 /obj/grille/catwalk{
 	dir = 1;
@@ -4092,6 +4488,13 @@
 	icon_state = "catwalk_cross"
 	},
 /area/noGenerate)
+"ES" = (
+/obj/storage/crate/bin{
+	anchored = 1;
+	desc = "A large bin. Perfect for eating off of."
+	},
+/turf/floor/airless/engine/caution/south,
+/area/gas_station)
 "ET" = (
 /obj/grille/catwalk,
 /turf/floor/plating/airless/asteroid,
@@ -4113,6 +4516,12 @@
 	icon_state = "catwalk_cross"
 	},
 /area/noGenerate)
+"Fe" = (
+/obj/lattice{
+	icon_state = "lattice-dir-b"
+	},
+/turf/floor/airless/engine/caution/south,
+/area/gas_station)
 "Fh" = (
 /obj/cable{
 	d1 = 4;
@@ -4143,6 +4552,16 @@
 	},
 /turf/floor/grime,
 /area/mining/power)
+"Fz" = (
+/obj/decal/fakeobjects/pipe{
+	dir = 4
+	},
+/obj/decal/tile_edge/stripe/extra_big,
+/obj/indestructible/shuttle_corner{
+	icon_state = "wall3_trans"
+	},
+/turf/floor/plating,
+/area/diner/tug)
 "FA" = (
 /obj/wingrille_spawn/auto,
 /obj/neon_lining{
@@ -4200,6 +4619,14 @@
 /obj/machinery/vehicle/miniputt/armed,
 /turf/floor/shuttlebay,
 /area/tech_outpost)
+"FX" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir-b";
+	tag = "icon-lattice-dir-b (EAST)"
+	},
+/turf/floor/airless/engine/caution,
+/area/diner/tug)
 "FY" = (
 /obj/cable{
 	d1 = 1;
@@ -4469,6 +4896,34 @@
 /obj/machinery/light/small,
 /turf/floor/shuttlebay,
 /area/tech_outpost)
+"Iw" = (
+/obj/decal/fakeobjects/pipe{
+	dir = 4
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "A large rack of server modules.  It appears to be in a low-power idle state.";
+	icon = 'icons/obj/networked.dmi';
+	icon_state = "server0";
+	name = "idle server"
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10
+	},
+/obj/machinery/light/small/cool/very{
+	dir = 1
+	},
+/obj/indestructible/shuttle_corner{
+	dir = 8;
+	icon_state = "wall3_trans"
+	},
+/obj/indestructible/shuttle_corner{
+	dir = 8;
+	icon_state = "wall3_trans"
+	},
+/turf/floor/plating,
+/area/diner/tug)
 "Ix" = (
 /obj/machinery/vending/mechanics,
 /turf/floor/yellow/side{
@@ -4486,6 +4941,10 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/white/grime,
 /area/gas_station/schweewa)
+"IE" = (
+/obj/random_pod_spawner,
+/turf/floor/airless/engine/caution/south,
+/area/gas_station)
 "IG" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -4554,6 +5013,12 @@
 	dir = 4
 	},
 /area/tech_outpost)
+"Jr" = (
+/obj/decal/fakeobjects/shuttlethruster{
+	dir = 8
+	},
+/turf/floor/airless/engine/caution,
+/area/diner/tug)
 "Jx" = (
 /obj/decal/cleanable/dirt/random,
 /turf/floor/white,
@@ -4820,6 +5285,11 @@
 /obj/disposalpipe/segment/transport,
 /turf/floor/airless/plating/catwalk,
 /area/noGenerate)
+"Mx" = (
+/turf/floor/shuttle{
+	icon_state = "floor2"
+	},
+/area/diner/tug)
 "MD" = (
 /obj/grille/steel,
 /obj/window/reinforced{
@@ -4851,11 +5321,8 @@
 	},
 /area/noGenerate)
 "MG" = (
-/obj/storage/crate/bin{
-	anchored = 1;
-	desc = "A large bin. Perfect for eating off of."
-	},
-/turf/floor/airless/engine/caution/south,
+/obj/random_pod_spawner,
+/turf/floor/airless/engine/caution,
 /area/gas_station)
 "MK" = (
 /obj/cable{
@@ -5002,6 +5469,13 @@
 	},
 /turf/floor/plating/damaged3,
 /area/spyshack)
+"NV" = (
+/obj/indestructible/shuttle_corner{
+	dir = 8;
+	icon_state = "wall3_trans"
+	},
+/turf/floor/airless/engine/caution,
+/area/diner/tug)
 "NX" = (
 /turf/space{
 	icon_state = "aplaceholder"
@@ -5046,6 +5520,18 @@
 /obj/item/hand_labeler,
 /turf/floor/caution/south,
 /area/mining/manufacturing)
+"Oo" = (
+/obj/neon_lining{
+	color = "#FF0000";
+	dir = 1
+	},
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir-b"
+	},
+/obj/machinery/light/runway_light/delay4,
+/turf/space,
+/area/noGenerate)
 "Op" = (
 /obj/machinery/light_switch{
 	name = "N light switch";
@@ -5081,6 +5567,9 @@
 /obj/disposalpipe/segment/transport,
 /turf/floor/caution/south,
 /area/mining/manufacturing)
+"OE" = (
+/turf/floor/airless/engine/caution/corner,
+/area/gas_station)
 "OG" = (
 /obj/storage/crate/loot,
 /obj/item/storage/pill_bottle/cyberpunk{
@@ -5216,6 +5705,17 @@
 	},
 /turf/floor/grime,
 /area/gas_station/schweewa)
+"PB" = (
+/obj/decal/poster/wallsign/stencil/left/b,
+/obj/decal/poster/wallsign/stencil/left/i{
+	pixel_x = 5
+	},
+/obj/decal/poster/wallsign/stencil/right/g,
+/turf/shuttle/wall{
+	dir = 5;
+	icon_state = "wall3dir"
+	},
+/area/diner/tug)
 "PF" = (
 /obj/machinery/door/poddoor{
 	density = 0;
@@ -5230,6 +5730,9 @@
 	},
 /turf/floor/plating/airless,
 /area/mining/manufacturing)
+"PJ" = (
+/turf/floor/airless/engine/caution,
+/area/diner/tug)
 "PQ" = (
 /obj/rail{
 	dir = 8;
@@ -5617,6 +6120,15 @@
 "Tt" = (
 /turf/floor/caution/north,
 /area/mining/manufacturing)
+"Tu" = (
+/obj/window/reinforced/west,
+/obj/window/reinforced/east,
+/obj/grille/steel,
+/obj/decal/fakeobjects/shuttleengine{
+	dir = 4
+	},
+/turf/floor/engine/glow,
+/area/diner/tug)
 "Tv" = (
 /obj/table/auto,
 /obj/item/clothing/gloves/yellow,
@@ -5649,6 +6161,17 @@
 "TF" = (
 /turf/floor/plating/airless,
 /area/space)
+"TS" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir-b";
+	tag = "icon-lattice-dir-b (EAST)"
+	},
+/turf/shuttle/wall/cockpit{
+	dir = 8;
+	icon_state = "shuttlecock_mining"
+	},
+/area/diner/tug)
 "TT" = (
 /obj/warp_beacon/miningoutpost,
 /obj/cable,
@@ -5656,9 +6179,11 @@
 /turf/space,
 /area/noGenerate)
 "TV" = (
-/obj/machinery/light/fluorescent/auto/cool/very,
-/turf/floor/airless/engine/caution/north,
-/area/gas_station)
+/obj/window/reinforced/east,
+/turf/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/diner/tug)
 "TW" = (
 /obj/table/auto,
 /obj/machinery/computer/security/wooden_tv/small{
@@ -5765,6 +6290,12 @@
 /obj/disposalpipe/segment/transport,
 /turf/floor,
 /area/mining/manufacturing)
+"UQ" = (
+/obj/machinery/door/airlock/external,
+/turf/floor/shuttle{
+	icon_state = "floor2"
+	},
+/area/diner/tug)
 "UR" = (
 /obj/machinery/manufacturer/mining,
 /obj/cable,
@@ -5773,6 +6304,12 @@
 "UV" = (
 /turf/wall/r_wall,
 /area/mining/hangar)
+"UY" = (
+/obj/indestructible/shuttle_corner{
+	icon_state = "wall3_trans"
+	},
+/turf/floor/airless/engine/caution,
+/area/diner/tug)
 "UZ" = (
 /obj/cable{
 	d1 = 1;
@@ -5796,12 +6333,18 @@
 /turf/wall,
 /area/mining/exit_east)
 "Vj" = (
-/turf/floor/airless/engine/caution/corner,
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir-b"
+	},
+/turf/floor/airless/engine/caution/south,
 /area/gas_station)
 "Vl" = (
-/turf/floor/airless/engine/caution/corner{
-	dir = 1
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
 	},
+/turf/floor/airless/engine/caution/south,
 /area/gas_station)
 "Vm" = (
 /turf/wall,
@@ -5820,6 +6363,26 @@
 "VC" = (
 /turf/floor/caution/west,
 /area/mining/exit_west)
+"VD" = (
+/turf/floor/airless/engine/caution/corner{
+	dir = 1
+	},
+/area/gas_station)
+"VG" = (
+/obj/decal/poster/wallsign/stencil/left/n{
+	pixel_x = -7
+	},
+/obj/decal/poster/wallsign/stencil/right/k{
+	pixel_x = 5
+	},
+/obj/decal/poster/wallsign/stencil/right/s{
+	pixel_x = 15
+	},
+/turf/shuttle/wall{
+	dir = 5;
+	icon_state = "wall3dir"
+	},
+/area/diner/tug)
 "VP" = (
 /obj/table/auto,
 /obj/machinery/cell_charger,
@@ -5961,6 +6524,30 @@
 	},
 /turf/floor,
 /area/mining/manufacturing)
+"WL" = (
+/obj/neon_lining{
+	color = "#FF0000";
+	dir = 1
+	},
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir-b"
+	},
+/obj/machinery/light/runway_light,
+/turf/space,
+/area/noGenerate)
+"WN" = (
+/obj/neon_lining{
+	color = "#FF0000";
+	dir = 1
+	},
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir-b"
+	},
+/obj/machinery/light/runway_light/delay3,
+/turf/space,
+/area/noGenerate)
 "WQ" = (
 /obj/cable{
 	d1 = 4;
@@ -6021,6 +6608,12 @@
 	},
 /turf/floor/grime,
 /area/mining/exit_east)
+"Xo" = (
+/obj/lattice{
+	icon_state = "lattice-dir-b"
+	},
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "Xp" = (
 /turf/wall/asteroid{
 	dir = 10
@@ -6032,16 +6625,28 @@
 /turf/floor/plating/airless/asteroid,
 /area/noGenerate)
 "Xv" = (
-/obj/neon_lining{
-	color = "#FF0000";
-	dir = 1
+/obj/lattice{
+	dir = 9;
+	icon_state = "lattice-dir-b"
 	},
-/turf/space,
-/area/noGenerate)
+/turf/floor/airless/engine/caution/north,
+/area/gas_station)
 "Xy" = (
 /obj/machinery/vending/snack,
 /turf/floor/grime,
 /area/tech_outpost)
+"XD" = (
+/obj/neon_lining{
+	color = "#FF0000";
+	dir = 1
+	},
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir-b"
+	},
+/obj/machinery/light/runway_light/delay2,
+/turf/space,
+/area/noGenerate)
 "XF" = (
 /obj/table/auto,
 /obj/item/storage/box/lightbox/tubes,
@@ -6052,6 +6657,13 @@
 	dir = 4
 	},
 /area/tech_outpost)
+"XJ" = (
+/obj/indestructible/shuttle_corner{
+	dir = 1;
+	icon_state = "wall3_trans"
+	},
+/turf/floor/airless/engine/caution,
+/area/diner/tug)
 "XL" = (
 /obj/grille/catwalk{
 	dir = 4
@@ -6118,48 +6730,12 @@
 	},
 /turf/space,
 /area/noGenerate)
-"Yi" = (
-/obj/neon_lining{
-	color = "#FF0000";
-	dir = 1
-	},
-/obj/lattice{
-	dir = 1;
-	icon_state = "lattice-dir-b"
-	},
-/obj/machinery/light/runway_light,
-/turf/space,
-/area/noGenerate)
-"Yk" = (
-/obj/neon_lining{
-	color = "#FF0000";
-	dir = 1
-	},
-/obj/lattice{
-	dir = 1;
-	icon_state = "lattice-dir-b"
-	},
-/obj/machinery/light/runway_light/delay2,
-/turf/space,
-/area/noGenerate)
 "Yl" = (
 /obj/stool/chair{
 	dir = 8
 	},
 /turf/floor/plating,
 /area/tech_outpost)
-"Yx" = (
-/obj/neon_lining{
-	color = "#FF0000";
-	dir = 1
-	},
-/obj/lattice{
-	dir = 1;
-	icon_state = "lattice-dir-b"
-	},
-/obj/machinery/light/runway_light/delay3,
-/turf/space,
-/area/noGenerate)
 "YA" = (
 /obj/table/wood/auto,
 /obj/item/paper/book/numbers_station_hydroguide,
@@ -6176,29 +6752,24 @@
 /turf/floor/grime,
 /area/tech_outpost)
 "YQ" = (
-/obj/neon_lining{
-	color = "#FF0000";
-	dir = 1
-	},
+/obj/machinery/light/fluorescent/auto/cool/very,
 /obj/lattice{
-	dir = 1;
+	dir = 5;
 	icon_state = "lattice-dir-b"
 	},
-/obj/machinery/light/runway_light/delay4,
-/turf/space,
-/area/noGenerate)
+/turf/floor/airless/engine/caution/north,
+/area/gas_station)
+"YR" = (
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-broken"
+	},
+/turf/floor/airless/engine/caution/north,
+/area/gas_station)
 "YU" = (
-/obj/neon_lining{
-	color = "#FF0000";
-	dir = 1
-	},
-/obj/lattice{
-	dir = 1;
-	icon_state = "lattice-dir-b"
-	},
-/obj/machinery/light/runway_light/delay5,
-/turf/space,
-/area/noGenerate)
+/obj/machinery/light/fluorescent/auto/cool/very,
+/turf/floor/airless/engine/caution/north,
+/area/gas_station)
 "YX" = (
 /turf/floor/redwhite{
 	dir = 8
@@ -6232,9 +6803,28 @@
 /turf/floor/grime,
 /area/mining/exit_west)
 "Zj" = (
-/obj/item/bluntwrap,
-/turf/floor/airless/engine/caution,
-/area/gas_station)
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "A vent.  A rather decrepit one, at that.";
+	icon = 'icons/obj/atmospherics/pipe_vent.dmi';
+	icon_state = "intact";
+	name = "crusty vent"
+	},
+/obj/decal/fakeobjects{
+	anchored = 1;
+	density = 1;
+	desc = "It's some sort of command repeater.";
+	icon = 'icons/obj/machines/nuclear.dmi';
+	icon_state = "neutinj";
+	name = "old machine"
+	},
+/obj/machinery/light/small/iomoon{
+	dir = 4;
+	name = "maintenance light";
+	tag = ""
+	},
+/turf/floor/engine/glow,
+/area/diner/tug)
 "Zk" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -6249,6 +6839,26 @@
 /obj/wingrille_spawn/auto,
 /turf/floor/plating,
 /area/mining/hangar)
+"Zn" = (
+/obj/decal/fakeobjects{
+	anchored = 1;
+	desc = "Like conventional cables, but more burly.";
+	dir = 4;
+	icon = 'icons/obj/power_cond.dmi';
+	icon_state = "conduit";
+	layer = 2.5;
+	name = "power conduit";
+	tag = "icon-conduit (EAST)"
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/decal/cleanable/dirt,
+/obj/machinery/light/small/cool/very,
+/turf/floor/shuttle{
+	icon_state = "floor2"
+	},
+/area/diner/tug)
 "Zo" = (
 /obj/cable{
 	d1 = 1;
@@ -38762,8 +39372,8 @@ ag
 ag
 ag
 ag
-ab
-ab
+ag
+ag
 ab
 ab
 aa
@@ -39063,10 +39673,10 @@ bS
 bS
 bS
 bS
-Vj
-Xv
-ab
-ab
+bS
+bS
+OE
+ud
 ab
 aa
 aa
@@ -39365,10 +39975,10 @@ bT
 bT
 bT
 bT
-MG
-Xv
-ab
-ab
+bT
+bT
+ES
+ud
 ab
 aa
 aa
@@ -39666,11 +40276,11 @@ Lm
 bT
 bT
 bT
-TV
+bT
+bT
+YU
 dt
-Yi
-ab
-ab
+WL
 ab
 aa
 aa
@@ -39968,11 +40578,11 @@ Ma
 bT
 bT
 bT
+bT
+bT
 aj
 Ma
-Xv
-ab
-ab
+ud
 ab
 aa
 aa
@@ -40270,11 +40880,11 @@ Ma
 bT
 bT
 bT
+bT
+bT
 aj
-Ma
-Xv
-ab
-ab
+IE
+ud
 ab
 aa
 aa
@@ -40572,11 +41182,11 @@ Ma
 bT
 bT
 bT
+bT
+bT
 aj
 Ma
-Xv
-ab
-ab
+ud
 ab
 aa
 aa
@@ -40873,12 +41483,12 @@ dt
 Lm
 bT
 bT
+mK
 bT
-TV
+bT
+YU
 dt
-Yk
-ab
-ab
+XD
 ab
 aa
 aa
@@ -41175,12 +41785,12 @@ el
 Ma
 bT
 bT
+FX
+bT
 bT
 aj
 Ma
-Xv
-ab
-ab
+ud
 ab
 aa
 aa
@@ -41468,7 +42078,7 @@ bT
 Ns
 bT
 bT
-bT
+MG
 hN
 bT
 bT
@@ -41477,12 +42087,12 @@ XO
 Ma
 bT
 bT
+FX
+bT
 bT
 aj
 Ma
-Xv
-ab
-ab
+ud
 ab
 aa
 aa
@@ -41778,13 +42388,13 @@ bT
 XO
 Ma
 bT
-bT
+PJ
+TS
+PJ
 bT
 aj
 Ma
-Xv
-ab
-ab
+ud
 ab
 aa
 aa
@@ -42079,14 +42689,14 @@ bT
 jM
 dt
 Lm
-bT
-bT
-bT
+NV
 TV
+TV
+TV
+UY
+YU
 dt
-Yx
-ab
-ab
+WN
 ab
 aa
 aa
@@ -42381,14 +42991,14 @@ EC
 bT
 bT
 Ma
-bT
-bT
-bT
+sV
+Mx
+sS
+Ay
+sV
 aj
 Ma
-Xv
-ab
-ab
+ud
 ab
 aa
 aa
@@ -42682,15 +43292,15 @@ bT
 bT
 bT
 bT
-Ma
-bT
-bT
-bT
-aj
-Ma
+Vj
+sV
+jn
+EF
+nP
+sV
 Xv
-ab
-ab
+Ma
+ud
 ab
 aa
 aa
@@ -42984,15 +43594,15 @@ aj
 aj
 aj
 bT
+Vl
+UQ
+kc
+Mx
+ge
+lH
+oo
 Ma
-bT
-bT
-bT
-aj
-Ma
-Xv
-ab
-ab
+ud
 ab
 aa
 aa
@@ -43286,15 +43896,15 @@ aE
 Nv
 HM
 dt
-Lm
-bT
-bT
-bT
-TV
-dt
+AY
+sV
+Iw
+pj
+qw
+sV
 YQ
-ab
-ab
+dt
+Oo
 ab
 aa
 aa
@@ -43589,14 +44199,14 @@ du
 HY
 KP
 Ma
-bT
-bT
-bT
-aj
+XJ
+Fz
+mk
+Db
 wx
-Xv
-ab
-ab
+aj
+Ma
+ud
 ab
 aa
 aa
@@ -43891,14 +44501,14 @@ ab
 Ij
 aj
 Ma
-bT
-bT
-bT
+Xo
+sV
+Zn
+sV
+Aj
 aj
 Ma
-Xv
-ab
-ab
+ud
 ab
 aa
 aa
@@ -44193,14 +44803,14 @@ ab
 Ij
 KQ
 Ma
-bT
-bT
-bT
+Xo
+sV
+rU
+sV
+Aj
 aj
 Ma
-Xv
-ab
-ab
+ud
 ab
 aa
 aa
@@ -44495,14 +45105,14 @@ xz
 Iy
 dt
 Lm
-bT
-bT
-bT
-TV
-dt
+NV
+vk
+ob
+cy
+UY
 YU
-ab
-ab
+dt
+vN
 ab
 aa
 aa
@@ -44796,15 +45406,15 @@ cH
 yE
 Ij
 aj
+Fe
+PB
+wa
+zI
+gy
+sq
+YR
 Ma
-bT
-bT
-bT
-aj
-Ma
-Xv
-ab
-ab
+ud
 ab
 aa
 aa
@@ -45098,15 +45708,15 @@ Bf
 FA
 Ij
 aj
-wx
-bT
-bT
-bT
+Ma
+lI
+oT
+yM
+oT
+oQ
 aj
 Ma
-Xv
-ab
-ab
+ud
 ab
 aa
 aa
@@ -45400,15 +46010,15 @@ Ds
 FA
 Ij
 aj
-Ma
-bT
-bT
+Fe
+VG
+uQ
 Zj
-aj
+uQ
+mQ
+YR
 Ma
-Xv
-ab
-ab
+ud
 ab
 aa
 aa
@@ -45703,14 +46313,14 @@ FA
 Iy
 dt
 Lm
-bT
-bT
-bT
-TV
+XJ
+Tu
+Tu
+Tu
+wx
+YU
 dt
-Yi
-ab
-ab
+WL
 ab
 aa
 aa
@@ -46006,13 +46616,13 @@ Ij
 kh
 bT
 bT
-bT
+Jr
+Jr
+Jr
 bT
 bT
 Ma
-Xv
-ab
-ab
+ud
 ab
 aa
 aa
@@ -46311,10 +46921,10 @@ ch
 ch
 ch
 ch
-Vl
-Xv
-ab
-ab
+ch
+ch
+VD
+ud
 ab
 aa
 aa
