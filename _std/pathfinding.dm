@@ -612,51 +612,6 @@
 // Navigation procs
 // Used for A-star pathfinding
 
-/// Returns the surrounding cardinal turfs with open links
-/// Including through doors openable with the ID
-/turf/proc/CardinalTurfsWithAccess(obj/item/card/id/ID)
-	. = list()
-
-	for(var/d in cardinal)
-		var/turf/T = get_step(src, d)
-		if (T?.pathable && !T.density)
-			if(!LinkBlockedWithAccess(src, T, ID))
-				. += T
-
-/// Returns surrounding card+ord turfs with open links
-/turf/proc/AllDirsTurfsWithAccess(obj/item/card/id/ID)
-	. = list()
-
-	for(var/d in alldirs)
-		var/turf/T = get_step(src, d)
-		if (T?.pathable && !T.density)
-			if(!LinkBlockedWithAccess(src, T, ID))
-				. += T
-
-// Fixes floorbots being terrified of space
-turf/proc/CardinalTurfsAndSpaceWithAccess(obj/item/card/id/ID)
-	. = list()
-
-	for(var/d in cardinal)
-		var/turf/T = get_step(src, d)
-		if (T && (T.pathable || istype(T, /turf/space)) && !T.density)
-			if(!LinkBlockedWithAccess(src, T, ID))
-				. += T
-
-//init of this bastard now happens in /datum/controller/gameticker/proc/setup()
-var/static/obj/item/card/id/ALL_ACCESS_CARD
-
-/turf/proc/AllDirsTurfsWithAllAccess()
-	return AllDirsTurfsWithAccess(ALL_ACCESS_CARD)
-
-/turf/proc/CardinalTurfsSpace()
-	. = list()
-
-	for (var/d in cardinal)
-		var/turf/T = get_step(src, d)
-		if (T && (T.pathable || istype(T, /turf/space)) && !T.density)
-			if (!LinkBlockedWithAccess(src, T))
-				. += T
 
 // Returns true if a link between A and B is blocked
 // Movement through doors allowed if ID has access
@@ -732,39 +687,11 @@ var/static/obj/item/card/id/ALL_ACCESS_CARD
 					return 0
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/turf/proc
-	AdjacentTurfs()
-		. = list()
-		for(var/turf/t in oview(src,1))
+/turf/proc/AdjacentTurfs()
+	. = list()
+	for(var/turf/t in oview(src,1))
 			if (istype_exact(t, /turf/space)) //Judging from this previously looking for simmed turfs and the proc names here, I presume this is correct
 				continue
-			if(!t.density)
-				if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
-					. += t
-
-	AdjacentTurfsSpace()
-		. = list()
-		for(var/turf/t in oview(src,1))
-			if(!t.density)
-				if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
-					. += t
-
-	Distance(turf/t)
-		return sqrt((src.x - t.x) ** 2 + (src.y - t.y) ** 2)
-
+		if(!t.density)
+			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
+				. += t
