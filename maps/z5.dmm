@@ -6,7 +6,7 @@
 /turf/space,
 /area/noGenerate)
 "ac" = (
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/classic,
 /turf/floor/plating,
 /area/mining/manufacturing)
 "ae" = (
@@ -59,8 +59,8 @@
 /turf/wall/r_wall,
 /area/mining/miningoutpost)
 "aG" = (
+/turf/space,
 /turf/wall,
-/turf/wall/auto/supernorn,
 /area/mining/miningoutpost)
 "aH" = (
 /obj/neon_lining{
@@ -219,9 +219,13 @@
 /area/gas_station)
 "cu" = (
 /obj/machinery/light/fluorescent/auto/warm,
-/obj/storage/crate/bin{
+/obj/decal/fakeobjects{
 	anchored = 1;
-	desc = "A large bin. Perfect for eating off of."
+	density = 1;
+	desc = "A large bin with a flat top. Perfect surface for eating space hoagies and sparking fat cigarillos.";
+	icon = 'icons/obj/items/storage.dmi';
+	icon_state = "schweewabin";
+	name = "\improper Schweewa trash can"
 	},
 /turf/floor/airless/engine/caution/east,
 /area/gas_station)
@@ -450,7 +454,7 @@
 /turf/wall/r_wall,
 /area/mining/quarters)
 "dq" = (
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/classic,
 /turf/floor/plating,
 /area/mining/quarters)
 "dr" = (
@@ -507,6 +511,7 @@
 	dir = 1;
 	pixel_y = 18
 	},
+/obj/decal/cleanable/dirt,
 /turf/floor/redwhite{
 	dir = 8
 	},
@@ -1252,9 +1257,13 @@
 /obj/machinery/light/fluorescent/auto/cool/very{
 	dir = 4
 	},
-/obj/storage/crate/bin{
+/obj/decal/fakeobjects{
 	anchored = 1;
-	desc = "A large bin. Perfect for eating off of."
+	density = 1;
+	desc = "A large bin with a flat top. Perfect surface for eating space hoagies and sparking fat cigarillos.";
+	icon = 'icons/obj/items/storage.dmi';
+	icon_state = "schweewabin";
+	name = "\improper Schweewa trash can"
 	},
 /turf/floor/airless/engine/caution/corner{
 	dir = 8
@@ -1546,6 +1555,7 @@
 	dir = 4;
 	pixel_x = 9
 	},
+/obj/decal/cleanable/oil/streak,
 /turf/floor/red,
 /area/gas_station/schweewa)
 "jh" = (
@@ -1677,13 +1687,9 @@
 /turf/wall/asteroid,
 /area/mining/mainasteroid)
 "jK" = (
-/obj/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/wingrille_spawn/auto,
-/turf/floor/plating,
-/area/mining/hangar)
+/obj/decal/cleanable/dirt,
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "jL" = (
 /obj/cable{
 	d1 = 2;
@@ -1770,9 +1776,13 @@
 	},
 /area/noGenerate)
 "kh" = (
-/obj/storage/crate/bin{
+/obj/decal/fakeobjects{
 	anchored = 1;
-	desc = "A large bin. Perfect for eating off of."
+	density = 1;
+	desc = "A large bin with a flat top. Perfect surface for eating space hoagies and sparking fat cigarillos.";
+	icon = 'icons/obj/items/storage.dmi';
+	icon_state = "schweewabin";
+	name = "\improper Schweewa trash can"
 	},
 /turf/floor/airless/engine/caution/north,
 /area/gas_station)
@@ -1886,11 +1896,6 @@
 /area/mining/power)
 "kC" = (
 /obj/machinery/door/firedoor/border_only,
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/floor,
 /area/mining/hangar)
 "kD" = (
@@ -1907,11 +1912,6 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/cable{
 	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/cable{
-	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
@@ -1919,7 +1919,7 @@
 /area/mining/hangar)
 "kM" = (
 /obj/cable,
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/classic,
 /turf/floor/plating,
 /area/mining/hangar)
 "kN" = (
@@ -1974,9 +1974,13 @@
 /obj/machinery/light/fluorescent/auto/cool/very{
 	dir = 4
 	},
-/obj/storage/crate/bin{
+/obj/decal/fakeobjects{
 	anchored = 1;
-	desc = "A large bin. Perfect for eating off of."
+	density = 1;
+	desc = "A large bin with a flat top. Perfect surface for eating space hoagies and sparking fat cigarillos.";
+	icon = 'icons/obj/items/storage.dmi';
+	icon_state = "schweewabin";
+	name = "\improper Schweewa trash can"
 	},
 /turf/floor/airless/engine/caution/west,
 /area/gas_station)
@@ -2075,6 +2079,15 @@
 /obj/machinery/computer/barcode,
 /turf/floor/caution/south,
 /area/mining/manufacturing)
+"lM" = (
+/obj/stool/chair/red{
+	dir = 8
+	},
+/obj/decal/cleanable/dirt,
+/turf/floor/redwhite{
+	dir = 1
+	},
+/area/gas_station/schweewa)
 "lS" = (
 /obj/item/cigbutt,
 /turf/floor{
@@ -2269,8 +2282,9 @@
 /turf/space,
 /area/shuttle/mining/outpost)
 "mD" = (
-/turf/wall/auto/supernorn,
-/area/mining/dock)
+/obj/decal/cleanable/oil/streak,
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "mE" = (
 /obj/machinery/light_switch{
 	name = "S light switch";
@@ -2420,6 +2434,10 @@
 	},
 /turf/floor/grime,
 /area/mining/power)
+"nz" = (
+/obj/decal/cleanable/dirt,
+/turf/floor/red/checker,
+/area/gas_station/schweewa)
 "nD" = (
 /obj/lattice{
 	dir = 4;
@@ -2686,7 +2704,7 @@
 	icon_state = "space";
 	name = "VACUUM AREA"
 	},
-/turf/wall/auto/supernorn,
+/turf/wall,
 /area/mining/dock)
 "pB" = (
 /obj/lattice{
@@ -2700,14 +2718,14 @@
 /turf/space,
 /area/noGenerate)
 "pD" = (
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/classic,
 /turf/floor/plating,
 /area/mining/dock)
 "pF" = (
 /obj/machinery/light/fluorescent/auto{
 	dir = 4
 	},
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/classic,
 /turf/floor/plating,
 /area/mining/dock)
 "pI" = (
@@ -2804,6 +2822,16 @@
 	},
 /turf/floor/redwhite,
 /area/gas_station/schweewa)
+"qM" = (
+/obj/decal/tile_edge/check/white{
+	dir = 4;
+	icon_state = "check1"
+	},
+/obj/decal/cleanable/dirt,
+/turf/floor/redwhite{
+	dir = 8
+	},
+/area/gas_station/schweewa)
 "qN" = (
 /obj/cable{
 	d1 = 1;
@@ -2812,6 +2840,11 @@
 	},
 /turf/floor/stairs/wide/other,
 /area/mining/hangar)
+"qO" = (
+/turf/floor/airless/engine/caution/corner{
+	dir = 1
+	},
+/area/gas_station/schweewa)
 "qU" = (
 /obj/cable{
 	d2 = 2;
@@ -3117,7 +3150,7 @@
 "th" = (
 /obj/critter/goose,
 /obj/decal/cleanable/blood/splatter,
-/turf/floor/airless/engine/caution,
+/turf/floor/airless/engine/caution/south,
 /area/gas_station/schweewa)
 "tl" = (
 /turf/floor/caution/south,
@@ -3756,6 +3789,10 @@
 	},
 /turf/space,
 /area/gas_station/schweewa)
+"yh" = (
+/obj/decal/cleanable/dirt,
+/turf/floor/airless/engine/caution/north,
+/area/gas_station)
 "yl" = (
 /obj/disposalpipe/segment/transport,
 /obj/grille/catwalk,
@@ -4437,13 +4474,9 @@
 /turf/floor/delivery,
 /area/mining/exit_south)
 "Eu" = (
-/obj/lattice{
-	icon_state = "lattice-dir"
-	},
-/turf/wall/asteroid{
-	dir = 4
-	},
-/area/noGenerate)
+/obj/storage/crate/bin/dumpster,
+/turf/floor/airless/engine/caution/north,
+/area/gas_station/schweewa)
 "EA" = (
 /obj/cable{
 	d1 = 2;
@@ -4646,7 +4679,7 @@
 /area/mining/miningoutpost)
 "Gc" = (
 /obj/disposalpipe/segment/transport,
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/classic,
 /turf/floor/plating,
 /area/mining/manufacturing)
 "Gf" = (
@@ -4988,6 +5021,11 @@
 /turf/space,
 /turf/floor/shuttlebay,
 /area/mining/hangar)
+"Jg" = (
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/oil/streak,
+/turf/floor/airless/engine/caution,
+/area/gas_station)
 "Jj" = (
 /obj/lattice{
 	dir = 1;
@@ -5494,7 +5532,7 @@
 /obj/machinery/light/fluorescent/auto{
 	dir = 4
 	},
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/classic,
 /turf/floor/plating,
 /area/mining/manufacturing)
 "Ol" = (
@@ -5664,7 +5702,7 @@
 /obj/lattice{
 	icon_state = "lattice-dir"
 	},
-/turf/floor/plating/airless/asteroid,
+/turf/floor/plating/airless,
 /area/mining/magnet_control)
 "Pk" = (
 /obj/item/raw_material/scrap_metal,
@@ -5760,8 +5798,9 @@
 /turf/floor/plating/airless,
 /area/mining/manufacturing)
 "PU" = (
-/turf/floor/plating/airless/asteroid,
-/area/mining/magnet_control)
+/obj/decal/cleanable/dirt,
+/turf/floor/red,
+/area/gas_station/schweewa)
 "Qa" = (
 /obj/cable{
 	d1 = 1;
@@ -5894,6 +5933,9 @@
 	},
 /turf/floor/plating,
 /area/mining/manufacturing)
+"QN" = (
+/turf/floor/airless/engine/caution/east,
+/area/gas_station/schweewa)
 "QP" = (
 /obj/decal/tile_edge/check/white{
 	dir = 1;
@@ -5938,6 +5980,14 @@
 	icon_state = "aplaceholder"
 	},
 /area/noGenerate)
+"Rq" = (
+/obj/decal/tile_edge/check/white{
+	dir = 1;
+	icon_state = "check1"
+	},
+/obj/decal/cleanable/dirt,
+/turf/floor/red/checker,
+/area/gas_station/schweewa)
 "Ry" = (
 /obj/grille/catwalk,
 /turf/wall/asteroid,
@@ -6193,7 +6243,9 @@
 /turf/floor/grime,
 /area/tech_outpost)
 "TY" = (
-/turf/floor/airless/engine/caution,
+/turf/floor/airless/engine/caution/corner{
+	dir = 4
+	},
 /area/gas_station/schweewa)
 "TZ" = (
 /obj/grille/catwalk/dubious{
@@ -6836,7 +6888,7 @@
 /turf/floor,
 /area/mining/manufacturing)
 "Zl" = (
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/classic,
 /turf/floor/plating,
 /area/mining/hangar)
 "Zn" = (
@@ -41167,7 +41219,7 @@ bT
 bT
 bT
 bT
-bT
+jK
 bT
 bT
 bT
@@ -41181,7 +41233,7 @@ rL
 Ma
 bT
 bT
-bT
+jK
 bT
 bT
 aj
@@ -41481,7 +41533,7 @@ bT
 jM
 dt
 Lm
-bT
+jK
 bT
 mK
 bT
@@ -41775,7 +41827,7 @@ xT
 mU
 si
 bT
-bT
+jK
 bT
 hP
 bT
@@ -42076,7 +42128,7 @@ bT
 bT
 bT
 Ns
-bT
+mD
 bT
 MG
 hN
@@ -42387,7 +42439,7 @@ bT
 bT
 XO
 Ma
-bT
+mD
 PJ
 TS
 PJ
@@ -42975,11 +43027,11 @@ ab
 ae
 aj
 bT
+jK
+mD
 bT
 bT
-bT
-bT
-bT
+jK
 bT
 bT
 bT
@@ -43289,7 +43341,7 @@ bT
 bT
 bT
 bT
-bT
+Jg
 bT
 bT
 Vj
@@ -44506,7 +44558,7 @@ sV
 Zn
 sV
 Aj
-aj
+yh
 Ma
 ud
 ab
@@ -45395,7 +45447,7 @@ ib
 fB
 eO
 wm
-qk
+PU
 Km
 uL
 rm
@@ -45697,7 +45749,7 @@ Km
 Km
 Km
 Km
-Km
+nz
 Km
 Km
 Km
@@ -46299,7 +46351,7 @@ dE
 YX
 nS
 nS
-nS
+qM
 iA
 nS
 LU
@@ -46308,7 +46360,7 @@ nS
 oU
 Km
 Km
-Bj
+lM
 FA
 Iy
 dt
@@ -48420,7 +48472,7 @@ dD
 dD
 mw
 cz
-iz
+Rq
 Km
 Ds
 FA
@@ -50226,7 +50278,7 @@ ab
 fg
 ab
 GN
-ZA
+Eu
 ZA
 th
 xA
@@ -50529,8 +50581,8 @@ fg
 ab
 GN
 TY
-TY
-TY
+QN
+qO
 xA
 ab
 cH
@@ -54458,7 +54510,7 @@ ab
 ab
 ab
 ab
-mD
+fu
 pS
 us
 us
@@ -54760,7 +54812,7 @@ fm
 fm
 fm
 fm
-mD
+fu
 pY
 uW
 yZ
@@ -55062,7 +55114,7 @@ jH
 jH
 jH
 jH
-mD
+fu
 qc
 uW
 yZ
@@ -55380,7 +55432,7 @@ UE
 VY
 iT
 UE
-jK
+UV
 Ke
 vs
 bq
@@ -59914,7 +59966,7 @@ jH
 jH
 jH
 AR
-PU
+tL
 Bn
 ml
 ml
@@ -61441,7 +61493,7 @@ ml
 ml
 ml
 XL
-wB
+jh
 wB
 wB
 qf
@@ -61743,7 +61795,7 @@ ml
 ml
 ml
 XL
-wB
+jh
 mv
 wB
 mv
@@ -62045,7 +62097,7 @@ ml
 ml
 ml
 FR
-YB
+ab
 YB
 YB
 YB
@@ -62347,7 +62399,7 @@ ml
 ml
 ml
 XL
-Eu
+jh
 vg
 wB
 wB
