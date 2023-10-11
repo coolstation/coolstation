@@ -285,46 +285,83 @@ datum
 			transparency = 20
 			value = 6 // 4 2
 			thirst_value = -0.03
+			var/static/list/halluc_sounds = list(
+				"punch",
+				'sound/vox/poo-vox.ogg',
+				new /datum/hallucinated_sound("clownstep", min_count = 1, max_count = 6, delay = 0.4 SECONDS),
+				'sound/weapons/armbomb.ogg',
+				new /datum/hallucinated_sound('sound/weapons/Gunshot.ogg', min_count = 1, max_count = 3, delay = 0.4 SECONDS),
+				new /datum/hallucinated_sound('sound/impact_sounds/Energy_Hit_3.ogg', min_count = 2, max_count = 4, delay = COMBAT_CLICK_DELAY),
+				'sound/voice/creepyshriek.ogg',
+				new /datum/hallucinated_sound('sound/impact_sounds/Metal_Hit_1.ogg', min_count = 1, max_count = 3, delay = COMBAT_CLICK_DELAY),
+				new /datum/hallucinated_sound('sound/machines/airlock_bolt.ogg', min_count = 1, max_count = 3, delay = 0.3 SECONDS),
+				'sound/machines/airlock_swoosh_temp.ogg',
+				'sound/machines/airlock_deny.ogg',
+				'sound/machines/airlock_pry.ogg',
+				new /datum/hallucinated_sound('sound/weapons/flash.ogg', min_count = 1, max_count = 3, delay = COMBAT_CLICK_DELAY),
+				'sound/musical_instruments/Bikehorn_1.ogg',
+				'sound/misc/talk/radio.ogg',
+				'sound/misc/talk/radio2.ogg',
+				'sound/misc/talk/radio_ai.ogg',
+				'sound/weapons/laser_f.ogg',
+				'sound/items/security_alert.ogg', //hehehehe
+				new /datum/hallucinated_sound('sound/machines/click.ogg', min_count = 1, max_count = 4, delay = 0.4 SECONDS), //silenced pistol sound
+				new /datum/hallucinated_sound('sound/effects/glare.ogg', pitch = 0.8), //vamp glare is pitched down for... reasons
+				'sound/effects/poff.ogg',
+				new /datum/hallucinated_sound('sound/effects/electric_shock_short.ogg', min_count = 3, max_count = 10, delay = 1 SECOND, pitch = 0.8), //arcfiend drain
+				'sound/items/hypo.ogg',
+				'sound/items/sticker.ogg',
+			)
+			var/static/list/speech_sounds = list(
+				'sound/misc/talk/speak_1.ogg',
+				'sound/misc/talk/speak_3.ogg',
+				'sound/misc/talk/cow.ogg',
+				'sound/misc/talk/roach.ogg',
+				'sound/misc/talk/lizard.ogg',
+				'sound/misc/talk/skelly.ogg',
+			)
+			var/static/list/voice_names = list(
+				"The voice in your head",
+				"Someone right behind you",
+				"???",
+				"A whisper in the vents",
+				"The universe itself",
+			)
+			var/static/list/monkey_images = list(
+				new /image('icons/mob/monkey.dmi', "monkey"),
+				new /image('icons/mob/monkey.dmi', "fire3"),
+				new /image('icons/mob/monkey.dmi', "skeleton"),
+				new /image('icons/mob/monkey.dmi', "seamonkey"),
+			)
+			var/static/list/critter_image_list = list(
+				new /image('icons/effects/hallucinations.dmi', "spider"),
+				new /image('icons/effects/hallucinations.dmi', "dragon"),
+				new /image('icons/effects/hallucinations.dmi', "pig"),
+				new /image('icons/effects/hallucinations.dmi', "slime"),
+				new /image('icons/misc/critter.dmi', "martianW"),
+			)
+			var/static/list/monkey_names = strings("names/monkey.txt")
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
-				M.druggy = max(M.druggy, 15)
-				// TODO. Write awesome hallucination algorithm!
-//				if(M.canmove) step(M, pick(cardinal))
-//				if(prob(7)) M.emote(pick("twitch","drool","moan","giggle"))
-				if(probmult(6))
-					switch(rand(1,2))
-						if(1)
-							if(prob(50))
-								fake_attack(M)
-							else
-								var/monkeys = rand(1,3)
-								for(var/i = 0, i < monkeys, i++)
-									fake_attackEx(M, 'icons/mob/monkey.dmi', "monkey_hallucination", pick_string_autokey("names/monkey.txt"))
-						if(2)
-							var/halluc_state = null
-							var/halluc_name = null
-							switch(rand(1,5))
-								if(1)
-									halluc_state = "pig"
-									halluc_name = pick("pig", "DAT FUKKEN PIG")
-								if(2)
-									halluc_state = "spider"
-									halluc_name = pick("giant black widow", "queen bitch spider", "OH FUCK A SPIDER")
-								if(3)
-									halluc_state = "dragon"
-									halluc_name = pick("dragon", "Lord Cinderbottom", "SOME FUKKEN LIZARD THAT BREATHES FIRE")
-								if(4)
-									halluc_state = "slime"
-									halluc_name = pick("red slime", "\proper some gooey thing", "\improper ANGRY CRIMSON POO")
-								if(5)
-									halluc_state = "shambler"
-									halluc_name = pick("shambler", "strange creature", "OH GOD WHAT THE FUCK IS THAT THING?")
-							fake_attackEx(M, 'icons/mob/hallucinations.dmi', halluc_state, halluc_name)
-				if(probmult(9))
-					M.playsound_local(M.loc, pick("explosion", "punch", 'sound/vox/poo-vox.ogg', "clownstep", 'sound/weapons/armbomb.ogg', 'sound/weapons/Gunshot.ogg'), 50, 1)
-				if(probmult(8))
-					boutput(M, "<b>You hear a voice in your head... <i>[phrase_log.random_phrase("say")]</i></b>")
+				//pretty colors
+				M.AddComponent(/datum/component/hallucination/trippy_colors, timeout=10)
+
+				//get attacked
+				if(prob(60)) //monkey mode
+					M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=monkey_images, name_list=monkey_names, attacker_prob=20, max_attackers=3)
+				else
+					M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=null, name_list=null, attacker_prob=20, max_attackers=3)
+
+				//THE VOICES GET LOUDER
+				M.AddComponent(/datum/component/hallucination/random_sound, timeout=10, sound_list=src.halluc_sounds, sound_prob=5)
+
+				if(probmult(8)) //display a random chat message
+					M.playsound_local(M.loc, pick(src.speech_sounds, 100, 1))
+					boutput(M, "<b>[pick(src.voice_names)]</b> says, \"[phrase_log.random_phrase("say")]\"")
+
+				//turn someone into a critter
+				M.AddComponent(/datum/component/hallucination/random_image_override, timeout=10, image_list=critter_image_list, target_list=list(/mob/living/carbon/human), range=6, image_prob=10, image_time=20, override=TRUE)
 				..()
 				return
 
@@ -333,6 +370,13 @@ datum
 				if(method == INGEST)
 					boutput(M, "<span class='alert'><font face='[pick("Arial", "Georgia", "Impact", "Mucida Console", "Symbol", "Tahoma", "Times New Roman", "Verdana")]' size='[rand(3,6)]'>Holy shit, you start tripping balls!</font></span>")
 				return
+
+			on_remove()
+				. = ..()
+				if (ismob(holder.my_atom))
+					var/mob/M = holder.my_atom
+					if (M.client)
+						animate(M.client, color = null, time = 2 SECONDS, easing = SINE_EASING) // gotta come down sometime
 
 		drug/lsd_bee
 			name = "lsbee"
@@ -346,30 +390,19 @@ datum
 			transparency = 100
 			value = 5
 			thirst_value = -0.03
+			var/static/list/bee_halluc = list(
+				new /image('icons/misc/bee.dmi',"zombee-wings") = list("zombee", "undead bee", "BZZZZZZZZ"),
+				new /image('icons/misc/bee.dmi',"syndiebee-wings") = list("syndiebee", "evil bee", "syndicate assassin bee", "IT HAS A GUN"),
+				new /image('icons/misc/bee.dmi',"bigbee-angry") = list("very angry bee", "extremely angry bee", "GIANT FRICKEN BEE"),
+				new /image('icons/misc/bee.dmi',"lichbee-wings") = list("evil bee", "demon bee", "YOU CAN'T BZZZZ FOREVER"),
+				new /image('icons/misc/bee.dmi',"voorbees-wings") = list("killer bee", "murder bee", "bad news bee", "RUN"),
+			)
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
 				M.druggy = max(M.druggy, 5)
-				if (probmult(10))
-					var/hstate = null
-					var/hname = null
-					switch(rand(1,5))
-						if(1)
-							hstate = "zombee-wings"
-							hname = pick("zombee", "undead bee", "BZZZZZZZZ")
-						if(2)
-							hstate = "syndiebee-wings"
-							hname = pick("syndiebee", "evil bee", "syndicate assassin bee", "IT HAS A GUN")
-						if(3)
-							hstate = "bigbee-angry"
-							hname = pick("very angry bee", "extremely angry bee", "GIANT FRICKEN BEE")
-						if(4)
-							hstate = "lichbee-wings"
-							hname = pick("evil bee", "demon bee", "YOU CAN'T BZZZZ FOREVER")
-						if(5)
-							hstate = "voorbees-wings"
-							hname = pick("killer bee", "murder bee", "bad news bee", "RUN")
-					fake_attackEx(M, 'icons/mob/bee.dmi', hstate, hname)
+				var/image/imagekey = pick(bee_halluc)
+				M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=list(imagekey), name_list=bee_halluc[imagekey], attacker_prob=10)
 				if (probmult(12))
 					M.visible_message(pick("<b>[M]</b> makes a buzzing sound.", "<b>[M]</b> buzzes."),pick("BZZZZZZZZZZZZZZZ", "<span class='alert'><b>THE BUZZING GETS LOUDER</b></span>", "<span class='alert'><b>THE BUZZING WON'T STOP</b></span>"))
 				if (probmult(15))
@@ -800,6 +833,11 @@ datum
 			transparency = 20
 			viscosity = 0.14
 			thirst_value = -0.1
+			var/static/list/cat_halluc = list(
+				new /image('icons/misc/critter.dmi',"cat-ghost") = list("ghost cat"),
+				new /image('icons/misc/critter.dmi', "cat1-wild") = list("wild cat"),
+			)
+			var/static/list/cat_sounds = list('sound/voice/animal/cat.ogg', 'sound/voice/animal/cat_hiss.ogg')
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -809,21 +847,11 @@ datum
 					playsound(M.loc, "sound/voice/animal/cat_hiss.ogg", 50, 1)
 				if(probmult(9))
 					M.visible_message("<span class='notice'><b>[M.name]</b> meows! What the fuck?</span>")
-					playsound(M.loc, "sound/voice/animal/cat.ogg", 50, 1)
-				if(probmult(7))
-					switch(rand(1,2))
-						if(1)
-							var/ghostcats = rand(1,3)
-							for(var/i = 0, i < ghostcats, i++)
-								fake_attackEx(M, 'icons/mob/critter.dmi', "cat-ghost", "ghost cat")
-								M.playsound_local(M.loc, pick('sound/voice/animal/cat.ogg', 'sound/voice/animal/cat_hiss.ogg'), 50, 1)
-						if(2)
-							var/wildcats = rand(1,3)
-							for(var/i = 0, i < wildcats, i++)
-								fake_attackEx(M, 'icons/mob/critter.dmi', "cat1-wild", "wild cat")
-								M.playsound_local(M.loc, pick('sound/voice/animal/cat.ogg', 'sound/voice/animal/cat_hiss.ogg'), 50, 1)
-				if(probmult(20))
-					M.playsound_local(M.loc, pick('sound/voice/animal/cat.ogg', 'sound/voice/animal/cat_hiss.ogg'), 50, 1)
+					playsound(M.loc, 'sound/voice/animal/cat.ogg', 50, 1)
+
+				var/image/imagekey = pick(cat_halluc)
+				M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=list(imagekey), name_list=cat_halluc[imagekey], attacker_prob=7, max_attackers=3)
+				M.AddComponent(/datum/component/hallucination/random_sound, timeout=10, sound_list=src.cat_sounds, sound_prob=20)
 				..()
 				return
 
@@ -1076,8 +1104,7 @@ datum
 						src.breathefire(M)
 					if(check < 5)
 						var/bats = rand(2,3)
-						for(var/i = 0, i < bats, i++)
-						fake_attackEx(M, 'icons/misc/AzungarAdventure.dmi', "hellbat", "hellbat")
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=list(new /image('icons/misc/AzungarAdventure.dmi', "hellbat")), name_list=list("hellbat"), attacker_prob=100, max_attackers=bats)
 						boutput(M, "<span class='alert'><b>A hellbat begins to chase you</b>!</span>")
 						M.emote("scream")
 					if(check < 20)
