@@ -41,7 +41,6 @@
 	/// Various flags. See [material_properties.dm]
 	var/material_flags = 0
 	/// In percent of a base value. How much this sells for.
-	var/value = 100
 
 	/// words that go before the name, used in combination
 	var/list/prefixes = list()
@@ -290,9 +289,6 @@
 	name = "cobryl"
 	desc = "Cobryl is a somewhat valuable metal."
 	color = "#84D5F0"
-	New()
-		value = 175
-		return ..()
 
 /datum/material/metal/bohrum
 	mat_id = "bohrum"
@@ -313,8 +309,6 @@
 	material_flags = MATERIAL_ENERGY | MATERIAL_METAL
 
 	New()
-		value = 200
-
 		setProperty("electrical", 55)
 		setProperty("stability", 30)
 		setProperty("radioactive", 55)
@@ -329,8 +323,6 @@
 	quality = 30
 
 	New()
-		value = 400
-
 		setProperty("density", 5)
 		setProperty("hard", 5)
 		setProperty("reflective", 70)
@@ -346,8 +338,6 @@
 	quality = 30
 
 	New()
-		value = 300
-
 		setProperty("density", 2)
 		setProperty("hard", 2)
 		setProperty("reflective", 55)
@@ -364,8 +354,6 @@
 	quality = 5
 
 	New()
-		value = 250
-
 		setProperty("density", 1)
 		setProperty("hard", 1)
 		setProperty("reflective", 50)
@@ -411,8 +399,6 @@
 	quality = -50
 
 	New()
-		value = 10
-
 		setProperty("density", 1)
 		setProperty("hard", 1)
 		setProperty("stability", 3)
@@ -575,18 +561,15 @@
 	New()
 		switch(gem_tier)
 			if(1)
-				value = 700
 				name = "clear [src.name]"
 				setProperty("density", 75)
 				setProperty("hard", 75)
 				addTrigger(triggersOnAdd, new /datum/materialProc/gold_add())
 			if(2)
-				value = 500
 				name = "flawed [src.name]"
 				setProperty("density", 60)
 				setProperty("hard", 60)
 			if(3)
-				value = 200
 				name = "inferior [src.name]"
 				setProperty("density", 40)
 				setProperty("hard", 40)
@@ -793,7 +776,6 @@
 	quality = 45
 
 	New()
-		value = 1000
 		setProperty("reflective", 90)
 		setProperty("density", 85)
 		setProperty("hard", 85)
@@ -826,7 +808,6 @@
 	alpha = 100
 
 	New()
-		value = 650
 		setProperty("density", 60)
 		setProperty("hard", 60)
 		addTrigger(triggersOnAdd, new /datum/materialProc/enchanted_add())

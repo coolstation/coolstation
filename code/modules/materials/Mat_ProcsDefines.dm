@@ -74,7 +74,7 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 		return M1.mat_id == M2.mat_id //Now that we're tracking mixed materials we can shortcut this proc most of the time
 	if(length(M1.properties) != length(M2.properties) || M1.mat_id != M2.mat_id)
 		return 0
-	if(M1.value != M2.value || M1.name != M2.name  || M1.color != M2.color ||M1.alpha != M2.alpha || M1.material_flags != M2.material_flags || M1.texture != M2.texture)
+	if(M1.name != M2.name  || M1.color != M2.color ||M1.alpha != M2.alpha || M1.material_flags != M2.material_flags || M1.texture != M2.texture)
 		return 0
 
 	for(var/prop in M1.properties)
@@ -143,18 +143,6 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 /// if a material is listed in here then we don't take on its color/alpha (maybe, if this works)
 /atom/var/list/mat_appearances_to_ignore = null
 
-/* //Used to be called in setMaterial but nothing ever had stats high/low enough to qualify
-/proc/getMaterialPrefixList(datum/material/base)
-	. = list()
-
-	for(var/datum/material_property/P in base.properties)
-		if(base.properties[P] >= P.prefix_high_min)
-			. |= P.getAdjective(base.properties[P])
-			continue
-		else if(base.properties[P] <= P.prefix_low_max)
-			. |= P.getAdjective(base.properties[P])
-			continue
-*/
 
 /// Sets the material of an object. PLEASE USE THIS TO SET MATERIALS UNLESS YOU KNOW WHAT YOU'RE DOING.
 /atom/proc/setMaterial(datum/material/mat1, appearance = 1, setname = 1, use_descriptors = 0)
@@ -166,9 +154,6 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 	var/strPrefix = jointext(mat1.prefixes, " ")
 	var/strSuffix = jointext(mat1.suffixes, " ")
 
-	//for(var/X in getMaterialPrefixList(mat1))
-	//	strPrefix += " [X]"
-	//trim(strPrefix)
 
 	if (src.mat_changename && setname)
 		src.remove_prefixes(99)
@@ -282,7 +267,6 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 	newMat.prefixes = (mat1.prefixes | mat2.prefixes)
 	newMat.suffixes = (mat1.suffixes | mat2.suffixes)
 
-	newMat.value = round(mat1.value * ot + mat2.value * t)
 	newMat.name = getInterpolatedName(mat1.name, mat2.name, 0.5)
 	newMat.mat_id = "([mat1.mat_id]+[mat2.mat_id])"
 	newMat.alpha = round(mat1.alpha * ot + mat2.alpha * t)
