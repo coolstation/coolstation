@@ -348,7 +348,7 @@ proc/generate_space_color()
 		return
 
 /turf/New()
-	..()
+	..() //atom shit down here
 	if (density)
 		pathable = 0
 	for(var/atom/movable/AM as mob|obj in src)
@@ -356,6 +356,27 @@ proc/generate_space_color()
 			src.Entered(AM)
 	if(!RL_Started)
 		RL_Init()
+
+	//Atmospherics setup
+	var/area/A = src.loc
+	if (A.is_atmos_simulated)
+		instantiate_air()
+		if (!istype(src, /turf/space))
+			turf_flags = IS_TYPE_SIMULATED
+
+	//unsimmed turfs are unreplaceable by default
+	can_replace_with_stuff = (A.is_construction_allowed || can_replace_with_stuff) //(no it's not lighting related but this override already had the area going on)
+#ifdef RUNTIME_CHECKING
+	can_replace_with_stuff = 1  //Shitty dumb hack bullshit (moved from turf/unsimulated definition, IDK what it's for)
+#endif
+
+	//Base lighting setup
+	#ifdef UNDERWATER_MAP //FUCK THIS SHIT. NO FULLBRIGHT ON THE MINING LEVEL, I DONT CARE.
+	if (z == AST_ZLEVEL) return
+	#endif
+	if (!A.force_fullbright && fullbright) // if the area's fullbright we'll use a single overlay on the area instead
+		overlays += /image/fullbright
+
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 	if (!mover)
@@ -905,10 +926,8 @@ proc/generate_space_color()
 
 
 
-	New()
-		..()
-		if (issimulatedturf(src))
-			turf_flags = IS_TYPE_SIMULATED
+	//TURFNEW
+
 
 	attackby(var/obj/item/W, var/mob/user, params)
 		if (istype(W, /obj/item/pen))
