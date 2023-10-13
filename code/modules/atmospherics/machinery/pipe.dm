@@ -66,8 +66,9 @@ obj/machinery/atmospherics/pipe
 
 
 	simple
-		icon = 'icons/obj/atmospherics/pipes/regular_pipe.dmi'
+		icon = 'icons/obj/atmospherics/pipes/color_pipe.dmi'
 		icon_state = "intact"//-f"
+		color = "#AAAAAA"
 
 		name = "pipe"
 		desc = "A one meter section of regular pipe."
@@ -146,7 +147,6 @@ obj/machinery/atmospherics/pipe
 				dir = NORTHWEST
 
 		color_pipe
-			icon = 'icons/obj/atmospherics/pipes/color_pipe.dmi'
 			cyan_pipe
 				name = "air hookup pipe"
 				desc = "A one meter section of pipe connected to an air hookup reservoir."

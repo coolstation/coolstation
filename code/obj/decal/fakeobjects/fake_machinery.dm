@@ -76,8 +76,9 @@
 /obj/decal/fakeobjects/pipe
 	name = "rusted pipe"
 	desc = "Good riddance."
-	icon = 'icons/obj/atmospherics/pipes/regular_pipe.dmi'
+	icon = 'icons/obj/atmospherics/pipes/color_pipe.dmi'
 	icon_state = "intact"
+	color = "#AAAAAA"
 	anchored = 1
 	layer = PIPE_LAYER
 	plane = PLANE_NOSHADOW_BELOW
