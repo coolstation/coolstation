@@ -2,6 +2,7 @@
 	icon = 'icons/turf/floors.dmi'
 	plane = PLANE_FLOOR //See _plane.dm, required for shadow effect
 	appearance_flags = TILE_BOUND | PIXEL_SCALE
+	flags = OPENCONTAINER | FPRINT
 	var/intact = 1
 	var/allows_vehicles = 1
 
@@ -10,16 +11,10 @@
 	///If ReplaceWith() actually does a thing or not. Used to be a thing on turf, gets set for unsimmed turfs in New() in base_lighting.dm
 	var/can_replace_with_stuff = 0
 
+	//To the best of my knowledge nothing cares about a turf's level
 	level = 1
 
-#ifdef RUNTIME_CHECKING
-	can_replace_with_stuff = 1  //Shitty dumb hack bullshit
-#endif
-
-	proc/burn_down()
-		return
-
-		//Properties for open tiles (/floor)
+	//Properties for open tiles (/floor)
 	#define _UNSIM_TURF_GAS_DEF(GAS, ...) var/GAS = 0;
 	APPLY_TO_GASES(_UNSIM_TURF_GAS_DEF)
 
@@ -62,7 +57,7 @@
 	can_write_on = 1
 
 	text = "<font color=#aaa>."
-	flags = OPENCONTAINER | FPRINT
+
 
 	disposing() // DOES NOT GET CALLED ON TURFS!!!
 		SHOULD_NOT_OVERRIDE(TRUE)
@@ -447,6 +442,8 @@
 		if(O.level == 1)
 			O.hide(src.intact)
 
+/turf/proc/burn_down()
+		return
 
 /turf/proc/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0)
 
