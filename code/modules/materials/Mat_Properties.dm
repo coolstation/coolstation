@@ -4,28 +4,11 @@
 	var/name = ""
 	/// Internal ID of this property.
 	var/id = ""
-	/// Min value of this property. Please NOTHING BELOW `1`. It breaks everything.
-	var/min_value = 1
-	/// Max value of this property. May be modified by quality.
-	var/max_value = 100
-	/// What should be considered the "default" value of this property?
-	var/default_value = 50
 
 	/// Min value for high-prefix. Minimum for the prefix to show up on the object names.
 	var/prefix_high_min = 80
 	/// Max value for low-prefix. Maximum for the prefix to show up on the object names.
 	var/prefix_low_max = 20
-
-	proc/changeValue(var/datum/material/M, var/newValue)
-		for(var/X in M.properties)
-			if(X == src)
-				M.properties[X] = min(max(newValue, min_value), max_value)
-				onValueChanged(M, M.properties[X])
-				return
-		return
-
-	proc/onValueChanged(var/datum/material/M, var/new_value)
-		return
 
 	proc/onAdded(var/datum/material/M, var/new_value)
 		return
@@ -39,9 +22,6 @@
 /datum/material_property/electrical_conductivity
 	name = "Electrical conductivity"
 	id = "electrical"
-	min_value = 1
-	max_value = 100
-	default_value = 60
 
 	prefix_high_min = 85
 	prefix_low_max = 20
@@ -67,9 +47,6 @@
 /datum/material_property/thermal_conductivity
 	name = "Thermal conductivity"
 	id = "thermal"
-	min_value = 1
-	max_value = 100
-	default_value = 50
 
 	prefix_high_min = 85
 	prefix_low_max = 15
@@ -94,9 +71,6 @@
 /datum/material_property/hardness
 	name = "Hardness"
 	id = "hard"
-	min_value = 1
-	max_value = 100
-	default_value = 25
 
 	prefix_high_min = 85
 	prefix_low_max = 15
@@ -119,9 +93,6 @@
 /datum/material_property/density
 	name = "Density"
 	id = "density"
-	min_value = 1
-	max_value = 100
-	default_value = 20
 
 	prefix_high_min = 85
 	prefix_low_max = 15
@@ -144,9 +115,6 @@
 /datum/material_property/reflectivity
 	name = "Reflectivity"
 	id = "reflective"
-	min_value = 1
-	max_value = 100
-	default_value = 10
 
 	prefix_high_min = 76
 	prefix_low_max = 25
@@ -166,7 +134,7 @@
 			if(90 to INFINITY)
 				return "very reflective"
 
-	onValueChanged(var/datum/material/M, var/new_value)
+	onAdded(var/datum/material/M, var/new_value)
 		if(new_value >= 76)
 			M.addTrigger(M.triggersOnBullet, new /datum/materialProc/reflective_onbullet())
 		else
@@ -176,9 +144,6 @@
 /datum/material_property/flammability
 	name = "Flammability"
 	id = "flammable"
-	min_value = 1
-	max_value = 100
-	default_value = 50
 
 	prefix_high_min = 85
 	prefix_low_max = 15
@@ -201,9 +166,6 @@
 /datum/material_property/corrosion
 	name = "Corrosion resistance"
 	id = "corrosion"
-	min_value = 1
-	max_value = 100
-	default_value = 35
 
 	prefix_high_min = 85
 	prefix_low_max = 15
@@ -226,9 +188,6 @@
 /datum/material_property/stability
 	name = "Stability"
 	id = "stability"
-	min_value = 1
-	max_value = 100
-	default_value = 50
 
 	prefix_high_min = 85
 	prefix_low_max = 15
@@ -251,9 +210,6 @@
 /datum/material_property/permeability
 	name = "Permeability"
 	id = "permeable"
-	min_value = 1
-	max_value = 100
-	default_value = 80
 
 	prefix_high_min = 85
 	prefix_low_max = 15
@@ -276,9 +232,6 @@
 /datum/material_property/radioactivity
 	name = "Radioactivity"
 	id = "radioactive"
-	min_value = 1
-	max_value = 100
-	default_value = 0
 
 	prefix_high_min = 1
 	prefix_low_max = 100
@@ -315,12 +268,9 @@
 /datum/material_property/neutron_radioactivity
 	name = "Neutron Radioactivity"
 	id = "n_radioactive"
-	min_value = 1
-	max_value = 100
 
 	prefix_high_min = 1
 	prefix_low_max = 100
-	default_value = 0
 
 
 	getAdjective(value)
@@ -355,9 +305,6 @@
 /datum/material_property/fissile
 	name = "Fissibility"
 	id = "fissile"
-	min_value = 1
-	max_value = 100
-	default_value = 1
 
 	prefix_high_min = 25
 	prefix_low_max = 75
@@ -380,9 +327,6 @@
 /datum/material_property/resonance // Just for molitz, not used for anything else and doubt it will be. Could tie instance boosts to resonance and give other mats resonance for purposes of being good to alloy with molitz.
 	name = "Resonance"
 	id = "resonance"
-	min_value = 1
-	max_value = 100
-	default_value = 1
 
 	prefix_high_min = 25
 	prefix_low_max = 75

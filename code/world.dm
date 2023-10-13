@@ -196,10 +196,10 @@ var/global/mob/twitch_mob = 0
 var/f_color_selector_handler/F_Color_Selector
 
 /proc/buildMaterialPropertyCache()
-	if(materialProps.len) return
+	if(length(materialProps)) return
 	for(var/A in childrentypesof(/datum/material_property)) //Caching material props
 		var/datum/material_property/R = new A()
-		materialProps.Add(R)
+		materialProps[R.id] = R
 	return
 
 /proc/createRenderSourceHolder()

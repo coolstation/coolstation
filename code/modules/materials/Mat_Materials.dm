@@ -69,56 +69,22 @@
 
 	//var/owner_hasentered_added = FALSE
 
-	proc/getProperty(var/property, var/type = VALUE_CURRENT)
-		for(var/datum/material_property/P in properties)
-			if(P.id == property)
-				switch(type)
-					if(VALUE_CURRENT)
-						return properties[P]
-					if(VALUE_MIN)
-						return P.min_value
-					if(VALUE_MAX)
-						return P.max_value
+	proc/getProperty(var/property)
+		if (property in properties)
+			return properties[property]
 		return -1
 
-	proc/removeProperty(var/property)
-		for(var/datum/material_property/P in properties)
-			if(P.id == property)
-				P.onRemoved(src)
-				properties.Remove(P)
-				return
-		return
-
-	proc/adjustProperty(var/property, var/value)
-		for(var/datum/material_property/P in properties)
-			if(P.id == property)
-				P.changeValue(src, properties[P] + value)
-				return
-		//setProperty(property, value)
-		return
-
 	proc/setProperty(var/property, var/value)
-		for(var/datum/material_property/P in properties)
-			if(P.id == property)
-				P.changeValue(src, value)
-				return
+		value = clamp(value,1,100) //there was never a material property that specified another min/max, so everything goes between 1 and 100 thanks
 
-		if(!materialProps.len) //Required so that compile time object materials can have properties.
-			buildMaterialPropertyCache()
+		buildMaterialPropertyCache()
 
-		for(var/datum/material_property/X in materialProps)
-			if(X.id == property)
-				properties.Add(X)
-				X.onAdded(src, value)
-				X.changeValue(src, value)
-
-		return
+		properties[property] = value
+		var/datum/material_property/this_property = materialProps[property]
+		this_property.onAdded(src, value)
 
 	proc/hasProperty(var/property)
-		for(var/datum/material_property/P in properties)
-			if(P.id == property)
-				return 1
-		return 0
+		return (property in properties)
 
 	proc/addTrigger(var/list/L, var/datum/materialProc/D)
 		for(var/datum/materialProc/P in L)

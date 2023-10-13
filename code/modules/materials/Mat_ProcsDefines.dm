@@ -38,7 +38,7 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 			if(x in merged)
 				merged[x] = round(merged[x] * oBias + l2[x] * bias)
 			else
-				merged.Add(x)
+				//merged.Add(x)
 				merged[x] = l2[x]
 
 	return merged
@@ -72,15 +72,15 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 		return 1
 	if(!(M1.material_flags & MATERIAL_NONSTANDARD) && !(M2.material_flags & MATERIAL_NONSTANDARD))
 		return M1.mat_id == M2.mat_id //Now that we're tracking mixed materials we can shortcut this proc most of the time
-	if(M1.properties.len != M2.properties.len || M1.mat_id != M2.mat_id)
+	if(length(M1.properties) != length(M2.properties) || M1.mat_id != M2.mat_id)
 		return 0
 	if(M1.value != M2.value || M1.name != M2.name  || M1.color != M2.color ||M1.alpha != M2.alpha || M1.material_flags != M2.material_flags || M1.texture != M2.texture)
 		return 0
 
-	for(var/datum/material_property/P1 in M1.properties)
-		if(M2.getProperty(P1.id) != M1.properties[P1]) return 0
-	for(var/datum/material_property/P2 in M2.properties)
-		if(M1.getProperty(P2.id) != M2.properties[P2]) return 0
+	for(var/prop in M1.properties)
+		if(M2.properties[prop] != M1.properties[prop]) return 0
+	for(var/prop in M2.properties)
+		if(M2.properties[prop] != M1.properties[prop]) return 0
 
 	for(var/X in triggerVars)
 		for(var/datum/material_property/A in M1.vars[X])
@@ -320,9 +320,11 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 	handleTriggerGenerations(newMat.triggersOnAttacked)
 	handleTriggerGenerations(newMat.triggersOnEntered)
 
-	//Make sure the newly merged properties are informed about the fact that they just changed. Has to happen after triggers.
-	for(var/datum/material_property/nProp in newMat.properties)
-		nProp.onValueChanged(newMat, newMat.properties[nProp])
+	//Since properties aren't mutable anymore, onValueChanged is dead
+	//and since the triggers are merged already, we don't need to onAdded either :V
+
+	//for(var/datum/material_property/nProp in newMat.properties)
+	//	nProp.onValueChanged(newMat, newMat.properties[nProp])
 
 	//--
 
@@ -347,14 +349,8 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 				newMat.texture_blend = mat2.texture_blend
 	//
 
-	//This is sub-optimal and only used because im dumb
-	/*if(mat1.material_flags & MATERIAL_CRYSTAL || mat2.material_flags & MATERIAL_CRYSTAL) newMat.material_flags |= MATERIAL_CRYSTAL
-	if(mat1.material_flags & MATERIAL_METAL || mat2.material_flags & MATERIAL_METAL) newMat.material_flags |= MATERIAL_METAL
-	if(mat1.material_flags & MATERIAL_CLOTH || mat2.material_flags & MATERIAL_CLOTH) newMat.material_flags |= MATERIAL_CLOTH
-	if(mat1.material_flags & MATERIAL_ORGANIC || mat2.material_flags & MATERIAL_ORGANIC) newMat.material_flags |= MATERIAL_ORGANIC
-	if(mat1.material_flags & MATERIAL_ENERGY || mat2.material_flags & MATERIAL_ENERGY) newMat.material_flags |= MATERIAL_ENERGY
-	if(mat1.material_flags & MATERIAL_RUBBER || mat2.material_flags & MATERIAL_RUBBER) newMat.material_flags |= MATERIAL_RUBBER*/
-	newMat.material_flags = mat1.material_flags | mat2.material_flags //<That's how it's done instead (not that just slapping all the mat flags together is great)
+
+	newMat.material_flags = mat1.material_flags | mat2.material_flags
 
 	newMat.material_flags |= MATERIAL_NONSTANDARD
 
