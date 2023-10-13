@@ -57,6 +57,13 @@
 
 	var/turf_flags = 0
 
+	var/mutable_appearance/wet_overlay = null
+	var/default_melt_cap = 30
+	can_write_on = 1
+
+	text = "<font color=#aaa>."
+	flags = OPENCONTAINER | FPRINT
+
 	disposing() // DOES NOT GET CALLED ON TURFS!!!
 		SHOULD_NOT_OVERRIDE(TRUE)
 		..()
@@ -144,208 +151,50 @@
 			if (HAS_FLAG(O.object_flags, HAS_DIRECTIONAL_BLOCKING))
 				ADD_FLAG(src.blocked_dirs, O.dir)
 
-/obj/overlay/tile_effect
-	name = ""
-	anchored = 1
-	density = 0
-	mouse_opacity = 0
-	alpha = 255
-	layer = TILE_EFFECT_OVERLAY_LAYER
-	animate_movement = NO_STEPS // fix for things gliding around all weird
+/turf/attack_hand(var/mob/user as mob)
+	if (src.density == 1)
+		return
+	if ((!( user.canmove ) || user.restrained() || !( user.pulling )))
+		return
+	if (user.pulling.anchored)
+		return
+	if ((user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1))
+		return
+	if (isobj(user.pulling.loc))
+		var/obj/container = user.pulling.loc
+		if (user.pulling in container.contents)
+			return
 
-	pooled(var/poolname)
-		overlays.len = 0
-		..()
+	var/turf/fuck_u = user.pulling.loc
+	if (ismob(user.pulling))
+		var/mob/M = user.pulling
+		var/mob/t = M.pulling
+		M.pulling = null
+		step(M, get_dir(fuck_u, src))
+		M.pulling = t
+	else
+		step(user.pulling, get_dir(fuck_u, src))
+	return
 
-	Move()
-		return 0
+/turf/attackby(var/obj/item/W, var/mob/user, params)
+		if (istype(W, /obj/item/pen))
+			var/obj/item/pen/P = W
+			P.write_on_turf(src, user, params)
+			return
+		else
+			//if turf has kudzu, transfer attack from turf to kudzu
+			if (src.temp_flags & HAS_KUDZU)
+				var/obj/spacevine/K = locate(/obj/spacevine) in src.contents
+				if (K)
+					K.Attackby(W, user, params)
+			return ..()
 
-/obj/overlay/tile_gas_effect
-	name = ""
-	anchored = 1
-	density = 0
-	mouse_opacity = 0
-
-	pooled(var/poolname)
-		overlays.len = 0
-		..()
-
-	Move()
-		return 0
 
 /turf/meteorhit(obj/meteor as obj) //ATMOSSIMSTODO
 	return
 
 /turf/ex_act(severity) //ATMOSSIMSTODO
 	return
-
-/turf/space
-	icon = 'icons/turf/space.dmi'
-	name = "\proper space"
-	icon_state = "placeholder"
-	fullbright = 1
-#ifndef HALLOWEEN
-	color = "#898989"
-#endif
-	temperature = TCMB
-	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
-	heat_capacity = 700000
-	pathable = 0
-	mat_changename = 0
-	mat_changedesc = 0
-	throw_unlimited = 1
-	plane = PLANE_SPACE
-	special_volume_override = 0
-	text = ""
-	clean = 1 //in space, no one needs you to clean
-	var/static/list/space_color = generate_space_color()
-	var/static/image/starlight
-
-	flags = ALWAYS_SOLID_FLUID
-	turf_flags = CAN_BE_SPACE_SAMPLE | MINE_MAP_PRESENTS_EMPTY
-	event_handler_flags = IMMUNE_SINGULARITY
-	dense
-		icon_state = "dplaceholder"
-		density = 1
-		opacity = 1
-
-	cavern // cavernous interior spaces
-		icon_state = "cavern"
-		name = "cavern"
-		fullbright = 0
-
-/turf/space/solariumjoke
-	icon = 'icons/misc/worlds.dmi'
-	icon_state = "howlingsun"
-	desc = "Looks normal."
-
-/turf/space/proc/update_icon(starlight_alpha=255)
-	if(!isnull(space_color) && !istype(src, /turf/space/fluid)&& !istype(src, /turf/space/gehenna))
-		src.color = space_color
-
-	if(fullbright)
-		if(!starlight)
-			starlight = image('icons/effects/overlays/simplelight.dmi', "3x3", pixel_x=-32, pixel_y=-32)
-			starlight.appearance_flags = RESET_COLOR | RESET_TRANSFORM | RESET_ALPHA | NO_CLIENT_COLOR | KEEP_APART
-			starlight.layer = LIGHTING_LAYER_BASE
-			starlight.plane = PLANE_LIGHTING
-			starlight.blend_mode = BLEND_ADD
-
-		starlight.color = src.color
-		if(!isnull(starlight_alpha))
-			starlight.alpha = starlight_alpha
-		UpdateOverlays(starlight, "starlight")
-	else
-		UpdateOverlays(null, "starlight")
-
-
-/turf/space/no_replace
-
-/turf/space/New()
-	..()
-	//icon = 'icons/turf/space.dmi'
-	if (icon_state == "placeholder") icon_state = "[rand(1,25)]"
-	if (icon_state == "aplaceholder") icon_state = "a[rand(1,10)]"
-	if (icon_state == "dplaceholder") icon_state = "[rand(1,25)]"
-	if (icon_state == "d2placeholder") icon_state = "near_blank"
-	if (blowout == 1) icon_state = "blowout[rand(1,5)]"
-	if (derelict_mode == 1)
-		icon = 'icons/turf/floors.dmi'
-		icon_state = "darkvoid"
-		name = "void"
-		desc = "Yep, this is fine."
-	if(buzztile == null && prob(1) && prob(1) && src.z == 1) //Dumb shit to trick nerds.
-		buzztile = src
-		icon_state = "wiggle"
-		src.desc = "There appears to be a spatial disturbance in this area of space."
-		new/obj/item/device/key/random(src)
-
-	update_icon()
-
-proc/repaint_space(regenerate=TRUE, starlight_alpha)
-	for(var/turf/space/T)
-		if(regenerate)
-			T.space_color = generate_space_color()
-			regenerate = FALSE
-		if(istype(T, /turf/space/fluid))
-			continue
-		T.update_icon(starlight_alpha)
-
-proc/generate_space_color()
-#ifndef HALLOWEEN
-	return "#898989"
-#else
-	var/bg = list(0, 0, 0)
-	bg[1] += rand(0, 35)
-	bg[3] += rand(0, 35)
-	var/main_star = list(255, 255, 255)
-	main_star = list(150 + rand(-40, 40), 100 + rand(-40, 40), 50 + rand(-40, 40))
-	var/hsv_main = rgb2hsv(main_star[1], main_star[2], main_star[3])
-	hsv_main[2] = 100
-	main_star = hsv2rgblist(hsv_main[1], hsv_main[2], hsv_main[3])
-	if(prob(5))
-		main_star = list(230, 0, 0)
-	var/misc_star_1 = main_star
-	var/misc_star_2 = main_star
-	if(prob(33))
-		misc_star_2 = list(main_star[2], main_star[3], main_star[1])
-		misc_star_1 = list(main_star[3], main_star[1], main_star[2])
-	else if(prob(50))
-		misc_star_1 = list(main_star[2], main_star[3], main_star[1])
-		misc_star_2 = list(main_star[3], main_star[1], main_star[2])
-	else
-		misc_star_1 = list(150 + rand(-40, 40), 100 + rand(-40, 40), 50 + rand(-40, 40))
-		misc_star_2 = list(150 + rand(-40, 40), 100 + rand(-40, 40), 50 + rand(-40, 40))
-	if(prob(5))
-		misc_star_1 = list(230, 0, 0)
-	misc_star_1 = list(misc_star_1[1] + rand(-25, 25), misc_star_1[2] + rand(-25, 25), misc_star_1[3] + rand(-25, 25))
-	misc_star_2 = list(misc_star_2[1] + rand(-25, 25), misc_star_2[2] + rand(-25, 25), misc_star_2[3] + rand(-25, 25))
-	if(prob(5))
-		misc_star_2 = list(230, 0, 0)
-	if(prob(1.5))
-		bg = list(200 - bg[1], 200 - bg[2], 200 - bg[3])
-		if(prob(50))
-			main_star = list(180 - main_star[1], 180 - main_star[2], 180 - main_star[3])
-			misc_star_1 = list(255 - misc_star_1[1], 255 - misc_star_1[2], 255 - misc_star_1[3])
-			misc_star_2 = list(255 - misc_star_2[1], 255 - misc_star_2[2], 255 - misc_star_2[3])
-	if(prob(2))
-		bg = list(120 + rand(-30, 30), rand(20, 50), rand(20, 50))
-	return affine_color_mapping_matrix(
-		list("#000000", "#ffffff", "#ff0000", "#0080FF"), // original misc_star_2 = "#64C5D2", but that causes issues for some frames
-		list(bg, main_star, misc_star_1, misc_star_2)
-	)
-#endif
-
-
-
-// override for space turfs, since they should never hide anything
-/turf/space/levelupdate()
-	for(var/obj/O in src)
-		if(O.level == 1)
-			O.hide(0)
-
-// override for space turfs, since they should never hide anything
-/turf/space/ReplaceWithSpace()
-	return
-
-/turf/space/process_cell()
-	return
-
-/turf/cordon
-	name = "CORDON"
-	icon = 'icons/effects/mapeditor.dmi'
-	icon_state = "cordonturf"
-	fullbright = 1
-	invisibility = 101
-	explosion_resistance = 999999
-	density = 1
-	opacity = 1
-
-	Enter()
-		return 0 // nope
-
-	process_cell()
-		return
 
 /turf/New()
 	..() //atom shit down here
@@ -537,37 +386,54 @@ proc/generate_space_color()
 					M.set_loc(warptarget)
 #endif
 
-// Ported from unstable r355
-/turf/space/Entered(atom/movable/A as mob|obj)
-	..()
-	if ((!(A) || istype(null, /obj/projectile)))
+#if defined(MAP_OVERRIDE_POD_WARS)
+/turf/proc/edge_step(var/atom/movable/A, var/newx, var/newy)
+
+	//testing pali's solution for getting the direction opposite of the map edge you are nearest to.
+	// A.set_loc(A.loc)
+	var/atom/target = get_edge_target_turf(A, (A.x + A.y > world.maxx ? SOUTH | WEST : NORTH | EAST) & (A.x - A.y > 0 ? NORTH | WEST : SOUTH | EAST))
+	if (!istype(A, /obj/machinery/vehicle) && target)	//Throw everything but vehicles(pods)
+		A.throw_at(target, 1, 1)
+
+	return
+#else
+//transfer between Z-levels happens here
+/turf/proc/edge_step(var/atom/movable/A, var/newx, var/newy)
+	var/zlevel = 3 //((A.z=3)?5:3)//(3,4)
+
+	if(A.z == 3) zlevel = 5
+	else if(map_currently_very_dusty)
+		if(A.z == 6) zlevel = 5
+		else zlevel = 6
+
+	if (world.maxz < zlevel) // if there's less levels than the one we want to go to
+		zlevel = 1 // just boot people back to z1 so the server doesn't lag to fucking death trying to place people on maps that don't exist
+	if (istype(A, /obj/machinery/vehicle))
+		var/obj/machinery/vehicle/V = A
+		if (V.going_home)
+			if(map_currently_very_dusty)
+				zlevel = 5
+			else
+				zlevel = 1
+			V.going_home = 0
+	if (istype(A, /obj/newmeteor))
+		qdel(A)
 		return
 
-	if (!(A.last_move))
-		return
+	if (A.z == 1 && zlevel != A.z)
+		if (!(isitem(A) && A:w_class <= W_CLASS_SMALL))
+			for_by_tcl(C, /obj/machinery/communications_dish)
+				C.add_cargo_logs(A)
 
-	//if(!(src in A.locs))
-	//	return
-
-//	if (locate(/obj/movable, src))
-//		return 1
-
-	//if (!istype(src,/turf/space/fluid))//ignore inertia if we're in the ocean
-	if (src.throw_unlimited)//ignore inertia if we're in the ocean (faster but kind of dumb check)
-		if ((ismob(A) && src.x > 2 && src.x < (world.maxx - 1))) //fuck?
-			var/mob/M = A
-			if( M.client && M.client.flying )
-				return//aaaaa
-			BeginSpacePush(M)
-
-	if (src.x <= 1)
-		edge_step(A, world.maxx- 2, 0)
-	else if (A.x >= (world.maxx - 1))
-		edge_step(A, 3, 0)
-	else if (src.y <= 1)
-		edge_step(A, 0, world.maxy - 2)
-	else if (A.y >= (world.maxy - 1))
-		edge_step(A, 0, 3)
+	A.z = zlevel
+	if (newx)
+		A.x = newx
+	if (newy)
+		A.y = newy
+	SPAWN_DBG(0)
+		if ((A?.loc))
+			A.loc.Entered(A)
+#endif
 
 /turf/hitby(atom/movable/AM, datum/thrown_thing/thr)
 	. = ..()
@@ -911,36 +777,299 @@ proc/generate_space_color()
   var/area/AR = src.loc
   return AR.sanctuary
 
-//-------------An assortment of random miscellaneous turf definitions below
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
-/turf
+//Overlays
 
-	//allows_vehicles = 0
+//////////////////////////////////////////////////////////////////////////////////////////////////
+/obj/overlay/tile_effect
+	name = ""
+	anchored = 1
+	density = 0
+	mouse_opacity = 0
+	alpha = 255
+	layer = TILE_EFFECT_OVERLAY_LAYER
+	animate_movement = NO_STEPS // fix for things gliding around all weird
 
-	var/mutable_appearance/wet_overlay = null
-	var/default_melt_cap = 30
-	can_write_on = 1
+	pooled(var/poolname)
+		overlays.len = 0
+		..()
 
-	text = "<font color=#aaa>."
-	flags = OPENCONTAINER | FPRINT
+	Move()
+		return 0
+
+/obj/overlay/tile_gas_effect
+	name = ""
+	anchored = 1
+	density = 0
+	mouse_opacity = 0
+
+	pooled(var/poolname)
+		overlays.len = 0
+		..()
+
+	Move()
+		return 0
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+//SPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACE
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/turf/space
+	icon = 'icons/turf/space.dmi'
+	name = "\proper space"
+	icon_state = "placeholder"
+	fullbright = 1
+#ifndef HALLOWEEN
+	color = "#898989"
+#endif
+	temperature = TCMB
+	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
+	heat_capacity = 700000
+	pathable = 0
+	mat_changename = 0
+	mat_changedesc = 0
+	throw_unlimited = 1
+	plane = PLANE_SPACE
+	special_volume_override = 0
+	text = ""
+	clean = 1 //in space, no one needs you to clean
+	var/static/list/space_color = generate_space_color()
+	var/static/image/starlight
+
+	flags = ALWAYS_SOLID_FLUID
+	turf_flags = CAN_BE_SPACE_SAMPLE | MINE_MAP_PRESENTS_EMPTY
+	event_handler_flags = IMMUNE_SINGULARITY
+	dense
+		icon_state = "dplaceholder"
+		density = 1
+		opacity = 1
+
+	cavern // cavernous interior spaces
+		icon_state = "cavern"
+		name = "cavern"
+		fullbright = 0
+
+/turf/space/solariumjoke
+	icon = 'icons/misc/worlds.dmi'
+	icon_state = "howlingsun"
+	desc = "Looks normal."
+
+/turf/space/proc/update_icon(starlight_alpha=255)
+	if(!isnull(space_color) && !istype(src, /turf/space/fluid)&& !istype(src, /turf/space/gehenna))
+		src.color = space_color
+
+	if(fullbright)
+		if(!starlight)
+			starlight = image('icons/effects/overlays/simplelight.dmi', "3x3", pixel_x=-32, pixel_y=-32)
+			starlight.appearance_flags = RESET_COLOR | RESET_TRANSFORM | RESET_ALPHA | NO_CLIENT_COLOR | KEEP_APART
+			starlight.layer = LIGHTING_LAYER_BASE
+			starlight.plane = PLANE_LIGHTING
+			starlight.blend_mode = BLEND_ADD
+
+		starlight.color = src.color
+		if(!isnull(starlight_alpha))
+			starlight.alpha = starlight_alpha
+		UpdateOverlays(starlight, "starlight")
+	else
+		UpdateOverlays(null, "starlight")
 
 
+/turf/space/no_replace
 
-	//TURFNEW
+/turf/space/New()
+	..()
+	//icon = 'icons/turf/space.dmi'
+	if (icon_state == "placeholder") icon_state = "[rand(1,25)]"
+	if (icon_state == "aplaceholder") icon_state = "a[rand(1,10)]"
+	if (icon_state == "dplaceholder") icon_state = "[rand(1,25)]"
+	if (icon_state == "d2placeholder") icon_state = "near_blank"
+	if (blowout == 1) icon_state = "blowout[rand(1,5)]"
+	if (derelict_mode == 1)
+		icon = 'icons/turf/floors.dmi'
+		icon_state = "darkvoid"
+		name = "void"
+		desc = "Yep, this is fine."
+	if(buzztile == null && prob(1) && prob(1) && src.z == 1) //Dumb shit to trick nerds.
+		buzztile = src
+		icon_state = "wiggle"
+		src.desc = "There appears to be a spatial disturbance in this area of space."
+		new/obj/item/device/key/random(src)
 
+	update_icon()
 
-	attackby(var/obj/item/W, var/mob/user, params)
-		if (istype(W, /obj/item/pen))
-			var/obj/item/pen/P = W
-			P.write_on_turf(src, user, params)
+proc/repaint_space(regenerate=TRUE, starlight_alpha)
+	for(var/turf/space/T)
+		if(regenerate)
+			T.space_color = generate_space_color()
+			regenerate = FALSE
+		if(istype(T, /turf/space/fluid))
+			continue
+		T.update_icon(starlight_alpha)
+
+proc/generate_space_color()
+#ifndef HALLOWEEN
+	return "#898989"
+#else
+	var/bg = list(0, 0, 0)
+	bg[1] += rand(0, 35)
+	bg[3] += rand(0, 35)
+	var/main_star = list(255, 255, 255)
+	main_star = list(150 + rand(-40, 40), 100 + rand(-40, 40), 50 + rand(-40, 40))
+	var/hsv_main = rgb2hsv(main_star[1], main_star[2], main_star[3])
+	hsv_main[2] = 100
+	main_star = hsv2rgblist(hsv_main[1], hsv_main[2], hsv_main[3])
+	if(prob(5))
+		main_star = list(230, 0, 0)
+	var/misc_star_1 = main_star
+	var/misc_star_2 = main_star
+	if(prob(33))
+		misc_star_2 = list(main_star[2], main_star[3], main_star[1])
+		misc_star_1 = list(main_star[3], main_star[1], main_star[2])
+	else if(prob(50))
+		misc_star_1 = list(main_star[2], main_star[3], main_star[1])
+		misc_star_2 = list(main_star[3], main_star[1], main_star[2])
+	else
+		misc_star_1 = list(150 + rand(-40, 40), 100 + rand(-40, 40), 50 + rand(-40, 40))
+		misc_star_2 = list(150 + rand(-40, 40), 100 + rand(-40, 40), 50 + rand(-40, 40))
+	if(prob(5))
+		misc_star_1 = list(230, 0, 0)
+	misc_star_1 = list(misc_star_1[1] + rand(-25, 25), misc_star_1[2] + rand(-25, 25), misc_star_1[3] + rand(-25, 25))
+	misc_star_2 = list(misc_star_2[1] + rand(-25, 25), misc_star_2[2] + rand(-25, 25), misc_star_2[3] + rand(-25, 25))
+	if(prob(5))
+		misc_star_2 = list(230, 0, 0)
+	if(prob(1.5))
+		bg = list(200 - bg[1], 200 - bg[2], 200 - bg[3])
+		if(prob(50))
+			main_star = list(180 - main_star[1], 180 - main_star[2], 180 - main_star[3])
+			misc_star_1 = list(255 - misc_star_1[1], 255 - misc_star_1[2], 255 - misc_star_1[3])
+			misc_star_2 = list(255 - misc_star_2[1], 255 - misc_star_2[2], 255 - misc_star_2[3])
+	if(prob(2))
+		bg = list(120 + rand(-30, 30), rand(20, 50), rand(20, 50))
+	return affine_color_mapping_matrix(
+		list("#000000", "#ffffff", "#ff0000", "#0080FF"), // original misc_star_2 = "#64C5D2", but that causes issues for some frames
+		list(bg, main_star, misc_star_1, misc_star_2)
+	)
+#endif
+
+// Ported from unstable r355
+/turf/space/Entered(atom/movable/A as mob|obj)
+	..()
+	if ((!(A) || istype(null, /obj/projectile)))
+		return
+
+	if (!(A.last_move))
+		return
+
+	//if(!(src in A.locs))
+	//	return
+
+//	if (locate(/obj/movable, src))
+//		return 1
+
+	//if (!istype(src,/turf/space/fluid))//ignore inertia if we're in the ocean
+	if (src.throw_unlimited)//ignore inertia if we're in the ocean (faster but kind of dumb check)
+		if ((ismob(A) && src.x > 2 && src.x < (world.maxx - 1))) //fuck?
+			var/mob/M = A
+			if( M.client && M.client.flying )
+				return//aaaaa
+			BeginSpacePush(M)
+
+	if (src.x <= 1)
+		edge_step(A, world.maxx- 2, 0)
+	else if (A.x >= (world.maxx - 1))
+		edge_step(A, 3, 0)
+	else if (src.y <= 1)
+		edge_step(A, 0, world.maxy - 2)
+	else if (A.y >= (world.maxy - 1))
+		edge_step(A, 0, 3)
+
+// override for space turfs, since they should never hide anything
+/turf/space/levelupdate()
+	for(var/obj/O in src)
+		if(O.level == 1)
+			O.hide(0)
+
+// override for space turfs, since they should never hide anything
+/turf/space/ReplaceWithSpace()
+	return
+
+/turf/space/process_cell()
+	return
+
+// imported from space.dm
+
+/turf/space/attack_hand(mob/user as mob)
+	if ((user.restrained() || !( user.pulling )))
+		return
+	if (user.pulling.anchored)
+		return
+	if ((user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1))
+		return
+	if (isobj(user.pulling.loc))
+		var/obj/container = user.pulling.loc
+		if (user.pulling in container.contents)
 			return
-		else
-			//if turf has kudzu, transfer attack from turf to kudzu
-			if (src.temp_flags & HAS_KUDZU)
-				var/obj/spacevine/K = locate(/obj/spacevine) in src.contents
-				if (K)
-					K.Attackby(W, user, params)
-			return ..()
+
+	var/turf/fuck_u = user.pulling.loc
+	if (ismob(user.pulling))
+		var/mob/M = user.pulling
+		var/t = M.pulling
+		M.pulling = null
+		step(M, get_dir(fuck_u, src))
+		M.pulling = t
+	else
+		step(user.pulling, get_dir(fuck_u, src))
+	return
+
+/turf/space/attackby(obj/item/C as obj, mob/user as mob)
+	var/area/A = get_area (user)
+	if (istype(A, /area/supply/spawn_point || /area/supply/delivery_point || /area/supply/sell_point))
+		boutput(user, "<span class='alert'>You can't build here.</span>")
+		return
+	var/obj/item/rods/R = C
+	if (istype(R) && R.change_stack_amount(-1))
+		boutput(user, "<span class='notice'>Constructing support lattice ...</span>")
+		playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
+		ReplaceWithLattice()
+		if (R.material)
+			src.setMaterial(C.material)
+		return
+
+	if (istype(C, /obj/item/tile))
+		//var/obj/lattice/L = locate(/obj/lattice, src)
+		var/obj/item/tile/T = C
+		if (T.amount >= 1)
+			for(var/obj/lattice/L in src)
+				qdel(L)
+			playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
+			T.build(src)
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Cordon
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/turf/cordon
+	name = "CORDON"
+	icon = 'icons/effects/mapeditor.dmi'
+	icon_state = "cordonturf"
+	fullbright = 1
+	invisibility = 101
+	explosion_resistance = 999999
+	density = 1
+	opacity = 1
+
+	Enter()
+		return 0 // nope
+
+	process_cell()
+		return
+
+//-------------An assortment of random miscellaneous turf definitions below
 
 /turf/aprilfools/grass
 	name = "grass"
@@ -1071,126 +1200,6 @@ proc/generate_space_color()
 	desc = "Some kind of force field?"
 	icon_state = "barrierVR"
 
-/turf/attack_hand(var/mob/user as mob)
-	if (src.density == 1)
-		return
-	if ((!( user.canmove ) || user.restrained() || !( user.pulling )))
-		return
-	if (user.pulling.anchored)
-		return
-	if ((user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1))
-		return
-	if (isobj(user.pulling.loc))
-		var/obj/container = user.pulling.loc
-		if (user.pulling in container.contents)
-			return
-
-	var/turf/fuck_u = user.pulling.loc
-	if (ismob(user.pulling))
-		var/mob/M = user.pulling
-		var/mob/t = M.pulling
-		M.pulling = null
-		step(M, get_dir(fuck_u, src))
-		M.pulling = t
-	else
-		step(user.pulling, get_dir(fuck_u, src))
-	return
-
-// imported from space.dm
-
-/turf/space/attack_hand(mob/user as mob)
-	if ((user.restrained() || !( user.pulling )))
-		return
-	if (user.pulling.anchored)
-		return
-	if ((user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1))
-		return
-	if (isobj(user.pulling.loc))
-		var/obj/container = user.pulling.loc
-		if (user.pulling in container.contents)
-			return
-
-	var/turf/fuck_u = user.pulling.loc
-	if (ismob(user.pulling))
-		var/mob/M = user.pulling
-		var/t = M.pulling
-		M.pulling = null
-		step(M, get_dir(fuck_u, src))
-		M.pulling = t
-	else
-		step(user.pulling, get_dir(fuck_u, src))
-	return
-
-/turf/space/attackby(obj/item/C as obj, mob/user as mob)
-	var/area/A = get_area (user)
-	if (istype(A, /area/supply/spawn_point || /area/supply/delivery_point || /area/supply/sell_point))
-		boutput(user, "<span class='alert'>You can't build here.</span>")
-		return
-	var/obj/item/rods/R = C
-	if (istype(R) && R.change_stack_amount(-1))
-		boutput(user, "<span class='notice'>Constructing support lattice ...</span>")
-		playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
-		ReplaceWithLattice()
-		if (R.material)
-			src.setMaterial(C.material)
-		return
-
-	if (istype(C, /obj/item/tile))
-		//var/obj/lattice/L = locate(/obj/lattice, src)
-		var/obj/item/tile/T = C
-		if (T.amount >= 1)
-			for(var/obj/lattice/L in src)
-				qdel(L)
-			playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
-			T.build(src)
-
-#if defined(MAP_OVERRIDE_POD_WARS)
-/turf/proc/edge_step(var/atom/movable/A, var/newx, var/newy)
-
-	//testing pali's solution for getting the direction opposite of the map edge you are nearest to.
-	// A.set_loc(A.loc)
-	var/atom/target = get_edge_target_turf(A, (A.x + A.y > world.maxx ? SOUTH | WEST : NORTH | EAST) & (A.x - A.y > 0 ? NORTH | WEST : SOUTH | EAST))
-	if (!istype(A, /obj/machinery/vehicle) && target)	//Throw everything but vehicles(pods)
-		A.throw_at(target, 1, 1)
-
-	return
-#else
-/turf/proc/edge_step(var/atom/movable/A, var/newx, var/newy)
-	var/zlevel = 3 //((A.z=3)?5:3)//(3,4)
-
-	if(A.z == 3) zlevel = 5
-	else if(map_currently_very_dusty)
-		if(A.z == 6) zlevel = 5
-		else zlevel = 6
-
-	if (world.maxz < zlevel) // if there's less levels than the one we want to go to
-		zlevel = 1 // just boot people back to z1 so the server doesn't lag to fucking death trying to place people on maps that don't exist
-	if (istype(A, /obj/machinery/vehicle))
-		var/obj/machinery/vehicle/V = A
-		if (V.going_home)
-			if(map_currently_very_dusty)
-				zlevel = 5
-			else
-				zlevel = 1
-			V.going_home = 0
-	if (istype(A, /obj/newmeteor))
-		qdel(A)
-		return
-
-	if (A.z == 1 && zlevel != A.z)
-		if (!(isitem(A) && A:w_class <= W_CLASS_SMALL))
-			for_by_tcl(C, /obj/machinery/communications_dish)
-				C.add_cargo_logs(A)
-
-	A.z = zlevel
-	if (newx)
-		A.x = newx
-	if (newy)
-		A.y = newy
-	SPAWN_DBG(0)
-		if ((A?.loc))
-			A.loc.Entered(A)
-#endif
 //Vr turf is a jerk and pretends to be broken.
 /turf/bombvr/ex_act(severity)
 	switch(severity)
