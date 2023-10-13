@@ -2070,7 +2070,7 @@ proc/get_mobs_trackable_by_AI()
 			continue //cameras can't follow people who haven't started yet DUH OR DIDN'T YOU KNOW THAT
 		if (ishuman(M) && (istype(M:wear_id, /obj/item/card/id/syndicate) || (istype(M:wear_id, /obj/item/device/pda2) && M:wear_id:ID_card && istype(M:wear_id:ID_card, /obj/item/card/id/syndicate))))
 			continue
-		if (istype(M,/mob/living/critter/aquatic) || istype(M, /mob/living/critter/small_animal/chicken))
+		if (istype(M,/mob/living/critter/aquatic))
 			continue
 	#ifdef Z3_IS_A_STATION_LEVEL
 		if((M.z != Z_LEVEL_STATION && M.z != Z_LEVEL_DEBRIS) && M.z != usr.z)
