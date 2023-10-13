@@ -23,7 +23,7 @@ proc/get_moving_lights_stats()
 	var/turf/_E = get_step(src, EAST); \
 	var/turf/_NE = get_step(src, NORTHEAST); \
 	if(!_N || !_E || !_NE) { break }; \
-	src.RL_MulOverlay.color = list( \
+	src.turf_persistent.RL_MulOverlay.color = list( \
 		src.RL_LumR, src.RL_LumG, src.RL_LumB, 0, \
 		_E.RL_LumR, _E.RL_LumG, _E.RL_LumB, 0, \
 		_N.RL_LumR, _N.RL_LumG, _N.RL_LumB, 0, \
@@ -37,10 +37,10 @@ proc/get_moving_lights_stats()
 			src.RL_AddOverlay.icon_state = src.RL_OverlayState ; \
 		} \
 		src.RL_AddOverlay.color = list( \
-			src.RL_AddLumR, src.RL_AddLumG, src.RL_AddLumB, 0, \
-			_E.RL_AddLumR, _E.RL_AddLumG, _E.RL_AddLumB, 0, \
-			_N.RL_AddLumR, _N.RL_AddLumG, _N.RL_AddLumB, 0, \
-			_NE.RL_AddLumR, _NE.RL_AddLumG, _NE.RL_AddLumB, 0, \
+			src.turf_persistent.RL_AddLumR, src.turf_persistent.RL_AddLumG, src.turf_persistent.RL_AddLumB, 0, \
+			_E.turf_persistent.RL_AddLumR, _E.turf_persistent.RL_AddLumG, _E.turf_persistent.RL_AddLumB, 0, \
+			_N.turf_persistent.RL_AddLumR, _N.turf_persistent.RL_AddLumG, _N.turf_persistent.RL_AddLumB, 0, \
+			_NE.turf_persistent.RL_AddLumR, _NE.turf_persistent.RL_AddLumG, _NE.turf_persistent.RL_AddLumB, 0, \
 			0, 0, 0, 1) ; \
 	} else { if(src.RL_AddOverlay) { qdel(src.RL_AddOverlay); src.RL_AddOverlay = null; } } \
 	} while(false)
@@ -54,10 +54,10 @@ proc/get_moving_lights_stats()
 	src.RL_LumR += r*atten ; \
 	src.RL_LumG += g*atten ; \
 	src.RL_LumB += b*atten ; \
-	src.RL_AddLumR = clamp((src.RL_LumR - 1) * 0.5, 0, 0.3) ; \
-	src.RL_AddLumG = clamp((src.RL_LumG - 1) * 0.5, 0, 0.3) ; \
-	src.RL_AddLumB = clamp((src.RL_LumB - 1) * 0.5, 0, 0.3) ; \
-	src.RL_NeedsAdditive = src.RL_AddLumR + src.RL_AddLumG + src.RL_AddLumB ; \
+	src.turf_persistent.RL_AddLumR = clamp((src.RL_LumR - 1) * 0.5, 0, 0.3) ; \
+	src.turf_persistent.RL_AddLumG = clamp((src.RL_LumG - 1) * 0.5, 0, 0.3) ; \
+	src.turf_persistent.RL_AddLumB = clamp((src.RL_LumB - 1) * 0.5, 0, 0.3) ; \
+	src.RL_NeedsAdditive = src.turf_persistent.RL_AddLumR + src.turf_persistent.RL_AddLumG + src.turf_persistent.RL_AddLumB ; \
 	} while(false)
 
 #define RL_APPLY_LIGHT(src, lx, ly, brightness, height2, r, g, b) do { \
@@ -91,10 +91,10 @@ proc/get_moving_lights_stats()
 	src.RL_LumR += r*atten ; \
 	src.RL_LumG += g*atten ; \
 	src.RL_LumB += b*atten ; \
-	src.RL_AddLumR = clamp((src.RL_LumR - 1) * 0.5, 0, 0.3) ; \
-	src.RL_AddLumG = clamp((src.RL_LumG - 1) * 0.5, 0, 0.3) ; \
-	src.RL_AddLumB = clamp((src.RL_LumB - 1) * 0.5, 0, 0.3) ; \
-	src.RL_NeedsAdditive = src.RL_AddLumR + src.RL_AddLumG + src.RL_AddLumB ; \
+	src.turf_persistent.RL_AddLumR = clamp((src.RL_LumR - 1) * 0.5, 0, 0.3) ; \
+	src.turf_persistent.RL_AddLumG = clamp((src.RL_LumG - 1) * 0.5, 0, 0.3) ; \
+	src.turf_persistent.RL_AddLumB = clamp((src.RL_LumB - 1) * 0.5, 0, 0.3) ; \
+	src.RL_NeedsAdditive = src.turf_persistent.RL_AddLumR + src.turf_persistent.RL_AddLumG + src.turf_persistent.RL_AddLumB ; \
 	} while(false)
 
 #define APPLY_AND_UPDATE if (RL_Started) { for (var/turf in src.apply()) { var/turf/T = turf; RL_UPDATE_LIGHT(T) } }
@@ -641,14 +641,14 @@ turf
 	var
 		RL_ApplyGeneration = 0
 		RL_UpdateGeneration = 0
-		obj/overlay/tile_effect/lighting/mul/RL_MulOverlay = null
+		//obj/overlay/tile_effect/lighting/mul/RL_MulOverlay = null
 		obj/overlay/tile_effect/lighting/add/RL_AddOverlay = null
 		RL_LumR = 0
 		RL_LumG = 0
 		RL_LumB = 0
-		RL_AddLumR = 0
-		RL_AddLumG = 0
-		RL_AddLumB = 0
+		//RL_AddLumR = 0
+		//RL_AddLumG = 0
+		//RL_AddLumB = 0
 		RL_NeedsAdditive = 0
 		RL_OverlayState = ""
 		list/datum/light/RL_Lights = null
@@ -712,10 +712,10 @@ turf
 			RL_LumB = max(RL_LumB, 0)
 			*/
 
-			RL_AddLumR = clamp((RL_LumR - 1) * 0.5, 0, 0.3)
-			RL_AddLumG = clamp((RL_LumG - 1) * 0.5, 0, 0.3)
-			RL_AddLumB = clamp((RL_LumB - 1) * 0.5, 0, 0.3)
-			RL_NeedsAdditive = (RL_AddLumR > 0) || (RL_AddLumG > 0) || (RL_AddLumB > 0)
+			turf_persistent.RL_AddLumR = clamp((RL_LumR - 1) * 0.5, 0, 0.3)
+			turf_persistent.RL_AddLumG = clamp((RL_LumG - 1) * 0.5, 0, 0.3)
+			turf_persistent.RL_AddLumB = clamp((RL_LumB - 1) * 0.5, 0, 0.3)
+			RL_NeedsAdditive = (turf_persistent.RL_AddLumR > 0) || (turf_persistent.RL_AddLumG > 0) || (turf_persistent.RL_AddLumB > 0)
 
 		RL_UpdateLight() // use the RL_UPDATE_LIGHT macro instead if at all possible!!!!
 			if (!RL_Started)
@@ -728,8 +728,8 @@ turf
 			RL_UPDATE_LIGHT(src)
 
 		RL_SetSprite(state)
-			if (src.RL_MulOverlay)
-				src.RL_MulOverlay.icon_state = state
+			if (src.turf_persistent.RL_MulOverlay)
+				src.turf_persistent.RL_MulOverlay.icon_state = state
 			if (src.RL_AddOverlay)
 				src.RL_AddOverlay.icon_state = state
 			src.RL_OverlayState = state
@@ -761,15 +761,15 @@ turf
 
 		RL_Init()
 			if (!fullbright && !loc:force_fullbright)
-				if(!src.RL_MulOverlay)
-					src.RL_MulOverlay = new()
-					src.RL_MulOverlay.set_loc(src)
-					src.RL_MulOverlay.icon_state = src.RL_OverlayState
+				if(!src.turf_persistent.RL_MulOverlay)
+					src.turf_persistent.RL_MulOverlay = new()
+					src.turf_persistent.RL_MulOverlay.set_loc(src)
+					src.turf_persistent.RL_MulOverlay.icon_state = src.RL_OverlayState
 				if (RL_Started) RL_UPDATE_LIGHT(src)
 			else
-				if(src.RL_MulOverlay)
-					qdel(src.RL_MulOverlay)
-					src.RL_MulOverlay = null
+				if(src.turf_persistent.RL_MulOverlay)
+					qdel(src.turf_persistent.RL_MulOverlay)
+					src.turf_persistent.RL_MulOverlay = null
 				if(src.RL_AddOverlay)
 					qdel(src.RL_AddOverlay)
 					src.RL_AddOverlay = null

@@ -889,10 +889,10 @@ proc/debug_map_apc_count(delim,zlim)
 			img.app.alpha = 0
 			if(!air_master?.current_cycle)
 				return
-			if(!theTurf.process_cell_operations)
+			if(!theTurf.turf_persistent.process_cell_operations)
 				return
-			img.app.overlays = list(src.makeText("[theTurf.process_cell_operations]<br>[round(theTurf.process_cell_operations/air_master.current_cycle*100, 0.01)]%", RESET_ALPHA | RESET_COLOR))
-			var/p = theTurf.process_cell_operations / theTurf.max_process_cell_operations
+			img.app.overlays = list(src.makeText("[theTurf.turf_persistent.process_cell_operations]<br>[round(theTurf.turf_persistent.process_cell_operations/air_master.current_cycle*100, 0.01)]%", RESET_ALPHA | RESET_COLOR))
+			var/p = theTurf.turf_persistent.process_cell_operations / theTurf.max_process_cell_operations
 			img.app.alpha = p < 0.1 ? 20 : (p < 0.3 ? 50 : 100)
 			img.app.color = rgb(round(p * 255), round((1-p) * 255), 50)
 #endif

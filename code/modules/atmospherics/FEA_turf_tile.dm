@@ -29,7 +29,6 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 	var/tmp/obj/hotspot/active_hotspot
 
 #ifdef ATMOS_PROCESS_CELL_STATS_TRACKING
-	var/tmp/process_cell_operations = 0
 	var/static/max_process_cell_operations = 0
 #endif
 #ifdef ATMOS_TILE_STATS_TRACKING
@@ -324,8 +323,8 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 
 /turf/proc/process_cell()
 #ifdef ATMOS_PROCESS_CELL_STATS_TRACKING
-	src.process_cell_operations++
-	max_process_cell_operations = max(max_process_cell_operations, src.process_cell_operations)
+	src.turf_persistent.process_cell_operations++
+	max_process_cell_operations = max(max_process_cell_operations, src.turf_persistent.process_cell_operations)
 #endif
 	ATMOS_TILE_OPERATION_DEBUG(src)
 	var/list/turf/possible_fire_spreads
