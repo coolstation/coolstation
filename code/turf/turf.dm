@@ -177,17 +177,17 @@
 	return
 
 /turf/attackby(var/obj/item/W, var/mob/user, params)
-		if (istype(W, /obj/item/pen))
-			var/obj/item/pen/P = W
-			P.write_on_turf(src, user, params)
-			return
-		else
-			//if turf has kudzu, transfer attack from turf to kudzu
-			if (src.temp_flags & HAS_KUDZU)
-				var/obj/spacevine/K = locate(/obj/spacevine) in src.contents
-				if (K)
-					K.Attackby(W, user, params)
-			return ..()
+	if (istype(W, /obj/item/pen))
+		var/obj/item/pen/P = W
+		P.write_on_turf(src, user, params)
+		return
+	else
+		//if turf has kudzu, transfer attack from turf to kudzu
+		if (src.temp_flags & HAS_KUDZU)
+			var/obj/spacevine/K = locate(/obj/spacevine) in src.contents
+			if (K)
+				K.Attackby(W, user, params)
+		return ..()
 
 
 /turf/meteorhit(obj/meteor as obj) //ATMOSSIMSTODO
