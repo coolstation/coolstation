@@ -190,8 +190,9 @@ A Flamethrower in various states of assembly
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
 	desc = "You are a firestarter!"
 	flags = FPRINT | TABLEPASS | CONDUCT | EXTRADELAY
-	force = 3.0
-	throwforce = 10.0
+	c_flags = EQUIPPED_WHILE_HELD
+	force = 3
+	throwforce = 10
 	throw_speed = 1
 	throw_range = 5
 	w_class = W_CLASS_BULKY
@@ -199,6 +200,10 @@ A Flamethrower in various states of assembly
 	var/obj/item/rods/rod = null
 	var/obj/item/device/igniter/igniter = null
 	inventory_counter_enabled = 1
+
+	setupProperties()
+		. = ..()
+		setProperty("carried_movespeed", 0.2)
 
 /obj/item/tank/jetpack/backtank
 	name = "fuelpack"
