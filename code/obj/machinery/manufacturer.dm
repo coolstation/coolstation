@@ -1593,7 +1593,7 @@
 		if (status & BROKEN)
 			src.UpdateOverlays(null, "work")
 			src.UpdateOverlays(null, "activity")
-			icon_state = "[src.icon_base]-broken"
+			icon_state = "[src.icon_base?src.icon_base:"fab"]-broken"
 		else if (src.dismantle_stage >= 2)
 			src.UpdateOverlays(null, "work")
 			src.UpdateOverlays(null, "activity")
