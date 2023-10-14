@@ -251,6 +251,8 @@
 	src.text = "<font color=#[random_hex(3)]>@"
 	src.update_colorful_parts()
 
+	AddComponent(/datum/component/contraband, 0, 0)
+
 /datum/human_limbs
 	var/mob/living/carbon/human/holder = null
 

@@ -232,10 +232,13 @@ To remove:
 #define PROP_FAKEHEALTH_MAX(x) x("fake_health", APPLY_ATOM_PROPERTY_MAX, REMOVE_ATOM_PROPERTY_MAX)
 #define PROP_MOB_CAN_CONSTRUCT_WITHOUT_HOLDING(x) x("can_build_without_holding", APPLY_ATOM_PROPERTY_SIMPLE, REMOVE_ATOM_PROPERTY_SIMPLE) // mob can bulid furniture without holding them (for borgs)
 
-//Look I stole this from goon because swimming needs it, they made em atom instead of mob properties :v
-//Maybe we should too at some point
+//Look I stole this from goon because swimming needs it
 #define PROP_ATOM_FLOATING(x) x("floating", APPLY_ATOM_PROPERTY_SIMPLE, REMOVE_ATOM_PROPERTY_SIMPLE)
 
+/// The visible contraband level of this movable
+#define PROP_MOVABLE_VISIBLE_CONTRABAND(x) x("visible_contraband", APPLY_ATOM_PROPERTY_SUM, REMOVE_ATOM_PROPERTY_SUM)
+/// The visible firearm contraband level of this movable
+#define PROP_MOVABLE_VISIBLE_GUNS(x) x("visible_firearms", APPLY_ATOM_PROPERTY_SUM, REMOVE_ATOM_PROPERTY_SUM)
 
 // In lieu of comments, these are the indexes used for list access in the macros below.
 #define ATOM_PROPERTY_ACTIVE_VALUE 1
