@@ -24,10 +24,10 @@ proc/get_moving_lights_stats()
 	var/turf/_NE = get_step(src, NORTHEAST); \
 	if(!_N || !_E || !_NE) { break }; \
 	src.turf_persistent.RL_MulOverlay.color = list( \
-		src.RL_LumR, src.RL_LumG, src.RL_LumB, 0, \
-		_E.RL_LumR, _E.RL_LumG, _E.RL_LumB, 0, \
-		_N.RL_LumR, _N.RL_LumG, _N.RL_LumB, 0, \
-		_NE.RL_LumR, _NE.RL_LumG, _NE.RL_LumB, 0, \
+		src.turf_persistent.RL_LumR, src.turf_persistent.RL_LumG, src.turf_persistent.RL_LumB, 0, \
+		_E.turf_persistent.RL_LumR, _E.turf_persistent.RL_LumG, _E.turf_persistent.RL_LumB, 0, \
+		_N.turf_persistent.RL_LumR, _N.turf_persistent.RL_LumG, _N.turf_persistent.RL_LumB, 0, \
+		_NE.turf_persistent.RL_LumR, _NE.turf_persistent.RL_LumG, _NE.turf_persistent.RL_LumB, 0, \
 		DLL, DLL, DLL, 1 \
 		) ; \
 	if (src.turf_persistent.RL_NeedsAdditive || _E.turf_persistent.RL_NeedsAdditive || _N.turf_persistent.RL_NeedsAdditive || _NE.turf_persistent.RL_NeedsAdditive) { \
@@ -51,12 +51,12 @@ proc/get_moving_lights_stats()
 	if (src.loc?:force_fullbright) { break } \
 	atten = (brightness*RL_Atten_Quadratic) / ((src.x - lx)*(src.x - lx) + (src.y - ly)*(src.y - ly) + height2) + RL_Atten_Constant ; \
 	if (atten < RL_Atten_Threshold) { break } \
-	src.RL_LumR += r*atten ; \
-	src.RL_LumG += g*atten ; \
-	src.RL_LumB += b*atten ; \
-	src.turf_persistent.RL_AddLumR = clamp((src.RL_LumR - 1) * 0.5, 0, 0.3) ; \
-	src.turf_persistent.RL_AddLumG = clamp((src.RL_LumG - 1) * 0.5, 0, 0.3) ; \
-	src.turf_persistent.RL_AddLumB = clamp((src.RL_LumB - 1) * 0.5, 0, 0.3) ; \
+	src.turf_persistent.RL_LumR += r*atten ; \
+	src.turf_persistent.RL_LumG += g*atten ; \
+	src.turf_persistent.RL_LumB += b*atten ; \
+	src.turf_persistent.RL_AddLumR = clamp((src.turf_persistent.RL_LumR - 1) * 0.5, 0, 0.3) ; \
+	src.turf_persistent.RL_AddLumG = clamp((src.turf_persistent.RL_LumG - 1) * 0.5, 0, 0.3) ; \
+	src.turf_persistent.RL_AddLumB = clamp((src.turf_persistent.RL_LumB - 1) * 0.5, 0, 0.3) ; \
 	src.turf_persistent.RL_NeedsAdditive = src.turf_persistent.RL_AddLumR + src.turf_persistent.RL_AddLumG + src.turf_persistent.RL_AddLumB ; \
 	} while(false)
 
@@ -88,12 +88,12 @@ proc/get_moving_lights_stats()
 		if (round(line_len) >= radius) { atten *= 0.4 } \
 	}\
 	if (atten < RL_Atten_Threshold) { break } \
-	src.RL_LumR += r*atten ; \
-	src.RL_LumG += g*atten ; \
-	src.RL_LumB += b*atten ; \
-	src.turf_persistent.RL_AddLumR = clamp((src.RL_LumR - 1) * 0.5, 0, 0.3) ; \
-	src.turf_persistent.RL_AddLumG = clamp((src.RL_LumG - 1) * 0.5, 0, 0.3) ; \
-	src.turf_persistent.RL_AddLumB = clamp((src.RL_LumB - 1) * 0.5, 0, 0.3) ; \
+	src.turf_persistent.RL_LumR += r*atten ; \
+	src.turf_persistent.RL_LumG += g*atten ; \
+	src.turf_persistent.RL_LumB += b*atten ; \
+	src.turf_persistent.RL_AddLumR = clamp((src.turf_persistent.RL_LumR - 1) * 0.5, 0, 0.3) ; \
+	src.turf_persistent.RL_AddLumG = clamp((src.turf_persistent.RL_LumG - 1) * 0.5, 0, 0.3) ; \
+	src.turf_persistent.RL_AddLumB = clamp((src.turf_persistent.RL_LumB - 1) * 0.5, 0, 0.3) ; \
 	src.turf_persistent.RL_NeedsAdditive = src.turf_persistent.RL_AddLumR + src.turf_persistent.RL_AddLumG + src.turf_persistent.RL_AddLumB ; \
 	} while(false)
 
@@ -639,20 +639,14 @@ proc
 
 turf
 	var
-		//RL_ApplyGeneration = 0
-		//RL_UpdateGeneration = 0
-		//obj/overlay/tile_effect/lighting/mul/RL_MulOverlay = null
-		//obj/overlay/tile_effect/lighting/add/RL_AddOverlay = null
-		RL_LumR = 0
-		RL_LumG = 0
-		RL_LumB = 0
-		//RL_AddLumR = 0
-		//RL_AddLumG = 0
-		//RL_AddLumB = 0
-		//RL_NeedsAdditive = 0
+		//These three are flat additions to the robustlight RGB values that can be turf-specific.
+		//Basically, you can have some turfs have a glow by default
+		//this glow doesn't get cleared ATM but it didn't before turf_persistent either so not my problem :)
+		base_RL_LumR = 0
+		base_RL_LumG = 0
+		base_RL_LumB = 0
 		RL_OverlayState = ""
-		//list/datum/light/RL_Lights = null
-		//opaque_atom_count = 0
+
 #ifdef DEBUG_LIGHTING_UPDATES
 		var/obj/maptext_junk/RL_counter/counter = null
 #endif
@@ -699,22 +693,22 @@ turf
 			var/atten = (brightness*RL_Atten_Quadratic) / ((src.x - lx)**2 + (src.y - ly)**2 + height2) + RL_Atten_Constant
 			if (atten < RL_Atten_Threshold)
 				return
-			RL_LumR += r*atten
-			RL_LumG += g*atten
-			RL_LumB += b*atten
+			turf_persistent.RL_LumR += r*atten
+			turf_persistent.RL_LumG += g*atten
+			turf_persistent.RL_LumB += b*atten
 
 			//Needed these to prevent a weird bug from the dark times where tiles went pitch black and couldn't be fixed - ZeWaka
 			//I really want negative lights to be a thing so I'll just hope that this bandaid is no longer necessary. Feel free to uncomment if I'm wrong - pali
 			//I was wrong - pali
 			/*
-			RL_LumR = max(RL_LumR, 0)
-			RL_LumG = max(RL_LumG, 0)
-			RL_LumB = max(RL_LumB, 0)
+			turf_persistent.RL_LumR = max(turf_persistent.RL_LumR, 0)
+			turf_persistent.RL_LumG = max(turf_persistent.RL_LumG, 0)
+			turf_persistent.RL_LumB = max(turf_persistent.RL_LumB, 0)
 			*/
 
-			turf_persistent.RL_AddLumR = clamp((RL_LumR - 1) * 0.5, 0, 0.3)
-			turf_persistent.RL_AddLumG = clamp((RL_LumG - 1) * 0.5, 0, 0.3)
-			turf_persistent.RL_AddLumB = clamp((RL_LumB - 1) * 0.5, 0, 0.3)
+			turf_persistent.RL_AddLumR = clamp((turf_persistent.RL_LumR - 1) * 0.5, 0, 0.3)
+			turf_persistent.RL_AddLumG = clamp((turf_persistent.RL_LumG - 1) * 0.5, 0, 0.3)
+			turf_persistent.RL_AddLumB = clamp((turf_persistent.RL_LumB - 1) * 0.5, 0, 0.3)
 			turf_persistent.RL_NeedsAdditive = (turf_persistent.RL_AddLumR > 0) || (turf_persistent.RL_AddLumG > 0) || (turf_persistent.RL_AddLumB > 0)
 
 		RL_UpdateLight() // use the RL_UPDATE_LIGHT macro instead if at all possible!!!!
@@ -736,7 +730,7 @@ turf
 
 		// Approximate RGB -> Luma conversion formula.
 		RL_GetBrightness()
-			var/BN = max(0, ((src.RL_LumR * 0.33) + (src.RL_LumG * 0.5) + (src.RL_LumB * 0.16)))
+			var/BN = max(0, ((src.turf_persistent.RL_LumR * 0.33) + (src.turf_persistent.RL_LumG * 0.5) + (src.turf_persistent.RL_LumB * 0.16)))
 			return BN
 
 		RL_Cleanup()

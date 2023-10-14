@@ -28,9 +28,10 @@
 	var/RL_ApplyGeneration = 0
 	var/RL_UpdateGeneration = 0
 
-	//var/RL_LumR = 0
-	//var/RL_LumG = 0
-	//var/RL_LumB = 0
+	//colouration of the RL multiplicative overlay (I think)
+	var/RL_LumR = 0
+	var/RL_LumG = 0
+	var/RL_LumB = 0
 
 	//colouration of RL additive overlay
 	var/RL_AddLumR = 0

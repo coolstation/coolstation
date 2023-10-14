@@ -200,6 +200,10 @@
 	else
 		turf_persistent = new
 
+	turf_persistent.RL_LumR += base_RL_LumR
+	turf_persistent.RL_LumG += base_RL_LumG
+	turf_persistent.RL_LumB += base_RL_LumB
+
 	if (density)
 		pathable = 0
 	for(var/atom/movable/AM as mob|obj in src)
@@ -512,32 +516,16 @@
 			what = "Desert"
 			keep_old_material = 0
 
-	//var/rlapplygen = RL_ApplyGeneration
-	//var/rlupdategen = RL_UpdateGeneration
-	//var/rlmuloverlay = RL_MulOverlay
-	//var/rladdoverlay = RL_AddOverlay
-	var/rllumr = RL_LumR
-	var/rllumg = RL_LumG
-	var/rllumb = RL_LumB
-	//var/rladdlumr = RL_AddLumR
-	//var/rladdlumg = RL_AddLumG
-	//var/rladdlumb = RL_AddLumB
-	//var/rlneedsadditive = RL_NeedsAdditive
-	//var/rloverlaystate = RL_OverlayState  //we actually want these cleared
-	//var/list/rllights = RL_Lights
+	//This doesn't work properly yet, but the solution seems to be calling RL_UPDATE_LIGHT on 3 of our neighbours and fuck that
+
+	//turf_persistent.RL_LumR -= base_RL_LumR
+	//turf_persistent.RL_LumG -= base_RL_LumG
+	//turf_persistent.RL_LumB -= base_RL_LumB
 
 	var/old_opacity = src.opacity
 
-	//var/old_checkingexit = src.checkingexit
-	//var/old_checkingcanpass = src.checkingcanpass
-	//var/old_checkinghasentered = src.checkinghasentered
-	//var/old_blocked_dirs = src.blocked_dirs
 	var/old_checkinghasproximity = src.checkinghasproximity
-/*
-#ifdef ATMOS_PROCESS_CELL_STATS_TRACKING
-	var/old_process_cell_operations = src.process_cell_operations
-#endif
-*/
+
 	var/new_type = ispath(what) ? what : text2path(what) //what what, what WHAT WHAT WHAAAAAAAAT
 	if (new_type)
 		new_turf = new new_type(src, src.turf_persistent)
@@ -589,37 +577,8 @@
 
 	new_turf.levelupdate()
 
-	//new_turf.RL_ApplyGeneration = rlapplygen
-	//new_turf.RL_UpdateGeneration = rlupdategen
-	//if(new_turf.RL_MulOverlay)
-	//	qdel(new_turf.RL_MulOverlay)
-	//if(new_turf.RL_AddOverlay)
-	//	qdel(new_turf.RL_AddOverlay)
-	//new_turf.RL_MulOverlay = rlmuloverlay
-	//new_turf.RL_AddOverlay = rladdoverlay
-
-	new_turf.RL_LumR = rllumr
-	new_turf.RL_LumG = rllumg
-	new_turf.RL_LumB = rllumb
-	//new_turf.RL_AddLumR = rladdlumr
-	//new_turf.RL_AddLumG = rladdlumg
-	//new_turf.RL_AddLumB = rladdlumb
-	//new_turf.RL_NeedsAdditive = rlneedsadditive
-	//new_turf.RL_OverlayState = rloverlaystate //we actually want these cleared
-	//new_turf.RL_Lights = rllights
-	//new_turf.opaque_atom_count = opaque_atom_count
-
-
-	//new_turf.checkingexit = old_checkingexit
-	//new_turf.checkingcanpass = old_checkingcanpass
-	//new_turf.checkinghasentered = old_checkinghasentered
-	//new_turf.blocked_dirs = old_blocked_dirs
 	new_turf.checkinghasproximity = old_checkinghasproximity
-/*
-#ifdef ATMOS_PROCESS_CELL_STATS_TRACKING
-	new_turf.process_cell_operations = old_process_cell_operations
-#endif
-*/
+
 	//cleanup old overlay to prevent some Stuff
 	//This might not be necessary, i think its just the wall overlays that could be manually cleared here.
 	//new_turf.RL_Cleanup() // ACTUALLY this proc does nothing anymore		 //Cleans up/mostly removes the lighting.
