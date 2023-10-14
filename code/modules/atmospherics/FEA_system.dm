@@ -66,12 +66,12 @@ Important Procedures
 		if(target.blocks_air||blocks_air)
 			return 0
 
-		if (src.checkingcanpass > 0)
+		if (src.turf_persistent.checkingcanpass > 0)
 			for(var/obj/obstacle as anything in src)
 				if((obstacle.event_handler_flags & USE_CANPASS) && !obstacle.CanPass(mover, target, height, air_group))
 					return 0
 
-		if (target?.checkingcanpass > 0)
+		if (target?.turf_persistent.checkingcanpass > 0)
 			for(var/obj/obstacle as anything in target)
 				if((obstacle.event_handler_flags & USE_CANPASS) && !obstacle.CanPass(mover, src, height, air_group))
 					return 0

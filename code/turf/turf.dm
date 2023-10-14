@@ -34,12 +34,12 @@
 	var/tmp/pathable = 1
 	var/can_write_on = 0
 	var/tmp/messy = 0 //value corresponds to how many cleanables exist on this turf. Exists for the purpose of making fluid spreads do less checks.
-	var/tmp/checkingexit = 0 //value corresponds to how many objs on this turf implement checkexit(). lets us skip a costly loop later!
-	var/tmp/checkingcanpass = 0 // "" how many implement canpass()
-	var/tmp/checkinghasentered = 0 // "" hasproximity as well as items with a mat that hasproximity
+	//var/tmp/checkingexit = 0 //value corresponds to how many objs on this turf implement checkexit(). lets us skip a costly loop later!
+	//var/tmp/checkingcanpass = 0 // "" how many implement canpass()
+	//var/tmp/checkinghasentered = 0 // "" hasproximity as well as items with a mat that hasproximity
 	var/tmp/checkinghasproximity = 0
 	/// directions of this turf being blocked by directional blocking objects. So we don't need to loop through the entire contents
-	var/tmp/blocked_dirs = 0
+	//var/tmp/blocked_dirs = 0
 	var/wet = 0 //slippery when
 	var/clean = 0 //is this floor recently cleaned? like, clean enough to eat off of? almost no floor starts clean
 	var/permadirty = 0 //grimy tiles can never truly be clean
@@ -143,10 +143,10 @@
 			src.layer = PLATING_LAYER
 
 	proc/UpdateDirBlocks()
-		src.blocked_dirs = 0
+		src.turf_persistent.blocked_dirs = 0
 		for (var/obj/O in src.contents)
 			if (HAS_FLAG(O.object_flags, HAS_DIRECTIONAL_BLOCKING))
-				ADD_FLAG(src.blocked_dirs, O.dir)
+				ADD_FLAG(src.turf_persistent.blocked_dirs, O.dir)
 
 /turf/attack_hand(var/mob/user as mob)
 	if (src.density == 1)
@@ -238,7 +238,7 @@
 		return 1
 
 	//First, check objects to block exit
-	if (cturf?.checkingexit > 0) //dont bother checking unless the turf actually contains a checkable :)
+	if (cturf?.turf_persistent.checkingexit > 0) //dont bother checking unless the turf actually contains a checkable :)
 		for(var/thing in cturf)
 			var/obj/obstacle = thing
 			if(obstacle == mover)
@@ -255,7 +255,7 @@
 		return 0
 
 	//Finally, check objects/mobs to block entry
-	if (src.checkingcanpass > 0)  //dont bother checking unless the turf actually contains a checkable :)
+	if (src.turf_persistent.checkingcanpass > 0)  //dont bother checking unless the turf actually contains a checkable :)
 		for(var/thing in src)
 			var/atom/movable/obstacle = thing
 			if(obstacle == mover) continue
@@ -300,7 +300,7 @@
 
 	//MBC : nothing in the game even uses PrxoimityLeave meaningfully. I'm disabling the proc call here.
 	//for(var/atom/A as mob|obj|turf|area in range(1, src))
-	if (src.checkinghasentered > 0)  //dont bother checking unless the turf actually contains a checkable :)
+	if (src.turf_persistent.checkinghasentered > 0)  //dont bother checking unless the turf actually contains a checkable :)
 		for(var/thing in src)
 			var/atom/A = thing
 			if(A == Obj)
@@ -346,7 +346,7 @@
 					Ar.sims_score = max(Ar.sims_score - 4, 0)
 
 	var/i = 0
-	if (src.checkinghasentered > 0)  //dont bother checking unless the turf actually contains a checkable :)
+	if (src.turf_persistent.checkinghasentered > 0)  //dont bother checking unless the turf actually contains a checkable :)
 		for(var/thing in src)
 			var/atom/A = thing
 			if(A == M)
@@ -528,10 +528,10 @@
 
 	var/old_opacity = src.opacity
 
-	var/old_checkingexit = src.checkingexit
-	var/old_checkingcanpass = src.checkingcanpass
-	var/old_checkinghasentered = src.checkinghasentered
-	var/old_blocked_dirs = src.blocked_dirs
+	//var/old_checkingexit = src.checkingexit
+	//var/old_checkingcanpass = src.checkingcanpass
+	//var/old_checkinghasentered = src.checkinghasentered
+	//var/old_blocked_dirs = src.blocked_dirs
 	var/old_checkinghasproximity = src.checkinghasproximity
 /*
 #ifdef ATMOS_PROCESS_CELL_STATS_TRACKING
@@ -610,10 +610,10 @@
 	//new_turf.opaque_atom_count = opaque_atom_count
 
 
-	new_turf.checkingexit = old_checkingexit
-	new_turf.checkingcanpass = old_checkingcanpass
-	new_turf.checkinghasentered = old_checkinghasentered
-	new_turf.blocked_dirs = old_blocked_dirs
+	//new_turf.checkingexit = old_checkingexit
+	//new_turf.checkingcanpass = old_checkingcanpass
+	//new_turf.checkinghasentered = old_checkinghasentered
+	//new_turf.blocked_dirs = old_blocked_dirs
 	new_turf.checkinghasproximity = old_checkinghasproximity
 /*
 #ifdef ATMOS_PROCESS_CELL_STATS_TRACKING

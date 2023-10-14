@@ -389,15 +389,15 @@ TYPEINFO(/atom)
 	if (isturf(src.loc))
 		var/turf/T = src.loc
 		if (src.event_handler_flags & USE_CHECKEXIT)
-			T.checkingexit++
+			T.turf_persistent.checkingexit++
 		if (src.event_handler_flags & USE_CANPASS || src.density)
 			if (bound_width + bound_height > 64)
 				for(var/turf/BT in bounds(src))
-					BT.checkingcanpass++
+					BT.turf_persistent.checkingcanpass++
 			else
-				T.checkingcanpass++
+				T.turf_persistent.checkingcanpass++
 		if (src.event_handler_flags & USE_HASENTERED)
-			T.checkinghasentered++
+			T.turf_persistent.checkinghasentered++
 		if (src.event_handler_flags & USE_PROXIMITY)
 			T.checkinghasproximity++
 		if(src.opacity)
@@ -504,15 +504,15 @@ TYPEINFO(/atom)
 	// sometimes last_turf isnt a turf. ok.
 	if (last_turf && isturf(last_turf))
 		if (src.event_handler_flags & USE_CHECKEXIT)
-			last_turf.checkingexit = max(last_turf.checkingexit-1, 0)
+			last_turf.turf_persistent.checkingexit = max(last_turf.turf_persistent.checkingexit-1, 0)
 		if (src.event_handler_flags & USE_CANPASS || src.density)
 			if (bound_width + bound_height > 64)
 				for(var/turf/T in bounds(last_turf.x*32, last_turf.y*32, bound_width/2, bound_height/2, last_turf.z))
-					T.checkingcanpass = max(T.checkingcanpass-1, 0)
+					T.turf_persistent.checkingcanpass = max(T.turf_persistent.checkingcanpass-1, 0)
 			else
-				last_turf.checkingcanpass = max(last_turf.checkingcanpass-1, 0)
+				last_turf.turf_persistent.checkingcanpass = max(last_turf.turf_persistent.checkingcanpass-1, 0)
 		if (src.event_handler_flags & USE_HASENTERED)
-			last_turf.checkinghasentered = max(last_turf.checkinghasentered-1, 0)
+			last_turf.turf_persistent.checkinghasentered = max(last_turf.turf_persistent.checkinghasentered-1, 0)
 		if (src.event_handler_flags & USE_PROXIMITY)
 			last_turf.checkinghasproximity = max(last_turf.checkinghasproximity-1, 0)
 
@@ -520,15 +520,15 @@ TYPEINFO(/atom)
 		last_turf = src.loc
 		var/turf/T = src.loc
 		if (src.event_handler_flags & USE_CHECKEXIT)
-			T.checkingexit++
+			T.turf_persistent.checkingexit++
 		if (src.event_handler_flags & USE_CANPASS || src.density)
 			if (bound_width + bound_height > 64)
 				for(var/turf/BT in bounds(src))
-					BT.checkingcanpass++
+					BT.turf_persistent.checkingcanpass++
 			else
-				T.checkingcanpass++
+				T.turf_persistent.checkingcanpass++
 		if (src.event_handler_flags & USE_HASENTERED)
-			T.checkinghasentered++
+			T.turf_persistent.checkinghasentered++
 		if (src.event_handler_flags & USE_PROXIMITY)
 			T.checkinghasproximity++
 	else
@@ -870,30 +870,30 @@ TYPEINFO(/atom)
 
 	if (do_checks && last_turf && isturf(last_turf))
 		if (src.event_handler_flags & USE_CHECKEXIT)
-			last_turf.checkingexit = max(last_turf.checkingexit-1, 0)
+			last_turf.turf_persistent.checkingexit = max(last_turf.turf_persistent.checkingexit-1, 0)
 		if (src.event_handler_flags & USE_CANPASS || src.density)
 			if (bound_width + bound_height > 64)
 				for(var/turf/T in bounds(last_turf.x*32, last_turf.y*32, bound_width/2, bound_height/2, last_turf.z))
-					T.checkingcanpass = max(T.checkingcanpass-1, 0)
+					T.turf_persistent.checkingcanpass = max(T.turf_persistent.checkingcanpass-1, 0)
 			else
-				last_turf.checkingcanpass = max(last_turf.checkingcanpass-1, 0)
+				last_turf.turf_persistent.checkingcanpass = max(last_turf.turf_persistent.checkingcanpass-1, 0)
 		if (src.event_handler_flags & USE_HASENTERED)
-			last_turf.checkinghasentered = max(last_turf.checkinghasentered-1, 0)
+			last_turf.turf_persistent.checkinghasentered = max(last_turf.turf_persistent.checkinghasentered-1, 0)
 		if (src.event_handler_flags & USE_PROXIMITY)
 			last_turf.checkinghasproximity = max(last_turf.checkinghasproximity-1, 0)
 
 	if (do_checks && isturf(src.loc))
 		last_turf = src.loc
 		if (src.event_handler_flags & USE_CHECKEXIT)
-			last_turf.checkingexit++
+			last_turf.turf_persistent.checkingexit++
 		if (src.event_handler_flags & USE_CANPASS || src.density)
 			if (bound_width + bound_height > 64)
 				for(var/turf/T in bounds(src))
-					T.checkingcanpass++
+					T.turf_persistent.checkingcanpass++
 			else
-				last_turf.checkingcanpass++
+				last_turf.turf_persistent.checkingcanpass++
 		if (src.event_handler_flags & USE_HASENTERED)
-			last_turf.checkinghasentered++
+			last_turf.turf_persistent.checkinghasentered++
 		if (src.event_handler_flags & USE_PROXIMITY)
 			last_turf.checkinghasproximity++
 	else
@@ -921,18 +921,18 @@ TYPEINFO(/atom)
 					if (T)
 						if (bound_width + bound_height > 64)
 							for(var/turf/BT in bounds(src))
-								BT.checkingcanpass++
+								BT.turf_persistent.checkingcanpass++
 						else
-							T.checkingcanpass++
+							T.turf_persistent.checkingcanpass++
 
 				else
 					var/turf/T = src.loc
 					if (T)
 						if (bound_width + bound_height > 64)
 							for(var/turf/BT in bounds(src))
-								BT.checkingcanpass = max(BT.checkingcanpass-1, 0)
+								BT.turf_persistent.checkingcanpass = max(BT.turf_persistent.checkingcanpass-1, 0)
 						else
-							T.checkingcanpass = max(T.checkingcanpass-1, 0)
+							T.turf_persistent.checkingcanpass = max(T.turf_persistent.checkingcanpass-1, 0)
 	..()
 
 ///Handle materials giving/removing USE_HASENTERED
@@ -945,14 +945,14 @@ TYPEINFO(/atom)
 
 			if (isturf(src.loc)) //adjust turf if needed
 				var/turf/T = src.loc
-				T.checkinghasentered++
+				T.turf_persistent.checkinghasentered++
 
 	else if(src.event_handler_flags & HASENTERED_MAT_PROP) //Previous material did give this atom USE_HASENTERED
 		src.event_handler_flags &= ~(USE_HASENTERED|HASENTERED_MAT_PROP)
 
 		if (isturf(src.loc)) //adjust turf if needed
 			var/turf/T = src.loc
-			T.checkinghasentered = max(T.checkinghasentered-1, 0)
+			T.turf_persistent.checkinghasentered = max(T.turf_persistent.checkinghasentered-1, 0)
 
 	..()
 

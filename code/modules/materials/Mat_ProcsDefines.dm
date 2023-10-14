@@ -118,7 +118,7 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 	if(src.event_handler_flags & HASENTERED_MAT_PROP)
 		if (isturf(src.loc))
 			var/turf/T = src.loc
-			T.checkinghasentered = max(T.checkinghasentered-1, 0)
+			T.turf_persistent.checkinghasentered = max(T.turf_persistent.checkinghasentered-1, 0)
 		src.event_handler_flags &= ~USE_HASENTERED
 		src.event_handler_flags &= ~HASENTERED_MAT_PROP
 

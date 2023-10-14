@@ -833,26 +833,26 @@ proc/debug_map_apc_count(delim,zlim)
 		name = "checkingcanpass"
 		help = "Green = yes."
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			img.app.color = theTurf.checkingcanpass ? "#0f0" : "#f00"
+			img.app.color = theTurf.turf_persistent.checkingcanpass ? "#0f0" : "#f00"
 
 	checkingexit
 		name = "checkingexit"
 		help = "Green = yes."
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			img.app.color = theTurf.checkingexit ? "#0f0" : "#f00"
+			img.app.color = theTurf.turf_persistent.checkingexit ? "#0f0" : "#f00"
 
 	checkinghasentered
 		name = "checkinghasentered"
 		help = "Green = yes."
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			img.app.color = theTurf.checkinghasentered ? "#0f0" : "#f00"
+			img.app.color = theTurf.turf_persistent.checkinghasentered ? "#0f0" : "#f00"
 
 	blocked_dirs
 		name = "blocked dirs"
 		help = "Displays dir flags of blocked turf exits"
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			if (theTurf.blocked_dirs)
-				img.app.overlays = list(src.makeText(theTurf.blocked_dirs))
+			if (theTurf.turf_persistent.blocked_dirs)
+				img.app.overlays = list(src.makeText(theTurf.turf_persistent.blocked_dirs))
 				img.app.color = "#0000ff"
 			else
 				img.app.alpha = 0
