@@ -677,7 +677,7 @@ proc/debug_map_apc_count(delim,zlim)
 	lighting_needs_additive
 		name = "lighting additive overlay active"
 		GetInfo(turf/theTurf, image/debugoverlay/img)
-			img.app.color = theTurf.RL_NeedsAdditive ? "#00ff00" : "#ff0000"
+			img.app.color = theTurf.turf_persistent.RL_NeedsAdditive ? "#00ff00" : "#ff0000"
 
 	count_atoms_plus_overlays
 		name = "number of atoms + overlays"
@@ -986,12 +986,12 @@ proc/debug_map_apc_count(delim,zlim)
 		name = "opaque atom count"
 		help = {"Shows how many opaque atoms are on a turf according to the turf var"}
 		GetInfo(turf/theTurf, image/debugoverlay/img)
-			if(theTurf.opaque_atom_count == 0)
+			if(theTurf.turf_persistent.opaque_atom_count == 0)
 				img.app.alpha = 0
 				return
 			img.app.alpha = 100
-			img.app.overlays = list(src.makeText(theTurf.opaque_atom_count, RESET_ALPHA | RESET_COLOR))
-			if(theTurf.opaque_atom_count > 0)
+			img.app.overlays = list(src.makeText(theTurf.turf_persistent.opaque_atom_count, RESET_ALPHA | RESET_COLOR))
+			if(theTurf.turf_persistent.opaque_atom_count > 0)
 				img.app.color = "#55aa55"
 			else
 				img.app.color = "#aa5555"

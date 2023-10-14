@@ -512,19 +512,19 @@
 			what = "Desert"
 			keep_old_material = 0
 
-	var/rlapplygen = RL_ApplyGeneration
-	var/rlupdategen = RL_UpdateGeneration
+	//var/rlapplygen = RL_ApplyGeneration
+	//var/rlupdategen = RL_UpdateGeneration
 	//var/rlmuloverlay = RL_MulOverlay
-	var/rladdoverlay = RL_AddOverlay
+	//var/rladdoverlay = RL_AddOverlay
 	var/rllumr = RL_LumR
 	var/rllumg = RL_LumG
 	var/rllumb = RL_LumB
 	//var/rladdlumr = RL_AddLumR
 	//var/rladdlumg = RL_AddLumG
 	//var/rladdlumb = RL_AddLumB
-	var/rlneedsadditive = RL_NeedsAdditive
+	//var/rlneedsadditive = RL_NeedsAdditive
 	//var/rloverlaystate = RL_OverlayState  //we actually want these cleared
-	var/list/rllights = RL_Lights
+	//var/list/rllights = RL_Lights
 
 	var/old_opacity = src.opacity
 
@@ -589,14 +589,14 @@
 
 	new_turf.levelupdate()
 
-	new_turf.RL_ApplyGeneration = rlapplygen
-	new_turf.RL_UpdateGeneration = rlupdategen
+	//new_turf.RL_ApplyGeneration = rlapplygen
+	//new_turf.RL_UpdateGeneration = rlupdategen
 	//if(new_turf.RL_MulOverlay)
 	//	qdel(new_turf.RL_MulOverlay)
-	if(new_turf.RL_AddOverlay)
-		qdel(new_turf.RL_AddOverlay)
+	//if(new_turf.RL_AddOverlay)
+	//	qdel(new_turf.RL_AddOverlay)
 	//new_turf.RL_MulOverlay = rlmuloverlay
-	new_turf.RL_AddOverlay = rladdoverlay
+	//new_turf.RL_AddOverlay = rladdoverlay
 
 	new_turf.RL_LumR = rllumr
 	new_turf.RL_LumG = rllumg
@@ -604,10 +604,10 @@
 	//new_turf.RL_AddLumR = rladdlumr
 	//new_turf.RL_AddLumG = rladdlumg
 	//new_turf.RL_AddLumB = rladdlumb
-	new_turf.RL_NeedsAdditive = rlneedsadditive
+	//new_turf.RL_NeedsAdditive = rlneedsadditive
 	//new_turf.RL_OverlayState = rloverlaystate //we actually want these cleared
-	new_turf.RL_Lights = rllights
-	new_turf.opaque_atom_count = opaque_atom_count
+	//new_turf.RL_Lights = rllights
+	//new_turf.opaque_atom_count = opaque_atom_count
 
 
 	new_turf.checkingexit = old_checkingexit

@@ -10,6 +10,9 @@
 	///additive RL overlay (brighter than normal/fullbright)
 	var/obj/overlay/tile_effect/lighting/add/RL_AddOverlay = null
 
+	var/RL_ApplyGeneration = 0
+	var/RL_UpdateGeneration = 0
+
 	//var/RL_LumR = 0
 	//var/RL_LumG = 0
 	//var/RL_LumB = 0
@@ -18,3 +21,13 @@
 	var/RL_AddLumR = 0
 	var/RL_AddLumG = 0
 	var/RL_AddLumB = 0
+
+	//turf has any additive
+	var/RL_NeedsAdditive = 0
+
+	//List of light datums that have some influence on this turf
+	var/list/datum/light/RL_Lights = null
+
+	var/opaque_atom_count = 0
+
+	//.turf_persistent.

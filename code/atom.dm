@@ -401,7 +401,7 @@ TYPEINFO(/atom)
 		if (src.event_handler_flags & USE_PROXIMITY)
 			T.checkinghasproximity++
 		if(src.opacity)
-			T.opaque_atom_count++
+			T.turf_persistent.opaque_atom_count++
 	if(!isnull(src.loc))
 		src.loc.Entered(src, null)
 		if(isturf(src.loc)) // call it on the area too
