@@ -9,4 +9,5 @@
 #else
 #include "..\blank_maps\blank.dmm"
 #endif
+#include "..\z3.dmm"
 #define MAP_MODE "standard"

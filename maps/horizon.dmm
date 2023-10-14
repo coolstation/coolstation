@@ -11825,20 +11825,6 @@
 	dir = 1
 	},
 /area/station/hallway/secondary/east)
-"aFt" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 10;
-	name = "autoname - SS13";
-	tag = ""
-	},
-/obj/machinery/firealarm{
-	dir = 1;
-	layer = 3.5;
-	pixel_y = -24
-	},
-/turf/floor/grass/leafy,
-/area/station/ranch)
 "aFu" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -31965,18 +31951,6 @@
 /obj/disposalpipe/segment/brig,
 /turf/floor,
 /area/station/hallway/primary/central)
-"bBG" = (
-/obj/machinery/disposal{
-	icon_state = "mailchute";
-	icon_style = "mail";
-	name = "Lay-Z Chef Prison Food Chute"
-	},
-/obj/decal/cleanable/dirt,
-/obj/disposalpipe/trunk/food{
-	dir = 4
-	},
-/turf/floor/black,
-/area/station/hydroponics/lobby)
 "bBH" = (
 /obj/decal/tile_edge/line/blue{
 	dir = 9;
@@ -32154,19 +32128,7 @@
 /turf/floor/caution/west,
 /area/station/hangar/arrivals)
 "bCh" = (
-/obj/machinery/disposal{
-	icon_state = "mailchute";
-	icon_style = "mail";
-	name = "Produce Chute - Kitchen"
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 10;
-	name = "autoname - SS13";
-	tag = ""
-	},
-/obj/decal/cleanable/dirt,
-/obj/disposalpipe/trunk/food{
+/obj/disposalpipe/trunk{
 	dir = 4
 	},
 /turf/floor/black,
@@ -53033,13 +52995,6 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/southeast)
-"cGc" = (
-/obj/landmark/start{
-	name = "Rancher"
-	},
-/obj/landmark/gps_waypoint,
-/turf/floor/dirt,
-/area/station/ranch)
 "cIY" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -53249,17 +53204,6 @@
 	dir = 4
 	},
 /area/station/hallway/secondary/exit)
-"dmx" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/disposalpipe/segment/bent/east,
-/turf/floor/plating{
-	icon_state = "panelscorched"
-	},
-/area/station/ranch)
 "dnu" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -53559,11 +53503,6 @@
 /obj/disposalpipe/segment/mineral,
 /turf/floor/plating/random,
 /area/station/mining/refinery)
-"eam" = (
-/obj/decal/poster/wallsign/stencil/left/n,
-/obj/decal/poster/wallsign/stencil/right/c,
-/turf/wall/auto/reinforced/supernorn,
-/area/station/ranch)
 "ecc" = (
 /obj/reagent_dispensers/compostbin,
 /obj/disposalpipe/segment/brig,
@@ -53702,11 +53641,6 @@
 /obj/disposalpipe/switch_junction/biofilter/right/east,
 /turf/floor,
 /area/station/quartermaster/office)
-"epE" = (
-/turf/floor/grasstodirt{
-	dir = 10
-	},
-/area/station/ranch)
 "erV" = (
 /obj/disposalpipe/segment/transport{
 	dir = 4
@@ -54385,20 +54319,10 @@
 /area/station/security/checkpoint/podbay{
 	name = "NanoTrasen Labor Camp Shuttle"
 	})
-"gqE" = (
-/obj/item/device/radio/intercom/catering,
-/turf/floor/grass/leafy,
-/area/station/ranch)
 "gtP" = (
 /obj/disposalpipe/segment,
 /turf/floor/plating,
 /area/station/science/spectral)
-"gug" = (
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "wall_space"
-	},
-/area/station/ranch)
 "guU" = (
 /obj/stool/bar,
 /obj/landmark/start{
@@ -54453,20 +54377,6 @@
 /obj/disposalpipe/segment/bent/south,
 /turf/floor/plating/random,
 /area/station/maintenance/north)
-"gBU" = (
-/obj/table/glass/auto,
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag{
-	rand_pos = 1
-	},
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag{
-	rand_pos = 1
-	},
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag{
-	rand_pos = 1
-	},
-/obj/machinery/light,
-/turf/floor/dirt,
-/area/station/ranch)
 "gCs" = (
 /obj/disposalpipe/segment{
 	dir = 2;
@@ -54608,24 +54518,6 @@
 /obj/machinery/light/small/warm/very,
 /turf/floor/plating/random,
 /area/station/security/hos/horizon)
-"hhi" = (
-/obj/railing/orange/reinforced{
-	dir = 8
-	},
-/obj/storage/closet{
-	name = "rancher supply closet"
-	},
-/obj/item/paper/ranch_guide,
-/obj/item/storage/box/clothing/rancher,
-/obj/item/fishing_rod,
-/obj/item/device/camera_viewer/ranch{
-	pixel_y = 5
-	},
-/obj/item/clothing/mask/chicken,
-/turf/floor/grasstodirt{
-	dir = 8
-	},
-/area/station/ranch)
 "hjl" = (
 /obj/disposalpipe/segment/bent/south,
 /turf/floor/white/checker{
@@ -54994,20 +54886,6 @@
 /obj/disposalpipe/segment/morgue,
 /turf/floor,
 /area/station/hallway/primary/east)
-"igR" = (
-/obj/machinery/door/airlock/pyro/glass,
-/obj/access_spawn/rancher,
-/obj/machinery/door/firedoor/pyro,
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/disposalpipe/segment/produce{
-	dir = 1
-	},
-/turf/floor/plating,
-/area/station/ranch)
 "ihd" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -55245,13 +55123,6 @@
 	},
 /turf/wall/auto/reinforced/supernorn,
 /area/station/crew_quarters/courtroom)
-"iNY" = (
-/turf/shuttle/wall/cockpit/window{
-	dir = 4;
-	icon_state = "wall_space";
-	name = "window"
-	},
-/area/station/ranch)
 "iOg" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
@@ -55510,13 +55381,6 @@
 	},
 /turf/floor/plating/random,
 /area/station/storage/auxillary)
-"jxd" = (
-/obj/decal/fakeobjects/console_radar{
-	desc = "The control panel for a mark 1 rancher minishuttle. It is currently deactivated.";
-	name = "Rancher Shuttle Controls"
-	},
-/turf/floor/dirt,
-/area/station/ranch)
 "jxC" = (
 /obj/grille/steel,
 /obj/window/auto/reinforced,
@@ -55644,15 +55508,6 @@
 /obj/disposalpipe/segment/morgue,
 /turf/floor/white,
 /area/station/medical/medbay/cloner)
-"jKB" = (
-/obj/grille/steel,
-/obj/window/auto/reinforced,
-/obj/structure/woodwall,
-/obj/disposalpipe/segment/produce{
-	dir = 4
-	},
-/turf/floor/plating,
-/area/station/ranch)
 "jMB" = (
 /obj/table/wood/auto,
 /obj/disposalpipe/segment/morgue{
@@ -55696,13 +55551,6 @@
 /obj/disposalpipe/junction/right/west,
 /turf/floor,
 /area/station/hallway/primary/east)
-"jUq" = (
-/turf/shuttle/wall/cockpit/window{
-	dir = 1;
-	icon_state = "wall_space";
-	name = "window"
-	},
-/area/station/ranch)
 "jUQ" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -55780,17 +55628,6 @@
 /obj/disposalpipe/segment,
 /turf/floor/carpet/blue/fancy/edge/south,
 /area/station/hallway/primary/east)
-"kdU" = (
-/obj/table/reinforced/auto,
-/obj/railing/orange/reinforced{
-	dir = 8
-	},
-/obj/item/satchel/hydro,
-/obj/item/satchel/hydro,
-/turf/floor/grasstodirt{
-	dir = 8
-	},
-/area/station/ranch)
 "kex" = (
 /obj/disposalpipe/segment/transport,
 /turf/floor/neutral/side,
@@ -55844,13 +55681,6 @@
 	},
 /turf/space,
 /area/space)
-"klE" = (
-/obj/submachine/chicken_incubator,
-/obj/item/reagent_containers/food/snacks/ingredient/egg{
-	rand_pos = 0
-	},
-/turf/floor/grass/leafy,
-/area/station/ranch)
 "kmJ" = (
 /obj/table/reinforced/auto,
 /obj/item/clothing/glasses/vr{
@@ -56152,9 +55982,6 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/northeast)
-"lkp" = (
-/turf/floor/grass/leafy,
-/area/station/ranch)
 "lkr" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
@@ -56202,17 +56029,6 @@
 /obj/disposalpipe/segment,
 /turf/floor/wood/two,
 /area/station/hallway/secondary/west)
-"lsK" = (
-/obj/shrub{
-	dir = 6
-	},
-/obj/machinery/light{
-	dir = 1;
-	layer = 9.1;
-	pixel_y = 21
-	},
-/turf/floor/grass/leafy,
-/area/station/ranch)
 "ltx" = (
 /obj/cable{
 	icon_state = "1-4"
@@ -56290,9 +56106,6 @@
 /obj/disposalpipe/segment,
 /turf/floor/plating/random,
 /area/station/storage/auxillary)
-"lDx" = (
-/turf/floor/dirt,
-/area/station/ranch)
 "lFJ" = (
 /obj/disposalpipe/segment/transport{
 	dir = 4
@@ -56997,11 +56810,6 @@
 	},
 /turf/floor/plating/random,
 /area/station/crew_quarters/courtroom)
-"nhJ" = (
-/obj/decal/poster/wallsign/stencil/left/r,
-/obj/decal/poster/wallsign/stencil/right/a,
-/turf/wall/auto/reinforced/supernorn,
-/area/station/ranch)
 "nii" = (
 /obj/cable{
 	d1 = 4;
@@ -57146,22 +56954,6 @@
 /obj/disposalpipe/junction/middle/east,
 /turf/space,
 /area/space)
-"nAW" = (
-/obj/machinery/disposal{
-	icon_state = "mailchute";
-	icon_style = "mail";
-	name = "Produce Chute - Kitchen"
-	},
-/obj/machinery/light{
-	dir = 1;
-	layer = 9.1;
-	pixel_y = 22
-	},
-/obj/disposalpipe/trunk{
-	dir = 4
-	},
-/turf/floor/dirt,
-/area/station/ranch)
 "nBx" = (
 /obj/grille/steel,
 /obj/disposalpipe/segment/ejection{
@@ -57190,14 +56982,6 @@
 /area/station/security/checkpoint/podbay{
 	name = "NanoTrasen Labor Camp Shuttle"
 	})
-"nFM" = (
-/obj/stool/chair/green{
-	dir = 8
-	},
-/obj/machinery/power/apc/autoname_east,
-/obj/cable,
-/turf/floor/dirt,
-/area/station/ranch)
 "nGT" = (
 /turf/wall/auto/reinforced/supernorn,
 /area/station/hangar/sec)
@@ -57292,16 +57076,6 @@
 /obj/fitness/speedbag,
 /turf/floor/white,
 /area/station/security/brig/genpop)
-"nTp" = (
-/obj/machinery/light_switch/east,
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/disposalpipe/segment/bent/west,
-/turf/floor/dirt,
-/area/station/ranch)
 "nUk" = (
 /obj/cable{
 	d1 = 4;
@@ -57480,10 +57254,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/east)
-"ore" = (
-/obj/decal/poster/wallsign/stencil/left/h,
-/turf/wall/auto/reinforced/supernorn,
-/area/station/ranch)
 "org" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -57811,12 +57581,6 @@
 	},
 /turf/wall/auto/supernorn,
 /area/station/crew_quarters/showers)
-"psi" = (
-/obj/grille/steel,
-/obj/window/auto/reinforced,
-/obj/structure/woodwall,
-/turf/floor/plating,
-/area/station/ranch)
 "pvL" = (
 /obj/lattice{
 	dir = 10;
@@ -57882,11 +57646,6 @@
 /obj/disposalpipe/segment,
 /turf/wall/auto/supernorn,
 /area/station/crew_quarters/quarters_south)
-"pEL" = (
-/turf/shuttle/wall{
-	icon_state = "wall_space"
-	},
-/area/station/ranch)
 "pFo" = (
 /obj/disposalpipe/segment/brig{
 	dir = 8
@@ -58042,13 +57801,6 @@
 /obj/disposalpipe/segment,
 /turf/floor/black,
 /area/station/science/lobby)
-"qam" = (
-/obj/grille/steel,
-/obj/window/auto/reinforced,
-/turf/floor/plating{
-	icon_state = "panelscorched"
-	},
-/area/station/ranch)
 "qck" = (
 /obj/machinery/plantpot,
 /obj/disposalpipe/segment/brig{
@@ -58107,11 +57859,6 @@
 /obj/disposalpipe/segment/mineral,
 /turf/floor,
 /area/station/hallway/primary/west)
-"qfu" = (
-/obj/grille/steel,
-/obj/window/auto/reinforced,
-/turf/floor/plating,
-/area/station/ranch)
 "qgc" = (
 /obj/cable{
 	d1 = 1;
@@ -58492,13 +58239,6 @@
 /obj/disposalpipe/segment,
 /turf/floor/neutral/side,
 /area/station/hangar/escape)
-"rfP" = (
-/obj/submachine/chicken_feed_grinder,
-/obj/item/reagent_containers/food/snacks/plant/corn{
-	doants = 0
-	},
-/turf/floor/dirt,
-/area/station/ranch)
 "rhG" = (
 /obj/storage/secure/crate/weapon/armory/phaser,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/overfloor/vertical,
@@ -58608,12 +58348,6 @@
 /obj/disposalpipe/segment/transport,
 /turf/floor/wood/two,
 /area/station/crew_quarters/fitness)
-"rvR" = (
-/obj/submachine/chef_sink/chem_sink{
-	pixel_y = 15
-	},
-/turf/floor/grass/leafy,
-/area/station/ranch)
 "rwG" = (
 /obj/grille/steel,
 /obj/window/auto/reinforced,
@@ -58630,9 +58364,6 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/central)
-"rxZ" = (
-/turf/floor/grass/leafy,
-/area/station/ranch)
 "ryl" = (
 /obj/disposalpipe/segment{
 	dir = 1;
@@ -58688,14 +58419,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/vertical,
 /turf/floor/wood/two,
 /area/station/security/equipment)
-"rAd" = (
-/obj/machinery/plantpot{
-	anchored = 1
-	},
-/obj/railing/orange/reinforced,
-/turf/floor/grasstodirt,
-/turf/floor/grasstodirt,
-/area/station/ranch)
 "rAF" = (
 /obj/machinery/door/airlock/pyro/security{
 	dir = 4;
@@ -58754,13 +58477,6 @@
 /obj/disposalpipe/segment/transport,
 /turf/floor,
 /area/station/hallway/primary/central)
-"rHh" = (
-/obj/machinery/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "alt_propulsion"
-	},
-/turf/space,
-/area/station/ranch)
 "rHD" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -58901,12 +58617,6 @@
 /obj/storage/secure/closet/command/hos,
 /turf/floor/plating/random,
 /area/station/security/hos/horizon)
-"rWE" = (
-/obj/grille/steel,
-/obj/window/auto/reinforced,
-/obj/lattice,
-/turf/floor/plating,
-/area/station/ranch)
 "rZd" = (
 /obj/cable{
 	d1 = 2;
@@ -59687,19 +59397,9 @@
 /turf/floor/white/grime,
 /area/station/crew_quarters/kitchen)
 "ucf" = (
-/obj/railing/orange/reinforced{
-	dir = 1
-	},
-/obj/machinery/plantpot{
-	anchored = 1
-	},
-/turf/floor/grasstodirt{
-	dir = 1
-	},
-/turf/floor/grasstodirt{
-	dir = 1
-	},
-/area/station/ranch)
+/turf/space,
+/turf/space,
+/area/space)
 "ucR" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/disposalpipe/segment{
@@ -60104,10 +59804,6 @@
 	},
 /turf/wall/auto/reinforced/supernorn,
 /area/station/crew_quarters/pool)
-"viZ" = (
-/obj/railing/orange/reinforced,
-/turf/floor/grasstodirt,
-/area/station/ranch)
 "vkq" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
@@ -60141,14 +59837,6 @@
 /obj/access_spawn/brig,
 /turf/floor/black,
 /area/station/security/brig/genpop)
-"vpa" = (
-/obj/railing/orange/reinforced{
-	dir = 1
-	},
-/turf/floor/grasstodirt{
-	dir = 1
-	},
-/area/station/ranch)
 "vpp" = (
 /obj/machinery/atmospherics/unary/vent_pump/east,
 /turf/floor/black,
@@ -60212,11 +59900,6 @@
 /obj/disposalpipe/segment/transport,
 /turf/floor/white,
 /area/station/medical/medbay/cloner)
-"vvy" = (
-/turf/floor/grasstodirt{
-	dir = 9
-	},
-/area/station/ranch)
 "vwp" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /obj/cable{
@@ -60479,9 +60162,6 @@
 /obj/disposalpipe/segment/bent/west,
 /turf/floor/black,
 /area/station/quartermaster/office)
-"wds" = (
-/turf/wall/auto/reinforced/supernorn,
-/area/station/ranch)
 "weI" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -60526,11 +60206,6 @@
 /area/station/storage/emergency{
 	name = "Hilarious Storage A"
 	})
-"wht" = (
-/obj/shrub,
-/obj/machinery/light,
-/turf/floor/grass/leafy,
-/area/station/ranch)
 "wlW" = (
 /obj/lattice{
 	dir = 6;
@@ -60909,14 +60584,6 @@
 /area/station/storage/emergency{
 	name = "Hilarious Storage A"
 	})
-"wWj" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/floor/dirt,
-/area/station/ranch)
 "wWE" = (
 /obj/disposalpipe/segment/transport{
 	dir = 4
@@ -61235,18 +60902,6 @@
 	},
 /turf/wall/auto/supernorn,
 /area/station/medical/morgue)
-"xTu" = (
-/obj/machinery/light{
-	dir = 1;
-	pixel_x = -1
-	},
-/obj/decal/fakeobjects/shuttleweapon/base{
-	desc = "A futuristic system that collects residual power from chicken alchemy.";
-	dir = 8;
-	name = "Chicken Power Generator"
-	},
-/turf/floor/grass/leafy,
-/area/station/ranch)
 "xVC" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 9
@@ -61385,18 +61040,6 @@
 /obj/disposalpipe/segment/bent/east,
 /turf/floor/wood,
 /area/station/hallway/secondary/west)
-"yjt" = (
-/obj/machinery/camera/ranch{
-	dir = 4
-	},
-/obj/machinery/light,
-/obj/decal/fakeobjects/shuttleweapon/base{
-	desc = "A futuristic system that collects residual power from chicken alchemy.";
-	dir = 8;
-	name = "Chicken Power Generator"
-	},
-/turf/floor/grass/leafy,
-/area/station/ranch)
 "ykk" = (
 /obj/lattice,
 /obj/disposalpipe/segment/ejection{
@@ -93592,12 +93235,12 @@ bUV
 bUL
 aaa
 aaa
-rHh
-rHh
 aaa
-aad
-rHh
-rHh
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 cjp
 ciO
@@ -93893,14 +93536,14 @@ bSo
 eIc
 bUL
 aaa
-gug
-wds
-wds
-qfu
-qfu
-wds
-wds
-pEL
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aGl
 ciY
 adk
@@ -94195,14 +93838,14 @@ bSp
 aYq
 bUL
 aaa
-wds
-wds
-xTu
+aaa
+aaa
+aaa
 ucf
-rAd
-yjt
-wds
-wds
+ucf
+aaa
+aaa
+aaa
 cjp
 ciO
 aaa
@@ -94497,14 +94140,14 @@ bSq
 bUX
 bUL
 aaa
-qfu
-klE
-rxZ
-vpa
-viZ
-rxZ
-klE
-qfu
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aGl
 ciO
 cku
@@ -94799,14 +94442,14 @@ bSr
 bUY
 bUL
 aaa
-qfu
-gqE
-rxZ
-vpa
-viZ
-rxZ
-lkp
-qfu
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aGl
 ciO
 ckv
@@ -95101,14 +94744,14 @@ bSs
 muJ
 bUL
 aaa
-qfu
-lsK
-rxZ
-vpa
-viZ
-rxZ
-wht
-qfu
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aGl
 ciO
 ckw
@@ -95403,14 +95046,14 @@ lja
 bVa
 bXl
 aaa
-wds
-wds
-rvR
-vpa
-viZ
-aFt
-wds
-wds
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 cjp
 cjO
 ckx
@@ -95705,14 +95348,14 @@ lja
 fMn
 bXl
 bXl
-jUq
-wds
-kdU
-vvy
-epE
-hhi
-wds
-iNY
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 cjp
 cjP
 cky
@@ -96007,13 +95650,13 @@ fqS
 dqe
 bkq
 bXl
-psi
-qam
-nAW
-lDx
-cGc
-gBU
-nhJ
+aaQ
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 cjp
 cjP
@@ -96309,13 +95952,13 @@ wwH
 xPE
 qJX
 jxG
-dmx
-igR
-nTp
-wWj
-wWj
-nFM
-eam
+aaQ
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 cjp
 cjP
@@ -96611,13 +96254,13 @@ bSt
 fMn
 bXn
 bXl
-jKB
-wds
-wds
-jxd
-rfP
-wds
-ore
+aaQ
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 cjp
 cjP
@@ -96913,13 +96556,13 @@ bSt
 fMn
 bXo
 bXl
-iKx
-jUq
-wds
-rWE
-qfu
-wds
-iNY
+aaQ
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 cjp
 cjP
@@ -99321,7 +98964,7 @@ uFM
 byk
 bBi
 bAP
-bBG
+bCh
 bCh
 bBh
 bPA
