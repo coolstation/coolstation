@@ -99,16 +99,12 @@
 				L.Remove(P)
 		return
 
-	/// Called when the material fails due to instability.
-	var/list/triggersFail = list()
 	/// Called when exposed to temperatures.
 	var/list/triggersTemp = list()
 	/// Called when exposed to chemicals.
 	var/list/triggersChem = list()
 	/// Called when owning object is picked up.
 	var/list/triggersPickup = list()
-	/// Called when owning object is dropped.
-	var/list/triggersDrop = list()
 	/// Called when exposed to explosions.
 	var/list/triggersExp = list()
 	/// Called when the material is added to an object
@@ -130,12 +126,6 @@
 	/// Called when an obj hits something with this material assigned.
 	var/list/triggersOnHit = list()
 
-
-	proc/triggerOnFail(var/atom/owner)
-		for(var/datum/materialProc/X in triggersFail)
-			X.execute(owner)
-		qdel(owner) //Merged proc/fail into here
-		return
 
 	proc/triggerOnEntered(var/atom/owner, var/atom/entering)
 		for(var/datum/materialProc/X in triggersOnEntered)
@@ -174,11 +164,6 @@
 
 	proc/triggerPickup(var/mob/M, var/obj/item/I)
 		for(var/datum/materialProc/X in triggersPickup)
-			X.execute(M, I)
-		return
-
-	proc/triggerDrop(var/mob/M, var/obj/item/I)
-		for(var/datum/materialProc/X in triggersDrop)
 			X.execute(M, I)
 		return
 
@@ -509,7 +494,6 @@
 		setProperty("radioactive", 75)
 		setProperty("stability", 10)
 
-		addTrigger(triggersFail, new /datum/materialProc/fail_explosive())
 		addTrigger(triggersOnAdd, new /datum/materialProc/erebite_flash())
 		addTrigger(triggersTemp, new /datum/materialProc/erebite_temp())
 		addTrigger(triggersExp, new /datum/materialProc/erebite_exp())

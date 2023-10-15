@@ -5,26 +5,18 @@
 	/// Internal ID of this property.
 	var/id = ""
 
-	/// Min value for high-prefix. Minimum for the prefix to show up on the object names.
-	var/prefix_high_min = 80
-	/// Max value for low-prefix. Maximum for the prefix to show up on the object names.
-	var/prefix_low_max = 20
-
 	proc/onAdded(var/datum/material/M, var/new_value)
 		return
-
+	/*
 	proc/onRemoved(var/datum/material/M)
 		return
-
+	*/
 	proc/getAdjective(value)
 		return "odd"
 
 /datum/material_property/electrical_conductivity
 	name = "Electrical conductivity"
 	id = "electrical"
-
-	prefix_high_min = 85
-	prefix_low_max = 20
 
 	getAdjective(value)
 		switch(value)
@@ -48,9 +40,6 @@
 	name = "Thermal conductivity"
 	id = "thermal"
 
-	prefix_high_min = 85
-	prefix_low_max = 15
-
 	getAdjective(value)
 		switch(value)
 			if(1 to 14)
@@ -72,9 +61,6 @@
 	name = "Hardness"
 	id = "hard"
 
-	prefix_high_min = 85
-	prefix_low_max = 15
-
 	getAdjective(value)
 		switch(value)
 			if(1 to 10)
@@ -94,9 +80,6 @@
 	name = "Density"
 	id = "density"
 
-	prefix_high_min = 85
-	prefix_low_max = 15
-
 	getAdjective(value)
 		switch(value)
 			if(1 to 10)
@@ -115,9 +98,6 @@
 /datum/material_property/reflectivity
 	name = "Reflectivity"
 	id = "reflective"
-
-	prefix_high_min = 76
-	prefix_low_max = 25
 
 	getAdjective(value)
 		switch(value)
@@ -145,9 +125,6 @@
 	name = "Flammability"
 	id = "flammable"
 
-	prefix_high_min = 85
-	prefix_low_max = 15
-
 	getAdjective(value)
 		switch(value)
 			if(1 to 10)
@@ -166,9 +143,6 @@
 /datum/material_property/corrosion
 	name = "Corrosion resistance"
 	id = "corrosion"
-
-	prefix_high_min = 85
-	prefix_low_max = 15
 
 	getAdjective(value)
 		switch(value)
@@ -189,9 +163,6 @@
 	name = "Stability"
 	id = "stability"
 
-	prefix_high_min = 85
-	prefix_low_max = 15
-
 	getAdjective(value)
 		switch(value)
 			if(1 to 10)
@@ -211,9 +182,6 @@
 	name = "Permeability"
 	id = "permeable"
 
-	prefix_high_min = 85
-	prefix_low_max = 15
-
 	getAdjective(value)
 		switch(value)
 			if(1 to 10)
@@ -232,9 +200,6 @@
 /datum/material_property/radioactivity
 	name = "Radioactivity"
 	id = "radioactive"
-
-	prefix_high_min = 1
-	prefix_low_max = 100
 
 	getAdjective(value)
 		switch(value)
@@ -257,21 +222,17 @@
 		M.addTrigger(M.triggersOnAdd, new /datum/materialProc/radioactive_add())
 		M.addTrigger(M.triggersOnEntered, new /datum/materialProc/radioactive_on_enter())
 		return
-
+/*
 	onRemoved(var/datum/material/M)
 		M.removeTrigger(M.triggersPickup, /datum/materialProc/radioactive_pickup)
 		M.removeTrigger(M.triggersOnLife, /datum/materialProc/radioactive_life)
 		M.removeTrigger(M.triggersOnAdd, /datum/materialProc/radioactive_add)
 		M.removeTrigger(M.triggersOnEntered, /datum/materialProc/radioactive_on_enter)
 		return
-
+*/
 /datum/material_property/neutron_radioactivity
 	name = "Neutron Radioactivity"
 	id = "n_radioactive"
-
-	prefix_high_min = 1
-	prefix_low_max = 100
-
 
 	getAdjective(value)
 		switch(value)
@@ -294,20 +255,17 @@
 		M.addTrigger(M.triggersOnAdd, new /datum/materialProc/n_radioactive_add())
 		M.addTrigger(M.triggersOnEntered, new /datum/materialProc/n_radioactive_on_enter())
 		return
-
+/*
 	onRemoved(var/datum/material/M)
 		M.removeTrigger(M.triggersPickup, /datum/materialProc/n_radioactive_pickup)
 		M.removeTrigger(M.triggersOnLife, /datum/materialProc/n_radioactive_life)
 		M.removeTrigger(M.triggersOnAdd, /datum/materialProc/n_radioactive_add)
 		M.removeTrigger(M.triggersOnEntered, /datum/materialProc/n_radioactive_on_enter)
 		return
-
+*/
 /datum/material_property/fissile
 	name = "Fissibility"
 	id = "fissile"
-
-	prefix_high_min = 25
-	prefix_low_max = 75
 
 	getAdjective(value)
 		switch(value)
@@ -327,9 +285,6 @@
 /datum/material_property/resonance // Just for molitz, not used for anything else and doubt it will be. Could tie instance boosts to resonance and give other mats resonance for purposes of being good to alloy with molitz.
 	name = "Resonance"
 	id = "resonance"
-
-	prefix_high_min = 25
-	prefix_low_max = 75
 
 	getAdjective(value)
 		switch(value)

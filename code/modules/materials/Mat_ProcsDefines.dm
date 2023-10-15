@@ -14,7 +14,7 @@ var/global/list/material_cache = list()
 	return 0
 
 /// This contains the names of the trigger lists on materials. Required for copying materials. Remember to keep this updated if you add new triggers.
-var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "triggersFail", "triggersTemp", "triggersChem", "triggersPickup", "triggersDrop", "triggersExp", "triggersOnAdd", "triggersOnLife", "triggersOnAttack", "triggersOnAttacked", "triggersOnEntered")
+var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "triggersTemp", "triggersChem", "triggersPickup", "triggersExp", "triggersOnAdd", "triggersOnLife", "triggersOnAttack", "triggersOnAttacked", "triggersOnEntered")
 
 /// Returns one of the base materials by id.
 /proc/getMaterial(var/mat)
@@ -130,7 +130,7 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 //Time for some super verbose proc names.
 /proc/get_material_trait_desc(var/datum/material/mat1)
 	var/string = ""
-	var/list/allTriggers = (mat1.triggersFail + mat1.triggersTemp + mat1.triggersChem + mat1.triggersPickup + mat1.triggersDrop + mat1.triggersExp + mat1.triggersOnAdd + mat1.triggersOnLife + mat1.triggersOnAttack + mat1.triggersOnAttacked + mat1.triggersOnEntered)
+	var/list/allTriggers = (mat1.triggersTemp + mat1.triggersChem + mat1.triggersPickup + mat1.triggersExp + mat1.triggersOnAdd + mat1.triggersOnLife + mat1.triggersOnAttack + mat1.triggersOnAttacked + mat1.triggersOnEntered)
 	for(var/datum/materialProc/P in allTriggers)
 		if(length(P.desc))
 			if(length(string))
@@ -280,11 +280,9 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 	newMat.mixOnly = 0
 
 	//--
-	newMat.triggersFail = getFusedTriggers(mat1.triggersFail, mat2.triggersFail, newMat)
 	newMat.triggersTemp = getFusedTriggers(mat1.triggersTemp, mat2.triggersTemp, newMat)
 	newMat.triggersChem = getFusedTriggers(mat1.triggersChem, mat2.triggersChem, newMat)
 	newMat.triggersPickup = getFusedTriggers(mat1.triggersPickup, mat2.triggersPickup, newMat)
-	newMat.triggersDrop = getFusedTriggers(mat1.triggersDrop, mat2.triggersDrop, newMat)
 	newMat.triggersExp = getFusedTriggers(mat1.triggersExp, mat2.triggersExp, newMat)
 	newMat.triggersOnAdd = getFusedTriggers(mat1.triggersOnAdd, mat2.triggersOnAdd, newMat)
 	newMat.triggersOnLife = getFusedTriggers(mat1.triggersOnLife, mat2.triggersOnLife, newMat)
@@ -292,11 +290,9 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 	newMat.triggersOnAttacked = getFusedTriggers(mat1.triggersOnAttacked, mat2.triggersOnAttacked, newMat)
 	newMat.triggersOnEntered = getFusedTriggers(mat1.triggersOnEntered, mat2.triggersOnEntered, newMat)
 
-	handleTriggerGenerations(newMat.triggersFail)
 	handleTriggerGenerations(newMat.triggersTemp)
 	handleTriggerGenerations(newMat.triggersChem)
 	handleTriggerGenerations(newMat.triggersPickup)
-	handleTriggerGenerations(newMat.triggersDrop)
 	handleTriggerGenerations(newMat.triggersExp)
 	handleTriggerGenerations(newMat.triggersOnAdd)
 	handleTriggerGenerations(newMat.triggersOnLife)

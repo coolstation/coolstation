@@ -600,7 +600,7 @@
 
 			if(M.material && M.material.getProperty("stability") <= 30 && prob((30 - M.material.getProperty("stability")) * 2 ) )
 				M.visible_message("<span class='alert'>[M] [getMatFailString(M.material.material_flags)]!</span>")
-				M.material.triggerOnFail(M)
+				qdel(M)
 			return
 
 		if(components.len > 0)
