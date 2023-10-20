@@ -62,10 +62,12 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 /area/noGenerate
 	name = ""
 	icon_state = "blockgen"
+	is_construction_allowed = TRUE //would break mining magnet with IM_REALLY_IN_A_FUCKING_HURRY_HERE
 
 /area/allowGenerate //Areas of this type do not block asteroid/cavern generation.
 	name = ""
 	icon_state = "allowgen"
+	is_construction_allowed = TRUE //probably not necessary but
 
 	trench
 		name = "Trench"

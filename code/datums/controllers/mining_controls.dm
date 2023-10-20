@@ -87,6 +87,34 @@ var/list/asteroid_blocked_turfs = list()
 				mining_encounters_common -= MC
 				qdel(MC)
 
+		//pair automagnet landmarks
+		var/list/sorted_tags = list()
+		SPAWN_DBG(1 SECOND) //UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUGH
+			for(var/turf/T in landmarks["automagnet"])
+				var/tag = landmarks["automagnet"][T]
+				if (tag in sorted_tags)
+					continue
+				for(var/turf/OT in landmarks["automagnet"])
+					if ((T != OT) && (landmarks["automagnet"][OT] == tag))
+						//from here on out is copied from the magnetizer
+						var/corner_turf
+						var/obj/machinery/mining_magnet/construction/a_magnet = locate() in T
+						if (!a_magnet)
+							corner_turf = T
+							a_magnet = locate() in OT
+							if (!a_magnet)
+								CRASH("automagnet landmark pair is missing mineral magnet.")
+						else
+							corner_turf = OT
+
+						var/obj/magnet_target_marker/M = new a_magnet.marker_type(corner_turf)
+						if (!M.construct())
+							qdel(M)
+						else
+							a_magnet.target = M
+				sorted_tags += tag
+
+
 	proc/setup_mining_landmarks()
 		for(var/turf/T in landmarks[LANDMARK_MAGNET_CENTER])
 			magnetic_center = T

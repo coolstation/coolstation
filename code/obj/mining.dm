@@ -1,5 +1,20 @@
 // Magnet Stuff
 
+/*
+	IF YOU'RE UNFAMILIAR WITH THIS CODE, HERE'S THE BASIC THING GOING ON WITH THE MINERAL MAGNET TYPES
+
+	There's the base magnet type (/obj/machinery/mining_magnet) and the constructed type (/obj/machinery/mining_magnet/constructed)
+		(There's also a small subtype of the constructed magnet, that's something for Ozymandias and I don't know the details. it's irrelevant.)
+
+	The base type operates on a bunch of variables on the global mining controls, along with its own landmarks and area to define where the action happens.
+	As a result there can only be one of them in a round, and it's normally the magnet on station.
+
+	The constructed type are built by players. Normally you'd use a magnetizer (I think a holdover from construction) in-game to designate one corner
+	and the game with maths out the rest. These magnets then use a /obj/magnet_target_marker for most of their functionality.
+	These magnets do not use the landmarks or area, but there are other landmarks to automate the setup.
+	(the target markers still pull half their shit from the mining controls btw)
+*/
+
 /obj/machinery/magnet_chassis
 	name = "magnet chassis"
 	desc = "A strong metal rig designed to hold and link up magnet apparatus with other technology."
@@ -56,11 +71,16 @@
 			src.bound_height = 32
 			src.bound_width = 64
 
+//replaces the magnetizer on the mining outpost. Basically a workaround (you better not fuck these up or it's gonna dump text at a nonexistant usr)
+/obj/landmark/magnet_autolink
+	name = "automagnet"
+	data = "automagnet"
+
 #ifndef UNDERWATER_MAP
 /datum/action/bar/icon/magnet_build
 	id = "magnet_build"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
-	duration = 24 SECONDS
+	duration = 10 SECONDS //Who decided this should take 24s
 	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 	var/obj/item/magnet_parts/mag_parts = null
@@ -430,7 +450,9 @@
 
 			var/datum/mining_encounter/MC
 
-			if(selectable_encounter_id != null)
+			if(istype(selectable_encounter_id, /datum/mining_encounter)) //Wanna do an admin thingy here thanks
+				MC = selectable_encounter_id
+			else if(selectable_encounter_id != null)
 				if(selectable_encounter_id in mining_controls.mining_encounters_selectable)
 					MC = mining_controls.mining_encounters_selectable[selectable_encounter_id]
 					mining_controls.remove_selectable_encounter(selectable_encounter_id)
@@ -665,7 +687,9 @@
 
 		var/datum/mining_encounter/MC
 
-		if(selectable_encounter_id != null)
+		if(istype(selectable_encounter_id, /datum/mining_encounter)) //Wanna do an admin thingy here thanks
+			MC = selectable_encounter_id
+		else if(selectable_encounter_id != null)
 			if(selectable_encounter_id in mining_controls.mining_encounters_selectable)
 				MC = mining_controls.mining_encounters_selectable[selectable_encounter_id]
 				mining_controls.remove_selectable_encounter(selectable_encounter_id)
@@ -700,6 +724,12 @@
 
 		src.updateUsrDialog()
 		return
+
+	///What if admins could just force an encounter (devious)
+	proc/debug_pull_event()
+		var/encounter = input(usr, "Please select encounter", "Minin'")  as null|anything in mining_controls.mining_encounters_all
+		if (encounter)
+			pull_new_source(encounter)
 
 	proc/generate_interface(var/mob/user as mob)
 		src.add_dialog(user)

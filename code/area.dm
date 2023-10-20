@@ -3937,6 +3937,7 @@ ABSTRACT_TYPE(/area/mining)
 /area/mining/magnet_control
 	name = "Mining Outpost Magnet Control"
 	icon_state = "miningp"
+	force_fullbright = TRUE //an exterior area now
 
 /area/mining/refinery
 	name = "Mining Outpost Refinery"
