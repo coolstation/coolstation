@@ -10,6 +10,7 @@
 	var/datum/radio_frequency/control_frequency = FREQ_ARMORY
 	var/radiorange = 3
 	desc = "Use this computer to authorize security access to the Armory. You need an ID with security access to do so."
+	glow_in_dark_screen = FALSE
 
 	light_r =1
 	light_g = 0.3
