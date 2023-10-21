@@ -454,17 +454,25 @@
 		C.setdir()
 
 // attack with hand, switch position
-/obj/machinery/conveyor_switch/attack_hand(mob/user)
-	if(position == 0)
-		if(last_pos < 0)
-			position = 1
-			last_pos = 0
-		else
-			position = -1
-			last_pos = 0
-	else
+/obj/machinery/conveyor_switch/attack_hand(mob/user, params, location, control)
+
+	if (islist(params) && params["icon-x"])
 		last_pos = position
-		position = 0
+		if (text2num(params["icon-x"]) >= 16) //right half of sprite
+			position = (position == 1) ? 0 : 1
+		else //left half of sprite
+			position = (position == -1) ? 0 : -1
+	else
+		if(position == 0)
+			if(last_pos < 0)
+				position = 1
+				last_pos = 0
+			else
+				position = -1
+				last_pos = 0
+		else
+			last_pos = position
+			position = 0
 
 	operated = 1
 	update()

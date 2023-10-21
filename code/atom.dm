@@ -643,13 +643,14 @@ TYPEINFO(/atom)
 /atom/proc/MouseDrop_T()
 	return
 
-/atom/proc/Attackhand(mob/user as mob)
+//hey what if attack_hand got sent click params for the benefit of 1 thing
+/atom/proc/Attackhand(mob/user as mob, params, location, control)
 	SHOULD_NOT_OVERRIDE(1)
 	if(SEND_SIGNAL(src, COMSIG_ATTACKHAND, user))
 		return
-	src.attack_hand(user)
+	src.attack_hand(user, params, location, control)
 
-/atom/proc/attack_hand(mob/user as mob)
+/atom/proc/attack_hand(mob/user as mob, params, location, control)
 	PROTECTED_PROC(TRUE)
 	if (flags & TGUI_INTERACTIVE)
 		return ui_interact(user)
