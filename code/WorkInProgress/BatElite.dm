@@ -215,6 +215,30 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 /obj/item/clothing/head/dragon/white
 	icon_state = "dragon_white"
 	item_state = "dragon_white"
+
+//dumb joke
+/obj/item/gun_exploder/mythical
+	name = "gunsemything anvil"
+	desc = "hit it with a gun 'till the gun reveals its deepest secrets rofl"
+
+	attackby(obj/item/gun/modular/W as obj, mob/user as mob, params)
+		if(!istype(W) || prob(70) || !W.built)
+			playsound(src.loc, "sound/impact_sounds/Wood_Hit_1.ogg", 70, 1)
+			return
+		var/coolname = "\proper "
+		var/segments = rand(1,4)
+		var/newbit
+		for (var/i = 1, i <= segments, i++)
+			//I know these are sword names just shush
+			newbit = pick("grar", "drakh" , "farth" , "kroth" , "ire", "mor", "death", "dragon", "wyrm", "flame", "doom", "iano", "thon", "thor", "azal", "celsior", "calibur", "berge", "rok", "holi", "bane", "farte", "winky", "peebim")
+			if (i == 1)
+				newbit = capitalize(newbit)
+			coolname += newbit
+
+		coolname += " the [pick("Legendary", "Mythical", "Lost", "Arcane", "Feared", "Reaver", "Wrathful", "Vanquisher", "Bloody", "Corrupted")]"
+		W.name = coolname
+		boutput(user, "<span class='notice'>You discover the true identity of your gun!</span>")
+		playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_1.ogg', 50, 1)
 /*
 /obj/spawn_all_the_dragon_shit
 	New()
