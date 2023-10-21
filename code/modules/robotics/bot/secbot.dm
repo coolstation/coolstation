@@ -933,6 +933,10 @@
 			if (!istype(perp_id))
 				perp_id = perp.get_id()
 
+			//Agent cards lower threat level
+			if(istype(perp_id, /obj/item/card/id/syndicate))
+				threatcount -= 2
+
 			if(perp_id) //Checking for targets and permits
 				var/list/contraband_returned = list()
 				if (SEND_SIGNAL(perp, COMSIG_MOVABLE_GET_CONTRABAND, contraband_returned, !(contraband_access in perp_id.access), !(weapon_access in perp_id.access)))
@@ -950,10 +954,6 @@
 			for (var/datum/data/record/R as anything in data_core.security)
 				if (R.fields["name"] == perp.name)
 					threatcount -= 5
-
-		//Agent cards lower threat level
-		if((istype(perp.wear_id, /obj/item/card/id/syndicate)))
-			threatcount -= 2
 
 		// we have grounds to make an arrest, don't bother with further analysis
 		if(threatcount >= 4)
