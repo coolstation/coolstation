@@ -46,6 +46,9 @@
 	..()
 	basedir = dir
 	setdir()
+	//Give em little lights so folks can see which side of the switch correlates to direction on the conveyor.
+	//They're all separate icon_states cause they shouldn't turn with the conveyor.
+	UpdateOverlays(image('icons/obj/recycling.dmi', "indicator-[basedir]"), "indicator")
 
 /obj/machinery/conveyor/initialize()
 	..()
