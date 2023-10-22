@@ -194,6 +194,12 @@
 	show_play_message(mob/user as mob)
 		return
 
+/obj/item/instrument/large/jukebox/schmancy
+	name = "replica jukebox"
+	desc = "Oh, are these back in vogue?"
+	icon_state = "jukebox_new"
+	item_state = "jukebox_new"
+
 /* -------------------- OLD SAXO -------------------- */
 /obj/item/saxophone
 	name = "saxophone"
