@@ -106,9 +106,9 @@
 	icon_welded = "welded-coffin-4dirs"
 
 	wood
-		icon_closed = "woodcoffin"
-		icon_state = "woodcoffin"
-		icon_opened = "woodcoffin-open"
+		icon_closed = "ntcoffin"
+		icon_state = "ntcoffin"
+		icon_opened = "ntcoffin-open"
 		icon_welded = "welded-coffin-1dir"
 
 /obj/storage/closet/biohazard
