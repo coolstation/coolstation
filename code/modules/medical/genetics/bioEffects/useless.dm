@@ -216,7 +216,7 @@
 		if(..()) return
 		if (owner.reagents.has_reagent("menthol"))
 			return
-		else if (prob(10))
+		else if (prob(5)) // dropped from 10 for spam reduction
 			for(var/mob/living/carbon/C in view(6,get_turf(owner)))
 				if (C == owner)
 					continue
