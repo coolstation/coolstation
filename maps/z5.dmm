@@ -235,7 +235,8 @@
 "cy" = (
 /obj/decal/fakeobjects/pipe{
 	icon = 'icons/obj/atmospherics/pipes/manifold_pipe.dmi';
-	icon_state = "manifold"
+	icon_state = "manifold";
+	plane = -105
 	},
 /obj/indestructible/shuttle_corner{
 	dir = 1;
@@ -2227,6 +2228,10 @@
 	tag = "icon-conduit (EAST)"
 	},
 /obj/decal/cleanable/dirt,
+/obj/loudspeaker{
+	density = 0;
+	pixel_y = 31
+	},
 /turf/floor/shuttle{
 	icon_state = "floor2"
 	},
@@ -2529,6 +2534,7 @@
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
+	plane = -102;
 	tag = "icon-conduit (EAST)"
 	},
 /obj/decal/cleanable/dirt,
@@ -2678,14 +2684,6 @@
 	},
 /obj/decal/cleanable/dirt,
 /obj/decal/cleanable/dirt,
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
-	},
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
-	},
 /turf/floor/shuttle{
 	icon_state = "floor2"
 	},
@@ -2813,10 +2811,6 @@
 	},
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 9
-	},
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
 	},
 /turf/floor/plating,
 /area/diner/tug)
@@ -3376,7 +3370,8 @@
 /area/noGenerate)
 "vk" = (
 /obj/decal/fakeobjects/pipe{
-	dir = 4
+	dir = 4;
+	plane = -105
 	},
 /obj/indestructible/shuttle_corner{
 	dir = 4;
@@ -4006,6 +4001,7 @@
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
+	plane = -102;
 	tag = "icon-conduit (EAST)"
 	},
 /turf/floor/engine/glow,
@@ -4603,7 +4599,8 @@
 /area/mining/power)
 "Fz" = (
 /obj/decal/fakeobjects/pipe{
-	dir = 4
+	dir = 4;
+	plane = -105
 	},
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/indestructible/shuttle_corner{
@@ -4976,14 +4973,6 @@
 	},
 /obj/machinery/light/small/cool/very{
 	dir = 1
-	},
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
-	},
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
 	},
 /turf/floor/plating,
 /area/diner/tug)
@@ -6828,6 +6817,17 @@
 	},
 /turf/floor/plating,
 /area/tech_outpost)
+"Yw" = (
+/obj/railing/red{
+	dir = 8
+	},
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir";
+	tag = "icon-lattice-dir (EAST)"
+	},
+/turf/space,
+/area/noGenerate)
 "YA" = (
 /obj/table/wood/auto,
 /obj/item/paper/book/numbers_station_hydroguide,
@@ -44279,7 +44279,7 @@ ab
 ab
 ab
 ab
-du
+Yw
 du
 du
 du
@@ -44291,7 +44291,7 @@ cH
 du
 du
 du
-du
+Yw
 du
 du
 HY
@@ -44581,7 +44581,7 @@ ab
 ab
 ab
 ab
-ab
+nD
 ab
 ab
 ab
@@ -44593,7 +44593,7 @@ cH
 ab
 ab
 ab
-ab
+nD
 ab
 ab
 Ij
@@ -47317,11 +47317,11 @@ FA
 ab
 ab
 ab
+nD
 ab
 ab
 ab
-ab
-ab
+nD
 ab
 ab
 ab
@@ -47616,14 +47616,14 @@ uf
 Km
 Ds
 FA
+jh
+ab
+ab
+NE
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
+NE
 ab
 ab
 ab
@@ -48222,7 +48222,7 @@ Bp
 FA
 ab
 ab
-ab
+NB
 ab
 ab
 ab
@@ -48522,10 +48522,10 @@ Rq
 Km
 Ds
 FA
-ab
-ab
-ab
-ab
+jh
+jh
+kU
+Jj
 ab
 ab
 ab
@@ -48826,7 +48826,7 @@ Bj
 FA
 ab
 ab
-ab
+NE
 ab
 ab
 ab
