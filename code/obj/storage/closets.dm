@@ -111,6 +111,19 @@
 		icon_opened = "ntcoffin-open"
 		icon_welded = "welded-coffin-1dir"
 
+	old
+		icon_closed = "coffin-old"
+		icon_state = "coffin-old"
+		icon_opened = "coffin-open-old"
+		icon_welded = "welded-coffin-4dirs-old"
+
+	oldwood
+		icon_closed = "woodcoffin-old"
+		icon_state = "woodcoffin-old"
+		icon_opened = "woodcoffin-open-old"
+		icon_welded = "welded-coffin-1dir-old"
+
+
 /obj/storage/closet/biohazard
 	name = "\improper Level 3 Biohazard Suit closet"
 	desc = "It's a closet! This one can be opened AND closed. Comes prestocked with level 3 biohazard gear for emergencies."
