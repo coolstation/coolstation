@@ -217,8 +217,10 @@
 		if (owner.reagents.has_reagent("menthol"))
 			return
 		else if (prob(5)) // dropped from 10 for spam reduction
-			for(var/mob/living/carbon/C in view(6,get_turf(owner)))
+			for(var/mob/living/carbon/C in get_area(owner)) // was previously view(6,get_turf(owner)), which makes no sense.
 				if (C == owner)
+					continue
+				if (get_dist(C, owner) > 8)
 					continue
 				if (C.bioHolder.HasEffect("stinky"))
 					if(prob(50))
