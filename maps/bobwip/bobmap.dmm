@@ -4074,10 +4074,8 @@
 /turf/floor/plating,
 /area/listeningpost/power)
 "bOn" = (
-/obj/storage/closet/coffin/wood{
-	name = "deluxe coffin"
-	},
 /obj/machinery/light/fluorescent/auto/cool/very,
+/obj/storage/closet/coffin/wood,
 /turf/floor/grey/blackgrime,
 /area/station/chapel/funeral_parlor)
 "bOr" = (
@@ -14766,7 +14764,8 @@
 	},
 /area/station/security/main)
 "gky" = (
-/obj/storage/closet/coffin/wood{
+/obj/storage/closet/coffin/ornate{
+	desc = "A burial receptacle for the dearly departed VIPs.";
 	name = "deluxe coffin"
 	},
 /turf/floor/grey/blackgrime,
@@ -28990,6 +28989,10 @@
 	},
 /turf/space,
 /area/space)
+"mcK" = (
+/obj/storage/closet/coffin/wood,
+/turf/floor/grey/blackgrime,
+/area/station/chapel/funeral_parlor)
 "mcN" = (
 /turf/floor,
 /area/station/hallway/primary/central)
@@ -29285,6 +29288,10 @@
 /obj/item/device/analyzer/atmospheric/upgraded,
 /turf/floor,
 /area/station/engine/monitoring)
+"mir" = (
+/obj/storage/closet/coffin/nt,
+/turf/floor/grey/blackgrime,
+/area/station/chapel/funeral_parlor)
 "miv" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -90470,7 +90477,7 @@ eFQ
 ivR
 loI
 mBl
-hEe
+mir
 dBE
 gky
 bOn
@@ -90772,10 +90779,10 @@ cvF
 cWB
 qau
 mNI
-hEe
+mir
 hEe
 gky
-gky
+mcK
 uTG
 aWu
 pXA
