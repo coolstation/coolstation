@@ -112,16 +112,16 @@
 		icon_welded = "welded-coffin-1dir"
 
 	old
-		icon_closed = "coffin-old"
-		icon_state = "coffin-old"
-		icon_opened = "coffin-open-old"
-		icon_welded = "welded-coffin-4dirs-old"
+		icon_closed = "coffin_old"
+		icon_state = "coffin_old"
+		icon_opened = "coffin-open_old"
+		icon_welded = "welded-coffin-4dirs_old"
 
 	oldwood
-		icon_closed = "woodcoffin-old"
-		icon_state = "woodcoffin-old"
-		icon_opened = "woodcoffin-open-old"
-		icon_welded = "welded-coffin-1dir-old"
+		icon_closed = "woodcoffin_old"
+		icon_state = "woodcoffin_old"
+		icon_opened = "woodcoffin_open_old"
+		icon_welded = "welded-coffin-1dir_old"
 
 
 /obj/storage/closet/biohazard
