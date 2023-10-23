@@ -103,25 +103,24 @@
 	icon_closed = "coffin"
 	icon_opened = "coffin-open"
 	layer = 2.5
-	icon_welded = "welded-coffin-4dirs"
+	icon_welded = "welded-coffin"
 
 	nt
 		icon_closed = "ntcoffin"
 		icon_state = "ntcoffin"
 		icon_opened = "ntcoffin-open"
-		icon_welded = "welded-coffin-1dir"
 
 	wood
 		icon_closed = "coffin_old"
 		icon_state = "coffin_old"
 		icon_opened = "coffin_old-open"
-		icon_welded = "welded-coffin_old-4dirs"
+		icon_welded = "welded-coffin_old"
 
 	ornate
 		icon_closed = "woodcoffin_old"
 		icon_state = "woodcoffin_old"
 		icon_opened = "woodcoffin_old-open"
-		icon_welded = "welded-coffin_old-1dir"
+		icon_welded = "welded-coffin_old"
 
 
 /obj/storage/closet/biohazard
