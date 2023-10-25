@@ -139,6 +139,11 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 		..()
 		qdel(src)
 
+	//centered on the turf you click in the editor :)
+	centered
+		pixel_x = -320
+		pixel_y = -224
+
 //fursuits (they were designed as "dragon costumes" but let's be honest, they're fursuits)
 /obj/item/clothing/under/gimmick/dragon
 	name = "dragon suit"
