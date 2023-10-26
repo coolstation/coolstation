@@ -71,7 +71,8 @@ GAUNTLET CARDS
 	uses_multiple_icon_states = 1
 	item_state = "card-id"
 	desc = "A standardized NanoTrasen microchipped identification card that contains data that is scanned when attempting to access various doors and computers."
-	flags = FPRINT | TABLEPASS | ATTACK_SELF_DELAY
+	flags = FPRINT | TABLEPASS
+	item_function_flags = ATTACK_SELF_DELAY
 	click_delay = 0.4 SECONDS
 	wear_layer = MOB_BELT_LAYER
 	var/list/access = list()

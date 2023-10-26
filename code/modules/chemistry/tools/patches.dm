@@ -461,7 +461,8 @@
 	var/tampered = 0
 	var/borg = 0
 	initial_volume = 200
-	flags = FPRINT | TABLEPASS | OPENCONTAINER | ONBELT | NOSPLASH | ATTACK_SELF_DELAY
+	flags = FPRINT | TABLEPASS | OPENCONTAINER | ONBELT | NOSPLASH
+	item_function_flags = ATTACK_SELF_DELAY
 	click_delay = 0.7 SECONDS
 	rc_flags = RC_SCALE | RC_VISIBLE | RC_SPECTRO
 

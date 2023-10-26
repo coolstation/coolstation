@@ -1122,7 +1122,8 @@
 	inhand_image_icon = 'icons/mob/inhand/hand_general.dmi'
 	w_class = W_CLASS_TINY
 	throwforce = 4
-	flags = FPRINT | ONBELT | TABLEPASS | CONDUCT | ATTACK_SELF_DELAY
+	flags = FPRINT | ONBELT | TABLEPASS | CONDUCT
+	item_function_flags = ATTACK_SELF_DELAY
 	click_delay = 0.7 SECONDS
 	stamina_damage = 5
 	stamina_cost = 5

@@ -309,7 +309,7 @@
 	desc = "I wonder if the last crewmember to use this washed their hands before touching it."
 	var/obj/machinery/phone/parent = null
 	var/mob/holder = null //GC WOES (just dont use this var, get holder using loc)
-	flags = TALK_INTO_HAND
+	item_function_flags = TALK_INTO_HAND
 	w_class = 1
 
 	New(var/obj/machinery/phone/parent_phone, var/mob/living/picker_upper)

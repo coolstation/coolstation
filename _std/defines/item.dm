@@ -22,8 +22,8 @@
 #define ON_BORDER						 (1<<9)
 /// can pass through a closed door
 #define DOORPASS						 (1<<10)
-/// automagically talk into this object when a human is holding it (Phone handset!)
-#define TALK_INTO_HAND 			 (1<<11)
+///FREE
+//#define (1<<11)
 /// is an open container for chemistry purposes
 #define OPENCONTAINER				 (1<<12)
 /// No beaker etc. splashing. For Chem machines etc.
@@ -36,32 +36,39 @@
 #define IS_PERSPECTIVE_FLUID (1<<16)
 /// specifically note this object as solid
 #define ALWAYS_SOLID_FLUID	 (1<<17)
-/// Calls equipment_click from hand_range_attack on items worn with this flag set.
-#define HAS_EQUIP_CLICK			 (1<<18)
+///FREE
+//#define (1<<18)
 /// Has the possibility for a TGUI interface
 #define TGUI_INTERACTIVE		 (1<<19)
-/// Has a click delay for attack_self()
-#define ATTACK_SELF_DELAY		 (1<<20)
+///FREE
+//#define (1<<20)
 /// Is currently scaled by bubsium
 #define IS_BUBSIUM_SCALED		 (1<<21)
 /// Does not get nuked by the mineral magnet area clear (does not block activating the magnet)
 #define MINERAL_MAGNET_SAFE (1<<22)
 /// Is currently scaled by siladenafil
 #define IS_BONER_SCALED		 (1<<23)
+//WE CAN'T HAVE MORE THAN 24 FLAGS
 
 
-//Item function flags
+//Item function flags (item_function_flags)
 
 /// apply to an item's flags to use the item's intent_switch_trigger() proc. This will be called when intent is switched while this item is in hand.
-#define USE_INTENT_SWITCH_TRIGGER 1
+#define USE_INTENT_SWITCH_TRIGGER (1<<0)
 /// allows special attacks to be performed on help and grab intent with this item
-#define USE_SPECIALS_ON_ALL_INTENTS 2
+#define USE_SPECIALS_ON_ALL_INTENTS (1<<1)
 /// prevents items from creating smoke while burning
-#define SMOKELESS 4
+#define SMOKELESS 				(1<<2)
 /// makes items immune to acid
-#define IMMUNE_TO_ACID 8
+#define IMMUNE_TO_ACID 			(1<<3)
 /// prevents items from heating anything up while burning
-#define COLD_BURN 16
+#define COLD_BURN (1<<4)
+/// automagically talk into this object when a human is holding it (Phone handset!)
+#define TALK_INTO_HAND 			 (1<<5)
+/// Calls equipment_click from hand_range_attack on items worn with this flag set.
+#define HAS_EQUIP_CLICK			 (1<<6)
+/// Has a click delay for attack_self()
+#define ATTACK_SELF_DELAY		 (1<<7)
 
 //tool flags
 #define TOOL_CLAMPING 1

@@ -499,7 +499,7 @@
 
 		if (target == equipped)
 			equipped.attack_self(src, params, location, control)
-			if(equipped.flags & ATTACK_SELF_DELAY)
+			if(equipped.item_function_flags & ATTACK_SELF_DELAY)
 				src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay)
 		else if (params["ctrl"])
 			var/atom/movable/movable = target
@@ -961,7 +961,7 @@
 
 	// Do they have a phone?
 	var/obj/item/equipped_talk_thing = src.equipped()
-	if(equipped_talk_thing && equipped_talk_thing.flags & TALK_INTO_HAND && !message_mode)
+	if(equipped_talk_thing && equipped_talk_thing.item_function_flags & TALK_INTO_HAND && !message_mode)
 		equipped_talk_thing.talk_into(src, messages, secure_headset_mode, src.real_name, lang_id)
 	switch (message_mode)
 		if ("headset", "secure headset", "right hand", "left hand")
