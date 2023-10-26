@@ -6,14 +6,14 @@
 	var/rarity_tier = 0
 	var/no_pick = 0 //If 1, encounter will not be randomly picked and will not be sorted into rarity lists. Will still appear in "all" list. Used for telescope encounters.
 
-	proc/generate(var/obj/magnet_target_marker/target)
+	proc/generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		return 0
 
 /datum/mining_encounter/asteroid_small
 	name = "Small Asteroid"
 	rarity_tier = -1
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 		var/list/generated_turfs
@@ -43,7 +43,7 @@
 	name = "Asteroid"
 	rarity_tier = 1
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 		var/list/generated_turfs
@@ -88,7 +88,7 @@
 	name = "Comet Chunk"
 	rarity_tier = 2
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 		var/list/generated_turfs
@@ -118,7 +118,7 @@
 	name = "Wreckage"
 	rarity_tier = 2
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 
@@ -129,13 +129,14 @@
 			area_restriction = null
 
 		var/size = rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+		//var/size = magnet_size ? (2*magnet_size/3) : rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
 		Turfspawn_Wreckage(magnetic_center, size, 0, area_restriction)
 
 /datum/mining_encounter/geode
 	name = "Geode"
 	rarity_tier = 3
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 
@@ -175,7 +176,7 @@
 	rarity_tier = 1
 	no_pick = 1
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 		var/list/generated_turfs
@@ -205,7 +206,7 @@
 	rarity_tier = 1
 	no_pick = 1
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 		var/list/generated_turfs
@@ -236,7 +237,7 @@
 	rarity_tier = 1
 	no_pick = 1
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 		var/list/generated_turfs
@@ -268,7 +269,7 @@
 	rarity_tier = 1
 	no_pick = 1
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 		var/list/generated_turfs
@@ -299,7 +300,7 @@
 	rarity_tier = 1
 	no_pick = 1
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 		var/list/generated_turfs
@@ -330,7 +331,7 @@
 	rarity_tier = 1
 	no_pick = 1
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 		var/list/generated_turfs
@@ -361,7 +362,7 @@
 	rarity_tier = 1
 	no_pick = 1
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 		var/list/generated_turfs
@@ -392,7 +393,7 @@
 	rarity_tier = 1
 	no_pick = 1
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 		var/list/generated_turfs
@@ -422,7 +423,7 @@
 	rarity_tier = 1
 	no_pick = 1
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 		var/list/generated_turfs
@@ -452,7 +453,7 @@
 	rarity_tier = 1
 	no_pick = 1
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 		var/list/generated_turfs
@@ -482,7 +483,7 @@
 	rarity_tier = 1
 	no_pick = 1
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 		var/list/generated_turfs
@@ -512,7 +513,7 @@
 	rarity_tier = 1
 	no_pick = 1
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 		var/list/generated_turfs
@@ -542,7 +543,7 @@
 	rarity_tier = 1
 	no_pick = 1
 
-	generate(var/obj/magnet_target_marker/target)
+	generate(var/obj/magnet_target_marker/target, magnet_size = null)
 		if (..())
 			return
 		var/list/generated_turfs

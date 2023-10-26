@@ -155,6 +155,7 @@
 	var/turf/magnetic_center
 	alpha = 128
 	flags = MINERAL_MAGNET_SAFE
+	anchored = 2
 
 	small
 		width = 7
@@ -229,7 +230,7 @@
 		var/turf/origin = get_turf(src)
 		var/turf/dr = locate(origin.x + width - 1, origin.y, origin.z)
 		return dr
-
+	//BEEP
 	proc/construct()
 		var/turf/origin = get_turf(src)
 		for (var/turf/T in block(origin, locate(origin.x + width - 1, origin.y + height - 1, origin.z)))
@@ -463,7 +464,7 @@
 				MC = get_encounter(rarity_mod)
 
 			if(MC)
-				MC.generate(target)
+				MC.generate(target, target.width)
 			else
 				for (var/obj/forcefield/mining/M in mining_controls.magnet_shields)
 					M.opacity = 0
