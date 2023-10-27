@@ -90,3 +90,4 @@
 	invisibility = 101
 	anchored = 1
 	opacity = 0
+	flags = TECHNICAL_ATOM

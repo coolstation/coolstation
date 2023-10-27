@@ -154,7 +154,7 @@
 	var/scan_range = 7
 	var/turf/magnetic_center
 	alpha = 128
-	flags = MINERAL_MAGNET_SAFE
+	flags = TECHNICAL_ATOM
 	anchored = 2
 
 	small
@@ -173,7 +173,7 @@
 		var/turf/origin = get_turf(src)
 		for (var/turf/T in block(origin, locate(origin.x + width - 1, origin.y + height - 1, origin.z)))
 			for (var/obj/O in T)
-				if (!(O.flags & MINERAL_MAGNET_SAFE))
+				if (!(O.flags & (TECHNICAL_ATOM | MINERAL_MAGNET_SAFE)))
 					qdel(O)
 			T.overlays.len = 0 //clear out the astroid edges and scan effects
 			T.ReplaceWithSpace()
@@ -668,7 +668,7 @@
 		build_icon()
 
 		for (var/obj/O in mining_controls.magnet_area.contents)
-			if (!(O.flags & MINERAL_MAGNET_SAFE))
+			if (!(O.flags & (TECHNICAL_ATOM | MINERAL_MAGNET_SAFE)))
 				qdel(O)
 		for (var/turf/T in mining_controls.magnet_area.contents)
 			if (!istype(T,/turf/floor/airless/plating/catwalk/))

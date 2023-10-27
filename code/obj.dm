@@ -458,7 +458,7 @@
 	mat_changedesc = 0
 	event_handler_flags = IMMUNE_MANTA_PUSH
 	density = 0
-	flags = MINERAL_MAGNET_SAFE //This doesn't need the FPRINT that's on /atom right?
+	flags = TECHNICAL_ATOM //This doesn't need the FPRINT that's on /atom right?
 
 	updateHealth()
 		return

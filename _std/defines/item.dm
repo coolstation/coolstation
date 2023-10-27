@@ -1,7 +1,7 @@
 //FLAGS BITMASK
 
-/// can be put in back slot
-#define ONBACK							 (1<<0)
+/// atom that forms part of the game's guts outside of the kayfabe, and should generally be excluded from being directly affected by game systems
+#define TECHNICAL_ATOM					 (1<<0)
 /// can pass by a table or rack
 #define TABLEPASS						 (1<<1)
 /// thing doesn't drift in space
@@ -22,8 +22,8 @@
 #define ON_BORDER						 (1<<9)
 /// can pass through a closed door
 #define DOORPASS						 (1<<10)
-///FREE
-//#define (1<<11)
+/// can be put in back slot
+#define ONBACK							 (1<<11) //fuck you you don't get to be first anymore
 /// is an open container for chemistry purposes
 #define OPENCONTAINER				 (1<<12)
 /// No beaker etc. splashing. For Chem machines etc.
@@ -44,7 +44,7 @@
 //#define (1<<20)
 /// Is currently scaled by bubsium
 #define IS_BUBSIUM_SCALED		 (1<<21)
-/// Does not get nuked by the mineral magnet area clear (does not block activating the magnet)
+/// Does not get nuked by the mineral magnet area clear (does not block activating the magnet), not needed for things with TECHNICAL_ATOM
 #define MINERAL_MAGNET_SAFE (1<<22)
 /// Is currently scaled by siladenafil
 #define IS_BONER_SCALED		 (1<<23)
