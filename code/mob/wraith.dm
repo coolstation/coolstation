@@ -66,9 +66,6 @@
 		theName = theName  + "[pick(" the Impaler", " the Tormentor", " the Forsaken", " the Destroyer", " the Devourer", " the Tyrant", " the Overlord", " the Damned", " the Desolator", " the Exiled")]"
 		return theName
 
-	proc/get_movement_controller(mob/user)
-		return movement_controller
-
 	New(var/mob/M)
 		. = ..()
 		src.poltergeists = list()

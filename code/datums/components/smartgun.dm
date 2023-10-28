@@ -237,9 +237,9 @@ TYPEINFO(/datum/component/holdertargeting/smartgun)
 	spawn(0)
 		if(length(local_targets))
 			G.suppress_fire_msg = 1
-			for(var/mob/living/M in local_targets)
-				for(var/i in 1 to local_targets[M])
-					G.shoot(get_turf(M), get_turf(user), user)
+			for(var/atom/A as anything in local_targets)
+				for(var/i in 1 to local_targets[A])
+					G.Shoot(get_turf(A), get_turf(user), user)
 					sleep(1 DECI SECOND)
 
 			G.suppress_fire_msg = initial(G.suppress_fire_msg)

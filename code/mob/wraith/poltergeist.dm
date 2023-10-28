@@ -227,12 +227,12 @@
 			p_hud.update_well_dist(power_well_dist)
 
 //switch to poltergeist after testing
-/mob/living/intangible/wraith/poltergeist/set_loc(atom/new_loc, new_pixel_x = 0, new_pixel_y = 0)
+/mob/wraith/poltergeist/set_loc(atom/new_loc, new_pixel_x = 0, new_pixel_y = 0)
 	. = ..(new_loc)
 
 	//wraith shit
 	if (iswraith(src.loc))	//&& src.loc == src.master
-		var/mob/living/intangible/wraith/W = src.loc
+		var/mob/wraith/W = src.loc
 		src.override_movement_controller = W.movement_controller
 		//Remove this shit after testing --kyle
 		src.following_master = 1

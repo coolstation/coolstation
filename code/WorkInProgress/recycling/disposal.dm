@@ -248,30 +248,27 @@
 	// bat sex: \\
 	// this is a special gal that lets players traverse the disposals network
 	var/mob/pilot
-	var/datum/movement_controller/pipe_crawler/controls
+	var/datum/movement_controller/pipe_crawler/movement_controller
 	var/obj/item/device/t_scanner/vision
 
 	New()
 		vision = new(src)
 		vision.set_on(TRUE)
-		controls = new()
-		controls.owner = src
+		movement_controller = new()
+		movement_controller.owner = src
 		..()
-
-	get_movement_controller(mob/user)
-		return controls
 
 	disposing()
 		qdel(vision)
 		qdel(controls)
 		vision = null
-		controls = null
+		movement_controller = null
 		pilot = null
 		..()
 
 	start(obj/machinery/disposal/D)
 		if (!can_act(pilot, TRUE))
-			controls.in_control = TRUE
+			movement_controller.in_control = TRUE
 			return ..()
 
 		if(!D.trunk || D.trunk.loc != D.loc)

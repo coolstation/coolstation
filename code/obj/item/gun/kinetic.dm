@@ -561,7 +561,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 			if(prob(prob_clonk))
 				var/mob/living/carbon/human/user = usr
 				user.visible_message("<span class='alert'><B>[user] fumbles the catch and accidentally discharges [src]!</B></span>")
-				src.shoot_point_blank(user, user)
+				src.ShootPointBlank(user, user)
 				user.force_laydown_standup()
 			else
 				src.Attackhand(usr)
@@ -572,7 +572,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 				var/mob/living/carbon/human/user = usr
 				if(istype(user.wear_suit, /obj/item/clothing/suit/security_badge))
 					src.silenced = 1
-					src.shoot_point_blank(M, M)
+					src.ShootPointBlank(M, M)
 					M.visible_message("<span class='alert'><B>[src] fires, hitting [M] point blank!</B></span>")
 					src.silenced = initial(src.silenced)
 
