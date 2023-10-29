@@ -29,6 +29,12 @@
 			src.base_state = src.icon_state
 		return
 
+	Bumped(atom/movable/AM)
+		if(ismob(AM))
+			return src.Attackby(null, AM)
+		..()
+
+
 	attack_hand(mob/user as mob)
 		if (issilicon(user) && src.hardened == 1)
 			user.show_text("You cannot control this door.", "red")
