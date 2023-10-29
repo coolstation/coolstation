@@ -25558,6 +25558,20 @@
 "aZw" = (
 /turf/wall,
 /area/station/bridge)
+"aZx" = (
+/obj/lattice{
+	dir = 9;
+	icon_state = "lattice-dir"
+	},
+/obj/machinery/power/tracker/west{
+	id = "solar_port"
+	},
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/space,
+/area/station/solar/west)
 "aZy" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -44422,7 +44436,9 @@
 /turf/floor,
 /area/station/turret_protected/ai_upload_foyer)
 "bKe" = (
-/obj/machinery/power/tracker,
+/obj/machinery/power/tracker{
+	id = "solar_aft"
+	},
 /obj/grille/catwalk{
 	dir = 6
 	},
@@ -45212,6 +45228,30 @@
 	icon_state = "fred2"
 	},
 /area/station/security/detectives_office)
+"mfg" = (
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/cable,
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/grille/catwalk{
+	dir = 9
+	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/space,
+/turf/floor/airless/plating/catwalk{
+	dir = 8;
+	icon_state = "catwalk_cross";
+	layer = 2
+	},
+/area/station/solar/west)
 "tKX" = (
 /obj/displaycase{
 	displayed = new /obj/item/captaingun
@@ -54451,7 +54491,7 @@ aaa
 aaa
 aaa
 aaa
-acf
+aZx
 aaa
 aaa
 aaa
@@ -54753,7 +54793,7 @@ aaa
 aaa
 aaa
 aBb
-aCk
+mfg
 aCZ
 aaa
 aBb
