@@ -236,7 +236,7 @@
 	proc/setup()
 		if(QDELETED(src))
 			return
-		if (src.proj_data == null || (xo == 0 && yo == 0) || proj_data.projectile_speed == 0)
+		if (src.proj_data == null)
 			die()
 			return
 
@@ -248,9 +248,9 @@
 
 		var/len = sqrt(src.xo * src.xo + src.yo * src.yo)
 
-		if (len == 0)
-			die()
-			return
+		if (len == 0 || projectile_speed == 0)
+			return //will die on next step before moving
+
 		src.xo = src.xo / len
 		src.yo = src.yo / len
 
@@ -354,6 +354,11 @@
 		src.ticks_until_can_hit_mob--
 		proj_data.tick(src)
 		if (QDELETED(src))
+			return
+
+		if(!was_setup) //if setup failed due to us having no speed or no direction, try to collide with something before dying
+			collide_with_applicable_in_tile(loc)
+			die()
 			return
 
 		var/turf/curr_turf = loc
