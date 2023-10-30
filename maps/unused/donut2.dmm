@@ -31207,8 +31207,10 @@
 /turf/floor,
 /area/station/hallway/primary/east)
 "bka" = (
-/obj/decal/skeleton{
-	desc = "Um.  Uh.  Oh dear."
+/obj/item/device/radio/intercom{
+	broadcasting = 1;
+	frequency = 1489;
+	name = "Brig Intercom"
 	},
 /turf/floor/plating/random,
 /area/station/security/brig)
@@ -31428,23 +31430,18 @@
 /turf/floor,
 /area/station/hallway/primary/east)
 "bkC" = (
-/obj/machinery/sparker{
-	id = "securitychamber";
-	pixel_x = -24;
-	pixel_y = 0
-	},
-/turf/floor/plating/random,
-/area/station/security/brig)
+/obj/item/wrench,
+/turf/floor/plating,
+/area/station/maintenance/east)
 "bkD" = (
-/obj/machinery/atmospherics/pipe/vent,
 /obj/stool/chair,
 /turf/floor/plating/random,
 /area/station/security/brig)
 "bkE" = (
 /obj/machinery/camera{
-	c_tag = "Gas Chamber";
+	c_tag = "solitary";
 	dir = 8;
-	network = "Gas Chamber"
+	network = "solitary"
 	},
 /turf/floor/plating/random,
 /area/station/security/brig)
@@ -31754,21 +31751,6 @@
 	dir = 6
 	},
 /area/station/hallway/primary/east)
-"bln" = (
-/obj/item/device/radio/intercom{
-	broadcasting = 1;
-	frequency = 1489;
-	name = "Brig Intercom"
-	},
-/turf/floor/plating/random,
-/area/station/security/brig)
-"blo" = (
-/obj/machinery/atmospherics/pipe/simple{
-	icon_state = "intact";
-	level = 2
-	},
-/turf/floor/plating/random,
-/area/station/security/brig)
 "blp" = (
 /obj/disposalpipe/segment/ejection,
 /turf/floor/grime,
@@ -32241,13 +32223,6 @@
 /obj/decal/poster/wallsign/security,
 /turf/wall/r_wall,
 /area/station/security/main)
-"bmq" = (
-/obj/machinery/atmospherics/pipe/simple{
-	icon_state = "intact";
-	level = 2
-	},
-/turf/wall/r_wall,
-/area/station/security/brig)
 "bmr" = (
 /obj/machinery/door/airlock/security{
 	name = "Solitary Confinement";
@@ -32795,26 +32770,15 @@
 	dir = 8;
 	icon_state = "tube1"
 	},
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 5;
-	icon_state = "intact";
-	level = 2
-	},
 /obj/machinery/computer/security/telescreen{
-	name = "Chamber View";
-	network = "Gas Chamber";
+	name = "Solitary View";
+	network = "solitary";
 	pixel_y = 32
 	},
 /obj/decal/cleanable/cobweb,
 /turf/floor/black/side,
 /area/station/security/brig)
 "bno" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 10;
-	icon_state = "intact";
-	layer = 3;
-	level = 2
-	},
 /turf/floor/black/side,
 /area/station/security/brig)
 "bnp" = (
@@ -33256,14 +33220,6 @@
 	},
 /turf/floor/grime,
 /area/station/security/brig)
-"bou" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 1;
-	icon_state = "intact";
-	level = 2
-	},
-/turf/floor,
-/area/station/security/brig)
 "bov" = (
 /obj/disposalpipe/segment/ejection{
 	dir = 4;
@@ -33696,11 +33652,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 1;
-	icon_state = "intact";
-	level = 2
-	},
 /obj/disposalpipe/junction{
 	dir = 4;
 	name = "brig pipe"
@@ -34112,11 +34063,6 @@
 /turf/wall,
 /area/station/security/brig)
 "bqa" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 1;
-	icon_state = "intact";
-	level = 2
-	},
 /obj/machinery/disposal/brig,
 /obj/disposalpipe/trunk/brig{
 	dir = 1
@@ -34544,11 +34490,6 @@
 /turf/floor/bot,
 /area/station/security/brig)
 "bqU" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 1;
-	icon_state = "intact";
-	level = 2
-	},
 /obj/disposalpipe/segment/ejection{
 	dir = 4
 	},
@@ -34943,11 +34884,6 @@
 /turf/floor/bot,
 /area/station/security/brig)
 "brJ" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 1;
-	icon_state = "intact";
-	level = 2
-	},
 /turf/floor/caution/west,
 /area/station/security/brig)
 "brK" = (
@@ -35158,19 +35094,9 @@
 /obj/decal/cleanable/rust,
 /turf/wall,
 /area/station/security/brig)
-"bsk" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 1;
-	icon_state = "intact";
-	level = 2
-	},
-/turf/wall/r_wall,
-/area/station/security/brig)
 "bsl" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Solitary Controls";
-	req_access_txt = "1"
-	},
+/obj/machinery/door/airlock/maintenance,
+/obj/access_spawn/brig,
 /turf/floor/plating,
 /area/station/security/brig)
 "bsm" = (
@@ -35631,34 +35557,8 @@
 	icon_state = "wooden"
 	},
 /area/station/crew_quarters/courtroom)
-"bsZ" = (
-/obj/machinery/ignition_switch{
-	id = "securitychamber";
-	name = "Solitary Sparker Switch";
-	pixel_x = -24;
-	pixel_y = 0
-	},
-/obj/item/wrench,
-/turf/floor,
-/area/station/maintenance/east)
-"bta" = (
-/obj/machinery/computer/security/telescreen{
-	name = "Chamber View";
-	network = "Gas Chamber";
-	pixel_y = 32
-	},
-/obj/machinery/atmospherics/valve,
-/turf/floor,
-/area/station/maintenance/east)
 "btb" = (
 /turf/floor/scorched,
-/area/station/maintenance/east)
-"btc" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Solitary Gas Control";
-	req_access_txt = "37"
-	},
-/turf/floor/plating,
 /area/station/maintenance/east)
 "btd" = (
 /obj/disposalpipe/segment,
@@ -35964,21 +35864,6 @@
 	dir = 8
 	},
 /turf/floor/grime,
-/area/station/maintenance/east)
-"btR" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 5;
-	icon_state = "intact";
-	level = 2
-	},
-/turf/floor,
-/area/station/maintenance/east)
-"btS" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8;
-	icon_state = "intact"
-	},
-/turf/floor/plating,
 /area/station/maintenance/east)
 "btT" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
@@ -36404,12 +36289,7 @@
 	icon_state = "wooden"
 	},
 /area/station/crew_quarters/courtroom)
-"buM" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/turf/floor/plating,
-/area/station/maintenance/east)
 "buN" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/floor,
 /area/station/maintenance/east)
 "buO" = (
@@ -36748,10 +36628,8 @@
 	},
 /area/station/crew_quarters/courtroom)
 "bvF" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Solitary Controls";
-	req_access_txt = "1"
-	},
+/obj/machinery/door/airlock/maintenance,
+/obj/access_spawn/brig,
 /turf/floor/plating,
 /area/station/maintenance/east)
 "bvG" = (
@@ -86003,8 +85881,8 @@ bip
 biQ
 bjo
 bka
-bkC
-bln
+bkb
+bkb
 bmk
 bmk
 bmk
@@ -86306,8 +86184,8 @@ biR
 bjo
 bkb
 bkD
-blo
-bmq
+bkb
+bjo
 bnn
 bot
 bpj
@@ -86315,9 +86193,9 @@ bpZ
 bqT
 brI
 bsj
-bsZ
+buN
 btQ
-buM
+bhk
 bhm
 bhm
 bhm
@@ -86611,14 +86489,14 @@ bkE
 bkb
 bmr
 bno
-bou
+bnr
 bpk
 bqa
 bqU
 brJ
-bsk
-bta
-btR
+bjo
+buN
+buN
 buN
 bhm
 biW
@@ -86920,7 +86798,7 @@ bqV
 bnr
 bjo
 btb
-btS
+bhk
 buO
 bhm
 bwD
@@ -87221,7 +87099,7 @@ bnr
 bqW
 brK
 bjo
-btc
+bvF
 bhr
 bhr
 bhm
@@ -87524,7 +87402,7 @@ bqW
 brL
 bjo
 bhk
-bhk
+bkC
 buP
 bvF
 bwF
