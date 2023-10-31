@@ -663,7 +663,6 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 							ordershit += {"
 							<tr class='row[rownum % 2]'>
 								<td class='noborder itemtop' style='width: 50%;'>
-									item image (just pick from a dmi) here<br>contents tooltip on image after 1s delay or click?<br>will need to create S.contents with info<br>
 									<a href='?src=\ref[src];action=order_vendors;vendor=[vendor];subaction=buy;what=\ref[S]'>[S.name] &bull; [S.cost] Credits</a><br>
 									[S.desc]
 								</td>
@@ -671,7 +670,6 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 						else //alternate so it's nice on the right side
 							ordershit += {"
 								<td class='noborder itemtop' style='width: 50%;'>
-									item image (just pick from a dmi) here<br>contents tooltip on image after 1s delay or click?<br>will need to create S.contents with info<br>
 									<a href='?src=\ref[src];action=order_vendors;vendor=[vendor];subaction=buy;what=\ref[S]'>[S.name] &bull; [S.cost] Credits</a><br>
 									[S.desc]
 								</td>
