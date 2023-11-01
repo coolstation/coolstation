@@ -244,6 +244,22 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 		W.name = coolname
 		boutput(user, "<span class='notice'>You discover the true identity of your gun!</span>")
 		playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_1.ogg', 50, 1)
+
+//:3
+/obj/item/clothing/suit/weakness
+	name = "glowing weak point"
+	desc = "Hope nobody hits you there."
+	icon = 'icons/obj/clothing/overcoats/item_suit_hazard.dmi' //to yourself
+	wear_image_icon = 'icons/mob/overcoats/worn_suit_hazard.dmi'
+	icon_state = "weakpoint"
+	item_state = "weakpoint"
+	body_parts_covered = TORSO
+
+	setupProperties()
+		..()
+		setProperty("meleeprot", -8)
+		setProperty("rangedprot", -0.5) //double damage
+
 /*
 /obj/spawn_all_the_dragon_shit
 	New()
