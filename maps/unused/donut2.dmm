@@ -8376,31 +8376,13 @@
 /turf/floor/shuttlebay,
 /area/station/hangar/main)
 "aqw" = (
-/obj/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "N APC";
-	pixel_y = 24
-	},
-/turf/floor/shuttlebay,
-/area/station/hangar/main)
+/turf/wall,
+/area/station/crew_quarters/jazz)
 "aqx" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/floor/shuttlebay,
-/area/station/hangar/main)
+/obj/machinery/door/airlock/maintenance,
+/turf/floor/plating,
+/area/station/crew_quarters/jazz)
 "aqy" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/light{
 	dir = 1;
 	name = "light fixture"
@@ -8416,11 +8398,6 @@
 /obj/machinery/firealarm{
 	pixel_y = 24;
 	text = "NF"
-	},
-/obj/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
 	},
 /turf/floor/shuttlebay,
 /area/station/hangar/main)
@@ -8849,11 +8826,6 @@
 /area/station/quartermaster/office)
 "arz" = (
 /obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/cable{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
@@ -8869,11 +8841,6 @@
 	},
 /area/station/quartermaster/office)
 "arA" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/computer/barcode/qm,
 /turf/floor/yellow/side{
 	dir = 5
@@ -8892,11 +8859,6 @@
 /turf/floor/caution/westeast,
 /area/station/quartermaster/office)
 "arC" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/table/auto,
 /obj/machinery/recharger{
 	pixel_y = 3
@@ -8907,18 +8869,19 @@
 /turf/floor,
 /area/station/quartermaster/office)
 "arD" = (
+/mob/living/silicon/hivebot/eyebot,
 /obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
+	icon_state = "0-2"
 	},
 /obj/machinery/power/apc{
-	dir = 4;
-	name = "E APC";
-	pixel_x = 24;
-	pixel_y = 0
+	dir = 1;
+	name = "N APC";
+	pixel_y = 24
 	},
-/turf/floor,
-/area/station/quartermaster/office)
+/turf/floor/circuit,
+/area/station/turret_protected/AIbasecore1{
+	name = "Upload Station"
+	})
 "arE" = (
 /obj/submachine/cargopad{
 	name = "Cargo Bay Pad"
@@ -8970,9 +8933,6 @@
 /turf/floor/shuttlebay,
 /area/station/hangar/main)
 "arK" = (
-/obj/cable{
-	icon_state = "1-4"
-	},
 /obj/cable{
 	d1 = 4;
 	d2 = 8;
@@ -24275,12 +24235,6 @@
 	icon_state = "0-8"
 	},
 /obj/cable,
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "E APC";
-	pixel_x = 24;
-	pixel_y = 0
-	},
 /turf/floor/white,
 /area/station/medical/medbay)
 "aWW" = (
@@ -28370,7 +28324,7 @@
 	dir = 9;
 	icon_state = "fred6"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "ben" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -28379,13 +28333,13 @@
 	dir = 1;
 	icon_state = "fred6"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "beo" = (
 /turf/floor/carpet{
 	dir = 5;
 	icon_state = "fred6"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "bep" = (
 /obj/storage/closet/welding_supply,
 /turf/floor/plating,
@@ -28554,20 +28508,20 @@
 	dir = 9;
 	icon_state = "fred4"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "beJ" = (
 /obj/stool/chair/comfy,
 /turf/floor/carpet{
 	dir = 1;
 	icon_state = "fred3"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "beK" = (
 /turf/floor/carpet{
 	dir = 5;
 	icon_state = "fred4"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "beL" = (
 /obj/machinery/light/small{
 	dir = 8;
@@ -28756,7 +28710,7 @@
 	dir = 8;
 	icon_state = "fred6"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "bff" = (
 /obj/stool/chair/comfy{
 	dir = 4;
@@ -28766,7 +28720,7 @@
 	dir = 8;
 	icon_state = "fred3"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "bfg" = (
 /obj/table/wood/auto,
 /obj/item/game_kit,
@@ -28774,7 +28728,7 @@
 /obj/item/instrument/saxophone,
 /obj/item/clothing/glasses/sunglasses,
 /turf/floor/carpet,
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "bfh" = (
 /obj/stool/chair/comfy{
 	dir = 8;
@@ -28784,18 +28738,18 @@
 	dir = 4;
 	icon_state = "fred3"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "bfi" = (
 /turf/floor/carpet{
 	dir = 4;
 	icon_state = "fred6"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "bfj" = (
 /turf/floor/stairs{
 	dir = 8
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "bfk" = (
 /obj/shrub,
 /turf/floor,
@@ -28967,13 +28921,13 @@
 	dir = 10;
 	icon_state = "fred6"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "bfD" = (
 /turf/floor/carpet{
 	dir = 10;
 	icon_state = "fred4"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "bfE" = (
 /obj/item/device/radio/beacon,
 /obj/landmark{
@@ -28984,20 +28938,20 @@
 	dir = 2;
 	icon_state = "fred3"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "bfF" = (
 /obj/critter/boogiebot,
 /turf/floor/carpet{
 	dir = 6;
 	icon_state = "fred4"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "bfG" = (
 /turf/floor/carpet{
 	dir = 6;
 	icon_state = "fred6"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "bfH" = (
 /obj/table/auto,
 /obj/item/device/light/flashlight,
@@ -29334,7 +29288,7 @@
 	dir = 10;
 	icon_state = "fred6"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "bgm" = (
 /obj/item/instrument/large/jukebox,
 /obj/decal/glow{
@@ -29349,7 +29303,7 @@
 	dir = 2;
 	icon_state = "fred6"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "bgn" = (
 /obj/submachine/ATM{
 	pixel_x = 0;
@@ -29359,7 +29313,7 @@
 	dir = 6;
 	icon_state = "fred6"
 	},
-/area/station/maintenance/inner/central)
+/area/station/crew_quarters/jazz)
 "bgo" = (
 /obj/cable{
 	d1 = 1;
@@ -32136,6 +32090,9 @@
 	},
 /obj/landmark/start{
 	name = "Cyborg"
+	},
+/obj/cable{
+	icon_state = "2-8"
 	},
 /turf/floor/circuit/off,
 /area/station/turret_protected/AIbasecore1{
@@ -45170,6 +45127,14 @@
 	},
 /turf/space,
 /area/station/solar/east)
+"rzd" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/circuit,
+/area/station/turret_protected/AIbasecore1{
+	name = "Upload Station"
+	})
 "tKX" = (
 /obj/displaycase{
 	displayed = new /obj/item/captaingun
@@ -78332,8 +78297,8 @@ aaa
 aaa
 bjU
 bkA
-ble
-bmd
+arD
+rzd
 bna
 bmd
 bmd
@@ -78567,7 +78532,7 @@ aqi
 apX
 aqR
 arh
-arB
+ase
 ase
 ase
 arB
@@ -79171,7 +79136,7 @@ apY
 apY
 aqu
 are
-arD
+are
 asg
 asz
 asS
@@ -80433,11 +80398,11 @@ aaa
 aaa
 aaa
 aaa
-aEg
-aEg
-aEg
-aEg
-aEg
+aqw
+aqw
+aqw
+aqw
+aqw
 aaa
 aaa
 aaa
@@ -80734,13 +80699,13 @@ bad
 aaa
 aaa
 aaa
-aEg
-aEg
+aqw
+aqw
 bem
 bfe
 bfC
-aEg
-aEg
+aqw
+aqw
 aaa
 aEg
 aEg
@@ -81036,13 +81001,13 @@ bad
 aaa
 aaa
 aaa
-aEg
+aqw
 bem
 beI
 bff
 bfD
 bgl
-aEg
+aqw
 aot
 aIm
 aBB
@@ -81338,13 +81303,13 @@ bad
 aaa
 aaa
 aaa
-aEg
+aqw
 ben
 beJ
 bfg
 bfE
 bgm
-aEg
+aqw
 aaa
 aEg
 aGC
@@ -81584,7 +81549,7 @@ aaa
 aaa
 aaa
 aqk
-aqw
+aqW
 aqW
 aqW
 arI
@@ -81640,13 +81605,13 @@ bad
 aaa
 aaa
 aaa
-aEg
+aqw
 beo
 beK
 bfh
 bfF
 bgn
-aEg
+aqw
 aaa
 aQa
 aBw
@@ -81886,7 +81851,7 @@ aaa
 aaa
 aaa
 aqk
-aqx
+aqW
 aqW
 aqW
 aqW
@@ -81942,13 +81907,13 @@ bad
 aaa
 aaa
 aaa
-aEg
-aEg
+aqw
+aqw
 beo
 bfi
 bfG
-aEg
-aEg
+aqw
+aqw
 aaa
 aQb
 aBw
@@ -82188,7 +82153,7 @@ aaa
 aaa
 aaa
 aqk
-aqx
+aqW
 aqX
 aqW
 aqW
@@ -82245,11 +82210,11 @@ aaa
 aaa
 aaa
 aaa
-aEg
-aEg
-aTN
-aEg
-aEg
+aqw
+aqw
+aqx
+aqw
+aqw
 aaa
 aaa
 aQb
@@ -82548,9 +82513,9 @@ aaa
 aaa
 aaa
 aaA
-aEg
+aqw
 bfj
-aEg
+aqw
 aqZ
 aaa
 aaa
@@ -82793,8 +82758,8 @@ aaa
 aaa
 aql
 aqz
-aqY
-aqY
+aqW
+aqW
 arK
 aqW
 aqW
@@ -82850,9 +82815,9 @@ aaa
 aaa
 aaa
 aaA
-aEg
+aqw
 bfj
-aEg
+aqw
 aqZ
 aaa
 aaa
@@ -83152,9 +83117,9 @@ aaa
 aEg
 aEg
 aMe
-aEg
-aTN
-aEg
+aqw
+aqx
+aqw
 aqZ
 aaa
 aaa
