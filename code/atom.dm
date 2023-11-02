@@ -640,6 +640,7 @@ TYPEINFO(/atom)
 	if (extra)
 		. += " [extra]"
 
+///Called when something is click-dragged onto this atom
 /atom/proc/MouseDrop_T()
 	return
 

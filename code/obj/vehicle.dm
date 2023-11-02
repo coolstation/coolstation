@@ -2290,16 +2290,17 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	var/light = 0				//1 when the yellow light is on
 	soundproofing = 5
 	throw_dropped_items_overboard = 1
-	var/image/image_light = null
-	var/image/image_panel = null
 	var/image/image_crate = null
 	var/image/image_under = null
 	attacks_fast_eject = 0
 	delay = 2.5
+	var/datum/movement_controller/forklift/movement_controller
 
 /obj/vehicle/forklift/New()
 	..()
+	movement_controller = new(src)
 	src.add_sm_light("forklift\ref[src]", list(0.5*255,0.5*255,0.5*255,255*0.67), directional = 1)
+
 
 /obj/vehicle/forklift/examine()
 	. = ..()
@@ -2394,11 +2395,15 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 	src.update_overlays()
 
+/obj/vehicle/forklift/get_movement_controller(mob/user)
+	return movement_controller
+
 //We, unfortunately, can't use the base relaymove here because the forklift has some
 // special behaviors with overlays and underlays that produce weird behaviors
 // (ghost riders, phantom crates) when combined with the base relaymove
 /obj/vehicle/forklift/relaymove(mob/user as mob, direction)
-
+	return
+	/*
 	if (user.stat)
 		return
 
@@ -2428,7 +2433,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 			M.animate_movement = SYNC_STEPS
 	else
 		for(var/mob/M in src.contents)
-			M.set_loc(src.loc)
+			M.set_loc(src.loc)*/
 
 /obj/vehicle/forklift/verb/toggle_lights()
 	set category = "Forklift"
@@ -2440,18 +2445,11 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	if (broken)
 		boutput(usr, "You try to turn on the lights. Nothing happens.")
 
-	if (!light)
-		light = 1
-		update_overlays()
-		src.toggle_sm_light(1)
-		return
+	light = !light
+	update_overlays()
+	src.toggle_sm_light(light)
 
-	if (light)
-		light = 0
-		update_overlays()
-		src.toggle_sm_light(0)
-	return
-
+//atom to forklift
 /obj/vehicle/forklift/MouseDrop_T(atom/movable/A as obj|mob, mob/user as mob)
 
 	if (user.stat)
@@ -2483,6 +2481,18 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 		src.rider = A
 		src.update_overlays()
 		return
+
+//forklift to other atom
+/obj/vehicle/forklift/MouseDrop(atom/over_object)
+	if(isturf(over_object))
+		if(length(helditems))
+			var/obj/to_unload = helditems[length(helditems)]
+			helditems.Remove(to_unload)
+			to_unload.set_loc(over_object)
+			src.update_overlays()
+			boutput(usr, "<span class='notice'><B>You unload [to_unload].</B></span>")
+	else
+		..() //IDK if this is of any use
 
 /obj/vehicle/forklift/attack_hand(mob/living/carbon/human/M as mob)
 	if(!M || !rider)
@@ -2537,17 +2547,10 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 obj/vehicle/forklift/attackby(var/obj/item/I, var/mob/user)
 	//Use screwdriver to open/close the forklift's back panel
 	if (isscrewingtool(I))
-		if (!openpanel)
-			openpanel = 1
-			boutput(user, "You unlock [src]'s panel with [I].")
-			update_overlays()
-			return
-
-		if (openpanel)
-			openpanel = 0
-			boutput(user, "You lock [src]'s panel with [I].")
-			update_overlays()
-			return
+		boutput(user, "You [openpanel ? "lock" : "unlock"] [src]'s panel with [I].")
+		openpanel = !openpanel
+		update_overlays()
+		return
 
 	//Breaking the forklift
 	if (issnippingtool(I))
@@ -2580,34 +2583,28 @@ obj/vehicle/forklift/attackby(var/obj/item/I, var/mob/user)
 
 /obj/vehicle/forklift/proc/update_overlays()
 	if (light)
-		if (!src.image_light)
-			src.image_light = image(src.icon, "forklift_light")
-		src.UpdateOverlays(src.image_light, "light")
+		src.UpdateOverlays(image(src.icon, "forklift_light"), "light")
 	else
 		src.UpdateOverlays(null, "light")
+
 	if (openpanel)
-		if (!src.image_panel)
-			src.image_panel = image(src.icon, "forklift_panel")
-		src.UpdateOverlays(src.image_panel, "panel")
+		src.UpdateOverlays(image(src.icon, "forklift_panel"), "panel")
 	else
 		src.UpdateOverlays(null, "panel")
-	if (helditems.len > 0)
-		if (!src.image_crate)
-			src.image_crate = image(src.icon, "forklift_crate")
-		for (var/i=0, i < helditems.len, i++)
-			if (i <= 1)
-				image_crate.icon_state = "forklift_crate"
-			else if (i >= 2 && i <= 4)
-				image_crate.icon_state = "forklift_crate[i]"
-			else
-				image_crate.icon_state = "forklift_crate4"
-			image_crate.pixel_y = 7*i
-			if (i >= 3)
-				image_crate.pixel_x = rand(-1,1)
-			src.UpdateOverlays(src.image_crate, "crate[i]")
-	else
-		for (var/i=0, i < src.helditems_maximum, i++)
-			src.UpdateOverlays(null, "crate[i]")
+
+	if (!src.image_crate)
+		src.image_crate = image(src.icon, "forklift_crate")
+	//populate crates
+	for (var/i = 1, i <= length(helditems), i++)
+		image_crate.icon_state = "forklift_crate[min(i,4)]" //there's 4 different crate sprites that have different cutouts for the fork.
+		image_crate.pixel_y = 7*(i-1)
+		if (i > 3)
+			image_crate.pixel_x = rand(-1,1)
+		src.UpdateOverlays(src.image_crate, "crate[i]")
+	//write null to empty slots
+	for (var/i = length(helditems) + 1, i <= src.helditems_maximum, i++)
+		src.UpdateOverlays(null, "crate[i]")
+
 	if (src.rider)
 		src.icon_state = "forklift1"
 		src.underlays += rider
