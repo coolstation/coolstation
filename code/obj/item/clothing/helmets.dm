@@ -24,6 +24,7 @@
 	seal_hair = 1
 	path_prot = 0
 	permeability_coefficient = 0.2
+	var/cowboy = FALSE
 
 	onMaterialChanged()
 		if(src.material)
@@ -55,6 +56,23 @@
 		setProperty("disorient_resist_eye", 8)
 		setProperty("disorient_resist_ear", 8)
 		setProperty("space_movespeed", 0.2)
+
+	//RIP hybridstation
+	attackby(obj/item/W, mob/user, params)
+		if (istype(W, /obj/item/clothing/head/cowboy) && !src.cowboy)
+			//we only have one cowboy hat 'round these parts, so I'm gonna be lazy and hardcode this
+			var/image/cowboy_hat = image('icons/obj/clothing/item_hats.dmi', icon_state = "cowboy", pixel_y = 6)
+			UpdateOverlays(cowboy_hat, "yeehaw")
+			cowboy_hat.icon = 'icons/mob/head.dmi'
+			cowboy_hat.pixel_y = 2
+			src.wear_image.overlays += cowboy_hat
+			src.desc = "Howdy pardner!"
+			src.tooltip_rebuild = TRUE
+			boutput(user, "You place [W] on [src].")
+			qdel(W)
+			src.cowboy = TRUE
+			return
+		..()
 
 	oldish
 		icon_state = "space-OLD"
