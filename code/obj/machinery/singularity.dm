@@ -591,6 +591,14 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	STOP_TRACKING
 	. = ..()
 
+/obj/machinery/field_generator/was_deconstructed_to_frame(mob/user)
+	. = ..()
+	for(var/dir in cardinal)
+		src.cleanup(dir)
+	active = FALSE
+	state = UNWRENCHED
+	anchored = FALSE
+
 /obj/machinery/field_generator/get_desc()
 	switch(state)
 		if (WRENCHED)
