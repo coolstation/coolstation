@@ -108,10 +108,11 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MAP_OVERRIDE_OZYMANDIAS
 //#define MAP_OVERRIDE_FLEET
 //#define MAP_OVERRIDE_ICARUS
-//#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do not use
-//#define MAP_OVERRIDE_PAMGOC 			// Pamgoc
-//#define MAP_OVERRIDE_WRESTLEMAP  	 	// Wrestlemap by Overtone
-// #define MAP_OVERRIDE_POD_WARS   		// 500x500 Pod Wars map
+//#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP
+#define MAP_OVERRIDE_TSELA			// Eagletanker WIP do not use
+//#define MAP_OVERRIDE_PAMGOC			// Pamgoc
+//#define MAP_OVERRIDE_WRESTLEMAP   // Wrestlemap by Overtone
+// #define MAP_OVERRIDE_POD_WARS   // 500x500 Pod Wars map
 
 //////////// GAMEMODE OVERRIDES (intended for ease of debug only. disables saving/loading the mode config therefore probably fucky on live server)
 

@@ -70,6 +70,9 @@
 #elif defined(MAP_OVERRIDE_GEHENNA)
 #include "gehenna.dm"
 
+#elif defined(MAP_OVERRIDE_TSELA)
+#include "tsela.dm"
+
 #elif defined(MAP_OVERRIDE_WRESTLEMAP)
 #include "wrestlemap.dm"
 
