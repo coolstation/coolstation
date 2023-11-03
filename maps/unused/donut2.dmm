@@ -19385,6 +19385,7 @@
 	dir = 4;
 	icon_state = "pipe-s"
 	},
+/obj/disposalpipe/segment/mail,
 /turf/floor/plating,
 /area/station/maintenance/northeast)
 "aNu" = (
@@ -19417,17 +19418,18 @@
 /turf/floor/plating,
 /area/station/maintenance/northeast)
 "aNw" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/airlock/maintenance,
 /obj/cable{
+	d1 = 4;
 	d2 = 8;
-	icon_state = "0-8"
+	icon_state = "4-8"
 	},
-/obj/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/grille/steel{
-	density = 0;
-	icon_state = "brokengrille"
+/obj/disposalpipe/segment/mail{
+	dir = 4;
+	icon_state = "pipe-s"
 	},
 /turf/floor/plating,
 /area/station/maintenance/northeast)
@@ -20263,10 +20265,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/disposalpipe/segment/mail{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
+/obj/disposalpipe/junction/middle,
 /turf/floor,
 /area/station/hallway/primary/east)
 "aOV" = (
@@ -20279,6 +20278,10 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/disposalpipe/segment/mail{
+	dir = 4;
+	icon_state = "pipe-s"
 	},
 /turf/floor/plating,
 /area/station/maintenance/northeast)
@@ -45117,6 +45120,18 @@
 	},
 /turf/space,
 /area/station/solar/east)
+"gDP" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/mail{
+	dir = 4;
+	icon_state = "pipe-s"
+	},
+/turf/floor/plating,
+/area/station/maintenance/northeast)
 "hDE" = (
 /obj/decal/poster/wallsign/chsl{
 	pixel_y = 32
@@ -45185,6 +45200,18 @@
 /obj/item/camera,
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/quarters)
+"wNZ" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/mail{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/floor/plating,
+/area/station/maintenance/northeast)
 "xbz" = (
 /obj/lattice{
 	dir = 5;
@@ -85544,7 +85571,7 @@ aLA
 aIC
 aNr
 aOj
-aEB
+aNw
 aPB
 aQr
 aPB
@@ -85846,7 +85873,7 @@ aLB
 aMt
 aNr
 aOk
-aKk
+gDP
 aPC
 aQs
 aRh
@@ -86148,7 +86175,7 @@ aLC
 aMu
 aNr
 aOl
-aKk
+gDP
 aPD
 aQt
 aRi
@@ -86450,7 +86477,7 @@ aLD
 aMv
 aNr
 aOk
-aKk
+gDP
 aPB
 aQu
 aRj
@@ -86752,7 +86779,7 @@ aIC
 aMw
 aNr
 aOm
-aKk
+gDP
 aPE
 aQu
 aRk
@@ -87355,8 +87382,8 @@ aFp
 aLE
 aMy
 aNt
-aKS
-aKk
+aFp
+wNZ
 aPC
 aQw
 aRm
@@ -88260,7 +88287,7 @@ aKk
 aKS
 aFr
 aKS
-aNw
+aNv
 aKS
 aKk
 aPF
