@@ -3,5 +3,4 @@
 #include "..\z3.dmm"
 #include "z4.dm"
 #include "..\z5.dmm"
-#include "..\..\+secret\maps\warc\fuzzy.dmm"
 #define MAP_MODE "standard"
