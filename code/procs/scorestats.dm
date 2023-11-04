@@ -473,10 +473,41 @@ var/datum/score_tracker/score_tracker
 		score_tracker.score_text += "<B>Total Department Score:</B> [round(score_tracker.final_score_sec)]%<BR>"
 		score_tracker.score_text += "<BR>"
 
+		var/power_hi = score_tracker.engine_power_hiscore
+		var/prettified_power_hiscore
+		var/prettified_power_postfix = ""
+		switch(round(power_hi))
+			if(0 to 999)
+				prettified_power_hiscore = round(power_hi, 1.5)
+			if(1 KILO to 999 KILO)
+				prettified_power_hiscore = round((power_hi / 1 KILO), 1.5)
+				prettified_power_postfix = "Kilo"
+			if(1 MEGA to 999 MEGA)
+				prettified_power_hiscore = round((power_hi / 1 MEGA), 1.5)
+				prettified_power_postfix = "Mega"
+			if(1 GIGA to 999 GIGA)
+				prettified_power_hiscore = round((power_hi / 1 GIGA), 1.5)
+				prettified_power_postfix = "Giga"
+			if(1 TERA to 999 TERA) /* Not sure how much these levels will be needed, but hey */
+				prettified_power_hiscore = round((power_hi / 1 TERA), 1.5)
+				prettified_power_postfix = "Tera"
+			if(1 PETA to 999 PETA)
+				prettified_power_hiscore = round((power_hi / 1 PETA), 1.5)
+				prettified_power_postfix = "Peta"
+			if(1 EXA to 999 EXA)
+				prettified_power_hiscore = round((power_hi / 1 EXA), 1.5)
+				prettified_power_postfix = "Exa"
+			if(1 ZETTA to 999 ZETTA)
+				prettified_power_hiscore = round((power_hi / 1 ZETTA), 1.5)
+				prettified_power_postfix = "Zetta"
+			if(1 YOTTA to INFINITY)
+				prettified_power_hiscore = round((power_hi / 1 YOTTA), 1.5)
+				prettified_power_postfix = "Yotta"
+
 		score_tracker.score_text += "<B><U>ENGINEERING DEPARTMENT</U></B><BR>"
 		score_tracker.score_text += "<B>Station Structural Integrity:</B> [round(score_tracker.score_structural_damage)]%<BR>"
 		score_tracker.score_text += "<B>Station Areas Powered:</B> [round(score_tracker.score_power_outages)]%<BR>"
-		score_tracker.score_text += "<B>Highest [score_tracker.engine_power_type]Power Generated:</B> [round(score_tracker.engine_power_hiscore)] Watts<BR>"
+		score_tracker.score_text += "<B>Highest [score_tracker.engine_power_type]Peak Power:</B> [prettified_power_hiscore] [prettified_power_postfix]Watts<BR>"
 		score_tracker.score_text += "<B>Total Department Score:</B> [round(score_tracker.final_score_eng)]%<BR>"
 		score_tracker.score_text += "<BR>"
 
