@@ -66,6 +66,10 @@ var/datum/score_tracker/score_tracker
 	//var/ids_changed = 0 //hop
 	var/final_score_civ = 0 //might not have department scores
 
+	// Engineering
+	var/engine_power_hiscore = 0
+	var/engine_power_type = ""
+
 	//Misc
 	//var/clown_beatings = null
 	//var/farts_busted = 0
@@ -472,6 +476,7 @@ var/datum/score_tracker/score_tracker
 		score_tracker.score_text += "<B><U>ENGINEERING DEPARTMENT</U></B><BR>"
 		score_tracker.score_text += "<B>Station Structural Integrity:</B> [round(score_tracker.score_structural_damage)]%<BR>"
 		score_tracker.score_text += "<B>Station Areas Powered:</B> [round(score_tracker.score_power_outages)]%<BR>"
+		score_tracker.score_text += "<B>Highest [score_tracker.engine_power_type]Power Generated:</B> [round(score_tracker.engine_power_hiscore)] Watts<BR>"
 		score_tracker.score_text += "<B>Total Department Score:</B> [round(score_tracker.final_score_eng)]%<BR>"
 		score_tracker.score_text += "<BR>"
 

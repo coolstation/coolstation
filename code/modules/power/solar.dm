@@ -175,6 +175,10 @@
 		if(powernet && control && powernet == control.powernet)
 			control.gen += sgen
 
+		if(sgen > score_tracker.engine_power_hiscore)
+			score_tracker.engine_power_hiscore = sgen
+			score_tracker.engine_power_type = "Solar "
+
 	if(adir != ndir)
 		var/old_adir = adir
 		var/max_move = rand(8, 12)

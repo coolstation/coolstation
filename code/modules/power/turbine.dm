@@ -124,6 +124,10 @@
 	lastgen = ((compressor.rpm / TURBGENQ)**TURBGENG) *TURBGENQ
 
 	add_avail(lastgen)
+	if(lastgen > score_tracker.engine_power_hiscore)
+		score_tracker.engine_power_hiscore = lastgen
+		score_tracker.engine_power_type = "Turbine "
+
 	var/newrpm = ((compressor.gas_contained.temperature) * TOTAL_MOLES(compressor.gas_contained))/4
 	newrpm = max(0, newrpm)
 
