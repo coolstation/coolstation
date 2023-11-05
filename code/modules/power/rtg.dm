@@ -12,6 +12,10 @@
 			lastgen = (4800 + rand(-100, 100)) * log(1 + fuel_pellet?.fuel_life)//fuel_pellet.material.getProperty("radioactive"))
 			fuel_pellet?.fuel_life--//fuel_pellet.material.adjustProperty("radioactive", -1)
 			add_avail(lastgen)
+			if(lastgen > score_tracker.engine_power_hiscore)
+				score_tracker.engine_power_hiscore = lastgen
+				score_tracker.engine_power_type = "RTG[prob(30) ? " (...really?)" : ""] "
+
 			updateicon()
 
 		// shamelessly stolen from the SMES code, this is kinda stupid

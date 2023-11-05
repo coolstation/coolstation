@@ -2295,6 +2295,8 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	attacks_fast_eject = 0
 	delay = 2.5
 	var/datum/movement_controller/forklift/movement_controller
+	ability_buttons_to_initialize = list(/obj/ability_button/toggle_automove)
+	var/list/item_offsets = list(0,0,0)
 
 /obj/vehicle/forklift/New()
 	..()
@@ -2346,6 +2348,8 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	src.rider = M
 	boutput(usr, "You get into [src].")
 	src.update_overlays()
+	if (rider.client)
+		handle_button_addition()
 	return
 
 /obj/vehicle/forklift/verb/exit_forklift()
@@ -2480,6 +2484,8 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 		A.set_loc(src)
 		src.rider = A
 		src.update_overlays()
+		if (rider.client)
+			handle_button_addition()
 		return
 
 //forklift to other atom
@@ -2599,11 +2605,17 @@ obj/vehicle/forklift/attackby(var/obj/item/I, var/mob/user)
 		image_crate.icon_state = "forklift_crate[min(i,4)]" //there's 4 different crate sprites that have different cutouts for the fork.
 		image_crate.pixel_y = 7*(i-1)
 		if (i > 3)
-			image_crate.pixel_x = rand(-1,1)
+			if (length(item_offsets) < i)
+				var/jitter = round(i/6)+1
+				item_offsets.Add(item_offsets[i-1] + rand(-jitter,jitter))
+		image_crate.pixel_x = item_offsets[i]//rand(-1,1)
 		src.UpdateOverlays(src.image_crate, "crate[i]")
 	//write null to empty slots
 	for (var/i = length(helditems) + 1, i <= src.helditems_maximum, i++)
 		src.UpdateOverlays(null, "crate[i]")
+
+	if (length(item_offsets) > length(helditems))
+		item_offsets.Cut(max(length(helditems),3) + 1) //prune unused offsets so they can be random again but not the bottom ones which are always 0
 
 	if (src.rider)
 		src.icon_state = "forklift1"
@@ -2621,3 +2633,22 @@ obj/vehicle/forklift/attackby(var/obj/item/I, var/mob/user)
 		//do not eject!
 	else
 		..()
+
+/obj/ability_button/toggle_automove
+	name = "Toggle Continuous Movement"
+	icon = 'icons/misc/abilities.dmi'
+	icon_state = "pedal_off"
+
+	Click()
+		if(!the_mob) return
+
+		if (istype(the_mob.loc, /obj/vehicle/forklift))
+			var/obj/vehicle/forklift/fork = the_mob.loc
+			var/datum/movement_controller/forklift/MC = fork.movement_controller
+			if (MC.automove)
+				walk(fork, 0)
+				icon_state = "pedal_off"
+			else
+				icon_state = "pedal_on"
+			MC.automove = !MC.automove
+		return

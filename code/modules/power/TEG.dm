@@ -815,6 +815,10 @@ datum/pump_ui/circulator_ui
 				lastgen = energy_transfer*efficiency
 				add_avail(lastgen WATTS)
 
+				if((lastgen WATTS) > score_tracker.engine_power_hiscore)
+					score_tracker.engine_power_hiscore = lastgen WATTS
+					score_tracker.engine_power_type = "TEG "
+
 				src.history += src.lastgen
 				if (src.history.len > src.history_max)
 					src.history.Cut(1, 2) //drop the oldest entry

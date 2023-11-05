@@ -13,6 +13,7 @@
 	var/move_dir = 0
 	var/move_delay = 2.5
 	var/next_move = 0
+	var/automove = FALSE
 
 	New(master)
 		..()
@@ -49,7 +50,10 @@
 			src.master.glide_size = (32 / delay) * world.tick_lag
 			user.glide_size = src.master.glide_size
 			user.animate_movement = SYNC_STEPS
-			step(src.master, src.move_dir)
+			if (automove)
+				walk(src.master, src.move_dir, move_delay)
+			else
+				step(src.master, src.move_dir)
 			src.master.glide_size = (32 / delay) * world.tick_lag
 			user.glide_size = src.master.glide_size
 			user.animate_movement = SYNC_STEPS
