@@ -2606,7 +2606,8 @@ obj/vehicle/forklift/attackby(var/obj/item/I, var/mob/user)
 		image_crate.pixel_y = 7*(i-1)
 		if (i > 3)
 			if (length(item_offsets) < i)
-				item_offsets.Add(item_offsets[i-1] + rand(-1,1))
+				var/jitter = round(i/6)+1
+				item_offsets.Add(item_offsets[i-1] + rand(-jitter,jitter))
 		image_crate.pixel_x = item_offsets[i]//rand(-1,1)
 		src.UpdateOverlays(src.image_crate, "crate[i]")
 	//write null to empty slots
