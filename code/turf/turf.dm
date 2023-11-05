@@ -206,7 +206,7 @@
 	if (A.is_atmos_simulated)
 		instantiate_air()
 		if (!istype(src, /turf/space))
-			turf_flags = IS_TYPE_SIMULATED
+			turf_flags |= IS_TYPE_SIMULATED
 
 	//unsimmed turfs are unreplaceable by default
 	can_replace_with_stuff = (A.is_construction_allowed || can_replace_with_stuff) //(no it's not lighting related but this override already had the area going on)
