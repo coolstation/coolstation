@@ -4124,6 +4124,13 @@
 /obj/machinery/power/data_terminal,
 /turf/floor/plating/airless,
 /area/mining/magnet_control)
+"AS" = (
+/obj/machinery/light_switch{
+	name = "N light switch";
+	pixel_y = 24
+	},
+/turf/floor/grime,
+/area/gas_station/schweewa)
 "AU" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -6278,9 +6285,9 @@
 /turf/space,
 /area/noGenerate)
 "TV" = (
-/obj/window/reinforced/east,
-/turf/shuttle/wall{
-	icon_state = "wall3"
+/obj/wingrille_spawn/crystal,
+/turf/floor/shuttle{
+	icon_state = "floor2"
 	},
 /area/diner/tug)
 "TW" = (
@@ -48213,7 +48220,7 @@ cz
 cz
 cz
 cz
-dD
+AS
 lu
 mu
 cz
