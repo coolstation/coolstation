@@ -188,6 +188,15 @@
 		src.icon_state = pick("rock1","rock2","rock3")
 		src.setMaterial(getMaterial("rock"), appearance = FALSE, setname = FALSE)
 
+/obj/item/raw_material/rock/gehenna //what if we weren't mining gray all day down there
+	name = "desert rock"
+	desc = "It's plain old desert rock. Pretty worthless!"
+
+	setup_material()
+		..()
+		src.icon_state = pick("geh-rock1","geh-rock2","geh-rock3")
+		src.setMaterial(getMaterial("rock_gehenna"), appearance = FALSE, setname = FALSE)
+
 /obj/item/raw_material/mauxite
 	name = "mauxite ore"
 	desc = "A chunk of Mauxite, a sturdy common metal."

@@ -263,6 +263,11 @@
 		setProperty("stability", 20)
 		return ..()
 
+/datum/material/metal/rock/gehenna
+	mat_id = "rock_gehenna"
+	name = "desert rock"
+	color = "#DCB040"
+
 /datum/material/metal/electrum
 	mat_id = "electrum"
 	name = "electrum"
