@@ -26790,11 +26790,8 @@
 /area/station/quartermaster/storage)
 "tTr" = (
 /obj/decal/poster/wallsign/fire,
-/obj/machinery/atmospherics/binary/passive_gate{
-	dir = 4;
-	icon_state = "intact_on";
-	on = 1;
-	pixel_y = 1
+/obj/machinery/atmospherics/pipe/simple/insulated{
+	dir = 4
 	},
 /turf/wall,
 /area/station/engine/core)
