@@ -26,7 +26,8 @@ Contains:
 		on = !on
 		set_icon_state("t-ray[on]")
 		boutput(user, "You switch [src] [on ? "on" : "off"].")
-
+		var/obj/ability_button/tscanner_toggle/button = locate() in ability_buttons
+		button?.icon_state = src.on ? "tscan-on" : "tscan-off"
 		if(on) processing_items |= src
 
 	afterattack(atom/A as mob|obj|turf|area, mob/user as mob)

@@ -110,6 +110,8 @@
 		else
 			light_dir.update(0)
 		user.update_clothing()
+		var/obj/ability_button/flashlight_engiehelm/button = locate() in ability_buttons
+		button?.icon_state = src.on ? "on" : "off"
 		return
 
 /obj/item/clothing/head/helmet/space/engineer/april_fools
@@ -448,6 +450,8 @@
 			light_dir.update(1)
 		else
 			light_dir.update(0)
+		var/obj/ability_button/flashlight_hardhat/button = locate() in ability_buttons
+		button?.icon_state = src.on ? "on" : "off"
 		return
 
 	attackby(var/obj/item/T, mob/user as mob)

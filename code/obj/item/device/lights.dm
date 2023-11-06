@@ -108,6 +108,8 @@
 			src.on = 0
 			light_mode = 0
 			light_good.update(0)
+			var/obj/ability_button/flashlight_toggle/button = locate() in ability_buttons
+			button?.icon_state = "off"
 			return
 		if (src.emagged) // Burn them all!
 			user.apply_flash(60, 2, 0, 0, rand(2, 8), rand(1, 15), 0, 25, 100, stamina_damage = 70, disorient_time = 10)
@@ -147,6 +149,8 @@
 				light_good.update(1)
 				set_icon_state(src.icon_on)
 				light_mode = 3
+		var/obj/ability_button/flashlight_toggle/button = locate() in ability_buttons
+		button?.icon_state = "on"
 
 /obj/item/device/light/flashlight/abilities = list(/obj/ability_button/flashlight_toggle)
 

@@ -157,16 +157,18 @@
 
 /obj/ability_button/magboot_toggle
 	name = "(De)Activate Magboots"
-	icon_state = "shieldceon"
+	icon_state = "magboots-off"
 
 	execute_ability()
 		var/obj/item/clothing/shoes/magnetic/W = the_item
 		if(W.magnetic)
 			W.deactivate()
 			boutput(the_mob, "You power off your magnetic boots")
+			icon_state = "magboots-off"
 		else
 			W.activate()
 			boutput(the_mob, "You power on your magnetic boots")
+			icon_state = "magboots-on"
 		the_mob.update_equipped_modifiers()
 		the_mob.update_clothing()
 		..()
@@ -332,7 +334,7 @@
 
 /obj/ability_button/flashlight_toggle
 	name = "Toggle Flashlight"
-	icon_state = "on"
+	icon_state = "off"
 
 	execute_ability()
 		var/obj/item/device/light/flashlight/J = the_item
@@ -354,7 +356,7 @@
 
 /obj/ability_button/cable_toggle
 	name = "Toggle auto-laying mode"
-	icon_state = "coil"
+	icon_state = "cable-off"
 
 	execute_ability()
 		var/obj/item/cable_coil/C = the_item
@@ -365,40 +367,35 @@
 
 /obj/ability_button/flashlight_engiehelm
 	name = "Toggle Helmet Light"
-	icon_state = "on"
+	icon_state = "off"
 
 	execute_ability()
 		var/obj/item/clothing/head/helmet/space/engineer/J = the_item
 
 		J.flashlight_toggle(the_mob)
-		if (J.on) src.icon_state = "off"
-		else  src.icon_state = "on"
 		..()
 
 ////////////////////////////////////////////////////////////
 
 /obj/ability_button/flashlight_hardhat
 	name = "Toggle Hardhat Light"
-	icon_state = "on"
+	icon_state = "off"
 
 	execute_ability()
 		var/obj/item/clothing/head/helmet/hardhat/J = the_item
 
 		J.flashlight_toggle(the_mob)
-		src.icon_state = J.on ? "off" : "on"
 		..()
 
 ////////////////////////////////////////////////////////////
 
 /obj/ability_button/tscanner_toggle
 	name = "Toggle T-Scanner"
-	icon_state = "on"
+	icon_state = "tscan-off"
 
 	execute_ability()
 		var/obj/item/device/t_scanner/J = the_item
 		J.attack_self(the_mob)
-		if(J.on) icon_state = "off"
-		else  icon_state = "on"
 		..()
 
 ////////////////////////////////////////////////////////////
@@ -431,24 +428,24 @@
 
 /obj/ability_button/jetpack2_toggle
 	name = "Toggle jetpack MKII"
-	icon_state = "jet2on"
+	icon_state = "jet2off"
 
 	execute_ability()
 		var/obj/item/tank/jetpack/jetpackmk2/J = the_item
 		J.toggle()
-		if(J.on) icon_state = "jet2off"
-		else  icon_state = "jet2on"
+		if(J.on) icon_state = "jet2on"
+		else  icon_state = "jet2off"
 		..()
 
 /obj/ability_button/jetpack_toggle
 	name = "Toggle jetpack"
-	icon_state = "jeton"
+	icon_state = "jetoff"
 
 	execute_ability()
 		var/obj/item/tank/jetpack/J = the_item
 		J.toggle()
-		if(J.on) icon_state = "jetoff"
-		else  icon_state = "jeton"
+		if(J.on) icon_state = "jeton"
+		else  icon_state = "jetoff"
 		..()
 
 ////////////////////////////////////////////////////////////
