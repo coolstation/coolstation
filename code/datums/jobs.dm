@@ -615,6 +615,13 @@ ABSTRACT_TYPE(/datum/job/research)
 		src.access = get_access("Chemist")
 		return
 
+	special_setup(var/mob/living/carbon/human/M) //chemists are also on the science team, unfortunately
+		..()
+		if (!M)
+			return
+		if(prob(20))
+			M.traitHolder.addTrait("scienceteam")
+
 // Medical Jobs
 
 ABSTRACT_TYPE(/datum/job/medical)

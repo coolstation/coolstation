@@ -592,6 +592,11 @@
 		setProperty("meleeprot_head", 1)
 		setProperty("disorient_resist_eye", 100)
 
+	attack_self(mob/user)
+		..()
+		var/obj/ability_button/mask_toggle/button = locate() in ability_buttons
+		button?.execute_ability() //like half the shit that changes about the mask happens in the button and I can't be arsed
+
 	proc/flip_down()
 		src.c_flags |= (COVERSEYES | BLOCKCHOKE)
 		setProperty("meleeprot_head", 1)
