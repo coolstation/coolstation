@@ -1266,6 +1266,7 @@ var/global/list/soundCache = list(
  	"sound/radio_station/lobby/tane_lobby.ogg" = 'sound/radio_station/lobby/tane_lobby.ogg',\
  	"sound/radio_station/lobby/tv_girl.ogg" = 'sound/radio_station/lobby/tv_girl.ogg',\
  	"sound/radio_station/lobby/two_of_them.ogg" = 'sound/radio_station/lobby/two_of_them.ogg',\
+ 	"sound/radio_station/lobby/ultimatum_low.ogg" = 'sound/radio_station/lobby/ultimatum_low.ogg',\
  	"sound/radio_station/lobby/unused/up_for_me.ogg" = 'sound/radio_station/lobby/unused/up_for_me.ogg',\
  	"sound/radio_station/lobby/unused/where_are_we.ogg" = 'sound/radio_station/lobby/unused/where_are_we.ogg',\
  	"sound/voice/babynoise.ogg" = 'sound/voice/babynoise.ogg',\
