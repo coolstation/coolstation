@@ -2858,6 +2858,10 @@
 /obj/decal/cleanable/dirt,
 /turf/floor/plating,
 /area/station/crew_quarters/clown)
+"dtD" = (
+/obj/item/wrench,
+/turf/floor,
+/area/station/science/lab)
 "dtN" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 8
@@ -2970,12 +2974,6 @@
 /obj/machinery/drainage,
 /turf/floor/grey,
 /area/station/crew_quarters/kitchen)
-"dzH" = (
-/obj/submachine/ATM/atm_alt{
-	dir = 8
-	},
-/turf/floor,
-/area/station/crew_quarters/market)
 "dAb" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/carpet/grime{
@@ -5424,10 +5422,6 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
-"gir" = (
-/obj/item/wrench,
-/turf/floor,
-/area/station/science/lab)
 "gjl" = (
 /obj/storage/closet/coffin/nt,
 /turf/floor/plating,
@@ -6845,12 +6839,6 @@
 	name = "grimmy carpet"
 	},
 /area/station/crew_quarters/observatory)
-"iaI" = (
-/obj/submachine/ATM/atm_alt{
-	dir = 4
-	},
-/turf/floor,
-/area/station/crew_quarters/market)
 "iaN" = (
 /obj/machinery/disposal/mail/autoname/kitchen,
 /obj/disposalpipe/trunk{
@@ -7425,6 +7413,12 @@
 /obj/storage/closet/port_a_sci,
 /turf/floor/grey,
 /area/station/science/teleporter)
+"iBM" = (
+/obj/submachine/ATM/atm_alt{
+	dir = 8
+	},
+/turf/floor,
+/area/station/crew_quarters/market)
 "iCb" = (
 /obj/table/auto,
 /obj/item/remote/porter/port_a_sci,
@@ -8265,6 +8259,7 @@
 /obj/landmark{
 	name = "Observer-Start"
 	},
+/obj/machinery/light/small/ceiling,
 /turf/floor{
 	icon_state = "SS13-Centred-2-U4"
 	},
@@ -10591,6 +10586,7 @@
 /area/station/hallway/secondary/exit)
 "mvv" = (
 /obj/storage/crate/bartending,
+/obj/machinery/light_switch/west,
 /turf/floor/grey,
 /area/station/crew_quarters/kitchen)
 "mvN" = (
@@ -12359,6 +12355,12 @@
 	},
 /turf/floor,
 /area/station/engine/singcore)
+"oEq" = (
+/obj/submachine/ATM/atm_alt{
+	dir = 4
+	},
+/turf/floor,
+/area/station/crew_quarters/market)
 "oEZ" = (
 /obj/window/reinforced{
 	dir = 8;
@@ -17324,7 +17326,6 @@
 /obj/item/device/radio/intercom/catering{
 	dir = 4
 	},
-/obj/machinery/light_switch/west,
 /turf/floor/grey,
 /area/station/crew_quarters/kitchen)
 "usM" = (
@@ -60198,7 +60199,7 @@ aWY
 uKe
 uKe
 lIl
-iaI
+oEq
 lxe
 ahK
 mla
@@ -68050,7 +68051,7 @@ ppX
 dkY
 dkY
 lrX
-dzH
+iBM
 lxe
 lTV
 mla
@@ -70782,7 +70783,7 @@ sWt
 azN
 xpa
 xtf
-gir
+dtD
 abN
 huZ
 huZ
