@@ -2970,6 +2970,12 @@
 /obj/machinery/drainage,
 /turf/floor/grey,
 /area/station/crew_quarters/kitchen)
+"dzH" = (
+/obj/submachine/ATM/atm_alt{
+	dir = 8
+	},
+/turf/floor,
+/area/station/crew_quarters/market)
 "dAb" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/carpet/grime{
@@ -5418,6 +5424,10 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
+"gir" = (
+/obj/item/wrench,
+/turf/floor,
+/area/station/science/lab)
 "gjl" = (
 /obj/storage/closet/coffin/nt,
 /turf/floor/plating,
@@ -6835,6 +6845,12 @@
 	name = "grimmy carpet"
 	},
 /area/station/crew_quarters/observatory)
+"iaI" = (
+/obj/submachine/ATM/atm_alt{
+	dir = 4
+	},
+/turf/floor,
+/area/station/crew_quarters/market)
 "iaN" = (
 /obj/machinery/disposal/mail/autoname/kitchen,
 /obj/disposalpipe/trunk{
@@ -14634,10 +14650,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/southwest)
-"rdp" = (
-/obj/item/wrench,
-/turf/floor,
-/area/station/science/lab)
 "rds" = (
 /obj/grille/catwalk/jen,
 /obj/machinery/light/small/cool/very{
@@ -60186,7 +60198,7 @@ aWY
 uKe
 uKe
 lIl
-gkg
+iaI
 lxe
 ahK
 mla
@@ -68038,7 +68050,7 @@ ppX
 dkY
 dkY
 lrX
-gkg
+dzH
 lxe
 lTV
 mla
@@ -70770,7 +70782,7 @@ sWt
 azN
 xpa
 xtf
-rdp
+gir
 abN
 huZ
 huZ
