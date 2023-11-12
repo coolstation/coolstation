@@ -2674,11 +2674,11 @@
 /turf/floor,
 /area/station/engine/elect)
 "dfK" = (
-/obj/wingrille_spawn/reinforced,
+/obj/wingrille_spawn/reinforced_crystal,
 /obj/cable/purple{
 	icon_state = "1-2"
 	},
-/turf/floor/plating,
+/turf/floor/plating/airless,
 /area/station/science/lab)
 "dfQ" = (
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon10,
@@ -3271,9 +3271,9 @@
 /turf/floor/grey,
 /area/station/security/checkpoint/customs)
 "dNG" = (
-/obj/wingrille_spawn/reinforced,
+/obj/wingrille_spawn/reinforced_crystal,
 /obj/machinery/atmospherics/pipe/simple/insulated/purge,
-/turf/floor/plating,
+/turf/floor/plating/airless,
 /area/station/science/lab)
 "dOh" = (
 /obj/machinery/clone_scanner,
@@ -12757,9 +12757,9 @@
 /turf/floor/plating,
 /area/station/maintenance/northeast)
 "oYP" = (
-/obj/wingrille_spawn/reinforced,
+/obj/wingrille_spawn/reinforced_crystal,
 /obj/machinery/atmospherics/pipe/simple/insulated/fuel,
-/turf/floor/plating,
+/turf/floor/plating/airless,
 /area/station/science/lab)
 "oZx" = (
 /obj/stool/bench/auto,
@@ -14634,6 +14634,10 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/southwest)
+"rdp" = (
+/obj/item/wrench,
+/turf/floor,
+/area/station/science/lab)
 "rds" = (
 /obj/grille/catwalk/jen,
 /obj/machinery/light/small/cool/very{
@@ -15270,10 +15274,6 @@
 	},
 /turf/floor/grime,
 /area/station/mining/refinery)
-"rWl" = (
-/obj/item/wrench,
-/turf/floor,
-/area/station/science/lab)
 "rWv" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -70770,7 +70770,7 @@ sWt
 azN
 xpa
 xtf
-rWl
+rdp
 abN
 huZ
 huZ
