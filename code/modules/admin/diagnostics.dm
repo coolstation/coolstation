@@ -1139,6 +1139,36 @@ proc/debug_map_apc_count(delim,zlim)
 					img.app.overlays += I
 */
 
+	blob_AI
+		name = "blob AI"
+		help = "Shows you what sense AI blobs have made of their surroundings."
+		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
+			for (var/mob/living/intangible/blob_overmind/ai/blobbo in mobs)
+				var/interesting = TRUE
+				if (theTurf == blobbo.destroying)
+					img.app.color = "#DD0000"
+					img.app.overlays = list(src.makeText("destroy", align_left=TRUE))
+					interesting = FALSE
+				else if (theTurf == blobbo.fortifying)
+					img.app.color = "#00DD00"
+					img.app.overlays = list(src.makeText("fortify", align_left=TRUE))
+					interesting = FALSE
+				else if (theTurf in blobbo.open)
+					img.app.overlays = list(src.makeText("open<br>-high", align_left=TRUE))
+					//img.app.desc = "open"
+				else if (theTurf in blobbo.open_medium)
+					img.app.overlays = list(src.makeText("open<br>-med", align_left=TRUE))
+					//img.app.desc = "open - med"
+				else if (theTurf in blobbo.open_low)
+					img.app.overlays = list(src.makeText("open<br>-low", align_left=TRUE))
+					//img.app.desc = "open - low"
+				else if (theTurf in blobbo.closed)
+					img.app.overlays = list(src.makeText("closed", align_left=TRUE))
+					//img.app.desc = "closed"
+				else interesting = FALSE
+				if (interesting)
+					img.app.color = blobbo.color
+
 /client/var/list/infoOverlayImages
 /client/var/datum/infooverlay/activeOverlay
 

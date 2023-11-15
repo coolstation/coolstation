@@ -2,6 +2,8 @@
 
 //flap flap gonna put cursed stuff here
 
+//TODO: blob AI debug overlay doesn't realistically support more than one AI (but maybe that's fine?)
+
 ///Discord joke that might not be funny two weeks from now (but if it isn't we can just yeet it)
 /obj/item/clothing/under/gimmick/bikinion
 	name = "\proper bikinion"
