@@ -1244,6 +1244,10 @@
 	name = "grimmy carpet"
 	},
 /area/station/crew_quarters/observatory)
+"brm" = (
+/obj/machinery/portable_atmospherics/scrubber,
+/turf/floor/plating,
+/area/station/maintenance/southeast)
 "brR" = (
 /obj/cable/purple{
 	icon_state = "2-4"
@@ -4208,7 +4212,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
-/obj/machinery/vending/paint,
+/obj/machinery/vending/capsule,
 /turf/floor/neutral/side{
 	dir = 1
 	},
@@ -5115,6 +5119,12 @@
 	},
 /turf/floor,
 /area/station/science/lab)
+"fEr" = (
+/obj/submachine/ATM/atm_alt{
+	dir = 4
+	},
+/turf/floor/specialroom/bar,
+/area/station/crew_quarters/bar)
 "fEK" = (
 /obj/wingrille_spawn,
 /turf/floor/plating,
@@ -7310,7 +7320,7 @@
 /turf/floor/black,
 /area/station/chapel/office)
 "ioL" = (
-/obj/machinery/vending/gunse,
+/obj/machinery/vending/paint/broken,
 /turf/floor/plating,
 /area/station/hallway/secondary/construction2)
 "ioQ" = (
@@ -11527,6 +11537,9 @@
 	pixel_x = 3;
 	pixel_y = 7
 	},
+/obj/window/reinforced{
+	dir = 2
+	},
 /turf/floor/grey/side,
 /area/station/crew_quarters/bar)
 "njL" = (
@@ -13241,6 +13254,9 @@
 /obj/table/reinforced/bar/auto,
 /obj/item/paper_bin{
 	pixel_y = 2
+	},
+/obj/window/reinforced{
+	dir = 2
 	},
 /turf/floor/grey/side,
 /area/station/crew_quarters/bar)
@@ -18538,7 +18554,7 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/obj/machinery/vending/capsule,
+/obj/machinery/vending/gunse,
 /turf/floor/orangeblack,
 /area/station/hallway/primary/northwest)
 "uVI" = (
@@ -21475,9 +21491,12 @@
 /turf/floor,
 /area/station/engine/singcore)
 "ylp" = (
-/obj/item/gun_exploder,
-/turf/floor/plating,
-/area/station/hallway/secondary/construction2)
+/obj/disposalpipe/switch_junction/left/west,
+/obj/reagent_dispensers/watertank/fountain,
+/turf/floor/orangeblack/side{
+	dir = 1
+	},
+/area/station/hallway/primary/northwest)
 "ylR" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4;
@@ -58190,7 +58209,7 @@ dCG
 tlG
 dmC
 sLU
-iXU
+ylp
 bpg
 aBO
 bpg
@@ -60950,7 +60969,7 @@ mla
 vcM
 ioL
 enj
-ylp
+vVw
 vVw
 vVw
 vVw
@@ -67600,8 +67619,8 @@ rwu
 dyN
 fUf
 bsj
-rwu
-huZ
+rwa
+aaP
 iPC
 huZ
 huZ
@@ -67902,8 +67921,8 @@ rwu
 sJx
 rwa
 snD
-rwu
-huZ
+rwa
+aaP
 iPC
 huZ
 huZ
@@ -68204,8 +68223,8 @@ nCg
 wqc
 vzb
 fTZ
-rwu
-huZ
+rwa
+aaP
 iPC
 huZ
 huZ
@@ -68506,8 +68525,8 @@ rwu
 uLN
 tqo
 sES
-rwu
-huZ
+brm
+aaP
 iPC
 huZ
 huZ
@@ -75721,7 +75740,7 @@ vCW
 vCW
 tlj
 swI
-qyp
+fEr
 iGz
 sxG
 sxG
