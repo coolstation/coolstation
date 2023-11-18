@@ -6471,6 +6471,13 @@
 "hel" = (
 /turf/floor/specialroom/chapel,
 /area/station/chapel/sanctuary)
+"heU" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/obj/vehicle/forklift,
+/turf/floor,
+/area/station/quartermaster/cargobay)
 "hfg" = (
 /obj/disposalpipe/segment/morgue,
 /obj/item/device/radio/intercom/medical{
@@ -14857,7 +14864,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/vehicle/forklift,
+/obj/machinery/computer/barcode/qm/no_belthell,
 /turf/floor,
 /area/station/quartermaster/cargobay)
 "qKw" = (
@@ -55549,7 +55556,7 @@ pVd
 iaS
 oNO
 oNO
-yke
+heU
 sVQ
 oLK
 kgj
