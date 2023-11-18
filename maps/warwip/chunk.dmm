@@ -12572,6 +12572,9 @@
 /area/station/solar/east)
 "ory" = (
 /obj/stool,
+/obj/cable{
+	icon_state = "1-2"
+	},
 /turf/floor,
 /area/station/security/brig)
 "orD" = (
@@ -15404,16 +15407,14 @@
 /turf/floor/plating,
 /area/station/maintenance/inner/west)
 "rlG" = (
-/obj/wingrille_spawn/reinforced,
+/obj/disposalpipe/segment/food{
+	dir = 4
+	},
 /obj/cable{
-	icon_state = "0-2"
+	icon_state = "1-2"
 	},
-/obj/cable,
-/obj/window/reinforced{
-	dir = 2
-	},
-/turf/floor/plating,
-/area/station/crew_quarters/market)
+/turf/floor,
+/area/station/security/brig)
 "rlO" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/access_spawn/maint,
@@ -20126,6 +20127,11 @@
 /obj/disposalpipe/trunk{
 	dir = 4
 	},
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/floor,
 /area/station/security/brig)
 "wFz" = (
@@ -20375,9 +20381,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/window/reinforced{
-	dir = 2
-	},
+/obj/cable,
 /turf/floor/plating,
 /area/station/security/brig)
 "wXt" = (
@@ -60707,10 +60711,10 @@ iqY
 bJT
 aFc
 wEU
-uGk
+rlG
 ory
 wWL
-rlG
+hBK
 hBK
 emO
 fUX
