@@ -3894,6 +3894,15 @@
 	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
+"emO" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor,
+/area/station/crew_quarters/market)
 "eng" = (
 /obj/machinery/conveyor_switch{
 	id = "garbage";
@@ -5475,6 +5484,9 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/cable{
+	icon_state = "1-4"
+	},
 /turf/floor,
 /area/station/crew_quarters/market)
 "fVJ" = (
@@ -6600,6 +6612,7 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
+/obj/machinery/light/small,
 /turf/floor/grime,
 /area/station/mining/refinery)
 "hqn" = (
@@ -6748,6 +6761,14 @@
 /obj/disposalpipe/segment/mail,
 /turf/floor/orangeblack,
 /area/station/hallway/primary/central)
+"hBK" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/cable,
+/turf/floor/plating,
+/area/station/crew_quarters/market)
 "hCv" = (
 /obj/disposalpipe/segment/mail,
 /turf/floor/specialroom/chapel{
@@ -14466,6 +14487,9 @@
 /obj/item/device/radio/intercom/botany{
 	dir = 1
 	},
+/obj/machinery/plantpot{
+	anchored = 1
+	},
 /turf/floor/grass,
 /area/station/hydroponics/bay)
 "qqy" = (
@@ -15186,6 +15210,9 @@
 /area/station/solar/east)
 "rbj" = (
 /obj/wingrille_spawn/reinforced,
+/obj/cable{
+	icon_state = "0-4"
+	},
 /turf/floor/plating,
 /area/station/security/brig)
 "rbm" = (
@@ -20329,6 +20356,16 @@
 	},
 /turf/floor/plating,
 /area/station/mining/refinery)
+"wWL" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/cable{
+	icon_state = "0-8"
+	},
+/turf/floor/plating,
+/area/station/security/brig)
 "wXt" = (
 /obj/cable/purple{
 	icon_state = "2-4"
@@ -60658,10 +60695,10 @@ aFc
 wEU
 uGk
 ory
-rbj
-eTe
-eTe
-lxe
+wWL
+hBK
+hBK
+emO
 fUX
 yjY
 fzP
@@ -73015,7 +73052,7 @@ nVs
 cuA
 jJL
 ujq
-jJL
+ujq
 ujq
 ujq
 jJL
@@ -73619,7 +73656,7 @@ nVs
 mfg
 jJL
 eno
-jJL
+ujq
 ujq
 eno
 jJL
@@ -74223,7 +74260,7 @@ aAm
 thB
 jJL
 ujq
-jJL
+ujq
 ujq
 ujq
 jJL
@@ -74524,9 +74561,9 @@ uVq
 mAj
 thB
 vQG
-ujq
-kOC
-ujq
+jJL
+jJL
+jJL
 ujq
 fFk
 pYl
