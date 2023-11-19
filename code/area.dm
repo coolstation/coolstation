@@ -4050,6 +4050,7 @@ ABSTRACT_TYPE(/area/mining)
 	power_light = 0
 	power_environ = 0
 	is_atmos_simulated = TRUE
+	is_construction_allowed = TRUE
 
 	proc/SetName(var/name)
 		src.name = name
