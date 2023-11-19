@@ -4397,7 +4397,9 @@
 /obj/decal/tile_edge/stripe{
 	icon_state = "delivery2"
 	},
-/obj/item/device/radio/intercom/telescience,
+/obj/item/device/radio/intercom/telescience{
+	listening = 0
+	},
 /turf/floor/purple,
 /area/station/science/teleporter)
 "eUY" = (
@@ -16200,6 +16202,7 @@
 	icon_state = "tube1"
 	},
 /obj/table/auto,
+/obj/item/storage/box/cutlery,
 /turf/floor/grey,
 /area/station/crew_quarters/kitchen)
 "ssF" = (
