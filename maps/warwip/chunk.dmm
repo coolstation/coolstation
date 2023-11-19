@@ -4047,6 +4047,13 @@
 /obj/machinery/light/runway_light/delay3,
 /turf/space,
 /area/space)
+"exF" = (
+/obj/table/auto,
+/obj/item/storage/firstaid/toxin,
+/turf/floor/neutral/side{
+	dir = 4
+	},
+/area/station/engine/singcore)
 "eyh" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4;
@@ -8180,6 +8187,7 @@
 	icon_state = "1-2"
 	},
 /obj/rack,
+/obj/item/storage/firstaid/old,
 /turf/floor/plating,
 /area/station/engine/power)
 "jfC" = (
@@ -11466,6 +11474,10 @@
 /obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/science/artifact)
+"ndv" = (
+/obj/decal/cleanable/nitrotriiodide,
+/turf/floor/plating/airless,
+/area/space)
 "ndy" = (
 /obj/machinery/atmospherics/unary/cryo_cell/south,
 /obj/disposalpipe/segment/vertical,
@@ -12563,6 +12575,7 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
+/obj/submachine/cargopad/engineering,
 /turf/floor,
 /area/station/engine/singcore)
 "oqy" = (
@@ -13531,6 +13544,7 @@
 	dir = 4;
 	icon_state = "tube1"
 	},
+/obj/table/auto,
 /turf/floor/neutral/side{
 	dir = 4
 	},
@@ -15008,6 +15022,7 @@
 	pixel_x = 8;
 	pixel_y = 2
 	},
+/obj/item/electronics/soldering,
 /turf/floor,
 /area/station/engine/inner)
 "qSI" = (
@@ -17018,6 +17033,7 @@
 /area/station/crew_quarters/bar)
 "tlk" = (
 /obj/storage/secure/closet/engineering/electrical,
+/obj/item/electronics/soldering,
 /turf/floor,
 /area/station/engine/engineering)
 "tlG" = (
@@ -18769,11 +18785,10 @@
 /turf/floor/orangeblack,
 /area/station/crew_quarters/stockex)
 "vhb" = (
-/obj/cable{
-	icon_state = "1-2"
+/obj/machinery/manufacturer/engineering,
+/turf/floor/neutral/side{
+	dir = 4
 	},
-/obj/submachine/cargopad/engineering,
-/turf/floor,
 /area/station/engine/singcore)
 "vhp" = (
 /obj/table/auto,
@@ -55542,7 +55557,7 @@ eZZ
 eZZ
 gDc
 eZZ
-vhb
+eZZ
 eZZ
 eZZ
 oqm
@@ -55845,7 +55860,7 @@ pcG
 ozf
 xbS
 plv
-xbS
+exF
 xaE
 bdT
 rWv
@@ -60071,7 +60086,7 @@ bsO
 xbS
 xbS
 nzf
-xbS
+vhb
 fXR
 oem
 xsP
@@ -72822,7 +72837,7 @@ ohf
 csB
 qZT
 jXw
-sBc
+ndv
 huZ
 fDn
 huZ
