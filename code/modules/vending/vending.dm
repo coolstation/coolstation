@@ -1544,7 +1544,8 @@
 		"Spooky Dan's - it's altogether ooky!",
 		"Everyone can see Orange-Aid is best!",
 		"Decirprevo. The sophisticate's bottled water.",
-		"Mr. Piss - Tastes normal!")
+		"Mr. Piss - Tastes normal!",
+		"Aperitivo analcolico a base di carne - Cappy Cola!")
 
 		light_r =0.5
 		light_g = 0.5
@@ -1557,6 +1558,7 @@
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/spooky, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/spooky2,10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/pee, 10, cost=PAY_UNTRAINED/6)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/italian, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/bottledwater, 10, cost=PAY_UNTRAINED/4)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/random, 10, cost=PAY_UNTRAINED/10)
 
