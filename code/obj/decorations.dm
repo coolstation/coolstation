@@ -123,6 +123,60 @@
 			. = ..()
 			src.dir = pick(alldirs)
 
+/obj/rock/
+	name = "rock"
+	desc = "Some lil' rocks."
+	icon = 'icons/misc/rocks.dmi'
+	icon_state = "other"
+	anchored = 1
+	density = 0
+
+	lava1
+		name = "rocks"
+		density = 0
+		icon_state = "lava1"
+	lava2
+		name = "rocks"
+		density = 0
+		icon_state = "lava2"
+
+	lava3
+		name = "rocks"
+		density = 0
+		icon_state = "lava3"
+
+	lava4
+		name = "rocks"
+		density = 0
+		icon_state = "lava4"
+
+	lava5
+		name = "rocks"
+		density = 0
+		icon_state = "lava5"
+
+	lava6
+		name = "rocks"
+		density = 0
+		icon_state = "lava6"
+
+	lava7
+		name = "rocks"
+		density = 0
+		icon_state = "lava7"
+
+	lava8
+		name = "rocks"
+		density = 1
+		icon_state = "lava8"
+
+	lava9
+		name = "rocks"
+		density = 0
+		icon_state = "lava9"
+
+
+
 /obj/shrub
 	name = "shrub"
 	icon = 'icons/misc/worlds.dmi'

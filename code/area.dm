@@ -46,6 +46,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	// To help decided objective difficulty for spy thieves
 	var/spy_secure_area = 0
 
+	//fucking ANTS getting EVERYWHERE
+	var/no_ants = 1
+
 	/// for escape checks
 	var/is_centcom = 0
 
@@ -480,6 +483,11 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	is_atmos_simulated = FALSE
 	is_construction_allowed = TRUE
 
+/area/space/solariumjoke
+	sound_loop_1 = 'sound/machines/lavamoon_plantalarm.ogg'
+	ambient_light = "#FF7B07"
+	is_construction_allowed = FALSE
+
 // zewaka - adventure/technical/admin areas below //
 
 /// Unless you are an admin, you may not pass GO nor collect $200
@@ -876,6 +884,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	icon_state = "donutbridge"
 	sound_environment = EAX_ALLEY
 	do_not_irradiate = 1
+	is_construction_allowed = FALSE
 
 /area/otherdimesion //moved from actuallyKeelinsStuff.dm
 	requires_power = 0
@@ -883,6 +892,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	force_fullbright = 1
 	name = "Somewhere"
 	icon_state = "shuttle2"
+	is_construction_allowed = FALSE
 
 /area/someplace
 	name = "some place"
@@ -896,6 +906,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	expandable = 0
 	sound_group = "some place"
 	sound_loop_1 = 'sound/ambience/spooky/Somewhere_Tone.ogg'
+	is_construction_allowed = FALSE
 
 /area/someplacehot
 	name = "some place"
@@ -909,6 +920,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	sound_group = "some place hot"
 	sound_loop_1 = 'sound/ambience/loop/Fire_Medium.ogg'
 	sound_loop_1_vol = 75
+	is_construction_allowed = FALSE
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		..()
@@ -929,6 +941,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	sound_environment = EAX_LIVINGROOM
 	teleport_blocked = 1
 	expandable = 0
+	is_construction_allowed = FALSE
 
 /*/area/factory
 	name = "Derelict Robot Factory"
@@ -986,6 +999,7 @@ ABSTRACT_TYPE(/area/adventure)
 	icon_state = "yellow"
 	expandable = 0
 	is_atmos_simulated = TRUE
+	is_construction_allowed = FALSE
 
 /area/buddyfactory/mainframe
 	name = "Old Computer Core"
@@ -1010,6 +1024,7 @@ ABSTRACT_TYPE(/area/adventure)
 	skip_sims = 1
 	sims_score = 50
 	is_atmos_simulated = TRUE
+	is_construction_allowed = FALSE
 
 	var/list/soundSubscribers = list()
 
@@ -1199,7 +1214,6 @@ ABSTRACT_TYPE(/area/adventure)
 	requires_power = FALSE
 	is_atmos_simulated = TRUE
 
-
 ABSTRACT_TYPE(/area/diner)
 /area/diner
 	sound_environment = EAX_HALLWAY
@@ -1210,7 +1224,7 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
 	sound_loop_1_vol = -1
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 10
+	sound_loop_2_vol = 15
 	sound_group = "diner" //the music's kind of everywhere isn't it
 	sound_group_varied = 1
 	//check shuttles.dm for the diner
@@ -1238,7 +1252,7 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
 	sound_loop_1_vol = 20
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 70
+	sound_loop_2_vol = 65
 	sound_group_varied = 1
 
 /area/diner/hallway/docking
@@ -1248,6 +1262,8 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner/backroom
 	name = "Space Diner Backroom"
 	icon_state = "green"
+	sound_loop_1_vol = 20
+	sound_loop_2_vol = 50
 
 /area/diner/solar
 	name = "Space Diner Solar Control"
@@ -1256,6 +1272,7 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner/motel
 	name = "Space Motel"
 	icon_state = "orange"
+	sound_loop_2_vol = 25
 
 /area/diner/motel/observatory
 	name = "Motel Observatory"
@@ -1272,6 +1289,7 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner/arcade
 	name = "Temporary Gun Range"
 	icon_state = "red"
+	sound_loop_2_vol = 25
 
 /area/tech_outpost
 	name = "Tech Outpost"
@@ -1531,8 +1549,6 @@ ABSTRACT_TYPE(/area/sim)
 	sound_group = "vr"
 	is_construction_allowed = FALSE
 
-
-
 /area/sim/area1
 	name = "Vspace area 1"
 	icon_state = "simA1"
@@ -1602,6 +1618,7 @@ ABSTRACT_TYPE(/area/station)
 	var/tmp/initial_structure_value = 0
 #ifdef MOVING_SUB_MAP
 	filler_turf = "/turf/space/fluid/manta"
+	no_ants = 0
 
 	New()
 		..()
@@ -3475,6 +3492,7 @@ ABSTRACT_TYPE(/area/station/hangar)
 	icon_state = "hydro"
 	mail_tag = "Hydroponics"
 	workplace = 1
+	no_ants = 1
 
 /area/station/hydroponics/bay
   name = "Hydroponics Bay"
@@ -3484,6 +3502,7 @@ ABSTRACT_TYPE(/area/station/hangar)
 	name = "Hydroponics Lobby"
 	icon_state = "green"
 	mail_tag = "Hydroponics Lobby"
+	no_ants = 0
 
 /area/station/ranch
 	name = "Ranch"

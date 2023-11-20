@@ -399,6 +399,51 @@
 	req_access = list(access_juicer_grease)
 	color = TOXINS
 
+/obj/access_spawn/soviet
+	name = "soviet public access spawn"
+	req_access = list(access_juicer)
+	color = SECURITY
+
+/obj/access_spawn/soviet/private
+	name = "soviet private access spawn"
+	req_access = list(access_juicer)
+	color = SECURITY
+
+/obj/access_spawn/soviet/private/mining
+	name = "soviet mining access spawn"
+	req_access = list(access_juicer)
+	color = ENGINEERING
+
+/obj/access_spawn/soviet/private/engineering
+	name = "soviet engineering access spawn"
+	req_access = list(access_juicer)
+	color = ENGINEERING
+
+/obj/access_spawn/soviet/private/cargo
+	name = "soviet cargo access spawn"
+	req_access = list(access_juicer)
+	color = CARGO
+
+/obj/access_spawn/soviet/private/medical
+	name = "soviet medical access spawn"
+	req_access = list(access_juicer)
+	color = MEDICAL
+
+/obj/access_spawn/soviet/private/research
+	name = "soviet research access spawn"
+	req_access = list(access_juicer)
+	color = RESEARCH
+
+/obj/access_spawn/soviet/private/security
+	name = "soviet security access spawn"
+	req_access = list(access_juicer)
+	color = SECURITY
+
+/obj/access_spawn/soviet/private/command
+	name = "soviet command access spawn"
+	req_access = list(access_juicer)
+	color = SECURITY
+
 #undef MEDICAL
 #undef SECURITY
 #undef MORGUE_BLACK

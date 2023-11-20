@@ -619,7 +619,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		final_score = 100
 
 	boutput(world, score_tracker.escapee_facts())
-	boutput(world, score_tracker.heisenhat_stats())
+	//boutput(world, score_tracker.heisenhat_stats())
 	//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] ai law display")
 	boutput(world, "<b>AIs and Cyborgs had the following laws at the end of the game:</b><br>[ticker.centralized_ai_laws.format_for_logs()]")
 

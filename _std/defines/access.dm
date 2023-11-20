@@ -121,8 +121,8 @@
 //soviet access (mostly for Fita)
 #define access_soviet_public 100
 #define access_soviet_private 101
-#define access_soviet_miner 102
-#define access_soviet_engineer 103
+#define access_soviet_mining 102
+#define access_soviet_engineering 103
 #define access_soviet_cargo 104
 #define access_soviet_restricted 105 //right now: Fita elevators
 #define access_soviet_medical 106

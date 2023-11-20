@@ -192,31 +192,16 @@ mob/living/carbon/human/cluwne/satan/megasatan //someone can totally use this fo
 		W.transition_task = W
 		default_task = W
 
-
-// how you gonna have father ted and father jack and not father dougal? smh
-
-/mob/living/carbon/human/fatherted
-	New()
-		..()
-		src.equip_new_if_possible(/obj/item/clothing/shoes/red, slot_shoes)
-		src.equip_new_if_possible(/obj/item/clothing/under/rank/chaplain, slot_w_uniform)
-
-	initializeBioholder()
-		. = ..()
-		bioHolder.mobAppearance.gender = "male"
-		src.real_name = "Father Ted"
-
-/mob/living/carbon/human/fatherjack
+/mob/living/carbon/human/fathergraham
 	New()
 		..()
 		src.equip_new_if_possible(/obj/item/clothing/shoes/red, slot_shoes)
 		src.equip_new_if_possible(/obj/item/clothing/under/misc/chaplain, slot_w_uniform)
-		src.traitHolder.addTrait("training_chaplain")
 
 	initializeBioholder()
 		. = ..()
 		bioHolder.mobAppearance.gender = "male"
-		src.real_name = "Father Jack"
+		src.real_name = "Father Graham"
 		bioHolder.bloodType = "B+"
 
 	Life(datum/controller/process/mobs/parent)
@@ -224,8 +209,9 @@ mob/living/carbon/human/cluwne/satan/megasatan //someone can totally use this fo
 			return 1
 
 		if(prob(1) && !src.stat)
-			SPAWN_DBG(0) src.say(pick( "DRINK!", "FECK!", "ARSE!", "GIRLS!","That would be an ecumenical matter."))
+			SPAWN_DBG(0) src.say(pick("My wife left me.","My wife left me!","MY WIFE LEFT ME.", "I'm not mad about it. STOP SAYING I'M MAD ABOUT IT!", "I'm just really out of steam right now..."))
 
+	/*
 	attackby(obj/item/W, mob/M)
 		if (istype(W, /obj/item/paper/postcard/owlery))
 			if(ON_COOLDOWN(src, "attackby_chatter", 3 SECONDS)) return
@@ -234,7 +220,10 @@ mob/living/carbon/human/cluwne/satan/megasatan //someone can totally use this fo
 				say("Aye! Bill won't stop talking about it!")
 			return
 		..()
+	*/
 
+	//special response to a dracula
+	/*
 	was_harmed(var/mob/M as mob, var/obj/item/weapon = 0, var/special = 0, var/intent = null)
 		. = ..()
 		if (special) //vamp or ling
@@ -242,6 +231,7 @@ mob/living/carbon/human/cluwne/satan/megasatan //someone can totally use this fo
 			src.ai_state = AI_ATTACKING
 			src.ai_threatened = world.timeofday
 			src.ai_target = M
+		*/
 
 		//Bartender isnt' used right now.
 		//Whoever does eventually put him back in the game : Use a global list of bartenders or something. Dont check all_viewers

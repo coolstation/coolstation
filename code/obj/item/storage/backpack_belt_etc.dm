@@ -606,11 +606,10 @@
 		spawn_contents = list(/obj/item/baton, /obj/item/reagent_containers/food/snacks/donut/custom/robust = 2,  /obj/item/reagent_containers/emergency_injector/morphine = 4)
 
 	control
-		spawn_contents = list(/obj/item/gun/modular/NT/long, //energy/tasershotgun,
+		spawn_contents = list(/obj/item/gun/modular/NT/long,
 			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/capacitive/ten, /obj/item/stackable_ammo/capacitive/three)
 		New()
 			..()
-			can_hold += /obj/item/gun/energy/tasershotgun
 
 	assistant
 		spawn_contents = list(/obj/item/barrier, /obj/item/device/detective_scanner, /obj/item/device/ticket_writer, /obj/item/stackable_ammo/capacitive/three)

@@ -380,43 +380,6 @@
 		update_icon()
 
 
-
-//////////////////////// Taser Shotgun
-//Azungar's Improved, more beefy weapon for security that can only be acquired via QM.
-/obj/item/gun/energy/tasershotgun
-	name = "Taser Shotgun"
-	icon_state = "tasers100"
-	desc = "A weapon that produces an cohesive electrical charge that stuns its target. Now in a shotgun format."
-	item_state = "tasers"
-	cell_type = /obj/item/ammo/power_cell/med_power
-	force = 8.0
-	two_handed = 1
-	can_dual_wield = 0
-	shoot_delay = 6
-	muzzle_flash = "muzzle_flash_elec"
-
-	New()
-		set_current_projectile(new/datum/projectile/special/spreader/tasershotgunspread)
-		projectiles = list(current_projectile,new/datum/projectile/energy_bolt/tasershotgun)
-		..()
-
-	update_icon()
-		..()
-		var/list/ret = list()
-		if(SEND_SIGNAL(src, COMSIG_CELL_CHECK_CHARGE, ret) & CELL_RETURNED_LIST)
-			var/ratio = min(1, ret["charge"] / ret["max_charge"])
-			ratio = round(ratio, 0.25) * 100
-			set_icon_state("tasers[ratio]")
-			return
-
-	attack_self()
-		..()
-		if(istype(current_projectile, /datum/projectile/energy_bolt))
-			shoot_delay = 4
-		else
-			shoot_delay = 6
-
-
 ////////////////////////////////////VUVUV
 /obj/item/gun/energy/vuvuzela_gun
 	name = "amplified vuvuzela"

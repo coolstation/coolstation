@@ -8,3 +8,5 @@
 #define STOOL_STAND (1<<2)
 //you can fix someone's cuffs to it
 #define STOOL_SECURE (1<<3)
+//you can tuck someone in to bed (aw)
+#define BED_TUCK (1<<3)

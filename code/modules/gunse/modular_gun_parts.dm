@@ -341,6 +341,15 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon = 'icons/obj/items/modular_guns/64.dmi'
 	bulkiness = 3
 
+/obj/item/gun_parts/barrel/NT/long/padded
+	name = "padded long barrel"
+	desc = "A cylindrical barrel, padded."
+	spread_angle = -1
+	name_addition = "club"
+	icon_state = "nt_guarded"
+	//overlay_x = 5
+	bulkiness = 4
+
 /obj/item/gun_parts/barrel/foss
 	name = "\improper FOSS lensed barrel"
 	desc = "A cylindrical array of lenses to focus laser blasts."
@@ -386,6 +395,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "BLUNDER"
 	icon_state = "juicer_blunderbuss"
 	length = 12
+	bulkiness = 1
 	//overlay_y = -1
 
 /obj/item/gun_parts/barrel/juicer/chub
@@ -395,6 +405,17 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	length = 25
 	icon_state = "juicer_chub"
 	name_addition = "BUSTER"
+	bulkiness = 1
+
+/obj/item/gun_parts/barrel/juicer/ribbed
+	name = "\improper KNOBBIN Barrel"
+	part_DRM = GUN_JUICE | GUN_NANO
+	spread_angle = 4
+	jam_frequency_fire = 8
+	length = 31
+	icon_state = "juicer_ribbed"
+	name_addition = "Genthlemaenne's"
+	bulkiness = 2
 
 /obj/item/gun_parts/barrel/juicer/longer
 	name = "\improper SNIPA Barrel"
@@ -497,7 +518,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	name_addition = "sturdy"
 	icon_state = "nt_blue"
-	overlay_x = 0
+	overlay_x = -10
 	overlay_y = 1
 	stock_shoulder = 1
 

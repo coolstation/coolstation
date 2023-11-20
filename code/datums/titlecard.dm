@@ -17,7 +17,8 @@
 	var/video_url = "images/titlecards/console.mp4"
 	var/is_video = FALSE
 	#elif defined(MAP_OVERRIDE_GEHENNA) //quick and easy signifier to see if your secrets submodule is active and working
-	var/image_url = "images/titlecards/coolstation.gif"
+	//var/image_url = "images/titlecards/coolstation.gif"
+	var/image_url = "images/titlecards/console.gif"
 	var/video_url = "images/titlecards/coolstation.mp4"
 	var/is_video = FALSE
 	#else
@@ -27,26 +28,25 @@
 	#endif
 
 	#if defined(SECRETS_ENABLED) //quick and easy signifier to see if your secrets submodule is active and working
-	add_html = "<span style=\"position:absolute;bottom:3px;right:3px;color:white;opacity:0.5;\">Secrets enabled!</span>"
+	add_html = "<span style=\"position:fixed;bottom:3px;right:3px;color:white;opacity:0.5;font-size:75%;\">Secrets enabled!</span>"
 	#endif
 
 	//add a permanent disclaimer to the top
 	var/disclaimer_text = {"<span style="font-size:120%;"><b>PHOTOSENSITIVITY WARNING</b>: <br>
-							This game has sudden flashing lights and rapidly cycling colors which cannot be disabled.</span><br>
-							<br>
-							<font color="#4F5FFF">content warning:</font><br>
-							This game contains violence, suicide, gun's, drugs, alcohol and spiders,<br>
-							all depicted in a non-serious or (relatively) non-graphic way.<br>
-							This game also contains farting, screaming, gibs, <font color="#7B3F00">poo</font>,<br>
-							explosions, gas station boner pills, and <font color="red">It</font>ali<font color="green">ans</font>, in a super serious way."}
+							This game has sudden flashing lights and rapidly cycling colors which cannot be disabled.</span><br>"}
 
 	//basic ground rules for new players
 	var/agreement_text = {"
 							<span style="font-size:bigger"><b>PHOTOSENSITIVITY WARNING</b>: This game has sudden flashing lights and rapidly cycling colors that cannot be disabled.
 							If you are sensitive to motion graphics or certain patterns, please use discretion or do not play this game.</span>
-							<br><br>
-							Also this is an 18+ server. You must be at least 18 years old to play here. Not for erotic themes, but because this is a space station for adults.
-							<br><br>
+							<br>
+							<font color="#4F5FFF">content warning:</font><br>
+							This game contains violence, suicide, gun's, drugs, alcohol and spiders,<br>
+							all depicted in a non-serious or (relatively) non-graphic way.<br>
+							This game also contains farting, screaming, gibs, <font color="#7B3F00">poo</font>,<br>
+							explosions, gas station boner pills, and <font color="red">It</font>ali<font color="green">ans</font>, in a super serious way.<br>
+							Also this is an 18+ server. You must be at least 18 years old to play here. Not for erotic themes, but because this is a space station for adults.<br>
+
 							To play on this server you must abide by the <a href=\"byond://winset?command=Rules\">Rules</a>.<br>"}
 
 	//novelty items
@@ -142,8 +142,8 @@
 						text-align:center;
 						color:#fff;
 						text-shadow: -1px -1px 0 #777, 1px -1px 0 #777, -1px 1px 0 #777, 1px 1px 0 #777;
-						font:1em 'PxPlus IBM VGA9';
-						font-size:60%;
+						font:1.2em 'PxPlus IBM VGA9';
+						font-size:75%;
 						margin-top:10px;
 						top:0;
 						height:12%;
@@ -178,7 +178,7 @@
 						white-space:pre;
 						color:#fff;
 						text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
-						font:1em 'PxPlus IBM VGA9';
+						font:1.2em 'PxPlus IBM VGA9';
 						-webkit-text-stroke:0.083em black;
 					}
 					a{
@@ -186,19 +186,24 @@
 					}
 					#leftside{
 						position:fixed;
-						left:0;
-						bottom:0;
+						left:2%;
+						bottom:2%;
+						text-align:center;
 					}
 					#status,#timer{
-						text-align:center;
+						right:5%;
 						position:fixed;
-						right:0;
-						bottom:0;
-						height:12%;
-						width:40%;
+						right:5%;
+
+						width:auto;
+						text-align:center;
+					}
+					#status{
+						bottom:2%;
 					}
 					#timer{
-						bottom:15%;
+						text-align:center;
+						bottom: 8%;
 					}
 				</style>
 			</head>
@@ -219,22 +224,23 @@
 					</video>
 		"}
 
-	last_pregame_html += {"
-				</div>
-				<div id="disclaimer">
-				[src.disclaimer_text]
-				<div id="overlay">
-				</div>
-		"}
+	if (src.disclaimer_text)
+		last_pregame_html += {"
+					</div>
+					<div id="disclaimer">
+					[src.disclaimer_text]
+					<div id="overlay">
+					</div>
+			"}
 
 	last_pregame_html += {"
+				[src.add_html]
 				<div id="status" class="area">
 				</div>
 				<div id="timer" class="area">
 				</div>
 				<div id="leftside" class="area">
 				</div>
-				[src.add_html]
 			</body>
 		</html>
 		"}

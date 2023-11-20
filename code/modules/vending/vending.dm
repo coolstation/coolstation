@@ -1488,7 +1488,8 @@
 		"A Dr. Pubber a day keeps the boredom away!",
 		"Cool, refreshing Lime-Aid - it's good for you!",
 		"Grones Soda! Where has your bottle been today?",
-		"Decirprevo. The sophisticate's bottled water.")
+		"Decirprevo. The sophisticate's bottled water.",
+		"Tell your friends! Mountain Poo is back!")
 
 		light_r =1
 		light_g = 0.4
@@ -1499,6 +1500,7 @@
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/red, 10, cost=PAY_UNTRAINED/10)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/pink, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/lime, 10, cost=PAY_UNTRAINED/6)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/poo, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/grones, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/bottledwater, 10, cost=PAY_UNTRAINED/4)
 			product_list += new/datum/data/vending_product("/obj/item/reagent_containers/food/drinks/cola/random", 10, cost=PAY_UNTRAINED/10) //does this even work??
@@ -1510,7 +1512,8 @@
 		"The taste of nature!",
 		"Spooky Dan's - it's altogether ooky!",
 		"Everyone can see Orange-Aid is best!",
-		"Decirprevo. The sophisticate's bottled water.")
+		"Decirprevo. The sophisticate's bottled water.",
+		"Mr. Piss - Tastes normal!")
 
 		light_r =0.5
 		light_g = 0.5
@@ -1522,6 +1525,7 @@
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/orange, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/spooky, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/spooky2,10, cost=PAY_UNTRAINED/6)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/pee, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/bottledwater, 10, cost=PAY_UNTRAINED/4)
 			product_list += new/datum/data/vending_product("/obj/item/reagent_containers/food/drinks/cola/random", 10, cost=PAY_UNTRAINED/10)
 
@@ -3128,6 +3132,108 @@
 			else
 				boutput(usr, "<span class='alert'>There is no tank to fill up!</span>")
 
+
+//Let me add some garbage
+/obj/machinery/vending/juice
+	name = "\improper JuiceSluice 10000"
+	desc = "Surprisingly, unrelated to Juicerdom."
+	icon_state = "juice"
+	//I know these don't match I can't be arsed right this moment
+	icon_panel = "standard-panel"
+	icon_off = "standard-off"
+	icon_broken = "standard-broken"
+	icon_fallen = "standard-fallen"
+	deconstruct_flags = DECON_CROWBAR | DECON_WRENCH | DECON_MULTITOOL
+	can_hack = FALSE
+	pay = TRUE
+	acceptcard = TRUE
+	vend_delay = 0
+	slogan_list = list("JUICE! JUICE! JUICE!",
+	"Quench thine thirst!",
+	"Get your daily deluge going!",
+	"Not the worst you've ever tasted!")
+	var/reagent_id
+
+	//var/reservoir = 10000 //units
+
+	var/target_deluge = 100 //units
+
+	var/cost_per_unit = 1 //in credittes
+
+	light_r =0.4
+	light_g = 0.4
+	light_b = 1
+
+	New()
+		..()
+		if (!reagent_id)
+			reagent_id = pick("juice_lime", "juice_lemon", "juice_orange","juice_cran", "juice_cherry", "juice_pineapple", "juice_tomato")
+			reagents = new(10000)
+			reagents.add_reagent(reagent_id, reagents.maximum_volume)
+			cost_per_unit = rand(1,5)
+
+	proc/fill() //for a sense of the word :)
+		var/turf/T = get_turf(src)
+		reagents.reaction(T, TOUCH, target_deluge)
+		//reservoir -= target_deluge
+		target_deluge = clamp(target_deluge, 0, reagents.total_volume)
+
+	attack_hand(mob/user as mob)
+		if (status & (BROKEN|NOPOWER))
+			return
+		if (usr.stat || usr.restrained())
+			return
+
+		src.add_dialog(user)
+		var/html = ""
+		html += "<TT><b>Welcome to the sluice!<i> BUY SOME JUICE!</i></b><br>"
+		//credits
+		html += "<b>Current balance: <a href='byond://?src=\ref[src];return_credits=1'>[src.credit] credits</a></b><br>"
+		//bank balance
+		if (src.scan)
+			var/datum/data/record/account = null
+			account = FindBankAccountById(src.scan.registered_id)
+			html += "<b>Current ID:</b> <a href='?src=\ref[src];logout=1'>[src.scan]</a><br />"
+			html += "<b>Credits on Account: [account.fields["current_money"]] Credits</b> <br>"
+		else
+			html += "<b>Current ID:</b> None<br>"
+
+		//reservoir
+		html += "We have <font color = 'blue'><b>[reagents.total_volume]</b></font> units of <font color = 'blue'><b>[reagents.get_master_reagent_name()]</b></font> available for <br><font color = 'blue'><b>[cost_per_unit] [cost_per_unit == 1 ? "credit" : "credits"]</b></font> per unit!!<br /><br>"
+
+		html += "<font color = 'red'>\"Gimme <a href='?src=\ref[src];adjust_target=1'>[target_deluge] units</a> of that juice, my friend.\"</font><br>"
+		html += "<a href='?src=\ref[src];JUICE=1'>OPEN THE SLUICE ([cost_per_unit * target_deluge] credits)</a>"
+
+		user.Browse(html, "window=juice_vending")
+		onclose(user, "vending")
+
+	Topic(href, href_list)
+		..()
+
+
+		if(href_list["adjust_target"])
+			var/change = input(usr,"Target Amount:","Enter thirst",target_deluge) as num
+			if(isnum(change))
+				target_deluge = clamp(change, 0, reagents.total_volume)
+				src.updateUsrDialog()
+
+		if(href_list["JUICE"]) //open the floodgates
+			var/cost = cost_per_unit * target_deluge
+			if(credit >= cost)
+				src.credit -= cost
+				src.fill()
+				boutput(usr, "<span class='notice'>Thank you for your purchase.</span>")
+				src.updateUsrDialog()
+				return
+			else if(scan)
+				var/datum/data/record/account = FindBankAccountById(src.scan.registered_id)
+				if (account && account.fields["current_money"] >= cost)
+					account.fields["current_money"] -= cost
+					src.fill()
+					boutput(usr, "<span class='notice'>Thank you for your purchase.</span>")
+					src.updateUsrDialog()
+					return
+			boutput(usr, "<span class='alert'>Insufficient funds.</span>")
 
 /datum/action/bar/icon/shoveMobIntoVendomat
 	duration = 0.2 SECONDS

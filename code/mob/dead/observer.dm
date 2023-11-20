@@ -233,7 +233,10 @@
 		src.corpse = corpse
 		src.set_loc(get_turf(corpse))
 		if(corpse.acid_name == null)
-			src.real_name = corpse.real_name
+			if (corpse.real_name)
+				src.real_name = corpse.real_name
+			else
+				src.real_name = corpse.name
 		else
 			src.real_name = corpse.acid_name
 

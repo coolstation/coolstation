@@ -135,8 +135,7 @@
 
 	////////////////////// GUN STUFF -V
 	// Lifted from secbot!
-	var/global/list/budgun_whitelist = list(/obj/item/gun/energy/tasershotgun,\
-											/obj/item/gun/energy/taser_gun,\
+	var/global/list/budgun_whitelist = list(/obj/item/gun/energy/taser_gun,\
 											/obj/item/gun/energy/vuvuzela_gun,\
 											/obj/item/gun/energy/wavegun,\
 											/obj/item/gun/energy/pulse_rifle,
@@ -152,8 +151,7 @@
 											/obj/item/gun/energy/glitch_gun,\
 											/obj/item/gun/energy/lawbringer)
 	// List of guns that arent wierd gimmicks or traitor weapons
-	var/global/list/budgun_actualguns = list(/obj/item/gun/energy/tasershotgun,\
-											/obj/item/gun/energy/taser_gun,\
+	var/global/list/budgun_actualguns = list(/obj/item/gun/energy/taser_gun,\
 											/obj/item/gun/energy/wavegun,\
 											/obj/item/gun/energy/pulse_rifle,\
 											/obj/item/gun/energy/egun,\
@@ -377,11 +375,17 @@
 			src.warm_boot = 1
 #ifdef HALLOWEEN
 		if (!setup_no_costumes)
-			src.costume_icon = image(src.icon, "bcostume-[pick("xcom","clown","horse","moustache","owl","pirate","skull", "wizard", "wizardred","devil")]", , FLY_LAYER)
-			src.costume_icon.pixel_x = src.hat_x_offset
-			src.costume_icon.pixel_y = src.hat_y_offset
-			if (src.costume_icon && src.costume_icon:icon_state == "bcostume-wizard")
-				src.hat = new /obj/item/clothing/head/wizard
+			if (istype(src,/obj/machinery/bot/guardbot/bootleg))
+				src.costume_icon = image(src.icon, "bcostume-bootleg", , FLY_LAYER)
+			else
+				src.costume_icon = image(src.icon, "bcostume-[pick("xcom","clown","horse","moustache","owl","pirate","skull", "wizard", "devil")]", , FLY_LAYER)
+				src.costume_icon.pixel_x = src.hat_x_offset
+				src.costume_icon.pixel_y = src.hat_y_offset
+				if (src.costume_icon && src.costume_icon:icon_state == "bcostume-wizard")
+					if (prob(50))
+						src.hat = new /obj/item/clothing/head/wizard
+					else
+						src.hat = new /obj/item/clothing/head/wizard/red
 #endif
 		src.update_icon()
 

@@ -16,7 +16,7 @@
 	initial_reagents = list("beer"=30)
 
 /obj/item/reagent_containers/food/drinks/bottle/beer/borg
-	cap_type = "none"
+	cap_type = null
 	cap = "none"
 	flags = FPRINT | TABLEPASS | OPENCONTAINER | SUPPRESSATTACK
 	unbreakable = 1

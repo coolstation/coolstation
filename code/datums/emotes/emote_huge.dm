@@ -14,6 +14,20 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 
 /datum/emote/fart/bio
 	cooldown = 1 SECOND
+
+/datum/emote/fart/bio/return_cooldown(mob/user, voluntary = 0)
+	var/tempcooldown = cooldown
+	if(user && user.reagents)
+		if(user.reagents.has_reagent("egg"))
+			tempcooldown = 0.9*tempcooldown
+		if(user.reagents.has_reagent("fartonium"))
+			tempcooldown = 0.8*tempcooldown
+		if(user.reagents.has_reagent("refried_beans"))
+			tempcooldown = 0.9*tempcooldown
+		return tempcooldown
+	else
+		return cooldown
+
 /datum/emote/fart/bio/enact(mob/living/carbon/human/user, voluntary = 0, param)
 	if (!istype(user)) return //get_organ, organ_istype, fart sounds
 	var/oxyplasmafart = 0
@@ -36,22 +50,29 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 				message = "<B>[user]</B> grunts for a moment. Nothing happens."
 		else
 			m_type = MESSAGE_AUDIBLE
+			var/fart_loudness = 50
 
+			if(user.reagents.has_reagent("egg"))
+				fart_loudness += 5
+			if(user.reagents.has_reagent("fartonium"))
+				fart_loudness += 15
+			if(user.reagents.has_reagent("refried_beans"))
+				fart_loudness += 5
 
 			if (iscluwne(user))
-				playsound(user, "sound/voice/farts/poo.ogg", 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user, "sound/voice/farts/poo.ogg", fart_loudness, 1, channel=VOLUME_CHANNEL_EMOTE)
 			else if (user.organ_istype("butt", /obj/item/clothing/head/butt/cyberbutt))
-				playsound(user, "sound/voice/farts/poo2_robot.ogg", 50, 1, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user, "sound/voice/farts/poo2_robot.ogg", fart_loudness, 1, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 			else if (user.reagents && user.reagents.has_reagent("honk_fart"))
-				playsound(user.loc, 'sound/musical_instruments/Bikehorn_1.ogg', 50, 1, -1, channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user.loc, 'sound/musical_instruments/Bikehorn_1.ogg', fart_loudness, 1, -1, channel=VOLUME_CHANNEL_EMOTE)
 			else
 				if (narrator_mode)
-					playsound(user, 'sound/vox/fart.ogg', 50, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+					playsound(user, 'sound/vox/fart.ogg', fart_loudness, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 				else
 					if (user.getStatusDuration("food_deep_fart"))
-						playsound(user, user.sound_fart, 50, 0, 0, user.get_age_pitch() - 0.3, channel=VOLUME_CHANNEL_EMOTE)
+						playsound(user, user.sound_fart, fart_loudness, 0, 0, user.get_age_pitch() - 0.3, channel=VOLUME_CHANNEL_EMOTE)
 					else
-						playsound(user, user.sound_fart, 50, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+						playsound(user, user.sound_fart, fart_loudness, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 
 			var/fart_on_other = 0
 			for (var/atom/A as anything in user.loc)

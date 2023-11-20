@@ -881,35 +881,6 @@ ABSTRACT_TYPE(/datum/projectile/special)
 //place coffin. then, we travel to it in prjoectile form and it heals us while people can beat it
 //cofin is anchored, rises outta ground at spot
 
-/datum/projectile/special/spreader/tasershotgunspread //Used in Azungar's taser shotgun.
-	name = "energy bolt"
-	sname = "shotgun spread"
-	cost = 25
-	power = 45 //a chunky pointblank
-	ks_ratio = 0
-	damage_type = D_SPECIAL
-	pellets_to_fire = 3
-	spread_projectile_type = /datum/projectile/energy_bolt/tasershotgun
-	split_type = 0
-	shot_sound = 'sound/weapons/Taser.ogg'
-	hit_mob_sound = 'sound/effects/sparks6.ogg'
-	var/spread_angle = 10
-	var/current_angle = 0
-	var/angle_adjust_per_pellet = 0
-	var/initial_angle_offset_mult = 0.5
-
-	on_launch(var/obj/projectile/P)
-		angle_adjust_per_pellet = ((spread_angle * 2) / pellets_to_fire)
-		current_angle = (0 - spread_angle) + (angle_adjust_per_pellet * initial_angle_offset_mult)
-		..()
-
-	new_pellet(var/obj/projectile/P, var/turf/PT, var/datum/projectile/F)
-		var/obj/projectile/FC = initialize_projectile(PT, F, P.xo, P.yo, P.shooter)
-		FC.rotateDirection(current_angle)
-		FC.launch()
-		current_angle += angle_adjust_per_pellet
-
-
 /datum/projectile/special/spreader/quadwasp
 	name = "4 space wasp eggs"
 	icon = 'icons/obj/foodNdrink/food_ingredient.dmi'

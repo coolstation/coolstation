@@ -590,12 +590,6 @@
 	desc = "Huh."
 	spawn_contents = list(/obj/item/reagent_containers/pill/cyberpunk = 5)
 
-/obj/item/storage/pill_bottle/gsbp //this should really be a named cardboard thing with two identical pills and some ad copy but that's next move
-	name = "pill bottle (gas station boner pills)"
-	desc = "oh jesus fuck they come in assorted bulk packs???"
-	//desc = "This greasy cardboard backer touts all kind of herbal remedies, promising everything from gooder love to smarter brains to cooler spin-kicks. There's a label with some kind of animal on it." use this for the backer
-	spawn_contents = list(/obj/item/reagent_containers/pill/gsbp = 4)
-
 /obj/item/storage/pill_bottle/custom_suicide = 1
 /obj/item/storage/pill_bottle/suicide(var/mob/user as mob)
 	if (!src.user_can_suicide(user))
@@ -604,3 +598,43 @@
 	user.take_oxygen_deprivation(175)
 	qdel(src)
 	return 1
+
+
+/* -------------------------------------------------------------------------- */
+/*                    Gas Station Boner Pills Backer Cards                    */
+/* -------------------------------------------------------------------------- */
+
+/obj/item/gsbp
+	name = "gas station boner pill card"
+	desc = "This greasy cardboard backer touts all kind of herbal remedies, promising everything from gooder love to smarter brains to cooler spin-kicks. There's a label with some kind of animal on it."
+	icon = 'icons/obj/items/pills.dmi'
+	icon_state = "gsbp1"
+	var/obj/item/reagent_containers/pill/gsbp/bonerpill = new /obj/item/reagent_containers/pill/gsbp
+	var/image/boneroverlay = null
+
+	New()
+		..()
+		icon_state = "gsbp[rand(1,3)]"
+		name = "[bonerpill.name]"
+		ENSURE_IMAGE(src.boneroverlay, src.icon, "gsbp-intact")
+		src.UpdateOverlays(src.boneroverlay, "pill")
+
+	attack_self(mob/user as mob)
+		if (bonerpill)
+			user.put_in_hand_or_drop(bonerpill)
+			boutput(user,"You take out \the [bonerpill.name] capsule. It's greasier than you expected[prob(50) ? ". ...It's always greasier than you expected.": "."]")
+			bonerpill = null
+			ENSURE_IMAGE(src.boneroverlay, src.icon, "gsbp-torn")
+			src.UpdateOverlays(src.boneroverlay, "pill")
+		else
+			boutput(user,"It's empty.")
+
+/obj/item/storage/pill_bottle/gsbp //this should really be a named cardboard thing with one big pill and some ad copy but that's next move
+	name = "pill bottle (gas station boner pills)"
+	desc = "oh jesus fuck they come in assorted bulk packs too??? WHY?"
+	spawn_contents = list(/obj/item/reagent_containers/pill/gsbp = 4)
+
+	New()
+		..()
+		src.SafeScale(1.5,1.5) //need a big bottle
+

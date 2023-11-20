@@ -15,21 +15,11 @@ Contents:
 
 var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 
-/area/centcom
-	name = "Centcom"
-	icon_state = "purple"
-	requires_power = 0
-	sound_environment = EAX_LIVINGROOM
-	teleport_blocked = 1
-	skip_sims = 1
-	sims_score = 25
-	sound_group = "centcom"
-	filler_turf = "/turf/nicegrass/random"
-	is_centcom = 1
-	is_construction_allowed = FALSE
+//earth centcom (for score purposes)
+/area/centcom/earth
+	is_centcom = 0 //it's centcom, but not our centcom
 
-
-/area/centcom/outside
+/area/centcom/earth/outside
 	name = "Earth"
 	icon_state = "nothing_earth"
 	//force_fullbright = 1
@@ -91,117 +81,53 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 	ambient_light = rgb(255 * 1.00, 255 * 1.00, 255 * 1.00)	// uhhhhhh
 #endif
 
-
-
-/area/centcom/offices
+//goonstation offices as is for now- but they're not in as areas.
+/area/centcom/earth/offices
 	name = "NT Offices"
-	icon_state = "red"
+	icon_state = "green"
 	var/ckey = ""
 
+//sord office
 
+/obj/machinery/door/unpowered/wood/sordBloodDoor
+	open()
+		. = ..()
+		if(.)
+			var/const/fluid_amount = 50
+			var/datum/reagents/R = new /datum/reagents(fluid_amount)
+			R.add_reagent("blood", fluid_amount)
 
-	aibm
-		ckey = "angriestibm"
-		name = "Office of AngriestIBM"
-	atomicthumbs
-		ckey = ""
-		name = "Office of Atomicthumbs"
-	batelite
-		ckey = "roselace"
-		name = "Here Be Bats"
-	bubs
-		ckey = "insanoblan"
-		name = "Office of bubs"
-	cogwerks
-		ckey = "drcogwerks"
-		name = "Office of Cogwerks"
-	crimes
-		ckey = "warc"
-		name = "Office of Warcrimes"
-	dions
-		ckey = "dionsu"
-		name = "Office of Dions"
-	drsingh
-		ckey = "magicmountain"
-		name = "Office of DrSingh"
-	edad
-		ckey = ""
-		name = "Office of Edad"
-	gannets
-		ckey = "gannets"
-		name = "Office of Hannah Strawberry"
-	gibbed
-		ckey = "gibbed"
-		name = "Office of Rick"
-	donglord
-		ckey = "inquisitorlisica"
-		name = "The Bathroom"
-	maid
-		ckey = "housekeep"
-		name = "Office of Maid"
-	mbc
-		ckey = "mybluecorners"
-		name = "Office of Dotty Spud"
-	nevada
-		ckey = "spacingnevada"
-		name = "Claire's Office of Claire"
-		is_atmos_simulated = 1 //gotta light that POO
-	patrickstar
-		ckey = ""
-		name = "Office of Patrick Star"
-		New()
-			..()
-			overlays += image(icon = 'icons/turf/areas.dmi', icon_state = "snowverlay", layer = EFFECTS_LAYER_BASE)
-	pope
-		ckey = "popecrunch"
-		name = "Office of Popecrunch"
-	reginaldhj
-		ckey = "reginaldhj"
-		name = "Office of ReginaldHJ"
-	sheezius
-		ckey = "sheezius"
-		name = "Claire's Office of Claire"
-	schwick
-		ckey = "schwickyschwag"
-		name = "Schwick's Normal Bear Closet"
-	stardust
-		ckey = "stardustskunk"
-		name = "Office of Stardust"
-	tamber
-		ckey = "tamber"
-		name = "Office of Tamber"
-	wire
-		ckey = "wirewraith"
-		name = "Office of Wire"
-	zamujasa
-		ckey = "zamujasa"
-		name = "Office of Zamujasa"
+			var/turf/T = get_turf(src)
+			if (istype(T))
+				T.fluid_react(R,fluid_amount)
+				R.clear_reagents()
 
-
-/area/centcom/lobby
+/area/centcom/earth/lobby
 	name = "NT Offices Lobby"
 	icon_state = "blue"
 
-/area/centcom/lounge
+/area/centcom/earth/lounge
 	name = "NT Recreational Lounge"
 	icon_state = "yellow"
 
-/area/centcom/garden
+/area/centcom/earth/garden
 	name = "NT Business Park"
 	icon_state = "orange"
 
-/area/centcom/power
+/area/centcom/earth/power
 	name = "NT Power Supply"
 	icon_state = "green"
 	blocked = 1
 
-/area/centcom/datacenter
+/area/centcom/earth/datacenter
 	name = "NT Data Center"
 	icon_state = "pink"
 
-/area/centcom/reconstitutioncenter
+/area/centcom/earth/reconstitutioncenter
 	name = "NT Reconstitution Center"
 	icon_state = "purple"
+
+//some whatever thing on earth, doesn't bother us
 
 /area/retentioncenter
 	name = "NT Retention Center"
@@ -280,188 +206,3 @@ var/global/Z4_ACTIVE = 0 //Used for mob processing purposes
 	concrete
 		name = "concrete"
 		icon_state = "concrete"
-
-//sord office
-
-/obj/machinery/door/unpowered/wood/sordBloodDoor
-	open()
-		. = ..()
-		if(.)
-			var/const/fluid_amount = 50
-			var/datum/reagents/R = new /datum/reagents(fluid_amount)
-			R.add_reagent("blood", fluid_amount)
-
-			var/turf/T = get_turf(src)
-			if (istype(T))
-				T.fluid_react(R,fluid_amount)
-				R.clear_reagents()
-
-//adhara office
-
-//adhara herself....?
-/obj/critter/cat/cathara
-	name = "Cathara"
-	desc = "...is this really her?? Do they let cats be admins??"
-	icon_state = "cat1"
-	randomize_cat = 0
-
-	New()
-		..()
-		var/randx = (rand(7, 20) / 10)
-		var/randy = (rand(7, 20) / 10)
-		src.transform = src.transform.Scale(randx, randy) //make em weird lookin (mood)
-
-//adhara comp stuff - very ugly and big code
-/obj/item/disk/data/fixed_disk/adharas_laptop
-	file_amount = 512 //very big
-
-	New()
-		..()
-
-		var/datum/computer/folder/newfolder = new /datum/computer/folder(  )
-		newfolder.name = "logs"
-		src.root.add_file( newfolder )
-		newfolder.add_file( new /datum/computer/file/record/c3help(src))
-
-		newfolder = new /datum/computer/folder
-		newfolder.name = "bin"
-		src.root.add_file( newfolder )
-		newfolder.add_file( new /datum/computer/file/terminal_program/writewizard(src))
-
-		newfolder = new /datum/computer/folder
-		newfolder.name = "diary"
-		src.root.add_file( newfolder )
-		newfolder.add_file( new /datum/computer/file/record/adhara_office/diary_goals (src))
-		newfolder.add_file( new /datum/computer/file/record/adhara_office/prs (src))
-		newfolder.add_file( new /datum/computer/file/record/adhara_office/kyle (src))
-		newfolder.add_file( new /datum/computer/file/record/adhara_office/mhelps (src))
-		newfolder.add_file( new /datum/computer/file/record/adhara_office/macncheese (src))
-
-/obj/machinery/computer3/luggable/personal/adhara_laptop //due to jank system, this isnt the one that gets put in the map. but it is used internally by the other
-	setup_drive_type = /obj/item/disk/data/fixed_disk/adharas_laptop
-
-/obj/item/luggable_computer/personal/adhara_laptop //hi i go into the map
-	name = "cute laptop"
-	desc = "Isn't this a cute little laptop?"
-	luggable_type = /obj/machinery/computer3/luggable/personal/adhara_laptop
-
-	New() //lets set up our stickers
-		..()
-		var/obj/item/sticker/sticker_heart = new /obj/item/sticker/heart
-		sticker_heart.stick_to(src, -6, -4)
-		sleep(0.5 SECONDS)
-		var/obj/item/sticker/sticker_rainbow = new /obj/item/sticker/rainbow
-		sticker_rainbow.stick_to(src, -3, 1)
-		sleep(0.5 SECONDS)
-		var/obj/item/sticker/sticker_robuddy = new /obj/item/sticker/robuddy
-		sticker_robuddy.stick_to(src, 2, -3)
-
-
-/datum/computer/file/record/adhara_office
-
-	diary_goals
-		name = "diary_goals"
-
-		New()
-			..()
-			src.fields = list("im gonna try to store these",\
-			"notes on my computer. update it",\
-			"once a week, maybe once every 2.",\
-			"depends on how this all works out <3")
-
-	prs
-		name = "prs"
-
-		New()
-			..()
-			src.fields = list("i always have so many ideas!",\
-			"youd think that maybe id manage to get",\
-			"some of these down and coded and,",\
-			"submitted but its really hard actually!!!",\
-			"i just wish it was easier to get stuff",\
-			"out of my head, typed down, and submitted.",\
-			"but idk. if it was easy, then i wouldnt",\
-			"feel good when i submitted one, would i?",\
-			"ill just count my blessings. at least",\
-			"i can code, right? <3")
-
-	kyle
-		name = "kyle"
-
-		New()
-			..()
-			src.fields = list("kyle asked me to fix my code today.",\
-			"but im lazy and i dont really want to fix",\
-			"it tbh but if i dont will it get done?",\
-			"who knows. ill think later after some food.")
-
-	mhelps
-		name = "mhelps"
-
-		New()
-			..()
-			src.fields = list("so i guess im hired as an admin now.",\
-			"kinda crazy. lotta new responsibilities.",\
-			"one thing i guess is that i dont have as",\
-			"much time to answer mhelps as i did before",\
-			"i feel a bit bad on one hand, but on the",\
-			"other hand, i helped a lot of people and",\
-			"theres always going to be more mentors",\
-			"who can help people with questions.",\
-			"now instead answering questions,",\
-			"i get to tell people to stop being",\
-			"racist haha. idk which is more rewarding.")
-
-	macncheese
-		name = "mac_n_cheese"
-
-		New()
-			..()
-			src.fields = list("i fuckin love this stuff")
-
-//ada o hara hat
-/obj/item/clothing/head/centhat/ada
-	name = "scottish captain's hat"
-	desc = "you can literally feel the scottishness emanatinig from this hat... or maybe thats radiation."
-	var/list/rejected_mobs = list()
-
-	equipped(var/mob/user)
-		..()
-		boutput(user, "<span class='alert'>You can feel a proud and angry presence probing your mind...</span>")
-		src.cant_self_remove = true
-		src.cant_other_remove = true
-		sleep(1 SECOND)
-		if (user.bioHolder && user.bioHolder.HasEffect("accent_scots"))
-			boutput(user, "<span class='notice'>YE AR' ALREADY BLESSED!!!</span>")
-		else if (prob(50) && user.bioHolder && !src.rejected_mobs.Find(user))
-			boutput(user, "<span class='notice'>OCH, CAN YE 'EAR TH' HIELAN WINDS WHISPERIN' MY NAME??</span>")
-			sleep(1 SECOND)
-			boutput(user, "<span class='notice'>I AM ADA O'HARA! MA SPIRIT IS INDOMITABLE! I'LL MAKE YE INDOMITABLE TAE...</span>")
-			sleep(1 SECOND)
-			user.bioHolder.AddEffect("accent_scots")
-			boutput(user, "<span class='notice'>HEED FORTH, AYE? FECHT LANG AN' HAURD!!</span>")
-		else
-			boutput(user, "<span class='alert'>YE AR' NO' WORTHY OF ADA O'HARA'S BLESSIN'! FECK AFF!!!!</span>")
-			src.rejected_mobs.Add(user)
-		src.cant_self_remove = true
-		src.cant_other_remove = false
-
-
-/area/centcom/offices/enakai
-	Entered(atom/movable/Obj,atom/OldLoc)
-		if (isliving(Obj))
-			var/mob/living/L = Obj
-			if (L.ckey == "enakai" || L.ckey == "rodneydick")		//The aussies are immune due to constant exposure
-				return
-			var/matrix/M = L.transform
-			animate(L, transform = matrix(M, 90, MATRIX_ROTATE | MATRIX_MODIFY), time = 3)
-			animate( transform = matrix(M, 90, MATRIX_ROTATE | MATRIX_MODIFY), time = 3)
-
-	Exited(atom/movable/Obj, atom/newloc)
-		if (isliving(Obj))
-			var/mob/living/L = Obj
-			if (L.ckey == "enakai" || L.ckey == "rodneydick")
-				return
-			var/matrix/M = L.transform
-			animate(L, transform = matrix(M, -90, MATRIX_ROTATE | MATRIX_MODIFY), time = 3)
-			animate( transform = matrix(M, -90, MATRIX_ROTATE | MATRIX_MODIFY), time = 3)

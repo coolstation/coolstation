@@ -525,40 +525,6 @@
 	anchored = 1
 	density = 1
 
-/obj/decal/fakeobjects/azarakrocks
-	name = "rock"
-	desc = "Some lil' rocks."
-	icon = 'icons/misc/AzungarAdventure.dmi'
-	icon_state = "rock1"
-	anchored = 1
-	density = 1
-
-	rock2
-		name = "rocks"
-		density = 0
-		icon_state = "rock2"
-
-	rock3
-		name = "rocks"
-		density = 0
-		icon_state = "rock3"
-
-	rock4
-		name = "rocks"
-		density = 0
-		icon_state = "rock4"
-
-	rock6
-		name = "rocks"
-		density = 0
-		icon_state = "rock6"
-
-	rock9
-		name = "rocks"
-		density = 0
-		icon_state = "rock9"
-
-
 /obj/decal/fakeobjects/cultiststatue
 	name = "statue of a hooded figure"
 	desc = "TEMP"

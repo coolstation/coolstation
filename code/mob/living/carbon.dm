@@ -103,12 +103,17 @@
 			if (istype(T))
 				make_cleanable( /obj/decal/cleanable/mud,T)
 			return
-		playsound(H, 'sound/voice/hoooagh2.ogg', 50, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+		playsound(H, "sound/voice/hoooagh2.ogg", 50, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		if(H.wear_suit || H.w_uniform) // wearing pants while shitting? fine!!
 			if(H.bioHolder.HasEffect("teflon_colon") || H.traitHolder.hasTrait("teflon_colon"))
-				H.visible_message("<span class='alert'><B>[H] fires the poop cannon, right through [his_or_her(H)] pants!</B></span>")
+				if(prob(10))
+					H.visible_message("<span class='alert'><B>[H] fires the poop cannon, right through [his_or_her(H)] pants!</B></span>")
+					playsound(H, "sound/effects/ExplosionFirey.ogg", 45, 1)
+				else
+					H.visible_message("<span class='alert'><B>[H] turds right through [his_or_her(H)] clothing!</B></span>")
+					playsound(H, "sound/effects/splort.ogg", 75, 1)
 				yeetapoop(H, shit)
-				playsound(H, 'sound/effects/ExplosionFirey.ogg', 75, 1)
+
 				// ... also set suit/uniform to bottomless? I dunno
 			else
 				H.visible_message("<span class='alert'><B>[H] shits [his_or_her(H)] pants!</B></span>")

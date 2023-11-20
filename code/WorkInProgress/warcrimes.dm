@@ -167,6 +167,17 @@ var/fartcount = 0
 			<br><b>Total Charge:</b>
 			<br>Big Yank's Stash N Dash"}
 
+/obj/item/paper/tug/diner_arcade_invoice
+    name = "Big Yank's Space Tugs, Limited."
+    desc = "Looks like a bill of sale."
+    info = {"<b>Client:</b> Bill, John
+            <br><b>Date:</b> TBD
+            <br><b>Articles:</b> Structure, Static. Pressurized. Duplex.
+            <br><b>Destination:</b> \"jes' hook it up anywhere it fits\"\[sic\]
+            <br>
+            <br><b>Total Charge:</b> 9,233 paid in full with bootleg cigarillos.
+            <br>Big Yank's Cheap Tug"}
+
 /obj/item/paper/horizon/HTSL
 	name = "crumpled note"
 	interesting = "The carbon dating of the cellulose within the paper is not consistent."

@@ -214,6 +214,11 @@
 		name = "cavern"
 		fullbright = 0
 
+/turf/space/solariumjoke
+	icon = 'icons/misc/worlds.dmi'
+	icon_state = "howlingsun"
+	desc = "Looks normal."
+
 /turf/space/proc/update_icon(starlight_alpha=255)
 	if(!isnull(space_color) && !istype(src, /turf/space/fluid)&& !istype(src, /turf/space/gehenna))
 		src.color = space_color
@@ -1024,6 +1029,28 @@ proc/generate_space_color()
 	name = "Virtual Wall"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "vrwall"
+
+//vr shit
+/turf/wall/virtual
+	name = "virtual wall"
+	desc = "A state of the art computer-generated image of a wall."
+	icon_state = "wallVR"
+
+	light
+		icon_state = "wallVR-light"
+
+/turf/wall/virtual/reinforced
+	name = "reinforced virtual wall"
+	desc = "...Or is that virtual reinforced wall?"
+	icon_state = "r_wallVR"
+
+	light
+		icon_state = "r_wallVR-light"
+
+/turf/wall/virtual/barrier
+	name = "virtual barrier"
+	desc = "Some kind of force field?"
+	icon_state = "barrierVR"
 
 /turf/attack_hand(var/mob/user as mob)
 	if (src.density == 1)

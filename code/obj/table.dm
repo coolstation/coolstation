@@ -353,7 +353,7 @@
 				for (var/mob/N in AIviewers(user, null))
 					if (N.client)
 						shake_camera(N, 4, 8, 0.5)
-			if(ismonkey(H))
+			if(ismonkey(H)) // monkey table jump
 				actions.start(new /datum/action/bar/icon/railing_jump/table_jump(user, src), user)
 		if (src.has_brakes)
 			if (!anchored)
