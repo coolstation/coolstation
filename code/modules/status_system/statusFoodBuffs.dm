@@ -190,12 +190,12 @@
 	exclusiveGroup = "Food"
 	maxDuration = 6000
 	unique = 1
-	change = 2.2
+	change = 1
 
 	big
 		name = "Food (Refreshed+)"
 		id = "food_refreshed_big"
-		change = 5
+		change = 2
 
 	getTooltip()
 		. = "Your stamina regen is increased by [change]."

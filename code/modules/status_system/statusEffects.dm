@@ -129,6 +129,20 @@
 		unique = 1
 		var/change = 1
 
+
+		onUpdate(timePassed)
+			var/mob/living/carbon/human/H
+			if(ishuman(owner))
+				H = owner
+				var/list/statusList = H.getStatusList()
+
+				//if(statusList["paralysis"])
+				//	H.changeStatus("paralysis", -1*change)
+				if(statusList["stunned"])
+					H.changeStatus("stunned", -1*change)
+				if(statusList["weakened"])
+					H.changeStatus("weakened", -1*change)
+
 		getTooltip()
 			. = "Your stamina regen is [change > 0 ? "increased":"reduced"] by [abs(change)]."
 
