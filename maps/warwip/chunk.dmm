@@ -7270,7 +7270,7 @@
 /turf/floor/plating,
 /area/station/maintenance/southwest)
 "iiM" = (
-/obj/reagent_dispensers/compostbin,
+/obj/submachine/seed_vendor,
 /turf/floor/grass,
 /area/station/hydroponics/bay)
 "iiY" = (
@@ -13069,6 +13069,15 @@
 	},
 /turf/floor/plating/airless,
 /area/space)
+"oMx" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/storage/crate,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "oMV" = (
 /obj/cable{
 	icon_state = "1-4"
@@ -17175,7 +17184,7 @@
 /turf/floor/plating,
 /area/station/science/lab)
 "twJ" = (
-/obj/storage/crate,
+/obj/reagent_dispensers/compostbin,
 /turf/floor/grass,
 /area/station/hydroponics/bay)
 "txr" = (
@@ -75520,7 +75529,7 @@ wRc
 wRc
 wRc
 wRc
-wRc
+oMx
 iGM
 vCW
 iRg
