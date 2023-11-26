@@ -5161,15 +5161,20 @@
 	dir = 4;
 	icon_state = "tube1"
 	},
-/obj/storage/crate,
-/obj/item/satchel/hydro{
-	pixel_x = 7;
+/obj/table/auto,
+/obj/machinery/phone{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/weedkiller{
+	pixel_x = -5;
 	pixel_y = 2
 	},
-/obj/item/satchel/hydro{
-	pixel_x = -4;
-	pixel_y = 2
+/obj/item/bee_egg_carton{
+	pixel_x = 2;
+	pixel_y = 3
 	},
+/obj/item/wrench,
 /turf/floor/grass,
 /area/station/hydroponics/bay)
 "fFF" = (
@@ -7270,7 +7275,15 @@
 /turf/floor/plating,
 /area/station/maintenance/southwest)
 "iiM" = (
-/obj/submachine/seed_vendor,
+/obj/table/auto,
+/obj/item/paper/book/from_file/hydroponicsguide{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/device/radio{
+	pixel_x = -1;
+	pixel_y = 8
+	},
 /turf/floor/grass,
 /area/station/hydroponics/bay)
 "iiY" = (
@@ -7670,21 +7683,14 @@
 /turf/floor,
 /area/station/engine/singcore)
 "iAt" = (
-/obj/table/auto,
-/obj/machinery/phone{
-	pixel_x = -7;
-	pixel_y = 6
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/item/bee_egg_carton{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/glass/bottle/weedkiller{
-	pixel_x = -5;
-	pixel_y = 2
-	},
-/turf/floor/grass,
-/area/station/hydroponics/bay)
+/obj/storage/crate,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "iAu" = (
 /obj/machinery/door/airlock/classic,
 /obj/access_spawn/cargo,
@@ -13069,15 +13075,6 @@
 	},
 /turf/floor/plating/airless,
 /area/space)
-"oMx" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/storage/crate,
-/turf/floor/plating,
-/area/station/maintenance/central)
 "oMV" = (
 /obj/cable{
 	icon_state = "1-4"
@@ -21144,19 +21141,11 @@
 /turf/floor,
 /area/station/security/quarters)
 "xRc" = (
-/obj/table/auto,
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1"
 	},
-/obj/item/device/radio{
-	pixel_x = -1;
-	pixel_y = 8
-	},
-/obj/item/paper/book/from_file/hydroponicsguide{
-	pixel_x = 7;
-	pixel_y = 3
-	},
+/obj/submachine/seed_vendor,
 /turf/floor/green,
 /area/station/hydroponics/bay)
 "xRY" = (
@@ -73713,7 +73702,7 @@ nPT
 uVq
 nVs
 mfg
-jJL
+ujq
 eno
 ujq
 ujq
@@ -74015,12 +74004,12 @@ nPT
 uVq
 nVs
 thB
-twJ
+jJL
 ujq
 ujq
 ujq
 ujq
-iAt
+jJL
 pYl
 djv
 bVi
@@ -74322,7 +74311,7 @@ ujq
 ujq
 ujq
 ujq
-jJL
+twJ
 pYl
 djv
 bVi
@@ -75529,7 +75518,7 @@ wRc
 wRc
 wRc
 wRc
-oMx
+iAt
 iGM
 vCW
 iRg
