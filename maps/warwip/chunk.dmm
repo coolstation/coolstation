@@ -1510,6 +1510,12 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/central)
+"bEQ" = (
+/obj/table/auto,
+/turf/floor/shuttle{
+	icon_state = "floor3"
+	},
+/area/shuttle/arrival/station)
 "bFk" = (
 /obj/window/reinforced{
 	dir = 4;
@@ -1961,10 +1967,6 @@
 	},
 /turf/floor,
 /area/station/engine/elect)
-"bWu" = (
-/obj/wingrille_spawn/reinforced,
-/turf/floor/plating,
-/area/shuttle/arrival/station)
 "bWB" = (
 /obj/reagent_dispensers/watertank/big,
 /turf/floor/bot,
@@ -2592,10 +2594,7 @@
 	},
 /area/station/bridge)
 "cGK" = (
-/obj/machinery/light{
-	dir = 1;
-	pixel_x = -1
-	},
+/obj/cryotron,
 /turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "cHc" = (
@@ -7208,6 +7207,15 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/northeast)
+"hOZ" = (
+/obj/stool/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/landmark/start/latejoin,
+/turf/floor/shuttle{
+	icon_state = "floor3"
+	},
+/area/shuttle/arrival/station)
 "hPe" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4;
@@ -7675,10 +7683,10 @@
 /turf/floor,
 /area/station/storage/tech)
 "itg" = (
-/obj/machinery/shuttle/engine/propulsion{
-	dir = 8
+/obj/machinery/shuttle/engine/heater{
+	dir = 4
 	},
-/turf/space,
+/turf/floor/airless/plating,
 /area/shuttle/arrival/station)
 "ity" = (
 /obj/cable{
@@ -9059,6 +9067,13 @@
 	},
 /turf/floor/grey,
 /area/station/security/main)
+"jUQ" = (
+/obj/indestructible/shuttle_corner{
+	dir = 4;
+	icon_state = "wall3_trans"
+	},
+/turf/space,
+/area/shuttle/arrival/station)
 "jVn" = (
 /obj/wingrille_spawn,
 /obj/disposalpipe/segment/sewage{
@@ -9177,15 +9192,6 @@
 	},
 /turf/floor/grime,
 /area/station/mining/refinery)
-"jZJ" = (
-/obj/stool/chair/comfy/shuttle{
-	dir = 8
-	},
-/obj/landmark/start/latejoin,
-/turf/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/shuttle/arrival/station)
 "jZO" = (
 /obj/shrub,
 /turf/floor/grey,
@@ -9903,20 +9909,6 @@
 /obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/science/chemistry)
-"kQe" = (
-/obj/table/auto,
-/obj/item/device/radio{
-	pixel_x = -1;
-	pixel_y = 8
-	},
-/obj/item/device/radio{
-	pixel_x = -5;
-	pixel_y = 7
-	},
-/turf/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/shuttle/arrival/station)
 "kQt" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4;
@@ -12975,8 +12967,11 @@
 /turf/floor,
 /area/station/science/lobby)
 "osv" = (
-/obj/machinery/light,
-/turf/floor/shuttle,
+/obj/indestructible/shuttle_corner{
+	dir = 1;
+	icon_state = "wall3_trans"
+	},
+/turf/space,
 /area/shuttle/arrival/station)
 "otv" = (
 /obj/disposalpipe/segment/vertical,
@@ -15388,21 +15383,6 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/northwest)
-"qRf" = (
-/obj/stool/chair/comfy/shuttle{
-	dir = 8
-	},
-/obj/landmark/start/latejoin,
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 9;
-	name = "autoname - SS13";
-	tag = ""
-	},
-/turf/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/shuttle/arrival/station)
 "qRL" = (
 /obj/machinery/atmospherics/valve{
 	desc = "A manual gas valve. This one lets gas into the chamber radiator.";
@@ -16273,10 +16253,8 @@
 /turf/floor/darkblue,
 /area/station/bridge)
 "rRK" = (
-/obj/machinery/shuttle/engine/heater{
-	dir = 4
-	},
-/turf/floor/airless/plating,
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
 /area/shuttle/arrival/station)
 "rRP" = (
 /obj/cable/purple{
@@ -16675,6 +16653,10 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
 /area/station/maintenance/northeast)
+"ssO" = (
+/obj/machinery/light,
+/turf/floor/shuttle,
+/area/shuttle/arrival/station)
 "ssY" = (
 /obj/machinery/vending/snack,
 /turf/floor,
@@ -16965,6 +16947,25 @@
 	},
 /turf/floor,
 /area/station/storage/tech)
+"sJk" = (
+/obj/stool/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/landmark/start/latejoin,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/floor/shuttle{
+	icon_state = "floor3"
+	},
+/area/shuttle/arrival/station)
 "sJx" = (
 /obj/cable{
 	icon_state = "4-10"
@@ -17112,6 +17113,20 @@
 /obj/machinery/nanofab/refining,
 /turf/floor/grime,
 /area/station/mining/refinery)
+"sNK" = (
+/obj/table/auto,
+/obj/item/device/radio{
+	pixel_x = -1;
+	pixel_y = 8
+	},
+/obj/item/device/radio{
+	pixel_x = -5;
+	pixel_y = 7
+	},
+/turf/floor/shuttle{
+	icon_state = "floor3"
+	},
+/area/shuttle/arrival/station)
 "sNT" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -19211,7 +19226,6 @@
 /turf/floor/black,
 /area/station/chapel/sanctuary)
 "uWF" = (
-/obj/table/auto,
 /turf/floor/shuttle{
 	icon_state = "floor3"
 	},
@@ -22072,11 +22086,11 @@
 /turf/floor,
 /area/station/hallway/primary/northeast)
 "ybK" = (
-/obj/indestructible/shuttle_corner{
-	dir = 4;
-	icon_state = "wall3_trans"
+/obj/machinery/light{
+	dir = 1;
+	pixel_x = -1
 	},
-/turf/space,
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "yci" = (
 /obj/disposalpipe/segment/sewage{
@@ -22112,9 +22126,8 @@
 /turf/floor,
 /area/station/hallway/primary/southeast)
 "ydQ" = (
-/obj/indestructible/shuttle_corner{
-	dir = 1;
-	icon_state = "wall3_trans"
+/obj/machinery/shuttle/engine/propulsion{
+	dir = 8
 	},
 /turf/space,
 /area/shuttle/arrival/station)
@@ -80783,11 +80796,11 @@ ktG
 gkN
 huZ
 cOQ
-vnG
+ybK
 eMI
 vnG
 eMI
-vnG
+ssO
 cOQ
 huZ
 syu
@@ -81089,7 +81102,7 @@ cGK
 eMI
 vnG
 eMI
-osv
+vnG
 cOQ
 huZ
 syu
@@ -81387,11 +81400,11 @@ ktG
 syu
 huZ
 cOQ
-jZJ
-kQe
-qRf
 uWF
-jZJ
+uWF
+uWF
+uWF
+uWF
 cOQ
 huZ
 syu
@@ -81689,11 +81702,11 @@ wJD
 jod
 huZ
 cOQ
-bWu
-bWu
-cOQ
-bWu
-bWu
+uWF
+sNK
+sJk
+bEQ
+hOZ
 cOQ
 huZ
 huZ
@@ -81990,13 +82003,13 @@ fDn
 huZ
 fDn
 huZ
-ydQ
+cOQ
 rRK
 rRK
 cOQ
 rRK
 rRK
-ybK
+cOQ
 huZ
 huZ
 huZ
@@ -82292,13 +82305,13 @@ icn
 wJD
 jod
 huZ
-huZ
+osv
 itg
 itg
-huZ
+cOQ
 itg
 itg
-huZ
+jUQ
 huZ
 huZ
 huZ
@@ -82595,11 +82608,11 @@ huZ
 sBc
 huZ
 huZ
+ydQ
+ydQ
 huZ
-huZ
-huZ
-huZ
-huZ
+ydQ
+ydQ
 huZ
 huZ
 huZ
