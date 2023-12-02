@@ -25,7 +25,7 @@ var/global/list/mapNames = list(
 	"Donut 3" = 		list("id" = "DONUT3", 		"settings" = "donut3",			"playerPickable" = 0, 		"MinPlayersAllowed" = 40),
 	"Horizon" = 		list("id" = "HORIZON", 		"settings" = "horizon", 		"playerPickable" = 0),
 	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 1),
-	"Nano Chunk 420" = 	list("id" = "CHUNK",		"settings" = "chunk",			"playerPickable" = 1),
+	"The Chunk" =	 	list("id" = "CHUNK",		"settings" = "chunk",			"playerPickable" = 1),
 	"Bobmap" = 			list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 0,  		"MinPlayersAllowed" = 20),
 	//"Dockmap" = 		list("id" = "DOCKMAP",		"settings" = "dockmap",			"playerPickable" = 0,	"MaxPlayersAllowed" = 30),
 	"Spirit" =			list("id" = "SPIRIT",		"settings" = "spirit",				"playerPickable" = 0),
