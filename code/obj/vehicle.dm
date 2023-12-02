@@ -2490,6 +2490,9 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 //forklift to other atom
 /obj/vehicle/forklift/MouseDrop(atom/over_object)
+	if(get_dist(src.loc,over_object) >1)
+		boutput(usr, "<span class='notice'><B>That's too far.</B></span>")
+		return ..()
 	if(isturf(over_object))
 		if(length(helditems))
 			var/obj/to_unload = helditems[length(helditems)]
