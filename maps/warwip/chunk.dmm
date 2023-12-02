@@ -5182,6 +5182,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/light/small/red,
 /turf/floor/neutral/side{
 	dir = 4
 	},
@@ -13220,7 +13221,6 @@
 	},
 /area/station/crew_quarters/bar)
 "ofV" = (
-/obj/machinery/light,
 /obj/rack,
 /obj/item/wrench{
 	pixel_x = 1;
@@ -14210,6 +14210,7 @@
 	pixel_y = -4
 	},
 /obj/item/storage/toolbox/mechanical,
+/obj/machinery/light,
 /turf/floor/black,
 /area/station/hangar/main)
 "oZx" = (
@@ -20691,10 +20692,6 @@
 /turf/floor/plating,
 /area/station/turret_protected/AIsat)
 "vGs" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	icon_state = "stripe2";
-	name = "unofficial stripe"
-	},
 /obj/decal/tile_edge/stripe/extra_big{
 	icon_state = "xmas";
 	name = "official stripe";
@@ -82301,7 +82298,7 @@ saH
 wbe
 wvT
 wvT
-wvT
+pAz
 aSQ
 aqs
 fQq
@@ -82603,7 +82600,7 @@ mVA
 xJv
 wvT
 wvT
-pAz
+wvT
 aSQ
 dws
 wEN
