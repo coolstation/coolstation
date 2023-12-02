@@ -329,7 +329,8 @@
 	var/list/current_movepath
 	var/adjacent = 0
 	var/scanrate = 10
-	var/max_dist = 150
+	var/max_dist = 200
+	var/max_seen = 400
 	var/max_beacons = 20
 	var/turf/exclude
 
@@ -382,10 +383,8 @@
 			master.path = AStar(get_turf(master), src.the_target, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, src.max_dist, master.botcard, src.exclude)
 
 		var/compare_movepath = src.current_movepath
-		if(length(stops))
-			master.path = get_path_to(src.master, src.master.get_pathable_turf(stops[1]), id=master.botcard, skip_first=FALSE, simulated_only=FALSE, cardinal_only=TRUE)
-		else
-			master.path = get_path_to(src.master, src.the_target, max_distance=src.max_dist, id=master.botcard, skip_first=FALSE, simulated_only=FALSE, cardinal_only=TRUE)
+		master.path = get_path_to(src.master, src.the_target, mintargetdist = adjacent ? 1 : 0, \
+			max_distance=src.max_dist, max_seen=src.max_seen, id=master.botcard, skip_first=FALSE, simulated_only=FALSE, cardinal_only=TRUE, do_doorcheck=TRUE)
 		if(!length(master.path))
 			qdel(src)
 			return

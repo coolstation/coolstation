@@ -207,6 +207,48 @@ var/list/ai_move_scheduled = list()
 	proc/evaluate() // evaluate the current environment and assign priority to switching to this task
 		return 0
 
+	/// Returns a list of atoms that are potential targets for this task
+	proc/get_targets()
+		return list()
+
+	/// Takes a list of atoms which are then evaluated, before setting the holder's target. Note this checks a path exists to each target. The list of
+	/// targets is expected (but not required) to be ordered from best to worst - by default view() will do this if score_target() is based on distance
+	proc/get_best_target(list/atom/targets)
+		. = null
+		var/best_score = -INFINITY
+		var/list/best_path = null
+		if(length(targets))
+			var/simulated_only = !move_through_space
+			#ifdef UNDERWATER_MAP
+			//fucking unsimulated ocean tiles fuck
+			simulated_only = FALSE
+			#endif
+			var/required_goals = null // find all targets
+			if(score_by_distance_only)
+				required_goals = 1 // we only need to find the first one
+			var/list/atom/paths_found = get_path_to(holder.owner, targets, max_distance=max_dist*2, mintargetdist=distance_from_target, simulated_only=simulated_only, required_goals=required_goals)
+			if(score_by_distance_only)
+				if(length(paths_found))
+					. = paths_found[1]
+					best_path = paths_found[.]
+			else
+				for(var/atom/A as anything in paths_found)
+					var/score = src.score_target(A)
+					if(score > best_score)
+						var/list/tmp_best_path = paths_found[A]
+						if(length(tmp_best_path))
+							best_score = score
+							best_path = tmp_best_path
+							. = A
+		holder.target = .
+		holder.target_path = best_path
+
+	/// If overriding also override [score_by_distance_only] to FALSE!
+	proc/score_target(atom/target)
+		. = 0
+		if(target)
+			return 100*(max_dist - GET_MANHATTAN_DIST(get_turf(holder.owner), get_turf(target)))/max_dist //normalize distance weighting
+
 	//     do not override procs below this line
 	// --------------------------------------------
 	// unless you are building a new direct subtype
