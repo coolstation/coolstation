@@ -360,10 +360,10 @@
 		src.material?.triggerExp(src, severity)
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
-				qdel(src)
+				onDestroy()
 				return
 			if(OLD_EX_SEVERITY_2)
-				qdel(src)
+				onDestroy()
 				return
 			if(OLD_EX_SEVERITY_3)
 				return
@@ -391,6 +391,29 @@
 				qdel(src)
 		return
 
+	onDestroy()
+		//This could be optimised for explosions I think, waiting to clear broken lattices before applying overlays to theones that remain.
+		var/image/I = image(src.icon)
+		for(var/D in cardinal)
+			var/obj/lattice/neighbour = locate(/obj/lattice) in get_step(src, D)
+			if (neighbour)
+				switch(D)
+					if(NORTH)
+						I.pixel_x = 0
+						I.pixel_y = -32
+					if(SOUTH)
+						I.pixel_x = 0
+						I.pixel_y = 32
+					if(EAST)
+						I.pixel_x = -32
+						I.pixel_y = 0
+					if(WEST)
+						I.pixel_x = 32
+						I.pixel_y = 0
+				I.icon_state = "[icon_base]-broken[D]"
+				neighbour.UpdateOverlays(I, "broke[D]")
+		..()
+
 /obj/lattice/proc/autoconnect(propagate = FALSE)
 	var/connect_dirs = 0
 	for(var/D in cardinal)
@@ -401,6 +424,7 @@
 			var/obj/lattice/neighbour = locate(/obj/lattice) in T
 			if (neighbour)
 				connect_dirs |= D
+				UpdateOverlays(null, "broke[D]")
 				if (propagate)
 					neighbour.autoconnect() //we're not done yet but the order shouldn't matter
 	//this is where it gets Bad, lattice icons are a goddamn mess. what the actual fuck
