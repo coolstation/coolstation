@@ -804,7 +804,7 @@
 					if (S)
 						playsound(src.loc, S, 50, 0)
 				src.postvend_effect()
-				if(account)//trying out no receipts for cash transactions - warc
+				if(account || print_receipts_long)//trying out no receipts for cash transactions - warc
 					printReceipt(account, R.product_name, R.product_cost, service_charge)
 
 				SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL, "productDispensed=[R.product_name]")
@@ -1351,7 +1351,7 @@
 	light_r =1
 	light_g = 0.88
 	light_b = 0.88
-	print_receipts_long = TRUE
+	//print_receipts_long = TRUE
 
 
 
