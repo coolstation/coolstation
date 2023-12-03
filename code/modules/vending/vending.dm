@@ -184,7 +184,7 @@
 		else
 			receiptText += "<b>Total</b> (deducted from [accountFrom.fields["name"]]): $[amount + serv_chg_amount]"
 
-		playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 50, 1)
+		playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 40, 1)
 
 		SPAWN_DBG(3.2 SECONDS)
 			var/obj/item/paper/P = new()
@@ -804,7 +804,8 @@
 					if (S)
 						playsound(src.loc, S, 50, 0)
 				src.postvend_effect()
-				printReceipt(account, R.product_name, R.product_cost, service_charge)
+				if(account)//trying out no receipts for cash transactions - warc
+					printReceipt(account, R.product_name, R.product_cost, service_charge)
 
 				SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL, "productDispensed=[R.product_name]")
 
