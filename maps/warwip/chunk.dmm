@@ -774,6 +774,7 @@
 	pixel_x = -5;
 	pixel_y = 10
 	},
+/obj/item/stamp/law,
 /turf/floor,
 /area/station/security/main)
 "aQM" = (
@@ -899,11 +900,7 @@
 /turf/floor,
 /area/station/crew_quarters/market)
 "aWh" = (
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
-	},
-/turf/floor/black,
+/turf/wall,
 /area/station/chapel/sanctuary)
 "aWB" = (
 /obj/cable/purple{
@@ -1796,10 +1793,6 @@
 /turf/floor/white,
 /area/station/medical/medbay/cloner)
 "bLL" = (
-/obj/machinery/light{
-	dir = 1;
-	pixel_x = -1
-	},
 /obj/disposalpipe/segment/mail{
 	dir = 4;
 	icon_state = "pipe-s"
@@ -2176,6 +2169,10 @@
 	},
 /turf/floor/grey,
 /area/station/science/chemistry)
+"cfp" = (
+/obj/stool,
+/turf/floor/carpet/blue/standard/edge/south,
+/area/station/chapel/sanctuary)
 "cfA" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable{
@@ -2329,6 +2326,11 @@
 /turf/floor/grey,
 /area/station/turret_protected/AIsat)
 "clX" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/specialroom/chapel{
 	dir = 5
 	},
@@ -2377,10 +2379,16 @@
 /turf/floor/plating,
 /area/station/crew_quarters/observatory)
 "cqk" = (
-/obj/table/regal/auto{
-	name = "solemn table"
+/obj/table/auto,
+/obj/cable{
+	icon_state = "0-2"
 	},
-/turf/floor/carpet/blue/standard/edge/se,
+/obj/machinery/power/data_terminal,
+/obj/machinery/networked/printer{
+	pixel_y = 11;
+	print_id = "Chapel"
+	},
+/turf/floor/black,
 /area/station/chapel/sanctuary)
 "cqO" = (
 /obj/wingrille_spawn/reinforced,
@@ -3982,13 +3990,9 @@
 /turf/floor/plating,
 /area/station/quartermaster/cargobay)
 "edQ" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/cable{
-	icon_state = "4-8"
+/obj/table/auto,
+/obj/item/paper_bin{
+	pixel_y = 2
 	},
 /turf/floor/specialroom/chapel{
 	dir = 4
@@ -5945,6 +5949,14 @@
 	},
 /turf/floor/grey,
 /area/station/security/quarters)
+"fWd" = (
+/obj/item/instrument/large/organ,
+/obj/machinery/light{
+	dir = 1;
+	pixel_x = -1
+	},
+/turf/floor/black,
+/area/station/chapel/sanctuary)
 "fXs" = (
 /obj/table/auto,
 /obj/disposalpipe/segment/vertical,
@@ -6040,6 +6052,9 @@
 /obj/storage/secure/closet/engineering/welding,
 /turf/floor/plating,
 /area/station/hallway/secondary/construction2)
+"gby" = (
+/turf/floor/carpet/blue/standard/edge/north,
+/area/station/chapel/sanctuary)
 "gbz" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -6297,11 +6312,12 @@
 /area/station/crew_quarters/kitchen)
 "gqK" = (
 /obj/cable{
-	icon_state = "4-8"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/turf/floor/specialroom/chapel{
-	dir = 4
-	},
+/obj/stool,
+/turf/floor/black,
 /area/station/chapel/sanctuary)
 "grC" = (
 /obj/machinery/vending/monkey,
@@ -6551,12 +6567,11 @@
 /turf/floor,
 /area/station/hallway/primary/southeast)
 "gGn" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+/obj/table/auto,
+/obj/item/paper/book/from_file/space_law,
+/turf/floor/specialroom/chapel{
+	dir = 8
 	},
-/turf/floor/black,
 /area/station/chapel/sanctuary)
 "gGo" = (
 /obj/cable{
@@ -7611,6 +7626,10 @@
 /obj/access_spawn/syndie_shuttle,
 /turf/floor/delivery,
 /area/listeningpost)
+"hTy" = (
+/obj/machinery/light,
+/turf/floor/black,
+/area/station/chapel/sanctuary)
 "hUs" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -8859,16 +8878,10 @@
 /turf/floor/grey,
 /area/station/science/chemistry)
 "jib" = (
-/obj/table/auto,
-/obj/cable{
-	icon_state = "0-2"
+/obj/stool,
+/turf/floor/specialroom/chapel{
+	dir = 4
 	},
-/obj/machinery/power/data_terminal,
-/obj/machinery/networked/printer{
-	pixel_y = 11;
-	print_id = "Chapel"
-	},
-/turf/floor/black,
 /area/station/chapel/sanctuary)
 "jiC" = (
 /obj/wingrille_spawn,
@@ -10235,6 +10248,7 @@
 "kMM" = (
 /obj/storage/secure/closet/civilian/chaplain,
 /obj/item/stamp/chap,
+/obj/item/clothing/under/misc/lawyer,
 /turf/floor/black,
 /area/station/chapel/office)
 "kMR" = (
@@ -10634,6 +10648,9 @@
 	},
 /turf/floor/plating/airless,
 /area/station/com_dish/comdish)
+"llQ" = (
+/turf/floor/carpet/blue/standard/edge/se,
+/area/station/chapel/sanctuary)
 "llS" = (
 /obj/cable{
 	icon_state = "1-8"
@@ -11499,17 +11516,11 @@
 /turf/floor,
 /area/station/science/bot_storage)
 "mmh" = (
-/obj/table/auto,
 /obj/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/data_terminal,
-/obj/machinery/computer3/generic/personal{
-	pixel_y = 10;
-	setup_drive_type = /obj/item/disk/data/fixed_disk/techcomputer3
+	icon_state = "1-8"
 	},
 /turf/floor/specialroom/chapel{
-	dir = 9
+	dir = 1
 	},
 /area/station/chapel/sanctuary)
 "mmt" = (
@@ -11886,6 +11897,7 @@
 	req_access_txt = "22";
 	text = "chapel"
 	},
+/obj/machinery/light_switch/north,
 /turf/floor/specialroom/chapel{
 	dir = 1
 	},
@@ -12084,7 +12096,13 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "mVc" = (
-/turf/floor/carpet/blue/standard/edge/nw,
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/floor/specialroom/chapel{
+	dir = 4
+	},
 /area/station/chapel/sanctuary)
 "mVA" = (
 /obj/wingrille_spawn/reinforced,
@@ -14277,11 +14295,6 @@
 /turf/floor/grime,
 /area/station/maintenance/disposal)
 "pcp" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/floor/specialroom/chapel{
 	dir = 10
 	},
@@ -14630,7 +14643,9 @@
 /area/station/security/quarters)
 "prF" = (
 /obj/cable{
-	icon_state = "2-4"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/floor/specialroom/chapel{
 	dir = 8
@@ -14988,6 +15003,11 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4;
 	icon_state = "pipe-s"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/floor/specialroom/chapel,
 /area/station/chapel/sanctuary)
@@ -16436,12 +16456,15 @@
 /turf/floor,
 /area/station/hallway/primary/southeast)
 "riq" = (
-/obj/cable{
-	icon_state = "4-8"
+/obj/disposalpipe/segment/mail{
+	dir = 4;
+	icon_state = "pipe-s"
 	},
-/turf/floor/specialroom/chapel{
-	dir = 8
+/obj/machinery/light{
+	dir = 1;
+	pixel_x = -1
 	},
+/turf/floor/black,
 /area/station/chapel/sanctuary)
 "riI" = (
 /obj/cable{
@@ -17300,6 +17323,12 @@
 	},
 /turf/floor/plating/airless,
 /area/listeningpost)
+"soG" = (
+/obj/table/regal/auto{
+	name = "solemn table"
+	},
+/turf/floor/carpet/blue/standard/edge/nw,
+/area/station/chapel/sanctuary)
 "soH" = (
 /obj/stool/chair/office/yellow{
 	dir = 8
@@ -17895,6 +17924,7 @@
 	pixel_x = 10;
 	pixel_y = 7
 	},
+/obj/item/paper/book/from_file/space_law,
 /turf/floor/red/side{
 	dir = 10
 	},
@@ -18474,10 +18504,9 @@
 /turf/floor,
 /area/station/storage/eva)
 "tzR" = (
-/obj/table/regal/auto{
-	name = "solemn table"
-	},
-/turf/floor/carpet/blue/standard/edge/sw,
+/obj/wingrille_spawn/reinforced,
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
 /area/station/chapel/sanctuary)
 "tBe" = (
 /obj/item/clothing/gloves/long,
@@ -19994,7 +20023,15 @@
 /turf/floor,
 /area/station/crew_quarters/market)
 "uXf" = (
-/obj/machinery/light_switch/north,
+/obj/table/auto,
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/computer3/generic/personal{
+	pixel_y = 10;
+	setup_drive_type = /obj/item/disk/data/fixed_disk/techcomputer3
+	},
 /turf/floor/specialroom/chapel{
 	dir = 10
 	},
@@ -20524,6 +20561,12 @@
 	icon_state = "fred2"
 	},
 /area/listeningpost)
+"vzV" = (
+/obj/table/regal/auto{
+	name = "solemn table"
+	},
+/turf/floor/carpet/blue/standard/edge/sw,
+/area/station/chapel/sanctuary)
 "vAa" = (
 /obj/disposalpipe/segment/bent/north,
 /turf/floor/red/side{
@@ -20567,8 +20610,17 @@
 /turf/floor/grey,
 /area/station/bridge)
 "vCy" = (
-/obj/stool,
-/turf/floor/carpet/blue/standard/edge/ne,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/floor/specialroom/chapel,
 /area/station/chapel/sanctuary)
 "vCB" = (
 /obj/decal/poster/wallsign/logistics_left,
@@ -22187,6 +22239,10 @@
 	},
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
+"xmg" = (
+/obj/stool,
+/turf/floor/carpet/blue/standard/edge/ne,
+/area/station/chapel/sanctuary)
 "xmj" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -22492,6 +22548,16 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/west)
+"xFX" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/specialroom/chapel{
+	dir = 4
+	},
+/area/station/chapel/sanctuary)
 "xFZ" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -77139,14 +77205,14 @@ jtx
 imh
 jtx
 jtx
-jPn
-jPn
-jPn
-jPn
-jPn
-jPn
+aWh
+aWh
+aWh
+aWh
+aWh
+aWh
 xjh
-jPn
+aWh
 aSk
 nkL
 nkL
@@ -77442,18 +77508,18 @@ gHb
 dOr
 jtx
 fNd
-nnD
-rrr
+edQ
+gGn
 aWh
-nnD
+mVc
 rrr
 bso
-jPn
-jPn
-jPn
-jPn
-jPn
-jPn
+aWh
+aWh
+aWh
+aWh
+aWh
+aWh
 jPn
 iBb
 iBb
@@ -77745,8 +77811,8 @@ rxy
 jtx
 jzE
 bso
-nnD
-rrr
+jib
+aWh
 erX
 qFX
 wIU
@@ -78047,8 +78113,8 @@ eNl
 czn
 ajg
 tmD
-mVc
-tzR
+rrr
+nnD
 oQu
 bso
 nnD
@@ -78347,14 +78413,14 @@ keL
 gHb
 eSO
 jtx
-bso
+cqk
 clX
 vCy
-cqk
+bNN
 pLc
-bso
-bso
-nnD
+vkQ
+vkQ
+xFX
 prF
 bNN
 mtt
@@ -78650,14 +78716,14 @@ pDp
 xTN
 iWI
 uXf
-bso
-gtE
-hel
+gqK
+mmh
+aWh
 fjg
 bso
 gtE
 rrr
-gqK
+nnD
 rfT
 vqS
 vqS
@@ -78954,12 +79020,12 @@ iWI
 uAe
 gtE
 hel
-bso
-fjg
+aWh
+riq
 gtE
 hel
 nnD
-riq
+rrr
 tzt
 vqS
 oDW
@@ -79259,9 +79325,9 @@ hGh
 wyi
 bLL
 hel
-jib
-vkQ
-edQ
+bso
+bso
+nnD
 tdv
 vqS
 kOD
@@ -79561,9 +79627,9 @@ nkX
 wyi
 uTN
 bso
-mmh
+tmD
 pcp
-gGn
+bso
 oxH
 vqS
 tiE
@@ -79862,10 +79928,10 @@ jPn
 pyY
 wyi
 wyi
-wyi
-wyi
-wyi
-wyi
+tmD
+soG
+vzV
+pcp
 wyi
 vqS
 xkl
@@ -80163,12 +80229,12 @@ huZ
 fDn
 huZ
 fDn
-huZ
-huZ
-huZ
-huZ
-huZ
-huZ
+wyi
+hel
+gby
+cfp
+nnD
+wyi
 vqS
 wJD
 wJD
@@ -80465,12 +80531,12 @@ huZ
 fDn
 huZ
 fDn
-huZ
-huZ
-huZ
-huZ
-huZ
-huZ
+wyi
+fWd
+xmg
+llQ
+hTy
+wyi
 fDn
 huZ
 huZ
@@ -80767,12 +80833,12 @@ huZ
 fDn
 huZ
 fDn
-huZ
-huZ
-huZ
-huZ
-huZ
-huZ
+tzR
+wyi
+wyi
+wyi
+wyi
+wyi
 fDn
 huZ
 huZ
