@@ -517,6 +517,7 @@
 /obj/machinery/computer3/generic/med_data{
 	dir = 4
 	},
+/obj/disposalpipe/segment/bent/west,
 /turf/floor/white,
 /area/station/medical/medbay/pharmacy)
 "aCx" = (
@@ -3607,7 +3608,6 @@
 /turf/wall,
 /area/station/mining/refinery)
 "dJQ" = (
-/obj/disposalpipe/segment/horizontal,
 /obj/disposalpipe/segment/morgue,
 /turf/floor/white,
 /area/station/medical/medbay/pharmacy)
@@ -4381,6 +4381,7 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
+/obj/disposalpipe/segment/vertical,
 /turf/floor/white,
 /area/station/medical/medbay/pharmacy)
 "ezJ" = (
@@ -16039,7 +16040,6 @@
 /turf/floor/plating/airless,
 /area/listeningpost)
 "qQI" = (
-/obj/disposalpipe/segment/horizontal,
 /obj/cabinet/medicalcritical,
 /obj/disposalpipe/segment/sewage{
 	dir = 1
@@ -16985,10 +16985,11 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "rSK" = (
-/obj/disposalpipe/trunk{
-	dir = 4
+/obj/submachine/chef_sink{
+	desc = "A water-filled unit intended for pissurgery purposes.";
+	name = "medical sink";
+	pixel_y = 2
 	},
-/obj/machinery/disposal,
 /turf/floor/white,
 /area/station/medical/medbay/pharmacy)
 "rTU" = (
@@ -19642,7 +19643,6 @@
 /turf/floor,
 /area/station/crew_quarters/market)
 "uDi" = (
-/obj/disposalpipe/segment/horizontal,
 /obj/cabinet/medicaltoxin,
 /turf/floor/white,
 /area/station/medical/medbay/pharmacy)
@@ -20662,10 +20662,10 @@
 /turf/floor/darkblue,
 /area/station/bridge)
 "vDA" = (
-/obj/submachine/chef_sink/chem_sink{
-	dir = 1;
-	pixel_y = 2
+/obj/disposalpipe/trunk{
+	dir = 4
 	},
+/obj/machinery/disposal,
 /turf/floor/white,
 /area/station/medical/medbay/pharmacy)
 "vDD" = (
@@ -23170,7 +23170,7 @@
 /turf/floor/plating,
 /area/station/maintenance/northwest)
 "yho" = (
-/obj/disposalpipe/segment/bent/west,
+/obj/disposalpipe/segment/vertical,
 /turf/floor/white,
 /area/station/medical/medbay/pharmacy)
 "yij" = (
