@@ -875,6 +875,13 @@
 			icon_state = "garbagegarbs"
 			bound_width  = 96
 
+		schweewasign
+			desc = "Schweewa. Fresh Smokes Prescribed To Order."
+			name = "Schweewa sign"
+			icon = 'icons/effects/96x32.dmi' //Maybe not the best place but it was the only ready 96x32 dmi
+			icon_state = "schweewa"
+			bound_width  = 96
+
 		fuq3
 			desc = "Our premier line of clothing is so diverse, you'll be sure to cry 'What le fuq?'"
 			name = "Fuq III"

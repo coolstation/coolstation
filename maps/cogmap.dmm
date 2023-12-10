@@ -267,20 +267,25 @@
 	},
 /area/shuttle/arrival/station)
 "aaT" = (
-/turf/shuttle/wall/cockpit/window{
-	icon_state = "wall_space";
-	name = "window"
+/obj/window/reinforced{
+	dir = 1
 	},
+/obj/indestructible/shuttle_corner{
+	dir = 4
+	},
+/turf/space,
 /area/shuttle/arrival/station)
 "aaU" = (
 /turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "aaV" = (
-/turf/shuttle/wall/cockpit/window{
-	dir = 4;
-	icon_state = "wall_space";
-	name = "window"
+/obj/window/reinforced{
+	dir = 1
 	},
+/obj/indestructible/shuttle_corner{
+	dir = 8
+	},
+/turf/space,
 /area/shuttle/arrival/station)
 "aaX" = (
 /obj/landmark{
@@ -419,11 +424,17 @@
 /area/station/crew_quarters/observatory)
 "abG" = (
 /obj/table/reinforced/auto,
+/obj/window/reinforced{
+	dir = 8
+	},
 /turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "abH" = (
 /obj/table/reinforced/auto,
 /obj/item/device/radio,
+/obj/window/reinforced{
+	dir = 4
+	},
 /turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "abJ" = (
@@ -447,9 +458,13 @@
 /turf/floor,
 /area/station/hallway/secondary/entry)
 "abM" = (
-/turf/shuttle/wall/cockpit/window{
-	name = "window"
+/obj/window/reinforced{
+	dir = 1
 	},
+/obj/window/reinforced{
+	dir = 2
+	},
+/turf/floor/shuttle,
 /area/shuttle/arrival/station)
 "abR" = (
 /obj/machinery/firealarm{
@@ -7087,7 +7102,6 @@
 	pixel_x = -4;
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag,
 /turf/floor/grass{
 	name = "astroturf"
 	},
@@ -18441,7 +18455,7 @@
 /turf/floor/grime,
 /area/station/hallway/primary/east)
 "aWk" = (
-/obj/storage/closet/coffin,
+/obj/storage/closet/coffin/nt,
 /turf/floor/plating,
 /area/station/maintenance/east)
 "aWl" = (
@@ -24256,7 +24270,7 @@
 	},
 /area/station/hallway/primary/central)
 "bjJ" = (
-/obj/grille/steel,
+/obj/random_item_spawner/vendor,
 /turf/floor/plating,
 /area/station/ai_monitored/storage/eva)
 "bjK" = (
@@ -41750,15 +41764,12 @@
 /turf/floor/sanitary,
 /area/station/crew_quarters/toilets)
 "cba" = (
-/obj/securearea{
-	desc = "A poster that reads 'CLEAN HANDS SAVE LIVES'.";
-	icon_state = "chsl";
-	name = "CLEAN HANDS SAVE LIVES";
-	pixel_x = 32
-	},
 /obj/submachine/chef_sink/chem_sink{
 	dir = 8;
 	pixel_x = 6
+	},
+/obj/decal/poster/wallsign/chsl{
+	pixel_x = 32
 	},
 /turf/floor/sanitary,
 /area/station/crew_quarters/toilets)
@@ -52244,10 +52255,7 @@
 /turf/floor/airless/plating/damaged3,
 /area/abandonedship)
 "cBd" = (
-/obj/item/raw_material/shard/glass{
-	icon_state = "small"
-	},
-/obj/decal/cleanable/dirt,
+/obj/item/raw_material/shard/glass,
 /turf/floor/airless/plating/damaged3,
 /area/abandonedship)
 "cBe" = (
@@ -52298,6 +52306,7 @@
 	pixel_x = 6;
 	pixel_y = -28
 	},
+/obj/item/raw_material/shard/glass,
 /turf/floor/airless/plating/scorched,
 /area/abandonedship)
 "cBm" = (
@@ -54548,8 +54557,6 @@
 /area/station/medical/medbay)
 "eNe" = (
 /obj/table/auto,
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag,
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag,
 /turf/floor/grass{
 	name = "astroturf"
 	},
@@ -54746,9 +54753,7 @@
 /obj/indestructible/shuttle_corner{
 	dir = 8
 	},
-/turf/shuttle/wall/corner{
-	dir = 4
-	},
+/turf/space,
 /area/shuttle/arrival/station)
 "fhM" = (
 /obj/submachine/seed_manipulator{
@@ -55350,7 +55355,7 @@
 /obj/indestructible/shuttle_corner{
 	dir = 4
 	},
-/turf/shuttle/wall/corner,
+/turf/space,
 /area/shuttle/arrival/station)
 "gda" = (
 /obj/machinery/door/airlock/maintenance,
@@ -56588,9 +56593,11 @@
 /turf/floor/plating,
 /area/station/hangar/main)
 "iIk" = (
-/obj/machinery/door/airlock/external,
 /obj/decal/garland/ephemeral{
 	dir = 8
+	},
+/obj/machinery/door/airlock/pyro/external{
+	dir = 4
 	},
 /turf/floor/shuttle,
 /area/shuttle/arrival/station)
@@ -57863,8 +57870,10 @@
 /turf/floor/carpet,
 /area/station/chapel/sanctuary)
 "lnn" = (
-/obj/machinery/door/airlock/external,
 /obj/decal/garland/ephemeral{
+	dir = 4
+	},
+/obj/machinery/door/airlock/pyro/external{
 	dir = 4
 	},
 /turf/floor/shuttle,
@@ -59937,6 +59946,10 @@
 	},
 /turf/floor/grime,
 /area/station/storage/primary)
+"pBU" = (
+/obj/storage/closet/coffin,
+/turf/floor/plating,
+/area/station/maintenance/east)
 "pCo" = (
 /obj/machinery/door/airlock/external,
 /obj/firedoor_spawn,
@@ -111110,7 +111123,7 @@ aaU
 aaX
 aaX
 abM
-aaT
+aaJ
 aaJ
 ael
 ads
@@ -111714,7 +111727,7 @@ aaU
 aaX
 aaX
 abM
-aaV
+aaJ
 aaJ
 aes
 adu
@@ -120214,7 +120227,7 @@ aGo
 aUX
 aWs
 aGo
-bgO
+pBU
 aWk
 baA
 bbB

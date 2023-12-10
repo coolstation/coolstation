@@ -56,7 +56,7 @@ proc/build_syndi_buylist_cache()
 
 /datum/syndicate_buylist/weapon/pistolrounds
 	name = "Ammo: AP Pistol Rounds"
-	item = /obj/item/stackable_ammo/pistol_38AP
+	item = /obj/item/stackable_ammo/pistol_38AP/ten
 	cost = 2
 	desc = "Ten very-lethal rounds, in case you run out."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)

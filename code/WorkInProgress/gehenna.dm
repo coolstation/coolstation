@@ -53,6 +53,8 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	icon_state = "gehenna_rock"
 	floor_turf = "/turf/space/gehenna/desert"
 	hardness = 1
+	default_ore = /obj/item/raw_material/rock/gehenna
+
 	New()
 		..()
 		src.icon_state = initial(src.icon_state)

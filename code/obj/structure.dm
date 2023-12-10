@@ -34,7 +34,7 @@ obj/structure
 	meteorhit(obj/O as obj)
 		qdel(src)
 
-obj/structure/ex_act(severity)
+/obj/structure/ex_act(severity)
 	switch(severity)
 		if(OLD_EX_SEVERITY_1)
 			qdel(src)
@@ -126,7 +126,7 @@ obj/structure/ex_act(severity)
 	var/obj/item/the_tool
 	var/interaction = GIRDER_DISASSEMBLE
 
-	New(var/obj/table/girdr, var/obj/item/tool, var/interact, var/duration_i)
+	New(var/obj/structure/girder/girdr, var/obj/item/tool, var/interact, var/duration_i)
 		..()
 		if (girdr)
 			the_girder = girdr
@@ -158,6 +158,10 @@ obj/structure/ex_act(severity)
 
 	onStart()
 		..()
+		//I'm fairly certain that you can't build girders on non-construction turfs anyway
+		//this one's more for the smartass who brings girders with them into an azone
+		if (!isconstructionturf((get_turf(the_girder))))
+			interrupt(INTERRUPT_ALWAYS)
 		var/verbing = ""
 		switch (interaction)
 			if (GIRDER_DISASSEMBLE)

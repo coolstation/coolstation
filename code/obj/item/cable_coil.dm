@@ -174,6 +174,8 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 		RegisterSignal(M, COMSIG_MOVABLE_MOVED, .proc/move_callback)
 		boutput(M, "<span class='notice'>Now laying cable while moving.</span>")
 	currently_laying = !currently_laying
+	var/obj/ability_button/cable_toggle/button = locate() in ability_buttons
+	button?.icon_state = src.currently_laying ? "cable-on" : "cable-off"
 
 obj/item/cable_coil/dropped(mob/user)
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)

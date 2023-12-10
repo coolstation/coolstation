@@ -323,7 +323,7 @@
 					#agreement{
 						text-shadow: -1px -1px 0 #777, 1px -1px 0 #777, -1px 1px 0 #777, 1px 1px 0 #777;
 						z-index:9;
-						width:60%;
+						width:80%;
 						margin:auto;
 					}
 					#leftside{

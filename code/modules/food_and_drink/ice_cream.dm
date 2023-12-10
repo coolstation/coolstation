@@ -108,6 +108,11 @@
 	initial_volume = 30
 	initial_reagents = list("beff"=30)
 
+/obj/item/reagent_containers/food/snacks/yoghurt/hoghurt/on_bite(mob/eater)
+	..()
+	if (eater.traitHolder.hasTrait("training_security"))
+		eater.take_toxin_damage(rand(5,10))
+
 /obj/item/reagent_containers/food/snacks/yoghurt/frozen
 	name = "frozen yoghurt"
 	desc = "A delightful tub of frozen yoghurt."

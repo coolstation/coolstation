@@ -1887,7 +1887,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 	pet_text = list("pets", "cuddles", "pats", "snuggles")
 	var/lying = 0
 	var/freakout = 0
-	//var/gotfreaked = 0
+	var/gotfreaked = 0
 	var/marten = 0
 	var/farten = 0
 	var/base_state = "ferret"
@@ -1968,6 +1968,11 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 			if (prob(10))
 				src.visible_message("\The [src] [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles","dooks")]!")
 				playsound(src, 'sound/misc/talk/fert.ogg', 40, 1, 0.3, 1.5, channel=VOLUME_CHANNEL_EMOTE)
+				for (var/mob/M in viewers(src))
+					if (istype(M, /mob/living/critter/small_animal/meatslinky)) //small ferrets (mobs only)
+						var/mob/living/critter/small_animal/meatslinky/frrt = M
+						if (prob(20))
+							frrt.contagiousfreakout() //critters can freak out mobs but not the other way around
 
 			src.freakout--
 			if (!src.freakout)
@@ -2030,10 +2035,10 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 		else
 			return ..()
 
-/* // for later
-	proc/contagiousfreakout() //if you think regular ferrets get excited over other regular ferrets just you wait bud
+	proc/contagiousfreakout(var/frombig) //if you think regular ferrets get excited over other regular ferrets just you wait bud
+		//temporary flick of existing state
 		if (src.freakout) //boost chance to freak out if they're currently freaking out, but don't add to it
-			if (prob(15))
+			if (prob(20 + (frombig * 5))) //small ferrets get 20% chance, big ferrets get 25%
 				if ((!src.gotfreaked))
 					src.gotfreaked = 1
 					SPAWN_DBG(12)
@@ -2048,11 +2053,13 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 							if(prob(4))
 								animate_spin(src, prob(50) ? "L" : "R", 1, 0)
 							if(prob(4))
-								src.emote("laugh")
+								playsound(src, 'sound/misc/talk/fert.ogg', 40, 1, 0.3, 1.5, channel=VOLUME_CHANNEL_EMOTE)
+								src.audible_message("<span class='combat'><b>[src]</b> dooks wildly!</span>","<span class='combat'>You hear some kind of ferret being excited!</span>")
 							sleep(0.2 SECONDS)
 						src.visible_message("<span class='emote'><b>[src]</b> calms down a little bit.</span>")
 			else
 				return
+		//new state
 		if (prob(5))
 			if ((!src.gotfreaked) || resonance_fertscade)
 				src.gotfreaked = 1
@@ -2069,13 +2076,13 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 						if(prob(3))
 							animate_spin(src, prob(50) ? "L" : "R", 1, 0) //try a rare spin every loop
 						if(prob(3))
-							src.emote("laugh")
+							playsound(src, 'sound/misc/talk/fert.ogg', 40, 1, 0.3, 1.5, channel=VOLUME_CHANNEL_EMOTE)
+							src.audible_message("<span class='combat'><b>[src]</b> dooks wildly!</span>","<span class='combat'>You hear some kind of ferret being excited!</span>")
 						sleep(0.2 SECONDS)
 					src.visible_message("<span class='emote'><b>[src]</b> calms down again. For now.</span>")
 		else
-			if(prob(10))
+			if(prob(5))
 				src.freakout += 5 //just a tiny bit because it happened
-				*/
 
 /obj/critter/meatslinky/pine_marten
 	name = "pine marten"

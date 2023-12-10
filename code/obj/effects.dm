@@ -8,7 +8,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	name = "effects"
 	icon = 'icons/effects/effects.dmi'
 	mouse_opacity = 0
-	flags = TABLEPASS
+	flags = TECHNICAL_ATOM | TABLEPASS
 	desc = null
 /*
 	pooled()

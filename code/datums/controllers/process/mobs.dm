@@ -56,13 +56,14 @@
 				scheck()
 			else if(istype(X, /mob/dead))
 				var/mob/dead/G = X
-				#ifdef HALLOWEEN
-				if (TRUE)
+				#ifdef HALLOWEEN //all observers run Life on halloween for the ghostly HUD point pool stuff
+				G:Life(src)
+				scheck()
 				#else
-				if (isadminghost(G) || IS_TWITCH_CONTROLLED(G))
-				#endif
+				if (isadminghost(G) || IS_TWITCH_CONTROLLED(G)) //admin observers & target observers always run Life for updating antag overlays
 					G:Life(src)
 					scheck()
+				#endif
 
 	tickDetail()
 		if (length(detailed_count))

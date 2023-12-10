@@ -1051,7 +1051,7 @@
 	icon = 'icons/obj/trader.dmi'
 	icon_state = "exclown"
 	picture = "exclown.png"
-	name = "fake jef"
+	name = "Geoff Honkington"
 	trader_area = "/area/hallway/secondary/entry"
 	angrynope = "HO--nngh. Leave me alone."
 	whotext = "Just an honest trader tryin' to make a living. Mind the banana peel, ya hear?"

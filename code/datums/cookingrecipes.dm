@@ -581,6 +581,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe)
 		customSandwich.reagents = new /datum/reagents(100)
 		customSandwich.reagents.my_atom = customSandwich
 
+
 		var/obj/item/reagent_containers/food/snacks/breadslice/slice1
 		var/obj/item/reagent_containers/food/snacks/breadslice/slice2
 		var/list/fillings = list()
@@ -684,6 +685,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe)
 
 		var/obj/sandwichIcon
 		customSandwich.icon = 'icons/obj/foodNdrink/food_meals.dmi'
+		customSandwich.icon_state = "blank"
 		if (slice1)
 			sandwichIcon = image('icons/obj/foodNdrink/food_meals.dmi', "sandwich-bread")//, 1, 1)
 			//sandwichIcon.Blend(slice1.food_color, ICON_ADD)
@@ -1345,6 +1347,12 @@ ABSTRACT_TYPE(/datum/cookingrecipe)
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/sugar
 	cookbonus = 6
 	output = /obj/item/reagent_containers/food/snacks/candy/candy_apple
+
+/datum/cookingrecipe/candy_apple_sour
+	item1 = /obj/item/reagent_containers/food/snacks/plant/apple/stick/sour
+	item2 = /obj/item/reagent_containers/food/snacks/ingredient/sugar
+	cookbonus = 6
+	output = /obj/item/reagent_containers/food/snacks/candy/candy_apple/sour
 
 /datum/cookingrecipe/candy_apple_poison
 	item1 = /obj/item/reagent_containers/food/snacks/plant/apple/stick/poison

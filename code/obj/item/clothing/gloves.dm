@@ -42,7 +42,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 
 	New()
 		..() // your parents miss you
-		flags |= HAS_EQUIP_CLICK
+		item_function_flags |= HAS_EQUIP_CLICK
 		SPAWN_DBG(2 SECONDS)
 			src.glove_ID = src.CreateID()
 			if (glove_IDs) // fix for Cannot execute null.Add(), maybe??
@@ -452,7 +452,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 	material_prints = "insulative fibers and nanomachines"
 	can_be_charged = 1 // Quite pointless, but could be useful as a last resort away from powered wires? Hell, it's a traitor item and can get the buff (Convair880).
 	max_uses = 4
-	flags = HAS_EQUIP_CLICK
+	//item_function_flags = HAS_EQUIP_CLICK I'm pretty sure this is handled on the parent?
 
 	var/spam_flag = 0
 

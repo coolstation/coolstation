@@ -507,7 +507,7 @@
 
 /obj/machinery/disposal/brig
 	name = "brig chute"
-	icon_state = "brigchute"
+	icon_state = "brig"
 	desc = "A pneumatic delivery chute for sending things directly to the brig."
 	icon_style = "brig"
 
@@ -643,7 +643,7 @@
 /obj/machinery/disposal/transport
 	name = "transportation unit"
 	icon = 'icons/obj/disposal.dmi'
-	icon_state = "scichute"
+	icon_state = "sci"
 	desc = "A pneumatic delivery chute for transporting people. Ever see Futurama? It's like that."
 	icon_style = "sci"
 

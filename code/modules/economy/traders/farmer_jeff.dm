@@ -63,8 +63,8 @@
 		comname = "Apple"
 		comtype = /obj/item/reagent_containers/food/snacks/plant/apple
 		price_boundary = list(20,50)
-		possible_alt_types = list(/obj/item/reagent_containers/food/snacks/plant/apple/stick)
-		alt_type_chance = 10
+		possible_alt_types = list(/obj/item/reagent_containers/food/snacks/plant/apple/sour)
+		alt_type_chance = 50
 		possible_names = list("Hey, you all eat the middle part too, right? Hell yeah, waste not want not.",
 		"No bullshit apples here, I promise you. That variety is banned for a reason.")
 

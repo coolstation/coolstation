@@ -184,7 +184,7 @@
 		else
 			receiptText += "<b>Total</b> (deducted from [accountFrom.fields["name"]]): $[amount + serv_chg_amount]"
 
-		playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 50, 1)
+		playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 40, 1)
 
 		SPAWN_DBG(3.2 SECONDS)
 			var/obj/item/paper/P = new()
@@ -804,7 +804,8 @@
 					if (S)
 						playsound(src.loc, S, 50, 0)
 				src.postvend_effect()
-				printReceipt(account, R.product_name, R.product_cost, service_charge)
+				if(account || print_receipts_long)//trying out no receipts for cash transactions - warc
+					printReceipt(account, R.product_name, R.product_cost, service_charge)
 
 				SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL, "productDispensed=[R.product_name]")
 
@@ -1290,7 +1291,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket, 20, cost=PAY_UNTRAINED/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/nicofree, 10, cost=PAY_UNTRAINED/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/menthol, 10, cost=PAY_UNTRAINED/5)
-		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(1,3), cost=PAY_UNTRAINED/5)
+
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/propuffs, 10, cost=PAY_TRADESMAN/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo, 10, cost=PAY_TRADESMAN/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/brute, 5, cost=PAY_TRADESMAN/10)
@@ -1305,6 +1306,37 @@
 		product_list += new/datum/data/vending_product(/obj/item/device/igniter, rand(1, 6), hidden=1, cost=PAY_UNTRAINED/5)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/random, rand(0, 1), hidden=1, cost=420)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo/juicer, rand(6, 9), hidden=1, cost=69)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(1,3),hidden=1, cost=PAY_UNTRAINED/5)
+
+/obj/machinery/vending/cigarette/schweewa
+	icon_state = "s_cigs"
+	icon_panel = "cigs-panel"
+	acceptcard = 0
+	desc = "Who still smokes these?"
+	slogan_list = list("Juicer Schweet's Original Rowdy Rillos, Quality you can crave.",
+	"Fresh Fine Flamable Farmaceuticals.",
+	"Smoke!",
+	"Watch out! You're cravin one now!")
+
+	create_products()
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo/juicer, rand(6, 9), cost=PAY_UNTRAINED/6)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo/juicer, rand(6, 9), cost=PAY_UNTRAINED/6)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo/juicer, rand(6, 9), cost=PAY_UNTRAINED/6)
+
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo, rand(6, 9), cost=PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo, rand(6, 9), cost=PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo, rand(6, 9), cost=PAY_UNTRAINED/5)
+
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(6, 9), cost=PAY_UNTRAINED/6)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(6, 9), cost=PAY_UNTRAINED/6)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(6, 9), cost=PAY_UNTRAINED/6)
+
+		product_list += new/datum/data/vending_product(/obj/item/device/light/zippo, 5, cost=PAY_UNTRAINED/4)
+
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/random, rand(1,3), hidden=1, cost=420)
+
+
+
 
 /obj/machinery/vending/medical
 	name = "NanoMed Plus"
@@ -1319,7 +1351,7 @@
 	light_r =1
 	light_g = 0.88
 	light_b = 0.88
-	print_receipts_long = TRUE
+	//print_receipts_long = TRUE
 
 
 
@@ -1503,7 +1535,7 @@
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/poo, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/grones, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/bottledwater, 10, cost=PAY_UNTRAINED/4)
-			product_list += new/datum/data/vending_product("/obj/item/reagent_containers/food/drinks/cola/random", 10, cost=PAY_UNTRAINED/10) //does this even work??
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/random, 10, cost=PAY_UNTRAINED/10) //does this even work??
 
 	blue
 		icon_state = "grife"
@@ -1513,7 +1545,8 @@
 		"Spooky Dan's - it's altogether ooky!",
 		"Everyone can see Orange-Aid is best!",
 		"Decirprevo. The sophisticate's bottled water.",
-		"Mr. Piss - Tastes normal!")
+		"Mr. Piss - Tastes normal!",
+		"Aperitivo analcolico a base di carne - Cappy Cola!")
 
 		light_r =0.5
 		light_g = 0.5
@@ -1526,8 +1559,9 @@
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/spooky, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/spooky2,10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/pee, 10, cost=PAY_UNTRAINED/6)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/italian, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/bottledwater, 10, cost=PAY_UNTRAINED/4)
-			product_list += new/datum/data/vending_product("/obj/item/reagent_containers/food/drinks/cola/random", 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/random, 10, cost=PAY_UNTRAINED/10)
 
 /obj/machinery/vending/electronics
 	name = "ElecTek Vendomaticotron"
@@ -2533,6 +2567,25 @@
 
 		product_list += new/datum/data/vending_product(/obj/item/clothing/mask/monkey_translator, rand(1,2), hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/banana, rand(1,20), hidden=1)
+
+/obj/machinery/vending/grub //remove this once there's literally any other method of generating grubs
+	name = "Grub Hub"
+	desc = "There's bugs in this here box!"
+	icon_state = "monkey"
+	icon_panel = "standard-panel"
+	// monkey vendor has slightly special broken/etc sprites so it doesn't just inherit the standard set  :)
+	acceptcard = 0
+	mats = 0 // >:I
+	slogan_list = list("Free bug for your de bug!")
+	slogan_chance = 1
+
+	light_r =1
+	light_g = 0.88
+	light_b = 0.3
+
+	create_products()
+		..()
+		product_list += new/datum/data/vending_product(/mob/living/critter/grub/wildgrub, rand(10, 15), logged_on_vend=TRUE)
 
 
 /obj/machinery/vending/magivend

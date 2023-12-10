@@ -186,7 +186,7 @@
 			playsound(src.loc,'sound/impact_sounds/Metal_Clang_1.ogg', 55, 0)
 			H.changeStatus("stunned", 1 SECONDS)
 			H.changeStatus("weakened", 1 SECONDS)
-			if(prob(75))
+			if(prob(75) && (src.open))
 				SPAWN_DBG(1 SECOND)
 					src.close()
 					H.set_loc(src)
@@ -518,7 +518,7 @@
 
 
 /obj/storage/crate/loot_crate
-	name = "Loot Crate"
+	name = "loot crate"
 	desc = "A small, cuboid object with a hinged top and loot filled interior."
 	spawn_contents = list(/obj/random_item_spawner/loot_crate/surplus)
 

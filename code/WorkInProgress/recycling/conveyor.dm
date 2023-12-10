@@ -46,6 +46,9 @@
 	..()
 	basedir = dir
 	setdir()
+	//Give em little lights so folks can see which side of the switch correlates to direction on the conveyor.
+	//They're all separate icon_states cause they shouldn't turn with the conveyor.
+	UpdateOverlays(image('icons/obj/recycling.dmi', "indicator-[basedir]"), "indicator")
 
 /obj/machinery/conveyor/initialize()
 	..()
@@ -454,17 +457,25 @@
 		C.setdir()
 
 // attack with hand, switch position
-/obj/machinery/conveyor_switch/attack_hand(mob/user)
-	if(position == 0)
-		if(last_pos < 0)
-			position = 1
-			last_pos = 0
-		else
-			position = -1
-			last_pos = 0
-	else
+/obj/machinery/conveyor_switch/attack_hand(mob/user, params, location, control)
+
+	if (islist(params) && params["icon-x"])
 		last_pos = position
-		position = 0
+		if (text2num(params["icon-x"]) >= 16) //right half of sprite
+			position = (position == 1) ? 0 : 1
+		else //left half of sprite
+			position = (position == -1) ? 0 : -1
+	else
+		if(position == 0)
+			if(last_pos < 0)
+				position = 1
+				last_pos = 0
+			else
+				position = -1
+				last_pos = 0
+		else
+			last_pos = position
+			position = 0
 
 	operated = 1
 	update()

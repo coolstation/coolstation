@@ -476,7 +476,7 @@
 	// this is a helper for organs and limbs
 	return 0
 
-/obj/item/proc/equipment_click(atom/source, atom/target, params, location, control, origParams, slot) //Called through hand_range_attack on items the mob is wearing that have HAS_EQUIP_CLICK in flags.
+/obj/item/proc/equipment_click(atom/source, atom/target, params, location, control, origParams, slot) //Called through hand_range_attack on items the mob is wearing that have HAS_EQUIP_CLICK in item_function_flags.
 	return 0
 
 /obj/item/proc/combust(obj/item/W) // cogwerks- flammable items project

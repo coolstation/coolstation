@@ -464,6 +464,60 @@
 		if(owner.bioHolder && !owner.bioHolder.HasEffect("blind"))
 			owner.bioHolder.AddEffect("blind", 0, 0, 0, 1)
 
+/obj/trait/blind/protanopia
+	name = "Protanopia (+1)"
+	cleanName="Protanopia"
+	desc = "You are colorblind: unable to see red and green, leaving a yellowish tint."
+	id = "protanopia"
+	category = "vision"
+	points = 1
+	isPositive = 0
+
+	onAdd(var/mob/owner)
+		if(owner.bioHolder)
+			if(istype(owner, /mob/living/carbon/human))
+				owner.bioHolder.AddEffect("protanopia", 0, 0, 0, 1)
+
+	onLife(var/mob/owner) //Just to be safe.
+		if(owner.bioHolder && !owner.bioHolder.HasEffect("protanopia"))
+			owner.bioHolder.AddEffect("protanopia", 0, 0, 0, 1)
+
+/obj/trait/blind/deuteranopia
+	name = "Deuteranopia (+1)"
+	cleanName="Deuteranopia"
+	desc = "You are colorblind: cannot see green."
+	id = "deuteranopia"
+	category = "vision"
+	points = 1
+	isPositive = 0
+
+	onAdd(var/mob/owner)
+		if(owner.bioHolder)
+			if(istype(owner, /mob/living/carbon/human))
+				owner.bioHolder.AddEffect("deuteranopia", 0, 0, 0, 1)
+
+	onLife(var/mob/owner) //Just to be safe.
+		if(owner.bioHolder && !owner.bioHolder.HasEffect("deuteranopia"))
+			owner.bioHolder.AddEffect("deuteranopia", 0, 0, 0, 1)
+
+/obj/trait/blind/tritanopia
+	name = "Tritanopia (+1)"
+	cleanName="Tritanopia"
+	desc = "You are colorblind: cannot see blue."
+	id = "tritanopia"
+	category = "vision"
+	points = 1
+	isPositive = 0
+
+	onAdd(var/mob/owner)
+		if(owner.bioHolder)
+			if(istype(owner, /mob/living/carbon/human))
+				owner.bioHolder.AddEffect("tritanopia", 0, 0, 0, 1)
+
+	onLife(var/mob/owner) //Just to be safe.
+		if(owner.bioHolder && !owner.bioHolder.HasEffect("tritanopia"))
+			owner.bioHolder.AddEffect("tritanopia", 0, 0, 0, 1)
+
 // GENETICS - Blue Border
 /obj/trait/italian
 	name = "Italian (??) \[Italian\]"

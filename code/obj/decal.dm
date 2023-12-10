@@ -274,32 +274,6 @@ obj/decal/fakeobjects
 	UpdateName()
 		src.name = "[name_prefix(null, 1)][src.true_name][name_suffix(null, 1)]"
 
-/obj/decal/fakeobjects/console_lever
-	name = "lever console"
-	icon = 'icons/obj/decoration.dmi'
-	icon_state = "lever0"
-	density = 1
-
-/obj/decal/fakeobjects/console_randompc
-	name = "computer console"
-	icon = 'icons/obj/decoration.dmi'
-	icon_state = "randompc"
-	density = 1
-
-/obj/decal/fakeobjects/console_radar
-	name = "radar console"
-	icon = 'icons/obj/decoration.dmi'
-	icon_state = "radar"
-	density = 1
-
-/obj/decal/fakeobjects/cargopad
-	name = "Cargo Pad"
-	desc = "Used to recieve objects transported by a Cargo Transporter."
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "cargopad"
-	anchored = 1
-	plane = PLANE_FLOOR
-
 /obj/decal/fakeobjects/robot
 	name = "Inactive Robot"
 	desc = "The robot looks to be in good condition."
@@ -307,124 +281,6 @@ obj/decal/fakeobjects
 	icon_state = "robot"
 	anchored = 0
 	density = 1
-
-/obj/decal/fakeobjects/apc_broken
-	name = "broken APC"
-	desc = "A smashed local power unit."
-	icon = 'icons/obj/power.dmi'
-	icon_state = "apc-b"
-	anchored = 1
-
-obj/decal/fakeobjects/teleport_pad
-	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "pad0"
-	name = "teleport pad"
-	anchored = 1
-	layer = FLOOR_EQUIP_LAYER1
-	desc = "A pad used for scientific teleportation."
-
-/obj/decal/fakeobjects/firealarm_broken
-	name = "broken fire alarm"
-	desc = "This fire alarm is burnt out, ironically."
-	icon = 'icons/obj/monitors.dmi'
-	icon_state = "firex"
-	anchored = 1
-
-/obj/decal/fakeobjects/firelock_broken
-	name = "rusted firelock"
-	desc = "Rust has rendered this firelock useless."
-	icon = 'icons/obj/doors/door_fire2.dmi'
-	icon_state = "door0"
-	anchored = 1
-
-/obj/decal/fakeobjects/lighttube_broken
-	name = "shattered light tube"
-	desc = "Something has broken this light."
-	icon = 'icons/obj/lighting.dmi'
-	icon_state = "tube-broken"
-	anchored = 1
-	layer = EFFECTS_LAYER_UNDER_1
-	plane = PLANE_NOSHADOW_ABOVE
-
-/obj/decal/fakeobjects/lightbulb_broken
-	name = "shattered light bulb"
-	desc = "Something has broken this light."
-	icon = 'icons/obj/lighting.dmi'
-	icon_state = "bulb-broken"
-	anchored = 1
-	layer = EFFECTS_LAYER_UNDER_1
-	plane = PLANE_NOSHADOW_ABOVE
-
-/obj/decal/fakeobjects/airmonitor_broken
-	name = "broken air monitor"
-	desc = "Something has broken this air monitor."
-	icon = 'icons/obj/monitors.dmi'
-	icon_state = "alarmx"
-	anchored = 1
-
-/obj/decal/fakeobjects/shuttlethruster
-	name = "propulsion unit"
-	desc = "A small impulse drive that moves the shuttle."
-	icon = 'icons/turf/shuttle.dmi'
-	icon_state = "propulsion"
-	anchored = 1
-	density = 1
-	opacity = 0
-
-/obj/decal/fakeobjects/shuttleweapon
-	name = "weapons unit"
-	desc = "A weapons system for shuttles and similar craft."
-	icon = 'icons/turf/shuttle.dmi'
-	icon_state = "shuttle_laser"
-	anchored = 1
-	density = 1
-	opacity = 0
-
-	base
-		icon_state = "alt_heater"
-
-/obj/decal/fakeobjects/pipe
-	name = "rusted pipe"
-	desc = "Good riddance."
-	icon = 'icons/obj/atmospherics/pipes/regular_pipe.dmi'
-	icon_state = "intact"
-	anchored = 1
-	layer = PIPE_LAYER
-	plane = PLANE_NOSHADOW_BELOW
-
-	heat
-		icon = 'icons/obj/atmospherics/pipes/heat_pipe.dmi'
-
-/obj/decal/fakeobjects/oldcanister
-	name = "old gas canister"
-	desc = "All the gas in it seems to be long gone."
-	icon = 'icons/misc/evilreaverstation.dmi'
-	icon_state = "old_oxy"
-	anchored = 0
-	density = 1
-
-
-	plasma
-		name = "old plasma canister"
-		icon_state = "old_plasma"
-		desc = "This used to be the most feared piece of equipment on the station, don't you believe it?"
-
-/obj/decal/fakeobjects/shuttleengine
-	name = "engine unit"
-	desc = "A generator unit that uses complex technology."
-	icon = 'icons/turf/shuttle.dmi'
-	icon_state = "heater"
-	anchored = 1
-	density = 1
-	opacity = 0
-
-/obj/decal/fakeobjects/falseladder
-	name = "ladder"
-	desc = "The ladder is blocked, you can't get down there."
-	icon = 'icons/misc/worlds.dmi'
-	icon_state = "ladder"
-	anchored = 1
-	density = 0
 
 /obj/decal/fakeobjects/sealedsleeper
 	name = "sleeper"
@@ -434,31 +290,15 @@ obj/decal/fakeobjects/teleport_pad
 	anchored = 1
 	density = 1
 
-/obj/decal/fakeobjects/nestofmattresses //gross
-	name = "smelly pile of mattresses"
-	desc = "Some kind of foul, horrible creature has piled up a bunch of old mattresses here???"
-	icon = 'icons/misc/96x64.dmi'
-	icon_state = "mattresspile"
-	anchored = 1
-	density = 1
-
 /obj/decal/fakeobjects/hose //gross
 	name = "garden hose"
-	desc = "A garden hose stand, with spigot. You don't feel like touching this."
+	desc = "A garden hose stand, with spigot."
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "hose"
 	anchored = 1
 	density = 1
 
 //sealab prefab fakeobjs
-
-/obj/decal/fakeobjects/pcb
-	name = "PCB constructor"
-	desc = "A combination pick and place machine and wave soldering gizmo.  For making boards.  Buddy boards.   Well, it would if the interface wasn't broken."
-	icon = 'icons/obj/manufacturer.dmi'
-	icon_state = "fab"
-	anchored = 1
-	density = 1
 
 /obj/decal/fakeobjects/palmtree
 	name = "palm tree"
@@ -728,94 +568,3 @@ obj/decal/fakeobjects/teleport_pad
 	density = 0
 	opacity = 0
 	anchored = 1
-
-
-
-//floor guides
-
-/obj/decal/tile_edge/floorguide
-	name = "navigation guide"
-	desc = "A navigation guide to help people find the department they're looking for."
-	icon = 'icons/obj/decals/floorguides.dmi'
-	icon_state = "endpiece_s"
-
-/obj/decal/tile_edge/floorguide/security
-	name = "Security Navigation Guide"
-	desc = "The security department is in this direction."
-	icon_state = "guide_sec"
-
-/obj/decal/tile_edge/floorguide/science
-	name = "R&D Navigation Guide"
-	desc = "The science department is in this direction."
-	icon_state = "guide_sci"
-
-/obj/decal/tile_edge/floorguide/mining
-	name = "Mining Navigation Guide"
-	desc = "The mining department is in this direction."
-	icon_state = "guide_mining"
-
-/obj/decal/tile_edge/floorguide/medbay
-	name = "Medbay Navigation Guide"
-	desc = "The medical department is in this direction."
-	icon_state = "guide_medbay"
-
-/obj/decal/tile_edge/floorguide/evac
-	name = "Evac Shuttle Navigation Guide"
-	desc = "The evac shuttle bay is in this direction."
-	icon_state = "guide_evac"
-
-/obj/decal/tile_edge/floorguide/engineering
-	name = "Engineering Navigation Guide"
-	desc = "The engineering department is in this direction."
-	icon_state = "guide_engi"
-
-/obj/decal/tile_edge/floorguide/command
-	name = "Bridge Navigation Guide"
-	desc = "The station bridge is in this direction."
-	icon_state = "guide_command"
-
-/obj/decal/tile_edge/floorguide/botany
-	name = "Botany Navigation Guide"
-	desc = "The botany department is in this direction."
-	icon_state = "guide_botany"
-
-/obj/decal/tile_edge/floorguide/qm
-	name = "QM Navigation Guide"
-	desc = "The quartermaster is in this direction."
-	icon_state = "guide_qm"
-
-/obj/decal/tile_edge/floorguide/hop
-	name = "Head Of Personnel Navigation Guide"
-	desc = "The Head of Personnel's office is in this direction."
-	icon_state = "guide_hop"
-
-/obj/decal/tile_edge/floorguide/ai
-	name = "AI Navigation Guide"
-	desc = "The AI core is in this direction."
-	icon_state = "guide_ai"
-
-/obj/decal/tile_edge/floorguide/catering
-	name = "Catering Navigation Guide"
-	desc = "Catering is in this direction."
-	icon_state = "guide_catering"
-
-/obj/decal/tile_edge/floorguide/arrow_e
-	name = "Directional Navigation Guide"
-	icon_state = "endpiece_e"
-
-/obj/decal/tile_edge/floorguide/arrow_w
-	name = "Directional Navigation Guide"
-	icon_state = "endpiece_w"
-
-/obj/decal/tile_edge/floorguide/arrow_n
-	name = "Directional Navigation Guide"
-	icon_state = "endpiece_n"
-
-/obj/decal/tile_edge/floorguide/arrow_s
-	name = "Directional Navigation Guide"
-	icon_state = "endpiece_s"
-
-/obj/decal/tile_edge/floorguide/ladder
-	name = "Ladder Navigation Guide"
-	desc = "A ladder is in this direction."
-	icon_state = "guide_ladder"

@@ -79,15 +79,27 @@ ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/candy)
 	heal_amt = 2
 	food_effects = list("food_energized")
 
+	sour
+		name = "sour candy apple"
+		desc = "A sour apple covered in a hard sugar coating."
+		icon_state = "candy-sour"
+
+		New()
+			..()
+			reagents.add_reagent("sour", 5)
+			return
+
 	poison
-		name = "delicious candy apple"
-		desc = "A delicious apple covered in a hard sugar coating."
+		name = "bullshit candy apple"
+		desc = "A bullshit apple covered in a hard sugar coating, still tastes about as bad."
 		icon_state = "candy-poison"
+		doants = FALSE
 
 
 		New()
 			..()
 			reagents.add_reagent("capulettium", 10)
+			reagents.add_reagent("yuck", 5)
 			return
 
 //Candy corn!!

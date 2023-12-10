@@ -2,39 +2,98 @@ var/datum/score_tracker/score_tracker
 
 /datum/score_tracker
 	// Nice to have somewhere to centralize this shit so w/e
+	//Overall
 	var/score_calculated = 0
 	var/final_score_all = 0
 	var/grade = "The Aristocrats!"
-	// SECURITY DEPARTMENT
-	// var/score_crew_evacuation_rate = 0 save this for later to keep categories balanced
+	//Antagonists
+	var/score_enemy_failure_rate = 0 //replace with success rate
+	//var/score_enemy_success_rate = 0
+
+	//nuke
+	//var/operatives_killed = 0
+	//var/auth_disk_location = 0
+
+	//wizard
+	/*
+	var/spells_cast = 0
+	var/total_corrupted_terrain = 0
+	var/total_corruptible_terrain = 0
+	*/
+
+	//Station condition
+	var/score_cleanliness = 0 //janitor
+	//var/outpost_destroyed = 0 //if we have a zeta-like,
+	//Safety
+	var/score_crew_evacuation_rate = 0 //save this for later to keep categories balanced
 	var/score_crew_survival_rate = 0
-	var/score_enemy_failure_rate = 0
+	//Security
+	//var/tickets_written = 0
 	var/final_score_sec = 0
-	// ENGINEERING DEPARTMENT
+	var/tickets_text = null
+	//Financial
+	var/score_expenses = 0
+	//Power
 	var/score_power_outages = 0
 	var/score_structural_damage = 0
 	var/final_score_eng = 0
-	// RESEARCH DEPARTMENT
-	var/artifacts_analyzed = 0
+	//Health
+	var/cloner_broken_timestamp = 0 //ticks since roundstart until one of the 4 roundstart cloner parts is destroyed
+
+	//Food
+	//var/food_prepared = 0 //how productive is the chef
+	//var/food_eaten = 0 //how hungry is the crew
+	//var/food_eaten_ratio = 0 //how sad is the chef
+	//var/food_lost = 0 //barf
+
+	//Science
+	//var/chemical_reactions = 0 //ONLY counted in chemistry's area
+	//var/teleports = 0
+	//var/bombs_tested = 0 //counts for VR but also counts for bombs set off on station. test successful!
+	var/artifacts_analyzed = 0 //maybe....
 	var/artifacts_correctly_analyzed = 0
 	var/score_artifact_analysis = 0
 	var/final_score_res = 0
-	// CIVILIAN DEPARTMENT
-	var/score_cleanliness = 0
-	var/score_expenses = 0
-	var/final_score_civ = 0
-	var/most_xp = "OH NO THIS IS BROKEN"
-	var/score_text = null
-	var/tickets_text = null
+
+	//Mining
+	//var/ores_mined = 0
+	//var/gems_mined = 0
+	//var/mining_explosions = 0 //'what exploded' 'oh it's just mining'
+
+	//Administrative
+	//var/payroll_met = 0
+	//var/paychecks_given = 0
+	//var/ids_changed = 0 //hop
+	var/final_score_civ = 0 //might not have department scores
+
+	// Engineering
+	var/engine_power_hiscore = 0
+	var/engine_power_type = ""
+
+	//Misc
+	//var/clown_beatings = null
+	//var/farts_busted = 0
+	//var/shots_fired = 0
+	//var/total_karma = 0 //pascal's over/under
+	//var/total_orgone = 0 //orgone accumulated
+	//var/average_drunkenness = 0
+
+	//individual achievements
 	var/mob/richest_escapee = null
 	var/richest_total = 0
 	var/mob/most_damaged_escapee = null
 	var/damage_total = 0
-	var/acula_blood = null
+	var/most_xp = "OH NO THIS IS BROKEN"
+	var/score_text = null
+
+	//chumps survived
 	var/beepsky_alive = null
-	var/clown_beatings = null
-	var/list/pets_escaped = null
-	var/list/command_pets_escaped = null
+	//var/ai_alive = null
+
+	//who cares
+	//var/acula_blood = null
+	//var/list/pets_escaped = null
+	//var/list/command_pets_escaped = null
 
 /* -------------------------------------------------------------------------- */
 /*                                Station Score                               */
@@ -381,12 +440,16 @@ var/datum/score_tracker/score_tracker
 		//if (acula_blood) 			. += "<B>Dr. Acula Blood Total:</B> [acula_blood]p<BR>"
 		. += "<B>Officer Beepsky:</B> [beepsky_alive ? "Survived" : "Ate Shit"] This Round<BR>"
 		. += "<B>Number of times a clown was abused:</B> dunno yet but soon ok<BR>"
-		. += "<B>Ores Mined:</B> dunno yet but soon ok<BR>"
-		. += "<B>Things Sold:</B> dunno yet but soon ok<BR>"
-		. += "<B>Food Produced:</B> dunno yet but soon ok<BR>"
-		. += "<B>Food Eaten:</B> dunno yet but soon ok<BR>"
+		//. += "<B>Ores Mined:</B> dunno yet but soon ok<BR>"
+		//. += "<B>Things Sold:</B> dunno yet but soon ok<BR>"
+		//. += "<B>Food Produced:</B> dunno yet but soon ok<BR>"
+		//. += "<B>Food Eaten:</B> dunno yet but soon ok<BR>"
+		. += "<B>Farts Blasted:</B> [fartcount]<BR>"
 		. += "<B>Shots Fired:</B> dunno yet but soon ok<BR>"
-		. += "<B>Farts Blasted:</B> dunno yet but soon ok<BR>"
+		. += "<B>Weade Growne:</B> dunno yet but soon ok<BR>"
+		. += "<B>Doinks Sparked:</B> dunno yet but soon ok<BR>"
+		. += "<B>Time To Cloner Destruction:</B> dunno yet but soon ok<BR>"
+		. += "<BR><B>COOL FACT:</B> all the space bees are gay<BR>"
 
 		return jointext(., "")
 
@@ -410,9 +473,41 @@ var/datum/score_tracker/score_tracker
 		score_tracker.score_text += "<B>Total Department Score:</B> [round(score_tracker.final_score_sec)]%<BR>"
 		score_tracker.score_text += "<BR>"
 
+		var/power_hi = score_tracker.engine_power_hiscore
+		var/prettified_power_hiscore
+		var/prettified_power_postfix = ""
+		switch(round(power_hi))
+			if(0 to 999)
+				prettified_power_hiscore = round(power_hi, 1.5)
+			if(1 KILO to 999 KILO)
+				prettified_power_hiscore = round((power_hi / 1 KILO), 1.5)
+				prettified_power_postfix = "Kilo"
+			if(1 MEGA to 999 MEGA)
+				prettified_power_hiscore = round((power_hi / 1 MEGA), 1.5)
+				prettified_power_postfix = "Mega"
+			if(1 GIGA to 999 GIGA)
+				prettified_power_hiscore = round((power_hi / 1 GIGA), 1.5)
+				prettified_power_postfix = "Giga"
+			if(1 TERA to 999 TERA) /* Not sure how much these levels will be needed, but hey */
+				prettified_power_hiscore = round((power_hi / 1 TERA), 1.5)
+				prettified_power_postfix = "Tera"
+			if(1 PETA to 999 PETA)
+				prettified_power_hiscore = round((power_hi / 1 PETA), 1.5)
+				prettified_power_postfix = "Peta"
+			if(1 EXA to 999 EXA)
+				prettified_power_hiscore = round((power_hi / 1 EXA), 1.5)
+				prettified_power_postfix = "Exa"
+			if(1 ZETTA to 999 ZETTA)
+				prettified_power_hiscore = round((power_hi / 1 ZETTA), 1.5)
+				prettified_power_postfix = "Zetta"
+			if(1 YOTTA to INFINITY)
+				prettified_power_hiscore = round((power_hi / 1 YOTTA), 1.5)
+				prettified_power_postfix = "Yotta"
+
 		score_tracker.score_text += "<B><U>ENGINEERING DEPARTMENT</U></B><BR>"
 		score_tracker.score_text += "<B>Station Structural Integrity:</B> [round(score_tracker.score_structural_damage)]%<BR>"
 		score_tracker.score_text += "<B>Station Areas Powered:</B> [round(score_tracker.score_power_outages)]%<BR>"
+		score_tracker.score_text += "<B>Highest [score_tracker.engine_power_type]Peak Power:</B> [prettified_power_hiscore] [prettified_power_postfix]Watts<BR>"
 		score_tracker.score_text += "<B>Total Department Score:</B> [round(score_tracker.final_score_eng)]%<BR>"
 		score_tracker.score_text += "<BR>"
 

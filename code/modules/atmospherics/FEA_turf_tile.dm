@@ -71,12 +71,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 		obj/overlay/tile_gas_effect/gas_icon_overlay
 		visuals_state
 
-	New()
-		..()
-
-		var/area/A = src.loc
-		if (A.is_atmos_simulated)
-			instantiate_air()
+	//TURFNEW
 
 	Del()
 		if(air_master)

@@ -2,6 +2,8 @@
 
 //flap flap gonna put cursed stuff here
 
+//TODO: blob AI debug overlay doesn't realistically support more than one AI (but maybe that's fine?)
+
 ///Discord joke that might not be funny two weeks from now (but if it isn't we can just yeet it)
 /obj/item/clothing/under/gimmick/bikinion
 	name = "\proper bikinion"
@@ -139,6 +141,183 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 		..()
 		qdel(src)
 
+	//centered on the turf you click in the editor :)
+	centered
+		pixel_x = -320
+		pixel_y = -224
+
+//fursuits (they were designed as "dragon costumes" but let's be honest, they're fursuits)
+/obj/item/clothing/under/gimmick/dragon
+	name = "dragon suit"
+	icon_state = "dragon_blue"
+	item_state = "dragon_blue"
+/obj/item/clothing/under/gimmick/dragon/red
+	icon_state = "dragon_red"
+	item_state = "dragon_red"
+/obj/item/clothing/under/gimmick/dragon/green
+	icon_state = "dragon_green"
+	item_state = "dragon_green"
+/obj/item/clothing/under/gimmick/dragon/white
+	icon_state = "dragon_white"
+	item_state = "dragon_white"
+
+/obj/item/clothing/suit/gimmick/dragon
+	name = "dragon wings"
+	icon_state = "dragon_blue"
+	item_state = "dragon_blue"
+	inhand_image_icon = 'icons/mob/inhand/overcoat/hand_suit_gimmick.dmi'
+/obj/item/clothing/suit/gimmick/dragon/red
+	icon_state = "dragon_red"
+	item_state = "dragon_red"
+/obj/item/clothing/suit/gimmick/dragon/green
+	icon_state = "dragon_green"
+	item_state = "dragon_green"
+/obj/item/clothing/suit/gimmick/dragon/white
+	icon_state = "dragon_white"
+	item_state = "dragon_white"
+
+//AFAIK we don't have a generic "trash worn on belt" thing
+/obj/item/dragon_tail
+	name = "dragon tail"
+	flags = FPRINT | ONBELT
+	icon = 'icons/obj/items/belts.dmi'
+	wear_image_icon = 'icons/mob/belt.dmi'
+	inhand_image_icon = 'icons/mob/inhand/hand_general.dmi'
+	icon_state = "dragon_blue"
+	item_state = "dragon_blue"
+/obj/item/dragon_tail/red
+	icon_state = "dragon_red"
+	item_state = "dragon_red"
+/obj/item/dragon_tail/green
+	icon_state = "dragon_green"
+	item_state = "dragon_green"
+/obj/item/dragon_tail/white
+	icon_state = "dragon_white"
+	item_state = "dragon_white"
+
+/obj/item/clothing/shoes/dragon
+	name = "dragon shoes"
+	icon_state = "dragon_blue"
+	item_state = "dragon_blue"
+/obj/item/clothing/shoes/dragon/red
+	icon_state = "dragon_red"
+	item_state = "dragon_red"
+/obj/item/clothing/shoes/dragon/green
+	icon_state = "dragon_green"
+	item_state = "dragon_green"
+/obj/item/clothing/shoes/dragon/white
+	icon_state = "dragon_white"
+	item_state = "dragon_white"
+
+/obj/item/clothing/head/dragon
+	name = "dragon hood"
+	icon_state = "dragon_blue"
+	item_state = "dragon_blue"
+/obj/item/clothing/head/dragon/red
+	icon_state = "dragon_red"
+	item_state = "dragon_red"
+/obj/item/clothing/head/dragon/green
+	icon_state = "dragon_green"
+	item_state = "dragon_green"
+/obj/item/clothing/head/dragon/white
+	icon_state = "dragon_white"
+	item_state = "dragon_white"
+
+//dumb joke
+/obj/item/gun_exploder/mythical
+	name = "gunsemything anvil"
+	desc = "hit it with a gun 'till the gun reveals its deepest secrets rofl"
+
+	attackby(obj/item/gun/modular/W as obj, mob/user as mob, params)
+		if(!istype(W) || prob(70) || !W.built)
+			playsound(src.loc, "sound/impact_sounds/Wood_Hit_1.ogg", 70, 1)
+			return
+		var/coolname = "\proper "
+		var/segments = rand(1,4)
+		var/newbit
+		for (var/i = 1, i <= segments, i++)
+			//I know these are sword names just shush
+			newbit = pick("grar", "drakh" , "farth" , "kroth" , "ire", "mor", "death", "dragon", "wyrm", "flame", "doom", "iano", "thon", "thor", "azal", "celsior", "calibur", "berge", "rok", "holi", "bane", "farte", "winky", "peebim")
+			if (i == 1)
+				newbit = capitalize(newbit)
+			coolname += newbit
+
+		coolname += " the [pick("Legendary", "Mythical", "Lost", "Arcane", "Feared", "Reaver", "Wrathful", "Vanquisher", "Bloody", "Corrupted")]"
+		W.name = coolname
+		boutput(user, "<span class='notice'>You discover the true identity of your gun!</span>")
+		playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_1.ogg', 50, 1)
+
+//:3
+/obj/item/clothing/suit/weakness
+	name = "glowing weak point"
+	desc = "Hope nobody hits you there."
+	icon = 'icons/obj/clothing/overcoats/item_suit_hazard.dmi' //to yourself
+	wear_image_icon = 'icons/mob/overcoats/worn_suit_hazard.dmi'
+	icon_state = "weakpoint"
+	item_state = "weakpoint"
+	body_parts_covered = TORSO
+
+	setupProperties()
+		..()
+		setProperty("meleeprot", -8)
+		setProperty("rangedprot", -0.5) //double damage
+
+//what if a crate looted you
+/obj/storage/crate/loot_crate/reverse
+	name = "loot crate"
+	desc = "A small, cuboid object with a hinged top and looted interior."
+	spawn_contents = list()
+	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS | NO_MOUSEDROP_QOL | USE_PROXIMITY
+
+/obj/storage/crate/loot_crate/reverse/HasProximity(atom/movable/AM)
+	if (ishuman(AM) && !GET_COOLDOWN(src, "looting"))
+		var/mob/living/carbon/human/H = AM
+		var/shit2steal = list()
+		var/obj/ourpick
+		if (H.r_store)
+			shit2steal += H.r_store
+		if (H.l_store)
+			shit2steal += H.l_store
+		if (H.wear_mask)
+			shit2steal += H.wear_mask
+		if (H.head)
+			shit2steal += H.head
+		if (H.glasses)
+			shit2steal += H.glasses
+		if (H.shoes)
+			shit2steal += H.shoes
+
+		if (length(shit2steal))
+			ourpick = pick(shit2steal)
+		else
+			if (H.w_uniform) //be mean if they've got nothing left
+				ourpick = H.w_uniform
+			else
+				return
+		close()
+		H.u_equip(ourpick)
+		ourpick.set_loc(src)
+		src.visible_message("[src] loots [ourpick].") //deliberately no mention of the victim
+		ON_COOLDOWN(src, "looting", (rand(6 SECONDS, 10 SECONDS)))
+
+
+/*
+/obj/spawn_all_the_dragon_shit
+	New()
+		..()
+		var/turf/T = get_turf(src)
+		for(var/derg_type in concrete_typesof(/obj/item/clothing/under/gimmick/dragon))
+			new derg_type(T)
+		for(var/derg_type in concrete_typesof(/obj/item/clothing/suit/gimmick/dragon))
+			new derg_type(T)
+		for(var/derg_type in concrete_typesof(/obj/item/dragon_tail))
+			new derg_type(T)
+		for(var/derg_type in concrete_typesof(/obj/item/clothing/shoes/dragon))
+			new derg_type(T)
+		for(var/derg_type in concrete_typesof(/obj/item/clothing/head/dragon))
+			new derg_type(T)
+		qdel(src)
+*/
 /*
 /area/proc/Force_Ambience(mob/M)
 		if (M?.client)

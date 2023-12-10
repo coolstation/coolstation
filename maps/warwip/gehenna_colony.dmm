@@ -6404,6 +6404,7 @@
 	id = "med_lob_west"
 	},
 /obj/access_spawn/medical,
+/obj/access_spawn/chapel_office,
 /turf/floor/white,
 /area/station/medical/medbay)
 "eOc" = (
@@ -6658,6 +6659,7 @@
 "eXo" = (
 /obj/machinery/door/airlock/glass,
 /obj/access_spawn/medical,
+/obj/access_spawn/chapel_office,
 /turf/floor/white,
 /area/station/medical/medbay)
 "eXr" = (
@@ -11669,6 +11671,7 @@
 "iKp" = (
 /obj/machinery/door/airlock/glass/medical,
 /obj/access_spawn/medical,
+/obj/access_spawn/chapel_office,
 /turf/floor/blackwhite{
 	dir = 8
 	},
@@ -16249,6 +16252,7 @@
 /obj/disposalpipe/segment/horizontal,
 /obj/access_spawn/morgue,
 /obj/machinery/door/airlock/medical,
+/obj/access_spawn/chapel_office,
 /turf/floor/grey,
 /area/station/medical/morgue)
 "mcY" = (
@@ -16583,7 +16587,7 @@
 /turf/floor,
 /area/station/security/secoffquarters)
 "mwe" = (
-/obj/storage/closet/coffin,
+/obj/storage/closet/coffin/wood,
 /turf/floor/plating,
 /area/station/maintenance/northwest)
 "mwE" = (
@@ -19321,7 +19325,7 @@
 /turf/floor/grey,
 /area/station/chapel/sanctuary)
 "oxg" = (
-/obj/storage/closet/coffin,
+/obj/storage/closet/coffin/wood,
 /obj/machinery/light/small/frostedred{
 	dir = 8
 	},
@@ -19601,6 +19605,7 @@
 /obj/machinery/door/airlock/glass,
 /obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/medical,
+/obj/access_spawn/chapel_office,
 /turf/floor/white,
 /area/station/medical/medbay/treatment1)
 "oGG" = (
@@ -21072,6 +21077,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
+/obj/access_spawn/chapel_office,
 /turf/floor/wood,
 /area/station/wc/medbay)
 "pLj" = (
@@ -25463,6 +25469,7 @@
 /obj/machinery/door/airlock/glass/medical{
 	id = "med_lob_2"
 	},
+/obj/access_spawn/chapel_office,
 /turf/floor/bluewhite{
 	dir = 4
 	},
@@ -26790,11 +26797,8 @@
 /area/station/quartermaster/storage)
 "tTr" = (
 /obj/decal/poster/wallsign/fire,
-/obj/machinery/atmospherics/binary/passive_gate{
-	dir = 4;
-	icon_state = "intact_on";
-	on = 1;
-	pixel_y = 1
+/obj/machinery/atmospherics/pipe/simple/insulated{
+	dir = 4
 	},
 /turf/wall,
 /area/station/engine/core)
@@ -27164,6 +27168,7 @@
 	id = "med_lob_east"
 	},
 /obj/access_spawn/medical,
+/obj/access_spawn/chapel_office,
 /turf/floor/white,
 /area/station/medical/medbay)
 "ugx" = (
@@ -32905,6 +32910,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
+/obj/access_spawn/chapel_office,
 /turf/floor/wood,
 /area/station/wc/medbay)
 "ycQ" = (

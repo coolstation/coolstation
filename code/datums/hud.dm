@@ -2,6 +2,7 @@
 	anchored = 1
 	plane = PLANE_HUD//wow WOW why won't you use /atom/movable/screen/hud, HUD OBJECTS???
 	text = ""
+	flags = TECHNICAL_ATOM //Better safe than looking at a weird-ass bug later
 	New()
 		..()
 		appearance_flags |= NO_CLIENT_COLOR

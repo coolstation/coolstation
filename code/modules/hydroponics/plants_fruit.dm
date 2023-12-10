@@ -152,7 +152,7 @@ ABSTRACT_TYPE(/datum/plant/fruit)
 	harvests = 10
 	endurance = 5
 	genome = 19
-	mutations = list(/datum/plantmutation/apple/poison)
+	mutations = list(/datum/plantmutation/apple/sour,/datum/plantmutation/apple/poison)
 	assoc_reagents = list("juice_apple")
 	commuts = list(/datum/plant_gene_strain/quality,/datum/plant_gene_strain/unstable)
 

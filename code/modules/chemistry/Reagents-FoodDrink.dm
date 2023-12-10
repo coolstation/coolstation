@@ -3655,6 +3655,24 @@ datum
 
 				return
 
+		fooddrink/sour
+			name = "sour"
+			id = "sour"
+			fluid_r = 63
+			fluid_g = 255
+			fluid_b = 66
+			description = "Sour."
+			taste = "sour"
+			reagent_state = LIQUID
+			thirst_value = 1
+			bladder_value = -1
+
+			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
+				. = ..()
+				if (method == INGEST)
+					M.playsound_local(M.loc, "sound/vox/sour.ogg", 30, 1)
+					M.visible_message("<b>[M]'s</b> mouth puckers!","<span class='alert'>Sour.</span>")
+
 		fooddrink/yuck
 			name = "????"
 			id = "yuck"

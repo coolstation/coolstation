@@ -36,12 +36,12 @@
 	filler_turf = "/turf/space"
 
 /datum/transit_vehicle/mining_shuttle
-	vehicle_id = "mining_shuttle"
+	vehicle_id = "mining_shuttle"/*
 #ifdef Z3_IS_A_STATION_LEVEL
 	stop_ids = list("mining_dock","mining_diner")
-#else
+#else*/
 	stop_ids = list("mining_dock","mining_diner","mining_outpost")
-#endif
+//#endif
 
 	var/departure_delay = 8 SECONDS
 

@@ -1649,157 +1649,159 @@ DEFINE_FLOORS(techfloor/green,
 			src.to_plating()
 			return
 
-	if(istype(C, /obj/item/rods))
-		if (!src.intact)
-			if (C:amount >= 2)
-				boutput(user, "<span class='notice'>Reinforcing the floor...</span>")
-				if(do_after(user, 3 SECONDS))
-					ReplaceWithEngineFloor()
+	if (isconstructionturf(src))
+		//several things that build stuff
+		if(istype(C, /obj/item/rods))
+			if (!src.intact)
+				if (C:amount >= 2)
+					boutput(user, "<span class='notice'>Reinforcing the floor...</span>")
+					if(do_after(user, 3 SECONDS))
+						ReplaceWithEngineFloor()
 
-					if (C)
-						C.change_stack_amount(-2)
-						if (C:amount <= 0)
-							qdel(C) //wtf
+						if (C)
+							C.change_stack_amount(-2)
+							if (C:amount <= 0)
+								qdel(C) //wtf
 
-						if (C.material)
-							src.setMaterial(C.material)
+							if (C.material)
+								src.setMaterial(C.material)
 
-					playsound(src, "sound/items/Deconstruct.ogg", 80, 1)
+						playsound(src, "sound/items/Deconstruct.ogg", 80, 1)
+				else
+					boutput(user, "<span class='alert'>You need more rods.</span>")
 			else
-				boutput(user, "<span class='alert'>You need more rods.</span>")
-		else
-			boutput(user, "<span class='alert'>You must remove the plating first.</span>")
-		return
+				boutput(user, "<span class='alert'>You must remove the plating first.</span>")
+			return
 
-	if(istype(C, /obj/item/tile))
-		var/obj/item/tile/T = C
-		if(intact)
-			var/obj/P = user.find_tool_in_hand(TOOL_PRYING)
-			if (!P)
-				return
-			// Call ourselves w/ the tool, then continue
-			src.Attackby(P, user)
-
-		// Don't replace with an [else]! If a prying tool is found above [intact] might become 0 and this runs too, which is how floor swapping works now! - BatElite
-		if (!intact)
-			for(var/obj/decal/floatingtiles/loose/L in src.contents)
-				if(istype(L))
-					boutput(usr, "<span class='notice'>you need to clear the existing tile fragments.</span>")
+		if(istype(C, /obj/item/tile))
+			var/obj/item/tile/T = C
+			if(intact)
+				var/obj/P = user.find_tool_in_hand(TOOL_PRYING)
+				if (!P)
 					return
+				// Call ourselves w/ the tool, then continue
+				src.Attackby(P, user)
 
-			restore_tile()
-			src.plate_mat = src.material
-			if(C.material)
-				src.setMaterial(C.material)
-			playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
+			// Don't replace with an [else]! If a prying tool is found above [intact] might become 0 and this runs too, which is how floor swapping works now! - BatElite
+			if (!intact)
+				for(var/obj/decal/floatingtiles/loose/L in src.contents)
+					if(istype(L))
+						boutput(usr, "<span class='notice'>you need to clear the existing tile fragments.</span>")
+						return
 
-			if(!istype(src.material, /datum/material/metal/steel))
-				logTheThing("station", user, null, "constructs a floor (<b>Material:</b>: [src.material && src.material.name ? "[src.material.name]" : "*UNKNOWN*"]) at [log_loc(src)].")
+				restore_tile()
+				src.plate_mat = src.material
+				if(C.material)
+					src.setMaterial(C.material)
+				playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
 
-			T.change_stack_amount(-1)
-			//if(T && (--T.amount < 1))
-			//	qdel(T)
-			//	return
+				if(!istype(src.material, /datum/material/metal/steel))
+					logTheThing("station", user, null, "constructs a floor (<b>Material:</b>: [src.material && src.material.name ? "[src.material.name]" : "*UNKNOWN*"]) at [log_loc(src)].")
+
+				T.change_stack_amount(-1)
+				//if(T && (--T.amount < 1))
+				//	qdel(T)
+				//	return
 
 
-	if(istype(C, /obj/item/sheet))
-		if (!(C?.material?.material_flags & (MATERIAL_METAL | MATERIAL_CRYSTAL))) return
-		if (!C:amount_check(2,user)) return
+		if(istype(C, /obj/item/sheet))
+			if (!(C?.material?.material_flags & (MATERIAL_METAL | MATERIAL_CRYSTAL))) return
+			if (!C:amount_check(2,user)) return
 
-		var/msg = "a girder"
+			var/msg = "a girder"
 
-		if(!girder_egg)
-			var/count = 0
-			for(var/obj/structure/girder in src)
-				count++
-			var/static/list/insert_girder = list(
-			"a girder",
-			"another girder",
-			"yet another girder",
-			"oh god it's another girder",
-			"god save the queen its another girder",
-			"sweet christmas its another girder",
-			"the 6th girder",
-			"you're not sure but you think it's a girder",
-			"um... ok. a girder, I guess",
-			"what does girder even mean, anyway",
-			"the strangest girder",
-			"the girder that confuses you",
-			"the metallic support frame",
-			"a very untrustworthy girder",
-			"the \"i'm concerned about the sheer number of girders\" girder",
-			"a broken wall",
-			"the 16th girder",
-			"the 17th girder",
-			"the 18th girder",
-			"the 19th girder",
-			"the 20th century girder",
-			"the 21th girder",
-			"the mfin girder coming right atcha",
-			"the girder you cant believe is a girder",
-			"rozenkrantz \[sic?\] and girderstein",
-			"a.. IS THAT?! no, just a girder",
-			"a gifter",
-			"a shitty girder",
-			"a girder potato",
-			"girded loins",
-			"the platonic ideal of stacked girders",
-			"a complete goddamn mess of girders",
-			"FUCK",
-			"a girder for ants",
-			"a girder of a time",
-			"a girder girder girder girder girder girder girder girder girder girder girder girder.. mushroom MUSHROOM",
-			"an attempted girder",
-			"a failed girder",
-			"a girder most foul",
-			"a girder who just wants to be a wall",
-			"a human child",//40
-			"ett gürdür",
-			"a girdle",
-			"a g--NOT NOW MOM IM ALMOST AT THE 100th GIRDER--irder",
-			"a McGirder",
-			"a Double Cheesegirder",
-			"an egg salad",
-			"the ugliest damn girder you've ever seen in your whole fucking life",
-			"the most magnificent goddamn girder that you've ever seen in your entire fucking life",
-			"the constitution of the old republic, and also a girder",
-			"a waste of space, which is crazy when you consider where you built this",//50
-			"pure girder vibrations",
-			"a poo containment girder",
-			"an extremely solid girder, your parents would be proud",
-			"the girder who informs you to the authorities",
-			"a discount girder",
-			"a counterfeit girder",
-			"a construction",
-			"readster's very own girder",
-			"just a girder",
-			"a gourder",//60
-			"a fuckable girder",
-			"a herd of girders",
-			"an A.D.G.S",
-			"the... thing",
-			"the.. girder?",
-			"a girder. one that girds if you girder it.",
-			"the frog(?)",
-			"the unstable relationship",
-			"nice",
-			"the girder egg")
-			msg = insert_girder[min(count+1, insert_girder.len)]
-			if(count >= 70)
-				girder_egg = 1
-				actions.start(new /datum/action/bar/icon/build(C, /obj/item/reagent_containers/food/snacks/ingredient/egg/critter/townguard/passive, 2, null, 1, 'icons/obj/structures.dmi', "girder egg", msg, null), user)
+			if(!girder_egg)
+				var/count = 0
+				for(var/obj/structure/girder in src)
+					count++
+				var/static/list/insert_girder = list(
+				"a girder",
+				"another girder",
+				"yet another girder",
+				"oh god it's another girder",
+				"god save the queen its another girder",
+				"sweet christmas its another girder",
+				"the 6th girder",
+				"you're not sure but you think it's a girder",
+				"um... ok. a girder, I guess",
+				"what does girder even mean, anyway",
+				"the strangest girder",
+				"the girder that confuses you",
+				"the metallic support frame",
+				"a very untrustworthy girder",
+				"the \"i'm concerned about the sheer number of girders\" girder",
+				"a broken wall",
+				"the 16th girder",
+				"the 17th girder",
+				"the 18th girder",
+				"the 19th girder",
+				"the 20th century girder",
+				"the 21th girder",
+				"the mfin girder coming right atcha",
+				"the girder you cant believe is a girder",
+				"rozenkrantz \[sic?\] and girderstein",
+				"a.. IS THAT?! no, just a girder",
+				"a gifter",
+				"a shitty girder",
+				"a girder potato",
+				"girded loins",
+				"the platonic ideal of stacked girders",
+				"a complete goddamn mess of girders",
+				"FUCK",
+				"a girder for ants",
+				"a girder of a time",
+				"a girder girder girder girder girder girder girder girder girder girder girder girder.. mushroom MUSHROOM",
+				"an attempted girder",
+				"a failed girder",
+				"a girder most foul",
+				"a girder who just wants to be a wall",
+				"a human child",//40
+				"ett gürdür",
+				"a girdle",
+				"a g--NOT NOW MOM IM ALMOST AT THE 100th GIRDER--irder",
+				"a McGirder",
+				"a Double Cheesegirder",
+				"an egg salad",
+				"the ugliest damn girder you've ever seen in your whole fucking life",
+				"the most magnificent goddamn girder that you've ever seen in your entire fucking life",
+				"the constitution of the old republic, and also a girder",
+				"a waste of space, which is crazy when you consider where you built this",//50
+				"pure girder vibrations",
+				"a poo containment girder",
+				"an extremely solid girder, your parents would be proud",
+				"the girder who informs you to the authorities",
+				"a discount girder",
+				"a counterfeit girder",
+				"a construction",
+				"readster's very own girder",
+				"just a girder",
+				"a gourder",//60
+				"a fuckable girder",
+				"a herd of girders",
+				"an A.D.G.S",
+				"the... thing",
+				"the.. girder?",
+				"a girder. one that girds if you girder it.",
+				"the frog(?)",
+				"the unstable relationship",
+				"nice",
+				"the girder egg")
+				msg = insert_girder[min(count+1, insert_girder.len)]
+				if(count >= 70)
+					girder_egg = 1
+					actions.start(new /datum/action/bar/icon/build(C, /obj/item/reagent_containers/food/snacks/ingredient/egg/critter/townguard/passive, 2, null, 1, 'icons/obj/structures.dmi', "girder egg", msg, null), user)
+				else
+					actions.start(new /datum/action/bar/icon/build(C, /obj/structure/girder, 2, C:material, 1, 'icons/obj/structures.dmi', "girder", msg, null, spot = src), user)
 			else
 				actions.start(new /datum/action/bar/icon/build(C, /obj/structure/girder, 2, C:material, 1, 'icons/obj/structures.dmi', "girder", msg, null, spot = src), user)
-		else
-			actions.start(new /datum/action/bar/icon/build(C, /obj/structure/girder, 2, C:material, 1, 'icons/obj/structures.dmi', "girder", msg, null, spot = src), user)
 
 
-	if(istype(C, /obj/item/cable_coil))
-		if(!intact)
-			var/obj/item/cable_coil/coil = C
-			coil.turf_place(src, get_turf(user), user)
-		else
-			boutput(user, "<span class='alert'>You must remove the plating first.</span>")
+		if(istype(C, /obj/item/cable_coil))
+			if(!intact)
+				var/obj/item/cable_coil/coil = C
+				coil.turf_place(src, get_turf(user), user)
+			else
+				boutput(user, "<span class='alert'>You must remove the plating first.</span>")
 
 //grabsmash??
 	else if (istype(C, /obj/item/grab/))
