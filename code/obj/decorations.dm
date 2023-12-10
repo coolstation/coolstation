@@ -751,6 +751,13 @@
 	anchored = 2
 	density = 0
 	plane = PLANE_SPACE
+	var/rotate = FALSE
+	var/rotate_speed = 100
+
+	New()
+		..()
+		if(rotate)
+			animate_spin(src, "L", rotate_speed, -1, FALSE)
 
 	x3
 		icon_state = "moon-green"
