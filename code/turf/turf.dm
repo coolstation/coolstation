@@ -18,6 +18,10 @@
 	#define _UNSIM_TURF_GAS_DEF(GAS, ...) var/GAS = 0;
 	APPLY_TO_GASES(_UNSIM_TURF_GAS_DEF)
 
+	//By default, folks can breathe on a turf (this might look weird but that's just how it is to have folks not suffocate on walls)
+	oxygen = MOLES_O2STANDARD
+	nitrogen = MOLES_N2STANDARD
+
 	//Properties for airtight tiles (/wall)
 	var/thermal_conductivity = 0.05
 	var/heat_capacity = 1
@@ -1124,8 +1128,7 @@ proc/generate_space_color()
 	plane = PLANE_FLOOR
 	stops_space_move = 1
 	mat_appearances_to_ignore = list("steel")
-	oxygen = MOLES_O2STANDARD
-	nitrogen = MOLES_N2STANDARD
+
 
 /turf/wall
 	name = "wall"
