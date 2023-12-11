@@ -2066,7 +2066,9 @@
 /obj/landmark/start{
 	name = "Botanist"
 	},
-/turf/floor/green,
+/turf/floor/green/side{
+	dir = 8
+	},
 /area/station/hydroponics/bay)
 "bYr" = (
 /obj/cable{
@@ -2741,6 +2743,11 @@
 	dir = 8
 	},
 /area/station/hallway/primary/central)
+"cJv" = (
+/turf/floor/green/side{
+	dir = 8
+	},
+/area/station/hydroponics/bay)
 "cJP" = (
 /turf/wall/r_wall,
 /area/station/science/lab)
@@ -4933,17 +4940,13 @@
 /turf/floor/plating,
 /area/station/medical/robotics)
 "fdo" = (
-/obj/disposalpipe/segment/horizontal,
 /obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	icon_state = "4-8"
 	},
-/obj/disposalpipe/segment/sewage{
-	dir = 1
-	},
+/obj/machinery/door/airlock/maintenance,
+/obj/access_spawn/medical,
 /turf/floor/plating,
-/area/station/maintenance/central)
+/area/station/medical/medbay/cloner)
 "fei" = (
 /obj/machinery/door/airlock/external,
 /obj/access_spawn/cargo,
@@ -5783,6 +5786,7 @@
 "fLJ" = (
 /obj/disposalpipe/trunk,
 /obj/machinery/disposal{
+	color = "#AAFFAA";
 	name = "Produce Chute - Kitchen"
 	},
 /turf/floor/grass,
@@ -5899,6 +5903,10 @@
 	},
 /turf/floor/grime,
 /area/station/maintenance/disposal)
+"fTD" = (
+/obj/submachine/cargopad/qm2,
+/turf/floor,
+/area/station/hallway/primary/northwest)
 "fTZ" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -7023,6 +7031,10 @@
 	},
 /obj/table/auto,
 /obj/disposalpipe/segment/vertical,
+/obj/item/disk/data/floppy/read_only/communications{
+	pixel_x = 7;
+	pixel_y = 3
+	},
 /turf/floor/grey,
 /area/station/bridge)
 "hjX" = (
@@ -7333,11 +7345,11 @@
 /turf/floor/plating,
 /area/station/security/checkpoint/customs)
 "hEW" = (
-/obj/disposalpipe/segment/bent/west,
 /obj/landmark{
 	name = "blobstart"
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/disposalpipe/segment/vertical,
 /turf/floor/plating,
 /area/station/maintenance/central)
 "hFu" = (
@@ -7361,15 +7373,6 @@
 	},
 /turf/floor,
 /area/station/chapel/sanctuary)
-"hGi" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/power/breaker,
-/turf/floor/plating,
-/area/station/maintenance/northeast)
 "hGj" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -9545,6 +9548,7 @@
 	dir = 8
 	},
 /obj/machinery/disposal{
+	color = "#AAFFAA";
 	name = "Lay-Z Chef Prison Food Chute"
 	},
 /turf/floor/grey,
@@ -10562,10 +10566,8 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/maintenance,
-/obj/access_spawn/medical,
 /turf/floor/plating,
-/area/station/medical/medbay/cloner)
+/area/station/maintenance/northeast)
 "ley" = (
 /turf/floor/neutral/side{
 	dir = 1
@@ -15222,8 +15224,11 @@
 /area/listeningpost)
 "pTU" = (
 /obj/cable{
-	icon_state = "4-8"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
+/obj/machinery/power/breaker,
 /turf/floor/plating,
 /area/station/maintenance/northeast)
 "pTV" = (
@@ -18610,10 +18615,6 @@
 	},
 /turf/floor/blue/side,
 /area/station/hallway/primary/southeast)
-"tCx" = (
-/obj/submachine/cargopad/qm2,
-/turf/floor,
-/area/station/hallway/primary/northwest)
 "tCF" = (
 /obj/machinery/atmospherics/valve{
 	desc = "A pipe valve. This one lets gas out of the test chamber.";
@@ -19878,6 +19879,18 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/west)
+"uMN" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/disposalpipe/segment/sewage{
+	dir = 1
+	},
+/obj/disposalpipe/segment/horizontal,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "uNE" = (
 /obj/machinery/drainage/stand_pipe/septic,
 /turf/floor/plating,
@@ -23241,6 +23254,10 @@
 	name = "shittle wall"
 	},
 /area/station/maintenance/disposal/sewage)
+"yjG" = (
+/obj/disposalpipe/segment/bent/west,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "yjM" = (
 /obj/machinery/light{
 	dir = 8;
@@ -59137,7 +59154,7 @@ sLU
 iXU
 bpg
 bpg
-tCx
+fTD
 jJb
 aUi
 ogi
@@ -72137,8 +72154,8 @@ cFq
 vCW
 vCW
 vCW
+kPk
 fme
-pLP
 pLP
 pLP
 pLP
@@ -72439,8 +72456,8 @@ eFK
 jfC
 lJI
 bbX
-fdo
 bbX
+uMN
 bbX
 bbX
 bbX
@@ -72742,7 +72759,7 @@ fme
 pLP
 umv
 hEW
-agt
+yjG
 agt
 uHM
 uHM
@@ -73045,7 +73062,7 @@ bGb
 mOa
 agt
 agt
-oQD
+agt
 weF
 fwr
 tsB
@@ -73940,7 +73957,7 @@ nVs
 cuA
 xoE
 bXE
-ggQ
+cJv
 ggQ
 ggQ
 qiB
@@ -75111,9 +75128,9 @@ huZ
 huZ
 huZ
 huZ
-huZ
-huZ
-huZ
+jRf
+wJD
+wJD
 rvw
 wJD
 wJD
@@ -76343,7 +76360,7 @@ dWi
 ixX
 ixX
 ixX
-len
+fdo
 ixX
 ixX
 ixX
@@ -76645,7 +76662,7 @@ ajm
 itN
 jNW
 jCX
-pTU
+len
 jCX
 qmc
 iBb
@@ -77225,9 +77242,9 @@ huZ
 huZ
 huZ
 huZ
-huZ
-huZ
-huZ
+jRf
+wJD
+wJD
 rvw
 wJD
 wJD
@@ -77252,7 +77269,7 @@ aSk
 nkL
 nkL
 tbL
-hGi
+pTU
 iuc
 iuc
 fYs
@@ -78735,9 +78752,9 @@ huZ
 huZ
 huZ
 huZ
-huZ
-huZ
-huZ
+jRf
+wJD
+wJD
 rvw
 wJD
 wJD
@@ -78819,8 +78836,8 @@ wJD
 wJD
 wJD
 wJD
+wJD
 toM
-huZ
 huZ
 huZ
 huZ
@@ -79040,7 +79057,7 @@ huZ
 huZ
 huZ
 huZ
-huZ
+fDn
 huZ
 huZ
 huZ
@@ -79342,7 +79359,7 @@ huZ
 huZ
 huZ
 huZ
-huZ
+fDn
 huZ
 huZ
 huZ
@@ -79644,7 +79661,7 @@ huZ
 huZ
 huZ
 huZ
-huZ
+fDn
 huZ
 huZ
 huZ
@@ -79946,7 +79963,7 @@ huZ
 huZ
 huZ
 huZ
-huZ
+fDn
 huZ
 huZ
 huZ
@@ -80248,7 +80265,7 @@ huZ
 huZ
 huZ
 huZ
-huZ
+bPZ
 huZ
 huZ
 huZ
@@ -80630,9 +80647,9 @@ wJD
 wJD
 wJD
 wJh
-huZ
-huZ
-huZ
+wJD
+wJD
+toM
 huZ
 huZ
 huZ
@@ -81838,9 +81855,9 @@ wJD
 wJD
 wJD
 wJh
-huZ
-huZ
-huZ
+wJD
+wJD
+toM
 huZ
 huZ
 huZ
@@ -83640,11 +83657,11 @@ huZ
 huZ
 huZ
 huZ
+fDn
 huZ
 huZ
 huZ
-huZ
-huZ
+fDn
 huZ
 huZ
 huZ
@@ -83942,11 +83959,11 @@ huZ
 huZ
 huZ
 huZ
+fDn
 huZ
 huZ
 huZ
-huZ
-huZ
+fDn
 huZ
 huZ
 huZ
@@ -84244,11 +84261,11 @@ huZ
 huZ
 huZ
 huZ
+bPZ
 huZ
 huZ
 huZ
-huZ
-huZ
+bPZ
 huZ
 huZ
 huZ
