@@ -2326,6 +2326,9 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/data_terminal,
+/obj/machinery/computer/communications{
+	dir = 4
+	},
 /turf/floor/grey,
 /area/station/turret_protected/AIsat)
 "clX" = (
@@ -3775,6 +3778,14 @@
 /obj/disposalpipe/segment/bent/south,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
+"dRe" = (
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/cable,
+/obj/machinery/power/solar/small_backup1,
+/turf/floor/airless/solar,
+/area/station/solar/small_backup1)
 "dRj" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/cable{
@@ -3912,6 +3923,21 @@
 /obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/science/chemistry)
+"dZi" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/obj/cable,
+/obj/machinery/power/smes{
+	charge = 3e+006;
+	chargelevel = 5000;
+	chargemode = 0;
+	output = 4500;
+	tag = ""
+	},
+/turf/floor/plating/airless,
+/area/space)
 "dZP" = (
 /obj/machinery/manufacturer/general,
 /obj/grille/catwalk/jen,
@@ -4250,6 +4276,9 @@
 	},
 /obj/cable{
 	icon_state = "0-8"
+	},
+/obj/cable{
+	icon_state = "0-2"
 	},
 /turf/floor/plating,
 /area/station/turret_protected/AIsat)
@@ -6745,6 +6774,13 @@
 /obj/item/electronics/frame/collector_control,
 /turf/floor,
 /area/station/engine/inner)
+"gRH" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/station/turret_protected/ai)
 "gSz" = (
 /obj/stool/bench/blue/auto,
 /obj/machinery/light{
@@ -8730,6 +8766,20 @@
 /obj/storage/secure/closet/engineering/welding,
 /turf/floor,
 /area/station/engine/storage)
+"iVw" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/floor/plating/airless,
+/area/space)
 "iVD" = (
 /turf/floor/grey/side{
 	dir = 4
@@ -9519,7 +9569,7 @@
 	charge = 3e+006;
 	chargelevel = 5000;
 	chargemode = 0;
-	output = 2500;
+	output = 4500;
 	tag = ""
 	},
 /obj/cable,
@@ -10415,6 +10465,24 @@
 /obj/machinery/disposal,
 /turf/floor,
 /area/station/storage/tech)
+"kVd" = (
+/obj/lattice{
+	dir = 9;
+	icon_state = "lattice-dir-b";
+	tag = "icon-lattice-dir-b (NORTHWEST)"
+	},
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/space,
+/area/space)
+"kVl" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/turf/floor/plating/airless,
+/area/space)
 "kVy" = (
 /obj/storage/crate/freezer,
 /obj/disposalpipe/segment/ejection{
@@ -10674,6 +10742,13 @@
 	},
 /turf/floor/plating/airless,
 /area/station/com_dish/comdish)
+"llw" = (
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/solar/small_backup1,
+/turf/floor/airless/solar,
+/area/station/solar/small_backup1)
 "llQ" = (
 /turf/floor/carpet/blue/standard/edge/se,
 /area/station/chapel/sanctuary)
@@ -12897,6 +12972,14 @@
 	},
 /turf/floor/orangeblack,
 /area/station/storage/eva)
+"nIG" = (
+/obj/machinery/power/tracker/small_backup1,
+/obj/cable,
+/obj/cable{
+	icon_state = "0-8"
+	},
+/turf/floor/airless/solar,
+/area/station/solar/small_backup1)
 "nJn" = (
 /turf/wall/r_wall,
 /area/station/bridge)
@@ -13670,7 +13753,7 @@
 	charge = 3e+006;
 	chargelevel = 5000;
 	chargemode = 0;
-	output = 2500;
+	output = 4500;
 	tag = ""
 	},
 /turf/floor/plating/airless,
@@ -17038,7 +17121,7 @@
 	charge = 3e+006;
 	chargelevel = 5000;
 	chargemode = 0;
-	output = 2500;
+	output = 4500;
 	tag = ""
 	},
 /obj/cable,
@@ -18201,6 +18284,18 @@
 /obj/machinery/light,
 /turf/floor/neutral/side,
 /area/station/engine/singcore)
+"tgY" = (
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/cable{
+	icon_state = "0-8"
+	},
+/obj/cable,
+/obj/machinery/power/solar/small_backup1,
+/turf/floor/airless/solar,
+/area/station/solar/small_backup1)
 "thy" = (
 /obj/reagent_dispensers/heliumtank,
 /turf/floor/plating,
@@ -19382,7 +19477,7 @@
 	charge = 3e+006;
 	chargelevel = 5000;
 	chargemode = 0;
-	output = 2500;
+	output = 4500;
 	tag = ""
 	},
 /obj/cable,
@@ -22474,6 +22569,17 @@
 "xvD" = (
 /turf/floor/grey,
 /area/station/science/teleporter)
+"xxO" = (
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/solar/small_backup1,
+/turf/floor/airless/solar,
+/area/station/solar/small_backup1)
 "xyn" = (
 /obj/cable{
 	d1 = 1;
@@ -92382,7 +92488,7 @@ huZ
 huZ
 huZ
 huZ
-huZ
+aiL
 huZ
 huZ
 huZ
@@ -92683,11 +92789,11 @@ huZ
 huZ
 huZ
 huZ
-huZ
-huZ
-huZ
-huZ
-huZ
+llw
+dRe
+dRe
+vBY
+kVd
 huZ
 huZ
 huZ
@@ -92986,10 +93092,10 @@ huZ
 huZ
 huZ
 huZ
+fDn
 huZ
 huZ
-huZ
-huZ
+vFh
 huZ
 huZ
 huZ
@@ -93288,10 +93394,10 @@ huZ
 huZ
 huZ
 aFI
-bay
+gRH
 huZ
 huZ
-huZ
+xxO
 huZ
 huZ
 huZ
@@ -93591,10 +93697,10 @@ wJD
 wJD
 uoQ
 uoQ
-lAj
-huZ
-huZ
-huZ
+bzW
+wJD
+xxO
+toM
 huZ
 huZ
 huZ
@@ -93895,7 +94001,7 @@ uoQ
 uoQ
 fDn
 huZ
-huZ
+xxO
 huZ
 huZ
 huZ
@@ -94197,7 +94303,7 @@ unr
 oql
 fDn
 huZ
-huZ
+xxO
 huZ
 huZ
 huZ
@@ -94497,9 +94603,9 @@ qiR
 gnZ
 qiR
 ueY
-fDn
+kVl
 huZ
-huZ
+xxO
 huZ
 huZ
 huZ
@@ -94799,9 +94905,9 @@ kDN
 kDN
 kDN
 eqM
-fDn
+dZi
 huZ
-huZ
+xxO
 huZ
 huZ
 huZ
@@ -95101,9 +95207,9 @@ vWr
 seL
 vWr
 ueY
-fDn
+iVw
 huZ
-huZ
+xxO
 huZ
 huZ
 huZ
@@ -95403,9 +95509,9 @@ xYn
 vlj
 mAP
 xUn
-fDn
+vFh
 huZ
-huZ
+xxO
 huZ
 huZ
 huZ
@@ -95705,9 +95811,9 @@ uoQ
 uoQ
 uoQ
 uoQ
-fDn
+vFh
 huZ
-huZ
+xxO
 huZ
 huZ
 huZ
@@ -96007,10 +96113,10 @@ wJD
 wJD
 uoQ
 uoQ
-pjh
-huZ
-huZ
-huZ
+iQF
+vBY
+tgY
+toM
 huZ
 huZ
 huZ
@@ -96308,10 +96414,10 @@ huZ
 huZ
 huZ
 ixm
-uLu
+gRH
 huZ
 huZ
-huZ
+xxO
 huZ
 huZ
 huZ
@@ -96610,10 +96716,10 @@ huZ
 huZ
 huZ
 huZ
+fDn
 huZ
 huZ
-huZ
-huZ
+vFh
 huZ
 huZ
 huZ
@@ -96911,11 +97017,11 @@ huZ
 huZ
 huZ
 huZ
-huZ
-huZ
-huZ
-huZ
-huZ
+llw
+dRe
+dRe
+vBY
+nIG
 huZ
 huZ
 huZ
@@ -97214,7 +97320,7 @@ huZ
 huZ
 huZ
 huZ
-huZ
+bPZ
 huZ
 huZ
 huZ
