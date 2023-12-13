@@ -279,14 +279,31 @@
 
 	name = "deep hole"
 	icon_state = "pit"
-	var/list/L = list()
 	spawningFlags = 0
-	randomIcon = 0
-	generateLight = 0
+	randomIcon = FALSE
+	generateLight = FALSE
 
-	allow_hole = 0
+	allow_hole = FALSE
 
 	color = OCEAN_COLOR
+	fullbright = TRUE
+
+	New()
+		. = ..()
+		for (var/obj/venthole/hole in src)
+			qdel(hole)
+		var/noise_scale = 55
+		var/r1 = text2num(rustg_noise_get_at_coordinates("[global.server_start_time]", "[src.x / noise_scale]", "[src.y / noise_scale]"))
+		var/r2 = text2num(rustg_noise_get_at_coordinates("[global.server_start_time + 123465]", "[src.x / noise_scale]", "[src.y / noise_scale]"))
+		var/col = rgb(255 * (1 - r1 - r2), 255 * r2, 255 * r1)
+		src.update_icon(90, col)
+		src.initialise_component()
+
+	proc/initialise_component()
+		src.AddComponent(/datum/component/pitfall/target_area,\
+			BruteDamageMax = 6,\
+			FallTime = 0.3 SECONDS,\
+			TargetArea = /area/trench_landing)
 	// fullbright = 1
 
 	edge
@@ -300,79 +317,24 @@
 			STOP_TRACKING
 			. = ..()
 
-	proc/try_build_turf_list()
-		if (!L || L.len == 0)
-			for(var/turf/T in get_area_turfs(/area/trench_landing))
-				L+=T
-
-	Entered(var/atom/movable/AM)
-		if (istype(AM,/mob/dead) || istype(AM,/mob/wraith) || istype(AM,/mob/living/intangible) || istype(AM, /obj/lattice) || istype(AM, /obj/cable/reinforced) || istype(AM,/obj/torpedo_targeter) || istype(AM,/obj/overlay) || istype (AM, /obj/arrival_missile) || istype(AM, /obj/sea_ladder_deployed))
-			return
-		if (locate(/obj/lattice) in src)
-			return
-		if (ishuman(AM))
-			var/mob/living/carbon/human/H = AM
-			if (H.back && H.back.c_flags & IS_JETPACK)
-				if (istype(H.back, /obj/item/tank/jetpack)) //currently unnecessary but what if we have IS_JETPACK on clothing items that are not back-wear later on?
-					var/obj/item/tank/jetpack/J = H.back
-					if(J.allow_thrust(0.01, H))
-						return
-		if (isliving(AM))
-			var/mob/living/peep = AM
-			if (!ON_COOLDOWN(AM, "re-swim", 0.5 SECONDS)) //Try swimming, but not if they've just stopped (for a stun or whatever)
-				peep.attempt_swim() //should do nothing if they're already swimming I think?
-			if (HAS_MOB_PROPERTY(peep,PROP_ATOM_FLOATING))
-				return
-		return_if_overlay_or_effect(AM)
-
-		try_build_turf_list()
-
-		if (length(L))
-			SPAWN_DBG(0.3 SECONDS)//you can 'jump' over a hole by running real fast or being thrown!!
-				if (istype(AM.loc, /turf/space/fluid/warp_z5))
-					visible_message("<span class='alert'>[AM] falls down [src]!</span>")
-					if (ismob(AM))
-						var/mob/M = AM
-						random_brute_damage(M, 6)
-						M.changeStatus("weakened", 2 SECONDS)
-						playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 10, 1)
-						M.emote("scream")
-
-					AM.set_loc(pick(L))
-
 
 /turf/space/fluid/warp_z5/realwarp
 	New()
 		..()
-		if (get_step(src, NORTH).type != /turf/space/fluid/warp_z5/realwarp)
+		src.initialise_component()
+		if (!istype(get_step(src, NORTH), /turf/space/fluid/warp_z5/realwarp))
 			icon_state = "pit_wall"
 
 		var/turf/space/fluid/under = get_step(src, SOUTH)
-		if (under.type == /turf/space/fluid/warp_z5/realwarp)
+		if (istype(under.type, /turf/space/fluid/warp_z5/realwarp))
 			under.icon_state = "pit"
 
-	try_build_turf_list()
-		if (!L || L.len == 0)
-			for(var/turf/space/fluid/T in range(8,locate(src.x,src.y,5)))
-				L += T
-				break
-
-			if(length(L))
-				var/needlink = 1
-				var/turf/space/fluid/picked_turf = pick(L)
-
-				for(var/turf/space/fluid/T in range(5,picked_turf))
-					if(T.linked_hole)
-						needlink = 0
-						break
-
-				if(needlink)
-					if(!picked_turf.linked_hole)
-						picked_turf.linked_hole = src
-						src.add_simple_light("trenchhole", list(120, 120, 120, 120))
-
-		..()
-
+	initialise_component()
+		src.AddComponent(/datum/component/pitfall/target_coordinates,\
+			BruteDamageMax = 6,\
+			FallTime = 0.3 SECONDS,\
+			TargetZ = 5,\
+			LandingRange = 8)
 
 //trench floor
 /turf/space/fluid/trench
@@ -394,7 +356,8 @@
 					T.blow_hole()
 					var/turf/space/fluid/warp_z5/hole = locate(x, y, 1)
 					if(istype(hole))
-						hole.L = list(src)
+						var/datum/component/pitfall/target_coordinates/getcomp = hole.GetComponent(/datum/component/pitfall/target_coordinates)
+						getcomp.TargetList = list(src)
 						src.linked_hole = hole
 						src.add_simple_light("trenchhole", list(120, 120, 120, 120))
 						break
@@ -460,6 +423,10 @@
 
 	New()
 		..()
+		src.AddComponent(/datum/component/pitfall/target_landmark,\
+			BruteDamageMax = 25,\
+			FallTime = 0 SECONDS,\
+			TargetLandmark = LANDMARK_FALL_SEA)
 
 		var/turf/n = get_step(src,NORTH)
 		var/turf/e = get_step(src,EAST)

@@ -138,9 +138,18 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 	desc = "An elevator shaft.  It's probably a bad idea to try to walk over this, unless you're Wile E. Coyote and don't look down."
 	pathable = 0
 	var/isHemera = 0
+	var/landmarktarget = LANDMARK_FALL_MOON_MUSEUM
 
 	New()
 		..()
+		if (isHemera)
+			src.landmarktarget = LANDMARK_FALL_MOON_HEMERA
+
+		src.AddComponent(/datum/component/pitfall/target_landmark,\
+			BruteDamageMax = 50,\
+			FallTime = 0 SECONDS,\
+			TargetLandmark = src.landmarktarget)
+
 		SPAWN_DBG(0.5 SECONDS)
 			if (istype( get_step(src, WEST), src.type))
 				if (istype( get_step(src, NORTH), src.type))
@@ -159,19 +168,6 @@ var/list/lunar_fx_sounds = list('sound/ambience/loop/Wind_Low.ogg','sound/ambien
 				else
 					//Upper left
 					set_dir(2)
-
-
-	Entered(atom/A as mob|obj)
-		if (istype(A, /obj/overlay/tile_effect) || istype(A, /mob/dead) || istype(A, /mob/wraith) || istype(A, /mob/living/intangible))
-			return ..()
-
-		var/turf/T = pick_landmark(isHemera ? LANDMARK_FALL_MOON_HEMERA : LANDMARK_FALL_MOON_MUSEUM)
-		if (T)
-			fall_to(T, A)
-			return
-
-		else
-			..()
 
 /turf/floor/lunar
 	name = "lunar surface"
