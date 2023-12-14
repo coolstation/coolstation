@@ -12,18 +12,22 @@
 	flags = FPRINT | TABLEPASS | OPENCONTAINER
 	rc_flags = 0
 	initial_volume = 40
-	var/list/available_colors = list("white","black","red","rheart","green","blue","orange","pink","pheart","yellow","purple","bee","clown")
-	var/list/rare_colors = list("cluwne","bclown")
+	//uncomment this stuff when there's a reason to
+	//var/list/available_colors = list("white","black","red","rheart","green","blue","orange","pink","pheart","yellow","purple","bee","clown")
+	//var/list/rare_colors = list("cluwne","bclown")
 	var/balloon_color = "white"
 	var/last_reag_total = 0
+	///did some jerk put a hole in this
+	var/slashed = FALSE
 
 	New()
 		..()
-		if (prob(1) && islist(rare_colors) && length(rare_colors))
-			balloon_color = pick(rare_colors)
+		//inlining these lists cause nothing cares it's just taking up memory
+		if (prob(1)/* && islist(rare_colors) && length(rare_colors)*/)
+			balloon_color = pick(list("cluwne","bclown")/*rare_colors*/)
 			update_icon()
-		else if (islist(available_colors) && length(available_colors))
-			balloon_color = pick(available_colors)
+		else/* if (islist(available_colors) && length(available_colors))*/
+			balloon_color = pick(list("white","black","red","rheart","green","blue","orange","pink","pheart","yellow","purple","bee","clown")/*available_colors*/)
 			update_icon()
 
 	on_reagent_change()
@@ -54,6 +58,8 @@
 			user = usr
 		else if (!user && !usr && ismob(src.loc))
 			user = src.loc
+		if (slashed && src.reagents.total_volume)
+			ohshit = 100
 		if (!ohshit)
 			ohshit = (src.reagents.total_volume /  (src.reagents.maximum_volume - 10)) * 33
 		if (prob(ohshit))
@@ -170,10 +176,26 @@
 				return
 			var/transferamt = src.reagents.maximum_volume - src.reagents.total_volume
 			var/trans = target.reagents.trans_to(src, transferamt)
-			user.show_text("You fill [src] with [trans] units of the contents of [target].", "blue")
-			user.update_inhands()
+			//supress messaging that would be weird when filling a slashed balloon
+			if (!src.slashed)
+				user.show_text("You fill [src] with [trans] units of the contents of [target].", "blue")
+				user.update_inhands()
 		else
 			return ..()
+
+	attackby(obj/item/I, mob/user)
+		if(isweldingtool(I))
+			burst_chance(user, 100)
+			return
+		if (iscuttingtool(I) || issnippingtool(I))
+			if (!src.reagents.total_volume)
+				user.show_text("You slash [src], you butt.", "blue")
+				src.interesting = "This balloon has been sabotaged. Definitely the work of that dastardly [user.real_name]."
+				src.slashed = TRUE
+			else
+				burst_chance(user, 100)
+			return
+		..()
 
 	ex_act(severity)
 		src.smash()
@@ -213,6 +235,18 @@
 	inhand_image_icon = 'icons/mob/inhand/hand_balloon.dmi'
 	item_state = "balloon"
 	w_class = W_CLASS_SMALL
+
+	attackby(obj/item/W, mob/user, params)
+		if (iscuttingtool(W) || issnippingtool(W))
+			var/turf/T = get_turf(src)
+			if (T)
+				T.visible_message("<span class='alert'>[user] pops [src]!</span>")
+			playsound(T, 'sound/impact_sounds/Slimy_Splat_1.ogg', 100, 1)
+			var/obj/decal/cleanable/balloon/decal = make_cleanable(/obj/decal/cleanable/balloon,T)
+			decal.color = src.color
+			qdel(src)
+			return
+		..()
 
 /obj/item/balloon_animal/random
 	New()
