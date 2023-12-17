@@ -3217,7 +3217,7 @@
 /turf/floor/plating,
 /area/diner/motel/observatory)
 "aje" = (
-/obj/machinery/door/airlock/external,
+/obj/machinery/door/airlock/external/shuttle_connect,
 /turf/floor/shuttlebay,
 /area/bee_trader)
 "ajf" = (
@@ -25740,6 +25740,10 @@
 	},
 /turf/floor/scorched2,
 /area/diner/hangar)
+"ozu" = (
+/obj/machinery/door/airlock/external/shuttle_connect,
+/turf/floor/grime,
+/area/diner/hangar)
 "oCr" = (
 /obj/table/reinforced/bar/auto,
 /obj/machinery/light{
@@ -25919,6 +25923,10 @@
 /turf/floor/carpet{
 	icon_state = "red2"
 	},
+/area/diner/dining)
+"pNA" = (
+/obj/machinery/door/airlock/external/shuttle_connect,
+/turf/floor/plating,
 /area/diner/dining)
 "pRV" = (
 /turf/space,
@@ -26912,10 +26920,6 @@
 	icon_state = "floor2"
 	},
 /area/diner/jucer_trader)
-"vED" = (
-/obj/machinery/door/airlock/external/shuttle_connect,
-/turf/floor/plating,
-/area/diner/dining)
 "vGg" = (
 /obj/decal/cleanable/generic,
 /obj/marker/supplymarker,
@@ -71177,8 +71181,8 @@ afs
 ahi
 aaK
 air
-aiZ
-aiZ
+ozu
+ozu
 boU
 boO
 ahi
@@ -72687,7 +72691,7 @@ afs
 aan
 aaK
 air
-aiZ
+ozu
 boU
 boU
 boP
@@ -80554,8 +80558,8 @@ boP
 boP
 aqw
 aqw
-vED
-vED
+pNA
+pNA
 aqw
 aaa
 aaa
