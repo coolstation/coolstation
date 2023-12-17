@@ -1,5 +1,8 @@
 #define TURF_SPAWN_EDGE_LIMIT 5
 
+//1/3rd to max magnet size, or global presets
+#define PICK_SIZE var/size = magnet_size ? (rand(round(magnet_size/3, 1), magnet_size)) : rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+
 /datum/mining_encounter
 	var/name = null
 	var/info = null
@@ -47,7 +50,7 @@
 		if (..())
 			return
 		var/list/generated_turfs
-		var/size = rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+		PICK_SIZE
 
 		var/magnetic_center = mining_controls.magnetic_center
 		var/area_restriction = /area/mining/magnet
@@ -92,7 +95,7 @@
 		if (..())
 			return
 		var/list/generated_turfs
-		var/size = rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+		PICK_SIZE
 
 		var/magnetic_center = mining_controls.magnetic_center
 		var/area_restriction = /area/mining/magnet
@@ -128,8 +131,7 @@
 			magnetic_center = target.magnetic_center
 			area_restriction = null
 
-		var/size = rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
-		//var/size = magnet_size ? (2*magnet_size/3) : rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+		PICK_SIZE
 		Turfspawn_Wreckage(magnetic_center, size, 0, area_restriction)
 
 /datum/mining_encounter/geode
@@ -180,7 +182,7 @@
 		if (..())
 			return
 		var/list/generated_turfs
-		var/size = rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+		PICK_SIZE
 
 		var/magnetic_center = mining_controls.magnetic_center
 		var/area_restriction = /area/mining/magnet
@@ -210,7 +212,7 @@
 		if (..())
 			return
 		var/list/generated_turfs
-		var/size = rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+		PICK_SIZE
 
 		var/magnetic_center = mining_controls.magnetic_center
 		var/area_restriction = /area/mining/magnet
@@ -241,7 +243,7 @@
 		if (..())
 			return
 		var/list/generated_turfs
-		var/size = rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+		PICK_SIZE
 
 		var/magnetic_center = mining_controls.magnetic_center
 		var/area_restriction = /area/mining/magnet
@@ -273,7 +275,7 @@
 		if (..())
 			return
 		var/list/generated_turfs
-		var/size = rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+		PICK_SIZE
 
 		var/magnetic_center = mining_controls.magnetic_center
 		var/area_restriction = /area/mining/magnet
@@ -304,7 +306,7 @@
 		if (..())
 			return
 		var/list/generated_turfs
-		var/size = rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+		PICK_SIZE
 
 		var/magnetic_center = mining_controls.magnetic_center
 		var/area_restriction = /area/mining/magnet
@@ -335,7 +337,7 @@
 		if (..())
 			return
 		var/list/generated_turfs
-		var/size = rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+		PICK_SIZE
 
 		var/magnetic_center = mining_controls.magnetic_center
 		var/area_restriction = /area/mining/magnet
@@ -366,7 +368,7 @@
 		if (..())
 			return
 		var/list/generated_turfs
-		var/size = rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+		PICK_SIZE
 
 		var/magnetic_center = mining_controls.magnetic_center
 		var/area_restriction = /area/mining/magnet
@@ -397,7 +399,7 @@
 		if (..())
 			return
 		var/list/generated_turfs
-		var/size = rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+		PICK_SIZE
 
 		var/magnetic_center = mining_controls.magnetic_center
 		var/area_restriction = /area/mining/magnet
@@ -427,7 +429,7 @@
 		if (..())
 			return
 		var/list/generated_turfs
-		var/size = rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+		PICK_SIZE
 
 		var/magnetic_center = mining_controls.magnetic_center
 		var/area_restriction = /area/mining/magnet
@@ -457,7 +459,7 @@
 		if (..())
 			return
 		var/list/generated_turfs
-		var/size = rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+		PICK_SIZE
 
 		var/magnetic_center = mining_controls.magnetic_center
 		var/area_restriction = /area/mining/magnet
@@ -487,7 +489,7 @@
 		if (..())
 			return
 		var/list/generated_turfs
-		var/size = rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+		PICK_SIZE
 
 		var/magnetic_center = mining_controls.magnetic_center
 		var/area_restriction = /area/mining/magnet
@@ -517,7 +519,7 @@
 		if (..())
 			return
 		var/list/generated_turfs
-		var/size = rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+		PICK_SIZE
 
 		var/magnetic_center = mining_controls.magnetic_center
 		var/area_restriction = /area/mining/magnet
@@ -547,7 +549,7 @@
 		if (..())
 			return
 		var/list/generated_turfs
-		var/size = rand(mining_controls.min_magnet_spawn_size, mining_controls.max_magnet_spawn_size)
+		PICK_SIZE
 
 		var/magnetic_center = mining_controls.magnetic_center
 		var/area_restriction = /area/mining/magnet
@@ -999,3 +1001,4 @@
 			level_stats.total_event_calls += 1
 
 #undef TURF_SPAWN_EDGE_LIMIT
+#undef PICK_SIZE
