@@ -245,6 +245,26 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	visible = 0
 	operation_time = 10
 
+//For use on shuttle docks and shuttles themselves, tries to open the adjacent shuttle door at the same time
+/obj/machinery/door/airlock/external/shuttle_connect
+	open()
+		if (..() || operating)
+			for(var/d in cardinal)
+				var/turf/T = get_step(src, d)
+				var/obj/machinery/door/an_door = locate() in T
+				if (istype(an_door, /obj/machinery/door/airlock/external/shuttle_connect) || istype(an_door, /obj/machinery/door/airlock/pyro/external/shuttle_connect))
+					if (!an_door.operating)
+						an_door.open()
+
+	close()
+		if (..() || operating)
+			for(var/d in cardinal)
+				var/turf/T = get_step(src, d)
+				var/obj/machinery/door/an_door = locate() in T
+				if (istype(an_door, /obj/machinery/door/airlock/external/shuttle_connect) || istype(an_door, /obj/machinery/door/airlock/pyro/external/shuttle_connect))
+					if (!an_door.operating)
+						an_door.close()
+
 /obj/machinery/door/airlock/syndicate // fuck our players for making us (or at least me) need this
 	name = "reinforced external airlock"
 	desc = "Looks pretty tough. I wouldn't take this door on in a fight."
@@ -415,6 +435,25 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	opacity = 0
 	visible = 0
 	operation_time = 10
+
+//For use on shuttle docks, tries to open the adjacent shuttle door at the same time
+/obj/machinery/door/airlock/pyro/external/shuttle_connect
+	open()
+		if (..() || operating)
+			for(var/turf/T in list(get_step(src, src.dir), get_step(src, turn(src.dir, 180))))
+				var/obj/machinery/door/an_door = locate() in T
+				if (istype(an_door, /obj/machinery/door/airlock/external/shuttle_connect) || istype(an_door, /obj/machinery/door/airlock/pyro/external/shuttle_connect))
+					if (!an_door.operating)
+						an_door.open()
+
+	close()
+		if (..() || operating)
+			for(var/turf/T in list(get_step(src, src.dir), get_step(src, turn(src.dir, 180))))
+				var/obj/machinery/door/an_door = locate() in T
+				if (istype(an_door, /obj/machinery/door/airlock/external/shuttle_connect) || istype(an_door, /obj/machinery/door/airlock/pyro/external/shuttle_connect))
+					if (!an_door.operating)
+						an_door.close()
+
 
 /obj/machinery/door/airlock/pyro/syndicate
 	name = "reinforced external airlock"
