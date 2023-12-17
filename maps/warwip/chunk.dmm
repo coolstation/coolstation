@@ -10567,6 +10567,10 @@
 /obj/storage/closet/syndicate/personal,
 /turf/floor/bot,
 /area/listeningpost)
+"kZj" = (
+/obj/machinery/door/airlock/external/shuttle_connect,
+/turf/floor,
+/area/station/crew_quarters/market)
 "laO" = (
 /obj/disposalpipe/junction/right/north,
 /obj/decoration/toiletholder{
@@ -12950,10 +12954,10 @@
 	},
 /area/station/hallway/primary/central)
 "nGI" = (
-/obj/machinery/door/airlock/external,
 /obj/grille/catwalk/jen/side{
 	dir = 4
 	},
+/obj/machinery/door/airlock/external/shuttle_connect,
 /turf/floor/plating,
 /area/station/maintenance/central)
 "nIl" = (
@@ -14350,10 +14354,6 @@
 "oZy" = (
 /turf/wall,
 /area/station/crew_quarters/bathroom)
-"oZI" = (
-/obj/machinery/door/airlock/external/shuttle_connect,
-/turf/floor,
-/area/station/crew_quarters/market)
 "oZW" = (
 /obj/table/reinforced/bar/auto,
 /obj/item/paper_bin{
@@ -16387,7 +16387,7 @@
 /area/station/science/bot_storage)
 "qZZ" = (
 /obj/machinery/door/airlock/glass{
-	id = "cloner_exit";
+	id = "cloning_exit";
 	name = "cloning airlock"
 	},
 /obj/access_spawn/medical,
@@ -21640,10 +21640,10 @@
 /turf/floor/plating,
 /area/station/maintenance/southeast)
 "wqo" = (
-/obj/machinery/door/airlock/external,
 /obj/grille/catwalk/jen/side{
 	dir = 8
 	},
+/obj/machinery/door/airlock/external/shuttle_connect,
 /turf/floor/plating,
 /area/station/maintenance/central)
 "wqX" = (
@@ -64436,7 +64436,7 @@ ahK
 mla
 qVs
 aXD
-oZI
+kZj
 ygA
 ygA
 ygA
@@ -66248,7 +66248,7 @@ oWf
 mla
 qVs
 gQU
-oZI
+kZj
 aJG
 aJG
 aJG
