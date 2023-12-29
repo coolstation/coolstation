@@ -258,7 +258,7 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 	is_npc = TRUE
 	New()
 		. = ..()
-		src.ai = new /datum/aiHolder/wanderer(src)
+		src.ai = new /datum/aiHolder/wandererf(src)
 
 	setup_overlays()
 		return

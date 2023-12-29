@@ -95,6 +95,12 @@
 	. = ..()
 	holder.stop_move()
 
+/datum/aiTask/timed/wander/f
+/datum/aiTask/timed/wander/f/on_tick()
+	holder.owner.move_dir = pick(alldirs)
+	holder.owner.process_move()
+	if(prob(1))
+		holder.owner.say("fuck")
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // TARGETED TASK
 // a timed task that also relates to a target and the acquisition of said target
