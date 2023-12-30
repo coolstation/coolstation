@@ -96,6 +96,7 @@
 	holder.stop_move()
 
 /datum/aiTask/timed/wander/f
+	name = "explicit_wandering"
 /datum/aiTask/timed/wander/f/on_tick()
 	holder.owner.move_dir = pick(alldirs)
 	holder.owner.process_move()
