@@ -12,7 +12,7 @@
 		if (ishuman(src))
 			var/datum/abilityHolder/vampire/V = src.add_ability_holder(/datum/abilityHolder/vampire)
 
-			if(shitty) // Infernal vampire.
+			if(shitty) // Infernal dracula.
 				V.addAbility(/datum/targetable/vampire/blood_tracking)
 			else
 				V.addAbility(/datum/targetable/vampire/vampire_bite)
@@ -33,7 +33,7 @@
 				if (!A2 || !istype(A2, /datum/abilityHolder/))
 					return
 
-			if(shitty) // Infernal vampire.
+			if(shitty) // Infernal dracula.
 				C.abilityHolder.addAbility(/datum/targetable/vampire/blood_tracking)
 			else
 				C.abilityHolder.addAbility(/datum/targetable/vampire/cancel_stuns)
@@ -52,13 +52,13 @@
 			SHOW_VAMPIRE_TIPS(src)
 
 		if(shitty || nonantag)
-			boutput(src, "<span class='alert'><h2>You've been turned into a vampire!</h2> Your vampireness was achieved by in-game means, you are <i>not</i> an antagonist unless you already were one.</span>")
+			boutput(src, "<span class='alert'><h2>You've been turned into a dracula!</h2> Your draculatude was achieved by in-game means, you are <i>not</i> an antagonist unless you already were one.</span>")
 
 	else return
 
 ////////////////////////////////////////////////// Helper procs ////////////////////////////////////////////////
 
-// Just a little helper or two since vampire parameters aren't tracked by mob vars anymore.
+// Just a little helper or two since dracula parameters aren't tracked by mob vars anymore.
 /mob/proc/get_vampire_blood(var/total_blood = 0)
 	if (!isvampire(src))
 		return 0
@@ -189,7 +189,7 @@
 /datum/abilityHolder/vampire
 	usesPoints = 1
 	regenRate = 0
-	tabName = "Vampire"
+	tabName = "Dracula"
 	notEnoughPointsMessage = "<span class='alert'>You need more blood to use this ability.</span>"
 	var/vamp_blood = 0
 	points = 0 // Replaces the old vamp_blood_remaining var.
@@ -221,7 +221,7 @@
 	//theres a bug where projectiles get unpooled and moved elsewhere before theyre done with their currnent firing
 	//badly affects 'travel' projectile. band aid.
 
-	onAbilityStat() // In the 'Vampire' tab.
+	onAbilityStat() // In the 'Dracula' tab.
 		..()
 		.= list()
 		.["Blood:"] = round(src.points)
@@ -282,7 +282,7 @@
 
 			src.has_thermal = 1
 			APPLY_MOB_PROPERTY(src.owner, PROP_THERMALVISION_MK2, src)
-			boutput(src.owner, __blue("<h3>Your vampiric vision has improved (thermal)!</h3>"))
+			boutput(src.owner, __blue("<h3>Your draculicious vision has improved (thermal)!</h3>"))
 
 			src.addAbility(/datum/targetable/vampire/mark_coffin)
 			src.addAbility(/datum/targetable/vampire/coffin_escape)
@@ -407,7 +407,7 @@
 			if (VZ && istype(VZ))
 				VZ.master = src
 
-			boutput(M, __red("<b>You awaken filled with purpose - you must serve your master vampire, [owner.real_name]!</B>"))
+			boutput(M, __red("<b>You awaken filled with purpose - you must serve your dracula prime, [owner.real_name]!</B>"))
 			SHOW_INSURGENT_TIPS(M)
 
 			boutput(owner, __blue("[M] has been revived as your thrall."))
@@ -415,13 +415,13 @@
 
 
 
-///////////////////////////////////////////// Vampire spell parent //////////////////////////////////////////////////
+///////////////////////////////////////////// Dracula spell parent //////////////////////////////////////////////////
 
 // If you change the blood cost, cooldown etc of an ability, don't forget to update vampireTips.html too!
 
 // Notes:
 // - If an ability isn't available from the beginning, add an unlock_message to notify the player of unlocks.
-// - Vampire abilities are logged. Please keep it that way when you make additions.
+// - Dracula abilities are logged. Please keep it that way when you make additions.
 // - Add this snippet at the bottom of cast() if the ability isn't free. Optional but basic feedback for the player.
 //		var/datum/abilityHolder/vampire/H = holder
 //		if (istype(H)) H.blood_tracking_output(src.pointCost)

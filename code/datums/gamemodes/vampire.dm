@@ -13,6 +13,6 @@
 	num_enemies_divisor = 20
 
 /datum/game_mode/mixed/vampire/announce()
-	boutput(world, "<B>The current game mode is - Vampire!</B>")
-	boutput(world, "<B>Don't be scared!</B>")
+	boutput(world, "<B>The current game mode is - Dracula!</B>")
+	boutput(world, "<B>Watch out for draculas!</B>")
 

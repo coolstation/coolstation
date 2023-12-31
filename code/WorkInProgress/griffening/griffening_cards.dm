@@ -187,9 +187,9 @@
 				LVL = 5
 				ATK = 25
 				DEF = 25
-				card_name = "Vampire"
+				card_name = "Dracula"
 				attributes = GRIFFENING_ATTRIBUTE_HANDS | GRIFFENING_ATTRIBUTE_ORGANIC
-				card_data = "You must sacrifice one human crew member on your side of the field to play Vampire. Once per turn, you may sacrifice one human crew member from your side of the field to increase the Vampire's ATK and DEF by 20. Once per turn, the Vampire may evade an attack from a human, incapacitating them."
+				card_data = "You must sacrifice one human crew member on your side of the field to play Dracula. Once per turn, you may sacrifice one human crew member from your side of the field to increase the Dracula's ATK and DEF by 20. Once per turn, the Dracula may evade an attack from a human, incapacitating them."
 
 			abomination
 				LVL = 9

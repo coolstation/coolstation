@@ -780,7 +780,7 @@ var/global/noir = 0
 							<A href='?src=\ref[src];action=[cmd];type=nuclear'>Nuclear Emergency</A><br>
 							<A href='?src=\ref[src];action=[cmd];type=wizard'>Wizard</A><br>
 							<A href='?src=\ref[src];action=[cmd];type=changeling'>Changeling</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=vampire'>Vampire</A><br>
+							<A href='?src=\ref[src];action=[cmd];type=vampire'>Dracula</A><br>
 							<A href='?src=\ref[src];action=[cmd];type=blob'>Blob</A><br>
 							<A href='?src=\ref[src];action=[cmd];type=conspiracy'>Conspiracy</A><br>
 							<A href='?src=\ref[src];action=[cmd];type=spy_theft'>Spy Theft</A><br>
@@ -811,7 +811,7 @@ var/global/noir = 0
 
 				var/list/valid_modes = list("secret","action","intrigue","random","traitor","meteor","extended","monkey",
 				"nuclear","blob","restructuring","wizard","revolution", "revolution_extended","malfunction",
-				"spy","gang","disaster","changeling","vampire","mixed","mixed_rp", "construction","conspiracy","spy_theft","battle_royale", "vampire","assday", "football", "flock")
+				"spy","gang","disaster","changeling","dracula","mixed","mixed_rp", "construction","conspiracy","spy_theft","battle_royale","assday", "football", "flock")
 #if defined(MAP_OVERRIDE_POD_WARS)
 				valid_modes += "pod_wars"
 #else
@@ -2041,7 +2041,7 @@ var/global/noir = 0
 						/*	else
 								SPAWN_DBG(0) alert("An error occurred, please try again.")*/
 					else
-						var/list/traitor_types = list("Traitor", "Wizard", "Changeling", "Vampire", "Werewolf", "Hunter", "Wrestler", "Grinch", "Omnitraitor", "Spy_Thief")
+						var/list/traitor_types = list("Traitor", "Wizard", "Changeling", "Dracula", "Werewolf", "Hunter", "Wrestler", "Grinch", "Omnitraitor", "Spy_Thief")
 						if(ticker?.mode && istype(ticker.mode, /datum/game_mode/gang))
 							traitor_types += "Gang Leader"
 						var/selection = input(usr, "Select traitor type.", "Traitorize", "Traitor") as null|anything in traitor_types
@@ -2471,7 +2471,7 @@ var/global/noir = 0
 								alert("The game hasn't started yet!")
 								return
 
-							var/which_traitor = input("What kind of traitor?","Everyone's a Traitor") as null|anything in list("Traitor","Wizard","Changeling","Werewolf","Vampire","Hunter","Wrestler","Grinch","Omnitraitor")
+							var/which_traitor = input("What kind of traitor?","Everyone's a Traitor") as null|anything in list("Traitor","Wizard","Changeling","Werewolf","Dracula","Hunter","Wrestler","Grinch","Omnitraitor")
 							if(!which_traitor)
 								return
 							var/hardmode = null
@@ -4544,7 +4544,7 @@ var/global/noir = 0
 				eligible_objectives += /datum/objective/specialist/absorb
 			if ("werewolf")
 				eligible_objectives += /datum/objective/specialist/werewolf/feed
-			if ("vampire")
+			if ("dracula")
 				eligible_objectives += /datum/objective/specialist/drinkblood
 			if ("hunter")
 				eligible_objectives += /datum/objective/specialist/hunter/trophy
@@ -4616,9 +4616,9 @@ var/global/noir = 0
 				M.show_text("<h2><font color=red><B>You have been seduced by magic and become a wizard!</B></font></h2>", "red")
 				SHOW_ADMINWIZARD_TIPS(M)
 				M.verbs += /client/proc/gearspawn_wizard
-			if("vampire")
+			if("dracula")
 				M.mind.special_role = "vampire"
-				M.show_text("<h2><font color=red><B>You have joined the ranks of the undead and are now a vampire!</B></font></h2>", "red")
+				M.show_text("<h2><font color=red><B>You have joined the ranks of the undead and are now a dracula!</B></font></h2>", "red")
 				M.make_vampire()
 			if("hunter")
 				M.mind.special_role = "hunter"

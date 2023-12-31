@@ -418,7 +418,7 @@ var/list/figure_high_rarity = list(\
 		icon_state = "changeling"
 
 	vampire
-		name = "vampire"
+		name = "dracula"
 		icon_state = "vampire"
 
 	nukeop
