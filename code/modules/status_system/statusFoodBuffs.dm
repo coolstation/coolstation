@@ -198,7 +198,7 @@
 		change = 2
 
 	getTooltip()
-		. = "Your stamina regen is increased by [change]."
+		. = "Your [pick("strongitude","robustience","energicity")] is increased by [change]."
 
 /datum/statusEffect/foodstaminamax
 	id = "food_energized"
@@ -216,7 +216,7 @@
 		change = 40
 
 	getTooltip()
-		. = "Your max. stamina is increased by [change]."
+		. = "Your [pick("ruggedness","fortitudiness","maximality")] is increased by [change]."
 
 	onAdd(optional=null)
 		. = ..()
