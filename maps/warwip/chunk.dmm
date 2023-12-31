@@ -16780,6 +16780,16 @@
 	},
 /turf/floor,
 /area/station/security/main)
+"rvm" = (
+/obj/stool,
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
+/obj/item/device/radio/intercom{
+	pixel_x = 28
+	},
+/turf/floor/specialroom/bar,
+/area/station/crew_quarters/bar)
 "rvr" = (
 /obj/cable{
 	d1 = 1;
@@ -16958,6 +16968,14 @@
 /obj/machinery/atmospherics/portables_connector/west,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
+"rGv" = (
+/obj/table/reinforced/bar/auto,
+/obj/random_item_spawner/tableware/one_or_zero,
+/obj/machinery/phone,
+/turf/floor/grey/side{
+	dir = 1
+	},
+/area/station/crew_quarters/bar)
 "rHk" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -80136,7 +80154,7 @@ njB
 jJJ
 ftE
 nCR
-uSf
+rGv
 tSZ
 iiY
 cRb
@@ -80432,7 +80450,7 @@ doq
 rpr
 hzq
 fJn
-fyd
+rvm
 lIg
 oZW
 yiU
