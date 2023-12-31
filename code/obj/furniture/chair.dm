@@ -150,13 +150,7 @@
 	MouseDrop_T(mob/M as mob, mob/user as mob)
 		..()
 		if (M == user)
-			if (user.a_intent == INTENT_GRAB)
-				if(climbable)
-					buckle_in(M, user, 1)
-				else
-					boutput(user, "<span class='alert'>[src] isn't climbable.</span>")
-			else
-				buckle_in(M,user)
+			buckle_in(M,user,user.a_intent == INTENT_GRAB)
 		else
 			buckle_in(M,user)
 			if (isdead(M) && M != user && emergency_shuttle?.location == SHUTTLE_LOC_STATION) // 1 should be SHUTTLE_LOC_STATION
@@ -197,6 +191,9 @@
 		if(stand)
 			if(ishuman(to_buckle))
 				if(ON_COOLDOWN(to_buckle, "chair_stand", 1 SECOND))
+					return
+				if(!src.climbable)
+					boutput(user, "<span class='alert'>[src] isn't climbable.</span>")
 					return
 				user.visible_message("<span class='notice'><b>[to_buckle]</b> climbs up on [src]!</span>", "<span class='notice'>You climb up on [src].</span>")
 
