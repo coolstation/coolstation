@@ -724,7 +724,7 @@
 			msgs.stamina_crit = 1
 			msgs.played_sound = pick(sounds_punch)
 			if(prob(5))
-				msgs.visible_message_target("<span class='notice'>[pick("... And lands a","That was a")] <b>[crit_chance]% hit!</b> [prob(75) ? "(roleplay it!)" : ""] /span>")
+				msgs.visible_message_target("<span class='notice'>[pick("... And lands a","That was a")] <b>[crit_chance]% hit!</b> [prob(75) ? "(roleplay it!)" : ""] </span>")
 
 		var/armor_blocked = 0
 
