@@ -121,21 +121,10 @@
 	name = "Feline Genetics"
 	desc = "Morphs the subject's traits to appear more feline in nature."
 	id = "cat"
-	occur_in_genepools = 0
-	probability = 0
-	scanner_visibility = 0
-	can_research = 0
-	can_make_injector = 0
-	can_copy = 0
-	can_reclaim = 0
-	can_scramble = 0
-	curable_by_mutadone = 0
-	reclaim_fail = 100
-	stability_loss = 25
 	mutantrace_option = "Cat"
 	mutantrace_path = /datum/mutantrace/cat
 	msgGain = "You feel especially hairy."
-	msgLose = "Your fur falls out."
+	msgLose = "You fur fall out."
 	icon_state  = "cat"
 
 

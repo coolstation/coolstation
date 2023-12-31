@@ -17,6 +17,7 @@
 #define isnpc(x) istype(x, /mob/living/carbon/human/npc)
 #define isnpcmonkey(x) (istype(x,/mob/living/carbon/human/npc/monkey) && istype(x:mutantrace, /datum/mutantrace/monkey))
 #define ishuman(x) istype(x, /mob/living/carbon/human)
+#define iscat(x) (istype(x, /mob/living/carbon/human) && istype(x:mutantrace, /datum/mutantrace/cat))
 #define iscow(x) (istype(x, /mob/living/carbon/human) && istype(x:mutantrace, /datum/mutantrace/cow))
 #define isfert(x) (istype(x, /mob/living/carbon/human) && istype(x:mutantrace, /datum/mutantrace/fert))
 #define isfrog(x) (istype(x, /mob/living/carbon/human) && istype(x:mutantrace, /datum/mutantrace/amphibian))

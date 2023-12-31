@@ -193,8 +193,6 @@
 				threatcount += 6
 			else if (istype(perp.mutantrace, /datum/mutantrace/werewolf) || istype(perp.mutantrace, /datum/mutantrace/hunter))
 				threatcount += 4
-			else if (istype(perp.mutantrace, /datum/mutantrace/cat))
-				threatcount += 3
 
 		if(perp.traitHolder.hasTrait("immigrant") && perp.traitHolder.hasTrait("jailbird"))
 			threatcount += 5

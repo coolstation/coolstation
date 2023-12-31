@@ -1154,6 +1154,17 @@ obj/trait/pilot
 	category = "species"
 	mutantRace = /datum/mutantrace/lizard
 
+/obj/trait/cat
+	name = "Feline (0) \[Species\]"
+	cleanName = "Feline"
+	icon_state = "fertT"
+	desc = "Normal cat."
+	id = "cat" //need cat icon, but for now,
+	points = 0
+	isPositive = 0
+	category = "species"
+	mutantRace = /datum/mutantrace/cat
+
 /obj/trait/cow
 	name = "Bovine (0) \[Species\]"
 	cleanName = "Bovine"

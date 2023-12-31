@@ -1178,7 +1178,7 @@ var/global/noir = 0
 					alert("This secret can only be used on human mobs.")
 					return
 				var/mob/living/carbon/human/H = M
-				var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Fert","Ghostdrone","Flubber","Cow")
+				var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Fert","Ghostdrone","Flubber","Cat","Cow")
 				if (!which)
 					return
 				. = 0
@@ -1212,6 +1212,8 @@ var/global/noir = 0
 						droneize(H, 0)
 					if("Flubber")
 						H.set_mutantrace(/datum/mutantrace/flubber)
+					if ("Cat")
+						H.set_mutantrace(/datum/mutantrace/cat)
 					if ("Cow")
 						H.set_mutantrace(/datum/mutantrace/cow)
 				if(.)
@@ -2392,7 +2394,7 @@ var/global/noir = 0
 							alert("This secret can only be used on human mobs.")
 							return
 						var/mob/living/carbon/human/H = who
-						var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cow","Fert")
+						var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cat","Cow","Fert")
 						if (!which)
 							return
 						switch(which)
@@ -2408,6 +2410,8 @@ var/global/noir = 0
 								H.set_mutantrace(/datum/mutantrace/skeleton)
 							if("Flashman")
 								H.set_mutantrace(/datum/mutantrace/flashy)
+							if ("Cat")
+								H.set_mutantrace(/datum/mutantrace/cat)
 							if ("Cow")
 								H.set_mutantrace(/datum/mutantrace/cow)
 							if ("Fert")
@@ -2417,7 +2421,7 @@ var/global/noir = 0
 						logTheThing("diary", usr, null, "transformed [H.real_name] into a [which].", "admin")
 
 					if("transform_all")
-						var/which = input("Transform everyone into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cow","Fert")
+						var/which = input("Transform everyone into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cat","Cow","Fert")
 						for(var/mob/living/carbon/human/H in mobs)
 							switch(which)
 								if("Monkey") H.monkeyize()
@@ -2432,6 +2436,8 @@ var/global/noir = 0
 									H.set_mutantrace(/datum/mutantrace/skeleton)
 								if("Flashman")
 									H.set_mutantrace(/datum/mutantrace/flashy)
+								if("Cat")
+									H.set_mutantrace(/datum/mutantrace/cat)
 								if("Cow")
 									H.set_mutantrace(/datum/mutantrace/cow)
 								if ("Fert")
