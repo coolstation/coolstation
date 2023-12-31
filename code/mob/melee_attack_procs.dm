@@ -201,7 +201,11 @@
 
 	var/obj/stool/S = (locate(/obj/stool) in src.loc)
 	if (S && !src.lying && !src.getStatusDuration("weakened") && !src.getStatusDuration("paralysis"))
-		S.buckle_in(src,src,src.a_intent == INTENT_GRAB)
+		// TODO remove this shit when stool code is in a better place
+		if(istype(S, /obj/stool/chair/stepladder))
+			S:stand_on(src)
+		else
+			S.buckle_in(src,src,src.a_intent == INTENT_GRAB)
 	else /*
 		var/obj/item/grab/block/G = new /obj/item/grab/block(src, src, src)
 		src.put_in_hand(G, src.hand)
