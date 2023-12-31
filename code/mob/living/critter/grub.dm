@@ -16,7 +16,7 @@
 	can_disarm = 1
 	lie_on_death = 0
 	butcherable = 1 //leftover from critter copy-paste. There's independent grubmeat sprites in the dmi but again I don't have the expertise to add custom butchering
-	name_the_meat = 1
+	name_the_meat = 0
 	max_skins = 1
 	var/health_brute = 20 // these values are unchanged from critter base. Do I still need these???? I don't know
 	var/health_brute_vuln = 1
@@ -30,10 +30,10 @@
 	var/body_color = 0
 	var/head_color = 0
 	var/eye_color = 0
-	var/wings = 0
-	var/antenna = 0
-	var/hair = 0
-	var/eyes2 = 0
+	var/coat_wings = 0
+	var/hat_antenna = 0
+	var/body_hair = 0
+	var/eyes_2 = 0
 
 	base_move_delay = 2.3
 	base_walk_delay = 4
@@ -123,70 +123,65 @@
 		head_color =	pick("#101010", "#924D28", "#61301B", "#E0721D", "#D7A83D","#D8C078", "#E3CC88", "#F2DA91", "#F21AE", "#664F3C", "#8C684A", "#EE2A22", "#B89778", "#3B3024", "#A56b46")
 		eye_color = "#FFFFF"
 		if (prob(50)) //in wild grubs these would each independently have a small chance of being on. Domestic grubs would have these expressed via the whole breeding thing
-			wings = 1 //ideally these should make you float but idk how
-			antenna = 1
-			hair = 1
-			eyes2 = 1
+			coat_wings = 1 //ideally these should make you float but idk how
+			hat_antenna = 1
+			body_hair = 1
+			eyes_2 = 1
 		..()
 		src.setup_overlays()
 
 	setup_overlays()
-		var/image/overlay_body = image('icons/mob/grub.dmi', "body")
-		overlay_body.color = body_color
-		src.UpdateOverlays(overlay_body, "body")
 
 		var/image/overlay_head = image('icons/mob/grub.dmi', "head")
 		overlay_head.color = head_color
 		src.UpdateOverlays(overlay_head, "head")
 
+		var/image/overlay_body = image('icons/mob/grub.dmi', "body")
+		if(body_hair)
+			overlay_body = image('icons/mob/grub.dmi', "body_hair")
+		..()
+		overlay_body.color = body_color
+		src.UpdateOverlays(overlay_body, "body")
+
 		var/image/overlay_eyes = image('icons/mob/grub.dmi', "eyes")
+		if(eyes_2)
+			overlay_eyes = image('icons/mob/grub.dmi', "eyes_2")
+		..()
 		overlay_eyes.color = eye_color
 		src.UpdateOverlays(overlay_eyes, "eyes")
 
-		if(hair)
-			var/image/overlay_hair = image('icons/mob/grub.dmi', "hair")
-			overlay_hair.color = body_color
-			src.UpdateOverlays(overlay_hair, "hair")
+		if(hat_antenna)
+			var/image/overlay_coat= image('icons/mob/grub.dmi', "hat_antenna")
+			src.UpdateOverlays(overlay_coat, "hat")
 		..()
 
-		if(wings)
-			var/image/overlay_wings = image('icons/mob/grub.dmi', "wings")
-			src.UpdateOverlays(overlay_wings, "wings")
-		..()
-
-		if(antenna)
-			var/image/overlay_antenna = image('icons/mob/grub.dmi', "antenna")
-			src.UpdateOverlays(overlay_antenna, "antenna")
-		..()
-
-		if(eyes2)
-			var/image/overlay_eyes2 = image('icons/mob/grub.dmi', "eyes2")
-			overlay_eyes2.color = eye_color
-			src.UpdateOverlays(overlay_eyes2, "eyes2")
+		if(coat_wings)
+			var/image/overlay_coat= image('icons/mob/grub.dmi', "coat_wings")
+			src.UpdateOverlays(overlay_coat, "coat")
 		..()
 
 	death()
 		src.ClearAllOverlays()
-		var/image/overlay_body = image('icons/mob/grub.dmi', "body-dead")
-		overlay_body.color = body_color
-		src.UpdateOverlays(overlay_body, "body")
+
 		var/image/overlay_head = image('icons/mob/grub.dmi', "head-dead")
 		overlay_head.color = head_color
 		src.UpdateOverlays(overlay_head, "head")
-		if(wings)
-			var/image/overlay_wings = image('icons/mob/grub.dmi', "wings-dead")
-			src.UpdateOverlays(overlay_wings, "wings")
+
+		var/image/overlay_body = image('icons/mob/grub.dmi', "body-dead")
+		if(body_hair)
+			overlay_body = image('icons/mob/grub.dmi', "body_hair-dead")
+		..()
+		overlay_body.color = body_color
+		src.UpdateOverlays(overlay_body, "body")
+
+		if(hat_antenna)
+			var/image/overlay_hat = image('icons/mob/grub.dmi', "hat_antenna-dead")
+			src.UpdateOverlays(overlay_hat, "hat")
 		..()
 
-		if(hair)
-			var/image/overlay_hair = image('icons/mob/grub.dmi', "hair-dead")
-			overlay_hair.color = body_color
-			src.UpdateOverlays(overlay_hair, "hair")
-		..()
-
-		if(antenna)
-			var/image/overlay_antenna = image('icons/mob/grub.dmi', "antenna-dead")
-			src.UpdateOverlays(overlay_antenna, "antenna")
+		if(coat_wings)
+			var/image/overlay_coat = image('icons/mob/grub.dmi', "coat_wings-dead")
+			src.UpdateOverlays(overlay_coat, "coat")
 		..()
 
 	full_heal()
