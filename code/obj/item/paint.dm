@@ -130,10 +130,7 @@
 							return
 						repair_stage = 2
 						user.visible_message("[user] pries open the maintenance panel, exposing the service module!")
-						var/obj/item/tile/steel/panel = new /obj/item/tile/steel(src.loc)
-						panel.name = "maintenance panel"
-						panel.desc = "A panel that is clearly from a paint dispenser. Obviously."
-
+						new /obj/item/panel(src.loc)
 						src.desc = "Would dispense paint, if it were not broken. The maintenance panel has been removed."
 					else
 						boutput(user, "<span class='alert'>The maintenance panel needs to be pried open first!</span>")
@@ -191,9 +188,9 @@
 
 				if (6)
 					if (istype(W, /obj/item/tile))
-						if (W.name != "maintenance panel")
-							user.visible_message("[user] tries to use a common floor tile in place of the maintenance panel! How silly!", "<span class='alert'>That is a floor tile, not a maintenance panel! It doesn't even fit!</span>")
-							return
+						user.visible_message("[user] tries to use a common floor tile in place of the maintenance panel! How silly!", "<span class='alert'>That is a floor tile, not a maintenance panel! It doesn't even fit!</span>")
+						return
+					if (istype(W, /obj/item/panel))
 						user.visible_message("[user] begins to replace the maintenance panel.","You begin to replace the maintenance panel.")
 						playsound(user, "sound/items/Deconstruct.ogg", 65, 1)
 						if (!do_after(user, 5 SECONDS) || (repair_stage != 6))
@@ -245,6 +242,19 @@
 					else
 						boutput(user, "<span class='alert'>The service panel must be secured first!</span>")
 						return
+
+//wow that's a lot of bullshit hoops still in for a feature that isn't even server-side-expensive any more huh
+//anyway this is me being nice to players (previously it was easy to use the maintenance panel as a floor tile or stack it and lose it forever because it WAS a floor tile)
+
+/obj/item/panel
+	name = "maintenance panel"
+	desc = "A panel that is clearly from a paint dispenser. Obviously."
+	icon = 'icons/obj/metal.dmi'
+	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
+	icon_state = "tile_1"
+	item_state = "tile"
+	color = "#57A4A4"
+	w_class = W_CLASS_NORMAL
 
 ////////////// paint cans
 

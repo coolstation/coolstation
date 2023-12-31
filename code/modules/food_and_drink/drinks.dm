@@ -42,6 +42,14 @@
 	initial_volume = 50
 	initial_reagents = list("poo"=5,"cocktail_citrus" = 5,"VHFCS"=10,"cola"=10)
 
+/obj/item/reagent_containers/food/drinks/bottle/soda/italian //see i coulda done beverly
+	name = "Cappy Cola"
+	desc = "Nuovo! Soda al gusto di prosciutto!"
+	label = "italian"
+	labeled = 1
+	initial_volume = 50
+	initial_reagents = list("beff"=2,"bacon" = 3,"bitters" = 5,"VHFCS"=10,"cola"=10) //sneaking a beverly joke in there
+
 /obj/item/reagent_containers/food/drinks/bottle/soda/lime
 	name = "Lime-Aid"
 	desc = "Antihol mixed with lime juice. A well-known cure for hangovers."

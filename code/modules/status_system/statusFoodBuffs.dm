@@ -190,15 +190,15 @@
 	exclusiveGroup = "Food"
 	maxDuration = 6000
 	unique = 1
-	change = 2.2
+	change = 1
 
 	big
 		name = "Food (Refreshed+)"
 		id = "food_refreshed_big"
-		change = 5
+		change = 2
 
 	getTooltip()
-		. = "Your stamina regen is increased by [change]."
+		. = "Your [pick("strongitude","robustience","energicity")] is increased by [change]."
 
 /datum/statusEffect/foodstaminamax
 	id = "food_energized"
@@ -216,7 +216,7 @@
 		change = 40
 
 	getTooltip()
-		. = "Your max. stamina is increased by [change]."
+		. = "Your [pick("ruggedness","fortitudiness","maximality")] is increased by [change]."
 
 	onAdd(optional=null)
 		. = ..()

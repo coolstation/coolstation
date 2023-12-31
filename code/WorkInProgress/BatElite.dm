@@ -2,6 +2,8 @@
 
 //flap flap gonna put cursed stuff here
 
+//TODO: blob AI debug overlay doesn't realistically support more than one AI (but maybe that's fine?)
+
 ///Discord joke that might not be funny two weeks from now (but if it isn't we can just yeet it)
 /obj/item/clothing/under/gimmick/bikinion
 	name = "\proper bikinion"
@@ -259,6 +261,45 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 		..()
 		setProperty("meleeprot", -8)
 		setProperty("rangedprot", -0.5) //double damage
+
+//what if a crate looted you
+/obj/storage/crate/loot_crate/reverse
+	name = "loot crate"
+	desc = "A small, cuboid object with a hinged top and looted interior."
+	spawn_contents = list()
+	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS | NO_MOUSEDROP_QOL | USE_PROXIMITY
+
+/obj/storage/crate/loot_crate/reverse/HasProximity(atom/movable/AM)
+	if (ishuman(AM) && !GET_COOLDOWN(src, "looting"))
+		var/mob/living/carbon/human/H = AM
+		var/shit2steal = list()
+		var/obj/ourpick
+		if (H.r_store)
+			shit2steal += H.r_store
+		if (H.l_store)
+			shit2steal += H.l_store
+		if (H.wear_mask)
+			shit2steal += H.wear_mask
+		if (H.head)
+			shit2steal += H.head
+		if (H.glasses)
+			shit2steal += H.glasses
+		if (H.shoes)
+			shit2steal += H.shoes
+
+		if (length(shit2steal))
+			ourpick = pick(shit2steal)
+		else
+			if (H.w_uniform) //be mean if they've got nothing left
+				ourpick = H.w_uniform
+			else
+				return
+		close()
+		H.u_equip(ourpick)
+		ourpick.set_loc(src)
+		src.visible_message("[src] loots [ourpick].") //deliberately no mention of the victim
+		ON_COOLDOWN(src, "looting", (rand(6 SECONDS, 10 SECONDS)))
+
 
 /*
 /obj/spawn_all_the_dragon_shit

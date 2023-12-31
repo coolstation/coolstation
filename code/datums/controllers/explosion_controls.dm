@@ -140,7 +140,15 @@ var/datum/explosion_controller/explosions
 	proc/logMe(var/power)
 		//I do not give a flying FUCK about what goes on in the colosseum. =I
 		if(!istype(get_area(epicenter), /area/colosseum))
-			// Cannot read null.name
+			//stop runtiming ffs
+			if(istype(source, /datum/sea_hotspot))
+				var/logmsg = "Explosion with power [power] (Source: Ocean Hotspot)  at [log_loc(epicenter)]."
+				if(power > 10)
+					message_admins(logmsg)
+				logTheThing("bombing", user, null, logmsg)
+				logTheThing("diary", user, null, logmsg, "combat")
+				return
+
 			var/logmsg = "Explosion with power [power] (Source: [source ? "[source.name]" : "*unknown*"])  at [log_loc(epicenter)]. Source last touched by: [key_name(source?.fingerprintslast)] (usr: [ismob(user) ? key_name(user) : user])"
 			if(power > 10)
 				message_admins(logmsg)
@@ -151,6 +159,7 @@ var/datum/explosion_controller/explosions
 				logTheThing("bombing", user, null, logmsg)
 				logTheThing("diary", user, null, logmsg, "combat")
 
+	///Calculate explosion power and queues damage
 	proc/explode()
 		logMe(power)
 

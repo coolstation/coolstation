@@ -1047,7 +1047,7 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 		containertype = /obj/storage/secure/crate
 		containername = "Singularity Generator Crate (Cardlocked \[Chief Engineer])"
 		access = access_engineering_chief
-		hidden = 1
+		//hidden = 1
 
 	field_generator
 		name = "Field Generator Crate"
@@ -1058,7 +1058,7 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 		containertype = /obj/storage/secure/crate
 		containername = "Field Generator Crate (Cardlocked \[Engineering])"
 		access = access_engineering
-		hidden = 1
+		//hidden = 1
 
 	emitter
 		name = "Emitter Crate"
@@ -1069,7 +1069,7 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 		containertype = /obj/storage/secure/crate
 		containername = "Emitter Crate (Cardlocked \[Engineering])"
 		access = access_engineering
-		hidden = 1
+		//hidden = 1
 
 	rad_collector
 		name = "Radiation Collector Crate"
@@ -1078,11 +1078,11 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 		contains = list(/obj/item/electronics/frame/collector_array = 4,
 						/obj/item/electronics/frame/collector_control,
 						/obj/item/electronics/soldering)
-		cost = 5000
+		cost = 15000
 		containertype = /obj/storage/secure/crate
 		containername = "Radiation Array Crate (Cardlocked \[Engineering])"
 		access = access_engineering
-		hidden = 1
+		//hidden = 1
 
 //Vending machine servicing
 //Kyle2143 originally

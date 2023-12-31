@@ -1052,6 +1052,7 @@
 /obj/machinery/light/fluorescent/auto{
 	dir = 4
 	},
+/obj/machinery/nanofab/mining,
 /turf/floor/caution/north,
 /area/mining/manufacturing)
 "gR" = (
@@ -1091,6 +1092,16 @@
 /obj/structure/girder,
 /turf/floor/plating/airless/asteroid,
 /area/noGenerate)
+"gX" = (
+/obj/decal/tile_edge/check/white{
+	dir = 1;
+	icon_state = "check1"
+	},
+/obj/machinery/door/airlock/pyro/external/shuttle_connect{
+	dir = 4
+	},
+/turf/floor/red/checker,
+/area/gas_station/schweewa)
 "gY" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -1784,6 +1795,10 @@
 	icon_state = "floor2"
 	},
 /area/diner/tug)
+"kd" = (
+/obj/machinery/door/airlock/external/shuttle_connect,
+/turf/floor/plating,
+/area/mining/exit_south)
 "ke" = (
 /obj/grille/catwalk,
 /turf/floor/airless/plating/catwalk,
@@ -3269,7 +3284,7 @@
 	},
 /area/tech_outpost)
 "uk" = (
-/obj/machinery/door/airlock/external,
+/obj/machinery/door/airlock/external/shuttle_connect,
 /turf/floor/caution/west,
 /area/mining/dock)
 "ul" = (
@@ -6337,6 +6352,15 @@
 	},
 /turf/floor/plating,
 /area/tech_outpost)
+"Uk" = (
+/obj/decal/tile_edge/check/white{
+	icon_state = "check1"
+	},
+/obj/machinery/door/airlock/pyro/external/shuttle_connect{
+	dir = 4
+	},
+/turf/floor/red/checker,
+/area/gas_station/schweewa)
 "Uo" = (
 /obj/table/reinforced/bar/auto,
 /turf/floor/grey/blackgrime,
@@ -51244,8 +51268,8 @@ ab
 ab
 ab
 cz
-iy
-jO
+gX
+Uk
 cz
 Wf
 Jj
@@ -58240,7 +58264,7 @@ vL
 Cf
 Uq
 xN
-KW
+kd
 qm
 qm
 qm
@@ -58844,7 +58868,7 @@ ET
 KW
 Ko
 El
-KW
+kd
 qm
 qm
 qm

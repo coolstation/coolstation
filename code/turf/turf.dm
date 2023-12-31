@@ -18,6 +18,10 @@
 	#define _UNSIM_TURF_GAS_DEF(GAS, ...) var/GAS = 0;
 	APPLY_TO_GASES(_UNSIM_TURF_GAS_DEF)
 
+	//By default, folks can breathe on a turf (this might look weird but that's just how it is to have folks not suffocate on walls)
+	oxygen = MOLES_O2STANDARD
+	nitrogen = MOLES_N2STANDARD
+
 	//Properties for airtight tiles (/wall)
 	var/thermal_conductivity = 0.05
 	var/heat_capacity = 1
@@ -1027,13 +1031,18 @@ proc/generate_space_color()
 		boutput(user, "<span class='alert'>You can't build here.</span>")
 		return
 	var/obj/item/rods/R = C
-	if (istype(R) && R.change_stack_amount(-1))
-		boutput(user, "<span class='notice'>Constructing support lattice ...</span>")
-		playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
-		ReplaceWithLattice()
-		if (R.material)
-			src.setMaterial(C.material)
-		return
+	if (istype(R))
+		//no more stacking lattices thx
+		var/obj/lattice/lat = locate() in src
+		if (lat)
+			return //lat.Attackby(R, user)
+		else if (R.change_stack_amount(-1))
+			boutput(user, "<span class='notice'>Constructing support lattice ...</span>")
+			playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
+			ReplaceWithLattice()
+			if (R.material)
+				src.setMaterial(C.material)
+			return
 
 	if (istype(C, /obj/item/tile))
 		//var/obj/lattice/L = locate(/obj/lattice, src)
@@ -1119,8 +1128,7 @@ proc/generate_space_color()
 	plane = PLANE_FLOOR
 	stops_space_move = 1
 	mat_appearances_to_ignore = list("steel")
-	oxygen = MOLES_O2STANDARD
-	nitrogen = MOLES_N2STANDARD
+
 
 /turf/wall
 	name = "wall"

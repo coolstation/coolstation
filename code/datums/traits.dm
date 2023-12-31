@@ -1198,6 +1198,27 @@ obj/trait/pilot
 	category = "species"
 	mutantRace = /datum/mutantrace/roach
 
+/obj/trait/species_roulette
+	name = "Species Roulette (0) \[Species\]"
+	cleanName = "Species Roulette"
+	icon_state = "anyspeciesT"
+	desc = "You might be anything any given shift! Possibly even human!!"
+	id = "species_roulette"
+	points = 0
+	isPositive = 0
+	category = "species"
+
+	onAdd(var/mob/owner)
+		if(ishuman(owner))
+			//skeleton, monkey, and human (null) are rarer
+			//also possible are squid and cat
+			var/our_pick = pick(prob(100); /datum/mutantrace/lizard, prob(100); /datum/mutantrace/roach, prob(50); /datum/mutantrace/skeleton, prob(100); /datum/mutantrace/fert, prob(50); null, prob(25); /datum/mutantrace/monkey, prob(100); /datum/mutantrace/cow, prob(100); /datum/mutantrace/ithillid, prob(100); /datum/mutantrace/cat)
+			if (our_pick)
+				var/mob/living/carbon/human/H = owner
+				H.set_mutantrace(our_pick)
+		return
+
+
 /obj/trait/teflon_colon
 	name = "Non-Stick Colon (-1)"
 	id = "teflon_colon"

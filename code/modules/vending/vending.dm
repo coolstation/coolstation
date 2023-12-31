@@ -184,7 +184,7 @@
 		else
 			receiptText += "<b>Total</b> (deducted from [accountFrom.fields["name"]]): $[amount + serv_chg_amount]"
 
-		playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 50, 1)
+		playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 40, 1)
 
 		SPAWN_DBG(3.2 SECONDS)
 			var/obj/item/paper/P = new()
@@ -804,7 +804,8 @@
 					if (S)
 						playsound(src.loc, S, 50, 0)
 				src.postvend_effect()
-				printReceipt(account, R.product_name, R.product_cost, service_charge)
+				if(account || print_receipts_long)//trying out no receipts for cash transactions - warc
+					printReceipt(account, R.product_name, R.product_cost, service_charge)
 
 				SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL, "productDispensed=[R.product_name]")
 
@@ -1350,7 +1351,7 @@
 	light_r =1
 	light_g = 0.88
 	light_b = 0.88
-	print_receipts_long = TRUE
+	//print_receipts_long = TRUE
 
 
 
@@ -1544,7 +1545,8 @@
 		"Spooky Dan's - it's altogether ooky!",
 		"Everyone can see Orange-Aid is best!",
 		"Decirprevo. The sophisticate's bottled water.",
-		"Mr. Piss - Tastes normal!")
+		"Mr. Piss - Tastes normal!",
+		"Aperitivo analcolico a base di carne - Cappy Cola!")
 
 		light_r =0.5
 		light_g = 0.5
@@ -1557,6 +1559,7 @@
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/spooky, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/spooky2,10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/pee, 10, cost=PAY_UNTRAINED/6)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/italian, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/bottledwater, 10, cost=PAY_UNTRAINED/4)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/random, 10, cost=PAY_UNTRAINED/10)
 

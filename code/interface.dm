@@ -19,6 +19,7 @@
 			set name = "bugreport"
 			set desc = "Report a bug."
 			set hidden = 1
+			/*
 			switch(alert(src, "Is this an abusable exploit or related to secrets?","Secret report?","Yes","No","Cancel"))
 				if("Yes")
 					var/details_body = {"**Describe+the+bug**%0AA+clear+and+concise+description+of+what+the+bug+is.%0A%0A**To+Reproduce**%0ASteps+to+reproduce+the+behavior:%0A1.+Buy+a+Pizza+from+a+vending+machine%0A2.+Eat+the+pizza%0A3.+The+pizza+has+not+disappeared%0A4.+See+error%0A%0A**Expected+behavior**%0AA+clear+and+concise+description+of+what+you+expected+to+happen.%0A%0A**Screenshots**%0AIf+applicable,+add+screenshots+to+help+explain+your+problem.%0A%0A**Additional+context**%0AAdd+any+other+context+about+the+problem+here.%0A%0A"}
@@ -27,6 +28,7 @@
 					return
 				if("Cancel")
 					return
+					*/
 			switch(alert(src, "Do you have a GitHub account?",,"Yes","No","Cancel"))
 				if("Yes")
 					src << link("https://github.com/coolstation/coolstation/issues/new?template=bug_report.md")

@@ -25,7 +25,7 @@ var/global/list/mapNames = list(
 	"Donut 3" = 		list("id" = "DONUT3", 		"settings" = "donut3",			"playerPickable" = 0, 		"MinPlayersAllowed" = 40),
 	"Horizon" = 		list("id" = "HORIZON", 		"settings" = "horizon", 		"playerPickable" = 0),
 	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 1),
-	"Nano Chunk 420" = 	list("id" = "CHUNK",		"settings" = "chunk",			"playerPickable" = 1),
+	"The Chunk" =	 	list("id" = "CHUNK",		"settings" = "chunk",			"playerPickable" = 1),
 	"Bobmap" = 			list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 0,  		"MinPlayersAllowed" = 20),
 	//"Dockmap" = 		list("id" = "DOCKMAP",		"settings" = "dockmap",			"playerPickable" = 0,	"MaxPlayersAllowed" = 30),
 	"Spirit" =			list("id" = "SPIRIT",		"settings" = "spirit",				"playerPickable" = 0),
@@ -238,6 +238,7 @@ var/global/list/mapNames = list(
 	rwalls = /turf/wall/r_wall/
 	auto_walls = 0
 	job_limits_from_landmarks = TRUE
+	goonhub_map = "https://wiki.coolstation.space/wiki/Chunk"
 
 	windows = /obj/window/auto
 	windows_thin = /obj/window
@@ -1057,7 +1058,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/gehenna
 	name = "GEHENNA"
-	goonhub_map = "https://coolstation.space/adults.html"
+	goonhub_map = "https://wiki.coolstation.space/wiki/Gehenna"
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0

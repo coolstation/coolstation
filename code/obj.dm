@@ -335,6 +335,8 @@
 	//Old-style sprites are also available (icon states lattice_grey, lattice_grey-dir and lattice_grey-dir-b)
 	//Seems like all existing lattices are varedited to get the other icon states
 
+	var/icon_base = "lattice"
+
 	density = 0
 	stops_space_move = 1
 	anchored = 1.0
@@ -342,6 +344,12 @@
 	plane = PLANE_FLOOR
 	//	flags = CONDUCT
 	text = "<font color=#333>+"
+
+	New()
+		..()
+		if (icon_state == icon_base) //don't clobber varedited lattices they're probably correct anyway
+			SPAWN_DBG(0) //:<
+				src.autoconnect(TRUE)
 
 	blob_act(var/power)
 		if(prob(75))
@@ -352,10 +360,10 @@
 		src.material?.triggerExp(src, severity)
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
-				qdel(src)
+				onDestroy()
 				return
 			if(OLD_EX_SEVERITY_2)
-				qdel(src)
+				onDestroy()
 				return
 			if(OLD_EX_SEVERITY_3)
 				return
@@ -383,8 +391,93 @@
 				qdel(src)
 		return
 
+	onDestroy()
+		//This could be optimised for explosions I think, waiting to clear broken lattices before applying overlays to theones that remain.
+		var/image/I = image(src.icon)
+		for(var/D in cardinal)
+			var/obj/lattice/neighbour = locate(/obj/lattice) in get_step(src, D)
+			if (neighbour)
+				switch(D)
+					if(NORTH)
+						I.pixel_x = 0
+						I.pixel_y = -32
+					if(SOUTH)
+						I.pixel_x = 0
+						I.pixel_y = 32
+					if(EAST)
+						I.pixel_x = -32
+						I.pixel_y = 0
+					if(WEST)
+						I.pixel_x = 32
+						I.pixel_y = 0
+				I.icon_state = "[icon_base]-broken[D]"
+				neighbour.UpdateOverlays(I, "broke[D]")
+		..()
+
+/obj/lattice/proc/autoconnect(propagate = FALSE)
+	var/connect_dirs = 0
+	for(var/D in cardinal)
+		var/turf/T = get_step(src, D)
+		if (istype(T, /turf/floor) || istype(T, /turf/wall))
+			connect_dirs |= D
+		else
+			var/obj/lattice/neighbour = locate(/obj/lattice) in T
+			if (neighbour)
+				connect_dirs |= D
+				UpdateOverlays(null, "broke[D]")
+				if (propagate)
+					neighbour.autoconnect() //we're not done yet but the order shouldn't matter
+	//this is where it gets Bad, lattice icons are a goddamn mess. what the actual fuck
+	switch(connect_dirs) //it may be possible to merge some cases but I don't care
+		if ((NORTH | SOUTH))
+			icon_state = "[icon_base]-dir"
+			set_dir(SOUTH)
+		if ((EAST | WEST))
+			icon_state = "[icon_base]-dir"
+			set_dir(EAST)
+		if (NORTH)
+			icon_state = "[icon_base]-dir-b"
+			set_dir(NORTH)
+		if (SOUTH)
+			icon_state = "[icon_base]-dir-b"
+			set_dir(SOUTH)
+		if (EAST)
+			icon_state = "[icon_base]-dir"
+			set_dir(NORTHWEST)
+		if (WEST)
+			icon_state = "[icon_base]-dir"
+			set_dir(NORTHEAST)
+		if ((NORTH | EAST))
+			icon_state = "[icon_base]-dir-b"
+			set_dir(NORTHWEST) //lol
+		if ((NORTH | WEST))
+			icon_state = "[icon_base]-dir-b"
+			set_dir(NORTHEAST) //lmao
+		if ((SOUTH | EAST))
+			icon_state = "[icon_base]-dir-b"
+			set_dir(SOUTHEAST)
+		if ((SOUTH | WEST))
+			icon_state = "[icon_base]-dir-b"
+			set_dir(SOUTHWEST)
+		if ((NORTH | SOUTH | EAST))
+			icon_state = "[icon_base]-dir"
+			set_dir(SOUTHEAST)
+		if ((NORTH | SOUTH | WEST))
+			icon_state = "[icon_base]-dir"
+			set_dir(NORTH)
+		if ((NORTH | EAST | WEST))
+			icon_state = "[icon_base]-dir"
+			set_dir(SOUTHWEST)
+		if ((SOUTH | EAST | WEST))
+			icon_state = "[icon_base]-dir"
+			set_dir(WEST)
+		else
+			icon_state = icon_base
+
+
 /obj/lattice/grey //This one's mostly for find/replace purposes of the 4-way lattices. The rest generally can be done by find/replacing the edited icon state
 	icon_state = "lattice_grey"
+	icon_base = "lattice_grey"
 
 /obj/lattice/barricade
 	name = "barricade"
@@ -450,6 +543,9 @@
 
 	meteorhit()
 		src.barricade_damage(1)
+
+	autoconnect(propagate = FALSE)
+		return
 
 /obj/overlay
 	name = "overlay"

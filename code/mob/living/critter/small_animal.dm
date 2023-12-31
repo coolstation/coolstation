@@ -245,6 +245,28 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 		HH.limb_name = "teeth"					// name for the dummy holder
 		HH.can_hold_items = 0
 
+/mob/living/critter/small_animal/mouse/mickey
+	name = "Mickey Mouse"
+	desc = "Yes look, it is our rat. It is our creation. It is our rodent to do with as we please, and nobody can stop us."
+	icon_state = "mickey"
+	icon_state_dead = "mickey-dead"
+	health_brute = 13
+	health_burn = 12
+	pull_w_class = W_CLASS_NORMAL
+	gender = MALE
+
+	is_npc = TRUE
+	New()
+		. = ..()
+		src.ai = new /datum/aiHolder/wandererf(src)
+
+	setup_overlays()
+		return
+
+	death()
+		..()
+		src.ClearAllOverlays()
+
 /* ============================================= */
 /* -------------------- Cat -------------------- */
 /* ============================================= */

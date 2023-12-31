@@ -123,6 +123,7 @@
 	var/hat_y_offset = 0
 	var/icon_needs_update = 1 //Call update_icon() in process
 	use_speech_bubble = 0 // D:
+	var/mob/last_hugged = null
 
 	var/image/costume_icon = null
 
@@ -1268,6 +1269,7 @@
 			var/affection = pick("hug","cuddle","snuggle")
 			user.visible_message("<span class='notice'>[user] [affection]s [src]!</span>","<span class='notice'>You [affection] [src]!</span>")
 			src.task?.task_input("hugged")
+			src.last_hugged = user
 			return
 
 		if(get_dist(user, src) > 1)
@@ -2798,6 +2800,8 @@
 
 							if (prob(1) && istype(hug_target) && hug_target.client && hug_target.client.IsByondMember())
 								master.speak("You might want a breath mint.")
+
+							master.last_hugged = hug_target
 
 							drop_hug_target()
 							master.set_emotion("love")

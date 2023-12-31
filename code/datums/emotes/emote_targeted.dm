@@ -224,11 +224,19 @@
 			if(istype(target,/obj/machinery/bot/guardbot))
 				var/obj/machinery/bot/guardbot/GB = target
 				if(user != GB.arrest_target)
+					if(user.has_medal("Stone Cold Cop Disliker") && GB.task)
+						GB.task.attack_response(user)
+						return "<B>[user]</B> flips off [target]!"
 					SPAWN_DBG(1 SECOND)
 						if(prob(50))
 							GB.speak(pick("Hey... Come on...","Aw, what? Why?","What was that for?"))
 						GB.set_emotion("sad")
 						user.add_karma(-5)
+						if(GB.last_hugged == user)
+							user.unlock_medal("Stone Cold Cop Disliker") // todo:  atonement
+							user.add_karma(-50)
+							GB.speak(pick("Well that's a new low...","After all that? This is how it ends?","You? I thought we were friends..."))
+							GB.last_hugged = null
 				else
 					GB.set_emotion("angry")
 					user.add_karma(1)

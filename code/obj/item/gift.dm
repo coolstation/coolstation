@@ -109,6 +109,7 @@
 		qdel(src)
 		return
 
+	user.visible_message("[user] unwraps [gift]!")
 	user.u_equip(src)
 	user.put_in_hand_or_drop(src.gift)
 	if(istype(src.gift, /obj/item/mousetrap))
@@ -197,6 +198,7 @@
 	qdel(src)
 	return
 
+//these are the wrapped corpse gifts
 /obj/spresent // bandaid fix for presents having no icon or name other than "spresent"
 	name = "present"
 	desc = "What could it be?"
