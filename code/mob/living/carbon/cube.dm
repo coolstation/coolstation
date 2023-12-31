@@ -197,25 +197,29 @@
 
 
 		krampus
-			name = "Krampus 3.0" // 2.0 was the unpoppable meat cube, 3.0 is now a poppable meat cube
-			desc = "horrible"
+			name = "Sexy Krampus" // 2.0 was the unpoppable meat cube, 3.0 was the poppable meat cube. Krampus 4.0 is getting kinky with it. It's going to leather clubs. It's having a good time
+			desc = "beefy"
 			life_timer = INFINITY
-			icon_state = "krampus2-squish"
+			icon_state = "sexykrampus-squish"
 
 			New()
 				..()
-				real_name = pick("Krampus", "Krampus 3.0", "The Krampmeister", "The Krampster") //For deadchat
+				real_name = pick("Krampus", "Krampus 4.0", "The Krampmeister", "The Krampster", "Sexy  Krampus") //For deadchat
 				SPAWN_DBG(2 SECONDS) //I do not know where the hell you get a bioholder from =I
 					if(src.bioHolder) src.bioHolder.age = 110
 
-			// people were somehow being shit even as a meatcube, so i'm removing the small mercy they had with being unpoppable - cirr
-
-			// attackby(obj/item/W as obj, mob/user as mob)
-			// 	user.visible_message("<span class='combat'><B>[user] pokes [src] with \the [W]!</B></span>") //No weldergibs. Krampus is truly a fiend.
+			attackby(obj/item/W as obj, mob/user as mob)
+				user.visible_message("<span class='combat'><B>[user] pokes [src] with \the [W]!</B></span>") //No weldergibs. Krampus is truly a fiend.
 
 			telekinetic //this one has the wraith click-drag to throw item ability
 				name = "Krampus 3.1 III Turbo Edition: Alpha Strike"
 				desc = "abominably godawful"
+
+			old
+				name = "Krampus"
+				desc = "horrible"
+				icon_state = "krampus2-squish"
+
 
 	metal
 		name = "metal cube"
