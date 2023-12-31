@@ -1456,7 +1456,7 @@
 		src.goods_buy += new /datum/commodity/nomoneynio/zerodollars(src)
 		/////////////////////////////////////////////////////////
 
-		greeting= {"hey"}
+		greeting= {"im the man who will give you $0 for 0 dollars, for free.\nmy name is No Money Nio and i will be behind the dumpster at pc jenney\nif you need me"} //npc trader chat is killed so moving this here for now
 
 		portrait_setup = "<img src='[resource("images/traders/[src.picture]")]'><HR><B>[src.name]</B><HR>"
 
