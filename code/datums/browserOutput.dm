@@ -340,42 +340,53 @@ var/global
 
 
 /proc/bicon(obj)
-	if (ispath(obj))
-		obj = new obj()
 
 	var/baseData
-
 	if (isicon(obj))
 		baseData = icon2base64(obj)
-		return "<img style=\"position: relative; left: -1px; bottom: -3px;\" class=\"icon misc\" src=\"data:image/png;base64,[baseData]\" />"
+		return "<img style='position: relative; left: -1px; bottom: -3px;' class='icon misc' src='data:image/png;base64,[baseData]' />"
 
-	if (obj && obj:icon)
+	var/icon_f = null // icon [file]
+	var/icon_s = null // icon_state
+	if (ispath(obj))
+		// avoid creating objects, just get the icon and state
+		var/atom/what = obj
+		icon_f = initial(what.icon)
+		icon_s = initial(what.icon_state)
+	else if (obj)
+		// we got an object so use its icon and state
+		icon_f = obj:icon
+		icon_s = obj:icon_state
+
+	if (icon_f)
 		//Hash the darn dmi path and state
-		var/iconKey = md5("[obj:icon][obj:icon_state]")
+		var/iconKey = md5("[icon_f][icon_s]")
 		var/iconData
 
 		//See if key already exists in savefile
+		var/iconTimestamp
+		iconCache["[iconKey]_ts"] >> iconTimestamp
 		iconData = iconCache.ExportText(iconKey)
-		if (iconData)
+		if (iconData && iconTimestamp && (world.time - iconTimestamp) < 1 WEEK)
 			//It does! Ok, parse out the base64
 			var/list/partial = splittext(iconData, "{")
 
 			if (length(partial) < 2)
-				logTheThing("debug", null, null, "Got invalid savefile data for: [obj]")
+				logTheThing("debug", null, "Got invalid savefile data for: [obj]")
 				return
 
 			baseData = copytext(partial[2], 3, -5)
 		else
 			//It doesn't exist! Create the icon
-			var/icon/icon = icon(file(obj:icon), obj:icon_state, SOUTH, 1)
+			var/icon/icon = icon(file(icon_f), icon_s, SOUTH, 1)
 
 			if (!icon)
-				logTheThing("debug", null, null, "Unable to create output icon for: [obj]")
+				logTheThing("debug", null, "Unable to create output icon for: [obj]")
 				return
 
 			baseData = icon2base64(icon, iconKey)
 
-		return "<img style=\"position: relative; left: -1px; bottom: -3px;\" class=\"icon [obj:icon_state]\" src=\"data:image/png;base64,[baseData]\" />"
+		return "<img style='position: relative; left: -1px; bottom: -3px;' class='icon' src='data:image/png;base64,[baseData]' />"
 
 /proc/boutput(target = 0, message = "", group = "")
 	if (target == world)

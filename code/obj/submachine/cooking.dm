@@ -409,6 +409,7 @@
 /// COOKING RECODE ///
 
 var/list/oven_recipes = list()
+var/oven_recipe_html = ""
 
 //Bat here, what if we actually populated that oven_recipes list? maybe autosort it while we're at it.
 proc/build_oven_recipes()
@@ -542,6 +543,105 @@ proc/insert_recipe(datum/cookingrecipe/recipe)
 		oven_recipes += recipe
 		oven_recipes[recipe] = number_of_ingredients
 
+/proc/create_oven_recipe_html(obj/submachine/cooker)
+	if (!oven_recipe_html)
+		var/list/dat = list()
+		// we are making it now ok
+		dat += {"<!doctype html>
+<html><head><title>Recipe Book</title><style type="text/css">
+.icon {
+	background: rgba(127, 127, 127, 0.5);
+	vertical-align: middle;
+	display: inline-block;
+	border-radius: 4px;
+	margin: 1px;
+}
+th { text-align: left; font-weight: normal;}
+.item {
+	position: relative;
+	display: inline-block;
+	}
+.item span {
+	position: absolute;
+	bottom: -5px;
+	right: -2px;
+	background: white;
+	color: black;
+	border-radius: 50px;
+	font-size: 70%;
+	padding: 0px 1px;
+	border-right: 1px solid #444;
+	border-bottom: 1px solid #333;
+	}
+label {
+	display: block;
+	background: #555;
+	color: white;
+	text-align: center;
+	font-size: 120%;
+	cursor: pointer;
+	padding: 0.3em;
+	margin-top: 0.25em;
+	}
+label:hover {
+	background: #999;
+	}
+tr:hover {
+	background: rgba(127, 127, 127, 0.3);
+}
+input { display: none; }
+input + div { display: none; }
+input:checked + div { display: block; }
+.x { width: 0%; text-align: right; white-space: pre; }
+</style>
+</head><body><h2>Recipe Book</h2>
+"}
+
+		var/list/recipies = list()
+		for (var/datum/cookingrecipe/R in oven_recipes)
+			// do not show recipies set to a null category
+			if (!R.category)
+				continue
+			var/list/tmp2 = list("<tr>")
+
+			if (ispath(R.output))
+				var/atom/item_path = R.output
+				tmp2 += "<th>[bicon(R.output)][initial(item_path.name)]</th><td>"
+			else
+				tmp2 += "<th>???</th><td>"
+
+			if (R.item1)
+				var/atom/item_path = R.item1
+				tmp2 += "<div class='item' title=\"[html_encode(initial(item_path.name))]\">[bicon(R.item1)][R.amt1 > 1 ? "<span>x[R.amt1]</span>" : ""]</div>"
+			if (R.item2)
+				var/atom/item_path = R.item2
+				tmp2 += "<div class='item' title=\"[html_encode(initial(item_path.name))]\">[bicon(R.item2)][R.amt2 > 1 ? "<span>x[R.amt2]</span>" : ""]</div>"
+			if (R.item3)
+				var/atom/item_path = R.item3
+				tmp2 += "<div class='item' title=\"[html_encode(initial(item_path.name))]\">[bicon(R.item3)][R.amt3 > 1 ? "<span>x[R.amt3]</span>" : ""]</div>"
+			if (R.item4)
+				var/atom/item_path = R.item4
+				tmp2 += "<div class='item' title=\"[html_encode(initial(item_path.name))]\">[bicon(R.item4)][R.amt4 > 1 ? "<span>x[R.amt4]</span>" : ""]</div>"
+
+			tmp2 += " (Prep time: [R.cookbonus]s)</td></tr>"
+
+			if (!recipies[R.category])
+				recipies[R.category] = list("<hr><b><label for='[R.category]'>[R.category]</label></b><input type='checkbox' id='[R.category]'><div><table>")
+			// collapse all the list elements into one table row
+			recipies[R.category] += tmp2.Join("\n")
+
+		for (var/cat in recipies)
+			var/list/tmp = recipies[cat]
+			dat += tmp.Join("\n\n")
+			dat += "</table></div>"
+
+		dat += {"
+</body></html>
+"}
+
+		oven_recipe_html = dat.Join("\n")
+
+	return oven_recipe_html
 
 /obj/submachine/chef_oven
 	name = "oven"
@@ -560,6 +660,7 @@ proc/insert_recipe(datum/cookingrecipe/recipe)
 	var/list/recipes = null
 	//var/allowed = list(/obj/item/reagent_containers/food/, /obj/item/parts/robot_parts/head, /obj/item/clothing/head/butt, /obj/item/organ/brain/obj/item)
 	var/allowed = list(/obj/item)
+	var/tmp/recipe_html = null
 
 	emag_act(var/mob/user, var/obj/item/card/emag/E)
 		if (!emagged)
@@ -621,7 +722,7 @@ table#cooktime a#start {
 
 
 </style>
-			<b>Cookomatic Multi-Oven</b><br>
+			<b>Cookomatic Multi-Oven</b> - <a href='?src=\ref[src];open_recipies=1'>Open Recipe Book</a> (slow)<br>
 			<hr>
 			<b>Time:</b> [time]<br>
 			<b>Heat:</b> [heat]<br>
@@ -670,6 +771,7 @@ table#cooktime a#start {
 		if (!src.recipes)
 			src.recipes = list()
 
+		src.recipe_html = create_oven_recipe_html(src)
 
 	Topic(href, href_list)
 		if ((get_dist(src, usr) > 1 && (!issilicon(usr) && !isAI(usr))) || !isliving(usr) || iswraith(usr) || isintangible(usr))
@@ -842,6 +944,10 @@ table#cooktime a#start {
 			for (var/obj/item/I in src.contents)
 				I.set_loc(src.loc)
 			src.updateUsrDialog()
+			return
+
+		if(href_list["open_recipies"])
+			usr.Browse(recipe_html, "window=recipes;size=500x700")
 			return
 
 	custom_suicide = 1

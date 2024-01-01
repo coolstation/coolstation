@@ -16,6 +16,8 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	var/output = null
 	/// used for naming of human meat dishes after their victims
 	var/useshumanmeat = 0
+	/// category for sorting, use null to hide
+	var/category = "Unsorted" //TODO - assign these later
 
 	proc/specialOutput(var/obj/submachine/ourCooker)
 		return null //If returning an object, that is used as the output
@@ -26,6 +28,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	cookbonus = 13
 	output = /obj/item/reagent_containers/food/snacks/burger/humanburger
 	useshumanmeat = 1
+	category = "Humanburger"
 
 /datum/cookingrecipe/oven/fishburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
