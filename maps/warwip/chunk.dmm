@@ -10498,6 +10498,7 @@
 	dir = 4
 	},
 /obj/item/bat,
+/obj/item/razor_blade,
 /turf/floor/plating,
 /area/station/maintenance/inner/west)
 "kVL" = (
@@ -16369,6 +16370,16 @@
 	},
 /turf/floor,
 /area/station/engine/storage)
+"qXD" = (
+/obj/stool,
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
+/obj/item/device/radio/intercom{
+	pixel_x = 28
+	},
+/turf/floor/specialroom/bar,
+/area/station/crew_quarters/bar)
 "qXY" = (
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/light/small/red{
@@ -16780,16 +16791,6 @@
 	},
 /turf/floor,
 /area/station/security/main)
-"rvm" = (
-/obj/stool,
-/obj/landmark/start{
-	name = "Staff Assistant"
-	},
-/obj/item/device/radio/intercom{
-	pixel_x = 28
-	},
-/turf/floor/specialroom/bar,
-/area/station/crew_quarters/bar)
 "rvr" = (
 /obj/cable{
 	d1 = 1;
@@ -16968,14 +16969,6 @@
 /obj/machinery/atmospherics/portables_connector/west,
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
-"rGv" = (
-/obj/table/reinforced/bar/auto,
-/obj/random_item_spawner/tableware/one_or_zero,
-/obj/machinery/phone,
-/turf/floor/grey/side{
-	dir = 1
-	},
-/area/station/crew_quarters/bar)
 "rHk" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -23465,6 +23458,14 @@
 	dir = 8
 	},
 /turf/floor/specialroom/bar,
+/area/station/crew_quarters/bar)
+"ykU" = (
+/obj/table/reinforced/bar/auto,
+/obj/random_item_spawner/tableware/one_or_zero,
+/obj/machinery/phone,
+/turf/floor/grey/side{
+	dir = 1
+	},
 /area/station/crew_quarters/bar)
 "ykZ" = (
 /obj/cable{
@@ -80154,7 +80155,7 @@ njB
 jJJ
 ftE
 nCR
-rGv
+ykU
 tSZ
 iiY
 cRb
@@ -80450,7 +80451,7 @@ doq
 rpr
 hzq
 fJn
-rvm
+qXD
 lIg
 oZW
 yiU
