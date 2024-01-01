@@ -411,12 +411,12 @@
 		return
 
 	// take light values to copy over
-	var/RL_LumR = T.RL_LumR
+	/*var/RL_LumR = T.RL_LumR 		Actually I don't think this is necessary? (and like, flock's broken so)
 	var/RL_LumG = T.RL_LumG
 	var/RL_LumB = T.RL_LumB
 	var/RL_AddLumR = T.RL_AddLumR
 	var/RL_AddLumG = T.RL_AddLumG
-	var/RL_AddLumB = T.RL_AddLumB
+	var/RL_AddLumB = T.RL_AddLumB*/
 
 	for(var/obj/O in T)
 		if(istype(O, /obj/machinery/door/feather))
@@ -475,12 +475,12 @@
 			animate_flock_convert_complete(FL)
 	else // don't do this stuff if the turf is space, it fucks it up more
 		T.RL_Cleanup()
-		T.RL_LumR = RL_LumR
+		/*T.RL_LumR = RL_LumR
 		T.RL_LumG = RL_LumG
 		T.RL_LumB = RL_LumB
 		T.RL_AddLumR = RL_AddLumR
 		T.RL_AddLumG = RL_AddLumG
-		T.RL_AddLumB = RL_AddLumB
+		T.RL_AddLumB = RL_AddLumB*/
 		if (RL_Started) RL_UPDATE_LIGHT(T)
 
 	return T

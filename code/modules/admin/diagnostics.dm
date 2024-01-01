@@ -677,7 +677,7 @@ proc/debug_map_apc_count(delim,zlim)
 	lighting_needs_additive
 		name = "lighting additive overlay active"
 		GetInfo(turf/theTurf, image/debugoverlay/img)
-			img.app.color = theTurf.RL_NeedsAdditive ? "#00ff00" : "#ff0000"
+			img.app.color = theTurf.turf_persistent.RL_NeedsAdditive ? "#00ff00" : "#ff0000"
 
 	count_atoms_plus_overlays
 		name = "number of atoms + overlays"
@@ -833,26 +833,26 @@ proc/debug_map_apc_count(delim,zlim)
 		name = "checkingcanpass"
 		help = "Green = yes."
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			img.app.color = theTurf.checkingcanpass ? "#0f0" : "#f00"
+			img.app.color = theTurf.turf_persistent.checkingcanpass ? "#0f0" : "#f00"
 
 	checkingexit
 		name = "checkingexit"
 		help = "Green = yes."
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			img.app.color = theTurf.checkingexit ? "#0f0" : "#f00"
+			img.app.color = theTurf.turf_persistent.checkingexit ? "#0f0" : "#f00"
 
 	checkinghasentered
 		name = "checkinghasentered"
 		help = "Green = yes."
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			img.app.color = theTurf.checkinghasentered ? "#0f0" : "#f00"
+			img.app.color = theTurf.turf_persistent.checkinghasentered ? "#0f0" : "#f00"
 
 	blocked_dirs
 		name = "blocked dirs"
 		help = "Displays dir flags of blocked turf exits"
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			if (theTurf.blocked_dirs)
-				img.app.overlays = list(src.makeText(theTurf.blocked_dirs))
+			if (theTurf.turf_persistent.blocked_dirs)
+				img.app.overlays = list(src.makeText(theTurf.turf_persistent.blocked_dirs))
 				img.app.color = "#0000ff"
 			else
 				img.app.alpha = 0
@@ -889,10 +889,10 @@ proc/debug_map_apc_count(delim,zlim)
 			img.app.alpha = 0
 			if(!air_master?.current_cycle)
 				return
-			if(!theTurf.process_cell_operations)
+			if(!theTurf.turf_persistent.process_cell_operations)
 				return
-			img.app.overlays = list(src.makeText("[theTurf.process_cell_operations]<br>[round(theTurf.process_cell_operations/air_master.current_cycle*100, 0.01)]%", RESET_ALPHA | RESET_COLOR))
-			var/p = theTurf.process_cell_operations / theTurf.max_process_cell_operations
+			img.app.overlays = list(src.makeText("[theTurf.turf_persistent.process_cell_operations]<br>[round(theTurf.turf_persistent.process_cell_operations/air_master.current_cycle*100, 0.01)]%", RESET_ALPHA | RESET_COLOR))
+			var/p = theTurf.turf_persistent.process_cell_operations / theTurf.max_process_cell_operations
 			img.app.alpha = p < 0.1 ? 20 : (p < 0.3 ? 50 : 100)
 			img.app.color = rgb(round(p * 255), round((1-p) * 255), 50)
 #endif
@@ -986,12 +986,12 @@ proc/debug_map_apc_count(delim,zlim)
 		name = "opaque atom count"
 		help = {"Shows how many opaque atoms are on a turf according to the turf var"}
 		GetInfo(turf/theTurf, image/debugoverlay/img)
-			if(theTurf.opaque_atom_count == 0)
+			if(theTurf.turf_persistent.opaque_atom_count == 0)
 				img.app.alpha = 0
 				return
 			img.app.alpha = 100
-			img.app.overlays = list(src.makeText(theTurf.opaque_atom_count, RESET_ALPHA | RESET_COLOR))
-			if(theTurf.opaque_atom_count > 0)
+			img.app.overlays = list(src.makeText(theTurf.turf_persistent.opaque_atom_count, RESET_ALPHA | RESET_COLOR))
+			if(theTurf.turf_persistent.opaque_atom_count > 0)
 				img.app.color = "#55aa55"
 			else
 				img.app.color = "#aa5555"

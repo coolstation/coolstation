@@ -613,7 +613,7 @@ proc/get_angle(atom/a, atom/b)
 				py+=sdy
 			px+=sdx		//Step on in x direction
 			var/turf/T = locate(px,py,M.z)//Add the turf to the list
-			if(!T || T.opacity || T.opaque_atom_count)
+			if(!T || T.opacity || T.turf_persistent.opaque_atom_count)
 				return T
 	else
 		for(j=0;j<dyabs;j++)
@@ -623,7 +623,7 @@ proc/get_angle(atom/a, atom/b)
 				px+=sdx
 			py+=sdy
 			var/turf/T = locate(px,py,M.z)
-			if(!T || T.opacity || T.opaque_atom_count)
+			if(!T || T.opacity || T.turf_persistent.opaque_atom_count)
 				return T
 
 /proc/getstraightlinewalled(atom/M,vx,vy,include_origin = 1)//hacky fuck for l ighting
@@ -642,7 +642,7 @@ proc/get_angle(atom/a, atom/b)
 			px += step
 			vx -= 1
 			T = locate(px,py,M.z)
-			if (!T || T.opacity || T.opaque_atom_count > 0)
+			if (!T || T.opacity || T.turf_persistent.opaque_atom_count > 0)
 				break
 			. += T
 	else if (vy)
@@ -652,7 +652,7 @@ proc/get_angle(atom/a, atom/b)
 			py += step
 			vy -= 1
 			T = locate(px,py,M.z)
-			if (!T || T.opacity || T.opaque_atom_count > 0)
+			if (!T || T.opacity || T.turf_persistent.opaque_atom_count > 0)
 				break
 			. += T
 

@@ -23,26 +23,26 @@ proc/get_moving_lights_stats()
 	var/turf/_E = get_step(src, EAST); \
 	var/turf/_NE = get_step(src, NORTHEAST); \
 	if(!_N || !_E || !_NE) { break }; \
-	src.RL_MulOverlay.color = list( \
-		src.RL_LumR, src.RL_LumG, src.RL_LumB, 0, \
-		_E.RL_LumR, _E.RL_LumG, _E.RL_LumB, 0, \
-		_N.RL_LumR, _N.RL_LumG, _N.RL_LumB, 0, \
-		_NE.RL_LumR, _NE.RL_LumG, _NE.RL_LumB, 0, \
+	src.turf_persistent.RL_MulOverlay.color = list( \
+		src.turf_persistent.RL_LumR, src.turf_persistent.RL_LumG, src.turf_persistent.RL_LumB, 0, \
+		_E.turf_persistent.RL_LumR, _E.turf_persistent.RL_LumG, _E.turf_persistent.RL_LumB, 0, \
+		_N.turf_persistent.RL_LumR, _N.turf_persistent.RL_LumG, _N.turf_persistent.RL_LumB, 0, \
+		_NE.turf_persistent.RL_LumR, _NE.turf_persistent.RL_LumG, _NE.turf_persistent.RL_LumB, 0, \
 		DLL, DLL, DLL, 1 \
 		) ; \
-	if (src.RL_NeedsAdditive || _E.RL_NeedsAdditive || _N.RL_NeedsAdditive || _NE.RL_NeedsAdditive) { \
-		if(!src.RL_AddOverlay) { \
-			src.RL_AddOverlay = new /obj/overlay/tile_effect/lighting/add() ; \
-			src.RL_AddOverlay.set_loc(src) ; \
-			src.RL_AddOverlay.icon_state = src.RL_OverlayState ; \
+	if (src.turf_persistent.RL_NeedsAdditive || _E.turf_persistent.RL_NeedsAdditive || _N.turf_persistent.RL_NeedsAdditive || _NE.turf_persistent.RL_NeedsAdditive) { \
+		if(!src.turf_persistent.RL_AddOverlay) { \
+			src.turf_persistent.RL_AddOverlay = new /obj/overlay/tile_effect/lighting/add() ; \
+			src.turf_persistent.RL_AddOverlay.set_loc(src) ; \
+			src.turf_persistent.RL_AddOverlay.icon_state = src.RL_OverlayState ; \
 		} \
-		src.RL_AddOverlay.color = list( \
-			src.RL_AddLumR, src.RL_AddLumG, src.RL_AddLumB, 0, \
-			_E.RL_AddLumR, _E.RL_AddLumG, _E.RL_AddLumB, 0, \
-			_N.RL_AddLumR, _N.RL_AddLumG, _N.RL_AddLumB, 0, \
-			_NE.RL_AddLumR, _NE.RL_AddLumG, _NE.RL_AddLumB, 0, \
+		src.turf_persistent.RL_AddOverlay.color = list( \
+			src.turf_persistent.RL_AddLumR, src.turf_persistent.RL_AddLumG, src.turf_persistent.RL_AddLumB, 0, \
+			_E.turf_persistent.RL_AddLumR, _E.turf_persistent.RL_AddLumG, _E.turf_persistent.RL_AddLumB, 0, \
+			_N.turf_persistent.RL_AddLumR, _N.turf_persistent.RL_AddLumG, _N.turf_persistent.RL_AddLumB, 0, \
+			_NE.turf_persistent.RL_AddLumR, _NE.turf_persistent.RL_AddLumG, _NE.turf_persistent.RL_AddLumB, 0, \
 			0, 0, 0, 1) ; \
-	} else { if(src.RL_AddOverlay) { qdel(src.RL_AddOverlay); src.RL_AddOverlay = null; } } \
+	} else { if(src.turf_persistent.RL_AddOverlay) { qdel(src.turf_persistent.RL_AddOverlay); src.turf_persistent.RL_AddOverlay = null; } } \
 	} while(false)
 
 
@@ -51,13 +51,13 @@ proc/get_moving_lights_stats()
 	if (src.loc?:force_fullbright) { break } \
 	atten = (brightness*RL_Atten_Quadratic) / ((src.x - lx)*(src.x - lx) + (src.y - ly)*(src.y - ly) + height2) + RL_Atten_Constant ; \
 	if (atten < RL_Atten_Threshold) { break } \
-	src.RL_LumR += r*atten ; \
-	src.RL_LumG += g*atten ; \
-	src.RL_LumB += b*atten ; \
-	src.RL_AddLumR = clamp((src.RL_LumR - 1) * 0.5, 0, 0.3) ; \
-	src.RL_AddLumG = clamp((src.RL_LumG - 1) * 0.5, 0, 0.3) ; \
-	src.RL_AddLumB = clamp((src.RL_LumB - 1) * 0.5, 0, 0.3) ; \
-	src.RL_NeedsAdditive = src.RL_AddLumR + src.RL_AddLumG + src.RL_AddLumB ; \
+	src.turf_persistent.RL_LumR += r*atten ; \
+	src.turf_persistent.RL_LumG += g*atten ; \
+	src.turf_persistent.RL_LumB += b*atten ; \
+	src.turf_persistent.RL_AddLumR = clamp((src.turf_persistent.RL_LumR - 1) * 0.5, 0, 0.3) ; \
+	src.turf_persistent.RL_AddLumG = clamp((src.turf_persistent.RL_LumG - 1) * 0.5, 0, 0.3) ; \
+	src.turf_persistent.RL_AddLumB = clamp((src.turf_persistent.RL_LumB - 1) * 0.5, 0, 0.3) ; \
+	src.turf_persistent.RL_NeedsAdditive = src.turf_persistent.RL_AddLumR + src.turf_persistent.RL_AddLumG + src.turf_persistent.RL_AddLumB ; \
 	} while(false)
 
 #define RL_APPLY_LIGHT(src, lx, ly, brightness, height2, r, g, b) do { \
@@ -88,13 +88,13 @@ proc/get_moving_lights_stats()
 		if (round(line_len) >= radius) { atten *= 0.4 } \
 	}\
 	if (atten < RL_Atten_Threshold) { break } \
-	src.RL_LumR += r*atten ; \
-	src.RL_LumG += g*atten ; \
-	src.RL_LumB += b*atten ; \
-	src.RL_AddLumR = clamp((src.RL_LumR - 1) * 0.5, 0, 0.3) ; \
-	src.RL_AddLumG = clamp((src.RL_LumG - 1) * 0.5, 0, 0.3) ; \
-	src.RL_AddLumB = clamp((src.RL_LumB - 1) * 0.5, 0, 0.3) ; \
-	src.RL_NeedsAdditive = src.RL_AddLumR + src.RL_AddLumG + src.RL_AddLumB ; \
+	src.turf_persistent.RL_LumR += r*atten ; \
+	src.turf_persistent.RL_LumG += g*atten ; \
+	src.turf_persistent.RL_LumB += b*atten ; \
+	src.turf_persistent.RL_AddLumR = clamp((src.turf_persistent.RL_LumR - 1) * 0.5, 0, 0.3) ; \
+	src.turf_persistent.RL_AddLumG = clamp((src.turf_persistent.RL_LumG - 1) * 0.5, 0, 0.3) ; \
+	src.turf_persistent.RL_AddLumB = clamp((src.turf_persistent.RL_LumB - 1) * 0.5, 0, 0.3) ; \
+	src.turf_persistent.RL_NeedsAdditive = src.turf_persistent.RL_AddLumR + src.turf_persistent.RL_AddLumG + src.turf_persistent.RL_AddLumB ; \
 	} while(false)
 
 #define APPLY_AND_UPDATE if (RL_Started) { for (var/turf in src.apply()) { var/turf/T = turf; RL_UPDATE_LIGHT(T) } }
@@ -171,9 +171,9 @@ datum/light
 		src.z = z
 		var/turf/T = locate(x, y, z)
 		if (T)
-			if (!T.RL_Lights)
-				T.RL_Lights = list()
-			T.RL_Lights |= src
+			if (!T.turf_persistent.RL_Lights)
+				T.turf_persistent.RL_Lights = list()
+			T.turf_persistent.RL_Lights |= src
 
 
 	disposing()
@@ -203,7 +203,7 @@ datum/light
 				APPLY_AND_UPDATE
 				if (RL_Started)
 					for (var/turf/T as anything in affected)
-						if (T.RL_UpdateGeneration <= strip_gen)
+						if (T.turf_persistent.RL_UpdateGeneration <= strip_gen)
 							RL_UPDATE_LIGHT(T)
 			else
 				src.brightness = brightness
@@ -239,7 +239,7 @@ datum/light
 				APPLY_AND_UPDATE
 				if (RL_Started)
 					for (var/turf/T as anything in affected)
-						if (T.RL_UpdateGeneration <= strip_gen)
+						if (T.turf_persistent.RL_UpdateGeneration <= strip_gen)
 							RL_UPDATE_LIGHT(T)
 			else
 				src.r = red
@@ -267,7 +267,7 @@ datum/light
 				APPLY_AND_UPDATE
 				if (RL_Started)
 					for (var/turf/T as anything in affected)
-						if (T.RL_UpdateGeneration <= strip_gen)
+						if (T.turf_persistent.RL_UpdateGeneration <= strip_gen)
 							RL_UPDATE_LIGHT(T)
 			else
 				src.height = height
@@ -360,12 +360,12 @@ datum/light
 		remove_from_turf()
 			var/turf/T = locate(src.x, src.y, src.z)
 			if (T)
-				if (T.RL_Lights && length(T.RL_Lights)) //ZeWaka: Fix for length(null)
-					T.RL_Lights -= src
-					if (!T.RL_Lights.len)
-						T.RL_Lights = null
+				if (T.turf_persistent.RL_Lights && length(T.turf_persistent.RL_Lights)) //ZeWaka: Fix for length(null)
+					T.turf_persistent.RL_Lights -= src
+					if (!T.turf_persistent.RL_Lights.len)
+						T.turf_persistent.RL_Lights = null
 				else
-					T.RL_Lights = null
+					T.turf_persistent.RL_Lights = null
 
 		move(x, y, z, dir,queued_run = 0)
 #ifdef DEBUG_MOVING_LIGHTS_STATS
@@ -400,14 +400,14 @@ datum/light
 
 			var/turf/new_turf = locate(x, y, z)
 			if (new_turf)
-				if (!new_turf.RL_Lights)
-					new_turf.RL_Lights = list()
-				new_turf.RL_Lights |= src
+				if (!new_turf.turf_persistent.RL_Lights)
+					new_turf.turf_persistent.RL_Lights = list()
+				new_turf.turf_persistent.RL_Lights |= src
 
 			if (src.enabled && RL_Started)
 				APPLY_AND_UPDATE
 				for (var/turf/T as anything in affected)
-					if (T.RL_UpdateGeneration <= strip_gen)
+					if (T.turf_persistent.RL_UpdateGeneration <= strip_gen)
 						RL_UPDATE_LIGHT(T)
 
 		move_defer(x, y, z) //not called anywhere! if we decide to use this later add it to queueing ok thx
@@ -428,7 +428,7 @@ datum/light
 		apply_to(turf/T)
 			RL_APPLY_LIGHT(T, src.x, src.y, src.brightness, src.height**2, r, g, b)
 
-		#define ADDUPDATE(var) if (var.RL_UpdateGeneration < generation) { var.RL_UpdateGeneration = generation; . += var; }
+		#define ADDUPDATE(var) if (var.turf_persistent.RL_UpdateGeneration < generation) { var.turf_persistent.RL_UpdateGeneration = generation; . += var; }
 		apply_internal(generation, r, g, b)
 			. = list()
 			var/height2 = src.height**2
@@ -437,33 +437,33 @@ datum/light
 			for (var/turf/T in view(src.radius, middle))
 				if (T.opacity)
 					continue
-				if(T.opaque_atom_count > 0)
+				if(T.turf_persistent.opaque_atom_count > 0)
 					continue
 
 				RL_APPLY_LIGHT_EXPOSED_ATTEN(T, src.x, src.y, src.brightness, height2, r, g, b)
 				if(atten < RL_Atten_Threshold)
 					continue
-				T.RL_ApplyGeneration = generation
-				T.RL_UpdateGeneration = generation
+				T.turf_persistent.RL_ApplyGeneration = generation
+				T.turf_persistent.RL_UpdateGeneration = generation
 				. += T
 
 			for (var/turf/T as anything in .)
 				var/E_new = 0
 				var/turf/E = get_step(T, EAST)
-				if (E && E.RL_ApplyGeneration < generation)
+				if (E && E.turf_persistent.RL_ApplyGeneration < generation)
 					E_new = 1
 					RL_APPLY_LIGHT_EXPOSED_ATTEN(E, src.x, src.y, src.brightness, height2, r, g, b)
 					if(atten >= RL_Atten_Threshold)
-						E.RL_ApplyGeneration = generation
+						E.turf_persistent.RL_ApplyGeneration = generation
 						if(get_step(T, SOUTHEAST))
 							ADDUPDATE(get_step(T, SOUTHEAST))
 						ADDUPDATE(E)
 
 				var/turf/N = get_step(T, NORTH)
-				if (N && N.RL_ApplyGeneration < generation)
+				if (N && N.turf_persistent.RL_ApplyGeneration < generation)
 					RL_APPLY_LIGHT_EXPOSED_ATTEN(N, src.x, src.y, src.brightness, height2, r, g, b)
 					if(atten >= RL_Atten_Threshold)
-						N.RL_ApplyGeneration = generation
+						N.turf_persistent.RL_ApplyGeneration = generation
 						if(get_step(T, NORTHWEST))
 							ADDUPDATE(get_step(T, NORTHWEST))
 						ADDUPDATE(N)
@@ -473,10 +473,10 @@ datum/light
 					// because we'd lose the south or west neighbour update this way
 					// i.e. it should only get updated if both T.E and T.N are not added in the view() phase
 					var/turf/NE = get_step(T, NORTHEAST)
-					if (E_new && NE && NE.RL_ApplyGeneration < generation)
+					if (E_new && NE && NE.turf_persistent.RL_ApplyGeneration < generation)
 						RL_APPLY_LIGHT_EXPOSED_ATTEN(NE, src.x, src.y, src.brightness, height2, r, g, b)
 						if(atten >= RL_Atten_Threshold)
-							NE.RL_ApplyGeneration = generation
+							NE.turf_persistent.RL_ApplyGeneration = generation
 							ADDUPDATE(NE)
 
 				if(get_step(T, WEST))
@@ -523,32 +523,32 @@ datum/light
 
 			for (var/turf/T in turfline)
 				RL_APPLY_LIGHT_LINE(T, src.x, src.y, src.dir, dist_cast, src.brightness, height2, r, g, b)
-				T.RL_ApplyGeneration = generation
-				T.RL_UpdateGeneration = generation
+				T.turf_persistent.RL_ApplyGeneration = generation
+				T.turf_persistent.RL_UpdateGeneration = generation
 				. += T
 
 			for (var/turf/T as anything in .)
 
 				var/turf/E = get_step(T, EAST)
-				if (E && E.RL_ApplyGeneration < generation)
-					E.RL_ApplyGeneration = generation
+				if (E && E.turf_persistent.RL_ApplyGeneration < generation)
+					E.turf_persistent.RL_ApplyGeneration = generation
 					RL_APPLY_LIGHT_LINE(E, src.x, src.y, src.dir, dist_cast, src.brightness, height2, r, g, b)
 					ADDUPDATE(E)
 					if(get_step(T, SOUTHEAST))
 						ADDUPDATE(get_step(T, SOUTHEAST))
 
 				var/turf/N = get_step(T, NORTH)
-				if (N && N.RL_ApplyGeneration < generation)
-					N.RL_ApplyGeneration = generation
+				if (N && N.turf_persistent.RL_ApplyGeneration < generation)
+					N.turf_persistent.RL_ApplyGeneration = generation
 					RL_APPLY_LIGHT_LINE(N, src.x, src.y, src.dir, dist_cast, src.brightness, height2, r, g, b)
 					ADDUPDATE(N)
 					if(get_step(T, NORTHWEST))
 						ADDUPDATE(get_step(T, NORTHWEST))
 
 				var/turf/NE = get_step(T, NORTHEAST)
-				if (NE && NE.RL_ApplyGeneration < generation)
+				if (NE && NE.turf_persistent.RL_ApplyGeneration < generation)
 					RL_APPLY_LIGHT_LINE(NE, src.x, src.y, src.dir, dist_cast, src.brightness, height2, r, g, b)
-					NE.RL_ApplyGeneration = generation
+					NE.turf_persistent.RL_ApplyGeneration = generation
 					ADDUPDATE(NE)
 
 				if(get_step(T, WEST))
@@ -639,20 +639,14 @@ proc
 
 turf
 	var
-		RL_ApplyGeneration = 0
-		RL_UpdateGeneration = 0
-		obj/overlay/tile_effect/lighting/mul/RL_MulOverlay = null
-		obj/overlay/tile_effect/lighting/add/RL_AddOverlay = null
-		RL_LumR = 0
-		RL_LumG = 0
-		RL_LumB = 0
-		RL_AddLumR = 0
-		RL_AddLumG = 0
-		RL_AddLumB = 0
-		RL_NeedsAdditive = 0
+		//These three are flat additions to the robustlight RGB values that can be turf-specific.
+		//Basically, you can have some turfs have a glow by default
+		//this glow doesn't get cleared ATM but it didn't before turf_persistent either so not my problem :)
+		base_RL_LumR = 0
+		base_RL_LumG = 0
+		base_RL_LumB = 0
 		RL_OverlayState = ""
-		list/datum/light/RL_Lights = null
-		opaque_atom_count = 0
+
 #ifdef DEBUG_LIGHTING_UPDATES
 		var/obj/maptext_junk/RL_counter/counter = null
 #endif
@@ -660,20 +654,20 @@ turf
 		..()
 		RL_Cleanup()
 
-		var/old_lights = src.RL_Lights
+		var/old_lights = src.turf_persistent.RL_Lights
 		var/old_opacity = src.opacity
 		SPAWN_DBG(0) // ugghhh fuuck
 			if (old_lights)
-				if (!RL_Lights)
-					RL_Lights = old_lights
+				if (!turf_persistent.RL_Lights)
+					turf_persistent.RL_Lights = old_lights
 				else
-					RL_Lights |= old_lights
+					turf_persistent.RL_Lights |= old_lights
 			var/new_opacity = src.opacity
 			src.opacity = old_opacity
 			RL_SetOpacity(new_opacity)
 
 			for (var/turf/T in view(RL_MaxRadius, src))
-				for (var/datum/light/light in T.RL_Lights)
+				for (var/datum/light/light in T.turf_persistent.RL_Lights)
 					if (light.enabled)
 						light.apply_to(src)
 			if (RL_Started)
@@ -699,23 +693,23 @@ turf
 			var/atten = (brightness*RL_Atten_Quadratic) / ((src.x - lx)**2 + (src.y - ly)**2 + height2) + RL_Atten_Constant
 			if (atten < RL_Atten_Threshold)
 				return
-			RL_LumR += r*atten
-			RL_LumG += g*atten
-			RL_LumB += b*atten
+			turf_persistent.RL_LumR += r*atten
+			turf_persistent.RL_LumG += g*atten
+			turf_persistent.RL_LumB += b*atten
 
 			//Needed these to prevent a weird bug from the dark times where tiles went pitch black and couldn't be fixed - ZeWaka
 			//I really want negative lights to be a thing so I'll just hope that this bandaid is no longer necessary. Feel free to uncomment if I'm wrong - pali
 			//I was wrong - pali
 			/*
-			RL_LumR = max(RL_LumR, 0)
-			RL_LumG = max(RL_LumG, 0)
-			RL_LumB = max(RL_LumB, 0)
+			turf_persistent.RL_LumR = max(turf_persistent.RL_LumR, 0)
+			turf_persistent.RL_LumG = max(turf_persistent.RL_LumG, 0)
+			turf_persistent.RL_LumB = max(turf_persistent.RL_LumB, 0)
 			*/
 
-			RL_AddLumR = clamp((RL_LumR - 1) * 0.5, 0, 0.3)
-			RL_AddLumG = clamp((RL_LumG - 1) * 0.5, 0, 0.3)
-			RL_AddLumB = clamp((RL_LumB - 1) * 0.5, 0, 0.3)
-			RL_NeedsAdditive = (RL_AddLumR > 0) || (RL_AddLumG > 0) || (RL_AddLumB > 0)
+			turf_persistent.RL_AddLumR = clamp((turf_persistent.RL_LumR - 1) * 0.5, 0, 0.3)
+			turf_persistent.RL_AddLumG = clamp((turf_persistent.RL_LumG - 1) * 0.5, 0, 0.3)
+			turf_persistent.RL_AddLumB = clamp((turf_persistent.RL_LumB - 1) * 0.5, 0, 0.3)
+			turf_persistent.RL_NeedsAdditive = (turf_persistent.RL_AddLumR > 0) || (turf_persistent.RL_AddLumG > 0) || (turf_persistent.RL_AddLumB > 0)
 
 		RL_UpdateLight() // use the RL_UPDATE_LIGHT macro instead if at all possible!!!!
 			if (!RL_Started)
@@ -728,15 +722,15 @@ turf
 			RL_UPDATE_LIGHT(src)
 
 		RL_SetSprite(state)
-			if (src.RL_MulOverlay)
-				src.RL_MulOverlay.icon_state = state
-			if (src.RL_AddOverlay)
-				src.RL_AddOverlay.icon_state = state
+			if (src.turf_persistent.RL_MulOverlay)
+				src.turf_persistent.RL_MulOverlay.icon_state = state
+			if (src.turf_persistent.RL_AddOverlay)
+				src.turf_persistent.RL_AddOverlay.icon_state = state
 			src.RL_OverlayState = state
 
 		// Approximate RGB -> Luma conversion formula.
 		RL_GetBrightness()
-			var/BN = max(0, ((src.RL_LumR * 0.33) + (src.RL_LumG * 0.5) + (src.RL_LumB * 0.16)))
+			var/BN = max(0, ((src.turf_persistent.RL_LumR * 0.33) + (src.turf_persistent.RL_LumG * 0.5) + (src.turf_persistent.RL_LumB * 0.16)))
 			return BN
 
 		RL_Cleanup()
@@ -761,18 +755,18 @@ turf
 
 		RL_Init()
 			if (!fullbright && !loc:force_fullbright)
-				if(!src.RL_MulOverlay)
-					src.RL_MulOverlay = new()
-					src.RL_MulOverlay.set_loc(src)
-					src.RL_MulOverlay.icon_state = src.RL_OverlayState
+				if(!src.turf_persistent.RL_MulOverlay)
+					src.turf_persistent.RL_MulOverlay = new()
+					src.turf_persistent.RL_MulOverlay.set_loc(src)
+					src.turf_persistent.RL_MulOverlay.icon_state = src.RL_OverlayState
 				if (RL_Started) RL_UPDATE_LIGHT(src)
 			else
-				if(src.RL_MulOverlay)
-					qdel(src.RL_MulOverlay)
-					src.RL_MulOverlay = null
-				if(src.RL_AddOverlay)
-					qdel(src.RL_AddOverlay)
-					src.RL_AddOverlay = null
+				if(src.turf_persistent.RL_MulOverlay)
+					qdel(src.turf_persistent.RL_MulOverlay)
+					src.turf_persistent.RL_MulOverlay = null
+				if(src.turf_persistent.RL_AddOverlay)
+					qdel(src.turf_persistent.RL_AddOverlay)
+					src.turf_persistent.RL_AddOverlay = null
 
 atom
 	var
@@ -792,9 +786,9 @@ atom
 			/*
 			if(src.opacity)
 				var/turf/OL = old_loc
-				if(istype(OL)) --OL.opaque_atom_count
+				if(istype(OL)) --OL.turf_persistent.opaque_atom_count
 				var/turf/NL = src.loc
-				if(istype(NL)) ++NL.opaque_atom_count
+				if(istype(NL)) ++NL.turf_persistent.opaque_atom_count
 			*/
 
 		proc/update_directional_lights()
@@ -809,8 +803,8 @@ atom
 			if (opacity)
 				var/list/datum/light/lights = list()
 				for (var/turf/T in view(RL_MaxRadius, src))
-					if (T.RL_Lights)
-						lights |= T.RL_Lights
+					if (T.turf_persistent.RL_Lights)
+						lights |= T.turf_persistent.RL_Lights
 
 				var/list/affected = list()
 				for (var/datum/light/light as anything in lights)
@@ -818,9 +812,9 @@ atom
 						affected |= light.strip(++RL_Generation)
 
 				var/turf/OL = src.loc
-				if(istype(OL)) --OL.opaque_atom_count
+				if(istype(OL)) --OL.turf_persistent.opaque_atom_count
 				var/turf/NL = target
-				if(istype(NL)) ++NL.opaque_atom_count
+				if(istype(NL)) ++NL.turf_persistent.opaque_atom_count
 
 				. = ..()
 
@@ -859,8 +853,8 @@ atom
 
 			var/list/datum/light/lights = list()
 			for (var/turf/T in view(RL_MaxRadius, src))
-				if (T.RL_Lights)
-					lights |= T.RL_Lights
+				if (T.turf_persistent.RL_Lights)
+					lights |= T.turf_persistent.RL_Lights
 
 			var/list/affected = list()
 			for (var/datum/light/light as anything in lights)
@@ -868,7 +862,7 @@ atom
 					affected |= light.strip(++RL_Generation)
 
 			var/turf/L = get_turf(src)
-			if(src.loc == L && L) L.opaque_atom_count += new_opacity ? 1 : -1
+			if(src.loc == L && L) L.turf_persistent.opaque_atom_count += new_opacity ? 1 : -1
 
 			src.opacity = new_opacity
 			for (var/datum/light/light as anything in lights)

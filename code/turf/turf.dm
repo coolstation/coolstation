@@ -38,12 +38,12 @@
 	var/tmp/pathable = 1
 	var/can_write_on = 0
 	var/tmp/messy = 0 //value corresponds to how many cleanables exist on this turf. Exists for the purpose of making fluid spreads do less checks.
-	var/tmp/checkingexit = 0 //value corresponds to how many objs on this turf implement checkexit(). lets us skip a costly loop later!
-	var/tmp/checkingcanpass = 0 // "" how many implement canpass()
-	var/tmp/checkinghasentered = 0 // "" hasproximity as well as items with a mat that hasproximity
+	//var/tmp/checkingexit = 0 //value corresponds to how many objs on this turf implement checkexit(). lets us skip a costly loop later!
+	//var/tmp/checkingcanpass = 0 // "" how many implement canpass()
+	//var/tmp/checkinghasentered = 0 // "" hasproximity as well as items with a mat that hasproximity
 	var/tmp/checkinghasproximity = 0
 	/// directions of this turf being blocked by directional blocking objects. So we don't need to loop through the entire contents
-	var/tmp/blocked_dirs = 0
+	//var/tmp/blocked_dirs = 0
 	var/wet = 0 //slippery when
 	var/clean = 0 //is this floor recently cleaned? like, clean enough to eat off of? almost no floor starts clean
 	var/permadirty = 0 //grimy tiles can never truly be clean
@@ -62,6 +62,8 @@
 
 	text = "<font color=#aaa>."
 
+	//wrapper for crap that needs to be maintained when turfs are replaced
+	var/datum/turf_persistent/turf_persistent
 
 	disposing() // DOES NOT GET CALLED ON TURFS!!!
 		SHOULD_NOT_OVERRIDE(TRUE)
@@ -145,10 +147,10 @@
 			src.layer = PLATING_LAYER
 
 	proc/UpdateDirBlocks()
-		src.blocked_dirs = 0
+		src.turf_persistent.blocked_dirs = 0
 		for (var/obj/O in src.contents)
 			if (HAS_FLAG(O.object_flags, HAS_DIRECTIONAL_BLOCKING))
-				ADD_FLAG(src.blocked_dirs, O.dir)
+				ADD_FLAG(src.turf_persistent.blocked_dirs, O.dir)
 
 /turf/attack_hand(var/mob/user as mob)
 	if (src.density == 1)
@@ -195,8 +197,17 @@
 /turf/ex_act(severity) //ATMOSSIMSTODO
 	return
 
-/turf/New()
+/turf/New(loc, datum/turf_persistent/inheritance = null)
 	..() //atom shit down here
+	if (inheritance)
+		turf_persistent = inheritance
+	else
+		turf_persistent = new
+
+	turf_persistent.RL_LumR += base_RL_LumR
+	turf_persistent.RL_LumG += base_RL_LumG
+	turf_persistent.RL_LumB += base_RL_LumB
+
 	if (density)
 		pathable = 0
 	for(var/atom/movable/AM as mob|obj in src)
@@ -235,7 +246,7 @@
 		return 1
 
 	//First, check objects to block exit
-	if (cturf?.checkingexit > 0) //dont bother checking unless the turf actually contains a checkable :)
+	if (cturf?.turf_persistent.checkingexit > 0) //dont bother checking unless the turf actually contains a checkable :)
 		for(var/thing in cturf)
 			var/obj/obstacle = thing
 			if(obstacle == mover)
@@ -252,7 +263,7 @@
 		return 0
 
 	//Finally, check objects/mobs to block entry
-	if (src.checkingcanpass > 0)  //dont bother checking unless the turf actually contains a checkable :)
+	if (src.turf_persistent.checkingcanpass > 0)  //dont bother checking unless the turf actually contains a checkable :)
 		for(var/thing in src)
 			var/atom/movable/obstacle = thing
 			if(obstacle == mover) continue
@@ -297,7 +308,7 @@
 
 	//MBC : nothing in the game even uses PrxoimityLeave meaningfully. I'm disabling the proc call here.
 	//for(var/atom/A as mob|obj|turf|area in range(1, src))
-	if (src.checkinghasentered > 0)  //dont bother checking unless the turf actually contains a checkable :)
+	if (src.turf_persistent.checkinghasentered > 0)  //dont bother checking unless the turf actually contains a checkable :)
 		for(var/thing in src)
 			var/atom/A = thing
 			if(A == Obj)
@@ -343,7 +354,7 @@
 					Ar.sims_score = max(Ar.sims_score - 4, 0)
 
 	var/i = 0
-	if (src.checkinghasentered > 0)  //dont bother checking unless the turf actually contains a checkable :)
+	if (src.turf_persistent.checkinghasentered > 0)  //dont bother checking unless the turf actually contains a checkable :)
 		for(var/thing in src)
 			var/atom/A = thing
 			if(A == M)
@@ -509,72 +520,56 @@
 			what = "Desert"
 			keep_old_material = 0
 
-	var/rlapplygen = RL_ApplyGeneration
-	var/rlupdategen = RL_UpdateGeneration
-	var/rlmuloverlay = RL_MulOverlay
-	var/rladdoverlay = RL_AddOverlay
-	var/rllumr = RL_LumR
-	var/rllumg = RL_LumG
-	var/rllumb = RL_LumB
-	var/rladdlumr = RL_AddLumR
-	var/rladdlumg = RL_AddLumG
-	var/rladdlumb = RL_AddLumB
-	var/rlneedsadditive = RL_NeedsAdditive
-	//var/rloverlaystate = RL_OverlayState  //we actually want these cleared
-	var/list/rllights = RL_Lights
+	//This doesn't work properly yet, but the solution seems to be calling RL_UPDATE_LIGHT on 3 of our neighbours and fuck that
+
+	//turf_persistent.RL_LumR -= base_RL_LumR
+	//turf_persistent.RL_LumG -= base_RL_LumG
+	//turf_persistent.RL_LumB -= base_RL_LumB
 
 	var/old_opacity = src.opacity
 
-	var/old_checkingexit = src.checkingexit
-	var/old_checkingcanpass = src.checkingcanpass
-	var/old_checkinghasentered = src.checkinghasentered
-	var/old_blocked_dirs = src.blocked_dirs
 	var/old_checkinghasproximity = src.checkinghasproximity
-
-#ifdef ATMOS_PROCESS_CELL_STATS_TRACKING
-	var/old_process_cell_operations = src.process_cell_operations
-#endif
 
 	var/new_type = ispath(what) ? what : text2path(what) //what what, what WHAT WHAT WHAAAAAAAAT
 	if (new_type)
-		new_turf = new new_type(src)
+		new_turf = new new_type(src, src.turf_persistent)
 		if (!isturf(new_turf))
-			new_turf = new /turf/space(src)
+			new_turf = new /turf/space(src, src.turf_persistent)
 
 	else switch(what)
 		if ("Desert")
 			if(src.z==3)
-				new_turf = new /turf/floor/plating/gehenna(src)
+				new_turf = new /turf/floor/plating/gehenna(src, src.turf_persistent)
 			else
-				new_turf = new /turf/space/gehenna/desert(src)
+				new_turf = new /turf/space/gehenna/desert(src, src.turf_persistent)
 		if ("Ocean")
-			new_turf = new /turf/space/fluid(src)
+			new_turf = new /turf/space/fluid(src, src.turf_persistent)
 		if ("Floor")
-			new_turf = new /turf/floor(src)
+			new_turf = new /turf/floor(src, src.turf_persistent)
 		if ("MetalFoam")
-			new_turf = new /turf/floor/metalfoam(src)
+			new_turf = new /turf/floor/metalfoam(src, src.turf_persistent)
 		if ("EngineFloor")
-			new_turf = new /turf/floor/engine(src)
+			new_turf = new /turf/floor/engine(src, src.turf_persistent)
 		if ("Circuit")
-			new_turf = new /turf/floor/circuit(src)
+			new_turf = new /turf/floor/circuit(src, src.turf_persistent)
 		if ("RWall")
 			if (map_settings)
-				new_turf = new map_settings.rwalls (src)
+				new_turf = new map_settings.rwalls (src, src.turf_persistent)
 			else
-				new_turf = new /turf/wall/r_wall(src)
+				new_turf = new /turf/wall/r_wall(src, src.turf_persistent)
 		if("Concrete")
-			new_turf = new /turf/floor/concrete(src)
+			new_turf = new /turf/floor/concrete(src, src.turf_persistent)
 		if ("Wall")
 			if (map_settings)
-				new_turf = new map_settings.walls (src)
+				new_turf = new map_settings.walls (src, src.turf_persistent)
 			else
-				new_turf = new /turf/wall(src)
+				new_turf = new /turf/wall(src, src.turf_persistent)
 		if ("Unsimulated Floor") //AREASIMSTODO
-			new_turf = new /turf/floor(src)
+			new_turf = new /turf/floor(src, src.turf_persistent)
 		if ("Plating")
-			new_turf = new /turf/floor/plating/random(src)
+			new_turf = new /turf/floor/plating/random(src, src.turf_persistent)
 		else
-			new_turf = new /turf/space(src)
+			new_turf = new /turf/space(src, src.turf_persistent)
 
 	if(keep_old_material && oldmat && !istype(new_turf, /turf/space)) new_turf.setMaterial(oldmat)
 
@@ -586,36 +581,7 @@
 
 	new_turf.levelupdate()
 
-	new_turf.RL_ApplyGeneration = rlapplygen
-	new_turf.RL_UpdateGeneration = rlupdategen
-	if(new_turf.RL_MulOverlay)
-		qdel(new_turf.RL_MulOverlay)
-	if(new_turf.RL_AddOverlay)
-		qdel(new_turf.RL_AddOverlay)
-	new_turf.RL_MulOverlay = rlmuloverlay
-	new_turf.RL_AddOverlay = rladdoverlay
-
-	new_turf.RL_LumR = rllumr
-	new_turf.RL_LumG = rllumg
-	new_turf.RL_LumB = rllumb
-	new_turf.RL_AddLumR = rladdlumr
-	new_turf.RL_AddLumG = rladdlumg
-	new_turf.RL_AddLumB = rladdlumb
-	new_turf.RL_NeedsAdditive = rlneedsadditive
-	//new_turf.RL_OverlayState = rloverlaystate //we actually want these cleared
-	new_turf.RL_Lights = rllights
-	new_turf.opaque_atom_count = opaque_atom_count
-
-
-	new_turf.checkingexit = old_checkingexit
-	new_turf.checkingcanpass = old_checkingcanpass
-	new_turf.checkinghasentered = old_checkinghasentered
-	new_turf.blocked_dirs = old_blocked_dirs
 	new_turf.checkinghasproximity = old_checkinghasproximity
-
-#ifdef ATMOS_PROCESS_CELL_STATS_TRACKING
-	new_turf.process_cell_operations = old_process_cell_operations
-#endif
 
 	//cleanup old overlay to prevent some Stuff
 	//This might not be necessary, i think its just the wall overlays that could be manually cleared here.

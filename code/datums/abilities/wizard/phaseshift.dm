@@ -305,13 +305,14 @@
 
 		if (isturf(src.loc) && src.loc != last_turf)
 			var/i = 0
-			for (var/atom in src.loc)
+			var/turf/T = src.loc
+			for (var/atom in T)
 				if (vampholder)
 					if (ishuman(atom) && vampholder.can_bite(atom, is_pointblank = 0))
 						vampholder.do_bite(atom, mult = 0.25)
-						playsound(src.loc,"sound/impact_sounds/Flesh_Crush_1.ogg", 35, 1, pitch = 1.3)
+						playsound(T,"sound/impact_sounds/Flesh_Crush_1.ogg", 35, 1, pitch = 1.3)
 						break
-				if (src.loc:checkingcanpass)
+				if (T.turf_persistent.checkingcanpass)
 					if (istype(atom,/obj/machinery/door))
 						var/obj/machinery/door/D = atom
 						//D.bumpopen(owner)
