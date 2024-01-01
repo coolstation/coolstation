@@ -1232,6 +1232,7 @@ obj/trait/pilot
 
 /obj/trait/teflon_colon
 	name = "Non-Stick Colon (-1)"
+	cleanName = "Teflon Colon"
 	id = "teflon_colon"
 	icon_state = "poo"
 	desc = "Having eaten crayons all your life, your intestines are now wax-coated, non-stick, high-speed, and low-drag."
