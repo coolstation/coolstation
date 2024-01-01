@@ -1467,13 +1467,29 @@
 		src.say_language = original_language
 		return
 
-	if (src.robot_talk_understand && !src.stat)
-		if (length(message) >= 2)
+	if (length(message) >= 2 && !src.stat)
+		if (src.robot_talk_understand)
 			if (copytext(lowertext(message), 1, 3) == ":s")
 				message = copytext(message, 3)
 				src.robot_talk(message)
 				src.say_language = original_language
 				return
+
+		if (copytext(lowertext(message), 1, 3) == ":i") //for "inner", since :h is already taken by the command channel
+			//the is[antag] checks look for abilityholders anyway,
+			message = copytext(message, 3)
+			var/datum/abilityHolder/changeling/C = get_ability_holder(/datum/abilityHolder/changeling)
+			if (C)
+				message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN)) // apparently ling speak doesn't trim leading spaces so ":i piss" gives " piss"
+				src.say_hive(message, C)
+			var/datum/abilityHolder/vampire/V = get_ability_holder(/datum/abilityHolder/vampire)
+			if (V)
+				V.transmit_thrall_msg(message, src)
+			var/datum/abilityHolder/vampiric_thrall/T = get_ability_holder(/datum/abilityHolder/vampiric_thrall)
+			if (T)
+				T.msg_to_master(message)
+			src.say_language = original_language
+			return
 
 	message = process_accents(src,message)
 
