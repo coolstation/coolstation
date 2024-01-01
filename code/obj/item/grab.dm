@@ -109,19 +109,20 @@
 		if (check())
 			return
 
-		var/mob/living/carbon/human/H
+		//var/mob/living/carbon/human/H
 		if(ishuman(src.affecting))
 			H = src.affecting
 
 		if (src.state >= GRAB_NECK)
-			if(H) H.remove_stamina(STAMINA_REGEN * 0.5 * mult)
+			//if(H) H.remove_stamina(STAMINA_REGEN * 0.5 * mult)
 			src.affecting.set_density(0)
 
 		if (src.state == GRAB_KILL)
-			//src.affecting.losebreath++
+			src.affecting.losebreath++
 			//if (src.affecting.paralysis < 2)
-			//	src.affecting.paralysis = 2
-			process_kill(H, mult)
+				//src.affecting.paralysis = 2
+			src.affecting.do_disorient(weakened = 2.5 SECONDS + 2*choke_count)
+			//process_kill(H, mult)
 
 		if (isitem(src.loc))
 			var/obj/item/I = src.loc
@@ -143,14 +144,14 @@
 	proc/process_kill(var/mob/living/carbon/human/H, mult = 1)
 		if(H)
 			choke_count += 1 * mult
-			H.remove_stamina((STAMINA_REGEN+8.5) * mult)
-			H.stamina_stun()
-			if(H.stamina <= -75)
+			//H.remove_stamina((STAMINA_REGEN+8.5) * mult)
+			//H.stamina_stun()
+			if(choke_count >= 45)
 				H.losebreath += (3 * mult)
-			else if(H.stamina <= -50)
+			else if(choke_count >= 20)
 				H.losebreath += (1.5 * mult)
-			else if(H.stamina <= -33)
-				if(prob(33)) H.losebreath += (1 * mult)
+			else if(choke_count >= 10)
+				if(prob(50)) H.losebreath += (1 * mult)
 			else
 				if(prob(33)) H.losebreath += (0.2 * mult)
 
