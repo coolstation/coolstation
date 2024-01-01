@@ -364,9 +364,9 @@
 	name = "transduction matrix"
 	desc = "An elaborate, faintly glowing matrix of isolinear circuitry."
 	icon_state = "circuit"
-	RL_LumR = 0
-	RL_LumG = 0   //Corresponds to color of the icon_state.
-	RL_LumB = 0.3
+	base_RL_LumR = 0
+	base_RL_LumG = 0   //Corresponds to color of the icon_state.
+	base_RL_LumB = 0.3
 	mat_appearances_to_ignore = list("pharosium")
 
 	New()
@@ -375,39 +375,39 @@
 
 /turf/floor/airless/circuit/green
 	icon_state = "circuit-green"
-	RL_LumR = 0
-	RL_LumG = 0.3
-	RL_LumB = 0
+	base_RL_LumR = 0
+	base_RL_LumG = 0.3
+	base_RL_LumB = 0
 
 /turf/floor/airless/circuit/white
 	icon_state = "circuit-white"
-	RL_LumR = 0.2
-	RL_LumG = 0.2
-	RL_LumB = 0.2
+	base_RL_LumR = 0.2
+	base_RL_LumG = 0.2
+	base_RL_LumB = 0.2
 
 /turf/floor/airless/circuit/purple
 	icon_state = "circuit-purple"
-	RL_LumR = 0.1
-	RL_LumG = 0
-	RL_LumB = 0.2
+	base_RL_LumR = 0.1
+	base_RL_LumG = 0
+	base_RL_LumB = 0.2
 
 /turf/floor/airless/circuit/red
 	icon_state = "circuit-red"
-	RL_LumR = 0.3
-	RL_LumG = 0
-	RL_LumB = 0
+	base_RL_LumR = 0.3
+	base_RL_LumG = 0
+	base_RL_LumB = 0
 
 /turf/floor/airless/circuit/vintage
 	icon_state = "circuit-vint1"
-	RL_LumR = 0.1
-	RL_LumG = 0.1
-	RL_LumB = 0.1
+	base_RL_LumR = 0.1
+	base_RL_LumG = 0.1
+	base_RL_LumB = 0.1
 
 /turf/floor/airless/circuit/off
 	icon_state = "circuitoff"
-	RL_LumR = 0
-	RL_LumG = 0
-	RL_LumB = 0
+	base_RL_LumR = 0
+	base_RL_LumG = 0
+	base_RL_LumB = 0
 
 /////////////////////////////////////////
 

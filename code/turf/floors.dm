@@ -448,9 +448,9 @@
 	name = "transduction matrix"
 	desc = "An elaborate, faintly glowing matrix of isolinear circuitry."
 	icon_state = "circuit"
-	RL_LumR = 0
-	RL_LumG = 0   //Corresponds to color of the icon_state.
-	RL_LumB = 0.3
+	base_RL_LumR = 0
+	base_RL_LumG = 0   //Corresponds to color of the icon_state.
+	base_RL_LumB = 0.3
 	mat_appearances_to_ignore = list("pharosium")
 	step_material = "step_plating"
 	step_priority = STEP_PRIORITY_MED
@@ -461,39 +461,39 @@
 
 /turf/floor/circuit/green
 	icon_state = "circuit-green"
-	RL_LumR = 0
-	RL_LumG = 0.3
-	RL_LumB = 0
+	base_RL_LumR = 0
+	base_RL_LumG = 0.3
+	base_RL_LumB = 0
 
 /turf/floor/circuit/white
 	icon_state = "circuit-white"
-	RL_LumR = 0.2
-	RL_LumG = 0.2
-	RL_LumB = 0.2
+	base_RL_LumR = 0.2
+	base_RL_LumG = 0.2
+	base_RL_LumB = 0.2
 
 /turf/floor/circuit/purple
 	icon_state = "circuit-purple"
-	RL_LumR = 0.1
-	RL_LumG = 0
-	RL_LumB = 0.2
+	base_RL_LumR = 0.1
+	base_RL_LumG = 0
+	base_RL_LumB = 0.2
 
 /turf/floor/circuit/red
 	icon_state = "circuit-red"
-	RL_LumR = 0.3
-	RL_LumG = 0
-	RL_LumB = 0
+	base_RL_LumR = 0.3
+	base_RL_LumG = 0
+	base_RL_LumB = 0
 
 /turf/floor/circuit/vintage
 	icon_state = "circuit-vint1"
-	RL_LumR = 0.1
-	RL_LumG = 0.1
-	RL_LumB = 0.1
+	base_RL_LumR = 0.1
+	base_RL_LumG = 0.1
+	base_RL_LumB = 0.1
 
 /turf/floor/circuit/off
 	icon_state = "circuitoff"
-	RL_LumR = 0
-	RL_LumG = 0
-	RL_LumB = 0
+	base_RL_LumR = 0
+	base_RL_LumG = 0
+	base_RL_LumB = 0
 
 /////////////////////////////////////////
 
@@ -1139,33 +1139,33 @@ DEFINE_FLOORS(techfloor,
 	icon_state = "techfloor_blue";\
 	step_material = "step_plating";\
 	step_priority = STEP_PRIORITY_MED;\
-	RL_LumR = 0;\
-	RL_LumG = 0;\
-	RL_LumB = 0.3)
+	base_RL_LumR = 0;\
+	base_RL_LumG = 0;\
+	base_RL_LumB = 0.3)
 
 DEFINE_FLOORS(techfloor/red,
 	icon_state = "techfloor_red";\
-	RL_LumR = 0.3;\
-	RL_LumG = 0;\
-	RL_LumB = 0)
+	base_RL_LumR = 0.3;\
+	base_RL_LumG = 0;\
+	base_RL_LumB = 0)
 
 DEFINE_FLOORS(techfloor/purple,
 	icon_state = "techfloor_purple";\
-	RL_LumR = 0.1;\
-	RL_LumG = 0;\
-	RL_LumB = 0.2)
+	base_RL_LumR = 0.1;\
+	base_RL_LumG = 0;\
+	base_RL_LumB = 0.2)
 
 DEFINE_FLOORS(techfloor/yellow,
 	icon_state = "techfloor_yellow";\
-	RL_LumR = 0.2;\
-	RL_LumG = 0.1;\
-	RL_LumB = 0)
+	base_RL_LumR = 0.2;\
+	base_RL_LumG = 0.1;\
+	base_RL_LumB = 0)
 
 DEFINE_FLOORS(techfloor/green,
 	icon_state = "techfloor_green";\
-	RL_LumR = 0;\
-	RL_LumG = 0.3;\
-	RL_LumB = 0)
+	base_RL_LumR = 0;\
+	base_RL_LumG = 0.3;\
+	base_RL_LumB = 0)
 
 /////////////////////////////////////////
 
