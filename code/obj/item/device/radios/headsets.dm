@@ -316,7 +316,7 @@
 
 /obj/item/device/radio/headset/gang
 	name = "Radio Headset"
-	desc = "A radio headset, pre-tuned to your gang's frequency. Convinient."
+	desc = "A radio headset, pre-tuned to your gang's frequency. Convenient."
 	secure_frequencies = list("g" = R_FREQ_GANG) //placeholder so it sets up right
 	secure_classes = list("g" = RADIOCL_SYNDICATE)
 	protected_radio = 1
