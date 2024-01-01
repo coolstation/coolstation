@@ -669,7 +669,7 @@
 						if (mobile)
 							var/turf/olddist = get_dist(src, current_target)
 							if (src.slow_chase)
-								walk_to(src, current_target, 3, 4)
+								walk_to(src, current_target, 1, 6)
 							else
 								walk_to(src, current_target, 1, 4)
 							if ((get_dist(src, current_target)) >= (olddist))
