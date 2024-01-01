@@ -240,26 +240,27 @@
 		cord_line.icon = 'icons/obj/machines/phones.dmi'
 		cord_line.icon_state = "cord"
 		animate(cord_line, alpha=255, time=1 SECOND)
-		while(cord_active)
-			if(src.qdeled || src.handset == null || !the_handset)
-				qdel(cord_line)
-				the_handset = null
-				src.cord_active = FALSE
-				break
-			var/dist = GET_DIST(src,the_handset)
-			src.set_dir(get_dir(src,the_handset))
-			if(cord_line)
-				var/ang = get_angle(get_turf(src), get_turf(the_handset))
-				var/cord_line_dist = 8 + 40 / (1 + 3 ** (3 - dist / 10))
-				var/matrix/M = matrix()
-				var/cord_line_scale = (1.1 * dist)
-//				var/cord_line_scale = (0.9 * dist) + (dist * 0.1 / (1 + 3 ** (3 - dist / 10)))
-				M = M.Scale(1, cord_line_scale * 2)
-				M = M.Turn(ang)
-				M = M.Translate(cord_line_dist * sin(ang), cord_line_dist * cos(ang))
-				animate(cord_line, transform=M, time=0.2 SECONDS, flags=ANIMATION_PARALLEL)
+		SPAWN_DBG(0)
+			while(cord_active)
+				if(src.qdeled || src.handset == null || !the_handset)
+					qdel(cord_line)
+					the_handset = null
+					src.cord_active = FALSE
+					break
+				var/dist = GET_DIST(src,the_handset)
+				src.set_dir(get_dir(src,the_handset))
+				if(cord_line)
+					var/ang = get_angle(get_turf(src), get_turf(the_handset))
+					var/cord_line_dist = 8 + 40 / (1 + 3 ** (3 - dist / 10))
+					var/matrix/M = matrix()
+					var/cord_line_scale = (1.1 * dist)
+	//				var/cord_line_scale = (0.9 * dist) + (dist * 0.1 / (1 + 3 ** (3 - dist / 10)))
+					M = M.Scale(1, cord_line_scale * 2)
+					M = M.Turn(ang)
+					M = M.Translate(cord_line_dist * sin(ang), cord_line_dist * cos(ang))
+					animate(cord_line, transform=M, time=0.2 SECONDS, flags=ANIMATION_PARALLEL)
 
-			sleep(0.2 SECONDS)
+				sleep(0.2 SECONDS)
 
 
 /obj/machinery/phone/custom_suicide = 1
