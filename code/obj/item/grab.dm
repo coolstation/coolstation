@@ -108,11 +108,11 @@
 	process(var/mult = 1)
 		if (check())
 			return
-
-		//var/mob/living/carbon/human/H
+/*
+		var/mob/living/carbon/human/H
 		if(ishuman(src.affecting))
 			H = src.affecting
-
+*/
 		if (src.state >= GRAB_NECK)
 			//if(H) H.remove_stamina(STAMINA_REGEN * 0.5 * mult)
 			src.affecting.set_density(0)
