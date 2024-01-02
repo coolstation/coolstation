@@ -28,25 +28,28 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	cookbonus = 13
 	output = /obj/item/reagent_containers/food/snacks/burger/humanburger
 	useshumanmeat = 1
-	category = "Humanburger"
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/fishburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/fish
 	cookbonus = 14
 	output = /obj/item/reagent_containers/food/snacks/burger/fishburger
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/synthburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/synthmeat
 	cookbonus = 13
 	output = /obj/item/reagent_containers/food/snacks/burger/synthburger
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/spicychickensandwich_2
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat/nugget/spicy
 	cookbonus = 13
 	output = /obj/item/reagent_containers/food/snacks/burger/chicken/spicy
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/spicychickensandwich
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
@@ -54,18 +57,21 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/plant/chili
 	cookbonus = 13
 	output = /obj/item/reagent_containers/food/snacks/burger/chicken/spicy
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/chickensandwich
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat/nugget
 	cookbonus = 13
 	output = /obj/item/reagent_containers/food/snacks/burger/chicken
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/mysteryburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat
 	cookbonus = 13
 	output = /obj/item/reagent_containers/food/snacks/burger/mysteryburger
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/cheeseburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
@@ -73,6 +79,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
 	cookbonus = 14
 	output = /obj/item/reagent_containers/food/snacks/burger/cheeseburger
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/cheeseburger_m
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
@@ -80,63 +87,73 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
 	cookbonus = 14
 	output = /obj/item/reagent_containers/food/snacks/burger/cheeseburger_m
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/luauburger
- 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
- 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/
- 	item3 = /obj/item/reagent_containers/food/snacks/plant/pineappleslice
- 	cookbonus = 15
- 	output = /obj/item/reagent_containers/food/snacks/burger/luauburger
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
+	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/
+	item3 = /obj/item/reagent_containers/food/snacks/plant/pineappleslice
+	cookbonus = 15
+	output = /obj/item/reagent_containers/food/snacks/burger/luauburger
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/coconutburger
- 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
- 	item2 = /obj/item/reagent_containers/food/snacks/plant/coconutmeat/
- 	cookbonus = 13
- 	output = /obj/item/reagent_containers/food/snacks/burger/coconutburger
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
+	item2 = /obj/item/reagent_containers/food/snacks/plant/coconutmeat/
+	cookbonus = 13
+	output = /obj/item/reagent_containers/food/snacks/burger/coconutburger
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/tikiburger
- 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
- 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/
- 	item3 = /obj/item/reagent_containers/food/snacks/plant/pineappleslice
- 	item4 = /obj/item/reagent_containers/food/snacks/plant/coconutmeat/
- 	cookbonus = 18
- 	output = /obj/item/reagent_containers/food/snacks/burger/tikiburger
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
+	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/
+	item3 = /obj/item/reagent_containers/food/snacks/plant/pineappleslice
+	item4 = /obj/item/reagent_containers/food/snacks/plant/coconutmeat/
+	cookbonus = 18
+	output = /obj/item/reagent_containers/food/snacks/burger/tikiburger
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/monkeyburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/monkeymeat
 	cookbonus = 13
 	output = /obj/item/reagent_containers/food/snacks/burger/monkeyburger
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/buttburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/clothing/head/butt
 	cookbonus = 15
 	output = /obj/item/reagent_containers/food/snacks/burger/buttburger
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/heartburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/organ/heart
 	cookbonus = 15
 	output = /obj/item/reagent_containers/food/snacks/burger/heartburger
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/flockburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/organ/brain/flockdrone
 	cookbonus = 15
 	output = /obj/item/reagent_containers/food/snacks/burger/flockburger
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/brainburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/organ/brain
 	cookbonus = 15
 	output = /obj/item/reagent_containers/food/snacks/burger/brainburger
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/roburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/parts/robot_parts/head
 	cookbonus = 15
 	output = /obj/item/reagent_containers/food/snacks/burger/roburger
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/cheeseborger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
@@ -144,12 +161,14 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
 	cookbonus = 15
 	output = /obj/item/reagent_containers/food/snacks/burger/cheeseborger
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/baconburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/bacon
 	cookbonus = 13
 	output = /obj/item/reagent_containers/food/snacks/burger/baconburger
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/baconator
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
@@ -158,25 +177,29 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
 	cookbonus = 14
 	output = /obj/item/reagent_containers/food/snacks/burger/bigburger
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/butterburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/butter
 	cookbonus = 15
 	output = /obj/item/reagent_containers/food/snacks/burger/butterburger
+	category = "Burgers"
 
 /datum/cookingrecipe/oven/monster
 	item1 = /obj/item/reagent_containers/food/snacks/burger/bigburger
 	amt1 = 4
 	cookbonus = 20
 	output = /obj/item/reagent_containers/food/snacks/burger/monsterburger
+	category = "Burgers"
 
 #ifdef SECRETS_ENABLED
 /datum/cookingrecipe/oven/hamburgris
- 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
- 	item2 = /obj/item/material_piece/hamburgris
- 	cookbonus = 13
- 	output = /obj/item/reagent_containers/food/snacks/burger/hamburgris
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
+	item2 = /obj/item/material_piece/hamburgris
+	cookbonus = 13
+	output = /obj/item/reagent_containers/food/snacks/burger/hamburgris
+	category = null
 #endif
 
 /datum/cookingrecipe/oven/swede_mball
@@ -249,24 +272,28 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/spaghetti
 	cookbonus = 16
 	output = /obj/item/reagent_containers/food/snacks/spaghetti
+	category = "Pasta"
 
 /datum/cookingrecipe/oven/spaghetti_t
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/spaghetti
 	item2 = /obj/item/reagent_containers/food/snacks/condiment/ketchup
 	cookbonus = 16
 	output = /obj/item/reagent_containers/food/snacks/spaghetti/sauce
+	category = "Pasta"
 
 /datum/cookingrecipe/oven/spaghetti_s
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/spaghetti
 	item2 = /obj/item/reagent_containers/food/snacks/condiment/hotsauce
 	cookbonus = 16
 	output = /obj/item/reagent_containers/food/snacks/spaghetti/spicy
+	category = "Pasta"
 
 /datum/cookingrecipe/oven/spaghetti_m
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/spaghetti
 	item2 = /obj/item/reagent_containers/food/snacks/meatball
 	cookbonus = 16
 	output = /obj/item/reagent_containers/food/snacks/spaghetti/meatball
+	category = "Pasta"
 
 /datum/cookingrecipe/oven/lasagna
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/pasta/sheet
@@ -274,6 +301,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
 	cookbonus = 16
 	output = /obj/item/reagent_containers/food/snacks/lasagna
+	category = "Pasta"
 
 /datum/cookingrecipe/oven/spaghetti_pg
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/spaghetti
@@ -281,12 +309,14 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/pizza
 	cookbonus = 16
 	output = /obj/item/reagent_containers/food/snacks/spaghetti/pizzaghetti
+	category = "Pasta"
 
 /datum/cookingrecipe/oven/spooky_bread
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item3 = /obj/item/reagent_containers/food/snacks/ectoplasm
 	cookbonus = 8
 	output = /obj/item/reagent_containers/food/snacks/breadloaf/spooky
+	category = "Bread"
 
 /datum/cookingrecipe/oven/elvis_bread
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
@@ -294,6 +324,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/peanutbutter
 	cookbonus = 8
 	output = /obj/item/reagent_containers/food/snacks/breadloaf/elvis
+	category = "Bread"
 
 /datum/cookingrecipe/oven/banana_bread
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
@@ -301,24 +332,28 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/sugar
 	cookbonus = 8
 	output = /obj/item/reagent_containers/food/snacks/breadloaf/banana
+	category = "Bread"
 
 /datum/cookingrecipe/oven/banana_bread_alt
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
 	item2 = /obj/item/reagent_containers/food/snacks/plant/banana
 	cookbonus = 8
 	output = /obj/item/reagent_containers/food/snacks/breadloaf/banana
+	category = "Bread"
 
 /datum/cookingrecipe/oven/cornbread1
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/reagent_containers/food/snacks/plant/corn
 	cookbonus = 6
 	output = /obj/item/reagent_containers/food/snacks/breadloaf/corn
+	category = "Bread"
 
 /datum/cookingrecipe/oven/cornbread2
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
 	item2 = /obj/item/reagent_containers/food/snacks/plant/corn
 	cookbonus = 6
 	output = /obj/item/reagent_containers/food/snacks/breadloaf/corn/sweet
+	category = "Bread"
 
 /datum/cookingrecipe/oven/cornbread3
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
@@ -326,6 +361,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/sugar
 	cookbonus = 6
 	output = /obj/item/reagent_containers/food/snacks/breadloaf/corn/sweet
+	category = "Bread"
 
 /datum/cookingrecipe/oven/cornbread4
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
@@ -333,54 +369,64 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/honey
 	cookbonus = 6
 	output = /obj/item/reagent_containers/food/snacks/breadloaf/corn/sweet/honey
+	category = "Bread"
 
 /datum/cookingrecipe/oven/pumpkin_bread
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/reagent_containers/food/snacks/plant/pumpkin
 	cookbonus = 8
 	output = /obj/item/reagent_containers/food/snacks/breadloaf/pumpkin
+	category = "Bread"
 
 /datum/cookingrecipe/oven/bread
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	cookbonus = 8
 	output = /obj/item/reagent_containers/food/snacks/breadloaf
+	category = "Bread"
 
 /datum/cookingrecipe/oven/honeywheat_bread
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/honey
 	cookbonus = 8
 	output = /obj/item/reagent_containers/food/snacks/breadloaf/honeywheat
+	category = "Bread"
 
 /datum/cookingrecipe/oven/brain_bread
 	item1 = /obj/item/reagent_containers/food/snacks/breadloaf
 	item2 = /obj/item/organ/brain
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/breadloaf/brain
+	category = "Bread"
 
 /datum/cookingrecipe/oven/toast
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/breadslice/toastslice
+	category = "Toast"
 
 /datum/cookingrecipe/oven/toast_banana
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/banana
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/breadslice/toastslice/banana
+	category = "Toast"
 
 /datum/cookingrecipe/oven/toast_brain
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/brain
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/breadslice/toastslice/brain
+	category = "Toast"
 
 /datum/cookingrecipe/oven/toast_elvis
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/elvis
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/breadslice/toastslice/elvis
+	category = "Toast"
 
 /datum/cookingrecipe/oven/toast_spooky
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/spooky
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/breadslice/toastslice/spooky
+	category = "Toast"
 
 /datum/cookingrecipe/oven/sandwich_m_h
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
@@ -389,6 +435,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/meat_h
 	useshumanmeat = 1
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/sandwich_m_m
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
@@ -396,6 +443,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/monkeymeat
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/meat_m
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/sandwich_m_s
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
@@ -403,6 +451,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/synthmeat
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/meat_s
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/sandwich_c
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
@@ -410,6 +459,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/cheese
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/sandwich_p
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
@@ -417,6 +467,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/peanutbutter
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/pb
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/sandwich_p_h
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
@@ -425,6 +476,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/honey
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/pbh
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/elviswich_m_h
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/elvis
@@ -433,6 +485,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/elvis_meat_h
 	useshumanmeat = 1
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/elviswich_m_m
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/elvis
@@ -440,6 +493,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/monkeymeat
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/elvis_meat_m
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/elviswich_m_s
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/elvis
@@ -447,6 +501,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/synthmeat
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/elvis_meat_s
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/elviswich_c
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/elvis
@@ -454,6 +509,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/elvis_cheese
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/elviswich_p
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/elvis
@@ -461,6 +517,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/peanutbutter
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/elvis_pb
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/elviswich_p_h
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/elvis
@@ -469,6 +526,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/honey
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/elvis_pbh
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/scarewich_c
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/spooky
@@ -476,6 +534,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/spooky_cheese
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/scarewich_p
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/spooky
@@ -483,6 +542,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/peanutbutter
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/spooky_pb
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/scarewich_p_h
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/spooky
@@ -491,6 +551,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/honey
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/spooky_pbh
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/scarewich_h
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/spooky
@@ -499,6 +560,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/spooky_meat_h
 	useshumanmeat = 1
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/scarewich_m
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/spooky
@@ -506,6 +568,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/monkeymeat
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/spooky_meat_m
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/scarewich_s
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/spooky
@@ -513,6 +576,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/synthmeat
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/spooky_meat_s
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/sandwich_mb //Original meatball sub recipe
 	item1 = /obj/item/reagent_containers/food/snacks/meatball
@@ -521,6 +585,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item4 = /obj/item/reagent_containers/food/snacks/condiment/ketchup
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/sandwich/meatball
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/sandwich_mbalt //Secondary recipe that uses the baguette
 	item1 = /obj/item/reagent_containers/food/snacks/meatball
@@ -529,6 +594,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item4 = /obj/item/reagent_containers/food/snacks/condiment/ketchup
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/sandwich/meatball
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/sandwich_egg
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
@@ -536,6 +602,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/eggsalad
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/eggsalad
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/sandwich_bm //Original banh mi recipe
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw
@@ -544,6 +611,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item4 = /obj/item/reagent_containers/food/snacks/plant/cucumber
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/sandwich/banhmi
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/sandwich_bmalt //Secondary recipe that uses the baguette
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw
@@ -552,6 +620,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item4 = /obj/item/reagent_containers/food/snacks/plant/cucumber
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/sandwich/banhmi
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/sandwich_mitraillette //Hey lads what the fuck is with all the sandwich recipes and single letters, writing out words isn't going to hurt you.
 	item1 = /obj/item/baguette
@@ -560,6 +629,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item4 = /obj/item/reagent_containers/food/snacks/condiment
 	cookbonus = 9 //IDK what this is exactly
 	output = /obj/item/reagent_containers/food/snacks/sandwich/mitraillette
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/sandwich_knuckle
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
@@ -568,12 +638,14 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/cheese //This recipe is a cheesy joke
 	cookbonus = 7
 	output = /obj/item/reagent_containers/food/snacks/sandwich/knuckle
+	category = "Sandwiches"
 
 /datum/cookingrecipe/oven/sandwich_custom
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
 	amt1 = 2
 	cookbonus = 12
 	output = null
+	category = "Sandwiches"
 
 	specialOutput(obj/submachine/ourCooker)
 		if (!ourCooker)
@@ -734,6 +806,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/pizza3
 	cookbonus = 18
 	output = null
+	category = "Pizzas"
 
 	specialOutput(obj/submachine/ourCooker)
 		if (!ourCooker)
@@ -765,12 +838,14 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/toastcheese
+	category = "Toast (Meal)"
 
 /datum/cookingrecipe/oven/bacontoast
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/bacon
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/toastbacon
+	category = "Toast (Meal)"
 
 /datum/cookingrecipe/oven/eggtoast
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
@@ -778,18 +853,21 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/egg
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/toastegg
+	category = "Toast (Meal)"
 
 /datum/cookingrecipe/oven/elvischeesetoast
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/elvis
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/toastcheese/elvis
+	category = "Toast (Meal)"
 
 /datum/cookingrecipe/oven/elvisbacontoast
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/elvis
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/bacon
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/toastbacon/elvis
+	category = "Toast (Meal)"
 
 /datum/cookingrecipe/oven/elviseggtoast
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice/elvis
@@ -797,6 +875,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	amt2 = 2
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/toastegg/elvis
+	category = "Toast (Meal)"
 
 /datum/cookingrecipe/oven/breakfast
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/meat/bacon
@@ -805,6 +884,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	amt2 = 2
 	cookbonus = 16
 	output = /obj/item/reagent_containers/food/snacks/breakfast
+	category = "Toast (Meal)"
 
 /datum/cookingrecipe/mixer/wonton_wrapper
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/egg
@@ -832,6 +912,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/flour
 	cookbonus = 8
 	output = /obj/item/baguette
+	category = "Pastries and bread-likes" // not sorry
 
 /datum/cookingrecipe/oven/garlicbread
 	item1 = /obj/item/baguette
@@ -839,6 +920,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/plant/garlic
 	cookbonus = 6
 	output = /obj/item/reagent_containers/food/snacks/garlicbread
+	category = "Pastries and bread-likes"
 
 /datum/cookingrecipe/oven/garlicbread_ch
 	item1 = /obj/item/baguette
@@ -847,6 +929,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/butter
 	cookbonus = 6
 	output = /obj/item/reagent_containers/food/snacks/garlicbread_ch
+	category = "Pastries and bread-likes"
 
 /datum/cookingrecipe/oven/painauchocolat
 	item1 = /obj/item/reagent_containers/food/snacks/candy/chocolate
@@ -854,12 +937,14 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/painauchocolat
+	category = "Pastries and bread-likes"
 
 /datum/cookingrecipe/oven/croissant
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/butter
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/croissant
+	category = "Pastries and bread-likes"
 
 /datum/cookingrecipe/oven/danish_apple
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
@@ -867,6 +952,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/plant/apple
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/danish_apple
+	category = "Pastries and bread-likes"
 
 /datum/cookingrecipe/oven/danish_cherry
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
@@ -874,6 +960,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/plant/cherry
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/danish_cherry
+	category = "Pastries and bread-likes"
 
 /datum/cookingrecipe/oven/danish_blueb
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
@@ -881,6 +968,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/plant/blueberry
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/danish_blueb
+	category = "Pastries and bread-likes"
 
 /datum/cookingrecipe/oven/danish_weed
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
@@ -888,6 +976,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/plant/herb/cannabis
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/danish_weed
+	category = "Pastries and bread-likes"
 
 /datum/cookingrecipe/oven/fairybread
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
@@ -895,6 +984,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/butter
 	cookbonus = 8
 	output = /obj/item/reagent_containers/food/snacks/fairybread
+	category = "Pastries and bread-likes"
 
 //Cookies
 /datum/cookingrecipe/oven/stroopwalfel
@@ -904,6 +994,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/candy/caramel
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/stroopwafel/walf
+	category = "Cookies"
 
 /datum/cookingrecipe/oven/stroopwafel
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_cookie
@@ -911,35 +1002,41 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/condiment/syrup
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/stroopwafel
+	category = "Cookies"
 
 /datum/cookingrecipe/oven/cookie
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_cookie
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/cookie
+	category = "Cookies"
 
 /datum/cookingrecipe/oven/cookie_iron
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_cookie
 	item2 = /obj/item/reagent_containers/food/snacks/condiment/ironfilings
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/cookie/metal
+	category = "Cookies"
 
 /datum/cookingrecipe/oven/cookie_chocolate_chip
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_cookie
 	item2 = /obj/item/reagent_containers/food/snacks/condiment/chocchips
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/cookie/chocolate_chip
+	category = "Cookies"
 
 /datum/cookingrecipe/oven/cookie_oatmeal
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_cookie
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/oatmeal
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/cookie/oatmeal
+	category = "Cookies"
 
 /datum/cookingrecipe/oven/cookie_bacon
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_cookie
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/bacon
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/cookie/bacon
+	category = "Cookies"
 
 /datum/cookingrecipe/oven/cookie_jaffa
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_cookie
@@ -947,24 +1044,28 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/candy/regular
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/cookie/jaffa
+	category = "Cookies"
 
 /datum/cookingrecipe/oven/cookie_spooky
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_cookie
 	item2 = /obj/item/reagent_containers/food/snacks/ectoplasm
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/cookie/spooky
+	category = "Cookies"
 
 /datum/cookingrecipe/oven/cookie_butter
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_cookie
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/butter
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/cookie/butter
+	category = "Cookies"
 
 /datum/cookingrecipe/oven/cookie_peanut
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_cookie
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/peanutbutter
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/cookie/peanut
+	category = "Cookies"
 
 //Moon pies!
 /datum/cookingrecipe/oven/moon_pie
@@ -973,6 +1074,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/condiment/cream
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/moon_pie
+	category = "Moon Pies"
 
 /datum/cookingrecipe/oven/moon_pie_iron
 	item1 = /obj/item/reagent_containers/food/snacks/cookie/metal
@@ -980,6 +1082,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/condiment/cream
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/moon_pie/metal
+	category = "Moon Pies"
 
 /datum/cookingrecipe/oven/moon_pie_chips
 	item1 = /obj/item/reagent_containers/food/snacks/cookie/chocolate_chip
@@ -987,6 +1090,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/condiment/cream
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/moon_pie/chocolate_chip
+	category = "Moon Pies"
 
 /datum/cookingrecipe/oven/moon_pie_oatmeal
 	item1 = /obj/item/reagent_containers/food/snacks/cookie/oatmeal
@@ -994,6 +1098,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/condiment/cream
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/moon_pie/oatmeal
+	category = "Moon Pies"
 
 /datum/cookingrecipe/oven/moon_pie_bacon
 	item1 = /obj/item/reagent_containers/food/snacks/cookie/bacon
@@ -1001,6 +1106,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/condiment/cream
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/moon_pie/bacon
+	category = "Moon Pies"
 
 /datum/cookingrecipe/oven/moon_pie_jaffa
 	item1 = /obj/item/reagent_containers/food/snacks/cookie/jaffa
@@ -1008,6 +1114,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/condiment/cream
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/moon_pie/jaffa
+	category = "Moon Pies"
 
 /datum/cookingrecipe/oven/moon_pie_spooky
 	item1 = /obj/item/reagent_containers/food/snacks/cookie/spooky
@@ -1015,6 +1122,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/condiment/cream
 	cookbonus = 5
 	output = /obj/item/reagent_containers/food/snacks/moon_pie/spooky
+	category = "Moon Pies"
 
 /datum/cookingrecipe/oven/moon_pie_chocolate
 	item1 = /obj/item/reagent_containers/food/snacks/cookie/chocolate_chip
@@ -1023,6 +1131,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/candy/regular
 	cookbonus = 6
 	output = /obj/item/reagent_containers/food/snacks/moon_pie/chocolate
+	category = "Moon Pies"
 
 /datum/cookingrecipe/oven/onionchips
 	item1 = /obj/item/reagent_containers/food/snacks/onion_slice
@@ -1084,30 +1193,35 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/plant/apple
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/pie/apple
+	category = "Pies"
 
 /datum/cookingrecipe/oven/pie_lime
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
 	item2 = /obj/item/reagent_containers/food/snacks/plant/lime
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/pie/lime
+	category = "Pies"
 
 /datum/cookingrecipe/oven/pie_lemon
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
 	item2 = /obj/item/reagent_containers/food/snacks/plant/lemon
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/pie/lemon
+	category = "Pies"
 
 /datum/cookingrecipe/oven/pie_slurry
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
 	item2 = /obj/item/reagent_containers/food/snacks/plant/slurryfruit
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/pie/slurry
+	category = "Pies"
 
 /datum/cookingrecipe/oven/pie_pumpkin
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
 	item2 = /obj/item/reagent_containers/food/snacks/plant/pumpkin
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/pie/pumpkin
+	category = "Pies"
 
 /datum/cookingrecipe/oven/pie_strawberry
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
@@ -1115,12 +1229,14 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	amt2 = 2
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/pie/strawberry
+	category = "Pies"
 
 /datum/cookingrecipe/oven/pie_cream
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
 	item2 = /obj/item/reagent_containers/food/snacks/condiment/cream
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/pie/cream
+	category = "Pies"
 
 	specialOutput(var/obj/submachine/ourCooker)
 		if (!ourCooker)
@@ -1156,6 +1272,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/egg
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/pie/anything
+	category = "Pies"
 
 	specialOutput(var/obj/submachine/ourCooker)
 		if (!ourCooker)
@@ -1222,18 +1339,21 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/condiment/custard
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/pie/custard
+	category = "Pies"
 
 /datum/cookingrecipe/oven/pie_bacon
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/bacon
 	cookbonus = 15
 	output = /obj/item/reagent_containers/food/snacks/pie/bacon
+	category = "Pies"
 
 /datum/cookingrecipe/oven/pie_ass
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
 	item2 = /obj/item/clothing/head/butt
 	cookbonus = 15
 	output = /obj/item/reagent_containers/food/snacks/pie/ass
+	category = "Pies"
 
 /datum/cookingrecipe/oven/pie_chocolate
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
@@ -1241,6 +1361,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/butter
 	cookbonus = 10
 	output = /obj/item/reagent_containers/food/snacks/pie/chocolate
+	category = "Pies"
 
 /datum/cookingrecipe/oven/pot_pie
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
@@ -1248,6 +1369,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/plant/carrot
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/pie/pot
+	category = "Pies"
 
 /datum/cookingrecipe/oven/pie_weed
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
@@ -1255,6 +1377,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/plant/herb/cannabis
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/pie/weed
+	category = "Pies"
 
 /datum/cookingrecipe/oven/pie_fish
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_s
@@ -1262,6 +1385,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item3 = /obj/item/reagent_containers/food/snacks/plant/potato
 	cookbonus = 10
 	output = /obj/item/reagent_containers/food/snacks/pie/fish
+	category = "Pies"
 
 /datum/cookingrecipe/mixer/custard
 	item1 = /obj/item/reagent_containers/food/drinks/milk
@@ -1367,24 +1491,28 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	amt2 = 2
 	cookbonus = 10
 	output = /obj/item/reagent_containers/food/snacks/cake_batter
+	category = "Cakes"
 
 /datum/cookingrecipe/oven/cake_cream
 	item1 = /obj/item/reagent_containers/food/snacks/cake_batter
 	item2 = /obj/item/reagent_containers/food/snacks/condiment/cream
 	cookbonus = 14
 	output = /obj/item/reagent_containers/food/snacks/cake/cream
+	category = "Cakes"
 
 /datum/cookingrecipe/oven/cake_chocolate
 	item1 = /obj/item/reagent_containers/food/snacks/cake_batter
 	item2 = /obj/item/reagent_containers/food/snacks/candy/regular
 	cookbonus = 14
 	output = /obj/item/reagent_containers/food/snacks/cake/chocolate
+	category = "Cakes"
 
 /datum/cookingrecipe/oven/cake_meat
 	item1 = /obj/item/reagent_containers/food/snacks/cake_batter
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/
 	cookbonus = 14
 	output = /obj/item/reagent_containers/food/snacks/cake/meat
+	category = "Cakes"
 
 /datum/cookingrecipe/oven/cake_bacon
 	item1 = /obj/item/reagent_containers/food/snacks/cake_batter
@@ -1392,12 +1520,14 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	amt2 = 3
 	cookbonus = 14
 	output = /obj/item/reagent_containers/food/snacks/cake/bacon
+	category = "Cakes"
 
 /datum/cookingrecipe/oven/cake_true_bacon
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/meat/bacon
 	amt1 = 7
 	cookbonus = 14
 	output = /obj/item/reagent_containers/food/snacks/cake/true_bacon
+	category = "Cakes"
 
 #ifdef XMAS
 
@@ -1406,6 +1536,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item2 = /obj/item/reagent_containers/food/snacks/yuck
 	cookbonus = 14
 	output = null
+	category = "Cakes"
 
 	specialOutput(var/obj/submachine/ourCooker)
 		if (!ourCooker)
@@ -1422,6 +1553,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item1 = /obj/item/reagent_containers/food/snacks/cake_batter
 	cookbonus = 14
 	output = null
+	category = "Cakes"
 
 	specialOutput(var/obj/submachine/ourCooker)
 		if(!ourCooker)
@@ -1461,6 +1593,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item1 = /obj/item/reagent_containers/food/snacks/cake/cream
 	cookbonus = 14
 	output = null
+	category = "Cakes"
 
 	specialOutput(var/obj/submachine/ourCooker)
 		if (!ourCooker)
