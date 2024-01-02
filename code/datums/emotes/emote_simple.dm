@@ -31,7 +31,7 @@
 	glare
 		emote_string = "glares"
 	nod
-		emote_string = "nod"
+		emote_string = "nods"
 	blink
 		emote_string = "blinks"
 	drool
