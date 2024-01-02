@@ -1163,14 +1163,14 @@ var/global/list/mapNames = list(
 		"the cargo office (QM)" = list(/area/station/quartermaster/office),
 		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
 		"the courtroom" = list(/area/station/crew_quarters/courtroom, /area/station/crew_quarters/juryroom),
-		"the medbay" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/lobby),
-		"the station's cafeteria" = list(/area/station/crew_quarters/cafeteria),
-		"the EVA storage" = list(/area/station/ai_monitored/storage/eva),
+		"the medbay" = list(/area/station/medical/medbay/treatment, /area/station/medical/medbay/surgery, /area/station/medical/medbay/lobby),
+		"the station's cafeteria" = list(/area/station/crew_quarters/bar),
+		"the EVA storage" = list(/area/station/storage/eva),
 		"the robotics lab" = list(/area/station/medical/robotics),
 		"the bridge" = list(/area/station/bridge),
 		"the coffee shop" = list(/area/station/crew_quarters/jazz),
-		"the escape arm" = list(/area/station/hallway/secondary/exit),
-		"the central room of the crew lounge" = list(/area/station/crew_quarters/quarters),
+		"the escape dock" = list(/area/station/hangar/escape),
+		"the central room of the crew quarters" = list(/area/station/crew_quarters/quartersA),
 		"the chapel" = list(/area/station/chapel/sanctuary))
 
 /*/datum/map_settings/dockmap //by robert goodsmells age 34 (for shuttle/offstation econony testing)
