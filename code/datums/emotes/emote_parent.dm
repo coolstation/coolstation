@@ -65,6 +65,7 @@ var/static/list/human_emotes = list(
 	"sulk" = /datum/emote/simple_visible/sulk,
 	"glare" = /datum/emote/simple_visible/glare,
 	"nod" = /datum/emote/simple_visible/nod,
+	"nods" = /datum/emote/simple_visible/nods,
 	"blink" = /datum/emote/simple_visible/blink,
 	"drool" = /datum/emote/simple_visible/drool,
 	"shrug" = /datum/emote/simple_visible/shrug,

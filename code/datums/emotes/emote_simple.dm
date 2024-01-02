@@ -31,6 +31,8 @@
 	glare
 		emote_string = "glares"
 	nod
+		emote_string = "nod"
+	nods
 		emote_string = "nods"
 	blink
 		emote_string = "blinks"
@@ -407,7 +409,7 @@
 
 /datum/emote/listbasic/human
 /datum/emote/listbasic/human/enact(mob/user, voluntary = 0, param)
-	user.show_text("smile, grin, smirk, frown, scowl, grimace, sulk, pout, nod, blink, drool, shrug, tremble, despair, quiver, shiver, shudder, shake, \
+	user.show_text("smile, grin, smirk, frown, scowl, grimace, sulk, pout, nod, nods, blink, drool, shrug, tremble, despair, quiver, shiver, shudder, shake, \
 	think, ponder, clap, wave, salute, flap, aflap, laugh, chuckle, giggle, chortle, guffaw, cough, hiccup, sigh, mumble, grumble, groan, moan, sneeze, \
 	sniff, snore, whimper, yawn, choke, gasp, weep, sob, wail, whine, gurgle, gargle, blush, flinch, blink_r, eyebrow, shakehead, shakebutt, \
 	pale, flipout, rage, shame, raisehand, crackknuckles, stretch, rude, cry, retch, raspberry, tantrum, gesticulate, wgesticulate, smug, \
