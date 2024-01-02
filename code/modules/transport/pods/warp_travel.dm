@@ -52,15 +52,17 @@
 #endif
 	diner
 		name = "space diner beacon"
-	faint //Manta beacon.
+	faint
 		name = "faint signal"
-	front //Manta beacon.
+	annular
+		name = "repeater beacon"
+	front
 		name = "Fore beacon"
-	back //Manta beacon.
+	back
 		name = "Aft beacon"
-	starboard //Manta beacon.
+	starboard
 		name = "Starboard beacon"
-	port //Manta beacon.
+	port
 		name = "Port beacon"
 	trench_mining
 		name = "Mining outpost beacon"

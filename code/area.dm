@@ -6090,3 +6090,13 @@ MAJOR_AST(30)
 /area/nudebris/horizon/turrets
 	name = "Horizon Squat"
 	icon_state = "juicer3"
+
+/area/nudebris/annular
+	name = "Malfunctioning Annular Repeater"
+	icon_state = "juicer2"
+
+/area/nudebris/annular/magnetron
+	name = "Annular Repeater Magnetron"
+	icon_state = "juicer3"
+	irradiated = TRUE
+
