@@ -267,6 +267,7 @@
 	organ_image_under_suit_1 = "cat_under_suit"
 	organ_image_under_suit_2 = null
 	organ_image_over_suit = "cat_over_suit"
+	colorful = TRUE
 
 /obj/item/organ/tail/roach
 	name = "roach abdomen"

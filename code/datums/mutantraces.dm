@@ -1719,7 +1719,7 @@
 			REMOVE_MOB_PROPERTY(mob, PROP_RADPROT, src)
 		. = ..()
 
-/datum/mutantrace/cat // we have the sprites so ~why not add them~? (I fully expect to get shit for this)
+/datum/mutantrace/cat // god imagine gatekeeping this shit
 	name = "cat"
 	icon = 'icons/mob/cat.dmi'
 	icon_state = "body_m"
@@ -1734,7 +1734,20 @@
 	l_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/cat/left
 	r_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/cat/right
 	l_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/cat/left
-	mutant_appearance_flags = (NOT_DIMORPHIC | HAS_NO_SKINTONE | HAS_NO_EYES | BUILT_FROM_PIECES | HEAD_HAS_OWN_COLORS | WEARS_UNDERPANTS)
+	mutant_appearance_flags = (NOT_DIMORPHIC | HAS_HUMAN_EYES | HAS_SPECIAL_HAIR | BUILT_FROM_PIECES | FIX_COLORS | TORSO_HAS_SKINTONE | SKINTONE_USES_PREF_COLOR_1 | HAS_EXTRA_DETAILS | WEARS_UNDERPANTS)
+
+	special_hair_1_icon = 'icons/mob/cat.dmi'
+	special_hair_1_state = "head_detail" //eyes and pink parts
+	special_hair_1_color = null
+	/*special_hair_2_icon = 'icons/mob/cat.dmi'
+	special_hair_2_state = "head_detail_banditmask"
+	special_hair_2_color = CUST_1 //bottom: base color
+	special_hair_3_icon = 'icons/mob/cat.dmi'
+	special_hair_3_state = "head_detail_noseears"
+	special_hair_3_color = CUST_3*/ //top
+	detail_1_icon = 'icons/mob/cat.dmi'
+	detail_1_state = "chest_detail_altcolor" //counter-shading
+	detail_1_color = null //middle
 
 	New(mob/living/carbon/human/M)
 		. = ..()

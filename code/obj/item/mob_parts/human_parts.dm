@@ -1492,10 +1492,14 @@
 /obj/item/parts/human_parts/arm/mutant/cat
 	icon = 'icons/mob/cat.dmi'
 	partIcon = 'icons/mob/cat.dmi'
+	skintoned = 1
+	limb_overlay_1_color = CUST_1
 
 /obj/item/parts/human_parts/leg/mutant/cat
 	icon = 'icons/mob/cat.dmi'
 	partIcon = 'icons/mob/cat.dmi'
+	skintoned = 1
+	limb_overlay_1_color = CUST_1
 
 ////// ACTUAL CAT LIMBS //////
 /obj/item/parts/human_parts/arm/mutant/cat/left
