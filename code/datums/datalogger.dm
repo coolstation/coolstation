@@ -54,7 +54,7 @@ var/global/datum/datalogger/game_stats
 			return 1
 		ScanText(var/msg)
 			var/list/text_tokens = splittext(msg, " ")
-			var/fornoreason = 0
+//			var/fornoreason = 0
 			var/gayirl = 0
 			var/verily = 0
 			for(var/token in text_tokens)
