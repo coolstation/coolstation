@@ -445,7 +445,7 @@ var/datum/score_tracker/score_tracker
 		//. += "<B>Food Produced:</B> dunno yet but soon ok<BR>"
 		//. += "<B>Food Eaten:</B> dunno yet but soon ok<BR>"
 		. += "<B>Farts Blasted:</B> [fartcount]<BR>"
-		. += "<B>Shots Fired:</B> dunno yet but soon ok<BR>"
+		. += "<B>Shots Fired:</B> [gunseshoot]<BR>"
 		. += "<B>Weade Growne:</B> dunno yet but soon ok<BR>"
 		. += "<B>Doinks Sparked:</B> dunno yet but soon ok<BR>"
 		. += "<B>Time To Cloner Destruction:</B> dunno yet but soon ok<BR>"

@@ -432,6 +432,7 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 		src.log_shoot(user, T, P)
 
 	SEND_SIGNAL(user, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
+	gunseshoot++
 
 	if (ismob(user))
 		var/mob/M = user

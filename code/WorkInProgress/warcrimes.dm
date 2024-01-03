@@ -3,6 +3,7 @@
 // Moved these from BBSSS.dm to here because they're global and don't really give that much away (should they be global?)
 var/johnbill_shuttle_fartnasium_active = 1
 var/fartcount = 0
+var/gunseshoot = 0
 
 /obj/death_button/immersive
 	name = "Button that simulates the Coolstation Experience"

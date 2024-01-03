@@ -465,6 +465,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		src.log_shoot(user, T, P)
 
 	SEND_SIGNAL(user, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
+	gunseshoot++
 
 	chamber_checked = 0
 
