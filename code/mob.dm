@@ -1694,6 +1694,8 @@
 		return
 #ifdef DATALOGGER
 	game_stats.Increment("violence")
+	if(src.mind && src.mind.assigned_role == "Clown")
+		game_stats.Increment("clownabuse")
 #endif
 	logTheThing("combat", src, null, "is gibbed at [log_loc(src)].")
 	src.death(1)
@@ -1782,6 +1784,8 @@
 	if (isobserver(src)) return
 #ifdef DATALOGGER
 	game_stats.Increment("violence")
+	if(src.mind && src.mind.assigned_role == "Clown")
+		game_stats.Increment("clownabuse")
 #endif
 	logTheThing("combat", src, null, "is electric-gibbed at [log_loc(src)].")
 	src.death(1)
@@ -1814,6 +1818,8 @@
 	if (isobserver(src)) return
 #ifdef DATALOGGER
 	game_stats.Increment("violence")
+	if(src.mind && src.mind.assigned_role == "Clown")
+		game_stats.Increment("clownabuse")
 #endif
 	logTheThing("combat", src, null, "is fire-gibbed at [log_loc(src)].")
 	src.death(1)
@@ -1853,6 +1859,8 @@
 		return
 #ifdef DATALOGGER
 	game_stats.Increment("violence")
+	if(src.mind && src.mind.assigned_role == "Clown")
+		game_stats.Increment("clownabuse")
 #endif
 	logTheThing("combat", src, null, "is party-gibbed at [log_loc(src)].")
 	src.death(1)
@@ -1898,6 +1906,8 @@
 		return
 #ifdef DATALOGGER
 	game_stats.Increment("violence")
+	if(src.mind && src.mind.assigned_role == "Clown")
+		game_stats.Increment("clownabuse")
 #endif
 	var/transfer_mind_to_owl = prob(control_chance)
 	logTheThing("combat", src, null, "is owl-gibbed at [log_loc(src)].")
@@ -1947,6 +1957,8 @@
 		return
 #ifdef DATALOGGER
 	game_stats.Increment("violence")
+	if(src.mind && src.mind.assigned_role == "Clown")
+		game_stats.Increment("clownabuse")
 #endif
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
@@ -1984,6 +1996,8 @@
 	if (isobserver(src)) return
 #ifdef DATALOGGER
 	game_stats.Increment("violence")
+	if(src.mind && src.mind.assigned_role == "Clown")
+		game_stats.Increment("clownabuse")
 #endif
 	logTheThing("combat", src, null, "imploded at [log_loc(src)].")
 	src.death(1)
@@ -2015,6 +2029,7 @@
 
 	#ifdef DATALOGGER
 		game_stats.Increment("violence")
+		game_stats.Increment("clownabuse") // no check necessary, you're a clown by the time it matters. :)
 	#endif
 		logTheThing("combat", src, null, "is taken by the floor cluwne at [log_loc(src)].")
 		src.transforming = 1
@@ -2083,6 +2098,8 @@
 	if (isobserver(src)) return
 #ifdef DATALOGGER
 	game_stats.Increment("violence")
+	if(src.mind && src.mind.assigned_role == "Clown")
+		game_stats.Increment("clownabuse")
 #endif
 	logTheThing("combat", src, null, "is butt-gibbed at [log_loc(src)].")
 	src.death(1)

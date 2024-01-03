@@ -465,7 +465,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		src.log_shoot(user, T, P)
 
 	SEND_SIGNAL(user, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
-	gunseshoot++
+#ifdef DATALOGGER
+	if (game_stats && istype(game_stats))
+		game_stats.Increment("gunfire")
+#endif
 
 	chamber_checked = 0
 

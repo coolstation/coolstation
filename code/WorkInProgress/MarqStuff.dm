@@ -671,6 +671,8 @@
 
 	#ifdef DATALOGGER
 			game_stats.Increment("violence")
+			if(target.mind && target.mind.assigned_role == "Clown")
+				game_stats.Increment("clownabuse")
 	#endif
 			return
 

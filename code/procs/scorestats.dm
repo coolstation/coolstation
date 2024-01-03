@@ -439,18 +439,19 @@ var/datum/score_tracker/score_tracker
 
 		//if (acula_blood) 			. += "<B>Dr. Acula Blood Total:</B> [acula_blood]p<BR>"
 		. += "<B>Officer Beepsky:</B> [beepsky_alive ? "Survived" : "Ate Shit"] This Round<BR>"
-		. += "<B>Number of times a clown was abused:</B> dunno yet but soon ok<BR>"
 		//. += "<B>Ores Mined:</B> dunno yet but soon ok<BR>"
 		//. += "<B>Things Sold:</B> dunno yet but soon ok<BR>"
 		//. += "<B>Food Produced:</B> dunno yet but soon ok<BR>"
 		//. += "<B>Food Eaten:</B> dunno yet but soon ok<BR>"
 		. += "<B>Farts Blasted:</B> [fartcount]<BR>"
-		. += "<B>Shots Fired:</B> [gunseshoot]<BR>"
 		. += "<B>Weade Growne:</B> dunno yet but soon ok<BR>"
 		. += "<B>Doinks Sparked:</B> dunno yet but soon ok<BR>"
 		. += "<B>Time To Cloner Destruction:</B> dunno yet but soon ok<BR>"
+#ifdef DATALOGGER
+		. += "<B>Shots Fired:</B> [game_stats.GetStat("gunfire")]<BR>"
+		. += "<B>Number of times a clown was abused:</B>[game_stats.GetStat("clownabuse")]<BR>"
 		. += "<BR><B>COOL FACT:</B> all the space bees are gay<BR>"
-
+#endif
 		return jointext(., "")
 
 

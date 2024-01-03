@@ -396,6 +396,10 @@
 					continue
 				. = "<span class='alert'><B>[src]</B> farts in [M]'s face!</span>"
 				fart_on_other = 1
+#ifdef DATALOGGER
+				if (M.mind && M.mind.assigned_role == "Clown")
+					game_stats.Increment("clownabuse")
+#endif
 				src.fart_memory += A
 				break
 			else if(istype(A,/obj/item/storage/bible))

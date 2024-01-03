@@ -253,6 +253,8 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 
 #ifdef DATALOGGER
 		game_stats.Increment("violence")
+		if(M.mind && M.mind.assigned_role == "Clown")
+			game_stats.Increment("clownabuse")
 #endif
 		return
 
@@ -432,7 +434,10 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 		src.log_shoot(user, T, P)
 
 	SEND_SIGNAL(user, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
-	gunseshoot++
+#ifdef DATALOGGER
+	if (game_stats && istype(game_stats))
+		game_stats.Increment("gunfire")
+#endif
 
 	if (ismob(user))
 		var/mob/M = user

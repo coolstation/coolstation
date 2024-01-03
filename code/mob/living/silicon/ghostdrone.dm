@@ -858,6 +858,10 @@
 						if (M == src || !M.lying)
 							continue
 						message = "<span class='alert'><B>[src]</B> farts in [M]'s face!</span>"
+#ifdef DATALOGGER
+						if (M.mind && M.mind.assigned_role == "Clown")
+							game_stats.Increment("clownabuse")
+#endif
 						fart_on_other = 1
 						break
 					if (!fart_on_other)
