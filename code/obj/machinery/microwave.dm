@@ -105,9 +105,11 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 		if (isscrewingtool(O) && src.microwave_state == MW_STATE_BROKEN_2)
 			src.visible_message("<span class='notice'>[user] starts to fix part of the microwave.</span>")
 			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/machinery/microwave/proc/repair, list(user), 'icons/obj/items/tools/screwdriver.dmi', "screwdriver", "", null)
+			return
 		else if (src.microwave_state == MW_STATE_BROKEN_1 && iswrenchingtool(O))
 			src.visible_message("<span class='notice'>[user] starts to fix part of the microwave.</span>")
 			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/machinery/microwave/proc/repair, list(user), 'icons/obj/items/tools/wrench.dmi', "wrench", "", null)
+			return
 		else
 			boutput(user, "It's broken! It could be fixed with some common tools.")
 			return
@@ -115,9 +117,10 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 		if(istype(O, /obj/item/spraybottle))
 			src.visible_message("<span class='notice'>[user] starts to clean the microwave.</span>")
 			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/machinery/microwave/proc/clean, list(user), 'icons/obj/janitor.dmi', "cleaner", "", null)
-
+			return
 		else if(istype(O, /obj/item/sponge))
 			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/machinery/microwave/proc/clean, list(user), 'icons/obj/janitor.dmi', "sponge", "", null)
+			return
 
 		else //Otherwise bad luck!!
 			boutput(user, "It's dirty! It could be cleaned with a sponge or spray bottle")
