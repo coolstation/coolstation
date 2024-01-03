@@ -1201,8 +1201,8 @@
 	icon = 'icons/obj/decals/posters.dmi'
 	icon_state = "gunse"
 	popup_win = 1
-	imgw = 644
-	imgh = 165
+	imgw = 650
+	imgh = 200
 	img = "images/arts/posters/gunsmithing.jpg"
 
 /obj/decal/poster/wallsign/pod_build/nt
