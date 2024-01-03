@@ -5995,10 +5995,10 @@
 /obj/machinery/atmospherics/unary/furnace_connector{
 	dir = 1
 	},
+/obj/machinery/power/furnace,
 /obj/machinery/light/small/warm{
 	dir = 8
 	},
-/obj/machinery/power/furnace/thermo,
 /turf/floor/engine,
 /area/station/engine/core)
 "cKq" = (
@@ -11478,9 +11478,7 @@
 /turf/floor/sanitary/white,
 /area/station/medical/morgue)
 "eWp" = (
-/obj/machinery/door/poddoor/blast{
-	id = "hangar_mining"
-	},
+/obj/machinery/door/poddoor/blast,
 /turf/floor/shuttlebay,
 /area/station/mining/dock)
 "eWz" = (
@@ -19105,12 +19103,6 @@
 /obj/machinery/cashreg,
 /turf/floor/white,
 /area/station/medical/medbooth)
-"ieS" = (
-/obj/machinery/door_control/podbay/mining{
-	pixel_y = -25
-	},
-/turf/floor/caution/east,
-/area/station/mining/dock)
 "ieV" = (
 /obj/machinery/light_switch/auto,
 /turf/floor/bluewhite{
@@ -24865,10 +24857,6 @@
 	},
 /turf/floor/grass,
 /area/station/garden/owlery)
-"ktW" = (
-/obj/machinery/light/fluorescent/auto/neutral,
-/turf/floor/shuttlebay,
-/area/station/mining/dock)
 "kux" = (
 /turf/floor/yellow/side{
 	dir = 4
@@ -33458,13 +33446,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/outer/north)
-"nPI" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/light/fluorescent/auto/neutral,
-/turf/floor/caution/south,
-/area/station/mining/dock)
 "nPO" = (
 /turf/floor,
 /area/station/maintenance/disposal)
@@ -41638,7 +41619,6 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/item/device/net_sniffer,
 /turf/floor/yellow/side,
 /area/station/storage/tech)
 "riq" = (
@@ -42758,7 +42738,10 @@
 /turf/floor,
 /area/station/hallway/primary/central)
 "rHJ" = (
-/obj/effects/background_objects,
+/obj/effects/background_objects{
+	rotate = 1;
+	rotate_speed = 2500
+	},
 /turf/space,
 /area/station/hallway/primary/south)
 "rHK" = (
@@ -50373,7 +50356,7 @@
 /turf/floor/blue,
 /area/station/hallway/primary/southeast)
 "uEt" = (
-/obj/machinery/vending/computer3,
+/obj/item/device/net_sniffer,
 /turf/floor/yellow/side,
 /area/station/storage/tech)
 "uEu" = (
@@ -51222,7 +51205,7 @@
 /obj/machinery/atmospherics/unary/furnace_connector{
 	dir = 1
 	},
-/obj/machinery/power/furnace/thermo,
+/obj/machinery/power/furnace,
 /turf/floor/engine,
 /area/station/engine/core)
 "uWn" = (
@@ -53185,6 +53168,13 @@
 	dir = 1
 	},
 /area/station/crew_quarters/courtroom)
+"vMV" = (
+/obj/decal/poster/wallsign/gunsmithing{
+	pixel_y = 27
+	},
+/obj/item/gun_exploder,
+/turf/floor/grass,
+/area/station/garden/owlery)
 "vNE" = (
 /obj/cable{
 	d2 = 8;
@@ -57865,14 +57855,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/outer/south)
-"xxU" = (
-/obj/machinery/r_door_control/podbay/mainpod1/new_walls/east{
-	id = "hangar_mining";
-	name = "mining bay hangar remote control";
-	pixel_x = 0
-	},
-/turf/wall/r_wall,
-/area/station/mining/dock)
 "xyu" = (
 /obj/machinery/crema_switch{
 	id = 2;
@@ -86372,7 +86354,7 @@ pHB
 xjZ
 sVR
 cyb
-xBC
+vMV
 xBC
 xBC
 seN
@@ -91502,7 +91484,7 @@ xqX
 xqX
 xqX
 xqX
-xqX
+rHJ
 dDd
 fyr
 yhb
@@ -91804,7 +91786,7 @@ xqX
 xqX
 xqX
 xqX
-rHJ
+xqX
 dDd
 kOe
 yhb
@@ -118936,7 +118918,7 @@ ooQ
 fvt
 rwA
 rwA
-ieS
+rwA
 plz
 dZC
 plz
@@ -119535,12 +119517,12 @@ kLR
 xzG
 xzG
 plz
-nPI
+nJW
 oyq
 oyq
 oyq
 oyq
-ktW
+oyq
 plz
 xzG
 xzG
@@ -120749,7 +120731,7 @@ eWp
 eWp
 eWp
 eWp
-xxU
+plz
 vjX
 vjX
 pHX

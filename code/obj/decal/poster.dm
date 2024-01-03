@@ -1196,6 +1196,15 @@
 	imgh = 570
 	img = "images/arts/posters/hypothermia.jpg"
 
+/obj/decal/poster/wallsign/gunsmithing
+	name = "basic firearm maintenance"
+	icon = 'icons/obj/decals/posters.dmi'
+	icon_state = "gunse"
+	popup_win = 1
+	imgw = 644
+	imgh = 165
+	img = "images/arts/posters/gunsmithing.jpg"
+
 /obj/decal/poster/wallsign/pod_build/nt
 	icon_state = "nt-pod-poster"
 /obj/decal/poster/wallsign/pod_build/sy
