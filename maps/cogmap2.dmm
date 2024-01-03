@@ -54699,7 +54699,7 @@
 /turf/floor/arrival/corner,
 /area/station/hallway/secondary/exit)
 "cpH" = (
-/obj/machinery/light/emergency/exitsign,
+/obj/machinery/light/emergencyflashing/exitsign,
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/arrival,
 /area/station/hallway/secondary/exit)
@@ -56104,7 +56104,7 @@
 /turf/floor/arrival,
 /area/station/hallway/secondary/exit)
 "csZ" = (
-/obj/machinery/light/emergency/exitsign{
+/obj/machinery/light/emergencyflashing/exitsign{
 	dir = 4;
 	pixel_x = 12
 	},
@@ -66321,7 +66321,7 @@
 /turf/floor/plating,
 /area/station/mining/staff_room)
 "cQf" = (
-/obj/machinery/light/emergency/exitsign{
+/obj/machinery/light/emergencyflashing/exitsign{
 	dir = 1;
 	pixel_y = 16
 	},
@@ -78649,7 +78649,6 @@
 /area/station/ranch)
 "jcR" = (
 /obj/machinery/light,
-/obj/submachine/chicken_feed_grinder,
 /obj/item/reagent_containers/food/snacks/plant/corn{
 	doants = 0
 	},
@@ -78832,8 +78831,6 @@
 	dir = 8
 	},
 /obj/table/wood/auto,
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag,
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag,
 /turf/floor/grasstodirt{
 	dir = 8
 	},
@@ -78971,8 +78968,6 @@
 /obj/railing/orange/reinforced,
 /obj/machinery/light_switch/east,
 /obj/table/wood/auto,
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag,
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag,
 /turf/floor/grasstodirt,
 /area/station/ranch)
 "nqk" = (
@@ -79079,7 +79074,6 @@
 /turf/floor/specialroom/medbay,
 /area/station/medical/medbay/lobby)
 "oxp" = (
-/obj/submachine/chicken_incubator,
 /obj/item/reagent_containers/food/snacks/ingredient/egg{
 	rand_pos = 0
 	},
@@ -79270,7 +79264,6 @@
 /turf/floor/specialroom/cafeteria,
 /area/station/science/lab)
 "qLi" = (
-/obj/submachine/chicken_incubator,
 /obj/item/reagent_containers/food/snacks/ingredient/egg{
 	rand_pos = 0
 	},
