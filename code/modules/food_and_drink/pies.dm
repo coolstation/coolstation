@@ -17,6 +17,11 @@
 			M.take_eye_damage(rand(0, 2), 1)
 			if (prob(40))
 				JOB_XP(M, "Clown", 2)
+			if (M.mind && M.mind.assigned_role == "Clown")
+				M.add_karma(5)
+#ifdef DATALOGGER
+				game_stats.Increment("clownabuse")
+#endif
 		else
 			..()
 

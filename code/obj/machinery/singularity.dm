@@ -246,6 +246,9 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 					if ("Clown")
 						// Hilarious.
 						gain = 500
+#ifdef DATALOGGER
+						game_stats.Increment("clownabuse")
+#endif
 						grow()
 					if ("Lawyer")
 						// Satan.

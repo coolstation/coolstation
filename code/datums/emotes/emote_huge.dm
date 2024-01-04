@@ -90,6 +90,11 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 						if (user.mind)
 							if (M.mind && M.mind.assigned_role == "Geneticist")
 								user.add_karma(10)
+							if (M.mind && M.mind.assigned_role == "Clown")
+								user.add_karma(1)
+#ifdef DATALOGGER
+								game_stats.Increment("clownabuse")
+#endif
 						fart_on_other = 1
 						break
 					else if (istype(A,/obj/item/storage/bible))

@@ -782,6 +782,11 @@ datum
 			mix_phrase = "The drink makes an unconvincing gunshot noise."
 			mix_sound = 'sound/vox/shoot.ogg'
 			drinkrecipe = 1
+			on_reaction()
+				#ifdef DATALOGGER
+				if (game_stats && istype(game_stats))
+					game_stats.Increment("gunfire")
+				#endif
 
 		cocktail_espressomartini
 			name = "Espresso Martini"

@@ -2629,6 +2629,8 @@
 		return
 #ifdef DATALOGGER
 	game_stats.Increment("violence")
+	if(src.mind && src.mind.assigned_role == "Clown")
+		game_stats.Increment("clownabuse")
 #endif
 
 	src.death(1)
@@ -3410,6 +3412,8 @@
 
 			#ifdef DATALOGGER
 			game_stats.Increment("violence")
+			if(src.mind && src.mind.assigned_role == "Clown")
+				game_stats.Increment("clownabuse")
 			#endif
 
 			if(AM.throwforce >= 40)
@@ -3444,6 +3448,8 @@
 
 		#ifdef DATALOGGER
 		game_stats.Increment("violence")
+		if(src.mind && src.mind.assigned_role == "Clown")
+			game_stats.Increment("clownabuse")
 		#endif
 
 		if(AM.throwforce >= 40)

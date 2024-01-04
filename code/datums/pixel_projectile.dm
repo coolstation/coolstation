@@ -291,6 +291,8 @@ turf/proc/collide_here(var/obj/pixel_projectile/p)
 
 #ifdef DATALOGGER
 		game_stats.Increment("violence")
+		if(M.mind && M.mind.assigned_role == "Clown")
+			game_stats.Increment("clownabuse")
 #endif
 		return
 

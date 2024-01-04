@@ -247,10 +247,14 @@
 				if (9) message_append = " Wow!"
 				if (10,11,12,13) message_append = ""
 			user.visible_message("<span class='alert'><B>[user]</B> blows smoke right into <B>[target]</B>'s face![message_append]</span>", group = "[user]_blow_smoke_at_[target]")
-
+#ifdef DATALOGGER
+			if (target.mind && target.mind.assigned_role == "Clown")
+				game_stats.Increment("clownabuse")
+#endif
 			var/mob/living/carbon/human/human_target = target
 			if (human_target && rand(1,5) == 1)
 				SPAWN_DBG(0) target.emote("cough")
+
 		else
 			var/message
 			switch(rand(1, 9))

@@ -3,7 +3,7 @@
 // Moved these from BBSSS.dm to here because they're global and don't really give that much away (should they be global?)
 var/johnbill_shuttle_fartnasium_active = 1
 var/fartcount = 0
-var/gunseshoot = 0
+var/clownabuse = 0
 
 /obj/death_button/immersive
 	name = "Button that simulates the Coolstation Experience"
@@ -413,20 +413,21 @@ Urs' Hauntdog critter
 				part_in_inventory = null
 				return
 			else if(gun.gun_DRM & GUN_NANO)
-				price_expected = 1100
-				src.say("Nano tech's kind of tricky. Eleven Hundo. Non-negotiable.")
+				price_expected = rand(9,11)
+				src.say("Nano tech's kind of tricky. [price_expected] Hundo. Non-negotiable.")
+				price_expected *= 100
 
 			else if(gun.gun_DRM & GUN_JUICE)
-				price_expected = 300
-				src.say("Childs play. Three hundred bucks.")
+				price_expected = rand(200,300)
+				src.say("Childs play. [price_expected] bucks.")
 
 			else if(gun.gun_DRM & GUN_SOVIET)
-				price_expected = 900
-				src.say("Oooh hoo, vintage communist gear. Not easy. Nine hundred?")
+				price_expected = rand(800,900)
+				src.say("Oooh hoo, vintage communist gear. Not easy. [price_expected]?")
 
 			else if(gun.gun_DRM & GUN_ITALIAN)
-				price_expected = 250
-				src.say("Christ these things basically crack themselves. Two-Fifty.")
+				price_expected = 100
+				src.say("Christ these things basically crack themselves. One crisp double-zero.")
 
 			else if(gun.gun_DRM & GUN_FOSS)
 				price_expected = 1000

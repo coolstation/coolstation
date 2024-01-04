@@ -465,7 +465,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		src.log_shoot(user, T, P)
 
 	SEND_SIGNAL(user, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
-	gunseshoot++
+#ifdef DATALOGGER
+	if (game_stats && istype(game_stats))
+		game_stats.Increment("gunfire")
+#endif
 
 	chamber_checked = 0
 
@@ -765,6 +768,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 
 
 /obj/item/gun/modular/juicer/blunder
+	name = "blunder BLASTA"
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/juicer(src)
 		if(prob(5))
@@ -777,6 +781,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 
 
 /obj/item/gun/modular/juicer/long
+	name = "Sniper BLASTA"
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/juicer/longer(src)
 		if(prob(70))
@@ -785,6 +790,20 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 			stock = new /obj/item/gun_parts/stock/italian/bigger(src)
 		if(prob(50))
 			stock2 = new /obj/item/gun_parts/stock/juicer/stub(src)
+			magazine = new /obj/item/gun_parts/magazine/juicer/four(src)
+		else
+			magazine = new /obj/item/gun_parts/magazine/juicer(src)
+
+/obj/item/gun/modular/juicer/long
+	name = "greeble BLASTA"
+	make_parts()
+		barrel = new /obj/item/gun_parts/barrel/juicer/ribbed(src)
+		if(prob(70))
+			stock = new /obj/item/gun_parts/stock/juicer/stub(src)
+		else
+			stock = new /obj/item/gun_parts/stock/juicer/black(src)
+		if(prob(50))
+			stock2 = new /obj/item/gun_parts/stock/juicer/black(src)
 			magazine = new /obj/item/gun_parts/magazine/juicer/four(src)
 		else
 			magazine = new /obj/item/gun_parts/magazine/juicer(src)

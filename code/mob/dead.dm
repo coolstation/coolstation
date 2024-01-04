@@ -101,6 +101,10 @@
 						break
 					else
 						M.show_text("<i>You feel \an [fluff] [pick("draft", "wind", "breeze", "chill", "pall")]...</i>")
+#ifdef DATALOGGER
+						if (M.mind && M.mind.assigned_role == "Clown")
+							game_stats.Increment("clownabuse")
+#endif
 						break
 				if (!fart_on_other)
 					message = "<B>[src]</B> lets out \an [fluff] fart!"

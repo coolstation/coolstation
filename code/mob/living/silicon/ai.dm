@@ -1069,6 +1069,10 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 					if (M == src || !M.lying) continue
 					message = "<span class='alert'><B>[src]</B> farts in [M]'s face!</span>"
 					fart_on_other = 1
+#ifdef DATALOGGER
+					if (M.mind && M.mind.assigned_role == "Clown")
+						game_stats.Increment("clownabuse")
+#endif
 					break
 				if (!fart_on_other)
 					switch (rand(1, 40))

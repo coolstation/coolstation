@@ -19,9 +19,9 @@ var/global/datum/datalogger/game_stats
 		stats["violence"] = 0
 		stats["catches"] = 0
 //		stats["animes"] = 0
-		stats["fornoreason"] = 0
+//		stats["fornoreason"] = 0
 //		stats["literally"] = 0
-//		stats["gayirl"] = 0
+		stats["gayirl"] = 0
 		stats["verily"] = 0
 		stats["grief"] = 0
 		stats["grife"] = 0
@@ -33,6 +33,7 @@ var/global/datum/datalogger/game_stats
 		stats["players"] = 0
 		stats["admins"] = 0
 		stats["gunfire"] = 0
+		stats["clownabuse"] = 0
 	proc
 		Increment(var/p)
 			if(!(p in stats))
@@ -53,13 +54,14 @@ var/global/datum/datalogger/game_stats
 			return 1
 		ScanText(var/msg)
 			var/list/text_tokens = splittext(msg, " ")
-			var/fornoreason = 0
-//			var/gayirl = 0
+//			var/fornoreason = 0
+			var/gayirl = 0
 			var/verily = 0
 			for(var/token in text_tokens)
 				token = lowertext(token)
 				token = replacetext(token, "!", "")
 				token = replacetext(token, "?", "")
+				token = replacetext(token, "'", "")
 				// this should cover all misspellings of "grief"
 				if(dd_hasprefix(token, "gr"))
 					if(dd_hassuffix(token, "ed"))
@@ -75,22 +77,22 @@ var/global/datum/datalogger/game_stats
 							game_stats.Increment("grief_other")
 //				else if(token in list("o.o", "o_o", "^_^", "^^", "<.<", ">.>", "<<", ">>", "-.-", "-_-"))
 //					game_stats.Increment("animes")
-				else if(token == "literally")
-					game_stats.Increment("literally")
-				else if(token == "for" && fornoreason == 0)
-					fornoreason = 1
-				else if(token == "no" && fornoreason == 1)
-					fornoreason = 2
-				else if(token == "reason" && fornoreason == 2)
-					fornoreason = 3
-					game_stats.Increment("fornoreason")
+//				else if(token == "literally")
+//					game_stats.Increment("literally")
+//				else if(token == "for" && fornoreason == 0)
+//					fornoreason = 1
+//				else if(token == "no" && fornoreason == 1)
+//					fornoreason = 2
+//				else if(token == "reason" && fornoreason == 2)
+//					fornoreason = 3
+//					game_stats.Increment("fornoreason")
 				else if(token == "rouge")
 					game_stats.Increment("rouge")
-//				else if(token == "gay" && gayirl == 0)
-//					gayirl = 1
-//				else if(token == "irl" && gayirl == 1)
-//					gayirl = 2
-//					game_stats.Increment("gayirl")
+				else if(token == "im" && gayirl == 0)
+					gayirl = 1
+				else if(token == "gay" && gayirl == 1)
+					gayirl = 2
+					game_stats.Increment("gayirl")
 				else if(token == "verily" && !verily)
 					verily = 1
 					game_stats.Increment("verily")

@@ -2523,7 +2523,7 @@
 /turf/floor/yellow/side{
 	dir = 8
 	},
-/area/station/mining/refinery)
+/area/station/mining/equipment)
 "bre" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/storage/box/cablesbox{
@@ -2941,7 +2941,7 @@
 "bFR" = (
 /obj/machinery/computer/transit_terminal/macro_test,
 /turf/floor/plating,
-/area/gehenna/underground)
+/area/noGenerate)
 "bGa" = (
 /obj/disposalpipe/trunk{
 	dir = 2
@@ -7023,7 +7023,7 @@
 	icon_state = "5-10"
 	},
 /turf/floor,
-/area/station/mining/refinery)
+/area/station/mining/equipment)
 "ebI" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -10681,6 +10681,9 @@
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
+"gdP" = (
+/turf/floor,
+/area/station/mining/equipment)
 "gef" = (
 /obj/disposalpipe/segment/vertical,
 /obj/cable{
@@ -11072,7 +11075,7 @@
 /turf/floor/yellow/corner{
 	dir = 4
 	},
-/area/station/mining/refinery)
+/area/station/mining/equipment)
 "gqZ" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/disposalpipe/segment/sewage,
@@ -12170,7 +12173,7 @@
 /obj/disposalpipe/segment/cargo,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/floor,
-/area/station/mining/refinery)
+/area/station/mining/equipment)
 "gVm" = (
 /obj/cable{
 	d1 = 1;
@@ -12705,7 +12708,7 @@
 "hlw" = (
 /obj/machinery/bot/skullbot,
 /turf/floor/plating,
-/area/gehenna/underground)
+/area/noGenerate)
 "hlT" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/wall,
@@ -14004,7 +14007,7 @@
 "ibG" = (
 /obj/machinery/light/small/reddish,
 /turf/floor/plating,
-/area/gehenna/underground)
+/area/noGenerate)
 "ibK" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
@@ -18988,7 +18991,7 @@
 	},
 /obj/disposalpipe/segment/vertical,
 /turf/floor,
-/area/station/mining/refinery)
+/area/station/mining/equipment)
 "kNi" = (
 /obj/rack,
 /obj/item/storage/toolbox/emergency,
@@ -19151,7 +19154,7 @@
 	},
 /obj/disposalpipe/segment/mineral,
 /turf/floor,
-/area/station/mining/refinery)
+/area/station/mining/equipment)
 "kPs" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/breathable,
 /turf/floor/carpet/red/standard,
@@ -21263,7 +21266,7 @@
 "lZK" = (
 /obj/disposalpipe/junction/left/east,
 /turf/floor/yellow/corner,
-/area/station/mining/refinery)
+/area/station/mining/equipment)
 "lZL" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/disposalpipe/segment/produce,
@@ -24580,7 +24583,7 @@
 	icon_state = "4-8"
 	},
 /turf/floor,
-/area/station/mining/refinery)
+/area/station/mining/equipment)
 "nQD" = (
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/recharger/wall/sticky,
@@ -27986,7 +27989,7 @@
 /obj/disposalpipe/segment/horizontal,
 /obj/disposalpipe/segment/mineral,
 /turf/floor,
-/area/station/mining/refinery)
+/area/station/mining/equipment)
 "qas" = (
 /obj/cable{
 	d1 = 2;
@@ -29951,7 +29954,7 @@
 "rgI" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/yellow/side,
-/area/station/mining/refinery)
+/area/station/mining/equipment)
 "rgP" = (
 /obj/stool/bed/moveable,
 /obj/item/clothing/suit/bedsheet{
@@ -30080,7 +30083,7 @@
 "rjO" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/floor,
-/area/station/mining/refinery)
+/area/station/mining/equipment)
 "rjP" = (
 /obj/disposalpipe/segment/bent/south,
 /turf/floor/yellow/side{
@@ -32214,7 +32217,7 @@
 	pixel_y = 25
 	},
 /turf/floor/plating,
-/area/gehenna/underground)
+/area/noGenerate)
 "sue" = (
 /obj/decal/cleanable/dirt/random,
 /obj/decal/cleanable/dirt/random,
@@ -34019,7 +34022,7 @@
 /obj/disposalpipe/segment/cargo,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/floor,
-/area/station/mining/refinery)
+/area/station/mining/equipment)
 "ttH" = (
 /obj/machinery/light{
 	dir = 4;
@@ -36020,8 +36023,10 @@
 /turf/floor/grey,
 /area/station/crew_quarters/quartersB)
 "uzN" = (
-/turf/floor/plating,
-/area/gehenna/underground)
+/turf/floor/yellow/side{
+	dir = 8
+	},
+/area/station/mining/equipment)
 "uzO" = (
 /obj/machinery/light/fluorescent/cool/very,
 /turf/floor/grey/side{
@@ -41109,7 +41114,7 @@
 "xra" = (
 /obj/disposalpipe/junction/right/east,
 /turf/floor,
-/area/station/mining/refinery)
+/area/station/mining/equipment)
 "xrf" = (
 /obj/disposalpipe/segment/food,
 /obj/cable{
@@ -103482,7 +103487,7 @@ nQD
 ldo
 jTE
 aGk
-jTE
+uzN
 bqE
 mnk
 hAT
@@ -103784,7 +103789,7 @@ bIN
 qRU
 qRU
 qRU
-qRU
+gdP
 rjO
 xUP
 hAT
@@ -104086,7 +104091,7 @@ sog
 jUg
 qRU
 qRU
-qRU
+gdP
 ebG
 ugn
 hAT
@@ -106241,7 +106246,7 @@ fHl
 sqZ
 bhr
 mZK
-pdO
+kPQ
 kPQ
 kPQ
 kPQ
@@ -106543,7 +106548,7 @@ mZK
 mZK
 mZK
 mZK
-pdO
+kPQ
 kPQ
 kPQ
 kPQ
@@ -106841,11 +106846,11 @@ fzf
 ckw
 pvD
 tbQ
-iLx
-pdO
-pdO
-pdO
-pdO
+kpW
+kPQ
+kPQ
+kPQ
+kPQ
 kPQ
 kPQ
 kPQ
@@ -107143,11 +107148,11 @@ uZw
 jPA
 sqo
 tbQ
-iLx
-iLx
-pdO
-pdO
-pdO
+kpW
+kpW
+kPQ
+kPQ
+kPQ
 kPQ
 kPQ
 kPQ
@@ -107445,11 +107450,11 @@ xXW
 jPA
 mvm
 dwP
-iLx
-iLx
-pdO
-pdO
-pdO
+kpW
+kpW
+kPQ
+kPQ
+kPQ
 kPQ
 kPQ
 kPQ
@@ -107747,11 +107752,11 @@ vRB
 jPA
 kxr
 dwP
-iLx
-iLx
-iLx
-pdO
-pdO
+kpW
+kpW
+kpW
+kPQ
+kPQ
 kPQ
 kPQ
 kPQ
@@ -108049,11 +108054,11 @@ pVn
 jPA
 nyN
 tUV
-iLx
-iLx
-iLx
-pdO
-pdO
+kpW
+kpW
+kpW
+kPQ
+kPQ
 kPQ
 kPQ
 kPQ
@@ -108351,11 +108356,11 @@ pVn
 jPA
 nyN
 tUV
-pdO
-iLx
-iLx
-iLx
-pdO
+kPQ
+kpW
+kpW
+kpW
+kPQ
 kPQ
 kPQ
 kPQ
@@ -108653,11 +108658,11 @@ pVn
 jPA
 nyN
 tUV
-pdO
-pdO
-iLx
-iLx
-iLx
+kPQ
+kPQ
+kpW
+kpW
+kpW
 kPQ
 kPQ
 kPQ
@@ -108955,11 +108960,11 @@ eBQ
 jPA
 gHl
 dwP
-pdO
-pdO
-iLx
-iLx
-iLx
+kPQ
+kPQ
+kpW
+kpW
+kpW
 kpW
 kPQ
 kPQ
@@ -109257,11 +109262,11 @@ pVn
 jPA
 nyN
 tUV
-pdO
-pdO
-pdO
-iLx
-iLx
+kPQ
+kPQ
+kPQ
+kpW
+kpW
 kpW
 kPQ
 kPQ
@@ -109559,11 +109564,11 @@ ocI
 jPA
 nyN
 tUV
-pdO
-pdO
-pdO
-iLx
-iLx
+kPQ
+kPQ
+kPQ
+kpW
+kpW
 kpW
 kpW
 kPQ
@@ -109861,11 +109866,11 @@ pVn
 jPA
 nyN
 tUV
-iLx
-pdO
-pdO
-pdO
-iLx
+kpW
+kPQ
+kPQ
+kPQ
+kpW
 twZ
 twZ
 twZ
@@ -110163,11 +110168,11 @@ vRB
 jPA
 kxr
 dwP
-iLx
-iLx
-pdO
-pdO
-pdO
+kpW
+kpW
+kPQ
+kPQ
+kPQ
 twZ
 twZ
 twZ
@@ -110465,11 +110470,11 @@ eVb
 jPA
 nyN
 tUV
-iLx
-iLx
-iLx
-pdO
-pdO
+kpW
+kpW
+kpW
+kPQ
+kPQ
 twZ
 twZ
 hTf
@@ -110767,11 +110772,11 @@ pVe
 hPT
 nyN
 tUV
-iLx
-iLx
-iLx
-pdO
-pdO
+kpW
+kpW
+kpW
+kPQ
+kPQ
 hTf
 twZ
 twZ
@@ -111069,11 +111074,11 @@ inK
 kfW
 fsZ
 tUV
-pdO
-iLx
-iLx
-iLx
-pdO
+kPQ
+kpW
+kpW
+kpW
+kPQ
 hTf
 hTf
 twZ
@@ -111371,11 +111376,11 @@ esw
 jNF
 gHl
 dwP
-pdO
-pdO
-iLx
-iLx
-pdO
+kPQ
+kPQ
+kpW
+kpW
+kPQ
 hTf
 hTf
 twZ
@@ -111673,11 +111678,11 @@ xPF
 nyN
 nyN
 nAx
-pdO
-pdO
-pdO
-iLx
-iLx
+kPQ
+kPQ
+kPQ
+kpW
+kpW
 hTf
 hTf
 hTf
@@ -111975,11 +111980,11 @@ nyN
 nyN
 nyN
 lhG
-pdO
-pdO
-pdO
-pdO
-iLx
+kPQ
+kPQ
+kPQ
+kPQ
+kpW
 twZ
 hTf
 hTf
@@ -112277,11 +112282,11 @@ xvW
 iPj
 iPj
 dwP
-pdO
-pdO
-pdO
-pdO
-pdO
+kPQ
+kPQ
+kPQ
+kPQ
+kPQ
 twZ
 hTf
 hTf
@@ -112579,11 +112584,11 @@ htW
 kjO
 cXC
 dwP
-pdO
-pdO
-pdO
-pdO
-pdO
+kPQ
+kPQ
+kPQ
+kPQ
+kPQ
 twZ
 twZ
 hTf
@@ -112882,10 +112887,10 @@ dwP
 dwP
 dwP
 pdO
-pdO
-pdO
-pdO
-pdO
+kPQ
+kPQ
+kPQ
+kPQ
 hTf
 twZ
 twZ
@@ -113185,9 +113190,9 @@ pdO
 pdO
 pdO
 pdO
-pdO
-pdO
-pdO
+kPQ
+kPQ
+kPQ
 hTf
 hTf
 twZ
@@ -113488,7 +113493,7 @@ pdO
 pdO
 pdO
 pdO
-pdO
+kPQ
 hTf
 hTf
 hTf
@@ -129530,12 +129535,12 @@ hTf
 hTf
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+pdO
+pdO
+pdO
+pdO
+pdO
+pdO
 twZ
 hTf
 hTf
@@ -129832,12 +129837,12 @@ hTf
 hTf
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
+pdO
+pdO
+pdO
+pdO
 bFR
-uzN
+aQU
 hTf
 twZ
 hTf
@@ -130134,12 +130139,12 @@ hTf
 hTf
 hTf
 hTf
-hTf
-hTf
+pdO
+pdO
 xkJ
 xkJ
-uzN
-uzN
+aQU
+aQU
 hTf
 hTf
 twZ
@@ -130436,11 +130441,11 @@ hTf
 hTf
 hTf
 hTf
-hTf
-hTf
+pdO
+pdO
 xkJ
 xkJ
-uzN
+aQU
 ibG
 hTf
 twZ
@@ -130738,10 +130743,10 @@ hTf
 hTf
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
+pdO
+pdO
+pdO
+pdO
 stD
 hlw
 hTf
@@ -131040,12 +131045,12 @@ hTf
 hTf
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+pdO
+pdO
+pdO
+pdO
+pdO
+pdO
 hTf
 hTf
 hTf
