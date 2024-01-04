@@ -794,7 +794,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 		else
 			magazine = new /obj/item/gun_parts/magazine/juicer(src)
 
-/obj/item/gun/modular/juicer/long
+/obj/item/gun/modular/juicer/ribbed
 	name = "greeble BLASTA"
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/juicer/ribbed(src)
