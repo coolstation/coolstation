@@ -596,9 +596,9 @@ world/proc/updateCameraVisibility()
 		// takes about one second compared to the ~12++ that the actual calculations take
 		game_start_countdown?.update_status("Updating cameras...\n(Calculating...)")
 		var/list/turf/cam_candidates = block(locate(1, 1, Z_LEVEL_STATION), locate(world.maxx, world.maxy, Z_LEVEL_STATION))
-		#ifdef Z3_IS_A_STATION_LEVEL //oof ouch owie my camera visibility time doubling oof heck
-			cam_candidates += block(locate(1, 1, Z_LEVEL_DEBRIS), locate(world.maxx, world.maxy, Z_LEVEL_DEBRIS))
-		#endif
+	#ifdef Z3_IS_A_STATION_LEVEL //oof ouch owie my camera visibility time doubling oof heck
+		cam_candidates += block(locate(1, 1, Z_LEVEL_DEBRIS), locate(world.maxx, world.maxy, Z_LEVEL_DEBRIS))
+	#endif
 
 //pod wars has no AI so this is just a waste of time...
 #ifndef MAP_OVERRIDE_POD_WARS
