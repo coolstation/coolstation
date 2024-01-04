@@ -632,7 +632,7 @@ world/proc/updateCameraVisibility()
 				lastpct = thispct
 				game_start_countdown?.update_status("Updating cameras...\n[thispct]%")
 
-			sleep(-1)
+			LAGCHECK(100)
 		aiDirty = 1
 		game_start_countdown?.update_status("Updating camera vis...\n")
 	for_by_tcl(C, /obj/machinery/camera)
