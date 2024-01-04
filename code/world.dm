@@ -650,8 +650,10 @@ var/f_color_selector_handler/F_Color_Selector
 
 	UPDATE_TITLE_STATUS("Calculating cameras")
 	Z_LOG_DEBUG("World/Init", "Updating camera visibility...")
+	var/cam_timestamp = world.timeofday
 	aiDirty = 2
 	world.updateCameraVisibility()
+	Z_LOG_DEBUG("World/Init", "Camera vis took [(world.timeofday - cam_timestamp) / 10] seconds.")
 
 	UPDATE_TITLE_STATUS("Preloading client data...")
 	Z_LOG_DEBUG("World/Init", "Transferring manuf. icons to clients...")
