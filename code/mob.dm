@@ -3219,12 +3219,4 @@
 		return get_singleton(/datum/pronouns/abomination)
 	. = src?.bioHolder?.mobAppearance?.pronouns
 	if(isnull(.))
-		switch(src.gender)
-			if("male")
-				. = get_singleton(/datum/pronouns/heHim)
-			if("female")
-				. = get_singleton(/datum/pronouns/sheHer)
-			if("neuter")
-				. = get_singleton(/datum/pronouns/itIts)
-			else
-				. = get_singleton(/datum/pronouns/theyThem)
+		. = get_singleton(/datum/pronouns/theyThem)

@@ -447,13 +447,21 @@ datum/preferences
 
 			if ("update-pronouns")
 				var/list/types = filtered_concrete_typesof(/datum/pronouns, /proc/pronouns_filter_is_choosable)
-				var/selected
-				for (var/i = 1, i <= length(types), i++)
-					var/datum/pronouns/pronouns = get_singleton(types[i])
-					if (AH.pronouns == pronouns)
-						selected = i
-						break
-				AH.pronouns = get_singleton(types[selected < length(types) ? selected + 1 : 1])
+				var/list/names = list()
+				for(var/t in types)
+					var/datum/pronouns/pronoun = get_singleton(t)
+					names[pronoun.name] = pronoun
+				names += "*CUSTOM*"
+				var/selected = input(usr, "Choose pronouns") as null|anything in names
+				if(!selected)
+					return FALSE
+				if(selected == "*CUSTOM*")
+					var/datum/pronouns/customPronouns = create_pronouns(AH.pronouns)
+					if(!customPronouns)
+						return FALSE
+					AH.pronouns = customPronouns
+				else
+					AH.pronouns = names[selected]
 				src.profile_modified = TRUE
 				return TRUE
 
