@@ -49,13 +49,10 @@
 		src.client.show_popup_menus = 1
 		//if (src.client)
 		//	src.client.show_popup_menus = 0
-		for(var/key in aiImages)
-			var/image/I = aiImages[key]
-			src.client << I
 		SPAWN_DBG(0)
+			src.client.images += aiImages
 			var/sleep_counter = 0
-			for(var/key in aiImagesLowPriority)
-				var/image/I = aiImagesLowPriority[key]
+			for(var/image/I as anything in aiImagesLowPriority)
 				src.client << I
 				if(sleep_counter++ % (300 * 10) == 0)
 					LAGCHECK(LAG_LOW)
@@ -64,14 +61,12 @@
 		//if (src.client)
 		//	src.client.show_popup_menus = 1
 		var/client/cl = src.last_client
-		if(cl)
-			for(var/key in aiImages)
-				var/image/I = aiImages[key]
-				cl.images -= I
+		if(!cl)
+			return ..()
 		SPAWN_DBG(0)
+			cl?.images -= aiImages
 			var/sleep_counter = 0
-			for(var/key in aiImagesLowPriority)
-				var/image/I = aiImagesLowPriority[key]
+			for(var/image/I as anything in aiImagesLowPriority)
 				cl?.images -= I
 				if(sleep_counter++ % (300 * 10) == 0)
 					LAGCHECK(LAG_LOW)
@@ -600,15 +595,10 @@ world/proc/updateCameraVisibility()
 
 		// takes about one second compared to the ~12++ that the actual calculations take
 		game_start_countdown?.update_status("Updating cameras...\n(Calculating...)")
-		var/list/turf/cam_candidates = list()
-		for(var/turf/t in world) //ugh x2
-		#ifdef Z3_IS_A_STATION_LEVEL //oof ouch owie my camera visibility time doubling oof heck
-			//if( t.z != Z_LEVEL_STATION ) continue
-			if( t.z != Z_LEVEL_STATION && t.z != Z_LEVEL_DEBRIS ) continue
-		#else
-			if( t.z != Z_LEVEL_STATION ) continue
-		#endif
-			cam_candidates += t
+		var/list/turf/cam_candidates = block(locate(1, 1, Z_LEVEL_STATION), locate(world.maxx, world.maxy, Z_LEVEL_STATION))
+	#ifdef Z3_IS_A_STATION_LEVEL //oof ouch owie my camera visibility time doubling oof heck
+		cam_candidates += block(locate(1, 1, Z_LEVEL_DEBRIS), locate(world.maxx, world.maxy, Z_LEVEL_DEBRIS))
+	#endif
 
 //pod wars has no AI so this is just a waste of time...
 #ifndef MAP_OVERRIDE_POD_WARS
@@ -616,6 +606,7 @@ world/proc/updateCameraVisibility()
 		var/lastpct = 0
 		var/thispct = 0
 		var/donecount = 0
+		var/totalcount = length(cam_candidates) / 100
 
 		for(var/turf/t as anything in cam_candidates) //ugh
 			t.aiImage = new
@@ -624,13 +615,19 @@ world/proc/updateCameraVisibility()
 			t.aiImage.loc = t
 
 		#ifdef DESERT_MAP //This isn't strictly necessary but saving desert istype checks on 90k turfs per zlevel processed feels worth it?
-			addAIImage(t.aiImage, "aiImage_\ref[t.aiImage]", low_priority=(istype(t, /turf/wall/asteroid/gehenna) || istype(t, /turf/space/gehenna/desert)))
+			if(istype(t, /turf/wall/asteroid/gehenna) || istype(t, /turf/space/gehenna/desert))
 		#else //(That works out to 90k of those two desert checks for most maps and 180k space checks for gehenna)
-			addAIImage(t.aiImage, "aiImage_\ref[t.aiImage]", low_priority=istype(t, /turf/space))
+			if(istype(t, /turf/space))
 		#endif
+				aiImagesLowPriority += t.aiImage
+			else
+				aiImages += t.aiImage
+			for_by_tcl(M, /mob/living/silicon/ai)
+				if(M.client)
+					M << t.aiImage
 
 			donecount++
-			thispct = round(donecount / cam_candidates.len * 100)
+			thispct = round(donecount / totalcount)
 			if (thispct != lastpct)
 				lastpct = thispct
 				game_start_countdown?.update_status("Updating cameras...\n[thispct]%")
