@@ -58,6 +58,7 @@
 	newPronouns.pluralize = plural == "Yes" ? TRUE : FALSE
 	return newPronouns
 #undef STRING_CHECK
+
 ABSTRACT_TYPE(/datum/pronouns)
 /datum/pronouns
 	var/name
