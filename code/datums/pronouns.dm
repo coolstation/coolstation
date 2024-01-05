@@ -15,6 +15,50 @@
 		return choice
 	return choices[choice]
 
+
+#define STRING_CHECK(STRING) \
+	STRING = trim(STRING); \
+	for(var/x in bad_name_characters) { \
+		STRING = replacetext(STRING, x, ""); \
+	} \
+	STRING = copytext(STRING, 1, NAME_CHAR_MAX);
+
+/// create an instance of a custom pronoun datum
+/// optional current arg to autofill fields with current values
+/proc/create_pronouns(datum/pronouns/current = null)
+	RETURN_TYPE(/datum/pronouns)
+	var/preferredGender = input(usr, "Enter preferred gender e.g. man, woman, person", "Miraculous Pronoun-o-matic", current?.preferredGender) as null|text
+	STRING_CHECK(preferredGender)
+	if(!preferredGender) return FALSE
+	var/subjective = input(usr, "Enter subjective pronoun", "Miraculous Pronoun-o-matic", current?.subjective) as null|text
+	STRING_CHECK(subjective)
+	if(!subjective) return FALSE
+	var/objective = input(usr, "Enter objective pronoun", "Miraculous Pronoun-o-matic", current?.objective) as null|text
+	STRING_CHECK(objective)
+	if(!objective) return FALSE
+	var/possessive = input(usr, "Enter possessive pronoun", "Miraculous Pronoun-o-matic", current?.possessive) as null|text
+	STRING_CHECK(possessive)
+	if(!possessive) return FALSE
+	var/posessivePronoun = input(usr, "Enter second posessive pronoun e.g. hers instead of her", "Miraculous Pronoun-o-matic", current?.posessivePronoun) as null|text
+	STRING_CHECK(posessivePronoun)
+	if(!posessivePronoun) return FALSE
+	var/reflexive = input(usr, "Enter reflexive pronoun (usually ends in self)", "Miraculous Pronoun-o-matic", current?.reflexive) as null|text
+	STRING_CHECK(reflexive)
+	if(!reflexive) return FALSE
+	var/plural = alert(usr, "Are these pronouns plural?", "Miraculous Pronoun-o-matic", "Yes", "No")
+	if(!plural) return FALSE
+	var/datum/pronouns/custom/newPronouns = new
+	newPronouns.preferredGender = preferredGender
+	newPronouns.name = "custom ([subjective]/[objective])"
+	newPronouns.subjective = subjective
+	newPronouns.objective = objective
+	newPronouns.possessive = possessive
+	newPronouns.posessivePronoun = posessivePronoun
+	newPronouns.reflexive = reflexive
+	newPronouns.pluralize = plural == "Yes" ? TRUE : FALSE
+	return newPronouns
+#undef STRING_CHECK
+
 ABSTRACT_TYPE(/datum/pronouns)
 /datum/pronouns
 	var/name
@@ -86,3 +130,8 @@ ABSTRACT_TYPE(/datum/pronouns)
 	posessivePronoun = "its"
 	reflexive = "itself"
 	choosable = TRUE
+
+/// this is used for custom pronouns and is assigned in create_pronouns, also its not a singleton so don't use it like that
+/datum/pronouns/custom
+	choosable = FALSE
+	name = "custom"

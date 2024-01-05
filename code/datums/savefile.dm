@@ -66,6 +66,15 @@
 		// AppearanceHolder details
 		if (src.AH)
 			F["[profileNum]_pronouns"] << AH.pronouns.name
+			// these fields are unused on non-custom pronouns but probably better to do that than
+			// have some save files with these fields and some without?
+			F["[profileNum]_pronouns_preferred_gender"] << AH.pronouns.preferredGender
+			F["[profileNum]_pronouns_subjective"] << AH.pronouns.subjective
+			F["[profileNum]_pronouns_objective"] << AH.pronouns.objective
+			F["[profileNum]_pronouns_possessive"] << AH.pronouns.possessive
+			F["[profileNum]_pronouns_posessive_pronoun"] << AH.pronouns.posessivePronoun
+			F["[profileNum]_pronouns_reflexive"] << AH.pronouns.reflexive
+			F["[profileNum]_pronouns_plural"] << AH.pronouns.pluralize
 			F["[profileNum]_eye_color"] << AH.e_color
 			F["[profileNum]_hair_color"] << AH.customization_first_color
 			F["[profileNum]_facial_color"] << AH.customization_second_color
@@ -224,11 +233,23 @@
 		if (src.AH)
 			var/saved_pronouns
 			F["[profileNum]_pronouns"] >> saved_pronouns
-			for (var/P as anything in filtered_concrete_typesof(/datum/pronouns, /proc/pronouns_filter_is_choosable))
-				var/datum/pronouns/pronouns = get_singleton(P)
-				if (saved_pronouns == pronouns.name)
-					AH.pronouns = pronouns
-					break
+			// we only store the name and i don't feel like breaking all saves so stupid string searching
+			if(findtext(saved_pronouns, "custom"))
+				AH.pronouns = new
+				AH.pronouns.name = saved_pronouns
+				F["[profileNum]_pronouns_preferred_gender"] >> AH.pronouns.preferredGender
+				F["[profileNum]_pronouns_subjective"] >> AH.pronouns.subjective
+				F["[profileNum]_pronouns_objective"] >> AH.pronouns.objective
+				F["[profileNum]_pronouns_possessive"] >> AH.pronouns.possessive
+				F["[profileNum]_pronouns_posessive_pronoun"] >> AH.pronouns.posessivePronoun
+				F["[profileNum]_pronouns_reflexive"] >> AH.pronouns.reflexive
+				F["[profileNum]_pronouns_plural"] >> AH.pronouns.pluralize
+			else
+				for (var/P as anything in filtered_concrete_typesof(/datum/pronouns, /proc/pronouns_filter_is_choosable))
+					var/datum/pronouns/pronouns = get_singleton(P)
+					if (saved_pronouns == pronouns.name)
+						AH.pronouns = pronouns
+						break
 			F["[profileNum]_eye_color"] >> AH.e_color
 			F["[profileNum]_hair_color"] >> AH.customization_first_color
 			F["[profileNum]_hair_color"] >> AH.customization_first_color_original
