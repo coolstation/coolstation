@@ -130,6 +130,7 @@ ABSTRACT_TYPE(/datum/pronouns)
 	reflexive = "itself"
 	choosable = TRUE
 
+/// this is used for custom pronouns and is assigned in create_pronouns, also its not a singleton so don't use it like that
 /datum/pronouns/custom
 	choosable = FALSE
 	name = "custom"
