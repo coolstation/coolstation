@@ -30,19 +30,19 @@
 	var/preferredGender = input(usr, "Enter preferred gender e.g. man, woman, person", "Miraculous Pronoun-o-matic", current?.preferredGender) as null|text
 	STRING_CHECK(preferredGender)
 	if(!preferredGender) return FALSE
-	var/subjective = input(usr, "Enter subjective pronoun e.g. BLANK robusted the clown", "Miraculous Pronoun-o-matic", current?.subjective) as null|text
+	var/subjective = input(usr, "Enter subjective pronoun", "Miraculous Pronoun-o-matic", current?.subjective) as null|text
 	STRING_CHECK(subjective)
 	if(!subjective) return FALSE
-	var/objective = input(usr, "Enter objective pronoun e.g. I've heard about BLANK", "Miraculous Pronoun-o-matic", current?.objective) as null|text
+	var/objective = input(usr, "Enter objective pronoun", "Miraculous Pronoun-o-matic", current?.objective) as null|text
 	STRING_CHECK(objective)
 	if(!objective) return FALSE
-	var/possessive = input(usr, "Enter possessive pronoun e.g. That is BLANK toolbox", "Miraculous Pronoun-o-matic", current?.possessive) as null|text
+	var/possessive = input(usr, "Enter possessive pronoun", "Miraculous Pronoun-o-matic", current?.possessive) as null|text
 	STRING_CHECK(possessive)
 	if(!possessive) return FALSE
-	var/posessivePronoun = input(usr, "Enter posessive pronoun e.g. That is BLANK", "Miraculous Pronoun-o-matic", current?.posessivePronoun) as null|text
+	var/posessivePronoun = input(usr, "Enter second posessive pronoun e.g. hers instead of her", "Miraculous Pronoun-o-matic", current?.posessivePronoun) as null|text
 	STRING_CHECK(posessivePronoun)
 	if(!posessivePronoun) return FALSE
-	var/reflexive = input(usr, "Enter reflexive pronoun e.g. Describe BLANK", "Miraculous Pronoun-o-matic", current?.reflexive) as null|text
+	var/reflexive = input(usr, "Enter reflexive pronoun (usually ends in self)", "Miraculous Pronoun-o-matic", current?.reflexive) as null|text
 	STRING_CHECK(reflexive)
 	if(!reflexive) return FALSE
 	var/plural = alert(usr, "Are these pronouns plural?", "Miraculous Pronoun-o-matic", "Yes", "No")
