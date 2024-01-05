@@ -16,7 +16,7 @@
 	return choices[choice]
 
 
-#define NAME_CHECK(STRING) \
+#define STRING_CHECK(STRING) \
 	STRING = trim(STRING); \
 	for(var/x in bad_name_characters) { \
 		STRING = replacetext(STRING, x, ""); \
@@ -28,22 +28,22 @@
 /proc/create_pronouns(datum/pronouns/current = null)
 	RETURN_TYPE(/datum/pronouns)
 	var/preferredGender = input(usr, "Enter preferred gender e.g. man, woman, person", "Miraculous Pronoun-o-matic", current?.preferredGender) as null|text
-	NAME_CHECK(preferredGender)
+	STRING_CHECK(preferredGender)
 	if(!preferredGender) return FALSE
 	var/subjective = input(usr, "Enter subjective pronoun e.g. BLANK robusted the clown", "Miraculous Pronoun-o-matic", current?.subjective) as null|text
-	NAME_CHECK(subjective)
+	STRING_CHECK(subjective)
 	if(!subjective) return FALSE
 	var/objective = input(usr, "Enter objective pronoun e.g. I've heard about BLANK", "Miraculous Pronoun-o-matic", current?.objective) as null|text
-	NAME_CHECK(objective)
+	STRING_CHECK(objective)
 	if(!objective) return FALSE
 	var/possessive = input(usr, "Enter possessive pronoun e.g. That is BLANK toolbox", "Miraculous Pronoun-o-matic", current?.possessive) as null|text
-	NAME_CHECK(possessive)
+	STRING_CHECK(possessive)
 	if(!possessive) return FALSE
 	var/posessivePronoun = input(usr, "Enter posessive pronoun e.g. That is BLANK", "Miraculous Pronoun-o-matic", current?.posessivePronoun) as null|text
-	NAME_CHECK(posessivePronoun)
+	STRING_CHECK(posessivePronoun)
 	if(!posessivePronoun) return FALSE
 	var/reflexive = input(usr, "Enter reflexive pronoun e.g. Describe BLANK", "Miraculous Pronoun-o-matic", current?.reflexive) as null|text
-	NAME_CHECK(reflexive)
+	STRING_CHECK(reflexive)
 	if(!reflexive) return FALSE
 	var/plural = alert(usr, "Are these pronouns plural?", "Miraculous Pronoun-o-matic", "Yes", "No")
 	if(!plural) return FALSE
@@ -57,7 +57,7 @@
 	newPronouns.reflexive = reflexive
 	newPronouns.pluralize = plural == "Yes" ? TRUE : FALSE
 	return newPronouns
-#undef NAME_CHECK
+#undef STRING_CHECK
 ABSTRACT_TYPE(/datum/pronouns)
 /datum/pronouns
 	var/name
