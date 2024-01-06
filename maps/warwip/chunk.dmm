@@ -1723,6 +1723,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
+/obj/item/clothing/glasses/vr/arcade,
 /turf/floor,
 /area/station/security/brig)
 "bKg" = (
@@ -1795,6 +1796,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/data_terminal,
+/obj/item/clothing/glasses/vr/bomb,
 /turf/floor,
 /area/station/science/lab)
 "bLw" = (
@@ -2418,6 +2420,10 @@
 /obj/item/device/light/lava_lamp{
 	pixel_x = -7;
 	pixel_y = 18
+	},
+/obj/item/clothing/glasses/vr/arcade,
+/obj/item/clothing/glasses/vr/arcade{
+	pixel_y = -5
 	},
 /turf/floor/carpet/grime{
 	name = "grimmy carpet"
@@ -3340,6 +3346,10 @@
 	pixel_y = -24
 	},
 /obj/table/auto,
+/obj/item/device/audio_log,
+/obj/item/audio_tape{
+	pixel_y = 8
+	},
 /turf/floor/darkblue,
 /area/station/bridge)
 "dvL" = (
@@ -4359,6 +4369,10 @@
 /area/station/crew_quarters/kitchen)
 "ewx" = (
 /obj/table/reinforced/auto,
+/obj/item/audio_tape{
+	pixel_y = 8
+	},
+/obj/item/device/audio_log,
 /obj/item/stamp/hos,
 /turf/floor/grey,
 /area/station/security/hos)
@@ -6743,6 +6757,13 @@
 /area/station/medical/medbay/lobby)
 "gOQ" = (
 /obj/rack,
+/obj/item/audio_tape{
+	pixel_y = 8
+	},
+/obj/item/audio_tape{
+	pixel_y = 5
+	},
+/obj/item/audio_tape,
 /obj/item/device/radio,
 /turf/floor,
 /area/station/storage/tech)
@@ -7372,6 +7393,7 @@
 	dir = 4;
 	icon_state = "tube1"
 	},
+/obj/item/clothing/glasses/vr/bomb,
 /turf/floor,
 /area/station/science/lab)
 "hEj" = (
@@ -10777,6 +10799,7 @@
 /obj/decal/poster/wallsign/cdnp{
 	pixel_y = 32
 	},
+/obj/item/clothing/glasses/vr/arcade,
 /turf/floor,
 /area/station/security/brig)
 "lni" = (
@@ -10938,6 +10961,10 @@
 "luV" = (
 /obj/disposalpipe/segment/bent/north,
 /obj/table/auto,
+/obj/item/device/audio_log,
+/obj/item/audio_tape{
+	pixel_y = 8
+	},
 /turf/floor,
 /area/station/science/artifact)
 "lvb" = (
@@ -16853,6 +16880,9 @@
 /area/station/medical/medbay/treatment)
 "rxy" = (
 /obj/table/auto,
+/obj/item/audio_tape{
+	pixel_y = 8
+	},
 /turf/floor/sanitary/white,
 /area/station/medical/crematorium)
 "ryU" = (
@@ -17669,6 +17699,9 @@
 /area/station/engine/inner)
 "sAJ" = (
 /obj/table/reinforced/auto,
+/obj/item/audio_tape{
+	pixel_y = 8
+	},
 /turf/floor/grey,
 /area/station/security/quarters)
 "sAL" = (
@@ -17864,6 +17897,10 @@
 /obj/table/auto,
 /obj/cable{
 	icon_state = "4-8"
+	},
+/obj/item/device/audio_log,
+/obj/item/audio_tape{
+	pixel_y = 8
 	},
 /obj/item/reagent_containers/glass/bottle/spaceacillin,
 /obj/item/reagent_containers/hypospray{
@@ -20352,6 +20389,9 @@
 /area/station/medical/medbay/treatment)
 "vgk" = (
 /obj/table/auto,
+/obj/item/audio_tape{
+	pixel_y = 8
+	},
 /turf/floor,
 /area/station/crew_quarters/lounge)
 "vgR" = (
