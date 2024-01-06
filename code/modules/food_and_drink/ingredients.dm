@@ -45,7 +45,7 @@
 	amount = 1
 
 /obj/item/reagent_containers/food/snacks/ingredient/meat/grubmeat
-	name = "rare grubsteak"
+	name = "grubsteak"
 	desc = "One of the grub's central body lobes, separated and skinned. Juicy."
 	icon_state = "meat-grub"
 	amount = 2
