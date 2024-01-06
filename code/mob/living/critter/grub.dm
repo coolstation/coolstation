@@ -15,9 +15,11 @@
 	can_grab = 1
 	can_disarm = 1
 	lie_on_death = 0
-	butcherable = 1 //leftover from critter copy-paste. There's independent grubmeat sprites in the dmi but again I don't have the expertise to add custom butchering
+	butcherable = 1
 	name_the_meat = 0
 	max_skins = 1
+	meat_type = /obj/item/reagent_containers/food/snacks/ingredient/meat/grubmeat
+	// blood_color = "#33C370" This doesn't work and I don't know enough to make it work.
 	var/health_brute = 20 // these values are unchanged from critter base. Do I still need these???? I don't know
 	var/health_brute_vuln = 1
 	var/health_burn = 20
@@ -128,6 +130,7 @@
 			body_hair = 1
 			eyes_2 = 1
 		..()
+
 		src.setup_overlays()
 
 	setup_overlays()

@@ -22,6 +22,12 @@
 		icon_state = "sandwich_m"
 		food_effects = list("food_refreshed", "food_energized")
 
+	grubmeat
+		name = "grubwich"
+		desc = "Fried grub between two slices of bread."
+		icon_state = "sandwich_grub"
+		food_effects = list("food_refreshed", "food_energized", "food_brute")
+
 	pb
 		name = "peanut butter sandwich"
 		desc = "Peanut butter between two slices of bread."

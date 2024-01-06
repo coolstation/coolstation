@@ -962,6 +962,16 @@
 	needfork = 1
 	food_effects = list("food_energized_big")
 
+/obj/item/reagent_containers/food/snacks/breakfast_green
+	name = "green eggs and ham"
+	desc = "Would you, could you, in a box? Would you, could you, with nukeops?"
+	icon_state = "breakfast_green"
+	amount = 4
+	heal_amt = 4
+	needfork = 1
+	food_effects = list("food_energized_big", "food_hp_up")
+
+
 /obj/item/reagent_containers/food/snacks/meatball
 	name = "meatball"
 	desc = "A great meal all round."
@@ -1974,6 +1984,16 @@
 	initial_volume = 50
 	initial_reagents = list("cholesterol"=3)
 	food_effects = list("food_hp_up", "food_brute")
+
+/obj/item/reagent_containers/food/snacks/steak_grub
+	name = "well-done grubsteak"
+	desc = "Whadda fuck! Where's the blood! How're youe supposed to get tapeworms eating this?"
+	icon_state = "meat-grub-grilled"
+	amount = 3
+	heal_amt = 1
+	food_color = "#999966"
+	initial_volume = 50
+	initial_reagents = list("cholesterol"=3)
 
 /obj/item/reagent_containers/food/snacks/steak_s
 	name = "synth-steak"
