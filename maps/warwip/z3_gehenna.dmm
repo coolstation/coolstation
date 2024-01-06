@@ -26962,6 +26962,9 @@
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_x = 32
 	},
+/obj/item/clothing/glasses/vr/arcade{
+	pixel_y = -5
+	},
 /turf/floor/grey,
 /area/station/crew_quarters/quartersC)
 "psb" = (
@@ -30485,6 +30488,21 @@
 /obj/access_spawn/heads,
 /turf/floor,
 /area/station/bridge/basement)
+"ruT" = (
+/obj/cable,
+/obj/machinery/power/data_terminal,
+/obj/grille/catwalk/jen/side{
+	dir = 1
+	},
+/obj/table/folding,
+/obj/item/clothing/glasses/vr/arcade{
+	pixel_y = -5
+	},
+/obj/item/clothing/glasses/vr/arcade,
+/turf/floor/plating/random,
+/area/station/crew_quarters/info{
+	name = "Net Cafe"
+	})
 "ruZ" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
@@ -84228,7 +84246,7 @@ kYn
 dVO
 nhU
 lIt
-ePQ
+ruT
 tZz
 uWI
 rsD
