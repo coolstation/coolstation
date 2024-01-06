@@ -44,6 +44,16 @@
 	desc = "A slab of meat from a monkey."
 	amount = 1
 
+/obj/item/reagent_containers/food/snacks/ingredient/meat/grubmeat
+	name = "rare grubsteak"
+	desc = "One of the grub's central body lobes, separated and skinned. Juicy."
+	icon_state = "meat-grub"
+	amount = 2
+	heal_amt = 3
+	initial_reagents = list("blood"=20)
+	//var/blood_color = "#33C370" // Someone smarter than me figure out how to do this
+	food_effects = list("food_hp_up", "food_brute")
+
 /obj/item/reagent_containers/food/snacks/ingredient/meat/fish
 	name = "fish fillet"
 	desc = "A slab of meat from a fish."

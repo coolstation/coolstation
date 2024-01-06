@@ -453,6 +453,14 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	output = /obj/item/reagent_containers/food/snacks/sandwich/meat_s
 	category = "Sandwiches"
 
+/datum/cookingrecipe/oven/sandwich_grub
+	item1 = /obj/item/reagent_containers/food/snacks/breadslice
+	amt1 = 2
+	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/grubmeat
+	cookbonus = 7
+	output = /obj/item/reagent_containers/food/snacks/sandwich/grubmeat
+	category = "Sandwiches"
+
 /datum/cookingrecipe/oven/sandwich_c
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
 	amt1 = 2
@@ -886,6 +894,15 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	output = /obj/item/reagent_containers/food/snacks/breakfast
 	category = "Toast (Meal)"
 
+/datum/cookingrecipe/oven/breakfast_green
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/meat/grubmeat
+	amt1 = 1
+	item2 = /obj/item/reagent_containers/food/snacks/ingredient/egg
+	amt2 = 2
+	cookbonus = 16
+	output = /obj/item/reagent_containers/food/snacks/breakfast_green
+	category = "Toast (Meal)"
+
 /datum/cookingrecipe/mixer/wonton_wrapper
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/egg
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/flour
@@ -1177,6 +1194,11 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/meat/synthmeat
 	cookbonus = 10
 	output = /obj/item/reagent_containers/food/snacks/steak_s
+
+/datum/cookingrecipe/oven/steak_grub
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/meat/grubmeat
+	cookbonus = 10
+	output = /obj/item/reagent_containers/food/snacks/steak_grub
 
 /datum/cookingrecipe/oven/fish_fingers
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/meat/fish
