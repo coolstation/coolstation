@@ -166,7 +166,7 @@
 			if (src.sliced)
 				boutput(user, "<span class='alert'>This has already been sliced.</span>")
 				return
-			boutput(user, "<span class='notice'>You cut the pizza into slices.</span>")
+			boutput(user, "<span class='notice'>You cut the pizza into slices all sloppylike.</span>")
 			if (src.name == "cheese keyzza")
 				boutput(user, "<i>You feel as though something of value has been lost...</i>")
 			src.make_slices()
@@ -194,8 +194,22 @@
 				P.num = src.num
 				P.add_topping(num)
 			src.reagents.trans_to(P, src.reagents.total_volume/makeslices)
-			P.pixel_x = rand(-6, 6)
-			P.pixel_y = rand(-6, 6)
+			if (makeslices % 2) //odd half pointing right on left side
+				if (makeslices == 1)//bottom slice
+					P.dir = 1
+					P.pixel_y = -6
+				else
+					P.dir = 4
+					P.pixel_y = rand(-2, 6)
+				P.pixel_x = rand(-8, 0)
+			else //even half pointing left on right side
+				if (makeslices == 2)//bottom slice
+					P.dir = 2
+					P.pixel_y = -6
+				else
+					P.dir = 8
+					P.pixel_y = rand(-2, 6)
+				P.pixel_x = rand(0, 8)
 			. += P
 			makeslices--
 		qdel(src)
