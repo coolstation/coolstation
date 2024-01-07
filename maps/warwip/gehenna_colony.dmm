@@ -10355,6 +10355,15 @@
 	},
 /turf/floor/grey,
 /area/station/quartermaster/cargooffice/gunsmithing)
+"hMY" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/machinery/door_control{
+	id = "med_lob_west";
+	name = "West Door Control";
+	pixel_x = 28
+	},
+/turf/floor/white,
+/area/station/medical/medbay)
 "hNb" = (
 /obj/disposalpipe/segment/produce{
 	dir = 4
@@ -11502,7 +11511,7 @@
 /turf/floor/bluewhite{
 	dir = 1
 	},
-/area/station/medical/research)
+/area/station/medical/medbay)
 "iFt" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/decal/tile_edge/stripe,
@@ -13678,7 +13687,7 @@
 /turf/floor/bluewhite{
 	dir = 1
 	},
-/area/station/medical/research)
+/area/station/medical/medbay)
 "khK" = (
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/drone_recharger,
@@ -20943,11 +20952,6 @@
 	},
 /turf/floor,
 /area/station/security/main)
-"pHv" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
-/obj/wingrille_spawn/reinforced,
-/turf/floor/plating,
-/area/station/medical/medbay)
 "pHy" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8;
@@ -21173,6 +21177,10 @@
 /obj/disposalpipe/segment/vertical,
 /turf/floor/stairs/wide,
 /area/station/chapel/sanctuary)
+"pPg" = (
+/obj/disposalpipe/segment/bent/west,
+/turf/floor/white,
+/area/station/medical/medbay/lobby)
 "pPE" = (
 /obj/ladder/auto,
 /turf/space/gehenna/desert/plating,
@@ -21638,6 +21646,18 @@
 	},
 /turf/floor/black,
 /area/station/quartermaster/cargooffice)
+"qdy" = (
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/west,
+/turf/floor/white,
+/area/station/medical/medbay/lobby)
 "qdB" = (
 /obj/table/wood/auto,
 /turf/floor/carpet/blue/fancy/edge{
@@ -21919,6 +21939,10 @@
 	},
 /turf/floor/bot,
 /area/station/engine/engineering)
+"qoP" = (
+/obj/disposalpipe/segment/mail/vertical,
+/turf/floor/white,
+/area/station/medical/medbay/lobby)
 "qoR" = (
 /turf/wall,
 /area/station/hangar/medical)
@@ -23019,18 +23043,6 @@
 "rcm" = (
 /turf/floor/grey,
 /area/station/bridge)
-"rcP" = (
-/obj/disposalpipe/segment{
-	dir = 2
-	},
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/unary/vent_pump/west,
-/turf/floor/white,
-/area/station/medical/medbay/lobby)
 "rcT" = (
 /obj/table/reinforced/industrial/auto,
 /obj/disposalpipe/segment/horizontal,
@@ -23462,15 +23474,6 @@
 /obj/decal/gehennagrass,
 /turf/space/gehenna/desert,
 /area/gehenna)
-"rtb" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
-/obj/machinery/door_control{
-	id = "med_lob_west";
-	name = "West Door Control";
-	pixel_x = 28
-	},
-/turf/floor/white,
-/area/station/medical/medbay)
 "rtV" = (
 /turf/wall,
 /area/station/quartermaster/cargooffice/idk_another_one{
@@ -25577,6 +25580,16 @@
 	},
 /turf/floor/sanitary/white,
 /area/station/wc/medbay)
+"sZm" = (
+/obj/machinery/atmospherics/pipe/manifold/west,
+/obj/machinery/door_control{
+	id = "med_lob_east";
+	name = "East Door Control";
+	pixel_x = 23;
+	pixel_y = 23
+	},
+/turf/floor/white,
+/area/station/medical/medbay)
 "sZL" = (
 /obj/machinery/light/small/cool{
 	dir = 4
@@ -26827,6 +26840,10 @@
 /obj/item/storage/toolbox/electrical,
 /turf/floor/engine,
 /area/station/engine/core)
+"tTU" = (
+/obj/machinery/atmospherics/pipe/manifold/west,
+/turf/floor/white,
+/area/station/medical/medbay/lobby)
 "tTZ" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 4
@@ -27903,16 +27920,6 @@
 	},
 /turf/floor,
 /area/station/security/checkpoint/cargo)
-"uJY" = (
-/obj/machinery/atmospherics/pipe/manifold/west,
-/obj/machinery/door_control{
-	id = "med_lob_east";
-	name = "East Door Control";
-	pixel_x = 23;
-	pixel_y = 23
-	},
-/turf/floor/white,
-/area/station/medical/medbay)
 "uKe" = (
 /obj/grille/catwalk/grey{
 	dir = 8
@@ -28263,10 +28270,6 @@
 "uSN" = (
 /turf/wall,
 /area/station/medical/research)
-"uTe" = (
-/obj/disposalpipe/segment/mail/vertical,
-/turf/floor/white,
-/area/station/medical/medbay/lobby)
 "uTy" = (
 /turf/wall,
 /area/station/maintenance/northwest)
@@ -28648,6 +28651,11 @@
 /obj/machinery/atmospherics/unary/vent_pump/south,
 /turf/floor/sandytile,
 /area/station/security/brig/south_side)
+"veA" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
+/area/station/medical/medbay)
 "vfP" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -30944,18 +30952,6 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/black,
 /area/station/engine/engineering/ce)
-"wKm" = (
-/obj/disposalpipe/segment{
-	dir = 2
-	},
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/unary/vent_pump/west,
-/turf/floor/white,
-/area/station/medical/medbay)
 "wKp" = (
 /obj/stool/chair/comfy/wheelchair,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -31076,6 +31072,14 @@
 /obj/item/cargotele,
 /turf/floor,
 /area/station/engine/engineering/breakroom)
+"wNw" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/machinery/disposal,
+/obj/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/floor/white,
+/area/station/medical/medbay/lobby)
 "wNz" = (
 /obj/machinery/door/airlock/glass/medical,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -31405,10 +31409,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/wood,
 /area/station/crew_quarters/farmers)
-"wZk" = (
-/obj/machinery/atmospherics/pipe/manifold/west,
-/turf/floor/white,
-/area/station/medical/medbay/lobby)
 "xaj" = (
 /obj/decal/cleanable/dirt/random,
 /turf/floor/stairs/wide/other,
@@ -32012,6 +32012,18 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/floor/wood,
 /area/station/crew_quarters/farmers)
+"xuS" = (
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/west,
+/turf/floor/white,
+/area/station/medical/medbay)
 "xvn" = (
 /obj/cable{
 	d1 = 4;
@@ -32705,10 +32717,6 @@
 /obj/ladder/auto,
 /turf/floor/yellow,
 /area/station/engine/core)
-"xVW" = (
-/obj/disposalpipe/segment/bent/west,
-/turf/floor/white,
-/area/station/medical/medbay/lobby)
 "xWi" = (
 /turf/wall,
 /area/station/crew_quarters/arcade/dungeon)
@@ -32887,14 +32895,6 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/vertical,
 /turf/floor/specialroom/freezer,
 /area/station/medical/morgue)
-"ybu" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
-/obj/machinery/disposal,
-/obj/disposalpipe/trunk{
-	dir = 8
-	},
-/turf/floor/white,
-/area/station/medical/medbay/lobby)
 "ybx" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/floor,
@@ -63875,7 +63875,7 @@ uSN
 sHq
 uNm
 sHq
-uSN
+nfN
 vWB
 wEV
 lRk
@@ -65083,7 +65083,7 @@ aRx
 jQy
 uOR
 sHq
-uSN
+lRk
 lRk
 lRk
 lRk
@@ -67502,9 +67502,9 @@ elZ
 elZ
 sTl
 wMj
-ybu
+wNw
 xEN
-rtb
+hMY
 mSK
 sXv
 mSK
@@ -71732,10 +71732,10 @@ itI
 wSY
 cKi
 cKi
-wZk
+tTU
 cKi
-wZk
-pHv
+tTU
+veA
 xNN
 lLu
 xNN
@@ -72036,9 +72036,9 @@ ugb
 ugb
 xOk
 ugb
-rcP
+qdy
 urw
-wKm
+xuS
 vwI
 rOd
 vwI
@@ -72331,8 +72331,8 @@ ece
 bBo
 oyX
 vOr
-uTe
-xVW
+qoP
+pPg
 wWb
 elZ
 wLc
@@ -72340,7 +72340,7 @@ jyB
 url
 wjN
 xEN
-uJY
+sZm
 mSK
 wXW
 nAL
