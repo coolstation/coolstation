@@ -21,7 +21,7 @@
 	var/volume = 100
 	var/extrarange = 0
 	var/times_to_play = 1
-	var/list/sounds = list('sound/machines/fortune_greeting_broken.ogg','sound/machines/engine_highpower.ogg','sound/machines/engine_grump1.ogg','sound/machines/engine_alert1.ogg',
+	var/list/sounds = list('sound/misc/miles_hornpipe_compressed_clean.ogg', 'sound/machines/fortune_greeting_broken.ogg','sound/machines/engine_highpower.ogg','sound/machines/engine_grump1.ogg','sound/machines/engine_alert1.ogg',
 	'sound/machines/engine_alert2.ogg','sound/machines/engine_alert3.ogg','sound/machines/lavamoon_alarm1.ogg','sound/machines/lavamoon_plantalarm.ogg','sound/machines/pod_alarm.ogg',
 	'sound/machines/printer_dotmatrix.ogg','sound/machines/printer_thermal.ogg','sound/machines/romhack1.ogg','sound/machines/satcrash.ogg','sound/machines/siren_generalquarters.ogg',
 	'sound/machines/signal.ogg','sound/machines/ufo_move.ogg','sound/machines/modem.ogg','sound/effects/creaking_metal1.ogg','sound/ambience/spooky/Void_Screaming.ogg','sound/ambience/industrial/Precursor_Choir.ogg',
