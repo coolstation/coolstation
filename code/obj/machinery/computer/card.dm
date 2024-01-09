@@ -1,5 +1,5 @@
 /obj/machinery/computer/card
-	name = "Identification Computer"
+	name = "identification computer"
 	icon_state = "id"
 	circuit_type = /obj/item/circuitboard/card
 	var/obj/item/card/id/scan = null
@@ -190,10 +190,10 @@
 		if (src.modify)
 			src.modify.update_name()
 			if (src.eject)
-				src.eject.set_loc(src.loc)
+				usr.put_in_hand_or_drop(src.eject)
 				src.eject = null
 			else
-				src.modify.set_loc(src.loc)
+				usr.put_in_hand_or_drop(src.modify)
 			src.modify = null
 		else
 			var/obj/item/I = usr.equipped()
