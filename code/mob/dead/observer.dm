@@ -275,10 +275,18 @@
 				qdel(src)
 			else
 				return
-		else if(prob(5))
-			src.show_text("You strain really hard. I mean, like, really, REALLY hard but you still can't become a ghost!", "blue")
+		//else if(prob(5))
+		//	src.show_text("You strain really hard. I mean, like, really, REALLY hard but you still can't become a ghost!", "blue")
 		else
-			src.show_text("You're not dead yet!", "red")
+			var/confirm = alert("Are you sure you want to ghost? You will literally die from this.", "Become Unalive?", "Yes", "No")
+			if(confirm == "Yes")
+				src.AddComponent(/datum/component/death_confetti)
+				src.visible_message("[src] straight up dies of boredom.", "You log the fuck out of real life for some sweet ghostly action.")
+				src.death()
+				src.ghostize()
+			else
+				src.show_text("You're so not dead!", "red")
+				return
 		return
 	src.ghostize()
 
