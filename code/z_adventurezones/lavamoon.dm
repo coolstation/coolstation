@@ -1365,7 +1365,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 
 /obj/ladder
 	name = "ladder"
-	desc = "A series of parallel bars designed to allow for controlled change of elevation.  You know, by climbing it.  You climb it."
+	desc = "A series of parallel bars designed to allow for controlled change of elevation. You know, by climbing it. You climb it. I bet you could even haul a crate along with you, you champ."
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "ladder-round" // also available: ladder-square
 	anchored = 1
@@ -1509,6 +1509,9 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 	onEnd()
 		..()
 		pizzaghetti.set_loc(get_turf(robust_penis))
+		//How you're getting a mop bucket or a crate up a ladder I'll never know, but it'd be good if you could.
+		if (pizzaghetti.pulling)
+			pizzaghetti.pulling.set_loc(get_turf(robust_penis))
 
 
 //Puzzle elements
