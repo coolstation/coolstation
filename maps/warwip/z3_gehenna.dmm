@@ -732,7 +732,7 @@
 /turf/floor,
 /area/station/mining/refinery)
 "avo" = (
-/obj/wingrille_spawn/bulletproof,
+/obj/wingrille_spawn/crystal,
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -3686,6 +3686,13 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/floor/black,
 /area/station/science/lobby)
+"cjA" = (
+/turf/floor/black/corner{
+	dir = 1
+	},
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
+	})
 "cjC" = (
 /obj/disposalpipe/segment/bent/east,
 /turf/floor/black,
@@ -8708,6 +8715,10 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/grey,
 /area/station/bridge/basement)
+"eUj" = (
+/obj/ladder/auto,
+/turf/floor/yellow,
+/area/station/security/processing)
 "eUt" = (
 /obj/disposalpipe/segment/mail/vertical,
 /turf/wall,
@@ -9829,7 +9840,9 @@
 	name = "Net Cafe"
 	})
 "fCR" = (
-/obj/decal/tile_edge/stripe/extra_big,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6
+	},
 /turf/floor,
 /area/station/security/processing)
 "fCZ" = (
@@ -13992,6 +14005,13 @@
 /obj/reagent_dispensers/fueltank,
 /turf/floor/industrial,
 /area/station/engine/storage)
+"iaS" = (
+/turf/floor/black/corner{
+	dir = 8
+	},
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
+	})
 "iaY" = (
 /obj/disposalpipe/segment/food,
 /obj/cable{
@@ -16243,6 +16263,15 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/floor/plating,
 /area/station/bridge/locker)
+"jny" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/valve/horizontal{
+	name = "Surface Level"
+	},
+/turf/floor/plating,
+/area/station/maintenance/outer/north{
+	name = "North Lower Maintenance"
+	})
 "jnA" = (
 /obj/disposalpipe/segment/cargo,
 /turf/floor/plating,
@@ -18038,12 +18067,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/floor/white,
 /area/station/medical/basement)
-"kkS" = (
-/obj/storage/closet/wardrobe/grey,
-/turf/floor/black,
-/area/station/security/quarters{
-	name = "Sec. Officers Sleeping Quarters"
-	})
 "klf" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -19922,7 +19945,7 @@
 	name = "North Lower Maintenance"
 	})
 "ljK" = (
-/obj/wingrille_spawn/bulletproof,
+/obj/wingrille_spawn/crystal,
 /obj/window_blinds,
 /turf/floor/plating,
 /area/station/security/hos/horizon)
@@ -21779,6 +21802,12 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
 /area/station/crew_quarters/catering)
+"mof" = (
+/obj/machinery/drainage/big,
+/turf/floor/grime,
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
+	})
 "mos" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/disposalpipe/segment/sewage{
@@ -22030,7 +22059,6 @@
 /area/ghostdrone_factory)
 "mwz" = (
 /obj/machinery/light/fluorescent/cool/very,
-/obj/ladder/auto,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 1;
@@ -22380,6 +22408,14 @@
 	},
 /turf/floor/grime,
 /area/station/quartermaster/automat)
+"mFl" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/turf/floor/grime,
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
+	})
 "mFY" = (
 /obj/machinery/atmospherics/pipe/vent/north,
 /turf/floor/airless/engine/vacuum,
@@ -22772,6 +22808,11 @@
 /obj/disposalpipe/segment/produce,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
+"mQO" = (
+/turf/floor/grime,
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
+	})
 "mRi" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/light/fluorescent/cool/very{
@@ -24103,6 +24144,14 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
 /area/station/science/lobby)
+"nCj" = (
+/obj/machinery/door/airlock{
+	name = "shower"
+	},
+/turf/floor/black,
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
+	})
 "nCt" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -25652,6 +25701,13 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/floor/plating,
 /area/station/security/checkpoint/medical)
+"oAn" = (
+/turf/floor/black/side{
+	dir = 1
+	},
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
+	})
 "oAB" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating/random,
@@ -30679,6 +30735,17 @@
 /obj/storage/closet/biohazard,
 /turf/floor/black,
 /area/station/science/chemistry)
+"rBb" = (
+/obj/rack,
+/obj/item/sponge{
+	name = "loofah"
+	},
+/turf/floor/black/corner{
+	dir = 4
+	},
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
+	})
 "rBg" = (
 /obj/machinery/light_switch/east,
 /turf/floor,
@@ -35539,6 +35606,9 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"ulZ" = (
+/turf/floor/yellow,
+/area/station/security/processing)
 "umu" = (
 /obj/decal/cleanable/dirt/jen,
 /obj/machinery/light/small/warm,
@@ -35709,7 +35779,9 @@
 /area/station/engine/inner)
 "upn" = (
 /obj/disposalpipe/segment/mail/vertical,
-/obj/machinery/atmospherics/valve/horizontal,
+/obj/machinery/atmospherics/valve/horizontal{
+	name = "Equipment"
+	},
 /turf/floor/plating,
 /area/station/maintenance/outer/north{
 	name = "North Lower Maintenance"
@@ -37208,10 +37280,11 @@
 	name = "East Lower Maintenance"
 	})
 "veb" = (
-/obj/ladder/auto,
-/turf/floor/plating,
-/area/station/maintenance/outer/north{
-	name = "North Lower Maintenance"
+/obj/table/auto,
+/obj/towelbin,
+/turf/floor/black/corner,
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
 	})
 "ven" = (
 /obj/lattice,
@@ -38166,6 +38239,15 @@
 /obj/decal/poster/wallsign/biohazard,
 /turf/wall,
 /area/station/medical/cdc)
+"vCQ" = (
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 1
+	},
+/obj/table/auto,
+/turf/floor/black/side,
+/area/station/security/quarters{
+	name = "Sec. Officers Sleeping Quarters"
+	})
 "vCS" = (
 /obj/disposalpipe/junction/middle/west,
 /turf/floor/plating,
@@ -40602,7 +40684,6 @@
 /turf/floor/black,
 /area/station/science/chemistry)
 "xal" = (
-/obj/storage/closet/wardrobe/orange,
 /turf/floor/black,
 /area/station/security/quarters{
 	name = "Sec. Officers Sleeping Quarters"
@@ -41525,6 +41606,15 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/station/science/gen_storage)
+"xFx" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/atmospherics/valve/horizontal{
+	name = "Storage"
+	},
+/turf/floor/plating,
+/area/station/maintenance/outer/north{
+	name = "North Lower Maintenance"
+	})
 "xFG" = (
 /obj/machinery/atmospherics/binary/volume_pump{
 	on = 1;
@@ -87828,7 +87918,7 @@ gHi
 ucN
 agC
 dAi
-oXY
+nFd
 fCR
 mwz
 wVj
@@ -88119,9 +88209,9 @@ pdO
 pdO
 pdO
 dGw
-ffq
-ffq
-ffq
+apH
+apH
+apH
 gZw
 gZw
 tFt
@@ -88131,9 +88221,9 @@ xeQ
 cnB
 wVj
 wVj
-wVj
+ulZ
+eUj
 cnB
-wVj
 kph
 kph
 kph
@@ -88422,7 +88512,7 @@ pdO
 pdO
 dGw
 sGj
-veb
+ffq
 ffq
 gZw
 hDr
@@ -88431,9 +88521,9 @@ gZw
 pAS
 cWh
 cnB
-gxR
-gxR
-gxR
+tjT
+tjT
+tjT
 tjT
 tjT
 tjT
@@ -89629,8 +89719,8 @@ apH
 jgI
 xwy
 upn
-upn
-upn
+jny
+xFx
 jkA
 anb
 xWN
@@ -93858,7 +93948,7 @@ qbq
 jPu
 epI
 xal
-kkS
+xal
 enG
 uAQ
 bYH
@@ -94159,7 +94249,7 @@ qbq
 qbq
 enG
 enG
-enG
+nCj
 enG
 eUL
 ljK
@@ -94459,10 +94549,10 @@ ijD
 mke
 qbq
 qbq
-pdO
-pdO
-pdO
-pdO
+veb
+mQO
+mQO
+iaS
 eUL
 run
 alo
@@ -94761,10 +94851,10 @@ ijD
 aaW
 qbq
 qbq
-pdO
-pdO
-pdO
-pdO
+vCQ
+mQO
+mof
+oAn
 eUL
 ajm
 jem
@@ -95063,10 +95153,10 @@ ijD
 hPR
 qbq
 qbq
-pdO
-pdO
-pdO
-pdO
+rBb
+mFl
+mQO
+cjA
 eUL
 owN
 wIK
@@ -95365,10 +95455,10 @@ qbq
 qbq
 qbq
 qbq
-pdO
-pdO
-pdO
-pdO
+enG
+enG
+enG
+enG
 eUL
 eUL
 eUL
