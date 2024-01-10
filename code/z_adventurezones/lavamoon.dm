@@ -1478,8 +1478,10 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 	New(The_Owner, The_Ladder, The_Other_Ladder)
 		if(!The_Owner || !The_Ladder || !The_Other_Ladder)
 			return
-		..()
 		pizzaghetti = The_Owner
+		if (pizzaghetti.pulling)
+			duration *= 5
+		..()
 		delicate_penis = The_Ladder
 		robust_penis = The_Other_Ladder
 
