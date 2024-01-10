@@ -1133,6 +1133,12 @@
 	},
 /turf/space/gehenna/desert,
 /area/gehenna)
+"aPN" = (
+/turf/wall/r_wall{
+	name = "reinforced column";
+	opacity = 0
+	},
+/area/station/quartermaster/cargooffice)
 "aQi" = (
 /obj/disposalpipe/trunk/zlevel{
 	dir = 4;
@@ -2950,6 +2956,12 @@
 	dir = 4
 	},
 /area/station/medical/medbay/cloner)
+"cqw" = (
+/turf/wall{
+	name = "column";
+	opacity = 0
+	},
+/area/station/medical/robotics)
 "cqB" = (
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/plating,
@@ -3766,6 +3778,10 @@
 	},
 /turf/floor/sandytile,
 /area/station/security/brig/south_side)
+"cTN" = (
+/obj/machinery/vending/capsule,
+/turf/floor/grey,
+/area/station/bridge/customs)
 "cTO" = (
 /obj/machinery/door/airlock/glass/engineering,
 /obj/machinery/door/firedoor/border_only,
@@ -7444,6 +7460,9 @@
 	dir = 4
 	},
 /obj/table/reinforced/auto,
+/obj/machinery/light/small/cool{
+	dir = 1
+	},
 /turf/floor,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	name = "Merchant Landing Pad"
@@ -12446,7 +12465,10 @@
 	name = "lobby health status screen";
 	pixel_y = -8
 	},
-/turf/wall,
+/turf/wall{
+	name = "column";
+	opacity = 0
+	},
 /area/station/medical/medbay/treatment)
 "jrw" = (
 /obj/machinery/atmospherics/pipe/vertical_pipe/east{
@@ -18920,6 +18942,12 @@
 	},
 /turf/wall,
 /area/station/crew_quarters/courtroom)
+"ozF" = (
+/turf/wall{
+	name = "column";
+	opacity = 0
+	},
+/area/station/engine/engineering/breakroom)
 "ozR" = (
 /obj/cable{
 	d1 = 1;
@@ -27829,6 +27857,12 @@
 "veQ" = (
 /obj/reagent_dispensers/watertank/fountain,
 /turf/floor/grey,
+/area/station/bridge/customs)
+"vfh" = (
+/turf/wall{
+	name = "column";
+	opacity = 0
+	},
 /area/station/bridge/customs)
 "vfP" = (
 /obj/cable{
@@ -63079,7 +63113,7 @@ uSN
 sHq
 uNm
 sHq
-nfN
+cqw
 vWB
 wEV
 lRk
@@ -69987,7 +70021,7 @@ guT
 pjn
 wIy
 lAf
-vKf
+vfh
 gEN
 qNU
 axY
@@ -71497,7 +71531,7 @@ cPg
 pjn
 wIy
 vJo
-vKf
+vfh
 qNU
 qNU
 axY
@@ -72403,7 +72437,7 @@ oHn
 nIa
 okR
 oNN
-uyU
+cTN
 uyU
 uyU
 uhL
@@ -87859,7 +87893,7 @@ fwc
 mfy
 mfy
 kCJ
-mts
+ozF
 luK
 caF
 wMJ
@@ -90502,7 +90536,7 @@ fsA
 vDg
 nUG
 gaW
-hyl
+aPN
 bhx
 fZX
 hOb
