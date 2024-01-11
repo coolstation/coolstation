@@ -515,6 +515,14 @@
 	initial_volume = 60
 	initial_reagents = "grog"
 
+/obj/item/reagent_containers/food/drinks/grodyjug
+	name = "grody jug"
+	desc = "A dusty glass bottle containing barely-liquid of unknown age and provenance, probably unearthed in some long-forgotten crawlspace. Maybe you could offer a buddy ten credits to take a sip?"
+	icon_state = "grodyjug"
+	heal_amt = 0
+	initial_volume = 120 //big jug
+	initial_reagents = list("grime"=30,"acetone"=30,"formaldehyde"=30,"jenkem"=10)
+
 /obj/item/reagent_containers/food/drinks/moonshine
 	name = "jug of moonshine"
 	desc = "A jug of an illegaly brewed alchoholic beverage, which is quite potent."
