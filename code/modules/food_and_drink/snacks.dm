@@ -860,7 +860,8 @@
 
 #define DONK_COLD 0
 #define DONK_WARM 1
-#define DONK_SCALDING 2
+// #define DONK_SCALDING 2
+
 /obj/item/reagent_containers/food/snacks/donkpocket
 	name = "donk-pocket"
 	desc = "The food of choice for the seasoned traitor."
@@ -880,27 +881,27 @@
 			return
 
 	heal(var/mob/M)
-		if(src.warm == DONK_SCALDING)
-			boutput(M, "<span class='alert'>It's as hot as molten steel! Maybe try proper cookware?</span>")
-			M.TakeDamage("All", 0, 5, damage_type = DAMAGE_BURN)
-			M.reagents?.add_reagent("yuck", 10)
-		else if(src.warm == DONK_WARM)
-			M.reagents?.add_reagent("omnizine", 10)
+		// if(src.warm == DONK_SCALDING)
+		// 	boutput(M, "<span class='alert'>It's as hot as molten steel! Maybe try proper cookware?</span>")
+		// 	M.TakeDamage("All", 0, 5, damage_type = DAMAGE_BURN)
+		// 	M.reagents?.add_reagent("yuck", 10)
+		if(src.warm == DONK_WARM)
+			M.reagents?.add_reagent("omnizine", 15)
 		else
 			boutput(M, "<span class='alert'>It's just not good enough cold..</span>")
 		..()
 
 	temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 		switch(exposed_temperature)
-			if(T0C + 176 to T0C + 260)
+			if(T0C + 176 to T0C + INFINITY)
 				if(src.warm <= DONK_WARM)
 					src.warm = DONK_WARM
 					name = "warm [initial(src.name)]"
 					src.cooltime()
-			if(T0C + 260 to INFINITY)
-				src.warm = DONK_SCALDING
-				name = "scalding [initial(src.name)]"
-				src.cooltime()
+			// if(T0C + 500 to INFINITY)
+			// 	src.warm = DONK_SCALDING
+			// 	name = "scalding [initial(src.name)]"
+			// 	src.cooltime()
 		return ..()
 
 	proc/cooltime()
@@ -912,7 +913,7 @@
 
 #undef DONK_COLD
 #undef DONK_WARM
-#undef DONK_SCALDING
+// #undef DONK_SCALDING
 
 /obj/item/reagent_containers/food/snacks/donkpocket_w
 	name = "donk-pocket"
