@@ -389,8 +389,8 @@ CONTENTS:
 				update_icons()
 
 				//We're not going to allow you to unbuckle during the process
-				chair1.allow_unbuckle = 1
-				chair2.allow_unbuckle = 1
+				chair1.locked = 1
+				chair2.locked = 1
 
 				var/mob/living/carbon/human/A = chair1.stool_user
 				var/mob/living/carbon/human/B = chair2.stool_user
@@ -457,8 +457,8 @@ CONTENTS:
 
 				//We're now going to allow you to unbuckle
 
-				if(chair1) chair1.allow_unbuckle = 0
-				if(chair2) chair2.allow_unbuckle = 0
+				if(chair1) chair1.locked = 0
+				if(chair2) chair2.locked = 0
 			else //Failure.
 				success = 0
 

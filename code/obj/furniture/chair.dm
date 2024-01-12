@@ -106,7 +106,7 @@
 					return
 
 			if ((M.buckled) && (!H.on_chair))
-				if (allow_unbuckle)
+				if (locked)
 					if(user.restrained())
 						return
 					if (M != user)

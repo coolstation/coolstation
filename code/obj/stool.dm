@@ -25,7 +25,8 @@
 	flags = FPRINT | FLUID_SUBMERGE
 	throwforce = 10
 	pressure_resistance = 3*ONE_ATMOSPHERE
-	var/allow_unbuckle = 1
+	//will this prevent someone from unbuckling for some reason? temporary + mindswap related
+	var/locked = 1
 	var/mob/living/stool_user = null
 	var/deconstructable = 1
 	var/securable = 0

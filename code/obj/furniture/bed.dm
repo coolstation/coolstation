@@ -85,7 +85,7 @@
 
 	proc/unbuckle_mob(var/mob/M as mob, var/mob/user as mob)
 		if (M.buckled && !user.restrained())
-			if (allow_unbuckle)
+			if (locked)
 				if (M != user)
 					user.visible_message("<span class='notice'><b>[M]</b> is unbuckled by [user].</span>", "<span class='notice'>You unbuckle [M].</span>")
 				else
