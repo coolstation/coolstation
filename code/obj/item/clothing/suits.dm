@@ -802,6 +802,63 @@
 	item_state = "bedsheet-psych"
 	bcolor = "psych"
 
+//proide
+
+/obj/item/clothing/suit/bedsheet/aro
+	icon_state = "bedsheet-aro"
+	item_state = "bedsheet-aro"
+	bcolor = "aro"
+
+/obj/item/clothing/suit/bedsheet/ace
+	icon_state = "bedsheet-ace"
+	item_state = "bedsheet-ace"
+	bcolor = "ace"
+
+/obj/item/clothing/suit/bedsheet/polyam
+	icon_state = "bedsheet-polyam"
+	item_state = "bedsheet-polyam"
+	bcolor = "polyam"
+
+/obj/item/clothing/suit/bedsheet/poly
+	icon_state = "bedsheet-poly"
+	item_state = "bedsheet-poly"
+	bcolor = "poly"
+
+/obj/item/clothing/suit/bedsheet/pan
+	icon_state = "bedsheet-pan"
+	item_state = "bedsheet-pan"
+	bcolor = "pan"
+
+/obj/item/clothing/suit/bedsheet/nb
+	icon_state = "bedsheet-nb"
+	item_state = "bedsheet-nb"
+	bcolor = "nb"
+
+/obj/item/clothing/suit/bedsheet/bi
+	icon_state = "bedsheet-bi"
+	item_state = "bedsheet-bi"
+	bcolor = "bi"
+
+/obj/item/clothing/suit/bedsheet/lesb
+	icon_state = "bedsheet-lesb"
+	item_state = "bedsheet-lesb"
+	bcolor = "lesb"
+
+/obj/item/clothing/suit/bedsheet/gay
+	icon_state = "bedsheet-gay"
+	item_state = "bedsheet-gay"
+	bcolor = "gay"
+
+/obj/item/clothing/suit/bedsheet/inter
+	icon_state = "bedsheet-inter"
+	item_state = "bedsheet-inter"
+	bcolor = "inter"
+
+/obj/item/clothing/suit/bedsheet/trans
+	icon_state = "bedsheet-trans"
+	item_state = "bedsheet-trans"
+	bcolor = "trans"
+
 /obj/item/clothing/suit/bedsheet/random
 	New()
 		..()
@@ -869,6 +926,61 @@
 	icon_state = "bedcape-psych"
 	item_state = "bedcape-psych"
 	bcolor = "psych"
+
+/obj/item/clothing/suit/bedsheet/cape/aro
+	icon_state = "bedcape-aro"
+	item_state = "bedcape-aro"
+	bcolor = "aro"
+
+/obj/item/clothing/suit/bedsheet/cape/ace
+	icon_state = "bedcape-ace"
+	item_state = "bedcape-ace"
+	bcolor = "ace"
+
+/obj/item/clothing/suit/bedsheet/cape/polyam
+	icon_state = "bedcape-polyam"
+	item_state = "bedcape-polyam"
+	bcolor = "polyam"
+
+/obj/item/clothing/suit/bedsheet/cape/poly
+	icon_state = "bedcape-poly"
+	item_state = "bedcape-poly"
+	bcolor = "poly"
+
+/obj/item/clothing/suit/bedsheet/cape/pan
+	icon_state = "bedcape-pan"
+	item_state = "bedcape-pan"
+	bcolor = "pan"
+
+/obj/item/clothing/suit/bedsheet/cape/nb
+	icon_state = "bedcape-nb"
+	item_state = "bedcape-nb"
+	bcolor = "nb"
+
+/obj/item/clothing/suit/bedsheet/cape/bi
+	icon_state = "bedcape-bi"
+	item_state = "bedcape-bi"
+	bcolor = "bi"
+
+/obj/item/clothing/suit/bedsheet/cape/lesb
+	icon_state = "bedcape-lesb"
+	item_state = "bedcape-lesb"
+	bcolor = "lesb"
+
+/obj/item/clothing/suit/bedsheet/cape/gay
+	icon_state = "bedcape-gay"
+	item_state = "bedcape-gay"
+	bcolor = "gay"
+
+/obj/item/clothing/suit/bedsheet/cape/inter
+	icon_state = "bedcape-inter"
+	item_state = "bedcape-inter"
+	bcolor = "inter"
+
+/obj/item/clothing/suit/bedsheet/cape/trans
+	icon_state = "bedcape-trans"
+	item_state = "bedcape-trans"
+	bcolor = "trans"
 
 // FIRE SUITS
 

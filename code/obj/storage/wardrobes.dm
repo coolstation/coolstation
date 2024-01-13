@@ -33,7 +33,17 @@
 	/obj/item/clothing/under/pride/poly,
 	/obj/item/clothing/under/pride/nb,
 	/obj/item/clothing/under/pride/lesb,
-	/obj/item/clothing/under/pride/trans)
+	/obj/item/clothing/under/pride/trans,
+	/obj/item/clothing/suit/bedsheet/aro,
+	/obj/item/clothing/suit/bedsheet/ace,
+	/obj/item/clothing/suit/bedsheet/bi,
+	/obj/item/clothing/suit/bedsheet/inter,
+	/obj/item/clothing/suit/bedsheet/pan,
+	/obj/item/clothing/suit/bedsheet/poly,
+	/obj/item/clothing/suit/bedsheet/polyam,
+	/obj/item/clothing/suit/bedsheet/nb,
+	/obj/item/clothing/suit/bedsheet/lesb,
+	/obj/item/clothing/suit/bedsheet/trans)
 
 /obj/storage/closet/wardrobe/black
 	name = "black wardrobe"
