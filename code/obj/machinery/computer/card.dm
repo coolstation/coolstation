@@ -190,10 +190,10 @@
 		if (src.modify)
 			src.modify.update_name()
 			if (src.eject)
-				usr.put_in_hand_or_drop(src.eject)
+				usr.put_in_hand_or_eject(src.eject)
 				src.eject = null
 			else
-				usr.put_in_hand_or_drop(src.modify)
+				usr.put_in_hand_or_eject(src.modify)
 			src.modify = null
 		else
 			var/obj/item/I = usr.equipped()
@@ -378,7 +378,7 @@
 		boutput(user, "<span class='notice'>[src.eject] will not work in the authentication card slot.</span>")
 		return
 	else if (istype(I, /obj/item/card/id))
-		if (!src.scan && !modify_only)
+		if ((!src.scan && !modify_only) && src.check_access(I)) //QOL do a simultaneous front-loaded auth check: if it won't work for auth, then insert it as a target card if the slot's open. ezpz
 			boutput(user, "<span class='notice'>You insert [I] into the authentication card slot.</span>")
 			user.drop_item()
 			I.set_loc(src)
