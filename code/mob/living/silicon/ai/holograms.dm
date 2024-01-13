@@ -89,6 +89,10 @@
 		name = "angry_face"
 		icon_state = "angry_face"
 		holo_type = "angry_face"
+	fart
+		name = "fart"
+		icon_state = "fart"
+		holo_type = "fart"
 
 /obj/hologram
 	name = "hologram"
