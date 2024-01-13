@@ -43,7 +43,8 @@
 	/obj/item/clothing/suit/bedsheet/polyam,
 	/obj/item/clothing/suit/bedsheet/nb,
 	/obj/item/clothing/suit/bedsheet/lesb,
-	/obj/item/clothing/suit/bedsheet/trans)
+	/obj/item/clothing/suit/bedsheet/trans,
+	/obj/item/clothing/suit/bedsheet/gay)
 
 /obj/storage/closet/wardrobe/black
 	name = "black wardrobe"
