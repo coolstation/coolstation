@@ -47,6 +47,7 @@ datum/preferences
 	var/view_tickets = 1
 	var/admin_music_volume = 50
 	var/radio_music_volume = 10
+	var/skip_lobby_music = FALSE
 	var/use_click_buffer = 0
 	var/listen_ooc = 1
 	var/listen_looc = 1
@@ -215,6 +216,7 @@ datum/preferences
 			"useWasd" = src.use_wasd,
 			"useAzerty" = src.use_azerty,
 			"preferredMap" = src.preferred_map,
+			"skipLobbyMusic" = src.skip_lobby_music
 		)
 
 	ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -775,6 +777,11 @@ datum/preferences
 				src.profile_modified = TRUE
 				return TRUE
 
+			if ("update-lobbymusic")
+				src.skip_lobby_music = !src.skip_lobby_music
+				src.profile_modified = TRUE
+				return TRUE
+
 			if ("update-flyingChatHidden")
 				src.flying_chat_hidden = !src.flying_chat_hidden
 				src.profile_modified = TRUE
@@ -891,6 +898,7 @@ datum/preferences
 				view_tickets = 1
 				admin_music_volume = 50
 				radio_music_volume = 50
+				skip_lobby_music = FALSE
 				use_click_buffer = 0
 				be_traitor = 0
 				be_syndicate = 0

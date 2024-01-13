@@ -59,6 +59,7 @@ export interface CharacterPreferencesData {
   useWasd: BooleanLike;
   useAzerty: BooleanLike;
   preferredMap: string;
+  skipLobbyMusic: BooleanLike;
 }
 
 export interface CharacterPreferencesProfile {

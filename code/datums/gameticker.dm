@@ -307,6 +307,9 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	SPAWN_DBG(0)
 		for (var/client/C in clients)
 
+			if (C.preferences?.skip_lobby_music)
+				continue
+
 			var/client_vol = C.getVolume(VOLUME_CHANNEL_ADMIN)
 
 			if (!client_vol)

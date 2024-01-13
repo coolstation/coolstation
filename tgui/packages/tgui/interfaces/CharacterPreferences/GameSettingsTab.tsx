@@ -260,6 +260,17 @@ export const GameSettingsTab = (_props, context) => {
             {data.preferredMap ? data.preferredMap : <Box italic>None</Box>}
           </Button>
         </LabeledList.Item>
+        <LabeledList.Item label="Lobby Music">
+          <Box mb="5px">
+            <Button.Checkbox
+              checked={data.skipLobbyMusic}
+              onClick={() => act("update-lobbymusic")}
+              tooltip="Toggles whether lobby music plays close to the start of a new round."
+            >
+              Skip Lobby Music
+            </Button.Checkbox>
+          </Box>
+        </LabeledList.Item>
       </LabeledList>
     </Section>
   );
