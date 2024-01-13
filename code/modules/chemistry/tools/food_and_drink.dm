@@ -541,6 +541,9 @@
 		var/maybe_too_clumsy = FALSE
 		var/maybe_too_tipsy = FALSE
 		var/too_drunk = FALSE
+		if(!src.is_open_container()) //sorry warc
+			boutput(C, "<span class='notice'>You can't chug from the [src] when it isn't open!</span>")
+			return
 		if(!can_chug)
 			boutput(C, "<span class='alert'>You can't seem to chug from [src.name]! How odd.</span>")
 			return
@@ -565,14 +568,6 @@
 
 	//Wow, we copy+pasted the heck out of this... (Source is chemistry-tools dm)
 	attack_self(mob/user as mob)
-		if (istype(src, /obj/item/reagent_containers/food/drinks/bottle))
-			var/obj/item/reagent_containers/food/drinks/bottle/W = src
-			if (!W.is_open_container())
-				boutput(user, "<span class='notice'>You open the [W].</span>")
-				W.open_container()
-				playsound(user, "sound/items/Screwdriver.ogg", 35, 1)
-				W.update_icon()
-				return 0
 		if (src.splash_all_contents)
 			boutput(user, "<span class='notice'>You try to be more careful about spilling [src].</span>")
 			src.splash_all_contents = 0
@@ -583,16 +578,6 @@
 
 	attack(mob/M as mob, mob/user as mob, def_zone)
 		// in this case m is the consumer and user is the one holding it
-		if (istype(src, /obj/item/reagent_containers/food/drinks/bottle))
-			var/obj/item/reagent_containers/food/drinks/bottle/W = src
-			if (istype(src, /obj/item/reagent_containers/food/drinks/bottle/soda) && W.broken)
-				return
-			if (!W.is_open_container())
-				boutput(user, "<span class='notice'>You open the [W].</span>")
-				W.open_container()
-				playsound(user, "sound/items/Screwdriver.ogg", 35, 1)
-				W.update_icon()
-				return 0
 
 		if (!src.reagents || !src.reagents.total_volume)
 			boutput(user, "<span class='alert'>Nothing left in [src], oh no!</span>")
@@ -618,16 +603,16 @@
 					return
 				user.visible_message("<span class='alert'>[user] makes [M] drink from the [src].</span>")
 
-			if (M.mind && M.mind.assigned_role == "Bartender")
-				var/reag_list = ""
-				for (var/current_id in reagents.reagent_list)
-					var/datum/reagent/current_reagent = reagents.reagent_list[current_id]
-					if (reagents.reagent_list.len > 1 && reagents.reagent_list[reagents.reagent_list.len] == current_id)
-						reag_list += " and [current_reagent.name]"
-						continue
-					reag_list += ", [current_reagent.name]"
-				reag_list = copytext(reag_list, 3)
-				boutput(M, "<span class='notice'>Tastes like there might be some [reag_list] in this.</span>")
+				if (M.mind && M.mind.assigned_role == "Bartender")
+					var/reag_list = ""
+					for (var/current_id in reagents.reagent_list)
+						var/datum/reagent/current_reagent = reagents.reagent_list[current_id]
+						if (reagents.reagent_list.len > 1 && reagents.reagent_list[reagents.reagent_list.len] == current_id)
+							reag_list += " and [current_reagent.name]"
+							continue
+						reag_list += ", [current_reagent.name]"
+					reag_list = copytext(reag_list, 3)
+					boutput(M, "<span class='notice'>Tastes like there might be some [reag_list] in this.</span>")
 /*			else
 				var/reag_list = ""
 
@@ -635,7 +620,7 @@
 					var/datum/reagent/current_reagent = reagents.reagent_list[current_id]
 					reag_list += "[current_reagent.taste], "
 
-				boutput(M, "<span class='notice'>You taste [reag_list]in this.</span>")
+						boutput(M, "<span class='notice'>You taste [reag_list]in this.</span>")
 */
 			if (src.reagents.total_volume)
 				logTheThing("combat", user, M, "[user == M ? "takes a sip from" : "makes [constructTarget(M,"combat")] drink from"] [src] [log_reagents(src)] at [log_loc(user)].")
@@ -1028,6 +1013,18 @@
 			return
 
 	attack(target as mob, mob/user as mob)
+		if (!src.is_open_container())
+			boutput(user, "<span class='notice'>You open [src].</span>")
+			src.open_container()
+			switch (src.cap_type)
+				if ("cap")
+					playsound(user, "sound/items/coindrop.ogg", 35, 1)
+				if ("cork", "champagne")
+					playsound(user, "sound/impact_sounds/Wood_Hit_Small_1.ogg", 35, 1)
+				if ("screw")
+					playsound(user, "sound/items/Screwdriver.ogg", 35, 1)
+			src.update_icon()
+			return
 		if (src.broken && !src.unbreakable)
 			force = 5.0
 			throwforce = 10.0
@@ -1059,6 +1056,22 @@
 				var/damage = rand(1,10)
 				random_brute_damage(target, damage)//shiv that nukie/secHoP
 				take_bleeding_damage(target, null, damage)
+		..()
+
+
+	attack_self(mob/user as mob)
+		if (!src.is_open_container())
+			boutput(user, "<span class='notice'>You open [src].</span>")
+			src.open_container()
+			switch (src.cap_type)
+				if ("cap")
+					playsound(user, "sound/items/coindrop.ogg", 35, 1)
+				if ("cork", "champagne")
+					playsound(user, "sound/impact_sounds/Wood_Hit_Small_1.ogg", 35, 1)
+				if ("screw")
+					playsound(user, "sound/items/Screwdriver.ogg", 35, 1)
+			src.update_icon()
+			return 0
 		..()
 
 	proc/smash_on_thing(mob/user as mob, atom/target as turf|obj|mob) // why did I have this as a proc on tables?  jeez, babbycoder haine, you really didn't know shit about nothin
@@ -1112,7 +1125,7 @@
 			SPAWN_DBG(0)
 				qdel(src)
 
-/obj/item/reagent_containers/food/drinks/bottle/soda //for soda bottles and bottles from the glass recycler specifically
+		/obj/item/reagent_containers/food/drinks/bottle/soda //for soda bottles and bottles from the glass recycler specifically
 	fluid_underlay_shows_volume = TRUE
 	cap_type = "cap"
 
