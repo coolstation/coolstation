@@ -191,9 +191,11 @@
 			src.modify.update_name()
 			if (src.eject)
 				usr.put_in_hand_or_eject(src.eject)
+				src.eject.pixel_y = 6
 				src.eject = null
 			else
 				usr.put_in_hand_or_eject(src.modify)
+				src.modify.pixel_y = 6
 			src.modify = null
 		else
 			var/obj/item/I = usr.equipped()
@@ -222,7 +224,8 @@
 		src.scan_access = null
 	if (href_list["scan"])
 		if (src.scan)
-			src.scan.set_loc(src.loc)
+			usr.put_in_hand_or_eject(src.scan)
+			src.scan.pixel_y = -6
 			src.scan = null
 		else
 			var/obj/item/I = usr.equipped()
