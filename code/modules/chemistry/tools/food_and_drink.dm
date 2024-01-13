@@ -603,16 +603,16 @@
 					return
 				user.visible_message("<span class='alert'>[user] makes [M] drink from the [src].</span>")
 
-				if (M.mind && M.mind.assigned_role == "Bartender")
-					var/reag_list = ""
-					for (var/current_id in reagents.reagent_list)
-						var/datum/reagent/current_reagent = reagents.reagent_list[current_id]
-						if (reagents.reagent_list.len > 1 && reagents.reagent_list[reagents.reagent_list.len] == current_id)
-							reag_list += " and [current_reagent.name]"
-							continue
-						reag_list += ", [current_reagent.name]"
-					reag_list = copytext(reag_list, 3)
-					boutput(M, "<span class='notice'>Tastes like there might be some [reag_list] in this.</span>")
+			if (M.mind && M.mind.assigned_role == "Bartender")
+				var/reag_list = ""
+				for (var/current_id in reagents.reagent_list)
+					var/datum/reagent/current_reagent = reagents.reagent_list[current_id]
+					if (reagents.reagent_list.len > 1 && reagents.reagent_list[reagents.reagent_list.len] == current_id)
+						reag_list += " and [current_reagent.name]"
+						continue
+					reag_list += ", [current_reagent.name]"
+				reag_list = copytext(reag_list, 3)
+				boutput(M, "<span class='notice'>Tastes like there might be some [reag_list] in this.</span>")
 /*			else
 				var/reag_list = ""
 
@@ -620,7 +620,7 @@
 					var/datum/reagent/current_reagent = reagents.reagent_list[current_id]
 					reag_list += "[current_reagent.taste], "
 
-						boutput(M, "<span class='notice'>You taste [reag_list]in this.</span>")
+				boutput(M, "<span class='notice'>You taste [reag_list]in this.</span>")
 */
 			if (src.reagents.total_volume)
 				logTheThing("combat", user, M, "[user == M ? "takes a sip from" : "makes [constructTarget(M,"combat")] drink from"] [src] [log_reagents(src)] at [log_loc(user)].")
@@ -1125,7 +1125,7 @@
 			SPAWN_DBG(0)
 				qdel(src)
 
-		/obj/item/reagent_containers/food/drinks/bottle/soda //for soda bottles and bottles from the glass recycler specifically
+/obj/item/reagent_containers/food/drinks/bottle/soda //for soda bottles and bottles from the glass recycler specifically
 	fluid_underlay_shows_volume = TRUE
 	cap_type = "cap"
 
