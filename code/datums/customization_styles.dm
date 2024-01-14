@@ -348,6 +348,11 @@ ABSTRACT_TYPE(/datum/customization_style/biological)
 				name = "Very Long"
 				id = "vlong"
 				gender = FEMININE
+
+			untidy
+				name = "Untidy"
+				id = "untidy"
+				gender = MASCULINE | FEMININE
 		hairup
 			afos //if you don't recognise this one, look up A Flock Of Seagulls
 				name = "New Wave"
