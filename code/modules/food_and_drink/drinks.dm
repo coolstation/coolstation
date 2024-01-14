@@ -34,21 +34,21 @@
 	initial_volume = 50
 	initial_reagents = list("urine"=6,"haloperidol"=2,"morphine"=2,"VHFCS"=10,"cola"=12)
 
-/obj/item/reagent_containers/food/drinks/bottle/soda/poo
+/obj/item/reagent_containers/food/drinks/bottle/soda/poo //now will cause food poisoning but only if you drink two of them real quick like
 	name = "Mountain Poo"
 	desc = "Fuck, wasn't this stuff banned over a decade ago? Looks like someone took over the copyright and made up a new recipe."
 	label = "poo"
 	labeled = 1
 	initial_volume = 50
-	initial_reagents = list("poo"=5,"cocktail_citrus" = 5,"VHFCS"=10,"cola"=10)
+	initial_reagents = list("poo"=1,"cocktail_citrus"=5,"ecoli"=4,"VHFCS"=10,"cola"=10) //legal minimum of poo without running afoul of false advert laws
 
-/obj/item/reagent_containers/food/drinks/bottle/soda/italian //see i coulda done beverly
+/obj/item/reagent_containers/food/drinks/bottle/soda/italian //beverly + beef
 	name = "Cappy Cola"
 	desc = "Nuovo! Soda al gusto di prosciutto!"
 	label = "italian"
 	labeled = 1
 	initial_volume = 50
-	initial_reagents = list("beff"=2,"bacon" = 3,"bitters" = 5,"VHFCS"=10,"cola"=10) //sneaking a beverly joke in there
+	initial_reagents = list("beff"=3,"bacon"=3,"pepperoni"=3,"bitters"=1,"VHFCS"=10,"cola"=10)
 
 /obj/item/reagent_containers/food/drinks/bottle/soda/lime
 	name = "Lime-Aid"
