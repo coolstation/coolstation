@@ -34,12 +34,18 @@
 			return src.Attackby(null, AM)
 		..()
 
+	bumpopen(mob/user as mob)
+		if (src.density)
+			src.autoclose = 1
+		..(user)
 
 	attack_hand(mob/user as mob)
 		if (issilicon(user) && src.hardened == 1)
 			user.show_text("You cannot control this door.", "red")
 			return
 		else
+			if (src.density)
+				src.autoclose = 0
 			return src.Attackby(null, user)
 
 	attackby(obj/item/I as obj, mob/user as mob)
