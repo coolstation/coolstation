@@ -158,7 +158,7 @@
 	/// forces the mob to wear underpants, even if their flags tell them not to
 	var/underpants_override = 0
 	/// forces the mob to display human hair, even if their flags tell them not to
-	var/hair_override = 0 // only really works if they have hair. Barbering might help
+	var/hair_override = 1 // only really works if they have hair. Barbering might help - temp warc 1
 	/// forces the mob to display their special hair, even if their flags tell them not to
 	var/special_hair_override = 0 // only really works if they have any special hair
 
