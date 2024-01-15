@@ -628,14 +628,6 @@ TRAYS
 		allowed_food = /obj/item/reagent_containers/food/snacks/ingredient/egg
 		contained_food_name = "egg"
 
-		inquotes
-			name = "\"egg\" carton"
-			desc = "Some kind of carton with \"eggs\" written on the top. This fills you with even more unease than the regular eggs do."
-			icon_state = "egginquotesbox"
-			contained_food = /obj/item/reagent_containers/food/snacks/ingredient/egg/inquotes
-			allowed_food = /obj/item/reagent_containers/food/snacks/ingredient/egg/inquotes
-			contained_food_name = "\"egg\""
-
 	lollipop
 		name = "lollipop bowl"
 		desc = "A little bowl of sugar-free lollipops, totally healthy in every way! They're medicinal, after all!"

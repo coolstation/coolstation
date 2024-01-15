@@ -167,23 +167,7 @@
 		src.visible_message("<span class='alert'>[src] splats onto the floor messily!</span>")
 		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
 		make_cleanable(/obj/decal/cleanable/eggsplat,T)
-		qdel (src)
-
-/obj/item/reagent_containers/food/snacks/ingredient/egg/inquotes
-	name = "\"egg\""
-	desc = "An \"egg\"...?"
-	icon_state = "egg"
-	food_color = "#FDFFF1"
-	initial_volume = 20
-	initial_reagents = list("egg"=5)
-	doants = 0 // They're protected by a shell
-
-	throw_impact(atom/A, datum/thrown_thing/thr)
-		src.visible_message("<span class='alert'>[src] splats onto the floor..? Huh?</span>")
-		if (prob(90))
-			playsound(src.loc, "sound/vox/eggs.ogg", 50, 1)
-		else
-			playsound(src.loc, "sound/vox/egg.ogg", 50, 1)
+		make_cleanable(/obj/decal/cleanable/eggshell,T)
 		qdel (src)
 
 /obj/item/reagent_containers/food/snacks/ingredient/egg/hardboiled

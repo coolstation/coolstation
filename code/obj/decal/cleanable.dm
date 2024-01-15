@@ -1212,7 +1212,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 
 /obj/decal/cleanable/eggsplat
 	name = "smashed egg"
-	desc = "Chickens will be none too pleased about this."
+	desc = "This mess is no yolk. Well, maybe a little."
 	icon = 'icons/effects/water.dmi'
 	icon_state = "egg1"
 	random_icon_states = list("egg1", "egg2", "egg3")
@@ -1220,6 +1220,15 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	can_sample = 1
 	sample_amt = 5
 	sample_reagent = "egg"
+
+/obj/decal/cleanable/eggshell
+	name = "egg shell"
+	desc = "Be careful when you walk on this."
+	icon = 'icons/obj/decals/cleanables.dmi'
+	icon_state = "eggshell1"
+	random_icon_states = list("eggshell1", "eggshell2", "eggshell3", "eggshell4")
+	slippery = 0
+	can_sample = 0
 
 /obj/decal/cleanable/ash
 	name = "ashes"
