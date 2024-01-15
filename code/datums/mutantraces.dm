@@ -1353,6 +1353,20 @@
 					playsound(mob, "sound/voice/burp_alien.ogg", 60, 1, channel=VOLUME_CHANNEL_EMOTE)
 					SPAWN_DBG(1 SECOND)
 						mob.emote_allowed = 1
+			if("uwu", "owo") //i'd love to see some kinda maptext or icon above the head for this
+				if(mob.emote_allowed)
+					mob.emote_allowed = 0
+					message = "<span class='alert'><B>[mob] [act]s!</B></span>"
+					playsound(mob, "sound/voice/animal/werewolf_howl.ogg", 65, 0, 0, max(1.2, min(1.4, 1.2 + (30 - mob.bioHolder.age)/60)), channel=VOLUME_CHANNEL_EMOTE) //need better sound for this
+					SPAWN_DBG(3 SECONDS)
+						mob.emote_allowed = 1
+			if("rawr") //maptext also
+				if(mob.emote_allowed)
+					mob.emote_allowed = 0
+					message = "<span class='alert'><B>[mob] rawrs [pick("proudly", "loudly")]! xD</B></span>"
+					playsound(mob, "sound/voice/animal/werewolf_howl.ogg", 65, 0, 0, max(1.2, min(1.4, 1.2 + (30 - mob.bioHolder.age)/60)), channel=VOLUME_CHANNEL_EMOTE) //also need better sound
+					SPAWN_DBG(3 SECONDS)
+						mob.emote_allowed = 1
 		return message
 
 /datum/mutantrace/hunter
@@ -2184,16 +2198,16 @@
 						return message //npcs don't cause other freakouts
 					sleep(0.2 SECONDS) //so they don't start fuckin' dancing before you do
 					for (var/mob/M in viewers(mob))
-						if (M != mob && isfert(M)) //get big ferrets to join in
+						if (M != mob && isfert(M) && M.client) //get other big (player) ferrets to join in
 							if (prob(25) && M.emote_allowed) //test this with the slower and more reliable cooldown
 								for (var/mob/V in viewers(M)) //secondary viewers watching this trainwreck unfold
-									if (V == M) //don't view yourself dancing
+									if (V == M || !V.client) //affected players and npcs don't need to see this message
 										continue
 									V.show_message("<span class='notice'>[M] joins [mob] in these [pick("fuckin'","absolutely","totally","")] [pick("weaselly","toobular","dooked-up","slinky","stinky")] [pick("shenanigans","hijinks","carryings-on","behaviors","wiggles","wobbles")].</span>", 1)
 									M.emote("dance", 0) //involuntary
 						if (istype(M, /mob/living/critter/small_animal/meatslinky)) //small ferrets (mobs only)
 							var/mob/living/critter/small_animal/meatslinky/frrt = M
-							frrt.contagiousfreakout(1) //this does its own prob + cooldown
+							frrt.contagiousfreakout(1) //the ferret's freakout proc handles the ferret's emotional state and probability
 					for (var/obj/O in viewers(mob))
 						if (istype(O, /obj/critter/meatslinky)) //small ferrets (critter...)
 							var/obj/critter/meatslinky/toob = O

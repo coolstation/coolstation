@@ -160,6 +160,8 @@
 			if (!istype(user)) return //sound_list_flap
 			if (!user.restrained() && user.sound_list_flap && length(user.sound_list_flap))
 				playsound(user.loc, pick(user.sound_list_flap), 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			if (istype(user.w_uniform, /obj/item/clothing/under/gimmick/owl)) //owlsuit has wings, just my imo (but oh this feels like a bad way for me to shoehorn this in)
+				return list("<B>[user]</B> flaps [call(pronoun_proc)(user)] wings!", "<I>flaps [call(pronoun_proc)(user)] wings!</I>", MESSAGE_VISIBLE)
 			. = ..()
 		//Guess what it's nested relative pathing baybee
 		aflap
