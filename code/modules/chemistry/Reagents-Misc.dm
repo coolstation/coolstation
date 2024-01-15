@@ -1353,6 +1353,16 @@ datum
 			fluid_b = 254
 			transparency = 80
 
+			on_mob_life(var/mob/M, var/mult = 1)
+				if (!M)
+					M = holder.my_atom
+				if (prob(5))
+					M.say("dog water")
+				else if (prob(5))
+					boutput(M, "dog water")
+				..()
+				return
+
 		denatured_enzyme
 			name = "denatured enzyme"
 			id = "denatured_enzyme"
