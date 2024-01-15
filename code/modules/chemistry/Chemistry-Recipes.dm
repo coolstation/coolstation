@@ -2390,6 +2390,17 @@ datum
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 			mix_phrase = "The chemicals hiss and fizz briefly, followed by one big bubble that smells like a fart."
 
+		//once again thank you popecrunch
+		doublepoo
+			name = "Doublepoo"
+			id = "doublepoo"
+			required_reagents = list("poo" = 2)
+			required_temperature = T0C + 100
+			mix_phrase = "You're boiling some shit. Congratulations. Your mother must be so proud."
+			mix_sound = 'sound/voice/farts/diarrhea.ogg'
+			result_amount = 1 //density reduced to half...
+			result = "doublepoo"
+
 		flash_powder
 			name = "Flash Powder"
 			id = "flashpowder"

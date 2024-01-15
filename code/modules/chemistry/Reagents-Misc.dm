@@ -1343,6 +1343,16 @@ datum
 				..()
 				return
 
+		dog_water //tastes great with pope crunch
+			name = "dog water"
+			id = "dog_water"
+			description = "dog water?"
+			reagent_state = LIQUID
+			fluid_r = 10
+			fluid_g = 165
+			fluid_b = 254
+			transparency = 80
+
 		denatured_enzyme
 			name = "denatured enzyme"
 			id = "denatured_enzyme"
@@ -3193,6 +3203,22 @@ datum
 
 			on_plant_life(var/obj/machinery/plantpot/P)
 				if (prob(66))
+					P.health++
+
+		doublepoo
+			name = "Doublepoo"
+			id = "doublepoo"
+			description = "Uhhh... Processed fertilizer used for gardening???"
+			reagent_state = SOLID
+			fluid_r = 100
+			fluid_g = 55
+			fluid_b = 0
+			transparency = 255
+			hygiene_value = -5
+			viscosity = 1
+
+			on_plant_life(var/obj/machinery/plantpot/P)
+				if (prob(90))
 					P.health++
 
 		big_bang_precursor
