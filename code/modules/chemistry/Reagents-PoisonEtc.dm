@@ -407,6 +407,9 @@ datum
 						if (2)
 							M.take_toxin_damage(1 * mult)
 							boutput(M, "<span class='alert'>Your stomach grumbles painfully!</span>")
+						if (3)
+							// nothing happens. just to stop the linter complaining.
+							pass_proc()
 
 				else
 					if (prob(60))
