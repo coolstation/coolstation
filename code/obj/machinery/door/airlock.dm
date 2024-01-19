@@ -1,6 +1,9 @@
 // how many possible network verification codes are there (i.e. how hard is it to bruteforce)
 #define NET_ACCESS_OPTIONS 32
 
+/// a global associative list of all airlock junctions linked together by cycling mechanisms. Indexed by ID
+var/global/list/cycling_airlocks = list()
+
 /*
 	New methods:
 	pulse - sends a pulse into a wire for hacking purposes
@@ -171,8 +174,13 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	secondsElectrified = 0 //How many seconds remain until the door is no longer electrified. -1 if it is permanently electrified until someone fixes it.
 	var/aiDisabledIdScanner = 0
 	var/aiHacking = 0
+
+
+	var/cycle_id = ""	//! Which airlock junction network it's in.
+	var/cycle_enter_id = "" //! An ID for a certain entrance in a junction
 	var/obj/machinery/door/airlock/closeOther = null
 	var/closeOtherId = null
+
 	var/list/signalers[10]
 	var/lockdownbyai = 0
 	var/last_bump = 0
@@ -1454,6 +1462,12 @@ About the new airlock wires panel:
 
 	return
 
+/// adds the airlock in question to the global list, if it's a cycling one.
+/obj/machinery/door/airlock/proc/attempt_cycle_link()
+	if (src.cycle_id)
+		if (!(src in cycling_airlocks[src.cycle_id]))
+			cycling_airlocks[src.cycle_id] += src
+
 /obj/machinery/door/airlock/open()
 	if (src.welded || src.locked || src.operating == 1 || (!src.arePowerSystemsOn()) || (status & NOPOWER) || src.isWireCut(AIRLOCK_WIRE_OPEN_DOOR))
 		return 0
@@ -1467,8 +1481,12 @@ About the new airlock wires panel:
 	else
 		playsound(src.loc, src.sound_airlock, 25, 1)
 
-	if (src.closeOther != null && istype(src.closeOther, /obj/machinery/door/airlock/) && !src.closeOther.density)
-		src.closeOther.close(1)
+	if (src.cycle_id)
+		for (var/obj/machinery/door/airlock/D in cycling_airlocks[src.cycle_id])
+		// if they share entry id, don't close, e.g. double doors facing space. Close all other doors in junction.
+			if (src.cycle_enter_id && src.cycle_enter_id == D.cycle_enter_id)
+				continue
+			D.close()
 
 /obj/machinery/door/airlock/close()
 	if (linked_forcefield) //mbc : this sucks, but I need the forcefield to turn off even if the door is unpowered and can't close.
@@ -1967,3 +1985,46 @@ obj/machinery/door/airlock
 						. = TRUE
 
 #undef NET_ACCESS_OPTIONS
+
+
+/* How to Use:
+Place these on top of doors that you want to link together in a junction.
+All the doors in a junction (i.e. an air Lock) should share a cycle_id string.
+If there are only single doors in the junction, then you're set.
+
+If one of the entrances has a double door, set them to have matching enter_id strings.
+
+Any strings can be used. These have to be var edited.
+
+This way, opening one of the double doors on the space side won't close the other space door, for instance.
+But opening an interior door will still close both space doors.
+
+It's different to tg's direction based one, but these can have 3 way intersections and 90 degree airlocks,
+and support double doors, so I feel they're better and more versatile, even if they're harder to set up..
+~Tyrant
+*/
+/obj/airlock_cycle_linker
+	name = "airlock cycler linkage"
+	icon = 'icons/obj/doors/door1.dmi'
+	icon_state = "cycle_link"
+	// these vars have to be var edited
+	var/cycle_id = ""	//! ID of the cycling network aka the junction
+	var/enter_id = ""	//! ID of doors within a network (e.g. for double doors)
+	mouse_opacity = FALSE
+	anchored = TRUE
+	invisibility = INVIS_ALWAYS
+	layer = OBJ_LAYER + 1 // yeah let's consistently be above doors
+
+	New()
+		..()
+		spawn(20 SECONDS)	// let all the doors spawn in first or smth idk
+			if (QDELETED(src))
+				return
+			if (!src.cycle_id)
+				CRASH("[src] has no cycle ID set. Coords: [src.x], [src.y], [src.z]")
+			for (var/obj/machinery/door/airlock/D in src.loc)
+				D.cycle_id = src.cycle_id
+				D.cycle_enter_id = src.enter_id
+				D.attempt_cycle_link()
+			qdel(src)
+
