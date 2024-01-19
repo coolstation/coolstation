@@ -303,7 +303,7 @@
 	name = "e-cigarette"
 	desc = "The pinacle of human technology. An electronic cigarette!"
 	icon = 'icons/obj/items/cigarettes.dmi'
-	inhand_image_icon = 'icons/obj/items/cigarettes.dmi'
+	//inhand_image_icon = 'icons/obj/items/cigarettes.dmi'  fuck it this'll do for the moment
 	initial_volume = 50
 	initial_reagents = "nicotine"
 	item_state = "ecig"

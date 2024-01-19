@@ -414,7 +414,7 @@ ABSTRACT_TYPE(/datum/clothingbooth_item/outerwear)
 	name = "Blue Hoodie"
 	path = /obj/item/clothing/suit/hoodie/blue
 	cost = PAY_UNTRAINED/3
-
+/* Post resprite only
 /datum/clothingbooth_item/outerwear/darkbluehoodie
 	name = "Dark Blue Hoodie"
 	path = /obj/item/clothing/suit/hoodie/darkblue
@@ -464,7 +464,7 @@ ABSTRACT_TYPE(/datum/clothingbooth_item/outerwear)
 	name = "Red Hoodie"
 	path = /obj/item/clothing/suit/hoodie/red
 	cost = PAY_UNTRAINED/3
-
+*/
 /datum/clothingbooth_item/outerwear/poncho
 	name = "Poncho"
 	path = /obj/item/clothing/suit/poncho
