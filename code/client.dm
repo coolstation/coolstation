@@ -970,7 +970,7 @@ var/global/curr_day = null
 	else
 		sleep(0.1 SECONDS)
 
-/client/Topic(href, href_list)
+/client/Topic(href, href_list, hsrc = null) //hsrc is the referenced atom from /client/verb/windowclose as set by proc/onclose
 	if (!usr || isnull(usr.client))
 		return
 
@@ -982,6 +982,9 @@ var/global/curr_day = null
 	if (href_list["target"])
 		var/targetCkey = href_list["target"]
 		M = whois_ckey_to_mob_reference(targetCkey)
+	else if (href_list["close"] && ismob(hsrc)) //remove ourselves from another mob's inventory showing list
+		M = hsrc
+		M.remove_dialog(src.mob)
 
 	switch(href_list["action"])
 		if ("priv_msg_irc")

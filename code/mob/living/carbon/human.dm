@@ -1330,7 +1330,7 @@
 	<BR><A href='?action=mach_close&window=mob[src.name]'>Close</A>
 	<BR>"}
 	user.Browse(dat, text("window=mob[src.name];size=340x480"))
-	onclose(user, "mob[src.name]")
+	onclose(user, "mob[src.name]", src)
 	src.last_show_inv = world.time
 	return
 	//	<BR><A href='?src=\ref[src];item=pockets'>Empty Pockets</A>
