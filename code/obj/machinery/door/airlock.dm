@@ -1484,9 +1484,9 @@ About the new airlock wires panel:
 	if (src.cycle_id)
 		for (var/obj/machinery/door/airlock/D in cycling_airlocks[src.cycle_id])
 		// if they share entry id, don't close, e.g. double doors facing space. Close all other doors in junction.
-		if (src.cycle_enter_id && src.cycle_enter_id == D.cycle_enter_id)
-			continue
-		D.close()
+			if (src.cycle_enter_id && src.cycle_enter_id == D.cycle_enter_id)
+				continue
+			D.close()
 
 /obj/machinery/door/airlock/close()
 	if (linked_forcefield) //mbc : this sucks, but I need the forcefield to turn off even if the door is unpowered and can't close.
