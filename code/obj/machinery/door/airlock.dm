@@ -2010,11 +2010,21 @@ and support double doors, so I feel they're better and more versatile, even if t
 	// these vars have to be var edited
 	var/cycle_id = ""	//! ID of the cycling network aka the junction
 	var/enter_id = ""	//! ID of doors within a network (e.g. for double doors)
+	mouse_opacity = FALSE
+	anchored = TRUE
+	invisibility = INVIS_ALWAYS
+	layer = OBJ_LAYER + 1 // yeah let's consistently be above doors
 
-	setup()
-		if (!src.cycle_id)
-			CRASH("[src] has no cycle ID set. Coords: [src.x], [src.y], [src.z]")
-		for (var/obj/machinery/door/airlock/D in src.loc)
-			D.cycle_id = src.cycle_id
-			D.cycle_enter_id = src.enter_id
-			D.attempt_cycle_link()
+	New()
+		..()
+		spawn(20 SECONDS)	// let all the doors spawn in first or smth idk
+			if (QDELETED(src))
+				return
+			if (!src.cycle_id)
+				CRASH("[src] has no cycle ID set. Coords: [src.x], [src.y], [src.z]")
+			for (var/obj/machinery/door/airlock/D in src.loc)
+				D.cycle_id = src.cycle_id
+				D.cycle_enter_id = src.enter_id
+				D.attempt_cycle_link()
+			qdel(src)
+
