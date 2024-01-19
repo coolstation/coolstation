@@ -66,7 +66,7 @@
 		icon_state = "hoodie-blue"
 		item_state = "hoodie-blue"
 		hcolor = "blue"
-
+	/* All of these are post-resprite flavours
 	darkblue
 		icon_state = "hoodie-darkblue"
 		item_state = "hoodie-darkblue"
@@ -116,7 +116,7 @@
 		icon_state = "hoodie-red"
 		item_state = "hoodie-red"
 		hcolor = "red"
-
+	*/
 /obj/item/clothing/suit/hoodie/random
 	New()
 		if (prob(50))
