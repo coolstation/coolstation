@@ -138,7 +138,9 @@ var/list/ai_move_scheduled = list()
 						turn += 45
 					// just to stop the linter complaining. nothing should happen.
 					if (3)
+						pass_proc(src)
 					if (4)
+						pass_proc(src)
 
 				src.owner.move_dir = turn(get_dir(src.owner,get_turf(src.move_target)),turn)
 				src.owner.process_move()

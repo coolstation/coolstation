@@ -261,9 +261,13 @@
 								theAPC.update()
 						// just to stop the linter complaining. nothing should happen.
 						if (7)
+							pass_proc(src)
 						if (8)
+							pass_proc(src)
 						if (9)
+							pass_proc(src)
 						if (10)
+							pass_proc(src)
 
 			else if (src.det.part_fs.time < 10 && src.det.part_fs.time > 7)  //EXPLOSION IMMINENT
 				src.add_simple_light("canister", list(1 * 255, 0.03 * 255, 0.03 * 255, 0.6 * 255))
