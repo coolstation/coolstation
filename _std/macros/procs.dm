@@ -11,4 +11,5 @@
 #define return_if_overlay_or_effect(x) if (istype(x, /obj/overlay) || istype(x, /obj/effects)) return
 
 /// completely worthless proc, used for filling out blank switch statements or something. does nothing
-#define pass_proc(x) if (x) return
+/proc/pass_proc(x)
+	return
