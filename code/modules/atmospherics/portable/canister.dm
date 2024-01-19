@@ -259,8 +259,11 @@
 								theAPC.lighting = 3
 								theAPC.updateicon()
 								theAPC.update()
-
-
+						// just to stop the linter complaining. nothing should happen.
+						if (7)
+						if (8)
+						if (9)
+						if (10)
 
 			else if (src.det.part_fs.time < 10 && src.det.part_fs.time > 7)  //EXPLOSION IMMINENT
 				src.add_simple_light("canister", list(1 * 255, 0.03 * 255, 0.03 * 255, 0.6 * 255))
