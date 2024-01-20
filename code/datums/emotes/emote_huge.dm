@@ -493,7 +493,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 		var/datum/targetable/D = user.targeting_ability
 		D.flip_callback()
 
-	if ((!istype(user.loc, /turf/space)) && (!user.on_chair))
+	if ((!istype_exact(user.loc, /turf/space)) && (!user.on_chair)) //that typecheck might still be bogus but at least we can flip on sand now
 		if (!user.lying)
 			if ((user.restrained()) || (user.reagents && user.reagents.get_reagent_amount("ethanol") > 30) || (user.bioHolder.HasEffect("clumsy")))
 				message = pick("<B>[user]</B> tries to flip, but stumbles!", "<B>[user]</B> slips!")

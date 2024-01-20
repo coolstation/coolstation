@@ -9,3 +9,7 @@
 
 /// returns early if x is an overlay or effect
 #define return_if_overlay_or_effect(x) if (istype(x, /obj/overlay) || istype(x, /obj/effects)) return
+
+/// completely worthless proc, used for filling out blank switch statements or something. does nothing
+/proc/pass_proc(x)
+	return
