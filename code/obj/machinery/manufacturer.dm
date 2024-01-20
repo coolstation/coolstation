@@ -1,5 +1,60 @@
 #define MAX_QUEUE_LENGTH 20
 
+#define UNIFORM_LIST {\
+/datum/manufacture/shoes,;\
+/datum/manufacture/shoes_brown,;\
+/datum/manufacture/shoes_white,;\
+/datum/manufacture/jumpsuit,;\
+/datum/manufacture/jumpsuit_white,;\
+/datum/manufacture/jumpsuit_red,;\
+/datum/manufacture/jumpsuit_yellow,;\
+/datum/manufacture/jumpsuit_green,;\
+/datum/manufacture/jumpsuit_pink,;\
+/datum/manufacture/jumpsuit_blue,;\
+/datum/manufacture/jumpsuit_brown,;\
+/datum/manufacture/jumpsuit_black,;\
+/datum/manufacture/jumpsuit_orange,;\
+/datum/manufacture/pride_lgbt,;\
+/datum/manufacture/pride_ace,;\
+/datum/manufacture/pride_aro,;\
+/datum/manufacture/pride_bi,;\
+/datum/manufacture/pride_inter,;\
+/datum/manufacture/pride_lesb,;\
+/datum/manufacture/pride_nb,;\
+/datum/manufacture/pride_pan,;\
+/datum/manufacture/pride_poly,;\
+/datum/manufacture/pride_trans,;\
+/datum/manufacture/suit_black,;\
+/datum/manufacture/dress_black,;\
+/datum/manufacture/hat_black,;\
+/datum/manufacture/hat_white,;\
+/datum/manufacture/hat_blue,;\
+/datum/manufacture/hat_yellow,;\
+/datum/manufacture/hat_red,;\
+/datum/manufacture/hat_green,;\
+/datum/manufacture/hat_pink,;\
+/datum/manufacture/hat_orange,;\
+/datum/manufacture/hat_tophat,;\
+/datum/manufacture/backpack,;\
+/datum/manufacture/backpack_red,;\
+/datum/manufacture/backpack_green,;\
+/datum/manufacture/backpack_blue,;\
+/datum/manufacture/satchel,;\
+/datum/manufacture/satchel_red,;\
+/datum/manufacture/satchel_green,;\
+/datum/manufacture/satchel_blue,;\
+/datum/manufacture/bedsheet_lgbt,;\
+/datum/manufacture/bedsheet_ace,;\
+/datum/manufacture/bedsheet_aro,;\
+/datum/manufacture/bedsheet_bi,;\
+/datum/manufacture/bedsheet_inter,;\
+/datum/manufacture/bedsheet_lesb,;\
+/datum/manufacture/bedsheet_nb,;\
+/datum/manufacture/bedsheet_pan,;\
+/datum/manufacture/bedsheet_poly,;\
+/datum/manufacture/bedsheet_trans;\
+};\
+
 /obj/machinery/manufacturer
 	name = "Manufacturing Unit"
 	desc = "A standard fabricator unit capable of producing certain items from various materials."
@@ -2363,49 +2418,7 @@
 	free_resource_amt = 5
 	free_resources = list(/obj/item/material_piece/cloth/cottonfabric)
 	accept_blueprints = 0
-	available = list(/datum/manufacture/shoes,	//hey if you update these please remember to add it to /hop_and_uniform's list too
-	/datum/manufacture/shoes_brown,
-	/datum/manufacture/shoes_white,
-	/datum/manufacture/jumpsuit,
-	/datum/manufacture/jumpsuit_white,
-	/datum/manufacture/jumpsuit_red,
-	/datum/manufacture/jumpsuit_yellow,
-	/datum/manufacture/jumpsuit_green,
-	/datum/manufacture/jumpsuit_pink,
-	/datum/manufacture/jumpsuit_blue,
-	/datum/manufacture/jumpsuit_brown,
-	/datum/manufacture/jumpsuit_black,
-	/datum/manufacture/jumpsuit_orange,
-	/datum/manufacture/pride_lgbt,
-	/datum/manufacture/pride_ace,
-	/datum/manufacture/pride_aro,
-	/datum/manufacture/pride_bi,
-	/datum/manufacture/pride_inter,
-	/datum/manufacture/pride_lesb,
-	/datum/manufacture/pride_nb,
-	/datum/manufacture/pride_pan,
-	/datum/manufacture/pride_poly,
-	/datum/manufacture/pride_trans,
-	/datum/manufacture/suit_black,
-	/datum/manufacture/dress_black,
-	/datum/manufacture/hat_black,
-	/datum/manufacture/hat_white,
-	/datum/manufacture/hat_blue,
-	/datum/manufacture/hat_yellow,
-	/datum/manufacture/hat_red,
-	/datum/manufacture/hat_green,
-	/datum/manufacture/hat_pink,
-	/datum/manufacture/hat_orange,
-	/datum/manufacture/hat_tophat,
-	/datum/manufacture/backpack,
-	/datum/manufacture/backpack_red,
-	/datum/manufacture/backpack_green,
-	/datum/manufacture/backpack_blue,
-	/datum/manufacture/satchel,
-	/datum/manufacture/satchel_red,
-	/datum/manufacture/satchel_green,
-	/datum/manufacture/satchel_blue)
-
+	available = list(UNIFORM_LIST)
 	hidden = list(/datum/manufacture/breathmask,
 	/datum/manufacture/patch,
 	/datum/manufacture/hat_ltophat)
@@ -2465,42 +2478,8 @@
 		/obj/item/material_piece/glass,
 		/obj/item/material_piece/cloth/cottonfabric)
 	accept_blueprints = 0
-	available = list(/datum/manufacture/id_card,
-	/datum/manufacture/implant_access,
-	/datum/manufacture/implanter,
-	/datum/manufacture/shoes,
-	/datum/manufacture/shoes_brown,
-	/datum/manufacture/shoes_white,
-	/datum/manufacture/jumpsuit,
-	/datum/manufacture/jumpsuit_white,
-	/datum/manufacture/jumpsuit_red,
-	/datum/manufacture/jumpsuit_yellow,
-	/datum/manufacture/jumpsuit_green,
-	/datum/manufacture/jumpsuit_pink,
-	/datum/manufacture/jumpsuit_blue,
-	/datum/manufacture/jumpsuit_brown,
-	/datum/manufacture/jumpsuit_black,
-	/datum/manufacture/jumpsuit_orange,
-	/datum/manufacture/pride_lgbt,
-	/datum/manufacture/pride_ace,
-	/datum/manufacture/pride_aro,
-	/datum/manufacture/pride_bi,
-	/datum/manufacture/pride_inter,
-	/datum/manufacture/pride_lesb,
-	/datum/manufacture/pride_nb,
-	/datum/manufacture/pride_pan,
-	/datum/manufacture/pride_poly,
-	/datum/manufacture/pride_trans,
-	/datum/manufacture/suit_black,
-	/datum/manufacture/hat_black,
-	/datum/manufacture/hat_white,
-	/datum/manufacture/hat_blue,
-	/datum/manufacture/hat_yellow,
-	/datum/manufacture/hat_red,
-	/datum/manufacture/hat_green,
-	/datum/manufacture/hat_pink,
-	/datum/manufacture/hat_orange,
-	/datum/manufacture/hat_tophat)
+	available = list(/datum/manufacture/id_card, /datum/manufacture/implant_access,	/datum/manufacture/implanter,
+	UNIFORM_LIST)
 
 	hidden = list(/datum/manufacture/id_card_gold,
 	/datum/manufacture/implant_access_infinite,
@@ -2624,7 +2603,7 @@
 #undef WIRE_MALF
 #undef WIRE_SHOCK
 #undef MAX_QUEUE_LENGTH
-
+#undef UNIFORM_LIST
 
 
 // -------------------
