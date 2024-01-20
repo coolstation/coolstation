@@ -610,9 +610,9 @@
 	HasEntered(AM as mob|obj)
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
-			playsound(src.loc, src.sound_stepped, 50, 1)
 			if(H.getStatusDuration("stunned") || H.getStatusDuration("weakened")) // nerf for dragging a person and a shard to damage them absurdly fast - drsingh
 				return
+			playsound(src.loc, src.sound_stepped, 50, 1)
 			if(isabomination(H))
 				return
 			if(H.throwing || HAS_MOB_PROPERTY(H, PROP_ATOM_FLOATING))
