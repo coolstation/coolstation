@@ -2307,6 +2307,168 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Clothing"
 
+/datum/manufacture/bedsheet
+	name = "White Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
+/datum/manufacture/bedsheet_red
+	name = "Red Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet/red)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
+/datum/manufacture/bedsheet_orange
+	name = "Orange Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet/orange)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
+/datum/manufacture/bedsheet_yellow
+	name = "Yellow Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet/yellow)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
+/datum/manufacture/bedsheet_green
+	name = "Green Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet/green)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
+/datum/manufacture/bedsheet_blue
+	name = "Blue Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet/blue)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
+/datum/manufacture/bedsheet_pink
+	name = "Pink Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet/pink)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
+/datum/manufacture/bedsheet_black
+	name = "Black Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet/black)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
+/datum/manufacture/bedsheet_lgbt
+	name = "LGBT Pride Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet/gay)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
+/datum/manufacture/bedsheet_ace
+	name = "Asexual Pride Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet/ace)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
+/datum/manufacture/bedsheet_aro
+	name = "Aromantic Pride Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet/aro)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
+/datum/manufacture/bedsheet_bi
+	name = "Bisexual Pride Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet/bi)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
+/datum/manufacture/bedsheet_inter
+	name = "Intersex Pride Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet/inter)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
+/datum/manufacture/bedsheet_lesb
+	name = "Lesbian Pride Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet/lesb)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
+/datum/manufacture/bedsheet_nb
+	name = "Non-binary Pride Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet/nb)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
+/datum/manufacture/bedsheet_pan
+	name = "Pansexual Pride Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet/pan)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
+/datum/manufacture/bedsheet_poly
+	name = "Polysexual Pride Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet/poly)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
+/datum/manufacture/bedsheet_trans
+	name = "Trans Pride Bedsheet"
+	item_paths = list("FAB-1")
+	item_amounts = list(4)
+	item_outputs = list(/obj/item/clothing/suit/bedsheet/trans)
+	time = 5 SECONDS
+	create = 1
+	category = "Clothing"
+
 /datum/manufacture/suit_black
 	name = "Fancy Black Suit"
 	item_paths = list("FAB-1")
