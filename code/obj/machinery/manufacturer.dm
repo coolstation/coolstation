@@ -1,6 +1,6 @@
 #define MAX_QUEUE_LENGTH 20
 
-#define UNIFORM_LIST list(/datum/manufacture/shoes,\
+#define UNIFORM_LIST /datum/manufacture/shoes,\
 /datum/manufacture/shoes_brown,\
 /datum/manufacture/shoes_white,\
 /datum/manufacture/jumpsuit,\
@@ -51,7 +51,7 @@
 /datum/manufacture/bedsheet_nb,\
 /datum/manufacture/bedsheet_pan,\
 /datum/manufacture/bedsheet_poly,\
-/datum/manufacture/bedsheet_trans)
+/datum/manufacture/bedsheet_trans
 
 /obj/machinery/manufacturer
 	name = "Manufacturing Unit"
@@ -2416,7 +2416,7 @@
 	free_resource_amt = 5
 	free_resources = list(/obj/item/material_piece/cloth/cottonfabric)
 	accept_blueprints = 0
-	available = UNIFORM_LIST
+	available = list(UNIFORM_LIST)
 	hidden = list(/datum/manufacture/breathmask,
 	/datum/manufacture/patch,
 	/datum/manufacture/hat_ltophat)
@@ -2476,7 +2476,7 @@
 		/obj/item/material_piece/glass,
 		/obj/item/material_piece/cloth/cottonfabric)
 	accept_blueprints = 0
-	available = UNIFORM_LIST + list(/datum/manufacture/id_card, /datum/manufacture/implant_access,	/datum/manufacture/implanter)
+	available = list(/datum/manufacture/id_card, /datum/manufacture/implant_access,	/datum/manufacture/implanter, UNIFORM_LIST)
 
 	hidden = list(/datum/manufacture/id_card_gold,
 	/datum/manufacture/implant_access_infinite,
