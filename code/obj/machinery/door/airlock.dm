@@ -1465,6 +1465,8 @@ About the new airlock wires panel:
 /// adds the airlock in question to the global list, if it's a cycling one.
 /obj/machinery/door/airlock/proc/attempt_cycle_link()
 	if (src.cycle_id)
+		if(!cycling_airlocks[src.cycle_id])
+			cycling_airlocks[src.cycle_id] = list()
 		if (!(src in cycling_airlocks[src.cycle_id]))
 			cycling_airlocks[src.cycle_id] += src
 
@@ -1480,7 +1482,6 @@ About the new airlock wires panel:
 		playsound(src.loc, 'sound/vox/door.ogg', 25, 1)
 	else
 		playsound(src.loc, src.sound_airlock, 25, 1)
-
 	if (src.cycle_id)
 		for (var/obj/machinery/door/airlock/D in cycling_airlocks[src.cycle_id])
 		// if they share entry id, don't close, e.g. double doors facing space. Close all other doors in junction.
@@ -2017,14 +2018,21 @@ and support double doors, so I feel they're better and more versatile, even if t
 
 	New()
 		..()
-		spawn(20 SECONDS)	// let all the doors spawn in first or smth idk
-			if (QDELETED(src))
-				return
-			if (!src.cycle_id)
-				CRASH("[src] has no cycle ID set. Coords: [src.x], [src.y], [src.z]")
-			for (var/obj/machinery/door/airlock/D in src.loc)
-				D.cycle_id = src.cycle_id
-				D.cycle_enter_id = src.enter_id
-				D.attempt_cycle_link()
-			qdel(src)
+		if (current_state > GAME_STATE_WORLD_INIT)
+			SPAWN_DBG(5 DECI SECONDS)
+				src.setup()
+				qdel(src)
+
+	initialize()
+		..()
+		src.setup()
+		qdel(src)
+
+	proc/setup()
+		if (!src.cycle_id)
+			CRASH("[src] has no cycle ID set. Coords: [src.x], [src.y], [src.z]")
+		for (var/obj/machinery/door/airlock/D in src.loc)
+			D.cycle_id = src.cycle_id
+			D.cycle_enter_id = src.enter_id
+			D.attempt_cycle_link()
 

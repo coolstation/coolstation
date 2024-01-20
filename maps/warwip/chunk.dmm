@@ -2701,6 +2701,9 @@
 "cFX" = (
 /obj/machinery/door/airlock/glass/engineering,
 /obj/access_spawn/engineering,
+/obj/airlock_cycle_linker{
+	cycle_id = "solar_airlock"
+	},
 /turf/floor/plating,
 /area/station/maintenance/southeast)
 "cGi" = (
@@ -3242,6 +3245,9 @@
 /area/station/hangar/main)
 "doJ" = (
 /obj/machinery/door/airlock/external,
+/obj/airlock_cycle_linker{
+	cycle_id = "west_airlock"
+	},
 /turf/floor/plating,
 /area/station/engine/singcore)
 "drp" = (
@@ -6552,6 +6558,9 @@
 /area/station/hallway/primary/central)
 "gCD" = (
 /obj/machinery/door/airlock/external,
+/obj/airlock_cycle_linker{
+	cycle_id = "north_airlock"
+	},
 /turf/floor/plating,
 /area/station/maintenance/north)
 "gCP" = (
@@ -10726,6 +10735,13 @@
 /obj/window_blinds/left,
 /turf/floor/plating,
 /area/station/hydroponics/bay)
+"liz" = (
+/obj/machinery/door/airlock/external,
+/obj/airlock_cycle_linker{
+	cycle_id = "east_airlock"
+	},
+/turf/floor/plating,
+/area/station/hallway/primary/southeast)
 "lja" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -12381,6 +12397,14 @@
 	},
 /turf/floor/darkblue,
 /area/station/bridge)
+"nap" = (
+/obj/machinery/door/airlock/external,
+/obj/access_spawn/engineering_engine,
+/obj/airlock_cycle_linker{
+	cycle_id = "west_airlock"
+	},
+/turf/floor/plating,
+/area/station/engine/singcore)
 "naO" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/wingrille_spawn,
@@ -19595,6 +19619,9 @@
 /obj/cable/purple{
 	icon_state = "1-2"
 	},
+/obj/airlock_cycle_linker{
+	cycle_id = "south_airlock"
+	},
 /turf/floor/plating,
 /area/station/science/bot_storage)
 "uuZ" = (
@@ -21304,6 +21331,9 @@
 /area/station/medical/research)
 "vWe" = (
 /obj/machinery/door/airlock/external,
+/obj/airlock_cycle_linker{
+	cycle_id = "solar_airlock"
+	},
 /turf/floor/plating,
 /area/station/maintenance/southeast)
 "vWf" = (
@@ -56909,7 +56939,7 @@ fqb
 fqb
 bLO
 bLO
-uzQ
+nap
 bLO
 uLn
 huZ
@@ -82015,7 +82045,7 @@ jWJ
 mLS
 aSQ
 gkN
-ktG
+liz
 gkN
 huZ
 cOQ
@@ -82619,7 +82649,7 @@ mLS
 mLS
 huZ
 syu
-ktG
+liz
 syu
 huZ
 cOQ
