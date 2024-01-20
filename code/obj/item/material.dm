@@ -610,6 +610,7 @@
 	HasEntered(AM as mob|obj)
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
+			playsound(src.loc, src.sound_stepped, 50, 1)
 			if(H.getStatusDuration("stunned") || H.getStatusDuration("weakened")) // nerf for dragging a person and a shard to damage them absurdly fast - drsingh
 				return
 			if(isabomination(H))
@@ -651,7 +652,6 @@
 			src.setMaterial(getMaterial("plasmaglass"), appearance = TRUE, setname = TRUE)
 
 /obj/item/raw_material/shard/proc/step_on(mob/living/carbon/human/H as mob)
-	playsound(src.loc, src.sound_stepped, 50, 1)
 	H.changeStatus("weakened", 3 SECONDS)
 	H.force_laydown_standup()
 	var/obj/item/affecting = H.organs[pick("l_leg", "r_leg")]
