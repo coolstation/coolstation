@@ -161,7 +161,7 @@
 
 /turf/shuttle/wall/cockpit/window
 	name = "shuttle wall"
-	icon_state = "wall1"
+	icon_state = "wall"
 	icon = 'icons/turf/shuttle.dmi'
 	opacity = 0
 	pixel_x = 0
