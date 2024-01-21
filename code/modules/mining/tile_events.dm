@@ -157,3 +157,22 @@
 			return
 		for (var/mob/living/L in range(1,AST))
 			L.changeStatus("radiation", 10 SECONDS, 2)
+
+//I can't think of a good way to trigger a cave in otherwise
+/datum/ore/event/cave_in
+	name = "load-bearing rock"
+	analysis_string = "Caution! Rock is highly load bearing!"
+	scan_decal = "scan-danger"
+	restrict_to_turf_type = /turf/wall/asteroid/gehenna/ //gehenna tunnels only
+
+	onHit(var/turf/wall/asteroid/AST)
+		//small chance to get a warning without using the scanner, one supposes.
+		if (!(..()) && prob(20))
+			AST.visible_message(text("<span class='alert'><B>[AST] is cracking ominously...</B></span>"))
+
+	onExcavate(var/turf/wall/asteroid/AST)
+		if (..())
+			return
+		AST.visible_message(text("<span class='alert'><B>The ceiling starts to split apart!</B></span>"))
+		playsound(AST, 'sound/ambience/nature/Cave_Rumbling.ogg',40, 1, 4, 0.5, channel=VOLUME_CHANNEL_AMBIENT)
+		random_events.force_event("Cave-In", AST)

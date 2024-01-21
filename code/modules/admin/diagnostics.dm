@@ -1169,6 +1169,16 @@ proc/debug_map_apc_count(delim,zlim)
 				if (interesting)
 					img.app.color = blobbo.color
 
+	mining_events
+		name = "mining events"
+		help = "Shows you what rocks have which mining event on it."
+		GetInfo(var/turf/wall/asteroid/theTurf, var/image/debugoverlay/img)
+			if (istype(theTurf))
+				if (theTurf.event)
+					img.app.desc = theTurf.event.name
+					img.app.color = debug_color_of(theTurf.event.name)
+
+
 /client/var/list/infoOverlayImages
 /client/var/datum/infooverlay/activeOverlay
 

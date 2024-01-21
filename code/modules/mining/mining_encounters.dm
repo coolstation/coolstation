@@ -990,7 +990,9 @@
 			break
 		E = pick(mining_controls.events)
 		AST = pick(turfs)
-		if (!istype(AST) || (E.restrict_to_turf_type && AST.type != E.restrict_to_turf_type))
+		//This was an exact typecheck, and I hope that wasn't load bearing.
+		//But I've found that mining code tends to make hard to spot assumptions.
+		if (!istype(AST) || (E.restrict_to_turf_type && !istype(AST, E.restrict_to_turf_type)))
 			turfs -= AST
 			amount++
 			continue
@@ -999,6 +1001,53 @@
 			level_stats.total_event_ids |= E.name
 			level_stats.event_calls[E.name] += 1
 			level_stats.total_event_calls += 1
+
+//specialised for gehenna cave-ins
+/proc/Turfspawn_Cave_In_Round(var/turf/center, var/size = 3, var/severity = 1)
+	if (!istype(center))
+		return list()
+	if (!isnum(size) || size < 1)
+		size = rand(1,5)
+
+	var/current_range = 0
+	var/list/generated_turfs = list()
+
+
+	if (!center.density)
+		center.ReplaceWith(/turf/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
+	generated_turfs += center
+
+	var/corner_range = round(size * 1.5)
+	var/total_distance = 0
+
+	while (current_range < size - 1)
+		current_range++
+		total_distance = 0
+		for (var/turf/S in range(current_range,center))
+			if (S.density)
+				continue
+			if (get_dist(S,center) != current_range)
+				continue
+			total_distance = abs(center.x - S.x) + abs(center.y - S.y) + (current_range / 2)
+			if (total_distance > corner_range)
+				continue
+			//break shit
+			for (var/obj/item/I in S)
+				if (prob(50))
+					qdel(I)
+			//break bones
+			for (var/mob/living/M in S)
+				M.TakeDamageAccountArmor("chest", max(20, severity * 2.2), 0, 0, DAMAGE_BLUNT)
+				M.changeStatus("stunned", 10 SECONDS)
+				M.changeStatus("weakened", 10 SECONDS)
+			//Going items first we should hopefully avoid the circumstance where a miner drops their tool and it then gets deleted, trapping them.
+			S.ReplaceWith(/turf/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
+
+			generated_turfs += S
+		/*for (var/turf/floor/plating/airless/asteroid/FLOOR in generated_turfs)
+			FLOOR.color = stone_color*/
+
+	return generated_turfs
 
 #undef TURF_SPAWN_EDGE_LIMIT
 #undef PICK_SIZE
