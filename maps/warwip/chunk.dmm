@@ -605,6 +605,11 @@
 	icon_state = "pipe-s"
 	},
 /obj/grille/catwalk/jen,
+/obj/airlock_cycle_linker{
+	cycle_id = "LeftMiningShuttle";
+	name = "Left Mining Shuttle Access";
+	enter_id = "North"
+	},
 /turf/floor/plating,
 /area/station/maintenance/central)
 "aFG" = (
@@ -894,6 +899,10 @@
 "aVw" = (
 /obj/machinery/door/airlock/external,
 /obj/access_spawn/ai_upload,
+/obj/airlock_cycle_linker{
+	cycle_id = "AIsat";
+	name = "AI Satellite Access"
+	},
 /turf/floor/plating,
 /area/station/turret_protected/AIsat)
 "aVK" = (
@@ -2238,6 +2247,16 @@
 	icon_state = "wall3"
 	},
 /area/listeningpost)
+"chf" = (
+/obj/machinery/door/airlock/external,
+/obj/grille/catwalk/jen,
+/obj/airlock_cycle_linker{
+	cycle_id = "LeftMiningShuttle";
+	name = "Left Mining Shuttle Access";
+	enter_id = "South"
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
 "cho" = (
 /obj/table/wood/auto,
 /obj/item/reagent_containers/food/drinks/drinkingglass{
@@ -2702,7 +2721,8 @@
 /obj/machinery/door/airlock/glass/engineering,
 /obj/access_spawn/engineering,
 /obj/airlock_cycle_linker{
-	cycle_id = "solar_airlock"
+	cycle_id = "EastSolars";
+	name = "East Solar Access"
 	},
 /turf/floor/plating,
 /area/station/maintenance/southeast)
@@ -3246,7 +3266,8 @@
 "doJ" = (
 /obj/machinery/door/airlock/external,
 /obj/airlock_cycle_linker{
-	cycle_id = "west_airlock"
+	cycle_id = "Singulo";
+	name = "Singularity Access"
 	},
 /turf/floor/plating,
 /area/station/engine/singcore)
@@ -5906,6 +5927,11 @@
 "fPR" = (
 /obj/machinery/door/airlock/external,
 /obj/grille/catwalk/jen,
+/obj/airlock_cycle_linker{
+	cycle_id = "RightMiningShuttle";
+	name = "Right Mining Shuttle Access";
+	enter_id = "North"
+	},
 /turf/floor/plating,
 /area/station/maintenance/central)
 "fQq" = (
@@ -6559,7 +6585,8 @@
 "gCD" = (
 /obj/machinery/door/airlock/external,
 /obj/airlock_cycle_linker{
-	cycle_id = "north_airlock"
+	cycle_id = "NorthMaint";
+	name = "Northern Maintenance Access"
 	},
 /turf/floor/plating,
 /area/station/maintenance/north)
@@ -6869,6 +6896,14 @@
 /obj/item/storage/toolbox/electrical,
 /turf/floor,
 /area/station/engine/storage)
+"gUC" = (
+/obj/machinery/door/airlock/external/shuttle_connect,
+/obj/airlock_cycle_linker{
+	cycle_id = "LeftMerchant";
+	name = "Left Merchant Access"
+	},
+/turf/floor,
+/area/station/crew_quarters/market)
 "gVI" = (
 /obj/rack,
 /obj/item/mop,
@@ -7725,6 +7760,10 @@
 	name = "Listening Post"
 	},
 /obj/access_spawn/syndie_shuttle,
+/obj/airlock_cycle_linker{
+	cycle_id = "ListeningPost";
+	name = "Listening Post Access"
+	},
 /turf/floor/delivery,
 /area/listeningpost)
 "hTy" = (
@@ -10610,6 +10649,10 @@
 /area/listeningpost)
 "kZj" = (
 /obj/machinery/door/airlock/external/shuttle_connect,
+/obj/airlock_cycle_linker{
+	cycle_id = "RightMerchant";
+	name = "Right Merchant Access"
+	},
 /turf/floor,
 /area/station/crew_quarters/market)
 "laO" = (
@@ -10735,13 +10778,6 @@
 /obj/window_blinds/left,
 /turf/floor/plating,
 /area/station/hydroponics/bay)
-"liz" = (
-/obj/machinery/door/airlock/external,
-/obj/airlock_cycle_linker{
-	cycle_id = "east_airlock"
-	},
-/turf/floor/plating,
-/area/station/hallway/primary/southeast)
 "lja" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -11291,6 +11327,17 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/southwest)
+"lMD" = (
+/obj/machinery/door/airlock/external,
+/obj/disposalpipe/segment/mail,
+/obj/grille/catwalk/jen,
+/obj/airlock_cycle_linker{
+	cycle_id = "RightMiningShuttle";
+	name = "Right Mining Shuttle Access";
+	enter_id = "South"
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
 "lNE" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
@@ -12397,14 +12444,6 @@
 	},
 /turf/floor/darkblue,
 /area/station/bridge)
-"nap" = (
-/obj/machinery/door/airlock/external,
-/obj/access_spawn/engineering_engine,
-/obj/airlock_cycle_linker{
-	cycle_id = "west_airlock"
-	},
-/turf/floor/plating,
-/area/station/engine/singcore)
 "naO" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/wingrille_spawn,
@@ -13019,6 +13058,11 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/external/shuttle_connect,
+/obj/airlock_cycle_linker{
+	cycle_id = "LeftMiningShuttle";
+	name = "Left Mining Shuttle Access";
+	enter_id = "East"
+	},
 /turf/floor/plating,
 /area/station/maintenance/central)
 "nIl" = (
@@ -15090,6 +15134,14 @@
 /obj/machinery/light/small/ceiling,
 /turf/floor/white,
 /area/station/medical/research)
+"pEF" = (
+/obj/machinery/door/airlock/external,
+/obj/airlock_cycle_linker{
+	cycle_id = "LeftMerchant";
+	name = "Left Merchant Access"
+	},
+/turf/floor,
+/area/station/crew_quarters/market)
 "pER" = (
 /obj/cabinet/restrictedmedical,
 /turf/floor/carpet/office,
@@ -16363,6 +16415,10 @@
 /area/station/janitor/office)
 "qVs" = (
 /obj/machinery/door/airlock/external,
+/obj/airlock_cycle_linker{
+	cycle_id = "RightMerchant";
+	name = "Right Merchant Access"
+	},
 /turf/floor,
 /area/station/crew_quarters/market)
 "qVA" = (
@@ -16728,6 +16784,11 @@
 "rlO" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/access_spawn/maint,
+/obj/airlock_cycle_linker{
+	cycle_id = "RightMiningShuttle";
+	name = "Right Mining Shuttle Access";
+	enter_id = "East"
+	},
 /turf/floor/plating,
 /area/station/maintenance/central)
 "rmc" = (
@@ -17460,6 +17521,16 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/sanitary,
 /area/station/security/quarters)
+"smy" = (
+/obj/machinery/door/airlock/external,
+/obj/grille/catwalk/jen,
+/obj/airlock_cycle_linker{
+	cycle_id = "RightMiningShuttle";
+	name = "Right Mining Shuttle Access";
+	enter_id = "South"
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
 "smD" = (
 /turf/wall/r_wall,
 /area/station/medical/robotics)
@@ -18574,6 +18645,14 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/southeast)
+"trf" = (
+/obj/machinery/door/airlock/external,
+/obj/airlock_cycle_linker{
+	cycle_id = "ArrivalMaint";
+	name = "Arrivals Maintenance Access"
+	},
+/turf/floor/plating,
+/area/station/hallway/primary/southeast)
 "tsB" = (
 /obj/table/auto,
 /obj/item/remote/porter/port_a_sci,
@@ -19285,6 +19364,11 @@
 /obj/machinery/door/airlock/external,
 /obj/disposalpipe/segment/mail,
 /obj/grille/catwalk/jen,
+/obj/airlock_cycle_linker{
+	cycle_id = "LeftMiningShuttle";
+	name = "Left Mining Shuttle Access";
+	enter_id = "South"
+	},
 /turf/floor/plating,
 /area/station/maintenance/central)
 "ugG" = (
@@ -19507,6 +19591,11 @@
 	dir = 8
 	},
 /obj/access_spawn/maint,
+/obj/airlock_cycle_linker{
+	cycle_id = "LeftMiningShuttle";
+	name = "Left Mining Shuttle Access";
+	enter_id = "West"
+	},
 /turf/floor/plating,
 /area/station/maintenance/central)
 "uoQ" = (
@@ -19620,7 +19709,8 @@
 	icon_state = "1-2"
 	},
 /obj/airlock_cycle_linker{
-	cycle_id = "south_airlock"
+	cycle_id = "RobotDepot";
+	name = "Robot Depot Comms Dish Access"
 	},
 /turf/floor/plating,
 /area/station/science/bot_storage)
@@ -20125,6 +20215,17 @@
 	},
 /turf/floor/white,
 /area/station/medical/medbay/cloner)
+"uPW" = (
+/obj/machinery/door/airlock/external,
+/obj/disposalpipe/segment/mail,
+/obj/grille/catwalk/jen,
+/obj/airlock_cycle_linker{
+	cycle_id = "RightMiningShuttle";
+	name = "Right Mining Shuttle Access";
+	enter_id = "North"
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
 "uQc" = (
 /obj/stool/chair/comfy{
 	dir = 8
@@ -21332,7 +21433,8 @@
 "vWe" = (
 /obj/machinery/door/airlock/external,
 /obj/airlock_cycle_linker{
-	cycle_id = "solar_airlock"
+	cycle_id = "EastSolars";
+	name = "East Solar Access"
 	},
 /turf/floor/plating,
 /area/station/maintenance/southeast)
@@ -21550,6 +21652,15 @@
 	},
 /turf/floor/plating,
 /area/station/hallway/primary/southeast)
+"wjt" = (
+/obj/machinery/door/airlock/external,
+/obj/access_spawn/engineering_engine,
+/obj/airlock_cycle_linker{
+	cycle_id = "Singulo";
+	name = "Singularity Access"
+	},
+/turf/floor/plating,
+/area/station/engine/singcore)
 "wjD" = (
 /obj/cable{
 	icon_state = "0-8"
@@ -21744,6 +21855,11 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/external/shuttle_connect,
+/obj/airlock_cycle_linker{
+	cycle_id = "RightMiningShuttle";
+	name = "Right Mining Shuttle Access";
+	enter_id = "West"
+	},
 /turf/floor/plating,
 /area/station/maintenance/central)
 "wqX" = (
@@ -56939,7 +57055,7 @@ fqb
 fqb
 bLO
 bLO
-nap
+wjt
 bLO
 uLn
 huZ
@@ -64543,9 +64659,9 @@ pdi
 xol
 ahK
 mla
-qVs
+pEF
 aXD
-kZj
+gUC
 ygA
 ygA
 ygA
@@ -68446,7 +68562,7 @@ cXr
 cXr
 cXr
 cXr
-fPR
+chf
 cXr
 cQs
 qzk
@@ -71459,14 +71575,14 @@ vCW
 cQs
 jOY
 xFB
-ugj
+uPW
 xFB
 xFB
 xFB
 xFB
 xFB
 xFB
-ugj
+lMD
 xFB
 fHu
 bDD
@@ -71768,7 +71884,7 @@ cQs
 cQs
 cQs
 cXr
-fPR
+smy
 cQs
 geI
 xFB
@@ -82045,7 +82161,7 @@ jWJ
 mLS
 aSQ
 gkN
-liz
+trf
 gkN
 huZ
 cOQ
@@ -82649,7 +82765,7 @@ mLS
 mLS
 huZ
 syu
-liz
+trf
 syu
 huZ
 cOQ
