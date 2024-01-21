@@ -26,7 +26,7 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		for(var/x=0, x<prefabSizeX; x++)
 			for(var/y=0, y<prefabSizeY; y++)
 				var/turf/L = locate(T.x+x, T.y+y, T.z)
-				if(L?.loc && ((L.loc.type != /area/space) && !istype(L.loc , /area/allowGenerate))) // istype(L.loc, /area/noGenerate)
+				if(L?.loc && ((L.loc.type != /area/space) && !istype(L.loc , /area/allowGenerate) && !istype(L.loc, /area/gehenna/underground))) // istype(L.loc, /area/noGenerate)
 					return 0
 
 		var/loaded = file2text(prefabPath)
@@ -630,3 +630,12 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabPath = "assets/maps/prefabs/prefab_cave_robotics.dmm"
 		prefabSizeX = 20
 		prefabSizeY = 12
+
+	cave_star
+		dusty = 1
+		maxNum = 1
+		probability = 60
+		prefabPath = "assets/maps/prefabs/prefab_cave_star.dmm"
+		prefabSizeX = 14
+		prefabSizeY = 14
+		required = TRUE

@@ -74,6 +74,24 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 /turf/wall/asteroid/gehenna/z3
 	floor_turf = "/turf/floor/plating/gehenna"
 
+/turf/wall/asteroid/gehenna/z3/fun //for an prefab
+	New()
+		..()
+		var/datum/ore/starstone/bait = locate(/datum/ore/starstone) in mining_controls.ore_types_all
+		if (bait)
+			src.ore = bait
+			src.hardness += bait.hardness_mod
+			src.amount = rand(bait.amount_per_tile_min,bait.amount_per_tile_max)
+			var/image/ore_overlay = image('icons/turf/asteroid.dmi',bait.name)
+			ore_overlay.transform = turn(ore_overlay.transform, pick(0,90,180,-90))
+			ore_overlay.pixel_x += rand(-6,6)
+			ore_overlay.pixel_y += rand(-6,6)
+			src.overlays += ore_overlay
+			bait.onGenerate(src)
+			src.mining_health = bait.mining_health
+			src.mining_max_health = bait.mining_health
+			src.set_event(locate(/datum/ore/event/cave_in) in mining_controls.events)
+
 /turf/wall/asteroid/gehenna/tough
 	name = "crimson bedrock"
 	desc = "looks densely packed"

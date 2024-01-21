@@ -293,7 +293,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 		//Seeds gem/artifact/crate/rock modifiers. Note that without specifying an amount of events the proc will randomly do between 1 and 6 each time
 		//(meaning if i is still 40 on the line below, that's anywhere from 40-240 events)
-		for(var/i=0, i<40, i++)
+		for(var/i=0, i<50, i++)
 			Turfspawn_Asteroid_SeedEvents(generated, level_stats = our_stats)
 
 		if(generate_borders == YES_BORDER) //border needed and isn't prebaked
