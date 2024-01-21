@@ -741,7 +741,7 @@
 					holder.altPower = owner
 					boutput(user, "<span class='notice'><b>[owner.name] is now bound to Alt-Click.</b></span>")
 
-			else if (parameters["shift"])
+			else if (parameters["shift"] && isintangible(user)) //only for ai/blob/flock/etc, it honestly *really* gets in the way of sprint combat, never works when you need it
 				if (owner == holder.altPower || owner == holder.ctrlPower)
 					boutput(user, "<span class='alert'>That ability is already bound to another key.</span>")
 					return
