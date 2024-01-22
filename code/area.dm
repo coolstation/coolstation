@@ -809,7 +809,7 @@ ABSTRACT_TYPE(/area/shuttle_transit_space)
 				else
 					M.addOverlayComposition(/datum/overlayComposition/shuttle_warp/ew)
 		// this should stop ghosties wandering into shuttle transit space
-		if (isintangible(Obj))
+		if (isobserver(Obj) || isintangible(Obj) || iswraith(Obj))
 			var/OS = pick_landmark(LANDMARK_OBSERVER, locate(1, 1, 1))
 			if (OS)
 				Obj.set_loc(OS)
@@ -817,7 +817,7 @@ ABSTRACT_TYPE(/area/shuttle_transit_space)
 				Obj.z = 1
 			return Obj.OnMove()
 
-		if (!isobserver(Obj) && !iswraith(Obj) && !istype(Obj,/obj/machinery/vehicle/escape_pod) && !istype(Obj, /obj/machinery/vehicle/tank/minisub/escape_sub))
+		if (!istype(Obj,/obj/machinery/vehicle/escape_pod) && !istype(Obj, /obj/machinery/vehicle/tank/minisub/escape_sub))
 			var/atom/target = get_edge_target_turf(src, src.throw_dir)
 			if (OldLoc && isturf(OldLoc))
 				if (target && Obj)
