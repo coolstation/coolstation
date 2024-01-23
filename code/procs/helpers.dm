@@ -2153,7 +2153,7 @@ var/global/list/allowed_restricted_z_areas
 /proc/restricted_z_allowed(var/mob/M, var/T)
 	. = FALSE
 	if(!allowed_restricted_z_areas)
-		allowed_restricted_z_areas = concrete_typesof(/area/shuttle/escape) + concrete_typesof(/area/shuttle_transit_space) + concrete_typesof(/area/football/field)
+		allowed_restricted_z_areas = concrete_typesof(/area/shuttle/escape) + concrete_typesof(/area/football/field)
 
 	if (M && isblob(M))
 		var/mob/living/intangible/blob_overmind/B = M
