@@ -960,6 +960,7 @@
 			for (var/obj/item/M in W.contents)
 				if (!istype(M,src.base_material_class))
 					continue
+				W:curitems -= M.amount
 				src.load_item(M)
 				amtload++
 			W:satchel_updateicon()

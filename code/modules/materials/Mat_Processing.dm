@@ -143,6 +143,7 @@
 			for(var/obj/item/I in S)
 				if(I.material)
 					I.set_loc(src)
+					S.curitems -= I.amount
 			S.satchel_updateicon()
 			return
 

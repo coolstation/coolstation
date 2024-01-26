@@ -7,6 +7,8 @@
 	w_class = W_CLASS_TINY
 	event_handler_flags = USE_FLUID_ENTER | NO_MOUSEDROP_QOL
 	var/maxitems = 50
+	//decoupling contents from capacity so we can account for stacks of shit
+	var/curitems = 0
 	var/list/allowed = list(/obj/item/)
 	var/itemstring = "items"
 	inventory_counter_enabled = 1
@@ -17,25 +19,7 @@
 		src.satchel_updateicon()
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		var/proceed = 0
-		for(var/check_path in src.allowed)
-			if(istype(W, check_path) && W.w_class < W_CLASS_BULKY)
-				proceed = 1
-				break
-		if (!proceed)
-			boutput(user, "<span class='alert'>[src] cannot hold that kind of item!</span>")
-			return
-
-		if (src.contents.len < src.maxitems)
-			user.u_equip(W)
-			W.set_loc(src)
-			W.dropped()
-			boutput(user, "<span class='notice'>You put [W] in [src].</span>")
-			W.add_fingerprint(user)
-			if (src.contents.len == src.maxitems) boutput(user, "<span class='notice'>[src] is now full!</span>")
-			src.satchel_updateicon()
-			tooltip_rebuild = 1
-		else boutput(user, "<span class='alert'>[src] is full!</span>")
+		add_thing(W, user)
 
 	attack_self(var/mob/user as mob)
 		if (src.contents.len)
@@ -44,8 +28,10 @@
 				I.set_loc(T)
 				I.add_fingerprint(user)
 			boutput(user, "<span class='notice'>You empty out [src].</span>")
+			src.curitems = 0
 			src.satchel_updateicon()
 			tooltip_rebuild = 1
+
 		else ..()
 
 	attack_hand(mob/user as mob)
@@ -72,7 +58,11 @@
 				else if (src.contents.len == 1)
 					getItem = src.contents[1]
 
+				if (getItem.amount > 1)
+					getItem = getItem.split_stack(1)
+
 				if (getItem)
+					curitems-- //assuming we're not letting folks take out entire stacks for now
 					user.visible_message("<span class='notice'><b>[user]</b> takes \a [getItem.name] out of \the [src].</span>",\
 					"<span class='notice'>You take \a [getItem.name] from [src].</span>")
 					user.put_in_hand_or_drop(getItem)
@@ -129,15 +119,12 @@
 			var/interval = 0
 			for(var/obj/item/I in view(1,user))
 				if (!istype(I, O)) continue
-				if (I in user)
-					continue
-				I.set_loc(src)
-				I.add_fingerprint(user)
+				add_thing(I, null, TRUE)
 				if (!(interval++ % 5))
 					src.satchel_updateicon()
 					sleep(0.2 SECONDS)
 				if (user.loc != staystill) break
-				if (src.contents.len >= src.maxitems)
+				if (src.curitems >= src.maxitems)
 					boutput(user, "<span class='notice'>\The [src] is now full!</span>")
 					break
 			boutput(user, "<span class='notice'>You finish filling \the [src].</span>")
@@ -145,10 +132,50 @@
 		src.satchel_updateicon()
 		tooltip_rebuild = 1
 
+	///There were 4 places adding shit to mining satchels so fuck copy pasting
+	///If you don't want verbosity, don't supply a user
+	proc/add_thing(obj/item/thing, mob/user = null, delay_icon_update = FALSE)
+		var/proceed = 0
+		for(var/check_path in src.allowed)
+			if(istype(thing, check_path) && thing.w_class < W_CLASS_BULKY)
+				proceed = 1
+				break
+		if (!proceed)
+			if (user)
+				boutput(user, "<span class='alert'>[src] cannot hold that kind of item!</span>")
+			return FALSE
+
+		if (src.curitems < src.maxitems)
+			if (src.curitems + thing.amount > src.maxitems)
+				var/obj/item/what_will_fit = thing.split_stack(src.maxitems - src.curitems)
+				what_will_fit.set_loc(src)
+				src.curitems += what_will_fit.amount
+				if (user)
+					boutput(user, "<span class='notice'>You put [what_will_fit] in [src].</span>")
+			else
+				user?.u_equip(thing)
+				thing.set_loc(src)
+				thing.dropped()
+				src.curitems += thing.amount
+				if (user)
+					boutput(user, "<span class='notice'>You put [thing] in [src].</span>")
+
+			if (user)
+				thing.add_fingerprint(user)
+				if (src.curitems == src.maxitems)
+					boutput(user, "<span class='notice'>[src] is now full!</span>")
+			if (!delay_icon_update)
+				src.satchel_updateicon()
+			tooltip_rebuild = 1
+		else if (user)
+			boutput(user, "<span class='alert'>[src] is full!</span>")
+		return TRUE
+
+
 	proc/satchel_updateicon()
 		var/perc
-		if (src.contents.len > 0 && src.maxitems > 0)
-			perc = (src.contents.len / src.maxitems) * 100
+		if (src.curitems > 0 && src.maxitems > 0)
+			perc = (src.curitems / src.maxitems) * 100
 		else
 			perc = 0
 		src.overlays = null
@@ -167,10 +194,10 @@
 				src.overlays += image('icons/obj/items/items.dmi', "satcounter5")
 
 		signal_event("icon_updated")
-		src.inventory_counter?.update_number(src.contents.len)
+		src.inventory_counter?.update_number(src.curitems)
 
 	get_desc()
-		return "It contains [src.contents.len]/[src.maxitems] [src.itemstring]."
+		return "It contains [src.curitems]/[src.maxitems] [src.itemstring]."
 
 
 

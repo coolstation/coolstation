@@ -2438,6 +2438,7 @@ var/global/list/cargopads = list()
 		user.visible_message("[user] dumps out [src]'s satchel contents.", "You dump out [src]'s satchel contents.")
 		for (var/obj/item/I in satchel.contents)
 			I.set_loc(target)
+		satchel.curitems = 0
 		satchel.satchel_updateicon()
 
 ////// Shit that goes in the asteroid belt, might split it into an exploring.dm later i guess

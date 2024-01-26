@@ -649,11 +649,13 @@
 						I.set_loc(src)
 						src.seeds += I
 						loadcount++
+						S.curitems -= I.amount
 						continue
 					if (istype(I,/obj/item/reagent_containers/food/snacks/plant/) && (select == "Everything" || select == "Fruit Only"))
 						I.set_loc(src)
 						src.extractables += I
 						loadcount++
+						S.curitems -= I.amount
 						continue
 				if (loadcount)
 					boutput(user, "<span class='notice'>[loadcount] items were loaded from the satchel!</span>")
@@ -991,6 +993,7 @@
 			for (var/obj/item/I in S.contents)
 				if (src.canExtract(I) && (src.tryLoading(I, user)))
 					loadcount++
+					S.curitems -= I.amount
 			if (!loadcount)
 				boutput(user, "<span class='alert'>No items were loaded from the satchel!</span>")
 			else if (src.autoextract)

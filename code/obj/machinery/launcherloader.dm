@@ -517,6 +517,7 @@
 			for(var/obj/item/O in S.contents)
 				if (src.is_acceptable_content(O))
 					O.set_loc(src)
+					S.curitems -= O.amount
 			S.satchel_updateicon()
 			user.visible_message("<b>[user.name]</b> dumps out [S] into [src].")
 			update()

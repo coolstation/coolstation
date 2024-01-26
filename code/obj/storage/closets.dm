@@ -438,6 +438,7 @@
 					else
 						I.set_loc(src)
 					amtload++
+					W:curitems -= I.amount
 				W:satchel_updateicon()
 				if (amtload)
 					user.show_text("[amtload] [W:itemstring] dumped into [W]!", "blue")

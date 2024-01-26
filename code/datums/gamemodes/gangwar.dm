@@ -1128,6 +1128,7 @@
 			var/hadcannabis = 0
 
 			for(var/obj/item/plant/herb/cannabis/C in S.contents)
+				S.curitems -= C.amount
 				insert_item(C,null)
 				S.satchel_updateicon()
 				hadcannabis = 1

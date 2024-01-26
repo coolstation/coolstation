@@ -1228,9 +1228,11 @@ table#cooktime a#start {
 				for (var/obj/item/reagent_containers/food/F in S.contents)
 					F.set_loc(src)
 					amtload++
+					W:curitems -= F.amount
 				for (var/obj/item/plant/P in S.contents)
 					P.set_loc(src)
 					amtload++
+					W:curitems -= P.amount
 				W:satchel_updateicon()
 				boutput(user, "<span class='notice'>[amtload] items loaded from satchel!</span>")
 				S.desc = "A leather bag. It holds [S.contents.len]/[S.maxitems] [S.itemstring]."

@@ -399,6 +399,7 @@
 				user.visible_message("<span class='notice'>[user] dumps out [S]'s contents onto [src]!</span>")
 				for (var/obj/item/thing in S.contents)
 					thing.set_loc(src.loc)
+				S.curitems = 0
 				S.desc = "A leather bag. It holds 0/[S.maxitems] [S.itemstring]."
 				S.satchel_updateicon()
 				return
