@@ -638,4 +638,4 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabPath = "assets/maps/prefabs/prefab_cave_star.dmm"
 		prefabSizeX = 14
 		prefabSizeY = 14
-		required = TRUE
+
