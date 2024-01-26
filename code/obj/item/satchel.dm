@@ -204,7 +204,7 @@
 	hydro
 		name = "produce satchel"
 		desc = "A leather satchel for carrying around crops and seeds."
-		icon_state = "hydrosatchel"
+		icon_state = "satchel_hydro"
 		allowed = list(/obj/item/seed,
 		/obj/item/plant,
 		/obj/item/reagent_containers/food/snacks,
@@ -215,26 +215,29 @@
 		/obj/item/raw_material/cotton)
 		itemstring = "items of produce"
 
-		large
+		large //unused mostly but there's a few on gehenna
 			desc = "A leather satchel for carrying around crops and seeds. This one happens to be <em>really</em> big."
 			maxitems = 200
+			icon_state = "satchel_hydro_wide"
 
 
 	mining
 		name = "mining satchel"
 		desc = "A leather satchel for holding various ores."
-		icon_state = "miningsatchel"
+		icon_state = "satchel_mining"
 		allowed = list(/obj/item/raw_material/)
 		itemstring = "ores"
 
 		large
 			name = "large mining satchel"
 			desc = "A leather satchel for holding various ores. This one's pretty big."
+			icon_state = "satchel_mining_wide"
 			maxitems = 100
 
-		compressed
+		compressed //unused
 			name = "spatially-compressed mining satchel"
 			desc = "A ... uh. Well, whatever it is, it's a <em>really fucking big satchel</em> for holding ores."
+			icon_state = "satchel_mining_wide"
 			maxitems = 500
 
 
