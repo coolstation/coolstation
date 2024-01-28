@@ -249,6 +249,39 @@
 	venom2 = "venom"
 	death_text = "%src% is squashed!"
 
+/mob/living/critter/spider/jameson
+	name = "J. Jonah Jamemother"
+	desc = "The matriarch of the J. Jonah Jameson hive. You better have those pictures of spider man."
+	icon_state = "jamemomma"
+	icon_state_dead = "jamemomma-dead"
+	health_brute = 10
+	health_brute_vuln = 0.5
+	health_burn = 10
+	health_burn_vuln = 1.5
+	good_grip = 0
+	venom1 = "coffee"
+	venom2 = "pubbie tears"
+	skinresult = /obj/item/material_piece/cloth/leather
+	encase_in_web = 0
+	max_skins = 4
+	reacting = 0
+	hand_count = 2
+
+/mob/living/critter/spider/jameson/baby
+	name = "J. Jonah Jameson"
+	desc = "Why is he so small?"
+	icon_state = "jameson"
+	icon_state_dead = "jameson-dead"
+	density = 0
+	flags = TABLEPASS
+	fits_under_table = 1
+	health_brute = 2
+	health_burn = 2
+	babyspider = 1
+	max_skins = 1
+	hand_count = 2
+	adultpath = /mob/living/critter/spider/jameson
+
 
 
 /* ====================================================== */
