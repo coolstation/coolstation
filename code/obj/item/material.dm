@@ -908,6 +908,8 @@
 					. = TRUE
 					if (istype(S))
 						S.hud.remove_object(O)
+					else
+						B.curitems -= O.amount
 			if (istype(B) && .)
 				B.satchel_updateicon()
 			//Users loading individual items would make an annoying amount of messages
