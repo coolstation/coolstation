@@ -20,8 +20,11 @@ ________  ___  ___  _______   ________   ________  _____ ______   ________  ____
 
 
 var/list/chessboard = list()
-var/chess_enpassant = 0
+var/turf/floor/chess/chess_enpassant = null //turf that has a valid en passant move
 var/chess_in_progress = 0
+
+//nothing here yet but wanna make the capture/move messages area wide (visible_message doesn't reach across to people from a far column)
+/area/sim/chess
 
 turf/floor/chess
 
@@ -49,7 +52,8 @@ obj/chessbutton
 		else
 			logTheThing("admin", user, null, "has reset the chessboard. Hope nobody was playing chess.")
 			logTheThing("diary", user, null, "has reset the chessboard. Hope nobody was playing chess.", "admin")
-
+			chess_in_progress = 0 //prevent moving pieces while wiping the board
+			chess_enpassant = null
 			for(var/turf/floor/chess/T in chessboard)
 				T.enpassant = null // almost forgot this, gotte get that sweet GC
 				for(var/obj/item/O in T)
@@ -127,7 +131,7 @@ obj/item/chesspiece
 
 
 	proc/validmove(turf/start_pos, turf/end_pos)
-		return 1
+		return chess_in_progress
 
 	proc/chessmove(turf/T, mob/user)
 		for(var/obj/item/chesspiece/C in T)
@@ -139,15 +143,14 @@ obj/item/chesspiece
 				src.visible_message("<span class='alert'>You really ought to fight the enemy pieces, [chess_color ? "black" : "white" ] commander.</span>")
 				return
 			else
-				src.visible_message("<span class='notice'>[src] has captured [C].</span>")
+				src.visible_message("<span class='notice'><b>[src]</b> has captured <b>[C]</b>.</span>")
 				C.gib()
-		src.visible_message("<span class='notice'>The [chess_color ? "black" : "white" ] commander has moved [src].</span>")
+		src.visible_message("<span class='notice'>The [chess_color ? "black" : "white" ] commander has moved <b>[src]</b>.</span>")
 		src.set_loc(T)
+		//clear en passant data, you had your chance
 		if(chess_enpassant)
-			for(var/turf/floor/chess/CB in chessboard)
-				CB.enpassant = null
-				chess_enpassant = 0
-
+			chess_enpassant.enpassant = null
+			chess_enpassant = null
 
 
 /* specific pieces go here, the major differences are just their validmove() procs. Some might override chessmove() too
@@ -182,23 +185,23 @@ obj/item/chesspiece/pawn
 				for(var/obj/item/chesspiece/C in locate(start_pos.x+movdir,src.y,src.z)) // intermediate blocking
 					return 0
 				EP = locate(start_pos.x+movdir,src.y,src.z)
-				return 1
+				return chess_in_progress
 		if(start_pos.y != end_pos.y)
 			if((abs(start_pos.y - end_pos.y) == 1) && (end_pos.x - start_pos.x) == movdir )
 				for(var/obj/item/chesspiece/C in end_pos)
-					return 1
+					return chess_in_progress
 				var/turf/floor/chess/Tep = end_pos
-				if(Tep.enpassant)
-					qdel(Tep.enpassant)
-					src.visible_message("<span class='notice'>[src] has made a capture en passant.</span>")
-					return 1
+				if(Tep.enpassant && Tep.enpassant.chess_color != src.chess_color) //no more en passant capturing your own pawns thx
+					Tep.enpassant.gib()
+					src.visible_message("<span class='notice'><b>[src]</b> has made a <b>capture en passant</b>.</span>")
+					return chess_in_progress
 			return 0
 		else if((end_pos.x - start_pos.x) != movdir)
 			return 0
 		else
 			for(var/obj/item/chesspiece/C in end_pos)
 				return 0
-			return 1
+			return chess_in_progress
 
 
 	chessmove()
@@ -213,7 +216,7 @@ obj/item/chesspiece/pawn
 			qdel(src)
 		if (EP)
 			EP.enpassant = src
-			chess_enpassant = 1
+			chess_enpassant = EP
 			EP = null
 
 obj/item/chesspiece/king
@@ -232,7 +235,7 @@ obj/item/chesspiece/king
 
 	validmove(turf/start_pos, turf/end_pos)
 		if(get_dist(start_pos,end_pos) == 1)
-			return 1
+			return chess_in_progress
 		else if (!opened)
 			for(var/obj/item/chesspiece/rook/C in end_pos)
 				if ((C.chess_color == chess_color) && (!C.opened))
@@ -250,7 +253,7 @@ obj/item/chesspiece/king
 							C.set_loc(locate(src.x,(src.y + 1),src.z))
 							src.set_loc(locate(src.x,(src.y + 2),src.z))
 						castling = 1 // this is a dirty way to do this but
-						return 1
+						return chess_in_progress
 		return 0
 
 	chessmove()
@@ -260,9 +263,8 @@ obj/item/chesspiece/king
 		else // i guess it should work?
 			castling = 0 // in theory
 			if(chess_enpassant)
-				for(var/turf/floor/chess/CB in chessboard)
-					CB.enpassant = null
-					chess_enpassant = 0
+				chess_enpassant.enpassant = null
+				chess_enpassant = null
 
 
 obj/item/chesspiece/rook
@@ -287,7 +289,7 @@ obj/item/chesspiece/rook
 			for(i=start+1, i < end, i++)
 				for(var/obj/item/chesspiece/C in locate(start_pos.x,i,src.z))
 					return 0
-			return 1
+			return chess_in_progress
 		else if(start_pos.y == end_pos.y)
 			start = min(start_pos.x,end_pos.x)
 			end = max(start_pos.x,end_pos.x)
@@ -295,7 +297,7 @@ obj/item/chesspiece/rook
 			for(i=start+1, i < end, i++)
 				for(var/obj/item/chesspiece/C in locate(i,start_pos.y,src.z))
 					return 0
-			return 1
+			return chess_in_progress
 		else return 0
 
 	chessmove()
@@ -324,28 +326,28 @@ obj/item/chesspiece/queen
 			for(i=miny+1, i < maxy, i++)
 				for(var/obj/item/chesspiece/C in locate(start_pos.x,i,src.z))
 					return 0
-			return 1
+			return chess_in_progress
 
 		else if(start_pos.y == end_pos.y) // horizontal movement
 			var/i
 			for(i=minx+1, i < maxx, i++)
 				for(var/obj/item/chesspiece/C in locate(i,start_pos.y,src.z))
 					return 0
-			return 1
+			return chess_in_progress
 
 		else if((start_pos.x - end_pos.x) == (start_pos.y - end_pos.y)) // coaxial diagonal
 			var/i
 			for(i=1, i < (start_pos.x - end_pos.x), i++)
 				for(var/obj/item/chesspiece/C in locate(minx+i,miny+i,src.z))
 					return 0
-			return 1
+			return chess_in_progress
 
 		else if((start_pos.x - end_pos.x) == -(start_pos.y - end_pos.y)) // the other one
 			var/i
 			for(i=1, i < (start_pos.x - end_pos.x), i++)
 				for(var/obj/item/chesspiece/C in locate(maxx-i,miny+i,src.z))
 					return 0
-			return 1
+			return chess_in_progress
 		else return 0 // none of the 4 directions? too bad okay. Im annotating code that doesnt need notes just because I gotta look busy at work.
 
 obj/item/chesspiece/bishop
@@ -370,14 +372,14 @@ obj/item/chesspiece/bishop
 			for(i=1, i < (start_pos.x - end_pos.x), i++)
 				for(var/obj/item/chesspiece/C in locate(minx+i,miny+i,src.z))
 					return 0
-			return 1
+			return chess_in_progress
 
 		else if((start_pos.x - end_pos.x) == -(start_pos.y - end_pos.y)) // the other one
 			var/i
 			for(i=1, i < (start_pos.x - end_pos.x), i++)
 				for(var/obj/item/chesspiece/C in locate(maxx-i,miny+i,src.z))
 					return 0
-			return 1
+			return chess_in_progress
 		else return 0 // pee pee poo poo
 
 
@@ -398,7 +400,7 @@ obj/item/chesspiece/knight
 		var/dispx = abs(start_pos.x - end_pos.x)
 		var/dispy = abs(start_pos.y - end_pos.y)
 		if(((dispx == 2) && (dispy == 1)) || ((dispx == 1) && (dispy == 2)))
-			return 1
+			return chess_in_progress
 		else return 0
 
 
