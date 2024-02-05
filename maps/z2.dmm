@@ -30357,8 +30357,8 @@
 /area/sim/racing_entry)
 "clS" = (
 /obj/item/device/radio/intercom/virtual,
-/turf/wall/virtual/reinforced,
-/area/sim/gunsim)
+/turf/floor/setpieces/gauntlet/pod,
+/area/colosseum/staging)
 "clT" = (
 /obj/table/auto,
 /obj/item/spacecash/hundred,
@@ -53651,6 +53651,12 @@
 /obj/machinery/space_heater,
 /turf/floor/neutral,
 /area/upper_arctic/fita/hall)
+"hLa" = (
+/obj/item/device/radio/intercom/virtual/chess{
+	dir = 1
+	},
+/turf/floor/vr/fourbit,
+/area/sim/chess)
 "hNA" = (
 /obj/machinery/light,
 /turf/floor/carpet{
@@ -54182,6 +54188,12 @@
 	opacity = 0
 	},
 /area/titlescreen)
+"jAh" = (
+/obj/item/device/radio/intercom/virtual{
+	dir = 8
+	},
+/turf/wall/virtual/reinforced,
+/area/gauntlet/viewing)
 "jCL" = (
 /obj/table/round/auto,
 /turf/floor/carpet/red/standard,
@@ -55153,8 +55165,12 @@
 /turf/floor/setpieces/bloodfloor,
 /area/titlescreen)
 "mOE" = (
+/obj/disposalpipe/segment{
+	dir = 4;
+	level = -1
+	},
 /obj/item/device/radio/intercom/virtual,
-/turf/wall/virtual/reinforced,
+/turf/floor/setpieces/gauntlet,
 /area/gauntlet/viewing)
 "mPR" = (
 /obj/machinery/light{
@@ -55562,6 +55578,12 @@
 	},
 /turf/floor/concrete,
 /area/upper_arctic/fita/director)
+"ogj" = (
+/obj/item/device/radio/intercom/virtual{
+	dir = 1
+	},
+/turf/floor/vr/fourbit,
+/area/sim/gunsim)
 "oju" = (
 /obj/landmark{
 	name = "lobby_leftside"
@@ -56571,9 +56593,11 @@
 /turf/floor/engine/caution,
 /area/upper_arctic/fita/mining)
 "rYA" = (
-/obj/item/device/radio/intercom/virtual,
-/turf/wall/auto/virtual,
-/area/gauntlet/viewing)
+/obj/item/device/radio/intercom/virtual/chess{
+	dir = 4
+	},
+/turf/floor/vr/fourbit,
+/area/sim/chess)
 "rZt" = (
 /turf/floor/shuttle{
 	icon_state = "floor5"
@@ -57345,6 +57369,12 @@
 	},
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster)
+"uIn" = (
+/obj/item/device/radio/intercom/virtual/chess{
+	dir = 8
+	},
+/turf/floor/vr/fourbit,
+/area/sim/chess)
 "uJX" = (
 /obj/table/reinforced{
 	icon_state = "5"
@@ -79606,7 +79636,7 @@ vbE
 vbE
 vbE
 vbE
-vbE
+rYA
 vbE
 vbE
 vbE
@@ -80178,8 +80208,8 @@ vww
 vww
 vww
 aaa
-rYA
-hYn
+otN
+mOE
 nTG
 tpV
 tpV
@@ -81423,7 +81453,7 @@ hdq
 mmc
 qUo
 vbE
-vbE
+hLa
 rkT
 aaa
 sqd
@@ -82928,7 +82958,7 @@ vbE
 vbE
 vbE
 vbE
-vbE
+uIn
 vbE
 vbE
 vbE
@@ -84104,7 +84134,7 @@ qgZ
 qgZ
 qgZ
 qgZ
-tpV
+jAh
 hYn
 nTG
 tpV
@@ -84406,7 +84436,7 @@ qgZ
 qgZ
 qgZ
 qgZ
-mOE
+tpV
 hYn
 nTG
 tpV
@@ -84699,8 +84729,8 @@ vww
 vww
 vww
 aaa
-mOE
-qgZ
+tpV
+clS
 qgZ
 qgZ
 qgZ
@@ -115571,8 +115601,8 @@ ciw
 ciw
 ciw
 ciw
-ciw
-clS
+ogj
+cim
 "}
 (190,1,1) = {"
 aaa
@@ -118289,8 +118319,8 @@ ciw
 ciw
 ciw
 ciw
-ciw
-clS
+ogj
+cim
 "}
 (199,1,1) = {"
 aaa

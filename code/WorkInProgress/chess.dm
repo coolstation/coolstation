@@ -41,15 +41,17 @@ turf/floor/chess
 obj/chessbutton
 	name = "Chess Reset Button"
 	desc = "A button that clears the chessboard, then re-sets the pieces. Don't press it while you're playing"
-	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "doorctrl0"
+	icon = 'icons/effects/VR.dmi'
+	icon_state = "doorctrl-p"
 	var/confirm = 0
 
 	attack_hand(mob/user as mob)
 		if(chess_in_progress && !confirm)
 			boutput(user, "<span class='alert'>You are about to erase the board. Press again to confirm.</span>")
 			confirm = 1
+			icon_state = "doorctrl0"
 		else
+			icon_state = "doorctrl1"
 			logTheThing("admin", user, null, "has reset the chessboard. Hope nobody was playing chess.")
 			logTheThing("diary", user, null, "has reset the chessboard. Hope nobody was playing chess.", "admin")
 			chess_in_progress = 0 //prevent moving pieces while wiping the board
@@ -64,6 +66,7 @@ obj/chessbutton
 
 			chess_in_progress = 1
 			confirm = 0
+			icon_state = "doorctrl-p"
 
 
 obj/landmark/chess
@@ -185,6 +188,10 @@ obj/item/chesspiece/pawn
 				for(var/obj/item/chesspiece/C in locate(start_pos.x+movdir,src.y,src.z)) // intermediate blocking
 					return 0
 				EP = locate(start_pos.x+movdir,src.y,src.z)
+				//I'm fairly certain you're not allowed to capture with the double move
+				var/obj/item/chesspiece/C2 = locate() in end_pos
+				if (C2)
+					return 0
 				return chess_in_progress
 		if(start_pos.y != end_pos.y)
 			if((abs(start_pos.y - end_pos.y) == 1) && (end_pos.x - start_pos.x) == movdir )

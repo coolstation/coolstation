@@ -74,6 +74,10 @@
 	desc = "Virtual radio for all your beeps and bops."
 	icon = 'icons/effects/VR.dmi'
 	protected_radio = 1
+
+	chess //hack to allow folks to banter from across the
+		frequency = R_FREQ_INTERCOM_CHESS
+		broadcasting = TRUE
 // --------------------------------------------
 
 // ** preset intercoms to make mapping suck less augh **
