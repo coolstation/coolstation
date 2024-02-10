@@ -604,7 +604,7 @@
 	var/super = 0 //Invincibility
 
 	//One of the more important bits of kart racers like this is chaining boosts together
-	//so this is just a "only have the spawn of the most recent boost reset" tally var
+	//so this is just a "only have the spawn for the most recent boost resets speed" tally var
 	//It does mean that if you use a long boost item into a short boost that it would normally outlast, most of the long one is wasted
 	//But I think mario kart does it that way too and that's what this whole thing is modeled after anyway
 	var/boost_generation = 0 //karts ain't got a process loop, nor would a coarse timing associatiated with those work for boosts.
@@ -740,6 +740,10 @@
 	rider?.client.screen += P
 
 	return
+
+/datum/kart_powerup
+
+/datum/kart_powerup/proc/use(obj/vehicle/kart/user)
 
 /obj/ability_button/kart_powerup
 	name = "Use Power-Up"
