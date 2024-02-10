@@ -1046,6 +1046,8 @@
 			generated_turfs += S
 		/*for (var/turf/floor/plating/airless/asteroid/FLOOR in generated_turfs)
 			FLOOR.color = stone_color*/
+		for (var/mob/living/M in range(6, center))
+			shake_camera(M, 4, 4)
 
 	return generated_turfs
 
