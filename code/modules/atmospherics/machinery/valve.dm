@@ -398,6 +398,7 @@ obj/machinery/atmospherics/manifold_valve
 
 		if(radio_controller)
 			set_frequency(frequency)
+		desc = "A pipe valve. It is [src.divert?"open":"closed"]."
 
 	disposing()
 		radio_controller.remove_object(src, "[frequency]")
