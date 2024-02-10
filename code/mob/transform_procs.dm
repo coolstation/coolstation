@@ -577,8 +577,7 @@
 		boutput(usr, "Sorry, respawn options aren't availbale during football mode.")
 		return
 	if (usr && istype(usr, /mob/dead/observer))
-		var/obj/machinery/sim/vr_bed/vr_bed = locate(/obj/machinery/sim/vr_bed)
-		vr_bed.log_in(usr)
+		Station_VNet.Enter_Vspace(usr, "ghost magic", LANDMARK_VR_ARCADE)
 
 
 
