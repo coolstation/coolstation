@@ -574,7 +574,7 @@
 	set category = "Ghost"
 
 	if (ticker?.mode && istype(ticker.mode, /datum/game_mode/football))
-		boutput(usr, "Sorry, respawn options aren't availbale during football mode.")
+		boutput(usr, "Sorry, respawn options aren't available during football mode.")
 		return
 	if (usr && istype(usr, /mob/dead/observer))
 		Station_VNet.Enter_Vspace(usr, "ghost magic", LANDMARK_VR_ARCADE)
@@ -593,7 +593,7 @@ var/list/antag_respawn_critter_types =  list(/mob/living/critter/small_animal/fl
 		return
 
 	if (ticker?.mode && istype(ticker.mode, /datum/game_mode/football))
-		boutput(src, "Sorry, respawn options aren't availbale during football mode.")
+		boutput(src, "Sorry, respawn options aren't available during football mode.")
 		return
 
 	// get the mind
@@ -765,7 +765,7 @@ var/list/antag_respawn_critter_types =  list(/mob/living/critter/small_animal/fl
 	if(!isdead(src) || !src.mind || !ticker || !ticker.mode)
 		return
 	if (ticker?.mode && istype(ticker.mode, /datum/game_mode/football))
-		boutput(src, "Sorry, respawn options aren't availbale during football mode.")
+		boutput(src, "Sorry, respawn options aren't available during football mode.")
 		return
 	var/turf/target_turf = pick(get_area_turfs(/area/afterlife/bar/barspawn))
 
