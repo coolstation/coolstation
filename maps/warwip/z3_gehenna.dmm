@@ -307,6 +307,12 @@
 	dir = 8
 	},
 /area/station/medical/basement)
+"ajj" = (
+/obj/landmark/artifact,
+/turf/floor/plating/gehenna,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "ajk" = (
 /obj/machinery/light/fluorescent/cool/very,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
@@ -12726,6 +12732,12 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/wall,
 /area/station/maintenance/central)
+"hmg" = (
+/obj/landmark/artifact,
+/turf/floor/plating/gehenna,
+/area/station/science/artifact{
+	name = "Artifact Lounge"
+	})
 "hmj" = (
 /obj/disposalpipe/segment/morgue,
 /obj/decal/cleanable/dirt/random,
@@ -40708,6 +40720,7 @@
 	icon_state = "2-8"
 	},
 /obj/submachine/cargopad/artlab,
+/obj/landmark/artifact,
 /turf/floor/grey,
 /area/station/science/artifact{
 	name = "Artifact Lounge"
@@ -71700,7 +71713,7 @@ uam
 aRh
 byL
 rvm
-gAk
+hmg
 gAk
 gAk
 gAk
@@ -88832,7 +88845,7 @@ gxR
 gxR
 gxR
 gxR
-ptO
+ajj
 ptO
 ptO
 kph
