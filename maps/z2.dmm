@@ -29311,17 +29311,6 @@
 	icon_state = "track_2"
 	},
 /area/sim/racing_track)
-"cjc" = (
-/obj/racing_clowncar/kart/red{
-	dir = 8;
-	icon_state = "kart_red_u";
-	returnpoint = "kart1"
-	},
-/turf/floor{
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_2"
-	},
-/area/sim/racing_track)
 "cjd" = (
 /obj/overlay{
 	desc = "";
@@ -29338,9 +29327,8 @@
 	},
 /area/sim/racing_track)
 "cje" = (
-/obj/racing_clowncar/kart{
-	dir = 8;
-	returnpoint = "kart3"
+/obj/vehicle/kart{
+	dir = 8
 	},
 /turf/floor{
 	icon = 'icons/misc/racing.dmi';
@@ -29363,10 +29351,8 @@
 	},
 /area/sim/racing_track)
 "cjg" = (
-/obj/racing_clowncar/kart/red{
-	dir = 8;
-	icon_state = "kart_red_u";
-	returnpoint = "kart6"
+/obj/vehicle/kart/red{
+	dir = 8
 	},
 /turf/floor{
 	icon = 'icons/misc/racing.dmi';
@@ -29774,9 +29760,8 @@
 	},
 /area/sim/racing_track)
 "ckm" = (
-/obj/racing_clowncar/kart{
-	dir = 8;
-	returnpoint = "kart2"
+/obj/vehicle/kart{
+	dir = 8
 	},
 /turf/floor{
 	dir = 1;
@@ -29801,10 +29786,8 @@
 	},
 /area/sim/racing_track)
 "cko" = (
-/obj/racing_clowncar/kart/red{
-	dir = 8;
-	icon_state = "kart_red_u";
-	returnpoint = "kart4"
+/obj/vehicle/kart/red{
+	dir = 8
 	},
 /turf/floor{
 	dir = 1;
@@ -29821,17 +29804,6 @@
 	},
 /obj/landmark{
 	name = "kart5"
-	},
-/turf/floor{
-	dir = 1;
-	icon = 'icons/misc/racing.dmi';
-	icon_state = "track_2"
-	},
-/area/sim/racing_track)
-"ckq" = (
-/obj/racing_clowncar/kart{
-	dir = 8;
-	returnpoint = "kart5"
 	},
 /turf/floor{
 	dir = 1;
@@ -55578,6 +55550,13 @@
 	},
 /turf/floor/concrete,
 /area/upper_arctic/fita/director)
+"oge" = (
+/obj/vehicle/kart,
+/turf/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_track)
 "ogj" = (
 /obj/item/device/radio/intercom/virtual{
 	dir = 1
@@ -96865,7 +96844,7 @@ cia
 cgu
 cgu
 cgu
-cjc
+cjg
 bOB
 bOB
 ckm
@@ -98680,7 +98659,7 @@ cbt
 cjg
 bOB
 bOB
-ckq
+ckm
 ciu
 cka
 ckr
@@ -105006,7 +104985,7 @@ vww
 aaa
 bUm
 bOB
-bOB
+oge
 bOB
 bOB
 bUm
