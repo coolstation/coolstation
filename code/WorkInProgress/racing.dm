@@ -1,3 +1,5 @@
+var/list/datum/kart_powerup/karting_powerups = list()
+
 /area/sim/racing_entry
 	name = "Clowncar Race track - Entry"
 	icon_state = "green"
@@ -22,18 +24,20 @@
 	event_handler_flags = USE_HASENTERED
 
 	HasEntered(atom/A)
-		if(istype(A,/obj/racing_clowncar))
+		if(istype(A,/obj/vehicle/kart))
 			playsound(A, "sound/mksounds/boost.ogg",30, 0)
 			step(A,src.dir)
 
-			var/obj/racing_clowncar/R = A
-			R.speed = R.base_speed - R.turbo
-			R.drive(R.dir, R.speed)
+			var/obj/vehicle/kart/R = A
+			R.boost(1.5 SECONDS)
+			/*R.delay = R.base_delay - R.turbo
+			walk(R,R.dir, R.delay)
 			R.overlays += image('icons/mob/robots.dmi', "up-speed")
 			SPAWN_DBG(1.5 SECONDS)
-				R.speed = R.base_speed
-				if (R.driving) R.drive(R.dir, 2)
-				R.overlays -= image('icons/mob/robots.dmi', "up-speed")
+				R.delay = R.base_delay
+				if (R.rider)
+					walk(R,R.dir, 2)
+				R.overlays -= image('icons/mob/robots.dmi', "up-speed")*/
 
 
 /obj/racing_powerup_spawner
@@ -85,8 +89,8 @@
 		move_process()
 
 	Bump(var/atom/A)
-		if(istype(A,/obj/racing_clowncar) && A != source_car)
-			var/obj/racing_clowncar/R = A
+		if(istype(A,/obj/vehicle/kart) && A != source_car)
+			var/obj/vehicle/kart/R = A
 			R.spin(20)
 			playsound(A, "sound/mksounds/gothit.ogg",45, 0)
 			qdel(src)
@@ -117,8 +121,8 @@
 		move_process()
 
 	Bump(var/atom/A)
-		if(istype(A,/obj/racing_clowncar) && A != source_car)
-			var/obj/racing_clowncar/R = A
+		if(istype(A,/obj/vehicle/kart) && A != source_car)
+			var/obj/vehicle/kart/R = A
 			R.spin(15)
 			playsound(A, "sound/mksounds/gothit.ogg",45, 0)
 			qdel(src)
@@ -129,7 +133,7 @@
 
 		var/atom/target = null
 
-		for(var/obj/racing_clowncar/C in view(2,src))
+		for(var/obj/vehicle/kart/C in view(2,src))
 			if(C != source_car)
 				target = C
 				break
@@ -168,8 +172,8 @@
 			qdel(src)
 
 	HasEntered(atom/A)
-		if(istype(A,/obj/racing_clowncar))
-			var/obj/racing_clowncar/R = A
+		if(istype(A,/obj/vehicle/kart))
+			var/obj/vehicle/kart/R = A
 			R.spin(20)
 			playsound(src, "sound/mksounds/itemdestroy.ogg",45, 0)
 			if(delete)	qdel(src)
@@ -185,8 +189,8 @@
 	event_handler_flags = USE_HASENTERED
 
 	HasEntered(atom/A)
-		if(istype(A,/obj/racing_clowncar))
-			var/obj/racing_clowncar/R = A
+		if(istype(A,/obj/vehicle/kart))
+			var/obj/vehicle/kart/R = A
 			R.random_powerup()
 			qdel(src)
 
@@ -198,12 +202,12 @@
 	anchored = 1
 	layer = HUD_LAYER
 	screen_loc = "NORTH,WEST"
-	var/obj/racing_clowncar/owner
+	var/obj/vehicle/kart/owner
 
-	disposing()
+	/*disposing()
 		if(owner?.powerup == src)
-			if(owner?.driver?.client)
-				owner.driver.client.screen -= src
+			if(owner?.rider?.client)
+				owner.rider.client.screen -= src
 			owner.powerup = null
 		owner = null
 		..()
@@ -212,7 +216,7 @@
 		if (owner.powerup == src)
 			owner.powerup = null
 		qdel(src)
-		return
+		return*/
 
 /obj/powerup/bananapeel
 	name = "Bananapeel"
@@ -223,7 +227,7 @@
 
 	Click()
 
-		if(!istype(src.loc,/obj/racing_clowncar))
+		if(!istype(src.loc,/obj/vehicle/kart))
 			qdel(src)
 			return
 
@@ -245,11 +249,11 @@
 
 	Click()
 
-		if(!istype(src.loc,/obj/racing_clowncar))
+		if(!istype(src.loc,/obj/vehicle/kart))
 			qdel(src)
 			return
 
-		var/obj/racing_clowncar/C = src.loc
+		var/obj/vehicle/kart/C = src.loc
 
 		var/turf/T = get_turf(C)
 		var/turf/T2 = get_step(T,C.dir)
@@ -275,11 +279,11 @@
 
 	Click()
 
-		if(!istype(src.loc,/obj/racing_clowncar))
+		if(!istype(src.loc,/obj/vehicle/kart))
 			qdel(src)
 			return
 
-		var/obj/racing_clowncar/C = src.loc
+		var/obj/vehicle/kart/C = src.loc
 
 		var/turf/T = get_turf(C)
 		var/turf/T2 = get_step(T,C.dir)
@@ -307,11 +311,11 @@
 		var/atom/source = src
 		src = null
 
-		if(!istype(source.loc,/obj/racing_clowncar))
+		if(!istype(source.loc,/obj/vehicle/kart))
 			qdel(source)
 			return
 
-		var/obj/racing_clowncar/R = source.loc
+		var/obj/vehicle/kart/R = source.loc
 
 		playsound(R, "sound/mksounds/boost.ogg",33, 0)
 
@@ -330,11 +334,11 @@
 		var/atom/source = src
 		src = null
 
-		if(!istype(source.loc,/obj/racing_clowncar))
+		if(!istype(source.loc,/obj/vehicle/kart))
 			qdel(source)
 			return
 
-		var/obj/racing_clowncar/R = source.loc
+		var/obj/vehicle/kart/R = source.loc
 
 		playsound(R, "sound/mksounds/invin10sec.ogg",33, 0,0) // 33
 
@@ -576,3 +580,250 @@
 			icon_state = "kart_red_u"
 		else
 			icon_state = "kart_red"
+
+
+//project "holy fuck the kart track is neglected to shit"
+/obj/vehicle/kart //like, /obj/vehicle is an *upgrade* for karts
+	name = "\improper Go-Kart"
+	desc = "A Go-Kart, whatever the kids spell it these days."
+	icon = 'icons/misc/racing.dmi'
+	icon_state = "kart_blue_u"
+	layer = OBJ_LAYER
+	var/returnpoint = null
+	var/returndir = null
+	var/turf/returnloc = null
+	var/colour = "blue"
+
+	//var/obj/powerup/powerup = null
+	ability_buttons_to_initialize = list(/obj/ability_button/kart_powerup)
+
+	var/dir_original = 1
+
+	var/cant_control = 0 //Used during spins, etc
+	delay = 2
+	var/base_delay = 2 //Base speed.
+	var/turbo = 1 //Boost speed is base_speed - turbo.
+	var/super = 0 //Invincibility
+
+	//One of the more important bits of kart racers like this is chaining boosts together
+	//so this is just a "only have the spawn for the most recent boost resets speed" tally var
+	//It does mean that if you use a long boost item into a short boost that it would normally outlast, most of the long one is wasted
+	//But I think mario kart does it that way too and that's what this whole thing is modeled after anyway
+	var/boost_generation = 0 //karts ain't got a process loop, nor would a coarse timing associatiated with those work for boosts.
+	//var/driving = 0
+
+
+	red
+		icon_state = "kart_red_u"
+		colour = "red"
+
+
+/obj/vehicle/kart/relaymove(mob/user as mob, dir)
+	if (!cant_control)
+		..()
+
+//hot kart on kart action
+/obj/vehicle/kart/Bump(var/atom/A)
+	if(super && istype(A,/obj/vehicle/kart))
+		var/obj/vehicle/kart/R = A
+		if(!R.super)
+			R.set_dir(pick(turn(src.dir,90),turn(src.dir,-90)))
+			step(R,R.dir)
+			R.spin(6)
+	return
+
+//god why isn't this shared vehicle code
+/obj/vehicle/kart/MouseDrop_T(atom/movable/A as obj|mob, mob/user as mob)
+	if (user.stat)
+		return
+
+	if(ishuman(A) && get_dist(user, src) <= 1  && get_dist(A, user) <= 1 && !rider)
+		if (A == user)
+			boutput(user, "You get into [src].")
+		else
+			boutput(user, "<span class='notice'>You help [A] onto [src]!</span>")
+		A.set_loc(src)
+		src.rider = A
+		//src.update_overlays()
+		src.name = "[A.name]'s Go-Kart"
+		if (rider.client)
+			handle_button_addition()
+		return
+
+/obj/vehicle/kart/Click()
+	//Click the forkli-kart when inside it to get out
+	if(src.rider != usr)
+		..()
+		return
+
+	if (usr.stat)
+		return
+
+	stop()
+	eject_rider()
+	return
+
+/obj/vehicle/kart/eject_rider(crashed, selfdismount, ejectall)
+	src.name = initial(src.name)
+	..()
+
+/obj/vehicle/kart/proc/reset()
+	stop()
+	returntoline()
+	eject_rider()
+	//overlays = null
+	/*driver = null
+	driving = 0
+	layer = OBJ_LAYER*/
+	update()
+
+/obj/vehicle/kart/proc/returntoline()
+	if(returnloc)
+		set_loc(returnloc)
+		set_dir(returndir)
+
+/obj/vehicle/kart/proc/update()
+	if(!rider)
+		icon_state = "kart_[colour]_u"
+	else
+		icon_state = "kart_[colour]"
+
+/obj/vehicle/kart/proc/spin(var/magnitude)
+	if(super) return
+	cant_control = 1
+	set_density(0)
+	dir_original = src.dir
+	var/image/out_of_control = image('icons/misc/racing.dmi',"broken")
+	UpdateOverlays(out_of_control, "out_of_control")
+
+	playsound(src, "sound/mksounds/cpuspin.ogg",33, 0)
+
+	SPAWN_DBG(magnitude+1)
+		cant_control = 0
+		dir_original = 0
+		set_density(1)
+		UpdateOverlays(null, "out_of_control")
+
+	SPAWN_DBG(0)
+		for(var/i=0, i<magnitude, i++)
+			src.set_dir(turn(src.dir, 90))
+			sleep(0.1 SECONDS)
+	return
+
+/obj/vehicle/kart/proc/boost(time = 5 SECONDS, reset_super = FALSE)
+	delay = base_delay - turbo
+	walk(src, dir, delay)
+
+	UpdateOverlays(image('icons/misc/racing.dmi', "up-speed"), "boost")
+	boost_generation++
+	var/cur_boost = boost_generation
+	SPAWN_DBG(time)
+		if (reset_super) //So I introduced another race condition with chaining super boosts but I'll look at that later
+			src.super = FALSE //previously super *never* cleared, good job
+		//another boost got chained from this one and now we don't do shit
+		if (boost_generation != cur_boost)
+			return
+		delay = base_delay
+		if (rider)//good enough 4 now
+			walk(src, dir, delay)
+		UpdateOverlays(null, "boost")
+
+/obj/vehicle/kart/proc/random_powerup()
+	if (!length(karting_powerups))
+		for(var/thing in concrete_typesof(/datum/kart_powerup/))
+			karting_powerups += new thing
+	playsound(src, "sound/mksounds/gotitem.ogg",33, 0)
+
+	var/datum/kart_powerup/picked = pick(karting_powerups)
+	var/obj/ability_button/kart_powerup/ability = locate() in src.ability_buttons
+	if (ability && picked)
+		ability.current_powerup = picked
+		ability.name = "Power-Up ([picked.name])"
+		ability.desc = "Click to use."
+		ability.icon_state = picked.UI_icon
+
+
+ABSTRACT_TYPE(/datum/kart_powerup)
+/datum/kart_powerup
+	var/UI_icon = "blank"
+	var/name = "powerup"
+/datum/kart_powerup/proc/use(obj/vehicle/kart/user)
+
+/datum/kart_powerup/bananapeel
+	name = "Bananapeel"
+	UI_icon = "banana"
+
+	use(obj/vehicle/kart/user)
+		var/turf/T = get_turf(user)
+		new/obj/racing_trap_banana/(T)
+		playsound(T, "sound/mksounds/itemdrop.ogg",45, 0)
+
+/datum/kart_powerup/butt
+	name = "Butt"
+	UI_icon = "butt"
+
+	use(obj/vehicle/kart/user)
+		var/turf/T = get_turf(user)
+		var/turf/T2 = get_step(T,user.dir)
+		var/turf/trg = null
+
+		if(!T2.density) trg = T2
+		else trg = T
+		new/obj/racing_butt(trg, user.dir, user)
+		playsound(user, "sound/mksounds/throw.ogg",33, 0)
+
+/datum/kart_powerup/superbutt
+	name = "Superbutt"
+	UI_icon = "superbutt"
+
+	use(obj/vehicle/kart/user)
+		var/turf/T = get_turf(user)
+		var/turf/T2 = get_step(T,user.dir)
+		var/turf/trg = null
+
+		if(!T2.density) trg = T2
+		else trg = T
+		new/obj/super_racing_butt(trg, user.dir, user)
+		playsound(user, "sound/mksounds/throw.ogg",33, 0)
+
+/datum/kart_powerup/mushroom
+	name = "Mushroom"
+	UI_icon = "mushroom"
+
+	use(obj/vehicle/kart/user)
+		playsound(user, "sound/mksounds/boost.ogg",33, 0)
+		user.boost(5 SECONDS)
+
+/datum/kart_powerup/superboost
+	name = "Super Boost"
+	UI_icon = "superboost"
+
+	use(obj/vehicle/kart/user)
+		playsound(user, "sound/mksounds/invin10sec.ogg",33, 0,0) // 33
+
+		user.super = TRUE
+		user.boost(5 SECONDS, TRUE) //if the music lasts 10 seconds, maybe this should?
+
+
+/obj/ability_button/kart_powerup
+	name = "Power-Up (Empty)"
+	desc = "Click to use (once you grab an item)"
+	icon = 'icons/misc/racing.dmi'
+	icon_state = "blank"
+	var/datum/kart_powerup/current_powerup = null
+
+	Click()
+		if(!the_mob) return
+		if(!current_powerup) return
+
+		if (istype(the_mob.loc, /obj/vehicle/kart))
+			current_powerup.use(the_mob.loc)
+			current_powerup = null
+			src.name = "Power-Up (Empty)"
+			src.desc = "Click to use (once you grab an item)"
+			src.icon_state = "blank"
+
+	disposing()
+		current_powerup = null
+		..()
+
