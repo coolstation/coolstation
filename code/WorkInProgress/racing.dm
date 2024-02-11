@@ -1,3 +1,5 @@
+var/list/datum/kart_powerup/karting_powerups = list()
+
 /area/sim/racing_entry
 	name = "Clowncar Race track - Entry"
 	icon_state = "green"
@@ -202,7 +204,7 @@
 	screen_loc = "NORTH,WEST"
 	var/obj/vehicle/kart/owner
 
-	disposing()
+	/*disposing()
 		if(owner?.powerup == src)
 			if(owner?.rider?.client)
 				owner.rider.client.screen -= src
@@ -214,7 +216,7 @@
 		if (owner.powerup == src)
 			owner.powerup = null
 		qdel(src)
-		return
+		return*/
 
 /obj/powerup/bananapeel
 	name = "Bananapeel"
@@ -592,7 +594,7 @@
 	var/turf/returnloc = null
 	var/colour = "blue"
 
-	var/obj/powerup/powerup = null
+	//var/obj/powerup/powerup = null
 	ability_buttons_to_initialize = list(/obj/ability_button/kart_powerup)
 
 	var/dir_original = 1
@@ -657,6 +659,7 @@
 	if (usr.stat)
 		return
 
+	stop()
 	eject_rider()
 	return
 
@@ -681,7 +684,6 @@
 
 /obj/vehicle/kart/proc/update()
 	if(!rider)
-		overlays = null
 		icon_state = "kart_[colour]_u"
 	else
 		icon_state = "kart_[colour]"
@@ -692,7 +694,7 @@
 	set_density(0)
 	dir_original = src.dir
 	var/image/out_of_control = image('icons/misc/racing.dmi',"broken")
-	src.overlays += out_of_control
+	UpdateOverlays(out_of_control, "out_of_control")
 
 	playsound(src, "sound/mksounds/cpuspin.ogg",33, 0)
 
@@ -700,7 +702,7 @@
 		cant_control = 0
 		dir_original = 0
 		set_density(1)
-		src.overlays -= out_of_control
+		UpdateOverlays(null, "out_of_control")
 
 	SPAWN_DBG(0)
 		for(var/i=0, i<magnitude, i++)
@@ -708,7 +710,7 @@
 			sleep(0.1 SECONDS)
 	return
 
-/obj/vehicle/kart/proc/boost(time = 5 SECONDS)
+/obj/vehicle/kart/proc/boost(time = 5 SECONDS, reset_super = FALSE)
 	delay = base_delay - turbo
 	walk(src, dir, delay)
 
@@ -716,7 +718,9 @@
 	boost_generation++
 	var/cur_boost = boost_generation
 	SPAWN_DBG(time)
-		//a later
+		if (reset_super) //So I introduced another race condition with chaining super boosts but I'll look at that later
+			src.super = FALSE //previously super *never* cleared, good job
+		//another boost got chained from this one and now we don't do shit
 		if (boost_generation != cur_boost)
 			return
 		delay = base_delay
@@ -725,30 +729,87 @@
 		UpdateOverlays(null, "boost")
 
 /obj/vehicle/kart/proc/random_powerup()
-	var/list/powerups = childrentypesof(/obj/powerup/)
-	if(!powerups.len) return
-
+	if (!length(karting_powerups))
+		for(var/thing in concrete_typesof(/datum/kart_powerup/))
+			karting_powerups += new thing
 	playsound(src, "sound/mksounds/gotitem.ogg",33, 0)
 
-	for(var/obj/powerup/OLD in src)
-		qdel(OLD)
+	var/datum/kart_powerup/picked = pick(karting_powerups)
+	var/obj/ability_button/kart_powerup/ability = locate() in src.ability_buttons
+	if (ability && picked)
+		ability.current_powerup = picked
+		ability.name = "Power-Up ([picked.name])"
+		ability.desc = "Click to use."
+		ability.icon_state = picked.UI_icon
 
-	var/picked = pick(powerups)
-	var/obj/powerup/P = new picked(src)
-	src.powerup = P
 
-	rider?.client.screen += P
-
-	return
-
+ABSTRACT_TYPE(/datum/kart_powerup)
 /datum/kart_powerup
-
+	var/UI_icon = "blank"
+	var/name = "powerup"
 /datum/kart_powerup/proc/use(obj/vehicle/kart/user)
 
+/datum/kart_powerup/bananapeel
+	name = "Bananapeel"
+	UI_icon = "banana"
+
+	use(obj/vehicle/kart/user)
+		var/turf/T = get_turf(user)
+		new/obj/racing_trap_banana/(T)
+		playsound(T, "sound/mksounds/itemdrop.ogg",45, 0)
+
+/datum/kart_powerup/butt
+	name = "Butt"
+	UI_icon = "butt"
+
+	use(obj/vehicle/kart/user)
+		var/turf/T = get_turf(user)
+		var/turf/T2 = get_step(T,user.dir)
+		var/turf/trg = null
+
+		if(!T2.density) trg = T2
+		else trg = T
+		new/obj/racing_butt(trg, user.dir, user)
+		playsound(user, "sound/mksounds/throw.ogg",33, 0)
+
+/datum/kart_powerup/superbutt
+	name = "Superbutt"
+	UI_icon = "superbutt"
+
+	use(obj/vehicle/kart/user)
+		var/turf/T = get_turf(user)
+		var/turf/T2 = get_step(T,user.dir)
+		var/turf/trg = null
+
+		if(!T2.density) trg = T2
+		else trg = T
+		new/obj/super_racing_butt(trg, user.dir, user)
+		playsound(user, "sound/mksounds/throw.ogg",33, 0)
+
+/datum/kart_powerup/mushroom
+	name = "Mushroom"
+	UI_icon = "mushroom"
+
+	use(obj/vehicle/kart/user)
+		playsound(user, "sound/mksounds/boost.ogg",33, 0)
+		user.boost(5 SECONDS)
+
+/datum/kart_powerup/superboost
+	name = "Super Boost"
+	UI_icon = "superboost"
+
+	use(obj/vehicle/kart/user)
+		playsound(user, "sound/mksounds/invin10sec.ogg",33, 0,0) // 33
+
+		user.super = TRUE
+		user.boost(5 SECONDS, TRUE) //if the music lasts 10 seconds, maybe this should?
+
+
 /obj/ability_button/kart_powerup
-	name = "Use Power-Up"
-	icon = 'icons/misc/abilities.dmi'
-	icon_state = "pedal_off"
+	name = "Power-Up (Empty)"
+	desc = "Click to use (once you grab an item)"
+	icon = 'icons/misc/racing.dmi'
+	icon_state = "blank"
 	var/datum/kart_powerup/current_powerup = null
 
 	Click()
@@ -757,13 +818,12 @@
 
 		if (istype(the_mob.loc, /obj/vehicle/kart))
 			current_powerup.use(the_mob.loc)
+			current_powerup = null
+			src.name = "Power-Up (Empty)"
+			src.desc = "Click to use (once you grab an item)"
+			src.icon_state = "blank"
 
-			//_AddComponentvar/obj/vehicle/kart/kart = the_mob.loc
-			/*var/datum/movement_controller/forklift/MC = fork.movement_controller
-			if (MC.automove)
-				walk(fork, 0)
-				icon_state = "pedal_off"
-			else
-				icon_state = "pedal_on"
-			MC.automove = !MC.automove*/
-		return
+	disposing()
+		current_powerup = null
+		..()
+
