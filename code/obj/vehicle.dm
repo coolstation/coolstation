@@ -155,20 +155,21 @@ ABSTRACT_TYPE(/obj/vehicle)
 	relaymove(mob/user as mob, dir)
 		// we reset the overlays to null in case the relaymove() call was initiated by a
 		// passenger rather than the driver (we shouldn't have a rider overlay if there is no rider!)
-		src.overlays = null
 
 		if(!src.rider || user != src.rider)
+			UpdateOverlays(null, "rider")
 			return
 
 		var/td = max(src.delay, MINIMUM_EFFECTIVE_DELAY)
 
 		if(src.rider_visible)
-			src.overlays += src.rider
+			UpdateOverlays(src.rider, "rider")
 
 		// You can't move in space without the booster upgrade
 		if (src.booster_upgrade)
-			src.overlays += booster_image
+			UpdateOverlays(booster_image, "booster_image")
 		else
+			UpdateOverlays(null, "booster_image")
 			var/turf/T = get_turf(src)
 
 			if(T.throw_unlimited && istype(T, /turf/space))

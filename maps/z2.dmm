@@ -29282,14 +29282,16 @@
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "finishline_strip";
-	name = "finish line"
+	name = "finish line";
+	plane = -101
 	},
 /obj/overlay{
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "finishline_strip";
 	name = "finish line";
-	pixel_x = 6
+	pixel_x = 6;
+	plane = -101
 	},
 /turf/floor{
 	icon = 'icons/misc/racing.dmi';
@@ -29301,7 +29303,8 @@
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "car_mark";
-	name = "car marker"
+	name = "car marker";
+	plane = -101
 	},
 /obj/landmark{
 	name = "kart1"
@@ -29316,7 +29319,8 @@
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "car_mark";
-	name = "car marker"
+	name = "car marker";
+	plane = -101
 	},
 /obj/landmark{
 	name = "kart3"
@@ -29328,7 +29332,8 @@
 /area/sim/racing_track)
 "cje" = (
 /obj/vehicle/kart{
-	dir = 8
+	dir = 8;
+	returnpoint = "kart3"
 	},
 /turf/floor{
 	icon = 'icons/misc/racing.dmi';
@@ -29340,7 +29345,8 @@
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "car_mark";
-	name = "car marker"
+	name = "car marker";
+	plane = -101
 	},
 /obj/landmark{
 	name = "kart6"
@@ -29352,7 +29358,8 @@
 /area/sim/racing_track)
 "cjg" = (
 /obj/vehicle/kart/red{
-	dir = 8
+	dir = 8;
+	returnpoint = "kart1"
 	},
 /turf/floor{
 	icon = 'icons/misc/racing.dmi';
@@ -29529,14 +29536,16 @@
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "finishline_strip";
-	name = "finish line"
+	name = "finish line";
+	plane = -101
 	},
 /obj/overlay{
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "finishline_strip";
 	name = "finish line";
-	pixel_x = 6
+	pixel_x = 6;
+	plane = -101
 	},
 /turf/floor{
 	icon = 'icons/misc/racing.dmi';
@@ -29728,14 +29737,16 @@
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "finishline_strip";
-	name = "finish line"
+	name = "finish line";
+	plane = -101
 	},
 /obj/overlay{
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "finishline_strip";
 	name = "finish line";
-	pixel_x = 6
+	pixel_x = 6;
+	plane = -101
 	},
 /turf/floor{
 	dir = 1;
@@ -29748,7 +29759,8 @@
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "car_mark";
-	name = "car marker"
+	name = "car marker";
+	plane = -101
 	},
 /obj/landmark{
 	name = "kart2"
@@ -29761,7 +29773,8 @@
 /area/sim/racing_track)
 "ckm" = (
 /obj/vehicle/kart{
-	dir = 8
+	dir = 8;
+	returnpoint = "kart2"
 	},
 /turf/floor{
 	dir = 1;
@@ -29774,7 +29787,8 @@
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "car_mark";
-	name = "car marker"
+	name = "car marker";
+	plane = -101
 	},
 /obj/landmark{
 	name = "kart4"
@@ -29787,7 +29801,8 @@
 /area/sim/racing_track)
 "cko" = (
 /obj/vehicle/kart/red{
-	dir = 8
+	dir = 8;
+	returnpoint = "kart4"
 	},
 /turf/floor{
 	dir = 1;
@@ -29800,7 +29815,8 @@
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "car_mark";
-	name = "car marker"
+	name = "car marker";
+	plane = -101
 	},
 /obj/landmark{
 	name = "kart5"
@@ -53591,6 +53607,17 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
+"hye" = (
+/obj/vehicle/kart{
+	dir = 8;
+	returnpoint = "kart5"
+	},
+/turf/floor{
+	dir = 1;
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2"
+	},
+/area/sim/racing_track)
 "hzN" = (
 /turf/floor/carpet{
 	dir = 9;
@@ -54569,6 +54596,27 @@
 "kOJ" = (
 /turf/floor/carpet/red/standard,
 /area/upper_arctic/fita/director)
+"kPv" = (
+/obj/overlay{
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "finishline_strip";
+	name = "finish line";
+	pixel_x = 6;
+	plane = -101
+	},
+/obj/overlay{
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "finishline_strip";
+	name = "finish line";
+	plane = -101
+	},
+/turf/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_track)
 "kPL" = (
 /turf/floor/carpet/red/standard/innercorner/ne,
 /area/upper_arctic/fita/director)
@@ -55873,6 +55921,16 @@
 /obj/decal/poster/wallsign/escape_left,
 /turf/wall/other,
 /area/afterlife/bar)
+"ptP" = (
+/obj/vehicle/kart/red{
+	dir = 8;
+	returnpoint = "kart6"
+	},
+/turf/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2"
+	},
+/area/sim/racing_track)
 "pvc" = (
 /obj/death_button/VR_logout_button{
 	dir = 1;
@@ -96242,7 +96300,7 @@ cgu
 cbt
 cja
 cjG
-cjG
+kPv
 ckk
 ciu
 cka
@@ -98656,10 +98714,10 @@ pkE
 cbs
 cik
 cbt
-cjg
+ptP
 bOB
 bOB
-ckm
+hye
 ciu
 cka
 ckr

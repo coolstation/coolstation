@@ -1905,13 +1905,15 @@
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "finishline_strip";
 	name = "finish line";
-	pixel_x = 6
+	plane = -101
 	},
 /obj/overlay{
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "finishline_strip";
-	name = "finish line"
+	name = "finish line";
+	pixel_x = 6;
+	plane = -101
 	},
 /turf/floor{
 	icon = 'icons/misc/racing.dmi';
@@ -1924,7 +1926,8 @@
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "car_mark";
-	name = "car marker"
+	name = "car marker";
+	plane = -101
 	},
 /obj/landmark{
 	name = "kart1"
@@ -1940,7 +1943,8 @@
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "car_mark";
-	name = "car marker"
+	name = "car marker";
+	plane = -101
 	},
 /obj/landmark{
 	name = "kart3"
@@ -1953,7 +1957,8 @@
 /area/sim/racing_track)
 "eM" = (
 /obj/vehicle/kart{
-	dir = 8
+	dir = 8;
+	returnpoint = "kart3"
 	},
 /turf/floor{
 	icon = 'icons/misc/racing.dmi';
@@ -1966,7 +1971,8 @@
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "car_mark";
-	name = "car marker"
+	name = "car marker";
+	plane = -101
 	},
 /obj/landmark{
 	name = "kart6"
@@ -1979,7 +1985,8 @@
 /area/sim/racing_track)
 "eO" = (
 /obj/vehicle/kart/red{
-	dir = 8
+	dir = 8;
+	returnpoint = "kart1"
 	},
 /turf/floor{
 	icon = 'icons/misc/racing.dmi';
@@ -2023,13 +2030,15 @@
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "finishline_strip";
 	name = "finish line";
-	pixel_x = 6
+	plane = -101
 	},
 /obj/overlay{
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "finishline_strip";
-	name = "finish line"
+	name = "finish line";
+	pixel_x = 6;
+	plane = -101
 	},
 /turf/floor{
 	icon = 'icons/misc/racing.dmi';
@@ -2119,13 +2128,15 @@
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "finishline_strip";
 	name = "finish line";
-	pixel_x = 6
+	plane = -101
 	},
 /obj/overlay{
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "finishline_strip";
-	name = "finish line"
+	name = "finish line";
+	pixel_x = 6;
+	plane = -101
 	},
 /turf/floor{
 	dir = 1;
@@ -2139,7 +2150,8 @@
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "car_mark";
-	name = "car marker"
+	name = "car marker";
+	plane = -101
 	},
 /obj/landmark{
 	name = "kart2"
@@ -2156,7 +2168,8 @@
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "car_mark";
-	name = "car marker"
+	name = "car marker";
+	plane = -101
 	},
 /obj/landmark{
 	name = "kart4"
@@ -2170,7 +2183,8 @@
 /area/sim/racing_track)
 "fe" = (
 /obj/vehicle/kart/red{
-	dir = 8
+	dir = 8;
+	returnpoint = "kart4"
 	},
 /turf/floor{
 	dir = 1;
@@ -2184,7 +2198,8 @@
 	desc = "";
 	icon = 'icons/misc/racing.dmi';
 	icon_state = "car_mark";
-	name = "car marker"
+	name = "car marker";
+	plane = -101
 	},
 /obj/landmark{
 	name = "kart5"
@@ -2198,7 +2213,8 @@
 /area/sim/racing_track)
 "fg" = (
 /obj/vehicle/kart{
-	dir = 8
+	dir = 8;
+	returnpoint = "kart2"
 	},
 /turf/floor{
 	dir = 1;
@@ -2613,6 +2629,29 @@
 	icon_state = "track_1"
 	},
 /area/sim/racing_entry)
+"FN" = (
+/obj/vehicle/kart/red{
+	dir = 8;
+	returnpoint = "kart6"
+	},
+/turf/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	tag = "icon-track_2"
+	},
+/area/sim/racing_track)
+"Le" = (
+/obj/vehicle/kart{
+	dir = 8;
+	returnpoint = "kart5"
+	},
+/turf/floor{
+	dir = 1;
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	tag = "icon-track_2 (NORTH)"
+	},
+/area/sim/racing_track)
 
 (1,1,1) = {"
 aa
@@ -12763,10 +12802,10 @@ ea
 et
 ez
 eE
-eO
+FN
 aB
 aB
-fg
+Le
 fn
 fw
 fy

@@ -1380,7 +1380,7 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 /obj/machinery/power/furnace/thermo
 	name = "Furnace"
 	desc = "Generates Heat for the thermoelectric generator."
-	icon_state = "furnace"
+	icon_state = "furnace_thermal" //shit edit but better than nothing
 	anchored = 1
 	density = 1
 	mats = 20

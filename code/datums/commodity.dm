@@ -2693,7 +2693,7 @@
 
 /datum/commodity/gokart
 	comname = "Go-Kart"
-	comtype = /obj/racing_clowncar/kart
+	comtype = /obj/vehicle/kart
 	desc = "They just don't make the same quality go-karts anymore. Get this relic while you can."
 	onmarket = 0
 	price = 30000

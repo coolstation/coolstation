@@ -121,8 +121,8 @@ datum/v_space
 
 		for(var/mob/O in oviewers())
 			boutput(O, "<span class='alert'><b>[user] logs out!</b></span>")
-		if (istype(user.loc,/obj/racing_clowncar/kart))
-			var/obj/racing_clowncar/kart/car = user.loc
+		if (istype(user.loc,/obj/vehicle/kart))
+			var/obj/vehicle/kart/car = user.loc
 			car.reset()
 		if (isdead(user))
 			for (var/obj/item/I in user)
