@@ -420,6 +420,8 @@
 
 	// perform a flush
 	proc/flush()
+		if(!trunk)
+			rechecktrunk()
 
 		flushing = 1
 		flick("[icon_style]-flush", src)
