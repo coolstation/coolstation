@@ -434,7 +434,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		list("Suddenly...", 5 SECONDS, "narrator", "emergency-B"),\
 		list("*sparking noises*", 5 SECONDS, null, "test-C"),\
 		list("Able, ABLE! Are you alright Able?!", 7 SECONDS, "specialistvirgil", "emergency-A"),\
-		list("Join us next cycle for more of Hafgan Heavy Industrie's MYSTERIES OF THE FRONTIER", 15 SECONDS, null, "test-D"),\
+		list("Join us next cycle for more of Hafgan Heavy Industries's MYSTERIES OF THE FRONTIER", 15 SECONDS, null, "test-D"),\
 	)
 	group_messages = TRUE
 	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
