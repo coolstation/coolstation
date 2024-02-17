@@ -416,13 +416,13 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
 /datum/directed_broadcast/eaglestoryone
-	id = "Mysteries of the Frontier"
-	speakers = list("narrator" = list("Narrator", "#A2DD77"), "doctorwhitman" = list("DoctorWhitman", "#DDA277"), "specialistvirgil" = list("Specialist Virgil", "#6969BF")), "able" = list("Able", "#d3374c")
+	id = "mysteries_of_the_frontier_one"
+	speakers = list("narrator" = list("Narrator", "#A2DD77"), "doctorwhitman" = list("Doctor Whitman", "#DDA277"), "specialistvirgil" = list("Specialist Virgil", "#6969BF")), "able" = list("Able", "#d3374c")
 	messages = list(\
-		list("This cycle's Mysteries of the Frontier is brought to you by", 10 SECONDS, "narrator", "test-A"),\
+		list("This cycle's MYSTERIES OF THE FRONTIER is brought to you by", 10 SECONDS, "narrator", "test-A"),\
 		list("Hafgan Heavy Industries, for all your construction and demolition needs", 10 SECONDS, "narrator", "test-A"),\
 		list("When we last left off, Doctor Whitman had successfuly isolated the virus haunting Jamsion Labs", 15 SECONDS, "narrator", "test-B"),\
-		list("We now resume our story", 10 SECONDS, "narrator", "test-B"),\
+		list("We now resume our story", 7 SECONDS, "narrator", "test-B"),\
 		list("Doctor, what in the heavens is that thing!", 10 SECONDS, "specialistvirgil", "test-C"),\
 		list("This, my dear ithilid friend, is our culprit.", 10 SECONDS, "doctorwhitman", "test-C"),\
 		list("ABLE!", 5 SECONDS, "doctorwhitman", "test-C")
@@ -434,7 +434,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		list("Suddenly...", 5 SECONDS, "narrator", "emergency-B"),\
 		list("*sparking noises*", 5 SECONDS, null, "test-C"),\
 		list("Able, ABLE! Are you alright Able?!", 7 SECONDS, "specialistvirgil", "emergency-A"),\
-		list("Join us next cylce for more of Hafgan Heavy Industrie's MYSTERIES OF THE FRONTIER", 15 SECONDS, null, "test-D"),\
+		list("Join us next cycle for more of Hafgan Heavy Industrie's MYSTERIES OF THE FRONTIER", 15 SECONDS, null, "test-D"),\
 	)
 	group_messages = TRUE
 	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
