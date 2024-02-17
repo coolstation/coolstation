@@ -417,7 +417,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 
 /datum/directed_broadcast/eaglestoryone
 	id = "mysteries_of_the_frontier_one"
-	speakers = list("narrator" = list("Narrator", "#A2DD77"), "doctorwhitman" = list("Doctor Whitman", "#DDA277"), "specialistvirgil" = list("Specialist Virgil", "#6969BF")), "able" = list("Able", "#d3374c")
+	speakers = list("narrator" = list("Narrator", "#A2DD77"), "doctorwhitman" = list("Doctor Whitman", "#DDA277"), "specialistvirgil" = list("Specialist Virgil", "#6969BF"), "able" = list("Able", "#d3374c"))
 	messages = list(\
 		list("This cycle's MYSTERIES OF THE FRONTIER is brought to you by", 10 SECONDS, "narrator", "test-A"),\
 		list("Hafgan Heavy Industries, for all your construction and demolition needs", 10 SECONDS, "narrator", "test-A"),\
@@ -425,7 +425,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		list("We now resume our story", 7 SECONDS, "narrator", "test-B"),\
 		list("Doctor, what in the heavens is that thing!", 10 SECONDS, "specialistvirgil", "test-C"),\
 		list("This, my dear ithilid friend, is our culprit.", 10 SECONDS, "doctorwhitman", "test-C"),\
-		list("ABLE!", 5 SECONDS, "doctorwhitman", "test-C")
+		list("ABLE!", 5 SECONDS, "doctorwhitman", "test-C"),\
 		list("Yes Doctor?", 5 SECONDS, "able", "emergency-B"),\
 		list("Can you trace where this came from?", 10 SECONDS, "doctorwhitman", "test-C"),\
 		list("Please transport the specimen to my upload, so I may interface with the object", 15 SECONDS, "able", "test-B"),\
