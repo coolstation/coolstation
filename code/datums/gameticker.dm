@@ -340,8 +340,8 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 				if (player.mind && player.mind.assigned_role == "AI")
 					player.close_spawn_windows()
-					var/mob/living/silicon/ai/A = player.AIize()
-					A.Equip_Bank_Purchase(A.mind.purchased_bank_item)
+				//	var/mob/living/silicon/ai/A = player.AIize()
+					//A.Equip_Bank_Purchase(A.mind.purchased_bank_item)
 
 				else if (player.mind && player.mind.special_role == ROLE_WRAITH)
 					player.close_spawn_windows()
@@ -546,7 +546,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 			if(isalive(P) && in_centcom(P)) pets_rescued++
 
 	//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] Processing end-of-round generic medals")
-	var/list/all_the_baddies = ticker.mode.traitors + ticker.mode.token_players + ticker.mode.Agimmicks + ticker.mode.former_antagonists
+	//var/list/all_the_baddies = ticker.mode.traitors + ticker.mode.token_players + ticker.mode.Agimmicks + ticker.mode.former_antagonists
 	for(var/mob/living/player in mobs)
 		if (player.client)
 			if (!isdead(player))
@@ -656,8 +656,8 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	// DO THE PERSISTENT_BANK STUFF
 	//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] processing spacebux updates")
 
-	var/time = world.time
-
+	//var/time = world.time
+/*
 	logTheThing("debug", null, null, "Revving up the spacebux loop...")
 
 	for(var/mob/player in mobs)
@@ -781,10 +781,10 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 						player.client.set_last_purchase(0)
 						/*
 						if(!player.mind.do_not_save_gun)
-							player.client.save_cloud_gun(0)*/
+							player.client.save_cloud_gun(0)
 					else
 						if(!player.mind.do_not_save_gun)
-							player.client.save_cloud_gun(1)
+							player.client.save_cloud_gun(1)*/
 
 					bank_earnings.pilot_bonus = pilot_bonus
 					bank_earnings.final_payout = earnings
@@ -794,7 +794,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 
 	logTheThing("debug", null, null, "Done with spacebux")
-
+*/
 	for_by_tcl(P, /obj/bookshelf/persistent) //make the bookshelf save its contents
 		P.build_curr_contents()
 

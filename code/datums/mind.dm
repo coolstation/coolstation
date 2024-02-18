@@ -48,7 +48,7 @@ datum/mind
 
 	var/dnr = 0
 	var/joined_observer = 0 //keep track of whether this player joined round as an observer (blocks them from bank payouts)
-	var/do_not_save_gun = 0 //similarly, there are certain scenarios where we don't want them to be able to save their cloud gun.
+	//var/do_not_save_gun = 0 //similarly, there are certain scenarios where we don't want them to be able to save their cloud gun.
 
 	var/luck = 50 // todo:
 	var/sanity = 100 // implement dis

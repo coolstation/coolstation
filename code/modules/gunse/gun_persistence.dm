@@ -9,7 +9,7 @@ Enjoy */
 
 //idk what im doing.
 
-
+/*
 /client/proc/save_cloud_gun(var/save = 1, var/obj/item/gun/modular/gun = null)
 	if(save == 0)
 		if( cloud_available() )
@@ -98,7 +98,7 @@ Enjoy */
 	gun.build_gun()
 	return gun
 
-
+*/
 
 
 

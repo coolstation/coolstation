@@ -527,7 +527,7 @@
 							return
 						else
 							A.announce_arrival(src)
-
+/*
 		//Equip_Bank_Purchase AFTER special_setup() call, because they might no longer be a human after that
 		if (possible_new_mob)
 			var/mob/living/newmob = possible_new_mob
@@ -543,9 +543,9 @@
 				//backup option - not trying this first because jobs that start with anything in hand will drop 2-handed weapons by default. lame.
 			else
 				src.put_in_hand_or_drop(src.client.persistent_gun)
-			src.client.save_cloud_gun(0) // warc: this sets to None if you spawned the gun, so that we dont need to wipe it at the end of the round.
+			src.client.save_cloud_gun(0) */// warc: this sets to None if you spawned the gun, so that we dont need to wipe it at the end of the round.
 										// not wiping at the end is so that you can go put your gun away in a safe place & not lose it if you die.
-	return
+	//return
 
 /mob/living/carbon/human/proc/Equip_Job_Slots(var/datum/job/JOB)
 	equip_job_items(JOB, src)

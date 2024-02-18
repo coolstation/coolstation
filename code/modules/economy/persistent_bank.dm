@@ -1,4 +1,7 @@
 //This is the main persistent bank window
+//Warc: this system is being retired. Lots of code being commented out for the player side of things for now.
+// Admin-facing bank controls should still be *mostly* functional. We'll excise this permanently later.
+
 
 //some related bits in :
 //	client.dm	   :  Add-to-bank, Sub-from-bank procs
@@ -7,7 +10,7 @@
 //	new_player.dm  :  open up the bank dialog
 //	jobprocs.dm    :  call Equip_Bank_Purchase()
 //	persistent_bank_purchases.dm  :	(contains all purchaseable data)
-
+/*
 /chui/window/spend_spacebux
 	name = "Spacebux"
 	windowSize = "300x600"
@@ -144,3 +147,4 @@
 		src.client.sub_from_bank(purchase)
 		src.client.set_last_purchase(purchase)
 	return
+*/

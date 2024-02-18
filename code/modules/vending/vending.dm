@@ -1942,7 +1942,7 @@
 
 	attackby(obj/item/W, mob/user)
 		if(!user?.client)
-			return ..()
+			return ..()/*
 		if(istype(W, /obj/item/gun/modular/))
 			if (alert(user, "Would you like to store your weapon?", "Confirmation", "Yes", "No") == "Yes")
 				user.client.save_cloud_gun(1, gun=W)
@@ -1952,7 +1952,7 @@
 			return
 
 		else
-			..()
+			..()*/
 
 
 	create_products()

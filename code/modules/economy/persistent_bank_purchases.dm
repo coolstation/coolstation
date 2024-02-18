@@ -1,4 +1,4 @@
-
+// WARC: this whole system is being decomissionned, but im gonna leave this list here in case we want to repurpose it for other reward systems.
 var/global/list/persistent_bank_purchaseables =	list(\
 	new /datum/bank_purchaseable/human_item/reset,\
 	new /datum/bank_purchaseable/human_item/crayon,\
