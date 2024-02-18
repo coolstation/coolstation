@@ -3722,7 +3722,7 @@ datum
 			result_amount = 2
 			mix_phrase = "The substance gives off a lovely scent!"
 
-		/* It's me. I'm the new merculite.
+		// It's me. I'm the new merculite.
 		nitrogen_triiodide
 			name = "Nitrogen Triiodide"
 			id = "nitrogentriiodide"
@@ -3741,7 +3741,7 @@ datum
 			*/
 			result_amount = 3
 			mix_phrase = "The solution settles into a viscous paste."
-		*/
+
 
 		nitro_tri_explosion //This will just straight-up explode
 			name = "NI3 Explosion"
