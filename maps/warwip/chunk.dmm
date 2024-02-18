@@ -3140,6 +3140,19 @@
 	},
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
+"diC" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/mail{
+	dir = 4;
+	icon_state = "pipe-s"
+	},
+/obj/item/storage/wall/fire{
+	pixel_y = 32
+	},
+/turf/floor,
+/area/station/crew_quarters/lounge)
 "diR" = (
 /obj/cable/purple{
 	icon_state = "0-4"
@@ -4552,6 +4565,13 @@
 	},
 /turf/space,
 /area/space)
+"eHV" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/item/storage/wall/fire{
+	pixel_y = 32
+	},
+/turf/floor,
+/area/station/crew_quarters/market)
 "eIj" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -8597,6 +8617,15 @@
 "iMd" = (
 /turf/floor/orangeblack,
 /area/station/hallway/primary/central)
+"iMl" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/item/storage/wall/fire{
+	pixel_y = 32
+	},
+/turf/floor,
+/area/station/hallway/primary/northwest)
 "iMG" = (
 /obj/machinery/light{
 	dir = 1;
@@ -10294,6 +10323,9 @@
 /obj/cable{
 	icon_state = "6-8"
 	},
+/obj/item/storage/wall/fire{
+	pixel_y = 32
+	},
 /turf/floor/plating,
 /area/station/maintenance/north)
 "kII" = (
@@ -10467,6 +10499,18 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/floor,
 /area/station/janitor/office)
+"kRU" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/obj/item/storage/wall/fire{
+	pixel_y = 32
+	},
+/turf/floor,
+/area/station/hallway/primary/central)
 "kSj" = (
 /obj/machinery/lrteleporter,
 /obj/cable/purple{
@@ -12657,6 +12701,12 @@
 /obj/access_spawn/medlab,
 /turf/floor/white,
 /area/station/medical/research)
+"npI" = (
+/obj/item/storage/wall/fire{
+	pixel_y = 32
+	},
+/turf/floor/plating,
+/area/station/maintenance/northwest)
 "nqa" = (
 /obj/marker/supplymarker,
 /obj/decal/cleanable/dirt,
@@ -16754,6 +16804,15 @@
 	},
 /turf/floor/plating,
 /area/station/hallway/primary/southeast)
+"rmB" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/item/storage/wall/fire{
+	pixel_y = 32
+	},
+/turf/floor/plating,
+/area/station/maintenance/west)
 "roP" = (
 /obj/machinery/shuttle/engine/propulsion{
 	dir = 8
@@ -59398,7 +59457,7 @@ vfz
 fRy
 fRy
 fRy
-goR
+diC
 wnq
 ghc
 sQX
@@ -60590,7 +60649,7 @@ pTc
 uwl
 ilM
 aUi
-qqy
+rmB
 icX
 sZs
 uuZ
@@ -63286,7 +63345,7 @@ wJD
 opp
 opp
 opp
-ovP
+npI
 omh
 rhu
 opp
@@ -64210,7 +64269,7 @@ nXR
 vWH
 vWH
 vWH
-aBO
+iMl
 qQO
 bpg
 htr
@@ -64244,7 +64303,7 @@ onn
 neK
 eTe
 pdi
-lxe
+eHV
 ahK
 mla
 eTe
@@ -69646,7 +69705,7 @@ fJh
 vWH
 vWH
 vWH
-uak
+kRU
 vnM
 wXP
 vCW
@@ -69680,7 +69739,7 @@ bmr
 nJn
 eTe
 pdi
-lxe
+eHV
 lTV
 mla
 cBO
