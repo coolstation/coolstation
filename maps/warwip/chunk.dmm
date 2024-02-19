@@ -744,6 +744,7 @@
 /obj/decal/tile_edge/stripe{
 	icon_state = "delivery2"
 	},
+/obj/item/device/radio/beacon,
 /turf/floor,
 /area/station/science/lab)
 "aOv" = (
@@ -1381,6 +1382,11 @@
 	},
 /turf/floor,
 /area/station/science/lobby)
+"brU" = (
+/obj/grille/catwalk/jen,
+/obj/item/device/radio/beacon,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "bsj" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -1512,6 +1518,16 @@
 	},
 /turf/space,
 /area/space)
+"bAv" = (
+/obj/cable{
+	icon_state = "1-8"
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/item/device/radio/beacon,
+/turf/floor,
+/area/station/engine/singcore)
 "bAD" = (
 /obj/machinery/light{
 	dir = 4;
@@ -2154,7 +2170,9 @@
 /area/station/crew_quarters/bar)
 "cdj" = (
 /obj/machinery/light/small/ceiling,
-/obj/critter/crab,
+/obj/critter/crab{
+	desc = "of 'pinching my penis' fame."
+	},
 /turf/floor/sanitary,
 /area/station/security/quarters)
 "ceo" = (
@@ -2391,6 +2409,11 @@
 /obj/access_spawn/engineering,
 /turf/floor,
 /area/station/engine/engineering)
+"cpD" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/item/device/radio/beacon,
+/turf/floor,
+/area/station/quartermaster/cargobay)
 "cpJ" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -2864,6 +2887,11 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
+"cSd" = (
+/obj/disposalpipe/segment/mail,
+/obj/item/device/radio/beacon,
+/turf/floor,
+/area/station/hallway/primary/central)
 "cSk" = (
 /obj/stool/bed,
 /obj/landmark/start{
@@ -3032,6 +3060,10 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/northwest,
 /turf/wall/r_wall,
 /area/station/science/lab)
+"daY" = (
+/obj/item/device/radio/beacon,
+/turf/floor,
+/area/station/hallway/secondary/construction2)
 "dbD" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 2;
@@ -4043,6 +4075,12 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/west)
+"ecR" = (
+/obj/item/device/radio/beacon,
+/turf/floor/specialroom/chapel{
+	dir = 1
+	},
+/area/station/chapel/sanctuary)
 "edm" = (
 /turf/wall/r_wall,
 /area/station/engine/power)
@@ -4142,6 +4180,12 @@
 /obj/machinery/light_switch/south,
 /turf/floor/green/side,
 /area/station/hydroponics/lobby)
+"ejg" = (
+/obj/item/device/radio/beacon,
+/turf/floor/shuttle{
+	icon_state = "floor3"
+	},
+/area/shuttle/arrival/station)
 "ejl" = (
 /obj/machinery/light{
 	dir = 4;
@@ -4304,6 +4348,7 @@
 	},
 /area/station/hallway/primary/northwest)
 "eqJ" = (
+/obj/item/device/radio/beacon,
 /turf/floor,
 /area/station/security/main)
 "eqM" = (
@@ -4407,6 +4452,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/item/device/radio/beacon,
 /turf/floor,
 /area/station/storage/eva)
 "exx" = (
@@ -4716,6 +4762,11 @@
 /obj/machinery/atmospherics/pipe/simple/junction/west,
 /turf/space,
 /area/space)
+"ePW" = (
+/obj/disposalpipe/segment/vertical,
+/obj/item/device/radio/beacon,
+/turf/floor,
+/area/station/engine/inner)
 "eQQ" = (
 /obj/landmark/start{
 	name = "Pharmacist"
@@ -4833,6 +4884,7 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
+/obj/item/device/radio/beacon,
 /turf/floor,
 /area/station/crew_quarters/market)
 "eVJ" = (
@@ -4991,6 +5043,10 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
 /area/station/maintenance/northeast)
+"fbV" = (
+/obj/item/device/radio/beacon,
+/turf/floor,
+/area/station/storage/tech)
 "fcg" = (
 /obj/machinery/light{
 	dir = 8;
@@ -5412,6 +5468,7 @@
 /obj/cable/purple{
 	icon_state = "1-2"
 	},
+/obj/item/device/radio/beacon,
 /turf/floor/purple,
 /area/station/science/teleporter)
 "fvr" = (
@@ -7334,6 +7391,10 @@
 /obj/access_spawn/hydro,
 /turf/floor/green,
 /area/station/hydroponics/bay)
+"hyn" = (
+/obj/item/device/radio/beacon,
+/turf/floor/white,
+/area/station/medical/research)
 "hyo" = (
 /obj/cable{
 	d1 = 1;
@@ -7814,6 +7875,7 @@
 /turf/floor/plating,
 /area/station/maintenance/inner/west)
 "iak" = (
+/obj/item/device/radio/beacon,
 /turf/floor,
 /area/station/security/brig)
 "ial" = (
@@ -8042,6 +8104,7 @@
 /obj/machinery/optable{
 	id = "robotics"
 	},
+/obj/item/device/radio/beacon,
 /turf/floor/black,
 /area/station/medical/robotics)
 "inr" = (
@@ -8489,6 +8552,10 @@
 	name = "grimmy carpet"
 	},
 /area/station/crew_quarters/observatory)
+"iFn" = (
+/obj/item/device/radio/beacon,
+/turf/floor/grey,
+/area/station/turret_protected/AIsat)
 "iFG" = (
 /obj/machinery/door/window/westleft,
 /turf/floor,
@@ -9098,6 +9165,10 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/central)
+"jmx" = (
+/obj/item/device/radio/beacon,
+/turf/floor/sanitary/white,
+/area/station/medical/crematorium)
 "jmy" = (
 /obj/cable{
 	icon_state = "2-4"
@@ -9305,6 +9376,11 @@
 	dir = 1
 	},
 /area/station/security/main)
+"jzl" = (
+/obj/disposalpipe/segment/mail,
+/obj/item/device/radio/beacon,
+/turf/floor,
+/area/station/hallway/secondary/exit)
 "jzE" = (
 /obj/machinery/light{
 	dir = 1;
@@ -11669,6 +11745,11 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
+"mgg" = (
+/obj/disposalpipe/segment/mail,
+/obj/item/device/radio/beacon,
+/turf/floor/grey,
+/area/station/bridge)
 "mhy" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -11829,6 +11910,10 @@
 	dir = 1
 	},
 /area/station/engine/storage)
+"msz" = (
+/obj/item/device/radio/beacon,
+/turf/floor/white,
+/area/station/medical/medbay/cloner)
 "msH" = (
 /obj/machinery/computer/genetics,
 /turf/floor/white,
@@ -13942,6 +14027,10 @@
 /obj/machinery/light_switch/east,
 /turf/floor/grey,
 /area/station/security/quarters)
+"oBE" = (
+/obj/item/device/radio/beacon,
+/turf/floor/grey,
+/area/station/crew_quarters/kitchen)
 "oBW" = (
 /obj/wingrille_spawn,
 /turf/floor/plating,
@@ -16098,6 +16187,10 @@
 /obj/disposalpipe/segment/bent/west,
 /turf/floor,
 /area/station/hallway/primary/northwest)
+"qFO" = (
+/obj/item/device/radio/beacon,
+/turf/floor,
+/area/station/hallway/primary/northwest)
 "qFS" = (
 /obj/disposalpipe/segment/food{
 	icon_state = "pipe-c"
@@ -16947,6 +17040,7 @@
 /obj/cable/purple{
 	icon_state = "4-8"
 	},
+/obj/item/device/radio/beacon,
 /turf/floor,
 /area/station/science/artifact)
 "rwu" = (
@@ -20835,6 +20929,10 @@
 	},
 /turf/floor/plating,
 /area/station/engine/power)
+"vyw" = (
+/obj/item/device/radio/beacon,
+/turf/floor/green,
+/area/station/hydroponics/bay)
 "vyJ" = (
 /obj/cable/purple{
 	icon_state = "4-8"
@@ -21234,6 +21332,10 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/northeast)
+"vOA" = (
+/obj/item/device/radio/beacon,
+/turf/floor/specialroom/bar,
+/area/station/crew_quarters/bar)
 "vOO" = (
 /obj/submachine/chef_sink/chem_sink{
 	pixel_y = 8
@@ -22243,6 +22345,7 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
+/obj/item/device/radio/beacon,
 /turf/floor/white,
 /area/station/medical/medbay/pharmacy)
 "wUS" = (
@@ -23137,6 +23240,10 @@
 /obj/submachine/seed_vendor,
 /turf/floor/green,
 /area/station/hydroponics/bay)
+"xRx" = (
+/obj/item/device/radio/beacon,
+/turf/floor/shuttlebay,
+/area/station/hangar/main)
 "xRY" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -23155,6 +23262,7 @@
 "xTj" = (
 /obj/machinery/optable,
 /obj/disposalpipe/segment/vertical,
+/obj/item/device/radio/beacon,
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
 "xTA" = (
@@ -23551,6 +23659,11 @@
 	},
 /turf/floor/white,
 /area/station/medical/medbay/treatment)
+"yjS" = (
+/obj/disposalpipe/segment/mail,
+/obj/item/device/radio/beacon,
+/turf/floor,
+/area/station/engine/engineering)
 "yjW" = (
 /obj/cable{
 	icon_state = "0-2"
@@ -59128,7 +59241,7 @@ nNe
 pef
 fuF
 mhy
-vlM
+cpD
 mhy
 gZs
 vcf
@@ -59722,7 +59835,7 @@ wJD
 hRQ
 wLa
 kMV
-bth
+bAv
 tgQ
 nNe
 mOc
@@ -60029,7 +60142,7 @@ gbV
 kMD
 fuX
 lSY
-lSY
+ePW
 bDK
 yha
 rVv
@@ -60042,7 +60155,7 @@ uha
 vPN
 soC
 aBO
-bpg
+qFO
 qum
 oLD
 iRr
@@ -61547,7 +61660,7 @@ cbj
 coo
 cbj
 bVX
-cbj
+yjS
 gdf
 kmk
 kJZ
@@ -62499,7 +62612,7 @@ qPh
 lSi
 etp
 etp
-etp
+daY
 vVw
 vVw
 vVw
@@ -66994,7 +67107,7 @@ eLE
 tFk
 wIB
 wIB
-wIB
+cSd
 wIB
 vdQ
 oxS
@@ -68538,7 +68651,7 @@ eVJ
 uBN
 nDF
 sIM
-rgM
+fbV
 hFu
 fxv
 isX
@@ -69083,7 +69196,7 @@ wRy
 muQ
 sbR
 sbR
-sbR
+jzl
 sbR
 sbR
 oIH
@@ -70029,7 +70142,7 @@ pyu
 jeL
 vDl
 mZY
-veE
+mgg
 veE
 jph
 hvh
@@ -71830,7 +71943,7 @@ fPR
 cQs
 cQs
 cQs
-cQs
+brU
 cQs
 cXr
 fPR
@@ -73007,7 +73120,7 @@ wJD
 ezJ
 grC
 vtC
-vtC
+hyn
 pEA
 alb
 rvr
@@ -74242,7 +74355,7 @@ cuA
 xoE
 bXE
 cJv
-ggQ
+vyw
 ggQ
 qiB
 lif
@@ -76039,7 +76152,7 @@ cBo
 lzt
 kAJ
 qhD
-suM
+msz
 uPE
 nfW
 tte
@@ -78443,7 +78556,7 @@ huZ
 huZ
 cGi
 iJc
-tyO
+jmx
 pNj
 eNl
 czn
@@ -78457,7 +78570,7 @@ nnD
 rrr
 bso
 bso
-gtE
+ecR
 hel
 bso
 eNL
@@ -78780,7 +78893,7 @@ idN
 ccx
 qyp
 qyp
-qyp
+vOA
 fwH
 qyp
 lqa
@@ -82103,7 +82216,7 @@ eUz
 eUz
 eUz
 eUz
-eUz
+oBE
 qNe
 eUz
 jWJ
@@ -82698,7 +82811,7 @@ mVA
 mVA
 saH
 wbe
-wvT
+xRx
 wvT
 pAz
 aSQ
@@ -82720,7 +82833,7 @@ huZ
 cOQ
 uWF
 uWF
-uWF
+ejg
 uWF
 uWF
 cOQ
@@ -95381,7 +95494,7 @@ pUI
 aCI
 qJW
 vWr
-vWr
+iFn
 seL
 vWr
 ueY
