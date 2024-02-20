@@ -12889,22 +12889,24 @@
 /obj/decal/fakeobjects/pipe{
 	dir = 5
 	},
-/obj/landmark{
-	name = "telesci"
-	},
 /obj/decal/cleanable/cobweb,
+/obj/landmark{
+	icon_state = "x3";
+	name = "telesci_channel_gated"
+	},
 /turf/floor/engine,
 /area/marsoutpost)
 "bnl" = (
-/obj/landmark{
-	name = "telesci"
-	},
 /obj/decal/fakeobjects/pipe{
 	desc = "It seems to have been damaged somehow.";
 	dir = 8;
 	icon = 'icons/obj/atmospherics/retro_filter.dmi';
 	icon_state = "intact_off";
 	name = "filter"
+	},
+/obj/landmark{
+	icon_state = "x3";
+	name = "telesci_channel_gated"
 	},
 /turf/floor/engine,
 /area/marsoutpost)
@@ -12913,7 +12915,8 @@
 	dir = 9
 	},
 /obj/landmark{
-	name = "telesci"
+	icon_state = "x3";
+	name = "telesci_channel_gated"
 	},
 /turf/floor/engine,
 /area/marsoutpost)
@@ -13071,11 +13074,12 @@
 	icon_state = "intact_off";
 	name = "pump"
 	},
-/obj/landmark{
-	name = "telesci"
-	},
 /obj/machinery/light/small{
 	dir = 8
+	},
+/obj/landmark{
+	icon_state = "x3";
+	name = "telesci_channel_gated"
 	},
 /turf/floor/engine,
 /area/marsoutpost)
@@ -13085,7 +13089,8 @@
 	name = "experiment pad"
 	},
 /obj/landmark{
-	name = "telesci"
+	icon_state = "x3";
+	name = "telesci_channel_gated"
 	},
 /obj/item/device/gps{
 	distress = 1;
@@ -13096,7 +13101,8 @@
 /area/marsoutpost)
 "bnC" = (
 /obj/landmark{
-	name = "telesci"
+	icon_state = "x3";
+	name = "telesci_channel_gated"
 	},
 /turf/floor/engine,
 /area/marsoutpost)
@@ -13220,20 +13226,22 @@
 	dir = 6
 	},
 /obj/landmark{
-	name = "telesci"
+	icon_state = "x3";
+	name = "telesci_channel_gated"
 	},
 /turf/floor/engine,
 /area/marsoutpost)
 "bnW" = (
-/obj/landmark{
-	name = "telesci"
-	},
 /obj/decal/fakeobjects/pipe{
 	desc = "It seems to have been damaged somehow.";
 	dir = 4;
 	icon = 'icons/obj/atmospherics/retro_filter.dmi';
 	icon_state = "intact_off";
 	name = "filter"
+	},
+/obj/landmark{
+	icon_state = "x3";
+	name = "telesci_channel_gated"
 	},
 /turf/floor/engine,
 /area/marsoutpost)
@@ -13242,7 +13250,8 @@
 	dir = 10
 	},
 /obj/landmark{
-	name = "telesci"
+	icon_state = "x3";
+	name = "telesci_channel_gated"
 	},
 /turf/floor/engine,
 /area/marsoutpost)
@@ -30784,15 +30793,17 @@
 "cni" = (
 /obj/decal/fakeobjects/teleport_pad,
 /obj/item/device/gps,
-/obj/landmark{
-	name = "telesci"
-	},
 /obj/decal/residual_energy,
+/obj/landmark{
+	icon_state = "x3";
+	name = "telesci_channel_gated"
+	},
 /turf/floor,
 /area/solariumjoke)
 "cnj" = (
 /obj/landmark{
-	name = "telesci"
+	icon_state = "x3";
+	name = "telesci_channel_gated"
 	},
 /turf/floor,
 /area/solariumjoke)

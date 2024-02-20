@@ -296,6 +296,7 @@ var/list/admin_verbs = list(
 		/client/proc/toggle_force_mixed_wraith,
 		/client/proc/toggle_map_voting,
 		/client/proc/toggle_camera_network_reciprocity,
+		/client/proc/debug_toggle_channel,
 
 		/datum/admins/proc/toggle_speech_popups,
 		/datum/admins/proc/toggle_monkey_speak_human,

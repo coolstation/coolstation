@@ -36,6 +36,10 @@ proc/is_teleportation_allowed(var/turf/T)
 	if (T in landmarks[LANDMARK_TELESCI])
 		return 1
 
+	// location is broadly near Earth (lorewise), and the channel is restored
+	if (channel_open && (T in landmarks[LANDMARK_TELESCI_CHANNEL_GATED]))
+		return 1
+
 	if ((istype(T.loc,/area) && T.loc:teleport_blocked) || isrestrictedz(T.z))
 		return 0
 

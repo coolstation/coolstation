@@ -114,6 +114,8 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 			..()
 
 			if (Obj)
+				if (Obj.anchored) //please stop teleporting the sensor array on the front of the ship
+					return
 				var/turf/T
 				if(map_currently_very_dusty || map_currently_underwater) //non-space map?
 					T = locate(Obj.x, 4, 5) //dump them out on the diner z-level which is in space since the station is not

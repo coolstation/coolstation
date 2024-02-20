@@ -1346,3 +1346,13 @@ var/datum/flock/testflock
 
 
 	boutput(usr, "<span class='notice'>Returned: [!isnull(returnval) ? returnval : "null"]</span>")
+
+//as in, the big lore thing
+/client/proc/debug_toggle_channel()
+	set name = "Open/Close The Channel"
+	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
+	admin_only
+
+	if(alert("The Channel is currently [channel_open ? "open" : "closed"]. [channel_open ? "Close" : "Open"] it?","Misclick Prevention","Yes","No") == "Yes")
+		channel_open = !channel_open
+		boutput(src, "<B><I>The Channel is now [channel_open ? "open" : "closed"].</I></B>")

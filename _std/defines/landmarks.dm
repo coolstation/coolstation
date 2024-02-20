@@ -104,6 +104,7 @@
 
 /// allowed turfs for telesci
 #define LANDMARK_TELESCI "telesci"
+#define LANDMARK_TELESCI_CHANNEL_GATED "telesci_channel_gated"
 #define LANDMARK_LRT "lrt landmark"
 #define LANDMARK_SAMOSTREL_WARP "samostrel"
 #define LANDMARK_EVIL_CHEF_CORPSE "evilchef_corpse"
