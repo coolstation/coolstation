@@ -1,3 +1,15 @@
+#define GAUNTLET_STANDBY 0
+#define GAUNTLET_IN_STAGING 1
+#define GAUNTLET_WAVE_FINISHED 2
+#define GAUNTLET_WAVE_STARTED 3
+
+// CRITTERGAUNTLETTODO - The big issue with the critter gauntlet right now is that nearly all object critters are trivial to kill
+// so the gauntlet is largely just boringly easy, but also takes a long time to progress through (50 waves? really?)
+// Assuming that a move to mobcritters is out of our team's scope, we should probably at least buff many of the current ones
+// And frankly I think less waves (with steeper difficulty scaling) would be good too. I think it might take over half and hour to run the gauntlet
+// Also, overlapping waves if the current one is going on too long? Keep clearing enemies or get overrun, chump.
+
+
 /area/gauntlet
 	name = "The Gauntlet"
 	icon_state = "dk_yellow"
@@ -7,9 +19,10 @@
 		..()
 		if (!ismob(A))
 			return
-		if (gauntlet_controller.state == 1)
+		if (gauntlet_controller.state == GAUNTLET_IN_STAGING)
 			for (var/mob/living/L in gauntlet_controller.staging)
 				return
+			//No other mobs in the staging room, we can start
 			gauntlet_controller.finishStaging()
 
 /area/gauntlet/staging
@@ -20,6 +33,7 @@
 
 	Entered(var/atom/movable/A)
 		..()
+		// CRITTERGAUNTLETTODO - teleport out instead thanks
 		if (isliving(A))
 			if (gauntlet_controller.state >= 2)
 				A:gib()
@@ -44,6 +58,7 @@
 
 /mob/proc/is_in_gauntlet()
 	var/area/A = get_area(src)
+	//for clarity, the base gauntlet area is used for the arena grounds. the staging and viewing areas are subtypes.
 	if (A?.type == /area/gauntlet)
 		return 1
 	return 0
@@ -58,13 +73,14 @@
 	icon_state = "doorctrl0"
 
 	attack_hand(var/mob/M)
-		if (gauntlet_controller.state != 0)
+		if (gauntlet_controller.state != GAUNTLET_STANDBY)
 			return
 		if (ticker.round_elapsed_ticks < 3000)
 			boutput(usr, "<span class='alert'>You may not initiate the Gauntlet before 5 minutes into the round.</span>")
 			return
 		if (alert("Start the Gauntlet? No more players will be given admittance to the staging area!",, "Yes", "No") == "Yes")
-			if (gauntlet_controller.state != 0)
+			//presumably a check to prevent multiple players to
+			if (gauntlet_controller.state != GAUNTLET_STANDBY)
 				return
 			gauntlet_controller.beginStaging()
 
@@ -97,7 +113,7 @@
 
 	var/current_match_id = 0
 	var/difficulty = 0
-	var/state = 0
+	var/state = GAUNTLET_STANDBY
 	var/players = 0
 	var/current_level = 0
 	var/next_level_at = 0
@@ -126,9 +142,10 @@
 	proc/beginStaging()
 		if (state != 0)
 			return
-		state = 1
+		state = GAUNTLET_IN_STAGING
 		moblist.len = 0
 		moblist_names = ""
+		//Lock players into the staging room
 		for (var/obj/machinery/door/poddoor/buff/staging/S in staging)
 			SPAWN_DBG(0)
 				S.close()
@@ -136,6 +153,7 @@
 		for (var/mob/living/M in staging)
 			mobcount++
 			moblist += M
+			//Why are we collecting names at this point? finishStaging redoes this.
 			if (moblist_names != "")
 				moblist_names += ", "
 			var/thename = M.real_name
@@ -148,6 +166,9 @@
 			moblist_names += thename
 			if (M.client)
 				moblist_names += " ([M.client.key])"
+			// CRITTERGAUNTLETTODO - straight up deleting shit from mobs will break references, redo this bit
+			// Delete anything players may be taking into the arena that gives them an advantage.
+			// (fun fact: your butt gets clobbered here, cause it's a hat)
 			for (var/obj/item/I in M)
 				if (!istype(I, /obj/item/clothing/under) && !istype(I, /obj/item/clothing/shoes) && !istype(I, /obj/item/parts) && !istype(I, /obj/item/organ) && !istype(I, /obj/item/skull))
 					qdel(I)
@@ -181,6 +202,7 @@
 			D.used = 0
 		current_match_id++
 		var/spawned_match_id = current_match_id
+		//open doors from staging room to the arena (which are in the staging area atm, but I guess may have been in the gauntlet area previously?)
 		SPAWN_DBG(0)
 			for (var/obj/machinery/door/poddoor/buff/gauntlet/S in gauntlet)
 				SPAWN_DBG(0)
@@ -190,21 +212,23 @@
 					S.open()
 		allow_processing = 1
 		SPAWN_DBG(2 MINUTES)
-			if (state == 1 && current_match_id == spawned_match_id)
+			if (state == GAUNTLET_IN_STAGING && current_match_id == spawned_match_id)
 				announceAll("Game did not start after 2 minutes. Resetting arena.")
 				resetArena()
 
 	proc/finishStaging()
-		if (state == 2)
+		if (state == GAUNTLET_WAVE_FINISHED)
 			return
-		state = 2
+		state = GAUNTLET_WAVE_FINISHED
 		SPAWN_DBG(0)
+			//close doors from staging room to the arena
 			for (var/obj/machinery/door/poddoor/buff/gauntlet/S in gauntlet)
 				SPAWN_DBG(0)
 					S.close()
 			for (var/obj/machinery/door/poddoor/buff/gauntlet/S in staging)
 				SPAWN_DBG(0)
 					S.close()
+			//collect the names of all players.
 			for (var/mob/living/M in gauntlet)
 				if (M in moblist)
 					continue
@@ -216,8 +240,8 @@
 					var/mob/living/L = M:body
 					if (L)
 						thename = L.real_name
-					else
-						thename = copytext(M.real_name, 9)
+					else //I'm not convinced at present that this ever gets used, you either have a meat or ghost body and your meatbod getting gibbed while in VR isn't handled gracefully.
+						thename = copytext(M.real_name, 9) //crops the "virtual " from your mob's name.
 				moblist_names += thename
 				if (M.client)
 					moblist_names += " ([M.client.key])"
@@ -226,10 +250,10 @@
 		next_level_at = ticker.round_elapsed_ticks + 300
 
 	process()
-		if (state == 2)
+		if (state == GAUNTLET_WAVE_FINISHED)
 			if (ticker.round_elapsed_ticks > next_level_at)
 				startWave()
-		else if (state == 3)
+		else if (state == GAUNTLET_WAVE_STARTED)
 			if (current_event)
 				current_event.process()
 			if (current_waves.len)
@@ -245,8 +269,8 @@
 					waiting--
 			else
 				if (waiting <= 0)
-					var/live = 0
-					var/pc = 0
+					var/live = 0 //# of enemies
+					var/pc = 0 //# of combatants
 					for (var/obj/critter/C in gauntlet)
 						if (!C.alive)
 							showswirl(get_turf(C))
@@ -263,12 +287,12 @@
 							if (!isdead(M) && M.client)
 								pc++
 					if (!pc)
-						state = 0
+						state = GAUNTLET_STANDBY
 					waiting = 8
 				else
 					waiting--
 
-		if (state == 0)
+		if (state == GAUNTLET_STANDBY)
 			resetArena()
 
 	var/resetting = 0
@@ -286,6 +310,8 @@
 			command_alert(command_report, "Critter Gauntlet match finished")
 		statlog_gauntlet(moblist_names, score, current_level)
 
+		// CRITTERGAUNTLETTODO - pools of blood aren't removed
+		// Clear the arena and staging room of everything
 		SPAWN_DBG(0)
 			for (var/obj/item/I in staging)
 				qdel(I)
@@ -298,7 +324,7 @@
 			for (var/obj/machinery/bot/B in gauntlet)
 				qdel(B)
 			for (var/mob/living/M in gauntlet)
-				M.gib()
+				M.gib() //CRITTERGAUNTLETTODO - maybe teleport players out (and give them a full heal) instead of kicking folks out of VR entirely
 			for (var/mob/living/M in staging)
 				M.gib()
 			for (var/obj/decal/D in gauntlet)
@@ -323,7 +349,7 @@
 		moblist.len = 0
 		moblist_names = ""
 		score = 0
-		state = 0
+		state = GAUNTLET_STANDBY
 		players = 0
 		resetting = 0
 
@@ -398,9 +424,9 @@
 		return 1
 
 	proc/startWave()
-		if (state == 3)
+		if (state == GAUNTLET_WAVE_STARTED)
 			return
-		state = 3
+		state = GAUNTLET_WAVE_STARTED
 
 		calculateDifficulty()
 
@@ -455,13 +481,13 @@
 		waiting = 0
 
 	proc/finishWave()
-		if (state == 2)
+		if (state == GAUNTLET_WAVE_FINISHED)
 			return
-		state = 2
+		state = GAUNTLET_WAVE_FINISHED
 
 		if (current_event)
 			current_event.tearDown()
-
+		//I think this is cleaning up critter drops that aren't prevented by the critter's code
 		for (var/obj/decal/D in gauntlet)
 			if (!istype(D, /obj/decal/teleport_swirl))
 				qdel(D)
@@ -478,28 +504,42 @@
 		next_level_at = ticker.round_elapsed_ticks + 150
 		announceAll("Level [current_level - 1] is finished. Next level starting in 15 seconds!")
 
+	//each level effectively add 0.05 to the difficulty, so at level 12 difficulty is double that of level 1 (1.1 vs 0.55)
+	//difficulty scales linearly once
+	//For 1-3 player difficulty ranges it's 0.55 at level 1, to 3 at level 50
+
 	proc/calculateDifficulty()
 		difficulty = 0.5 + (current_level / 20) * max(1, players / 3)
 
 	proc/applyDifficulty(var/datum/gauntletWave/wave)
 		wave.count = initial(wave.count)
+
+		// CRITTERGAUNTLETTODO - see about rebalancing this? It seems like most of the gauntlet plays out spawning less critters
+		// than are listed in the wave datums, which is unintuitive for coders. (wave 20 for 1-3 players)
+		// OTOH health should then scale slower, cause mashing a 15x critter to death isn't fun.
+		// Something with logarhitmic growth maybe
+
+		//Anyway, the [rand(-10, 10) * 0.1] basically amounts to "plus/minus one critter randomly", except given the flooring after this it's probably biased downwards
 		wave.count *= difficulty / 1.5 + rand(-10, 10) * 0.1
+		//spawn at least 1 thing (note this actually floors the count)
 		wave.count = round(max(1, wave.count))
+		//The same maths, except the lower limit is 1/10th health.
 		wave.health_multiplier = max(difficulty / 1.5 + rand(-10, 10) * 0.1, 0.1)
 
+	//Text that goes in the status window
 	proc/Stat()
 		stat(null, "")
 		stat(null, "--- GAUNTLET ---")
 		switch (state)
-			if (0)
+			if (GAUNTLET_STANDBY)
 				stat(null, "No match is currently in progress.")
-			if (1)
+			if (GAUNTLET_IN_STAGING)
 				stat(null, "Match is currently in setup stage.")
 				stat(null, "Registered players: [players]")
-			if (2)
+			if (GAUNTLET_WAVE_FINISHED)
 				stat(null, "Next level starts in [dstohms(next_level_at - ticker.round_elapsed_ticks)].")
 				stat(null, "Next level: [current_level]")
-			if (3)
+			if (GAUNTLET_WAVE_STARTED)
 				stat(null, "Current difficulty: [difficulty]")
 				stat(null, "Current level: [current_level]")
 				if (current_event)
@@ -831,6 +871,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 				T.icon_state = initial(T.icon_state)
 				T.color = "#FFFFFF"
 
+	//CRITTERGAUNTLETTODO - Does this do anything anymore after cold slowdown got t urned into shivers?
 	chill
 		name = "Cold Zone"
 		point_cost = 2
@@ -1005,11 +1046,12 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 	anchored = 1
 	density = 0
 
+// CRITTERGAUNTLETTODO - Would it be nice to have some level gating for these?
 /datum/gauntletWave
 	var/name = "Wave"
 	var/point_cost = 1
-	var/count = 5
-	var/health_multiplier = 1
+	var/count = 5 //changes at runtime
+	var/health_multiplier = 1 //changes at runtime
 	var/list/types = list()
 
 	proc/spawnIn(var/datum/gauntletEvent/ev)
@@ -1174,6 +1216,8 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 		count = 7
 		types = list(/obj/critter/spider,/obj/critter/spider/baby,/obj/critter/spider/ice,/obj/critter/spider/ice/baby)
 
+	// CRITTERGAUNTLETTODO - Brullbars have a very low point cost, but are disproportionately strong
+	// (like, most critters are generally unthreatening but a brullbar will win a 1v1 in melee)
 	brullbar
 		name = "Brullbar"
 		point_cost = 4
@@ -1198,6 +1242,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 		count = 3
 		types = list(/obj/critter/fermid)
 
+	// CRITTERGAUNTLETTODO - Another balance issue. Lions are fairly strong but shouldn't cost more than brullbars
 	lion
 		name = "Lion"
 		point_cost = 5
@@ -1210,6 +1255,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 		count = 2
 		types = list(/obj/critter/maneater)
 
+	//this one's hardcoded to get used if event picking fucks up
 	fallback
 		name = "Floating Eyes"
 		point_cost = 0.01
@@ -1234,3 +1280,8 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 		var/list/query = list()
 		query["key"] = data
 		apiHandler.queryAPI("gauntlet/getPrevious", query)
+
+#undef GAUNTLET_STANDBY
+#undef GAUNTLET_IN_STAGING
+#undef GAUNTLET_WAVE_FINISHED
+#undef GAUNTLET_WAVE_STARTED
