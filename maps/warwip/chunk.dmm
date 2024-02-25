@@ -6740,6 +6740,10 @@
 	pixel_y = -3
 	},
 /obj/item/sticker/postit/artifact_paper,
+/obj/item/item_box/assorted/stickers/stickers_limited{
+	pixel_x = 10;
+	pixel_y = 7
+	},
 /turf/floor,
 /area/station/science/artifact)
 "gHR" = (
@@ -10000,6 +10004,10 @@
 	},
 /obj/item/pen{
 	pixel_x = -2
+	},
+/obj/item/hand_labeler{
+	pixel_x = 7;
+	pixel_y = -2
 	},
 /turf/floor/purple/side{
 	dir = 1
@@ -17154,10 +17162,8 @@
 	pixel_x = -1
 	},
 /obj/table/auto,
-/obj/item/hand_labeler{
-	pixel_x = 7;
-	pixel_y = -2
-	},
+/obj/artifact_paper_dispenser,
+/obj/item/pen/pencil,
 /turf/floor/purple/side{
 	dir = 1
 	},
