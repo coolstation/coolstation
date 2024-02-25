@@ -362,6 +362,8 @@
 		new /obj/item/gun/energy/laser_gun/virtual(target)
 		new /obj/item/extinguisher/virtual(target)
 		new /obj/item/card/id/gauntlet(target, forwhom)
+		// CRITTERGAUNTLETTODO - 2/3rds chance that the key only works with one type of artifact and with how rare artifact spawns are that makes them worthless.
+		// Also, eldritch ones activate faults which might suck?
 		var/obj/item/artifact/activator_key/A = new /obj/item/artifact/activator_key(target)
 		SPAWN_DBG(2.5 SECONDS)
 			A.name = "Artifact Activator Key"
@@ -417,6 +419,7 @@
 			return 0
 		if (current_level > drop.maximum_level)
 			return 0
+		// CRITTERGAUNTLETTODO - Drop costs are zero or negative, so this doesn't do anything
 		if (points < drop.point_cost)
 			return 0
 		if (!prob(drop.probability))
@@ -430,7 +433,7 @@
 
 		calculateDifficulty()
 
-
+		//This is kind of a weird formula. Having put it in a graphing program it produces a very slow (imperceptible level-to-level) increase with a jump every 10 levels
 		var/points = 2.5 + (round(current_level * 0.1) * 1.5) + ((current_level % 10) / 20)
 		logTheThing("debug", null, null, "<b>Marquesas/Critter Gauntlet:</b> On level [current_level]. Spending [points] points, composed of 1 base, [round(current_level * 0.1) * 1.5] major and [(current_level % 10) / 20] minor.")
 
@@ -448,6 +451,7 @@
 			retries++
 		if (retries < 25)
 			drop.doDrop()
+			//drops can have negative point cost making this net positive, so getting drops often means there's more points for picking critters (harder)
 			points -= drop.point_cost
 		else
 			drop = null
@@ -458,6 +462,7 @@
 			var/list/choices = possible_waves.Copy()
 			while (choices.len)
 				var/datum/gauntletWave/wave = pick(choices)
+				//this prevents getting duplicates of the same wave type in one level.
 				choices -= wave
 				if (wave.point_cost < points)
 					points -= wave.point_cost
@@ -955,6 +960,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 			for (var/obj/adventurepuzzle/triggerable/light/gauntlet/G in gauntlet_controller.gauntlet)
 				G.off()
 
+		// CRITTERGAUNTLETTODO - Probably a memory leak
 		onSpawn(var/obj/critter/C)
 			var/datum/light/light = new /datum/light/point
 			light.set_brightness(0.4)
@@ -980,6 +986,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 			for (var/obj/adventurepuzzle/triggerable/light/gauntlet/G in gauntlet_controller.gauntlet)
 				G.on()
 
+	// CRITTERGAUNTLETTODO - Seems not to work
 	redlights
 		name = "Red Light District"
 		point_cost = 0.5
@@ -1054,6 +1061,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 	var/health_multiplier = 1 //changes at runtime
 	var/list/types = list()
 
+	//Spawns in 1 enemy, but is called every process loop so long as there's more to spawn this wave. (this is how spawns are staggered)
 	proc/spawnIn(var/datum/gauntletEvent/ev)
 		if (count)
 			var/turf/T = pick(gauntlet_controller.spawnturfs)
@@ -1084,6 +1092,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 		count = 2
 		types = list(/obj/critter/blobman/meaty_martha)
 
+	// CRITTERGAUNTLETTODO - these don't do damage on their regular attacks (just the psychic blast counters), but maybe that's reflected in the cost?
 	martian
 		name = "Martian"
 		point_cost = 1
@@ -1126,6 +1135,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 		count = 8
 		types = list(/obj/critter/killertomato)
 
+	// CRITTERGAUNTLETTODO - drones are relatively tanky, may need to be used more sparingly than they are now
 	scdrone
 		name = "SC Drone"
 		point_cost = 4
@@ -1224,6 +1234,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 		count = 2
 		types = list(/obj/critter/brullbar)
 
+	// CRITTERGAUNTLETTODO - Waaay too tanky for the gauntlet. Even with a csaber fighting these is tedious.
 	brullbarking
 		name = "Brullbar King"
 		point_cost = 6

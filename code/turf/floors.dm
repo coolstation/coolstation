@@ -1961,6 +1961,10 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 	icon = 'icons/effects/VR.dmi'
 	icon_state = "gauntfloorDefault"
 
+	burn_down()
+		return //no graphics
+
+
 /turf/wall/setpieces/gauntlet
 	name = "Gauntlet Wall"
 	desc = "Is this retro? Thank god it's not team ninja."
