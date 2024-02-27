@@ -281,11 +281,16 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "aox" = (
-/obj/machinery/vending/snack_freezer,
 /obj/machinery/light{
-	dir = 1;
-	pixel_x = -1
+	dir = 1
 	},
+/obj/decal/poster/wallsign/teaparty{
+	pixel_y = 32
+	},
+/obj/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal,
 /turf/floor,
 /area/station/crew_quarters/lounge)
 "aoZ" = (
@@ -2871,6 +2876,7 @@
 	icon_state = "1-8"
 	},
 /obj/disposalpipe/segment/mail,
+/obj/item/device/radio/beacon,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "cRT" = (
@@ -4645,15 +4651,9 @@
 	},
 /area/station/hallway/primary/central)
 "eJY" = (
-/obj/lattice{
-	dir = 4;
-	icon_state = "lattice-dir"
-	},
-/obj/disposalpipe/segment/sewage{
-	dir = 4
-	},
-/turf/space,
-/area/space)
+/obj/landmark/drain_exit,
+/turf/floor/plating,
+/area/station/maintenance/disposal/sewage)
 "eKh" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4;
@@ -4944,7 +4944,9 @@
 /turf/floor,
 /area/station/storage/tech)
 "eYH" = (
-/obj/landmark/drain_exit,
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
 /turf/floor/plating,
 /area/station/maintenance/disposal/sewage)
 "eZb" = (
@@ -5291,9 +5293,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/disposalpipe/segment/sewage{
-	dir = 4
-	},
+/obj/disposalpipe/segment/bent/east,
 /obj/machinery/power/apc{
 	areastring = "Septic Tank";
 	dir = 1;
@@ -5475,7 +5475,7 @@
 	dir = 4;
 	icon_state = "pipe-s"
 	},
-/obj/landmark/halloween,
+/obj/table/wood/round/auto,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "fwU" = (
@@ -6771,6 +6771,7 @@
 	icon_state = "pipe-s"
 	},
 /obj/machinery/light/small/ceiling,
+/obj/table/wood/round/auto,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "gJF" = (
@@ -6979,9 +6980,14 @@
 /area/station/crew_quarters/bar)
 "gWA" = (
 /obj/table/wood/auto,
-/obj/machinery/computer/security/wooden_tv/small{
-	pixel_y = 8
+/obj/machinery/computer3/generic/personal{
+	pixel_y = 10;
+	setup_drive_type = /obj/item/disk/data/fixed_disk/techcomputer3
 	},
+/obj/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/data_terminal,
 /turf/floor/grey,
 /area/station/bridge)
 "gWQ" = (
@@ -7802,11 +7808,15 @@
 /turf/floor/black,
 /area/station/chapel/sanctuary)
 "hUs" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
-/turf/floor/plating,
-/area/station/maintenance/disposal/sewage)
+/turf/space,
+/area/space)
 "hUG" = (
 /obj/machinery/door/airlock/glass,
 /obj/cable{
@@ -8133,11 +8143,8 @@
 	},
 /area/station/storage/eva)
 "ipr" = (
-/obj/machinery/vending/cola/blue,
 /obj/disposalpipe/segment/mail,
-/obj/decal/poster/wallsign/teaparty{
-	pixel_y = 32
-	},
+/obj/machinery/vending/snack_freezer,
 /turf/floor,
 /area/station/crew_quarters/lounge)
 "ipJ" = (
@@ -8156,6 +8163,7 @@
 /area/station/maintenance/inner/west)
 "iqm" = (
 /obj/storage/closet/fire,
+/obj/disposalpipe/segment/bent/west,
 /turf/floor/plating,
 /area/station/maintenance/west)
 "iqC" = (
@@ -9455,6 +9463,10 @@
 	},
 /turf/floor,
 /area/station/security/brig)
+"jEl" = (
+/obj/landmark/halloween,
+/turf/floor/specialroom/bar,
+/area/station/crew_quarters/bar)
 "jEz" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/grime,
@@ -9789,7 +9801,12 @@
 	},
 /area/station/crew_quarters/market)
 "jYB" = (
-/obj/item/device/radio/beacon,
+/obj/table/wood/round/auto,
+/obj/item/paper/iou,
+/obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled/sane{
+	pixel_x = 12;
+	pixel_y = 1
+	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "jYV" = (
@@ -10682,10 +10699,7 @@
 	dir = 1;
 	pixel_x = -1
 	},
-/obj/disposalpipe/trunk{
-	dir = 8
-	},
-/obj/machinery/disposal,
+/obj/machinery/vending/cola/blue,
 /turf/floor,
 /area/station/crew_quarters/lounge)
 "kXo" = (
@@ -12525,9 +12539,8 @@
 	},
 /obj/table/auto,
 /obj/machinery/power/data_terminal,
-/obj/machinery/computer3/generic/personal{
-	pixel_y = 10;
-	setup_drive_type = /obj/item/disk/data/fixed_disk/techcomputer3
+/obj/machinery/computer/security/wooden_tv/small{
+	pixel_y = 8
 	},
 /turf/floor/darkblue,
 /area/station/bridge)
@@ -14655,12 +14668,12 @@
 /turf/floor/plating,
 /area/station/maintenance/northeast)
 "pdb" = (
-/obj/disposalpipe/junction/left/north,
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/disposalpipe/segment/vertical,
 /turf/floor,
 /area/station/crew_quarters/lounge)
 "pdi" = (
@@ -15370,6 +15383,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/cable{
+	icon_state = "1-4"
 	},
 /turf/floor/grey,
 /area/station/bridge)
@@ -16631,6 +16647,9 @@
 /area/station/medical/medbay/cloner)
 "rac" = (
 /obj/wingrille_spawn/reinforced,
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
 /turf/floor/plating,
 /area/station/maintenance/disposal/sewage)
 "rav" = (
@@ -17352,6 +17371,10 @@
 	},
 /turf/floor/white,
 /area/station/medical/medbay/pharmacy)
+"rTH" = (
+/obj/disposalpipe/segment/vertical,
+/turf/wall/false_wall,
+/area/station/maintenance/west)
 "rTU" = (
 /obj/machinery/door/firedoor/border_only,
 /turf/floor,
@@ -22815,7 +22838,7 @@
 /turf/floor/black,
 /area/listeningpost)
 "xuK" = (
-/obj/disposalpipe/segment/bent/north,
+/obj/disposalpipe/junction/middle/east,
 /turf/floor/plating,
 /area/station/maintenance/west)
 "xuQ" = (
@@ -23470,7 +23493,6 @@
 /area/listeningpost)
 "xZT" = (
 /obj/table/wood/round/auto,
-/obj/item/paper/iou,
 /obj/random_item_spawner/tableware/one_or_zero,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
@@ -23644,14 +23666,9 @@
 /turf/floor,
 /area/station/crew_quarters/lounge)
 "yjF" = (
-/obj/disposalpipe/segment/sewage{
-	dir = 4
-	},
-/turf/shuttle/wall{
-	icon_state = "wall3";
-	name = "shittle wall"
-	},
-/area/station/maintenance/disposal/sewage)
+/obj/stool/chair,
+/turf/floor/specialroom/bar,
+/area/station/crew_quarters/bar)
 "yjG" = (
 /obj/disposalpipe/segment/bent/west,
 /turf/floor/plating,
@@ -54134,7 +54151,7 @@ fDn
 huZ
 xHx
 nfB
-nfB
+uNE
 nfB
 xHx
 huZ
@@ -55643,8 +55660,8 @@ wJD
 uDj
 huZ
 xHx
-eYH
 nfB
+eJY
 nfB
 xHx
 huZ
@@ -55945,8 +55962,8 @@ huZ
 fDn
 huZ
 jpv
-hUs
 nfB
+eYH
 wol
 jpv
 huZ
@@ -56247,7 +56264,7 @@ wJD
 uDj
 huZ
 roP
-yjF
+xHx
 rac
 xHx
 roP
@@ -56549,8 +56566,8 @@ huZ
 fDn
 huZ
 huZ
-eJY
 fDn
+hUs
 fDn
 huZ
 pFL
@@ -56851,8 +56868,8 @@ wJD
 pwo
 wJD
 sZs
-uMn
 uKl
+uMn
 sZs
 wJD
 pwo
@@ -57768,7 +57785,7 @@ psz
 psz
 aWW
 xuK
-aUi
+rTH
 aox
 qMN
 fmv
@@ -78907,10 +78924,10 @@ bae
 idN
 ccx
 qyp
-qyp
+yjF
 jYB
 fwH
-qyp
+jEl
 lqa
 gcQ
 eyh
