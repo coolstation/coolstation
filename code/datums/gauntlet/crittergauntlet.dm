@@ -75,9 +75,10 @@
 	attack_hand(var/mob/M)
 		if (gauntlet_controller.state != GAUNTLET_STANDBY)
 			return
-		if (ticker.round_elapsed_ticks < 3000)
+		//uncomment if we ever have a problem with this again I just wanna test
+		/*if (ticker.round_elapsed_ticks < 3000)
 			boutput(usr, "<span class='alert'>You may not initiate the Gauntlet before 5 minutes into the round.</span>")
-			return
+			return*/
 		if (alert("Start the Gauntlet? No more players will be given admittance to the staging area!",, "Yes", "No") == "Yes")
 			//presumably a check to prevent multiple players to
 			if (gauntlet_controller.state != GAUNTLET_STANDBY)
@@ -355,7 +356,8 @@
 
 	proc/spawnGear(var/turf/target, var/mob/forwhom)
 		new /obj/item/storage/backpack/NT(target)
-		new /obj/item/clothing/suit/armor/tdome/yellow(target)
+		var/suittype = pick(childrentypesof(/obj/item/clothing/suit/armor/tdome))
+		new suittype(target)
 		var/list/masks = list(/obj/item/clothing/mask/batman, /obj/item/clothing/mask/clown_hat, /obj/item/clothing/mask/horse_mask, /obj/item/clothing/mask/moustache, /obj/item/clothing/mask/gas/swat, /obj/item/clothing/mask/owl_mask, /obj/item/clothing/mask/hunter, /obj/item/clothing/mask/skull, /obj/item/clothing/mask/spiderman)
 		var/masktype = pick(masks)
 		new masktype(target)
@@ -367,6 +369,10 @@
 		var/obj/item/artifact/activator_key/A = new /obj/item/artifact/activator_key(target)
 		SPAWN_DBG(2.5 SECONDS)
 			A.name = "Artifact Activator Key"
+			//make this thing potentially useful
+			var/datum/artifact/activator_key/AD = A.associated_datum
+			AD.corrupting = FALSE
+			AD.universal = TRUE
 
 	proc/spawnMeds(var/turf/target)
 		for (var/medtype in list(/obj/item/storage/firstaid/vr/regular, /obj/item/storage/firstaid/vr/fire, /obj/item/storage/firstaid/vr/brute, /obj/item/storage/firstaid/vr/toxin, /obj/item/reagent_containers/pill/vr/mannitol, /obj/item/storage/box/donkpocket_w_kit/vr))
@@ -876,7 +882,6 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 				T.icon_state = initial(T.icon_state)
 				T.color = "#FFFFFF"
 
-	//CRITTERGAUNTLETTODO - Does this do anything anymore after cold slowdown got t urned into shivers?
 	chill
 		name = "Cold Zone"
 		point_cost = 2
@@ -986,7 +991,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 			for (var/obj/adventurepuzzle/triggerable/light/gauntlet/G in gauntlet_controller.gauntlet)
 				G.on()
 
-	// CRITTERGAUNTLETTODO - Seems not to work
+	// CRITTERGAUNTLETTODO - Need to test if this works now
 	redlights
 		name = "Red Light District"
 		point_cost = 0.5
@@ -997,6 +1002,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 				G.off()
 				G.on_cblue = 0
 				G.on_cgreen = 0
+				G.light.set_color(G.on_cred, G.on_cgreen, G.on_cblue)
 				G.on()
 
 		tearDown()
@@ -1004,6 +1010,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 				G.off()
 				G.on_cblue = 1
 				G.on_cgreen = 1
+				G.light.set_color(G.on_cred, G.on_cgreen, G.on_cblue)
 				G.on()
 
 	lightningstrikes
