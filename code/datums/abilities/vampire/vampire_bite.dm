@@ -342,7 +342,6 @@
 	duration = 10
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED
 	id = "vamp_blood_suck_ranged"
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "blood"
 	bar_icon_state = "bar-vampire"
 	border_icon_state = "border-vampire"
@@ -490,7 +489,6 @@
 	duration = 30
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	id = "vamp_blood_suck"
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "blood"
 	bar_icon_state = "bar-vampire"
 	border_icon_state = "border-vampire"

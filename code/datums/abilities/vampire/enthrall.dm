@@ -73,7 +73,6 @@
 	duration = 20
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	id = "vampire_enthrall"
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "enthrall"
 	bar_icon_state = "bar-vampire"
 	border_icon_state = "border-vampire"

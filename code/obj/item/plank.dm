@@ -93,7 +93,6 @@
 	#else
 	duration = 30
 	#endif
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
 	var/obj/item/plank/plank
@@ -131,7 +130,6 @@
 	id = "plank_build_door"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration = 30
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
 	var/obj/item/plank/plank

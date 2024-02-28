@@ -220,7 +220,6 @@
 	duration = 1 SECOND
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	id = "railing_jump"
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "railing_jump"
 	var/mob/ownerMob
 	var/obj/railing/the_railing
@@ -338,7 +337,6 @@
 	duration = 3 SECONDS
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	id = "railing_deconstruct"
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 	var/obj/railing/the_railing
 	var/mob/ownerMob

@@ -476,7 +476,6 @@
 	duration = 25
 	interrupt_flags = INTERRUPT_ACT | INTERRUPT_STUNNED
 	id = "pin_target"
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "pin"
 	color_active = "#d37610"
 	var/mob/living/target

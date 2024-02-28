@@ -770,7 +770,6 @@ ABSTRACT_TYPE(turf/wall/auto/lead)
 	id = "wall_tool_interact"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration = 5 SECONDS
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
 	var/turf/wall/auto/the_wall

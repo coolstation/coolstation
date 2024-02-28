@@ -795,7 +795,6 @@
 	id = "door_lockpick"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration = 80
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
 	var/obj/machinery/door/unpowered/wood/the_door

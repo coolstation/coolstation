@@ -422,7 +422,6 @@
 	id = "teg_circulator_repair1"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration = 200
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
 	var/obj/machinery/atmospherics/binary/circulatorTemp/circ
@@ -1154,7 +1153,6 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 	id = "teg_semiconductor_removal"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration = 15 SECONDS
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
 	var/obj/machinery/power/generatorTemp/generator
@@ -1229,7 +1227,6 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 	id = "teg_semiconductor_removal"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration =  15 SECONDS
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
 	var/obj/machinery/power/generatorTemp/generator

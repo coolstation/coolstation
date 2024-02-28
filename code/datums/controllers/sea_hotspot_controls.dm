@@ -1053,7 +1053,6 @@
 	duration = 50
 	interrupt_flags = INTERRUPT_STUNNED
 	id = "build_vent_capture"
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 	var/turf/T
 	var/obj/item/vent_capture_unbuilt/V
@@ -1087,7 +1086,6 @@
 	duration = 50
 	interrupt_flags = INTERRUPT_STUNNED
 	id = "unbuild_vent_capture"
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 	var/obj/machinery/power/vent_capture/V
 
@@ -1119,7 +1117,6 @@
 	duration = 30
 	interrupt_flags = INTERRUPT_STUNNED
 	id = "dig_sea_hole"
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 	var/turf/T
 

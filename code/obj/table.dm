@@ -1102,7 +1102,6 @@
 	id = "table_tool_interact"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration = 50
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
 	var/obj/table/the_table
@@ -1203,7 +1202,6 @@
 	id = "fold_folding_table"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration = 15
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
 	var/obj/table/the_table
