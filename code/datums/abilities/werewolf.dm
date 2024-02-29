@@ -397,7 +397,7 @@
 /////////////////////////////////////////////// Werewolf spell parent ////////////////////////////
 
 /datum/targetable/werewolf
-	icon = 'icons/mob/werewolf_ui.dmi'
+	icon = 'icons/ui/werewolf_ui.dmi'
 	icon_state = "template"  // No custom sprites yet.
 	cooldown = 0
 	last_cast = 0

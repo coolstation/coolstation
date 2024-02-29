@@ -8,7 +8,7 @@
 		var/datum/handHolder/HH = hands[1]
 		HH.limb = new /datum/limb/railgun
 		HH.name = "S-51 Sustained Hardlight Barrager"
-		HH.icon = 'icons/mob/critter_ui.dmi'
+		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "handrail"
 		HH.limb_name = "S-51 Sustained Hardlight Barrager"
 		HH.can_hold_items = 0

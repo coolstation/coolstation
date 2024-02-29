@@ -294,7 +294,7 @@
 // ----------------------------------------
 
 /datum/targetable/changeling
-	icon = 'icons/mob/spell_buttons.dmi'
+	icon = 'icons/ui/spell_buttons.dmi'
 	icon_state = "template" // No longer ToDo thanks to Sundance420.
 	cooldown = 0
 	last_cast = 0

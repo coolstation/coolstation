@@ -27,7 +27,7 @@
 	duration = 50
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_ACTION
 	id = "werewolf_transform"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	icon_state = "grabbed"
 	var/datum/targetable/werewolf/werewolf_transform/transform
 

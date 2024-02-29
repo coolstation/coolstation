@@ -4,7 +4,7 @@
 	var/offset_y = 0							// pixel offset on the x axis for mob overlays
 	var/show_on_holder = 1						// should this be displayed on the mob?
 	var/armor_coverage = 0
-	var/icon/icon = 'icons/mob/hud_human.dmi'	// the icon of the HUD object
+	var/icon/icon = 'icons/ui/hud_human.dmi'	// the icon of the HUD object
 	var/icon_state = "hair"						// the icon state of the HUD object
 	var/obj/item/item							// the item being worn in this slot
 
@@ -77,7 +77,7 @@
 	head
 		name = "head"
 		type_filters = list(/obj/item/clothing/head)
-		icon = 'icons/mob/hud_human.dmi'
+		icon = 'icons/ui/hud_human.dmi'
 		icon_state = "hair"
 		armor_coverage = HEAD
 
@@ -116,14 +116,14 @@
 	suit
 		name = "suit"
 		type_filters = list(/obj/item/clothing/suit)
-		icon = 'icons/mob/hud_human.dmi'
+		icon = 'icons/ui/hud_human.dmi'
 		icon_state = "armor"
 		armor_coverage = TORSO
 
 	ears
 		name = "ears"
 		type_filters = list(/obj/item/device/radio)
-		icon = 'icons/mob/hud_human.dmi'
+		icon = 'icons/ui/hud_human.dmi'
 		icon_state = "ears"
 
 		on_equip()

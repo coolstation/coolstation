@@ -8,7 +8,7 @@
 		var/datum/handHolder/HH = hands[1]
 		HH.limb = new /datum/limb/gun/cutter
 		HH.name = "C-4 Salvager Sawdrill"
-		HH.icon = 'icons/mob/critter_ui.dmi'
+		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "handcr"
 		HH.limb_name = "C-4 Salvager Sawdrill"
 		HH.can_hold_items = 0

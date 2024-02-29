@@ -66,7 +66,7 @@
 	duration = 60
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	id = "hunter_taketrophy"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	icon_state = "grabbed"
 	var/target
 	var/datum/targetable/hunter/hunter_taketrophy/trophy

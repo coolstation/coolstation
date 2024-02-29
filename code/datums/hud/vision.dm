@@ -7,7 +7,7 @@
 
 	New()
 		..()
-		scan = create_screen("", "", 'icons/mob/hud_common.dmi', "scan", "WEST, SOUTH to EAST, NORTH", HUD_LAYER_UNDER_1)
+		scan = create_screen("", "", 'icons/ui/hud_common.dmi', "scan", "WEST, SOUTH to EAST, NORTH", HUD_LAYER_UNDER_1)
 		scan.mouse_opacity = 0
 		scan.alpha = 0
 
@@ -16,7 +16,7 @@
 		color_mod.blend_mode = BLEND_MULTIPLY
 		color_mod.plane = PLANE_OVERLAY_EFFECTS
 
-		dither = create_screen("", "", 'icons/mob/hud_common.dmi', "dither_2", "WEST, SOUTH to EAST, NORTH", HUD_LAYER_UNDER_3)
+		dither = create_screen("", "", 'icons/ui/hud_common.dmi', "dither_2", "WEST, SOUTH to EAST, NORTH", HUD_LAYER_UNDER_3)
 		dither.mouse_opacity = 0
 		dither.alpha = 0
 

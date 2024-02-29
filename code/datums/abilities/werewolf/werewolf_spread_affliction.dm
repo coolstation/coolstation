@@ -38,7 +38,7 @@
 	duration = 100
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	id = "werewolf_spread_affliction"
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "werewolf_spread_affliction"
 	var/mob/living/target
 	var/datum/targetable/werewolf/werewolf_spread_affliction/spread

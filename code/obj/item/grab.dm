@@ -5,7 +5,7 @@
 	var/mob/living/affecting
 	var/state = 0 // 0 = passive, 1 aggressive, 2 neck, 3 kill, 4 pin (setup.dm. any state above KILL is considered an alt state that is also an 'end point' in the tree of options. ok
 	var/choke_count = 0
-	icon = 'icons/mob/hud_human_new.dmi'
+	icon = 'icons/ui/hud_human_new.dmi'
 	icon_state = "reinforce"
 	name = "grab"
 	w_class = W_CLASS_HUGE
@@ -430,7 +430,7 @@
 	duration = 30
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED
 	id = "strangle_target"
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "neck_over"
 	color_active = "#d37610"
 	var/mob/living/target

@@ -9,7 +9,7 @@
 	var/render_layer = MOB_INHAND_LAYER			// the layer of the inhands overlay
 	var/show_inhands = 1						// if not null, will show inhands normally, otherwise they won't display at all
 	var/obj/item/item							// the item held in the hand
-	var/icon/icon = 'icons/mob/critter_ui.dmi'	// the icon of the hand UI background
+	var/icon/icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 	var/icon_state = "handn"					// the icon state of the hand UI background
 	var/atom/movable/screen/hud/screenObj				// ease of life
 	var/limb_name = "left arm"					// name for the dummy holder
@@ -25,7 +25,7 @@
 
 	New()
 		..()
-		obscurer = image('icons/mob/critter_ui.dmi', icon_state="hand_cooldown", layer=HUD_LAYER+2)
+		obscurer = image('icons/ui/critter_ui.dmi', icon_state="hand_cooldown", layer=HUD_LAYER+2)
 
 	disposing()
 		if(screenObj)

@@ -6,11 +6,11 @@
 	New(M)
 		..()
 		master = M
-		health = create_screen("health","Health", 'icons/mob/wraith_ui.dmi', "health-7", "EAST, NORTH", HUD_LAYER, tooltipTheme = "healthDam healthDam0")
+		health = create_screen("health","Health", 'icons/ui/wraith_ui.dmi', "health-7", "EAST, NORTH", HUD_LAYER, tooltipTheme = "healthDam healthDam0")
 		health.desc = "You feel powerful."
-		// var/atom/movable/screen/S = create_screen("release", "release", 'icons/mob/screen1.dmi', "x", "NORTH,EAST", HUD_LAYER)
+		// var/atom/movable/screen/S = create_screen("release", "release", 'icons/ui/screen1.dmi', "x", "NORTH,EAST", HUD_LAYER)
 		// S.underlays += "block"
-		// intent = create_screen("intent", "action intent", 'icons/mob/hud_human.dmi', "intent-help", "SOUTH,EAST-2", HUD_LAYER)
+		// intent = create_screen("intent", "action intent", 'icons/ui/hud_human.dmi', "intent-help", "SOUTH,EAST-2", HUD_LAYER)
 
 	clear_master()
 		master = null

@@ -28,7 +28,7 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 		cur_meter_location = round((points/MAX_POINTS)*145)	//length of meter
 		if (cur_meter_location != last_meter_location)
 			meter.overlays.Cut()
-			var/icon/IB = new('icons/mob/spooktober_ghost_hud160x32.dmi', "bar")
+			var/icon/IB = new('icons/ui/spooktober_ghost_hud160x32.dmi', "bar")
 
 			IB.Crop(1,1,cur_meter_location+8,32) // mehhhh
 			IB.Blend(rgb(40,0,0))
@@ -44,7 +44,7 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 
 
 /atom/movable/screen/spooktober_meter
-	icon = 'icons/mob/spooktober_ghost_hud160x32.dmi'
+	icon = 'icons/ui/spooktober_ghost_hud160x32.dmi'
 	icon_state = "empty"
 	name = "Spooktober Spookpoints Meter"
 	var/theme = null // for wire's tooltips, it's about time this got varized
@@ -219,7 +219,7 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 	cooldown = 0
 	last_cast = 0
 	preferred_holder_type = /datum/abilityHolder/ghost_observer
-	icon = 'icons/mob/ghost_observer_abilities.dmi'
+	icon = 'icons/ui/ghost_observer_abilities.dmi'
 	icon_state = "teleport"
 
 ///////////////////////////////////////
@@ -415,7 +415,7 @@ var/global/datum/spooktober_ghost_handler/spooktober_GH = new()
 /datum/targetable/ghost_observer/spooktober_hud
 	name = "Spooktober Spookpoints"
 	desc = "How many Spookpoints do we have."
-	icon = 'icons/mob/spooktober_ghost_hud160x32.dmi'
+	icon = 'icons/ui/spooktober_ghost_hud160x32.dmi'
 	// icon_state = "empty"
 	targeted = 0
 	cooldown = 0

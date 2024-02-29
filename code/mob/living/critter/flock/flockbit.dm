@@ -17,7 +17,7 @@
 
 	SPAWN_DBG(1 SECOND) // aaaaaaa
 		animate_bumble(src)
-		src.zone_sel.change_hud_style('icons/mob/flock_ui.dmi')
+		src.zone_sel.change_hud_style('icons/ui/unused/flock_ui.dmi')
 
 	src.name = "[pick_string("flockmind.txt", "flockbit_name_adj")] [pick_string("flockmind.txt", "flockbit_name_noun")]"
 	src.real_name = "[pick(consonants_upper)].[rand(10,99)].[rand(10,99)]"
@@ -50,7 +50,7 @@
 	var/datum/handHolder/HH = hands[1]
 	HH.limb = new /datum/limb/flock_grip
 	HH.name = "grip tool"
-	HH.icon = 'icons/mob/flock_ui.dmi'
+	HH.icon = 'icons/ui/unused/flock_ui.dmi'
 	HH.icon_state = "griptool"
 	HH.limb_name = HH.name
 	HH.can_hold_items = 1
@@ -60,7 +60,7 @@
 	HH = hands[2]
 	HH.limb = new /datum/limb/flockbit_converter
 	HH.name = "nanite spray"
-	HH.icon = 'icons/mob/flock_ui.dmi'
+	HH.icon = 'icons/ui/unused/flock_ui.dmi'
 	HH.icon_state = "converter"
 	HH.limb_name = HH.name
 	HH.can_hold_items = 0

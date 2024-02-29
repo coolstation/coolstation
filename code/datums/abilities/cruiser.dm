@@ -42,7 +42,7 @@
 // ----------------------------------------
 
 /datum/targetable/cruiser
-	icon = 'icons/mob/cruiser_ui.dmi'
+	icon = 'icons/ui/cruiser_ui.dmi'
 	icon_state = ""
 	cooldown = 0
 	last_cast = 0

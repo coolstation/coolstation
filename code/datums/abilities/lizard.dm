@@ -58,7 +58,7 @@
 	pointName = "Metachroitic Factor"
 
 /datum/targetable/lizardAbility
-	icon = 'icons/mob/genetics_powers.dmi'
+	icon = 'icons/ui/genetics_powers.dmi'
 	icon_state = "lizard"
 	cooldown = 0
 	last_cast = 0

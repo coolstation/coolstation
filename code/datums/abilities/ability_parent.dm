@@ -398,18 +398,18 @@
 
 /atom/movable/screen/ability
 	var/datum/targetable/owner
-	var/static/image/binding = image('icons/mob/spell_buttons.dmi',"binding")
+	var/static/image/binding = image('icons/ui/spell_buttons.dmi',"binding")
 	//*screams*
-	var/static/image/one = image('icons/mob/spell_buttons.dmi',"1")
-	var/static/image/two = image('icons/mob/spell_buttons.dmi',"2")
-	var/static/image/three = image('icons/mob/spell_buttons.dmi',"3")
-	var/static/image/four = image('icons/mob/spell_buttons.dmi',"4")
-	var/static/image/five = image('icons/mob/spell_buttons.dmi',"5")
-	var/static/image/six = image('icons/mob/spell_buttons.dmi',"6")
-	var/static/image/seven = image('icons/mob/spell_buttons.dmi',"7")
-	var/static/image/eight = image('icons/mob/spell_buttons.dmi',"8")
-	var/static/image/nine = image('icons/mob/spell_buttons.dmi',"9")
-	var/static/image/zero = image('icons/mob/spell_buttons.dmi',"0")
+	var/static/image/one = image('icons/ui/spell_buttons.dmi',"1")
+	var/static/image/two = image('icons/ui/spell_buttons.dmi',"2")
+	var/static/image/three = image('icons/ui/spell_buttons.dmi',"3")
+	var/static/image/four = image('icons/ui/spell_buttons.dmi',"4")
+	var/static/image/five = image('icons/ui/spell_buttons.dmi',"5")
+	var/static/image/six = image('icons/ui/spell_buttons.dmi',"6")
+	var/static/image/seven = image('icons/ui/spell_buttons.dmi',"7")
+	var/static/image/eight = image('icons/ui/spell_buttons.dmi',"8")
+	var/static/image/nine = image('icons/ui/spell_buttons.dmi',"9")
+	var/static/image/zero = image('icons/ui/spell_buttons.dmi',"0")
 
 	disposing()
 		src.screen_loc = null
@@ -528,11 +528,11 @@
 
 
 /atom/movable/screen/ability/topBar
-	var/static/image/ctrl_highlight = image('icons/mob/spell_buttons.dmi',"ctrl")
-	var/static/image/shift_highlight = image('icons/mob/spell_buttons.dmi',"shift")
-	var/static/image/alt_highlight = image('icons/mob/spell_buttons.dmi',"alt")
-	var/static/image/cooldown = image('icons/mob/spell_buttons.dmi',"cooldown")
-	var/static/image/darkener = image('icons/mob/spell_buttons.dmi',"darkener")
+	var/static/image/ctrl_highlight = image('icons/ui/spell_buttons.dmi',"ctrl")
+	var/static/image/shift_highlight = image('icons/ui/spell_buttons.dmi',"shift")
+	var/static/image/alt_highlight = image('icons/ui/spell_buttons.dmi',"alt")
+	var/static/image/cooldown = image('icons/ui/spell_buttons.dmi',"cooldown")
+	var/static/image/darkener = image('icons/ui/spell_buttons.dmi',"darkener")
 
 	var/atom/movable/screen/pseudo_overlay/cd_tens
 	var/atom/movable/screen/pseudo_overlay/cd_secs
@@ -558,7 +558,7 @@
 		cooldown_overlay = new /atom/movable/screen/pseudo_overlay()
 		src.vis_contents += point_overlay
 		src.vis_contents += cooldown_overlay
-		cooldown_overlay.icon = 'icons/mob/spell_buttons.dmi'
+		cooldown_overlay.icon = 'icons/ui/spell_buttons.dmi'
 		cooldown_overlay.icon_state = "cooldown"
 		cooldown_overlay.alpha = 0
 		point_overlay.maptext_x = -2
@@ -576,7 +576,7 @@
 		cd_tens = T
 		cd_secs = S
 		if (isnull(darkener)) // fuck. -drsingh
-			darkener = image('icons/mob/spell_buttons.dmi',"darkener")
+			darkener = image('icons/ui/spell_buttons.dmi',"darkener")
 		darkener.alpha = 100
 		SPAWN_DBG(0)
 			if(owner)
@@ -832,7 +832,7 @@
 
 		preferred_holder_type = /datum/abilityHolder
 
-		icon = 'icons/mob/spell_buttons.dmi'
+		icon = 'icons/ui/spell_buttons.dmi'
 		icon_state = "blob-template"
 
 		theme = null // for wire's tooltips, it's about time this got varized

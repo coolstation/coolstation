@@ -15,7 +15,7 @@
 /datum/targetable/chaplain
 	name = "OOPS SOMETHING BROKE"
 	desc = "for real if you can see this tell a coder"
-	icon = 'icons/mob/wraith_ui.dmi'
+	icon = 'icons/ui/wraith_ui.dmi'
 	icon_state = "template"
 	cooldown = 0
 	last_cast = 0

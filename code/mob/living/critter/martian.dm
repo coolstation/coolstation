@@ -115,7 +115,7 @@
 		setup_hands()
 			..()
 			var/datum/handHolder/HH = hands[1]
-			HH.icon = 'icons/mob/hud_human.dmi'
+			HH.icon = 'icons/ui/hud_human.dmi'
 			HH.icon_state = "handl"
 			HH.limb_name = "left tentacles"
 
@@ -139,7 +139,7 @@
 			var/datum/handHolder/HH = hands[2]
 			HH.limb = new /datum/limb/hitscan
 			HH.name = "Martian Psychokinetic Blaster"
-			HH.icon = 'icons/mob/critter_ui.dmi'
+			HH.icon = 'icons/ui/critter_ui.dmi'
 			HH.icon_state = "hand_martian"
 			HH.limb_name = "Martian Psychokinetic Blaster"
 			HH.can_hold_items = 0
@@ -257,7 +257,7 @@ proc/martian_speak(var/mob/speaker, var/message as text, var/speak_as_admin=0)
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.icon = 'icons/mob/hud_human.dmi'
+		HH.icon = 'icons/ui/hud_human.dmi'
 		HH.icon_state = "handl"
 		HH.limb_name = "left tentacles"
 

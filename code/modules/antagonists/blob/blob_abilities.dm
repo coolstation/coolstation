@@ -2,7 +2,7 @@
 /datum/blob_ability
 	var/name = null
 	var/desc = null
-	var/icon = 'icons/mob/blob_ui.dmi'
+	var/icon = 'icons/ui/blob_ui.dmi'
 	var/icon_state = "blob-template"
 	var/bio_point_cost = 0
 	var/cooldown_time = 0
@@ -281,7 +281,7 @@
 /datum/blob_ability/upper_transfer
 	name = "Go To Upper Level"
 	desc = "See what's happening upstairs"
-	icon = 'icons/mob/ghost_observer_abilities.dmi'
+	icon = 'icons/ui/ghost_observer_abilities.dmi'
 	icon_state = "upper_transfer"
 	targeted = 0
 
@@ -296,7 +296,7 @@
 /datum/blob_ability/lower_transfer
 	name = "Go To Lower Level"
 	desc = "See what's happening downstairs"
-	icon = 'icons/mob/ghost_observer_abilities.dmi'
+	icon = 'icons/ui/ghost_observer_abilities.dmi'
 	icon_state = "lower_transfer"
 	targeted = 0
 
@@ -1169,7 +1169,7 @@
 /datum/blob_upgrade
 	var/name = null
 	var/desc = null
-	var/icon = 'icons/mob/blob_ui.dmi'
+	var/icon = 'icons/ui/blob_ui.dmi'
 	var/icon_state = "blob-template"
 	var/evo_point_cost = 0
 	var/last_used = 0

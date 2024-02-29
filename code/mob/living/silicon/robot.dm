@@ -180,7 +180,7 @@
 		src.attach_hud(hud)
 
 		src.zone_sel = new(src, "CENTER+3, SOUTH")
-		src.zone_sel.change_hud_style('icons/mob/hud_robot.dmi')
+		src.zone_sel.change_hud_style('icons/ui/hud_robot.dmi')
 		src.attach_hud(zone_sel)
 
 		if (src.shell)

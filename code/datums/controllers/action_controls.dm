@@ -770,13 +770,13 @@ var/datum/action_controller/actions
 /datum/action/bar/icon/genericProc //Calls a specific proc with the given arguments when the action succeeds. TBI
 	id = "genproc"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	icon_state = "grabbed"
 
 /datum/action/bar/icon/otherItem//Putting items on or removing items from others.
 	id = "otheritem"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	icon_state = "grabbed"
 
 	var/mob/living/carbon/human/source  //The person doing the action

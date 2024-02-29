@@ -83,14 +83,14 @@
 		screenoverlay.blend_mode = BLEND_MULTIPLY
 		screenoverlay.layer = src.layer + 0.2
 
-		abilityoverlay = SafeGetOverlayImage("abil", 'icons/mob/genetics_powers.dmi', "none")
+		abilityoverlay = SafeGetOverlayImage("abil", 'icons/ui/genetics_powers.dmi', "none")
 		abilityoverlay.transform *= 0.5
 		abilityoverlay.pixel_x = 3
 		abilityoverlay.pixel_y = 2
 		abilityoverlay.layer = src.layer + 0.1
 
 
-		workingoverlay = SafeGetOverlayImage("abil", 'icons/mob/genetics_powers.dmi', "working")
+		workingoverlay = SafeGetOverlayImage("abil", 'icons/ui/genetics_powers.dmi', "working")
 		workingoverlay.transform *= 0.5
 		workingoverlay.pixel_x = 3
 		workingoverlay.pixel_y = 2

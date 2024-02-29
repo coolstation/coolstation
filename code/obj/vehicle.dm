@@ -2213,7 +2213,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 /obj/ability_button/omnicannon
 	name = "Omni Cannon"
-	icon = 'icons/mob/spell_buttons.dmi'
+	icon = 'icons/ui/spell_buttons.dmi'
 	icon_state = "pandemonium"
 
 	Click(location, control, params)
@@ -2227,7 +2227,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 /obj/ability_button/hotwheels
 	name = "Hot Wheels"
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "fire_e_sprint"
 
 	Click(location, control, params)
@@ -2244,7 +2244,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 /obj/ability_button/staticcharge
 	name = "Static Charge"
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "zzzap"
 
 	Click(location, control, params)
@@ -2261,7 +2261,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 /obj/ability_button/bombchute
 	name = "Bomb Chute"
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "fire_e_flamethrower"
 
 	Click(location, control, params)

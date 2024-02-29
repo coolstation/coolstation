@@ -27,13 +27,13 @@
 		..()
 		master = M
 
-		health = create_screen("health", "Core Health", 'icons/mob/hud_ai.dmi', "health", "EAST, NORTH+0.5", HUD_LAYER)
+		health = create_screen("health", "Core Health", 'icons/ui/hud_ai.dmi', "health", "EAST, NORTH+0.5", HUD_LAYER)
 		health.underlays += "underlay"
 		health.maptext_width = 96
 		health.maptext_x = -96
 		health.maptext_y = -1
 
-		killswitch = create_screen("killswitch", "OH FUCK YOU'RE KILLSWITCHED", 'icons/mob/hud_ai.dmi', "killswitch", "CENTER, NORTH+0.5", HUD_LAYER)
+		killswitch = create_screen("killswitch", "OH FUCK YOU'RE KILLSWITCHED", 'icons/ui/hud_ai.dmi', "killswitch", "CENTER, NORTH+0.5", HUD_LAYER)
 		killswitch.underlays += "killswitchu"
 		killswitch.maptext_width = 256
 		killswitch.maptext_height = 128
@@ -41,45 +41,45 @@
 		killswitch.maptext_y = -129
 		killswitch.invisibility = 101
 
-		cell = create_screen("cell", "Core Cell Charge", 'icons/mob/hud_ai.dmi', "cell", "EAST, NORTH", HUD_LAYER)
+		cell = create_screen("cell", "Core Cell Charge", 'icons/ui/hud_ai.dmi', "cell", "EAST, NORTH", HUD_LAYER)
 		cell.underlays += "underlay"
 		cell.maptext_width = 96
 		cell.maptext_x = -96
 		cell.maptext_y = -1
 
-		status = create_screen("status", "Change Status", 'icons/mob/hud_ai.dmi', "status", "WEST, NORTH+0.5", HUD_LAYER)
+		status = create_screen("status", "Change Status", 'icons/ui/hud_ai.dmi', "status", "WEST, NORTH+0.5", HUD_LAYER)
 		status.underlays += "button"
 
-		deploy = create_screen("deploy", "Deploy to Shell", 'icons/mob/hud_ai.dmi', "deploy", "WEST, NORTH", HUD_LAYER)
+		deploy = create_screen("deploy", "Deploy to Shell", 'icons/ui/hud_ai.dmi', "deploy", "WEST, NORTH", HUD_LAYER)
 		deploy.underlays += "button"
 
-		apc = create_screen("apc", "Open Area APC", 'icons/mob/hud_ai.dmi', "apc", "WEST, NORTH-0.5", HUD_LAYER)
+		apc = create_screen("apc", "Open Area APC", 'icons/ui/hud_ai.dmi', "apc", "WEST, NORTH-0.5", HUD_LAYER)
 		apc.underlays += "button"
 
-		radio = create_screen("radio", "Adjust Internal Radios", 'icons/mob/hud_ai.dmi', "radio", "WEST, NORTH-1", HUD_LAYER)
+		radio = create_screen("radio", "Adjust Internal Radios", 'icons/ui/hud_ai.dmi', "radio", "WEST, NORTH-1", HUD_LAYER)
 		radio.underlays += "button"
 
-		pda = create_screen("pda", "AI PDA", 'icons/mob/hud_ai.dmi', "pda", "WEST, NORTH-1.5", HUD_LAYER)
+		pda = create_screen("pda", "AI PDA", 'icons/ui/hud_ai.dmi', "pda", "WEST, NORTH-1.5", HUD_LAYER)
 		pda.underlays += "button"
 
-		laws = create_screen("laws", "Show Laws", 'icons/mob/hud_ai.dmi', "laws", "WEST, NORTH-2", HUD_LAYER)
+		laws = create_screen("laws", "Show Laws", 'icons/ui/hud_ai.dmi', "laws", "WEST, NORTH-2", HUD_LAYER)
 		laws.underlays += "button"
 
-		viewport = create_screen("viewport", "Create Viewport", 'icons/mob/hud_ai.dmi', "viewport", "WEST, NORTH-2.5", HUD_LAYER)
+		viewport = create_screen("viewport", "Create Viewport", 'icons/ui/hud_ai.dmi', "viewport", "WEST, NORTH-2.5", HUD_LAYER)
 		viewport.underlays += "button"
 
-		hologram = create_screen("hologram", "Create Hologram", 'icons/mob/hud_ai.dmi', "hologram", "WEST, NORTH-3", HUD_LAYER)
+		hologram = create_screen("hologram", "Create Hologram", 'icons/ui/hud_ai.dmi', "hologram", "WEST, NORTH-3", HUD_LAYER)
 		hologram.underlays += "button"
 
-		tracking = create_screen("tracking", "Tracking", 'icons/mob/hud_ai.dmi', "track", "WEST, SOUTH", HUD_LAYER)
+		tracking = create_screen("tracking", "Tracking", 'icons/ui/hud_ai.dmi', "track", "WEST, SOUTH", HUD_LAYER)
 		tracking.underlays += "button"
 		tracking.maptext_width = 32*15
 		tracking.maptext_x = 34
 		tracking.maptext_y = -1
 
 	#ifdef Z3_IS_A_STATION_LEVEL
-		upper = create_screen("upper", "Go Up", 'icons/mob/ghost_observer_abilities.dmi', "upper_transfer", "WEST, NORTH-4", HUD_LAYER)
-		lower = create_screen("lower", "Go Down", 'icons/mob/ghost_observer_abilities.dmi', "lower_transfer", "WEST, NORTH-5", HUD_LAYER)
+		upper = create_screen("upper", "Go Up", 'icons/ui/ghost_observer_abilities.dmi', "upper_transfer", "WEST, NORTH-4", HUD_LAYER)
+		lower = create_screen("lower", "Go Down", 'icons/ui/ghost_observer_abilities.dmi', "lower_transfer", "WEST, NORTH-5", HUD_LAYER)
 	#endif
 
 		update()

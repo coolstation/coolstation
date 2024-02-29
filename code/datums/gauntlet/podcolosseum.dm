@@ -942,7 +942,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 /atom/movable/screen/colosseumHelp
 	name = "Help"
-	icon = 'icons/mob/blob_ui.dmi'
+	icon = 'icons/ui/blob_ui.dmi'
 	icon_state = "blob-help0"
 	screen_loc = "SOUTH,EAST"
 

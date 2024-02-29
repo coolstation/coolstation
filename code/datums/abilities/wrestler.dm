@@ -150,7 +150,7 @@
 /////////////////////////////////////////////// Wrestler spell parent ////////////////////////////
 
 /datum/targetable/wrestler
-	icon = 'icons/mob/spell_buttons.dmi'
+	icon = 'icons/ui/spell_buttons.dmi'
 	icon_state = "wrestler-template"
 	cooldown = 0
 	start_on_cooldown = 1 // So you can't bypass the cooldown by taking off your belt and re-equipping it.

@@ -178,7 +178,7 @@
 
 /obj/decal/point
 	name = "point"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM | PIXEL_SCALE
 	icon_state = "arrow"
 	layer = EFFECTS_LAYER_1

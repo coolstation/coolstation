@@ -44,7 +44,7 @@
 	var/list/last_upgrades = list()
 	var/list/last_tools = list()
 	var/mob/living/silicon/robot/master
-	var/icon/icon_hud = 'icons/mob/hud_robot.dmi'
+	var/icon/icon_hud = 'icons/ui/hud_robot.dmi'
 
 	var/image/storage_bg
 
@@ -91,11 +91,11 @@
 				items_screen = 1
 			boxes.screen_loc = "[x], [y] to [x+sx-1], [y-sy+1]"
 			if (!close)
-				src.close = create_screen("close", "Close", 'icons/mob/screen1.dmi', "x", "1, 1", HUD_LAYER+1)
+				src.close = create_screen("close", "Close", 'icons/ui/screen1.dmi', "x", "1, 1", HUD_LAYER+1)
 			if (!prev)
-				src.prev = create_screen("prev", "Previous Page", 'icons/mob/screen1.dmi', "up_dis", "1, 10", HUD_LAYER+1)
+				src.prev = create_screen("prev", "Previous Page", 'icons/ui/screen1.dmi', "up_dis", "1, 10", HUD_LAYER+1)
 			if (!next)
-				src.next = create_screen("next", "Next Page", 'icons/mob/screen1.dmi', "down", "1, 2", HUD_LAYER+1)
+				src.next = create_screen("next", "Next Page", 'icons/ui/screen1.dmi', "down", "1, 2", HUD_LAYER+1)
 			close.screen_loc = "[x+sx-1], [y-sy+1]"
 			next.screen_loc = "[x+sx-1], [y-sy+2]"
 			prev.screen_loc = "[x+sx-1], [y]"
@@ -203,28 +203,28 @@
 		master = M
 
 		// @TODO i fucking hate the boxes not being clickable so here's a gross hack to fix it
-		src.storage_bg = image('icons/mob/screen1.dmi', icon_state = "block")
+		src.storage_bg = image('icons/ui/screen1.dmi', icon_state = "block")
 		src.storage_bg.appearance_flags |= RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
 
-		src.boxes = create_screen("boxes", "Storage", 'icons/mob/screen1.dmi', "block", "1, 10 to 1, 1")
+		src.boxes = create_screen("boxes", "Storage", 'icons/ui/screen1.dmi', "block", "1, 10 to 1, 1")
 		remove_screen(boxes)
-		src.prev = create_screen("prev", "Previous Page", 'icons/mob/screen1.dmi', "up_dis", "1, 10", HUD_LAYER+1)
+		src.prev = create_screen("prev", "Previous Page", 'icons/ui/screen1.dmi', "up_dis", "1, 10", HUD_LAYER+1)
 		remove_screen(prev)
-		src.next = create_screen("next", "Next Page", 'icons/mob/screen1.dmi', "down", "1, 2", HUD_LAYER+1)
+		src.next = create_screen("next", "Next Page", 'icons/ui/screen1.dmi', "down", "1, 2", HUD_LAYER+1)
 		remove_screen(next)
-		src.close = create_screen("close", "Close", 'icons/mob/screen1.dmi', "x", "1, 1", HUD_LAYER+1)
+		src.close = create_screen("close", "Close", 'icons/ui/screen1.dmi', "x", "1, 1", HUD_LAYER+1)
 		remove_screen(close)
 		for (var/i = 1, i <= 7, i++)
 			var/S = create_screen("object[i]", "object", null, null, "1, [10 - i]", HUD_LAYER + 1, customType = /atom/movable/screen/hud/robotstorage)
 			remove_screen(S)
 			screen_tools += S
 
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_bg", "CENTER-5, SOUTH to CENTER+5, SOUTH", HUD_LAYER)
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER-5, SOUTH+1 to CENTER+5, SOUTH+1", HUD_LAYER, SOUTH)
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER-6, SOUTH+1", HUD_LAYER, SOUTHWEST)
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER-6, SOUTH", HUD_LAYER, EAST)
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER+6, SOUTH+1", HUD_LAYER, SOUTHEAST)
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER+6, SOUTH", HUD_LAYER, WEST)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_bg", "CENTER-5, SOUTH to CENTER+5, SOUTH", HUD_LAYER)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER-5, SOUTH+1 to CENTER+5, SOUTH+1", HUD_LAYER, SOUTH)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER-6, SOUTH+1", HUD_LAYER, SOUTHWEST)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER-6, SOUTH", HUD_LAYER, EAST)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER+6, SOUTH+1", HUD_LAYER, SOUTHEAST)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER+6, SOUTH", HUD_LAYER, WEST)
 
 		mod1 = create_screen("mod1", "Module 1", icon_hud, "mod10", "CENTER-5, SOUTH", HUD_LAYER+1)
 		mod2 = create_screen("mod2", "Module 2", icon_hud, "mod20", "CENTER-4, SOUTH", HUD_LAYER+1)
@@ -261,10 +261,10 @@
 		update_upgrades()
 		update_equipment()
 
-		pda = create_screen("pda", "Cyborg PDA", 'icons/mob/hud_ai.dmi', "pda", "WEST, NORTH+0.5", HUD_LAYER)
+		pda = create_screen("pda", "Cyborg PDA", 'icons/ui/hud_ai.dmi', "pda", "WEST, NORTH+0.5", HUD_LAYER)
 		pda.underlays += "button"
 
-		mainframe = create_screen("mainframe", "Return to Mainframe", 'icons/mob/screen1.dmi', "x", "SOUTH,EAST", HUD_LAYER)
+		mainframe = create_screen("mainframe", "Return to Mainframe", 'icons/ui/screen1.dmi', "x", "SOUTH,EAST", HUD_LAYER)
 		mainframe.underlays += "block"
 
 
@@ -580,12 +580,12 @@
 					remove_screen(H)
 
 				upgrade_bg.len = 0
-				upgrade_bg += create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_bg", "CENTER+[startx]:24, SOUTH+1:4 to CENTER+4:24, SOUTH+1:4", HUD_LAYER)
-				upgrade_bg += create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER+[startx]:24, SOUTH+2:4 to CENTER+4:24, SOUTH+2:4", HUD_LAYER, SOUTH)
-				upgrade_bg += create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER+[startx-1]:24, SOUTH+2:4", HUD_LAYER, SOUTHWEST)
-				upgrade_bg += create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER+[startx-1]:24, SOUTH+1:4", HUD_LAYER, EAST)
-				upgrade_bg += create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER+5:24, SOUTH+2:4", HUD_LAYER, SOUTHEAST)
-				upgrade_bg += create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER+5:24, SOUTH+1:4", HUD_LAYER, WEST)
+				upgrade_bg += create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_bg", "CENTER+[startx]:24, SOUTH+1:4 to CENTER+4:24, SOUTH+1:4", HUD_LAYER)
+				upgrade_bg += create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER+[startx]:24, SOUTH+2:4 to CENTER+4:24, SOUTH+2:4", HUD_LAYER, SOUTH)
+				upgrade_bg += create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER+[startx-1]:24, SOUTH+2:4", HUD_LAYER, SOUTHWEST)
+				upgrade_bg += create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER+[startx-1]:24, SOUTH+1:4", HUD_LAYER, EAST)
+				upgrade_bg += create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER+5:24, SOUTH+2:4", HUD_LAYER, SOUTHEAST)
+				upgrade_bg += create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER+5:24, SOUTH+1:4", HUD_LAYER, WEST)
 
 				upgrade_slots.len = 0
 				for (var/i = 0; i < master.max_upgrades; i++)

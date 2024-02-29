@@ -106,11 +106,11 @@ var/global
 	"Flat" = 'icons/cursors/target/flat.dmi',
 	"Small" = 'icons/cursors/target/small.dmi')
 
-	list/hud_style_selection = list("New" = 'icons/mob/hud_human_new.dmi',
-	"Old" = 'icons/mob/hud_human.dmi',
-	"Classic" = 'icons/mob/hud_human_classic.dmi',
-	"Mithril" = 'icons/mob/hud_human_quilty.dmi',
-	"Vaporized" = 'icons/mob/hud_human_vapor.dmi')
+	list/hud_style_selection = list("New" = 'icons/ui/hud_human_new.dmi',
+	"Old" = 'icons/ui/hud_human.dmi',
+	"Classic" = 'icons/ui/hud_human_classic.dmi',
+	"Mithril" = 'icons/ui/hud_human_quilty.dmi',
+	"Vaporized" = 'icons/ui/hud_human_vapor.dmi')
 
 	list/underwear_styles = list("No Underwear" = "none",
 	"Briefs" = "briefs",

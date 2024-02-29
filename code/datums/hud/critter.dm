@@ -39,7 +39,7 @@
 	var/mob/living/critter/master = null
 
 	/// hud icons to use
-	var/icon/hud_icon = 'icons/mob/hud_human.dmi'
+	var/icon/hud_icon = 'icons/ui/hud_human.dmi'
 
 	/// Assoc. List  STATUS EFFECT INSTANCE : UI ELEMENT add_screen(atom/movable/screen/S). Used to hold the ui elements since they shouldnt be on the status effects themselves.
 	var/list/statusUiElements = list()
@@ -523,19 +523,19 @@
 	"CENTER[src.next_right()],SOUTH", HUD_LAYER_1)
 
 /datum/hud/critter/proc/create_pulling_element()
-	src.pulling = src.create_screen("pull", "pulling", 'icons/mob/critter_ui.dmi', "pull0",\
+	src.pulling = src.create_screen("pull", "pulling", 'icons/ui/critter_ui.dmi', "pull0",\
 	"CENTER[src.get_right()], SOUTH", HUD_LAYER_1)
 
 /datum/hud/critter/proc/create_mintent_element()
-	src.mintent = src.create_screen("mintent", "movement mode", 'icons/mob/critter_ui.dmi', "move-run",\
+	src.mintent = src.create_screen("mintent", "movement mode", 'icons/ui/critter_ui.dmi', "move-run",\
 	"CENTER[src.next_right()], SOUTH", HUD_LAYER_1)
 
 /datum/hud/critter/proc/create_rest_element()
-	src.resting = src.create_screen("rest", "resting", 'icons/mob/critter_ui.dmi', "rest0",\
+	src.resting = src.create_screen("rest", "resting", 'icons/ui/critter_ui.dmi', "rest0",\
 		"CENTER[src.get_right()], SOUTH", HUD_LAYER_1)
 
 /datum/hud/critter/proc/create_resist_element()
-	src.resist = src.create_screen("resist", "resist", 'icons/mob/critter_ui.dmi', "resist_critter",\
+	src.resist = src.create_screen("resist", "resist", 'icons/ui/critter_ui.dmi', "resist_critter",\
 	"CENTER[src.next_right()], SOUTH", HUD_LAYER_1)
 
 /datum/hud/critter/proc/create_equipment_element()

@@ -69,7 +69,7 @@ ABSTRACT_TYPE(/datum/bioEffect)
 
 	var/removed = 0
 
-	var/icon = 'icons/mob/genetics_powers.dmi'
+	var/icon = 'icons/ui/genetics_powers.dmi'
 	var/icon_state = "unknown"
 
 	New(for_global_list = 0)
@@ -297,7 +297,7 @@ ABSTRACT_TYPE(/datum/bioEffect)
 		return M
 
 /datum/targetable/geneticsAbility
-	icon = 'icons/mob/genetics_powers.dmi'
+	icon = 'icons/ui/genetics_powers.dmi'
 	icon_state = "template"
 	last_cast = 0
 	targeted = 1

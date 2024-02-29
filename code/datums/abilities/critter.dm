@@ -21,7 +21,7 @@
 // ----------------------------------------
 
 /datum/targetable/critter
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "template"  // TODO.
 	cooldown = 0
 	last_cast = 0

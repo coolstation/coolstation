@@ -42,7 +42,7 @@
 	..()
 
 	SPAWN_DBG(3 SECONDS) // aaaaaaa
-		src.zone_sel.change_hud_style('icons/mob/flock_ui.dmi')
+		src.zone_sel.change_hud_style('icons/ui/unused/flock_ui.dmi')
 
 	src.name = "[pick_string("flockmind.txt", "flockdrone_name_adj")] [pick_string("flockmind.txt", "flockdrone_name_noun")]"
 	src.real_name = "[pick(consonants_lower)][pick(vowels_lower)].[pick(consonants_lower)][pick(vowels_lower)].[pick(consonants_lower)][pick(vowels_lower)]"
@@ -249,7 +249,7 @@
 	var/datum/handHolder/HH = hands[1]
 	HH.limb = new /datum/limb/flock_grip
 	HH.name = "grip tool"
-	HH.icon = 'icons/mob/flock_ui.dmi'
+	HH.icon = 'icons/ui/unused/flock_ui.dmi'
 	HH.icon_state = "griptool"
 	HH.limb_name = HH.name
 	HH.can_hold_items = 1
@@ -259,7 +259,7 @@
 	HH = hands[2]
 	HH.limb = new /datum/limb/flock_converter
 	HH.name = "nanite spray"
-	HH.icon = 'icons/mob/flock_ui.dmi'
+	HH.icon = 'icons/ui/unused/flock_ui.dmi'
 	HH.icon_state = "converter"
 	HH.limb_name = HH.name
 	HH.can_hold_items = 0
@@ -269,7 +269,7 @@
 	HH = hands[3]
 	HH.limb = new /datum/limb/gun/flock_stunner
 	HH.name = "incapacitor"
-	HH.icon = 'icons/mob/flock_ui.dmi'
+	HH.icon = 'icons/ui/unused/flock_ui.dmi'
 	HH.icon_state = "incapacitor"
 	HH.limb_name = HH.name
 	HH.can_hold_items = 0
@@ -870,7 +870,7 @@
 	show_on_holder = 0
 	name = "disintegration reclaimer"
 	type_filters = list(/obj/item)
-	icon = 'icons/mob/flock_ui.dmi'
+	icon = 'icons/ui/unused/flock_ui.dmi'
 	icon_state = "absorber"
 
 /datum/equipmentHolder/flockAbsorption/on_equip()

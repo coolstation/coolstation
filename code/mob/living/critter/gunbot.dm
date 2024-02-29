@@ -51,7 +51,7 @@
 		var/datum/handHolder/HH = hands[1]
 		HH.limb = new /datum/limb/gun/arm38
 		HH.name = ".38 Anti-Personnel Arm"
-		HH.icon = 'icons/mob/critter_ui.dmi'
+		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "hand38"
 		HH.limb_name = ".38 Anti-Personnel Arm"
 		HH.can_hold_items = 0
@@ -61,7 +61,7 @@
 		HH = hands[2]
 		HH.limb = new /datum/limb/gun/abg
 		HH.name = "ABG Riot Suppression Appendage"
-		HH.icon = 'icons/mob/critter_ui.dmi'
+		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "handabg"
 		HH.limb_name = "ABG Riot Suppression Appendage"
 		HH.can_hold_items = 0
@@ -70,7 +70,7 @@
 
 		HH = hands[3]
 		HH.limb = new /datum/limb/small_critter/strong
-		HH.icon = 'icons/mob/critter_ui.dmi'
+		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "handn"
 		HH.name = "gunbothand"
 		HH.limb_name = "gunbot hands"

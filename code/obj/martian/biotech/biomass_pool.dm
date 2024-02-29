@@ -139,7 +139,7 @@
   id = "put_in_biomass_pool"
   interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
   duration = 40
-  icon = 'icons/mob/screen1.dmi'
+  icon = 'icons/ui/screen1.dmi'
   icon_state = "grabbed"
 
   var/mob/living/target

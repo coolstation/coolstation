@@ -73,7 +73,7 @@ var/HasturPresent = 0
 		..()
 		var/datum/handHolder/HH = hands[1]
 		HH.name = "right tentacles"					// designation of the hand - purely for show
-		HH.icon = 'icons/mob/critter_ui.dmi'	// the icon of the hand UI background
+		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "tentacler"				// the icon state of the hand UI background
 		HH.limb_name = "right tentacles"					// name for the dummy holder
 		HH.limb = new /datum/limb/abomination/hastur	// if not null, the special limb to use when attack_handing
@@ -82,7 +82,7 @@ var/HasturPresent = 0
 
 		HH = hands[2]
 		HH.name = "left tentacles"					// designation of the hand - purely for show
-		HH.icon = 'icons/mob/critter_ui.dmi'	// the icon of the hand UI background
+		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "tentaclel"				// the icon state of the hand UI background
 		HH.limb_name = "left tentacles"					// name for the dummy holder
 		HH.limb = new /datum/limb/abomination/hastur	// if not null, the special limb to use when attack_handing
@@ -91,7 +91,7 @@ var/HasturPresent = 0
 
 		HH = hands[3]
 		HH.name = "long range tentacles"					// designation of the hand - purely for show
-		HH.icon = 'icons/mob/critter_ui.dmi'	// the icon of the hand UI background
+		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "tentaclek"				// the icon state of the hand UI background
 		HH.limb_name = "long range tentacles"					// name for the dummy holder
 		HH.limb = new /datum/limb/longtentacle	// if not null, the special limb to use when attack_handing
@@ -101,7 +101,7 @@ var/HasturPresent = 0
 
 		HH = hands[4]
 		HH.name = "long range stun tentacles"					// designation of the hand - purely for show
-		HH.icon = 'icons/mob/critter_ui.dmi'	// the icon of the hand UI background
+		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "tentacles"				// the icon state of the hand UI background
 		HH.limb_name = "long range stun tentacles"					// name for the dummy holder
 		HH.limb = new /datum/limb/longtentaclestun	// if not null, the special limb to use when attack_handing
@@ -135,7 +135,7 @@ var/HasturPresent = 0
 /datum/targetable/hastur/devour
 	name = "Devour"
 	desc = "Instantly devour a human.. (USE SPARINGLY)"
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "hasturdevour"
 	targeted = 1
 	target_nodamage_check = 1
@@ -173,7 +173,7 @@ var/HasturPresent = 0
 /datum/targetable/hastur/insanityaura
 	name = "Insanity Aura"
 	desc = "Causes everyone to go a bit mad around you.."
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "hasturaura"
 	targeted = 0
 	cooldown = 500
@@ -194,7 +194,7 @@ var/HasturPresent = 0
 /datum/targetable/hastur/masswhisper
 	name = "Mass Whisper"
 	icon_state = "hasturwhisper"
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	desc = "Send a creepy void flavoured text to all living beings.."
 	targeted = 0
 	target_anything = 0
@@ -216,7 +216,7 @@ var/HasturPresent = 0
 /datum/targetable/hastur/ancientinvisibility
 	name = "Veil of the void"
 	icon_state = "hasturinvisibility"
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	desc = "Vanish/Manifest back from the void to hunt your prey.."
 	targeted = 0
 	target_anything = 0
