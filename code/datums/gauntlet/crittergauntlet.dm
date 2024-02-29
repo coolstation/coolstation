@@ -593,7 +593,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 	anchored = 1
 	density = 0
 	opacity = 0
-	icon = 'icons/misc/buildmode.dmi'
+	icon = 'icons/ui/buildmode.dmi'
 	icon_state = "build" // don't judge me
 	var/obj/machinery/camera/cam
 	var/has_camera = 0

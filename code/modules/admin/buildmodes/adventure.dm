@@ -76,7 +76,7 @@ Click on the secondary adventure button to begin your adventure journey!<br>
 	layer = HUD_LAYER + 1
 	plane = PLANE_HUD
 	dir = NORTH
-	icon = 'icons/misc/buildmode.dmi'
+	icon = 'icons/ui/buildmode.dmi'
 	icon_state = "buildadventure"
 	screen_loc = "NORTH,WEST+4"
 	var/datum/buildmode_holder/holder = null

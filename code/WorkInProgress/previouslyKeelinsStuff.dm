@@ -457,7 +457,7 @@ var/reverse_mode = 0
 
 
 /obj/effect_sparker
-	icon = 'icons/misc/mark.dmi'
+	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "x4"
 	invisibility = 101
 	anchored = 1

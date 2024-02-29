@@ -272,7 +272,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 /obj/ability_button/weeoo
 	name = "Police Siren"
-	icon = 'icons/misc/abilities.dmi'
+	icon = 'icons/ui/abilities.dmi'
 	icon_state = "noise"
 
 	Click()
@@ -290,7 +290,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 /obj/ability_button/sexgarf
 	name = "sex garfield"
-	icon = 'icons/misc/abilities.dmi'
+	icon = 'icons/ui/abilities.dmi'
 	icon_state = "noise"
 
 	Click()
@@ -652,7 +652,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 /*
 /obj/ability_button/toggle_buffer
 	name = "Toggle Buff-R-Matic Sprayer"
-	icon = 'icons/misc/abilities.dmi'
+	icon = 'icons/ui/abilities.dmi'
 	icon_state = "on"
 	var/active = 0
 
@@ -955,7 +955,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 /obj/ability_button/fbuffer_toggle
 	name = "Floor Buffer Toggle"
-	icon = 'icons/misc/abilities.dmi'
+	icon = 'icons/ui/abilities.dmi'
 	icon_state = "buffer0"
 	screen_loc = "NORTH-2,1"
 
@@ -985,7 +985,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 /obj/ability_button/fbuffer_status
 	name = "Floor Buffer Tank Status"
-	icon = 'icons/misc/abilities.dmi'
+	icon = 'icons/ui/abilities.dmi'
 	icon_state = "bufferf"
 	screen_loc = "NORTH-3,1"
 
@@ -1706,7 +1706,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 /obj/ability_button/loudhorn
 	name = "Loudhorn"
-	icon = 'icons/misc/abilities.dmi'
+	icon = 'icons/ui/abilities.dmi'
 	icon_state = "noise"
 	var/mysound = 'sound/musical_instruments/Vuvuzela_1.ogg'
 	var/mydelay = 1 SECOND
@@ -1731,7 +1731,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 /obj/ability_button/loudhorn/clowncar
 	name = "Clown Car Horn"
-	icon = 'icons/misc/abilities.dmi'
+	icon = 'icons/ui/abilities.dmi'
 	icon_state = "noise"
 	mysound = 'sound/musical_instruments/Carhorn_1.ogg'
 	mydelay = 10 SECONDS
@@ -1739,7 +1739,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 /obj/ability_button/stopthebus
 	name = "Stop The Bus"
-	icon = 'icons/misc/ManuUI.dmi'
+	icon = 'icons/ui/ManuUI.dmi'
 	icon_state = "cancel"
 	var/active = 0
 	var/mydelay = 0 SECONDS
@@ -2200,7 +2200,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 /obj/ability_button/battlecannon
 	name = "Battle Cannon"
-	icon = 'icons/misc/buildmode.dmi'
+	icon = 'icons/ui/buildmode.dmi'
 	icon_state = "buildmode4"
 
 	Click(location, control, params)
@@ -2640,7 +2640,7 @@ obj/vehicle/forklift/attackby(var/obj/item/I, var/mob/user)
 
 /obj/ability_button/toggle_automove
 	name = "Toggle Continuous Movement"
-	icon = 'icons/misc/abilities.dmi'
+	icon = 'icons/ui/abilities.dmi'
 	icon_state = "pedal_off"
 
 	Click()

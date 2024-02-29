@@ -196,7 +196,7 @@
 //This should be used for fancy grid GUI magics!!
 /obj/compx_icon
 	name = "Icon"
-	icon = 'icons/misc/compgui.dmi'
+	icon = 'icons/ui/unused/compgui.dmi'
 	icon_state = "x"
 	var/action_tag = "none" //When clicked, send actiontag = actionarg to our owning program's Topic().
 	var/action_arg = 1

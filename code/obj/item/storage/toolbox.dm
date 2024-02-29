@@ -219,6 +219,7 @@
 		per_person.name = "Box-'[M.real_name]'"
 		for(var/obj/item/looted in M)
 			if(Gcontents.contents.len >= 7)
+				//Gcontents.hud.update()
 				Gcontents = new
 				Gcontents.set_loc(per_person)
 			if(istype(looted, /obj/item/implant)) continue
@@ -232,6 +233,7 @@
 				looted.set_loc(Gcontents)
 				looted.layer = initial(looted.layer)
 				looted.dropped(M)
+		//per_person.hud.update()
 
 		M.remove()
 		var/we_need_to_die = (M == original_owner)
@@ -239,7 +241,11 @@
 			if (G)
 				qdel(G)
 			if (we_need_to_die)
-				new /obj/item/storage/toolbox/emergency {name = "artistic toolbox"; desc = "It looks a lot duller than it used to."; icon_state = "green"; item_state = "toolbox-green";} (get_turf(src))
+				//let's transfer folks' shit first?
+				var/obj/item/storage/DisGrace = new /obj/item/storage/toolbox/artistic {spawn_contents = list(); desc = "It looks a lot duller than it used to.";} (get_turf(src))
+				for(var/obj/item/thing in contents)
+					thing.set_loc(DisGrace)
+				//DisGrace.hud.update()
 				qdel(src)
 
 		return

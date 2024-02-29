@@ -747,7 +747,7 @@ var/sound/iomoon_alarm_sound = null
 
 /obj/spawner/ancient_robot_artifact
 	name = "robot artifact spawn"
-	icon = 'icons/misc/mark.dmi'
+	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "x3"
 
 	New()
