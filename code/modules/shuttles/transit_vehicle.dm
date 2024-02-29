@@ -270,7 +270,7 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 
 /obj/machinery/computer/transit_terminal
 	name = "Vehicle Control"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "mmagnet"
 	circuit_type = /obj/item/circuitboard/transit_terminal
 	/// Transit ID of the Vehicle this terminal controls

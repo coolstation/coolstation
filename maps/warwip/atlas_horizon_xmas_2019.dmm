@@ -14222,7 +14222,7 @@
 "aGq" = (
 /obj/stool{
 	desc = "A soft little bed the general size and shape of a space dog.";
-	icon = 'icons/misc/critter.dmi';
+	icon = 'icons/mob/critter.dmi';
 	icon_state = "beebed";
 	name = "doggie bed"
 	},
@@ -23953,7 +23953,7 @@
 	},
 /obj/computerframe{
 	desc = "It is highly unlikely that this still works.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},
@@ -24471,7 +24471,7 @@
 	},
 /obj/stool{
 	desc = "A soft little bed the general size and shape of a space bee.";
-	icon = 'icons/misc/critter.dmi';
+	icon = 'icons/mob/critter.dmi';
 	icon_state = "beebed";
 	name = "heisenbed"
 	},
@@ -70166,7 +70166,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This teller is incredibly broken.  Look at how broken it is!  And someone took the cash...";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken cash register"
 	},
@@ -70563,7 +70563,7 @@
 "dcl" = (
 /obj/decal/fakeobjects{
 	desc = "The goods inside the machine probably expired before you were even born.";
-	icon = 'icons/obj/vending.dmi';
+	icon = 'icons/obj/machines/vending.dmi';
 	icon_state = "coffee-broken";
 	name = "broken vending machine"
 	},
@@ -70798,7 +70798,7 @@
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 1;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer";
 	tag = "icon-offbroken (NORTH)"

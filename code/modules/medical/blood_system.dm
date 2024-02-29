@@ -636,7 +636,7 @@ this is already used where it needs to be used, you can probably ignore it.
 			anim_offset_x = rand(-9,-7)
 /*
 	if (!H.blood_damage_image)
-		H.blood_damage_image = image('icons/effects/blood.dmi', "bloodhit", FLY_LAYER)
+		H.blood_damage_image = image('icons/obj/decals/blood.dmi', "bloodhit", FLY_LAYER)
 	H.blood_damage_image.icon_state = "bloodhit"
 	H.blood_damage_image.pixel_y = anim_offset_y
 	H.blood_damage_image.pixel_x = anim_offset_x

@@ -3,7 +3,7 @@
 	real_name = "robot"
 	desc = "A Security Robot, something seems a bit off."
 	density = 1
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "mars_sec_bot"
 	custom_gib_handler = /proc/robogibs
 	hand_count = 3

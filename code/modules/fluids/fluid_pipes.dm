@@ -6,7 +6,7 @@
 /obj/fluid_pipe
 	name = "fluid pipe"
 	desc = "A pipe. For fluids."
-	icon = 'icons/obj/disposal.dmi'
+	icon = 'icons/obj/machines/disposal.dmi'
 	anchored = 1
 	density = 0
 	var/pipe_shape = ""

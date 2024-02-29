@@ -92,10 +92,10 @@
 			switchCamera(user, closest)
 
 /obj/machinery/computer/security/console_upper
-	icon = 'icons/obj/computerpanel.dmi'
+	icon = 'icons/obj/machines/computerpanel.dmi'
 	icon_state = "cameras1"
 /obj/machinery/computer/security/console_lower
-	icon = 'icons/obj/computerpanel.dmi'
+	icon = 'icons/obj/machines/computerpanel.dmi'
 	icon_state = "cameras2"
 
 /obj/machinery/computer/security/wooden_tv

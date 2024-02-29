@@ -1,7 +1,7 @@
 /obj/access_spawn
 	name = "access spawn"
 	desc = "Sets access of machines on the same turf as it to its access, then destroys itself."
-	icon = 'icons/effects/mapeditor.dmi'
+	icon = 'icons/map-editing/mapeditor.dmi'
 	icon_state = "access_spawn"
 
 	/*

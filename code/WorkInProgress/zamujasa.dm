@@ -612,7 +612,7 @@
 
 /obj/landmark/football
 	name = "join"
-	icon = 'icons/effects/mapeditor.dmi'
+	icon = 'icons/map-editing/mapeditor.dmi'
 	icon_state = "landmark"
 	deleted_on_start = TRUE
 	add_to_landmarks = FALSE

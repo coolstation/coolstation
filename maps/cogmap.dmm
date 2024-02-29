@@ -6673,7 +6673,7 @@
 /obj/decal/cleanable/dirt,
 /obj/computerframe{
 	desc = "It is highly unlikely that this still works.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},
@@ -35198,7 +35198,7 @@
 	},
 /obj/stool{
 	desc = "A soft little bed the general size and shape of a space bee.";
-	icon = 'icons/misc/critter.dmi';
+	icon = 'icons/mob/critter.dmi';
 	icon_state = "beebed";
 	name = "heisenbed"
 	},
@@ -44620,14 +44620,14 @@
 	},
 /obj/machinery/power/apc/autoname_east,
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibmid2";
 	name = "gross organs";
 	pixel_x = -2;
 	pixel_y = -3
 	},
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibtorso";
 	name = "meaty bit";
 	pixel_x = 7
@@ -44643,7 +44643,7 @@
 	pixel_y = -2
 	},
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibhead";
 	name = "grody thing";
 	pixel_x = 1

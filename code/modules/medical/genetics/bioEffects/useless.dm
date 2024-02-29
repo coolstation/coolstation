@@ -31,7 +31,7 @@
 		if(hornstyle == "random")
 			hornstyle = pick("horns","horns_ram","horns_ramblk","horns_dark","horns_beige","horns_light","horns_sml","horns_unicorn")
 
-		overlay_image = image("icon" = 'icons/effects/genetics.dmi', "icon_state" = "[hornstyle]", layer = MOB_LAYER)
+		overlay_image = image("icon" = 'icons/mob/genetics.dmi', "icon_state" = "[hornstyle]", layer = MOB_LAYER)
 		if (ismonkey(owner))
 			overlay_image.pixel_y = -6
 		..()
@@ -39,7 +39,7 @@
 	onVarChanged(variable, oldval, newval)
 		. = ..()
 		if(variable == "hornstyle")
-			overlay_image = image("icon" = 'icons/effects/genetics.dmi', "icon_state" = "[newval]", layer = MOB_LAYER)
+			overlay_image = image("icon" = 'icons/mob/genetics.dmi', "icon_state" = "[newval]", layer = MOB_LAYER)
 			if(ismonkey(owner))
 				overlay_image.pixel_y = -6
 			owner.UpdateOverlays(overlay_image, id)
@@ -412,7 +412,7 @@
 
 	OnAdd()
 		if (ishuman(owner))
-			overlay_image = image("icon" = 'icons/effects/genetics.dmi', "icon_state" = ovl_sprite, layer = MOB_LIMB_LAYER)
+			overlay_image = image("icon" = 'icons/mob/genetics.dmi', "icon_state" = ovl_sprite, layer = MOB_LIMB_LAYER)
 			overlay_image.color = color_hex
 		..()
 
@@ -501,7 +501,7 @@
 
 	OnAdd()
 		if (ishuman(owner))
-			overlay_image = image("icon" = 'icons/effects/genetics.dmi', "icon_state" = "fireaura", layer = MOB_LIMB_LAYER)
+			overlay_image = image("icon" = 'icons/mob/genetics.dmi', "icon_state" = "fireaura", layer = MOB_LIMB_LAYER)
 			overlay_image.color = color_hex
 		..()
 

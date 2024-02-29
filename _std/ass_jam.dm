@@ -1,7 +1,7 @@
 #if ASS_JAM
 
 #define ADD_MORTY(X, Y, WIDTH, HEIGHT) \
-	var/image/morty = image('icons/misc/critter.dmi', "possum"); \
+	var/image/morty = image('icons/mob/critter.dmi', "possum"); \
 	/*morty.appearance_flags = PIXEL_SCALE;*/ \
 	var/matrix/mortrix = matrix(); \
 	mortrix.Scale(WIDTH / 32, HEIGHT / 32); \

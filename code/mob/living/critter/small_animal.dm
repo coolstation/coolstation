@@ -144,17 +144,17 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 	setup_overlays()
 		fur_color = src.client?.preferences.AH.customization_first_color
 		eye_color = src.client?.preferences.AH.e_color
-		var/image/overlay = image('icons/misc/critter.dmi', "mouse_colorkey")
+		var/image/overlay = image('icons/mob/critter.dmi', "mouse_colorkey")
 		overlay.color = fur_color
 		src.UpdateOverlays(overlay, "hair")
 
-		var/image/overlay_eyes = image('icons/misc/critter.dmi', "mouse_eyes")
+		var/image/overlay_eyes = image('icons/mob/critter.dmi', "mouse_eyes")
 		overlay_eyes.color = eye_color
 		src.UpdateOverlays(overlay_eyes, "eyes")
 
 	death()
 		src.ClearAllOverlays()
-		var/image/overlay = image('icons/misc/critter.dmi', "mouse_colorkey-dead")
+		var/image/overlay = image('icons/mob/critter.dmi', "mouse_colorkey-dead")
 		overlay.color = fur_color
 		src.UpdateOverlays(overlay, "hair")
 		..()
@@ -727,7 +727,7 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 	name = "space parrot"
 	real_name = "space parrot"
 	desc = "A spacefaring species of parrot."
-	icon = 'icons/misc/bird.dmi'
+	icon = 'icons/mob/bird.dmi'
 	icon_state = "parrot"
 	icon_state_dead = "parrot-dead"
 	speechverb_say = "chirps"
@@ -1324,18 +1324,18 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 		fur_color = src.client?.preferences.AH.customization_first_color
 		eye_color = src.client?.preferences.AH.e_color
 
-		var/image/overlay = image('icons/misc/critter.dmi', "roach_colorkey")
+		var/image/overlay = image('icons/mob/critter.dmi', "roach_colorkey")
 		overlay.color = fur_color
 		src.UpdateOverlays(overlay, "hair")
 
-		var/image/overlay_eyes = image('icons/misc/critter.dmi', "roach_eyes")
+		var/image/overlay_eyes = image('icons/mob/critter.dmi', "roach_eyes")
 		overlay_eyes.color = eye_color
 		src.UpdateOverlays(overlay_eyes, "eyes")
 
 	death()
 		src.ClearAllOverlays()
 		//appears to be missing a dead colorkey
-		//var/image/overlay = image('icons/misc/critter.dmi', "roach_colorkey-dead")
+		//var/image/overlay = image('icons/mob/critter.dmi', "roach_colorkey-dead")
 		//overlay.color = fur_color
 		//src.UpdateOverlays(overlay, "hair")
 		..()
@@ -2683,11 +2683,11 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 			return
 		eye_color = src.client?.preferences.AH.e_color
 
-		var/image/overlay = image('icons/misc/critter.dmi', "mouse_colorkey")
+		var/image/overlay = image('icons/mob/critter.dmi', "mouse_colorkey")
 		overlay.color = fur_color
 		src.UpdateOverlays(overlay, "hair")
 
-		var/image/overlay_eyes = image('icons/misc/critter.dmi', "mouse_eyes")
+		var/image/overlay_eyes = image('icons/mob/critter.dmi', "mouse_eyes")
 		overlay_eyes.color = eye_color
 		src.UpdateOverlays(overlay_eyes, "eyes")
 

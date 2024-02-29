@@ -1,6 +1,6 @@
 /obj/npc
 	name = "NPC"
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	var/status = 0
 	var/mob/current_user = null
 	anchored = 1

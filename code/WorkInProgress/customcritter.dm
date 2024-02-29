@@ -1826,7 +1826,7 @@ var/global/datum/critterCreatorHolder/critter_creator_controller = new()
 		else if (href_list["icon_preset"])
 			var/IS = getEnum("preset", "cancel", presets)
 			if (IS != "cancel")
-				template.icon = 'icons/misc/critter.dmi'
+				template.icon = 'icons/mob/critter.dmi'
 				template.icon_state = presets[IS]
 		else if (href_list["abilconf"])
 			if (abilid)

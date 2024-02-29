@@ -1,7 +1,7 @@
 ///The laptop that lets you hack doors easily
 /obj/item/device/hacking_laptop
 	name = "portable computer" //This thing mimics the normal briefcase laptop
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "briefcase"
 	inhand_image_icon = 'icons/mob/inhand/hand_general.dmi'
 	item_state = "briefcase"

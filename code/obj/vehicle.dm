@@ -17,7 +17,7 @@ Contains:
 ABSTRACT_TYPE(/obj/vehicle)
 /obj/vehicle
 	name = "vehicle"
-	icon = 'icons/obj/vehicles.dmi'
+	icon = 'icons/obj/vehicles/vehicles.dmi'
 	density = 1
 	var/mob/living/rider = null //rider is basically the "driver" of the vehicle
 	var/in_bump = 0 //sanity variable to prevent the vehicle from crashing multiple times due to a single collision
@@ -2163,7 +2163,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 /obj/vehicle/adminbus/battlebus
 	name = "Battle Bus"
 	desc = "A bus made for war."
-	icon = 'icons/obj/battlebus.dmi'
+	icon = 'icons/obj/vehicles/battlebus.dmi'
 	icon_state = "adminbus"
 	moving_state = "adminbus2"
 	nonmoving_state = "adminbus"

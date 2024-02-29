@@ -182,7 +182,7 @@
 
 /obj/dummy/spell_batpoof
 	name = "bat"
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "vampbat"
 	density = 0
 	flags = TABLEPASS | DOORPASS
@@ -208,7 +208,7 @@
 		P.setup(src.loc)
 		playsound(src.loc,"sound/effects/poff.ogg", 50, 1, pitch = 1)
 
-		//overlay_image = image("icon" = 'icons/effects/genetics.dmi', "icon_state" = "aurapulse", layer = MOB_LIMB_LAYER)
+		//overlay_image = image("icon" = 'icons/mob/genetics.dmi', "icon_state" = "aurapulse", layer = MOB_LIMB_LAYER)
 		//overlay_image.color = "#333333"
 
 		owner.remove_stamina(5)

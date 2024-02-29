@@ -1,7 +1,7 @@
 //////////Escape pod
 /obj/machinery/vehicle/pod
 	name = "Escape Pod A7-"
-	icon = 'icons/obj/ship.dmi'
+	icon = 'icons/obj/vehicles/ship.dmi'
 	icon_state = "pod"
 	capacity = 4
 	health = 140
@@ -10,7 +10,7 @@
 //////////Recon
 /obj/machinery/vehicle/recon
 	name = "Reconaissance Ship 7X-"
-	icon = 'icons/obj/ship.dmi'
+	icon = 'icons/obj/vehicles/ship.dmi'
 	icon_state = "recon"
 	capacity = 1
 	health= 200
@@ -34,7 +34,7 @@
 //////////Cargo
 /obj/machinery/vehicle/cargo
 	name = "Cargo Ship Q5-"
-	icon = 'icons/obj/ship.dmi'
+	icon = 'icons/obj/vehicles/ship.dmi'
 	icon_state = "cargo"
 	capacity = 2
 	health = 200
@@ -78,7 +78,7 @@
 	checkhealth()
 		..()
 		if(health/maxhealth <= 0.25)
-			UpdateOverlays(image("icon" = 'icons/obj/ship.dmi', "icon_state" = "saucer_damage", "layer" = MOB_LAYER), "damage")
+			UpdateOverlays(image("icon" = 'icons/obj/vehicles/ship.dmi', "icon_state" = "saucer_damage", "layer" = MOB_LAYER), "damage")
 		else
 			UpdateOverlays(null, "damage")
 
@@ -116,7 +116,7 @@
 /*	checkhealth()
 		..()
 		if(health/maxhealth <= 0.25 && !busted)
-			damaged = image("icon" = 'icons/obj/ship.dmi', "icon_state" = "miniputt_fire", "layer" = MOB_LAYER)
+			damaged = image("icon" = 'icons/obj/vehicles/ship.dmi', "icon_state" = "miniputt_fire", "layer" = MOB_LAYER)
 			overlays += damaged
 			busted++
 		else
@@ -204,7 +204,7 @@ obj/machinery/vehicle/miniputt/pilot
 //syndiput spawner
 /obj/syndi_putt_spawner
 	name = "syndiputt spawner"
-	icon = 'icons/obj/ship.dmi'
+	icon = 'icons/obj/vehicles/ship.dmi'
 	icon_state = "syndi_mini_spawn"
 	New()
 		..()
@@ -422,7 +422,7 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 /obj/structure/vehicleframe/puttframe
 	name = "MiniPutt Frame"
 	desc = "A MiniPutt ship under construction."
-	icon = 'icons/obj/ship.dmi'
+	icon = 'icons/obj/vehicles/ship.dmi'
 	icon_state = "parts"
 	engine_type = /obj/item/putt/engine
 	control_type = /obj/item/putt/control

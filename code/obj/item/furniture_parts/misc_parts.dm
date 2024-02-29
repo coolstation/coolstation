@@ -47,7 +47,7 @@
 /obj/item/furniture_parts/decor/regallamp
 	name = "regal lamp parts"
 	desc = "A collection of parts that can be used to make a regal lamp."
-	icon = 'icons/misc/walp_decor.dmi'
+	icon = 'icons/obj/furniture/walp_decor.dmi'
 	icon_state = "lamp_regal_parts"
 	furniture_type = /obj/decoration/regallamp
 	furniture_name = "regal lamp"

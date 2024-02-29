@@ -4,7 +4,7 @@
 	desc = "You stick it on something, then that thing is even better, because it has a little sparkly unicorn stuck to it, or whatever."
 	flags = FPRINT | TABLEPASS
 	event_handler_flags = HANDLE_STICKER | USE_FLUID_ENTER
-	icon = 'icons/misc/stickers.dmi'
+	icon = 'icons/obj/decals/stickers.dmi'
 	icon_state = "bounds"
 	w_class = W_CLASS_TINY
 	force = 0

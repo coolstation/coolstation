@@ -72,7 +72,7 @@
 
 	/// This is used for static icons if the mutant isn't built from pieces
 	/// For chunked mutantraces this must still point to a valid full-body image to generate a staticky sprite for ghostdrones.
-	var/icon = 'icons/effects/genetics.dmi'
+	var/icon = 'icons/mob/genetics.dmi'
 	var/icon_state = "blank_c"
 	/// The icon used to render their eyes
 	var/eye_icon = 'icons/mob/human_hair.dmi'
@@ -88,7 +88,7 @@
 	/// If our mutant has a female variant, it'll use this head image instead
 	var/special_head_state_f = null
 	/// The icon of the head, body, and limbs we're using
-	var/mutant_folder = 'icons/effects/genetics.dmi'
+	var/mutant_folder = 'icons/mob/genetics.dmi'
 	/// Swaps out the entries in the mob's organ_holder with these (hopefully) organs
 	/// Format: ("entry_in_organholder's_organlist", /obj/item/organ/path)
 	var/list/mutant_organs = list()

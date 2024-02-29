@@ -311,7 +311,7 @@ obj/decal/fakeobjects
 /obj/decal/fakeobjects/brokenportal
 	name = "broken portal ring"
 	desc = "This portal ring looks completely fried."
-	icon = 'icons/obj/teleporter.dmi'
+	icon = 'icons/obj/machines/teleporter.dmi'
 	icon_state = "tele_fuzz"
 	anchored = 1
 	density = 1
@@ -339,7 +339,7 @@ obj/decal/fakeobjects
 /obj/decal/bloodtrace
 	name = "blood trace"
 	desc = "Oh my!!"
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/obj/decals/blood.dmi'
 	icon_state = "lum"
 	invisibility = 101
 	blood_DNA = null

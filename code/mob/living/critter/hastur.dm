@@ -6,7 +6,7 @@ var/HasturPresent = 0
 	desc = "He who must not be named..."
 	density = 1
 	anchored = 1
-	icon = 'icons/misc/hastur.dmi'
+	icon = 'icons/mob/hastur.dmi'
 	icon_state = "hastur"
 	hand_count = 4
 	can_throw = 1
@@ -30,8 +30,8 @@ var/HasturPresent = 0
 	New()
 		..()
 		src.see_in_dark = SEE_DARK_FULL
-		northsouth = icon('icons/misc/hastur.dmi')
-		eastwest = icon('icons/misc/hastur.dmi')
+		northsouth = icon('icons/mob/hastur.dmi')
+		eastwest = icon('icons/mob/hastur.dmi')
 		changeIcon()
 		src.nodamage = 1
 		HasturPresent = 1

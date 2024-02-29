@@ -889,7 +889,7 @@
 
 /obj/machinery/computer/magnet
 	name = "mineral magnet controls"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "mmagnet"
 	circuit_type = /obj/item/circuitboard/mining_magnet
 	var/temp = null

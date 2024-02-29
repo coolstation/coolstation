@@ -35,7 +35,7 @@
 
 /obj/decal/tile_edge/stripe
 	name = "hazard stripe"
-	icon = 'icons/obj/hazard_stripes.dmi'
+	icon = 'icons/obj/decals/hazard_stripes.dmi'
 	icon_state = "stripe-edge"
 
 /obj/decal/tile_edge/stripe/big
@@ -89,7 +89,7 @@
 		color = "#AB8CB0"
 
 /obj/decal/tile_edge/check
-	icon = 'icons/obj/hazard_stripes.dmi'
+	icon = 'icons/obj/decals/hazard_stripes.dmi'
 	icon_state = "checkfull"
 
 	white // the default white of these things is brighter than the white tiles, this color matches those
@@ -114,7 +114,7 @@
 
 /obj/decal/tile_edge/carpet
 	name = "carpet"
-	icon = 'icons/obj/hazard_stripes.dmi'
+	icon = 'icons/obj/decals/hazard_stripes.dmi'
 	icon_state = "rugfull"
 
 /obj/decal/tile_edge/carpet/fancy

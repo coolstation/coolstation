@@ -225,7 +225,7 @@
 					pox = text2num(params["icon-x"]) - 16
 					poy = text2num(params["icon-y"]) - 16
 
-			var/image/sticker = image('icons/misc/stickers.dmi', sticker_icon_state)
+			var/image/sticker = image('icons/obj/decals/stickers.dmi', sticker_icon_state)
 
 			sticker.layer = A.layer + 1
 			sticker.icon_state = sticker_icon_state
@@ -246,7 +246,7 @@
 			var/pox = rand(-2,2)
 			var/poy = rand(-2,2)
 
-			var/image/sticker = image('icons/misc/stickers.dmi', sticker_icon_state)
+			var/image/sticker = image('icons/obj/decals/stickers.dmi', sticker_icon_state)
 
 			sticker.layer = A.layer + 1
 			sticker.icon_state = sticker_icon_state

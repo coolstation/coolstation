@@ -58,7 +58,7 @@
 /obj/machinery/vending
 	name = "Vendomat"
 	desc = "A generic vending machine."
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "generic"
 	anchored = 1
 	density = 1
@@ -2083,7 +2083,7 @@
 	name = "vending machine module"
 	desc = "An assembly used in the construction of a vending machine."
 	machinepath = "/obj/machinery/vending/player"
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "base-module"
 
 /obj/item/machineboard/vending/player
@@ -2098,7 +2098,7 @@
 /obj/machinery/vendingframe
 	name = "vending machine frame"
 	desc = "A generic vending machine frame."
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "standard-frame"
 	density = 1
 	var/wrenched = FALSE
@@ -3113,7 +3113,7 @@
 	"You NEED this to live!.",
 	"Breathing is GOOD!",
 	"Contains only 2% farts!")
-	var/global/image/holding_overlay_image = image('icons/obj/vending.dmi', "O2vend-slot")
+	var/global/image/holding_overlay_image = image('icons/obj/machines/vending.dmi', "O2vend-slot")
 
 	// Currently installed tank
 	var/obj/item/tank/holding = null

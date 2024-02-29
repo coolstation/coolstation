@@ -135,9 +135,9 @@
 				new_icon = new /icon(I.icon)
 			else
 				new_icon = new /icon(I.icon, I.icon_state)
-			new_icon.Blend(new /icon('icons/effects/blood.dmi', "thisisfuckingstupid"), ICON_ADD)
+			new_icon.Blend(new /icon('icons/obj/decals/blood.dmi', "thisisfuckingstupid"), ICON_ADD)
 			new_icon.Blend(blood_color, ICON_MULTIPLY)
-			new_icon.Blend(new /icon('icons/effects/blood.dmi', "itemblood"), ICON_MULTIPLY)
+			new_icon.Blend(new /icon('icons/obj/decals/blood.dmi', "itemblood"), ICON_MULTIPLY)
 			if (I.uses_multiple_icon_states)
 				new_icon.Blend(new /icon(I.icon), ICON_UNDERLAY)
 			else
@@ -145,7 +145,7 @@
 			I.icon = new_icon
 			#else
 			I.appearance_flags |= KEEP_TOGETHER
-			var/image/blood_overlay = image('icons/effects/blood.dmi', "itemblood")
+			var/image/blood_overlay = image('icons/obj/decals/blood.dmi', "itemblood")
 			blood_overlay.appearance_flags = PIXEL_SCALE | RESET_COLOR
 			blood_overlay.color = blood_color
 			blood_overlay.alpha = min(blood_overlay.alpha, 200)
@@ -417,9 +417,9 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 			new_icon = new /icon(I.icon)
 		else
 			new_icon = new /icon(I.icon, I.icon_state)
-		new_icon.Blend(new /icon('icons/effects/blood.dmi', "thisisfuckingstupid"), ICON_ADD)
+		new_icon.Blend(new /icon('icons/obj/decals/blood.dmi', "thisisfuckingstupid"), ICON_ADD)
 		new_icon.Blend(DEFAULT_MUD_COLOR, ICON_MULTIPLY)
-		new_icon.Blend(new /icon('icons/misc/not_poo.dmi', "itemmud"), ICON_MULTIPLY)
+		new_icon.Blend(new /icon('icons/obj/decals/not_poo.dmi', "itemmud"), ICON_MULTIPLY)
 		if (I.uses_multiple_icon_states)
 			new_icon.Blend(new /icon(I.icon), ICON_UNDERLAY)
 		else
@@ -427,7 +427,7 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 		I.icon = new_icon
 #else
 		I.appearance_flags |= KEEP_TOGETHER
-		var/image/mud_overlay = image('icons/misc/not_poo.dmi', "itemmud")
+		var/image/mud_overlay = image('icons/obj/decals/not_poo.dmi', "itemmud")
 		mud_overlay.appearance_flags = PIXEL_SCALE | RESET_COLOR
 		mud_overlay.color = DEFAULT_MUD_COLOR
 		mud_overlay.alpha = min(mud_overlay.alpha, 200)

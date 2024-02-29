@@ -3468,9 +3468,9 @@ datum
 					M.take_brain_damage(9 * mult)
 					M.emote("scream")
 
-					if(probmult(25)) fake_attackEx(M, 'icons/effects/hallucinations.dmi', "orange", "orange")
-					if(probmult(25)) fake_attackEx(M, 'icons/effects/hallucinations.dmi', "lime", "lime")
-					if(probmult(25)) fake_attackEx(M, 'icons/effects/hallucinations.dmi', "lemon", "lemon")
+					if(probmult(25)) fake_attackEx(M, 'icons/mob/hallucinations.dmi', "orange", "orange")
+					if(probmult(25)) fake_attackEx(M, 'icons/mob/hallucinations.dmi', "lime", "lime")
+					if(probmult(25)) fake_attackEx(M, 'icons/mob/hallucinations.dmi', "lemon", "lemon")
 
 					if(probmult(15)) boutput("<span class='alert'><B>FRUIT IN MY EYES!!!</B></span>")
 

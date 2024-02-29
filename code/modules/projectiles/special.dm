@@ -406,7 +406,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	shot_sound = 'sound/misc/boing/6.ogg'
 	name  = "meowitzer"
 	sname  = "meowitzer"
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "cat1"
 	dissipation_delay = 75
 	dissipation_rate = 300
@@ -820,7 +820,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 
 /datum/projectile/special/homing/orbiter/spiritbat
 	name = "frost bat"
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "spiritbat"
 	rotate_proj = 0
 	face_desired_dir = 1

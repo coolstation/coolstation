@@ -975,7 +975,7 @@ proc/get_colosseum_message(var/name, var/message)
 // But /obj/machinery/vehicle looks dumb.
 /obj/machinery/colosseum_putt
 	name = "Colosseum Putt"
-	icon = 'icons/obj/ship.dmi'
+	icon = 'icons/obj/vehicles/ship.dmi'
 	icon_state = "miniputt"
 	density = 1
 	anchored = 1
@@ -1025,7 +1025,7 @@ proc/get_colosseum_message(var/name, var/message)
 	New()
 		..()
 		if (!fire_overlay)
-			fire_overlay = image('icons/obj/ship.dmi', "minputt_fire")
+			fire_overlay = image('icons/obj/vehicles/ship.dmi', "minputt_fire")
 		help = new()
 		simple = new /datum/projectile/laser/light/upgradeable()
 		p_indicator = new()

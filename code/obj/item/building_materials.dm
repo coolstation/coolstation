@@ -494,7 +494,7 @@ MATERIAL
 					a_type = /obj/computerframe
 					a_amount = 1
 					a_cost = 5
-					a_icon = 'icons/obj/computer_frame.dmi'
+					a_icon = 'icons/obj/machines/computer_frame.dmi'
 					a_icon_state = "0"
 					a_name = "a console frame"
 					duration_alt = 3.5 SECONDS
@@ -504,7 +504,7 @@ MATERIAL
 					a_type = /obj/computer3frame
 					a_amount = 1
 					a_cost = 5
-					a_icon = 'icons/obj/computer_frame.dmi'
+					a_icon = 'icons/obj/machines/computer_frame.dmi'
 					a_icon_state = "0"
 					a_name = "a computer frame"
 					duration_alt = 3.5 SECONDS
@@ -524,7 +524,7 @@ MATERIAL
 					a_type = /obj/machinery/vendingframe
 					a_amount = 1
 					a_cost = 3
-					a_icon = 'icons/obj/vending.dmi'
+					a_icon = 'icons/obj/machines/vending.dmi'
 					a_icon_state = "standard-frame"
 					a_name = "a vending machine frame"
 					duration_alt = 3.5 SECONDS

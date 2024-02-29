@@ -1,6 +1,6 @@
 /obj/machinery/computer/ordercomp
 	name = "Supply Request Console"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "QMreq"
 	var/temp = null
 	var/obj/item/card/id/scan = null
@@ -21,10 +21,10 @@
 		..()
 
 /obj/machinery/computer/ordercomp/console_upper
-	icon = 'icons/obj/computerpanel.dmi'
+	icon = 'icons/obj/machines/computerpanel.dmi'
 	icon_state = "qmreq1"
 /obj/machinery/computer/ordercomp/console_lower
-	icon = 'icons/obj/computerpanel.dmi'
+	icon = 'icons/obj/machines/computerpanel.dmi'
 	icon_state = "qmreq1"
 
 /obj/machinery/computer/ordercomp/attack_ai(var/mob/user as mob)

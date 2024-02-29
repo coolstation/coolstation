@@ -572,7 +572,7 @@
 		..()
 		icon_state = pick("martian","martianP","martianW","martianSP","mars_bot","welder","petbee","lavacrab","boogie","walrus","owl","goose","swan","gull","parrot","possum","bumblespider","big_spide[pick("","-red","-blue","-green")]")
 		if (icon_state in list("owl","goose","swan","gull"))
-			icon = 'icons/misc/bird.dmi'
+			icon = 'icons/mob/bird.dmi'
 		else if (icon_state == "parrot")
 			var/obj/critter/parrot/P
 			if (prob(1) && islist(special_parrot_species))
@@ -1481,7 +1481,7 @@
 		pickupdialoguefailure = "yeah that works too"
 
 /obj/npc/trader/katya //lone human survivor of ice station fita, has been stuck for days warming donk pockets on a space heater
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "welder"
 	picture = "nio.png"
 	name = "Comrade Katya"

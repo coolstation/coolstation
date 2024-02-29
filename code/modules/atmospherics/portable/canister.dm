@@ -103,7 +103,7 @@
 /obj/machinery/portable_atmospherics/canister/New()
 	..()
 	atmos_dmi = image('icons/obj/atmospherics/atmos.dmi')
-	bomb_dmi = image('icons/obj/canisterbomb.dmi')
+	bomb_dmi = image('icons/obj/atmospherics/canisterbomb.dmi')
 
 /obj/machinery/portable_atmospherics/canister/update_icon()
 

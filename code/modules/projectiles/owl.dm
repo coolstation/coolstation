@@ -1,7 +1,7 @@
 //Used by: owl gun (safe & unsafe versions)
 /datum/projectile/owl
 	name = "space-time disruption"
-	icon = 'icons/misc/bird.dmi'
+	icon = 'icons/mob/bird.dmi'
 	icon_state = "owl"
 //How much of a punch this has, tends to be seconds/damage before any resist
 	power = 10

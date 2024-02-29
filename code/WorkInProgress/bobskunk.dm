@@ -17,7 +17,7 @@
 	gender = NEUTER
 	max_health = 100
 #ifdef IN_MAP_EDITOR
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "ferret"
 #endif IN_MAP_EDITOR
 

@@ -5,7 +5,7 @@
 /datum/component/legs/Initialize()
 	if(!istype(parent, /atom/movable))
 		return COMPONENT_INCOMPATIBLE
-	legs = new/obj{icon = 'icons/misc/SomepotatoArt.dmi'; pixel_y = -14; icon_state = "feet"}
+	legs = new/obj{icon = 'icons/mob/SomepotatoArt.dmi'; pixel_y = -14; icon_state = "feet"}
 
 /datum/component/legs/RegisterWithParent()
 	. = ..()

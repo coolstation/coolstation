@@ -32,10 +32,10 @@
 
 
 /obj/machinery/computer/card/console_upper
-	icon = 'icons/obj/computerpanel.dmi'
+	icon = 'icons/obj/machines/computerpanel.dmi'
 	icon_state = "id1"
 /obj/machinery/computer/card/console_lower
-	icon = 'icons/obj/computerpanel.dmi'
+	icon = 'icons/obj/machines/computerpanel.dmi'
 	icon_state = "id2"
 
 /obj/machinery/computer/card/attack_hand(var/mob/user as mob)

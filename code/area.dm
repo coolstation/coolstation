@@ -493,7 +493,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 /// Unless you are an admin, you may not pass GO nor collect $200
 /area/cordon
 	name = "CORDON"
-	icon = 'icons/effects/mapeditor.dmi'
+	icon = 'icons/map-editing/mapeditor.dmi'
 	icon_state = "cordonarea"
 	invisibility = 101
 	teleport_blocked = 2

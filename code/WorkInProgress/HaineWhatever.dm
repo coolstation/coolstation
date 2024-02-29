@@ -63,7 +63,7 @@
 	message_coders("Disposal test completed with [successes] successes")
 
 /obj/item/disposal_test_dummy
-	icon = 'icons/misc/bird.dmi'
+	icon = 'icons/mob/bird.dmi'
 	icon_state = "bhooty"
 	name = "wtf"
 	var/obj/machinery/disposal/source_disposal = null
@@ -256,7 +256,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	desc = "A spacefaring species of parrot." // ................... obj|mob
 	species = "parrot" // .......................................... obj|mob
 	var/list/subspecies = null // .................................. obj|mob
-	var/icon = 'icons/misc/bird.dmi' // ............................ obj|mob
+	var/icon = 'icons/mob/bird.dmi' // ............................ obj|mob
 	var/gender = PLURAL // ............................................. mob
 	var/learned_words = null // .................................... obj ...
 	var/learned_phrases = null // .................................. obj ...
@@ -382,7 +382,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 					  /datum/species_info/parrot/macaw/bluegold,
 					  /datum/species_info/parrot/macaw/military,
 					  /datum/species_info/parrot/macaw/hyacinth)
-	icon = 'icons/misc/bigcritter.dmi' // macaws are big oafs
+	icon = 'icons/mob/bigcritter.dmi' // macaws are big oafs
 	pixel_x = -16
 	hat_offset_y = -3
 	hat_offset_x = 16

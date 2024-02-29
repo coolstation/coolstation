@@ -56,7 +56,7 @@
 /obj/machinery/manufacturer
 	name = "Manufacturing Unit"
 	desc = "A standard fabricator unit capable of producing certain items from various materials."
-	icon = 'icons/obj/manufacturer.dmi'
+	icon = 'icons/obj/machines/manufacturer.dmi'
 	icon_state = "fab"
 	var/icon_base = null
 	density = 1
@@ -146,9 +146,9 @@
 
 		src.create_reagents(1000)
 
-		src.work_display = image('icons/obj/manufacturer.dmi', "")
-		src.activity_display = image('icons/obj/manufacturer.dmi', "")
-		src.panel_sprite = image('icons/obj/manufacturer.dmi', "")
+		src.work_display = image('icons/obj/machines/manufacturer.dmi', "")
+		src.activity_display = image('icons/obj/machines/manufacturer.dmi', "")
+		src.panel_sprite = image('icons/obj/machines/manufacturer.dmi', "")
 		SPAWN_DBG(0)
 			src.build_icon()
 

@@ -213,7 +213,7 @@ datum
 					if(prob(95))
 						fake_attackEx(M, 'icons/mob/human.dmi', "skeleton", (pick("skeleton", "skellington", "boner", "revenge of boner", "regret", "not sure what you expected")))
 					else
-						fake_attackEx(M, 'icons/obj/vehicles.dmi', "sex", "sex garfield")
+						fake_attackEx(M, 'icons/obj/vehicles/vehicles.dmi', "sex", "sex garfield")
 				return
 
 			on_remove()

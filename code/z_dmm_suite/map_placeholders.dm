@@ -4,7 +4,7 @@
 
 //-- Used to store meta data in dmm files --------
 /obj/dmm_suite/comment
-	icon = 'icons/effects/mapeditor.dmi'
+	icon = 'icons/map-editing/mapeditor.dmi'
 	icon_state = "comment"
 	invisibility = 101
 	anchored = 1
@@ -26,7 +26,7 @@ turf/dmm_suite/underlay
 
 //-- Fills maps when writing with IGNORE_TURFS ---
 turf/dmm_suite/clear_turf
-	icon = 'icons/effects/mapeditor.dmi'
+	icon = 'icons/map-editing/mapeditor.dmi'
 	icon_state = "clear_turf"
 	layer = FLY_LAYER
 	New()
@@ -34,7 +34,7 @@ turf/dmm_suite/clear_turf
 		qdel(src)
 //-- Fills maps when writing with IGNORE_AREAS ---
 area/dmm_suite/clear_area
-	icon = 'icons/effects/mapeditor.dmi'
+	icon = 'icons/map-editing/mapeditor.dmi'
 	icon_state = "clear_area"
 	layer = FLY_LAYER
 	New()

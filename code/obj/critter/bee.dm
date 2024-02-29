@@ -1,7 +1,7 @@
 /obj/critter/domestic_bee
 	name = "greater domestic space-bee"
 	desc = "Genetically engineered for extreme size and indistinct segmentation and bred for docility, the greater domestic space-bee is increasingly popular among space traders and science-types."
-	icon = 'icons/misc/bee.dmi'
+	icon = 'icons/mob/bee.dmi'
 	icon_state = "petbee-wings"
 	sleeping_icon_state = "petbee-sleep"
 	density = 0
@@ -37,7 +37,7 @@
 	var/icon_color = null // for bees that've been barfed up by someone, so only their body is colored
 
 	var/obj/item/clothing/head/hat = null // hatcode mostly shamelessly stolen from guardbuddies
-	var/hat_icon = 'icons/misc/bee.dmi'
+	var/hat_icon = 'icons/mob/bee.dmi'
 	var/cant_take_hat = 0 // maybe they already have a hat, or maybe they just don't want a hat?  I dunno, bees are allowed to have their own fashion sense
 	var/royal = 0 // maybe they'll have a little crown  c:
 	var/list/hat_list = list("detective","hoscap","hardhat0","hardhat1","hosberet","ntberet","chef","souschef",
@@ -652,7 +652,7 @@
 	layer = 30 // should be over windows and shit like that
 	honey_production_amount = 100
 	max_offset = 0
-	icon = 'icons/misc/bigcritter.dmi'
+	icon = 'icons/mob/bigcritter.dmi'
 	icon_state = "queenbee-wings"
 	sleeping_icon_state = "queenbee-sleep"
 	icon_body = "queenbee"
@@ -776,7 +776,7 @@
 	health = 75
 	firevuln = 0.4
 	brutevuln = 0.5
-	icon = 'icons/misc/biggercritter.dmi'
+	icon = 'icons/mob/biggercritter.dmi'
 	icon_state = "bigqueenbuddy-wings"
 	sleeping_icon_state = "bigqueenbuddy-sleep"
 	icon_body = "bigqueenbuddy"
@@ -795,7 +795,7 @@
 	firevuln = 0.2
 	brutevuln = 0.3
 	honey_production_amount = 200
-	icon = 'icons/misc/biggercritter.dmi'
+	icon = 'icons/mob/biggercritter.dmi'
 	icon_state = "omega-wings"
 	sleeping_icon_state = "omega-sleep"
 	icon_body = "omega"
@@ -1354,7 +1354,7 @@
 /obj/critter/domestic_bee_larva
 	name = "greater domestic space-larva"
 	desc = "As a result of the extensive genetic alteration, the domestic space-bee's larval and pupal stages have been compacted together."
-	icon = 'icons/misc/bee.dmi'
+	icon = 'icons/mob/bee.dmi'
 	icon_state = "petbee_larva"
 	density = 0
 	health = 5
@@ -1411,7 +1411,7 @@
 		if (growth_timer-- == 0)
 			if (royal == 1)
 				src.visible_message("[src] pupates!")
-				src.icon = 'icons/misc/bigcritter.dmi'
+				src.icon = 'icons/mob/bigcritter.dmi'
 				src.icon_state = src.grow_anim
 				pixel_x = -16
 				pixel_y = -16
@@ -1549,7 +1549,7 @@
 /obj/item/reagent_containers/food/snacks/ingredient/egg/bee
 	name = "space bee egg"
 	desc = "A marvel of modern biological engineering, the space bee egg is held in a form of stasis until activation through an intuitive twisting action."
-	icon = 'icons/misc/bee.dmi'
+	icon = 'icons/mob/bee.dmi'
 	icon_state = "petbee_egg"
 	var/bee_name = null
 	var/hatched = 0
@@ -1745,7 +1745,7 @@
 /obj/item/bee_egg_carton
 	name = "space bee egg carton"
 	desc = "A space-age cardboard carton designed to safely transport a single space bee egg."
-	icon = 'icons/misc/bee.dmi'
+	icon = 'icons/mob/bee.dmi'
 	icon_state = "petbee_carton"
 	w_class = W_CLASS_SMALL
 	var/obj/item/reagent_containers/food/snacks/ingredient/egg/bee/ourEgg

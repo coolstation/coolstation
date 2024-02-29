@@ -642,7 +642,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 /obj/critter/owl
 	name = "space owl"
 	desc = "Did you know? By 2063, it is expected that there will be more owls on Earth than human beings."
-	icon = 'icons/misc/bird.dmi'
+	icon = 'icons/mob/bird.dmi'
 	icon_state = "smallowl"
 	density = 1
 	health = 10
@@ -744,7 +744,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 /obj/critter/goose
 	name = "space goose"
 	desc = "An offshoot species of <i>branta canadensis</i> adapted for space."
-	icon = 'icons/misc/bird.dmi'
+	icon = 'icons/mob/bird.dmi'
 	icon_state = "goose"
 	density = 1
 	health = 20
@@ -840,7 +840,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 /obj/critter/parrot // if you didn't want me to make a billion dumb parrot things you shouldn't have let me anywhere near the code so this is YOUR FAULT NOT MINE - Haine
 	name = "space parrot"
 	desc = "A spacefaring species of parrot."
-	icon = 'icons/misc/bird.dmi'
+	icon = 'icons/mob/bird.dmi'
 	icon_state = "parrot"
 	dead_state = "parrot-dead"
 	density = 0
@@ -1518,7 +1518,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 	name = "space macaw"
 	desc = "A spacefaring species of parrot from the <i>arini</i> tribe."
 	species = null
-	icon = 'icons/misc/bigcritter.dmi' // macaws are big oafs
+	icon = 'icons/mob/bigcritter.dmi' // macaws are big oafs
 	pixel_x = -16
 	hat_offset_y = -3
 	hat_offset_x = 16
@@ -1628,7 +1628,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 /obj/critter/seagull
 	name = "space gull"
 	desc = "A spacefaring species of bird from the <i>Laridae</i> family."
-	icon = 'icons/misc/bird.dmi'
+	icon = 'icons/mob/bird.dmi'
 	icon_state = "gull"
 	dead_state = "gull-dead"
 	density = 0
@@ -1672,7 +1672,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 /obj/critter/seagull/gannet // they're technically not gulls but they're gunna use basically all the same var settings so, um
 	name = "space gannet"
 	desc = "A spacefaring species of <i>morus bassanus</i>."
-	icon = 'icons/misc/bird.dmi'
+	icon = 'icons/mob/bird.dmi'
 	icon_state = "gannet"
 	dead_state = "gannet-dead"
 	feather_color = list("#ffffff","#d4bb2f","#414141")
@@ -1680,7 +1680,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 /obj/critter/crow // copied from seagulls, idk
 	name = "space crow"
 	desc = "A spacefaring species of bird from the <i>Corvidae</i> family."
-	icon = 'icons/misc/bird.dmi'
+	icon = 'icons/mob/bird.dmi'
 	icon_state = "crow"
 	dead_state = "crow-dead"
 	density = 0

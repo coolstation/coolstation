@@ -3,7 +3,7 @@
 	real_name = "odd thingmabob"
 	desc = "A Security Robot, something seems a bit off."
 	density = 1
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "ancient_guardbot"
 	custom_gib_handler = /proc/robogibs
 	say_language = "binary"

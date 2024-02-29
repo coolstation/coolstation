@@ -120,7 +120,7 @@ obj/item/rocko
 				O.show_message("<span class='emote'>[message]</span>", assoc_maptext = chat_text)
 
 	proc/update_icon()
-		var/image/smiley = image('icons/misc/rocko.dmi', src.smile ? "smile" : "frown")
+		var/image/smiley = image('icons/obj/unused/rocko.dmi', src.smile ? "smile" : "frown")
 		if(bright)
 			painted = pick(list("#EE2","#2EE", "#E2E","#EEE"))
 		else

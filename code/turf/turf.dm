@@ -1027,7 +1027,7 @@ proc/generate_space_color()
 
 /turf/cordon
 	name = "CORDON"
-	icon = 'icons/effects/mapeditor.dmi'
+	icon = 'icons/map-editing/mapeditor.dmi'
 	icon_state = "cordonturf"
 	fullbright = 1
 	invisibility = 101
@@ -1301,7 +1301,7 @@ proc/generate_space_color()
 
 /turf/null_hole
 	name = "expedition chute"
-	icon = 'icons/obj/delivery.dmi'
+	icon = 'icons/obj/machines/delivery.dmi'
 	icon_state = "floorflush_o"
 
 	Enter(atom/movable/mover, atom/forget)

@@ -10,7 +10,7 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 	name = "aquatic mobcritter"
 	real_name = "aquatic mobcritter"
 	desc = "No, you should not be seeing this!"
-	icon = 'icons/misc/sea_critter.dmi'
+	icon = 'icons/mob/sea_critter.dmi'
 	density = 0
 	hand_count = 1
 	can_disarm = 1
