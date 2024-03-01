@@ -1,7 +1,7 @@
 obj/machinery/air_vendor
 	name = "Oxygen Vending Machine"
 	desc = "Here, you can buy the oxygen that you need to live."
-	icon = 'icons/obj/O2vend.dmi'
+	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "O2vend"
 
 	anchored = 1
@@ -19,7 +19,7 @@ obj/machinery/air_vendor
 	var/obj/item/card/id/scan = null
 
 	// Slot overlay image
-	var/global/image/holding_overlay_image = image('icons/obj/O2vend.dmi', "O2vend_slot")
+	var/global/image/holding_overlay_image = image('icons/obj/machines/vending.dmi', "O2vend_slot")
 
 	// Gas mix to be copied into the target tank
 	var/datum/gas_mixture/gas_prototype = null
