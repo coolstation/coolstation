@@ -362,7 +362,7 @@
 	mail
 		name = "Mailbuddy"
 		desc = "The PR-6PS Mailbuddy is a postal delivery ace.  This may seem like an extremely specialized robot application, but that's just because it is exactly that."
-		icon = 'icons/obj/mailbud.dmi'
+		icon = 'icons/obj/bots/mailbud.dmi'
 
 		New()
 			..()
@@ -2024,7 +2024,7 @@
 /obj/item/device/guardbot_tool
 	name = "Tool module"
 	desc = "A generic module for a PR-6S Guardbuddy."
-	icon = 'icons/obj/module.dmi'
+	icon = 'icons/obj/items/module.dmi'
 	icon_state = "tool_generic"
 	mats = 6
 	w_class = W_CLASS_SMALL
@@ -2319,7 +2319,7 @@
 /obj/item/device/guardbot_module
 	name = "Add-on module"
 	desc = "A generic expansion pack for a PR-6S Guardbuddy."
-	icon = 'icons/obj/module.dmi'
+	icon = 'icons/obj/items/module.dmi'
 	icon_state = "tool_generic"
 	mats = 6
 	w_class = W_CLASS_SMALL

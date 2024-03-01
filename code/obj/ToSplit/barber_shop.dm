@@ -28,7 +28,7 @@
 /obj/item/scissors
 	name = "scissors"
 	desc = "Used to cut hair. Make sure you aim at the head, where the hair is."
-	icon = 'icons/obj/barber_shop.dmi'
+	icon = 'icons/obj/items/barber_shop.dmi'
 	icon_state = "scissors"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	tool_flags = TOOL_SNIPPING
@@ -72,7 +72,7 @@
 /obj/item/razor_blade
 	name = "razor blade"
 	desc = "Used to cut facial hair"
-	icon = 'icons/obj/barber_shop.dmi'
+	icon = 'icons/obj/items/barber_shop.dmi'
 	icon_state = "razorblade"
 	flags = FPRINT | TABLEPASS | CONDUCT | ONBELT
 	tool_flags = TOOL_CUTTING
@@ -114,7 +114,7 @@
 /obj/item/dye_bottle
 	name = "hair dye bottle"
 	desc = "Used to dye hair a different color. Seems to be made of tough, unshatterable plastic."
-	icon = 'icons/obj/barber_shop.dmi'
+	icon = 'icons/obj/items/barber_shop.dmi'
 	icon_state = "dye-e"
 	flags = FPRINT | TABLEPASS
 	//Default Colors
@@ -148,7 +148,7 @@
 /obj/item/reagent_containers/food/drinks/hairgrowth
 	name = "\improper EZ-Hairgrowth"
 	desc = "The #1 hair growth product on the market! WARNING: Some side effects may occur."
-	icon = 'icons/obj/barber_shop.dmi'
+	icon = 'icons/obj/items/barber_shop.dmi'
 	icon_state = "tonic1"
 	initial_volume = 50
 	New()
@@ -172,7 +172,7 @@
 
 /obj/barber_pole
 	name = "barber pole"
-	icon = 'icons/obj/barber_shop.dmi'
+	icon = 'icons/obj/items/barber_shop.dmi'
 	icon_state = "pole"
 	density = 1
 	anchored = 1
@@ -291,7 +291,7 @@
 /obj/machinery/hair_dye_dispenser
 	name = "Hair Dye Mixer 3000"
 	desc = "Mixes hair dye for whatever color you want"
-	icon = 'icons/obj/barber_shop.dmi'
+	icon = 'icons/obj/items/barber_shop.dmi'
 	icon_state = "dyedispenser"
 	density = 1
 	anchored = 1.0

@@ -202,7 +202,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 	var/video_dmi = null //Optional:
 
 	icon_state = "transmitter"
-	icon = 'icons/obj/loudspeakers.dmi'
+	icon = 'icons/obj/machines/loudspeakers.dmi'
 	color = "#AAAAAA"
 
 	New()

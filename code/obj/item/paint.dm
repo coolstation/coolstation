@@ -249,7 +249,7 @@
 /obj/item/panel
 	name = "maintenance panel"
 	desc = "A panel that is clearly from a paint dispenser. Obviously."
-	icon = 'icons/obj/metal.dmi'
+	icon = 'icons/obj/items/metal.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "tile_1"
 	item_state = "tile"
@@ -420,7 +420,7 @@ var/list/cached_colors = new/list()
 			var/icon/new_icon = icon(target.icon)
 
 			//Add pattern here.
-			var/icon/pattern = new('icons/obj/paint.dmi', patternlist[currentpattern])
+			var/icon/pattern = new('icons/obj/effects/paint.dmi', patternlist[currentpattern])
 			new_icon.Blend(pattern,ICON_MULTIPLY)
 
 			new_icon.ColorTone(paint_color)

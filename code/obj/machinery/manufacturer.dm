@@ -1989,7 +1989,7 @@
 /obj/item/cloner_blueprints_folder
 	name = "dirty manilla folder"
 	desc = "An old manilla folder covered in stains. It looks like it'll fall apart at the slightest touch."
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "folder"
 	w_class = W_CLASS_SMALL
 	throwforce = 0
@@ -2029,14 +2029,14 @@
 
 /******************** Alastor Pattern Thruster Blueprints *******************/
 /obj/item/paper/manufacturer_blueprint/thrusters
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "blueprint"
 	desc = "Seems like theres traces of charcoal on the paper. Huh."
 	blueprint = /datum/manufacture/thrusters
 
 /******************** Alastor Pattern Thruster Blueprints *******************/
 /obj/item/paper/manufacturer_blueprint/alastor
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "blueprint"
 	desc = "Seems like theres traces of charcoal on the paper. Huh."
 	blueprint = /datum/manufacture/alastor
@@ -2046,19 +2046,19 @@
 
 /obj/item/paper/manufacturer_blueprint/interdictor_frame
 	name = "Interdictor Frame Kit"
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "interdictor_blueprint"
 	blueprint = /datum/manufacture/interdictor_frame
 
 /obj/item/paper/manufacturer_blueprint/interdictor_rod_lambda
 	name = "Lambda Phase-Control Rod"
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "interdictor_blueprint"
 	blueprint = /datum/manufacture/interdictor_rod_lambda
 
 /obj/item/paper/manufacturer_blueprint/interdictor_rod_sigma
 	name = "Sigma Phase-Control Rod"
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "interdictor_blueprint"
 	blueprint = /datum/manufacture/interdictor_rod_sigma
 

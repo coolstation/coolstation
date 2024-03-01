@@ -7,7 +7,7 @@ TRAYS
 */
 
 /obj/item/kitchen
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 
 /obj/item/kitchen/rollingpin
 	name = "rolling pin"
@@ -436,7 +436,7 @@ TRAYS
 /obj/item/kitchen/wineholder //mama mia
 	name = "\improper novelty wine holder"
 	desc = "LOOKS NORMAL!!!"
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "homph"
 	anchored = 1
 	flags = NOSPLASH
@@ -1127,7 +1127,7 @@ TRAYS
 			var/obj/item/reagent_containers/food/snacks/FOOD = W
 			if(istype(FOOD,/obj/item/reagent_containers/food/snacks/ingredient/seaweed)) //seaweed overlay handling
 				if(!src.seaweed)
-					var/image/seaweed = new /image('icons/obj/kitchen.dmi',"seaweed-0")
+					var/image/seaweed = new /image('icons/obj/foodNdrink/kitchen.dmi',"seaweed-0")
 					seaweed.layer = (src.layer+1) //i had to use explicit layering to get the dynamic rolling to render properly
 					src.UpdateOverlays(seaweed,"seaweed")
 					src.seaweed = 1
@@ -1135,7 +1135,7 @@ TRAYS
 				qdel(FOOD)
 			else if(istype(FOOD,/obj/item/reagent_containers/food/snacks/ingredient/sticky_rice) && src.seaweed) //rice overlay (requires seaweed)
 				if(!src.rice)
-					var/image/rice = new /image('icons/obj/kitchen.dmi',"rice-0")
+					var/image/rice = new /image('icons/obj/foodNdrink/kitchen.dmi',"rice-0")
 					rice.layer = (src.layer+2)
 					src.UpdateOverlays(rice,"rice")
 					src.rice = 1
@@ -1158,7 +1158,7 @@ TRAYS
 					ingredienttype="meat"
 				else
 					ingredienttype="nonmeat"
-				var/image/foodoverlay = new /image('icons/obj/kitchen.dmi',"[ingredienttype]-[src.toppings]") //setting up an overlay image
+				var/image/foodoverlay = new /image('icons/obj/foodNdrink/kitchen.dmi',"[ingredienttype]-[src.toppings]") //setting up an overlay image
 				foodoverlay.color = FOOD.food_color
 				foodoverlay.layer = (src.layer+3)
 				toppingdata.Add(FOOD.food_color)
@@ -1186,8 +1186,8 @@ TRAYS
 			if(!src.rolled) //handling the rolling interactivity, basically switching overlays until eventually the item's overlays are wiped...
 				src.rolling++
 				if(src.toppings && (src.rolling<3))
-					var/image/seaweed = new /image('icons/obj/kitchen.dmi',"seaweed-[src.rolling]")
-					var/image/rice = new /image('icons/obj/kitchen.dmi',"rice-[src.rolling]")
+					var/image/seaweed = new /image('icons/obj/foodNdrink/kitchen.dmi',"seaweed-[src.rolling]")
+					var/image/rice = new /image('icons/obj/foodNdrink/kitchen.dmi',"rice-[src.rolling]")
 					seaweed.layer = (src.layer+1)
 					rice.layer = (src.layer+2)
 					src.UpdateOverlays(seaweed,"seaweed")
@@ -1206,9 +1206,9 @@ TRAYS
 					src.rolling -= 2
 					src.rolled = 1
 					src.icon_state = "roller-[src.rolling]"
-					src.UpdateOverlays(new /image('icons/obj/kitchen.dmi',"roller_roll"),"roll")
+					src.UpdateOverlays(new /image('icons/obj/foodNdrink/kitchen.dmi',"roller_roll"),"roll")
 					for(var/i=1,i<=src.toppings,i++)
-						var/image/rolltopping = new /image('icons/obj/kitchen.dmi',"roll_topping-[i]")
+						var/image/rolltopping = new /image('icons/obj/foodNdrink/kitchen.dmi',"roll_topping-[i]")
 						rolltopping.color = toppingdata[i]
 						src.UpdateOverlays(rolltopping,"roll_topping-[i]")
 					src.rolling = 0

@@ -10,7 +10,7 @@ Custom Books
 /obj/item/paper/book
 	name = "book"
 	desc = "A book.  I wonder how many of these there are here, it's not like there would be a library on a space station or something."
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "book0"
 	inhand_image_icon = 'icons/mob/inhand/hand_books.dmi'
 	item_state = "paper"
@@ -313,7 +313,7 @@ Custom Books
 /******************** OTHER BOOKS ********************/
 /obj/item/diary
 	name = "Beepsky's private journal"
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "pinkbook"
 	inhand_image_icon = 'icons/mob/inhand/hand_books.dmi'
 	item_state = "paper"

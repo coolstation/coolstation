@@ -14,7 +14,7 @@
 /obj/machinery/networked
 	anchored = 1
 	density = 1
-	icon = 'icons/obj/networked.dmi'
+	icon = 'icons/obj/machines/networked.dmi'
 	var/net_id = null
 	var/host_id = null //Who are we connected to? (If we have a single host)
 	var/old_host_id = null //Were we previously connected to someone?  Do we care?
@@ -4035,7 +4035,7 @@
 	update_icon()
 		src.overlays = null
 		if (src.contents.len)
-			src.overlays += image('icons/obj/networked.dmi', "elecbox-doors")
+			src.overlays += image('icons/obj/machines/networked.dmi', "elecbox-doors")
 		..()
 
 	process()
@@ -4250,7 +4250,7 @@
 
 	update_icon()
 		src.overlays = null
-		if (src.contents.len) src.overlays += image('icons/obj/networked.dmi', "xray-lid")
+		if (src.contents.len) src.overlays += image('icons/obj/machines/networked.dmi', "xray-lid")
 		..()
 
 	attackby(var/obj/item/I, mob/user)
@@ -4447,7 +4447,7 @@
 
 	New()
 		..()
-		heat_overlay = image('icons/obj/networked.dmi', "")
+		heat_overlay = image('icons/obj/machines/networked.dmi', "")
 
 	return_html_interface()
 		return "<b>Active:</b> [src.active ? "YES" : "NO"]<br><br>Target Temperature:</b> [src.temptarget]K<br>Current Temperature:</b> [src.temperature]K"

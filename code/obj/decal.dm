@@ -248,7 +248,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 /obj/decal/oven
 	name = "Oven"
 	desc = "An old oven."
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "oven_off"
 	anchored = 1
 	density = 1
@@ -256,7 +256,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 
 /obj/decal/sink
 	name = "Sink"
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "sink"
 	desc = "The sink doesn't appear to be connected to a waterline."
 	anchored = 1

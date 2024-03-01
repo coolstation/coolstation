@@ -255,7 +255,7 @@
 /obj/item/screamingtunapillow
 	name = "Tuna Pillow"
 	desc = "It's a pillow that has a tuna on it."
-	icon = 'icons/obj/plushies.dmi'
+	icon = 'icons/obj/items/plushies.dmi'
 	icon_state = "tunapillow"
 	var/spam_flag = 0
 

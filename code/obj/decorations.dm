@@ -568,7 +568,7 @@
 /obj/blind_switch
 	name = "blind switch"
 	desc = "A switch for opening the blinds."
-	icon = 'icons/obj/power.dmi'
+	icon = 'icons/obj/machines/power.dmi'
 	icon_state = "light1"
 	anchored = 1
 	density = 0

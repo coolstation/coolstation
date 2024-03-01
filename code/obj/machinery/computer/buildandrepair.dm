@@ -18,7 +18,7 @@ ABSTRACT_TYPE(/obj/item/circuitboard)
 	anchored = 0
 	w_class = W_CLASS_SMALL
 	name = "Circuit board"
-	icon = 'icons/obj/module.dmi'
+	icon = 'icons/obj/items/module.dmi'
 	icon_state = "id_mod"
 	item_state = "electronic"
 	var/id = null

@@ -62,7 +62,7 @@
 	var/tmp/netnum = 0
 	name = "power cable"
 	desc = "A flexible power cable."
-	icon = 'icons/obj/power_cond.dmi'
+	icon = 'icons/obj/machines/power_cond.dmi'
 	icon_state = "0-1"
 	var/d1 = 0
 	var/d2 = 1

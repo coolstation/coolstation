@@ -1,7 +1,7 @@
 /obj/machinery/shitty_grill
 	name = "shitty grill"
 	desc = "Is that a space heater? That doesn't look safe at all!"
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "shittygrill_off"
 	anchored = 0
 	density = 1

@@ -1272,7 +1272,7 @@
 /obj/table/kitchen_island
 	name = "kitchen island"
 	desc = "a table! with WHEELS!"
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "kitchen_island"
 	has_brakes = TRUE
 	anchored = FALSE

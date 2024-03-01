@@ -7,7 +7,7 @@ SHARDS
 */
 /obj/item/sheet/glass
 	name = "glass"
-	icon = 'icons/obj/glass.dmi'
+	icon = 'icons/obj/unused/glass.dmi'
 	icon_state = "sheet"
 	force = 5.0
 	g_amt = 3750
@@ -172,7 +172,7 @@ SHARDS
 
 /obj/item/sheet/glass/reinforced
 	name = "reinforced glass"
-	icon = 'icons/obj/glass.dmi'
+	icon = 'icons/obj/unused/glass.dmi'
 	icon_state = "sheet-r"
 	item_state = "sheet-rglass"
 	force = 6.0
@@ -187,7 +187,7 @@ SHARDS
 
 /obj/item/sheet/glass/crystal/reinforced
 	name = "reinforced crystal glass"
-	icon = 'icons/obj/glass.dmi'
+	icon = 'icons/obj/unused/glass.dmi'
 	icon_state = "sheet-cr"
 	item_state = "sheet-crglass"
 	force = 6.0
@@ -203,7 +203,7 @@ SHARDS
 
 /obj/item/sheet/glass/crystal
 	name = "crystal glass"
-	icon = 'icons/obj/glass.dmi'
+	icon = 'icons/obj/unused/glass.dmi'
 	icon_state = "sheet-c"
 	item_state = "sheet-cglass"
 	force = 6.0

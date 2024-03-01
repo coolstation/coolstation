@@ -11,7 +11,7 @@
 
 /obj/machinery/microwave
 	name = "Microwave"
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	desc = "The automatic chef of the future!"
 	icon_state = "mw"
 	density = 1

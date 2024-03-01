@@ -1,7 +1,7 @@
 /obj/item/cell
 	name = "power cell"
 	desc = "A rechargable electrochemical power cell."
-	icon = 'icons/obj/power.dmi'
+	icon = 'icons/obj/machines/power.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "cell"
 	item_state = "cell"
@@ -122,7 +122,7 @@
 	else icon_state = "hpcell"
 
 	var/image/I = GetOverlayImage("charge_indicator")
-	if(!I) I = image('icons/obj/power.dmi', "cell-o2")
+	if(!I) I = image('icons/obj/machines/power.dmi', "cell-o2")
 
 	if(charge < 0.01)
 		UpdateOverlays(null, "charge_indicator", 0, 1)
@@ -264,7 +264,7 @@
 /obj/item/cell/potato
 	name = "potato cell"
 	desc = "An improvised organic power cell. It looks a bit limp."
-	icon = 'icons/obj/potatocell.dmi'
+	icon = 'icons/obj/items/potatocell.dmi'
 	icon_state = "king_tater"
 	maxcharge = 600
 	genrate = 0
@@ -292,7 +292,7 @@
 /obj/item/ammo/power_cell/self_charging/potato
 	name = "potato battery"
 	desc = "An improvised organic power cell, cut down to a compact size. It seems somewhat impractical."
-	icon = 'icons/obj/potatocell.dmi'
+	icon = 'icons/obj/items/potatocell.dmi'
 	icon_state = "baby_tater"
 	unusualCell = 1
 	m_amt = 20000

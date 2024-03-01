@@ -1466,7 +1466,7 @@ var/list/owlery_sounds = list('sound/voice/animal/hoot.ogg','sound/ambience/owlz
 
 ///////GREG THE COOL AWESOME ROBOT TRADER/////////////////
 /obj/npc/trader/greg
-	icon = 'icons/obj/trader.dmi'
+	icon = 'icons/mob/trader.dmi'
 	icon_state = "greg"
 	picture = "robot.png"
 	name = "Greg"

@@ -66,7 +66,7 @@
 	icon_state = "xmas-corner2"
 
 /obj/decal/tile_edge/line
-	icon = 'icons/obj/line.dmi'
+	icon = 'icons/obj/decals/line.dmi'
 	icon_state = "linefull"
 
 	white // the default white of these things is brighter than the white tiles, this color matches those

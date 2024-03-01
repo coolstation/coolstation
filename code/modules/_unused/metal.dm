@@ -11,7 +11,7 @@ MATERIAL
 /obj/item/rods
 	name = "rods"
 	desc = "A set of metal rods, useful for constructing grilles and other objects, and decent for hitting people."
-	icon = 'icons/obj/metal.dmi'
+	icon = 'icons/obj/items/metal.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "rods"
 	flags = FPRINT | TABLEPASS| CONDUCT
@@ -144,7 +144,7 @@ MATERIAL
 // METAL SHEET
 /obj/item/sheet/metal
 	name = "metal"
-	icon = 'icons/obj/metal.dmi'
+	icon = 'icons/obj/items/metal.dmi'
 	icon_state = "sheet"
 	desc = "A heavy sheet of metal."
 	m_amt = 3750
@@ -396,7 +396,7 @@ MATERIAL
 /obj/item/sheet/r_metal
 	name = "reinforced metal"
 	desc = "A very heavy sheet of metal."
-	icon = 'icons/obj/metal.dmi'
+	icon = 'icons/obj/items/metal.dmi'
 	icon_state = "sheet-r"
 	force = 5.0
 	item_state = "sheet-metal"

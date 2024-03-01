@@ -93,7 +93,7 @@
 
 /obj/item/toy/diploma
 	name = "diploma"
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "diploma"
 	w_class = W_CLASS_SMALL
 	throwforce = 3

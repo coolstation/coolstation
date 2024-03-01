@@ -971,7 +971,7 @@
 	name = "Lottery Ticket"
 	desc = "A winning lottery ticket perhaps...?"
 
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "paper"
 
 	w_class = W_CLASS_TINY

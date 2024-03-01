@@ -2,7 +2,7 @@
 /obj/item/motherboard
 	name = "Computer mainboard"
 	desc = "A computer motherboard."
-	icon = 'icons/obj/module.dmi'
+	icon = 'icons/obj/items/module.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "mainboard"
 	item_state = "electronic"
@@ -29,7 +29,7 @@
 	terminal //Light frame
 		name = "Terminal-frame"
 		desc = "A light micro-computer frame used for terminal systems."
-		icon = 'icons/obj/terminal_frame.dmi'
+		icon = 'icons/obj/machines/terminal_frame.dmi'
 		created_icon_state = "dterm"
 		max_peripherals = 2
 		metal_given = 3

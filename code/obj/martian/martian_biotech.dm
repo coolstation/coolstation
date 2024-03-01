@@ -7,7 +7,7 @@
 /obj/martianBiotech
   name = "squishy doodad"
   desc = "What the fuck even is this?"
-  icon = 'icons/obj/martian.dmi'
+  icon = 'icons/obj/unused/martian.dmi'
   icon_state = "cloner"
   anchored = 1
   density = 1

@@ -1,7 +1,7 @@
 /obj/submachine/claw_machine
 	name = "claw machine"
 	desc = "Sure we got our health insurance benefits cut, and yeah we don't get any overtime on holidays, but hey - free to play claw machines!"
-	icon = 'icons/obj/plushies.dmi'
+	icon = 'icons/obj/items/plushies.dmi'
 	icon_state = "claw"
 	anchored = 1
 	density = 1
@@ -43,7 +43,7 @@
 	duration = 100
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ACT | INTERRUPT_ACTION
 	id = "claw_machine"
-	icon = 'icons/obj/plushies.dmi'
+	icon = 'icons/obj/items/plushies.dmi'
 	icon_state = "claw_action"
 	var/mob/M
 	var/obj/submachine/claw_machine/CM
@@ -98,7 +98,7 @@
 
 /obj/item/toy/plush
 	name = "plush toy"
-	icon = 'icons/obj/plushies.dmi'
+	icon = 'icons/obj/items/plushies.dmi'
 	icon_state = "bear"
 	desc = "A cute and cuddly plush toy!"
 	throwforce = 3

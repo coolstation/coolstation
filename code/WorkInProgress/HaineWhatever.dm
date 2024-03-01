@@ -1639,7 +1639,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 /obj/test_knife_switch_switch
 	name = "knife switch switch"
 	desc = "This is an object that's just for testing the knife switch art. Don't use it!"
-	icon = 'icons/obj/knife_switch.dmi'
+	icon = 'icons/obj/unused/knife_switch.dmi'
 	icon_state = "knife_switch1-throw"
 	anchored = 1
 
@@ -1663,7 +1663,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 /obj/test_knife_switch_board
 	name = "knife switch board"
 	desc = "This is an object that's just for testing the knife switch art. Don't use it!"
-	icon = 'icons/obj/knife_switch.dmi'
+	icon = 'icons/obj/unused/knife_switch.dmi'
 	icon_state = "knife_base1"
 	anchored = 1
 

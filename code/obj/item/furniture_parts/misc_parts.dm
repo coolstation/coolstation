@@ -2,7 +2,7 @@
 /obj/item/furniture_parts/rack
 	name = "rack parts"
 	desc = "A collection of parts that can be used to make a rack."
-	icon = 'icons/obj/metal.dmi'
+	icon = 'icons/obj/items/metal.dmi'
 	icon_state = "rack_base_parts"
 	stamina_damage = 25
 	stamina_cost = 22

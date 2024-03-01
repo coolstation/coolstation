@@ -48,8 +48,8 @@
 	New()
 		..()
 
-		base = icon('icons/obj/canvas.dmi', icon_state = "[canvas_width]x[canvas_height]_base")
-		art = icon('icons/obj/canvas.dmi', icon_state = "[canvas_width]x[canvas_height]_blank")
+		base = icon('icons/obj/items/canvas.dmi', icon_state = "[canvas_width]x[canvas_height]_base")
+		art = icon('icons/obj/items/canvas.dmi', icon_state = "[canvas_width]x[canvas_height]_blank")
 
 		underlays += base
 		icon = art

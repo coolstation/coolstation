@@ -1,7 +1,7 @@
 // hack of the century
 /obj/smes_spawner
 	name = "power storage unit"
-	icon = 'icons/obj/power.dmi'
+	icon = 'icons/obj/machines/power.dmi'
 	icon_state = "smes"
 	density = 1
 	anchored = 1

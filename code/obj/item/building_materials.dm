@@ -34,7 +34,7 @@ MATERIAL
 
 /obj/item/sheet
 	name = "sheet"
-	icon = 'icons/obj/metal.dmi'
+	icon = 'icons/obj/items/metal.dmi'
 	icon_state = "sheet-m_5"
 	//Used to determine the right icon_state: combined with suffixes for material/reinforcement in update_appearance and one for amount in change_stack_appearance
 	var/icon_state_base = "sheet"
@@ -338,7 +338,7 @@ MATERIAL
 					a_type = /obj/item/rods
 					a_amount = rodsinput * 2
 					a_cost = rodsinput
-					a_icon = 'icons/obj/metal.dmi'
+					a_icon = 'icons/obj/items/metal.dmi'
 					a_icon_state = "rods"
 					a_name = "rods"
 					duration_alt = 1.7 SECONDS
@@ -352,7 +352,7 @@ MATERIAL
 					a_type = /obj/item/tile
 					a_amount = tileinput * 4
 					a_cost = tileinput
-					a_icon = 'icons/obj/metal.dmi'
+					a_icon = 'icons/obj/items/metal.dmi'
 					a_icon_state = "tile"
 					a_name = "floor tiles"
 					duration_alt = 2 SECONDS
@@ -428,7 +428,7 @@ MATERIAL
 					a_type = /obj/item/furniture_parts/rack
 					a_amount = 1
 					a_cost = 1
-					a_icon = 'icons/obj/metal.dmi'
+					a_icon = 'icons/obj/items/metal.dmi'
 					a_icon_state = "rack_parts"
 					a_name = "rack parts"
 					duration_alt = 3.5 SECONDS
@@ -514,7 +514,7 @@ MATERIAL
 					a_type = /obj/computer3frame/terminal
 					a_amount = 1
 					a_cost = 3
-					a_icon = 'icons/obj/terminal_frame.dmi'
+					a_icon = 'icons/obj/machines/terminal_frame.dmi'
 					a_icon_state = "0"
 					a_name = "a terminal frame"
 					duration_alt = 3.5 SECONDS
@@ -672,7 +672,7 @@ MATERIAL
 /obj/item/rods
 	name = "rods"
 	desc = "A set of metal rods, useful for constructing grilles and other objects, and decent for hitting people."
-	icon = 'icons/obj/metal.dmi'
+	icon = 'icons/obj/items/metal.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "rods_5"
 	item_state = "rods"
@@ -848,7 +848,7 @@ MATERIAL
 /obj/head_on_spike
 	name = "head on a spike"
 	desc = "A human head impaled on a spike, dim-eyed, grinning faintly, blood blackening between the teeth."
-	icon = 'icons/obj/metal.dmi'
+	icon = 'icons/obj/items/metal.dmi'
 	icon_state = "head_spike"
 	anchored = 0
 	density = 1
@@ -919,7 +919,7 @@ MATERIAL
 		src.overlays = null
 
 		if((heads.len < 3 && head_offset > 0) || heads.len == 0)
-			src.overlays += image('icons/obj/metal.dmi',"head_spike_blood")
+			src.overlays += image('icons/obj/items/metal.dmi',"head_spike_blood")
 
 		switch(heads.len) //fuck it
 			if(0)
@@ -957,10 +957,10 @@ MATERIAL
 				H.set_dir(SOUTH)
 				src.overlays += H
 
-			src.overlays += image('icons/obj/metal.dmi',"head_spike_flies")
+			src.overlays += image('icons/obj/items/metal.dmi',"head_spike_flies")
 
 		if(anchored)
-			src.overlays += image('icons/obj/metal.dmi',"head_spike_weld")
+			src.overlays += image('icons/obj/items/metal.dmi',"head_spike_weld")
 
 		return
 
@@ -1011,7 +1011,7 @@ MATERIAL
 /obj/item/tile
 	name = "floor tile"
 	desc = "They keep the floor in a good and walkable condition."
-	icon = 'icons/obj/metal.dmi'
+	icon = 'icons/obj/items/metal.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "tile_5"
 	item_state = "tile"

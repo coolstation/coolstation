@@ -3,14 +3,14 @@
 /obj/decal/fakeobjects/apc_broken
 	name = "broken APC"
 	desc = "A smashed local power unit."
-	icon = 'icons/obj/power.dmi'
+	icon = 'icons/obj/machines/power.dmi'
 	icon_state = "apc-b"
 	anchored = 1
 
 /obj/decal/fakeobjects/firealarm_broken
 	name = "broken fire alarm"
 	desc = "This fire alarm is burnt out, ironically."
-	icon = 'icons/obj/monitors.dmi'
+	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "firex"
 	anchored = 1
 
@@ -69,7 +69,7 @@
 /obj/decal/fakeobjects/airmonitor_broken
 	name = "broken air monitor"
 	desc = "Something has broken this air monitor."
-	icon = 'icons/obj/monitors.dmi'
+	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "alarmx"
 	anchored = 1
 

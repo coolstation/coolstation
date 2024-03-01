@@ -1,7 +1,7 @@
 /obj/machinery/gibber
 	name = "Gibber"
 	desc = "The name isn't descriptive enough?"
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "grinder"
 	density = 1
 	anchored = 1
@@ -24,7 +24,7 @@
 
 /obj/machinery/gibber/New()
 	..()
-	//src.overlays += image('icons/obj/kitchen.dmi', "grindnotinuse") what the fuck this isn't an icon
+	//src.overlays += image('icons/obj/foodNdrink/kitchen.dmi', "grindnotinuse") what the fuck this isn't an icon
 	UnsubscribeProcess()
 
 /obj/machinery/gibber/custom_suicide = 1
@@ -253,6 +253,6 @@
 			else
 				newmeat3.set_loc(T1)
 			if (src.dirty == 1)
-				src.overlays += image('icons/obj/kitchen.dmi', "grbloody")
+				src.overlays += image('icons/obj/foodNdrink/kitchen.dmi', "grbloody")
 
 		src.operating = 0

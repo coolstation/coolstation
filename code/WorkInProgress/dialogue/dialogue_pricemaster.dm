@@ -4,7 +4,7 @@
 	picture = "pm_start.png"
 	density = 1
 	anchored = 1
-	icon = 'icons/obj/trader.dmi'
+	icon = 'icons/mob/trader.dmi'
 	icon_state = "pricemaster"
 	hiketolerance = 0
 	dialogue = null

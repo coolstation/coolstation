@@ -279,7 +279,7 @@ var/zapLimiter = 0
 
 		if (cell)
 			// if opened, update overlays for cell
-			var/image/I_cell = SafeGetOverlayImage("cell", 'icons/obj/power.dmi', "apc-[cell.icon_state]")
+			var/image/I_cell = SafeGetOverlayImage("cell", 'icons/obj/machines/power.dmi', "apc-[cell.icon_state]")
 			UpdateOverlays(I_cell, "cell", 0, 1)
 
 	else if(emagged)
@@ -287,10 +287,10 @@ var/zapLimiter = 0
 		return
 	else if(wiresexposed)
 		icon_state = "apcwires"
-		var/image/I_wireorange = SafeGetOverlayImage("wireorange", 'icons/obj/power.dmi', "apccut-orange")
-		var/image/I_wiredarkred = SafeGetOverlayImage("wiredarkred", 'icons/obj/power.dmi', "apccut-darkred")
-		var/image/I_wirewhite = SafeGetOverlayImage("wirewhite", 'icons/obj/power.dmi', "apccut-white")
-		var/image/I_wireyellow = SafeGetOverlayImage("wireyellow", 'icons/obj/power.dmi', "apccut-yellow")
+		var/image/I_wireorange = SafeGetOverlayImage("wireorange", 'icons/obj/machines/power.dmi', "apccut-orange")
+		var/image/I_wiredarkred = SafeGetOverlayImage("wiredarkred", 'icons/obj/machines/power.dmi', "apccut-darkred")
+		var/image/I_wirewhite = SafeGetOverlayImage("wirewhite", 'icons/obj/machines/power.dmi', "apccut-white")
+		var/image/I_wireyellow = SafeGetOverlayImage("wireyellow", 'icons/obj/machines/power.dmi', "apccut-yellow")
 		UpdateOverlays(isWireColorCut(APC_WIRE_IDSCAN) ? I_wireorange : null, "wireorange", 0, 1)
 		UpdateOverlays(isWireColorCut(APC_WIRE_MAIN_POWER1) ? I_wiredarkred : null, "wiredarkred", 0, 1)
 		UpdateOverlays(isWireColorCut(APC_WIRE_MAIN_POWER2) ? I_wirewhite : null, "wirewhite", 0, 1)
@@ -301,12 +301,12 @@ var/zapLimiter = 0
 		icon_state = "apc0"
 
 		// if closed, update overlays for channel status
-		var/image/I_lock = SafeGetOverlayImage("lock", 'icons/obj/power.dmi', "apcox-[locked]") // 0=blue 1=red
-		var/image/I_chrg = SafeGetOverlayImage("charge", 'icons/obj/power.dmi', "apco3-[charging]") // 0=red, 1=yellow/black 2=green
-		var/image/I_brke = SafeGetOverlayImage("breaker", 'icons/obj/power.dmi', "apcbr-[operating]")
-		var/image/I_lite = SafeGetOverlayImage("lighting", 'icons/obj/power.dmi', "apco1-[lighting]") // 0=red, 1=green, 2=blue
-		var/image/I_equp = SafeGetOverlayImage("equipment", 'icons/obj/power.dmi', "apco0-[equipment]")
-		var/image/I_envi = SafeGetOverlayImage("environment", 'icons/obj/power.dmi', "apco2-[environ]")
+		var/image/I_lock = SafeGetOverlayImage("lock", 'icons/obj/machines/power.dmi', "apcox-[locked]") // 0=blue 1=red
+		var/image/I_chrg = SafeGetOverlayImage("charge", 'icons/obj/machines/power.dmi', "apco3-[charging]") // 0=red, 1=yellow/black 2=green
+		var/image/I_brke = SafeGetOverlayImage("breaker", 'icons/obj/machines/power.dmi', "apcbr-[operating]")
+		var/image/I_lite = SafeGetOverlayImage("lighting", 'icons/obj/machines/power.dmi', "apco1-[lighting]") // 0=red, 1=green, 2=blue
+		var/image/I_equp = SafeGetOverlayImage("equipment", 'icons/obj/machines/power.dmi', "apco0-[equipment]")
+		var/image/I_envi = SafeGetOverlayImage("environment", 'icons/obj/machines/power.dmi', "apco2-[environ]")
 
 		UpdateOverlays(I_lock, "lock", 0, 1)
 		UpdateOverlays(I_chrg, "charge", 0, 1)
