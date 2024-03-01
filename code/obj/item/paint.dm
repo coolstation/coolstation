@@ -420,7 +420,7 @@ var/list/cached_colors = new/list()
 			var/icon/new_icon = icon(target.icon)
 
 			//Add pattern here.
-			var/icon/pattern = new('icons/obj/effects/paint.dmi', patternlist[currentpattern])
+			var/icon/pattern = new('icons/effects/paint.dmi', patternlist[currentpattern])
 			new_icon.Blend(pattern,ICON_MULTIPLY)
 
 			new_icon.ColorTone(paint_color)
