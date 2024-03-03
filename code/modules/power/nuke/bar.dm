@@ -137,7 +137,7 @@ datum
 /obj/item/material_piece/nuke_bar
 	name = "wtf bug show this to kremlin" /* names are auto generated */
 	desc = "A bar of fissile material suitable for use in the fabrication of nuclear fuel rods."
-	icon = 'icons/obj/materials.dmi'
+	icon = 'icons/obj/items/materials.dmi'
 	icon_state = "bar"
 	color = null
 	var/nuke_quality = -1

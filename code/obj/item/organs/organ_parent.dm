@@ -33,7 +33,7 @@
 
 	// So we can have an organ have a visible counterpart while inside someone, like a tail or some kind of krang
 	// if you're making a tail, you need to have at least organ_image_under_suit_1 defined, or else it wont work
-	var/organ_image_icon = null		// The icon group we'll be using, such as 'icons/effects/genetics.dmi'
+	var/organ_image_icon = null		// The icon group we'll be using, such as 'icons/mob/genetics.dmi'
 	var/organ_image_over_suit = null		// Shows up over our suit, usually while the mob is facing north
 	var/organ_image_under_suit_1 = null	// Shows up under our suit, usually while the mob is facing anywhere else
 	var/organ_image_under_suit_2 = null	// If our organ needs another picture, usually for another coloration

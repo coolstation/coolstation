@@ -1713,7 +1713,7 @@
 		if (disposed)
 			return
 		if (ishuman(owner))
-			overlay_image = image("icon" = 'icons/effects/genetics.dmi', "icon_state" = "telekinesishead", layer = MOB_LAYER)
+			overlay_image = image("icon" = 'icons/mob/genetics.dmi', "icon_state" = "telekinesishead", layer = MOB_LAYER)
 		return
 
 	OnAdd()
@@ -1838,7 +1838,7 @@
 
 	OnAdd()
 		if (ishuman(owner))
-			overlay_image = image("icon" = 'icons/effects/genetics.dmi', "icon_state" = "aurapulse", layer = MOB_LIMB_LAYER)
+			overlay_image = image("icon" = 'icons/mob/genetics.dmi', "icon_state" = "aurapulse", layer = MOB_LIMB_LAYER)
 			overlay_image.color = "#333333"
 		..()
 		owner.UpdateOverlays(null, id)
@@ -1914,7 +1914,7 @@
 
 	OnAdd()
 		if (ishuman(owner))
-			overlay_image = image("icon" = 'icons/effects/genetics.dmi', "icon_state" = "aurapulse", layer = MOB_LIMB_LAYER)
+			overlay_image = image("icon" = 'icons/mob/genetics.dmi', "icon_state" = "aurapulse", layer = MOB_LIMB_LAYER)
 		..()
 		owner.UpdateOverlays(null, id)
 

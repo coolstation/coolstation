@@ -609,11 +609,11 @@
 
 	New()
 		..()
-		ctrl_highlight = image('icons/mob/blob_ui.dmi',"ctrl")
-		shift_highlight = image('icons/mob/blob_ui.dmi',"shift")
-		alt_highlight = image('icons/mob/blob_ui.dmi',"alt")
-		cooldown = image('icons/mob/blob_ui.dmi',"cooldown")
-		var/image/I = image('icons/mob/blob_ui.dmi',"darkener")
+		ctrl_highlight = image('icons/ui/blob_ui.dmi',"ctrl")
+		shift_highlight = image('icons/ui/blob_ui.dmi',"shift")
+		alt_highlight = image('icons/ui/blob_ui.dmi',"alt")
+		cooldown = image('icons/ui/blob_ui.dmi',"cooldown")
+		var/image/I = image('icons/ui/blob_ui.dmi',"darkener")
 		I.alpha = 100
 		darkener = I
 		//var/atom/movable/screen/pseudo_overlay/T = new /atom/movable/screen/pseudo_overlay(src)
@@ -622,7 +622,7 @@
 		cooldown_overlay = new /atom/movable/screen/pseudo_overlay()
 		src.vis_contents += point_overlay
 		src.vis_contents += cooldown_overlay
-		cooldown_overlay.icon = 'icons/mob/spell_buttons.dmi'
+		cooldown_overlay.icon = 'icons/ui/spell_buttons.dmi'
 		cooldown_overlay.icon_state = "cooldown"
 		cooldown_overlay.alpha = 0
 		point_overlay.maptext_x = -2

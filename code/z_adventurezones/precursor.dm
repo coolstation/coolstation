@@ -1373,7 +1373,7 @@
 		qdel(src)
 
 /obj/creepy_sound_trigger
-	icon = 'icons/misc/mark.dmi'
+	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "ydn"
 	invisibility = 101
 	anchored = 1
@@ -1393,7 +1393,7 @@
 // cogwerks- variant for glaciers
 
 /obj/creepy_sound_trigger_glacier
-	icon = 'icons/misc/mark.dmi'
+	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "ydn"
 	invisibility = 101
 	anchored = 1

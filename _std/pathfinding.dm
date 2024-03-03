@@ -229,7 +229,7 @@
 /proc/addAstarViz(var/list/path)
 	astarImages = list()
 	for(var/turf/T in path)
-		var/image/marker = image('icons/mob/screen1.dmi', T, icon_state="x3")
+		var/image/marker = image('icons/ui/screen1.dmi', T, icon_state="x3")
 		marker.color="#0F8"
 		astarImages += marker
 	for(var/client/C in clients)

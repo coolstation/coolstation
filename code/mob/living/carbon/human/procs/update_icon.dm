@@ -8,7 +8,7 @@
 		return
 
 	if (!blood_image)
-		blood_image = image('icons/effects/blood.dmi')
+		blood_image = image('icons/obj/decals/blood.dmi')
 
 	// lol
 	var/head_offset = 0

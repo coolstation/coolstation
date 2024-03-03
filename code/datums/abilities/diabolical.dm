@@ -57,7 +57,7 @@
 /////////////////////////////////////////////// Merchant spell parent ////////////////////////////
 
 /datum/targetable/merchant
-	icon = 'icons/mob/spell_buttons.dmi'
+	icon = 'icons/ui/spell_buttons.dmi'
 	icon_state = "template"
 	cooldown = 0
 	last_cast = 0
@@ -202,7 +202,7 @@
 /datum/abilityHolder/gimmick
 
 /datum/targetable/gimmick
-	icon = 'icons/mob/spell_buttons.dmi'
+	icon = 'icons/ui/spell_buttons.dmi'
 	icon_state = "revenant_button_template"
 	preferred_holder_type = /datum/abilityHolder/gimmick
 
@@ -389,7 +389,7 @@
 //// Crayon-related stuff ////
 
 /datum/targetable/gimmick/scribble // some hacky crayon ability
-	icon = 'icons/mob/wraith_ui.dmi'
+	icon = 'icons/ui/wraith_ui.dmi'
 	icon_state = "bloodwriting"
 	name = "Scribble"
 	desc = "Write on a tile with questionable intent."
@@ -449,22 +449,22 @@
 
 			if(!isnull(t) || !length(t))
 				src.symbol_setting = t
-		
+
 		t = src.symbol_setting
 
 		if(isnull(t) || !length(t))
 			return
-		
+
 		if(length(t) == 1)
 			src.symbol_setting = null
 			t = t[1]
 		else
 			src.symbol_setting = t.Copy(2) // remove first
 			t = t[1]
-		
+
 		if(t in src.c_char_to_symbol)
 			t = src.c_char_to_symbol[t]
-		
+
 		var/obj/decal/cleanable/writing/spooky/G = make_cleanable(/obj/decal/cleanable/writing/spooky,T)
 		G.artist = user.key
 

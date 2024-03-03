@@ -572,7 +572,7 @@
 		..()
 		icon_state = pick("martian","martianP","martianW","martianSP","mars_bot","welder","petbee","lavacrab","boogie","walrus","owl","goose","swan","gull","parrot","possum","bumblespider","big_spide[pick("","-red","-blue","-green")]")
 		if (icon_state in list("owl","goose","swan","gull"))
-			icon = 'icons/misc/bird.dmi'
+			icon = 'icons/mob/bird.dmi'
 		else if (icon_state == "parrot")
 			var/obj/critter/parrot/P
 			if (prob(1) && islist(special_parrot_species))
@@ -965,7 +965,7 @@
 /// BZZZZZZZZZZZ
 
 /obj/npc/trader/bee
-	icon = 'icons/obj/trader.dmi'
+	icon = 'icons/mob/trader.dmi'
 	icon_state = "bee"
 	picture = "bee.png"
 	name = "Bombini" // like the tribe of bumblebees
@@ -1048,7 +1048,7 @@
 // Hon- I mean, hello sir.
 
 /obj/npc/trader/exclown
-	icon = 'icons/obj/trader.dmi'
+	icon = 'icons/mob/trader.dmi'
 	icon_state = "exclown"
 	picture = "exclown.png"
 	name = "Geoff Honkington"
@@ -1137,7 +1137,7 @@
 // Clack!
 
 /obj/npc/trader/skeleton
-	icon = 'icons/obj/trader.dmi'
+	icon = 'icons/mob/trader.dmi'
 	icon_state = "skeleton"
 	picture = "skeleton.png"
 	name = "Clack Hat"
@@ -1193,7 +1193,7 @@
 // It's Chad from Sealab!
 
 /obj/npc/trader/chad
-	icon = 'icons/obj/trader.dmi'
+	icon = 'icons/mob/trader.dmi'
 	icon_state = "chad"
 	picture = "chad.png"
 	name = "Chad"
@@ -1248,7 +1248,7 @@
 		pickupdialoguefailure = "There ain't nothin' to pick up, bro!"
 
 /obj/npc/trader/hand
-	icon = 'icons/obj/trader.dmi'
+	icon = 'icons/mob/trader.dmi'
 	icon_state = "hand"
 	picture = "hand.png"
 	name = "A hand sticking out from a toilet"
@@ -1435,7 +1435,7 @@
 
 
 /obj/npc/trader/nio
-	icon = 'icons/obj/trader.dmi'
+	icon = 'icons/mob/trader.dmi'
 	icon_state = "nio"
 	picture = "nio.png"
 	name = "No Money Nio"
@@ -1481,7 +1481,7 @@
 		pickupdialoguefailure = "yeah that works too"
 
 /obj/npc/trader/katya //lone human survivor of ice station fita, has been stuck for days warming donk pockets on a space heater
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "welder"
 	picture = "nio.png"
 	name = "Comrade Katya"

@@ -2,7 +2,7 @@
 	click_check = 0
 
 	proc/play(name)
-		create_screen("bg", "", 'icons/mob/hud_common.dmi', "cinematic_bg", "1, 1 to NORTH, EAST", 98)
+		create_screen("bg", "", 'icons/ui/hud_common.dmi', "cinematic_bg", "1, 1 to NORTH, EAST", 98)
 		switch (name)
 			if ("nuke")
 				var/atom/movable/screen/hud/anim = create_screen("cinematic", "", 'icons/effects/station_explosion.dmi', "start_nuke", "1:6, 1:50", 99)

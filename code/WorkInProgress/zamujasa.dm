@@ -3,7 +3,7 @@
 	desc = "Some sort of cabling that runs under the floor. Looks pretty important."
 	density = 0
 	anchored = 1
-	icon = 'icons/obj/power_cond.dmi'
+	icon = 'icons/obj/machines/power_cond.dmi'
 	icon_state = "1-10"
 	layer = CABLE_LAYER
 	color = "#037ffc"
@@ -147,7 +147,7 @@
 	anchored = 1
 	density = 1
 	opacity = 0
-	icon = 'icons/obj/glass.dmi'
+	icon = 'icons/obj/unused/glass.dmi'
 	icon_state = "sheet"
 
 	var/facing = NW_SE
@@ -612,7 +612,7 @@
 
 /obj/landmark/football
 	name = "join"
-	icon = 'icons/effects/mapeditor.dmi'
+	icon = 'icons/map-editing/mapeditor.dmi'
 	icon_state = "landmark"
 	deleted_on_start = TRUE
 	add_to_landmarks = FALSE

@@ -1538,7 +1538,7 @@ var/list/meatland_fx_sounds = list('sound/ambience/spooky/Meatzone_Squishy.ogg',
 
 /obj/iomoon_puzzle/generic_logic_element
 	name = "generic puzzle logic element"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	icon_state = "x"
 	invisibility = 101
 	var/output_ids = null //legacy

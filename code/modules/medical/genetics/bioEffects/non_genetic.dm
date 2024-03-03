@@ -245,7 +245,7 @@
 
 	OnAdd()
 		if (ishuman(owner))
-			overlay_image = image("icon" = 'icons/effects/genetics.dmi', "icon_state" = "outline", layer = MOB_LIMB_LAYER)
+			overlay_image = image("icon" = 'icons/mob/genetics.dmi', "icon_state" = "outline", layer = MOB_LIMB_LAYER)
 			overlay_image.color = "#FF0059"
 		..()
 
@@ -258,6 +258,6 @@
 
 	OnAdd()
 		if (ishuman(owner))
-			overlay_image = image("icon" = 'icons/effects/genetics.dmi', "icon_state" = "outline", layer = MOB_LIMB_LAYER)
+			overlay_image = image("icon" = 'icons/mob/genetics.dmi', "icon_state" = "outline", layer = MOB_LIMB_LAYER)
 			overlay_image.color = "#007BFF"
 		..()

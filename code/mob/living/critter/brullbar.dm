@@ -35,13 +35,13 @@
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.icon = 'icons/mob/hud_human.dmi'
+		HH.icon = 'icons/ui/hud_human.dmi'
 		HH.limb = new /datum/limb/brullbar
 		HH.icon_state = "handl"				// the icon state of the hand UI background
 		HH.limb_name = "left brüllbär arm"
 
 		HH = hands[2]
-		HH.icon = 'icons/mob/hud_human.dmi'
+		HH.icon = 'icons/ui/hud_human.dmi'
 		HH.limb = new /datum/limb/brullbar
 		HH.name = "right hand"
 		HH.suffix = "-R"

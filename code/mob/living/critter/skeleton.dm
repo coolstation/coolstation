@@ -70,11 +70,11 @@
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.icon = 'icons/mob/hud_human.dmi'
+		HH.icon = 'icons/ui/hud_human.dmi'
 		HH.icon_state = "handl"
 
 		HH = hands[2]
-		HH.icon = 'icons/mob/hud_human.dmi'
+		HH.icon = 'icons/ui/hud_human.dmi'
 		HH.name = "right hand"
 		HH.suffix = "-R"
 		HH.icon_state = "handr"

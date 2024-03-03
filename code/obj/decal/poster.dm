@@ -400,7 +400,7 @@
 
 		barber
 			name = "The Snip"
-			icon = 'icons/obj/barber_shop.dmi'
+			icon = 'icons/obj/items/barber_shop.dmi'
 			icon_state = "thesnip"
 
 		bar

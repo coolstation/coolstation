@@ -5,7 +5,7 @@
 	var/num_max = 999
 	desc = "An armed and automated Syndicate scout drone."
 	density = 1
-	icon = 'icons/obj/ship.dmi'
+	icon = 'icons/obj/vehicles/ship.dmi'
 	icon_state = "drone"
 	custom_gib_handler = /proc/robogibs
 	hand_count = 1
@@ -58,7 +58,7 @@
 		if (dying)
 			return
 		dying = 1
-		overlays += image('icons/obj/ship.dmi', "dying-overlay")
+		overlays += image('icons/obj/vehicles/ship.dmi', "dying-overlay")
 		SPAWN_DBG(2 SECONDS)
 			ghostize()
 			var/turf/L = get_turf(src)
@@ -118,7 +118,7 @@
 		var/datum/handHolder/HH = hands[1]
 		HH.limb = new /datum/limb/gun/phaser
 		HH.name = "S-1 Light Anti-Personnel Energy Sling"
-		HH.icon = 'icons/mob/critter_ui.dmi'
+		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "handphs"
 		HH.limb_name = "S-1 Light Anti-Personnel Energy Sling"
 		HH.can_hold_items = 0

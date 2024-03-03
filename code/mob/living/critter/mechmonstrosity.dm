@@ -3,7 +3,7 @@
 	real_name = "mechmonstrosity"
 	desc = "A severely disfigured human torso which is forcibly kept alive by the mechanical parts.."
 	density = 1
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "mechmonstrosity"
 	custom_gib_handler = /proc/robogibs
 	blood_id = "oil"
@@ -101,7 +101,7 @@
 		..()
 		var/datum/handHolder/HH = hands[1]
 		HH.name = "Syringe Injector"					// designation of the hand - purely for show
-		HH.icon = 'icons/mob/critter_ui.dmi'	// the icon of the hand UI background
+		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "syringegun"				// the icon state of the hand UI background
 		HH.limb_name = "Injector"					// name for the dummy holder
 		HH.limb = new /datum/limb/gun/syringe	// if not null, the special limb to use when attack_handing
@@ -111,7 +111,7 @@
 
 		HH = hands[2]
 		HH.name = "Dual Saw"					// designation of the hand - purely for show
-		HH.icon = 'icons/mob/critter_ui.dmi'	// the icon of the hand UI background
+		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "saw"				// the icon state of the hand UI background
 		HH.limb_name = "Dual Saw"					// name for the dummy holder
 		HH.limb = new /datum/limb/dualsaw	// if not null, the special limb to use when attack_handing
@@ -245,7 +245,7 @@
 	duration = 80
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	id = "mechanimate"
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "turn_over"
 	var/mob/living/target
 	var/datum/targetable/critter/mechanimate/mechanimate
@@ -599,11 +599,11 @@
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.icon = 'icons/mob/hud_human.dmi'
+		HH.icon = 'icons/ui/hud_human.dmi'
 		HH.icon_state = "handl"
 
 		HH = hands[2]
-		HH.icon = 'icons/mob/hud_human.dmi'
+		HH.icon = 'icons/ui/hud_human.dmi'
 		HH.name = "right hand"
 		HH.suffix = "-R"
 		HH.icon_state = "handr"

@@ -1,6 +1,6 @@
 /obj/machinery/recharge_station
 	name = "cyborg docking station"
-	icon = 'icons/obj/robot_parts.dmi'
+	icon = 'icons/obj/items/robot_parts.dmi'
 	desc = "A station which allows cyborgs to repair damage, recharge their cells, and have upgrades installed if they are present in the station."
 	icon_state = "station"
 	density = 1
@@ -752,7 +752,7 @@
 
 /obj/machinery/recharge_station/proc/build_icon()
 	if (src.occupant)
-		src.UpdateOverlays(image('icons/obj/robot_parts.dmi', "station-occu"), "occupant")
+		src.UpdateOverlays(image('icons/obj/items/robot_parts.dmi', "station-occu"), "occupant")
 	else
 		src.UpdateOverlays(null, "occupant")
 	if (src.status & BROKEN)
@@ -762,7 +762,7 @@
 	if (src.status & NOPOWER)
 		src.UpdateOverlays(null, "power")
 		return
-	src.UpdateOverlays(image('icons/obj/robot_parts.dmi', "station-pow"), "power")
+	src.UpdateOverlays(image('icons/obj/items/robot_parts.dmi', "station-pow"), "power")
 
 /obj/machinery/recharge_station/proc/process_occupant(mult)
 	if (src.occupant)

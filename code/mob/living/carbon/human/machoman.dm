@@ -1461,7 +1461,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 
 ABSTRACT_TYPE(/datum/targetable/macho)
 /datum/targetable/macho
-	icon = 'icons/mob/spell_buttons.dmi'
+	icon = 'icons/ui/spell_buttons.dmi'
 	icon_state = "enthrall"
 	cooldown = 0
 	last_cast = 0

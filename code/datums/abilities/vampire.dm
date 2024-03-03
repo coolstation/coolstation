@@ -429,7 +429,7 @@
 //		  instance when employing do_mob() checks.
 
 /datum/targetable/vampire
-	icon = 'icons/mob/spell_buttons.dmi'
+	icon = 'icons/ui/spell_buttons.dmi'
 	icon_state = "vampire-template"
 	cooldown = 0
 	last_cast = 0

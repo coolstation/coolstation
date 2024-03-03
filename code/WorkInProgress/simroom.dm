@@ -2,7 +2,7 @@
 /obj/machinery/sim/transmitter
 	name = "Sim Mainframe"
 	desc = "Controls the simulation room and V-space"
-	icon = 'icons/misc/simroom.dmi'
+	icon = 'icons/obj/machines/simroom.dmi'
 	icon_state = "mastercomp"
 	anchored = 1
 	density = 1
@@ -125,7 +125,7 @@
 /obj/machinery/sim/chair
 	name = "Sim Chair"
 	desc = "Lets a user access V-space"
-	icon = 'icons/misc/simroom.dmi'
+	icon = 'icons/obj/machines/simroom.dmi'
 	icon_state = "simchair"
 	anchored = 1
 	density = 0
@@ -181,7 +181,7 @@
 /obj/machinery/sim/vr_bed
 	name = "VR containment unit"
 	desc = "An advanced pod that lets the user enter V-space"
-	icon = 'icons/misc/simroom.dmi'
+	icon = 'icons/obj/machines/simroom.dmi'
 	icon_state = "vrbed"//_0"
 	anchored = 1
 	density = 1
@@ -407,7 +407,7 @@
 /obj/machinery/sim/programcomp
 	name = "Sim Computer"
 	desc = "Controls part of V-space"
-	icon = 'icons/misc/simroom.dmi'
+	icon = 'icons/obj/machines/simroom.dmi'
 	icon_state = "simcomp"
 	anchored = 1
 	density = 1

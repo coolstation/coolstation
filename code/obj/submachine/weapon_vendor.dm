@@ -20,7 +20,7 @@
 
 /obj/submachine/weapon_vendor
 	name = "Weapons Vendor"
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "weapon"
 	desc = "dont see this"
 	density = 1
@@ -97,7 +97,7 @@
 
 /obj/submachine/weapon_vendor/security
 	name = "Security Weapons Vendor"
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "weapon-sec"
 	desc = "An automated quartermaster service for supplying your security team with weapons and gear."
 	token_accepted = /obj/item/requisition_token/security
@@ -143,7 +143,7 @@
 
 /obj/submachine/weapon_vendor/syndicate
 	name = "Syndicate Weapons Vendor"
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "weapon"
 	desc = "An automated quartermaster service for supplying your nuclear operative team with weapons and gear."
 	token_accepted = /obj/item/requisition_token/syndicate

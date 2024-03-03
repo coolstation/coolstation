@@ -5,7 +5,7 @@
 /obj/item/breaker_box
 	name = "breaker box"
 	desc = "Used to separate sections of station wiring."
-	icon = 'icons/obj/power.dmi'
+	icon = 'icons/obj/machines/power.dmi'
 	icon_state = "cable_switch-off"
 
 /obj/item/breaker_box/afterattack(atom/target, mob/user, reach, params)

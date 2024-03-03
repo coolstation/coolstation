@@ -3,7 +3,7 @@
 	var/atom/movable/screen/health
 	var/atom/movable/screen/disconnect
 	var/mob/living/silicon/drone/master
-	var/icon/icon_hud = 'icons/mob/hud_drone.dmi'
+	var/icon/icon_hud = 'icons/ui/hud_drone.dmi'
 	var/list/tools = list(null, null, null, null, null)
 
 	var/list/statusUiElements = list() //Assoc. List  STATUS EFFECT INSTANCE : UI ELEMENT add_screen(atom/movable/screen/S). Used to hold the ui elements since they shouldnt be on the status effects themselves.

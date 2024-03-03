@@ -59,7 +59,7 @@
 		set_loc(location)
 		target = trg
 		created = world.time
-		showimg = image('icons/misc/critter.dmi', src, "kingyellow", 3)
+		showimg = image('icons/mob/critter.dmi', src, "kingyellow", 3)
 		target << showimg
 		src.set_dir(get_dir(src, target))
 		SPAWN_DBG(0.5 SECONDS) update()
@@ -84,7 +84,7 @@
 /obj/item/book_kinginyellow
 	name = "\"The King In Yellow\""
 	desc = ""
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "bookkiy"
 	inhand_image_icon = 'icons/mob/inhand/hand_books.dmi'
 	item_state = "paper"

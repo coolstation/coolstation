@@ -314,7 +314,7 @@
 /obj/item/robot_foodsynthesizer
 	name = "food synthesizer"
 	desc = "A portable food synthesizer."
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "synthesizer"
 	var/vend_this = null
 	var/last_use = 0
@@ -385,7 +385,7 @@
 /obj/item/reagent_containers/glass/oilcan
 	name = "oil can"
 	desc = "Contains oil intended for use on cyborgs and robots."
-	icon = 'icons/obj/robot_parts.dmi'
+	icon = 'icons/obj/items/robot_parts.dmi'
 	icon_state = "oilcan"
 	amount_per_transfer_from_this = 15
 	splash_all_contents = 0

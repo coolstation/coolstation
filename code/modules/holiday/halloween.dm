@@ -465,7 +465,7 @@
 /obj/haunted_television
 	name = "Television"
 	desc = "The television, that insidious beast, that Medusa which freezes a billion people to stone every night, staring fixedly, that Siren which called and sang and promised so much and gave, after all, so little."
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "security_det"
 	anchored = 1
 	density = 1
@@ -516,7 +516,7 @@
 /obj/item/toy/halloween2014spellbook
 	name = "Book of Spells"
 	desc = "An old spooky tome full of horrific eldritch magic. What insane mortal dares open it? Is it me?? Is it him??? Is it... yoooooooouuuuuu??????"
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "sbook"
 	var/uses = 1
 

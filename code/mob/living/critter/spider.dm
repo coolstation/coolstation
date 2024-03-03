@@ -58,7 +58,7 @@
 				HH.limb = new /datum/limb // todo: make spider hands. feet? weird spindly bug appendage??
 			else
 				HH.limb = new /datum/limb/small_critter
-			HH.icon = 'icons/mob/hud_human.dmi'
+			HH.icon = 'icons/ui/hud_human.dmi'
 			if (i > (src.hand_count / 2)) // if we're halfway through making our hands, start making right-facing ones
 				HH.icon_state = "handr"
 				HH.suffix = "-R"

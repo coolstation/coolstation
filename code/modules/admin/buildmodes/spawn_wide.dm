@@ -39,7 +39,7 @@ change the direction of created objects.<br>
 
 	proc/mark_corner(atom/object)
 		if (!marker)
-			marker = image('icons/misc/buildmode.dmi', "marker")
+			marker = image('icons/ui/buildmode.dmi', "marker")
 			marker.plane = PLANE_OVERLAY_EFFECTS
 			marker.layer = NOLIGHT_EFFECTS_LAYER_BASE
 			marker.appearance_flags = RESET_ALPHA | RESET_COLOR | NO_CLIENT_COLOR | KEEP_APART | RESET_TRANSFORM

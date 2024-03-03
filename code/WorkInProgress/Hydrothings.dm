@@ -347,7 +347,7 @@
 /obj/decal/fakeobjects/bustedpod
 	name = "Busted Escape Pod"
 	desc = "A escape pod for escaping. It seems to be busted."
-	icon = 'icons/obj/ship.dmi'
+	icon = 'icons/obj/vehicles/ship.dmi'
 	icon_state = "escape"
 	density = 1
 	anchored = 1
@@ -635,7 +635,7 @@
 	sname = "Wonkonize"
 	shot_number = 1
 	window_pass = 1
-	icon = 'icons/effects/hallucinations.dmi'
+	icon = 'icons/mob/hallucinations.dmi'
 	icon_state = "yee"
 
 	on_hit(atom/hit)
@@ -684,7 +684,7 @@
 /obj/critter/owl_mannequin
 	name = "Animatronic Owl"
 	desc = "An owl made of cogs and gears. It smells faintly of oil and ozone."
-	icon = 'icons/misc/bird.dmi'
+	icon = 'icons/mob/bird.dmi'
 	icon_state = "smallowl"
 	dead_state = "smallowl-dead"
 	atkcarbon = 0
@@ -721,7 +721,7 @@
 /obj/machinery/portableowl/owlzone
 	name = "Disabled Animatronic Owl"
 	desc = "A disabled robot owl."
-	icon = 'icons/misc/bird.dmi'
+	icon = 'icons/mob/bird.dmi'
 	icon_state = "smallowl"
 	event_handler_flags = USE_PROXIMITY | USE_FLUID_ENTER
 	anchored = 1
@@ -1466,7 +1466,7 @@ var/list/owlery_sounds = list('sound/voice/animal/hoot.ogg','sound/ambience/owlz
 
 ///////GREG THE COOL AWESOME ROBOT TRADER/////////////////
 /obj/npc/trader/greg
-	icon = 'icons/obj/trader.dmi'
+	icon = 'icons/mob/trader.dmi'
 	icon_state = "greg"
 	picture = "robot.png"
 	name = "Greg"

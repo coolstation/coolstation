@@ -16,7 +16,7 @@
 /obj/machinery/weapon_stand
 	name = "weapon stand"
 	desc = "A stand which can hold a weapon. This one is a little generic looking."
-	icon = 'icons/obj/weapon_rack.dmi'
+	icon = 'icons/obj/machines/weapon_rack.dmi'
 	icon_state = "swordstand1"
 	var/amount = 1
 	anchored = 1
@@ -145,7 +145,7 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (isscrewingtool(W))
 			if (!src.panelopen)
-				src.overlays += image('icons/obj/vending.dmi', "grife-panel")
+				src.overlays += image('icons/obj/machines/vending.dmi', "grife-panel")
 				src.panelopen = 1
 			else
 				src.overlays = null

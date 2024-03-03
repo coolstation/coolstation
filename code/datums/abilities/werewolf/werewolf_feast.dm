@@ -45,7 +45,7 @@
 	duration = 250
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	id = "werewolf_feast"
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "devour_over"
 	var/mob/living/target
 	var/datum/targetable/werewolf/werewolf_feast/feast

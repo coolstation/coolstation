@@ -102,7 +102,6 @@ RACK PARTS
 	id = "furniture_build"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration = 50
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
 	var/obj/item/furniture_parts/fparts
@@ -148,7 +147,6 @@ RACK PARTS
 	id = "furniture_deconstruct"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED
 	duration = 50
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
 	var/obj/the_furniture

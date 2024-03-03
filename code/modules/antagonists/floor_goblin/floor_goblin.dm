@@ -79,7 +79,7 @@
 /datum/targetable/hide_between_floors
 	name = "Toggle Reveal"
 	desc = "Toggle your ability to hide between the floor tiles."
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "floorgoblin_hide"
 	targeted = 0
 	cooldown = 0
@@ -134,7 +134,7 @@
 /datum/targetable/ankle_bite
 	name = "Ankle Bite"
 	desc = "Trip a target by biting at their ankles."
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "clown_spider_bite"
 	cooldown = 20 SECONDS
 	targeted = 1
@@ -193,7 +193,7 @@
 /datum/targetable/steal_shoes
 	name = "Steal Shoes"
 	desc = "Attempt to steal the shoes of an unsuspecting victim."
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "power_kick"
 	cooldown = 20
 	targeted = 1
@@ -239,7 +239,7 @@
 /datum/action/bar/icon/steal_shoes//Putting items on or removing items from others.
 	id = "stealshoes"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	icon_state = "grabbed"
 	duration = 5
 

@@ -1,7 +1,7 @@
 /obj/submachine/chef_sink
 	name = "kitchen sink"
 	desc = "A water-filled unit intended for cookery purposes."
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "sink"
 	anchored = 1
 	density = 1
@@ -83,7 +83,7 @@
 /obj/submachine/ice_cream_dispenser
 	name = "Ice Cream Dispenser"
 	desc = "A machine designed to dispense space ice cream."
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "ice_creamer0"
 	anchored = 1
 	density = 1
@@ -241,7 +241,7 @@
 /obj/submachine/italian_ice_dispenser
 	name = "Italian Ice Dispenser"
 	desc = "A machine designed to dispense Rito's Italian Ice."
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "ice_creamer0"
 	anchored = 1
 	density = 1
@@ -646,7 +646,7 @@ input:checked + div { display: block; }
 /obj/submachine/chef_oven
 	name = "oven"
 	desc = "A multi-cooking unit featuring a hob, grill, oven and more."
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "oven_off"
 	anchored = 1
 	density = 1
@@ -1072,7 +1072,7 @@ table#cooktime a#start {
 /obj/submachine/foodprocessor
 	name = "Processor"
 	desc = "Refines various food substances into different forms."
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "processor-off"
 	anchored = 1
 	density = 1
@@ -1305,7 +1305,7 @@ var/list/mixer_recipes = list()
 /obj/submachine/mixer
 	name = "\improper KitchenHelper"
 	desc = "A food Mixer."
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "blender"
 	density = 1
 	anchored = 1

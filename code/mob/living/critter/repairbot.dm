@@ -3,7 +3,7 @@
 	real_name = "odd thingmabob"
 	desc = "A Security Robot, something seems a bit off."
 	density = 1
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "ancient_guardbot"
 	custom_gib_handler = /proc/robogibs
 	say_language = "binary"
@@ -64,7 +64,7 @@
 		var/datum/handHolder/HH = hands[1]
 		HH.limb = new /datum/limb/arcflash
 		HH.name = "Electric Intruder Countermeasure"
-		HH.icon = 'icons/mob/critter_ui.dmi'
+		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "handzap"
 		HH.limb_name = "Electric Intruder Countermeasure"
 		HH.can_hold_items = 0

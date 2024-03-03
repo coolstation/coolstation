@@ -542,7 +542,7 @@ SYNDICATE DRONE FACTORY AREAS
 	resets = 10
 
 /obj/boulder_trap
-	icon = 'icons/misc/mark.dmi'
+	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "x4"
 	invisibility = 101
 	anchored = 1
@@ -623,7 +623,7 @@ SYNDICATE DRONE FACTORY AREAS
 // cogwerks - wall shift trigger
 
 /obj/sneaky_wall_trigger
-	icon = 'icons/misc/mark.dmi'
+	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "ydn"
 	invisibility = 101
 	anchored = 1
@@ -746,7 +746,7 @@ SYNDICATE DRONE FACTORY AREAS
 		BLOCK_SETUP(BLOCK_ROD)
 
 /obj/graveyard/lightning_trigger
-	icon = 'icons/misc/mark.dmi'
+	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "ydn"
 	invisibility = 101
 	anchored = 1

@@ -998,7 +998,7 @@ obj/item/device/radio/signaler/attackby(obj/item/W as obj, mob/user as mob)
 //////////////////////////////////////////////////
 /obj/item/device/radio/intercom/loudspeaker
 	name = "Loudspeaker Transmitter"
-	icon = 'icons/obj/loudspeakers.dmi'
+	icon = 'icons/obj/machines/loudspeakers.dmi'
 	icon_state = "transmitter"
 	anchored = 1.0
 	speaker_range = 0

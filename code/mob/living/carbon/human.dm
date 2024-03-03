@@ -130,8 +130,8 @@
 	var/static/image/human_untoned_decomp_image = image('icons/mob/human.dmi')
 	var/static/image/undies_image = image('icons/mob/human_underwear.dmi') //, layer = MOB_UNDERWEAR_LAYER)
 	var/static/image/bandage_image = image('icons/obj/surgery.dmi', "layer" = EFFECTS_LAYER_UNDER_1-1)
-	var/static/image/blood_image = image('icons/effects/blood.dmi', "layer" = EFFECTS_LAYER_UNDER_1-1)
-	var/static/image/mud_image = image('icons/misc/not_poo.dmi', "layer" = EFFECTS_LAYER_UNDER_1-1) //:)
+	var/static/image/blood_image = image('icons/obj/decals/blood.dmi', "layer" = EFFECTS_LAYER_UNDER_1-1)
+	var/static/image/mud_image = image('icons/obj/decals/not_poo.dmi', "layer" = EFFECTS_LAYER_UNDER_1-1) //:)
 	var/static/image/handcuff_img = image('icons/mob/mob.dmi')
 	var/static/image/shield_image = image('icons/mob/mob.dmi', "icon_state" = "shield")
 	var/static/image/heart_image = image('icons/mob/human.dmi')
@@ -201,13 +201,13 @@
 		sims = new /datum/simsHolder/human(src)
 #endif
 
-	health_mon = image('icons/effects/healthgoggles.dmi',src,"100",10)
+	health_mon = image('icons/mob/healthgoggles.dmi',src,"100",10)
 	get_image_group(CLIENT_IMAGE_GROUP_HEALTH_MON_ICONS).add_image(health_mon)
 
-	health_implant = image('icons/effects/healthgoggles.dmi',src,"100",10)
+	health_implant = image('icons/mob/healthgoggles.dmi',src,"100",10)
 	get_image_group(CLIENT_IMAGE_GROUP_HEALTH_MON_ICONS).add_image(health_implant)
 
-	arrestIcon = image('icons/effects/sechud.dmi',src,null,10)
+	arrestIcon = image('icons/mob/sechud.dmi',src,null,10)
 	get_image_group(CLIENT_IMAGE_GROUP_ARREST_ICONS).add_image(arrestIcon)
 
 	src.organHolder = new(src)

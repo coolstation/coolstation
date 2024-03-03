@@ -163,7 +163,7 @@
 	var/reagent_id = "water"
 	var/amount = 10
 	var/delay = 600
-	icon = 'icons/effects/mapeditor.dmi'
+	icon = 'icons/map-editing/mapeditor.dmi'
 	icon_state = "fluid_spawn"
 
 	var/datum/reagents/R

@@ -244,7 +244,7 @@ ABSTRACT_TYPE(/datum/buildmode)
 	layer = HUD_LAYER + 1
 	plane = PLANE_HUD
 	dir = SOUTH
-	icon = 'icons/misc/buildmode.dmi'
+	icon = 'icons/ui/buildmode.dmi'
 	icon_state = "direction"
 	screen_loc = "NORTH,WEST"
 	var/datum/buildmode_holder/holder = null
@@ -285,7 +285,7 @@ ABSTRACT_TYPE(/datum/buildmode)
 	layer = HUD_LAYER + 1
 	plane = PLANE_HUD
 	dir = NORTH
-	icon = 'icons/misc/buildmode.dmi'
+	icon = 'icons/ui/buildmode.dmi'
 	icon_state = "buildhelp"
 	screen_loc = "NORTH,WEST+1"
 	var/datum/buildmode_holder/holder = null
@@ -304,7 +304,7 @@ ABSTRACT_TYPE(/datum/buildmode)
 	layer = HUD_LAYER + 1
 	plane = PLANE_HUD
 	dir = NORTH
-	icon = 'icons/misc/buildmode.dmi'
+	icon = 'icons/ui/buildmode.dmi'
 	icon_state = "buildquit"
 	screen_loc = "NORTH,WEST+3"
 	var/datum/buildmode_holder/holder = null
@@ -323,7 +323,7 @@ ABSTRACT_TYPE(/datum/buildmode)
 	layer = HUD_LAYER + 1
 	plane = PLANE_HUD
 	dir = NORTH
-	icon = 'icons/misc/buildmode.dmi'
+	icon = 'icons/ui/buildmode.dmi'
 	icon_state = "buildmode1"
 	screen_loc = "NORTH,WEST+2"
 	var/datum/buildmode_holder/holder = null
@@ -349,7 +349,7 @@ ABSTRACT_TYPE(/datum/buildmode)
 	layer = HUD_LAYER + 1
 	plane = PLANE_HUD
 	dir = NORTH
-	icon = 'icons/misc/buildmode.dmi'
+	icon = 'icons/ui/buildmode.dmi'
 	icon_state = "buildmode1"
 	screen_loc = "NORTH,WEST+2"
 	var/datum/buildmode_holder/holder = null

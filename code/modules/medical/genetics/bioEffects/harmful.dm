@@ -396,7 +396,7 @@
 
 	OnAdd()
 		if (ishuman(owner))
-			overlay_image = image("icon" = 'icons/effects/genetics.dmi', "icon_state" = "aurapulse", layer = MOB_LIMB_LAYER)
+			overlay_image = image("icon" = 'icons/mob/genetics.dmi', "icon_state" = "aurapulse", layer = MOB_LIMB_LAYER)
 			overlay_image.color = "#BBD90F"
 		..()
 
@@ -648,7 +648,7 @@
 
 	OnAdd()
 		if (ishuman(owner))
-			overlay_image = image("icon" = 'icons/effects/genetics.dmi', "icon_state" = "buzz", layer = MOB_EFFECT_LAYER)
+			overlay_image = image("icon" = 'icons/mob/genetics.dmi', "icon_state" = "buzz", layer = MOB_EFFECT_LAYER)
 		..()
 
 	OnLife(var/mult)

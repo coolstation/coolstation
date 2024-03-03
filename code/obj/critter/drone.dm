@@ -1,7 +1,7 @@
 /obj/critter/gunbot/drone
 	name = "Syndicate Drone"
 	desc = "An armed and automated Syndicate scout drone."
-	icon = 'icons/obj/ship.dmi'
+	icon = 'icons/obj/vehicles/ship.dmi'
 	icon_state = "drone"
 	density = 1
 	health = 65
@@ -463,7 +463,7 @@
 
 	virtual
 		applyDeathState()
-			overlays += image('icons/obj/ship.dmi', "dying-overlay")
+			overlays += image('icons/obj/vehicles/ship.dmi', "dying-overlay")
 
 		laserdrone
 			name = "Virtual Laser Drone"
@@ -670,7 +670,7 @@
 		fish
 			name = "Syndicate FishDrone"
 			desc = "A Syndicate robo-fish. This appears to be a continuation of the scrap cutter production line made for underwater use."
-			icon = 'icons/misc/critter.dmi'
+			icon = 'icons/mob/critter.dmi'
 			icon_state = "piranha_robo"
 			dead_state = "piranha_robo-dead"
 			health = 100
@@ -1251,7 +1251,7 @@
 /obj/critter/gunbot/drone/miniature_syndie
 	name = "miniature Syndicate Operative"
 	desc = "They look determined."
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "minisyndie"
 	density = 1
 	health = 5

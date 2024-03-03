@@ -3,7 +3,7 @@
 	desc = "A powerful stone"
 	icon_state = "dimensionrock"
 	item_state = null
-	icon = 'icons/obj/ouroborousrocks.dmi'
+	icon = 'icons/obj/unused/ouroborousrocks.dmi'
 	var/stonetype = "basestone"
 	var/ability = /obj/ability_button/stone_teleport //no runtime errors pls
 

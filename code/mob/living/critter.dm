@@ -1,7 +1,7 @@
 /mob/living/critter
 	name = "critter"
 	desc = "A beastie!"
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "lavacrab"
 	var/icon_state_alive = null
 	var/icon_state_dead = null
@@ -100,13 +100,13 @@
 		count_healths()
 
 		SPAWN_DBG(0)
-			src.zone_sel.change_hud_style('icons/mob/hud_human.dmi')
+			src.zone_sel.change_hud_style('icons/ui/hud_human.dmi')
 			src.attach_hud(zone_sel)
 
 		for (var/datum/equipmentHolder/EE in equipment)
 			EE.after_setup(hud)
 
-		burning_image.icon = 'icons/misc/critter.dmi'
+		burning_image.icon = 'icons/mob/critter.dmi'
 		burning_image.icon_state = null
 
 		src.old_canmove = src.canmove

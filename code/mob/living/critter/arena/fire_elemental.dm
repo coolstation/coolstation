@@ -39,7 +39,7 @@
 		HH.name = "control of fire"
 		HH.limb = new /datum/limb/gun/fire_elemental
 		HH.icon_state = "fire_essence"
-		HH.icon = 'icons/mob/critter_ui.dmi'
+		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.limb_name = "fire essence"
 		HH.can_hold_items = 0
 		HH.can_attack = 0

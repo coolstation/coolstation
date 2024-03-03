@@ -54,7 +54,7 @@
 						src.generator.use_power(500 WATTS)
 						elecflash(src.generator)
 						src.generator.visible_message("<span class='alert'>[src.generator] is suddenly engulfed in a swarm of nanites!</span>")
-						var/nanite_overlay = image('icons/misc/critter.dmi', "nanites")
+						var/nanite_overlay = image('icons/mob/critter.dmi', "nanites")
 						generator.UpdateOverlays(nanite_overlay,"transform")
 						generator.circ1.UpdateOverlays(nanite_overlay,"transform")
 						generator.circ2.UpdateOverlays(nanite_overlay,"transform")

@@ -1331,7 +1331,7 @@
 				spell.handleCast()
 
 /datum/targetable/organAbility
-	icon = 'icons/mob/organ_abilities.dmi'
+	icon = 'icons/ui/organ_abilities.dmi'
 	icon_state = "template"
 	cooldown = 0
 	last_cast = 0

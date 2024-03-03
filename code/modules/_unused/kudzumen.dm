@@ -678,7 +678,6 @@
 	duration = 5 SECONDS
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	id = "kudzu_shaping"
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "kudzu_shaping"
 	var/obj/item/kudzu/kudzumen_vine/vine_arm
 	var/obj/spacevine/kudzu

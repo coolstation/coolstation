@@ -10,7 +10,7 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 	name = "aquatic mobcritter"
 	real_name = "aquatic mobcritter"
 	desc = "No, you should not be seeing this!"
-	icon = 'icons/misc/sea_critter.dmi'
+	icon = 'icons/mob/sea_critter.dmi'
 	density = 0
 	hand_count = 1
 	can_disarm = 1
@@ -189,7 +189,7 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 	..()
 	var/datum/handHolder/HH = hands[1]
 	HH.limb = new /datum/limb/mouth/fish
-	HH.icon = 'icons/mob/critter_ui.dmi'
+	HH.icon = 'icons/ui/critter_ui.dmi'
 	HH.icon_state = "mouth"
 	HH.name = "mouth"
 	HH.limb_name = "mouth"
@@ -409,14 +409,14 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 /mob/living/critter/aquatic/king_crab/setup_hands()
 	..()
 	var/datum/handHolder/HH = hands[1]
-	HH.icon = 'icons/mob/hud_human.dmi'
+	HH.icon = 'icons/ui/hud_human.dmi'
 	HH.limb = new /datum/limb/king_crab
 	HH.icon_state = "handl"
 	HH.name = "pincer"
 	HH.limb_name = "pincer"
 
 	HH = hands[2]
-	HH.icon = 'icons/mob/hud_human.dmi'
+	HH.icon = 'icons/ui/hud_human.dmi'
 	HH.limb = new /datum/limb/king_crab
 	HH.icon_state = "handr"
 	HH.name = "pincer"

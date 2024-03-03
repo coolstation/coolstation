@@ -621,7 +621,7 @@ proc
 	appearance_flags = TILE_BOUND | PIXEL_SCALE
 
 /obj/overlay/tile_effect/lighting
-	icon = 'icons/effects/light_overlay.dmi'
+	icon = 'icons/turf/light_overlay.dmi'
 	appearance_flags = TILE_BOUND | PIXEL_SCALE | RESET_ALPHA | RESET_COLOR
 	blend_mode = BLEND_ADD
 	plane = PLANE_LIGHTING

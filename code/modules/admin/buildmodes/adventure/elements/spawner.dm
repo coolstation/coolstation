@@ -47,7 +47,7 @@
 /obj/adventurepuzzle/triggerable/spawnloc
 	name = "critter spawn location"
 	invisibility = 20
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "critter_spawn"
 	density = 0
 	opacity = 0

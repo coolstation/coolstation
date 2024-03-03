@@ -422,7 +422,6 @@
 	id = "teg_circulator_repair1"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration = 200
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
 	var/obj/machinery/atmospherics/binary/circulatorTemp/circ
@@ -1154,7 +1153,6 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 	id = "teg_semiconductor_removal"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration = 15 SECONDS
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
 	var/obj/machinery/power/generatorTemp/generator
@@ -1229,7 +1227,6 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 	id = "teg_semiconductor_removal"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration =  15 SECONDS
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
 	var/obj/machinery/power/generatorTemp/generator
@@ -1422,10 +1419,10 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 	/*	//Holy lag batman!
 		src.overlays = null
 		if (src.active) src.overlays +=
-		if (fuelperc >= 20) src.overlays += image('icons/obj/power.dmi', "furn-c1")
-		if (fuelperc >= 40) src.overlays += image('icons/obj/power.dmi', "furn-c2")
-		if (fuelperc >= 60) src.overlays += image('icons/obj/power.dmi', "furn-c3")
-		if (fuelperc >= 80) src.overlays += image('icons/obj/power.dmi', "furn-c4")
+		if (fuelperc >= 20) src.overlays += image('icons/obj/machines/power.dmi', "furn-c1")
+		if (fuelperc >= 40) src.overlays += image('icons/obj/machines/power.dmi', "furn-c2")
+		if (fuelperc >= 60) src.overlays += image('icons/obj/machines/power.dmi', "furn-c3")
+		if (fuelperc >= 80) src.overlays += image('icons/obj/machines/power.dmi', "furn-c4")
 
 	*/
 */
@@ -1477,7 +1474,7 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 	req_access = list() //Change
 	req_access_txt = ""
 
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer_generic"
 
 	name = "Pump control computer"

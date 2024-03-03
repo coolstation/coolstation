@@ -26,7 +26,7 @@
 				numkills++
 				if (numkills == 100)
 					name = "blue ribbon [src.name]"
-					src.overlays += new /image {icon = 'icons/misc/stickers.dmi'; icon_state = "1st_place"; pixel_x = 3; pixel_y = -2} ()
+					src.overlays += new /image {icon = 'icons/obj/decals/stickers.dmi'; icon_state = "1st_place"; pixel_x = 3; pixel_y = -2} ()
 
 			var/datum/component/C = user.GetComponent(/datum/component/death_confetti)
 			C?.RemoveComponent()

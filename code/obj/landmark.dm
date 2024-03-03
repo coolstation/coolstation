@@ -8,7 +8,7 @@ proc/pick_landmark(name, default=null)
 
 /obj/landmark
 	name = "landmark"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	icon_state = "x2"
 	anchored = 1
 	invisibility = 101
@@ -261,7 +261,7 @@ var/global/list/job_start_locations = list()
 /obj/landmark/viscontents_spawn
 	name = "visual mirror spawn"
 	desc = "Links a pair of corresponding turfs in holy Viscontent Matrimony. You shouldnt be seeing this."
-	icon = 'icons/effects/mapeditor.dmi'
+	icon = 'icons/map-editing/mapeditor.dmi'
 	icon_state = "landmark"
 	color = "#FF0000"
 	/// target z-level to push it's contents to
@@ -329,7 +329,7 @@ var/global/list/job_start_locations = list()
 /obj/landmark/load_prefab_shuttledmm
 	name = "custom shuttle dmm loading location"
 	desc = "Tells the dmm loader where to put the bottom left corner of the shuttle prefab."
-	icon = 'icons/effects/mapeditor.dmi'
+	icon = 'icons/map-editing/mapeditor.dmi'
 	icon_state = "landmark"
 	color = "#ff0000"
 

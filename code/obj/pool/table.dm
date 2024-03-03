@@ -1,6 +1,6 @@
 /obj/pool/table
 	name = "Pool Table"
-	icon = 'icons/obj/pool_table.dmi'
+	icon = 'icons/obj/unused/pool_table.dmi'
 	desc = "A billiards table."
 
 	cloth

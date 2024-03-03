@@ -1464,7 +1464,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /obj/machinery/the_singularitybomb/
 	name = "\improper Singularity Bomb"
 	desc = "A WMD that creates a singularity."
-	icon = 'icons/obj/power.dmi'
+	icon = 'icons/obj/machines/power.dmi'
 	icon_state = "portgen0"
 	anchored = 0
 	density = 1

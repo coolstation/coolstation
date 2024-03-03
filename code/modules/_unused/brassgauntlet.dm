@@ -7,7 +7,7 @@
 /obj/ability_button/stone_teleport
 	name = "Telecrystal Stone"
 	icon_state = "spiritrockbutton"
-	icon = 'icons/obj/ouroborousrocks.dmi'
+	icon = 'icons/obj/unused/ouroborousrocks.dmi'
 	cooldown = 600
 
 	execute_ability()
@@ -21,7 +21,7 @@
 /obj/ability_button/stone_animate
 	name = "SoulSteel Stone"
 	icon_state = "spiritrockbutton"
-	icon = 'icons/obj/ouroborousrocks.dmi'
+	icon = 'icons/obj/unused/ouroborousrocks.dmi'
 	cooldown = 3000
 
 	execute_ability()
@@ -122,7 +122,7 @@
 /obj/ability_button/stone_owl
 	name = "Owl Stone"
 	icon_state = "owlstonebutton"
-	icon = 'icons/obj/ouroborousrocks.dmi'
+	icon = 'icons/obj/unused/ouroborousrocks.dmi'
 	cooldown = 600
 
 	execute_ability()
@@ -198,7 +198,7 @@
 /obj/ability_button/stone_gall
 	name = "Gall Stone"
 	icon_state = "gallstonebutton"
-	icon = 'icons/obj/ouroborousrocks.dmi'
+	icon = 'icons/obj/unused/ouroborousrocks.dmi'
 	cooldown = 3000
 
 	execute_ability()

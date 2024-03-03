@@ -3699,17 +3699,17 @@
 "ahn" = (
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat,
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibtorso";
 	name = "meaty bit"
 	},
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibmid2";
 	name = "gross organs"
 	},
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibhead";
 	name = "grody thing"
 	},
@@ -9406,7 +9406,7 @@
 "atY" = (
 /obj/stool{
 	desc = "A soft little bed the general size and shape of a space bee.";
-	icon = 'icons/misc/critter.dmi';
+	icon = 'icons/mob/critter.dmi';
 	icon_state = "beebed";
 	name = "heisenbed"
 	},
@@ -18244,7 +18244,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "How old is this?";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "dwaine";
 	name = "old mainframe"
 	},
@@ -18325,7 +18325,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "A large rack of server modules.  It doesn't seem to be in service.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "server0";
 	name = "downed server"
 	},
@@ -21168,7 +21168,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "A networked tape drive.  It looks to be in fairly poor condition.  I bet the vacuum columns don't work worth a damn.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "tapedrive-p";
 	name = "broken databank"
 	},
@@ -21495,7 +21495,7 @@
 /obj/decal/fakeobjects{
 	name = "broken vending machine";
 	desc = "The goods inside the machine probably expired before you were even born.";
-	icon = 'icons/obj/vending.dmi';
+	icon = 'icons/obj/machines/vending.dmi';
 	icon_state = "snack-broken"
 	},
 /turf/e,
@@ -21504,7 +21504,7 @@
 /obj/decal/fakeobjects{
 	name = "broken vending machine";
 	desc = "The goods inside the machine probably expired before you were even born.";
-	icon = 'icons/obj/vending.dmi';
+	icon = 'icons/obj/machines/vending.dmi';
 	icon_state = "grife-fallen"
 	},
 /turf/e,
@@ -22323,7 +22323,7 @@
 /obj/computerframe{
 	anchored = 1;
 	desc = "It is highly unlikely that this still works.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},
@@ -22831,7 +22831,7 @@
 /obj/computerframe{
 	anchored = 1;
 	desc = "It is highly unlikely that this still works.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},
@@ -27758,7 +27758,7 @@
 /obj/computerframe{
 	anchored = 1;
 	desc = "It is highly unlikely that this still works.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},
@@ -28231,7 +28231,7 @@
 /obj/computerframe{
 	anchored = 1;
 	desc = "It is highly unlikely that this still works.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},

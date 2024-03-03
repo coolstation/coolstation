@@ -61,7 +61,7 @@
 
 
 /datum/targetable/gang
-	icon = 'icons/mob/gang_abilities.dmi'
+	icon = 'icons/ui/gang_abilities.dmi'
 	icon_state = "gang-template"
 	cooldown = 0
 	last_cast = 0

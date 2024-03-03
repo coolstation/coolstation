@@ -1,6 +1,6 @@
 /atom/movable/screen
 	name = "screen"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	layer = HUD_LAYER
 	var/list/clients = new
 	mat_changename = 0
@@ -32,12 +32,12 @@
 
 /atom/movable/screen/intent_sel
 	name = "Intent Select"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	icon_state = "help"
 
 /atom/movable/screen/stamina_background
 	name = "stamina"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	icon_state = "stamina"
 
 
@@ -55,7 +55,7 @@
 /atom/movable/screen/stamina_bar
 	name = "Stamina"
 	desc = ""
-	icon = 'icons/mob/hud_human_new.dmi'
+	icon = 'icons/ui/hud_human_new.dmi'
 	icon_state = "stamina_bar"
 	var/last_val = -123123
 	var/tooltipTheme = "stamina"

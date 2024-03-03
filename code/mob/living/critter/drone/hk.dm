@@ -8,7 +8,7 @@
 		var/datum/handHolder/HH = hands[1]
 		HH.limb = new /datum/limb/gun/disruptor
 		HH.name = "S-7 Heavy Waveform Disruptor"
-		HH.icon = 'icons/mob/critter_ui.dmi'
+		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "handdis"
 		HH.limb_name = "S-7 Heavy Waveform Disruptor"
 		HH.can_hold_items = 0

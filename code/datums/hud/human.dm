@@ -43,7 +43,7 @@
 	var/list/obj/item/inventory_items = list()
 	var/show_inventory = 1
 	var/current_ability_set = 1
-	var/icon/icon_hud = 'icons/mob/hud_human_new.dmi'
+	var/icon/icon_hud = 'icons/ui/hud_human_new.dmi'
 
 	var/list/statusUiElements = list() //Assoc. List  STATUS EFFECT INSTANCE : UI ELEMENT add_screen(atom/movable/screen/S). Used to hold the ui elements since they shouldnt be on the status effects themselves.
 
@@ -192,12 +192,12 @@
 				layout_style = "tg"
 
 			if (layouts[layout_style]["show_bg"])
-				create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_bg", "CENTER-5, SOUTH to CENTER+6, SOUTH", HUD_LAYER)
-				create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER-5, SOUTH+1 to CENTER+6, SOUTH+1", HUD_LAYER, SOUTH)
-				create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER-6, SOUTH+1", HUD_LAYER, SOUTHWEST)
-				create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER-6, SOUTH", HUD_LAYER, EAST)
-				create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER+7, SOUTH+1", HUD_LAYER, SOUTHEAST)
-				create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER+7, SOUTH", HUD_LAYER, WEST)
+				create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_bg", "CENTER-5, SOUTH to CENTER+6, SOUTH", HUD_LAYER)
+				create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER-5, SOUTH+1 to CENTER+6, SOUTH+1", HUD_LAYER, SOUTH)
+				create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER-6, SOUTH+1", HUD_LAYER, SOUTHWEST)
+				create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER-6, SOUTH", HUD_LAYER, EAST)
+				create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER+7, SOUTH+1", HUD_LAYER, SOUTHEAST)
+				create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER+7, SOUTH", HUD_LAYER, WEST)
 
 			invtoggle = create_screen("invtoggle", "toggle inventory", src.icon_hud, "invtoggle", layouts[layout_style]["invtoggle"], HUD_LAYER+1)
 			belt = create_screen("belt", "belt", src.icon_hud, "belt", layouts[layout_style]["belt"], HUD_LAYER+1)

@@ -1,7 +1,7 @@
 /* outdated
 /obj/machinery/computer/telescope
 	name = "quantum telescope"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer_generic"
 
 	var/mob/using = null

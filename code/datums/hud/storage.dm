@@ -10,9 +10,9 @@
 	New(master)
 		..()
 		src.master = master
-		src.boxes = create_screen("boxes", "Storage", 'icons/mob/screen1.dmi', "block", ui_storage_area)
-		src.close = create_screen("close", "Close", 'icons/mob/screen1.dmi', "x", ui_storage_close, HUD_LAYER+1)
-		src.sel = create_screen("sel", "sel", 'icons/mob/hud_human_new.dmi', "sel", null, HUD_LAYER+1.2)
+		src.boxes = create_screen("boxes", "Storage", 'icons/ui/screen1.dmi', "block", ui_storage_area)
+		src.close = create_screen("close", "Close", 'icons/ui/screen1.dmi', "x", ui_storage_close, HUD_LAYER+1)
+		src.sel = create_screen("sel", "sel", 'icons/ui/hud_human_new.dmi', "sel", null, HUD_LAYER+1.2)
 		if(src.master)
 			update()
 
@@ -154,7 +154,7 @@
 
 		boxes.screen_loc = "[x],[y]:[pixel_y_adjust] to [x+sx-1],[y-sy+1]:[pixel_y_adjust]"
 		if (!close)
-			src.close = create_screen("close", "Close", 'icons/mob/screen1.dmi', "x", ui_storage_close, HUD_LAYER+1)
+			src.close = create_screen("close", "Close", 'icons/ui/screen1.dmi', "x", ui_storage_close, HUD_LAYER+1)
 		close.screen_loc = "[x+sx-1]:[pixel_y_adjust],[y-sy+1]:[pixel_y_adjust]"
 
 		if (!turfd && istype(user,/mob/living/carbon/human))

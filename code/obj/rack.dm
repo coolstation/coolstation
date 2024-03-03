@@ -118,7 +118,6 @@
 	id = "rack_tool_interact"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration = 50
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
 	var/obj/rack/the_rack

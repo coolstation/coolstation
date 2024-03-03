@@ -457,7 +457,7 @@ var/reverse_mode = 0
 
 
 /obj/effect_sparker
-	icon = 'icons/misc/mark.dmi'
+	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "x4"
 	invisibility = 101
 	anchored = 1
@@ -617,7 +617,7 @@ var/reverse_mode = 0
 /proc/fake_blood(var/mob/target)
 	var/obj/overlay/O = new/obj/overlay(target.loc)
 	O.name = "blood"
-	var/image/I = image('icons/effects/blood.dmi',O,"floor[rand(1,7)]",O.dir,1)
+	var/image/I = image('icons/obj/decals/blood.dmi',O,"floor[rand(1,7)]",O.dir,1)
 	target << I
 	SPAWN_DBG(30 SECONDS)
 		qdel(O)

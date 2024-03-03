@@ -30413,17 +30413,17 @@
 	},
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat,
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibtorso";
 	name = "meaty bit"
 	},
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibmid2";
 	name = "gross organs"
 	},
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibhead";
 	name = "grody thing"
 	},
@@ -40635,7 +40635,7 @@
 "bLN" = (
 /obj/stool{
 	desc = "A soft little bed the general size and shape of a space bee.";
-	icon = 'icons/misc/critter.dmi';
+	icon = 'icons/mob/critter.dmi';
 	icon_state = "beebed";
 	name = "heisenbed"
 	},
@@ -46942,7 +46942,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "How old is this?";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "dwaine";
 	name = "old mainframe"
 	},
@@ -47004,7 +47004,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "A large rack of server modules.  It doesn't seem to be in service.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "server0";
 	name = "downed server"
 	},
@@ -47824,7 +47824,7 @@
 	density = 1;
 	desc = "A computer that is so completely, irreparably broken that you are in disbelief at just how destroyed it is. ";
 	dir = 8;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer"
 	},

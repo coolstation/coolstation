@@ -747,7 +747,7 @@ var/sound/iomoon_alarm_sound = null
 
 /obj/spawner/ancient_robot_artifact
 	name = "robot artifact spawn"
-	icon = 'icons/misc/mark.dmi'
+	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "x3"
 
 	New()
@@ -1457,7 +1457,6 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 	duration = 0.4 SECONDS
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	id = "ladder_climb"
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "ladder_climb"
 	var/mob/pizzaghetti
 	var/obj/ladder/delicate_penis

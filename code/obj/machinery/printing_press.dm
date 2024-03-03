@@ -30,7 +30,7 @@
 	var/ink_color = "#000000" //what color is the text written in?
 	var/list/cover_designs = list("Grey", "Dull red", "Red", "Blue", "Green", "Yellow", "Dummies", "Robuddy", "Skull", "Latch", "Bee",\
 	"Albert", "Surgery", "Law", "Nuke", "Rat", "Pharma", "Bar") //list of covers to choose from
-	var/list/non_writing_icons = list("bible") //just the bible for now. !!!add covers to this list if their icon file isnt icons/obj/writing.dmi!!!
+	var/list/non_writing_icons = list("bible") //just the bible for now. !!!add covers to this list if their icon file isnt icons/obj/items/writing.dmi!!!
 
 	var/cover_color = "#FFFFFF" //white by default, what colour will our book be?
 	var/cover_symbol = "" //what symbol is on our front cover?
@@ -534,7 +534,7 @@
 
 /obj/item/press_upgrade //parent just to i dont have to set name and icon a bunch i am PEAK lazy
 	name = "printing press upgrade module"
-	icon = 'icons/obj/module.dmi'
+	icon = 'icons/obj/items/module.dmi'
 
 /obj/item/press_upgrade/colors //custom font color upgrade
 	desc = "Looks like this upgrade module is for letting your press use colored ink!"

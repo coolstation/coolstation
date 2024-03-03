@@ -1,7 +1,7 @@
 /obj/item/goldbar //deprecated, needs getting rid of except the map is being weird about it
 	name = "fool's pyrite bar"
 	desc = "It's gold that isn't. Except it is. MINDFUCK"
-	icon = 'icons/obj/materials.dmi'
+	icon = 'icons/obj/items/materials.dmi'
 	icon_state = "gold-bar"
 	force = 8
 	throwforce = 10

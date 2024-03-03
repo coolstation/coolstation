@@ -196,7 +196,7 @@
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 1;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer";
 	tag = "icon-offbroken (NORTH)"
@@ -270,7 +270,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "A large rack of server modules.  It doesn't seem to be in service.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "server0";
 	name = "downed server"
 	},
@@ -775,7 +775,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "An old computer that doesn't appear to be plugged in.  Do you see the cord anywhere? Yes?  Oh, good...wait, where's the outlet?.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "old0";
 	name = "inactive computer";
 	pixel_y = 8
@@ -812,7 +812,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "An old computer that doesn't appear to be plugged in.  Do you see the cord anywhere? No? Dang.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "old0";
 	name = "inactive computer";
 	pixel_x = 4
@@ -1368,7 +1368,7 @@
 /obj/overlay{
 	density = 1;
 	desc = "A networked tape drive.  It looks to be in fairly poor condition.  I bet the vacuum columns don't work worth a damn.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "tapedrive-p";
 	name = "broken databank"
 	},
@@ -3344,7 +3344,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "A large rack of server modules.  It appears to be in a low-power idle state.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "server0";
 	name = "idle server"
 	},
@@ -3355,7 +3355,7 @@
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
 	dir = 1;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -3393,7 +3393,7 @@
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
 	dir = 4;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -3422,7 +3422,7 @@
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
 	dir = 8;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -3646,7 +3646,7 @@
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
 	dir = 8;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -3666,7 +3666,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -3877,7 +3877,7 @@
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
 	dir = 4;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -4152,7 +4152,7 @@
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
 	dir = 1;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -4309,7 +4309,7 @@
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
 	dir = 4;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -4413,7 +4413,7 @@
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
 	dir = 8;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -6289,7 +6289,7 @@
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 1;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer";
 	tag = "icon-offbroken (NORTH)"
@@ -6304,7 +6304,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "A large rack of server modules.  It doesn't seem to be in service.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "server0";
 	name = "downed server"
 	},
@@ -6656,7 +6656,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -9828,7 +9828,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "A large rack of server modules.  It appears to be in a low-power idle state.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "server0";
 	name = "idle server"
 	},
@@ -19087,17 +19087,17 @@
 "bco" = (
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat,
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibtorso";
 	name = "meaty bit"
 	},
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibmid2";
 	name = "gross organs"
 	},
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibhead";
 	name = "grody thing"
 	},
@@ -32636,7 +32636,7 @@
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
 	dir = 1;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -32664,7 +32664,7 @@
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
 	dir = 1;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -32677,7 +32677,7 @@
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
 	dir = 1;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -37339,7 +37339,7 @@
 "gbH" = (
 /obj/stool{
 	desc = "A soft little bed the general size and shape of a space bee.";
-	icon = 'icons/misc/critter.dmi';
+	icon = 'icons/mob/critter.dmi';
 	icon_state = "beebed";
 	name = "heisenbed"
 	},
@@ -38599,7 +38599,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -39446,7 +39446,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "dterm0";
 	name = "broken computer"
 	},
@@ -39519,7 +39519,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "dterm0";
 	name = "broken computer"
 	},

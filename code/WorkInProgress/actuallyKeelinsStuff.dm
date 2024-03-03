@@ -2361,7 +2361,7 @@ Returns:
 /obj/objspawner			   //Thing that continously spawns objects. For event's or something. I wouldn't use this on the actual map. It's not very efficient.
 	name = "ObjSpawner"
 	desc = "If you see this and you're not an admin then that's sorta bad."
-	icon = 'icons/misc/mark.dmi'
+	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "rup"
 	density = 0
 	anchored = 1
@@ -3888,7 +3888,7 @@ var/list/lag_list = new/list()
 	anchored = 1
 	density = 0
 	opacity = 0
-	icon = 'icons/mob/hud_common.dmi'
+	icon = 'icons/ui/hud_common.dmi'
 	icon_state = "static"
 	screen_loc = "NORTH,WEST to SOUTH,EAST"
 	layer = 50

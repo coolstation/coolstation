@@ -85,7 +85,7 @@
 
 /obj/marker/supplymarker
 	icon_state = "X"
-	icon = 'icons/misc/mark.dmi'
+	icon = 'icons/map-editing/mark.dmi'
 	name = "X"
 	invisibility = 101
 	anchored = 1

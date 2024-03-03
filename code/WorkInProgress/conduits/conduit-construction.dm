@@ -4,7 +4,7 @@
 
 	name = "conduit segment"
 	desc = "A huge superconducting conduit segment used for directing power from generation sources to SMES power substations."
-	icon = 'icons/obj/power_cond.dmi'
+	icon = 'icons/obj/machines/power_cond.dmi'
 	icon_state = "conduit-straight"
 	anchored = 0
 	density = 0

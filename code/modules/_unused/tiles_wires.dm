@@ -10,7 +10,7 @@ TILES
 /obj/item/tile
 	name = "steel floor tile"
 	desc = "They keep the floor in a good and walkable condition."
-	icon = 'icons/obj/metal.dmi'
+	icon = 'icons/obj/items/metal.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "tile"
 	w_class = W_CLASS_NORMAL

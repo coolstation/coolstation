@@ -1130,8 +1130,8 @@ datum
 						if (W.get_forensic_trace("bDNA"))
 							var/icon/icon_old = W.icon
 							var/icon/I = new /icon(W.icon, W.icon_state)
-							I.Blend(new /icon('icons/effects/blood.dmi', "thisisfuckingstupid"),ICON_ADD)
-							I.Blend(new /icon('icons/effects/blood.dmi', "lum-item"),ICON_MULTIPLY)
+							I.Blend(new /icon('icons/obj/decals/blood.dmi', "thisisfuckingstupid"),ICON_ADD)
+							I.Blend(new /icon('icons/obj/decals/blood.dmi', "lum-item"),ICON_MULTIPLY)
 							I.Blend(new /icon(W.icon, W.icon_state),ICON_UNDERLAY)
 							W.icon = I
 							SPAWN_DBG(30 SECONDS)
@@ -3488,9 +3488,9 @@ datum
 					M.visible_message("<span class='emote'><b>[M]</b> yees.</span>")
 					playsound(M, "sound/misc/yee.ogg", 50, 1)
 				if (probmult(8))
-					fake_attackEx(M, 'icons/effects/hallucinations.dmi', "bop-bop", "bop-bop")
+					fake_attackEx(M, 'icons/mob/hallucinations.dmi', "bop-bop", "bop-bop")
 				if (probmult(8))
-					fake_attackEx(M, 'icons/effects/hallucinations.dmi', "yee", "yee")
+					fake_attackEx(M, 'icons/mob/hallucinations.dmi', "yee", "yee")
 				..()
 				return
 
@@ -4034,7 +4034,7 @@ datum
 /obj/badman/ //I really don't know a good spot to put this guy so im putting him here, fuck you.
 	name = "Senator Death Badman"
 	desc = "Finally, a politician I can trust."
-	icon = 'icons/misc/hydrogimmick.dmi'
+	icon = 'icons/mob/hydrogimmick.dmi'
 	icon_state = "badman"
 	layer = EFFECTS_LAYER_2
 	density = 1

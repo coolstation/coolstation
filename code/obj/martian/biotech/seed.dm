@@ -8,7 +8,7 @@
 /obj/item/martianSeed
   name = "spiky lump"
   desc = "Pointy!"
-  icon = 'icons/obj/martian.dmi'
+  icon = 'icons/obj/unused/martian.dmi'
   icon_state = "seed"
   w_class = W_CLASS_TINY
   stamina_damage = 1
@@ -68,7 +68,7 @@
 /obj/martianBiotech/structureSpawner
   name = "bulging lump"
   desc = "Oh, god, that's gross as fuck."
-  icon = 'icons/obj/martian.dmi'
+  icon = 'icons/obj/unused/martian.dmi'
   icon_state = "seed_grow1"
   martianName = "structual sac"
   martianDesc = "Something is growing within this protective sac."

@@ -15,7 +15,7 @@
 /////////////////////////////////////////
 
 /datum/targetable/flockmindAbility
-	icon = 'icons/mob/flock_ui.dmi'
+	icon = 'icons/ui/unused/flock_ui.dmi'
 	icon_state = "template"
 	cooldown = 40
 	last_cast = 0

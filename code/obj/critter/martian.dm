@@ -242,7 +242,7 @@
 /obj/machinery/martianbomb
 	name = "martian bomb"
 	desc = "You'd best destroy this thing fast."
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "mbomb-off"
 	anchored = 1
 	density = 1

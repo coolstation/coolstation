@@ -9,7 +9,7 @@
 
 /obj/swapAreaLowerLeft
 	name = "lower left corner"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	icon_state = "x2"
 	color = "#0000ff"
 	anchored = 1

@@ -139,7 +139,7 @@
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 4;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer";
 	tag = "icon-offbroken (EAST)"
@@ -151,7 +151,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -164,7 +164,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 9;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -220,7 +220,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -268,7 +268,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -297,7 +297,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -448,7 +448,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit"
 	},
@@ -498,7 +498,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -511,7 +511,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 5;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101;
@@ -547,7 +547,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -645,7 +645,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -700,7 +700,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -712,7 +712,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 9;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -721,7 +721,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 5;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101;
@@ -734,7 +734,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 6;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -758,7 +758,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "An old computer that doesn't appear to be plugged in.  Do you see the cord anywhere? No? Dang.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "old0";
 	name = "inactive computer";
 	pixel_x = 4
@@ -934,7 +934,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "An old computer that doesn't appear to be plugged in.  Do you see the cord anywhere? Yes?  Oh, good...wait, where's the outlet?.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "old0";
 	name = "inactive computer";
 	pixel_y = 8
@@ -1054,7 +1054,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -1127,7 +1127,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This particular geegaw is probably related to power control or fire systems or something.  It could also be a really elaborate light switch.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "generic-p";
 	name = "strange machine"
 	},
@@ -1368,7 +1368,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -1405,7 +1405,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -1680,7 +1680,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -1690,7 +1690,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -1703,7 +1703,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 5;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101;
@@ -1720,7 +1720,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -1739,7 +1739,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 6;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -1859,7 +1859,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -1887,7 +1887,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -2074,7 +2074,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "This is some kind of status terminal for a nuclear reactor.  Probably.  It may be a status panel for a vending machine, that just so happens to be next to a nuclear reactor.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "wallterm0";
 	name = "broken computer"
 	},
@@ -2505,7 +2505,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -2727,7 +2727,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -2942,7 +2942,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -2963,7 +2963,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -2976,7 +2976,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 6;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -3115,7 +3115,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -3131,7 +3131,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -3148,7 +3148,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -3191,7 +3191,7 @@
 	density = 1;
 	desc = "Part of a drone chassis.";
 	dir = 8;
-	icon = 'icons/obj/ship.dmi';
+	icon = 'icons/obj/vehicles/ship.dmi';
 	icon_state = "drone_construction";
 	name = "drone parts"
 	},
@@ -3680,7 +3680,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -3698,7 +3698,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -3715,7 +3715,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -4378,7 +4378,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "aiuploadb";
 	name = "broken computer"
 	},
@@ -4459,7 +4459,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "aiuploadb";
 	name = "broken computer"
 	},
@@ -4470,7 +4470,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "dterm0";
 	name = "broken computer"
 	},
@@ -4659,7 +4659,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer"
 	},
@@ -4766,7 +4766,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -4782,7 +4782,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 5;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -4842,7 +4842,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -4970,7 +4970,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "The goods inside the machine probably expired before you were even born.";
-	icon = 'icons/obj/vending.dmi';
+	icon = 'icons/obj/machines/vending.dmi';
 	icon_state = "med-off";
 	name = "broken vending machine"
 	},
@@ -5137,7 +5137,7 @@
 	density = 1;
 	desc = "The chassis of an HK-class drone.";
 	dir = 1;
-	icon = 'icons/obj/ship.dmi';
+	icon = 'icons/obj/vehicles/ship.dmi';
 	icon_state = "drone_construction";
 	name = "partially assembled drone"
 	},
@@ -5377,7 +5377,7 @@
 	density = 1;
 	desc = "The chassis of an HK-class drone.";
 	dir = 4;
-	icon = 'icons/obj/ship.dmi';
+	icon = 'icons/obj/vehicles/ship.dmi';
 	icon_state = "drone_construction";
 	name = "mostly assembled drone"
 	},
@@ -5570,7 +5570,7 @@
 /obj/overlay{
 	density = 1;
 	desc = "The chassis of an SC-class drone.";
-	icon = 'icons/obj/ship.dmi';
+	icon = 'icons/obj/vehicles/ship.dmi';
 	icon_state = "drone_construction";
 	name = "partially assembled drone"
 	},
@@ -5899,7 +5899,7 @@
 "aOr" = (
 /obj/decal/fakeobjects{
 	desc = "The goods inside the machine probably expired before you were even born.";
-	icon = 'icons/obj/vending.dmi';
+	icon = 'icons/obj/machines/vending.dmi';
 	icon_state = "grife-fallen";
 	name = "broken vending machine"
 	},
@@ -6725,7 +6725,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -6970,7 +6970,7 @@
 /area/marsoutpost)
 "aSx" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "4-10";
 	name = "power cable"
 	},
@@ -6983,7 +6983,7 @@
 	dir = 8
 	},
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-8";
 	name = "power cable"
 	},
@@ -7254,7 +7254,7 @@
 "aTy" = (
 /obj/decal/fakeobjects{
 	desc = "The goods inside the machine probably expired before you were even born.";
-	icon = 'icons/obj/vending.dmi';
+	icon = 'icons/obj/machines/vending.dmi';
 	icon_state = "robust-broken";
 	name = "broken vending machine"
 	},
@@ -7265,7 +7265,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "The goods inside the machine probably expired before you were even born.";
-	icon = 'icons/obj/vending.dmi';
+	icon = 'icons/obj/machines/vending.dmi';
 	icon_state = "coffee-fallen";
 	name = "broken vending machine"
 	},
@@ -7700,7 +7700,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "A large rack of server modules.  It doesn't seem to be in service.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "server0";
 	name = "downed server"
 	},
@@ -7711,7 +7711,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "It's some sort of power plant control doodad of some sort.  Probably.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "pathmanip-p";
 	name = "strange machine"
 	},
@@ -7722,13 +7722,13 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 9;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit"
 	},
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-6";
 	name = "power cable"
 	},
@@ -7736,7 +7736,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 9;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -7752,7 +7752,7 @@
 /area/marsoutpost)
 "aUY" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "5-10";
 	name = "power cable"
 	},
@@ -8276,7 +8276,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "An old computer that is obviously very broken.  It might actually not even be plugged in.  BROKEN.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "old0";
 	name = "broken computer"
 	},
@@ -8296,7 +8296,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "An old computer that is obviously very broken.  It might actually not even be plugged in.  BROKEN.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "oldb";
 	name = "broken computer"
 	},
@@ -9031,7 +9031,7 @@
 /area/marsoutpost)
 "aZH" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-10";
 	name = "power cable"
 	},
@@ -9173,7 +9173,7 @@
 /area/marsoutpost/duststorm)
 "baj" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "5-10";
 	name = "power cable"
 	},
@@ -9403,7 +9403,7 @@
 /area/crater/cave)
 "baS" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "5-10";
 	name = "power cable"
 	},
@@ -9548,7 +9548,7 @@
 /area/crater/cave)
 "bca" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "5-6";
 	name = "power cable"
 	},
@@ -9644,7 +9644,7 @@
 /area/crater/cave)
 "bcq" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "2-10";
 	name = "power cable"
 	},
@@ -9652,7 +9652,7 @@
 /area/marsoutpost/duststorm)
 "bcr" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "9-10";
 	name = "power cable"
 	},
@@ -9662,7 +9662,7 @@
 /obj/decal/fakeobjects{
 	desc = "It's probably broken.";
 	dir = 10;
-	icon = 'icons/obj/power.dmi';
+	icon = 'icons/obj/machines/power.dmi';
 	icon_state = "solar_panel";
 	name = "solar panel"
 	},
@@ -9676,7 +9676,7 @@
 "bct" = (
 /obj/decal/fakeobjects{
 	desc = "It's probably broken.";
-	icon = 'icons/obj/power.dmi';
+	icon = 'icons/obj/machines/power.dmi';
 	icon_state = "solar_panel-b";
 	name = "solar panel"
 	},
@@ -9691,7 +9691,7 @@
 /obj/decal/fakeobjects{
 	desc = "It's probably broken.";
 	dir = 6;
-	icon = 'icons/obj/power.dmi';
+	icon = 'icons/obj/machines/power.dmi';
 	icon_state = "solar_panel";
 	name = "solar panel"
 	},
@@ -9837,7 +9837,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "An antenna to boost a distress signal.";
-	icon = 'icons/obj/ship.dmi';
+	icon = 'icons/obj/vehicles/ship.dmi';
 	icon_state = "beacon";
 	name = "boost transmitter"
 	},
@@ -9847,7 +9847,7 @@
 /area/marsoutpost/duststorm)
 "bcP" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "2-5";
 	name = "power cable"
 	},
@@ -9855,7 +9855,7 @@
 /area/marsoutpost/duststorm)
 "bcQ" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-5";
 	name = "power cable"
 	},
@@ -9863,7 +9863,7 @@
 /area/marsoutpost/duststorm)
 "bcR" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-6";
 	name = "power cable"
 	},
@@ -9873,12 +9873,12 @@
 /area/marsoutpost/duststorm)
 "bcS" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "2-10";
 	name = "power cable"
 	},
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-10";
 	name = "power cable"
 	},
@@ -9888,12 +9888,12 @@
 /area/marsoutpost/duststorm)
 "bcT" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-10";
 	name = "power cable"
 	},
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "4-10";
 	name = "power cable"
 	},
@@ -9903,7 +9903,7 @@
 /area/marsoutpost/duststorm)
 "bcU" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "4-8";
 	name = "power cable"
 	},
@@ -9913,7 +9913,7 @@
 /area/marsoutpost/duststorm)
 "bcV" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "4-8";
 	name = "power cable"
 	},
@@ -9926,7 +9926,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "aiuploadb";
 	name = "broken computer"
 	},
@@ -10005,7 +10005,7 @@
 /area/crater/cave)
 "bdh" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-2";
 	name = "power cable"
 	},
@@ -10017,7 +10017,7 @@
 /obj/decal/fakeobjects{
 	desc = "It's probably broken.";
 	dir = 6;
-	icon = 'icons/obj/power.dmi';
+	icon = 'icons/obj/machines/power.dmi';
 	icon_state = "solar_panel";
 	name = "solar panel"
 	},
@@ -10032,7 +10032,7 @@
 "bdj" = (
 /obj/decal/fakeobjects{
 	desc = "It's probably broken.";
-	icon = 'icons/obj/power.dmi';
+	icon = 'icons/obj/machines/power.dmi';
 	icon_state = "solar_panel-b";
 	name = "solar panel"
 	},
@@ -10110,7 +10110,7 @@
 /area/crater)
 "bdx" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-2";
 	name = "power cable"
 	},
@@ -10257,7 +10257,7 @@
 /area/crater/cave)
 "bea" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-6";
 	name = "power cable"
 	},
@@ -10280,7 +10280,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 6;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -10321,7 +10321,7 @@
 /area/crater/cave)
 "bep" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "4-9";
 	name = "power cable"
 	},
@@ -10331,7 +10331,7 @@
 /area/marsoutpost/duststorm)
 "beq" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "4-8";
 	name = "power cable"
 	},
@@ -10339,7 +10339,7 @@
 /area/marsoutpost/duststorm)
 "ber" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "2-8";
 	name = "power cable"
 	},
@@ -10382,7 +10382,7 @@
 	icon_state = "lattice-dir-b"
 	},
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-2";
 	name = "power cable"
 	},
@@ -10393,7 +10393,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 9;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -10468,7 +10468,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 6;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -10548,7 +10548,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit"
 	},
@@ -10656,7 +10656,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -11393,7 +11393,7 @@
 /obj/decal/fakeobjects/robot{
 	anchored = 1;
 	desc = "Most of it's electronics appear to be destroyed.";
-	icon = 'icons/misc/critter.dmi';
+	icon = 'icons/mob/critter.dmi';
 	icon_state = "mars_bot-dead";
 	name = "Smashed Robot"
 	},
@@ -11421,7 +11421,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 5;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -11446,7 +11446,7 @@
 "bix" = (
 /obj/decal/fakeobjects{
 	desc = "The goods inside the machine probably expired before you were even born.";
-	icon = 'icons/obj/vending.dmi';
+	icon = 'icons/obj/machines/vending.dmi';
 	icon_state = "coffee-broken";
 	name = "broken vending machine"
 	},
@@ -11540,7 +11540,7 @@
 "biO" = (
 /obj/decal/fakeobjects{
 	desc = "The goods inside the machine probably expired before you were even born.";
-	icon = 'icons/obj/vending.dmi';
+	icon = 'icons/obj/machines/vending.dmi';
 	icon_state = "robust-broken";
 	name = "broken vending machine"
 	},
@@ -11733,7 +11733,7 @@
 "bjq" = (
 /obj/item/tile/steel,
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "5-6";
 	name = "power cable"
 	},
@@ -12343,7 +12343,7 @@
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 4;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer";
 	tag = "icon-offbroken (EAST)"
@@ -12505,7 +12505,7 @@
 	density = 1;
 	desc = "Filing cabinets. The locking mechanism is jammed.";
 	dir = 4;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "messyfilesb";
 	name = "facility records";
 	tag = "icon-messyfilesb (EAST)"
@@ -12802,7 +12802,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "dterm0";
 	name = "broken computer"
 	},
@@ -12821,7 +12821,7 @@
 /area/marsoutpost)
 "bne" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-6";
 	name = "power cable"
 	},
@@ -12835,7 +12835,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "A large rack of server modules.  It doesn't seem to be in service.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "server0";
 	name = "downed server"
 	},
@@ -12846,7 +12846,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "It's some sort of power plant control doodad of some sort.  Probably.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "generic-p";
 	name = "strange machine"
 	},
@@ -12857,7 +12857,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 5;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -12972,17 +12972,17 @@
 /area/afterlife/hell)
 "bnu" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-9";
 	name = "power cable"
 	},
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-4";
 	name = "power cable"
 	},
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-2";
 	name = "power cable"
 	},
@@ -12990,22 +12990,22 @@
 /area/marsoutpost)
 "bnv" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "2-10";
 	name = "power cable"
 	},
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "2-10";
 	name = "power cable"
 	},
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "2-8";
 	name = "power cable"
 	},
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-8";
 	name = "power cable"
 	},
@@ -13013,22 +13013,22 @@
 /area/marsoutpost)
 "bnw" = (
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "4-10";
 	name = "power cable"
 	},
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "2-10";
 	name = "power cable"
 	},
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-10";
 	name = "power cable"
 	},
 /obj/decal/fakeobjects{
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "1-9";
 	name = "power cable"
 	},
@@ -13038,7 +13038,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit"
 	},
@@ -13199,7 +13199,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer"
 	},
@@ -13215,7 +13215,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "How old is this?";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "dwaine";
 	name = "old mainframe"
 	},
@@ -13333,7 +13333,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "An old computer that doesn't appear to be plugged in.  Do you see the cord anywhere? No? Dang.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "old0";
 	name = "inactive computer";
 	pixel_x = 4
@@ -13395,7 +13395,7 @@
 "bou" = (
 /obj/decal/fakeobjects{
 	desc = "Everything's fine. Don't worry about it.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "serverf";
 	name = "server rack"
 	},
@@ -14818,7 +14818,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer"
 	},
@@ -15463,7 +15463,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "A thermoelectric generator that appears to have fallen into disrepair.";
-	icon = 'icons/obj/power.dmi';
+	icon = 'icons/obj/machines/power.dmi';
 	icon_state = "teg-broken";
 	name = "broken generator"
 	},
@@ -15635,7 +15635,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit"
 	},
@@ -15792,7 +15792,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer"
 	},
@@ -15805,7 +15805,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "It's some sort of power plant control doodad of some sort.  Probably.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "pathmanip-p";
 	name = "strange machine"
 	},
@@ -16089,7 +16089,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "It's some sort of power plant control doodad of some sort.  Probably.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "pathmanip-p";
 	name = "strange machine"
 	},
@@ -16209,7 +16209,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -16222,7 +16222,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -16236,7 +16236,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -16256,7 +16256,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -16283,7 +16283,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -16304,7 +16304,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -16340,7 +16340,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -16356,7 +16356,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -16514,7 +16514,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "An old computer that is obviously very broken.  It might actually not even be plugged in.  BROKEN.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "old0";
 	name = "broken computer"
 	},
@@ -16566,7 +16566,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "This appears to be a control panel for that blast door.  It doesn't seem to work.  Maybe there is an override or something?";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "wallterm0";
 	name = "broken computer"
 	},
@@ -17060,7 +17060,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "It's some sort of power plant control doodad of some sort.  Probably.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "pathmanip-p";
 	name = "strange machine"
 	},
@@ -17231,7 +17231,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "An old computer that is obviously very broken.  It might actually not even be plugged in.  BROKEN.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "old0";
 	name = "broken computer"
 	},
@@ -17250,7 +17250,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 6;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -17364,7 +17364,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "It's some sort of power plant control doodad of some sort.  Probably.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "generic-p";
 	name = "strange machine"
 	},
@@ -17771,7 +17771,7 @@
 /obj/overlay{
 	density = 1;
 	desc = "A networked tape drive.  It looks to be in fairly poor condition.  I bet the vacuum columns don't work worth a damn.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "tapedrive-p";
 	name = "broken databank"
 	},
@@ -17974,7 +17974,7 @@
 /obj/overlay{
 	density = 1;
 	desc = "A networked tape drive.  It looks to be in fairly poor condition.  I bet the vacuum columns don't work worth a damn.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "tapedrive-p";
 	name = "broken databank"
 	},
@@ -18366,7 +18366,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "A large rack of server modules.  It doesn't seem to be in service.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "server0";
 	name = "downed server"
 	},
@@ -18996,7 +18996,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "This appears to be a control panel for that furance gizmo.  The screen is off and there isn't any visible power switch.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "wallterm0";
 	name = "broken computer"
 	},
@@ -19007,7 +19007,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -19061,7 +19061,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "A large rack of server modules.  It doesn't seem to be in service.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "server0";
 	name = "downed server"
 	},
@@ -20362,7 +20362,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer"
 	},
@@ -21642,7 +21642,7 @@
 "bKy" = (
 /obj/decal/fakeobjects{
 	desc = "The goods inside the machine probably expired before you were even born.";
-	icon = 'icons/obj/vending.dmi';
+	icon = 'icons/obj/machines/vending.dmi';
 	icon_state = "robust-broken";
 	name = "broken vending machine"
 	},
@@ -21803,7 +21803,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer"
 	},
@@ -22338,7 +22338,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "dterm0";
 	name = "broken computer"
 	},
@@ -22948,7 +22948,7 @@
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 4;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer";
 	tag = "icon-offbroken (EAST)"
@@ -23163,7 +23163,7 @@
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 4;
-	icon = 'icons/obj/power.dmi';
+	icon = 'icons/obj/machines/power.dmi';
 	icon_state = "dterm";
 	name = "broken video camera";
 	tag = "icon-offbroken (EAST)"
@@ -23172,7 +23172,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer";
 	tag = "icon-offbroken (EAST)"
@@ -23279,7 +23279,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "dterm0";
 	name = "broken computer"
 	},
@@ -23320,7 +23320,7 @@
 /obj/overlay{
 	density = 1;
 	desc = null;
-	icon = 'icons/obj/power.dmi';
+	icon = 'icons/obj/machines/power.dmi';
 	icon_state = "dterm";
 	name = "data terminal"
 	},
@@ -23353,7 +23353,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "The goods inside the machine probably expired before you were even born.";
-	icon = 'icons/obj/vending.dmi';
+	icon = 'icons/obj/machines/vending.dmi';
 	icon_state = "coffee-fallen";
 	name = "broken vending machine"
 	},
@@ -23481,7 +23481,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -23509,7 +23509,7 @@
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 4;
-	icon = 'icons/obj/power.dmi';
+	icon = 'icons/obj/machines/power.dmi';
 	icon_state = "dterm";
 	name = "broken video camera";
 	tag = "icon-offbroken (EAST)"
@@ -23519,7 +23519,7 @@
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 4;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer";
 	tag = "icon-offbroken (EAST)"
@@ -23557,7 +23557,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -23645,7 +23645,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer"
 	},
@@ -23661,7 +23661,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "This appears to be a control panel for that big microwave array thing?  It doesn't seem to work.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "wallterm0";
 	name = "broken computer"
 	},
@@ -23832,7 +23832,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -23848,7 +23848,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -23883,7 +23883,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "How old is this?";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "dwaine";
 	name = "old mainframe"
 	},
@@ -23913,7 +23913,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -23923,7 +23923,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 9;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -23945,7 +23945,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -24124,7 +24124,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -24141,7 +24141,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "aiuploadb";
 	name = "broken computer"
 	},
@@ -24979,7 +24979,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 5;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -25081,7 +25081,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -25102,7 +25102,7 @@
 /obj/overlay{
 	density = 1;
 	desc = null;
-	icon = 'icons/obj/power.dmi';
+	icon = 'icons/obj/machines/power.dmi';
 	icon_state = "dterm";
 	name = "data terminal"
 	},
@@ -25110,7 +25110,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "It's some sort of teleporter part.  In all likelihood.  It might just be an industrial arcade cabinet.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "pathmanip-p";
 	name = "strange machine"
 	},
@@ -25123,7 +25123,7 @@
 /obj/overlay{
 	density = 1;
 	desc = null;
-	icon = 'icons/obj/power.dmi';
+	icon = 'icons/obj/machines/power.dmi';
 	icon_state = "dterm";
 	name = "data terminal"
 	},
@@ -25239,7 +25239,7 @@
 "bVQ" = (
 /obj/decal/fakeobjects{
 	desc = "The goods inside the machine probably expired before you were even born.";
-	icon = 'icons/obj/vending.dmi';
+	icon = 'icons/obj/machines/vending.dmi';
 	icon_state = "coffee-broken";
 	name = "broken vending machine"
 	},
@@ -25440,7 +25440,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -26063,7 +26063,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -26151,7 +26151,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 6;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -26282,7 +26282,7 @@
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 1;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer";
 	tag = "icon-offbroken (NORTH)"
@@ -26385,7 +26385,7 @@
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 4;
-	icon = 'icons/obj/power.dmi';
+	icon = 'icons/obj/machines/power.dmi';
 	icon_state = "dterm";
 	name = "broken video camera";
 	tag = "icon-offbroken (EAST)"
@@ -26395,7 +26395,7 @@
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 4;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer";
 	tag = "icon-offbroken (EAST)"
@@ -26447,7 +26447,7 @@
 /obj/disposalpipe/segment/horizontal,
 /obj/death_button{
 	desc = "A button. One that removes you from the afterlife bar (if you press it).";
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "party";
 	name = "afterlife bar ejection button"
 	},
@@ -26533,7 +26533,7 @@
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 8;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer";
 	tag = "icon-offbroken (EAST)"
@@ -26892,7 +26892,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "Everything looks pretty fried. The reels are also missing.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "tapedrive0";
 	name = "broken tape drive"
 	},
@@ -26907,7 +26907,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "A large rack of server modules.  It doesn't seem to be in service.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "server0";
 	name = "downed server"
 	},
@@ -27091,7 +27091,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "Everything looks pretty fried. The reels are also missing.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "tapedrive0";
 	name = "broken tape drive"
 	},
@@ -27185,7 +27185,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "A large rack of server modules.  It doesn't seem to be in service.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "server0";
 	name = "downed server"
 	},
@@ -27294,7 +27294,7 @@
 /obj/overlay{
 	density = 1;
 	desc = "A networked tape drive.  It looks to be in fairly poor condition.  I bet the vacuum columns don't work worth a damn.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "tapedrive-p";
 	name = "broken databank"
 	},
@@ -27304,7 +27304,7 @@
 /obj/overlay{
 	density = 1;
 	desc = "A networked tape drive.  It looks to be in fairly poor condition.  I bet the vacuum columns don't work worth a damn.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "tapedrive-p";
 	name = "broken databank"
 	},
@@ -27788,7 +27788,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -27861,7 +27861,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This particular gizmo relates to teleportation in some way.  Alternatively, it might mix drinks.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "generic-p";
 	name = "strange machine"
 	},
@@ -27973,7 +27973,7 @@
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 4;
-	icon = 'icons/obj/power.dmi';
+	icon = 'icons/obj/machines/power.dmi';
 	icon_state = "dterm";
 	name = "broken video camera";
 	tag = "icon-offbroken (EAST)"
@@ -27983,7 +27983,7 @@
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 8;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer";
 	tag = "icon-offbroken (EAST)"
@@ -28101,7 +28101,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -28216,7 +28216,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 5;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -28225,7 +28225,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 6;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -28523,7 +28523,7 @@
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 1;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer";
 	tag = "icon-offbroken (NORTH)"
@@ -28539,7 +28539,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -28783,7 +28783,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -28923,7 +28923,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -29100,7 +29100,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 5;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -29623,7 +29623,7 @@
 /obj/computerframe{
 	anchored = 1;
 	desc = "It is highly unlikely that this still works.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},
@@ -29844,7 +29844,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -30266,7 +30266,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -31161,7 +31161,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -31255,7 +31255,7 @@
 /obj/decal/fakeobjects/robot{
 	anchored = 1;
 	desc = "An old style utility robot, smashed to hell.";
-	icon = 'icons/misc/critter.dmi';
+	icon = 'icons/mob/critter.dmi';
 	icon_state = "mars_bot-dead";
 	name = "Smashed Robot"
 	},
@@ -31420,7 +31420,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -31553,7 +31553,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -31922,7 +31922,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -32139,7 +32139,7 @@
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
 	dir = 4;
-	icon = 'icons/obj/power.dmi';
+	icon = 'icons/obj/machines/power.dmi';
 	icon_state = "dterm";
 	name = "broken video camera";
 	tag = "icon-offbroken (EAST)"
@@ -32148,7 +32148,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "aiuploadb";
 	name = "broken computer"
 	},
@@ -32198,7 +32198,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -32219,7 +32219,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -32232,7 +32232,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -32312,7 +32312,7 @@
 	density = 1;
 	desc = "Looks like a broadcast-only model.";
 	dir = 4;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "television";
 	name = "broken video camera";
 	tag = "icon-offbroken (EAST)"
@@ -32454,7 +32454,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 9;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -32500,7 +32500,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 8;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit"
@@ -32521,7 +32521,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -32531,7 +32531,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -32551,7 +32551,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -32598,7 +32598,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 5;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101;
@@ -32800,7 +32800,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -32843,7 +32843,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 9;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -32852,7 +32852,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -32865,7 +32865,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 6;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -32978,7 +32978,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -32988,7 +32988,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -33014,7 +33014,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -33067,7 +33067,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -33116,7 +33116,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 8;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit"
@@ -33131,7 +33131,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 8;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit"
@@ -33153,7 +33153,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 8;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit"
@@ -33168,7 +33168,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 8;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit"
@@ -33177,7 +33177,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 6;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -33193,7 +33193,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 8;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit"
@@ -33208,7 +33208,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 8;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit"
@@ -33220,7 +33220,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 5;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -33232,7 +33232,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -33272,7 +33272,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -33285,7 +33285,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -33301,7 +33301,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "This appears to be a control panel for that big microwave array thing?  It doesn't seem to work.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "wallterm0";
 	name = "broken computer"
 	},
@@ -33423,7 +33423,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 6;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -33433,7 +33433,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -33546,7 +33546,7 @@
 	anchored = 1;
 	desc = "A clamp for docking shuttles. It's all busted.";
 	dir = 1;
-	icon = 'icons/obj/turrets.dmi';
+	icon = 'icons/obj/machines/turrets.dmi';
 	icon_state = "grey_target_prism";
 	name = "busted clamp"
 	},
@@ -33590,7 +33590,7 @@
 	anchored = 1;
 	desc = "A clamp for docking shuttles. It's all busted.";
 	dir = 1;
-	icon = 'icons/obj/turrets.dmi';
+	icon = 'icons/obj/machines/turrets.dmi';
 	icon_state = "grey_target_prism";
 	name = "busted clamp"
 	},
@@ -33708,7 +33708,7 @@
 /obj/computerframe{
 	anchored = 1;
 	desc = "It is highly unlikely that this still works.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},
@@ -34188,7 +34188,7 @@
 	anchored = 1;
 	desc = "It is highly unlikely that this still works.";
 	dir = 4;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},
@@ -34741,7 +34741,7 @@
 /obj/decal/fakeobjects{
 	density = 1;
 	desc = "The goods inside the machine probably expired before you were even born.";
-	icon = 'icons/obj/vending.dmi';
+	icon = 'icons/obj/machines/vending.dmi';
 	icon_state = "snack-broken";
 	name = "broken vending machine"
 	},
@@ -35791,7 +35791,7 @@
 	anchored = 1;
 	desc = "It is highly unlikely that this still works.";
 	dir = 8;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},
@@ -35931,7 +35931,7 @@
 /area/owlery/lab)
 "cCG" = (
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibmid2";
 	name = "gross organs"
 	},
@@ -36191,7 +36191,7 @@
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
 	dir = 8;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -37317,7 +37317,7 @@
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
 	dir = 4;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -37601,7 +37601,7 @@
 	density = 1;
 	desc = "A computer that is so completely, irreparably broken that you are in disbelief at just how destroyed it is. ";
 	dir = 8;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer"
 	},
@@ -37806,7 +37806,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -38056,7 +38056,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "A computer that is obviously completely broken, more so than previous obviously broken computers.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "oldb";
 	name = "broken computer"
 	},
@@ -38123,7 +38123,7 @@
 	anchored = 1;
 	desc = "A clamp for docking shuttles.";
 	dir = 8;
-	icon = 'icons/obj/turrets.dmi';
+	icon = 'icons/obj/machines/turrets.dmi';
 	icon_state = "grey_target_prism";
 	name = "docking clamp"
 	},
@@ -38938,7 +38938,7 @@
 	},
 /obj/item/reagent_containers/food/snacks/ingredient/meat/monkeymeat,
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibtorso";
 	name = "meaty bit"
 	},
@@ -39289,7 +39289,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -39320,7 +39320,7 @@
 /area/owlery/gangzone)
 "cLk" = (
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibtorso";
 	name = "meaty bit"
 	},
@@ -39477,7 +39477,7 @@
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
 	dir = 8;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -39516,7 +39516,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -40888,7 +40888,7 @@
 	anchored = 1;
 	desc = "It is highly unlikely that this still works.";
 	dir = 4;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},
@@ -41342,7 +41342,7 @@
 	icon_state = "floor4"
 	},
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibmid2";
 	name = "gross organs"
 	},
@@ -41580,7 +41580,7 @@
 	anchored = 1;
 	desc = "It is highly unlikely that this still works.";
 	dir = 4;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},
@@ -41648,7 +41648,7 @@
 	anchored = 1;
 	desc = "It is highly unlikely that this still works.";
 	dir = 8;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},
@@ -41923,7 +41923,7 @@
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
 	dir = 4;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -42152,7 +42152,7 @@
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
 	dir = 4;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -42485,7 +42485,7 @@
 	},
 /obj/decal/fakeobjects{
 	desc = "The goods inside the machine probably expired before you were even born.";
-	icon = 'icons/obj/vending.dmi';
+	icon = 'icons/obj/machines/vending.dmi';
 	icon_state = "robust-broken";
 	name = "broken vending machine"
 	},
@@ -44014,7 +44014,7 @@
 	anchored = 1;
 	desc = "It is highly unlikely that this still works.";
 	dir = 4;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},
@@ -44071,7 +44071,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "The goods inside the machine probably expired before you were even born.";
-	icon = 'icons/obj/vending.dmi';
+	icon = 'icons/obj/machines/vending.dmi';
 	icon_state = "med-off";
 	name = "broken vending machine"
 	},
@@ -44218,7 +44218,7 @@
 	anchored = 1;
 	desc = "It is highly unlikely that this still works.";
 	dir = 4;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},
@@ -44264,7 +44264,7 @@
 	anchored = 1;
 	desc = "It is highly unlikely that this still works.";
 	dir = 8;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "datamedb";
 	name = "smashed computer"
 	},
@@ -44843,7 +44843,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -45808,7 +45808,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -45907,7 +45907,7 @@
 	anchored = 1;
 	desc = "A security camera that is not on but, instead, off.";
 	dir = 4;
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "camerax";
 	name = "security camera"
 	},
@@ -46326,7 +46326,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -46801,7 +46801,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "An antenna to boost a distress signal.";
-	icon = 'icons/obj/ship.dmi';
+	icon = 'icons/obj/vehicles/ship.dmi';
 	icon_state = "beacon";
 	name = "boost transmitter"
 	},
@@ -46985,7 +46985,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 9;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -47188,7 +47188,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -47219,7 +47219,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -47395,7 +47395,7 @@
 	},
 /obj/decal/fakeobjects{
 	desc = "A pneumatic waste disposal unit. The handle looks jammed.";
-	icon = 'icons/obj/disposal.dmi';
+	icon = 'icons/obj/machines/disposal.dmi';
 	icon_state = "disposal";
 	name = "broken disposal unit"
 	},
@@ -47571,7 +47571,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -47784,7 +47784,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -47803,7 +47803,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -47917,7 +47917,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -47967,7 +47967,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -47980,7 +47980,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 6;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -47993,7 +47993,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -48008,7 +48008,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 6;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -48063,7 +48063,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -48139,7 +48139,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -48149,7 +48149,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -48162,7 +48162,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -48173,7 +48173,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 5;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101;
@@ -48205,7 +48205,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -48870,7 +48870,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "The goods inside the machine probably expired before you were even born.";
-	icon = 'icons/obj/vending.dmi';
+	icon = 'icons/obj/machines/vending.dmi';
 	icon_state = "coffee-fallen";
 	name = "broken vending machine"
 	},
@@ -48907,7 +48907,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -48917,7 +48917,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -48930,7 +48930,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 5;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101;
@@ -48951,7 +48951,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -48965,7 +48965,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -48978,7 +48978,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 5;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -48989,7 +48989,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -49002,7 +49002,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -49073,7 +49073,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 5;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101;
@@ -49123,7 +49123,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -49149,7 +49149,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -49637,7 +49637,7 @@
 	anchored = 1;
 	desc = "A turret for ships.  Like this ship that it's attached to.";
 	dir = 1;
-	icon = 'icons/obj/turrets.dmi';
+	icon = 'icons/obj/machines/turrets.dmi';
 	icon_state = "grey_target_prism";
 	name = "ship turret"
 	},
@@ -49822,17 +49822,17 @@
 	},
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat,
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibtorso";
 	name = "meaty bit"
 	},
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibmid2";
 	name = "gross organs"
 	},
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat{
-	icon = 'icons/effects/blood.dmi';
+	icon = 'icons/obj/decals/blood.dmi';
 	icon_state = "gibhead";
 	name = "grody thing"
 	},
@@ -50401,7 +50401,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "An old computer that is obviously very broken.  It might actually not even be plugged in.  BROKEN.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "old0";
 	name = "broken computer"
 	},
@@ -50470,7 +50470,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "A computer that is obviously completely broken, more so than previous obviously broken computers.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "oldb";
 	name = "broken computer"
 	},
@@ -50759,7 +50759,7 @@
 /obj/decal/fakeobjects{
 	anchored = 1;
 	desc = "An old computer that is obviously very broken.  It might actually not even be plugged in.  BROKEN.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "old0";
 	name = "broken computer"
 	},
@@ -50875,7 +50875,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -50929,7 +50929,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -50957,7 +50957,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "It's some sort of teleporter part.  In all likelihood.  It might just be an industrial arcade cabinet.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "pathmanip-p";
 	name = "strange machine"
 	},
@@ -51027,7 +51027,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 9;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.5;
 	name = "power conduit";
@@ -51092,7 +51092,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 10;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -51105,7 +51105,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -51176,7 +51176,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "This computer is incredibly broken.  Look at how broken it is!  Very much so.";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "dterm0";
 	name = "broken computer"
 	},
@@ -51187,7 +51187,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "A computer that is so completely, irreparably broken that you are in disbelief at just how destroyed it is. ";
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "broken computer"
 	},
@@ -51298,7 +51298,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -51312,7 +51312,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 1.9;
 	name = "power conduit"
@@ -51321,7 +51321,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -52274,7 +52274,7 @@
 	anchored = 1;
 	density = 1;
 	desc = "A large rack of server modules.  It doesn't seem to be in service.";
-	icon = 'icons/obj/networked.dmi';
+	icon = 'icons/obj/machines/networked.dmi';
 	icon_state = "server0";
 	name = "downed server"
 	},
@@ -52305,7 +52305,7 @@
 	density = 1;
 	desc = "A computer that is so completely, irreparably broken that you are in disbelief at just how destroyed it is. ";
 	dir = 8;
-	icon = 'icons/obj/computer.dmi';
+	icon = 'icons/obj/machines/computer.dmi';
 	icon_state = "offbroken";
 	name = "busted computer"
 	},
@@ -53086,7 +53086,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -53137,7 +53137,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 5;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	name = "power conduit";
 	plane = -101
@@ -53233,7 +53233,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -55321,7 +55321,7 @@
 "nyz" = (
 /obj/decal/fakeobjects{
 	desc = "Press this for a good time.";
-	icon = 'icons/obj/monitors.dmi';
+	icon = 'icons/obj/machines/monitors.dmi';
 	icon_state = "party";
 	name = "\proper start the game button";
 	pixel_y = -8
@@ -55777,7 +55777,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -57132,7 +57132,7 @@
 	},
 /obj/decal/fakeobjects{
 	desc = "They're just happy to be here, folks.";
-	icon = 'icons/misc/critter.dmi';
+	icon = 'icons/mob/critter.dmi';
 	icon_state = "paisano-generic";
 	layer = 4;
 	name = "paisano"
@@ -57470,7 +57470,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 1;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";
@@ -57947,7 +57947,7 @@
 	anchored = 1;
 	desc = "Like conventional cables, but more burly.";
 	dir = 4;
-	icon = 'icons/obj/power_cond.dmi';
+	icon = 'icons/obj/machines/power_cond.dmi';
 	icon_state = "conduit";
 	layer = 2.1;
 	name = "power conduit";

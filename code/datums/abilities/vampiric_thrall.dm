@@ -101,7 +101,7 @@
 
 
 /datum/targetable/vampiric_thrall
-	icon = 'icons/mob/spell_buttons.dmi'
+	icon = 'icons/ui/spell_buttons.dmi'
 	icon_state = "vampire-template"
 	cooldown = 0
 	last_cast = 0

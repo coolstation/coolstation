@@ -283,10 +283,10 @@
 					src.overlays = null
 					src.name = objname
 				if("chasing")
-					src.overlays += image("icon" = 'icons/misc/critter.dmi', "icon_state" = "mimicface", "layer" = FLOAT_LAYER)
+					src.overlays += image("icon" = 'icons/mob/critter.dmi', "icon_state" = "mimicface", "layer" = FLOAT_LAYER)
 					src.name = "mimic"
 				if("attacking")
-					src.overlays += image("icon" = 'icons/misc/critter.dmi', "icon_state" = "mimicface", "layer" = FLOAT_LAYER)
+					src.overlays += image("icon" = 'icons/mob/critter.dmi', "icon_state" = "mimicface", "layer" = FLOAT_LAYER)
 					src.name = "mimic"
 
 	ChaseAttack(mob/M)
@@ -618,7 +618,7 @@
 				reagents.add_reagent(src.reagent_id, 10)
 
 				var/oldcolor = src.reagents.get_master_color()
-				var/icon/I = new /icon('icons/misc/critter.dmi',"golem")
+				var/icon/I = new /icon('icons/mob/critter.dmi',"golem")
 				I.Blend(oldcolor, ICON_ADD)
 				src.icon = I
 				src.name = "[capitalize(src.reagents.get_master_reagent_name())]-Golem"
@@ -656,7 +656,7 @@
 			src.reagents.add_reagent(current_id, min(R.volume * 5, 50))
 
 		var/oldcolor = src.reagents.get_master_color()
-		var/icon/I = new /icon('icons/misc/critter.dmi',"golem")
+		var/icon/I = new /icon('icons/mob/critter.dmi',"golem")
 		I.Blend(oldcolor, ICON_ADD)
 		src.icon = I
 		src.name = "[capitalize(src.reagents.get_master_reagent_name())]-Golem"
@@ -1358,7 +1358,7 @@
 /obj/critter/snake
 	name = "snake"
 	desc = "A snake. Not on a plane."
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "snake"
 	density = 0
 	health = 25

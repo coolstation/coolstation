@@ -4,7 +4,7 @@
 // note don't get used to it just yet as i will probably be changing some of the iconstate naming conventions
 	name = "power conduit"
 	desc = "A rigid assembly of superconducting power lines."
-	icon = 'icons/obj/power_conduit.dmi'
+	icon = 'icons/obj/machines/power_conduit.dmi'
 	icon_state = "conduit-large"
 
 	layer = CABLE_LAYER

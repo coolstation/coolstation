@@ -817,7 +817,7 @@
 /obj/item/mechanics/triplaser
 	name = "Trip laser"
 	desc = "Fires a signal when someone passes through the beam."
-	icon = 'icons/obj/networked.dmi'
+	icon = 'icons/obj/machines/networked.dmi'
 	icon_state = "secdetector0"
 	can_rotate = 1
 	cabinet_banned = true // abusable. B&

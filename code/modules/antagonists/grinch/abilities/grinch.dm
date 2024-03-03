@@ -72,7 +72,7 @@
 /////////////////////////////////////////////// Grinch spell parent ////////////////////////////
 
 /datum/targetable/grinch
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "template"  // No custom sprites yet.
 	cooldown = 0
 	last_cast = 0

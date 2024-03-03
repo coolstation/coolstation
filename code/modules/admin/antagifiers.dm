@@ -102,7 +102,7 @@
 	name = "Shadowy Dog Thing"
 	desc = "Awooo?"
 	attachedObjective = "Awoooooooooo"
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "george"
 	color = "#000000"
 
@@ -190,7 +190,7 @@
 	werewolf
 		name = "WEREWOLF.EXE"
 		desc = "Makes you into a werewolf? If only they included a goddamn readme with this shit."
-		icon = 'icons/misc/critter.dmi'
+		icon = 'icons/mob/critter.dmi'
 		icon_state = "george"
 		color = "#000000"
 

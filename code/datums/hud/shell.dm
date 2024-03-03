@@ -15,19 +15,19 @@
 		..()
 		master = M
 
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_bg", "CENTER-3:16, SOUTH to CENTER+2:16, SOUTH", HUD_LAYER)
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER-3:16, SOUTH+1 to CENTER+2:16, SOUTH+1", HUD_LAYER, SOUTH)
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER-4:16, SOUTH+1", HUD_LAYER, SOUTHWEST)
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER-4:16, SOUTH", HUD_LAYER, EAST)
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER+3:16, SOUTH+1", HUD_LAYER, SOUTHEAST)
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER+3:16, SOUTH", HUD_LAYER, WEST)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_bg", "CENTER-3:16, SOUTH to CENTER+2:16, SOUTH", HUD_LAYER)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER-3:16, SOUTH+1 to CENTER+2:16, SOUTH+1", HUD_LAYER, SOUTH)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER-4:16, SOUTH+1", HUD_LAYER, SOUTHWEST)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER-4:16, SOUTH", HUD_LAYER, EAST)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER+3:16, SOUTH+1", HUD_LAYER, SOUTHEAST)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER+3:16, SOUTH", HUD_LAYER, WEST)
 
-		charge = create_screen("charge", "Battery", 'icons/mob/hud_robot.dmi', "charge4", "CENTER-3:16, SOUTH", HUD_LAYER+1)
-		tool1 = create_screen("tool1", "Tool 1", 'icons/mob/hud_robot.dmi', "mod10", "CENTER-2:16, SOUTH", HUD_LAYER+1)
-		tool2 = create_screen("tool2", "Tool 2", 'icons/mob/hud_robot.dmi', "mod20", "CENTER-1:16, SOUTH", HUD_LAYER+1)
-		tool3 = create_screen("tool3", "Tool 3", 'icons/mob/hud_robot.dmi', "mod30", "CENTER:16, SOUTH", HUD_LAYER+1)
-		create_screen("store", "Store", 'icons/mob/hud_robot.dmi', "store", "CENTER+1:16, SOUTH", HUD_LAYER+1)
-		create_screen("tools", "Tools", 'icons/mob/hud_robot.dmi', "tools", "CENTER+2:16, SOUTH", HUD_LAYER+1)
+		charge = create_screen("charge", "Battery", 'icons/ui/hud_robot.dmi', "charge4", "CENTER-3:16, SOUTH", HUD_LAYER+1)
+		tool1 = create_screen("tool1", "Tool 1", 'icons/ui/hud_robot.dmi', "mod10", "CENTER-2:16, SOUTH", HUD_LAYER+1)
+		tool2 = create_screen("tool2", "Tool 2", 'icons/ui/hud_robot.dmi', "mod20", "CENTER-1:16, SOUTH", HUD_LAYER+1)
+		tool3 = create_screen("tool3", "Tool 3", 'icons/ui/hud_robot.dmi', "mod30", "CENTER:16, SOUTH", HUD_LAYER+1)
+		create_screen("store", "Store", 'icons/ui/hud_robot.dmi', "store", "CENTER+1:16, SOUTH", HUD_LAYER+1)
+		create_screen("tools", "Tools", 'icons/ui/hud_robot.dmi', "tools", "CENTER+2:16, SOUTH", HUD_LAYER+1)
 
 		update_active_tool()
 		update_tools()
@@ -115,9 +115,9 @@
 
 			tool_selector_bg.len = 0
 			if (tool_selector_tools.len > 0)
-				tool_selector_bg += create_screen("", "", 'icons/mob/hud_robot.dmi', "tools-top", "CENTER+2:16, SOUTH+[tool_selector_tools.len]", HUD_LAYER+1)
+				tool_selector_bg += create_screen("", "", 'icons/ui/hud_robot.dmi', "tools-top", "CENTER+2:16, SOUTH+[tool_selector_tools.len]", HUD_LAYER+1)
 			if (tool_selector_tools.len > 1)
-				tool_selector_bg += create_screen("", "", 'icons/mob/hud_robot.dmi', "tools-mid", "CENTER+2:16, SOUTH+1 to CENTER+2:16, SOUTH+[tool_selector_tools.len-1]", HUD_LAYER+1)
+				tool_selector_bg += create_screen("", "", 'icons/ui/hud_robot.dmi', "tools-mid", "CENTER+2:16, SOUTH+1 to CENTER+2:16, SOUTH+[tool_selector_tools.len-1]", HUD_LAYER+1)
 
 			if (!show_tool_selector)
 				for (var/atom/movable/screen/hud/H in tool_selector_bg) // this is dumb

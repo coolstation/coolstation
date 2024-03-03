@@ -468,7 +468,7 @@
 	duration = 10
 	interrupt_flags = INTERRUPT_STUNNED
 	id = "floorbot_build"
-	icon = 'icons/obj/metal.dmi'
+	icon = 'icons/obj/items/metal.dmi'
 	icon_state = "tile"
 	var/obj/machinery/bot/floorbot/master
 	var/new_tile
@@ -541,7 +541,7 @@
 	duration = 10
 	interrupt_flags = INTERRUPT_STUNNED
 	id = "floorbot_ripup"
-	icon = 'icons/obj/metal.dmi'
+	icon = 'icons/obj/items/metal.dmi'
 	icon_state = "tile"
 	var/obj/machinery/bot/floorbot/master
 

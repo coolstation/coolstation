@@ -235,7 +235,7 @@ ABSTRACT_TYPE(/datum/plant)
 	id = "harvest_plant"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration = 50
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	icon_state = "grabbed"
 
 	var/obj/machinery/plantpot/plant_pot
@@ -244,7 +244,7 @@ ABSTRACT_TYPE(/datum/plant)
 
 	proc/reset()
 		duration = 50
-		icon = 'icons/mob/screen1.dmi'
+		icon = 'icons/ui/screen1.dmi'
 		icon_state = "grabbed"
 
 	New(var/obj/machinery/plantpot/POT,var/mob/living/carbon/human/sourcerelay,var/duration2)

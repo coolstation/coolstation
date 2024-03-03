@@ -30,7 +30,7 @@
 
 	var/list/last_tools = list()
 	var/mob/living/silicon/ghostdrone/master
-	var/icon/icon_hud = 'icons/mob/hud_drone.dmi'
+	var/icon/icon_hud = 'icons/ui/hud_drone.dmi'
 
 	var/list/statusUiElements = list() //Assoc. List  STATUS EFFECT INSTANCE : UI ELEMENT add_screen(atom/movable/screen/S). Used to hold the ui elements since they shouldnt be on the status effects themselves.
 
@@ -70,11 +70,11 @@
 				items_screen = 1
 			boxes.screen_loc = "[x], [y] to [x+sx-1], [y-sy+1]"
 			if (!close)
-				src.close = create_screen("close", "Close", 'icons/mob/screen1.dmi', "x", "1, 1", HUD_LAYER+1)
+				src.close = create_screen("close", "Close", 'icons/ui/screen1.dmi', "x", "1, 1", HUD_LAYER+1)
 			if (!prev)
-				src.prev = create_screen("prev", "Previous Page", 'icons/mob/screen1.dmi', "up_dis", "1, 10", HUD_LAYER+1)
+				src.prev = create_screen("prev", "Previous Page", 'icons/ui/screen1.dmi', "up_dis", "1, 10", HUD_LAYER+1)
 			if (!next)
-				src.next = create_screen("next", "Next Page", 'icons/mob/screen1.dmi', "down", "1, 2", HUD_LAYER+1)
+				src.next = create_screen("next", "Next Page", 'icons/ui/screen1.dmi', "down", "1, 2", HUD_LAYER+1)
 			close.screen_loc = "[x+sx-1], [y-sy+1]"
 			next.screen_loc = "[x+sx-1], [y-sy+2]"
 			prev.screen_loc = "[x+sx-1], [y]"
@@ -150,33 +150,33 @@
 	New(M)
 		..()
 		master = M
-		src.boxes = create_screen("boxes", "Storage", 'icons/mob/screen1.dmi', "blank", "1, 10 to 1, 1")
+		src.boxes = create_screen("boxes", "Storage", 'icons/ui/screen1.dmi', "blank", "1, 10 to 1, 1")
 		remove_screen(boxes)
-		src.prevbg = create_screen("prevbg", "Previous Page", 'icons/mob/screen1.dmi', "block", "1, 10", HUD_LAYER+1)
-		src.prev = create_screen("prev", "Previous Page", 'icons/mob/screen1.dmi', "up_dis", "1, 10", HUD_LAYER+2)
+		src.prevbg = create_screen("prevbg", "Previous Page", 'icons/ui/screen1.dmi', "block", "1, 10", HUD_LAYER+1)
+		src.prev = create_screen("prev", "Previous Page", 'icons/ui/screen1.dmi', "up_dis", "1, 10", HUD_LAYER+2)
 		remove_screen(prev)
 		remove_screen(prevbg)
-		src.nextbg = create_screen("nextbg", "Next Page", 'icons/mob/screen1.dmi', "block", "1, 10", HUD_LAYER+1)
-		src.next = create_screen("next", "Next Page", 'icons/mob/screen1.dmi', "down", "1, 10", HUD_LAYER+2)
+		src.nextbg = create_screen("nextbg", "Next Page", 'icons/ui/screen1.dmi', "block", "1, 10", HUD_LAYER+1)
+		src.next = create_screen("next", "Next Page", 'icons/ui/screen1.dmi', "down", "1, 10", HUD_LAYER+2)
 		remove_screen(next)
 		remove_screen(nextbg)
-		src.closebg = create_screen("closebg", "Close", 'icons/mob/screen1.dmi', "block", "1, 10", HUD_LAYER+1)
-		src.close = create_screen("close", "Close", 'icons/mob/screen1.dmi', "x", "1, 10", HUD_LAYER+2)
+		src.closebg = create_screen("closebg", "Close", 'icons/ui/screen1.dmi', "block", "1, 10", HUD_LAYER+1)
+		src.close = create_screen("close", "Close", 'icons/ui/screen1.dmi', "x", "1, 10", HUD_LAYER+2)
 		remove_screen(close)
 		remove_screen(closebg)
 		for (var/i = 1, i <= 7, i++)
-			var/BG = create_screen("objectbg_[i]", "object", 'icons/mob/screen1.dmi', "block", "1, [10 - i]", HUD_LAYER + 1)
+			var/BG = create_screen("objectbg_[i]", "object", 'icons/ui/screen1.dmi', "block", "1, [10 - i]", HUD_LAYER + 1)
 			var/S = create_screen("object[i]", "object", null, null, "1, [10 - i]", HUD_LAYER + 2)
 			remove_screen(S)
 			screen_tools += S
 			screen_tools_bg += BG
 
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_bg", "CENTER-2, SOUTH to CENTER+2, SOUTH", HUD_LAYER)
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER-2, SOUTH+1 to CENTER+2, SOUTH+1", HUD_LAYER, SOUTH)
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER-3, SOUTH+1", HUD_LAYER, SOUTHWEST)
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER-3, SOUTH", HUD_LAYER, EAST)
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER+3, SOUTH+1", HUD_LAYER, SOUTHEAST)
-		create_screen("", "", 'icons/mob/hud_common.dmi', "hotbar_side", "CENTER+3, SOUTH", HUD_LAYER, WEST)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_bg", "CENTER-2, SOUTH to CENTER+2, SOUTH", HUD_LAYER)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER-2, SOUTH+1 to CENTER+2, SOUTH+1", HUD_LAYER, SOUTH)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER-3, SOUTH+1", HUD_LAYER, SOUTHWEST)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER-3, SOUTH", HUD_LAYER, EAST)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER+3, SOUTH+1", HUD_LAYER, SOUTHEAST)
+		create_screen("", "", 'icons/ui/hud_common.dmi', "hotbar_side", "CENTER+3, SOUTH", HUD_LAYER, WEST)
 
 		mod1 = create_screen("mod1", "Tool", icon_hud, "toolslot", "CENTER-2, SOUTH", HUD_LAYER+1)
 

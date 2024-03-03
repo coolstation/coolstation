@@ -173,7 +173,7 @@
 /datum/contextAction/ghost_respawn
 	name = "ghost"
 	desc = "Test"
-	icon = 'icons/mob/ghost_observer_abilities.dmi'
+	icon = 'icons/ui/ghost_observer_abilities.dmi'
 	icon_state = "teleport"
 	icon_background = ""
 

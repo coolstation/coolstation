@@ -178,7 +178,7 @@
 
 /obj/decal/point
 	name = "point"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM | PIXEL_SCALE
 	icon_state = "arrow"
 	layer = EFFECTS_LAYER_1
@@ -248,7 +248,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 /obj/decal/oven
 	name = "Oven"
 	desc = "An old oven."
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "oven_off"
 	anchored = 1
 	density = 1
@@ -256,7 +256,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 
 /obj/decal/sink
 	name = "Sink"
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "sink"
 	desc = "The sink doesn't appear to be connected to a waterline."
 	anchored = 1
@@ -311,7 +311,7 @@ obj/decal/fakeobjects
 /obj/decal/fakeobjects/brokenportal
 	name = "broken portal ring"
 	desc = "This portal ring looks completely fried."
-	icon = 'icons/obj/teleporter.dmi'
+	icon = 'icons/obj/machines/teleporter.dmi'
 	icon_state = "tele_fuzz"
 	anchored = 1
 	density = 1
@@ -339,7 +339,7 @@ obj/decal/fakeobjects
 /obj/decal/bloodtrace
 	name = "blood trace"
 	desc = "Oh my!!"
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/obj/decals/blood.dmi'
 	icon_state = "lum"
 	invisibility = 101
 	blood_DNA = null

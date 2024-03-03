@@ -51,21 +51,21 @@
   ..()
   var/datum/handHolder/HH = hands[1]
   HH.limb = new src.limb_path
-  HH.icon = 'icons/mob/hud_human.dmi'
+  HH.icon = 'icons/ui/hud_human.dmi'
   HH.icon_state = "handl"
   HH.name = "left feet"
   HH.limb_name = "foot"
 
   HH = hands[2]
   HH.limb = new src.limb_path
-  HH.icon = 'icons/mob/hud_human.dmi'
+  HH.icon = 'icons/ui/hud_human.dmi'
   HH.icon_state = "handr"
   HH.name = "right feet"
   HH.limb_name = "foot"
 
   HH = hands[3]
   HH.limb = new src.mouth_path
-  HH.icon = 'icons/mob/critter_ui.dmi'
+  HH.icon = 'icons/ui/critter_ui.dmi'
   HH.icon_state = "mouth"
   HH.name = "mouth"
   HH.limb_name = "mandibles"

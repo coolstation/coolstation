@@ -1,6 +1,6 @@
 /obj/machinery/vehicle
 	name = "Vehicle Pod"
-	icon = 'icons/obj/ship.dmi'
+	icon = 'icons/obj/vehicles/ship.dmi'
 	icon_state = "podfire"
 	density = 1
 	flags = FPRINT | USEDELAY
@@ -1044,7 +1044,6 @@
 	duration = 20
 	interrupt_flags = INTERRUPT_STUNNED | INTERRUPT_MOVE
 	id = "board_pod"
-	icon = 'icons/ui/actions.dmi'
 	//icon_state = "working"
 	var/mob/M
 	var/obj/machinery/vehicle/V
@@ -1086,7 +1085,6 @@
 	duration = 50
 	interrupt_flags = INTERRUPT_STUNNED
 	id = "eject_pod"
-	icon = 'icons/ui/actions.dmi'
 	//icon_state = "working"
 	var/mob/M
 	var/obj/machinery/vehicle/V

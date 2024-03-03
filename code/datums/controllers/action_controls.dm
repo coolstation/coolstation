@@ -398,7 +398,8 @@ var/datum/action_controller/actions
 		..()
 
 /datum/action/bar/icon //Visible to everyone and has an icon.
-	var/icon
+	//why not just put this as default
+	var/icon = 'icons/ui/actions.dmi'
 	var/icon_state
 	var/icon_y_off = 30
 	var/icon_x_off = 0
@@ -695,7 +696,6 @@ var/datum/action_controller/actions
 	id = "genproc"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration = 30
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
 	var/obj/machinery/cruiser_destroyable/repairing
@@ -743,7 +743,8 @@ var/datum/action_controller/actions
 		..()
 
 /datum/action/bar/private/icon //Only visible to the owner and has a little icon on the bar.
-	var/icon
+	//why not just put this as default
+	var/icon = 'icons/ui/actions.dmi'
 	var/icon_state
 	var/icon_y_off = 30
 	var/icon_x_off = 0
@@ -769,13 +770,13 @@ var/datum/action_controller/actions
 /datum/action/bar/icon/genericProc //Calls a specific proc with the given arguments when the action succeeds. TBI
 	id = "genproc"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	icon_state = "grabbed"
 
 /datum/action/bar/icon/otherItem//Putting items on or removing items from others.
 	id = "otheritem"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	icon_state = "grabbed"
 
 	var/mob/living/carbon/human/source  //The person doing the action
@@ -1371,7 +1372,6 @@ var/datum/action_controller/actions
 	duration = 4 SECONDS
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED
 	id = "rev_flash"
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "rev_imp"
 	var/mob/living/target
 	var/obj/item/device/flash/revolution/flash
@@ -1572,7 +1572,6 @@ var/datum/action_controller/actions
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED
 	id = "pickup"
 	var/obj/item/target
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "pickup"
 	icon_plane = PLANE_HUD+2
 
@@ -1641,7 +1640,6 @@ var/datum/action_controller/actions
 	id = "table_tool_interact"
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	duration = 5 SECONDS
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "working"
 
 	var/obj/target

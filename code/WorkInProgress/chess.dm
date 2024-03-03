@@ -104,7 +104,7 @@ obj/item/chesspiece
 
 	name = "chess piece"
 	desc = "a generic chess piece parent that you really shouldnt be seeing"
-	icon = 'icons/misc/chess.dmi'
+	icon = 'icons/obj/chess.dmi'
 	icon_state = "pawn_black"
 	anchored = 1
 

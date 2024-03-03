@@ -15,7 +15,7 @@
 	var/muzzle_flash = null
 
 
-	icon = 'icons/obj/podweapons.dmi'		//remove this line.  or leave it. Could put these sprites in ship.dmi like how the original is
+	icon = 'icons/obj/vehicles/podweapons.dmi'		//remove this line.  or leave it. Could put these sprites in ship.dmi like how the original is
 	icon_state = "class-a"
 
 	power_used = 65

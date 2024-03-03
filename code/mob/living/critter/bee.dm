@@ -7,7 +7,7 @@
 /mob/living/critter/small_animal/bee
 	name = "greater domestic space-bee"
 	real_name = "greater domestic space-bee"
-	icon = 'icons/misc/bee.dmi'
+	icon = 'icons/mob/bee.dmi'
 #ifdef HALLOWEEN
 	icon_state = "vorbees-wings"
 	icon_state_dead = "vorbees-dead"
@@ -110,21 +110,21 @@
 		..()
 		var/datum/handHolder/HH = hands[1]
 		HH.limb = new src.limb_path
-		HH.icon = 'icons/mob/hud_human.dmi'
+		HH.icon = 'icons/ui/hud_human.dmi'
 		HH.icon_state = "handl"
 		HH.name = "left feet"
 		HH.limb_name = "foot"
 
 		HH = hands[2]
 		HH.limb = new src.limb_path
-		HH.icon = 'icons/mob/hud_human.dmi'
+		HH.icon = 'icons/ui/hud_human.dmi'
 		HH.icon_state = "handr"
 		HH.name = "right feet"
 		HH.limb_name = "foot"
 
 		HH = hands[3]
 		HH.limb = new src.mouth_path
-		HH.icon = 'icons/mob/critter_ui.dmi'
+		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "mouth"
 		HH.name = "mouth"
 		HH.limb_name = "mandibles"
@@ -979,7 +979,7 @@
 	health_brute = 50
 	health_brute_vuln = 0.6
 	health_burn = 50
-	icon = 'icons/misc/bigcritter.dmi'
+	icon = 'icons/mob/bigcritter.dmi'
 	icon_state = "queenbee-wings"
 	icon_state_dead = "queenbee-dead"
 	icon_state_sleep = "queenbee-sleep"
@@ -1032,7 +1032,7 @@
 	health_burn = 500
 	health_burn_vuln = 0.2
 	honey_production_amount = 200
-	icon = 'icons/misc/biggercritter.dmi'
+	icon = 'icons/mob/biggercritter.dmi'
 	icon_state = "omega-wings"
 	icon_state_dead = "omega-dead"
 	icon_state_sleep = "omega-sleep"

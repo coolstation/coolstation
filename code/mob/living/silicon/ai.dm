@@ -144,7 +144,7 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 /mob/living/silicon/ai/proc/give_feet()
 	animate(src, pixel_y = 14, time = 5, easing = SINE_EASING)
 	has_feet = 1
-	var/obj/churn = new/obj{icon = 'icons/misc/SomepotatoArt.dmi'; pixel_y = -14; icon_state = "feet"}
+	var/obj/churn = new/obj{icon = 'icons/mob/SomepotatoArt.dmi'; pixel_y = -14; icon_state = "feet"}
 	underlays += churn
 	del(churn)
 	canmove = 1

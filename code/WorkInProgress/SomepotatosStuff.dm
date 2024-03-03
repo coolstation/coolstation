@@ -137,7 +137,7 @@
 			var/turf/prev = path[i-1]
 			var/turf/t = path[i]
 			var/turf/next = path[i+1]
-			var/image/img = image('icons/obj/power_cond.dmi')
+			var/image/img = image('icons/obj/machines/power_cond.dmi')
 
 			img.loc = t
 			img.layer = DECAL_LAYER
@@ -153,7 +153,7 @@
 			client.images += img
 			client.GPS_Images[++client.GPS_Images.len] = img
 
-			var/image/img2 = image('icons/obj/power_cond.dmi')
+			var/image/img2 = image('icons/obj/machines/power_cond.dmi')
 			img2.loc = img.loc
 			img2.layer = img.layer
 			img2.plane = PLANE_SELFILLUM
@@ -368,7 +368,7 @@ world/proc/updateCameraVisibility()
 /obj/somepotato/billiards
 	name = "Billiards Table"
 	desc = "Who in God's name would get enjoyment at beating polyester spheres with wooden sticks???"
-	icon = 'icons/obj/pooltable.dmi'
+	icon = 'icons/obj/unused/pooltable.dmi'
 	icon_state = "table"
 
 

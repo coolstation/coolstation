@@ -4,7 +4,7 @@
 	desc = "You stick it on something, then that thing is even better, because it has a little sparkly unicorn stuck to it, or whatever."
 	flags = FPRINT | TABLEPASS
 	event_handler_flags = HANDLE_STICKER | USE_FLUID_ENTER
-	icon = 'icons/misc/stickers.dmi'
+	icon = 'icons/obj/decals/stickers.dmi'
 	icon_state = "bounds"
 	w_class = W_CLASS_TINY
 	force = 0
@@ -112,7 +112,7 @@
 	// i am so sorry for all of this. it is probably terrible.
 	name = "sticky note"
 	desc = "A piece of paper for taking notes, and then sticking those notes to things."
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "postit"
 	dont_make_an_overlay = 1
 	var/words = ""

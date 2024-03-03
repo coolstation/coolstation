@@ -349,7 +349,7 @@
 /obj/machinery/noise_switch
 	name = "Speaker Toggle"
 	desc = "Makes things make noise."
-	icon = 'icons/obj/noise_makers.dmi'
+	icon = 'icons/obj/machines/noise_makers.dmi'
 	icon_state = "switch"
 	anchored = 1
 	density = 0
@@ -362,7 +362,7 @@
 /obj/machinery/noise_maker
 	name = "Alert Horn"
 	desc = "Makes noise when something really bad is happening."
-	icon = 'icons/obj/noise_makers.dmi'
+	icon = 'icons/obj/machines/noise_makers.dmi'
 	icon_state = "nm n +o"
 	anchored = 1
 	density = 0
@@ -376,7 +376,7 @@
 
 /obj/machinery/wire
 	name = "wire"
-	icon = 'icons/obj/power_cond.dmi'
+	icon = 'icons/obj/machines/power_cond.dmi'
 
 /obj/machinery/transmitter
 	name = "transmitter"

@@ -1,6 +1,6 @@
 /obj/machinery/conduit_dispenser
 	name = "Conduit Dispenser"
-	icon = 'icons/obj/manufacturer.dmi'
+	icon = 'icons/obj/machines/manufacturer.dmi'
 	icon_state = "fab"
 	density = 1
 	anchored = 1.0

@@ -60,7 +60,7 @@
 
 
 /datum/targetable/santa
-	icon = 'icons/mob/santa_abilities.dmi'
+	icon = 'icons/ui/santa_abilities.dmi'
 	icon_state = "santa-template"
 	cooldown = 0
 	last_cast = 0

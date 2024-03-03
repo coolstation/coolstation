@@ -87,7 +87,7 @@ var/list/telescope_computers = list()
 
 /obj/machinery/computer/telescope
 	name = "quantuum telescope"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer_generic"
 
 	var/mob/using = null

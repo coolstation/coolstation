@@ -126,7 +126,7 @@
 /obj/rock/
 	name = "rock"
 	desc = "Some lil' rocks."
-	icon = 'icons/misc/rocks.dmi'
+	icon = 'icons/obj/rocks.dmi'
 	icon_state = "other"
 	anchored = 1
 	density = 0
@@ -568,7 +568,7 @@
 /obj/blind_switch
 	name = "blind switch"
 	desc = "A switch for opening the blinds."
-	icon = 'icons/obj/power.dmi'
+	icon = 'icons/obj/machines/power.dmi'
 	icon_state = "light1"
 	anchored = 1
 	density = 0
@@ -1274,7 +1274,7 @@ obj/decoration/ceilingfan
 /obj/decoration/regallamp
 	name = "golden candelabra"
 	desc = "Fancy."
-	icon = 'icons/misc/walp_decor.dmi'
+	icon = 'icons/obj/furniture/walp_decor.dmi'
 	icon_state = "lamp_regal_unlit"
 	density = 0
 	anchored = 0
@@ -1396,7 +1396,7 @@ obj/decoration/ceilingfan
 obj/decoration/floralarrangement
 	name = "floral arrangement"
 	desc = "These look... Very plastic. Huh."
-	icon = 'icons/misc/walp_decor.dmi'
+	icon = 'icons/obj/furniture/walp_decor.dmi'
 	icon_state = "floral_arrange"
 	anchored = 1
 	density = 1

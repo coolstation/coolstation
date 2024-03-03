@@ -774,7 +774,7 @@
 /obj/ability_button
 	name = "baseButton"
 	desc = ""
-	icon = 'icons/misc/abilities.dmi'
+	icon = 'icons/ui/abilities.dmi'
 	icon_state = "test"
 	layer = HUD_LAYER
 	plane = PLANE_HUD

@@ -1,7 +1,7 @@
 /obj/item/raw_material/
 	name = "construction materials"
 	desc = "placeholder item!"
-	icon = 'icons/obj/materials.dmi'
+	icon = 'icons/obj/items/materials.dmi'
 	force = 4
 	throwforce = 6
 	var/material_name = "Ore" //text to display for this ore in manufacturers

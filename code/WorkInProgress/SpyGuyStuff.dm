@@ -306,7 +306,7 @@ proc/Create_Tommyname()
 /obj/trigger
 	name = "trigger"
 	desc = "warning"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	icon_state = "x2"
 	anchored = 1
 	invisibility = 101
@@ -1023,7 +1023,7 @@ proc/Create_Tommyname()
 	duration = 10
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED
 	id = "garrote_target"
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "neck_over"
 	var/mob/living/target
 	var/obj/item/garrote/the_garrote

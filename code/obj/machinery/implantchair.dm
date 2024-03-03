@@ -1,7 +1,7 @@
 /obj/machinery/imp/chair
 	name = "Implant Chair"
 	desc = "Implants the user with a loyalty implant"
-	icon = 'icons/misc/simroom.dmi'
+	icon = 'icons/obj/machines/simroom.dmi'
 	icon_state = "simchair"
 	anchored = 1
 	density = 0

@@ -281,7 +281,7 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 
 /obj/decal/cleanable/blood
 	name = "blood"
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/obj/decals/blood.dmi'
 	icon_state = "floor1"
 	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")
 	var/ling_blood = 0
@@ -519,33 +519,33 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 		*/
 
 		if (i_state)
-			create_overlay(i_state, add_color, direction, 'icons/effects/blood.dmi')
+			create_overlay(i_state, add_color, direction, 'icons/obj/decals/blood.dmi')
 		else if (isnum(vis_amount))
 			switch (vis_amount)
 				if (1)
 					if (!list_and_len(blood_decal_low_icon_states))
 						return
-					create_overlay(blood_decal_low_icon_states, add_color, direction, 'icons/effects/blood.dmi')
+					create_overlay(blood_decal_low_icon_states, add_color, direction, 'icons/obj/decals/blood.dmi')
 					// no increase in slipperiness if there's just a little bit of blood being added
 				if (2)
 					if (!list_and_len(blood_decal_med_icon_states))
 						return
-					create_overlay(blood_decal_med_icon_states, add_color, direction, 'icons/effects/blood.dmi')
+					create_overlay(blood_decal_med_icon_states, add_color, direction, 'icons/obj/decals/blood.dmi')
 					src.slippery = min(src.slippery+1, 10)
 				if (3)
 					if (!list_and_len(blood_decal_high_icon_states))
 						return
-					create_overlay(blood_decal_high_icon_states, add_color, direction, 'icons/effects/blood.dmi')
+					create_overlay(blood_decal_high_icon_states, add_color, direction, 'icons/obj/decals/blood.dmi')
 					src.slippery = min(src.slippery+2, 10)
 				if (4)
 					if (!list_and_len(blood_decal_max_icon_states))
 						return
-					create_overlay(blood_decal_max_icon_states, add_color, direction, 'icons/effects/blood.dmi')
+					create_overlay(blood_decal_max_icon_states, add_color, direction, 'icons/obj/decals/blood.dmi')
 					src.slippery = min(src.slippery+5, 10)
 				if (5)
 					if (!list_and_len(blood_decal_violent_icon_states))
 						return
-					create_overlay(blood_decal_violent_icon_states, add_color, direction, 'icons/effects/blood.dmi') // for when you wanna create a BIG MESS
+					create_overlay(blood_decal_violent_icon_states, add_color, direction, 'icons/obj/decals/blood.dmi') // for when you wanna create a BIG MESS
 					src.slippery = 10
 
 		src.Dry(rand(vis_amount*80,vis_amount*120))
@@ -604,7 +604,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	desc = "Grisly..."
 	anchored = 0
 	layer = OBJ_LAYER
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/obj/decals/blood.dmi'
 	icon_state = "gibbl5"
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6")
 	color = "#FFFFFF"
@@ -667,7 +667,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 /obj/decal/cleanable/ketchup //It's ketchup that looks like blood.
 	name = "blood"
 	desc = "It's strangely bright red. Smells a bit like tomatoes as well." //Grody
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/obj/decals/blood.dmi'
 	icon_state = "floor1"
 	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")
 	color = "#cc0000" //Just a bit brighter than DEFAULT_BLOOD_COLOR
@@ -679,7 +679,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 /obj/decal/cleanable/pathogen_sweat
 	name = "weirdly colored sweat"
 	desc = "Ew, better not step in this stuff."
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/obj/decals/blood.dmi'
 	icon_state = "floor1"
 	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")
 	color = "#12b828"
@@ -698,7 +698,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 /obj/decal/cleanable/pathogen_cloud
 	name = "disease particles"
 	desc = "The air in that particular area gives you a bad vibe."
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/obj/decals/blood.dmi'
 	icon_state = "pathogen_cloud"
 	color = "#12b828"
 	slippery = 5
@@ -816,7 +816,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 		src.maptext = ""
 */
 /obj/decal/cleanable/writing/spooky
-	icon = 'icons/obj/writing_animated_blood.dmi'
+	icon = 'icons/obj/decals/writing_animated_blood.dmi'
 	color = null
 	gross = 1
 /obj/decal/cleanable/writing/infrared
@@ -927,7 +927,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 /obj/decal/cleanable/urine
 	name = "urine"
 	desc = "It's yellow, and it smells."
-	icon = 'icons/effects/urine.dmi'
+	icon = 'icons/obj/decals/urine.dmi'
 	icon_state = "floor1"
 	blood_DNA = null
 	blood_type = null
@@ -986,7 +986,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 /obj/decal/cleanable/vomit
 	name = "pool of vomit"
 	desc = "Someone lost their lunch."
-	icon = 'icons/effects/vomit.dmi'
+	icon = 'icons/obj/decals/vomit.dmi'
 	icon_state = "floor1"
 	random_icon_states = list("floor1", "floor2", "floor3")
 	slippery = 30
@@ -1072,7 +1072,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	desc = "That's just wrong."
 	density = 0
 	anchored = 1
-	icon = 'icons/effects/vomit.dmi'
+	icon = 'icons/obj/decals/vomit.dmi'
 	icon_state = "green1"
 	var/dried = 0
 	random_icon_states = list("green1", "green2", "green3")
@@ -1202,7 +1202,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 /obj/decal/cleanable/tomatosplat
 	name = "ruined tomato"
 	desc = "Gallows humour."
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/obj/decals/blood.dmi'
 	icon_state = "floor1"
 	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")
 	color = "#FF0000"
@@ -1533,7 +1533,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 /obj/decal/cleanable/oil
 	name = "motor oil"
 	desc = "It's black."
-	icon = 'icons/effects/oil.dmi'
+	icon = 'icons/obj/decals/oil.dmi'
 	icon_state = "floor1"
 	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")
 	slippery = 70
@@ -1548,7 +1548,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 /obj/decal/cleanable/paint
 	name = "marker paint"
 	desc = "It's a fluorescent orange"
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/obj/decals/blood.dmi'
 	icon_state = "blank"
 	random_icon_states = null
 	slippery = 0
@@ -1588,7 +1588,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 /obj/decal/cleanable/saltpile
 	name = "salt pile"
 	desc = "Bad luck, that."
-	icon = 'icons/obj/salt.dmi'
+	icon = 'icons/obj/decals/salt.dmi'
 	icon_state = "0"
 	can_sample = 1
 	sample_reagent = "salt"
@@ -1687,7 +1687,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 /obj/decal/cleanable/magnesiumpile
 	name = "magnesium pile"
 	desc = "Uh-oh."
-	icon = 'icons/obj/salt.dmi'
+	icon = 'icons/obj/decals/salt.dmi'
 	icon_state = "0"
 	can_sample = 1
 	sample_reagent = "magnesium"
@@ -1980,7 +1980,7 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 /obj/item/reagent_containers/food/snacks/ingredient/mud
 	name = "mud"
 	desc = "It is poo."
-	icon = 'icons/misc/not_poo.dmi'
+	icon = 'icons/obj/decals/not_poo.dmi'
 	icon_state = "mud1"
 	color = DEFAULT_MUD_COLOR
 	//item_state = "poop"
@@ -2078,7 +2078,7 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 	anchored = 1
 	color = DEFAULT_MUD_COLOR
 	//layer = 2
-	icon = 'icons/misc/not_poo.dmi'
+	icon = 'icons/obj/decals/not_poo.dmi'
 	icon_state = "floor1"
 	var/datum/ailment/disease/virus = null
 	blood_DNA = null
@@ -2316,13 +2316,13 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 		else
 			return
 		if (mud_addition)
-			var/image/blood_overlay// = image('icons/effects/blood.dmi', mud_addition)
+			var/image/blood_overlay// = image('icons/obj/decals/blood.dmi', mud_addition)
 			if (direction)
-				blood_overlay = image('icons/effects/blood.dmi', mud_addition, dir = direction)
+				blood_overlay = image('icons/obj/decals/blood.dmi', mud_addition, dir = direction)
 				blood_overlay.pixel_x += rand(-1,1)
 				blood_overlay.pixel_y += rand(-1,1)
 			else
-				blood_overlay = image('icons/effects/blood.dmi', mud_addition)
+				blood_overlay = image('icons/obj/decals/blood.dmi', mud_addition)
 				blood_overlay.transform = turn(blood_overlay.transform, pick(0, 180)) // gets funky with 0,90,180,-90
 				blood_overlay.pixel_x += rand(-4,4)
 				blood_overlay.pixel_y += rand(-4,4)

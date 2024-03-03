@@ -56,7 +56,7 @@
 /obj/machinery/manufacturer
 	name = "Manufacturing Unit"
 	desc = "A standard fabricator unit capable of producing certain items from various materials."
-	icon = 'icons/obj/manufacturer.dmi'
+	icon = 'icons/obj/machines/manufacturer.dmi'
 	icon_state = "fab"
 	var/icon_base = null
 	density = 1
@@ -146,9 +146,9 @@
 
 		src.create_reagents(1000)
 
-		src.work_display = image('icons/obj/manufacturer.dmi', "")
-		src.activity_display = image('icons/obj/manufacturer.dmi', "")
-		src.panel_sprite = image('icons/obj/manufacturer.dmi', "")
+		src.work_display = image('icons/obj/machines/manufacturer.dmi', "")
+		src.activity_display = image('icons/obj/machines/manufacturer.dmi', "")
+		src.panel_sprite = image('icons/obj/machines/manufacturer.dmi', "")
 		SPAWN_DBG(0)
 			src.build_icon()
 
@@ -1989,7 +1989,7 @@
 /obj/item/cloner_blueprints_folder
 	name = "dirty manilla folder"
 	desc = "An old manilla folder covered in stains. It looks like it'll fall apart at the slightest touch."
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "folder"
 	w_class = W_CLASS_SMALL
 	throwforce = 0
@@ -2029,14 +2029,14 @@
 
 /******************** Alastor Pattern Thruster Blueprints *******************/
 /obj/item/paper/manufacturer_blueprint/thrusters
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "blueprint"
 	desc = "Seems like theres traces of charcoal on the paper. Huh."
 	blueprint = /datum/manufacture/thrusters
 
 /******************** Alastor Pattern Thruster Blueprints *******************/
 /obj/item/paper/manufacturer_blueprint/alastor
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "blueprint"
 	desc = "Seems like theres traces of charcoal on the paper. Huh."
 	blueprint = /datum/manufacture/alastor
@@ -2046,19 +2046,19 @@
 
 /obj/item/paper/manufacturer_blueprint/interdictor_frame
 	name = "Interdictor Frame Kit"
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "interdictor_blueprint"
 	blueprint = /datum/manufacture/interdictor_frame
 
 /obj/item/paper/manufacturer_blueprint/interdictor_rod_lambda
 	name = "Lambda Phase-Control Rod"
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "interdictor_blueprint"
 	blueprint = /datum/manufacture/interdictor_rod_lambda
 
 /obj/item/paper/manufacturer_blueprint/interdictor_rod_sigma
 	name = "Sigma Phase-Control Rod"
-	icon = 'icons/obj/writing.dmi'
+	icon = 'icons/obj/items/writing.dmi'
 	icon_state = "interdictor_blueprint"
 	blueprint = /datum/manufacture/interdictor_rod_sigma
 

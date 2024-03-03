@@ -626,7 +626,7 @@ CONTAINS:
 
 /obj/machinery/defib_mount
 	name = "mounted defibrillator"
-	icon = 'icons/obj/compact_machines.dmi'
+	icon = 'icons/obj/machines/compact_machines.dmi'
 	desc = "Used to resuscitate critical patients."
 	icon_state = "defib1"
 	anchored = 1

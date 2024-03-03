@@ -3,7 +3,7 @@
 /obj/critter/
 	name = "critter"
 	desc = "you shouldnt be able to see this"
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	var/living_state = null
 	var/dead_state = null
 	layer = 5.0

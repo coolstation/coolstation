@@ -34,7 +34,7 @@ var/list/rnd_cons = new/list()
 	anchored = 1
 	invisibility = 100
 	var/probability = 100 //probability that we actually spawn something here.
-	icon = 'icons/misc/mark.dmi'
+	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "rdn"
 
 /obj/room_rewardspawn //Used to mark spawns for rewards.
@@ -42,7 +42,7 @@ var/list/rnd_cons = new/list()
 	anchored = 1
 	invisibility = 100
 	var/probability = 100 //probability that we actually spawn something here.
-	icon = 'icons/misc/mark.dmi'
+	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "ydn"
 
 /obj/room_props //These need to be placed in the center of the room
@@ -52,7 +52,7 @@ var/list/rnd_cons = new/list()
 	var/room_range = 1 //Range of the room (see range proc for how the numbers work)
 	var/room_unique = 0 //Is this an unique room that should only be placed once? 0=no, 1=yes
 	var/list/connections = new/list()
-	icon = 'icons/misc/mark.dmi'
+	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "props"
 
 /obj/room_connection //These are placed north east south and west from the center at the edge of the room if that tile is not solid

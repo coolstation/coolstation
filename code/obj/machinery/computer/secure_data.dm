@@ -27,7 +27,7 @@
 	light_b = 0.74
 
 /obj/machinery/computer/secure_data/detective_computer
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "messyfiles"
 	req_access = list(access_forensics_lockers)
 	glow_in_dark_screen = FALSE //This computer looking like a filing cabinet is a complete hack

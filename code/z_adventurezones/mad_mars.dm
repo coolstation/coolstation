@@ -674,7 +674,7 @@
 /obj/critter/gunbot/heavy
 	name = "security robot"
 	desc = "A 2030's-era security robot. Uh oh."
-	icon = 'icons/misc/critter.dmi'
+	icon = 'icons/mob/critter.dmi'
 	icon_state = "mars_sec_bot"
 	opensdoors = OBJ_CRITTER_OPENS_DOORS_NONE
 	atksilicon = 1

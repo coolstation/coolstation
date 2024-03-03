@@ -17,7 +17,7 @@ Contains:
 ABSTRACT_TYPE(/obj/vehicle)
 /obj/vehicle
 	name = "vehicle"
-	icon = 'icons/obj/vehicles.dmi'
+	icon = 'icons/obj/vehicles/vehicles.dmi'
 	density = 1
 	var/mob/living/rider = null //rider is basically the "driver" of the vehicle
 	var/in_bump = 0 //sanity variable to prevent the vehicle from crashing multiple times due to a single collision
@@ -272,7 +272,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 /obj/ability_button/weeoo
 	name = "Police Siren"
-	icon = 'icons/misc/abilities.dmi'
+	icon = 'icons/ui/abilities.dmi'
 	icon_state = "noise"
 
 	Click()
@@ -290,7 +290,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 /obj/ability_button/sexgarf
 	name = "sex garfield"
-	icon = 'icons/misc/abilities.dmi'
+	icon = 'icons/ui/abilities.dmi'
 	icon_state = "noise"
 
 	Click()
@@ -652,7 +652,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 /*
 /obj/ability_button/toggle_buffer
 	name = "Toggle Buff-R-Matic Sprayer"
-	icon = 'icons/misc/abilities.dmi'
+	icon = 'icons/ui/abilities.dmi'
 	icon_state = "on"
 	var/active = 0
 
@@ -955,7 +955,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 /obj/ability_button/fbuffer_toggle
 	name = "Floor Buffer Toggle"
-	icon = 'icons/misc/abilities.dmi'
+	icon = 'icons/ui/abilities.dmi'
 	icon_state = "buffer0"
 	screen_loc = "NORTH-2,1"
 
@@ -985,7 +985,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 /obj/ability_button/fbuffer_status
 	name = "Floor Buffer Tank Status"
-	icon = 'icons/misc/abilities.dmi'
+	icon = 'icons/ui/abilities.dmi'
 	icon_state = "bufferf"
 	screen_loc = "NORTH-3,1"
 
@@ -1706,7 +1706,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 /obj/ability_button/loudhorn
 	name = "Loudhorn"
-	icon = 'icons/misc/abilities.dmi'
+	icon = 'icons/ui/abilities.dmi'
 	icon_state = "noise"
 	var/mysound = 'sound/musical_instruments/Vuvuzela_1.ogg'
 	var/mydelay = 1 SECOND
@@ -1731,7 +1731,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 /obj/ability_button/loudhorn/clowncar
 	name = "Clown Car Horn"
-	icon = 'icons/misc/abilities.dmi'
+	icon = 'icons/ui/abilities.dmi'
 	icon_state = "noise"
 	mysound = 'sound/musical_instruments/Carhorn_1.ogg'
 	mydelay = 10 SECONDS
@@ -1739,7 +1739,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 /obj/ability_button/stopthebus
 	name = "Stop The Bus"
-	icon = 'icons/misc/ManuUI.dmi'
+	icon = 'icons/ui/ManuUI.dmi'
 	icon_state = "cancel"
 	var/active = 0
 	var/mydelay = 0 SECONDS
@@ -2163,7 +2163,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 /obj/vehicle/adminbus/battlebus
 	name = "Battle Bus"
 	desc = "A bus made for war."
-	icon = 'icons/obj/battlebus.dmi'
+	icon = 'icons/obj/vehicles/battlebus.dmi'
 	icon_state = "adminbus"
 	moving_state = "adminbus2"
 	nonmoving_state = "adminbus"
@@ -2200,7 +2200,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 /obj/ability_button/battlecannon
 	name = "Battle Cannon"
-	icon = 'icons/misc/buildmode.dmi'
+	icon = 'icons/ui/buildmode.dmi'
 	icon_state = "buildmode4"
 
 	Click(location, control, params)
@@ -2213,7 +2213,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 /obj/ability_button/omnicannon
 	name = "Omni Cannon"
-	icon = 'icons/mob/spell_buttons.dmi'
+	icon = 'icons/ui/spell_buttons.dmi'
 	icon_state = "pandemonium"
 
 	Click(location, control, params)
@@ -2227,7 +2227,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 /obj/ability_button/hotwheels
 	name = "Hot Wheels"
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "fire_e_sprint"
 
 	Click(location, control, params)
@@ -2244,7 +2244,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 /obj/ability_button/staticcharge
 	name = "Static Charge"
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "zzzap"
 
 	Click(location, control, params)
@@ -2261,7 +2261,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 
 /obj/ability_button/bombchute
 	name = "Bomb Chute"
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "fire_e_flamethrower"
 
 	Click(location, control, params)
@@ -2640,7 +2640,7 @@ obj/vehicle/forklift/attackby(var/obj/item/I, var/mob/user)
 
 /obj/ability_button/toggle_automove
 	name = "Toggle Continuous Movement"
-	icon = 'icons/misc/abilities.dmi'
+	icon = 'icons/ui/abilities.dmi'
 	icon_state = "pedal_off"
 
 	Click()

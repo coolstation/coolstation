@@ -1,6 +1,6 @@
 /atom/movable/screen/release
 	name = "Release object"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/ui/screen1.dmi'
 	icon_state = "x"
 	screen_loc = "NORTH,EAST"
 	layer = HUD_LAYER
@@ -8,7 +8,7 @@
 
 	New()
 		..()
-		underlays += image('icons/mob/screen1.dmi', "block")
+		underlays += image('icons/ui/screen1.dmi', "block")
 
 	clicked(params)
 		..()

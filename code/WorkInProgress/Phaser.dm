@@ -28,7 +28,7 @@ var/const/PHASER_SNIPER = 256
 	flags = TABLEPASS
 
 /obj/mod_spawner
-	icon = 'icons/misc/mark.dmi'
+	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "rup"
 	New()
 		var/A = pick(typesof(/obj/item/gun_ext)-/obj/item/gun_ext)

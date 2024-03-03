@@ -14,7 +14,7 @@
 /obj/airbridge_controller
 	name = "Airbridge Controller"
 	desc = "This is an invisible thing. Yet you can see it. You notice reality unraveling around you."
-	icon = 'icons/misc/mark.dmi'
+	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "airbr"
 	invisibility = 99
 	anchored = 1

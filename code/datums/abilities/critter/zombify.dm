@@ -6,7 +6,7 @@
 	duration = 40
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	id = "critter_devour"
-	icon = 'icons/mob/critter_ui.dmi'
+	icon = 'icons/ui/critter_ui.dmi'
 	icon_state = "zomb_over"
 	var/mob/living/target
 	var/datum/targetable/critter/zombify/zombify

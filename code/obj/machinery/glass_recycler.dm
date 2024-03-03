@@ -3,7 +3,7 @@
 /obj/machinery/glass_recycler
 	name = "glass recycler"//"Kitchenware Recycler"
 	desc = "A machine that recycles glass shards into drinking glasses, beakers, or other glass things."
-	icon = 'icons/obj/kitchen.dmi'
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "synthesizer"
 	anchored = 1
 	density = 0

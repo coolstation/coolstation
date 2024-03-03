@@ -3,7 +3,7 @@
 	desc = "*scream"
 	icon_state = "stethoscope" // todo
 	inhand_image_icon = "stethoscope" // todo
-	icon = 'icons/obj/medicaldiagnosis.dmi'
+	icon = 'icons/obj/items/medicaldiagnosis.dmi'
 
 /obj/item/medical/medicaldiagnosis/stethoscope
 	name = "stethoscope"

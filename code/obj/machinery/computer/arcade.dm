@@ -4,7 +4,7 @@
 
 /obj/machinery/computer/arcade
 	name = "arcade machine"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "arcade"
 	mats = 10
 	deconstruct_flags = DECON_MULTITOOL

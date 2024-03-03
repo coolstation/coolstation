@@ -2,7 +2,7 @@
 
 /obj/tug_cart/
 	name = "cargo cart"
-	icon = 'icons/obj/vehicles.dmi'
+	icon = 'icons/obj/vehicles/vehicles.dmi'
 	icon_state = "flatbed"
 	var/atom/movable/load = null
 	var/obj/tug_cart/next_cart = null
@@ -148,7 +148,7 @@
 
 /obj/vehicle/tug
 	name = "cargo tug"
-	icon = 'icons/obj/vehicles.dmi'
+	icon = 'icons/obj/vehicles/vehicles.dmi'
 	icon_state = "tractor"
 //	rider_visible = 1
 	layer = MOB_LAYER + 1

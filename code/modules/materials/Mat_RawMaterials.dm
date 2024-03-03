@@ -2,7 +2,7 @@
 /obj/item/material_piece
 	name = "bar"
 	desc = "Some sort of processed material bar."
-	icon = 'icons/obj/materials.dmi'
+	icon = 'icons/obj/items/materials.dmi'
 	icon_state = "bar"
 	max_stack = INFINITY
 	stack_type = /obj/item/material_piece

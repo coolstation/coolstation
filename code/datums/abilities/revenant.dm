@@ -239,7 +239,7 @@
 		return*/
 
 /datum/targetable/revenantAbility
-	icon = 'icons/mob/wraith_ui.dmi'
+	icon = 'icons/ui/wraith_ui.dmi'
 	preferred_holder_type = /datum/abilityHolder/revenant
 	theme = "wraith"
 

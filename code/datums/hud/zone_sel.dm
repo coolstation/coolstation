@@ -14,7 +14,7 @@
 	var/selecting = "chest"
 
 	var/mob/master
-	var/icon/icon_hud = 'icons/mob/hud_human_new.dmi'
+	var/icon/icon_hud = 'icons/ui/hud_human_new.dmi'
 
 	New(M, var/sloc, var/icon/I)
 		..()

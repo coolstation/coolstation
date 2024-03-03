@@ -806,7 +806,7 @@ proc/is_teleportation_allowed(var/turf/T)
 
 
 /obj/machinery/networked/teleconsole
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "s_teleport"
 	name = "teleport computer"
 	density = 1

@@ -1,7 +1,7 @@
 /datum/simsMotive
 	var/name = "motive"
 	var/desc = "motive description"
-	var/icon = 'icons/mob/hud_human_new.dmi'
+	var/icon = 'icons/ui/hud_human_new.dmi'
 	var/icon_state
 	var/value = 100
 	var/last_life_value = 100

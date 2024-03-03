@@ -61,7 +61,6 @@
 	duration = 40
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	id = "vamp_hypno"
-	icon = 'icons/ui/actions.dmi'
 	icon_state = "hypno"
 	bar_icon_state = "bar-vampire"
 	border_icon_state = "border-vampire"
