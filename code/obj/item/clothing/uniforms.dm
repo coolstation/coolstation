@@ -510,7 +510,7 @@
 
 /obj/item/clothing/under/rank/qm
 	name = "quartermaster's jumpsuit"
-	desc = "What can brown do for you?"
+	desc = "What can pourple do for you?"
 	icon_state = "qm-alt"
 	item_state = "qm-alt"
 

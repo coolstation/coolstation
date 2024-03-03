@@ -207,7 +207,7 @@
 	/obj/item/device/pda2/mining)
 
 /obj/item/storage/box/clothing/qm
-	name = "\improper Quartermaster's equipment"
+	name = "\improper Cargo Tech's equipment"
 	spawn_contents = list(/obj/item/clothing/under/rank/cargo,\
 	/obj/item/clothing/shoes/black,\
 	/obj/item/clothing/gloves/black,\

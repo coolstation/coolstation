@@ -1838,7 +1838,7 @@
 	icon_state = "door_locked";
 	locked = 1
 	},
-/obj/access_spawn/cargo,
+/obj/access_spawn/quartermaster,
 /turf/floor/orangeblack,
 /area/station/quartermaster/office)
 "bMS" = (
@@ -5223,12 +5223,12 @@
 /turf/floor/plating/airless,
 /area/station/crew_quarters/kitchen)
 "flK" = (
-/obj/storage/secure/closet/engineering/cargo,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 0;
 	name = "autoname - SS13"
 	},
+/obj/storage/secure/closet/command/quartermaster,
 /turf/floor/orangeblack,
 /area/station/quartermaster/office)
 "fme" = (
@@ -8446,7 +8446,7 @@
 /area/station/maintenance/central)
 "iAu" = (
 /obj/machinery/door/airlock/classic,
-/obj/access_spawn/cargo,
+/obj/access_spawn/quartermaster,
 /turf/floor/orangeblack,
 /area/station/quartermaster/office)
 "iAw" = (
@@ -10008,6 +10008,7 @@
 /obj/disposalpipe/segment/mail,
 /obj/access_spawn/engineering,
 /obj/decal/garland/ephemeral,
+/obj/access_spawn/cargo,
 /turf/floor/orangeblack,
 /area/station/engine/engineering)
 "kmD" = (

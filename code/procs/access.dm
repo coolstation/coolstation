@@ -255,7 +255,7 @@
 						access_engineering_eva, access_mining_shuttle, access_mining,
 						access_mining_outpost, access_hangar, access_heads, access_ai_upload, access_construction, access_eva)
 		if("Quartermaster") //new head, make a QM-exclusive office
-			return list(access_engineering_storage, access_maint_tunnels, access_cargo, access_supply_console, access_hangar, access_mining, access_engineering, access_engineering_eva,
+			return list(access_quartermaster, access_engineering_storage, access_maint_tunnels, access_cargo, access_supply_console, access_hangar, access_mining, access_engineering, access_engineering_eva,
 						access_mining_shuttle, access_mining_outpost, access_external_airlocks, access_heads, access_construction, access_eva)
 
 		///////////////////////////// Security
@@ -522,6 +522,8 @@ var/list/access_name_lookup //Generated at round start.
 			return "Engine Control Room"
 		if(access_engineering_chief)
 			return "Chief Engineer's Office"
+		if(access_quartermaster)
+			return "Quartermaster's Master Quarters"
 		if(access_mining)
 			return "Mining Department"
 		if(access_mining_outpost)

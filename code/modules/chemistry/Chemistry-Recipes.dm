@@ -3728,7 +3728,7 @@ datum
 			id = "nitrogentriiodide"
 			result = "nitrotri_wet"
 			required_reagents = list("lube" = 1, "iodine" = 2, "silver" = 1, "fluorine" = 1, "cryostylane" = 1) //, "perfluorodecalin" = 1, "oil" = 1, "chlorine" = 1)
-			required_temperature = - 233 // -30 degrees celsius
+			required_temperature = 233 // -30 degrees celsius
 			min_temperature = 200 //Will not react below 200 K
 
 			/*

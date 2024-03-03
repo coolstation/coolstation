@@ -33,12 +33,12 @@
 #define access_kitchen 28
 #define access_robotics 29
 #define access_hangar 30 // Unused. Theoretically the pod hangars, but not implemented as such in practice.
-#define access_cargo 31 // QM.
+#define access_cargo 31 // QM & cargo techs
 #define access_construction 32 // Unused.
 #define access_chemistry 33
 #define access_dwaine_superuser 34 // So it's not the same as the RD's office and locker.
 #define access_hydro 35
-#define access_mail 36 // Unused.
+#define access_mail 36 // Unused. // not unused. duh.
 #define access_maxsec 37 // The HoS' armory.
 #define access_securitylockers 38
 #define access_carrypermit 39 // Are allowed to carry sidearms as far as guardbuddies and secbots are concerned. Contraband permit defined at 75.
@@ -67,6 +67,7 @@
 #define access_centcom 57 // self-explanatory?  :v
 
 #define access_supply_console 58 // QM Console
+#define access_quartermaster 59 // the QM-as-head level access
 
 // skipping a few here to reserve a block
 // for terra 8 and syndicate security clearances

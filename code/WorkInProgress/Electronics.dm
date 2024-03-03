@@ -443,7 +443,7 @@
 	anchored = 1
 	density = 1
 	//var/datum/electronics/electronics_items/link = null
-	req_access = list(access_captain, access_head_of_personnel, access_maxsec, access_engineering_chief)
+	req_access = list(access_captain, access_head_of_personnel, access_maxsec, access_engineering_chief, access_quartermaster)
 
 	var/processing = 0
 	var/net_id = null

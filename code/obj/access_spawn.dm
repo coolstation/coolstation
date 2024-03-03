@@ -302,6 +302,11 @@
 	req_access = list(access_engineering_chief)
 	color = ENGINEERING
 
+/obj/access_spawn/quartermaster
+	name = "quartermaster access spawn"
+	req_access = list(access_quartermaster)
+	color = CARGO
+
 /obj/access_spawn/mining_shuttle
 	name = "mining_shuttle access spawn"
 	req_access = list(access_mining_shuttle)

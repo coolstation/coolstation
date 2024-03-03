@@ -146,6 +146,23 @@
 				new /obj/item/reagent_containers/dropper(src)
 			return 1
 
+
+/obj/storage/secure/closet/command/quartermaster
+	name = "\improper Quartermaster's locker"
+	req_access = list(access_quartermaster)
+	spawn_contents = list(/obj/item/storage/toolbox/mechanical/yellow_tools,
+	/obj/item/storage/box/clothing/qm,
+	/obj/item/device/appraisal,
+	/obj/item/cargotele,
+	/obj/item/spacecash/random/tourist,
+	/obj/item/clothing/head/helmet/hardhat,
+	/obj/item/device/multitool,
+	/obj/item/device/flash,
+	/obj/item/stamp/qm,
+	/obj/item/clothing/suit/hi_vis,
+	/obj/item/crowbar/yellow,
+	/obj/item/storage/box/beer)
+
 /obj/storage/secure/closet/command/chief_engineer
 	name = "\improper Chief Engineer's locker"
 	req_access = list(access_engineering_chief)
@@ -584,7 +601,7 @@
 	/obj/item/device/appraisal)
 
 /obj/storage/secure/closet/engineering/cargo
-	name = "\improper Quartermaster's locker"
+	name = "\improper Cargo Tech's locker"
 	req_access = list(access_cargo)
 	spawn_contents = list(/obj/item/storage/box/clothing/qm,
 	/obj/item/pen/fancy,
