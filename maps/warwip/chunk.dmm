@@ -1834,8 +1834,11 @@
 /area/station/engine/singcore)
 "bMk" = (
 /obj/disposalpipe/segment/mail,
-/obj/machinery/door/airlock/command,
-/obj/access_spawn/heads,
+/obj/machinery/door/airlock/maintenance{
+	icon_state = "door_locked";
+	locked = 1
+	},
+/obj/access_spawn/cargo,
 /turf/floor/orangeblack,
 /area/station/quartermaster/office)
 "bMS" = (
