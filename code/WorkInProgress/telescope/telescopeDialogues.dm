@@ -1,4 +1,7 @@
 
+#define corruptionThreshold 39
+#define disconnectThreshold 9
+
 /* VALIANT DIALOGUE BELOW */
 
 /datum/dialogueMaster/telescopeValiant
@@ -7,8 +10,8 @@
 	visibleDialogue = 0
 	var/signal = 100
 	var/maxSignal = 100
-	var/corruptionThreshold = 39
-	var/disconnectThreshold = 9
+	//var/corruptionThreshold = 39
+	//var/disconnectThreshold = 9
 
 /datum/dialogueNode/valiant
 	getNodeHtml(var/client/C)
@@ -36,14 +39,14 @@
 						return nodeText
 				if(40 to 69) //nice
 					return "Warning: Signal integrity compromised.<br>A stable connection can not be guaranteed."
-				if(10 to M.corruptionThreshold)
+				if(10 to corruptionThreshold)
 					return "S_gn__icant data _oss d_tecte_. You might experi___e intermittent l_ss of connecti____"
-				if(-INFINITY to M.disconnectThreshold)
+				if(-INFINITY to disconnectThreshold)
 					return "<i>The connection to the RV Valiant has been lost. There is nothing left to do here.</i>"
 
 		getNodeImage(var/client/C)
 			var/datum/dialogueMaster/telescopeValiant/M = master
-			if(M.signal > M.disconnectThreshold)
+			if(M.signal > disconnectThreshold)
 				return resource("images/traders/[nodeImage]")
 			else
 				return resource("images/traders/valiantStatic.png")
@@ -62,7 +65,7 @@
 
 		canShow(var/client/C)
 			var/datum/dialogueMaster/telescopeValiant/M = master
-			if(M.signal <= M.disconnectThreshold) return 0
+			if(M.signal <= disconnectThreshold) return 0
 			if(master.getFlagGlobal(C, "valiantStatic")) return 0
 			if(master.getFlag(C, "valiantIntro")) return 1
 			else return 0
@@ -82,7 +85,7 @@
 
 		canShow(var/client/C)
 			var/datum/dialogueMaster/telescopeValiant/M = master
-			if(M.signal <= M.disconnectThreshold) return 0
+			if(M.signal <= disconnectThreshold) return 0
 			if(master.getFlag(C, "valiantIntro")) return 0
 			else return 1
 
@@ -115,7 +118,7 @@
 
 		canShow(var/client/C)
 			var/datum/dialogueMaster/telescopeValiant/M = master
-			if(M.signal <= M.disconnectThreshold) return 0
+			if(M.signal <= disconnectThreshold) return 0
 			if(master.getFlag(C, "valiantIntro")) return 1
 			else return 0
 
@@ -389,3 +392,6 @@
 				return 1
 			else
 				return 0
+
+#undef corruptionThreshold
+#undef disconnectThreshold
