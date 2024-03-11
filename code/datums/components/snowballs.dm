@@ -6,7 +6,7 @@
 		return COMPONENT_INCOMPATIBLE
 	else
 		source_turf = parent
-	RegisterSignal(parent, list(COMSIG_ATTACKHAND), .proc/start_snowball)
+	RegisterSignal(parent, list(COMSIG_ATTACKHAND), PROC_REF(start_snowball))
 
 /datum/component/snowballs/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_ATTACKHAND)

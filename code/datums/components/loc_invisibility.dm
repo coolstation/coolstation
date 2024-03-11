@@ -5,8 +5,8 @@
 /datum/component/loc_invisibility/Initialize()
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, COMSIG_MOVABLE_SET_LOC, .proc/on_set_loc)
-	RegisterSignal(parent, COMSIG_MOB_PROP_INVISIBILITY, .proc/on_invis_change)
+	RegisterSignal(parent, COMSIG_MOVABLE_SET_LOC, PROC_REF(on_set_loc))
+	RegisterSignal(parent, COMSIG_MOB_PROP_INVISIBILITY, PROC_REF(on_invis_change))
 
 /datum/component/loc_invisibility/RegisterWithParent()
 	. = ..()

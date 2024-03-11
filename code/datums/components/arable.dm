@@ -21,7 +21,7 @@
 /datum/component/arable/Initialize()
 	if(!istype(parent, /turf) && !istype(parent, /atom/movable))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, list(COMSIG_ATTACKBY), .proc/plant_seed)
+	RegisterSignal(parent, list(COMSIG_ATTACKBY), PROC_REF(plant_seed))
 
 /datum/component/arable/proc/plant_seed(atom/A, obj/item/I, mob/user)
 	PRIVATE_PROC(TRUE)
@@ -40,7 +40,7 @@
 				return
 
 		src.P = new /obj/machinery/plantpot/bareplant(A)
-		RegisterSignal(src.P, COMSIG_PARENT_PRE_DISPOSING, .proc/remove_plantpot)
+		RegisterSignal(src.P, COMSIG_PARENT_PRE_DISPOSING, PROC_REF(remove_plantpot))
 
 		// Add to visual contents so it can be interacted with
 		if(istype(A, /atom/movable))

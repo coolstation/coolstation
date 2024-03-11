@@ -2727,8 +2727,8 @@ datum
 			on_add()
 				..()
 				if(ismob(src.holder?.my_atom))
-					RegisterSignal(holder.my_atom, COMSIG_ATTACKBY, .proc/zap_dude)
-					RegisterSignal(holder.my_atom, COMSIG_ATTACKHAND, .proc/zap_dude_punching)
+					RegisterSignal(holder.my_atom, COMSIG_ATTACKBY, PROC_REF(zap_dude))
+					RegisterSignal(holder.my_atom, COMSIG_ATTACKHAND, PROC_REF(zap_dude_punching))
 
 			on_remove()
 				..()

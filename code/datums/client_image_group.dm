@@ -24,7 +24,7 @@ var/global/list/datum/client_image_group/client_image_groups
 			mob_to_associated_images_lookup[img.loc] += img
 		else // first time a mob's image is added, on top of adding it to the lookup list a signal is registered on the mob to track invisibility changes.
 			mob_to_associated_images_lookup[img.loc] = list(img)
-			RegisterSignal(img.loc, COMSIG_MOB_PROP_INVISIBILITY, .proc/on_mob_invisibility_changed)
+			RegisterSignal(img.loc, COMSIG_MOB_PROP_INVISIBILITY, PROC_REF(on_mob_invisibility_changed))
 
 		for (var/mob/iterated_mob as() in subscribed_mobs_with_subcount)
 			if (!img.loc.invisibility || (img.loc == iterated_mob) || istype(iterated_mob, /mob/dead/observer))
@@ -48,9 +48,9 @@ var/global/list/datum/client_image_group/client_image_groups
 				if (I.loc && !I.loc.invisibility || (I.loc == added_mob) || istype(added_mob, /mob/dead/observer))
 					added_mob.client?.images.Add(I)
 
-			RegisterSignal(added_mob, COMSIG_MOB_LOGIN, .proc/add_images_to_client_of_mob)
-			RegisterSignal(added_mob, COMSIG_MOB_LOGOUT, .proc/remove_images_from_client_of_mob)
-			RegisterSignal(added_mob, COMSIG_PARENT_PRE_DISPOSING, .proc/remove_mob_forced)
+			RegisterSignal(added_mob, COMSIG_MOB_LOGIN, PROC_REF(add_images_to_client_of_mob))
+			RegisterSignal(added_mob, COMSIG_MOB_LOGOUT, PROC_REF(remove_images_from_client_of_mob))
+			RegisterSignal(added_mob, COMSIG_PARENT_PRE_DISPOSING, PROC_REF(remove_mob_forced))
 
 	/// Removes a mob from the mob list, removes the images from its client and unregisters signals on it.
 	proc/remove_mob(mob/removed_mob) // same just reverse, and unregisters signals

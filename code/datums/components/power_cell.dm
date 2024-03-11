@@ -14,13 +14,13 @@
 	src.recharge_rate = recharge
 	if(charge < max_charge && recharge_rate)
 		processing_items |= parent
-	RegisterSignal(parent, COMSIG_ATTACKBY, .proc/attackby)
-	RegisterSignal(parent, COMSIG_CELL_CHARGE, .proc/charge)
-	RegisterSignal(parent, COMSIG_CELL_CAN_CHARGE, .proc/can_charge)
-	RegisterSignal(parent, COMSIG_CELL_USE, .proc/use)
-	RegisterSignal(parent, COMSIG_CELL_CHECK_CHARGE, .proc/check_charge)
-	RegisterSignal(parent, COMSIG_CELL_IS_CELL, .proc/is_cell)
-	RegisterSignal(parent, COMSIG_ITEM_PROCESS, .proc/process)
+	RegisterSignal(parent, COMSIG_ATTACKBY, PROC_REF(attackby))
+	RegisterSignal(parent, COMSIG_CELL_CHARGE, PROC_REF(charge))
+	RegisterSignal(parent, COMSIG_CELL_CAN_CHARGE, PROC_REF(can_charge))
+	RegisterSignal(parent, COMSIG_CELL_USE, PROC_REF(use))
+	RegisterSignal(parent, COMSIG_CELL_CHECK_CHARGE, PROC_REF(check_charge))
+	RegisterSignal(parent, COMSIG_CELL_IS_CELL, PROC_REF(is_cell))
+	RegisterSignal(parent, COMSIG_ITEM_PROCESS, PROC_REF(process))
 
 
 /datum/component/power_cell/InheritComponent(datum/component/power_cell/C, i_am_original, max, start_charge, recharge)
