@@ -825,7 +825,7 @@ CONTAINS:
 
 	proc/update_icon()
 		switch (src.uses)
-			if (0 to -INFINITY)
+			if (-INFINITY to 0)
 				src.icon_state = "bandage-item-0"
 			if (1 to 2)
 				src.icon_state = "bandage-item-1"

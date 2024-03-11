@@ -362,8 +362,7 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 				status |= BROKEN //Safety permabrick ourselves
 			else
 				RegisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_MOVED, PROC_REF(update_icon))
-				RegisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_READY,
-				update_icon))
+				RegisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_MOVED, PROC_REF(update_icon))
 			update_icon()
 
 	attack_hand(mob/user)
