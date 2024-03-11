@@ -32,8 +32,8 @@
 					hudSquare.xOffset = x
 					hudSquare.yOffset = y
 					hudSquares["[x],[y]"] = hudSquare
-			RegisterSignal(G, COMSIG_ITEM_SWAP_TO, .proc/init_smart_aim)
-			RegisterSignal(G, COMSIG_ITEM_SWAP_AWAY, .proc/end_smart_aim)
+			RegisterSignal(G, COMSIG_ITEM_SWAP_TO, PROC_REF(init_smart_aim))
+			RegisterSignal(G, COMSIG_ITEM_SWAP_AWAY, PROC_REF(end_smart_aim))
 			if(ismob(G.loc))
 				on_pickup(null, G.loc)
 
@@ -66,7 +66,7 @@
 
 
 /datum/component/holdertargeting/smartgun/proc/init_smart_aim(datum/source, mob/user)
-	RegisterSignal(user, COMSIG_FULLAUTO_MOUSEDOWN, .proc/begin_tracking_targets)
+	RegisterSignal(user, COMSIG_FULLAUTO_MOUSEDOWN, PROC_REF(begin_tracking_targets))
 	if(user.client)
 		aimer = user.client
 		for(var/x in 1 to (istext(aimer.view) ? WIDE_TILE_WIDTH : SQUARE_TILE_WIDTH))
@@ -117,9 +117,9 @@
 			C.throw_item(mouse_target,params)
 			return
 
-	RegisterSignal(user, COMSIG_FULLAUTO_MOUSEDRAG, .proc/retarget)
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/moveRetarget)
-	RegisterSignal(user, COMSIG_MOUSEUP, .proc/shoot_tracked_targets)
+	RegisterSignal(user, COMSIG_FULLAUTO_MOUSEDRAG, PROC_REF(retarget))
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(moveRetarget))
+	RegisterSignal(user, COMSIG_MOUSEUP, PROC_REF(shoot_tracked_targets))
 
 	for(var/x in ((istext(aimer.view) ? WIDE_TILE_WIDTH : SQUARE_TILE_WIDTH)+1)/2 - 1 to ((istext(aimer.view) ? WIDE_TILE_WIDTH : SQUARE_TILE_WIDTH)+1)/2 + 1)
 		for(var/y in 7 to 9)

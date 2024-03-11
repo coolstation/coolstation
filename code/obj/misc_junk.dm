@@ -555,7 +555,7 @@
 			boutput(owner, "<h3><span class='alert'>You have held [src.name] long enough! Good job!</span></h3>")
 			if(owner?.client)
 				src.set_loc(pick_landmark(LANDMARK_ASS_ARENA_SPAWN))
-				INVOKE_ASYNC(owner.client, /client.proc/respawn_target, owner, 1)
+				INVOKE_ASYNC(owner.client, /clientPROC_REF(respawn_target, owner, 1))
 				DEBUG_MESSAGE("[owner.name] has been ass arena respawned!")
 				owner.gib()
 				owner = null

@@ -501,7 +501,7 @@
 		for (var/mob/M in locate(point_x,point_y,ship.loc.z))
 			random_burn_damage(M, 60)
 			M.changeStatus("weakened", 2 SECOND)
-			INVOKE_ASYNC(M, /mob.proc/emote, "scream")
+			INVOKE_ASYNC(M, /mobPROC_REF(emote, "scream"))
 			playsound(M.loc, "sound/impact_sounds/burn_sizzle.ogg", 70, 1)
 		var/turf/T = locate(point_x,point_y,ship.loc.z)
 		if(T && prob(100 - (10 * increment)))

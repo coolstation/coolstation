@@ -106,7 +106,7 @@
 	New()
 		var/cell = new/obj/item/ammo/power_cell/self_charging/medium{recharge_rate = 10}
 		AddComponent(/datum/component/cell_holder,cell, FALSE, 200, FALSE)
-		RegisterSignal(src, COMSIG_UPDATE_ICON, .proc/update_icon)
+		RegisterSignal(src, COMSIG_UPDATE_ICON, PROC_REF(update_icon))
 		..()
 		update_icon()
 

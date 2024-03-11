@@ -1,7 +1,7 @@
 /datum/component/holdertargeting/baseball_bat_reflect
 	dupe_mode = COMPONENT_DUPE_ALLOWED
 	signals = list(COMSIG_ATOM_HITBY_THROWN)
-	proctype = .proc/reflect
+	proctype = PROC_REF(reflect)
 
 /datum/component/holdertargeting/baseball_bat_reflect/proc/reflect(mob/owner, atom/movable/thing, datum/thrown_thing/thr)
 	var/homerun = prob(1)

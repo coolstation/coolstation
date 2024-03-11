@@ -227,7 +227,7 @@
 			playsound(src, (has_butt.sound_fart ? has_butt.sound_fart : 'sound/voice/farts/fart1.ogg'), 50, 1)
 		else
 			playsound(src, "sound/misc/belt_click.ogg", 50, 1)
-		RegisterSignal(to_buckle, COMSIG_MOVABLE_SET_LOC, .proc/maybe_unbuckle)
+		RegisterSignal(to_buckle, COMSIG_MOVABLE_SET_LOC, PROC_REF(maybe_unbuckle))
 
 	proc/maybe_unbuckle(source, turf/oldloc)
 		// unbuckle if the guy is not on a turf, or if their chair is out of range and it's not a shuttle situation
