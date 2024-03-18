@@ -31,6 +31,7 @@ ABSTRACT_TYPE(/obj/item/turret_deployer)
 		src.spawn_turret(user.dir)
 		user.u_equip(src)
 		src.set_loc(get_turf(user))
+		logTheThing(LOG_STATION, user, "deploys the [src] turret at [log_loc(user)].")
 		qdel(src)
 
 	proc/spawn_turret(var/direct)
@@ -200,6 +201,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 			SETUP_GENERIC_ACTIONBAR(user, src, 3 SECONDS, .proc/toggle_anchored, null, W.icon, W.icon_state, \
 			  src.anchored ? "[user] unwelds the turret from the floor." : "[user] welds the turret to the floor.", \
 			  INTERRUPT_ACTION | INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ACT)
+			logTheThing(LOG_STATION, user, "[src.anchored ? "unwelds" : "welds"] the [src] turret [src.anchored ? "from" : "to"] the floor at [log_loc(src)]")
 
 		else if (isweldingtool(W) && (src.active))
 			if (src.health >= max_health)
@@ -213,6 +215,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, .proc/repair, null, W.icon, W.icon_state, \
 			  "[user] repairs some of the turret's damage.", \
 			  INTERRUPT_ACTION | INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ACT)
+			logTheThing(LOG_STATION, user, "repairs the [src] turret with a welding tool at [log_loc(user)]")
 
 		else if  (iswrenchingtool(W))
 
@@ -224,7 +227,8 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 				user.update_cursor()
 				A.my_turret = src
 				A.user_turf = get_turf(user)
-				playsound(src.loc, "sound/items/Ratchet.ogg", 50, 1)
+				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+				logTheThing(LOG_STATION, user, "reorients the [src] turret (at [log_loc(src)]) to face a new direction.")
 
 			else
 				user.show_message("You begin to disassemble the turret.")
@@ -232,6 +236,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 				SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, .proc/spawn_deployer, null, W.icon, W.icon_state, \
 				  "[user] disassembles the turret.", \
 				  INTERRUPT_ACTION | INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ACT)
+				logTheThing(LOG_STATION, user, "undeploys the [src] turret at [log_loc(user)].")
 
 		else if (isscrewingtool(W))
 
@@ -250,6 +255,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 				SETUP_GENERIC_ACTIONBAR(user, src, 1 SECOND, PROC_REF(toggle_activated), null, W.icon, W.icon_state, \
 			 	 "[user] powers the turret [src.active ? "off" : "on"].", \
 			 	 INTERRUPT_ACTION | INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ACT)
+				logTheThing(LOG_STATION, user, "powers the [src] turret [src.active ? "off" : "on"] at [log_loc(src)].")
 
 			else
 				user.show_message("<span class='alert'>The activation switch is protected! You can't toggle the power!</span>")
