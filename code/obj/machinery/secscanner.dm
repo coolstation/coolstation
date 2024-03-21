@@ -135,7 +135,7 @@
 
 			return //no, we're a vibe checker not a security device. our work is done
 
-		target.show_text( "You feel [pick("funny", "wrong", "confused", "dangerous", "sickly", "puzzled", "happy")].", "blue" )
+		target.show_text( "You feel [pick("funny", "wrong", "confused", "dangerous", "sickly", "puzzled", "happy", "zjierb", "content", "fiesty", "serene", "loved", "calm", "restless", "annoyed", "understood", "gross", "irritated", "jovial", "serious", "pensive", "bored", "dispondent")].", "blue" )
 
 		if (contraband >= 4)
 			contraband = round(contraband)
