@@ -394,4 +394,6 @@
 				return 0
 
 #undef corruptionThreshold
-#undef disconnectThreshold
+#ifndef SECRETS_ENABLED
+	#undef disconnectThreshold
+#endif
