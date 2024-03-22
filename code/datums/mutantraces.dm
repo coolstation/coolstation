@@ -674,7 +674,7 @@
 	New()
 		..()
 		if (mob)
-			RegisterSignal(mob, COMSIG_MOVABLE_MOVED, .proc/flub)
+			RegisterSignal(mob, COMSIG_MOVABLE_MOVED, PROC_REF(flub))
 
 	sight_modifier()
 		mob.see_in_dark = SEE_DARK_FULL

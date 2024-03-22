@@ -134,8 +134,8 @@
 		abilityHolder.updateButtons()
 		src.flags ^= TABLEPASS
 
-		RegisterSignal(src, COMSIG_MOB_PICKUP, .proc/stop_sprint)
-		RegisterSignal(src, COMSIG_MOB_DROPPED, .proc/enable_sprint)
+		RegisterSignal(src, COMSIG_MOB_PICKUP, PROC_REF(stop_sprint))
+		RegisterSignal(src, COMSIG_MOB_DROPPED, PROC_REF(enable_sprint))
 
 	disposing()
 		UnregisterSignal(src, list(COMSIG_ITEM_PICKUP, COMSIG_ITEM_DROPPED))

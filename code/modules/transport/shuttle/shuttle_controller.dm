@@ -30,7 +30,7 @@ datum/shuttle_controller
 			settimeleft(SHUTTLEARRIVETIME)
 			online = 1
 
-		INVOKE_ASYNC(ircbot, /datum/ircbot.proc/event, "shuttlecall", src.timeleft())
+		INVOKE_ASYNC(ircbot, TYPE_PROC_REF(/datum/ircbot, event), "shuttlecall", src.timeleft())
 
 	proc/recall()
 		if (online && direction == 1)

@@ -431,7 +431,7 @@
 	New()
 		. = ..()
 		AddComponent(/datum/component/holdertargeting/geiger)
-		RegisterSignal(src, COMSIG_MOB_GEIGER_TICK, .proc/change_icon_state)
+		RegisterSignal(src, COMSIG_MOB_GEIGER_TICK, PROC_REF(change_icon_state))
 
 	proc/change_icon_state(source, stage)
 		switch(stage)

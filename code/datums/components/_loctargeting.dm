@@ -1,14 +1,14 @@
 
 /datum/component/loctargeting
 	var/list/signals = list()
-	var/proctype // = .proc/pass
+	var/proctype // = PROC_REF(pass)
 	var/loctype = /atom/movable
 	var/atom/current_loc
 
 /datum/component/loctargeting/Initialize()
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, COMSIG_MOVABLE_SET_LOC, .proc/on_change_loc)
+	RegisterSignal(parent, COMSIG_MOVABLE_SET_LOC, PROC_REF(on_change_loc))
 	var/atom/movable/source = parent
 	on_added(source, null)
 	current_loc = source.loc

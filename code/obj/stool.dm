@@ -504,7 +504,7 @@
 			src.buckledIn = 1
 			user.buckled = src
 			user.setStatus("buckled", duration = INFINITE_STATUS)
-			RegisterSignal(user, COMSIG_MOVABLE_SET_LOC, .proc/maybe_unstand)
+			RegisterSignal(user, COMSIG_MOVABLE_SET_LOC, PROC_REF(maybe_unstand))
 			//set special effects
 			if (src.wrestling)
 				H.start_chair_flip_targeting()
