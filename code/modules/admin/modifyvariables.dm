@@ -472,7 +472,7 @@
 		logTheThing("diary", src, null, "modified [target]'s [varname] to [target.vars[varname]]", "admin")
 		message_admins("[key_name(src)] modified [target]'s [varname] to [target.vars[varname]]")
 
-	global
+	modify_global
 		handleCast(var/atom/selected)
 			boutput(usr, "<span class='notice'>Set [target]/var/[varname] to [selected] on all entities of the same type.</span>")
 			for (var/datum/V in world)

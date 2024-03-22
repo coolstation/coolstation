@@ -6,7 +6,7 @@
 		return COMPONENT_INCOMPATIBLE
 	if(num_pierces)
 		src.pierces_left=num_pierces
-	RegisterSignal(parent, list(COMSIG_PROJ_COLLIDE), .proc/update_pierces)
+	RegisterSignal(parent, list(COMSIG_PROJ_COLLIDE), PROC_REF(update_pierces))
 
 /datum/component/sniper_wallpierce/proc/update_pierces(var/obj/projectile/P, var/atom/hit)
 	var/turf/T = get_turf(hit)

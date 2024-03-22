@@ -1062,7 +1062,7 @@
 			if (istype(M))
 				var/datum/targetable/refpicker/R
 				if (set_global)
-					R = new /datum/targetable/refpicker/global()
+					R = new /datum/targetable/refpicker/modify_global()
 				else
 					R = new()
 				R.target = D

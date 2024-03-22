@@ -388,7 +388,7 @@
 			owner = null
 
 		set_owner(mob/user)
-			RegisterSignal(user, COMSIG_PARENT_PRE_DISPOSING, .proc/clear_owner)
+			RegisterSignal(user, COMSIG_PARENT_PRE_DISPOSING, PROC_REF(clear_owner))
 			owner = user
 
 
@@ -1476,9 +1476,9 @@
 	New()
 		..()
 		src.outgoing_filters = list()
-		RegisterSignal(src, list(_COMSIG_MECHCOMP_DISPATCH_ADD_FILTER), .proc/addFilter)
-		RegisterSignal(src, list(_COMSIG_MECHCOMP_DISPATCH_RM_OUTGOING), .proc/removeFilter)
-		RegisterSignal(src, list(_COMSIG_MECHCOMP_DISPATCH_VALIDATE), .proc/runFilter)
+		RegisterSignal(src, list(_COMSIG_MECHCOMP_DISPATCH_ADD_FILTER), PROC_REF(addFilter))
+		RegisterSignal(src, list(_COMSIG_MECHCOMP_DISPATCH_RM_OUTGOING), PROC_REF(removeFilter))
+		RegisterSignal(src, list(_COMSIG_MECHCOMP_DISPATCH_VALIDATE), PROC_REF(runFilter))
 		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"dispatch", "dispatch")
 		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_CONFIG,"Toggle exact matching","toggleExactMatching")
 		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_CONFIG,"Toggle single output mode","toggleSingleOutput")

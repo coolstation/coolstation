@@ -39,7 +39,7 @@
 				number_of_devices += C
 		if (number_of_devices.len > 0)
 			return 0
-		RegisterSignal(user, COMSIG_CLOAKING_DEVICE_DEACTIVATE, .proc/deactivate)
+		RegisterSignal(user, COMSIG_CLOAKING_DEVICE_DEACTIVATE, PROC_REF(deactivate))
 		src.active = 1
 		src.icon_state = "shield1"
 		if (user && ismob(user))

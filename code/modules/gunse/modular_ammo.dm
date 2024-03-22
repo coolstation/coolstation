@@ -1,3 +1,7 @@
+/*This is where my header text would go IF I HAD ANY!!!*/
+
+#define default_max_amount 1
+#define default_min_amount 1
 
 ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 /obj/item/stackable_ammo/
@@ -30,8 +34,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	stamina_cost = 0
 	stamina_crit_chance = 1
 	inventory_counter_enabled = 1
-	var/default_min_amount = 1
-	var/default_max_amount = 1
+	var/min_amount = default_min_amount
+	var/max_amount = default_max_amount
 	var/datum/projectile/projectile_type = null
 	var/ammo_DRM = null
 	var/reloading = 0
@@ -72,7 +76,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 				qdel(src) // ???
 			if(1)
 				src.icon_state = icon_one
-			if (2 to (default_max_amount-1))
+			if ((default_max_amount-1) to 2)
 				src.icon_state = icon_empty
 			else
 				src.icon_state = icon_full
@@ -186,16 +190,16 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	icon_shell = "brass_case"
 
 	three
-		default_min_amount = 3
-		default_max_amount = 3
+		min_amount = 3
+		max_amount = 3
 
 	five
-		default_min_amount = 5
-		default_max_amount = 5
+		min_amount = 5
+		max_amount = 5
 
 	ten
-		default_min_amount = 10
-		default_max_amount = 10
+		min_amount = 10
+		max_amount = 10
 
 /obj/item/stackable_ammo/pistol_38AP
 	name = "armor-piercing pistol round"
@@ -211,16 +215,16 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	icon_shell = "red_case"
 
 	three
-		default_min_amount = 3
-		default_max_amount = 3
+		min_amount = 3
+		max_amount = 3
 
 	five
-		default_min_amount = 5
-		default_max_amount = 5
+		min_amount = 5
+		max_amount = 5
 
 	ten
-		default_min_amount = 10
-		default_max_amount = 10
+		min_amount = 10
+		max_amount = 10
 
 /obj/item/stackable_ammo/tranq
 	name = "\improper NT Tranq-Will-8-or"
@@ -236,16 +240,16 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	icon_shell = "white_case"
 
 	three
-		default_min_amount = 3
-		default_max_amount = 3
+		min_amount = 3
+		max_amount = 3
 
 	five
-		default_min_amount = 5
-		default_max_amount = 5
+		min_amount = 5
+		max_amount = 5
 
 	ten
-		default_min_amount = 10
-		default_max_amount = 10
+		min_amount = 10
+		max_amount = 10
 
 /obj/item/stackable_ammo/capacitive/
 	name = "\improper NT In-Capacit-8-or"
@@ -261,16 +265,16 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	icon_shell = "nerf_case"
 
 	three
-		default_min_amount = 3
-		default_max_amount = 3
+		min_amount = 3
+		max_amount = 3
 
 	five
-		default_min_amount = 5
-		default_max_amount = 5
+		min_amount = 5
+		max_amount = 5
 
 	ten
-		default_min_amount = 10
-		default_max_amount = 10
+		min_amount = 10
+		max_amount = 10
 
 /obj/item/stackable_ammo/capacitive_burst
 	name = "\improper NT In-Capacit-8-or MAX"
@@ -286,16 +290,16 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	icon_shell = "nerf_case"
 
 	three
-		default_min_amount = 3
-		default_max_amount = 3
+		min_amount = 3
+		max_amount = 3
 
 	five
-		default_min_amount = 5
-		default_max_amount = 5
+		min_amount = 5
+		max_amount = 5
 
 	ten
-		default_min_amount = 10
-		default_max_amount = 10
+		min_amount = 10
+		max_amount = 10
 
 /obj/item/stackable_ammo/radbow
 	name = "\improper Syndicate Radioactive Darts"
@@ -305,16 +309,16 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	desc = "Stealthy projectiles that cause insidious radiation poisoning."
 
 	three
-		default_min_amount = 3
-		default_max_amount = 3
+		min_amount = 3
+		max_amount = 3
 
 	five
-		default_min_amount = 5
-		default_max_amount = 5
+		min_amount = 5
+		max_amount = 5
 
 	ten
-		default_min_amount = 10
-		default_max_amount = 10
+		min_amount = 10
+		max_amount = 10
 
 /obj/item/stackable_ammo/zaubertube/
 	name = "\improper Elektrograd лазерный Zaubertube"
@@ -330,16 +334,16 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	icon_shell = "zauber_spent"
 
 	three
-		default_min_amount = 3
-		default_max_amount = 3
+		min_amount = 3
+		max_amount = 3
 
 	five
-		default_min_amount = 5
-		default_max_amount = 5
+		min_amount = 5
+		max_amount = 5
 
 	ten
-		default_min_amount = 10
-		default_max_amount = 10
+		min_amount = 10
+		max_amount = 10
 
 ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 /obj/item/stackable_ammo/scatter/ // ABSOLUTELY USE THIS TYPE FOR ALL SCATTER AMMO, EVEN OPTICAL
@@ -367,16 +371,16 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	stack_type = /obj/item/stackable_ammo/scatter/buckshot
 
 	three
-		default_min_amount = 3
-		default_max_amount = 3
+		min_amount = 3
+		max_amount = 3
 
 	five
-		default_min_amount = 5
-		default_max_amount = 5
+		min_amount = 5
+		max_amount = 5
 
 	ten
-		default_min_amount = 10
-		default_max_amount = 10
+		min_amount = 10
+		max_amount = 10
 
 /obj/item/stackable_ammo/scatter/slug_rubber // scatter doesnt mean scatter, just means thick:)
 	name = "standard rubber slug"
@@ -386,16 +390,16 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	stack_type = /obj/item/stackable_ammo/scatter/slug_rubber
 
 	three
-		default_min_amount = 3
-		default_max_amount = 3
+		min_amount = 3
+		max_amount = 3
 
 	five
-		default_min_amount = 5
-		default_max_amount = 5
+		min_amount = 5
+		max_amount = 5
 
 	ten
-		default_min_amount = 10
-		default_max_amount = 10
+		min_amount = 10
+		max_amount = 10
 
 /obj/item/stackable_ammo/flashbulb/
 	name = "\improper FOSSYN. CATHODIC FLASH BULBS"
@@ -543,3 +547,6 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 		if(prob(20))
 			hit.ex_act(OLD_EX_LIGHT)
 		return
+
+#undef default_max_amount
+#undef default_min_amount
