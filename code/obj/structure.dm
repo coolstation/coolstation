@@ -88,10 +88,10 @@ obj/structure
 
 
 	else if (isscrewingtool(W) && state == 2 && istype(src, /obj/structure/girder/reinforced))
-		actions.start(new /datum/action/bar/icon/girder_tool_interact(src, W, GIRDER_UNSECURESUPPORT), user)
+		actions.start(new /datum/action/bar/icon/girder_tool_interact(src, W, GIRDER_UNSECURESUPPORT, 1.5 SECONDS), user)
 
 	else if (issnippingtool(W) && istype(src, /obj/structure/girder/reinforced) && state == 1)
-		actions.start(new /datum/action/bar/icon/girder_tool_interact(src, W, GIRDER_REMOVESUPPORT), user)
+		actions.start(new /datum/action/bar/icon/girder_tool_interact(src, W, GIRDER_REMOVESUPPORT, 1.5 SECONDS), user)
 
 	else if (ispryingtool(W) && state == 0 && anchored )
 		actions.start(new /datum/action/bar/icon/girder_tool_interact(src, W, GIRDER_DISLODGE), user)
@@ -100,7 +100,7 @@ obj/structure
 		if (!istype(src.loc, /turf/floor/))
 			boutput(user, "<span class='alert'>Not sure what this floor is made of but you can't seem to wrench a hole for a bolt in it.</span>")
 			return
-		actions.start(new /datum/action/bar/icon/girder_tool_interact(src, W, GIRDER_SECURE), user)
+		actions.start(new /datum/action/bar/icon/girder_tool_interact(src, W, GIRDER_SECURE, 1.5 SECONDS), user)
 	else if (istype(W, /obj/item/sheet))
 		var/obj/item/sheet/S = W
 		if (S.amount < 2)
@@ -108,16 +108,17 @@ obj/structure
 			return
 
 		if (src.icon_state != "reinforced" && S.reinforcement)
-			actions.start(new /datum/action/bar/icon/girder_tool_interact(src, W, GIRDER_REINFORCE), user)
+			actions.start(new /datum/action/bar/icon/girder_tool_interact(src, W, GIRDER_REINFORCE, 1.5 SECONDS), user)
 
 		else
-			actions.start(new /datum/action/bar/icon/girder_tool_interact(src, W, GIRDER_PLATE), user)
+			actions.start(new /datum/action/bar/icon/girder_tool_interact(src, W, GIRDER_PLATE, 1.5 SECONDS), user)
 	else
 		..()
 
 /datum/action/bar/icon/girder_tool_interact
 	id = "girder_tool_interact"
-	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
+	//interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED
 	duration = 3 SECONDS
 	icon_state = "working"
 
@@ -129,6 +130,8 @@ obj/structure
 		..()
 		if (girdr)
 			the_girder = girdr
+			//not a big fan of this actionbar implementation but this lets us mess with multiple girders at once again
+			place_to_put_bar = girdr
 		if (tool)
 			the_tool = tool
 			icon = the_tool.icon

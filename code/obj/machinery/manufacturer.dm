@@ -2524,6 +2524,7 @@
 	/datum/manufacture/multitool,
 	/datum/manufacture/extinguisher,
 	/datum/manufacture/lamp_manufacturer,
+	/datum/manufacture/room_planner,
 	/datum/manufacture/hardhat,
 	/datum/manufacture/cable,
 	/datum/manufacture/powercell,

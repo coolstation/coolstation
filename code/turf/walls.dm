@@ -307,6 +307,46 @@
 	interact_particle(user,src)
 	return
 
+//shitty little thing because we can't use a generic actionbar for wall murder atm
+/datum/action/bar/wall_decon_crud
+	id = "wall_welder_decon"
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED
+	duration = 10 SECONDS
+
+	var/turf/wall/the_wall
+	var/obj/item/the_tool
+	var/interaction = WALL_REMOVERERODS
+
+	New(var/obj/table/wall, var/obj/item/tool)
+		..()
+		if (wall)
+			the_wall = wall
+			//not a big fan of this actionbar implementation but this lets us mess with multiple walls at once again
+			place_to_put_bar = wall
+		if (usr)
+			owner = usr
+		if (tool)
+			the_tool = tool
+		if (ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			if (H.traitHolder.hasTrait("training_engineer"))
+				duration = round(duration / 2)
+
+	onUpdate()
+		..()
+		if (the_wall == null || the_tool == null || owner == null || get_dist(owner, the_wall) > 1)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		var/mob/source = owner
+		if (istype(source) && (the_tool != source.equipped()))
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+	onEnd()
+		..()
+		the_wall.weld_action(the_tool, owner)
+		owner.visible_message("<span class='notice'>[owner] finishes disassembling the outer wall plating.</span>")
+
 /turf/wall/attackby(obj/item/W as obj, mob/user as mob, params)
 	if(istype(W, /obj/item/spray_paint) || istype(W, /obj/item/gang_flyer))
 		return
@@ -325,12 +365,14 @@
 		if (!( istype(T, /turf) ))
 			return
 
-		if(!W:try_weld(user, 5, burn_eyes = 1))
+		//cmon man let's not burn a fucken quarter of a welder's fuel *per wall*
+		if(!W:try_weld(user, 2, burn_eyes = 1))
 			return
 
 		boutput(user, "<span class='notice'>Now disassembling the outer wall plating.</span>")
-		SETUP_GENERIC_ACTIONBAR(user, src, 10 SECONDS, /turf/wall/proc/weld_action,\
-			list(W, user), W.icon, W.icon_state, "[user] finishes disassembling the outer wall plating.", null)
+		actions.start(new /datum/action/bar/wall_decon_crud(src, W), user)
+		/*SETUP_GENERIC_ACTIONBAR(user, src, 10 SECONDS, /turf/wall/proc/weld_action,\
+			list(W, user), W.icon, W.icon_state, "[user] finishes disassembling the outer wall plating.", null)*/
 
 //Spooky halloween key
 	else if(istype(W,/obj/item/device/key/haunted))

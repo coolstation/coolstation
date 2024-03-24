@@ -768,7 +768,8 @@ ABSTRACT_TYPE(turf/wall/auto/lead)
 
 /datum/action/bar/icon/wall_tool_interact
 	id = "wall_tool_interact"
-	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
+	//interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED
 	duration = 5 SECONDS
 	icon_state = "working"
 
@@ -780,6 +781,8 @@ ABSTRACT_TYPE(turf/wall/auto/lead)
 		..()
 		if (wall)
 			the_wall = wall
+			//not a big fan of this actionbar implementation but this lets us mess with multiple walls at once again
+			place_to_put_bar = wall
 		if (usr)
 			owner = usr
 		if (tool)

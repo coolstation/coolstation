@@ -686,6 +686,18 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Tool"
 
+//Pending an actual idea for how to let people place patterned floors easily (which may well be never, now my priority)
+//Cause I know the floor/wall planner is a sucky stopgap solution to construction sucking, but for now let's allow folks to make rooms that aren't just grey.
+/datum/manufacture/room_planner
+	name = "Floor and Wall Planner"
+	item_paths = list("MET-1")
+	item_amounts = list(15) //1,5 bars of whatever metal: easy to make but expensive to spam
+	item_outputs = list(/obj/item/room_planner)
+	time = 8 SECONDS
+	create = 1
+	category = "Tool"
+
+
 /******************** Atmospheric components **************************/
 
 /datum/manufacture/pipeframe
