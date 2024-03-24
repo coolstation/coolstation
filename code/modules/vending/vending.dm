@@ -1992,6 +1992,7 @@
 		//product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/zaubertube/ten, 10, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/ten, 10, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/ten, 10, cost = PAY_UNTRAINED)
+
 		//product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 1, hidden=1, cost = PAY_UNTRAINED)
 		//product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/basic, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 1, hidden=1, cost = PAY_UNTRAINED*2)
@@ -2049,6 +2050,7 @@
 			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/slug_rubber, 10, cost = PAY_UNTRAINED)
 			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive_burst, 10, cost = PAY_UNTRAINED*3)
 			product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 1, cost = PAY_UNTRAINED*1.1)
+
 
 
 //The burden of these machinations weighs on my shoulders

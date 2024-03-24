@@ -459,6 +459,62 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "it_revolver_short"
 	length = 13
 
+
+/obj/item/gun_parts/barrel/soviet/improvshort
+	name = "Improvised Short Barrel"
+	desc = "Some pipe shrouded with the remains of a soviet spacesuit"
+	spread_angle = -2
+	jam_frequency_fire = 4
+	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
+	name_addition = "stubby"
+	length = 13
+	icon_state = "improvshortbarrel"
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+
+/obj/item/gun_parts/barrel/soviet/improvlong
+	name = "Improvised Long Barrel"
+	desc = "Several mismatched parts from old hunting rifles, all welded together."
+	spread_angle = -4
+	jam_frequency_fire = 5
+	part_DRM = GUN_FOSS | GUN_SOVIET
+	name_addition = "rifled"
+	length = 35
+	overlay_x = 10
+	icon_state = "longimprovbarrel"
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+
+/obj/item/gun_parts/barrel/soviet/improvlong/trans
+	name = "Improvised Long Barrel"
+	desc = "Several mismatched parts from old hunting rifles. Someone painted a trans flag on it"
+	spread_angle = -4
+	jam_frequency_fire = 5
+	part_DRM = GUN_FOSS | GUN_SOVIET
+	length = 35
+	overlay_x = 10
+	icon_state = "improvtransbarrel"
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+
+/obj/item/gun_parts/barrel/soviet/ppsh
+	name = "Historical barrel"
+	desc = "This really belongs in a museum"
+	spread_angle = -2
+	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
+	name_addition = "vintage"
+	length = 25
+	overlay_x = 3
+	icon_state = "historicbarrel"
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+
+// /obj/item/gun_parts/barrel/luna/zunar
+// 	name = "Zunar mk8 barrel"
+// 	desc = "A somewhat short barrel that has a integrated zupressor"
+// 	spread_angle = 5
+// 	scatter = 2
+// 	name_addition = "Inbagrated Zupressed"
+// 	icon = 'icons/obj/items/modular_guns/specialparts.dmi'
+// 	length = 15
+// 	icon_state = "zungunbarrel"
+
 /obj/item/gun_parts/barrel/italian/accurate
 	name = "buon canna di fucile"
 	desc = "una canna di fucile di base e di bellissima qualità"
@@ -471,6 +527,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "paisana"
 	spread_angle = 9
 	length = 16
+
 
 // BASIC STOCKS
 // Stocks should always have a negative spread angle unless they're particularly cumbersome.
@@ -536,6 +593,15 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	overlay_x = -12
 	stock_shoulder = 1
 
+/obj/item/gun_parts/stock/juicer/jucinstock
+	name = "\improper DORF MASTER STRIKE MASTER COMPACT STOCK"
+	part_DRM = GUN_JUICE
+	desc = "With the new DORF STRIKE MASTER COMPACT STOCK, you can UNLEASH your real inner ELITE WARRIOR with its revolutionary DORFing cool technology. DORF UP OR GEIT AUGHT"
+	max_ammo_capacity = 2
+	spread_angle = 4 //If you have a nerf gun, you'll know why.
+	name_addition = "DORF STRIKER"
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+	icon_state = "improvstockuggo"
 
 /obj/item/gun_parts/stock/foss
 	name = "\improper FOSS laser stock"
@@ -604,6 +670,54 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name_addition = "jovial"
 	bulkiness = 2
 
+/obj/item/gun_parts/stock/soviet/woodstock
+	name = "Rifle Stock"
+	desc = "A sawn off Three Line rifle stock. Could be useful"
+	spread_angle = -8
+	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
+	name_addition = "wooden"
+	icon_state = "woodstock"
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+
+/obj/item/gun_parts/stock/soviet/improvmetal
+	name = "Hammered Metal Stock"
+	desc = "Some spare metal hammered into a vaugly stock shape"
+	spread_angle = -2
+	overlay_x = -1
+	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
+	name_addition = "Machined"
+	icon_state = "shittyfoldingstock"
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+
+// /obj/item/gun_parts/stock/soviet/improvplastic //dummied out for now, want to make this accept FOSS cells if you use the stock, at the cost of it giving you a lot of spread.
+// 	name = "Weird Looking Stock"
+// 	desc = "A strangely familiar stock. You might have had one of these when you were a kid or somethin" //hey wait a second
+// 	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
+// 	spread_angle = 2
+// 	name_addition = "Wobbly"
+// 	icon_state = "improvstock"
+// 	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+
+/obj/item/gun_parts/stock/soviet/akgrip //no name addition
+	name = "Kalash Grip"
+	desc = "A Kalash Grip. Now where's the rest of it..."
+	spread_angle = -1
+	overlay_x = -2
+	overlay_y = -4
+	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_ITALIAN
+	icon_state = "kalashgrip"
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+
+// /obj/item/gun_parts/stock/luna/zunar
+// 	name = "Zunar Mk8 grip"
+// 	desc = "The trigger looks to be taken from a game controller"
+// 	spread_angle = -2
+// 	max_ammo_capacity = -5
+// 	jam_frequency_reload = 1 //should work?
+// 	icon = 'icons/obj/items/modular_guns/specialparts.dmi'
+// 	icon_state = "zungunstock"
+// 	name_addition = "Udon"
+
 
 /obj/item/gun_parts/stock/juicer
 	name = "da grip"
@@ -634,6 +748,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		throwforce = 10 // hehe
 		name_addition = "queer"
 
+
 // BASIC ACCESSORIES
 	// flashlight!!
 	// grenade launcher!!
@@ -655,6 +770,26 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		var/obj/item/instrument/bikehorn/H = new()
 		user.put_in_hand_or_drop(H)
 		qdel(src)
+
+/obj/item/gun_parts/accessory/trumpetnoiser
+	name = "The front part of a Trumpet"
+	desc = "HEY YOU GOT A LISCENES FOR THAT????"
+	call_on_fire = 1
+	name_addition = "Musical"
+	icon = 'icons/obj/items/modular_guns/specialparts.dmi'
+	icon_state = "trumpet"
+
+	on_fire()
+		playsound(src.my_gun.loc,pick('sound/musical_instruments/saxbonk.ogg', 'sound/musical_instruments/saxbonk2.ogg'), 50, 1, -1)
+
+// /obj/item/gun_parts/accessory/zupressor
+// 	name = "Inba Zupressor" // I am so proud of this pun
+// 	desc = "A curious supressor. It has two bunny ears on it."
+// 	call_on_fire = 1
+// 	name_addition = "Zupressed"
+// 	icon = 'icons/obj/items/modular_guns/specialparts.dmi'
+// 	icon_state = "zungunzunpressor"
+
 
 /obj/item/gun_parts/accessory/flashlight
 	name = "Tactical Enbrightener"
@@ -720,7 +855,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		light_good = my_gun.AddComponent(/datum/component/holdertargeting/medium_directional_light/, col_r * 255, col_g * 255, col_b  * 255, 210)
 		light_good.update(0)
 
-
 	remove_part_from_gun()
 		light_good.update(0)
 		light_good.light_target = src
@@ -746,7 +880,53 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "juicer_drum"
 	overlay_y = 8
 
-	four
+/obj/item/gun_parts/magazine/juicer/four
 		name = "HOTTTT SHOTTS MAG"
 		max_ammo_capacity = 4
+
+/obj/item/gun_parts/magazine/soviet/ak/thirdak //no name additions for the next two. Don't change it!- eagle
+	name = "the bottom third of a AK magazine"
+	desc = "Some fuckin asshole took the other two thirds!"
+	max_ammo_capacity = 3
+	jam_frequency_reload = 3
+	overlay_y = -3
+	overlay_x = 4
+	icon_state = "thirdcapmag"
+	part_DRM = GUN_SOVIET
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+
+/obj/item/gun_parts/magazine/soviet/ak/halfak
+	name = "Half a AK mag"
+	desc = "Another sawed in half AK magazine. Bummer."
+	max_ammo_capacity = 5
+	jam_frequency_reload = 7
+	overlay_y = -3
+	overlay_x = 4
+	icon_state = "halfcapmag"
+	part_DRM = GUN_SOVIET
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+
+/obj/item/gun_parts/magazine/soviet/ak
+	name = "Gunked up magazine"
+	desc = "It's intact, but full of gunk and rust. Shit."
+	max_ammo_capacity = 8
+	jam_frequency_reload = 11
+	overlay_y = -3
+	overlay_x = 4
+	icon_state = "akmag"
+	part_DRM = GUN_SOVIET
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+
+/obj/item/gun_parts/magazine/soviet/ak/ungunked
+	name = "Intact AK magazine"
+	desc = "One of the few still intact AK mags this side of the frontier! Score!"
+	max_ammo_capacity = 30 //Admin spawn only for Gimmick Fun Times (and cause I want to test stuff with it)
+	overlay_y = -3
+	overlay_x = 4
+	name_addition = "intact"
+	icon_state = "akmag"
+	part_DRM = GUN_SOVIET
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+
+
 
