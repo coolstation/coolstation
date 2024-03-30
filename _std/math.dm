@@ -5,7 +5,10 @@
 
 /// Gets the ceiling (maps x to the least integer greater than or equal to x)
 //native to BYOND as of 515
-//#define ceil(x) (-round(-(x)))
+#if DM_VERSION <= 514
+#define ceil(x) (-round(-(x)))
+#define floor(x) round(x)
+#endif
 
 /// ceil, with second argument being the multiple to use for rounding
 #define ceil2(x,y) (-round(-x / y) * y)
