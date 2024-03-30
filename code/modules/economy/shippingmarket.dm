@@ -123,7 +123,7 @@
 				removed_count--
 				src.active_traders += new /datum/trader/generic(src)
 
-	proc/sell_artifact(obj/sell_art, var/datum/artifact/sell_art_datum)
+	proc/sell_artifact(obj/sell_art, var/datum/artifact/sell_art_datum, notify_PDAs = TRUE)
 		var/price = 0
 		var/modifier = sell_art_datum.get_rarity_modifier()
 
@@ -166,17 +166,20 @@
 		qdel(sell_art)
 
 		// give PDA group messages
-		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
-		var/datum/signal/pdaSignal = get_free_signal()
-		var/message = "Notification: [price] credits earned from outgoing artifact \'[sell_art.name]\'. "
-		if(pap)
-			message += "Analysis was [(pap.lastAnalysis/3)*100]% correct."
-		else
-			message += "Artifact was not analyzed."
-		pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT",  "group"=list(MGD_CARGO, MGD_SCIENCE, MGA_SALES), "sender"="00000000", "message"=message)
-		pdaSignal.transmission_method = TRANSMISSION_RADIO
-		if(transmit_connection != null)
-			transmit_connection.post_signal(null, pdaSignal)
+		if (notify_PDAs)
+			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
+			var/datum/signal/pdaSignal = get_free_signal()
+			var/message = "Notification: [price] credits earned from outgoing artifact \'[sell_art.name]\'. "
+			if(pap)
+				message += "Analysis was [(pap.lastAnalysis/3)*100]% correct."
+			else
+				message += "Artifact was not analyzed."
+			pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT",  "group"=list(MGD_CARGO, MGD_SCIENCE, MGA_SALES), "sender"="00000000", "message"=message)
+			pdaSignal.transmission_method = TRANSMISSION_RADIO
+			if(transmit_connection != null)
+				transmit_connection.post_signal(null, pdaSignal)
+		else //sellin' via shuttle
+			return list(price, pap ? (pap.lastAnalysis/3)*100 : null)
 
 	// Returns value of whatever the list of objects would sell for
 	proc/appraise_value(var/list/obj/items, var/list/commodities_list, var/sell = 1)
@@ -232,29 +235,36 @@
 
 		return duckets
 
-	proc/sell_crate(obj/storage/crate/sell_crate, var/list/commodities_list)
+	proc/sell_crate(obj/storage/crate/sell_crate, var/list/commodities_list, notify_PDAs = TRUE)
 		var/obj/item/card/id/scan = sell_crate.scan
 		var/datum/data/record/account = sell_crate.account
 
 		var/duckets = src.appraise_value(sell_crate, commodities_list, 1) + src.points_per_crate
-
+		var/list/proceeds
 
 
 		qdel(sell_crate)
 
-		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
-		var/datum/signal/pdaSignal = get_free_signal()
 		if(scan && account)
-			wagesystem.shipping_budget += duckets / 2
-			account.fields["current_money"] += duckets / 2
-			pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT",  "group"=list(MGD_CARGO, MGA_SALES), "sender"="00000000", "message"="Notification: [duckets] credits earned from last outgoing shipment. Splitting half of profits with [scan.registered].")
+			//No more giving folks half a credit. What are we, complicatedmathsotrasen?
+			wagesystem.shipping_budget += ceil(duckets / 2)
+			account.fields["current_money"] += floor(duckets / 2)
+			proceeds = list(ceil(duckets / 2), floor(duckets / 2))
 		else
 			wagesystem.shipping_budget += duckets
-			pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT",  "group"=list(MGD_CARGO, MGA_SALES), "sender"="00000000", "message"="Notification: [duckets] credits earned from last outgoing shipment.")
+			proceeds = list(duckets, 0)
+		if (notify_PDAs)
+			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
+			var/datum/signal/pdaSignal = get_free_signal()
+			if(scan && account)
+				pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT",  "group"=list(MGD_CARGO, MGA_SALES), "sender"="00000000", "message"="Notification: [duckets] credits earned from last outgoing shipment. Splitting half of profits with [scan.registered].")
+			else
+				pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT",  "group"=list(MGD_CARGO, MGA_SALES), "sender"="00000000", "message"="Notification: [duckets] credits earned from last outgoing shipment.")
 
-		pdaSignal.transmission_method = TRANSMISSION_RADIO
-		if(transmit_connection != null)
-			transmit_connection.post_signal(null, pdaSignal)
+			pdaSignal.transmission_method = TRANSMISSION_RADIO
+			if(transmit_connection != null)
+				transmit_connection.post_signal(null, pdaSignal)
+		else return proceeds
 
 	proc/receive_crate(atom/movable/shipped_thing)
 

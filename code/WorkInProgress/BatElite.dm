@@ -2,7 +2,11 @@
 
 //flap flap gonna put cursed stuff here
 
-//TODO: blob AI debug overlay doesn't realistically support more than one AI (but maybe that's fine?)
+/*TODO:
+blob AI debug overlay doesn't realistically support more than one AI (but maybe that's fine?)
+multi actionbar is scuffed, requires removing action/act interrupts when ideally we'd check to allow copies of the same id (also ditch /datum/action/bar/wall_decon_crud for generic)
+figure out a report thingy for cargo shuttle to replace getting 6 PDA messages at once
+*/
 
 ///Discord joke that might not be funny two weeks from now (but if it isn't we can just yeet it)
 /obj/item/clothing/under/gimmick/bikinion

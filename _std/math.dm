@@ -4,7 +4,8 @@
 #define pi 3.14159265
 
 /// Gets the ceiling (maps x to the least integer greater than or equal to x)
-#define ceil(x) (-round(-(x)))
+//native to BYOND as of 515
+//#define ceil(x) (-round(-(x)))
 
 /// ceil, with second argument being the multiple to use for rounding
 #define ceil2(x,y) (-round(-x / y) * y)

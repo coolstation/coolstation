@@ -106,22 +106,50 @@
 	target_area = /area/shuttle/cargo/hub
 	on_arrival()
 		shippingmarket.CSS_at_NTFC = TRUE
+		var/artifact_ducats = 0
+		var/no_of_arts = 0
+		var/other_ducats = 0
+		var/pilfered_ducats = 0//shit that went to crewmembers instead of the budget
+		var/no_of_crates = 0
 		for(var/atom/movable/AM in locate(target_area))
 			var/datum/artifact/art = null
 			if(isobj(AM))
 				var/obj/O = AM
 				art = O.artifact
+
 			if(art)
-				shippingmarket.sell_artifact(AM, art)
+				var/list/value = shippingmarket.sell_artifact(AM, art, FALSE)
+				artifact_ducats += value[1]
+				no_of_arts++
 			else if (istype(AM, /obj/storage/crate/biohazard/cdc))
 				QM_CDC.receive_pathogen_samples(AM)
 			else if (istype(AM, /obj/storage/crate))
+				var/list/value
 				if (AM.delivery_destination)
 					for (var/datum/trader/T in shippingmarket.active_traders)
 						if (T.crate_tag == AM.delivery_destination)
-							shippingmarket.sell_crate(AM, T.goods_buy)
+							value = shippingmarket.sell_crate(AM, T.goods_buy, FALSE)
+							other_ducats += value[1]
+							pilfered_ducats += value[2]
+							no_of_crates++
 							continue
-				shippingmarket.sell_crate(AM)
+				value = shippingmarket.sell_crate(AM, null, FALSE)
+				other_ducats += value[1]
+				pilfered_ducats += value[2]
+				no_of_crates++
+
+		if ((no_of_arts + no_of_crates)) //any amount of shit sold
+			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
+			var/datum/signal/pdaSignal = get_free_signal()
+			//TODO: We lose a bunch of information players would enjoy summarising things this way. Ideally we'd have a report for individual arts/crates somewhere.
+			//but that's way too much for a single PDA blip, and also most of *that* info is lost because the selling procs delete our shit.
+			var/message = "Notification: [artifact_ducats + other_ducats + pilfered_ducats] credits earned from combined shuttle cargo[pilfered_ducats ? ", of which [pilfered_ducats] have gone to crewmembers." : "."]"
+
+			pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT",  "group"=list(MGD_CARGO, MGD_SCIENCE, MGA_SALES), "sender"="00000000", "message"=message)
+			pdaSignal.transmission_method = TRANSMISSION_RADIO
+			if(transmit_connection != null)
+				transmit_connection.post_signal(null, pdaSignal)
+
 
 
 
