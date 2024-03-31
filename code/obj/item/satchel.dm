@@ -296,3 +296,9 @@
 			src.satchel_updateicon()
 		tooltip_rebuild = 1
 
+/obj/item/satchel/mail
+	name = "mail bag"
+	desc = "A leather bag for holding mail."
+	icon_state = "mailsatchel"
+	itemstring = "mail"
+	allowed = list(/obj/item/random_mail)
