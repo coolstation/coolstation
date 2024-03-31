@@ -15,7 +15,8 @@
 	var/turf/thrown_from
 	var/atom/return_target
 	var/bonus_throwforce = 0
-	var/end_throw_callback
+	///Must be a list now of (datum to call on, procref to call) otherwise shit won't work
+	var/list/end_throw_callback
 	var/mob/user
 	var/hitAThing = FALSE
 	var/dist_travelled = 0
@@ -114,9 +115,12 @@ var/global/datum/controller/throwing/throwing_controller = new
 		if(end_throwing)
 			thrown -= thr
 			if(thr.end_throw_callback)
-				if(call(thr.end_throw_callback)(thr)) // return 1 to continue the throw, might be useful!
+				if(call(thr.end_throw_callback[1], thr.end_throw_callback[2])(thr)) // return 1 to continue the throw, might be useful!
 					thrown += thr
 					continue
+				else
+					//garbage collect cause I'm not seeing where the fuck the thrown thing datums are deleted (I'm pretty sure this whole thing is quite gross)
+					thr.end_throw_callback = null
 			if(!thing || thing.disposed)
 				continue
 			animate(thing)

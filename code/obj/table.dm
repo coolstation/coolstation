@@ -483,7 +483,8 @@
 			return
 		if(!(ownerMob.flags & TABLEPASS))
 			ownerMob.flags |= TABLEPASS
-			thr.end_throw_callback = PROC_REF(unset_tablepass_callback)
+			//We keep a ref to the fucking actionbar itself so that we can callback a proc later. This may be the jankest fucking thing in this codebase.
+			thr.end_throw_callback = list(src, PROC_REF(unset_tablepass_callback))
 		for(var/O in AIviewers(ownerMob))
 			var/mob/M = O //inherently typed list
 			var/the_text = "[ownerMob] jumps over [the_railing]."
