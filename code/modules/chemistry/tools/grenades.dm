@@ -294,6 +294,27 @@
 		beakers += B1
 		beakers += B2
 
+//dumb joke :)
+/obj/item/chem_grenade/cleanish
+	name = "clean grenade"
+	desc = "Eh, you've seen cleaner."
+	icon = 'icons/obj/items/grenade.dmi'
+	icon_state = "cleaner"
+	icon_state_armed = "cleaner1"
+	stage = 2
+
+	New()
+		..()
+		var/obj/item/reagent_containers/glass/B1 = new(src)
+		var/obj/item/reagent_containers/glass/B2 = new(src)
+
+		B1.reagents.add_reagent("fluorosurfactant", 15)
+		B2.reagents.add_reagent("cleaner", 10)
+		B2.reagents.add_reagent("water", 15)
+
+		beakers += B1
+		beakers += B2
+
 /obj/item/chem_grenade/fcleaner
 	name = "cleaner grenade"
 	desc = "BLAM!-brand foaming space cleaner. In a special applicator for rapid cleaning of wide areas."
