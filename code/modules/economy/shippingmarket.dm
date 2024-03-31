@@ -293,8 +293,8 @@
 		if(scan && account)
 			//No more giving folks half a credit. What are we, complicatedmathsotrasen?
 			wagesystem.shipping_budget += ceil(duckets / 2)
-			account.fields["current_money"] += floor(duckets / 2)
-			proceeds = list(ceil(duckets / 2), floor(duckets / 2))
+			account.fields["current_money"] += round(duckets / 2)
+			proceeds = list(ceil(duckets / 2), round(duckets / 2))
 		else
 			wagesystem.shipping_budget += duckets
 			proceeds = list(duckets, 0)
