@@ -179,7 +179,7 @@ ABSTRACT_TYPE(/datum/job/command)
 	slot_eyes = list(/obj/item/clothing/glasses/sunglasses)
 	slot_ears = list(/obj/item/device/radio/headset/command/captain)
 	slot_poc1 = list(/obj/item/disk/data/floppy/read_only/authentication)
-	items_in_backpack = list(/obj/item/storage/box/id_kit,/obj/item/device/flash)
+	items_in_backpack = list(/obj/item/device/flash)
 #ifdef RP_MODE
 	rounds_needed_to_play = 20
 #endif
@@ -228,14 +228,14 @@ ABSTRACT_TYPE(/datum/job/command)
 	slot_jump = list(/obj/item/clothing/under/suit/hop)
 	slot_foot = list(/obj/item/clothing/shoes/brown)
 	slot_ears = list(/obj/item/device/radio/headset/command/hop)
-	items_in_backpack = list(/obj/item/storage/box/id_kit,/obj/item/device/flash,/obj/item/storage/box/accessimp_kit)
+	items_in_backpack = list(/obj/item/device/flash,/obj/item/storage/box/accessimp_kit)
 #else
 	slot_back = list(/obj/item/storage/backpack/withO2)
 	slot_belt = list(/obj/item/device/pda2/heads)
 	slot_jump = list(/obj/item/clothing/under/suit/hop)
 	slot_foot = list(/obj/item/clothing/shoes/brown)
 	slot_ears = list(/obj/item/device/radio/headset/command/hop)
-	items_in_backpack = list(/obj/item/storage/box/id_kit,/obj/item/device/flash,/obj/item/storage/box/accessimp_kit)
+	items_in_backpack = list(/obj/item/device/flash,/obj/item/storage/box/accessimp_kit)
 #endif
 
 	New()
