@@ -150,6 +150,12 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	light_g = 0.7
 	light_b = 0.03
 
+	New()
+		..()
+		SPAWN_DBG(0.5 SECONDS)
+			if(radio_controller)
+				radio_controller.add_object(src, "[FREQ_STATUS]")
+
 	disposing()
 		radio_controller.remove_object(src, "[FREQ_STATUS]")
 		..()
@@ -1360,7 +1366,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 
 /obj/machinery/computer/supplycomp/proc/post_signal(var/command)
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(FREQ_STATUS)
+	var/datum/radio_frequency/frequency = radio_controller.return_frequency("[FREQ_STATUS]")
 
 	if(!frequency) return
 
