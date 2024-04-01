@@ -366,6 +366,10 @@
 "ara" = (
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/light/small/ceiling,
+/obj/decal/tile_edge/stripe/corner/xmas2{
+	dir = 9;
+	pixel_y = -15
+	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "arB" = (
@@ -1676,11 +1680,13 @@
 /turf/floor/black,
 /area/station/hangar/main)
 "bIj" = (
-/mob/living/critter/small_animal/mouse/mickey,
-/turf/floor/specialroom/chapel{
-	dir = 1
+/obj/disposalpipe/segment/mail{
+	dir = 4;
+	icon_state = "pipe-s"
 	},
-/area/station/chapel/sanctuary)
+/obj/machinery/light,
+/turf/floor,
+/area/station/crew_quarters/market)
 "bIw" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/pink,
@@ -4303,6 +4309,7 @@
 	dir = 4;
 	icon_state = "tube1"
 	},
+/obj/random_item_spawner/junk/one,
 /turf/floor/plating,
 /area/station/hallway/secondary/construction2)
 "eno" = (
@@ -5309,7 +5316,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/light/small/red,
+/obj/machinery/light/small,
 /turf/floor/neutral/side{
 	dir = 4
 	},
@@ -5479,6 +5486,7 @@
 	icon_state = "pipe-s"
 	},
 /obj/table/wood/round/auto,
+/obj/random_item_spawner/tableware/one_or_zero,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "fwU" = (
@@ -6205,6 +6213,9 @@
 /obj/submachine/mixer{
 	pixel_x = 6
 	},
+/obj/item/reagent_containers/food/snacks/condiment/ketchup{
+	pixel_x = -6
+	},
 /turf/floor/grey,
 /area/station/crew_quarters/kitchen)
 "gcQ" = (
@@ -6464,6 +6475,15 @@
 /area/station/hangar/main)
 "gsm" = (
 /obj/table/auto,
+/obj/item/plate{
+	pixel_y = 3
+	},
+/obj/item/plate{
+	pixel_y = 5
+	},
+/obj/item/plate{
+	pixel_y = 7
+	},
 /turf/floor/grey,
 /area/station/crew_quarters/kitchen)
 "gtE" = (
@@ -6775,6 +6795,7 @@
 	},
 /obj/machinery/light/small/ceiling,
 /obj/table/wood/round/auto,
+/obj/random_item_spawner/snacks/one,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "gJF" = (
@@ -8961,6 +8982,10 @@
 "iZt" = (
 /obj/stool/chair,
 /obj/decal/cleanable/mess/chips,
+/obj/decal/tile_edge/stripe/corner/xmas2{
+	dir = 5;
+	pixel_y = -14
+	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "iZD" = (
@@ -10509,6 +10534,10 @@
 	dir = 1
 	},
 /area/station/engine/singcore)
+"kNq" = (
+/obj/random_item_spawner/junk/one,
+/turf/floor/plating,
+/area/station/maintenance/southeast)
 "kNO" = (
 /obj/machinery/light{
 	dir = 1;
@@ -11828,6 +11857,7 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
+/mob/living/critter/small_animal/mouse/mickey,
 /turf/floor/specialroom/chapel{
 	dir = 1
 	},
@@ -13115,6 +13145,7 @@
 	name = "Mechanic's Lab APC";
 	pixel_y = 24
 	},
+/obj/random_item_spawner/junk/one,
 /turf/floor/plating,
 /area/station/maintenance/west)
 "nEC" = (
@@ -13574,7 +13605,12 @@
 "ofL" = (
 /obj/table/reinforced/bar/auto,
 /obj/disposalpipe/segment/bent/south,
-/obj/machinery/cashreg,
+/obj/machinery/cashreg{
+	pixel_x = 3
+	},
+/obj/machinery/phone{
+	pixel_y = 8
+	},
 /turf/floor/grey/corner{
 	dir = 4
 	},
@@ -13784,6 +13820,7 @@
 /area/station/maintenance/northwest)
 "opq" = (
 /obj/machinery/portable_reclaimer,
+/obj/machinery/light/small,
 /turf/floor/grime,
 /area/station/mining/refinery)
 "oql" = (
@@ -16930,6 +16967,7 @@
 	name = "Bar APC";
 	pixel_y = 24
 	},
+/obj/random_item_spawner/junk/one,
 /turf/floor/plating,
 /area/station/hallway/primary/southeast)
 "rmB" = (
@@ -17484,6 +17522,7 @@
 "rZc" = (
 /obj/disposalpipe/segment/bent/east,
 /obj/decal/cleanable/dirt/random,
+/obj/random_item_spawner/junk/one,
 /turf/floor/plating,
 /area/station/maintenance/west)
 "saH" = (
@@ -17722,6 +17761,7 @@
 /obj/table/regal/auto{
 	name = "solemn table"
 	},
+/obj/item/storage/bible,
 /turf/floor/carpet/blue/standard/edge/nw,
 /area/station/chapel/sanctuary)
 "soH" = (
@@ -18150,7 +18190,6 @@
 	icon_state = "pipe-s"
 	},
 /obj/machinery/light/small/ceiling,
-/obj/random_item_spawner/tableware/one_or_zero,
 /turf/floor/grey/side{
 	dir = 4
 	},
@@ -19301,7 +19340,6 @@
 /turf/floor/grime,
 /area/station/maintenance/west)
 "tUF" = (
-/obj/machinery/light,
 /obj/disposalpipe/switch_junction/right/west,
 /turf/floor,
 /area/station/crew_quarters/market)
@@ -19311,6 +19349,7 @@
 /obj/railing/yellow{
 	dir = 4
 	},
+/obj/random_item_spawner/junk/one,
 /turf/floor/orangeblack,
 /area/station/maintenance/disposal)
 "tXi" = (
@@ -20367,13 +20406,6 @@
 	dir = 1
 	},
 /area/station/crew_quarters/market)
-"uSf" = (
-/obj/table/reinforced/bar/auto,
-/obj/random_item_spawner/tableware/one_or_zero,
-/turf/floor/grey/side{
-	dir = 1
-	},
-/area/station/crew_quarters/bar)
 "uSh" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -20795,6 +20827,7 @@
 	name = "Unused APC";
 	pixel_y = 24
 	},
+/obj/random_item_spawner/junk/one,
 /turf/floor/plating,
 /area/station/maintenance/southwest)
 "vpa" = (
@@ -21200,7 +21233,7 @@
 	name = "official stripe";
 	pixel_y = 11
 	},
-/turf/floor/specialroom/bar,
+/turf/floor,
 /area/station/crew_quarters/bar)
 "vGB" = (
 /obj/machinery/manufacturer/mining,
@@ -21905,8 +21938,8 @@
 /area/listeningpost)
 "woG" = (
 /obj/table/auto,
-/obj/random_item_spawner/tableware/one_or_zero,
 /obj/disposalpipe/segment/mail,
+/obj/random_item_spawner/tableware/one,
 /turf/floor,
 /area/station/crew_quarters/lounge)
 "woI" = (
@@ -22134,6 +22167,7 @@
 /area/station/hangar/main)
 "wEN" = (
 /obj/machinery/atmospherics/pipe/simple/junction/west,
+/obj/random_item_spawner/junk/one,
 /turf/floor/specialroom/freezer/blue,
 /area/station/crew_quarters/kitchen)
 "wEU" = (
@@ -22404,11 +22438,9 @@
 /turf/floor,
 /area/station/storage/tech)
 "wVX" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
+/obj/random_item_spawner/junk/one,
 /turf/floor/plating,
-/area/station/mining/refinery)
+/area/station/hallway/secondary/construction2)
 "wWL" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable{
@@ -23748,8 +23780,21 @@
 /area/station/crew_quarters/bar)
 "ykU" = (
 /obj/table/reinforced/bar/auto,
-/obj/random_item_spawner/tableware/one_or_zero,
-/obj/machinery/phone,
+/obj/item/kitchen/utensil/spoon{
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/item/kitchen/utensil/fork{
+	pixel_x = 10;
+	pixel_y = 4
+	},
+/obj/item/kitchen/utensil/knife{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/plate{
+	pixel_y = 3
+	},
 /turf/floor/grey/side{
 	dir = 1
 	},
@@ -23792,6 +23837,7 @@
 	dir = 2
 	},
 /obj/item/shaker/pepper,
+/obj/random_item_spawner/tableware/one_or_zero,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 
@@ -62953,7 +62999,7 @@ tqg
 qEv
 qEv
 qEv
-vVw
+wVX
 rvN
 pKw
 iPC
@@ -66243,7 +66289,7 @@ iJV
 xGt
 iqN
 dIW
-wVX
+cmR
 cmR
 cmR
 xSs
@@ -67172,7 +67218,7 @@ gcV
 aqq
 qaW
 eVG
-mla
+bIj
 cBO
 huZ
 huZ
@@ -68682,7 +68728,7 @@ lqd
 kkD
 lxe
 lTV
-oLM
+mla
 eVJ
 uBN
 nDF
@@ -69286,7 +69332,7 @@ eTe
 pdi
 viN
 lTV
-mla
+bIj
 eVJ
 izP
 ple
@@ -69900,7 +69946,7 @@ rwu
 dyN
 fUf
 bsj
-rwa
+kNq
 aaP
 iPC
 huZ
@@ -70796,7 +70842,7 @@ mFg
 gkg
 lxe
 lTV
-mla
+bIj
 cBO
 jlh
 jlh
@@ -79206,7 +79252,7 @@ mmh
 aWh
 fjg
 bso
-bIj
+gtE
 rrr
 nnD
 rfT
@@ -80744,7 +80790,7 @@ oZW
 yiU
 cVY
 uQM
-uSf
+ykU
 tSZ
 iiY
 hzq
