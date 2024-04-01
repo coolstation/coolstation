@@ -20,7 +20,7 @@
 
 	area = /area/space
 
-	view = "15x15"
+	view = "21x15"
 
 	hub = "Exadv1.SpaceStation13"
 	hub_password = "kMZy3U5jJHSiBQjr"
