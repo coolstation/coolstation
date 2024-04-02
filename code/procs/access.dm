@@ -252,11 +252,11 @@
 						access_heads, access_ai_upload, access_construction, access_eva, access_cargo, access_supply_console, access_hangar)
 		if("Head of Mining", "Mining Supervisor")
 			return list(access_engineering, access_maint_tunnels, access_external_airlocks,
-						access_engineering_eva, access_mining_shuttle, access_mining,
+						access_engineering_eva, access_mining_shuttle, access_mining, access_tech_storage,
 						access_mining_outpost, access_hangar, access_heads, access_ai_upload, access_construction, access_eva)
 		if("Quartermaster") //new head, make a QM-exclusive office
 			return list(access_quartermaster, access_engineering_storage, access_maint_tunnels, access_cargo, access_supply_console, access_hangar, access_mining, access_engineering, access_engineering_eva,
-						access_mining_shuttle, access_mining_outpost, access_external_airlocks, access_heads, access_construction, access_eva)
+						access_mining_shuttle, access_mining_outpost, access_external_airlocks, access_heads, access_construction, access_eva, access_tech_storage)
 
 		///////////////////////////// Security
 		if("Security Officer")
@@ -319,7 +319,7 @@
 
 		//////////////////////////// Engineering
 		if("Engineer")
-			return list(access_engineering, access_maint_tunnels, access_external_airlocks, access_engineering_control,
+			return list(access_engineering, access_maint_tunnels, access_external_airlocks, access_engineering_control, access_tech_storage,
 						access_engineering_storage,access_engineering_atmos,access_engineering_engine,access_engineering_power,access_engineering_mechanic)
 		if("Mechanic", "Electrician") //share a room you two
 			return list(access_maint_tunnels, access_external_airlocks, access_engineering_control,
@@ -334,7 +334,7 @@
 		//////////////////////////// Logistics
 
 		if("Cargo Technician")
-			return list(access_maint_tunnels, access_cargo, access_supply_console, access_hangar,
+			return list(access_maint_tunnels, access_cargo, access_supply_console, access_hangar, access_tech_storage,
 						access_mining_shuttle, access_mining_outpost, access_external_airlocks)
 		if("Miner")
 			return list(access_maint_tunnels, access_external_airlocks,

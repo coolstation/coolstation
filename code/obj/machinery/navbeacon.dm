@@ -1163,3 +1163,59 @@ Transponder Codes:<UL>"}
 		name = "tour beacon - Finish"
 		location = "tour13"
 		codes_txt = "tour;"
+
+/obj/machinery/navbeacon/tour/chunk
+	tour0
+		name = "tour beacon - 'Arrivals'"
+		location = "tour0"
+		codes_txt = "tour;next_tour=tour1;desc=Hello and welcome to Nanotrasen's finest low-economic-impact semi-disposable research station! The Chunk as we call it isn't much to see, but see it you will! Here we are at the arrival dock, to the south is the Robotics lab, my favorite R&R spot!"
+
+	tour1
+		name = "tour beacon - 'Market'"
+		location = "tour1"
+		codes_txt = "tour;next_tour=tour2;desc=This area is designated for any economically-enriching activity you'd like to partake in! Travelling traders dock here to sell their wares, and you can set up your own shop in one of these stalls I guess! Yawn! Moving on!"
+
+	tour2
+		name = "tour beacon - 'Crew Quarters'"
+		location = "tour2"
+		codes_txt = "tour;next_tour=tour3;desc=This is where you'll be living, sort-of! At least that's the plan, anyway. A dining area is provided for staff to use during their breaks. Don't forget to clock out, haha! Seriously! Don't."
+
+	tour3
+		name = "tour beacon - 'Refinery'"
+		location = "tour3"
+		codes_txt = "tour;next_tour=tour4;desc=Uh, this is uh, ... oh dear, this one's not on my map. I don't know what this room does. Is this a 'bed-room'? Probably!"
+
+	tour4
+		name = "tour beacon - 'QM'"
+		location = "tour4"
+		codes_txt = "tour;next_tour=tour5;desc=AHA! Okay back on track! This is where the Quartermaster and cargo techs work! They unpacked me from my crate right back there even. Good times. Oh there's a black hole engine behind there too, cool right?"
+
+	tour5
+		name = "tour beacon - 'Escape'"
+		location = "tour5"
+		codes_txt = "tour;next_tour=tour6;desc=This is where an Escape Shuttle would dock if anything were to go awry on the station. That hasn't happenned yet, and with any luck, it wont't! There's another shuttle dock just south-east of here, that one comes and goes a lot. Dunno what for!"
+
+	tour6
+		name = "tour beacon - 'Command'"
+		location = "tour6"
+		codes_txt = "tour;next_tour=tour7;desc=This is where the bosses work! Command staff on the right, and Security on the left! Wow that feels wierd to say, doesn't it? Haha!"
+
+	tour7
+		name = "tour beacon - 'Medical'"
+		location = "tour7"
+		codes_txt = "tour;next_tour=tour8;desc=Okay! Here's the medical bay in case you get hurt. Probably won't. But please memorize this location immediately. Oh also there's the hydroponics bay just across the hall! Yeah!"
+
+	tour8
+		name = "tour beacon - 'Bar'"
+		location = "tour8"
+		codes_txt = "tour;next_tour=tour9;desc=Finally here's your cafeteria and corporate bar! Perfect place to have a few healthy drinks and a couple packs of smokes to boot, off the clock of course! To your left you'll see the conveniently located research sector. Don't drink and teleport! Haha!"
+
+	tour9
+		name = "tour beacon - Finish"
+		location = "tour9"
+		codes_txt = "tour;"
+
+
+
+
+
