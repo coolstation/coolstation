@@ -14,6 +14,7 @@ Contains:
 #define DEFAULT_AREA 25
 #define EVENT_GROWTH 3//the rate at which the event proc radius is scaled relative to the radius of the singularity
 #define EVENT_MINIMUM 5//the base value added to the event proc radius, serves as the radius of a 1x1
+//Anchoring states for the emitters, field generators, and singulo jar
 #define UNWRENCHED 0
 #define WRENCHED 1
 #define WELDED 2
@@ -22,7 +23,7 @@ Contains:
 //////////////////////////////////////////////////// Singularity generator /////////////////////
 
 /obj/machinery/the_singularitygen/
-	name = "Gravitational Singularity Generator"
+	name = "gravitational singularity generator"
 	desc = "An Odd Device which produces a Black Hole when set up."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "TheSingGen"
@@ -399,7 +400,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 //////////////////////////////////////// Field generator /////////////////////////////////////////
 
 /obj/machinery/field_generator
-	name = "Field Generator"
+	name = "field generator"
 	desc = "Projects an energy field when active"
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "Field_Gen"
@@ -504,6 +505,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		src.power = src.max_power
 	if(src.active >= 1)
 		src.power -= 1
+		//maptext = num2text(power)
 		if(Varpower == 0)
 			if(src.power <= 0)
 				src.visible_message("<span class='alert'>The [src.name] shuts down due to lack of power!</span>")
@@ -764,11 +766,6 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	anchored = 1
 	density = 0
 	event_handler_flags = USE_FLUID_ENTER | IMMUNE_SINGULARITY | USE_CANPASS
-	var/active = 1
-	var/power = 10
-	var/delay = 5
-	var/last_active
-	var/mob/U
 	var/obj/machinery/field_generator/gen_primary
 	var/obj/machinery/field_generator/gen_secondary
 	var/datum/light/light
@@ -783,6 +780,19 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	light.enable()
 
 	..()
+
+/obj/machinery/containment_field/disposing()
+	qdel(light)
+	light = null
+	..()
+
+//we gotta override this anyway, might as well have a bit of fun with it
+/obj/machinery/containment_field/ex_act(severity=0,last_touched=0, epicenter = null)
+	//throw explosives at the containment field to speed up the singularity breaking out
+	//I'm not 100% on whether this won't runtime if a generator isn't there, buuuut
+	//(also the generators aren't explosion proof atm so)
+	gen_primary?.power = max(0, gen_primary.power - severity)
+	gen_secondary?.power = max(0, gen_secondary.power - severity)
 
 /obj/machinery/containment_field/attack_hand(mob/user as mob)
 	return
@@ -806,17 +816,17 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 	elecflash(user)
 
-	src.power = max(gen_primary.power,gen_secondary.power)
+	var/spicy_power = max(gen_primary.power,gen_secondary.power)
 
 	var/prot = 1
 	var/shock_damage = 0
-	if(src.power > 200)
+	if(spicy_power > 200)
 		shock_damage = min(rand(40,80),rand(40,100))*prot
-	else if(src.power > 120)
+	else if(spicy_power > 120)
 		shock_damage = min(rand(30,60),rand(30,90))*prot
-	else if(src.power > 80)
+	else if(spicy_power > 80)
 		shock_damage = min(rand(20,40),rand(20,40))*prot
-	else if(src.power > 60)
+	else if(spicy_power > 60)
 		shock_damage = min(rand(20,30),rand(20,30))*prot
 	else
 		shock_damage = min(rand(10,20),rand(10,20))*prot
@@ -1133,14 +1143,14 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /////////////////////////////////// Collector array /////////////////////////////////
 
 /obj/item/electronics/frame/collector_array
-	name = "Radiation Collector Array frame"
+	name = "radiation collector array frame"
 	store_type = /obj/machinery/power/collector_array
 	viewstat = 2
 	secured = 2
 	icon_state = "dbox"
 
 /obj/machinery/power/collector_array
-	name = "Radiation Collector Array"
+	name = "radiation collector array"
 	desc = "A device which uses Hawking Radiation and plasma to produce power."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "ca"
@@ -1251,31 +1261,31 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 ////////////////////////// Collector array controller ////////////////////////////
 
 /obj/item/electronics/frame/collector_control
-	name = "Radiation Collector Control frame"
+	name = "radiation collector control frame"
 	store_type = /obj/machinery/power/collector_control
 	viewstat = 2
 	secured = 2
 	icon_state = "dbox"
 
 /obj/machinery/power/collector_control
-	name = "Radiation Collector Control"
+	name = "radiation collector control"
 	desc = "A device which uses Hawking Radiation and Plasma to produce power."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "cu"
 	anchored = 1
 	density = 1
 	directwired = 1
+	///Supposed to make power just whenever, but I think it's broken cause S1 never gets assigned (and nothing uses magic collectors so I don't care)
 	var/magic = 0
 	var/active = 0
+	///For atmos analyser readout
 	var/lastpower = 0
-	var/obj/item/tank/plasma/P1 = null
-	var/obj/item/tank/plasma/P2 = null
-	var/obj/item/tank/plasma/P3 = null
-	var/obj/item/tank/plasma/P4 = null
-	var/obj/machinery/power/collector_array/CA1 = null
-	var/obj/machinery/power/collector_array/CA2 = null
-	var/obj/machinery/power/collector_array/CA3 = null
-	var/obj/machinery/power/collector_array/CA4 = null
+	//plasma tanks from the collectors
+	var/obj/item/tank/plasma/PN = null
+	var/obj/item/tank/plasma/PS = null
+	var/obj/item/tank/plasma/PE = null
+	var/obj/item/tank/plasma/PW = null
+	//collectors
 	var/obj/machinery/power/collector_array/CAN = null
 	var/obj/machinery/power/collector_array/CAS = null
 	var/obj/machinery/power/collector_array/CAE = null
@@ -1290,12 +1300,29 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 /obj/machinery/power/collector_control/disposing()
 	. = ..()
+	//There's technically nothing to stop collectors from stealing one another's arrays
+	//In fact, I think collectors might be able to share arrays without issue
+	if (CAN.CU == src)
+		CAN.CU = null
+	CAN = null
+	if (CAS.CU == src)
+		CAS.CU = null
+	CAS = null
+	if (CAE.CU == src)
+		CAE.CU = null
+	CAE = null
+	if (CAW.CU == src)
+		CAW.CU = null
+	CAW = null
+	PN = null
+	PS = null
+	PE = null
+	PW = null
+
 	STOP_TRACKING
 
 /obj/machinery/power/collector_control/proc/updatecons()
-
 	if(magic != 1)
-
 		CAN = locate(/obj/machinery/power/collector_array) in get_step(src,NORTH)
 		CAS = locate(/obj/machinery/power/collector_array) in get_step(src,SOUTH)
 		CAE = locate(/obj/machinery/power/collector_array) in get_step(src,EAST)
@@ -1304,75 +1331,86 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			if(get_dist(singu,loc)<SINGULARITY_MAX_DIMENSION+2)
 				S1 = singu
 
+		//grab the plasma cans from
 		if(!isnull(CAN))
-			CA1 = CAN
 			CAN.CU = src
-			if(CA1.P)
-				P1 = CA1.P
+			if(CAN.P)
+				PN = CAN.P
 		else
-			CAN = null
+			PN = null
 		if(!isnull(CAS))
-			CA3 = CAS
 			CAS.CU = src
-			if(CA3.P)
-				P3 = CA3.P
+			if(CAS.P)
+				PS = CAS.P
 		else
-			CAS = null
+			PS = null
 		if(!isnull(CAW))
-			CA4 = CAW
 			CAW.CU = src
-			if(CA4.P)
-				P4 = CA4.P
+			if(CAW.P)
+				PW = CAW.P
 		else
-			CAW = null
+			PW = null
 		if(!isnull(CAE))
-			CA2 = CAE
 			CAE.CU = src
 			//DrMelon attempted fix for null.P at singularity.dm /// seemed to have been a tabulation error
-			if(CA2.P)
-				P2 = CA2.P
+			if(CAE.P)
+				PE = CAE.P
 		else
-			CAE = null
-		if(isnull(S1) || S1.disposed)
+			PE = null
+
+		if(S1?.disposed)
 			S1 = null
 
-		updateicon()
-		SPAWN_DBG(1 MINUTE)
-			updatecons()
-
-	else
-		updateicon()
-		SPAWN_DBG(1 MINUTE)
-			updatecons()
+	updateicon()
 
 /obj/machinery/power/collector_control/proc/updateicon()
 
 	if(magic != 1)
 
-		if(status & (NOPOWER|BROKEN))
-			overlays = null
-		else
-			overlays = null
-		if(src.active == 0)
+		if((status & (NOPOWER|BROKEN)) || src.active == 0)
+			ClearAllOverlays(TRUE) //I think we want the cache?
 			return
-		overlays += image('icons/obj/singularity.dmi', "cu on")
-		if((P1)&&(CA1.active != 0))
-			overlays += image('icons/obj/singularity.dmi', "cu 1 on")
-		if((P2)&&(CA2.active != 0))
-			overlays += image('icons/obj/singularity.dmi', "cu 2 on")
-		if((P3)&&(CA3.active != 0))
-			overlays += image('icons/obj/singularity.dmi', "cu 3 on")
-		if((!P1)||(!P2)||(!P3))
-			overlays += image('icons/obj/singularity.dmi', "cu n error")
+		UpdateOverlays(image('icons/obj/singularity.dmi', "cu on"), "power light")
+		if((PN)&&(CAN.active))
+			UpdateOverlays(image('icons/obj/singularity.dmi', "cu n on"), "north_array_light")
+		else
+			UpdateOverlays(null, "north_array_light")
+
+		if((PE)&&(CAE.active))
+			UpdateOverlays(image('icons/obj/singularity.dmi', "cu e on"), "east_array_light")
+		else
+			UpdateOverlays(null, "east_array_light")
+
+		if((PS)&&(CAS.active))
+			UpdateOverlays(image('icons/obj/singularity.dmi', "cu s on"), "south_array_light")
+		else
+			UpdateOverlays(null, "south_array_light")
+
+		if((PW)&&(CAW.active))
+			UpdateOverlays(image('icons/obj/singularity.dmi', "cu w on"), "west_array_light")
+		else
+			UpdateOverlays(null, "west_array_light")
+
+		if((CAN && !PN)||(CAS && !PS)||(CAE && !PE)||(CAW && !PW)) //IDK what this was trying to do before but now it's a warning for tankless arrays
+			UpdateOverlays(image('icons/obj/singularity.dmi', "cu n error"), "array_error_light")
+		else
+			UpdateOverlays(null, "array_error_light")
+
 		if(S1)
-			overlays += image('icons/obj/singularity.dmi', "cu sing")
+			UpdateOverlays(image('icons/obj/singularity.dmi', "cu sing"), "singularity_light")
 			if(!S1.active)
-				overlays += image('icons/obj/singularity.dmi', "cu conterr")
+				UpdateOverlays(image('icons/obj/singularity.dmi', "cu conterr"), "singularity_containment_alarm")
+			else
+				UpdateOverlays(null, "singularity_containment_alarm")
+		else
+			UpdateOverlays(null, "singularity_light")
+			UpdateOverlays(null, "singularity_containment_alarm")
+
 	else
 		overlays += image('icons/obj/singularity.dmi', "cu on")
-		overlays += image('icons/obj/singularity.dmi', "cu 1 on")
-		overlays += image('icons/obj/singularity.dmi', "cu 2 on")
-		overlays += image('icons/obj/singularity.dmi', "cu 3 on")
+		overlays += image('icons/obj/singularity.dmi', "cu n on")
+		overlays += image('icons/obj/singularity.dmi', "cu e on")
+		overlays += image('icons/obj/singularity.dmi', "cu s on")
 		overlays += image('icons/obj/singularity.dmi', "cu sing")
 
 /obj/machinery/power/collector_control/power_change()
@@ -1380,30 +1418,37 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	..()
 
 /obj/machinery/power/collector_control/process(mult)
+	if (!ON_COOLDOWN(src, "updatecons", 1 MINUTE))
+		updatecons()
 	if(magic != 1)
+		//no magic? time for the magic of power generation!
 		if(src.active == 1)
-			var/power_a = 0
-			var/power_s = 0
-			var/power_p = 0
+			var/power_a = 0 //the actual generated wattage. or jouleage?
+			var/power_s = 0 //number directly from singularity, not WATTS
+			var/power_p = 0 //number from collector plasma, not WATTS
 
-			if(!isnull(S1))
+			if(!isnull(S1)) //First, derive some kinda number from the singularity (I haven't tried to understand this formula)
 				power_s += S1.energy*max((S1.radius**2),1)/4
-			if(P1?.air_contents)
-				if(CA1.active != 0)
-					power_p += P1.air_contents.toxins
-					P1.air_contents.toxins -= 0.001 * mult
-			if(P2?.air_contents)
-				if(CA2.active != 0)
-					power_p += P2.air_contents.toxins
-					P2.air_contents.toxins -= 0.001 * mult
-			if(P3?.air_contents)
-				if(CA3.active != 0)
-					power_p += P3.air_contents.toxins
-					P3.air_contents.toxins -= 0.001 * mult
-			if(P4?.air_contents)
-				if(CA4.active != 0)
-					power_p += P4.air_contents.toxins
-					P4.air_contents.toxins -= 0.001 * mult
+			//For each possible collector, grab the current moles of plasma in the tank and then delete some plasma
+			//If you don't top up the tank after grabbing it from the dispenser, it will take approximately 466 minutes (assuming no lag) at the current
+			//3.2s machine loop for an array to run dry. Even with a 1Hz machine loop it takes over two hours. Realistically we will never run out of plasma.
+			if(PN?.air_contents)
+				if(CAN.active != 0)
+					power_p += PN.air_contents.toxins
+					PN.air_contents.toxins -= 0.001 * mult
+			if(PS?.air_contents)
+				if(CAS.active != 0)
+					power_p += PS.air_contents.toxins
+					PS.air_contents.toxins -= 0.001 * mult
+			if(PE?.air_contents)
+				if(CAE.active != 0)
+					power_p += PE.air_contents.toxins
+					PE.air_contents.toxins -= 0.001 * mult
+			if(PW?.air_contents)
+				if(CAW.active != 0)
+					power_p += PW.air_contents.toxins
+					PW.air_contents.toxins -= 0.001 * mult
+			//multiply it all together I guess
 			power_a = power_p*power_s*50
 			src.lastpower = power_a
 			add_avail(power_a)
@@ -1421,48 +1466,39 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		..()
 
 /obj/machinery/power/collector_control/attack_hand(mob/user as mob)
-	if(src.active==1)
-		src.active = 0
-		boutput(user, "You turn off the collector control.")
-		src.lastpower = 0
+	if (src.anchored)
+		if(src.active==1)
+			src.lastpower = 0
+		src.active = !src.active
+		boutput(user, "You turn [active ? "on" : "off"] the collector control.")
 		updateicon()
-		return
-
-	if(src.active==0)
-		src.active = 1
-		boutput(user, "You turn on the collector control.")
-		updatecons()
-		return
 
 /obj/machinery/power/collector_control/attackby(obj/item/W, mob/user)
 	if (iswrenchingtool(W))
 		if(src.active)
 			boutput("<span class='alert'>The [src.name] must be turned off first!</span>")
 		else
-			if (!src.anchored)
-				playsound(src.loc, "sound/items/Ratchet.ogg", 75, 1)
-				boutput(user, "You secure the [src.name] to the floor.")
-				src.anchored = 1
-			else
-				playsound(src.loc, "sound/items/Ratchet.ogg", 75, 1)
-				boutput(user, "You unsecure the [src.name].")
-				src.anchored = 0
+			src.anchored = !src.anchored
+			boutput(user, "You [src.anchored ? "" : "un"]secure the [src.name] to the floor.")
+			playsound(src.loc, "sound/items/Ratchet.ogg", 75, 1)
+
 			logTheThing("station", user, null, "[src.anchored ? "bolts" : "unbolts"] a [src.name] [src.anchored ? "to" : "from"] the floor at [log_loc(src)].") // Ditto (Convair880).
+
 	else if(istype(W, /obj/item/device/analyzer/atmospheric))
 		boutput(user, "<span class='notice'>The analyzer detects that [lastpower]W are being produced.</span>")
 
-	else
-		src.add_fingerprint(user)
+	else ..()
+		/*src.add_fingerprint(user)
 		boutput(user, "<span class='alert'>You hit the [src.name] with your [W.name]!</span>")
 		for(var/mob/M in AIviewers(src))
 			if(M == user)	continue
-			M.show_message("<span class='alert'>The [src.name] has been hit with the [W.name] by [user.name]!</span>")
+			M.show_message("<span class='alert'>The [src.name] has been hit with the [W.name] by [user.name]!</span>")*/
 
 ///////////////////////////////////////// Singularity bomb /////////////////////////////
 
 // Thing thing had zero logging despite being overhauled recently. I corrected that oversight (Convair880).
 /obj/machinery/the_singularitybomb/
-	name = "\improper Singularity Bomb"
+	name = "singularity bomb"
 	desc = "A WMD that creates a singularity."
 	icon = 'icons/obj/machines/power.dmi'
 	icon_state = "portgen0"
