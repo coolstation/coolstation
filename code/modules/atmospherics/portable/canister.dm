@@ -526,7 +526,10 @@
 		return FALSE
 
 	src.valve_open = !(src.valve_open)
-	if (!src.holding && !src.connected_port)
+	if (src.holding)
+		if (valve_open) //immediately fill tanks, waiting for the loop to tick sucks ass I'm so tired of it
+			process()
+	else if (!src.connected_port)
 		logTheThing("station", usr, null, "[valve_open ? "opened [src] into" : "closed [src] from"] the air [log_atmos(src)] at [log_loc(src)].")
 		playsound(src.loc, "sound/effects/valve_creak.ogg", 50, 1)
 		if (src.valve_open)
