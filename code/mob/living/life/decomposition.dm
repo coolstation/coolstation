@@ -23,11 +23,12 @@
 					istype(owner.loc, /obj/item/reagent_containers/food/snacks/shell) || \
 					owner.reagents?.has_reagent("formaldehyde")
 
-			if (!(suspend_rot || istype(owner.loc, /obj/item/body_bag) || (istype(owner.loc, /obj/storage) && owner.loc:welded) || istype(owner.loc, /obj/statue)))
-				icky_icky_miasma(T)
 
 			if (H.decomp_stage >= 4)
 				return ..()
+
+			if (!(suspend_rot || istype(owner.loc, /obj/item/body_bag) || (istype(owner.loc, /obj/storage) && owner.loc:welded) || istype(owner.loc, /obj/statue)))
+				icky_icky_miasma(T, H.decomp_stage)
 
 			var/env_temp = 0
 
@@ -45,11 +46,18 @@
 				owner.update_face()
 		..()
 
-	proc/icky_icky_miasma(var/turf/T)
+	proc/icky_icky_miasma(var/turf/T, var/decomp_stage=1)
 		if(!T)
 			return
 		var/datum/gas_mixture/gas = new()
-		gas.farts = 1
+		switch (decomp_stage)
+			if(1)
+				gas.farts=0.1
+			if(2)
+				gas.farts=1
+			if(3)
+				gas.farts=0.5
+
 		gas.temperature = T20C
 		gas.volume = R_IDEAL_GAS_EQUATION * T20C / 1000
 		T.assume_air(gas)

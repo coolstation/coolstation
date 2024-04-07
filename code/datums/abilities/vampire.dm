@@ -40,7 +40,7 @@
 				C.abilityHolder.addAbility(/datum/targetable/vampire/glare)
 				C.abilityHolder.addAbility(/datum/targetable/vampire/hypnotize)
 				C.abilityHolder.addAbility(/datum/targetable/vampire/plague_touch)
-				C.abilityHolder.addAbility(/datum/targetable/vampire/phaseshift_vampire)
+				C.abilityHolder.addAbility(/datum/targetable/vampire/phaseshift_vampire_old)
 				C.abilityHolder.addAbility(/datum/targetable/vampire/call_bats)
 				C.abilityHolder.addAbility(/datum/targetable/vampire/vampire_scream)
 				C.abilityHolder.addAbility(/datum/targetable/vampire/enthrall)
@@ -273,7 +273,7 @@
 		if (!src.last_power && src.vamp_blood >= src.level1)
 			src.last_power = 1
 
-			src.addAbility(/datum/targetable/vampire/phaseshift_vampire)
+			src.addAbility(/datum/targetable/vampire/phaseshift_vampire_old)
 			src.addAbility(/datum/targetable/vampire/enthrall)
 			src.addAbility(/datum/targetable/vampire/speak_thrall)
 
@@ -296,8 +296,6 @@
 		if (src.last_power == 3 && src.vamp_blood >= src.level4)
 			src.last_power = 4
 
-			src.removeAbility(/datum/targetable/vampire/phaseshift_vampire)
-			src.addAbility(/datum/targetable/vampire/phaseshift_vampire/mk2)
 			src.addAbility(/datum/targetable/vampire/plague_touch)
 
 		if (src.last_power == 4 && src.vamp_blood >= src.level5)
@@ -317,8 +315,7 @@
 		return
 
 	remove_unlocks()
-		src.removeAbility(/datum/targetable/vampire/phaseshift_vampire)
-		src.removeAbility(/datum/targetable/vampire/phaseshift_vampire/mk2)
+		src.removeAbility(/datum/targetable/vampire/phaseshift_vampire_old)
 		src.removeAbility(/datum/targetable/vampire/mark_coffin)
 		src.removeAbility(/datum/targetable/vampire/coffin_escape)
 		src.removeAbility(/datum/targetable/vampire/enthrall)

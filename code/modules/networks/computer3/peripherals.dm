@@ -1166,6 +1166,13 @@
 					usr.drop_item()
 					I.set_loc(src)
 					src.authid = I
+				else if (istype(I, /obj/item/device/pda2))
+					var/obj/item/device/pda2/that_pda = I
+					var/obj/item/card/id/inner_card = that_pda.ID_card
+					if (inner_card)
+						that_pda.eject_id_card()
+						inner_card.set_loc(src)
+						src.authid = inner_card
 				else if (istype(I, /obj/item/magtractor))
 					var/obj/item/magtractor/mag = I
 					if (istype(mag.holding, /obj/item/card/id))

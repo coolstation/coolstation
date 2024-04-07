@@ -135,7 +135,7 @@
 			H.blood_tracking_output(100)
 
 			H.deductPoints(100)
-
+			playsound(M.loc, "sound/musical_instruments/organ_stabs/stab[rand(1,8)].ogg", 60, 1)
 			boutput(M, __blue("You donate 200 blood points to [target]."))
 			boutput(target, __blue("[M] has donated you 200 blood points. Your health is temporarily increased."))
 		else

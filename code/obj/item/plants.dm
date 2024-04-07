@@ -178,6 +178,20 @@
 	build_name(obj/item/W)
 		return "[istype(W, /obj/item/spacecash) ? "[W.amount]-credit " : ""]rolled cigarette"
 
+	attackby(obj/item/W as obj, mob/user as mob)
+		..()
+		if((W.tool_flags & TOOL_CUTTING) || (W.hit_type & DAMAGE_CUT) || (W.hit_type & DAMAGE_STAB))
+			var/obj/item/bluntwrap/B = new(user.loc)
+			if(src.reagents)
+				B.reagents.remove_any(20)
+				src.reagents.trans_to(B, 20)
+			B.name = "natural tobacco blunt wrap"
+			boutput(user, "<span class='alert'>You cut [src] square to make a blunt wrapper.</span>")
+			qdel(src)
+			user.put_in_hand_or_drop(B)
+
+
+
 /obj/item/plant/herb/tobacco/twobacco
 	name = "twobacco leaf"
 	desc = "A leaf from the twobacco plant. This could probably be smoked- wait, is it already smoking?"

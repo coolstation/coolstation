@@ -535,8 +535,8 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 					continue
 				if (G.affecting in combatflipped)
 					continue
-				if (user.a_intent == INTENT_HELP)
-					M.emote("flip", 1) // make it voluntary so there's a cooldown and stuff
+				if (user.a_intent == INTENT_HELP && voluntary)
+					M.emote("flip", 0) // make it voluntary so there's a cooldown and stuff
 					continue
 				flipped_a_guy = TRUE
 				var/suplex_result = user.do_suplex(G)

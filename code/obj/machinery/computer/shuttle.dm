@@ -92,6 +92,12 @@
 	machine_registry_idx = MACHINES_SHUTTLECOMPS
 	var/active = 0
 
+	//dirty oldmap backwards compatability
+	New()
+		..()
+		new /obj/machinery/computer/transit_terminal/mining(src.loc)
+		qdel(src)
+
 /obj/machinery/computer/mining_shuttle/embedded
 	icon_state = "shuttle-embed"
 	density = 0

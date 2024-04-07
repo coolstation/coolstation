@@ -33,8 +33,8 @@
 
 		if (message_type == 3)
 			violent_standup_twitch(M)
-			M.visible_message("<span class='alert'><B>[M] contorts their body and judders upright!</B></span>")
-			playsound(M.loc, 'sound/effects/bones_break.ogg', 60, 1)
+			M.visible_message("<span class='alert'><B>[M] suddenly judders upright!</B></span>")
+			playsound(M.loc, "sound/musical_instruments/organ_stabs/stab[rand(1,8)].ogg", 60, 0)
 		else if (message_type == 2)
 			boutput(M, __blue("You feel your flesh knitting itself back together."))
 		else
