@@ -1396,8 +1396,8 @@
 
 /datum/statusEffect/mentor_mouse
 	id = "mentor_mouse"
-	name = "Mentor Mouse"
-	desc = "A mentor is helping you in the form of a mouse in your pocket. Click here to let them go."
+	name = "mentor rat"
+	desc = "A mentor is helping you in the form of a rat in your pocket. Click here to let them go."
 	icon_state = "mentor_mouse"
 	unique = 1
 	duration = INFINITE_STATUS
@@ -1405,7 +1405,7 @@
 
 	clicked(list/params)
 		for(var/mob/dead/target_observer/mentor_mouse_observer/M in src.owner)
-			boutput(src.owner, "You let the mentor mouse go.")
+			boutput(src.owner, "You let the mentor rat go.")
 			M.boot()
 
 	onUpdate()
@@ -1415,8 +1415,8 @@
 
 /datum/statusEffect/mentor_mouse/admin
 	id = "admin_mouse"
-	name = "Admin Mouse"
-	desc = "An admin is helping you in the form of a mouse in your pocket. Click here to let them go."
+	name = "admin rat"
+	desc = "An admin is helping you in the form of a rat in your pocket. Click here to let them go."
 	icon_state = "admin_mouse"
 	unique = 1
 	duration = INFINITE_STATUS
@@ -1424,7 +1424,7 @@
 
 	clicked(list/params)
 		for(var/mob/dead/target_observer/mentor_mouse_observer/M in src.owner)
-			boutput(src.owner, "You let the admin mouse go.")
+			boutput(src.owner, "You let the admin rat go.")
 			M.boot()
 
 	onUpdate()

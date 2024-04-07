@@ -1,6 +1,6 @@
 /mob/dead/target_observer/mentor_mouse_observer
-	name = "mentor mouse"
-	real_name = "mentor mouse"
+	name = "mentor rat"
+	real_name = "mentor rat"
 	var/image/ping
 	var/ping_id
 	var/mob/the_guy
@@ -18,8 +18,8 @@
 		src.ping.color = "#b954e0"
 		if(src.is_admin)
 			src.ping.color = "#e05d54"
-			src.name = "admin mouse"
-			src.real_name = "admin mouse"
+			src.name = "admin rat"
+			src.real_name = "admin rat"
 		src.ping.blend_mode = BLEND_ADD
 		src.ping.layer = HUD_LAYER_3
 		src.ping.plane = PLANE_HUD

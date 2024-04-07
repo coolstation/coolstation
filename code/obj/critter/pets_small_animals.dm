@@ -47,8 +47,8 @@
 		..()
 
 /obj/critter/mouse
-	name = "space mouse"
-	desc = "A mouse.  In space."
+	name = "space rat"
+	desc = "a rat.  In space."
 	icon_state = "mouse"
 	density = 0
 	health = 2
@@ -80,7 +80,7 @@
 			src.atkcarbon = 1
 
 /obj/critter/mouse/mad
-	name = "rabid space mouse"
+	name = "rabid space rat"
 	desc = "A mouth-foaming cheese and flesh eating mouse. In space."
 	health = 10
 	chases_food = 0

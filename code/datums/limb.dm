@@ -1351,7 +1351,7 @@ var/list/ghostcritter_blocked = ghostcritter_blocked_objects()
 					return
 		..()
 
-	//yeah they're not ACTUALLY biting them but let's just assume that they are because i don't want a mouse or a dog to KO someone with a brutal right hook
+	//yeah they're not ACTUALLY biting them but let's just assume that they are because i don't want a rat or a dog to KO someone with a brutal right hook
 	// changed to scratching, small mouths will take care of biting
 	harm(mob/target, var/mob/living/user, var/no_logs = 0)
 		if(check_target_immunity( target ))

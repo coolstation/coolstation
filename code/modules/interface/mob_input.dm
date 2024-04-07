@@ -198,7 +198,7 @@
 				controller.modify_keymap(src.client)
 
 //I couldn't think of a better way to do this than give it it's own proc,
-//but probably just as well since AFAIK there's no way to specify what you're targeting on a turf like a mouse can.
+//but probably just as well since AFAIK there's no way to specify what you're targeting on a turf like a rat can.
 
 //
 /mob/proc/mouseless_interact(direction)
@@ -218,7 +218,7 @@
 
 	//Look for modifier keys.
 
-	//The priority stuff here is my best guess and probably better suited by adding a mouseless priority var on /atom/movable
+	//The priority stuff here is my best guess and probably better suited by adding a ratless priority var on /atom/movable
 	if (src.client.keys_modifier & MODIFIER_CTRL) //target the turf itself
 		click_target = target_turf
 

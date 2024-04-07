@@ -121,9 +121,9 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 /* =============================================== */
 
 /mob/living/critter/small_animal/mouse
-	name = "space mouse"
-	real_name = "space mouse"
-	desc = "A mouse.  In space."
+	name = "space rat"
+	real_name = "space rat"
+	desc = "A rat.  In space."
 	flags = TABLEPASS | DOORPASS
 	fits_under_table = 1
 	hand_count = 2
@@ -2657,9 +2657,9 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 /* mentor & admin ghost critters */
 
 /mob/living/critter/small_animal/mouse/weak/mentor
-	name = "mentor mouse"
-	real_name = "mentor mouse"
-	desc = "A helpful mentor in the form of a mouse. Click to put them in your pocket so they can help you."
+	name = "mentor rat"
+	real_name = "mentor rat"
+	desc = "A helpful mentor in the form of a rat. Click to put them in your pocket so they can help you."
 	var/status_name = "mentor_mouse"
 	var/is_admin = 0
 	var/mob/last_poked = null
@@ -2704,13 +2704,13 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 			return // no recursive pockets, thank you. Also no dead mice in pockets
 		if(locate(/mob/dead/target_observer/mentor_mouse_observer) in M)
 			if(voluntary)
-				boutput(M, "You already have a mouse helping you, don't be greedy.")
+				boutput(M, "You already have a rat helping you, don't be greedy.")
 			else
-				boutput(src, "[M] already has a mouse in [his_or_her(M)] pocket.")
+				boutput(src, "[M] already has a rat in [his_or_her(M)] pocket.")
 			return
 		if(voluntary && M != src.last_poked) // if we poked that person it means we implicitly agree
 			boutput(M, "You extend your hand to the mouse, waiting for it to accept.")
-			if (ON_COOLDOWN(src, "mentor mouse pickup popup", 3 SECONDS))
+			if (ON_COOLDOWN(src, "mentor rat pickup popup", 3 SECONDS))
 				return
 			if (alert(src, "[M] wants to pick you up and put you in their pocket. Is that okay with you?", "Hop in the pocket", "Yes", "No") != "Yes")
 				boutput(M, "\The [src] slips out as you try to pick it up.")
@@ -2732,7 +2732,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 		else if(src.client)
 			obs.client = src.client
 		M.setStatus(src.status_name, duration = null)
-		logTheThing("admin", src, M, "jumps into [constructTarget(M, "admin")]'s pocket as a mentor mouse at [log_loc(M)].")
+		logTheThing("admin", src, M, "jumps into [constructTarget(M, "admin")]'s pocket as a mentor rat at [log_loc(M)].")
 
 	hand_attack(atom/target, params, location, control, origParams)
 		if(istype(target, /mob/living) && target != src)
@@ -2774,9 +2774,9 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 		return ..()
 
 /mob/living/critter/small_animal/mouse/weak/mentor/admin
-	name = "admin mouse"
-	real_name = "admin mouse"
-	desc = "A helpful (?) admin in the form of a mouse. Click to put them in your pocket so they can help you."
+	name = "admin rat"
+	real_name = "admin rat"
+	desc = "A helpful (?) admin in the form of a rat. Click to put them in your pocket so they can help you."
 	status_name = "admin_mouse"
 	is_admin = 1
 	icon_state = "mouse-admin"

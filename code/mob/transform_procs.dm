@@ -680,7 +680,7 @@ var/list/antag_respawn_critter_types =  list(/mob/living/critter/small_animal/fl
 			qdel(B)
 
 /mob/dead/observer/verb/respawn_as_mentor_mouse()
-	set name = "Respawn as Mentor Mouse"
+	set name = "Respawn as mentor rat"
 	set category = "Ghost"
 	set hidden = 1
 
@@ -691,7 +691,7 @@ var/list/antag_respawn_critter_types =  list(/mob/living/critter/small_animal/fl
 	if (!can_respawn_as_ghost_critter(0 MINUTES, 2 MINUTES))
 		return
 
-	if (alert(src, "Are you sure you want to respawn as a mentor mouse? You won't be able to come back as a human or cyborg!", "Respawn as Animal", "Yes", "No") != "Yes")
+	if (alert(src, "Are you sure you want to respawn as a mentor rat? You won't be able to come back as a human or cyborg!", "Respawn as Animal", "Yes", "No") != "Yes")
 		return
 
 	// you can be an animal
@@ -711,7 +711,7 @@ var/list/antag_respawn_critter_types =  list(/mob/living/critter/small_animal/fl
 	C.original_name = selfmob.real_name
 
 	C.Browse(grabResource("html/ghostcritter_mentor.html"),"window=ghostcritter_mentor;size=600x400;title=Ghost Critter Help")
-	logTheThing("admin", C, null, "respawned as a mentor mouse at [log_loc(C)].")
+	logTheThing("admin", C, null, "respawned as a mentor rat at [log_loc(C)].")
 
 	//hacky fix : qdel brain to prevent reviving
 	if (C.organHolder)
@@ -720,7 +720,7 @@ var/list/antag_respawn_critter_types =  list(/mob/living/critter/small_animal/fl
 			qdel(B)
 
 /mob/dead/observer/verb/respawn_as_admin_mouse()
-	set name = "Respawn as Admin Mouse"
+	set name = "Respawn as admin rat"
 	set category = "Ghost"
 	set hidden = 1
 
@@ -733,7 +733,7 @@ var/list/antag_respawn_critter_types =  list(/mob/living/critter/small_animal/fl
 		boutput(src, "<span class='alert'>The game hasn't started yet, silly!</span>")
 		return
 
-	if (alert(src, "Are you sure you want to respawn as an admin mouse?", "Respawn as Animal", "Yes", "No") != "Yes")
+	if (alert(src, "Are you sure you want to respawn as an admin rat?", "Respawn as Animal", "Yes", "No") != "Yes")
 		return
 
 	if(!src || !src.mind || !src.client)

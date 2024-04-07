@@ -217,8 +217,8 @@
 		..()
 
 /datum/contextAction/ghost_respawn/respawn_mentor_mouse
-	name = "Respawn As a Mentor Mouse"
-	desc = "Respawn as a mentor mouse that people can pick up. You can whisper in their ears and click on their screen to point them in the right direction. Please don't abuse this."
+	name = "Respawn As a mentor rat"
+	desc = "Respawn as a mentor rat that people can pick up. You can whisper in their ears and click on their screen to point them in the right direction. Please don't abuse this."
 	icon_state = "respawn-mentor-mouse"
 	tooltip_flags = TOOLTIP_LEFT
 
@@ -233,8 +233,8 @@
 		..()
 
 /datum/contextAction/ghost_respawn/respawn_admin_mouse
-	name = "Respawn As an Admin Mouse"
-	desc = "Respawn as an admin mouse that people can pick up (or click on them to climb into their pockets). You can whisper in their ears and click on their screen to point them in the right direction. Be a little critter friend!"
+	name = "Respawn As an admin rat"
+	desc = "Respawn as an admin rat that people can pick up (or click on them to climb into their pockets). You can whisper in their ears and click on their screen to point them in the right direction. Be a little critter friend!"
 	icon_state = "respawn-admin-mouse"
 	tooltip_flags = TOOLTIP_LEFT
 
