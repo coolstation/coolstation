@@ -269,8 +269,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 					else
 						gain = 50
 
-		L.ghostize()
-		qdel(L)
+		L.remove()
 
 	else if (isobj(A))
 		//if (istype(A, /obj/item/graviton_grenade))
@@ -332,40 +331,41 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	switch (numb)
 		if (1)//Eats the turfs around it
 			BHolerip()
-			return
 		if (2)//tox damage all carbon mobs in area
 			Toxmob()
-			return
 		if (3)//Stun mobs who lack optic scanners
 			Mezzer()
-			return
 
 
 /obj/machinery/the_singularity/proc/Toxmob()
-
 	for (var/mob/living/carbon/M in orange(radius*EVENT_GROWTH+EVENT_MINIMUM, src.get_center()))
-		if (ishuman(M))
+		var/mult = (1 - (M.get_rad_protection() / 100))
+		if (!mult)
+			continue
+		//too broad, you could prevent singularity rads entirely by wearing suspenders
+		/*if (ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if (H.wear_suit)
-				return
-		M.take_toxin_damage(12)
-		M.changeStatus("radiation", 4*(radius+1) SECONDS)
+				continue*/
+		M.take_toxin_damage(12*mult)
+		M.changeStatus("radiation", mult * (4*(radius+1) SECONDS))
 		M.show_text("You feel odd.", "red")
 
 /obj/machinery/the_singularity/proc/Mezzer()
-
 	for (var/mob/living/carbon/M in oviewers(radius*EVENT_GROWTH+EVENT_MINIMUM, src.get_center()))
+		//What if this required you actually look sorta in the direction of the goshdarn singularity
+		if (abs((180 + abs(dir_to_angle(M.dir) - get_angle(M, src)))%360 - 180) > 90) //I copied this from stackoverflow we're a proper codebase now :)
+			continue
 		if (ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if (istype(H.glasses,/obj/item/clothing/glasses/meson))
 				M.show_text("You look directly into [src.name], good thing you had your protective eyewear on!", "green")
-				return
+				continue
 		M.changeStatus("stunned", 7 SECONDS)
 		M.visible_message("<span class='alert'><B>[M] stares blankly at [src]!</B></span>",\
 		"<B>You look directly into [src]!<br><span class='alert'>You feel weak!</span></B>")
 
 /obj/machinery/the_singularity/proc/BHolerip()
-
 	for (var/turf/T in orange(radius*EVENT_GROWTH+EVENT_MINIMUM, src.get_center()))
 		if (prob(70))
 			continue
@@ -401,23 +401,21 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 /obj/machinery/field_generator
 	name = "field generator"
-	desc = "Projects an energy field when active"
+	desc = "Projects an energy field when active."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "Field_Gen"
 	anchored = 0
 	density = 1
 	req_access = list(access_engineering_engine)
 	object_flags = CAN_REPROGRAM_ACCESS
+	///Set to true have the generator power up automatically
 	var/Varedit_start = 0
+	///Set to true to have the generator operate forever
 	var/Varpower = 0
 	var/active = 0
 	var/power = 20
 	var/max_power = 250
 	var/state = UNWRENCHED
-	var/steps = 0
-	var/last_check = 0
-	var/check_delay = 10
-	var/recalc = 0
 	var/locked = 1
 	//Remote control stuff
 	var/net_id = null
@@ -453,18 +451,16 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		boutput(user, "The field generator needs to be firmly secured to the floor first.")
 	src.add_fingerprint(user)
 
+/obj/machinery/field_generator/ex_act(severity)
+	if (src.active)
+		src.power = max(round(power - severity), 0)
+	else ..()
+
 /obj/machinery/field_generator/attack_ai(mob/user as mob)
-	if(state == WELDED)
-		if(src.active >= 1)
-			boutput(user, "You are unable to turn off the field generator, wait till it powers down.")
-		else
-			src.set_active(1)
-			icon_state = "Field_Gen +a"
-			boutput(user, "You turn on the field generator.")
-			logTheThing("station", user, null, "activated a [src.name] at [log_loc(src)].") // Hmm (Convair880).
-	else
-		boutput(user, "The field generator needs to be firmly secured to the floor first.")
-	src.add_fingerprint(user)
+	var/prev_locked = src.locked
+	src.locked = FALSE
+	Attackhand(user)
+	src.locked = prev_locked
 
 /obj/machinery/field_generator/New()
 	START_TRACKING
@@ -478,6 +474,13 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /obj/machinery/field_generator/disposing()
 	STOP_TRACKING
 	. = ..()
+
+/obj/machinery/field_generator/get_desc()
+	switch(anchored)
+		if (WRENCHED)
+			. += "It has been bolted to the floor."
+		if (WELDED)
+			. += "It has been bolted and welded to the floor."
 
 /obj/machinery/field_generator/process()
 
@@ -494,15 +497,12 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		if(!src.state == WELDED)
 			src.set_active(0)
 			return
-		setup_field(1)
-		setup_field(2)
-		setup_field(4)
-		setup_field(8)
+		setup_field(NORTH)
+		setup_field(SOUTH)
+		setup_field(EAST)
+		setup_field(WEST)
 		src.set_active(2)
-	if(src.power < 0)
-		src.power = 0
-	if(src.power > src.max_power)
-		src.power = src.max_power
+	src.power = clamp(src.power, 0, src.max_power)
 	if(src.active >= 1)
 		src.power -= 1
 		//maptext = num2text(power)
@@ -520,32 +520,28 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 					src.UpdateOverlays(null, "field_end_[dir]")
 
 /obj/machinery/field_generator/proc/setup_field(var/NSEW = 0)
-	var/turf/T = src.loc
-	var/turf/T2 = src.loc
-	var/obj/machinery/field_generator/G
-	var/steps = 0
-	var/oNSEW = 0
-
-
 	if(!NSEW)//Make sure its ran right
 		return
-
-	if(NSEW == 1)
-		oNSEW = 2
-	else if(NSEW == 2)
-		oNSEW = 1
-	else if(NSEW == 4)
-		oNSEW = 8
-	else if(NSEW == 8)
-		oNSEW = 4
+	var/turf/T = src.loc
+	//var/turf/T2 = src.loc
+	var/obj/machinery/field_generator/G = null
+	var/steps = 0
+	var/oNSEW = 0
+	switch(NSEW)
+		if(NORTH)
+			oNSEW = SOUTH
+		if(SOUTH)
+			oNSEW = NORTH
+		if(EAST)
+			oNSEW = WEST
+		if(WEST)
+			oNSEW = EAST
 
 	for(var/dist = 0, dist <= SINGULARITY_MAX_DIMENSION, dist += 1) // checks out to max dimension tiles away for another generator to link to
-		T = get_step(T2, NSEW)
-		T2 = T
-		steps += 1
-		if(locate(/obj/machinery/field_generator) in T)
-			G = (locate(/obj/machinery/field_generator) in T)
-			steps -= 1
+		T = get_step(T, NSEW)
+		//T2 = T
+		G = (locate(/obj/machinery/field_generator) in T)
+		if(G)
 			if(shortestlink==0)
 				shortestlink = dist
 			else if (shortestlink > dist)
@@ -555,6 +551,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			if(G.active_dirs & oNSEW)
 				return // already active I guess
 			break
+		steps += 1
 
 	if(isnull(G))
 		return
@@ -562,15 +559,15 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	src.UpdateOverlays(image('icons/obj/singularity.dmi', "Contain_F_Start", dir=NSEW, layer=(NSEW == NORTH ? src.layer - 1 : FLOAT_LAYER)), "field_start_[NSEW]")
 	G.UpdateOverlays(image('icons/obj/singularity.dmi', "Contain_F_End", dir=NSEW, layer=(NSEW == SOUTH ? src.layer - 1 : FLOAT_LAYER)), "field_end_[NSEW]")
 
-	T2 = src.loc
+	T = get_turf(src)
 
 	for(var/dist = 0, dist < steps, dist += 1) // creates each field tile
-		var/field_dir = get_dir(T2,get_step(T2, NSEW))
-		T = get_step(T2, NSEW)
-		T2 = T
-		var/obj/machinery/containment_field/CF = new/obj/machinery/containment_field/(src, G) //(ref to this gen, ref to connected gen)
+		//var/field_dir = get_dir(T2,get_step(T2, NSEW))
+		T = get_step(T, NSEW)
+		//T2 = T
+		var/obj/machinery/containment_field/CF = new /obj/machinery/containment_field(src, G) //(ref to this gen, ref to connected gen)
 		CF.set_loc(T)
-		CF.set_dir(field_dir)
+		CF.set_dir(NSEW)
 
 	active_dirs |= NSEW
 	G.active_dirs |= oNSEW
@@ -608,7 +605,6 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			state = WRENCHED
 			playsound(src.loc, "sound/items/Ratchet.ogg", 75, 1)
 			boutput(user, "You secure the external reinforcing bolts to the floor.")
-			desc = "Projects an energy field when active. It has been bolted to the floor."
 			src.anchored = 1
 			return
 
@@ -616,7 +612,6 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			state = UNWRENCHED
 			playsound(src.loc, "sound/items/Ratchet.ogg", 75, 1)
 			boutput(user, "You undo the external reinforcing bolts.")
-			desc = "Projects an energy field when active."
 			src.anchored = 0
 			return
 
@@ -644,50 +639,53 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 	else
 		src.add_fingerprint(user)
+		..()
+		/*src.add_fingerprint(user)
 		boutput(user, "<span class='alert'>You hit the [src.name] with your [W.name]!</span>")
 		for(var/mob/M in AIviewers(src))
 			if(M == user)	continue
-			M.show_message("<span class='alert'>The [src.name] has been hit with the [W.name] by [user.name]!</span>")
+			M.show_message("<span class='alert'>The [src.name] has been hit with the [W.name] by [user.name]!</span>")*/
 
 /obj/machinery/field_generator/proc/weld_action(mob/user)
 	if(state == WRENCHED)
 		state = WELDED
 		src.get_link() //Set up a link, now that we're secure!
 		boutput(user, "You weld the field generator to the floor.")
-		desc = "Projects an energy field when active. It has been bolted and welded to the floor."
 	else if(state == WELDED)
 		state = WRENCHED
 		if(src.link) //Clear active link.
 			src.link.master = null
 			src.link = null
 		boutput(user, "You cut the field generator free from the floor.")
-		desc = "Projects an energy field when active. It has been bolted to the floor."
 
 /obj/machinery/field_generator/proc/cleanup(var/NSEW)
 	var/obj/machinery/containment_field/F
 	var/obj/machinery/field_generator/G
 	var/turf/T = src.loc
-	var/turf/T2 = src.loc
+	//var/turf/T2 = src.loc
 
 	active_dirs &= ~NSEW
 
 	src.UpdateOverlays(null, "field_start_[NSEW]")
 	src.UpdateOverlays(null, "field_end_[turn(NSEW, 180)]")
 
-	for(var/dist = 0, dist <= 9, dist += 1) // checks out to 8 tiles away for fields
-		T = get_step(T2, NSEW)
-		T2 = T
-		if(locate(/obj/machinery/containment_field) in T)
-			F = (locate(/obj/machinery/containment_field) in T)
+	for(var/dist = 0, dist <= SINGULARITY_MAX_DIMENSION, dist += 1) // checks out to 8 tiles away for fields
+		T = get_step(T, NSEW)
+		//T2 = T
+		F = (locate(/obj/machinery/containment_field) in T)
+		if(F)
 			qdel(F)
+			F = null
 
-		if(locate(/obj/machinery/field_generator) in T)
-			G = (locate(/obj/machinery/field_generator) in T)
+		G = (locate(/obj/machinery/field_generator) in T)
+		if(G)
 			G.UpdateOverlays(null, "field_end_[NSEW]")
 			G.UpdateOverlays(null, "field_start_[turn(NSEW, 180)]")
 			G.active_dirs &= ~turn(NSEW, 180)
-			if(!G.active)
-				break
+			break //gonna make this break every time cause I think it's possible this might screw with nerds who make a grid of singularities.
+			//like I'm not even sure what this check was for
+			/*if(!G.active)
+				break*/
 
 //Send a signal over our link, if possible.
 /obj/machinery/field_generator/proc/post_status(var/target_id, var/key, var/value, var/key2, var/value2, var/key3, var/value3)
@@ -759,7 +757,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /////////////////////////////////////////////// Containment field //////////////////////////////////
 
 /obj/machinery/containment_field
-	name = "Containment Field"
+	name = "containment field"
 	desc = "An energy field."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "Contain_F"
@@ -791,8 +789,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	//throw explosives at the containment field to speed up the singularity breaking out
 	//I'm not 100% on whether this won't runtime if a generator isn't there, buuuut
 	//(also the generators aren't explosion proof atm so)
-	gen_primary?.power = max(0, gen_primary.power - severity)
-	gen_secondary?.power = max(0, gen_secondary.power - severity)
+	gen_primary?.power = max(0, round(gen_primary.power - severity))
+	gen_secondary?.power = max(0, round(gen_secondary.power - severity))
 
 /obj/machinery/containment_field/attack_hand(mob/user as mob)
 	return
@@ -807,19 +805,15 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		return
 
 /obj/machinery/containment_field/proc/shock(mob/user as mob)
-	if(isnull(gen_primary))
+	if(isnull(gen_primary) || isnull(gen_secondary))
 		qdel(src)
 		return
-	if(isnull(gen_secondary))
-		qdel(src)
-		return
-
 	elecflash(user)
 
 	var/spicy_power = max(gen_primary.power,gen_secondary.power)
-
 	var/prot = 1
 	var/shock_damage = 0
+	//This not-switch is kinda nonsense but I can't be arsed right now.
 	if(spicy_power > 200)
 		shock_damage = min(rand(40,80),rand(40,100))*prot
 	else if(spicy_power > 120)
@@ -836,9 +830,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 	if (user?.bioHolder)
 		if (user.bioHolder.HasEffect("resist_electric") == 2)
-			var/healing = 0
-			if (shock_damage)
-				healing = shock_damage / 3
+			//this healing seems busted strong
+			var/healing = shock_damage / 3
 			user.HealDamage("All", shock_damage, shock_damage)
 			user.take_toxin_damage(0 - healing)
 			boutput(user, "<span class='notice'>You absorb the electrical shock, healing your body!</span>")
@@ -862,18 +855,19 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		user.elecgib()
 		return
 	else
-		var/throwdir = get_dir(src, get_step_away(user, src))
+		var/throwdir = get_dir(src, get_step_away(src, user)) //was get_step_away(user, src), but that seems backwards
 		if (prob(20))
-			user.set_loc(get_turf(src))
+			user.set_loc(get_turf(src)) //why?
 			if (prob(50))
 				throwdir = turn(throwdir,90)
 			else
 				throwdir = turn(throwdir,-90)
 		var/atom/target = get_edge_target_turf(user, throwdir)
-		user.throw_at(target, 200, 4)
-		for(var/mob/M in AIviewers(src))
+		user.throw_at(target, 200, 4) //200 because that's the old map size?
+		user.audible_message("<span class='alert'>[user.name] was shocked by the [src.name]!</span>", "<span class='alert'>You hear a heavy electrical crack</span>")
+		/*for(var/mob/M in AIviewers(src))
 			if(M == user)	continue
-			M.show_message("<span class='alert'>[user.name] was shocked by the [src.name]!</span>", 3, "<span class='alert'>You hear a heavy electrical crack</span>", 2)
+			M.show_message("<span class='alert'>[user.name] was shocked by the [src.name]!</span>", 3, "<span class='alert'>You hear a heavy electrical crack</span>", 2)*/
 
 	src.gen_primary.power -= 3
 	src.gen_secondary.power -= 3
@@ -898,7 +892,6 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	var/active = 0
 	var/power = 20
 	var/fire_delay = 100
-	var/HP = 20
 	var/last_shot = 0
 	var/shot_number = 0
 	var/state = UNWRENCHED
@@ -916,6 +909,13 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			src.get_link()
 
 		src.net_id = format_net_id("\ref[src]")
+
+/obj/machinery/emitter/get_desc()
+	switch(anchored)
+		if (WRENCHED)
+			. += "It has been bolted to the floor."
+		if (WELDED)
+			. += "It has been bolted and welded to the floor."
 
 //Create a link with a data terminal on the same tile, if possible.
 /obj/machinery/emitter/proc/get_link()
@@ -957,30 +957,12 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	..()
 
 /obj/machinery/emitter/attack_ai(mob/user as mob)
-	if(state == WELDED)
-		if(src.active==1)
-			if(tgui_alert(user, "Turn off the emitter?","Switch",list("Yes","No")) == "Yes")
-				src.active = 0
-				icon_state = "Emitter"
-				boutput(user, "You turn off the emitter.")
-				logTheThing("station", user, null, "deactivated active emitter at [log_loc(src)].")
-				message_admins("[key_name(user)] deactivated active emitter at [log_loc(src)].")
-		else
-			if(tgui_alert(user, "Turn on the emitter?","Switch",list("Yes","No")) == "Yes")
-				src.active = 1
-				icon_state = "Emitter +a"
-				boutput(user, "You turn on the emitter.")
-				logTheThing("station", user, null, "activated emitter at [log_loc(src)].")
-				src.shot_number = 0
-				src.fire_delay = 100
-				message_admins("[key_name(user)] activated emitter at [log_loc(src)].")
-	else
-		boutput(user, "The emitter needs to be firmly secured to the floor first.")
-	src.add_fingerprint(user)
-	return
+	var/prev_locked = src.locked
+	src.locked = FALSE
+	Attackhand(user)
+	src.locked = prev_locked
 
 /obj/machinery/emitter/process()
-
 	if(status & (NOPOWER|BROKEN))
 		return
 
@@ -988,6 +970,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		src.active = 0
 		return
 
+	//TODO? make this an ON_COOLDOWN
 	if(((src.last_shot + src.fire_delay) <= world.time) && (src.active == 1))
 		src.last_shot = world.time
 		if(src.shot_number < 3)
@@ -1019,20 +1002,11 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			boutput(user, "Turn off the emitter first.")
 			return
 
-		else if(state == UNWRENCHED)
-			state = WRENCHED
+		else if(state != WELDED)
+			src.state = !src.state
 			playsound(src.loc, "sound/items/Ratchet.ogg", 75, 1)
-			boutput(user, "You secure the external reinforcing bolts to the floor.")
-			src.anchored = 1
-			desc = "Shoots a high power laser when active, it has been bolted to the floor."
-			return
-
-		else if(state == WRENCHED)
-			state = UNWRENCHED
-			playsound(src.loc, "sound/items/Ratchet.ogg", 75, 1)
-			boutput(user, "You undo the external reinforcing bolts.")
-			src.anchored = 0
-			desc = "Shoots a high power laser when active."
+			boutput(user, state ? "You secure the external reinforcing bolts to the floor." : "You undo the external reinforcing bolts.")
+			src.anchored = src.state
 			return
 
 	if(isweldingtool(W))
@@ -1061,16 +1035,17 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 	else
 		src.add_fingerprint(user)
+		..()
+		/*src.add_fingerprint(user)
 		boutput(user, "<span class='alert'>You hit the [src.name] with your [W.name]!</span>")
 		for(var/mob/M in AIviewers(src))
 			if(M == user)	continue
-			M.show_message("<span class='alert'>The [src.name] has been hit with the [W.name] by [user.name]!</span>")
+			M.show_message("<span class='alert'>The [src.name] has been hit with the [W.name] by [user.name]!</span>")*/
 
 /obj/machinery/emitter/proc/weld_action(mob/user)
 	if(state == WRENCHED)
 		state = WELDED
 		src.get_link()
-		desc = "Shoots a high power laser when active, it has been bolted and welded to the floor."
 		boutput(user, "You weld the emitter to the floor.")
 		logTheThing("station", user, null, "welds an emitter to the floor at [log_loc(src)].")
 	else if(state == WELDED)
@@ -1078,7 +1053,6 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		if(src.link) //Time to clear our link.
 			src.link.master = null
 			src.link = null
-		desc = "Shoots a high power laser when active, it has been bolted to the floor."
 		boutput(user, "You cut the emitter free from the floor.")
 		logTheThing("station", user, null, "unwelds an emitter from the floor at [log_loc(src)].")
 
@@ -1169,30 +1143,22 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 
 /obj/machinery/power/collector_array/proc/updateicon()
-
-	if(status & (NOPOWER|BROKEN))
-		overlays = null
-	if(P)
-		overlays += image('icons/obj/singularity.dmi', "ptank")
-	else
-		overlays = null
-	overlays += image('icons/obj/singularity.dmi', "on")
-	if(P)
-		overlays += image('icons/obj/singularity.dmi', "ptank")
 	if(magic == 1)
-		overlays += image('icons/obj/singularity.dmi', "ptank")
-		overlays += image('icons/obj/singularity.dmi', "on")
+		UpdateOverlays(image('icons/obj/singularity.dmi', "ptank"), "ptank")
+	if(P)
+		UpdateOverlays(image('icons/obj/singularity.dmi', "ptank"), "ptank")
+	else
+		UpdateOverlays(null, "ptank")
 
 /obj/machinery/power/collector_array/power_change()
-	updateicon()
 	..()
-
-/obj/machinery/power/collector_array/process()
-
 	if(magic == 1)
 		src.active = 1
 		icon_state = "ca_active"
-	else
+	updateicon()
+
+/obj/machinery/power/collector_array/process()
+	if(!magic)
 		if(P)
 			if(P.air_contents.toxins <= 0)
 				src.active = 0
@@ -1205,19 +1171,10 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		..()
 
 /obj/machinery/power/collector_array/attack_hand(mob/user as mob)
-	if(src.active==1)
-		src.active = 0
-		icon_state = "ca_deactive"
-		CU?.updatecons()
-		boutput(user, "You turn off the collector array.")
-		return
-
-	if(src.active==0)
-		src.active = 1
-		icon_state = "ca_active"
-		CU?.updatecons()
-		boutput(user, "You turn on the collector array.")
-		return
+	src.active = !src.active
+	boutput(user, "You turn [active ? "on" : "off"] the collector array.")
+	src.icon_state = active ? "ca_active" : "ca_deactive"
+	CU?.updatecons()
 
 /obj/machinery/power/collector_array/attackby(obj/item/W, mob/user)
 	if (iswrenchingtool(W))
@@ -1253,10 +1210,12 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		updateicon()
 	else
 		src.add_fingerprint(user)
+		..()
+		/*src.add_fingerprint(user)
 		boutput(user, "<span class='alert'>You hit the [src.name] with your [W.name]!</span>")
 		for(var/mob/M in AIviewers(src))
 			if(M == user)	continue
-			M.show_message("<span class='alert'>The [src.name] has been hit with the [W.name] by [user.name]!</span>")
+			M.show_message("<span class='alert'>The [src.name] has been hit with the [W.name] by [user.name]!</span>")*/
 
 ////////////////////////// Collector array controller ////////////////////////////
 
@@ -1302,16 +1261,16 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	. = ..()
 	//There's technically nothing to stop collectors from stealing one another's arrays
 	//In fact, I think collectors might be able to share arrays without issue
-	if (CAN.CU == src)
+	if (CAN?.CU == src)
 		CAN.CU = null
 	CAN = null
-	if (CAS.CU == src)
+	if (CAS?.CU == src)
 		CAS.CU = null
 	CAS = null
-	if (CAE.CU == src)
+	if (CAE?.CU == src)
 		CAE.CU = null
 	CAE = null
-	if (CAW.CU == src)
+	if (CAW?.CU == src)
 		CAW.CU = null
 	CAW = null
 	PN = null
@@ -1407,15 +1366,17 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			UpdateOverlays(null, "singularity_containment_alarm")
 
 	else
-		overlays += image('icons/obj/singularity.dmi', "cu on")
-		overlays += image('icons/obj/singularity.dmi', "cu n on")
-		overlays += image('icons/obj/singularity.dmi', "cu e on")
-		overlays += image('icons/obj/singularity.dmi', "cu s on")
-		overlays += image('icons/obj/singularity.dmi', "cu sing")
+		//magic collectors just have everything good on I guess?
+		UpdateOverlays(image('icons/obj/singularity.dmi', "cu on"), "power light")
+		UpdateOverlays(image('icons/obj/singularity.dmi', "cu n on"), "north_array_light")
+		UpdateOverlays(image('icons/obj/singularity.dmi', "cu e on"), "east_array_light")
+		UpdateOverlays(image('icons/obj/singularity.dmi', "cu s on"), "south_array_light")
+		UpdateOverlays(image('icons/obj/singularity.dmi', "cu w on"), "west_array_light")
+		UpdateOverlays(image('icons/obj/singularity.dmi', "cu sing"), "singularity_light")
 
 /obj/machinery/power/collector_control/power_change()
-	updateicon()
 	..()
+	updateicon()
 
 /obj/machinery/power/collector_control/process(mult)
 	if (!ON_COOLDOWN(src, "updatecons", 1 MINUTE))
@@ -1472,11 +1433,13 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		src.active = !src.active
 		boutput(user, "You turn [active ? "on" : "off"] the collector control.")
 		updateicon()
+	else
+		boutput(user, "<span class='alert'>The [src.name] must be secured first!</span>")
 
 /obj/machinery/power/collector_control/attackby(obj/item/W, mob/user)
 	if (iswrenchingtool(W))
 		if(src.active)
-			boutput("<span class='alert'>The [src.name] must be turned off first!</span>")
+			boutput(user, "<span class='alert'>The [src.name] must be turned off first!</span>")
 		else
 			src.anchored = !src.anchored
 			boutput(user, "You [src.anchored ? "" : "un"]secure the [src.name] to the floor.")
@@ -1487,7 +1450,9 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	else if(istype(W, /obj/item/device/analyzer/atmospheric))
 		boutput(user, "<span class='notice'>The analyzer detects that [lastpower]W are being produced.</span>")
 
-	else ..()
+	else
+		src.add_fingerprint(user)
+		..()
 		/*src.add_fingerprint(user)
 		boutput(user, "<span class='alert'>You hit the [src.name] with your [W.name]!</span>")
 		for(var/mob/M in AIviewers(src))
