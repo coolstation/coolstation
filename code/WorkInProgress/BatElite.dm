@@ -64,6 +64,7 @@ Warc: i am nothing if not a temptress (content production)
 /obj/decal/poster/wallsign/clown_calendar
 	desc = "A calendar with bawdy pinups of attractive clowns." //Presented without further comment
 	icon = 'icons/obj/decals/posters.dmi'
+	icon_state = "calendar_rand"
 
 	get_desc(var/dist, var/mob/user)
 		if (user.mind?.assigned_role == "Clown")

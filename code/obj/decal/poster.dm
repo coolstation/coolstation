@@ -640,6 +640,16 @@
 			imgh = 275
 			img = "images/arts/posters/tiger.png"
 
+		circulatory
+			name = "anatomical poster"
+			desc = "Is... that accurate?"
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "circulatory"
+			popup_win = 1
+			imgw = 524
+			imgh = 1118
+			img = "images/arts/posters/circulatory.jpg"
+
 		poster_beach
 			name = "beach poster"
 			desc = "Sun, sea, and sand! Just visit VR."
