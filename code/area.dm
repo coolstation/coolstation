@@ -1172,6 +1172,15 @@ ABSTRACT_TYPE(/area/adventure)
 	requires_power = FALSE
 	is_atmos_simulated = FALSE //These used to be simmed but the area seems to only comprise bits of airless wreckage so why bother
 
+///For unimportant ships that are aren't wreckage.
+/area/general_spaceships
+	name = "\proper some random ship"
+	icon_state = "spacebus"
+	requires_power = FALSE
+	is_atmos_simulated = TRUE
+	is_construction_allowed = TRUE
+	force_fullbright = TRUE
+
 /area/spacehabitat
 	name = "Habitat Dome"
 	icon_state = "green"

@@ -97,7 +97,7 @@
 			suit_image.color = src.w_uniform.color
 			UpdateOverlays(suit_image, "suit_image1")
 			var/counter = 1
-			while (counter < 6)
+			while (counter < 6) //experimental jumpsuit cleanup
 				counter++
 				UpdateOverlays(null, "suit_image[counter]")
 
@@ -123,7 +123,7 @@
 
 	else
 		var/counter = 0
-		while (counter < 6)
+		while (counter < 6) //experimental jumpsuit cleanup
 			counter++
 			UpdateOverlays(null, "suit_image[counter]")
 		UpdateOverlays(null, "suit_image_blood")

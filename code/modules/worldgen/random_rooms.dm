@@ -35,6 +35,7 @@ proc/buildRandomRooms()
 
 
 /obj/landmark/random_room
+	///actually the name of the folder within assets/maps/random_rooms
 	var/size = null
 	deleted_on_start = FALSE
 	add_to_landmarks = FALSE
@@ -72,12 +73,16 @@ proc/buildRandomRooms()
 	10 x 10. Public access via (5,1) and (6,1). Kitchen access via (1,10) and (1, 9)
 	*/
 	foodhole
-		size = "10x10"
-		apply()
+		size = "foodhole"
+		/*apply()
 			var/datum/mapPrefab/random_room/room_prefab = pick_map_prefab(/datum/mapPrefab/random_room,\
 				list("foodhole"))
 			if(isnull(room_prefab))
 				CRASH("No random room prefab found for 'foodhole'")
 			room_prefab.applyTo(src.loc)
 			logTheThing("debug", null, null, "Applied foodhole prefab to [log_loc(src)]")
-			qdel(src)
+			qdel(src)*/
+
+	//Spaceship interiors of 6*3. exits are west (1,2), east (6,2), and south (4,1), but north wall is free to be built full
+	small_spaceship
+		size = "small_ship"
