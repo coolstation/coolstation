@@ -603,18 +603,18 @@
 		switch(current_lamp.light_status) // set icon_states
 			if(LIGHT_OK)
 				if (ceilingmounted)
-					lightfixtureimage = image(src.icon,src.loc,"[src.base_state][on]",PLANE_NOSHADOW_ABOVE -1,src.dir)
+					lightfixtureimage.icon_state = "[src.base_state][on]"
 				else
 					icon_state = "[base_state][on]"
 			if(LIGHT_BURNED)
 				if (ceilingmounted)
-					lightfixtureimage = image(src.icon,src.loc,"[src.base_state]-burned",PLANE_NOSHADOW_ABOVE -1,src.dir)
+					lightfixtureimage.icon_state = "[src.base_state]-burned"
 				else
 					icon_state = "[base_state]-burned"
 				on = 0
 			if(LIGHT_BROKEN)
 				if (ceilingmounted)
-					lightfixtureimage = image(src.icon,src.loc,"[base_state]-broken",PLANE_NOSHADOW_ABOVE -1,src.dir)
+					lightfixtureimage.icon_state = "[base_state]-broken"
 				else
 					icon_state = "[base_state]-broken"
 				on = 0
