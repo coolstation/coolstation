@@ -58,15 +58,27 @@ proc/buildRandomRooms()
 
 	size3x3
 		size = "3x3"
+	#ifdef IN_MAP_EDITOR
+		icon = 'icons/map-editing/random-rooms/3x3.dmi'
+	#endif
 
 	size3x5
 		size = "3x5"
+	#ifdef IN_MAP_EDITOR
+		icon = 'icons/map-editing/random-rooms/3x5.dmi'
+	#endif
 
 	size5x3
 		size = "5x3"
+	#ifdef IN_MAP_EDITOR
+		icon = 'icons/map-editing/random-rooms/5x3.dmi'
+	#endif
 
 	market5x4
 		size = "5x4"
+	#ifdef IN_MAP_EDITOR
+		icon = 'icons/map-editing/random-rooms/5x4.dmi'
+	#endif
 
 	/*
 	Mall-style food-holes.
@@ -74,6 +86,9 @@ proc/buildRandomRooms()
 	*/
 	foodhole
 		size = "foodhole"
+	#ifdef IN_MAP_EDITOR
+		icon = 'icons/map-editing/random-rooms/foodhole.dmi'
+	#endif
 		/*apply()
 			var/datum/mapPrefab/random_room/room_prefab = pick_map_prefab(/datum/mapPrefab/random_room,\
 				list("foodhole"))
@@ -86,3 +101,6 @@ proc/buildRandomRooms()
 	//Spaceship interiors of 6*3. exits are west (1,2), east (6,2), and south (4,1), but north wall is free to be built full
 	small_spaceship
 		size = "small_ship"
+	#ifdef IN_MAP_EDITOR
+		icon = 'icons/map-editing/random-rooms/small_ship.dmi'
+	#endif
