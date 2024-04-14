@@ -646,8 +646,8 @@
 			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "circulatory"
 			popup_win = 1
-			imgw = 524
-			imgh = 1118
+			imgw = 262
+			imgh = 559
 			img = "images/arts/posters/circulatory.jpg"
 
 		poster_beach
