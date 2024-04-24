@@ -301,9 +301,6 @@
 			// this is a gross hack to make things not just show "1" by default
 			src.inventory_counter.update_number(src.amount)
 
-	if (isnull(initial(src.health))) // if not overridden
-		src.health = get_initial_item_health(src.type)
-
 	..()
 	if (src.contraband > 0)
 		if (istype(src, /obj/item/gun))

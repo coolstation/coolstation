@@ -95,10 +95,8 @@
 #define COMSIG_MOVABLE_THROW_END "mov_throw_end"
 /// when an AM is revealed from under a floor tile (turf revealed from)
 #define COMSIG_MOVABLE_FLOOR_REVEALED "mov_floor_revealed"
-/// when an AM changes nested contraband
+/// when an AM changes contraband level, propagating up
 #define COMSIG_MOVABLE_CONTRABAND_CHANGED "mov_contraband_changed"
-/// get contraband level of movable (check_nonfirearms, check_firearms)
-#define COMSIG_MOVABLE_GET_CONTRABAND "mov_get_contraband"
 // ---- item signals ----
 
 /// When an item is equipped (user, slot)
