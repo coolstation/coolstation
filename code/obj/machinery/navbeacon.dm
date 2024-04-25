@@ -241,9 +241,6 @@
 		signal.source = src
 		signal.transmission_method = 1
 		signal.data["beacon"] = beacon_id
-		var/turf/T = get_turf(src)
-		signal.data["x"] = T.x
-		signal.data["y"] = T.y
 		signal.data["netid"] = net_id
 		var/turf/T = get_turf(src)
 		signal.data["x"] = "[T.x]"
@@ -258,7 +255,7 @@
 
 		if(signal.data["patrol"])
 			signal.encryption = "ERR_12845_NT_SECURE_PACKET:"
-			signal.encryption_visibility = 10
+			signal.encryption_density = 90
 			signal.data["auth_code"] = netpass_security
 
 		frequency.post_signal(src, signal)

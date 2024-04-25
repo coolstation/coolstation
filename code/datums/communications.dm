@@ -161,7 +161,7 @@ datum/signal
 	///Set to the error message displayed when sniffing the encrypted packet
 	var/encryption
 	///The percentage of visible characters when sniffing this packet, if encrypted
-	var/encryption_visibility = 0
+	var/encryption_density = 0
 	//We can carry a computer file around, why not.
 	var/datum/computer/file/data_file
 

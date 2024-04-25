@@ -143,14 +143,34 @@
 	max_fails = 5
 	var/list/found_path = null
 	var/atom/move_target = null
+	var/owner_id = null
+
+/datum/aiTask/succeedable/move/New()
+	. = ..()
+	if(isliving(src.holder.owner)) // todo: find out why the hell critters have "implants", which is where their implants are kept
+		var/mob/living/L = src.holder.owner // instead of in mob/living's implant list... and fix it
+		var/list/implants = L.implant
+		if (ismobcritter(L))
+			var/mob/living/critter/C = L
+			implants = C.implants
+		for (var/obj/item/implant/access/access_implant in implants)
+			if(istype(access_implant)) // uses the first access implant found, dont think you need two in an npc
+				src.owner_id = access_implant.access
+				break
+
 
 // use the target from our holder
 /datum/aiTask/succeedable/move/proc/get_path()
 	if(!move_target)
 		fails++
 		return
-	src.found_path = cirrAstar(get_turf(holder.owner), get_turf(move_target), 0, 60)
-	if(!src.found_path) // no path :C
+	if(length(holder.target_path) && GET_DIST(holder.target_path[length(holder.target_path)], move_target) <= distance_from_target)
+		src.found_path = holder.target_path
+	else
+		src.found_path = get_path_to(holder.owner, move_target, max_distance=src.max_path_dist, mintargetdist=distance_from_target, id=owner_id, simulated_only=!move_through_space)
+		if(GET_DIST(get_turf(holder.target), move_target) <= distance_from_target)
+			holder.target_path = src.found_path
+	if(!src.found_path || !jpsTurfPassable(src.found_path[1], get_turf(src.holder.owner), src.holder.owner)) // no path :C
 		fails++
 
 /datum/aiTask/succeedable/move/on_reset()

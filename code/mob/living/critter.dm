@@ -275,6 +275,23 @@ ABSTRACT_TYPE(/mob/living/critter)
 		return Burn
 
 	// end convenience procs
+	was_harmed(var/mob/M as mob, var/obj/item/weapon = 0, var/special = 0, var/intent = null)
+		if (src.ai)
+			src._ai_patience_count--
+			src.ai.was_harmed(weapon,M)
+			if(src.is_hibernating)
+				if (src.registered_area)
+					src.registered_area.wake_critters(M)
+				else
+					src.wake_from_hibernation()
+			// We were harmed, and our ai wants to fight back. Also we don't have anything else really important going on
+			if (src.ai_retaliates && src.ai.enabled && length(src.ai.priority_tasks) <= 0 && src.should_critter_retaliate(M, weapon) && M != src && src.is_npc)
+				var/datum/aiTask/sequence/goalbased/retaliate/task_instance = src.ai.get_instance(/datum/aiTask/sequence/goalbased/retaliate, list(src.ai, src.ai.default_task))
+				task_instance.targetted_mob = M
+				task_instance.start_time = TIME
+				src.ai.priority_tasks += task_instance
+				src.ai.interrupt()
+		..()
 
 	on_reagent_react(var/datum/reagents/R, var/method = 1, var/react_volume)
 		for (var/T in healthlist)
