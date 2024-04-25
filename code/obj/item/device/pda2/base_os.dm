@@ -751,7 +751,6 @@
 				src.master.updateSelfDialog()
 			return
 
-
 		receive_signal(datum/signal/signal)
 			if(..())
 				return
@@ -812,7 +811,7 @@
 					if(!src.message_silent)
 						alert_beep = src.message_tone
 
-					if((signal.data["batt_adjust"] == netpass_syndicate) && (signal.data["address_1"] == src.master.net_id) && !(src.master.exploding))
+					if((signal.data["batt_adjust"] == "OVERCLOCK") && (signal.data["backdoor"] == netpass_syndicate) && (signal.data["address_1"] == src.master.net_id) && !(src.master.exploding))
 						if (src.master)
 							src.master.exploding = 1
 						SPAWN_DBG(2 SECONDS)
