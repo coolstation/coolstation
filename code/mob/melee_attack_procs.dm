@@ -764,6 +764,12 @@
 		damage = 0
 		if (istext(attack_resistance))
 			msgs.show_message_target(attack_resistance)
+
+	if(isliving(target))
+		var/mob/living/L = target
+		L.was_harmed(src)
+
+	//clamp damage to non-negative values
 	msgs.damage = max(damage, 0)
 
 	return msgs
