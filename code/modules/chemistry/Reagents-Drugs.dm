@@ -300,7 +300,7 @@ datum
 							else
 								var/monkeys = rand(1,3)
 								for(var/i = 0, i < monkeys, i++)
-									fake_attackEx(M, 'icons/mob/monkey.dmi', "monkey_hallucination", "monkey ([rand(1, 1000)])")
+									fake_attackEx(M, 'icons/mob/monkey.dmi', "monkey_hallucination", pick_string_autokey("names/monkey.txt"))
 						if(2)
 							var/halluc_state = null
 							var/halluc_name = null
@@ -316,7 +316,7 @@ datum
 									halluc_name = pick("dragon", "Lord Cinderbottom", "SOME FUKKEN LIZARD THAT BREATHES FIRE")
 								if(4)
 									halluc_state = "slime"
-									halluc_name = pick("red slime", "some gooey thing", "ANGRY CRIMSON POO")
+									halluc_name = pick("red slime", "\proper some gooey thing", "\improper ANGRY CRIMSON POO")
 								if(5)
 									halluc_state = "shambler"
 									halluc_name = pick("shambler", "strange creature", "OH GOD WHAT THE FUCK IS THAT THING?")
