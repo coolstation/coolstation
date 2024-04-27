@@ -4201,18 +4201,18 @@ var/global/noir = 0
 
 	dat += {"<hr><div class='optionGroup' style='border-color:#FF6961'><b class='title' style='background:#FF6961'>Admin Tools</b>
 				<A href='?src=\ref[src];action=secretsadmin;type=check_antagonist'>Antagonists</A><BR>
-				<A href='?src=\ref[src];action=secretsadmin;type=jobcaps'>Job Controls</A><BR>
-				<A href='?src=\ref[src];action=secretsadmin;type=respawn_panel'>Respawn Panel</A><BR>
-				<A href='?src=\ref[src];action=secretsadmin;type=randomevents'>Random Event Controls</A><BR>
 				<A href='?src=\ref[src];action=secretsadmin;type=artifacts'>Artifact Controls</A><BR>
-				<A href='?src=\ref[src];action=secretsadmin;type=miningstats'>Mining Generation Statistics</A><BR>
 				<A href='?src=\ref[src];action=secretsadmin;type=pathology'>CDC</A><BR>
-				<A href='?src=\ref[src];action=secretsadmin;type=motives'>Motive Control</A><BR>
-				<A href='?src=\ref[src];action=secretsadmin;type=ghostnotifier'>Ghost Notification Controls</A><BR>
-				<A href='?src=\ref[src];action=secretsadmin;type=unelectrify_all'>De-electrify all Airlocks</A><BR>
 				<A href='?src=\ref[src];action=secretsadmin;type=manifest'>Crew Manifest</A> |
 				<A href='?src=\ref[src];action=secretsadmin;type=DNA'>Blood DNA</A> |
 				<A href='?src=\ref[src];action=secretsadmin;type=fingerprints'>Fingerprints</A><BR>
+				<A href='?src=\ref[src];action=secretsadmin;type=unelectrify_all'>De-electrify all Airlocks</A><BR>
+				<A href='?src=\ref[src];action=secretsadmin;type=ghostnotifier'>Ghost Notification Controls</A><BR>
+				<A href='?src=\ref[src];action=secretsadmin;type=jobcaps'>Job Controls</A><BR>
+				<A href='?src=\ref[src];action=secretsadmin;type=miningstats'>Mining Generation Statistics</A><BR>
+				<A href='?src=\ref[src];action=secretsadmin;type=motives'>Motive Control</A><BR>
+				<A href='?src=\ref[src];action=secretsadmin;type=randomevents'>Random Event Controls</A><BR>
+				<A href='?src=\ref[src];action=secretsadmin;type=respawn_panel'>Respawn Panel</A><BR>
 
 			"}
 #ifdef SECRETS_ENABLED
@@ -4223,31 +4223,32 @@ var/global/noir = 0
 
 	if (src.level >= LEVEL_ADMIN)
 		dat += {"<hr><div class='optionGroup' style='border-color:#FFB347'><b class='title' style='background:#FFB347'>Coder Tools</b>
-					<A href='?src=\ref[src];action=secretsdebug;type=budget'>Wages/Money</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=market'>Shipping Market</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=genetics'>Genetics Research</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=jobs'>Jobs</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=hydro'>Hydroponics</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=manuf'>Manufacturing</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=radio'>Communications</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=randevent'>Random Events</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=disease'>Diseases</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=mechanic'>Mechanics</A> |
 					<A href='?src=\ref[src];action=secretsdebug;type=artifact'>Artifacts</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=gauntlet'>Gauntlet</A> |
 					<A href='?src=\ref[src];action=secretsdebug;type=colosseum'>Colosseum</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=stock'>Stock Market</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=emshuttle'>Emergency Shuttle</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=radio'>Communications</A> |
 					<A href='?src=\ref[src];action=secretsdebug;type=datacore'>Data Core</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=miningcontrols'>Mining Controls</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=opengoon'>OpenGoon</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=mapsettings'>Map Settings</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=disease'>Diseases</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=emshuttle'>Emergency Shuttle</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=gauntlet'>Gauntlet</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=genetics'>Genetics Research</A> |
 					<A href='?src=\ref[src];action=secretsdebug;type=ghostnotifications'>Ghost Notifications</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=globals'>Global Variables</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=globalprocs'>Global Procs</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=hydro'>Hydroponics</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=jobs'>Jobs</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=opengoon'>OpenGoon</A> |
 					<A href='?src=\ref[src];action=secretsdebug;type=overlays'>Overlays</A>
 					<A href='?src=\ref[src];action=secretsdebug;type=overlaysrem'>(Remove)</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=world'>World</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=globals'>Global Variables</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=globalprocs'>Global Procs</A>
+					<A href='?src=\ref[src];action=secretsdebug;type=manuf'>Manufacturing</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=mapsettings'>Map Settings</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=mechanic'>Mechanics</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=miningcontrols'>Mining Controls</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=randevent'>Random Events</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=market'>Shipping Market</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=stock'>Stock Market</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=budget'>Wages/Money</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=world'>World</A>
+
 				"}
 
 		dat += "</div>"
@@ -4255,35 +4256,35 @@ var/global/noir = 0
 	dat += {"<hr><div class='optionGroup' style='border-color:#77DD77'><b class='title' style='background:#77DD77'>Logs</b>
 				<b><A href='?src=\ref[src];action=view_logs_web'>View all logs - web version</A></b><BR>
 				<A href='?src=\ref[src];action=view_logs;type=all_logs_string'>Search all Logs</A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=speech_log'>Speech Log </A>
-				<A href='?src=\ref[src];action=view_logs;type=speech_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=combat_log'>Combat Log </A>
-				<A href='?src=\ref[src];action=view_logs;type=combat_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=ooc_log'>OOC Log </A>
-				<A href='?src=\ref[src];action=view_logs;type=ooc_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=station_log'>Station Log </A>
-				<A href='?src=\ref[src];action=view_logs;type=station_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=pdamsg_log'>PDA Message Log </A>
-				<A href='?src=\ref[src];action=view_logs;type=pdamsg_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=telepathy_log'>Telepathy Log </A>
-				<A href='?src=\ref[src];action=view_logs;type=telepathy_log_string'><small>(Search)</small></A><BR>
 				<A href='?src=\ref[src];action=view_logs;type=admin_log'>Admin Log</A>
 				<A href='?src=\ref[src];action=view_logs;type=admin_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=debug_log'>Debug Log</A>
-				<A href='?src=\ref[src];action=view_logs;type=debug_log_string'><small>(Search)</small></A><BR>
 				<A href='?src=\ref[src];action=view_logs;type=admin_help_log'>Adminhelp Log</A>
 				<A href='?src=\ref[src];action=view_logs;type=admin_help_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=mentor_help_log'>Mentorhelp Log</A>
-				<A href='?src=\ref[src];action=view_logs;type=mentor_help_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=bombing_log'>Bombing Log</A>
-				<A href='?src=\ref[src];action=view_logs;type=bombing_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=signalers_log'>Signaler Log</A>
-				<A href='?src=\ref[src];action=view_logs;type=signalers_log_string'><small>(Search)</small></A><BR>
 				<A href='?src=\ref[src];action=view_logs;type=atmos_log'>Atmos Log</A>
 				<A href='?src=\ref[src];action=view_logs;type=atmos_log_string'><small>(Search)</small></A><BR>
+				<A href='?src=\ref[src];action=view_logs;type=bombing_log'>Bombing Log</A>
+				<A href='?src=\ref[src];action=view_logs;type=bombing_log_string'><small>(Search)</small></A><BR>
+				<A href='?src=\ref[src];action=view_logs;type=combat_log'>Combat Log </A>
+				<A href='?src=\ref[src];action=view_logs;type=combat_log_string'><small>(Search)</small></A><BR>
+				<A href='?src=\ref[src];action=view_logs;type=debug_log'>Debug Log</A>
+				<A href='?src=\ref[src];action=view_logs;type=debug_log_string'><small>(Search)</small></A><BR>
+				<A href='?src=\ref[src];action=view_logs;type=mentor_help_log'>Mentorhelp Log</A>
+				<A href='?src=\ref[src];action=view_logs;type=mentor_help_log_string'><small>(Search)</small></A><BR>
+				<A href='?src=\ref[src];action=view_logs;type=ooc_log'>OOC Log </A>
+				<A href='?src=\ref[src];action=view_logs;type=ooc_log_string'><small>(Search)</small></A><BR>
 				<A href='?src=\ref[src];action=view_logs;type=pathology_log'>Pathology Log</A>
 				<A href='?src=\ref[src];action=view_logs;type=pathology_log_string'><small>(Search)</small></A>
 				<A href='?src=\ref[src];action=view_logs_pathology_strain'><small>(Find pathogen)</small></A><BR>
+				<A href='?src=\ref[src];action=view_logs;type=pdamsg_log'>PDA Message Log </A>
+				<A href='?src=\ref[src];action=view_logs;type=pdamsg_log_string'><small>(Search)</small></A><BR>
+				<A href='?src=\ref[src];action=view_logs;type=signalers_log'>Signaler Log</A>
+				<A href='?src=\ref[src];action=view_logs;type=signalers_log_string'><small>(Search)</small></A><BR>
+				<A href='?src=\ref[src];action=view_logs;type=speech_log'>Speech Log </A>
+				<A href='?src=\ref[src];action=view_logs;type=speech_log_string'><small>(Search)</small></A><BR>
+				<A href='?src=\ref[src];action=view_logs;type=station_log'>Station Log </A>
+				<A href='?src=\ref[src];action=view_logs;type=station_log_string'><small>(Search)</small></A><BR>
+				<A href='?src=\ref[src];action=view_logs;type=telepathy_log'>Telepathy Log </A>
+				<A href='?src=\ref[src];action=view_logs;type=telepathy_log_string'><small>(Search)</small></A><BR>
 				<A href='?src=\ref[src];action=view_logs;type=vehicle_log'>Vehicle Log</A>
 				<A href='?src=\ref[src];action=view_logs;type=vehicle_log_string'><small>(Search)</small></A><br>
 				<hr>
@@ -4295,27 +4296,27 @@ var/global/noir = 0
 	// FUN SECRETS PANEL
 	if (src.level >= LEVEL_PA || (src.level == LEVEL_SA && usr.client.holder.state == 2))
 		dat += {"<hr><div class='optionGroup' style='border-color:#B57EDC'><b class='title' style='background:#B57EDC'>Fun Secrets</b>
-					<b>Transformation:</b>
-						<A href='?src=\ref[src];action=secretsfun;type=transform_one'>One</A> *
-						<A href='?src=\ref[src];action=secretsfun;type=transform_all'>All</A><BR>
-					<b>Add Bio-Effect<A href='?src=\ref[src];action=secretsfun;type=bioeffect_help'>*</a>:</b>
-						<A href='?src=\ref[src];action=secretsfun;type=add_bioeffect_one'>One</A> *
-						<A href='?src=\ref[src];action=secretsfun;type=add_bioeffect_all'>All</A><BR>
-					<b>Remove Bio-Effect:</b>
-						<A href='?src=\ref[src];action=secretsfun;type=remove_bioeffect_one'>One</A> *
-						<A href='?src=\ref[src];action=secretsfun;type=remove_bioeffect_all'>All</A><BR>
 					<b>Add Ability:</b>
 						<A href='?src=\ref[src];action=secretsfun;type=add_ability_one'>One</A> *
 						<A href='?src=\ref[src];action=secretsfun;type=add_ability_all'>All</A><BR>
 					<b>Remove Ability:</b>
 						<A href='?src=\ref[src];action=secretsfun;type=remove_ability_one'>One</A> *
 						<A href='?src=\ref[src];action=secretsfun;type=remove_ability_all'>All</A><BR>
+					<b>Add Bio-Effect<A href='?src=\ref[src];action=secretsfun;type=bioeffect_help'>*</a>:</b>
+						<A href='?src=\ref[src];action=secretsfun;type=add_bioeffect_one'>One</A> *
+						<A href='?src=\ref[src];action=secretsfun;type=add_bioeffect_all'>All</A><BR>
+					<b>Remove Bio-Effect:</b>
+						<A href='?src=\ref[src];action=secretsfun;type=remove_bioeffect_one'>One</A> *
+						<A href='?src=\ref[src];action=secretsfun;type=remove_bioeffect_all'>All</A><BR>
 					<b>Add Reagent<A href='?src=\ref[src];action=secretsfun;type=reagent_help'>*</a>:</b>
 						<A href='?src=\ref[src];action=secretsfun;type=add_reagent_one'>One</A> *
 						<A href='?src=\ref[src];action=secretsfun;type=add_reagent_all'>All</A><BR>
 					<b>Remove Reagent:</b>
 						<A href='?src=\ref[src];action=secretsfun;type=remove_reagent_one'>One</A> *
 						<A href='?src=\ref[src];action=secretsfun;type=remove_reagent_all'>All</A><BR>
+					<b>Transformation:</b>
+						<A href='?src=\ref[src];action=secretsfun;type=transform_one'>One</A> *
+						<A href='?src=\ref[src];action=secretsfun;type=transform_all'>All</A><BR>
 					<A href='?src=\ref[src];action=secretsfun;type=traitor_all'>Make everyone an Antagonist</A><BR>
 					<A href='?src=\ref[src];action=secretsfun;type=stupify'>Give everyone severe brain damage</A><BR>
 					<A href='?src=\ref[src];action=secretsfun;type=flipstation'>Set station direction</A><BR>
