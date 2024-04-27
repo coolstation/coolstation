@@ -42,7 +42,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 
 
 	New(var/atom/loc, var/amt = 1 as num)
-		var/default_amount = default_min_amount == default_max_amount ? default_min_amount : rand(default_min_amount, default_max_amount)
+		var/default_amount = (min_amount==max_amount) ? min_amount : rand(min_amount,max_amount)
 		src.amount = max(amt,default_amount) //take higher
 		..(loc)
 		src.update_stack_appearance()
