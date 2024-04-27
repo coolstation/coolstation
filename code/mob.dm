@@ -1300,6 +1300,10 @@
 		else
 			return src.r_hand
 
+/mob/living/critter/equipped()
+	var/datum/handHolder/active_hand = src.get_active_hand()
+	return active_hand.item
+
 /mob/proc/equipped_list(check_for_magtractor = 1)
 	. = list()
 

@@ -576,6 +576,11 @@ ABSTRACT_TYPE(/mob/living/critter)
 					if (mob_flags & AT_GUNPOINT)
 						for(var/obj/item/grab/gunpoint/G in grabbed_by)
 							G.shoot()
+				if(src.equipped())
+					L.attack_hand(target, src)
+					HH.set_cooldown_overlay()
+					src.lastattacked = target
+					return
 				switch (a_intent)
 					if (INTENT_HELP)
 						if (can_help)
