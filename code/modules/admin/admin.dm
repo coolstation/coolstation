@@ -3272,6 +3272,8 @@ var/global/noir = 0
 						src.owner:debug_variables("GLOB")
 					if("globalprocs")
 						src.owner:show_proc_list(null)
+					if("valiant")
+						valiant_controls?.debug_panel()
 			else
 				alert("You need to be at least a Coder to use debugging secrets.")
 
@@ -4246,6 +4248,7 @@ var/global/noir = 0
 					<A href='?src=\ref[src];action=secretsdebug;type=randevent'>Random Events</A> |
 					<A href='?src=\ref[src];action=secretsdebug;type=market'>Shipping Market</A> |
 					<A href='?src=\ref[src];action=secretsdebug;type=stock'>Stock Market</A> |
+					<A href='?src=\ref[src];action=secretsdebug;type=valiant'>Valiant Azone</A> |
 					<A href='?src=\ref[src];action=secretsdebug;type=budget'>Wages/Money</A> |
 					<A href='?src=\ref[src];action=secretsdebug;type=world'>World</A>
 

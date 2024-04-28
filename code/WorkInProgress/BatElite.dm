@@ -305,6 +305,10 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 		src.visible_message("[src] loots [ourpick].") //deliberately no mention of the victim
 		ON_COOLDOWN(src, "looting", (rand(6 SECONDS, 10 SECONDS)))
 
+//stubs for secret stuff
+/var/datum/controller/process/crash_zone/valiant_controls
+/datum/controller/process/crash_zone/
+/datum/controller/process/crash_zone/proc/debug_panel()
 
 /*
 /obj/spawn_all_the_dragon_shit
