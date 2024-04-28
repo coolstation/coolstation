@@ -16,6 +16,11 @@
 		icon_state = "sandwich_m"
 		food_effects = list("food_refreshed", "food_energized_big")
 
+		New()
+			..()
+			if (prob(6)) //warc's idea
+				name = pick("womanwich","nonbinarywich")
+
 	meat_m
 		name = "monkey sandwich"
 		desc = "Meat between two slices of bread."
@@ -56,6 +61,11 @@
 		icon_state = "elviswich_m"
 		initial_reagents = list("essenceofelvis"=25)
 		food_effects = list("food_refreshed", "food_energized_big")
+
+		New()
+			..()
+			if (prob(6)) //warc's idea
+				name = pick("elviswomanwich","elvisnonbinarywich")
 
 	elvis_meat_m
 		name = "monkey elviswich"
