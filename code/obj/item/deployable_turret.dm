@@ -543,8 +543,10 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	var/turf/user_turf = null
 
 	castcheck(var/mob/M)
-		if (M.client && M.client.holder)
-			return 1
+		if (M.client && M.client.holder) //???
+			return TRUE
+		else
+			return ..()
 
 	handleCast(var/atom/target)
 
