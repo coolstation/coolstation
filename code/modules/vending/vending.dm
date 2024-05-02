@@ -2633,24 +2633,22 @@
 					updateUsrDialog()
 					sleep(20 SECONDS)
 					playsound(src.loc, 'sound/machines/ding.ogg', 50, 1, -1)
-					var/obj/item/reagent_containers/food/snacks/pizza/P = new /obj/item/reagent_containers/food/snacks/pizza(src.loc)
-					P.quality = 0.6
-					P.heal_amt = 2
-					P.sharpened = src.sharpen
-					P.desc = "A typical [piztopping] pizza."
-					P.name = "[piztopping] pizza"
-					//sleep(0.2) do we need to
-					if(piztopping != "plain")
+					var/obj/item/reagent_containers/food/snacks/pizza/P
+					if(emagged)
+						P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/pineapple(src.loc)
+					else
 						switch(piztopping)
-							if("meatball") P.topping_color ="#663300"
-							if("mushroom") P.topping_color ="#CFCFCF"
-							if("pepperoni") P.topping_color ="#C90E0E"
-						P.topping = 1
-						P.add_topping(0)
-
+							if("plain")
+								P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/cheese(src.loc)
+							if("meatball")
+								P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/meatball(src.loc)
+							if("mushroom")
+								P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/mushroom(src.loc)
+							if("pepperoni")
+								P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/pepperoni(src.loc)
 					if (src.sharpen)
 						var/list/slices = P.make_slices()
-						for(var/obj/item/reagent_containers/food/snacks/pizza/slice in slices)
+						for(var/obj/item/reagent_containers/food/snacks/pizzaslice/slice in slices)
 							slice.throw_at(usr, 16, 3)
 
 					if (!(status & (NOPOWER|BROKEN)))
@@ -2682,22 +2680,9 @@
 			return null
 
 		var/randtopping = pick("plain", "meatball", "mushroom", "pepperoni")
-		var/obj/item/reagent_containers/food/snacks/ingredient/pizza3/P  = new /obj/item/reagent_containers/food/snacks/ingredient/pizza3(src.loc) //It's raw :)
+		var/obj/item/reagent_containers/food/snacks/ingredient/pizza_base/P  = new /obj/item/reagent_containers/food/snacks/ingredient/pizza_base(src.loc) //It's raw :)
 		P.quality = 0.6
 		P.heal_amt = 2
-
-		if(randtopping != "plain")
-			switch(randtopping)
-				if("meatball") P.topping_color ="#663300"
-				if("mushroom") P.topping_color ="#CFCFCF"
-				if("pepperoni") P.topping_color ="#C90E0E"
-			P.name = "uncooked [randtopping] pizza"
-			P.desc = "A pizza with [randtopping] toppings. You need to bake it..."
-			P.num = 1
-			P.topping = 1
-			P.toppings += randtopping
-			P.toppingstext = copytext(html_encode(english_list(P.toppings)), 1, 512)
-			P.add_topping(P.num)
 
 		P.throw_at(target, 16, 3)
 		src.visible_message("<span class='alert'><b>[src] launches [P.name] at [target.name]!</b></span>")

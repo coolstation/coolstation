@@ -1018,7 +1018,7 @@ datum
 					if (ranchance == 1)
 						boutput(M, "<span class='alert'>You feel very sick.</span>")
 						M.reagents.add_reagent("toxin", rand(1,5))
-					else if (ranchance <= 5 && ranchance != 1)
+					else if (ranchance <= 5)
 						boutput(M, "<span class='alert'>That tasted absolutely FOUL.</span>")
 						M.contract_disease(/datum/ailment/disease/food_poisoning, null, null, 1) // path, name, strain, bypass resist
 					else boutput(M, "<span class='alert'>Yuck!</span>")
