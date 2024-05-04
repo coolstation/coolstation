@@ -46,10 +46,17 @@
 
 		if(isnull(src.target))
 			if(prob(60) || !by_type[/obj/machinery/drainage] || !length(by_type[/obj/machinery/drainage]))
-				src.target = pick(get_area_turfs(/area/station)) // don't @ me
+				src.target = pick(get_area_turfs(/area/station, TRUE)) // don't @ me
 				target.visible_message("<span class='alert'><b>A rift to a [reagent.name] dimension suddenly warps into existence!</b></span>")
 			else
 				var/obj/machinery/drainage/drain = pick(by_type[/obj/machinery/drainage])
+			//turns out there's drains in azones
+			#ifdef Z3_IS_A_STATION_LEVEL
+				while (!(drain.z == Z_LEVEL_STATION || drain.z == Z_LEVEL_DEBRIS))
+			#else
+				while (!(drain.z == Z_LEVEL_STATION))
+			#endif
+					drain = pick(by_type[/obj/machinery/drainage])
 				drain.clogged = 60 // about 3 minutes
 				drain.update_icon()
 				src.target = get_turf(drain)
