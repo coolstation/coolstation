@@ -117,6 +117,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //////////// GAMEMODE OVERRIDES (intended for ease of debug only. disables saving/loading the mode config therefore probably fucky on live server)
 
 //#define MODE_OVERRIDE_EXTENDED			//No antagonists.
+//#define MODE_OVERRIDE_ENVIRONMENTAL //No antagonists, but with more random shit happening
 //#define MODE_OVERRIDE_TRAITOR			//Folks with uplinks, chance for a wraith.
 //#define MODE_OVERRIDE_MIXED_ACTION		//A combination of most antags can appear.
 //#define MODE_OVERRIDE_MIXED_MILD 		//Mixed, minus werewolf/wizard/blob.

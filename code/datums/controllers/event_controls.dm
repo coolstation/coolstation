@@ -74,6 +74,8 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 			player_spawn_events += RE
 
 		for (var/X in childrentypesof(/datum/random_event/minor))
+			if(IS_ABSTRACT(X)) //environmental minor base woop woop
+				continue
 			var/datum/random_event/RE = new X
 			minor_events += RE
 

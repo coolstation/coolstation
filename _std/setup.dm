@@ -147,6 +147,8 @@ var/ZLOG_START_TIME
 //Here's brick of shit to automate gamemode overrides, so that the bit in load_mode can be short
 #if defined(MODE_OVERRIDE_EXTENDED)
 	#define OVERRIDDEN_MODE "extended"
+#elif defined(MODE_OVERRIDE_ENVIRONMENTAL)
+	#define OVERRIDDEN_MODE "environmental"
 #elif defined(MODE_OVERRIDE_TRAITOR)
 	#define OVERRIDDEN_MODE "traitor"
 #elif defined(MODE_OVERRIDE_MIXED_ACTION)
