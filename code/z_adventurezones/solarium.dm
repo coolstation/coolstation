@@ -80,7 +80,11 @@ var/global/the_sun = null
 var/global/server_kicked_over = 0
 var/global/it_is_okay_to_do_the_endgame_thing = 0
 var/global/was_eaten = 0
+#ifdef MODE_OVERRIDE_DISASTER_DERELICT
+var/global/derelict_mode = 1
+#else
 var/global/derelict_mode = 0
+#endif
 //congrats you won
 /obj/the_server_ingame_whoa
 	name = "server rack"

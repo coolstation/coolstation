@@ -198,11 +198,11 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 			return
 		if (!reason)
 			reason = "coded instance (undefined)"
-
+		var/list/arguments = list(reason) + args.Copy(3,0) //get any number of arguments past the reason one
 		var/list/allevents = events | minor_events | special_events
 		for (var/datum/random_event/RE in allevents)
 			if (RE.name == string)
-				RE.event_effect(string,reason)
+				RE.event_effect(arglist(arguments))
 				break
 
 	///////////////////

@@ -132,6 +132,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define MODE_OVERRIDE_GANG				//Several gangs vie for the highest score by doing crimes. In theory, anyway.
 //#define MODE_OVERRIDE_CONSPIRACY		//A group of crewmembers enact a sinister plot. More heavily role-play oriented than most modes.
 //#define MODE_OVERRIDE_DISASTER			//The crew fights off an onslaught of scary until help arrives.
+//#define MODE_OVERRIDE_DISASTER_DERELICT			//Solarium flavour disaster
 //#define MODE_OVERRIDE_FOOTBALL			//20-30 minutes of admins dicking around while the crew is made to play american football.
 //#define MODE_OVERRIDE_BATTLE_ROYALE	//Players scour the station for weaponry and murder each other - last man standing. A joke mode.
 
