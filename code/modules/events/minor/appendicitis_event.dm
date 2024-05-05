@@ -20,7 +20,7 @@
 			return
 
 		do
-			new_target = input("Anyone in particular you want to screw over?", "Observe", null, null) as null|anything in potential_victims
+			new_target = input("Anyone in particular you want to screw over?", "Appendicitis", null, null) as null|anything in potential_victims
 			if (new_target)
 				potential_victims -= new_target
 		while (new_target != null && length(potential_victims))
