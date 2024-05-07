@@ -45,7 +45,7 @@
 		R3.disabled = FALSE
 
 	//Spicy big event
-	SPAWN_DBG(rand(2 MINUTES, 3 MINUTES))
+	SPAWN_DBG(rand(45 MINUTES, 60 MINUTES))
 		random_events.force_event("Meteor Shower", "Scripted Environmental Mode Event",rand(25,40), 0, 0, 3 MINUTES, rand(8,15)) //large amounts of meteors, fast and with 3 mins warning. direction and delay will be randomised as normal
 
 
