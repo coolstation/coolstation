@@ -615,6 +615,20 @@
 			if(istype(owner, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = owner
 				prot = (1 - (H.get_heat_protection() / 100))
+				//Bat shitting up this code, you're welcome
+				if (istype(H.wear_mask, /obj/item/clothing/mask/cigarette))
+					//I'd add some smartassery where a cig inside a space helmet wouldn't light because it's sealed
+					//but there's no clean way of separating the airtight hats from others.
+					var/obj/item/clothing/mask/cigarette/cig = H.wear_mask
+					if (!cig.on)
+						cig.light(H, "<span class='alert'>\The [cig] in <b>[H]</b>'s mouth lights in solidarity with [him_or_her(H)].</span>")
+				//Disabling these cause there's a fun message for lighting a cigarette on yourself, but just to prove I had the idea
+				/*if (istype(H.l_hand, /obj/item/clothing/mask/cigarette))
+					var/obj/item/clothing/mask/cigarette/cig = H.l_hand
+					cig.light()
+				if (istype(H.r_hand, /obj/item/clothing/mask/cigarette))
+					var/obj/item/clothing/mask/cigarette/cig = H.r_hand
+					cig.light()*/
 
 			if(ismob(owner) && owner:is_heat_resistant())
 				prot = 0
