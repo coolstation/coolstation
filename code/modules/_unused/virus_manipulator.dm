@@ -1,4 +1,4 @@
-// disease reagent manipulator thing
+// disease reagent manipulator thing, probably superceded by /obj/machinery/pathogen_manipulator
 
 /obj/submachine/virus_manipulator
 	name = "Virus Manipulator"

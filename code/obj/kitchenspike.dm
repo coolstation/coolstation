@@ -1,5 +1,5 @@
 /obj/kitchenspike
-	name = "a meat spike"
+	name = "meat spike"
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "spike"
 	desc = "A spike for collecting meat from animals"
