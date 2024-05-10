@@ -16,7 +16,11 @@
 
 	m_amt = 50
 	g_amt = 20
-	mats = 6
+	mats = list("CRY-1", "CON-2")
+
+	New()
+		..()
+		src.setItemSpecial(/datum/item_special/elecflash)
 
 	custom_suicide = 1
 	suicide(var/mob/user as mob)
