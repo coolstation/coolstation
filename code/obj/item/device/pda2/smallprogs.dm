@@ -568,10 +568,10 @@ Code:
 					engine_found = TRUE
 					. += "<BR><h4>Radiation Collector [controler_index++] Status</h4>"
 					. += "Output: [engineering_notation(C.lastpower)]W<BR>"
-					if(C.CA1?.active) . += "Collector [collector_index++]: Tank Pressure: [C.P1 ? round(MIXTURE_PRESSURE(C.P1.air_contents), 0.1) : "ERR"] kPa<BR>"
-					if(C.CA2?.active) . += "Collector [collector_index++]: Tank Pressure: [C.P2 ? round(MIXTURE_PRESSURE(C.P2.air_contents), 0.1) : "ERR"] kPa<BR>"
-					if(C.CA3?.active) . += "Collector [collector_index++]: Tank Pressure: [C.P3 ? round(MIXTURE_PRESSURE(C.P3.air_contents), 0.1) : "ERR"] kPa<BR>"
-					if(C.CA4?.active) . += "Collector [collector_index++]: Tank Pressure: [C.P4 ? round(MIXTURE_PRESSURE(C.P4.air_contents), 0.1) : "ERR"] kPa<BR>"
+					if(C.CAN?.active) . += "Collector [collector_index++]: Tank Pressure: [C.PN ? round(MIXTURE_PRESSURE(C.PN.air_contents), 0.1) : "ERR"] kPa<BR>"
+					if(C.CAS?.active) . += "Collector [collector_index++]: Tank Pressure: [C.PS ? round(MIXTURE_PRESSURE(C.PS.air_contents), 0.1) : "ERR"] kPa<BR>"
+					if(C.CAE?.active) . += "Collector [collector_index++]: Tank Pressure: [C.PE ? round(MIXTURE_PRESSURE(C.PE.air_contents), 0.1) : "ERR"] kPa<BR>"
+					if(C.CAW?.active) . += "Collector [collector_index++]: Tank Pressure: [C.PW ? round(MIXTURE_PRESSURE(C.PW.air_contents), 0.1) : "ERR"] kPa<BR>"
 					. += "<BR>"
 
 		if(length(by_type[/obj/machinery/power/vent_capture]))
