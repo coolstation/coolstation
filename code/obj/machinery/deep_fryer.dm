@@ -1,3 +1,6 @@
+//lazy init happens in the make-it-a-fried-thing proc
+var/list/fryer_recipes
+
 /obj/machinery/deep_fryer
 	name = "Deep Fryer"
 	desc = "An industrial deep fryer.  A big hit at state fairs!"
@@ -11,6 +14,7 @@
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_WIRECUTTERS
 	var/obj/item/fryitem = null
 	var/cooktime = 0
+	var/cooktime_prev = 0
 	var/frytemp = 185 + T0C //365 F is a good frying temp, right?
 	var/max_wclass = 3
 
@@ -116,6 +120,12 @@
 		SubscribeToProcess()
 		return
 
+	SubscribeToProcess()
+		//to prevent a fryer from instantly annihalating what you put in if it's not been used in a while
+		last_process = TIME
+		cooktime_prev = 0
+		..()
+
 	MouseDrop_T(obj/item/W as obj, mob/user as mob)
 		if (istype(W) && in_interact_range(W, user) && in_interact_range(src, user))
 			return src.Attackby(W, user)
@@ -140,8 +150,7 @@
 			boutput(user, "<span class='alert'>Frying things takes time! Be patient!</span>")
 			return
 
-		user.visible_message("<span class='notice'>[user] removes [src.fryitem] from [src]!</span>", "<span class='notice'>You remove [src.fryitem] from [src].</span>")
-		src.eject_food()
+		src.eject_food(user)
 		return
 
 	process()
@@ -161,7 +170,8 @@
 			UnsubscribeProcess()
 			return
 		else
-			src.cooktime++
+			//Should roughly track seconds it's been on now, instead of # of cycles (much faster now!)
+			src.cooktime += round((TIME - last_process)/(1 SECOND))
 
 		if (!src.fryitem.reagents)
 			src.fryitem.create_reagents(50)
@@ -171,10 +181,10 @@
 
 		if (src.cooktime < 60)
 
-			if (src.cooktime == 30)
+			if (src.cooktime >= 30 && src.cooktime_prev < 30)
 				playsound(src.loc, "sound/machines/ding.ogg", 50, 1)
 				src.visible_message("<span class='notice'>[src] dings!</span>")
-			else if (src.cooktime == 60) //Welp!
+			else if (src.cooktime >= 60 && src.cooktime_prev < 60) //Welp!
 				src.visible_message("<span class='alert'>[src] emits an acrid smell!</span>")
 		else if(src.cooktime >= 120)
 
@@ -182,7 +192,7 @@
 				src.visible_message("<span class='alert'>[src] sprays burning oil all around it!</span>")
 				fireflash(src, 1)
 
-		return
+		cooktime_prev = cooktime
 
 	custom_suicide = 1
 	suicide(var/mob/user as mob)
@@ -224,6 +234,55 @@
 
 			thing.reagents.add_reagent("grease", 50)
 			fryholder.desc = "A heavily fried...something.  Who can tell anymore?"
+
+
+		//lazy iniiiit
+		if (!islist(fryer_recipes))
+			fryer_recipes = list()
+			for( var/type as anything in concrete_typesof(/datum/cookingrecipe/fryer))
+				fryer_recipes += new type
+		for(var/datum/cookingrecipe/fryer/recipe as anything in fryer_recipes) //Let's search for an actual recipe!
+			if (!istype(thing,recipe.item1))
+				continue
+			if (recipe.required_reagents)
+				//TODO
+				logTheThing("debug", src, null, "we've for a fryer recipe with required reagents??? Help, coders???")
+
+			//Recipe found!
+			var/obj/item/reagent_containers/food/snacks/output = recipe.specialOutput(src)
+			if (isnull(output))
+				output = new recipe.output
+
+			if (istype(output, /obj/item/reagent_containers/food/snacks))
+				if (istype(thing, /obj/item/reagent_containers/food/snacks))
+					output.food_effects += thing:food_effects
+
+				output.food_effects |= "food_warm"
+				output.food_effects -= "food_cold"
+
+				/*
+				recipe cookbonus implicitly ranges 1-20 which is what ovens can reach
+				so if we take 2 seconds of frying per unit of cookbonus (now that cooktime doesn't count process loops anymore)
+				that gives a range between 2 and 40 seconds, which is also a rough bisection of fryholders' lightly and regular fry times (note we can't eject below 5s)
+				We'll deduct one point from the max of 5 quality for every 4 seconds you're off from ideal.
+				Can't really go better than that atm as fryers tick at the normal 3.2s rate. That may need bumping up a level.
+
+				(which also means frying well will be harder than oven cooking, since you gotta time it yourself)
+				*/
+				output.quality = 5 - (abs(2*recipe.cookbonus - src.cooktime)%4)
+
+			//Doubt we'll ever have fried person recipies but just in case
+			if (ismob(thing))
+				var/mob/M = thing
+				M.ghostize()
+			else
+				for (var/mob/M in thing)
+					M.ghostize()
+			qdel(thing)
+			qdel(fryholder)
+			return output
+
+		//From here on out is generic fryholder code
 		if (istype(thing, /obj/item/reagent_containers/food/snacks))
 			fryholder.food_effects += thing:food_effects
 
@@ -270,7 +329,7 @@
 		thing.set_loc(fryholder)
 		return fryholder
 
-	proc/eject_food()
+	proc/eject_food(var/mob/user)
 		if (!src.fryitem)
 			UnsubscribeProcess()
 			return
@@ -283,6 +342,8 @@
 		for (var/obj/item/I in src) //Things can get dropped somehow sometimes ok
 			I.set_loc(src.loc)
 
+		//Let's use what came out instead of what came in thanks
+		user.visible_message("<span class='notice'>[user] removes [fryholder] from [src]!</span>", "<span class='notice'>You remove [fryholder] from [src].</span>")
 		UnsubscribeProcess()
 		return
 

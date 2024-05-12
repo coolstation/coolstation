@@ -1,6 +1,7 @@
 ABSTRACT_TYPE(/datum/cookingrecipe)
 ABSTRACT_TYPE(/datum/cookingrecipe/oven)
 ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
+ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 /datum/cookingrecipe
 	var/item1 = null
 	var/item2 = null
@@ -1161,7 +1162,12 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 /datum/cookingrecipe/oven/fries
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/chips
 	cookbonus = 7
-	output = /obj/item/reagent_containers/food/snacks/fries
+	output = /obj/item/reagent_containers/food/snacks/fries //unused cause of specialOutput
+
+	//There's no after-cooking output alter proc, so
+	specialOutput(obj/submachine/ourCooker)
+		return new /obj/item/reagent_containers/food/snacks/fries {disappointing = TRUE;} ()
+
 
 /datum/cookingrecipe/oven/bakedpotato
 	item1 = /obj/item/reagent_containers/food/snacks/plant/potato
@@ -1894,3 +1900,15 @@ ABSTRACT_TYPE(/datum/cookingrecipe/mixer)
 			lipstick.update_icon()
 		return lipstick
 
+/datum/cookingrecipe/fryer
+	//I noticed you can pour reagents into the fryer, so why not make a little stub :3
+	//not actually functional in fryer code atm
+	var/required_reagents = null
+
+	//ATM only one item can go into the fryer, so only item1 ever gets checked.
+
+//glorious potatoes
+/datum/cookingrecipe/fryer/fries
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/chips
+	output = /obj/item/reagent_containers/food/snacks/fries
+	cookbonus = 15

@@ -491,7 +491,7 @@
 /obj/item/reagent_containers/food/snacks/burger/vr
 	icon = 'icons/effects/VR.dmi'
 
-/obj/item/reagent_containers/food/snacks/fries
+/obj/item/reagent_containers/food/snacks/fries //my favourite sandwich
 	name = "fries"
 	desc = "Lightly salted potato fingers."
 	icon = 'icons/obj/foodNdrink/food_snacks.dmi'
@@ -500,6 +500,13 @@
 	heal_amt = 1
 	initial_volume = 5
 	initial_reagents = list("cholesterol"=1)
+	//TODO: make generic somehow?
+	var/disappointing = FALSE
+
+	heal(var/mob/M)
+		if (disappointing)
+			boutput(M, "These taste disappointing. Like a mild, but clear insult to fries.")
+		else ..() //mostly to suppress other "that tasted X" messages, but yeah no benefits from oven fries either
 
 /obj/item/reagent_containers/food/snacks/macguffin
 	name = "sausage macguffin"
