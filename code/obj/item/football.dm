@@ -128,7 +128,7 @@
 		playsound(src.loc, "swing_hit", 40, 1)
 		logTheThing("station", src, target, "tackles [target] using football gear [log_loc(src)].")
 	else if(isturf(target))
-		if(istype(target, /turf/wall/r_wall || istype(target, /turf/wall/auto/reinforced)) && prob(power / 2))
+		if((istype(target, /turf/wall/r_wall) || istype(target, /turf/wall/auto/reinforced)) && !prob(power / 2))
 			return
 		if(istype(target, /turf/wall) && prob(power))
 			var/turf/wall/T = target
