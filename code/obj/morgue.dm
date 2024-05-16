@@ -638,15 +638,15 @@
 		tanningtube.name = "stock tanning light tube"
 		tanningtube.desc = "Fancy. But not really."
 		tanningtube.color_r = 0.7
-		tanningtube.color_g = 0.5
-		tanningtube.color_b = 0.3
+		tanningtube.color_g = 0.3
+		tanningtube.color_b = 0.5
 
 		light = new /datum/light/point
 		light.attach(src)
 		light.set_brightness(0.5)
 		light.set_color(tanningtube.color_r, tanningtube.color_g, tanningtube.color_b)
 
-		var/tanningtubecolor = rgb(tanningtube.color_r * 255, tanningtube.color_b * 255, tanningtube.color_g * 255)
+		var/tanningtubecolor = rgb(tanningtube.color_r * 255, tanningtube.color_g * 255, tanningtube.color_b * 255)
 
 		generate_overlay_icon(tanningtubecolor)
 
@@ -665,7 +665,7 @@
 			user.drop_item()
 			G.set_loc(src)
 			src.tanningtube = G
-			var/tanningtubecolor = rgb(tanningtube.color_r * 255, tanningtube.color_b * 255, tanningtube.color_g * 255)
+			var/tanningtubecolor = rgb(tanningtube.color_r * 255, tanningtube.color_g * 255, tanningtube.color_b * 255)
 			generate_overlay_icon(tanningtubecolor)
 			send_new_tancolor(tanningtubecolor)
 			if (src.light)
