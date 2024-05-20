@@ -1493,6 +1493,10 @@ proc/reagent_id_to_name(var/reagent_id)
 	else
 		return R.name
 
+//Basically a weighted pick with support for a roll modifier.
+//category_boundaries should be a list of decreasing thresholds, one less than there are tiers in total.
+//	(say you want a 5%/25%/70% distribution with a scalemax of 100, you'd call with list(95,70))
+//TBH all calls to this could probably just be a weighted pick instead of all this. The mod argument might effectively be unused as is.
 proc/RarityClassRoll(var/scalemax = 100, var/mod = 0, var/list/category_boundaries)
 	if (!isnum(scalemax) || scalemax <= 0)
 		return 0
@@ -1502,15 +1506,16 @@ proc/RarityClassRoll(var/scalemax = 100, var/mod = 0, var/list/category_boundari
 		return 0
 
 	var/picker = rand(1,scalemax)
-	picker += mod
-	var/list_counter = length(category_boundaries)
+	picker += mod //picker now ranges (mod + 1, scalemax + mod)
+	var/list_counter = length(category_boundaries) //we start at the max possible tier - 1 and go down
 
+	//This little loop might be one of the least intuitive things in this fucking codebase.
 	for (var/X in category_boundaries)
 		if (!isnum(X))
 			return 1
 		if (picker >= X)
-			return list_counter + 1
-		list_counter--
+			return list_counter + 1 //final tier found (+1 because the list is one shorter)
+		list_counter-- //decrease tier
 
 	return 1
 

@@ -16,6 +16,7 @@
 		src.light = image('icons/obj/large_storage.dmi',"lootcratelocklight")
 		src.stripes = image('icons/obj/large_storage.dmi',"lootcratestripes")
 
+		//5% chance of tier 3, 25% of tier 2, 70% of tier 1 (I think??)
 		tier = RarityClassRoll(100,0,list(95,70))
 		var/kind = rand(1,5)
 		// kinds: (1) Civilian (2) Scientific (3) Industrial (4) Military (5) Criminal
@@ -36,17 +37,21 @@
 				if (tier == 3)
 					picker = rand(1,3)
 					switch(picker)
-						if(1)
-							items += /obj/item/clothing/gloves/psylink_bracelet
+						if(1) //Bat 2024-5-20 - replacing the psylink bracelets
+							items += /obj/item/reagent_containers/glass/beaker/strange_reagent
 							item_amounts += 1
-						if(2)
-							items += /obj/item/artifact/teleport_wand
+							items += /obj/item/reagent_containers/mender/brute/high_capacity
+							item_amounts += 1
+							items += /obj/item/reagent_containers/mender/burn/high_capacity
+							item_amounts += 1
+						if(2) //Bat 2024-5-20 - added artifact key
+							items += pick(/obj/item/artifact/teleport_wand, /obj/item/artifact/activator_key)
 							item_amounts += 1
 						else
 							items += /obj/item/device/voltron
 							item_amounts += 1
 				else if (tier == 2)
-					picker = rand(1,2)
+					picker = rand(1,3)
 					switch(picker)
 						if(1)
 							items += pick(/obj/critter/bear,/obj/critter/domestic_bee,
@@ -55,20 +60,22 @@
 						if(2)
 							items += pick(/obj/item/injector_belt,/obj/item/clothing/mask/gas/injector_mask)
 							item_amounts += 1
+						else //Bat 2024-5-20 - moved down from tier 3, pretty novel but probably not useful?
+							items += /obj/item/clothing/gloves/psylink_bracelet //will spawn it's counterpart
+							item_amounts += 1
 				else
 					picker = rand(1,4)
 					switch(picker)
 						if(1)
 							items += /obj/item/roboupgrade/efficiency
 							item_amounts += 1
-							items += /obj/item/roboupgrade/jetpack
+							items += pick(/obj/item/roboupgrade/jetpack, /obj/item/roboupgrade/speed) //Bat 2024-5-20 - moved speed here, added expand below
 							item_amounts += 1
-							picker = rand(1,4)
 							items += pick(
 								/obj/item/roboupgrade/physshield,
 								/obj/item/roboupgrade/teleport,
 								// /obj/item/roboupgrade/opticthermal,
-								/obj/item/roboupgrade/speed,
+								/obj/item/roboupgrade/expand,
 							)
 							item_amounts += 1
 						if(2)
@@ -81,10 +88,10 @@
 							items += /obj/item/reagent_containers/glass/beaker/large/epinephrine
 							item_amounts += 1
 							items += /obj/item/reagent_containers/hypospray
-							item_amounts += 1
+							item_amounts += rand(1,2) //Bat 2024-5-20 - was 1
 						if(3)
 							items += pick(/obj/critter/spore)
-							item_amounts += 3
+							item_amounts += rand(2,4) //Bat 2024-5-20 - was 3
 						else
 							items += /obj/item/reagent_containers/glass/happyplant
 							item_amounts += 2
@@ -108,8 +115,8 @@
 						if(2)
 							items += pick(concrete_typesof(/obj/item/wizard_crystal))
 							item_amounts += 10
-						else
-							items += /obj/item/shipcomponent/mainweapon/rockdrills
+						else //Bat 2024-5-20 - now a chance of being the plasma cutters.
+							items += pick(/obj/item/shipcomponent/mainweapon/rockdrills, /obj/item/shipcomponent/mainweapon/mining)
 							item_amounts += 1
 				else if (tier == 2)
 					picker = rand(1,4)
@@ -120,7 +127,7 @@
 							item_amounts += 30
 						else
 							items += /obj/critter/fermid
-							item_amounts += 1
+							item_amounts += rand(1,4) //Bat 2024-5-20 - was 1, fermids aren't beefy
 				else
 					picker = rand(1,7)
 					switch(picker)
@@ -165,7 +172,7 @@
 
 				// MILITARY GOODS LOOT TABLE
 				if (tier == 3)
-					picker = rand(1,3)
+					picker = rand(1,4)
 					switch(picker)
 						if(1)
 							items += /obj/item/device/voltron
@@ -174,6 +181,9 @@
 							items += /obj/item/ammo/power_cell/self_charging/disruptor
 							item_amounts += 1
 							items += /obj/item/ammo/power_cell/self_charging
+							item_amounts += 1
+						if(3) //Bat 2024-5-20 - added some spicy pod guns
+							items += pick(/obj/item/shipcomponent/mainweapon/laser_ass, /obj/item/shipcomponent/mainweapon/artillery)
 							item_amounts += 1
 						else
 							items += /obj/item/clothing/gloves/ring/titanium
@@ -194,19 +204,22 @@
 								items += pick(/obj/item/chem_grenade/incendiary, /obj/item/chem_grenade/cryo, /obj/item/chem_grenade/shock, /obj/item/chem_grenade/pepper, prob(10); /obj/item/chem_grenade/sarin)
 								item_amounts += 1
 				else
-					picker = rand(1,1)
+					picker = rand(1,3)
 					switch(picker)
-						if(1)
-							items += /obj/item/reagent_containers/glass/beaker/large/antitox
-							item_amounts += 1
-							items += /obj/item/reagent_containers/glass/beaker/large/brute
-							item_amounts += 1
-							items += /obj/item/reagent_containers/glass/beaker/large/burn
-							item_amounts += 1
-							items += /obj/item/reagent_containers/glass/beaker/large/epinephrine
-							item_amounts += 1
-							items += /obj/item/reagent_containers/hypospray
-							item_amounts += 1
+						if(1) //Bat 2024-5-20 - redid this entire section, was formery only a copy of the medsci large beaker loot (explains why that felt so common)
+							//less potent version of the tier 2 grenades
+							for (var/i = 1, i < rand(2,4), i++)
+								items += pick(/obj/item/chem_grenade/incendiary, /obj/item/chem_grenade/shock, /obj/item/chem_grenade/pepper, /obj/item/chem_grenade/fog)
+								item_amounts += 1
+						if(2)
+							items += /obj/item/handcuffs
+							item_amounts += 2
+							items += /obj/item/device/flash
+							item_amounts += 2
+						if(3)
+							items += /obj/item/device/flash/turbo //I'm out of ideas
+							item_amounts += rand(1,3)
+
 
 			if(5)
 				name = "unmarked shipment crate"
@@ -647,7 +660,11 @@
 		for (var/obj/I in holder.contents)
 			if (istype(I,/obj/critter/cat/))
 				continue // absolutely fucking not >=I
-			new /obj/item/scrap(holder)
+			if (iscritter(I)) //minced bees :)
+				var/obj/decal/cleanable/blood/gibs/whoops = make_cleanable(/obj/decal/cleanable/blood/gibs,holder)
+				whoops.name = "[pick("minced", "blended", "ground", "finely diced")] [I.name]"
+			else
+				new /obj/item/scrap(holder)
 			qdel(I)
 
 		holder.locked = 0
@@ -658,6 +675,7 @@
 
 // Items specific to loot crates
 
+///causes you and your bracelet chum to get one another's chat output
 /obj/item/clothing/gloves/psylink_bracelet
 	name = "jewelled bracelet"
 	desc = "Some pretty jewellery."
