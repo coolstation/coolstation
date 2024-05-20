@@ -207,7 +207,7 @@ var/list/asteroid_blocked_turfs = list()
 /datum/mining_controller/proc/show_stats()
 	var/dat = {"<html>
 <head>
-	<title>Mining Level Statistics</title>
+	<title>Mining Generation Statistics</title>
 	<style>
 		table, td, th {
 			border-collapse: collapse;
@@ -215,13 +215,14 @@ var/list/asteroid_blocked_turfs = list()
 			font-size: 100%;
 		}
 		th { background: #FF6961; }
+		td { background: #FFFFFF; }
 		td, th {
 			margin:	0;
 			padding: 0.25em 0.5em;
 		}
 	</style>
 </head>
-<body>
+<body style='background-color:#EEEEEE'>
 
 		"}
 

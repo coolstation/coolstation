@@ -2391,6 +2391,7 @@ var/global/list/cargopads = list()
 	w_class = W_CLASS_SMALL
 	mats = 6
 	var/obj/item/satchel/mining/satchel = null
+	inventory_counter_enabled = 1
 
 	borg
 		New()
@@ -2398,17 +2399,33 @@ var/global/list/cargopads = list()
 			var/obj/item/satchel/mining/large/S = new /obj/item/satchel/mining/large(src)
 			satchel = S
 
+	//attack_self can just dump on the floor as usual for all I care, but let me unload the dang satchel directly thanks
+	attack_hand(mob/user)
+		if (user.is_in_hands(src) && satchel)
+			user.visible_message("[user] unloads [satchel] from [src].", "You unload [satchel] from [src].")
+			user.put_in_hand_or_drop(satchel)
+			satchel = null
+			icon_state = "scoop"
+			inventory_counter.hide_count()
+		else
+			..()
+
+
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W,/obj/item/satchel/mining/))
 			var/obj/item/satchel/mining/S = W
-			if (satchel)
-				boutput(user, "<span class='alert'>There's already a satchel hooked up to [src].</span>")
-				return
+			var/obj/item/satchel/mining/old_satchel = satchel
 			user.drop_item()
 			S.set_loc(src)
 			satchel = S
 			icon_state = "scoop-bag"
-			user.visible_message("[user] inserts [S] into [src].", "You insert [S] into [src].")
+			inventory_counter.show_count()
+			inventory_counter.update_number(satchel.curitems)
+			if (old_satchel)
+				user.visible_message("[user] swaps [src]'s [old_satchel.name] for [S].", "You swap [src]'s' [old_satchel] for [S].")
+				user.put_in_hand_or_drop(old_satchel)
+			else
+				user.visible_message("[user] inserts [S] into [src].", "You insert [S] into [src].")
 		else
 			..()
 			return
@@ -2416,12 +2433,13 @@ var/global/list/cargopads = list()
 	attack_self(var/mob/user as mob)
 		if(!issilicon(user))
 			if (satchel)
-				user.visible_message("[user] unloads [satchel] from [src].", "You unload [satchel] from [src].")
+				user.visible_message("[user] ejects [satchel] from [src].", "You eject [satchel] from [src].")
 				satchel.set_loc(get_turf(user))
 				satchel = null
 				icon_state = "scoop"
+				inventory_counter.hide_count()
 			else
-				boutput(user, "<span class='alert'>There's no satchel in [src] to unload.</span>")
+				boutput(user, "<span class='alert'>There's no satchel in [src] to eject.</span>")
 		else
 			boutput(user, "<span class='alert'>The satchel is firmly secured.</span>")
 

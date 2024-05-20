@@ -195,6 +195,9 @@
 
 		signal_event("icon_updated")
 		src.inventory_counter?.update_number(src.curitems)
+		if (istype(src.loc, /obj/item/ore_scoop))
+			var/obj/item/ore_scoop/our_scoop = src.loc
+			our_scoop.inventory_counter.update_number(src.curitems)
 
 	get_desc()
 		return "It contains [src.curitems]/[src.maxitems] [src.itemstring]."
