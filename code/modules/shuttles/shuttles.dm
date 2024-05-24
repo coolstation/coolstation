@@ -46,6 +46,7 @@
 	var/departure_delay = 8 SECONDS
 
 	var/disembark_time = 2 SECONDS
+	//var/obj/effects/shuttle_fly_in/flourish
 
 
 	departing(datum/transit_stop/destination)
@@ -58,6 +59,10 @@
 		else
 			stack_trace("Vehicle [src.vehicle_id] had no turfs at stop [src.current_location.stop_id] ([src.current_location.target_area])")
 			return
+		var/turf/T2 = pick(get_area_turfs(destination.target_area))
+		//flourish = new /obj/effects/shuttle_fly_in(T2, src.departure_delay)
+		new /obj/effects/shuttle_fly_in(T2, src.departure_delay)
+
 		sleep(departure_delay)
 		playsound(target, "sound/misc/ground_rumble_big.ogg", 70, 1)
 		for(var/mob/M in locate(destination.target_area)) // oh dear, stay behind the yellow line kids
@@ -68,6 +73,8 @@
 				playsound(M.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 90, 1)
 
 	arriving(datum/transit_stop/destination)
+		/*qdel(flourish)
+		flourish = null*/
 		var/turf/target
 		for(var/turf/T in locate(destination.target_area))
 			target = T
