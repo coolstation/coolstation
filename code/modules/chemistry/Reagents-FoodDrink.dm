@@ -857,10 +857,11 @@ datum
 					return ..()
 				var/power_granted = pick(mutini_effects)
 				var/power_time = rand(1,10)
-				M.bioHolder.AddEffect(power_granted)//, 0, power_time) the timeLeft var either wasn't working here or was grumpy about something so now we manually remove this below
-				SPAWN_DBG(power_time*10)
+				//timeLeft seems to work fine so getting rid of these spawns.
+				M.bioHolder.AddEffect(power_granted, 0, power_time)
+				/*SPAWN_DBG(power_time*10)
 					if (M?.bioHolder)
-						M.bioHolder.RemoveEffect(power_granted)
+						M.bioHolder.RemoveEffect(power_granted)*/
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M)
@@ -869,10 +870,10 @@ datum
 					return ..()
 				var/power_granted = pick(mutini_effects)
 				var/power_time = rand(1,10)
-				M.bioHolder.AddEffect(power_granted)//, 0, power_time)
-				SPAWN_DBG(power_time*10)
+				M.bioHolder.AddEffect(power_granted, 0, power_time)
+				/*SPAWN_DBG(power_time*10)
 					if (M?.bioHolder)
-						M.bioHolder.RemoveEffect(power_granted)
+						M.bioHolder.RemoveEffect(power_granted)*/
 				..()
 				return
 
