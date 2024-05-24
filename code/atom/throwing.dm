@@ -18,8 +18,6 @@
 				if (L.lying) continue
 				src.throw_impact(A, thr)
 				. = TRUE
-			// **TODO: Better behaviour for windows
-			// which are dense, but shouldn't always stop movement
 			if(isobj(A))
 				if(!A.CanPass(src, src.loc, 1.5))
 					src.throw_impact(A, thr)
