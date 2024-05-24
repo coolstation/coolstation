@@ -205,6 +205,8 @@
 		if( world.time < lastvend ) return//aaaaaaa
 		lastvend = world.time + 2
 		var/datum/data/vending_product/R = throw_item()
+		if (!R) //pizza machine = special
+			return
 		var/service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost * serv_chg_pct)
 		printReceipt(0, R.product_name, R.product_cost, service_charge)
 		if(R?.logged_on_vend)
@@ -2546,7 +2548,7 @@
 					P.sharpened = src.sharpen
 					P.desc = "A typical [piztopping] pizza."
 					P.name = "[piztopping] pizza"
-					sleep(0.2)
+					//sleep(0.2) do we need to
 					if(piztopping != "plain")
 						switch(piztopping)
 							if("meatball") P.topping_color ="#663300"
@@ -2581,6 +2583,36 @@
 		if(prob(50))
 			random_burn_damage(target, rand(5,15))
 		..(target)
+
+	//Mess with people trying to get free pizza
+	throw_item(item_name_to_throw)
+		var/mob/living/target = locate() in view(7,src)
+		if(!target)
+			return null
+
+		var/randtopping = pick("plain", "meatball", "mushroom", "pepperoni")
+		var/obj/item/reagent_containers/food/snacks/ingredient/pizza3/P  = new /obj/item/reagent_containers/food/snacks/ingredient/pizza3(src.loc) //It's raw :)
+		P.quality = 0.6
+		P.heal_amt = 2
+
+		if(randtopping != "plain")
+			switch(randtopping)
+				if("meatball") P.topping_color ="#663300"
+				if("mushroom") P.topping_color ="#CFCFCF"
+				if("pepperoni") P.topping_color ="#C90E0E"
+			P.name = "uncooked [randtopping] pizza"
+			P.desc = "A pizza with [randtopping] toppings. You need to bake it..."
+			P.num = 1
+			P.topping = 1
+			P.toppings += randtopping
+			P.toppingstext = copytext(html_encode(english_list(P.toppings)), 1, 512)
+			P.add_topping(P.num)
+
+		P.throw_at(target, 16, 3)
+		src.visible_message("<span class='alert'><b>[src] launches [P.name] at [target.name]!</b></span>")
+		postvend_effect()
+		return
+
 
 /obj/machinery/vending/pizza/fallen
 	New()
