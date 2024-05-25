@@ -4,6 +4,7 @@
 	var/martian_type = "basic"
 	desc = "Genocidal monsters from Mars."
 	density = 1
+	icon = 'icons/mob/critter/martian.dmi'
 	icon_state = "martian"
 	icon_state_dead = "martian-dead"
 	custom_gib_handler = /proc/martiangibs

@@ -7,6 +7,7 @@
 /obj/critter/martian
 	name = "martian"
 	desc = "Genocidal monsters from Mars."
+	icon = 'icons/mob/critter/martian.dmi'
 	icon_state = "martian"
 	density = 1
 	health = 20
@@ -233,6 +234,7 @@
 				var/obj/machinery/martianbomb/B = new(src.loc)
 				B.icon_state = "mbomb-timing"
 				B.active = 1
+				B.last_process = TIME
 				src.visible_message("<span class='alert'><B>[src]</B> plants a bomb and teleports away!</span>")
 				qdel(src)
 			else
@@ -242,20 +244,20 @@
 /obj/machinery/martianbomb
 	name = "martian bomb"
 	desc = "You'd best destroy this thing fast."
-	icon = 'icons/mob/critter.dmi'
+	icon = 'icons/mob/critter/martian.dmi'
 	icon_state = "mbomb-off"
 	anchored = 1
 	density = 1
 	var/health = 100
 	var/active = 0
-	var/timeleft = 300
+	var/timeleft = 300 SECONDS
 
 	process()
 		if (src.active)
 			src.icon_state = "mbomb-timing"
-			src.timeleft -= 1
+			src.timeleft -= (TIME - last_process)
 			if (src.timeleft <= 30) src.icon_state = "mbomb-det"
-			if (src.timeleft == 0)
+			if (src.timeleft <= 0)
 				explosion_new(src, src.loc, 62)
 				qdel (src)
 			//proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
