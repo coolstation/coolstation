@@ -2892,10 +2892,6 @@
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "cRT" = (
-/obj/stool,
-/obj/landmark/start{
-	name = "Staff Assistant"
-	},
 /obj/disposalpipe/segment/bent/north,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
@@ -11618,6 +11614,12 @@
 /obj/access_spawn/hos,
 /turf/floor/grey,
 /area/station/security/hos)
+"lXk" = (
+/obj/machinery/recharger/wall{
+	pixel_x = 28
+	},
+/turf/floor,
+/area/station/engine/engineering)
 "lXy" = (
 /obj/disposalpipe/segment/vertical,
 /obj/wingrille_spawn,
@@ -22180,6 +22182,10 @@
 /area/station/hallway/secondary/exit)
 "wAu" = (
 /obj/disposalpipe/segment/vertical,
+/obj/stool,
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "wCn" = (
@@ -22949,6 +22955,12 @@
 "xvD" = (
 /turf/floor/grey,
 /area/station/science/teleporter)
+"xwb" = (
+/obj/machinery/recharger/wall{
+	pixel_x = -28
+	},
+/turf/floor/black,
+/area/station/hangar/main)
 "xxO" = (
 /obj/cable{
 	d2 = 4;
@@ -62078,7 +62090,7 @@ hbh
 ize
 uJp
 wjS
-dhD
+lXk
 vLX
 yez
 aia
@@ -81716,7 +81728,7 @@ wJD
 wJD
 huA
 jva
-nus
+xwb
 osv
 tvI
 iEX
