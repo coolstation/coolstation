@@ -22,6 +22,9 @@
 	var/implanted = null
 	var/forensic_ID = null
 	var/atom/shooter = null // Who/what fired this?
+	/// The mob/thing that fired this projectile
+	var/atom/shooter = null
+	/// Mob-typed copy of `shooter` var to save time on casts later
 	var/mob/mob_shooter = null
 	// We use shooter to avoid self collision, however, the shot may have been initiated through a proxy object. This is for logging.
 	var/travelled = 0 // track distance

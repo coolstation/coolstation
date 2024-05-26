@@ -17,9 +17,15 @@ ABSTRACT_TYPE(/obj/item/turret_deployer)
 	var/quick_deploy_fuel = 0
 	var/associated_turret = null //what kind of turret should this spawn?
 
-	New()
+	New(newLoc, forensics_id)
 		..()
 		icon_state = "[src.icon_tag]_deployer"
+		if (!src.forensic_ID)
+			if (forensics_id)
+				src.forensic_ID = forensics_id
+			else
+				src.forensic_ID = src.CreateID()
+				forensic_IDs.Add(src.forensic_ID)
 
 	get_desc()
 		. = "<br><span class='notice'>It looks [damage_words]</span>"
@@ -122,10 +128,17 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 	var/deconstructable = TRUE
 	var/can_toggle_activation = TRUE // whether you can enable or disable the turret with a screwdriver, used for map setpiece turrets
 
-	New(loc, direction)
+	New(loc, direction, forensics_id)
 		..()
 		src.set_dir(direction || src.dir) // don't set the dir if we weren't passed one
 		src.set_initial_angle()
+
+		if (!src.forensic_ID)
+			if (forensics_id)
+				src.forensic_ID = forensics_id
+			else
+				src.forensic_ID = src.CreateID()
+				forensic_IDs.Add(src.forensic_ID)
 
 		src.icon_state = "[src.icon_tag]_base"
 		src.appearance_flags |= RESET_TRANSFORM
@@ -176,9 +189,25 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 
 	proc/shoot(target)
 		SPAWN(0)
+			var/list/casing_turfs
+			var/turf/picked_turf
+			if (src.current_projectile.casing)
+				casing_turfs = list()
+				for (var/direction in alldirs)
+					var/turf/T = get_step(src, direction)
+					if (T && !T.density)
+						casing_turfs += T
 			for(var/i in 1 to src.current_projectile.shot_number) //loop animation until finished
 				flick("[src.icon_tag]_fire",src)
 				muzzle_flash_any(src, 0, "muzzle_flash")
+				if (src.current_projectile.casing)
+					picked_turf = pick(casing_turfs)
+					var/obj/item/casing/turret_casing = new src.current_projectile.casing(picked_turf, src.forensic_ID)
+					// prevent infinite casing stacks
+					if (length(picked_turf.contents) > 10)
+						SPAWN(30 SECONDS)
+							if (!QDELETED(turret_casing) && get_turf(turret_casing) == picked_turf)
+								qdel(turret_casing)
 				sleep(src.current_projectile.shot_delay)
 		shoot_projectile_ST_pixel_spread(src, current_projectile, target, 0, 0 , spread)
 
@@ -338,8 +367,8 @@ ADMIN_INTERACT_PROCS(/obj/deployable_turret, proc/admincmd_shoot, proc/admincmd_
 		qdel(src)
 
 	proc/spawn_deployer()
-		var/obj/item/turret_deployer/deployer = new src.associated_deployer(src.loc)
-		deployer.health = src.health // NO FREE REPAIRS, ASSHOLES
+		var/obj/item/turret_deployer/deployer = new src.associated_deployer(src.loc, src.forensic_ID)
+		deployer.turret_health = src.health // NO FREE REPAIRS, ASSHOLES
 		deployer.damage_words = src.damage_words
 		deployer.quick_deploy_fuel = src.quick_deploy_fuel
 		deployer.tooltip_rebuild = 1
