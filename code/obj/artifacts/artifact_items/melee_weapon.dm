@@ -32,6 +32,8 @@
 		src.damtype = pick("brute", "fire", "toxin")
 		src.dmg_amount = rand(3,6)
 		src.dmg_amount *= rand(1,5)
+		if (src.dmg_amount <= 5) //I wanna buff these a little cause "melee art, four damage, never used" is a little too common IME
+			src.dmg_amount += 3 //but messing with the above would skew average melee art damage significantly higher.
 		if (prob(45))
 			src.stamina_dmg = rand(50,120)
 		src.hitsound = pick('sound/impact_sounds/Metal_Hit_Heavy_1.ogg','sound/impact_sounds/Wood_Hit_1.ogg','sound/effects/exlow.ogg','sound/effects/mag_magmisimpact.ogg','sound/impact_sounds/Energy_Hit_1.ogg',

@@ -1802,7 +1802,7 @@ DEFINE_FLOORS(techfloor/green,
 				boutput(user, "<span class='alert'>You must remove the plating first.</span>")
 
 //grabsmash??
-	else if (istype(C, /obj/item/grab/))
+	if (istype(C, /obj/item/grab/))
 		var/obj/item/grab/G = C
 		if  (!grab_smash(G, user))
 			return ..(C, user)
