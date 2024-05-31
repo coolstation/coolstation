@@ -2388,3 +2388,9 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 
 #undef DRY_MUD
 #undef FRESH_MUD
+
+/obj/decal/cleanable/tooth
+	name = "loose tooth"
+	desc = "Some schmuck got this knocked straight out of their head."
+	icon = 'icons/obj/decals/blood.dmi'
+	random_icon_states = list("tooth1", "tooth2", "tooth3", "tooth4")

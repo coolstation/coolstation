@@ -722,6 +722,15 @@
 
 		if (can_crit && prob(crit_chance) && !target.check_block()?.can_block(DAMAGE_BLUNT, 0))
 			msgs.stamina_crit = 1
+			//Good lord what is attack code
+			//this does not belong where it is but where the hell else am I putting it?
+			if (ishuman(target) && def_zone == "head")
+				var/mob/living/carbon/human/Ht = target
+				var/obj/item/skull/target_skull = Ht.organHolder?.skull
+				if (target_skull && target_skull.teeth)
+					target_skull.teeth--
+					new /obj/decal/cleanable/tooth(get_turf(target))
+
 			msgs.played_sound = pick(sounds_punch)
 			if(prob(5))
 				msgs.visible_message_target("<span class='notice'>[pick("... And lands a","That was a")] <b>[crit_chance]% hit!</b> [prob(75) ? "(roleplay it!)" : ""] </span>")

@@ -20,6 +20,7 @@
 	rand_pos = 1
 	var/made_from = "bone"
 	var/last_use = 0
+	var/teeth = 32 //normal for an adult human
 
 	New(loc, datum/organHolder/nholder)
 		..()

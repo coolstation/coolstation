@@ -2394,6 +2394,7 @@
 		src.organHolder.heart.op_stage = 0
 	if (src.organHolder.brain)
 		src.organHolder.brain.op_stage = 0
+	src.organHolder.skull?.teeth = 32 //dental included :)
 
 	if (src.get_stamina() != (STAMINA_MAX + src.get_stam_mod_max()))
 		src.set_stamina(STAMINA_MAX + src.get_stam_mod_max())
