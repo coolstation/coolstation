@@ -13,17 +13,20 @@
 	var/base_state = "left"
 	visible = 0
 	flags = ON_BORDER
-	health = 500
-	health_max = 500
+	health = 65 //a reinforced directional window is 65 health, so I matched that for the moment
+	health_max = 65 //500? fuck off
 	opacity = 0
 	brainloss_stumble = 1
 	autoclose = 1
 	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT | USE_CANPASS
 	object_flags = CAN_REPROGRAM_ACCESS
+	hitsound = 'sound/impact_sounds/Glass_Hit_1.ogg'
+	knocksound = 'sound/impact_sounds/Glass_Hit_1.ogg'
 
 	New()
 		..()
-
+		//TODO: unfuck whatever base_state is here for and probably fold into base door code
+		src.icon_base = base_state
 		if (src.req_access && length(src.req_access))
 			src.icon_state = "[src.icon_state]"
 			src.base_state = src.icon_state
@@ -47,7 +50,7 @@
 			if (src.density)
 				src.autoclose = 0
 			return src.Attackby(null, user)
-
+/*
 	attackby(obj/item/I as obj, mob/user as mob)
 		if (user.getStatusDuration("stunned") || user.getStatusDuration("weakened") || user.stat || user.restrained())
 			return
@@ -78,7 +81,7 @@
 				flick(text("[]deny", src.base_state), src)
 
 		return
-
+*/
 	emp_act()
 		..()
 		if (prob(20) && (src.density && src.cant_emag != 1 && src.isblocked() != 1))
@@ -226,6 +229,14 @@
 				src.operating = 0
 
 		return 1
+
+	//let's not have glass doors poop robot debris everywhere
+	break_me_complitely()
+		set waitfor = 0
+		playsound(src.loc, pick(sounds_shatter), 50, 1)
+		new /obj/item/raw_material/shard/glass(src.loc)
+		qdel(src)
+
 
 	// Since these things don't have a maintenance panel or any other place to put this, really (Convair880).
 	verb/toggle_autoclose()
