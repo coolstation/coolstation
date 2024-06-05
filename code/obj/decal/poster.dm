@@ -303,6 +303,12 @@
 			icon = 'icons/obj/decals/posters.dmi'
 			icon_state = "chsc"
 
+		teamwork
+			name = "Team Work Makes The Team Work!"
+			desc = "One of the less inspired things the poster committee ever submitted at 16:49 on a friday."
+			icon = 'icons/obj/decals/posters.dmi'
+			icon_state = "teamwork"
+
 		danger_highvolt
 			name = "Danger: High Voltage"
 			icon_state = "shock"
@@ -782,10 +788,10 @@
 					30;"contest4",
 					//50;"contest5",
 					// new contest not-winners but cool nonetheless
-					15 ;"contest-other1",
+					//15 ;"contest-other1",
 					10 ;"contest-other2",
 					15 ;"contest-other3",
-					15 ;"contest-other4",
+					//15 ;"contest-other4",
 					15 ;"contest-other5",
 					15 ;"contest-other6",
 					15 ;"contest-other7"
@@ -821,18 +827,18 @@
 					if("contest5")
 						src.name = "Work! Ranch"
 						src.icon_state = "work_ranch"*/
-					if("contest-other1")
+					/*if("contest-other1") 	- This one and "Join Us For Boom" disabled cause it's not FOSS syndies but also, why the hell does NT allow nukeop recruitment posters?
 						src.name = "Pack Smart"
-						src.icon_state = "pack_smart"
+						src.icon_state = "pack_smart"*/
 					if("contest-other2")
 						src.name = "Grow 420 Weed"
 						src.icon_state = "grow_weed"
 					if("contest-other3")
 						src.name = "Edit Wiki"
 						src.icon_state = "edit_wiki"
-					if("contest-other4")
+					/*if("contest-other4")
 						src.name = "Join Us For Boom"
-						src.icon_state = "join_us_for_boom"
+						src.icon_state = "join_us_for_boom"*/
 					if("contest-other5")
 						src.name = "Grow Food Not Weed"
 						src.icon_state = "grow_food_not_weed"
