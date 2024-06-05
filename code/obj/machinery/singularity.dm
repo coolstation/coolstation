@@ -882,7 +882,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /////////////////////////////////////////// Emitter ///////////////////////////////
 /obj/machinery/emitter
 	name = "Emitter"
-	desc = "Shoots a high power laser when active"
+	desc = "Shoots a high power laser when active."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "Emitter"
 	anchored = 0

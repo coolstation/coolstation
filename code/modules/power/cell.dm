@@ -118,7 +118,7 @@
 
 	if(src.specialicon) return
 
-	if(maxcharge <= 2500) icon_state = "cell"
+	if(maxcharge <= 2500) icon_state = "cell" //good fucking lord what compels a person
 	else icon_state = "hpcell"
 
 	var/image/I = GetOverlayImage("charge_indicator")
