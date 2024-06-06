@@ -363,9 +363,9 @@
 		var/width = 400
 		var/height = 200
 
-		offtext = "<A href='?src=\ref[src];off=1'>OFF</A>"
-		intext = "<A href='?src=\ref[src];slurp=1'>IN</A>"
-		outtext = "<A href='?src=\ref[src];piss=1'>OUT</A>"
+		offtext = "<A href='byond://?src=\ref[src];off=1'>OFF</A>"
+		intext = "<A href='byond://?src=\ref[src];slurp=1'>IN</A>"
+		outtext = "<A href='byond://?src=\ref[src];piss=1'>OUT</A>"
 
 		activetext = "OFF"
 		if (slurping) activetext = "IN"

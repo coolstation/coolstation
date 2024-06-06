@@ -1442,7 +1442,7 @@ proc/get_adjacent_floor(atom/W, mob/user, px, py)
 	if (plaintext)
 		text += "[x], [y], [z]"
 	else
-		text += "<a href='?src=[holder ? "\ref[holder]" : "%admin_ref%"];action=jumptocoords;target=[x],[y],[z]' title='Jump to Coords'>[x],[y],[z]</a>"
+		text += "<a href='byond://?src=[holder ? "\ref[holder]" : "%admin_ref%"];action=jumptocoords;target=[x],[y],[z]' title='Jump to Coords'>[x],[y],[z]</a>"
 
 	return text
 

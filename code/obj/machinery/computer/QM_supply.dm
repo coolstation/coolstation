@@ -537,7 +537,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 						if (S.category == foundCategory)
 							ordershit += {"
 								<tr class='row[rownum % 2]'>
-									<th class='noborder itemtop'><a href='?src=\ref[src];action=order;subaction=buy;what=\ref[S]'>[S.name]</a></td>
+									<th class='noborder itemtop'><a href='byond://?src=\ref[src];action=order;subaction=buy;what=\ref[S]'>[S.name]</a></td>
 									<th class='noborder itemtop' style='text-align: right;'>[S.cost]</td>
 								</tr>
 								<tr class='row[rownum % 2]'>
@@ -669,14 +669,14 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 							ordershit += {"
 							<tr class='row[rownum % 2]'>
 								<td class='noborder itemtop' style='width: 50%;'>
-									<a href='?src=\ref[src];action=order_vendors;vendor=[vendor];subaction=buy;what=\ref[S]'>[S.name] &bull; [S.cost] Credits</a><br>
+									<a href='byond://?src=\ref[src];action=order_vendors;vendor=[vendor];subaction=buy;what=\ref[S]'>[S.name] &bull; [S.cost] Credits</a><br>
 									[S.desc]
 								</td>
 							"}
 						else //alternate so it's nice on the right side
 							ordershit += {"
 								<td class='noborder itemtop' style='width: 50%;'>
-									<a href='?src=\ref[src];action=order_vendors;vendor=[vendor];subaction=buy;what=\ref[S]'>[S.name] &bull; [S.cost] Credits</a><br>
+									<a href='byond://?src=\ref[src];action=order_vendors;vendor=[vendor];subaction=buy;what=\ref[S]'>[S.name] &bull; [S.cost] Credits</a><br>
 									[S.desc]
 								</td>
 							</tr>

@@ -36,7 +36,7 @@
 
 	src.add_dialog(user)
 	var/dat = "<HEAD><TITLE>Operating Computer</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY><br>"
-	dat += "<A HREF='?action=mach_close&window=op'>Close</A><br><br>" //| <A HREF='?src=\ref[user];update=1'>Update</A>"
+	dat += "<A HREF='byond://?action=mach_close&window=op'>Close</A><br><br>" //| <A HREF='byond://?src=\ref[user];update=1'>Update</A>"
 	if(src.table && (src.table.check_victim()))
 		src.victim = src.table.victim
 		dat += {"

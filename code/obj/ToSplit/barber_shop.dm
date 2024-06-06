@@ -338,12 +338,12 @@
 		var/dat = "<TT><B>Dye Bottle Dispenser Unit</B><BR><HR><BR>"
 
 		if(src.bottle)
-			dat += {"Dye Bottle Loaded: <A href='?src=\ref[src];eject=1'>(Eject)</A><BR><BR><BR>Dye Color:<BR>"}
+			dat += {"Dye Bottle Loaded: <A href='byond://?src=\ref[src];eject=1'>(Eject)</A><BR><BR><BR>Dye Color:<BR>"}
 
 			if(src.bottle.uses_left)
-				dat += "<A href='?src=\ref[src];emptyb=1'>Empty Dye Bottle</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];emptyb=1'>Empty Dye Bottle</A><BR>"
 			else
-				dat += {"<A href='?src=\ref[src];fillb=1'>Fill Dye Bottle</A>"}
+				dat += {"<A href='byond://?src=\ref[src];fillb=1'>Fill Dye Bottle</A>"}
 		else
 			dat += "No Dye Bottle Loaded<BR>"
 

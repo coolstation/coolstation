@@ -84,7 +84,7 @@
 		dat += "Autolathe Wires:<BR>"
 		var/wire
 		for(wire in src.wires)
-			dat += text("[wire] Wire: <A href='?src=\ref[src];wire=[wire];act=wire'>[src.wires[wire] ? "Mend" : "Cut"]</A> <A href='?src=\ref[src];wire=[wire];act=pulse'>Pulse</A><BR>")
+			dat += text("[wire] Wire: <A href='byond://?src=\ref[src];wire=[wire];act=wire'>[src.wires[wire] ? "Mend" : "Cut"]</A> <A href='byond://?src=\ref[src];wire=[wire];act=pulse'>Pulse</A><BR>")
 
 		dat += text("The red light is [src.disabled ? "off" : "on"].<BR>")
 		dat += text("The green light is [src.shocked ? "off" : "on"].<BR>")
@@ -96,7 +96,7 @@
 		boutput(user, "You press the button, but nothing happens.")
 		return
 	if (src.temp)
-		dat = text("<TT>[]</TT><BR><BR><A href='?src=\ref[];temp=1'>Clear Screen</A>", src.temp, src)
+		dat = text("<TT>[]</TT><BR><BR><A href='byond://?src=\ref[];temp=1'>Clear Screen</A>", src.temp, src)
 	else
 		dat = text("<B>Metal Amount:</B> [src.m_amount] cm<sup>3</sup> (MAX: 150,000)<BR><br><FONT color = blue><B>Glass Amount:</B></FONT> [src.g_amount] cm<sup>3</sup> (MAX: 75,000)<HR>")
 		var/list/objs = list()
@@ -104,7 +104,7 @@
 		if (src.hacked)
 			objs += src.LL
 		for(var/obj/t in objs)
-			dat += text("<A href='?src=\ref[src];make=\ref[t]'>[t.name] ([t.m_amt] cc metal/[t.g_amt] cc glass)<BR>")
+			dat += text("<A href='byond://?src=\ref[src];make=\ref[t]'>[t.name] ([t.m_amt] cc metal/[t.g_amt] cc glass)<BR>")
 	user << browse("<HEAD><TITLE>Autolathe Control Panel</TITLE></HEAD><TT>[dat]</TT>", "window=autolathe_regular")
 	onclose(user, "autolathe_regular")
 	return

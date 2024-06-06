@@ -48,7 +48,7 @@
 
 						var/i = 1
 						for(var/obj/machinery/fission/reactor/R in theEngine.reactors)
-							dat += "<BR>\[ <A HREF='?src=\ref[src];reactor=\ref[R]'>Reactor [i++]</A> \]"
+							dat += "<BR>\[ <A HREF='byond://?src=\ref[src];reactor=\ref[R]'>Reactor [i++]</A> \]"
 
 					// Screen for individual reactor
 					if(2.0)
@@ -70,7 +70,7 @@
 							[i++]:
 							[F.name] -
 							[F.amount/F.maxAmount > 0.1 ? "[num2text(( F.amount/F.maxAmount )*100, 4)]%" : "<font color=red>[num2text(( F.amount/F.maxAmount )*100, 4)]%</font>"] -
-							[F.lowered ? "<A HREF='?src=\ref[src];raise=\ref[F]'>\[Raise Tube\]</A>" : "<A HREF='?src=\ref[src];low=\ref[F]'>\[Lower Tube\]</A> <A HREF='?src=\ref[src];flush=\ref[F]'>\[Flush Tube\]</A> <A HREF='?src=\ref[src];eject=\ref[F]'>\[Eject Tube\]</A>"]
+							[F.lowered ? "<A HREF='byond://?src=\ref[src];raise=\ref[F]'>\[Raise Tube\]</A>" : "<A HREF='byond://?src=\ref[src];low=\ref[F]'>\[Lower Tube\]</A> <A HREF='byond://?src=\ref[src];flush=\ref[F]'>\[Flush Tube\]</A> <A HREF='byond://?src=\ref[src];eject=\ref[F]'>\[Eject Tube\]</A>"]
 							"}
 
 						dat += "<BR><BR>\[ Control Rods \]<BR>"
@@ -82,16 +82,16 @@
 							[i++]:
 							[CR.name] -
 							Condition: [CR.condition < 10 ? "[CR.condition]%" : "<font color=red>[CR.condition]%</font>"]
-							[CR.lowered ? "<A HREF='?src=\ref[src];raise=\ref[CR]'>\[Raise Tube\]</A>" : "<A HREF='?src=\ref[src];low=\ref[CR]'>\[Lower Tube\]</A> <A HREF='?src=\ref[src];eject=\ref[CR]'>\[Eject Tube\]</A>"]
+							[CR.lowered ? "<A HREF='byond://?src=\ref[src];raise=\ref[CR]'>\[Raise Tube\]</A>" : "<A HREF='byond://?src=\ref[src];low=\ref[CR]'>\[Lower Tube\]</A> <A HREF='byond://?src=\ref[src];eject=\ref[CR]'>\[Eject Tube\]</A>"]
 							"}
 
-						dat += "<BR><BR>\[ <A HREF='?src=\ref[src];operation=back'>Back</A> \]"
+						dat += "<BR><BR>\[ <A HREF='byond://?src=\ref[src];operation=back'>Back</A> \]"
 
-				dat += "<BR><BR>\[ <A HREF='?src=\ref[src];operation=logout'>Log Out</A> \]"
+				dat += "<BR><BR>\[ <A HREF='byond://?src=\ref[src];operation=logout'>Log Out</A> \]"
 		else
-			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=login'>Log In</A> \]"
+			dat += "<BR>\[ <A HREF='byond://?src=\ref[src];operation=login'>Log In</A> \]"
 
-		dat += "<BR><BR><BR>\[ <A HREF='?action=mach_close&window=fission'>Close</A> \]"
+		dat += "<BR><BR><BR>\[ <A HREF='byond://?action=mach_close&window=fission'>Close</A> \]"
 		user << browse(dat, "window=fission;size=500x300")
 		onclose(user, "fission")
 

@@ -41,10 +41,10 @@
 			<B>Infection Development Rate:</B> [dataprob]<BR>
 			<B>Crippled Infectiousness:</B> [datavaccine]<BR><BR>
 			<HR><BR>
-			<A href='?src=\ref[src];ops=1'>Attempt to Create Vaccine<BR>
-			<A href='?src=\ref[src];ops=2'>Mutate<BR>
-			<A href='?src=\ref[src];ops=3'>Refresh Report<BR>
-			<A href='?src=\ref[src];ops=4'>Eject Vial"}
+			<A href='byond://?src=\ref[src];ops=1'>Attempt to Create Vaccine<BR>
+			<A href='byond://?src=\ref[src];ops=2'>Mutate<BR>
+			<A href='byond://?src=\ref[src];ops=3'>Refresh Report<BR>
+			<A href='byond://?src=\ref[src];ops=4'>Eject Vial"}
 			user << browse(dat, "window=virusmanip;size=400x500")
 			onclose(user, "virusmanip")
 		else

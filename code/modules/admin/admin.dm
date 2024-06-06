@@ -418,7 +418,7 @@ var/global/noir = 0
 
 							logTheThing("admin", usr, null, "deleted note [noteId] belonging to [player].")
 							logTheThing("diary", usr, null, "deleted note [noteId] belonging to [player].", "admin")
-							message_admins("<span class='internal'>[key_name(usr)] deleted note [noteId] belonging to <A href='?src=%admin_ref%;action=notes&target=[player]'>[player]</A>.</span>")
+							message_admins("<span class='internal'>[key_name(usr)] deleted note [noteId] belonging to <A href='byond://?src=%admin_ref%;action=notes&target=[player]'>[player]</A>.</span>")
 
 							var/key =  src.owner:key
 							var/name = (usr?.real_name) ? stripTextMacros(usr.real_name) : "NULL"
@@ -438,7 +438,7 @@ var/global/noir = 0
 
 					logTheThing("admin", usr, null, "added a note for [player]: [the_note]")
 					logTheThing("diary", usr, null, "added a note for [player]: [the_note]", "admin")
-					message_admins("<span class='internal'>[key_name(usr)] added a note for <A href='?src=%admin_ref%;action=notes&target=[player]'>[player]</A>: [the_note]</span>")
+					message_admins("<span class='internal'>[key_name(usr)] added a note for <A href='byond://?src=%admin_ref%;action=notes&target=[player]'>[player]</A>: [the_note]</span>")
 
 					var/key = src.owner:key
 					var/name = (usr?.real_name) ? stripTextMacros(usr.real_name) : "NULL"
@@ -494,7 +494,7 @@ var/global/noir = 0
 
 		if("jobbanpanel")
 			var/dat = ""
-			var/header = "<b>Pick Job to ban this guy from | <a href='?src=\ref[src];action=jobbanpanel;target=[href_list["target"]]'>Refresh</a><br>"
+			var/header = "<b>Pick Job to ban this guy from | <a href='byond://?src=\ref[src];action=jobbanpanel;target=[href_list["target"]]'>Refresh</a><br>"
 			var/body
 			var/jobs = ""
 			var/target
@@ -518,59 +518,59 @@ var/global/noir = 0
 				if(job in list("Tourist","Mining Supervisor","Atmospheric Technician","Vice Officer"))
 					continue
 				if(jobban_isbanned(M, job))
-					jobs += "<a href='?src=\ref[src];action=[action];type=[job];target=[target]'><font color=red>[replacetext(job, " ", "&nbsp")]</font></a> "
+					jobs += "<a href='byond://?src=\ref[src];action=[action];type=[job];target=[target]'><font color=red>[replacetext(job, " ", "&nbsp")]</font></a> "
 				else
-					jobs += "<a href='?src=\ref[src];action=[action];type=[job];target=[target]'>[replacetext(job, " ", "&nbsp")]</a> " //why doesn't this work
+					jobs += "<a href='byond://?src=\ref[src];action=[action];type=[job];target=[target]'>[replacetext(job, " ", "&nbsp")]</a> " //why doesn't this work
 
 			if(jobban_isbanned(M, "Captain"))
-				jobs += "<a href='?src=\ref[src];action=[action];type=Captain;target=[target]'><font color=red>Captain</font></a> "
+				jobs += "<a href='byond://?src=\ref[src];action=[action];type=Captain;target=[target]'><font color=red>Captain</font></a> "
 			else
-				jobs += "<a href='?src=\ref[src];action=[action];type=Captain;target=[target]'>Captain</a> " //why doesn't this work
+				jobs += "<a href='byond://?src=\ref[src];action=[action];type=Captain;target=[target]'>Captain</a> " //why doesn't this work
 
 			if(jobban_isbanned(M, "Head of Security"))
-				jobs += "<a href='?src=\ref[src];action=[action];type=Head of Security;target=[target]'><font color=red>Head of Security</font></a> "
+				jobs += "<a href='byond://?src=\ref[src];action=[action];type=Head of Security;target=[target]'><font color=red>Head of Security</font></a> "
 			else
-				jobs += "<a href='?src=\ref[src];action=[action];type=Head of Security;target=[target]'>Head of Security</a> "
+				jobs += "<a href='byond://?src=\ref[src];action=[action];type=Head of Security;target=[target]'>Head of Security</a> "
 
 			if(jobban_isbanned(M, "Syndicate"))
-				jobs += "<BR><a href='?src=\ref[src];action=[action];type=Syndicate;target=[target]'><font color=red>[replacetext("Syndicate", " ", "&nbsp")]</font></a> "
+				jobs += "<BR><a href='byond://?src=\ref[src];action=[action];type=Syndicate;target=[target]'><font color=red>[replacetext("Syndicate", " ", "&nbsp")]</font></a> "
 			else
-				jobs += "<BR><a href='?src=\ref[src];action=[action];type=Syndicate;target=[target]'>[replacetext("Syndicate", " ", "&nbsp")]</a> " //why doesn't this work
+				jobs += "<BR><a href='byond://?src=\ref[src];action=[action];type=Syndicate;target=[target]'>[replacetext("Syndicate", " ", "&nbsp")]</a> " //why doesn't this work
 
 			if(jobban_isbanned(M, "Special Respawn"))
-				jobs += " <a href='?src=\ref[src];action=[action];type=Special Respawn;target=[target]'><font color=red>[replacetext("Special Respawn", " ", "&nbsp")]</font></a> "
+				jobs += " <a href='byond://?src=\ref[src];action=[action];type=Special Respawn;target=[target]'><font color=red>[replacetext("Special Respawn", " ", "&nbsp")]</font></a> "
 			else
-				jobs += " <a href='?src=\ref[src];action=[action];type=Special Respawn;target=[target]'>[replacetext("Special Respawn", " ", "&nbsp")]</a> "
+				jobs += " <a href='byond://?src=\ref[src];action=[action];type=Special Respawn;target=[target]'>[replacetext("Special Respawn", " ", "&nbsp")]</a> "
 
 			if(jobban_isbanned(M, "Engineering Department"))
-				jobs += "<BR><a href='?src=\ref[src];action=[action];type=Engineering Department;target=[target]'><font color=red>[replacetext("Engineering Department", " ", "&nbsp")]</font></a> "
+				jobs += "<BR><a href='byond://?src=\ref[src];action=[action];type=Engineering Department;target=[target]'><font color=red>[replacetext("Engineering Department", " ", "&nbsp")]</font></a> "
 			else
-				jobs += "<BR><a href='?src=\ref[src];action=[action];type=Engineering Department;target=[target]'>[replacetext("Engineering Department", " ", "&nbsp")]</a> "
+				jobs += "<BR><a href='byond://?src=\ref[src];action=[action];type=Engineering Department;target=[target]'>[replacetext("Engineering Department", " ", "&nbsp")]</a> "
 
 			if(jobban_isbanned(M, "Security Department"))
-				jobs += "<BR><a href='?src=\ref[src];action=[action];type=Security Department;target=[target]'><font color=red>[replacetext("Security Department", " ", "&nbsp")]</font></a> "
+				jobs += "<BR><a href='byond://?src=\ref[src];action=[action];type=Security Department;target=[target]'><font color=red>[replacetext("Security Department", " ", "&nbsp")]</font></a> "
 			else
-				jobs += "<BR><a href='?src=\ref[src];action=[action];type=Security Department;target=[target]'>[replacetext("Security Department", " ", "&nbsp")]</a> "
+				jobs += "<BR><a href='byond://?src=\ref[src];action=[action];type=Security Department;target=[target]'>[replacetext("Security Department", " ", "&nbsp")]</a> "
 
 			if(jobban_isbanned(M, "Heads of Staff"))
-				jobs += "<BR><a href='?src=\ref[src];action=[action];type=Heads of Staff;target=[target]'><font color=red>[replacetext("Heads of Staff", " ", "&nbsp")]</font></a> "
+				jobs += "<BR><a href='byond://?src=\ref[src];action=[action];type=Heads of Staff;target=[target]'><font color=red>[replacetext("Heads of Staff", " ", "&nbsp")]</font></a> "
 			else
-				jobs += "<BR><a href='?src=\ref[src];action=[action];type=Heads of Staff;target=[target]'>[replacetext("Heads of Staff", " ", "&nbsp")]</a> "
+				jobs += "<BR><a href='byond://?src=\ref[src];action=[action];type=Heads of Staff;target=[target]'>[replacetext("Heads of Staff", " ", "&nbsp")]</a> "
 
 			if(jobban_isbanned(M, "Everything Except Assistant"))
-				jobs += "<BR><a href='?src=\ref[src];action=[action];type=Everything Except Assistant;target=[target]'><font color=red>[replacetext("Everything Except Assistant", " ", "&nbsp")]</font></a> "
+				jobs += "<BR><a href='byond://?src=\ref[src];action=[action];type=Everything Except Assistant;target=[target]'><font color=red>[replacetext("Everything Except Assistant", " ", "&nbsp")]</font></a> "
 			else
-				jobs += "<BR><a href='?src=\ref[src];action=[action];type=Everything Except Assistant;target=[target]'>[replacetext("Everything Except Assistant", " ", "&nbsp")]</a> "
+				jobs += "<BR><a href='byond://?src=\ref[src];action=[action];type=Everything Except Assistant;target=[target]'>[replacetext("Everything Except Assistant", " ", "&nbsp")]</a> "
 
 			if(jobban_isbanned(M, "Ghostdrone"))
-				jobs += "<BR><a href='?src=\ref[src];action=[action];type=Ghostdrone;target=[target]'><font color=red>Ghostdrone</font></a> "
+				jobs += "<BR><a href='byond://?src=\ref[src];action=[action];type=Ghostdrone;target=[target]'><font color=red>Ghostdrone</font></a> "
 			else
-				jobs += "<BR><a href='?src=\ref[src];action=[action];type=Ghostdrone;target=[target]'>Ghostdrone</a> "
+				jobs += "<BR><a href='byond://?src=\ref[src];action=[action];type=Ghostdrone;target=[target]'>Ghostdrone</a> "
 
 			if(jobban_isbanned(M, "Custom Names"))
-				jobs += "<BR><a href='?src=\ref[src];action=[action];type=Custom Names;target=[target]'><font color=red>[replacetext("Having a Custom Name", " ", "&nbsp")]</font></a> "
+				jobs += "<BR><a href='byond://?src=\ref[src];action=[action];type=Custom Names;target=[target]'><font color=red>[replacetext("Having a Custom Name", " ", "&nbsp")]</font></a> "
 			else
-				jobs += "<BR><a href='?src=\ref[src];action=[action];type=Custom Names;target=[target]'>[replacetext("Having a Custom Name", " ", "&nbsp")]</a> "
+				jobs += "<BR><a href='byond://?src=\ref[src];action=[action];type=Custom Names;target=[target]'>[replacetext("Having a Custom Name", " ", "&nbsp")]</a> "
 
 
 			body = "<br>[jobs]<br><br>"
@@ -768,37 +768,37 @@ var/global/noir = 0
 							<html><body><title>Select Round Mode</title>
 							<B>What mode do you wish to play[addltext]?</B><br>
 							Current mode is: <i>[master_mode]</i><br>
-							Mode is <A href='?src=\ref[src];action=toggle_hide_mode'>[ticker.hide_mode ? "hidden" : "not hidden"]</a><br/>
+							Mode is <A href='byond://?src=\ref[src];action=toggle_hide_mode'>[ticker.hide_mode ? "hidden" : "not hidden"]</a><br/>
 							<HR>
 							<b>Regular Modes:</b><br>
-							<A href='?src=\ref[src];action=[cmd];type=secret'>Secret</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=action'>Secret: Action</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=intrigue'>Secret: Intrigue</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=mixed'>Mixed (Action)</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=mixed_rp'>Mixed (Mild)</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=traitor'>Traitor</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=nuclear'>Nuclear Emergency</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=wizard'>Wizard</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=changeling'>Changeling</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=vampire'>Dracula</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=blob'>Blob</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=conspiracy'>Conspiracy</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=spy_theft'>Spy Theft</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=secret'>Secret</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=action'>Secret: Action</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=intrigue'>Secret: Intrigue</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=mixed'>Mixed (Action)</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=mixed_rp'>Mixed (Mild)</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=traitor'>Traitor</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=nuclear'>Nuclear Emergency</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=wizard'>Wizard</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=changeling'>Changeling</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=vampire'>Dracula</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=blob'>Blob</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=conspiracy'>Conspiracy</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=spy_theft'>Spy Theft</A><br>
 							<b>Other Modes</b><br>
-							<A href='?src=\ref[src];action=[cmd];type=extended'>Extended</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=environmental'>Environmental</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=disaster'>Disaster (Beta)</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=spy'>Spy</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=revolution'>Revolution</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=revolution_extended'>Revolution (no time limit)</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=gang'>Gang War (Beta)</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=pod_wars'>Pod Wars (Beta)(only works if current map is pod_wars.dmm)</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=battle_royale'>Battle Royale</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=assday'>Ass Day Classic (For testing only.)</A><br>
-							<A href='?src=\ref[src];action=[cmd];type=construction'>Construction (For testing only. Don't select this!)</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=extended'>Extended</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=environmental'>Environmental</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=disaster'>Disaster (Beta)</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=spy'>Spy</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=revolution'>Revolution</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=revolution_extended'>Revolution (no time limit)</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=gang'>Gang War (Beta)</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=pod_wars'>Pod Wars (Beta)(only works if current map is pod_wars.dmm)</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=battle_royale'>Battle Royale</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=assday'>Ass Day Classic (For testing only.)</A><br>
+							<A href='byond://?src=\ref[src];action=[cmd];type=construction'>Construction (For testing only. Don't select this!)</A><br>
 							"})
 #if FOOTBALL_MODE
-				dat += "<A href='?src=\ref[src];action=[cmd];type=football'>Football</A>"
+				dat += "<A href='byond://?src=\ref[src];action=[cmd];type=football'>Football</A>"
 #endif
 				dat += "</body></html>"
 				usr.Browse(dat.Join(), "window=c_mode")
@@ -2093,19 +2093,19 @@ var/global/noir = 0
 					dat += "<strong>IF YOU DEMOTE YOURSELF YOU CANNOT UNDO IT FOR THE REST OF THE ROUND!!!</strong><br>"
 				if (src.level >= LEVEL_CODER)
 					dat += {"
-							<A href='?src=\ref[src];action=chgadlvl;type=Coder;target=\ref[C]'>Coder</A><BR>
+							<A href='byond://?src=\ref[src];action=chgadlvl;type=Coder;target=\ref[C]'>Coder</A><BR>
 							"}
 				if (src.level >= LEVEL_ADMIN)
-					dat += "<A href='?src=\ref[src];action=chgadlvl;type=Administrator;target=\ref[C]'>Administrator</A><BR>"
-					dat += "<A href='?src=\ref[src];action=chgadlvl;type=Primary Administrator;target=\ref[C]'>Primary Administrator</A><BR>"
+					dat += "<A href='byond://?src=\ref[src];action=chgadlvl;type=Administrator;target=\ref[C]'>Administrator</A><BR>"
+					dat += "<A href='byond://?src=\ref[src];action=chgadlvl;type=Primary Administrator;target=\ref[C]'>Primary Administrator</A><BR>"
 				if (src.level >= LEVEL_PA)
 					dat += {"
-							<A href='?src=\ref[src];action=chgadlvl;type=Intermediate Administrator;target=\ref[C]'>Intermediate Administrator</A><BR>
-							<A href='?src=\ref[src];action=chgadlvl;type=Secondary Administrator;target=\ref[C]'>Secondary Administrator</A><BR>
-							<A href='?src=\ref[src];action=chgadlvl;type=Moderator;target=\ref[C]'>Moderator</A><BR>
-							<A href='?src=\ref[src];action=chgadlvl;type=Ayn Rand%27s Armpit;target=\ref[C]'>Ayn Rand's Armpit</A><BR>
-							<A href='?src=\ref[src];action=chgadlvl;type=Goat Fart;target=\ref[C]'>Goat Fart</A><BR>
-							<A href='?src=\ref[src];action=chgadlvl;type=Remove;target=\ref[C]'>Remove Admin</A><BR>
+							<A href='byond://?src=\ref[src];action=chgadlvl;type=Intermediate Administrator;target=\ref[C]'>Intermediate Administrator</A><BR>
+							<A href='byond://?src=\ref[src];action=chgadlvl;type=Secondary Administrator;target=\ref[C]'>Secondary Administrator</A><BR>
+							<A href='byond://?src=\ref[src];action=chgadlvl;type=Moderator;target=\ref[C]'>Moderator</A><BR>
+							<A href='byond://?src=\ref[src];action=chgadlvl;type=Ayn Rand%27s Armpit;target=\ref[C]'>Ayn Rand's Armpit</A><BR>
+							<A href='byond://?src=\ref[src];action=chgadlvl;type=Goat Fart;target=\ref[C]'>Goat Fart</A><BR>
+							<A href='byond://?src=\ref[src];action=chgadlvl;type=Remove;target=\ref[C]'>Remove Admin</A><BR>
 							"}
 				usr.Browse(dat, "window=prom_demot;size=480x300")
 			else
@@ -3295,8 +3295,8 @@ var/global/noir = 0
 								for(var/datum/mind/N in NN.syndicates)
 									var/mob/M = N.current
 									if(!M) continue
-									dat += "<tr><td><a href='?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-									dat += "<td><a href='?action=priv_msg&target=[M.ckey]'>PM</A></td></tr>"
+									dat += "<tr><td><a href='byond://?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+									dat += "<td><a href='byond://?action=priv_msg&target=[M.ckey]'>PM</A></td></tr>"
 
 								// This basic bit of info was missing, even though you could look up the
 								// location of the old auth disk here in the past (Convair880).
@@ -3305,7 +3305,7 @@ var/global/noir = 0
 									var/turf/T = get_turf(NN.the_bomb)
 									dat += "<tr><td>Location:"
 									if (T && istype(T, /turf))
-										dat += " <a href='?src=\ref[src];action=jumptocoords;target=[T.x],[T.y],[T.z]'>[T.x],[T.y],[T.z]</a> ([get_area(NN.the_bomb)])</tr></td>"
+										dat += " <a href='byond://?src=\ref[src];action=jumptocoords;target=[T.x],[T.y],[T.z]'>[T.x],[T.y],[T.z]</a> ([get_area(NN.the_bomb)])</tr></td>"
 									else
 										dat += " Found (unknown location)</tr></td>"
 								else
@@ -3324,19 +3324,19 @@ var/global/noir = 0
 								for(var/datum/mind/N in ticker.mode:head_revolutionaries)
 									var/mob/M = N.current
 									if(!M) continue
-									dat += "<tr><td><a href='?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[M.real_name]</a> <b>(Leader)</b>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-									dat += "<td><a href='?action=priv_msg&target=[M.ckey]'>PM</A></td></tr>"
+									dat += "<tr><td><a href='byond://?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[M.real_name]</a> <b>(Leader)</b>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+									dat += "<td><a href='byond://?action=priv_msg&target=[M.ckey]'>PM</A></td></tr>"
 								for(var/datum/mind/N in ticker.mode:revolutionaries)
 									var/mob/M = N.current
 									if(!M) continue
-									dat += "<tr><td><a href='?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-									dat += "<td><a href='?action=priv_msg&target=[M.ckey]'>PM</A></td></tr>"
+									dat += "<tr><td><a href='byond://?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+									dat += "<td><a href='byond://?action=priv_msg&target=[M.ckey]'>PM</A></td></tr>"
 								dat += "</table><table cellspacing=5><tr><td><B>Target(s)</B></td><td></td><td><B>Location</B></td></tr>"
 								for(var/datum/mind/N in ticker.mode:get_living_heads())
 									var/mob/M = N.current
 									if(!M) continue
-									dat += "<tr><td><a href='?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-									dat += "<td><a href='?action=priv_msg&target=[M.ckey]'>PM</A></td>"
+									dat += "<tr><td><a href='byond://?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+									dat += "<td><a href='byond://?action=priv_msg&target=[M.ckey]'>PM</A></td>"
 									var/turf/mob_loc = get_turf(M)
 									dat += "<td>[mob_loc.loc]</td></tr>"
 								dat += "</table>"
@@ -3348,9 +3348,9 @@ var/global/noir = 0
 									for(var/datum/mind/leader in spymode.leaders)
 										var/mob/M = leader.current
 										if(!M) continue
-										dat += "<tr><td><a href='?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[key_name(M)]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-										dat += "<td><a href='?action=priv_msg&target=[M.ckey]'>PM</A></td>"
-										dat += "<td><A HREF='?src=\ref[src];action=traitor;target=\ref[M]'>Show Objective</A></td></tr>"
+										dat += "<tr><td><a href='byond://?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[key_name(M)]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+										dat += "<td><a href='byond://?action=priv_msg&target=[M.ckey]'>PM</A></td>"
+										dat += "<td><A HREF='byond://?src=\ref[src];action=traitor;target=\ref[M]'>Show Objective</A></td></tr>"
 
 									dat += "</table>"
 								else
@@ -3361,14 +3361,14 @@ var/global/noir = 0
 									for(var/datum/mind/spy in spymode.spies)
 										var/mob/M = spy.current
 										if(!M) continue
-										dat += "<tr><td><a href='?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+										dat += "<tr><td><a href='byond://?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 										dat += "<td>Obeys: "
 										var/datum/mind/obeycheck = spymode.spies[spy]
 										if (istype(obeycheck) && obeycheck.current)
 											dat += "[obeycheck.current.ckey]"
 										else
 											dat += "Nobody!"
-										dat += "</td><td><a href='?action=priv_msg&target=[M.ckey]'>PM</A></td></tr>"
+										dat += "</td><td><a href='byond://?action=priv_msg&target=[M.ckey]'>PM</A></td></tr>"
 
 									dat += "</table>"
 								else
@@ -3381,14 +3381,14 @@ var/global/noir = 0
 										var/mob/M = leader.current
 										var/datum/gang/gang = leader.gang
 										dat += "<br><table cellspacing=5><tr><td>([format_frequency(gang.gang_frequency)]) <B>[gang.gang_name]:</B></td><td></td><tr>"
-										dat += "<tr><td><a href='?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[key_name(M)]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-										dat += "<td><a href='?action=priv_msg&target=[M.ckey]'>PM</A></td>"
-										dat += "<td><A HREF='?src=\ref[src];action=traitor;target=\ref[M]'>Show Objective</A></td></tr>"
+										dat += "<tr><td><a href='byond://?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[key_name(M)]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+										dat += "<td><a href='byond://?action=priv_msg&target=[M.ckey]'>PM</A></td>"
+										dat += "<td><A HREF='byond://?src=\ref[src];action=traitor;target=\ref[M]'>Show Objective</A></td></tr>"
 										for(var/datum/mind/member in gang.members)
 											if(member.current != null)
-												dat += "<tr><td><a href='?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[key_name(member.current)]</a>[member.current.client ? "" : " <i>(logged out)</i>"][isdead(member.current) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-												dat += "<td><a href='?action=priv_msg&target=[member.ckey]'>PM</A></td>"
-												dat += "<td><A HREF='?src=\ref[src];action=traitor;target=\ref[member.current]'>Show Objective</A></td></tr>"
+												dat += "<tr><td><a href='byond://?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[key_name(member.current)]</a>[member.current.client ? "" : " <i>(logged out)</i>"][isdead(member.current) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+												dat += "<td><a href='byond://?action=priv_msg&target=[member.ckey]'>PM</A></td>"
+												dat += "<td><A HREF='byond://?src=\ref[src];action=traitor;target=\ref[member.current]'>Show Objective</A></td></tr>"
 									dat += "</table>"
 								else
 									dat += "There are no gangs."
@@ -3398,9 +3398,9 @@ var/global/noir = 0
 								for (var/datum/mind/traitor in ticker.mode.traitors)
 									var/mob/M = traitor.current
 									if (!M) continue
-									dat += "<tr><td><a href='?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-									dat += "<td><a href='?action=priv_msg&target=[M.ckey]'>PM</A></td>"
-									dat += "<td><A HREF='?src=\ref[src];action=traitor;target=\ref[M]'>Show Objective</A></td></tr>"
+									dat += "<tr><td><a href='byond://?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+									dat += "<td><a href='byond://?action=priv_msg&target=[M.ckey]'>PM</A></td>"
+									dat += "<td><A HREF='byond://?src=\ref[src];action=traitor;target=\ref[M]'>Show Objective</A></td></tr>"
 								dat += "</table>"
 
 							if(ticker.mode.Agimmicks.len > 0)
@@ -3408,9 +3408,9 @@ var/global/noir = 0
 								for(var/datum/mind/gimmick in ticker.mode.Agimmicks)
 									var/mob/M = gimmick.current
 									if(!M) continue
-									dat += "<tr><td><a href='?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-									dat += "<td><a href='?action=priv_msg&target=[M.ckey]'>PM</A></td>"
-									dat += "<td><A HREF='?src=\ref[src];action=traitor;target=\ref[M]'>Show Objective</A></td></tr>"
+									dat += "<tr><td><a href='byond://?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+									dat += "<td><a href='byond://?action=priv_msg&target=[M.ckey]'>PM</A></td>"
+									dat += "<td><A HREF='byond://?src=\ref[src];action=traitor;target=\ref[M]'>Show Objective</A></td></tr>"
 								dat += "</table>"
 
 							if(miscreants.len > 0)
@@ -3418,9 +3418,9 @@ var/global/noir = 0
 								for(var/datum/mind/miscreant in miscreants)
 									var/mob/M = miscreant.current
 									if(!M) continue
-									dat += "<tr><td><a href='?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-									dat += "<td><a href='?action=priv_msg&target=[M.ckey]'>PM</A></td>"
-									dat += "<td><A HREF='?src=\ref[src];action=traitor;target=\ref[M]'>Show Objective</A></td></tr>"
+									dat += "<tr><td><a href='byond://?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][isdead(M) ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+									dat += "<td><a href='byond://?action=priv_msg&target=[M.ckey]'>PM</A></td>"
+									dat += "<td><A HREF='byond://?src=\ref[src];action=traitor;target=\ref[M]'>Show Objective</A></td></tr>"
 								dat += "</table>"
 
 							if (istype(ticker.mode, /datum/game_mode/spy_theft) || ticker.mode.spy_market)
@@ -3450,15 +3450,15 @@ var/global/noir = 0
 							dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
 							dat += "<B>Emergency shuttle:</B><BR>"
 							if (!emergency_shuttle.online)
-								dat += "<a href='?src=\ref[src];action=call_shuttle&type=1'>Call Shuttle</a><br>"
+								dat += "<a href='byond://?src=\ref[src];action=call_shuttle&type=1'>Call Shuttle</a><br>"
 							else
 								var/timeleft = emergency_shuttle.timeleft()
 								switch(emergency_shuttle.location)
 									if(0)
-										dat += "ETA: <a href='?src=\ref[src];action=edit_shuttle_time'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
-										dat += "<a href='?src=\ref[src];action=call_shuttle&type=2'>Send Back</a><br>"
+										dat += "ETA: <a href='byond://?src=\ref[src];action=edit_shuttle_time'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
+										dat += "<a href='byond://?src=\ref[src];action=call_shuttle&type=2'>Send Back</a><br>"
 									if(1)
-										dat += "ETA: <a href='?src=\ref[src];action=edit_shuttle_time'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
+										dat += "ETA: <a href='byond://?src=\ref[src];action=edit_shuttle_time'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
 							dat += "</body></html>"
 							usr.Browse(dat, "window=roundstatus;size=400x500")
 					if("manifest")
@@ -4023,12 +4023,12 @@ var/global/noir = 0
 		if (M.ckey)
 			dat += {"
 			<tr>
-				<td><a href='?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[(M.client ? "[M.client]" : "<em style='opacity: 0.75;'>[M.ckey]</em>")]</a></td>
-				<td align="center"><a href='?action=priv_msg&target=[M.ckey]'>PM</a></td>
+				<td><a href='byond://?src=\ref[src];action=adminplayeropts;target=\ref[M]'>[(M.client ? "[M.client]" : "<em style='opacity: 0.75;'>[M.ckey]</em>")]</a></td>
+				<td align="center"><a href='byond://?action=priv_msg&target=[M.ckey]'>PM</a></td>
 				<td>[M.name]</td>
 				<td>[M.real_name ? "[M.real_name]" : "<em>no real_name</em>"]</td>
 				<td>[M.mind ? M.mind.assigned_role : "<em>(no mind/role?)</em>"]</td>
-				<td><a href='?src=\ref[src];action=traitor;target=\ref[M]'>[M.mind ? (M.mind.special_role ? "<strong class='alert'>" + M.mind.special_role + "</strong>" : "<em>(none)</em>") : "<em>(no mind?)</em>"]</td>
+				<td><a href='byond://?src=\ref[src];action=traitor;target=\ref[M]'>[M.mind ? (M.mind.special_role ? "<strong class='alert'>" + M.mind.special_role + "</strong>" : "<em>(none)</em>") : "<em>(no mind?)</em>"]</td>
 				<td>[M.type]</td>
 				<td align="center">[M.computer_id ? M.computer_id : "None"]</td>
 				<td align="center">[M.lastKnownIP]</td>
@@ -4075,26 +4075,26 @@ var/global/noir = 0
 		<body>
 			<table>
 				<th>Respawn Panel</th>
-				<tr><td><A href='?src=\ref[src];action=s_rez;type=spawn_normal'>Spawn normal players</A></td></tr>
-				<tr><td><A href='?src=\ref[src];action=s_rez;type=spawn_job'>Spawn normal players as a job</A></td></tr>
+				<tr><td><A href='byond://?src=\ref[src];action=s_rez;type=spawn_normal'>Spawn normal players</A></td></tr>
+				<tr><td><A href='byond://?src=\ref[src];action=s_rez;type=spawn_job'>Spawn normal players as a job</A></td></tr>
 				<tr><td></td></tr>
-				<tr><td><A href='?src=\ref[src];action=s_rez;type=spawn_player'>Spawn players - keep antag status</A></td></tr>
-				<tr><td><A href='?src=\ref[src];action=s_rez;type=spawn_player_job'>Spawn players as a job - keep antag status</A></td></tr>
+				<tr><td><A href='byond://?src=\ref[src];action=s_rez;type=spawn_player'>Spawn players - keep antag status</A></td></tr>
+				<tr><td><A href='byond://?src=\ref[src];action=s_rez;type=spawn_player_job'>Spawn players as a job - keep antag status</A></td></tr>
 				<tr><td></td></tr>
-				<tr><td><A href='?src=\ref[src];action=s_rez;type=spawn_player_strip_antag'>Spawn players - strip antag status</A></td></tr>
-				<tr><td><A href='?src=\ref[src];action=s_rez;type=spawn_player_job_strip_antag'>Spawn players as a job - strip antag status</A></td></tr>
+				<tr><td><A href='byond://?src=\ref[src];action=s_rez;type=spawn_player_strip_antag'>Spawn players - strip antag status</A></td></tr>
+				<tr><td><A href='byond://?src=\ref[src];action=s_rez;type=spawn_player_job_strip_antag'>Spawn players as a job - strip antag status</A></td></tr>
 				<tr><td></td></tr>
-				<tr><td><A href='?src=\ref[src];action=s_rez;type=spawn_syndies'>Spawn a Syndicate attack force</A></td></tr>
-				<tr><td><A href='?src=\ref[src];action=s_rez;type=spawn_custom'>Spawn a custom mob type</A></td></tr>
+				<tr><td><A href='byond://?src=\ref[src];action=s_rez;type=spawn_syndies'>Spawn a Syndicate attack force</A></td></tr>
+				<tr><td><A href='byond://?src=\ref[src];action=s_rez;type=spawn_custom'>Spawn a custom mob type</A></td></tr>
 			</table>
 		</body></html>
 		"}
 	usr.Browse(dat, "window=SRespawn")
 
 	// Someone else removed these but left the (non-functional) buttons. Move back inside the dat section and uncomment to re-add. - IM
-	// <A href='?src=\ref[src];action=s_rez;type=spawn_commandos'>Spawn a force of commandos</A><BR>
-	// <A href='?src=\ref[src];action=s_rez;type=spawn_turds'>Spawn a T.U.R.D.S. attack force</A><BR>
-	// <A href='?src=\ref[src];action=s_rez;type=spawn_smilingman'>Spawn a Smiling Man</A><BR>
+	// <A href='byond://?src=\ref[src];action=s_rez;type=spawn_commandos'>Spawn a force of commandos</A><BR>
+	// <A href='byond://?src=\ref[src];action=s_rez;type=spawn_turds'>Spawn a T.U.R.D.S. attack force</A><BR>
+	// <A href='byond://?src=\ref[src];action=s_rez;type=spawn_smilingman'>Spawn a Smiling Man</A><BR>
 /var/create_mob_html = null
 /datum/admins/proc/create_mob(var/mob/user)
 	set background = 1
@@ -4143,17 +4143,17 @@ var/global/noir = 0
 	dat += "<div class='optionGroup' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Game Info</b>"
 
 	//Map name
-	dat += "Current map: <A href='?src=\ref[src];action=switch_map'>[getMapNameFromID(map_setting)]</A>"
+	dat += "Current map: <A href='byond://?src=\ref[src];action=switch_map'>[getMapNameFromID(map_setting)]</A>"
 	if (mapSwitcher.next)
 		dat += " (Next map: [mapSwitcher.next])"
 
 	if (mapSwitcher.votingAllowed)
-		dat += " (Vote: <A href='?src=\ref[src];action=start_map_vote'>Start</A> | <A href='?src=\ref[src];action=end_map_vote'>End</A> | <A href='?src=\ref[src];action=cancel_map_vote'>Cancel</A>)"
+		dat += " (Vote: <A href='byond://?src=\ref[src];action=start_map_vote'>Start</A> | <A href='byond://?src=\ref[src];action=end_map_vote'>End</A> | <A href='byond://?src=\ref[src];action=cancel_map_vote'>Cancel</A>)"
 
 	dat += "<br>"
 
 	//Station name
-	dat += "Station Name: <A href='?src=\ref[src];action=change_station_name'>[station_name()]</A><br>"
+	dat += "Station Name: <A href='byond://?src=\ref[src];action=change_station_name'>[station_name()]</A><br>"
 
 	var/shuttletext = " " //setup shuttle message
 	if(!emergency_shuttle) return // runtime error fix
@@ -4178,121 +4178,121 @@ var/global/noir = 0
 		if (current_state >= GAME_STATE_PLAYING)
 			dat += "Current Mode: [ticker.mode.name], Timer at [round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]<br>"
 			if (src.level >= LEVEL_MOD)
-				dat += "<A href='?src=\ref[src];action=c_mode_panel'>Change Next Round's Game Mode</A><br>"
+				dat += "<A href='byond://?src=\ref[src];action=c_mode_panel'>Change Next Round's Game Mode</A><br>"
 			if (emergency_shuttle.online)
-				dat += "<a href='?src=\ref[src];action=call_shuttle&type=2'><b>Shuttle Status:</b></a> <a href='?src=\ref[src];action=edit_shuttle_time'>[shuttletext]</a>"
+				dat += "<a href='byond://?src=\ref[src];action=call_shuttle&type=2'><b>Shuttle Status:</b></a> <a href='byond://?src=\ref[src];action=edit_shuttle_time'>[shuttletext]</a>"
 			else
-				dat += "<a href='?src=\ref[src];action=call_shuttle&type=1'><b>Shuttle Status:</b></a> <a href='?src=\ref[src];action=edit_shuttle_time'>[shuttletext]</a>"
-			dat += "<br>Players Can Call: [src.level >= LEVEL_PA ? "<a href='?src=\ref[src];action=toggle_shuttle_calling'>" : null][emergency_shuttle.disabled ? "No" : "Yes"][src.level >= LEVEL_PA ? "</a>" : null]"
-			dat += " | Players Can Recall: [src.level >= LEVEL_PA ? "<a href='?src=\ref[src];action=toggle_shuttle_recalling'>" : null][emergency_shuttle.can_recall ? "Yes" : "No"][src.level >= LEVEL_PA ? "</a>" : null]"
+				dat += "<a href='byond://?src=\ref[src];action=call_shuttle&type=1'><b>Shuttle Status:</b></a> <a href='byond://?src=\ref[src];action=edit_shuttle_time'>[shuttletext]</a>"
+			dat += "<br>Players Can Call: [src.level >= LEVEL_PA ? "<a href='byond://?src=\ref[src];action=toggle_shuttle_calling'>" : null][emergency_shuttle.disabled ? "No" : "Yes"][src.level >= LEVEL_PA ? "</a>" : null]"
+			dat += " | Players Can Recall: [src.level >= LEVEL_PA ? "<a href='byond://?src=\ref[src];action=toggle_shuttle_recalling'>" : null][emergency_shuttle.can_recall ? "Yes" : "No"][src.level >= LEVEL_PA ? "</a>" : null]"
 		else if (current_state <= GAME_STATE_PREGAME)
 			dat += "Current Mode: [master_mode], Game has not started yet.<br>"
 			if (src.level >= LEVEL_MOD)
-				dat += "<A href='?src=\ref[src];action=c_mode_panel'>Change Game Mode</A><br>"
-			dat += "<b>Force players to use random names:</b> <A href='?src=\ref[src];action=secretsfun;type=forcerandomnames'>[force_random_names ? "Yes" : "No"]</a><br>"
-			dat += "<b>Force players to use random appearances:</b> <A href='?src=\ref[src];action=secretsfun;type=forcerandomlooks'>[force_random_looks ? "Yes" : "No"]</a><br>"
-			//dat += "<A href='?src=\ref[src];action=secretsfun;type=forcerandomnames'>Politely suggest all players use random names</a>" // lol
+				dat += "<A href='byond://?src=\ref[src];action=c_mode_panel'>Change Game Mode</A><br>"
+			dat += "<b>Force players to use random names:</b> <A href='byond://?src=\ref[src];action=secretsfun;type=forcerandomnames'>[force_random_names ? "Yes" : "No"]</a><br>"
+			dat += "<b>Force players to use random appearances:</b> <A href='byond://?src=\ref[src];action=secretsfun;type=forcerandomlooks'>[force_random_looks ? "Yes" : "No"]</a><br>"
+			//dat += "<A href='byond://?src=\ref[src];action=secretsfun;type=forcerandomnames'>Politely suggest all players use random names</a>" // lol
 
 	if (src.level >= LEVEL_SA)
 		dat += "<hr>"
-		dat += "<A href='?src=\ref[src];action=create_object'>Create Object</A><br>"
-		dat += "<A href='?src=\ref[src];action=create_turf'>Create Turf</A><br>"
-		dat += "<A href='?src=\ref[src];action=create_mob'>Create Mob</A>"
+		dat += "<A href='byond://?src=\ref[src];action=create_object'>Create Object</A><br>"
+		dat += "<A href='byond://?src=\ref[src];action=create_turf'>Create Turf</A><br>"
+		dat += "<A href='byond://?src=\ref[src];action=create_mob'>Create Mob</A>"
 		// Moved from SG to PA. They can do this through build mode anyway (Convair880).
 
 	dat += "</div>"
 
 	dat += {"<hr><div class='optionGroup' style='border-color:#FF6961'><b class='title' style='background:#FF6961'>Admin Tools</b>
-				<A href='?src=\ref[src];action=secretsadmin;type=check_antagonist'>Antagonists</A><BR>
-				<A href='?src=\ref[src];action=secretsadmin;type=artifacts'>Artifact Controls</A><BR>
-				<A href='?src=\ref[src];action=secretsadmin;type=pathology'>CDC</A><BR>
-				<A href='?src=\ref[src];action=secretsadmin;type=manifest'>Crew Manifest</A> |
-				<A href='?src=\ref[src];action=secretsadmin;type=DNA'>Blood DNA</A> |
-				<A href='?src=\ref[src];action=secretsadmin;type=fingerprints'>Fingerprints</A><BR>
-				<A href='?src=\ref[src];action=secretsadmin;type=unelectrify_all'>De-electrify all Airlocks</A><BR>
-				<A href='?src=\ref[src];action=secretsadmin;type=ghostnotifier'>Ghost Notification Controls</A><BR>
-				<A href='?src=\ref[src];action=secretsadmin;type=jobcaps'>Job Controls</A><BR>
-				<A href='?src=\ref[src];action=secretsadmin;type=miningstats'>Mining Generation Statistics</A><BR>
-				<A href='?src=\ref[src];action=secretsadmin;type=motives'>Motive Control</A><BR>
-				<A href='?src=\ref[src];action=secretsadmin;type=randomevents'>Random Event Controls</A><BR>
-				<A href='?src=\ref[src];action=secretsadmin;type=respawn_panel'>Respawn Panel</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsadmin;type=check_antagonist'>Antagonists</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsadmin;type=artifacts'>Artifact Controls</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsadmin;type=pathology'>CDC</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsadmin;type=manifest'>Crew Manifest</A> |
+				<A href='byond://?src=\ref[src];action=secretsadmin;type=DNA'>Blood DNA</A> |
+				<A href='byond://?src=\ref[src];action=secretsadmin;type=fingerprints'>Fingerprints</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsadmin;type=unelectrify_all'>De-electrify all Airlocks</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsadmin;type=ghostnotifier'>Ghost Notification Controls</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsadmin;type=jobcaps'>Job Controls</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsadmin;type=miningstats'>Mining Generation Statistics</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsadmin;type=motives'>Motive Control</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsadmin;type=randomevents'>Random Event Controls</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsadmin;type=respawn_panel'>Respawn Panel</A><BR>
 
 			"}
 #ifdef SECRETS_ENABLED
-	dat += {"<A href='?src=\ref[src];action=secretsadmin;type=ideas'>Fun Admin Ideas</A>"}
+	dat += {"<A href='byond://?src=\ref[src];action=secretsadmin;type=ideas'>Fun Admin Ideas</A>"}
 #endif
 
 	dat += "</div>"
 
 	if (src.level >= LEVEL_ADMIN)
 		dat += {"<hr><div class='optionGroup' style='border-color:#FFB347'><b class='title' style='background:#FFB347'>Coder Tools</b>
-					<A href='?src=\ref[src];action=secretsdebug;type=artifact'>Artifacts</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=colosseum'>Colosseum</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=radio'>Communications</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=datacore'>Data Core</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=disease'>Diseases</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=emshuttle'>Emergency Shuttle</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=gauntlet'>Gauntlet</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=genetics'>Genetics Research</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=ghostnotifications'>Ghost Notifications</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=globals'>Global Variables</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=globalprocs'>Global Procs</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=hydro'>Hydroponics</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=jobs'>Jobs</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=opengoon'>OpenGoon</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=overlays'>Overlays</A>
-					<A href='?src=\ref[src];action=secretsdebug;type=overlaysrem'>(Remove)</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=manuf'>Manufacturing</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=mapsettings'>Map Settings</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=mechanic'>Mechanics</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=miningcontrols'>Mining Controls</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=randevent'>Random Events</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=market'>Shipping Market</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=stock'>Stock Market</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=valiant'>Valiant Azone</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=budget'>Wages/Money</A> |
-					<A href='?src=\ref[src];action=secretsdebug;type=world'>World</A>
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=artifact'>Artifacts</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=colosseum'>Colosseum</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=radio'>Communications</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=datacore'>Data Core</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=disease'>Diseases</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=emshuttle'>Emergency Shuttle</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=gauntlet'>Gauntlet</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=genetics'>Genetics Research</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=ghostnotifications'>Ghost Notifications</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=globals'>Global Variables</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=globalprocs'>Global Procs</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=hydro'>Hydroponics</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=jobs'>Jobs</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=opengoon'>OpenGoon</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=overlays'>Overlays</A>
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=overlaysrem'>(Remove)</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=manuf'>Manufacturing</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=mapsettings'>Map Settings</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=mechanic'>Mechanics</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=miningcontrols'>Mining Controls</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=randevent'>Random Events</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=market'>Shipping Market</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=stock'>Stock Market</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=valiant'>Valiant Azone</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=budget'>Wages/Money</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=world'>World</A>
 
 				"}
 
 		dat += "</div>"
 
 	dat += {"<hr><div class='optionGroup' style='border-color:#77DD77'><b class='title' style='background:#77DD77'>Logs</b>
-				<b><A href='?src=\ref[src];action=view_logs_web'>View all logs - web version</A></b><BR>
-				<A href='?src=\ref[src];action=view_logs;type=all_logs_string'>Search all Logs</A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=admin_log'>Admin Log</A>
-				<A href='?src=\ref[src];action=view_logs;type=admin_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=admin_help_log'>Adminhelp Log</A>
-				<A href='?src=\ref[src];action=view_logs;type=admin_help_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=atmos_log'>Atmos Log</A>
-				<A href='?src=\ref[src];action=view_logs;type=atmos_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=bombing_log'>Bombing Log</A>
-				<A href='?src=\ref[src];action=view_logs;type=bombing_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=combat_log'>Combat Log </A>
-				<A href='?src=\ref[src];action=view_logs;type=combat_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=debug_log'>Debug Log</A>
-				<A href='?src=\ref[src];action=view_logs;type=debug_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=mentor_help_log'>Mentorhelp Log</A>
-				<A href='?src=\ref[src];action=view_logs;type=mentor_help_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=ooc_log'>OOC Log </A>
-				<A href='?src=\ref[src];action=view_logs;type=ooc_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=pathology_log'>Pathology Log</A>
-				<A href='?src=\ref[src];action=view_logs;type=pathology_log_string'><small>(Search)</small></A>
-				<A href='?src=\ref[src];action=view_logs_pathology_strain'><small>(Find pathogen)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=pdamsg_log'>PDA Message Log </A>
-				<A href='?src=\ref[src];action=view_logs;type=pdamsg_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=signalers_log'>Signaler Log</A>
-				<A href='?src=\ref[src];action=view_logs;type=signalers_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=speech_log'>Speech Log </A>
-				<A href='?src=\ref[src];action=view_logs;type=speech_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=station_log'>Station Log </A>
-				<A href='?src=\ref[src];action=view_logs;type=station_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=telepathy_log'>Telepathy Log </A>
-				<A href='?src=\ref[src];action=view_logs;type=telepathy_log_string'><small>(Search)</small></A><BR>
-				<A href='?src=\ref[src];action=view_logs;type=vehicle_log'>Vehicle Log</A>
-				<A href='?src=\ref[src];action=view_logs;type=vehicle_log_string'><small>(Search)</small></A><br>
+				<b><A href='byond://?src=\ref[src];action=view_logs_web'>View all logs - web version</A></b><BR>
+				<A href='byond://?src=\ref[src];action=view_logs;type=all_logs_string'>Search all Logs</A><BR>
+				<A href='byond://?src=\ref[src];action=view_logs;type=admin_log'>Admin Log</A>
+				<A href='byond://?src=\ref[src];action=view_logs;type=admin_log_string'><small>(Search)</small></A><BR>
+				<A href='byond://?src=\ref[src];action=view_logs;type=admin_help_log'>Adminhelp Log</A>
+				<A href='byond://?src=\ref[src];action=view_logs;type=admin_help_log_string'><small>(Search)</small></A><BR>
+				<A href='byond://?src=\ref[src];action=view_logs;type=atmos_log'>Atmos Log</A>
+				<A href='byond://?src=\ref[src];action=view_logs;type=atmos_log_string'><small>(Search)</small></A><BR>
+				<A href='byond://?src=\ref[src];action=view_logs;type=bombing_log'>Bombing Log</A>
+				<A href='byond://?src=\ref[src];action=view_logs;type=bombing_log_string'><small>(Search)</small></A><BR>
+				<A href='byond://?src=\ref[src];action=view_logs;type=combat_log'>Combat Log </A>
+				<A href='byond://?src=\ref[src];action=view_logs;type=combat_log_string'><small>(Search)</small></A><BR>
+				<A href='byond://?src=\ref[src];action=view_logs;type=debug_log'>Debug Log</A>
+				<A href='byond://?src=\ref[src];action=view_logs;type=debug_log_string'><small>(Search)</small></A><BR>
+				<A href='byond://?src=\ref[src];action=view_logs;type=mentor_help_log'>Mentorhelp Log</A>
+				<A href='byond://?src=\ref[src];action=view_logs;type=mentor_help_log_string'><small>(Search)</small></A><BR>
+				<A href='byond://?src=\ref[src];action=view_logs;type=ooc_log'>OOC Log </A>
+				<A href='byond://?src=\ref[src];action=view_logs;type=ooc_log_string'><small>(Search)</small></A><BR>
+				<A href='byond://?src=\ref[src];action=view_logs;type=pathology_log'>Pathology Log</A>
+				<A href='byond://?src=\ref[src];action=view_logs;type=pathology_log_string'><small>(Search)</small></A>
+				<A href='byond://?src=\ref[src];action=view_logs_pathology_strain'><small>(Find pathogen)</small></A><BR>
+				<A href='byond://?src=\ref[src];action=view_logs;type=pdamsg_log'>PDA Message Log </A>
+				<A href='byond://?src=\ref[src];action=view_logs;type=pdamsg_log_string'><small>(Search)</small></A><BR>
+				<A href='byond://?src=\ref[src];action=view_logs;type=signalers_log'>Signaler Log</A>
+				<A href='byond://?src=\ref[src];action=view_logs;type=signalers_log_string'><small>(Search)</small></A><BR>
+				<A href='byond://?src=\ref[src];action=view_logs;type=speech_log'>Speech Log </A>
+				<A href='byond://?src=\ref[src];action=view_logs;type=speech_log_string'><small>(Search)</small></A><BR>
+				<A href='byond://?src=\ref[src];action=view_logs;type=station_log'>Station Log </A>
+				<A href='byond://?src=\ref[src];action=view_logs;type=station_log_string'><small>(Search)</small></A><BR>
+				<A href='byond://?src=\ref[src];action=view_logs;type=telepathy_log'>Telepathy Log </A>
+				<A href='byond://?src=\ref[src];action=view_logs;type=telepathy_log_string'><small>(Search)</small></A><BR>
+				<A href='byond://?src=\ref[src];action=view_logs;type=vehicle_log'>Vehicle Log</A>
+				<A href='byond://?src=\ref[src];action=view_logs;type=vehicle_log_string'><small>(Search)</small></A><br>
 				<hr>
-				<A href='?src=\ref[src];action=view_runtimes'>View Runtimes</A>
+				<A href='byond://?src=\ref[src];action=view_runtimes'>View Runtimes</A>
 			"}
 
 	dat += "</div>"
@@ -4301,53 +4301,53 @@ var/global/noir = 0
 	if (src.level >= LEVEL_PA || (src.level == LEVEL_SA && usr.client.holder.state == 2))
 		dat += {"<hr><div class='optionGroup' style='border-color:#B57EDC'><b class='title' style='background:#B57EDC'>Fun Secrets</b>
 					<b>Add Ability:</b>
-						<A href='?src=\ref[src];action=secretsfun;type=add_ability_one'>One</A> *
-						<A href='?src=\ref[src];action=secretsfun;type=add_ability_all'>All</A><BR>
+						<A href='byond://?src=\ref[src];action=secretsfun;type=add_ability_one'>One</A> *
+						<A href='byond://?src=\ref[src];action=secretsfun;type=add_ability_all'>All</A><BR>
 					<b>Remove Ability:</b>
-						<A href='?src=\ref[src];action=secretsfun;type=remove_ability_one'>One</A> *
-						<A href='?src=\ref[src];action=secretsfun;type=remove_ability_all'>All</A><BR>
-					<b>Add Bio-Effect<A href='?src=\ref[src];action=secretsfun;type=bioeffect_help'>*</a>:</b>
-						<A href='?src=\ref[src];action=secretsfun;type=add_bioeffect_one'>One</A> *
-						<A href='?src=\ref[src];action=secretsfun;type=add_bioeffect_all'>All</A><BR>
+						<A href='byond://?src=\ref[src];action=secretsfun;type=remove_ability_one'>One</A> *
+						<A href='byond://?src=\ref[src];action=secretsfun;type=remove_ability_all'>All</A><BR>
+					<b>Add Bio-Effect<A href='byond://?src=\ref[src];action=secretsfun;type=bioeffect_help'>*</a>:</b>
+						<A href='byond://?src=\ref[src];action=secretsfun;type=add_bioeffect_one'>One</A> *
+						<A href='byond://?src=\ref[src];action=secretsfun;type=add_bioeffect_all'>All</A><BR>
 					<b>Remove Bio-Effect:</b>
-						<A href='?src=\ref[src];action=secretsfun;type=remove_bioeffect_one'>One</A> *
-						<A href='?src=\ref[src];action=secretsfun;type=remove_bioeffect_all'>All</A><BR>
-					<b>Add Reagent<A href='?src=\ref[src];action=secretsfun;type=reagent_help'>*</a>:</b>
-						<A href='?src=\ref[src];action=secretsfun;type=add_reagent_one'>One</A> *
-						<A href='?src=\ref[src];action=secretsfun;type=add_reagent_all'>All</A><BR>
+						<A href='byond://?src=\ref[src];action=secretsfun;type=remove_bioeffect_one'>One</A> *
+						<A href='byond://?src=\ref[src];action=secretsfun;type=remove_bioeffect_all'>All</A><BR>
+					<b>Add Reagent<A href='byond://?src=\ref[src];action=secretsfun;type=reagent_help'>*</a>:</b>
+						<A href='byond://?src=\ref[src];action=secretsfun;type=add_reagent_one'>One</A> *
+						<A href='byond://?src=\ref[src];action=secretsfun;type=add_reagent_all'>All</A><BR>
 					<b>Remove Reagent:</b>
-						<A href='?src=\ref[src];action=secretsfun;type=remove_reagent_one'>One</A> *
-						<A href='?src=\ref[src];action=secretsfun;type=remove_reagent_all'>All</A><BR>
+						<A href='byond://?src=\ref[src];action=secretsfun;type=remove_reagent_one'>One</A> *
+						<A href='byond://?src=\ref[src];action=secretsfun;type=remove_reagent_all'>All</A><BR>
 					<b>Transformation:</b>
-						<A href='?src=\ref[src];action=secretsfun;type=transform_one'>One</A> *
-						<A href='?src=\ref[src];action=secretsfun;type=transform_all'>All</A><BR>
-					<A href='?src=\ref[src];action=secretsfun;type=traitor_all'>Make everyone an Antagonist</A><BR>
-					<A href='?src=\ref[src];action=secretsfun;type=stupify'>Give everyone severe brain damage</A><BR>
-					<A href='?src=\ref[src];action=secretsfun;type=flipstation'>Set station direction</A><BR>
-					<A href='?src=\ref[src];action=secretsfun;type=yeolde'>Replace all airlocks with doors</A><BR>
-					<A href='?src=\ref[src];action=secretsfun;type=woodstation'>Replace all floors and walls with wood</A><BR>
-					<A href='?src=\ref[src];action=secretsfun;type=ballpit'>Replace all pools with ballpits</A><BR>
-					<A href='?src=\ref[src];action=secretsfun;type=raiseundead'>Raise all human corpses as undead</A><BR>
-					<A href='?src=\ref[src];action=secretsfun;type=swaprooms'>Swap station rooms around</A><BR>
-					<A href='?src=\ref[src];action=secretsfun;type=randomguns'>Give everyone a random firearm</A><BR>
-					<A href='?src=\ref[src];action=secretsfun;type=timewarp'>Set up a time warp</A><BR>
+						<A href='byond://?src=\ref[src];action=secretsfun;type=transform_one'>One</A> *
+						<A href='byond://?src=\ref[src];action=secretsfun;type=transform_all'>All</A><BR>
+					<A href='byond://?src=\ref[src];action=secretsfun;type=traitor_all'>Make everyone an Antagonist</A><BR>
+					<A href='byond://?src=\ref[src];action=secretsfun;type=stupify'>Give everyone severe brain damage</A><BR>
+					<A href='byond://?src=\ref[src];action=secretsfun;type=flipstation'>Set station direction</A><BR>
+					<A href='byond://?src=\ref[src];action=secretsfun;type=yeolde'>Replace all airlocks with doors</A><BR>
+					<A href='byond://?src=\ref[src];action=secretsfun;type=woodstation'>Replace all floors and walls with wood</A><BR>
+					<A href='byond://?src=\ref[src];action=secretsfun;type=ballpit'>Replace all pools with ballpits</A><BR>
+					<A href='byond://?src=\ref[src];action=secretsfun;type=raiseundead'>Raise all human corpses as undead</A><BR>
+					<A href='byond://?src=\ref[src];action=secretsfun;type=swaprooms'>Swap station rooms around</A><BR>
+					<A href='byond://?src=\ref[src];action=secretsfun;type=randomguns'>Give everyone a random firearm</A><BR>
+					<A href='byond://?src=\ref[src];action=secretsfun;type=timewarp'>Set up a time warp</A><BR>
 				"}
 	if (src.level >= LEVEL_ADMIN)
-		dat += {"<A href='?src=\ref[src];action=secretsfun;type=sawarms'>Give everyone saws for arms</A><BR>
-				<A href='?src=\ref[src];action=secretsfun;type=emag_all_things'>Emag everything</A><BR>
-				<A href='?src=\ref[src];action=secretsfun;type=noir'>Noir</A><BR>
-				<A href='?src=\ref[src];action=secretsfun;type=the_great_switcharoo'>The Great Switcharoo</A><BR>
-				<A href='?src=\ref[src];action=secretsfun;type=fartyparty'>Farty Party All The Time</A><BR>
+		dat += {"<A href='byond://?src=\ref[src];action=secretsfun;type=sawarms'>Give everyone saws for arms</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsfun;type=emag_all_things'>Emag everything</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsfun;type=noir'>Noir</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsfun;type=the_great_switcharoo'>The Great Switcharoo</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsfun;type=fartyparty'>Farty Party All The Time</A><BR>
 		"}
 
 	dat += "</div>"
 
 	if (src.level >= LEVEL_ADMIN || (src.level == LEVEL_SA && usr.client.holder.state == 2))
 		dat += {"<hr><div class='optionGroup' style='border-color:#92BB78'><b class='title' style='background:#92BB78'>Roleplaying Panel</b>
-					<A href='?src=\ref[src];action=secretsfun;type=shakecamera'>Apply camera shake</A><BR>
-					<A href='?src=\ref[src];action=secretsfun;type=creepifystation'>Creepify station</A><BR>
-					<A href='?src=\ref[src];action=secretsfun;type=command_report_zalgo'>Command Report (Zalgo)</A><BR>
-					<A href='?src=\ref[src];action=secretsfun;type=command_report_void'>Command Report (Void)</A><BR>
+					<A href='byond://?src=\ref[src];action=secretsfun;type=shakecamera'>Apply camera shake</A><BR>
+					<A href='byond://?src=\ref[src];action=secretsfun;type=creepifystation'>Creepify station</A><BR>
+					<A href='byond://?src=\ref[src];action=secretsfun;type=command_report_zalgo'>Command Report (Zalgo)</A><BR>
+					<A href='byond://?src=\ref[src];action=secretsfun;type=command_report_void'>Command Report (Void)</A><BR>
 				"}
 
 	dat += "</div>"
@@ -4891,24 +4891,24 @@ var/global/noir = 0
 		return
 	var/built = {"<title>Chat Bans (todo: prettify)</title>"}
 	if(C.cloud_get( "adminhelp_banner" ))
-		built += "<a href='?src=\ref[src];target=\ref[C];action=ah_unmute' class='alert'>Adminhelp Mute</a> (Last by [C.cloud_get( "adminhelp_banner" )])<br/>"
+		built += "<a href='byond://?src=\ref[src];target=\ref[C];action=ah_unmute' class='alert'>Adminhelp Mute</a> (Last by [C.cloud_get( "adminhelp_banner" )])<br/>"
 		logTheThing("admin", src, C, "unmuted [constructTarget(C,"admin")] from adminhelping.")
 	else
-		built += "<a href='?src=\ref[src];target=\ref[C];action=ah_mute'>Adminhelp Mute</a><br/>"
+		built += "<a href='byond://?src=\ref[src];target=\ref[C];action=ah_mute'>Adminhelp Mute</a><br/>"
 		logTheThing("admin", src, C, "muted [constructTarget(C,"admin")] from adminhelping.")
 
 	if(C.cloud_get( "mentorhelp_banner" ))
-		built += "<a href='?src=\ref[src];target=\ref[C];action=mh_unmute' class='alert'>Mentorhelp Mute</a> (Last by [C.cloud_get( "mentorhelp_banner" )])<br/>"
+		built += "<a href='byond://?src=\ref[src];target=\ref[C];action=mh_unmute' class='alert'>Mentorhelp Mute</a> (Last by [C.cloud_get( "mentorhelp_banner" )])<br/>"
 		logTheThing("admin", src, C, "unmuted [constructTarget(C,"admin")] from mentorhelping.")
 	else
-		built += "<a href='?src=\ref[src];target=\ref[C];action=mh_mute'>Mentorhelp Mute</a><br/>"
+		built += "<a href='byond://?src=\ref[src];target=\ref[C];action=mh_mute'>Mentorhelp Mute</a><br/>"
 		logTheThing("admin", src, C, "muted [constructTarget(C,"admin")] from mentorhelping.")
 
 	if(C.cloud_get( "prayer_banner" ))
-		built += "<a href='?src=\ref[src];target=\ref[C];action=pr_unmute' class='alert'>Prayer Mute</a> (Last by [C.cloud_get( "prayer_banner" )])<br/>"
+		built += "<a href='byond://?src=\ref[src];target=\ref[C];action=pr_unmute' class='alert'>Prayer Mute</a> (Last by [C.cloud_get( "prayer_banner" )])<br/>"
 		logTheThing("admin", src, C, "unmuted [constructTarget(C,"admin")] from praying.")
 	else
-		built += "<a href='?src=\ref[src];target=\ref[C];action=pr_mute'>Prayer Mute</a><br/>"
+		built += "<a href='byond://?src=\ref[src];target=\ref[C];action=pr_mute'>Prayer Mute</a><br/>"
 		logTheThing("admin", src, C, "muted [constructTarget(C,"admin")] from praying.")
 
 	usr.Browse(built, "window=chatban;size=500x100")
@@ -4985,9 +4985,9 @@ var/global/noir = 0
 		</head>
 		<body>
 		<h3>Bioeffects of [M.name]
-		<a href='?src=\ref[src.holder];action=managebioeffect_refresh;target=\ref[M];origin=bioeffect_manage' class="button">&#x1F504;</a></h3>
-		<h4>(Stability: <a href='?src=\ref[src.holder];action=managebioeffect_alter_genetic_stability;target=\ref[M];origin=bioeffect_manage'>[M.bioHolder.genetic_stability]</a>)
-		<a href='?src=\ref[src.holder];action=managebioeffect_add;target=\ref[M];origin=bioeffect_manage' class="button">&#x2795;</a></h4>
+		<a href='byond://?src=\ref[src.holder];action=managebioeffect_refresh;target=\ref[M];origin=bioeffect_manage' class="button">&#x1F504;</a></h3>
+		<h4>(Stability: <a href='byond://?src=\ref[src.holder];action=managebioeffect_alter_genetic_stability;target=\ref[M];origin=bioeffect_manage'>[M.bioHolder.genetic_stability]</a>)
+		<a href='byond://?src=\ref[src.holder];action=managebioeffect_add;target=\ref[M];origin=bioeffect_manage' class="button">&#x2795;</a></h4>
 		<table>
 			<tr>
 				<th>Remove</th>
@@ -5029,15 +5029,15 @@ var/global/noir = 0
 
 		dat += {"
 			<tr>
-				<td><a href='?src=\ref[src.holder];action=managebioeffect_remove;target=\ref[M];bioeffect=[B.id];origin=bioeffect_manage'>remove</a></td>
+				<td><a href='byond://?src=\ref[src.holder];action=managebioeffect_remove;target=\ref[M];bioeffect=[B.id];origin=bioeffect_manage'>remove</a></td>
 				<td>[B.id]</td>
-				<td><a href='?src=\ref[src.holder];action=managebioeffect_debug_vars;bioeffect=\ref[B];origin=bioeffect_manage'>[B.name]</a></td>
-				<td><a href='?src=\ref[src.holder];action=managebioeffect_alter_stable;target=\ref[M];bioeffect=\ref[B];origin=bioeffect_manage'>[is_stable ? "&#x2714;" : "&#x274C;"]</a></td>
-				<td><a href='?src=\ref[src.holder];action=managebioeffect_alter_reinforce;target=\ref[M];bioeffect=\ref[B];origin=bioeffect_manage'>[is_reinforced ? "&#x2714;" : "&#x274C;"]</a></td>
-				<td><a href='?src=\ref[src.holder];action=managebioeffect_alter_power_boost;target=\ref[M];bioeffect=\ref[B];origin=bioeffect_manage'>[isnull(is_power_boosted) ? "&#x26D4;" : (is_power_boosted ? "&#x2714;" : "&#x274C;")]</a></td>
-				<td><a href='?src=\ref[src.holder];action=managebioeffect_alter_sync;target=\ref[M];bioeffect=\ref[B];origin=bioeffect_manage'>[isnull(is_synced) ? "&#x26D4;" : (is_synced ? "&#x2714;" : "&#x274C;")]</a></td>
-				<td><a href='?src=\ref[src.holder];action=managebioeffect_alter_cooldown;target=\ref[M];bioeffect=\ref[B];origin=bioeffect_manage'>[isnull(cooldown) ? "&#x26D4;" : cooldown]</a></td>
-				<td><a href='?src=\ref[src.holder];action=managebioeffect_chromosome;target=\ref[M];bioeffect=\ref[B];origin=bioeffect_manage'>Splice</a></td>
+				<td><a href='byond://?src=\ref[src.holder];action=managebioeffect_debug_vars;bioeffect=\ref[B];origin=bioeffect_manage'>[B.name]</a></td>
+				<td><a href='byond://?src=\ref[src.holder];action=managebioeffect_alter_stable;target=\ref[M];bioeffect=\ref[B];origin=bioeffect_manage'>[is_stable ? "&#x2714;" : "&#x274C;"]</a></td>
+				<td><a href='byond://?src=\ref[src.holder];action=managebioeffect_alter_reinforce;target=\ref[M];bioeffect=\ref[B];origin=bioeffect_manage'>[is_reinforced ? "&#x2714;" : "&#x274C;"]</a></td>
+				<td><a href='byond://?src=\ref[src.holder];action=managebioeffect_alter_power_boost;target=\ref[M];bioeffect=\ref[B];origin=bioeffect_manage'>[isnull(is_power_boosted) ? "&#x26D4;" : (is_power_boosted ? "&#x2714;" : "&#x274C;")]</a></td>
+				<td><a href='byond://?src=\ref[src.holder];action=managebioeffect_alter_sync;target=\ref[M];bioeffect=\ref[B];origin=bioeffect_manage'>[isnull(is_synced) ? "&#x26D4;" : (is_synced ? "&#x2714;" : "&#x274C;")]</a></td>
+				<td><a href='byond://?src=\ref[src.holder];action=managebioeffect_alter_cooldown;target=\ref[M];bioeffect=\ref[B];origin=bioeffect_manage'>[isnull(cooldown) ? "&#x26D4;" : cooldown]</a></td>
+				<td><a href='byond://?src=\ref[src.holder];action=managebioeffect_chromosome;target=\ref[M];bioeffect=\ref[B];origin=bioeffect_manage'>Splice</a></td>
 			</tr>"}
 	dat += "</table></body></html>"
 	usr.Browse(dat.Join(),"window=bioeffect_manage;size=900x400")
@@ -5096,8 +5096,8 @@ var/global/noir = 0
 		<body>
 		<h1>
 			Abilities of [M.name]
-			<a href='?src=\ref[src.holder];action=manageabils;target=\ref[M];origin=manageabils' class="button">&#x1F504;</a>
-			<a href='?src=\ref[src.holder];action=addabil;target=\ref[M];origin=manageabils' class="button">&#x2795;</a>
+			<a href='byond://?src=\ref[src.holder];action=manageabils;target=\ref[M];origin=manageabils' class="button">&#x1F504;</a>
+			<a href='byond://?src=\ref[src.holder];action=addabil;target=\ref[M];origin=manageabils' class="button">&#x2795;</a>
 		</h1>
 		<table>
 			<tr>
@@ -5122,10 +5122,10 @@ var/global/noir = 0
 	for (var/datum/targetable/A in abils)
 		dat += {"
 			<tr>
-				<td><a href='?src=\ref[src.holder];action=manageabils_remove;target=\ref[M];ability=\ref[A];origin=manageabils'>remove</a></td>
-				<td><a href='?src=\ref[src.holder];action=manageabilt_debug_vars;ability=\ref[A];origin=manageabils'>[A.name]</a></td>
+				<td><a href='byond://?src=\ref[src.holder];action=manageabils_remove;target=\ref[M];ability=\ref[A];origin=manageabils'>remove</a></td>
+				<td><a href='byond://?src=\ref[src.holder];action=manageabilt_debug_vars;ability=\ref[A];origin=manageabils'>[A.name]</a></td>
 				<td>[A.type]
-				<td><a href='?src=\ref[src.holder];action=manageabils_alter_cooldown;target=\ref[M];ability=\ref[A];origin=manageabils'>[isnull(A.cooldown) ? "&#x26D4;" : A.cooldown]</a></td>
+				<td><a href='byond://?src=\ref[src.holder];action=manageabils_alter_cooldown;target=\ref[M];ability=\ref[A];origin=manageabils'>[isnull(A.cooldown) ? "&#x26D4;" : A.cooldown]</a></td>
 			</tr>"}
 	dat += "</table></body></html>"
 	usr.Browse(dat.Join(),"window=manageabils;size=700x400")

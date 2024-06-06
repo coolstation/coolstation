@@ -12,13 +12,13 @@
 		return
 
 	var/dat = {"<b>Conduits</b><br><br>
-<A href='?src=\ref[src];dmake=0'>Straight</A><BR>
-<A href='?src=\ref[src];dmake=1'>Bent</A><BR>
-<A href='?src=\ref[src];dmake=2'>Three-way Junction</A><BR>
-<A href='?src=\ref[src];dmake=3'>All-way Junction</A><BR>
-<A href='?src=\ref[src];dmake=4'>Tap</A><BR>
-<A href='?src=\ref[src];dmake=5'>Trunk</A><BR>
-<A href='?src=\ref[src];dmake=6'>Switch</A><BR>
+<A href='byond://?src=\ref[src];dmake=0'>Straight</A><BR>
+<A href='byond://?src=\ref[src];dmake=1'>Bent</A><BR>
+<A href='byond://?src=\ref[src];dmake=2'>Three-way Junction</A><BR>
+<A href='byond://?src=\ref[src];dmake=3'>All-way Junction</A><BR>
+<A href='byond://?src=\ref[src];dmake=4'>Tap</A><BR>
+<A href='byond://?src=\ref[src];dmake=5'>Trunk</A><BR>
+<A href='byond://?src=\ref[src];dmake=6'>Switch</A><BR>
 "}
 
 	user.Browse("<HEAD><TITLE>Conduit Dispenser</TITLE></HEAD><TT>[dat]</TT>", "window=conduitdispenser")
@@ -226,16 +226,16 @@
 	var/startstop_lay = (src.laying_conduit ? "Stop" : "Start")
 	var/startstop_remove = (src.removing_conduit ? "Stop" : "Start")
 	var/dat = {"<b>Conduits</b><br><br>
-<A href='?src=\ref[src];dmake=0'>Conduit</A><BR>
-<A href='?src=\ref[src];dmake=1'>Bent Conduit</A><BR>
-<A href='?src=\ref[src];dmake=2'>Three-way Junction</A><BR>
-<A href='?src=\ref[src];dmake=3'>All-way Junction</A><BR>
-<A href='?src=\ref[src];dmake=4'>Tap</A><BR>
-<A href='?src=\ref[src];dmake=5'>Trunk</A><BR>
-<A href='?src=\ref[src];dmake=6'>Switched</A><BR>
+<A href='byond://?src=\ref[src];dmake=0'>Conduit</A><BR>
+<A href='byond://?src=\ref[src];dmake=1'>Bent Conduit</A><BR>
+<A href='byond://?src=\ref[src];dmake=2'>Three-way Junction</A><BR>
+<A href='byond://?src=\ref[src];dmake=3'>All-way Junction</A><BR>
+<A href='byond://?src=\ref[src];dmake=4'>Tap</A><BR>
+<A href='byond://?src=\ref[src];dmake=5'>Trunk</A><BR>
+<A href='byond://?src=\ref[src];dmake=6'>Switched</A><BR>
 <BR>
-<A href='?src=\ref[src];toggle_laying=1'>[startstop_lay] Laying Conduit Automatically</A><BR>
-<A href='?src=\ref[src];toggle_removing=1'>[startstop_remove] Removing Conduit Automatically</A><BR>
+<A href='byond://?src=\ref[src];toggle_laying=1'>[startstop_lay] Laying Conduit Automatically</A><BR>
+<A href='byond://?src=\ref[src];toggle_removing=1'>[startstop_remove] Removing Conduit Automatically</A><BR>
 "}
 
 	user << browse("<HEAD><TITLE>Conduit Dispenser</TITLE></HEAD><TT>[dat]</TT>", "window=conduitdispenser")

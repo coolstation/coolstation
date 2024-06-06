@@ -22,7 +22,7 @@
 					if(G.my_ship_body)
 						if(G.my_ship_body.landing_zone)
 							found = 1
-							link_html += {"[G.my_ship_body.destination_name] <a href='?src=\ref[src];send=\ref[G.my_ship_body.landing_zone]'><small>(Send)</small></a> <a href='?src=\ref[src];recieve=\ref[G.my_ship_body.landing_zone]'><small>(Recieve)</small></a><br>"}
+							link_html += {"[G.my_ship_body.destination_name] <a href='byond://?src=\ref[src];send=\ref[G.my_ship_body.landing_zone]'><small>(Send)</small></a> <a href='byond://?src=\ref[src];recieve=\ref[G.my_ship_body.landing_zone]'><small>(Recieve)</small></a><br>"}
 		if(!found)
 			link_html = "<br>No co-ordinates available.<br>"
 
@@ -114,7 +114,7 @@
 					if(G.my_ship_body)
 						if(G.my_ship_body.landing_zone)
 							found = 1
-							link_html += {"[G.my_ship_body.destination_name] <a href='?src=\ref[src];recieve=\ref[G.my_ship_body.landing_zone]'><small>(Receive)</small></a><br>"}
+							link_html += {"[G.my_ship_body.destination_name] <a href='byond://?src=\ref[src];recieve=\ref[G.my_ship_body.landing_zone]'><small>(Receive)</small></a><br>"}
 		if(!found)
 			link_html = "<br>No co-ordinates available.<br>"
 

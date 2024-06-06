@@ -80,12 +80,12 @@
 	src.add_dialog(user)
 	var/d2
 	if (src.timing)
-		d2 = text("<A href='?src=\ref[];time=0'>Stop Time Launch</A>", src)
+		d2 = text("<A href='byond://?src=\ref[];time=0'>Stop Time Launch</A>", src)
 	else
-		d2 = text("<A href='?src=\ref[];time=1'>Initiate Time Launch</A>", src)
+		d2 = text("<A href='byond://?src=\ref[];time=1'>Initiate Time Launch</A>", src)
 	var/second = src.time % 60
 	var/minute = (src.time - second) / 60
-	dat += text("<HR><br>Timer System: []<br>Time Left: [][] <A href='?src=\ref[];tp=-30'>-</A> <A href='?src=\ref[];tp=-1'>-</A> <A href='?src=\ref[];tp=1'>+</A> <A href='?src=\ref[];tp=30'>+</A>", d2, (minute ? text("[]:", minute) : null), second, src, src, src, src)
+	dat += text("<HR><br>Timer System: []<br>Time Left: [][] <A href='byond://?src=\ref[];tp=-30'>-</A> <A href='byond://?src=\ref[];tp=-1'>-</A> <A href='byond://?src=\ref[];tp=1'>+</A> <A href='byond://?src=\ref[];tp=30'>+</A>", d2, (minute ? text("[]:", minute) : null), second, src, src, src, src)
 	if (src.connected)
 		var/temp = ""
 		var/list/L = list( 0.25, 0.5, 1, 2, 4, 8, 16 )
@@ -100,7 +100,7 @@
 	else
 		dat += text("<BR><br><A href = '?src=\ref[];door=1'>Toggle Outer Door</A><BR>", src)
 	//*****
-	dat += text("<BR><BR><A href='?action=mach_close&window=computer'>Close</A></TT></BODY></HTML>")
+	dat += text("<BR><BR><A href='byond://?action=mach_close&window=computer'>Close</A></TT></BODY></HTML>")
 	if(istype(src, /obj/machinery/computer/pod/old/swf))
 		dat = "<HTML><BODY><TT><B>Magix IV Shuttle and Teleport Control</B>"
 		//if(!src.TPR)
@@ -108,7 +108,7 @@
 		//else
 			//dat += "<BR><BR><BR>RECHARGING TELEPORT<BR><DD>Please stand by...</DD>"
 		dat += text("<BR><BR><A href = '?src=\ref[];door=1'>Toggle Outer Door</A><BR>", src)
-		dat += text("<BR><BR><A href='?action=mach_close&window=computer'>Close</A></TT></BODY></HTML>")
+		dat += text("<BR><BR><A href='byond://?action=mach_close&window=computer'>Close</A></TT></BODY></HTML>")
 	user.Browse(dat, "window=computer;size=400x500")
 	onclose(user, "computer")
 	return

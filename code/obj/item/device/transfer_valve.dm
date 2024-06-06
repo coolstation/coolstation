@@ -106,11 +106,11 @@
 			boutput(user, "<span class='alert'>You think working with explosives would bring a lot of much heat onto your gang to mess with this. But you do it anyway.</span>")
 		src.add_dialog(user)
 		var/dat = {"<B> Valve properties: </B>
-		<BR> <B> Attachment one:</B> [tank_one] [tank_one ? "<A href='?src=\ref[src];tankone=1'>Remove</A>" : ""]
-		<BR> <B> Attachment two:</B> [tank_two] [tank_two ? "<A href='?src=\ref[src];tanktwo=1'>Remove</A>" : ""]
-		<BR> <B> Valve attachment:</B> [attached_device ? "<A href='?src=\ref[src];device=1'>[attached_device]</A>" : "None"] [attached_device ? "<A href='?src=\ref[src];rem_device=1'>Remove</A>" : ""]
-		<BR> <B> Valve status: </B> [ valve_open ? "<A href='?src=\ref[src];open=1'>Closed</A> <B>Open</B>" : "<B>Closed</B> <A href='?src=\ref[src];open=1'>Open</A>"]
-		<BR> [flags & ONBACK ? "<B> Straps: </B> <A href='?src=\ref[src];straps=1'>Remove</A>" : ""]"}
+		<BR> <B> Attachment one:</B> [tank_one] [tank_one ? "<A href='byond://?src=\ref[src];tankone=1'>Remove</A>" : ""]
+		<BR> <B> Attachment two:</B> [tank_two] [tank_two ? "<A href='byond://?src=\ref[src];tanktwo=1'>Remove</A>" : ""]
+		<BR> <B> Valve attachment:</B> [attached_device ? "<A href='byond://?src=\ref[src];device=1'>[attached_device]</A>" : "None"] [attached_device ? "<A href='byond://?src=\ref[src];rem_device=1'>Remove</A>" : ""]
+		<BR> <B> Valve status: </B> [ valve_open ? "<A href='byond://?src=\ref[src];open=1'>Closed</A> <B>Open</B>" : "<B>Closed</B> <A href='byond://?src=\ref[src];open=1'>Open</A>"]
+		<BR> [flags & ONBACK ? "<B> Straps: </B> <A href='byond://?src=\ref[src];straps=1'>Remove</A>" : ""]"}
 
 		user.Browse(dat, "window=trans_valve;size=600x300")
 		onclose(user, "trans_valve")

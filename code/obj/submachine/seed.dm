@@ -40,18 +40,18 @@
 			<style type="text/css">.l { text-align: left; } .r { text-align: right; } .c { text-align: center; } .hyp-dominant { font-weight: bold; background-color: rgba(160, 160, 160, 0.33);} .buttonlink { background: #66c; width: 1.1em; height: 1.2em; padding: 0.2em 0.2em; margin-bottom: 2px; border-radius: 4px; font-size: 90%; color: white; text-decoration: none; display: inline-block; vertical-align: middle; } .genes { min-width: 2em; } table { width: 100%; } td, th { border-bottom: 1px solid rgb(160, 160, 160); padding: 0.1em 0.2em; } .splicing { background-color: rgba(0, 255, 0, 0.5); } thead { background: rgba(160, 160, 160, 0.6); } abbr { text-decoration: underline; } .buttonlinks { white-space: nowrap; padding: 0; text-align: center; } </style>
 			<h3 style='margin: 0;'>[src.name]</h3>
 			<div style="float: right;">
-				[src.inserted ? "<a href='?src=\ref[src];ejectbeaker=1' class='buttonlink'>&#9167;</a> [src.inserted] ([src.inserted.reagents.total_volume]/[src.inserted.reagents.maximum_volume]) &bull; " : "" ]
-				[src.extractables.len > 0 ? "<a href='?src=\ref[src];ejectextractables=1' class='buttonlink'>&#9167;</a> " : "" ][src.extractables.len] extractable\s &bull;
-				[src.seeds.len > 0 ? "<a href='?src=\ref[src];ejectseeds=1' class='buttonlink'>&#9167;</a> " : "" ][src.seeds.len] seed\s
+				[src.inserted ? "<a href='byond://?src=\ref[src];ejectbeaker=1' class='buttonlink'>&#9167;</a> [src.inserted] ([src.inserted.reagents.total_volume]/[src.inserted.reagents.maximum_volume]) &bull; " : "" ]
+				[src.extractables.len > 0 ? "<a href='byond://?src=\ref[src];ejectextractables=1' class='buttonlink'>&#9167;</a> " : "" ][src.extractables.len] extractable\s &bull;
+				[src.seeds.len > 0 ? "<a href='byond://?src=\ref[src];ejectseeds=1' class='buttonlink'>&#9167;</a> " : "" ][src.seeds.len] seed\s
 			</div>
-			<strong><a href='?src=\ref[src];page=1'>Overview</a> &bull; <a href='?src=\ref[src];page=2'>Seed Extraction</a> &bull; <a href='?src=\ref[src];page=3'>Seed List</a></strong>
+			<strong><a href='byond://?src=\ref[src];page=1'>Overview</a> &bull; <a href='byond://?src=\ref[src];page=2'>Seed Extraction</a> &bull; <a href='byond://?src=\ref[src];page=3'>Seed List</a></strong>
 			<hr>
 		"}
 		if (src.mode == "overview")
 			dat += "<b><u>Overview</u></b><br><br>"
 
 			if (src.inserted)
-				dat += "<B>Receptacle:</B> [src.inserted] ([src.inserted.reagents.total_volume]/[src.inserted.reagents.maximum_volume]) <A href='?src=\ref[src];ejectbeaker=1'>(Eject)</A><BR>"
+				dat += "<B>Receptacle:</B> [src.inserted] ([src.inserted.reagents.total_volume]/[src.inserted.reagents.maximum_volume]) <A href='byond://?src=\ref[src];ejectbeaker=1'>(Eject)</A><BR>"
 				dat += "<b>Contents:</b> "
 				if(src.inserted.reagents.reagent_list.len)
 					for(var/current_id in inserted.reagents.reagent_list)
@@ -79,9 +79,9 @@
 		else if (src.mode == "extraction")
 			dat += "<b><u>Seed Extraction</u></b><br>"
 			if (src.seedoutput)
-				dat += "<A href='?src=\ref[src];outputmode=1'>Extracted seeds will be ejected from the machine.</A>"
+				dat += "<A href='byond://?src=\ref[src];outputmode=1'>Extracted seeds will be ejected from the machine.</A>"
 			else
-				dat += "<A href='?src=\ref[src];outputmode=1'>Extracted seeds will be retained within the machine.</A>"
+				dat += "<A href='byond://?src=\ref[src];outputmode=1'>Extracted seeds will be retained within the machine.</A>"
 			dat += {"<br><br>
 				<table>
 					<thead>
@@ -106,11 +106,11 @@
 
 					dat += {"
 					<tr>
-						<td class='buttonlinks'><a href='?src=\ref[src];label=\ref[I]' title='Rename' class='buttonlink'>&#9998;</a>
-						<a href='?src=\ref[src];analyze=\ref[I]' title='Analyze' class='buttonlink'>&#128269;</a>
-						<a href='?src=\ref[src];eject=\ref[I]' title='Eject' class='buttonlink'>&#9167;</a></td>
+						<td class='buttonlinks'><a href='byond://?src=\ref[src];label=\ref[I]' title='Rename' class='buttonlink'>&#9998;</a>
+						<a href='byond://?src=\ref[src];analyze=\ref[I]' title='Analyze' class='buttonlink'>&#128269;</a>
+						<a href='byond://?src=\ref[src];eject=\ref[I]' title='Eject' class='buttonlink'>&#9167;</a></td>
 						<th class='l'>[I.name]</th>
-						<td><a href='?src=\ref[src];extract=\ref[I]'>Extract</a></td>
+						<td><a href='byond://?src=\ref[src];extract=\ref[I]'>Extract</a></td>
 						[geneout]
 					</tr>
 
@@ -122,9 +122,9 @@
 		else if (src.mode == "seedlist")
 			dat += "<b><u>Seed List</u></b><br>"
 			if (src.seedfilter)
-				dat += "<b><A href='?src=\ref[src];filter=1'>Filter:</A></b> \"[src.seedfilter]\"<br>"
+				dat += "<b><A href='byond://?src=\ref[src];filter=1'>Filter:</A></b> \"[src.seedfilter]\"<br>"
 			else
-				dat += "<b><A href='?src=\ref[src];filter=1'>Filter:</A></b> None<br>"
+				dat += "<b><A href='byond://?src=\ref[src];filter=1'>Filter:</A></b> None<br>"
 			dat += "<br>"
 
 			var/allow_infusion = 0
@@ -148,13 +148,13 @@
 					if (!src.seedfilter || findtext(src.seedfilter, S.name, 1, null))
 						dat += {"
 							<tr [S == src.splicing1 ? "class='splicing'" : ""]>
-								<td class='buttonlinks'><a href='?src=\ref[src];label=\ref[S]' title='Rename' class='buttonlink'>&#9998;</a>
-								<a href='?src=\ref[src];analyze=\ref[S]' title='Analyze' class='buttonlink'>&#128269;</a>
-								<a href='?src=\ref[src];eject=\ref[S]' title='Eject' class='buttonlink'>&#9167;</a></td>
+								<td class='buttonlinks'><a href='byond://?src=\ref[src];label=\ref[S]' title='Rename' class='buttonlink'>&#9998;</a>
+								<a href='byond://?src=\ref[src];analyze=\ref[S]' title='Analyze' class='buttonlink'>&#128269;</a>
+								<a href='byond://?src=\ref[src];eject=\ref[S]' title='Eject' class='buttonlink'>&#9167;</a></td>
 								<th class='l'>[S.name]</th>
 								<td class='r'>[S.seeddamage]%</td>
-								<td class='c'>[S == src.splicing1 ? "<a href='?src=\ref[src];splice_cancel=1'>Cancel</a>" : "<a href='?src=\ref[src];splice_select=\ref[S]'>Splice</a>"]</td>
-								<td class='c'>[allow_infusion ? "<a href='?src=\ref[src];infuse=\ref[S]'>Infuse</a>" : "Infuse"]</td>
+								<td class='c'>[S == src.splicing1 ? "<a href='byond://?src=\ref[src];splice_cancel=1'>Cancel</a>" : "<a href='byond://?src=\ref[src];splice_select=\ref[S]'>Splice</a>"]</td>
+								<td class='c'>[allow_infusion ? "<a href='byond://?src=\ref[src];infuse=\ref[S]'>Infuse</a>" : "Infuse"]</td>
 								[QuickAnalysisRow(S, S.planttype, S.plantgenes)]
 							</tr>
 						"}
@@ -177,11 +177,11 @@
 					</thead>
 					<tbody>
 					<tr>
-						<th class='l'><a href='?src=\ref[src];analyze=\ref[src.splicing1]'>[src.splicing1]</a></th>
+						<th class='l'><a href='byond://?src=\ref[src];analyze=\ref[src.splicing1]'>[src.splicing1]</a></th>
 						[QuickAnalysisRow(src.splicing1, src.splicing1.planttype, src.splicing1.plantgenes)]
 					</tr>
 					<tr>
-						<th class='l'><a href='?src=\ref[src];analyze=\ref[src.splicing2]'>[src.splicing2]</a></th>
+						<th class='l'><a href='byond://?src=\ref[src];analyze=\ref[src.splicing2]'>[src.splicing2]</a></th>
 						[QuickAnalysisRow(src.splicing2, src.splicing2.planttype, src.splicing2.plantgenes)]
 					</tr>
 					</tbody>
@@ -219,18 +219,18 @@
 				splice_chance = max(0,min(splice_chance,100))
 
 				dat += "<b>Chance of Successful Splice:</b> [splice_chance]%<br>"
-				dat += "<A href='?src=\ref[src];splice=1'>(Proceed)</A> <A href='?src=\ref[src];splice_cancel=1'>(Cancel)</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];splice=1'>(Proceed)</A> <A href='byond://?src=\ref[src];splice_cancel=1'>(Cancel)</A><BR>"
 				if (src.seedoutput)
-					dat += "<A href='?src=\ref[src];outputmode=1'>New seeds will be ejected from the machine.</A>"
+					dat += "<A href='byond://?src=\ref[src];outputmode=1'>New seeds will be ejected from the machine.</A>"
 				else
-					dat += "<A href='?src=\ref[src];outputmode=1'>New seeds will be retained within the machine.</A>"
+					dat += "<A href='byond://?src=\ref[src];outputmode=1'>New seeds will be retained within the machine.</A>"
 
 			else
 				dat += {"<b>Splice Error.</b><br>
-				<A href='?src=\ref[src];page=3'>Please click here to return to the Seed List.</A>"}
+				<A href='byond://?src=\ref[src];page=3'>Please click here to return to the Seed List.</A>"}
 		else
 			dat += {"<b>Software Error.</b><br>
-			<A href='?src=\ref[src];page=1'>Please click here to return to the Overview.</A>"}
+			<A href='byond://?src=\ref[src];page=1'>Please click here to return to the Overview.</A>"}
 
 		dat += {"<hr>
 		Genetic display key: <span class='hyp-dominant'>Dominant</span> / Recessive
@@ -793,7 +793,7 @@
 			else dat += "<b>Storage Tank 2 Missing!</b><br>"
 			// Inserted Beaker or whatever
 			if (src.inserted)
-				dat += "<B>Receptacle:</B> [src.inserted] ([src.inserted.reagents.total_volume]/[src.inserted.reagents.maximum_volume]) <A href='?src=\ref[src];ejectbeaker=1'>(Eject)</A><BR>"
+				dat += "<B>Receptacle:</B> [src.inserted] ([src.inserted.reagents.total_volume]/[src.inserted.reagents.maximum_volume]) <A href='byond://?src=\ref[src];ejectbeaker=1'>(Eject)</A><BR>"
 				dat += "<b>Contents:</b> "
 				if(src.inserted.reagents.reagent_list.len)
 					for(var/current_id in inserted.reagents.reagent_list)
@@ -810,57 +810,57 @@
 		else if (src.mode == "extraction")
 			dat += "<b><u>Extraction Management</u></b><br><br>"
 			if (src.autoextract)
-				dat += "<b>Auto-Extraction:</b> <A href='?src=\ref[src];autoextract=1'>Enabled</A>"
+				dat += "<b>Auto-Extraction:</b> <A href='byond://?src=\ref[src];autoextract=1'>Enabled</A>"
 			else
-				dat += "<b>Auto-Extraction:</b> <A href='?src=\ref[src];autoextract=1'>Disabled</A>"
+				dat += "<b>Auto-Extraction:</b> <A href='byond://?src=\ref[src];autoextract=1'>Disabled</A>"
 			dat += "<br>"
 			if (src.extract_to)
-				dat += "<b>Extraction Target:</b> <A href='?src=\ref[src];extracttarget=1'>[src.extract_to]</A> ([src.extract_to.reagents.total_volume]/[src.extract_to.reagents.maximum_volume])"
-				if (src.extract_to == src.inserted) dat += "<A href='?src=\ref[src];ejectbeaker=1'>(Eject)</A>"
-			else dat += "<A href='?src=\ref[src];extracttarget=1'><b>No current extraction target set.</b></A>"
+				dat += "<b>Extraction Target:</b> <A href='byond://?src=\ref[src];extracttarget=1'>[src.extract_to]</A> ([src.extract_to.reagents.total_volume]/[src.extract_to.reagents.maximum_volume])"
+				if (src.extract_to == src.inserted) dat += "<A href='byond://?src=\ref[src];ejectbeaker=1'>(Eject)</A>"
+			else dat += "<A href='byond://?src=\ref[src];extracttarget=1'><b>No current extraction target set.</b></A>"
 
 			if(src.ingredients.len)
 				dat += "<br><br><B>Extractable Items:</B><br><br>"
 				for (var/obj/item/I in src.ingredients)
 					dat += "* [I]<br>"
-					dat += "<A href='?src=\ref[src];extractingred=\ref[I]'>(Extract)</A> <A href='?src=\ref[src];ejectingred=\ref[I]'>(Eject)</A><br>"
+					dat += "<A href='byond://?src=\ref[src];extractingred=\ref[I]'>(Extract)</A> <A href='byond://?src=\ref[src];ejectingred=\ref[I]'>(Eject)</A><br>"
 			else dat += "<br><br><B>No Items inserted!</B>"
 
 		else if (src.mode == "transference")
 			dat += "<b><u>Transfer Management</u></b><br><br>"
 
 			if (src.inserted)
-				dat += "<A href='?src=\ref[src];chemtransfer=\ref[src.inserted]'><b>[src.inserted]:</b></A> ([src.inserted.reagents.total_volume]/[src.inserted.reagents.maximum_volume]) <A href='?src=\ref[src];flush=\ref[src.inserted]'>(Flush All)</A> <A href='?src=\ref[src];ejectbeaker=1'>(Eject)</A><br>"
+				dat += "<A href='byond://?src=\ref[src];chemtransfer=\ref[src.inserted]'><b>[src.inserted]:</b></A> ([src.inserted.reagents.total_volume]/[src.inserted.reagents.maximum_volume]) <A href='byond://?src=\ref[src];flush=\ref[src.inserted]'>(Flush All)</A> <A href='byond://?src=\ref[src];ejectbeaker=1'>(Eject)</A><br>"
 				if(src.inserted.reagents.reagent_list.len)
 					for(var/current_id in inserted.reagents.reagent_list)
 						var/datum/reagent/current_reagent = inserted.reagents.reagent_list[current_id]
-						dat += "* <i>[current_reagent.volume] units of [current_reagent.name]</i> <A href='?src=\ref[src];flush=\ref[src.inserted];flush_reagent=[current_id]'>(X)</A><br>"
+						dat += "* <i>[current_reagent.volume] units of [current_reagent.name]</i> <A href='byond://?src=\ref[src];flush=\ref[src.inserted];flush_reagent=[current_id]'>(X)</A><br>"
 				else dat += "Empty<BR>"
 			else dat += "<b>No receptacle inserted!</b><br>"
 
 			dat += "<br>"
 
-			dat += "<A href='?src=\ref[src];chemtransfer=\ref[src.storage_tank_1]'><b>Storage Tank 1:</b></A> ([src.storage_tank_1.reagents.total_volume]/[src.storage_tank_1.reagents.maximum_volume]) <A href='?src=\ref[src];flush=\ref[src.storage_tank_1]'>(Flush All)</A><br>"
+			dat += "<A href='byond://?src=\ref[src];chemtransfer=\ref[src.storage_tank_1]'><b>Storage Tank 1:</b></A> ([src.storage_tank_1.reagents.total_volume]/[src.storage_tank_1.reagents.maximum_volume]) <A href='byond://?src=\ref[src];flush=\ref[src.storage_tank_1]'>(Flush All)</A><br>"
 			if(src.storage_tank_1.reagents.reagent_list.len)
 				for(var/current_id in storage_tank_1.reagents.reagent_list)
 					var/datum/reagent/current_reagent = storage_tank_1.reagents.reagent_list[current_id]
-					dat += "* <i>[current_reagent.volume] units of [current_reagent.name]</i> <A href='?src=\ref[src];flush=\ref[src.storage_tank_1];flush_reagent=[current_id]'>(X)</A><br>"
+					dat += "* <i>[current_reagent.volume] units of [current_reagent.name]</i> <A href='byond://?src=\ref[src];flush=\ref[src.storage_tank_1];flush_reagent=[current_id]'>(X)</A><br>"
 			else dat += "Empty<BR>"
 
 			dat += "<br>"
-			dat += "<A href='?src=\ref[src];chemtransfer=\ref[src.storage_tank_2]'><b>Storage Tank 2:</b></A> ([src.storage_tank_2.reagents.total_volume]/[src.storage_tank_2.reagents.maximum_volume]) <A href='?src=\ref[src];flush=\ref[src.storage_tank_2]'>(Flush All)</A><br>"
+			dat += "<A href='byond://?src=\ref[src];chemtransfer=\ref[src.storage_tank_2]'><b>Storage Tank 2:</b></A> ([src.storage_tank_2.reagents.total_volume]/[src.storage_tank_2.reagents.maximum_volume]) <A href='byond://?src=\ref[src];flush=\ref[src.storage_tank_2]'>(Flush All)</A><br>"
 			if(src.storage_tank_2.reagents.reagent_list.len)
 				for(var/current_id in storage_tank_2.reagents.reagent_list)
 					var/datum/reagent/current_reagent = storage_tank_2.reagents.reagent_list[current_id]
-					dat += "* <i>[current_reagent.volume] units of [current_reagent.name]</i> <A href='?src=\ref[src];flush=\ref[src.storage_tank_2];flush_reagent=[current_id]'>(X)</A><br>"
+					dat += "* <i>[current_reagent.volume] units of [current_reagent.name]</i> <A href='byond://?src=\ref[src];flush=\ref[src.storage_tank_2];flush_reagent=[current_id]'>(X)</A><br>"
 			else dat += "Empty<BR>"
 
 		else
 			dat += {"<b>Software Error.</b><br>
-			<A href='?src=\ref[src];page=1'>Please click here to return to the Overview.</A>"}
+			<A href='byond://?src=\ref[src];page=1'>Please click here to return to the Overview.</A>"}
 
 		dat += "<HR>"
-		dat += "<b><u>Mode:</u></b> <A href='?src=\ref[src];page=1'>(Overview)</A> <A href='?src=\ref[src];page=2'>(Extraction)</A> <A href='?src=\ref[src];page=3'>(Transference)</A>"
+		dat += "<b><u>Mode:</u></b> <A href='byond://?src=\ref[src];page=1'>(Overview)</A> <A href='byond://?src=\ref[src];page=2'>(Extraction)</A> <A href='byond://?src=\ref[src];page=3'>(Transference)</A>"
 
 		user.Browse(dat.Join(), "window=rextractor;size=370x500")
 		onclose(user, "rextractor")
@@ -1137,11 +1137,11 @@
 	attack_hand(var/mob/user as mob)
 		src.add_dialog(user)
 		var/dat = "<B>[src.name]</B><BR><HR>"
-		dat += "<b>Amount to Vend</b>: <A href='?src=\ref[src];amount=1'>[src.vendamt]</A><br>"
+		dat += "<b>Amount to Vend</b>: <A href='byond://?src=\ref[src];amount=1'>[src.vendamt]</A><br>"
 		if (src.category)
-			dat += "<b>Filter</b>: [src.category] <A href='?src=\ref[src];category=1'>(Clear)</A><br>"
+			dat += "<b>Filter</b>: [src.category] <A href='byond://?src=\ref[src];category=1'>(Clear)</A><br>"
 		else
-			dat += "<b>Filter</b>: <A href='?src=\ref[src];category=1'>(Set)</A><br>"
+			dat += "<b>Filter</b>: <A href='byond://?src=\ref[src];category=1'>(Set)</A><br>"
 		if (!src.can_vend)
 			dat+= "<u>Unit currently out of charge. Please wait.</u><br>"
 		dat += "<br>"
@@ -1151,12 +1151,12 @@
 			if (A.vending > 1)
 				if (src.hacked)
 					if (!src.category || (src.category == A.category))
-						dat += "<b>[A.name]</b>: <A href='?src=\ref[src];disp=\ref[A]'>(VEND)</A><br>"
+						dat += "<b>[A.name]</b>: <A href='byond://?src=\ref[src];disp=\ref[A]'>(VEND)</A><br>"
 				else
 					continue
 			else
 				if (!src.category || (src.category == A.category))
-					dat += "<b>[A.name]</b>: <A href='?src=\ref[src];disp=\ref[A]'>(VEND)</A><br>"
+					dat += "<b>[A.name]</b>: <A href='byond://?src=\ref[src];disp=\ref[A]'>(VEND)</A><br>"
 
 		user.Browse(dat, "window=seedfab;size=400x500")
 		onclose(user, "seedfab")
@@ -1173,10 +1173,10 @@
 				var/is_uncut = src.wires & APCWireColorToFlag[fabwires[wiredesc]]
 				pdat += "[wiredesc] wire: "
 				if(!is_uncut)
-					pdat += "<a href='?src=\ref[src];cutwire=[fabwires[wiredesc]]'>Mend</a>"
+					pdat += "<a href='byond://?src=\ref[src];cutwire=[fabwires[wiredesc]]'>Mend</a>"
 				else
-					pdat += "<a href='?src=\ref[src];cutwire=[fabwires[wiredesc]]'>Cut</a> "
-					pdat += "<a href='?src=\ref[src];pulsewire=[fabwires[wiredesc]]'>Pulse</a> "
+					pdat += "<a href='byond://?src=\ref[src];cutwire=[fabwires[wiredesc]]'>Cut</a> "
+					pdat += "<a href='byond://?src=\ref[src];pulsewire=[fabwires[wiredesc]]'>Pulse</a> "
 				pdat += "<br>"
 
 			pdat += "<br>"

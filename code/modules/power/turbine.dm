@@ -177,9 +177,9 @@
 
 	t += "Turbine: [round(compressor.rpm)] RPM<BR>"
 
-	t += "Starter: [ compressor.starter ? "<A href='?src=\ref[src];str=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='?src=\ref[src];str=1'>On</A>"]"
+	t += "Starter: [ compressor.starter ? "<A href='byond://?src=\ref[src];str=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='byond://?src=\ref[src];str=1'>On</A>"]"
 
-	t += "</PRE><HR><A href='?src=\ref[src];close=1'>Close</A>"
+	t += "</PRE><HR><A href='byond://?src=\ref[src];close=1'>Close</A>"
 
 	t += "</TT>"
 	user.Browse(t, "window=turbine")
@@ -239,14 +239,14 @@
 	var/dat
 	if(src.compressor)
 		dat += {"<BR><B>Gas turbine remote control system</B><HR>
-		<br>Turbine status: [ src.compressor.starter ? "<A href='?src=\ref[src];str=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='?src=\ref[src];str=1'>On</A>"]
+		<br>Turbine status: [ src.compressor.starter ? "<A href='byond://?src=\ref[src];str=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='byond://?src=\ref[src];str=1'>On</A>"]
 		<br><BR>
 		<br>Turbine speed: [src.compressor.rpm]rpm<BR>
 		<br>Power currently being generated: [src.compressor.turbine.lastgen]W<BR>
 		<br>Internal gas temperature: [src.compressor.gas_contained.temperature]K<BR>
-		<br>Vent doors: [ src.door_status ? "<A href='?src=\ref[src];doors=1'>Closed</A> <B>Open</B>" : "<B>Closed</B> <A href='?src=\ref[src];doors=1'>Open</A>"]
-		<br></PRE><HR><A href='?src=\ref[src];view=1'>View</A>
-		<br></PRE><HR><A href='?src=\ref[src];close=1'>Close</A>
+		<br>Vent doors: [ src.door_status ? "<A href='byond://?src=\ref[src];doors=1'>Closed</A> <B>Open</B>" : "<B>Closed</B> <A href='byond://?src=\ref[src];doors=1'>Open</A>"]
+		<br></PRE><HR><A href='byond://?src=\ref[src];view=1'>View</A>
+		<br></PRE><HR><A href='byond://?src=\ref[src];close=1'>Close</A>
 		<br><BR>
 		<br>"}
 	else

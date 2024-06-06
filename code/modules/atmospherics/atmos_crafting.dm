@@ -698,28 +698,28 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 </head>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>2 Connections</b>
 	<font size="5">
-	<a href='?src=\ref[src];action=straight_NS'>|</a> ‧
-	<a href='?src=\ref[src];action=straight_EW'>─</a> ‧
-	<a href='?src=\ref[src];action=corner_SE'>┌</a> ‧
-	<a href='?src=\ref[src];action=corner_SW'>┐</a> ‧
-	<a href='?src=\ref[src];action=corner_NE'>└</a> ‧
-	<a href='?src=\ref[src];action=corner_NW'>┘</a>
+	<a href='byond://?src=\ref[src];action=straight_NS'>|</a> ‧
+	<a href='byond://?src=\ref[src];action=straight_EW'>─</a> ‧
+	<a href='byond://?src=\ref[src];action=corner_SE'>┌</a> ‧
+	<a href='byond://?src=\ref[src];action=corner_SW'>┐</a> ‧
+	<a href='byond://?src=\ref[src];action=corner_NE'>└</a> ‧
+	<a href='byond://?src=\ref[src];action=corner_NW'>┘</a>
 	</font>
 </div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>3 Connections</b>
 	<font size="5">
-	<a href='?src=\ref[src];action=junc_N'>┴</a> ‧
-	<a href='?src=\ref[src];action=junc_S'>┬</a> ‧
-	<a href='?src=\ref[src];action=junc_W'>┤</a> ‧
-	<a href='?src=\ref[src];action=junc_E'>├</a>
+	<a href='byond://?src=\ref[src];action=junc_N'>┴</a> ‧
+	<a href='byond://?src=\ref[src];action=junc_S'>┬</a> ‧
+	<a href='byond://?src=\ref[src];action=junc_W'>┤</a> ‧
+	<a href='byond://?src=\ref[src];action=junc_E'>├</a>
 	</font>
 </div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>1 Connection</b>
 	<font size="5">
-	<a href='?src=\ref[src];action=north'>↑</a> ‧
-	<a href='?src=\ref[src];action=south'>↓</a> ‧
-	<a href='?src=\ref[src];action=west'>←</a> ‧
-	<a href='?src=\ref[src];action=east'>→</a>
+	<a href='byond://?src=\ref[src];action=north'>↑</a> ‧
+	<a href='byond://?src=\ref[src];action=south'>↓</a> ‧
+	<a href='byond://?src=\ref[src];action=west'>←</a> ‧
+	<a href='byond://?src=\ref[src];action=east'>→</a>
 	</font>
 </div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>[last_name]</b>

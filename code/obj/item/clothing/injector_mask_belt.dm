@@ -52,10 +52,10 @@ There's A LOT of duplicate code here, which isn't ideal to say the least. Should
 	attack_self(mob/user as mob)
 		src.add_dialog(user)
 		var/dat = ""
-		dat += container ? "Container: <A href='?src=\ref[src];remove_cont=1'>[container.name]</A> - [container.reagents.total_volume] / [container.reagents.maximum_volume] Units<BR><BR>" : "Please attach a beaker<BR><BR>"
-		dat += condition ? "[condition.name] - [condition.desc] <A href='?src=\ref[src];remove_cond=1'>(Remove)</A><BR><BR>" : "<A href='?src=\ref[src];sel_cond=1'>(Select Condition)</A><BR><BR>"
-		dat += "Injection amount: <A href='?src=\ref[src];change_amt=1'>[inj_amount == -1 ? "ALL" : inj_amount]</A><BR><BR>"
-		dat += "Min. time between activations: <A href='?src=\ref[src];change_mintime=1'>[min_time] seconds</A><BR><BR>"
+		dat += container ? "Container: <A href='byond://?src=\ref[src];remove_cont=1'>[container.name]</A> - [container.reagents.total_volume] / [container.reagents.maximum_volume] Units<BR><BR>" : "Please attach a beaker<BR><BR>"
+		dat += condition ? "[condition.name] - [condition.desc] <A href='byond://?src=\ref[src];remove_cond=1'>(Remove)</A><BR><BR>" : "<A href='byond://?src=\ref[src];sel_cond=1'>(Select Condition)</A><BR><BR>"
+		dat += "Injection amount: <A href='byond://?src=\ref[src];change_amt=1'>[inj_amount == -1 ? "ALL" : inj_amount]</A><BR><BR>"
+		dat += "Min. time between activations: <A href='byond://?src=\ref[src];change_mintime=1'>[min_time] seconds</A><BR><BR>"
 
 		user.Browse("<TITLE>Injector Belt</TITLE>Injector Belt:<BR><BR>[dat]", "window=inj_belt;size=575x250")
 		onclose(user, "inj_belt")
@@ -200,10 +200,10 @@ There's A LOT of duplicate code here, which isn't ideal to say the least. Should
 	attack_self(mob/user as mob)
 		src.add_dialog(user)
 		var/dat = ""
-		dat += container ? "Container: <A href='?src=\ref[src];remove_cont=1'>[container.name]</A> - [container.reagents.total_volume] / [container.reagents.maximum_volume] Units<BR><BR>" : "Please attach a beaker<BR><BR>"
-		dat += condition ? "[condition.name] - [condition.desc] <A href='?src=\ref[src];remove_cond=1'>(Remove)</A><BR><BR>" : "<A href='?src=\ref[src];sel_cond=1'>(Select Condition)</A><BR><BR>"
-		dat += "Injection amount: <A href='?src=\ref[src];change_amt=1'>[inj_amount == -1 ? "ALL" : inj_amount]</A><BR><BR>"
-		dat += "Min. time between activations: <A href='?src=\ref[src];change_mintime=1'>[min_time] seconds</A><BR><BR>"
+		dat += container ? "Container: <A href='byond://?src=\ref[src];remove_cont=1'>[container.name]</A> - [container.reagents.total_volume] / [container.reagents.maximum_volume] Units<BR><BR>" : "Please attach a beaker<BR><BR>"
+		dat += condition ? "[condition.name] - [condition.desc] <A href='byond://?src=\ref[src];remove_cond=1'>(Remove)</A><BR><BR>" : "<A href='byond://?src=\ref[src];sel_cond=1'>(Select Condition)</A><BR><BR>"
+		dat += "Injection amount: <A href='byond://?src=\ref[src];change_amt=1'>[inj_amount == -1 ? "ALL" : inj_amount]</A><BR><BR>"
+		dat += "Min. time between activations: <A href='byond://?src=\ref[src];change_mintime=1'>[min_time] seconds</A><BR><BR>"
 
 		user.Browse("<TITLE>Vapo-Matic</TITLE>Vapo-Matic:<BR><BR>[dat]", "window=inj_belt;size=575x250")
 		onclose(user, "inj_belt")

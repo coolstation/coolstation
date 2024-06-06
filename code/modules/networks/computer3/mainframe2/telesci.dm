@@ -119,7 +119,7 @@ proc/is_teleportation_allowed(var/turf/T)
 		dat += "Host Connection: "
 		dat += "<table border='1' style='background-color:[readout_color]'><tr><td><font color=white>[readout]</font></td></tr></table><br>"
 
-		dat += "<a href='?src=\ref[src];reset=1'>Reset Connection</a><br>"
+		dat += "<a href='byond://?src=\ref[src];reset=1'>Reset Connection</a><br>"
 
 		if (src.panel_open)
 			dat += net_switch_html()
@@ -946,7 +946,7 @@ proc/is_teleportation_allowed(var/turf/T)
 
 		var/dat = "<head><TITLE>Teleport Computer</TITLE></head><body><br>"
 		if (!host_id)
-			dat += "<center id = \"readout\"><tt><font color=red><b>NO CONNECTION TO HOST</b></font></tt><br><a href='?src=\ref[src];reconnect=1'>Retry</a></center><br>"
+			dat += "<center id = \"readout\"><tt><font color=red><b>NO CONNECTION TO HOST</b></font></tt><br><a href='byond://?src=\ref[src];reconnect=1'>Retry</a></center><br>"
 		else
 			dat += "<center id = \"readout\"><tt>[readout]</tt></center><br>"
 
@@ -958,29 +958,29 @@ proc/is_teleportation_allowed(var/turf/T)
 	</script>"}
 
 		dat += "<b>Target Coordinates</b><BR>"
-		dat += "X: <A href='?src=\ref[src];decreaseX=10'>(<<)</A><A href='?src=\ref[src];decreaseX=1'>(<)</A><A href='?src=\ref[src];setX=1'> [xtarget] </A><A href='?src=\ref[src];increaseX=1'>(>)</A><A href='?src=\ref[src];increaseX=10'>(>>)</A><BR><BR>"
-		dat += "Y: <A href='?src=\ref[src];decreaseY=10'>(<<)</A><A href='?src=\ref[src];decreaseY=1'>(<)</A><A href='?src=\ref[src];setY=1'> [ytarget] </A><A href='?src=\ref[src];increaseY=1'>(>)</A><A href='?src=\ref[src];increaseY=10'>(>>)</A><BR><BR>"
-		dat += "Z: <A href='?src=\ref[src];decreaseZ=1'>(<)</A><A href='?src=\ref[src];setZ=1'> [ztarget] </A><A href='?src=\ref[src];increaseZ=1'>(>)</A>"
-		dat += "<br><br><br><A href='?src=\ref[src];send=1'>Send</A>"
-		dat += "<br><A href='?src=\ref[src];receive=1'>Receive</A>"
+		dat += "X: <A href='byond://?src=\ref[src];decreaseX=10'>(<<)</A><A href='byond://?src=\ref[src];decreaseX=1'>(<)</A><A href='byond://?src=\ref[src];setX=1'> [xtarget] </A><A href='byond://?src=\ref[src];increaseX=1'>(>)</A><A href='byond://?src=\ref[src];increaseX=10'>(>>)</A><BR><BR>"
+		dat += "Y: <A href='byond://?src=\ref[src];decreaseY=10'>(<<)</A><A href='byond://?src=\ref[src];decreaseY=1'>(<)</A><A href='byond://?src=\ref[src];setY=1'> [ytarget] </A><A href='byond://?src=\ref[src];increaseY=1'>(>)</A><A href='byond://?src=\ref[src];increaseY=10'>(>>)</A><BR><BR>"
+		dat += "Z: <A href='byond://?src=\ref[src];decreaseZ=1'>(<)</A><A href='byond://?src=\ref[src];setZ=1'> [ztarget] </A><A href='byond://?src=\ref[src];increaseZ=1'>(>)</A>"
+		dat += "<br><br><br><A href='byond://?src=\ref[src];send=1'>Send</A>"
+		dat += "<br><A href='byond://?src=\ref[src];receive=1'>Receive</A>"
 
-		dat += "<br><A href='?src=\ref[src];portal=1'>Toggle Portal</A>"
+		dat += "<br><A href='byond://?src=\ref[src];portal=1'>Toggle Portal</A>"
 
 		if(allow_scan)
-			dat += "<br><br><A href='?src=\ref[src];scan=1'>Scan</A>"
+			dat += "<br><br><A href='byond://?src=\ref[src];scan=1'>Scan</A>"
 
 		if(allow_bookmarks)
-			dat += "<br><A href='?src=\ref[src];addbookmark=1'>Add Bookmark</A>"
+			dat += "<br><A href='byond://?src=\ref[src];addbookmark=1'>Add Bookmark</A>"
 
 		if(allow_bookmarks && length(bookmarks))
 			dat += "<br><br><br>Bookmarks:"
 			for (var/datum/teleporter_bookmark/b in bookmarks)
-				dat += "<br>[b.name] ([b.x]/[b.y]/[b.z]) <A href='?src=\ref[src];restorebookmark=\ref[b]'>Restore</A> <A href='?src=\ref[src];deletebookmark=\ref[b]'>Delete</A>"
+				dat += "<br>[b.name] ([b.x]/[b.y]/[b.z]) <A href='byond://?src=\ref[src];restorebookmark=\ref[b]'>Restore</A> <A href='byond://?src=\ref[src];deletebookmark=\ref[b]'>Delete</A>"
 
-		dat += "<br><br><br><br><br><center><a href='?src=\ref[src];reconnect=2'>Reset Connection</a></center>"
+		dat += "<br><br><br><br><br><center><a href='byond://?src=\ref[src];reconnect=2'>Reset Connection</a></center>"
 
 		if (src.panel_open)
-			dat += "<br>Linked Pad Number: <a href='?src=\ref[src];setpad=1'>[src.padNum]</a><br>"
+			dat += "<br>Linked Pad Number: <a href='byond://?src=\ref[src];setpad=1'>[src.padNum]</a><br>"
 			dat += net_switch_html()
 
 		src.add_dialog(user)

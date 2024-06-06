@@ -51,7 +51,7 @@
 
 	// New note saved, usual player notes bookkeeping
 	addPlayerNote(target_key, src.owner.ckey + " (AUTO)", "New login notice set:\n\n[message_text]")
-	message_admins("<span class='internal'>[key_name(src.owner.mob)] added a login notice for <a href='?src=%admin_ref%;action=notes&target=[target_key]'>[target_key]</A>:<br><div style='whitespace: pre-wrap;'>[message_text]</div></span>")
+	message_admins("<span class='internal'>[key_name(src.owner.mob)] added a login notice for <a href='byond://?src=%admin_ref%;action=notes&target=[target_key]'>[target_key]</A>:<br><div style='whitespace: pre-wrap;'>[message_text]</div></span>")
 	tgui_alert(src.owner.mob, "Login notice for '[target_key]' has been set. They should see it next time they connect.")
 
 

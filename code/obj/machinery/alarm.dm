@@ -288,11 +288,11 @@
 	else
 		if(!issilicon(user))
 			output += "<I>Swipe card to lock interface.</I><BR><BR>"
-		output += "<A href='?src=\ref[src];toggle_override=1'>Toggle Local Override</A><BR>"
+		output += "<A href='byond://?src=\ref[src];toggle_override=1'>Toggle Local Override</A><BR>"
 		if(panic_mode > 0)
-			output += "<A href='?src=\ref[src];unpanic=1'>Cancel Panic Siphon</A><BR>"
+			output += "<A href='byond://?src=\ref[src];unpanic=1'>Cancel Panic Siphon</A><BR>"
 		else
-			output += "<A href='?src=\ref[src];panic=1'>Engage Two-Minute Panic Siphon</A> - <FONT color = 'red'>WARNING: Pressure may temporarily drop below safe levels!</FONT><BR>"
+			output += "<A href='byond://?src=\ref[src];panic=1'>Engage Two-Minute Panic Siphon</A> - <FONT color = 'red'>WARNING: Pressure may temporarily drop below safe levels!</FONT><BR>"
 		output += "</TT>" */
 	return output
 

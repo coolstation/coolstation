@@ -37,7 +37,7 @@
 /obj/noticeboard/attack_hand(mob/user as mob)
 	var/dat = "<B>Noticeboard</B><BR>"
 	for(var/obj/item/paper/P in src)
-		dat += text("<A href='?src=\ref[];read=\ref[]'>[]</A> <A href='?src=\ref[];write=\ref[]'>Write</A> <A href='?src=\ref[];remove=\ref[]'>Remove</A><BR>", src, P, P.name, src, P, src, P)
+		dat += text("<A href='byond://?src=\ref[];read=\ref[]'>[]</A> <A href='byond://?src=\ref[];write=\ref[]'>Write</A> <A href='byond://?src=\ref[];remove=\ref[]'>Remove</A><BR>", src, P, P.name, src, P, src, P)
 	user.Browse("<HEAD><TITLE>Notices</TITLE></HEAD>[dat]","window=noticeboard")
 	onclose(user, "noticeboard")
 

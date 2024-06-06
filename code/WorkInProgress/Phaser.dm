@@ -568,9 +568,9 @@ var/const/PHASER_SNIPER = 256
 		src.add_dialog(usr)
 		var/dat = "Phaser settings:<BR><BR>"
 		dat += "Power:<BR>"
-		dat += "<A href='?src=\ref[src];power=-5'>(--)</A><A href='?src=\ref[src];power=-1'>(-)</A> [prop_power] <A href='?src=\ref[src];power=1'>(+)</A><A href='?src=\ref[src];power=5'>(++)</A><BR><BR>"
+		dat += "<A href='byond://?src=\ref[src];power=-5'>(--)</A><A href='byond://?src=\ref[src];power=-1'>(-)</A> [prop_power] <A href='byond://?src=\ref[src];power=1'>(+)</A><A href='byond://?src=\ref[src];power=5'>(++)</A><BR><BR>"
 		dat += "Radius:<BR>"
-		//dat += "<A href='?src=\ref[src];focus=-1'>(-)</A> [prop_range] <A href='?src=\ref[src];focus=1'>(+)</A><BR><BR>"
+		//dat += "<A href='byond://?src=\ref[src];focus=-1'>(-)</A> [prop_range] <A href='byond://?src=\ref[src];focus=1'>(+)</A><BR><BR>"
 		dat += "Energy-cost per shot:[charges_per_shot]<BR>"
 
 		if(isrobot(user))

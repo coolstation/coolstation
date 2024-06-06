@@ -91,10 +91,10 @@
 			temp_text = "<FONT color=blue>[air_contents.temperature - T0C]</FONT>"
 
 		var/dat = {"<B>Cryo gas cooling system</B><BR>
-		Current status: [ on ? "<A href='?src=\ref[src];start=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='?src=\ref[src];start=1'>On</A>"]<BR>
+		Current status: [ on ? "<A href='byond://?src=\ref[src];start=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='byond://?src=\ref[src];start=1'>On</A>"]<BR>
 		Current gas temperature: [temp_text]&deg;C<BR>
 		Current air pressure: [MIXTURE_PRESSURE(air_contents)] kPa<BR>
-		Target gas temperature: <A href='?src=\ref[src];temp=-10'>-</A> <A href='?src=\ref[src];temp=-1'>-</A> <A href='?src=\ref[src];settemp=1'>[current_temperature - T0C]&deg;C</A> <A href='?src=\ref[src];temp=1'>+</A> <A href='?src=\ref[src];temp=10'>+</A><BR>
+		Target gas temperature: <A href='byond://?src=\ref[src];temp=-10'>-</A> <A href='byond://?src=\ref[src];temp=-1'>-</A> <A href='byond://?src=\ref[src];settemp=1'>[current_temperature - T0C]&deg;C</A> <A href='byond://?src=\ref[src];temp=1'>+</A> <A href='byond://?src=\ref[src];temp=10'>+</A><BR>
 		"}
 
 		user.Browse(dat, "window=freezer;size=400x500")

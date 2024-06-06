@@ -323,8 +323,8 @@
 		switch(src.state)
 			if(STATE_LOGGEDOFF)
 				if (src.scan)
-					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=logout'>Logout</A> \]"
-					dat += "<BR><BR><A HREF='?src=\ref[src];operation=enterpin'>Enter Pin</A>"
+					dat += "<BR>\[ <A HREF='byond://?src=\ref[src];operation=logout'>Logout</A> \]"
+					dat += "<BR><BR><A HREF='byond://?src=\ref[src];operation=enterpin'>Enter Pin</A>"
 
 				else dat += "Please swipe your card to begin."
 
@@ -335,12 +335,12 @@
 					src.updateUsrDialog()
 
 				else
-					dat += "<BR><A HREF='?src=\ref[src];operation=logout'>Logout</A>"
+					dat += "<BR><A HREF='byond://?src=\ref[src];operation=logout'>Logout</A>"
 
 					if (src.scan)
 						dat += "<BR><BR>Your balance is: $ [src.accessed_record.fields["current_money"]]."
-						dat += "<BR><A HREF='?src=\ref[src];operation=withdrawcash'>Withdraw Cash</A>"
-						dat += "<BR><BR><A HREF='?src=\ref[src];operation=buy'>Buy Lottery Ticket (100 credits)</A>"
+						dat += "<BR><A HREF='byond://?src=\ref[src];operation=withdrawcash'>Withdraw Cash</A>"
+						dat += "<BR><BR><A HREF='byond://?src=\ref[src];operation=buy'>Buy Lottery Ticket (100 credits)</A>"
 						dat += "<BR>To claim your winnings you'll need to insert your lottery ticket."
 					else
 						dat += "<BR>Please swipe your card to continue."
@@ -353,14 +353,14 @@
 			<strong>&mdash; [user.client.key] Spacebux Menu &mdash;</strong>
 			<br><em>(This menu is only here for <strong>you</strong>. Other players cannot access your Spacebux!)</em>
 			<br>
-			<br>Current balance: <strong>[user.client.persistent_bank]</strong> Spacebux <!-- <a href='?src=\ref[src];operation=view_spacebux_balance'>Check Spacebux Balance</a> -->
-			<br><a href='?src=\ref[src];operation=withdraw_spacebux'>Withdraw Spacebux</a>
-			<br><a href='?src=\ref[src];operation=transfer_spacebux'>Securely Send Spacebux</a>
+			<br>Current balance: <strong>[user.client.persistent_bank]</strong> Spacebux <!-- <a href='byond://?src=\ref[src];operation=view_spacebux_balance'>Check Spacebux Balance</a> -->
+			<br><a href='byond://?src=\ref[src];operation=withdraw_spacebux'>Withdraw Spacebux</a>
+			<br><a href='byond://?src=\ref[src];operation=transfer_spacebux'>Securely Send Spacebux</a>
 			<br>Deposit Spacebux at any time by inserting a token. It will always go to <strong>your</strong> account!
 			</div>
 			"}
 
-		dat += "<BR><BR><A HREF='?action=mach_close&window=atm'>Close</A></span>"
+		dat += "<BR><BR><A HREF='byond://?action=mach_close&window=atm'>Close</A></span>"
 		user.Browse(dat.Join(), "window=atm;size=400x500;title=Automated Teller Machine")
 		onclose(user, "atm")
 
@@ -498,9 +498,9 @@
 			return
 		var/list/dat = list()
 		if (src.temp)
-			dat += text("<TT>[src.temp]</TT><BR><BR><A href='?src=\ref[src];temp=1'>Clear Screen</A>")
+			dat += text("<TT>[src.temp]</TT><BR><BR><A href='byond://?src=\ref[src];temp=1'>Clear Screen</A>")
 		else
-			dat += text("Confirm Identity: <A href='?src=\ref[];scan=1'>[]</A><HR>", src, (src.scan ? text("[]", src.scan.name) : "----------"))
+			dat += text("Confirm Identity: <A href='byond://?src=\ref[];scan=1'>[]</A><HR>", src, (src.scan ? text("[]", src.scan.name) : "----------"))
 			if (src.authenticated)
 				switch(src.screen)
 					if(1.0)
@@ -517,23 +517,23 @@
 						<BR>
 						<b>Current Payroll Cost:</b> $[payroll]
 						<BR>
-						<BR><br><A href='?src=\ref[src];list=1'>List Payroll Records</A>"}
-						if (wagesystem.pay_active) dat += "<BR><br><A href='?src=\ref[src];payroll=1'>Suspend Payroll</A>"
-						else dat += "<BR><br><A href='?src=\ref[src];payroll=1'>Resume Payroll</A>"
-						dat += {"<BR><br><A href='?src=\ref[src];transfer=1'>Transfer Funds Between Budgets</A>
+						<BR><br><A href='byond://?src=\ref[src];list=1'>List Payroll Records</A>"}
+						if (wagesystem.pay_active) dat += "<BR><br><A href='byond://?src=\ref[src];payroll=1'>Suspend Payroll</A>"
+						else dat += "<BR><br><A href='byond://?src=\ref[src];payroll=1'>Resume Payroll</A>"
+						dat += {"<BR><br><A href='byond://?src=\ref[src];transfer=1'>Transfer Funds Between Budgets</A>
 						<BR><br>
-						<BR><br><A href='?src=\ref[src];logout=1'>{Log Out}</A>
+						<BR><br><A href='byond://?src=\ref[src];logout=1'>{Log Out}</A>
 						<BR><br>"}
 					if(2.0)
 						dat += "<B>Record List</B>:<HR>"
 						for(var/datum/data/record/R in data_core.bank)
-							dat += text("<BR><b>Name:</b> <A href='?src=\ref[src];Fname=\ref[R]'>[R.fields["name"]]</A> <b>Job:</b> <A href='?src=\ref[src];Fjob=\ref[R]'>[R.fields["job"]]</A>")
-							dat += text("<BR><b>Current Wage:</b> <A href='?src=\ref[src];Fwage=\ref[R]'>[R.fields["wage"]]</A>")
-							dat += text("<BR><b>Current Balance:</b> <A href='?src=\ref[src];Fmoney=\ref[R]'>[R.fields["current_money"]]</A><BR>")
-						dat += text("<HR><A href='?src=\ref[src];main=1'>Back</A>")
+							dat += text("<BR><b>Name:</b> <A href='byond://?src=\ref[src];Fname=\ref[R]'>[R.fields["name"]]</A> <b>Job:</b> <A href='byond://?src=\ref[src];Fjob=\ref[R]'>[R.fields["job"]]</A>")
+							dat += text("<BR><b>Current Wage:</b> <A href='byond://?src=\ref[src];Fwage=\ref[R]'>[R.fields["wage"]]</A>")
+							dat += text("<BR><b>Current Balance:</b> <A href='byond://?src=\ref[src];Fmoney=\ref[R]'>[R.fields["current_money"]]</A><BR>")
+						dat += text("<HR><A href='byond://?src=\ref[src];main=1'>Back</A>")
 					else
 			else
-				dat += text("<A href='?src=\ref[];login=1'>{Log In}</A>", src)
+				dat += text("<A href='byond://?src=\ref[];login=1'>{Log In}</A>", src)
 		user.Browse(dat.Join(), "window=secure_bank;title=Bank Records")
 		onclose(user, "secure_bank")
 		return
@@ -782,11 +782,11 @@
 		switch(src.state)
 			if(STATE_LOGGEDOFF)
 				if (src.scan)
-					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=logout'>Logout</A> \]"
+					dat += "<BR>\[ <A HREF='byond://?src=\ref[src];operation=logout'>Logout</A> \]"
 					if(afterlife)
-						dat += "<BR><BR><A HREF='?src=\ref[src];operation=login'>Log In</A>"
+						dat += "<BR><BR><A HREF='byond://?src=\ref[src];operation=login'>Log In</A>"
 					else
-						dat += "<BR><BR><A HREF='?src=\ref[src];operation=enterpin'>Enter Pin</A>"
+						dat += "<BR><BR><A HREF='byond://?src=\ref[src];operation=enterpin'>Enter Pin</A>"
 
 				else dat += "Please swipe your card to begin."
 
@@ -797,12 +797,12 @@
 					src.updateUsrDialog()
 
 				else
-					dat += "<BR><A HREF='?src=\ref[src];operation=logout'>Logout</A>"
+					dat += "<BR><A HREF='byond://?src=\ref[src];operation=logout'>Logout</A>"
 
 					if (src.scan)
 						dat += "<BR><BR>Your balance is: $ [src.accessed_record.fields["current_money"]]."
-						dat += "<BR><A HREF='?src=\ref[src];operation=withdrawcash'>Withdraw Cash</A>"
-						dat += "<BR><BR><A HREF='?src=\ref[src];operation=buy'>Buy Lottery Ticket (100 credits)</A>"
+						dat += "<BR><A HREF='byond://?src=\ref[src];operation=withdrawcash'>Withdraw Cash</A>"
+						dat += "<BR><BR><A HREF='byond://?src=\ref[src];operation=buy'>Buy Lottery Ticket (100 credits)</A>"
 						dat += "<BR>To claim your winnings you'll need to insert your lottery ticket."
 					else
 						dat += "<BR>Please swipe your card to continue."
@@ -815,14 +815,14 @@
 			<strong>&mdash; [user.client.key] Spacebux Menu &mdash;</strong>
 			<br><em>(This menu is only here for <strong>you</strong>. Other players cannot access your Spacebux!)</em>
 			<br>
-			<br>Current balance: <strong>[user.client.persistent_bank]</strong> Spacebux <!-- <a href='?src=\ref[src];operation=view_spacebux_balance'>Check Spacebux Balance</a> -->
-			<br><a href='?src=\ref[src];operation=withdraw_spacebux'>Withdraw Spacebux</a>
-			<br><a href='?src=\ref[src];operation=transfer_spacebux'>Securely Send Spacebux</a>
+			<br>Current balance: <strong>[user.client.persistent_bank]</strong> Spacebux <!-- <a href='byond://?src=\ref[src];operation=view_spacebux_balance'>Check Spacebux Balance</a> -->
+			<br><a href='byond://?src=\ref[src];operation=withdraw_spacebux'>Withdraw Spacebux</a>
+			<br><a href='byond://?src=\ref[src];operation=transfer_spacebux'>Securely Send Spacebux</a>
 			<br>Deposit Spacebux at any time by inserting a token. It will always go to <strong>your</strong> account!
 			</div>
 			"}
 
-		dat += "<BR><BR><A HREF='?action=mach_close&window=atm'>Close</A></span>"
+		dat += "<BR><BR><A HREF='byond://?action=mach_close&window=atm'>Close</A></span>"
 		user.Browse(dat.Join(), "window=atm;size=400x500;title=Automated Teller Machine")
 		onclose(user, "atm")
 

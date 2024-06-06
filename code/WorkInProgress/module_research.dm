@@ -855,7 +855,7 @@ var/global/datum/module_research_controller/module_control = new
 			if (machine_state == id)
 				ret += "<li class='active'>[title]</li>"
 			else
-				ret += "<li><a href='?src=\ref[src];menu=[id]'>[title]</a></li>"
+				ret += "<li><a href='byond://?src=\ref[src];menu=[id]'>[title]</a></li>"
 		return "<ul class='menubar'>[ret]</ul>"
 
 	attack_ai(mob/user as mob)
@@ -995,8 +995,8 @@ right {
 						secs = round(secs - mins * 60)
 						var/estcompletion = "[mins]:[secs < 10 ? 0 : null][secs]"
 						state_screen += "<td>[eff]% ([estcompletion])</td>"
-						state_screen += "<td><a href='?src=\ref[src];shred=\ref[I]'>Research</a></td>"
-						state_screen += "<td><a href='?src=\ref[src];eject=\ref[I]'>Eject</a></td>"
+						state_screen += "<td><a href='byond://?src=\ref[src];shred=\ref[I]'>Research</a></td>"
+						state_screen += "<td><a href='byond://?src=\ref[src];eject=\ref[I]'>Eject</a></td>"
 						state_screen += "</tr>"
 					state_screen += "</table>"
 				else
@@ -1004,7 +1004,7 @@ right {
 					state_screen += "<b>Research budget available: </b>[wagesystem.research_budget] credits<br>"
 					if (boosted < 5)
 						var/boost_cost = (100 * (1 << boosted)) / module_control.cost_divisor
-						state_screen += "<a href='?src=\ref[src];boost=1'>Boost research speed</a> for [boost_cost] credits<br>"
+						state_screen += "<a href='byond://?src=\ref[src];boost=1'>Boost research speed</a> for [boost_cost] credits<br>"
 					else
 						state_screen += "<b>Cannot boost</b> any further!<br>"
 					state_screen += "<b>Boosted:</b> [boosted] time[boosted != 1 ? "s" : null]<br>"
@@ -1020,39 +1020,39 @@ right {
 				state_screen += "<tr><td><b>Unlocked</b></td><td><b>Locked</b></td><td><b>Researched</b></td></tr>"
 				state_screen += "<tr><td>"
 				for (var/datum/module_tech/T in module_control.unlocked_tech)
-					state_screen += "- <a href='?src=\ref[src];unlocked=\ref[T]'>[T.name]</a><br>"
+					state_screen += "- <a href='byond://?src=\ref[src];unlocked=\ref[T]'>[T.name]</a><br>"
 				state_screen += "&nbsp;</td><td>"
 				for (var/datum/module_tech/T in module_control.locked_tech)
 					if (!T.hidden)
-						state_screen += "- <a href='?src=\ref[src];locked=\ref[T]'>[T.name]</a><br>"
+						state_screen += "- <a href='byond://?src=\ref[src];locked=\ref[T]'>[T.name]</a><br>"
 				state_screen += "&nbsp;</td><td>"
 				for (var/itemT in module_control.worth)
 					var/list/itemD = module_control.worth[itemT]
-					state_screen += "- <a href='?src=\ref[src];researched=[itemT]'>[itemD["--item-name"]]</a><br>"
+					state_screen += "- <a href='byond://?src=\ref[src];researched=[itemT]'>[itemD["--item-name"]]</a><br>"
 				state_screen += "&nbsp;</td></tr></table>"
 			if (MR_MACHINE_STATE_MODULE_BUILDER)
 				state_screen = "<b>(WORK IN PROGRESS)</b><br><b>Available modules: </b>[modules.len]<br><br>"
 				state_screen += "<b>Currently constructed module:</b><br>"
-				state_screen += "<b>Module name:</b> <a href='?src=\ref[src];name=1'>[module_name]</a><br>"
-				state_screen += "<b>Module icon:</b> <img src='module-icon.png' /> <a href='?src=\ref[src];icon=1'>(change)</a><ul>"
+				state_screen += "<b>Module name:</b> <a href='byond://?src=\ref[src];name=1'>[module_name]</a><br>"
+				state_screen += "<b>Module icon:</b> <img src='module-icon.png' /> <a href='byond://?src=\ref[src];icon=1'>(change)</a><ul>"
 				var/total_cost = 0
 				var/total_size = 0
 				for (var/i = 1, i <= current_module.len, i++)
 					var/datum/module_tech/T = current_module[i]
 					total_cost += T.cost / module_control.cost_divisor
 					total_size += T.size
-					state_screen += "<li><b>[T.name]</b> (<b>Size: </b> [T.size] -- <b>Cost: </b> [T.cost / module_control.cost_divisor] data points)<div class='right'><a href='?src=\ref[src];remove=[i]'>(remove)</a></div></li>"
+					state_screen += "<li><b>[T.name]</b> (<b>Size: </b> [T.size] -- <b>Cost: </b> [T.cost / module_control.cost_divisor] data points)<div class='right'><a href='byond://?src=\ref[src];remove=[i]'>(remove)</a></div></li>"
 				state_screen += "</ul>"
 				state_screen += "<br><b>Size: </b>[total_size]/[module_control.maximum_size]"
 				state_screen += "<br><b>Total cost: </b>[total_cost] data points"
 				state_screen += "<br><b>Available data points: </b>[module_control.data_points] data points"
-				state_screen += "<br><b>Buy</b> <a href='?src=\ref[src];buydp=1'>1 point for 30 credits</a> | <a href='?src=\ref[src];buydp=10'>10 point for 300 credits</a> | <a href='?src=\ref[src];buydp=100'>100 points for 3000 credits</a>"
+				state_screen += "<br><b>Buy</b> <a href='byond://?src=\ref[src];buydp=1'>1 point for 30 credits</a> | <a href='byond://?src=\ref[src];buydp=10'>10 point for 300 credits</a> | <a href='byond://?src=\ref[src];buydp=100'>100 points for 3000 credits</a>"
 				state_screen += "<br><b>Research budget: </b>[wagesystem.research_budget] credits"
-				state_screen += "<br><a href='?src=\ref[src];create=1'>(CREATE)</a> - <a href='?src=\ref[src];reset=1'>(RESET)</a>"
+				state_screen += "<br><a href='byond://?src=\ref[src];create=1'>(CREATE)</a> - <a href='byond://?src=\ref[src];reset=1'>(RESET)</a>"
 				state_screen += "<br><br><b>Unlocked technologies:<b><br><ul>"
 				state_screen += ""
 				for (var/datum/module_tech/T in module_control.unlocked_tech)
-					state_screen += "<li><b>[T.name]</b> <a href='?src=\ref[src];add=\ref[T]'>(add)</a><br><span class='tiny'>[T.desc]</span><br><span class='tiny'><b>Size: </b>[T.size] - <b>Cost: </b>[T.cost / module_control.cost_divisor]</span></li>"
+					state_screen += "<li><b>[T.name]</b> <a href='byond://?src=\ref[src];add=\ref[T]'>(add)</a><br><span class='tiny'>[T.desc]</span><br><span class='tiny'><b>Size: </b>[T.size] - <b>Cost: </b>[T.cost / module_control.cost_divisor]</span></li>"
 				state_screen += "</ul>"
 			if (MR_MACHINE_STATE_LOCKED)
 				var/datum/module_tech/T = substate
@@ -1118,7 +1118,7 @@ right {
 					state_screen += uppertext(copytext(rt, 1, 2)) + copytext(rt, 2)
 					state_screen += ": [pts] research points</li>"
 				state_screen += "</ul>"
-		return "<html>[header]<body><div class='menu'>[menu]</div><div class='content'><h2>[title]</h2>[state_screen]</div><br><br><a href='?action=mach_close&window=module_res'>Close</a></body></html>"
+		return "<html>[header]<body><div class='menu'>[menu]</div><div class='content'><h2>[title]</h2>[state_screen]</div><br><br><a href='byond://?action=mach_close&window=module_res'>Close</a></body></html>"
 
 	proc/format_additional_requirement(ar, spec)
 		var/output = ""

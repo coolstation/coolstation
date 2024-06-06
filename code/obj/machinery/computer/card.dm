@@ -50,7 +50,7 @@
 		var/crew = ""
 		for(var/datum/data/record/t in data_core.general)
 			crew += "[t.fields["name"]] - [t.fields["rank"]]<br>"
-		dat = "<tt><b>Crew Manifest:</b><br>Please use security record computer to modify entries.<br>[crew]<a href='?src=\ref[src];print=1'>Print</a><br><br><a href='?src=\ref[src];mode=0'>Access ID modification console.</a><br></tt>"
+		dat = "<tt><b>Crew Manifest:</b><br>Please use security record computer to modify entries.<br>[crew]<a href='byond://?src=\ref[src];print=1'>Print</a><br><br><a href='byond://?src=\ref[src];mode=0'>Access ID modification console.</a><br></tt>"
 	else
 		var/header = "<b>Identification Card Modifier</b><br><i>Please insert the cards into the slots</i><br>"
 
@@ -73,22 +73,22 @@
 		if (src.eject)
 			target_name = src.eject.name
 
-		header += "Target: <a href='?src=\ref[src];modify=1'>[target_name]</a><br>"
+		header += "Target: <a href='byond://?src=\ref[src];modify=1'>[target_name]</a><br>"
 
 		var/scan_name
 		if(src.scan)
 			scan_name = src.scan.name
 		else
 			scan_name = "--------"
-		header += "Confirm Identity: <a href='?src=\ref[src];scan=1'>[scan_name]</a><br>"
+		header += "Confirm Identity: <a href='byond://?src=\ref[src];scan=1'>[scan_name]</a><br>"
 		header += "<hr>"
 
 		var/body = list()
 		//When both IDs are inserted
 		if (src.authenticated && src.modify)
-			body += "Registered: <a href='?src=\ref[src];reg=1'>[target_owner]</a><br>"
-			body += "Assignment: <a href='?src=\ref[src];assign=Custom Assignment'>[replacetext(target_rank, " ", "&nbsp")]</a><br>"
-			body += "PIN: <a href='?src=\ref[src];pin=1'>****</a>"
+			body += "Registered: <a href='byond://?src=\ref[src];reg=1'>[target_owner]</a><br>"
+			body += "Assignment: <a href='byond://?src=\ref[src];assign=Custom Assignment'>[replacetext(target_rank, " ", "&nbsp")]</a><br>"
+			body += "PIN: <a href='byond://?src=\ref[src];pin=1'>****</a>"
 
 			//Jobs organised into sections
 			var/list/civilianjobs = list("Staff Assistant", "Bartender", "Chef", "Botanist", "Rancher", "Chaplain", "Janitor", "Clown")
@@ -100,27 +100,27 @@
 			body += "<br><br><u>Jobs</u>"
 			body += "<br>Civilian:"
 			for(var/job in civilianjobs)
-				body += " <a href='?src=\ref[src];assign=[job];colour=blue'>[replacetext(job, " ", "&nbsp")]</a>" //make sure there isn't a line break in the middle of a job
+				body += " <a href='byond://?src=\ref[src];assign=[job];colour=blue'>[replacetext(job, " ", "&nbsp")]</a>" //make sure there isn't a line break in the middle of a job
 
 			body += "<br>Supply and Maintainence:"
 			for(var/job in maintainencejobs)
-				body += " <a href='?src=\ref[src];assign=[job];colour=yellow'>[replacetext(job, " ", "&nbsp")]</a>"
+				body += " <a href='byond://?src=\ref[src];assign=[job];colour=yellow'>[replacetext(job, " ", "&nbsp")]</a>"
 
 			body += "<br>Research and Medical:"
 			for(var/job in researchjobs)
-				body += " <a href='?src=\ref[src];assign=[job];colour=purple'>[replacetext(job, " ", "&nbsp")]</a>"
+				body += " <a href='byond://?src=\ref[src];assign=[job];colour=purple'>[replacetext(job, " ", "&nbsp")]</a>"
 
 			body += "<br>Security:"
 			for(var/job in securityjobs)
-				body += " <a href='?src=\ref[src];assign=[job];colour=red'>[replacetext(job, " ", "&nbsp")]</a>"
+				body += " <a href='byond://?src=\ref[src];assign=[job];colour=red'>[replacetext(job, " ", "&nbsp")]</a>"
 
 			body += "<br>Command:"
 			for(var/job in commandjobs)
-				body += " <a href='?src=\ref[src];assign=[job];colour=green'>[replacetext(job, " ", "&nbsp")]</a>"
+				body += " <a href='byond://?src=\ref[src];assign=[job];colour=green'>[replacetext(job, " ", "&nbsp")]</a>"
 
 			body += "<br>Custom:"
 			for (var/i = 1, i <= custom_names.len, i++)
-				body += " [src.custom_names[i]] <a href='?src=\ref[src];save=[i]'>save</a> <a href='?src=\ref[src];apply=[i]'>apply</a>"
+				body += " [src.custom_names[i]] <a href='byond://?src=\ref[src];save=[i]'>save</a> <a href='byond://?src=\ref[src];apply=[i]'>apply</a>"
 
 			//Change access to individual areas
 			body += "<br><br><u>Access</u>"
@@ -137,47 +137,47 @@
 				if(access_name_lookup[A] in src.modify.access)
 					//Click these to remove access
 					if (access_name_lookup[A] in civilian_access_list)
-						civilian_access += " <a href='?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						civilian_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
 					if (access_name_lookup[A] in engineering_access_list)
-						engineering_access += " <a href='?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						engineering_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
 					if (access_name_lookup[A] in supply_access_list)
-						supply_access += " <a href='?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						supply_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
 					if (access_name_lookup[A] in research_access_list)
-						research_access += " <a href='?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						research_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
 					if (access_name_lookup[A] in security_access_list)
-						security_access += " <a href='?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						security_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
 					if (access_name_lookup[A] in command_access_list)
-						command_access += " <a href='?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						command_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
 				else//Click these to add access
 					if (access_name_lookup[A] in civilian_access_list)
-						civilian_access += " <a href='?src=\ref[src];access=[access_name_lookup[A]];allowed=1'>[replacetext(A, " ", "&nbsp")]</a>"
+						civilian_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=1'>[replacetext(A, " ", "&nbsp")]</a>"
 					if (access_name_lookup[A] in engineering_access_list)
-						engineering_access += " <a href='?src=\ref[src];access=[access_name_lookup[A]];allowed=1'>[replacetext(A, " ", "&nbsp")]</a>"
+						engineering_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=1'>[replacetext(A, " ", "&nbsp")]</a>"
 					if (access_name_lookup[A] in supply_access_list)
-						supply_access += " <a href='?src=\ref[src];access=[access_name_lookup[A]];allowed=1'>[replacetext(A, " ", "&nbsp")]</a>"
+						supply_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=1'>[replacetext(A, " ", "&nbsp")]</a>"
 					if (access_name_lookup[A] in research_access_list)
-						research_access += " <a href='?src=\ref[src];access=[access_name_lookup[A]];allowed=1'>[replacetext(A, " ", "&nbsp")]</a>"
+						research_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=1'>[replacetext(A, " ", "&nbsp")]</a>"
 					if (access_name_lookup[A] in security_access_list)
-						security_access += " <a href='?src=\ref[src];access=[access_name_lookup[A]];allowed=1'>[replacetext(A, " ", "&nbsp")]</a>"
+						security_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=1'>[replacetext(A, " ", "&nbsp")]</a>"
 					if (access_name_lookup[A] in command_access_list)
-						command_access += " <a href='?src=\ref[src];access=[access_name_lookup[A]];allowed=1'>[replacetext(A, " ", "&nbsp")]</a>"
+						command_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=1'>[replacetext(A, " ", "&nbsp")]</a>"
 
 			body += "[jointext(civilian_access, "")]<br>[jointext(engineering_access, "")]<br>[jointext(supply_access, "")]<br>[jointext(research_access, "")]<br>[jointext(security_access, "")]<br>[jointext(command_access, "")]"
 
 			body += "<br><br><u>Customise ID</u><br>"
-			body += "<a href='?src=\ref[src];colour=none'>Plain</a> "
-			body += "<a href='?src=\ref[src];colour=blue'>Civilian</a> "
-			body += "<a href='?src=\ref[src];colour=yellow'>Engineering</a> "
-			body += "<a href='?src=\ref[src];colour=purple'>Research</a> "
-			body += "<a href='?src=\ref[src];colour=red'>Security</a> "
-			body += "<a href='?src=\ref[src];colour=green'>Command</a>"
+			body += "<a href='byond://?src=\ref[src];colour=none'>Plain</a> "
+			body += "<a href='byond://?src=\ref[src];colour=blue'>Civilian</a> "
+			body += "<a href='byond://?src=\ref[src];colour=yellow'>Engineering</a> "
+			body += "<a href='byond://?src=\ref[src];colour=purple'>Research</a> "
+			body += "<a href='byond://?src=\ref[src];colour=red'>Security</a> "
+			body += "<a href='byond://?src=\ref[src];colour=green'>Command</a>"
 
 			user.unlock_medal("Identity Theft", 1)
 
 		else
-			body += "<a href='?src=\ref[src];auth=1'>{Log in}</a>"
+			body += "<a href='byond://?src=\ref[src];auth=1'>{Log in}</a>"
 		body = jointext(body, "")
-		dat = "<tt>[header][body]<hr><a href='?src=\ref[src];mode=1'>Access Crew Manifest</a><br></tt>"
+		dat = "<tt>[header][body]<hr><a href='byond://?src=\ref[src];mode=1'>Access Crew Manifest</a><br></tt>"
 	user.Browse(dat, "window=id_com;size=725x500")
 	onclose(user, "id_com")
 	return

@@ -627,14 +627,14 @@ var/zapLimiter = 0
 			var/is_uncut = src.apcwires & APCWireColorToFlag[apcwires[wiredesc]]
 			t1 += "[wiredesc] wire: "
 			if(!is_uncut)
-				t1 += "<a href='?src=\ref[src];apcwires=[apcwires[wiredesc]]'>Mend</a>"
+				t1 += "<a href='byond://?src=\ref[src];apcwires=[apcwires[wiredesc]]'>Mend</a>"
 			else
-				t1 += "<a href='?src=\ref[src];apcwires=[apcwires[wiredesc]]'>Cut</a> "
-				t1 += "<a href='?src=\ref[src];pulse=[apcwires[wiredesc]]'>Pulse</a> "
-				t1 += "<a href='?src=\ref[src];bite=[apcwires[wiredesc]]'>Bite</a> "
+				t1 += "<a href='byond://?src=\ref[src];apcwires=[apcwires[wiredesc]]'>Cut</a> "
+				t1 += "<a href='byond://?src=\ref[src];pulse=[apcwires[wiredesc]]'>Pulse</a> "
+				t1 += "<a href='byond://?src=\ref[src];bite=[apcwires[wiredesc]]'>Bite</a> "
 			t1 += "<br>"
 		t1 += text("<br><br>[(src.locked ? "The APC is locked." : "The APC is unlocked.")]<br><br>[(src.shorted ? "The APCs power has been shorted." : "The APC is working properly!")]<br><br>[(src.aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]")
-		t1 += text("<p><a href='?src=\ref[src];close2=1'>Close</a></p><br>")
+		t1 += text("<p><a href='byond://?src=\ref[src];close2=1'>Close</a></p><br>")
 		user.Browse(t1, "window=apcwires")
 		onclose(user, "apcwires")
 
@@ -674,12 +674,12 @@ var/zapLimiter = 0
 	else
 		if (!can_access_remotely(user))
 			t += "<I>(Swipe ID card to lock interface.)</I><BR>"
-		t += "Main breaker: [operating ? "<B>On</B> <A href='?src=\ref[src];breaker=1'>Off</A>" : "<A href='?src=\ref[src];breaker=1'>On</A> <B>Off</B>" ]<BR>"
+		t += "Main breaker: [operating ? "<B>On</B> <A href='byond://?src=\ref[src];breaker=1'>Off</A>" : "<A href='byond://?src=\ref[src];breaker=1'>On</A> <B>Off</B>" ]<BR>"
 		t += "External power : <B>[ main_status ? (main_status ==2 ? "<FONT COLOR=#004000>Good</FONT>" : "<FONT COLOR=#D09000>Low</FONT>") : "<FONT COLOR=#F00000>None</FONT>"]</B><BR>"
 		if(cell)
 			t += "Power cell: <B>[round(cell.percent())]%</B>"
 			t += " ([charging ? ( charging == 1 ? "Charging" : "Fully charged" ) : "Not charging"])"
-			t += " ([chargemode ? "<A href='?src=\ref[src];cmode=1'>Off</A> <B>Auto</B>" : "<B>Off</B> <A href='?src=\ref[src];cmode=1'>Auto</A>"])"
+			t += " ([chargemode ? "<A href='byond://?src=\ref[src];cmode=1'>Off</A> <B>Auto</B>" : "<B>Off</B> <A href='byond://?src=\ref[src];cmode=1'>Auto</A>"])"
 
 		else
 			t += "Power cell: <B><FONT COLOR=red>Not connected.</FONT></B>"
@@ -690,51 +690,51 @@ var/zapLimiter = 0
 		t += "Equipment:    [add_lspace(lastused_equip, 6)] W : "
 		switch(equipment)
 			if(0)
-				t += "<B>Off</B> <A href='?src=\ref[src];eqp=2'>On</A> <A href='?src=\ref[src];eqp=3'>Auto</A>"
+				t += "<B>Off</B> <A href='byond://?src=\ref[src];eqp=2'>On</A> <A href='byond://?src=\ref[src];eqp=3'>Auto</A>"
 			if(1)
-				t += "<A href='?src=\ref[src];eqp=1'>Off</A> <A href='?src=\ref[src];eqp=2'>On</A> <B>Auto (Off)</B>"
+				t += "<A href='byond://?src=\ref[src];eqp=1'>Off</A> <A href='byond://?src=\ref[src];eqp=2'>On</A> <B>Auto (Off)</B>"
 			if(2)
-				t += "<A href='?src=\ref[src];eqp=1'>Off</A> <B>On</B> <A href='?src=\ref[src];eqp=3'>Auto</A>"
+				t += "<A href='byond://?src=\ref[src];eqp=1'>Off</A> <B>On</B> <A href='byond://?src=\ref[src];eqp=3'>Auto</A>"
 			if(3)
-				t += "<A href='?src=\ref[src];eqp=1'>Off</A> <A href='?src=\ref[src];eqp=2'>On</A> <B>Auto (On)</B>"
+				t += "<A href='byond://?src=\ref[src];eqp=1'>Off</A> <A href='byond://?src=\ref[src];eqp=2'>On</A> <B>Auto (On)</B>"
 		t +="<BR>"
 
 		t += "Lighting:     [add_lspace(lastused_light, 6)] W : "
 
 		switch(lighting)
 			if(0)
-				t += "<B>Off</B> <A href='?src=\ref[src];lgt=2'>On</A> <A href='?src=\ref[src];lgt=3'>Auto</A>"
+				t += "<B>Off</B> <A href='byond://?src=\ref[src];lgt=2'>On</A> <A href='byond://?src=\ref[src];lgt=3'>Auto</A>"
 			if(1)
-				t += "<A href='?src=\ref[src];lgt=1'>Off</A> <A href='?src=\ref[src];lgt=2'>On</A> <B>Auto (Off)</B>"
+				t += "<A href='byond://?src=\ref[src];lgt=1'>Off</A> <A href='byond://?src=\ref[src];lgt=2'>On</A> <B>Auto (Off)</B>"
 			if(2)
-				t += "<A href='?src=\ref[src];lgt=1'>Off</A> <B>On</B> <A href='?src=\ref[src];lgt=3'>Auto</A>"
+				t += "<A href='byond://?src=\ref[src];lgt=1'>Off</A> <B>On</B> <A href='byond://?src=\ref[src];lgt=3'>Auto</A>"
 			if(3)
-				t += "<A href='?src=\ref[src];lgt=1'>Off</A> <A href='?src=\ref[src];lgt=2'>On</A> <B>Auto (On)</B>"
+				t += "<A href='byond://?src=\ref[src];lgt=1'>Off</A> <A href='byond://?src=\ref[src];lgt=2'>On</A> <B>Auto (On)</B>"
 		t +="<BR>"
 
 
 		t += "Environmental:[add_lspace(lastused_environ, 6)] W : "
 		switch(environ)
 			if(0)
-				t += "<B>Off</B> <A href='?src=\ref[src];env=2'>On</A> <A href='?src=\ref[src];env=3'>Auto</A>"
+				t += "<B>Off</B> <A href='byond://?src=\ref[src];env=2'>On</A> <A href='byond://?src=\ref[src];env=3'>Auto</A>"
 			if(1)
-				t += "<A href='?src=\ref[src];env=1'>Off</A> <A href='?src=\ref[src];env=2'>On</A> <B>Auto (Off)</B>"
+				t += "<A href='byond://?src=\ref[src];env=1'>Off</A> <A href='byond://?src=\ref[src];env=2'>On</A> <B>Auto (Off)</B>"
 			if(2)
-				t += "<A href='?src=\ref[src];env=1'>Off</A> <B>On</B> <A href='?src=\ref[src];env=3'>Auto</A>"
+				t += "<A href='byond://?src=\ref[src];env=1'>Off</A> <B>On</B> <A href='byond://?src=\ref[src];env=3'>Auto</A>"
 			if(3)
-				t += "<A href='?src=\ref[src];env=1'>Off</A> <A href='?src=\ref[src];env=2'>On</A> <B>Auto (On)</B>"
+				t += "<A href='byond://?src=\ref[src];env=1'>Off</A> <A href='byond://?src=\ref[src];env=2'>On</A> <B>Auto (On)</B>"
 
 
 
 		t += "<BR>Total load: [lastused_light + lastused_equip + lastused_environ] W</PRE>"
-		t += "<HR>Cover lock: [coverlocked ? "<B><A href='?src=\ref[src];lock=1'>Engaged</A></B>" : "<B><A href='?src=\ref[src];lock=1'>Disengaged</A></B>"]"
+		t += "<HR>Cover lock: [coverlocked ? "<B><A href='byond://?src=\ref[src];lock=1'>Engaged</A></B>" : "<B><A href='byond://?src=\ref[src];lock=1'>Disengaged</A></B>"]"
 
 
 		if (can_access_remotely(user))
-			t += "<BR><HR><A href='?src=\ref[src];overload=1'><I>Overload lighting circuit</I></A><BR>"
+			t += "<BR><HR><A href='byond://?src=\ref[src];overload=1'><I>Overload lighting circuit</I></A><BR>"
 
 
-	t += "<BR><HR><A href='?src=\ref[src];close=1'>Close</A>"
+	t += "<BR><HR><A href='byond://?src=\ref[src];close=1'>Close</A>"
 
 	t += "</TT>"
 	user.Browse(t, "window=apc")

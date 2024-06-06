@@ -326,9 +326,9 @@
 		var/dat = ""
 		dat += "<b>Available Destinations:</b><BR>"
 		for(var/I in destinations)
-			dat += "<b><A href='?src=\ref[src];print=[I]'>[I]</A></b><BR>"
+			dat += "<b><A href='byond://?src=\ref[src];print=[I]'>[I]</A></b><BR>"
 
-		dat += "<BR><b><A href='?src=\ref[src];add=1'>Add Tag</A></b>"
+		dat += "<BR><b><A href='byond://?src=\ref[src];add=1'>Add Tag</A></b>"
 
 		src.add_dialog(user)
 		user.Browse(dat, "title=Barcode Computer;window=bc_computer_[src];size=300x400")
@@ -397,14 +397,14 @@
 		var/dat = ""
 		dat += "<b>Available Destinations:</b><BR>"
 		for(var/I in destinations)
-			dat += "<b><A href='?src=\ref[src];print=[I]'>[I]</A></b><BR>"
+			dat += "<b><A href='byond://?src=\ref[src];print=[I]'>[I]</A></b><BR>"
 
 		dat += "<BR><b>Available Traders:</b><BR>"
 		for(var/datum/trader/T in shippingmarket.active_traders)
 			if (!T.hidden)
-				dat += "<b><A href='?src=\ref[src];print=[T.crate_tag]'>Sell to [T.name]</A></b><BR>"
+				dat += "<b><A href='byond://?src=\ref[src];print=[T.crate_tag]'>Sell to [T.name]</A></b><BR>"
 
-		//dat += "<BR><b><A href='?src=\ref[src];add=1'>Add Tag</A></b>"
+		//dat += "<BR><b><A href='byond://?src=\ref[src];add=1'>Add Tag</A></b>"
 
 		src.add_dialog(user)
 		// Attempting to diagnose an infinite window refresh I can't duplicate, reverting the display style back to plain HTML to see what results that gets me.

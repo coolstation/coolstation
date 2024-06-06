@@ -765,29 +765,29 @@
 		else
 			if (src.last_used > world.time)
 				if (src.cooldown_override)
-					dat += "<A href='?src=\ref[src];activate_magnet=1'>Activate Magnet</A> (On Cooldown!)<BR>"
+					dat += "<A href='byond://?src=\ref[src];activate_magnet=1'>Activate Magnet</A> (On Cooldown!)<BR>"
 					if(mining_controls.mining_encounters_selectable.len > 0)
-						dat += "<A href='?src=\ref[src];show_selectable=1'>Activate telescope location</A>  (On Cooldown!)<BR>"
+						dat += "<A href='byond://?src=\ref[src];show_selectable=1'>Activate telescope location</A>  (On Cooldown!)<BR>"
 				else
 					dat += "Magnet Cooling Down<BR>"
 			else
-				dat += "<A href='?src=\ref[src];activate_magnet=1'>Activate Magnet</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];activate_magnet=1'>Activate Magnet</A><BR>"
 				if(mining_controls.mining_encounters_selectable.len > 0)
-					dat += "<A href='?src=\ref[src];show_selectable=1'>Activate telescope location</A><BR>"
+					dat += "<A href='byond://?src=\ref[src];show_selectable=1'>Activate telescope location</A><BR>"
 
 
-			dat += "<A href='?src=\ref[src];geo_scan=1'>Scan Mining Area</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];geo_scan=1'>Scan Mining Area</A><BR>"
 
 		var/auto_mode = "Enable Automatic Mode"
 		if (src.automatic_mode)
 			auto_mode = "Disable Automatic Mode"
-		dat += "<A href='?src=\ref[src];auto_mode=1'>[auto_mode]</A><BR>"
+		dat += "<A href='byond://?src=\ref[src];auto_mode=1'>[auto_mode]</A><BR>"
 
 		var/override_text = "Override Cooldown"
 		if (src.cooldown_override)
 			override_text = "Disable Cooldown Override"
-		dat += "<A href='?src=\ref[src];override_cooldown=1'>[override_text]</A><BR>"
-		dat += "<BR><A href='?action=mach_close&window=computer'>Close</A>"
+		dat += "<A href='byond://?src=\ref[src];override_cooldown=1'>[override_text]</A><BR>"
+		dat += "<BR><A href='byond://?action=mach_close&window=computer'>Close</A>"
 		user.Browse(dat, "window=computer;size=300x400")
 		onclose(user, "computer")
 		return null
@@ -833,9 +833,9 @@
 			for(var/X in mining_controls.mining_encounters_selectable)
 				var/datum/mining_encounter/E = mining_controls.mining_encounters_selectable[X]
 				if(istype(E))
-					html += "<A href='?src=\ref[src];activate_selectable=[X]'>[E.name]</A><BR>"
+					html += "<A href='byond://?src=\ref[src];activate_selectable=[X]'>[E.name]</A><BR>"
 
-			html += "<BR><A href='?src=\ref[src];back=1'>Back</A><BR>"
+			html += "<BR><A href='byond://?src=\ref[src];back=1'>Back</A><BR>"
 			usr.Browse(html, "window=computer;size=300x400")
 			onclose(usr, "computer")
 			return
@@ -912,19 +912,19 @@
 		else
 			src.add_dialog(user)
 			var/dat = "<B>Mineral Mining Magnet Terminal</B><HR>"
-			dat += "<A href='?src=\ref[src];scan_for_connection=1'>Scan for Magnets</A><BR><BR>"
+			dat += "<A href='byond://?src=\ref[src];scan_for_connection=1'>Scan for Magnets</A><BR><BR>"
 			dat += "<B>Choose linked magnet:</B><BR>"
 			for (var/obj/M in linked_magnets)
-				dat += "<a href='?src=\ref[src];choosemagnet=\ref[M]'>[M] at ([M.x], [M.y])</a><BR>"
+				dat += "<a href='byond://?src=\ref[src];choosemagnet=\ref[M]'>[M] at ([M.x], [M.y])</a><BR>"
 			dat += "<BR><B>Selected magnet:</B><BR>"
 			if (linked_magnet)
 				dat += "[linked_magnet] at ([linked_magnet.x], [linked_magnet.y])<BR>"
 			else
 				dat += "None<BR>"
 
-			//dat += "<BR><a href='?src=\ref[src];unlink=1'>Disconnect Terminal from Magnet</a>"
+			//dat += "<BR><a href='byond://?src=\ref[src];unlink=1'>Disconnect Terminal from Magnet</a>"
 
-			dat += "<BR><A href='?action=mach_close&window=computer'>Close</A>"
+			dat += "<BR><A href='byond://?action=mach_close&window=computer'>Close</A>"
 			user.Browse(dat, "window=computer;size=300x400")
 			onclose(user, "computer")
 		return

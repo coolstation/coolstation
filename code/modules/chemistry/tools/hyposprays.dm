@@ -63,14 +63,14 @@ var/global/list/chem_whitelist = list("antihol", "charcoal", "epinephrine", "ins
 		update_icon()
 		src.add_dialog(user)
 		var/dat = ""
-		dat += "Injection amount: <A href='?src=\ref[src];change_amt=1'>[inj_amount == -1 ? "ALL" : inj_amount]</A><BR><BR>"
+		dat += "Injection amount: <A href='byond://?src=\ref[src];change_amt=1'>[inj_amount == -1 ? "ALL" : inj_amount]</A><BR><BR>"
 
 		if (src.reagents.total_volume)
 			dat += "Contains: <BR>"
 			for (var/current_id in reagents.reagent_list)
 				var/datum/reagent/current_reagent = reagents.reagent_list[current_id]
 				dat += " - [current_reagent.volume] [current_reagent.name]<BR>"
-			dat += "<A href='?src=\ref[src];dump_cont=1'>Dump contents</A>"
+			dat += "<A href='byond://?src=\ref[src];dump_cont=1'>Dump contents</A>"
 
 		user.Browse("<TITLE>Hypospray</TITLE>Hypospray:<BR><BR>[dat]", "window=hypospray;size=350x250")
 		onclose(user, "hypospray")

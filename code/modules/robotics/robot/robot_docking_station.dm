@@ -80,7 +80,7 @@
 
 	src.add_dialog(user)
 	var/list/dat = list()
-	dat += "<B>[src.name]</B> <A href='?src=\ref[src];refresh=1'>(Refresh)</A><BR><HR>"
+	dat += "<B>[src.name]</B> <A href='byond://?src=\ref[src];refresh=1'>(Refresh)</A><BR><HR>"
 
 	if (!src.occupant)
 		dat += "No occupant detected in [src.name].<BR><HR>"
@@ -89,12 +89,12 @@
 			var/mob/living/silicon/robot/R = src.occupant
 			dat += "<u><b>Occupant Name:</b></u> [R.name] "
 			if (user != src.occupant)
-				dat += "<A href='?src=\ref[src];rename=1'>(Rename)</A>"
+				dat += "<A href='byond://?src=\ref[src];rename=1'>(Rename)</A>"
 			dat += "<BR>"
 
 			var/dmgalerts = 0
 			dat += "<u><b>Damage Report:</b></u><BR>"
-			dat += "<A href='?src=\ref[src];repair=1'>Repair Structural Damage</A> | <A href='?src=\ref[src];repair=2'>Repair Burn Damage</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];repair=1'>Repair Structural Damage</A> | <A href='byond://?src=\ref[src];repair=2'>Repair Burn Damage</A><BR>"
 			if (R.part_chest)
 				if (R.part_chest.ropart_get_damage_percentage(0) > 0)
 					dmgalerts++
@@ -189,15 +189,15 @@
 
 			if (istype(R.cosmetic_mods, /datum/robot_cosmetic))
 				var/datum/robot_cosmetic/COS = R.cosmetic_mods
-				dat += "<B>Chest Decoration:</B> <A href='?src=\ref[src];decor=chest'>[COS.ches_mod ? COS.ches_mod : "None"]</A><BR>"
+				dat += "<B>Chest Decoration:</B> <A href='byond://?src=\ref[src];decor=chest'>[COS.ches_mod ? COS.ches_mod : "None"]</A><BR>"
 				if (COS.painted)
-					dat += "Paint Options: <A href='?src=\ref[src];paint=change'>Repaint</A> | <A href='?src=\ref[src];paint=remove'>Remove Paint</A><BR>"
+					dat += "Paint Options: <A href='byond://?src=\ref[src];paint=change'>Repaint</A> | <A href='byond://?src=\ref[src];paint=remove'>Remove Paint</A><BR>"
 				else
-					dat += "Paint Options: <A href='?src=\ref[src];paint=add'>Add Paint</A><BR>"
-				dat += "<B>Head Decoration:</B> <A href='?src=\ref[src];decor=head'>[COS.head_mod ? COS.head_mod : "None"]</A><BR>"
-				dat += "<B>Arms Decoration:</B> <A href='?src=\ref[src];decor=arms'>[COS.arms_mod ? COS.arms_mod : "None"]</A><BR>"
-				dat += "<B>Legs Decoration:</B> <A href='?src=\ref[src];decor=legs'>[COS.legs_mod ? COS.legs_mod : "None"]</A><BR>"
-				dat += "<A href='?src=\ref[src];decor=fx'>Change Eye Color</A><BR>"
+					dat += "Paint Options: <A href='byond://?src=\ref[src];paint=add'>Add Paint</A><BR>"
+				dat += "<B>Head Decoration:</B> <A href='byond://?src=\ref[src];decor=head'>[COS.head_mod ? COS.head_mod : "None"]</A><BR>"
+				dat += "<B>Arms Decoration:</B> <A href='byond://?src=\ref[src];decor=arms'>[COS.arms_mod ? COS.arms_mod : "None"]</A><BR>"
+				dat += "<B>Legs Decoration:</B> <A href='byond://?src=\ref[src];decor=legs'>[COS.legs_mod ? COS.legs_mod : "None"]</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];decor=fx'>Change Eye Color</A><BR>"
 
 			dat += "<BR><HR>"
 
@@ -209,7 +209,7 @@
 				dat += "Cannot interface with occupant of unknown type.<BR><HR>"
 
 	var/fuelamt = src.reagents.get_reagent_amount("fuel")
-	dat += "<b>Cyborg Self-Service Allowed:</b> <A href='?src=\ref[src];selfservice=1'>[src.allow_self_service ? "Yes" : "No"]</A><BR>"
+	dat += "<b>Cyborg Self-Service Allowed:</b> <A href='byond://?src=\ref[src];selfservice=1'>[src.allow_self_service ? "Yes" : "No"]</A><BR>"
 	dat += "<b>Welding Fuel Available:</b> [fuelamt]<BR>"
 	dat += "<b>Cable Coil Available:</b> [src.cabling]<BR>"
 

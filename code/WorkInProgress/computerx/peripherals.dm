@@ -625,7 +625,7 @@
 		return status_text
 
 	return_badge()
-		var/dat = "Card: <a href='?src=\ref[src];card=1'>[src.authid ? "Eject" : "-----"]</a>"
+		var/dat = "Card: <a href='byond://?src=\ref[src];card=1'>[src.authid ? "Eject" : "-----"]</a>"
 		return dat
 
 	proc/eject_card()
@@ -816,7 +816,7 @@
 	var/setup_disk_type = /obj/item/disk/data/floppy //Inserted disks need to be a child type of this.
 
 	return_badge()
-		var/dat = "Disk: <a href='?src=\ref[src];disk=1'>[src.disk ? "Eject" : "-----"]</a>"
+		var/dat = "Disk: <a href='byond://?src=\ref[src];disk=1'>[src.disk ? "Eject" : "-----"]</a>"
 		return dat
 
 	return_status_text()
@@ -905,7 +905,7 @@
 	label = "sr"
 
 	return_badge()
-		var/dat = "Cart: <a href='?src=\ref[src];disk=1'>[src.disk ? "Eject" : "-----"]</a>"
+		var/dat = "Cart: <a href='byond://?src=\ref[src];disk=1'>[src.disk ? "Eject" : "-----"]</a>"
 		return dat
 
 	return_status_text()
@@ -929,7 +929,7 @@
 	label = "st"
 
 	return_badge()
-		var/dat = "Tape: <a href='?src=\ref[src];disk=1'>[src.disk ? "Eject" : "-----"]</a>"
+		var/dat = "Tape: <a href='byond://?src=\ref[src];disk=1'>[src.disk ? "Eject" : "-----"]</a>"
 		return dat
 
 	return_status_text()
@@ -959,7 +959,7 @@
 		return status_text
 
 	return_badge()
-		var/dat = "Scan: <a href='?src=\ref[src];scanner=1'>[src.scanner ? "Eject" : "-----"]</a>"
+		var/dat = "Scan: <a href='byond://?src=\ref[src];scanner=1'>[src.scanner ? "Eject" : "-----"]</a>"
 		return dat
 
 	Topic(href, href_list)
