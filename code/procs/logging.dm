@@ -212,7 +212,7 @@ var/global/first_adminhelp_happened = 0
 		if (type == "diary")
 			data += "[name ? " (" : ""][key][name ? ")" : ""]"
 		else
-			data += "[name ? " (" : ""]<a href='?src=%admin_ref%;action=adminplayeropts;targetckey=[ckey]' title='Player Options'>[key]</a>[name ? ")" : ""]"
+			data += "[name ? " (" : ""]<a href='byond://?src=%admin_ref%;action=adminplayeropts;targetckey=[ckey]' title='Player Options'>[key]</a>[name ? ")" : ""]"
 	if (traitor)
 		if (type == "diary")
 			data += " \[TRAITOR\]"

@@ -400,8 +400,8 @@
 		if(src.locked && (!issilicon(user) && !isAI(user)))
 			t += "<I>(Swipe ID card to unlock control panel.)</I><BR>"
 		else
-			t += text("Turrets [] - <A href='?src=\ref[];toggleOn=1'>[]?</a><br><br>", src.enabled?"activated":"deactivated", src, src.enabled?"Disable":"Enable")
-			t += text("Currently set for [] - <A href='?src=\ref[];toggleLethal=1'>Change to []?</a><br><br>", src.lethal?"lethal":"stun repeatedly", src,  src.lethal?"Stun repeatedly":"Lethal")
+			t += text("Turrets [] - <A href='byond://?src=\ref[];toggleOn=1'>[]?</a><br><br>", src.enabled?"activated":"deactivated", src, src.enabled?"Disable":"Enable")
+			t += text("Currently set for [] - <A href='byond://?src=\ref[];toggleLethal=1'>Change to []?</a><br><br>", src.lethal?"lethal":"stun repeatedly", src,  src.lethal?"Stun repeatedly":"Lethal")
 	else if(src.emagged)
 		var/o = ""
 		for(var/i=rand(4,50), i > 0, i--)

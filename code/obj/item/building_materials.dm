@@ -283,7 +283,7 @@ MATERIAL
 
 		for(var/t in L)
 			counter++
-			t1 += text("<A href='?src=\ref[];make=[]'>[]</A>  ", src, t, L[t])
+			t1 += text("<A href='byond://?src=\ref[];make=[]'>[]</A>  ", src, t, L[t])
 			if (counter > 2)
 				counter = 1
 			t1 += "<BR>"

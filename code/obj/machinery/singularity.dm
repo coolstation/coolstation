@@ -1632,8 +1632,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	if ((get_dist(src, user) <= 1 && istype(src.loc, /turf)))
 		src.add_dialog(user)
 		/*
-		var/dat = text("<TT><B>Timing Unit</B><br>[] []:[]<br><A href='?src=\ref[];tp=-30'>-</A> <A href='?src=\ref[];tp=-1'>-</A> <A href='?src=\ref[];tp=1'>+</A> <A href='?src=\ref[];tp=30'>+</A><br></TT>", (src.timing ? text("<A href='?src=\ref[];time=0'>Timing</A>", src) : text("<A href='?src=\ref[];time=1'>Not Timing</A>", src)), minute, second, src, src, src, src)
-		dat += "<BR><BR><A href='?src=\ref[src];close=1'>Close</A>"
+		var/dat = text("<TT><B>Timing Unit</B><br>[] []:[]<br><A href='byond://?src=\ref[];tp=-30'>-</A> <A href='byond://?src=\ref[];tp=-1'>-</A> <A href='byond://?src=\ref[];tp=1'>+</A> <A href='byond://?src=\ref[];tp=30'>+</A><br></TT>", (src.timing ? text("<A href='byond://?src=\ref[];time=0'>Timing</A>", src) : text("<A href='byond://?src=\ref[];time=1'>Not Timing</A>", src)), minute, second, src, src, src, src)
+		dat += "<BR><BR><A href='byond://?src=\ref[src];close=1'>Close</A>"
 		*/
 		user.Browse(src.get_interface(), "window=timer")
 		onclose(user, "timer")

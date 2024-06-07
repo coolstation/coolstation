@@ -147,8 +147,8 @@
 
 		var/dat = "<B>Cryo cell control system</B><BR>"
 		dat += "<B>Current cell temperature:</B> [temp_text]&deg;C<BR>"
-		dat += "<B>Eject Occupant:</B> [src.occupant ? "<A href='?src=\ref[src];eject_occupant=1'>Eject</A>" : "Eject"]<BR>"
-		dat += "<B>Cryo status:</B> [src.on ? "<A href='?src=\ref[src];start=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='?src=\ref[src];start=1'>On</A>"]<BR>"
+		dat += "<B>Eject Occupant:</B> [src.occupant ? "<A href='byond://?src=\ref[src];eject_occupant=1'>Eject</A>" : "Eject"]<BR>"
+		dat += "<B>Cryo status:</B> [src.on ? "<A href='byond://?src=\ref[src];start=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='byond://?src=\ref[src];start=1'>On</A>"]<BR>"
 		dat += "[draw_beaker_text()]<BR>"
 		dat += "--------------------------------<BR>"
 		dat += "[draw_beaker_reagent_scan()]<BR>"
@@ -163,7 +163,7 @@
 			return ""
 		else
 			if (src.occupant)
-				return "<B>Defibrillate Occupant : <A href='?src=\ref[src];defib=1'>ZAP!!!</A></B> <BR>"
+				return "<B>Defibrillate Occupant : <A href='byond://?src=\ref[src];defib=1'>ZAP!!!</A></B> <BR>"
 			else
 				return "<B>Defibrillate Occupant : No occupant!</B> <BR>"
 
@@ -171,8 +171,8 @@
 		var/beaker_text = ""
 
 		if(src.beaker)
-			beaker_text = "<B>Beaker:</B> <A href='?src=\ref[src];eject=1'>Eject</A><BR>"
-			beaker_text += "<B>Beaker Contents:</B> <A href='?src=\ref[src];show_beaker_contents=1'>[show_beaker_contents ? "Hide" : "Show"]</A> "
+			beaker_text = "<B>Beaker:</B> <A href='byond://?src=\ref[src];eject=1'>Eject</A><BR>"
+			beaker_text += "<B>Beaker Contents:</B> <A href='byond://?src=\ref[src];show_beaker_contents=1'>[show_beaker_contents ? "Hide" : "Show"]</A> "
 			if (show_beaker_contents)
 				beaker_text += "<BR>[scan_reagents(src.beaker)]"
 		else
@@ -184,7 +184,7 @@
 		if (!reagent_scan_enabled)
 			return ""
 		else
-			return "<B>Reagent Scan : </B>[ reagent_scan_active ? "<A href='?src=\ref[src];reagent_scan_active=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='?src=\ref[src];reagent_scan_active=1'>On</A>"]"
+			return "<B>Reagent Scan : </B>[ reagent_scan_active ? "<A href='byond://?src=\ref[src];reagent_scan_active=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='byond://?src=\ref[src];reagent_scan_active=1'>On</A>"]"
 
 	Topic(href, href_list)
 		if (( usr.using_dialog_of(src) && ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (isAI(usr)))

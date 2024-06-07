@@ -143,12 +143,12 @@ obj/machinery/atmospherics/retrofilter
 
 		var/list/gases = list("O2", "N2", "CO2", "Plasma", "OTHER")
 		src.add_dialog(user)
-		var/dat = "<head><title>Gas Filtration Unit Mk VII</title></head><body><hr>"// "Filter Release Rate:<BR><br><A href='?src=\ref[src];fp=-[num2text(src.maxrate, 9)]'>M</A> <A href='?src=\ref[src];fp=-100000'>-</A> <A href='?src=\ref[src];fp=-10000'>-</A> <A href='?src=\ref[src];fp=-1000'>-</A> <A href='?src=\ref[src];fp=-100'>-</A> <A href='?src=\ref[src];fp=-1'>-</A> [src.f_per] <A href='?src=\ref[src];fp=1'>+</A> <A href='?src=\ref[src];fp=100'>+</A> <A href='?src=\ref[src];fp=1000'>+</A> <A href='?src=\ref[src];fp=10000'>+</A> <A href='?src=\ref[src];fp=100000'>+</A> <A href='?src=\ref[src];fp=[num2text(src.maxrate, 9)]'>M</A><BR><br>"
+		var/dat = "<head><title>Gas Filtration Unit Mk VII</title></head><body><hr>"// "Filter Release Rate:<BR><br><A href='byond://?src=\ref[src];fp=-[num2text(src.maxrate, 9)]'>M</A> <A href='byond://?src=\ref[src];fp=-100000'>-</A> <A href='byond://?src=\ref[src];fp=-10000'>-</A> <A href='byond://?src=\ref[src];fp=-1000'>-</A> <A href='byond://?src=\ref[src];fp=-100'>-</A> <A href='byond://?src=\ref[src];fp=-1'>-</A> [src.f_per] <A href='byond://?src=\ref[src];fp=1'>+</A> <A href='byond://?src=\ref[src];fp=100'>+</A> <A href='byond://?src=\ref[src];fp=1000'>+</A> <A href='byond://?src=\ref[src];fp=10000'>+</A> <A href='byond://?src=\ref[src];fp=100000'>+</A> <A href='byond://?src=\ref[src];fp=[num2text(src.maxrate, 9)]'>M</A><BR><br>"
 		for (var/i = 1; i <= gases.len; i++)
 			if (!issilicon(user) && src.locked)
 				dat += "[gases[i]]: [(src.filter_mode & (1 << (i - 1))) ? "Releasing" : "Passing"]<br>"
 			else
-				dat += "[gases[i]]: <a href='?src=\ref[src];toggle_gas=[1 << (i - 1)]'>[(src.filter_mode & (1 << (i - 1))) ? "Releasing" : "Passing"]</a><br>"
+				dat += "[gases[i]]: <a href='byond://?src=\ref[src];toggle_gas=[1 << (i - 1)]'>[(src.filter_mode & (1 << (i - 1))) ? "Releasing" : "Passing"]</a><br>"
 
 		var/pressure = MIXTURE_PRESSURE(air_in)
 		var/total_moles = TOTAL_MOLES(air_in)
@@ -175,7 +175,7 @@ obj/machinery/atmospherics/retrofilter
 		else
 			dat += "Nitrogen: 0%<br>Oxygen: 0%<br>Carbon Dioxide: 0%<br>Plasma: 0%<br>"
 
-		dat += "<br><A href='?src=\ref[src];close=1'>Close</A>"
+		dat += "<br><A href='byond://?src=\ref[src];close=1'>Close</A>"
 
 		user.Browse(dat, "window=pipefilter;size=300x365")
 		onclose(user, "pipefilter")

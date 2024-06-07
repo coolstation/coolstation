@@ -131,9 +131,9 @@
 				dat += "<b>Piece:</b> [X], <b>Color:</b> [current_colors[list_counter]], <b>Alpha:</b> [current_alphas[list_counter]]<br>"
 		dat += "<HR>"
 		if (current_pieces.len > 0)
-			dat += "<A href='?src=\ref[src];dispense=1'>Dispense Jumpsuit</A><BR>"
-		dat += "<A href='?src=\ref[src];add=1'>Add New Element</A><BR>"
-		dat += "<A href='?src=\ref[src];wipe=1'>Erase All Elements</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];dispense=1'>Dispense Jumpsuit</A><BR>"
+		dat += "<A href='byond://?src=\ref[src];add=1'>Add New Element</A><BR>"
+		dat += "<A href='byond://?src=\ref[src];wipe=1'>Erase All Elements</A><BR>"
 
 		user.Browse(dat, "window=jumpsuitmaker;size=575x450")
 		onclose(user, "jumpsuitmaker")

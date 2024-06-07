@@ -124,11 +124,11 @@
 
 			dat += "Set Temperature: "
 
-			dat += "<A href='?src=\ref[src];op=temp;val=-10'>--</A> <A href='?src=\ref[src];op=temp;val=-5'>-</A>"
+			dat += "<A href='byond://?src=\ref[src];op=temp;val=-10'>--</A> <A href='byond://?src=\ref[src];op=temp;val=-5'>-</A>"
 
-			dat += " <A href='?src=\ref[src];op=set_temp'>[set_temperature]&deg;C</A> "
+			dat += " <A href='byond://?src=\ref[src];op=set_temp'>[set_temperature]&deg;C</A> "
 
-			dat += "<A href='?src=\ref[src];op=temp;val=5'>+</A> <A href='?src=\ref[src];op=temp;val=10'>++</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];op=temp;val=5'>+</A> <A href='byond://?src=\ref[src];op=temp;val=10'>++</A><BR>"
 
 			src.add_dialog(user)
 			user.Browse("<HEAD><TITLE>Space Heater Control Panel</TITLE></HEAD><TT>[dat]</TT>", "window=spaceheater")
@@ -345,10 +345,10 @@
 
 			dat += "Set Temperature: "
 
-			dat += "<A href='?src=\ref[src];op=temp;val=-10'>--</A> <A href='?src=\ref[src];op=temp;val=-5'>-</A>"
+			dat += "<A href='byond://?src=\ref[src];op=temp;val=-10'>--</A> <A href='byond://?src=\ref[src];op=temp;val=-5'>-</A>"
 
 			dat += " [set_temperature]&deg;C "
-			dat += "<A href='?src=\ref[src];op=temp;val=5'>+</A> <A href='?src=\ref[src];op=temp;val=10'>++</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];op=temp;val=5'>+</A> <A href='byond://?src=\ref[src];op=temp;val=10'>++</A><BR>"
 
 			src.add_dialog(user)
 			user.Browse("<HEAD><TITLE>Sauna Stove Control Panel</TITLE></HEAD><TT>[dat]</TT>", "window=saunastove")

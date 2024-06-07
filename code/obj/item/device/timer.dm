@@ -111,10 +111,10 @@
 		var/second = src.time % 60
 		var/minute = (src.time - second) / 60
 		var/detonator_trigger = src.is_detonator_trigger()
-		var/timing_links = (src.timing ? text("<A href='?src=\ref[];time=0'>Timing</A>", src) : text("<A href='?src=\ref[];time=1'>Not Timing</A>", src))
+		var/timing_links = (src.timing ? text("<A href='byond://?src=\ref[];time=0'>Timing</A>", src) : text("<A href='byond://?src=\ref[];time=1'>Not Timing</A>", src))
 		var/timing_text = (src.timing ? "Timing - controls locked" : "Not timing - controls unlocked")
-		var/dat = text("<TT><B>Timing Unit</B><br>[] []:[]<br><A href='?src=\ref[];tp=-30'>-</A> <A href='?src=\ref[];tp=-1'>-</A> <A href='?src=\ref[];tp=1'>+</A> <A href='?src=\ref[];tp=30'>+</A><br></TT>", detonator_trigger ? timing_text : timing_links, minute, second, src, src, src, src)
-		dat += "<BR><BR><A href='?src=\ref[src];close=1'>Close</A>"
+		var/dat = text("<TT><B>Timing Unit</B><br>[] []:[]<br><A href='byond://?src=\ref[];tp=-30'>-</A> <A href='byond://?src=\ref[];tp=-1'>-</A> <A href='byond://?src=\ref[];tp=1'>+</A> <A href='byond://?src=\ref[];tp=30'>+</A><br></TT>", detonator_trigger ? timing_text : timing_links, minute, second, src, src, src, src)
+		dat += "<BR><BR><A href='byond://?src=\ref[src];close=1'>Close</A>"
 		user.Browse(dat, "window=timer")
 		onclose(user, "timer")
 	else

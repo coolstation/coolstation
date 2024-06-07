@@ -1310,30 +1310,30 @@
 	var/dat = {"
 	<B><HR><FONT size=3>[src.name]</FONT></B>
 	<BR><HR>
-	<B>Head:</B> <A href='?src=\ref[src];varname=head;slot=[src.slot_head];item=head'>[(src.head ? src.head : "Nothing")]</A>
-	<BR><B>Mask:</B> <A href='?src=\ref[src];varname=wear_mask;slot=[src.slot_wear_mask];item=mask'>[(src.wear_mask ? src.wear_mask : "Nothing")]</A>
-	<BR><B>Eyes:</B> <A href='?src=\ref[src];varname=glasses;slot=[src.slot_glasses];item=eyes'>[(src.glasses ? src.glasses : "Nothing")]</A>
-	<BR><B>Ears:</B> <A href='?src=\ref[src];varname=ears;slot=[src.slot_ears];item=ears'>[(src.ears ? src.ears : "Nothing")]</A>
-	<BR><B>Left Hand:</B> <A href='?src=\ref[src];varname=l_hand;slot=[src.slot_l_hand];item=l_hand'>[(src.l_hand ? src.l_hand  : "Nothing")]</A>
-	<BR><B>Right Hand:</B> <A href='?src=\ref[src];varname=r_hand;slot=[src.slot_r_hand];item=r_hand'>[(src.r_hand ? src.r_hand : "Nothing")]</A>
-	<BR><B>Gloves:</B> <A href='?src=\ref[src];varname=gloves;slot=[src.slot_gloves];item=gloves'>[(src.gloves ? src.gloves : "Nothing")]</A>
-	<BR><B>Shoes:</B> <A href='?src=\ref[src];varname=shoes;slot=[src.slot_shoes];item=shoes'>[(src.shoes ? src.shoes : "Nothing")]</A>
-	<BR><B>Belt:</B> <A href='?src=\ref[src];varname=belt;slot=[src.slot_belt];item=belt'>[(src.belt ? src.belt : "Nothing")]</A>
-	<BR><B>Uniform:</B> <A href='?src=\ref[src];varname=w_uniform;slot=[src.slot_w_uniform];item=uniform'>[(src.w_uniform ? src.w_uniform : "Nothing")]</A>
-	<BR><B>Outer Suit:</B> <A href='?src=\ref[src];varname=wear_suit;slot=[src.slot_wear_suit];item=suit'>[(src.wear_suit ? src.wear_suit : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=\ref[src];varname=back;slot=[src.slot_back];item=back'>[(src.back ? src.back : "Nothing")]</A> [((istype(src.wear_mask, /obj/item/clothing/mask) && istype(src.back, /obj/item/tank) && !( src.internal )) ? text(" <A href='?src=\ref[];item=internal;slot=internal'>Set Internal</A>", src) : "")]
-	<BR><B>ID:</B> <A href='?src=\ref[src];varname=wear_id;slot=[src.slot_wear_id];item=id'>[(src.wear_id ? src.wear_id : "Nothing")]</A>
-	<BR><B>Left Pocket:</B> <A href='?src=\ref[src];varname=l_store;slot=[src.slot_l_store];item=pockets'>[(src.l_store ? "Something" : "Nothing")]</A>
-	<BR><B>Right Pocket:</B> <A href='?src=\ref[src];varname=r_store;slot=[src.slot_r_store];item=pockets'>[(src.r_store ? "Something" : "Nothing")]</A>
-	<BR>[(src.hasStatus("handcuffed") ? text("<A href='?src=\ref[src];slot=handcuff;item=handcuff'>Handcuffed</A>") : text("<A href='?src=\ref[src];item=handcuff;slot=handcuff'>Not Handcuffed</A>"))]
-	<BR>[(src.internal ? text("<A href='?src=\ref[src];slot=internal;item=internal'>Remove Internal</A>") : "")]
-	<BR><A href='?action=mach_close&window=mob[src.name]'>Close</A>
+	<B>Head:</B> <A href='byond://?src=\ref[src];varname=head;slot=[src.slot_head];item=head'>[(src.head ? src.head : "Nothing")]</A>
+	<BR><B>Mask:</B> <A href='byond://?src=\ref[src];varname=wear_mask;slot=[src.slot_wear_mask];item=mask'>[(src.wear_mask ? src.wear_mask : "Nothing")]</A>
+	<BR><B>Eyes:</B> <A href='byond://?src=\ref[src];varname=glasses;slot=[src.slot_glasses];item=eyes'>[(src.glasses ? src.glasses : "Nothing")]</A>
+	<BR><B>Ears:</B> <A href='byond://?src=\ref[src];varname=ears;slot=[src.slot_ears];item=ears'>[(src.ears ? src.ears : "Nothing")]</A>
+	<BR><B>Left Hand:</B> <A href='byond://?src=\ref[src];varname=l_hand;slot=[src.slot_l_hand];item=l_hand'>[(src.l_hand ? src.l_hand  : "Nothing")]</A>
+	<BR><B>Right Hand:</B> <A href='byond://?src=\ref[src];varname=r_hand;slot=[src.slot_r_hand];item=r_hand'>[(src.r_hand ? src.r_hand : "Nothing")]</A>
+	<BR><B>Gloves:</B> <A href='byond://?src=\ref[src];varname=gloves;slot=[src.slot_gloves];item=gloves'>[(src.gloves ? src.gloves : "Nothing")]</A>
+	<BR><B>Shoes:</B> <A href='byond://?src=\ref[src];varname=shoes;slot=[src.slot_shoes];item=shoes'>[(src.shoes ? src.shoes : "Nothing")]</A>
+	<BR><B>Belt:</B> <A href='byond://?src=\ref[src];varname=belt;slot=[src.slot_belt];item=belt'>[(src.belt ? src.belt : "Nothing")]</A>
+	<BR><B>Uniform:</B> <A href='byond://?src=\ref[src];varname=w_uniform;slot=[src.slot_w_uniform];item=uniform'>[(src.w_uniform ? src.w_uniform : "Nothing")]</A>
+	<BR><B>Outer Suit:</B> <A href='byond://?src=\ref[src];varname=wear_suit;slot=[src.slot_wear_suit];item=suit'>[(src.wear_suit ? src.wear_suit : "Nothing")]</A>
+	<BR><B>Back:</B> <A href='byond://?src=\ref[src];varname=back;slot=[src.slot_back];item=back'>[(src.back ? src.back : "Nothing")]</A> [((istype(src.wear_mask, /obj/item/clothing/mask) && istype(src.back, /obj/item/tank) && !( src.internal )) ? text(" <A href='byond://?src=\ref[];item=internal;slot=internal'>Set Internal</A>", src) : "")]
+	<BR><B>ID:</B> <A href='byond://?src=\ref[src];varname=wear_id;slot=[src.slot_wear_id];item=id'>[(src.wear_id ? src.wear_id : "Nothing")]</A>
+	<BR><B>Left Pocket:</B> <A href='byond://?src=\ref[src];varname=l_store;slot=[src.slot_l_store];item=pockets'>[(src.l_store ? "Something" : "Nothing")]</A>
+	<BR><B>Right Pocket:</B> <A href='byond://?src=\ref[src];varname=r_store;slot=[src.slot_r_store];item=pockets'>[(src.r_store ? "Something" : "Nothing")]</A>
+	<BR>[(src.hasStatus("handcuffed") ? text("<A href='byond://?src=\ref[src];slot=handcuff;item=handcuff'>Handcuffed</A>") : text("<A href='byond://?src=\ref[src];item=handcuff;slot=handcuff'>Not Handcuffed</A>"))]
+	<BR>[(src.internal ? text("<A href='byond://?src=\ref[src];slot=internal;item=internal'>Remove Internal</A>") : "")]
+	<BR><A href='byond://?action=mach_close&window=mob[src.name]'>Close</A>
 	<BR>"}
 	user.Browse(dat, text("window=mob[src.name];size=340x480"))
 	onclose(user, "mob[src.name]", src)
 	src.last_show_inv = world.time
 	return
-	//	<BR><A href='?src=\ref[src];item=pockets'>Empty Pockets</A>
+	//	<BR><A href='byond://?src=\ref[src];item=pockets'>Empty Pockets</A>
 
 /mob/living/carbon/human/MouseDrop(mob/M as mob)
 	..()

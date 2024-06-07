@@ -1003,7 +1003,7 @@
 		clownifies_card = 1
 
 		return_badge()
-			var/dat = "<font face='Comic Sans MS'>Card: <a href='?src=\ref[src];card=1'>[src.authid ? "Eject" : "-----"]</a></font>"
+			var/dat = "<font face='Comic Sans MS'>Card: <a href='byond://?src=\ref[src];card=1'>[src.authid ? "Eject" : "-----"]</a></font>"
 			return dat
 
 	return_status_text()
@@ -1017,7 +1017,7 @@
 		return status_text
 
 	return_badge()
-		var/dat = "Card: <a href='?src=\ref[src];card=1'>[src.authid ? "Eject" : "-----"]</a>"
+		var/dat = "Card: <a href='byond://?src=\ref[src];card=1'>[src.authid ? "Eject" : "-----"]</a>"
 		return dat
 
 	proc/eject_card()
@@ -1244,7 +1244,7 @@
 		return 0
 
 	return_badge()
-		var/dat = "Disk: <a href='?src=\ref[src];disk=1'>[src.disk ? "Eject" : "-----"]</a>"
+		var/dat = "Disk: <a href='byond://?src=\ref[src];disk=1'>[src.disk ? "Eject" : "-----"]</a>"
 		return dat
 
 	uninstalled()
@@ -1323,7 +1323,7 @@
 	func_tag = "SHU_ROM"
 
 	return_badge()
-		var/dat = "Cart: <a href='?src=\ref[src];disk=1'>[src.disk ? "Eject" : "-----"]</a>"
+		var/dat = "Cart: <a href='byond://?src=\ref[src];disk=1'>[src.disk ? "Eject" : "-----"]</a>"
 		return dat
 
 	return_status_text()
@@ -1346,7 +1346,7 @@
 	func_tag = "SHU_TAPE"
 
 	return_badge()
-		var/dat = "Tape: <a href='?src=\ref[src];disk=1'>[src.disk ? "Eject" : "-----"]</a>"
+		var/dat = "Tape: <a href='byond://?src=\ref[src];disk=1'>[src.disk ? "Eject" : "-----"]</a>"
 		return dat
 
 	return_status_text()

@@ -99,58 +99,58 @@
 	.antagType .title {display:block; color:white; background:black; padding: 2px 5px; margin: -5px -5px 2px -5px}
 </style>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Traitor</b>
-	<a href='?src=\ref[src];action=traitorradio'>Radio Uplink</a> |
-	<a href='?src=\ref[src];action=traitorpda'>PDA Uplink</a> |
-	<a href='?src=\ref[src];action=traitorhard'>Hard Mode</a> |
-	<a href='?src=\ref[src];action=traitoromni'>Omnitraitor</a>
+	<a href='byond://?src=\ref[src];action=traitorradio'>Radio Uplink</a> |
+	<a href='byond://?src=\ref[src];action=traitorpda'>PDA Uplink</a> |
+	<a href='byond://?src=\ref[src];action=traitorhard'>Hard Mode</a> |
+	<a href='byond://?src=\ref[src];action=traitoromni'>Omnitraitor</a>
 </div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Insurgent</b>
-	<a href='?src=\ref[src];action=insurgent'>Implanted</a> |
-	<a href='?src=\ref[src];action=insurgentdeath'>Death</a> |
-	<a href='?src=\ref[src];action=insurgentoverride'>Overriden</a> |
-	<a href='?src=\ref[src];action=insurgentexpired'>Expired</a>
+	<a href='byond://?src=\ref[src];action=insurgent'>Implanted</a> |
+	<a href='byond://?src=\ref[src];action=insurgentdeath'>Death</a> |
+	<a href='byond://?src=\ref[src];action=insurgentoverride'>Overriden</a> |
+	<a href='byond://?src=\ref[src];action=insurgentexpired'>Expired</a>
 </div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Wizard</b>
-	<a href='?src=\ref[src];action=wizard'>Wizard</a> |
-	<a href='?src=\ref[src];action=adminwizard'>Custom Wizard</a> |
-	<a href='?src=\ref[src];action=polymorph'>Polymorph</a>
+	<a href='byond://?src=\ref[src];action=wizard'>Wizard</a> |
+	<a href='byond://?src=\ref[src];action=adminwizard'>Custom Wizard</a> |
+	<a href='byond://?src=\ref[src];action=polymorph'>Polymorph</a>
 </div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Nuke/Rev</b>
-	<a href='?src=\ref[src];action=nukeop'>Nuke Op</a> |
-	<a href='?src=\ref[src];action=revhead'>Rev Head</a> |
-	<a href='?src=\ref[src];action=revved'>Revved</a> |
-	<a href='?src=\ref[src];action=derevved'>De-Revved</a>
+	<a href='byond://?src=\ref[src];action=nukeop'>Nuke Op</a> |
+	<a href='byond://?src=\ref[src];action=revhead'>Rev Head</a> |
+	<a href='byond://?src=\ref[src];action=revved'>Revved</a> |
+	<a href='byond://?src=\ref[src];action=derevved'>De-Revved</a>
 </div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Spy/Conspiracy</b>
-	<a href='?src=\ref[src];action=spy'>Spy</a> |
-	<a href='?src=\ref[src];action=spythief'>Spy Thief</a> |
-	<a href='?src=\ref[src];action=conspiracy'>Conspiracy</a>
-	<a href='?src=\ref[src];action=gang_member'>Gang Member</a>
+	<a href='byond://?src=\ref[src];action=spy'>Spy</a> |
+	<a href='byond://?src=\ref[src];action=spythief'>Spy Thief</a> |
+	<a href='byond://?src=\ref[src];action=conspiracy'>Conspiracy</a>
+	<a href='byond://?src=\ref[src];action=gang_member'>Gang Member</a>
 </div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Vampire/Changeling</b>
-	<a href='?src=\ref[src];action=vampire'>Vampire</a> |
-	<a href='?src=\ref[src];action=vampthrall'>Vamp Thrall</a> |
-	<a href='?src=\ref[src];action=vampthrallrip'>Vamp Thrall Death</a> |
-	<br><a href='?src=\ref[src];action=changeling'>Changeling</a> |
-	<a href='?src=\ref[src];action=handspider'>Handspider</a> |
-	<a href='?src=\ref[src];action=eyespider'>Eye/Butt Spider</a> |
-	<a href='?src=\ref[src];action=legworm'>Legworm</a>
+	<a href='byond://?src=\ref[src];action=vampire'>Vampire</a> |
+	<a href='byond://?src=\ref[src];action=vampthrall'>Vamp Thrall</a> |
+	<a href='byond://?src=\ref[src];action=vampthrallrip'>Vamp Thrall Death</a> |
+	<br><a href='byond://?src=\ref[src];action=changeling'>Changeling</a> |
+	<a href='byond://?src=\ref[src];action=handspider'>Handspider</a> |
+	<a href='byond://?src=\ref[src];action=eyespider'>Eye/Butt Spider</a> |
+	<a href='byond://?src=\ref[src];action=legworm'>Legworm</a>
 </div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Other Antags</b>
-	<a href='?src=\ref[src];action=grinch'>Grinch</a> |
-	<a href='?src=\ref[src];action=hunter'>Hunter</a> |
-	<a href='?src=\ref[src];action=werewolf'>Werewolf</a> |
-	<a href='?src=\ref[src];action=wrestler'>Wrestler</a> |
-	<a href='?src=\ref[src];action=battle'>Battle Royale</a> |
-	<a href='?src=\ref[src];action=martian'>Martian</a> |
-	<a href='?src=\ref[src];action=kudzu'>Kudzu Person</a>
+	<a href='byond://?src=\ref[src];action=grinch'>Grinch</a> |
+	<a href='byond://?src=\ref[src];action=hunter'>Hunter</a> |
+	<a href='byond://?src=\ref[src];action=werewolf'>Werewolf</a> |
+	<a href='byond://?src=\ref[src];action=wrestler'>Wrestler</a> |
+	<a href='byond://?src=\ref[src];action=battle'>Battle Royale</a> |
+	<a href='byond://?src=\ref[src];action=martian'>Martian</a> |
+	<a href='byond://?src=\ref[src];action=kudzu'>Kudzu Person</a>
 </div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Misc</b>
-	<a href='?src=\ref[src];action=emaggedborg'>Borg Emagged</a> |
-	<a href='?src=\ref[src];action=rogueborgremoved'>Rogue Borg Removed</a> |
-	<a href='?src=\ref[src];action=antagremoved'>Antag Removed</a> |
-	<a href='?src=\ref[src];action=soulsteel'>Soulsteel Posession</a> |
-	<a href='?src=\ref[src];action=mindwipe'>Cloner Mindwipe</a>
+	<a href='byond://?src=\ref[src];action=emaggedborg'>Borg Emagged</a> |
+	<a href='byond://?src=\ref[src];action=rogueborgremoved'>Rogue Borg Removed</a> |
+	<a href='byond://?src=\ref[src];action=antagremoved'>Antag Removed</a> |
+	<a href='byond://?src=\ref[src];action=soulsteel'>Soulsteel Posession</a> |
+	<a href='byond://?src=\ref[src];action=mindwipe'>Cloner Mindwipe</a>
 </div>
 "}
 

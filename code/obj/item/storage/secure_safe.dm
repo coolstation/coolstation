@@ -144,7 +144,7 @@
 		<tr><td><a href='javascript:keypadIn(1);'>1</a></td><td><a href='javascript:keypadIn(2);'>2</a></td><td><a href='javascript:keypadIn(3)'>3</a></td></td><td><a href='javascript:keypadIn("C");'>C</a></td></tr>
 		<tr><td><a href='javascript:keypadIn(0);'>0</a></td><td><a href='javascript:keypadIn("F");'>F</a></td><td><a href='javascript:keypadIn("E");'>E</a></td></td><td><a href='javascript:keypadIn("D");'>D</a></td></tr>
 
-		<tr><td colspan=2 width = 100px><a id = "enterkey" href='?src=\ref[src];enter=0;'>ENTER</a></td><td colspan = 2 width = 100px><a href='javascript:keypadIn("reset");'>RESET</a></td></tr>
+		<tr><td colspan=2 width = 100px><a id = "enterkey" href='byond://?src=\ref[src];enter=0;'>ENTER</a></td><td colspan = 2 width = 100px><a href='javascript:keypadIn("reset");'>RESET</a></td></tr>
 	</table>
 
 <script language="JavaScript">
@@ -221,7 +221,7 @@
 	message = "[src.code]"
 	if (!src.locked)
 		message = "*****"
-	dat += "<HR><br>>[message]<BR><br><table border='1'><tr><td><A href='?src=\ref[src];type=1'>1</A></td><td><A href='?src=\ref[src];type=2'>2</A></td><td><A href='?src=\ref[src];type=3'>3</A></td></tr><tr><td><A href='?src=\ref[src];type=4'>4</A></td><td><A href='?src=\ref[src];type=5'>5</A></td><td><A href='?src=\ref[src];type=6'>6</A></td></tr><tr><td><A href='?src=\ref[src];type=7'>7</A></td><td><A href='?src=\ref[src];type=8'>8</A></td><td><A href='?src=\ref[src];type=9'>9</A></td></tr><tr><td><A href='?src=\ref[src];type=R'>R</A></td><td><A href='?src=\ref[src];type=0'>0</A></td><td><A href='?src=\ref[src];type=E'>E</A></td></tr></table></tt>"
+	dat += "<HR><br>>[message]<BR><br><table border='1'><tr><td><A href='byond://?src=\ref[src];type=1'>1</A></td><td><A href='byond://?src=\ref[src];type=2'>2</A></td><td><A href='byond://?src=\ref[src];type=3'>3</A></td></tr><tr><td><A href='byond://?src=\ref[src];type=4'>4</A></td><td><A href='byond://?src=\ref[src];type=5'>5</A></td><td><A href='byond://?src=\ref[src];type=6'>6</A></td></tr><tr><td><A href='byond://?src=\ref[src];type=7'>7</A></td><td><A href='byond://?src=\ref[src];type=8'>8</A></td><td><A href='byond://?src=\ref[src];type=9'>9</A></td></tr><tr><td><A href='byond://?src=\ref[src];type=R'>R</A></td><td><A href='byond://?src=\ref[src];type=0'>0</A></td><td><A href='byond://?src=\ref[src];type=E'>E</A></td></tr></table></tt>"
 	user.Browse(dat, "window=caselock;size=300x280")
 */
 /obj/item/storage/secure/Topic(href, href_list)
@@ -816,7 +816,7 @@
 					<tr><td><a href='javascript:keypadIn(1);'>1</a></td><td><a href='javascript:keypadIn(2);'>2</a></td><td><a href='javascript:keypadIn(3)'>3</a></td></td><td><a href='javascript:keypadIn("C");'>C</a></td></tr>
 					<tr><td><a href='javascript:keypadIn(0);'>0</a></td><td><a href='javascript:keypadIn("F");'>F</a></td><td><a href='javascript:keypadIn("E");'>E</a></td></td><td><a href='javascript:keypadIn("D");'>D</a></td></tr>
 
-					<tr><td colspan=2 width = 100px><a id = "enterkey" href='?src=\ref[src];enter=0;'>ENTER</a></td><td colspan = 2 width = 100px><a href='javascript:keypadIn("reset");'>RESET</a></td></tr>
+					<tr><td colspan=2 width = 100px><a id = "enterkey" href='byond://?src=\ref[src];enter=0;'>ENTER</a></td><td colspan = 2 width = 100px><a href='javascript:keypadIn("reset");'>RESET</a></td></tr>
 				</table>
 
 			<script language="JavaScript">

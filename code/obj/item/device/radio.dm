@@ -427,7 +427,7 @@ var/list/headset_channel_lookup
 			for (var/mob/R in heard_masked)
 				var/thisR = rendered
 				if (R.isAIControlled())
-					thisR = "[part_a]<a href='?src=\ref[src];track3=[M.name];track2=\ref[R];track=\ref[M]'>[M.name] ([eqjobname]) </a>[part_b][M.say_quote(messages[1])][part_c]"
+					thisR = "[part_a]<a href='byond://?src=\ref[src];track3=[M.name];track2=\ref[R];track=\ref[M]'>[M.name] ([eqjobname]) </a>[part_b][M.say_quote(messages[1])][part_c]"
 
 				if (R.client && R.client.holder && ismob(M) && M.mind)
 					thisR = "<span class='adminHearing' data-ctx='[R.client.chatOutput.getContextFlags()]'>[thisR]</span>"
@@ -438,7 +438,7 @@ var/list/headset_channel_lookup
 			for (var/mob/R in heard_normal)
 				var/thisR = rendered
 				if (R.isAIControlled())
-					thisR = "[part_a]<a href='?src=\ref[src];track3=[real_name ? real_name : M.real_name];track2=\ref[R];track=\ref[M]'>[real_name ? real_name : M.real_name] ([eqjobname]) </a>[part_b][M.say_quote(messages[1])][part_c]"
+					thisR = "[part_a]<a href='byond://?src=\ref[src];track3=[real_name ? real_name : M.real_name];track2=\ref[R];track=\ref[M]'>[real_name ? real_name : M.real_name] ([eqjobname]) </a>[part_b][M.say_quote(messages[1])][part_c]"
 
 				if (R.client && R.client.holder && ismob(M) && M.mind)
 					thisR = "<span class='adminHearing' data-ctx='[R.client.chatOutput.getContextFlags()]'>[thisR]</span>"
@@ -449,7 +449,7 @@ var/list/headset_channel_lookup
 			for (var/mob/R in heard_voice)
 				var/thisR = rendered
 				if (R.isAIControlled())
-					thisR = "[part_a]<a href='?src=\ref[src];track3=[M.voice_name];track2=\ref[R];track=\ref[M]'>[M.voice_name] ([eqjobname]) </a>[part_b][M.voice_message][part_c]"
+					thisR = "[part_a]<a href='byond://?src=\ref[src];track3=[M.voice_name];track2=\ref[R];track=\ref[M]'>[M.voice_name] ([eqjobname]) </a>[part_b][M.voice_message][part_c]"
 				else if (isghostdrone(R))
 					thisR = "[part_a][M.voice_name][part_b][M.say_quote(messages[1])][part_c]"
 
@@ -462,7 +462,7 @@ var/list/headset_channel_lookup
 			for (var/mob/R in heard_garbled)
 				var/thisR = rendered
 				if (R.isAIControlled())
-					thisR = "[part_a]<a href='?src=\ref[src];track3=[M.voice_name];track2=\ref[R];track=\ref[M]'>[M.voice_name]</a>[part_b][M.say_quote(messages[2])][part_c]"
+					thisR = "[part_a]<a href='byond://?src=\ref[src];track3=[M.voice_name];track2=\ref[R];track=\ref[M]'>[M.voice_name]</a>[part_b][M.say_quote(messages[2])][part_c]"
 
 				if (R.client && R.client.holder && ismob(M) &&  M.mind)
 					thisR = "<span class='adminHearing' data-ctx='[R.client.chatOutput.getContextFlags()]'>[thisR]</span>"
@@ -749,19 +749,19 @@ var/list/headset_channel_lookup
 		return
 	src.add_dialog(user)
 	var/dat = {"<TT>
-<a href='?src=\ref[src];power=1'>Turn [src.on ? "Off" : "On"]</a><br>
+<a href='byond://?src=\ref[src];power=1'>Turn [src.on ? "Off" : "On"]</a><br>
 <B>Frequency/Code</B> for electropack:<br>
 Frequency:
-<a href='?src=\ref[src];freq=-10'>-</a>
-<a href='?src=\ref[src];freq=-2'>-</a> [format_frequency(src.frequency)]
-<a href='?src=\ref[src];freq=2'>+</a>
-<a href='?src=\ref[src];freq=10'>+</a><br>
+<a href='byond://?src=\ref[src];freq=-10'>-</a>
+<a href='byond://?src=\ref[src];freq=-2'>-</a> [format_frequency(src.frequency)]
+<a href='byond://?src=\ref[src];freq=2'>+</a>
+<a href='byond://?src=\ref[src];freq=10'>+</a><br>
 
 Code:
-<a href='?src=\ref[src];code=-5'>-</a>
-<a href='?src=\ref[src];code=-1'>-</a> [src.code]
-<a href='?src=\ref[src];code=1'>+</a>
-<a href='?src=\ref[src];code=5'>+</a><br>
+<a href='byond://?src=\ref[src];code=-5'>-</a>
+<a href='byond://?src=\ref[src];code=-1'>-</a> [src.code]
+<a href='byond://?src=\ref[src];code=1'>+</a>
+<a href='byond://?src=\ref[src];code=5'>+</a><br>
 </TT>"}
 	user.Browse(dat, WINDOW_OPTIONS)
 	onclose(user, "radio")
@@ -802,27 +802,27 @@ Code:
 	src.add_dialog(user)
 	var/t1
 	if ((src.b_stat && !( flag1 )))
-		t1 = text("-------<br><br>Green Wire: []<br><br>Red Wire:   []<br><br>Blue Wire:  []<br><br>", (src.wires & WIRE_TRANSMIT ? text("<a href='?src=\ref[];wires=[WIRE_TRANSMIT]'>Cut Wire</a>", src) : text("<a href='?src=\ref[];wires=[WIRE_TRANSMIT]'>Mend Wire</a>", src)), (src.wires & WIRE_RECEIVE ? text("<a href='?src=\ref[];wires=[WIRE_RECEIVE]'>Cut Wire</a>", src) : text("<a href='?src=\ref[];wires=[WIRE_RECEIVE]'>Mend Wire</a>", src)), (src.wires & WIRE_SIGNAL ? text("<a href='?src=\ref[];wires=[WIRE_SIGNAL]'>Cut Wire</a>", src) : text("<a href='?src=\ref[];wires=[WIRE_SIGNAL]'>Mend Wire</a>", src)))
+		t1 = text("-------<br><br>Green Wire: []<br><br>Red Wire:   []<br><br>Blue Wire:  []<br><br>", (src.wires & WIRE_TRANSMIT ? text("<a href='byond://?src=\ref[];wires=[WIRE_TRANSMIT]'>Cut Wire</a>", src) : text("<a href='byond://?src=\ref[];wires=[WIRE_TRANSMIT]'>Mend Wire</a>", src)), (src.wires & WIRE_RECEIVE ? text("<a href='byond://?src=\ref[];wires=[WIRE_RECEIVE]'>Cut Wire</a>", src) : text("<a href='byond://?src=\ref[];wires=[WIRE_RECEIVE]'>Mend Wire</a>", src)), (src.wires & WIRE_SIGNAL ? text("<a href='byond://?src=\ref[];wires=[WIRE_SIGNAL]'>Cut Wire</a>", src) : text("<a href='byond://?src=\ref[];wires=[WIRE_SIGNAL]'>Mend Wire</a>", src)))
 	else
 		t1 = "-------"
 	var/dat = {"
 <TT>
-Speaker: [src.listening ? "<a href='?src=\ref[src];listen=0'>Engaged</a>" : "<a href='?src=\ref[src];listen=1'>Disengaged</a>"]<br>
-<a href='?src=\ref[src];send=1'>Send Signal</a><br>
+Speaker: [src.listening ? "<a href='byond://?src=\ref[src];listen=0'>Engaged</a>" : "<a href='byond://?src=\ref[src];listen=1'>Disengaged</a>"]<br>
+<a href='byond://?src=\ref[src];send=1'>Send Signal</a><br>
 <B>Frequency/Code</B> for signaler:<br>
 Frequency:
-<a href='?src=\ref[src];freq=-10'>-</a>
-<a href='?src=\ref[src];freq=-2'>-</a>
+<a href='byond://?src=\ref[src];freq=-10'>-</a>
+<a href='byond://?src=\ref[src];freq=-2'>-</a>
 [format_frequency(src.frequency)]
-<a href='?src=\ref[src];freq=2'>+</a>
-<a href='?src=\ref[src];freq=10'>+</a><br>
+<a href='byond://?src=\ref[src];freq=2'>+</a>
+<a href='byond://?src=\ref[src];freq=10'>+</a><br>
 
 Code:
-<a href='?src=\ref[src];code=-5'>-</a>
-<a href='?src=\ref[src];code=-1'>-</a>
+<a href='byond://?src=\ref[src];code=-5'>-</a>
+<a href='byond://?src=\ref[src];code=-1'>-</a>
 [src.code]
-<a href='?src=\ref[src];code=1'>+</a>
-<a href='?src=\ref[src];code=5'>+</a><br>
+<a href='byond://?src=\ref[src];code=1'>+</a>
+<a href='byond://?src=\ref[src];code=5'>+</a><br>
 [t1]
 </TT>"}
 	user.Browse(dat, WINDOW_OPTIONS)

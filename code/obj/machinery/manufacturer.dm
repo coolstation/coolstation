@@ -460,10 +460,10 @@
 				var/is_uncut = src.wires & APCWireColorToFlag[manuwires[wiredesc]]
 				pdat += "[wiredesc] wire: "
 				if(!is_uncut)
-					pdat += "<a href='?src=\ref[src];cutwire=[manuwires[wiredesc]]'>Mend</a>"
+					pdat += "<a href='byond://?src=\ref[src];cutwire=[manuwires[wiredesc]]'>Mend</a>"
 				else
-					pdat += "<a href='?src=\ref[src];cutwire=[manuwires[wiredesc]]'>Cut</a> "
-					pdat += "<a href='?src=\ref[src];pulsewire=[manuwires[wiredesc]]'>Pulse</a> "
+					pdat += "<a href='byond://?src=\ref[src];cutwire=[manuwires[wiredesc]]'>Cut</a> "
+					pdat += "<a href='byond://?src=\ref[src];pulsewire=[manuwires[wiredesc]]'>Pulse</a> "
 				pdat += "<br>"
 
 			pdat += "<br>"
@@ -554,11 +554,11 @@
 		dat += "</div><div id='info'>"
 		dat += build_material_list(user)
 		//Search
-		dat += " <A href='?src=\ref[src];search=1'>(Search: \"[istext(src.search) ? html_encode(src.search) : "----"]\")</A><BR>"
+		dat += " <A href='byond://?src=\ref[src];search=1'>(Search: \"[istext(src.search) ? html_encode(src.search) : "----"]\")</A><BR>"
 		//Filter
-		dat += " <A href='?src=\ref[src];category=1'>(Filter: \"[istext(src.category) ? html_encode(src.category) : "----"]\")</A>"
+		dat += " <A href='byond://?src=\ref[src];category=1'>(Filter: \"[istext(src.category) ? html_encode(src.category) : "----"]\")</A>"
 		// This is not re-formatted yet just b/c i don't wanna mess with it
-		dat +="<HR><B>Scanned Card:</B> <A href='?src=\ref[src];card=1'>([src.scan])</A><BR>"
+		dat +="<HR><B>Scanned Card:</B> <A href='byond://?src=\ref[src];card=1'>([src.scan])</A><BR>"
 		if(scan)
 			var/datum/data/record/account = null
 			account = FindBankAccountById(src.scan.registered_id)
@@ -576,7 +576,7 @@
 				if(!OCD.for_sale || !OCD.amount)
 					continue
 				var/taxes = round(max(rockbox_globals.rockbox_client_fee_min,abs(OCD.price*rockbox_globals.rockbox_client_fee_pct/100)),0.01) //transaction taxes for the station budget
-				dat += "[ore]: [OCD.amount] ($[OCD.price+taxes+(!rockbox_globals.rockbox_premium_purchased ? rockbox_globals.rockbox_standard_fee : 0)]/ore) (<A href='?src=\ref[src];purchase=1;storage=\ref[S];ore=[ore]'>Purchase</A>)<br>"
+				dat += "[ore]: [OCD.amount] ($[OCD.price+taxes+(!rockbox_globals.rockbox_premium_purchased ? rockbox_globals.rockbox_standard_fee : 0)]/ore) (<A href='byond://?src=\ref[src];purchase=1;storage=\ref[S];ore=[ore]'>Purchase</A>)<br>"
 
 		dat += "</small><HR>"
 
@@ -1694,7 +1694,7 @@
 			var/datum/material/mat = getMaterial(mat_id)
 			dat += {"
 		<tr>
-			<td><a href='?src=\ref[src];eject=[mat_id]' class='buttonlink'>&#9167;</a> [mat]</td>
+			<td><a href='byond://?src=\ref[src];eject=[mat_id]' class='buttonlink'>&#9167;</a> [mat]</td>
 			<td class='r'>[src.resource_amounts[mat_id]]</td>
 		</tr>
 			"}
@@ -1714,7 +1714,7 @@
 				var/datum/reagent/current_reagent = src.reagents.reagent_list[current_id]
 				dat += {"
 		<tr>
-			<td><a href='?src=\ref[src];flush=[current_reagent.name]'>[current_reagent.name]</a></td>
+			<td><a href='byond://?src=\ref[src];flush=[current_reagent.name]'>[current_reagent.name]</a></td>
 			<td class='r'>[current_reagent.volume] units</td>
 		</tr>
 				"}
@@ -1725,12 +1725,12 @@
 			"}
 
 			dat += {"
-		<tr><td colspan='2'><a href='?src=\ref[src];ejectbeaker=\ref[src.beaker]' class='buttonlink'>&#9167;</a> [src.beaker.name]<br>([round(src.beaker.reagents.total_volume)]/[src.beaker.reagents.maximum_volume])</td></tr>
+		<tr><td colspan='2'><a href='byond://?src=\ref[src];ejectbeaker=\ref[src.beaker]' class='buttonlink'>&#9167;</a> [src.beaker.name]<br>([round(src.beaker.reagents.total_volume)]/[src.beaker.reagents.maximum_volume])</td></tr>
 		<tr><td class='c'>
 			"}
 			if (src.reagents.total_volume && src.beaker.reagents.total_volume < src.beaker.reagents.maximum_volume)
 				dat += {"
-				<a href='?src=\ref[src];transto=\ref[src.beaker]'>Transfer<br>Machine &rarr; Container</a>
+				<a href='byond://?src=\ref[src];transto=\ref[src.beaker]'>Transfer<br>Machine &rarr; Container</a>
 				"}
 			else
 				dat += {"
@@ -1743,7 +1743,7 @@
 
 			if (src.beaker.reagents.total_volume > 0)
 				dat += {"
-				<a href='?src=\ref[src];transfrom=\ref[src.beaker]'>Transfer<br>Container &rarr; Machine</a>"
+				<a href='byond://?src=\ref[src];transfrom=\ref[src.beaker]'>Transfer<br>Container &rarr; Machine</a>"
 				"}
 
 			dat += {"
@@ -1761,11 +1761,11 @@
 
 		var/list/speed_opts = list()
 		for (var/i in 1 to (src.hacked ? 5 : 3))
-			speed_opts += "<a href='?src=\ref[src];speed=[i]' class='buttonlink' style='[i == src.speed ? "font-weight: bold; background: #6c6;" : ""]'>[i]</a>"
+			speed_opts += "<a href='byond://?src=\ref[src];speed=[i]' class='buttonlink' style='[i == src.speed ? "font-weight: bold; background: #6c6;" : ""]'>[i]</a>"
 
 		if (src.speed > (src.hacked ? 5 : 3))
 			// sometimes people get these set to wacky values
-			speed_opts += "<a href='?src=\ref[src];speed=[src.speed]' class='buttonlink' style='font-weight: bold; background: #c66;'>[src.speed]</a>"
+			speed_opts += "<a href='byond://?src=\ref[src];speed=[src.speed]' class='buttonlink' style='font-weight: bold; background: #c66;'>[src.speed]</a>"
 
 		dat += {"
 			<br>
@@ -1773,7 +1773,7 @@
 				<thead><tr><th style='width: 50%:'>Speed</th><th style='width: 50%:'>Repeat</th></tr></thead>
 				<tbody><tr>
 					<td class='c'>[speed_opts.Join(" ")]</td>
-					<td class='c'><a href='?src=\ref[src];repeat=1'>[src.repeat ? "Yes" : "No"]</a></td>
+					<td class='c'><a href='byond://?src=\ref[src];repeat=1'>[src.repeat ? "Yes" : "No"]</a></td>
 				</tr></tbody>
 			</table>
 
@@ -1790,14 +1790,14 @@
 			if (queue_num == 1)
 				// if (istype(A,/datum/manufacture/) && src.speed != 0 && timeleft != 0)
 				// 	time_number = round(src.timeleft / src.speed)
-				pause_link = (src.mode == "working" ? "<a href='?src=\ref[src];pause=1' class='buttonlink'>&#9208; Pause</a>" : "<a href='?src=\ref[src];continue=1' class='buttonlink'>&#57914; Resume</a>") + "<br>"
+				pause_link = (src.mode == "working" ? "<a href='byond://?src=\ref[src];pause=1' class='buttonlink'>&#9208; Pause</a>" : "<a href='byond://?src=\ref[src];continue=1' class='buttonlink'>&#57914; Resume</a>") + "<br>"
 			else
 				pause_link = ""
 
 			time_number = A.time && src.speed ? round(A.time / src.speed / 10, 0.1) : "??"
 
 			if (src.mode != "working" || queue_num != 1)
-				remove_link = "<a href='?src=\ref[src];removefromQ=[queue_num]' class='buttonlink'>&#128465; Remove</a>"
+				remove_link = "<a href='byond://?src=\ref[src];removefromQ=[queue_num]' class='buttonlink'>&#128465; Remove</a>"
 			else
 				// shut up
 				remove_link = "&#8987; Working..."

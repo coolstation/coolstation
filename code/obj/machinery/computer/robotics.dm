@@ -48,19 +48,19 @@
 
 		if(!isrobot(user)&&!ishivebot(user))
 			//if(!A.weapon_lock)
-				//dat += "<A href='?src=\ref[src];lock=1;ai=\ref[A]'>Emergency Lockout AI *Swipe ID*</A><BR>"
+				//dat += "<A href='byond://?src=\ref[src];lock=1;ai=\ref[A]'>Emergency Lockout AI *Swipe ID*</A><BR>"
 			//else
 				//dat += "Time left:[A.weaponlock_time] | "
-				//dat += "<A href='?src=\ref[src];lock=2;ai=\ref[A]'>Cancel Lockout</A><BR>"
+				//dat += "<A href='byond://?src=\ref[src];lock=2;ai=\ref[A]'>Cancel Lockout</A><BR>"
 
 			if(!A.killswitch)
-				dat += "<A href='?src=\ref[src];gib=1;ai=\ref[A]'>Kill Switch AI *Swipe ID*</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];gib=1;ai=\ref[A]'>Kill Switch AI *Swipe ID*</A><BR>"
 			else
 				var/timeleft = round((A.killswitch_at - TIME)/10, 1)
 				timeleft = "[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]"
 				dat += "Time left:[timeleft]"
 				if (!isAI(user))
-					dat += " | <A href='?src=\ref[src];gib=2;ai=\ref[A]'>Cancel</A>"
+					dat += " | <A href='byond://?src=\ref[src];gib=2;ai=\ref[A]'>Cancel</A>"
 				dat += "<BR>"
 
 		dat += "<BR> Connected Cyborgs<BR>"
@@ -88,18 +88,18 @@
 			if(isAI(user))
 				if(user == A || user == A.eyecam)
 					if(!R.weapon_lock)
-						dat += "<A href='?src=\ref[src];lock=1;bot=\ref[R]'>Lockdown Bot</A><BR>"
+						dat += "<A href='byond://?src=\ref[src];lock=1;bot=\ref[R]'>Lockdown Bot</A><BR>"
 					else
 						dat += "Time left:[R.weaponlock_time] | "
-						dat += "<A href='?src=\ref[src];lock=2;bot=\ref[R]'>Cancel Lockdown</A><BR>"
+						dat += "<A href='byond://?src=\ref[src];lock=2;bot=\ref[R]'>Cancel Lockdown</A><BR>"
 			else if(!isrobot(user)&&!ishivebot(user))
 				if(!R.killswitch)
-					dat += "<A href='?src=\ref[src];gib=1;bot=\ref[R]'>Kill Switch *Swipe ID*</A><BR>"
+					dat += "<A href='byond://?src=\ref[src];gib=1;bot=\ref[R]'>Kill Switch *Swipe ID*</A><BR>"
 				else
 					var/timeleft = round((R.killswitch_at - TIME)/10, 1)
 					timeleft = "[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]"
 					dat += "Time left:[timeleft] | "
-					dat += "<A href='?src=\ref[src];gib=2;bot=\ref[R]'>Cancel</A><BR>"
+					dat += "<A href='byond://?src=\ref[src];gib=2;bot=\ref[R]'>Cancel</A><BR>"
 			dat += "*----------*<BR>"
 
 	user.Browse(dat, "window=computer;size=400x500")

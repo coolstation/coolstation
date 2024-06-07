@@ -115,13 +115,13 @@
 							<center><b><font size=+1>Wheel</font></b></center>
 					<tr>
 						<td>
-							<center><a href='?src=\ref[src];action=decr_int'>&#60;&#60;</a> <a href='?src=\ref[src];action=decr_dec'>&#60;</a> [transfer_amount] <a href='?src=\ref[src];action=incr_dec'>&#62;</a> <a href='?src=\ref[src];action=incr_int'>&#62;&#62;</a></center>
+							<center><a href='byond://?src=\ref[src];action=decr_int'>&#60;&#60;</a> <a href='byond://?src=\ref[src];action=decr_dec'>&#60;</a> [transfer_amount] <a href='byond://?src=\ref[src];action=incr_dec'>&#62;</a> <a href='byond://?src=\ref[src];action=incr_int'>&#62;&#62;</a></center>
 					<tr>
 						<td>
 							<center><b><font size=+1>Mode</font></b></center>
 					<tr>
 						<td>
-							<center><a href='?src=\ref[src];action=toggle_mode'>[transfer_mode == TO_SELF ? "DRAW":"DROP"]</a></center>
+							<center><a href='byond://?src=\ref[src];action=toggle_mode'>[transfer_mode == TO_SELF ? "DRAW":"DROP"]</a></center>
 				</table>"}
 
 		user.Browse(t,"window=mechdropper")

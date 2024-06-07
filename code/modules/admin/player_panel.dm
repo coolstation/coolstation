@@ -88,13 +88,13 @@
 
 	//General info
 	//  Logs link:
-	//  <a href='?src=\ref[src];action=view_logs;type=all_logs_string;presearch=[M.key];origin=adminplayeropts'>LOGS</a>
+	//  <a href='byond://?src=\ref[src];action=view_logs;type=all_logs_string;presearch=[M.key];origin=adminplayeropts'>LOGS</a>
 	dat += {"
 <div id="topBar">
 	<div id="topOpts">
-		[M.key ? "<a href='?src=\ref[src];action=notes;targetckey=[M.ckey];targetmob=\ref[M];origin=adminplayeropts'>Notes</a> &bull; <a href='[playeropt_link(M, "show_player_stats")]'>Stats</a> &bull;" : ""]
-		<a href='?src=\ref[src];action=view_logs;type=all_logs_string;presearch=[M.key ? M.key : M.name];origin=adminplayeropts'>Logs</a> &bull;
-		<a href='?src=\ref[src];action=refreshoptions;targetckey=[M.ckey];targetmob=\ref[M];'>&#8635;</a>
+		[M.key ? "<a href='byond://?src=\ref[src];action=notes;targetckey=[M.ckey];targetmob=\ref[M];origin=adminplayeropts'>Notes</a> &bull; <a href='[playeropt_link(M, "show_player_stats")]'>Stats</a> &bull;" : ""]
+		<a href='byond://?src=\ref[src];action=view_logs;type=all_logs_string;presearch=[M.key ? M.key : M.name];origin=adminplayeropts'>Logs</a> &bull;
+		<a href='byond://?src=\ref[src];action=refreshoptions;targetckey=[M.ckey];targetmob=\ref[M];'>&#8635;</a>
 	</div>
 	<b>[M.name]</b> (<tt>[M.key ? M.key : "<em>no key</em>"]</tt>)
 </div>
@@ -114,7 +114,7 @@
 				<div>
 					<div class='l'>Message</div>
 					<div class='r'>
-						<a href='?action=priv_msg&target=[M.ckey]'>PM</a> &bull;
+						<a href='byond://?action=priv_msg&target=[M.ckey]'>PM</a> &bull;
 						<a href='[playeropt_link(M, "subtlemsg")]'>Subtle PM</a> &bull;
 						<a href='[playeropt_link(M, "plainmsg")]'>Plain Message</a> &bull;
 						<a href='[playeropt_link(M, "adminalert")]'>Alert</a> &bull;
@@ -141,13 +141,13 @@
 						[(M.stat == 2 || M.max_health == 0) ? "Dead" : "[round(100 * M.health / M.max_health)]%"]
 					</div>
 					"} : ""]
-					<div class='l'>Reagents<a href='?src=\ref[src];action=secretsfun;type=reagent_help'>*</a></div>
+					<div class='l'>Reagents<a href='byond://?src=\ref[src];action=secretsfun;type=reagent_help'>*</a></div>
 					<div class='r'>
 						<a href='[playeropt_link(M, "checkreagent")]'>Check</a> &bull;
 						<a href='[playeropt_link(M, "addreagent")]'>Add</a> &bull;
 						<a href='[playeropt_link(M, "removereagent")]'>Remove</a>
 					</div>
-					<div class='l'>Bioeffects<a href='?src=\ref[src];action=secretsfun;type=bioeffect_help'>*</a></div>
+					<div class='l'>Bioeffects<a href='byond://?src=\ref[src];action=secretsfun;type=bioeffect_help'>*</a></div>
 					<div class='r'>
 						<a href='[playeropt_link(M, "managebioeffect")]'>Manage</a> &bull;
 						<a href='[playeropt_link(M, "addbioeffect")]'>Add</a> &bull;
@@ -160,7 +160,7 @@
 						<a href='[playeropt_link(M, "removeabil")]'>Remove</a> &bull;
 						<a href='[playeropt_link(M, "abilholder")]'>New Holder</a>
 				 	</div>
-					<div class='l'>StatusEffects<a href='?src=\ref[src];action=secretsfun;type=statuseffect_help'>*</a></div>
+					<div class='l'>StatusEffects<a href='byond://?src=\ref[src];action=secretsfun;type=statuseffect_help'>*</a></div>
 					<div class='r'>
 						<a href='[playeropt_link(M, "setstatuseffect")]'>Set</a>
 				 	</div>
@@ -341,7 +341,7 @@
 					"}
 
 		//if (!isobserver(M)) //moved from SG level stuff
-		//	dat += " | <a href='?src=\ref[src];action=polymorph;targetckey=[M.ckey];targetmob=\ref[M];origin=adminplayeropts'>Polymorph</a>"
+		//	dat += " | <a href='byond://?src=\ref[src];action=polymorph;targetckey=[M.ckey];targetmob=\ref[M];origin=adminplayeropts'>Polymorph</a>"
 		//dat += "</div>"
 
 	//Coder options

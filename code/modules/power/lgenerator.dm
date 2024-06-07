@@ -236,26 +236,26 @@
 
 		if (src.P)
 			var/datum/gas_mixture/air = src.P.return_air()
-			dat += "<b>Tank:</b> <a href='?src=\ref[src];eject=1'>[src.P]</a> (Plasma: [air.toxins * R_IDEAL_GAS_EQUATION * air.temperature/air.volume] kPa)<br>"
+			dat += "<b>Tank:</b> <a href='byond://?src=\ref[src];eject=1'>[src.P]</a> (Plasma: [air.toxins * R_IDEAL_GAS_EQUATION * air.temperature/air.volume] kPa)<br>"
 		else
 			dat += "<b>Tank: --------</b><br>"
 
 		if (src.CL)
-			dat += "<b>Cell:</b> <a href='?src=\ref[src];eject-c=1'>[src.CL]</a> (Charge: [round(src.CL.percent())]%)<br>"
+			dat += "<b>Cell:</b> <a href='byond://?src=\ref[src];eject-c=1'>[src.CL]</a> (Charge: [round(src.CL.percent())]%)<br>"
 		else
 			dat += "<b>Cell: --------</b><br>"
 
 		var/obj/item/cell/APCC = null
 		if (src.our_APC && src.our_APC.cell)
 			APCC = src.our_APC.cell
-		dat += "<b>APC connection:</b> [src.our_APC ? "Established" : "None"] (<a href='?src=\ref[src];getAPC=1'>Refresh</a>)<br>"
+		dat += "<b>APC connection:</b> [src.our_APC ? "Established" : "None"] (<a href='byond://?src=\ref[src];getAPC=1'>Refresh</a>)<br>"
 		dat += "<b>APC charge:</b> [APCC ? "[round(APCC.percent())]%" : "N/A"]<br>"
 
 		dat += "<hr>"
 
-		dat += "<b>Generator anchors:</b> [src.anchored ? "Secured" : "Unsecured"] (<a href='?src=\ref[src];togglebolts=1'>Toggle</a>)<br>"
-		dat += "<b>Generator mode:</b> [src.mode == 1 ? "<u>Charge APC</u> / Charge cell" : "Charge APC / <u>Charge cell</u>"] (<a href='?src=\ref[src];togglemode=1'>Toggle</a>)<br>"
-		dat += "<b>Generator status:</b> [src.active ? "Running" : "Off"] (<a href='?src=\ref[src];togglepower=1'>Toggle</a>)<br>"
+		dat += "<b>Generator anchors:</b> [src.anchored ? "Secured" : "Unsecured"] (<a href='byond://?src=\ref[src];togglebolts=1'>Toggle</a>)<br>"
+		dat += "<b>Generator mode:</b> [src.mode == 1 ? "<u>Charge APC</u> / Charge cell" : "Charge APC / <u>Charge cell</u>"] (<a href='byond://?src=\ref[src];togglemode=1'>Toggle</a>)<br>"
+		dat += "<b>Generator status:</b> [src.active ? "Running" : "Off"] (<a href='byond://?src=\ref[src];togglepower=1'>Toggle</a>)<br>"
 
 		user.Browse(dat, "window=generator")
 		onclose(user, "generator")

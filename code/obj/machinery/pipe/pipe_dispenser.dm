@@ -11,17 +11,17 @@
 		return
 
 	var/dat = {"
-<A href='?src=\ref[src];make=0'>Pipe<BR>
-<A href='?src=\ref[src];make=1'>Bent Pipe<BR>
-<A href='?src=\ref[src];make=2'>Heat Exchange Pipe<BR>
-<A href='?src=\ref[src];make=3'>Heat Exchange Bent Pipe<BR>
-<A href='?src=\ref[src];make=4'>Connector<BR>
-<A href='?src=\ref[src];make=5'>Manifold<BR>
-<A href='?src=\ref[src];make=6'>Junction<BR>
-<A href='?src=\ref[src];make=7'>Vent<BR>
-<A href='?src=\ref[src];make=8'>Valve<BR>
-<A href='?src=\ref[src];make=9'>Pipe-Pump<BR>"}
-//<A href='?src=\ref[src];make=10'>Filter Inlet<BR>
+<A href='byond://?src=\ref[src];make=0'>Pipe<BR>
+<A href='byond://?src=\ref[src];make=1'>Bent Pipe<BR>
+<A href='byond://?src=\ref[src];make=2'>Heat Exchange Pipe<BR>
+<A href='byond://?src=\ref[src];make=3'>Heat Exchange Bent Pipe<BR>
+<A href='byond://?src=\ref[src];make=4'>Connector<BR>
+<A href='byond://?src=\ref[src];make=5'>Manifold<BR>
+<A href='byond://?src=\ref[src];make=6'>Junction<BR>
+<A href='byond://?src=\ref[src];make=7'>Vent<BR>
+<A href='byond://?src=\ref[src];make=8'>Valve<BR>
+<A href='byond://?src=\ref[src];make=9'>Pipe-Pump<BR>"}
+//<A href='byond://?src=\ref[src];make=10'>Filter Inlet<BR>
 
 
 	user.Browse("<HEAD><TITLE>Pipe Dispenser</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
@@ -62,11 +62,11 @@
 		return
 
 	var/dat = {"<b>Disposal Pipes</b><br><br>
-<A href='?src=\ref[src];dmake=0'>Pipe</A><BR>
-<A href='?src=\ref[src];dmake=1'>Bent Pipe</A><BR>
-<A href='?src=\ref[src];dmake=2'>Junction</A><BR>
-<A href='?src=\ref[src];dmake=3'>Y-Junction</A><BR>
-<A href='?src=\ref[src];dmake=4'>Trunk</A><BR>
+<A href='byond://?src=\ref[src];dmake=0'>Pipe</A><BR>
+<A href='byond://?src=\ref[src];dmake=1'>Bent Pipe</A><BR>
+<A href='byond://?src=\ref[src];dmake=2'>Junction</A><BR>
+<A href='byond://?src=\ref[src];dmake=3'>Y-Junction</A><BR>
+<A href='byond://?src=\ref[src];dmake=4'>Trunk</A><BR>
 "}
 
 	user.Browse("<HEAD><TITLE>Disposal Pipe Dispenser</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
@@ -266,14 +266,14 @@
 	var/startstop_lay = (src.laying_pipe ? "Stop" : "Start")
 	var/startstop_remove = (src.removing_pipe ? "Stop" : "Start")
 	var/dat = {"<b>Disposal Pipes</b><br><br>
-<A href='?src=\ref[src];dmake=0'>Pipe</A><BR>
-<A href='?src=\ref[src];dmake=1'>Bent Pipe</A><BR>
-<A href='?src=\ref[src];dmake=2'>Junction</A><BR>
-<A href='?src=\ref[src];dmake=3'>Y-Junction</A><BR>
-<A href='?src=\ref[src];dmake=4'>Trunk</A><BR>
+<A href='byond://?src=\ref[src];dmake=0'>Pipe</A><BR>
+<A href='byond://?src=\ref[src];dmake=1'>Bent Pipe</A><BR>
+<A href='byond://?src=\ref[src];dmake=2'>Junction</A><BR>
+<A href='byond://?src=\ref[src];dmake=3'>Y-Junction</A><BR>
+<A href='byond://?src=\ref[src];dmake=4'>Trunk</A><BR>
 <BR>
-<A href='?src=\ref[src];toggle_laying=1'>[startstop_lay] Laying Pipe Automatically</A><BR>
-<A href='?src=\ref[src];toggle_removing=1'>[startstop_remove] Removing Pipe Automatically</A><BR>
+<A href='byond://?src=\ref[src];toggle_laying=1'>[startstop_lay] Laying Pipe Automatically</A><BR>
+<A href='byond://?src=\ref[src];toggle_removing=1'>[startstop_remove] Removing Pipe Automatically</A><BR>
 "}
 
 	user << browse("<HEAD><TITLE>Disposal Pipe Dispenser</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")

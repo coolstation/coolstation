@@ -1557,7 +1557,7 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 			pump_html += "<B>[I.id] Status</B>:<BR>"
 			//pump_html += "<B>Pump [count] Status</B>: <BR>"
 			//pump_html += "	Pump Id: [I.id]<BR>"
-			pump_html += "	Pump Status: <U><A href='?src=\ref[src];toggle=[I.id]'>[I.power_status == "on" ? "On":"Off"]</A></U><BR>"
+			pump_html += "	Pump Status: <U><A href='byond://?src=\ref[src];toggle=[I.id]'>[I.power_status == "on" ? "On":"Off"]</A></U><BR>"
 			var/current_pump_level = 0
 			switch (I.target_output)
 				if (1 to PUMP_POWERLEVEL_1)
@@ -1575,12 +1575,12 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 				if (current_pump_level == i)
 					pump_html += "<b>[i]</b> "
 				else
-					pump_html += "<A href='?src=\ref[src];setoutput=[i]&target=[I.id]'>[i]</A> "
+					pump_html += "<A href='byond://?src=\ref[src];setoutput=[i]&target=[I.id]'>[i]</A> "
 
 			pump_html += "<BR><BR>"
 			//count++
 
-		var/output = "<B>[name]</B><BR><A href='?src=\ref[src];refresh=1'>Refresh</A><BR><HR><B>Pump Data: <BR><BR></B>[pump_html]<HR>"
+		var/output = "<B>[name]</B><BR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A><BR><HR><B>Pump Data: <BR><BR></B>[pump_html]<HR>"
 		return output
 
 	Topic(href, href_list)

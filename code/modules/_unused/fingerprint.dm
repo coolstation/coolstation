@@ -15,7 +15,7 @@
 /obj/item/fcardholder/attack_self(mob/user as mob)
 	var/dat = "<B>Clipboard</B><BR>"
 	for(var/obj/item/f_card/P in src)
-		dat += text("<A href='?src=\ref[];read=\ref[]'>[]</A> <A href='?src=\ref[];remove=\ref[]'>Remove</A><BR>", src, P, P.name, src, P)
+		dat += text("<A href='byond://?src=\ref[];read=\ref[]'>[]</A> <A href='byond://?src=\ref[];remove=\ref[]'>Remove</A><BR>", src, P, P.name, src, P)
 	user << browse(dat, "window=fcardholder")
 	onclose(user, "fcardholder")
 	return

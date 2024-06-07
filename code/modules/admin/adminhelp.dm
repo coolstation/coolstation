@@ -36,7 +36,7 @@
 			if (C.player_mode && !C.player_mode_ahelp)
 				continue
 			else
-				boutput(C, "<span class='ahelp'><font size='3'><b><span class='alert'>HELP: </span>[key_name(client.mob,0,0)][(client.mob.real_name ? "/"+client.mob.real_name : "")] <A HREF='?src=\ref[C.holder];action=adminplayeropts;targetckey=[client.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: [msg]</font></span>")
+				boutput(C, "<span class='ahelp'><font size='3'><b><span class='alert'>HELP: </span>[key_name(client.mob,0,0)][(client.mob.real_name ? "/"+client.mob.real_name : "")] <A HREF='byond://?src=\ref[C.holder];action=adminplayeropts;targetckey=[client.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: [msg]</font></span>")
 				switch(C.holder.audible_ahelps)
 					if(PM_AUDIBLE_ALERT)
 						C.mob.playsound_local(C.mob.loc, "sound/misc/newsting.ogg", 50, 1)
@@ -94,7 +94,7 @@
 				if (C.player_mode || C == client || C == mmouse.client)
 					continue
 				else
-					var/rendered = "<span class='[class]'><b>[mmouse.is_admin ? "A" : "M"]MOUSEWHISPER: [key_name(client.mob,0,0,1)]<span class='name text-normal' data-ctx='\ref[src.mind]'>[(client.mob.real_name ? "/"+client.mob.real_name : "")]</span> <A HREF='?src=\ref[C.holder];action=adminplayeropts;targetckey=[client.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: <span class='message'>[msg]</span></span>"
+					var/rendered = "<span class='[class]'><b>[mmouse.is_admin ? "A" : "M"]MOUSEWHISPER: [key_name(client.mob,0,0,1)]<span class='name text-normal' data-ctx='\ref[src.mind]'>[(client.mob.real_name ? "/"+client.mob.real_name : "")]</span> <A HREF='byond://?src=\ref[C.holder];action=adminplayeropts;targetckey=[client.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: <span class='message'>[msg]</span></span>"
 					boutput(C,  "<span class='adminHearing' data-ctx='[C.chatOutput.ctxFlag]'>[rendered]</span>")
 		logTheThing("diary", client.mob, null, "([mmouse.is_admin ? "A" : "M"]MOUSEWHISPER): [msg]", "say")
 		return
@@ -123,7 +123,7 @@
 			if (C.player_mode && !C.player_mode_mhelp)
 				continue
 			else
-				var/rendered = "<span class='mhelp'><b>MENTORHELP: [key_name(client.mob,0,0,1)]<span class='name text-normal' data-ctx='\ref[src.mind]'>[(client.mob.real_name ? "/"+client.mob.real_name : "")]</span> <A HREF='?src=\ref[C.holder];action=adminplayeropts;targetckey=[client.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: <span class='message'>[msg]</span></span>"
+				var/rendered = "<span class='mhelp'><b>MENTORHELP: [key_name(client.mob,0,0,1)]<span class='name text-normal' data-ctx='\ref[src.mind]'>[(client.mob.real_name ? "/"+client.mob.real_name : "")]</span> <A HREF='byond://?src=\ref[C.holder];action=adminplayeropts;targetckey=[client.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: <span class='message'>[msg]</span></span>"
 				boutput(C,  "<span class='adminHearing' data-ctx='[C.chatOutput.ctxFlag]'>[rendered]</span>")
 		else if (C?.can_see_mentor_pms())
 			if(istype(C.mob, /mob/dead/observer) || C.mob.type == /mob/dead/target_observer || C.mob.type == /mob/dead/target_observer/mentor_mouse_observer || istype(C.mob, /mob/living/critter/small_animal/mouse/weak/mentor))
@@ -213,7 +213,7 @@
 			if (!M.client.holder.hear_prayers || (M.client.player_mode == 1 && M.client.player_mode_ahelp == 0)) //XOR for admin prayer setting and player mode w/ no ahelps
 				continue
 			else
-				boutput(M, "<span class='notice' [in_chapel? "style='font-size:1.1em'":""]><B>PRAYER: [is_atheist ? "(ATHEIST)" : ""]</B><a href='?src=\ref[M.client.holder];action=subtlemsg&targetckey=[client.ckey]'>[client.key]</a> / [client.mob.real_name ? client.mob.real_name : client.mob.name] <A HREF='?src=\ref[M.client.holder];action=adminplayeropts;targetckey=[client.ckey]' class='popt'><i class='icon-info-sign'>: <I>[msg]</I></span>")
+				boutput(M, "<span class='notice' [in_chapel? "style='font-size:1.1em'":""]><B>PRAYER: [is_atheist ? "(ATHEIST)" : ""]</B><a href='byond://?src=\ref[M.client.holder];action=subtlemsg&targetckey=[client.ckey]'>[client.key]</a> / [client.mob.real_name ? client.mob.real_name : client.mob.name] <A HREF='byond://?src=\ref[M.client.holder];action=adminplayeropts;targetckey=[client.ckey]' class='popt'><i class='icon-info-sign'>: <I>[msg]</I></span>")
 				if(M.client.holder.audible_prayers == 1)
 					M << sound("sound/misc/boing/[rand(1,6)].ogg", volume=50, wait=0)
 				else if(M.client.holder.audible_prayers == 2) // this is a terrible idea
@@ -263,12 +263,12 @@
 				</div>
 				"})
 			M << sound('sound/misc/adminhelp.ogg', volume=100, wait=0)
-			boutput(user, "<span class='ahelp' class=\"bigPM\">Admin PM to-<b>[key_name(M, 0, 0)][(M.real_name ? "/"+M.real_name : "")] <A HREF='?src=\ref[user.client.holder];action=adminplayeropts;targetckey=[M.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: [t]</span>")
+			boutput(user, "<span class='ahelp' class=\"bigPM\">Admin PM to-<b>[key_name(M, 0, 0)][(M.real_name ? "/"+M.real_name : "")] <A HREF='byond://?src=\ref[user.client.holder];action=adminplayeropts;targetckey=[M.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: [t]</span>")
 		else
 			// Sender is not admin
 			if (M.client && M.client.holder)
 				// But recipient is
-				boutput(M, "<span class='ahelp' class=\"bigPM\">Reply PM from-<b>[key_name(user, 0, 0)][(user.real_name ? "/"+user.real_name : "")] <A HREF='?src=\ref[M.client.holder];action=adminplayeropts;targetckey=[user.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: [t]</span>")
+				boutput(M, "<span class='ahelp' class=\"bigPM\">Reply PM from-<b>[key_name(user, 0, 0)][(user.real_name ? "/"+user.real_name : "")] <A HREF='byond://?src=\ref[M.client.holder];action=adminplayeropts;targetckey=[user.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: [t]</span>")
 				M << sound('sound/misc/adminhelp.ogg', volume=100, wait=0)
 			else
 				boutput(M, "<span class='alert' class=\"bigPM\">Reply PM from-<b>[key_name(user, 0, 0)]</b>: [t]</span>")
@@ -294,4 +294,4 @@
 				if (K.client.player_mode && !K.client.player_mode_ahelp)
 					continue
 				else
-					boutput(K, "<span class='ahelp'><b>PM: [key_name(user,0,0)][(user.real_name ? "/"+user.real_name : "")] <A HREF='?src=\ref[K.client.holder];action=adminplayeropts;targetckey=[user.ckey]' class='popt'><i class='icon-info-sign'></i></A> <i class='icon-arrow-right'></i> [key_name(M,0,0)][(M.real_name ? "/"+M.real_name : "")] <A HREF='?src=\ref[K.client.holder];action=adminplayeropts;targetckey=[M.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: [t]</span>")
+					boutput(K, "<span class='ahelp'><b>PM: [key_name(user,0,0)][(user.real_name ? "/"+user.real_name : "")] <A HREF='byond://?src=\ref[K.client.holder];action=adminplayeropts;targetckey=[user.ckey]' class='popt'><i class='icon-info-sign'></i></A> <i class='icon-arrow-right'></i> [key_name(M,0,0)][(M.real_name ? "/"+M.real_name : "")] <A HREF='byond://?src=\ref[K.client.holder];action=adminplayeropts;targetckey=[M.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: [t]</span>")

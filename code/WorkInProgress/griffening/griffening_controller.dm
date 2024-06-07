@@ -722,8 +722,8 @@ td, th {
 
 		addinfo("</td></tr></tbody></table>")
 
-		addinfo1("<a href='?src=\ref[src];forfeit=1'>Forfeit</a>", "")
-		addinfo2("<a href='?src=\ref[src];forfeit=2'>Forfeit</a>", "")
+		addinfo1("<a href='byond://?src=\ref[src];forfeit=1'>Forfeit</a>", "")
+		addinfo2("<a href='byond://?src=\ref[src];forfeit=2'>Forfeit</a>", "")
 
 		var/mob/player1 = players[1]
 		if (player1)

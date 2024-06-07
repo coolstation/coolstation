@@ -212,7 +212,7 @@
 			Free to play - IF YOU DARE!<BR>
 			[src.plays] attempts have been made today!<BR>
 			<HR><BR>
-			<A href='?src=\ref[src];ops=1'>Play!</A><BR>"}
+			<A href='byond://?src=\ref[src];ops=1'>Play!</A><BR>"}
 			user.Browse(dat, "window=slotmachine;size=400x500")
 			onclose(user, "slotmachine")
 
@@ -304,8 +304,8 @@
 			<B>Credits Remaining:</B> [src.play_money]<BR>
 			[src.plays] attempts have been made today!<BR>
 			<HR><BR>
-			<A href='?src=\ref[src];ops=1'>Play!</A><BR>
-			<A href='?src=\ref[src];ops=2'>Eject cash</A>"}
+			<A href='byond://?src=\ref[src];ops=1'>Play!</A><BR>
+			<A href='byond://?src=\ref[src];ops=2'>Eject cash</A>"}
 			user.Browse(dat, "window=slotmachine;size=400x500")
 			onclose(user, "slotmachine")
 

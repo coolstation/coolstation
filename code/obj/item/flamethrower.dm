@@ -758,7 +758,7 @@ A Flamethrower in various states of assembly
 
 /obj/item/gun/flamethrower/proc/flamewindow(mob/user)
 	src.add_dialog(user)
-	var/dat = "<TT><B>Flamethrower - <A HREF='?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a></B><BR>"
+	var/dat = "<TT><B>Flamethrower - <A HREF='byond://?src=\ref[src];light=1'>[lit ? "<font color='red'>Lit</font>" : "Unlit"]</a></B><BR>"
 	var/fueltank_in_range = ((src.fueltank in src.contents) || (src.fueltank in user.get_equipped_items()))
 	var/gastank_in_range = ((src.gastank in src.contents) || (src.gastank in user.get_equipped_items()))
 	var/spraytemp = "!NaN!"
@@ -769,14 +769,14 @@ A Flamethrower in various states of assembly
 			spraytemp = src.fueltank.reagents.total_temperature - T0C
 	dat += "<BR><B>Spray Temp:</B> [spraytemp]&deg;C<BR>"
 	if(src.adjustable_temp && src.lit)
-		dat += " <a href='?src=\ref[src];temp=-100'>-100</a> <a href='?src=\ref[src];temp=-10'>-10</a> <a href='?src=\ref[src];temp=-1'>-1</a>"
-		dat += " <a href='?src=\ref[src];temp=reset'>reset ([FLAMER_DEFAULT_TEMP - (T0C)]&deg;C)</a>"
-		dat += " <a href='?src=\ref[src];temp=1'>+1</a> <a href='?src=\ref[src];temp=10'>+10</a> <a href='?src=\ref[src];temp=100'>+100</a>"
+		dat += " <a href='byond://?src=\ref[src];temp=-100'>-100</a> <a href='byond://?src=\ref[src];temp=-10'>-10</a> <a href='byond://?src=\ref[src];temp=-1'>-1</a>"
+		dat += " <a href='byond://?src=\ref[src];temp=reset'>reset ([FLAMER_DEFAULT_TEMP - (T0C)]&deg;C)</a>"
+		dat += " <a href='byond://?src=\ref[src];temp=1'>+1</a> <a href='byond://?src=\ref[src];temp=10'>+10</a> <a href='byond://?src=\ref[src];temp=100'>+100</a>"
 
 	if (src.gastank && gastank_in_range)
 		dat += "<br>Air Tank Pressure: [MIXTURE_PRESSURE(src.gastank.air_contents)]"
 		if (src.swappable_tanks)
-			dat += " (<A HREF='?src=\ref[src];removeair=1'>Remove Air Tank</A>)"
+			dat += " (<A HREF='byond://?src=\ref[src];removeair=1'>Remove Air Tank</A>)"
 		dat += "<BR>"
 	else
 		dat += "<br>No Air Tank Attached!<BR>"
@@ -785,29 +785,29 @@ A Flamethrower in various states of assembly
 	if (mode == 1)
 		dat += "<B>Full Auto</B> | "
 	else
-		dat += "<a href='?src=\ref[src];mode=1'>Full Auto</a> | "
+		dat += "<a href='byond://?src=\ref[src];mode=1'>Full Auto</a> | "
 	if (mode == 2)
 		dat += "<B>Wide Burst</B> | "
 	else
-		dat += "<a href='?src=\ref[src];mode=2'>Wide Burst</a> | "
+		dat += "<a href='byond://?src=\ref[src];mode=2'>Wide Burst</a> | "
 	if (mode == 3)
 		dat += "<B>Semi-Auto</B>"
 	else
-		dat += "<a href='?src=\ref[src];mode=3'>Semi-Auto</a>"
+		dat += "<a href='byond://?src=\ref[src];mode=3'>Semi-Auto</a>"
 
 	if (src.fueltank && fueltank_in_range)
 		dat += "<br>Fuel Tank: [src.fueltank.reagents.total_volume] units of fuel mixture"
 		if (src.swappable_tanks)
-			dat += " (<A HREF='?src=\ref[src];removefuel=1'>Remove Fuel Tank</A>)"
+			dat += " (<A HREF='byond://?src=\ref[src];removefuel=1'>Remove Fuel Tank</A>)"
 		dat += "<BR>"
 	else
 		dat += "<br>No Fuel Tank Attached!<BR>"
 
 	dat += "<br>Launcher Chamber Volume: [src.amt_chem]<BR>"
 	if(src.adjustable_chem_amt)
-		dat += "| <a href='?src=\ref[src];c_amt=-5'>-5</a> | <a href='?src=\ref[src];c_amt=-1'>-1</a> | <a href='?src=\ref[src];c_amt=reset'>reset (10)</a> | <a href='?src=\ref[src];c_amt=1'>+1</a> | <a href='?src=\ref[src];c_amt=5'>+5</a> |"
+		dat += "| <a href='byond://?src=\ref[src];c_amt=-5'>-5</a> | <a href='byond://?src=\ref[src];c_amt=-1'>-1</a> | <a href='byond://?src=\ref[src];c_amt=reset'>reset (10)</a> | <a href='byond://?src=\ref[src];c_amt=1'>+1</a> | <a href='byond://?src=\ref[src];c_amt=5'>+5</a> |"
 
-	dat += "<BR><br><A HREF='?src=\ref[src];close=1'>Close</A></TT>"
+	dat += "<BR><br><A HREF='byond://?src=\ref[src];close=1'>Close</A></TT>"
 	user.Browse(dat, "window=flamethrower;size=600x300")
 	onclose(user, "flamethrower")
 

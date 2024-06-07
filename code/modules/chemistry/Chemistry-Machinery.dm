@@ -163,20 +163,20 @@
 			dat += "Please insert beaker.<BR>"
 		else if (!beaker.reagents.total_volume)
 			dat += "Beaker is empty.<BR>"
-			dat += "<A href='?src=\ref[src];eject=1'>Eject beaker</A><BR><BR>"
+			dat += "<A href='byond://?src=\ref[src];eject=1'>Eject beaker</A><BR><BR>"
 		else
 			var/datum/reagents/R = beaker:reagents
-			dat += "<A href='?src=\ref[src];eject=1'>Eject beaker</A><BR><BR>"
-			dat += "<A href='?src=\ref[src];adjustM=10'>(<<)</A><A href='?src=\ref[src];adjustM=1'>(<)</A><A href='?src=\ref[src];settemp=1'> [target_temp] </A><A href='?src=\ref[src];adjustP=1'>(>)</A><A href='?src=\ref[src];adjustP=10'>(>>)</A><BR><BR>"
+			dat += "<A href='byond://?src=\ref[src];eject=1'>Eject beaker</A><BR><BR>"
+			dat += "<A href='byond://?src=\ref[src];adjustM=10'>(<<)</A><A href='byond://?src=\ref[src];adjustM=1'>(<)</A><A href='byond://?src=\ref[src];settemp=1'> [target_temp] </A><A href='byond://?src=\ref[src];adjustP=1'>(>)</A><A href='byond://?src=\ref[src];adjustP=10'>(>>)</A><BR><BR>"
 
 			if(active)
 				dat += "Status: Active ([(target_temp > R.total_temperature) ? "Heating" : "Cooling"])<BR>"
 				dat += "Current Temperature: [R.total_temperature]<BR>"
-				dat += "<A href='?src=\ref[src];stop=1'>Deactivate</A><BR><BR>"
+				dat += "<A href='byond://?src=\ref[src];stop=1'>Deactivate</A><BR><BR>"
 			else
 				dat += "Status: Inactive<BR>"
 				dat += "Current Temperature: [R.total_temperature]<BR>"
-				dat += "<A href='?src=\ref[src];start=1'>Activate</A><BR><BR>"
+				dat += "<A href='byond://?src=\ref[src];start=1'>Activate</A><BR><BR>"
 
 			for(var/reagent_id in R.reagent_list)
 				var/datum/reagent/current_reagent = R.reagent_list[reagent_id]
@@ -368,7 +368,7 @@
 		var/datum/reagents/R = beaker.reagents
 
 		if (href_list["analyze"])
-			var/dat = "<TITLE>CheMaster 3000</TITLE>Chemical infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
+			var/dat = "<TITLE>CheMaster 3000</TITLE>Chemical infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='byond://?src=\ref[src];main=1'>(Back)</A>"
 			usr.Browse(dat, "window=chem_master;size=575x400;title=CheMaster 3000")
 			return
 		else if (href_list["isolate"])
@@ -589,23 +589,23 @@
 		var/dat = ""
 		if (!beaker)
 			dat = "Please insert beaker.<BR>"
-			dat += "<A href='?src=\ref[src];close=1'>Close</A>"
+			dat += "<A href='byond://?src=\ref[src];close=1'>Close</A>"
 		else
 			var/datum/reagents/R = beaker:reagents
-			dat += "<A href='?src=\ref[src];eject=1'>Eject beaker</A><BR><BR>"
+			dat += "<A href='byond://?src=\ref[src];eject=1'>Eject beaker</A><BR><BR>"
 			if (!R.total_volume)
 				dat += "Beaker is empty."
 			else
 				dat += "Contained reagents:<BR>"
 				for (var/reagent_id in R.reagent_list)
 					var/datum/reagent/current_reagent = R.reagent_list[reagent_id]
-					dat += "[capitalize(current_reagent.name)] - [current_reagent.volume] Units - <A href='?src=\ref[src];analyze=1;desc=[html_encode(current_reagent.description)];name=[capitalize(current_reagent.name)]'>(Analyze)</A> <A href='?src=\ref[src];isolate=[current_reagent.id]'>(Isolate)</A> <A href='?src=\ref[src];remove=[current_reagent.id]'>(Remove all)</A> <A href='?src=\ref[src];remove5=[current_reagent.id]'>(-5)</A> <A href='?src=\ref[src];remove1=[current_reagent.id]'>(-1)</A><BR>"
-				dat += "<BR><A href='?src=\ref[src];createpill=1'>Create pill (100 units max)</A><BR>"
-				dat += "<A href='?src=\ref[src];multipill=1'>Create multiple pills (5 units min)</A> Bottle: <A href='?src=\ref[src];togglepillbottle=1'>[src.pill_bottle ? "Yes" : "No"]</A><BR>"
-				dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (50 units max)</A><BR>"
-				dat += "<A href='?src=\ref[src];createpatch=1'>Create patch (30 units max)</A><BR>"
-				dat += "<A href='?src=\ref[src];multipatch=1'>Create multiple patches (5 units min)</A> Box: <A href='?src=\ref[src];togglepatchbox=1'>[src.patch_box ? "Yes" : "No"]</A><BR>"
-				dat += "<A href='?src=\ref[src];createampoule=1'>Create ampoule (5 units max)</A>"
+					dat += "[capitalize(current_reagent.name)] - [current_reagent.volume] Units - <A href='byond://?src=\ref[src];analyze=1;desc=[html_encode(current_reagent.description)];name=[capitalize(current_reagent.name)]'>(Analyze)</A> <A href='byond://?src=\ref[src];isolate=[current_reagent.id]'>(Isolate)</A> <A href='byond://?src=\ref[src];remove=[current_reagent.id]'>(Remove all)</A> <A href='byond://?src=\ref[src];remove5=[current_reagent.id]'>(-5)</A> <A href='byond://?src=\ref[src];remove1=[current_reagent.id]'>(-1)</A><BR>"
+				dat += "<BR><A href='byond://?src=\ref[src];createpill=1'>Create pill (100 units max)</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];multipill=1'>Create multiple pills (5 units min)</A> Bottle: <A href='byond://?src=\ref[src];togglepillbottle=1'>[src.pill_bottle ? "Yes" : "No"]</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];createbottle=1'>Create bottle (50 units max)</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];createpatch=1'>Create patch (30 units max)</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];multipatch=1'>Create multiple patches (5 units min)</A> Box: <A href='byond://?src=\ref[src];togglepatchbox=1'>[src.patch_box ? "Yes" : "No"]</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];createampoule=1'>Create ampoule (5 units max)</A>"
 		user.Browse("<TITLE>CheMaster 3000</TITLE>CheMaster menu:<BR><BR>[dat]", "window=chem_master;size=575x400;title=CheMaster 3000")
 		onclose(user, "chem_master")
 		return

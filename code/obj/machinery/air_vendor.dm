@@ -113,18 +113,18 @@ obj/machinery/air_vendor
 		if (src.scan)
 			var/datum/data/record/account = null
 			account = FindBankAccountById(src.scan.registered_id)
-			html += "<b>Current ID:</b> <a href='?src=\ref[src];clearcard=1'>[src.scan]</a><br />"
+			html += "<b>Current ID:</b> <a href='byond://?src=\ref[src];clearcard=1'>[src.scan]</a><br />"
 			html += "<b>Credits on Account: [account.fields["current_money"]] Credits</b> <br>"
 		else
 			html += "<b>Current ID:</b> None<br>"
 		if(src.holding)
-			html += "<font color = 'blue'>Current tank:</font> <a href='?src=\ref[src];eject=1'>[holding]</a><br />"
+			html += "<font color = 'blue'>Current tank:</font> <a href='byond://?src=\ref[src];eject=1'>[holding]</a><br />"
 			html += "<font color = 'red'>Pressure:</font> [MIXTURE_PRESSURE(holding.air_contents)] kPa<br />"
 		else
 			html += "<font color = 'blue'>Current tank:</font> none<br />"
 
-		html += "<font color = 'green'>Desired pressure:</font> <a href='?src=\ref[src];changepressure=1'>[src.target_pressure] kPa</a><br/>"
-		html += (holding) ? "<a href='?src=\ref[src];fill=1'>Fill ([src.fill_cost()] credits)</a>" : "<font color = 'red'>Fill (unavailable)</red>"
+		html += "<font color = 'green'>Desired pressure:</font> <a href='byond://?src=\ref[src];changepressure=1'>[src.target_pressure] kPa</a><br/>"
+		html += (holding) ? "<a href='byond://?src=\ref[src];fill=1'>Fill ([src.fill_cost()] credits)</a>" : "<font color = 'red'>Fill (unavailable)</red>"
 
 		user.Browse(html, "window=o2_vending")
 		onclose(user, "vending")

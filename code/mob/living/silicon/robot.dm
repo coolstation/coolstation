@@ -2027,7 +2027,7 @@
 				return
 
 		var/dat = "<HEAD><TITLE>Modules</TITLE></HEAD><BODY><br>"
-		dat += "<A HREF='?action=mach_close&window=robotmod'>Close</A> <A HREF='?src=\ref[src];refresh=1'>Refresh</A><BR><HR>"
+		dat += "<A HREF='byond://?action=mach_close&window=robotmod'>Close</A> <A HREF='byond://?src=\ref[src];refresh=1'>Refresh</A><BR><HR>"
 
 		dat += "<B><U>Status Report</U></B><BR>"
 
@@ -2315,7 +2315,7 @@
 
 	proc/robot_alerts()
 		var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY><br>"
-		dat += "<A HREF='?action=mach_close&window=robotalerts'>Close</A><BR><BR>"
+		dat += "<A HREF='byond://?action=mach_close&window=robotalerts'>Close</A><BR><BR>"
 		for (var/cat in src.alarms)
 			dat += text("<B>[cat]</B><BR><br>")
 			var/list/L = src.alarms[cat]

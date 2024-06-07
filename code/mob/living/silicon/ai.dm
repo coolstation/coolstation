@@ -1336,7 +1336,7 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 	set name = "Show Alerts"
 
 	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY><br>"
-	dat += "<A HREF='?action=mach_close&window=aialerts'>Close</A><BR><BR>"
+	dat += "<A HREF='byond://?action=mach_close&window=aialerts'>Close</A><BR><BR>"
 	for (var/cat in src.alarms)
 		dat += text("<B>[cat]</B><BR><br>")
 		var/list/L = src.alarms[cat]

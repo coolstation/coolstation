@@ -116,18 +116,18 @@
 
 	if(holding)
 		holding_text = {"<BR><B>Tank Pressure</B>: [MIXTURE_PRESSURE(holding.air_contents)] KPa<BR>
-<A href='?src=\ref[src];remove_tank=1'>Remove Tank</A><BR>
+<A href='byond://?src=\ref[src];remove_tank=1'>Remove Tank</A><BR>
 "}
 	var/output_text = {"<TT><B>[name]</B><BR>
 Pressure: [MIXTURE_PRESSURE(air_contents)] KPa<BR>
 Port Status: [(connected_port)?("Connected"):("Disconnected")]
 [holding_text]
 <BR>
-Power Switch: <A href='?src=\ref[src];power=1'>[on?("On"):("Off")]</A><BR>
-Pump Direction: <A href='?src=\ref[src];direction=1'>[direction_out?("Out"):("In")]</A><BR>
-Target Pressure: <A href='?src=\ref[src];pressure_adj=-100'>-</A> <A href='?src=\ref[src];pressure_adj=-10'>-</A> <A href='?src=\ref[src];pressure_set=1'>[target_pressure]</A> <A href='?src=\ref[src];pressure_adj=10'>+</A> <A href='?src=\ref[src];pressure_adj=100'>+</A><BR>
+Power Switch: <A href='byond://?src=\ref[src];power=1'>[on?("On"):("Off")]</A><BR>
+Pump Direction: <A href='byond://?src=\ref[src];direction=1'>[direction_out?("Out"):("In")]</A><BR>
+Target Pressure: <A href='byond://?src=\ref[src];pressure_adj=-100'>-</A> <A href='byond://?src=\ref[src];pressure_adj=-10'>-</A> <A href='byond://?src=\ref[src];pressure_set=1'>[target_pressure]</A> <A href='byond://?src=\ref[src];pressure_adj=10'>+</A> <A href='byond://?src=\ref[src];pressure_adj=100'>+</A><BR>
 <HR>
-<A href='?action=mach_close&window=pump'>Close</A><BR>
+<A href='byond://?action=mach_close&window=pump'>Close</A><BR>
 "}
 
 	user.Browse(output_text, "window=pump;size=600x300")

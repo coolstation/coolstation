@@ -74,12 +74,12 @@
 
 	html += "<tr><td style='vertical-align: top;'><b>IP</b></td><td>"
 	html += "Last seen: [response["last_ip"]]<br>"
-	html += "<a href='?src=\ref[src];action=show_player_ips;ckey=[ckey];'>See All</a>"
+	html += "<a href='byond://?src=\ref[src];action=show_player_ips;ckey=[ckey];'>See All</a>"
 	html += "</td></tr>"
 
 	html += "<tr><td style='vertical-align: top;'><b>Computer ID</b></td><td>"
 	html += "Last seen: [response["last_compID"]]<br>"
-	html += "<a href='?src=\ref[src];action=show_player_compids;ckey=[ckey];'>See All</a>"
+	html += "<a href='byond://?src=\ref[src];action=show_player_compids;ckey=[ckey];'>See All</a>"
 	html += "</td></tr>"
 
 	html += "</table>"

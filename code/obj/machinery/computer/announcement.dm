@@ -43,15 +43,15 @@
 				<h1>Announcement Computer</h1>
 				<hr>
 				Status: [announce_status]<BR>
-				Card: <a href='?src=\ref[src];card=1'>[src.ID ? src.ID.name : "--------"]</a><br>
+				Card: <a href='byond://?src=\ref[src];card=1'>[src.ID ? src.ID.name : "--------"]</a><br>
 				Broadcast delay: [nice_timer()]<br>
 				<br>
-				Message: "<a href='?src=\ref[src];edit_message=1'>[src.message ? src.message : "___________"]</a>" <a href='?src=\ref[src];clear_message=1'>(Clear)</a><br>
+				Message: "<a href='byond://?src=\ref[src];edit_message=1'>[src.message ? src.message : "___________"]</a>" <a href='byond://?src=\ref[src];clear_message=1'>(Clear)</a><br>
 				<br>
-				<b><a href='?src=\ref[src];send_message=1'>Transmit</a></b>
+				<b><a href='byond://?src=\ref[src];send_message=1'>Transmit</a></b>
 			"}
 		if (src.announces_arrivals)
-			dat += "<hr>[src.arrival_announcements_enabled ? "Arrival Announcement Message: \"[src.arrivalalert]\"<br><br><b><a href='?src=\ref[src];set_arrival_message=1'>Change</a></b><br><b><a href='?src=\ref[src];toggle_arrival_message=1'>Disable</a></b>" : "Arrival Announcements Disabled<br><br><b><a href='?src=\ref[src];toggle_arrival_message=1'>Enable</a></b>"]"
+			dat += "<hr>[src.arrival_announcements_enabled ? "Arrival Announcement Message: \"[src.arrivalalert]\"<br><br><b><a href='byond://?src=\ref[src];set_arrival_message=1'>Change</a></b><br><b><a href='byond://?src=\ref[src];toggle_arrival_message=1'>Disable</a></b>" : "Arrival Announcements Disabled<br><br><b><a href='byond://?src=\ref[src];toggle_arrival_message=1'>Enable</a></b>"]"
 		dat += "</body>"
 		user.Browse(dat, "window=announcementcomputer")
 		onclose(user, "announcementcomputer")

@@ -265,7 +265,7 @@
 				var/datum/ore_cloud_data/OCD = ores[ore]
 				price = OCD.price
 				sellable = OCD.for_sale
-				dat += "<B>[ore]:</B> [OCD.amount] (<A href='?src=\ref[src];sellable=[ore]'>[sellable ? "For Sale" : "Not For Sale"]</A>) (<A href='?src=\ref[src];price=[ore]'>$[price] per ore</A>) (<A href='?src=\ref[src];eject=[ore]'>Eject</A>)<br>"
+				dat += "<B>[ore]:</B> [OCD.amount] (<A href='byond://?src=\ref[src];sellable=[ore]'>[sellable ? "For Sale" : "Not For Sale"]</A>) (<A href='byond://?src=\ref[src];price=[ore]'>$[price] per ore</A>) (<A href='byond://?src=\ref[src];eject=[ore]'>Eject</A>)<br>"
 		else
 			dat += "No ores currently loaded.<br>"
 

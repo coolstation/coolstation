@@ -517,10 +517,10 @@
 		var/is_uncut = src.wires & VendWireColorToFlag[vendwires[wiredesc]]
 		html_parts += "[wiredesc] wire: "
 		if (!is_uncut)
-			html_parts += "<a href='?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Mend</a>"
+			html_parts += "<a href='byond://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Mend</a>"
 		else
-			html_parts += "<a href='?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Cut</a> "
-			html_parts += "<a href='?src=\ref[src];pulsewire=[vendwires[wiredesc]]'>Pulse</a> "
+			html_parts += "<a href='byond://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Cut</a> "
+			html_parts += "<a href='byond://?src=\ref[src];pulsewire=[vendwires[wiredesc]]'>Pulse</a> "
 		html_parts += "<br>"
 
 	html_parts += "<br>"
@@ -2394,18 +2394,18 @@
 		html_parts += "<table border=\"1\" style=\"width:100%\"><tbody><tr><td><small>"
 		html_parts += "Registered Owner: "
 		if (!owner)
-			html_parts += "<a href='?src=\ref[src];unlock=true'>Unregistered (locked)</a></br>"
+			html_parts += "<a href='byond://?src=\ref[src];unlock=true'>Unregistered (locked)</a></br>"
 		else
-			html_parts += "<a href='?src=\ref[src];unlock=true'>[src.cardname] "
+			html_parts += "<a href='byond://?src=\ref[src];unlock=true'>[src.cardname] "
 			if (!unlocked) html_parts += "(locked) </a></br>"
 			else html_parts += "(unlocked) </a></br>"
 		html_parts += "Loading Chute:  "
 		if (loading)
-			html_parts += "<a href='?src=\ref[src];loading=false'>Open</a></br> "
+			html_parts += "<a href='byond://?src=\ref[src];loading=false'>Open</a></br> "
 		else
-			html_parts += "<a href='?src=\ref[src];loading=true'>Closed</a></br> "
+			html_parts += "<a href='byond://?src=\ref[src];loading=true'>Closed</a></br> "
 		html_parts += "Vendor Name:  "
-		html_parts += "<a href='?src=\ref[src];rename=true'>[src.name]</a> "
+		html_parts += "<a href='byond://?src=\ref[src];rename=true'>[src.name]</a> "
 		html_parts += "</small></td></tr></tbody></table></TT><br>"
 		src.wire_HTML += jointext(html_parts, "")
 
@@ -2510,8 +2510,8 @@
 		if (src.pizcooking)
 			src.vending_HTML += "<TT><B>Cooking your pizza, please wait!</B></TT><BR>"
 		else
-			src.vending_HTML += "Topping - <A href='?src=\ref[src];picktopping=1'>[piztopping]</A><BR>"
-			src.vending_HTML += "<A href='?src=\ref[src];cook=1'>Cook!</A><BR>"
+			src.vending_HTML += "Topping - <A href='byond://?src=\ref[src];picktopping=1'>[piztopping]</A><BR>"
+			src.vending_HTML += "<A href='byond://?src=\ref[src];cook=1'>Cook!</A><BR>"
 
 			if (src.pay)
 				src.vending_HTML += "<BR><B>Available Credits:</B> [src.emagged ? "CREDIT CALCULATION ERROR" : "$[src.credit]"] <a href='byond://?src=\ref[src];return_credits=1'>Return Credits</A>"
@@ -3205,18 +3205,18 @@
 		if (src.scan)
 			var/datum/data/record/account = null
 			account = FindBankAccountById(src.scan.registered_id)
-			html += "<b>Current ID:</b> <a href='?src=\ref[src];logout=1'>[src.scan]</a><br />"
+			html += "<b>Current ID:</b> <a href='byond://?src=\ref[src];logout=1'>[src.scan]</a><br />"
 			html += "<b>Credits on Account: [account.fields["current_money"]] Credits</b> <br>"
 		else
 			html += "<b>Current ID:</b> None<br>"
 		if(src.holding)
-			html += "<font color = 'blue'>Current tank:</font> <a href='?src=\ref[src];eject=1'>[holding]</a><br />"
+			html += "<font color = 'blue'>Current tank:</font> <a href='byond://?src=\ref[src];eject=1'>[holding]</a><br />"
 			html += "<font color = 'red'>Pressure:</font> [MIXTURE_PRESSURE(holding.air_contents)] kPa<br />"
 		else
 			html += "<font color = 'blue'>Current tank:</font> none<br />"
 
-		html += "<font color = 'green'>Desired pressure:</font> <a href='?src=\ref[src];changepressure=1'>[src.target_pressure] kPa</a><br/>"
-		html += (holding) ? "<a href='?src=\ref[src];fill=1'>Fill ([src.fill_cost()] credits)</a>" : "<font color = 'red'>Fill (unavailable)</red>"
+		html += "<font color = 'green'>Desired pressure:</font> <a href='byond://?src=\ref[src];changepressure=1'>[src.target_pressure] kPa</a><br/>"
+		html += (holding) ? "<a href='byond://?src=\ref[src];fill=1'>Fill ([src.fill_cost()] credits)</a>" : "<font color = 'red'>Fill (unavailable)</red>"
 
 		user.Browse(html, "window=o2_vending")
 		onclose(user, "vending")
@@ -3319,7 +3319,7 @@
 		if (src.scan)
 			var/datum/data/record/account = null
 			account = FindBankAccountById(src.scan.registered_id)
-			html += "<b>Current ID:</b> <a href='?src=\ref[src];logout=1'>[src.scan]</a><br />"
+			html += "<b>Current ID:</b> <a href='byond://?src=\ref[src];logout=1'>[src.scan]</a><br />"
 			html += "<b>Credits on Account: [account.fields["current_money"]] Credits</b> <br>"
 		else
 			html += "<b>Current ID:</b> None<br>"
@@ -3327,8 +3327,8 @@
 		//reservoir
 		html += "We have <font color = 'blue'><b>[reagents.total_volume]</b></font> units of <font color = 'blue'><b>[reagents.get_master_reagent_name()]</b></font> available for <br><font color = 'blue'><b>[cost_per_unit] [cost_per_unit == 1 ? "credit" : "credits"]</b></font> per unit!!<br /><br>"
 
-		html += "<font color = 'red'>\"Gimme <a href='?src=\ref[src];adjust_target=1'>[target_deluge] units</a> of that juice, my friend.\"</font><br>"
-		html += "<a href='?src=\ref[src];JUICE=1'>OPEN THE SLUICE ([cost_per_unit * target_deluge] credits)</a>"
+		html += "<font color = 'red'>\"Gimme <a href='byond://?src=\ref[src];adjust_target=1'>[target_deluge] units</a> of that juice, my friend.\"</font><br>"
+		html += "<a href='byond://?src=\ref[src];JUICE=1'>OPEN THE SLUICE ([cost_per_unit * target_deluge] credits)</a>"
 
 		user.Browse(html, "window=juice_vending")
 		onclose(user, "vending")

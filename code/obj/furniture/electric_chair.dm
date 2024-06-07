@@ -56,9 +56,9 @@
 			if (!isarea(A) || !A.powered(EQUIP))
 				dat += "\n<font color='red'>ERROR:</font> No power source detected!</b>"
 			else
-				dat += {"<A href='?src=\ref[src];on=1'>[on ? "Switch Off" : "Switch On"]</A><BR>
-				<A href='?src=\ref[src];lethal=1'>[lethal ? "<font color='red'>Lethal</font>" : "Nonlethal"]</A><BR><BR>
-				<A href='?src=\ref[src];shock=1'>Shock</A><BR>"}
+				dat += {"<A href='byond://?src=\ref[src];on=1'>[on ? "Switch Off" : "Switch On"]</A><BR>
+				<A href='byond://?src=\ref[src];lethal=1'>[lethal ? "<font color='red'>Lethal</font>" : "Nonlethal"]</A><BR><BR>
+				<A href='byond://?src=\ref[src];shock=1'>Shock</A><BR>"}
 
 			user.Browse("<TITLE>Electric Chair</TITLE><b>Electric Chair</b><BR>[dat]", "window=e_chair;size=180x180")
 
