@@ -587,18 +587,17 @@
 		..()
 		var/last_speedup = speedup
 		speedup = 0
-
 		if( attached && !(status & (BROKEN | NOPOWER)) )
 			var/datum/powernet/PN = attached.get_powernet()
 			if(PN)
 				var/power_to_use = 0
-
-				power_to_use = min ( maxdrain, PN.avail )
-				speedup = (power_to_use/maxdrain) * speedup_max
-
+				//This entire thing scales linearly, but much quicker up to 23 MW than after.
+				power_to_use = min ( maxdrain, PN.avail ) //at most 23 MW
+				speedup = (power_to_use/maxdrain) * speedup_max //at most (23/23 = 1)*3.5x speedup
+				//Highly diminishing returns past 23 MW
 				if (PN.avail > maxdrain)
-					power_to_use = min ( maxdrain+bonusdrain, PN.avail )
-					speedup += (power_to_use / bonusdrain ) * speedup_bonus
+					power_to_use = min ( maxdrain+bonusdrain, PN.avail ) //at most 123 MW
+					speedup += (power_to_use / bonusdrain ) * speedup_bonus //123MW/100MW = 1.23 maximum additional multiplier, for a total of 4.73x
 
 				PN.newload += power_to_use
 				//use_power(power_to_use)
