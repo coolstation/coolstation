@@ -462,7 +462,7 @@ proc/debug_map_apc_count(delim,zlim)
 						else
 							O2_color = "#ff0000"
 
-					switch (air.temperature - T0C)
+					switch (air.temperature - T0C) //celcius
 						if (100 to INFINITY)
 							T_color = "#ff0000"
 						if (75 to 100)
@@ -476,9 +476,7 @@ proc/debug_map_apc_count(delim,zlim)
 						if (-40 to -15)
 							T_color = "#5599ff"
 						if (-INFINITY to -40)
-							T_color = "#0000ff"
-
-					T_color = "#ffffff"
+							T_color = "#9955ff"
 
 					//mt.maptext = "<span class='pixel r' style='color: white; -dm-text-outline: 1px black;'>[round(TOTAL_MOLES(air), 0.1)]\n[round(pressure, 1)]\n[round(air.temperature - T0C, 1)]</span>"
 					img.app.overlays = null
