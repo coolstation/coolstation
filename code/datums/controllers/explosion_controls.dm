@@ -178,7 +178,7 @@ var/datum/explosion_controller/explosions
 		var/radius = round(sqrt(power), 1) * brisance
 
 		var/last_touched
-		if (source) // Cannot read null.fingerprintslast
+		if (istype(source, /atom)) // Cannot read null.fingerprintslast
 			last_touched = source.fingerprintslast
 		else
 			last_touched = "*null*"
