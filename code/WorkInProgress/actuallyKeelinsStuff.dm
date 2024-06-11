@@ -1948,18 +1948,21 @@ Returns:
 
 	var/datum/particleSystem/barrelSmoke/smoke_part
 	var/datum/light/light
+	var/lit = TRUE
 
 	New()
-		smoke_part = particleMaster.SpawnSystem(new /datum/particleSystem/barrelSmoke(src))
 		light = new /datum/light/point
 		light.attach(src)
 		light.set_brightness(1)
 		light.set_color(0.5, 0.3, 0)
-		light.enable()
+		if (lit)
+			smoke_part = particleMaster.SpawnSystem(new /datum/particleSystem/barrelSmoke(src))
+			light.enable()
 		..()
 
 	disposing()
-		particleMaster.RemoveSystem(/datum/particleSystem/barrelSmoke, src)
+		if (lit)
+			particleMaster.RemoveSystem(/datum/particleSystem/barrelSmoke, src)
 		smoke_part = null
 		light.disable()
 		light.detach()
