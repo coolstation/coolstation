@@ -959,10 +959,10 @@
 			if (ismob(location))
 				var/mob/M = location
 				if (src.life_timer <= 0)
-					src.put_out(M)
 					if (M.find_in_hand(src))
 						M.show_text("[src] burns your hand as the flame reaches the end of [src]!", "red")
 						M.TakeDamage("All", 0, rand(1,5))
+					src.put_out(M)
 					return
 			var/turf/T = get_turf(src.loc)
 			if (T)
@@ -1003,12 +1003,12 @@
 	temperature_expose(datum/gas_mixture/air, temperature, volume)
 		if (src.on == 0)
 			if (temperature > T0C+200)
-				src.visible_message("<span class='alert'>The [src] ignites!</span>")
+				src.visible_message("<span class='alert'>[src] ignites!</span>")
 				src.light()
 
 	ex_act(severity)
 		if (src.on == 0)
-			src.visible_message("<span class='alert'>The [src] ignites!</span>")
+			src.visible_message("<span class='alert'>[src] ignites!</span>")
 			src.light()
 
 	afterattack(atom/target, mob/user as mob)
