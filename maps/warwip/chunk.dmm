@@ -2333,6 +2333,7 @@
 	pixel_x = -1;
 	pixel_y = 8
 	},
+/obj/machinery/cell_charger,
 /obj/item/device/radio{
 	pixel_x = -9;
 	pixel_y = 6
@@ -16433,6 +16434,11 @@
 	},
 /turf/floor,
 /area/station/hallway/secondary/construction2)
+"qPm" = (
+/obj/table/auto,
+/obj/machinery/cell_charger,
+/turf/floor/black,
+/area/station/hangar/main)
 "qQj" = (
 /obj/grille/steel,
 /turf/floor/plating/airless,
@@ -22045,6 +22051,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/cell_charger,
 /turf/floor/grime,
 /area/station/mining/refinery)
 "wva" = (
@@ -22480,7 +22487,11 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
-/obj/item/paper_bin,
+/obj/item/paper_bin{
+	pixel_x = 10;
+	pixel_y = 11
+	},
+/obj/machinery/cell_charger,
 /turf/floor,
 /area/station/storage/tech)
 "wVX" = (
@@ -82640,8 +82651,8 @@ huZ
 huZ
 huZ
 mVA
+qPm
 nFX
-nus
 wbe
 nDu
 wvT
