@@ -13093,6 +13093,7 @@
 	name = "telesci_channel_gated"
 	},
 /obj/item/device/gps{
+	allowtrack = 0;
 	distress = 1;
 	identifier = "M#_a71aAA6-ST-R";
 	layer = 4
@@ -30792,7 +30793,9 @@
 /area/dojo)
 "cni" = (
 /obj/decal/fakeobjects/teleport_pad,
-/obj/item/device/gps,
+/obj/item/device/gps{
+	allowtrack = 0
+	},
 /obj/decal/residual_energy,
 /obj/landmark{
 	icon_state = "x3";

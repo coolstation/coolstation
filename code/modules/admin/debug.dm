@@ -1354,5 +1354,8 @@ var/datum/flock/testflock
 	admin_only
 
 	if(alert("The Channel is currently [channel_open ? "open" : "closed"]. [channel_open ? "Close" : "Open"] it?","Misclick Prevention","Yes","No") == "Yes")
-		channel_open = !channel_open
+		if (channel_open)
+			close_the_channel()
+		else
+			open_the_channel()
 		boutput(src, "<B><I>The Channel is now [channel_open ? "open" : "closed"].</I></B>")
