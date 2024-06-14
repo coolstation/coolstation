@@ -856,14 +856,14 @@
 				src.cell.use((4-severity) * S.cell_drain_per_damage_reduction)
 				boutput(src, "<span class='notice'>Your force shield absorbs some of the blast!</span>")
 				playsound(src.loc, "sound/impact_sounds/Energy_Hit_1.ogg", 40, 1)
-				severity++
+				severity -= 3 //approximately equal to previous effect of bumping the severity class to a lighter one.
 			if (istype(R, /obj/item/roboupgrade/fireshield) && R.activated)
 				var/obj/item/roboupgrade/fireshield/S = R
 				src.cell.use((4-severity) * S.cell_drain_per_damage_reduction)
 				boutput(src, "<span class='notice'>Your fire shield absorbs some of the blast!</span>")
 				playsound(src.loc, "sound/impact_sounds/Energy_Hit_1.ogg", 40, 1)
 				fire_protect = 1
-				severity++
+				severity -= 3 //idem
 
 		var/damage = 0
 		switch(severity)
@@ -2370,6 +2370,7 @@
 
 			if (src.max_upgrades > initial(src.max_upgrades))
 				var/delta = src.max_upgrades - initial(src.max_upgrades)
+				//BORG-TODO - figure out what this amounts to. that is a binary XOR, but maybe is meant to be a power?
 				power_use_tally += 3 ^ delta
 
 			if (power_use_tally < 0) power_use_tally = 0
@@ -2444,6 +2445,8 @@
 						if (efficient) power_use_tally += R.drainrate / 2
 						else power_use_tally += R.drainrate
 				if (src.oil && power_use_tally > 0) power_use_tally /= 1.5
+
+				//BORG-TODO - No penalty from having expansion upgrades here??
 
 				src.cell.use(power_use_tally)
 

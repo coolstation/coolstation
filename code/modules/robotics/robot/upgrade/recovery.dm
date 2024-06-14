@@ -1,3 +1,5 @@
+//Dumps ~1/5th of a standard borg cell to instantly recover all stuns.
+
 /obj/item/roboupgrade/aware
 	name = "cyborg recovery upgrade"
 	desc = "Allows a cyborg to immediateley reboot its systems if incapacitated in any way."

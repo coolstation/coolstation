@@ -2196,6 +2196,7 @@
 	/datum/manufacture/powercellC,
 	/datum/manufacture/crowbar,
 	/datum/manufacture/wrench,
+	/datum/manufacture/screwdriver,
 	/datum/manufacture/scalpel,
 	/datum/manufacture/circular_saw,
 	/datum/manufacture/surgical_scissors,

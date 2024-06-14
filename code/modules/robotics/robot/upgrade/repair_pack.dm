@@ -1,3 +1,7 @@
+//Heals 100 brute and 100 burn on every part of a borg. That's 200 at most if you manage to split the damage evenly (rare in practice)
+//For light parts this is functionally a full heal. Regular chests and heads are around 200 total health and reinforcing heads gives significantly more.
+//Only heavy arms have over 100 health, while legs cap out at 100
+
 /obj/item/roboupgrade/repairpack
 	name = "cyborg repair pack"
 	desc = "A single-use construction unit that can repair up to 50% of a cyborg's structure."

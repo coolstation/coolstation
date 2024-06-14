@@ -1,3 +1,10 @@
+//Effects:
+//flat damage reduction from blobs
+//-3 severity from explosions
+//flat damage reduction from D_PIERCING/D_SLASHING projectiles
+//protection against meteors
+//flat brute damage reduction
+
 /obj/item/roboupgrade/physshield
 	name = "cyborg force shield upgrade"
 	desc = "A force field generator that protects a cyborg from physical harm."
