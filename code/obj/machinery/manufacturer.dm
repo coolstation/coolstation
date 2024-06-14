@@ -1377,46 +1377,46 @@
 						// maux hardness = 15
 						// bohr hardness = 33
 						switch(secondpart)
-							if(2)
+							if(2) //"MET-2"
 								return mat.getProperty("hard") >= 15
-							if(3 to INFINITY)
+							if(3 to INFINITY) //"MET-3"
 								return mat.getProperty("hard") >= 30
-							else
+							else //"MET-1"
 								return 1
-				if ("CRY")
+				if ("CRY") //"CRY-1"
 					return (mat.material_flags & MATERIAL_CRYSTAL)
-				if ("REF")
+				if ("REF") //"REF-1"
 					return (mat.getProperty("reflective") >= 50)
 				if ("CON")
 					switch(secondpart)
-						if(2)
+						if(2) //"CON-2"
 							return (mat.getProperty("electrical") >= 75) && (mat.material_flags & MATERIAL_METAL) || (mat.getProperty("electrical") >= 75) && (mat.material_flags & MATERIAL_CRYSTAL) //Wow! Claretine has a use again!
-						else
+						else //"CON-1"
 							return (mat.getProperty("electrical") >= 50) && (mat.material_flags & MATERIAL_METAL) || (mat.getProperty("electrical") >= 50) && (mat.material_flags & MATERIAL_CRYSTAL)
 				if ("INS")
 					switch(secondpart)
-						if(2)
+						if(2) //"INS-2"
 							return mat.getProperty("electrical") <= 20 && (mat.material_flags & MATERIAL_CLOTH) || mat.getProperty("electrical") <= 20 && (mat.material_flags & MATERIAL_RUBBER)
-						else
+						else //"INS-1"
 							return mat.getProperty("electrical") <= 47 && (mat.material_flags & MATERIAL_CLOTH) || mat.getProperty("electrical") <= 47 && (mat.material_flags & MATERIAL_RUBBER)
 				if ("DEN")
 					switch(secondpart)
-						if(3)
+						if(3) //"DEN-3"
 							return mat.getProperty("density") >= 75  && (mat.material_flags & MATERIAL_CRYSTAL)
-						if(2)
+						if(2) //"DEN-2"
 							return mat.getProperty("density") >= 60  && (mat.material_flags & MATERIAL_CRYSTAL)
-						else
+						else //"DEN-1"
 							return mat.getProperty("density") >= 40  && (mat.material_flags & MATERIAL_CRYSTAL)
 				if ("POW")
 					if (mat.material_flags & MATERIAL_ENERGY)
 						switch(secondpart)
-							if(3)
+							if(3) //"POW-3"
 								return mat.getProperty("radioactive") >= 55 //soulsteel and erebite basically
-							if(2)
+							if(2) //"POW-2"
 								return mat.getProperty("radioactive") >= 10
-							else
+							else //"POW-1"
 								return 1
-				if ("FAB")
+				if ("FAB") //"FAB-1"
 					return mat.material_flags & MATERIAL_CLOTH || mat.material_flags & MATERIAL_RUBBER || mat.material_flags & MATERIAL_ORGANIC
 		else if (pattern == mat.mat_id) // specific material id
 			return 1
