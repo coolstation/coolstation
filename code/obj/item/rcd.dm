@@ -52,7 +52,7 @@ Broken RCD + Effects
 	w_class = W_CLASS_NORMAL
 	m_amt = 50000
 
-	mats = list("MET-3"=20, "DEN-3" = 10, "CON-2" = 10, "POW-2" = 10)
+	mats = list("MET-3"=5, "DEN-3" = 1, "CON-2" = 10, "POW-2" = 3)
 	stamina_damage = 15
 	stamina_cost = 15
 	stamina_crit_chance = 5

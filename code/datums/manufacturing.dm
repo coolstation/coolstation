@@ -643,8 +643,8 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/RCD
 	name = "Rapid Construction Device"
-	item_paths = list("MET-3", "DEN-3", "CON-2", "POW-2")
-	item_amounts = list(20, 10, 10, 10)
+	item_paths = list("MET-3", "DEN-1", "CON-1", "POW-2")
+	item_amounts = list(5, 1, 10, 3)
 	item_outputs = list(/obj/item/rcd)
 	time = 90 SECONDS
 	create = 1
@@ -653,7 +653,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 /datum/manufacture/RCDammo
 	name = "Compressed Matter Cartridge"
 	item_paths = list("DEN-1")
-	item_amounts = list(40)
+	item_amounts = list(5)
 	item_outputs = list(/obj/item/rcd_ammo)
 	time = 10 SECONDS
 	create = 1
@@ -661,8 +661,8 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/RCDammomedium
 	name = "Medium Compressed Matter Cartridge"
-	item_paths = list("DEN-2")
-	item_amounts = list(40)
+	item_paths = list("DEN-1")
+	item_amounts = list(20)
 	item_outputs = list(/obj/item/rcd_ammo/medium)
 	time = 20 SECONDS
 	create = 1
@@ -670,8 +670,8 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/RCDammolarge
 	name = "Large Compressed Matter Cartridge"
-	item_paths = list("DEN-3")
-	item_amounts = list(40)
+	item_paths = list("DEN-1")
+	item_amounts = list(45)
 	item_outputs = list(/obj/item/rcd_ammo/big)
 	time = 30 SECONDS
 	create = 1
