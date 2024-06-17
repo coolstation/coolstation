@@ -133,7 +133,6 @@
 	icon_state = "nugget0"
 	amount = 2
 	initial_volume = 15
-	doants = 0 // imagine 1000 nuggets on one tile all checking the other 999 nuggets if they aren't a table, yeah
 
 	New()
 		..()
@@ -146,7 +145,7 @@
 		return ..()
 
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat/nugget/spicy
-	name = "Windy's spicy chicken nugget"
+	name = "\improper Windy's spicy chicken nugget"
 	desc = "A breaded wad of poultry, far too processed to have a more specific label than 'nugget.' It's spicy. The ones from Windy's are the best."
 	color = "#FF6600"
 	food_color = "#FF6600"
