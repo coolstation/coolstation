@@ -72,7 +72,7 @@ proc/build_syndi_buylist_cache()
 	name = "Ammo: Rad Poison Crossbow Bolts"
 	item = /obj/item/stackable_ammo/radbow/ten
 	cost = 3
-	desc = "Ten highly lethal flechettes that deal large amounts of radiation poisonning. Can be fired from any modular gun. Popular with the NT pistol."
+	desc = "Ten highly lethal flechettes that deal large amounts of radiation poisoning. Can be fired from any modular gun. Popular with the NT pistol."
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/weapon/pistol

@@ -1,5 +1,3 @@
-#define ROBOT_BATTERY_DISTRESS_INACTIVE 0
-#define ROBOT_BATTERY_DISTRESS_ACTIVE 1
 #define ROBOT_BATTERY_DISTRESS_THRESHOLD 100
 
 /datum/robot_cosmetic
@@ -58,7 +56,7 @@
 	var/opened = 0
 	var/wiresexposed = 0
 	var/brainexposed = 0
-	var/batteryDistress = ROBOT_BATTERY_DISTRESS_INACTIVE
+	var/batteryDistress = FALSE
 	var/next_batteryDistressBoop = 0
 	var/locked = 1
 	var/locking = 0
@@ -2458,7 +2456,7 @@
 
 			if (src.cell.charge <= ROBOT_BATTERY_DISTRESS_THRESHOLD)
 				batteryDistress() // Execute distress mode
-			else if (src.batteryDistress == ROBOT_BATTERY_DISTRESS_ACTIVE)
+			else if (src.batteryDistress == TRUE)
 				clearBatteryDistress() // Exit distress mode
 
 		else
@@ -3037,9 +3035,9 @@
 		src.i_batterydistress = image('icons/mob/robots_decor.dmi', "battery-distress", layer = MOB_EFFECT_LAYER )
 		src.i_batterydistress.pixel_y = 6 // Lined up bottom edge with speech bubbles
 
-	if (src.batteryDistress == ROBOT_BATTERY_DISTRESS_INACTIVE) // We only need to apply the indicator when we first enter distress
+	if (src.batteryDistress == FALSE) // We only need to apply the indicator when we first enter distress
 		UpdateOverlays(src.i_batterydistress, "batterydistress") // Help me humans!
-		src.batteryDistress = ROBOT_BATTERY_DISTRESS_ACTIVE
+		src.batteryDistress = TRUE
 		src.next_batteryDistressBoop = world.time + 50 // let's wait 5 seconds before we begin booping
 	else if(world.time >= src.next_batteryDistressBoop)
 		src.next_batteryDistressBoop = world.time + 50 // wait 5 seconds between sad boops
@@ -3047,7 +3045,7 @@
 
 
 /mob/living/silicon/robot/proc/clearBatteryDistress()
-	src.batteryDistress = ROBOT_BATTERY_DISTRESS_INACTIVE
+	src.batteryDistress = FALSE
 	ClearSpecificOverlays("batterydistress")
 
 /mob/living/silicon/robot/verb/open_nearest_door()
@@ -3393,6 +3391,4 @@
 		//STEP SOUND HANDLING OVER
 
 #undef can_step_sfx
-#undef ROBOT_BATTERY_DISTRESS_INACTIVE
-#undef ROBOT_BATTERY_DISTRESS_ACTIVE
 #undef ROBOT_BATTERY_DISTRESS_THRESHOLD
