@@ -1467,7 +1467,7 @@ PIPE BOMBS + CONSTRUCTION
 	name = "pipe frame"
 	desc = "Two small pipes joined together with grooves cut into the side."
 	icon_state = "Pipe_Frame"
-	burn_possible = 0
+	burn_possible = FALSE
 	var/state = 1
 	var/strength = 5
 	var/list/item_mods = new/list() //stuff something into one or both of the pipes to change the finished product

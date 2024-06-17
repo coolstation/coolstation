@@ -5,7 +5,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring/wizard)
 	icon = 'icons/obj/clothing/item_wizard_rings.dmi'
 	icon_state = "ring"
 	item_state = "ring"
-	burn_possible = 0
+	burn_possible = FALSE
 	var/ability_path = null			//The ability that this ring is linked to.	//When it's null it's either soulguard or the parent. I'm lazy.
 	magical = 1
 

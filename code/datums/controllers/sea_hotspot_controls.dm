@@ -1171,7 +1171,7 @@
 
 	burn_point = 220
 	burn_output = 900
-	burn_possible = 1
+	burn_possible = TRUE
 	health = 100
 	var/can_put_up = 1
 

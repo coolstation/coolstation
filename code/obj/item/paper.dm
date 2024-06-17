@@ -43,7 +43,7 @@
 	//cogwerks - burning vars
 	burn_point = 220
 	burn_output = 900
-	burn_possible = 2
+	burn_possible = TRUE
 	health = 10
 	var/list/form_startpoints
 	var/list/form_endpoints
@@ -1162,7 +1162,7 @@ as it may become compromised.
 	//cogwerks - burn vars
 	burn_point = 600
 	burn_output = 800
-	burn_possible = 1
+	burn_possible = TRUE
 	health = 100
 
 
@@ -1411,7 +1411,7 @@ as it may become compromised.
 /obj/item/paper/folded
 	name = "folded paper"
 	icon_state = "paper"
-	burn_possible = 1
+	burn_possible = TRUE
 	sealed = 1
 	var/old_desc = null
 	var/old_icon_state = null

@@ -250,7 +250,7 @@
 	//cogwerks - burn vars
 	burn_point = 450
 	burn_output = 1600
-	burn_possible = 2
+	burn_possible = TRUE
 	health = 20
 
 	setup_material()
@@ -368,7 +368,7 @@
 	//cogwerks - burn vars
 	burn_point = 1000
 	burn_output = 10000
-	burn_possible = 2
+	burn_possible = TRUE
 	health = 40
 	powersource = 1
 	crystal = 1
@@ -554,7 +554,7 @@
 	name = "scrap"
 	desc = "Some twisted and ruined metal. It could probably be smelted down into something more useful."
 	icon_state = "scrap"
-	burn_possible = 0
+	burn_possible = FALSE
 
 	New()
 		..()
@@ -579,7 +579,7 @@
 	stamina_damage = 5
 	stamina_cost = 5
 	stamina_crit_chance = 35
-	burn_possible = 0
+	burn_possible = FALSE
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 	var/sound_stepped = 'sound/impact_sounds/Glass_Shards_Hit_1.ogg'
 

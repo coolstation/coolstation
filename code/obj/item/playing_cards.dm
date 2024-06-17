@@ -15,7 +15,7 @@
 	w_class = W_CLASS_TINY
 	burn_point = 220
 	burn_output = 900
-	burn_possible = 2
+	burn_possible = TRUE
 	health = 10
 	///what style of card sprite are we using?
 	var/card_style
@@ -359,7 +359,7 @@
 	w_class = W_CLASS_TINY
 	burn_point = 220
 	burn_output = 900
-	burn_possible = 2
+	burn_possible = TRUE
 	health = 10
 	inventory_counter_enabled = 1
 	/// same function as playing_card card name
@@ -1020,7 +1020,7 @@
 	w_class = W_CLASS_TINY
 	burn_point = 220
 	burn_output = 900
-	burn_possible = 2
+	burn_possible = TRUE
 	health = 10
 	var/obj/item/card_group/stored_deck
 	var/box_style = "white"

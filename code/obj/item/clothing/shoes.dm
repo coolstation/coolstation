@@ -17,7 +17,7 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 		//cogwerks - burn vars
 	burn_point = 400
 	burn_output = 800
-	burn_possible = 1
+	burn_possible = TRUE
 	health = 25
 	tooltip_flags = REBUILD_DIST
 	var/step_sound = "step_default"
@@ -70,7 +70,7 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	protective_temperature = 0
 	var/uses = 6
 	var/emagged = 0
-	burn_possible = 0
+	burn_possible = FALSE
 	step_sound = "step_plating"
 	step_priority = STEP_PRIORITY_LOW
 
@@ -176,7 +176,7 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	icon_state = "magboots"
 	// c_flags = NOSLIP
 	mats = 8
-	burn_possible = 0
+	burn_possible = FALSE
 	laces = LACES_NONE
 	kick_bonus = 2
 	step_sound = "step_plating"
@@ -204,7 +204,7 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	permeability_coefficient = 1
 	mats = 0
 	magical = 1
-	burn_possible = 0
+	burn_possible = FALSE
 	laces = LACES_NONE
 	step_sound = "step_flipflop"
 	step_priority = STEP_PRIORITY_LOW
@@ -224,7 +224,7 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	desc = "Industrial-grade boots fitted with mechanised balancers and stabilisers to increase running speed under a heavy workload."
 #endif
 	mats = 12
-	burn_possible = 0
+	burn_possible = FALSE
 	laces = LACES_NONE
 	kick_bonus = 2
 
@@ -476,7 +476,7 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	desc = "Some kind of fancy boots with little propulsion rockets attached to them, that let you move through space with ease and grace! Okay, maybe not grace. That part depends on you. Also, they are a fashion disaster. On the plus side, you can more easily escape the fashion police while wearing them!"
 	icon_state = "rocketboots"
 	laces = LACES_NONE
-	burn_possible = 0
+	burn_possible = FALSE
 	step_sound = "step_plating"
 	step_priority = STEP_PRIORITY_LOW
 	var/on = 1

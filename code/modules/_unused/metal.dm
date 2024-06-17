@@ -157,7 +157,7 @@ MATERIAL
 		//cogwerks - burn vars
 	burn_point = 8000
 	burn_output = 8000
-	burn_possible = 1
+	burn_possible = TRUE
 	health = 8
 	burn_type = 1
 
@@ -410,7 +410,7 @@ MATERIAL
 		//cogwerks - burn vars
 	burn_point = 10000
 	burn_output = 10000
-	burn_possible = 1
+	burn_possible = TRUE
 	health = 8
 	burn_type = 1
 

@@ -7,7 +7,7 @@
 	//cogwerks - burn vars
 	burn_point = 400
 	burn_output = 1500
-	burn_possible = 1
+	burn_possible = TRUE
 	health = 50
 
 	stamina_damage = 50

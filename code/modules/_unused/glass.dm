@@ -21,7 +21,7 @@ SHARDS
 		//cogwerks - burn vars
 	burn_point = 7000
 	burn_output = 7500
-	burn_possible = 1
+	burn_possible = TRUE
 	health = 5
 	burn_type = 1
 

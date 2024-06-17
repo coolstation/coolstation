@@ -16,7 +16,7 @@
 	var/open = 0
 	var/hackable = 0
 	w_class = W_CLASS_NORMAL
-	burn_possible = 0
+	burn_possible = FALSE
 	var/random_code = 0 // sets things to already have a randomized code on spawning
 
 /obj/item/storage/secure/New()

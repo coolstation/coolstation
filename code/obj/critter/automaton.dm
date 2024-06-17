@@ -173,7 +173,7 @@ var/global/the_automaton = null
 				user.canmove = 0
 				user.anchored = 1
 				user.set_loc(src.loc)
-				K.burn_possible = 1
+				K.burn_possible = TRUE
 				SPAWN_DBG(2 SECONDS)
 					src.visible_message("<span class='alert'><B>[src] forces [user] inside one of the keyholes!</B>.</span>")
 					user.implode()

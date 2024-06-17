@@ -414,7 +414,7 @@ datum
 				if(isitem(O))
 					var/obj/item/I = O
 					if(!I.burn_possible)
-						I.burn_possible = 1
+						I.burn_possible = TRUE
 					if(!I.health)
 						I.health = 10
 					if(!I.burn_output)

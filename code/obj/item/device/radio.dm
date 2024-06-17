@@ -608,7 +608,7 @@ var/list/headset_channel_lookup
 	icon_state = "beacon"
 	item_state = "signaler"
 	desc = "A small beacon that is tracked by the Teleporter Computer, allowing things to be sent to its general location."
-	burn_possible = 0
+	burn_possible = FALSE
 
 /obj/item/device/radio/beacon/New()
 	..()

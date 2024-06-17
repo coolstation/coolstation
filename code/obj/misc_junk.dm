@@ -170,7 +170,7 @@
 	invisibility = 101.0
 	anchored = 1.0
 	flags = TABLEPASS
-	burn_possible = 0
+	burn_possible = FALSE
 
 /obj/item/rubber_chicken
 	name = "Rubber Chicken"

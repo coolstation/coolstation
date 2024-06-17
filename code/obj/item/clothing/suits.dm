@@ -604,7 +604,7 @@
 	//cogwerks - burn vars
 	burn_point = 450
 	burn_output = 800
-	burn_possible = 1
+	burn_possible = TRUE
 	health = 20
 	rand_pos = 0
 	block_vision = 1
@@ -1593,7 +1593,7 @@
 	icon_state = "bathrobe"
 	item_state = "bathrobe"
 	body_parts_covered = TORSO|ARMS
-	burn_possible = 1
+	burn_possible = TRUE
 	burn_point = 450
 	burn_output = 800
 	health = 20

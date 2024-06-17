@@ -286,7 +286,7 @@
 	icon_state = "clown"
 	item_state = "clown_hat"
 	item_function_flags = IMMUNE_TO_ACID
-	burn_possible = 0
+	burn_possible = FALSE
 	color_r = 1.0
 	color_g = 1.0
 	color_b = 1.0
@@ -426,7 +426,7 @@
 	desc = "A little mask, made of paper. It isn't gunna stay on anyone's face like this, though."
 	burn_point = 220
 	burn_output = 900
-	burn_possible = 1
+	burn_possible = TRUE
 	health = 10
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -455,7 +455,7 @@
 	see_face = 0.0
 	burn_point = 220
 	burn_output = 900
-	burn_possible = 1
+	burn_possible = TRUE
 	health = 10
 
 	attackby(obj/item/W as obj, mob/user as mob)
