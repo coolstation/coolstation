@@ -70,7 +70,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 
 	update_stack_appearance()
 		src.UpdateName()
-		src.inventory_counter.update_number(src.amount)
+		src.inventory_counter?.update_number(src.amount)
 		switch (src.amount)
 			if (-INFINITY to 0)
 				qdel(src) // ???
