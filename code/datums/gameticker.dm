@@ -786,7 +786,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					else
 						if(!player.mind.do_not_save_gun)
 							player.client.save_cloud_gun(1)*/
-
+/* -- oops, nested multiline comments -- 
 					bank_earnings.pilot_bonus = pilot_bonus
 					bank_earnings.final_payout = earnings
 					bank_earnings.held_item = player.client.persistent_bank_item
