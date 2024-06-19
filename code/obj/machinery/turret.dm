@@ -1,7 +1,11 @@
 /obj/machinery/turret
 	name = "turret"
 	icon = 'icons/obj/machines/turrets.dmi'
+	#ifdef IN_MAP_EDITOR
+	icon_state = "turret" //there's a weird mashup in the file that we might as well use it cause it's not obvious on maps the turret covers are spawned in somewhere around roundstart.
+	#else
 	icon_state = "grey_target_prism"
+	#endif
 	var/raised = 0
 	var/enabled = 1
 	anchored = 1
