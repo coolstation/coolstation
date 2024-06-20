@@ -1,5 +1,4 @@
-// Robotics Stuff
-// TODO: move to /modules/robotics
+// Items that were originally conceived as cyborg-exclusive. Some of them aren't anymore though.
 
 /obj/item/robojumper
 	name = "cell cables"
