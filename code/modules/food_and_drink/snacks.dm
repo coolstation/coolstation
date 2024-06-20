@@ -2730,6 +2730,17 @@
 		reagents.add_reagent("epinephrine",8)
 		reagents.add_reagent("synaptizine",8)
 
+/obj/item/reagent_containers/food/snacks/creme_brulee
+	name = "crème brûlée"
+	desc = "Uhhh, I don't think this was made using traditional methods."
+	icon = 'icons/obj/foodNdrink/food_snacks.dmi'
+	icon_state = "creme_brulee"
+	heal_amt = 1
+	amount = 3
+	initial_volume = 16
+	food_effects = list("food_cold","food_energized")
+	needspoon = TRUE
+
 // Pastries
 
 /obj/item/reagent_containers/food/snacks/croissant

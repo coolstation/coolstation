@@ -873,8 +873,11 @@ table#cooktime a#start {
 						output = /obj/item/reagent_containers/food/snacks/yuckburn
 						bonus = 0
 
-			if (isnull(output)) //you can burn anything if it's in there for long enough
-				output = (cook_amt >= 15 ? /obj/item/reagent_containers/food/snacks/yuckburn : /obj/item/reagent_containers/food/snacks/yuck)
+			if (isnull(output)) //Bat here - this recipe is hardcoded because it's funnier to me if anything less than full power gives a smoldering mess instead :3
+				if (cook_amt == 20 && length(src.contents) == 1 && locate(/obj/item/reagent_containers/food/snacks/ice_cream) in src) //we don't have anything closer to cream than ice cream
+					output = /obj/item/reagent_containers/food/snacks/creme_brulee
+				else //you can burn anything if it's in there for long enough
+					output = (cook_amt >= 15 ? /obj/item/reagent_containers/food/snacks/yuckburn : /obj/item/reagent_containers/food/snacks/yuck)
 
 			if (amount == 1 && output == /obj/item/reagent_containers/food/snacks/yuck)
 				for (var/obj/item/reagent_containers/food/snacks/F in src)
