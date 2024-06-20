@@ -93,6 +93,16 @@
 	amount = 2
 	heal_amt = 3
 
+	attackby(obj/item/W, mob/user)
+		if (isweldingtool(W))
+			if (W:try_weld(user,1))
+				boutput(user, "<span=notice>You use the welding tool to make a nice dessert. A bit overkill though, don't you think?</span>")
+				qdel(src)
+				user.put_in_hand_or_drop(new /obj/item/reagent_containers/food/snacks/creme_brulee)
+				return
+		..()
+
+
 /obj/item/reagent_containers/food/snacks/condiment/chocchips
 	name = "chocolate chips"
 	desc = "Mmm! Little bits of chocolate! Or rabbit droppings. Either or."
