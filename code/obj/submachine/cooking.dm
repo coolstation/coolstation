@@ -873,8 +873,8 @@ table#cooktime a#start {
 						output = /obj/item/reagent_containers/food/snacks/yuckburn
 						bonus = 0
 
-			if (isnull(output))
-				output = /obj/item/reagent_containers/food/snacks/yuck
+			if (isnull(output)) //you can burn anything if it's in there for long enough
+				output = (cook_amt >= 15 ? /obj/item/reagent_containers/food/snacks/yuckburn : /obj/item/reagent_containers/food/snacks/yuck)
 
 			if (amount == 1 && output == /obj/item/reagent_containers/food/snacks/yuck)
 				for (var/obj/item/reagent_containers/food/snacks/F in src)
