@@ -971,7 +971,7 @@
 		M.dispensing_bulb = /obj/item/light/bulb/cool
 		..()
 
-/datum/contextAction/lamp_manufacturer/col_page_2/cool/very
+/datum/contextAction/lamp_manufacturer/col_page_2/very_cool
 	name = "Set Very Cool"
 	desc = "Sets the manufacturer to produce very cool lamps. Very cool as in colour temperature, the lamps themselves don't enjoy significant reputations."
 	icon_state = "very_cool"
@@ -981,6 +981,7 @@
 		M.setting = "very cool"
 		M.dispensing_tube = /obj/item/light/tube/cool/very
 		M.dispensing_bulb = /obj/item/light/bulb/cool/very
+		..()
 
 /datum/contextAction/lamp_manufacturer/col_page_2/warm
 	name = "Set Warm"
@@ -994,7 +995,7 @@
 		M.dispensing_bulb = /obj/item/light/bulb/warm
 		..()
 
-/datum/contextAction/lamp_manufacturer/col_page_2/warm/very
+/datum/contextAction/lamp_manufacturer/col_page_2/very_warm
 	name = "Set Very Warm"
 	desc = "Sets the manufacturer to produce very warm lamps."
 	icon_state = "very_warm"
@@ -1004,6 +1005,7 @@
 		M.setting = "very warm"
 		M.dispensing_tube = /obj/item/light/tube/warm/very
 		M.dispensing_bulb = /obj/item/light/bulb/warm/very
+		..()
 
 /datum/contextAction/lamp_manufacturer/col_page_2/harsh
 	name = "Set Harsh"
@@ -1017,7 +1019,7 @@
 		M.dispensing_bulb = /obj/item/light/bulb/harsh
 		..()
 
-/datum/contextAction/lamp_manufacturer/col_page_2/harsh/very
+/datum/contextAction/lamp_manufacturer/col_page_2/very_harsh
 	name = "Set Very Harsh"
 	desc = "Sets the manufacturer to produce very harsh lamps."
 	icon_state = "very_harsh"
@@ -1027,6 +1029,7 @@
 		M.setting = "very harsh"
 		M.dispensing_tube = /obj/item/light/tube/harsh/very
 		M.dispensing_bulb = /obj/item/light/bulb/harsh/very
+		..()
 
 /datum/contextAction/lamp_manufacturer/col_page_2/reddish
 	name = "Set Reddish"
