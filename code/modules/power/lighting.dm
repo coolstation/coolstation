@@ -1098,7 +1098,7 @@
 		color_r = 0.95
 		color_g = 0.2
 		color_b = 0.2
-	reddish
+	reddish //approx "#FABF80"
 		name = "reddish light tube"
 		desc = "Fancy."
 		icon_state = "tube-red"
@@ -1114,7 +1114,7 @@
 		color_r = 0.95
 		color_g = 0.95
 		color_b = 0.2
-	yellowish
+	yellowish //approx "#FAFABF"
 		name = "yellowish light tube"
 		desc = "Fancy."
 		icon_state = "tube-yellow"
@@ -1154,8 +1154,8 @@
 		color_r = 0.95
 		color_g = 0.2
 		color_b = 0.95
-	light_purpleish
-		name = "light purpleish light tube"
+	light_purpleish //approx "#FAC2FA"
+		name = "light purpleish light tube" //we have purple, purpleish, harsh and very harsh, but I guess atlas needed its own flavour of mildly purple lights :V
 		desc = "Fancy."
 		icon_state = "tube-purple"
 		base_state = "tube-purple"
@@ -1171,7 +1171,7 @@
 		color_g = 0
 		color_b = 0.9
 
-	warm
+	warm //approx "#FFD7CF"
 		name = "fluorescent light tube"
 		icon_state = "itube-orange"
 		base_state = "itube-orange"
@@ -1179,7 +1179,7 @@
 		color_g = 0.844
 		color_b = 0.81
 
-		very
+		very //approx "#FFABAB"
 			name = "warm fluorescent light tube"
 			icon_state = "itube-red"
 			base_state = "itube-red"
@@ -1195,7 +1195,7 @@
 		color_g = 0.98
 		color_b = 0.97
 
-	greenish
+	greenish //approx "#DEFAE3"
 		name = "greenish fluorescent light tube"
 		icon_state = "itube-yellow"
 		base_state = "itube-yellow"
@@ -1203,7 +1203,7 @@
 		color_g = 0.98
 		color_b = 0.89
 
-	blueish
+	blueish //approx "#82A8D9"
 		name = "blueish fluorescent light tube"
 		icon_state = "itube-blue"
 		base_state = "itube-blue"
@@ -1211,7 +1211,7 @@
 		color_g = 0.66
 		color_b = 0.85
 
-	purpleish
+	purpleish //approx "#6B3394"
 		name = "purpleish fluorescent light tube"
 		icon_state = "itube-purple"
 		base_state = "itube-purple"
@@ -1219,7 +1219,7 @@
 		color_g = 0.20
 		color_b = 0.58
 
-	cool
+	cool //approx "#E0E7FF"
 		name = "cool fluorescent light tube"
 		icon_state = "itube-white"
 		base_state = "itube-white"
@@ -1227,7 +1227,7 @@
 		color_g = 0.904
 		color_b = 1
 
-		very
+		very //approx "#BDBDFF"
 			name = "very cool fluorescent light tube"
 			icon_state = "itube-purple"
 			base_state = "itube-purple"
@@ -1235,7 +1235,7 @@
 			color_g = 0.74
 			color_b = 1
 
-	harsh
+	harsh //approx "#FCE6FC"
 		name = "harsh fluorescent light tube"
 		icon_state = "itube-white"
 		base_state = "itube-white"
@@ -1243,7 +1243,7 @@
 		color_g = 0.899
 		color_b = 0.99
 
-		very
+		very //approx "#FCCFFC"
 			name = "very harsh fluorescent light tube"
 			icon_state = "itube-pink"
 			base_state = "itube-pink"
