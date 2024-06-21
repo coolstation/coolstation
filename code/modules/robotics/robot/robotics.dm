@@ -421,13 +421,19 @@ ported and crapped up by: haine
 
 /obj/item/reagent_containers/food/drinks/juicer
 	name = "\improper Juice-O-Matic 3000"
-	desc = "It's the Juice-O-Matic 3000! The pinicle of juicing technology! A revolutionary new juicing system!"
+	desc = "It's the Juice-O-Matic 3000! The pinnacle of juicing technology! A revolutionary new juicing system!"
 	icon = 'icons/obj/items/device.dmi'
 	icon_state = "juicer"
 	amount_per_transfer_from_this = 10
 	initial_volume = 200
 	tooltip_flags = REBUILD_DIST
+	rc_flags = RC_SCALE | RC_SPECTRO
 	can_chug = 0
+
+	attackby(obj/item/I, mob/user)
+		if(istype(I, /obj/item/reagent_containers/food/snacks/plant))
+			juice(I, user)
+		else ..()
 
 	afterattack(obj/target, mob/user)
 		if (get_dist(user, src) > 1 || get_dist(user, target) > 1)
@@ -448,35 +454,20 @@ ported and crapped up by: haine
 			var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
 			user.show_text("You transfer [trans] unit\s of the solution to [target].")
 
-		if (reagents.total_volume == reagents.maximum_volume) // See if the juicer is full.
-			user.show_text("[src] is full!", "red")
-			return
+		if(istype(target, /obj/item/reagent_containers/food/snacks/plant))
+			juice(target, user)
 
-		if (istype(target, /obj/item/reagent_containers/food/snacks/plant)) // Check to make sure they're juicing food.
-			if ((target.reagents.total_volume + src.reagents.total_volume) > src.reagents.maximum_volume)
-				var/transamnt = src.reagents.maximum_volume - src.reagents.total_volume
-				target.reagents.trans_to(src, transamnt)
-				user.show_text("[src] makes a slicing sound as it destroys [target].<br>[src] juiced [transamnt] units, the rest is wasted.")
-				playsound(src.loc, "sound/machines/mixer.ogg", 50, 1) // Play a sound effect.
-				qdel(target) // delete the fruit, it got juiced!
-				return
+/obj/item/reagent_containers/food/drinks/juicer/proc/juice(obj/item/reagent_containers/food/snacks/plant/juicable, mob/user)
+	if (reagents.total_volume == reagents.maximum_volume) // See if the juicer is full.
+		user.show_text("[src] is full!", "red")
+		return
 
-			else
-				user.show_text("[src] makes a slicing sound as it destroys [target].<br>[src] juiced [target.reagents.total_volume] units.")
-				target.reagents.trans_to(src, target.reagents.total_volume) // Transfer it all!
-				playsound(src.loc, "sound/machines/mixer.ogg", 50, 1)
-				qdel(target)
-				return
-		else
-			user.show_text("Dang, the hopper only accepts food!", "red")
+	var/transamnt = min(src.reagents.maximum_volume - src.reagents.total_volume, juicable.reagents.total_volume)
+	user.show_text("[src] makes a slicing sound as it destroys [juicable].<br>[src] juiced [transamnt] units[transamnt < juicable.reagents.total_volume ? ", the rest is wasted" : ""].")
+	juicable.reagents.trans_to(src, transamnt)
+	playsound(src.loc, "sound/machines/mixer.ogg", 50, 1) // Play a sound effect.
+	qdel(juicable) // delete the fruit, it got juiced!
 
-
-	get_desc(dist)
-		if (dist <= 0)
-			if (src.reagents && length(src.reagents.reagent_list))
-				. += "<br>It contains:"
-				for (var/datum/reagent/R in src.reagents.reagent_list)
-					. += "[R.volume] units of [R.name]"
 
 /*
 Hydroponics Borg formula hose.
