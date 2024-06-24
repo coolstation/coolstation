@@ -1002,12 +1002,16 @@
 			// attempting to rewrite this to be better or at least different, i guess
 			// First, how much are we going to get from this?
 			//                        rand  human   decomp        total
-			// Human, no decomposure: (5~8) * 2 * (4.5 / 4.5) =  10 ~ 16
-			// Human, stage 1:        (5~8) * 2 * (3.5 / 4.5) = 8.8 ~12.4
-			// Human, stage 2:        (5~8) * 2 * (2.5 / 4.5) = 5.5 ~ 7.7
-			// Human, stage 3:        (5~8) * 2 * (1.5 / 4.5) = 3.3 ~ 5.3
-			// Human, stage 4:        (5~8) * 2 * (0.5 / 4.5) = 1.1 ~ 1.7
-			// Non-human monkey:      (5~8) * 1 * (4.5 / 4.5) =   5 ~ 8
+			// Human, no decomposure: (5~8) * 2 * (4.5 / 4.5) =  10   ~ 16
+			// Human, stage 1:        (5~8) * 2 * (3.5 / 4.5) =   8.8 ~ 12.4
+			// Human, stage 2:        (5~8) * 2 * (2.5 / 4.5) =   5.5 ~  7.7
+			// Human, stage 3:        (5~8) * 2 * (1.5 / 4.5) =   3.3 ~  5.3
+			// Human, stage 4:        (5~8) * 2 * (0.5 / 4.5) =   1.1 ~  1.7
+			// Monkey, no decomposure:(5~8) * 1 * (4.5 / 4.5) =   5   ~  8       <--- Mob critters also
+			// Monkey, stage 1:       (5~8) * 1 * (3.5 / 4.5) =   3.9 ~  6.2
+			// Monkey, stage 2:       (5~8) * 1 * (2.5 / 4.5) =   2.8 ~  4.4
+			// Monkey, stage 3:       (5~8) * 1 * (1.5 / 4.5) =   1.7 ~  2.7
+			// Monkey, stage 4:       (5~8) * 1 * (0.5 / 4.5) =   0.6 ~  0.9
 			process_total += rand(5, 8) * (humanOccupant ? 2 : 1) * ((4.5 - decomp) / 4.5)
 
 			//DEBUG_MESSAGE("[src] process_timer calced as [src.process_timer] (upgraded [src.upgraded], mult [mult], humanOccupant [humanOccupant])")
