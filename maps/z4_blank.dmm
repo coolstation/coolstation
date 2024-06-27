@@ -1,4 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ae" = (
+/obj/table/reinforced/auto,
+/obj/item/storage/toolbox/emergency,
+/obj/item/device/radio,
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor2"
+	},
+/area/shuttle/escape/outpost/cogmap)
 "at" = (
 /obj/machinery/light/small/floor,
 /turf/floor/shuttle_noprotections{
@@ -14,20 +22,6 @@
 	icon_state = "plating"
 	},
 /area/shuttle/escape/outpost/destiny)
-"aO" = (
-/obj/lattice{
-	icon_state = "lattice-dir-b"
-	},
-/turf/space,
-/area/space)
-"bb" = (
-/turf/floor/shuttle,
-/area/shuttle/escape/outpost/cogmap)
-"bl" = (
-/obj/table/auto,
-/obj/random_item_spawner/med_kit,
-/turf/floor/shuttle,
-/area/shuttle/escape/outpost/cogmap)
 "bm" = (
 /obj/wingrille_spawn/reinforced,
 /obj/machinery/shuttle/engine/heater{
@@ -37,10 +31,33 @@
 	icon_state = "plating"
 	},
 /area/shuttle/escape/outpost/destiny)
+"bq" = (
+/obj/indestructible/shuttle_corner{
+	dir = 1;
+	icon_state = "wall3_trans"
+	},
+/turf/space,
+/area/shuttle/escape/outpost/cogmap)
 "bt" = (
 /obj/landmark/load_prefab_shuttledmm/cog2,
 /turf/space,
 /area/space)
+"bu" = (
+/obj/stool/chair/comfy/shuttle/red,
+/turf/floor/shuttle{
+	icon_state = "floor4"
+	},
+/area/shuttle/escape/outpost/cogmap)
+"bF" = (
+/obj/machinery/shuttle/engine/heater{
+	dir = 1;
+	icon_state = "alt_heater-L"
+	},
+/obj/window/reinforced/south,
+/turf/floor/shuttle{
+	icon_state = "plating"
+	},
+/area/shuttle/escape/outpost/cogmap)
 "cn" = (
 /obj/machinery/sleeper/compact{
 	dir = 4
@@ -59,18 +76,18 @@
 	icon_state = "plating"
 	},
 /area/shuttle/escape/outpost/donut2)
+"cL" = (
+/obj/machinery/door/airlock/pyro/medical{
+	name = "First-Aid Station"
+	},
+/turf/floor/shuttle,
+/area/shuttle/escape/outpost/cogmap)
 "cQ" = (
 /turf/wall/r_wall/shuttle_noprotections{
 	dir = 4;
 	icon_state = "wall5_floor2"
 	},
 /area/shuttle/escape/outpost/donut2)
-"cU" = (
-/obj/machinery/door/airlock/pyro/medical{
-	name = "First-Aid Station"
-	},
-/turf/floor/shuttle,
-/area/shuttle/escape/outpost/cogmap)
 "cW" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 1
@@ -113,6 +130,13 @@
 /obj/indestructible/invisible_block,
 /turf/space,
 /area/shuttle/escape/outpost/destiny)
+"eH" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/obj/landmark/load_prefab_shuttledmm/cog1,
+/turf/space,
+/area/space)
 "eO" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 4
@@ -120,12 +144,6 @@
 /obj/machinery/light/small/floor,
 /turf/floor/shuttle_noprotections,
 /area/shuttle/escape/outpost/cogmap2)
-"eQ" = (
-/obj/stool/chair/comfy/shuttle/red,
-/turf/floor/shuttle{
-	icon_state = "floor4"
-	},
-/area/shuttle/escape/outpost/cogmap)
 "fA" = (
 /obj/table/reinforced/auto,
 /turf/floor/shuttle_noprotections{
@@ -232,15 +250,13 @@
 	},
 /area/shuttle/escape/outpost/donut2)
 "js" = (
-/obj/stool/chair/comfy/shuttle,
-/turf/floor/shuttle_noprotections,
+/turf/wall/r_wall/shuttle_noprotections{
+	dir = 1;
+	icon_state = "wall3_floor2"
+	},
 /area/shuttle/escape/outpost/cogmap)
 "jz" = (
-/obj/machinery/door/airlock/pyro/glass/command{
-	dir = 1
-	},
-/obj/access_spawn/heads,
-/turf/floor/shuttle_noprotections,
+/turf/space,
 /area/shuttle/escape/outpost/cogmap)
 "jC" = (
 /obj/stool/chair/comfy/shuttle/red{
@@ -275,13 +291,6 @@
 	icon_state = "floor3"
 	},
 /area/shuttle/escape/outpost/destiny)
-"kF" = (
-/obj/lattice{
-	icon_state = "lattice-dir"
-	},
-/obj/landmark/load_prefab_shuttledmm/cog1,
-/turf/space,
-/area/space)
 "kY" = (
 /turf/floor/stairs{
 	dir = 1;
@@ -297,26 +306,18 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/outpost/destiny)
-"ls" = (
-/obj/indestructible/invisible_block,
-/turf/space,
-/area/shuttle/escape/outpost/cogmap)
-"lt" = (
-/obj/machinery/shuttle/engine/heater{
-	dir = 1;
-	icon_state = "alt_heater-L"
-	},
-/obj/window/reinforced/south,
-/turf/floor/shuttle{
-	icon_state = "plating"
-	},
-/area/shuttle/escape/outpost/cogmap)
 "lw" = (
 /obj/machinery/shuttle/engine/propulsion{
 	icon_state = "alt_propulsion"
 	},
 /turf/space,
 /area/shuttle/escape/outpost/destiny)
+"lB" = (
+/obj/item/storage/wall/emergency,
+/turf/wall/r_wall/shuttle_noprotections{
+	icon_state = "wall3"
+	},
+/area/shuttle/escape/outpost/cogmap)
 "lK" = (
 /obj/stool/chair/comfy/shuttle,
 /turf/floor/shuttle_noprotections,
@@ -353,12 +354,6 @@
 "mz" = (
 /turf/space,
 /area/shuttle/escape/outpost/cogmap2)
-"mT" = (
-/obj/machinery/light/small/floor,
-/turf/floor/shuttle{
-	icon_state = "floor4"
-	},
-/area/shuttle/escape/outpost/cogmap)
 "mX" = (
 /obj/machinery/door/airlock/pyro/security{
 	dir = 4;
@@ -370,25 +365,41 @@
 	icon_state = "floor4"
 	},
 /area/shuttle/escape/outpost/cogmap2)
+"ne" = (
+/obj/indestructible/invisible_block,
+/turf/space,
+/area/shuttle/escape/outpost/cogmap)
 "nm" = (
 /turf/wall/r_wall/shuttle_noprotections{
 	icon_state = "wall3"
 	},
 /area/shuttle/escape/outpost/cogmap)
-"nv" = (
-/turf/wall/r_wall/shuttle_noprotections{
+"nD" = (
+/obj/stool/chair/comfy/shuttle,
+/obj/machinery/light{
+	dir = 4;
+	layer = 9.1;
+	pixel_x = 10
+	},
+/turf/floor/shuttle_noprotections,
+/area/shuttle/escape/outpost/cogmap)
+"oa" = (
+/obj/machinery/shuttle/engine/heater{
+	dir = 1;
+	icon_state = "alt_heater-M"
+	},
+/obj/window/reinforced/south,
+/turf/floor/shuttle{
+	icon_state = "plating"
+	},
+/area/shuttle/escape/outpost/cogmap)
+"od" = (
+/obj/lattice{
 	dir = 8;
-	icon_state = "wall3_floor2"
+	icon_state = "lattice-dir"
 	},
-/area/shuttle/escape/outpost/cogmap)
-"ny" = (
-/obj/table/reinforced/auto,
-/obj/item/storage/toolbox/emergency,
-/obj/item/device/radio,
-/turf/floor/shuttle_noprotections{
-	icon_state = "floor2"
-	},
-/area/shuttle/escape/outpost/cogmap)
+/turf/space,
+/area/space)
 "oj" = (
 /turf/floor/shuttle_noprotections{
 	icon_state = "floor3"
@@ -400,6 +411,12 @@
 	},
 /turf/floor/industrial,
 /area/centcom/outpost/docks)
+"oz" = (
+/obj/lattice{
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "oA" = (
 /obj/machinery/light/small/floor,
 /turf/floor/shuttle_noprotections,
@@ -450,6 +467,23 @@
 	icon_state = "floor3"
 	},
 /area/shuttle/escape/outpost/cogmap2)
+"rn" = (
+/turf/floor/stairs{
+	dir = 4
+	},
+/area/centcom/outpost/docks)
+"rr" = (
+/obj/machinery/door/airlock/pyro/external/shuttle_connect{
+	dir = 4
+	},
+/turf/floor/shuttle_noprotections,
+/area/shuttle/escape/outpost/cogmap)
+"rv" = (
+/obj/stool/chair/comfy/shuttle/brown,
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor2"
+	},
+/area/shuttle/escape/outpost/cogmap)
 "rH" = (
 /obj/item/storage/wall/medical{
 	pixel_z = -1
@@ -458,13 +492,6 @@
 	icon_state = "wall5"
 	},
 /area/shuttle/escape/outpost/donut2)
-"sJ" = (
-/obj/lattice{
-	dir = 8;
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/area/space)
 "sM" = (
 /obj/machinery/light/small/floor,
 /turf/floor/shuttle_noprotections{
@@ -478,13 +505,6 @@
 	},
 /turf/space,
 /area/shuttle/escape/outpost/cogmap2)
-"sX" = (
-/obj/lattice{
-	dir = 6;
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/area/space)
 "te" = (
 /turf/floor/stairs{
 	icon_state = "Stairs2_wide"
@@ -495,12 +515,18 @@
 	dir = 8
 	},
 /area/shuttle/escape/outpost/destiny)
-"tU" = (
-/obj/wingrille_spawn/reinforced,
-/turf/floor/shuttle_noprotections{
-	icon_state = "plating"
+"tt" = (
+/turf/floor/stairs{
+	dir = 8
 	},
-/area/shuttle/escape/outpost/cogmap)
+/area/centcom/outpost/docks)
+"tH" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir"
+	},
+/turf/space,
+/area/space)
 "uC" = (
 /obj/item/storage/wall/fire{
 	pixel_z = -1
@@ -542,6 +568,10 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/outpost/destiny)
+"wd" = (
+/obj/lattice,
+/turf/space,
+/area/space)
 "wi" = (
 /obj/indestructible/shuttle_corner{
 	icon = 'icons/turf/shuttle.dmi';
@@ -555,12 +585,6 @@
 	icon_state = "floor3"
 	},
 /area/shuttle/escape/outpost/donut2)
-"xe" = (
-/turf/shuttle/wall/cockpit{
-	icon_state = "shuttlecock_mining";
-	plane = -95
-	},
-/area/shuttle/escape/outpost/cogmap)
 "xn" = (
 /obj/item/storage/wall/medical{
 	pixel_z = -1
@@ -568,9 +592,9 @@
 /turf/wall/r_wall/shuttle_noprotections,
 /area/shuttle/escape/outpost/cogmap2)
 "xz" = (
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
+/obj/machinery/shuttle/engine/propulsion{
+	dir = 9;
+	icon_state = "alt_propulsion"
 	},
 /turf/space,
 /area/shuttle/escape/outpost/cogmap)
@@ -580,24 +604,20 @@
 	icon_state = "plating"
 	},
 /area/shuttle/escape/outpost/donut2)
+"xS" = (
+/turf/wall/r_wall/shuttle_noprotections{
+	dir = 8;
+	icon_state = "wall3_floor2"
+	},
+/area/shuttle/escape/outpost/cogmap)
 "yC" = (
 /obj/machinery/light/fluorescent/neutral,
 /turf/floor/industrial,
 /area/centcom/outpost/docks)
-"zx" = (
-/obj/machinery/shuttle/engine/heater{
-	dir = 1;
-	icon_state = "alt_heater-R"
-	},
-/obj/window/reinforced/south,
-/turf/floor/shuttle{
-	icon_state = "plating"
-	},
-/area/shuttle/escape/outpost/cogmap)
 "zE" = (
-/obj/indestructible/shuttle_corner{
-	dir = 1;
-	icon_state = "wall3_trans"
+/obj/machinery/shuttle/engine/propulsion{
+	dir = 10;
+	icon_state = "alt_propulsion"
 	},
 /turf/space,
 /area/shuttle/escape/outpost/cogmap)
@@ -607,6 +627,9 @@
 	},
 /turf/space,
 /area/shuttle/escape/outpost/destiny)
+"Ae" = (
+/turf/floor/shuttle,
+/area/shuttle/escape/outpost/cogmap)
 "Ap" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 4
@@ -618,6 +641,16 @@
 	icon_state = "Stairs_wide"
 	},
 /area/centcom/outpost/docks)
+"As" = (
+/obj/machinery/shuttle/engine/heater{
+	dir = 1;
+	icon_state = "alt_heater-R"
+	},
+/obj/window/reinforced/south,
+/turf/floor/shuttle{
+	icon_state = "plating"
+	},
+/area/shuttle/escape/outpost/cogmap)
 "Av" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 8
@@ -626,17 +659,10 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/outpost/donut2)
-"Bg" = (
-/obj/machinery/computer/shuttle/embedded/south,
-/obj/stool/chair/comfy/shuttle/pilot,
-/turf/floor/shuttle_noprotections{
-	icon_state = "floor2"
-	},
-/area/shuttle/escape/outpost/cogmap)
-"BD" = (
-/obj/machinery/light/small/floor,
-/turf/floor/shuttle,
-/area/shuttle/escape/outpost/cogmap)
+"Bt" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/industrial,
+/area/centcom/outpost/docks)
 "BT" = (
 /obj/indestructible/shuttle_corner{
 	icon_state = "wall_trans"
@@ -662,14 +688,16 @@
 /area/prison/cell_block/wards{
 	name = "Penalty Box"
 	})
+"CG" = (
+/obj/machinery/light/small/floor,
+/turf/floor/shuttle{
+	icon_state = "floor4"
+	},
+/area/shuttle/escape/outpost/cogmap)
 "CN" = (
 /obj/machinery/light/small/floor,
 /turf/floor/shuttle_noprotections,
 /area/shuttle/escape/outpost/destiny)
-"CR" = (
-/obj/lattice,
-/turf/space,
-/area/space)
 "Dl" = (
 /obj/table/reinforced/auto,
 /obj/item/storage/toolbox/emergency,
@@ -683,8 +711,9 @@
 	icon_state = "floor4"
 	},
 /area/shuttle/escape/outpost/cogmap2)
-"Du" = (
-/obj/stool/chair/comfy/shuttle/brown,
+"DU" = (
+/obj/table/reinforced/auto,
+/obj/item/storage/firstaid/regular,
 /turf/floor/shuttle_noprotections{
 	icon_state = "floor2"
 	},
@@ -694,6 +723,13 @@
 	icon_state = "wall_floor"
 	},
 /area/shuttle/escape/outpost/cogmap2)
+"Ee" = (
+/turf/wall/r_wall/shuttle_noprotections,
+/area/shuttle/escape/outpost/cogmap)
+"Ex" = (
+/obj/stool/chair/comfy/shuttle/green,
+/turf/floor/shuttle,
+/area/shuttle/escape/outpost/cogmap)
 "EB" = (
 /turf/wall/r_wall/shuttle_noprotections{
 	dir = 8;
@@ -703,6 +739,12 @@
 "Fg" = (
 /turf/floor/shuttle_noprotections,
 /area/shuttle/escape/outpost/cogmap2)
+"Fr" = (
+/obj/machinery/door/airlock/pyro/glass{
+	dir = 4
+	},
+/turf/floor/white/checker2,
+/area/centcom/outpost/docks)
 "Fu" = (
 /turf/wall/r_wall/shuttle_noprotections,
 /area/shuttle/escape/outpost/donut2)
@@ -721,13 +763,11 @@
 	},
 /area/shuttle/escape/outpost/destiny)
 "Gb" = (
-/obj/stool/chair/comfy/shuttle,
-/obj/machinery/light{
+/obj/indestructible/shuttle_corner{
 	dir = 4;
-	layer = 9.1;
-	pixel_x = 10
+	icon_state = "wall3_trans"
 	},
-/turf/floor/shuttle_noprotections,
+/turf/space,
 /area/shuttle/escape/outpost/cogmap)
 "Gd" = (
 /obj/indestructible/invisible_block,
@@ -755,17 +795,14 @@
 	},
 /turf/floor/shuttle_noprotections,
 /area/shuttle/escape/outpost/destiny)
-"GT" = (
-/obj/machinery/shuttle/engine/propulsion{
-	dir = 5;
-	icon_state = "alt_propulsion"
-	},
-/turf/space,
-/area/shuttle/escape/outpost/cogmap)
 "Hm" = (
 /obj/machinery/door/airlock/pyro/external,
 /turf/floor/industrial,
 /area/centcom/outpost/docks)
+"Hp" = (
+/obj/machinery/light/small/floor,
+/turf/floor/shuttle,
+/area/shuttle/escape/outpost/cogmap)
 "HP" = (
 /turf/floor/shuttle_noprotections{
 	icon_state = "floor2"
@@ -781,13 +818,6 @@
 /area/prison/cell_block/wards{
 	name = "Penalty Box"
 	})
-"If" = (
-/obj/machinery/door/airlock/pyro/security{
-	name = "Secure Transport"
-	},
-/obj/access_spawn/security,
-/turf/floor/shuttle,
-/area/shuttle/escape/outpost/cogmap)
 "Iz" = (
 /obj/stool/chair/comfy/shuttle/brown{
 	dir = 4
@@ -810,10 +840,12 @@
 /turf/wall/r_wall/shuttle_noprotections,
 /area/shuttle/escape/outpost/cogmap2)
 "IS" = (
-/turf/floor/stairs{
-	dir = 8
+/obj/machinery/shuttle/engine/propulsion{
+	dir = 5;
+	icon_state = "alt_propulsion"
 	},
-/area/centcom/outpost/docks)
+/turf/space,
+/area/shuttle/escape/outpost/cogmap)
 "IZ" = (
 /obj/machinery/door/airlock/pyro/glass/command{
 	dir = 4
@@ -823,13 +855,6 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/outpost/donut2)
-"Jh" = (
-/obj/indestructible/shuttle_corner{
-	dir = 4;
-	icon_state = "wall3_trans"
-	},
-/turf/space,
-/area/shuttle/escape/outpost/cogmap)
 "Jw" = (
 /turf/wall/r_wall/shuttle_noprotections{
 	dir = 4;
@@ -853,16 +878,23 @@
 	},
 /area/shuttle/escape/outpost/cogmap2)
 "JY" = (
-/turf/floor/stairs{
-	dir = 4
+/obj/indestructible/shuttle_corner{
+	dir = 8;
+	icon_state = "wall3_trans"
 	},
-/area/centcom/outpost/docks)
-"Kr" = (
-/obj/machinery/light/small/floor,
-/turf/floor/shuttle_noprotections{
-	icon_state = "floor2"
-	},
+/turf/space,
 /area/shuttle/escape/outpost/cogmap)
+"Kn" = (
+/obj/table/auto,
+/obj/random_item_spawner/med_kit,
+/turf/floor/shuttle,
+/area/shuttle/escape/outpost/cogmap)
+"Kr" = (
+/obj/machinery/light/fluorescent/neutral{
+	dir = 1
+	},
+/turf/floor/white/checker2,
+/area/centcom/outpost/docks)
 "KA" = (
 /obj/machinery/door/airlock/pyro/external/shuttle_connect,
 /turf/floor/shuttle_noprotections,
@@ -887,6 +919,13 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/outpost/donut2)
+"KZ" = (
+/obj/machinery/door/airlock/pyro/security{
+	name = "Secure Transport"
+	},
+/obj/access_spawn/security,
+/turf/floor/shuttle,
+/area/shuttle/escape/outpost/cogmap)
 "LG" = (
 /obj/stool/chair/comfy/shuttle/red{
 	dir = 8
@@ -902,11 +941,11 @@
 	},
 /area/shuttle/escape/outpost/cogmap2)
 "Mn" = (
-/obj/machinery/door/airlock/pyro/external/shuttle_connect{
-	dir = 4
+/obj/lattice{
+	icon_state = "lattice-dir-b"
 	},
-/turf/floor/shuttle_noprotections,
-/area/shuttle/escape/outpost/cogmap)
+/turf/space,
+/area/space)
 "Mt" = (
 /obj/machinery/shuttle/engine/propulsion{
 	dir = 4;
@@ -914,13 +953,6 @@
 	},
 /turf/space,
 /area/shuttle/escape/outpost/donut2)
-"MQ" = (
-/obj/table/reinforced/auto,
-/obj/item/storage/firstaid/regular,
-/turf/floor/shuttle_noprotections{
-	icon_state = "floor2"
-	},
-/area/shuttle/escape/outpost/cogmap)
 "Nd" = (
 /obj/machinery/shuttle/engine/heater{
 	dir = 4;
@@ -936,6 +968,12 @@
 	icon_state = "Stairs2_wide"
 	},
 /area/centcom/outpost/docks)
+"Nm" = (
+/obj/machinery/light/small/floor,
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor2"
+	},
+/area/shuttle/escape/outpost/cogmap)
 "Nq" = (
 /obj/table/reinforced/auto,
 /obj/item/storage/toolbox/emergency,
@@ -944,14 +982,19 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/outpost/donut2)
-"Ob" = (
-/obj/stool/chair/comfy/shuttle,
-/obj/machinery/light{
-	dir = 8;
-	layer = 9.1;
-	pixel_x = -10
-	},
+"Nu" = (
+/obj/machinery/light/small/floor,
 /turf/floor/shuttle_noprotections,
+/area/shuttle/escape/outpost/cogmap)
+"Nz" = (
+/obj/machinery/sleeper/compact,
+/turf/floor/shuttle,
+/area/shuttle/escape/outpost/cogmap)
+"Ob" = (
+/obj/indestructible/shuttle_corner{
+	icon_state = "wall3_trans"
+	},
+/turf/space,
 /area/shuttle/escape/outpost/cogmap)
 "Oq" = (
 /obj/wingrille_spawn/reinforced,
@@ -966,13 +1009,6 @@
 "OB" = (
 /turf/floor/stairs,
 /area/centcom/outpost/docks)
-"OS" = (
-/obj/lattice{
-	dir = 1;
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/area/space)
 "Pg" = (
 /obj/machinery/shuttle/engine/heater{
 	dir = 4;
@@ -983,15 +1019,13 @@
 	},
 /area/shuttle/escape/outpost/donut2)
 "Px" = (
-/obj/machinery/shuttle/engine/propulsion{
-	dir = 9;
-	icon_state = "alt_propulsion"
+/obj/stool/chair/comfy/shuttle,
+/obj/machinery/light{
+	dir = 8;
+	layer = 9.1;
+	pixel_x = -10
 	},
-/turf/space,
-/area/shuttle/escape/outpost/cogmap)
-"Py" = (
-/obj/stool/chair/comfy/shuttle/green,
-/turf/floor/shuttle,
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/outpost/cogmap)
 "PE" = (
 /obj/stool/chair/comfy/shuttle/green{
@@ -1051,16 +1085,6 @@
 	},
 /turf/floor/shuttle_noprotections,
 /area/shuttle/escape/outpost/cogmap2)
-"QM" = (
-/obj/machinery/shuttle/engine/heater{
-	dir = 1;
-	icon_state = "alt_heater-M"
-	},
-/obj/window/reinforced/south,
-/turf/floor/shuttle{
-	icon_state = "plating"
-	},
-/area/shuttle/escape/outpost/cogmap)
 "QO" = (
 /obj/machinery/computer/shuttle/embedded/west,
 /obj/stool/chair/comfy/shuttle/pilot{
@@ -1070,12 +1094,6 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/outpost/donut2)
-"QV" = (
-/turf/wall/r_wall/shuttle_noprotections{
-	dir = 1;
-	icon_state = "wall3_floor2"
-	},
-/area/shuttle/escape/outpost/cogmap)
 "Rm" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 4
@@ -1099,10 +1117,11 @@
 	},
 /area/shuttle/escape/outpost/donut2)
 "RP" = (
-/obj/item/storage/wall/emergency,
-/turf/wall/r_wall/shuttle_noprotections{
-	icon_state = "wall3"
+/obj/machinery/door/airlock/pyro/glass/command{
+	dir = 1
 	},
+/obj/access_spawn/heads,
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/outpost/cogmap)
 "RR" = (
 /obj/map/light/white,
@@ -1131,8 +1150,10 @@
 	},
 /area/shuttle/escape/outpost/donut2)
 "Sh" = (
-/turf/wall/r_wall/shuttle_noprotections,
-/area/shuttle/escape/outpost/cogmap)
+/obj/table/wood/auto,
+/obj/item/reagent_containers/food/snacks/ice_cream/random,
+/turf/floor/white/checker2,
+/area/centcom/outpost/docks)
 "Si" = (
 /obj/machinery/shuttle/engine/heater{
 	dir = 4;
@@ -1142,7 +1163,7 @@
 	icon_state = "plating"
 	},
 /area/shuttle/escape/outpost/donut2)
-"Sz" = (
+"SL" = (
 /obj/item/storage/wall/emergency{
 	dir = 8
 	},
@@ -1173,8 +1194,10 @@
 	},
 /area/shuttle/escape/outpost/cogmap2)
 "TO" = (
-/obj/machinery/light/small/floor,
-/turf/floor/shuttle_noprotections,
+/turf/shuttle/wall/cockpit{
+	icon_state = "shuttlecock_mining";
+	plane = -95
+	},
 /area/shuttle/escape/outpost/cogmap)
 "TR" = (
 /obj/table/auto,
@@ -1223,7 +1246,10 @@
 /turf/space,
 /area/shuttle/escape/outpost/donut2)
 "VU" = (
-/turf/floor/shuttle_noprotections,
+/obj/wingrille_spawn/reinforced,
+/turf/floor/shuttle_noprotections{
+	icon_state = "plating"
+	},
 /area/shuttle/escape/outpost/cogmap)
 "Wk" = (
 /obj/machinery/door/airlock/pyro/security{
@@ -1234,12 +1260,10 @@
 	icon_state = "floor4"
 	},
 /area/shuttle/escape/outpost/destiny)
-"WK" = (
-/obj/lattice{
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/area/space)
+"Ww" = (
+/obj/machinery/light/fluorescent/neutral,
+/turf/floor/white/checker2,
+/area/centcom/outpost/docks)
 "WU" = (
 /obj/landmark{
 	name = "prisonwarp"
@@ -1249,12 +1273,12 @@
 /area/prison/cell_block/wards{
 	name = "Penalty Box"
 	})
-"WV" = (
-/obj/machinery/shuttle/engine/propulsion{
-	dir = 10;
-	icon_state = "alt_propulsion"
+"WX" = (
+/obj/machinery/computer/shuttle/embedded/south,
+/obj/stool/chair/comfy/shuttle/pilot,
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor2"
 	},
-/turf/space,
 /area/shuttle/escape/outpost/cogmap)
 "Xh" = (
 /obj/landmark/load_prefab_shuttledmm/destiny,
@@ -1269,17 +1293,21 @@
 	},
 /area/shuttle/escape/outpost/donut2)
 "XE" = (
-/obj/indestructible/shuttle_corner{
-	icon_state = "wall3_trans"
+/turf/floor/white/checker2,
+/area/centcom/outpost/docks)
+"XH" = (
+/turf/floor/shuttle_noprotections,
+/area/shuttle/escape/outpost/cogmap)
+"YV" = (
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir"
 	},
 /turf/space,
-/area/shuttle/escape/outpost/cogmap)
-"XH" = (
-/turf/space,
-/area/shuttle/escape/outpost/cogmap)
+/area/space)
 "YY" = (
-/obj/machinery/sleeper/compact,
-/turf/floor/shuttle,
+/obj/stool/chair/comfy/shuttle,
+/turf/floor/shuttle_noprotections,
 /area/shuttle/escape/outpost/cogmap)
 "Zg" = (
 /obj/landmark/load_prefab_shuttledmm/donut2,
@@ -8199,13 +8227,13 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+ID
+ID
+ID
+ID
+ID
+ID
+ID
 ID
 ID
 ID
@@ -8501,19 +8529,19 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
 ID
 ok
 ZF
 ZF
 ZF
 Hm
+ZF
+vn
+ZF
+ZF
+ZF
+ZF
+vn
 ZF
 ZF
 ZF
@@ -8803,19 +8831,19 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
 ID
 ZF
 ZF
 ZF
 ZF
 Hm
+ZF
+ZF
+ZF
+ZF
+ZF
+ZF
+ZF
 ZF
 ZF
 ZF
@@ -9105,17 +9133,10 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
 ID
 ID
-IS
-IS
+tt
+tt
 ID
 ID
 ID
@@ -9125,6 +9146,13 @@ ID
 ID
 ID
 ID
+ID
+ID
+ID
+ID
+ID
+Fr
+Fr
 ID
 ID
 ID
@@ -9407,13 +9435,6 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
 ID
 ok
 ZF
@@ -9429,6 +9450,13 @@ VE
 VE
 VE
 ID
+ID
+Kr
+XE
+XE
+XE
+XE
+Ww
 ID
 ok
 ZF
@@ -9705,32 +9733,32 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-XH
-xz
+jz
+JY
 nm
 nm
 nm
 nm
+rr
+nm
+nm
+VU
+VU
+nm
+Ob
 Mn
-nm
-nm
-tU
-tU
-nm
+YV
+oz
+eH
+oz
+wd
+ID
 XE
-aO
-OS
-WK
-kF
-WK
-CR
+XE
+XE
+XE
+XE
+XE
 ID
 ZF
 ZF
@@ -10007,33 +10035,33 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+xz
+As
+VU
+bu
+bu
+nm
+XH
 Px
-zx
-tU
-eQ
-eQ
+YY
+YY
+YY
+Px
 nm
 VU
 Ob
-js
-js
-js
-Ob
-nm
-tU
-XE
 VE
 VE
 VE
-sJ
+od
 ID
+XE
+XE
+XE
+XE
+XE
+XE
+Bt
 ZF
 ZF
 ID
@@ -10309,33 +10337,33 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-WV
-QM
-tU
-eQ
-mT
-If
+zE
+oa
 VU
+bu
+CG
+KZ
+XH
+YY
+YY
+YY
+YY
+YY
+VU
+ae
 js
-js
-js
-js
-js
-tU
-ny
-QV
-XE
-aO
-WK
-CR
+Ob
+Mn
+oz
+wd
 ID
+XE
+Sh
+Sh
+XE
+XE
+XE
+Bt
 ZF
 ZF
 ID
@@ -10611,32 +10639,32 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-GT
-lt
-tU
-eQ
-eQ
-nm
+IS
+bF
 VU
-js
-js
-js
-js
-js
+bu
+bu
 nm
-Du
-Du
-Sh
-ls
+XH
+YY
+YY
+YY
+YY
+YY
+nm
+rv
+rv
+Ee
+ne
 VE
-sJ
+od
+ID
+XE
+Sh
+Sh
+XE
+XE
+XE
 ID
 ZF
 ZF
@@ -10913,32 +10941,32 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-XH
-nm
-nm
-Sz
-nm
-RP
-VU
-VU
-VU
-TO
-VU
-VU
 jz
-Kr
-Bg
-Sh
-xe
+nm
+nm
+SL
+nm
+lB
+XH
+XH
+XH
+Nu
+XH
+XH
+RP
+Nm
+WX
+Ee
+TO
 VE
-sJ
+od
+ID
+Kr
+Sh
+Sh
+XE
+XE
+Ww
 ID
 ok
 ZF
@@ -11215,32 +11243,32 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-Px
-zx
-tU
-bl
-Py
-nm
+xz
+As
 VU
-js
-js
-js
-js
-js
+Kn
+Ex
 nm
-Du
-Du
-Sh
-ls
+XH
+YY
+YY
+YY
+YY
+YY
+nm
+rv
+rv
+Ee
+ne
 VE
-sJ
+od
+ID
+XE
+Sh
+Sh
+XE
+XE
+XE
 ID
 ZF
 ZF
@@ -11517,33 +11545,33 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-WV
-QM
-tU
-bb
-BD
-cU
+zE
+oa
 VU
-js
-js
-js
-js
-js
-tU
-MQ
-nv
-Jh
-aO
-WK
-CR
+Ae
+Hp
+cL
+XH
+YY
+YY
+YY
+YY
+YY
+VU
+DU
+xS
+Gb
+Mn
+oz
+wd
 ID
+XE
+Sh
+Sh
+XE
+XE
+XE
+Bt
 ZF
 ZF
 ID
@@ -11819,33 +11847,33 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-GT
-lt
-tU
+IS
+bF
+VU
+Nz
+Nz
+nm
+XH
+nD
 YY
 YY
+YY
+nD
 nm
 VU
 Gb
-js
-js
-js
-Gb
-nm
-tU
-Jh
 VE
 VE
 VE
-sJ
+od
 ID
+XE
+XE
+XE
+XE
+XE
+XE
+Bt
 ZF
 ZF
 ID
@@ -12121,32 +12149,32 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-XH
-zE
+jz
+bq
 nm
 nm
 nm
 nm
+rr
+nm
+nm
+VU
+VU
+nm
+Gb
 Mn
-nm
-nm
-tU
-tU
-nm
-Jh
-aO
-sX
-WK
-WK
-WK
-CR
+tH
+oz
+oz
+oz
+wd
+ID
+XE
+XE
+XE
+XE
+XE
+XE
 ID
 ZF
 ZF
@@ -12427,13 +12455,6 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
 ID
 ok
 ZF
@@ -12449,6 +12470,13 @@ VE
 VE
 VE
 ID
+ID
+Kr
+XE
+XE
+XE
+XE
+Ww
 ID
 ok
 ZF
@@ -12729,17 +12757,10 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
 ID
 ID
-JY
-JY
+rn
+rn
 ID
 ID
 ID
@@ -12749,6 +12770,13 @@ ID
 ID
 ID
 ID
+ID
+ID
+ID
+ID
+ID
+Fr
+Fr
 ID
 ID
 ID
@@ -13031,19 +13059,19 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
 ID
 ZF
 ZF
 ZF
 ZF
 Hm
+ZF
+ZF
+ZF
+ZF
+ZF
+ZF
+ZF
 ZF
 ZF
 ZF
@@ -13333,19 +13361,19 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
 ID
 ok
 ZF
 ZF
 ZF
 Hm
+ZF
+dr
+ZF
+ZF
+ZF
+ZF
+dr
 ZF
 ZF
 ZF
@@ -13635,13 +13663,13 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+ID
+ID
+ID
+ID
+ID
+ID
+ID
 ID
 ID
 ID
