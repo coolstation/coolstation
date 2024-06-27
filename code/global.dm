@@ -72,7 +72,7 @@ var/global
 
 	list/rewardDB = list() //Contains instances of the reward datums
 	list/materialRecipes = list() //Contains instances of the material recipe datums
-	list/materialProps = list() //Contains instances of the material property datums
+	list/materialProps = list() //Contains singletons of the material property datums organised by ID
 
 	list/factions = list()
 
