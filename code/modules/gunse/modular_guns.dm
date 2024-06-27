@@ -832,10 +832,45 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 		barrel = new /obj/item/gun_parts/barrel/soviet(src)
 		stock = new /obj/item/gun_parts/stock/italian(src)
 
+/obj/item/gun/modular/soviet/misfitreciver //just a reciver for the guns vendor
+	name = "\improper Misfit"
+	real_name = "\improper Misfit"
+	desc = "A spacer design slapped together from salvaged soviet parts, the Misfit is known for it's ease of manufacture and durablity. Due to it's unique design, your going to need a magazine for it."
+	max_ammo_capacity = 0 //Gotta use a mag
+	gun_DRM = GUN_SOVIET
+	spread_angle = 10
+	jam_frequency_fire = 15
+	jam_frequency_reload = 4
+	stock_overlay_x = -9
+	stock_overlay_y = -1
+	barrel_overlay_x = 7
+	barrel_overlay_y = 0
+	contraband = 4
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+	icon_state = "mistfit"
 
+/obj/item/gun/modular/soviet/misfit //just for loot! Gonna work on probs later so all parts can spawn (aside from the bigger mags)
+	name = "\improper Misfit"
+	real_name = "\improper Misfit"
+	desc = "A spacer design slapped together from salvaged soviet parts, the Misfit is known for it's ease of manufacture and durablity. Due to it's unique design, your going to need a magazine for it."
+	max_ammo_capacity = 0 //comes with a mag
+	gun_DRM = GUN_SOVIET
+	spread_angle = 15
+	jam_frequency_fire = 15
+	jam_frequency_reload = 4
+	contraband = 4
+	stock_overlay_x = -14
+	stock_overlay_y = -1
+	barrel_overlay_x = 12
+	barrel_overlay_y = 0
+	icon = 'icons/obj/items/modular_guns/mistfits.dmi'
+	icon_state = "mistfit"
 
-
-
+	make_parts()
+		barrel = new/obj/item/gun_parts/barrel/soviet/improvshort (src)
+		stock = new/obj/item/gun_parts/stock/soviet/improvmetal (src)
+		stock2 = new/obj/item/gun_parts/stock/soviet/akgrip (src)
+		magazine = new/obj/item/gun_parts/magazine/soviet/ak/thirdak (src)
 
 /obj/item/gun/modular/italian
 	name = "\improper Italiano"
@@ -864,6 +899,25 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 		barrel = new /obj/item/gun_parts/barrel/italian/accurate(src)
 		stock = new /obj/item/gun_parts/stock/juicer(src)
 
+
+
+	shoot()
+		..()
+		process_ammo()
+
+// /obj/item/gun/modular/luna //wip dont uncomment!
+// 	name = "\improper Lunar Trumpet"
+// 	real_name = "\improper Lunar Trumpet"
+// 	desc = "A trumpet shaped shotgun thing. This seems really impractial for anything other than showing off."
+// 	max_ammo_capacity = 5
+// 	spread_angle = 30
+// 	icon = 'icon/items/tselaguns/special.dmi'
+// 	icon_state = 'zungunstock'
+
+// 	make_parts()
+// 		barrel = new /obj/item/gun_parts/barrel/luna/zunar
+// 		stock = /obj/item/gun_parts/stock/luna/zunar
+// 		accessory = new /obj/item/gun_parts/accessory/zupressor
 
 /obj/item/gun/modular/italian/big_italiano
 	make_parts()
