@@ -13,6 +13,9 @@
 	icon_state = "floor4"
 	},
 /area/shuttle/escape/outpost/donut2)
+"ax" = (
+/turf/floor/caution/westeast,
+/area/shuttle/cargo/hub)
 "aA" = (
 /obj/wingrille_spawn/reinforced,
 /obj/machinery/shuttle/engine/heater{
@@ -130,6 +133,12 @@
 /obj/indestructible/invisible_block,
 /turf/space,
 /area/shuttle/escape/outpost/destiny)
+"eG" = (
+/obj/machinery/door/airlock/pyro/external/shuttle_connect{
+	dir = 4
+	},
+/turf/floor/caution/northsouth,
+/area/centcom/outpost/docks)
 "eH" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -198,6 +207,21 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/outpost/donut2)
+"gn" = (
+/obj/table,
+/obj/item/decoration/ashtray{
+	butts = 3;
+	icon_state = "ashtray4"
+	},
+/turf/floor/industrial,
+/area/centcom/outpost/docks)
+"gr" = (
+/obj/storage/crate/wooden,
+/obj/random_item_spawner/junk/maybe_few,
+/obj/random_item_spawner/junk/maybe_few,
+/obj/random_item_spawner/junk/maybe_few,
+/turf/floor/industrial,
+/area/centcom/outpost/docks)
 "gH" = (
 /obj/stool/chair/comfy/shuttle,
 /obj/machinery/light{
@@ -220,6 +244,13 @@
 	icon_state = "floor3"
 	},
 /area/shuttle/escape/outpost/cogmap2)
+"hX" = (
+/obj/indestructible/shuttle_corner{
+	dir = 8;
+	icon_state = "wall3_trans"
+	},
+/turf/space,
+/area/shuttle/cargo/hub)
 "ix" = (
 /obj/stool/chair/comfy/shuttle/green{
 	dir = 8
@@ -266,6 +297,13 @@
 	icon_state = "floor4"
 	},
 /area/shuttle/escape/outpost/destiny)
+"jD" = (
+/obj/indestructible/shuttle_corner{
+	dir = 1;
+	icon_state = "wall3_trans"
+	},
+/turf/space,
+/area/shuttle/cargo/hub)
 "ka" = (
 /obj/stool/chair/comfy/shuttle{
 	dir = 8
@@ -322,6 +360,9 @@
 /obj/stool/chair/comfy/shuttle,
 /turf/floor/shuttle_noprotections,
 /area/shuttle/escape/outpost/destiny)
+"lQ" = (
+/turf/floor/caution/south,
+/area/shuttle/cargo/hub)
 "lY" = (
 /obj/stool/chair/comfy/shuttle,
 /obj/machinery/light{
@@ -400,6 +441,11 @@
 	},
 /turf/space,
 /area/space)
+"of" = (
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor3"
+	},
+/area/shuttle/cargo/hub)
 "oj" = (
 /turf/floor/shuttle_noprotections{
 	icon_state = "floor3"
@@ -421,6 +467,13 @@
 /obj/machinery/light/small/floor,
 /turf/floor/shuttle_noprotections,
 /area/shuttle/escape/outpost/cogmap2)
+"oN" = (
+/obj/indestructible/shuttle_corner{
+	dir = 4;
+	icon_state = "wall3_trans"
+	},
+/turf/space,
+/area/shuttle/cargo/hub)
 "pb" = (
 /obj/indestructible/shuttle_corner{
 	dir = 8;
@@ -445,6 +498,9 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/outpost/donut2)
+"qz" = (
+/turf/space,
+/area/shuttle/cargo/hub)
 "qH" = (
 /obj/table/auto,
 /obj/random_item_spawner/med_kit,
@@ -467,6 +523,10 @@
 	icon_state = "floor3"
 	},
 /area/shuttle/escape/outpost/cogmap2)
+"rc" = (
+/obj/machinery/door/airlock/pyro/external/shuttle_connect,
+/turf/floor/caution/westeast,
+/area/shuttle/cargo/hub)
 "rn" = (
 /turf/floor/stairs{
 	dir = 4
@@ -484,6 +544,11 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/outpost/cogmap)
+"rw" = (
+/turf/shuttle/wall/cockpit{
+	dir = 8
+	},
+/area/shuttle/cargo/hub)
 "rH" = (
 /obj/item/storage/wall/medical{
 	pixel_z = -1
@@ -510,6 +575,11 @@
 	icon_state = "Stairs2_wide"
 	},
 /area/centcom/outpost/docks)
+"th" = (
+/obj/storage/crate/wooden,
+/obj/random_item_spawner/junk/maybe_few,
+/turf/floor/industrial,
+/area/centcom/outpost/docks)
 "tr" = (
 /turf/shuttle/wall/cockpit{
 	dir = 8
@@ -527,6 +597,15 @@
 	},
 /turf/space,
 /area/space)
+"tV" = (
+/obj/storage/crate,
+/obj/random_item_spawner/junk/maybe_few,
+/turf/floor/industrial,
+/area/centcom/outpost/docks)
+"uq" = (
+/obj/vehicle/forklift,
+/turf/floor/industrial,
+/area/centcom/outpost/docks)
 "uC" = (
 /obj/item/storage/wall/fire{
 	pixel_z = -1
@@ -610,10 +689,21 @@
 	icon_state = "wall3_floor2"
 	},
 /area/shuttle/escape/outpost/cogmap)
+"ym" = (
+/turf/floor/caution/misc{
+	dir = 4
+	},
+/area/shuttle/cargo/hub)
 "yC" = (
 /obj/machinery/light/fluorescent/neutral,
 /turf/floor/industrial,
 /area/centcom/outpost/docks)
+"zo" = (
+/obj/machinery/door/airlock/pyro/external/shuttle_connect{
+	dir = 4
+	},
+/turf/floor/caution/northsouth,
+/area/shuttle/cargo/hub)
 "zE" = (
 /obj/machinery/shuttle/engine/propulsion{
 	dir = 10;
@@ -711,6 +801,12 @@
 	icon_state = "floor4"
 	},
 /area/shuttle/escape/outpost/cogmap2)
+"Ds" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/shuttle_noprotections{
+	icon_state = "plating"
+	},
+/area/shuttle/cargo/hub)
 "DU" = (
 /obj/table/reinforced/auto,
 /obj/item/storage/firstaid/regular,
@@ -718,6 +814,12 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/outpost/cogmap)
+"DZ" = (
+/obj/storage/crate/wooden,
+/obj/random_item_spawner/junk/maybe_few,
+/obj/random_item_spawner/junk/maybe_few,
+/turf/floor/industrial,
+/area/centcom/outpost/docks)
 "Ec" = (
 /turf/wall/r_wall/shuttle_noprotections{
 	icon_state = "wall_floor"
@@ -736,9 +838,25 @@
 	icon_state = "wall_floor"
 	},
 /area/shuttle/escape/outpost/cogmap2)
+"EH" = (
+/obj/machinery/shuttle/engine/heater{
+	icon_state = "alt_heater-L"
+	},
+/turf/wall/r_wall/shuttle_noprotections{
+	icon_state = "wall3"
+	},
+/area/shuttle/cargo/hub)
 "Fg" = (
 /turf/floor/shuttle_noprotections,
 /area/shuttle/escape/outpost/cogmap2)
+"Fp" = (
+/obj/machinery/light/fluorescent/greenish{
+	dir = 8
+	},
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor3"
+	},
+/area/shuttle/cargo/hub)
 "Fr" = (
 /obj/machinery/door/airlock/pyro/glass{
 	dir = 4
@@ -877,6 +995,15 @@
 	icon_state = "plating"
 	},
 /area/shuttle/escape/outpost/cogmap2)
+"JG" = (
+/obj/storage/crate,
+/obj/random_item_spawner/junk/maybe_few,
+/obj/random_item_spawner/junk/maybe_few,
+/obj/random_item_spawner/junk/maybe_few,
+/obj/random_item_spawner/junk/maybe_few,
+/obj/random_item_spawner/junk/maybe_few,
+/turf/floor/industrial,
+/area/centcom/outpost/docks)
 "JY" = (
 /obj/indestructible/shuttle_corner{
 	dir = 8;
@@ -919,6 +1046,13 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/outpost/donut2)
+"KX" = (
+/obj/critter/opossum{
+	desc = "Actually forklift certified, unlike you.";
+	name = "Derek-Richard the shuttle loader"
+	},
+/turf/floor/industrial,
+/area/centcom/outpost/docks)
 "KZ" = (
 /obj/machinery/door/airlock/pyro/security{
 	name = "Secure Transport"
@@ -953,6 +1087,14 @@
 	},
 /turf/space,
 /area/shuttle/escape/outpost/donut2)
+"MU" = (
+/obj/machinery/shuttle/engine/heater{
+	icon_state = "alt_heater-R"
+	},
+/turf/wall/r_wall/shuttle_noprotections{
+	icon_state = "wall3"
+	},
+/area/shuttle/cargo/hub)
 "Nd" = (
 /obj/machinery/shuttle/engine/heater{
 	dir = 4;
@@ -1006,6 +1148,15 @@
 	icon_state = "plating"
 	},
 /area/shuttle/escape/outpost/donut2)
+"Oy" = (
+/obj/machinery/light/small/floor/cool,
+/turf/floor/caution/south,
+/area/shuttle/cargo/hub)
+"OA" = (
+/turf/floor/caution/misc{
+	dir = 8
+	},
+/area/centcom/outpost/docks)
 "OB" = (
 /turf/floor/stairs,
 /area/centcom/outpost/docks)
@@ -1018,6 +1169,12 @@
 	icon_state = "plating"
 	},
 /area/shuttle/escape/outpost/donut2)
+"Pw" = (
+/obj/indestructible/shuttle_corner{
+	icon_state = "wall3_trans"
+	},
+/turf/space,
+/area/shuttle/cargo/hub)
 "Px" = (
 /obj/stool/chair/comfy/shuttle,
 /obj/machinery/light{
@@ -1065,6 +1222,14 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/escape/outpost/donut2)
+"Qa" = (
+/obj/machinery/light/fluorescent/greenish{
+	dir = 4
+	},
+/turf/floor/shuttle_noprotections{
+	icon_state = "floor3"
+	},
+/area/shuttle/cargo/hub)
 "Qi" = (
 /turf/floor/shuttle_noprotections{
 	icon_state = "floor4"
@@ -1116,6 +1281,11 @@
 	icon_state = "plating"
 	},
 /area/shuttle/escape/outpost/donut2)
+"RO" = (
+/turf/floor/caution/misc{
+	dir = 8
+	},
+/area/shuttle/cargo/hub)
 "RP" = (
 /obj/machinery/door/airlock/pyro/glass/command{
 	dir = 1
@@ -1182,6 +1352,14 @@
 	icon_state = "plating"
 	},
 /area/shuttle/escape/outpost/cogmap2)
+"Th" = (
+/obj/storage/crate/wooden,
+/obj/random_item_spawner/junk/maybe_few,
+/obj/random_item_spawner/junk/maybe_few,
+/obj/random_item_spawner/junk/maybe_few,
+/obj/random_item_spawner/junk/maybe_few,
+/turf/floor/industrial,
+/area/centcom/outpost/docks)
 "TC" = (
 /turf/floor/stairs{
 	dir = 1
@@ -1234,6 +1412,11 @@
 	icon_state = "wall5"
 	},
 /area/shuttle/escape/outpost/donut2)
+"Vx" = (
+/turf/wall/r_wall/shuttle_noprotections{
+	icon_state = "wall3"
+	},
+/area/shuttle/cargo/hub)
 "VE" = (
 /turf/space,
 /area/space)
@@ -1251,6 +1434,12 @@
 	icon_state = "plating"
 	},
 /area/shuttle/escape/outpost/cogmap)
+"VX" = (
+/obj/storage/crate,
+/obj/random_item_spawner/junk/maybe_few,
+/obj/random_item_spawner/junk/maybe_few,
+/turf/floor/industrial,
+/area/centcom/outpost/docks)
 "Wk" = (
 /obj/machinery/door/airlock/pyro/security{
 	name = "Secure Transport"
@@ -1264,6 +1453,16 @@
 /obj/machinery/light/fluorescent/neutral,
 /turf/floor/white/checker2,
 /area/centcom/outpost/docks)
+"WB" = (
+/obj/machinery/shuttle/engine/propulsion{
+	icon_state = "alt_propulsion"
+	},
+/turf/space,
+/area/shuttle/cargo/hub)
+"WJ" = (
+/obj/machinery/light/small/floor/cool,
+/turf/floor/caution/westeast,
+/area/shuttle/cargo/hub)
 "WU" = (
 /obj/landmark{
 	name = "prisonwarp"
@@ -1323,6 +1522,15 @@
 	},
 /turf/floor/shuttle_noprotections,
 /area/shuttle/escape/outpost/cogmap2)
+"Zv" = (
+/obj/decal/tile_edge/floorguide/arrow_s{
+	dir = 1
+	},
+/obj/decal/tile_edge/floorguide/arrow_s{
+	dir = 8
+	},
+/turf/floor/industrial,
+/area/centcom/outpost/docks)
 "ZF" = (
 /turf/floor/industrial,
 /area/centcom/outpost/docks)
@@ -13965,16 +14173,16 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+ID
+ZF
+Th
+th
+vn
+JG
+VX
+ZF
+uq
+ID
 VE
 VE
 ID
@@ -14267,16 +14475,16 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+ID
+ZF
+DZ
+DZ
+ZF
+VX
+tV
+ZF
+uq
+ID
 VE
 VE
 ID
@@ -14569,16 +14777,16 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+ID
+ZF
+DZ
+DZ
+ZF
+tV
+VX
+ZF
+yC
+ID
 VE
 VE
 ID
@@ -14871,16 +15079,16 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+ID
+ok
+th
+gr
+ZF
+tV
+tV
+ZF
+DZ
+ID
 VE
 VE
 ID
@@ -15173,16 +15381,16 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+ID
+ZF
+ZF
+ZF
+KX
+ZF
+ZF
+ZF
+DZ
+ID
 VE
 VE
 ID
@@ -15475,16 +15683,16 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+ID
+gn
+ZF
+OA
+ZF
+OA
+ZF
+ZF
+th
+ID
 VE
 VE
 ID
@@ -15777,16 +15985,16 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+ID
+ID
+ID
+eG
+Cf
+eG
+ID
+ID
+ID
+ID
 VE
 VE
 ID
@@ -16081,13 +16289,13 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+hX
+zo
+Vx
+zo
+Vx
+EH
+WB
 VE
 VE
 VE
@@ -16381,15 +16589,15 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+hX
+Ds
+Vx
+ym
+Fp
+ym
+Vx
+MU
+WB
 VE
 VE
 VE
@@ -16682,19 +16890,19 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+hX
+Vx
+of
+Fp
+of
+of
+of
+Vx
+oN
+Cf
+Cf
+ID
+ID
 ID
 ok
 ZF
@@ -16983,20 +17191,20 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+qz
+Vx
+lQ
+of
+of
+of
+of
+of
+Vx
+Cf
+Cf
+ZF
+ZF
+ZF
 ID
 ZF
 ZF
@@ -17285,21 +17493,21 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-ID
+rw
+Vx
+Oy
+ax
+ax
+ax
+WJ
+ax
+rc
+Zv
+Hm
+ZF
+ZF
+ZF
+Hm
 ZF
 ZF
 ID
@@ -17587,20 +17795,20 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+qz
+Vx
+lQ
+of
+of
+of
+of
+of
+Vx
+Cf
+Cf
+ZF
+ZF
+ZF
 ID
 ZF
 ZF
@@ -17890,19 +18098,19 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+jD
+Vx
+of
+Qa
+of
+of
+of
+Vx
+Pw
+Cf
+Cf
+ID
+ID
 ID
 ZF
 ZF
@@ -18193,15 +18401,15 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+jD
+Ds
+Vx
+of
+RO
+Qa
+Vx
+EH
+WB
 VE
 VE
 VE
@@ -18497,13 +18705,13 @@ VE
 VE
 VE
 VE
-VE
-VE
-VE
-VE
-VE
-VE
-VE
+jD
+Vx
+zo
+Vx
+Vx
+MU
+WB
 VE
 VE
 VE
