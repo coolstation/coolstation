@@ -489,8 +489,62 @@
 	else
 		return "[speechverb],[first_quote][font_accent ? "<font face='[font_accent]'>" : null]<span [style? style : ""]>[text]</span>[font_accent ? "</font>" : null][second_quote]"
 
-/mob/proc/emote(var/act, var/voluntary = 0)
-	return
+/*
+This is a little messy, but
+act: a string that gets indexed into a big list of emotes, like "scream" and "flip". That indexing will happen on the child, so it's not used here
+voluntary:
+emoteTarget: a thing that only humans have so far, but it's an atom that the emote gets acted upon ("src hugs emoteTarget!")
+actual_emote: the datum that this base code acts on. A child of /mob should supply this in an override.
+param: Uhhh I think this is related to targeted emotes? I'm not sure
+*/
+/mob/proc/emote(var/act, var/voluntary = 0, var/emoteTarget = null, datum/emote/actual_emote, param = null)
+	var/list/what_have_we_done = null
+
+	var/m_type = MESSAGE_VISIBLE
+	var/custom = 0 //Sorry, gotta make this for chat groupings.
+	var/maptext_out = 0
+	var/message = null
+
+	if (istype(actual_emote))
+		if (!emote_check(voluntary, actual_emote.return_cooldown(src, voluntary), 1, !(actual_emote.possible_while_dead)))
+			return
+		what_have_we_done= actual_emote.enact(src, voluntary, param)
+	if (islist(what_have_we_done))
+		message = what_have_we_done[1]
+		maptext_out = what_have_we_done[2]
+		m_type = what_have_we_done[3] //visible or audible emote
+		if (length(what_have_we_done) > 3) //(I'm not changing the returns on ~130 emotes that don't even fucking use it)
+			custom = what_have_we_done[4] //emote grouping 4 custom emotes
+	else
+		src.show_text("Unusable emote '[act]'. 'Me help' for a list.", "blue")
+		return
+
+	if (!message)
+		return
+
+	var/image/chat_maptext/chat_text = null
+	if (maptext_out && !ON_COOLDOWN(src, "emote maptext", 0.5 SECONDS))
+		//make maptext if appropriate
+		if (speechpopups && src.chat_text)
+			chat_text = make_chat_maptext(src, maptext_out, "color: #C2BEBE;" + src.speechpopupstyle, alpha = 140)
+			if(chat_text)
+				chat_text.measure(src.client)
+				for(var/image/chat_maptext/I in src.chat_text.lines)
+					if(I != chat_text)
+						I.bump_up(chat_text.measured_height)
+
+	logTheThing("say", src, null, "EMOTE: [message]")
+	act = lowertext(act)
+	if (m_type & MESSAGE_VISIBLE)
+		for (var/mob/O in viewers(src, null))
+			O.show_message("<span class='emote'>[message]</span>", m_type, group = "[src]_[act]_[custom]", assoc_maptext = chat_text)
+	else if (m_type & MESSAGE_AUDIBLE)
+		for (var/mob/O in hearers(src, null))
+			O.show_message("<span class='emote'>[message]</span>", m_type, group = "[src]_[act]_[custom]", assoc_maptext = chat_text)
+	else if (!isturf(src.loc))
+		var/atom/A = src.loc
+		for (var/mob/O in A.contents)
+			O.show_message("<span class='emote'>[message]</span>", m_type, group = "[src]_[act]_[custom]", assoc_maptext = chat_text)
 
 /mob/proc/emote_check(var/voluntary = 1, var/time = 10, var/admin_bypass = 1, var/dead_check = 1)
 	if (src.emote_allowed)
