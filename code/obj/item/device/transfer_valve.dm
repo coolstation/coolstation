@@ -303,13 +303,17 @@
 				message_admins("Bomb valve opened in [bombarea] ([showCoords(bombturf.x, bombturf.y, bombturf.z)]). Last touched by [src.fingerprintslast]")
 
 				var/datum/gas_mixture/temp
-
+				var/tank_one_volume_ratio = tank_one.air_contents.volume / (tank_one.air_contents.volume + tank_two.air_contents.volume)
+				//take everything out of tank one
 				temp = tank_one.air_contents.remove_ratio(1)
 
-				tank_two.air_contents.volume = tank_one.air_contents.volume
-				tank_two.air_contents.merge(temp)
+				//shunt entire contents of tank one into tank two
+				tank_two.air_contents.merge(temp) //deletes temp, hence why we don't just use tank_one.air_contents directly
 
-				temp = tank_two.air_contents.remove_ratio(0.5)
+				//take proportional amount of the total gas...
+				temp = tank_two.air_contents.remove_ratio(tank_one_volume_ratio)
+
+				//...and put it back into tank one
 				tank_one.air_contents.merge(temp)
 
 				SPAWN_DBG(2 SECONDS) // In case one tank bursts

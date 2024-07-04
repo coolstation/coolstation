@@ -35,6 +35,10 @@
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "party"
 
+	///turns out a maxcap VR TTV can reach the button.
+	ex_act(severity=0,last_touched=0, epicenter = null)
+		return
+
 	attack_hand(mob/user as mob)
 		if (!ismob(user) || !user.client || !istype(user, /mob/living/carbon/human/virtual/))
 			return

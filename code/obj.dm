@@ -100,7 +100,7 @@
 		setupProperties()
 		. = ..()
 
-	ex_act(severity)
+	ex_act(severity=0,last_touched=0, epicenter = null)
 		src.material?.triggerExp(src, severity)
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
