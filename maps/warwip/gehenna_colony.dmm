@@ -2248,6 +2248,12 @@
 /obj/decal/tile_edge/floorguide/evac,
 /turf/floor,
 /area/station/hangar/escape)
+"bQF" = (
+/obj/landmark{
+	name = "blobstart"
+	},
+/turf/floor/plating,
+/area/station/hallway/secondary/construction)
 "bQU" = (
 /obj/table/auto,
 /turf/floor/wood,
@@ -10020,6 +10026,14 @@
 	dir = 4
 	},
 /area/station/wc/sec)
+"hwL" = (
+/obj/landmark{
+	name = "blobstart"
+	},
+/turf/floor/plating{
+	icon_old = "fullblack"
+	},
+/area/station/engine/engineering)
 "hwN" = (
 /obj/forcefield/energyshield/perma,
 /turf/floor/industrial,
@@ -10407,6 +10421,9 @@
 	dir = 8
 	},
 /obj/disposalpipe/segment/food,
+/obj/landmark{
+	name = "blobstart"
+	},
 /turf/floor/plating,
 /area/station/medical/maintenance)
 "hNm" = (
@@ -27408,6 +27425,16 @@
 "uPV" = (
 /turf/floor/purple/corner,
 /area/listeningpost)
+"uQw" = (
+/obj/landmark{
+	name = "blobstart"
+	},
+/turf/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/station/quartermaster/cargooffice/idk_another_one{
+	name = "Merchant Landing Pad"
+	})
 "uQy" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/cable{
@@ -66402,7 +66429,7 @@ yby
 mtW
 sMX
 xBn
-xBn
+bQF
 xBn
 xBn
 vQK
@@ -87219,7 +87246,7 @@ igQ
 igQ
 igQ
 fwP
-tAQ
+uQw
 tAQ
 tAQ
 tAQ
@@ -96039,7 +96066,7 @@ uDU
 cML
 wbH
 dVx
-dVx
+hwL
 dVx
 dVx
 dVx

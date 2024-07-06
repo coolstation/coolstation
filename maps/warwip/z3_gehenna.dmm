@@ -3520,6 +3520,14 @@
 	},
 /turf/floor/airless/engine,
 /area/station/science/testchamber)
+"caS" = (
+/obj/decal/cleanable/dirt/jen,
+/obj/decal/cleanable/dirt/random,
+/obj/landmark{
+	name = "blobstart"
+	},
+/turf/floor/plating/random,
+/area/station/crew_quarters/clown)
 "cbz" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/storage/closet/wardrobe/black/formalwear,
@@ -5051,6 +5059,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/landmark{
+	name = "blobstart"
 	},
 /turf/floor/plating{
 	icon_old = "diamondtile"
@@ -16272,6 +16283,12 @@
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
 	})
+"jmY" = (
+/obj/landmark{
+	name = "blobstart"
+	},
+/turf/floor/plating,
+/area/station/maintenance/south)
 "jnf" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/floor/plating,
@@ -32120,6 +32137,13 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"snt" = (
+/obj/decal/cleanable/dirt/random,
+/obj/landmark{
+	name = "blobstart"
+	},
+/turf/floor/plating,
+/area/station/routing/depot)
 "snE" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/wall,
@@ -68665,7 +68689,7 @@ eAJ
 cep
 fXX
 pYv
-lwf
+caS
 sMs
 xtv
 qbs
@@ -82865,7 +82889,7 @@ kPQ
 kPQ
 qAe
 rUw
-rUw
+jmY
 rUw
 vDY
 uhM
@@ -90079,7 +90103,7 @@ ush
 xrh
 muE
 mHC
-yiL
+snt
 sgS
 aCf
 jSG
