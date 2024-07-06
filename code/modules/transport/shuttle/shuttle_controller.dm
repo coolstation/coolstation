@@ -175,7 +175,7 @@ datum/shuttle_controller
 						world << csound("sound/misc/shuttle_arrive1.ogg")
 						for(var/obj/machinery/light/emergency/shuttle/L in world)
 							L.power_change() //this is the old heavy bad one but it works right now
-						for(var/obj/pathlights/shuttle/L in world)
+						for_by_tcl(L, /obj/pathlights/shuttle)
 							L.shuttle_pathlights() //this will be the new one and doesn't work
 
 						processScheduler.enableProcess("Fluid_Turfs")
@@ -300,7 +300,7 @@ datum/shuttle_controller
 						world << csound("sound/misc/shuttle_enroute.ogg")
 						for(var/obj/machinery/light/emergency/shuttle/L in world)
 							L.power_change() //old bad working
-						for(var/obj/pathlights/shuttle/L in world)
+						for_by_tcl(L, /obj/pathlights/shuttle)
 							L.shuttle_pathlights() //new good wip
 						//online = 0
 

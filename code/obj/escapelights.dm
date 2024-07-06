@@ -31,6 +31,7 @@
 
 	New()
 		..()
+		START_TRACKING
 		//initial slight offset due to the 32x32 cutoff
 		//if unspecified, go with the default intended offsets
 		if (!pixel_y || !pixel_x)
@@ -58,6 +59,10 @@
 						//shift half a tile south
 						pixel_y -= 16
 
+	disposing()
+		STOP_TRACKING
+		..()
+
 	//this thing does two things: turn on, and turn off
 	proc/shuttle_pathlights()
 		if(emergency_shuttle?.online)
@@ -67,7 +72,7 @@
 				glow_cutout.plane = PLANE_LIGHTING
 				glow_cutout.blend_mode = BLEND_ADD
 				glow_cutout.layer = LIGHTING_LAYER_BASE
-				glow_cutout.color = list(0.33,0.33,0.33, 0.33,0.33,0.33, 0.33,0.33,0.33)
+				glow_cutout.color = glow_cutout.color = list(0.55,0.55,0.55, 0.55,0.55,0.55, 0.55,0.55,0.55)//up from a bunch of 0.33s
 				src.UpdateOverlays(glow_cutout, "on_state")
 				return
 			else
