@@ -122,6 +122,10 @@
 	//The actual thing that illuminates the world
 	var/datum/light/point/light
 
+	///If true, the light will apply a mouse-transparent glow image with iconstate [base_state]-glow when the light is on.
+	var/has_glow = TRUE //TODO - transition maps to /obj/machinery/light/fluorescent so this can be false by default
+	var/obj/overlay/glow = null
+
 	New()
 		..()
 		inserted_lamp = new light_type()
@@ -134,6 +138,12 @@
 			lightfixtureimage = image(src.icon,src,initial(src.icon_state),PLANE_NOSHADOW_ABOVE -1,src.dir)
 			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).add_image(lightfixtureimage)
 			lightfixtureimage.alpha = 200
+
+		if (has_glow)
+			glow = new(src)//mage(src.icon,src,"[base_state]-glow",PLANE_NOSHADOW_ABOVE,src.dir)
+			glow.icon_state = "[base_state]-glow"
+			glow.vis_flags = VIS_INHERIT_ICON | VIS_INHERIT_DIR | VIS_INHERIT_LAYER | VIS_INHERIT_PLANE //IDK
+			glow.mouse_opacity = FALSE //Here's what we do this for
 
 		var/area/A = get_area(src)
 		if (A)
@@ -150,6 +160,11 @@
 
 		if(ceilingmounted)
 			get_image_group(CLIENT_IMAGE_GROUP_CEILING_ICONS).remove_image(lightfixtureimage)
+
+		if(glow)
+			vis_contents -= glow
+			qdel(glow)
+			glow = null
 
 		var/area/A = get_area(src)
 		if (A)
@@ -282,6 +297,7 @@
 	allowed_type = /obj/item/light/bulb/emergency
 	on = 0
 	removable_bulb = 0
+	has_glow = TRUE
 
 //Same as the above but starts on and stays on
 /obj/machinery/light/emergencyflashing
@@ -295,6 +311,7 @@
 	allowed_type = /obj/item/light/bulb/emergency
 	on = 1
 	removable_bulb = 0
+	has_glow = TRUE
 
 	//repurpose for actual exit signs per room that flash when the shuttle's here
 	exitsign
@@ -517,7 +534,7 @@
 		return src.anchored
 
 //Older lighting that doesn't power up so well anymore.
-/obj/machinery/light/worn
+/obj/machinery/light/fluorescent/worn
 	desc = "A rather old-looking lighting fixture."
 	brightness = 1
 	New()
@@ -599,6 +616,8 @@
 		else
 			icon_state = "[base_state]-empty"
 		on = 0
+		if(glow)
+			src.vis_contents -= glow
 	else
 		switch(current_lamp.light_status) // set icon_states
 			if(LIGHT_OK)
@@ -606,18 +625,27 @@
 					lightfixtureimage.icon_state = "[src.base_state][on]"
 				else
 					icon_state = "[base_state][on]"
+				if(glow)
+					if (on)
+						src.vis_contents += glow
+					else
+						src.vis_contents -= glow
 			if(LIGHT_BURNED)
 				if (ceilingmounted)
 					lightfixtureimage.icon_state = "[src.base_state]-burned"
 				else
 					icon_state = "[base_state]-burned"
 				on = 0
+				if(glow)
+					src.vis_contents -= glow
 			if(LIGHT_BROKEN)
 				if (ceilingmounted)
 					lightfixtureimage.icon_state = "[base_state]-broken"
 				else
 					icon_state = "[base_state]-broken"
 				on = 0
+				if(glow)
+					src.vis_contents -= glow
 
 	// if the state changed, inc the switching counter
 	//if(src.light.enabled != on)

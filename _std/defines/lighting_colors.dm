@@ -66,6 +66,7 @@
 /obj/machinery/light/_supertypes/blacklight/light_type = /obj/item/light/_fitting/blacklight;\
 
 /obj/machinery/light/fluorescent
+	has_glow = TRUE
 ENUMERATE_FIXTURES(fluorescent, tube)
 
 /obj/machinery/light/fluorescent/auto
@@ -75,6 +76,7 @@ ENUMERATE_FIXTURES(fluorescent/auto, tube)
 ENUMERATE_FIXTURES(fluorescent/ceiling, tube)
 
 /obj/machinery/light/small
+	has_glow = TRUE
 ENUMERATE_FIXTURES(small, bulb)
 
 /obj/machinery/light/small/auto

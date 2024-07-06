@@ -184,6 +184,7 @@
 	power_usage = 0
 	on = 1
 	removable_bulb = 0
+	has_glow = TRUE
 
 /obj/machinery/light/flock/New()
 	..()
