@@ -90,6 +90,9 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor,
 /area/station/crew_quarters/market)
 "ahO" = (
@@ -258,6 +261,9 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor,
 /area/station/crew_quarters/market)
 "anv" = (
@@ -323,6 +329,14 @@
 	dir = 4
 	},
 /area/station/hangar/main)
+"apC" = (
+/obj/pathlights/shuttle{
+	dir = 4
+	},
+/turf/floor/neutral/side{
+	dir = 4
+	},
+/area/station/hallway/secondary/exit)
 "aqh" = (
 /obj/table/auto,
 /obj/item/crowbar,
@@ -343,6 +357,9 @@
 "aqq" = (
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon8,
 /obj/disposalpipe/segment/food,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/crew_quarters/market)
 "aqs" = (
@@ -654,6 +671,12 @@
 	},
 /turf/wall/r_wall,
 /area/station/crew_quarters/captain)
+"aHj" = (
+/obj/pathlights/shuttle{
+	dir = 4
+	},
+/turf/floor,
+/area/station/hallway/primary/northwest)
 "aHO" = (
 /turf/wall,
 /area/station/security/quarters)
@@ -853,6 +876,9 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor/grime,
 /area/station/hallway/primary/central)
 "aTU" = (
@@ -893,6 +919,9 @@
 "aVd" = (
 /obj/machinery/light,
 /obj/disposalpipe/switch_junction/biofilter/right/north,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/central)
 "aVv" = (
@@ -900,6 +929,12 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/pathlights/shuttle/firsthalf{
+	dir = 8
+	},
+/obj/pathlights/shuttle/secondhalf{
+	dir = 1
 	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
@@ -954,6 +989,9 @@
 /area/station/crew_quarters/quarters_west)
 "aYx" = (
 /obj/disposalpipe/switch_junction/left/west,
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor,
 /area/station/hallway/primary/northwest)
 "aZd" = (
@@ -1914,6 +1952,9 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon10,
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor,
 /area/station/crew_quarters/lounge)
 "bPi" = (
@@ -1985,6 +2026,9 @@
 /obj/disposalpipe/segment/food{
 	dir = 4
 	},
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
 "bSs" = (
@@ -1994,6 +2038,10 @@
 	},
 /obj/cable{
 	icon_state = "4-8"
+	},
+/obj/pathlights/shuttle/secondhalf,
+/obj/pathlights/shuttle/firsthalf{
+	dir = 4
 	},
 /turf/floor,
 /area/station/crew_quarters/lounge)
@@ -2609,6 +2657,9 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
 "cAI" = (
@@ -2707,6 +2758,9 @@
 /area/station/maintenance/central)
 "cFx" = (
 /obj/disposalpipe/switch_junction/right/south,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor/carpet/red/standard/edge,
 /area/station/crew_quarters/bar)
 "cFz" = (
@@ -2771,6 +2825,12 @@
 	},
 /turf/wall/auto/supernorn,
 /area/listeningpost)
+"cIH" = (
+/obj/pathlights/shuttle{
+	dir = 8
+	},
+/turf/floor,
+/area/station/hallway/primary/southeast)
 "cJe" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -2794,6 +2854,18 @@
 	dir = 8
 	},
 /area/station/hydroponics/bay)
+"cJN" = (
+/obj/pathlights/shuttle/secondhalf{
+	dir = 4
+	},
+/obj/pathlights/shuttle/firsthalf{
+	dir = 1
+	},
+/obj/pathlights/shuttle/secondhalf{
+	dir = 1
+	},
+/turf/floor,
+/area/station/hallway/secondary/exit)
 "cJP" = (
 /turf/wall/r_wall,
 /area/station/science/lab)
@@ -2890,6 +2962,9 @@
 	},
 /obj/disposalpipe/segment/mail,
 /obj/item/device/radio/beacon,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "cRT" = (
@@ -2910,6 +2985,11 @@
 "cSr" = (
 /turf/floor/plating/airless,
 /area/station/solar/east)
+"cTO" = (
+/obj/disposalpipe/segment/mail,
+/obj/pathlights/shuttle,
+/turf/floor,
+/area/station/crew_quarters/lounge)
 "cTU" = (
 /obj/landmark/start{
 	name = "Chef"
@@ -3186,6 +3266,9 @@
 /obj/item/storage/wall/fire{
 	pixel_y = 32
 	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor,
 /area/station/crew_quarters/lounge)
 "diR" = (
@@ -3354,6 +3437,9 @@
 /turf/floor/plating,
 /area/station/maintenance/north)
 "dtW" = (
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor{
 	icon_state = "SS13-Centred-2-U7"
 	},
@@ -3411,6 +3497,13 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/turf/floor,
+/area/station/hallway/secondary/exit)
+"dwh" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/pathlights/shuttle{
+	dir = 4
 	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
@@ -3608,6 +3701,7 @@
 /area/station/crew_quarters/observatory)
 "dFr" = (
 /obj/disposalpipe/switch_junction/left/south,
+/obj/pathlights/shuttle,
 /turf/floor,
 /area/station/crew_quarters/market)
 "dFA" = (
@@ -3836,6 +3930,15 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/northeast)
+"dPP" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
+/turf/floor,
+/area/station/hallway/secondary/exit)
 "dQb" = (
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/light{
@@ -3916,12 +4019,18 @@
 /area/station/science/chemistry)
 "dUC" = (
 /obj/landmark/halloween,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/central)
 "dVp" = (
 /obj/landmark/start,
 /obj/cable{
 	icon_state = "4-8"
+	},
+/obj/pathlights/shuttle{
+	dir = 1
 	},
 /turf/floor,
 /area/station/hallway/primary/central)
@@ -3957,6 +4066,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/pathlights/shuttle{
+	dir = 1
 	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
@@ -4291,6 +4403,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/pathlights/shuttle{
+	dir = 1
 	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
@@ -4714,6 +4829,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
 "eLE" = (
@@ -4885,6 +5003,15 @@
 	},
 /obj/item/device/radio/beacon,
 /obj/machinery/navbeacon/tour/chunk/tour1,
+/obj/pathlights/shuttle/firsthalf{
+	dir = 4
+	},
+/obj/pathlights/shuttle/firsthalf{
+	dir = 8
+	},
+/obj/pathlights/shuttle/secondhalf{
+	dir = 1
+	},
 /turf/floor,
 /area/station/crew_quarters/market)
 "eVJ" = (
@@ -4920,6 +5047,9 @@
 /area/station/security/checkpoint/customs)
 "eWJ" = (
 /obj/disposalpipe/segment/bent/south,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/central)
 "eWW" = (
@@ -5302,6 +5432,9 @@
 /obj/disposalpipe/segment/mail,
 /obj/disposalpipe/segment/morgue{
 	dir = 4
+	},
+/obj/pathlights/shuttle{
+	dir = 1
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
@@ -5818,6 +5951,9 @@
 /obj/disposalpipe/segment/food{
 	dir = 4
 	},
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor,
 /area/station/crew_quarters/market)
 "fIK" = (
@@ -5987,6 +6123,16 @@
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/central)
+"fPV" = (
+/obj/disposalpipe/segment/mail{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/pathlights/shuttle{
+	dir = 8
+	},
+/turf/floor,
+/area/station/hallway/primary/central)
 "fQq" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/northeast,
 /turf/floor/specialroom/freezer/blue,
@@ -6076,6 +6222,9 @@
 	icon_state = "1-4"
 	},
 /obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/pathlights/shuttle{
 	dir = 4
 	},
 /turf/floor,
@@ -6238,6 +6387,9 @@
 /obj/landmark/halloween,
 /obj/disposalpipe/segment/sewage{
 	dir = 4
+	},
+/obj/pathlights/shuttle{
+	dir = 1
 	},
 /turf/floor,
 /area/station/crew_quarters/market)
@@ -6416,6 +6568,9 @@
 	dir = 4;
 	icon_state = "pipe-s"
 	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor,
 /area/station/crew_quarters/lounge)
 "gpS" = (
@@ -6514,6 +6669,13 @@
 /obj/disposalpipe/segment/mail,
 /turf/floor,
 /area/station/science/lobby)
+"gut" = (
+/obj/disposalpipe/segment/mail,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
+/turf/floor,
+/area/station/hallway/primary/central)
 "guQ" = (
 /turf/wall,
 /area/station/crew_quarters/stockex)
@@ -6696,6 +6858,12 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon2,
+/obj/pathlights/shuttle/secondhalf{
+	dir = 8
+	},
+/obj/pathlights/shuttle/firsthalf{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/northeast)
 "gEy" = (
@@ -6727,6 +6895,9 @@
 	},
 /obj/cable{
 	icon_state = "4-8"
+	},
+/obj/pathlights/shuttle{
+	dir = 8
 	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
@@ -6987,6 +7158,9 @@
 	pixel_x = -26;
 	pixel_y = 0
 	},
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
 "gWs" = (
@@ -7184,6 +7358,9 @@
 /area/station/mining/refinery)
 "hhN" = (
 /obj/disposalpipe/segment/food,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/crew_quarters/market)
 "hiJ" = (
@@ -7222,6 +7399,9 @@
 /obj/disposalpipe/segment/mail,
 /obj/disposalpipe/segment/food{
 	dir = 4
+	},
+/obj/pathlights/shuttle{
+	dir = 8
 	},
 /turf/floor,
 /area/station/crew_quarters/market)
@@ -7424,6 +7604,9 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4;
 	icon_state = "pipe-s"
+	},
+/obj/pathlights/shuttle{
+	dir = 8
 	},
 /turf/floor,
 /area/station/hallway/primary/northeast)
@@ -8177,6 +8360,9 @@
 /area/station/crew_quarters/lounge)
 "ipJ" = (
 /obj/disposalpipe/switch_junction/left/south,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
 "ipN" = (
@@ -8196,6 +8382,9 @@
 /area/station/maintenance/west)
 "iqC" = (
 /obj/disposalpipe/segment/morgue,
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor{
 	icon_state = "SS13-Centred-2-U6"
 	},
@@ -8233,6 +8422,9 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
+	},
+/obj/pathlights/shuttle{
+	dir = 1
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
@@ -8418,12 +8610,23 @@
 	},
 /turf/space,
 /area/station/turret_protected/ai)
+"iyK" = (
+/obj/disposalpipe/segment/mail,
+/obj/pathlights/shuttle/firsthalf,
+/obj/pathlights/shuttle/secondhalf{
+	dir = 4
+	},
+/turf/floor,
+/area/station/crew_quarters/market)
 "ize" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/engine/engineering)
 "izv" = (
 /obj/disposalpipe/segment/bent/west,
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor/neutral/side{
 	dir = 4
 	},
@@ -8648,6 +8851,7 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
+/obj/pathlights/shuttle,
 /turf/floor,
 /area/station/crew_quarters/lounge)
 "iJR" = (
@@ -8681,6 +8885,13 @@
 	},
 /turf/wall,
 /area/station/janitor/office)
+"iKT" = (
+/obj/disposalpipe/segment/mail,
+/obj/pathlights/shuttle{
+	dir = 8
+	},
+/turf/floor,
+/area/station/hallway/secondary/exit)
 "iLd" = (
 /obj/disposalpipe/junction/left/west,
 /turf/floor/orangeblack,
@@ -9174,6 +9385,9 @@
 "jly" = (
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon12,
 /obj/disposalpipe/segment/ejection,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/central)
 "jmo" = (
@@ -9265,6 +9479,9 @@
 /area/station/bridge)
 "jrR" = (
 /obj/disposalpipe/switch_junction/left/west,
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor{
 	icon_state = "SS13-Centred-2-U3"
 	},
@@ -9339,6 +9556,9 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/northeast)
 "jxw" = (
@@ -9412,6 +9632,9 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/mail,
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
 "jAt" = (
@@ -9474,6 +9697,18 @@
 	name = "Observer-Start"
 	},
 /obj/machinery/light/small/ceiling,
+/obj/pathlights/shuttle/firsthalf{
+	dir = 4
+	},
+/obj/pathlights/shuttle/firsthalf{
+	dir = 8
+	},
+/obj/pathlights/shuttle/secondhalf{
+	dir = 1
+	},
+/obj/pathlights/shuttle/firsthalf{
+	dir = 1
+	},
 /turf/floor{
 	icon_state = "SS13-Centred-2-U4"
 	},
@@ -9920,6 +10155,11 @@
 /obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/hallway/primary/central)
+"kgn" = (
+/obj/disposalpipe/segment/mail,
+/obj/pathlights/shuttle,
+/turf/floor,
+/area/station/crew_quarters/market)
 "kgp" = (
 /obj/machinery/power/data_terminal,
 /obj/cable{
@@ -9946,6 +10186,9 @@
 /area/station/bridge)
 "khZ" = (
 /obj/disposalpipe/segment/bent/west,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/central)
 "kia" = (
@@ -10026,6 +10269,9 @@
 /obj/disposalpipe/segment/mail,
 /obj/cable{
 	icon_state = "1-8"
+	},
+/obj/pathlights/shuttle{
+	dir = 1
 	},
 /turf/floor/carpet/red/standard/edge,
 /area/station/crew_quarters/bar)
@@ -10784,6 +11030,9 @@
 /area/station/crew_quarters/market)
 "kZO" = (
 /obj/item/device/radio/beacon,
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor,
 /area/station/hallway/primary/northwest)
 "kZQ" = (
@@ -11010,8 +11259,22 @@
 /area/station/maintenance/central)
 "lnZ" = (
 /obj/disposalpipe/segment/horizontal,
+/obj/pathlights/shuttle/secondhalf{
+	dir = 4
+	},
+/obj/pathlights/shuttle/firsthalf{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
+"loc" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/disposalpipe/segment/mail,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
+/turf/floor,
+/area/station/hallway/primary/central)
 "loC" = (
 /obj/table/auto,
 /turf/floor,
@@ -11130,6 +11393,9 @@
 	dir = 4
 	},
 /obj/disposalpipe/segment/ejection,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/central)
 "lsV" = (
@@ -11190,6 +11456,12 @@
 	},
 /turf/floor,
 /area/station/crew_quarters/market)
+"lxY" = (
+/obj/pathlights/shuttle{
+	dir = 8
+	},
+/turf/floor,
+/area/station/hallway/primary/central)
 "lyi" = (
 /obj/machinery/light{
 	dir = 8;
@@ -11581,6 +11853,9 @@
 /obj/disposalpipe/segment/food{
 	dir = 4
 	},
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor,
 /area/station/crew_quarters/market)
 "lUV" = (
@@ -11826,6 +12101,15 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon4,
+/obj/pathlights/shuttle/secondhalf{
+	dir = 4
+	},
+/obj/pathlights/shuttle/secondhalf{
+	dir = 8
+	},
+/obj/pathlights/shuttle/firsthalf{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
 "mjq" = (
@@ -11963,6 +12247,9 @@
 	},
 /obj/disposalpipe/segment/ejection,
 /obj/machinery/navbeacon/tour/chunk/tour6,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/central)
 "mqM" = (
@@ -12017,6 +12304,9 @@
 "muw" = (
 /obj/cable{
 	icon_state = "4-8"
+	},
+/obj/pathlights/shuttle{
+	dir = 8
 	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
@@ -12282,6 +12572,9 @@
 	},
 /obj/cable{
 	icon_state = "2-8"
+	},
+/obj/pathlights/shuttle{
+	dir = 8
 	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
@@ -12651,6 +12944,9 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 1
 	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor,
 /area/station/crew_quarters/lounge)
 "nfB" = (
@@ -12987,6 +13283,9 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor/grime,
 /area/station/hallway/primary/central)
 "nwy" = (
@@ -13110,6 +13409,9 @@
 /obj/disposalpipe/segment/food{
 	dir = 4
 	},
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor,
 /area/station/crew_quarters/market)
 "nCR" = (
@@ -13202,6 +13504,9 @@
 /area/station/medical/robotics)
 "nFG" = (
 /obj/disposalpipe/segment/mail,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor{
 	icon_state = "SS13-Centred-2-L4"
 	},
@@ -13225,6 +13530,9 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4;
 	icon_state = "pipe-s"
+	},
+/obj/pathlights/shuttle{
+	dir = 4
 	},
 /turf/floor{
 	icon_state = "SS13-Centred-2-U1"
@@ -13266,6 +13574,9 @@
 /area/station/bridge)
 "nKi" = (
 /obj/machinery/navbeacon/tour/chunk/tour5,
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor{
 	icon_state = "SS13-Centred-2-U5"
 	},
@@ -13425,6 +13736,12 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
+/obj/pathlights/shuttle/firsthalf{
+	dir = 4
+	},
+/obj/pathlights/shuttle/secondhalf{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
 "nUp" = (
@@ -13491,6 +13808,12 @@
 	},
 /turf/floor/grey,
 /area/station/crew_quarters/quarters_west)
+"nWR" = (
+/obj/pathlights/shuttle{
+	dir = 4
+	},
+/turf/floor,
+/area/station/hallway/secondary/exit)
 "nXk" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -13563,6 +13886,9 @@
 /area/station/turret_protected/AIsat)
 "nYW" = (
 /obj/disposalpipe/loafer/vertical,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/central)
 "nZl" = (
@@ -13863,6 +14189,9 @@
 	icon_state = "pipe-s"
 	},
 /obj/disposalpipe/segment/ejection,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/central)
 "oqR" = (
@@ -14011,6 +14340,9 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor,
 /area/station/hallway/primary/central)
 "oyd" = (
@@ -14136,6 +14468,9 @@
 /area/station/hydroponics/lobby)
 "oDq" = (
 /obj/disposalpipe/switch_junction/right/east,
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor,
 /area/station/hallway/primary/northeast)
 "oDJ" = (
@@ -14430,6 +14765,9 @@
 /area/station/chapel/office)
 "oQb" = (
 /obj/disposalpipe/segment/mail,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
 "oQm" = (
@@ -14568,11 +14906,17 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/bent/west,
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor,
 /area/station/crew_quarters/market)
 "oWE" = (
 /obj/machinery/firealarm{
 	pixel_y = 26
+	},
+/obj/pathlights/shuttle{
+	dir = 8
 	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
@@ -14658,6 +15002,13 @@
 	},
 /turf/floor/grey/side,
 /area/station/crew_quarters/bar)
+"paR" = (
+/obj/disposalpipe/segment/morgue,
+/obj/pathlights/shuttle{
+	dir = 8
+	},
+/turf/floor,
+/area/station/hallway/primary/southeast)
 "pbm" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/disposalpipe/segment/vertical,
@@ -14858,6 +15209,9 @@
 	dir = 8;
 	pixel_x = 26
 	},
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
 "piH" = (
@@ -14966,6 +15320,9 @@
 	dir = 8;
 	icon_state = "tube1"
 	},
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
 "poe" = (
@@ -14992,6 +15349,9 @@
 /area/station/science/lab)
 "ppl" = (
 /obj/disposalpipe/switch_junction/left/east,
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor,
 /area/station/hallway/primary/northeast)
 "ppC" = (
@@ -15171,6 +15531,9 @@
 	dir = 4
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor/grime,
 /area/station/hallway/primary/central)
 "pxk" = (
@@ -15300,6 +15663,9 @@
 /obj/disposalpipe/segment/mail,
 /obj/cable{
 	icon_state = "4-8"
+	},
+/obj/pathlights/shuttle{
+	dir = 8
 	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
@@ -15575,6 +15941,9 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor,
 /area/station/crew_quarters/market)
 "pTa" = (
@@ -15720,6 +16089,9 @@
 	icon_state = "pipe-s"
 	},
 /obj/disposalpipe/segment/morgue,
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor,
 /area/station/hallway/primary/northeast)
 "pZn" = (
@@ -15744,6 +16116,9 @@
 "qaW" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/disposalpipe/segment/food,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/crew_quarters/market)
 "qbk" = (
@@ -16135,6 +16510,9 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor,
 /area/station/crew_quarters/lounge)
 "qAr" = (
@@ -16154,6 +16532,7 @@
 "qAN" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/disposalpipe/segment/mail,
+/obj/pathlights/shuttle,
 /turf/floor,
 /area/station/crew_quarters/lounge)
 "qBh" = (
@@ -16273,6 +16652,9 @@
 /obj/disposalpipe/segment/food{
 	icon_state = "pipe-c"
 	},
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/central)
 "qFX" = (
@@ -16298,6 +16680,9 @@
 /obj/disposalpipe/segment/mail,
 /obj/disposalpipe/segment/food{
 	dir = 4
+	},
+/obj/pathlights/shuttle{
+	dir = 1
 	},
 /turf/floor/carpet/red/standard/edge{
 	dir = 1
@@ -16454,6 +16839,9 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4;
 	icon_state = "pipe-s"
+	},
+/obj/pathlights/shuttle{
+	dir = 4
 	},
 /turf/floor,
 /area/station/hallway/primary/northwest)
@@ -16625,6 +17013,9 @@
 	dir = 4;
 	icon_state = "pipe-s"
 	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor,
 /area/station/hallway/primary/central)
 "qWg" = (
@@ -16676,6 +17067,9 @@
 "qYf" = (
 /obj/disposalpipe/segment/mail,
 /obj/item/device/radio/beacon,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/central)
 "qYh" = (
@@ -16843,6 +17237,9 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
 "rfT" = (
@@ -16952,6 +17349,9 @@
 	dir = 4;
 	icon_state = "pipe-s"
 	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor,
 /area/station/hallway/primary/northwest)
 "rkJ" = (
@@ -16981,6 +17381,9 @@
 	},
 /obj/disposalpipe/segment/food{
 	dir = 4
+	},
+/obj/pathlights/shuttle{
+	dir = 8
 	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
@@ -17260,6 +17663,9 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
 "rFk" = (
@@ -17353,6 +17759,9 @@
 "rKV" = (
 /obj/cable{
 	icon_state = "2-8"
+	},
+/obj/pathlights/shuttle{
+	dir = 1
 	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
@@ -17485,6 +17894,9 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/segment/mail,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "rVV" = (
@@ -17523,6 +17935,9 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/switch_junction/left/south,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "rYq" = (
@@ -17542,6 +17957,14 @@
 /obj/storage/secure/closet/engineering/engineer,
 /turf/floor,
 /area/station/engine/engineering)
+"rYR" = (
+/obj/pathlights/shuttle{
+	dir = 8
+	},
+/turf/floor/neutral/side{
+	dir = 8
+	},
+/area/station/hallway/secondary/exit)
 "rZc" = (
 /obj/disposalpipe/segment/bent/east,
 /obj/decal/cleanable/dirt/random,
@@ -17699,6 +18122,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/pathlights/shuttle{
+	dir = 1
 	},
 /turf/floor/carpet/red/standard/edge{
 	dir = 1
@@ -18300,6 +18726,13 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/security/quarters)
+"sOh" = (
+/obj/disposalpipe/segment/vertical,
+/obj/pathlights/shuttle{
+	dir = 8
+	},
+/turf/floor,
+/area/station/hallway/primary/central)
 "sOi" = (
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/camera{
@@ -18329,6 +18762,9 @@
 	},
 /obj/disposalpipe/segment/food{
 	dir = 4
+	},
+/obj/pathlights/shuttle{
+	dir = 8
 	},
 /turf/floor,
 /area/station/crew_quarters/market)
@@ -18441,6 +18877,9 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 1
 	},
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor,
 /area/station/hallway/primary/northeast)
 "sUt" = (
@@ -18548,6 +18987,9 @@
 /obj/disposalpipe/segment/food{
 	dir = 8;
 	icon_state = "pipe-c"
+	},
+/obj/pathlights/shuttle{
+	dir = 8
 	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
@@ -19297,6 +19739,9 @@
 	icon_state = "4-10"
 	},
 /obj/disposalpipe/segment/bent/north,
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor,
 /area/station/crew_quarters/market)
 "tPU" = (
@@ -19315,6 +19760,13 @@
 	name = "grimmy carpet"
 	},
 /area/station/crew_quarters/observatory)
+"tRv" = (
+/obj/disposalpipe/segment/mail,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
+/turf/floor,
+/area/station/hallway/primary/northeast)
 "tRR" = (
 /obj/disposalpipe/segment/morgue,
 /turf/floor/white,
@@ -19447,6 +19899,9 @@
 /obj/disposalpipe/segment/food{
 	dir = 4
 	},
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
 "ubF" = (
@@ -19459,6 +19914,9 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4;
 	icon_state = "pipe-s"
+	},
+/obj/pathlights/shuttle{
+	dir = 4
 	},
 /turf/floor{
 	icon_state = "SS13-Centred-2-U2"
@@ -19626,6 +20084,9 @@
 /obj/disposalpipe/segment/morgue{
 	dir = 4
 	},
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor/grime,
 /area/station/hallway/primary/central)
 "ujq" = (
@@ -19759,6 +20220,9 @@
 /obj/disposalpipe/segment/mail,
 /obj/disposalpipe/segment/food{
 	dir = 4
+	},
+/obj/pathlights/shuttle{
+	dir = 8
 	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
@@ -19926,6 +20390,9 @@
 /obj/disposalpipe/segment/mail{
 	dir = 1;
 	icon_state = "pipe-c"
+	},
+/obj/pathlights/shuttle{
+	dir = 4
 	},
 /turf/floor,
 /area/station/hallway/primary/northwest)
@@ -20221,6 +20688,23 @@
 	},
 /turf/floor,
 /area/station/security/brig)
+"uGm" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/pathlights/shuttle/secondhalf{
+	dir = 8
+	},
+/obj/pathlights/shuttle/secondhalf{
+	dir = 1
+	},
+/obj/pathlights/shuttle/firsthalf{
+	dir = 1
+	},
+/turf/floor,
+/area/station/hallway/secondary/exit)
 "uGy" = (
 /obj/grille/catwalk/grey{
 	dir = 10
@@ -20494,6 +20978,9 @@
 	dir = 4;
 	icon_state = "pipe-s"
 	},
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor,
 /area/station/hallway/primary/northeast)
 "uVw" = (
@@ -20563,6 +21050,18 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
 /area/station/maintenance/northeast)
+"uYm" = (
+/obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/obj/pathlights/shuttle{
+	dir = 1
+	},
+/obj/pathlights/shuttle/firsthalf{
+	dir = 4
+	},
+/turf/floor,
+/area/station/hallway/primary/central)
 "uYF" = (
 /obj/cable{
 	icon_state = "2-8"
@@ -20647,6 +21146,9 @@
 /obj/disposalpipe/segment/mail{
 	dir = 1;
 	icon_state = "pipe-c"
+	},
+/obj/pathlights/shuttle{
+	dir = 1
 	},
 /turf/floor,
 /area/station/hallway/primary/central)
@@ -21135,6 +21637,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/navbeacon/tour/chunk/tour0,
+/obj/pathlights/shuttle{
+	dir = 8
+	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
 "vCy" = (
@@ -21344,6 +21849,9 @@
 /area/station/medical/robotics)
 "vIG" = (
 /obj/disposalpipe/switch_junction/right/west,
+/obj/pathlights/shuttle{
+	dir = 4
+	},
 /turf/floor,
 /area/station/hallway/primary/central)
 "vIN" = (
@@ -21403,6 +21911,9 @@
 	},
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon11,
 /obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/pathlights/shuttle{
 	dir = 4
 	},
 /turf/floor,
@@ -21468,6 +21979,12 @@
 	},
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon20_to_1_end,
 /obj/disposalpipe/segment/mail,
+/obj/pathlights/shuttle{
+	dir = 8
+	},
+/obj/pathlights/shuttle/secondhalf{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
 "vPA" = (
@@ -21672,6 +22189,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
 "vZr" = (
@@ -21810,6 +22330,9 @@
 /area/station/maintenance/west)
 "wgj" = (
 /obj/disposalpipe/segment/ejection,
+/obj/pathlights/shuttle{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/central)
 "wgr" = (
@@ -21901,6 +22424,9 @@
 	icon_state = "1-4"
 	},
 /obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/pathlights/shuttle{
 	dir = 4
 	},
 /turf/floor,
@@ -22076,6 +22602,7 @@
 	icon_state = "6-8"
 	},
 /obj/disposalpipe/segment/mail,
+/obj/pathlights/shuttle,
 /turf/floor,
 /area/station/crew_quarters/market)
 "wvT" = (
@@ -22353,6 +22880,12 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
+/obj/pathlights/shuttle/secondhalf{
+	dir = 8
+	},
+/obj/pathlights/shuttle/firsthalf{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
 "wNo" = (
@@ -22380,6 +22913,9 @@
 "wOb" = (
 /obj/disposalpipe/segment/vertical,
 /obj/disposalpipe/segment/morgue{
+	dir = 4
+	},
+/obj/pathlights/shuttle{
 	dir = 4
 	},
 /turf/floor,
@@ -22419,6 +22955,12 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/southeast)
+"wQe" = (
+/obj/pathlights/shuttle{
+	dir = 1
+	},
+/turf/floor,
+/area/station/hallway/secondary/exit)
 "wQE" = (
 /obj/cable/purple,
 /obj/machinery/power/data_terminal,
@@ -22649,6 +23191,9 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4;
 	icon_state = "pipe-s"
+	},
+/obj/pathlights/shuttle{
+	dir = 8
 	},
 /turf/floor,
 /area/station/hallway/primary/northeast)
@@ -23152,6 +23697,9 @@
 	},
 /obj/machinery/light/small{
 	dir = 1
+	},
+/obj/pathlights/shuttle{
+	dir = 4
 	},
 /turf/floor/grime,
 /area/station/hallway/primary/central)
@@ -60602,7 +61150,7 @@ sLU
 ylp
 bpg
 aBO
-bpg
+aHj
 ilM
 aUi
 kKF
@@ -60623,20 +61171,20 @@ rvU
 dnj
 bSs
 qAN
-mHe
-mHe
+cTO
+cTO
 iJl
-mHe
-mHe
-mHe
-mHe
+cTO
+cTO
+cTO
+cTO
 xyD
-uzw
-uzw
-uzw
+kgn
+kgn
+kgn
 dFr
 wvI
-uzw
+iyK
 glT
 oFx
 cle
@@ -64812,11 +65360,11 @@ wRy
 lnZ
 pob
 gVJ
-foU
-foU
+wQe
+cJN
 rTU
 pob
-foU
+wQe
 rKV
 eKU
 eKU
@@ -65111,11 +65659,11 @@ wJD
 wJD
 wRy
 duF
-lnZ
+dwh
 foU
 foU
 foU
-foU
+nWR
 rTU
 foU
 foU
@@ -65417,7 +65965,7 @@ izv
 udV
 cUZ
 pQp
-udV
+apC
 vWH
 wRy
 wRy
@@ -67242,20 +67790,20 @@ huZ
 vWH
 tdc
 mjo
-foU
+wQe
 rTU
 dUC
 dVp
 jDK
 nFG
-eLE
+loc
 tFk
-wIB
-wIB
+gut
+gut
 qYf
-wIB
+gut
 vdQ
-oxS
+uYm
 eWJ
 jly
 lsI
@@ -67543,7 +68091,7 @@ huZ
 huZ
 pck
 eyZ
-rES
+dPP
 foU
 rTU
 vnM
@@ -67845,7 +68393,7 @@ huZ
 huZ
 pck
 eyZ
-rES
+dPP
 pQp
 uKy
 iwl
@@ -68147,7 +68695,7 @@ huZ
 huZ
 pck
 eyZ
-rES
+dPP
 vWH
 vWH
 pWh
@@ -68449,12 +68997,12 @@ huZ
 huZ
 pck
 eyZ
-rES
+dPP
 lqH
 hOO
 vWH
 uak
-vnM
+lxY
 tFP
 iLd
 ifm
@@ -68751,12 +69299,12 @@ huZ
 huZ
 pck
 eyZ
-rES
+dPP
 vWH
 vWH
 vWH
 wyh
-vnM
+lxY
 wXP
 ukT
 ifm
@@ -69037,11 +69585,11 @@ wJD
 wJD
 wRy
 qUb
-okX
+rYR
 okX
 wny
 kWO
-okX
+rYR
 vWH
 wRy
 wRy
@@ -69053,12 +69601,12 @@ wRy
 vWH
 vWH
 bcB
-rES
+dPP
 lqH
 hOO
 vWH
 uak
-vnM
+lxY
 wXP
 ifm
 ifm
@@ -69339,11 +69887,11 @@ wJD
 wJD
 wRy
 muQ
-sbR
+iKT
 sbR
 qYh
 sbR
-sbR
+iKT
 oIH
 sbR
 sbR
@@ -69355,12 +69903,12 @@ sbR
 bHF
 wmK
 iOH
-rES
+dPP
 vWH
 vWH
 vWH
 uak
-vnM
+lxY
 wXP
 vCW
 oIq
@@ -69645,7 +70193,7 @@ wMM
 vYH
 pin
 eKU
-eKU
+uGm
 njL
 vYH
 dWJ
@@ -69662,7 +70210,7 @@ lqH
 hOO
 vWH
 uak
-vnM
+lxY
 lhN
 vCW
 rds
@@ -69964,7 +70512,7 @@ vWH
 vWH
 vWH
 kRU
-vnM
+lxY
 wXP
 vCW
 xlV
@@ -70266,7 +70814,7 @@ eoH
 vuF
 eoH
 lrV
-vnM
+lxY
 wXP
 vCW
 vAh
@@ -70568,7 +71116,7 @@ oxo
 oxo
 lZd
 kSl
-vTH
+sOh
 vuM
 xWA
 cQs
@@ -70870,7 +71418,7 @@ uBL
 pUy
 eoH
 kNO
-nyN
+fPV
 eLE
 kwr
 xFB
@@ -78723,13 +79271,13 @@ vZL
 vRU
 mDS
 gDy
-oHa
-oHa
-oHa
-oHa
-oHa
-oHa
-oHa
+tRv
+tRv
+tRv
+tRv
+tRv
+tRv
+tRv
 jwF
 uSj
 slC
@@ -79058,7 +79606,7 @@ tEK
 tEK
 tEK
 tEK
-tEK
+paR
 tEK
 wFz
 jJp
@@ -79964,7 +80512,7 @@ huZ
 huZ
 huZ
 cjm
-tBB
+cIH
 tBB
 cjm
 huZ
@@ -80266,7 +80814,7 @@ huZ
 huZ
 huZ
 cjm
-tBB
+cIH
 tBB
 cjm
 huZ
@@ -80568,7 +81116,7 @@ sBa
 huZ
 huZ
 cjm
-tBB
+cIH
 tBB
 cjm
 huZ
@@ -80870,7 +81418,7 @@ cOQ
 sBa
 huZ
 cjm
-tBB
+cIH
 aCW
 cjm
 huZ
@@ -81172,7 +81720,7 @@ tnI
 cOQ
 huZ
 cjm
-tBB
+cIH
 tBB
 cjm
 wJD
@@ -81474,7 +82022,7 @@ lyq
 cOQ
 syu
 fOx
-tBB
+cIH
 uLX
 vJb
 rwu
@@ -81776,7 +82324,7 @@ vnG
 pWE
 tBB
 pkO
-tBB
+cIH
 tBB
 cFX
 rwa
