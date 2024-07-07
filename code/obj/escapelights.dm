@@ -9,6 +9,8 @@
 // build corners by using two of them, or intersections by using 3 or 4
 // cardinal directions only
 
+//Todo: junctions where more than one firsthalves come together get one very bright light because of overlaps
+
 /obj/pathlights/shuttle
 	name = "shuttle evacuation light"
 	desc = "A small light that directs the way to the departing shuttle bay."
@@ -35,10 +37,15 @@
 		//initial slight offset due to the 32x32 cutoff
 		//if unspecified, go with the default intended offsets
 		if (!pixel_y || !pixel_x)
-			if(dir & (NORTH | SOUTH))
-				pixel_y = -3
-			else
-				pixel_x = 3
+			switch(dir) //I trial and errored my way into these numbers
+				if(NORTH)
+					pixel_y = 5
+				if(SOUTH)
+					pixel_y = -3
+				if(EAST)
+					pixel_x = 3
+				if(WEST)
+					pixel_x = -5
 
 			if(even)
 				//bonus nudge for horizontal or vertical instances
