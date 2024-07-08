@@ -423,7 +423,7 @@ proc/debug_map_apc_count(delim,zlim)
 			img.app.color = null
 			img.app.maptext = null
 			if (issimulatedturf(sim))
-				img.app.alpha = 150
+				img.app.alpha = 100
 
 				var/datum/air_group/group = sim.parent
 				var/datum/gas_mixture/air = null
