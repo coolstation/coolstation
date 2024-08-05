@@ -2,9 +2,7 @@
 
 
 
-/mob/living/carbon/human/emote(var/act, var/voluntary = 0, var/emoteTarget = null) //mbc : if voluntary is 2, it's a hotkeyed emote and that means that we can skip the findtext check. I am sorry, cleanup later
-	var/param = null
-
+/mob/living/carbon/human/emote(var/act, var/voluntary = 0, var/emoteTarget = null, datum/emote/actual_emote, param = null) //mbc : if voluntary is 2, it's a hotkeyed emote and that means that we can skip the findtext check. I am sorry, cleanup later
 	if (!bioHolder) bioHolder = new/datum/bioHolder( src )
 
 	if(voluntary && !src.emote_allowed)
@@ -31,83 +29,19 @@
 		if (I.implanted)
 			I.trigger(act, src)
 
-	var/m_type = MESSAGE_VISIBLE
-	var/custom = 0 //Sorry, gotta make this for chat groupings.
+	var/datum/emote/the_datum =null
 
-	var/maptext_out = 0
-	var/message = null
-	if (src.mutantrace)
-		var/list/mutantrace_emote_stuff = src.mutantrace.emote(act, voluntary)
-		if(!islist(mutantrace_emote_stuff))
-			message = mutantrace_emote_stuff
-		else
-			if(length(mutantrace_emote_stuff) >= 1)
-				message = mutantrace_emote_stuff[1]
-			if(length(mutantrace_emote_stuff) >= 2)
-				maptext_out = mutantrace_emote_stuff[2]
-	if (!message)
-		//Much of this ideally gets turned into a separate proc
-		var/what_to_do = human_emotes.Find(lowertext(act))
-		var/list/what_have_we_done = null
+	if (src.mutantrace?.emote_overrides)
+		var/what_to_do = src.mutantrace.emote_overrides.Find(lowertext(act))
 		if (what_to_do)
-			var/datum/emote/how_to_do_it = emote_controls.get_emote(human_emotes[lowertext(act)])
-			if (istype(how_to_do_it))
-				if (!emote_check(voluntary, how_to_do_it.return_cooldown(src, voluntary), 1, !(how_to_do_it.possible_while_dead)))
-					return
-				what_have_we_done= how_to_do_it.enact(src, voluntary, param)
-		if (islist(what_have_we_done))
-			message = what_have_we_done[1]
-			maptext_out = what_have_we_done[2]
-			m_type = what_have_we_done[3] //visible or audible emote
-			if (length(what_have_we_done) > 3) //(I'm not changing the returns on ~130 emotes that don't even fucking use it)
-				custom = what_have_we_done[4] //emote grouping 4 custom emotes
-		else
-			src.show_text("Unusable emote '[act]'. 'Me help' for a list.", "blue")
-			return
+			the_datum = get_singleton(src.mutantrace.emote_overrides[lowertext(act)])
 
-	//copy paste lol
+	if (!istype(the_datum)) //no mutantrace override found
+		var/what_to_do = human_emotes.Find(lowertext(act))
+		if (what_to_do)
+			the_datum = get_singleton(human_emotes[lowertext(act)])
 
-	if (maptext_out && !ON_COOLDOWN(src, "emote maptext", 0.5 SECONDS))
-		var/image/chat_maptext/chat_text = null
-		SPAWN_DBG(0) //blind stab at a life() hang - REMOVE LATER
-			if (speechpopups && src.chat_text)
-				chat_text = make_chat_maptext(src, maptext_out, "color: #C2BEBE;" + src.speechpopupstyle, alpha = 140)
-				if(chat_text)
-					chat_text.measure(src.client)
-					for(var/image/chat_maptext/I in src.chat_text.lines)
-						if(I != chat_text)
-							I.bump_up(chat_text.measured_height)
-
-			if (message)
-				logTheThing("say", src, null, "EMOTE: [message]")
-				act = lowertext(act)
-				if (m_type & 1)
-					for (var/mob/O in viewers(src, null))
-						O.show_message("<span class='emote'>[message]</span>", m_type, group = "[src]_[act]_[custom]", assoc_maptext = chat_text)
-				else if (m_type & 2)
-					for (var/mob/O in hearers(src, null))
-						O.show_message("<span class='emote'>[message]</span>", m_type, group = "[src]_[act]_[custom]", assoc_maptext = chat_text)
-				else if (!isturf(src.loc))
-					var/atom/A = src.loc
-					for (var/mob/O in A.contents)
-						O.show_message("<span class='emote'>[message]</span>", m_type, group = "[src]_[act]_[custom]", assoc_maptext = chat_text)
-
-
-	else
-
-		if (message)
-			logTheThing("say", src, null, "EMOTE: [message]")
-			act = lowertext(act)
-			if (m_type & 1)
-				for (var/mob/O in viewers(src, null))
-					O.show_message("<span class='emote'>[message]</span>", m_type, group = "[src]_[act]_[custom]")
-			else if (m_type & 2)
-				for (var/mob/O in hearers(src, null))
-					O.show_message("<span class='emote'>[message]</span>", m_type, group = "[src]_[act]_[custom]")
-			else if (!isturf(src.loc))
-				var/atom/A = src.loc
-				for (var/mob/O in A.contents)
-					O.show_message("<span class='emote'>[message]</span>", m_type, group = "[src]_[act]_[custom]")
+	..(act, voluntary, emoteTarget, the_datum, param)
 
 // I'm very sorry for this but it's to trick the linter into thinking emote doesn't sleep (since it usually doesn't)
 // you see from the important places it's called as emote("scream") etc. which doesn't actually sleep but for the linter to recognize

@@ -64,7 +64,6 @@
 	var/voice_type = 0
 	var/last_voice_sound = 0
 	var/speechbubble_enabled = 1
-	var/speechpopupstyle = null
 	var/isFlying = 0 // for player controled flying critters
 
 	var/caneat = 1
