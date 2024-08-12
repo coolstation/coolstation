@@ -1560,10 +1560,10 @@ obj/item/whetstone
 	New()
 		..()
 		BLOCK_SETUP(BLOCK_ROD)
-
-/obj/item/gang_machete
-	name = "machete"
-	desc = "A hefty, unbalanced blade. Wielding it fills you with thoughts of savagery."
+//Machete for The Slasher
+/obj/item/slasher_machete
+	name = "slasher's machete"
+	desc = "An old machete, clearly showing signs of wear and tear due to its age."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "machete"
 	item_state = "welder_machete"
