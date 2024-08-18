@@ -859,7 +859,7 @@
 	if (src.last_processing_tick < 0)
 		src.last_tick_duration = 1
 	else
-		src.last_tick_duration = (ticker.round_elapsed_ticks - src.last_processing_tick) / (2.9 SECONDS)
+		src.last_tick_duration = (ticker.round_elapsed_ticks - src.last_processing_tick) / ITEM_PROCESS_SCHEDULE_INTERVAL
 	src.last_processing_tick = ticker.round_elapsed_ticks
 	if (src.burning)
 		if (src.material && !(src.item_function_flags & COLD_BURN))

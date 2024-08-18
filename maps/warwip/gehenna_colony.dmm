@@ -6712,6 +6712,7 @@
 /obj/machinery/computer/genetics{
 	dir = 4
 	},
+/obj/item/device/analyzer/genes,
 /turf/floor/carpet/grime,
 /area/station/medical/research)
 "eYL" = (
@@ -17040,6 +17041,7 @@
 /obj/machinery/computer/genetics{
 	dir = 8
 	},
+/obj/item/device/analyzer/genes,
 /turf/floor/carpet/grime,
 /area/station/medical/research)
 "nbT" = (
@@ -25173,6 +25175,22 @@
 /obj/item/device/radio/intercom/science{
 	dir = 4
 	},
+/obj/item/storage/box/agarose_replicator{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/storage/box/agarose_replicator{
+	pixel_x = -8;
+	pixel_y = -7
+	},
+/obj/item/storage/box/agarose_separator{
+	pixel_x = 9;
+	pixel_y = 5
+	},
+/obj/item/storage/box/agarose_separator{
+	pixel_x = 9;
+	pixel_y = -7
+	},
 /turf/floor/carpet/grime,
 /area/station/medical/research)
 "tjK" = (
@@ -25180,6 +25198,7 @@
 /obj/item/device/radio/intercom/medical{
 	dir = 8
 	},
+/obj/item/storage/box/genetic_syringes,
 /turf/floor/carpet/grime,
 /area/station/medical/research)
 "tjQ" = (
@@ -26583,6 +26602,7 @@
 /area/station/engine/engineering/breakroom)
 "ulY" = (
 /obj/table/wood/auto,
+/obj/item/kitchen/utensil/knife,
 /turf/floor/carpet/blue/standard/edge/south,
 /area/station/medical/research)
 "umd" = (
@@ -27373,6 +27393,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/storage/crate/gene_separators,
 /turf/floor/green,
 /area/station/medical/research)
 "uOT" = (
@@ -31600,6 +31621,7 @@
 	pixel_x = -7;
 	pixel_y = 10
 	},
+/obj/item/kitchen/utensil/knife,
 /turf/floor/carpet/blue/standard/edge/south,
 /area/station/medical/research)
 "xHq" = (

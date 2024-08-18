@@ -16284,6 +16284,7 @@
 "gSm" = (
 /obj/item/reagent_containers/food/snacks/plant/banana,
 /obj/table/round/auto,
+/obj/item/kitchen/utensil/knife,
 /turf/floor/blue/checker,
 /area/station/medical/research)
 "gSp" = (
@@ -18878,6 +18879,13 @@
 	dir = 1
 	},
 /area/station/hallway/primary/central)
+"hYi" = (
+/obj/disposalpipe/segment/crematorium{
+	dir = 4
+	},
+/obj/storage/crate/gene_separators,
+/turf/floor/blue/checker,
+/area/station/medical/research)
 "hYz" = (
 /obj/machinery/vending/snack,
 /turf/floor/specialroom/bar,
@@ -21385,6 +21393,8 @@
 /obj/machinery/power/data_terminal,
 /obj/table/auto/desk,
 /obj/machinery/networked/printer,
+/obj/item/device/analyzer/genes,
+/obj/item/device/analyzer/genes,
 /turf/floor/blue/checker,
 /area/station/medical/research)
 "iZD" = (
@@ -37770,6 +37780,22 @@
 /area/station/hallway/primary/south)
 "pCG" = (
 /obj/table/auto/desk,
+/obj/item/storage/box/agarose_replicator{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/storage/box/agarose_replicator{
+	pixel_x = -8;
+	pixel_y = -7
+	},
+/obj/item/storage/box/agarose_separator{
+	pixel_x = 9;
+	pixel_y = 5
+	},
+/obj/item/storage/box/agarose_separator{
+	pixel_x = 9;
+	pixel_y = -7
+	},
 /turf/floor/blue/checker,
 /area/station/medical/research)
 "pCH" = (
@@ -39414,6 +39440,7 @@
 /obj/disposalpipe/segment/crematorium{
 	dir = 4
 	},
+/obj/item/storage/box/genetic_syringes,
 /turf/floor/blue/checker,
 /area/station/medical/research)
 "qkH" = (
@@ -100384,7 +100411,7 @@ foB
 tDI
 yhs
 fot
-guR
+hYi
 jgi
 lmf
 iwU

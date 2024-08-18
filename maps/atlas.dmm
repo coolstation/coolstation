@@ -9434,6 +9434,14 @@
 	dir = 1
 	},
 /area/station/engine/elect)
+"wU" = (
+/obj/storage/crate/gene_separators,
+/obj/item/storage/box/genetic_syringes,
+/obj/item/kitchen/utensil/knife,
+/turf/floor/white/checker2{
+	dir = 5
+	},
+/area/station/medical/research)
 "wV" = (
 /obj/machinery/clonegrinder,
 /obj/cable{
@@ -10390,9 +10398,6 @@
 /obj/item/clothing/suit/bedsheet,
 /turf/floor/red,
 /area/station/medical/medbay)
-"zk" = (
-/turf/floor/white,
-/area/station/medical/medbay/cloner)
 "zl" = (
 /obj/cable{
 	d1 = 1;
@@ -10711,9 +10716,6 @@
 	},
 /turf/floor/stairs/medical,
 /area/station/medical/medbay/cloner)
-"Ac" = (
-/turf/floor/stairs/medical,
-/area/station/medical/medbay/cloner)
 "Ad" = (
 /obj/cable{
 	d1 = 1;
@@ -10993,6 +10995,22 @@
 /area/station/medical/research)
 "AN" = (
 /obj/table/auto,
+/obj/item/storage/box/agarose_replicator{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/storage/box/agarose_replicator{
+	pixel_x = -8;
+	pixel_y = -7
+	},
+/obj/item/storage/box/agarose_separator{
+	pixel_x = 9;
+	pixel_y = 5
+	},
+/obj/item/storage/box/agarose_separator{
+	pixel_x = 9;
+	pixel_y = -7
+	},
 /turf/floor/white/checker2{
 	dir = 5
 	},
@@ -12836,6 +12854,9 @@
 	},
 /turf/floor/plating,
 /area/station/janitor/office)
+"FQ" = (
+/turf/floor/white,
+/area/station/medical/medbay/cloner)
 "FR" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -17080,6 +17101,12 @@
 	},
 /turf/floor/black,
 /area/station/storage/tools)
+"Qp" = (
+/obj/item/device/analyzer/genes,
+/turf/floor/white/checker2{
+	dir = 5
+	},
+/area/station/medical/research)
 "Qr" = (
 /obj/machinery/disposal/small{
 	dir = 8
@@ -18030,6 +18057,9 @@
 /obj/landmark/gps_waypoint,
 /turf/floor/white,
 /area/station/bridge/united_command)
+"Tj" = (
+/turf/floor/stairs/medical,
+/area/station/medical/medbay/cloner)
 "Tk" = (
 /obj/cable{
 	d1 = 4;
@@ -72189,7 +72219,7 @@ mv
 yh
 vS
 yI
-zk
+FQ
 Aa
 AN
 BD
@@ -72496,7 +72526,7 @@ Ab
 AO
 AO
 Cf
-AO
+Qp
 Do
 Eh
 EP
@@ -72793,12 +72823,12 @@ hV
 yh
 wO
 yK
-zk
-Ac
+FQ
+Tj
 AO
 Yi
 AO
-AO
+wU
 Do
 Ei
 Ua
@@ -73095,12 +73125,12 @@ hV
 yh
 wQ
 yL
-zk
-Ac
+FQ
+Tj
 AP
 AO
 AO
-AO
+Qp
 Do
 Ej
 Ej

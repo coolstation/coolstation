@@ -87,7 +87,11 @@ Modules to do things with cloning modules
 /obj/item/cloneModule/genepowermodule/attackby(obj/item/W as obj, mob/user as mob)
 	if (!BE && istype(W, /obj/item/genetics_injector/dna_injector))
 		var/obj/item/genetics_injector/dna_injector/injector = W
+		if (!injector.uses) //weird that this wasn't here before, but we have empty injectors now so
+			boutput(user, "This injector is empty.")
+			return
 		boutput(user, "You put the DNA injector into the slot on the cartridge.")
 		BE = injector.BE
 		user.drop_item()
 		qdel(W)
+	else ..() //call yer parents :/

@@ -7,7 +7,7 @@
 
 	setup()
 		name = "Item"
-		schedule_interval = 2.9 SECONDS
+		schedule_interval = ITEM_PROCESS_SCHEDULE_INTERVAL
 		// this probably lags some but it helps give the sign to people that the game
 		// is in fact still doing something, which i feel is important
 		// plus i like watching number go up

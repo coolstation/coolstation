@@ -310,6 +310,14 @@
 	pixel_x = -7;
 	pixel_y = 10
 	},
+/obj/item/storage/box/agarose_separator{
+	pixel_x = 9;
+	pixel_y = 5
+	},
+/obj/item/storage/box/agarose_separator{
+	pixel_x = 9;
+	pixel_y = -7
+	},
 /turf/floor/white,
 /area/station/medical/research)
 "apa" = (
@@ -16923,6 +16931,11 @@
 	},
 /turf/floor/grey,
 /area/station/crew_quarters/quarters_west)
+"qTG" = (
+/obj/storage/crate/gene_separators,
+/obj/item/storage/box/genetic_syringes,
+/turf/floor/white,
+/area/station/medical/research)
 "qUa" = (
 /obj/disposalpipe/trunk,
 /obj/disposaloutlet{
@@ -19953,6 +19966,7 @@
 "uds" = (
 /obj/table/auto,
 /obj/item/clipboard,
+/obj/item/device/analyzer/genes,
 /turf/floor/white,
 /area/station/medical/research)
 "udV" = (
@@ -20568,6 +20582,7 @@
 	pixel_x = -4;
 	pixel_y = 2
 	},
+/obj/item/kitchen/utensil/knife,
 /turf/floor/white,
 /area/station/medical/research)
 "uBL" = (
@@ -20680,6 +20695,15 @@
 /obj/item/paper_bin{
 	pixel_y = 2
 	},
+/obj/item/storage/box/agarose_replicator{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/storage/box/agarose_replicator{
+	pixel_x = -8;
+	pixel_y = -7
+	},
+/obj/item/device/analyzer/genes,
 /turf/floor/white,
 /area/station/medical/research)
 "uGk" = (
@@ -73514,7 +73538,7 @@ jbV
 vtC
 vtC
 tcn
-vtC
+qTG
 vjl
 lrq
 lrq

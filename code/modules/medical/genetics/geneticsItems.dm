@@ -8,6 +8,8 @@
 	force = 3
 	throwforce = 3
 	w_class = W_CLASS_SMALL
+	var/inject_verb_self = "injects" //fucking needing 2 vars
+	var/inject_verb_other = "inject"
 	var/uses = 1
 
 	attack(mob/M as mob, mob/user as mob)
@@ -19,10 +21,10 @@
 			return
 
 		if(M == user)
-			user.visible_message("<span class='alert'><b>[user.name] injects [himself_or_herself(user)] with [src]!</b></span>")
+			user.visible_message("<span class='alert'><b>[user.name] [inject_verb_self] [himself_or_herself(user)] with [src]!</b></span>")
 			src.injected(user,user)
 		else
-			logTheThing("combat", user, M, "tries to inject [constructTarget(M,"combat")] with [src.name] at [log_loc(user)]")
+			logTheThing("combat", user, M, "tries to [inject_verb_other] [constructTarget(M,"combat")] with [src.name] at [log_loc(user)]")
 			actions.start(new/datum/action/bar/icon/genetics_injector(M,src), user)
 
 	proc/injected(var/mob/living/carbon/user,var/mob/living/carbon/target)
@@ -55,14 +57,24 @@
 
 	dna_injector
 		name = "dna injector"
-		desc = "A syringe designed to safely insert or remove genetic structures to and from a living organism."
-		var/datum/bioEffect/BE = null
+		//desc = "A syringe designed to safely insert or remove genetic structures to and from a living organism."
+		desc = "A syringe designed to safely insert genetic structures into a living organism." //IDK if these ever removed genes but they sure don't atm
+		icon_state = "injector_0"
+		var/list/datum/bioEffect/BE = null
+		uses = 0 //starts empty 4 agar genes now thanks
+
+		attackby(obj/item/W, mob/user, params)
+			if (istype(W, /obj/item/device/analyzer/genes))
+				var/obj/item/device/analyzer/genes/nerdery = W
+				nerdery.do_scan(src, user)
+			else ..()
 
 		injected(var/mob/living/carbon/user,var/mob/living/carbon/target)
 			if (..())
 				return
 
-			target.bioHolder.AddEffectInstance(BE,1)
+			for (var/effect as anything in BE)
+				target.bioHolder.AddEffectInstance(effect,1)
 			src.uses--
 			src.update_appearance()
 
@@ -169,9 +181,9 @@
 			user.drop_item()
 			DI.set_loc(src)
 			src.payload = DI
-			DI.BE.msgGain = ""
-			DI.BE.msgLose = ""
-			DI.BE.add_delay = 100
+			//DI.BE.msgGain = ""
+			//DI.BE.msgLose = ""
+			//DI.BE.add_delay = 100
 			boutput(user, "You slot [DI] into the injector.")
 		else
 			..()

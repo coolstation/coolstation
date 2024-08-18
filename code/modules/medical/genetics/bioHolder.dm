@@ -337,6 +337,7 @@ var/list/datum/bioEffect/mutini_effects = list()
 	//Holds the apperanceholder aswell as the effects. Controls adding and removing of effects.
 	var/list/effects = new/list()
 	var/list/effectPool = new/list()
+	var/DNA_color = "#1D257E" //the shade of blue I made the base sprites with
 
 	var/mob/owner = null
 	var/ownerName = null
@@ -358,6 +359,7 @@ var/list/datum/bioEffect/mutini_effects = list()
 		Uid = CreateUid()
 		uid_hash = md5(Uid)
 		bioUids[Uid] = null
+		DNA_color = random_color()
 		mobAppearance = new/datum/appearanceHolder()
 
 		mobAppearance.owner = owner
@@ -475,6 +477,7 @@ var/list/datum/bioEffect/mutini_effects = list()
 		effectPool.Remove(E.id)
 		return 1
 
+	///Generates a list of genes for this mob (5 good, 5 bad and 1 secret)
 	proc/BuildEffectPool()
 		var/list/filteredGood = new/list()
 		var/list/filteredBad = new/list()
@@ -492,8 +495,10 @@ var/list/datum/bioEffect/mutini_effects = list()
 			var/datum/bioEffect/instance = bioEffectList[T]
 			if(!instance || HasEffect(T) || !instance.occur_in_genepools) continue
 			if(src.owner)
-				if (src.owner.type in instance.mob_exclusion)
+				//our mob type is specifically excluded from this gene (blocklist)
+				if (src.owner.type in instance.mob_exclusion) //(no gene uses this)
 					continue
+				//gene is exclusive to a specific mob type (allowlist...allowtype?)
 				if (instance.mob_exclusive && src.owner.type != instance.mob_exclusive)
 					continue
 			if(instance.secret)

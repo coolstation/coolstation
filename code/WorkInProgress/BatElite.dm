@@ -2,11 +2,6 @@
 
 //flap flap gonna put cursed stuff here
 
-/*TODO:
-blob AI debug overlay doesn't realistically support more than one AI (but maybe that's fine?)
-multi actionbar is scuffed, requires removing action/act interrupts when ideally we'd check to allow copies of the same id (also ditch /datum/action/bar/wall_decon_crud for generic)
-figure out a report thingy for cargo shuttle to replace getting 6 PDA messages at once
-*/
 
 ///Discord joke that might not be funny two weeks from now (but if it isn't we can just yeet it)
 /obj/item/clothing/under/gimmick/bikinion
@@ -309,6 +304,493 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 /var/datum/controller/process/crash_zone/valiant_controls
 /datum/controller/process/crash_zone/
 /datum/controller/process/crash_zone/proc/debug_panel()
+
+//This all goes off of the vaguest recollection of DNA electrophoresis. It's probably not accurate in any way.
+//The point really is just to make genetics embedded in physical stuff as much as it is in the computers.
+/obj/item/device/gene_separator
+	name = "\improper DNA electrophoresis unit"
+	desc = "Takes an agarose substrate that has DNA on it, and will then separate that DNA into smaller groups of genes over time."
+	icon = 'icons/obj/items/genetics.dmi'
+	icon_state = "box"
+	var/obj/item/reagent_containers/agarose/our_slab = null
+	var/active = FALSE
+
+	New()
+		..()
+		var/image/img = image(src.icon, icon_state = "box-front", layer = FLOAT_LAYER - 2)
+		UpdateOverlays(img, "front-of-box")
+
+	disposing()
+		turn_off()
+		UpdateOverlays(null, "agarose")
+		UpdateOverlays(null, "agarose_goop")
+		qdel(our_slab)
+		our_slab = null
+		..()
+
+	attackby(obj/item/W, mob/user, params)
+		if (istype(W, /obj/item/reagent_containers/agarose))
+			if (our_slab)
+				boutput(user, "<span class='alert'>[src] already has material in it.</span>")
+				return
+			user.drop_item(W)
+			W.set_loc(src)
+			our_slab = W
+			UpdateOverlays(image(our_slab.icon, icon_state = our_slab.icon_state, layer = FLOAT_LAYER), "agarose")
+			UpdateOverlays(our_slab.development_img, "agarose_goop")
+			boutput(user, "<span class='notice'>You put [our_slab] in [src].</span>")
+		else ..()
+
+	attack_hand(mob/user)
+		if (our_slab && !active && user.find_in_hand(src))
+			turn_off()
+			user.put_in_hand(our_slab)
+			our_slab = null
+			UpdateOverlays(null, "agarose")
+			UpdateOverlays(null, "agarose_goop")
+
+		else ..()
+
+	attack_self(mob/user)
+		if (our_slab)
+			if (active)
+				turn_off()
+				boutput(user, "<span class='notice'>You turn off [src].</span>")
+				playsound(src,'sound/misc/lightswitch.ogg',40,1)
+			else
+				if ((our_slab.time_to_finish && our_slab.time_spent > our_slab.time_to_finish)/*our_slab.development >= 100*/ || (length(our_slab.gene_groups) > 1)) //latter shouldn't be possible on a fresh slab
+					boutput(user, "<span class='alert'>This slab has already been fully developed and is spent. Transfer its contents onto a fresh slab.</span>")
+					return
+				active = TRUE
+				processing_items |= src
+
+				if (!our_slab.time_to_finish) //uninitialised
+					//Let's make some shit up
+					//Generally: the less genes we're splitting, the longer it's gonna be (non-linear).
+					//This is to try and encourage people splitting down to groups of 2-3 a bit.
+					//instead of bluntly splitting everything down to individual genes. Hand out hulk with an accent maybe? better than waiting ages.
+					//At the same time, have the stability of the constituent genes play a role in the timer too.
+					//And add in a dash of randomness~
+					var/list/group = our_slab.gene_groups[1]
+					var/total_genes = length(group)
+					if (!total_genes) //abort
+						//deactivate()
+						return
+					var/total_stability_change = 0
+					for (var/datum/bioEffect/gene in group)
+						total_stability_change += abs(gene.stability_loss)
+
+					//~4m for 2 genes, ~2m for 4 genes, a full genome of 11 genes is a bit over 30s
+					var/time_penalty_genes = ((8/total_genes) MINUTES) - (total_genes SECONDS)
+					//splitting two (+/-)40 stability genes takes longer (or shorter!) than two (+/-) 5 stability ones, but full genome lightly affected by stability factor
+					var/stability_factor = (total_stability_change/total_genes)
+					var/time_penalty_stability = rand(-stability_factor, stability_factor) SECONDS
+					our_slab.time_to_finish = time_penalty_genes + time_penalty_stability + (rand(-10,10) SECONDS) //slight random factor
+					if (our_slab.time_to_finish < 0) //If i did it right the above maths can't produce negative results until 16 genes, but to be safe
+						our_slab.time_to_finish = 30 SECONDS
+
+				var/how_long_will_it_take = "until the end of time"
+				switch(our_slab.time_to_finish - our_slab.time_spent)
+					if (0 to 30 SECONDS)
+						how_long_will_it_take = "not long at all"
+					if (30 to 60 SECONDS)
+						how_long_will_it_take = "a brief time"
+					if (1 MINUTE to 2 MINUTES)
+						how_long_will_it_take = "a short while"
+					if (2 MINUTE to INFINITY)
+						how_long_will_it_take = "quite a while"
+				boutput(user, "<span class='notice'>You turn on [src]. This will take [how_long_will_it_take].</span>")
+				playsound(src,'sound/misc/lightswitch.ogg',40,1)
+
+		..()
+
+
+	process()
+		..() //updates last_tick_duration
+
+		if (!active) //burning? maybe?
+			return
+		if (!our_slab)
+			turn_off()
+			return
+		if (our_slab.time_spent > our_slab.time_to_finish/*our_slab.development >= 100*/ || !our_slab.time_to_finish)
+			turn_off()
+			return
+		//Basically undoing what the parent call did, I'm guessing last_tick_duration is intended as a lag mult
+		//But we need the actual time elapsed.
+		var/elapsed_time = last_tick_duration * ITEM_PROCESS_SCHEDULE_INTERVAL
+		our_slab.time_spent += elapsed_time
+		//our_slab.development = (our_slab.time_spent/our_slab.time_to_finish)*100
+		our_slab.update_icon()
+		if (our_slab.time_spent > our_slab.time_to_finish)
+			our_slab.finish_developing()
+			playsound(src, "sound/machines/ding.ogg", 30, 1)
+			var/mob/holder = src.loc
+			if (istype(holder))
+				boutput(holder, "<span class='notice'>[src] finishes developing [our_slab].</span>")
+			turn_off()
+
+
+
+/obj/item/device/gene_separator/proc/turn_off()
+	active = FALSE
+	processing_items -= src
+	//So here's a bit of technical debt that may bite us in the ass if we ever add more stuff to rely on last_processing_tick & last_tick_duration
+	//It's clearly a little hack to get lag mult going for the robot hypospray, and it's made on the implicit assumption that the item never leaves the item process loop.
+	//If something were to exit and then later re-enters the process loop, last_tick_duration will be massive to compensate the intervening time.
+	//So this is here to reset that hack. If we didn't you might leave a unit dormant for a few minutes and then it'll slam the next slab from 0 to 100 in one tick.
+	last_processing_tick = -1
+
+
+
+//The base item is used for the small chunks the slabs get cut into.
+/obj/item/reagent_containers/agarose
+	name = "agarose chunk"
+	desc = "A bunch of previously algae used genetic research."
+	icon = 'icons/obj/items/genetics.dmi'
+	icon_state = "agarose"
+	initial_volume = 60
+	w_class = W_CLASS_TINY
+	rc_flags = RC_SPECTRO
+	var/time_to_finish = 0 //premature
+	var/time_spent = 0
+	//var/development = 0
+	var/list/gene_groups
+	var/gene_colour = "#ffffff"
+	var/image/development_img
+	//not currently used, but I'm not sure how long I can go on without making this bit explicit
+	var/is_a_chunk = TRUE
+
+	New()
+		..()
+		gene_groups = list()
+		development_img = image(src.icon, icon_state = "blank")
+
+	disposing()
+		qdel(development_img)
+		development_img = null
+		..()
+
+	attackby(obj/item/I, mob/user)
+		if (istype(I, /obj/item/genetics_injector/dna_injector))
+			var/obj/item/genetics_injector/dna_injector/injector = I
+			if (injector.uses)
+				boutput(user, "<span class='alert'>[injector] already has material in it.</span>")
+				return
+			if (length(src.gene_groups) > 1)
+				boutput(user, "<span class='alert'>There's several groups of gene goop in there. Cut this thing into chunks first.</span>")
+				return
+			injector.BE = src.gene_groups[1]
+			injector.uses++
+			injector.update_appearance()
+			//worthless and empty, LIKE MY SOOOOOUUUULLL
+			src.gene_groups = list()
+			boutput(user,"<span class='notice'>You take up the genes in the agarose with [injector].</span>")
+
+		else if (istype(I, /obj/item/genetics_injector/dna_transfer))
+			var/obj/item/genetics_injector/dna_transfer/donor = I
+
+			if (donor.uses) //taking out of agarose
+				if (!length(src.gene_groups))
+					boutput(user, "<span class='alert'>[src] is empty.</span>")
+					return
+				if (length(src.gene_groups) > 1)
+					boutput(user, "<span class='alert'>There's several groups of gene goop in there. Cut this thing into chunks first.</span>")
+					return
+				donor.gene_group = src.gene_groups[1]
+				donor.uses--
+				src.gene_groups = list()
+				boutput(user,"<span class='notice'>You take up the genes in [src] agarose with [donor].</span>")
+			else //putting into agarose
+				if (!length(donor.gene_group)) //??
+					return
+				if (length(src.gene_groups))
+					boutput(user, "<span class='alert'>[src] already has material in it.</span>")
+					return
+				src.gene_groups = list(1)
+				src.gene_groups[1] = donor.gene_group //deliberately nested list
+				donor.gene_group = list()
+				donor.uses++
+				donor.update_appearance()
+				boutput(user,"<span class='notice'>You deposit the material in [donor] into [src].</span>")
+
+		else if (iscuttingtool(I))
+			switch(length(gene_groups))
+				if (0 to 1) //empty or only one group, which a transfer syringe can handle.
+					boutput(user, "<span class='alert'>No point in slicing [src] at the moment.</span>")
+				if (2) //halve
+					var/image/img
+					var/obj/item/reagent_containers/agarose/chunk1 = new/obj/item/reagent_containers/agarose// {initial_volume = 30} ()
+					chunk1.reagents.maximum_volume = 30
+					src.reagents.trans_to(chunk1,src.reagents.total_volume / 2)
+					chunk1.gene_groups = list(gene_groups[1])
+					//the numbers aren't important, just that time_spent is larger (counting as fully developed)
+					chunk1.time_to_finish = 1
+					chunk1.time_spent = 2
+					chunk1.pixel_x = src.pixel_x
+					chunk1.pixel_y = src.pixel_y
+					//chunk1.development = 100
+					chunk1.icon_state = "[src.icon_state]-half1"
+					img = image(src.icon, icon_state = "develop-half1")
+					img.color = src.gene_colour
+					chunk1.UpdateOverlays(img, "develop")
+
+					var/obj/item/reagent_containers/agarose/chunk2 = new /obj/item/reagent_containers/agarose//{initial_volume = 30; initial_reagents = list("bacterialmedium"=15)}
+					chunk2.reagents.maximum_volume = 30
+					src.reagents.trans_to(chunk2,src.reagents.total_volume)
+					chunk2.gene_groups = list(gene_groups[2])
+					chunk2.time_to_finish = 1
+					chunk2.time_spent = 2
+					chunk2.pixel_x = src.pixel_x
+					chunk2.pixel_y = src.pixel_y
+					chunk2.icon_state = "[src.icon_state]-half2"
+					img = image(src.icon, "develop-half2")
+					img.color = src.gene_colour
+					chunk2.UpdateOverlays(img, "develop")
+
+					var/turf/T = get_turf(src)
+					chunk1.set_loc(T)
+					chunk2.set_loc(T)
+				else //thirds
+					var/image/img
+					var/obj/item/reagent_containers/agarose/chunk1 = new /obj/item/reagent_containers/agarose//{initial_volume = 20; initial_reagents = list("bacterialmedium"=10)}
+					chunk1.reagents.maximum_volume = 20
+					src.reagents.trans_to(chunk1,src.reagents.total_volume / 3)
+					chunk1.gene_groups = list(gene_groups[1])
+					chunk1.time_to_finish = 1
+					chunk1.time_spent = 2
+					chunk1.pixel_x = src.pixel_x
+					chunk1.pixel_y = src.pixel_y
+					chunk1.icon_state = "[src.icon_state]-third1"
+					img = image(src.icon, icon_state = "develop-third1")
+					img.color = src.gene_colour
+					chunk1.UpdateOverlays(img, "develop")
+
+					var/obj/item/reagent_containers/agarose/chunk3 = new /obj/item/reagent_containers/agarose//{initial_volume = 20; initial_reagents = list("bacterialmedium"=10)}
+					chunk3.reagents.maximum_volume = 20
+					src.reagents.trans_to(chunk3,src.reagents.total_volume / 2) // (1-(1/3))/2 = (2/3)/2 = 1/3
+					chunk3.gene_groups = list(gene_groups[length(gene_groups)])
+					chunk3.time_to_finish = 1
+					chunk3.time_spent = 2
+					chunk3.pixel_x = src.pixel_x
+					chunk3.pixel_y = src.pixel_y
+					chunk3.icon_state = "[src.icon_state]-third3"
+					img = image(src.icon, icon_state = "develop-third3")
+					img.color = src.gene_colour
+					chunk3.UpdateOverlays(img, "develop")
+
+					//more than 3 groups? shouldn't happen but we may as well attempt to account
+					//split into 3, separate one group into the first and one into the third chunk
+					//the middle bit (which is physically larger) gets all the rest, probably needs to be re-developed on a fresh slab
+					var/list/for_the_middle_chunk = gene_groups[2]
+					if (length(gene_groups) > 3)
+						for (var/i in 3 to (length(gene_groups) - 1))
+							for_the_middle_chunk.Join(gene_groups[i])
+
+					var/obj/item/reagent_containers/agarose/chunk2 = new /obj/item/reagent_containers/agarose//{initial_volume = 20; initial_reagents = list("bacterialmedium"=10)}
+					chunk2.reagents.maximum_volume = 20
+					src.reagents.trans_to(chunk2,src.reagents.total_volume)
+					chunk2.gene_groups = list(for_the_middle_chunk)
+					chunk2.time_to_finish = 1
+					chunk2.time_spent = 2
+					chunk2.pixel_x = src.pixel_x
+					chunk2.pixel_y = src.pixel_y
+					chunk2.icon_state = "[src.icon_state]-third2"
+					img = image(src.icon, icon_state = "develop-third2")
+					img.color = src.gene_colour
+					chunk2.UpdateOverlays(img, "develop")
+
+					var/turf/T = get_turf(src)
+					chunk1.set_loc(T)
+					chunk2.set_loc(T)
+					chunk3.set_loc(T)
+			qdel(src)
+		else if (istype(I, /obj/item/device/analyzer/genes))
+			var/obj/item/device/analyzer/genes/nerdery = I
+			nerdery.do_scan(src, user)
+		else
+			..()
+
+/obj/item/reagent_containers/agarose/proc/update_icon()
+	if (!length(gene_groups))
+		development_img.icon_state = "blank"
+	else if (!time_to_finish || !time_spent)
+		development_img.icon_state = "develop-0"
+	else
+		var/quarter = ceil((time_spent/time_to_finish)*4)//ceil(development/25)
+		development_img.icon_state = "develop-[quarter]"
+	UpdateOverlays(development_img, "development")
+
+/obj/item/reagent_containers/agarose/proc/finish_developing()
+
+/obj/item/reagent_containers/agarose/separator
+	name = "separator agarose slab"
+	desc = "A bunch of previously algae used in splitting groups of genes."
+	initial_reagents = list("bacterialmedium"=30) //Agarose derives from agar which is a common petri dish substrate so
+	is_a_chunk = FALSE
+
+	finish_developing()
+		var/list/geneses = gene_groups[1]
+		var/amount_of_genes = length(geneses)
+		var/list/new_groups
+		//try to split into groups of 4
+		switch(amount_of_genes)
+			if (11) //full genome
+				new_groups = new/list(3)
+				new_groups[1] = geneses.Copy(1,5)
+				new_groups[2] = geneses.Copy(5,9)
+				new_groups[3] = geneses.Copy(9,0)
+			if (3)
+				new_groups = new/list(3)
+				new_groups[1] = list(geneses[1])
+				new_groups[2] = list(geneses[2])
+				new_groups[3] = list(geneses[3])
+			else//whatever just halve the thing, this should take case of like everything else.
+				var/halfway = round((amount_of_genes/2)+1)
+				new_groups = new/list(2)
+				new_groups[1] = geneses.Copy(1,halfway)
+				new_groups[2] = geneses.Copy(halfway,0)
+		gene_groups = new_groups
+
+/obj/item/reagent_containers/agarose/replicator
+	name = "replicator agarose slab"
+	desc = "A bunch of previously algae impregnated with enzymes and nucleotides, ready to assemble into copies of genes put in."
+	icon_state = "agarose-blu"
+	initial_reagents = list("bacterialmedium"=30) //Agarose derives from agar which is a common petri dish substrate so
+	is_a_chunk = FALSE
+
+	finish_developing()
+		var/list/geneses = gene_groups[1]
+		var/amount_of_genes = length(geneses)
+		var/list/new_groups = new/list((amount_of_genes <= 2 ? 3 : 2))
+		var/list/temp = list()
+
+
+		new_groups[1] = geneses
+		for (var/datum/bioEffect/effect as anything in geneses)
+			temp.Add(effect.GetCopy())
+		new_groups[2] = temp
+
+		if (amount_of_genes <= 2) //you get 3 copies of the group if it's smol :3
+			temp = list()
+			for (var/datum/bioEffect/once_again as anything in geneses)
+				temp.Add(once_again.GetCopy())
+			new_groups[3] = temp
+		gene_groups = new_groups
+
+//needle reuse party lets goooo
+/obj/item/genetics_injector/dna_transfer
+	name = "\improper DNA transfer syringe"
+	desc = "Slurps the DNA straight out of someone's cells and into wherever, which is probably fine. Well, except for those cells."
+	var/list/gene_group
+
+	inject_verb_self = "takes a gene sample from"
+	inject_verb_other = "take a gene sample from"
+
+	//In order for this thing to make use of generic injector code, the uses var is backwards from how other injectors use it:
+	//if uses = 1, this thing is empty (but can used on people)
+	//if uses = 0, this thing is filled (and needs to be emptied into agarose)
+
+	New()
+		..()
+		gene_group = list()
+
+	attackby(obj/item/W, mob/user, params)
+		if (istype(W, /obj/item/device/analyzer/genes))
+			var/obj/item/device/analyzer/genes/nerdery = W
+			nerdery.do_scan(src, user)
+		else ..()
+
+
+	injected(var/mob/living/carbon/user,var/mob/living/carbon/target)
+		if (..())
+			return
+
+		for(var/id as anything in target.bioHolder.effectPool)
+			var/datum/bioEffect/their_gene = target.bioHolder.effectPool[id]
+			//I'm fairly certain that this isn't correct, GetCopy is only intended for use on the global reference list
+			//However that looks to be because of references to the block pair lists (don't want to corrupt the same list twice), which agarose doesn't use
+			//We could deep copy their dnaBlocks datums but with no intended way of getting the genes into the computers again that shoooould be a waste of time.
+			//Plus I'd like to kill off the block matching thing altogether it's just such a weirdly pointless part of genetics?
+			gene_group.Add(their_gene.GetCopy())
+		//target.bioHolder.AddEffectInstance(BE,1)
+		src.uses--
+		src.update_appearance()
+//"#1D257E"
+
+/obj/item/storage/box/genetic_syringes
+	name = "gene research syringe box"
+	icon_state = "genetics_syringes"
+	desc = "A box filled with many syringes specialised for genetics research, empty and sterilized."
+	spawn_contents = list(/obj/item/genetics_injector/dna_transfer = 2, /obj/item/genetics_injector/dna_injector = 5)
+
+/obj/item/storage/box/agarose_separator
+	name = "separator agarose box"
+	icon_state = "genetics_green"
+	desc = "A box filled with green blocks of agarose for genetics research."
+	spawn_contents = list(/obj/item/reagent_containers/agarose/separator = 7)
+
+/obj/item/storage/box/agarose_replicator
+	name = "replicator agarose box"
+	icon_state = "genetics_blue"
+	desc = "A box filled with blue blocks of agarose for genetics research."
+	spawn_contents = list(/obj/item/reagent_containers/agarose/replicator = 7)
+
+/obj/storage/crate/gene_separators
+	name = "electrophoresis unit crate"
+	desc = "A box filled with other boxes, but these boxes are electronic! Genetics research!"
+	spawn_contents = list(/obj/item/device/gene_separator = 8)
+
+/obj/item/device/analyzer/genes
+	name = "gene analyzer"
+	desc = "Also analyzes jeans."
+	icon = 'icons/obj/items/genetics.dmi'
+	icon_state = "shitty_temp_scanner"
+	w_class = W_CLASS_SMALL
+
+/obj/item/device/analyzer/genes/proc/do_scan(obj/item/I, mob/user)
+	if (!I || !user)
+		return
+	var/list/them_genes
+	if (istype(I, /obj/item/genetics_injector/dna_transfer))
+		var/obj/item/genetics_injector/dna_transfer/T = I
+		them_genes = T.gene_group
+
+	else if (istype(I, /obj/item/genetics_injector/dna_injector))
+		var/obj/item/genetics_injector/dna_injector/inj = I
+		them_genes = inj.BE
+	else if (istype(I, /obj/item/reagent_containers/agarose))
+		var/obj/item/reagent_containers/agarose/A = I
+		them_genes = A.gene_groups
+		if (length(A.gene_groups) == 1)
+			them_genes = A.gene_groups[1] //supposed to prevent "agarose contains 1 groups of genes.", IDK why it doesn't work
+
+	if (!length(them_genes))
+		boutput(user,"<span class='notice'><b>[I] does not contain any genes.</b></span>")
+		return
+	var/out = ""
+	if (islist(them_genes[1])) //there's multiple groups wheee
+		out += "<span class='notice'>[I] contains [length(them_genes)] groups of genes.<br></span>"
+		for (var/i in 1 to length(them_genes))
+			var/list/a_group = them_genes[i]
+			out += "<span class='notice'><b>group [i]:<br></b></span>"
+			out += do_scan_internal(a_group)
+			out += "<span class='notice'>...</span>"
+
+	else
+		out += "<span class='notice'>[I] contains the following genes:<br></span>"
+		out += do_scan_internal(them_genes)
+	boutput(user, out)
+
+
+/obj/item/device/analyzer/genes/proc/do_scan_internal(var/list/datum/bioEffect/shit)
+	if (!islist(shit))
+		return null
+	var/out = ""
+	for (var/datum/bioEffect/gene in shit)
+		out += "[gene.name] ([gene.stability_loss])<br>"
+	return out
+
 
 /*
 /obj/spawn_all_the_dragon_shit

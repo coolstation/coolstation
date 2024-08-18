@@ -376,7 +376,9 @@
 			I.name = "dna injector - [E.name]"
 			var/datum/bioEffect/NEW = new E.type(I)
 			copy_datum_vars(E, NEW)
-			I.BE = NEW
+			I.BE = list(NEW)
+			I.uses = 1
+			I.icon_state = "injector_1"
 			on_ui_interacted(ui.user)
 			playsound(src, "sound/machines/click.ogg", 50, 1)
 		if("researchmut")
