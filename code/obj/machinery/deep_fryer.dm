@@ -297,19 +297,19 @@ var/list/fryer_recipes
 		switch(src.cooktime)
 			if (0 to 15)
 				fryholder.name = "lightly-fried [thing.name]"
-				fryholder.color = ( rgb(166,103,54) )
+				fryholder.color = ( rgb(255, 156, 80) )
 
 
 			if (16 to 49)
 				fryholder.name = "fried [thing.name]"
-				fryholder.color = ( rgb(103,63,24) )
+				fryholder.color = ( rgb(201, 123, 45) )
 
 			if (50 to 59)
 				fryholder.name = "deep-fried [thing.name]"
-				fryholder.color = ( rgb(63, 23, 4) )
+				fryholder.color = ( rgb(131, 45, 5) )
 
 			else
-				fryholder.color = ( rgb(33,19,9) )
+				fryholder.color = ( rgb(72, 35, 8) )
 				fryholder.reagents.maximum_volume += 25
 				fryholder.reagents.add_reagent("friedessence",25)
 
