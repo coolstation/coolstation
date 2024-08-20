@@ -112,6 +112,12 @@ datum
 			// silver salts are toxic
 			overdose = 10
 
+			do_overdose(var/severity, var/mob/M, var/mult = 1)
+				if(!M)
+					M = holder.my_atom
+				M.reagents.add_reagent("silver", 2*mult)
+				M.take_toxin_damage(2*mult)
+
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume_passed)
 				. = ..()
 				if (!volume_passed)

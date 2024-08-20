@@ -1062,6 +1062,8 @@ datum
 				// Consequently, a single patch would heal ~200 damage (Convair880).
 				M.HealDamage("All", 0, 2 * mult)
 				M.UpdateDamageIcon()
+				if(prob(50))
+					M.reagents.add_reagent("silver", mult)
 				..()
 				return
 

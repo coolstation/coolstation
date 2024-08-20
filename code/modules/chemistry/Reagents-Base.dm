@@ -505,18 +505,22 @@ datum
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
-				if(prob(5) && ishuman(M))
-					//make you bluer
-					var/mob/living/carbon/human/H = M
-					if (H.bioHolder.mobAppearance.s_tone)
-						var/currenttone = H.bioHolder.mobAppearance.s_tone
-						var/newtone = BlendRGB(currenttone, src.tanningcolor, 0.03)
-						H.bioHolder.mobAppearance.s_tone = newtone
-						H.set_face_icon_dirty()
-						H.set_body_icon_dirty()
-						if (H.limbs)
-							H.limbs.reset_stone()
-						H.update_colorful_parts()
+				if(prob(5))
+					if(ishuman(M))//make you bluer
+						var/mob/living/carbon/human/H = M
+						if (H.bioHolder.mobAppearance.s_tone)
+							var/currenttone = H.bioHolder.mobAppearance.s_tone
+							var/newtone = BlendRGB(currenttone, src.tanningcolor, 0.03)
+							H.bioHolder.mobAppearance.s_tone = newtone
+							H.set_face_icon_dirty()
+							H.set_body_icon_dirty()
+							if (H.limbs)
+								H.limbs.reset_stone()
+							H.update_colorful_parts()
+
+					for(var/datum/ailment_data/disease/virus in M.ailments)
+						if (virus.cure == "Antibiotics" && prob(20)) // way way shittier than spaceacillin
+							virus.state = "Remissive"
 				..()
 				return
 
