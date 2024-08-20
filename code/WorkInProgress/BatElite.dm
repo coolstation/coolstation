@@ -422,6 +422,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 		our_slab.time_spent += elapsed_time
 		//our_slab.development = (our_slab.time_spent/our_slab.time_to_finish)*100
 		our_slab.update_icon()
+		UpdateOverlays(our_slab.development_img, "agarose_goop")
 		if (our_slab.time_spent > our_slab.time_to_finish)
 			our_slab.finish_developing()
 			playsound(src, "sound/machines/ding.ogg", 30, 1)
@@ -456,7 +457,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 	var/time_spent = 0
 	//var/development = 0
 	var/list/gene_groups
-	var/gene_colour = "#ffffff"
+	var/DNA_color = "#ffffff"
 	var/image/development_img
 	//not currently used, but I'm not sure how long I can go on without making this bit explicit
 	var/is_a_chunk = TRUE
@@ -485,6 +486,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 			injector.update_appearance()
 			//worthless and empty, LIKE MY SOOOOOUUUULLL
 			src.gene_groups = list()
+			src.update_icon()
 			boutput(user,"<span class='notice'>You take up the genes in the agarose with [injector].</span>")
 
 		else if (istype(I, /obj/item/genetics_injector/dna_transfer))
@@ -499,7 +501,9 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 					return
 				donor.gene_group = src.gene_groups[1]
 				donor.uses--
+				donor.DNA_color = src.DNA_color
 				src.gene_groups = list()
+				src.update_icon()
 				boutput(user,"<span class='notice'>You take up the genes in [src] agarose with [donor].</span>")
 			else //putting into agarose
 				if (!length(donor.gene_group)) //??
@@ -512,6 +516,8 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 				donor.gene_group = list()
 				donor.uses++
 				donor.update_appearance()
+				src.DNA_color = donor.DNA_color
+				src.update_icon()
 				boutput(user,"<span class='notice'>You deposit the material in [donor] into [src].</span>")
 
 		else if (iscuttingtool(I))
@@ -532,7 +538,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 					//chunk1.development = 100
 					chunk1.icon_state = "[src.icon_state]-half1"
 					img = image(src.icon, icon_state = "develop-half1")
-					img.color = src.gene_colour
+					img.color = src.DNA_color
 					chunk1.UpdateOverlays(img, "develop")
 
 					var/obj/item/reagent_containers/agarose/chunk2 = new /obj/item/reagent_containers/agarose//{initial_volume = 30; initial_reagents = list("bacterialmedium"=15)}
@@ -545,7 +551,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 					chunk2.pixel_y = src.pixel_y
 					chunk2.icon_state = "[src.icon_state]-half2"
 					img = image(src.icon, "develop-half2")
-					img.color = src.gene_colour
+					img.color = src.DNA_color
 					chunk2.UpdateOverlays(img, "develop")
 
 					var/turf/T = get_turf(src)
@@ -563,7 +569,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 					chunk1.pixel_y = src.pixel_y
 					chunk1.icon_state = "[src.icon_state]-third1"
 					img = image(src.icon, icon_state = "develop-third1")
-					img.color = src.gene_colour
+					img.color = src.DNA_color
 					chunk1.UpdateOverlays(img, "develop")
 
 					var/obj/item/reagent_containers/agarose/chunk3 = new /obj/item/reagent_containers/agarose//{initial_volume = 20; initial_reagents = list("bacterialmedium"=10)}
@@ -576,7 +582,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 					chunk3.pixel_y = src.pixel_y
 					chunk3.icon_state = "[src.icon_state]-third3"
 					img = image(src.icon, icon_state = "develop-third3")
-					img.color = src.gene_colour
+					img.color = src.DNA_color
 					chunk3.UpdateOverlays(img, "develop")
 
 					//more than 3 groups? shouldn't happen but we may as well attempt to account
@@ -597,7 +603,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 					chunk2.pixel_y = src.pixel_y
 					chunk2.icon_state = "[src.icon_state]-third2"
 					img = image(src.icon, icon_state = "develop-third2")
-					img.color = src.gene_colour
+					img.color = src.DNA_color
 					chunk2.UpdateOverlays(img, "develop")
 
 					var/turf/T = get_turf(src)
@@ -619,6 +625,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 	else
 		var/quarter = ceil((time_spent/time_to_finish)*4)//ceil(development/25)
 		development_img.icon_state = "develop-[quarter]"
+	development_img.color = DNA_color
 	UpdateOverlays(development_img, "development")
 
 /obj/item/reagent_containers/agarose/proc/finish_developing()
@@ -683,6 +690,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 	name = "\improper DNA transfer syringe"
 	desc = "Slurps the DNA straight out of someone's cells and into wherever, which is probably fine. Well, except for those cells."
 	var/list/gene_group
+	var/DNA_color
 
 	inject_verb_self = "takes a gene sample from"
 	inject_verb_other = "take a gene sample from"
@@ -714,6 +722,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 			//Plus I'd like to kill off the block matching thing altogether it's just such a weirdly pointless part of genetics?
 			gene_group.Add(their_gene.GetCopy())
 		//target.bioHolder.AddEffectInstance(BE,1)
+		src.DNA_color = target.bioHolder.DNA_color
 		src.uses--
 		src.update_appearance()
 //"#1D257E"
