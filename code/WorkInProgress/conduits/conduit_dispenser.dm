@@ -79,7 +79,7 @@
 				src.lay_conduit(old_loc, prev_dir, direction)
 				src.connect_conduit(new_loc, turn(direction, 180))
 			else if(src.removing_conduit)
-				if(!new_loc.intact || istype(new_loc,/turf/space))
+				if(!new_loc.intact)
 					for(var/obj/cable/conduit/conduit in old_loc)
 						qdel(conduit)
 			prev_dir = direction // might want to actually do this even when old_loc == loc but idk, it sucks with attempted diagonal movement
@@ -114,7 +114,7 @@
 		var/is_first = src.first_step
 		src.first_step = 0
 
-		if(new_loc.intact && !istype(new_loc,/turf/space))
+		if(new_loc.intact)
 			return
 
 		var/obj/cable/conduit/junction/junction = locate(/obj/cable/conduit/junction) in new_loc

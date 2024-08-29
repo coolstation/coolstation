@@ -803,6 +803,7 @@
 	special_volume_override = 0
 	text = ""
 	clean = 1 //in space, no one needs you to clean
+	intact = FALSE //in space, you can't hide anything under the floor either
 	var/static/list/space_color = generate_space_color()
 	var/static/image/starlight
 
