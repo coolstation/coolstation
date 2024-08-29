@@ -455,11 +455,11 @@
 				broken(0)
 				return
 			if(OLD_EX_SEVERITY_2)
-				health -= rand(5,15)
+				health -= rand(5,12) //3 in 7 chance to break from full health
 				healthcheck()
 				return
 			if(OLD_EX_SEVERITY_3)
-				health -= rand(0,15)
+				health -= rand(2,6)
 				healthcheck()
 				return
 
