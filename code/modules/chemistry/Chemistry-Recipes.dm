@@ -2944,13 +2944,17 @@ datum
 			instant = 1
 			special_log_handling = 1
 			mix_phrase = "The mixture quickly and violently erupts into bubbles!"
+
+			//putting the metalfoam recipes under this one cause code deduplication
+			var/metallic = 0 //I hate how the metal var gets shoved across like 4 things, but it's a mild hate
+
 			on_reaction(var/datum/reagents/holder, var/created_volume)
 				if (holder.postfoam)
 					return
 				if(!holder?.my_atom?.is_open_container())
 					if(holder.my_atom)
 						for(var/mob/M in AIviewers(5, get_turf(holder.my_atom)))
-							boutput(M, "<span class='notice'>With nowhere to go, the bubbles settle.</span>")
+							boutput(M, "<span class='notice'>With nowhere to go, the [metallic ? "metal" : "bubbles"] settle.</span>")
 						return
 				var/turf/location = 0
 				if (holder.my_atom && holder.covered_cache.len <= 1)
@@ -2961,10 +2965,10 @@ datum
 					location = get_turf(holder.my_atom)
 
 					for(var/mob/M in AIviewers(5, location))
-						boutput(M, "<span class='alert'>The solution spews out foam!</span>")
+						boutput(M, "<span class='alert'>The solution spews out [metallic ? "a metallic" : ""] foam!</span>")
 
 					var/datum/effects/system/foam_spread/s = new()
-					s.set_up(created_volume, location, holder, 0)
+					s.set_up(created_volume, location, holder, metallic)
 					s.start()
 					holder.clear_reagents()
 				else
@@ -2973,79 +2977,27 @@ datum
 						location = pick(holder.covered_cache)
 						holder.covered_cache -= location
 						var/datum/effects/system/foam_spread/s = new()
-						s.set_up(created_volume/holder.covered_cache.len, location, holder, 0, carry_volume = created_volume / holder.covered_cache.len)
+						s.set_up(created_volume/holder.covered_cache.len, location, holder, metallic, carry_volume = created_volume / holder.covered_cache.len)
 						s.start()
 					holder.clear_reagents()
 				return
 
-		metalfoam
-			name = "Metal Foam"
-			id = "metalfoam"
-			required_reagents = list("aluminium" = 3, "fluorosurfactant" = 1, "acid" = 1)
-			instant = 1
-			result_amount = 5
-			mix_phrase = "The metal begins to foam up!"
+			metalfoam
+				name = "Metal Foam"
+				id = "metalfoam"
+				required_reagents = list("aluminium" = 3, "fluorosurfactant" = 1, "acid" = 1)
+				instant = 1
+				result_amount = 5
+				mix_phrase = "The metal begins to foam up!"
+				special_log_handling = 0 //previous metal foam recipes didn't have this
+				metallic = 1
 
-			on_reaction(var/datum/reagents/holder, var/created_volume)
-				var/turf/location = 0
-				if(!holder?.my_atom?.is_open_container())
-					if(holder.my_atom)
-						for(var/mob/M in AIviewers(5, get_turf(holder.my_atom)))
-							boutput(M, "<span class='notice'>With nowhere to go, the metal settles.</span>")
-						return
-
-				if (holder.my_atom && holder.covered_cache.len <= 1)
-					location = get_turf(holder.my_atom)
-					for(var/mob/M in AIviewers(5, location))
-						boutput(M, "<span class='alert'>The solution spews out a metalic foam!</span>")
-
-					var/datum/effects/system/foam_spread/s = new()
-					s.set_up(created_volume/2, location, holder, 1)
-					s.start()
-				else
-					var/amt = min(max(1,holder.covered_cache.len/100), 10)
-					for (var/i = 0, i < amt && holder.covered_cache.len, i++)
-						location = pick(holder.covered_cache)
-						holder.covered_cache -= location
-						var/datum/effects/system/foam_spread/s = new()
-						s.set_up(created_volume/holder.covered_cache.len, location, holder, 0, carry_volume = created_volume / holder.covered_cache.len)
-						s.start()
-					holder.clear_reagents()
-				return
-
-		ironfoam
-			name = "Iron Foam"
-			id = "ironfoam"
-			required_reagents = list("iron" = 3, "fluorosurfactant" = 1, "acid" = 1)
-			instant = 1
-			result_amount = 5
-			mix_phrase = "The metal begins to foam up, becoming rigid and tough!"
-
-			on_reaction(var/datum/reagents/holder, var/created_volume)
-				var/turf/location = 0
-				if(!holder?.my_atom?.is_open_container())
-					if(holder.my_atom)
-						for(var/mob/M in AIviewers(5, location))
-							boutput(M, "<span class='notice'>With nowhere to go, the metal settles.</span>")
-						return
-
-				if (holder?.my_atom)
-					location = get_turf(holder.my_atom)
-					for(var/mob/M in AIviewers(5, location))
-						boutput(M, "<span class='alert'>The solution spews out a metalic foam!</span>")
-
-					var/datum/effects/system/foam_spread/s = new()
-					s.set_up(created_volume/2, location, holder, 2)
-					s.start()
-				else
-					var/amt = min(max(1, (holder.covered_cache.len * (created_volume / holder.covered_cache_volume))), 5)
-					for (var/i = 0, i < amt && holder.covered_cache.len, i++)
-						location = pick(holder.covered_cache)
-						holder.covered_cache -= location
-						var/datum/effects/system/foam_spread/s = new()
-						s.set_up((created_volume/2)/amt, location, holder, 2)
-						s.start()
-				return
+				ironfoam
+					name = "Iron Foam"
+					id = "ironfoam"
+					required_reagents = list("iron" = 3, "fluorosurfactant" = 1, "acid" = 1)
+					mix_phrase = "The metal begins to foam up, becoming rigid and tough!"
+					metallic = 2
 
 		luminol
 			name = "luminol"
