@@ -10,11 +10,15 @@
 	health = 1800
 	health_max = 1800
 
+	var/close_sound = "sound/machines/blast_door_1.ogg"
+	var/open_sound = "sound/machines/hydraulic.ogg"
+
 	var/id = 1.0
 
 	New()
 		. = ..()
 		START_TRACKING
+		close_sound = "sound/machines/blast_door_[rand(1,9)].ogg" // variety
 
 	disposing()
 		. = ..()
@@ -996,6 +1000,8 @@
 			src.RL_SetOpacity(0)
 		update_nearby_tiles()
 
+		playsound(src, open_sound, rand(30,45),1)
+
 		if(operating == 1) //emag again
 			src.operating = 0
 		if(autoclose)
@@ -1022,6 +1028,8 @@
 			else
 				src.RL_SetOpacity(1)
 		update_nearby_tiles()
+
+		playsound(src, close_sound, rand(50,65),1)
 
 		sleep(1 SECOND)
 		src.operating = 0
