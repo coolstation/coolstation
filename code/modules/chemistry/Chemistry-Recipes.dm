@@ -3015,7 +3015,7 @@ datum
 
 		ironfoam
 			name = "Iron Foam"
-			id = "ironlfoam"
+			id = "ironfoam"
 			required_reagents = list("iron" = 3, "fluorosurfactant" = 1, "acid" = 1)
 			instant = 1
 			result_amount = 5
