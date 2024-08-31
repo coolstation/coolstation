@@ -38,7 +38,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 				I.pixel_x = overlay_x - 3
 				//if (gun.bullpup_stock) //gotta figure this fucker out: we'd want this to be an underlay or a layer slightly below the reciever
 				//for now i'm just adding another overlay of the receiver maybe
-			if (part_type == "grip" || part_type == "foregrip")
+			if (part_type == "grip")
 				I.pixel_y = overlay_y - 3
 		gun.UpdateOverlays(I, part_type)
 
@@ -179,7 +179,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 	add_part_to_gun(var/obj/item/gun/modular/gun)
 		if(!istype(gun))
 			return
-
 		overlay_x += gun.stock_overlay_x
 		overlay_y += gun.stock_overlay_y
 		..()
@@ -244,23 +243,35 @@ ABSTRACT_TYPE(/obj/item/gun_parts/grip)
 
 		overlay_x += gun.grip_overlay_x //offsets to get to the standard position on the receiver
 		overlay_y += gun.grip_overlay_y
-		//no grip? put grip on
+		//no grip? put grip on first
 		if(!gun.grip)
 			//add checks to see if you can put one on (some receivers/stocks might block)
 			//TODO: soviet long receiver accepts no grip
 			src.part_type = "grip"
+			my_gun = gun
 			my_gun.grip = src
+			add_overlay_to_gun(gun, 1)
+			my_gun.bulk += src.bulkiness
 			//TODO ATTN barrels need to have length specified for this (hover over last pixel on the barrel and -2x and there's ur length)
 		//grip is present, attempt to put foregrip on if there is no foregrip
-		else if (!gun.foregrip)
-			if (gun.barrel && (gun.barrel.length + gun.barrel.overlay_x >= gun.grip_overlay_x + gun.foregrip_offset_x + 2)) // with at least 2px from the end of the barrel.
-				//add checks to see if you can put one on (some receivers/stocks might block, some receivers can always accept regardless of barrel?)
-				//TODO: soviet gun accepts no foregrip
-				src.part_type = "foregrip"
-				my_gun.foregrip = src
-				//additional shunting from the receiver itself
-				overlay_x += my_gun.foregrip_offset_x
-				overlay_y += my_gun.foregrip_offset_y
+		/*
+		else if(!gun.foregrip)
+			//if (gun.barrel && (gun.barrel.length + gun.barrel.overlay_x >= gun.grip_overlay_x + gun.foregrip_offset_x + 2)) // with at least 2px from the end of the barrel.
+			//add checks to see if you can put one on (some receivers/stocks might block, some receivers can always accept regardless of barrel?)
+			//I have this off until I adjust barrel lengths and can look at the math with a fresh and clear head
+			//TODO: soviet gun accepts no foregrip
+			//additional shunting from the receiver itself
+			overlay_x += gun.foregrip_offset_x
+			overlay_y += gun.foregrip_offset_y
+
+			src.part_type = "foregrip"
+
+			my_gun = gun
+			my_gun.foregrip = src
+			add_overlay_to_gun(gun, 1)
+			my_gun.bulk += src.bulkiness
+			*/
+			/*
 			else //no room on the barrel
 				boutput(usr,"<span class='alert'><b>Error! The foregrip just falls off 'cause there's jack shit to hold it!</b></span>")
 				my_gun.foregrip = null
@@ -269,13 +280,17 @@ ABSTRACT_TYPE(/obj/item/gun_parts/grip)
 				gun.UpdateOverlays(null, part_type)
 				src.part_type = "grip" //back to a normal grip
 				return
-		else //something isn't right, let's give up
+			*/
+		/* //don't think i need this. tearing it out for now
+		else //already a grip and foregrip
 			boutput(usr,"<span class='alert'><b>Error! Looks like you can't put any grips on this thing at all!</b></span>")
 			gun.parts &= ~src
 			src.set_loc(get_turf(src))
 			gun.UpdateOverlays(null, part_type)
 			src.part_type = "grip"
 			return
+		*/
+
 		..()
 		if(!my_gun)
 			return
@@ -288,6 +303,12 @@ ABSTRACT_TYPE(/obj/item/gun_parts/grip)
 		if(!my_gun) //already removed, or so you think
 			return
 		. = ..()
+
+		my_gun.grip = null
+		/*
+		if (part_type == "foregrip")
+			my_gun.foregrip = null
+			*/
 
 //any gun that isn't single shot will need one of these somehow
 ABSTRACT_TYPE(/obj/item/gun_parts/magazine)
@@ -357,6 +378,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		if(!my_gun)
 			return
 		. = ..()
+		my_gun.accessory = null
 
 
 

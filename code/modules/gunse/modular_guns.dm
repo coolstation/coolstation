@@ -198,6 +198,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 					stock = I
 			if (istype(I, /obj/item/gun_parts/grip/))
 				if(grip) //occupado
+					boutput(user,"<span class='notice'>...and knock [grip] out of the way.</span>")
+					grip.set_loc(get_turf(src))
+					grip = I
+					//temporarily disabling all foregrip
+					/*
 					if(foregrip) //also occupado???? hmmm, time to chooce
 						switch(alert("There's already both a grip and foregrip installed.", "Get A Grip, Buddy!!!", "Replace Grip", "Replace Foregrip", "Remove Both", "Cancel"))
 							if("Replace Grip")
@@ -226,6 +231,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 								foregrip = I
 						//a little awkward: i'd like to have an attackself interface on an unbuilt gun that lets you pop off items
 						//at least to hold off until workbench is created
+					*/
 				else
 					grip = I
 			if (istype(I, /obj/item/gun_parts/magazine/))
@@ -555,13 +561,15 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 /obj/item/gun/modular/proc/build_gun()
 	icon_state = "[initial(icon_state)]-built" //if i don't do this it's -built-built-built
 	parts = list()
+	if(barrel)
+		parts += barrel
+	/*
 	if(foregrip) //tuck this under the barrel
 		foregrip.part_type = "foregrip"
 		parts += foregrip
 		foregrip.overlay_x += foregrip_offset_x
 		foregrip.overlay_y += foregrip_offset_y
-	if(barrel)
-		parts += barrel
+	*/
 	else //bad idea
 		spread_angle += BARREL_PENALTY
 	if(src.gun_DRM == GUN_JUICE) //pump requires two hands also it's almost always fukken huge
@@ -588,8 +596,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	if(bulk >= 6 || flashbulb_only) //flashfoss always two hands, how else will you crank off
 		src.two_handed = 1
-		if(!foregrip)
-			spread_angle += GRIP_PENALTY/3
+		//if(!foregrip)
+		//	spread_angle += GRIP_PENALTY/3
 	src.force = 2 + bulk
 	src.throwforce = bulk
 
@@ -606,7 +614,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	stock = null
 	magazine = null
 	accessory = null
-	foregrip = null
+	//foregrip = null
 
 	name = real_name
 
@@ -736,12 +744,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 		barrel = new /obj/item/gun_parts/barrel/juicer/chub(src)
 		if(prob(50))
 			grip = new /obj/item/gun_parts/grip/juicer/black(src)
-			if(prob(10))
-				foregrip = new /obj/item/gun_parts/grip/NT/stub(src)
+			//if(prob(10))
+			//	foregrip = new /obj/item/gun_parts/grip/NT/stub(src)
 		else
 			grip = new /obj/item/gun_parts/grip/juicer(src)
-			if(prob(10))
-				foregrip = new /obj/item/gun_parts/grip/juicer/black(src)
+			//if(prob(10))
+			//	foregrip = new /obj/item/gun_parts/grip/juicer/black(src)
 		if(prob(30))
 			accessory = new /obj/item/gun_parts/accessory/flashlight(src)
 
@@ -780,8 +788,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 			grip = new /obj/item/gun_parts/grip/NT/stub(src)
 		else if(prob(25))
 			grip = new /obj/item/gun_parts/grip/NT/wood(src)
-		if(prob(30))
-			foregrip = new /obj/item/gun_parts/grip/NT/stub(src)
+		//if(prob(30))
+		//	foregrip = new /obj/item/gun_parts/grip/NT/stub(src)
 
 // syndicate laser gun's!
 // cranked capacitor which discharges through a flashbulb thing and shoots a big honking lazers
@@ -808,8 +816,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/foss)
 	stock_overlay_x = -10 //combined with the inherent -6 on the stock itself, this is 16 to the left (fiddly fucking thing)
 	grip_overlay_x = -4
 	grip_overlay_y = -2
-	foregrip_offset_x = 12
-	foregrip_offset_y = 0
+	//foregrip_offset_x = 12
+	//foregrip_offset_y = 0
 
 //basic foss laser
 /obj/item/gun/modular/foss/standard
@@ -840,7 +848,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/foss)
 		barrel = new /obj/item/gun_parts/barrel/foss/long(src)
 		stock = new /obj/item/gun_parts/stock/foss/loader(src)
 		grip = new /obj/item/gun_parts/grip/foss(src)
-		foregrip = new /obj/item/gun_parts/grip/foss(src)
+		//foregrip = new /obj/item/gun_parts/grip/foss(src)
 
 
 //JUICER GUN'ZES
@@ -865,7 +873,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 	barrel_overlay_x = BARREL_OFFSET_LONG
 	grip_overlay_x = GRIP_OFFSET_LONG
 	stock_overlay_x = STOCK_OFFSET_LONG
-	foregrip_offset_x = 15 //put it on the pump
+	//foregrip_offset_x = 15 //put it on the pump
 
 /obj/item/gun/modular/juicer/basic
 	name = "\improper BLASTA"
@@ -917,7 +925,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 		else
 			grip = new /obj/item/gun_parts/grip/italian/bigger(src)
 		if(prob(50))
-			foregrip = new /obj/item/gun_parts/grip/juicer(src)
+			//foregrip = new /obj/item/gun_parts/grip/juicer(src)
 			magazine = new /obj/item/gun_parts/magazine/juicer/four(src)
 		else
 			magazine = new /obj/item/gun_parts/magazine/juicer(src)
@@ -931,7 +939,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 		else
 			grip = new /obj/item/gun_parts/grip/juicer/black(src)
 		if(prob(50))
-			foregrip = new /obj/item/gun_parts/grip/juicer/black(src)
+			//foregrip = new /obj/item/gun_parts/grip/juicer/black(src)
 			magazine = new /obj/item/gun_parts/magazine/juicer/four(src)
 		else
 			magazine = new /obj/item/gun_parts/magazine/juicer(src)
