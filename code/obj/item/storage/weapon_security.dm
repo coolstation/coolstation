@@ -64,7 +64,7 @@
 	desc = "A box containing an italian revolver and ammo."
 	// Reduced the amount of ammo. The detective had four lethal and five stun speedloaders total in his closet, perhaps a bit too much (Convair880).
 	spawn_contents = list(/obj/item/gun/modular/italian/italiano,\
-	/obj/item/gun_parts/stock/italian/bigger,\
+	/obj/item/gun_parts/grip/italian/bigger,\
 	/obj/item/stackable_ammo/capacitive/ten,\
 	/obj/item/stackable_ammo/pistol/five)
 
@@ -81,7 +81,7 @@
 	icon_state = "hard_case"
 	desc = "A box containing a standard issue pistol and some ammo."
 	// this might be a terrible idea giving them so much ammo, but whatevs
-	spawn_contents = list(/obj/item/gun/modular/NT/pistol,\
+	spawn_contents = list(/obj/item/gun/modular/NT/short/pistol,\
 	/obj/item/stackable_ammo/pistol/ten = 2,\
 	/obj/item/stackable_ammo/tranq)
 
@@ -96,7 +96,7 @@
 	name = "shotgun box"
 	icon_state = "hard_case"
 	desc = "A box containing a low-powered shotgun and some ammo."
-	spawn_contents = list(/obj/item/gun/modular/NT/shotty,\
+	spawn_contents = list(/obj/item/gun/modular/NT/long/shotty,\
 	/obj/item/stackable_ammo/scatter/buckshot/five,\
 	/obj/item/stackable_ammo/capacitive_burst/ten,\
 	/obj/item/stackable_ammo/scatter/slug_rubber/ten)

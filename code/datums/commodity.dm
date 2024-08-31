@@ -2871,7 +2871,7 @@
 
 /datum/commodity/pricemaster/lasergun
 	comname = "The Laser Gun"
-	comtype = /obj/item/gun/modular/soviet/basic
+	comtype = /obj/item/gun/modular/soviet/short/basic
 	onmarket = 0
 	price = 10000
 	upperfluc = 10000
