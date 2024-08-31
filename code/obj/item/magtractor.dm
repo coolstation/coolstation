@@ -110,6 +110,7 @@
 
 		else if ((src.holding && src.holding.loc != src) || src.holding.disposed) // it's gone!!
 			actions.stopId("magpickerhold", user)
+			return 0
 
 		return 1
 

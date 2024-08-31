@@ -102,6 +102,7 @@
 /datum/robot/module_tool_creator/item_type/amount/setup(obj/item/contents, atom/proxy_loc)
 	if (!isnull(contents))
 		contents.amount = src.amount
+		contents.max_stack = src.amount
 	return contents
 
 /**

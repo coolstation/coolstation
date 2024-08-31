@@ -584,11 +584,10 @@
 
 /obj/item/proc/stack_item(obj/item/other)
 	var/added = 0
-	if(isrobot(other.loc))
-		max_stack = 500
+	if(isrobot(other.loc) || istype(other.loc, /obj/item/magtractor))
 		if (other != src && check_valid_stack(src))
-			if (src.amount + other.amount > max_stack)
-				added = max_stack - other.amount
+			if (src.amount + other.amount > other.max_stack)
+				added = other.max_stack - other.amount
 			else
 				added = src.amount
 			src.change_stack_amount(-added)
