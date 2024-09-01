@@ -82,6 +82,7 @@
 			if(network && !network.gases.Find(air_contents))
 				network.gases += air_contents
 
+			UpdateOverlays(image(src.icon, icon_state = "shitty_connector_placeholder"), "connecty_grip")
 			return 1
 
 		disconnect()
@@ -95,6 +96,7 @@
 
 			connected_port.connected_device = null
 			connected_port = null
+			UpdateOverlays(null, "connecty_grip")
 
 			return 1
 
