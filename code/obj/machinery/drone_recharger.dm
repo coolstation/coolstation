@@ -11,7 +11,6 @@
 	machine_registry_idx = MACHINES_DRONERECHARGERS
 	var/chargerate = 400
 	var/mob/living/silicon/ghostdrone/occupant = null
-	var/transition = 0 //For when closing
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_MULTITOOL
 
@@ -24,12 +23,12 @@
 			occupant = null
 		..()
 
-	process()
+	process(mult)
 		if(!(status & BROKEN))
 			if (occupant)
-				power_usage = 500
+				power_usage = 500 * mult
 			else
-				power_usage = 50
+				power_usage = 50 * mult
 			..()
 		if(status & (NOPOWER|BROKEN) || !anchored)
 			if (src.occupant)
@@ -47,20 +46,22 @@
 				src.turnOff("fullcharge")
 				return
 			else
-				occupant.cell.charge += src.chargerate
-				use_power(50)
+				occupant.cell.charge += src.chargerate * mult
+				use_power(50 * mult)
 				return
 		return 1
 
 	HasEntered(atom/movable/AM as mob|obj, atom/OldLoc)
 		..()
-		if (!src.occupant && isghostdrone(AM) && !src.transition)
-			src.turnOn(AM)
+		if (!src.occupant && isghostdrone(AM))
+			if (!ON_COOLDOWN(src, "animation", 0.7 SECONDS))
+				src.turnOn(AM)
 
-	HasExited(atom/movable/AM as mob|obj)
+	HasExited(atom/movable/AM as mob|obj, atom/NewLoc)
 		..()
-		if (AM.loc != src.loc && src.occupant == AM && isghostdrone(AM))
+		if (NewLoc != src.loc && src.occupant == AM && isghostdrone(AM))
 			src.turnOff()
+			ON_COOLDOWN(src, "animation", 0.7 SECONDS)
 
 	examine()
 		. = ..()
@@ -69,25 +70,30 @@
 
 	proc/turnOn(mob/living/silicon/ghostdrone/G)
 		if (!G || G.getStatusDuration("stunned")) return 0
-
 		out(G, "<span class='notice'>The [src] grabs you as you float by and begins charging your power cell.</span>")
 		src.set_density(1)
-		G.canmove = 0
+		//G.canmove = 0
 
 		//Do opening thing
-		src.icon_state = "drone-charger-open"
+		flick("drone-charger-open",src)
+
+
+		src.occupant = G
+		src.updateSprite()
+		G.charging = 1
+		//Only put the visual update for the drone in the spawn anymore, and that's me being generous.
 		SPAWN_DBG(0.7 SECONDS) //Animation is 6 ticks, 1 extra for byond
-			src.occupant = G
-			src.updateSprite()
-			G.charging = 1
-			G.set_dir(SOUTH)
-			G.updateSprite()
-			G.canmove = 1
+			if (G == src.occupant) //didn't fuck off when it had the chance
+				G.set_dir(SOUTH)
+				G.updateSprite()
+		//G.canmove = 1
 
 		return 1
 
 	proc/turnOff(reason)
-		if (!src.occupant || src.occupant.newDrone) return 0
+		if (!src.occupant) return 0
+		if (src.occupant.newDrone) //imagine coding this so newDrone just returned 0 always. Would be impossible for an empty drone to ever move off the charger, right? Yeaaaah
+			if (src.occupant.loc == src.loc) return 0
 
 		var/msg = "<span class='notice'>"
 		if (reason == "nopower")
@@ -105,12 +111,9 @@
 		src.occupant = null
 
 		//Do closing thing
-		src.icon_state = "drone-charger-close"
-		src.transition = 1
-		SPAWN_DBG(0.7 SECONDS)
-			src.set_density(0)
-			src.transition = 0
-			src.updateSprite()
+		flick("drone-charger-close",src)
+		src.set_density(0)
+		src.updateSprite()
 
 		return 1
 
@@ -148,8 +151,10 @@
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 	HasEntered(atom/movable/AM as mob|obj, atom/OldLoc)
-		if (!src.occupant && istype(AM, /obj/item/ghostdrone_assembly) && !src.transition)
-			src.createDrone(AM)
+		if (!src.occupant && istype(AM, /obj/item/ghostdrone_assembly))
+			if (!ON_COOLDOWN(src, "animation", 0.7 SECONDS))
+				src.createDrone(AM)
+				return //parent call won't do anything, but the assembly is qdeled at this point so
 		..()
 
 	proc/createDrone(var/obj/item/ghostdrone_assembly/G)
