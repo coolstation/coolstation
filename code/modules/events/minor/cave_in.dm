@@ -11,7 +11,7 @@
 	announce_to_admins = 0
 	customization_available = 0 //Do later :)
 
-	event_effect(var/source,var/turf/wall/asteroid/gehenna/center)
+	event_effect(var/source,var/turf/center)
 		..()
 
 		if (!istype(center))
@@ -19,7 +19,8 @@
 		var/severity = 1 //we'll assume the center is open since it will be very soon
 		//effect is worse the more open the area of the cave in
 		for (var/turf/T in orange(center, 4))
-			if (!T.density) severity++
+			if (!T.density)
+				severity += (istype(T.loc, /area/station) ? 0.5 : 1) //limit cave-ins near the station, cause otherwise things get buried real quick.
 
 		var/next_timer = rand(7 SECONDS, 14 SECONDS)
 		while (severity > 0)

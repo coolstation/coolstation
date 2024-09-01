@@ -26,6 +26,10 @@ var/datum/explosion_controller/explosions
 		if (epicenter.loc:sanctuary)
 			return//no boom boom in sanctuary
 		queued_explosions += new/datum/explosion(source, epicenter, power, brisance, angle, width, usr)
+		#ifdef Z3_IS_A_STATION_LEVEL
+		if (epicenter.z == Z_LEVEL_DEBRIS && power > 30 && !istype(epicenter.loc, /area/station)) //large explosions cause cave-ins
+			random_events.force_event("Cave-In", "Underground Explosion In Caverns", epicenter)
+		#endif
 
 	proc/queue_damage(var/list/new_turfs)
 		var/c = 0
