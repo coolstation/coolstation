@@ -1932,6 +1932,7 @@ proc/HYPmutationcheck_sub(var/lowerbound,var/upperbound,var/checkedvariable)
 		src.active = !src.active
 		user.visible_message("<b>[user]</b> switches [src.name] [src.active ? "on" : "off"].")
 		src.icon_state = "growlamp[src.active]"
+		playsound(src, "sound/misc/lightswitch.ogg", 50, 1)
 		if(src.active && !HAS_FLAG(status, (NOPOWER|BROKEN)))
 			light.enable()
 		else

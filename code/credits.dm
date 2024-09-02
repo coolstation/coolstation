@@ -13,6 +13,10 @@ client/verb/credits()
 			<li><b>Sheep and mantis critters:</b> UltiCa for Cataclysm: Dark Days Ahead, distributed under CC BY-SA 3.0</li>
 			<li><b>Carpets:</b> modified and used from RMXP Indoor Tileset by Inquisitor (Richard Janes) - I know credit wasn't required but you deserve it after all these years</li>
 			<li><b>Hallucinations:</b> I dunno but they were from an open source art thing...</li>
+			<p>
+		<h3>Sound effect sources:</h3>
+			<li><b>metal_clang1 and metal_clang2:</b> Modified from "Doors: Church: Interior - Church Door: Interior, unbolted, open and close with scrape." - bbc.co.uk – © copyright 2024 BBC</li>
+			<li><b>blast_door_1 through blast_door_9:</b> Modified from custom_scifi_mechanical_blast_door_impact_sounds_02_08162024 by Artninja -- https://freesound.org/s/751406/ -- License: Attribution 4.0</li>
 		<p>
 	</ul>"}, "window=credits;title=Credits" )
 	return

@@ -3496,12 +3496,14 @@
 				boutput(user, "<span class='alert'>[src.name] is already loaded!</span>")
 				return
 			src.visible_message("<b>[user.name]</b> loads [O] into [src.name]!")
+			playsound(src, 'sound/machines/metal_clang1.ogg', 40)
 			O.set_loc(src)
 			src.update_icon()
 		else return
 
 	MouseDrop(obj/over_object as obj, src_location, over_location)
 		ejectContents(usr, over_object)
+		playsound(src, 'sound/machines/metal_clang2.ogg', 40)
 
 	verb/eject()
 		set name = "Eject"
