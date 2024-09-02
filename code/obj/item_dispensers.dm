@@ -7,7 +7,7 @@
 	desc = "A storage container that easily dispenses items."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "dispenser_handcuffs"
-	pixel_y = 28
+
 	anchored = 1
 	var/filled_icon_state = "" 		//i tried to do this in a smart way but it was a PITA so here have this stinky code instead
 	var/empty_icon_state = "" 		//autoset by the s y s t e m, dont set this yourself
@@ -58,6 +58,7 @@
 			var/obj/item/I = new src.withdraw_type
 			boutput(user, "<span class='notice'>You take \the [I] from \the [src]. [display_amount ? "There's [src.amount] left.": null ]</span>")
 			user.put_in_hand_or_drop(I)
+			MAKE_PICKUP_SOUND(I, src)
 
 			//This is pretty lame, but it's simpler than putting these in a process loop when they are rarely used. - kyle
 			if (dispense_rate > 0 && (last_dispense_time + dispense_rate > TIME))
@@ -80,11 +81,14 @@
 			else
 				src.icon_state = src.filled_icon_state
 
+ABSTRACT_TYPE(/obj/item_dispenser/wallmounted)
+/obj/item_dispenser/wallmounted
+	pixel_y = 28 //no don't put this on the parent! bad!
 ///////////////////
 //ITEM DISPENSERS//
 ///////////////////
 
-/obj/item_dispenser/handcuffs
+/obj/item_dispenser/wallmounted/handcuffs
 	name = "handcuffs dispenser"
 	desc = "A storage container that easily dispenses handcuffs."
 	icon_state = "dispenser_handcuffs"
@@ -92,7 +96,7 @@
 	deposit_type = /obj/item/handcuffs
 	withdraw_type = /obj/item/handcuffs
 
-/obj/item_dispenser/latex_gloves
+/obj/item_dispenser/wallmounted/latex_gloves
 	name = "latex gloves dispenser"
 	desc = "A storage container that easily dispenses latex gloves."
 	icon_state = "dispenser_gloves"
@@ -100,7 +104,7 @@
 	deposit_type = /obj/item/clothing/gloves/latex
 	withdraw_type = /obj/item/clothing/gloves/latex
 
-/obj/item_dispenser/medical_mask
+/obj/item_dispenser/wallmounted/medical_mask
 	name = "surgical mask dispenser"
 	desc = "A storage container that easily dispenses surgical face masks."
 	icon_state = "dispenser_mask"
@@ -108,7 +112,7 @@
 	deposit_type = /obj/item/clothing/mask/surgical
 	withdraw_type = /obj/item/clothing/mask/surgical
 
-/obj/item_dispenser/medical_mask_internals
+/obj/item_dispenser/wallmounted/medical_mask_internals
 	name = "medical mask dispenser"
 	desc = "A storage container that easily dispenses medical masks for administering oxygen or anesthetic."
 	icon_state = "dispenser_mask"
@@ -116,7 +120,7 @@
 	deposit_type = /obj/item/clothing/mask/medical
 	withdraw_type = /obj/item/clothing/mask/medical
 
-/obj/item_dispenser/prescription_glasses
+/obj/item_dispenser/wallmounted/prescription_glasses
 	name = "prescription glasses dispenser"
 	desc = "A storage container that easily dispenses prescription glasses."
 	icon_state = "dispenser_glasses"
@@ -124,7 +128,7 @@
 	deposit_type = /obj/item/clothing/glasses/regular
 	withdraw_type = /obj/item/clothing/glasses/regular
 
-/obj/item_dispenser/idcarddispenser
+/obj/item_dispenser/wallmounted/idcarddispenser
 	name = "\improper ID card dispenser"
 	desc = "A storage container that easily dispenses fresh ID cards. It can be refilled with paper."
 	icon_state = "dispenser_id"
@@ -138,6 +142,26 @@
 			playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 25, 1)
 		..()
 
+/obj/item_dispenser/bedsheet
+	name = "linen bin"
+	desc = "A bin for containing bedsheets."
+	icon = 'icons/obj/items/items.dmi'
+	filled_icon_state = "bedbin"
+	icon_state = "bedbin"
+	amount = 23
+	withdraw_type = /obj/item/clothing/suit/bedsheet
+	deposit_type = /obj/item/clothing/suit/bedsheet
+
+/obj/item_dispenser/towel
+	name = "towel bin"
+	desc = "A bin for containing towels."
+	icon = 'icons/obj/items/items.dmi'
+	filled_icon_state = "bedbin"
+	icon_state = "bedbin"
+	amount = 23
+	withdraw_type = /obj/item/clothing/under/towel
+	deposit_type = /obj/item/clothing/under/towel
+
 /obj/item_dispenser/icedispenser
 	name = "ice dispenser"
 	desc = "It's a small freezer unit that produces ice. Looks like it's hooked into the station water mains."
@@ -147,7 +171,6 @@
 	deposit_type = null
 	amount = 10000
 	display_amount = 0
-	pixel_y = 0
 	flags = FPRINT | NOSPLASH
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -158,3 +181,4 @@
 			"<span class='notice'>You add some ice to the [W].</span>")
 			else
 				boutput(user, "<span class='alert'>[W] is too full!</span>")
+		else ..() //call yer parents >:(

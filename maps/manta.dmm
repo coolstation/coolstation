@@ -2242,7 +2242,7 @@
 /area/station/maintenance/upperstarboard)
 "aih" = (
 /obj/table/auto,
-/obj/bedsheetbin,
+/obj/item_dispenser/bedsheet,
 /obj/item/clothing/suit/bathrobe,
 /obj/item/clothing/head/towel_hat,
 /obj/item/clothing/shoes/fuzzy,
@@ -4118,7 +4118,7 @@
 /area/listeningpost/syndicateassaultvessel)
 "anw" = (
 /obj/table/auto,
-/obj/towelbin{
+/obj/item_dispenser/towel{
 	pixel_y = 2
 	},
 /turf/floor/sanitary,
@@ -15498,7 +15498,7 @@
 /obj/machinery/computer/security/wooden_tv/small{
 	pixel_y = 5
 	},
-/obj/item_dispenser/handcuffs,
+/obj/item_dispenser/wallmounted/handcuffs,
 /turf/floor/black,
 /area/station/security/brig/cell_block_control)
 "aSp" = (
@@ -15728,7 +15728,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/item_dispenser/idcarddispenser,
+/obj/item_dispenser/wallmounted/idcarddispenser,
 /turf/floor/wood,
 /area/station/hos)
 "aTd" = (
@@ -16386,7 +16386,7 @@
 	dir = 4
 	},
 /obj/table/reinforced/auto,
-/obj/bedsheetbin{
+/obj/item_dispenser/bedsheet{
 	pixel_y = 2
 	},
 /obj/item/device/radio/headset/civilian,
@@ -16597,7 +16597,7 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/obj/item_dispenser/handcuffs,
+/obj/item_dispenser/wallmounted/handcuffs,
 /turf/floor/redblack{
 	dir = 1
 	},
@@ -17862,7 +17862,7 @@
 /area/station/medical/research)
 "aYM" = (
 /obj/table/glass/reinforced/auto,
-/obj/bedsheetbin,
+/obj/item_dispenser/bedsheet,
 /obj/item/hand_labeler,
 /obj/item/storage/toolbox/emergency,
 /turf/floor/blue,
@@ -18159,7 +18159,7 @@
 /area/station/medical/robotics)
 "aZz" = (
 /obj/machinery/manufacturer/robotics,
-/obj/item_dispenser/latex_gloves,
+/obj/item_dispenser/wallmounted/latex_gloves,
 /turf/floor/black,
 /area/station/medical/robotics)
 "aZA" = (
@@ -18493,7 +18493,7 @@
 /obj/item/staple_gun{
 	pixel_x = 3
 	},
-/obj/item_dispenser/latex_gloves,
+/obj/item_dispenser/wallmounted/latex_gloves,
 /turf/floor/redwhite{
 	dir = 1
 	},
@@ -18508,7 +18508,7 @@
 /obj/item/clothing/glasses/healthgoggles{
 	pixel_y = 6
 	},
-/obj/item_dispenser/latex_gloves,
+/obj/item_dispenser/wallmounted/latex_gloves,
 /turf/floor/redwhite{
 	dir = 5
 	},
@@ -18926,7 +18926,7 @@
 /area/station/hallway/starboardlowerhallway)
 "bbV" = (
 /obj/table/reinforced/auto,
-/obj/towelbin{
+/obj/item_dispenser/towel{
 	pixel_y = 2
 	},
 /turf/floor{
@@ -22009,7 +22009,7 @@
 /area/station/medical/medbay/lobby)
 "bjl" = (
 /obj/decoration/decorativeplant/plant7,
-/obj/item_dispenser/prescription_glasses,
+/obj/item_dispenser/wallmounted/prescription_glasses,
 /turf/floor/blue,
 /area/station/medical/medbay/lobby)
 "bjn" = (
@@ -26476,7 +26476,7 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/obj/item_dispenser/latex_gloves,
+/obj/item_dispenser/wallmounted/latex_gloves,
 /obj/disposalpipe/segment,
 /turf/floor/blackwhite,
 /area/station/science/chemistry)
@@ -31063,7 +31063,7 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
-/obj/item_dispenser/latex_gloves,
+/obj/item_dispenser/wallmounted/latex_gloves,
 /turf/floor/engine,
 /area/station/science/testchamber)
 "bIt" = (
@@ -32190,7 +32190,7 @@
 /area/station/science/restroom)
 "bLv" = (
 /obj/table/auto,
-/obj/towelbin{
+/obj/item_dispenser/towel{
 	pixel_y = 2
 	},
 /turf/floor/sanitary,
@@ -40751,7 +40751,7 @@
 /area/diner/dining)
 "nSv" = (
 /obj/iv_stand,
-/obj/item_dispenser/latex_gloves,
+/obj/item_dispenser/wallmounted/latex_gloves,
 /obj/machinery/light/fluorescent/purpleish{
 	dir = 8;
 	nostick = 1;
@@ -45331,7 +45331,7 @@
 /area/station/maintenance/seaturtle/boiler)
 "ykr" = (
 /obj/table/round/auto,
-/obj/towelbin{
+/obj/item_dispenser/towel{
 	pixel_y = 2
 	},
 /obj/item/clothing/suit/bathrobe,

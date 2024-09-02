@@ -272,61 +272,6 @@
 /obj/proc/get_movement_controller(mob/user)
 	return
 
-/obj/bedsheetbin
-	name = "linen bin"
-	desc = "A bin for containing bedsheets."
-	icon = 'icons/obj/items/items.dmi'
-	icon_state = "bedbin"
-	var/amount = 23.0
-	anchored = 1.0
-
-	attackby(obj/item/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/clothing/suit/bedsheet))
-			qdel(W)
-			src.amount++
-		return
-
-	attack_hand(mob/user as mob)
-		add_fingerprint(user)
-		if (src.amount >= 1)
-			src.amount--
-			new /obj/item/clothing/suit/bedsheet(src.loc)
-			if (src.amount <= 0)
-				src.icon_state = "bedbin0"
-		else
-			boutput(user, "There's no bedsheets left in [src]!")
-
-	get_desc()
-		. += "There's [src.amount ? src.amount : "no"] bedsheet[s_es(src.amount)] in [src]."
-
-/obj/towelbin
-	name = "towel bin"
-	desc = "A bin for containing towels."
-	icon = 'icons/obj/items/items.dmi'
-	icon_state = "bedbin"
-	var/amount = 23.0
-	anchored = 1.0
-
-	attackby(obj/item/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/clothing/under/towel))
-			qdel(W)
-			src.amount++
-		return
-
-	attack_hand(mob/user as mob)
-		add_fingerprint(user)
-		if (src.amount >= 1)
-			src.amount--
-			new /obj/item/clothing/under/towel(src.loc)
-			if (src.amount <= 0)
-				src.icon_state = "bedbin0"
-		else
-			boutput(user, "There's no towels left in [src]!")
-
-	get_desc()
-		. += "There's [src.amount ? src.amount : "no"] towel[s_es(src.amount)] in [src]."
-
-
 /obj/lattice
 	desc = "A lightweight support lattice."
 	name = "lattice"

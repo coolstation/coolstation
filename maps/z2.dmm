@@ -6827,7 +6827,7 @@
 /area/crater/biodome/crew)
 "aRY" = (
 /obj/table/reinforced/auto,
-/obj/bedsheetbin,
+/obj/item_dispenser/bedsheet,
 /turf/floor/carpet{
 	dir = 1;
 	icon_state = "green2"
@@ -11433,7 +11433,7 @@
 /area/marsoutpost)
 "biv" = (
 /obj/table/auto,
-/obj/bedsheetbin,
+/obj/item_dispenser/bedsheet,
 /turf/floor/blue/corner{
 	dir = 1
 	},
@@ -11456,7 +11456,7 @@
 /area/marsoutpost)
 "biy" = (
 /obj/table/wood/round/auto,
-/obj/bedsheetbin,
+/obj/item_dispenser/bedsheet,
 /obj/decal/cleanable/dirt,
 /turf/floor/carpet/grime,
 /area/afterlife/bar)
@@ -23072,11 +23072,11 @@
 /area/iomoon/base)
 "bPf" = (
 /obj/machinery/optable,
-/obj/item_dispenser/latex_gloves{
+/obj/item_dispenser/wallmounted/latex_gloves{
 	amount = 0;
 	pixel_x = 8
 	},
-/obj/item_dispenser/medical_mask{
+/obj/item_dispenser/wallmounted/medical_mask{
 	pixel_x = -8
 	},
 /obj/decal/skeleton{
@@ -23463,7 +23463,7 @@
 	name = "unknown";
 	pixel_y = 5
 	},
-/obj/item_dispenser/latex_gloves{
+/obj/item_dispenser/wallmounted/latex_gloves{
 	amount = 0
 	},
 /turf/floor/white,
@@ -31826,7 +31826,7 @@
 /area/dojo)
 "cqb" = (
 /obj/table/wood/round/auto,
-/obj/towelbin,
+/obj/item_dispenser/towel,
 /turf/floor/wood/two,
 /area/dojo)
 "cqd" = (
@@ -36234,7 +36234,7 @@
 	dir = 5
 	},
 /obj/rack,
-/obj/towelbin,
+/obj/item_dispenser/towel,
 /turf/floor/plating,
 /area/owlery/Owlmait)
 "cDv" = (
@@ -40624,7 +40624,7 @@
 	pixel_x = -8;
 	pixel_y = 9
 	},
-/obj/towelbin,
+/obj/item_dispenser/towel,
 /turf/floor/sanitary/white,
 /area/owlery/owleryhall)
 "cOy" = (

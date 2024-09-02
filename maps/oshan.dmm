@@ -1403,7 +1403,7 @@
 /area/station/security/brig)
 "acY" = (
 /obj/table/glass/reinforced/auto,
-/obj/bedsheetbin,
+/obj/item_dispenser/bedsheet,
 /obj/item/hand_labeler,
 /obj/item/storage/firstaid/brain,
 /obj/cable{
@@ -3484,7 +3484,7 @@
 	dir = 9;
 	icon_state = "line2"
 	},
-/obj/item_dispenser/latex_gloves,
+/obj/item_dispenser/wallmounted/latex_gloves,
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
 "ahT" = (
@@ -3567,7 +3567,7 @@
 	dir = 5;
 	icon_state = "line2"
 	},
-/obj/item_dispenser/medical_mask_internals,
+/obj/item_dispenser/wallmounted/medical_mask_internals,
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
 "aid" = (
@@ -3745,7 +3745,7 @@
 "aiy" = (
 /obj/table/auto,
 /obj/machinery/light/fluorescent/auto/warm,
-/obj/towelbin,
+/obj/item_dispenser/towel,
 /obj/item/paper/book/from_file/the_trial,
 /obj/item/storage/pill_bottle/cyberpunk,
 /obj/item/pen/crayon/lipstick,
@@ -6587,7 +6587,7 @@
 /area/station/hangar/science)
 "apm" = (
 /obj/table/auto,
-/obj/bedsheetbin,
+/obj/item_dispenser/bedsheet,
 /turf/floor/black,
 /area/station/crew_quarters/quartersA)
 "apn" = (
@@ -13031,7 +13031,7 @@
 	pixel_x = -2
 	},
 /obj/table/auto,
-/obj/towelbin{
+/obj/item_dispenser/towel{
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -13607,7 +13607,7 @@
 /area/station/crew_quarters/locker)
 "aFX" = (
 /obj/table/auto,
-/obj/bedsheetbin{
+/obj/item_dispenser/bedsheet{
 	pixel_y = 12
 	},
 /obj/item/storage/pill_bottle/salicylic_acid,
@@ -32997,7 +32997,7 @@
 /obj/machinery/computer/card{
 	dir = 4
 	},
-/obj/item_dispenser/idcarddispenser,
+/obj/item_dispenser/wallmounted/idcarddispenser,
 /turf/floor/carpet{
 	dir = 8;
 	icon_state = "green2"
@@ -45603,7 +45603,7 @@
 /area/station/crew_quarters/lounge/port)
 "clT" = (
 /obj/table/auto,
-/obj/towelbin,
+/obj/item_dispenser/towel,
 /obj/item/item_box/medical_patches/mini_styptic{
 	pixel_x = 3;
 	pixel_y = 2
