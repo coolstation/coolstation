@@ -22,7 +22,7 @@ var/global/meteor_shower_active = 0
 	var/meteor_type = /obj/newmeteor/massive
 #endif
 
-	event_effect(var/source, var/amount, var/direction, var/delay, var/warning_time, var/speed)
+	event_effect(var/source, var/amount, var/direction, var/delay, var/meteor_type, var/warning_time, var/speed)
 		..()
 		//var/timer = ticker.round_elapsed_ticks / 600
 
@@ -46,6 +46,29 @@ var/global/meteor_shower_active = 0
 			speed = rand(1,15)
 		meteor_speed = speed
 
+		if (meteor_type)
+			switch(meteor_type)
+				if ("regular")
+					shower_name = "meteor shower"
+					meteor_type = /obj/newmeteor/massive
+				if ("meat")
+					shower_name = "space meat incursion"
+					meteor_type = /obj/newmeteor/massive/meat
+				if ("cybershark")
+					shower_name = "cybershark attack"
+					meteor_type = /obj/newmeteor/massive/shark
+				else
+					shower_name = initial(shower_name)
+					meteor_type = initial(meteor_type)
+		else
+			if (prob(1)) //rarely, a naturally occurring space meat incursion
+				shower_name = "space meat incursion"
+				meteor_type = /obj/newmeteor/massive/meat
+			else
+				shower_name = initial(shower_name)
+				meteor_type = initial(meteor_type)
+
+
 		var/comdir = "an unknown direction"
 		if (station_or_ship() == "ship")
 			comdir = "the [dir2nautical(direction, map_settings ? map_settings.dir_fore : NORTH, 1)] of the ship"
@@ -68,7 +91,7 @@ var/global/meteor_shower_active = 0
 			for (var/obj/machinery/shield_generator/S as anything in machine_registry[MACHINES_SHIELDGENERATORS])
 				S.update_icon()
 
-		var/datum/directed_broadcast/emergency/broadcast = new(station_name, "[comsev] Meteor Shower", "[commins] Seconds", "Deploy meteor shielding and seek cover immediately. Stay away from windows.")
+		var/datum/directed_broadcast/emergency/broadcast = new(station_name, "[comsev] [shower_name]", "[commins] Seconds", "Deploy shielding and seek cover immediately. Stay away from windows.")
 		broadcast_controls.broadcast_start(broadcast, TRUE, -1, 1)
 
 		SPAWN_DBG(warning_delay)
@@ -126,6 +149,10 @@ var/global/meteor_shower_active = 0
 			qdel(broadcast)
 
 			meteor_shower_active = 0
+			//resetting custom meteor from event controls/random chance
+			shower_name = initial(shower_name)
+			meteor_type = initial(meteor_type)
+
 			for (var/obj/machinery/shield_generator/S as anything in machine_registry[MACHINES_SHIELDGENERATORS])
 				S.update_icon()
 
@@ -147,19 +174,24 @@ var/global/meteor_shower_active = 0
 			if ("south") dirinput = SOUTH
 			if ("east") dirinput = EAST
 			if ("west") dirinput = WEST
+		var/typeinput = input(usr,"What kind of meteors?",src.name) as null|anything in list("regular","meat","cybershark")
+		if (!typeinput || !istext(typeinput))
+			return
 		var/timinput = input(usr,"How many ticks between the warning and the event? (10 = 1 second)",src.name) as num|null
 		if (!isnum(timinput) || timinput < 1)
 			return
-		var/spdinput = input(usr,"How fast do the meteors move?",src.name) as num|null
+		var/spdinput = input(usr,"How fast do the meteors move? (Must be normal speed (1) or greater. Higher numbers are faster.)",src.name) as num|null
 		if (!isnum(spdinput) || spdinput < 1)
 			return
 
-		src.event_effect(source,amtinput,dirinput,delinput,timinput,spdinput)
+		src.event_effect(source,amtinput,dirinput,delinput,typeinput,timinput,spdinput)
 		return
 
 ////////////////////////////////////////
 // Defines for the meteors themselves //
 ////////////////////////////////////////
+
+//eventually move small and huge sizes to a subtype of each variety?
 
 /obj/newmeteor
 	name = "meteor"
@@ -184,6 +216,21 @@ var/global/meteor_shower_active = 0
 	var/sound_explode = 'sound/effects/exlow.ogg'
 	var/list/oredrops = list(/obj/item/raw_material/rock)
 	var/list/oredrops_rare = list(/obj/item/raw_material/rock)
+	var/ore_rarity = 1 //prob(this) to pull from rare list (this is the original value)
+	var/chunk_name = "meteor chunk"
+
+	//sorry couldn't help it
+	meat
+		name = "space meatier"
+		icon_state = "meaty"
+		hits = 3
+		desc = "A big chunk of space meat. You might want to stop drooling over it and run."
+		sound_impact = 'sound/impact_sounds/Generic_Hit_1.ogg'
+		sound_explode = 'sound/impact_sounds/Flesh_Break_2.ogg'
+		oredrops = list(/obj/decal/cleanable/blood/gibs)
+		oredrops_rare = list(/obj/item/reagent_containers/food/snacks/ingredient/meat/perfectlynormalmeat, /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat, /obj/item/reagent_containers/food/snacks/ingredient/meatpaste)
+		ore_rarity = 10 //10% to roll something good'n'tasty
+		chunk_name = "hunk of space meat"
 
 	shark
 		name = "shark chunk"
@@ -193,6 +240,16 @@ var/global/meteor_shower_active = 0
 		name = "small meteor"
 		icon_state = "smallf"
 		hits = 9
+
+		meat
+			name = "space meat"
+			desc = "A small chunk of space meat. You might want to stop drooling at it and run."
+			hits = 2
+			icon_state = "smallm"
+			oredrops = list(/obj/decal/cleanable/blood/gibs)
+			oredrops_rare = list(/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw, /obj/item/reagent_containers/food/snacks/meatball)
+			ore_rarity = 10
+			chunk_name = "hunk of space meat"
 
 		shark
 			name = "small shark chunk"
@@ -319,12 +376,12 @@ var/global/meteor_shower_active = 0
 		playsound(src.loc, sound_explode, 50, 1)
 		for(var/turf/T in range(src,1))
 			var/type
-			if (prob(1)) type = pick(oredrops_rare)
+			if (prob(ore_rarity)) type = pick(oredrops_rare)
 			else type = pick(oredrops)
 			var/atom/movable/A = new type()
 			A.set_loc(T)
 			A.throw_at(target, 10, 2) //what if
-			A.name = "meteor chunk"
+			A.name = src.chunk_name
 
 		var/atom/source = src
 		qdel(source)
@@ -351,6 +408,21 @@ var/global/meteor_shower_active = 0
 	oredrops = list(/obj/item/raw_material/char, /obj/item/raw_material/molitz, /obj/item/raw_material/rock)
 	oredrops_rare = list(/obj/item/raw_material/starstone, /obj/item/raw_material/syreline)
 	var/shatter_types = list(/obj/newmeteor, /obj/newmeteor/small)
+
+	meat
+		name = "space meatiest"
+		desc = "A huge chunk of space meat. You might want to stop drooling at it and run."
+		icon_state = "meaty"
+		hits = 4
+		explodes = 1
+		exp_dev = 0
+		exp_hvy = 0
+		exp_lit = 1
+		exp_fsh = 0
+		oredrops = list(/obj/decal/cleanable/blood/gibs)
+		oredrops_rare = list(/obj/item/reagent_containers/food/snacks/ingredient/meat/perfectlynormalmeat, /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat, /obj/item/reagent_containers/food/snacks/ingredient/meatpaste, /obj/critter/blobman)
+		shatter_types = list(/obj/newmeteor/meat, /obj/newmeteor/small/meat)
+		chunk_name = "hunk of space meat"
 
 	shark
 		name = "robotic shark"

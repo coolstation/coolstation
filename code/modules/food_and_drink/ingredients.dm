@@ -54,6 +54,14 @@
 	//var/blood_color = "#33C370" // Someone smarter than me figure out how to do this
 	food_effects = list("food_hp_up", "food_brute")
 
+//even more mysterious meat from space meat chunk that nobody should trust to eat, if only because of how normal looking and tasting it is
+//could do with a weird and unnerving effect reagent or disease that seems much worse than it is. maybe makes you hungrier the more you eat?
+//mostly doing this because i'm not supposed to use the root of /meat and this is clearly not human, monkey, synth, or otherwise known as a meat available on the frontier
+/obj/item/reagent_containers/food/snacks/ingredient/meat/perfectlynormalmeat
+	name = "normal meat"
+	desc = "An exceptionally regular looking slab of meat from... somewhere? No, really, where did this even come from?"
+	amount = 1
+
 /obj/item/reagent_containers/food/snacks/ingredient/meat/fish
 	name = "fish fillet"
 	desc = "A slab of meat from a fish."
