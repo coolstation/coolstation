@@ -121,6 +121,7 @@
 		src.reset()
 
 /obj/machinery/firealarm/proc/reset()
+	set waitfor = FALSE
 	if(!working)
 		return
 
@@ -142,6 +143,7 @@
 	return
 
 /obj/machinery/firealarm/proc/alarm()
+	set waitfor = FALSE
 	if(!working)
 		return
 
