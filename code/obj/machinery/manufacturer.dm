@@ -749,11 +749,14 @@
 				else if (src.queue.len >= MAX_QUEUE_LENGTH)
 					boutput(usr, "<span class='alert'>Manufacturer queue length limit reached.</span>")
 				else
+					playsound(src.loc, src.sound_happy, 50, 1) //holy piss do these machines need to give feedback that your request went in
+					boutput(usr, "<span class='alert'>Item added to to queue.</span>")
 					src.queue += I
 					if (src.mode == "ready")
 						src.begin_work(1)
 						src.updateUsrDialog()
 
+				//Start the manufacturer even if we don't manage to add anything to the queue
 				if (src.queue.len > 0 && src.mode == "ready")
 					src.begin_work(1)
 					src.updateUsrDialog()
@@ -1523,6 +1526,7 @@
 				src.timeleft += rand(2,6)
 				src.timeleft *= 1.5
 			src.timeleft /= src.speed
+			///
 		playsound(src.loc, src.sound_beginwork, 50, 1, 0, 3)
 		src.mode = "working"
 		src.build_icon()
