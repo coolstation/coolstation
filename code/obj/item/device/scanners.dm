@@ -37,6 +37,7 @@ Contains:
 			processing_items |= src
 
 	attack_self(mob/user)
+		playsound(src, "sound/items/penclick.ogg", 30, 1)
 		set_on(!on, user)
 
 

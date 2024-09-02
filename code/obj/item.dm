@@ -1154,10 +1154,11 @@
 			src.ArtifactTouched(user)
 
 	if (hide_attack != 1)
-		if (pickup_sfx)
+		MAKE_PICKUP_SOUND(src, oldloc_sfx)
+		/*if (pickup_sfx)
 			playsound(oldloc_sfx, pickup_sfx, 56, vary=0.2)
 		else
-			playsound(oldloc_sfx, "sound/items/pickup_[max(min(src.w_class,3),1)].ogg", 56, vary=0.2)
+			playsound(oldloc_sfx, "sound/items/pickup_[max(min(src.w_class,3),1)].ogg", 56, vary=0.2)*/
 
 	return 1
 

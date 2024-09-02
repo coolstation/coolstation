@@ -27,6 +27,7 @@
 			boutput(user, "There is already a cell in the charger.")
 			return
 		else
+			playsound(src, 'sound/items/Wirecutter.ogg', 50) //IDK it's light and might sound like attaching clips?
 			user.drop_item()
 			W.set_loc(src)
 			charging = W
@@ -65,6 +66,7 @@
 			charging.set_loc(src.loc)
 		charging.add_fingerprint(user)
 		charging.updateicon()
+		MAKE_PICKUP_SOUND(charging, src)
 		src.charging = null
 		user.visible_message("[user] removes the cell from the charger.", "You remove the cell from the charger.")
 		chargelevel = -1

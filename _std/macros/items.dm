@@ -17,3 +17,8 @@
 
 /// Returns true if x is equipped or inside & usable in what's equipped (currently only applicable to magtractors)
 #define equipped_or_holding(x,source) (source.equipped() == x || (source.equipped()?.useInnerItem && (x in source.equipped())))
+
+//Made this a macro so it's a consistent volume wherever desired
+///play item-appropriate pickup sound
+#define MAKE_PICKUP_SOUND(_item, _loc) playsound(_loc, _item.pickup_sfx ? _item.pickup_sfx : "sound/items/pickup_[max(min(_item.w_class,3),1)].ogg", 56, vary=0.2)\
+

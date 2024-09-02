@@ -1181,12 +1181,14 @@ as it may become compromised.
 	var/obj/item/paper = locate(/obj/item/paper) in src
 	if (paper)
 		user.put_in_hand_or_drop(paper)
+		MAKE_PICKUP_SOUND(paper, src)
 	else
 		if (src.amount >= 1 && user) //Wire: Fix for Cannot read null.loc (&& user)
 			src.amount--
 			var/obj/item/paper/P = new()
 			P.set_loc(src)
 			user.put_in_hand_or_drop(P)
+			MAKE_PICKUP_SOUND(P, src)
 			if (rand(1,100) == 13)
 				P.info = "Help me! I am being forced to code SS13 and It won't let me leave."
 	src.update()

@@ -1349,8 +1349,8 @@
 	else if (W == src.wear_mask)
 		src.wear_mask = null
 
-	if (src.client)
-		src.client.screen -= W
+	//if (src.client)
+	//	src.client.screen -= W
 
 	set_clothing_icon_dirty()
 
