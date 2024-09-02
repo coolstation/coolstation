@@ -98,6 +98,7 @@ var/global/list/mapNames = list(
 
 	var/ext_airlocks = /obj/machinery/door/airlock/external
 	var/airlock_style = "gannets"
+	var/firelock_style = /obj/machinery/door/firedoor/pyro
 
 	var/escape_centcom = /area/shuttle/escape/centcom
 	var/escape_outpost = /area/shuttle/escape/outpost
@@ -254,6 +255,7 @@ var/global/list/mapNames = list(
 
 	ext_airlocks = /obj/machinery/door/airlock/external
 	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
 
 	escape_centcom = /area/shuttle/escape/centcom/destiny
 	escape_outpost = /area/shuttle/escape/outpost/destiny
@@ -300,6 +302,7 @@ var/global/list/mapNames = list(
 
 	ext_airlocks = /obj/machinery/door/airlock/external
 	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
 
 	escape_centcom = /area/shuttle/escape/centcom/cogmap
 	escape_outpost = /area/shuttle/escape/outpost/cogmap
@@ -1079,7 +1082,8 @@ var/global/list/mapNames = list(
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
-	airlock_style = "pyro"
+	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
 
 	escape_centcom = /area/shuttle/escape/centcom/cogmap2
 	escape_outpost = /area/shuttle/escape/outpost/cogmap2

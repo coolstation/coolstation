@@ -16,9 +16,9 @@
 
 	proc/setup()
 		for (var/obj/machinery/door/D in src.loc)
-			var/obj/machinery/door/firedoor/pyro/P = new/obj/machinery/door/firedoor/pyro(src.loc)
-			P.set_dir(D.dir)
-			P.layer = D.layer + 0.01
+			var/obj/machinery/door/firedoor/F = new map_settings.firelock_style(src.loc)
+			F.set_dir(D.dir)
+			F.layer = D.layer + 0.01
 			break
 
 /obj/machinery/door/firedoor
