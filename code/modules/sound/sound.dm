@@ -247,7 +247,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 			C << S
 
 
-/mob/proc/playsound_local(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch = 1, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel)
+/mob/proc/playsound_local(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch = 1, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel, forcechannel)
 	if(!src.client)
 		return
 
@@ -389,7 +389,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 
 		C << S
 
-/mob/living/silicon/ai/playsound_local(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch = 1, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0)
+/mob/living/silicon/ai/playsound_local(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch = 1, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel, forcechannel)
 	..()
 	if (deployed_to_eyecam && src.eyecam)
 		src.eyecam.playsound_local(source, soundin, vol, vary, extrarange, pitch, ignore_flag, channel)
@@ -466,11 +466,11 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	S.falloff = 9999//(world.view + extrarange) / 3.5
 	//world.log << "Playing sound; wv = [world.view] + er = [extrarange] / 3.5 = falloff [S.falloff]"
 	S.wait = 0 //No queue
-	//S.channel = rand(1,900) //Any channel
-	//are you kidding?? this is why it interrupts ambience???
-	S.channel = rand(200,900)
-	//THE ABOVE IS A BAD HACK UNTIL WARC CAN DO RANGE OF 200-900 WITH INCREMENT
-	//NO MORE STEPPING ON RESERVED SOUNDS, AND SOON NO MORE STEPPING ON REGULAR SOUNDS. HOORAY
+	if (forcechannel)
+		S.channel = forcechannel //allows override for specific channels (mostly so the channel can be changed or stopped or timestamped or whatever)
+	else
+		S.channel = rand(200,900)
+	//eventually let's figure a repeatable way to increment sound channels per client instead of picking at random
 	S.volume = vol
 	S.priority = 5
 	S.environment = 0
