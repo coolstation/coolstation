@@ -85,17 +85,21 @@
 /mob/proc/put_in_hand_or_drop(var/obj/item/I)
 	if (!I)
 		return 0
-	if (!src.put_in_hand(I))
+	if (src.put_in_hand(I))
+		if (I.hide_attack != 1)
+			MAKE_PICKUP_SOUND(I, src.loc)
+	else
 		I.set_loc(get_turf(src))
-		return 1
 	return 1
 
 /mob/proc/put_in_hand_or_eject(var/obj/item/I)
 	if (!I)
 		return 0
-	if (!src.put_in_hand(I))
+	if (src.put_in_hand(I))
+		if (I.hide_attack != 1)
+			MAKE_PICKUP_SOUND(I, src.loc)
+	else
 		I.set_loc(get_turf(I))
-		return 1
 	return 1
 
 

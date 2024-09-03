@@ -66,7 +66,6 @@
 			charging.set_loc(src.loc)
 		charging.add_fingerprint(user)
 		charging.updateicon()
-		MAKE_PICKUP_SOUND(charging, src)
 		src.charging = null
 		user.visible_message("[user] removes the cell from the charger.", "You remove the cell from the charger.")
 		chargelevel = -1

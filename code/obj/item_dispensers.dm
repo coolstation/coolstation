@@ -58,7 +58,6 @@
 			var/obj/item/I = new src.withdraw_type
 			boutput(user, "<span class='notice'>You take \the [I] from \the [src]. [display_amount ? "There's [src.amount] left.": null ]</span>")
 			user.put_in_hand_or_drop(I)
-			MAKE_PICKUP_SOUND(I, src)
 
 			//This is pretty lame, but it's simpler than putting these in a process loop when they are rarely used. - kyle
 			if (dispense_rate > 0 && (last_dispense_time + dispense_rate > TIME))

@@ -686,7 +686,6 @@ TRAYS
 				tooltip_rebuild = 1
 			user.put_in_hand_or_drop(myFood)
 			boutput(user, "You take [myFood] out of [src].")
-			MAKE_PICKUP_SOUND(myFood, src)
 		else
 			if(src.amount >= 1)
 				src.amount--
@@ -694,7 +693,6 @@ TRAYS
 				var/obj/item/reagent_containers/food/snacks/newFood = new src.contained_food(src.loc)
 				user.put_in_hand_or_drop(newFood)
 				boutput(user, "You take [newFood] out of [src].")
-				MAKE_PICKUP_SOUND(newFood, src)
 		src.update()
 
 	attack_self(mob/user as mob)
