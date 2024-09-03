@@ -247,7 +247,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 			C << S
 
 
-/mob/proc/playsound_local(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch = 1, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel, forcechannel)
+/mob/proc/playsound_local(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch = 1, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel = FALSE, forcechannel = 0)
 	if(!src.client)
 		return
 
@@ -297,6 +297,8 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	LISTENER_ATTEN(atten_temp)
 
 	var/sound/S = generate_sound(source, soundin, ourvolume, vary ? DO_RANDOM_PITCH : FALSE, extrarange, pitch)
+	if (forcechannel)
+		S.channel = forcechannel
 	client.sound_playing[ S.channel ][1] = ourvolume
 	client.sound_playing[ S.channel ][2] = channel
 
@@ -466,10 +468,8 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	S.falloff = 9999//(world.view + extrarange) / 3.5
 	//world.log << "Playing sound; wv = [world.view] + er = [extrarange] / 3.5 = falloff [S.falloff]"
 	S.wait = 0 //No queue
-	if (forcechannel)
-		S.channel = forcechannel //allows override for specific channels (mostly so the channel can be changed or stopped or timestamped or whatever)
-	else
-		S.channel = rand(200,900)
+	//This is apparently a hack
+	S.channel = rand(200,900)
 	//eventually let's figure a repeatable way to increment sound channels per client instead of picking at random
 	S.volume = vol
 	S.priority = 5
