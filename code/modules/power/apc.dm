@@ -471,12 +471,14 @@ var/zapLimiter = 0
 		if(opened)
 			opened = 0
 			updateicon()
+			playsound(src.loc, "sound/items/Crowbar.ogg", 50, 1)
 		else
 			if(coverlocked)
 				boutput(user, "The cover is locked and cannot be opened.")
 			else
 				opened = 1
 				updateicon()
+				playsound(src.loc, "sound/items/Crowbar.ogg", 50, 1)
 	else if	(istype(W, /obj/item/cell) && opened)	// trying to put a cell inside
 		if(cell)
 			boutput(user, "There is a power cell already installed.")
@@ -486,6 +488,7 @@ var/zapLimiter = 0
 				cell = W
 				boutput(user, "You insert the power cell.")
 				chargecount = 0
+				playsound(src.loc, "sound/items/Wirecutter.ogg", 50, 1)
 		updateicon()
 	else if	(isscrewingtool(W))
 		if(opened)
@@ -493,6 +496,7 @@ var/zapLimiter = 0
 		else if(emagged)
 			boutput(user, "The interface is broken")
 		else
+			playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
 			wiresexposed = !wiresexposed
 			boutput(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"]")
 			updateicon()
@@ -882,6 +886,7 @@ var/zapLimiter = 0
 	var/wireFlag = APCWireColorToFlag[wireColor]
 	var/wireIndex = APCWireColorToIndex[wireColor]
 	apcwires &= ~wireFlag
+	playsound(src.loc, "sound/items/Wirecutter.ogg", 50, 1)
 	switch(wireIndex)
 		if(APC_WIRE_MAIN_POWER1)
 			src.shock(usr, 50, 0)			//this doesn't work for some reason, give me a while I'll figure it out
