@@ -619,6 +619,7 @@ var/global/list/soundCache = list(
  	"sound/machines/lavamoon_rotors_slow.ogg" = 'sound/machines/lavamoon_rotors_slow.ogg',\
  	"sound/machines/lavamoon_rotors_starting.ogg" = 'sound/machines/lavamoon_rotors_starting.ogg',\
  	"sound/machines/lavamoon_rotors_stopping.ogg" = 'sound/machines/lavamoon_rotors_stopping.ogg',\
+	"sound/machines/lever_heavy.ogg" = 'sound/machines/lever_heavy.ogg',\
  	"sound/machines/loom.ogg" = 'sound/machines/loom.ogg',\
  	"sound/machines/lrteleport.ogg" = 'sound/machines/lrteleport.ogg',\
 	"sound/machines/metal_clang1.ogg" = 'sound/machines/metal_clang1.ogg',\

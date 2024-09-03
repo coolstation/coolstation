@@ -477,6 +477,8 @@
 			last_pos = position
 			position = 0
 
+	if (!ON_COOLDOWN(src, "noise", 0.5 SECONDS)) //You don't gotta double click em anymore but just to be safe.
+		playsound(src, 'sound/machines/lever_heavy.ogg', 30, 1)
 	operated = 1
 	update()
 
