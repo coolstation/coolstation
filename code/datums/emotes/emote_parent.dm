@@ -19,21 +19,6 @@
 
 var/datum/emote_controller/emote_controls
 
-
-///Holds a list of emote datums and populates it with datums on demand, lazy init and preventing duplication basically
-/datum/emote_controller
-	var/list/all_the_emotes = list()
-
-///Returns the instance of a type
-/datum/emote_controller/proc/get_emote(var/this_one) //Supply with a typepath
-	if (!ispath(this_one, /datum/emote))
-		return 0 //>:(
-	var/datum/emote/here_you_go = locate(this_one) in all_the_emotes
-	if (!here_you_go)
-		here_you_go = new this_one()
-		all_the_emotes += here_you_go
-	return here_you_go
-
 //Below here be all the lookup lists for emotes, for the love of sanity please don't put any code below this point.
 //The strings are verbatim (but lowertexted) how the emote is called, so [*fart] turns into "fart" etc. Multiple strings can point to the same datum.
 //Emotes are (or should) be lowertexted when they get checked, so don't put capitals in these lookup strings.
@@ -233,4 +218,72 @@ var/static/list/human_emotes = list(
 	"suicide" = /datum/emote/suicide,
 	"me" = /datum/emote/me, 			//end of emote_complex.dm
 	"monologue" = /datum/emote/monologue
+	)
+
+//--------------------------------------------------------------------------------\\
+//																				   \\
+//	mutantrace emote overrides, in the order that I found them in mutantraces.dm    ||
+//						Turns out it's mostly screaming!						   //
+//--------------------------------------------------------------------------------//
+
+//Not all of these have human equivalents btw, I'm pretty sure normal crewmembers can't rawr
+
+var/static/list/grey_emotes = list(
+	"scream" = /datum/emote/scream/grey
+	)
+///also vampiric thralls
+var/static/list/zombie_emotes = list(
+	"scream" = /datum/emote/scream/zombie
+	)
+
+var/static/list/abomination_emotes = list(
+	"scream" = /datum/emote/scream/abomination
+	)
+
+var/static/list/werewolf_emotes = list(
+	"scream" = /datum/emote/scream/werewolf,
+	"howl" = /datum/emote/scream/werewolf,
+	"burp" = /datum/emote/werewolf/burp,
+	"uwu" = /datum/emote/werewolf/uwu,
+	"owo" = /datum/emote/werewolf/owo,
+	"rawr" = /datum/emote/werewolf/rawr
+	)
+
+var/static/list/monkey_emotes = list(
+	"scratch" = /datum/emote/visible_restrain/scratch,
+	"roar" = /datum/emote/audible_restrain/roar,
+	"tail" = /datum/emote/visible_restrain/tail,
+	"paw" = /datum/emote/visible_restrain/paw,
+	"stretch" = /datum/emote/visible_restrain/stretch,
+	"sulk" = /datum/emote/simple_visible/sulk2,
+	"roll" = /datum/emote/visible_restrain/roll,
+	"gnarl" = /datum/emote/audible_restrain/gnarl,
+	"jump" = /datum/emote/simple_visible/jump,
+	"scream" = /datum/emote/scream/monkey,
+	"fart" = /datum/emote/fart/bio/monkey
+	)
+
+///That's (shelter)frogs, not ithillids
+var/static/list/amphibian_emotes = list(
+	"scream" = /datum/emote/scream/amphibian,
+	"howl" = /datum/emote/scream/amphibian,
+	"laugh" = /datum/emote/scream/amphibian,
+	"burp" = /datum/emote/fart/amphibian,
+	"fart" = /datum/emote/fart/amphibian,
+	"gasp" = /datum/emote/fart/amphibian
+	)
+
+var/static/list/cow_emotes = list(
+	"scream" = /datum/emote/scream/cow,
+	"milk" = /datum/emote/cow/milk
+	)
+
+var/static/list/chicken_emotes = list(
+	"scream" = /datum/emote/scream/chicken
+	)
+
+var/static/list/fert_emotes = list(
+	"dance" = /datum/emote/fert/dance,
+	"laugh" = /datum/emote/fert/laugh,
+	"scream" = /datum/emote/scream/fert
 	)
