@@ -247,7 +247,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 			C << S
 
 
-/mob/proc/playsound_local(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch = 1, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0)
+/mob/proc/playsound_local(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch = 1, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel)
 	if(!src.client)
 		return
 
@@ -319,6 +319,8 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 					M.client.sound_playing[ S.channel ][2] = channel
 
 					M << S
+	if (returnchannel)
+		return (S.channel)
 
 /**
 	Plays a sound to some clients without caring about its source location and stuff.

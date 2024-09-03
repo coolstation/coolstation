@@ -3792,6 +3792,7 @@ datum
 			result_amount = 3
 			mix_phrase = "Irregardless and for all intense and purposes, the coffee becomes stupider."
 
+		/* //goon inside joke
 		mimicillium
 			name = "Mimicillium"
 			id = "badmanjuice"
@@ -3800,6 +3801,7 @@ datum
 			result_amount = 2.5
 			mix_phrase = "The mixture swirls and bubbles becoming blue, you can hear faint music emanating from the it."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
+		*/
 
 		bubsium
 			name = "Bubsium"

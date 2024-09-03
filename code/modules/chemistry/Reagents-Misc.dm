@@ -3677,6 +3677,7 @@ datum
 
 #undef CONTENT_MULTIPLIER
 
+/* //old goonstation inside joke
 		mimicillium
 			name = "Mimicillium"
 			id = "badmanjuice"
@@ -3717,7 +3718,7 @@ datum
 							var/turf/pickedstart = locate(startx, starty, badmantarget.z)
 							new /obj/badman(pickedstart, badmantarget)
 				..()
-
+*/
 
 
 		bubsium
@@ -4036,7 +4037,7 @@ datum
 			id = "poor_concrete"
 			description = "A low quality blend of chemical agents, water, an aggregate and cement."
 			concrete_strength = 1
-
+/*
 /obj/badman/ //I really don't know a good spot to put this guy so im putting him here, fuck you.
 	name = "Senator Death Badman"
 	desc = "Finally, a politician I can trust."
@@ -4086,3 +4087,4 @@ datum
 			else
 				walk_towards(src, src.deathtarget, deathspeed)
 				sleep(0.1 SECONDS)
+*/

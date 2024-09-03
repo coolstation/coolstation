@@ -348,7 +348,8 @@ proc/Create_Tommyname()
 		var/mob/M = triggerer
 		if(istype(M))
 			M.cluwnegib(10)
-
+/*
+//goonstation inside joke
 /obj/trigger/badmantrigger
 	name = "Death Badman Meeting Zone"
 	desc = "He's very angry he lost the election."
@@ -383,9 +384,11 @@ proc/Create_Tommyname()
 					new /obj/badman(pickedstart, badmantarget)
 					sleep(15 SECONDS)
 					activated = 0
+*/
 
 ////////////////////////////// Donald Trumpet
 //Used by: Donald Trumpet (uuuuuuuuuuuuugh)
+/* you know what fuck this actually
 /datum/projectile/energy_bolt_v/trumpet
 	name = "trumpet bolt"
 	shot_sound = 'sound/musical_instruments/Bikehorn_2.ogg'
@@ -412,6 +415,7 @@ proc/Create_Tommyname()
 		set_current_projectile(new/datum/projectile/energy_bolt_v/trumpet)
 		projectiles = list(new/datum/projectile/energy_bolt_v/trumpet)
 		..()
+*/
 
 ////////////////////////////// Power machine
 /obj/machinery/power/debug_generator
