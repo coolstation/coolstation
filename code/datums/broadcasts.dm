@@ -396,7 +396,6 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 	)
 	group_messages = TRUE
 	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
-	followup_programs = list(/datum/directed_broadcast/testing_teevee,/datum/directed_broadcast/eaglestoryone)
 
 /datum/directed_broadcast/ad/cigarettes
 	id = "cigarette_ad"
