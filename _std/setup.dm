@@ -123,6 +123,7 @@ var/ZLOG_START_TIME
 
 //Amount of 1 Second ticks to spend in the pregame lobby before roundstart. Has been 150 seconds for a couple years.
 #define PREGAME_LOBBY_TICKS 180	// raised from 120 to 180 to accomodate the v500 ads, then raised back down to 150 after Z5 was introduced.
+#define PREGAME_MUSIC_START 120	// when in the countdown do we cut the music on prior to game start (in seconds)
 
 //The value of mapvotes. A passive vote is one done through player preferences, an active vote is one where the player actively chooses a map
 #define MAPVOTE_PASSIVE_WEIGHT 1.0
