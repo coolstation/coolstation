@@ -382,7 +382,23 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 	group_messages = TRUE
 	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
-/datum/directed_broadcast/cigarettes
+/datum/directed_broadcast/ad
+	id = "generic_ad"
+	priority = 2
+	speakers = list("announcer" = list("Announcer", "#d600d6"), "consumer" = list("Consumer", "#003eb3"))
+	messages = list(\
+		list("*static*", 2 SECONDS, null, "test-D"),\
+		list("Have you considered...", 6 SECONDS, "announcer", "cigarettes-A"),\
+		list("Buying product?", 6 SECONDS, "announcer", "cigarettes-A"),\
+		list("Oh, I'd love to do that! I'll go do that right now!", 8 SECONDS, "consumer", "cigarettes-B"),\
+		list("Products. Available wherever goods are sold.", 10 SECONDS, "announcer", "cigarettes-B"),\
+		list("*static*", 2 SECONDS, null, "test-D"),\
+	)
+	group_messages = TRUE
+	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
+	followup_programs = list(/datum/directed_broadcast/testing_teevee,/datum/directed_broadcast/eaglestoryone)
+
+/datum/directed_broadcast/ad/cigarettes
 	id = "cigarette_ad"
 	priority = 2
 	speakers = list("hank" = list("Thank", "#A2DD77"), "rachelle" = list("Grachelle", "#DDA277"))
@@ -397,7 +413,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 	group_messages = TRUE
 	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
-/datum/directed_broadcast/hotdogs
+/datum/directed_broadcast/ad/hotdogs
 	id = "hotdog_ad"
 	priority = 2
 	speakers = list("Frank" = list("Frank", "#d3374c"))
