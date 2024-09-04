@@ -4683,7 +4683,6 @@
 	icon_state = "old2"
 	pixel_y = 8
 	var/obj/machinery/bot/guardbot/linked_bot = null
-	glow_in_dark_screen = FALSE
 
 	New()
 		..()

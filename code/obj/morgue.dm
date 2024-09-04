@@ -695,7 +695,6 @@
 	icon_state = "tanconsole"
 	var/state_str = ""
 	var/obj/crematorium/tanning/linked = null //The linked tanning bed
-	glow_in_dark_screen = FALSE
 
 
 	New()
