@@ -248,32 +248,3 @@ var/global/list/bible_contents = list()
 						if(prob( 50 )) playsound( get_turf( src ), 'sound/voice/burp.ogg', 10, 1 )
 				sleep(0.3 SECONDS)
 		return 1
-
-/obj/item/storage/bible/loaded
-	spawn_contents = list(/obj/item/gun/kinetic/faith)
-
-	New()
-		..()
-		desc += " This is the chaplain's personal copy."
-
-	get_desc()
-		. = ..()
-		if(src.contents.len > 0)
-			. += " It feels a bit heavier than it should."
-
-	attack_hand(mob/user as mob)
-		if (user.traitHolder && user.traitHolder.hasTrait("training_chaplain") && user.is_in_hands(src))
-			var/obj/item/gun/kinetic/faith/F = locate() in src.contents
-			if(F)
-				user.put_in_hand_or_drop(F)
-				return
-		..()
-
-	attackby(var/obj/item/W, var/mob/user)
-		if(istype(W,/obj/item/gun/kinetic/faith))
-			if (user.traitHolder && user.traitHolder.hasTrait("training_chaplain"))
-				user.u_equip(W)
-				W.set_loc(src)
-				user.show_text("You hide [W] in \the [src].", "blue")
-				return
-		..()
