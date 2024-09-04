@@ -299,13 +299,13 @@
 	icon_empty = "357-0"
 
 /obj/item/ammo/bullets/custom
-	sname = ".22 LR Custom"
-	name = "custom .22 ammo box"
+	sname = ".31 Short Custom"
+	name = "custom .31 Short ammo box"
 	icon_state = "custom-8"
 	amount_left = 8.0
 	max_amount = 8.0
 	ammo_type = new/datum/projectile/bullet/custom
-	caliber = 0.22
+	caliber = 0.31
 	icon_dynamic = 1
 	icon_short = "custom"
 	icon_empty = "custom-0"
@@ -336,89 +336,86 @@
 		return ..()
 
 /obj/item/ammo/bullets/bullet_22
-	sname = ".22 LR"
-	name = ".22 magazine"
+	sname = ".31 Short"
+	name = ".31 Short magazine"
 	icon_state = "pistol_magazine"
 	amount_left = 10.0
 	max_amount = 10.0
-	ammo_type = new/datum/projectile/bullet/bullet_22
-	caliber = 0.22
-
-/obj/item/ammo/bullets/bullet_22/faith
-	amount_left = 4.0
+	ammo_type = new/datum/projectile/bullet/pistol_weak
+	caliber = 0.31
 
 /obj/item/ammo/bullets/bullet_22HP
-	sname = ".22 Hollow Point"
-	name = ".22 HP magazine"
+	sname = ".31 Short Hollow Point"
+	name = ".31 Short HP magazine"
 	icon_state = "pistol_magazine_hp"
 	amount_left = 10.0
 	max_amount = 10.0
-	ammo_type = new/datum/projectile/bullet/bullet_22/HP
-	caliber = 0.22
+	ammo_type = new/datum/projectile/bullet/pistol_weak/HP
+	caliber = 0.31
 
 /obj/item/ammo/bullets/a357
-	sname = ".357 Mag"
-	name = ".357 speedloader"
+	sname = "Juicer Jr."
+	name = "Juicer Jr. speedloader"
 	icon_state = "38-7"
 	amount_left = 7.0
 	max_amount = 7.0
-	ammo_type = new/datum/projectile/bullet/revolver_357
-	caliber = 0.357
+	ammo_type = new/datum/projectile/bullet/pistol_heavy
+	caliber = 0.31
 	icon_dynamic = 1
 	icon_short = "38"
 	icon_empty = "speedloader_empty"
 
 /obj/item/ammo/bullets/a357/AP
-	sname = ".357 Mag AP"
+	sname = "Juicer Jr. AP"
 	name = ".357 AP speedloader"
 	icon_state = "38A-7"
-	ammo_type = new/datum/projectile/bullet/revolver_357/AP
+	ammo_type = new/datum/projectile/bullet/pistol_heavy/AP
 	icon_dynamic = 1
 	icon_short = "38A"
 	icon_empty = "speedloader_empty"
 
 /obj/item/ammo/bullets/a38
-	sname = ".38 Spc"
-	name = ".38 speedloader"
+	sname = "8mm Italian"
+	name = "8mm speedloader"
 	icon_state = "38-7"
 	amount_left = 7.0
 	max_amount = 7.0
-	ammo_type = new/datum/projectile/bullet/revolver_38
-	caliber = 0.38
+	ammo_type = new/datum/projectile/bullet/pistol_medium
+	caliber = 0.31
 	icon_dynamic = 1
 	icon_short = "38"
 	icon_empty = "speedloader_empty"
 
 /obj/item/ammo/bullets/a38/AP
-	sname = ".38 Spc AP"
-	name = ".38 AP speedloader"
+	sname = "8mm Italian AP"
+	name = "8mm AP speedloader"
 	icon_state = "38A-7"
 	amount_left = 7.0
 	max_amount = 7.0
-	ammo_type = new/datum/projectile/bullet/revolver_38/AP
+	ammo_type = new/datum/projectile/bullet/pistol_medium/AP
 	icon_dynamic = 1
 	icon_short = "38A"
 	icon_empty = "speedloader_empty"
 
 /obj/item/ammo/bullets/a38/stun
-	sname = ".38 Spc Stun"
-	name = ".38 Stun speedloader"
+	sname = ".31 Short Stun"
+	name = ".31 Short Stun speedloader"
 	icon_state = "38S-7"
 	amount_left = 7.0
 	max_amount = 7.0
-	ammo_type = new/datum/projectile/bullet/revolver_38/stunners
+	ammo_type = new/datum/projectile/bullet/pistol_weak/stunners
 	icon_dynamic = 1
 	icon_short = "38S"
 	icon_empty = "speedloader_empty"
 
 /obj/item/ammo/bullets/c_45
-	sname = "Cold .45"
-	name = "Colt .45 speedloader"
+	sname = "Cold .31"
+	name = "Cold .31 speedloader"
 	icon_state = "38-7"
 	amount_left = 7.0
 	max_amount = 7.0
-	ammo_type = new/datum/projectile/bullet/revolver_45
-	caliber = 0.45
+	ammo_type = new/datum/projectile/bullet/pistol_heavy
+	caliber = 0.31
 	icon_dynamic = 1
 	icon_short = "38"
 	icon_empty = "speedloader_empty"
@@ -456,26 +453,27 @@
 	icon_state = "pistol_clip"	//9mm_clip that exists already. Also, put this in hacked manufacturers cause these bullets are not good.
 	amount_left = 18.0
 	max_amount = 18.0
-	ammo_type = new/datum/projectile/bullet/nine_mm_NATO
-	caliber = 0.355
+	ammo_type = new/datum/projectile/bullet/pistol_weak
+	caliber = 0.31
 
 /obj/item/ammo/bullets/nine_mm_NATO/boomerang //empty clip for the clock_188/boomerang
 	amount_left = 0
 
+//concentrated juicer shot
 /obj/item/ammo/bullets/a12
 	sname = "12ga Buckshot"
 	name = "12ga buckshot ammo box"
-	ammo_type = new/datum/projectile/bullet/a12
+	ammo_type = new/datum/projectile/bullet/shot_heavy
 	icon_state = "12"
 	amount_left = 8.0
 	max_amount = 8.0
-	caliber = 0.72
+	caliber = 0.62
 	icon_dynamic = 0
 	icon_empty = "12-0"
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
 	weak //for nuke ops engineer
-		ammo_type = new/datum/projectile/bullet/a12/weak
+		ammo_type = new/datum/projectile/bullet/shot_heavy/weak
 
 
 /obj/item/ammo/bullets/buckshot_burst // real spread shotgun ammo
@@ -485,7 +483,7 @@
 	icon_state = "12"
 	amount_left = 8.0
 	max_amount = 8.0
-	caliber = 0.72
+	caliber = 0.62
 	icon_dynamic = 0
 	icon_empty = "12-0"
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
@@ -498,114 +496,117 @@
 	icon_short = "custom"
 	amount_left = 8.0
 	max_amount = 8.0
-	caliber = 0.72
+	caliber = 0.62
 	icon_dynamic = 1
 	icon_empty = "custom-0"
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
 /obj/item/ammo/bullets/aex
-	sname = "12ga AEX"
-	name = "12ga AEX ammo box"
-	ammo_type = new/datum/projectile/bullet/aex
+	sname = "JUICER BOOMERS"
+	name = "approximately 16mm explosive slug ammo box"
+	ammo_type = new/datum/projectile/bullet/slug_boom
 	icon_state = "AEX"
 	amount_left = 8.0
 	max_amount = 8.0
-	caliber = 0.72
+	caliber = 0.62
 	icon_dynamic = 0
 	icon_empty = "AEX-0"
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
 /obj/item/ammo/bullets/abg
-	sname = "12ga Rubber Slug"
-	name = "12ga rubber slugs"
-	ammo_type = new/datum/projectile/bullet/abg
+	sname = "16mm NT Rubber Slug"
+	name = "16mm NT rubber slugs"
+	ammo_type = new/datum/projectile/bullet/slug_rubber
 	icon_state = "bg"
 	amount_left = 8.0
 	max_amount = 8.0
-	caliber = 0.72
+	caliber = 0.62
 	icon_dynamic = 0
 	icon_empty = "bg-0"
 	sound_load = 'sound/weapons/gunload_click.ogg'
 
 /obj/item/ammo/bullets/ak47
-	sname = ".308 Auto" // This makes little sense, but they're all chambered in the same caliber, okay (Convair880)?
-	name = "AK magazine"
-	ammo_type = new/datum/projectile/bullet/ak47
+	sname = "2.8lin. Soviet" //just a little short of a three line rifle
+	name = "AK-58 magazine"
+	desc = "That's some seriously old ammo in there."
+	ammo_type = new/datum/projectile/bullet/rifle_medium
 	icon_state = "ak47"
 	amount_left = 30.0
 	max_amount = 30.0
-	caliber = 0.308
+	caliber = 0.31
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
+//most of these are going away but might as well have fun with it until then
 /obj/item/ammo/bullets/assault_rifle
-	sname = "5.56x45mm NATO"
-	name = "STENAG magazine" //heh
-	ammo_type = new/datum/projectile/bullet/assault_rifle
+	sname = ".31x40mm NT"
+	name = "STENK magazine" //heh
+	ammo_type = new/datum/projectile/bullet/rifle_weak
 	icon_state = "stenag_mag"
 	amount_left = 30.0
 	max_amount = 30.0
-	caliber = 0.223
+	caliber = 0.31
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
 	armor_piercing
-		sname = "5.56x45mm NATO AP"
-		name = "AP STENAG magazine"
-		ammo_type = new/datum/projectile/bullet/assault_rifle/armor_piercing
+		sname = ".31x40mm NT AP"
+		name = "AP STENK magazine"
+		ammo_type = new/datum/projectile/bullet/rifle_weak/AP
 		icon_state = "stenag_mag-AP"
 
 /obj/item/ammo/bullets/minigun
-	sname = "7.62×51mm NATO"
+	sname = "8×40mm Italian"
 	name = "Minigun cartridge"
 	ammo_type = new/datum/projectile/bullet/minigun
 	icon_state = "40mmR"
 	icon_empty = "40mmR-0"
 	amount_left = 100.0
 	max_amount = 100.0
-	caliber = 0.308
+	caliber = 0.31
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
 /obj/item/ammo/bullets/rifle_3006
-	sname = ".308 AP"
-	name = ".308 rifle magazine"
-	ammo_type = new/datum/projectile/bullet/rifle_3006
+	sname = "Juicer BIG AP"
+	name = "Juicer BIG rifle magazine"
+	ammo_type = new/datum/projectile/bullet/rifle_heavy/AP
 	icon_state = "rifle_clip"
 	amount_left = 4
 	max_amount = 4
-	caliber = 0.308
+	caliber = 0.31
 
 /obj/item/ammo/bullets/rifle_762_NATO
-	sname = "7.62×51mm NATO"
-	name = "7.62 NATO magazine"
-	ammo_type = new/datum/projectile/bullet/rifle_762_NATO
+	sname = "Juicer BIG"
+	name = "Juicer BIG magazine"
+	ammo_type = new/datum/projectile/bullet/rifle_heavy
 	icon_state = "rifle_box_mag" //todo
 	amount_left = 4
 	max_amount = 4
-	caliber = 0.308
+	caliber = 0.31
 
 /obj/item/ammo/bullets/tranq_darts
-	sname = ".308 Tranquilizer"
-	name = ".308 tranquilizer darts"
+	sname = ".31 Tranquilizer"
+	name = ".31 tranquilizer darts"
 	ammo_type = new/datum/projectile/bullet/tranq_dart
 	icon_state = "tranq_clip"
 	amount_left = 4
 	max_amount = 4
-	caliber = 0.308
+	caliber = 0.31
 
 	syndicate
-		sname = ".308 Tranquilizer Deluxe"
+		sname = "8mm Tranquilizer Deluxe"
+		name = "8mm tranquilizer rifle darts"
 		ammo_type = new/datum/projectile/bullet/tranq_dart/syndicate
 
 		pistol
-			sname = ".355 Tranqilizer"
-			name = ".355 tranquilizer pistol darts"
+			sname = "8mm Tranqilizer"
+			name = "8mm tranquilizer pistol darts"
 			amount_left = 15
 			max_amount = 15
-			caliber = 0.355
+			caliber = 0.31
 			ammo_type = new/datum/projectile/bullet/tranq_dart/syndicate/pistol
 
 	anti_mutant
-		sname = ".308 Mutadone"
-		name = ".308 mutadone darts"
+		sname = ".31 Mutadone"
+		name = ".31 mutadone darts"
 		ammo_type = new/datum/projectile/bullet/tranq_dart/anti_mutant
 
 /obj/item/ammo/bullets/vbullet
@@ -616,13 +617,13 @@
 	amount_left = 200
 
 /obj/item/ammo/bullets/flare
-	sname = "12ga Flare"
-	name = "12ga flares"
+	sname = "16mm Flare"
+	name = "16mm flares"
 	amount_left = 8
 	max_amount = 8
 	icon_state = "flare"
 	ammo_type = new/datum/projectile/bullet/flare
-	caliber = 0.72
+	caliber = 0.62
 	icon_dynamic = 0
 	icon_empty = "flare-0"
 
@@ -842,43 +843,43 @@
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
 /obj/item/ammo/bullets/bullet_9mm
-	sname = "9×19mm Parabellum"
-	name = "9mm magazine"
+	sname = ".31×20mm NT"
+	name = ".31 Short magazine"
 	icon_state = "pistol_magazine"
 	amount_left = 15.0
 	max_amount = 15.0
-	ammo_type = new/datum/projectile/bullet/bullet_9mm
-	caliber = 0.355
+	ammo_type = new/datum/projectile/bullet/pistol_weak
+	caliber = 0.31
 
 	five_shots
 		amount_left = 5.0
 
 	smartgun
-		name = "9mm smartgun magazine"
+		name = ".31 Short smartgun magazine"
 		amount_left = 24.0
 		max_amount = 24.0
-		ammo_type = new/datum/projectile/bullet/bullet_9mm/smartgun
+		ammo_type = new/datum/projectile/bullet/pistol_weak
 		sound_load = 'sound/weapons/gunload_hitek.ogg'
 
 	smg
-		name = "9mm SMG magazine"
+		name = ".31 Short SMG magazine"
 		amount_left = 30.0
 		max_amount = 30.0
-		ammo_type = new/datum/projectile/bullet/bullet_9mm/smg
+		ammo_type = new/datum/projectile/bullet/pistol_weak
 
 /obj/item/ammo/bullets/lmg
-	sname = "7.62×51mm NATO"
+	sname = "8x40mm Italian"
 	name = "LMG belt"
 	ammo_type = new/datum/projectile/bullet/lmg
 	icon_state = "lmg_ammo"
 	icon_empty = "lmg_ammo-0"
 	amount_left = 100.0
 	max_amount = 100.0
-	caliber = 0.308
+	caliber = 0.31
 	sound_load = 'sound/weapons/gunload_heavy.ogg'
 
 	weak
-		sname = "7.62×51mm NATO W"
+		sname = "8×40mm Italian W"
 		name = "discount LMG belt"
 		ammo_type = new/datum/projectile/bullet/lmg/weak
 		amount_left = 25.0
@@ -1073,7 +1074,7 @@
 	charge = 400.0
 	max_charge = 400.0
 	recharge_rate = 40.0
-
+/*
 /obj/item/ammo/power_cell/self_charging/lawbringer
 	name = "Power Cell - Lawbringer Charger"
 	desc = "A self-contained radioisotope power cell that slowly recharges an internal capacitor. Holds 300PU."
@@ -1084,6 +1085,7 @@
 	charge = 300.0
 	max_charge = 300.0
 	recharge_rate = 10.0
+*/
 
 /obj/item/ammo/power_cell/self_charging/howitzer
 	name = "Miniaturized SMES"

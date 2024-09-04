@@ -352,7 +352,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	icon_state = "minigun"
 	item_state = "heavy"
 	force = MELEE_DMG_LARGE
-	caliber = 0.308
+	caliber = 0.31
 	max_ammo_capacity = 100
 	auto_eject = 1
 
@@ -387,7 +387,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	New()
 		ammo = new/obj/item/ammo/bullets/a357
-		set_current_projectile(new/datum/projectile/bullet/revolver_357)
+		set_current_projectile(new/datum/projectile/bullet/pistol_heavy)
 		..()
 
 /obj/item/gun/kinetic/revolver/vr
@@ -424,12 +424,14 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		ammo.amount_left = 0
 		update_icon()
 
+//no, chappie doesn't just get a fancy bespoke non-modular gun's
+/*
 /obj/item/gun/kinetic/faith
 	name = "Faith"
 	desc = "'Cause ya gotta have Faith."
 	icon_state = "faith"
 	force = MELEE_DMG_PISTOL
-	caliber = 0.22
+	caliber = 0.31
 	max_ammo_capacity = 4
 	auto_eject = 1
 	w_class = W_CLASS_SMALL
@@ -438,52 +440,41 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	New()
 		ammo = new/obj/item/ammo/bullets/bullet_22/faith
-		set_current_projectile(new/datum/projectile/bullet/bullet_22)
+		set_current_projectile(new/datum/projectile/bullet/pistol_weak)
 		..()
-
+*/
 
 /obj/item/gun/kinetic/detectiverevolver
 	name = "Detective Special revolver"
-	desc = "A snubnosed police-issue revolver developed by Cormorant Precision Arms. Uses .38-Special rounds."
+	desc = "A pre-modular revolver which accepts standard NT .31 short rounds."
 	icon_state = "detective"
 	item_state = "detective"
 	w_class = W_CLASS_SMALL
 	force = MELEE_DMG_REVOLVER
-	caliber = 0.38
+	caliber = 0.31
 	max_ammo_capacity = 7
 	gildable = 1
 
 	New()
 		ammo = new/obj/item/ammo/bullets/a38/stun
-		set_current_projectile(new/datum/projectile/bullet/revolver_38/stunners)
+		set_current_projectile(new/datum/projectile/bullet/pistol_weak/stunners)
 		..()
 
 /obj/item/gun/kinetic/colt_saa
-	name = "colt saa revolver"
-	desc = "A nearly adequate replica of a nearly ancient single action revolver. Used by war reenactors for the last hundred years or so."
+	name = "fake nerd revolver"
+	desc = "A speculative replica of a revolver that could have been built two centuries ago. Hard to believe something so high-tech and illegal could ever have existed."
 	icon_state = "colt_saa"
 	item_state = "colt_saa"
 	w_class = W_CLASS_NORMAL
 	force = MELEE_DMG_REVOLVER
-	caliber = 0.45
+	caliber = 0.31
 	spread_angle = 1
 	max_ammo_capacity = 7
 	var/hammer_cocked = 0
 
-	detective
-		name = "Peacemaker"
-		desc = "A barely adequate replica of a nearly ancient single action revolver. Used by war reenactors for the last hundred years or so. Its calibur is obviously the wrong size though."
-		w_class = W_CLASS_SMALL
-		force = MELEE_DMG_REVOLVER
-		caliber = 0.38
-		New()
-			..()
-			ammo = new/obj/item/ammo/bullets/a38/stun
-			set_current_projectile(new/datum/projectile/bullet/revolver_38/stunners)
-
 	New()
-		ammo = new/obj/item/ammo/bullets/c_45
-		set_current_projectile(new/datum/projectile/bullet/revolver_45)
+		ammo = null //formerly new/obj/item/ammo/bullets/c_45
+		set_current_projectile(new/datum/projectile/bullet/pistol_weak)
 		..()
 
 	canshoot()
@@ -509,14 +500,14 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 			playsound(user.loc, "sound/weapons/gun_cocked_colt45.ogg", 70, 1)
 
 /obj/item/gun/kinetic/clock_188
-	desc = "A reliable weapon used the world over... 50 years ago. Uses 9mm NATO rounds."
-	name = "Clock 188"
+	desc = "What the hell is this thing?"
+	name = "weird plastic gun"
 	icon_state = "glock"
 	item_state = "glock"
 	shoot_delay = 2
 	w_class = W_CLASS_SMALL
 	force = MELEE_DMG_PISTOL
-	caliber = 0.355
+	caliber = 0.31
 	max_ammo_capacity = 18
 	auto_eject = 1
 	has_empty_state = 1
@@ -531,20 +522,20 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		if(throw_return)
 			ammo = new/obj/item/ammo/bullets/nine_mm_NATO/boomerang
 		else
-			ammo = new/obj/item/ammo/bullets/nine_mm_NATO
+			ammo = null //new/obj/item/ammo/bullets/nine_mm_NATO
 
-		set_current_projectile(new/datum/projectile/bullet/nine_mm_NATO)
+		set_current_projectile(new/datum/projectile/bullet/pistol_weak)
 
 		if(throw_return)
 			projectiles = list(current_projectile)
 		else
-			projectiles = list(current_projectile, new/datum/projectile/bullet/nine_mm_NATO/auto)
+			projectiles = list(current_projectile, new/datum/projectile/bullet/pistol_weak)
 			AddComponent(/datum/component/holdertargeting/fullauto, 1.2, 1.2, 1)
 		..()
 
 	attack_self(mob/user as mob)
 		..()	//burst shot has a slight spread.
-		if (istype(current_projectile, /datum/projectile/bullet/nine_mm_NATO/auto))
+		if (istype(current_projectile, /datum/projectile/bullet/pistol_weak))
 			spread_angle = 10
 			shoot_delay = 4
 		else
@@ -552,8 +543,8 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 			shoot_delay = 2
 
 /obj/item/gun/kinetic/clock_188/boomerang
-	desc = "Jokingly called a \"Gunarang\" in some circles. Uses 9mm NATO rounds."
-	name = "Clock 180"
+	desc = "No, seriously, what the fuck kind of gun even is this?"
+	name = "weirder plastic gun"
 	force = MELEE_DMG_PISTOL
 	throw_range = 10
 	throwforce = 1
@@ -595,12 +586,12 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 /obj/item/gun/kinetic/spes
 	name = "SPES-12"
-	desc = "Multi-purpose high-grade military shotgun. Very spiffy."
+	desc = "Another speculative replica."
 	icon_state = "spas"
 	item_state = "spas"
 	force = MELEE_DMG_RIFLE
 	contraband = 7
-	caliber = 0.72
+	caliber = 0.62
 	max_ammo_capacity = 8
 	auto_eject = 1
 	can_dual_wield = 0
@@ -608,8 +599,8 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	New()
 		if(prob(10))
 			name = pick("SPEZZ-12", "SPESS-12", "SPETZ-12", "SPOCK-12", "SCHPATZL-12", "SABRINA-12", "SAURUS-12", "SABER-12", "SOSIG-12", "DINOHUNTER-12", "PISS-12", "ASS-12", "SPES-12", "SHIT-12", "SHOOT-12", "SHOTGUN-12", "FAMILYGUY-12", "SPAGOOTER-12")
-		ammo = new/obj/item/ammo/bullets/a12
-		set_current_projectile(new/datum/projectile/bullet/a12)
+		ammo = null //new/obj/item/ammo/bullets/a12
+		set_current_projectile(new/datum/projectile/bullet/shot_heavy)
 		..()
 
 	custom_suicide = 1
@@ -630,23 +621,16 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		health_update_queue |= user
 		return 1
 
-	engineer
-		New()
-			..()
-			src.name = replacetext("[src.name]", "12", "6") //only half as good
-			ammo = new/obj/item/ammo/bullets/a12/weak
-			set_current_projectile(new/datum/projectile/bullet/a12/weak)
-
 
 /obj/item/gun/kinetic/riotgun
 	name = "Riot Shotgun"
-	desc = "A police-issue shotgun meant for suppressing riots."
+	desc = "A real old police-issue shotgun meant for suppressing riots."
 	icon = 'icons/obj/large/48x32.dmi'
 	icon_state = "shotty-empty"
 	item_state = "shotty"
 	force = MELEE_DMG_RIFLE
 	contraband = 5
-	caliber = 0.72
+	caliber = 0.62
 	max_ammo_capacity = 8
 	auto_eject = 0
 	can_dual_wield = 0
@@ -659,7 +643,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	New()
 		ammo = new/obj/item/ammo/bullets/abg
-		set_current_projectile(new/datum/projectile/bullet/abg)
+		set_current_projectile(new/datum/projectile/bullet/slug_rubber)
 		..()
 
 	update_icon()
@@ -722,14 +706,14 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 
 /obj/item/gun/kinetic/ak47
-	name = "AK-744 Rifle"
-	desc = "Based on an old Cold War relic, often used by paramilitary organizations and space terrorists."
+	name = "Soviet AK-58 Rifle"
+	desc = "A rare Frontier-side example of Soviet prototype guns from a century ago, before the invention of zaubertubes."
 	icon = 'icons/obj/large/48x32.dmi' // big guns get big icons
 	icon_state = "ak47"
 	item_state = "ak47"
 	force = MELEE_DMG_RIFLE
 	contraband = 8
-	caliber = 0.308
+	caliber = 0.31
 	max_ammo_capacity = 30 // It's magazine-fed (Convair880).
 	auto_eject = 1
 	can_dual_wield = 0
@@ -738,7 +722,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	New()
 		ammo = new/obj/item/ammo/bullets/ak47
-		set_current_projectile(new/datum/projectile/bullet/ak47)
+		set_current_projectile(new/datum/projectile/bullet/rifle_medium)
 		..()
 
 /obj/item/gun/kinetic/hunting_rifle
@@ -749,7 +733,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "ohr"
 	force = MELEE_DMG_RIFLE
 	contraband = 8
-	caliber = 0.308
+	caliber = 0.31
 	max_ammo_capacity = 4 // It's magazine-fed (Convair880).
 	auto_eject = 1
 	can_dual_wield = 0
@@ -759,7 +743,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	New()
 		ammo = new/obj/item/ammo/bullets/rifle_3006
-		set_current_projectile(new/datum/projectile/bullet/rifle_3006)
+		set_current_projectile(new/datum/projectile/bullet/rifle_heavy)
 		..()
 
 /obj/item/gun/kinetic/dart_rifle
@@ -770,7 +754,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "tranq"
 	force = MELEE_DMG_RIFLE
 	//contraband = 8
-	caliber = 0.308
+	caliber = 0.31
 	max_ammo_capacity = 4 // It's magazine-fed (Convair880).
 	auto_eject = 1
 	can_dual_wield = 0
@@ -797,7 +781,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 		ammo = new/obj/item/ammo/bullets/bullet_22
 		ammo.amount_left = 0 // start empty
-		set_current_projectile(new/datum/projectile/bullet/bullet_22)
+		set_current_projectile(new/datum/projectile/bullet/pistol_weak)
 		..()
 
 
@@ -827,7 +811,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	silenced = 1
 	force = MELEE_DMG_PISTOL
 	contraband = 4
-	caliber = 0.22
+	caliber = 0.31
 	max_ammo_capacity = 10
 	auto_eject = 1
 	hide_attack = 1
@@ -837,7 +821,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	New()
 		ammo = new/obj/item/ammo/bullets/bullet_22HP
-		set_current_projectile(new/datum/projectile/bullet/bullet_22/HP)
+		set_current_projectile(new/datum/projectile/bullet/pistol_weak/HP)
 		..()
 
 /obj/item/gun/kinetic/vgun
@@ -869,7 +853,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "flaregun"
 	force = MELEE_DMG_PISTOL
 	contraband = 2
-	caliber = 0.72
+	caliber = 0.62
 	max_ammo_capacity = 1
 	has_empty_state = 1
 
@@ -995,7 +979,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	w_class = W_CLASS_SMALL
 	force = MELEE_DMG_SMG
 	contraband = 4
-	caliber = 0.355
+	caliber = 0.31
 	max_ammo_capacity = 30
 	auto_eject = 1
 
@@ -1004,7 +988,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	New()
 		ammo = new/obj/item/ammo/bullets/bullet_9mm/smg
-		set_current_projectile(new/datum/projectile/bullet/bullet_9mm/smg)
+		set_current_projectile(new/datum/projectile/bullet/pistol_weak)
 		..()
 
 //  <([['v') - Gannets Nuke Ops Class Guns - ('u']])>  //
@@ -1017,7 +1001,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	w_class = W_CLASS_NORMAL
 	force = MELEE_DMG_PISTOL
 	contraband = 4
-	caliber = 0.355
+	caliber = 0.31
 	max_ammo_capacity = 15
 	auto_eject = 1
 	has_empty_state = 1
@@ -1025,7 +1009,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	New()
 		ammo = new/obj/item/ammo/bullets/bullet_9mm
-		set_current_projectile(new/datum/projectile/bullet/bullet_9mm)
+		set_current_projectile(new/datum/projectile/bullet/pistol_weak)
 		..()
 
 /obj/item/gun/kinetic/pistol/empty
@@ -1044,7 +1028,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	New()
 		..()
 		ammo = new/obj/item/ammo/bullets/bullet_9mm/smartgun
-		set_current_projectile(new/datum/projectile/bullet/bullet_9mm/smartgun)
+		set_current_projectile(new/datum/projectile/bullet/pistol_weak)
 		AddComponent(/datum/component/holdertargeting/smartgun/nukeop, 3)
 
 
@@ -1059,7 +1043,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	w_class = W_CLASS_SMALL
 	force = MELEE_DMG_SMG
 	contraband = 4
-	caliber = 0.355
+	caliber = 0.31
 	max_ammo_capacity = 30
 	auto_eject = 1
 	spread_angle = 12.5
@@ -1067,7 +1051,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	New()
 		ammo = new/obj/item/ammo/bullets/bullet_9mm/smg
-		set_current_projectile(new/datum/projectile/bullet/bullet_9mm/smg)
+		set_current_projectile(new/datum/projectile/bullet/pistol_weak)
 		..()
 
 /obj/item/gun/kinetic/smg/empty
@@ -1085,7 +1069,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	w_class = W_CLASS_SMALL
 	force = MELEE_DMG_PISTOL
 	contraband = 4
-	caliber = 0.355
+	caliber = 0.31
 	max_ammo_capacity = 15
 	auto_eject = 1
 	hide_attack = 1
@@ -1104,7 +1088,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "shotgun"
 	force = MELEE_DMG_RIFLE
 	contraband = 7
-	caliber = 0.72
+	caliber = 0.62
 	max_ammo_capacity = 8
 	auto_eject = 1
 	two_handed = 1
@@ -1124,7 +1108,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "assault_rifle"
 	force = MELEE_DMG_RIFLE
 	contraband = 8
-	caliber = 0.223
+	caliber = 0.31
 	max_ammo_capacity = 30
 	auto_eject = 1
 	object_flags = NO_ARM_ATTACH
@@ -1135,33 +1119,33 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	New()
 		ammo = new/obj/item/ammo/bullets/assault_rifle
-		set_current_projectile(new/datum/projectile/bullet/assault_rifle)
-		projectiles = list(current_projectile,new/datum/projectile/bullet/assault_rifle/burst)
+		set_current_projectile(new/datum/projectile/bullet/rifle_weak)
+		projectiles = list(current_projectile,new/datum/projectile/bullet/rifle_weak)
 		..()
 
 	attackby(obj/item/ammo/bullets/b, mob/user)  // has to account for whether regular or armor-piercing ammo is loaded AND which firing mode it's using
 		var/obj/previous_ammo = ammo
-		var/mode_was_burst = (istype(current_projectile, /datum/projectile/bullet/assault_rifle/burst/))  // was previous mode burst fire?
+		var/mode_was_burst = (istype(current_projectile, /datum/projectile/bullet/rifle_weak/))  // was previous mode burst fire?
 		..()
 		if(previous_ammo.type != ammo.type)  // we switched ammo types
 			if(istype(ammo, /obj/item/ammo/bullets/assault_rifle/armor_piercing)) // we switched from normal to armor_piercing
 				if(mode_was_burst) // we were in burst shot mode
-					set_current_projectile(new/datum/projectile/bullet/assault_rifle/burst/armor_piercing)
-					projectiles = list(new/datum/projectile/bullet/assault_rifle/armor_piercing, current_projectile)
+					set_current_projectile(new/datum/projectile/bullet/rifle_medium/AP)
+					projectiles = list(new/datum/projectile/bullet/rifle_medium/AP, current_projectile)
 				else // we were in single shot mode
-					set_current_projectile(new/datum/projectile/bullet/assault_rifle/armor_piercing)
-					projectiles = list(current_projectile, new/datum/projectile/bullet/assault_rifle/burst/armor_piercing)
+					set_current_projectile(new/datum/projectile/bullet/rifle_medium/AP)
+					projectiles = list(current_projectile, new/datum/projectile/bullet/rifle_medium/AP)
 			else // we switched from armor penetrating ammo to normal
 				if(mode_was_burst) // we were in burst shot mode
-					set_current_projectile(new/datum/projectile/bullet/assault_rifle/burst)
-					projectiles = list(new/datum/projectile/bullet/assault_rifle, current_projectile)
+					set_current_projectile(new/datum/projectile/bullet/rifle_medium)
+					projectiles = list(new/datum/projectile/bullet/rifle_medium, current_projectile)
 				else // we were in single shot mode
-					set_current_projectile(new/datum/projectile/bullet/assault_rifle)
-					projectiles = list(current_projectile, new/datum/projectile/bullet/assault_rifle/burst)
+					set_current_projectile(new/datum/projectile/bullet/rifle_medium)
+					projectiles = list(current_projectile, new/datum/projectile/bullet/rifle_medium)
 
 	attack_self(mob/user as mob)
 		..()	//burst shot has a slight spread.
-		if (istype(current_projectile, /datum/projectile/bullet/assault_rifle/burst/))
+		if (istype(current_projectile, /datum/projectile/bullet/rifle_medium/))
 			spread_angle = 12.5
 			shoot_delay = 4 DECI SECONDS
 		else
@@ -1179,7 +1163,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "lmg"
 	wear_image_icon = 'icons/mob/back.dmi'
 	force = MELEE_DMG_RIFLE
-	caliber = 0.308
+	caliber = 0.31
 	max_ammo_capacity = 100
 	auto_eject = 0
 
@@ -1295,7 +1279,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	inhand_image_icon = 'icons/obj/unused/slamgun.dmi'
 	item_state = "slamgun-ready-world"
 	force = MELEE_DMG_RIFLE
-	caliber = 0.72
+	caliber = 0.62
 	max_ammo_capacity = 1
 	auto_eject = 0
 	spread_angle = 10 // sorry, no sniping with slamguns
@@ -1420,7 +1404,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "sniper"
 	wear_image_icon = 'icons/mob/back.dmi'
 	force = MELEE_DMG_RIFLE
-	caliber = 0.308
+	caliber = 0.31
 	max_ammo_capacity = 4
 	auto_eject = 1
 	flags =  FPRINT | TABLEPASS | CONDUCT | USEDELAY | EXTRADELAY | ONBACK
@@ -1437,7 +1421,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	New()
 		ammo = new/obj/item/ammo/bullets/rifle_762_NATO
-		set_current_projectile(new/datum/projectile/bullet/rifle_762_NATO)
+		set_current_projectile(new/datum/projectile/bullet/rifle_heavy)
 		snipermove = new/datum/movement_controller/sniper_look()
 		..()
 
@@ -1667,7 +1651,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 	item_state = "sec-case"
 	desc = "A large briefcase with a digital locking system. This one has a small hole in the side of it. Odd."
 	force = MELEE_DMG_SMG
-	caliber = 0.355
+	caliber = 0.31
 	max_ammo_capacity = 30
 	auto_eject = 0
 
@@ -1683,7 +1667,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 
 	New()
 		ammo = new/obj/item/ammo/bullets/nine_mm_NATO
-		set_current_projectile(new/datum/projectile/bullet/nine_mm_NATO/burst)
+		set_current_projectile(new/datum/projectile/bullet/pistol_weak)
 		..()
 
 	attack_hand(mob/user as mob)

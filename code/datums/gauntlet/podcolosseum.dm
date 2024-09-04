@@ -762,7 +762,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 		shotgun
 			name = "Ballistic"
-			myProj = /datum/projectile/bullet/a12
+			myProj = /datum/projectile/bullet/shot_heavy
 			ammo = 40
 			abstract = 0
 			icon = 'icons/obj/items/gun.dmi'
@@ -770,7 +770,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 		aex
 			name = "Ballistic (explosive)"
-			myProj = /datum/projectile/bullet/aex
+			myProj = /datum/projectile/bullet/slug_boom
 			ammo = 20
 			abstract = 0
 			icon = 'icons/obj/colosseum.dmi'
@@ -924,7 +924,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 			hunting_rifle
 				name = "30.06 Shots"
-				myProj = /datum/projectile/bullet/rifle_3006
+				myProj = /datum/projectile/bullet/rifle_heavy
 				ammo = 6
 				abstract = 0
 				icon = 'icons/obj/items/gun.dmi'

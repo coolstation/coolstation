@@ -48,6 +48,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/obj/item/gun_parts/accessory/accessory = null
 	var/list/obj/item/gun_parts/parts = list()
 	var/built = 0
+	var/no_build = FALSE //should this receiver be built from attached parts on spawn? (useful for only-receivers)
 	var/no_save = 0 // when 1, this should prevent the player from carrying it cross-round?
 	icon_state = "shittygun"
 	contraband = 0 //is this a crime gun made by and for crimers
@@ -85,18 +86,24 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/max_ammo_capacity = 1 // How much ammo can this gun hold? Don't make this null (Convair880).
 	var/list/ammo_list = list() // a list of datum/projectile types
 	current_projectile = null // chambered round
-	var/chamber_checked = 0 // this lets us fast-track alt-fire modes and stuff instead of re-checking the breech every time
+	var/chamber_checked = 0 // this lets us fast-track alt-fire modes and stuff instead of re-checking the breech every time (reset this on pickup)
+	var/hammer_cocked = FALSE //not everything is a hammer but this basically means ready to fire (single action will not fire if not cocked)
+	var/action = null //what kinda gun is this
+	//var/fire_delay = 0 //ticks between pulling trigger and actually shooting
 
 	var/accessory_alt = 0 //does the accessory offer an alternative firing mode?
 	var/accessory_on_fire = 0 // does the accessory need to know when you fire?
 	var/accessory_on_cycle = 0 // does the accessory need to know you pressed C?
 
-	var/jam_frequency_reload = 1 //base % chance to jam on reload. Just reload again to clear.
-	var/jam_frequency_fire = 1 //base % chance to jam on fire. Reload to clear.
+	var/jam_frequency_reload = 1 //base % chance to jam on reload. Just cycle again to clear.
+	var/jam_frequency_fire = 1 //base % chance to jam on fire. Cycle to clear.
+	//var/misfire_frequency = 1 //base % chance to fire wrong. No shot, squib, hangfire, or something that just kinda farts its way out of the barrel and sucks.
+	//var/hangfire_frequency = 1 //base % chance to fail to fire immediately.
+	//var/squib_frequency = 1 //base % chance to fire a bullet just enough to be really dangerous to the user.
 	var/jammed = 0 //got something stuck and unable to fire?
 	var/processing_ammo = 0 //cycling ammo/cranking off
 
-
+	var/sound_type = null //bespoke set of loading and cycling noises
 
 	two_handed = 0
 	can_dual_wield = 1
@@ -104,7 +111,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	New()
 		..()
 		make_parts()
-		build_gun()
+		if (!no_build || parts.len)
+			build_gun()
 
 /obj/item/gun/modular/proc/make_parts()
 	return
@@ -306,7 +314,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(jammed)
 		boutput(user,"<span class='notice'><b>You clear the ammunition jam.</b></span>")
 		jammed = 0
-		playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 40, 1)
+		if (sound_type)
+			playsound(src.loc, "sound/weapons/[sound_type]-slowcycle.ogg", 40, 0, pitch = 0.8)
+		else
+			playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 40, 1)
 		return 0
 
 	if(flashbulb_health) // bulb still loaded
@@ -318,7 +329,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		processing_ammo = 0
 		return 1
 
-	if(!ammo_list.len) // empty!
+	if(!ammo_list.len) //&& hammer_cocked) empty!
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
 		return (current_projectile?1:0)
 
@@ -328,7 +339,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		boutput(user,"<span class='alert'><b>Error! Storage space low! Deleting [waste] ammunition...</b></span>")
 		playsound(src.loc, 'sound/items/mining_drill.ogg', 20, 1,0,0.8)
 
-	if(!ammo_list.len) // empty! again!! just in case max ammo capacity was 0!!!
+	if(!ammo_list.len) //&& hammer_cocked) // empty! again!! just in case max ammo capacity was 0!!!
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
 		return (current_projectile?1:0)
 
@@ -366,10 +377,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			if(prob(10)) //unlucky, dump the round
 				src.jammed = 0
 				src.current_projectile = null
-				boutput(user, "<span class='notice'>You pull the bad round out of [src]</span>") //drop a dud
+				//come up with a good sound for this
+				boutput(user, "<span class='notice'>You pry the bad round out of [src]</span>") //drop a dud
 				return 0
 			else //just hit it again it'll work for sure
 				src.jammed = 0
+				src.hammer_cocked = TRUE
+				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 				boutput(user, "<span class='notice'>You re-cock the hammer on [src]</span>") //good 2 go
 				return 1
 		else
@@ -385,12 +399,25 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(jammed)
 		boutput(user,"<span class='notice'><b>You clear the ammunition jam.</b></span>")
 		jammed = 0
-		playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 40, 1)
+		hammer_cocked = 1
+		if (sound_type)
+			playsound(src.loc, "sound/weapons/modular/[sound_type]-slowcycle.ogg", 40, 1)
+		else
+			playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 40, 1)
 		return 0
 	if(!ammo_list.len) // empty!
-		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
-		if(accessory && accessory_alt)
+		if (sound_type)
+			playsound(src.loc, "sound/weapons/modular/[sound_type]-slowcycle.ogg", 40, 1)
+		else
+			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 40, 1)
+		if (!hammer_cocked)
+			hammer_cocked = 1
+			boutput(user,"<span class='notice'><b>You cycle [src]'s action, but it's empty!</b></span>")
+		else if(accessory && accessory_alt)
 			accessory.alt_fire() // so you can turn your flashlight on without having ammo....
+			boutput(user,"<span class='notice'><b>You [pick("fiddle","faff","fuss")] with [accessory] since you're out of ammo.</b></span>")
+		else
+			boutput(user,"<span class='notice'><b>You [pick("fiddle","faff","fuss")] with your unloaded [src].</b></span>")
 		return (current_projectile?1:0)
 	if(ammo_list.len > max_ammo_capacity)
 		var/waste = ammo_list.len - max_ammo_capacity
@@ -399,7 +426,17 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		playsound(src.loc, 'sound/items/mining_drill.ogg', 20, 1,0,0.8)
 
 	if(!ammo_list.len) // empty! again!! just in case max ammo capacity was 0!!!
-		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
+		if (!hammer_cocked)
+			hammer_cocked = 1
+			boutput(user,"<span class='notice'><b>You cycle [src]'s action, but it's empty!</b></span>")
+			if (sound_type)
+				playsound(src.loc, "sound/weapons/modular/[sound_type]-slowcycle.ogg", 40, 1)
+			else if (src.action == "pump") //temporary
+				playsound(src.loc, "sound/weapons/shotgunpump.ogg", 40, 1)
+			else
+				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 40, 1)
+		else
+			boutput(user,"<span class='notice'><b>You [pick("fiddle","faff","fuss")] with your unloaded [src].</b></span>")
 		return 0
 
 	if(current_projectile) // chamber is loaded
@@ -416,7 +453,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		var/ammotype = ammo_list[ammo_list.len]
 		current_projectile = new ammotype() // last one goes in
 		ammo_list.Remove(ammo_list[ammo_list.len]) //and remove it from the list
-		playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+		if (sound_type)
+			playsound(src.loc, "sound/weapons/modular/[sound_type]-quickcycle[rand(1,2)].ogg", 40, 1)
+		else
+			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 		return 1
 
 
@@ -439,6 +479,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 /obj/item/gun/modular/canshoot()
 	if(jammed)
 		return 0
+	//do this later i'm just focusing on sounds now
+	//if(hammer_cocked && action == "single")
+	//	return 0
 	if(!built)
 		return 0
 	if(flashbulb_only && !flashbulb_health)
@@ -549,13 +592,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	if(!max_ammo_capacity)
 		src.inventory_counter.update_number(!!current_projectile)
-
+	src.hammer_cocked = FALSE
 	src.update_icon()
 	return TRUE
 
 /obj/item/gun/modular/shoot_point_blank(var/mob/M as mob, var/mob/user as mob, var/second_shot = 0)
 	..()
 	current_projectile = null // empty chamber
+	hammer_cocked = FALSE
 	src.update_icon()
 
 /obj/item/gun/modular/proc/build_gun()
@@ -695,8 +739,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 /obj/item/gun/modular/NT
 	name = "\improper NT gun"
 	real_name = "\improper NT gun"
-	desc = "A simple, reliable cylindrical bored weapon."
+	desc = "You're not supposed to see this, call a coder or whatever."
 	max_ammo_capacity = 0 // single-shot pistols ha- unless you strap an expensive loading mag on it.
+	action = "striker"
 	gun_DRM = GUN_NANO
 	spread_angle = 7
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
@@ -707,20 +752,22 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 
 //short receiver, by itself
 /obj/item/gun/modular/NT/short
-	built = FALSE
+	name = "\improper NT pistol"
+	real_name = "\improper NT pistol"
+	desc = "A basic, Nanotrasen-licensed single-shot weapon."
 
 //long receiver, by itself
+//eventually be able to convert between long and short?
 /obj/item/gun/modular/NT/long
 	name = "\improper NT rifle"
 	real_name = "\improper NT rifle"
-	desc = "A simple, reliable rifled bored weapon."
+	desc = "A mostly reliable, autoloading Nanotrasen-licensed and corporate security-issued weapon."
 	max_ammo_capacity = 2 //built in small loader
 	icon_state = "nt_long"
 	grip_overlay_x = GRIP_OFFSET_BULLPUP
 	barrel_overlay_x = BARREL_OFFSET_LONG
 	stock_overlay_x = STOCK_OFFSET_BULLPUP
 	bullpup_stock = 1 //for the overlay
-	built = FALSE
 
 //a built and usable pistol
 /obj/item/gun/modular/NT/short/pistol
@@ -772,7 +819,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 //stocked shotgun for sec
 /obj/item/gun/modular/NT/long/shotty
 	name = "\improper NT riot suppressor"
-	desc = "Cloned from Juicer parts, it seems."
+	desc = "'Innovated' almost entirely from Juicer parts, it seems."
 	icon_state = "nt_long"
 	grip_overlay_x = GRIP_OFFSET_BULLPUP
 	barrel_overlay_x = BARREL_OFFSET_LONG
@@ -804,6 +851,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/foss)
 	real_name = "\improper FOSS laser"
 	desc = "An open-sourced and freely modifiable FOSS Inductive Flash Arc, Model 2k/19"
 	max_ammo_capacity = 1 // just takes a flash bulb.
+	action = "nerd"
 	gun_DRM = GUN_FOSS
 	spread_angle = 7
 	//color = "#aaaaFF"
@@ -866,6 +914,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
 	icon_state = "juicer" //only large
 	max_ammo_capacity = 0 //fukt up mags only
+	action = "pump"
 	gun_DRM = GUN_JUICE
 	spread_angle = 10
 	//color = "#99FF99"
@@ -874,6 +923,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 	grip_overlay_x = GRIP_OFFSET_LONG
 	stock_overlay_x = STOCK_OFFSET_LONG
 	//foregrip_offset_x = 15 //put it on the pump
+
+/obj/item/gun/modular/juicer/receiver
 
 /obj/item/gun/modular/juicer/basic
 	name = "\improper BLASTA"
@@ -902,7 +953,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 		if(prob(40))
 			accessory = new /obj/item/gun_parts/accessory/flashlight(src)
 
-
 /obj/item/gun/modular/juicer/blunder
 	name = "blunder BLASTA"
 	make_parts()
@@ -914,7 +964,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 		else
 			grip = new /obj/item/gun_parts/grip/juicer(src)
 		magazine = new /obj/item/gun_parts/magazine/juicer(src)
-
 
 /obj/item/gun/modular/juicer/long
 	name = "Sniper BLASTA"
@@ -950,35 +999,31 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 //Not really for physical ammo
 //might be funny to be lever action/underbarrel tube-fed (which means load directly to chamber, then: last in, first out)
 
+//sound: lever manipulation reload: Realoding a 30-30 Rifle. OWI.wav by JesterWhoo -- https://freesound.org/s/706980/ -- License: Creative Commons 0
+
 ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 /obj/item/gun/modular/soviet
 
-	name = "\improper Soviet лазерная"
-	real_name = "\improper Soviet лазерная"
-	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
+	name = "\improper Soviet gun"
+	real_name = "\improper Soviet gun"
+	desc = "abstract type do not instantiate"
+	action = "lever"
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
+	icon_state = "soviet_short"
+	sound_type = "soviet"
 	gun_DRM = GUN_SOVIET
 
 
 //short receiver only
 /obj/item/gun/modular/soviet/short
-	icon_state = "soviet_short"
+	name = "\improper Soviet Лазерный пистолет"
+	real_name = "\improper Soviet Лазерный пистолет"
+	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
 	max_ammo_capacity = 2
 	contraband = 2
 	barrel_overlay_x = BARREL_OFFSET_SHORT
 	grip_overlay_x = GRIP_OFFSET_SHORT
 	stock_overlay_x = STOCK_OFFSET_SHORT
-
-//long receiver only
-/obj/item/gun/modular/soviet/long
-	icon_state = "soviet_long"
-	max_ammo_capacity = 4
-	spread_angle = 9
-	contraband = 4
-	barrel_overlay_x = BARREL_OFFSET_LONG
-	grip_overlay_x = GRIP_OFFSET_LONG
-	stock_overlay_x = STOCK_OFFSET_LONG
-	two_handed = TRUE
 
 /obj/item/gun/modular/soviet/short/basic
 	spread_angle = 9
@@ -1005,6 +1050,20 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/soviet/covert(src)
 		grip = new /obj/item/gun_parts/grip/italian(src)
+
+//long receiver only
+/obj/item/gun/modular/soviet/long
+	name = "\improper Soviet Лазерная винтовка"
+	real_name = "\improper Soviet Лазерная винтовка"
+	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
+	icon_state = "soviet_long"
+	max_ammo_capacity = 4
+	spread_angle = 9
+	contraband = 4
+	barrel_overlay_x = BARREL_OFFSET_LONG
+	grip_overlay_x = GRIP_OFFSET_LONG
+	stock_overlay_x = STOCK_OFFSET_LONG
+	two_handed = TRUE
 
 /obj/item/gun/modular/soviet/long/advanced
 	name = "\improper Soviet лазерная"
@@ -1065,6 +1124,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
 	icon_state = "italian" //only
 	max_ammo_capacity = 2 // basic revolving mechanism
+	action = "double"
 	//this will be a "magazine" but like tubes we'll have a slightly different firing method
 	gun_DRM = GUN_ITALIAN
 	spread_angle = 10
@@ -1080,6 +1140,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 		//Maybe a short sleep, that's the tradeoff for not having to click it every time... I'm not putting it in until I sort out more
 		//ALSO: handle unloading all rounds (shot or unshot) at same time, don't load until unloaded?
 		//much too consider
+		//if (!src.hammer_cocked) then delay and set hammer_cocked
+		src.hammer_cocked = TRUE
 		..()
 		process_ammo()
 

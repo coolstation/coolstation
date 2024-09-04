@@ -432,7 +432,7 @@ var/const/PHASER_SNIPER = 256
 
 					var/obj/projectile/PBul = new()
 					var/obj/projectile/PLas = new()
-					PBul.proj_data = new /datum/projectile/bullet/revolver_357(  )
+					PBul.proj_data = new /datum/projectile/bullet/pistol_heavy(  )
 					PLas.proj_data = new /datum/projectile/laser(  )
 					for(var/obj/machinery/bot/B in view(O.range,O.loc))
 						if(O.upgrades & PHASER_EMP)

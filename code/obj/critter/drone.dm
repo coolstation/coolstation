@@ -536,8 +536,8 @@
 		alertsound1 = 'sound/machines/engine_alert1.ogg'
 		alertsound2 = 'sound/machines/engine_alert1.ogg'
 		droploot = /obj/item/shipcomponent/secondary_system/crash
-		projectile_type = /datum/projectile/bullet/aex
-		current_projectile = new/datum/projectile/bullet/aex
+		projectile_type = /datum/projectile/bullet/slug_boom
+		current_projectile = new/datum/projectile/bullet/slug_boom
 		attack_cooldown = 50
 		New()
 			..()
@@ -555,8 +555,8 @@
 		alertsound1 = 'sound/machines/engine_alert1.ogg'
 		alertsound2 = 'sound/machines/engine_alert1.ogg'
 		droploot = /obj/item/bang_gun
-		projectile_type = /datum/projectile/bullet/ak47
-		current_projectile = new/datum/projectile/bullet/ak47
+		projectile_type = /datum/projectile/bullet/rifle_medium
+		current_projectile = new/datum/projectile/bullet/rifle_medium
 		attack_cooldown = 20
 		New()
 			..()
@@ -1275,8 +1275,8 @@
 	alertsound1 = 0
 
 	alertsound2 = 0
-	projectile_type = /datum/projectile/bullet/revolver_357
-	current_projectile = new/datum/projectile/bullet/revolver_357
+	projectile_type = /datum/projectile/bullet/pistol_heavy
+	current_projectile = new/datum/projectile/bullet/pistol_heavy
 	attack_cooldown = 20
 
 	var/voice_gender = "male"

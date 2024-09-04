@@ -205,7 +205,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 	sname = "buckshot"
 	cost = 1
 	pellets_to_fire = 10
-	spread_projectile_type = /datum/projectile/bullet/buckshot
+	spread_projectile_type = /datum/projectile/bullet/shot_weak
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
 	var/speed_max = 5
 	var/speed_min = 60
@@ -218,6 +218,21 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		FC.internal_speed = rand(speed_min,speed_max)
 		FC.travelled = rand(0,dissipation_variance)
 		FC.launch()
+
+/datum/projectile/special/spreader/buckshot_burst/salt
+	name = "rock salt"
+	sname = "rock salt"
+	shot_sound = 'sound/weapons/shotgunshot.ogg'
+	power = 20
+	implanted = null
+	caliber = 0.62
+	casing = /obj/item/casing/shotgun/gray
+	spread_projectile_type = /datum/projectile/bullet/shot_salt
+	speed_min = 28
+	speed_max = 36
+	dissipation_variance = 64
+	spread_angle_variance = 7.5
+	pellets_to_fire = 4
 
 /datum/projectile/special/spreader/buckshot_burst/nails
 	name = "nails"

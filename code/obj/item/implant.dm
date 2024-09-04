@@ -802,49 +802,57 @@ THROWING DARTS
 	var/bleed_timer = 0
 	var/forensic_ID = null // match a bullet to a gun holy heckkkkk
 
-	bullet_357
-		name = ".357 round"
-		desc = "A powerful revolver bullet, likely of criminal origin."
+	bullet_pistol_heavy
+		name = "Juicer Jr. round"
+		desc = "A really big pistol round, despite the name. Manufactured solely for clout."
 
-	bullet_357AP
-		name = ".357 AP round"
-		desc = "A highly illegal armor-piercing variant of the common .357 round."
+	bullet_pistol_heavy_ap
+		name = "Juicer Jr. AP pistol round"
+		desc = "Probably the most illegal a pistol bullet can possibly be."
 
-	bullet_38
-		name = ".38 round"
-		desc = "An outdated police-issue bullet. Some anachronistic detectives still like to use these, for style."
+	bullet_pistol_medium
+		name = "8mm pistol round"
+		desc = "Italian in origin. Not too rare, but still contraband. Smells like olive oil."
 
-	bullet_45
-		name = ".45 round"
-		desc = "An outdated army-issue bullet. Mainly used by war reenactors and space cowboys."
+	bullet_pistol_medium_ap
+		name = "8mm AP pistol round"
+		desc = "Italian armor-piercing round. Very rare, VERY contraband. This is a spicy meatball."
 
-	bullet_38AP
-		name = ".38 AP round"
-		desc = "A more powerful armor-piercing .38 round. Huh. Aren't these illegal?"
+	bullet_pistol_weak
+		name = ".31 Short round"
+		desc = "Standard bullet of the Nanotrasen Armory. Or Arsenal. Whichever one it is."
 
-	bullet_nine_mm_NATO
-		name = "9mm NATO round"
-		desc = "A reliable bullet, used ubiquitously in law enforcement and armed forces a century ago."
+	bullet_rifle_weak
+		name = ".31 Long round"
+		desc = "Honestly the exact same thing as the pistol bullet, but costs twice as much and is keyed to not fit in pistol casings."
 
-	bullet_308
-		name = ".308 round"
-		desc = "An old but very powerful rifle bullet."
+	bullet_rifle_weak_ap
+		name = ".31 Long AP round"
+		desc = "Special issue Nanotrasen armor-piercing rifle round. Unusual to see."
 
-	bullet_22
-		name = ".22 round"
-		desc = "A cheap, small bullet, often used for recreational shooting and small-game hunting."
+	bullet_rifle_medium
+		name = "8mm rifle round"
+		desc = "Italian rifle round. It's a little longer that the pistol rounds and has a little Italian flag painted on it."
 
-	bullet_22HP
-		name = ".22 hollow point round"
-		desc = "A small calibre hollow point bullet for use against unarmored targets. Wait, aren't these a war crime?"
+	bullet_rifle_medium_ap
+		name = "8mm AP rifle round"
+		desc = "Italian rifle round. This one's pretty hardcore... Get it?"
 
-	bullet_41
-		name = ".41 round"
-		desc = ".41? What the heck? Who even uses these anymore?"
+	bullet_rifle_heavy
+		name = "Juicer BIG rifle round"
+		desc = "This is just two Juicer pistol rounds glued together. Whatever."
 
-	bullet_12ga
+	bullet_rifle_heavy
+		name = "Juicer BIG AP rifle round"
+		desc = "This is just two Juicer pistol rounds welded around a nail. Whatever."
+
+	shot_buck
 		name = "buckshot"
-		desc = "A commonly-used load for shotguns."
+		desc = "Several small balls, scattered from a long, fat pipe. Or maybe a short fat one."
+
+	shot_slug
+		name = "shotgun slug"
+		desc = "Think lead, not slime."
 
 	staple
 		name = "staple"
@@ -866,10 +874,6 @@ THROWING DARTS
 		name= "flintlock round"
 		desc = "Rather unperfect round ball. Looks very old."
 		icon_state = "flintlockbullet"
-
-	bullet_50
-		name = ".50AE round"
-		desc = "Ouch."
 
 /obj/item/implant/projectile/implanted(mob/living/carbon/C, var/mob/I, var/bleed_time = 60)
 	SEND_SIGNAL(src, COMSIG_IMPLANT_IMPLANTED, C)

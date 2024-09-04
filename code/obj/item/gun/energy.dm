@@ -1138,6 +1138,9 @@
 			return
 
 ///////////////////////////////////////////////////
+
+//turn these into switchable foam dart/water/noisemaker gun toys just in my imo
+//space cop playset comes with unassailable plastic badge and ignorable consent decree
 /obj/item/gun/energy/lawbringer/old
 	name = "Antique Lawbringer"
 	icon = 'icons/obj/items/gun.dmi'
@@ -1153,7 +1156,7 @@
 	var/old = 0
 	m_amt = 5000
 	g_amt = 2000
-	cell_type = /obj/item/ammo/power_cell/self_charging/lawbringer
+	cell_type = null ///obj/item/ammo/power_cell/self_charging/lawbringer
 	mats = list("MET-1"=15, "CON-2"=5, "POW-2"=5)
 	var/owner_prints = null
 	var/image/indicator_display = null
@@ -1163,8 +1166,8 @@
 
 	New(var/mob/M)
 		set_current_projectile(new/datum/projectile/energy_bolt/aoe)
-		projectiles = list("detain" = current_projectile, "execute" = new/datum/projectile/bullet/revolver_38/lb, "smokeshot" = new/datum/projectile/bullet/smoke, "knockout" = new/datum/projectile/bullet/tranq_dart/law_giver, "hotshot" = new/datum/projectile/bullet/flare, "bigshot" = new/datum/projectile/bullet/aex/lawbringer, "clownshot" = new/datum/projectile/bullet/clownshot, "pulse" = new/datum/projectile/energy_bolt/pulse)
-		// projectiles = list(current_projectile,new/datum/projectile/bullet/revolver_38/lb,new/datum/projectile/bullet/smoke,new/datum/projectile/bullet/tranq_dart/law_giver,new/datum/projectile/bullet/flare,new/datum/projectile/bullet/aex/lawbringer,new/datum/projectile/bullet/clownshot)
+		projectiles = list("detain" = current_projectile, "execute" = new/datum/projectile/bullet/pistol_weak, "smokeshot" = new/datum/projectile/bullet/smoke, "knockout" = new/datum/projectile/bullet/tranq_dart, "hotshot" = new/datum/projectile/bullet/flare, "bigshot" = new/datum/projectile/bullet/shot_weak, "clownshot" = new/datum/projectile/bullet/clownshot, "pulse" = new/datum/projectile/energy_bolt/pulse)
+		// projectiles = list(current_projectile,new/datum/projectile/bullet/pistol_medium,new/datum/projectile/bullet/smoke,new/datum/projectile/bullet/tranq_dart/law_giver,new/datum/projectile/bullet/flare,new/datum/projectile/bullet/slug_boom,new/datum/projectile/bullet/clownshot)
 
 		src.indicator_display = image('icons/obj/items/gun.dmi', "")
 		asign_name(M)
@@ -1322,7 +1325,7 @@
 			if(current_projectile.type == /datum/projectile/energy_bolt/aoe)			//detain - yellow
 				indicator_display.color = "#FFFF00"
 				muzzle_flash = "muzzle_flash_elec"
-			else if (current_projectile.type == /datum/projectile/bullet/revolver_38/lb)			//execute - cyan
+			else if (current_projectile.type == /datum/projectile/bullet/pistol_weak)			//execute - cyan
 				indicator_display.color = "#00FFFF"
 				muzzle_flash = "muzzle_flash"
 			else if (current_projectile.type == /datum/projectile/bullet/smoke)			//smokeshot - dark-blue
@@ -1334,7 +1337,7 @@
 			else if (current_projectile.type == /datum/projectile/bullet/flare)			//hotshot - red
 				indicator_display.color = "#FF0000"
 				muzzle_flash = null
-			else if (current_projectile.type == /datum/projectile/bullet/aex/lawbringer)	//bigshot - purple
+			else if (current_projectile.type == /datum/projectile/bullet/shot_weak)	//bigshot - purple
 				indicator_display.color = "#551A8B"
 				muzzle_flash = null
 			else if (current_projectile.type == /datum/projectile/bullet/clownshot)		//clownshot - pink

@@ -1,5 +1,5 @@
 //Used by: antique laser gun (normal parts), pod colloseum, empowered laser eyes,
-//Zaubertubes, Mk.2 CQ Laser pod wars pod weapon, laser drone objcritters, laser gun, egun on kill
+//Mk.2 CQ Laser pod wars pod weapon, laser drone objcritters, laser gun, egun on kill
 /datum/projectile/laser
 	name = "laser"
 	icon = 'icons/obj/projectiles.dmi'
@@ -58,6 +58,11 @@ toxic - poisons
 		if (istype(P.loc, /turf) && !(locate(/obj/blob/reflective) in get_turf(P.loc))) //eh, works for me:tm:
 			var/turf/T = P.loc
 			T.hotspot_expose(power*20, 5)
+
+//Used by: zaubertubes
+/datum/projectile/laser/zauber
+	name = "zauber"
+	shot_sound = 'sound/weapons/smartgun.ogg'
 
 //Used by: pod colloseum quad laser
 /datum/projectile/laser/quad

@@ -243,7 +243,7 @@
 	dissipation_delay = 5
 	dissipation_rate = 5
 	ks_ratio = 1.0
-	implanted = /obj/item/implant/projectile/bullet_50
+	implanted = /obj/item/implant/projectile/bullet_pistol_heavy
 	caliber = 0.50
 	icon_turf_hit = "bhole-large"
 	casing = /obj/item/casing/deagle

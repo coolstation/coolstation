@@ -82,7 +82,7 @@
 	var/range = 7 // tiles
 	var/internal_angle = 0 // used for the matrix transforms
 	var/external_angle = 180 // used for determining target validity
-	var/projectile_type = /datum/projectile/bullet/ak47
+	var/projectile_type = /datum/projectile/bullet/rifle_medium //partnership with italy
 	var/datum/projectile/current_projectile
 	var/burst_size = 3 // number of shots to fire. Keep in mind the bullet's shot_count
 	var/fire_rate = 3 // rate of fire in shots per second
@@ -566,8 +566,8 @@
 	max_health = 125
 	wait_time = 20 //wait if it can't find a target
 	range = 5 // tiles
-	projectile_type = /datum/projectile/bullet/abg
-	current_projectile = new/datum/projectile/bullet/abg
+	projectile_type = /datum/projectile/bullet/slug_rubber
+	current_projectile = new/datum/projectile/bullet/slug_rubber
 	burst_size = 1 // number of shots to fire. Keep in mind the bullet's shot_count
 	fire_rate = 1 // rate of fire in shots per second
 	angle_arc_size = 60
@@ -580,8 +580,8 @@
 		SPAWN_DBG(src.wait_time)
 
 			if (src.emagged)
-				src.projectile_type = /datum/projectile/bullet/a12
-				src.current_projectile = new/datum/projectile/bullet/a12
+				src.projectile_type = /datum/projectile/bullet/shot_heavy
+				src.current_projectile = new/datum/projectile/bullet/shot_heavy
 		*/
 
 	is_friend(var/mob/living/C)
@@ -613,8 +613,8 @@
 	/*
 	emag_act(var/user, var/emag)
 		..()
-		src.projectile_type = /datum/projectile/bullet/a12
-		src.current_projectile = new/datum/projectile/bullet/a12
+		src.projectile_type = /datum/projectile/bullet/shot_heavy
+		src.current_projectile = new/datum/projectile/bullet/shot_heavy
 	*/
 
 /////////////////////////////

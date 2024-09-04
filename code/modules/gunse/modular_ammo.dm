@@ -149,7 +149,10 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 					src.dropped(user)
 					qdel(src)
 				M.inventory_counter.update_number(!!M.current_projectile)
-				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1) //play the sound here because single shot bypasses cycle_ammo
+				if (M.sound_type)
+					playsound(src.loc, "sound/weapons/modular/[M.sound_type]-slowcycle.ogg", 60, 1)
+				else
+					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1) //play the sound here because single shot bypasses cycle_ammo
 			return
 		reloading = 1
 		if(amount < 1)
@@ -157,30 +160,43 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 			src.dropped(user)
 			qdel(src)
 		SPAWN_DBG(0)
-			boutput(user, "<span class='notice'>You start loading rounds into [M]</span>")
+			boutput(user, "<span class='notice'>You start loading rounds into [M].</span>")
+			if (M.sound_type)
+				playsound(src.loc, "sound/weapons/modular/[M.sound_type]-startload.ogg", 60, 1)
+			else
+				playsound(src.loc, "sound/weapons/gunload_click.ogg", 60, 1)
+				//playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1) //oldsound
+			sleep(10)
 			while(M.ammo_list.len < M.max_ammo_capacity)
 				if(amount < 1)
 					user.u_equip(src)
 					src.dropped(user)
 					qdel(src)
 					break
-				playsound(src.loc, "sound/weapons/casings/casing-0[rand(1,9)].ogg", 10, 0.1, 0, 0.8)
+				if (M.sound_type)
+					playsound(src.loc, "sound/weapons/modular/[M.sound_type]-load[rand(1,2)].ogg", 10, 1)
+				else
+					playsound(src.loc, "sound/weapons/gunload_light.ogg", 10, 1, 0, 0.8)
+					//playsound(src.loc, "sound/weapons/casings/casing-0[rand(1,9)].ogg", 10, 0.1, 0, 0.8) //oldsound
 				amount--
 				M.ammo_list += projectile_type
 				update_stack_appearance()
-				sleep(5)
-			playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, 0, 0.8)
-			boutput(user, "<span class='notice'>The hold is full</span>")
+				sleep(10)
+			if (M.sound_type)
+				playsound(src.loc, "sound/weapons/modular/[M.sound_type]-stopload.ogg", 30, 1)
+			else
+				playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, 0, 0.8)
+			boutput(user, "<span class='notice'>The hold is now full.</span>")
 			if(!M.current_projectile)
 				M.process_ammo()
 			M.inventory_counter.update_number(M.ammo_list.len)
 			reloading = 0
 
 /obj/item/stackable_ammo/pistol/
-	name = "standardised pistol round"
-	real_name = "standardised pistol round"
-	desc = "The ubiquitous pistol round, finally standardized."
-	projectile_type = /datum/projectile/bullet/bullet_22
+	name = "NT pistol round"
+	real_name = "NT pistol round"
+	desc = "NT's standard .31 Short firearms cartridge. The same caliber everyone else copies."
+	projectile_type = /datum/projectile/bullet/pistol_weak
 	stack_type = /obj/item/stackable_ammo/pistol
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "nt_brass"
@@ -201,11 +217,62 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		min_amount = 10
 		max_amount = 10
 
+/obj/item/stackable_ammo/pistol/HP
+	name = "NT HP pistol round"
+	real_name = "NT HP pistol round"
+	desc = "NT's .31 Short firearms cartridge, with a hollow point for hunting and pest control. Not permitted for use on crew members."
+	projectile_type = /datum/projectile/bullet/pistol_weak
+	stack_type = /obj/item/stackable_ammo/pistol
+	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
+	icon_state = "nt_brass"
+	icon_full  = "nt_brass"
+	icon_empty = "nt_empty"
+	icon_one   = "bullet_brass"
+	icon_shell = "brass_case"
+
+	three
+		min_amount = 3
+		max_amount = 3
+
+	five
+		min_amount = 5
+		max_amount = 5
+
+	ten
+		min_amount = 10
+		max_amount = 10
+
+/obj/item/stackable_ammo/pistol_italian
+	name = "Italian pistol round"
+	real_name = "Italian pistol round"
+	desc = "Italia's standard 8mm pistol firearms cartridge. The same caliber everyone else copies. These rounds are kept fresh with a light coating of olive oil"
+	projectile_type = /datum/projectile/bullet/pistol_medium/AP
+	stack_type = /obj/item/stackable_ammo/pistol_38AP
+	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
+	icon_state = "nt_red"
+	icon_full  = "nt_red"
+	icon_empty = "nt_empty"
+	icon_one   = "bullet_red"
+	icon_shell = "red_case"
+
+	three
+		min_amount = 3
+		max_amount = 3
+
+	five
+		min_amount = 5
+		max_amount = 5
+
+	ten
+		min_amount = 10
+		max_amount = 10
+
+//rename to pistol/italian/ap
 /obj/item/stackable_ammo/pistol_38AP
-	name = "armor-piercing pistol round"
-	real_name = "armor-piercing pistol round"
-	desc = "The weak and useless pistol round, finally buffed."
-	projectile_type = /datum/projectile/bullet/revolver_38/AP
+	name = "Italian AP pistol round"
+	real_name = "Italian AP pistol round"
+	desc = "Italia's standard 8mm pistol firearms cartridge, with an AP core. The same caliber everyone else copies."
+	projectile_type = /datum/projectile/bullet/pistol_medium/AP
 	stack_type = /obj/item/stackable_ammo/pistol_38AP
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
 	icon_state = "nt_red"
@@ -320,11 +387,12 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		min_amount = 10
 		max_amount = 10
 
+//do i want to make a long version? maybe.
 /obj/item/stackable_ammo/zaubertube/
 	name = "\improper Elektrograd лазерный Zaubertube"
 	real_name = "Elektrograd лазерный Zaubertube"
-	desc = "A small glass bulb filled with hypergolic incandescent chemicals."
-	projectile_type = /datum/projectile/laser
+	desc = "A thick glass bulb filled with hypergolic incandescent chemicals, in the same 2.8 line caliber stolen by everyone else."
+	projectile_type = /datum/projectile/laser/zauber
 	stack_type = /obj/item/stackable_ammo/zaubertube
 	ammo_DRM = GUN_SOVIET | GUN_FOSS
 	icon_state = "zaubertubes"
@@ -345,6 +413,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		min_amount = 10
 		max_amount = 10
 
+//smoothbore shit
 ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 /obj/item/stackable_ammo/scatter/ // ABSOLUTELY USE THIS TYPE FOR ALL SCATTER AMMO, EVEN OPTICAL
 	name = "generic scatter ammo"
@@ -366,8 +435,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 /obj/item/stackable_ammo/scatter/buckshot
 	name = "\improper Hot Pocketz"
 	real_name = "\improper Hot Pocketz"
-	desc = "Ecologically and economically hand-packed by local Juicer children."
-	projectile_type = /datum/projectile/bullet/a12
+	desc = "Ecologically and economically hand-packed by local Juicer children. In, uh, whatever caliber. It'll probably fit heavy barrels."
+	projectile_type = /datum/projectile/bullet/shot_heavy
 	stack_type = /obj/item/stackable_ammo/scatter/buckshot
 
 	three
@@ -386,7 +455,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	name = "standard rubber slug"
 	real_name = "standard rubber slug"
 	desc = "An allegedly less-than-lethal riot deterrent slug, at least in low doses."
-	projectile_type = /datum/projectile/bullet/abg
+	projectile_type = /datum/projectile/bullet/slug_rubber
 	stack_type = /obj/item/stackable_ammo/scatter/slug_rubber
 
 	three
@@ -441,7 +510,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 				src.set_loc(M)
 				sleep(5)
 				if(M.ammo_list.len == M.max_ammo_capacity)
-					playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, 0, 0.8)
+					playsound(src.loc, "sound/items/Screwdriver.ogg", 30, 0.1, 0, 0.8)
 				reloading = 0
 
 /obj/item/stackable_ammo/flashbulb/better
@@ -460,8 +529,6 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	make_my_stuff()
 		..()
 		if (prob(70))
-			new /obj/item/gun_parts/magazine/juicer(src)
-		else
 			new /obj/item/gun_parts/accessory/horn(src)
 
 /obj/item/storage/box/foss_gun_kit

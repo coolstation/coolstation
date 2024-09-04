@@ -666,7 +666,7 @@
 		spawn_contents = list(/obj/item/paper/nast_manual,
 		/obj/item/turret_deployer,
 		/obj/item/wrench/battle,
-		/obj/item/gun/kinetic/spes/engineer,
+		/obj/item/gun/kinetic/spes,
 		/obj/item/storage/pouch/shotgun/weak,
 		/obj/item/weldingtool/high_cap,
 		/obj/item/storage/belt/utility/prepared,

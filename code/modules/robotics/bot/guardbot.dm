@@ -149,15 +149,13 @@
 											/obj/item/gun/energy/owl_safe,\
 											/obj/item/gun/energy/frog,\
 											/obj/item/gun/energy/shrinkray,\
-											/obj/item/gun/energy/glitch_gun,\
-											/obj/item/gun/energy/lawbringer)
+											/obj/item/gun/energy/glitch_gun)
 	// List of guns that arent wierd gimmicks or traitor weapons
 	var/global/list/budgun_actualguns = list(/obj/item/gun/energy/taser_gun,\
 											/obj/item/gun/energy/wavegun,\
 											/obj/item/gun/energy/pulse_rifle,\
 											/obj/item/gun/energy/egun,\
-											/obj/item/bang_gun,\
-											/obj/item/gun/energy/lawbringer)
+											/obj/item/bang_gun)
 	var/shotcount = 1		// Number of times it shoots when it should, modded by emag state
 	var/gun = null			// What's the name of our robot's gun? Used in the chat window!
 	var/obeygunlaw = 1		// Does our bot follow the gun whitelist?
@@ -171,12 +169,9 @@
 	var/arrest_target = null	// uhh
 	var/lethal = 0				// uhhh
 	var/said_dumb_things = 0	// So we say that thing about spacelaw once...ish
-	var/slept_through_becoming_the_law = 0 // If we gave em a lawbringer and they were fast asleep
 	var/slept_through_laser_class = 0	// If we gave em a gun that can shoot lasers and they were fast asleep
 	var/gun_x_offset = -1 // gun pic x offset
 	var/gun_y_offset = 8 // gun pic y offset
-	var/lawbringer_state = null // because the law just has to be *difficult*. determines what lights to draw on the lawbringer if it has one
-	var/lawbringer_alwaysbigshot = 0 // varedit this to 1 if you want the Buddy to always go infinite-ammo bigshot. this is a bad idea
 	/// Minimum time between shooting an attached gun
 	var/gunfire_cooldown = 2 SECONDS
 	//
@@ -414,9 +409,7 @@
 				src.hasgun = 1
 				src.gun = budgun.name
 				update_icon()
-				if(istype(src.budgun, /obj/item/gun/energy/lawbringer))
-					BeTheLaw(src.emagged, 0, src.lawbringer_alwaysbigshot)
-				else if(istype(src.budgun, /obj/item/gun/energy/egun))
+				if(istype(src.budgun, /obj/item/gun/energy/egun))
 					CheckSafety(src.budgun, src.emagged, null)
 
 			if(radio_controller)
@@ -478,8 +471,6 @@
 				SPAWN_DBG(1 SECOND)
 					boutput(user, "[src] looks confused for a moment.")
 		if (src.budgun)
-			if(istype(src.budgun, /obj/item/gun/energy/lawbringer))
-				BeTheLaw(1, 0, src.lawbringer_alwaysbigshot)
 			if(istype(src.budgun, /obj/item/gun/energy/egun))
 				CheckSafety(src.budgun, 1, user)
 		return 1
@@ -653,119 +644,6 @@
 								speak("Yeah. I'm right. Heck the law. Heck the law for real!")
 		if (src.slept_through_laser_class)
 			src.slept_through_laser_class = 0
-
-	proc/BeTheLaw(var/loose = 0, var/changemode = 0, var/bigshot = 0)
-		if (!istype(src.budgun, /obj/item/gun/energy/lawbringer))
-			src.slept_through_becoming_the_law = 0 // If we were going to be the law before, we ain't now.
-			return
-		if (!src.on || src.idle)	// Let's not wake em up just to say some dumb shit
-			src.slept_through_becoming_the_law = 1	// They can do it on their own time
-			return
-		set_emotion("smug")
-		var/law_prints = null
-		var/obj/item/gun/energy/lawbringer/prints = src.budgun
-		if (prints.owner_prints && !loose)
-			var/search = lowertext(prints.owner_prints)
-			for (var/datum/data/record/R in data_core.general)
-				if (search == lowertext(R.fields["fingerprint"]))
-					law_prints = R.fields["name"]
-					break
-				else if (lowertext(R.fields["rank"]))
-					law_prints = R.fields["name"]
-					break
-			if (!law_prints)	// If we didn't get anything
-				law_prints = "[pick(NT)]"	// I dunno just pick someone
-		var/dothevoice = "[src] puts on their best impression of [law_prints ? law_prints : "a big mean security person"]."
-		var/saytheline = "I am the law."
-		if (loose)
-			saytheline = pick("LAW.",\
-												"COP.BEAT SUBROUTINE ACTIVATED.",\
-												"GOD MADE TODAY FOR THE CROOKS I'LL SEND HIS WAY.",\
-												"NO NEED FOR A TRIAL.",\
-												"NO JUDGE, NO JURY, ONLY EXECUTIONER.")
-		else
-			saytheline = pick("Time to be the best law I can be!",\
-												"Yay! I get to be the law!",\
-												"Time for crime... to stop!",\
-												"If only [istype(src, /obj/machinery/bot/guardbot/ranger) ? "I could see myself" : "Ol' Harner could see me"] now!")
-		if (!changemode)
-			speak(saytheline)	//owner_prints
-		var/local_ordinance = null
-		var/changemode_tries = 3 // you get three tries to pick a mode that isnt the one you have
-		while(local_ordinance == null && changemode_tries > 0) // please dont fuck things up
-			if (bigshot)
-				local_ordinance = "bigshot"
-			else if(loose)
-				local_ordinance = pick("execute", "hotshot", "clown")
-			else
-				local_ordinance = pick("clown", "detain", "pulse", "knockout", "smoke")
-			if(changemode)
-				if (local_ordinance == src.lawbringer_state)
-					local_ordinance = null
-					changemode_tries --
-				else
-					break
-			else
-				break
-		src.lawbringer_state = local_ordinance
-		switch (local_ordinance)
-			if ("clown")
-				src.budgun.set_current_projectile(new/datum/projectile/bullet/clownshot)
-				SPAWN_DBG(1 SECOND)
-					if (!loose)
-						src.visible_message(dothevoice)
-					speak(loose ? "CLOWN." : "Clownshot!")
-					playsound(src, "sound/vox/clown.ogg", 30)
-			if ("detain")
-				src.budgun.set_current_projectile(new/datum/projectile/energy_bolt/aoe)
-				SPAWN_DBG(1 SECOND)
-					src.visible_message(dothevoice)
-					speak("Detain!")
-					playsound(src, "sound/vox/detain.ogg", 30)
-			if ("pulse")
-				src.budgun.set_current_projectile(new/datum/projectile/energy_bolt/pulse)
-				SPAWN_DBG(1 SECOND)
-					src.visible_message(dothevoice)
-					speak("Pulse!")
-					playsound(src, "sound/vox/push.ogg", 30)
-			if ("knockout")
-				src.budgun.set_current_projectile(new/datum/projectile/bullet/tranq_dart/law_giver)
-				src.budgun.current_projectile.cost = 60
-				SPAWN_DBG(1 SECOND)
-					src.visible_message(dothevoice)
-					speak("Knockout!")
-					playsound(src, "sound/vox/sleep.ogg", 30)
-			if ("smoke")
-				src.budgun.set_current_projectile(new/datum/projectile/bullet/smoke)
-				src.budgun.current_projectile.cost = 50
-				SPAWN_DBG(1 SECOND)
-					src.visible_message(dothevoice)
-					speak("Smokeshot!")
-					playsound(src, "sound/vox/smoke.ogg", 30)
-			if ("execute")
-				src.budgun.set_current_projectile(new/datum/projectile/bullet/revolver_38)
-				src.budgun.current_projectile.cost = 30
-				SPAWN_DBG(1 SECOND)
-					speak("EXTERMINATE.")
-					playsound(src, "sound/vox/exterminate.ogg", 30)
-			if ("hotshot")
-				src.budgun.set_current_projectile(new/datum/projectile/bullet/flare)
-				src.budgun.current_projectile.cost = 60
-				SPAWN_DBG(1 SECOND)
-					speak("HOTSHOT.")
-					playsound(src, "sound/vox/hot.ogg", 30)
-			if ("bigshot")	// impossible to get to without admin intervention
-				src.budgun.set_current_projectile(new/datum/projectile/bullet/aex/lawbringer)
-				src.budgun.current_projectile.cost = 170
-				SPAWN_DBG(1 SECOND) // just call proc BeTheLaw(1, 0, 1) on a Buddy with a lawbringer and it should work
-					speak("HIGH EXPLOSIVE.")
-					playsound(src, "sound/vox/high.ogg", 50)
-					sleep(0.4 SECONDS)
-					playsound(src, "sound/vox/explosive.ogg", 50)
-		src.budgun.update_icon()
-		src.update_icon()
-		src.slept_through_becoming_the_law = 0
-		return
 
 	proc/GunSux()
 		var/turf/TdurgSux = get_turf(src)
@@ -1031,9 +909,7 @@
 				user.u_equip(Q)
 				update_icon()
 				IllegalBotMod(null, user)	// Time to see if our mods want to do anything with this gun
-				if(istype(Q, /obj/item/gun/energy/lawbringer))
-					BeTheLaw(src.emagged, 0, src.lawbringer_alwaysbigshot)
-				else if(istype(Q, /obj/item/gun/energy/egun))
+				if(istype(Q, /obj/item/gun/energy/egun))
 					CheckSafety(src.budgun, src.emagged, user)
 
 			if ("tool")
@@ -1169,12 +1045,6 @@
 		else if (istype(src.budgun, /obj/item/gun/energy))
 			if(SEND_SIGNAL(budgun, COMSIG_CELL_CHECK_CHARGE, budgun.current_projectile.cost) & CELL_SUFFICIENT_CHARGE) // did we remember to load our energygun?
 				return 1
-			else if(SEND_SIGNAL(budgun, COMSIG_CELL_CAN_CHARGE) & CELL_UNCHARGEABLE) // oh no we cant, but can we recharge it?
-				if(istype(src.budgun, /obj/item/gun/energy/lawbringer)) // is it one of those funky guns with multiple settings?
-					BeTheLaw(src.emagged, 1, src.lawbringer_alwaysbigshot) // see if we can change modes and try again
-					return 0 // then try again later
-				else
-					return 0 // ditto
 			else // oh no we cant!
 				return 0
 
@@ -1219,7 +1089,7 @@
 				if(src?.budgun?.current_projectile)
 					thing2shoot = src.budgun.current_projectile
 				else
-					thing2shoot = new/datum/projectile/bullet/revolver_38/stunners
+					thing2shoot = new/datum/projectile/bullet/pistol_weak/stunners
 			var/list/mob/nearby_dorks = list()
 			for (var/mob/living/D in oview(7, src))
 				nearby_dorks.Add(D)
@@ -1410,8 +1280,6 @@
 			src.obeygunlaw = 0
 			src.set_emotion("look")
 
-		if(istype(src.budgun, /obj/item/gun/energy/lawbringer))
-			BeTheLaw(src.emagged, 0, src.lawbringer_alwaysbigshot)
 		if(istype(src.budgun, /obj/item/gun/energy/egun))
 			CheckSafety(src.budgun, 1)
 		return
@@ -1807,28 +1675,6 @@
 
 			if (src.budgun)
 				src.overlays += image(budgun.icon, budgun.icon_state, layer = 10, pixel_x = src.gun_x_offset, pixel_y = src.gun_y_offset)
-				if (istype(src.budgun, /obj/item/gun/energy/lawbringer))	// ugh
-					var/image/lawbringer_lights = image('icons/obj/items/gun.dmi', "lawbringer-d100", 11, pixel_x = src.gun_x_offset, pixel_y = src.gun_y_offset)	// ugh
-					if (istype(src.budgun, /obj/item/gun/energy/lawbringer/old))
-						lawbringer_lights.icon_state = "old-lawbringer-d100"
-					switch(lawbringer_state)	// ugh
-						if ("clown")
-							lawbringer_lights.color = "#FFC0CB"
-						if ("detain")
-							lawbringer_lights.color = "#FFFF00"
-						if ("pulse")
-							lawbringer_lights.color = "#EEEEFF"
-						if ("knockout")
-							lawbringer_lights.color = "#008000"
-						if ("smoke")
-							lawbringer_lights.color = "#0000FF"
-						if ("execute")
-							lawbringer_lights.color = "#00FFFF"
-						if ("hotshot")
-							lawbringer_lights.color = "#FF0000"
-						if ("bigshot")
-							lawbringer_lights.color = "#551A8B"
-					src.overlays += lawbringer_lights
 
 			src.icon_needs_update = 0
 			return
@@ -1883,8 +1729,6 @@
 		if(src.reply_wait)
 			src.reply_wait--
 
-		if(src.on && !src.idle && src.slept_through_becoming_the_law)	// Oh you're awake now?
-			BeTheLaw(src.emagged, 0, src.lawbringer_alwaysbigshot)	// Go be the law, sleepyhead
 		if(src.on && !src.idle && src.slept_through_laser_class)	// Rise and shine, buddy
 			CheckSafety(src.budgun, src.emagged)	// Look at your gun!
 

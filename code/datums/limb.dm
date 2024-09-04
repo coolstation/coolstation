@@ -236,14 +236,14 @@
 		return 0
 
 	arm38
-		proj = new/datum/projectile/bullet/revolver_38
+		proj = new/datum/projectile/bullet/pistol_medium
 		shots = 3
 		current_shots = 3
 		cooldown = 30
 		reload_time = 200
 
 	abg
-		proj = new/datum/projectile/bullet/abg
+		proj = new/datum/projectile/bullet/slug_rubber
 		shots = 6
 		current_shots = 6
 		cooldown = 30
