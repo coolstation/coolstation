@@ -226,7 +226,6 @@
 /obj/machinery/computer/ATM
 	name = "ATM"
 	icon_state = "atm"
-	glow_in_dark_screen = FALSE
 	var/datum/data/record/accessed_record = null
 	var/obj/item/card/id/scan = null
 
