@@ -633,6 +633,28 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 		ignore_sound_flags |= SOUND_ALL
 	if (winget( src, "menu.vox_sounds", "is-checked" ) == "true")
 		ignore_sound_flags |= SOUND_VOX
+	if (current_state == GAME_STATE_PREGAME && ticker.did_lobbymusic) //setting up client but missed the lobbymusic boat?
+		if (!src.preferences?.skip_lobby_music)
+			var/sound/music_sound = new()
+			music_sound.file = ticker.lobby_music
+			music_sound.wait = 0
+			music_sound.repeat = 0
+			music_sound.priority = 254
+			music_sound.channel = admin_sound_channel //having this set to 999 removed layering music functionality -ZeWaka
+			music_sound.offset = PREGAME_MUSIC_START - ticker.pregame_timeleft
+			music_sound.frequency = 1
+			music_sound.environment = -1
+			music_sound.echo = -1
+
+			var/client_vol = src.getVolume(VOLUME_CHANNEL_ADMIN)
+
+			if (client_vol)
+
+				src.sound_playing[ admin_sound_channel ][1] = 1
+				src.sound_playing[ admin_sound_channel ][2] = VOLUME_CHANNEL_ADMIN
+
+				music_sound.volume = client_vol
+				src << music_sound
 
 	src.reputations = new(src)
 

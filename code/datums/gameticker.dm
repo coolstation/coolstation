@@ -19,6 +19,11 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	var/last_readd_lost_minds_to_ticker = 1 // In relation to world time.
 
 	var/pregame_timeleft = 0
+	#ifdef IM_REALLY_IN_A_FUCKING_HURRY_HERE
+	var/did_lobbymusic = 1
+	#else
+	var/did_lobbymusic = 0
+	#endif
 
 	// this is actually round_elapsed_deciseconds
 	var/round_elapsed_ticks = 0
@@ -59,14 +64,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	pregame_timeleft = 1
 	#endif
 
-
-
 	var/did_mapvote = 0
-	#ifdef IM_REALLY_IN_A_FUCKING_HURRY_HERE
-	var/did_lobbymusic = 1
-	#else
-	var/did_lobbymusic = 0
-	#endif
 	if (!player_capa)
 		new /obj/overlay/zamujasa/round_start_countdown/encourage()
 	var/obj/overlay/zamujasa/round_start_countdown/timer/title_countdown = new()
@@ -76,9 +74,10 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		if (!game_start_delayed && (pregame_timeleft > 30 || current_state == GAME_STATE_PREGAME))
 			pregame_timeleft--
 
-			if (pregame_timeleft <= 120 && !did_lobbymusic)
+			if (pregame_timeleft <= PREGAME_MUSIC_START && !did_lobbymusic) //do this to clients, for all already connected
 				lobby_music()
 				did_lobbymusic = 1
+				//latecomers should be handled by client.dm in the sound section
 
 			if (pregame_timeleft <= 60 && !did_mapvote)
 				// do it here now instead of before the countdown
@@ -162,6 +161,8 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		current_state = GAME_STATE_PREGAME
 		boutput(world, "<B>Error setting up [master_mode].</B> Reverting to pre-game lobby.")
 
+		ticker.did_lobbymusic = 0
+		ticker.lobby_music = initial(lobby_music)
 		SPAWN_DBG(0) pregame()
 
 		return 0
@@ -293,7 +294,8 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 /datum/controller/gameticker/proc/lobby_music()
 
 	var/sound/music_sound = new()
-	music_sound.file = pick(lobby_music)
+	ticker.lobby_music = pick(lobby_music) //collapse the waveform for the entire round
+	music_sound.file = lobby_music
 	music_sound.wait = 0
 	music_sound.repeat = 0
 	music_sound.priority = 254
