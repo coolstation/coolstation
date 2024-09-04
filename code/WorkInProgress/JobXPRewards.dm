@@ -274,7 +274,8 @@ mob/verb/checkrewards()
 		I.set_loc(get_turf(C.mob))
 		C.mob.put_in_hand_or_drop(I)
 		boutput(C.mob, "The mug's colouring flips to blue")
-
+//no
+/*
 /datum/jobXpReward/head_of_security_LG
 	name = "The Lawbringer"
 	desc = "Gain access to a voice activated weapon of the future-past by sacrificing your egun."
@@ -331,6 +332,8 @@ mob/verb/checkrewards()
 	sacrifice_name = "Lawbringer"
 	required_levels = list("Head of Security"=5)
 
+*/
+
 //Captain
 
 /datum/jobXpReward/captainsword
@@ -385,16 +388,17 @@ mob/verb/checkrewards()
 
 //Detective
 
+//this will go away when detective revolver is modular
 /datum/jobXpReward/detective
 	name = "The Colt"
-	desc = "Gain access to an old-ish replica of an old gun by sacrificing your revolver."
+	desc = "Gain access to an older replica of a fake gun by sacrificing your revolver."
 	required_levels = list("Detective"=0)
 	claimable = 1
 	claimPerRound = 1
 	icon_state = "?"
 	var/sacrifice_path = /obj/item/gun/kinetic/detectiverevolver
-	var/reward_path = /obj/item/gun/kinetic/colt_saa/detective
-	var/sacrifice_name = ".38 revolver"
+	var/reward_path = /obj/item/gun/kinetic/colt_saa
+	var/sacrifice_name = ".31 revolver"
 
 	activate(var/client/C)
 		var/found = 0
@@ -428,7 +432,7 @@ mob/verb/checkrewards()
 		if (!colt.ammo)
 			colt.ammo = new/obj/item/ammo/bullets/a38/stun
 		if (!colt.current_projectile)
-			colt.set_current_projectile(new/datum/projectile/bullet/revolver_38/stunners)
+			colt.set_current_projectile(new/datum/projectile/bullet/pistol_weak/stunners)
 
 		colt.set_loc(get_turf(C.mob))
 		C.mob.put_in_hand(colt)

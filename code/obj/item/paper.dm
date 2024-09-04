@@ -1484,7 +1484,7 @@ as it may become compromised.
     <b>PRIVATE ESOTERIC RESEARCH STATION - EUROPA:</b> CLEAN UP RESEARCH FACILITY AND ATTACHED SUBMERSIBLE VEHICLES, MODERATE CASUALTIES.<br>
     <b>SPECIAL INSTRUCTIONS</b> WILL PAY DOUBLE IF SUB-BASEMENT 3 IS CLEARED OF ALL RESEARCH SPECIMENS AND SUBJECTS, ALL SPECIMENS AND SUBJECTS ARE EFFECTIVELY BRAINDEAD, SUPPLY OWN MEANS OF EXECUTION OF SUBJECTS.<br>
     <b>STATUS:</b> BEING CLEANED"}
-
+/*
 /obj/item/paper/lawbringer_pamphlet
 	name = "Your Lawbringer And You"
 	icon_state = "paper"
@@ -1561,6 +1561,7 @@ so that the Lawbringer™ can be the best it can be. Do not place fingers in pat
 is solid-state and should not feature moving parts. Note that the Cell may experience spontaneous explosive overload when
 exposed to overconfident outbursts on the part of individuals unqualifed to embody the law; in event of such explosion, run.
 "}
+*/
 
 /obj/item/paper/postcard/mushroom
 	name = "Mushroom Station postcard"
