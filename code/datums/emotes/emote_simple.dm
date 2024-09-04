@@ -154,6 +154,7 @@
 		emote_string_leading = "flaps"
 		emote_string_trailing = "arms!"
 		emote_fail = "writhes!"
+		var/angry = 0
 		pronoun_proc = /proc/his_or_her
 
 		enact(mob/living/carbon/human/user, voluntary = 0, param) //Tommy Wiseau exclusive bullshit
@@ -161,13 +162,17 @@
 			if (!user.restrained() && user.sound_list_flap && length(user.sound_list_flap))
 				playsound(user.loc, pick(user.sound_list_flap), 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 			if (istype(user.w_uniform, /obj/item/clothing/under/gimmick/owl)) //owlsuit has wings, just my imo (but oh this feels like a bad way for me to shoehorn this in)
-				return list("<B>[user]</B> flaps [call(pronoun_proc)(user)] wings!", "<I>flaps [call(pronoun_proc)(user)] wings!</I>", MESSAGE_VISIBLE)
+				if (angry)
+					emote_string_trailing = "wings ANGRILY!"
+				else
+					emote_string_trailing = "wings!"
 			. = ..()
 		//Guess what it's nested relative pathing baybee
 		aflap
-			emote_string_leading = "flaps"
-			emote_string_trailing = "arms!"
-			emote_fail = "writhes angrily!"
+			emote_string_trailing = "arms ANGRILY!"
+			emote_fail = "writhes ANGRILY!"
+			angry = 1
+
 	gesticulate
 		emote_string = "gesticulates"
 		emote_fail = "wriggles around a lot"
