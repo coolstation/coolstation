@@ -396,7 +396,9 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 				return
 
 		//Hacky thing to make silver bullets (maybe todo later : all items can be dipped in any solution?)
-		else if (istype(I, /obj/item/ammo/bullets/bullet_22HP) ||istype(I, /obj/item/ammo/bullets/bullet_22) || istype(I, /obj/item/ammo/bullets/a38) || istype(I, /obj/item/ammo/bullets/custom) || (I.type == /obj/item/handcuffs) || istype(I,/datum/projectile/bullet/revolver_38))
+		//OKAY SO THESE ARE FOR ALL THE OLD AMMO TYPES, gonna have to redo this for stackable. TODO: please. god. anyway disabling for now
+		/*
+		else if (istype(I, /obj/item/ammo/bullets/pistol_weak) ||istype(I, /obj/item/ammo/bullets/pistol_medium) || istype(I, /obj/item/ammo/bullets/a38) || istype(I, /obj/item/ammo/bullets/custom) || (I.type == /obj/item/handcuffs) || istype(I,/datum/projectile/bullet/revolver_38))
 			if ("silver" in src.reagents.reaction(I, react_volume = src.reagents.total_volume))
 				user.visible_message("<span class='alert'><b>[user]</b> dips [I] into [src] coating it in silver. Watch out, evil creatures!</span>")
 				I.tooltip_rebuild = 1
@@ -408,6 +410,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 					boutput(user, "<span class='notice'>[I] is already coated, more silver won't do any good.</span>")
 				else
 					boutput(user, "<span class='notice'>[src] doesn't have enough silver in it to coat [I].</span>")
+		*/
 
 		else if (istype(I, /obj/item/reagent_containers/iv_drip))
 			var/obj/item/reagent_containers/iv_drip/W = I

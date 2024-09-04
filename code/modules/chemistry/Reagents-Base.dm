@@ -531,6 +531,7 @@ datum
 
 				.= 1
 
+				/* old ammo types again. let's please revisit with new stackables
 				if (volume >= 20)
 					if (istype(I, /obj/item/ammo/bullets/bullet_22HP) || istype(I, /obj/item/ammo/bullets/bullet_22) || istype(I, /obj/item/ammo/bullets/a38) || istype(I, /obj/item/ammo/bullets/custom) || istype(I,/datum/projectile/bullet/revolver_38))
 						var/obj/item/ammo/bullets/bullet_holder = I
@@ -539,6 +540,7 @@ datum
 							ammo_type.material = getMaterial("silver")
 							holder.remove_reagent(src.id, 20)
 							.= 0
+				*/
 				if (volume >= 50)
 					if (I.type == /obj/item/handcuffs)
 						I.setMaterial(getMaterial("silver"))
