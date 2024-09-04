@@ -161,6 +161,8 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		current_state = GAME_STATE_PREGAME
 		boutput(world, "<B>Error setting up [master_mode].</B> Reverting to pre-game lobby.")
 
+		ticker.did_lobbymusic = 0
+		ticker.lobby_music = initial(lobby_music)
 		SPAWN_DBG(0) pregame()
 
 		return 0
