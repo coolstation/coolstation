@@ -56,7 +56,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 			inventory_counter.update_text("-")
 
 		if(src.has_empty_state)
-			if (src.ammo.amount_left < 1 && !findtext(src.icon_state, "-empty")) //sanity check
+			if ((!src.ammo || src.ammo.amount_left < 1) && !findtext(src.icon_state, "-empty")) //sanity check
 				src.icon_state = "[src.icon_state]-empty"
 			else
 				src.icon_state = replacetext(src.icon_state, "-empty", "")
