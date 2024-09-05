@@ -853,11 +853,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 				currently_cranking_off = FALSE
 				return
+
 		//we're cranking, so do sound once
 		currently_cranking_off = TRUE
 		if (flash_auto)
 			//need a better turning sound for the flywheel
-			playsound(src.loc, "sound/machines/driveclick.ogg", 50, 0.2, pitch = (0.8 + (crank_level * 0.05)))
+			playsound(src.loc, "sound/machines/driveclick.ogg", 40, 0.2, pitch = (0.8 + (crank_level * 0.01)))
 		else
 			playsound(src.loc, "sound/machines/driveclick.ogg", 50, 0.2, pitch = (0.8 + (crank_level * 0.05)))
 
@@ -875,20 +876,26 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 		//do the thing and finish up
 		if (flash_auto)
-			sleep(0.50 SECONDS)
+			sleep(0.20 SECONDS)
 		else
 			sleep(0.80 SECOND)
 		crank_level++
-		playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1) //sound that plays when you stop crankin
+
 
 		if(flash_auto) // keep the projectile at level 1 after incrementing the crank level for autoloader
 			if(!current_projectile)
 				current_projectile = new /datum/projectile/laser/flashbulb()
 			src.inventory_counter.update_number(crank_level)
-			if (!((crank_level - 1) % 5)) //beep every 5
+			//07_Flywheel Toy Car.wav by 14GPanskaVitek_Martin -- https://freesound.org/s/420215/ -- License: Attribution 3.0
+			playsound(src.loc, "sound/weapons/modular/crank-flywheel.ogg", 50, 0, pitch = (0.65 + (crank_level * 0.03)))
+			sleep (0.30 SECONDS)
+			if (!((crank_level) % 5)) //beep every 5
 				playsound(src.loc, "sound/machines/twobeep.ogg", 55, 0, pitch = (0.65 + (crank_level * 0.02)))
 			currently_cranking_off = FALSE
+
 			return
+
+		playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1) //sound that plays when you stop crankin
 
 		sleep(0.20 SECONDS)
 		if(current_projectile)
