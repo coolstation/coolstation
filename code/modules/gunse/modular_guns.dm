@@ -875,18 +875,22 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 		//do the thing and finish up
 		if (flash_auto)
-			sleep(0.75 SECONDS)
+			sleep(0.50 SECONDS)
 		else
-			sleep(1.25 SECONDS)
+			sleep(0.80 SECOND)
 		crank_level++
 		playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1) //sound that plays when you stop crankin
 
 		if(flash_auto) // keep the projectile at level 1 after incrementing the crank level for autoloader
 			if(!current_projectile)
 				current_projectile = new /datum/projectile/laser/flashbulb()
+			src.inventory_counter.update_number(crank_level)
+			if (!((crank_level - 1) % 5)) //beep every 5
+				playsound(src.loc, "sound/machines/twobeep.ogg", 55, 0, pitch = (0.65 + (crank_level * 0.02)))
+			currently_cranking_off = FALSE
 			return
 
-		sleep(0.25 SECONDS)
+		sleep(0.20 SECONDS)
 		if(current_projectile)
 			qdel(current_projectile)
 		switch(crank_level)

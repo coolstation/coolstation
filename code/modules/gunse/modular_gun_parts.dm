@@ -915,14 +915,14 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	max_ammo_capacity = 1 // more bulbs in the pocket
 	jam_frequency_reload = 10
 	flash_auto = 1
-	max_crank_level = 20
-	safe_crank_level = 10
+	max_crank_level = 25
+	safe_crank_level = 15
 	name_addition = "automated"
 	icon_state = "stock_double"
 	bulkiness = 4
 
 //mega charge for heavy hitting
-//what if this requires two bulbs inserted to get crank 4 and if one breaks you're down to crank 2?
+//what if this requires two bulbs inserted to get crank 4 and if one breaks you're down to crank 2? hmm
 /obj/item/gun_parts/stock/foss/longer
 	name = "\improper FOSS laser punt gun stock"
 	spread_angle = 3 // poor stabilisation
