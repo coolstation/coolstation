@@ -221,7 +221,11 @@ var/list/meatland_fx_sounds = list('sound/ambience/spooky/Meatzone_Squishy.ogg',
 	floor
 		name = "floor"
 		desc = ""
+		#ifdef IN_MAP_EDITOR
+		icon_state = "eatfloor-dead" //Wanna see these thanks
+		#else
 		icon_state = "eatfloor"
+		#endif
 		attack_range = 0
 		density = 0
 		opacity = 0
