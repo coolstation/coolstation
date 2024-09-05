@@ -60,7 +60,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 	var/length = 0 // centimetres
 
 	//stock vars
-	var/can_dual_wield = 1
+	var/can_dual_wield = 0
 	//var/spread_angle = 0 	// modifier, added to stock // repeat of barrel
 	var/max_ammo_capacity = 0 //modifier
 	var/flashbulb_only = 0 	// FOSS guns only (only takes flashbulb ammo)
@@ -164,7 +164,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 /obj/item/gun_parts/stock/
 	//add a var for a power cell later
 	part_type = "stock"
-	can_dual_wield = 1
+	can_dual_wield = 0
 	spread_angle = 0 // modifier, added to stock
 	max_ammo_capacity = 0 //modifier
 	flashbulb_only = 0 // FOSS guns only
@@ -800,7 +800,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "An uncomfortable NT wire stock, but maybe some day it can fold up" //convert from 1-2 hand and conceal
 	spread_angle = -2 // not as better stabilisation
 	bulkiness = 1
-	can_dual_wield = 1
+	can_dual_wield = 0
 	foldable = 1
 	//max_ammo_capacity = 0 // does not add ammo
 	//jam_frequency_reload = 3 // a little more jammy
@@ -838,7 +838,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "A long Italian wire stock that currently doesn't fold"
 	spread_angle = -2 // not as better stabilisation
 	bulkiness = 1
-	can_dual_wield = 1
+	can_dual_wield = 0
 	foldable = 1
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	name_addition = "stabile"
@@ -861,7 +861,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "A long Soviet wire stock that currently doesn't fold"
 	spread_angle = -2 // not as better stabilisation
 	bulkiness = 1
-	can_dual_wield = 1
+	can_dual_wield = 0
 	foldable = 1
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	name_addition = "udobnyy"
