@@ -832,11 +832,11 @@ THROWING DARTS
 
 	bullet_rifle_medium
 		name = "8mm rifle round"
-		desc = "Italian rifle round. It's a little longer that the pistol rounds and has a little Italian flag painted on it."
+		desc = "Soviet surplus rifle round. You don't see these very often since they switched to zaubertubes exclusively 3X years ago."
 
 	bullet_rifle_medium_ap
 		name = "8mm AP rifle round"
-		desc = "Italian rifle round. This one's pretty hardcore... Get it?"
+		desc = "Soviet surplus rifle round with an armor piercing center. This one's pretty hardcore... Get it? Hey, do you get it?"
 
 	bullet_rifle_heavy
 		name = "Juicer BIG rifle round"
