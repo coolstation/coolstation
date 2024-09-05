@@ -597,30 +597,39 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 
 /datum/projectile/laser/flashbulb
 	name = "open-source laser"
-	icon_state = "u_laser"
+	icon_state = "laser1"
 	power = 15
 	cost = 50
 	dissipation_delay = 5
 	brightness = 0
 	sname = "open-source laser"
 	shot_sound = 'sound/weapons/Laser.ogg'
-	color_red = 0
-	color_green = 1
+	//red
+	color_red = 1
+	color_green = 0.20
 	color_blue = 0
 	projectile_speed = 75
 
 
 /datum/projectile/laser/flashbulb/two
+	icon_state = "laser2"
 	power = 25
-	color_red = 1
-	color_green = 1
+	shot_pitch = 0.95
+	//orange
+	color_red = 0.9
+	color_green = 0.69
+	color_blue = 0
 	cost = 75
 	projectile_speed = 70
 
 /datum/projectile/laser/flashbulb/three
+	icon_state = "laser3"
 	power = 35
-	color_red = 1
-	color_green = 0
+	shot_pitch = 0.90
+	//yellow
+	color_red = 0.9
+	color_green = 0.9
+	color_blue = 0
 	cost = 100
 	projectile_speed = 65
 
@@ -635,9 +644,13 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 		return
 
 /datum/projectile/laser/flashbulb/four
+	icon_state = "laser4"
 	power = 45
-	color_red = 1
-	color_green = 0
+	shot_pitch = 0.85
+	//cyan
+	color_red = 0
+	color_green = 0.8
+	color_blue = 0.95
 	cost = 200
 	projectile_speed = 60
 
@@ -648,12 +661,16 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 			L.changeStatus("slowed", 1 SECOND)
 			L.change_misstep_chance(1)
 			L.emote("twitch_v")
-		if(prob(20))
+		if(prob(15))
 			hit.ex_act(OLD_EX_LIGHT)
 		return
 
 /datum/projectile/laser/flashbulb/five //bringing it back
+	icon_state = "laser5"
 	power = 60
+	shot_pitch = 0.75
+	//near-ultraviolet
+	color_red = 0.25
 	color_blue = 1
 	color_green = 0
 	cost = 400

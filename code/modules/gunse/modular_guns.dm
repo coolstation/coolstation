@@ -76,7 +76,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/flashbulb_only = 0 // FOSS guns only
 	var/flash_auto = 0 // FOSS auto-fire setting
 	var/flashbulb_health = 0 // FOSS guns only
-	var/safety = 0 // FOSS guns only
+	var/unsafety = 0 // FOSS guns only (turn this on and exceed safe design specs)
 	var/max_crank_level = 0 // FOSS guns only
 	var/safe_crank_level = 0 // FOSS guns only
 	var/crank_level = 0 // FOSS guns only
@@ -101,7 +101,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	//var/misfire_frequency = 1 //base % chance to fire wrong. No shot, squib, hangfire, or something that just kinda farts its way out of the barrel and sucks.
 	//var/hangfire_frequency = 1 //base % chance to fail to fire immediately.
 	//var/squib_frequency = 1 //base % chance to fire a bullet just enough to be really dangerous to the user.
-	var/jammed = 0 //got something stuck and unable to fire? for now: 1 for didn't go off, 2 for stuck
+	var/jammed = 0 //got something stuck and unable to fire? for now: 1 for didn't go off, 2 for stuck, 3 for whatever
 	var/processing_ammo = 0 //cycling ammo/cranking off
 
 	var/sound_type = null //bespoke set of loading and cycling noises
@@ -172,8 +172,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return
 
 	if (istype(I, /obj/item/screwdriver) && src.flashbulb_only)
-		src.safety = !src.safety //toggle safety
-		boutput(user,"<span class='notice'><b>You apply a little 'sudo safety [src.safety ? "on" : "off"]' to the FOSS cannon.</b></span>")
+		src.unsafety = !src.unsafety //toggle safety
+		boutput(user,"<span class='notice'><b>You apply a little 'sudo unsafety [src.unsafety ? "TRUE" : "FALSE"]' to the FOSS cannon.</b></span>")
+		if (unsafety)
+			playsound(src.loc, "sound/machines/reprog.ogg", 55, 0)
+		else
+			playsound(src.loc, "sound/machines/reprog.ogg", 55, 0, pitch = 0.9)
+		return
 
 	if(istype(I,/obj/item/instrument/bikehorn))
 		boutput(user,"<span class='notice'><b>You first radicalize [I] by telling it all about The Man.</b></span>")
@@ -314,7 +319,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	//check if the dynamo got sproinged or whatever and fix it
 	switch(jammed)
-		if (1) //problem on fire
+		if (1) //problem on firing
 			boutput(user,"<span class='notice'><b>You tighten the loose wires.</b></span>")
 			jammed = 0
 			playsound(src.loc, "sound/items/Ratchet.ogg", 40, 1)
@@ -326,6 +331,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			return 0
 		if (3) //problem on load
 			boutput(user,"<span class='notice'><b>You clear out the bent flashtube.</b></span>")
+			jammed = 0
+			playsound(src.loc, "sound/items/Screwdriver2.ogg", 40, 1)
+			return 0
+		if (4)//catastrophic failure
+			boutput(user,"<span class='notice'><b>You clear the exploded flashtube's contacts out.</b></span>")
 			jammed = 0
 			playsound(src.loc, "sound/items/Screwdriver2.ogg", 40, 1)
 			return 0
@@ -458,6 +468,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			if(prob(80))
 				src.jammed = 0
 				//come up with a good sound for this
+				src.current_projectile = null
 				boutput(user, "<span class='notice'>You pry the stuck round out of [src].</span>") //drop a shell or a damaged cartridge
 				return 0
 			else //just hit it again it'll work for sure
@@ -548,12 +559,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 /obj/item/gun/modular/canshoot()
 	if(jammed)
 		return 0
-	//do this later i'm just focusing on sounds and reloads for now
+	//do this later, i'm just focusing on sounds and reloads for now
 	//if(hammer_cocked && action == "single")
 	//	return 0
 	if(!built)
 		return 0
 	if(flashbulb_only && !flashbulb_health)
+		return 0
+	if(currently_cranking_off || processing_ammo)
 		return 0
 	if(flash_auto && !crank_level)
 		return 0
@@ -572,7 +585,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				hammer_cocked = FALSE
 				if (!silenced)
 					playsound(user, "sound/weapons/Gunclick.ogg", 60, 1)
-			else
+			else if (!processing_ammo)
 				user.show_text("Nothing happens!", "red")
 		return FALSE
 	if (!isturf(target) || !isturf(start))
@@ -596,27 +609,39 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				sleep(slowdown_time)
 				M.movement_delay_modifier -= slowdown
 
-	if(prob(jam_frequency_fire))
-		jammed = 1
-		if(flashbulb_only)
-			//if (prob(max(0,(2 ^ (crank_level - safe_crank_level))) //sudden and possibly explosive breakage versus expected burnout, with increasingly bad odds
-				//boom
-				//flashbulb_health = 0 //or just delete it + create glass shards?
-				//user.show_text("The flashtube shatters suddenly!", "red")
-				//playsound(user, "sound/impact_sounds/Glass_Shatter_[rand(1,3)].ogg", 60, 1)
-				//hurts and trouble all around
-				//return
-			flashbulb_health = max(0, flashbulb_health - rand(2,4))
+	//jam regular gun's
+	if(!flashbulb_only)
+		if(prob(jam_frequency_fire))
+			jammed = 1
+			user.show_text("The cartridge fails to go off!", "red")
+			playsound(user, "sound/impact_sounds/Generic_Click_1.ogg", 60, 1)
+			//check chance to have a worse misfire
+
+	//jam flashbulb gun's
+	else
+		if(prob(jam_frequency_fire))
+			//if you're playing it unsafe
+			if (unsafety)
+				if (prob(max(0,(2 ^ (crank_level - safe_crank_level))))) //sudden and possibly explosive breakage versus expected burnout, with increasingly bad odds
+					var/T = get_turf(src)
+					explosion_new(src, T, crank_level, 1)
+					jammed = 4
+					crank_level = 0
+					flashbulb_health = 0
+					user.show_text("The flashtube shatters suddenly and violently!", "red")
+					playsound(user, "sound/impact_sounds/Glass_Shatter_[rand(1,3)].ogg", 60, 1)
+					//hurts and trouble all around
+			//otherwise...
+			flashbulb_health = max(0, flashbulb_health - (2 * crank_level))
 			if (flash_auto)
 				crank_level = max(0, crank_level - rand(2,6))
 			else
 				//need a good *sproing* noise
 				crank_level = 0
-			user.show_text("A wire comes loose as [src] misfires and drops its charge!", "red")
+			if (flashbulb_health) //flash still there?
+				jammed = 1
+				user.show_text("A wire comes loose as [src] misfires and drops its charge!", "red")
 			//maybe a chance to force a shot if this is done while cranking rather than attempting to fire
-		else
-			user.show_text("*clunk* *clack*", "red")
-			playsound(user, "sound/impact_sounds/Generic_Click_1.ogg", 60, 1)
 
 	var/spread = is_dual_wield*10
 	if (user.reagents)
@@ -664,22 +689,29 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			var/mob/living/carbon/human/H = user
 			H.gunshot_residue = 1
 
+	//might move this to the fossgun shoot()
 	if(flashbulb_health)// this should be nonzero if we have a flashbulb loaded.
 		if(flash_auto && crank_level) // auto-fire special handling
 			flashbulb_health--
 			crank_level--
 		else
-			flashbulb_health = max(0,(flashbulb_health - crank_level))//subtract cranks from life
+			flashbulb_health = max(0,(flashbulb_health - crank_level - (0.5 * (max(0,max_crank_level - crank_level))))) //subtract cranks from life, cranks over max crank level are cranks and a half for bulb lifetime purposes
 			crank_level = 0 // reset
 
 		if(!flashbulb_health) // that was the end of it!
-			if(safety && crank_level)
+			if((!unsafety && crank_level) || !flash_auto)
 				user.show_text("<span class='alert'>Your gun's flash bulb burns out and auto-releases your wind-up doohickey!</span>")
 				crank_level = 0
 			else
 				user.show_text("<span class='alert'>Your gun's flash bulb burns out!</span>")
-	if(flashbulb_only) //we just want to do this regardless of whatever happens with bulbs possibly burning out
-		src.inventory_counter.update_number(crank_level)
+	//give player a scaling zap if they try to shoot their crank_level with no bulb and safety protocols off
+	else if (unsafety)
+		user.show_text("<span class='alert'>Your gun gives you a nasty discharge of current without a loaded flashtube to conduct it! ROLEPLAY IT</span>")
+		//apply shock/burn/possible stun depending on crank level (auto)
+		//force drop of gun if not stunned but shock was bad enough
+		//force scream
+		crank_level = 0
+		return
 
 	if(!flash_auto)
 		current_projectile = null // empty chamber
@@ -689,12 +721,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	src.update_icon()
 
-	//updating count again after shooting because an ever-present but wrong-until-manually-updated shot counter as part of game UI is not great UX
+	//updating count again after shooting
 	//a lot of this can be more efficient i just want to get basic behaviors done and working right
 	if(src.max_ammo_capacity)
 		src.inventory_counter.update_number(ammo_list.len + !!current_projectile)
 	else
 		src.inventory_counter.update_number(!!current_projectile) // 1 if its loaded, 0 if not.
+	if(flashbulb_only) //we just want to do this regardless of whatever happens with bulbs possibly burning out
+		src.inventory_counter.update_number(crank_level)
 
 	if(prob(jam_frequency_reload))
 		jammed = 2
@@ -801,62 +835,53 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return
 
 	SPAWN_DBG(0)
-		if(crank_level < safe_crank_level)
-			currently_cranking_off = TRUE
-			boutput(user,"<span><b>You crank the handle.</b></span>")
-			if (!flash_auto)
-				playsound(src.loc, "sound/machines/driveclick.ogg", 50, 1)
-			else
-				//need a better turning sound for the flywheel
-				playsound(src.loc, "sound/machines/driveclick.ogg", 50, 1)
-			sleep(10)
-			crank_level++
-			src.inventory_counter.update_number(crank_level)
-			playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
-			playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1, pitch = 0.7)
-			currently_cranking_off = FALSE
-		if(safety)
-			if(crank_level >= safe_crank_level) //training wheels still on
-				boutput(user,"<span class='notice'><b>You're unable to crank further with the safety limiter engaged!</b></span>")
+		//do no-crank cases first
+		if(!unsafety)
+			if(crank_level >= safe_crank_level) //training wheels still on, no crank
+				boutput(user,"<span class='notice'><b>You're unable to crank further with the safety limits in place!</b></span>")
 				playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
+				currently_cranking_off = FALSE
 				return
 		else
-			if(crank_level >= max_crank_level) //maxed out
+			if(crank_level >= max_crank_level) //no safety but maxed out, no crank
 				boutput(user,"<span class='notice'><b>You're unable to crank further! You're maxed out!</b></span>")
-				processing_ammo = 0
 				playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
+				currently_cranking_off = FALSE
 				return
-			else if(crank_level > safe_crank_level) //getting excessive
-				currently_cranking_off = TRUE
-				if (flash_auto)
-					boutput(user,"<span class='notice'><b>You keep cranking!</b></span>")
-					//need flywheel noise
-				else
-					boutput(user,"<span class='notice'><b>You crank the handle to the absolute limit!</b></span>")
-					playsound(src.loc, "sound/machines/driveclick.ogg", 50, 1)
-				playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
-				sleep(0.5 SECONDS)
-				crank_level++
-				src.inventory_counter.update_number(crank_level)
-				playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
-				currently_cranking_off = FALSE
-			else if(crank_level == safe_crank_level) //getting dongerous
-				currently_cranking_off = TRUE
-				boutput(user,"<span class='notice'><b>You crank the handle past design specifications!</b></span>")
-				playsound(src.loc, "sound/machines/driveclick.ogg", 50, 1)
-				playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1, pitch = 0.85)
-				sleep(0.5 SECONDS)
-				crank_level++
-				src.inventory_counter.update_number(crank_level)
-				playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
-				currently_cranking_off = FALSE
+		//we're cranking, so do sound once
+		currently_cranking_off = TRUE
+		if (flash_auto)
+			//need a better turning sound for the flywheel
+			playsound(src.loc, "sound/machines/driveclick.ogg", 50, 0.2, pitch = (0.8 + (crank_level * 0.05)))
+		else
+			playsound(src.loc, "sound/machines/driveclick.ogg", 50, 0.2, pitch = (0.8 + (crank_level * 0.05)))
 
-		if(flash_auto) // keep the projectile at level 1 after incrementing the crank level.
+		//player messages
+		if(crank_level < safe_crank_level) //basic crank
+			boutput(user,"<span><b>You crank the handle.</b></span>")
+		else if(unsafety)
+			if(crank_level == safe_crank_level) //starting to get dongerous
+				boutput(user,"<span class='notice'><b>You crank the handle past design specifications!</b></span>")
+			else if(crank_level > safe_crank_level) //over the limit
+				if (max_crank_level > crank_level + 1)
+					boutput(user,"<span class='notice'><b>You keep cranking!</b></span>")
+				else //maxed out on this crank
+					boutput(user,"<span class='notice'><b>You crank the handle to the absolute limit!</b></span>")
+
+		//do the thing and finish up
+		if (flash_auto)
+			sleep(0.75 SECONDS)
+		else
+			sleep(1.25 SECONDS)
+		crank_level++
+		playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1) //sound that plays when you stop crankin
+
+		if(flash_auto) // keep the projectile at level 1 after incrementing the crank level for autoloader
 			if(!current_projectile)
 				current_projectile = new /datum/projectile/laser/flashbulb()
-			processing_ammo = 0
 			return
 
+		sleep(0.25 SECONDS)
 		if(current_projectile)
 			qdel(current_projectile)
 		switch(crank_level)
@@ -871,8 +896,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			if (4)
 				current_projectile = new /datum/projectile/laser/flashbulb/four()
 			if (5)
-				current_projectile = /datum/projectile/laser/flashbulb/five()
-		processing_ammo = 0
+				current_projectile = new /datum/projectile/laser/flashbulb/five()
+		playsound(src.loc, "sound/machines/twobeep.ogg", 55, 0, pitch = (0.5 + (crank_level * 0.15))) //eventually make this buzzes and alarms and etc.
+		src.inventory_counter.update_number(crank_level)
+		currently_cranking_off = FALSE
 
 /obj/item/gun/modular/proc/handle_egun_shit(mob/user)
 	return
@@ -1033,7 +1060,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular/foss)
 	grip_overlay_y = -2
 	jam_frequency_fire = 0.2 //really only if overcharged
 	jam_frequency_reload = 0 //only if the user is clumsy
-	safety = 1 //currently safe
 	//foregrip_offset_x = 12
 	//foregrip_offset_y = 0
 

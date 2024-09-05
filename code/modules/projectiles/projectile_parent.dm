@@ -484,6 +484,7 @@ datum/projectile
 		shot_sound = 'sound/weapons/Taser.ogg' // file location for the sound you want it to play
 		shot_sound_extrarange = 0 //should the sound have extra range?
 		shot_volume = 100		 // How loud the sound plays (thank you mining drills for making this a needed thing)
+		shot_pitch = 1			// Sometimes you want a deeper boom, relative to power
 		shot_number = 0          // How many projectiles should be fired, each will cost the full cost
 		shot_delay = 1          // Time between shots in a burst.
 		damage_type = D_KINETIC  // What is our damage type
@@ -900,7 +901,7 @@ datum/projectile/snowball
 		if (narrator_mode)
 			playsound(S, 'sound/vox/shoot.ogg', 50, 1)
 		else if(DATA.shot_sound && DATA.shot_volume && shooter)
-			playsound(S, DATA.shot_sound, DATA.shot_volume, 1,DATA.shot_sound_extrarange)
+			playsound(S, DATA.shot_sound, DATA.shot_volume, 1,DATA.shot_sound_extrarange,DATA.shot_pitch)
 			if (isobj(shooter))
 				for (var/mob/M in shooter)
 					M << sound(DATA.shot_sound, volume=DATA.shot_volume)
