@@ -76,10 +76,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/flashbulb_only = 0 // FOSS guns only
 	var/flash_auto = 0 // FOSS auto-fire setting
 	var/flashbulb_health = 0 // FOSS guns only
-	var/unsafe_crank_level = 0 // FOSS guns only
 	var/safety = 0 // FOSS guns only
 	var/max_crank_level = 0 // FOSS guns only
+	var/safe_crank_level = 0 // FOSS guns only
 	var/crank_level = 0 // FOSS guns only
+	var/currently_cranking_off = 0 // see above
 
 	var/auto_eject = 0 // Do we eject casings on firing, or on reload?
 	var/casings_to_eject = 0 // kee ptrack
@@ -100,7 +101,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	//var/misfire_frequency = 1 //base % chance to fire wrong. No shot, squib, hangfire, or something that just kinda farts its way out of the barrel and sucks.
 	//var/hangfire_frequency = 1 //base % chance to fail to fire immediately.
 	//var/squib_frequency = 1 //base % chance to fire a bullet just enough to be really dangerous to the user.
-	var/jammed = 0 //got something stuck and unable to fire?
+	var/jammed = 0 //got something stuck and unable to fire? for now: 1 for didn't go off, 2 for stuck
 	var/processing_ammo = 0 //cycling ammo/cranking off
 
 	var/sound_type = null //bespoke set of loading and cycling noises
@@ -111,7 +112,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	New()
 		..()
 		make_parts()
-		if (!no_build || parts.len)
+		if (!no_build || parts.len) //need to revisit
 			build_gun()
 
 /obj/item/gun/modular/proc/make_parts()
@@ -169,6 +170,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		var/obj/item/stackable_ammo/SA = I
 		SA.reload(src, user)
 		return
+
+	if (istype(I, /obj/item/screwdriver) && src.flashbulb_only)
+		src.safety = !src.safety //toggle safety
+		boutput(user,"<span class='notice'><b>You apply a little 'sudo safety [src.safety ? "on" : "off"]' to the FOSS cannon.</b></span>")
 
 	if(istype(I,/obj/item/instrument/bikehorn))
 		boutput(user,"<span class='notice'><b>You first radicalize [I] by telling it all about The Man.</b></span>")
@@ -301,37 +306,47 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		P.power *= min((1 + barrel_adjustment),2)
 		return
 
-
-
-
-
-
-
+//handle flashtube and cranking for foss lasers. returns 1 if good to go
+//order: fix jam, check bulb and crank,
 /obj/item/gun/modular/proc/flash_process_ammo(mob/user)
 	if(processing_ammo)
 		return 0
 
-	if(jammed)
-		boutput(user,"<span class='notice'><b>You clear the ammunition jam.</b></span>")
-		jammed = 0
-		if (sound_type)
-			playsound(src.loc, "sound/weapons/[sound_type]-slowcycle.ogg", 40, 0, pitch = 0.8)
-		else
-			playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 40, 1)
-		return 0
+	//check if the dynamo got sproinged or whatever and fix it
+	switch(jammed)
+		if (1) //problem on fire
+			boutput(user,"<span class='notice'><b>You tighten the loose wires.</b></span>")
+			jammed = 0
+			playsound(src.loc, "sound/items/Ratchet.ogg", 40, 1)
+			return 0
+		if (2) //problem on cycle
+			boutput(user,"<span class='notice'><b>You free up the stuck dynamo.</b></span>")
+			jammed = 0
+			playsound(src.loc, "sound/items/Ratchet.ogg", 40, 1)
+			return 0
+		if (3) //problem on load
+			boutput(user,"<span class='notice'><b>You clear out the bent flashtube.</b></span>")
+			jammed = 0
+			playsound(src.loc, "sound/items/Screwdriver2.ogg", 40, 1)
+			return 0
 
-	if(flashbulb_health) // bulb still loaded
-		processing_ammo = 1
+	//check if a valid working bulb is loaded and active
+	if(flashbulb_health)
+		processing_ammo = TRUE
+		//confirm crank installed
 		if(max_crank_level)
 			crank(user)
+			src.inventory_counter.update_number(crank_level)
+			processing_ammo = FALSE
+			return 1
 		else
-			handle_egun_shit(user)
-		processing_ammo = 0
-		return 1
+			boutput(user,"<span class='alert'><b>Error! Dynamo missing!</b></span>")
+			processing_ammo = FALSE
+			return 0
 
-	if(!ammo_list.len) //&& hammer_cocked) empty!
+	if(!ammo_list.len) //no bulbs in reserve? (behavior that will probably/possibly change)
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
-		return (current_projectile?1:0)
+		return (current_projectile?1:0) //thinking this shouldn't be able to fire without a flashbulb, but for now...
 
 	if(ammo_list.len > max_ammo_capacity)
 		var/waste = ammo_list.len - max_ammo_capacity
@@ -339,22 +354,29 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		boutput(user,"<span class='alert'><b>Error! Storage space low! Deleting [waste] ammunition...</b></span>")
 		playsound(src.loc, 'sound/items/mining_drill.ogg', 20, 1,0,0.8)
 
-	if(!ammo_list.len) //&& hammer_cocked) // empty! again!! just in case max ammo capacity was 0!!!
+	if(!ammo_list.len) //check happens again because of process
 		playsound(src.loc, "sound/weapons/Gunclick.ogg", 40, 1)
 		return (current_projectile?1:0)
 
-	if(prob(jam_frequency_reload))
-		jammed = 1
-		boutput(user,"<span class='alert'><b>Error! Jam detected!</b></span>")
-		playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
-		return 0
 	else
-		processing_ammo = 1
+		processing_ammo = TRUE
 		var/obj/item/stackable_ammo/flashbulb/FB = ammo_list[ammo_list.len]
+		//check for right kind of ammo
 		if(!istype(FB))
 			boutput(user,"<span class='notice'><b>Error! This device is configured only for FOSS Cathodic Flash Bulbs.</b></span>")
 			playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
 		else
+			//check chance to cause a jam while loading
+			if(prob(jam_frequency_reload)) //very unlikely unless you're clumsy i guess
+				jammed = 3
+				boutput(user,"<span class='alert'><b>Shit! You accidentally bent the flashtube's contacts while installing it.</b></span>")
+				playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
+				qdel(ammo_list[ammo_list.len])
+				ammo_list.Remove(ammo_list[ammo_list.len]) //see ya
+				processing_ammo = FALSE
+				return 0
+
+			//load it from the pile
 			flashbulb_health = rand(FB.min_health, FB.max_health)
 			boutput(user,"<span class='notice'><b>FOSS Cathodic Flash Bulb loaded.</b></span>")
 			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
@@ -362,7 +384,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		qdel(ammo_list[ammo_list.len])
 		ammo_list.Remove(ammo_list[ammo_list.len]) //and remove it from the list
 
-		processing_ammo = 0
+		processing_ammo = FALSE
 		return (current_projectile?1:0)
 
 /obj/item/gun/modular/process_ammo(mob/user)
@@ -374,18 +396,28 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	if(src.max_ammo_capacity == 0) //single shot? no cycle, no count, it shows up as 0 if we don't skip it
 		if(src.jammed) //whoops gotta handle this too. call it a misfire
-			if(prob(10)) //unlucky, dump the round
-				src.jammed = 0
-				src.current_projectile = null
-				//come up with a good sound for this
-				boutput(user, "<span class='notice'>You pry the bad round out of [src]</span>") //drop a dud
-				return 0
-			else //just hit it again it'll work for sure
-				src.jammed = 0
-				src.hammer_cocked = TRUE
-				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
-				boutput(user, "<span class='notice'>You re-cock the hammer on [src]</span>") //good 2 go
-				return 1
+			if(src.jammed == 2) //stuck
+				if(prob(60))
+					src.jammed = 0
+					//come up with a good sound for this
+					boutput(user, "<span class='notice'>You pry the stuck round out of [src]</span>") //drop a dud
+					return 0
+				else //just hit it again it'll work for sure
+					boutput(user, "<span class='notice'>You fail to pull the stuck round out of [src]</span>") //good 2 go
+					return 0
+			else //misfire
+				if(prob(10)) //unlucky, dump the round
+					src.jammed = 0
+					src.current_projectile = null
+					//come up with a good sound for this
+					boutput(user, "<span class='notice'>You pry the bad round out of [src]</span>") //drop a dud
+					return 0
+				else //just hit it again it'll work for sure
+					src.jammed = 0
+					src.hammer_cocked = TRUE
+					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+					boutput(user, "<span class='notice'>You re-cock the hammer on [src]</span>") //good 2 go
+					return 1
 		else
 			if(chamber_checked && accessory && accessory_alt)
 				accessory.alt_fire()
@@ -396,29 +428,61 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 					chamber_checked = 1
 			return (current_projectile?1:0)
 
-	if(jammed)
-		boutput(user,"<span class='notice'><b>You clear the ammunition jam.</b></span>")
-		jammed = 0
-		hammer_cocked = 1
-		if (sound_type)
-			playsound(src.loc, "sound/weapons/modular/[sound_type]-slowcycle.ogg", 40, 1)
-		else
-			playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 40, 1)
-		return 0
+	switch(jammed)
+		if(1) //problem on fire, either dud round or light strike
+			if(prob(10)) //unlucky, dump the round
+				src.jammed = 0
+				src.current_projectile = null
+				//come up with a good sound for this
+				boutput(user, "<span class='notice'>You pry the dud round out of [src]</span>") //drop a dud
+				return 0
+			else //just hit it again it'll work for sure
+				src.jammed = 0
+				src.hammer_cocked = TRUE
+				if (sound_type)
+					playsound(src.loc, "sound/weapons/modular/[sound_type]-slowcycle.ogg", 40, 1)
+				else
+					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg.ogg", 40, 1)
+				boutput(user, "<span class='notice'>You re-cock the hammer on [src], ready to fire again.</span>") //good 2 go
+				return 1
+		if(2) //problem on cycle, failure to eject
+			if(prob(60))
+				src.jammed = 0
+				//come up with a good sound for this
+				boutput(user, "<span class='notice'>You pry the stuck casing out of [src].</span>") //drop a shell or a damaged cartridge
+				return 0
+			else //just hit it again it'll work for sure
+				boutput(user, "<span class='notice'>You fail to pull the stuck casing out of [src].</span>") //good 2 go
+				return 0
+		if(3) //problem on load
+			if(prob(80))
+				src.jammed = 0
+				//come up with a good sound for this
+				boutput(user, "<span class='notice'>You pry the stuck round out of [src].</span>") //drop a shell or a damaged cartridge
+				return 0
+			else //just hit it again it'll work for sure
+				boutput(user, "<span class='notice'>You fail to pull the stuck round out of [src].</span>") //good 2 go
+				return 0
+		//if(4) //squib, real bad time
+		//if(5) //hangfire, figure out how to handle
+
 	if(!ammo_list.len) // empty!
-		if (sound_type)
-			playsound(src.loc, "sound/weapons/modular/[sound_type]-slowcycle.ogg", 40, 1)
-		else
-			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 40, 1)
 		if (!hammer_cocked)
+			if (sound_type)
+				playsound(src.loc, "sound/weapons/modular/[sound_type]-slowcycle.ogg", 40, 1)
+			else if (src.action == "pump")
+				playsound(src.loc, "sound/weapons/shotgunpump.ogg", 40, 1)
+			else
+				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 40, 1)
 			hammer_cocked = 1
 			boutput(user,"<span class='notice'><b>You cycle [src]'s action, but it's empty!</b></span>")
 		else if(accessory && accessory_alt)
 			accessory.alt_fire() // so you can turn your flashlight on without having ammo....
-			boutput(user,"<span class='notice'><b>You [pick("fiddle","faff","fuss")] with [accessory] since you're out of ammo.</b></span>")
+			boutput(user,"<span class='notice'><b>You fiddle with [accessory] since you're out of ammo.</b></span>")
 		else
-			boutput(user,"<span class='notice'><b>You [pick("fiddle","faff","fuss")] with your unloaded [src].</b></span>")
+			boutput(user,"<span class='notice'><b>You faff around with your unloaded [src].</b></span>")
 		return (current_projectile?1:0)
+
 	if(ammo_list.len > max_ammo_capacity)
 		var/waste = ammo_list.len - max_ammo_capacity
 		ammo_list.Cut(1,(1 + waste))
@@ -431,12 +495,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			boutput(user,"<span class='notice'><b>You cycle [src]'s action, but it's empty!</b></span>")
 			if (sound_type)
 				playsound(src.loc, "sound/weapons/modular/[sound_type]-slowcycle.ogg", 40, 1)
-			else if (src.action == "pump") //temporary
+			else if (src.action == "pump")
 				playsound(src.loc, "sound/weapons/shotgunpump.ogg", 40, 1)
 			else
 				playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 40, 1)
 		else
-			boutput(user,"<span class='notice'><b>You [pick("fiddle","faff","fuss")] with your unloaded [src].</b></span>")
+			boutput(user,"<span class='notice'><b>You faff around with your unloaded [src].</b></span>")
 		return 0
 
 	if(current_projectile) // chamber is loaded
@@ -445,21 +509,25 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return 1
 
 	if(prob(jam_frequency_reload))
-		jammed = 1
-		boutput(user,"<span class='alert'><b>Error! Jam detected!</b></span>")
+		jammed = 2
+		boutput(user,"<span class='alert'><b>A cartridge gets wedged in wrong!</b></span>")
 		playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
 		return 0
 	else
+		//finally, everything normal. just load it and cycle
 		var/ammotype = ammo_list[ammo_list.len]
 		current_projectile = new ammotype() // last one goes in
 		ammo_list.Remove(ammo_list[ammo_list.len]) //and remove it from the list
+		hammer_cocked = TRUE
 		if (sound_type)
 			playsound(src.loc, "sound/weapons/modular/[sound_type]-quickcycle[rand(1,2)].ogg", 40, 1)
+		else if (src.action == "pump")
+			playsound(src.loc, "sound/weapons/shotgunpump.ogg", 40, 1)
 		else
 			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
 		return 1
 
-
+//cycle weapon + update counter
 /obj/item/gun/modular/attack_self(mob/user)
 	if(flashbulb_only)
 		flash_process_ammo(user)
@@ -467,19 +535,20 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	else
 		process_ammo(user)
 		if(src.max_ammo_capacity)
-			src.inventory_counter.update_number(ammo_list.len)
-		// this is how many shots are left in the feeder- and does not include the one in the chamber. Should make for funny times
+			// this is how many shots are left in the feeder- plus the one in the chamber. it was a little too confusing to not include it
+			src.inventory_counter.update_number(ammo_list.len + !!current_projectile)
 		else
 			src.inventory_counter.update_number(!!current_projectile) // 1 if its loaded, 0 if not.
-
+		if(!hammer_cocked) //for italian revolver purposes, doesn't process_ammo like normal
+			playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+			boutput(user,"<span><b>You cock the hammer.</b></span>")
+			hammer_cocked = 1
 	buildTooltipContent()
-
-
 
 /obj/item/gun/modular/canshoot()
 	if(jammed)
 		return 0
-	//do this later i'm just focusing on sounds now
+	//do this later i'm just focusing on sounds and reloads for now
 	//if(hammer_cocked && action == "single")
 	//	return 0
 	if(!built)
@@ -498,9 +567,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		return FALSE
 	if (!canshoot())
 		if (ismob(user))
-			user.show_text("*click* *click*", "red") // No more attack messages for empty guns (Convair880).
-			if (!silenced)
-				playsound(user, "sound/weapons/Gunclick.ogg", 60, 1)
+			if (hammer_cocked)
+				user.show_text("*click* *click*", "red") // No more attack messages for empty guns (Convair880).
+				hammer_cocked = FALSE
+				if (!silenced)
+					playsound(user, "sound/weapons/Gunclick.ogg", 60, 1)
+			else
+				user.show_text("Nothing happens!", "red")
 		return FALSE
 	if (!isturf(target) || !isturf(start))
 		return FALSE
@@ -511,7 +584,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		if (isturf(user.loc))
 			var/turf/origin = user.loc
 			muzzle_flash_attack_particle(user, origin, target, src.muzzle_flash)
-
 
 	if (ismob(user))
 		var/mob/M = user
@@ -526,9 +598,25 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	if(prob(jam_frequency_fire))
 		jammed = 1
-		user.show_text("*clunk* *clack*", "red")
-		playsound(user, "sound/impact_sounds/Generic_Click_1.ogg", 60, 1)
-
+		if(flashbulb_only)
+			//if (prob(max(0,(2 ^ (crank_level - safe_crank_level))) //sudden and possibly explosive breakage versus expected burnout, with increasingly bad odds
+				//boom
+				//flashbulb_health = 0 //or just delete it + create glass shards?
+				//user.show_text("The flashtube shatters suddenly!", "red")
+				//playsound(user, "sound/impact_sounds/Glass_Shatter_[rand(1,3)].ogg", 60, 1)
+				//hurts and trouble all around
+				//return
+			flashbulb_health = max(0, flashbulb_health - rand(2,4))
+			if (flash_auto)
+				crank_level = max(0, crank_level - rand(2,6))
+			else
+				//need a good *sproing* noise
+				crank_level = 0
+			user.show_text("A wire comes loose as [src] misfires and drops its charge!", "red")
+			//maybe a chance to force a shot if this is done while cranking rather than attempting to fire
+		else
+			user.show_text("*clunk* *clack*", "red")
+			playsound(user, "sound/impact_sounds/Generic_Click_1.ogg", 60, 1)
 
 	var/spread = is_dual_wield*10
 	if (user.reagents)
@@ -546,6 +634,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/obj/projectile/P = shoot_projectile_ST_pixel_spread(user, current_projectile, target, POX, POY, spread, alter_proj = new/datum/callback(src, PROC_REF(alter_projectile)))
 	if (P)
 		P.forensic_ID = src.forensic_ID
+
+	chamber_checked = FALSE
+	hammer_cocked = FALSE
 
 	if(accessory && accessory_on_fire)
 		accessory.on_fire()
@@ -567,8 +658,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		game_stats.Increment("gunfire")
 #endif
 
-	chamber_checked = 0
-
 	if (ismob(user))
 		var/mob/M = user
 		if (ishuman(M) && src.add_residue) // Additional forensic evidence for kinetic firearms (Convair880).
@@ -584,7 +673,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			crank_level = 0 // reset
 
 		if(!flashbulb_health) // that was the end of it!
-			user.show_text("<span class='alert'>Your gun's flash bulb burns out!</span>")
+			if(safety && crank_level)
+				user.show_text("<span class='alert'>Your gun's flash bulb burns out and auto-releases your wind-up doohickey!</span>")
+				crank_level = 0
+			else
+				user.show_text("<span class='alert'>Your gun's flash bulb burns out!</span>")
+	if(flashbulb_only) //we just want to do this regardless of whatever happens with bulbs possibly burning out
 		src.inventory_counter.update_number(crank_level)
 
 	if(!flash_auto)
@@ -592,8 +686,24 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	if(!max_ammo_capacity)
 		src.inventory_counter.update_number(!!current_projectile)
-	src.hammer_cocked = FALSE
+
 	src.update_icon()
+
+	//updating count again after shooting because an ever-present but wrong-until-manually-updated shot counter as part of game UI is not great UX
+	//a lot of this can be more efficient i just want to get basic behaviors done and working right
+	if(src.max_ammo_capacity)
+		src.inventory_counter.update_number(ammo_list.len + !!current_projectile)
+	else
+		src.inventory_counter.update_number(!!current_projectile) // 1 if its loaded, 0 if not.
+
+	if(prob(jam_frequency_reload))
+		jammed = 2
+		if (flashbulb_only)
+			boutput(user,"<span class='alert'><b>The dynamo gets stuck!</b></span>") //slammed forward too fast or whatever
+		else
+			boutput(user,"<span class='alert'><b>The casing gets stuck!</b></span>") //failed to eject
+		playsound(src.loc, "sound/weapons/trayhit.ogg", 60, 1)
+
 	return TRUE
 
 /obj/item/gun/modular/shoot_point_blank(var/mob/M as mob, var/mob/user as mob, var/second_shot = 0)
@@ -617,7 +727,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	else //bad idea
 		spread_angle += BARREL_PENALTY
 	if(src.gun_DRM == GUN_JUICE) //pump requires two hands also it's almost always fukken huge
-		src.two_handed = 1 //but i may revisit this
+		src.two_handed = FALSE //but i may revisit this
+		src.can_dual_wield = FALSE
 	if(magazine)
 		parts += magazine
 	if(grip)
@@ -630,7 +741,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(bullpup_stock) //quick + dirty handling of overlay shit since the stock must be behind the receiver
 		var/image/I = image(icon, icon_state) //so so dirty
 		src.UpdateOverlays(I, "greebling") //later this will be its own thing and every receiver can greeble. bullpupping will simply be a more forward grip/foregrip offset + overlay on stock
-		src.two_handed = 1
+		src.two_handed = TRUE
+		src.can_dual_wield = FALSE
 
 	if(accessory)
 		parts += accessory
@@ -639,7 +751,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		part.add_part_to_gun(src)
 
 	if(bulk >= 6 || flashbulb_only) //flashfoss always two hands, how else will you crank off
-		src.two_handed = 1
+		src.two_handed = TRUE
+		src.can_dual_wield = FALSE
 		//if(!foregrip)
 		//	spread_angle += GRIP_PENALTY/3
 	src.force = 2 + bulk
@@ -663,6 +776,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	name = real_name
 
 	max_crank_level = 0
+	safe_crank_level = 0
 	flashbulb_only = 0
 	scatter = 0
 	lensing = 0
@@ -683,22 +797,59 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	spread_angle = initial(spread_angle)
 
 /obj/item/gun/modular/proc/crank(mob/user)
-	SPAWN_DBG(10)
-		if(crank_level > max_crank_level)
-			boutput(user,"<span class='notice'><b>Error! This device cannot be further overloaded.</b></span>")
-			playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
-			processing_ammo = 0
-			return
-		if(crank_level == max_crank_level)
-			boutput(user,"<span class='notice'><b>Notice! Exceeding design specification.</b></span>")
-			playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
-			sleep(0.5 SECONDS)
-			crank_level++
-			playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
-		if(crank_level < max_crank_level)
+	if (currently_cranking_off)
+		return
+
+	SPAWN_DBG(0)
+		if(crank_level < safe_crank_level)
+			currently_cranking_off = TRUE
 			boutput(user,"<span><b>You crank the handle.</b></span>")
+			if (!flash_auto)
+				playsound(src.loc, "sound/machines/driveclick.ogg", 50, 1)
+			else
+				//need a better turning sound for the flywheel
+				playsound(src.loc, "sound/machines/driveclick.ogg", 50, 1)
+			sleep(10)
 			crank_level++
+			src.inventory_counter.update_number(crank_level)
 			playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
+			playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1, pitch = 0.7)
+			currently_cranking_off = FALSE
+		if(safety)
+			if(crank_level >= safe_crank_level) //training wheels still on
+				boutput(user,"<span class='notice'><b>You're unable to crank further with the safety limiter engaged!</b></span>")
+				playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
+				return
+		else
+			if(crank_level >= max_crank_level) //maxed out
+				boutput(user,"<span class='notice'><b>You're unable to crank further! You're maxed out!</b></span>")
+				processing_ammo = 0
+				playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
+				return
+			else if(crank_level > safe_crank_level) //getting excessive
+				currently_cranking_off = TRUE
+				if (flash_auto)
+					boutput(user,"<span class='notice'><b>You keep cranking!</b></span>")
+					//need flywheel noise
+				else
+					boutput(user,"<span class='notice'><b>You crank the handle to the absolute limit!</b></span>")
+					playsound(src.loc, "sound/machines/driveclick.ogg", 50, 1)
+				playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
+				sleep(0.5 SECONDS)
+				crank_level++
+				src.inventory_counter.update_number(crank_level)
+				playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
+				currently_cranking_off = FALSE
+			else if(crank_level == safe_crank_level) //getting dongerous
+				currently_cranking_off = TRUE
+				boutput(user,"<span class='notice'><b>You crank the handle past design specifications!</b></span>")
+				playsound(src.loc, "sound/machines/driveclick.ogg", 50, 1)
+				playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1, pitch = 0.85)
+				sleep(0.5 SECONDS)
+				crank_level++
+				src.inventory_counter.update_number(crank_level)
+				playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
+				currently_cranking_off = FALSE
 
 		if(flash_auto) // keep the projectile at level 1 after incrementing the crank level.
 			if(!current_projectile)
@@ -719,8 +870,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				current_projectile = new /datum/projectile/laser/flashbulb/three()
 			if (4)
 				current_projectile = new /datum/projectile/laser/flashbulb/four()
-			//if (5)
-				//current_projectile = /datum/projectile/laser/flashbulb/five
+			if (5)
+				current_projectile = /datum/projectile/laser/flashbulb/five()
 		processing_ammo = 0
 
 /obj/item/gun/modular/proc/handle_egun_shit(mob/user)
@@ -749,6 +900,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 	barrel_overlay_x = BARREL_OFFSET_SHORT
 	grip_overlay_x = GRIP_OFFSET_SHORT
 	stock_overlay_x = STOCK_OFFSET_SHORT
+	var/electrics_intact = TRUE //the grody autoloading ID locked snitchy smart gun parts that are just begging to be microwaved, emagged, or simply pried and cut out
 
 //short receiver, by itself
 /obj/item/gun/modular/NT/short
@@ -768,6 +920,21 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 	barrel_overlay_x = BARREL_OFFSET_LONG
 	stock_overlay_x = STOCK_OFFSET_BULLPUP
 	bullpup_stock = 1 //for the overlay
+
+	//this operates like a shitty electric motor loading glock or something
+	//"but but don't we need a power cell or something" it's got integrated batteries that'll last a month in the receiver don't worry about it
+	shoot()
+		if (!hammer_cocked) //single action striker bullshit
+			return
+		..()
+		if(electrics_intact && !jammed)
+			sleep(20) //just long enough to be a pain
+			if(!current_projectile && !jammed)
+				if(ammo_list.len)
+					playsound(src.loc, "sound/machines/ping.ogg", 40, 1)
+					process_ammo() //attempt autoload beep boop
+				else
+					playsound(src.loc, "sound/machines/buzz-sigh.ogg", 40, 1)
 
 //a built and usable pistol
 /obj/item/gun/modular/NT/short/pistol
@@ -839,7 +1006,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 		//	foregrip = new /obj/item/gun_parts/grip/NT/stub(src)
 
 // syndicate laser gun's!
-// cranked capacitor which discharges through a flashbulb thing and shoots a big honking lazers
+// cranked capacitor which discharges through a flashtube thing and shoots a big honking lazers
 // everyone else basically standardized on ammo but theirs is an open standard (that nobody uses)
 // same goes for basically everything else, core foss parts only work with other core foss parts but lights and other similar attachments are fine
 // nothing about this gun should be taken as applying to other gun's and vice versa
@@ -864,6 +1031,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular/foss)
 	stock_overlay_x = -10 //combined with the inherent -6 on the stock itself, this is 16 to the left (fiddly fucking thing)
 	grip_overlay_x = -4
 	grip_overlay_y = -2
+	jam_frequency_fire = 0.2 //really only if overcharged
+	jam_frequency_reload = 0 //only if the user is clumsy
+	safety = 1 //currently safe
 	//foregrip_offset_x = 12
 	//foregrip_offset_y = 0
 
@@ -1064,6 +1234,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	grip_overlay_x = GRIP_OFFSET_LONG
 	stock_overlay_x = STOCK_OFFSET_LONG
 	two_handed = TRUE
+	can_dual_wield = FALSE
 
 /obj/item/gun/modular/soviet/long/advanced
 	name = "\improper Soviet лазерная"
@@ -1077,7 +1248,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	barrel_overlay_x = BARREL_OFFSET_LONG
 	grip_overlay_x = GRIP_OFFSET_LONG
 	stock_overlay_x = STOCK_OFFSET_LONG
-	two_handed = TRUE
 
 	make_parts()
 		if(prob(25))
@@ -1141,9 +1311,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 		//ALSO: handle unloading all rounds (shot or unshot) at same time, don't load until unloaded?
 		//much too consider
 		//if (!src.hammer_cocked) then delay and set hammer_cocked
-		src.hammer_cocked = TRUE
-		..()
-		process_ammo()
+		if (src.hammer_cocked)
+			..()
+		else
+			sleep(10) //heavy double action
+			//check if still held by same person
+			process_ammo()
+			..()
 
 /obj/item/gun/modular/italian/basic
 

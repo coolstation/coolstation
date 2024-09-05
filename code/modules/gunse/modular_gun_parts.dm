@@ -63,9 +63,10 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 	var/can_dual_wield = 1
 	//var/spread_angle = 0 	// modifier, added to stock // repeat of barrel
 	var/max_ammo_capacity = 0 //modifier
-	var/flashbulb_only = 0 	// FOSS guns only
-	var/flash_auto = 0 		// FOSS guns only
-	var/max_crank_level = 0 // FOSS guns only
+	var/flashbulb_only = 0 	// FOSS guns only (only takes flashbulb ammo)
+	var/flash_auto = 0 		// FOSS guns only (autoloader, multiple small shots on a big charge)
+	var/max_crank_level = 0 // FOSS guns only (top end cranking)
+	var/safe_crank_level = 0 // FOSS guns only (limited cranking)
 	var/bulkiness = 1 //higher bulkiness leads to 2-handedness?? 1-5 i guess
 	var/stock_dual_wield = 1 // if gun AND stock can be dual wielded, whole gun can be dual wielded.
 	var/jam_frequency_reload = 0 //attitional % chance to jam on reload. Just reload again to clear.
@@ -198,10 +199,12 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 		if(flashbulb_only)
 			my_gun.flashbulb_only = 1 //src.flashbulb_only
 			my_gun.max_crank_level = src.max_crank_level
+			my_gun.safe_crank_level = src.safe_crank_level
 			my_gun.flash_auto = src.flash_auto
 		else
 			my_gun.flashbulb_only = 0
 			my_gun.max_crank_level = 0
+			my_gun.safe_crank_level = 0
 			my_gun.flash_auto = 0
 
 	remove_part_from_gun()
@@ -877,6 +880,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	part_DRM = GUN_FOSS | GUN_SOVIET // | GUN_JUICE
 	flashbulb_only = 1
 	max_crank_level = 2
+	safe_crank_level = 1
 	bulkiness = 2
 	overlay_x = -6 //absolutely know this is right
 
@@ -891,6 +895,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	bulkiness = 3
 	can_dual_wield = 0
 	max_crank_level = 3 // for syndicate ops
+	safe_crank_level = 2
 	name_addition = "lean"
 
 //the closest thing to a machine gun we'll get
@@ -910,6 +915,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	jam_frequency_reload = 10
 	flash_auto = 1
 	max_crank_level = 20
+	safe_crank_level = 10
 	name_addition = "automated"
 	icon_state = "stock_double"
 	bulkiness = 4
@@ -921,7 +927,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = 3 // poor stabilisation
 	bulkiness = 5
 	can_dual_wield = 0
-	max_crank_level = 4 // for syndicate ops
+	max_crank_level = 5 // for syndicate ops
+	safe_crank_level = 3
 	jam_frequency_reload = 5 // a little more jammy
 	name_addition = "six-sigma"
 	icon_state = "stock_double_alt"

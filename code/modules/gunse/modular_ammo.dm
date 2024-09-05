@@ -125,6 +125,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		else
 			..(user)
 
+	//just realized this needs some checks to handle things like: moved away from ammo, no longer holding gun, etc.
+	//whoops that's current you's and later me's problem
 	proc/reload(var/obj/item/gun/modular/M, mob/user as mob)
 		if(reloading)
 			return
@@ -134,13 +136,22 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 			return
 		if(!M.ammo_list)
 			M.ammo_list = list()
+		if(M.jammed)
+			return //clear that shit first!
 		M.chamber_checked = 0
+
+		//single shot and chamber handling
 		if((M.ammo_list.len >= M.max_ammo_capacity) || !M.max_ammo_capacity)
 			if(M.current_projectile)
-				boutput(user, "<span class='notice'>There's already a cartridge in [M]!</span>")
+				if (!M.max_ammo_capacity)
+					boutput(user, "<span class='notice'>There's already a cartridge in [M]!</span>")
+				else
+					boutput(user, "<span class='notice'>You can't load [M] any further!</span>")
 				return
-			if(!M.current_projectile)
+			else
+				reloading = TRUE
 				boutput(user, "<span class='notice'>You stuff a cartridge down the barrel of [M]</span>")
+				sleep(10)
 				M.current_projectile = new projectile_type()
 				amount --
 				update_stack_appearance()
@@ -148,13 +159,21 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 					user.u_equip(src)
 					src.dropped(user)
 					qdel(src)
-				M.inventory_counter.update_number(!!M.current_projectile)
+				//play the sound here because single shot bypasses cycle_ammo
 				if (M.sound_type)
-					playsound(src.loc, "sound/weapons/modular/[M.sound_type]-slowcycle.ogg", 60, 1)
+					playsound(M.loc, "sound/weapons/modular/[M.sound_type]-slowcycle.ogg", 60, 1)
 				else
-					playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1) //play the sound here because single shot bypasses cycle_ammo
+					playsound(M.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1)
+				M.hammer_cocked = TRUE
+				//set up counter
+				if(M.max_ammo_capacity)
+					M.inventory_counter.update_number(M.ammo_list.len + !!M.current_projectile)
+				else
+					M.inventory_counter.update_number(!!M.current_projectile) // 1 if its loaded, 0 if not.
+				reloading = FALSE
 			return
-		reloading = 1
+		//standard handling
+		reloading = TRUE
 		if(amount < 1)
 			user.u_equip(src)
 			src.dropped(user)
@@ -162,11 +181,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		SPAWN_DBG(0)
 			boutput(user, "<span class='notice'>You start loading rounds into [M].</span>")
 			if (M.sound_type)
-				playsound(src.loc, "sound/weapons/modular/[M.sound_type]-startload.ogg", 60, 1)
+				playsound(M.loc, "sound/weapons/modular/[M.sound_type]-startload.ogg", 60, 1)
 			else
-				playsound(src.loc, "sound/weapons/gunload_click.ogg", 60, 1)
+				playsound(M.loc, "sound/weapons/gunload_click.ogg", 60, 1)
 				//playsound(src.loc, "sound/weapons/gun_cocked_colt45.ogg", 60, 1) //oldsound
-			sleep(10)
+			sleep(0)
 			while(M.ammo_list.len < M.max_ammo_capacity)
 				if(amount < 1)
 					user.u_equip(src)
@@ -174,23 +193,38 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 					qdel(src)
 					break
 				if (M.sound_type)
-					playsound(src.loc, "sound/weapons/modular/[M.sound_type]-load[rand(1,2)].ogg", 10, 1)
+					playsound(M.loc, "sound/weapons/modular/[M.sound_type]-load[rand(1,2)].ogg", 10, 1)
 				else
-					playsound(src.loc, "sound/weapons/gunload_light.ogg", 10, 1, 0, 0.8)
+					playsound(M.loc, "sound/weapons/gunload_light.ogg", 10, 1, 0, 0.8)
 					//playsound(src.loc, "sound/weapons/casings/casing-0[rand(1,9)].ogg", 10, 0.1, 0, 0.8) //oldsound
 				amount--
 				M.ammo_list += projectile_type
 				update_stack_appearance()
+				M.inventory_counter.update_number(M.ammo_list.len + !!M.current_projectile)
+				//moving this here so you load the first round every time instead of having to load twice to be full up
+				if(!M.current_projectile)
+					sleep(10)
+					M.process_ammo()
+				if (M.jammed) //jammed after process_ammo
+					boutput(user, "<span class='notice'>Fuck, shit, you fumbled something.</span>")
+					break
+				else if (prob(M.jam_frequency_reload)) //jammed just because this thing sucks to load or you're clumsy
+					M.jammed = 2
+					boutput(user, "<span class='notice'>Ah, damn, that doesn't go in that way....</span>")
+					break
 				sleep(10)
 			if (M.sound_type)
-				playsound(src.loc, "sound/weapons/modular/[M.sound_type]-stopload.ogg", 30, 1)
+				playsound(M.loc, "sound/weapons/modular/[M.sound_type]-stopload.ogg", 30, 1)
 			else
-				playsound(src.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, 0, 0.8)
-			boutput(user, "<span class='notice'>The hold is now full.</span>")
-			if(!M.current_projectile)
-				M.process_ammo()
-			M.inventory_counter.update_number(M.ammo_list.len)
-			reloading = 0
+				playsound(M.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, 0, 0.8)
+			if (M.ammo_list.len == M.max_ammo_capacity)
+				boutput(user, "<span class='notice'>The hold is now fully loaded.</span>")
+			else
+				boutput(user, "<span class='notice'>You stop loading.</span>")
+
+			M.inventory_counter.update_number(M.ammo_list.len + !!M.current_projectile)
+
+			reloading = FALSE
 
 /obj/item/stackable_ammo/pistol/
 	name = "NT pistol round"
@@ -471,8 +505,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 		max_amount = 10
 
 /obj/item/stackable_ammo/flashbulb/
-	name = "\improper FOSSYN. CATHODIC FLASH BULBS"
-	real_name = "FOSSYN. CATHODIC FLASH BULB"
+	name = "\improper FOSSYN. CATHODIC FLASH TUBE"
+	real_name = "FOSSYN. CATHODIC FLASH TUBE"
 	desc = "A hefty glass tube filled with ionic gas, and two opposing electrodes."
 	icon = 'icons/obj/items/modular_guns/fossgun.dmi'
 	icon_state = "bulb"
@@ -499,19 +533,22 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 			M.ammo_list = list()
 		if(M.ammo_list.len >= M.max_ammo_capacity)
 			return
-		reloading = 1
+		reloading = TRUE
 		SPAWN_DBG(0)
-			boutput(user, "<span class='notice'>You start loading a bulb into [M].</span>")
+			boutput(user, "<span class='notice'>You start loading a flashtube into [M].</span>")
 			if(M.ammo_list.len < M.max_ammo_capacity)
+				sleep(10)
 				playsound(src.loc, "sound/weapons/casings/casing-0[rand(1,9)].ogg", 10, 0.1, 0, 0.8)
 				M.ammo_list += src
 				user.u_equip(src)
 				src.dropped(user)
 				src.set_loc(M)
-				sleep(5)
-				if(M.ammo_list.len == M.max_ammo_capacity)
-					playsound(src.loc, "sound/items/Screwdriver.ogg", 30, 0.1, 0, 0.8)
-				reloading = 0
+				sleep(10)
+				playsound(src.loc, "sound/items/Screwdriver.ogg", 30, 0.1, 0, 0.8)
+				if(!M.flashbulb_health)
+					M.flash_process_ammo(user)
+				boutput(user, "<span class='notice'>You finish loading a flashtube into [M].</span>")
+				reloading = FALSE
 
 /obj/item/stackable_ammo/flashbulb/better
 	max_health = 25
@@ -519,12 +556,12 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	icon_state = "bulb_good"
 
 /obj/item/storage/box/foss_flashbulbs
-	name = "box of FOSSYN flashbulbs"
+	name = "box of FOSSYN flashtubes"
 	icon_state = "foss_bulb"
 	spawn_contents = list(/obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb)
 
 /obj/item/storage/box/foss_flashbulbs/better
-	name = "box of premium FOSSYN flashbulbs"
+	name = "box of premium FOSSYN flashtubes"
 	spawn_contents = list(/obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb/better, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb, /obj/item/stackable_ammo/flashbulb)
 	make_my_stuff()
 		..()
@@ -612,6 +649,24 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 			L.change_misstep_chance(1)
 			L.emote("twitch_v")
 		if(prob(20))
+			hit.ex_act(OLD_EX_LIGHT)
+		return
+
+/datum/projectile/laser/flashbulb/five //bringing it back
+	power = 60
+	color_blue = 1
+	color_green = 0
+	cost = 400
+	projectile_speed = 50
+
+	on_hit(atom/hit)
+		fireflash(get_turf(hit), 0)
+		if (isliving(hit))
+			var/mob/living/L = hit
+			L.changeStatus("slowed", 3 SECOND)
+			L.change_misstep_chance(3)
+			L.emote("twitch_v")
+		if(prob(30))
 			hit.ex_act(OLD_EX_LIGHT)
 		return
 
