@@ -41,10 +41,13 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	var/tmp/highMapCpuCount = 0 // how many times in a row has the map_cpu been high
 
 	var/list/lobby_music = list('sound/radio_station/lobby/opus_number_null.ogg','sound/radio_station/lobby/tv_girl.ogg','sound/radio_station/lobby/tane_lobby.ogg','sound/radio_station/lobby/muzak_lobby.ogg','sound/radio_station/lobby/say_you_will.ogg','sound/radio_station/lobby/two_of_them.ogg','sound/radio_station/lobby/ultimatum_low.ogg')
+	var/picked_music = null
 
 
 
 /datum/controller/gameticker/proc/pregame()
+
+	did_lobbymusic = initial(did_lobbymusic) //well now this will play it anew each ti
 
 	pregame_timeleft = PREGAME_LOBBY_TICKS
 	boutput(world, "<b>Welcome to the pre-game lobby!</b><br>Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds.")
@@ -161,8 +164,6 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		current_state = GAME_STATE_PREGAME
 		boutput(world, "<B>Error setting up [master_mode].</B> Reverting to pre-game lobby.")
 
-		ticker.did_lobbymusic = 0
-		ticker.lobby_music = initial(lobby_music)
 		SPAWN_DBG(0) pregame()
 
 		return 0
@@ -294,8 +295,8 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 /datum/controller/gameticker/proc/lobby_music()
 
 	var/sound/music_sound = new()
-	ticker.lobby_music = pick(lobby_music) //collapse the waveform for the entire round
-	music_sound.file = lobby_music
+	ticker.picked_music = pick(lobby_music) //collapse the waveform for the entire round
+	music_sound.file = picked_music
 	music_sound.wait = 0
 	music_sound.repeat = 0
 	music_sound.priority = 254

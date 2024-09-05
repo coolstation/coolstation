@@ -636,7 +636,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 	if (current_state == GAME_STATE_PREGAME && ticker.did_lobbymusic) //setting up client but missed the lobbymusic boat?
 		if (!src.preferences?.skip_lobby_music)
 			var/sound/music_sound = new()
-			music_sound.file = ticker.lobby_music
+			music_sound.file = ticker.picked_music
 			music_sound.wait = 0
 			music_sound.repeat = 0
 			music_sound.priority = 254
