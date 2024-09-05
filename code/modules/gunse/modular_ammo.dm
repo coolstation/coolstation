@@ -226,6 +226,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 
 			reloading = FALSE
 
+/* ------------------------------- Pistol Ammo ------------------------------ */
+
 /obj/item/stackable_ammo/pistol/
 	name = "NT pistol round"
 	real_name = "NT pistol round"
@@ -233,6 +235,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	projectile_type = /datum/projectile/bullet/pistol_weak
 	stack_type = /obj/item/stackable_ammo/pistol
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
+	var/cartridge_length = 20
+	var/caliber = 0.31
 	icon_state = "nt_brass"
 	icon_full  = "nt_brass"
 	icon_empty = "nt_empty"
@@ -240,14 +244,17 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	icon_shell = "brass_case"
 
 	three
+		name = "NT pistol round (x3)"
 		min_amount = 3
 		max_amount = 3
 
 	five
+		name = "NT pistol round (x5)"
 		min_amount = 5
 		max_amount = 5
 
 	ten
+		name = "NT pistol round (x10)"
 		min_amount = 10
 		max_amount = 10
 
@@ -265,21 +272,24 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	icon_shell = "brass_case"
 
 	three
+		name = "NT HP pistol round (x3)"
 		min_amount = 3
 		max_amount = 3
 
 	five
+		name = "NT HP pistol round (x5)"
 		min_amount = 5
 		max_amount = 5
 
 	ten
+		name = "NT HP pistol round (x10)"
 		min_amount = 10
 		max_amount = 10
 
-/obj/item/stackable_ammo/pistol_italian
+/obj/item/stackable_ammo/pistol/italian
 	name = "Italian pistol round"
 	real_name = "Italian pistol round"
-	desc = "Italia's standard 8mm pistol firearms cartridge. The same caliber everyone else copies. These rounds are kept fresh with a light coating of olive oil"
+	desc = "Italia's standard 8mm pistol firearms cartridge. The same caliber everyone else copies. These rounds are kept fresh with a light coating of olive oil."
 	projectile_type = /datum/projectile/bullet/pistol_medium/AP
 	stack_type = /obj/item/stackable_ammo/pistol_38AP
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
@@ -290,20 +300,23 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	icon_shell = "red_case"
 
 	three
+		name = "Italian pistol round (x3)"
 		min_amount = 3
 		max_amount = 3
 
 	five
+		name = "Italian pistol round (x5)"
 		min_amount = 5
 		max_amount = 5
 
 	ten
+		name = "Italian pistol round (x10)"
 		min_amount = 10
 		max_amount = 10
 
 //rename to pistol/italian/ap
 /obj/item/stackable_ammo/pistol_38AP
-	name = "Italian AP pistol round"
+	name = "\improper Italian AP pistol round"
 	real_name = "Italian AP pistol round"
 	desc = "Italia's standard 8mm pistol firearms cartridge, with an AP core. The same caliber everyone else copies."
 	projectile_type = /datum/projectile/bullet/pistol_medium/AP
@@ -316,14 +329,45 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	icon_shell = "red_case"
 
 	three
+		name = "Italian AP pistol round (x3)"
 		min_amount = 3
 		max_amount = 3
 
 	five
+		name = "Italian AP pistol round (x5)"
 		min_amount = 5
 		max_amount = 5
 
 	ten
+		name = "Italian AP pistol round (x10)"
+		min_amount = 10
+		max_amount = 10
+
+/obj/item/stackable_ammo/pistol/juicer
+	name = "\improper Juicer Jr. round"
+	real_name = "Juicer Jr. round"
+	desc = "Juicer-manufactured pistol rounds in exactly 4x20 millimeter. Two of them are taped together to fit in a standard barrel."
+	projectile_type = /datum/projectile/bullet/pistol_heavy
+	stack_type = /obj/item/stackable_ammo/pistol/juicer
+	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
+	icon_state = "nt_red"
+	icon_full  = "nt_red"
+	icon_empty = "nt_empty"
+	icon_one   = "bullet_red"
+	icon_shell = "red_case"
+
+	three
+		name = "Juicer Jr. round (x3)"
+		min_amount = 3
+		max_amount = 3
+
+	five
+		name = "Juicer Jr. round (x5)"
+		min_amount = 5
+		max_amount = 5
+
+	ten
+		name = "Juicer Jr. round (x10)"
 		min_amount = 10
 		max_amount = 10
 
@@ -341,14 +385,17 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	icon_shell = "white_case"
 
 	three
+		name = "\improper NT Tranq-Will-8-or (x3)"
 		min_amount = 3
 		max_amount = 3
 
 	five
+		name = "\improper NT Tranq-Will-8-or (x5)"
 		min_amount = 5
 		max_amount = 5
 
 	ten
+		name = "\improper NT Tranq-Will-8-or (x10)"
 		min_amount = 10
 		max_amount = 10
 
@@ -366,14 +413,17 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	icon_shell = "nerf_case"
 
 	three
+		name = "\improper NT In-Capacit-8-or (x3)"
 		min_amount = 3
 		max_amount = 3
 
 	five
+		name = "\improper NT In-Capacit-8-or (x5)"
 		min_amount = 5
 		max_amount = 5
 
 	ten
+		name = "\improper NT In-Capacit-8-or (x10)"
 		min_amount = 10
 		max_amount = 10
 
@@ -391,14 +441,17 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	icon_shell = "nerf_case"
 
 	three
+		name = "\improper NT In-Capacit-8-or MAX (x3)"
 		min_amount = 3
 		max_amount = 3
 
 	five
+		name = "\improper NT In-Capacit-8-or MAX (x5)"
 		min_amount = 5
 		max_amount = 5
 
 	ten
+		name = "\improper NT In-Capacit-8-or MAX (x10)"
 		min_amount = 10
 		max_amount = 10
 
@@ -410,22 +463,25 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	desc = "Stealthy projectiles that cause insidious radiation poisoning."
 
 	three
+		name = "\improper Syndicate Radioactive Darts (x3)"
 		min_amount = 3
 		max_amount = 3
 
 	five
+		name = "\improper Syndicate Radioactive Darts (x5)"
 		min_amount = 5
 		max_amount = 5
 
 	ten
+		name = "\improper Syndicate Radioactive Darts (x10)"
 		min_amount = 10
 		max_amount = 10
 
 //do i want to make a long version? maybe.
 /obj/item/stackable_ammo/zaubertube/
-	name = "\improper Elektrograd лазерный Zaubertube"
-	real_name = "Elektrograd лазерный Zaubertube"
-	desc = "A thick glass bulb filled with hypergolic incandescent chemicals, in the same 2.8 line caliber stolen by everyone else."
+	name = "\improper Soviet zaubertubes"
+	real_name = "\improper Soviet zaubertubes"
+	desc = "Thick glass bulb filled with hypergolic incandescent chemicals, in the same 2.8 line caliber stolen by everyone else. Product of Elektrograd."
 	projectile_type = /datum/projectile/laser/zauber
 	stack_type = /obj/item/stackable_ammo/zaubertube
 	ammo_DRM = GUN_SOVIET | GUN_FOSS
@@ -436,14 +492,17 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	icon_shell = "zauber_spent"
 
 	three
+		name = "\improper Soviet zaubertubes (x3)"
 		min_amount = 3
 		max_amount = 3
 
 	five
+		name = "\improper Soviet zaubertubes (x5)"
 		min_amount = 5
 		max_amount = 5
 
 	ten
+		name = "\improper Soviet zaubertubes (x10)"
 		min_amount = 10
 		max_amount = 10
 
@@ -465,49 +524,54 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 			return
 		..()
 
-
 /obj/item/stackable_ammo/scatter/buckshot
-	name = "\improper Hot Pocketz"
-	real_name = "\improper Hot Pocketz"
+	name = "\improper Juicer Hot Pocketz"
+	real_name = "\improper Juicer Hot Pocketz"
 	desc = "Ecologically and economically hand-packed by local Juicer children. In, uh, whatever caliber. It'll probably fit heavy barrels."
 	projectile_type = /datum/projectile/bullet/shot_heavy
 	stack_type = /obj/item/stackable_ammo/scatter/buckshot
 
 	three
+		name = "\improper Juicer Hot Pocketz (x3)"
 		min_amount = 3
 		max_amount = 3
 
 	five
+		name = "\improper Juicer Hot Pocketz (x5)"
 		min_amount = 5
 		max_amount = 5
 
 	ten
+		name = "\improper Juicer Hot Pocketz (x10)"
 		min_amount = 10
 		max_amount = 10
 
 /obj/item/stackable_ammo/scatter/slug_rubber // scatter doesnt mean scatter, just means thick:)
-	name = "standard rubber slug"
-	real_name = "standard rubber slug"
+	name = "NT rubber slug"
+	real_name = "NT rubber slug"
 	desc = "An allegedly less-than-lethal riot deterrent slug, at least in low doses."
 	projectile_type = /datum/projectile/bullet/slug_rubber
 	stack_type = /obj/item/stackable_ammo/scatter/slug_rubber
 
 	three
+		name = "NT rubber slug (x3)"
 		min_amount = 3
 		max_amount = 3
 
 	five
+		name = "NT rubber slug (x5)"
 		min_amount = 5
 		max_amount = 5
 
 	ten
+		name = "NT rubber slug (x10)"
 		min_amount = 10
 		max_amount = 10
 
 /obj/item/stackable_ammo/flashbulb/
-	name = "\improper FOSSYN. CATHODIC FLASH TUBE"
-	real_name = "FOSSYN. CATHODIC FLASH TUBE"
-	desc = "A hefty glass tube filled with ionic gas, and two opposing electrodes."
+	name = "\improper FOSSYN. Cathodic Flash Tube 1.4"
+	real_name = "FOSSYN. Cathodic Flash Tube 1.4"
+	desc = "A modest glass tube filled with ionic gas, and two opposing electrodes."
 	icon = 'icons/obj/items/modular_guns/fossgun.dmi'
 	icon_state = "bulb"
 	icon_shell = "bulb_burnt"
@@ -551,6 +615,9 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 				reloading = FALSE
 
 /obj/item/stackable_ammo/flashbulb/better
+	name = "\improper FOSSYN. Cathodic Flash Tube 2.0b"
+	real_name = "FOSSYN. Cathodic Flash Tube 2.0b"
+	desc = "A hefty glass tube filled with ionic gas, and two opposing electrodes."
 	max_health = 25
 	min_health = 20
 	icon_state = "bulb_good"

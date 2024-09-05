@@ -24,6 +24,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 		my_gun = gun
 		add_overlay_to_gun(gun, 1)
 		my_gun.bulk += src.bulkiness
+		my_gun.name = my_gun.real_name //clear "receiver"
 		return 1
 
 	proc/add_overlay_to_gun(var/obj/item/gun/modular/gun, var/correctly = 0)
@@ -618,7 +619,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = 3
 
 /obj/item/gun_parts/barrel/italian/buntline
-	name = "buon canna di fucile"
+	name = "canna di fucile extra lunga"
 	desc = "una canna di fucile di base e di bellissima qualità"
 	icon_state = "it_revolver_buntline"
 	name_addition = "tiratore"

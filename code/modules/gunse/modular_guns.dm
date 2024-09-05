@@ -17,6 +17,8 @@ by default all children of /obj/item/gun/modular/ should populate their own barr
 with some ordinary basic parts. barrel and mag are necessary, the other two whatever.
 additional custom parts can be created with stat bonuses, and other effects in their add_part_to_gun() proc
 
+TODO: make desc dynamic on build unless overridden by an existing desc (i.e. spawned from vending machine or on person)
+
 "average" base spread is 25 without a barrel, other guns may be less accurate, perhaps up to 30. few should ever be more accurate.
 in order to balance this, barrels should be balanced around ~ -15 spread, and stocks around -5 (so -13 is a rough barrel, -17 is a good one, etc.)
 giving an "average" spread for stock guns around 5-10
@@ -50,6 +52,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/built = 0
 	var/no_build = FALSE //should this receiver be built from attached parts on spawn? (useful for only-receivers)
 	var/no_save = 0 // when 1, this should prevent the player from carrying it cross-round?
+	icon = 'icons/obj/items/modular_guns/receivers.dmi'
 	icon_state = "shittygun"
 	contraband = 0 //is this a crime gun made by and for crimers
 	inventory_counter_enabled = 1
@@ -114,6 +117,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		make_parts()
 		if (!no_build || parts.len) //need to revisit
 			build_gun()
+		else
+			reset_gun()
 
 /obj/item/gun/modular/proc/make_parts()
 	return
@@ -807,7 +812,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	accessory = null
 	//foregrip = null
 
-	name = real_name
+	name = "[real_name] receiver"
 
 	max_crank_level = 0
 	safe_crank_level = 0
@@ -915,8 +920,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 /obj/item/gun/modular/NT
-	name = "\improper NT gun"
-	real_name = "\improper NT gun"
+	name = "abstract NT gun"
+	real_name = "abstract NT gun"
 	desc = "You're not supposed to see this, call a coder or whatever."
 	max_ammo_capacity = 0 // single-shot pistols ha- unless you strap an expensive loading mag on it.
 	action = "striker"
@@ -931,14 +936,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 
 //short receiver, by itself
 /obj/item/gun/modular/NT/short
-	name = "\improper NT pistol"
+	name = "\improper NT pistol receiver"
 	real_name = "\improper NT pistol"
 	desc = "A basic, Nanotrasen-licensed single-shot weapon."
 
 //long receiver, by itself
 //eventually be able to convert between long and short?
 /obj/item/gun/modular/NT/long
-	name = "\improper NT rifle"
+	name = "\improper NT rifle receiver"
 	real_name = "\improper NT rifle"
 	desc = "A mostly reliable, autoloading Nanotrasen-licensed and corporate security-issued weapon."
 	max_ammo_capacity = 2 //built in small loader
@@ -965,6 +970,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 
 //a built and usable pistol
 /obj/item/gun/modular/NT/short/pistol
+	name = "\improper NT pistol"
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/NT(src)
 		if(prob(10))
@@ -978,8 +984,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 
 //single shot, no stock, intended for shotgun shell
 /obj/item/gun/modular/NT/short/bartender
-	name = "grey-market shotgun"
-	desc = "Cobbled together from unlicensed parts."
+	name = "grey-market NT shotgun"
+	desc = "Cobbled together from unlicensed parts and passed between bartenders for at least a quarter of a generation."
 	contraband = 3
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/juicer/chub(src)
@@ -996,6 +1002,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 
 //long rifle
 /obj/item/gun/modular/NT/long/rifle
+	name = "\improper NT rifle"
 
 	make_parts()
 		if(prob(90))
@@ -1065,6 +1072,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/foss)
 
 //basic foss laser
 /obj/item/gun/modular/foss/standard
+	name = "\improper standards-compliant FOSS laser"
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/foss(src)
@@ -1072,6 +1080,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/foss)
 
 
 /obj/item/gun/modular/foss/long
+	name = "\improper more-piped FOSS laser"
 	desc = "An open-sourced and freely modifiable FOSS Inductive Flash Arc, Model 2k/20"
 
 	make_parts()
@@ -1080,6 +1089,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/foss)
 		grip = new /obj/item/gun_parts/grip/foss(src)
 
 /obj/item/gun/modular/foss/punt
+	name = "\improper 'arrem arreff' FOSS laser"
 	desc = "An open-sourced and freely modifiable FOSS Inductive Flash Arc, Model 2k/420"
 
 	make_parts()
@@ -1087,13 +1097,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular/foss)
 		stock = new /obj/item/gun_parts/stock/foss/longer(src)
 
 /obj/item/gun/modular/foss/loader
+	name = "\improper DDoS FOSS laser"
 	desc = "An open-sourced and freely modifiable FOSS Inductive Flash Arc, Model 2k/19L"
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/foss/long(src)
 		stock = new /obj/item/gun_parts/stock/foss/loader(src)
 		grip = new /obj/item/gun_parts/grip/foss(src)
 		//foregrip = new /obj/item/gun_parts/grip/foss(src)
-
 
 //JUICER GUN'ZES
 //Loud and obnoxious and comical and deudly but also extremely unreliable
@@ -1104,8 +1114,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/foss)
 //High damage potential but high fuckup potential as well
 ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 /obj/item/gun/modular/juicer
-	name = "\improper BLASTA"
-	real_name = "\improper Blaster"
+	name = "\improper abstract Juicer gun"
+	real_name = "\improper abstract BLASTA"
 	desc = "A juicer-built, juicer-'designed', and most importantly juicer-marketed gun."
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
 	icon_state = "juicer" //only large
@@ -1123,8 +1133,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 /obj/item/gun/modular/juicer/receiver
 
 /obj/item/gun/modular/juicer/basic
-	name = "\improper BLASTA"
-	real_name = "\improper BLASTA"
+	name = "\improper Juicer sawn-off shotgun"
+	real_name = "babby BLASTA"
 
 	make_parts()
 		if(prob(50))
@@ -1150,7 +1160,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 			accessory = new /obj/item/gun_parts/accessory/flashlight(src)
 
 /obj/item/gun/modular/juicer/blunder
-	name = "blunder BLASTA"
+	name = "\improper Juicer blunderbuss"
+	real_name = "blunda BLASTA"
+
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/juicer(src)
 		if(prob(5))
@@ -1162,7 +1174,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 		magazine = new /obj/item/gun_parts/magazine/juicer(src)
 
 /obj/item/gun/modular/juicer/long
-	name = "Sniper BLASTA"
+	name = "\improper Juicer 'sniper'"
+	real_name = "sniper BLASTA"
+
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/juicer/longer(src)
 		if(prob(70))
@@ -1173,10 +1187,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 			//foregrip = new /obj/item/gun_parts/grip/juicer(src)
 			magazine = new /obj/item/gun_parts/magazine/juicer/four(src)
 		else
-			magazine = new /obj/item/gun_parts/magazine/juicer(src)
+			magazine = new /obj/item/gun_parts/magazine/juicer/five(src)
 
 /obj/item/gun/modular/juicer/ribbed
-	name = "greeble BLASTA"
+	name = "\improper Juicer dildogun"
+	real_name = "greeble BLASTA"
+
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/juicer/ribbed(src)
 		if(prob(70))
@@ -1200,21 +1216,22 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 /obj/item/gun/modular/soviet
 
-	name = "\improper Soviet gun"
-	real_name = "\improper Soviet gun"
+	name = "\improper abstract Soviet laser gun"
+	real_name = "\improper abstract Soviet laser gun"
 	desc = "abstract type do not instantiate"
 	action = "lever"
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
-	icon_state = "soviet_short"
+	icon_state = "shittygun"
 	sound_type = "soviet"
 	gun_DRM = GUN_SOVIET
 
 
 //short receiver only
 /obj/item/gun/modular/soviet/short
-	name = "\improper Soviet Лазерный пистолет"
-	real_name = "\improper Soviet Лазерный пистолет"
+	name = "\improper Soviet laser pistol receiver"
+	real_name = "\improper Soviet lazernyy pistolet"
 	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
+	icon_state = "soviet_short"
 	max_ammo_capacity = 2
 	contraband = 2
 	barrel_overlay_x = BARREL_OFFSET_SHORT
@@ -1222,6 +1239,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	stock_overlay_x = STOCK_OFFSET_SHORT
 
 /obj/item/gun/modular/soviet/short/basic
+	name = "\improper Soviet laser pistol"
 	spread_angle = 9
 	contraband = 4
 	stock_overlay_x = -10
@@ -1231,14 +1249,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 		grip = new /obj/item/gun_parts/grip/italian/cowboy(src)
 
 /obj/item/gun/modular/soviet/short/covert
-	name = "\improper Soviet лазерная"
-	real_name = "\improper Soviet лазерная"
+	name = "covert Soviet laser pistol"
 	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
 	icon_state = "soviet_short"
-	max_ammo_capacity = 1
+	max_ammo_capacity = 0 //single shot
 	gun_DRM = GUN_SOVIET
 	spread_angle = 9
+	silenced = 1 //need to set this from barrel but whatever, it's here for now
 	//color = "#FF9999"
 	//icon_state = "laser"
 	contraband = 2
@@ -1249,8 +1267,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 
 //long receiver only
 /obj/item/gun/modular/soviet/long
-	name = "\improper Soviet Лазерная винтовка"
-	real_name = "\improper Soviet Лазерная винтовка"
+	name = "\improper Soviet laser rifle receiver"
+	real_name = "\improper Soviet lazernaya vintovka"
 	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
 	icon_state = "soviet_long"
 	max_ammo_capacity = 4
@@ -1263,8 +1281,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 	can_dual_wield = FALSE
 
 /obj/item/gun/modular/soviet/long/advanced
-	name = "\improper Soviet лазерная"
-	real_name = "\improper Soviet лазерная"
+	name = "\improper advanced Soviet laser rifle"
+	real_name = "\improper Soviet lazernaya vintovka"
 	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
 	icon_state = "soviet_long"
 	max_ammo_capacity = 4
@@ -1286,8 +1304,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 			stock = new /obj/item/gun_parts/stock/soviet/wire(src)
 
 /obj/item/gun/modular/soviet/long/scatter
-	name = "\improper Soviet лазерная"
-	real_name = "\improper Soviet лазерная"
+	name = "\improper Soviet laser scattergun"
+	real_name = "\improper Soviet lazernaya drobovik"
 	desc = "Энергетическая пушка советской разработки с пиротехническими лампами-вспышками."
 	icon_state = "soviet_long"
 	max_ammo_capacity = 3
@@ -1313,13 +1331,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular/soviet)
 //Cylinder "Magazine"
 ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 /obj/item/gun/modular/italian
-	name = "\improper Italiano"
-	real_name = "\improper Italiano"
-	//may need a vending machine name because the names are the same prior to prefix/suffix generation
-	desc = "Una pistola realizzata con acciaio, cuoio e olio d'oliva della più alta qualità possibile."
+	name = "abstract Italian gun"
+	real_name = "abstract Italian gun"
+	desc = "abstract type do not instantiate"
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
 	icon_state = "italian" //only
-	max_ammo_capacity = 2 // basic revolving mechanism
+	//basic revolving mechanism
 	action = "double"
 	//this will be a "magazine" but like tubes we'll have a slightly different firing method
 	gun_DRM = GUN_ITALIAN
@@ -1346,6 +1363,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 			..()
 
 /obj/item/gun/modular/italian/basic
+	name = "basic Italian revolver"
+	real_name = "\improper Italianetto"
+	desc = "Una pistola realizzata in acciaio mediocre."
+	max_ammo_capacity = 1 //2 shots
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/italian/small(src)
@@ -1353,7 +1374,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 
 //Standard factory issue
 /obj/item/gun/modular/italian/italiano
-	max_ammo_capacity = 3
+	name = "improved Italian revolver"
+	real_name = "\improper Italiano"
+	desc = "Una pistola realizzata in acciaio di qualità e pelle.."
+	max_ammo_capacity = 2
 
 	make_parts()
 		if (prob(50))
@@ -1369,7 +1393,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 
 //mama mia
 /obj/item/gun/modular/italian/big_italiano
-	max_ammo_capacity = 4
+	name = "masterwork Italian revolver"
+	real_name = "\improper Italianone"
+	desc = "Una pistola realizzata con acciaio, cuoio e olio d'oliva della più alta qualità possibile."
+	max_ammo_capacity = 3
 
 	make_parts()
 
@@ -1382,7 +1409,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 
 //da jokah babiyyyy
 /obj/item/gun/modular/italian/silly
-	max_ammo_capacity = 4
+	name = "jokerfied Italian revolver"
+	real_name = "\improper Grande Italiano"
+	max_ammo_capacity = 3
+	desc = "Io sono il pagliaccio, bambino!"
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/italian/joker(src)
