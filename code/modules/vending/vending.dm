@@ -1275,10 +1275,10 @@
 
 /obj/machinery/vending/cigarette //eventually wanna make one of these specifically for medbay
 	name = "cigarette machine"
-	desc = "If you want to get cancer, might as well do it in style!"
+	desc = "If you don't have any money for smokes, you can at least pretend you're playing extremely complicated pinball."
 	pay = 1
 	vend_delay = 10
-	icon_state = "cigs"
+	icon_state = "cigs_old" //credits: based heavily and directly on a 64x64 sprite by a grody clown which was made in direct response to my sudden request for a knobby cigarete vendin machin thank you kindly a grody clown -reginaldhj
 	icon_panel = "cigs-panel"
 	slogan_list = list("Space cigs taste good like a cigarette should!",
 	"I'd rather toolbox than switch.",
@@ -1310,8 +1310,12 @@
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo/juicer, rand(6, 9), hidden=1, cost=69)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(1,3),hidden=1, cost=PAY_UNTRAINED/5)
 
+	noknobs
+		desc = "If you want to get cancer, might as well do it in style!"
+		icon_state = "cigs"
+
 /obj/machinery/vending/cigarette/schweewa
-	icon_state = "s_cigs"
+	icon_state = "s_cigs_old"
 	icon_panel = "cigs-panel"
 	acceptcard = 0
 	desc = "Who still smokes these?"
@@ -1337,7 +1341,9 @@
 
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/random, rand(1,3), hidden=1, cost=420)
 
-
+	noknobs
+		desc = "Higher tech, but really doesn't have the same vibe."
+		icon_state = "s_cigs"
 
 
 /obj/machinery/vending/medical
