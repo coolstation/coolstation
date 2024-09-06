@@ -301,18 +301,19 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 		min_amount = 10
 		max_amount = 10
 
+//making these paper for now (paper will be used for custom rounds)
 /obj/item/stackable_ammo/pistol/italian
 	name = "Italian pistol round"
 	real_name = "Italian pistol round"
-	desc = "Italia's standard .31 pistol firearms cartridge. The same caliber everyone else copies. These rounds are kept fresh with a light coating of olive oil."
+	desc = "Italia's standard .31 pistol firearms cartridge, in paper. The same caliber everyone else copies. These rounds are kept fresh with a light coating of olive oil."
 	projectile_type = /datum/projectile/bullet/pistol_medium/AP
 	stack_type = /obj/item/stackable_ammo/pistol/italian/AP
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
-	icon_state = "nt_red"
-	icon_full  = "nt_red"
-	icon_empty = "nt_empty"
-	icon_one   = "bullet_red"
-	icon_shell = "red_case"
+	icon_state = "italian"
+	icon_full  = "italian"
+	icon_empty = "italian-empty"
+	icon_one   = "it_what"
+	icon_shell = "red_case" //except it's supposed to be caseless
 
 	three
 		name = "Italian pistol round (x3)"
@@ -333,15 +334,15 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 /obj/item/stackable_ammo/pistol/italian/AP
 	name = "\improper Italian AP pistol round"
 	real_name = "Italian AP pistol round"
-	desc = "Italia's standard .31 pistol firearms cartridge, with an AP core. The same caliber everyone else copies."
+	desc = "Italia's standard .31 pistol firearms cartridge, with an AP core. The same caliber everyone else copies. Still in paper..."
 	projectile_type = /datum/projectile/bullet/pistol_medium/AP
 	stack_type = /obj/item/stackable_ammo/pistol/italian/AP
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
-	icon_state = "nt_red"
-	icon_full  = "nt_red"
-	icon_empty = "nt_empty"
-	icon_one   = "bullet_red"
-	icon_shell = "red_case"
+	icon_state = "italian"
+	icon_full  = "italian"
+	icon_empty = "italian-empty"
+	icon_one   = "it_what"
+	icon_shell = "red_case" //except it's supposed to be caseless
 
 	three
 		name = "Italian AP pistol round (x3)"
@@ -365,11 +366,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	projectile_type = /datum/projectile/bullet/pistol_heavy //use a special two-bullet/half-damage projectile here
 	stack_type = /obj/item/stackable_ammo/pistol/juicer
 	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
-	icon_state = "nt_red"
-	icon_full  = "nt_red"
-	icon_empty = "nt_empty"
-	icon_one   = "bullet_red"
-	icon_shell = "red_case"
+	icon_state = "juicer_jr"
+	icon_full  = "juicer_jr"
+	icon_empty = "juicer_jr-empty"
+	icon_one   = "bullet_juicer_jr"
+	icon_shell = "juicer_jr_case"
 
 	three
 		name = "Juicer Jr. round (x3)"
@@ -466,9 +467,9 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/pistol/)
 	projectile_type = /datum/projectile/laser/zauber
 	stack_type = /obj/item/stackable_ammo/pistol/zaubertube/
 	ammo_DRM = GUN_SOVIET | GUN_FOSS
-	icon_state = "zaubertubes"
-	icon_full  = "zaubertubes"
-	icon_empty = "zaubertubes_empty"
+	icon_state = "soviet-zauber"
+	icon_full  = "soviet-zauber"
+	icon_empty = "soviet-empty"
 	icon_one   = "zauber_tube"
 	icon_shell = "zauber_spent"
 
@@ -494,30 +495,30 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	cartridge_length = 40
 
 /obj/item/stackable_ammo/rifle/NT
-	name = "\improper Soviet surplus ammo"
-	real_name = "\improper Soviet surplus ammo"
+	name = "\improper NT rifle ammo"
+	real_name = "\improper NT rifle ammo"
 	desc = "Standard 8mm NT Long rifle cartridges: twice as nice as pistol bullets."
 	projectile_type = /datum/projectile/bullet/rifle_weak
 	stack_type = /obj/item/stackable_ammo/rifle/NT
 	ammo_DRM = GUN_NANO | GUN_SOVIET | GUN_JUICE
-	icon_state = "surplus"
-	icon_full  = "surplus"
-	icon_empty = "zaubertubes_empty"
-	icon_one   = "bullet_nerf"
-	icon_shell = "nerf_case"
+	icon_state = "nt_brass"
+	icon_full  = "nt_brass"
+	icon_empty = "nt_empty"
+	icon_one   = "bullet_brass"
+	icon_shell = "brass_case"
 
 	three
-		name = "\improper Soviet surplus ammo (x3)"
+		name = "\improper NT rifle ammo (x3)"
 		min_amount = 3
 		max_amount = 3
 
 	five
-		name = "\improper Soviet surplus ammo (x5)"
+		name = "\improper NT rifle ammo (x5)"
 		min_amount = 5
 		max_amount = 5
 
 	ten
-		name = "\improper Soviet surplus ammo (x10)"
+		name = "\improper NT rifle ammo (x10)"
 		min_amount = 10
 		max_amount = 10
 
@@ -528,11 +529,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	projectile_type = /datum/projectile/bullet/rifle_medium
 	stack_type = /obj/item/stackable_ammo/rifle/soviet
 	ammo_DRM = GUN_NANO | GUN_SOVIET | GUN_JUICE
-	icon_state = "surplus"
-	icon_full  = "surplus"
-	icon_empty = "zaubertubes_empty"
-	icon_one   = "bullet_nerf"
-	icon_shell = "nerf_case"
+	icon_state = "soviet-surplus"
+	icon_full  = "soviet-surplus"
+	icon_empty = "soviet-empty"
+	icon_one   = "bullet_brass"
+	icon_shell = "brass_case"
 
 	three
 		name = "\improper Soviet surplus ammo (x3)"
@@ -556,11 +557,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/rifle)
 	projectile_type = /datum/projectile/bullet/rifle_heavy
 	stack_type = /obj/item/stackable_ammo/rifle/juicer
 	ammo_DRM = GUN_NANO | GUN_SOVIET | GUN_JUICE
-	icon_state = "red"
-	icon_full  = "red"
-	icon_empty = "empty"
-	icon_one   = "bullet_red"
-	icon_shell = "red_case"
+	icon_state = "juicer_big"
+	icon_full  = "juicer_big"
+	icon_empty = "juicer_big-empty"
+	icon_one   = "bullet_juicer_big"
+	icon_shell = "juicer_big_case"
 
 	three
 		name = "\improper Juicer BIG rounds (x3)"
@@ -633,6 +634,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	desc = "NT 16mm shotgun shell with medium shot, for heavy barrels."
 	projectile_type = /datum/projectile/bullet/shot_weak
 	stack_type = /obj/item/stackable_ammo/scatter/NT
+	icon_state = "nt_shells"
+	icon_full  = "nt_shells"
 
 	three
 		name = "\improper NT Shot (x3)"
@@ -656,6 +659,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	desc = "NT 8mm microshotgun shell, loaded for maintenance vermin. For light barrels."
 	projectile_type = /datum/projectile/bullet/shot_weak/mini
 	stack_type = /obj/item/stackable_ammo/scatter/NT/mini
+	icon_one   = "shell_mini_blue"
+	icon_shell = "shell_mini_case"
 
 	three
 		name = "\improper NT Mini Shot (x3)"
@@ -681,6 +686,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 	desc = "Ecologically and economically hand-packed by local Juicer children. In, uh, whatever caliber. It'll probably fit heavy barrels."
 	projectile_type = /datum/projectile/bullet/shot_heavy
 	stack_type = /obj/item/stackable_ammo/scatter/juicer
+	icon_state = "shells-red"
+	icon_full  = "shells-red"
+	icon_empty = "empty"
+	icon_one   = "shell_red"
+	icon_shell = "shell_red_case"
 	cartridge_length = 40 //for big receivers only
 
 	three
@@ -697,6 +707,18 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 		name = "\improper Juicer Hot Pocketz (x10)"
 		min_amount = 10
 		max_amount = 10
+
+	/obj/item/stackable_ammo/scatter/juicer/denim
+		name = "\improper Juicer JAMMO"
+		real_name = "\improper Juicer JAMMO"
+		desc = "Denim-wrapped shotgun cartridges. Increases chamber pressure, somehow, but the fabric is very prone to getting stuck. For jeavy jarrels."
+		projectile_type = /datum/projectile/bullet/shot_heavy/denim
+		stack_type = /obj/item/stackable_ammo/scatter/juicer/denim
+		icon_state = "shells"
+		icon_full  = "shells"
+		icon_empty = "empty"
+		icon_one   = "shell_blue"
+		icon_shell = "shell_case"
 
 /obj/item/stackable_ammo/scatter/bartender
 	name = "\improper Bartender's Buddy"

@@ -445,6 +445,11 @@ soon it will go away */
 	weak
 		power = 50 //can have a little throwing, as a treat
 
+	denim
+		power = 80
+
+		//on_hit override message to player: "J'ow!" "That really jurt!" etc.
+
 //bartender's round
 /datum/projectile/bullet/shot_salt
 	name = "rock salt"
@@ -467,6 +472,7 @@ soon it will go away */
 			var/mob/living/L = hit
 			if(!ON_COOLDOWN(L, "saltshot_scream", 1 SECOND))
 				L.emote("scream")
+			L.reagents.add_reagent("salt", 10) //watch your sodium intake
 			L.take_eye_damage(P.power / 2)
 			L.change_eye_blurry(P.power, 40)
 			L.setStatus("salted", 15 SECONDS, P.power * 2)
