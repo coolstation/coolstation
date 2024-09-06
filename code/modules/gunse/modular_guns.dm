@@ -62,7 +62,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	//offsets and parts
 	var/barrel_overlay_x = 0 //barrel attachment offset relative to standard (16,19 to 16,16) part attachment
 	var/barrel_overlay_y = 0
-	var/bullpup_stock = 0 // this one's fucky but solvable (to be continued....)
+	var/bullpup_stock = 0 // place stock directly behind grip and redraw receiver greebles over top to cover it again
 	var/grip_overlay_x = 0 //grip attachment offset relative to standard (12,16) attachment point on small receiver
 	var/grip_overlay_y = 0 //easiest to use templates to make it consistent: less math/offsetting
 	var/stock_overlay_x = 0 //stock attachment offset relative to standard (16,19 to 16,16) part attachment
@@ -75,6 +75,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	var/lensing = 0 // Variable used for optical gun barrels. laser intensity scales around 1.0 (or will!)
 	var/scatter = 0 // variable for using hella shotgun shells or something
+	var/caliber = 0.31 //standard light barrel
+	var/cartridge_length = 20 //standard small receiver
 
 	var/flashbulb_only = 0 // FOSS guns only
 	var/flash_auto = 0 // FOSS auto-fire setting
@@ -101,11 +103,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	var/jam_frequency_reload = 1 //base % chance to jam on reload. Just cycle again to clear.
 	var/jam_frequency_fire = 1 //base % chance to jam on fire. Cycle to clear.
-	//var/misfire_frequency = 1 //base % chance to fire wrong. No shot, squib, hangfire, or something that just kinda farts its way out of the barrel and sucks.
-	//var/hangfire_frequency = 1 //base % chance to fail to fire immediately.
-	//var/squib_frequency = 1 //base % chance to fire a bullet just enough to be really dangerous to the user.
+	//var/misfire_frequency = 1 //base % chance to fire wrong in some way
+	//var/hangfire_frequency = 1 //base % chance to fail to fire immediately (but will after a delay, whether held or not)
+	//var/catastrophic_frequency = 1 //base % chance to fire a bullet just enough to be really dangerous to the user. probably not fun to have to find a screwdriver or rod and poke it out so forget that
 	var/jammed = 0 //got something stuck and unable to fire? for now: 1 for didn't go off, 2 for stuck, 3 for whatever
-	var/processing_ammo = 0 //cycling ammo/cranking off
+	var/processing_ammo = 0 //cycling ammo (separate from cranking off)
 
 	var/sound_type = null //bespoke set of loading and cycling noises
 
@@ -957,6 +959,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 	name = "\improper NT rifle receiver"
 	real_name = "\improper NT rifle"
 	desc = "A mostly reliable, autoloading Nanotrasen-licensed and corporate security-issued weapon."
+	cartridge_length = 40
 	max_ammo_capacity = 2 //built in small loader
 	icon_state = "nt_long"
 	grip_overlay_x = GRIP_OFFSET_BULLPUP
@@ -1435,7 +1438,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 /*
 /obj/item/gun/modular/debug
 	var/debugnum = 0 //start basic
-	var/debugmax = 6 //six debug gunse
+	var/debugmax = 6 //six debug
 	icon = 'icons/obj/items/modular_guns/receivers.dmi'
 	icon_state = "debug-0"
 

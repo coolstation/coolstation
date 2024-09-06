@@ -1469,8 +1469,8 @@
 		product_list += new/datum/data/vending_product(/obj/item/device/flash, 4)
 		product_list += new/datum/data/vending_product(/obj/item/clothing/head/helmet/hardhat/security, 4)
 		product_list += new/datum/data/vending_product(/obj/item/device/pda2/security, 2)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/three, 3)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive_burst/three, 2)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/capacitive/three, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/rifle/capacitive/burst/three, 2)
 		product_list += new/datum/data/vending_product(/obj/item/implantcase/antirev, 3)
 		product_list += new/datum/data/vending_product(/obj/item/implanter, 1)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short/pistol, 3)
@@ -1496,13 +1496,13 @@
 
 	create_products()
 		..()
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/ten, 3)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/ten, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/capacitive/ten, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/NT/ten, 3)
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/slug_rubber/ten, 3)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/buckshot/three, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/juicer/three, 3)
 		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/tranq_darts, 3)
 		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/tranq_darts/anti_mutant, 3)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/zaubertube/three, 1, hidden=1) // this may be a bad idea, but it's only one box //Maybe don't put the delimbing version in here
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/zaubertube/three, 1, hidden=1) // this may be a bad idea, but it's only one box //Maybe don't put the delimbing version in here
 
 /obj/machinery/vending/cola
 	name = "soda machine"
@@ -1969,41 +1969,47 @@
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss/punt, 2)
 */
 		//above this line is for debug and testing only, they'll go in the bin later.
+		//all should require permit, some should require permit and sec
+		//full gunse
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short/pistol, 2, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/rifle, 1, cost = PAY_TRADESMAN*1.5)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/shotty, 1, cost = PAY_TRADESMAN*1.5)
+		//DIY section
+		//receivers
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short, 2, cost = PAY_TRADESMAN/2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long, 2, hidden=1, cost = PAY_TRADESMAN)
+		//partse
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT, 5, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long, 5, cost = PAY_UNTRAINED*1.1)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long/very, 1, hidden=1, cost = PAY_TRADESMAN*1.2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/short, 2, 2, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/shotty, 2, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 1, cost = PAY_UNTRAINED/5)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/flashlight, 3, cost = PAY_UNTRAINED/4)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 1, hidden=1, cost = PAY_TRADESMAN)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 1, hidden=1, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/bigger,  1, hidden=1, cost = PAY_UNTRAINED*1.1)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT, 5, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT/guardless, 2, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT/fancy, 2, cost = PAY_UNTRAINED/2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT/ceremonial, 2, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT/stub, 2, cost = PAY_UNTRAINED/2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/wire, 2, cost = PAY_UNTRAINED/1.5)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT, 2, cost = PAY_UNTRAINED/1.5)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/precision, 2, cost = PAY_UNTRAINED/2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/drum, 2, cost = PAY_UNTRAINED/2.5)
-
-		//product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet/long, 1, cost = PAY_UNTRAINED)
-		//product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/soviet, 1, cost = PAY_UNTRAINED)
-		//product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/zaubertube/ten, 10, cost = PAY_TRADESMAN)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/ten, 10, cost = PAY_TRADESMAN)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/ten, 10, cost = PAY_UNTRAINED)
-		//product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 1, hidden=1, cost = PAY_UNTRAINED)
-		//product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/basic, 1, hidden=1, cost = PAY_UNTRAINED*2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/stock/NT/wire, 2, cost = PAY_UNTRAINED/1.5)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 1, cost = PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/flashlight, 3, cost = PAY_UNTRAINED/4)
+		//ammo
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/NT/ten, 10, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/capacitive/ten, 10, cost = PAY_UNTRAINED)
+		//hidden
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 1, hidden=1, cost = PAY_UNTRAINED*2)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 1, hidden=1, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 1, hidden=1, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/bigger,  1, hidden=1, cost = PAY_UNTRAINED*1.1)
+
 
 	debug
+		name = "Debug Gunse Vendor"
+		desc = "new! improviato! no more ammo*!!!! maximum relievo"
 		pay = 0
 		create_products()
 			for(var/types in concrete_typesof(/obj/item/gun/modular))
@@ -2013,6 +2019,15 @@
 			for(var/types in concrete_typesof(/obj/item/stackable_ammo/))
 				product_list += new/datum/data/vending_product(types, 5)
 			product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 5)
+
+		ammo
+			name = "Debug Ammo Vendor"
+			desc = "there were just too many fucking types of this shit and scrolling was bad"
+			pay = 0
+			create_products()
+				for(var/types in concrete_typesof(/obj/item/stackable_ammo/))
+					product_list += new/datum/data/vending_product(types, 5)
+				product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 5)
 
 	juicer
 		color = "#bbFFbb"
@@ -2047,12 +2062,12 @@
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/juicer/red, 4, cost = PAY_UNTRAINED*0.7)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/juicer/trans, 2, cost = PAY_UNTRAINED*0.8)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/juicer, 3, cost = PAY_UNTRAINED*0.7)
-			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/zaubertube/ten, 10, cost = PAY_TRADESMAN)
-			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/ten, 10, cost = PAY_TRADESMAN)
-			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive/ten, 10, cost = PAY_UNTRAINED)
-			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/buckshot, 10, cost = PAY_UNTRAINED*3)
+			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/zaubertube/ten, 10, cost = PAY_TRADESMAN)
+			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/NT/ten, 10, cost = PAY_TRADESMAN)
+			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/capacitive/ten, 10, cost = PAY_UNTRAINED)
+			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/juicer, 10, cost = PAY_UNTRAINED*3)
 			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/slug_rubber, 10, cost = PAY_UNTRAINED)
-			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/capacitive_burst, 10, cost = PAY_UNTRAINED*3)
+			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/rifle/capacitive/burst, 10, cost = PAY_UNTRAINED*3)
 			product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 1, cost = PAY_UNTRAINED*1.1)
 
 

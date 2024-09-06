@@ -20,6 +20,7 @@ proc/build_syndi_buylist_cache()
 	var/cost = null // Cost of the item. Leave 0 to make it unavailable.
 	var/desc = null
 	var/list/job = null // For job-specific items.
+	var/list/faction = null //For faction-specific handling (juicer/foss/italian/soviet/etc.). gotta lay groundwork/categories before it can be built tbh
 	var/datum/objective/objective = null // For objective-specific items. Needs to be a type e.g. /datum/objective/assassinate.
 	var/telecrystal = null //for the telecrystal-only category
 	var/list/blockedmode = null // For items that can't show up in certain modes (affects uplink and surplus crates). Defined by the game mode datum (checks for children too).
@@ -48,29 +49,29 @@ proc/build_syndi_buylist_cache()
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/weapon/pistolrounds
-	name = "Ammo: Modular Pistol Rounds"
-	item = /obj/item/stackable_ammo/pistol/ten
+	name = "Ammo: Italian Pistol Rounds"
+	item = /obj/item/stackable_ammo/pistol/italian/ten
 	cost = 1
-	desc = "Ten pretty-lethal rounds, in case you run out."
+	desc = "Ten rounds of chump-poppers, in case you run out."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/weapon/pistolrounds
-	name = "Ammo: AP Pistol Rounds"
-	item = /obj/item/stackable_ammo/pistol_38AP/ten
-	cost = 2
-	desc = "Ten very-lethal rounds, in case you run out."
+	name = "Ammo: Italian Pistol Rounds (AP)"
+	item = /obj/item/stackable_ammo/pistol/italian/AP/five
+	cost = 1
+	desc = "Five rounds of vest-shredders, in case you run out."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/weapon/buckshot
-	name = "Ammo: Modular Shotgun Buckshot"
-	item = /obj/item/stackable_ammo/scatter/buckshot/ten
+	name = "Ammo: Juicer Shotgun Buckshot"
+	item = /obj/item/stackable_ammo/scatter/juicer/ten
 	cost = 2
 	desc = "This shit is actually banned by the Geneva Convention. Luckily, those dorks have no jurisdiction here."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/weapon/radbow
 	name = "Ammo: Rad Poison Crossbow Bolts"
-	item = /obj/item/stackable_ammo/radbow/ten
+	item = /obj/item/stackable_ammo/pistol/radbow/ten
 	cost = 3
 	desc = "Ten highly lethal flechettes that deal large amounts of radiation poisoning. Can be fired from any modular gun. Popular with the NT pistol."
 	blockedmode = list(/datum/game_mode/revolution)
@@ -104,14 +105,12 @@ proc/build_syndi_buylist_cache()
 	desc = "A FOSS-Licensed hand-cranked open-source laser gun, and a few flashbulbs to boot. Tricky!"
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
-
 /datum/syndicate_buylist/weapon/garrote
 	name = "Fibre Wire"
 	item = /obj/item/garrote
 	cost = 3
 	desc = "Commonly used by special forces for silent removal of isolated targets. Ensure you are out of sight, apply to the target's neck from behind with a firm two-hand grip and wait for death to occur."
 	blockedmode = list(/datum/game_mode/revolution)
-
 
 /datum/syndicate_buylist/weapon/empgrenades
 	name = "EMP Grenades"

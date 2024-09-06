@@ -596,23 +596,23 @@
 
 	standard
 		spawn_contents = list(/obj/item/gun/modular/NT/short/pistol, //energy/taser_gun,
-			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/capacitive/ten)
+			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/ten)
 
 	offense
 		spawn_contents = list(/obj/item/gun/modular/NT/long, //energy/wavegun,
-			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/capacitive/five, /obj/item/stackable_ammo/pistol/three)
+			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/five, /obj/item/stackable_ammo/pistol/NT/three)
 
 	support
 		spawn_contents = list(/obj/item/baton, /obj/item/reagent_containers/food/snacks/donut/custom/robust = 2,  /obj/item/reagent_containers/emergency_injector/morphine = 4)
 
 	control
 		spawn_contents = list(/obj/item/gun/modular/NT/long,
-			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/capacitive/ten, /obj/item/stackable_ammo/capacitive/three)
+			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/pistol/capacitive/ten, /obj/item/stackable_ammo/pistol/capacitive/three)
 		New()
 			..()
 
 	assistant
-		spawn_contents = list(/obj/item/barrier, /obj/item/device/detective_scanner, /obj/item/device/ticket_writer, /obj/item/stackable_ammo/capacitive/three)
+		spawn_contents = list(/obj/item/barrier, /obj/item/device/detective_scanner, /obj/item/device/ticket_writer, /obj/item/stackable_ammo/pistol/capacitive/three)
 
 	ntso
 		spawn_contents = list(/obj/item/gun/energy/signifer2, /obj/item/gun/kinetic/clock_188, /obj/item/baton/ntso, /obj/item/clothing/mask/gas/NTSO, /obj/item/storage/ntso_pouch, /obj/item/barrier) //secbelt subtype that only spawns on NTSO, not in vendor
@@ -622,7 +622,7 @@
 
 	tasersmg
 		spawn_contents = list(/obj/item/gun/modular/NT/short/pistol, //energy/tasersmg,
-			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/capacitive_burst/five, /obj/item/stackable_ammo/capacitive/three)
+			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/rifle/capacitive/burst/five, /obj/item/stackable_ammo/pistol/capacitive/three)
 
 //////////////////////////////
 // ~Nuke Ops Class Storage~ //

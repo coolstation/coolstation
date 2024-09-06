@@ -804,38 +804,38 @@ THROWING DARTS
 
 	bullet_pistol_heavy
 		name = "Juicer Jr. round"
-		desc = "A really big pistol round, despite the name. Manufactured solely for clout."
+		desc = "A half-standard-caliber pistol round, fired in pairs. Manufactured solely for clout."
 
 	bullet_pistol_heavy_ap
 		name = "Juicer Jr. AP pistol round"
-		desc = "Probably the most illegal a pistol bullet can possibly be."
+		desc = "Probably the most illegal a pistol bullet can possibly be, despite the size."
 
 	bullet_pistol_medium
-		name = "8mm pistol round"
+		name = ".31 pistol round"
 		desc = "Italian in origin. Not too rare, but still contraband. Smells like olive oil."
 
 	bullet_pistol_medium_ap
-		name = "8mm AP pistol round"
+		name = ".31 AP pistol round"
 		desc = "Italian armor-piercing round. Very rare, VERY contraband. This is a spicy meatball."
 
 	bullet_pistol_weak
-		name = ".31 Short round"
+		name = "8mm Short round"
 		desc = "Standard bullet of the Nanotrasen Armory. Or Arsenal. Whichever one it is."
 
 	bullet_rifle_weak
-		name = ".31 Long round"
+		name = "8mm Long round"
 		desc = "Honestly the exact same thing as the pistol bullet, but costs twice as much and is keyed to not fit in pistol casings."
 
 	bullet_rifle_weak_ap
-		name = ".31 Long AP round"
+		name = "8mm Long AP round"
 		desc = "Special issue Nanotrasen armor-piercing rifle round. Unusual to see."
 
 	bullet_rifle_medium
-		name = "8mm rifle round"
+		name = "2.8 line rifle round"
 		desc = "Soviet surplus rifle round. You don't see these very often since they switched to zaubertubes exclusively 3X years ago."
 
 	bullet_rifle_medium_ap
-		name = "8mm AP rifle round"
+		name = "2.8 line AP rifle round"
 		desc = "Soviet surplus rifle round with an armor piercing center. This one's pretty hardcore... Get it? Hey, do you get it?"
 
 	bullet_rifle_heavy
@@ -862,7 +862,7 @@ THROWING DARTS
 		name = "shrapnel"
 		icon = 'icons/obj/scrap.dmi'
 		desc = "A bunch of jagged shards of metal."
-		icon_state = "2metal2"
+		icon_state = "2metal2" //4u
 
 	dart
 		name = "dart"

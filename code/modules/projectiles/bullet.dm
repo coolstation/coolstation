@@ -65,6 +65,8 @@ toxic - poisons
 		..()//uh, what the fuck, call your parent
 		//return // BULLETS CANNOT BLEED, HAINE
 
+//hi i eventually want to make it pistol/weak rather than pistol_weak but i'm not doing that yet (requires lotta changes)
+
 /* ------------------------------ Onto The Bits ----------------------------- */
 
 //custom manufactured bullets. probably for some other time.
@@ -99,7 +101,7 @@ toxic - poisons
 	hit_type = DAMAGE_CUT
 	implanted = /obj/item/implant/projectile/bullet_pistol_weak
 
-/datum/projectile/bullet/pistol_weak/stunners//energy bullet things so he can actually stun something
+/datum/projectile/bullet/pistol_weak/stunners
 	name = "stun bullet"
 	power = 20
 	ks_ratio = 0.0
@@ -347,14 +349,23 @@ soon it will go away */
 /* ------------------------------ Shotgun Shit ------------------------------ */
 //First up: Shot (Tiny projectiles fired from one cartridge)
 //NT Shot
-/datum/projectile/bullet/shot_weak // buckshot pellets generates by shotguns
-	name = "buckshot"
-	sname = "buckshot"
+/datum/projectile/bullet/shot_weak // small shot pellets generates by shotguns
+	name = "shot"
+	sname = "shot"
 	icon_state = "trace"
 	power = 6
 	dissipation_rate = 5
 	dissipation_delay = 3
 	damage_type = D_KINETIC
+
+	mini //for maintenance pest control
+		name = "ratshot"
+		sname = "ratshot"
+		icon_state = "trace"
+		power = 3
+		dissipation_rate = 5
+		dissipation_delay = 3
+		damage_type = D_KINETIC
 
 //probably a lawgiver thing but we can adopt this into real separate shell
 /datum/projectile/bullet/clownshot
@@ -390,10 +401,12 @@ soon it will go away */
 				H.emote("twitch_v")
 				JOB_XP(H, "Clown", 1)
 		return
+//FOSS Shot? EMP type stuff/utility shotgun?
+//come back to this later
 
 //Juicer Shot
 /datum/projectile/bullet/shot_heavy
-	name = "buckshot"
+	name = "juicy buckshot"
 	shot_sound = 'sound/weapons/shotgunshot.ogg'
 	power = 70
 	ks_ratio = 1.0

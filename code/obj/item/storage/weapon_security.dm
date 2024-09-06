@@ -54,9 +54,9 @@
 	desc = "A box containing an italian revolver and ammo."
 	// cogwerks - i think the ammo boxes are dumb, giving the starting box more ammo
 	spawn_contents = list(/obj/item/gun/modular/italian/big_italiano,\
-	/obj/item/stackable_ammo/pistol/ten,\
-	/obj/item/stackable_ammo/pistol_38AP/five,\
-	/obj/item/stackable_ammo/capacitive/five)
+	/obj/item/stackable_ammo/pistol/italian/ten,\
+	/obj/item/stackable_ammo/pistol/italian/AP/five,\
+	/obj/item/stackable_ammo/pistol/capacitive/five)
 
 /obj/item/storage/box/detectivegun
 	name = "italian revolver box"
@@ -65,8 +65,8 @@
 	// Reduced the amount of ammo. The detective had four lethal and five stun speedloaders total in his closet, perhaps a bit too much (Convair880).
 	spawn_contents = list(/obj/item/gun/modular/italian/italiano,\
 	/obj/item/gun_parts/grip/italian/bigger,\
-	/obj/item/stackable_ammo/capacitive/ten,\
-	/obj/item/stackable_ammo/pistol/five)
+	/obj/item/stackable_ammo/pistol/capacitive/ten,\
+	/obj/item/stackable_ammo/pistol/NT/five)
 
 /obj/item/storage/box/ak47 // cogwerks, terrorism update
 	name = "rifle box"
@@ -82,8 +82,8 @@
 	desc = "A box containing a standard issue pistol and some ammo."
 	// this might be a terrible idea giving them so much ammo, but whatevs
 	spawn_contents = list(/obj/item/gun/modular/NT/short/pistol,\
-	/obj/item/stackable_ammo/pistol/ten = 2,\
-	/obj/item/stackable_ammo/tranq)
+	/obj/item/stackable_ammo/pistol/NT/ten = 2,\
+	/obj/item/stackable_ammo/pistol/tranq)
 
 /obj/item/storage/box/derringer
 	name = "derringer box"
@@ -97,8 +97,8 @@
 	icon_state = "hard_case"
 	desc = "A box containing a low-powered shotgun and some ammo."
 	spawn_contents = list(/obj/item/gun/modular/NT/long/shotty,\
-	/obj/item/stackable_ammo/scatter/buckshot/five,\
-	/obj/item/stackable_ammo/capacitive_burst/ten,\
+	/obj/item/stackable_ammo/scatter/juicer/five,\
+	/obj/item/stackable_ammo/rifle/capacitive/burst/ten,\
 	/obj/item/stackable_ammo/scatter/slug_rubber/ten)
 
 /obj/item/storage/box/revolver_ammo

@@ -363,9 +363,9 @@
 
 /obj/cabinet/ammo // for the shooting range prefab
 	New()
-		slots["1"] = new /obj/item/stackable_ammo/capacitive/ten(src)
-		slots["2"] = new /obj/item/stackable_ammo/capacitive/ten(src)
-		slots["3"] = new /obj/item/stackable_ammo/capacitive/ten(src)
-		slots["4"] = new /obj/item/stackable_ammo/pistol/five(src)
+		slots["1"] = new /obj/item/stackable_ammo/pistol/capacitive/ten(src)
+		slots["2"] = new /obj/item/stackable_ammo/pistol/capacitive/ten(src)
+		slots["3"] = new /obj/item/stackable_ammo/pistol/capacitive/ten(src)
+		slots["4"] = new /obj/item/stackable_ammo/pistol/NT/five(src)
 		rebuildOverlays()
 		return ..()
