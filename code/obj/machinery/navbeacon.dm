@@ -255,7 +255,7 @@
 
 		if(signal.data["patrol"])
 			signal.encryption = "ERR_12845_NT_SECURE_PACKET:"
-			signal.encryption_density = 90
+			signal.encryption_obfuscation = 90
 			signal.data["auth_code"] = netpass_security
 
 		frequency.post_signal(src, signal)
