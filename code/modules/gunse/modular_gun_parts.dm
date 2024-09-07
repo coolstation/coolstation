@@ -173,6 +173,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 	bulkiness = 1 // if gun or stock is 2 handed, whole gun is 2 handed
 	stock_dual_wield = 1 // if gun AND stock can be dual wielded, whole gun can be dual wielded.
 	jam_frequency_reload = 0 //attitional % chance to jam on reload. Just reload again to clear.
+	part_DRM = GUN_JUICE | GUN_NANO | GUN_SOVIET | GUN_ITALIAN //pretty much everyone by default
 	var/list/ammo_list = list() // ammo that stays in the stock when removed
 	icon_state = "nt_solid"
 	icon = 'icons/obj/items/modular_guns/stocks.dmi'
@@ -878,7 +879,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "\improper FOSS laser stock"
 	desc = "An open-sourced laser dynamo, with a multiple-position winding spring."
 	spread_angle = -3 // basic stabilisation
-	part_DRM = GUN_FOSS | GUN_SOVIET // | GUN_JUICE
+	part_DRM = GUN_FOSS //standards compliant with their own standard
 	flashbulb_only = 1
 	max_crank_level = 2
 	safe_crank_level = 1
