@@ -1360,6 +1360,7 @@
 
 /datum/commodity/diner/monster
 	comname = "THE MONSTER"
+	desc = "Good fucking lord."
 	comtype = /obj/item/reagent_containers/food/snacks/burger/monsterburger
 	price = 100
 	baseprice = 100
@@ -1368,6 +1369,7 @@
 
 /datum/commodity/diner/sloppyjoe
 	comname = "Sloppy Joe"
+	desc = "Diner food of very questionable quality."
 	comtype = /obj/item/reagent_containers/food/snacks/burger/sloppyjoe
 	price = 10
 	baseprice = 10
@@ -1376,6 +1378,7 @@
 
 /datum/commodity/diner/fishburger
 	comname = "Fish-Fil-A"
+	desc = "Fish sandwich? Wait, we have a fish sandwich? Does anybody ever order that thing?"
 	comtype = /obj/item/reagent_containers/food/snacks/burger/fishburger
 	price = 10
 	baseprice = 10
@@ -1384,6 +1387,7 @@
 
 /datum/commodity/diner/luauburger
 	comname = "Luau Burger"
+	desc = "A burger topped with pineapple. Or as it's known in the biz, papple."
 	comtype = /obj/item/reagent_containers/food/snacks/burger/luauburger
 	price = 10
 	baseprice = 10
@@ -1392,6 +1396,7 @@
 
 /datum/commodity/diner/tikiburger
 	comname = "Tiki Burger"
+	desc = "Pineapple <i>and</i> coconut, aren't we feeling fancy?"
 	comtype = /obj/item/reagent_containers/food/snacks/burger/tikiburger
 	price = 10
 	baseprice = 10
@@ -1400,6 +1405,7 @@
 
 /datum/commodity/diner/coconutburger
 	comname = "Coconut Burger"
+	desc = "We use half of the coconut for the top bun. Waste not, want not!"
 	comtype = /obj/item/reagent_containers/food/snacks/burger/coconutburger
 	price = 10
 	baseprice = 10
@@ -1408,6 +1414,7 @@
 
 /datum/commodity/diner/onigiri
 	comname = "Onigiri"
+	desc = "A wad of rice wrapped in seaweed."
 	comtype = /obj/item/reagent_containers/food/snacks/rice_ball/onigiri
 	price = 6
 	baseprice = 6
@@ -1416,6 +1423,7 @@
 
 /datum/commodity/diner/nigiri_roll
 	comname = "Nigiri Roll"
+	desc = "A wad of rice topped with fish."
 	comtype = /obj/item/reagent_containers/food/snacks/nigiri_roll
 	price = 20
 	baseprice = 20
@@ -1424,6 +1432,7 @@
 
 /datum/commodity/diner/sushi_roll
 	comname = "Sushi Roll"
+	desc = "Just an entire uncut roll of sushi. Filled!"
 	comtype = /obj/item/reagent_containers/food/snacks/sushi_roll
 	price = 60
 	baseprice = 60
@@ -1440,6 +1449,7 @@
 
 /datum/commodity/diner/waffles
 	comname = "Waffles"
+	desc = "Batter in a novel shape!"
 	comtype = /obj/item/reagent_containers/food/snacks/waffles
 	price = 12
 	baseprice = 12
@@ -1456,6 +1466,7 @@
 
 /datum/commodity/diner/meatloaf
 	comname = "Meatloaf"
+	desc = "It's a brick of meat the size of a loaf of bread. Isn't this what you wanted?"
 	comtype = /obj/item/reagent_containers/food/snacks/meatloaf
 	price = 15
 	baseprice = 15
@@ -1464,6 +1475,7 @@
 
 /datum/commodity/diner/fishfingers
 	comname = "Fish Fingers"
+	desc = "Supplied by the fish mafia. We don't ask questions."
 	comtype = /obj/item/reagent_containers/food/snacks/fish_fingers
 	price = 15
 	baseprice = 15
@@ -1472,13 +1484,14 @@
 
 /datum/commodity/diner/slurrypie
 	comname = "Slurry Pie"
+	desc = "More descriptive than you might think."
 	comtype = /obj/item/reagent_containers/food/snacks/pie/slurry
 	price = 12
 	baseprice = 12
 	upperfluc = 5
 	lowerfluc = -5
 
-/datum/commodity/diner/creampie
+/datum/commodity/diner/creampie //unused
 	comname = "Cream Pie"
 	comtype = /obj/item/reagent_containers/food/snacks/pie/cream
 	price = 20
@@ -1488,6 +1501,7 @@
 
 /datum/commodity/diner/daily_special
 	comname = "Daily Special"
+	desc = "Are you feeling lucky, punk?"
 	comtype = null
 	price = 15
 	baseprice = 15
