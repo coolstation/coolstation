@@ -708,17 +708,17 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/scatter/)
 		min_amount = 10
 		max_amount = 10
 
-	/obj/item/stackable_ammo/scatter/juicer/denim
-		name = "\improper Juicer JAMMO"
-		real_name = "\improper Juicer JAMMO"
-		desc = "Denim-wrapped shotgun cartridges. Increases chamber pressure, somehow, but the fabric is very prone to getting stuck. For jeavy jarrels."
-		projectile_type = /datum/projectile/bullet/shot_heavy/denim
-		stack_type = /obj/item/stackable_ammo/scatter/juicer/denim
-		icon_state = "shells"
-		icon_full  = "shells"
-		icon_empty = "empty"
-		icon_one   = "shell_blue"
-		icon_shell = "shell_case"
+/obj/item/stackable_ammo/scatter/juicer/denim
+	name = "\improper Juicer JAMMO"
+	real_name = "\improper Juicer JAMMO"
+	desc = "Denim-wrapped shotgun cartridges. Increases chamber pressure, somehow, but the fabric is very prone to getting stuck. For jeavy jarrels."
+	projectile_type = /datum/projectile/bullet/shot_heavy/denim
+	stack_type = /obj/item/stackable_ammo/scatter/juicer/denim
+	icon_state = "shells"
+	icon_full  = "shells"
+	icon_empty = "empty"
+	icon_one   = "shell_blue"
+	icon_shell = "shell_case"
 
 /obj/item/stackable_ammo/scatter/bartender
 	name = "\improper Bartender's Buddy"
