@@ -938,5 +938,6 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 
 /mob/living/critter/robotic/securitron/weed_seeking/assess_perp(mob/living/perp)
 	if(perp.reagents && perp.reagents.has_reagent("THC"))
+		EXTEND_COOLDOWN(perp, "MARKED_FOR_SECURITRON_ARREST", 10 SECONDS)
 		return 420
 	. = ..()
