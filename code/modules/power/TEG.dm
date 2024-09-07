@@ -574,7 +574,7 @@ datum/pump_ui/circulator_ui
 	var/static/list/grump_prefix
 	var/static/list/grump_suffix
 
-	var/sound_engine1 = 'sound/machines/tractor_running.ogg'
+	var/sound_engine1 = 'sound/machines/tractor_running_loop.ogg'
 	var/sound_engine2 = 'sound/machines/engine_highpower.ogg'
 	var/sound_tractorrev = 'sound/machines/tractorrev.ogg'
 	var/sound_engine_alert1 = 'sound/machines/engine_alert1.ogg'
@@ -583,6 +583,9 @@ datum/pump_ui/circulator_ui
 	var/sound_bigzap = 'sound/effects/elec_bigzap.ogg'
 	var/sound_bellalert = 'sound/machines/bellalert.ogg'
 	var/sound_warningbuzzer = 'sound/machines/warning-buzzer.ogg'
+
+	var/engine_loop_channel = 175 //let's just dedicate you to 175 at random
+	var/currently_looping = FALSE //are we playing looping engine noises now
 
 	var/list/history
 	var/const/history_max = 50
@@ -936,21 +939,31 @@ datum/pump_ui/circulator_ui
 			grump -= 5
 
 		switch (lastgenlev)
-			if(0) return
+			if(0)
+				if (src.currently_looping)
+					var/sound/stopsound = sound(null, wait = 0, channel = src.engine_loop_channel)
+					for (var/client/C in clients)
+						C << stopsound
+					src.currently_looping = FALSE
+				return
 			if(1 to 2)
-				playsound(src.loc, sound_engine1, 60, 0)
+				playsound(src.loc, sound_engine1, 50, 0, pitch = 0.8, forcechannel = src.engine_loop_channel, repeat = TRUE)
 				if(prob(5))
 					playsound(src.loc, pick(sounds_engine), 70, 0)
-			if(3 to 11)
-				playsound(src.loc, sound_engine1, 60, 0)
+			if(3 to 7)
+				playsound(src.loc, sound_engine1, 55, 0, pitch = 0.9, forcechannel = src.engine_loop_channel, repeat = TRUE)
+			if(8 to 11)
+				playsound(src.loc, sound_engine1, 55, 0, pitch = 1, forcechannel = src.engine_loop_channel, repeat = TRUE)
 			if(12 to 15)
-				playsound(src.loc, sound_engine2, 60, 0)
+				playsound(src.loc, sound_engine2, 55, 0, pitch = 0.8, forcechannel = src.engine_loop_channel, repeat = TRUE)
 			if(16 to 18)
-				playsound(src.loc, sound_bellalert, 60, 0)
+				playsound(src.loc, sound_bellalert, 70, 0)
+				playsound(src.loc, sound_engine2, 60, 0, pitch = 0.9, forcechannel = src.engine_loop_channel, repeat = TRUE)
 				if (prob(5))
 					elecflash(src, power = 3)
 			if(19 to 21)
 				playsound(src.loc, sound_warningbuzzer, 50, 0)
+				playsound(src.loc, sound_engine2, 60, 0, pitch = 1, forcechannel = src.engine_loop_channel, repeat = TRUE)
 				if (probmult(5))
 					var/datum/effects/system/bad_smoke_spread/smoke = new /datum/effects/system/bad_smoke_spread()
 					smoke.set_up(1, 0, src.loc)
@@ -964,6 +977,7 @@ datum/pump_ui/circulator_ui
 					grump -= 10
 			if(22 to 23)
 				playsound(src.loc, sound_engine_alert1, 55, 0)
+				playsound(src.loc, sound_engine2, 60, 0, pitch = 1.02, forcechannel = src.engine_loop_channel, repeat = TRUE)
 				if (probmult(5)) zapStuff()
 				if (probmult(5))
 					var/datum/effects/system/bad_smoke_spread/smoke = new /datum/effects/system/bad_smoke_spread()
@@ -979,6 +993,7 @@ datum/pump_ui/circulator_ui
 
 			if(24 to 25)
 				playsound(src.loc, sound_engine_alert1, 55, 0)
+				playsound(src.loc, sound_engine2, 60, 0, pitch = 1.05, forcechannel = src.engine_loop_channel, repeat = TRUE)
 				if (probmult(10)) // lowering a bit more
 					zapStuff()
 				if (probmult(5))
@@ -1006,6 +1021,7 @@ datum/pump_ui/circulator_ui
 
 			if(26 to INFINITY)
 				playsound(src.loc, sound_engine_alert3, 55, 0)
+				playsound(src.loc, sound_engine2, 45, 0, pitch = (1.1), forcechannel = src.engine_loop_channel, repeat = TRUE)
 				if(grump >= 100 && probmult(6))
 					src.audible_message("<span class='alert'><b>[src] [pick("resonates", "shakes", "rumbles", "grumbles", "vibrates", "roars")] [pick("dangerously", "strangely", "ominously", "frighteningly", "grumpily")]!</b></span>")
 					playsound(src.loc, "sound/effects/explosionfar.ogg", 65, 1)
@@ -1041,6 +1057,9 @@ datum/pump_ui/circulator_ui
 				else if (probmult(2))
 					src.visible_message("<span class='alert'><b>[src] hungers!</b></span>")
 				// todo: sorta run happily at this extreme level as long as it gets a steady influx of corpses OR WEED into the furnaces
+		//doing this here instead of on every level
+		if (lastgenlev)
+			src.currently_looping = TRUE
 
 	proc/zapStuff()
 		var/atom/target = null
