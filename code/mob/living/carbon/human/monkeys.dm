@@ -79,6 +79,18 @@
 		SPAWN_DBG(1 SECOND)
 			src.equip_new_if_possible(/obj/item/clothing/suit/space/syndicate, slot_wear_suit)
 			//src.equip_new_if_possible(/obj/item/clothing/head/helmet/space, slot_head) //this hides ID and he's not going out, so
+	ai_action()
+		if(ai_aggressive)
+			return ..()
+
+		if (ai_state == 0)
+			if (prob(50))
+				//attempt to fuck around
+				if(src.ai_syndicate_fuck_around())
+					//successfully fucked around, nothing else
+					return
+		//do regular monkey stuff
+		..()
 
 /mob/living/carbon/human/npc/monkey/minty //same. like i get it's the nuclear operative thing but
 	name = "Nick \'Minty\' Kelvin"
@@ -113,6 +125,19 @@
 		if(!isliving(M) || !isalive(M))
 			return FALSE
 		return !istype(M.get_id(), preferred_card_type)
+
+	ai_action()
+		if(ai_aggressive)
+			return ..()
+
+		if (ai_state == 0)
+			if (prob(50))
+				//attempt to fuck around
+				if(src.ai_syndicate_fuck_around())
+					//successfully fucked around, nothing else
+					return
+		//do regular monkey stuff
+		..()
 /*
 /mob/living/carbon/human/npc/monkey/minty/pod_wars
 	preferred_card_type = /obj/item/card/id/pod_wars/syndicate
@@ -433,6 +458,68 @@
 		src.a_intent = INTENT_DISARM
 		theft_target.Attackhand(src)
 		src.a_intent = src.ai_default_intent
+
+	proc/ai_syndicate_fuck_around()
+		if (src.getStatusDuration("weakened") || src.getStatusDuration("stunned") || src.getStatusDuration("paralysis") || src.stat || src.ai_picking_pocket)
+			return
+		var/list/possible_targets = list()
+		//proof of concept, redo this to have a saved list of things to fuck with and move to so we're not a) constantly scanning b) limited to line of sight
+		for (var/obj/decoration/syndiepc/M in orange(10, src))
+			possible_targets += M
+		for (var/obj/machinery/nuclearbomb/M in orange(10, src))
+			possible_targets += M
+		for (var/obj/cairngorm_stats/foss/M in orange(10, src))
+			possible_targets += M
+		if(length(possible_targets) == 0)
+			return
+		var/obj/fuckaround_target = pick(possible_targets)
+		if(!fuckaround_target)
+			return
+		src.a_intent = INTENT_HELP
+		src.ai_state = AI_IDLE
+
+		//should really check if we're still in range but whatever it's fine
+		if (istype(fuckaround_target, /obj/decoration/syndiepc))
+			if(prob(50))
+				walk_towards(src, fuckaround_target, ai_movedelay)
+				sleep(5 SECONDS)
+				src.visible_message(pick("<B>[name]</B> types something into [fuckaround_target]. You're not sure what it is, but it did something.", \
+				"<B>[name]</B> acknowledges some sort of message on [fuckaround_target].", \
+				"<B>[name]</B> looks at [fuckaround_target] with [pick("vague","mild","intense","")] [pick("concern","annoyance","interest")] and types something in."), 1)
+				playsound(fuckaround_target, "sound/machines/keyboard[rand(1,3)].ogg", 50, 1, -5)
+				sleep(15)
+				if(prob(5))
+					playsound(fuckaround_target, 'sound/machines/buzz-two.ogg', 50, 1, -5)
+					if(prob(75))
+						src.emote(pick("sigh","scream","grump"))
+				else
+					playsound(fuckaround_target, 'sound/machines/twobeep.ogg', 50, 1, -5)
+
+		else if (istype(fuckaround_target, /obj/machinery/nuclearbomb))
+			if(prob(5))
+				src.visible_message(pick("<B>[name]</B> glances at [fuckaround_target] with a mix of fear and respect.", \
+				"<B>[name]</B> seems to want [fuckaround_target] off this ship as soon as possible.", \
+				"<B>[name]</B> makes a little explosion noise and gesture at [fuckaround_target]."), 1)
+				if(prob(20))
+					src.emote("scream")
+		else if (istype(fuckaround_target, /obj/cairngorm_stats/foss))
+			if(prob(5))
+				walk_towards(src, fuckaround_target, ai_movedelay)
+				sleep(5 SECONDS)
+				src.visible_message(pick("<B>[name]</B> performs a little salute at [fuckaround_target]. [pick("Aw, how cute.","That's kinda weird, actually!")]", \
+				"<B>[name]</B> picks [his_or_her(src)] nose and wipes it on [fuckaround_target].", \
+				"<B>[name]</B> closely reads the names on [fuckaround_target] and [pick("sheds a tear","laughs","hoots","makes a fart noise","flips one of them off")]."), 1)
+				if(prob(10))
+					sleep(2 SECONDS)
+					src.emote("fart")
+		else
+			src.visible_message(pick("<B>[name]</B> [pick("pokes","prods","fusses with")] [fuckaround_target].", \
+			"<B>[name]</B> [pick("hoots","chimpers","grunts")] at [fuckaround_target]."), 1)
+		sleep(3 SECONDS)
+		src.a_intent = src.ai_default_intent
+		walk_towards(src, null)
+		src.ai_state = 0
+		return
 
 	hear_talk(mob/M as mob, messages, heardname, lang_id)
 		if (isalive(src) && messages)
