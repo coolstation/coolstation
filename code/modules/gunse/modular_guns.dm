@@ -629,7 +629,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		if(prob(jam_frequency_fire))
 			//if you're playing it unsafe
 			if (unsafety)
-				if (prob(max(0,(2 ^ (crank_level - safe_crank_level))))) //sudden and possibly explosive breakage versus expected burnout, with increasingly bad odds
+				if (prob(max(0,(2 ^ (crank_level - safe_crank_level) + 5)))) //sudden and possibly explosive breakage versus expected burnout, with increasingly bad odds
 					var/T = get_turf(src)
 					explosion_new(src, T, crank_level, 1)
 					jammed = 4
@@ -639,15 +639,17 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 					playsound(user, "sound/impact_sounds/Glass_Shatter_[rand(1,3)].ogg", 60, 1)
 					//hurts and trouble all around
 			//otherwise...
-			flashbulb_health = max(0, flashbulb_health - (2 * crank_level))
+			flashbulb_health = max(0, flashbulb_health - (crank_level))
 			if (flash_auto)
-				crank_level = max(0, crank_level - rand(2,6))
+				crank_level = max(0, crank_level - rand(1,4))
 			else
 				//need a good *sproing* noise
 				crank_level = 0
 			if (flashbulb_health) //flash still there?
 				jammed = 1
 				user.show_text("A wire comes loose as [src] misfires and drops its charge!", "red")
+			else
+				user.show_text("The flashtube shorts out and dies!", "red")
 			//maybe a chance to force a shot if this is done while cranking rather than attempting to fire
 
 	var/spread = is_dual_wield*10
@@ -706,7 +708,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			crank_level = 0 // reset
 
 		if(!flashbulb_health) // that was the end of it!
-			if((!unsafety && crank_level) || !flash_auto)
+			if((!unsafety && crank_level) ^^ !flash_auto)
 				user.show_text("<span class='alert'>Your gun's flash bulb burns out and auto-releases your wind-up doohickey!</span>")
 				crank_level = 0
 			else
@@ -889,7 +891,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				current_projectile = new /datum/projectile/laser/flashbulb()
 			src.inventory_counter.update_number(crank_level)
 			//07_Flywheel Toy Car.wav by 14GPanskaVitek_Martin -- https://freesound.org/s/420215/ -- License: Attribution 3.0
-			playsound(src.loc, "sound/weapons/modular/crank-flywheel.ogg", 50, 0, pitch = (0.65 + (crank_level * 0.03)))
+			playsound(src.loc, "sound/weapons/modular/crank-flywheel.ogg", 60, 0, pitch = (0.65 + (crank_level * 0.03)))
 			sleep (0.30 SECONDS)
 			if (!((crank_level) % 5)) //beep every 5
 				playsound(src.loc, "sound/machines/twobeep.ogg", 55, 0, pitch = (0.65 + (crank_level * 0.02)))
@@ -1079,7 +1081,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/foss)
 	stock_overlay_x = -10 //combined with the inherent -6 on the stock itself, this is 16 to the left (fiddly fucking thing)
 	grip_overlay_x = -4
 	grip_overlay_y = -2
-	jam_frequency_fire = 0.2 //really only if overcharged
+	jam_frequency_fire = 0.1 //really only if overcharged
 	jam_frequency_reload = 0 //only if the user is clumsy
 	//foregrip_offset_x = 12
 	//foregrip_offset_y = 0
