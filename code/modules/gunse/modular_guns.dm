@@ -707,8 +707,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			flashbulb_health = max(0,(flashbulb_health - crank_level - (0.5 * (max(0,max_crank_level - crank_level))))) //subtract cranks from life, cranks over max crank level are cranks and a half for bulb lifetime purposes
 			crank_level = 0 // reset
 
-		if(!flashbulb_health) // that was the end of it!
-			if((!unsafety && crank_level) ^^ !flash_auto)
+		if(!flashbulb_health) // that was the end of it after applying extra damage!
+			if((!unsafety && crank_level && !flash_auto))
 				user.show_text("<span class='alert'>Your gun's flash bulb burns out and auto-releases your wind-up doohickey!</span>")
 				crank_level = 0
 			else
