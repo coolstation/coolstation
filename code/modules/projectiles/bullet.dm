@@ -260,12 +260,11 @@ soon it will go away */
 /datum/projectile/bullet/rifle_medium
 	name = "bullet"
 	shot_sound = 'sound/weapons/ak47shot.ogg'
-	power = 40
-	cost = 3
+	power = 35
+	cost = 1
 	ks_ratio = 1.0
 	damage_type = D_KINETIC
 	hit_type = DAMAGE_CUT
-	shot_number = 3
 	caliber = 0.31
 	icon_turf_hit = "bhole-small"
 	implanted = /obj/item/implant/projectile/bullet_rifle_medium
@@ -279,7 +278,6 @@ soon it will go away */
 	ks_ratio = 1.0
 	damage_type = D_PIERCING
 	hit_type = DAMAGE_STAB
-	shot_number = 1
 	caliber = 0.31
 	icon_turf_hit = "bhole-small"
 	implanted = /obj/item/implant/projectile/bullet_rifle_medium
